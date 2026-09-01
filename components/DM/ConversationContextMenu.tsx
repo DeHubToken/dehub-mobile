@@ -59,12 +59,12 @@ const ActionRow: React.FC<ActionRowProps> = ({
       <Ionicons
         name={icon}
         size={20}
-        color={destructive ? "#EF4444" : "#F9FBFF"}
+        color={destructive ? "#F4F4F5" : "#F9FBFF"}
       />
     </View>
     <Text
       className={`ml-3 text-[15px] ${
-        destructive ? "text-red-400" : "text-theme-neutrals-100"
+        destructive ? "text-white/80" : "text-theme-neutrals-100"
       }`}
     >
       {label}

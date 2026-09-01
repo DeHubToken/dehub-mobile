@@ -384,7 +384,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
                 {isWalletLoading ? (
                   <ActivityIndicator size="small" color="#A6A9AC" />
                 ) : (
-                  <Text style={[s.balanceAmount, needsTokens && { color: '#EF4444' }]}>
+                  <Text style={[s.balanceAmount, needsTokens && { color: '#F4F4F5' }]}>
                     {formatDhb(walletDhb)}
                   </Text>
                 )}
@@ -561,12 +561,12 @@ const s = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 12,
     borderRadius: 12,
-    backgroundColor: 'rgba(239,68,68,0.1)',
+    backgroundColor: 'rgba(255,255,255,0.1)',
     borderWidth: 1,
-    borderColor: 'rgba(239,68,68,0.3)',
+    borderColor: 'rgba(255,255,255,0.3)',
     alignItems: 'center',
   },
-  warnText: { color: '#EF4444', fontSize: 13, textAlign: 'center' },
+  warnText: { color: '#F4F4F5', fontSize: 13, textAlign: 'center' },
   footer: { flexDirection: 'row', gap: 12, marginTop: 16, paddingHorizontal: 16 },
   cancelBtn: {
     flex: 1,

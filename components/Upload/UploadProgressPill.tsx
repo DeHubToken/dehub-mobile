@@ -152,7 +152,7 @@ const UploadProgressPill: React.FC = () => {
                 cx={BADGE_SIZE / 2}
                 cy={BADGE_SIZE / 2}
                 r={BADGE_RADIUS}
-                stroke={isFailed ? "#EF4444" : "#fff"}
+                stroke={isFailed ? "#F4F4F5" : "#fff"}
                 strokeWidth={BADGE_STROKE}
                 fill="none"
                 strokeLinecap="round"
@@ -165,7 +165,7 @@ const UploadProgressPill: React.FC = () => {
             <Icon
               name={iconName}
               size={18}
-              color={isFailed ? "#EF4444" : "#fff"}
+              color={isFailed ? "#F4F4F5" : "#fff"}
             />
           </View>
         </Pressable>
@@ -186,7 +186,7 @@ const UploadProgressPill: React.FC = () => {
         <View style={styles.pill}>
           <View style={styles.inner}>
             <View style={styles.iconWrap}>
-              <Icon name={iconName} size={18} color={isFailed ? "#EF4444" : "#fff"} />
+              <Icon name={iconName} size={18} color={isFailed ? "#F4F4F5" : "#fff"} />
             </View>
             <View style={styles.textWrap}>
               <View style={styles.titleRow}>
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
     color: "rgba(255,255,255,0.5)",
   },
   statusFailed: {
-    color: "#EF4444",
+    color: "#F4F4F5",
   },
   minimizeBtn: {
     width: 28,
@@ -318,7 +318,7 @@ const styles = StyleSheet.create({
     borderRadius: 1,
   },
   progressFillFailed: {
-    backgroundColor: "#EF4444",
+    backgroundColor: "rgba(255,255,255,0.55)",
   },
 
   // Minimized circular badge

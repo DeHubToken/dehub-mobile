@@ -86,10 +86,10 @@ const RowShell: React.FC<BaseRowProps & { right?: React.ReactNode }> = ({
 }) => (
   <View className={`px-4 py-3.5 flex-row items-center ${disabled ? 'opacity-40' : ''}`}>
     <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-      <Icon name={icon} size={18} color={destructive ? '#ef4444' : iconColor} />
+      <Icon name={icon} size={18} color={destructive ? '#F4F4F5' : iconColor} />
     </View>
     <View className="flex-1 mr-2">
-      <Text className={`text-sm font-medium ${destructive ? 'text-red-400' : 'text-white'}`}>
+      <Text className={`text-sm font-medium ${destructive ? 'text-white/80' : 'text-white'}`}>
         {label}
       </Text>
       {description ? (
@@ -115,7 +115,7 @@ export const SettingsLinkRow: React.FC<
           <Icon
             name={external ? 'ExternalLink' : 'ChevronRight'}
             size={18}
-            color={rest.destructive ? '#ef4444' : '#8B8D90'}
+            color={rest.destructive ? '#F4F4F5' : '#8B8D90'}
           />
         </View>
       }

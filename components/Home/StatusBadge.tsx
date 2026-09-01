@@ -12,7 +12,7 @@ interface BadgeProps {
 // Maps status to tailwind background + text label
 const STATUS_STYLES: Record<string, { container: string; label: string }> = {
   OFFLINE: { container: "bg-gray-500", label: "OFFLINE" },
-  LIVE: { container: "bg-red-600", label: "LIVE" },
+  LIVE: { container: "bg-white/20 border border-white/30", label: "LIVE" },
   ENDED: { container: "bg-gray-600", label: "ENDED" },
   SCHEDULED: { container: "bg-yellow-500", label: "SCHEDULED" },
 };

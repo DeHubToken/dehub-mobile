@@ -116,7 +116,7 @@ export function ProfilesSection() {
               {switchingId === profile.id ? (
                 <ActivityIndicator size="small" color="#9ca3af" />
               ) : isActive ? (
-                <Icon name="Check" size={18} color="#34d399" />
+                <Icon name="Check" size={18} color="#F4F4F5" />
               ) : null}
             </TouchableOpacity>
           </React.Fragment>

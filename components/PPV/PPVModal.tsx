@@ -592,12 +592,12 @@ const PPVModal: React.FC<PPVModalProps> = ({
                     </Text>
                   )}
                   {isSelf && (
-                    <Text className="text-xs text-red-400 mt-2">
+                    <Text className="text-xs text-white/80 mt-2">
                       You can't pay yourself
                     </Text>
                   )}
                   {ppvError && (
-                    <Text className="text-xs text-red-400 mt-2">
+                    <Text className="text-xs text-white/80 mt-2">
                       {ppvError}
                     </Text>
                   )}

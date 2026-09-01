@@ -278,7 +278,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
           {showCounter && (
             <Text
               className={`text-[11px] font-medium px-1 self-center ${
-                isOverLimit ? "text-red-400" : remaining <= 20 ? "text-amber-400" : "text-white/30"
+                isOverLimit ? "text-white/80" : remaining <= 20 ? "text-amber-400" : "text-white/30"
               }`}
             >
               {remaining}

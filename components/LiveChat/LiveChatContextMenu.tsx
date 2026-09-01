@@ -62,11 +62,11 @@ const ActionRow: React.FC<ActionRowProps> = ({ icon, label, onPress, destructive
       <Icon
         name={icon}
         size={20}
-        color={destructive ? "#EF4444" : theme.colors.neutrals[100]}
+        color={destructive ? "#F4F4F5" : theme.colors.neutrals[100]}
       />
     </View>
     <Text
-      className={`ml-3 text-[15px] ${destructive ? "text-red-400" : "text-theme-neutrals-100"}`}
+      className={`ml-3 text-[15px] ${destructive ? "text-white/80" : "text-theme-neutrals-100"}`}
     >
       {label}
     </Text>

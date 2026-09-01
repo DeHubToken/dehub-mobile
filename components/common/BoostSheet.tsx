@@ -240,7 +240,7 @@ export default function BoostSheet({
                       <View className="flex-row items-center gap-2">
                         <Text className="text-sm text-white">{power.label}</Text>
                         {isChosen && power.enabled && (
-                          <Icon name="Check" size={13} color="#4ADE80" />
+                          <Icon name="Check" size={13} color="#F4F4F5" />
                         )}
                       </View>
                       <Text className="text-xs text-zinc-500">

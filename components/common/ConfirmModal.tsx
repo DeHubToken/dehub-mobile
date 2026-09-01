@@ -16,7 +16,7 @@ export type ConfirmModalProps = {
 
 const kindBg: Record<NonNullable<ConfirmModalProps["confirmKind"]>, string> = {
   primary: "bg-theme-accent",
-  danger: "bg-red-600",
+  danger: "bg-white/15 border border-white/25",
   neutral: "bg-theme-neutrals-700",
 };
 

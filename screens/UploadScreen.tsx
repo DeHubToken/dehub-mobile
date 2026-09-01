@@ -1711,8 +1711,8 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               className="mr-3 w-9 h-9 rounded-xl items-center justify-center border"
               style={{
-                backgroundColor: scheduledDate ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.1)",
-                borderColor: scheduledDate ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.2)",
+                backgroundColor: scheduledDate ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.1)",
+                borderColor: scheduledDate ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.2)",
               }}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               accessibilityRole="button"
@@ -1755,7 +1755,7 @@ export default function UploadScreen() {
             accessibilityLabel={isLiveMode ? "Go live" : scheduledDate ? "Schedule" : "Post"}
             style={{
               backgroundColor: (isLiveMode ? canGoLive : canPost)
-                ? (!isLiveMode && scheduledDate ? '#F59E0B' : '#fff')
+                ? (!isLiveMode && scheduledDate ? '#D4D4D8' : '#fff')
                 : 'rgba(255,255,255,0.1)',
             }}
           >
@@ -1775,15 +1775,15 @@ export default function UploadScreen() {
       {scheduledDate && (
         <View
           className="mx-4 mb-2 flex-row items-center px-3 py-2 rounded-xl"
-          style={{ backgroundColor: "rgba(245,158,11,0.2)", borderWidth: 1, borderColor: "rgba(245,158,11,0.4)" }}
+          style={{ backgroundColor: "rgba(255,255,255,0.2)", borderWidth: 1, borderColor: "rgba(255,255,255,0.4)" }}
         >
           <TouchableOpacity
             onPress={() => setShowScheduleSheet(true)}
             activeOpacity={0.7}
             className="flex-row items-center flex-1"
           >
-            <Icon name="Clock" size={14} color="#FBBF24" />
-            <Text className="text-xs font-medium ml-2" style={{ color: "#FBBF24" }}>
+            <Icon name="Clock" size={14} color="#D4D4D8" />
+            <Text className="text-xs font-medium ml-2" style={{ color: "#D4D4D8" }}>
               Scheduled for{" "}
               {scheduledDate.toLocaleString(undefined, {
                 month: "short",
@@ -1912,8 +1912,8 @@ export default function UploadScreen() {
 
             {isLiveMode && (
               <View className="mt-2 flex-row items-center">
-                <View className="w-2.5 h-2.5 rounded-full bg-red-500 mr-2" />
-                <Text className="text-red-400 text-xs font-semibold uppercase tracking-wide">
+                <View className="w-2.5 h-2.5 rounded-full bg-white mr-2" />
+                <Text className="text-white/80 text-xs font-semibold uppercase tracking-wide">
                   Livestream Mode
                 </Text>
               </View>
@@ -1958,7 +1958,7 @@ export default function UploadScreen() {
                   >
                     <Icon name="Image" size={28} color="#A1A1AA" />
                     <Text className="text-theme-neutrals-400 text-xs mt-2">
-                      Add Thumbnail <Text className="text-red-500">*</Text>
+                      Add Thumbnail <Text className="text-white/80">*</Text>
                     </Text>
                   </TouchableOpacity>
                 )}
@@ -2140,7 +2140,7 @@ export default function UploadScreen() {
             {isAudioRecording && (
               <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4">
                 <View className="flex-row items-center">
-                  <View className="w-2.5 h-2.5 rounded-full bg-red-500 mr-2" />
+                  <View className="w-2.5 h-2.5 rounded-full bg-white mr-2" />
                   <Text
                     className="text-white text-sm font-medium mr-3"
                     style={{ fontVariant: ["tabular-nums"] }}
@@ -2158,7 +2158,7 @@ export default function UploadScreen() {
                     accessibilityRole="button"
                     accessibilityLabel="Discard recording"
                   >
-                    <Icon name="Trash2" size={18} color="#EF4444" />
+                    <Icon name="Trash2" size={18} color="#F4F4F5" />
                   </TouchableOpacity>
 
                   <TouchableOpacity
@@ -2186,7 +2186,7 @@ export default function UploadScreen() {
                           height: Math.max(3, level * 22),
                           borderRadius: 1.25,
                           marginRight: i < BARS - 1 ? 1.5 : 0,
-                          backgroundColor: "rgba(239,68,68,0.8)",
+                          backgroundColor: "rgba(255,255,255,0.8)",
                         }}
                       />
                     ));
@@ -2195,7 +2195,7 @@ export default function UploadScreen() {
 
                 <View className="h-1 bg-theme-neutrals-700 rounded-full mt-3 overflow-hidden">
                   <View
-                    className="h-full rounded-full bg-red-500"
+                    className="h-full rounded-full bg-white"
                     style={{ width: `${Math.min(100, (audioRecordingElapsed / MAX_AUDIO_DURATION_MS) * 100)}%` }}
                   />
                 </View>
@@ -2697,7 +2697,7 @@ export default function UploadScreen() {
             <Icon
               name="Radio"
               size={24}
-              color={isLiveMode ? "#EF4444" : "#fff"}
+              color={isLiveMode ? "#F4F4F5" : "#fff"}
             />
           </TouchableOpacity>
         )}
@@ -2860,9 +2860,9 @@ export default function UploadScreen() {
               handleToggleLiveMode();
             }}
             className="flex-row items-center gap-3 py-4 px-4 rounded-xl mb-3"
-            style={{ backgroundColor: "rgba(239,68,68,0.15)", borderWidth: 1, borderColor: "rgba(239,68,68,0.3)" }}
+            style={{ backgroundColor: "rgba(255,255,255,0.15)", borderWidth: 1, borderColor: "rgba(255,255,255,0.3)" }}
           >
-            <Icon name="Radio" size={22} color="#EF4444" />
+            <Icon name="Radio" size={22} color="#F4F4F5" />
             <View className="flex-1">
               <Text className="text-white font-semibold text-sm">Go Live</Text>
               <Text className="text-theme-neutrals-400 text-xs mt-0.5">Start a livestream</Text>
@@ -2938,7 +2938,7 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               className="px-4 py-3 rounded-full bg-theme-neutrals-800 border border-theme-neutrals-700"
             >
-              <Text className="text-red-500 text-center font-medium">Discard</Text>
+              <Text className="text-white/80 text-center font-medium">Discard</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => setShowDiscardModal(false)}

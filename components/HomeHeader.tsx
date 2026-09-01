@@ -91,10 +91,10 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
             // with a black ring separates it from the bell the way the rest of
             // the app's badges do.
             <View
-              className="absolute -top-0.5 -right-1 min-w-[18px] h-[18px] px-[5px] bg-red-500 rounded-full border-[1.5px] border-black items-center justify-center"
+              className="absolute -top-0.5 -right-1 min-w-[18px] h-[18px] px-[5px] bg-white rounded-full border-[1.5px] border-black items-center justify-center"
               pointerEvents="none"
             >
-              <Text className="text-white text-[10px] font-bold leading-[12px]">
+              <Text className="text-zinc-950 text-[10px] font-bold leading-[12px]">
                 {unreadCount > 99 ? "99+" : unreadCount}
               </Text>
             </View>

@@ -178,7 +178,7 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
       value={dmsEnabled}
       onValueChange={onToggleDmsEnabled}
       thumbColor={dmsEnabled ? '#F4F4F5' : '#A1A1AA'}
-      trackColor={{ false: 'rgba(255,255,255,0.2)', true: '#22C55E' }}
+      trackColor={{ false: 'rgba(255,255,255,0.2)', true: 'rgba(255,255,255,0.5)' }}
       disabled={submitting}
     />
   ), [dmsEnabled, onToggleDmsEnabled, submitting]);
@@ -188,7 +188,7 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
       value={allowNew}
       onValueChange={onToggleAllowNew}
       thumbColor={allowNew ? '#F4F4F5' : '#A1A1AA'}
-      trackColor={{ false: 'rgba(255,255,255,0.2)', true: '#22C55E' }}
+      trackColor={{ false: 'rgba(255,255,255,0.2)', true: 'rgba(255,255,255,0.5)' }}
       disabled={!dmsEnabled || submitting}
     />
   ), [allowNew, dmsEnabled, onToggleAllowNew, submitting]);
@@ -242,14 +242,14 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
                   </View>
                 ) : feeSaved ? (
                   <View className="ml-3 h-11 items-center justify-center">
-                    <Ionicons name="checkmark-circle" size={18} color="#22C55E" />
+                    <Ionicons name="checkmark-circle" size={18} color="#F4F4F5" />
                   </View>
                 ) : null}
               </View>
             </View>
             {!dmsEnabled ? (
-              <View className="bg-red-500/10 border border-red-500/30 rounded-xl p-2">
-                <Text className="text-red-300 text-[12px]">All DMs are currently disabled. New DMs are blocked by default.</Text>
+              <View className="bg-white/10 border border-white/20 rounded-xl p-2">
+                <Text className="text-white/80 text-[12px]">All DMs are currently disabled. New DMs are blocked by default.</Text>
               </View>
             ) : null}
           </View>

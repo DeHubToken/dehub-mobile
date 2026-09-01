@@ -251,7 +251,7 @@ const RequestCard = React.memo<{
             style={{ opacity: busy ? 0.5 : 1 }}
           >
             {busy ? (
-              <ActivityIndicator size="small" color="#ef4444" />
+              <ActivityIndicator size="small" color="#F4F4F5" />
             ) : (
               <Text className="text-theme-neutrals-300 text-sm font-semibold">Decline</Text>
             )}

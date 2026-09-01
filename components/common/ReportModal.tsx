@@ -168,8 +168,8 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
         blurIntensity={40}
       >
         <View className="p-6 items-center">
-          <View className="w-16 h-16 rounded-full bg-green-500/15 items-center justify-center mb-4">
-            <Ionicons name="checkmark-circle" size={36} color="#22C55E" />
+          <View className="w-16 h-16 rounded-full bg-white/10 items-center justify-center mb-4">
+            <Ionicons name="checkmark-circle" size={36} color="#F4F4F5" />
           </View>
           <Text className="text-white text-lg font-bold text-center mb-2">
             Report Submitted

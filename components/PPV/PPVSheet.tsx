@@ -736,7 +736,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   errorText: {
-    color: "#EF4444",
+    color: "#F4F4F5",
     fontSize: 12,
     marginBottom: 8,
   },
@@ -799,7 +799,7 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: 36,
-    backgroundColor: "#22C55E",
+    backgroundColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 8,

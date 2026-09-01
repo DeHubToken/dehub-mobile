@@ -193,7 +193,7 @@ export default function UsernamesScreen() {
           style={[styles.banner, styles.bannerFree]}
           onPress={() => navigation.navigate(ScreenNames.EditProfile)}
         >
-          <Icon name="Tag" size={15} color="#34D399" />
+          <Icon name="Tag" size={15} color="#F4F4F5" />
           <Text style={styles.bannerFreeText}>
             {t("usernames.bannerAvailable", { handle: exact.username })}
           </Text>
@@ -443,11 +443,11 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.10)",
   },
   bannerFree: {
-    backgroundColor: "rgba(16,185,129,0.10)",
-    borderColor: "rgba(16,185,129,0.30)",
+    backgroundColor: "rgba(255,255,255,0.10)",
+    borderColor: "rgba(255,255,255,0.30)",
   },
   bannerText: { flex: 1, color: "#D4D4D8", fontSize: 12.5, lineHeight: 18 },
-  bannerFreeText: { flex: 1, color: "#D1FAE5", fontSize: 12.5, lineHeight: 18 },
+  bannerFreeText: { flex: 1, color: "#D4D4D8", fontSize: 12.5, lineHeight: 18 },
 
   card: {
     flexDirection: "row",

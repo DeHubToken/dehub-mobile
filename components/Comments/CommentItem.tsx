@@ -425,12 +425,12 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                   paddingHorizontal: 6,
                   paddingVertical: 2,
                   borderRadius: 6,
-                  backgroundColor: "rgba(239,68,68,0.15)",
+                  backgroundColor: "rgba(255,255,255,0.15)",
                   borderWidth: 1,
-                  borderColor: "rgba(239,68,68,0.30)",
+                  borderColor: "rgba(255,255,255,0.30)",
                 }}
               >
-                <Text style={{ fontSize: 10, fontWeight: "600", color: "#FCA5A5" }}>
+                <Text style={{ fontSize: 10, fontWeight: "600", color: "#F4F4F5" }}>
                   Not the creator
                 </Text>
               </View>

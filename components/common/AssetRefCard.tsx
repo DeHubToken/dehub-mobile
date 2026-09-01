@@ -100,7 +100,7 @@ const Sparkline: React.FC<{ points: PricePoint[]; positive: boolean }> = ({
     .map((c, i) => `${i === 0 ? 'M' : 'L'}${c.x.toFixed(1)},${c.y.toFixed(1)}`)
     .join(' ');
   const area = `${line} L${SPARK_W},${SPARK_H} L0,${SPARK_H} Z`;
-  const color = positive ? '#34d399' : '#f87171';
+  const color = positive ? '#F4F4F5' : '#8B8D90';
   const gradientId = positive ? 'asset-spark-up' : 'asset-spark-down';
 
   return (
@@ -137,7 +137,7 @@ const AddressChip: React.FC<{ address: string }> = ({ address }) => {
       <Icon
         name={copied ? 'Check' : 'Copy'}
         size={12}
-        color={copied ? '#34d399' : '#a1a1aa'}
+        color={copied ? '#F4F4F5' : '#a1a1aa'}
       />
     </TouchableOpacity>
   );
@@ -219,7 +219,7 @@ const ResolvedCard: React.FC<{ asset: ResolvedAsset }> = ({ asset }) => {
               <Text
                 style={[
                   styles.change,
-                  { color: positive ? '#34d399' : '#f87171' },
+                  { color: positive ? '#F4F4F5' : '#8B8D90' },
                 ]}
               >
                 {positive ? '+' : ''}

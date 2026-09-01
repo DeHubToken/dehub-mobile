@@ -311,14 +311,14 @@ const s = StyleSheet.create({
     marginTop: 4,
   },
   subscribedBadge: {
-    backgroundColor: "rgba(34,197,94,0.2)",
+    backgroundColor: "rgba(255,255,255,0.2)",
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 8,
     marginLeft: 8,
   },
   subscribedText: {
-    color: "#22C55E",
+    color: "#F4F4F5",
     fontSize: 11,
     fontWeight: "600",
   },

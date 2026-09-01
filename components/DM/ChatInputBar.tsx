@@ -560,17 +560,17 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           <Animated.View
             entering={FadeIn.duration(150)}
             className={`flex-row items-center mx-3 mt-1.5 px-3 py-1 rounded-lg self-start ${
-              tipBelowFee || insufficientBalance ? "bg-red-500/10" : "bg-white/5"
+              tipBelowFee || insufficientBalance ? "bg-white/10" : "bg-white/5"
             }`}
           >
             <Icon
               name={tipBelowFee ? "CircleAlert" : "Wallet"}
               size={11}
-              color={tipBelowFee || insufficientBalance ? "#EF4444" : "#A6A9AC"}
+              color={tipBelowFee || insufficientBalance ? "#F4F4F5" : "#A6A9AC"}
             />
             <Text
               className={`text-[12px] font-medium ml-1 ${
-                tipBelowFee || insufficientBalance ? "text-red-400" : "text-theme-neutrals-400"
+                tipBelowFee || insufficientBalance ? "text-white/80" : "text-theme-neutrals-400"
               }`}
             >
               {tipBelowFee
@@ -626,12 +626,12 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               )}
               <TouchableOpacity
                 onPress={handleRemoveMedia}
-                className="absolute -top-1.5 -right-1.5 bg-red-500 rounded-full w-5 h-5 items-center justify-center"
+                className="absolute -top-1.5 -right-1.5 bg-white rounded-full w-5 h-5 items-center justify-center"
                 hitSlop={12}
                 accessibilityRole="button"
                 accessibilityLabel="Remove attachment"
               >
-                <Icon name="X" size={12} color="#fff" />
+                <Icon name="X" size={12} color="#09090B" />
               </TouchableOpacity>
             </View>
           </Animated.View>

@@ -597,7 +597,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
             keyboardType="decimal-pad"
             className="h-11 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700 text-white text-sm"
           />
-          {gateError && <Text className="text-red-400 text-xs mt-1.5">{gateError}</Text>}
+          {gateError && <Text className="text-white/80 text-xs mt-1.5">{gateError}</Text>}
           <View className="flex-row justify-end mt-3 gap-3">
             <TouchableOpacity onPress={cancelTokenGate} className="px-4 py-2">
               <Text className="text-theme-neutrals-400 text-sm">Cancel</Text>

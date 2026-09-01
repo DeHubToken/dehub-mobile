@@ -125,7 +125,7 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
           alignItems: "center",
           justifyContent: "center",
           borderWidth: (isSpeaking && !participant.is_muted) ? 2 : 0,
-          borderColor: "#32D583",
+          borderColor: "#F4F4F5",
           overflow: "hidden",
         }}
       >
@@ -173,10 +173,10 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
             paddingHorizontal: 8,
             paddingVertical: 2,
             borderRadius: 8,
-            backgroundColor: "rgba(239,68,68,0.2)",
+            backgroundColor: "rgba(255,255,255,0.2)",
           }}
         >
-          <Text style={{ color: "#EF4444", fontSize: 10 }}>Remove</Text>
+          <Text style={{ color: "#F4F4F5", fontSize: 10 }}>Remove</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -227,7 +227,7 @@ const HandRequestRow: React.FC<HandRequestRowProps> = ({ request, onApprove }) =
           paddingHorizontal: 14,
           paddingVertical: 6,
           borderRadius: 14,
-          backgroundColor: "#12B76A",
+          backgroundColor: "rgba(255,255,255,0.15)",
         }}
       >
         <Text style={{ color: "#fff", fontSize: 12, fontWeight: "600" }}>Let Speak</Text>
@@ -383,15 +383,15 @@ const LiveStageModal: React.FC = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                  backgroundColor: "rgba(239,68,68,0.15)",
+                  backgroundColor: "rgba(255,255,255,0.15)",
                   paddingHorizontal: 6,
                   paddingVertical: 2,
                   borderRadius: 6,
                   gap: 4,
                 }}
               >
-                <View style={{ width: 5, height: 5, borderRadius: 3, backgroundColor: "#ef4444" }} />
-                <Text style={{ color: "#ef4444", fontSize: 10, fontWeight: "700" }}>LIVE</Text>
+                <View style={{ width: 5, height: 5, borderRadius: 3, backgroundColor: "#FAFAFA" }} />
+                <Text style={{ color: "#F4F4F5", fontSize: 10, fontWeight: "700" }}>LIVE</Text>
               </View>
               <Text style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}>
                 {speakers.length} speaker{speakers.length !== 1 ? "s" : ""} · {listenerCount} listener{listenerCount !== 1 ? "s" : ""}
@@ -401,15 +401,15 @@ const LiveStageModal: React.FC = () => {
                   style={{
                     flexDirection: "row",
                     alignItems: "center",
-                    backgroundColor: "rgba(239,68,68,0.15)",
+                    backgroundColor: "rgba(255,255,255,0.15)",
                     paddingHorizontal: 5,
                     paddingVertical: 2,
                     borderRadius: 6,
                     gap: 3,
                   }}
                 >
-                  <View style={{ width: 5, height: 5, borderRadius: 3, backgroundColor: "#ef4444" }} />
-                  <Text style={{ color: "#ef4444", fontSize: 10, fontWeight: "700" }}>REC</Text>
+                  <View style={{ width: 5, height: 5, borderRadius: 3, backgroundColor: "#FAFAFA" }} />
+                  <Text style={{ color: "#F4F4F5", fontSize: 10, fontWeight: "700" }}>REC</Text>
                 </View>
               )}
               {!isConnected && (
@@ -787,14 +787,14 @@ const LiveStageModal: React.FC = () => {
                 width: 56,
                 height: 56,
                 borderRadius: 28,
-                backgroundColor: isMuted ? "rgba(239,68,68,0.15)" : "rgba(50,213,131,0.15)",
+                backgroundColor: isMuted ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.15)",
                 borderWidth: 1,
-                borderColor: isMuted ? "rgba(239,68,68,0.35)" : "rgba(50,213,131,0.35)",
+                borderColor: isMuted ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.35)",
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <Icon name={isMuted ? "MicOff" : "Mic"} size={22} color={isMuted ? "#EF4444" : "#32D583"} />
+              <Icon name={isMuted ? "MicOff" : "Mic"} size={22} color={isMuted ? "#8B8D90" : "#F4F4F5"} />
             </TouchableOpacity>
           )}
 
@@ -847,13 +847,13 @@ const LiveStageModal: React.FC = () => {
               paddingHorizontal: 24,
               height: 56,
               borderRadius: 28,
-              backgroundColor: isHostRole ? "#ef4444" : "rgba(239,68,68,0.15)",
+              backgroundColor: isHostRole ? "#F4F4F5" : "rgba(255,255,255,0.15)",
               borderWidth: isHostRole ? 0 : 1,
-              borderColor: "rgba(239,68,68,0.4)",
+              borderColor: "rgba(255,255,255,0.4)",
             }}
           >
-            <Icon name={isHostRole ? "X" : "LogOut"} size={18} color={isHostRole ? "#fff" : "#EF4444"} />
-            <Text style={{ color: isHostRole ? "#fff" : "#EF4444", fontWeight: "600", fontSize: 14 }}>
+            <Icon name={isHostRole ? "X" : "LogOut"} size={18} color={isHostRole ? "#09090B" : "#F4F4F5"} />
+            <Text style={{ color: isHostRole ? "#09090B" : "#F4F4F5", fontWeight: "600", fontSize: 14 }}>
               {isHostRole ? "End Stage" : "Leave"}
             </Text>
           </TouchableOpacity>

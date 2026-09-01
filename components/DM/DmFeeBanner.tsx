@@ -47,9 +47,9 @@ const DmFeeBannerComponent: React.FC<DmFeeBannerProps> = ({
       )}
 
       {hasFreeAccess && (
-        <View className="flex-row items-center justify-center px-4 py-2 bg-green-600/10 border-b border-theme-neutrals-800/50">
-          <Ionicons name="shield-checkmark" size={14} color="#22C55E" />
-          <Text className="text-[12px] text-green-400 font-medium ml-1.5">
+        <View className="flex-row items-center justify-center px-4 py-2 bg-white/10 border-b border-theme-neutrals-800/50">
+          <Ionicons name="shield-checkmark" size={14} color="#F4F4F5" />
+          <Text className="text-[12px] text-white/80 font-medium ml-1.5">
             Free access
           </Text>
           <Text className="text-[11px] text-theme-neutrals-500 ml-1">

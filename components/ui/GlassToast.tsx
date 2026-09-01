@@ -33,9 +33,9 @@ const GlassToast: React.FC<GlassToastProps> = ({
   const accent = useMemo((): { bg: string; icon: string } => {
     switch (type) {
       case "success":
-        return { bg: "#22C55E", icon: "checkmark-circle" };
+        return { bg: "#F4F4F5", icon: "checkmark-circle" };
       case "error":
-        return { bg: "#EF4444", icon: "close-circle" };
+        return { bg: "#A1A1AA", icon: "close-circle" };
       case "warning":
         return { bg: "#D4D4D8", icon: "warning" };
       case "loading":

@@ -291,7 +291,7 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
 
             {canDismiss && (
               <TouchableOpacity style={styles.dismissBtn} onPress={handleDismiss} disabled={busy}>
-                <Icon name="ShieldOff" size={16} color="#EF4444" />
+                <Icon name="ShieldOff" size={16} color="#F4F4F5" />
                 <Text style={styles.dismissBtnText}>
                   {t("communities.manage.dismissAdmin", { defaultValue: "Dismiss admin" })}
                 </Text>
@@ -346,9 +346,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingVertical: 12,
     borderRadius: 12,
-    backgroundColor: "rgba(239,68,68,0.08)",
+    backgroundColor: "rgba(255,255,255,0.08)",
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(239,68,68,0.25)",
+    borderColor: "rgba(255,255,255,0.25)",
   },
-  dismissBtnText: { color: "#EF4444", fontSize: 13, fontWeight: "600" },
+  dismissBtnText: { color: "#F4F4F5", fontSize: 13, fontWeight: "600" },
 });

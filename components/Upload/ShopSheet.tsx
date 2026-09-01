@@ -237,10 +237,10 @@ export default function ShopSheet({
                 autoCorrect={false}
                 keyboardType="url"
                 className="text-white text-base px-3 py-3 rounded-xl bg-white/[0.06] border"
-                style={{ borderColor: invalid ? "rgba(239,68,68,0.6)" : "rgba(255,255,255,0.1)" }}
+                style={{ borderColor: invalid ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.1)" }}
               />
               {invalid ? (
-                <Text className="text-red-400 text-xs mt-1">
+                <Text className="text-white/80 text-xs mt-1">
                   That does not look like a web address.
                 </Text>
               ) : null}

@@ -1592,7 +1592,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       {isLive && (
         <View className="flex-row items-center pt-2">
           <View className="flex-row items-center gap-1">
-            <Icon name="Heart" size={16} color="#ef4444" />
+            <Icon name="Heart" size={16} color="#F4F4F5" />
             <Text style={{ color: "#F9FBFF", fontSize: 13 }}>{formatCompactNumber(liveLikes)}</Text>
           </View>
         </View>

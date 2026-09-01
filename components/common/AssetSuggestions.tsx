@@ -95,7 +95,7 @@ const AssetSuggestionsComponent: React.FC<AssetSuggestionsProps> = ({
               {change != null && (
                 <Text
                   className="text-[10px]"
-                  style={{ color: positive ? "#34d399" : "#f87171" }}
+                  style={{ color: positive ? "#F4F4F5" : "#8B8D90" }}
                 >
                   {positive ? "+" : ""}
                   {change.toFixed(1)}%

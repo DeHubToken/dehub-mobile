@@ -103,14 +103,14 @@ const GeoBlockingSection: React.FC = () => {
               key={code}
               onPress={() => toggleCountry(code)}
               activeOpacity={0.7}
-              className="flex-row items-center bg-red-500/20 px-3 py-1.5 rounded-lg"
+              className="flex-row items-center bg-white/15 px-3 py-1.5 rounded-lg"
               style={{ gap: 6 }}
             >
-              <Icon name="MapPin" size={12} color="#EF4444" />
-              <Text className="text-red-400 text-xs">
+              <Icon name="MapPin" size={12} color="#F4F4F5" />
+              <Text className="text-white/80 text-xs">
                 {COUNTRIES.find((c) => c.code === code)?.name ?? code}
               </Text>
-              <Icon name="X" size={12} color="#EF4444" />
+              <Icon name="X" size={12} color="#F4F4F5" />
             </TouchableOpacity>
           ))}
         </View>
@@ -188,7 +188,7 @@ const GeoBlockingSection: React.FC = () => {
               >
                 <Text className="text-white text-sm">{item.name}</Text>
                 {geoBlockedCountries.includes(item.code) ? (
-                  <View className="w-5 h-5 rounded bg-red-500 items-center justify-center">
+                  <View className="w-5 h-5 rounded bg-white/20 items-center justify-center">
                     <Icon name="Check" size={12} color="#fff" />
                   </View>
                 ) : null}

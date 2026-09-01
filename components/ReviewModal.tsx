@@ -369,7 +369,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
         <View className="mt-4">
           <View className="mb-4">
             <Text className="text-theme-neutrals-400 text-xs mb-2">
-              Your Feedback <Text className="text-red-500">*</Text>
+              Your Feedback <Text className="text-white/80">*</Text>
             </Text>
             <TextInput
               value={feedback}

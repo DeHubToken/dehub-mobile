@@ -259,9 +259,9 @@ export default function ScheduleSheet({
           <TouchableOpacity
             onPress={handleClear}
             activeOpacity={0.7}
-            className="mx-4 mt-4 py-3 rounded-xl border border-red-500/20 items-center"
+            className="mx-4 mt-4 py-3 rounded-xl border border-white/20 items-center"
           >
-            <Text className="text-red-400 text-sm font-medium">Remove Schedule</Text>
+            <Text className="text-white/80 text-sm font-medium">Remove Schedule</Text>
           </TouchableOpacity>
         )}
       </ScrollView>

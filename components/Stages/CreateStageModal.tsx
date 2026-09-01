@@ -508,7 +508,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   errorText: {
-    color: "#EF4444",
+    color: "#F4F4F5",
     fontSize: 13,
     marginBottom: 12,
     textAlign: "center",

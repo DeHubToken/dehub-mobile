@@ -291,13 +291,13 @@ const DMSettingsSection: React.FC = () => {
               </View>
             ) : feeSaved ? (
               <View className="ml-3 h-11 items-center justify-center">
-                <Icon name="CircleCheck" size={18} color="#32D583" />
+                <Icon name="CircleCheck" size={18} color="#F4F4F5" />
               </View>
             ) : null}
           </View>
           {!dmsEnabled && (
-            <View className="bg-red-500/10 border border-red-500/30 rounded-xl p-2.5 mt-3 ml-12">
-              <Text className="text-red-300 text-[11px]">
+            <View className="bg-white/10 border border-white/20 rounded-xl p-2.5 mt-3 ml-12">
+              <Text className="text-white/80 text-[11px]">
                 {t("settings.dmAllDisabledNote")}
               </Text>
             </View>

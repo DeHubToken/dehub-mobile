@@ -93,7 +93,7 @@ const DraftItem: React.FC<DraftItemProps> = React.memo(
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           className="w-9 h-9 items-center justify-center"
         >
-          <Ionicons name="trash-outline" size={20} color="#EF4444" />
+          <Ionicons name="trash-outline" size={20} color="#F4F4F5" />
         </TouchableOpacity>
       </TouchableOpacity>
     );
