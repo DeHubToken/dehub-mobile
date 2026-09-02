@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "د اپ په دې نسخه کې شتون نلري"
+  },
   "nav": {
     "home": "کور",
     "explore": "لټون",

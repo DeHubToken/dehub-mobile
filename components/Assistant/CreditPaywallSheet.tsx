@@ -47,6 +47,8 @@ import type { AiJobKind } from '../../services/ai.service';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import { toastError, toastSuccess } from '../../libs/toast';
 import { createLogger } from '../../libs/logger';
+import { DIGITAL_PURCHASES_ENABLED } from '../../config/storefront';
+import { useTranslation } from 'react-i18next';
 
 const log = createLogger('CreditPaywallSheet');
 const DEHUB_COIN = require('../../assets/web-icons/dehub-coin.png');
@@ -101,6 +103,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
 }) => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
 
   const [modelListOpen, setModelListOpen] = useState(false);
   const [isPaying, setIsPaying] = useState(false);
@@ -417,6 +420,12 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
             >
               <Text style={s.cancelBtnText}>Cancel</Text>
             </TouchableOpacity>
+            {/* The App Store build can price a run but not sell it (3.1.1). */}
+            {!DIGITAL_PURCHASES_ENABLED ? (
+              <View style={[s.confirmBtn, s.confirmBtnDisabled]}>
+                <Text style={s.confirmBtnText}>{t('storefront.unavailable')}</Text>
+              </View>
+            ) : (
             <TouchableOpacity
               style={[s.confirmBtn, confirmDisabled && s.confirmBtnDisabled]}
               onPress={handleConfirm}
@@ -429,6 +438,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
                 <Text style={s.confirmBtnText}>{buttonLabel}</Text>
               )}
             </TouchableOpacity>
+            )}
           </View>
         </Animated.View>
       </GestureHandlerRootView>

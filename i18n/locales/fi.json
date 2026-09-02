@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Ei saatavilla tässä sovellusversiossa"
+  },
   "nav": {
     "home": "Koti",
     "explore": "Tutustu",

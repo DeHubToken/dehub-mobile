@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "V tejto verzii aplikácie nie je k dispozícii"
+  },
   "nav": {
     "home": "Domov",
     "explore": "Objavovať",

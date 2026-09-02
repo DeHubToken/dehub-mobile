@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Ora kasedhiya ing versi aplikasi iki"
+  },
   "nav": {
     "home": "Beranda",
     "explore": "Jelajah",

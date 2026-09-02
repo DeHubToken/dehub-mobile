@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "অ্যাপর এই সংস্করণত নাই"
+  },
   "nav": {
     "home": "ঘর",
     "explore": "খোজো",

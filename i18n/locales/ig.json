@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Adịghị na ụdị ngwa a"
+  },
   "nav": {
     "home": "Ụlọ",
     "explore": "Nyochaa",

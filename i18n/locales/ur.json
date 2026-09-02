@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "ایپ کے اس ورژن میں دستیاب نہیں"
+  },
   "nav": {
     "home": "ہوم",
     "explore": "دریافت",

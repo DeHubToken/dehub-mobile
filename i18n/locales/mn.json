@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Аппын энэ хувилбарт боломжгүй"
+  },
   "nav": {
     "home": "Нүүр",
     "explore": "Судлах",

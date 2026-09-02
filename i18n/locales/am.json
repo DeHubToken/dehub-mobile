@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "በዚህ የመተግበሪያ ስሪት ውስጥ አይገኝም"
+  },
   "nav": {
     "home": "መነሻ",
     "explore": "አስስ",

@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Tətbiqin bu versiyasında mövcud deyil"
+  },
   "nav": {
     "home": "Ana səhifə",
     "explore": "Kəşf et",

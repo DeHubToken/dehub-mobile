@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "ບໍ່ມີໃນແອັບເວີຊັນນີ້"
+  },
   "nav": {
     "home": "ໜ້າຫຼັກ",
     "explore": "ສຳຫຼວດ",

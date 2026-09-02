@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Nav pieejams šajā lietotnes versijā"
+  },
   "nav": {
     "home": "Sākums",
     "explore": "Izpētīt",

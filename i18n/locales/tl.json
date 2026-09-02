@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Hindi available sa bersyong ito ng app"
+  },
   "nav": {
     "home": "Home",
     "explore": "Galugarin",

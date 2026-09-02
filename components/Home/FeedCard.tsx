@@ -48,6 +48,7 @@ import AskAISheet from "./AskAISheet";
 import AddToFolderSheet from "./AddToFolderSheet";
 import ShareToDmSheet from "../DM/ShareToDmSheet";
 import BoostSheet from "../common/BoostSheet";
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import { useJoinCrewBoost, useSuperpowers } from "../../hooks/useSuperpowers";
 import ShareSheet from "./ShareSheet";
 import CashtagSheet from "./CashtagSheet";
@@ -1721,9 +1722,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           // The sheet is mounted below rather than inside the menu: the menu is
           // conditionally rendered, so onClose unmounts it and any state set in
           // the same handler goes with it.
-          onBoostPress={isOwnerPost && isSignedIn ? () => setShowBoost(true) : undefined}
+          // Neither row exists in the App Store build: a boost is a DHB unlock.
+          onBoostPress={
+            DIGITAL_PURCHASES_ENABLED && isOwnerPost && isSignedIn ? () => setShowBoost(true) : undefined
+          }
           onGiftBoostPress={
-            !isOwnerPost && isSignedIn && canGiftBoost ? () => setShowBoost(true) : undefined
+            DIGITAL_PURCHASES_ENABLED && !isOwnerPost && isSignedIn && canGiftBoost
+              ? () => setShowBoost(true)
+              : undefined
           }
           onTranslatePress={handleTranslate}
           onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
