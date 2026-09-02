@@ -594,6 +594,10 @@ const SearchScreen: React.FC = () => {
             data={accounts}
             renderItem={renderAccountItem}
             keyExtractor={accountKeyExtractor}
+            initialNumToRender={12}
+            maxToRenderPerBatch={10}
+            windowSize={9}
+            removeClippedSubviews
             onEndReached={handleLoadMore}
             onEndReachedThreshold={0.5}
             ListFooterComponent={ListFooter}

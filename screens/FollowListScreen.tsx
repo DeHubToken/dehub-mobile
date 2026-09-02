@@ -650,6 +650,10 @@ const FollowListScreen: React.FC = () => {
             renderItem={renderRequestItem}
             keyExtractor={requestKeyExtractor}
             ItemSeparatorComponent={ItemSeparatorComponent}
+            initialNumToRender={12}
+            maxToRenderPerBatch={10}
+            windowSize={9}
+            removeClippedSubviews
             onEndReached={handleLoadMore}
             onEndReachedThreshold={0.3}
             refreshControl={
@@ -776,6 +780,10 @@ const FollowListScreen: React.FC = () => {
               renderItem={renderItem}
               keyExtractor={keyExtractor}
               ItemSeparatorComponent={ItemSeparatorComponent}
+              initialNumToRender={12}
+              maxToRenderPerBatch={10}
+              windowSize={9}
+              removeClippedSubviews
               onEndReached={handleLoadMore}
               onEndReachedThreshold={0.3}
               refreshControl={
