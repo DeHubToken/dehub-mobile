@@ -103,6 +103,7 @@ const LiveProducerScreen: React.FC = () => {
     streamKeyValue,
     streamKeyLoading,
     streamKeyError,
+    refetchStream,
   } = useStreamDetails(streamId);
   const {
     stage,
@@ -711,6 +712,9 @@ const LiveProducerScreen: React.FC = () => {
   // WebRTC publisher callbacks (stable refs to avoid anonymous fns in JSX)
   const handlePublishStats = useCallback(
     (s: { fps?: number; bitrateKbps?: number; dropped?: number }) => {
+      // Bytes on the wire is the strongest proof this broadcast aired, and it
+      // does not depend on the backend telling us so. See everLiveRef below.
+      if ((s.bitrateKbps ?? 0) > 0) everLiveRef.current = true;
       setPublishStats(s);
     },
     []
@@ -718,8 +722,17 @@ const LiveProducerScreen: React.FC = () => {
 
   const handlePublisherConnected = useCallback(() => {
     console.log("[LiveProducer] WebRTC connected");
+    // This device is publishing, which is the thing discardDeadLaunch is
+    // actually asking about. Until now the only answers came from `stage`,
+    // which flips on a socket event from the backend, or from a Livepeer
+    // poll a self-hosted stream is never in — so a broadcast that ran fine
+    // but never got that event had its post deleted on exit.
+    everLiveRef.current = true;
+    // Give the backend snapshot a chance to catch up too: it is read once at
+    // mount, before anything has aired, and discardDeadLaunch consults it.
+    refetchStream();
     setPublisherConnected(true);
-  }, [setPublisherConnected]);
+  }, [setPublisherConnected, refetchStream]);
 
   const handlePublisherError = useCallback(
     (err: any) => {
