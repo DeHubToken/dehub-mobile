@@ -27,8 +27,10 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: EAS update branch to publish to
-        default: production
+        description: >-
+          EAS update branch(es) to publish to, space separated.
+          Defaults to every channel that has builds in circulation.
+        default: production preview
         required: false
 
 concurrency:
@@ -109,12 +111,22 @@ jobs:
       - name: Publish the JS bundle
         if: env.EXPO_TOKEN != ''
         env:
-          UPDATE_BRANCH: ${{ github.event.inputs.branch || 'production' }}
+          # An app only receives updates published to the channel it was built
+          # on, and eas.json hands out two: `production` builds listen on
+          # production, while `preview` — and `test-apk`, which extends it, the
+          # profile behind the APK people are actually given — listen on
+          # preview. Publishing to production alone meant every installed test
+          # build sat there never seeing an update.
+          UPDATE_BRANCHES: ${{ github.event.inputs.branch || 'production preview' }}
         run: |
           # Read the subject out of git rather than interpolating it into the
           # command, so a commit message cannot become shell.
           MESSAGE="$(git log -1 --pretty=%s)"
-          eas update --branch "$UPDATE_BRANCH" --message "$MESSAGE" --non-interactive
+          # Unquoted on purpose: this is a space-separated list, not one branch.
+          for BRANCH in $UPDATE_BRANCHES; do
+            echo "Publishing to $BRANCH"
+            eas update --branch "$BRANCH" --message "$MESSAGE" --non-interactive
+          done
 
       - name: Flag native changes an update cannot carry
         if: env.EXPO_TOKEN != ''
