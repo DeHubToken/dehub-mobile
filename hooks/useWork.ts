@@ -606,7 +606,17 @@ function useWorkPayout() {
     const res = await writeContractAA(tokenContract, "transfer", [to, amountWei], {
       context: "bounty-payout",
     });
+    // wait() resolves with status 0 for a REVERTED transfer rather than
+    // throwing, so returning the hash regardless would hand the caller a
+    // receipt for money that never moved — and the caller writes the
+    // submission as `paid` with that hash, adds the amount to the job's
+    // released total, and removes the Pay button, leaving no way to settle
+    // the worker from the app. Same guard as post-quota-payment.ts and
+    // useAiPayment.ts.
     const receipt = await res.wait(1);
+    if (receipt && receipt.status !== undefined && receipt.status !== 1) {
+      throw new Error("The DHB transfer did not go through. Nothing has been paid out.");
+    }
     return res?.hash || receipt?.transactionHash || receipt?.hash || "";
   };
 }
