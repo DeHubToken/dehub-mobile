@@ -2119,7 +2119,8 @@
       "rejected": "Refusée",
       "completed": "Terminée",
       "cancelled": "Annulée",
-      "disputed": "En litige"
+      "disputed": "En litige",
+      "paid": "Payé"
     },
     "detail": {
       "notFound": "Prime introuvable.",
@@ -2157,6 +2158,9 @@
       "submitDispute": "Soumettre le litige à l'administrateur",
       "rejectionReason": "Motif du refus ?",
       "rejectionPlaceholder": "Expliquez ce qui n'allait pas"
+    },
+    "payout": {
+      "alreadySent": "Déjà envoyé ({{ref}}). Ne payez pas une seconde fois — rouvrez la mission dans un instant, elle devrait apparaître comme payée."
     }
   },
   "stores": {

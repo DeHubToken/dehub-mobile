@@ -2115,7 +2115,8 @@
       "rejected": "勿批",
       "completed": "做好",
       "cancelled": "取消脱",
-      "disputed": "有争议"
+      "disputed": "有争议",
+      "paid": "已付"
     },
     "detail": {
       "notFound": "赏金寻勿着。",
@@ -2153,6 +2154,9 @@
       "submitDispute": "拿争议交拨管理员",
       "rejectionReason": "勿要个理由？",
       "rejectionPlaceholder": "讲讲看啥地方勿对"
+    },
+    "payout": {
+      "alreadySent": "已经发脱了（{{ref}}）。覅再付一趟——过歇再打开该桩生活，应该会显示已付。"
     }
   },
   "stores": {

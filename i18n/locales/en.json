@@ -2121,6 +2121,9 @@
       "submitDispute": "Submit dispute to admin",
       "rejectionReason": "Reason for rejection?",
       "rejectionPlaceholder": "Explain what was wrong"
+    },
+    "payout": {
+      "alreadySent": "Payment already sent ({{ref}}). Do not pay again — reopen the job shortly and it should show as paid."
     }
   },
   "usernames": {

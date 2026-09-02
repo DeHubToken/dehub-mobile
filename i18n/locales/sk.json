@@ -2286,7 +2286,8 @@
       "rejected": "Zamietnuté",
       "completed": "Dokončené",
       "cancelled": "Zrušené",
-      "disputed": "Sporné"
+      "disputed": "Sporné",
+      "paid": "Zaplatené"
     },
     "detail": {
       "notFound": "Odmena sa nenašla.",
@@ -2324,6 +2325,9 @@
       "submitDispute": "Odoslať spor administrátorovi",
       "rejectionReason": "Dôvod odmietnutia?",
       "rejectionPlaceholder": "Vysvetli, čo bolo zle"
+    },
+    "payout": {
+      "alreadySent": "Už odoslané ({{ref}}). Neplaťte znova — o chvíľu zákazku znova otvorte a mala by byť označená ako zaplatená."
     }
   },
   "stores": {

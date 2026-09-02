@@ -2115,7 +2115,8 @@
       "rejected": "مسترد",
       "completed": "مکمل",
       "cancelled": "منسوخ",
-      "disputed": "تنازع والا"
+      "disputed": "تنازع والا",
+      "paid": "ادا کیا گیا"
     },
     "detail": {
       "notFound": "انعام نہیں ملا۔",
@@ -2153,6 +2154,9 @@
       "submitDispute": "تنازع منتظم کو بھیجو",
       "rejectionReason": "مسترد کرنے کی وجہ؟",
       "rejectionPlaceholder": "بتاؤ کیا غلط تھا"
+    },
+    "payout": {
+      "alreadySent": "پہلے ہی بھیجا جا چکا ({{ref}})۔ دوبارہ ادا نہ کریں — تھوڑی دیر بعد کام دوبارہ کھولیں، وہ ادا شدہ دکھے گا۔"
     }
   },
   "stores": {

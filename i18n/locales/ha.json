@@ -2115,7 +2115,8 @@
       "rejected": "An ƙi",
       "completed": "An kammala",
       "cancelled": "An soke",
-      "disputed": "Ana jayayya"
+      "disputed": "Ana jayayya",
+      "paid": "An biya"
     },
     "detail": {
       "notFound": "Ba a sami lada ba.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Aika jayayya ga mai gudanarwa",
       "rejectionReason": "Dalilin ƙi?",
       "rejectionPlaceholder": "Bayyana abin da ya yi kuskure"
+    },
+    "payout": {
+      "alreadySent": "An riga an aika ({{ref}}). Kada ka sake biya — sake buɗe aikin bayan ɗan lokaci, zai nuna an biya."
     }
   },
   "stores": {

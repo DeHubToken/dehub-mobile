@@ -2116,7 +2116,8 @@
       "rejected": "Imekataliwa",
       "completed": "Imekamilika",
       "cancelled": "Imeghairiwa",
-      "disputed": "Ina mzozo"
+      "disputed": "Ina mzozo",
+      "paid": "Imelipwa"
     },
     "detail": {
       "notFound": "Zawadi haikupatikana.",
@@ -2154,6 +2155,9 @@
       "submitDispute": "Peleka mzozo kwa msimamizi",
       "rejectionReason": "Sababu ya kukataa?",
       "rejectionPlaceholder": "Eleza nini hakikuwa sawa"
+    },
+    "payout": {
+      "alreadySent": "Tayari imetumwa ({{ref}}). Usilipe tena — fungua kazi tena baada ya muda mfupi, itaonyesha imelipwa."
     }
   },
   "stores": {

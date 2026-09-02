@@ -2159,7 +2159,8 @@
       "rejected": "没通过",
       "completed": "弄完咾",
       "cancelled": "取消咾",
-      "disputed": "有争议"
+      "disputed": "有争议",
+      "paid": "已付"
     },
     "detail": {
       "notFound": "寻不着赏金。",
@@ -2197,6 +2198,9 @@
       "submitDispute": "把争议交给管理员",
       "rejectionReason": "不要嘞理由？",
       "rejectionPlaceholder": "说说哪搭不对"
+    },
+    "payout": {
+      "alreadySent": "已经发送了（{{ref}}）。不要再付一次——过一会儿重新打开这份工作，它应该会显示为已付。"
     }
   },
   "stores": {

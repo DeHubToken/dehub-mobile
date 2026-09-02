@@ -2145,7 +2145,8 @@
       "rejected": "مرفوضة",
       "completed": "سالات",
       "cancelled": "ملغية",
-      "disputed": "عليها نزاع"
+      "disputed": "عليها نزاع",
+      "paid": "متخلص"
     },
     "detail": {
       "notFound": "الجائزة مالقيناهاش.",
@@ -2183,6 +2184,9 @@
       "submitDispute": "صيفط النزاع للأدمين",
       "rejectionReason": "سبب الرفض؟",
       "rejectionPlaceholder": "شرح شنو كان غالط"
+    },
+    "payout": {
+      "alreadySent": "تصيفط من قبل ({{ref}}). ما تخلصش مرة أخرى — حل الخدمة من بعد شوية وغادي تبان متخلصة."
     }
   },
   "stores": {

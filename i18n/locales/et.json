@@ -2115,7 +2115,8 @@
       "rejected": "Tagasi lükatud",
       "completed": "Lõpetatud",
       "cancelled": "Tühistatud",
-      "disputed": "Vaidluses"
+      "disputed": "Vaidluses",
+      "paid": "Makstud"
     },
     "detail": {
       "notFound": "Preemiat ei leitud.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Saada vaidlus administraatorile",
       "rejectionReason": "Tagasilükkamise põhjus?",
       "rejectionPlaceholder": "Selgita, mis oli valesti"
+    },
+    "payout": {
+      "alreadySent": "Juba saadetud ({{ref}}). Ära maksa uuesti — ava töö hetke pärast uuesti ja see peaks olema märgitud makstuks."
     }
   },
   "stores": {

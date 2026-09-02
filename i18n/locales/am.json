@@ -2145,7 +2145,8 @@
       "rejected": "ተቀባይነት አላገኘም",
       "completed": "ተጠናቅቋል",
       "cancelled": "ተሰርዟል",
-      "disputed": "በክርክር ላይ"
+      "disputed": "በክርክር ላይ",
+      "paid": "ተከፍሏል"
     },
     "detail": {
       "notFound": "ሽልማቱ አልተገኘም።",
@@ -2183,6 +2184,9 @@
       "submitDispute": "ክርክሩን ለአስተዳዳሪ አስገባ",
       "rejectionReason": "የመቀበል ያለመቀበል ምክንያት?",
       "rejectionPlaceholder": "ምን እንደተሳሳተ ያብራሩ"
+    },
+    "payout": {
+      "alreadySent": "አስቀድሞ ተልኳል ({{ref}})። እንደገና አይክፈሉ — ስራውን ትንሽ ቆይተው ይክፈቱት፣ እንደተከፈለ ይታያል።"
     }
   },
   "stores": {

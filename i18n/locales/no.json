@@ -2115,7 +2115,8 @@
       "rejected": "Avslått",
       "completed": "Fullført",
       "cancelled": "Avbrutt",
-      "disputed": "Omtvistet"
+      "disputed": "Omtvistet",
+      "paid": "Betalt"
     },
     "detail": {
       "notFound": "Fant ikke bountyen.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Send tvisten til admin",
       "rejectionReason": "Årsak til avslag?",
       "rejectionPlaceholder": "Forklar hva som var galt"
+    },
+    "payout": {
+      "alreadySent": "Allerede sendt ({{ref}}). Ikke betal på nytt — åpne oppdraget igjen om litt, så skal det stå som betalt."
     }
   },
   "stores": {

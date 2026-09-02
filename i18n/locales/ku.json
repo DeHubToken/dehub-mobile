@@ -2115,7 +2115,8 @@
       "rejected": "Redkirî",
       "completed": "Temamkirî",
       "cancelled": "Betalkirî",
-      "disputed": "Nakok"
+      "disputed": "Nakok",
+      "paid": "Hate dayîn"
     },
     "detail": {
       "notFound": "Xelat nehate dîtin.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Nakokiyê bo rêvebir bişîne",
       "rejectionReason": "Sedema redkirinê?",
       "rejectionPlaceholder": "Rave bike çi xelet bû"
+    },
+    "payout": {
+      "alreadySent": "Berê hate şandin ({{ref}}). Careke din nede — piştî demekê karî dîsa veke, wê wekî hatiye dayîn xuya bike."
     }
   },
   "stores": {

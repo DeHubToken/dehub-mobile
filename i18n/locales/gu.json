@@ -2115,7 +2115,8 @@
       "rejected": "નકારેલ",
       "completed": "પૂર્ણ",
       "cancelled": "રદ",
-      "disputed": "વિવાદમાં"
+      "disputed": "વિવાદમાં",
+      "paid": "ચૂકવાયું"
     },
     "detail": {
       "notFound": "ઇનામ મળ્યું નથી.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "વિવાદ એડમિનને સબમિટ કરો",
       "rejectionReason": "નકારવાનું કારણ?",
       "rejectionPlaceholder": "શું ખોટું હતું તે સમજાવો"
+    },
+    "payout": {
+      "alreadySent": "પહેલેથી મોકલાયું છે ({{ref}}). ફરી ચૂકવશો નહીં — થોડી વારમાં કામ ફરી ખોલો, તે ચૂકવાયેલું દેખાશે."
     }
   },
   "stores": {

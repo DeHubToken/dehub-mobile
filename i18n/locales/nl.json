@@ -2373,7 +2373,8 @@
       "rejected": "Afgewezen",
       "completed": "Voltooid",
       "cancelled": "Geannuleerd",
-      "disputed": "Betwist"
+      "disputed": "Betwist",
+      "paid": "Betaald"
     },
     "detail": {
       "notFound": "Bounty niet gevonden.",
@@ -2411,6 +2412,9 @@
       "submitDispute": "Geschil indienen bij admin",
       "rejectionReason": "Reden voor afwijzing?",
       "rejectionPlaceholder": "Leg uit wat er mis was"
+    },
+    "payout": {
+      "alreadySent": "Al verstuurd ({{ref}}). Betaal niet nog een keer — open de klus zo meteen opnieuw, dan zou hij als betaald moeten staan."
     }
   },
   "stores": {

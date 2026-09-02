@@ -2119,7 +2119,8 @@
       "rejected": "已拒绝",
       "completed": "已完成",
       "cancelled": "已取消",
-      "disputed": "有争议"
+      "disputed": "有争议",
+      "paid": "已支付"
     },
     "detail": {
       "notFound": "未找到该悬赏。",
@@ -2157,6 +2158,9 @@
       "submitDispute": "向管理员提交争议",
       "rejectionReason": "拒绝原因？",
       "rejectionPlaceholder": "说明哪里不合格"
+    },
+    "payout": {
+      "alreadySent": "已经发送（{{ref}}）。请勿重复支付——稍后重新打开该任务，它应显示为已支付。"
     }
   },
   "stores": {

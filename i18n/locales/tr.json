@@ -2077,6 +2077,9 @@
       "submitDispute": "İtirazı yönetime gönder",
       "rejectionReason": "Reddetme nedeni?",
       "rejectionPlaceholder": "Sorunu açıklayın"
+    },
+    "payout": {
+      "alreadySent": "Zaten gönderildi ({{ref}}). Tekrar ödeme yapmayın — birazdan işi yeniden açın, ödenmiş olarak görünecektir."
     }
   },
   "stores": {

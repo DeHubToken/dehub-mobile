@@ -2183,7 +2183,8 @@
       "rejected": "Odrzucone",
       "completed": "Ukończone",
       "cancelled": "Anulowane",
-      "disputed": "Sporne"
+      "disputed": "Sporne",
+      "paid": "Opłacone"
     },
     "detail": {
       "notFound": "Nie znaleziono zlecenia.",
@@ -2221,6 +2222,9 @@
       "submitDispute": "Zgłoś spór do administratora",
       "rejectionReason": "Powód odrzucenia?",
       "rejectionPlaceholder": "Wyjaśnij, co było nie tak"
+    },
+    "payout": {
+      "alreadySent": "Już wysłano ({{ref}}). Nie płać ponownie — otwórz zlecenie za chwilę, powinno być oznaczone jako opłacone."
     }
   },
   "stores": {

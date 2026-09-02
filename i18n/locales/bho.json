@@ -2115,7 +2115,8 @@
       "rejected": "अस्वीकृत",
       "completed": "पूरा भइल",
       "cancelled": "रद्द",
-      "disputed": "विवादित"
+      "disputed": "विवादित",
+      "paid": "भुगतान भइल"
     },
     "detail": {
       "notFound": "इनाम ना मिलल।",
@@ -2153,6 +2154,9 @@
       "submitDispute": "विवाद प्रशासक के भेजीं",
       "rejectionReason": "अस्वीकार के कारण?",
       "rejectionPlaceholder": "बताईं कि का गलत रहल"
+    },
+    "payout": {
+      "alreadySent": "पहिलहीं भेजल गइल ({{ref}})। दोबारा मत भेजीं — थोड़ी देर में काम फेर से खोलीं, ऊ भुगतान भइल लउकी।"
     }
   },
   "stores": {

@@ -2115,7 +2115,8 @@
       "rejected": "Ajụrụ",
       "completed": "Emechara",
       "cancelled": "Akagbuola",
-      "disputed": "Nwere esemokwu"
+      "disputed": "Nwere esemokwu",
+      "paid": "Akwụọla"
     },
     "detail": {
       "notFound": "Ahụghị onyinye ọrụ.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Zipu esemokwu na onye nchịkwa",
       "rejectionReason": "Ihe kpatara ịjụ?",
       "rejectionPlaceholder": "Kọwaa ihe na-ezighị ezi"
+    },
+    "payout": {
+      "alreadySent": "Ezitegoro ya ({{ref}}). Akwụla ụgwọ ọzọ — meghee ọrụ ahụ ọzọ obere oge, ọ ga-egosi na akwụọla ya."
     }
   },
   "stores": {

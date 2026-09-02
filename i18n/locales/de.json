@@ -2115,7 +2115,8 @@
       "rejected": "Abgelehnt",
       "completed": "Abgeschlossen",
       "cancelled": "Storniert",
-      "disputed": "Strittig"
+      "disputed": "Strittig",
+      "paid": "Bezahlt"
     },
     "detail": {
       "notFound": "Prämie nicht gefunden.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Streitfall an Admin senden",
       "rejectionReason": "Grund für die Ablehnung?",
       "rejectionPlaceholder": "Beschreibe, was nicht gepasst hat"
+    },
+    "payout": {
+      "alreadySent": "Bereits gesendet ({{ref}}). Nicht erneut bezahlen — öffne den Auftrag gleich noch einmal, dann sollte er als bezahlt erscheinen."
     }
   },
   "stores": {

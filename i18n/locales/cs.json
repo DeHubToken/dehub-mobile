@@ -2119,7 +2119,8 @@
       "rejected": "Zamítnuto",
       "completed": "Dokončeno",
       "cancelled": "Zrušeno",
-      "disputed": "Ve sporu"
+      "disputed": "Ve sporu",
+      "paid": "Zaplaceno"
     },
     "detail": {
       "notFound": "Odměna nenalezena.",
@@ -2157,6 +2158,9 @@
       "submitDispute": "Odeslat spor administrátorovi",
       "rejectionReason": "Důvod odmítnutí?",
       "rejectionPlaceholder": "Vysvětli, co bylo špatně"
+    },
+    "payout": {
+      "alreadySent": "Již odesláno ({{ref}}). Neplaťte znovu — za chvíli zakázku znovu otevřete a měla by být označena jako zaplacená."
     }
   },
   "stores": {
