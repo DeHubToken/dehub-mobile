@@ -192,16 +192,26 @@ const ArcadeGameScreen = () => {
     return () => clearTimeout(id);
   }, [ready]);
 
+  const landscape = game?.landscape === true;
   useEffect(() => {
     // The app is portrait-locked (app.json), but a 3D board on a phone is worth
     // far more space than a portrait window gives it. Unlock for the duration
     // and put the lock back on the way out, so the rest of the app is
     // unaffected by having visited here.
-    ScreenOrientation.unlockAsync().catch(() => {});
+    //
+    // A fixed-aspect 2D game (Street Slayer) is locked to landscape instead of
+    // unlocked: in portrait its whole layout shrinks to a strip across the
+    // middle with touch controls too small to hit, and its page can only ask
+    // the player to rotate. Here the device can be turned for them.
+    if (landscape) {
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE).catch(() => {});
+    } else {
+      ScreenOrientation.unlockAsync().catch(() => {});
+    }
     return () => {
       ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP).catch(() => {});
     };
-  }, []);
+  }, [landscape]);
 
   /**
    * The other end of READY_BRIDGE.
@@ -332,13 +342,17 @@ const ArcadeGameScreen = () => {
           Offset by a flat 10 rather than `insets.top + 10`. Every screen in the
           app renders inside the SafeAreaView in App.tsx, so this one's origin is
           already past the notch — adding the device inset again would push the
-          control a status bar's height down into the board. */}
+          control a status bar's height down into the board.
+
+          Top-left by default; top-centre for a game whose own HUD owns that
+          corner (Street Slayer keeps the player's portrait and life bar there,
+          and its top edge's midpoint is the one empty strip in its layout). */}
       <Pressable
         onPress={goBack}
         accessibilityRole="button"
         accessibilityLabel="Leave the game"
         hitSlop={12}
-        style={styles.exit}
+        style={[styles.exit, game.exitPlacement === "center" ? styles.exitCenter : styles.exitLeft]}
       >
         <Icon name="ChevronLeft" size={20} color="#FFFFFF" />
       </Pressable>
@@ -378,7 +392,6 @@ const styles = StyleSheet.create({
   exit: {
     position: "absolute",
     top: 10,
-    left: 10,
     width: 36,
     height: 36,
     borderRadius: 18,
@@ -388,6 +401,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.16)",
   },
+  exitLeft: { left: 10 },
+  // `left: 50%` on a 36-wide control, pulled back by half its width. RN has
+  // no `translateX(-50%)`, so the width is fixed above and halved here.
+  exitCenter: { left: "50%", marginLeft: -18 },
   boot: {
     ...StyleSheet.absoluteFillObject,
     alignItems: "center",
