@@ -767,13 +767,17 @@ export function useAuthSession({
           return "not-linked";
         }
 
-        await setAuthToken(res.token);
-        if (res.refreshToken) await setRefreshToken(res.refreshToken);
-        if (res.expiresIn) await setTokenExpiresAt(Date.now() + res.expiresIn * 1000);
-
         // Multi-account staging, same as the wallet path: the exchange just
         // resolved to `address`, so any live keys for a DIFFERENT account must
         // be snapshotted and cleared before this session's identity is adopted.
+        //
+        // This has to run BEFORE the tokens below are written, not after.
+        // stageIncomingIdentity clears the session keys — including the three
+        // this function has just set — so running it second deleted the new
+        // session's own tokens the moment the second account was a different
+        // one. signInWithWallet gets this right and says so in its own comment
+        // ("BEFORE the exchange writes the incoming ones"); this path had the
+        // same comment but the opposite order.
         try {
           if (await displacesAnotherAccount(address)) {
             await stageIncomingIdentity();
@@ -781,6 +785,10 @@ export function useAuthSession({
         } catch (e) {
           log.warn("signInWithSupabaseSession:stageIncoming:error", e as any);
         }
+
+        await setAuthToken(res.token);
+        if (res.refreshToken) await setRefreshToken(res.refreshToken);
+        if (res.expiresIn) await setTokenExpiresAt(Date.now() + res.expiresIn * 1000);
 
         // No key in hand means no provider to adopt here. applyWalletAuthResult
         // falls through to forceReinitProvider, which asks LocalProviderAdapter
