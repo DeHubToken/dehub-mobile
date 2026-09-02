@@ -44,7 +44,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
    * last message the way every mail and chat client does it. Without it a saved
    * draft is invisible from the list and so indistinguishable from a lost one.
    */
-  const draft = useDraftText(dmDraftKey(other?.address));
+  const draft = useDraftText(dmDraftKey(myAddress, other?.address));
 
   const displayName = other?.displayName || other?.username || "Unknown";
   const username = other?.username;
