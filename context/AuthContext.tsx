@@ -607,10 +607,22 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     clearPersistedNavigationState();
   }, [resetProviderState, forceReinitProvider]);
 
+  /**
+   * The address that was live when Add profile opened.
+   *
+   * The completion effect below needs to know that a DIFFERENT account is now
+   * signed in. It cannot ask "are we signed in", because we already were —
+   * that is the whole point of adding a second profile — so testing that alone
+   * made the effect fire on the same state change that opened the sheet.
+   */
+  const addProfileFromRef = useRef<string | null>(null);
+
   const openAddProfile = useCallback(() => {
     // Record who is live before anything in the sheet can displace them, so
     // abandoning the attempt can put everything back exactly as it was.
     beginAddProfileAttempt().catch(() => {});
+    addProfileFromRef.current =
+      (userRef.current?.walletAddress || userRef.current?.address || null)?.toLowerCase() ?? null;
     setAddProfileIntent(true);
     setShowSignInModal(true);
   }, []);
@@ -674,15 +686,27 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     });
   }, []);
 
-  // A completed Add profile attempt (the new account is now live) closes the
-  // sheet and drops the intent — otherwise the gateway would stay open over a
-  // freshly signed-in session.
+  // A completed Add profile attempt (a DIFFERENT account is now live) closes
+  // the sheet and drops the intent — otherwise the gateway would stay open
+  // over a freshly signed-in session.
+  //
+  // The identity check is what makes this an event rather than a state. Adding
+  // a profile starts from a signed-in session, so `isSignedIn && intent` was
+  // already true the moment openAddProfile set the intent: the effect ran on
+  // that very change, cleared both flags, and the sheet unmounted before
+  // anyone could type anything. Multi-account sign-in was unreachable.
+  const currentAddress = (user?.walletAddress || user?.address || null)?.toLowerCase() ?? null;
   useEffect(() => {
-    if (isSignedIn && addProfileIntent) {
-      setAddProfileIntent(false);
-      setShowSignInModal(false);
-    }
-  }, [isSignedIn, addProfileIntent]);
+    if (!isSignedIn || !addProfileIntent) return;
+    // Nothing concrete to compare yet — the user object repopulates in stages
+    // during a sign-in, and a momentarily absent address is not a new account.
+    if (!currentAddress) return;
+    // Still the same account: the attempt has not completed yet.
+    if (currentAddress === addProfileFromRef.current) return;
+    addProfileFromRef.current = null;
+    setAddProfileIntent(false);
+    setShowSignInModal(false);
+  }, [isSignedIn, addProfileIntent, currentAddress]);
 
   // Skip auth method - allows users to use the app without signing in
   const skipAuthLocal = useCallback(async () => {
