@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pixelig"
+  },
+  "dub": {
+    "audio": "Audio",
+    "original": "Original-Audio",
+    "dubbed": "Synchronisiertes Audio",
+    "preparing": "Synchronisiertes Audio wird vorbereitet...",
+    "unavailable": "Synchronisiertes Audio ist für dieses Video nicht verfügbar."
   }
 }

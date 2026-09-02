@@ -2676,5 +2676,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pixelen"
+  },
+  "dub": {
+    "audio": "Audio",
+    "original": "Origineel geluid",
+    "dubbed": "Gesynchroniseerde audio",
+    "preparing": "Voorbereiden van nagesynchroniseerde audio...",
+    "unavailable": "Gesynchroniseerde audio is niet beschikbaar voor deze video."
   }
 }

@@ -2419,5 +2419,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Píksẹ̀lì"
+  },
+  "dub": {
+    "audio": "Ohùn",
+    "original": "Oríṣìíríṣìí ohun afetigbọ",
+    "dubbed": "Ohun afetigbọ ti a pe ni",
+    "preparing": "Ṣíṣe ìmúrasílẹ̀ ohun afetigbọ méjì...",
+    "unavailable": "Oríṣìíríṣìí ohùn kò sí fún fídíò yìí."
   }
 }

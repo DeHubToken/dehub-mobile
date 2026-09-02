@@ -2422,5 +2422,12 @@
     "vhs": "VHS",
     "neon": "Неон",
     "pixelate": "Пикселизација"
+  },
+  "dub": {
+    "audio": "Аудио",
+    "original": "Originalni zvuk",
+    "dubbed": "Dijagnostikovani zvuk",
+    "preparing": "Pripremanje sinhronizovanog zvuka…",
+    "unavailable": "Nazvani zvuk nije dostupan za ovaj video."
   }
 }

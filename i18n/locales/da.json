@@ -2422,5 +2422,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pixelér"
+  },
+  "dub": {
+    "audio": "Lyd",
+    "original": "Original lyd",
+    "dubbed": "Døbt lyd",
+    "preparing": "Forbereder døbt lyd...",
+    "unavailable": "Døbt lyd er ikke tilgængelig for denne video."
   }
 }

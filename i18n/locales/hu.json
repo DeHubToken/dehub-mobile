@@ -2422,5 +2422,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pixeles"
+  },
+  "dub": {
+    "audio": "Audió",
+    "original": "Eredeti hang",
+    "dubbed": "Szinkronizált hang",
+    "preparing": "Szinkronizált hang előkészítése…",
+    "unavailable": "Ehhez a videóhoz nem áll rendelkezésre szinkronizált hang."
   }
 }

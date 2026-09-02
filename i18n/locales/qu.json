@@ -2449,5 +2449,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Piksil"
+  },
+  "dub": {
+    "audio": "Audio nisqa",
+    "original": "Original uyarinapaq",
+    "dubbed": "Doblado audio nisqa",
+    "preparing": "Doblado audiota wakichispa...",
+    "unavailable": "Kay videopaqqa manam kanchu doblado audio."
   }
 }

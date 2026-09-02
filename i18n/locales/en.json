@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pixelate"
+  },
+  "dub": {
+    "audio": "Audio",
+    "original": "Original audio",
+    "dubbed": "Dubbed audio",
+    "preparing": "Preparing dubbed audio…",
+    "unavailable": "Dubbed audio is not available for this video."
   }
 }

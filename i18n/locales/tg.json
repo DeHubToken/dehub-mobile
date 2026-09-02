@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Неон",
     "pixelate": "Пиксел"
+  },
+  "dub": {
+    "audio": "Аудио",
+    "original": "Аудиои аслӣ",
+    "dubbed": "Аудиои дубора",
+    "preparing": "Тайёр кардани аудиои дубляжшуда...",
+    "unavailable": "Hindi magagamit ang audio ng Dubbed para sa video na ito."
   }
 }

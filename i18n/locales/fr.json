@@ -2422,5 +2422,12 @@
     "vhs": "VHS",
     "neon": "Néon",
     "pixelate": "Pixelisé"
+  },
+  "dub": {
+    "audio": "Audio",
+    "original": "Audio original",
+    "dubbed": "Audio doublé",
+    "preparing": "Préparation du doublage audio…",
+    "unavailable": "Le doublage audio n'est pas disponible pour cette vidéo."
   }
 }

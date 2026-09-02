@@ -2489,5 +2489,12 @@
     "vhs": "VHS",
     "neon": "نیۆن",
     "pixelate": "پیکسل"
+  },
+  "dub": {
+    "audio": "آڈیو",
+    "original": "Original audio",
+    "dubbed": "Dubbed audio",
+    "preparing": "Dabbed audio tayar kar rahey hain…",
+    "unavailable": "ई वीडियो खातिर डबेड ऑडियो उपलब्ध नइखे।"
   }
 }

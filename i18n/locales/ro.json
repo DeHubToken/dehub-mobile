@@ -2432,5 +2432,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pixelare"
+  },
+  "dub": {
+    "audio": "Audio",
+    "original": "Sunet original",
+    "dubbed": "Sunet dublat",
+    "preparing": "Se pregătește sunetul dublat...",
+    "unavailable": "Sunetul dublat nu este disponibil pentru acest videoclip."
   }
 }

@@ -2543,5 +2543,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pixeleer"
+  },
+  "dub": {
+    "audio": "Klank",
+    "original": "Oorspronklike klank",
+    "dubbed": "Dubbele klank",
+    "preparing": "Voorbereiding van benoemde oudio...",
+    "unavailable": "Dubbele klank is nie beskikbaar vir hierdie video nie."
   }
 }

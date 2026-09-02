@@ -828,6 +828,8 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
         positionMs={position}
         controlsVisible={showControls}
         bottomOffset={showControls ? 68 : 24}
+        player={player}
+        isPlaying={isPlaying}
       />
 
       {/* Seek Feedback Overlay */}
