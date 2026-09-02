@@ -2115,7 +2115,8 @@
       "rejected": "Rədd edilib",
       "completed": "Tamamlanıb",
       "cancelled": "Ləğv edilib",
-      "disputed": "Mübahisəli"
+      "disputed": "Mübahisəli",
+      "paid": "Ödənilib"
     },
     "detail": {
       "notFound": "Mükafat tapılmadı.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Mübahisəni admin-ə göndər",
       "rejectionReason": "Rədd səbəbi?",
       "rejectionPlaceholder": "Nəyin səhv olduğunu izah et"
+    },
+    "payout": {
+      "alreadySent": "Artıq göndərilib ({{ref}}). Yenidən ödəməyin — bir azdan işi yenidən açın, ödənilmiş kimi görünəcək."
     }
   },
   "stores": {

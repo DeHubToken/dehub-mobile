@@ -2115,7 +2115,8 @@
       "rejected": "Odbijeno",
       "completed": "Dovršeno",
       "cancelled": "Otkazano",
-      "disputed": "U sporu"
+      "disputed": "U sporu",
+      "paid": "Plaćeno"
     },
     "detail": {
       "notFound": "Nagrada nije pronađena.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Pošalji spor administratoru",
       "rejectionReason": "Razlog odbijanja?",
       "rejectionPlaceholder": "Objasni što nije valjalo"
+    },
+    "payout": {
+      "alreadySent": "Već je poslano ({{ref}}). Nemojte platiti ponovno — otvorite posao za koji trenutak i trebao bi biti označen kao plaćen."
     }
   },
   "stores": {

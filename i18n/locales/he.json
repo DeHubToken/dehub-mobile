@@ -2119,7 +2119,8 @@
       "rejected": "נדחה",
       "completed": "הושלם",
       "cancelled": "בוטל",
-      "disputed": "במחלוקת"
+      "disputed": "במחלוקת",
+      "paid": "שולם"
     },
     "detail": {
       "notFound": "הפרס לא נמצא.",
@@ -2157,6 +2158,9 @@
       "submitDispute": "שליחת המחלוקת למנהל",
       "rejectionReason": "סיבת הדחייה?",
       "rejectionPlaceholder": "הסבירו מה לא היה בסדר"
+    },
+    "payout": {
+      "alreadySent": "כבר נשלח ({{ref}}). אל תשלמו שוב — פתחו את העבודה שוב בעוד רגע והיא אמורה להופיע כשולמה."
     }
   },
   "stores": {

@@ -2382,7 +2382,8 @@
       "rejected": "Ditolak",
       "completed": "Selesai",
       "cancelled": "Dibatalkan",
-      "disputed": "Dipertikaikan"
+      "disputed": "Dipertikaikan",
+      "paid": "Dibayar"
     },
     "detail": {
       "notFound": "Ganjaran tidak dijumpai.",
@@ -2420,6 +2421,9 @@
       "submitDispute": "Hantar pertikaian kepada pentadbir",
       "rejectionReason": "Sebab penolakan?",
       "rejectionPlaceholder": "Terangkan apa yang tidak kena"
+    },
+    "payout": {
+      "alreadySent": "Sudah dihantar ({{ref}}). Jangan bayar lagi — buka semula kerja itu sebentar lagi dan ia sepatutnya dipaparkan sebagai dibayar."
     }
   },
   "stores": {

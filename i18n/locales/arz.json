@@ -2115,7 +2115,8 @@
       "rejected": "مرفوضة",
       "completed": "خلصت",
       "cancelled": "ملغية",
-      "disputed": "عليها نزاع"
+      "disputed": "عليها نزاع",
+      "paid": "مدفوع"
     },
     "detail": {
       "notFound": "المكافأة مش لاقيينها.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "ابعت النزاع للأدمن",
       "rejectionReason": "سبب الرفض؟",
       "rejectionPlaceholder": "اشرح كان إيه الغلط"
+    },
+    "payout": {
+      "alreadySent": "اتبعت خلاص ({{ref}}). ماتدفعش تاني — افتح الشغلانة بعد شوية وهتلاقيها مدفوعة."
     }
   },
   "stores": {

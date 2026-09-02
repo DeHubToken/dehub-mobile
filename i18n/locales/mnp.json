@@ -2159,7 +2159,8 @@
       "rejected": "无过",
       "completed": "做了",
       "cancelled": "取消去",
-      "disputed": "有争议"
+      "disputed": "有争议",
+      "paid": "已付"
     },
     "detail": {
       "notFound": "寻无着赏金。",
@@ -2197,6 +2198,9 @@
       "submitDispute": "共争议交互管理员",
       "rejectionReason": "毋通其理由？",
       "rejectionPlaceholder": "讲看底位无对"
+    },
+    "payout": {
+      "alreadySent": "已经发出去了（{{ref}}）。莫再付一遍——过一歇再打开这单工，应该会显示已付。"
     }
   },
   "stores": {

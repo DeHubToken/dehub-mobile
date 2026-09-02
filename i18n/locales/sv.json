@@ -2119,7 +2119,8 @@
       "rejected": "Avvisad",
       "completed": "Slutförd",
       "cancelled": "Avbruten",
-      "disputed": "Tvistig"
+      "disputed": "Tvistig",
+      "paid": "Betald"
     },
     "detail": {
       "notFound": "Bountyn hittades inte.",
@@ -2157,6 +2158,9 @@
       "submitDispute": "Skicka tvisten till admin",
       "rejectionReason": "Skäl till avslag?",
       "rejectionPlaceholder": "Förklara vad som var fel"
+    },
+    "payout": {
+      "alreadySent": "Redan skickat ({{ref}}). Betala inte igen — öppna uppdraget om en stund, då bör det visas som betalt."
     }
   },
   "stores": {

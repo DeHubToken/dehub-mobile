@@ -2115,7 +2115,8 @@
       "rejected": "Ret edilen",
       "completed": "Tamamlanan",
       "cancelled": "Ýatyrylan",
-      "disputed": "Jedelli"
+      "disputed": "Jedelli",
+      "paid": "Tölendi"
     },
     "detail": {
       "notFound": "Baýrak tapylmady.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Jedeli dolandyryja iber",
       "rejectionReason": "Ret etmegiň sebäbi?",
       "rejectionPlaceholder": "Näme ýalňyş bolandygyny düşündiriň"
+    },
+    "payout": {
+      "alreadySent": "Eýýäm iberildi ({{ref}}). Gaýtadan tölemäň — biraz wagtdan işi gaýtadan açyň, ol tölenen diýlip görkeziler."
     }
   },
   "stores": {

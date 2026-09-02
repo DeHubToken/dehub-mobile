@@ -2146,7 +2146,8 @@
       "rejected": "Kwenqatshiwe",
       "completed": "Kuqediwe",
       "cancelled": "Kukhanseliwe",
-      "disputed": "Kunempikiswano"
+      "disputed": "Kunempikiswano",
+      "paid": "Kukhokhiwe"
     },
     "detail": {
       "notFound": "Umklomelo awutholakalanga.",
@@ -2184,6 +2185,9 @@
       "submitDispute": "Thumela impikiswano kumphathi",
       "rejectionReason": "Isizathu sokwenqaba?",
       "rejectionPlaceholder": "Chaza ukuthi yini engahambanga kahle"
+    },
+    "payout": {
+      "alreadySent": "Sekuthunyeliwe ({{ref}}). Ungaphindi ukhokhe — vula umsebenzi futhi emizuzwaneni, kufanele ubonise ukuthi kukhokhiwe."
     }
   },
   "stores": {

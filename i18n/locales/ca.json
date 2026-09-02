@@ -2115,7 +2115,8 @@
       "rejected": "Rebutjada",
       "completed": "Completada",
       "cancelled": "Cancel·lada",
-      "disputed": "En disputa"
+      "disputed": "En disputa",
+      "paid": "Pagat"
     },
     "detail": {
       "notFound": "No s'ha trobat la recompensa.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Envia la disputa a l'administrador",
       "rejectionReason": "Motiu del rebuig?",
       "rejectionPlaceholder": "Explica què no ha anat bé"
+    },
+    "payout": {
+      "alreadySent": "Ja s'ha enviat ({{ref}}). No tornis a pagar — torna a obrir la feina d'aquí a una estona i hauria d'aparèixer com a pagada."
     }
   },
   "stores": {

@@ -2119,7 +2119,8 @@
       "rejected": "नाकारले",
       "completed": "पूर्ण",
       "cancelled": "रद्द",
-      "disputed": "वादात"
+      "disputed": "वादात",
+      "paid": "पैसे दिले"
     },
     "detail": {
       "notFound": "बक्षीस सापडले नाही.",
@@ -2157,6 +2158,9 @@
       "submitDispute": "वाद प्रशासकाकडे सादर करा",
       "rejectionReason": "नाकारण्याचे कारण?",
       "rejectionPlaceholder": "काय चुकले ते स्पष्ट करा"
+    },
+    "payout": {
+      "alreadySent": "आधीच पाठवले आहे ({{ref}}). पुन्हा पैसे देऊ नका — थोड्या वेळाने काम पुन्हा उघडा, ते दिलेले दिसेल."
     }
   },
   "stores": {

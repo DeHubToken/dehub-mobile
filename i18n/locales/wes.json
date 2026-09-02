@@ -2115,7 +2115,8 @@
       "rejected": "Don reject",
       "completed": "Don finish",
       "cancelled": "Cancel",
-      "disputed": "Dispute"
+      "disputed": "Dispute",
+      "paid": "Dem don pay"
     },
     "detail": {
       "notFound": "Dem no faind di bounty.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Send di dispute go admin",
       "rejectionReason": "Wai yu reject-am?",
       "rejectionPlaceholder": "Explain wetin no korect"
+    },
+    "payout": {
+      "alreadySent": "Dem don send am already ({{ref}}). No pay again — open di work small time, e go show say dem don pay am."
     }
   },
   "stores": {

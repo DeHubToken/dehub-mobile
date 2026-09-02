@@ -2115,7 +2115,8 @@
       "rejected": "Atmesta",
       "completed": "Užbaigta",
       "cancelled": "Atšaukta",
-      "disputed": "Ginčijama"
+      "disputed": "Ginčijama",
+      "paid": "Apmokėta"
     },
     "detail": {
       "notFound": "Atlygis nerastas.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Perduoti ginčą administratoriui",
       "rejectionReason": "Atmetimo priežastis?",
       "rejectionPlaceholder": "Paaiškinkite, kas buvo negerai"
+    },
+    "payout": {
+      "alreadySent": "Jau išsiųsta ({{ref}}). Nemokėkite dar kartą — po akimirkos atidarykite darbą iš naujo, jis turėtų būti pažymėtas kaip apmokėtas."
     }
   },
   "stores": {

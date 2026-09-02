@@ -2240,7 +2240,8 @@
       "rejected": "Verwerp",
       "completed": "Voltooi",
       "cancelled": "Gekanselleer",
-      "disputed": "In dispuut"
+      "disputed": "In dispuut",
+      "paid": "Betaal"
     },
     "detail": {
       "notFound": "Beloning nie gevind nie.",
@@ -2278,6 +2279,9 @@
       "submitDispute": "Dien dispuut by admin in",
       "rejectionReason": "Rede vir verwerping?",
       "rejectionPlaceholder": "Verduidelik wat verkeerd was"
+    },
+    "payout": {
+      "alreadySent": "Reeds gestuur ({{ref}}). Moenie weer betaal nie — maak die werk netnou weer oop en dit behoort as betaal te wys."
     }
   },
   "stores": {

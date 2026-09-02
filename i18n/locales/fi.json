@@ -2115,7 +2115,8 @@
       "rejected": "Hylätty",
       "completed": "Valmis",
       "cancelled": "Peruttu",
-      "disputed": "Riidanalainen"
+      "disputed": "Riidanalainen",
+      "paid": "Maksettu"
     },
     "detail": {
       "notFound": "Palkkiota ei löytynyt.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Lähetä riita ylläpitäjälle",
       "rejectionReason": "Hylkäyksen syy?",
       "rejectionPlaceholder": "Kerro, mikä meni pieleen"
+    },
+    "payout": {
+      "alreadySent": "Lähetetty jo ({{ref}}). Älä maksa uudelleen — avaa työ hetken kuluttua uudelleen, sen pitäisi näkyä maksettuna."
     }
   },
   "stores": {

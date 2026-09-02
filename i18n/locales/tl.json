@@ -2300,7 +2300,8 @@
       "rejected": "Tinanggihan",
       "completed": "Tapos na",
       "cancelled": "Kinansela",
-      "disputed": "May dispute"
+      "disputed": "May dispute",
+      "paid": "Bayad na"
     },
     "detail": {
       "notFound": "Hindi nakita ang bounty.",
@@ -2338,6 +2339,9 @@
       "submitDispute": "Isumite ang dispute sa admin",
       "rejectionReason": "Dahilan ng pagtanggi?",
       "rejectionPlaceholder": "Ipaliwanag kung ano ang mali"
+    },
+    "payout": {
+      "alreadySent": "Naipadala na ({{ref}}). Huwag nang magbayad ulit — buksan mo ulit ang trabaho maya-maya at dapat lumabas itong bayad na."
     }
   },
   "stores": {

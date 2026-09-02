@@ -2119,7 +2119,8 @@
       "rejected": "Afvist",
       "completed": "Fuldført",
       "cancelled": "Annulleret",
-      "disputed": "Omtvistet"
+      "disputed": "Omtvistet",
+      "paid": "Betalt"
     },
     "detail": {
       "notFound": "Bounty ikke fundet.",
@@ -2157,6 +2158,9 @@
       "submitDispute": "Send tvisten til admin",
       "rejectionReason": "Årsag til afvisning?",
       "rejectionPlaceholder": "Forklar hvad der var galt"
+    },
+    "payout": {
+      "alreadySent": "Allerede sendt ({{ref}}). Betal ikke igen — åbn opgaven igen om lidt, så bør den stå som betalt."
     }
   },
   "stores": {
