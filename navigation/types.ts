@@ -135,7 +135,16 @@ export type AppStackParamList = {
     participants?: import('../services/livechat.service').LiveChatUser[];
   } | undefined;
   /** No params = the signed-in user's own profile (drawer); push taps pass a target. */
-  [ScreenNames.Profile]: { address?: string; username?: string } | undefined;
+  /**
+   * Your OWN profile. It takes no params and never has — the screen reads none.
+   *
+   * The declaration used to accept `{ address, username }`, which made
+   * `navigate(Profile, { address })` compile while doing nothing with it. Three
+   * callers believed it and sent people to their own page instead of the one
+   * they tapped. Somebody else's profile is the sheet: `useUserProfileSheet()`
+   * in a component, `emitProfileDeepLink()` outside one.
+   */
+  [ScreenNames.Profile]: undefined;
   [ScreenNames.Earnings]: undefined;
   [ScreenNames.MyLibrary]: undefined;
   [ScreenNames.FullscreenVideo]: {

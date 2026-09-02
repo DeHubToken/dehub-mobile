@@ -32,6 +32,7 @@ import { getAvatarUrl } from '../../libs/misc';
 import { formatCompactNumber } from '../../libs/numbers.util';
 import { dehubLinkLabel, type DehubLinkMatch } from '../../libs/dehub-links';
 import { useStages } from '../../context/StageContext';
+import { useUserProfileSheet } from '../../context/UserProfileSheetContext';
 import StageRecordingPlayer from '../Stages/StageRecordingPlayer';
 import { useWorkJob, WORK_TYPE_LABEL } from '../../hooks/useWork';
 
@@ -505,6 +506,7 @@ interface DehubLinkCardProps {
 export function useOpenDehubLink() {
   const navigation = useNavigation<any>();
   const { openModal: openStages, joinSpace, guestListenSpace } = useStages();
+  const { showUserProfile } = useUserProfileSheet();
 
   return useCallback(
     (link: DehubLinkMatch) => {
@@ -513,7 +515,11 @@ export function useOpenDehubLink() {
           navigation.navigate(ScreenNames.FeedDetail, { tokenId: link.tokenId });
           return;
         case 'profile':
-          navigation.navigate(ScreenNames.Profile, { username: link.username });
+          // ScreenNames.Profile is your OWN profile and reads no params, so
+          // this used to open the tapper's own page whoever the link named.
+          // The sheet is the surface for somebody else's profile, and it is
+          // what a dehub.io/:username deep link already opens.
+          if (link.username) showUserProfile(link.username, { source: 'link-card' });
           return;
         case 'community':
           navigation.navigate(ScreenNames.CommunityDetail, { slug: link.slug });
@@ -579,7 +585,7 @@ export function useOpenDehubLink() {
           return;
       }
     },
-    [navigation, openStages, joinSpace, guestListenSpace],
+    [navigation, openStages, joinSpace, guestListenSpace, showUserProfile],
   );
 }
 

@@ -10,6 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { ChainId, supportedChainIds } from "../../config/constants";
 import { isSolanaChain } from "../../config/solana.constants";
+import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 
 export interface VideoAreaProps {
   isTranscoding: boolean;
@@ -57,6 +58,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   const { requireAuth } = useAuthActions();
   const { chainId } = useProvider();
   const navigation = useNavigation<any>();
+  const { showUserProfile } = useUserProfileSheet();
   const userDhbBalance: number =
     (user?.tokenBalances?.DHB as number) || (user?.stakedDHB as number) || 0;
   const isFree = accessInfo?.streamStatus?.isFree === true;
@@ -322,9 +324,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
           </Text>
           {minterAddress ? (
             <TouchableOpacity
-              onPress={() =>
-                navigation.navigate(ScreenNames.Profile, { address: minterAddress })
-              }
+              onPress={() => showUserProfile(minterAddress, { source: 'subscriber-gate' })}
               className="mt-4 bg-white/10 border border-white/20 rounded-xl px-5 py-2"
               activeOpacity={0.85}
             >
