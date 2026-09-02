@@ -1066,6 +1066,10 @@
     "applicationFailed": "Failed to submit. Please try again."
   },
   "common": {
+    "mute": "আওয়াজ বন্ধ খরউকা",
+    "unmute": "আওয়াজ চালু খরউকা",
+    "fullscreen": "ফুল স্ক্রিন",
+    "exitFullscreen": "ফুল স্ক্রিন থাকি বারইন",
     "loading": "লোড অইতাসে...",
     "error": "সমস্যা",
     "retry": "আবার চেষ্টা করো",

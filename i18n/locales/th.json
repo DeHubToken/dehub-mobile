@@ -36,6 +36,10 @@
     "arcade": "Arcade"
   },
   "common": {
+    "mute": "ปิดเสียง",
+    "unmute": "เปิดเสียง",
+    "fullscreen": "เต็มจอ",
+    "exitFullscreen": "ออกจากเต็มจอ",
     "yes": "ใช่",
     "no": "ไม่",
     "cancel": "ยกเลิก",

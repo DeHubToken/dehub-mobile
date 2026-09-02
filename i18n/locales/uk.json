@@ -36,6 +36,10 @@
     "arcade": "Arcade"
   },
   "common": {
+    "mute": "Вимкнути звук",
+    "unmute": "Увімкнути звук",
+    "fullscreen": "На весь екран",
+    "exitFullscreen": "Вийти з повноекранного режиму",
     "allRightsReserved": "Всі права захищені",
     "search": "Пошук",
     "noData": "Немає даних для відображення",

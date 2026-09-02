@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "E no fit remove am. Try again."
   },
   "common": {
+    "mute": "Off di sound",
+    "unmute": "On di sound",
+    "fullscreen": "Full screen",
+    "exitFullscreen": "Comot from full screen",
     "save": "Save",
     "cancel": "Cancel",
     "delete": "Delete",

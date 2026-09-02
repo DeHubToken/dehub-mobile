@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Nuk u hoq dot. Provo sërish."
   },
   "common": {
+    "mute": "Hiq zërin",
+    "unmute": "Aktivizo zërin",
+    "fullscreen": "Ekran i plotë",
+    "exitFullscreen": "Dil nga ekrani i plotë",
     "save": "Ruaj",
     "cancel": "Anulo",
     "delete": "Fshi",

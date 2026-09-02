@@ -36,6 +36,10 @@
     "arcade": "Arcade"
   },
   "common": {
+    "mute": "Tắt tiếng",
+    "unmute": "Bật tiếng",
+    "fullscreen": "Toàn màn hình",
+    "exitFullscreen": "Thoát toàn màn hình",
     "yes": "Có",
     "no": "Không",
     "save": "Lưu",

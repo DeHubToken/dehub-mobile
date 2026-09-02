@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "ماكدرنا نحذفه. جرب مرة ثانية."
   },
   "common": {
+    "mute": "اكتم الصوت",
+    "unmute": "شغّل الصوت",
+    "fullscreen": "ملء الشاشة",
+    "exitFullscreen": "اطلع من ملء الشاشة",
     "save": "حفظ",
     "cancel": "إلغاء",
     "delete": "حذف",

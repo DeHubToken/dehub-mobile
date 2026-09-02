@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "An kasa cire shi. Sake gwadawa."
   },
   "common": {
+    "mute": "Kashe sauti",
+    "unmute": "Kunna sauti",
+    "fullscreen": "Cikakken allo",
+    "exitFullscreen": "Fita daga cikakken allo",
     "save": "Ajiye",
     "cancel": "Soke",
     "delete": "Share",

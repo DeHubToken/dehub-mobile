@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "A kò lè yọ ọ́ kúrò. Gbìyànjú lẹ́ẹ̀kan sí i."
   },
   "common": {
+    "mute": "Pa ohùn",
+    "unmute": "Tan ohùn",
+    "fullscreen": "Kíkún ojú ìpele",
+    "exitFullscreen": "Jáde nínú kíkún ojú ìpele",
     "save": "Fipamọ́",
     "cancel": "Fagilee",
     "delete": "Parẹ́",

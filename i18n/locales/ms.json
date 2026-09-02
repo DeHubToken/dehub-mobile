@@ -36,6 +36,10 @@
     "arcade": "Arcade"
   },
   "common": {
+    "mute": "Bisukan",
+    "unmute": "Nyahbisukan",
+    "fullscreen": "Skrin penuh",
+    "exitFullscreen": "Keluar dari skrin penuh",
     "yes": "Ya",
     "no": "Tidak",
     "cancel": "Batal",

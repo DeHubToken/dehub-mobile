@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Nepavyko pašalinti. Bandyk dar kartą."
   },
   "common": {
+    "mute": "Nutildyti",
+    "unmute": "Įjungti garsą",
+    "fullscreen": "Visas ekranas",
+    "exitFullscreen": "Išeiti iš viso ekrano",
     "save": "Saugoti",
     "cancel": "Atšaukti",
     "delete": "Ištrinti",

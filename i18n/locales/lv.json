@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Neizdevās to noņemt. Mēģini vēlreiz."
   },
   "common": {
+    "mute": "Izslēgt skaņu",
+    "unmute": "Ieslēgt skaņu",
+    "fullscreen": "Pilnekrāns",
+    "exitFullscreen": "Iziet no pilnekrāna",
     "save": "Saglabāt",
     "cancel": "Atcelt",
     "delete": "Dzēst",

@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Nehate rakirin. Dîsa biceribîne."
   },
   "common": {
+    "mute": "Bêdeng bike",
+    "unmute": "Deng veke",
+    "fullscreen": "Dîmendera tijî",
+    "exitFullscreen": "Ji dîmendera tijî derkeve",
     "save": "Tomar bike",
     "cancel": "Betal bike",
     "delete": "Jê bibe",

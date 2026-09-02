@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "ما قدرنا نحذفه. حاول مرة ثانية."
   },
   "common": {
+    "mute": "اكتم الصوت",
+    "unmute": "شغّل الصوت",
+    "fullscreen": "ملء الشاشة",
+    "exitFullscreen": "اخرج من ملء الشاشة",
     "save": "حفظ",
     "cancel": "إلغاء",
     "delete": "حذف",

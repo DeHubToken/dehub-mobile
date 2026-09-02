@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Uni o'chirib bo'lmadi. Qayta urinib ko'ring."
   },
   "common": {
+    "mute": "Ovozni o‘chirish",
+    "unmute": "Ovozni yoqish",
+    "fullscreen": "To‘liq ekran",
+    "exitFullscreen": "To‘liq ekrandan chiqish",
     "save": "Saqlash",
     "cancel": "Bekor qilish",
     "delete": "Oʻchirish",

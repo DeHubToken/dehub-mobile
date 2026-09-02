@@ -1066,6 +1066,10 @@
     "applicationFailed": "Failed to submit. Please try again."
   },
   "common": {
+    "mute": "আওয়াজ বন্ধ করেন",
+    "unmute": "আওয়াজ চালু করেন",
+    "fullscreen": "পূর্ণ স্ক্রিন",
+    "exitFullscreen": "পূর্ণ স্ক্রিন থাকি বাইর হন",
     "loading": "লোড হইতাছে...",
     "error": "সমস্যা",
     "retry": "আবার চেষ্টা করো",

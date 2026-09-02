@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Impossible de le retirer. Réessayez."
   },
   "common": {
+    "mute": "Couper le son",
+    "unmute": "Activer le son",
+    "fullscreen": "Plein écran",
+    "exitFullscreen": "Quitter le plein écran",
     "save": "Enregistrer",
     "cancel": "Annuler",
     "delete": "Supprimer",

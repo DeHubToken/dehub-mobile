@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Haquu hin dandeenye. Irra deebi'ii yaali."
   },
   "common": {
+    "mute": "Sagalee cufi",
+    "unmute": "Sagalee bani",
+    "fullscreen": "Iskiriinii guutuu",
+    "exitFullscreen": "Iskiriinii guutuu keessaa bahi",
     "save": "Olchi",
     "cancel": "Dhiisi",
     "delete": "Haqi",

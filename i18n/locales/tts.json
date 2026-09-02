@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "เอาออกบ่ได้. ลองใหม่."
   },
   "common": {
+    "mute": "ปิดเสียง",
+    "unmute": "เปิดเสียง",
+    "fullscreen": "เต็มจอ",
+    "exitFullscreen": "ออกจากเต็มจอ",
     "save": "บันทึก",
     "cancel": "ยกเลิก",
     "delete": "ลบ",
