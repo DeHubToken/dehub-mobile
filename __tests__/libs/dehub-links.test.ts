@@ -344,3 +344,44 @@ describe('findDehubLinks /bounty and legacy /work', () => {
     expect(parseDehubLink('https://evil.example/work/3fa85f64-5717-4562-b3fc-2c963f66afa6')).toBeNull();
   });
 });
+
+/**
+ * Three lists used to answer "is this single segment a username?" — the 94 in
+ * reserved-usernames, 14 in linking.config and 48 here — and they drifted until
+ * the deep-link one was missing 84 canonical names. Tapping dehub.io/docs or
+ * /music opened a profile sheet for a user who does not exist.
+ *
+ * They are one list now. These fail if a second one reappears.
+ */
+describe('reserved segments are one list', () => {
+  const { RESERVED_USERNAMES, RESERVED_LINK_SEGMENTS } = jest.requireActual(
+    '../../libs/reserved-usernames',
+  );
+
+  it('protects every reserved username from being read as a profile link', () => {
+    const unprotected = [...RESERVED_USERNAMES].filter(
+      (name: string) => !RESERVED_LINK_SEGMENTS.has(name),
+    );
+    expect(unprotected).toEqual([]);
+  });
+
+  it('still protects the routing-only names that are not usernames', () => {
+    for (const name of ['stream', 'feeds', 'welcome', 'auth-callback', 'bounty', 'dpay']) {
+      expect(RESERVED_LINK_SEGMENTS.has(name)).toBe(true);
+    }
+  });
+
+  it('covers the product paths that were opening empty profiles', () => {
+    for (const name of [
+      'docs', 'blog', 'shorts', 'music', 'tv', 'work', 'explore', 'pricing',
+      'settings', 'wallet', 'messages', 'notifications', 'stores',
+      'leaderboard', 'governance',
+    ]) {
+      expect(RESERVED_LINK_SEGMENTS.has(name)).toBe(true);
+    }
+  });
+
+  it('leaves an ordinary name claimable', () => {
+    expect(RESERVED_LINK_SEGMENTS.has('maldoteth')).toBe(false);
+  });
+});

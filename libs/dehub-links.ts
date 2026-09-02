@@ -20,6 +20,7 @@
 
 import env from '../config/env';
 import { isEnsHandle } from './ens-handle';
+import { RESERVED_LINK_SEGMENTS } from './reserved-usernames';
 
 export type DehubLinkKind =
   | 'post'
@@ -72,15 +73,7 @@ function isDehubHost(host: string): boolean {
  * is the catch-all on web, so without this every product page would parse as a
  * profile that does not exist.
  */
-const RESERVED_ROOT_SEGMENTS = new Set([
-  'app', 'admin', 'affiliate', 'agents', 'arcade', 'assistant', 'auth', 'blog',
-  'bounty', 'bridge', 'communities', 'connect', 'creator', 'creators', 'delete-account',
-  'docs', 'dpay', 'editor', 'events', 'explore', 'features', 'governance',
-  'guide', 'guides', 'jobs', 'launchpad', 'leaderboard', 'mcp', 'mobile-preview',
-  'music', 'premium', 'pricing', 'prompt', 'r', 'radio', 'robots.txt', 'shorts',
-  'sitemap.xml', 'skill.md', 'stage', 'stages', 'stake', 'stats', 'stores',
-  'top-100', 'tv', 'videos', 'work',
-]);
+const RESERVED_ROOT_SEGMENTS = RESERVED_LINK_SEGMENTS;
 
 // ── Tokenising ──────────────────────────────────────────────────────────────
 

@@ -57,6 +57,39 @@ export const RESERVED_USERNAMES = new Set<string>([
 ]);
 
 /**
+ * Paths that are never a username when a single-segment link is resolved.
+ *
+ * Three lists used to answer this question and they had drifted badly apart:
+ * this file's 94, a 14-entry list in navigation/linking.config.ts, and a
+ * 48-entry one in libs/dehub-links.ts. The deep-link list was missing 84 of
+ * these, so tapping dehub.io/docs, /music, /shorts, /tv, /work, /explore,
+ * /settings, /wallet, /messages, /leaderboard or /governance opened a profile
+ * sheet for a user who does not exist.
+ *
+ * Everything reserved as a username belongs here, plus the entries that are
+ * routing-only and have no business being username reservations:
+ *
+ *   stream, feeds, welcome  product paths with no profile behind them
+ *   auth-callback           the OAuth redirect target
+ *   bounty, dpay            product paths the link-card checker already knew
+ *   robots.txt, sitemap.xml, skill.md
+ *                           web files; harmless here and cheaper than
+ *                           remembering why they were special
+ */
+export const RESERVED_LINK_SEGMENTS = new Set<string>([
+  ...RESERVED_USERNAMES,
+  "stream",
+  "feeds",
+  "welcome",
+  "auth-callback",
+  "bounty",
+  "dpay",
+  "robots.txt",
+  "sitemap.xml",
+  "skill.md",
+]);
+
+/**
  * Stored usernames are lowercase, but input arrives with an `@`, with padding
  * and — from the edit screen, whose TextInput was unfiltered — in mixed case.
  * Web router matching is case-insensitive, so `App` collides with /app exactly
