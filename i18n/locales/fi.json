@@ -1105,6 +1105,8 @@
     "clearNotification": "Tyhjennä ilmoitus"
   },
   "messages": {
+    "encrypted": "Päästä päähän salattu",
+    "cannotDecrypt": "Salattu viesti — ei voida avata tällä laitteella",
     "title": "Viestit",
     "searchConversations": "Etsi keskusteluista...",
     "failedToLoad": "Keskustelujen lataus epäonnistui",

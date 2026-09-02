@@ -15,6 +15,8 @@ import type {
 } from "./dm.types";
 import { DM_VIDEO_MAX_SIZE } from "./dm.types";
 import * as FileSystem from "expo-file-system/legacy";
+import { prepareOutgoing } from "../../libs/dm-e2ee/keys";
+import { peerAddressForConversation } from "../../libs/dm-e2ee/peer";
 
 const log = createLogger("DmSendQueue");
 
@@ -52,6 +54,8 @@ interface BaseSendJob {
 interface TextSendJob extends BaseSendJob {
   kind: "text";
   content: string;
+  /** Client-side forward of an encrypted message: cite the original, re-encrypt the text. */
+  forwardedFrom?: { messageId: ID };
 }
 
 interface GifSendJob extends BaseSendJob {
@@ -153,9 +157,10 @@ class DmSendQueue {
     replyTo?: DmMessage | null;
     dmFee?: DmFee | null;
     tipAmount?: number;
+    forwardedFrom?: { messageId: ID };
   }): string {
     const tempId = this.makeTempId();
-    const { conversationId, userId, content, replyTo, dmFee, address, tipAmount } = params;
+    const { conversationId, userId, content, replyTo, dmFee, address, tipAmount, forwardedFrom } = params;
 
     const feeRequired = !!dmFee?.required && !dmFee?.hasFreeAccess;
     const paymentAmount = tipAmount || (feeRequired ? dmFee?.fee : undefined) || undefined;
@@ -169,6 +174,7 @@ class DmSendQueue {
       tipAmount: paymentAmount,
       paymentStatus: paymentAmount ? "pending" : undefined,
     });
+    if (forwardedFrom) optimistic.isForwarded = true;
     dmActions.addOptimistic(conversationId, optimistic);
 
     this.enqueueFast({
@@ -181,6 +187,7 @@ class DmSendQueue {
       replyTo,
       dmFee,
       tipAmount,
+      forwardedFrom,
     });
 
     return tempId;
@@ -400,10 +407,10 @@ class DmSendQueue {
 
     switch (job.kind) {
       case "text":
-        this.emitText(job, convId, txHash, tipTxHash);
+        await this.emitText(job, convId, txHash, tipTxHash);
         break;
       case "gif":
-        this.emitGif(job, convId, txHash, tipTxHash);
+        await this.emitGif(job, convId, txHash, tipTxHash);
         break;
     }
 
@@ -476,13 +483,27 @@ class DmSendQueue {
   }
 
 
-  private emitText(job: TextSendJob, convId: ID, txHash?: string, tipTxHash?: string): void {
+  /**
+   * Text travels encrypted when both sides have keys. The peer is resolved
+   * from the conversation, not the message, because the session key is the
+   * same in both directions; when it cannot be resolved (or the peer has no
+   * key) the plaintext goes as before.
+   */
+  private async wireContent(convId: ID, myAddress: string, text: string): Promise<string> {
+    if (!text) return text;
+    const peer = peerAddressForConversation(convId, myAddress);
+    const wire = await prepareOutgoing(peer, text);
+    return wire.content;
+  }
+
+  private async emitText(job: TextSendJob, convId: ID, txHash?: string, tipTxHash?: string): Promise<void> {
     const payload: Record<string, unknown> = {
       dmId: convId,
-      content: job.content,
+      content: await this.wireContent(convId, job.address, job.content),
       type: "msg",
     };
     if (job.replyTo) payload.replyTo = job.replyTo._id;
+    if (job.forwardedFrom) payload.forwardedFrom = job.forwardedFrom;
     if (txHash) payload.txHash = txHash;
     if (tipTxHash) payload.tipTxHash = tipTxHash;
 
@@ -490,10 +511,10 @@ class DmSendQueue {
     log.debug("emitText sent:", convId);
   }
 
-  private emitGif(job: GifSendJob, convId: ID, txHash?: string, tipTxHash?: string): void {
+  private async emitGif(job: GifSendJob, convId: ID, txHash?: string, tipTxHash?: string): Promise<void> {
     const payload: Record<string, unknown> = {
       dmId: convId,
-      content: job.caption || "",
+      content: await this.wireContent(convId, job.address, job.caption || ""),
       type: "gif",
       gif: job.gifUrl,
     };
@@ -561,6 +582,10 @@ class DmSendQueue {
     // S3 without a transcode step.
     const timeout = job.mediaType === "image" ? UPLOAD_TIMEOUT_IMAGE : UPLOAD_TIMEOUT_VIDEO;
 
+    // Only the caption is encrypted; the file itself goes to the CDN as-is.
+    const wireCaption = await this.wireContent(convId, job.address, job.caption || "");
+    const captionEncrypted = !!job.caption && wireCaption !== job.caption;
+
     const serverMsg = await withRetry(
       () =>
         withTimeout(
@@ -570,7 +595,7 @@ class DmSendQueue {
             files: [file],
             msgType: job.msgType || "media",
             voiceDuration: job.voiceDuration,
-            content: job.caption || undefined,
+            content: wireCaption || undefined,
             replyTo: job.replyTo?._id,
             txHash,
             tipTxHash,
@@ -583,8 +608,14 @@ class DmSendQueue {
     );
 
     if (serverMsg?._id) {
-      // Force isRead:false — receiver hasn't seen it yet.
-      dmActions.upsertMessages(convId, [{ ...serverMsg, author: "me", isRead: false }]);
+      // Force isRead:false — receiver hasn't seen it yet. The echo carries the
+      // caption as sent (ciphertext); the store must hold the plaintext.
+      dmActions.upsertMessages(convId, [{
+        ...serverMsg,
+        ...(captionEncrypted ? { content: job.caption, encrypted: true } : {}),
+        author: "me",
+        isRead: false,
+      }]);
     }
     log.debug("uploadMedia complete:", convId, serverMsg?._id);
   }

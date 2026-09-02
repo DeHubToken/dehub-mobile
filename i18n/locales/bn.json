@@ -1204,6 +1204,8 @@
     "attachmentTooLarge": "প্রতিটি ফাইল 20MB-এর কম হতে হবে"
   },
   "messages": {
+    "encrypted": "এন্ড-টু-এন্ড এনক্রিপ্টেড",
+    "cannotDecrypt": "এনক্রিপ্ট করা বার্তা — এই ডিভাইসে খোলা যাবে না",
     "title": "বার্তা",
     "searchConversations": "কথোপকথন অনুসন্ধান করুন...",
     "failedToLoad": "কথোপকথন লোড করতে ব্যর্থ",

@@ -1204,6 +1204,8 @@
     "loginRequired": "Reikia prisijungti"
   },
   "messages": {
+    "encrypted": "Užšifruota ištisai",
+    "cannotDecrypt": "Užšifruota žinutė — šiame įrenginyje jos atidaryti negalima",
     "title": "Žinutės",
     "searchConversations": "Ieškoti pokalbių...",
     "failedToLoad": "Nepavyko įkelti pokalbių",

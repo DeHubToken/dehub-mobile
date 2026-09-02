@@ -1577,6 +1577,8 @@
     "clearNotification": "Kosongkan pemberitahuan"
   },
   "messages": {
+    "encrypted": "Disulitkan hujung ke hujung",
+    "cannotDecrypt": "Mesej disulitkan — tidak boleh dibuka pada peranti ini",
     "title": "Messages",
     "searchConversations": "Search conversations...",
     "failedToLoad": "Failed to load conversations",

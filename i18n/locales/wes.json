@@ -1204,6 +1204,8 @@
     "loginRequired": "Log in required"
   },
   "messages": {
+    "encrypted": "Encrypted from end to end",
+    "cannotDecrypt": "Encrypted message — e no fit open for dis device",
     "title": "Messages",
     "searchConversations": "Search conversations...",
     "failedToLoad": "E no fit load conversations",

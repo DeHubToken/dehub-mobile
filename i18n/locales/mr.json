@@ -1135,6 +1135,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "encrypted": "एंड-टू-एंड एन्क्रिप्टेड",
+    "cannotDecrypt": "एन्क्रिप्टेड संदेश — या डिव्हाइसवर उघडता येत नाही",
     "title": "संदेश",
     "searchConversations": "संभाषणे शोधा...",
     "failedToLoad": "संभाषणे लोड करण्यात अयशस्वी",

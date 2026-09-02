@@ -1524,6 +1524,8 @@
     "clearNotification": "I-clear ang abiso"
   },
   "messages": {
+    "encrypted": "Naka-encrypt end-to-end",
+    "cannotDecrypt": "Naka-encrypt na mensahe — hindi mabubuksan sa device na ito",
     "title": "Messages",
     "searchConversations": "Search conversations...",
     "failedToLoad": "Failed to load conversations",

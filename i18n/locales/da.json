@@ -1135,6 +1135,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "encrypted": "End-to-end-krypteret",
+    "cannotDecrypt": "Krypteret besked — kan ikke åbnes på denne enhed",
     "title": "Beskeder",
     "searchConversations": "Søg samtaler...",
     "failedToLoad": "Kunne ikke indlæse samtaler",

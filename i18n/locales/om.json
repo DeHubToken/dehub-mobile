@@ -1217,6 +1217,8 @@
     "loginRequired": "Seeninuun barbaachisa"
   },
   "messages": {
+    "encrypted": "Fiixee hanga fiixeetti icciteeffame",
+    "cannotDecrypt": "Ergaa icciteeffame — meeshaa kana irratti banamuu hin danda'u",
     "title": "Ergaawwan",
     "searchConversations": "Haasawa barbaadi...",
     "failedToLoad": "Haasawa fe'uun hin milkoofne",

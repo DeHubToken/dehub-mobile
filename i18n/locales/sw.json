@@ -1205,6 +1205,8 @@
     "loginRequired": "Kuingia kunahitajika"
   },
   "messages": {
+    "encrypted": "Imesimbwa kutoka mwanzo hadi mwisho",
+    "cannotDecrypt": "Ujumbe uliosimbwa — hauwezi kufunguliwa kwenye kifaa hiki",
     "title": "Ujumbe",
     "searchConversations": "Tafuta mazungumzo...",
     "failedToLoad": "Imeshindwa kupakia mazungumzo",

@@ -1204,6 +1204,8 @@
     "loginRequired": "لاگ ان ضروری ہے"
   },
   "messages": {
+    "encrypted": "اینڈ ٹو اینڈ انکرپٹڈ",
+    "cannotDecrypt": "انکرپٹڈ پیغام — اس ڈیوائس پر نہیں کھل سکتا",
     "title": "پیغام",
     "searchConversations": "بات چیت ڈھونڈو...",
     "failedToLoad": "بات چیت لوڈ نئیں ہوئی",

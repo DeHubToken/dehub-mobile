@@ -1135,6 +1135,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "encrypted": "Сквозное шифрование",
+    "cannotDecrypt": "Зашифрованное сообщение — нельзя открыть на этом устройстве",
     "title": "Сообщения",
     "searchConversations": "Поиск диалогов...",
     "failedToLoad": "Не удалось загрузить диалоги",

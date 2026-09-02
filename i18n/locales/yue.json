@@ -1204,6 +1204,8 @@
     "loginRequired": "需要登入"
   },
   "messages": {
+    "encrypted": "端到端加密",
+    "cannotDecrypt": "加密訊息 — 喺呢部裝置打唔開",
     "title": "訊息",
     "searchConversations": "搜尋對話...",
     "failedToLoad": "載入對話失敗",

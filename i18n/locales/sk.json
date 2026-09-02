@@ -588,6 +588,8 @@
     "clearNotification": "Vymazať upozornenie"
   },
   "messages": {
+    "encrypted": "Šifrované end-to-end",
+    "cannotDecrypt": "Šifrovaná správa — na tomto zariadení sa nedá otvoriť",
     "title": "Správy",
     "search": "Hľadať správy",
     "newMessage": "Nová správa",

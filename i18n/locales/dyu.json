@@ -1204,6 +1204,8 @@
     "loginRequired": "Sɔgɔma kɛ"
   },
   "messages": {
+    "encrypted": "Kunnafoni datugu ka bɔ fan bɛɛ",
+    "cannotDecrypt": "Kunnafoni datugulen — a tɛ se ka dayɛlɛ minɛn nin kan",
     "title": "Kɔrɔbɔw",
     "searchConversations": "Fɛɛrɛ...",
     "failedToLoad": "Kɔrɔbɔ bɔ",

@@ -1204,6 +1204,8 @@
     "loginRequired": "Soo galitaan waa loo baahan yahay"
   },
   "messages": {
+    "encrypted": "Si dhammaystiran loo sireeyay",
+    "cannotDecrypt": "Fariin sir ah — laguma furi karo qalabkan",
     "title": "Fariimaha",
     "searchConversations": "Raadi wada-sheekeysiyada...",
     "failedToLoad": "Soo dejinta wada-sheekeysiyadu wuu fashilmay",

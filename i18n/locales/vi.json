@@ -1398,6 +1398,8 @@
     "clearNotification": "Xóa thông báo"
   },
   "messages": {
+    "encrypted": "Mã hóa đầu cuối",
+    "cannotDecrypt": "Tin nhắn đã mã hóa — không thể mở trên thiết bị này",
     "title": "Messages",
     "searchConversations": "Search conversations...",
     "failedToLoad": "Failed to load conversations",

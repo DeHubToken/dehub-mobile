@@ -1105,6 +1105,8 @@
     "clearNotification": "Пок кардани огоҳинома"
   },
   "messages": {
+    "encrypted": "Рамзгузории сар то сар",
+    "cannotDecrypt": "Паёми рамзгузошта — дар ин дастгоҳ кушода намешавад",
     "title": "Паёмҳо",
     "searchConversations": "Ҷустуҷӯи суҳбатҳо...",
     "failedToLoad": "Боркунии суҳбатҳо ноком шуд",
