@@ -6,8 +6,8 @@ import {
   ScrollView,
   StyleSheet,
   Platform,
-  Dimensions,
   InteractionManager,
+  useWindowDimensions,
 } from "react-native";
 import Reanimated, {
   useSharedValue,
@@ -45,14 +45,23 @@ import { useTranslation } from "react-i18next";
 
 const SCROLL_HINT_SEEN_KEY = "dehub:navScrollHintSeen";
 
-const { width: SCREEN_W } = Dimensions.get("window");
-// Container is 72% of the screen minus outerWrap's 16px horizontal padding —
-// compute tab widths from the same base so the last tab (Search) isn't pushed
-// past the visible edge.
-const NAV_WIDTH = Math.min((SCREEN_W - 16) * 0.72, 340);
 const CENTER_W = 52;
 const NAV_EDGE_PAD = 4; // matches web's pl-1/pr-1
-const TAB_W = (NAV_WIDTH - CENTER_W - NAV_EDGE_PAD * 2) / 4;
+
+/**
+ * The container is 72% of the screen minus outerWrap's 16px horizontal
+ * padding; tab widths come off the same base so the last tab (Search) is not
+ * pushed past the visible edge.
+ *
+ * A function of the live window width, deliberately, rather than a module
+ * constant off `Dimensions.get("window")`. Read once at module scope it froze
+ * at whatever the window measured when the bundle was first evaluated — so
+ * rotating the phone, unfolding a foldable or entering split-screen left the
+ * pill laid out for the old width, with items past the edge and unread badges
+ * sitting off their icons.
+ */
+const tabWidthFor = (screenW: number) =>
+  (Math.min((screenW - 16) * 0.72, 340) - CENTER_W - NAV_EDGE_PAD * 2) / 4;
 
 interface TabDef {
   name: string;
@@ -141,17 +150,26 @@ const AUTHED_ONLY_SCREENS = new Set([
 
 const AnimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
+// `routeName` + a stable `onPress`, rather than an `onPress` closure built at
+// the call site. An inline arrow is a fresh identity on every render, which
+// defeated this memo every single time — so all thirty-odd buttons, each with
+// its own shared value and animated style, re-rendered whenever an unread
+// count ticked or the tab changed. Same reasoning on ScrollNavButton below.
 const NavButton = memo<{
   icon: IconName;
   label: string;
   isActive: boolean;
   isCenter?: boolean;
-  onPress: () => void;
+  routeName: string;
+  onPress: (routeName: string) => void;
   index: number;
+  tabW: number;
   animProgress: SharedValue<number>;
   badgeCount?: number;
-}>(({ icon, label, isActive, isCenter, onPress, index, animProgress, badgeCount = 0 }) => {
+}>(({ icon, label, isActive, isCenter, routeName, onPress, index, tabW, animProgress, badgeCount = 0 }) => {
   const scale = useSharedValue(1);
+
+  const handlePress = useCallback(() => onPress(routeName), [onPress, routeName]);
 
   const handlePressIn = useCallback(() => {
     scale.value = withSpring(0.88, { damping: 15, stiffness: 300 });
@@ -183,7 +201,7 @@ const NavButton = memo<{
       <AnimatedPressable
         accessibilityRole="button"
         accessibilityLabel={label}
-        onPress={onPress}
+        onPress={handlePress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         style={[styles.centerButton, animatedStyle]}
@@ -217,10 +235,10 @@ const NavButton = memo<{
       // not announced.
       accessibilityLabel={badgeCount > 0 ? `${label}, ${badgeCount} unread` : label}
       accessibilityState={{ selected: isActive }}
-      onPress={onPress}
+      onPress={handlePress}
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
-      style={[styles.tabButton, animatedStyle]}
+      style={[styles.tabButton, { width: tabW }, animatedStyle]}
     >
       <View style={isActive ? styles.activeGlow : undefined}>
         <Icon
@@ -231,7 +249,7 @@ const NavButton = memo<{
         />
       </View>
       {badgeCount > 0 && (
-        <View style={styles.badge} pointerEvents="none">
+        <View style={[styles.badge, { right: tabW / 2 - 18 }]} pointerEvents="none">
           <Text style={styles.badgeText} numberOfLines={1}>
             {badgeCount > 99 ? "99+" : badgeCount}
           </Text>
@@ -241,9 +259,20 @@ const NavButton = memo<{
   );
 });
 
-const ScrollNavButton = memo<{ icon: IconName; label: string; onPress: () => void; badgeCount?: number }>(
-  ({ icon, label, onPress, badgeCount = 0 }) => {
+const ScrollNavButton = memo<{
+  icon: IconName;
+  label: string;
+  item: ScrollNavItem;
+  onPress: (item: ScrollNavItem) => void;
+  tabW: number;
+  badgeCount?: number;
+}>(
+  ({ icon, label, item, onPress, tabW, badgeCount = 0 }) => {
     const scale = useSharedValue(1);
+
+    // SCROLL_NAV_ITEMS is module scope, so `item` is a stable identity and this
+    // callback is too — which is what lets the memo above actually hold.
+    const handlePress = useCallback(() => onPress(item), [onPress, item]);
 
     const handlePressIn = useCallback(() => {
       scale.value = withSpring(0.88, { damping: 15, stiffness: 300 });
@@ -261,14 +290,14 @@ const ScrollNavButton = memo<{ icon: IconName; label: string; onPress: () => voi
       <AnimatedPressable
         accessibilityRole="button"
         accessibilityLabel={badgeCount > 0 ? `${label}, ${badgeCount} unread` : label}
-        onPress={onPress}
+        onPress={handlePress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
-        style={[styles.scrollNavItem, animatedStyle]}
+        style={[styles.scrollNavItem, { width: tabW }, animatedStyle]}
       >
         <Icon name={icon} size={20} color="rgba(255, 255, 255, 0.72)" strokeWidth={1.75} />
         {badgeCount > 0 && (
-          <View style={styles.badge} pointerEvents="none">
+          <View style={[styles.badge, { right: tabW / 2 - 18 }]} pointerEvents="none">
             <Text style={styles.badgeText} numberOfLines={1}>
               {badgeCount > 99 ? "99+" : badgeCount}
             </Text>
@@ -282,6 +311,9 @@ const ScrollNavButton = memo<{ icon: IconName; label: string; onPress: () => voi
 const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  // Live, not a module constant — see tabWidthFor.
+  const { width: screenW } = useWindowDimensions();
+  const tabW = tabWidthFor(screenW);
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
   const user = useUser();
@@ -350,9 +382,16 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
     };
   }, []);
 
+  // `state` changes on every navigation, so depending on it here handed every
+  // button a new onPress each time and defeated their memo. The ref keeps the
+  // callback stable while still reading the current routes.
+  const stateRef = useRef(state);
+  stateRef.current = state;
+
   const handlePress = useCallback(
     (routeName: string) => {
-      const route = state.routes.find((r) => r.name === routeName);
+      const current = stateRef.current;
+      const route = current.routes.find((r) => r.name === routeName);
       const event = navigation.emit({
         type: "tabPress",
         target: route?.key ?? routeName,
@@ -360,13 +399,13 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
       });
 
       if (!event.defaultPrevented) {
-        const isFocused = state.routes[state.index]?.name === routeName;
+        const isFocused = current.routes[current.index]?.name === routeName;
         if (!isFocused) {
           navigation.navigate(routeName);
         }
       }
     },
-    [navigation, state],
+    [navigation],
   );
 
   const handleScrollItemPress = useCallback(
@@ -520,8 +559,10 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
                 label={t(tab.labelKey)}
                 isActive={isActive}
                 isCenter={tab.isCenter}
-                onPress={() => handlePress(tab.name)}
+                routeName={tab.name}
+                onPress={handlePress}
                 index={index}
+                tabW={tabW}
                 animProgress={animProgress}
                 badgeCount={tab.name === ScreenNames.DM && isAuthed ? dmUnread : 0}
               />
@@ -535,7 +576,9 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
               key={item.labelKey}
               icon={item.icon}
               label={t(item.labelKey)}
-              onPress={() => handleScrollItemPress(item)}
+              item={item}
+              onPress={handleScrollItemPress}
+              tabW={tabW}
               badgeCount={
                 item.screen === ScreenNames.Notifications && isAuthed
                   ? user?.notificationCount ?? 0
@@ -602,8 +645,8 @@ const styles = StyleSheet.create({
     height: TAB_BAR_PILL_HEIGHT,
     paddingHorizontal: NAV_EDGE_PAD,
   },
+  // width comes in per-render from tabWidthFor — see the note on it.
   tabButton: {
-    width: TAB_W,
     alignItems: "center",
     justifyContent: "center",
     height: TAB_BAR_PILL_HEIGHT,
@@ -674,7 +717,6 @@ const styles = StyleSheet.create({
     }),
   },
   scrollNavItem: {
-    width: TAB_W,
     alignItems: "center" as const,
     justifyContent: "center" as const,
     height: TAB_BAR_PILL_HEIGHT,
@@ -682,7 +724,6 @@ const styles = StyleSheet.create({
   badge: {
     position: "absolute",
     top: 8,
-    right: TAB_W / 2 - 18,
     minWidth: 18,
     height: 18,
     paddingHorizontal: 3,
