@@ -22,6 +22,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import * as VideoThumbnails from "expo-video-thumbnails";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
@@ -274,6 +275,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   highlighted = false,
 }) => {
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
   const containerRef = useRef<View>(null);
 
   const isTipMsg = (message.msgType as DmMsgType) === "tip";
@@ -526,6 +528,9 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
           · edited
         </Text>
       )}
+      {message.encrypted && (
+        <Icon name="Lock" size={10} color={isMine ? "rgba(255,255,255,0.45)" : "#71717A"} />
+      )}
       {isMine && (
         <Icon
           name={message.isRead ? "CheckCheck" : "Check"}
@@ -534,7 +539,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         />
       )}
     </View>
-  ), [timeStr, isMine, message.isEdited, message.isRead]);
+  ), [timeStr, isMine, message.isEdited, message.isRead, message.encrypted]);
 
 
   const bubbleBg = isMine
@@ -931,6 +936,18 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
               )
             )}
 
+            {/* Encrypted on another device's key — never show the envelope */}
+            {message.undecryptable && (
+              <View className="flex-row items-center gap-1.5 px-3 pt-2.5 pb-0.5">
+                <Icon name="Lock" size={12} color={isMine ? "rgba(255,255,255,0.5)" : "#A6A9AC"} />
+                <Text
+                  className={`text-[14px] italic ${isMine ? "text-white/60" : "text-theme-neutrals-400"}`}
+                >
+                  {t("messages.cannotDecrypt")}
+                </Text>
+              </View>
+            )}
+
             {/* Payment badge — "Sent with X DHB" for paid / tipped messages */}
             {isPaidMsg && !isMediaOnly && (
               <View className="px-3">
@@ -963,6 +980,9 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                   <Text className="text-[11px] text-white/80">{timeStr}</Text>
                   {message.isEdited && (
                     <Text className="text-[11px] text-white/50">· edited</Text>
+                  )}
+                  {message.encrypted && (
+                    <Icon name="Lock" size={10} color="rgba(255,255,255,0.6)" />
                   )}
                   {isMine && (
                     <Icon

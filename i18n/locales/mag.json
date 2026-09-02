@@ -1204,6 +1204,8 @@
     "loginRequired": "लॉग इन चाहिं"
   },
   "messages": {
+    "encrypted": "एंड-टू-एंड एन्क्रिप्टेड",
+    "cannotDecrypt": "एन्क्रिप्टेड संदेश — ई डिवाइस पर ना खुल सकऽ हे",
     "title": "संदेश",
     "searchConversations": "बातचीत खोजो...",
     "failedToLoad": "बातचीत लोड नइ हो पावल",

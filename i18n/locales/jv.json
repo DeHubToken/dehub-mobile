@@ -1204,6 +1204,8 @@
     "loginRequired": "Kudu Mlebu"
   },
   "messages": {
+    "encrypted": "Dienkripsi end-to-end",
+    "cannotDecrypt": "Pesen sing dienkripsi — ora bisa dibukak ing piranti iki",
     "title": "Pesen",
     "searchConversations": "Goleki obrolan...",
     "failedToLoad": "Gagal ngemot obrolan",

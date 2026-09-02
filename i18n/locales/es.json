@@ -1105,6 +1105,8 @@
     "clearNotification": "Borrar notificación"
   },
   "messages": {
+    "encrypted": "Cifrado de extremo a extremo",
+    "cannotDecrypt": "Mensaje cifrado — no se puede abrir en este dispositivo",
     "title": "Mensajes",
     "searchConversations": "Buscar conversaciones...",
     "failedToLoad": "Error al cargar conversaciones",

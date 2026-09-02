@@ -1204,6 +1204,8 @@
     "attachmentTooLarge": "Chaque fichier doit faire moins de 20 Mo"
   },
   "messages": {
+    "encrypted": "Chiffré de bout en bout",
+    "cannotDecrypt": "Message chiffré — impossible à ouvrir sur cet appareil",
     "title": "Messages",
     "searchConversations": "Rechercher des conversations...",
     "failedToLoad": "Échec du chargement des conversations",

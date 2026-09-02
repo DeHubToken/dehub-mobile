@@ -1204,6 +1204,8 @@
     "loginRequired": "Sisselogimine nõutav"
   },
   "messages": {
+    "encrypted": "Otsast otsani krüpteeritud",
+    "cannotDecrypt": "Krüpteeritud sõnum — seda ei saa selles seadmes avada",
     "title": "Sõnumid",
     "searchConversations": "Otsi vestlusi...",
     "failedToLoad": "Vestluste laadimine ebaõnnestus",

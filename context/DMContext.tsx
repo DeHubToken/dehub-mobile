@@ -30,6 +30,9 @@ import type {
   DownloadReceiptResponse,
 } from "../services/dm/dm.types";
 import { createLogger } from "../libs/logger";
+import { isEncryptedContent } from "../libs/dm-e2ee/crypto";
+import { decryptFromPeer, loadIdentity, onIdentityChange, syncPublishedKey } from "../libs/dm-e2ee/keys";
+import { decryptIncoming, peerAddressForConversation } from "../libs/dm-e2ee/peer";
 
 /** Safely extract a plain string ID from either a raw string or a populated Mongoose document. */
 function resolveConvId(...vals: unknown[]): string {
@@ -94,6 +97,13 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
       } catch (e) {
         log.warn("hydrate:error", e);
       }
+      // Silent: only loads a key already in the keychain. The first-time
+      // signature prompt belongs to the chat screen, not app start.
+      try {
+        if (await loadIdentity(address)) syncPublishedKey().catch(() => {});
+      } catch (e) {
+        log.warn("e2ee:load", e);
+      }
     })();
   }, [isSignedIn, address, log]);
 
@@ -130,7 +140,11 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
           if (author === "other" && !isRead) {
             dmActions.incrementUnread(cId, String(payload?._id || payload?.id || ""));
           }
-          dmActions.upsertMessages(cId, [{ ...payload, author, isRead }]);
+          // Decrypt before the store sees it — bubbles, previews and the
+          // optimistic reconcile all read `content` straight from the store.
+          void decryptIncoming(cId, addressRef.current, [{ ...payload, author, isRead }])
+            .then((msgs) => dmActions.upsertMessages(cId, msgs))
+            .catch((err) => log.error("SendMessage decrypt", err));
         } catch (err) {
           log.error("SendMessage handler", err);
         }
@@ -151,6 +165,13 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     unsubs.push(
       ws.on(DMSocketEvent.EditMessage, (payload: EditMessageResponse) => {
         try {
+          if (isEncryptedContent(payload?.content)) {
+            const peer = peerAddressForConversation(payload.dmId, addressRef.current);
+            void (peer ? decryptFromPeer(peer, payload.content) : Promise.resolve(null)).then((plain) => {
+              dmActions.applyEdit({ ...payload, content: plain ?? "" });
+            });
+            return;
+          }
           dmActions.applyEdit(payload);
           log.debug("EditMessage applied", { dmId: payload.dmId, messageId: payload.messageId });
         } catch (err) {
@@ -174,7 +195,10 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
       ws.on(DMSocketEvent.ForwardMessage, (payload: any) => {
         try {
           const cId = resolveConvId(payload?.conversation, payload?.targetDmId, payload?.dmId);
-          if (cId) dmActions.upsertMessages(cId, [{ ...payload, author: inferAuthor(payload) }]);
+          if (cId) {
+            void decryptIncoming(cId, addressRef.current, [{ ...payload, author: inferAuthor(payload) }])
+              .then((msgs) => dmActions.upsertMessages(cId, msgs));
+          }
           log.debug("ForwardMessage", { cId });
         } catch (err) {
           log.error("ForwardMessage handler", err);
@@ -218,7 +242,8 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
           const cId = resolveConvId(raw?.conversation, payload?.dmId);
           const msgId = String(raw?._id || "");
           if (!cId || !msgId) return;
-          dmActions.upsertMessages(cId, [{ ...raw, author: inferAuthor(raw) }]);
+          void decryptIncoming(cId, addressRef.current, [{ ...raw, author: inferAuthor(raw) }])
+            .then((msgs) => dmActions.upsertMessages(cId, msgs));
         } catch (err) {
           log.error("JobMessageId handler", err);
         }
@@ -252,7 +277,18 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     setContactsError(null);
     try {
       const contacts = await getContactsByAddress(address);
-      if (Array.isArray(contacts)) dmActions.upsertContacts(contacts);
+      if (Array.isArray(contacts)) {
+        dmActions.upsertContacts(contacts);
+        // The embedded previews are the newest lines of each thread; open the
+        // encrypted ones now that the contact rows (and so the peers) are known.
+        await Promise.all(
+          contacts.map(async (c) => {
+            if (!Array.isArray(c.messages) || !c.messages.length) return;
+            const msgs = await decryptIncoming(c._id, address, c.messages);
+            if (msgs !== c.messages) dmActions.upsertMessages(c._id, msgs);
+          }),
+        );
+      }
       log.info("contacts:fetched", { count: contacts?.length || 0 });
     } catch (e: any) {
       log.error("contacts:error", e);
@@ -267,6 +303,10 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
   useEffect(() => {
     if (isSignedIn && address) refreshContacts();
   }, [isSignedIn, address, refreshContacts]);
+
+  // Once the encryption identity comes online (first signature on this
+  // device), previews fetched before it are sitting in the store unopened.
+  useEffect(() => onIdentityChange(() => { void refreshContacts(); }), [refreshContacts]);
 
 
   const loadMessages = useCallback(
@@ -290,8 +330,9 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
               (address && senderAddr === address);
             return { ...m, author: mine ? "me" : "other" };
           });
-          dmActions.upsertMessages(conversationId, normalized);
-          return normalized;
+          const opened = await decryptIncoming(conversationId, address, normalized);
+          dmActions.upsertMessages(conversationId, opened);
+          return opened;
         }
         return [];
       } catch (e: any) {

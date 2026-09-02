@@ -120,6 +120,10 @@ export interface DmMessage {
   sender: DmUser | ID; // aggregate may populate
   author?: "me" | "other";
   content?: string;
+  /** Set once an `e2e:` envelope has been opened (or failed to open) client-side. */
+  encrypted?: boolean;
+  /** Encrypted, but this device holds no key for it — render a placeholder, never the envelope. */
+  undecryptable?: boolean;
   msgType?: DmMsgType;
   mediaUrls?: DmMediaUrl[];
   uploadStatus?: "pending" | "complete" | "failed";

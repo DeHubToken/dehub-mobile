@@ -1324,6 +1324,8 @@
     "clearNotification": "Șterge notificarea"
   },
   "messages": {
+    "encrypted": "Criptat end-to-end",
+    "cannotDecrypt": "Mesaj criptat — nu poate fi deschis pe acest dispozitiv",
     "title": "Messages",
     "searchConversations": "Search conversations...",
     "failedToLoad": "Failed to load conversations",

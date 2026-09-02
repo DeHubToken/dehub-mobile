@@ -1016,6 +1016,8 @@
     "attachmentTooLarge": "हर फ़ाइल 20MB से कम होनी चाहिए"
   },
   "messages": {
+    "encrypted": "एंड-टू-एंड एन्क्रिप्टेड",
+    "cannotDecrypt": "एन्क्रिप्टेड संदेश — इस डिवाइस पर नहीं खोला जा सकता",
     "title": "संदेश",
     "searchConversations": "बातचीत खोजें...",
     "failedToLoad": "बातचीत लोड करने में विफल",

@@ -1204,6 +1204,8 @@
     "loginRequired": "لاگ ان ضروري"
   },
   "messages": {
+    "encrypted": "آخر کان آخر تائين انڪرپٽ ٿيل",
+    "cannotDecrypt": "انڪرپٽ ٿيل پيغام — هن ڊوائيس تي نه ٿو کلي سگهي",
     "title": "پيغام",
     "searchConversations": "ڳالهه ٻولهه ڳولهيو...",
     "failedToLoad": "ڳالهه ٻولهه لوڊ نه ٿي سگهيو",

@@ -1135,6 +1135,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "encrypted": "اینڈ ٹو اینڈ انکرپٹڈ",
+    "cannotDecrypt": "انکرپٹڈ پیغام — اس ڈیوائس پر نہیں کھولا جا سکتا",
     "title": "پیغامات",
     "searchConversations": "بات چیت تلاش کریں...",
     "failedToLoad": "بات چیت لوڈ کرنے میں ناکامی",

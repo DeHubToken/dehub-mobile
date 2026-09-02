@@ -1204,6 +1204,8 @@
     "loginRequired": "Cal iniciar sessió"
   },
   "messages": {
+    "encrypted": "Xifrat d'extrem a extrem",
+    "cannotDecrypt": "Missatge xifrat — no es pot obrir en aquest dispositiu",
     "title": "Missatges",
     "searchConversations": "Cercar converses...",
     "failedToLoad": "Error en carregar converses",

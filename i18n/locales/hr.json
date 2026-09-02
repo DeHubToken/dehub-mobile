@@ -1204,6 +1204,8 @@
     "loginRequired": "Potrebna prijava"
   },
   "messages": {
+    "encrypted": "Šifrirano s kraja na kraj",
+    "cannotDecrypt": "Šifrirana poruka — ne može se otvoriti na ovom uređaju",
     "title": "Poruke",
     "searchConversations": "Pretraži razgovore...",
     "failedToLoad": "Učitavanje razgovora nije uspjelo",

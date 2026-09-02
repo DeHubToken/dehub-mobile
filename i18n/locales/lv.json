@@ -1204,6 +1204,8 @@
     "loginRequired": "Nepieciešama pieteikšanās"
   },
   "messages": {
+    "encrypted": "Pilnībā šifrēts",
+    "cannotDecrypt": "Šifrēta ziņa — šajā ierīcē to nevar atvērt",
     "title": "Ziņojumi",
     "searchConversations": "Meklēt sarunas...",
     "failedToLoad": "Sarunu ielāde neizdevās",

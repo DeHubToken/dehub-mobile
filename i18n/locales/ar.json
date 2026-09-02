@@ -1135,6 +1135,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "encrypted": "مشفّر من طرف إلى طرف",
+    "cannotDecrypt": "رسالة مشفّرة — لا يمكن فتحها على هذا الجهاز",
     "title": "الرسائل",
     "searchConversations": "بحث في المحادثات...",
     "failedToLoad": "فشل تحميل المحادثات",
