@@ -260,6 +260,26 @@ export function useStreamProductActions(tokenId: string | number | null | undefi
 }
 
 /**
+ * Thrown when the DHB reached the seller but the order would not register.
+ *
+ * The transfer is the step that cannot be repeated safely, so the hash has to
+ * survive the failure: the sheet keeps it and a retry re-confirms that payment
+ * rather than sending a second one. Same shape as PaidButUnrecordedError in
+ * libs/payout-record.ts, and for the same reason.
+ */
+export class PaidButUnconfirmedError extends Error {
+  readonly txHash: string;
+
+  constructor(txHash: string, reason: string) {
+    super(
+      `${reason}. Your payment went through — do not pay again. Reference: ${txHash}`,
+    );
+    this.name = "PaidButUnconfirmedError";
+    this.txHash = txHash;
+  }
+}
+
+/**
  * Buy a product from a stream: quote → pay → confirm.
  *
  * `sendTransfer` is injected rather than imported so this hook stays free of
@@ -283,16 +303,24 @@ export function useLiveCheckout(
       quote: LiveQuote;
       shippingAddress?: string;
       notes?: string;
+      /**
+       * A transfer that already went out for this quote. Present only on a
+       * retry after the confirm failed: sending is the step that cannot be
+       * repeated safely, so a retry re-confirms this hash instead of paying
+       * the seller a second time.
+       */
+      paidTxHash?: string;
     }) => {
-      const { quote, shippingAddress, notes } = params;
+      const { quote, shippingAddress, notes, paidTxHash } = params;
 
-      if (quote.paymentsFrozen) {
+      if (quote.paymentsFrozen && !paidTxHash) {
         throw new Error(
           "DHB transfers are paused right now, so this purchase would fail. Try again once trading resumes.",
         );
       }
 
-      const hash = await sendTransfer(quote.sellerAddress, quote.dhbAmount);
+      const hash =
+        paidTxHash || (await sendTransfer(quote.sellerAddress, quote.dhbAmount));
       if (!hash) throw new Error("Transaction was not submitted");
 
       // The receipt can lag the wallet's response, so a 202 means "ask again",
@@ -315,14 +343,19 @@ export function useLiveCheckout(
           );
         } catch (err) {
           lastError = (err as Error).message;
-          if (!/not found yet/i.test(lastError)) throw err;
+          // Anything other than "not visible yet" — sold out, a 500, an auth
+          // failure — is terminal for this attempt, but the DHB has already
+          // left the wallet. Rethrowing the bare error lost that fact, and the
+          // sheet stayed open with Buy live, so pressing it built a whole new
+          // transfer. Carry the hash instead so a retry re-confirms this one.
+          if (!/not found yet/i.test(lastError)) {
+            throw new PaidButUnconfirmedError(hash, lastError);
+          }
           await new Promise((r) => setTimeout(r, 3000));
         }
       }
       log.error("confirm timed out", { hash });
-      throw new Error(
-        `${lastError}. Your payment went through — send this transaction to the seller: ${hash}`,
-      );
+      throw new PaidButUnconfirmedError(hash, lastError);
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["stream-products", key] });

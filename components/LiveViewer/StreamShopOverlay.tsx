@@ -29,7 +29,12 @@ import {
   TextInput,
 } from "react-native";
 import { ShoppingBag, X, Package } from "lucide-react-native";
-import { useStreamProducts, useLiveCheckout, effectivePrice } from "../../hooks/useStreamShopping";
+import {
+  useStreamProducts,
+  useLiveCheckout,
+  effectivePrice,
+  PaidButUnconfirmedError,
+} from "../../hooks/useStreamShopping";
 import type { StreamProduct, LiveQuote } from "../../hooks/useStreamShopping";
 import { useERC20Contract } from "../../hooks/use-web3";
 import { writeContractAA } from "../../libs/aa.write";
@@ -128,6 +133,9 @@ export function CheckoutSheet({
   const [quoteError, setQuoteError] = useState<string | null>(null);
   const [shipping, setShipping] = useState("");
   const [notes, setNotes] = useState("");
+  // A transfer that already left the wallet for the quote on screen. While
+  // this is set, Buy re-confirms that payment instead of sending another.
+  const [paidHash, setPaidHash] = useState<string | null>(null);
 
   const sendTransfer = useCallback(
     async (to: string, amountWholeTokens: number): Promise<string> => {
@@ -158,6 +166,8 @@ export function CheckoutSheet({
     setQuoteError(null);
     setShipping("");
     setNotes("");
+    // A new quote is a new purchase; any hash held for the old one is spent.
+    setPaidHash(null);
     getQuote
       .mutateAsync(listing.id)
       .then((q) => {
@@ -177,7 +187,13 @@ export function CheckoutSheet({
   const isSelf = wallet?.toLowerCase() === listing.wallet_address?.toLowerCase();
   const needsShipping = !listing.is_digital;
   const canBuy =
-    !!quote && !quote.paymentsFrozen && !isSelf && (!needsShipping || shipping.trim().length > 0) && !buy.isPending;
+    !!quote &&
+    // A freeze must not strand a buyer who has already paid: confirming an
+    // existing transfer moves no money, so it stays available.
+    (!quote.paymentsFrozen || !!paidHash) &&
+    !isSelf &&
+    (!needsShipping || shipping.trim().length > 0) &&
+    !buy.isPending;
 
   const handleBuy = async () => {
     if (!quote) return;
@@ -186,11 +202,18 @@ export function CheckoutSheet({
         quote,
         shippingAddress: shipping.trim() || undefined,
         notes: notes.trim() || undefined,
+        paidTxHash: paidHash ?? undefined,
       });
+      setPaidHash(null);
       onClose();
-    } catch {
+    } catch (err) {
       // useLiveCheckout toasts the reason; the sheet stays open so the buyer
       // can read it and retry without retyping their address.
+      //
+      // If the DHB already moved, hold the hash. Retrying then re-confirms
+      // that payment rather than sending a second full transfer, which is
+      // what pressing Buy again used to do.
+      if (err instanceof PaidButUnconfirmedError) setPaidHash(err.txHash);
     }
   };
 
@@ -301,7 +324,7 @@ export function CheckoutSheet({
               </>
             ) : (
               <Text className={canBuy ? "text-[#09090B] font-semibold" : "text-white/50 font-semibold"}>
-                Buy now
+                {paidHash ? "Retry confirmation" : "Buy now"}
               </Text>
             )}
           </TouchableOpacity>
