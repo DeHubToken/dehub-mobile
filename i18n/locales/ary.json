@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "ما قدرناش نحيدوها. عاود جرب."
   },
   "common": {
+    "mute": "سكّت الصوت",
+    "unmute": "رجّع الصوت",
+    "fullscreen": "الشاشة كاملة",
+    "exitFullscreen": "خرج من الشاشة الكاملة",
     "save": "حفظ",
     "cancel": "إلغاء",
     "delete": "مسح",

@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Kunde inte ta bort det. Försök igen."
   },
   "common": {
+    "mute": "Stäng av ljud",
+    "unmute": "Slå på ljud",
+    "fullscreen": "Helskärm",
+    "exitFullscreen": "Avsluta helskärm",
     "save": "Spara",
     "cancel": "Avbryt",
     "delete": "Radera",

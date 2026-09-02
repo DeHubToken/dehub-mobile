@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Konnte nicht entfernt werden. Versuch es erneut."
   },
   "common": {
+    "mute": "Stumm schalten",
+    "unmute": "Ton einschalten",
+    "fullscreen": "Vollbild",
+    "exitFullscreen": "Vollbild beenden",
     "save": "Speichern",
     "cancel": "Abbrechen",
     "delete": "Löschen",

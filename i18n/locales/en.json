@@ -493,6 +493,10 @@
     "freeAccessListDesc": "Users who can message you for free, bypassing your message fee."
   },
   "common": {
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "fullscreen": "Fullscreen",
+    "exitFullscreen": "Exit fullscreen",
     "save": "Save",
     "cancel": "Cancel",
     "delete": "Delete",

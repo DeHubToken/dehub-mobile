@@ -10,7 +10,10 @@ import {
   Text,
   Platform,
   AppState,
+  BackHandler,
+  StatusBar,
 } from "react-native";
+import * as ScreenOrientation from "expo-screen-orientation";
 import VideoArea from "./VideoArea";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { useStreamAccessInfo } from "../../libs/validators.util";
@@ -51,6 +54,8 @@ import type { EventBannerData } from "../LiveViewer/LiveEventBanner";
 import { hlsUrlFor } from "../../libs/live-ingest";
 import { extractReplayUrl } from "../../libs/live-replay";
 import PostOptionsMenu from "../common/PostOptionsMenu";
+import LiveViewerPlayerControls from "../LiveViewer/LiveViewerPlayerControls";
+import { EDGE } from "../common/ViewerChrome";
 
 type LiveStreamPlayerProps = {
   // Minimal inputs; additional params may be forwarded from route
@@ -1171,6 +1176,65 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     await shareProfile(url, `Check out this stream ${url}`);
   }, [streamId, tokenId]);
 
+  // Sound. A stream is opened on purpose, so it starts audible whether or not
+  // the user has silenced the feed. The player used to seed itself from the
+  // feed's shared mute cache, and with its own top row hidden behind
+  // `hideTopControls` and no mute button in the header, a viewer who had
+  // ever muted a feed card got a silent stream and nothing to press.
+  const [isMuted, setIsMuted] = useState(false);
+  const toggleMute = useCallback(() => setIsMuted((m) => !m), []);
+
+  // Immersive: chrome off, status bar off, and the phone turned sideways
+  // when the picture is wider than it is tall. The player draws the stream
+  // `contain`, so a landscape broadcast on a portrait screen is a band across
+  // the middle with the chat over it — which is what "it isn't fullscreen"
+  // reports were describing. Portrait streams already fill the screen and
+  // only lose the chrome.
+  const [immersive, setImmersive] = useState(false);
+  const immersiveRef = useRef(false);
+  const videoSizeRef = useRef<{ width: number; height: number } | null>(null);
+  const handleVideoSize = useCallback((size: { width: number; height: number }) => {
+    videoSizeRef.current = size;
+    // Went immersive before the size was known: turn now.
+    if (immersiveRef.current && size.width > size.height) {
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE).catch(() => {});
+    }
+  }, []);
+  const enterImmersive = useCallback(() => {
+    immersiveRef.current = true;
+    setImmersive(true);
+    StatusBar.setHidden(true);
+    const size = videoSizeRef.current;
+    if (size && size.width > size.height) {
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE).catch(() => {});
+    }
+  }, []);
+  const exitImmersive = useCallback(() => {
+    immersiveRef.current = false;
+    setImmersive(false);
+    StatusBar.setHidden(false);
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP).catch(() => {});
+  }, []);
+  // Hardware back steps out of immersive before it leaves the stream. Handled
+  // here rather than via `beforeRemove` because the player pauses and mutes
+  // itself on that event whether or not the removal is then prevented.
+  useEffect(() => {
+    const sub = BackHandler.addEventListener("hardwareBackPress", () => {
+      if (!immersiveRef.current) return false;
+      exitImmersive();
+      return true;
+    });
+    return () => sub.remove();
+  }, [exitImmersive]);
+  // Leaving the screen while immersive hands the status bar back; the player
+  // already restores portrait on unmount.
+  useEffect(
+    () => () => {
+      if (immersiveRef.current) StatusBar.setHidden(false);
+    },
+    []
+  );
+
   // Gift modal state
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
   const [giftOpen, setGiftOpen] = useState(false);
@@ -1245,6 +1309,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             isLive={!isPlayingReplay}
             fullscreen
             hideTopControls
+            muted={isMuted}
+            onVideoSize={handleVideoSize}
           />
         ) : (
           <View className="flex-1 bg-black" />
@@ -1253,106 +1319,136 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
       {/* Overlay container on top of video */}
       <View className="absolute inset-0" pointerEvents="box-none">
-        {/* Top gradient for readability */}
-        <LinearGradient
-          colors={["rgba(0,0,0,0.7)", "rgba(0,0,0,0)"]}
-          style={{ height: 120 + insets.top, position: "absolute", top: 0, left: 0, right: 0 }}
-          pointerEvents="none"
-        />
-
-        {/* Bottom gradient for readability */}
-        <LinearGradient
-          colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.85)"]}
-          style={{ height: 320, position: "absolute", bottom: 0, left: 0, right: 0 }}
-          pointerEvents="none"
-        />
-
-        {/* Main content layout */}
-        <View className="flex-1" pointerEvents="box-none">
-          <View className="flex-1" pointerEvents="box-none" style={{ paddingTop: insets.top }}>
-            {/* Header: Creator info + LIVE badge + viewers + close */}
-            <LiveViewerHeader
-              creator={creator}
-              creatorLoading={creatorLoading}
-              isFollowing={isFollowing}
-              followLoading={followLoading}
-              onFollow={handleFollow}
-              onUnfollow={handleUnfollow}
-              viewerAddress={(user?.walletAddress || user?.address) as string}
-              isLive={isLiveEffective && !isPausedEffective}
-              isPaused={isPausedEffective}
-              isEnded={isEndedEffective}
-              viewerCount={liveViewers}
-              fallbackMinter={minterProp}
-              onOptionsPress={() => setShowOptionsMenu(true)}
+        {/* Immersive: just the picture, with sound and a way back in the corner. */}
+        {immersive && (
+          <View
+            pointerEvents="box-none"
+            style={{ position: "absolute", top: insets.top + EDGE, right: insets.right + EDGE }}
+          >
+            <LiveViewerPlayerControls
+              isMuted={isMuted}
+              immersive
+              onToggleMute={toggleMute}
+              onToggleImmersive={exitImmersive}
             />
+          </View>
+        )}
 
-            {/* Stream title - below header */}
-            {resolvedTitle ? (
-              <View className="px-4 mt-1" pointerEvents="none">
-                <Text
-                  className="text-white text-sm font-semibold"
-                  numberOfLines={1}
-                  style={{ textShadowColor: "rgba(0,0,0,0.8)", textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 3 }}
-                >
-                  {resolvedTitle}
-                </Text>
-              </View>
-            ) : null}
-
-            {/* Middle area - transparent, shows video */}
-            <View className="flex-1" pointerEvents="box-none" />
-
-            {/* Bottom section: shop + chat + reactions + input */}
-            <View pointerEvents="box-none" style={{ paddingBottom: Math.max(insets.bottom, 8) }}>
-              {/* Whatever the host has put "on air", above the chat so a busy
-                  room cannot scroll it away. Renders nothing when the stream
-                  has no products attached. */}
-              <StreamShopOverlay
-                tokenId={(streamEntity?.tokenId as any) || (tokenId as any)}
-              />
-
-              {/* The creator's affiliate board. Its own button rather than a
-                  row inside the products overlay above: that one is a store
-                  checkout and this one leaves the app, and folding them
-                  together would put "buy here" and "buy somewhere else" behind
-                  one tap. `applyLiveAccess` flattens the token's board onto the
-                  stream row, so it arrives with the stream. */}
-              <ShopBoard
-                tokenId={(streamEntity?.tokenId as any) || (tokenId as any)}
-                links={(streamEntity as any)?.shopLinks}
-                listingCount={(streamEntity as any)?.shopListingCount}
-              />
-
-              {/* TikTok-style join/gift banners */}
-              <LiveEventBanner joinEvent={joinEvent} giftEvent={giftEvent} />
-
-              {/* Chat overlay */}
-              <LiveViewerChat
-                activities={activities}
-                canSend={!!canChat}
-                isLive={isLiveEffective}
+        {!immersive && (
+        <>
+          {/* Top gradient for readability */}
+          <LinearGradient
+            colors={["rgba(0,0,0,0.7)", "rgba(0,0,0,0)"]}
+            style={{ height: 120 + insets.top, position: "absolute", top: 0, left: 0, right: 0 }}
+            pointerEvents="none"
+          />
+  
+          {/* Bottom gradient for readability */}
+          <LinearGradient
+            colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.85)"]}
+            style={{ height: 320, position: "absolute", bottom: 0, left: 0, right: 0 }}
+            pointerEvents="none"
+          />
+  
+          {/* Main content layout */}
+          <View className="flex-1" pointerEvents="box-none">
+            <View className="flex-1" pointerEvents="box-none" style={{ paddingTop: insets.top }}>
+              {/* Header: Creator info + LIVE badge + viewers + close */}
+              <LiveViewerHeader
+                creator={creator}
+                creatorLoading={creatorLoading}
+                isFollowing={isFollowing}
+                followLoading={followLoading}
+                onFollow={handleFollow}
+                onUnfollow={handleUnfollow}
+                viewerAddress={(user?.walletAddress || user?.address) as string}
+                isLive={isLiveEffective && !isPausedEffective}
+                isPaused={isPausedEffective}
                 isEnded={isEndedEffective}
-                isScheduled={isScheduledEffective}
-                onSendMessage={handleSendMessage}
-                onGiftPress={handleGiftPress}
-                chatEnabled={liveChatEnabled}
+                viewerCount={liveViewers}
+                fallbackMinter={minterProp}
+                onOptionsPress={() => setShowOptionsMenu(true)}
               />
-
-              {/* Reactions bar */}
-              <LiveViewerReactionsBar
-                onReact={handleSendReaction}
-                onLike={handleLiveLike}
-                onShare={handleShare}
-                disabled={!isSignedIn || !isLiveEffective}
-                likeCount={liveLikes}
-                isLiked={actionsUserVote === "like"}
-                likePending={likePending}
-                isLive={isLiveEffective}
-              />
+  
+              {/* Stream title - below header */}
+              {resolvedTitle ? (
+                <View className="px-4 mt-1" pointerEvents="none">
+                  <Text
+                    className="text-white text-sm font-semibold"
+                    numberOfLines={1}
+                    style={{ textShadowColor: "rgba(0,0,0,0.8)", textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 3 }}
+                  >
+                    {resolvedTitle}
+                  </Text>
+                </View>
+              ) : null}
+  
+              {/* Sound and fullscreen. The player's own row is hidden by the
+                  header, and the header keeps its width for the creator card. */}
+              <View style={{ paddingHorizontal: EDGE, marginTop: 8 }} pointerEvents="box-none">
+                <LiveViewerPlayerControls
+                  isMuted={isMuted}
+                  immersive={false}
+                  onToggleMute={toggleMute}
+                  onToggleImmersive={enterImmersive}
+                />
+              </View>
+  
+              {/* Middle area - transparent, shows video */}
+              <View className="flex-1" pointerEvents="box-none" />
+  
+              {/* Bottom section: shop + chat + reactions + input */}
+              <View pointerEvents="box-none" style={{ paddingBottom: Math.max(insets.bottom, 8) }}>
+                {/* Whatever the host has put "on air", above the chat so a busy
+                    room cannot scroll it away. Renders nothing when the stream
+                    has no products attached. */}
+                <StreamShopOverlay
+                  tokenId={(streamEntity?.tokenId as any) || (tokenId as any)}
+                />
+  
+                {/* The creator's affiliate board. Its own button rather than a
+                    row inside the products overlay above: that one is a store
+                    checkout and this one leaves the app, and folding them
+                    together would put "buy here" and "buy somewhere else" behind
+                    one tap. `applyLiveAccess` flattens the token's board onto the
+                    stream row, so it arrives with the stream. */}
+                <ShopBoard
+                  tokenId={(streamEntity?.tokenId as any) || (tokenId as any)}
+                  links={(streamEntity as any)?.shopLinks}
+                  listingCount={(streamEntity as any)?.shopListingCount}
+                />
+  
+                {/* TikTok-style join/gift banners */}
+                <LiveEventBanner joinEvent={joinEvent} giftEvent={giftEvent} />
+  
+                {/* Chat overlay */}
+                <LiveViewerChat
+                  activities={activities}
+                  canSend={!!canChat}
+                  isLive={isLiveEffective}
+                  isEnded={isEndedEffective}
+                  isScheduled={isScheduledEffective}
+                  onSendMessage={handleSendMessage}
+                  onGiftPress={handleGiftPress}
+                  chatEnabled={liveChatEnabled}
+                />
+  
+                {/* Reactions bar */}
+                <LiveViewerReactionsBar
+                  onReact={handleSendReaction}
+                  onLike={handleLiveLike}
+                  onShare={handleShare}
+                  disabled={!isSignedIn || !isLiveEffective}
+                  likeCount={liveLikes}
+                  isLiked={actionsUserVote === "like"}
+                  likePending={likePending}
+                  isLive={isLiveEffective}
+                />
+              </View>
             </View>
           </View>
-        </View>
+        </>
+        )}
 
         {/* Floating Reaction Bubbles - right side */}
         <ReactionOverlay reactions={reactions} onRemove={removeReaction} />

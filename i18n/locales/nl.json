@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Kon niet verwijderd worden. Probeer opnieuw."
   },
   "common": {
+    "mute": "Dempen",
+    "unmute": "Dempen opheffen",
+    "fullscreen": "Volledig scherm",
+    "exitFullscreen": "Volledig scherm sluiten",
     "allRightsReserved": "Alle rechten voorbehouden",
     "search": "Zoeken",
     "noData": "Geen gegevens",

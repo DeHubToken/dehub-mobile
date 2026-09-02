@@ -1193,6 +1193,10 @@
     "live": "Live"
   },
   "common": {
+    "mute": "Demp",
+    "unmute": "Ontdemp",
+    "fullscreen": "Volskerm",
+    "exitFullscreen": "Verlaat volskerm",
     "save": "Save",
     "cancel": "Cancel",
     "delete": "Delete",

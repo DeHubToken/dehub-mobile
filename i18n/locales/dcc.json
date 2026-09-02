@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "یہ نکو ہٹ سکا۔ پھر کوشش کرو۔"
   },
   "common": {
+    "mute": "آواز بند کرو",
+    "unmute": "آواز چالو کرو",
+    "fullscreen": "فل اسکرین",
+    "exitFullscreen": "فل اسکرین سے باہر آؤ",
     "save": "محفوظ",
     "cancel": "منسوخ",
     "delete": "مٹاؤ",

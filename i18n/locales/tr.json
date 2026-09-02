@@ -449,6 +449,10 @@
     "freeAccessListDesc": "Mesaj ücretinizi ödemeden size ücretsiz yazabilecek kullanıcılar."
   },
   "common": {
+    "mute": "Sesi kapat",
+    "unmute": "Sesi aç",
+    "fullscreen": "Tam ekran",
+    "exitFullscreen": "Tam ekrandan çık",
     "save": "Kaydet",
     "cancel": "İptal",
     "delete": "Sil",

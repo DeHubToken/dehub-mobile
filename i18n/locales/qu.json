@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Hurquy mana atirqanchu. Yapamanta ruway."
   },
   "common": {
+    "mute": "Upallachiy",
+    "unmute": "Uyarichiy",
+    "fullscreen": "Hunt'a pantalla",
+    "exitFullscreen": "Hunt'a pantallamanta lluqsiy",
     "save": "Waqaychay",
     "cancel": "Hina kachun",
     "delete": "Pichay",

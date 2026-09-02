@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Tidak bisa menghapusnya. Coba lagi."
   },
   "common": {
+    "mute": "Bisukan",
+    "unmute": "Bunyikan",
+    "fullscreen": "Layar penuh",
+    "exitFullscreen": "Keluar dari layar penuh",
     "save": "Simpan",
     "cancel": "Batal",
     "delete": "Hapus",

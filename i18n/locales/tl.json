@@ -36,6 +36,10 @@
     "arcade": "Arcade"
   },
   "common": {
+    "mute": "I-mute",
+    "unmute": "I-unmute",
+    "fullscreen": "Fullscreen",
+    "exitFullscreen": "Lumabas sa fullscreen",
     "okay": "Sige",
     "cancel": "Kanselahin",
     "back": "Bumalik",

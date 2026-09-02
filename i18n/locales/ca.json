@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "No s'ha pogut eliminar. Torna-ho a provar."
   },
   "common": {
+    "mute": "Silencia",
+    "unmute": "Activa el so",
+    "fullscreen": "Pantalla completa",
+    "exitFullscreen": "Surt de pantalla completa",
     "save": "Desar",
     "cancel": "Cancel·lar",
     "delete": "Eliminar",

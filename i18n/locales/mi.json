@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Kāore i taea te tango. Ngana anō."
   },
   "common": {
+    "mute": "Whakangū",
+    "unmute": "Whakaora oro",
+    "fullscreen": "Mata katoa",
+    "exitFullscreen": "Puta i te mata katoa",
     "save": "Tiaki",
     "cancel": "Whakakore",
     "delete": "Muku",
