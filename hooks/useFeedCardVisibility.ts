@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import type { ViewToken } from "react-native";
-import { isVideoItem } from "../services/feed.unified.service";
+import { isVideoItem, isLiveItem } from "../services/feed.unified.service";
 
 function getListItemKey(item: unknown): string | null {
   if (!item || typeof item !== "object") return null;
@@ -78,11 +78,17 @@ export function useFeedCardVisibility(keyExtractor?: KeyExtractor) {
       // Sorting over every viewable row handed it to whatever text or image
       // post happened to sit above the video, and then no video autoplayed at
       // all — the "sometimes it just doesn't start" half of the same bug.
+      //
+      // A live post holds a player too. It is not a "video" item — postType is
+      // "live", which routes it to the in-card stream preview — so this filter
+      // excluded it and no live card was ever handed autoplay in any feed that
+      // tracks visibility. It could only play in the lists that pass no flags
+      // at all and inherit `true`.
       const topVideo = viewableItems
         .filter(
           (v) =>
             v.isViewable &&
-            isVideoItem(v.item as any) &&
+            (isVideoItem(v.item as any) || isLiveItem(v.item as any)) &&
             resolveKey(v.item, v.index),
         )
         .sort((a, b) => (a.index ?? 0) - (b.index ?? 0))[0];

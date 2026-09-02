@@ -1,9 +1,10 @@
 import { renderHook, act } from '@testing-library/react-native';
 import type { ViewToken } from 'react-native';
 
-// The real module pulls the whole feed service graph in for one predicate.
+// The real module pulls the whole feed service graph in for two predicates.
 jest.mock('../../services/feed.unified.service', () => ({
   isVideoItem: (item: any) => !item?.postType || item.postType === 'video',
+  isLiveItem: (item: any) => item?.postType === 'live',
 }));
 
 import useFeedCardVisibility from '../../hooks/useFeedCardVisibility';
@@ -12,6 +13,7 @@ type Row = { __listKey: string; postType?: string };
 
 const video = (key: string): Row => ({ __listKey: key, postType: 'video' });
 const text = (key: string): Row => ({ __listKey: key, postType: 'text' });
+const live = (key: string): Row => ({ __listKey: key, postType: 'live' });
 
 const token = (item: Row, index: number, isViewable: boolean): ViewToken =>
   ({ item, index, isViewable, key: item.__listKey } as unknown as ViewToken);
@@ -89,6 +91,35 @@ describe('hooks/useFeedCardVisibility', () => {
     expect(result.current.isItemVisible('a')).toBe(false);
     expect(result.current.isItemAutoplayActive('a')).toBe(false);
     expect(result.current.isItemAutoplayActive('b')).toBe(true);
+  });
+
+  it('hands autoplay to a live row, which also holds a player', () => {
+    const stream = live('stream');
+    const { result } = renderHook(() => useFeedCardVisibility());
+
+    act(() => {
+      result.current.onViewableItemsChanged(report([[stream, 0, true]]));
+    });
+
+    // postType is "live", not "video", so the type filter used to exclude it
+    // and no live card was ever handed autoplay in a feed that tracks
+    // visibility — the stream sat behind its poster while it was on air.
+    expect(result.current.isItemAutoplayActive('stream')).toBe(true);
+  });
+
+  it('does not let a text row above a live row take the slot', () => {
+    const note = text('note');
+    const stream = live('stream');
+    const { result } = renderHook(() => useFeedCardVisibility());
+
+    act(() => {
+      result.current.onViewableItemsChanged(
+        report([[note, 0, true], [stream, 1, true]]),
+      );
+    });
+
+    expect(result.current.isItemAutoplayActive('note')).toBe(false);
+    expect(result.current.isItemAutoplayActive('stream')).toBe(true);
   });
 
   it('leaves nothing autoplaying when no video row is viewable', () => {
