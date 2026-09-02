@@ -1,9 +1,12 @@
 import { apiClient } from "../libs";
+import {
+  isReplayWrap,
+  VIDEO_MIN_WATCH_MS,
+} from "../libs/view-replay";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { recordAnonViews } from "./anonView.service";
 
 // Video view threshold: 10% of duration OR 3 seconds, whichever comes first
-const VIDEO_MIN_WATCH_MS = 3000; // 3 seconds
 const VIDEO_MIN_WATCH_PERCENT = 0.10; // 10%
 
 // Post view threshold: 50% visible for 2 seconds
@@ -223,10 +226,18 @@ export function resetRecordedView(tokenId: TokenId): void {
 export function createViewRecorder(base: Pick<RecordViewOptions, "tokenId" | "isSignedIn" | "account">) {
   let done = false;
   let lastPositionMs = 0;
+  let lastCountedAt = 0;
+
+  /** Re-arm after a replay. Keeps the clock, which is what paces the next one. */
+  const rearmForReplay = () => {
+    done = false;
+    resetRecordedView(base.tokenId);
+  };
 
   const reset = () => {
     done = false;
     lastPositionMs = 0;
+    lastCountedAt = 0;
     resetRecordedView(base.tokenId);
   };
 
@@ -235,14 +246,40 @@ export function createViewRecorder(base: Pick<RecordViewOptions, "tokenId" | "is
       // Playback has jumped back to the top after a real watch — a replay.
       // Feed players are `loop = true`, so without this a looping video counts
       // once and never again however long it runs.
-      if (done && positionMs < 1000 && lastPositionMs > VIDEO_MIN_WATCH_MS) {
-        reset();
+      //
+      // Two things separate a replay from a scrub back to the start, which
+      // produces the identical jump to zero:
+      //
+      //   where it jumped FROM — a loop or a deliberate restart wraps from the
+      //     end. Dragging the scrubber left goes to zero from wherever the
+      //     viewer happened to be, so requiring the previous tick to be near
+      //     the end rejects it. With no duration to compare against there is
+      //     nothing to test, so the interval below carries it alone.
+      //   how long ago the last one counted — a six-second clip left looping in
+      //     the feed wraps ten times a minute, and every wrap was a view. The
+      //     floor matches the API's own 30s per-viewer-per-post limit, so this
+      //     stops sending what the server would refuse anyway.
+      //
+      // The judgement itself is isReplayWrap, above and tested.
+      if (
+        done &&
+        isReplayWrap({
+          positionMs,
+          lastPositionMs,
+          durationMs,
+          msSinceLastView: Date.now() - lastCountedAt,
+        })
+      ) {
+        rearmForReplay();
       }
       lastPositionMs = positionMs;
 
       if (done) return false;
       const recorded = await recordViewIfEligible({ ...base, positionMs, durationMs });
-      if (recorded) done = true;
+      if (recorded) {
+        done = true;
+        lastCountedAt = Date.now();
+      }
       return recorded;
     },
     hasRecorded() { return done; },
