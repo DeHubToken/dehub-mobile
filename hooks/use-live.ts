@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getLivepeerStream } from "../services/livepeer.service";
+import { liveProviderOf } from "../libs/live-ingest";
 import { toastError } from "../libs/toast";
 import { LivestreamEvents } from "../services/enums/livestream.enum";
 // RTMP publisher removed in WebRTC mode; keep commented imports for future fallback if needed.
@@ -20,6 +21,13 @@ export type LiveStage =
 // hydrates it with the stream the mint returned.
 export interface UseLiveOptions {
   livepeerId?: string; // livepeer stream object id
+  /**
+   * Which ingest this stream lives on, off the stream's own record.
+   *
+   * A self-hosted broadcast never appears in Livepeer's stream API, so the
+   * poll below cannot confirm it however long it runs.
+   */
+  provider?: string | null;
 }
 
 export const useLive = (opts?: UseLiveOptions) => {
@@ -130,6 +138,9 @@ export const useLive = (opts?: UseLiveOptions) => {
 
   // Gate optimistic Livepeer polling until publisher signals connected
   const [publisherConnected, setPublisherConnectedState] = useState(false);
+  // Read off the stream, never off the build — a cutover in either direction
+  // leaves existing streams on the ingest they were minted for.
+  const isSelfHosted = liveProviderOf({ provider: opts?.provider }) === "mediamtx";
   const setPublisherConnected = useCallback((val: boolean) => {
     setPublisherConnectedState(val);
     console.log("[useLive] publisherConnected ->", val);
@@ -211,11 +222,27 @@ export const useLive = (opts?: UseLiveOptions) => {
 
   // Optimistic polling for LIVE state while stage === 'starting'
   useEffect(() => {
-    if (stage !== "starting" || !opts?.livepeerId) return;
+    if (stage !== "starting") return;
     if (!publisherConnected) {
       console.log("[useLive] live poll waiting for publisher connection");
       return;
     }
+
+    // A self-hosted broadcast is not in Livepeer's stream API, so the poll
+    // below can never see it — it ran for sixty seconds, learned nothing, and
+    // then reverted a stream that was still publishing from SETTING UP back to
+    // READY, re-enabling Go Live mid-broadcast.
+    //
+    // The publisher being connected is this device saying it is sending. That
+    // is the strongest signal available here and it needs nothing from a third
+    // party; the producer screen already treats it as proof the stream aired.
+    if (isSelfHosted) {
+      console.log("[useLive] self-hosted publisher connected -> LIVE");
+      setStage((s) => (s === "starting" ? "live" : s));
+      return;
+    }
+
+    if (!opts?.livepeerId) return;
     if (livePollStartedRef.current) return;
     livePollStartedRef.current = true;
     console.log("[useLive] live polling loop initiated", {
@@ -256,7 +283,7 @@ export const useLive = (opts?: UseLiveOptions) => {
         livePollRef.current = null;
       }
     };
-  }, [stage, opts?.livepeerId, publisherConnected]);
+  }, [stage, opts?.livepeerId, publisherConnected, isSelfHosted]);
 
   // Optimistic polling for ENDED state while stage === 'ending'
   useEffect(() => {

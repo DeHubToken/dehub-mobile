@@ -114,7 +114,12 @@ const LiveProducerScreen: React.FC = () => {
     publisherFailed,
     setPublisherConnected,
     publisherConnected,
-  } = useLive({ livepeerId: streamEntity?.livepeerId });
+  } = useLive({
+    livepeerId: streamEntity?.livepeerId,
+    // The self-hosted ingest is invisible to Livepeer, so the hook needs to
+    // know which one this stream is on to interpret the publisher connecting.
+    provider: (streamEntity as any)?.provider,
+  });
   // Bind socket on() from context directly into live hook (after useLive exists)
   useEffect(() => {
     bindSocket((evt, handler) => socketOn(evt, handler));
