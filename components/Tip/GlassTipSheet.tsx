@@ -11,6 +11,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -226,6 +227,8 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     opacity: backdropOpacity.value,
   }));
 
+  const { t } = useTranslation();
+
   // ── Tip state ────────────────────────────────────────────────────────────
   const isLocked = typeof lockedAmount === "number" && lockedAmount > 0;
   const [amount, setAmount] = useState(isLocked ? String(lockedAmount) : "");
@@ -388,11 +391,26 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           // evidence the tip failed, and reporting it as one after DHB
           // already moved is what actually broke — the send succeeds, the
           // user sees "failed", and persistTipRecord below never runs.
+          //
+          // A receipt we never got is not evidence either way, so it stays
+          // "sent". A receipt that arrives SAYING status 0 is evidence: the
+          // transaction reverted and no DHB moved. Under account abstraction
+          // wait() resolves on a reverted transaction rather than throwing —
+          // services/post-quota-payment.ts and hooks/useAiPayment.ts both
+          // guard on exactly this — so without the check below a revert takes
+          // the success path: "sent", a tip_records row for money that never
+          // moved, a decremented balance, and on the TV path a request
+          // resolved as approved against a failed hash.
           let receipt: any;
           try {
             receipt = await res.wait?.(1);
           } catch (waitErr) {
             console.warn("[Tip] Receipt wait failed (tip was still sent):", waitErr);
+          }
+          if (receipt && receipt.status !== undefined && receipt.status !== 1) {
+            setPhase("error");
+            setTipError(t("wallet.transactionFailed"));
+            return;
           }
           setPhase("sent");
           setLastAmount(numericAmount);
@@ -461,6 +479,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     patchUser,
     isSolanaTip,
     paymentChainId,
+    t,
   ]);
 
   // ── Render nothing when fully closed ─────────────────────────────────────
