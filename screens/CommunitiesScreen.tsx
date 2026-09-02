@@ -2,15 +2,17 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   View,
   Text,
-  FlatList,
   TextInput,
   TouchableOpacity,
   RefreshControl,
   ActivityIndicator,
 } from "react-native";
+import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
+import { CollapsibleHeader } from "../components/common/CollapsibleHeader";
+import { useCollapsibleScreen } from "../hooks/useCollapsibleScreen";
 import CommunityCard from "../components/Communities/CommunityCard";
 import CreateCommunitySheet from "../components/Communities/CreateCommunitySheet";
 import Icon from "../components/ui/Icon";
@@ -28,6 +30,7 @@ type SortMode = "top" | "new" | "hot";
 
 const CommunitiesScreen: React.FC = () => {
   const { t } = useTranslation();
+  const { headerProps, listProps, refreshOffset } = useCollapsibleScreen();
   const navigation = useNavigation<any>();
   const user = useUser() as any;
   const { isSignedIn } = useAuthState();
@@ -188,15 +191,14 @@ const CommunitiesScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title={t("communities.title")} rightContent={createButton} />
-      <FlatList
+      <Animated.FlatList
+        {...listProps({ paddingHorizontal: 16 })}
         data={flatData}
         keyExtractor={(item) => item.id}
         initialNumToRender={8}
         maxToRenderPerBatch={6}
         windowSize={9}
         removeClippedSubviews
-        contentContainerStyle={{ padding: 16, paddingBottom: 80 }}
         ListHeaderComponent={ListHeader}
         refreshControl={
           <RefreshControl
@@ -206,6 +208,7 @@ const CommunitiesScreen: React.FC = () => {
               load();
             }}
             tintColor={theme.colors.accent}
+            progressViewOffset={refreshOffset}
           />
         }
         ListEmptyComponent={
@@ -232,6 +235,11 @@ const CommunitiesScreen: React.FC = () => {
           );
         }}
       />
+      {/* After the list, not before it: the header floats over the content and
+          Android decides draw order by sibling order. */}
+      <CollapsibleHeader {...headerProps}>
+        <ScreenHeader title={t("communities.title")} rightContent={createButton} />
+      </CollapsibleHeader>
       <CreateCommunitySheet
         visible={createOpen}
         walletAddress={walletAddress}
