@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Programmanyň bu wersiýasynda elýeterli däl"
+  },
   "nav": {
     "home": "Baş sahypa",
     "explore": "Gözle",

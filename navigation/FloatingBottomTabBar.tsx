@@ -1,3 +1,4 @@
+import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import React, { memo, useCallback, useEffect, useRef } from "react";
 import {
   View,
@@ -136,6 +137,9 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "Handshake", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate },
   { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads },
 ];
+
+// DHB-unlock surfaces the App Store build leaves out — see config/storefront.
+const STOREFRONT_HIDDEN_SCREENS = new Set([ScreenNames.Ads, ScreenNames.SuperPowers]);
 
 const AUTHED_ONLY_SCREENS = new Set([
   ScreenNames.Profile,
@@ -570,6 +574,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
           })}
           {SCROLL_NAV_ITEMS
             .filter((item) => isAuthed || !item.screen || !AUTHED_ONLY_SCREENS.has(item.screen as any))
+            .filter((item) => DIGITAL_PURCHASES_ENABLED || !item.screen || !STOREFRONT_HIDDEN_SCREENS.has(item.screen as any))
             .map((item) => (
             <ScrollNavButton
               // Not the screen name: Wallet and Staking are both Dpay.

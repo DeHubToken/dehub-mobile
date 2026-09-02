@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "অ্যাপৰ এই সংস্কৰণত নাই"
+  },
   "nav": {
     "home": "ঘর",
     "explore": "খোঁজো",

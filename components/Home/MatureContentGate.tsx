@@ -15,6 +15,7 @@ import React, { useCallback, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from '../ui/Icon';
 import { useMatureContent } from '../../hooks/useMatureContent';
+import { MATURE_CONTENT_ENABLED } from '../../config/storefront';
 
 /**
  * Whether this post needs a warning, and the one-way switch that removes it.
@@ -28,18 +29,29 @@ export function useMatureGate(contentRating?: string) {
 
   const reveal = useCallback(() => setRevealed(true), []);
 
+  // The App Store build has no way through: the API withholds mature posts
+  // from it, and should one arrive anyway (a stale cache, an older server)
+  // the warning stays up and the tap-through is not offered.
+  if (!MATURE_CONTENT_ENABLED) {
+    return { isGated: contentRating === 'mature', reveal, canReveal: false };
+  }
+
   return {
     isGated: contentRating === 'mature' && !showMatureContent && !revealed,
     reveal,
+    canReveal: true,
   };
 }
 
 const MatureContentGate: React.FC<{
   onReveal: () => void;
+  /** False hides the tap-through — the App Store build. */
+  canReveal?: boolean;
   /** Short copy under the heading. */
   description?: string;
 }> = ({
   onReveal,
+  canReveal = MATURE_CONTENT_ENABLED,
   description = 'The creator marked this post as adult or graphic.',
 }) => (
   <View
@@ -66,6 +78,7 @@ const MatureContentGate: React.FC<{
     </View>
     <Text className="text-white text-sm font-semibold mb-1">Mature content</Text>
     <Text className="text-theme-neutrals-400 text-xs text-center mb-3">{description}</Text>
+    {canReveal && (
     <TouchableOpacity
       onPress={onReveal}
       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
@@ -80,6 +93,7 @@ const MatureContentGate: React.FC<{
     >
       <Text className="text-white text-xs font-medium">View anyway</Text>
     </TouchableOpacity>
+    )}
   </View>
 );
 

@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "ايپ جي هن ورزن ۾ دستياب ناهي"
+  },
   "nav": {
     "home": "گھر",
     "explore": "ڳولهو",

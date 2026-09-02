@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "એપના આ સંસ્કરણમાં ઉપલબ્ધ નથી"
+  },
   "nav": {
     "home": "હોમ",
     "explore": "શોધો",

@@ -21,6 +21,7 @@ import {
 import { SettingsScrollView } from './SettingsAnchor';
 import { useAppPrefs, setAppPref } from '../../hooks/useAppPrefs';
 import { useMatureContent } from '../../hooks/useMatureContent';
+import { MATURE_CONTENT_ENABLED } from '../../config/storefront';
 
 const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility: string }> = ({
   onOpenPrivacy,
@@ -62,6 +63,10 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
             nothing. "Filter explicit content" and "Content warnings" were this
             same setting worded twice, and are what this one does when it is
             off. Account-level, so it follows the reader onto web. */}
+        {/* Absent from the App Store build: the API never serves a mature post
+            to it, so a switch here would promise something it cannot do. */}
+        {MATURE_CONTENT_ENABLED && (
+        <>
         <SettingsToggleRow
           icon="EyeOff"
           label={t('settings.matureContent', 'Show Mature Content')}
@@ -74,6 +79,8 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
           disabled={savingMature}
         />
         <Divider />
+        </>
+        )}
         {/* Device-local, and deliberately off by default: a feed that quietly
             drops what you have already seen is the wrong surprise to hand
             someone who never asked for it. Only videos and shorts are ever

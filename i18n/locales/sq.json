@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Nuk ofrohet në këtë version të aplikacionit"
+  },
   "nav": {
     "home": "Kryefaqja",
     "explore": "Eksploro",

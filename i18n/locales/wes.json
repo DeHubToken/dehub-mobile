@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "E no dey for dis version of di app"
+  },
   "nav": {
     "home": "Home",
     "explore": "Explore",

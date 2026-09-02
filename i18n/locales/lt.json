@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Nepasiekiama šioje programėlės versijoje"
+  },
   "nav": {
     "home": "Pradžia",
     "explore": "Naršyti",

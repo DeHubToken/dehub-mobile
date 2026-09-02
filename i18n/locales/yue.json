@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "呢個版本嘅應用程式冇呢個功能"
+  },
   "nav": {
     "home": "主頁",
     "explore": "探索",

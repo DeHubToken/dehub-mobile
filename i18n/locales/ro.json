@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Indisponibil în această versiune a aplicației"
+  },
   "nav": {
     "home": "Acasă",
     "explore": "Explorează",

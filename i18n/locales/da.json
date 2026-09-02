@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Ikke tilgængelig i denne version af appen"
+  },
   "nav": {
     "home": "Hjem",
     "explore": "Udforsk",

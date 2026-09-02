@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "这个版本的应用里没有"
+  },
   "nav": {
     "home": "厝里",
     "explore": "探索",

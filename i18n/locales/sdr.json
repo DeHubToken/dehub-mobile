@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Bu app versiyasında yoxdur"
+  },
   "nav": {
     "home": "گھر",
     "explore": "کھوجو",

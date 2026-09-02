@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Laguma heli karo nooca abka ee hadda"
+  },
   "nav": {
     "home": "Guriga",
     "explore": "Sahmi",

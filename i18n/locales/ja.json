@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "このバージョンのアプリでは利用できません"
+  },
   "nav": {
     "home": "ホーム",
     "explore": "検索",
