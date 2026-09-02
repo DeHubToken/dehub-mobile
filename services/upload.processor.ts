@@ -436,15 +436,29 @@ async function processJob(job: UploadJob): Promise<void> {
       const { payPostQuota, settleWithRetry } = await import("./post-quota-payment");
       const payment = await payPostQuota(quotaBill.amountDhb, quotaBill.recipient);
       const settled = await settleWithRetry(payment.txHash, payment.chainId);
-      if (settled) {
+      if (settled === "settled") {
         toastSuccess(`Paid ${quotaBill.amountDhb.toLocaleString()} DHB for this post`);
-      } else {
+      } else if (settled === "pending") {
         // The DHB has left the wallet. Never offer a retry here — the transfer
         // is the part that cannot be repeated safely, and the hash is stashed
         // and re-sent on its own.
         toastSuccess("Payment sent — still confirming", {
           description: "Your DHB has been transferred. We will finish confirming it shortly.",
         });
+      } else {
+        // Retries are spent. Saying "we will finish confirming it shortly" here
+        // was false — the app had just stopped trying — and the creator would
+        // next meet this as an unexplained charge blocking their next paid post.
+        const ref = payment.txHash;
+        // null, not an Error: toastError renders the error's own message when
+        // it has one and only falls back to this string otherwise.
+        toastError(
+          null,
+          "Your DHB was sent but we could not confirm it. Do not pay again.",
+          {
+            description: `Quote this transaction to support: ${ref.slice(0, 10)}…${ref.slice(-8)}`,
+          },
+        );
       }
     } catch (e: any) {
       toastError(

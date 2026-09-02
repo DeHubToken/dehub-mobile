@@ -180,20 +180,36 @@ async function writePending(rows: PendingSettlement[]): Promise<void> {
 }
 
 /**
+ * What became of a settle attempt.
+ *
+ * "pending" and "abandoned" both used to be `false`, which is how a charge the
+ * app had permanently given up on was reported to the creator as one it would
+ * "finish confirming shortly". They are different facts and the caller has to
+ * be able to tell them apart.
+ */
+export type SettleOutcome = "settled" | "pending" | "abandoned";
+
+/**
  * Tell the server about a transfer, retrying until it sticks.
  *
- * True once the charge is closed. False means "not yet" — the hash has been
- * stashed and will be retried — never "lost".
+ * "settled" once the charge is closed. "pending" means the hash is stashed and
+ * will be retried when the composer next opens. "abandoned" means the retries
+ * are spent — the hash is moved to the abandoned list rather than deleted, and
+ * the caller must say so, because the DHB has gone and the still-open charge is
+ * what blocks the creator's next paid post.
  */
 export async function settleWithRetry(
   txHash: string,
   chainId: number,
   startingAttempts = 0,
-): Promise<boolean> {
+  // Injectable for the same reason persistPayout takes a `sleep`: otherwise a
+  // test of the retry ladder has to sit through 8.5 seconds of real waiting.
+  delaysMs: number[] = [0, 2500, 6000],
+): Promise<SettleOutcome> {
   // Three immediate goes with a widening gap. A transfer that is mined but
   // not yet visible to the read RPC answers `pending` and clears in seconds;
   // anything longer is left to the stash.
-  const delays = [0, 2500, 6000];
+  const delays = delaysMs;
 
   for (let i = 0; i < delays.length; i++) {
     if (delays[i]) await wait(delays[i]);
@@ -201,7 +217,7 @@ export async function settleWithRetry(
       const result = await settlePostCharge(txHash, chainId);
       if (result?.settled) {
         await writePending((await readPending()).filter((r) => r.txHash !== txHash));
-        return true;
+        return "settled";
       }
     } catch (e) {
       console.warn("[PostQuota] settle attempt failed", e);
@@ -213,13 +229,53 @@ export async function settleWithRetry(
 
   if (attempts >= MAX_ATTEMPTS) {
     console.warn(`[PostQuota] giving up on settling ${txHash} after ${attempts} attempts`);
+    // Stop retrying, but do not lose the hash. The DHB is gone and the charge
+    // is still open server-side, which is what will block the next paid post,
+    // so the creator needs the reference to get it reconciled.
     await writePending(rows);
-    return false;
+    await recordAbandoned({ txHash, chainId, attempts });
+    return "abandoned";
   }
 
   rows.push({ txHash, chainId, attempts });
   await writePending(rows);
-  return false;
+  return "pending";
+}
+
+/**
+ * Transfers the app has stopped trying to settle.
+ *
+ * Kept because the money moved: without the hash there is nothing to reconcile
+ * a real payment against. Capped so a long outage cannot grow this without
+ * bound; the oldest go first, since the newest is the one still blocking.
+ */
+const ABANDONED_KEY = "@dhb_post_quota_abandoned_settlements";
+const MAX_ABANDONED = 20;
+
+export async function readAbandonedSettlements(): Promise<PendingSettlement[]> {
+  try {
+    const raw = await AsyncStorage.getItem(ABANDONED_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+async function recordAbandoned(row: PendingSettlement): Promise<void> {
+  try {
+    const rows = (await readAbandonedSettlements()).filter(
+      (r) => r.txHash !== row.txHash,
+    );
+    rows.push(row);
+    await AsyncStorage.setItem(
+      ABANDONED_KEY,
+      JSON.stringify(rows.slice(-MAX_ABANDONED)),
+    );
+  } catch {
+    // Storage failing here costs the reference, not the payment.
+  }
 }
 
 /**
