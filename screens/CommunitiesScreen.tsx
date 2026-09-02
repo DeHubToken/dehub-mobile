@@ -192,6 +192,10 @@ const CommunitiesScreen: React.FC = () => {
       <FlatList
         data={flatData}
         keyExtractor={(item) => item.id}
+        initialNumToRender={8}
+        maxToRenderPerBatch={6}
+        windowSize={9}
+        removeClippedSubviews
         contentContainerStyle={{ padding: 16, paddingBottom: 80 }}
         ListHeaderComponent={ListHeader}
         refreshControl={

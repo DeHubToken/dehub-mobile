@@ -1428,6 +1428,15 @@ const NotificationScreen = () => {
           }
           onEndReached={onLoadMore}
           onEndReachedThreshold={0.3}
+          // Untuned until now: the whole list rendered in one pass and every
+          // row stayed attached. Rows are a small avatar and two lines, so
+          // they batch cheaply and clip safely — no maintainVisibleContentPosition
+          // here, which is the one thing removeClippedSubviews cannot share with.
+          initialNumToRender={10}
+          maxToRenderPerBatch={8}
+          windowSize={9}
+          updateCellsBatchingPeriod={60}
+          removeClippedSubviews
           ListFooterComponent={ListFooter}
           ListEmptyComponent={
             <View className="flex-1 items-center justify-center py-20">
