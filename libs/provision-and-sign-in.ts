@@ -19,6 +19,7 @@ import {
   retryPendingResetCleanup,
   type EvmWalletResolution,
 } from "./identity-wallet";
+import { stageIncomingIdentity } from "./profiles";
 import { fetchWallet, fetchWalletReliably } from "./wallet-core/store";
 import { checkLegacyAccount } from "./wallet-core/legacy-detect";
 import { getSupabaseUserId } from "../services/auth/supabaseAuth.service";
@@ -70,12 +71,33 @@ async function ensureSessionMatchesSupabaseIdentity(supabaseUserId: string): Pro
   const hasUntaggedStaleSession = !cachedUid && !!(token || user);
 
   if ((identityIsUnknownOrDifferent || hasUntaggedStaleSession) && (token || user)) {
-    log.info("provision:clearing-stale-session", {
+    log.info("provision:staging-outgoing-session", {
       cachedUid: cachedUid ? `${cachedUid.slice(0, 8)}...` : null,
       activeSupabaseUid: `${activeSupabaseUid.slice(0, 8)}...`,
       untagged: hasUntaggedStaleSession,
     });
-    await clearAuthData();
+    // Stage, not clear.
+    //
+    // This ran clearAuthData, which deletes the token, user and address
+    // outright. Further down the sign-in, displacesAnotherAccount decides
+    // whether the account being replaced should be saved to the profile list —
+    // and it answers that by reading those exact keys. Having just deleted
+    // them it always answered no, so the outgoing account was never written
+    // anywhere and simply ceased to exist on the device.
+    //
+    // stageIncomingIdentity does everything clearAuthData did — the same
+    // session keys, the same Supabase entries — and preserves the outgoing
+    // account into the profile list first, which is what makes a second login
+    // additive. Add profile was never affected because it adopts the live
+    // account before reaching here; every other route into a sign-in was.
+    try {
+      await stageIncomingIdentity();
+    } catch (e) {
+      // Never block a sign-in on the bookkeeping. Worst case is the old
+      // behaviour: the outgoing account is not saved.
+      log.warn("provision:stageIncomingIdentity:error", e);
+      await clearAuthData();
+    }
   }
 }
 
