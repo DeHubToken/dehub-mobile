@@ -18,6 +18,7 @@ import {
   uploadActions,
   setUploadCacheKey,
   hydrateUploadStore,
+  clearUploadStore,
 } from '../../store/upload.store';
 
 const A = '0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -117,5 +118,51 @@ describe('switching accounts', () => {
     expect(aStored.jobs.map((j: { id: string }) => j.id)).toEqual(['a-late']);
     const bStored = await stored(B);
     expect(bStored?.jobs ?? []).toEqual([]);
+  });
+});
+
+describe('signing out', () => {
+  it("leaves the departing account's queue on disk", async () => {
+    setUploadCacheKey(A);
+    await hydrateUploadStore();
+    uploadActions.enqueue(job('a1'));
+    await settle();
+
+    clearUploadStore();
+    await settle();
+
+    // In memory it is gone...
+    expect(uploadState.jobs).toEqual([]);
+    // ...but signing back in has to find it, because a queued job can carry an
+    // unpaid post-allowance charge and the processor is the only thing that
+    // can settle one.
+    const aStored = await stored(A);
+    expect(aStored.jobs.map((j: { id: string }) => j.id)).toEqual(['a1']);
+  });
+
+  it('gives the queue back when the same account signs in again', async () => {
+    setUploadCacheKey(A);
+    await hydrateUploadStore();
+    uploadActions.enqueue(job('a1'));
+    await settle();
+
+    clearUploadStore();
+    await settle();
+
+    setUploadCacheKey(A);
+    await hydrateUploadStore();
+    expect(uploadState.jobs.map((j) => j.id)).toEqual(['a1']);
+  });
+
+  it('saves a job queued in the same tick as the sign-out', async () => {
+    setUploadCacheKey(A);
+    await hydrateUploadStore();
+
+    uploadActions.enqueue(job('a-late'));
+    clearUploadStore();
+    await settle();
+
+    const aStored = await stored(A);
+    expect(aStored.jobs.map((j: { id: string }) => j.id)).toEqual(['a-late']);
   });
 });

@@ -155,18 +155,19 @@ let ACTIVE_KEY: string | null = null;
  */
 let switchingAccount = false;
 
-export const setUploadCacheKey = (walletAddress: string | null): void => {
-  const next = walletAddress ? `${CACHE_PREFIX}:${walletAddress.toLowerCase()}` : null;
-  if (next === ACTIVE_KEY) return;
-
-  // Save the outgoing account's queue under the outgoing key before the key
-  // moves. This cannot lean on the debounced write: valtio's subscribe fires
-  // asynchronously, so a job enqueued in the same tick as the switch has not
-  // even scheduled its timer yet, and would be dropped entirely.
-  //
-  // Only when there is something to save — writing an empty array here would
-  // erase a real stored queue in the case where the switch happens before
-  // hydrate has finished loading it.
+/**
+ * Write whatever is queued under the key it belongs to, before letting go.
+ *
+ * Used by both ways an account stops being the active one: a profile switch
+ * and a sign-out. It cannot lean on the debounced write — valtio's subscribe
+ * fires asynchronously, so a job enqueued in the same tick has not scheduled
+ * its timer yet and would be dropped entirely.
+ *
+ * Only when there is something to save. Writing an empty array here would
+ * erase a real stored queue in the case where this runs before hydrate has
+ * finished loading it.
+ */
+const flushOutgoingQueue = (): void => {
   const outgoingKey = ACTIVE_KEY;
   const outgoing = uploadState.jobs.filter((j) => j.status !== "done");
   if (persistTimer) {
@@ -176,6 +177,13 @@ export const setUploadCacheKey = (walletAddress: string | null): void => {
   if (outgoingKey && outgoing.length) {
     AsyncStorage.setItem(outgoingKey, JSON.stringify({ jobs: outgoing })).catch(() => {});
   }
+};
+
+export const setUploadCacheKey = (walletAddress: string | null): void => {
+  const next = walletAddress ? `${CACHE_PREFIX}:${walletAddress.toLowerCase()}` : null;
+  if (next === ACTIVE_KEY) return;
+
+  flushOutgoingQueue();
 
   switchingAccount = true;
   ACTIVE_KEY = next;
@@ -319,7 +327,22 @@ export const uploadActions = {
   },
 };
 
+/**
+ * Let go of the in-memory queue without destroying what is on disk.
+ *
+ * Sign-out runs this. It used to empty the store and nothing else, which
+ * sounds harmless — but emptying it triggers the debounced save, and that save
+ * still held the departing account's key, so it wrote an empty queue over
+ * their stored jobs. Signing out deleted the uploads of the account signing
+ * out, and a queued job carries an unpaid post-allowance charge whose only
+ * settlement path runs from the upload processor over that very job.
+ *
+ * The pending save is cancelled, the queue is written under the key it belongs
+ * to, and the key is dropped so nothing later can write to it.
+ */
 export const clearUploadStore = (): void => {
+  flushOutgoingQueue();
+  ACTIVE_KEY = null;
   uploadState.jobs = [];
 };
 
