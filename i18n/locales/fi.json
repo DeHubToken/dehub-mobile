@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pikselöi"
+  },
+  "dub": {
+    "audio": "Ääni",
+    "original": "Alkuperäinen ääni",
+    "dubbed": "Kutsuttu ääni",
+    "preparing": "Valmistellaan dubattua ääntä...",
+    "unavailable": "Toistettu ääni ei ole käytettävissä tälle videolle."
   }
 }

@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "霓虹",
     "pixelate": "像素化"
+  },
+  "dub": {
+    "audio": "音頻",
+    "original": "原始音頻",
+    "dubbed": "配音為音頻",
+    "preparing": "準備緊配音音頻⋯",
+    "unavailable": "呢段片冇配音音訊。"
   }
 }

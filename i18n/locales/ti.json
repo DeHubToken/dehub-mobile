@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "ኒዮን",
     "pixelate": "ፒክሰል"
+  },
+  "dub": {
+    "audio": "ድምፂ",
+    "original": "ኦሪጅናል ኦዲዮ",
+    "dubbed": "ብድምጺ እተጻሕፈ",
+    "preparing": "ንድምጺ ምድላው...",
+    "unavailable": "እዚ ቪድዮ እዚ ገና ኣይተራእየን ።"
   }
 }

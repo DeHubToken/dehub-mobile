@@ -2486,5 +2486,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pikselizacja"
+  },
+  "dub": {
+    "audio": "Dźwięk",
+    "original": "Oryginalny dźwięk",
+    "dubbed": "Dźwięk dubbingowany",
+    "preparing": "Przygotowywanie dubbingowanego dźwięku…",
+    "unavailable": "Dźwięk dubbingowany nie jest dostępny dla tego filmu."
   }
 }

@@ -2603,5 +2603,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pixelate"
+  },
+  "dub": {
+    "audio": "ay maaaring maging sa anyo ng",
+    "original": "Orihinal na audio",
+    "dubbed": "Audio na may Dubbed",
+    "preparing": "Inihahanda ang tinaguriang audio...",
+    "unavailable": "Hindi available ang Dubbed audio para sa video na ito."
   }
 }

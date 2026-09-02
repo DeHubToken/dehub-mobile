@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pikselizim"
+  },
+  "dub": {
+    "audio": "Audio",
+    "original": "Orgjinali Gjerësia:",
+    "dubbed": "Audio e quajtur",
+    "preparing": "Duke përgatitur audion e quajtur...",
+    "unavailable": "Audio e quajtur nuk është e disponueshme për këtë video."
   }
 }

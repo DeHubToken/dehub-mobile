@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pikseler"
+  },
+  "dub": {
+    "audio": "Lyd",
+    "original": "Original lyd",
+    "dubbed": "Dubbet lyd",
+    "preparing": "Forbereder dubbet lyd …",
+    "unavailable": "Dubbet lyd er ikke tilgjengelig for denne videoen."
   }
 }

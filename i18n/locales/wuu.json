@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "霓虹",
     "pixelate": "像素化"
+  },
+  "dub": {
+    "audio": "音频",
+    "original": "原文音频",
+    "dubbed": "配音",
+    "preparing": "准备配音音频…",
+    "unavailable": "迭段视频呒没配音。"
   }
 }

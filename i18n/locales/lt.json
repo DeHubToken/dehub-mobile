@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neonas",
     "pixelate": "Pikseliai"
+  },
+  "dub": {
+    "audio": "Garso įrašas",
+    "original": "Originalus garsas",
+    "dubbed": "Dubliuotas garsas",
+    "preparing": "Ruošiamas dubliuotas garsas...",
+    "unavailable": "Šiam vaizdo įrašui dubliuotas garsas negalimas."
   }
 }

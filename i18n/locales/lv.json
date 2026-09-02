@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neons",
     "pixelate": "Pikseļi"
+  },
+  "dub": {
+    "audio": "Audio",
+    "original": "Oriģinālais audio",
+    "dubbed": "Dublēts audio",
+    "preparing": "Notiek dublētā audio sagatavošana...",
+    "unavailable": "Šim videoklipam dublētais audio nav pieejams."
   }
 }
