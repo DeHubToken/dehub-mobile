@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pikselli"
+  },
+  "dub": {
+    "audio": "Ses",
+    "original": "Orijinal ses",
+    "dubbed": "Dublajlı ses",
+    "preparing": "Dublajlı ses hazırlanıyor…",
+    "unavailable": "Bu video için dublajlı ses mevcut değil."
   }
 }

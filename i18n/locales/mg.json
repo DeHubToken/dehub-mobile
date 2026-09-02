@@ -2517,5 +2517,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Piksely"
+  },
+  "dub": {
+    "audio": "Raki-peo",
+    "original": "Raki-peo tany am-boalohany",
+    "dubbed": "Feo misy anarana",
+    "preparing": "Manomana raki-peo misy lohateny...",
+    "unavailable": "Tsy hita ato amin'ity lahatsary ity ny saripika."
   }
 }

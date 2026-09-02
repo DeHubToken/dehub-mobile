@@ -2685,5 +2685,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Piksel"
+  },
+  "dub": {
+    "audio": "Audio",
+    "original": "Audio asal",
+    "dubbed": "Audio bergelar",
+    "preparing": "Menyediakan audio yang digelar...",
+    "unavailable": "Audio bergelar tidak tersedia untuk video ini."
   }
 }

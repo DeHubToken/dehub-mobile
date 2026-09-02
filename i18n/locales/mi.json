@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pika"
+  },
+  "dub": {
+    "audio": "Ororongo",
+    "original": "Oro taketake",
+    "dubbed": "Oro reo irirangi",
+    "preparing": "Te whakarite i te oro e kiia nei ko...",
+    "unavailable": "E kore e wātea ana te oro o te kōpaki mō tēnei ataata."
   }
 }

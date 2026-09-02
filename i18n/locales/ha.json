@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pixel"
+  },
+  "dub": {
+    "audio": "Sauti",
+    "original": "Sauti na asali",
+    "dubbed": "Sauti mai ban sha'awa",
+    "preparing": "Shirya sautin da aka yi wa lakabi...",
+    "unavailable": "Dubbed audio ba samuwa ga wannan video."
   }
 }

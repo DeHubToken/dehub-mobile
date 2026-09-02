@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Piksel"
+  },
+  "dub": {
+    "audio": "Audio",
+    "original": "Audio asli",
+    "dubbed": "Dijuluki audio",
+    "preparing": "Mempersiapkan audio yang dijuluki…",
+    "unavailable": "Audio yang dijuluki tidak tersedia untuk video ini."
   }
 }

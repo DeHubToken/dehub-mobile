@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pikselizacija"
+  },
+  "dub": {
+    "audio": "Zvuk",
+    "original": "Izvorni zvuk",
+    "dubbed": "Dijagnosticirani zvuk",
+    "preparing": "Priprema sinkroniziranog zvuka…",
+    "unavailable": "Diferencirani zvuk nije dostupan za ovaj videozapis."
   }
 }

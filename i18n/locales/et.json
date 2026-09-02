@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neoon",
     "pixelate": "Pikselda"
+  },
+  "dub": {
+    "audio": "Heli",
+    "original": "Originaalheli",
+    "dubbed": "Dubleeritud heli",
+    "preparing": "Dubleeritud heli ettevalmistamine...",
+    "unavailable": "Selle video jaoks pole dubleeritud heli saadaval."
   }
 }

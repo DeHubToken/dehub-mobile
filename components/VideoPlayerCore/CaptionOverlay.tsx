@@ -21,11 +21,20 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
+import type { VideoPlayer } from 'expo-video';
 import {
   useTranscript,
   useTranscriptTranslation,
   type TranscriptSegment,
 } from '../../hooks/useTranscript';
+import {
+  useVideoDub,
+  useDubbedAudio,
+  dubLangFor,
+  getDubEnabled,
+  setDubEnabled,
+} from '../../hooks/useVideoDub';
 import {
   SUBTITLE_LANGUAGES,
   SUBTITLE_SIZES,
@@ -52,6 +61,9 @@ interface Props {
   controlsVisible?: boolean;
   /** Lift the caption line above whatever sits at the bottom of the player. */
   bottomOffset?: number;
+  /** The video's player and state — needed to run dubbed audio against it. */
+  player?: VideoPlayer | null;
+  isPlaying?: boolean;
 }
 
 const CaptionOverlay: React.FC<Props> = ({
@@ -59,7 +71,10 @@ const CaptionOverlay: React.FC<Props> = ({
   positionMs,
   controlsVisible = true,
   bottomOffset = 64,
+  player = null,
+  isPlaying = false,
 }) => {
+  const { t, i18n } = useTranslation();
   const ref = useMemo(() => {
     const n = typeof tokenId === 'string' ? parseInt(tokenId, 10) : tokenId ?? 0;
     return Number.isFinite(n) && n > 0 ? String(n) : null;
@@ -70,12 +85,14 @@ const CaptionOverlay: React.FC<Props> = ({
   const [size] = useState<SubtitleSize>(getSubtitleSize);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [fixOpen, setFixOpen] = useState(false);
+  const [dubOn, setDubOn] = useState<boolean>(getDubEnabled);
 
-  // Only fetch once the viewer has shown intent.
+  // Only fetch once the viewer has shown intent — including asking for a
+  // dub, which is keyed on the transcript too.
   const { transcript, status, inFlight, canRetry, start } = useTranscript(
     'video',
     ref,
-    !!ref && (enabled || pickerOpen),
+    !!ref && (enabled || pickerOpen || dubOn),
   );
 
   const isReady = status === 'ready';
@@ -97,6 +114,37 @@ const CaptionOverlay: React.FC<Props> = ({
     targetLang,
     !!ref && enabled && isReady && targetLang !== 'original',
   );
+
+  // Dubbed audio follows the caption language: Spanish captions + "Dubbed"
+  // plays Spanish speech in the creator's cloned voice. Only languages the
+  // synthesiser knows qualify; the rest keep captions only.
+  const dubLang = targetLang === 'original' ? null : dubLangFor(targetLang);
+  const wantDub = dubOn && isReady && !!dubLang && !!player;
+  const { dub } = useVideoDub(transcript?.id ?? null, dubLang, wantDub);
+  useDubbedAudio({
+    url: wantDub && dub?.status === 'ready' && dub.audio_url ? dub.audio_url : null,
+    player,
+    isPlaying,
+  });
+  const dubHint = !wantDub || dub?.status === 'ready'
+    ? null
+    : dub?.status === 'failed'
+    ? t('dub.unavailable')
+    : t('dub.preparing');
+
+  const toggleDub = (next: boolean) => {
+    if (next && targetLang === 'original') {
+      // Nothing to dub into while captions sit on Original: switch to the
+      // app's language if it can be voiced and is not what was spoken.
+      const guess = dubLangFor(i18n.language);
+      if (guess && guess !== sourceLang) {
+        setLang(guess);
+        setSubtitleLang(guess);
+      }
+    }
+    setDubOn(next);
+    setDubEnabled(next);
+  };
 
   // Fixes other viewers have had accepted. Applied to the transcript's own
   // segments before the overlay re-wraps them: corrections are keyed on the
@@ -232,6 +280,27 @@ const CaptionOverlay: React.FC<Props> = ({
               <Text style={styles.pillText}>{enabled ? 'On' : 'Off'}</Text>
             </Pressable>
           </View>
+
+          {/* Audio: the original track, or the same lines spoken in the
+              caption language in the creator's cloned voice. */}
+          <View style={styles.audioRow}>
+            <Text style={styles.audioLabel}>{t('dub.audio')}</Text>
+            <View style={styles.audioPills}>
+              <Pressable onPress={() => toggleDub(false)} style={[styles.pill, !dubOn && styles.pillOn]}>
+                <Text style={styles.pillText}>{t('dub.original')}</Text>
+              </Pressable>
+              <Pressable
+                onPress={() => toggleDub(true)}
+                disabled={!player}
+                style={[styles.pill, dubOn && styles.pillOn, !player && styles.pillOff]}
+              >
+                <Text style={styles.pillText}>{t('dub.dubbed')}</Text>
+              </Pressable>
+            </View>
+          </View>
+          {dubOn && !!dubHint && (
+            <Text style={styles.sheetHint}>{dubHint}</Text>
+          )}
 
           {!isReady && (
             <Text style={styles.sheetHint}>
@@ -369,7 +438,17 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.15)',
   },
   pillOn: { backgroundColor: 'rgba(255,255,255,0.15)' },
+  pillOff: { opacity: 0.4 },
   pillText: { color: '#FFFFFF', fontSize: 11 },
+  audioRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingBottom: 8,
+  },
+  audioLabel: { color: 'rgba(255,255,255,0.6)', fontSize: 12 },
+  audioPills: { flexDirection: 'row', gap: 6 },
   langList: { paddingHorizontal: 8 },
   langRow: {
     flexDirection: 'row',

@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "نیون",
     "pixelate": "پکسل"
+  },
+  "dub": {
+    "audio": "آڈیو",
+    "original": "Original audio",
+    "dubbed": "డబ్బింగ్ ఆడియో",
+    "preparing": "డబ్బింగ్ ఆడియో తయారుచేస్తున్నాం…",
+    "unavailable": "Ee video ki dubbed audio available ga ledu."
   }
 }
