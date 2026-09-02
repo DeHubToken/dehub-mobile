@@ -18,6 +18,7 @@ import { NotificationType, NotificationCategory } from '../enums/notification.en
 import { storage } from '../../libs/storage';
 import { getNotifications } from '../user.service';
 import { countUnreadNotifications, incrementUnreadCount } from '../../libs/notifications.unread';
+import { emitProfileDeepLink } from '../../libs/deeplink.events';
 
 const logger = createLogger('PushProvider');
 
@@ -294,14 +295,18 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           break;
 
         case NotificationType.TIP:
-          // Tip → open the tipper's profile
-          if (actorAddress || actorUsername) {
-            navigation.navigate(ScreenNames.Profile, {
-              address: actorAddress,
-              username: actorUsername,
-            });
-          } else {
-            navigation.navigate(ScreenNames.Notifications);
+          // Tip → open the tipper's profile.
+          //
+          // Not ScreenNames.Profile: that screen is the signed-in user's own
+          // profile and reads no params, so passing an address here opened
+          // your own profile instead of the tipper's. The sheet is what shows
+          // somebody else, and emitting is how the deep-link path reaches it —
+          // it waits for navigation state to settle first, which matters most
+          // from a cold start out of a notification tap.
+          {
+            const actor = actorUsername || actorAddress;
+            if (actor) emitProfileDeepLink(actor);
+            else navigation.navigate(ScreenNames.Notifications);
           }
           break;
 
