@@ -2119,7 +2119,8 @@
       "rejected": "Rejeitada",
       "completed": "Concluída",
       "cancelled": "Cancelada",
-      "disputed": "Em disputa"
+      "disputed": "Em disputa",
+      "paid": "Pago"
     },
     "detail": {
       "notFound": "Recompensa não encontrada.",
@@ -2157,6 +2158,9 @@
       "submitDispute": "Enviar disputa ao administrador",
       "rejectionReason": "Motivo da rejeição?",
       "rejectionPlaceholder": "Explique o que correu mal"
+    },
+    "payout": {
+      "alreadySent": "Já foi enviado ({{ref}}). Não pague novamente — reabra o trabalho daqui a pouco e ele deverá aparecer como pago."
     }
   },
   "stores": {

@@ -2115,7 +2115,8 @@
       "rejected": "E refuzuar",
       "completed": "E përfunduar",
       "cancelled": "E anuluar",
-      "disputed": "Në mosmarrëveshje"
+      "disputed": "Në mosmarrëveshje",
+      "paid": "Paguar"
     },
     "detail": {
       "notFound": "Shpërblimi nuk u gjet.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Dërgo mosmarrëveshjen te administratori",
       "rejectionReason": "Arsyeja e refuzimit?",
       "rejectionPlaceholder": "Shpjego çfarë nuk shkoi"
+    },
+    "payout": {
+      "alreadySent": "Tashmë është dërguar ({{ref}}). Mos paguaj sërish — hape punën sërish pas pak dhe duhet të shfaqet si e paguar."
     }
   },
   "stores": {

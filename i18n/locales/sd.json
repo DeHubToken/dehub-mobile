@@ -2115,7 +2115,8 @@
       "rejected": "رد ٿيل",
       "completed": "مڪمل",
       "cancelled": "منسوخ",
-      "disputed": "تڪراري"
+      "disputed": "تڪراري",
+      "paid": "ادا ٿيل"
     },
     "detail": {
       "notFound": "انعام نه مليو.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "تڪرار ايڊمن ڏانهن موڪليو",
       "rejectionReason": "رد ڪرڻ جو سبب؟",
       "rejectionPlaceholder": "بيان ڪريو ته ڇا غلط هو"
+    },
+    "payout": {
+      "alreadySent": "اڳ ۾ ئي موڪليو ويو آهي ({{ref}}). ٻيهر ادا نه ڪريو — ٿوري دير کان پوءِ ڪم ٻيهر کوليو، اهو ادا ٿيل ڏيکاريندو."
     }
   },
   "stores": {

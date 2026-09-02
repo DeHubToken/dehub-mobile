@@ -2115,7 +2115,8 @@
       "rejected": "Kua paopaotia",
       "completed": "Kua oti",
       "cancelled": "Kua whakakorea",
-      "disputed": "Kei te tautohetia"
+      "disputed": "Kei te tautohetia",
+      "paid": "Kua utua"
     },
     "detail": {
       "notFound": "Kāore i kitea te utu whakawhiwhi.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Tukuna te tautohe ki te kaiwhakahaere",
       "rejectionReason": "Take mō te paopao?",
       "rejectionPlaceholder": "Whakamāramatia he aha te hē"
+    },
+    "payout": {
+      "alreadySent": "Kua tukuna kētia ({{ref}}). Kaua e utu anō — whakatuwherahia anō te mahi ā tōna wā, ka kitea kua utua."
     }
   },
   "stores": {

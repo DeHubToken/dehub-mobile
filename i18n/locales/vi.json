@@ -2203,7 +2203,8 @@
       "rejected": "Bị từ chối",
       "completed": "Hoàn tất",
       "cancelled": "Đã hủy",
-      "disputed": "Đang tranh chấp"
+      "disputed": "Đang tranh chấp",
+      "paid": "Đã thanh toán"
     },
     "detail": {
       "notFound": "Không tìm thấy tiền thưởng.",
@@ -2241,6 +2242,9 @@
       "submitDispute": "Gửi tranh chấp tới quản trị viên",
       "rejectionReason": "Lý do từ chối?",
       "rejectionPlaceholder": "Giải thích điều gì chưa đạt"
+    },
+    "payout": {
+      "alreadySent": "Đã gửi rồi ({{ref}}). Đừng thanh toán lại — mở lại công việc sau giây lát, nó sẽ hiển thị là đã thanh toán."
     }
   },
   "stores": {

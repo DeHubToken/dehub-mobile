@@ -2117,7 +2117,8 @@
       "rejected": "却下",
       "completed": "完了",
       "cancelled": "キャンセル",
-      "disputed": "異議あり"
+      "disputed": "異議あり",
+      "paid": "支払い済み"
     },
     "detail": {
       "notFound": "バウンティが見つかりません。",
@@ -2155,6 +2156,9 @@
       "submitDispute": "管理者に異議を申し立てる",
       "rejectionReason": "却下の理由は？",
       "rejectionPlaceholder": "何が問題だったか説明してください"
+    },
+    "payout": {
+      "alreadySent": "すでに送金済みです（{{ref}}）。二重に支払わないでください。少ししてから案件を開き直すと、支払い済みと表示されます。"
     }
   },
   "stores": {

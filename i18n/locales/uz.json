@@ -2170,7 +2170,8 @@
       "rejected": "Rad etilgan",
       "completed": "Yakunlangan",
       "cancelled": "Bekor qilingan",
-      "disputed": "Nizoli"
+      "disputed": "Nizoli",
+      "paid": "To‘langan"
     },
     "detail": {
       "notFound": "Mukofot topilmadi.",
@@ -2208,6 +2209,9 @@
       "submitDispute": "Nizoni administratorga yuborish",
       "rejectionReason": "Rad etish sababi?",
       "rejectionPlaceholder": "Nima noto'g'ri bo'lganini tushuntiring"
+    },
+    "payout": {
+      "alreadySent": "Allaqachon yuborilgan ({{ref}}). Qayta to‘lamang — biroz vaqtdan so‘ng ishni qayta oching, u to‘langan deb ko‘rsatiladi."
     }
   },
   "stores": {

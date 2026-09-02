@@ -2116,7 +2116,8 @@
       "rejected": "Tí a kọ̀",
       "completed": "Tí ó parí",
       "cancelled": "Tí a fagilé",
-      "disputed": "Tí a ń jiyàn"
+      "disputed": "Tí a ń jiyàn",
+      "paid": "Ti san"
     },
     "detail": {
       "notFound": "Kò rí ẹ̀bùn.",
@@ -2154,6 +2155,9 @@
       "submitDispute": "Fi àríyànjiyàn ránṣẹ́ sí alábòójútó",
       "rejectionReason": "Ìdí ìkọ̀sílẹ̀?",
       "rejectionPlaceholder": "Ṣàlàyé ohun tí kò tọ́"
+    },
+    "payout": {
+      "alreadySent": "A ti fi ranṣẹ tẹlẹ ({{ref}}). Máṣe san lẹẹkansi — ṣí iṣẹ́ náà padà ní ìṣẹ́jú díẹ̀, yóò fi hàn pé a ti san."
     }
   },
   "stores": {

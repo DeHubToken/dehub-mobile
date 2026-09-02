@@ -2115,7 +2115,8 @@
       "rejected": "अस्वीकृत",
       "completed": "पूरा भेल",
       "cancelled": "रद्द",
-      "disputed": "विवादित"
+      "disputed": "विवादित",
+      "paid": "भुगतान भेल"
     },
     "detail": {
       "notFound": "इनाम नै भेटल।",
@@ -2153,6 +2154,9 @@
       "submitDispute": "विवाद प्रशासक के भेजूँ",
       "rejectionReason": "अस्वीकार के कारण?",
       "rejectionPlaceholder": "बताबूँ कि की गलत रहलै"
+    },
+    "payout": {
+      "alreadySent": "पहिलहीं भेजल गेल ({{ref}})। फेर मत भेजू — थोड़े देर बाद काम फेर खोलू, ऊ भुगतान भेल देखाई।"
     }
   },
   "stores": {
