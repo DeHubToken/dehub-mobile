@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "نیون",
     "pixelate": "پکسل"
+  },
+  "dub": {
+    "audio": "آڈیو",
+    "original": "اصل آڊيو",
+    "dubbed": "ڈب آڈیو",
+    "preparing": "ڈب شدہ آڈیو تیار کر رہے ہیں…",
+    "unavailable": "Azi video da dubbed audio available nai."
   }
 }

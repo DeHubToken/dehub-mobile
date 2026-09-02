@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pixelato"
+  },
+  "dub": {
+    "audio": "Audio",
+    "original": "Audio originale",
+    "dubbed": "Audio soprannominato",
+    "preparing": "Preparazione dell'audio doppiato...",
+    "unavailable": "L'audio soprannominato non è disponibile per questo video."
   }
 }

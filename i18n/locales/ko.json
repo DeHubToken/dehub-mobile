@@ -2422,5 +2422,12 @@
     "vhs": "VHS",
     "neon": "네온",
     "pixelate": "픽셀"
+  },
+  "dub": {
+    "audio": "오디오",
+    "original": "원본 오디오",
+    "dubbed": "더빙된 오디오",
+    "preparing": "더빙된 오디오 준비 중...",
+    "unavailable": "이 동영상에는 더빙된 오디오를 사용할 수 없습니다."
   }
 }

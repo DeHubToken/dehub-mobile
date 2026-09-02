@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pixelate"
+  },
+  "dub": {
+    "audio": "Audio",
+    "original": "Audio original",
+    "dubbed": "Audio wey dem dub",
+    "preparing": "Prepare audio wey dem go dub…",
+    "unavailable": "Dubbed audio no dey for this video."
   }
 }

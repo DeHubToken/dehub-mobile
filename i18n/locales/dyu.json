@@ -2418,5 +2418,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Piksɛli"
+  },
+  "dub": {
+    "audio": "Aw ye mɛnni kɛ",
+    "original": "O ye Bibulu ka maanaw ye.",
+    "dubbed": "Audio ka baara kɛ",
+    "preparing": "O ye kumakanw ye minw man kan ka mɛn.",
+    "unavailable": "O video nin tɛ se ka mɔgɔ bali ka kuma n'a ye."
   }
 }

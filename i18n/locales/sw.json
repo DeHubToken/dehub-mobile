@@ -2419,5 +2419,12 @@
     "vhs": "VHS",
     "neon": "Neon",
     "pixelate": "Pikseli"
+  },
+  "dub": {
+    "audio": "Sauti",
+    "original": "Sauti ya awali",
+    "dubbed": "Sauti iliyochapishwa mara mbili",
+    "preparing": "Inaandaa sauti iliyopewa jina...",
+    "unavailable": "Sauti iliyosambazwa haipatikani kwa video hii."
   }
 }

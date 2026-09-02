@@ -2589,5 +2589,12 @@
     "vhs": "VHS",
     "neon": "Neón",
     "pixelate": "Pixelizácia"
+  },
+  "dub": {
+    "audio": "Zvuk",
+    "original": "Originálny zvuk",
+    "dubbed": "Dabovaný zvuk",
+    "preparing": "Pripravuje sa dabovaný zvuk...",
+    "unavailable": "Pre toto video nie je k dispozícii dabovaný zvuk."
   }
 }
