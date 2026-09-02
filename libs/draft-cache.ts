@@ -152,10 +152,29 @@ export function clearDraft(key: string): void {
   persist();
 }
 
-/** The scope a 1:1 or group thread's draft lives under. Stable for its whole life. */
-export function dmDraftKey(peerAddress?: string | null, groupId?: string | null): string | null {
-  if (groupId) return `group:${groupId}`;
-  if (peerAddress) return `dm:${peerAddress.toLowerCase()}`;
+/**
+ * The scope a 1:1 or group thread's draft lives under. Stable for its whole life.
+ *
+ * Scoped to the VIEWER as well as the thread. The drafts live in one shared
+ * blob that neither sign-out nor a profile switch clears — both wipe the
+ * engagement cache, link counters, unlock records and the query cache, and
+ * neither touches this — so a key naming only the other person meant the next
+ * account to open that conversation was handed the previous account's
+ * half-typed message.
+ *
+ * A missing viewer yields null rather than an unscoped key: no key means the
+ * composer simply does not persist, which is the safe direction. An unscoped
+ * key is the bug.
+ */
+export function dmDraftKey(
+  viewerAddress?: string | null,
+  peerAddress?: string | null,
+  groupId?: string | null,
+): string | null {
+  if (!viewerAddress) return null;
+  const me = viewerAddress.toLowerCase();
+  if (groupId) return `${me}|group:${groupId}`;
+  if (peerAddress) return `${me}|dm:${peerAddress.toLowerCase()}`;
   return null;
 }
 
