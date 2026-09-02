@@ -2,13 +2,15 @@ import React, { useState, useEffect, useCallback, useMemo, useRef } from "react"
 import { useTranslation } from "react-i18next";
 import {
   View,
-  FlatList,
   RefreshControl,
   ListRenderItem,
   ActivityIndicator,
 } from "react-native";
+import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
+import { CollapsibleHeader } from "../components/common/CollapsibleHeader";
+import { useCollapsibleScreen } from "../hooks/useCollapsibleScreen";
 import LeaderboardCategoryPills, {
   SortCategory,
   PillKey,
@@ -32,19 +34,21 @@ interface ListHeaderContentProps {
   onCategoryChange: (cat: PillKey) => void;
   searchQuery: string;
   onSearchChange: (text: string) => void;
+  onSearchFocus: () => void;
 }
 
 const ListHeaderContent = React.memo<ListHeaderContentProps>(
-  ({ sortCategory, onCategoryChange, searchQuery, onSearchChange }) => (
+  ({ sortCategory, onCategoryChange, searchQuery, onSearchChange, onSearchFocus }) => (
     <View>
       <LeaderboardCategoryPills active={sortCategory} onSelect={onCategoryChange} />
-      <LeaderboardSearchBar value={searchQuery} onChangeText={onSearchChange} />
+      <LeaderboardSearchBar value={searchQuery} onChangeText={onSearchChange} onFocus={onSearchFocus} />
     </View>
   )
 );
 
 const LeaderboardScreen = () => {
   const { t } = useTranslation();
+  const { headerProps, listProps, refreshOffset, headerHeight, showHeader } = useCollapsibleScreen();
   const navigation = useNavigation<any>();
   const authUser = useUser();
   const { showUserProfile } = useUserProfileSheet();
@@ -175,51 +179,53 @@ const LeaderboardScreen = () => {
         onCategoryChange={handleCategoryChange}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
+        onSearchFocus={showHeader}
       />
     ),
-    [selectedPill, handleCategoryChange, searchQuery]
+    [selectedPill, handleCategoryChange, searchQuery, showHeader]
   );
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title={t("nav.leaderboard")} />
       {loading && !refreshing ? (
-        <View>
-          {renderListHeader()}
+        <View style={{ paddingTop: headerHeight }}>
           <LeaderboardSkeleton />
         </View>
+      ) : switching ? (
+        <View className="flex-1 items-center justify-center" style={{ paddingTop: headerHeight }}>
+          <ActivityIndicator size="large" color="#fff" />
+        </View>
       ) : (
-        <>
-          {renderListHeader()}
-          {switching ? (
-            <View className="flex-1 items-center justify-center">
-              <ActivityIndicator size="large" color="#fff" />
-            </View>
-          ) : (
-            <FlatList
-              data={filteredData}
-              keyExtractor={keyExtractor}
-              renderItem={renderItem}
-              contentContainerStyle={{ paddingBottom: 24 }}
-              refreshControl={
-                <RefreshControl
-                  refreshing={refreshing}
-                  onRefresh={onRefresh}
-                  tintColor="#fff"
-                />
-              }
-              initialNumToRender={20}
-              windowSize={10}
-              maxToRenderPerBatch={20}
-              updateCellsBatchingPeriod={50}
-              removeClippedSubviews
-              getItemLayout={getItemLayout}
-              keyboardShouldPersistTaps="handled"
-              keyboardDismissMode="on-drag"
+        <Animated.FlatList
+          {...listProps()}
+          data={filteredData}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              tintColor="#fff"
+              progressViewOffset={refreshOffset}
             />
-          )}
-        </>
+          }
+          initialNumToRender={20}
+          windowSize={10}
+          maxToRenderPerBatch={20}
+          updateCellsBatchingPeriod={50}
+          removeClippedSubviews
+          getItemLayout={getItemLayout}
+          keyboardShouldPersistTaps="handled"
+          keyboardDismissMode="on-drag"
+        />
       )}
+      {/* Search box and category pills ride with the title bar, the way the
+          Explore header does — they are chrome, not list content. Rendered
+          after the list so it draws over it on Android. */}
+      <CollapsibleHeader {...headerProps}>
+        <ScreenHeader title={t("nav.leaderboard")} />
+        <View className="bg-theme-neutrals-900">{renderListHeader()}</View>
+      </CollapsibleHeader>
     </View>
   );
 };
