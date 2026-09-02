@@ -43,7 +43,7 @@ const Thumb = memo(function Thumb({ uri, size }: { uri?: string; size: number })
       {uri ? (
         <Image source={{ uri }} style={{ width: size, height: size }} resizeMode="cover" />
       ) : (
-        <Package size={size * 0.4} color="#71717a" />
+        <Package size={size * 0.4} color="#808089" />
       )}
     </View>
   );
@@ -119,7 +119,7 @@ export default function ProducerShopButton({ tokenId, visible = true }: Props) {
           hitSlop={8}
           className="ml-2 w-7 h-7 items-center justify-center"
         >
-          <Trash2 size={14} color="#71717a" />
+          <Trash2 size={14} color="#808089" />
         </TouchableOpacity>
       </View>
     );

@@ -154,7 +154,7 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
         </Text>
 
         <View style={styles.searchRow}>
-          <Icon name="Search" size={14} color="#71717a" />
+          <Icon name="Search" size={14} color="#808089" />
           <TextInput
             style={styles.searchInput}
             value={search}

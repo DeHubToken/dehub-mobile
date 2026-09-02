@@ -78,7 +78,7 @@ const STATUS_COLOR: Record<string, string> = {
   draft: "#A1A1AA",
   rejected: "#F4F4F5",
   completed: "#D4D4D8",
-  archived: "#71717A",
+  archived: "#808089",
 };
 
 const usd = (n: number) =>
@@ -547,7 +547,7 @@ export default function AdsScreen() {
                     <View
                       style={[
                         styles.statusPill,
-                        { backgroundColor: `${STATUS_COLOR[c.status] ?? "#71717A"}22` },
+                        { backgroundColor: `${STATUS_COLOR[c.status] ?? "#808089"}22` },
                       ]}
                     >
                       <Text style={[styles.statusText, { color: STATUS_COLOR[c.status] ?? "#A1A1AA" }]}>
@@ -665,7 +665,7 @@ const styles = StyleSheet.create({
   dim: { color: "#A1A1AA", fontSize: 12, lineHeight: 17 },
   emptyTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "700", marginTop: 6 },
   balance: { color: "#FFFFFF", fontSize: 30, fontWeight: "800" },
-  hint: { color: "#71717A", fontSize: 12, lineHeight: 16, marginTop: 8 },
+  hint: { color: "#808089", fontSize: 12, lineHeight: 16, marginTop: 8 },
 
   kpiRow: { flexDirection: "row", gap: 8 },
   kpi: {

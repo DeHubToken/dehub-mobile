@@ -248,7 +248,7 @@ export default function UsernamesScreen() {
       {tab === "browse" ? (
         <>
           <View style={styles.searchWrap}>
-            <Icon name="Search" size={15} color="#71717A" />
+            <Icon name="Search" size={15} color="#808089" />
             <TextInput
               value={search}
               onChangeText={setSearch}
@@ -267,7 +267,7 @@ export default function UsernamesScreen() {
                 accessibilityRole="button"
                 accessibilityLabel={t("usernames.clearSearch")}
               >
-                <Icon name="X" size={15} color="#71717A" />
+                <Icon name="X" size={15} color="#808089" />
               </Pressable>
             )}
           </View>
@@ -424,7 +424,7 @@ const styles = StyleSheet.create({
   chipTextActive: { color: "#FFFFFF" },
   chipDivider: { width: 1, height: 18, backgroundColor: "rgba(255,255,255,0.14)" },
   count: {
-    color: "#71717A",
+    color: "#808089",
     fontSize: 11,
     textAlign: "right",
     paddingHorizontal: H_PADDING,
@@ -465,7 +465,7 @@ const styles = StyleSheet.create({
   cardMain: { flex: 1, minWidth: 0, gap: 6 },
   cardPriceCol: { flexShrink: 0, alignItems: "flex-end" },
   handle: { color: "#FFFFFF", fontWeight: "700", flexShrink: 0 },
-  at: { color: "#71717A" },
+  at: { color: "#808089" },
   chipWrap: { flexDirection: "row", flexWrap: "wrap", gap: 5 },
   metaChip: {
     flexDirection: "row",
@@ -480,13 +480,13 @@ const styles = StyleSheet.create({
   cardDesc: { color: "#A1A1AA", fontSize: 11, lineHeight: 15 },
 
   cardPrice: { color: "#FFFFFF", fontSize: 17, fontWeight: "700", flexShrink: 0 },
-  cardPriceUnit: { color: "#71717A", fontSize: 10, fontWeight: "500", flexShrink: 0 },
+  cardPriceUnit: { color: "#808089", fontSize: 10, fontWeight: "500", flexShrink: 0 },
   sellerRow: { flexDirection: "row", alignItems: "center", gap: 5 },
   sellerName: { flexShrink: 1, color: "#A1A1AA", fontSize: 11 },
   sellerBadge: { width: 11, height: 11 },
 
   center: { alignItems: "center", justifyContent: "center", paddingVertical: 56, gap: 12 },
-  emptyText: { color: "#71717A", fontSize: 13, textAlign: "center" },
+  emptyText: { color: "#808089", fontSize: 13, textAlign: "center" },
   retryBtn: {
     paddingHorizontal: 16,
     paddingVertical: 8,

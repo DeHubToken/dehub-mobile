@@ -124,7 +124,7 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
               accessibilityRole="button"
               accessibilityLabel="Close"
             >
-              <Icon name="X" size={20} color="#71717a" />
+              <Icon name="X" size={20} color="#808089" />
             </TouchableOpacity>
           </View>
 
@@ -147,7 +147,7 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
               {avatarUri ? (
                 <Image source={{ uri: avatarUri }} style={styles.avatarImg} contentFit="cover" />
               ) : (
-                <Icon name="Image" size={22} color="#71717a" />
+                <Icon name="Image" size={22} color="#808089" />
               )}
             </TouchableOpacity>
             <TextInput

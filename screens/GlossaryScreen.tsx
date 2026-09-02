@@ -175,7 +175,7 @@ export default function GlossaryScreen() {
 
       {/* Search */}
       <View style={styles.searchWrap}>
-        <Icon name="Search" size={16} color="#71717A" />
+        <Icon name="Search" size={16} color="#808089" />
         <TextInput
           value={query}
           onChangeText={setQuery}
@@ -257,5 +257,5 @@ const styles = StyleSheet.create({
   cardTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "600", marginBottom: 2 },
   cardDesc: { color: "#A1A1AA", fontSize: 14, lineHeight: 20 },
   empty: { alignItems: "center", justifyContent: "center", paddingVertical: 48 },
-  emptyText: { color: "#71717A", fontSize: 13, marginTop: 12 },
+  emptyText: { color: "#808089", fontSize: 13, marginTop: 12 },
 });

@@ -86,7 +86,7 @@ const NavButton = memo<{
         <Icon
           name={icon}
           size={16}
-          color={active ? "#FFFFFF" : "#71717A"}
+          color={active ? "#FFFFFF" : "#808089"}
           strokeWidth={active ? 2 : 1.8}
         />
       </View>
@@ -231,7 +231,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                       <Icon
                         name={backMode ? "ArrowLeft" : isFilterOpen ? "X" : "Settings2"}
                         size={16}
-                        color={filterActive || backMode ? "#FFFFFF" : "#71717A"}
+                        color={filterActive || backMode ? "#FFFFFF" : "#808089"}
                         strokeWidth={filterActive || backMode ? 2 : 1.8}
                       />
                     </View>

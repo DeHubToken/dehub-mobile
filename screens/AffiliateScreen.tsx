@@ -668,5 +668,5 @@ const styles = StyleSheet.create({
   stepTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
   stepBody: { color: "#A1A1AA", fontSize: 12.5, lineHeight: 18, marginTop: 3 },
 
-  footer: { color: "#71717A", fontSize: 12, textAlign: "center", marginTop: 4 },
+  footer: { color: "#808089", fontSize: 12, textAlign: "center", marginTop: 4 },
 });

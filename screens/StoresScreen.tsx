@@ -154,7 +154,7 @@ export default function StoresScreen() {
       {tab === "browse" ? (
         <>
           <View style={styles.searchWrap}>
-            <Icon name="Search" size={15} color="#71717A" />
+            <Icon name="Search" size={15} color="#808089" />
             <TextInput
               value={search}
               onChangeText={setSearch}
@@ -170,7 +170,7 @@ export default function StoresScreen() {
                 accessibilityRole="button"
                 accessibilityLabel="Clear search"
               >
-                <Icon name="X" size={15} color="#71717A" />
+                <Icon name="X" size={15} color="#808089" />
               </Pressable>
             )}
           </View>

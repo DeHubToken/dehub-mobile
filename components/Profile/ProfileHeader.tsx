@@ -454,7 +454,7 @@ const ProfileHeader = () => {
                 <Ionicons
                   name="wallet-outline"
                   size={13}
-                  color="#71717A"
+                  color="#808089"
                   style={{ marginRight: 4 }}
                 />
                 <Text className="text-zinc-400 text-xs mr-1" numberOfLines={1}>
@@ -465,7 +465,7 @@ const ProfileHeader = () => {
                   accessibilityLabel="Copy address"
                   hitSlop={{ top: 16, right: 16, bottom: 16, left: 16 }}
                 >
-                  <Ionicons name="copy-outline" size={13} color="#71717A" />
+                  <Ionicons name="copy-outline" size={13} color="#808089" />
                 </TouchableOpacity>
               </View>
             )}

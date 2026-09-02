@@ -37,7 +37,7 @@ const RadioMiniPlayer: React.FC = () => {
         {station.favicon ? (
           <Image source={{ uri: station.favicon }} style={StyleSheet.absoluteFill} contentFit="cover" />
         ) : (
-          <Icon name="Radio" size={16} color="#71717A" />
+          <Icon name="Radio" size={16} color="#808089" />
         )}
       </View>
 

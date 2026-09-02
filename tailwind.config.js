@@ -4,7 +4,7 @@ const monochrome = {
   200: "#E4E4E7",
   300: "#D4D4D8",
   400: "#A1A1AA",
-  500: "#71717A",
+  500: "#808089", // was #71717A: 4.15:1 on near-black, under the 4.5:1 AA floor
   600: "#52525B",
   700: "#3F3F46",
   800: "#27272A",
@@ -24,6 +24,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Muted grey lifted from stock #71717a to clear WCAG AA on the black
+        // surfaces (5.1:1). Same value as the web app's dark-surface token.
+        zinc: { 500: "#808089" },
         blue: monochrome,
         cyan: monochrome,
         sky: monochrome,

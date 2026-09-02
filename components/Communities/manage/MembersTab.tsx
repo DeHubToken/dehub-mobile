@@ -184,7 +184,7 @@ export function MembersTab({ community, membership }: MembersTabProps) {
         </Text>
 
         <View style={styles.searchBox}>
-          <Icon name="Search" size={14} color="#71717a" />
+          <Icon name="Search" size={14} color="#808089" />
           <TextInput
             style={styles.searchInput}
             placeholder={t("communities.manage.searchMembers", {
@@ -203,7 +203,7 @@ export function MembersTab({ community, membership }: MembersTabProps) {
               accessibilityRole="button"
               accessibilityLabel="Clear search"
             >
-              <Icon name="X" size={14} color="#71717a" />
+              <Icon name="X" size={14} color="#808089" />
             </TouchableOpacity>
           )}
         </View>
