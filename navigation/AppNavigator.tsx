@@ -106,6 +106,12 @@ export default function AppNavigator() {
       screenOptions={{
         headerShown: false,
         cardStyle: { backgroundColor: '#010305' },
+        // A screen you have navigated away from keeps rendering otherwise —
+        // this stack holds sixty-odd of them, so Home -> Profile -> Community
+        // -> Post left four live at once, all re-rendering together on every
+        // context change. freezeOnBlur suspends the blurred subtree's
+        // rendering; native views and their playback are untouched.
+        freezeOnBlur: true,
       }}
     >
       <Stack.Screen

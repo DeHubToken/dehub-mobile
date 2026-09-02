@@ -49,6 +49,9 @@ export default function RootNavigator() {
       screenOptions={{
         headerShown: false,
         cardStyle: { backgroundColor: '#000' },
+        // Both stacks stay mounted by design (see below), so the one you are
+        // not in would otherwise keep rendering for the whole session.
+        freezeOnBlur: true,
         // Prevent gesture-based navigation between root stacks
         gestureEnabled: false,
         // Smooth fade transition between auth and app
