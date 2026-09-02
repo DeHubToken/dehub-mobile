@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -20,6 +20,23 @@ export interface GlassToastProps {
   onActionPress?: () => void;
 }
 
+/**
+ * The one toast body on mobile — every toast in the app is raised through
+ * libs/toast, which renders this.
+ *
+ * It matches the web toaster (web's components/ui/toast-classes) rather than
+ * being its own thing: a stacked glass card, bold heading, copy at 70% white
+ * under it, a full-width pill for the action, and the close X in the top
+ * corner. The two apps show the same toast for the same event, so a reader
+ * moving between them should not have to learn it twice.
+ *
+ * There is no type icon, on either platform. The five types used to each get a
+ * tinted disc — a tick, a cross, an exclamation mark — which said nothing the
+ * copy did not already say and, once the card stacked, hung beside a paragraph
+ * it had no baseline to sit against. `loading` is the exception, and the reason
+ * the slot still exists at all: there the spinner is the only thing on screen
+ * saying the work is still running.
+ */
 const GlassToast: React.FC<GlassToastProps> = ({
   type = "info",
   title,
@@ -30,25 +47,10 @@ const GlassToast: React.FC<GlassToastProps> = ({
 }) => {
   if (!title) return null;
 
-  const accent = useMemo((): { bg: string; icon: string } => {
-    switch (type) {
-      case "success":
-        return { bg: "#F4F4F5", icon: "checkmark-circle" };
-      case "error":
-        return { bg: "#A1A1AA", icon: "close-circle" };
-      case "warning":
-        return { bg: "#D4D4D8", icon: "warning" };
-      case "loading":
-        return { bg: "#D4D4D8", icon: "time-outline" };
-      default:
-        return { bg: "#6B7280", icon: "information-circle" };
-    }
-  }, [type]);
-
   return (
     <View
-      className="w-[92%] self-center overflow-hidden rounded-xl my-2"
-      style={{ borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
+      className="w-[92%] self-center overflow-hidden rounded-2xl my-2"
+      style={{ borderWidth: 1, borderColor: "rgba(255,255,255,0.2)" }}
     >
       {/* Android's experimental blur (dimezisBlurView) crashes with
           IndexOutOfBoundsException when list views mutate during its pre-draw
@@ -64,25 +66,18 @@ const GlassToast: React.FC<GlassToastProps> = ({
       )}
       <View className="absolute inset-0 bg-black/25" />
 
-      <View className={`flex-row ${description ? "items-start" : "items-center"} p-4 gap-3 z-10`}>
-        <View
-          className="h-7 w-7 rounded-full items-center justify-center"
-          style={{ backgroundColor: accent.bg + "33" }}
-        >
-          {type === "loading" ? (
-            <ActivityIndicator size="small" color={accent.bg} />
-          ) : (
-            <Ionicons name={accent.icon as any} size={18} color={accent.bg} />
-          )}
-        </View>
+      <View className="flex-row items-start p-4 gap-3 z-10">
+        {type === "loading" && (
+          <ActivityIndicator size="small" color="#FFFFFF" className="mt-0.5" />
+        )}
 
         <View className="flex-1">
-          <Text className="text-white text-[15px] leading-5 font-semibold">
+          <Text className="text-white text-base leading-5 font-bold">
             {title}
           </Text>
 
           {description && (
-            <Text className="text-white/80 text-[13px] leading-5 mt-1">
+            <Text className="text-white/70 text-[13px] leading-5 mt-1.5">
               {description}
             </Text>
           )}
@@ -91,10 +86,13 @@ const GlassToast: React.FC<GlassToastProps> = ({
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={onActionPress}
-              className="mt-2 self-start px-3 py-1.5 rounded-full"
-              style={{ backgroundColor: accent.bg + "33" }}
+              // Web's pill, minus the gradient: expo-linear-gradient would mean
+              // another view behind the label for a shift this size, and flat
+              // white/10 on the blur reads the same at a glance.
+              className="mt-3 h-9 w-full items-center justify-center rounded-xl bg-white/10"
+              style={{ borderWidth: 1, borderColor: "rgba(255,255,255,0.3)" }}
             >
-              <Text className="text-[13px] font-medium" style={{ color: accent.bg }}>
+              <Text className="text-sm font-medium text-white">
                 {actionLabel}
               </Text>
             </TouchableOpacity>
@@ -108,7 +106,7 @@ const GlassToast: React.FC<GlassToastProps> = ({
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             onPress={onClose}
           >
-              <Ionicons name="close" size={25} color="#FFFFFF" />
+            <Ionicons name="close" size={20} color="rgba(255,255,255,0.6)" />
           </TouchableOpacity>
         )}
       </View>
