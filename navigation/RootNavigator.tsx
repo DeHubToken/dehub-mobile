@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useAuthState } from "../context/AuthContext";
 import AppNavigator from "./AppNavigator";
 import { ScreenNames } from "./ScreenNames";
@@ -7,7 +7,7 @@ import type { RootStackParamList } from "./types";
 import { createLogger } from "../libs/logger";
 
 const log = createLogger("RootNavigator");
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootNavigator() {
   const { isFirstTimeUser, needsUsername, isSignedIn } = useAuthState();
@@ -48,18 +48,14 @@ export default function RootNavigator() {
       initialRouteName={initialRouteRef.current as keyof RootStackParamList}
       screenOptions={{
         headerShown: false,
-        cardStyle: { backgroundColor: '#000' },
+        contentStyle: { backgroundColor: '#000' },
         // Both stacks stay mounted by design (see below), so the one you are
         // not in would otherwise keep rendering for the whole session.
         freezeOnBlur: true,
         // Prevent gesture-based navigation between root stacks
         gestureEnabled: false,
         // Smooth fade transition between auth and app
-        cardStyleInterpolator: ({ current }) => ({
-          cardStyle: {
-            opacity: current.progress,
-          },
-        }),
+        animation: 'fade',
       }}
     >
       {/* 
