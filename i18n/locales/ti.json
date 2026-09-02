@@ -2115,7 +2115,8 @@
       "rejected": "ተነጺጉ",
       "completed": "ተዛዚሙ",
       "cancelled": "ተሰሪዙ",
-      "disputed": "ኣብ ክርክር"
+      "disputed": "ኣብ ክርክር",
+      "paid": "ተኸፊሉ"
     },
     "detail": {
       "notFound": "ሽልማት ኣይተረኽበን።",
@@ -2153,6 +2154,9 @@
       "submitDispute": "ክርክር ናብ ኣመሓዳሪ ኣቕርብ",
       "rejectionReason": "ናይ ምንጻግ ምኽንያት?",
       "rejectionPlaceholder": "እንታይ ጌጋ ከም ዝነበረ ግለጽ"
+    },
+    "payout": {
+      "alreadySent": "ድሮ ተላኢኹ ({{ref}})። ከም ብሓድሽ ኣይትኽፈል — ድሕሪ ቁሩብ ግዜ ነቲ ስራሕ እንደገና ክፈቶ፣ ከም ዝተኸፍለ ኮይኑ ክረአ እዩ።"
     }
   },
   "stores": {

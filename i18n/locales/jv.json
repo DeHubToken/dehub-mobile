@@ -2115,7 +2115,8 @@
       "rejected": "Ditolak",
       "completed": "Rampung",
       "cancelled": "Dibatalake",
-      "disputed": "Disengketakake"
+      "disputed": "Disengketakake",
+      "paid": "Wis dibayar"
     },
     "detail": {
       "notFound": "Hadiah ora ditemokake.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Kirim sengketa menyang admin",
       "rejectionReason": "Alesan penolakan?",
       "rejectionPlaceholder": "Jlentrehake apa sing salah"
+    },
+    "payout": {
+      "alreadySent": "Wis dikirim ({{ref}}). Aja mbayar maneh — bukak maneh gaweyane sedhela maneh, mesthine ketok wis dibayar."
     }
   },
   "stores": {

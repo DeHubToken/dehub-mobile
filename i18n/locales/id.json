@@ -2115,7 +2115,8 @@
       "rejected": "Ditolak",
       "completed": "Selesai",
       "cancelled": "Dibatalkan",
-      "disputed": "Disengketakan"
+      "disputed": "Disengketakan",
+      "paid": "Dibayar"
     },
     "detail": {
       "notFound": "Bounty tidak ditemukan.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Kirim sengketa ke admin",
       "rejectionReason": "Alasan penolakan?",
       "rejectionPlaceholder": "Jelaskan apa yang salah"
+    },
+    "payout": {
+      "alreadySent": "Sudah dikirim ({{ref}}). Jangan bayar lagi — buka kembali pekerjaannya sebentar lagi dan seharusnya tampil sebagai dibayar."
     }
   },
   "stores": {

@@ -2119,7 +2119,8 @@
       "rejected": "Elutasítva",
       "completed": "Befejezve",
       "cancelled": "Törölve",
-      "disputed": "Vitatott"
+      "disputed": "Vitatott",
+      "paid": "Kifizetve"
     },
     "detail": {
       "notFound": "A jutalom nem található.",
@@ -2157,6 +2158,9 @@
       "submitDispute": "Vita beküldése az adminnak",
       "rejectionReason": "Az elutasítás oka?",
       "rejectionPlaceholder": "Írd le, mi volt a baj"
+    },
+    "payout": {
+      "alreadySent": "Már elküldve ({{ref}}). Ne fizess újra — nyisd meg a munkát kisvártatva, és kifizetettként kell megjelennie."
     }
   },
   "stores": {

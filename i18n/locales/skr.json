@@ -2115,7 +2115,8 @@
       "rejected": "رد تھیا",
       "completed": "پورا تھیا",
       "cancelled": "منسوخ",
-      "disputed": "تنازع آلا"
+      "disputed": "تنازع آلا",
+      "paid": "ادا تھی گیا"
     },
     "detail": {
       "notFound": "انعام کائنی ملیا۔",
@@ -2153,6 +2154,9 @@
       "submitDispute": "تنازع منتظم کوں گھلو",
       "rejectionReason": "رد کرݨ دی وجہ؟",
       "rejectionPlaceholder": "ݙسو کیا غلط ہا"
+    },
+    "payout": {
+      "alreadySent": "پہلے ای بھیج ڈتا ڳیا ہے ({{ref}})۔ ولدا ادا نہ کرو — تھوڑی دیر بعد کم ولدا کھولو، او ادا تھیا نظر آسی۔"
     }
   },
   "stores": {

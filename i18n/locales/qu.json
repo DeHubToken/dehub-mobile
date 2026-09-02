@@ -2146,7 +2146,8 @@
       "rejected": "Mana chaskisqa",
       "completed": "Tukusqa",
       "cancelled": "Chinkachisqa",
-      "disputed": "Ch'aqwasqa"
+      "disputed": "Ch'aqwasqa",
+      "paid": "Qullqichasqa"
     },
     "detail": {
       "notFound": "Chaninchay mana tarisqachu.",
@@ -2184,6 +2185,9 @@
       "submitDispute": "Ch'aqwayta kamachiqman apachiy",
       "rejectionReason": "¿Mana chaskiypa raykun?",
       "rejectionPlaceholder": "Ima pantasqata willay"
+    },
+    "payout": {
+      "alreadySent": "Ñam apachisqaña ({{ref}}). Ama huk kutita qullqichaychu — pisi pachamanta llamk'ayta kutichiy kichay, qullqichasqa rikurinqa."
     }
   },
   "stores": {

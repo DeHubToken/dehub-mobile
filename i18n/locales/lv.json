@@ -2115,7 +2115,8 @@
       "rejected": "Noraidīta",
       "completed": "Pabeigta",
       "cancelled": "Atcelta",
-      "disputed": "Strīdā"
+      "disputed": "Strīdā",
+      "paid": "Samaksāts"
     },
     "detail": {
       "notFound": "Atlīdzība nav atrasta.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Nosūtīt strīdu administratoram",
       "rejectionReason": "Noraidīšanas iemesls?",
       "rejectionPlaceholder": "Paskaidro, kas nebija kārtībā"
+    },
+    "payout": {
+      "alreadySent": "Jau nosūtīts ({{ref}}). Nemaksājiet vēlreiz — pēc brīža atveriet darbu vēlreiz, tam vajadzētu būt atzīmētam kā samaksātam."
     }
   },
   "stores": {

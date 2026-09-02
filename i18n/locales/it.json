@@ -2115,7 +2115,8 @@
       "rejected": "Rifiutata",
       "completed": "Completata",
       "cancelled": "Annullata",
-      "disputed": "Contestata"
+      "disputed": "Contestata",
+      "paid": "Pagato"
     },
     "detail": {
       "notFound": "Taglia non trovata.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Invia la controversia all'amministratore",
       "rejectionReason": "Motivo del rifiuto?",
       "rejectionPlaceholder": "Spiega cosa non andava"
+    },
+    "payout": {
+      "alreadySent": "Già inviato ({{ref}}). Non pagare di nuovo: riapri il lavoro tra poco e dovrebbe risultare pagato."
     }
   },
   "stores": {

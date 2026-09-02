@@ -2145,7 +2145,8 @@
       "rejected": "Abglehnt",
       "completed": "Abgschlosse",
       "cancelled": "Abbroche",
-      "disputed": "Striitig"
+      "disputed": "Striitig",
+      "paid": "Bezahlt"
     },
     "detail": {
       "notFound": "Prämie nid gfunde.",
@@ -2183,6 +2184,9 @@
       "submitDispute": "Striitfall a de Admin schicke",
       "rejectionReason": "Grund für d'Ablehnig?",
       "rejectionPlaceholder": "Erklär, was falsch gsy isch"
+    },
+    "payout": {
+      "alreadySent": "Scho gschickt ({{ref}}). Nid nomol zahle — mach de Uftrag glii nomol uf, denn sött er als bezahlt aazeigt wärde."
     }
   },
   "stores": {

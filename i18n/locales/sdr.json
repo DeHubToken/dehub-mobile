@@ -2186,7 +2186,8 @@
       "rejected": "نامنظور",
       "completed": "پورا ہوئل",
       "cancelled": "رد",
-      "disputed": "جھگڑا والا"
+      "disputed": "جھگڑا والا",
+      "paid": "درا"
     },
     "detail": {
       "notFound": "انعام نہیں ملل۔",
@@ -2224,6 +2225,9 @@
       "submitDispute": "جھگڑا منتظم کے بھیجو",
       "rejectionReason": "نامنظور کے کارن؟",
       "rejectionPlaceholder": "بتاؤ کا غلط رہل"
+    },
+    "payout": {
+      "alreadySent": "پێشتر نێردراوە ({{ref}}). دووبارە پارە مەدە — کەمێک دواتر کارەکە بکەرەوە، وەک دراو پیشان دەدرێت."
     }
   },
   "stores": {

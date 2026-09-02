@@ -2115,7 +2115,8 @@
       "rejected": "La diiday",
       "completed": "La dhammeeyay",
       "cancelled": "La joojiyay",
-      "disputed": "Muran ku jira"
+      "disputed": "Muran ku jira",
+      "paid": "La bixiyay"
     },
     "detail": {
       "notFound": "Abaalmarin lama helin.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "U gudbi muranka maamulaha",
       "rejectionReason": "Sababta diidmada?",
       "rejectionPlaceholder": "Sharrax waxa qaldan"
+    },
+    "payout": {
+      "alreadySent": "Horey ayaa loo diray ({{ref}}). Mar labaad ha bixin — dib u fur shaqada wax yar ka dib, waxay muujin doontaa in la bixiyay."
     }
   },
   "stores": {

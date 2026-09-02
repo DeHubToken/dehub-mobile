@@ -2115,7 +2115,8 @@
       "rejected": "已拒絕",
       "completed": "已完成",
       "cancelled": "已取消",
-      "disputed": "有爭議"
+      "disputed": "有爭議",
+      "paid": "已付"
     },
     "detail": {
       "notFound": "搵唔到賞金。",
@@ -2153,6 +2154,9 @@
       "submitDispute": "將爭議交畀管理員",
       "rejectionReason": "拒絕原因？",
       "rejectionPlaceholder": "講下邊度唔妥"
+    },
+    "payout": {
+      "alreadySent": "已經寄咗喇（{{ref}}）。唔好再畀多次——遲啲再開返份工，應該會顯示已付。"
     }
   },
   "stores": {

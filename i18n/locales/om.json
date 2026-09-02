@@ -2165,7 +2165,8 @@
       "rejected": "Fudhatama dhabe",
       "completed": "Xumurame",
       "cancelled": "Haqame",
-      "disputed": "Falmisiisaa"
+      "disputed": "Falmisiisaa",
+      "paid": "Kaffalameera"
     },
     "detail": {
       "notFound": "Badhaasni hin argamne.",
@@ -2203,6 +2204,9 @@
       "submitDispute": "Falmii bulchaatti ergi",
       "rejectionReason": "Sababa diddaa?",
       "rejectionPlaceholder": "Maaltu dogoggore ibsi"
+    },
+    "payout": {
+      "alreadySent": "Duraan ergameera ({{ref}}). Irra deebi'anii hin kaffalinaa — yeroo xiqqoo booda hojicha deebisanii banaa, kaffalame jedhee agarsiisa."
     }
   },
   "stores": {

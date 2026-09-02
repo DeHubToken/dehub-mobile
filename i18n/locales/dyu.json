@@ -2115,7 +2115,8 @@
       "rejected": "Banbalen",
       "completed": "Dafalen",
       "cancelled": "Bɔsira",
-      "disputed": "Sɔsɔlen"
+      "disputed": "Sɔsɔlen",
+      "paid": "A sarala"
     },
     "detail": {
       "notFound": "Saraka ma sɔrɔ.",
@@ -2153,6 +2154,9 @@
       "submitDispute": "Sɔsɔli ci ɲɛmɔgɔ ma",
       "rejectionReason": "Banni kun?",
       "rejectionPlaceholder": "A ɲɛfɔ min tun ma ɲɛ"
+    },
+    "payout": {
+      "alreadySent": "A cira ka ban ({{ref}}). Kana sara tugun — baara da yɛlɛ tuma dɔɔni kɔfɛ, a bɛna yira ko a sarala."
     }
   },
   "stores": {

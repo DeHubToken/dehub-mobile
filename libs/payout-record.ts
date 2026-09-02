@@ -14,6 +14,8 @@
  * a lie that costs the poster the amount a second time.
  */
 
+import i18n from "i18next";
+
 /** Thrown when the money moved but the row recording it would not save. */
 export class PaidButUnrecordedError extends Error {
   readonly txHash: string;
@@ -29,10 +31,28 @@ export class PaidButUnrecordedError extends Error {
  * Keep the words "already sent" and "Do not pay again" — this is read in a
  * toast by someone deciding whether to press Pay a second time, and it is the
  * only thing standing between them and doing it.
+ *
+ * Which is exactly why it is translated. It was hardcoded English, so for a
+ * reader of any of the other 109 languages the one sentence stopping a second
+ * payout was in a language they may not read, on a screen whose other half is
+ * in theirs.
+ *
+ * The i18next singleton is imported directly, not our i18n/index module and
+ * not the hook: this is a plain module with no component around it, and the
+ * message is built inside an Error constructor. i18n/index pulls in
+ * expo-localization, which does not load under jest and would take this
+ * module's whole suite down; i18next is the same instance that module
+ * configures. If it has not initialised yet the defaultValue below is the old
+ * English text, so the worst case is the previous behaviour.
  */
 export function paidButUnrecordedMessage(txHash: string): string {
   const short = txHash.length > 14 ? `${txHash.slice(0, 8)}…${txHash.slice(-6)}` : txHash;
-  return `Payment already sent (${short}) but it could not be recorded. Do not pay again — reopen the job in a moment and it should show as paid.`;
+  // English text, and the value en.json carries. Kept as a literal fallback
+  // because i18next returns undefined for any key before it has initialised,
+  // defaultValue included — and a payout warning must never be blank.
+  const english =
+    `Payment already sent (${short}). Do not pay again — reopen the job shortly and it should show as paid.`;
+  return i18n.t("work.payout.alreadySent", { ref: short, defaultValue: english }) || english;
 }
 
 export interface PersistPayoutOptions {

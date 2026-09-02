@@ -2214,7 +2214,8 @@
       "rejected": "Nolavina",
       "completed": "Vita",
       "cancelled": "Nofoanana",
-      "disputed": "Iadian-kevitra"
+      "disputed": "Iadian-kevitra",
+      "paid": "Voaloa"
     },
     "detail": {
       "notFound": "Tsy hita ny loka.",
@@ -2252,6 +2253,9 @@
       "submitDispute": "Alefaso amin'ny mpitantana ny ady",
       "rejectionReason": "Antony fandavana?",
       "rejectionPlaceholder": "Hazavao izay tsy mety"
+    },
+    "payout": {
+      "alreadySent": "Efa nalefa ({{ref}}). Aza mandoa indray — sokafy indray ny asa afaka kelikely, tokony hiseho hoe voaloa izy."
     }
   },
   "stores": {

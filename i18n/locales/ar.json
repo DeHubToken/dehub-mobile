@@ -2119,7 +2119,8 @@
       "rejected": "مرفوض",
       "completed": "مكتمل",
       "cancelled": "ملغى",
-      "disputed": "متنازع عليه"
+      "disputed": "متنازع عليه",
+      "paid": "مدفوع"
     },
     "detail": {
       "notFound": "المكافأة غير موجودة.",
@@ -2157,6 +2158,9 @@
       "submitDispute": "إرسال النزاع إلى الإدارة",
       "rejectionReason": "سبب الرفض؟",
       "rejectionPlaceholder": "اشرح ما كان خطأً"
+    },
+    "payout": {
+      "alreadySent": "تم الإرسال بالفعل ({{ref}}). لا تدفع مرة أخرى — أعد فتح المهمة بعد قليل وستظهر كمدفوعة."
     }
   },
   "stores": {
