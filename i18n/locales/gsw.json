@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "I dere Version vo de App nöd verfüegbar"
+  },
   "nav": {
     "home": "Hei",
     "explore": "Entdecke",

@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Ilovaning bu versiyasida mavjud emas"
+  },
   "nav": {
     "home": "Bosh sahifa",
     "explore": "Kashf qilish",

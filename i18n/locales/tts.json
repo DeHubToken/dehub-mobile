@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "บ่มีในแอปเวอร์ชันนี้"
+  },
   "nav": {
     "home": "บ้าน",
     "explore": "สำหลวด",

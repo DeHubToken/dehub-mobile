@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "در این نسخه از برنامه در دسترس نیست"
+  },
   "nav": {
     "home": "خانه",
     "explore": "کاوش",

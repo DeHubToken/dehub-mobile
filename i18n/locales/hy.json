@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Հասանելի չէ հավելվածի այս տարբերակում"
+  },
   "nav": {
     "home": "Գլdelays",
     "explore": "Ուdelays",

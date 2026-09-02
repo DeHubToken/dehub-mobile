@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Tidak tersedia dalam versi aplikasi ini"
+  },
   "nav": {
     "home": "Laman Utama",
     "explore": "Terokai",

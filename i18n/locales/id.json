@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Tidak tersedia di versi aplikasi ini"
+  },
   "nav": {
     "home": "Beranda",
     "explore": "Jelajahi",

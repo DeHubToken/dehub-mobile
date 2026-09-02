@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "ਐਪ ਦੇ ਇਸ ਸੰਸਕਰਣ ਵਿੱਚ ਉਪਲਬਧ ਨਹੀਂ"
+  },
   "nav": {
     "home": "ਹੋਮ",
     "explore": "ਖੋਜੋ",

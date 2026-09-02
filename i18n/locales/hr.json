@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Nije dostupno u ovoj verziji aplikacije"
+  },
   "nav": {
     "home": "Početna",
     "explore": "Istraži",

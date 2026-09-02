@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "غير متاح بهذي النسخة من التطبيق"
+  },
   "nav": {
     "home": "البيت",
     "explore": "استكشف",

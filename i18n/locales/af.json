@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Nie beskikbaar in hierdie weergawe van die app nie"
+  },
   "nav": {
     "home": "Tuis",
     "explore": "Verken",

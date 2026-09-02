@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Tsy misy amin'ity kinovan'ny app ity"
+  },
   "nav": {
     "home": "Fandraisana",
     "explore": "Hikaroka",

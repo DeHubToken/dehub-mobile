@@ -1,3 +1,5 @@
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
+import { useTranslation } from "react-i18next";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
@@ -38,6 +40,7 @@ interface PlanCardProps {
 }
 
 const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit }) => {
+  const { t } = useTranslation();
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [subscribing, setSubscribing] = useState(false);
   const [stage, setStage] = useState<string>("");
@@ -207,6 +210,12 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
             <View style={[s.editBtn, { opacity: 0.5 }]}>
               <Icon name="Check" size={16} color="#808089" />
               <Text style={[s.editBtnText, { color: "#808089" }]}>Subscribed</Text>
+            </View>
+          ) : !DIGITAL_PURCHASES_ENABLED ? (
+            /* The App Store build shows the plan but cannot sell it (3.1.1). */
+            <View style={[s.editBtn, { opacity: 0.6 }]}>
+              <Icon name="Clock" size={14} color="#808089" />
+              <Text style={[s.editBtnText, { color: "#808089" }]}>{t("storefront.unavailable")}</Text>
             </View>
           ) : !published || !isBuyable ? (
             /* Not listed on chain — nobody can buy it, so say so instead of

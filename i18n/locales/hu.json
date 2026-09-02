@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Ebben az alkalmazásverzióban nem érhető el"
+  },
   "nav": {
     "home": "Kezdőlap",
     "explore": "Felfedezés",

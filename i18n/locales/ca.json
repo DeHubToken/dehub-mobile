@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "No disponible en aquesta versió de l'aplicació"
+  },
   "nav": {
     "home": "Inici",
     "explore": "Explorar",

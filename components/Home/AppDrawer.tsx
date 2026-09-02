@@ -1,3 +1,4 @@
+import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import React, { useCallback, useEffect, useMemo, useState, memo } from "react";
 import {
   View,
@@ -49,6 +50,8 @@ interface DrawerItem {
   params?: Record<string, any>;
   url?: string;
   requiresAuth?: boolean;
+  /** Left out of the App Store build — see config/storefront. */
+  storefrontHidden?: boolean;
   /** Screen lives inside the bottom-tab navigator (Root), so it needs nested navigation. */
   tab?: boolean;
   /**
@@ -91,13 +94,13 @@ const NAV_ITEMS: DrawerItem[] = [
   // Sits under Staking because it is what staking buys. No `requiresAuth`: the
   // ladder is worth reading before you hold a badge, which is the whole point
   // of the screen.
-  { icon: "Rocket", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers },
+  { icon: "Rocket", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers, storefrontHidden: true },
   { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
   { icon: "Briefcase", labelKey: "screens.work", screen: ScreenNames.Work },
   { icon: "Users", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true },
   { icon: "Briefcase", labelKey: "nav.careers", screen: ScreenNames.Careers },
   { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores },
-  { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads, requiresAuth: true },
+  { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads, requiresAuth: true, storefrontHidden: true },
   { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
   // Sits between Stores and Glossary, as on the web sidebar. Only the games
   // that work on a touchscreen are listed — see config/arcade-games.
@@ -272,7 +275,9 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   // matches sort ahead of mid-word ones and ties keep the menu's own order,
   // which Array#sort preserves.
   const visibleItems = useMemo(() => {
-    const allowed = NAV_ITEMS.filter((item) => isSignedIn || !item.requiresAuth);
+    const allowed = NAV_ITEMS.filter(
+      (item) => (isSignedIn || !item.requiresAuth) && (DIGITAL_PURCHASES_ENABLED || !item.storefrontHidden),
+    );
     const query = menuQuery.trim().toLowerCase();
     if (!query) return allowed;
     return allowed

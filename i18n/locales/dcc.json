@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "ऐप के इस वर्ज़न में उपलब्ध नहीं"
+  },
   "nav": {
     "home": "گھر",
     "explore": "ڈھونڈو",
