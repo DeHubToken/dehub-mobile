@@ -287,7 +287,7 @@ const CommunityDetailScreen: React.FC = () => {
             {community.avatar_url ? (
               <Image source={{ uri: community.avatar_url }} style={styles.avatar} contentFit="cover" />
             ) : (
-              <Icon name="Users" size={28} color="#71717a" />
+              <Icon name="Users" size={28} color="#808089" />
             )}
           </View>
         </View>
@@ -300,7 +300,7 @@ const CommunityDetailScreen: React.FC = () => {
               <Text className="text-white text-xl font-bold" numberOfLines={2}>
                 {community.name}
               </Text>
-              {community.is_private && <Icon name="Lock" size={14} color="#71717a" />}
+              {community.is_private && <Icon name="Lock" size={14} color="#808089" />}
             </View>
             <Text className="text-zinc-400 text-sm mt-1">
               {formatCompactNumber(community.member_count)} {t("communities.membersLabel")}

@@ -95,26 +95,26 @@ export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, 
 
       <View style={styles.metaRow}>
         <View style={styles.metaItem}>
-          <Icon name="Users" size={12} color="#71717A" />
+          <Icon name="Users" size={12} color="#808089" />
           <Text style={styles.metaText}>
             {t("work.applicationCount", { count: job.application_count })}
           </Text>
         </View>
         <View style={styles.metaItem}>
-          <Icon name="Eye" size={12} color="#71717A" />
+          <Icon name="Eye" size={12} color="#808089" />
           <Text style={styles.metaText}>
             {t("work.submissionCount", { count: job.submission_count })}
           </Text>
         </View>
         <View style={styles.metaItem}>
-          <Icon name="Coins" size={12} color="#71717A" />
+          <Icon name="Coins" size={12} color="#808089" />
           <Text style={styles.metaText}>
             {job.units_approved}/{job.max_units}
           </Text>
         </View>
         {!!job.deadline && (
           <View style={[styles.metaItem, { marginLeft: "auto" }]}>
-            <Icon name="Clock" size={12} color="#71717A" />
+            <Icon name="Clock" size={12} color="#808089" />
             <Text style={styles.metaText}>{new Date(job.deadline).toLocaleDateString()}</Text>
           </View>
         )}
@@ -214,7 +214,7 @@ export default function WorkScreen() {
       </ScrollView>
 
       <View style={styles.searchWrap}>
-        <Icon name="Search" size={15} color="#71717A" />
+        <Icon name="Search" size={15} color="#808089" />
         <TextInput
           value={search}
           onChangeText={setSearch}
@@ -230,7 +230,7 @@ export default function WorkScreen() {
             accessibilityRole="button"
             accessibilityLabel="Clear search"
           >
-            <Icon name="X" size={15} color="#71717A" />
+            <Icon name="X" size={15} color="#808089" />
           </Pressable>
         )}
       </View>

@@ -529,7 +529,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         </Text>
       )}
       {message.encrypted && (
-        <Icon name="Lock" size={10} color={isMine ? "rgba(255,255,255,0.45)" : "#71717A"} />
+        <Icon name="Lock" size={10} color={isMine ? "rgba(255,255,255,0.45)" : "#808089"} />
       )}
       {isMine && (
         <Icon

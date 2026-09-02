@@ -57,7 +57,7 @@ const SectionBlock = ({ title, children }: { title: string; children: React.Reac
 
 const Bullet = ({ icon, text }: { icon: IconName; text: string }) => (
   <View style={styles.bulletRow}>
-    <Icon name={icon} size={15} color="#71717A" />
+    <Icon name={icon} size={15} color="#808089" />
     <Text style={styles.bulletText}>{text}</Text>
   </View>
 );

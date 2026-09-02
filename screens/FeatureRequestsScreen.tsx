@@ -258,7 +258,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
   return (
     <View style={styles.commentsWrap}>
       {isLoading ? (
-        <ActivityIndicator color="#71717A" style={{ paddingVertical: 12 }} />
+        <ActivityIndicator color="#808089" style={{ paddingVertical: 12 }} />
       ) : comments.length === 0 ? (
         <Text style={styles.noComments}>{t("features.noComments")}</Text>
       ) : (
@@ -287,7 +287,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
                       accessibilityRole="button"
                       accessibilityLabel="Delete comment"
                     >
-                      <Icon name="Trash2" size={12} color="#71717A" />
+                      <Icon name="Trash2" size={12} color="#808089" />
                     </Pressable>
                   )}
                 </View>
@@ -468,7 +468,7 @@ const FeatureCard: React.FC<{
             accessibilityRole="button"
             accessibilityLabel="Request options"
           >
-            <Icon name="EllipsisVertical" size={16} color="#71717A" />
+            <Icon name="EllipsisVertical" size={16} color="#808089" />
           </Pressable>
         )}
       </View>
@@ -798,7 +798,7 @@ const SubmitSheet: React.FC<{
 
               {mediaUris.length < MAX_FEATURE_ATTACHMENTS && (
                 <Pressable style={styles.mediaAdd} onPress={pickMedia}>
-                  <Icon name="ImagePlus" size={20} color="#71717A" />
+                  <Icon name="ImagePlus" size={20} color="#808089" />
                   <Text style={styles.mediaAddText}>
                     {mediaUris.length === 0
                       ? t("features.clickToUpload", "Tap to upload")
@@ -1011,18 +1011,18 @@ export default function FeatureRequestsScreen() {
 
         {/* Search */}
         <View style={styles.searchWrap}>
-          <Icon name="Search" size={16} color="#71717A" />
+          <Icon name="Search" size={16} color="#808089" />
           <TextInput
             value={search}
             onChangeText={setSearch}
             placeholder={t("features.searchPlaceholder")}
-            placeholderTextColor="#71717A"
+            placeholderTextColor="#808089"
             style={styles.searchInput}
             returnKeyType="search"
           />
           {search.length > 0 && (
             <Pressable onPress={() => setSearch("")} hitSlop={8}>
-              <Icon name="X" size={15} color="#71717A" />
+              <Icon name="X" size={15} color="#808089" />
             </Pressable>
           )}
         </View>
@@ -1040,7 +1040,7 @@ export default function FeatureRequestsScreen() {
                 accessibilityState={{ selected: active }}
               >
                 {tabDef.icon && showTabIcons && (
-                  <Icon name={tabDef.icon} size={12} color={active ? "#FFFFFF" : "#71717A"} />
+                  <Icon name={tabDef.icon} size={12} color={active ? "#FFFFFF" : "#808089"} />
                 )}
                 {/* flexShrink: 0 — a shrinking label renders as a bare "…". */}
                 <Text style={[styles.tabText, active && styles.tabTextActive]}>{tabDef.label}</Text>
@@ -1145,7 +1145,7 @@ export default function FeatureRequestsScreen() {
           }}
           ListFooterComponent={
             isFetchingNextPage ? (
-              <ActivityIndicator color="#71717A" style={{ marginVertical: 16 }} />
+              <ActivityIndicator color="#808089" style={{ marginVertical: 16 }} />
             ) : null
           }
           ListEmptyComponent={
@@ -1214,7 +1214,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.06)",
   },
   pageTitle: { color: "#FFFFFF", fontSize: 20, fontWeight: "700" },
-  pageSubtitle: { color: "#71717A", fontSize: 13, marginTop: 2 },
+  pageSubtitle: { color: "#808089", fontSize: 13, marginTop: 2 },
   headerAddBtn: {
     flexShrink: 0,
     width: 36,
@@ -1270,7 +1270,7 @@ const styles = StyleSheet.create({
   // badge comes to ~91pt against the 98.7pt tab a 360pt screen gives. The icon
   // drops below that (see showTabIcons). flexShrink: 0 so a label can never
   // ellipsize to a bare "…".
-  tabText: { color: "#71717A", fontSize: 12, fontWeight: "500", flexShrink: 0 },
+  tabText: { color: "#808089", fontSize: 12, fontWeight: "500", flexShrink: 0 },
   tabTextActive: { color: "#FFFFFF" },
   tabBadge: {
     flexShrink: 0,
@@ -1309,9 +1309,9 @@ const styles = StyleSheet.create({
   cardHeadText: { flex: 1, minWidth: 0 },
   authorName: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
   handleRow: { flexDirection: "row", alignItems: "center", gap: 4, marginTop: 1 },
-  handle: { color: "#71717A", fontSize: 12, flexShrink: 1 },
+  handle: { color: "#808089", fontSize: 12, flexShrink: 1 },
   dot: { color: "#52525B", fontSize: 12 },
-  time: { color: "#71717A", fontSize: 12, flexShrink: 0 },
+  time: { color: "#808089", fontSize: 12, flexShrink: 0 },
   menuBtn: { flexShrink: 0, width: 28, height: 28, alignItems: "center", justifyContent: "center" },
 
   cardTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "600", lineHeight: 18 },
@@ -1375,11 +1375,11 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "rgba(255,255,255,0.05)",
   },
-  noComments: { color: "#71717A", fontSize: 12, textAlign: "center", paddingVertical: 8 },
+  noComments: { color: "#808089", fontSize: 12, textAlign: "center", paddingVertical: 8 },
   commentRow: { flexDirection: "row", gap: 8, paddingVertical: 5 },
   commentHead: { flexDirection: "row", alignItems: "center", gap: 6 },
   commentAuthor: { color: "#A1A1AA", fontSize: 11, fontWeight: "500", flexShrink: 1 },
-  commentTime: { color: "#71717A", fontSize: 10, flexShrink: 0 },
+  commentTime: { color: "#808089", fontSize: 10, flexShrink: 0 },
   commentBody: { color: "#D4D4D8", fontSize: 12, lineHeight: 18, marginTop: 1 },
 
   composer: { flexDirection: "row", alignItems: "flex-end", gap: 8, marginTop: 10 },
@@ -1428,7 +1428,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   emptyTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "600", textAlign: "center" },
-  emptyBody: { color: "#71717A", fontSize: 13, textAlign: "center" },
+  emptyBody: { color: "#808089", fontSize: 13, textAlign: "center" },
 
   // Buttons.
   glassBtn: {
@@ -1498,7 +1498,7 @@ const styles = StyleSheet.create({
   },
   fieldLabel: { color: "#A1A1AA", fontSize: 12, fontWeight: "500", marginBottom: 4, marginTop: 12 },
   fieldLabelMuted: { color: "#52525B", fontWeight: "400" },
-  editLabel: { color: "#71717A", fontSize: 12, marginBottom: 4 },
+  editLabel: { color: "#808089", fontSize: 12, marginBottom: 4 },
   input: {
     backgroundColor: "#18181B",
     borderWidth: 1,
@@ -1511,7 +1511,7 @@ const styles = StyleSheet.create({
   },
   textarea: { minHeight: 100, textAlignVertical: "top" },
   textareaSm: { minHeight: 60, textAlignVertical: "top" },
-  counter: { color: "#71717A", fontSize: 11, textAlign: "right", marginTop: 4 },
+  counter: { color: "#808089", fontSize: 11, textAlign: "right", marginTop: 4 },
   catWrap: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
   sheetChip: {
     paddingHorizontal: 12,
@@ -1556,5 +1556,5 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.10)",
     backgroundColor: "rgba(24,24,27,0.5)",
   },
-  mediaAddText: { color: "#71717A", fontSize: 12, flexShrink: 0 },
+  mediaAddText: { color: "#808089", fontSize: 12, flexShrink: 0 },
 });

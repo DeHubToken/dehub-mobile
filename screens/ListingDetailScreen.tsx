@@ -619,7 +619,7 @@ const styles = StyleSheet.create({
   },
   buyBtnDisabled: { opacity: 0.45 },
   buyBtnText: { color: "#000000", fontSize: 15, fontWeight: "700" },
-  buyHint: { color: "#71717A", fontSize: 12, textAlign: "center", marginTop: 8 },
+  buyHint: { color: "#808089", fontSize: 12, textAlign: "center", marginTop: 8 },
 
   sectionTitle: {
     color: "#FFFFFF",

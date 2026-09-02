@@ -187,7 +187,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
     if (error) {
       return (
         <View className="py-16 items-center px-6">
-          <Icon name="WifiOff" size={48} color="#71717A" />
+          <Icon name="WifiOff" size={48} color="#808089" />
           <Text className="text-theme-neutrals-400 text-base mt-4 text-center">
             Couldn&apos;t load posts.
           </Text>
@@ -207,7 +207,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
         <Icon
           name={variant === "saved" || variant === "folder" ? "Bookmark" : variant === "liked" ? "Heart" : variant === "unlocked" ? "LockOpen" : variant === "watched" ? "History" : "LayoutGrid"}
           size={48}
-          color="#71717A"
+          color="#808089"
         />
         <Text className="text-theme-neutrals-400 text-base mt-4 text-center">
           {emptyMessage}

@@ -196,7 +196,7 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
           </View>
 
           <View style={styles.assuranceRow}>
-            <Icon name="ShieldCheck" size={13} color="#71717A" />
+            <Icon name="ShieldCheck" size={13} color="#808089" />
             <Text style={styles.assurance}>{t("usernames.assurance")}</Text>
           </View>
         </ScrollView>
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
   body: { paddingHorizontal: 18, paddingBottom: 22, gap: 14 },
 
   handle: { color: "#FFFFFF", fontSize: 24, fontWeight: "700", flexShrink: 0 },
-  at: { color: "#71717A" },
+  at: { color: "#808089" },
   desc: { color: "#D4D4D8", fontSize: 13, lineHeight: 19 },
 
   panel: {
@@ -229,10 +229,10 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.10)",
     gap: 5,
   },
-  panelLabel: { color: "#71717A", fontSize: 11, fontWeight: "600" },
-  panelHint: { color: "#71717A", fontSize: 11, lineHeight: 16 },
+  panelLabel: { color: "#808089", fontSize: 11, fontWeight: "600" },
+  panelHint: { color: "#808089", fontSize: 11, lineHeight: 16 },
   price: { color: "#FFFFFF", fontSize: 26, fontWeight: "700", flexShrink: 0 },
-  priceUnit: { color: "#71717A", fontSize: 14, fontWeight: "500" },
+  priceUnit: { color: "#808089", fontSize: 14, fontWeight: "500" },
 
   swapRow: { flexDirection: "row", alignItems: "center", gap: 8, marginTop: 2 },
   swapOld: { color: "#A1A1AA", fontSize: 14, textDecorationLine: "line-through", flexShrink: 1 },
@@ -272,7 +272,7 @@ const styles = StyleSheet.create({
   buyText: { color: "#09090B", fontSize: 15, fontWeight: "700", flexShrink: 0 },
 
   assuranceRow: { flexDirection: "row", alignItems: "flex-start", gap: 7 },
-  assurance: { flex: 1, color: "#71717A", fontSize: 11, lineHeight: 16 },
+  assurance: { flex: 1, color: "#808089", fontSize: 11, lineHeight: 16 },
 });
 
 export default BuyUsernameSheet;

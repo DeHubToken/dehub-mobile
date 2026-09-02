@@ -447,12 +447,12 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                 Anything that is not a page is one row away: the hand-off at the
                 bottom of the list runs the query on the Explore tab. */}
             <View style={styles.searchWrap}>
-              <Icon name="Search" size={16} color="#71717A" />
+              <Icon name="Search" size={16} color="#808089" />
               <TextInput
                 value={menuQuery}
                 onChangeText={setMenuQuery}
                 placeholder={t("sidebar.searchMenu")}
-                placeholderTextColor="#71717A"
+                placeholderTextColor="#808089"
                 style={styles.searchInput}
                 returnKeyType="search"
                 onSubmitEditing={runFullSearch}
@@ -518,7 +518,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                     <Text className="text-[15px] text-neutral-400 flex-1" numberOfLines={1}>
                       {t("sidebar.searchDehubFor", { query: menuQuery.trim() })}
                     </Text>
-                    <Icon name="ChevronRight" size={16} color="#71717A" />
+                    <Icon name="ChevronRight" size={16} color="#808089" />
                   </TouchableOpacity>
                 </>
               )}
