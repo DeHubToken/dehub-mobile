@@ -145,14 +145,56 @@ export const uploadState = proxy<UploadStoreState>({ jobs: [] });
 const CACHE_PREFIX = "upload-queue-v1";
 let ACTIVE_KEY: string | null = null;
 
+/**
+ * Set while the active account is changing.
+ *
+ * Between the key moving and the new account's queue being read, the store
+ * still holds the OUTGOING account's jobs. Any write in that window lands
+ * under the incoming account's key, which is how one account's upload queue
+ * ended up in another's slot.
+ */
+let switchingAccount = false;
+
 export const setUploadCacheKey = (walletAddress: string | null): void => {
-  ACTIVE_KEY = walletAddress ? `${CACHE_PREFIX}:${walletAddress.toLowerCase()}` : null;
+  const next = walletAddress ? `${CACHE_PREFIX}:${walletAddress.toLowerCase()}` : null;
+  if (next === ACTIVE_KEY) return;
+
+  // Save the outgoing account's queue under the outgoing key before the key
+  // moves. This cannot lean on the debounced write: valtio's subscribe fires
+  // asynchronously, so a job enqueued in the same tick as the switch has not
+  // even scheduled its timer yet, and would be dropped entirely.
+  //
+  // Only when there is something to save — writing an empty array here would
+  // erase a real stored queue in the case where the switch happens before
+  // hydrate has finished loading it.
+  const outgoingKey = ACTIVE_KEY;
+  const outgoing = uploadState.jobs.filter((j) => j.status !== "done");
+  if (persistTimer) {
+    clearTimeout(persistTimer);
+    persistTimer = null;
+  }
+  if (outgoingKey && outgoing.length) {
+    AsyncStorage.setItem(outgoingKey, JSON.stringify({ jobs: outgoing })).catch(() => {});
+  }
+
+  switchingAccount = true;
+  ACTIVE_KEY = next;
+  // Drop the outgoing account's jobs immediately rather than leaving them
+  // visible — and writable — until the async hydrate below replaces them.
+  uploadState.jobs = [];
 };
 
 export const hydrateUploadStore = async (): Promise<void> => {
-  if (!ACTIVE_KEY) return;
+  if (!ACTIVE_KEY) {
+    switchingAccount = false;
+    return;
+  }
   try {
     const raw = await AsyncStorage.getItem(ACTIVE_KEY);
+    // No stored queue is a real answer — this account has nothing pending —
+    // and the store was already emptied by setUploadCacheKey, so returning
+    // here now leaves it empty rather than leaving the previous account's
+    // jobs in place to be written out under this key.
     if (!raw) return;
     const data = JSON.parse(raw) as Partial<UploadStoreState>;
     if (Array.isArray(data.jobs)) {
@@ -170,6 +212,8 @@ export const hydrateUploadStore = async (): Promise<void> => {
     }
   } catch {
     // noop
+  } finally {
+    switchingAccount = false;
   }
 };
 
@@ -185,6 +229,8 @@ const persist = async (): Promise<void> => {
 
 let persistTimer: ReturnType<typeof setTimeout> | null = null;
 subscribe(uploadState, () => {
+  // Mid-switch the store is a staging area, not this account's queue.
+  if (switchingAccount) return;
   if (persistTimer) clearTimeout(persistTimer);
   persistTimer = setTimeout(() => {
     persist().catch(() => {});
