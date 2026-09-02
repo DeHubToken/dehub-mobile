@@ -12,6 +12,7 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import type { UploadJob } from '../../store/upload.store';
 import {
   uploadState,
   uploadActions,
@@ -23,12 +24,18 @@ const A = '0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 const B = '0xBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
 const keyFor = (addr: string) => `upload-queue-v1:${addr.toLowerCase()}`;
 
-const job = (id: string) => ({
+const job = (id: string, walletAddress = A): UploadJob => ({
   id,
-  status: 'queued' as const,
+  status: 'queued',
   progress: 0,
   retryCount: 0,
-  fileUri: `file:///${id}.mp4`,
+  createdAt: 1_700_000_000_000,
+  title: id,
+  payload: {} as UploadJob['payload'],
+  chainId: 8453,
+  walletAddress,
+  isBounty: false,
+  isQuote: false,
 });
 
 const stored = async (addr: string) => {
@@ -84,7 +91,7 @@ describe('switching accounts', () => {
 
     setUploadCacheKey(B);
     await hydrateUploadStore();
-    uploadActions.enqueue(job('b1'));
+    uploadActions.enqueue(job('b1', B));
     await settle();
 
     setUploadCacheKey(A);
