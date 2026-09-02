@@ -76,7 +76,7 @@ function ProfileTabBarInner<Key extends string>({
               <Icon
                 name={item.icon}
                 size={18}
-                color={focused ? "#FFFFFF" : "#71717A"}
+                color={focused ? "#FFFFFF" : "#808089"}
                 strokeWidth={2}
               />
               <Text
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
   count: {
     textAlign: "center",
-    color: "#71717A",
+    color: "#808089",
     fontSize: 10,
     lineHeight: 12,
     marginTop: 1,

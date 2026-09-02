@@ -421,8 +421,8 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.1)",
   },
   bootFill: { height: "100%", borderRadius: 2, backgroundColor: "#FFFFFF" },
-  bootPct: { color: "#71717A", fontSize: 12, fontVariant: ["tabular-nums"] },
-  bootHide: { color: "#71717A", fontSize: 11, textDecorationLine: "underline" },
+  bootPct: { color: "#808089", fontSize: 12, fontVariant: ["tabular-nums"] },
+  bootHide: { color: "#808089", fontSize: 11, textDecorationLine: "underline" },
   bootFault: {
     color: "#D4D4D8",
     fontSize: 11,

@@ -81,7 +81,7 @@ export default function TrendingTopicsList({
 
       {isLoading && !visible.length ? (
         <View className="py-6">
-          <ActivityIndicator color="#71717A" />
+          <ActivityIndicator color="#808089" />
         </View>
       ) : visible.length === 0 ? (
         <Text className="text-theme-neutrals-400 text-xs py-4 text-center">
@@ -101,7 +101,7 @@ export default function TrendingTopicsList({
                   {cat.name}
                 </Text>
                 {/* A jacked category says so — see the note at the top. */}
-                {cat.boosted && <Icon name="Rocket" size={12} color="#71717A" />}
+                {cat.boosted && <Icon name="Rocket" size={12} color="#808089" />}
               </View>
               <Text className="text-theme-neutrals-500 text-[11px] ml-2">
                 {cat.post_count} {cat.post_count === 1 ? "post" : "posts"}

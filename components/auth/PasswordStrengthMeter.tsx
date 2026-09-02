@@ -8,7 +8,7 @@ export interface PasswordStrengthMeterProps {
 
 // Weak to strong as a brightness ramp — the meter used to run red→green,
 // which the design system keeps off every surface.
-const BAR_COLORS = ["#52525B", "#71717A", "#A1A1AA", "#D4D4D8", "#FAFAFA"];
+const BAR_COLORS = ["#52525B", "#808089", "#A1A1AA", "#D4D4D8", "#FAFAFA"];
 
 const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = memo(({ assessment }) => {
   if (!assessment) return null;

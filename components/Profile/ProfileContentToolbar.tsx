@@ -71,12 +71,12 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
     <View className="px-3 pb-2">
       <View className="flex-row items-center" style={{ gap: 8 }}>
         <View className="flex-1 flex-row items-center rounded-xl bg-white/5 border border-white/10 px-3 h-10">
-          <Icon name="Search" size={16} color="#71717a" />
+          <Icon name="Search" size={16} color="#808089" />
           <TextInput
             value={search}
             onChangeText={onSearchChange}
             placeholder={t("profile.searchThisChannel", "Search this channel")}
-            placeholderTextColor="#71717a"
+            placeholderTextColor="#808089"
             // A phone keyboard offering autocorrect on a search field turns
             // "dehub" into "debug" and the reader blames the search.
             autoCorrect={false}

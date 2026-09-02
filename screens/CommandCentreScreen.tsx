@@ -525,7 +525,7 @@ const styles = StyleSheet.create({
   walletBtnText: { color: "#000000", fontSize: 12, fontWeight: "700" },
 
   balanceBig: { color: "#FFFFFF", fontSize: 32, fontWeight: "800", marginTop: 6 },
-  balanceUnit: { color: "#71717A", fontSize: 15, fontWeight: "700" },
+  balanceUnit: { color: "#808089", fontSize: 15, fontWeight: "700" },
 
   incomeTotal: { color: "#F4F4F5", fontSize: 13, fontWeight: "700", marginTop: 2 },
 
@@ -584,7 +584,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.05)",
     padding: 11,
   },
-  statBoxLabel: { color: "#71717A", fontSize: 11 },
+  statBoxLabel: { color: "#808089", fontSize: 11 },
   statBoxValue: { color: "#FFFFFF", fontSize: 19, fontWeight: "700", marginTop: 3 },
   spendBox: {
     marginTop: 10,

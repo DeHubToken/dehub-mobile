@@ -466,7 +466,7 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "rgba(255,255,255,0.1)",
   },
-  fieldLabel: { color: "#71717a", fontSize: 12, marginTop: 14, marginBottom: 8 },
+  fieldLabel: { color: "#808089", fontSize: 12, marginTop: 14, marginBottom: 8 },
   choice: {
     paddingHorizontal: 12,
     paddingVertical: 10,

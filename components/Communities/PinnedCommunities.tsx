@@ -95,7 +95,7 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile }) => 
             {community.avatar_url ? (
               <Image source={{ uri: community.avatar_url }} style={styles.pinAvatarImg} contentFit="cover" />
             ) : (
-              <Icon name="Users" size={20} color="#71717a" />
+              <Icon name="Users" size={20} color="#808089" />
             )}
           </View>
           <View style={styles.pinBody}>
@@ -129,7 +129,7 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile }) => 
       ))}
       {isOwnProfile && pinned.length < MAX_PINS && (
         <TouchableOpacity style={styles.addPin} onPress={() => setPickerOpen(true)} activeOpacity={0.7}>
-          <Icon name="Plus" size={14} color="#71717a" />
+          <Icon name="Plus" size={14} color="#808089" />
           <Text style={styles.addPinText}>{t("communities.pinCommunity")}</Text>
         </TouchableOpacity>
       )}
@@ -232,7 +232,7 @@ function PinPickerModal({
                       {item.avatar_url ? (
                         <Image source={{ uri: item.avatar_url }} style={styles.pickerAvatarImg} contentFit="cover" />
                       ) : (
-                        <Icon name="Users" size={16} color="#71717a" />
+                        <Icon name="Users" size={16} color="#808089" />
                       )}
                     </View>
                     <Text style={styles.pickerName} numberOfLines={1}>
@@ -245,7 +245,7 @@ function PinPickerModal({
                     ) : isPinned ? (
                       <Icon name="X" size={18} color="#F4F4F5" />
                     ) : canAdd ? (
-                      <Icon name="Plus" size={18} color="#71717a" />
+                      <Icon name="Plus" size={18} color="#808089" />
                     ) : null}
                   </TouchableOpacity>
                 );
@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
     maxHeight: "70%",
   },
   modalTitle: { color: "#fff", fontSize: 16, fontWeight: "600", marginBottom: 12 },
-  modalEmpty: { color: "#71717a", textAlign: "center", paddingVertical: 24, fontSize: 14 },
+  modalEmpty: { color: "#808089", textAlign: "center", paddingVertical: 24, fontSize: 14 },
   pickerRow: {
     flexDirection: "row",
     alignItems: "center",

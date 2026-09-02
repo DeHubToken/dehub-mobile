@@ -66,7 +66,7 @@ const RadioStationCard: React.FC<RadioStationCardProps> = ({ station, variant = 
             onError={() => setLogoFailed(true)}
           />
         ) : (
-          <Icon name="Radio" size={isCard ? 22 : 20} color="#71717A" />
+          <Icon name="Radio" size={isCard ? 22 : 20} color="#808089" />
         )}
         {isThisPlaying && (
           <View style={styles.nowPlaying}>

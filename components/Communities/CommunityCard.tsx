@@ -47,7 +47,7 @@ const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
         {community.avatar_url ? (
           <Image source={{ uri: community.avatar_url }} style={styles.avatar} contentFit="cover" />
         ) : (
-          <Icon name="Users" size={22} color="#71717a" />
+          <Icon name="Users" size={22} color="#808089" />
         )}
       </View>
       <View style={styles.body}>
@@ -55,7 +55,7 @@ const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
           <Text style={styles.name} numberOfLines={1}>
             {community.name}
           </Text>
-          {community.is_private && <Icon name="Lock" size={12} color="#71717a" />}
+          {community.is_private && <Icon name="Lock" size={12} color="#808089" />}
           {isOwner && (
             <View style={styles.ownerBadge}>
               <Text style={styles.ownerText}>{t("communities.owner")}</Text>

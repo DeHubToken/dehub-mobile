@@ -296,9 +296,9 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   field: { gap: 6 },
-  fieldLabel: { color: "#71717A", fontSize: 11, fontWeight: "600" },
+  fieldLabel: { color: "#808089", fontSize: 11, fontWeight: "600" },
   currentHandle: { color: "#FFFFFF", fontSize: 21, fontWeight: "700", marginTop: 2, flexShrink: 0 },
-  at: { color: "#71717A" },
+  at: { color: "#808089" },
 
   input: {
     color: "#FFFFFF",
@@ -320,9 +320,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.10)",
   },
-  inputPrefix: { color: "#71717A", fontSize: 14 },
+  inputPrefix: { color: "#808089", fontSize: 14 },
   inputInline: { flex: 1, color: "#FFFFFF", fontSize: 14, paddingVertical: 10, paddingLeft: 2 },
-  hint: { color: "#71717A", fontSize: 11, lineHeight: 16 },
+  hint: { color: "#808089", fontSize: 11, lineHeight: 16 },
 
   warning: {
     flexDirection: "row",
@@ -386,9 +386,9 @@ const styles = StyleSheet.create({
   rowMain: { flex: 1, gap: 2 },
   rowHandle: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },
   rowHandleMuted: { color: "#D4D4D8", fontSize: 13.5 },
-  rowSub: { color: "#71717A", fontSize: 11 },
+  rowSub: { color: "#808089", fontSize: 11 },
   rowPrice: { color: "#FFFFFF", fontSize: 13, fontWeight: "700", flexShrink: 0 },
-  rowPriceMuted: { color: "#71717A", fontSize: 12, flexShrink: 0 },
+  rowPriceMuted: { color: "#808089", fontSize: 12, flexShrink: 0 },
 });
 
 export default SellUsernamePanel;

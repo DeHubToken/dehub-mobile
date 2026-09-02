@@ -23,7 +23,7 @@ const CallButton: React.FC<CallButtonProps> = ({ recipientAddress }) => {
         accessibilityLabel="Start voice call"
         accessibilityState={{ disabled }}
       >
-        <Icon name="Phone" size={18} color={disabled ? "#71717A" : "#FFFFFF"} />
+        <Icon name="Phone" size={18} color={disabled ? "#808089" : "#FFFFFF"} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => startCall(recipientAddress, "video")}
@@ -35,7 +35,7 @@ const CallButton: React.FC<CallButtonProps> = ({ recipientAddress }) => {
         accessibilityLabel="Start video call"
         accessibilityState={{ disabled }}
       >
-        <Icon name="Video" size={18} color={disabled ? "#71717A" : "#FFFFFF"} />
+        <Icon name="Video" size={18} color={disabled ? "#808089" : "#FFFFFF"} />
       </TouchableOpacity>
     </View>
   );

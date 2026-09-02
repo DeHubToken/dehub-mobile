@@ -421,7 +421,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 14,
   },
-  clearDate: { color: "#71717A", fontSize: 11.5, marginTop: 6 },
+  clearDate: { color: "#808089", fontSize: 11.5, marginTop: 6 },
 
   chipWrap: { flexDirection: "row", flexWrap: "wrap", gap: 7 },
   chip: {
@@ -458,7 +458,7 @@ const styles = StyleSheet.create({
   totalRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
   totalLabel: { color: "#A1A1AA", fontSize: 13 },
   totalValue: { color: "#FFFFFF", fontSize: 14, fontWeight: "700" },
-  totalHint: { color: "#71717A", fontSize: 11.5, marginTop: 5 },
+  totalHint: { color: "#808089", fontSize: 11.5, marginTop: 5 },
   totalWarn: { color: "rgba(253,230,138,0.80)", fontSize: 11, marginTop: 8, lineHeight: 16 },
 
   navRow: { flexDirection: "row", gap: 8, marginTop: 18 },

@@ -197,7 +197,7 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
           </View>
 
           <View style={styles.keepRow}>
-            <Icon name="Wallet" size={13} color="#71717A" />
+            <Icon name="Wallet" size={13} color="#808089" />
             <Text style={styles.keepText}>{t("accounts.walletStays")}</Text>
           </View>
 
@@ -305,9 +305,9 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   field: { gap: 6 },
-  fieldLabel: { color: "#71717A", fontSize: 11, fontWeight: "600" },
+  fieldLabel: { color: "#808089", fontSize: 11, fontWeight: "600" },
   currentHandle: { color: "#FFFFFF", fontSize: 17, fontWeight: "700", marginTop: 2, flexShrink: 0 },
-  at: { color: "#71717A" },
+  at: { color: "#808089" },
 
   input: {
     color: "#FFFFFF",
@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.10)",
   },
   textArea: { minHeight: 62, textAlignVertical: "top" },
-  hint: { color: "#71717A", fontSize: 11, lineHeight: 16 },
+  hint: { color: "#808089", fontSize: 11, lineHeight: 16 },
 
   warning: {
     flexDirection: "row",
@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
   warningText: { flex: 1, color: "#D4D4D8", fontSize: 11.5, lineHeight: 17 },
 
   keepRow: { flexDirection: "row", alignItems: "flex-start", gap: 7 },
-  keepText: { flex: 1, color: "#71717A", fontSize: 11, lineHeight: 16 },
+  keepText: { flex: 1, color: "#808089", fontSize: 11, lineHeight: 16 },
 
   actions: { flexDirection: "row", alignItems: "center", gap: 10 },
   grow: { flex: 1 },
@@ -378,9 +378,9 @@ const styles = StyleSheet.create({
   rowMain: { flex: 1, gap: 2 },
   rowHandle: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },
   rowHandleMuted: { color: "#D4D4D8", fontSize: 13.5 },
-  rowSub: { color: "#71717A", fontSize: 11 },
+  rowSub: { color: "#808089", fontSize: 11 },
   rowPrice: { color: "#FFFFFF", fontSize: 13, fontWeight: "700", flexShrink: 0 },
-  rowPriceMuted: { color: "#71717A", fontSize: 12, flexShrink: 0 },
+  rowPriceMuted: { color: "#808089", fontSize: 12, flexShrink: 0 },
 });
 
 export default SellAccountPanel;

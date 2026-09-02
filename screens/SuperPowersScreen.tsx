@@ -254,7 +254,7 @@ export default function SuperPowersScreen() {
                     <Icon
                       name="Clock"
                       size={14}
-                      color={booking.live ? "#F4F4F5" : "#71717A"}
+                      color={booking.live ? "#F4F4F5" : "#808089"}
                     />
                     {/* A Golden Hour acts on the whole account, so it has no
                         post id to show. */}
@@ -392,8 +392,8 @@ const styles = StyleSheet.create({
   muted: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
   countBlock: { alignItems: "flex-end" },
   count: { color: "#fff", fontSize: 24, fontWeight: "700" },
-  countLabel: { color: "#71717A", fontSize: 9, letterSpacing: 1 },
-  footnote: { color: "#71717A", fontSize: 12, lineHeight: 17 },
+  countLabel: { color: "#808089", fontSize: 9, letterSpacing: 1 },
+  footnote: { color: "#808089", fontSize: 12, lineHeight: 17 },
   body: { color: "#fff", fontSize: 13, lineHeight: 19 },
 
   cta: {
@@ -433,8 +433,8 @@ const styles = StyleSheet.create({
   bookings: { borderTopWidth: 1, borderTopColor: "rgba(255,255,255,0.1)", paddingTop: 10, gap: 8 },
   bookingRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   bookingId: { color: "#fff", fontSize: 13 },
-  bookingState: { color: "#71717A", fontSize: 12, flex: 1 },
-  bookingSeen: { color: "#71717A", fontSize: 12 },
+  bookingState: { color: "#808089", fontSize: 12, flex: 1 },
+  bookingSeen: { color: "#808089", fontSize: 12 },
   cancel: { color: "#A1A1AA", fontSize: 12 },
 
   heading: {
@@ -462,7 +462,7 @@ const styles = StyleSheet.create({
   rung: { color: "#52525B", fontSize: 11 },
   powerName: { color: "#fff", fontSize: 14, fontWeight: "500", flex: 1 },
   powerNameOff: { color: "#A1A1AA" },
-  powerSummary: { color: "#71717A", fontSize: 12.5, lineHeight: 17 },
+  powerSummary: { color: "#808089", fontSize: 12.5, lineHeight: 17 },
   powerTier: { color: "#52525B", fontSize: 11 },
 
   table: {
@@ -472,7 +472,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   tableHead: { flexDirection: "row", paddingHorizontal: 12, paddingVertical: 10 },
-  th: { color: "#71717A", fontSize: 9, letterSpacing: 1 },
+  th: { color: "#808089", fontSize: 9, letterSpacing: 1 },
   tr: {
     flexDirection: "row",
     paddingHorizontal: 12,
