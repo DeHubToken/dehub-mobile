@@ -388,7 +388,15 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           { uri: audioUrl },
           { shouldPlay: false, progressUpdateIntervalMillis: 100 },
         );
-        if (cancelled) {
+        // `cancelled` only covers the card going away — the effect's deps are
+        // isVisible/isFocused/audioUrl. A play tap changes none of them, so
+        // without the soundRef check below this assignment could land AFTER
+        // handlePlayPause had already created and started its own Sound,
+        // overwriting the reference to the audible one with this silent one.
+        // Pause, seek, volume and the unmount cleanup all go through
+        // soundRef, so the track kept playing with nothing able to stop it
+        // and a native player leaked for the life of the process.
+        if (cancelled || soundRef.current) {
           sound.unloadAsync().catch(() => {});
           return;
         }
@@ -501,6 +509,13 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         { uri: audioUrl },
         { shouldPlay: true, progressUpdateIntervalMillis: 100 },
       );
+      // The mirror of the preload guard: if the settle timer's Sound landed
+      // while this one was loading, release it rather than dropping the
+      // reference on the floor — an unreferenced Sound is never unloaded.
+      if (soundRef.current && soundRef.current !== sound) {
+        const stale = soundRef.current;
+        stale.unloadAsync().catch(() => {});
+      }
       soundRef.current = sound;
       sound.setVolumeAsync(volumeRef.current).catch(() => {});
       preloadedRef.current = true;
