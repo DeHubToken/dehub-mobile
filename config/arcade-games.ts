@@ -212,6 +212,45 @@ export const ARCADE_GAMES: ArcadeGame[] = [
     bootTauMs: 14000,
     readySource: 'jungle-game',
   },
+  {
+    slug: 'trenchstar',
+    title: 'Trenchstar',
+    tagline: 'Stand in a trading floor built out of live markets.',
+    description:
+      'The mother of all arenas. Trade like a time traveller with dozens of screens. Enjoy live feeds from Binance, Dexscreener or any thing you want from videos, to browser tabs and all between.',
+    action: 'Take the desk',
+    art: `${WEBSITE_LINK}/arcade/trenchstar.webp`,
+    artAlt:
+      'A curved wall of live candle charts and market panels around a dark trading floor in Trenchstar',
+    credit: {
+      name: 'Trenchstar',
+      url: 'https://dehub.io',
+      licence: 'MIT',
+      licenceFile: 'LICENSE-Trenchstar',
+    },
+    /*
+     * Touch-native from the start, unlike the two shooters above: a thumbstick
+     * appears under the left thumb in walk mode, a one-finger drag looks
+     * around, two fingers fly the desk camera along its view ray, and every
+     * panel on the wall is a tap. Nothing here had to wait for an adapter.
+     *
+     * `q=phone` pins the room's quality tier. The page would reach the same
+     * answer from a coarse-pointer media query, but a WebView is not obliged to
+     * report one, and the wrong guess is a dpr-3 phone rendering a 4K frame
+     * through a post chain with a live mirror floor. Pinned, it starts at a
+     * capped pixel ratio, no shadow map, a quarter-size reflection and a small
+     * room probe, and still degrades further on its own if the frame time says
+     * so. Same host as the web arcade, so a re-vendor there reaches this app
+     * with no release.
+     */
+    url: `${WEBSITE_LINK}/trenchstar-game/index.html?q=phone`,
+    // It draws its own boot readout — engine, markets, world, paint — with a
+    // real percentage, so the modelled bar only has to cover the gap before
+    // the WebView's first paint and retires at `onLoadEnd`. No readySource:
+    // the room never announces readiness to anyone — its own boot screen is
+    // the readout — so there is nothing for a bridge to forward.
+    bootTauMs: 6000,
+  },
 ];
 
 export function getArcadeGame(slug: string | undefined): ArcadeGame | undefined {
