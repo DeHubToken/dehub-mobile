@@ -108,6 +108,25 @@ export interface ArcadeGame {
    * it up and hands it to React Native.
    */
   readySource?: string;
+  /**
+   * Lock the screen to landscape for the game's whole visit.
+   *
+   * The default is to UNLOCK: the 3D games render to whatever shape they are
+   * given and a player is free to turn the phone either way. A fixed-aspect 2D
+   * game is different — Street Slayer is an 854x480 layout with its touch pad
+   * and buttons placed for that shape, and letterbox scaling in portrait
+   * shrinks the whole thing to a strip across the middle with controls too
+   * small to hit. Its page carries a "rotate your phone" overlay for the web,
+   * which is advisory because a browser cannot turn the device. This app can,
+   * so it does, and that overlay is never seen here.
+   */
+  landscape?: boolean;
+  /**
+   * Where the host's exit control sits. `left` (the default) is the top-left
+   * corner; `center` is the top edge's midpoint, for a game whose own HUD
+   * already lives in that corner.
+   */
+  exitPlacement?: 'left' | 'center';
 }
 
 /**
@@ -250,6 +269,53 @@ export const ARCADE_GAMES: ArcadeGame[] = [
     // the room never announces readiness to anyone — its own boot screen is
     // the readout — so there is nothing for a bridge to forward.
     bootTauMs: 6000,
+  },
+  {
+    slug: 'street-slayer',
+    title: 'Street Slayer',
+    tagline: 'A neon-street brawler, made for DeHub alone.',
+    description:
+      'A side-scrolling beat ’em up down a neon-lit street: pick one of three fighters, then punch, kick and throw your way through everything the block sends at you.',
+    action: 'Fight',
+    art: `${WEBSITE_LINK}/arcade/street-slayer.webp`,
+    artAlt:
+      'Three street fighters closing in on the player character outside a neon-lit shopfront in Street Slayer',
+    credit: {
+      name: 'Street Slayer',
+      // Commissioned for DeHub from Studio Shook Pixel rather than found: there
+      // is no public repository, so this points at the arcade that hosts it.
+      url: 'https://dehub.io/arcade/street-slayer',
+      licence: 'Proprietary',
+      licenceFile: 'LICENSE-StreetSlayer',
+    },
+    /*
+     * A Construct 2 export, and the only 2D game here. It reads nothing from
+     * the URL: the project is fixed at 854x480 with "Letterbox scale", so it
+     * fills whatever it is given, and there is no quality tier to pin.
+     *
+     * Touch-native out of the box — the Touch plugin is in its plugin list and
+     * the layout draws its own directional pad bottom-left and six action
+     * buttons bottom-right on any touchscreen — so, like Trenchstar, it needed
+     * no adapter from dehubweb's `public/arcade-touch/` to be playable here.
+     *
+     * Two things the other entries do not ask of the host, both because the
+     * layout is a fixed landscape shape rather than a resizable 3D viewport:
+     * the screen is locked to landscape for the visit (see `landscape` on the
+     * interface), and the exit control moves to the top centre because the
+     * player's portrait and life bar own the top-left corner. Top centre is the
+     * one empty strip in the HUD — the same reasoning that put the web build's
+     * own exit chip there.
+     */
+    url: `${WEBSITE_LINK}/street-slayer-game/index.html`,
+    // "Loader style: Percentage text" in the project, wrapped by dehubweb in a
+    // boot screen carrying the game's own wordmark and a bar driven by the
+    // runtime's real `loadingprogress`. That readout is better than anything
+    // modelled here, so this bar only covers the gap before the WebView's
+    // first paint and retires at `onLoadEnd`. No readySource: the page has no
+    // readiness bridge, its boot screen retires itself.
+    bootTauMs: 6000,
+    landscape: true,
+    exitPlacement: 'center',
   },
 ];
 
