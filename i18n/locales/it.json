@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Impossibile rimuoverlo. Riprova."
   },
   "common": {
+    "mute": "Disattiva audio",
+    "unmute": "Attiva audio",
+    "fullscreen": "Schermo intero",
+    "exitFullscreen": "Esci da schermo intero",
     "save": "Salva",
     "cancel": "Annulla",
     "delete": "Elimina",

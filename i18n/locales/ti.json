@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "ምውጋድ ኣይተኻእለን። እንደገና ፈትን።"
   },
   "common": {
+    "mute": "ድምጺ ኣጥፍእ",
+    "unmute": "ድምጺ ኣብርህ",
+    "fullscreen": "ምሉእ ስክሪን",
+    "exitFullscreen": "ካብ ምሉእ ስክሪን ውጻእ",
     "save": "ዓቅብ",
     "cancel": "ሰርዝ",
     "delete": "ደምስስ",

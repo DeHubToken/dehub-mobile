@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Aýryp bolmady. Gaýtadan synanyşyň."
   },
   "common": {
+    "mute": "Sesi öçür",
+    "unmute": "Sesi aç",
+    "fullscreen": "Doly ekran",
+    "exitFullscreen": "Doly ekrandan çyk",
     "save": "Ýatda sakla",
     "cancel": "Ýatyr",
     "delete": "Poz",

@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Sitä ei voitu poistaa. Yritä uudelleen."
   },
   "common": {
+    "mute": "Mykistä",
+    "unmute": "Poista mykistys",
+    "fullscreen": "Koko näyttö",
+    "exitFullscreen": "Poistu koko näytöstä",
     "save": "Tallenna",
     "cancel": "Peruuta",
     "delete": "Poista",

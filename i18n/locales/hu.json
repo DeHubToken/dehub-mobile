@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Nem sikerült eltávolítani. Próbáld újra."
   },
   "common": {
+    "mute": "Némítás",
+    "unmute": "Némítás feloldása",
+    "fullscreen": "Teljes képernyő",
+    "exitFullscreen": "Kilépés a teljes képernyőből",
     "save": "Mentés",
     "cancel": "Mégse",
     "delete": "Törlés",

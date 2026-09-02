@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Kunne ikke fjerne det. Prøv igjen."
   },
   "common": {
+    "mute": "Demp",
+    "unmute": "Slå på lyd",
+    "fullscreen": "Fullskjerm",
+    "exitFullscreen": "Avslutt fullskjerm",
     "save": "Lagre",
     "cancel": "Avbryt",
     "delete": "Slett",

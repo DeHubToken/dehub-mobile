@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "제거하지 못했습니다. 다시 시도하세요."
   },
   "common": {
+    "mute": "음소거",
+    "unmute": "음소거 해제",
+    "fullscreen": "전체 화면",
+    "exitFullscreen": "전체 화면 종료",
     "save": "저장",
     "cancel": "취소",
     "delete": "삭제",

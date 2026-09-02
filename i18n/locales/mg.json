@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Tsy afaka nanaisotra azy io. Andramo indray."
   },
   "common": {
+    "mute": "Hampangina",
+    "unmute": "Hampandre feo",
+    "fullscreen": "Efijery feno",
+    "exitFullscreen": "Hiala amin'ny efijery feno",
     "save": "Tehirizo",
     "cancel": "Hanafoana",
     "delete": "Fafao",

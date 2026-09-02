@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Ayikwazanga ukukususa. Zama futhi."
   },
   "common": {
+    "mute": "Thulisa",
+    "unmute": "Vula umsindo",
+    "fullscreen": "Isikrini esigcwele",
+    "exitFullscreen": "Phuma esikrinini esigcwele",
     "save": "Gcina",
     "cancel": "Khansela",
     "delete": "Susa",

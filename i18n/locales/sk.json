@@ -919,6 +919,10 @@
     "applicationFailed": "Failed to submit. Please try again."
   },
   "common": {
+    "mute": "Stlmiť",
+    "unmute": "Zapnúť zvuk",
+    "fullscreen": "Celá obrazovka",
+    "exitFullscreen": "Ukončiť celú obrazovku",
     "loading": "Načítavanie...",
     "error": "Chyba",
     "retry": "Skúsiť znova",

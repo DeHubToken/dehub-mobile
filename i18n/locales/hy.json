@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Չհաջողվեց հեռացնել այն։ Փորձեք կրկին։"
   },
   "common": {
+    "mute": "Անջատել ձայնը",
+    "unmute": "Միացնել ձայնը",
+    "fullscreen": "Լիաէկրան",
+    "exitFullscreen": "Դուրս գալ լիաէկրանից",
     "save": "Pahpanel",
     "cancel": "Chegharakel",
     "delete": "Jnchel",

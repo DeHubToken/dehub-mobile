@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Seda ei õnnestunud eemaldada. Proovi uuesti."
   },
   "common": {
+    "mute": "Vaigista",
+    "unmute": "Lülita heli sisse",
+    "fullscreen": "Täisekraan",
+    "exitFullscreen": "Välju täisekraanist",
     "save": "Salvesta",
     "cancel": "Tühista",
     "delete": "Kustuta",

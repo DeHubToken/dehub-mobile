@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Ora bisa mbusak. Coba maneh."
   },
   "common": {
+    "mute": "Bisu",
+    "unmute": "Uripake swara",
+    "fullscreen": "Layar kebak",
+    "exitFullscreen": "Metu saka layar kebak",
     "save": "Simpen",
     "cancel": "Batal",
     "delete": "Busak",

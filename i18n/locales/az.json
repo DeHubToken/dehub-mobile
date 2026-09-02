@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Silinə bilmədi. Yenidən cəhd et."
   },
   "common": {
+    "mute": "Səssiz et",
+    "unmute": "Səsi aç",
+    "fullscreen": "Tam ekran",
+    "exitFullscreen": "Tam ekrandan çıx",
     "save": "Saxla",
     "cancel": "Ləğv et",
     "delete": "Sil",

@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Lama saari karin. Isku day mar kale."
   },
   "common": {
+    "mute": "Aamusi",
+    "unmute": "Codka fur",
+    "fullscreen": "Shaashad buuxda",
+    "exitFullscreen": "Ka bax shaashadda buuxda",
     "save": "Kaydi",
     "cancel": "Jooji",
     "delete": "Tirtir",

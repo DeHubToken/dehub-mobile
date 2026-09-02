@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "دا نشو لرې کولی. بیا هڅه وکړئ."
   },
   "common": {
+    "mute": "غږ بند کړئ",
+    "unmute": "غږ خلاص کړئ",
+    "fullscreen": "بشپړه پرده",
+    "exitFullscreen": "له بشپړې پردې ووځئ",
     "save": "خوندي",
     "cancel": "لغوه",
     "delete": "حذف",

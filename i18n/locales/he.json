@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "לא ניתן היה להסיר אותו. נסו שוב."
   },
   "common": {
+    "mute": "השתק",
+    "unmute": "בטל השתקה",
+    "fullscreen": "מסך מלא",
+    "exitFullscreen": "יציאה ממסך מלא",
     "save": "שמור",
     "cancel": "בטל",
     "delete": "מחק",

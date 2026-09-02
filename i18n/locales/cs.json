@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Nepodařilo se ho odebrat. Zkus to znovu."
   },
   "common": {
+    "mute": "Ztlumit",
+    "unmute": "Zapnout zvuk",
+    "fullscreen": "Celá obrazovka",
+    "exitFullscreen": "Ukončit celou obrazovku",
     "save": "Uložit",
     "cancel": "Zrušit",
     "delete": "Smazat",

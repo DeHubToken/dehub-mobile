@@ -27,6 +27,10 @@ export interface VideoAreaProps {
   fullscreen?: boolean;
   /** Suppress the player's built-in top controls when an external header already provides close/mute. */
   hideTopControls?: boolean;
+  /** Controlled mute — see VideoPlayerCore. */
+  muted?: boolean;
+  /** The source's picture size, once known. */
+  onVideoSize?: (size: { width: number; height: number }) => void;
 }
 
 const VideoArea: React.FC<VideoAreaProps> = ({
@@ -43,6 +47,8 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   onPPVSuccess,
   fullscreen,
   hideTopControls,
+  muted,
+  onVideoSize,
 }) => {
   const normalizedUrl: string | null =
     effectiveVideoUrl === undefined ? null : effectiveVideoUrl;
@@ -353,6 +359,8 @@ const VideoArea: React.FC<VideoAreaProps> = ({
         loop
         liveMode={!!isLive}
         hideTopControls={hideTopControls}
+        muted={muted}
+        onVideoSize={onVideoSize}
         tokenId={isLive ? undefined : tokenId}
         creator={isLive ? undefined : minterAddress}
         onProgress={onProgress}
