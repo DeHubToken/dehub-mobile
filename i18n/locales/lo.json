@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "ບໍ່ສາມາດເອົາອອກໄດ້. ລອງໃໝ່."
   },
   "common": {
+    "mute": "ປິດສຽງ",
+    "unmute": "ເປີດສຽງ",
+    "fullscreen": "ເຕັມຈໍ",
+    "exitFullscreen": "ອອກຈາກເຕັມຈໍ",
     "save": "ບັນທຶກ",
     "cancel": "ຍົກເລີກ",
     "delete": "ລຶບ",

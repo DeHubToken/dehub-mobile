@@ -668,6 +668,10 @@
     "ensUnlinkFailed": "Nu a putut fi eliminat. Încearcă din nou."
   },
   "common": {
+    "mute": "Dezactivează sunetul",
+    "unmute": "Activează sunetul",
+    "fullscreen": "Ecran complet",
+    "exitFullscreen": "Ieși din ecran complet",
     "save": "Save",
     "cancel": "Cancel",
     "delete": "Delete",

@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "削除できませんでした。もう一度お試しください。"
   },
   "common": {
+    "mute": "ミュート",
+    "unmute": "ミュート解除",
+    "fullscreen": "全画面",
+    "exitFullscreen": "全画面を終了",
     "save": "保存",
     "cancel": "キャンセル",
     "delete": "削除",

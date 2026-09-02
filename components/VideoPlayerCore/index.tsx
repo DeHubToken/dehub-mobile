@@ -63,9 +63,22 @@ interface VideoPlayerCoreProps {
   autoplay?: boolean;
   loop?: boolean;
   initialMuted?: boolean;
+  /**
+   * Controlled mute. When set, the surface around the player owns the sound
+   * and its button, and the player neither reads nor writes the feed's
+   * shared mute cache. Without it the player starts from that cache — which
+   * is what made a deliberately opened live stream come up silent after the
+   * user had muted a feed card, with no button on the page to undo it.
+   */
+  muted?: boolean;
   liveMode?: boolean;
   /** Suppress the built-in top controls row when an external header already provides close/mute. */
   hideTopControls?: boolean;
+  /**
+   * Fires once the source reports its picture size. The live viewer uses it
+   * to decide whether "fullscreen" should also turn the phone sideways.
+   */
+  onVideoSize?: (size: { width: number; height: number }) => void;
   /** Numeric post id. Drives the subtitle overlay; without it there are none. */
   tokenId?: number | string | null;
   title?: string;
@@ -83,8 +96,10 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   autoplay = true,
   loop = true,
   initialMuted = false,
+  muted,
   liveMode = false,
   hideTopControls = false,
+  onVideoSize,
   tokenId,
   title,
   creator,
@@ -109,7 +124,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   // State
   const [isReady, setIsReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(autoplay);
-  const [isMuted, setIsMuted] = useState(() => getCachedMuted());
+  const [isMuted, setIsMuted] = useState(() => muted ?? getCachedMuted());
   const [showControls, setShowControls] = useState(!autoplay);
   const [duration, setDuration] = useState(0);
   const [position, setPosition] = useState(0);
@@ -192,7 +207,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   // Create VideoPlayer instance
   const player: VideoPlayer = useVideoPlayer(sourceUrl ?? null, (p) => {
     p.loop = loop;
-    p.muted = getCachedMuted();
+    p.muted = muted ?? getCachedMuted();
     p.timeUpdateEventInterval = PLAYER_CONSTANTS.TIME_UPDATE_INTERVAL;
     // A rate pinned to this creator applies from the first frame. Live has no
     // meaningful rate, so liveMode never carries one through.
@@ -280,8 +295,22 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
         }
       }),
 
-      player.addListener('sourceLoad', ({ duration: durSec }) => {
+      // An HLS ladder may list no tracks at load and only report a size once
+      // a rendition is actually selected, so both events feed onVideoSize.
+      player.addListener('videoTrackChange', ({ videoTrack }) => {
         if (!isMountedRef.current) return;
+        const size = videoTrack?.size;
+        if (size && size.width > 0 && size.height > 0) {
+          onVideoSize?.({ width: size.width, height: size.height });
+        }
+      }),
+
+      player.addListener('sourceLoad', ({ duration: durSec, availableVideoTracks }) => {
+        if (!isMountedRef.current) return;
+        const size = availableVideoTracks?.[0]?.size;
+        if (size && size.width > 0 && size.height > 0) {
+          onVideoSize?.({ width: size.width, height: size.height });
+        }
         const durMs = Math.max(0, Math.floor((durSec ?? 0) * 1000));
         if (durMs && durMs !== duration) {
           setDuration(durMs);
@@ -308,7 +337,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     return () => {
       subscriptions.forEach((sub) => sub.remove());
     };
-  }, [player, onPlayStateChange, onReady, onProgress, isReady, duration, onError, maybeSkipSegment]);
+  }, [player, onPlayStateChange, onReady, onProgress, onVideoSize, isReady, duration, onError, maybeSkipSegment]);
 
   // Handle navigation events to stop playback when leaving screen
   // Guard with isInPiPRef — returning from PiP also triggers beforeRemove
@@ -392,8 +421,19 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     const nextMuted = !isMuted;
     player.muted = nextMuted;
     setIsMuted(nextMuted);
-    setMutedState(nextMuted);
-  }, [isMuted, player]);
+    // A controlled surface owns the feed cache decision; only the built-in
+    // button writes the shared state.
+    if (muted === undefined) setMutedState(nextMuted);
+  }, [isMuted, player, muted]);
+
+  // Controlled mute: follow the surface's state whenever it changes.
+  useEffect(() => {
+    if (muted === undefined) return;
+    try {
+      player.muted = muted;
+    } catch {}
+    setIsMuted(muted);
+  }, [muted, player]);
 
   // Landscape state tracks whether the video is rotated sideways
 

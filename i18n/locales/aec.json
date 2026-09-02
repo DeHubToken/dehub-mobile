@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "ماقدرناش نشيله. جرب تاني."
   },
   "common": {
+    "mute": "اكتم الصوت",
+    "unmute": "شغّل الصوت",
+    "fullscreen": "ملء الشاشة",
+    "exitFullscreen": "اخرج من ملء الشاشة",
     "save": "احفظ",
     "cancel": "إلغاء",
     "delete": "امسح",

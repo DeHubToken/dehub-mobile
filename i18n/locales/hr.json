@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Nije ga bilo moguće ukloniti. Pokušaj ponovno."
   },
   "common": {
+    "mute": "Isključi zvuk",
+    "unmute": "Uključi zvuk",
+    "fullscreen": "Cijeli zaslon",
+    "exitFullscreen": "Izađi iz cijelog zaslona",
     "save": "Spremi",
     "cancel": "Odustani",
     "delete": "Obriši",

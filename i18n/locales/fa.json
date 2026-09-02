@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "حذف آن ممکن نشد. دوباره تلاش کنید."
   },
   "common": {
+    "mute": "بی‌صدا",
+    "unmute": "باصدا",
+    "fullscreen": "تمام‌صفحه",
+    "exitFullscreen": "خروج از تمام‌صفحه",
     "save": "ذخیره",
     "cancel": "لغو",
     "delete": "حذف",

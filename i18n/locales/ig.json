@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Enweghị ike iwepụ ya. Nwaa ọzọ."
   },
   "common": {
+    "mute": "Mechie ụda",
+    "unmute": "Mepee ụda",
+    "fullscreen": "Ihuenyo zuru ezu",
+    "exitFullscreen": "Pụọ n'ihuenyo zuru ezu",
     "save": "Chekwaa",
     "cancel": "Kagbuo",
     "delete": "Hichapụ",

@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Imeshindwa kuliondoa. Jaribu tena."
   },
   "common": {
+    "mute": "Nyamazisha",
+    "unmute": "Washa sauti",
+    "fullscreen": "Skrini nzima",
+    "exitFullscreen": "Ondoka kwenye skrini nzima",
     "save": "Hifadhi",
     "cancel": "Ghairi",
     "delete": "Futa",

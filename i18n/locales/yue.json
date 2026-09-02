@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "移除唔到。再試多次。"
   },
   "common": {
+    "mute": "靜音",
+    "unmute": "取消靜音",
+    "fullscreen": "全螢幕",
+    "exitFullscreen": "退出全螢幕",
     "save": "儲存",
     "cancel": "取消",
     "delete": "刪除",

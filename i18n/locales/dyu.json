@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "A bɔli ma se. A lajɛ tuguni."
   },
   "common": {
+    "mute": "Kan bɔ",
+    "unmute": "Kan lase",
+    "fullscreen": "Yɔrɔ bɛɛ",
+    "exitFullscreen": "Bɔ yɔrɔ bɛɛ la",
     "save": "Bɔ",
     "cancel": "Kɔrɔbɔ",
     "delete": "Fɔlɔw",

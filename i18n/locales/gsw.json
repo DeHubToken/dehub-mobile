@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "Het nid chöne entfernt wärde. Probier's nomol."
   },
   "common": {
+    "mute": "Stumm schalte",
+    "unmute": "Ton iischalte",
+    "fullscreen": "Vollbild",
+    "exitFullscreen": "Vollbild verlah",
     "save": "Speichere",
     "cancel": "Abbräche",
     "delete": "Lösche",

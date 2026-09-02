@@ -449,6 +449,10 @@
     "ensUnlinkFailed": "ማስወገድ አልተቻለም። እንደገና ይሞክሩ።"
   },
   "common": {
+    "mute": "ድምፅ አጥፋ",
+    "unmute": "ድምፅ አብራ",
+    "fullscreen": "ሙሉ ማያ",
+    "exitFullscreen": "ከሙሉ ማያ ውጣ",
     "save": "አስቀምጥ",
     "cancel": "ሰርዝ",
     "delete": "ሰርዝ",
