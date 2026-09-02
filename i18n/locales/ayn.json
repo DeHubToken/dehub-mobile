@@ -1204,6 +1204,8 @@
     "loginRequired": "مطلوب تسجيل دخول"
   },
   "messages": {
+    "encrypted": "مشفّر من طرف إلى طرف",
+    "cannotDecrypt": "رسالة مشفّرة — ما تنفتح على هذا الجهاز",
     "title": "الرسائل",
     "searchConversations": "ابحث بالمحادثات...",
     "failedToLoad": "فشل تحميل المحادثات",

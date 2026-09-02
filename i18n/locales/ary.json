@@ -1204,6 +1204,8 @@
     "loginRequired": "خاصك تدخل"
   },
   "messages": {
+    "encrypted": "مشفّر من طرف إلى طرف",
+    "cannotDecrypt": "رسالة مشفّرة — ما كتحلّش فهاد الجهاز",
     "title": "الرسائل",
     "searchConversations": "قلب فالمحادثات...",
     "failedToLoad": "ما قدرش يحمل المحادثات",

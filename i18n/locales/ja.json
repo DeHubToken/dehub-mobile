@@ -1204,6 +1204,8 @@
     "attachmentTooLarge": "1ファイルあたり 20MB 未満にしてください"
   },
   "messages": {
+    "encrypted": "エンドツーエンド暗号化",
+    "cannotDecrypt": "暗号化されたメッセージ — このデバイスでは開けません",
     "title": "メッセージ",
     "searchConversations": "会話を検索...",
     "failedToLoad": "会話の読み込みに失敗",

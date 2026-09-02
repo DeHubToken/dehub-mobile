@@ -1204,6 +1204,8 @@
     "loginRequired": "Têketin pêwîst e"
   },
   "messages": {
+    "encrypted": "Ji dawî heta dawî şîfrekirî",
+    "cannotDecrypt": "Peyama şîfrekirî — li ser vê cîhazê nayê vekirin",
     "title": "Peyam",
     "searchConversations": "Sohbetan bigerin...",
     "failedToLoad": "Barkirina sohbetan têkçû",

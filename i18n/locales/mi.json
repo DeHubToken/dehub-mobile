@@ -1204,6 +1204,8 @@
     "loginRequired": "Me takiuru"
   },
   "messages": {
+    "encrypted": "Whakamunatia mai i tētahi pito ki tētahi",
+    "cannotDecrypt": "Karere whakamuna — kāore e taea te whakatuwhera i runga i tēnei pūrere",
     "title": "Karere",
     "searchConversations": "Rapu kōrerorero...",
     "failedToLoad": "Kāore i taea te uta kōrerorero",

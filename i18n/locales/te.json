@@ -1135,6 +1135,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "encrypted": "ఎండ్-టు-ఎండ్ ఎన్‌క్రిప్టెడ్",
+    "cannotDecrypt": "ఎన్‌క్రిప్ట్ చేసిన సందేశం — ఈ పరికరంలో తెరవడం సాధ్యం కాదు",
     "title": "సందేశాలు",
     "searchConversations": "సంభాషణలను వెతకండి...",
     "failedToLoad": "సంభాషణలను లోడ్ చేయడం విఫలమైంది",

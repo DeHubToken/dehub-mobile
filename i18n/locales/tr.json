@@ -1226,6 +1226,8 @@
     "followSuggestions": "Takip Önerileri"
   },
   "messages": {
+    "encrypted": "Uçtan uca şifreli",
+    "cannotDecrypt": "Şifreli mesaj — bu cihazda açılamıyor",
     "title": "Mesajlar",
     "searchConversations": "Sohbetlerde ara...",
     "failedToLoad": "Sohbetler yüklenemedi",

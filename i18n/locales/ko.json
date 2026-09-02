@@ -1113,6 +1113,8 @@
     "attachmentTooLarge": "파일당 20MB 미만이어야 합니다"
   },
   "messages": {
+    "encrypted": "종단 간 암호화됨",
+    "cannotDecrypt": "암호화된 메시지 — 이 기기에서는 열 수 없습니다",
     "title": "메시지",
     "searchConversations": "대화 검색...",
     "failedToLoad": "대화 로드 실패",

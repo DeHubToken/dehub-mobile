@@ -1135,6 +1135,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "encrypted": "Криптирано от край до край",
+    "cannotDecrypt": "Криптирано съобщение — не може да се отвори на това устройство",
     "title": "Съобщения",
     "searchConversations": "Търси разговори...",
     "failedToLoad": "Зареждането на разговорите неуспешно",

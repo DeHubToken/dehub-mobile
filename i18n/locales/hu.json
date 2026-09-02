@@ -1135,6 +1135,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "encrypted": "Végpontok között titkosítva",
+    "cannotDecrypt": "Titkosított üzenet — ezen az eszközön nem nyitható meg",
     "title": "Üzenetek",
     "searchConversations": "Beszélgetések keresése...",
     "failedToLoad": "Beszélgetések betöltése sikertelen",

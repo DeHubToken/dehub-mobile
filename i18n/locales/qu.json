@@ -1205,6 +1205,8 @@
     "loginRequired": "Yaykuy munakun"
   },
   "messages": {
+    "encrypted": "Puntamanta puntakama pakasqa",
+    "cannotDecrypt": "Pakasqa willay — kay aparichapi mana kichay atikunchu",
     "title": "Willakuy",
     "searchConversations": "Rimanakuykuna maskay...",
     "failedToLoad": "Mana rimanakuykunata churayta atirqanchu",
