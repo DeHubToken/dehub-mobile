@@ -32,6 +32,7 @@ import {
   UnifiedFeedItem,
   UnifiedFeedParams,
   isVideoItem,
+  isLiveItem,
 } from "../../services/feed.unified.service";
 import { secondsToHMMSS } from "../../libs/date.util";
 import {
@@ -237,14 +238,18 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       return changed_membership ? next : prev;
     });
 
-    // Only the topmost visible VIDEO row should autoplay. Without the type
-    // filter a text or image post above the video took the slot, and then no
-    // video autoplayed at all.
+    // Only the topmost visible row that can hold a player should autoplay.
+    // Without the type filter a text or image post above the video took the
+    // slot, and then no video autoplayed at all.
+    //
+    // Live posts count. postType is "live", not "video", so isVideoItem alone
+    // excluded them and a live card was never handed autoplay here — it sat on
+    // its poster while the stream ran.
     const topVideo = viewableItems
       .filter(v =>
         v.isViewable &&
         !!(v.item as FeedItem | undefined)?.__listKey &&
-        isVideoItem(v.item as UnifiedFeedItem))
+        (isVideoItem(v.item as UnifiedFeedItem) || isLiveItem(v.item as UnifiedFeedItem)))
       .sort((a, b) => (a.index ?? 0) - (b.index ?? 0))[0];
     setActiveVideoKey(topVideo ? (topVideo.item as FeedItem).__listKey : null);
 
