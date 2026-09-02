@@ -1,5 +1,9 @@
 
-import type { StackScreenProps, StackNavigationProp } from '@react-navigation/stack';
+import type { StackScreenProps } from '@react-navigation/stack';
+import type {
+  NativeStackScreenProps,
+  NativeStackNavigationProp,
+} from '@react-navigation/native-stack';
 import type {
   BottomTabScreenProps as RNBottomTabScreenProps,
   BottomTabNavigationProp,
@@ -12,7 +16,7 @@ export type RootStackParamList = {
   [ScreenNames.Auth]: NavigatorScreenParams<AuthStackParamList> | undefined;
 };
 
-export type RootStackScreenProps<T extends keyof RootStackParamList> = StackScreenProps<
+export type RootStackScreenProps<T extends keyof RootStackParamList> = NativeStackScreenProps<
   RootStackParamList,
   T
 >;
@@ -193,13 +197,13 @@ export type AppStackParamList = {
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> = CompositeScreenProps<
-  StackScreenProps<AppStackParamList, T>,
+  NativeStackScreenProps<AppStackParamList, T>,
   RootStackScreenProps<keyof RootStackParamList>
 >;
 
 export type AppStackNavigationProp<T extends keyof AppStackParamList> = CompositeNavigationProp<
-  StackNavigationProp<AppStackParamList, T>,
-  StackNavigationProp<RootStackParamList>
+  NativeStackNavigationProp<AppStackParamList, T>,
+  NativeStackNavigationProp<RootStackParamList>
 >;
 
 export type BottomTabParamList = {

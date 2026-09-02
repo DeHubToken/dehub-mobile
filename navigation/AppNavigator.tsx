@@ -1,57 +1,29 @@
 import React from "react";
-import { createStackNavigator, StackCardStyleInterpolator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ScreenNames } from "./ScreenNames";
 import type { AppStackParamList } from "./types";
 import BottomTabNavigator from "./BottomTabNavigator";
 import { useAuthState } from "../context/AuthContext";
 
-/** Standardized gesture response distances */
-const GESTURE_DISTANCE = {
-  /** For full-screen modals (video player, live streams) */
-  FULL_MODAL: 200,
-  /** For partial modals (upload, sign in) */
-  PARTIAL_MODAL: 150,
-  /** For small interactive modals */
-  SMALL_MODAL: 80,
-} as const;
-
-/** Slide up from bottom animation for modals */
-const slideFromBottom: StackCardStyleInterpolator = ({ current, layouts }) => ({
-  cardStyle: {
-    transform: [
-      {
-        translateY: current.progress.interpolate({
-          inputRange: [0, 1],
-          outputRange: [layouts.screen.height, 0],
-          extrapolate: 'clamp',
-        }),
-      },
-    ],
-  },
-});
-
-/** Slide up with overlay fade animation */
-const slideFromBottomWithOverlay: StackCardStyleInterpolator = ({ current, layouts }) => ({
-  cardStyle: {
-    transform: [
-      {
-        translateY: current.progress.interpolate({
-          inputRange: [0, 1],
-          outputRange: [layouts.screen.height, 0],
-          extrapolate: 'clamp',
-        }),
-      },
-    ],
-  },
-  overlayStyle: {
-    backgroundColor: 'rgba(0,0,0,0.35)',
-    opacity: current.progress.interpolate({
-      inputRange: [0, 1],
-      outputRange: [0, 1],
-      extrapolate: 'clamp',
-    }),
-  },
-});
+/**
+ * Native stack, not @react-navigation/stack.
+ *
+ * The JS stack drives push, pop and the back-swipe from JavaScript, so a busy
+ * thread — settling a feed, decoding images, mounting a video player — shows up
+ * directly as a stuttering transition. Native stack hands all three to
+ * UINavigationController and Android fragments, where a busy JS thread cannot
+ * reach them. react-native-screens is already a dependency and
+ * @react-navigation/native-stack was already in package.json, unused.
+ *
+ * What that costs: cardStyleInterpolator has no native equivalent, so the two
+ * hand-written slide-up interpolators are gone. `presentation: 'modal'` with
+ * `animation: 'slide_from_bottom'` is the platform's own version of the same
+ * gesture, including its dismiss drag — which is also why the tuned
+ * gestureResponseDistance values are gone: they existed to tune a JS-driven
+ * gesture that no longer exists. The SignIn overlay fade goes the same way; a
+ * native modal presentation dims for itself.
+ */
+const Stack = createNativeStackNavigator<AppStackParamList>();
 
 /**
  * Screens are attached with `getComponent` rather than `component` so Hermes
@@ -94,8 +66,6 @@ const getLiveViewerScreen = () => {
   return liveViewerScreen;
 };
 
-const Stack = createStackNavigator<AppStackParamList>();
-
 export default function AppNavigator() {
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
@@ -105,7 +75,7 @@ export default function AppNavigator() {
       initialRouteName={ScreenNames.Root}
       screenOptions={{
         headerShown: false,
-        cardStyle: { backgroundColor: '#010305' },
+        contentStyle: { backgroundColor: '#010305' },
         // A screen you have navigated away from keeps rendering otherwise —
         // this stack holds sixty-odd of them, so Home -> Profile -> Community
         // -> Post left four live at once, all re-rendering together on every
@@ -271,8 +241,7 @@ export default function AppNavigator() {
           getComponent={() => require("../screens/ImageFeedScreen").default}
           options={{
             presentation: 'transparentModal',
-            cardStyle: { backgroundColor: 'transparent' },
-            cardOverlayEnabled: false,
+            contentStyle: { backgroundColor: 'transparent' },
             animation: 'none',
           }}
         />
@@ -289,31 +258,27 @@ export default function AppNavigator() {
       <Stack.Group
         screenOptions={{
           presentation: 'modal',
+          animation: 'slide_from_bottom',
           gestureDirection: 'vertical',
           gestureEnabled: true,
-          cardStyleInterpolator: slideFromBottom,
         }}
       >
         <Stack.Screen
           name={ScreenNames.VideoPlayer}
           getComponent={() => require("../screens/VideoPlayerScreen").default}
-          options={{
-            gestureResponseDistance: GESTURE_DISTANCE.FULL_MODAL,
-          }}
         />
         <Stack.Screen
           name={ScreenNames.LiveViewer}
           getComponent={getLiveViewerScreen}
-          options={{
-            gestureResponseDistance: GESTURE_DISTANCE.FULL_MODAL,
-          }}
         />
         <Stack.Screen
           name={ScreenNames.SignIn}
           getComponent={() => require("../screens/auth/SignInScreen").default}
           options={{
-            cardStyleInterpolator: slideFromBottomWithOverlay,
-            gestureResponseDistance: GESTURE_DISTANCE.PARTIAL_MODAL,
+            // Was a hand-drawn rgba(0,0,0,0.35) overlay fade under a slide-up
+            // interpolator. A native modal presentation dims for itself.
+            presentation: 'modal',
+            animation: 'slide_from_bottom',
           }}
         />
       </Stack.Group>
@@ -411,10 +376,10 @@ export default function AppNavigator() {
               name={ScreenNames.Upload}
               getComponent={() => require("../screens/UploadScreen").default}
               options={{
-                cardStyleInterpolator: slideFromBottom,
+                presentation: 'modal',
+                animation: 'slide_from_bottom',
                 gestureDirection: 'vertical',
                 gestureEnabled: true,
-                gestureResponseDistance: GESTURE_DISTANCE.PARTIAL_MODAL,
               }}
             />
             <Stack.Screen
@@ -434,10 +399,9 @@ export default function AppNavigator() {
               getComponent={getLiveProducerScreen}
               options={{
                 presentation: 'modal',
-                cardStyleInterpolator: slideFromBottom,
+                animation: 'slide_from_bottom',
                 gestureDirection: 'vertical',
                 gestureEnabled: true,
-                gestureResponseDistance: GESTURE_DISTANCE.FULL_MODAL,
               }}
             />
           </>
