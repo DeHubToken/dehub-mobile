@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, useCallback } from "react";
+import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -197,10 +197,24 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
     }
   }, [transcriptId, language]);
 
+  /**
+   * Languages already asked for in this session.
+   *
+   * The cache lookup below returns null when nothing is stored yet, and stays
+   * null until the edge function writes its row — which is not immediate. The
+   * effect that calls this reacts to exactly that null, so without a record of
+   * what has been asked for it would invoke the function again on every pass.
+   */
+  const requestedRef = useRef<Set<string>>(new Set());
+
   // Handle requesting translation edge function
   const triggerTranslation = useCallback(async () => {
     if (!transcriptId || language === "original" || transcript?.status !== "ready") return;
     if (translation?.status === "ready" || translation?.status === "processing") return;
+
+    const requestKey = `${transcriptId}:${language}`;
+    if (requestedRef.current.has(requestKey)) return;
+    requestedRef.current.add(requestKey);
 
     try {
       // A language somebody already asked for — on any client — is a row read
@@ -308,11 +322,23 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
     }
   }, [language, visible, fetchTranslation]);
 
+  // Ask for a translation once the cache lookup comes back empty.
+  //
+  // This tested `translation === undefined`, which never happens: the state is
+  // typed `... | null`, starts as null, and every path that writes it stores
+  // either a row or null — maybeSingle() returns null for "no such row". So
+  // the condition was unreachable and the edge function was never invoked.
+  // Picking a language showed a permanent empty transcript, and because the
+  // request is what other clients' cached rows come from, nobody could ever
+  // populate one from the phone.
+  //
+  // Waiting for the lookup to finish keeps this from firing before we know
+  // whether a translation already exists.
   useEffect(() => {
-    if (language !== "original" && translation === undefined) {
+    if (language !== "original" && !translation && !isTranslationLoading) {
       triggerTranslation();
     }
-  }, [language, translation, triggerTranslation]);
+  }, [language, translation, isTranslationLoading, triggerTranslation]);
 
   // Auto-transcribe legacy or missing transcripts
   useEffect(() => {
