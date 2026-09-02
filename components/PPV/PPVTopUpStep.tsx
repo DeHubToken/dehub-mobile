@@ -225,7 +225,29 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
       // mined, but the next read goes to whichever public RPC node answers,
       // and one a block behind would make the unlock believe nothing arrived
       // and buy the shortfall a second time.
-      await waitForBalance(() => getERC20BalanceBase(DHB_BASE, account), before.add(1));
+      //
+      // waitForBalance does not throw when it runs out of attempts — it just
+      // returns the last thing it read — so its result has to be checked.
+      // Discarding it is what let a lagging node hand straight back to the
+      // unlock, which found the wallet still short and redrew this same step,
+      // one tap away from signing a second swap for the same shortfall.
+      //
+      // getERC20BalanceBase also answers 0 for an unreadable balance rather
+      // than failing, so `after` can be 0 here while the swap was fine. That
+      // is the conservative direction: stop and let the viewer look, rather
+      // than resume on a number nothing confirmed.
+      const target = before.add(1);
+      const after = await waitForBalance(
+        () => getERC20BalanceBase(DHB_BASE, account),
+        target,
+      );
+      if (!after.gte(target)) {
+        setError(
+          "Your swap may still be settling. Check your DHB balance before trying again — do not swap twice.",
+        );
+        setPhase("error");
+        return;
+      }
 
       // Straight back into the unlock — the sheet never closes and the viewer
       // never taps twice.
