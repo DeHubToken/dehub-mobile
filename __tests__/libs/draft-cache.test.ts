@@ -19,20 +19,32 @@ import { storage } from "../../libs/storage";
 
 const STORAGE_KEY = "dehub-drafts-v1";
 const PEER = "0xAbCdEf0123456789AbCdEf0123456789AbCdEf01";
+const ME = "0x1111111111111111111111111111111111111111";
+const OTHER_ME = "0x2222222222222222222222222222222222222222";
 
 describe("dmDraftKey", () => {
   it("lower-cases so a checksummed and a lowercase address agree", () => {
-    expect(dmDraftKey(PEER)).toBe(dmDraftKey(PEER.toLowerCase()));
+    expect(dmDraftKey(ME, PEER)).toBe(dmDraftKey(ME, PEER.toLowerCase()));
+    expect(dmDraftKey(ME.toUpperCase(), PEER)).toBe(dmDraftKey(ME, PEER));
   });
 
   it("keeps groups in their own namespace", () => {
-    expect(dmDraftKey(null, "grp1")).toBe("group:grp1");
-    expect(dmDraftKey(null, "grp1")).not.toBe(dmDraftKey("grp1"));
+    expect(dmDraftKey(ME, null, "grp1")).toBe(`${ME.toLowerCase()}|group:grp1`);
+    expect(dmDraftKey(ME, null, "grp1")).not.toBe(dmDraftKey(ME, "grp1"));
   });
 
   it("is null with nothing to key on, which turns persistence off", () => {
-    expect(dmDraftKey(undefined)).toBeNull();
-    expect(dmDraftKey("")).toBeNull();
+    expect(dmDraftKey(ME, undefined)).toBeNull();
+    expect(dmDraftKey(ME, "")).toBeNull();
+    // No signed-in address means no key at all, so the composer simply does
+    // not persist — safer than falling back to one every account would share.
+    expect(dmDraftKey(undefined, PEER)).toBeNull();
+  });
+
+  it("gives two accounts different keys for the same conversation", () => {
+    const mine = dmDraftKey(ME, PEER)!;
+    const theirs = dmDraftKey(OTHER_ME, PEER)!;
+    expect(mine).not.toBe(theirs);
   });
 });
 
@@ -55,10 +67,10 @@ describe("draft-cache", () => {
   });
 
   it("is found under the peer whether or not a conversation exists yet", () => {
-    const key = dmDraftKey(PEER)!;
+    const key = dmDraftKey(ME, PEER)!;
     writeDraft(key, "typed before the server caught up");
     __resetDraftCacheForTests();
-    expect(readDraft(dmDraftKey(PEER.toLowerCase())!)).toBe("typed before the server caught up");
+    expect(readDraft(dmDraftKey(ME, PEER.toLowerCase())!)).toBe("typed before the server caught up");
   });
 
   it("treats whitespace-only as no draft, and clears an existing one", () => {

@@ -312,7 +312,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
    * that is precisely the moment you are most likely to be mid-sentence,
    * writing to someone for the first time.
    */
-  const draftKey = useMemo(() => dmDraftKey(peer.address), [peer.address]);
+  const draftKey = useMemo(
+    () => dmDraftKey(user?.walletAddress || user?.address, peer.address),
+    [user?.walletAddress, user?.address, peer.address],
+  );
 
   const iBlockedThem = useMemo(() => !!(target as any)?.youBlocked, [target]);
 
