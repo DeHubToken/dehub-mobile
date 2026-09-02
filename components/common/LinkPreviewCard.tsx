@@ -83,7 +83,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text }) => {
       )}
       <View style={styles.body}>
         <View style={styles.eyebrowRow}>
-          <Icon name="ExternalLink" size={11} color="#71717a" />
+          <Icon name="ExternalLink" size={11} color="#808089" />
           <Text style={styles.eyebrow} numberOfLines={1}>
             {preview.siteName || domainOf(preview.url)}
           </Text>
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   image: { width: '100%', aspectRatio: 1.91, backgroundColor: 'rgba(255,255,255,0.05)' },
   body: { padding: 10 },
   eyebrowRow: { flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: 2 },
-  eyebrow: { color: '#71717a', fontSize: 10, fontWeight: '600' },
+  eyebrow: { color: '#808089', fontSize: 10, fontWeight: '600' },
   title: { color: '#fff', fontSize: 13, fontWeight: '600' },
   description: { color: '#a1a1aa', fontSize: 12, marginTop: 2, lineHeight: 16 },
   skeleton: {

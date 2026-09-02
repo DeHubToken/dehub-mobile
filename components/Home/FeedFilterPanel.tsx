@@ -222,7 +222,7 @@ const sectionStyles = StyleSheet.create({
   },
   label: {
     fontSize: 11,
-    color: "#71717a",
+    color: "#808089",
     textTransform: "uppercase",
     letterSpacing: 1.5,
     fontWeight: "600",
@@ -365,7 +365,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
               value={categorySearch}
               onChangeText={setCategorySearch}
               placeholder={t("filters.searchCategories")}
-              placeholderTextColor="#71717a"
+              placeholderTextColor="#808089"
               style={panelStyles.searchInput}
               autoCapitalize="none"
               autoCorrect={false}
@@ -446,7 +446,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
           accessibilityLabel={t("filters.resetFilters")}
           style={panelStyles.resetButton}
         >
-          <Icon name="RefreshCw" size={14} color="#71717a" />
+          <Icon name="RefreshCw" size={14} color="#808089" />
         </TouchableOpacity>
       )}
     </Animated.View>
@@ -480,7 +480,7 @@ const panelStyles = StyleSheet.create({
   },
   noMatches: {
     fontSize: 12,
-    color: "#71717a",
+    color: "#808089",
     paddingVertical: 6,
   },
   resetButton: {

@@ -505,7 +505,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
               accessibilityRole="button"
               accessibilityLabel={t("communities.unpin", { defaultValue: "Unpin" })}
             >
-              <Icon name="X" size={14} color="#71717a" />
+              <Icon name="X" size={14} color="#808089" />
             </Pressable>
           )}
         </Pressable>
@@ -590,7 +590,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
             accessibilityRole="button"
             accessibilityLabel={t("common.cancel", { defaultValue: "Cancel" })}
           >
-            <Icon name="X" size={14} color="#71717a" />
+            <Icon name="X" size={14} color="#808089" />
           </Pressable>
         </View>
       )}
@@ -615,7 +615,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
             accessibilityRole="button"
             accessibilityLabel={t("common.cancel", { defaultValue: "Cancel" })}
           >
-            <Icon name="X" size={14} color="#71717a" />
+            <Icon name="X" size={14} color="#808089" />
           </Pressable>
         </View>
       )}
@@ -634,7 +634,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
       <View style={[styles.composer, { paddingBottom: 8 + insets.bottom }]}>
         {composerNotice ? (
           <View style={styles.noticeRow}>
-            <Icon name={noticeIcon} size={14} color="#71717a" />
+            <Icon name={noticeIcon} size={14} color="#808089" />
             <Text style={styles.noticeText}>{composerNotice}</Text>
           </View>
         ) : (
@@ -864,7 +864,7 @@ const styles = StyleSheet.create({
   contextBody: { color: "#A1A1AA", fontSize: 12 },
 
   slowModeLine: {
-    color: "#71717a",
+    color: "#808089",
     fontSize: 11,
     paddingHorizontal: 14,
     paddingBottom: 4,

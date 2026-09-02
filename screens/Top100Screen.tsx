@@ -146,7 +146,7 @@ export default function Top100Screen() {
       />
 
       <View style={styles.searchWrap}>
-        <Icon name="Search" size={15} color="#71717A" />
+        <Icon name="Search" size={15} color="#808089" />
         <TextInput
           value={search}
           onChangeText={(v) => {
@@ -166,7 +166,7 @@ export default function Top100Screen() {
             accessibilityRole="button"
             accessibilityLabel="Clear search"
           >
-            <Icon name="X" size={15} color="#71717A" />
+            <Icon name="X" size={15} color="#808089" />
           </Pressable>
         )}
       </View>
@@ -283,5 +283,5 @@ const styles = StyleSheet.create({
   changeText: { fontWeight: "700" },
 
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 60, gap: 10 },
-  dim: { color: "#71717A", fontSize: 12.5, textAlign: "center" },
+  dim: { color: "#808089", fontSize: 12.5, textAlign: "center" },
 });

@@ -824,7 +824,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "rgba(255,255,255,0.10)",
   },
-  statLabel: { color: "#71717A", fontSize: 12, fontWeight: "600" },
+  statLabel: { color: "#808089", fontSize: 12, fontWeight: "600" },
   statValue: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "700", marginTop: 3 },
 
   postedBy: { color: "#A1A1AA", fontSize: 11 },
@@ -956,7 +956,7 @@ const styles = StyleSheet.create({
   },
   disputeSubmitText: { color: "#D4D4D8", fontSize: 13.5, fontWeight: "700" },
 
-  dim: { color: "#71717A", fontSize: 13 },
+  dim: { color: "#808089", fontSize: 13 },
 
   modalBackdrop: {
     flex: 1,

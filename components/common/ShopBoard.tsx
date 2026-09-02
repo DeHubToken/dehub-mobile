@@ -105,7 +105,7 @@ const ListingRow = memo(function ListingRow({
         {image ? (
           <Image source={{ uri: image }} style={{ width: 40, height: 40 }} resizeMode="cover" />
         ) : (
-          <Icon name="Package" size={16} color="#71717a" />
+          <Icon name="Package" size={16} color="#808089" />
         )}
       </View>
       <View className="flex-1 mr-3">
@@ -186,7 +186,7 @@ export default memo(function ShopBoard({
             <ScrollView className="px-3 pb-6">
               {claimedListings > 0 && isLoading ? (
                 <View className="py-4 items-center">
-                  <ActivityIndicator color="#71717a" />
+                  <ActivityIndicator color="#808089" />
                 </View>
               ) : null}
 
@@ -218,7 +218,7 @@ export default memo(function ShopBoard({
                           {hostOf(link.url)}
                         </Text>
                       </View>
-                      <Icon name="ExternalLink" size={15} color="#71717A" />
+                      <Icon name="ExternalLink" size={15} color="#808089" />
                     </TouchableOpacity>
                   ))}
                 </>

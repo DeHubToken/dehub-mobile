@@ -68,7 +68,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
 
         {!!event.location && (
           <View style={styles.locationRow}>
-            <Icon name="MapPin" size={13} color="#71717A" />
+            <Icon name="MapPin" size={13} color="#808089" />
             <Text style={styles.locationText} numberOfLines={1}>{event.location}</Text>
           </View>
         )}
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
   filterText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
   filterTextActive: { color: "#000000" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 },
-  emptyText: { color: "#71717A", fontSize: 13, marginTop: 12 },
+  emptyText: { color: "#808089", fontSize: 13, marginTop: 12 },
   retryBtn: {
     marginTop: 14,
     paddingHorizontal: 20,

@@ -175,7 +175,7 @@ export default function BoostSheet({
           // No badge at all. Not an error — an invitation, with the one thing
           // they can do about it.
           <View className="items-center gap-4 py-4">
-            <Icon name="Lock" size={28} color="#71717A" />
+            <Icon name="Lock" size={28} color="#808089" />
             <Text className="text-center text-sm text-white">
               SuperPowers need a staking badge. Stake DHB to unlock them.
             </Text>

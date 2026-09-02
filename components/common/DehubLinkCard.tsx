@@ -97,7 +97,7 @@ const RowCard: React.FC<RowCardProps> = ({
           {imageUri ? (
             <Image source={{ uri: imageUri }} style={styles.thumb} contentFit="cover" />
           ) : (
-            <Icon name={fallbackIcon} size={20} color="#71717a" />
+            <Icon name={fallbackIcon} size={20} color="#808089" />
           )}
         </View>
       )}
@@ -704,7 +704,7 @@ const styles = StyleSheet.create({
   },
   thumb: { width: '100%', height: '100%' },
   body: { flex: 1, minWidth: 0 },
-  eyebrow: { color: '#71717a', fontSize: 10, fontWeight: '600', textTransform: 'uppercase' },
+  eyebrow: { color: '#808089', fontSize: 10, fontWeight: '600', textTransform: 'uppercase' },
   title: { color: '#fff', fontSize: 14, fontWeight: '600', marginTop: 1 },
   subtitle: { color: '#d4d4d8', fontSize: 12, marginTop: 2 },
   meta: { color: '#a1a1aa', fontSize: 12, marginTop: 3 },

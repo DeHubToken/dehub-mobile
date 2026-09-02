@@ -138,7 +138,7 @@ export default function ShopSheet({
 
       <ScrollView className="px-4" keyboardShouldPersistTaps="handled">
         <View className="flex-row p-3 rounded-xl bg-white/[0.04] border border-white/10 mb-3">
-          <Icon name="Info" size={14} color="#71717A" />
+          <Icon name="Info" size={14} color="#808089" />
           <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1 leading-4">
             Put your own listings or affiliate links on this post — viewers open them from the
             Shop button.{" "}
@@ -153,7 +153,7 @@ export default function ShopSheet({
         <Text className="text-white/70 text-sm mb-2">From your shop</Text>
         {listingsLoading ? (
           <View className="py-4 items-center">
-            <ActivityIndicator color="#71717a" />
+            <ActivityIndicator color="#808089" />
           </View>
         ) : sellable.length === 0 ? (
           <Text className="text-theme-neutrals-500 text-xs mb-3">
@@ -185,7 +185,7 @@ export default function ShopSheet({
                       resizeMode="cover"
                     />
                   ) : (
-                    <Icon name="Package" size={16} color="#71717a" />
+                    <Icon name="Package" size={16} color="#808089" />
                   )}
                 </View>
                 <View className="flex-1 mr-2">
@@ -217,7 +217,7 @@ export default function ShopSheet({
               <View className="flex-row items-center justify-between mb-2">
                 <Text className="text-theme-neutrals-500 text-xs">Link {index + 1}</Text>
                 <TouchableOpacity onPress={() => remove(index)} activeOpacity={0.7} hitSlop={10}>
-                  <Icon name="Trash2" size={15} color="#71717A" />
+                  <Icon name="Trash2" size={15} color="#808089" />
                 </TouchableOpacity>
               </View>
               <TextInput
@@ -273,7 +273,7 @@ export default function ShopSheet({
           className="mt-4 mb-2 py-3 rounded-full items-center"
           style={{ backgroundColor: canSave ? "#fff" : "rgba(255,255,255,0.1)" }}
         >
-          <Text className="text-sm font-semibold" style={{ color: canSave ? "#09090B" : "#71717A" }}>
+          <Text className="text-sm font-semibold" style={{ color: canSave ? "#09090B" : "#808089" }}>
             Save
           </Text>
         </TouchableOpacity>

@@ -483,7 +483,7 @@ export default function GuideScreen() {
 
       {/* Search */}
       <View style={styles.searchWrap}>
-        <Icon name="Search" size={16} color="#71717A" />
+        <Icon name="Search" size={16} color="#808089" />
         <TextInput
           value={query}
           onChangeText={setQuery}
@@ -514,7 +514,7 @@ export default function GuideScreen() {
                     <Icon name={section.icon} size={18} color="#FFFFFF" strokeWidth={1.8} />
                   </View>
                   <Text style={styles.sectionTitle}>{section.title}</Text>
-                  <Icon name={isOpen ? "ChevronUp" : "ChevronDown"} size={18} color="#71717A" />
+                  <Icon name={isOpen ? "ChevronUp" : "ChevronDown"} size={18} color="#808089" />
                 </Pressable>
 
                 {isOpen && (
@@ -615,5 +615,5 @@ const styles = StyleSheet.create({
   tipRow: { flexDirection: "row", alignItems: "flex-start", gap: 8 },
   tipText: { flex: 1, color: "#D4D4D8", fontSize: 12, lineHeight: 17 },
   empty: { alignItems: "center", justifyContent: "center", paddingVertical: 48 },
-  emptyText: { color: "#71717A", fontSize: 13, marginTop: 12 },
+  emptyText: { color: "#808089", fontSize: 13, marginTop: 12 },
 });

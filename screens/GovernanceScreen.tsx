@@ -78,7 +78,7 @@ const ProposalCard: React.FC<{ proposal: GovernanceProposal }> = ({ proposal }) 
           <Text style={styles.metaText}>{formatCompactNumber(againstW)}</Text>
         </View>
         <View style={styles.metaItem}>
-          <Icon name="MessageCircle" size={13} color="#71717A" />
+          <Icon name="MessageCircle" size={13} color="#808089" />
           <Text style={styles.metaText}>{formatCompactNumber(proposal.comment_count || 0)}</Text>
         </View>
       </View>
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
   filterText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
   filterTextActive: { color: "#000000" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 },
-  emptyText: { color: "#71717A", fontSize: 13, marginTop: 12 },
+  emptyText: { color: "#808089", fontSize: 13, marginTop: 12 },
   retryBtn: {
     marginTop: 14,
     paddingHorizontal: 20,
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   barFor: { backgroundColor: "#F4F4F5" },
-  barAgainst: { backgroundColor: "#71717A" },
+  barAgainst: { backgroundColor: "#808089" },
   pctRow: { flexDirection: "row", justifyContent: "space-between" },
   forText: { color: "#F4F4F5", fontSize: 12, fontWeight: "600" },
   againstText: { color: "#8B8D90", fontSize: 12, fontWeight: "600" },

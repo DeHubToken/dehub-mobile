@@ -199,7 +199,7 @@ export default function AccountsScreen() {
       {tab === "browse" ? (
         <>
           <View style={styles.searchWrap}>
-            <Icon name="Search" size={15} color="#71717A" />
+            <Icon name="Search" size={15} color="#808089" />
             <TextInput
               value={search}
               onChangeText={setSearch}
@@ -218,7 +218,7 @@ export default function AccountsScreen() {
                 accessibilityRole="button"
                 accessibilityLabel={t("accounts.clearSearch")}
               >
-                <Icon name="X" size={15} color="#71717A" />
+                <Icon name="X" size={15} color="#808089" />
               </Pressable>
             )}
           </View>
@@ -374,7 +374,7 @@ const styles = StyleSheet.create({
   chipTextActive: { color: "#FFFFFF" },
   chipDivider: { width: 1, height: 18, backgroundColor: "rgba(255,255,255,0.14)" },
   count: {
-    color: "#71717A",
+    color: "#808089",
     fontSize: 11,
     textAlign: "right",
     paddingHorizontal: H_PADDING,
@@ -398,7 +398,7 @@ const styles = StyleSheet.create({
   cardPriceCol: { flexShrink: 0, alignItems: "flex-end" },
   handleRow: { flexDirection: "row", alignItems: "center", gap: 6 },
   handle: { color: "#FFFFFF", fontSize: 17, fontWeight: "700", flexShrink: 1 },
-  at: { color: "#71717A" },
+  at: { color: "#808089" },
   badge: { width: 14, height: 14 },
   chipWrap: { flexDirection: "row", flexWrap: "wrap", gap: 5 },
   metaChip: {
@@ -414,10 +414,10 @@ const styles = StyleSheet.create({
   cardDesc: { color: "#A1A1AA", fontSize: 11, lineHeight: 15 },
 
   cardPrice: { color: "#FFFFFF", fontSize: 17, fontWeight: "700", flexShrink: 0 },
-  cardPriceUnit: { color: "#71717A", fontSize: 10, fontWeight: "500", flexShrink: 0 },
+  cardPriceUnit: { color: "#808089", fontSize: 10, fontWeight: "500", flexShrink: 0 },
 
   center: { alignItems: "center", justifyContent: "center", paddingVertical: 56, gap: 12 },
-  emptyText: { color: "#71717A", fontSize: 13, textAlign: "center" },
+  emptyText: { color: "#808089", fontSize: 13, textAlign: "center" },
   retryBtn: {
     paddingHorizontal: 16,
     paddingVertical: 8,

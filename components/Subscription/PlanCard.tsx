@@ -205,15 +205,15 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
             </TouchableOpacity>
           ) : isSubscribed ? (
             <View style={[s.editBtn, { opacity: 0.5 }]}>
-              <Icon name="Check" size={16} color="#71717a" />
-              <Text style={[s.editBtnText, { color: "#71717a" }]}>Subscribed</Text>
+              <Icon name="Check" size={16} color="#808089" />
+              <Text style={[s.editBtnText, { color: "#808089" }]}>Subscribed</Text>
             </View>
           ) : !published || !isBuyable ? (
             /* Not listed on chain — nobody can buy it, so say so instead of
                offering a button that reverts in the buyer's wallet. */
             <View style={[s.editBtn, { opacity: 0.6 }]}>
-              <Icon name="Clock" size={14} color="#71717a" />
-              <Text style={[s.editBtnText, { color: "#71717a" }]}>Not available yet</Text>
+              <Icon name="Clock" size={14} color="#808089" />
+              <Text style={[s.editBtnText, { color: "#808089" }]}>Not available yet</Text>
             </View>
           ) : (
             <AccentButtonGradient>
@@ -412,7 +412,7 @@ const s = StyleSheet.create({
     fontWeight: "600",
   },
   confirmStage: {
-    color: "#71717a",
+    color: "#808089",
     fontSize: 12,
     textAlign: "center",
   },

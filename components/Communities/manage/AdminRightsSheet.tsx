@@ -195,7 +195,7 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
               accessibilityRole="button"
               accessibilityLabel="Close"
             >
-              <Icon name="X" size={20} color="#71717a" />
+              <Icon name="X" size={20} color="#808089" />
             </TouchableOpacity>
           </View>
 

@@ -83,7 +83,7 @@ const Thumb = memo(function Thumb({
       {uri ? (
         <Image source={{ uri }} style={{ width: size, height: size }} resizeMode="cover" />
       ) : (
-        <Package size={size * 0.4} color="#71717a" />
+        <Package size={size * 0.4} color="#808089" />
       )}
     </View>
   );

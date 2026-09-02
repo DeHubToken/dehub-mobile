@@ -141,7 +141,7 @@ const CommunityInviteScreen: React.FC = () => {
         <ScreenHeader title={t("communities.title")} />
         <View className="flex-1 items-center justify-center px-6">
           <View style={styles.invalidCard}>
-            <Icon name="Link" size={22} color="#71717a" />
+            <Icon name="Link" size={22} color="#808089" />
             <Text className="text-white text-sm text-center mt-3">{message}</Text>
             <TouchableOpacity style={styles.secondaryBtn} onPress={goToCommunities}>
               <Text style={styles.secondaryBtnText}>{t("communities.backButton")}</Text>
@@ -175,7 +175,7 @@ const CommunityInviteScreen: React.FC = () => {
                   contentFit="cover"
                 />
               ) : (
-                <Icon name="Users" size={28} color="#71717a" />
+                <Icon name="Users" size={28} color="#808089" />
               )}
             </View>
           </View>

@@ -151,7 +151,7 @@ const SharedPostPreviewComponent: React.FC<SharedPostPreviewProps> = ({
 
       <View className="px-3 py-2">
         <View className="flex-row items-center gap-1 mb-0.5">
-          <Icon name="Link" size={11} color={isMine ? "rgba(255,255,255,0.6)" : "#71717a"} />
+          <Icon name="Link" size={11} color={isMine ? "rgba(255,255,255,0.6)" : "#808089"} />
           <Text className={`text-[11px] ${subColor}`}>DeHub post</Text>
         </View>
         {!!title && (

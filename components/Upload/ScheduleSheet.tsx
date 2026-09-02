@@ -248,7 +248,7 @@ export default function ScheduleSheet({
         >
           <Text
             className="text-sm font-semibold"
-            style={{ color: selectedDate ? "#09090B" : "#71717A" }}
+            style={{ color: selectedDate ? "#09090B" : "#808089" }}
           >
             Confirm
           </Text>

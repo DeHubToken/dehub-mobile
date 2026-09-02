@@ -132,7 +132,7 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
         <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24, gap: 12 }}>
-          <Icon name="WifiOff" size={48} color="#71717A" />
+          <Icon name="WifiOff" size={48} color="#808089" />
           <Text style={{ color: "#A6A9AC", fontSize: 14, textAlign: "center" }}>{error}</Text>
           <Pressable
             onPress={load}
