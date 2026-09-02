@@ -434,9 +434,27 @@ export default function WorkJobDetailScreen() {
                   const awaitingPayment =
                     s.approval_status === "approved" && !s.payout_tx_hash;
                   const rejected = s.approval_status === "rejected";
-                  const due =
-                    Number(s.payout_amount) ||
-                    (job.job_type === "contract" ? job.total_budget : job.price_per_unit);
+                  // What is left of the budget, not what the budget was.
+                  //
+                  // A pending submission has no payout_amount of its own, so
+                  // every one of them fell through to the job-level figure —
+                  // for a contract job that is the WHOLE budget, offered again
+                  // per submission. Two pending rows on a 500k contract each
+                  // read "Approve & pay 500,000" and approving both sent a
+                  // million. Nothing downstream caps it: the payout hook checks
+                  // currency, chain, a positive amount and the wallet balance,
+                  // and released_amount is only ever written, never read.
+                  const released = Number(job.released_amount) || 0;
+                  const remaining = Math.max(
+                    0,
+                    (Number(job.total_budget) || 0) - released,
+                  );
+                  const askingPrice =
+                    job.job_type === "contract" ? remaining : job.price_per_unit;
+                  const due = Number(s.payout_amount) || Math.min(askingPrice, remaining);
+                  // Already-settled rows keep showing the amount they were paid;
+                  // only an unpaid row is blocked once the budget is spent.
+                  const budgetSpent = !s.payout_amount && remaining <= 0;
                   return (
                     <View key={s.id} style={styles.row}>
                       <View style={styles.rowHead}>
@@ -509,7 +527,11 @@ export default function WorkJobDetailScreen() {
                       {isPoster && s.approval_status === "pending" && (
                         <View style={styles.subActions}>
                           <Pressable
-                            disabled={approveMutation.isPending || payMutation.isPending}
+                            disabled={
+                              approveMutation.isPending ||
+                              payMutation.isPending ||
+                              budgetSpent
+                            }
                             onPress={() =>
                               approveMutation.mutate({
                                 submission_id: s.id,
@@ -521,7 +543,7 @@ export default function WorkJobDetailScreen() {
                                 pay: true,
                               })
                             }
-                            style={styles.approveBtn}
+                            style={[styles.approveBtn, budgetSpent && styles.disabled]}
                           >
                             <Icon name="Wallet" size={12} color="#D4D4D8" />
                             <Text style={styles.approveText}>
@@ -564,7 +586,7 @@ export default function WorkJobDetailScreen() {
                       {isPoster && awaitingPayment && (
                         <View style={styles.subActions}>
                           <Pressable
-                            disabled={payMutation.isPending}
+                            disabled={payMutation.isPending || budgetSpent}
                             onPress={() =>
                               payMutation.mutate({
                                 submission_id: s.id,
@@ -574,7 +596,7 @@ export default function WorkJobDetailScreen() {
                                 payout_amount: due,
                               })
                             }
-                            style={styles.approveBtn}
+                            style={[styles.approveBtn, budgetSpent && styles.disabled]}
                           >
                             <Icon name="Wallet" size={12} color="#D4D4D8" />
                             <Text style={styles.approveText}>
