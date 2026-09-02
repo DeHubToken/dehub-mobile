@@ -39,9 +39,28 @@ concurrency:
 jobs:
   publish:
     name: Publish JS bundle
-    # workflow_run fires on failure too, and a bundle that did not typecheck
-    # would reach every installed app.
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    # Four things have to be true before a bundle reaches installed apps, and
+    # the `branches:` filter above establishes none of them on its own — it
+    # matches the HEAD BRANCH NAME of the run that triggered this one.
+    #
+    #   conclusion       CI passed. workflow_run fires on failure too, and a
+    #                    bundle that did not typecheck would ship to everyone.
+    #   event            it was a push. CI also runs on `pull_request`, so
+    #                    without this a PR run publishes — and the checkout
+    #                    below takes its head SHA, so `npm ci` and the bundle
+    #                    both come from code nobody merged.
+    #   head_repository  it was OUR push. This repo is public and takes fork
+    #                    PRs; a fork whose own branch is called `main` produces
+    #                    a completed CI run whose head_branch is `main`, which
+    #                    the filter above happily matches. #152 was merged from
+    #                    exactly that shape of fork, so this is not theoretical.
+    #   head_branch      belt and braces, in case the filter is ever relaxed.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_repository.full_name == github.repository &&
+       github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
