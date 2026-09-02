@@ -1204,6 +1204,8 @@
     "loginRequired": "لاگ ان ضروری ہے"
   },
   "messages": {
+    "encrypted": "اینڈ ٹو اینڈ انکرپٹڈ",
+    "cannotDecrypt": "انکرپٹڈ پیغام — ایں ڈیوائس تے کھل نی سڳدا",
     "title": "پیغام",
     "searchConversations": "گل بات ڳولو...",
     "failedToLoad": "گل بات لوڈ کائنی ہوئیاں",

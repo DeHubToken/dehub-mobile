@@ -1204,6 +1204,8 @@
     "loginRequired": "Aamäldig erforderlich"
   },
   "messages": {
+    "encrypted": "End-zu-End-verschlüsslet",
+    "cannotDecrypt": "Verschlüssleti Nachricht — cha uf dem Grät nid gööffnet wärde",
     "title": "Nochrichtä",
     "searchConversations": "Gespräch sueche...",
     "failedToLoad": "Gespräch lade fehlgschlage",

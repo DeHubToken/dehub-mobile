@@ -1204,6 +1204,8 @@
     "loginRequired": "መግባት ያስፈልጋል"
   },
   "messages": {
+    "encrypted": "ከጫፍ እስከ ጫፍ የተመሰጠረ",
+    "cannotDecrypt": "የተመሰጠረ መልእክት — በዚህ መሣሪያ ላይ ሊከፈት አይችልም",
     "title": "መልዕክቶች",
     "searchConversations": "ውይይቶችን ፈልግ...",
     "failedToLoad": "ውይይቶችን መጫን አልተሳካም",

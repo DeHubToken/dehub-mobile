@@ -1105,6 +1105,8 @@
     "clearNotification": "Benachrichtigung löschen"
   },
   "messages": {
+    "encrypted": "Ende-zu-Ende-verschlüsselt",
+    "cannotDecrypt": "Verschlüsselte Nachricht — kann auf diesem Gerät nicht geöffnet werden",
     "title": "Nachrichten",
     "searchConversations": "Unterhaltungen suchen...",
     "failedToLoad": "Unterhaltungen konnten nicht geladen werden",

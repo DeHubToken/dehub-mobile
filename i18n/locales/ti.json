@@ -1204,6 +1204,8 @@
     "loginRequired": "ብዓል ዝድሊ"
   },
   "messages": {
+    "encrypted": "ካብ ጫፍ ናብ ጫፍ ዝተመስጠረ",
+    "cannotDecrypt": "ዝተመስጠረ መልእኽቲ — ኣብዚ መሳርሒ ክኽፈት ኣይክእልን",
     "title": "መልእኽትታት",
     "searchConversations": "ዕላላት ድለ...",
     "failedToLoad": "ዕላላት ምጽዓን ኣይተዓወተን",

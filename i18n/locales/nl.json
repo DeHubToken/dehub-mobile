@@ -1568,6 +1568,8 @@
     "clearNotification": "Melding wissen"
   },
   "messages": {
+    "encrypted": "End-to-end versleuteld",
+    "cannotDecrypt": "Versleuteld bericht — kan niet worden geopend op dit apparaat",
     "title": "Berichten",
     "searchConversations": "Gesprekken zoeken...",
     "failedToLoad": "Gesprekken laden mislukt",

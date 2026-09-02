@@ -10,6 +10,8 @@ import type { DmConversation, DmMessage, DmUser } from "../../services/dm/dm.typ
 import { getOtherParticipant } from "../../services/dm/dm.types";
 import { useUnreadCount } from "../../store/dm.store";
 import { dmDraftKey } from "../../libs/draft-cache";
+import { useTranslation } from "react-i18next";
+import { isEncryptedContent } from "../../libs/dm-e2ee/crypto";
 import { useDraftText } from "../../hooks/useDraft";
 
 interface ConversationItemProps {
@@ -29,6 +31,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   onLongPress,
   onAvatarPress,
 }) => {
+  const { t } = useTranslation();
   const other = useMemo(
     () => getOtherParticipant(conversation, myUserId, myAddress),
     [conversation, myUserId, myAddress],
@@ -108,6 +111,14 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
       return {
         previewText: `${prefix}Forwarded message`,
         previewIcon: "arrow-redo" as const,
+      };
+    }
+    // A line the store has not opened yet (or cannot open on this device)
+    // must never show its envelope.
+    if (last.undecryptable || isEncryptedContent(last.content)) {
+      return {
+        previewText: `${prefix}🔒 ${t("messages.cannotDecrypt")}`,
+        previewIcon: null,
       };
     }
     const text = last.content?.replace(/\n/g, " ") || "";

@@ -1217,6 +1217,8 @@
     "loginRequired": "පිවිසීම අවශ්‍යයි"
   },
   "messages": {
+    "encrypted": "අන්තයේ සිට අන්තය දක්වා සංකේතනය කර ඇත",
+    "cannotDecrypt": "සංකේතිත පණිවිඩය — මෙම උපාංගයේ විවෘත කළ නොහැක",
     "title": "පණිවිඩ",
     "searchConversations": "සංවාද සොයන්න...",
     "failedToLoad": "සංවාද පූරණය අසාර්ථකයි",

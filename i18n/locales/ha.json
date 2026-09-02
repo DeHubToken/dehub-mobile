@@ -1204,6 +1204,8 @@
     "loginRequired": "Ana buƙatar shiga"
   },
   "messages": {
+    "encrypted": "An ɓoye daga ƙarshe zuwa ƙarshe",
+    "cannotDecrypt": "Saƙon da aka ɓoye — ba za a iya buɗewa a wannan na'urar ba",
     "title": "Saƙonni",
     "searchConversations": "Bincika tattaunawa...",
     "failedToLoad": "Ba a iya ɗora tattaunawa ba",

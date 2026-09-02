@@ -1204,6 +1204,8 @@
     "loginRequired": "Daxil olmaq lazımdır"
   },
   "messages": {
+    "encrypted": "Uçdan-uca şifrələnib",
+    "cannotDecrypt": "Şifrələnmiş mesaj — bu cihazda açıla bilmir",
     "title": "Mesajlar",
     "searchConversations": "Söhbətləri axtar...",
     "failedToLoad": "Söhbətləri yükləmək uğursuz oldu",

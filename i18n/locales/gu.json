@@ -1204,6 +1204,8 @@
     "loginRequired": "લૉગ ઇન જરૂરી"
   },
   "messages": {
+    "encrypted": "એન્ડ-ટુ-એન્ડ એન્ક્રિપ્ટેડ",
+    "cannotDecrypt": "એન્ક્રિપ્ટેડ સંદેશ — આ ઉપકરણ પર ખોલી શકાતો નથી",
     "title": "સંદેશાઓ",
     "searchConversations": "વાતચીત શોધો...",
     "failedToLoad": "વાતચીત લોડ કરી શકાઈ નહીં",

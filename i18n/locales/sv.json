@@ -1135,6 +1135,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "encrypted": "Totalsträckskrypterad",
+    "cannotDecrypt": "Krypterat meddelande — kan inte öppnas på den här enheten",
     "title": "Meddelanden",
     "searchConversations": "Sök konversationer...",
     "failedToLoad": "Kunde inte ladda konversationer",

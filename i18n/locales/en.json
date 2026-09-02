@@ -1248,6 +1248,8 @@
     "loginRequired": "Log in required"
   },
   "messages": {
+    "encrypted": "End-to-end encrypted",
+    "cannotDecrypt": "Encrypted message — can't be opened on this device",
     "title": "Messages",
     "searchConversations": "Search conversations...",
     "failedToLoad": "Failed to load conversations",

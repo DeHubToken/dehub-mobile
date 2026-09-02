@@ -1137,6 +1137,8 @@
     "loginRequired": "Ilaina ny fidirana"
   },
   "messages": {
+    "encrypted": "Voasafidy hatrany am-piandohana ka hatrany am-piafarana",
+    "cannotDecrypt": "Hafatra voasafidy — tsy azo sokafana amin'ity fitaovana ity",
     "title": "Hafatra",
     "searchConversations": "Hikaroka resaka...",
     "failedToLoad": "Tsy nahomby ny fampidirana resaka",

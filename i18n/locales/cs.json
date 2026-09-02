@@ -1135,6 +1135,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "encrypted": "Šifrováno end-to-end",
+    "cannotDecrypt": "Šifrovaná zpráva — na tomto zařízení ji nelze otevřít",
     "title": "Zprávy",
     "searchConversations": "Hledat konverzace...",
     "failedToLoad": "Načtení konverzací selhalo",

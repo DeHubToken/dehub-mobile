@@ -1204,6 +1204,8 @@
     "loginRequired": "ننوتل اړین دي"
   },
   "messages": {
+    "encrypted": "له سره تر سره کوډ شوی",
+    "cannotDecrypt": "کوډ شوی پیغام — په دې وسیله کې نه شي پرانیستل کېدای",
     "title": "پیغامونه",
     "searchConversations": "خبرې اترې ولټوئ...",
     "failedToLoad": "خبرې اترې نشي لوډ کیدلی",

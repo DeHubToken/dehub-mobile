@@ -1596,6 +1596,8 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "messages": {
+    "encrypted": "End-tot-end geënkripteer",
+    "cannotDecrypt": "Geënkripteerde boodskap — kan nie op hierdie toestel oopgemaak word nie",
     "title": "Messages",
     "searchConversations": "Search conversations...",
     "failedToLoad": "Failed to load conversations",

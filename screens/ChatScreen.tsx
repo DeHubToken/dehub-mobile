@@ -90,6 +90,9 @@ import {
   getPeerPolicy,
 } from "../store/dm.store";
 import { dmSendQueue } from "../services/dm/dm.send";
+import { ensureDmEncryption } from "../libs/dm-e2ee/setup";
+import { decryptIncoming } from "../libs/dm-e2ee/peer";
+import { decryptFromPeerSync, onIdentityChange, prepareOutgoing } from "../libs/dm-e2ee/keys";
 import { getAccount, isFollowing as checkIsFollowing } from "../services/user.service";
 import { blockUser, unblockUser } from "../services/block.service";
 import { truncateAddress } from "../libs/strings.util";
@@ -447,6 +450,19 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     };
   }, [scrollToBottom]);
 
+  // Encryption identity: silent when the key is already in the keychain, one
+  // signature (biometric sheet on a locked wallet) the first time. Opening a
+  // chat is the moment it makes sense to ask; app start is not.
+  useEffect(() => {
+    if (!address) return;
+    ensureDmEncryption(address).then((s) => log.info("e2ee:", s)).catch(() => {});
+  }, [address]);
+
+  // Re-run the history fetch below once the identity comes online, so lines
+  // fetched before it (held as "undecryptable") open.
+  const [identityTick, setIdentityTick] = useState(0);
+  useEffect(() => onIdentityChange(() => setIdentityTick((t) => t + 1)), []);
+
 
   useEffect(() => {
     const t = setTimeout(scrollToBottom, 150);
@@ -584,10 +600,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     if (!currentConvId || !address) return;
     setInitialLoading(true);
     getMessages(currentConvId, { address, limit: PAGE_SIZE })
-      .then((resp) => {
+      .then(async (resp) => {
         const msgs = resp?.messages || [];
         if (msgs.length) {
-          const normalized = msgs.map((m: any) => normalizeAuthor(m));
+          const normalized = await decryptIncoming(currentConvId, address, msgs.map((m: any) => normalizeAuthor(m)));
           const mineFromServer = normalized.filter((m: any) => m.author === "me");
           log.info("[TICK_DEBUG] initial fetch — my messages isRead states:", mineFromServer.map((m: any) => ({
             msgId: m._id,
@@ -601,7 +617,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       })
       .catch((e) => log.error("fetch initial messages", e))
       .finally(() => setInitialLoading(false));
-  }, [currentConvId, address]);
+  }, [currentConvId, address, identityTick]);
 
 
   const loadMore = useCallback(async () => {
@@ -617,7 +633,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       if (msgs.length) {
         dmActions.upsertMessages(
           currentConvId,
-          msgs.map((m: any) => normalizeAuthor(m)),
+          await decryptIncoming(currentConvId, address, msgs.map((m: any) => normalizeAuthor(m))),
         );
       }
       if (msgs.length < PAGE_SIZE) setHasMore(false);
@@ -951,10 +967,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         (async () => {
           try {
             const cId = await ensureConversation();
+            const wire = await prepareOutgoing(peer.address, content);
             ws.emitAuthed(DMSocketEvent.EditMessage, {
               dmId: cId,
               messageId: editingMessage._id,
-              content,
+              content: wire.content,
             });
             dmActions.applyEdit({
               dmId: cId,
@@ -993,7 +1010,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       setReplyTo(null);
       setTipAmount(0);
     },
-    [dmDisabled, dmReason, dmFee, editingMessage, currentConvId, userId, address, ensureConversation, ws, scrollToBottom, replyTo, tipAmount, dispatchStandaloneTip],
+    [dmDisabled, dmReason, dmFee, editingMessage, currentConvId, userId, address, peer.address, ensureConversation, ws, scrollToBottom, replyTo, tipAmount, dispatchStandaloneTip],
   );
 
   const onSendGif = useCallback(
@@ -1129,15 +1146,32 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const onForwardSelect = useCallback(
     (targetConvId: ID) => {
       if (!forwardMessage) return;
-      ws.emitAuthed(DMSocketEvent.ForwardMessage, {
-        messageId: forwardMessage._id,
-        targetDmId: targetConvId,
-      });
+      if (forwardMessage.encrypted) {
+        // The server cannot re-encrypt for another conversation, so an
+        // encrypted line is re-sent from here: plaintext from the store,
+        // encrypted again for the target's peer, citing the original.
+        if (forwardMessage.undecryptable) {
+          toastWarning("This message can't be forwarded from this device");
+          return;
+        }
+        dmSendQueue.sendText({
+          conversationId: targetConvId,
+          userId: userId || "me",
+          address,
+          content: forwardMessage.content || "",
+          forwardedFrom: { messageId: forwardMessage._id },
+        });
+      } else {
+        ws.emitAuthed(DMSocketEvent.ForwardMessage, {
+          messageId: forwardMessage._id,
+          targetDmId: targetConvId,
+        });
+      }
       toastSuccess("Message forwarded");
       setForwardVisible(false);
       setForwardMessage(null);
     },
-    [forwardMessage, ws],
+    [forwardMessage, ws, userId, address],
   );
 
 
@@ -1164,7 +1198,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       // but the store wasn't cleaned up — reconcile by content match).
       const list = (dmState as any).optimisticByConversation?.[convId] as OptimisticMessage[] | undefined;
       if (!list?.length) return;
-      const content = payload?.content || "";
+      // The echo carries ciphertext; the optimistic entry holds plaintext.
+      const content = decryptFromPeerSync(peer.address, payload?.content || "") ?? "";
       const msgType = payload?.msgType || "";
       const match = list.find((p) => {
         if (msgType === "msg") return p.msgType === "msg" && p.content === content;
@@ -1189,7 +1224,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       try { u1(); } catch {}
       try { u2(); } catch {}
     };
-  }, [ws, currentConvId]);
+  }, [ws, currentConvId, peer.address]);
 
 
   const openMenu = useCallback(() => setMenuVisible(true), []);

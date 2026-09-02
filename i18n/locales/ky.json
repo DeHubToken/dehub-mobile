@@ -1105,6 +1105,8 @@
     "clearNotification": "Эскертмени тазалоо"
   },
   "messages": {
+    "encrypted": "Толук шифрленген",
+    "cannotDecrypt": "Шифрленген билдирүү — бул түзмөктө ачылбайт",
     "title": "Кабарлар",
     "searchConversations": "Маектерди издөө...",
     "failedToLoad": "Маектерди жүктөө ишке ашкан жок",

@@ -1105,6 +1105,8 @@
     "clearNotification": "Մաքրել ծանուցումը"
   },
   "messages": {
+    "encrypted": "Ծայրից ծայր գաղտնագրված",
+    "cannotDecrypt": "Գաղտնագրված հաղորդագրություն — այս սարքում հնարավոր չէ բացել",
     "title": "Haghordagrotyunner",
     "searchConversations": "Voronel zrouytser...",
     "failedToLoad": "Chehaghordagrvats bernel zrouytsnere",
