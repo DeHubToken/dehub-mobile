@@ -115,9 +115,11 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
   const needWeiRef = useRef(ethers.utils.parseUnits(String(shortfall.needDhb), 18));
 
   // An ERC20 route has to approve the router first, and that needs an
-  // AA-aware contract for whichever token the scan settled on.
+  // AA-aware contract for whichever token the scan settled on. WETH counts:
+  // it is a token like any other here, and only native ETH is paid as value.
+  const needsApproval = pick?.route.kind === "path" || pick?.route.kind === "singleToken";
   const payTokenContract = useERC20Contract(
-    pick && pick.route.kind === "path" ? pick.token.address : undefined,
+    pick && needsApproval ? pick.token.address : undefined,
   );
 
   useEffect(() => {
@@ -198,7 +200,7 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
 
   const handleTopUp = useCallback(async () => {
     if (!pick || !account || !swapRouterContract) return;
-    if (pick.route.kind === "path" && !payTokenContract) {
+    if (needsApproval && !payTokenContract) {
       setError("Preparing your wallet — try again in a moment.");
       setPhase("error");
       return;

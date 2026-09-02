@@ -137,7 +137,16 @@ export async function swapETHForDHB(params: {
 
 /** A priced way of buying DHB with one wallet token. */
 export type DhbBuyRoute =
+  /** Native ETH, paid as transaction value and refunded if over. */
   | { kind: "single"; tokenIn: string; amountIn: ethers.BigNumber; feeTier: number }
+  /**
+   * WETH, which trades against DHB in the same pool as ETH but is an ERC20:
+   * it has to be approved and pulled, not sent as value. Lumping it in with
+   * `single` meant a wallet holding WETH was quoted in WETH and then charged
+   * in native ETH — it failed for anyone without ETH, and silently spent ETH
+   * instead for anyone with it, leaving the WETH untouched.
+   */
+  | { kind: "singleToken"; tokenIn: string; amountIn: ethers.BigNumber; feeTier: number }
   | { kind: "path"; tokenIn: string; amountIn: ethers.BigNumber; path: string };
 
 /** Fee tiers for the token↔WETH leg: stables sit low, volatile pairs high. */
@@ -195,11 +204,11 @@ function encodeExactOutputPath(tokenIn: string, midFee: number, dhbFee: number):
   );
 }
 
-const isNativeOrWeth = (address: string) =>
-  !address ||
-  address === "0x0" ||
-  address === ethers.constants.AddressZero ||
-  address.toLowerCase() === WETH_BASE.toLowerCase();
+const isNative = (address: string) =>
+  !address || address === "0x0" || address === ethers.constants.AddressZero;
+
+const isWeth = (address: string) =>
+  !!address && address.toLowerCase() === WETH_BASE.toLowerCase();
 
 /**
  * Cheapest route from `tokenInAddress` to an exact `amountOutDhb`, or null when
@@ -210,12 +219,19 @@ export async function quoteDhbPurchase(
   amountOutDhb: ethers.BigNumber,
   tokenInAddress: string,
 ): Promise<DhbBuyRoute | null> {
-  // ETH and WETH trade against DHB directly.
-  if (isNativeOrWeth(tokenInAddress)) {
+  // ETH and WETH both trade against DHB directly — same pool, same price —
+  // but they are paid differently, so they are different routes. The path
+  // encoder below cannot serve either: it always routes through WETH as the
+  // middle hop, which for WETH itself would encode the same token twice.
+  if (isNative(tokenInAddress) || isWeth(tokenInAddress)) {
     const quote = await getSwapQuote(amountOutDhb);
-    return quote
-      ? { kind: "single", tokenIn: tokenInAddress, amountIn: quote.amountIn, feeTier: quote.feeTier }
-      : null;
+    if (!quote) return null;
+    return {
+      kind: isWeth(tokenInAddress) ? "singleToken" : "single",
+      tokenIn: tokenInAddress,
+      amountIn: quote.amountIn,
+      feeTier: quote.feeTier,
+    };
   }
 
   const quoter = new ethers.Contract(UNISWAP_QUOTER_V2, QUOTER_ABI, getBaseProvider());
@@ -283,6 +299,32 @@ export async function buyDhbViaRoute(params: {
   }
 
   const deadline = ethers.BigNumber.from(Math.floor(Date.now() / 1000) + SWAP_DEADLINE_SECONDS);
+
+  // WETH is one hop, so it takes exactOutputSingle like the native path — but
+  // pulled through the approval above rather than sent as value, and with no
+  // refundETH to make, since nothing native was attached.
+  if (route.kind === "singleToken") {
+    const wethCalldata = routerContract.interface.encodeFunctionData("exactOutputSingle", [
+      {
+        tokenIn: route.tokenIn,
+        tokenOut: DHB_BASE,
+        fee: route.feeTier,
+        recipient,
+        amountOut: amountOutDhb,
+        amountInMaximum: maxAmountIn,
+        sqrtPriceLimitX96: 0,
+      },
+    ]);
+    const wethRes = await writeContractAA(
+      routerContract,
+      "multicall",
+      [deadline, [wethCalldata]],
+      { context: "swap" },
+    );
+    await wethRes.wait?.(1);
+    return { hash: wethRes.hash };
+  }
+
   const swapCalldata = routerContract.interface.encodeFunctionData("exactOutput", [
     {
       path: route.path,
