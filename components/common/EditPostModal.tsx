@@ -3,6 +3,7 @@
  *
  * Uses GlassModal with center presentation and category chips.
  */
+import { MATURE_CONTENT_ENABLED } from "../../config/storefront";
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import {
   View,
@@ -500,6 +501,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
           {/* Content rating. Same switch the composer carries, for a post that
               is already out — refused with 403 once a moderator has rated it,
               and that message surfaces as-is. */}
+          {MATURE_CONTENT_ENABLED && (
           <TouchableOpacity
             onPress={() => setIsMature((v) => !v)}
             activeOpacity={0.7}
@@ -529,6 +531,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               />
             </View>
           </TouchableOpacity>
+          )}
 
           <CategoryDrawer
             visible={categoryOpen}

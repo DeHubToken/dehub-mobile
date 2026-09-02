@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Không khả dụng trong phiên bản ứng dụng này"
+  },
   "nav": {
     "home": "Trang chủ",
     "explore": "Khám phá",

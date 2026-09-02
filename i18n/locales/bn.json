@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "অ্যাপের এই সংস্করণে উপলব্ধ নয়"
+  },
   "nav": {
     "home": "হোম",
     "explore": "অন্বেষণ",

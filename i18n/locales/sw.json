@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Haipatikani katika toleo hili la programu"
+  },
   "nav": {
     "home": "Nyumbani",
     "explore": "Gundua",

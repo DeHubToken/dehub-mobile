@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "ऐप के ई संस्करण में उपलब्ध नइखे"
+  },
   "nav": {
     "home": "घरे",
     "explore": "खोजीं",

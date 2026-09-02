@@ -1,3 +1,5 @@
+import { DIGITAL_PURCHASES_ENABLED, MATURE_CONTENT_ENABLED } from "../config/storefront";
+import { t } from "i18next";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
@@ -1040,6 +1042,15 @@ export default function UploadScreen() {
     ).catch(() => null);
 
     if (quotaCost?.chargeable && quotaCost.amountDhb > 0) {
+      // The App Store build cannot sell the extra slot for DHB (guideline
+      // 3.1.1), so past the free allowance it simply waits for tomorrow.
+      if (!DIGITAL_PURCHASES_ENABLED) {
+        toastError(
+          t("storefront.unavailable"),
+          "You've used today's free posting allowance",
+        );
+        return;
+      }
       const { readDhbBalance } = await import("../services/post-quota-payment");
       const held = await readDhbBalance();
       const owed = quotaCost.amountDhb + (postQuota?.outstandingDhb ?? 0);
@@ -2529,6 +2540,7 @@ export default function UploadScreen() {
                   creator reach on a post they believe is fine, so it sits past
                   the options they came to set rather than second, under the
                   thumb, where a stray tap goes unnoticed. */}
+                {MATURE_CONTENT_ENABLED && (
                 <View className="flex-row items-center justify-between py-3">
                   <View className="flex-row items-center flex-1 mr-3">
                     <Icon name="EyeOff" size={18} color="#fff" />
@@ -2541,6 +2553,7 @@ export default function UploadScreen() {
                   </View>
                   <CustomSwitch value={isMature} onValueChange={setIsMature} />
                 </View>
+                )}
             </View>
           </View>
         </View>

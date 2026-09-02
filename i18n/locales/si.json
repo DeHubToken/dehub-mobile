@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "යෙදුමේ මෙම අනුවාදයේ නොමැත"
+  },
   "nav": {
     "home": "මුල් පිටුව",
     "explore": "ගවේෂණය",

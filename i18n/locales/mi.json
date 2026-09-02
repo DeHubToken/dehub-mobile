@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Kāore i te wātea i tēnei putanga o te taupānga"
+  },
   "nav": {
     "home": "Kāinga",
     "explore": "Tūhura",

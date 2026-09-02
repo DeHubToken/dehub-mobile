@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "이 버전의 앱에서는 사용할 수 없습니다"
+  },
   "nav": {
     "home": "홈",
     "explore": "탐색",

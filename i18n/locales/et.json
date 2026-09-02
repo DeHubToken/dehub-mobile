@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Selles rakenduse versioonis pole saadaval"
+  },
   "nav": {
     "home": "Avaleht",
     "explore": "Avasta",

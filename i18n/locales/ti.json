@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "ኣብዚ ስሪት ናይዚ መተግበሪ ኣይርከብን"
+  },
   "nav": {
     "home": "ገዛ",
     "explore": "ድለ",

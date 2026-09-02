@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Non disponibile in questa versione dell'app"
+  },
   "nav": {
     "home": "Home",
     "explore": "Esplora",

@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "Uygulamanın bu sürümünde kullanılamaz"
+  },
   "nav": {
     "home": "Ana Sayfa",
     "explore": "Keşfet",

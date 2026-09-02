@@ -1,4 +1,7 @@
 {
+  "storefront": {
+    "unavailable": "ئەپنىڭ بۇ نەشرىدە يوق"
+  },
   "nav": {
     "home": "باش بەت",
     "explore": "ئىزدەش",
