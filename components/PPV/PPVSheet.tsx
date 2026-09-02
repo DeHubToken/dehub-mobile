@@ -229,7 +229,13 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
 
   const handleUnlock = useCallback(() => {
     requireAuth(async () => {
-      if (isBusy || phase !== "idle") return;
+      // "error" has to be allowed through, not just "idle". Every failure path
+      // sets phase to "error", the button relabels itself to Retry, and isBusy
+      // covers only the in-flight states — so the button stayed enabled while
+      // this guard rejected every press. Nothing else returns phase to "idle"
+      // except reopening the sheet, so Retry was dead until you closed it.
+      // The two lines below already clear the previous error and shortfall.
+      if (isBusy || (phase !== "idle" && phase !== "error")) return;
       setPpvError(null);
       // A retry after a top-up starts clean: the balance has moved, so the
       // last attempt's gap says nothing about this one.
