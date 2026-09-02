@@ -5,6 +5,7 @@ import type { RootStackParamList } from './types';
 import { createLogger } from '../libs/logger';
 import { emitProfileDeepLink, emitStageDeepLink } from '../libs/deeplink.events';
 import { couldBeProfileSegment, isEnsHandle } from '../libs/ens-handle';
+import { RESERVED_LINK_SEGMENTS } from '../libs/reserved-usernames';
 
 const logger = createLogger('DeepLink');
 
@@ -95,10 +96,18 @@ export const APP_SCHEME = 'dehub';
  *   claimed as @usernames and never reach the route that exists for it.
  *   'accounts' — the account marketplace — is here for exactly the same reason.
  */
-const RESERVED_PREFIXES = [
-  'app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth',
-  'arcade', 'builder', 'cinema', 'stage', 'stages', 'usernames', 'accounts',
-];
+// One list, from libs/reserved-usernames.ts.
+//
+// This was fourteen names maintained by hand while that file already held
+// ninety-four and libs/dehub-links.ts a third of forty-eight. Eighty-four
+// canonical names were missing here, so /docs, /music, /shorts, /tv, /work,
+// /explore, /settings, /wallet, /messages, /leaderboard and /governance were
+// all read as usernames and opened an empty profile sheet.
+//
+// The comment above about "one list, one helper, both callers" was right about
+// the two callers in this file and wrong about the scope: the judgement lives
+// in three files, so the list has to.
+const RESERVED_PREFIXES = RESERVED_LINK_SEGMENTS;
 
 export const getDeepLinkPrefix = (): string[] => {
   const prefixes = [
