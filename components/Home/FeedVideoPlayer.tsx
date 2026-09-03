@@ -1031,5 +1031,79 @@ const styles = StyleSheet.create({
   },
 });
 
-const FeedVideoPlayer = memo(FeedVideoPlayerComponent);
-export default FeedVideoPlayer;
+const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
+
+/**
+ * What an off-screen card renders instead of the player.
+ *
+ * expo-video builds an ExoPlayer inside `useVideoPlayer` whether or not it has
+ * a source — `useVideoPlayer(cond ? url : null)` saves the buffers, not the
+ * player. A feed keeps a render window of several rows, so every row in it
+ * held a player even with autoplay off, and on a mid-range Android that heap
+ * is what ran out. Rows the feed has not marked visible now render this: the
+ * same box, the same thumbnail, the same duration badge, and no player at all.
+ * The full component mounts the moment the row scrolls into view.
+ */
+const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "thumbnail" | "duration" | "hideControls" | "onPress">> = memo(
+  ({ thumbnail, duration, hideControls, onPress }) => {
+    const mediaAspect = useMediaAspect(thumbnail);
+    return (
+      <View
+        style={[
+          styles.container,
+          {
+            aspectRatio: mediaAspect,
+            width: Math.min(CARD_WIDTH, Math.round(MAX_MEDIA_HEIGHT * mediaAspect)),
+            maxWidth: "100%",
+            alignSelf: "flex-start",
+          },
+        ]}
+      >
+        {thumbnail ? (
+          <SmartImage
+            source={{ uri: thumbnail }}
+            style={styles.thumbnail}
+            contentFit="contain"
+            recyclingKey={thumbnail}
+            transition={0}
+          />
+        ) : (
+          <View style={[styles.thumbnail, styles.noThumb]}>
+            <Icon name="VideoOff" size={40} color="#666" />
+          </View>
+        )}
+        {!hideControls && (
+          <Pressable onPress={onPress} style={styles.playOverlay}>
+            <View style={styles.glassPlayButton}>
+              <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
+              <View style={styles.glassOverlay} />
+              <View style={{ marginLeft: 2 }}>
+                <Icon name="Play" size={24} color="#fff" />
+              </View>
+            </View>
+          </Pressable>
+        )}
+        {!hideControls && duration ? (
+          <View style={styles.durationBadge}>
+            <Text style={styles.durationText}>{duration}</Text>
+          </View>
+        ) : null}
+      </View>
+    );
+  },
+);
+FeedVideoPoster.displayName = "FeedVideoPoster";
+
+const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) =>
+  props.isVisible ? (
+    <FeedVideoPlayerActive {...props} />
+  ) : (
+    <FeedVideoPoster
+      thumbnail={props.thumbnail}
+      duration={props.duration}
+      hideControls={props.hideControls}
+      onPress={props.onPress}
+    />
+  );
+
+export default memo(FeedVideoPlayer);

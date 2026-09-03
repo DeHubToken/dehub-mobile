@@ -26,6 +26,14 @@ const PostResolverScreen: React.FC = () => {
   const commentId: string | undefined =
     route.params?.commentId ?? route.params?.c;
 
+  // Root already sits at the bottom of this stack. Replacing the resolver with
+  // a second Root mounted the whole tab tree twice — two home feeds fetching
+  // and scrolling under one another. Pop back to the one that exists.
+  const goHome = useCallback(() => {
+    if (navigation.canGoBack()) navigation.popToTop();
+    else navigation.replace(ScreenNames.Root);
+  }, [navigation]);
+
   const resolve = useCallback(async () => {
     // The slug carries no tokenId, and everything downstream keys on one.
     // Resolving also survives the post minting later, since the server keeps
@@ -40,14 +48,14 @@ const PostResolverScreen: React.FC = () => {
         });
       } else {
         logger.warn("Slug did not resolve — going home", { newPostId });
-        navigation.replace(ScreenNames.Root);
+        goHome();
       }
       return;
     }
 
     if (!tokenId) {
       logger.warn("No tokenId — going home");
-      navigation.replace(ScreenNames.Root);
+      goHome();
       return;
     }
 
@@ -56,7 +64,7 @@ const PostResolverScreen: React.FC = () => {
       tokenId,
       commentId,
     });
-  }, [tokenId, newPostId, commentId, navigation]);
+  }, [tokenId, newPostId, commentId, navigation, goHome]);
 
   useEffect(() => {
     resolve();
