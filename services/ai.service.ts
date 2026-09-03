@@ -1,6 +1,7 @@
 import env from '../config/env';
 import { createLogger } from '../libs/logger';
 import { getAuthToken } from '../libs/auth.utils';
+import { requiresImageGeneration, requiresVideoGeneration } from './ai-intent';
 
 const log = createLogger('ai.service');
 
@@ -794,144 +795,39 @@ export async function suggestReplies(
 
 /* ── Request classification ──────────────────────────────────────────────── */
 /*
- * These phrase lists are dehubweb's, verbatim from `AssistantPage.tsx`. They
- * are deliberately not the two-regex verb/noun test this file used to carry:
- * that missed most of what web routes to a generator ("photo of a husky",
- * "bring it to life", "what does a DeHub poster look like"), so the same
- * sentence opened a paywall on desktop and got a chat reply on a phone.
+ * The phrase lists and the matching rules now live in `./ai-intent`, shared
+ * verbatim with dehubweb's `src/lib/ai-intent.ts` so the same sentence routes
+ * the same way on both. They are re-exported under the names this module has
+ * always used.
+ *
+ * The reason they moved: the lists were matched with `includes()`, so `'draw'`
+ * matched inside "withdrawal" and a support question about unstaked tokens
+ * opened the image paywall instead of being answered.
  */
 
-const IMAGE_KEYWORDS = [
-  'generate image', 'create image', 'make image', 'draw', 'design',
-  'create a picture', 'make a picture', 'generate a picture',
-  'create artwork', 'make art', 'edit this image', 'modify this',
-  'change this image', 'put', 'add to this image', 'remove from',
-  'generate an image', 'create an image', 'make an image',
-  'generate a', 'create a', 'draw a', 'draw me', 'make me',
-  'photo of', 'picture of', 'image of', 'illustration of',
-  'show me', 'show a', 'give me', 'i want', 'can you show',
-  'what does', 'look like', 'visualize', 'render', 'depict',
-];
-
-const VIDEO_KEYWORDS = [
-  'generate video', 'create video', 'make video', 'make a video',
-  'generate a video', 'create a video', 'animate', 'animation',
-  'video of', 'clip of', 'footage of', 'motion', 'moving',
-  'bring to life', 'make it move', 'make this move', 'animate this',
-  'into a video', 'into video', 'turn into', 'as a video', 'turn this into',
-];
-
-const LOGO_KEYWORDS = [
-  'dehub logo', 'the dehub logo', 'ftv logo', 'the ftv logo',
-  'your logo', 'the logo', 'official logo', 'dehub brand',
-  'ftv brand', 'brand logo', 'company logo',
-];
-
-const DEHUB_BRAND_IMAGE_KEYWORDS = [
-  'poster', 'banner', 'thumbnail', 'content', 'card', 'announce', 'announcement',
-  'flyer', 'artwork', 'social', 'cover', 'graphic', 'ad', 'advert', 'image',
-  'wallpaper', 'meme', 'creative', 'promo', 'promotion', 'campaign',
-];
-
-const MUSIC_KEYWORDS = [
-  'generate music', 'create music', 'make music', 'compose', 'song',
-  'create a song', 'make a song', 'generate a song', 'write a song',
-  'music for', 'beat', 'track', 'melody', 'instrumental',
-  'make me a beat', 'create a beat', 'generate a beat',
-  'write music', 'compose music', 'create a track',
-];
-
-const TTS_KEYWORDS = [
-  'text to speech', 'text-to-speech', 'tts', 'read this aloud',
-  'say this', 'speak this', 'convert to speech', 'voice over',
-  'voiceover', 'narrate', 'narration', 'read out loud',
-  'generate speech', 'create speech', 'make speech',
-  'dialogue', 'voice this', 'read this text',
-];
-
-const BG_REMOVAL_KEYWORDS = [
-  'remove background', 'remove the background', 'remove bg',
-  'background removal', 'cut out', 'cutout', 'transparent background',
-  'make transparent', 'isolate subject', 'extract subject',
-  'no background', 'delete background', 'erase background',
-];
-
-const UPSCALE_KEYWORDS = [
-  'upscale', 'upscale this', 'enhance image', 'increase resolution',
-  'make higher resolution', 'make hd', 'make 4k', 'sharpen image',
-  'improve quality', 'super resolution', 'enlarge image',
-  'make bigger', 'enhance this', 'enhance quality',
-];
-
-const STT_KEYWORDS = [
-  'transcribe', 'transcription', 'speech to text', 'speech-to-text',
-  'stt', 'convert audio', 'audio to text', 'what does this say',
-  'what is being said', 'convert speech', 'transcribe audio',
-  'transcribe this',
-];
-
-const includesAny = (haystack: string, needles: string[]): boolean =>
-  needles.some((needle) => haystack.includes(needle));
+export {
+  detectAiToolRequest,
+  isCreativeLogoRequest,
+  isDeHubBrandedImageRequest,
+  isSupportQuestion,
+  requiresLogoAsset,
+} from './ai-intent';
+export type { AiToolCategory } from './ai-intent';
 
 export function isVideoRequest(text: string): boolean {
-  return includesAny(text.toLowerCase(), VIDEO_KEYWORDS);
+  return requiresVideoGeneration(text);
 }
 
 /**
  * Whether to route to the image generator. A video request wins — half the
  * video phrases ("animate this picture") also match an image keyword.
+ *
+ * `conversational` is on because every image surface on this app confirms the
+ * price in a paywall sheet before anything is signed, which is what makes the
+ * looser phrasing ("what does a DeHub poster look like") safe to route.
  */
 export function isImageRequest(text: string, hasAttachedImage = false): boolean {
-  const lower = text.toLowerCase();
-  if (includesAny(lower, VIDEO_KEYWORDS)) return false;
-  // An attachment plus any instruction almost always means "edit this".
-  if (hasAttachedImage) return true;
-  return includesAny(lower, IMAGE_KEYWORDS);
-}
-
-/** Whether the official wordmark should be part of the image. */
-export function requiresLogoAsset(text: string): boolean {
-  return includesAny(text.toLowerCase(), LOGO_KEYWORDS);
-}
-
-/** A DeHub-branded piece of content — routes through the poster studio. */
-export function isDeHubBrandedImageRequest(text: string): boolean {
-  const lower = text.toLowerCase();
-  const mentionsDeHub = /\bde\s*hub\b/.test(lower) || /\bdhb\b/.test(lower);
-  return mentionsDeHub && includesAny(lower, DEHUB_BRAND_IMAGE_KEYWORDS);
-}
-
-/**
- * False for a bare "show me the logo" — that just displays the bundled asset
- * rather than paying a model to redraw it.
- */
-export function isCreativeLogoRequest(text: string): boolean {
-  const lower = text.toLowerCase().trim();
-  const simpleShowPatterns = [
-    /^show\s*(me\s*)?(the\s*)?(dehub|ftv|your|official|brand|company)?\s*logo\.?$/,
-    /^(dehub|ftv)\s*logo\.?$/,
-    /^(the\s*)?(dehub|ftv|official)\s*logo\.?$/,
-    /^display\s*(the\s*)?(dehub|ftv)?\s*logo\.?$/,
-  ];
-  if (simpleShowPatterns.some((pattern) => pattern.test(lower))) return false;
-  return true;
-}
-
-/**
- * Which fal.ai tool a message is asking for, or null for ordinary chat.
- * Checked before the image/video split, same order as web.
- */
-export function detectAiToolRequest(
-  text: string,
-  hasImage: boolean,
-): 'music' | 'tts' | 'speech-to-text' | 'background-removal' | 'upscale' | null {
-  const lower = text.toLowerCase();
-  if (includesAny(lower, MUSIC_KEYWORDS)) return 'music';
-  if (includesAny(lower, TTS_KEYWORDS)) return 'tts';
-  if (includesAny(lower, STT_KEYWORDS)) return 'speech-to-text';
-  if (hasImage && includesAny(lower, BG_REMOVAL_KEYWORDS)) return 'background-removal';
-  if (hasImage && includesAny(lower, UPSCALE_KEYWORDS)) return 'upscale';
-  return null;
+  return requiresImageGeneration(text, hasAttachedImage, { conversational: true });
 }
 
 /**
