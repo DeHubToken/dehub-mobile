@@ -2432,5 +2432,54 @@
     "dubbed": "Synchronisiertes Audio",
     "preparing": "Synchronisiertes Audio wird vorbereitet...",
     "unavailable": "Synchronisiertes Audio ist für dieses Video nicht verfügbar."
+  },
+  "support": {
+    "title": "Support",
+    "subtitle": "Deine Tickets und ihr Stand. Ohne KI, ohne Gebühr.",
+    "newTicket": "Neues Ticket",
+    "newTicketHint": "Erzähl uns, was passiert ist und was du stattdessen erwartet hast.",
+    "backToTickets": "Zurück zu den Tickets",
+    "openHeading": "Offen ({{n}})",
+    "closedHeading": "Geschlossen ({{n}})",
+    "noTickets": "Du hast noch kein Support-Ticket eingereicht.",
+    "loadFailed": "Deine Tickets konnten nicht geladen werden. Bitte versuch es erneut.",
+    "categoryLabel": "Kategorie",
+    "severityLabel": "Priorität",
+    "subjectLabel": "Betreff",
+    "subjectPlaceholder": "Eine Zeile, die das Problem beschreibt",
+    "descriptionLabel": "Was ist passiert",
+    "descriptionPlaceholder": "Was du getan hast, was du erwartet hast und was stattdessen passiert ist.",
+    "stepsLabel": "Schritte zum Nachstellen (optional)",
+    "stepsPlaceholder": "1. Feed öffnen\n2. Auf Hochladen tippen\n3. ...",
+    "submit": "Ticket senden",
+    "submitting": "Wird gesendet...",
+    "filed": "Ticket {{ref}} liegt beim Team.",
+    "filedNotEmailed": "Ticket {{ref}} erfasst. Bewahr die Nummer auf.",
+    "alreadyOpen": "Das ist bereits als {{ref}} offen.",
+    "filingFailed": "Das Ticket konnte nicht eingereicht werden. Bitte versuch es erneut.",
+    "status": {
+      "open": "Offen",
+      "in_progress": "In Bearbeitung",
+      "resolved": "Gelöst",
+      "closed": "Geschlossen"
+    },
+    "severity": {
+      "low": "Niedrig",
+      "normal": "Normal",
+      "high": "Hoch",
+      "urgent": "Dringend"
+    },
+    "category": {
+      "account_access": "Kontozugang",
+      "wallet_or_transactions": "Wallet oder Transaktionen",
+      "posting_or_uploads": "Beiträge oder Uploads",
+      "payments_or_subscriptions": "Zahlungen oder Abos",
+      "live_streaming": "Livestreams",
+      "content_or_moderation": "Inhalte oder Moderation",
+      "bug": "Fehler",
+      "feature_request": "Funktionswunsch",
+      "other": "Sonstiges"
+    },
+    "filedOn": "Eingereicht am {{date}}"
   }
 }
