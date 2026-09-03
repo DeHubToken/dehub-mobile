@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, StyleSheet } from "react-native";
 import AppDrawer from "../components/Home/AppDrawer";
 import FloatingBottomTabBar from "./FloatingBottomTabBar";
+import { withScreenBoundary } from "../components/common/ScreenErrorFallback";
 import HomeScreen from "../screens/HomeScreen";
 import { ScreenNames } from "./ScreenNames";
 import type { BottomTabParamList, AppStackNavigationProp } from "./types";
@@ -29,6 +30,7 @@ function BottomTabNavigator() {
     <View style={styles.root}>
       <Tab.Navigator
         tabBar={renderTabBar}
+        screenLayout={withScreenBoundary}
         screenOptions={{
           headerShown: false,
           tabBarShowLabel: false,

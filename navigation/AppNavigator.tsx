@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ScreenNames } from "./ScreenNames";
 import type { AppStackParamList } from "./types";
 import BottomTabNavigator from "./BottomTabNavigator";
+import { withScreenBoundary } from "../components/common/ScreenErrorFallback";
 import { useAuthState } from "../context/AuthContext";
 
 /**
@@ -73,6 +74,7 @@ export default function AppNavigator() {
   return (
     <Stack.Navigator
       initialRouteName={ScreenNames.Root}
+      screenLayout={withScreenBoundary}
       screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor: '#010305' },

@@ -3,6 +3,7 @@ import Constants from "expo-constants";
 import * as Device from "expo-device";
 import { AppState, Platform } from "react-native";
 import env from "../config/env";
+import { restartApp, takeCrashMarker } from "./crashRecovery";
 
 /**
  * Ships error logs off the device.
@@ -233,19 +234,48 @@ export function installGlobalErrorHandler(): void {
   const g = global as any;
   const previous = g.ErrorUtils?.getGlobalHandler?.();
   g.ErrorUtils?.setGlobalHandler?.((error: any, isFatal?: boolean) => {
+    let rows: Row[] = [];
     try {
       reportError(isFatal ? "FatalJS" : "UncaughtJS", [
         error instanceof Error ? error : new Error(String(error)),
         { isFatal: !!isFatal },
       ]);
-      const rows = queue.splice(0, BATCH_MAX);
-      void persist(rows);
+      rows = queue.splice(0, BATCH_MAX);
       void post(rows);
     } catch {
       /* the crash handler must not add a second crash */
     }
-    previous?.(error, isFatal);
+
+    if (!isFatal) {
+      void persist(rows);
+      previous?.(error, isFatal);
+      return;
+    }
+
+    // Fatal. The default handler ends the process in a release build — the
+    // app simply vanishes. Reload the runtime instead: the row is on disk
+    // first (a reload is as final as a crash for anything in memory), then
+    // expo-updates restarts JS with a clean cache. If that is refused (dev,
+    // budget spent, not available) the fault goes to the default handler as
+    // before, so a broken restart path can never hide a crash.
+    const message = error instanceof Error ? error.message : String(error);
+    void (async () => {
+      await persist(rows);
+      const restarted = await restartApp("fatal", message);
+      if (!restarted) previous?.(error, isFatal);
+    })();
   });
+
+  // The launch after a reload says so, in the same table as the fault itself,
+  // so a row reading "restarted after a fatal error" sits next to the error
+  // that caused it.
+  const marker = takeCrashMarker();
+  if (marker) {
+    reportError("CrashRecovery", [
+      `App restarted after a fatal error ()`,
+      { message: marker.message, at: marker.at },
+    ]);
+  }
 
   // Backgrounding is the other moment a queue is likely to be lost — Android is
   // free to kill the process at any point after it.
