@@ -17,13 +17,16 @@ function exit(partial: Partial<ProcessExitInfo>): ProcessExitInfo {
 
 describe("process exit reporting", () => {
   let exits: ProcessExitInfo[];
+  let javaCrash: string | null;
   let processExit: typeof import("../../libs/processExit");
 
   beforeEach(() => {
     jest.resetModules();
     exits = [];
+    javaCrash = null;
     jest.doMock("../../modules/exit-reason", () => ({
       getLastExitReasons: () => exits,
+      takeLastJavaCrash: () => javaCrash,
     }));
     (global as any).fetch = jest.fn().mockResolvedValue({ ok: true });
     require("../../libs/storage").storage.clearAll();
@@ -71,6 +74,23 @@ describe("process exit reporting", () => {
     const next = JSON.parse((global.fetch as jest.Mock).mock.calls[0][1].body).logs;
     expect(next).toHaveLength(1);
     expect(next[0].message).toBe("Process ended: ANR");
+  });
+
+  it("ships the saved Java stack as its own row, with the exception as the headline", async () => {
+    javaCrash = [
+      "thread=main",
+      "time=1700000000000",
+      "java.lang.IllegalStateException: Trying to add unknown view tag: 4711",
+      "\tat com.facebook.react.uimanager.NativeViewHierarchyManager.addRootView(NativeViewHierarchyManager.java:100)",
+    ].join("\n");
+    processExit.reportProcessExits();
+    const reporter = require("../../libs/errorReporter") as typeof import("../../libs/errorReporter");
+    await reporter.flushLogs();
+
+    const rows = JSON.parse((global.fetch as jest.Mock).mock.calls[0][1].body).logs;
+    const row = rows.find((r: any) => r.component === "JavaCrash");
+    expect(row.message).toBe("java.lang.IllegalStateException: Trying to add unknown view tag: 4711");
+    expect(row.stack_trace).toContain("NativeViewHierarchyManager.addRootView");
   });
 
   it("is silent where the native module is missing", () => {

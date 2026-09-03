@@ -6,6 +6,9 @@ import android.content.Context
 import android.os.Build
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
+import java.io.File
+import java.io.PrintWriter
+import java.io.StringWriter
 
 /**
  * Why the last process died.
@@ -19,11 +22,37 @@ import expo.modules.kotlin.modules.ModuleDefinition
  * next launch and shipped to the same log table as everything else, that is
  * the difference between "the app just closes" and a stack trace.
  */
+private const val CRASH_FILE = "last_java_crash.txt"
+
 class ExitReasonModule : Module() {
+  private var handlerInstalled = false
+
   override fun definition() = ModuleDefinition {
     Name("ExitReason")
 
+    OnCreate {
+      installCrashHandler()
+    }
+
+    // The Java stack of the last uncaught exception, then nothing: read once.
+    // Android reports that death only as REASON_CRASH with no trace, so the
+    // handler below writes the throwable to a file on the way down.
+    Function("takeLastJavaCrash") { ->
+      installCrashHandler()
+      try {
+        val dir = appContext.reactContext?.filesDir ?: return@Function null
+        val file = File(dir, CRASH_FILE)
+        if (!file.exists()) return@Function null
+        val text = file.readText()
+        file.delete()
+        text
+      } catch (e: Exception) {
+        null
+      }
+    }
+
     Function("getLastExitReasons") { max: Int ->
+      installCrashHandler()
       if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
         return@Function emptyList<Map<String, Any?>>()
       }
@@ -35,6 +64,30 @@ class ExitReasonModule : Module() {
         return@Function emptyList<Map<String, Any?>>()
       }
       infos.map { info -> describe(info) }
+    }
+  }
+
+  /**
+   * Chained in front of whatever handler was there (Android's own, which ends
+   * the process). Writes the stack first, then lets the previous handler do
+   * exactly what it did before, so nothing about the crash itself changes —
+   * only that it leaves a note.
+   */
+  private fun installCrashHandler() {
+    if (handlerInstalled) return
+    val dir = appContext.reactContext?.filesDir ?: return
+    handlerInstalled = true
+    val previous = Thread.getDefaultUncaughtExceptionHandler()
+    Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+      try {
+        val writer = StringWriter()
+        throwable.printStackTrace(PrintWriter(writer))
+        val text = "thread=${thread.name}\ntime=${System.currentTimeMillis()}\n" + writer.toString()
+        File(dir, CRASH_FILE).writeText(text.take(16000))
+      } catch (e: Exception) {
+        /* the crash handler must not add a second crash */
+      }
+      previous?.uncaughtException(thread, throwable)
     }
   }
 
