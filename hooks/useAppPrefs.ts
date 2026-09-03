@@ -59,7 +59,12 @@ export interface AppPrefs {
 
 /** Same defaults web falls back to when a key is absent. */
 export const DEFAULT_APP_PREFS: AppPrefs = {
-  autoplay: true,
+  // Off by default on the phone, unlike web. Every autoplaying card is an
+  // ExoPlayer with a live buffer, and on a mid-range Android the feed was
+  // closing the app with an OutOfMemoryError before the JS thread heard a
+  // thing. Autoplay is one switch away in Settings → Appearance for anyone
+  // who wants it; a crash is not a preference anyone chose.
+  autoplay: false,
   animations: true,
   shorts: true,
   dimLights: false,
