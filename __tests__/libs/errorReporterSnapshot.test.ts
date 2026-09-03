@@ -38,18 +38,22 @@ describe("error reporter, queue mirror", () => {
   });
 
   it("drains the mirror on the next launch, once", async () => {
-    reporter.reportError("ProcessExit", ["Process ended: LOW_MEMORY"]);
-    await settle();
-    // The process dies here without flushing.
-
+    // What a launch finds after a native kill: the mirror on disk, an empty
+    // queue in memory. (The storage mock is rebuilt by resetModules, so the
+    // mirror is written here rather than carried over from a report.)
     jest.resetModules();
     (global as any).fetch = jest.fn().mockResolvedValue({ ok: true });
+    const store = require("@react-native-async-storage/async-storage").default;
+    await store.setItem(
+      "error_reporter_queue_v1",
+      JSON.stringify([{ level: "error", component: "ProcessExit", message: "Process ended: LOW_MEMORY" }]),
+    );
     const next = require("../../libs/errorReporter") as typeof reporter;
     await next.drainPersistedLogs();
 
     expect(global.fetch).toHaveBeenCalledTimes(1);
     expect(body((global.fetch as jest.Mock).mock.calls[0]).logs[0].message).toContain("LOW_MEMORY");
-    expect(await asyncStorage.getItem("error_reporter_queue_v1")).toBeNull();
+    expect(await store.getItem("error_reporter_queue_v1")).toBeNull();
 
     (global.fetch as jest.Mock).mockClear();
     await next.drainPersistedLogs();
