@@ -573,6 +573,55 @@ export async function quoteAiJob(
 }
 
 
+
+/* ── Payment receipts ────────────────────────────────────────────────────── */
+
+export interface AiPaymentReceipt {
+  txHash: string;
+  chain: string;
+  paidDhb: number;
+  remainingDhb: number;
+  purpose: string;
+  createdAt: string;
+}
+
+/**
+ * Write a mined transfer down before anything tries to spend it.
+ *
+ * Until `ai-payment-record` existed, a receipt was only created inside the
+ * generation function's payment guard — so a transfer that was signed and
+ * mined, but whose generation request never arrived, left DHB in the treasury
+ * with no row anywhere saying whose it was. Four payments went that way in the
+ * first week of pay-per-job.
+ *
+ * Idempotent on the hash, and safe to call on a transfer we are not sure
+ * landed: the server verifies it against the chain and refuses one it cannot
+ * find.
+ */
+export async function recordAiPayment(
+  txHash: string,
+  walletAddress?: string | null,
+  purpose: 'job' | 'voice' = 'job',
+): Promise<AiPaymentReceipt> {
+  return paidEdgeFetch<AiPaymentReceipt>('ai-payment-record', { txHash, purpose }, walletAddress);
+}
+
+/**
+ * DHB this wallet has already paid and not yet spent, newest first.
+ *
+ * The authority is the server, not the device — which is what makes a payment
+ * survive the app being killed, reinstalled, or opened on another phone.
+ */
+export async function listUnspentAiPayments(
+  walletAddress?: string | null,
+): Promise<AiPaymentReceipt[]> {
+  const res = await paidEdgeFetch<{ payments?: AiPaymentReceipt[] }>(
+    'ai-payment-record',
+    { action: 'list' },
+    walletAddress,
+  );
+  return res.payments ?? [];
+}
 /* ── Streaming chat ──────────────────────────────────────────────────────── */
 
 export interface StreamChatHandlers {
