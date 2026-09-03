@@ -33,12 +33,18 @@ import { registerRootComponent } from "expo";
 
 import App from "./App";
 import { installGlobalErrorHandler } from "./libs/errorReporter";
+import { reportProcessExits } from "./libs/processExit";
 
 // Catches uncaught JS errors and ships them to client_error_logs, and uploads
 // whatever the last run died holding. Here rather than in an App effect: it has
 // to be in place before the first render, since a fault while the tree is
 // mounting is exactly the one nobody can otherwise see.
 installGlobalErrorHandler();
+
+// How the previous run ended, if it did not end by choice. A native crash or
+// an OOM kills the process without the handler above ever running; Android
+// keeps the record, and this ships it with the next launch.
+reportProcessExits();
 
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);
 // It also ensures that whether you load the app in Expo Go or in a native build,
