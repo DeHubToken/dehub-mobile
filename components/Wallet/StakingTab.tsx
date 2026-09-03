@@ -13,7 +13,8 @@ import { ethers } from "ethers";
 import { useUser, useProvider, useAuthActions } from "../../context/AuthContext";
 import { getSigningProvider } from "../../libs/provider.registry";
 import { supabase } from "../../services/supabase";
-import { toastError, toastSuccess } from "../../libs/toast";
+import { toastError, toastInfo, toastSuccess } from "../../libs/toast";
+import { refreshStakingPosition } from "../../services/staking.service";
 
 const DHB_BASE = "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c";
 // Unified transfer-based staking target (same address on Base + BNB)
@@ -92,6 +93,8 @@ const StakingTab: React.FC = () => {
   const [mode, setMode] = useState<"stake" | "unstake">("stake");
   const [amount, setAmount] = useState("");
   const [isBusy, setIsBusy] = useState(false);
+  /** A manual "did my transfer land yet?" check is in flight. */
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const fetchData = useCallback(async () => {
     try {
@@ -173,12 +176,42 @@ const StakingTab: React.FC = () => {
       setUserStaked(dbStaked + legacyStakedNum);
       setUnstakeQueued(queued);
       setEarned(parseFloat(ethers.utils.formatUnits(legacyEarned, 18)));
+      // Returned as well as stored, so the refresh button can say what changed
+      // without reading state it captured before the fetch.
+      return dbStaked + legacyStakedNum;
     } catch (err) {
       console.warn("[StakingTab] fetchData error:", err);
+      return null;
     } finally {
       setLoading(false);
     }
   }, [walletAddress]);
+
+  /**
+   * Ask the backend to credit a transfer that has just landed, then re-read.
+   *
+   * Reports what changed rather than just spinning: "nothing new" is a useful
+   * answer when someone is checking whether their transfer arrived, and a
+   * silent refresh looks identical to a broken one.
+   */
+  const handleRefreshPosition = useCallback(async () => {
+    if (!walletAddress || isRefreshing) return;
+    setIsRefreshing(true);
+    const before = userStaked;
+    try {
+      await refreshStakingPosition(walletAddress);
+      const after = await fetchData();
+      if (after === null) {
+        toastError("Could not check for new stakes. Try again in a moment.");
+      } else if (after > before + 0.000001) {
+        toastSuccess(`Found ${fmt(after - before)} DHB. Your stake is up to date.`);
+      } else {
+        toastInfo("No new transfers found yet.");
+      }
+    } finally {
+      setIsRefreshing(false);
+    }
+  }, [walletAddress, isRefreshing, userStaked, fetchData]);
 
   useEffect(() => {
     fetchData();
@@ -397,9 +430,26 @@ const StakingTab: React.FC = () => {
       {/* Stats row */}
       <View className="flex-row gap-3 mb-5">
         <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
-          <Text className="text-white/50 text-xs uppercase tracking-wider mb-1">
-            Your Staked
-          </Text>
+          <View className="flex-row items-center justify-between mb-1">
+            <Text className="text-white/50 text-xs uppercase tracking-wider">
+              Your Staked
+            </Text>
+            {/* Staking is a bare transfer, so a stake made outside the app —
+                or seconds ago — is invisible until the backend's scanner comes
+                round. This asks it to look now. */}
+            <TouchableOpacity
+              onPress={handleRefreshPosition}
+              disabled={isRefreshing}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityLabel="Check for a new stake"
+            >
+              {isRefreshing ? (
+                <ActivityIndicator size="small" color="#ffffff99" />
+              ) : (
+                <Ionicons name="refresh" size={14} color="#ffffff99" />
+              )}
+            </TouchableOpacity>
+          </View>
           {loading ? (
             <ActivityIndicator size="small" color="#fff" />
           ) : (
