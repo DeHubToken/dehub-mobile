@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "सूचनाः",
+    "loadFailed": "सूचनाः आनेतुं न शक्यन्ते",
     "markAllRead": "सर्वाः पठिताः इति चिह्नयतु",
     "settings": "सूचनाविन्यासः",
     "actions": "कर्माणि",

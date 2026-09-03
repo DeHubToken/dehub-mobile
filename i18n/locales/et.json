@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "Teated",
+    "loadFailed": "Teavitusi ei õnnestunud laadida",
     "markAllRead": "Märgi kõik loetuks",
     "settings": "Teavitusseaded",
     "actions": "Toimingud",

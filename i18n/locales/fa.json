@@ -1062,6 +1062,7 @@
   },
   "notifications": {
     "title": "اعلان‌ها",
+    "loadFailed": "اعلان‌ها بارگذاری نشد",
     "markAllRead": "همه را خوانده علامت بزن",
     "settings": "تنظیمات اعلان‌ها",
     "actions": "اقدامات",

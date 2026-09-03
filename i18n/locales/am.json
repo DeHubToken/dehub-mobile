@@ -1059,6 +1059,7 @@
   },
   "notifications": {
     "title": "ማሳወቂያዎች",
+    "loadFailed": "ማሳወቂያዎችን መጫን አልተቻለም",
     "markAllRead": "ሁሉንም እንደተነበቡ ምልክት አድርግ",
     "settings": "የማሳወቂያ ቅንብሮች",
     "actions": "ድርጊቶች",

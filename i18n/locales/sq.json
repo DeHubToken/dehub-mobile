@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "Njoftimet",
+    "loadFailed": "Njoftimet nuk u ngarkuan dot",
     "markAllRead": "Shëno të gjitha si të lexuara",
     "settings": "Cilësimet e Njoftimeve",
     "actions": "Veprimet",

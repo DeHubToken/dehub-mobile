@@ -1058,6 +1058,7 @@
   },
   "notifications": {
     "title": "Bildirişler",
+    "loadFailed": "Bildirişler ýüklenip bilinmedi",
     "markAllRead": "Ählisini okaldy diýip bellemek",
     "settings": "Bildiriş sazlamalary",
     "actions": "Hereketler",

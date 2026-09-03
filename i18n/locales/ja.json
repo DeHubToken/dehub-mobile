@@ -1062,6 +1062,7 @@
   },
   "notifications": {
     "title": "通知",
+    "loadFailed": "通知を読み込めませんでした",
     "markAllRead": "すべて既読にする",
     "settings": "通知設定",
     "actions": "アクション",

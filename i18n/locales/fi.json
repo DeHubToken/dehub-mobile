@@ -1058,6 +1058,7 @@
   },
   "notifications": {
     "title": "Ilmoitukset",
+    "loadFailed": "Ilmoituksia ei voitu ladata",
     "markAllRead": "Merkitse kaikki luetuksi",
     "settings": "Ilmoitusasetukset",
     "actions": "Toiminnot",

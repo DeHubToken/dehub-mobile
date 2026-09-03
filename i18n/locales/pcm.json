@@ -1060,6 +1060,7 @@
   },
   "notifications": {
     "title": "Notifications",
+    "loadFailed": "We no fit load notifications",
     "markAllRead": "Mark all as read",
     "settings": "Notification Settings",
     "actions": "Actions",

@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "Bildirişlər",
+    "loadFailed": "Bildirişlər yüklənə bilmədi",
     "markAllRead": "Hamısını oxunmuş et",
     "settings": "Bildiriş Parametrləri",
     "actions": "Əməliyyatlar",

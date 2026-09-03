@@ -545,6 +545,7 @@
   },
   "notifications": {
     "title": "জানাইন",
+    "loadFailed": "নোটিফিকেশন লোড অইল না",
     "all": "সব",
     "likes": "পছন্দ",
     "comments": "মন্তব্য",

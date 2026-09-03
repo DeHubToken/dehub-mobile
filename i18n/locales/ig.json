@@ -1062,6 +1062,7 @@
   },
   "notifications": {
     "title": "Ọkwa",
+    "loadFailed": "Enweghị ike ibunye ọkwa",
     "markAllRead": "Mee ka niile ka a gụrụ",
     "settings": "Ntọala Ọkwa",
     "actions": "Omume",

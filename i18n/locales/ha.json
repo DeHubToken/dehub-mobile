@@ -1059,6 +1059,7 @@
   },
   "notifications": {
     "title": "Sanarwa",
+    "loadFailed": "Ba a iya loda sanarwa ba",
     "markAllRead": "Yi wa duka alama an karanta",
     "settings": "Saituna na Sanarwa",
     "actions": "Ayyuka",

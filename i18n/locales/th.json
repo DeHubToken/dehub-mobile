@@ -1306,6 +1306,7 @@
   },
   "notifications": {
     "title": "Notifications",
+    "loadFailed": "ไม่สามารถโหลดการแจ้งเตือนได้",
     "markAllRead": "Mark all read",
     "settings": "Notification Settings",
     "actions": "Actions",

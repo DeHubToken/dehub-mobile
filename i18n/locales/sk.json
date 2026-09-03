@@ -531,6 +531,7 @@
   },
   "notifications": {
     "title": "Upozornenia",
+    "loadFailed": "Upozornenia sa nepodarilo načítať",
     "all": "Všetky",
     "likes": "Páči sa mi",
     "comments": "Komentáre",

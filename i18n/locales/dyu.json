@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "Kɔrɔbɔ",
+    "loadFailed": "Kunnafoniw ma se ka ta",
     "markAllRead": "Kɔrɔbɔ",
     "settings": "Sɔrɔw",
     "actions": "Kɔrɔbɔ",
