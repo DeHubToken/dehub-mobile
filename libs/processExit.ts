@@ -1,5 +1,5 @@
 import { storage } from "./storage";
-import { reportError } from "./errorReporter";
+import { reportError, flushLogs } from "./errorReporter";
 import { getLastExitReasons, type ProcessExitInfo } from "../modules/exit-reason";
 
 /**
@@ -71,6 +71,9 @@ export function reportProcessExits(): void {
         },
       ]);
     }
+    // Sent now, not on the 30 s timer: if this launch dies the same way the
+    // last one did, the timer never fires and the reason is lost again.
+    void flushLogs();
   } catch {
     /* a reporter must never be the thing that breaks boot */
   }

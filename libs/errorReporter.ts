@@ -45,6 +45,12 @@ const SESSION_ROW_BUDGET = 200;
 // the JS thread microseconds before the process goes away, far too late for a
 // round trip.
 const PENDING_KEY = "error_reporter_pending_v1";
+// Whatever is queued right now, mirrored to disk on every report. A native
+// crash or an OOM kill takes the in-memory queue with it — including the
+// ProcessExit row describing the *previous* death, if the app died again
+// inside the 30 s flush window. Mirrored rows are drained on the next launch
+// and the mirror is rewritten after every send, so nothing is sent twice.
+const SNAPSHOT_KEY = "error_reporter_queue_v1";
 
 type Row = {
   level: "error" | "warn";
@@ -144,6 +150,7 @@ export function reportError(component: string | undefined, args: unknown[]): voi
 
   rowsThisSession += 1;
   queue.push(row);
+  void snapshotQueue();
   if (queue.length >= BATCH_MAX) {
     void flushLogs();
     return;
@@ -181,10 +188,21 @@ export async function flushLogs(): Promise<void> {
   if (queue.length === 0) return;
   const rows = queue.splice(0, BATCH_MAX);
   const ok = await post(rows);
+  // The mirror now holds what is still queued, not what was just sent.
+  await snapshotQueue();
   // Hand a failed batch to the on-disk queue rather than dropping it — the
   // usual reason a send fails is that the network is gone, which is also when
   // the interesting errors happen.
   if (!ok) await persist(rows);
+}
+
+async function snapshotQueue(): Promise<void> {
+  try {
+    if (queue.length === 0) await AsyncStorage.removeItem(SNAPSHOT_KEY);
+    else await AsyncStorage.setItem(SNAPSHOT_KEY, JSON.stringify(queue.slice(0, BATCH_MAX)));
+  } catch {
+    /* nothing left to try */
+  }
 }
 
 async function persist(rows: Row[]): Promise<void> {
@@ -201,6 +219,14 @@ async function persist(rows: Row[]): Promise<void> {
 /** Upload whatever the last run could not. Safe to call before sign-in. */
 export async function drainPersistedLogs(): Promise<void> {
   try {
+    // Rows a crash caught still queued. Cleared before sending for the same
+    // reason as below.
+    const snapshot = await AsyncStorage.getItem(SNAPSHOT_KEY);
+    if (snapshot) {
+      await AsyncStorage.removeItem(SNAPSHOT_KEY);
+      const rows: Row[] = JSON.parse(snapshot);
+      if (Array.isArray(rows) && rows.length > 0) await post(rows);
+    }
     const existing = await AsyncStorage.getItem(PENDING_KEY);
     if (!existing) return;
     const rows: Row[] = JSON.parse(existing);
