@@ -32,6 +32,7 @@ import AssistantBubble from '../components/Assistant/AssistantBubble';
 import AssistantInputBar from '../components/Assistant/AssistantInputBar';
 import QuickActionChips, { type QuickAction } from '../components/Assistant/QuickActionChips';
 import ChatHistorySheet from '../components/Assistant/ChatHistorySheet';
+import SupportTicketSheet, { useMySupportTickets } from '../components/Assistant/SupportTicketSheet';
 import CreditPaywallSheet from '../components/Assistant/CreditPaywallSheet';
 import AssistantSettingsSheet, {
   type AssistantSettings,
@@ -169,6 +170,10 @@ function AIChatScreenInner() {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const user = useUser();
+  const [supportVisible, setSupportVisible] = useState(false);
+  // Read once for the header badge. The sheet runs the same query, so opening
+  // it costs no second request.
+  const { data: supportTickets } = useMySupportTickets(!!user);
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
   // — see hooks/useKeyboardLayout.ts.
   const { lift: kbLift, isVisible: kbVisible } = useKeyboardLift();
@@ -1379,6 +1384,8 @@ function AIChatScreenInner() {
         onHistoryPress={handleHistoryOpen}
         onSettingsPress={() => setSettingsVisible(true)}
         onStylePress={() => setStyleVisible(true)}
+        onSupportPress={() => setSupportVisible(true)}
+        openTicketCount={supportTickets?.openCount ?? 0}
         styleEmoji={currentStyle.emoji}
         hasMessages={!isEmpty}
       />
@@ -1443,6 +1450,12 @@ function AIChatScreenInner() {
           loading={isLoading}
         />
       </View>
+
+      <SupportTicketSheet
+        visible={supportVisible}
+        onClose={() => setSupportVisible(false)}
+        enabled={!!user}
+      />
 
       <ChatHistorySheet
         visible={historyVisible}

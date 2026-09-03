@@ -2436,5 +2436,54 @@
     "dubbed": "더빙된 오디오",
     "preparing": "더빙된 오디오 준비 중...",
     "unavailable": "이 동영상에는 더빙된 오디오를 사용할 수 없습니다."
+  },
+  "support": {
+    "title": "지원",
+    "subtitle": "내 티켓과 진행 상태. AI도 수수료도 없습니다.",
+    "newTicket": "새 티켓",
+    "newTicketHint": "무슨 일이 있었는지, 원래 어떻게 되어야 했는지 알려 주세요.",
+    "backToTickets": "티켓 목록으로",
+    "openHeading": "처리 중 ({{n}})",
+    "closedHeading": "종료됨 ({{n}})",
+    "noTickets": "아직 접수한 지원 티켓이 없습니다.",
+    "loadFailed": "티켓을 불러오지 못했습니다. 다시 시도해 주세요.",
+    "categoryLabel": "분류",
+    "severityLabel": "우선순위",
+    "subjectLabel": "제목",
+    "subjectPlaceholder": "문제를 한 줄로 적어 주세요",
+    "descriptionLabel": "무슨 일이 있었나요",
+    "descriptionPlaceholder": "무엇을 했고, 무엇을 기대했으며, 대신 무슨 일이 일어났는지 적어 주세요.",
+    "stepsLabel": "재현 단계 (선택)",
+    "stepsPlaceholder": "1. 피드 열기\n2. 업로드 누르기\n3. ...",
+    "submit": "티켓 보내기",
+    "submitting": "보내는 중...",
+    "filed": "티켓 {{ref}}이(가) 팀에 전달되었습니다.",
+    "filedNotEmailed": "티켓 {{ref}}이(가) 기록되었습니다. 번호를 보관해 주세요.",
+    "alreadyOpen": "이미 {{ref}} 번호로 접수되어 있습니다.",
+    "filingFailed": "티켓을 접수하지 못했습니다. 다시 시도해 주세요.",
+    "status": {
+      "open": "접수됨",
+      "in_progress": "처리 중",
+      "resolved": "해결됨",
+      "closed": "종료됨"
+    },
+    "severity": {
+      "low": "낮음",
+      "normal": "보통",
+      "high": "높음",
+      "urgent": "긴급"
+    },
+    "category": {
+      "account_access": "계정 접근",
+      "wallet_or_transactions": "지갑 또는 거래",
+      "posting_or_uploads": "게시물 또는 업로드",
+      "payments_or_subscriptions": "결제 또는 구독",
+      "live_streaming": "라이브 방송",
+      "content_or_moderation": "콘텐츠 또는 신고 처리",
+      "bug": "버그",
+      "feature_request": "기능 제안",
+      "other": "기타"
+    },
+    "filedOn": "{{date}} 접수"
   }
 }
