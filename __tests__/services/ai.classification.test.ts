@@ -16,6 +16,7 @@ import {
   isImageRequest,
   isVideoRequest,
   requiresLogoAsset,
+  isSupportQuestion,
   AIServiceError,
   isPaymentRequired,
   dehubAuthHeaders,
@@ -200,6 +201,44 @@ describe('services/ai.service — request classification', () => {
     it('is empty when signed out', async () => {
       const headers = await dehubAuthHeaders('0xabc');
       expect(headers).toEqual({});
+    });
+  });
+
+  /**
+   * A support question is never a generation.
+   *
+   * On 2026-09-03 a user asked the assistant four times why their unstaked
+   * DHB had not arrived. Every message contained "withdrawal", the lists were
+   * matched with `includes()`, and "withdrawal" contains "draw" — so all four
+   * opened the image paywall, and the fourth was paid. 24 DHB for a picture
+   * nobody asked for, and the question was never answered.
+   */
+  describe('support questions', () => {
+    it.each([
+      'Why my staked token not received',
+      'Already withdrawal',
+      'I already withdrawal my token from staking but still not received',
+      'My staked token withdrawal already but recieved yet',
+      'show me my balance',
+      'i want my withdrawal',
+      'what does this transaction fee mean',
+      'the app is not working, i cannot log in',
+    ])('never charges for %p', (text) => {
+      expect(isSupportQuestion(text)).toBe(true);
+      expect(isImageRequest(text)).toBe(false);
+      expect(isVideoRequest(text)).toBe(false);
+      expect(detectAiToolRequest(text, false)).toBeNull();
+    });
+
+    it('matches phrases as whole words, not fragments of other words', () => {
+      expect(isImageRequest('how do I withdraw')).toBe(false);
+      expect(isImageRequest('the input box sits under the header')).toBe(false);
+      expect(isVideoRequest('when is the promotion running')).toBe(false);
+    });
+
+    it('lets explicit phrasing through anyway', () => {
+      expect(isImageRequest('draw me a picture of a wallet')).toBe(true);
+      expect(detectAiToolRequest('transcribe this support call', false)).toBe('speech-to-text');
     });
   });
 });
