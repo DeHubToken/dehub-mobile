@@ -1,6 +1,6 @@
 import { storage } from "./storage";
 import { reportError, flushLogs } from "./errorReporter";
-import { getLastExitReasons, type ProcessExitInfo } from "../modules/exit-reason";
+import { getLastExitReasons, takeLastJavaCrash, type ProcessExitInfo } from "../modules/exit-reason";
 
 /**
  * Report how the previous run of the app ended, when it did not end by choice.
@@ -47,10 +47,31 @@ function writeLastSeen(ts: number): void {
 }
 
 /** Call once at launch, after the error reporter is installed. Never throws. */
+/**
+ * The Java stack the module's crash handler saved, as its own row. Android
+ * files an uncaught Java exception under REASON_CRASH with no trace at all,
+ * so this is the only place the stack survives. Goes through an Error so the
+ * stack lands in `stack_trace`, which is not capped like metadata.
+ */
+function reportJavaCrash(): void {
+  const text = takeLastJavaCrash();
+  if (!text) return;
+  const headline =
+    text.split("\n").find((line) => /(Exception|Error)/.test(line) && !line.startsWith("thread=")) ??
+    "Uncaught Java exception";
+  const err = new Error(headline.trim().slice(0, 300));
+  err.stack = text.slice(0, 16000);
+  reportError("JavaCrash", [err]);
+}
+
 export function reportProcessExits(): void {
   try {
+    reportJavaCrash();
     const all = getLastExitReasons(8);
-    if (all.length === 0) return;
+    if (all.length === 0) {
+      void flushLogs();
+      return;
+    }
     const lastSeen = readLastSeen();
     // Advance the watermark before reporting, so a fault inside reporting
     // cannot replay the same exits on every launch.
