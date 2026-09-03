@@ -808,6 +808,34 @@ export default function UploadScreen() {
   const activeIsUploading = isLiveMode ? isLiveUploading : false;
   const activeUploadStage = isLiveMode ? liveUploadStage : "idle" as UploadStage;
 
+  /**
+   * One Post at a time.
+   *
+   * Tapping Post does not queue the upload there and then — it first looks up
+   * the Solana wallet, checks the mint fee and prices the post against today's
+   * free allowance, every one of them a network round trip, and only enqueues
+   * and leaves the screen afterwards. Because a queued upload is what makes
+   * `activeIsUploading` true, and nothing is queued yet, the button stayed
+   * enabled and showed no spinner for the whole of that wait. On a slow
+   * connection it looks dead, so it gets tapped again — and each extra tap
+   * made its own upload job, carrying its own idempotency key, and therefore
+   * its own post. Four of one creator's posts went out twice this way in a
+   * fortnight, the pairs 7 seconds apart.
+   *
+   * The ref is what actually holds the door: two taps inside one frame both
+   * read the same stale state, so the second has to be turned away before
+   * React has re-rendered anything. The state exists only to spin the button.
+   */
+  const submittingRef = useRef(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const releaseSubmit = useCallback(() => {
+    submittingRef.current = false;
+    setIsSubmitting(false);
+  }, []);
+  // What the Post button reflects: a live upload blocking the screen, or a
+  // regular post on its way to the queue.
+  const postInFlight = activeIsUploading || isSubmitting;
+
   // Intercept Android back button (uses activeIsUploading, i.e. live mode only)
   useEffect(() => {
     const sub = BackHandler.addEventListener("hardwareBackPress", () => {
@@ -988,7 +1016,7 @@ export default function UploadScreen() {
       const addr = payload.solanaAddress ?? (await getSolanaAddress().catch(() => null));
       if (!addr) {
         toastError("Solana wallet unavailable — this device does not hold your wallet key. Sign in again to restore it.");
-        return;
+        return false;
       }
       payload = { ...payload, solanaAddress: addr };
       if (!solanaAddress) setSolanaAddress(addr);
@@ -1049,7 +1077,7 @@ export default function UploadScreen() {
           t("storefront.unavailable"),
           "You've used today's free posting allowance",
         );
-        return;
+        return false;
       }
       const { readDhbBalance } = await import("../services/post-quota-payment");
       const held = await readDhbBalance();
@@ -1059,15 +1087,22 @@ export default function UploadScreen() {
           `This post costs ${owed.toLocaleString()} DHB and you hold ${Math.floor(held).toLocaleString()}. Top up, or it's free again tomorrow.`,
           "You've used today's free posting allowance",
         );
-        return;
+        return false;
       }
     }
 
     const ok = enqueueJob(payload);
-    if (!ok) return;
+    if (!ok) return false;
     consumeRestoredDraft();
-    setTimeout(navigateHome, 120);
-  }, [getPayload, enqueueJob, navigateHome, solanaAddress, mintFee, mintChainId, consumeRestoredDraft, postQuota]);
+    // The guard is released here rather than the moment the job is queued: the
+    // form is still filled in and the screen is still up for these 120ms, so a
+    // tap landing in the gap would post the same thing a second time.
+    setTimeout(() => {
+      navigateHome();
+      releaseSubmit();
+    }, 120);
+    return true;
+  }, [getPayload, enqueueJob, navigateHome, releaseSubmit, solanaAddress, mintFee, mintChainId, consumeRestoredDraft, postQuota]);
 
   const handleRemoveQuoteEmbed = useCallback(() => {
     setIsQuoteMode(false);
@@ -1075,8 +1110,8 @@ export default function UploadScreen() {
     setQuotedPost(undefined);
   }, []);
 
-  const submitQuotePost = useCallback(() => {
-    if (!quotedTokenId) return;
+  const submitQuotePost = useCallback((): boolean => {
+    if (!quotedTokenId) return false;
     // The quote hook folds `bodyText` into the description for non-video
     // quotes, so pass the comment there; a video quote keeps name + description
     // split, with the same title fallback the regular payload uses.
@@ -1093,13 +1128,18 @@ export default function UploadScreen() {
       thumbnailUri,
       quotedTokenId: Number(quotedTokenId),
     });
-    if (!ok) return;
+    if (!ok) return false;
     consumeRestoredDraft();
-    setTimeout(navigateHome, 120);
+    // Held through the navigation for the same reason as submitPost above.
+    setTimeout(() => {
+      navigateHome();
+      releaseSubmit();
+    }, 120);
+    return true;
   }, [
     quotedTokenId, categories, pickedVideo, bodyText, titleText,
     coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome,
-    consumeRestoredDraft,
+    consumeRestoredDraft, releaseSubmit,
   ]);
 
   /**
@@ -1110,45 +1150,61 @@ export default function UploadScreen() {
    * confirmation could usefully warn about. Live mode is the exception: it
    * blocks on a mint and keeps its confirm step (see handleGoLive).
    */
-  const handlePost = useCallback(() => {
-    if (activeIsUploading) return;
+  const handlePost = useCallback(async () => {
+    // `submittingRef`, not `isSubmitting`: a second tap in the same frame reads
+    // the state this one has not caused a render for yet. See the ref's doc.
+    if (activeIsUploading || submittingRef.current) return;
     if (isLiveMode) {
+      // Live keeps its confirm step, and blocks the screen through the mint —
+      // it is already guarded by `activeIsUploading`.
       handleGoLive();
       return;
     }
     if (!canPost) return;
 
-    // Quote mode: simpler validation, skip monetization checks
-    if (isQuoteMode) {
-      if (bodyText.trim().length === 0 && !pickedVideo && !pickedAudio && pickedImages.length === 0) {
-        toastError("Write something or add media to quote this post.");
+    submittingRef.current = true;
+    setIsSubmitting(true);
+
+    // Anything that did NOT put a job in the queue has to give the button back:
+    // this screen stays mounted behind the tab navigator, so a post rejected
+    // for a short balance must still be postable once that is fixed. A queued
+    // post releases it after navigating away instead — see submitPost.
+    let queued = false;
+    try {
+      // Quote mode: simpler validation, skip monetization checks
+      if (isQuoteMode) {
+        if (bodyText.trim().length === 0 && !pickedVideo && !pickedAudio && pickedImages.length === 0) {
+          toastError("Write something or add media to quote this post.");
+          return;
+        }
+        queued = submitQuotePost();
         return;
       }
-      submitQuotePost();
-      return;
+
+      const payload = getPayload();
+
+      // Validate form
+      const validation = validate(payload);
+      if (!validation.valid) {
+        toastError(validation.error ?? "Please fill in required fields.");
+        return;
+      }
+
+      // Pre-upload checks (gas, balance)
+      const preCheck = preUploadCheck(payload);
+      if (!preCheck.valid) {
+        toastError(preCheck.error ?? "Pre-upload check failed.");
+        return;
+      }
+
+      queued = await submitPost();
+    } finally {
+      if (!queued) releaseSubmit();
     }
-
-    const payload = getPayload();
-
-    // Validate form
-    const validation = validate(payload);
-    if (!validation.valid) {
-      toastError(validation.error ?? "Please fill in required fields.");
-      return;
-    }
-
-    // Pre-upload checks (gas, balance)
-    const preCheck = preUploadCheck(payload);
-    if (!preCheck.valid) {
-      toastError(preCheck.error ?? "Pre-upload check failed.");
-      return;
-    }
-
-    submitPost();
   }, [
     canPost, activeIsUploading, isLiveMode, isQuoteMode, bodyText, pickedVideo,
     pickedAudio, pickedImages, getPayload, validate, preUploadCheck, handleGoLive,
-    submitPost, submitQuotePost,
+    submitPost, submitQuotePost, releaseSubmit,
   ]);
 
   const buildDraftData = useCallback(() => ({
@@ -1759,7 +1815,7 @@ export default function UploadScreen() {
 
           <TouchableOpacity
             onPress={handlePost}
-            disabled={isLiveMode ? (!canGoLive || activeIsUploading) : (!canPost || activeIsUploading)}
+            disabled={isLiveMode ? (!canGoLive || postInFlight) : (!canPost || postInFlight)}
             activeOpacity={0.8}
             className="h-10 px-5 rounded-full items-center justify-center"
             accessibilityRole="button"
@@ -1770,7 +1826,9 @@ export default function UploadScreen() {
                 : 'rgba(255,255,255,0.1)',
             }}
           >
-            {activeIsUploading ? (
+            {/* Spins from the tap, not from the queue: the wait that invited a
+                second tap happens entirely before there is a job to report on. */}
+            {postInFlight ? (
               <ActivityIndicator size="small" color={(isLiveMode ? canGoLive : canPost) ? '#000' : '#6F7174'} />
             ) : (
               <Icon
