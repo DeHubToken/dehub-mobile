@@ -545,6 +545,7 @@
   },
   "notifications": {
     "title": "খবর",
+    "loadFailed": "নোটিফিকেশন লোড হইল না",
     "all": "সব",
     "likes": "ভালো লাগা",
     "comments": "মন্তব্য",

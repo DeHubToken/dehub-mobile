@@ -971,6 +971,7 @@
   },
   "notifications": {
     "title": "Notifikationer",
+    "loadFailed": "Kunne ikke indlæse notifikationer",
     "markAllRead": "Marker alle som læst",
     "settings": "Notifikationsindstillinger",
     "actions": "Handlinger",

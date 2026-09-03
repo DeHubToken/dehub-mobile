@@ -971,6 +971,7 @@
   },
   "notifications": {
     "title": "התראות",
+    "loadFailed": "לא ניתן לטעון את ההתראות",
     "markAllRead": "סמן הכל כנקרא",
     "settings": "הגדרות התראות",
     "actions": "פעולות",

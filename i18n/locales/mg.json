@@ -930,6 +930,7 @@
   },
   "notifications": {
     "title": "Fampandrenesana",
+    "loadFailed": "Tsy afaka nampiditra ny fampandrenesana",
     "markAllRead": "Mariho fa voavaky daholo",
     "settings": "Fikiran'ny fampandrenesana",
     "actions": "Hetsika",

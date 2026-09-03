@@ -147,6 +147,7 @@
   },
   "notifications": {
     "title": "Kennisgewings",
+    "loadFailed": "Kon nie kennisgewings laai nie",
     "markAsRead": "Merk as gelees",
     "noNotifications": "Geen kennisgewings nie.",
     "markAllRead": "Mark all read",

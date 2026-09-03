@@ -1058,6 +1058,7 @@
   },
   "notifications": {
     "title": "Tsanoutsagroumner",
+    "loadFailed": "Չհաջողվեց բեռնել ծանուցումները",
     "markAllRead": "Nshel bolaore ibrev kartsevaats",
     "settings": "Tsanoutsagroutyounneri kargavoroumner",
     "actions": "Gortsoghoutyunner",

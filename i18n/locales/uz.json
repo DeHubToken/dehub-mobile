@@ -977,6 +977,7 @@
   },
   "notifications": {
     "title": "Bildirishnomalar",
+    "loadFailed": "Bildirishnomalarni yuklab bo‘lmadi",
     "markAllRead": "Hammasini oʻqilgan deb belgilash",
     "settings": "Bildirishnoma sozlamalari",
     "actions": "Amallar",

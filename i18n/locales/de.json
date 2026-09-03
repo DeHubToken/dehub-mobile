@@ -1058,6 +1058,7 @@
   },
   "notifications": {
     "title": "Benachrichtigungen",
+    "loadFailed": "Benachrichtigungen konnten nicht geladen werden",
     "markAllRead": "Alle als gelesen markieren",
     "settings": "Benachrichtigungseinstellungen",
     "actions": "Aktionen",

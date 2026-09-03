@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "通知",
+    "loadFailed": "載入唔到通知",
     "markAllRead": "全部標為已讀",
     "settings": "通知設定",
     "actions": "操作",

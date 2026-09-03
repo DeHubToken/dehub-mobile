@@ -1062,6 +1062,7 @@
   },
   "notifications": {
     "title": "বিজ্ঞপ্তি",
+    "loadFailed": "বিজ্ঞপ্তি লোড করা যায়নি",
     "markAllRead": "সব পঠিত করুন",
     "settings": "বিজ্ঞপ্তি সেটিংস",
     "actions": "অ্যাকশন",

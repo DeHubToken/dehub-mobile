@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "Agahdarî",
+    "loadFailed": "Agahdarî nehatin barkirin",
     "markAllRead": "Hemûyan wek xwendî nîşan bike",
     "settings": "Mîhengên Agahdariyê",
     "actions": "Çalakî",

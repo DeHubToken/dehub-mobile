@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "Notifikasi",
+    "loadFailed": "Notifikasi ora bisa dimuat",
     "markAllRead": "Tandhai Kabeh Wis Diwaca",
     "settings": "Setelan Notifikasi",
     "actions": "Aksi",

@@ -971,6 +971,7 @@
   },
   "notifications": {
     "title": "الإشعارات",
+    "loadFailed": "تعذّر تحميل الإشعارات",
     "markAllRead": "تحديد الكل كمقروء",
     "settings": "إعدادات الإشعارات",
     "actions": "إجراءات",

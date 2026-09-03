@@ -1000,6 +1000,7 @@
   },
   "notifications": {
     "title": "Bildirimler",
+    "loadFailed": "Bildirimler yüklenemedi",
     "markAllRead": "Tümünü okundu işaretle",
     "settings": "Bildirim Ayarları",
     "actions": "İşlemler",

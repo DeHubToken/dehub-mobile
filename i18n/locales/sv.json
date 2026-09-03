@@ -971,6 +971,7 @@
   },
   "notifications": {
     "title": "Aviseringar",
+    "loadFailed": "Det gick inte att läsa in aviseringar",
     "markAllRead": "Markera alla som lästa",
     "settings": "Aviseringsinställningar",
     "actions": "Åtgärder",

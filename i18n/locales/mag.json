@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "सूचना",
+    "loadFailed": "सूचना लोड ना हो सकलई",
     "markAllRead": "सब पढ़ल चिह्नित करो",
     "settings": "सूचना सेटिंग",
     "actions": "काम",

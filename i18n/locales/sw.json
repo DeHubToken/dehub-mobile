@@ -1060,6 +1060,7 @@
   },
   "notifications": {
     "title": "Arifa",
+    "loadFailed": "Arifa hazikuweza kupakiwa",
     "markAllRead": "Tia alama zote kuwa zimesomwa",
     "settings": "Mipangilio ya Arifa",
     "actions": "Vitendo",
