@@ -45,7 +45,9 @@
     },
     "production": {
       "ios": {
-        "companyName": "DeLabs LTD"
+        "companyName": "DeLabs LTD",
+        "appleTeamId": "J8BTYL3PDK",
+        "ascAppId": "6770382811"
       }
     }
   }
