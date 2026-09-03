@@ -42,6 +42,20 @@ const STAKING_ABI = [
   "function unstake(uint256 amount)",
 ];
 
+/**
+ * True for a `staking_records` row that is still a *request* rather than a
+ * settled withdrawal.
+ *
+ * Queue rows carry a synthetic `unstake-request-<ts>` hash and wait on a
+ * manual treasury payout. A withdrawal from the legacy BNB contract is
+ * recorded with its real transaction hash and has already moved the tokens —
+ * the on-chain position dropped with it, so counting one here would subtract
+ * the same DHB twice and leave a phantom "unstaking" figure on the card.
+ */
+function isPendingQueueRow(txHash: string | null | undefined): boolean {
+  return !(txHash ?? "").startsWith("0x");
+}
+
 function fmt(val: number): string {
   if (!Number.isFinite(val) || val === 0) return "0";
   if (val >= 1_000_000) return (val / 1_000_000).toFixed(2) + "M";
@@ -110,7 +124,7 @@ const StakingTab: React.FC = () => {
           addr
             ? supabase
                 .from("staking_records")
-                .select("amount, action")
+                .select("amount, action, tx_hash")
                 .eq("wallet_address", addr)
             : Promise.resolve({ data: [] as any[] }),
           // Legacy on-chain position on BNB. Both fields matter: the amount is
@@ -144,7 +158,7 @@ const StakingTab: React.FC = () => {
       const records = (dbRecords as any)?.data || [];
       for (const r of records) {
         if (r.action === "stake") dbStaked += Number(r.amount);
-        else if (r.action === "unstake") {
+        else if (r.action === "unstake" && isPendingQueueRow(r.tx_hash)) {
           dbStaked -= Number(r.amount);
           queued += Number(r.amount);
         }
@@ -336,6 +350,20 @@ const StakingTab: React.FC = () => {
       } catch {
         // Confirmation timed out — the transaction is still in flight, and the
         // next fetchData will show the real position either way.
+      }
+
+      // Recorded so the withdrawal shows in history on web too. The real hash
+      // is what marks it settled — see isPendingQueueRow above.
+      try {
+        await supabase.from("staking_records").insert({
+          wallet_address: walletAddress.toLowerCase(),
+          amount: amt,
+          chain: "BNB",
+          action: "unstake",
+          tx_hash: txHash,
+        });
+      } catch (dbErr) {
+        console.warn("[StakingTab] failed to record withdrawal:", dbErr);
       }
 
       toastSuccess(`Unstaked ${amount} DHB! TX: ${txHash.slice(0, 10)}…`);
