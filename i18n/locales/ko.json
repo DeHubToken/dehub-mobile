@@ -971,6 +971,7 @@
   },
   "notifications": {
     "title": "알림",
+    "loadFailed": "알림을 불러올 수 없습니다",
     "markAllRead": "모두 읽음 처리",
     "settings": "알림 설정",
     "actions": "작업",

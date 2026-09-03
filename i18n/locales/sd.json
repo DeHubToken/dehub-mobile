@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "اطلاعون",
+    "loadFailed": "نوٽيفڪيشن لوڊ نه ٿي سگهيا",
     "markAllRead": "سڀ پڙهيل نشان ڪريو",
     "settings": "اطلاع سيٽنگون",
     "actions": "ڪارروائيون",

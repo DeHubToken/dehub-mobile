@@ -1062,6 +1062,7 @@
   },
   "notifications": {
     "title": "Notifikasi",
+    "loadFailed": "Notifikasi tidak dapat dimuat",
     "markAllRead": "Tandai semua dibaca",
     "settings": "Pengaturan Notifikasi",
     "actions": "Tindakan",

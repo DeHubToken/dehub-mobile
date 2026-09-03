@@ -1060,6 +1060,7 @@
   },
   "notifications": {
     "title": "Willay",
+    "loadFailed": "Willakuykunata mana cargayta atinchu",
     "markAllRead": "Llapanta ñawiriyta churay",
     "settings": "Willay churanakuna",
     "actions": "Ruraykuna",

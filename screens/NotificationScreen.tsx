@@ -52,6 +52,7 @@ import Avatar from "../components/common/Avatar";
 import SmartImage from "../components/common/SmartImage";
 import { reactionMeta } from "../libs/reactions";
 import AppealSheet from "../components/Notifications/AppealSheet";
+import { createLogger } from "../libs/logger";
 import {
   NotificationType,
   getNotificationIconConfig,
@@ -775,6 +776,21 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
   );
 });
 
+const log = createLogger("NotificationScreen");
+
+// The last list this session painted, keyed by account. The screen is a
+// stack route, so every open is a fresh mount, and until now every open began
+// with eight skeleton rows and then swapped to the real list once the API
+// answered — the "flash" on tapping the bell. Reopening now paints the
+// previous rows at once and refreshes them in the background, the way the
+// feeds behave. Only the unfiltered list is kept; the screen always opens
+// on All.
+let lastPainted: {
+  wallet: string | null;
+  notifications: NotificationItem[];
+  countsSource: NotificationItem[];
+} | null = null;
+
 const NotificationScreen = () => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -792,7 +808,8 @@ const NotificationScreen = () => {
   const walletAddressRef = useRef<string | null>(walletAddress);
   walletAddressRef.current = walletAddress;
 
-  const [notifications, setNotifications] = useState<NotificationItem[]>([]);
+  const cached = lastPainted && lastPainted.wallet === walletAddress ? lastPainted : null;
+  const [notifications, setNotifications] = useState<NotificationItem[]>(() => cached?.notifications ?? []);
   /**
    * Rows this device has cleared. The API has no delete endpoint, so a cleared
    * row is remembered here and filtered out — otherwise the next refetch would
@@ -800,14 +817,23 @@ const NotificationScreen = () => {
    */
   const [dismissedIds, setDismissedIds] = useState<Set<string>>(new Set());
   const [refreshing, setRefreshing] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!cached);
+  // Set when a refresh fails with nothing on screen to fall back on. Until now
+  // a failed fetch was a console.warn and an empty list that read as "No
+  // notifications", which is a lie the person cannot act on.
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [selectedFilter, setSelectedFilter] = useState<NotificationTypeFilter>('all');
   // Unfiltered snapshot kept alongside the (now server-filtered) list purely so
   // the tab badges and the app badge keep seeing every type.
-  const [countsSource, setCountsSource] = useState<NotificationItem[]>([]);
+  const [countsSource, setCountsSource] = useState<NotificationItem[]>(() => cached?.countsSource ?? []);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
+
+  useEffect(() => {
+    if (loading || selectedFilter !== "all") return;
+    lastPainted = { wallet: walletAddress, notifications, countsSource };
+  }, [loading, selectedFilter, notifications, countsSource, walletAddress]);
 
   // Cleared rows are per account: two wallets on one phone must not inherit
   // each other's list.
@@ -875,7 +901,7 @@ const NotificationScreen = () => {
       ? markCustomNotificationRead(notificationId, walletAddressRef.current)
       : markNotificationAsRead(notificationId);
     mark.catch((e: unknown) => {
-      console.warn('[NotificationScreen] markAsRead failed', e);
+      log.error("markAsRead failed", e);
     });
   }, []);
 
@@ -900,7 +926,7 @@ const NotificationScreen = () => {
         return;
       }
     } catch (e) {
-      console.warn('[NotificationScreen] bounty lookup failed', e);
+      log.error("bounty lookup failed", e);
     }
     navigation.navigate(ScreenNames.Work);
   }, [navigation]);
@@ -1121,6 +1147,7 @@ const NotificationScreen = () => {
           }
         }
 
+        setLoadError(null);
         if (isRefresh) {
           setNotifications(payload);
           setPage(1);
@@ -1152,7 +1179,14 @@ const NotificationScreen = () => {
           }
         }
       } catch (e) {
-        console.warn("[NotificationScreen] fetch error", e);
+        log.error("fetch error", e, {
+          phase: isRefresh ? "refresh" : "page",
+          page: pageRef.current,
+          filter: selectedFilterRef.current,
+        });
+        if (gen === fetchGenRef.current) {
+          setLoadError((e as Error)?.message || "error");
+        }
       } finally {
         if (gen === fetchGenRef.current) {
           setRefreshing(false);
@@ -1168,7 +1202,7 @@ const NotificationScreen = () => {
   const fetchNotificationsRef = useRef(fetchNotifications);
   fetchNotificationsRef.current = fetchNotifications;
 
-  const hasFetchedRef = useRef(false);
+  const hasFetchedRef = useRef(!!cached);
 
   useFocusEffect(
     useCallback(() => {
@@ -1230,14 +1264,14 @@ const NotificationScreen = () => {
     setCountsSource((prev) => prev.map((n) => ({ ...n, read: true })));
 
     markAllNotificationsAsRead().catch((e) => {
-      console.warn('[NotificationScreen] markAllRead error', e);
+      log.error("markAllRead error", e);
     });
   }, []);
 
   const handleAcceptFollowRequest = useCallback(async (notification: NotificationItem) => {
     const followId = notification.metadata?.followId;
     if (!followId) {
-      console.warn('[NotificationScreen] Missing followId in notification metadata');
+      log.warn("Missing followId in notification metadata");
       return;
     }
     // Optimistic: remove from list
@@ -1248,7 +1282,7 @@ const NotificationScreen = () => {
       const currentCount = user?.followers || 0;
       patchUser?.({ followers: currentCount + 1 });
     } catch (e) {
-      console.warn('[NotificationScreen] acceptFollowRequest error', e);
+      log.error("acceptFollowRequest error", e);
       // Revert
       setNotifications((prev) => {
         const exists = prev.some((n) => n._id === notification._id);
@@ -1261,7 +1295,7 @@ const NotificationScreen = () => {
   const handleRejectFollowRequest = useCallback(async (notification: NotificationItem) => {
     const followId = notification.metadata?.followId;
     if (!followId) {
-      console.warn('[NotificationScreen] Missing followId in notification metadata');
+      log.warn("Missing followId in notification metadata");
       return;
     }
     // Optimistic: remove from list
@@ -1269,7 +1303,7 @@ const NotificationScreen = () => {
     try {
       await rejectFollowRequest(followId);
     } catch (e) {
-      console.warn('[NotificationScreen] rejectFollowRequest error', e);
+      log.error("rejectFollowRequest error", e);
       // Revert
       setNotifications((prev) => {
         const exists = prev.some((n) => n._id === notification._id);
@@ -1307,7 +1341,7 @@ const NotificationScreen = () => {
     setCountsSource((prev) => prev.filter((n) => n._id !== notification._id));
     if (!notification.read) markAsReadAsync(notification._id);
     addDismissedIds(walletAddress, [notification._id]).catch((e) => {
-      console.warn('[NotificationScreen] persist cleared notification failed', e);
+      log.error("persist cleared notification failed", e);
     });
   }, [markAsReadAsync, walletAddress]);
 
@@ -1378,6 +1412,39 @@ const NotificationScreen = () => {
     );
   }, [loadingMore]);
 
+  const ListEmpty = useMemo(() => {
+    if (loadError) {
+      return (
+        <View className="flex-1 items-center justify-center py-20">
+          <View className="w-16 h-16 rounded-full bg-theme-neutrals-800 items-center justify-center mb-4">
+            <Icon name="BellOff" size={32} color="#A1A1AA" />
+          </View>
+          <Text className="text-theme-neutrals-400 text-base font-medium mb-1">
+            {t("notifications.loadFailed")}
+          </Text>
+          <TouchableOpacity onPress={onRefresh} className="mt-3 px-5 py-2 rounded-full bg-theme-neutrals-800">
+            <Text className="text-theme-neutrals-100 text-sm font-medium">{t("common.tryAgain")}</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+    return (
+      <View className="flex-1 items-center justify-center py-20">
+        <View className="w-16 h-16 rounded-full bg-theme-neutrals-800 items-center justify-center mb-4">
+          <Icon name="BellOff" size={32} color="#A1A1AA" />
+        </View>
+        <Text className="text-theme-neutrals-400 text-base font-medium mb-1">
+          No notifications
+        </Text>
+        <Text className="text-theme-neutrals-500 text-sm text-center px-8">
+          {selectedFilter === 'all'
+            ? "You're all caught up! Check back later for updates."
+            : `No ${TYPE_TABS.find(t => t.key === selectedFilter)?.label?.toLowerCase() || selectedFilter} notifications yet.`}
+        </Text>
+      </View>
+    );
+  }, [loadError, selectedFilter, onRefresh, t]);
+
   // Header with mark all read button
   const hasUnread = filteredNotifications.some((n) => !n.read);
   const showLoading = loading;
@@ -1428,31 +1495,16 @@ const NotificationScreen = () => {
           }
           onEndReached={onLoadMore}
           onEndReachedThreshold={0.3}
-          // Untuned until now: the whole list rendered in one pass and every
-          // row stayed attached. Rows are a small avatar and two lines, so
-          // they batch cheaply and clip safely — no maintainVisibleContentPosition
-          // here, which is the one thing removeClippedSubviews cannot share with.
+          // Rows are a small avatar and two lines, so they batch cheaply.
           initialNumToRender={10}
           maxToRenderPerBatch={8}
           windowSize={9}
           updateCellsBatchingPeriod={60}
-          removeClippedSubviews
+          // No removeClippedSubviews: every row is a Reanimated view with its own
+          // animated style, and Android detaching and re-attaching those mid-fling
+          // is the jitter people saw. windowSize above still unmounts distant rows.
           ListFooterComponent={ListFooter}
-          ListEmptyComponent={
-            <View className="flex-1 items-center justify-center py-20">
-              <View className="w-16 h-16 rounded-full bg-theme-neutrals-800 items-center justify-center mb-4">
-                <Icon name="BellOff" size={32} color="#A1A1AA" />
-              </View>
-              <Text className="text-theme-neutrals-400 text-base font-medium mb-1">
-                No notifications
-              </Text>
-              <Text className="text-theme-neutrals-500 text-sm text-center px-8">
-                {selectedFilter === 'all' 
-                  ? "You're all caught up! Check back later for updates."
-                  : `No ${TYPE_TABS.find(t => t.key === selectedFilter)?.label?.toLowerCase() || selectedFilter} notifications yet.`}
-              </Text>
-            </View>
-          }
+          ListEmptyComponent={ListEmpty}
         />
       )}
     </View>

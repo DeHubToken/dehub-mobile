@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "Nochrichtä",
+    "loadFailed": "Benachrichtigunge hend nöd glade werde chöne",
     "markAllRead": "Alli als gläse markiere",
     "settings": "Nochrichtä-Istelligä",
     "actions": "Aktione",

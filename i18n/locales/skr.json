@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "اطلاع",
+    "loadFailed": "نوٹیفکیشن لوڈ نہ تھی سگے",
     "markAllRead": "سارے پڑھے نشان لاؤ",
     "settings": "اطلاع ترتیباں",
     "actions": "عمل",

@@ -1010,6 +1010,7 @@
   },
   "notifications": {
     "title": "Beeksisa",
+    "loadFailed": "Beeksisawwan fe'uun hin danda'amne",
     "markAllRead": "Hundaa dubbifame jedhi",
     "settings": "Qindaa'ina Beeksisaa",
     "actions": "Tarkaanfii",

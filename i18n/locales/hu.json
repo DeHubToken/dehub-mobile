@@ -971,6 +971,7 @@
   },
   "notifications": {
     "title": "Értesítések",
+    "loadFailed": "Nem sikerült betölteni az értesítéseket",
     "markAllRead": "Összes olvasottnak jelölése",
     "settings": "Értesítési beállítások",
     "actions": "Műveletek",

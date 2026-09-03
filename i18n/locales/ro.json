@@ -1277,6 +1277,7 @@
   },
   "notifications": {
     "title": "Notifications",
+    "loadFailed": "Notificările nu au putut fi încărcate",
     "markAllRead": "Mark all read",
     "settings": "Notification Settings",
     "actions": "Actions",

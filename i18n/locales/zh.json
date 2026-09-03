@@ -1062,6 +1062,7 @@
   },
   "notifications": {
     "title": "通知",
+    "loadFailed": "无法加载通知",
     "markAllRead": "全部标为已读",
     "settings": "通知设置",
     "actions": "操作",

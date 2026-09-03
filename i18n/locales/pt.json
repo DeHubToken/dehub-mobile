@@ -1062,6 +1062,7 @@
   },
   "notifications": {
     "title": "Notificações",
+    "loadFailed": "Não foi possível carregar as notificações",
     "markAllRead": "Marcar tudo como lido",
     "settings": "Configurações de notificações",
     "actions": "Ações",

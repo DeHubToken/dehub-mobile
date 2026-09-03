@@ -1521,6 +1521,7 @@
   },
   "notifications": {
     "title": "Meldingen",
+    "loadFailed": "Meldingen konden niet worden geladen",
     "markAllRead": "Alles als gelezen markeren",
     "settings": "Meldingsinstellingen",
     "actions": "Acties",

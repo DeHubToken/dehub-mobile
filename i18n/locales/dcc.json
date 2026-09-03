@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "اطلاع",
+    "loadFailed": "نوٹیفکیشن لوڈ نہیں ہو سکے",
     "markAllRead": "سب پڑھا نشان لگاؤ",
     "settings": "اطلاع سیٹنگز",
     "actions": "عمل",

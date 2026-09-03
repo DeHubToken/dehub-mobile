@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "Pranešimai",
+    "loadFailed": "Nepavyko įkelti pranešimų",
     "markAllRead": "Pažymėti viską kaip skaitytą",
     "settings": "Pranešimų nustatymai",
     "actions": "Veiksmai",

@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "Obavijesti",
+    "loadFailed": "Obavijesti se nisu mogle učitati",
     "markAllRead": "Označi sve kao pročitano",
     "settings": "Postavke obavijesti",
     "actions": "Radnje",

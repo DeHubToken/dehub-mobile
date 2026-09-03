@@ -1059,6 +1059,7 @@
   },
   "notifications": {
     "title": "الإشعارات",
+    "loadFailed": "ما قدرناش نجيبو الإشعارات",
     "markAllRead": "علم كلشي كمقروء",
     "settings": "إعدادات الإشعارات",
     "actions": "الإجراءات",

@@ -1060,6 +1060,7 @@
   },
   "notifications": {
     "title": "Ìwífúnni",
+    "loadFailed": "Kò lè gbé àwọn ìfitónilétí wọlé",
     "markAllRead": "Samisi gbogbo rẹ̀ bíi pé a ti kà",
     "settings": "Ètò Ìwífúnni",
     "actions": "Àwọn ìṣe",

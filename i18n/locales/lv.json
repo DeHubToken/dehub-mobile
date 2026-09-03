@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "Paziņojumi",
+    "loadFailed": "Neizdevās ielādēt paziņojumus",
     "markAllRead": "Atzīmēt visus kā lasītus",
     "settings": "Paziņojumu iestatījumi",
     "actions": "Darbības",

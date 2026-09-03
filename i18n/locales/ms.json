@@ -1529,6 +1529,7 @@
   },
   "notifications": {
     "title": "Notifications",
+    "loadFailed": "Pemberitahuan tidak dapat dimuatkan",
     "markAllRead": "Mark all read",
     "settings": "Notification Settings",
     "actions": "Actions",

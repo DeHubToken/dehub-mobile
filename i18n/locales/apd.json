@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "الإشعارات",
+    "loadFailed": "ما قدرنا نجيب الإشعارات",
     "markAllRead": "علّم الكل كمقروء",
     "settings": "إعدادات الإشعارات",
     "actions": "الإجراءات",

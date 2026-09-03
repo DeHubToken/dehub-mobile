@@ -971,6 +971,7 @@
   },
   "notifications": {
     "title": "Oznámení",
+    "loadFailed": "Oznámení se nepodařilo načíst",
     "markAllRead": "Označit vše jako přečtené",
     "settings": "Nastavení oznámení",
     "actions": "Akce",

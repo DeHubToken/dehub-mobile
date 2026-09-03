@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "સૂચનાઓ",
+    "loadFailed": "સૂચનાઓ લોડ થઈ શકી નથી",
     "markAllRead": "બધા વાંચ્યા તરીકે ચિહ્નિત કરો",
     "settings": "સૂચના સેટિંગ્સ",
     "actions": "ક્રિયાઓ",

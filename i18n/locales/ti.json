@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "ምልክታታት",
+    "loadFailed": "መልእኽትታት ክጽዓን ኣይተኻእለን",
     "markAllRead": "ኩሉ ከም ዝተነበ ምልክት ግበር",
     "settings": "ቅጥዕታት ምልክታ",
     "actions": "ተግባራት",

@@ -1058,6 +1058,7 @@
   },
   "notifications": {
     "title": "Varsler",
+    "loadFailed": "Kunne ikke laste varsler",
     "markAllRead": "Merk alle som lest",
     "settings": "Varslingsinnstillinger",
     "actions": "Handlinger",

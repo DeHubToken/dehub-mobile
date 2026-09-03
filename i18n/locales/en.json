@@ -1041,6 +1041,7 @@
   },
   "notifications": {
     "title": "Notifications",
+    "loadFailed": "Couldn't load notifications",
     "markAllRead": "Mark all read",
     "settings": "Notification Settings",
     "actions": "Actions",

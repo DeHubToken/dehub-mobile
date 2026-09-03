@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "Ogeysiisyo",
+    "loadFailed": "Ogeysiisyada lama soo dejin karin",
     "markAllRead": "Ka dhig dhammaan la akhristahy",
     "settings": "Dejinta Ogeysiisyada",
     "actions": "Ficilada",

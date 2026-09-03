@@ -1351,6 +1351,7 @@
   },
   "notifications": {
     "title": "Notifications",
+    "loadFailed": "Không thể tải thông báo",
     "markAllRead": "Mark all read",
     "settings": "Notification Settings",
     "actions": "Actions",

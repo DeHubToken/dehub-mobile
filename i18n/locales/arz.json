@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "الإشعارات",
+    "loadFailed": "مقدرناش نحمّل الإشعارات",
     "markAllRead": "تحديد الكل كمقروء",
     "settings": "إعدادات الإشعارات",
     "actions": "إجراءات",

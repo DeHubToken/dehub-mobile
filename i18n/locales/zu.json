@@ -1060,6 +1060,7 @@
   },
   "notifications": {
     "title": "Zaziso",
+    "loadFailed": "Ayikwazanga ukulayisha izaziso",
     "markAllRead": "Phawula konke njengokufundiwe",
     "settings": "Izilungiselelo Zezaziso",
     "actions": "Izenzo",

@@ -971,6 +971,7 @@
   },
   "notifications": {
     "title": "ਸੂਚਨਾਵਾਂ",
+    "loadFailed": "ਸੂਚਨਾਵਾਂ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀਆਂ",
     "markAllRead": "ਸਭ ਪੜ੍ਹਿਆ ਨਿਸ਼ਾਨ ਲਗਾਓ",
     "settings": "ਸੂਚਨਾ ਸੈਟਿੰਗਾਂ",
     "actions": "ਕਾਰਵਾਈਆਂ",

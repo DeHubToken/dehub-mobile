@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "Notificacions",
+    "loadFailed": "No s'han pogut carregar les notificacions",
     "markAllRead": "Marcar tot com a llegit",
     "settings": "Configuració de notificacions",
     "actions": "Accions",

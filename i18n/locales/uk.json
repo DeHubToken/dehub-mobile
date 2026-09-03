@@ -1748,6 +1748,7 @@
   },
   "notifications": {
     "title": "Notifications",
+    "loadFailed": "Не вдалося завантажити сповіщення",
     "markAllRead": "Mark all read",
     "settings": "Notification Settings",
     "actions": "Actions",

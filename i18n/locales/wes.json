@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "Notifications",
+    "loadFailed": "We no fit load notifications",
     "markAllRead": "Mark all read",
     "settings": "Notification Settings",
     "actions": "Actions",

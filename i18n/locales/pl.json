@@ -1331,6 +1331,7 @@
   },
   "notifications": {
     "title": "Powiadomienia",
+    "loadFailed": "Nie udało się wczytać powiadomień",
     "markAllRead": "Oznacz wszystkie jako przeczytane",
     "settings": "Ustawienia powiadomień",
     "actions": "Akcje",

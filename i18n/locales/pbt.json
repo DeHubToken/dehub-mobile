@@ -997,6 +997,7 @@
   },
   "notifications": {
     "title": "خبرتیاوې",
+    "loadFailed": "خبرتیاوې بار نه شوې",
     "markAllRead": "ټول لوستل شوي نښه کړئ",
     "settings": "د خبرتیا تنظیمات",
     "actions": "عملونه",
