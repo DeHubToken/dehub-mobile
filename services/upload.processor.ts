@@ -10,7 +10,7 @@ import { unwrapUploadResponse, xhrUploadFormData, isRateLimitUploadError } from 
 import { getContractsForMint } from "../libs/contract.factory";
 import { createAuthAdapter } from "../services/auth/authAdapter";
 import { mintNftOnChainWithFee, mintWithBounty } from "../services/mint.service";
-import { getMintFee } from "../services/nft.service";
+import { getMintFee, keepPostOffChain } from "../services/nft.service";
 import { broadcastSolanaMint } from "../services/solana.service";
 import { supportedTokens } from "../config/constants";
 import { toastError, toastSuccess } from "../libs/toast";
@@ -27,6 +27,15 @@ const abortFlags: Record<string, { current: boolean }> = {};
 /** Backoff when api.dehub.io's Solana RPC returns 429 during /user_mint. */
 const SOLANA_RATE_LIMIT_RETRIES = 3;
 const SOLANA_RATE_LIMIT_DELAYS_MS = [10_000, 25_000, 60_000];
+
+/**
+ * How long the mint phase waits before it gives the post up as off-chain.
+ *
+ * Generous on purpose: a slow bundler or a chain having a bad minute must not
+ * cost a mint that was always going to land. Nothing here is time-critical for
+ * the creator either way, because the post is already live by this point.
+ */
+const MINT_DEADLINE_MS = 120_000;
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -340,65 +349,104 @@ async function processJob(job: UploadJob): Promise<void> {
     uploadActions.updateProgress(job.id, 0.85);
     uploadActions.updateStage(job.id, "minting");
 
-    // Solana mint (#41): sign the partial tx as fee payer + broadcast — no EVM contracts.
-    if (job.isSolana && mintParams.solanaTransaction && mintParams.solanaMintAddress) {
-      uploadActions.updateProgress(job.id, 0.9);
-      const sol = await broadcastSolanaMint({
-        transactionBase64: mintParams.solanaTransaction,
-        mintAddress: mintParams.solanaMintAddress,
-        tokenId: mintParams.createdTokenId,
-        chainId: job.chainId,
-      });
-      if (sol.confirmWarning) {
-        toastError(sol.confirmWarning);
-      }
-    } else {
-      const { collectionContract, controllerContract } =
-        await getContractsForMint(job.chainId);
-
-      uploadActions.updateProgress(job.id, 0.9);
-
-      let tx: any;
-
-      if (job.isBounty && job.bountyConfig) {
-        const bountyToken = supportedTokens.find(
-          (t) => t.symbol === job.bountyConfig!.tokenSymbol && t.chainId === job.chainId,
-        );
-        if (!bountyToken) throw new Error("Unsupported bounty token for this chain");
-
-        tx = await mintWithBounty(
-          controllerContract,
-          mintParams.createdTokenId,
-          mintParams.timestamp!,
-          mintParams.v!,
-          mintParams.r!,
-          mintParams.s!,
-          bountyToken as any,
-          Number(job.bountyConfig.rewardPerPerson),
-          Number(job.bountyConfig.viewers),
-          Number(job.bountyConfig.commenters),
-          mintParams.uri,
-        );
+    /**
+     * The mint, with a deadline.
+     *
+     * Nothing in this leg has a wall clock of its own — the smart account
+     * signs, the bundler is waited on, and a stall anywhere in there leaves
+     * the job parked on "minting" for as long as the app is open. The post is
+     * already published by this point, so the real cost is not the wait: the
+     * backend marks a 'signed' token failed three minutes after it was
+     * created unless it is flagged deliberately off-chain, and the creator
+     * loses the post along with the mint.
+     *
+     * So the mint gets a deadline, and missing it keeps the post rather than
+     * failing the job. A signature that lands late still mints — the indexer
+     * clears mintOptOut when it confirms.
+     */
+    const mintDone = (async () => {
+      // Solana mint (#41): sign the partial tx as fee payer + broadcast — no EVM contracts.
+      if (job.isSolana && mintParams.solanaTransaction && mintParams.solanaMintAddress) {
+        uploadActions.updateProgress(job.id, 0.9);
+        const sol = await broadcastSolanaMint({
+          transactionBase64: mintParams.solanaTransaction,
+          mintAddress: mintParams.solanaMintAddress,
+          tokenId: mintParams.createdTokenId,
+          chainId: job.chainId,
+        });
+        if (sol.confirmWarning) {
+          toastError(sol.confirmWarning);
+        }
       } else {
-        // The fee, when there is one, rides in the same user operation as the
-        // mint — one signature, one sponsored transaction. With nothing to
-        // charge this is exactly the old mintNftOnChain call.
-        const fee = await getMintFee(job.chainId);
-        const provider = await createAuthAdapter().getProvider();
-        tx = await mintNftOnChainWithFee(
-          collectionContract,
-          provider,
-          mintParams.createdTokenId,
-          mintParams.timestamp!,
-          mintParams.v!,
-          mintParams.r!,
-          mintParams.s!,
-          fee,
-          mintParams.uri,
-        );
-      }
+        const { collectionContract, controllerContract } =
+          await getContractsForMint(job.chainId);
 
-      await tx?.wait?.(1);
+        uploadActions.updateProgress(job.id, 0.9);
+
+        let tx: any;
+
+        if (job.isBounty && job.bountyConfig) {
+          const bountyToken = supportedTokens.find(
+            (t) => t.symbol === job.bountyConfig!.tokenSymbol && t.chainId === job.chainId,
+          );
+          if (!bountyToken) throw new Error("Unsupported bounty token for this chain");
+
+          tx = await mintWithBounty(
+            controllerContract,
+            mintParams.createdTokenId,
+            mintParams.timestamp!,
+            mintParams.v!,
+            mintParams.r!,
+            mintParams.s!,
+            bountyToken as any,
+            Number(job.bountyConfig.rewardPerPerson),
+            Number(job.bountyConfig.viewers),
+            Number(job.bountyConfig.commenters),
+            mintParams.uri,
+          );
+        } else {
+          // The fee, when there is one, rides in the same user operation as the
+          // mint — one signature, one sponsored transaction. With nothing to
+          // charge this is exactly the old mintNftOnChain call.
+          const fee = await getMintFee(job.chainId);
+          const provider = await createAuthAdapter().getProvider();
+          tx = await mintNftOnChainWithFee(
+            collectionContract,
+            provider,
+            mintParams.createdTokenId,
+            mintParams.timestamp!,
+            mintParams.v!,
+            mintParams.r!,
+            mintParams.s!,
+            fee,
+            mintParams.uri,
+          );
+        }
+
+        await tx?.wait?.(1);
+      }
+    })().then(() => "minted" as const);
+
+    // Nothing awaits this once the deadline wins, so give it a handler of its
+    // own or a late failure surfaces as an unhandled rejection.
+    mintDone.catch(() => {});
+
+    let deadline: ReturnType<typeof setTimeout> | undefined;
+    const outcome = await Promise.race([
+      mintDone,
+      new Promise<"stalled">((resolve) => {
+        deadline = setTimeout(() => resolve("stalled"), MINT_DEADLINE_MS);
+      }),
+    ]).finally(() => {
+      if (deadline) clearTimeout(deadline);
+    });
+
+    if (outcome === "stalled") {
+      console.warn("[upload.processor] mint did not finish in time — keeping the post off-chain");
+      await keepPostOffChain(mintParams.createdTokenId);
+      toastSuccess("Posted, but not minted", {
+        description: "The mint did not go through. Your post is live — mint it any time from the post menu.",
+      });
     }
   } // end of the mint phase
 

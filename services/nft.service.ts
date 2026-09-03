@@ -953,6 +953,28 @@ export async function mintExistingPost(tokenId: number): Promise<MintNftResponse
 }
 
 /**
+ * Tell the backend to stop expecting a mint for this post.
+ *
+ * A post is live at status 'signed' the moment it is published, and the
+ * backend's expiry sweep marks any 'signed' token older than three minutes
+ * failed unless it is flagged deliberately off-chain. A mint that stalls in
+ * the upload queue would otherwise cost the creator the post, not just the
+ * mint.
+ *
+ * Best-effort: the post is already published, and there is nothing useful to
+ * say to the creator about a failure here.
+ */
+export async function keepPostOffChain(tokenId: number): Promise<boolean> {
+  try {
+    await apiClient.post(`/keep_offchain`, { tokenId }, { isAuthRequired: true });
+    return true;
+  } catch (e) {
+    console.warn("[NFTService] keepPostOffChain failed", e);
+    return false;
+  }
+}
+
+/**
  * One row of a post's Shop board.
  *
  * Affiliate links are allowed and expected here — that is what the board is
