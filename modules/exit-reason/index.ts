@@ -37,3 +37,21 @@ export function getLastExitReasons(max = 8): ProcessExitInfo[] {
     return [];
   }
 }
+
+/**
+ * The Java stack of the last uncaught exception, written by the module's
+ * crash handler on the way down. Read once; the file is deleted. Null when
+ * there was none, and everywhere the module does not exist.
+ */
+export function takeLastJavaCrash(): string | null {
+  if (Platform.OS !== "android") return null;
+  try {
+    const { requireNativeModule } = require("expo-modules-core") as {
+      requireNativeModule: (name: string) => { takeLastJavaCrash: () => string | null };
+    };
+    const text = requireNativeModule("ExitReason").takeLastJavaCrash();
+    return typeof text === "string" && text.length > 0 ? text : null;
+  } catch {
+    return null;
+  }
+}
