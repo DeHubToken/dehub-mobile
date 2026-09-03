@@ -2436,5 +2436,54 @@
     "dubbed": "配音音频",
     "preparing": "正在准备配音音频……",
     "unavailable": "配音音频不适用于此视频。"
+  },
+  "support": {
+    "title": "支持",
+    "subtitle": "你的工单及其状态。不用 AI，也不收费。",
+    "newTicket": "新建工单",
+    "newTicketHint": "告诉我们发生了什么，以及你原本期待的结果。",
+    "backToTickets": "返回工单列表",
+    "openHeading": "处理中（{{n}}）",
+    "closedHeading": "已关闭（{{n}}）",
+    "noTickets": "你还没有提交过任何支持工单。",
+    "loadFailed": "无法加载你的工单，请重试。",
+    "categoryLabel": "分类",
+    "severityLabel": "优先级",
+    "subjectLabel": "标题",
+    "subjectPlaceholder": "用一句话描述问题",
+    "descriptionLabel": "发生了什么",
+    "descriptionPlaceholder": "你做了什么、期待什么结果，以及实际发生了什么。",
+    "stepsLabel": "复现步骤（选填）",
+    "stepsPlaceholder": "1. 打开信息流\n2. 点击上传\n3. ...",
+    "submit": "提交工单",
+    "submitting": "提交中...",
+    "filed": "工单 {{ref}} 已转交团队。",
+    "filedNotEmailed": "工单 {{ref}} 已记录，请保存该编号。",
+    "alreadyOpen": "这个问题你已经提交过了，编号 {{ref}}。",
+    "filingFailed": "工单提交失败，请重试。",
+    "status": {
+      "open": "待处理",
+      "in_progress": "处理中",
+      "resolved": "已解决",
+      "closed": "已关闭"
+    },
+    "severity": {
+      "low": "低",
+      "normal": "普通",
+      "high": "高",
+      "urgent": "紧急"
+    },
+    "category": {
+      "account_access": "账号访问",
+      "wallet_or_transactions": "钱包或交易",
+      "posting_or_uploads": "发帖或上传",
+      "payments_or_subscriptions": "支付或订阅",
+      "live_streaming": "直播",
+      "content_or_moderation": "内容或审核",
+      "bug": "程序错误",
+      "feature_request": "功能建议",
+      "other": "其他"
+    },
+    "filedOn": "提交于 {{date}}"
   }
 }

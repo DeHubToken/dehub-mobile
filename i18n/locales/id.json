@@ -2432,5 +2432,54 @@
     "dubbed": "Dijuluki audio",
     "preparing": "Mempersiapkan audio yang dijuluki…",
     "unavailable": "Audio yang dijuluki tidak tersedia untuk video ini."
+  },
+  "support": {
+    "title": "Dukungan",
+    "subtitle": "Tiketmu dan statusnya. Tanpa AI, tanpa biaya.",
+    "newTicket": "Tiket baru",
+    "newTicketHint": "Ceritakan apa yang terjadi dan apa yang kamu harapkan.",
+    "backToTickets": "Kembali ke tiket",
+    "openHeading": "Terbuka ({{n}})",
+    "closedHeading": "Ditutup ({{n}})",
+    "noTickets": "Kamu belum pernah mengirim tiket dukungan.",
+    "loadFailed": "Tiketmu tidak bisa dimuat. Coba lagi.",
+    "categoryLabel": "Kategori",
+    "severityLabel": "Prioritas",
+    "subjectLabel": "Judul",
+    "subjectPlaceholder": "Satu baris yang menjelaskan masalahnya",
+    "descriptionLabel": "Apa yang terjadi",
+    "descriptionPlaceholder": "Apa yang kamu lakukan, apa yang kamu harapkan, dan apa yang terjadi.",
+    "stepsLabel": "Langkah untuk mengulanginya (opsional)",
+    "stepsPlaceholder": "1. Buka feed\n2. Ketuk unggah\n3. ...",
+    "submit": "Kirim tiket",
+    "submitting": "Mengirim...",
+    "filed": "Tiket {{ref}} sudah sampai ke tim.",
+    "filedNotEmailed": "Tiket {{ref}} tercatat. Simpan nomor rujukannya.",
+    "alreadyOpen": "Ini sudah terbuka sebagai {{ref}}.",
+    "filingFailed": "Tiket gagal dikirim. Coba lagi.",
+    "status": {
+      "open": "Terbuka",
+      "in_progress": "Sedang ditangani",
+      "resolved": "Selesai",
+      "closed": "Ditutup"
+    },
+    "severity": {
+      "low": "Rendah",
+      "normal": "Normal",
+      "high": "Tinggi",
+      "urgent": "Mendesak"
+    },
+    "category": {
+      "account_access": "Akses akun",
+      "wallet_or_transactions": "Dompet atau transaksi",
+      "posting_or_uploads": "Posting atau unggahan",
+      "payments_or_subscriptions": "Pembayaran atau langganan",
+      "live_streaming": "Siaran langsung",
+      "content_or_moderation": "Konten atau moderasi",
+      "bug": "Bug",
+      "feature_request": "Usulan fitur",
+      "other": "Lainnya"
+    },
+    "filedOn": "Dikirim {{date}}"
   }
 }

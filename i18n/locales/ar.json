@@ -2436,5 +2436,54 @@
     "dubbed": "صوت مدبلج",
     "preparing": "جارٍ إعداد الصوت المدبلج...",
     "unavailable": "الصوت المدبلج غير متاح لهذا الفيديو."
+  },
+  "support": {
+    "title": "الدعم",
+    "subtitle": "تذاكرك وحالتها. بلا ذكاء اصطناعي وبلا رسوم.",
+    "newTicket": "تذكرة جديدة",
+    "newTicketHint": "أخبرنا بما حدث وبما كنت تتوقعه بدلاً منه.",
+    "backToTickets": "العودة إلى التذاكر",
+    "openHeading": "مفتوحة ({{n}})",
+    "closedHeading": "مغلقة ({{n}})",
+    "noTickets": "لم تفتح أي تذكرة دعم بعد.",
+    "loadFailed": "تعذّر تحميل تذاكرك. حاول مرة أخرى.",
+    "categoryLabel": "الفئة",
+    "severityLabel": "الأولوية",
+    "subjectLabel": "الموضوع",
+    "subjectPlaceholder": "سطر واحد يصف المشكلة",
+    "descriptionLabel": "ما الذي حدث",
+    "descriptionPlaceholder": "ما الذي فعلته، وما توقعته، وما حدث فعلاً.",
+    "stepsLabel": "خطوات إعادة المشكلة (اختياري)",
+    "stepsPlaceholder": "١. افتح الصفحة الرئيسية\n٢. اضغط على الرفع\n٣. ...",
+    "submit": "إرسال التذكرة",
+    "submitting": "جارٍ الإرسال...",
+    "filed": "التذكرة {{ref}} وصلت إلى الفريق.",
+    "filedNotEmailed": "سُجّلت التذكرة {{ref}}. احتفظ بالرقم المرجعي.",
+    "alreadyOpen": "لديك هذه المشكلة مفتوحة بالفعل تحت الرقم {{ref}}.",
+    "filingFailed": "تعذّر فتح التذكرة. حاول مرة أخرى.",
+    "status": {
+      "open": "مفتوحة",
+      "in_progress": "قيد المعالجة",
+      "resolved": "تم الحل",
+      "closed": "مغلقة"
+    },
+    "severity": {
+      "low": "منخفضة",
+      "normal": "عادية",
+      "high": "مرتفعة",
+      "urgent": "عاجلة"
+    },
+    "category": {
+      "account_access": "الوصول إلى الحساب",
+      "wallet_or_transactions": "المحفظة أو المعاملات",
+      "posting_or_uploads": "النشر أو الرفع",
+      "payments_or_subscriptions": "المدفوعات أو الاشتراكات",
+      "live_streaming": "البث المباشر",
+      "content_or_moderation": "المحتوى أو الإشراف",
+      "bug": "خلل",
+      "feature_request": "اقتراح ميزة",
+      "other": "أخرى"
+    },
+    "filedOn": "فُتحت في {{date}}"
   }
 }

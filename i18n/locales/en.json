@@ -2432,5 +2432,54 @@
     "dubbed": "Dubbed audio",
     "preparing": "Preparing dubbed audio…",
     "unavailable": "Dubbed audio is not available for this video."
+  },
+  "support": {
+    "title": "Support",
+    "subtitle": "Your tickets and their status. No AI, no fee.",
+    "newTicket": "New ticket",
+    "newTicketHint": "Tell us what happened and what you expected instead.",
+    "backToTickets": "Back to tickets",
+    "openHeading": "Open ({{n}})",
+    "closedHeading": "Closed ({{n}})",
+    "noTickets": "You have not filed any support tickets yet.",
+    "loadFailed": "Could not load your tickets. Please try again.",
+    "categoryLabel": "Category",
+    "severityLabel": "Priority",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "One line describing the problem",
+    "descriptionLabel": "What happened",
+    "descriptionPlaceholder": "What you did, what you expected, and what happened instead.",
+    "stepsLabel": "Steps to reproduce (optional)",
+    "stepsPlaceholder": "1. Open the feed\n2. Tap upload\n3. ...",
+    "submit": "Send ticket",
+    "submitting": "Sending...",
+    "filed": "Ticket {{ref}} is with the team.",
+    "filedNotEmailed": "Ticket {{ref}} recorded. Keep the reference.",
+    "alreadyOpen": "You already have this open as {{ref}}.",
+    "filingFailed": "Could not file that ticket. Please try again.",
+    "status": {
+      "open": "Open",
+      "in_progress": "In progress",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+    "severity": {
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "category": {
+      "account_access": "Account access",
+      "wallet_or_transactions": "Wallet or transactions",
+      "posting_or_uploads": "Posting or uploads",
+      "payments_or_subscriptions": "Payments or subscriptions",
+      "live_streaming": "Live streaming",
+      "content_or_moderation": "Content or moderation",
+      "bug": "Bug",
+      "feature_request": "Feature request",
+      "other": "Other"
+    },
+    "filedOn": "Filed {{date}}"
   }
 }

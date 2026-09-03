@@ -2436,5 +2436,54 @@
     "dubbed": "Áudio dublado",
     "preparing": "A preparar áudio dublado...",
     "unavailable": "O áudio dublado não está disponível para este vídeo."
+  },
+  "support": {
+    "title": "Suporte",
+    "subtitle": "Os teus tickets e o estado deles. Sem IA, sem custo.",
+    "newTicket": "Novo ticket",
+    "newTicketHint": "Conta-nos o que aconteceu e o que esperavas em vez disso.",
+    "backToTickets": "Voltar aos tickets",
+    "openHeading": "Abertos ({{n}})",
+    "closedHeading": "Fechados ({{n}})",
+    "noTickets": "Ainda não abriste nenhum ticket de suporte.",
+    "loadFailed": "Não foi possível carregar os teus tickets. Tenta de novo.",
+    "categoryLabel": "Categoria",
+    "severityLabel": "Prioridade",
+    "subjectLabel": "Assunto",
+    "subjectPlaceholder": "Uma linha a descrever o problema",
+    "descriptionLabel": "O que aconteceu",
+    "descriptionPlaceholder": "O que fizeste, o que esperavas e o que aconteceu em vez disso.",
+    "stepsLabel": "Passos para reproduzir (opcional)",
+    "stepsPlaceholder": "1. Abrir o feed\n2. Tocar em carregar\n3. ...",
+    "submit": "Enviar ticket",
+    "submitting": "A enviar...",
+    "filed": "O ticket {{ref}} já está com a equipa.",
+    "filedNotEmailed": "Ticket {{ref}} registado. Guarda a referência.",
+    "alreadyOpen": "Já tens isto aberto como {{ref}}.",
+    "filingFailed": "Não foi possível abrir o ticket. Tenta de novo.",
+    "status": {
+      "open": "Aberto",
+      "in_progress": "Em curso",
+      "resolved": "Resolvido",
+      "closed": "Fechado"
+    },
+    "severity": {
+      "low": "Baixa",
+      "normal": "Normal",
+      "high": "Alta",
+      "urgent": "Urgente"
+    },
+    "category": {
+      "account_access": "Acesso à conta",
+      "wallet_or_transactions": "Carteira ou transações",
+      "posting_or_uploads": "Publicações ou uploads",
+      "payments_or_subscriptions": "Pagamentos ou subscrições",
+      "live_streaming": "Transmissões em direto",
+      "content_or_moderation": "Conteúdo ou moderação",
+      "bug": "Erro",
+      "feature_request": "Sugestão de funcionalidade",
+      "other": "Outro"
+    },
+    "filedOn": "Aberto em {{date}}"
   }
 }

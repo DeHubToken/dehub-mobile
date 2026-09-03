@@ -2436,5 +2436,54 @@
     "dubbed": "Audio doublé",
     "preparing": "Préparation du doublage audio…",
     "unavailable": "Le doublage audio n'est pas disponible pour cette vidéo."
+  },
+  "support": {
+    "title": "Assistance",
+    "subtitle": "Tes tickets et leur état. Sans IA, sans frais.",
+    "newTicket": "Nouveau ticket",
+    "newTicketHint": "Dis-nous ce qui s'est passé et ce que tu attendais à la place.",
+    "backToTickets": "Retour aux tickets",
+    "openHeading": "Ouverts ({{n}})",
+    "closedHeading": "Fermés ({{n}})",
+    "noTickets": "Tu n'as encore ouvert aucun ticket d'assistance.",
+    "loadFailed": "Impossible de charger tes tickets. Réessaie.",
+    "categoryLabel": "Catégorie",
+    "severityLabel": "Priorité",
+    "subjectLabel": "Objet",
+    "subjectPlaceholder": "Une ligne qui décrit le problème",
+    "descriptionLabel": "Ce qui s'est passé",
+    "descriptionPlaceholder": "Ce que tu as fait, ce que tu attendais et ce qui s'est produit à la place.",
+    "stepsLabel": "Étapes pour reproduire (facultatif)",
+    "stepsPlaceholder": "1. Ouvrir le fil\n2. Toucher Envoyer\n3. ...",
+    "submit": "Envoyer le ticket",
+    "submitting": "Envoi...",
+    "filed": "Le ticket {{ref}} est entre les mains de l'équipe.",
+    "filedNotEmailed": "Ticket {{ref}} enregistré. Garde la référence.",
+    "alreadyOpen": "C'est déjà ouvert sous la référence {{ref}}.",
+    "filingFailed": "Le ticket n'a pas pu être ouvert. Réessaie.",
+    "status": {
+      "open": "Ouvert",
+      "in_progress": "En cours",
+      "resolved": "Résolu",
+      "closed": "Fermé"
+    },
+    "severity": {
+      "low": "Basse",
+      "normal": "Normale",
+      "high": "Haute",
+      "urgent": "Urgente"
+    },
+    "category": {
+      "account_access": "Accès au compte",
+      "wallet_or_transactions": "Portefeuille ou transactions",
+      "posting_or_uploads": "Publications ou envois",
+      "payments_or_subscriptions": "Paiements ou abonnements",
+      "live_streaming": "Direct",
+      "content_or_moderation": "Contenu ou modération",
+      "bug": "Bug",
+      "feature_request": "Suggestion",
+      "other": "Autre"
+    },
+    "filedOn": "Ouvert le {{date}}"
   }
 }

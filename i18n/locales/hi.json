@@ -2438,5 +2438,54 @@
     "dubbed": "डब किया गया ऑडियो",
     "preparing": "डब किया गया ऑडियो तैयार किया जा रहा है...",
     "unavailable": "इस वीडियो के लिए डब किया गया ऑडियो उपलब्ध नहीं है।"
+  },
+  "support": {
+    "title": "सहायता",
+    "subtitle": "आपके टिकट और उनकी स्थिति। कोई AI नहीं, कोई शुल्क नहीं।",
+    "newTicket": "नया टिकट",
+    "newTicketHint": "बताइए क्या हुआ और आप इसके बजाय क्या उम्मीद कर रहे थे।",
+    "backToTickets": "टिकटों पर वापस जाएँ",
+    "openHeading": "खुले ({{n}})",
+    "closedHeading": "बंद ({{n}})",
+    "noTickets": "आपने अभी तक कोई सहायता टिकट दर्ज नहीं किया है।",
+    "loadFailed": "आपके टिकट लोड नहीं हो सके। कृपया फिर से कोशिश करें।",
+    "categoryLabel": "श्रेणी",
+    "severityLabel": "प्राथमिकता",
+    "subjectLabel": "विषय",
+    "subjectPlaceholder": "समस्या को एक पंक्ति में बताएँ",
+    "descriptionLabel": "क्या हुआ",
+    "descriptionPlaceholder": "आपने क्या किया, क्या उम्मीद थी, और इसके बजाय क्या हुआ।",
+    "stepsLabel": "दोहराने के चरण (वैकल्पिक)",
+    "stepsPlaceholder": "1. फ़ीड खोलें\n2. अपलोड पर टैप करें\n3. ...",
+    "submit": "टिकट भेजें",
+    "submitting": "भेजा जा रहा है...",
+    "filed": "टिकट {{ref}} टीम के पास पहुँच गया है।",
+    "filedNotEmailed": "टिकट {{ref}} दर्ज हो गया। यह नंबर संभालकर रखें।",
+    "alreadyOpen": "यह पहले से {{ref}} के रूप में खुला हुआ है।",
+    "filingFailed": "टिकट दर्ज नहीं हो सका। कृपया फिर से कोशिश करें।",
+    "status": {
+      "open": "खुला",
+      "in_progress": "काम चल रहा है",
+      "resolved": "हल हो गया",
+      "closed": "बंद"
+    },
+    "severity": {
+      "low": "कम",
+      "normal": "सामान्य",
+      "high": "उच्च",
+      "urgent": "अत्यावश्यक"
+    },
+    "category": {
+      "account_access": "खाते तक पहुँच",
+      "wallet_or_transactions": "वॉलेट या लेनदेन",
+      "posting_or_uploads": "पोस्ट या अपलोड",
+      "payments_or_subscriptions": "भुगतान या सदस्यता",
+      "live_streaming": "लाइव स्ट्रीमिंग",
+      "content_or_moderation": "सामग्री या मॉडरेशन",
+      "bug": "गड़बड़ी",
+      "feature_request": "नई सुविधा का सुझाव",
+      "other": "अन्य"
+    },
+    "filedOn": "{{date}} को दर्ज किया गया"
   }
 }

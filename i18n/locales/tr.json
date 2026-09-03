@@ -2432,5 +2432,54 @@
     "dubbed": "Dublajlı ses",
     "preparing": "Dublajlı ses hazırlanıyor…",
     "unavailable": "Bu video için dublajlı ses mevcut değil."
+  },
+  "support": {
+    "title": "Destek",
+    "subtitle": "Taleplerin ve durumları. Yapay zekâ yok, ücret yok.",
+    "newTicket": "Yeni talep",
+    "newTicketHint": "Ne olduğunu ve bunun yerine ne beklediğini anlat.",
+    "backToTickets": "Taleplere dön",
+    "openHeading": "Açık ({{n}})",
+    "closedHeading": "Kapalı ({{n}})",
+    "noTickets": "Henüz hiç destek talebi açmadın.",
+    "loadFailed": "Taleplerin yüklenemedi. Lütfen tekrar dene.",
+    "categoryLabel": "Kategori",
+    "severityLabel": "Öncelik",
+    "subjectLabel": "Konu",
+    "subjectPlaceholder": "Sorunu tek satırda anlat",
+    "descriptionLabel": "Ne oldu",
+    "descriptionPlaceholder": "Ne yaptın, ne bekliyordun ve bunun yerine ne oldu.",
+    "stepsLabel": "Tekrarlama adımları (isteğe bağlı)",
+    "stepsPlaceholder": "1. Akışı aç\n2. Yüklemeye dokun\n3. ...",
+    "submit": "Talebi gönder",
+    "submitting": "Gönderiliyor...",
+    "filed": "{{ref}} numaralı talep ekibe ulaştı.",
+    "filedNotEmailed": "{{ref}} numaralı talep kaydedildi. Numarayı sakla.",
+    "alreadyOpen": "Bu zaten {{ref}} numarasıyla açık.",
+    "filingFailed": "Talep açılamadı. Lütfen tekrar dene.",
+    "status": {
+      "open": "Açık",
+      "in_progress": "İşlemde",
+      "resolved": "Çözüldü",
+      "closed": "Kapalı"
+    },
+    "severity": {
+      "low": "Düşük",
+      "normal": "Normal",
+      "high": "Yüksek",
+      "urgent": "Acil"
+    },
+    "category": {
+      "account_access": "Hesap erişimi",
+      "wallet_or_transactions": "Cüzdan veya işlemler",
+      "posting_or_uploads": "Paylaşım veya yükleme",
+      "payments_or_subscriptions": "Ödemeler veya abonelikler",
+      "live_streaming": "Canlı yayın",
+      "content_or_moderation": "İçerik veya moderasyon",
+      "bug": "Hata",
+      "feature_request": "Özellik önerisi",
+      "other": "Diğer"
+    },
+    "filedOn": "{{date}} tarihinde açıldı"
   }
 }
