@@ -114,7 +114,16 @@ export function useNewMembers(limit = 20) {
   });
 }
 
-const EMPTY_MEMBER_SET: Map<string, string> = new Map();
+/**
+ * A plain object, not a Map, on purpose: the whole query cache is persisted
+ * to MMKV as JSON (config/queryClient.ts), and a Map serialises to `{}`. The
+ * restored value then had no `.get`, so every NewMemberChip in the first feed
+ * threw "undefined is not a function" on the launch after the first — the
+ * 1.17.0 / build 45 crash-on-open. A record round-trips intact.
+ */
+export type NewMemberSet = Readonly<Record<string, string>>;
+
+const EMPTY_MEMBER_SET: NewMemberSet = Object.freeze({});
 
 /**
  * Everyone inside the 30-day window, in one request. Twin of web's
@@ -125,21 +134,21 @@ const EMPTY_MEMBER_SET: Map<string, string> = new Map();
  * PostgREST caps a single response at 1000 rows; if a month ever onboards more
  * than that, the oldest of them would stop showing the chip until then.
  */
-export function useNewMemberSet(): { members: Map<string, string>; isLoading: boolean } {
+export function useNewMemberSet(): { members: NewMemberSet; isLoading: boolean } {
   const query = useQuery({
     queryKey: ["new-member-set"],
-    queryFn: async (): Promise<Map<string, string>> => {
+    queryFn: async (): Promise<NewMemberSet> => {
       const { data, error } = await supabase
         .from("new_members")
         .select("wallet_address, joined_at")
         .gte("joined_at", cutoffIso());
 
       if (error) throw error;
-      const map = new Map<string, string>();
+      const set: Record<string, string> = {};
       for (const row of (data || []) as { wallet_address: string; joined_at: string }[]) {
-        map.set(row.wallet_address.toLowerCase(), row.joined_at);
+        set[row.wallet_address.toLowerCase()] = row.joined_at;
       }
-      return map;
+      return set;
     },
     staleTime: 10 * 60 * 1000,
     gcTime: 30 * 60 * 1000,
@@ -157,7 +166,7 @@ export function useNewMemberSet(): { members: Map<string, string>; isLoading: bo
 export function useIsNewMember(address?: string | null) {
   const { members, isLoading } = useNewMemberSet();
   const key = address?.toLowerCase() ?? null;
-  const joinedAt = (key && members.get(key)) || null;
+  const joinedAt = (key && Object.hasOwn(members, key) ? members[key] : null) || null;
   return { isNew: !!joinedAt, joinedAt, isLoading };
 }
 
