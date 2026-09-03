@@ -90,6 +90,10 @@ interface FeedVideoPlayerProps {
   /** Creator address — a rate pinned to this channel starts the video there. */
   creator?: string | null;
   hideControls?: boolean;
+  /** Mounted by a tap on the poster that stood in for this card: start at once. */
+  startOnMount?: boolean;
+  /** The person tapped play here, so the wrapper must keep this card mounted. */
+  onUserStarted?: () => void;
 }
 
 // Grace period before a scrolled-to video gets a media source at all, so a
@@ -133,6 +137,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   onBountyPress,
   creator,
   hideControls = false,
+  startOnMount = false,
+  onUserStarted,
 }) => {
   const navigation = useNavigation<any>();
   const [isPlaying, setIsPlaying] = useState(false);
@@ -482,6 +488,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
     // A deliberate tap, so this card keeps playing even when autoplay moves on.
     userStartedRef.current = true;
+    onUserStarted?.();
     // One path for both cases. On a card that never got a source (Data Saver,
     // autoplay off, not the autoplay target, or the tap beat the settle timer)
     // this attaches it and plays on readyToPlay, with the buffering spinner
@@ -493,7 +500,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     flushPendingPlay();
     setShowControls(true);
     startHideTimer(); // Auto-hide after 1.5s when playing
-  }, [canPlay, onPress, stopPlayback, flushPendingPlay, clearHideTimer, startHideTimer]);
+  }, [canPlay, onPress, stopPlayback, flushPendingPlay, clearHideTimer, startHideTimer, onUserStarted]);
+
+  // This card was a poster until a tap asked for it; the tap is honoured here,
+  // now that the player exists to honour it.
+  const startOnMountRef = useRef(startOnMount);
+  useEffect(() => {
+    if (startOnMountRef.current) handleVideoPress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleToggleMute = useCallback(() => {
     if (!playerRef.current) return;
@@ -1094,16 +1109,53 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "thumbnail" | "durati
 );
 FeedVideoPoster.displayName = "FeedVideoPoster";
 
-const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) =>
-  props.isVisible ? (
-    <FeedVideoPlayerActive {...props} />
+/**
+ * One player at a time.
+ *
+ * The real component is mounted for exactly two cards: the one the scroll has
+ * handed autoplay to (and only while autoplay is on and Data Saver is off),
+ * and any card the person has tapped play on. Every other card — including
+ * the visible ones — is the poster, which holds no ExoPlayer at all. Cards
+ * that need the full component for their chrome (gated, processing, failed)
+ * still get it, since that chrome lives there.
+ */
+const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
+  const { autoplay: autoplayEnabled } = useAppPrefs();
+  const { liteMode } = useDataSaver();
+  const [wanted, setWanted] = useState(false);
+
+  const { isVisible, isAutoplayActive = true, isContentGated, transcodingStatus, videoUrl, onPress } = props;
+  const needsChrome =
+    isContentGated || transcodingStatus === "pending" || transcodingStatus === "on" || transcodingStatus === "failed";
+  const autoplayHere = isVisible && isAutoplayActive && autoplayEnabled && !liteMode;
+  const mountPlayer = isVisible && (wanted || autoplayHere || needsChrome);
+
+  // Off screen, the tap is forgotten: coming back autoplays or shows the
+  // poster, the same as any other card.
+  useEffect(() => {
+    if (!isVisible) setWanted(false);
+  }, [isVisible]);
+
+  const onPosterPress = useCallback(() => {
+    if (!videoUrl) {
+      onPress();
+      return;
+    }
+    setWanted(true);
+  }, [videoUrl, onPress]);
+
+  const markWanted = useCallback(() => setWanted(true), []);
+
+  return mountPlayer ? (
+    <FeedVideoPlayerActive {...props} startOnMount={wanted && !autoplayHere} onUserStarted={markWanted} />
   ) : (
     <FeedVideoPoster
       thumbnail={props.thumbnail}
       duration={props.duration}
       hideControls={props.hideControls}
-      onPress={props.onPress}
+      onPress={onPosterPress}
     />
   );
+};
 
 export default memo(FeedVideoPlayer);
