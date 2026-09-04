@@ -30,13 +30,13 @@
     "events": "Иш-чаралар",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "Жамааттар",
+    "stages": "Сахналар",
+    "affiliate": "Өнөктөш",
+    "ads": "Жарнамалар",
+    "prompt": "Промпт",
+    "tv": "Түз ТВ",
+    "arcade": "Аркада"
   },
   "feed": {
     "home": "Башкы бет",

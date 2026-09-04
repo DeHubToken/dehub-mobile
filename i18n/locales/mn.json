@@ -30,13 +30,13 @@
     "events": "Арга хэмжээ",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "Нийгэмлэгүүд",
+    "stages": "Тайзнууд",
+    "affiliate": "Түнш",
+    "ads": "Зар сурталчилгаа",
+    "prompt": "Промпт",
+    "tv": "Шууд ТВ",
+    "arcade": "Аркад"
   },
   "feed": {
     "home": "Нүүр",

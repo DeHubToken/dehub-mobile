@@ -30,13 +30,13 @@
     "events": "ইভেন্ট",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "কমিউনিটি",
+    "stages": "স্টেজ",
+    "affiliate": "অ্যাফিলিয়েট",
+    "ads": "বিজ্ঞাপন",
+    "prompt": "প্রম্পট",
+    "tv": "লাইভ টিভি",
+    "arcade": "আর্কেড"
   },
   "feed": {
     "home": "হোম",

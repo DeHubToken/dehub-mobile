@@ -30,13 +30,13 @@
     "events": "Events",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "کۆمەڵگاکان",
+    "stages": "شانۆکان",
+    "affiliate": "هاوبەشی",
+    "ads": "ڕیکلامەکان",
+    "prompt": "پرۆمپت",
+    "tv": "تیڤی ڕاستەوخۆ",
+    "arcade": "ئارکەید"
   },
   "feed": {
     "home": "گھر",

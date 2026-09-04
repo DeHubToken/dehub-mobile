@@ -30,13 +30,13 @@
     "events": "イベント",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "コミュニティ",
+    "stages": "ステージ",
+    "affiliate": "アフィリエイト",
+    "ads": "広告",
+    "prompt": "プロンプト",
+    "tv": "ライブTV",
+    "arcade": "アーケード"
   },
   "feed": {
     "home": "ホーム",

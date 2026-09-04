@@ -30,13 +30,13 @@
     "events": "Arrangementer",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
+    "communities": "Fellesskap",
+    "stages": "Scener",
+    "affiliate": "Partner",
+    "ads": "Annonser",
     "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "tv": "Direkte-TV",
+    "arcade": "Arkade"
   },
   "feed": {
     "home": "Hjem",

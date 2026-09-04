@@ -30,13 +30,13 @@
     "events": "Događaji",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
+    "communities": "Zajednice",
+    "stages": "Pozornice",
+    "affiliate": "Partneri",
+    "ads": "Oglasi",
     "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "tv": "TV uživo",
+    "arcade": "Arkada"
   },
   "feed": {
     "home": "Početna",

@@ -30,13 +30,13 @@
     "events": "Renginiai",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
+    "communities": "Bendruomenės",
+    "stages": "Scenos",
+    "affiliate": "Partneriai",
+    "ads": "Skelbimai",
     "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "tv": "Tiesioginė TV",
+    "arcade": "Arkada"
   },
   "feed": {
     "home": "Pradžia",
