@@ -25,6 +25,7 @@ import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
 import { useWatchedVideoIds, filterWatched } from "../../hooks/useWatchedVideos";
+import { tabPressIntentOf } from "../../navigation/tabPressIntent";
 
 export type InfiniteFeedRenderItemInfo = {
   item: GetNFTsResult;
@@ -95,7 +96,7 @@ const InfiniteFeedBase: React.FC<
     isFocused?: boolean;
     listRef: React.RefObject<FlatList<FeedItem> | null>;
     navigationForTabPress?: {
-      addListener: (event: string, callback: () => void) => () => void;
+      addListener: (event: string, callback: (payload: unknown) => void) => () => void;
       isFocused?: () => boolean;
     } | null;
     isSignedIn?: boolean;
@@ -322,7 +323,7 @@ const InfiniteFeedBase: React.FC<
   useEffect(() => {
     if (!navigationForTabPress) return;
 
-    const unsubscribe = navigationForTabPress.addListener("tabPress", () => {
+    const unsubscribe = navigationForTabPress.addListener("tabPress", (event: unknown) => {
       // If isFocused was provided (screen mode), respect it.
       // Otherwise (embedded mode), fall back to navigation.isFocused() when available.
       const actuallyFocused =
@@ -333,8 +334,11 @@ const InfiniteFeedBase: React.FC<
             : true;
 
       if (!actuallyFocused) return;
-      onRefresh();
       listRef.current?.scrollToOffset({ offset: 0, animated: true });
+      // First press on the focused tab is the cheap one — return to the top and
+      // stop there. Only a repeat press refetches; see navigation/tabPressIntent.
+      if (tabPressIntentOf(event) !== "refresh") return;
+      onRefresh();
     });
     return unsubscribe;
   }, [navigationForTabPress, isFocused, onRefresh, listRef]);
