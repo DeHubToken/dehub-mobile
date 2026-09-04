@@ -29,6 +29,13 @@
         "buildType": "apk"
       }
     },
+    "release-apk": {
+      "extends": "production",
+      "android": {
+        "buildType": "apk",
+        "applicationArchivePath": "android/app/build/outputs/apk/release/app-arm64-v8a-release.apk"
+      }
+    },
     "test-apk": {
       "extends": "preview",
       "android": {
