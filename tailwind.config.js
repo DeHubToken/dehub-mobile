@@ -151,10 +151,16 @@ module.exports = {
           },
         },
       },
+      // Same radii as web (--radius: 0.5rem), but written in px. Web spells md
+      // and sm as calc() and NativeWind drops any border-radius it cannot fold
+      // to a single number, so rounded-md and rounded-sm compiled to nothing at
+      // all and every chip, badge and skeleton using them rendered with square
+      // corners. rem is no help either: NativeWind resolves it against React
+      // Native's 14px root, so "0.5rem" is 7px here and 8px in the browser.
       borderRadius: {
-        lg: "0.5rem",
-        md: "calc(0.5rem - 2px)",
-        sm: "calc(0.5rem - 4px)",
+        lg: "8px",
+        md: "6px",
+        sm: "4px",
       },
     },
   },
