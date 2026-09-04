@@ -39,6 +39,18 @@ import type { BufferOptions } from "expo-video";
 export const FEED_BUFFER_OPTIONS: BufferOptions = {
   preferredForwardBufferDuration: 10,
   maxBufferBytes: 12 * 1024 * 1024,
+  // How much media media3 insists on banking before it will start playing at
+  // all. The default is 2 seconds, and it is the single biggest reason a tap
+  // on a feed card sat on a still frame for about a second: the source was
+  // attached and the network was working, the player just refused to show
+  // anything until it held two seconds. Half a second starts cleanly, and
+  // preferredForwardBufferDuration still keeps ten seconds ahead once it is
+  // running, so the stall protection that matters is unchanged.
+  minBufferForPlayback: 0.5,
+  // The iOS half of the same delay: AVPlayer defaults to holding playback back
+  // to rule out any chance of a stall. A short feed clip is better off
+  // starting now and filling as it goes.
+  waitsToMinimizeStalling: false,
 };
 
 /**

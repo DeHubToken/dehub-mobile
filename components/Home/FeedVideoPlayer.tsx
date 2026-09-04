@@ -15,6 +15,7 @@ import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
 import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from "../../libs/video-preferences";
 import SmartImage from "../common/SmartImage";
+import Spinner from "../common/Spinner";
 import { BlurView } from "expo-blur";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../ui/Icon";
@@ -154,6 +155,16 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const [videoDuration, setVideoDuration] = useState(0);
   const [hasStartedAutoplay, setHasStartedAutoplay] = useState(false);
   const [isBuffering, setIsBuffering] = useState(false);
+  // True from the instant a tap lands until this card's first frame is on
+  // screen. Nothing used to mark that window: `isPlaying` stays false while the
+  // source attaches and buffers, so the play button just sat there and the tap
+  // read as dropped. The buffering spinner was no help either — it was gated on
+  // `isPlaying`, so it could only ever appear after playback had already begun.
+  const [isStarting, setIsStarting] = useState(false);
+  // Read by the tap handler, which must see the current value inside the same
+  // tick that opened the window rather than the previous render's state.
+  const isStartingRef = useRef(false);
+  const startTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [videoReady, setVideoReady] = useState(false);
   // Android can hand the VideoView a surface still holding a frame from a
   // neighbouring card's video. Keep the view transparent (thumbnail shows
@@ -294,14 +305,52 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // the scroll position: autoplay moving to another row does not stop it.
   const userStartedRef = useRef(false);
 
+  const endStarting = useCallback(() => {
+    if (startTimeoutRef.current) {
+      clearTimeout(startTimeoutRef.current);
+      startTimeoutRef.current = null;
+    }
+    isStartingRef.current = false;
+    setIsStarting(false);
+  }, []);
+
+  /**
+   * Open the tap→first-frame window, with a hard stop on it.
+   *
+   * A source that never becomes playable — dead URL, no network, a transcode
+   * that lied about being done — would otherwise leave the card spinning
+   * forever. After ten seconds it gives the play button back so the viewer can
+   * try again instead of staring at a spinner.
+   */
+  const beginStarting = useCallback(() => {
+    if (startTimeoutRef.current) clearTimeout(startTimeoutRef.current);
+    isStartingRef.current = true;
+    setIsStarting(true);
+    startTimeoutRef.current = setTimeout(() => {
+      startTimeoutRef.current = null;
+      isStartingRef.current = false;
+      setIsStarting(false);
+    }, 10000);
+  }, []);
+
+  useEffect(() => () => { if (startTimeoutRef.current) clearTimeout(startTimeoutRef.current); }, []);
+
+  // The window closes on the first frame, not on `isPlaying`: play() resolving
+  // before the surface has drawn anything would swap the spinner for a poster
+  // frame and then jump to video, which is the flicker this is meant to avoid.
+  useEffect(() => {
+    if (isStarting && isPlaying && firstFrameRendered) endStarting();
+  }, [isStarting, isPlaying, firstFrameRendered, endStarting]);
+
   const stopPlayback = useCallback(() => {
     try { playerRef.current?.pause(); } catch {}
     isPlayingRef.current = false;
     userStartedRef.current = false;
     setIsPlaying(false);
+    endStarting();
     releaseFeedVideoFocus(stopPlayback);
     releaseAudioFocus(stopPlayback);
-  }, []);
+  }, [endStarting]);
 
   const startPlayback = useCallback(() => {
     if (!playerRef.current || !canPlay) return;
@@ -410,6 +459,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       setFirstFrameRendered(false);
       setShowControls(false);
       userStartedRef.current = false;
+      endStarting();
       clearHideTimer();
       return;
     }
@@ -432,13 +482,16 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       pendingPlayRef.current = true;
       setHasStartedAutoplay(true);
       setShowControls(false); // Controls hidden on autoplay
+      // Same treatment for autoplay: the card the feed settled on shows it is
+      // loading instead of a play button that is about to vanish on its own.
+      beginStarting();
       setSourceRequested(true);
       // The source may already be attached and ready — sourceRequested never
       // went false — in which case nothing else will carry this intent.
       flushPendingPlay();
     }, AUTOPLAY_DELAY);
     return () => { if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; } };
-  }, [canPlay, isVisible, isAutoplayActive, hasStartedAutoplay, liteMode, autoplayEnabled, flushPendingPlay, clearHideTimer]);
+  }, [canPlay, isVisible, isAutoplayActive, hasStartedAutoplay, liteMode, autoplayEnabled, flushPendingPlay, clearHideTimer, beginStarting, endStarting]);
 
   // Autoplay is exclusive: when the scroll hands it to another card, a card
   // that started ITSELF gives up the screen and its native player. One the
@@ -459,7 +512,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     setHasStartedAutoplay(false);
     setVideoReady(false);
     setFirstFrameRendered(false);
-  }, [isAutoplayActive, stopPlayback]);
+    endStarting();
+  }, [isAutoplayActive, stopPlayback, endStarting]);
 
   useEffect(() => {
     const h = (state: AppStateStatus) => {
@@ -478,6 +532,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const handleVideoPress = useCallback(() => {
     if (!canPlay) { onPress(); return; }
 
+    // Already loading from an earlier tap. Swallow the repeat rather than
+    // re-queueing the same intent — this is the window where an impatient
+    // second tap used to land, and treating it as a fresh press only churned
+    // state while the source was still being prepared.
+    if (isStartingRef.current && !isPlayingRef.current) return;
+
     // Toggle play state and manage controls visibility
     if (isPlayingRef.current) {
       stopPlayback();
@@ -489,6 +549,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // A deliberate tap, so this card keeps playing even when autoplay moves on.
     userStartedRef.current = true;
     onUserStarted?.();
+    // Before any of the state churn below: the viewer gets a spinner in the
+    // same frame as their tap, so the press is acknowledged whether the source
+    // still has to be fetched or is merely a few hundred ms from ready.
+    // Skipped for a card that is already loaded and has drawn a frame — that
+    // resumes in this tick, and a spinner would only flash for one frame on
+    // every pause/resume.
+    if (!(videoReady && firstFrameRendered)) beginStarting();
     // One path for both cases. On a card that never got a source (Data Saver,
     // autoplay off, not the autoplay target, or the tap beat the settle timer)
     // this attaches it and plays on readyToPlay, with the buffering spinner
@@ -500,7 +567,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     flushPendingPlay();
     setShowControls(true);
     startHideTimer(); // Auto-hide after 1.5s when playing
-  }, [canPlay, onPress, stopPlayback, flushPendingPlay, clearHideTimer, startHideTimer, onUserStarted]);
+  }, [canPlay, onPress, stopPlayback, flushPendingPlay, clearHideTimer, startHideTimer, onUserStarted, beginStarting, videoReady, firstFrameRendered]);
 
   // This card was a poster until a tap asked for it; the tap is honoured here,
   // now that the player exists to honour it.
@@ -724,9 +791,16 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           <View style={styles.glassPlayButton}>
             <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
             <View style={styles.glassOverlay} />
-            <View style={{ marginLeft: 2 }}>
-              <Icon name="Play" size={24} color="#fff" />
-            </View>
+            {isStarting ? (
+              // The glyph is replaced in place rather than the button being
+              // swapped out, so the tap target does not move or resize between
+              // press and playback.
+              <Spinner size={24} />
+            ) : (
+              <View style={{ marginLeft: 2 }}>
+                <Icon name="Play" size={24} color="#fff" />
+              </View>
+            )}
           </View>
         </Pressable>
       )}
@@ -786,10 +860,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </Pressable>
       )}
 
-      {isBuffering && isPlaying && (
+      {isBuffering && isPlaying && !isStarting && (
         <View style={styles.bufferingOverlay}>
           <View style={styles.spinnerContainer}>
-            <View style={styles.spinner} />
+            <Spinner size={32} />
           </View>
         </View>
       )}
@@ -950,14 +1024,6 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems: "center",
     justifyContent: "center",
-  },
-  spinner: {
-    width: 32,
-    height: 32,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: "rgba(255,255,255,0.3)",
-    borderTopColor: "#fff",
   },
   durationBadge: {
     position: "absolute",
