@@ -23,6 +23,7 @@ import { useUser, useProvider, useAuthActions } from '../../context/AuthContext'
 import { copyToClipboard, toastSuccess, toastError, truncateAddress } from '../../libs';
 import { ChainId } from '../../config/constants';
 import { ScreenNames } from '../../navigation/ScreenNames';
+import { formatCompactNumber } from '../../libs/numbers.util';
 import { isChainAASupported } from '../../libs/wallet-core/smart-account';
 import { forgetLocalWalletForIdentity } from '../../libs/identity-wallet';
 import { getSupabaseUserId } from '../../services/auth/supabaseAuth.service';
@@ -130,7 +131,7 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
         <Divider />
         <SettingsLinkRow
           icon="Coins"
-          label={`${dhbBalance.toLocaleString()} DHB`}
+          label={`${formatCompactNumber(dhbBalance)} DHB`}
           description={t('settings.manage')}
           onPress={() => navigation.navigate(ScreenNames.Dpay)}
         />
