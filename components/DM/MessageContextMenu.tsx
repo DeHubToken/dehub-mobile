@@ -509,9 +509,6 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
             intensity={Platform.OS === "ios" ? 40 : 30}
             tint="dark"
             style={{ flex: 1 }}
-            {...(Platform.OS === "android"
-              ? { experimentalBlurMethod: "dimezisBlurView" }
-              : {})}
           />
           <View
             style={{

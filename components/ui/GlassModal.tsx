@@ -105,7 +105,6 @@ const GlassModal: React.FC<GlassModalProps> = ({
               intensity={blurIntensity}
               tint={blurTint}
               style={StyleSheet.absoluteFill}
-              {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
             />
             <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.25)" }} />
           </TouchableOpacity>

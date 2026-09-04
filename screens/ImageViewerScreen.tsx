@@ -440,9 +440,6 @@ const ImageViewerScreen = () => {
             intensity={Platform.OS === "ios" ? 60 : 40}
             tint="dark"
             style={StyleSheet.absoluteFill}
-            {...(Platform.OS === "android"
-              ? { experimentalBlurMethod: "dimezisBlurView" }
-              : {})}
           />
           <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
           <Icon name="X" size={20} color="#fff" />
@@ -456,9 +453,6 @@ const ImageViewerScreen = () => {
                 intensity={Platform.OS === "ios" ? 60 : 40}
                 tint="dark"
                 style={StyleSheet.absoluteFill}
-                {...(Platform.OS === "android"
-                  ? { experimentalBlurMethod: "dimezisBlurView" }
-                  : {})}
               />
               <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
               <Text style={styles.counterText}>
@@ -484,9 +478,6 @@ const ImageViewerScreen = () => {
                 intensity={Platform.OS === "ios" ? 60 : 40}
                 tint="dark"
                 style={StyleSheet.absoluteFill}
-                {...(Platform.OS === "android"
-                  ? { experimentalBlurMethod: "dimezisBlurView" }
-                  : {})}
               />
               <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
               {isSaving ? (

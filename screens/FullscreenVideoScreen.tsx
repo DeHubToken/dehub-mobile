@@ -349,7 +349,6 @@ const FullscreenVideoScreen = () => {
                 intensity={Platform.OS === "ios" ? 60 : 40}
                 tint="dark"
                 style={StyleSheet.absoluteFill}
-                {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
               />
               <View style={styles.glassOverlay} />
               <Icon name="X" size={20} color="#fff" />
@@ -369,7 +368,6 @@ const FullscreenVideoScreen = () => {
                   intensity={Platform.OS === "ios" ? 60 : 40}
                   tint="dark"
                   style={StyleSheet.absoluteFill}
-                  {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
                 />
                 <View style={styles.glassOverlay} />
                 <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
@@ -385,7 +383,6 @@ const FullscreenVideoScreen = () => {
                   intensity={Platform.OS === "ios" ? 60 : 40}
                   tint="dark"
                   style={StyleSheet.absoluteFill}
-                  {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
                 />
                 <View style={styles.glassOverlay} />
                 <Icon name={isLandscape ? "Minimize2" : "RotateCcw"} size={20} color="#fff" />
@@ -404,7 +401,6 @@ const FullscreenVideoScreen = () => {
                 intensity={Platform.OS === "ios" ? 60 : 40}
                 tint="dark"
                 style={StyleSheet.absoluteFill}
-                {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
               />
               <View style={styles.glassOverlay} />
               <Icon name={isPlaying ? "Pause" : "Play"} size={32} color="#fff" />
