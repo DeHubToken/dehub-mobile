@@ -1376,6 +1376,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 listens={item.listens}
                 isVisible={isVisible}
                 isSignedIn={isSignedIn}
+                title={title}
+                artist={displayName}
+                artworkUrl={galleryImages[0]}
               />
             )}
           </>

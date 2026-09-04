@@ -22,11 +22,13 @@ import Animated, {
   Easing,
   SharedValue,
 } from "react-native-reanimated";
-import { Audio, InterruptionModeIOS, InterruptionModeAndroid } from "expo-av";
+import { createAudioPlayer, type AudioPlayer, type AudioStatus } from "expo-audio";
 import { LinearGradient } from "expo-linear-gradient";
 import { useIsFocused } from "@react-navigation/native";
 import Icon from "../ui/Icon";
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
+import { configureForBackgroundPlayback } from "../../libs/audioSession";
+import { claimLockScreen, releaseLockScreen } from "../../libs/lockScreen";
 import { stopActivePreview } from "../../libs/previewRegistry";
 import { recordListen } from "../../services/audio.service";
 import {
@@ -43,6 +45,12 @@ const PRELOAD_SETTLE_MS = 400;
 
 /** Horizontal travel before a drag over the artwork counts as a scrub. */
 const SCRUB_THRESHOLD_PX = 6;
+
+/**
+ * Skip buttons on the lock screen. An audio post is a finite file with a real
+ * seek map behind it, so unlike a live radio stream they do something.
+ */
+const LOCK_SCREEN_CONTROLS = { showSeekForward: true, showSeekBackward: true };
 
 /** One height for every control, so the row reads as a row. */
 const CONTROL_SIZE = 32;
@@ -276,6 +284,14 @@ export interface AudioPostPlayerProps {
   isVisible?: boolean;
   compact?: boolean;
   isSignedIn?: boolean;
+  /**
+   * What the OS shows while this track holds the lock screen. Worth passing
+   * wherever the surface knows them — a notification reading "Untitled" is
+   * only marginally better than no notification.
+   */
+  title?: string;
+  artist?: string;
+  artworkUrl?: string;
 }
 
 const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
@@ -286,8 +302,21 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   isVisible = true,
   compact = false,
   isSignedIn = false,
+  title,
+  artist,
+  artworkUrl,
 }) => {
-  const soundRef = useRef<Audio.Sound | null>(null);
+  const playerRef = useRef<AudioPlayer | null>(null);
+  /**
+   * This card's identity in the app-wide lock screen slot, which only one
+   * player may own (see libs/lockScreen). Keyed by token so two cards for the
+   * same track cannot both believe they hold it.
+   */
+  const lockScreenId = `audio-post:${tokenId}`;
+  const lockScreenTrack = useMemo(
+    () => ({ title: title || "Audio post", artist: artist || undefined, artworkUrl: artworkUrl || undefined }),
+    [title, artist, artworkUrl],
+  );
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -316,12 +345,13 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   totalDurationRef.current = totalDuration;
   const progressRef = useRef(0);
   progressRef.current = progress;
-  // Read at sound-creation time, so a level set before the track loaded is not
+  // Read at player-creation time, so a level set before the track loaded is not
   // lost the moment it does.
   const volumeRef = useRef(1);
 
   const focusStopRef = useRef(() => {
-    soundRef.current?.pauseAsync().catch(() => {});
+    playerRef.current?.pause();
+    releaseLockScreen(lockScreenId);
     setIsPlaying(false);
     stopPositionTracking();
     releaseAudioFocus(focusStopRef.current);
@@ -338,17 +368,17 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       // Suppress stale position reads during seek or right after
       if (isSeekingRef.current || Date.now() - lastSeekTimeRef.current < 600) return;
       try {
-        const sound = soundRef.current;
-        if (!sound) return;
-        const status = await sound.getStatusAsync();
-        if (status.isLoaded) {
-          const pos = status.positionMillis / 1000;
-          const dur = (status.durationMillis || duration * 1000) / 1000;
-          setCurrentTime(pos);
-          if (dur > 0) {
-            setProgress(pos / dur);
-            setTotalDuration(dur);
-          }
+        const player = playerRef.current;
+        if (!player || !player.isLoaded) return;
+        // expo-audio hangs position and duration off the player as plain
+        // seconds, so this no longer awaits a status round trip ten times a
+        // second.
+        const pos = player.currentTime;
+        const dur = player.duration || duration;
+        setCurrentTime(pos);
+        if (dur > 0) {
+          setProgress(pos / dur);
+          setTotalDuration(dur);
         }
       } catch {}
     }, 100);
@@ -362,15 +392,22 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   }, []);
 
   /** Apply a seek that was asked for before the sound existed. */
-  const applyPendingSeek = useCallback(async (sound: Audio.Sound) => {
+  /**
+   * Apply a seek that was asked for before the track could take one.
+   *
+   * The pending value is only consumed once it has actually been applied.
+   * expo-audio hands back a player immediately and loads behind it, unlike
+   * expo-av'"'"'s awaited createAsync, so this runs against a player with no
+   * duration yet on the first call and again from the status listener the
+   * moment there is one. Clearing it up front would drop the gesture.
+   */
+  const applyPendingSeek = useCallback(async (player: AudioPlayer) => {
     const pending = pendingSeekRef.current;
     if (pending === null) return;
+    if (!player.isLoaded || !(player.duration > 0)) return;
     pendingSeekRef.current = null;
     try {
-      const status = await sound.getStatusAsync();
-      if (status.isLoaded && status.durationMillis) {
-        await sound.setPositionAsync(pending * status.durationMillis);
-      }
+      await player.seekTo(pending * player.duration);
     } catch {}
   }, []);
 
@@ -384,41 +421,39 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     // time now — preloading with shouldPlay: false doesn't need the session.
     const settleTimer = setTimeout(async () => {
       try {
-        const { sound } = await Audio.Sound.createAsync(
-          { uri: audioUrl },
-          { shouldPlay: false, progressUpdateIntervalMillis: 100 },
-        );
+        const player = createAudioPlayer({ uri: audioUrl }, { updateInterval: 100 });
         // `cancelled` only covers the card going away — the effect's deps are
         // isVisible/isFocused/audioUrl. A play tap changes none of them, so
-        // without the soundRef check below this assignment could land AFTER
-        // handlePlayPause had already created and started its own Sound,
+        // without the playerRef check below this assignment could land AFTER
+        // handlePlayPause had already created and started its own player,
         // overwriting the reference to the audible one with this silent one.
         // Pause, seek, volume and the unmount cleanup all go through
-        // soundRef, so the track kept playing with nothing able to stop it
+        // playerRef, so the track kept playing with nothing able to stop it
         // and a native player leaked for the life of the process.
-        if (cancelled || soundRef.current) {
-          sound.unloadAsync().catch(() => {});
+        if (cancelled || playerRef.current) {
+          player.remove();
           return;
         }
-        soundRef.current = sound;
-        sound.setVolumeAsync(volumeRef.current).catch(() => {});
+        playerRef.current = player;
+        player.volume = volumeRef.current;
         preloadedRef.current = true;
 
-        sound.setOnPlaybackStatusUpdate((status) => {
+        player.addListener("playbackStatusUpdate", (status: AudioStatus) => {
           if (!status.isLoaded) return;
+          if (status.duration > 0) {
+            setTotalDuration(status.duration);
+            void applyPendingSeek(player);
+          }
           if (status.didJustFinish) {
             setIsPlaying(false);
             setProgress(1);
             stopPositionTracking();
+            releaseLockScreen(lockScreenId);
             releaseAudioFocus(focusStopRef.current);
           }
         });
 
-        const status = await sound.getStatusAsync();
-        if (status.isLoaded && status.durationMillis) {
-          setTotalDuration(status.durationMillis / 1000);
-        }
-        await applyPendingSeek(sound);
+        await applyPendingSeek(player);
       } catch (e) {
         // Preload failed — will load on play tap
       }
@@ -427,10 +462,11 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   }, [isVisible, isFocused, audioUrl, stopPositionTracking, applyPendingSeek]);
 
   useEffect(() => {
-    if ((!isVisible || !isFocused) && isPlaying && soundRef.current) {
-      soundRef.current.pauseAsync().catch(() => {});
+    if ((!isVisible || !isFocused) && isPlaying && playerRef.current) {
+      playerRef.current.pause();
       setIsPlaying(false);
       stopPositionTracking();
+      releaseLockScreen(lockScreenId);
     }
   }, [isVisible, isFocused, isPlaying, stopPositionTracking]);
 
@@ -439,20 +475,25 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     return () => {
       stopPositionTracking();
       releaseAudioFocus(stopFn);
-      const sound = soundRef.current;
-      if (sound) {
-        sound.unloadAsync().catch(() => {});
-        soundRef.current = null;
+      // Ownership-checked, so a card scrolling out of the list after another
+      // track has taken the lock screen leaves that one alone.
+      releaseLockScreen(lockScreenId);
+      const player = playerRef.current;
+      if (player) {
+        player.remove();
+        playerRef.current = null;
       }
     };
   }, [stopPositionTracking]);
 
   const handlePlayPause = useCallback(async () => {
     try {
-      if (isPlaying && soundRef.current) {
-        await soundRef.current.pauseAsync();
+      if (isPlaying && playerRef.current) {
+        playerRef.current.pause();
         setIsPlaying(false);
         stopPositionTracking();
+        // The lock screen claim is kept, not released: a paused track you can
+        // start again without unlocking the phone is the point of having it.
         releaseAudioFocus(focusStopRef.current);
         return;
       }
@@ -460,77 +501,76 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       requestAudioFocus(focusStopRef.current);
       stopActivePreview();
 
-      // Moved here from the preload path: silent-switch playback and ducking
-      // are only needed once something actually plays, and setting the global
-      // session per scrolled-past card was main-thread work mid-fling.
+      // Moved here from the preload path: the session only needs configuring
+      // once something actually plays, and setting the global session per
+      // scrolled-past card was main-thread work mid-fling.
       //
-      // staysActiveInBackground is true because this branch only runs on a
-      // deliberate press of play. An audio post is the one thing on the feed
-      // you obviously want to keep hearing with the screen off — stopping it
-      // at lock was never a decision, it was the default nobody revisited.
+      // Background playback only on a deliberate press of play. An audio post
+      // is the one thing on the feed you obviously want to keep hearing with
+      // the screen off — stopping it at lock was never a decision, it was the
+      // default nobody revisited.
+      //
+      // doNotMix rather than the ducking this used to ask for: on iOS the Now
+      // Playing controls only appear while the category is doNotMix or auto,
+      // so ducking silently costs the lock screen.
       //
       // Muted video cards do not inherit this. The session category is global
       // to the process and the last writer wins, but FeedVideoPlayer stops
       // itself whenever AppState leaves "active", so a preview cannot ride a
       // background-capable session out of the foreground.
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: false,
-        playsInSilentModeIOS: true,
-        interruptionModeIOS: InterruptionModeIOS.DuckOthers,
-        interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
-        shouldDuckAndroid: true,
-        staysActiveInBackground: true,
-      });
+      await configureForBackgroundPlayback();
 
-      if (soundRef.current) {
-        const status = await soundRef.current.getStatusAsync();
-        if (status.isLoaded) {
-          await applyPendingSeek(soundRef.current);
-          if (status.didJustFinish || status.positionMillis >= (status.durationMillis || 0)) {
-            await soundRef.current.setPositionAsync(0);
-            listenRecordedRef.current = false;
-          }
-          await soundRef.current.playAsync();
-          setIsPlaying(true);
-          startPositionTracking();
-
-          if (!listenRecordedRef.current && isSignedIn) {
-            listenRecordedRef.current = true;
-            recordListen(String(tokenId))
-              .then((res) => { if (res.listens) setListenCount(res.listens); })
-              .catch(() => {});
-          }
-          return;
+      const loaded = playerRef.current;
+      if (loaded?.isLoaded) {
+        await applyPendingSeek(loaded);
+        if (loaded.duration > 0 && loaded.currentTime >= loaded.duration - 0.05) {
+          await loaded.seekTo(0);
+          listenRecordedRef.current = false;
         }
+        loaded.play();
+        claimLockScreen(lockScreenId, loaded, lockScreenTrack, LOCK_SCREEN_CONTROLS);
+        setIsPlaying(true);
+        startPositionTracking();
+
+        if (!listenRecordedRef.current && isSignedIn) {
+          listenRecordedRef.current = true;
+          recordListen(String(tokenId))
+            .then((res) => { if (res.listens) setListenCount(res.listens); })
+            .catch(() => {});
+        }
+        return;
       }
 
       setIsLoading(true);
-      const { sound } = await Audio.Sound.createAsync(
-        { uri: audioUrl },
-        { shouldPlay: true, progressUpdateIntervalMillis: 100 },
-      );
-      // The mirror of the preload guard: if the settle timer's Sound landed
+      const player = createAudioPlayer({ uri: audioUrl }, { updateInterval: 100 });
+      // The mirror of the preload guard: if the settle timer's player landed
       // while this one was loading, release it rather than dropping the
-      // reference on the floor — an unreferenced Sound is never unloaded.
-      if (soundRef.current && soundRef.current !== sound) {
-        const stale = soundRef.current;
-        stale.unloadAsync().catch(() => {});
+      // reference on the floor — an unreferenced player is never freed.
+      if (playerRef.current && playerRef.current !== player) {
+        playerRef.current.remove();
       }
-      soundRef.current = sound;
-      sound.setVolumeAsync(volumeRef.current).catch(() => {});
+      playerRef.current = player;
+      player.volume = volumeRef.current;
       preloadedRef.current = true;
 
-      sound.setOnPlaybackStatusUpdate((status) => {
+      player.addListener("playbackStatusUpdate", (status: AudioStatus) => {
         if (!status.isLoaded) return;
+        if (status.duration > 0) {
+          setTotalDuration(status.duration);
+          void applyPendingSeek(player);
+        }
         if (status.didJustFinish) {
           setIsPlaying(false);
           setProgress(1);
           stopPositionTracking();
+          releaseLockScreen(lockScreenId);
           releaseAudioFocus(focusStopRef.current);
         }
       });
 
-      await applyPendingSeek(sound);
+      await applyPendingSeek(player);
+      player.play();
+      claimLockScreen(lockScreenId, player, lockScreenTrack, LOCK_SCREEN_CONTROLS);
 
       setIsPlaying(true);
       setIsLoading(false);
@@ -547,7 +587,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       setIsLoading(false);
       releaseAudioFocus(focusStopRef.current);
     }
-  }, [isPlaying, audioUrl, tokenId, isSignedIn, startPositionTracking, stopPositionTracking, applyPendingSeek]);
+  }, [isPlaying, audioUrl, tokenId, isSignedIn, startPositionTracking, stopPositionTracking, applyPendingSeek, lockScreenId, lockScreenTrack]);
 
   /* ─── Seeking ─────────────────────────────────────────────── */
 
@@ -573,8 +613,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       lastSeekTimeRef.current = Date.now();
       setProgress(clamped);
       setCurrentTime(clamped * totalDurationRef.current);
-      const sound = soundRef.current;
-      if (!sound) {
+      const player = playerRef.current;
+      if (!player) {
         // Nothing loaded yet — remember it and apply on load rather than
         // silently dropping the gesture.
         pendingSeekRef.current = clamped;
@@ -583,11 +623,10 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         return;
       }
       try {
-        const status = await sound.getStatusAsync();
-        if (status.isLoaded && status.durationMillis) {
-          const seekMs = clamped * status.durationMillis;
-          await sound.setPositionAsync(seekMs);
-          setCurrentTime(seekMs / 1000);
+        if (player.isLoaded && player.duration > 0) {
+          const seekSeconds = clamped * player.duration;
+          await player.seekTo(seekSeconds);
+          setCurrentTime(seekSeconds);
         }
       } catch {}
       // Release seeking flags slightly after the command resolves
@@ -635,14 +674,16 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     claimOnStart: false,
   });
 
-  /* Volume. expo-av carries no muted flag, so mute is volume 0 with the level
-     remembered — and un-muting a slider dragged to zero has to put a level
-     back, or the icon flips and the track stays silent. */
+  /* Volume. expo-audio has a muted flag, but mute here stays volume 0 with
+     the level remembered — un-muting a slider dragged to zero has to put a
+     level back, or the icon flips and the track stays silent.
+     */
   const isEffectivelyMuted = selfMuted || volume === 0;
   volumeRef.current = isEffectivelyMuted ? 0 : volume;
 
   const applyVolume = useCallback((level: number) => {
-    soundRef.current?.setVolumeAsync(clamp01(level)).catch(() => {});
+    const player = playerRef.current;
+    if (player) player.volume = clamp01(level);
   }, []);
 
   const handleVolumeChange = useCallback((level: number) => {
@@ -732,7 +773,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   /* Volume and fullscreen ride the top corners of the artwork, matching the
      web card. Both are rendered by `renderBody`, so the fullscreen modal gets
      them from the same code and the same state — the sound never reloads, it
-     is one `soundRef` either way. */
+     is one `playerRef` either way. */
   const renderTopChrome = () => (
     <View className="flex-row items-center justify-between mb-2">
       <View
