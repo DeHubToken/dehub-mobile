@@ -38,15 +38,40 @@
  */
 
 import { createAudioPlayer, type AudioPlayer, type AudioStatus } from "expo-audio";
+import i18n from "i18next";
 import { useEffect, useState } from "react";
 
-import { configureForPlayback } from "./audioSession";
+import { configureForBackgroundPlayback } from "./audioSession";
+import { claimLockScreen, releaseLockScreen } from "./lockScreen";
 import { createLogger } from "./logger";
 import { storage } from "./storage";
 import { toastError, toastInfo } from "./toast";
 import { supabase } from "../services/supabase";
 
 const log = createLogger("stage-playback");
+
+/** This module's identity in the single-owner lock screen slot. */
+const LOCK_SCREEN_ID = "stage-recording";
+
+/** What the OS shows for the recording that is loaded. */
+function stageTrack() {
+  return {
+    title: state.title || "Stage recording",
+    artist: i18n.t("nav.stages", { defaultValue: "Stages" }),
+  };
+}
+
+/**
+ * Consecutive status updates whose `playing` disagrees with our own `paused`.
+ *
+ * The lock screen and the headphone button pause the native player directly,
+ * without going through this module, so the app comes back to a paused
+ * recording showing a lit pause control. But `playing` also goes false while
+ * the player buffers and for a beat after `replace()`, which is why `paused`
+ * is module-owned in the first place — so a disagreement has to persist for
+ * two samples (400ms) before it is believed.
+ */
+let transportMismatches = 0;
 
 /** The little a recording needs to be playable. Any AudioSpace satisfies it. */
 export interface StagePlayable {
@@ -244,6 +269,20 @@ function onStatus(status: AudioStatus) {
 
   if (status.isLoaded && state.loading) publish({ loading: false });
 
+  // Follow the native transport. Pressing pause on the lock screen, on
+  // headphones or in the notification shade never reaches this module, so
+  // without this the app is reopened to a recording that stopped minutes ago
+  // still showing a pause button.
+  if (status.isLoaded && !status.isBuffering && status.playing === state.paused) {
+    transportMismatches += 1;
+    if (transportMismatches >= 2) {
+      transportMismatches = 0;
+      publish({ paused: !status.playing });
+    }
+  } else {
+    transportMismatches = 0;
+  }
+
   // A seek that never landed means the container has no index. Say so once,
   // rather than leaving a bar that swallows every drag.
   if (seekTarget && Date.now() - seekTarget.at > SEEK_GRACE_MS) {
@@ -252,6 +291,9 @@ function onStatus(status: AudioStatus) {
     if (!landed && state.seekable) {
       log.info("Seek did not land — treating this recording as unseekable");
       publish({ seekable: false });
+      // Drop the skip buttons with it: on a source ExoPlayer cannot seek they
+      // sit there on the lock screen doing nothing.
+      if (player) claimLockScreen(LOCK_SCREEN_ID, player, stageTrack());
     }
   }
 
@@ -335,6 +377,8 @@ export function stopStageRecording() {
       log.warn("Failed to release the recording", e);
     }
   }
+  releaseLockScreen(LOCK_SCREEN_ID);
+  transportMismatches = 0;
   realDuration = 0;
   estimatedDuration = 0;
   pendingSeekRatio = null;
@@ -372,6 +416,7 @@ export function playStageRecording(space: StagePlayable, seekRatio?: number) {
         )
       : 0;
   realDuration = 0;
+  transportMismatches = 0;
   pendingSeekRatio = seekRatio ?? null;
   seekTarget = null;
   ending = false;
@@ -391,7 +436,7 @@ export function playStageRecording(space: StagePlayable, seekRatio?: number) {
 
   void (async () => {
     try {
-      await configureForPlayback();
+      await configureForBackgroundPlayback();
       p.replace({ uri: space.recording_url! });
       // A fresh source starts at the persisted rate.
       try {
@@ -401,6 +446,13 @@ export function playStageRecording(space: StagePlayable, seekRatio?: number) {
         log.warn("setPlaybackRate failed", e);
       }
       p.play();
+      // Seek buttons are offered on the assumption the source is scrubbable;
+      // onStatus re-claims without them if a seek turns out not to land (the
+      // WebM container web records into has no index at all).
+      claimLockScreen(LOCK_SCREEN_ID, p, stageTrack(), {
+        showSeekForward: true,
+        showSeekBackward: true,
+      });
     } catch (e) {
       log.error("Could not start the recording", e);
       toastError(e, "That recording could not be played");
@@ -436,6 +488,14 @@ export function resumeStageRecording() {
     player.shouldCorrectPitch = true;
     player.setPlaybackRate(state.rate);
     player.play();
+    // Both re-applied on resume: the session category is global to the
+    // process and the lock screen has a single owner, so anything that played
+    // while this recording sat paused has taken both off it.
+    void configureForBackgroundPlayback();
+    claimLockScreen(LOCK_SCREEN_ID, player, stageTrack(), {
+      showSeekForward: state.seekable,
+      showSeekBackward: state.seekable,
+    });
   } catch (e) {
     log.warn("Resume failed", e);
     return;

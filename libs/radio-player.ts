@@ -13,19 +13,46 @@
  * Playback deliberately survives leaving the Music feed — RadioMiniPlayer is
  * mounted app-wide and keeps it reachable and stoppable, exactly like web.
  *
+ * It also survives leaving the *app*. A station is the one thing on here that
+ * is obviously meant to keep going with the phone in a pocket, so tuning in
+ * puts the session into background mode and claims the OS lock screen — the
+ * station name, country and logo on the lock screen and in the notification
+ * shade, with a working pause button. Skip buttons are hidden: a live stream
+ * has nowhere to skip to.
+ *
  * @module libs/radio-player
  */
 
 import { createAudioPlayer, type AudioPlayer, type AudioStatus } from "expo-audio";
+import i18n from "i18next";
 import { useEffect, useState } from "react";
 
 import { releaseAudioFocus, requestAudioFocus } from "./audioFocus";
-import { configureForPlayback } from "./audioSession";
+import { configureForBackgroundPlayback } from "./audioSession";
+import { claimLockScreen, releaseLockScreen } from "./lockScreen";
 import { createLogger } from "./logger";
 import { toastError } from "./toast";
 import { registerStationClick, type RadioStation } from "./radio-browser";
 
 const log = createLogger("radio-player");
+
+/** This module's identity in the single-owner lock screen slot. */
+const LOCK_SCREEN_ID = "radio";
+
+/**
+ * What the OS shows for a station. radio-browser's `tags` is a comma-joined
+ * string with no spaces, which reads badly on a lock screen, so the country
+ * carries the subtitle and the tags only fill in when there is no country.
+ */
+function stationTrack(station: RadioStation) {
+  const subtitle = station.country || station.tags.split(",")[0] || "";
+  return {
+    title: station.name,
+    artist: subtitle || undefined,
+    albumTitle: i18n.t("music.radio", { defaultValue: "Radio" }),
+    artworkUrl: station.favicon || undefined,
+  };
+}
 
 export interface RadioPlayerState {
   station: RadioStation | null;
@@ -97,6 +124,7 @@ export function stopRadio() {
       log.warn("Failed to release the station", e);
     }
   }
+  releaseLockScreen(LOCK_SCREEN_ID);
   releaseAudioFocus(stopRadio);
   publish(IDLE);
 }
@@ -127,9 +155,13 @@ export function playRadioStation(station: RadioStation) {
 
   void (async () => {
     try {
-      await configureForPlayback();
+      await configureForBackgroundPlayback();
       p.replace({ uri: url });
       p.play();
+      // Claimed after play(), not before: the metadata is attached to a source
+      // that is actually loading, and a station that fails to start never gets
+      // as far as putting a dead notification on the lock screen.
+      claimLockScreen(LOCK_SCREEN_ID, p, stationTrack(station));
     } catch (e) {
       log.error("Could not start the station", e);
       toastError(e, "That station could not be played");
@@ -161,6 +193,9 @@ export function toggleRadioStation(station: RadioStation) {
     requestAudioFocus(stopRadio);
     try {
       player.play();
+      // Re-claimed on resume: something else may have taken the slot while
+      // this station sat paused.
+      claimLockScreen(LOCK_SCREEN_ID, player, stationTrack(station));
     } catch (e) {
       log.warn("Resume failed", e);
     }
