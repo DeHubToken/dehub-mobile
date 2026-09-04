@@ -30,13 +30,13 @@
     "events": "Tədbirlər",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
+    "communities": "İcmalar",
+    "stages": "Səhnələr",
+    "affiliate": "Tərəfdaş",
+    "ads": "Reklamlar",
     "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "tv": "Canlı TV",
+    "arcade": "Arkada"
   },
   "feed": {
     "home": "Ana səhifə",

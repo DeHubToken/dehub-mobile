@@ -30,13 +30,13 @@
     "events": "فعاليات",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "المجتمعات",
+    "stages": "المسارح",
+    "affiliate": "التسويق بالعمولة",
+    "ads": "الإعلانات",
+    "prompt": "برومبت",
+    "tv": "تلفزيون مباشر",
+    "arcade": "الألعاب"
   },
   "feed": {
     "home": "الرئيسية",

@@ -30,13 +30,13 @@
     "events": "Events",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "ټولنې",
+    "stages": "سټېجونه",
+    "affiliate": "ملګرتیا",
+    "ads": "اعلانونه",
+    "prompt": "پرامپټ",
+    "tv": "ژوندی تلویزیون",
+    "arcade": "آرکیډ"
   },
   "feed": {
     "home": "کور",

@@ -30,13 +30,13 @@
     "events": "活动",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "社区",
+    "stages": "舞台",
+    "affiliate": "推广联盟",
+    "ads": "广告",
+    "prompt": "提示词",
+    "tv": "直播电视",
+    "arcade": "街机"
   },
   "feed": {
     "home": "首页",

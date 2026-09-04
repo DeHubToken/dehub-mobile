@@ -30,13 +30,13 @@
     "events": "Events",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "کمیونٹیز",
+    "stages": "اسٹیجز",
+    "affiliate": "ایفیلی ایٹ",
+    "ads": "اشتہارات",
+    "prompt": "پرامپٹ",
+    "tv": "لائیو ٹی وی",
+    "arcade": "آرکیڈ"
   },
   "feed": {
     "home": "گھر",

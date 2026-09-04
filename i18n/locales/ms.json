@@ -30,13 +30,13 @@
     "events": "Acara",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
+    "communities": "Komuniti",
+    "stages": "Pentas",
+    "affiliate": "Afiliat",
+    "ads": "Iklan",
     "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "tv": "TV Langsung",
+    "arcade": "Arked"
   },
   "common": {
     "mute": "Bisukan",

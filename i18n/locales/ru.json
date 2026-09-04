@@ -30,13 +30,13 @@
     "events": "События",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "Сообщества",
+    "stages": "Сцены",
+    "affiliate": "Партнёрка",
+    "ads": "Реклама",
+    "prompt": "Промпт",
+    "tv": "Прямой эфир",
+    "arcade": "Аркада"
   },
   "feed": {
     "home": "Главная",

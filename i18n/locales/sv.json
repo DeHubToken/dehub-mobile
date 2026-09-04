@@ -30,13 +30,13 @@
     "events": "Evenemang",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
+    "communities": "Gemenskaper",
+    "stages": "Scener",
+    "affiliate": "Partner",
+    "ads": "Annonser",
     "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "tv": "Live-TV",
+    "arcade": "Arkad"
   },
   "feed": {
     "home": "Hem",

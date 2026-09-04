@@ -30,12 +30,12 @@
     "events": "Esdeveniments",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
+    "communities": "Comunitats",
+    "stages": "Escenaris",
+    "affiliate": "Afiliats",
+    "ads": "Anuncis",
     "prompt": "Prompt",
-    "tv": "Live TV",
+    "tv": "TV en Directe",
     "arcade": "Arcade"
   },
   "feed": {
