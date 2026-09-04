@@ -42,6 +42,7 @@ import { useTotalUnreadMessagesCount } from "../store/dm.store";
 import { storage } from "../libs/storage";
 import { bootRevealed } from "../libs/bootReveal";
 import { TAB_BAR_PILL_HEIGHT, TAB_BAR_SCRIM_HEIGHT } from "./tabBarLayout";
+import type { TabPressIntent } from "./tabPressIntent";
 import { useTranslation } from "react-i18next";
 
 const SCROLL_HINT_SEEN_KEY = "dehub:navScrollHintSeen";
@@ -389,21 +390,52 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   const stateRef = useRef(state);
   stateRef.current = state;
 
+  // Which tab, if any, has already taken a press since it gained focus.
+  // Pressing the focused tab used to refetch the whole feed on the very first
+  // press, which is why Home in this bar felt slow next to the feed nav bar's
+  // Home (a cheap filter switch). The first press now only returns the list to
+  // the top; a further press, while the same tab is still focused, refreshes.
+  const refreshArmedRef = useRef<string | null>(null);
+
+  const focusedRouteName = state.routes[state.index]?.name;
+  useEffect(() => {
+    // Leaving the tab by any route — this bar, the drawer, a back gesture —
+    // disarms it, so arriving back on Home never lands on a refetching press.
+    if (refreshArmedRef.current && refreshArmedRef.current !== focusedRouteName) {
+      refreshArmedRef.current = null;
+    }
+  }, [focusedRouteName]);
+
   const handlePress = useCallback(
     (routeName: string) => {
       const current = stateRef.current;
       const route = current.routes.find((r) => r.name === routeName);
-      const event = navigation.emit({
+      const isFocused = current.routes[current.index]?.name === routeName;
+      const intent: TabPressIntent = !isFocused
+        ? "navigate"
+        : refreshArmedRef.current === routeName
+          ? "refresh"
+          : "scrollToTop";
+      refreshArmedRef.current = isFocused ? routeName : null;
+
+      // `data` is typed as undefined for tabPress in the bottom-tabs event
+      // map, so the cast sits on emit rather than on the payload.
+      const event = (
+        navigation.emit as (e: {
+          type: "tabPress";
+          target: string;
+          canPreventDefault: true;
+          data: { intent: TabPressIntent };
+        }) => { defaultPrevented: boolean }
+      )({
         type: "tabPress",
         target: route?.key ?? routeName,
         canPreventDefault: true,
+        data: { intent },
       });
 
-      if (!event.defaultPrevented) {
-        const isFocused = current.routes[current.index]?.name === routeName;
-        if (!isFocused) {
-          navigation.navigate(routeName);
-        }
+      if (!event.defaultPrevented && !isFocused) {
+        navigation.navigate(routeName);
       }
     },
     [navigation],

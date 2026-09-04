@@ -39,6 +39,7 @@ import type { FeedRange, FeedSortBy } from "../services/feed.unified.service";
 import { getImageUrl, getImageUrlApiSimple } from "../libs";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { tabPressIntentOf } from "../navigation/tabPressIntent";
 
 const fallbackCategories = ["All"];
 
@@ -377,14 +378,17 @@ const FeedScreen = () => {
   }, [fetchFeedData, showHeader]);
 
   useEffect(() => {
-    const unsub = navigation.addListener("tabPress" as any, () => {
+    const unsub = navigation.addListener("tabPress" as any, (event: unknown) => {
       if (!isFocused) return;
-      handleRefresh();
       if (isGridView) {
         gridListRef.current?.scrollToOffset({ offset: 0, animated: true });
       } else {
         feedListRef.current?.scrollToOffset({ offset: 0, animated: true });
       }
+      // First press on the focused tab is the cheap one — return to the top and
+      // stop there. Only a repeat press refetches; see navigation/tabPressIntent.
+      if (tabPressIntentOf(event) !== "refresh") return;
+      handleRefresh();
     });
     return unsub;
   }, [navigation, isFocused, isGridView, handleRefresh]);
