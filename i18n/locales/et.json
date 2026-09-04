@@ -30,13 +30,13 @@
     "events": "Sündmused",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
+    "communities": "Kogukonnad",
+    "stages": "Lavad",
+    "affiliate": "Partnerid",
+    "ads": "Reklaamid",
     "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "tv": "Otse-TV",
+    "arcade": "Arkaad"
   },
   "feed": {
     "home": "Avaleht",

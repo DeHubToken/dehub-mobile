@@ -30,13 +30,13 @@
     "events": "Події",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "Спільноти",
+    "stages": "Сцени",
+    "affiliate": "Партнерка",
+    "ads": "Реклама",
+    "prompt": "Промпт",
+    "tv": "Пряме ТБ",
+    "arcade": "Аркада"
   },
   "common": {
     "mute": "Вимкнути звук",

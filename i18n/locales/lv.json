@@ -30,13 +30,13 @@
     "events": "Pasākumi",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
+    "communities": "Kopienas",
+    "stages": "Skatuves",
+    "affiliate": "Partneri",
+    "ads": "Reklāmas",
     "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "tv": "Tiešraides TV",
+    "arcade": "Arkāde"
   },
   "feed": {
     "home": "Sākums",

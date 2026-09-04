@@ -30,13 +30,13 @@
     "events": "Tadbirlar",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
+    "communities": "Hamjamiyatlar",
+    "stages": "Sahnalar",
+    "affiliate": "Hamkorlik",
+    "ads": "Reklamalar",
     "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "tv": "Jonli TV",
+    "arcade": "Arkada"
   },
   "feed": {
     "home": "Bosh sahifa",

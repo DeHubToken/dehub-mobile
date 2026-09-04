@@ -30,13 +30,13 @@
     "events": "پائالىيەتلەر",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "جەمئىيەتلەر",
+    "stages": "سەھنىلەر",
+    "affiliate": "شېرىكلىك",
+    "ads": "ئېلانلار",
+    "prompt": "تەلەپ",
+    "tv": "جانلىق TV",
+    "arcade": "ئويۇن"
   },
   "feed": {
     "home": "باش بەت",
