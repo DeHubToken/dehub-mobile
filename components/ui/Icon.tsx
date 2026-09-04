@@ -154,9 +154,6 @@ const Icon: React.FC<IconProps> = ({
               intensity={Platform.OS === "ios" ? 60 : 40}
               tint="dark"
               style={StyleSheet.absoluteFill}
-              {...(Platform.OS === "android"
-                ? { experimentalBlurMethod: "dimezisBlurView" }
-                : {})}
             />
             <View style={styles.tooltipGlassOverlay}>
               <Text style={styles.tooltipText}>{tooltip}</Text>

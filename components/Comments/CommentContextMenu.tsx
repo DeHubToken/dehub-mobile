@@ -361,9 +361,6 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
             intensity={Platform.OS === "ios" ? 40 : 30}
             tint="dark"
             style={{ flex: 1 }}
-            {...(Platform.OS === "android"
-              ? { experimentalBlurMethod: "dimezisBlurView" }
-              : {})}
           />
           {/* Extra dim layer for better contrast */}
           <View
