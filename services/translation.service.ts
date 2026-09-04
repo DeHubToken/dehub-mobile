@@ -131,6 +131,27 @@ function schedulePersist(): void {
 // function within a frame.
 const inFlightRequests = new Map<string, Promise<TranslateResponse>>();
 
+/**
+ * Pull the status and body out of a supabase-js function error.
+ *
+ * Reading the body consumes the response, so this is only ever called on a
+ * failure, where nothing else will want it. Never throws: a diagnostic that can
+ * fail is worse than one that returns nothing.
+ */
+async function describeFunctionError(
+  error: unknown,
+): Promise<{ status?: number; body?: string }> {
+  const response = (error as { context?: unknown })?.context;
+  if (!(response instanceof Response)) return {};
+  const status = response.status;
+  try {
+    const body = (await response.clone().text()).slice(0, 300);
+    return { status, body };
+  } catch {
+    return { status };
+  }
+}
+
 function requestTranslation(
   text: string,
   targetLang: string,
@@ -145,8 +166,17 @@ function requestTranslation(
       body: { text, targetLang, sourceLang } satisfies TranslateRequest,
     });
     if (error) {
-      log.error('translate-text failed:', error);
-      throw new TranslationServiceError(error.message || 'Translation failed', 500);
+      // `FunctionsHttpError` says only "returned a non-2xx status code", which
+      // is the same sentence whether the function rejected the language, ran
+      // out of budget, rate-limited the caller or fell over — four different
+      // problems, one indistinguishable log. The response hangs off `context`;
+      // read the status and body so the row names the branch that failed.
+      const { status, body } = await describeFunctionError(error);
+      log.error('translate-text failed:', error, { status, body, targetLang });
+      throw new TranslationServiceError(
+        body || error.message || 'Translation failed',
+        status ?? 500,
+      );
     }
     return (data ?? {}) as TranslateResponse;
   })();

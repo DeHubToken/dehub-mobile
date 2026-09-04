@@ -40,6 +40,13 @@ const FLUSH_INTERVAL_MS = 30_000;
 // behind the same NAT.
 const SESSION_ROW_BUDGET = 200;
 
+/** What each `restartApp` reason means, in the words the log should use. */
+const RESTART_DESCRIPTIONS: Record<string, string> = {
+  fatal: "App restarted after a fatal error",
+  "boundary-loop": "App restarted after the error boundary caught a loop",
+  user: "App restarted by the user from the error screen",
+};
+
 // Anything the process could not send before it died. Drained on next launch,
 // which is the only way a fatal error is ever read: the crash handler runs on
 // the JS thread microseconds before the process goes away, far too late for a
@@ -48,8 +55,8 @@ const PENDING_KEY = "error_reporter_pending_v1";
 // Whatever is queued right now, mirrored to disk on every report. A native
 // crash or an OOM kill takes the in-memory queue with it — including the
 // ProcessExit row describing the *previous* death, if the app died again
-// inside the 30 s flush window. Mirrored rows are drained on the next launch
-// and the mirror is rewritten after every send, so nothing is sent twice.
+// inside the 30 s flush window. The mirror belongs to the run that wrote it and
+// is claimed once at startup — see `previousSnapshot`.
 const SNAPSHOT_KEY = "error_reporter_queue_v1";
 
 type Row = {
@@ -196,7 +203,32 @@ export async function flushLogs(): Promise<void> {
   if (!ok) await persist(rows);
 }
 
+/**
+ * The mirror the *previous* run left behind, claimed at module load — before
+ * anything this session queues can be written over it.
+ *
+ * Reading the key later instead meant `drainPersistedLogs` found rows this run
+ * had queued moments earlier (the startup `CrashRecovery` and `ProcessExit`
+ * reports), uploaded them, and then the ordinary flush uploaded the very same
+ * rows again: every startup row landed in the table twice, which reads as the
+ * app having crashed twice as often as it did.
+ */
+let mirrorDrained = false;
+const previousSnapshot: Promise<Row[]> = (async () => {
+  try {
+    const raw = await AsyncStorage.getItem(SNAPSHOT_KEY);
+    if (!raw) return [];
+    await AsyncStorage.removeItem(SNAPSHOT_KEY);
+    const rows: unknown = JSON.parse(raw);
+    return Array.isArray(rows) ? (rows as Row[]) : [];
+  } catch {
+    return [];
+  }
+})();
+
 async function snapshotQueue(): Promise<void> {
+  // Never race the claim above: a write that lands first would be deleted by it.
+  await previousSnapshot;
   try {
     if (queue.length === 0) await AsyncStorage.removeItem(SNAPSHOT_KEY);
     else await AsyncStorage.setItem(SNAPSHOT_KEY, JSON.stringify(queue.slice(0, BATCH_MAX)));
@@ -219,13 +251,14 @@ async function persist(rows: Row[]): Promise<void> {
 /** Upload whatever the last run could not. Safe to call before sign-in. */
 export async function drainPersistedLogs(): Promise<void> {
   try {
-    // Rows a crash caught still queued. Cleared before sending for the same
-    // reason as below.
-    const snapshot = await AsyncStorage.getItem(SNAPSHOT_KEY);
-    if (snapshot) {
-      await AsyncStorage.removeItem(SNAPSHOT_KEY);
-      const rows: Row[] = JSON.parse(snapshot);
-      if (Array.isArray(rows) && rows.length > 0) await post(rows);
+    // Rows a crash caught still queued, claimed at module load so this run's
+    // own reports cannot be picked up here and sent a second time. The claim
+    // is a memoised promise, so the flag — set before the await, for callers
+    // that overlap — is what stops a second drain resending it.
+    if (!mirrorDrained) {
+      mirrorDrained = true;
+      const mirrored = await previousSnapshot;
+      if (mirrored.length > 0) await post(mirrored);
     }
     const existing = await AsyncStorage.getItem(PENDING_KEY);
     if (!existing) return;
@@ -293,13 +326,18 @@ export function installGlobalErrorHandler(): void {
   });
 
   // The launch after a reload says so, in the same table as the fault itself,
-  // so a row reading "restarted after a fatal error" sits next to the error
-  // that caused it.
+  // so the row sits next to the error that caused it.
+  //
+  // It says WHICH reload, too. Every restart used to be filed as "after a fatal
+  // error" with the reason dropped, so a person tapping "Restart app" on the
+  // error screen — who has no message to record, hence the empty parentheses —
+  // was indistinguishable from a crash. Reading the table, ten taps looked like
+  // ten crashes.
   const marker = takeCrashMarker();
   if (marker) {
     reportError("CrashRecovery", [
-      `App restarted after a fatal error ()`,
-      { message: marker.message, at: marker.at },
+      RESTART_DESCRIPTIONS[marker.reason] ?? `App restarted (${marker.reason})`,
+      { reason: marker.reason, message: marker.message, at: marker.at },
     ]);
   }
 

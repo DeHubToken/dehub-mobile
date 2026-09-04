@@ -37,6 +37,23 @@ describe("error reporter, queue mirror", () => {
     expect(await asyncStorage.getItem("error_reporter_queue_v1")).toBeNull();
   });
 
+  it("does not drain a row this run has only just queued", async () => {
+    // What startup does: report the CrashRecovery/ProcessExit rows, then drain
+    // what the last run left. The drain used to read the mirror live, find the
+    // row queued a moment earlier, send it, and let the ordinary flush send it
+    // again — so every startup row was written to the table twice and a person
+    // tapping restart five times looked like ten crashes.
+    reporter.reportError("CrashRecovery", ["App restarted by the user from the error screen"]);
+    await settle();
+
+    await reporter.drainPersistedLogs();
+    expect(global.fetch).not.toHaveBeenCalled();
+
+    await reporter.flushLogs();
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    expect(body((global.fetch as jest.Mock).mock.calls[0]).logs).toHaveLength(1);
+  });
+
   it("drains the mirror on the next launch, once", async () => {
     // What a launch finds after a native kill: the mirror on disk, an empty
     // queue in memory. (The storage mock is rebuilt by resetModules, so the
