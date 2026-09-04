@@ -37,7 +37,7 @@ The AI system consists of **3 backend functions** (edge functions) that the mobi
         ▼
 ┌───────────────────────────────────────────┐
 │  AI Providers                             │
-│  - Lovable AI Gateway (Gemini/GPT)        │
+│  - AI gateway (Gemini/GPT)        │
 │  - Perplexity (live web search)           │
 │  - xAI Grok (text + image gen)            │
 │  - Replicate (video gen)                  │
@@ -195,7 +195,7 @@ The backend automatically selects the best model:
 
 **Routing Logic:**
 - Grok Aurora: text-to-image only (no editing), uses xAI API
-- Gemini: text-to-image AND image editing, uses Lovable AI Gateway
+- Gemini: text-to-image AND image editing, uses AI gateway
 - If Grok selected with sourceImage → auto-fallback to Gemini
 
 ---

@@ -22,7 +22,7 @@
          ├───────────────────────────┤
          │  1. Server cache (Map)    │
          │  2. MyMemory API (free)   │
-         │  3. Lovable AI fallback   │
+         │  3. AI gateway fallback   │
          │     (Gemini 2.5 Flash)    │
          └───────────────────────────┘
 ```
@@ -64,7 +64,7 @@
 |------|----------|-----------|---------|------|
 | 0 | **Server cache** | In-memory Map (max 500 entries, LRU eviction) | — | Free |
 | 1 | **MyMemory API** | Text ≤ 500 chars. Skipped if text is longer. | 5s | Free (1000 words/day) |
-| 2 | **Lovable AI** (Gemini 2.5 Flash Lite) | Fallback when MyMemory fails/skipped | Default | AI credits |
+| 2 | **AI gateway** (Gemini 2.5 Flash Lite) | Fallback when MyMemory fails/skipped | Default | AI credits |
 
 MyMemory is rejected if:
 - HTTP error
