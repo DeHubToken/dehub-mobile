@@ -644,6 +644,9 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({
           tokenId={tokenId}
           listens={(nft as any).listens || 0}
           isVisible={isVisible}
+          title={title}
+          artist={creator || undefined}
+          artworkUrl={(nft as any).imageUrl || (nft as any).thumbnailUrl || undefined}
           compact
         />
       ) : (
