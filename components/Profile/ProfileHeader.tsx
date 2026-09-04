@@ -9,6 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 import LiquidGlass from "../ui/LiquidGlass";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { useTranslation } from "react-i18next";
 
 import { copyToClipboard } from "../../libs";
 import { useUser, useAuthActions } from "../../context/AuthContext";
@@ -49,6 +50,7 @@ import BadgePatronChip from "../common/BadgePatronChip";
 
 const ProfileHeader = () => {
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
   const user = useUser() as any;
   const { refreshUser, patchUser } = useAuthActions();
   const [translatedBio, setTranslatedBio] = useState<string | null>(null);
@@ -486,7 +488,7 @@ const ProfileHeader = () => {
 
           {/* Joined */}
           {!!createdAtFormatted && (
-            <Text className="text-zinc-400 text-sm mt-3">Joined {createdAtFormatted}</Text>
+            <Text className="text-zinc-400 text-sm mt-3">{t("profile.joined")} {createdAtFormatted}</Text>
           )}
 
           {/* Following / Followers */}
@@ -496,7 +498,7 @@ const ProfileHeader = () => {
                 <Text className="text-white font-bold">
                   {formatCompactNumber(followingCount)}
                 </Text>
-                <Text className="text-zinc-400"> Following</Text>
+                <Text className="text-zinc-400"> {t("profile.following")}</Text>
               </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => goToFollowList("followers")} activeOpacity={0.7}>
@@ -504,7 +506,7 @@ const ProfileHeader = () => {
                 <Text className="text-white font-bold">
                   {formatCompactNumber(followersCount)}
                 </Text>
-                <Text className="text-zinc-400"> Followers</Text>
+                <Text className="text-zinc-400"> {t("profile.followers")}</Text>
               </Text>
             </TouchableOpacity>
           </View>

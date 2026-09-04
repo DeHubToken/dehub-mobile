@@ -15,6 +15,8 @@ import { TranslateButton } from "../ui/TranslateButton";
 import FakeGlass from "../ui/FakeGlass";
 import MutualFollowers from "./MutualFollowers";
 import BadgePatronChip from "../common/BadgePatronChip";
+import { useTranslation as useI18n } from "react-i18next";
+import { formatCompactNumber } from "../../libs/numbers.util";
 import type { FollowListItem } from "../../services/user.service";
 
 const SOCIAL_SVGS: Record<string, string> = {
@@ -132,6 +134,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   hasPlans = false,
   onSubscribe,
 }) => {
+  const { t } = useI18n();
   // Bios go through the shared hook rather than a private translateText call,
   // which is what gets them auto-translation, the persisted cache and — the
   // reason the old code was wrong — the reader's CHOSEN language. It targeted
@@ -377,7 +380,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           )}
 
           {!!joinedDate && (
-            <Text className="text-zinc-400 text-sm mt-3">Joined {joinedDate}</Text>
+            <Text className="text-zinc-400 text-sm mt-3">{t("profile.joined")} {joinedDate}</Text>
           )}
 
           {(followingItem || followersItem) && (
@@ -388,8 +391,8 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   activeOpacity={onStatPress ? 0.7 : 1}
                 >
                   <Text className="text-sm">
-                    <Text className="text-white font-bold">{followingItem.value.toLocaleString()}</Text>
-                    <Text className="text-zinc-400"> Following</Text>
+                    <Text className="text-white font-bold">{formatCompactNumber(followingItem.value)}</Text>
+                    <Text className="text-zinc-400"> {t("profile.following")}</Text>
                   </Text>
                 </TouchableOpacity>
               )}
@@ -399,8 +402,8 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   activeOpacity={onStatPress ? 0.7 : 1}
                 >
                   <Text className="text-sm">
-                    <Text className="text-white font-bold">{followersItem.value.toLocaleString()}</Text>
-                    <Text className="text-zinc-400"> Followers</Text>
+                    <Text className="text-white font-bold">{formatCompactNumber(followersItem.value)}</Text>
+                    <Text className="text-zinc-400"> {t("profile.followers")}</Text>
                   </Text>
                 </TouchableOpacity>
               )}
