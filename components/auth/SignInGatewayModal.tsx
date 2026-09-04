@@ -48,6 +48,7 @@ import { AuthService } from "../../services";
 import { createLogger } from "../../libs/logger";
 import { useWalletAuth } from "../../hooks/useWalletAuth";
 import { useScrollFieldIntoView } from "../../hooks/useScrollFieldIntoView";
+import { useTranslation } from "react-i18next";
 
 const log = createLogger("SignInGatewayModal");
 
@@ -62,6 +63,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   visible,
   onClose,
 }) => {
+  const { t } = useTranslation();
   const { signInWithWallet, signInWithSupabaseSession } = useAuthActions();
   const { needsUsername, isLoading: authLoading } = useAuthState();
   const { isWalletLoading, isWalletSheetOpen, handleWalletConnect } = useWalletAuth();
@@ -533,23 +535,19 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
         {isBusy && (
           <FullScreenLoader message="Signing you in…" />
         )}
-        <AuthButton
-          variant="ghost"
-          label="Cancel"
-          onPress={onClose}
-          disabled={isBusy || needsUsername}
-          accessibilityLabel="Close authentication modal"
-          style={styles.cancel}
-        />
         <ScrollView
           {...scrollViewProps}
+          // Yields its height to the Cancel footer below: the sheet is
+          // height-capped, so without this the scroller takes everything and
+          // pushes the footer off the bottom edge.
+          style={{ flexShrink: 1 }}
           contentContainerStyle={{
             flexGrow: 1,
             paddingHorizontal: 24,
             paddingVertical: 20,
           }}
         >
-          <View style={{ alignItems: "center", marginTop: 32, marginBottom: 24 }}>
+          <View style={{ alignItems: "center", marginTop: 8, marginBottom: 24 }}>
             <Text style={[authText.title, { marginBottom: 8 }]}>Sign in to continue</Text>
             <Text style={[authText.body, { textAlign: "center" }]}>
               You need to sign in to perform this action.
@@ -637,20 +635,31 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             </Text>
           </View>
         </ScrollView>
+        {/* Pinned below the scroller rather than floated in the top-right
+            corner: this is a bottom drawer, so the way out belongs on the
+            near edge under the thumb, at the same full width as every other
+            control in the flow. */}
+        <View style={styles.footer}>
+          <AuthButton
+            variant="secondary"
+            label={t("common.cancel")}
+            onPress={onClose}
+            disabled={isBusy || needsUsername}
+            accessibilityLabel="Close authentication modal"
+          />
+        </View>
       </SafeAreaView>
     </GlassModal>
   );
 };
 
 const styles = StyleSheet.create({
-  cancel: {
-    position: "absolute",
-    right: 20,
-    top: 12,
-    zIndex: 10,
-    width: "auto",
-    minHeight: 44,
-    paddingHorizontal: 16,
+  footer: {
+    paddingHorizontal: 24,
+    paddingTop: 12,
+    paddingBottom: 16,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: authColors.hairline,
   },
   legalLink: {
     color: authColors.label,
