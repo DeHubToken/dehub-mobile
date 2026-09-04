@@ -127,6 +127,37 @@ describe('parseDeepLink', () => {
   it('does not report a file as a profile', () => {
     expect(parseDeepLink('https://dehub.io/favicon.ico')?.type).not.toBe('profile');
   });
+
+  // Web answers every /app section at the bare path too and canonicalises onto
+  // it, so a store share link is handed out as dehub.io/stores/<id> now. Both
+  // spellings have to mean the same thing here or the shared link stops opening
+  // the app.
+  it('reads a section with or without the /app prefix', () => {
+    const bare = parseDeepLink('https://dehub.io/stores/abc123');
+    expect(bare).toEqual(parseDeepLink('https://dehub.io/app/stores/abc123'));
+    expect(bare).toEqual({ type: 'store', params: { storeId: 'abc123' } });
+
+    expect(parseDeepLink('https://dehub.io/post/42')).toEqual({
+      type: 'post',
+      params: { tokenId: '42' },
+    });
+    expect(parseDeepLink('https://dehub.io/notifications')?.type).toBe('notifications');
+    expect(parseDeepLink('https://dehub.io/communities/dehub')).toEqual({
+      type: 'community',
+      params: { slug: 'dehub' },
+    });
+  });
+
+  it('still reads the top-level routes that are not /app children', () => {
+    // The prefix rule must not swallow these: /arcade is its own URL on the
+    // web, not the twin of /app/arcade.
+    expect(parseDeepLink('https://dehub.io/arcade')?.type).toBe('arcade');
+    expect(parseDeepLink('https://dehub.io/arcade/kings-gambit')).toEqual({
+      type: 'arcadeGame',
+      params: { slug: 'kings-gambit' },
+    });
+    expect(parseDeepLink('https://dehub.io/mal')?.type).toBe('profile');
+  });
 });
 
 describe('ShareLinks', () => {

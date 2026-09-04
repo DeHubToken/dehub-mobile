@@ -306,6 +306,22 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     const queryString = parts[1] || '';
     const segments = pathOnly.split('/').filter(Boolean);
 
+    // Web answers every /app section at the bare path as well, canonicalises
+    // onto it and shares it — a store link is handed out as dehub.io/stores/<id>
+    // now, not dehub.io/app/stores/<id>. The routes below are declared with the
+    // prefix, so put it back before matching rather than declaring each path
+    // twice; a bare form that reached the default matcher resolved to nothing
+    // and the link opened the website instead of the app.
+    const APP_PREFIXED = new Set([
+      'post', 'notifications', 'leaderboard', 'messages', 'communities',
+      'stores', 'events',
+    ]);
+    if (segments.length > 0 && APP_PREFIXED.has(segments[0])) {
+      const newPath = `/app/${segments.join('/')}${queryString ? `?${queryString}` : ''}`;
+      logger.info('Bare /app section rewritten', { from: path, to: newPath });
+      return getStateFromPath(newPath, options);
+    }
+
     if (segments[0] === 'feeds' && segments[1]) {
       const newPath = `/app/post/${segments[1]}${queryString ? `?${queryString}` : ''}`;
       logger.info('Legacy feed redirect', { from: path, to: newPath });
@@ -534,48 +550,54 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
     }
     
     const pathParts = parsed.path.split('/').filter(Boolean);
+    // The /app sections answer at the bare path too and web shares the bare
+    // form, so the branches for those read this instead of pathParts: it is the
+    // path with the prefix taken off when it is there. Everything below that is
+    // top-level on the web (arcade, stream, newpost, a profile) keeps reading
+    // pathParts, which is unchanged.
+    const appParts = pathParts[0] === 'app' ? pathParts.slice(1) : pathParts;
     const qp = (parsed.queryParams || {}) as Record<string, string>;
-    
+
     // New canonical:  /app/post/:tokenId
-    if (pathParts[0] === 'app' && pathParts[1] === 'post' && pathParts[2]) {
-      return { type: 'post', params: { tokenId: pathParts[2], ...qp } };
+    if (appParts[0] === 'post' && appParts[1]) {
+      return { type: 'post', params: { tokenId: appParts[1], ...qp } };
     }
 
     // /app/notifications
-    if (pathParts[0] === 'app' && pathParts[1] === 'notifications') {
+    if (appParts[0] === 'notifications') {
       return { type: 'notifications', params: qp };
     }
 
     // /app/leaderboard
-    if (pathParts[0] === 'app' && pathParts[1] === 'leaderboard') {
+    if (appParts[0] === 'leaderboard') {
       return { type: 'leaderboard', params: qp };
     }
 
     // /app/messages
-    if (pathParts[0] === 'app' && pathParts[1] === 'messages') {
+    if (appParts[0] === 'messages') {
       return { type: 'messages', params: qp };
     }
 
     // /app/communities/join/:code  — checked before the slug form below
-    if (pathParts[0] === 'app' && pathParts[1] === 'communities' && pathParts[2] === 'join' && pathParts[3]) {
-      return { type: 'communityInvite', params: { code: pathParts[3], ...qp } };
+    if (appParts[0] === 'communities' && appParts[1] === 'join' && appParts[2]) {
+      return { type: 'communityInvite', params: { code: appParts[2], ...qp } };
     }
 
     // /app/communities/:slug
-    if (pathParts[0] === 'app' && pathParts[1] === 'communities' && pathParts[2]) {
-      return { type: 'community', params: { slug: pathParts[2], ...qp } };
+    if (appParts[0] === 'communities' && appParts[1]) {
+      return { type: 'community', params: { slug: appParts[1], ...qp } };
     }
 
     // /app/stores/:storeId — with ?listing= it is one item, without it the shop
-    if (pathParts[0] === 'app' && pathParts[1] === 'stores' && pathParts[2]) {
+    if (appParts[0] === 'stores' && appParts[1]) {
       return qp.listing
-        ? { type: 'listing', params: { storeId: pathParts[2], ...qp } }
-        : { type: 'store', params: { storeId: pathParts[2], ...qp } };
+        ? { type: 'listing', params: { storeId: appParts[1], ...qp } }
+        : { type: 'store', params: { storeId: appParts[1], ...qp } };
     }
 
     // /app/events/:eventNumber
-    if (pathParts[0] === 'app' && pathParts[1] === 'events' && pathParts[2]) {
-      return { type: 'event', params: { eventNumber: pathParts[2], ...qp } };
+    if (appParts[0] === 'events' && appParts[1]) {
+      return { type: 'event', params: { eventNumber: appParts[1], ...qp } };
     }
 
     // /arcade/:slug and /arcade — checked before the single-segment profile
