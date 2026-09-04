@@ -53,6 +53,7 @@ import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-st
 import { useWatchedVideoIds, filterWatched } from "../../hooks/useWatchedVideos";
 import { useLiveStreams } from "../../hooks/useLiveStreams";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
+import { tabPressIntentOf } from "../../navigation/tabPressIntent";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
 import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getNFT } from "../../services/nft.service";
@@ -562,11 +563,13 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   }, [refetch, onRefreshProp, queryClient, queryKey]);
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener("tabPress", () => {
+    const unsubscribe = navigation.addListener("tabPress", (event) => {
       if (!isFocused || !active) return;
-      // Tap active tab: start refresh immediately; spinner will be visible once we're near the top.
-      onRefresh();
       listRef.current?.scrollToOffset({ offset: 0, animated: true });
+      // First press on the focused tab is the cheap one — return to the top and
+      // stop there. Only a repeat press refetches; see navigation/tabPressIntent.
+      if (tabPressIntentOf(event) !== "refresh") return;
+      onRefresh();
     });
     return unsubscribe;
   }, [navigation, isFocused, active, onRefresh]);
