@@ -356,20 +356,10 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               style={StyleSheet.absoluteFill}
             />
           ) : (
-            // Real backdrop blur on Android via dimezisBlurView (intensity ~95
-            // ≈ web's 24px radius). Only mount it while the drawer is open:
-            // the drawer stays mounted off-screen, and dimezis re-snapshots
-            // the whole root every frame, crashing with
-            // IndexOutOfBoundsException when the feed list mutates during its
-            // pre-draw pass.
-            visible && (
-              <BlurView
-                intensity={95}
-                tint="dark"
-                experimentalBlurMethod="dimezisBlurView"
-                style={StyleSheet.absoluteFill}
-              />
-            )
+            // A tint, not a blur, on Android: dimezisBlurView re-snapshots the
+            // whole root every frame and crashes the process when the feed
+            // underneath mutates mid-draw (Dimezis/BlurView #191).
+            <View style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(9, 9, 11, 0.94)" }]} />
           )}
           <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
 

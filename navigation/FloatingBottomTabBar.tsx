@@ -216,9 +216,6 @@ const NavButton = memo<{
           <BlurView
             intensity={24}
             tint="light"
-            {...(Platform.OS === "android"
-              ? { experimentalBlurMethod: "dimezisBlurView" as const }
-              : {})}
             style={styles.centerGlassBlur}
           />
           <View style={styles.centerGlass} />
@@ -522,15 +519,13 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             still applies here — BlurEffectWithAmount injects it as `blurRadius`
             into the effect settings, materials included.
 
-            Android does get real blur, via expo-blur's `dimezisBlurView`. That
-            is the Dimezis library, whose PreDrawBlurController re-snapshots the
-            root view every frame — the reason FeedNavBar, GlassToast and
-            FeedScreen all refuse it (Dimezis/BlurView #191, an
-            IndexOutOfBoundsException when a list mutates children mid-draw).
-            It is enabled here anyway and deliberately: a flat tint on this
-            surface reads as no glass at all, which is a certain regression
-            traded against a possible crash. If #191 does start showing up in
-            the wild, this is the first thing to switch back to `'none'`. */}
+            Android gets a translucent tint instead of a blur. expo-blur's
+            `dimezisBlurView` is the Dimezis library, whose PreDrawBlurController
+            re-snapshots the root view every frame — and re-drawing the feed
+            from inside the feed's own draw pass is Dimezis/BlurView #191, an
+            IndexOutOfBoundsException in ViewGroup.dispatchDraw that killed the
+            process on every fast scroll of 1.17.0. It was enabled here on
+            purpose as a bet that #191 would stay theoretical. It did not. */}
         {Platform.OS === "ios" ? (
           <GlassBlurView
             blurType="thinMaterialDark"
@@ -539,12 +534,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             style={StyleSheet.absoluteFill}
           />
         ) : (
-          <BlurView
-            tint="default"
-            intensity={22}
-            experimentalBlurMethod="dimezisBlurView"
-            style={StyleSheet.absoluteFill}
-          />
+          <View style={[StyleSheet.absoluteFill, styles.androidGlassFallback]} />
         )}
         <View style={styles.glassOverlay} />
         <ScrollView
@@ -598,6 +588,11 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
 };
 
 const styles = StyleSheet.create({
+  androidGlassFallback: {
+    // Dark enough to hold the pill's identity over Shorts, light enough that
+    // the feed still ghosts through underneath.
+    backgroundColor: "rgba(24, 24, 27, 0.86)",
+  },
   outerWrap: {
     position: "absolute",
     bottom: -12,

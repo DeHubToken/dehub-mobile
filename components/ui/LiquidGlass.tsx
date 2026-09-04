@@ -69,9 +69,6 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
         intensity={intensity}
         tint={tint}
         style={StyleSheet.absoluteFill}
-        {...(Platform.OS === "android" && androidBlur
-          ? { experimentalBlurMethod: "dimezisBlurView" as const }
-          : {})}
       />
       <View
         style={[

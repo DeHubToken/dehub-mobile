@@ -110,9 +110,6 @@ const RepostPopover: React.FC<RepostPopoverProps> = ({
               <BlurView
                 intensity={Platform.OS === "ios" ? 60 : 40}
                 tint="dark"
-                {...(Platform.OS === "android"
-                  ? { experimentalBlurMethod: "dimezisBlurView" }
-                  : {})}
                 style={styles.blurContainer}
               >
                 <View style={styles.overlay}>

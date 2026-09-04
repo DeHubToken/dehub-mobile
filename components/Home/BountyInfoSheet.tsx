@@ -480,7 +480,6 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
             intensity={80}
             tint="dark"
             style={StyleSheet.absoluteFill}
-            {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
           />
           <View style={[StyleSheet.absoluteFill, styles.overlay]} />
 
