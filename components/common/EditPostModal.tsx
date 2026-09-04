@@ -20,6 +20,7 @@ import AccentButtonGradient from "../ui/AccentButtonGradient";
 import MentionSuggestions from "../common/MentionSuggestions";
 import CategoryDrawer from "../Upload/CategoryDrawer";
 import * as ImagePicker from "expo-image-picker";
+import { ensureMediaLibraryPermission } from "../../libs/permissions.util";
 import { editPost, getCategoriesCached, replaceVideoFile, type ShopLink } from "../../services/nft.service";
 import ShopSheet, { type ShopBoardDraft } from "../Upload/ShopSheet";
 import { useStreamProducts, useStreamProductActions } from "../../hooks/useStreamShopping";
@@ -102,7 +103,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const handleReplaceVideo = useCallback(async () => {
     if (tokenId == null || replacing) return;
 
-    const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    const perm = await ensureMediaLibraryPermission();
     if (!perm.granted) {
       toastError("Media library permission is required");
       return;

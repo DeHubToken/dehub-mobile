@@ -76,7 +76,29 @@ const PERMISSION_COPY: Record<PermissionKind, PermissionCopyEntry> = {
 };
 
 
+// On Android the gallery picker is the system PickVisualMedia photo picker: it
+// runs out of process, hands back only the URIs the user chose, and needs no
+// runtime permission at all. expo-image-picker still reports a media-library
+// status, and below Android 13 that status is the AND of READ_EXTERNAL_STORAGE
+// *and WRITE_EXTERNAL_STORAGE*. WRITE_EXTERNAL_STORAGE stopped being grantable
+// at API 30 for anything targeting API 30+ (we target 35) - the platform denies
+// it without asking and it never appears in the settings UI. So on Android 11
+// and 12 the check reports denied with canAskAgain false, permanently, and no
+// amount of toggling switches under Settings -> Apps -> DeHub changes it. That
+// is a hard block on picking any photo or video on those devices while the
+// picker itself would have worked fine. Treat photo access as implicit on
+// Android and let the picker be its own gate; iOS still asks properly.
+const PHOTOS_PERMISSION_IS_IMPLICIT = Platform.OS === "android";
+
+const IMPLICITLY_GRANTED: PermissionEnsureResult = {
+  granted: true,
+  justGranted: false,
+  canAskAgain: true,
+  status: "granted",
+};
+
 export const ensureMediaLibraryPermission = async (): Promise<PermissionEnsureResult> => {
+  if (PHOTOS_PERMISSION_IS_IMPLICIT) return IMPLICITLY_GRANTED;
   const current = await ImagePicker.getMediaLibraryPermissionsAsync();
   if (current?.granted) {
     return { granted: true, justGranted: false, canAskAgain: !!current.canAskAgain, status: current.status };
@@ -137,6 +159,7 @@ const checkPermissionStatus = async (
 ): Promise<{ granted: boolean; canAskAgain: boolean }> => {
   switch (kind) {
     case "photos": {
+      if (PHOTOS_PERMISSION_IS_IMPLICIT) return { granted: true, canAskAgain: true };
       const s = await ImagePicker.getMediaLibraryPermissionsAsync();
       return { granted: !!s?.granted, canAskAgain: s?.canAskAgain ?? true };
     }
