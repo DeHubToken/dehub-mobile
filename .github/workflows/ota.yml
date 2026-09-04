@@ -95,7 +95,7 @@ jobs:
       - uses: actions/setup-node@v4
         if: env.EXPO_TOKEN != ''
         with:
-          node-version: '20'
+          node-version: '22'
           cache: npm
 
       - name: Install dependencies
