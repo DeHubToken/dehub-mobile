@@ -19,16 +19,23 @@ const CC_TLDS = 'ac|ad|ae|af|ag|al|am|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|
 const GENERIC_TLDS = 'com|org|net|info|biz|xyz|app|dev|ai|io|cc|gg|me|tv|ly|fm|sh|digital|store|online|site|tech|world|club|live|space|art|design|social|link|page|one|pro|media|studio|agency|blog|shop|network|land|zone|fund|games|gaming|vc|nft|crypto|dao|eth|web3|defi|music|video|news|chat|cloud|data|host|email|money|bank|pay|finance|trade|market|exchange|casino|bet|poker|win|lol|wtf|meme|cool|guru|ninja|expert|solutions|services|systems|technology|software|computer|science|education|academy|school|university|institute|training|health|medical|dental|fitness|yoga|beauty|fashion|style|clothing|shoes|jewelry|luxury|estate|property|house|apartments|construction|auto|car|bike|travel|flights|holiday|tours|hotel|restaurant|food|pizza|coffee|bar|pub|wine|beer|recipes|photography|photo|camera|gallery|graphics|ink|tattoo|wedding|events|party|flowers|gifts|toys|baby|kids|family|pets|dog|cat|vet|garden|green|eco|solar|energy|organic|farm|legal|law|attorney|consulting|accountant|tax|insurance|loans|credit|investments|capital|ventures|partners|associates|group|team|community|foundation|charity|church|bible|faith|domains|website|web|blog|forum|wiki|directory|guide|tips|how|reviews|best|top|cheap|discount|sale|deals|coupons|free|plus|vip|gold|black|blue|red|pink|green|orange|theater|movie|film|show|radio|audio|stream|tube|band|rocks|dance|dj|actor|place|city|town|country|earth|world|global|international|company|business|corp|inc|ltd|enterprises|holdings|industries|works|careers|jobs|hire|run|fit|life|love|date|singles|camp|center|care|support|help|repair|direct|express|delivery|supply|tools|parts|equipment|kitchen|house|furniture|lighting|glass|flooring|tiles|build|builders|contractors|plumbing|heating|cleaning|security|cctv|codes|dev|engineer|hacker|geek|tech|digital|cyber|net|systems|app|cloud|host|storage|server|mobile|phone|computer|monitor|watch|today|now|news|report|press|media|social|pics|photos|video|click|download|online|email|chat|games|play|game|poker|bet|casino|win|lol|fail|wtf|meme|cool|fun|sexy|xxx|adult|porn|sucks|gripe|icu|rest|cafe|pub|bar|bio|ceo|voting|democrat|republican|forex|trading|rip|memorial|giving|christmas|theater';
 const COMMON_TLDS = `${CC_TLDS}|${GENERIC_TLDS}`;
 
+// These patterns are strings, not regex literals, so every backslash has to be
+// written twice: a template literal eats a lone one, turning `\.` into a dot
+// that matches any character and `\b` into the letter b. That is not a style
+// point — with single backslashes this matcher demanded a literal "b" after the
+// TLD (so it linked almost nothing) while `(?:\.[…]+)*` became `(?:.[…]+)*`,
+// which backtracks catastrophically and crashed Chat on a long message.
+
 // A link has to start at a word boundary, otherwise the tail of a longer token
 // ("...see attachment.zip") matches on its own.
-const URL_BOUNDARY_SRC = `(?:^|\s|[\(\[<"'])`;
+const URL_BOUNDARY_SRC = `(?:^|\\s|[\\(\\[<"'])`;
 
 // TLD-restricted, so a filename ("clip.mp4", "photo.png") is not mistaken for a
 // host. Dots are allowed inside the hostname so subdomains survive.
-const TLD_URL_CORE_SRC = `(?:https?:\/\/)?(?:www\.)?[-a-zA-Z0-9@:%_+~#=]+(?:\.[-a-zA-Z0-9@:%_+~#=]+)*\.(?:${COMMON_TLDS})(?:\.[a-zA-Z]{2,3})?\b(?:[-a-zA-Z0-9()@:%_+.~#?&\/=]*)`;
+const TLD_URL_CORE_SRC = `(?:https?:\\/\\/)?(?:www\\.)?[-a-zA-Z0-9@:%_+~#=]+(?:\\.[-a-zA-Z0-9@:%_+~#=]+)*\\.(?:${COMMON_TLDS})(?:\\.[a-zA-Z]{2,3})?\\b(?:[-a-zA-Z0-9()@:%_+.~#?&\\/=]*)`;
 
 // A `www.` prefix means a link whatever the TLD is.
-const WWW_URL_CORE_SRC = `(?:https?:\/\/)?www\.[-a-zA-Z0-9@:%_+~#=]+(?:\.[-a-zA-Z0-9@:%_+~#=]+)*\.[a-zA-Z]{2,63}\b(?:[-a-zA-Z0-9()@:%_+.~#?&\/=]*)`;
+const WWW_URL_CORE_SRC = `(?:https?:\\/\\/)?www\\.[-a-zA-Z0-9@:%_+~#=]+(?:\\.[-a-zA-Z0-9@:%_+~#=]+)*\\.[a-zA-Z]{2,63}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&\\/=]*)`;
 
 const URL_CORE_SRC = `(?:${WWW_URL_CORE_SRC})|(?:${TLD_URL_CORE_SRC})`;
 const URL_WITH_BOUNDARY_SRC = `(?:${URL_BOUNDARY_SRC})(?:${URL_CORE_SRC})`;
@@ -42,23 +49,26 @@ export type ChatTextToken =
   | { type: 'link'; value: string; url: string };
 
 /**
- * Split a message into plain-text and link runs.
+ * The longest word the matcher is allowed to look at.
  *
- * Returns a single text token when there is nothing to link, so a caller can
- * render the result unconditionally without a "does this need linkifying" test.
+ * Hermes backtracks on a fixed-size stack, so one oversized run of link
+ * characters — a base64 blob, a signature, a wall of text with no spaces —
+ * exhausts it and `exec` throws `RangeError: Maximum regex stack depth
+ * reached`. That threw out of render and took the whole Chat screen with it.
+ * Nothing past this length is a link anyone would tap, so it stays plain text.
  */
-export function tokenizeChatText(text?: string | null): ChatTextToken[] {
-  const source = text ?? '';
-  if (!source) return [];
+const MAX_LINKABLE_WORD_LENGTH = 512;
 
+/** Split a single word into its text and link runs. */
+function tokenizeWord(word: string): ChatTextToken[] {
   const tokens: ChatTextToken[] = [];
   const regex = new RegExp(URL_WITH_BOUNDARY_SRC, 'gi');
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 
-  while ((match = regex.exec(source)) !== null) {
+  while ((match = regex.exec(word)) !== null) {
     if (match.index > lastIndex) {
-      tokens.push({ type: 'text', value: source.slice(lastIndex, match.index) });
+      tokens.push({ type: 'text', value: word.slice(lastIndex, match.index) });
     }
 
     // The match swallowed the character in front of the link — give it back, or
@@ -78,8 +88,62 @@ export function tokenizeChatText(text?: string | null): ChatTextToken[] {
     lastIndex = regex.lastIndex;
   }
 
-  if (lastIndex < source.length) {
-    tokens.push({ type: 'text', value: source.slice(lastIndex) });
+  if (lastIndex < word.length) {
+    tokens.push({ type: 'text', value: word.slice(lastIndex) });
+  }
+
+  return tokens;
+}
+
+/**
+ * Split a message into plain-text and link runs.
+ *
+ * The scan runs one whitespace-separated word at a time. A URL never holds
+ * whitespace, so this finds what a whole-message scan would find, but the
+ * backtracking depth is bounded by the longest word instead of by the length of
+ * the message — see MAX_LINKABLE_WORD_LENGTH for why that matters.
+ *
+ * Returns a single text token when there is nothing to link, so a caller can
+ * render the result unconditionally without a "does this need linkifying" test.
+ */
+export function tokenizeChatText(text?: string | null): ChatTextToken[] {
+  const source = text ?? '';
+  if (!source) return [];
+
+  const tokens: ChatTextToken[] = [];
+  const pushText = (value: string) => {
+    if (!value) return;
+    const last = tokens[tokens.length - 1];
+    if (last?.type === 'text') {
+      last.value += value;
+      return;
+    }
+    tokens.push({ type: 'text', value });
+  };
+
+  // The capture group keeps the whitespace runs in the output, so the message
+  // is rebuilt exactly as it was written.
+  for (const chunk of source.split(/(\s+)/)) {
+    if (!chunk) continue;
+
+    if (chunk.length > MAX_LINKABLE_WORD_LENGTH || /^\s/.test(chunk)) {
+      pushText(chunk);
+      continue;
+    }
+
+    let matched: ChatTextToken[];
+    try {
+      matched = tokenizeWord(chunk);
+    } catch {
+      // A word the matcher cannot cope with must not cost the whole message.
+      pushText(chunk);
+      continue;
+    }
+
+    for (const token of matched) {
+      if (token.type === 'text') pushText(token.value);
+      else tokens.push(token);
+    }
   }
 
   return tokens.length > 0 ? tokens : [{ type: 'text', value: source }];
