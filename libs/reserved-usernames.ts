@@ -24,17 +24,19 @@
 /** Paths that really exist on the web app: router, /app children, edge, redirects. */
 const ROUTE_SEGMENTS = [
   // SPA top-level routes
-  "admin", "affiliate", "agents", "apk", "app", "arcade", "assistant",
-  "auth", "bridge", "builder", "cinema", "communities", "connect", "creator", "creators",
+  "accounts", "admin", "admin-manual", "affiliate", "agents", "apk", "app", "arcade", "assistant",
+  "auth", "bounty", "bridge", "builder", "cinema", "communities", "connect", "converter",
+  "creator", "creators",
   "delete-account", "depin", "docs", "editor", "events", "explore", "features",
   "governance", "guide", "guides", "jobs", "launchpad", "leaderboard",
-  "mcp", "mobile-preview", "music", "premium", "pricing", "prompt", "r",
-  "radio", "shorts", "stage", "stages", "stake", "stats", "top-100", "tv",
-  "usernames", "videos", "work",
+  "mcp", "mobile-preview", "music", "newpost", "posts", "premium", "pricing", "prompt", "r",
+  "radio", "raffle", "shorts", "stage", "stages", "stake", "stats", "top-100", "tv",
+  "usernames", "videos", "work", "yt-dlp",
 
   // /app children — the worker collapses /app/<x> onto /<x>
-  "ads", "bookmarks", "buy", "command-centre", "glossary", "messages",
-  "notifications", "post", "profile", "settings", "stores", "video", "wallet",
+  "ads", "bookmarks", "buy", "command-centre", "fractions", "glossary", "messages",
+  "migrate-youtube", "notifications", "post", "profile", "settings", "stores",
+  "superpowers", "upload", "video", "wallet",
 
   // Edge-only surfaces
   "blog", "rss", "sitemap", "robots",
@@ -45,7 +47,8 @@ const ROUTE_SEGMENTS = [
 
 /** Not routes, but a profile at any of these reads as DeHub speaking. */
 const RESERVED_VANITY_NAMES = [
-  "about", "account", "accounts", "api", "billing", "contact", "dehub",
+  // "accounts" moved to ROUTE_SEGMENTS when the account marketplace shipped.
+  "about", "account", "api", "billing", "contact", "dehub",
   "help", "home", "login", "logout", "me", "moderator", "official",
   "register", "root", "security", "signin", "signup", "staff", "status",
   "support", "system", "team", "undefined", "null",
@@ -71,7 +74,9 @@ export const RESERVED_USERNAMES = new Set<string>([
  *
  *   stream, feeds, welcome  product paths with no profile behind them
  *   auth-callback           the OAuth redirect target
- *   bounty, dpay            product paths the link-card checker already knew
+ *   dpay                    a product path the link-card checker already knew
+ *                           (`bounty` used to sit here too; it is a reserved
+ *                           username now, so it comes in with the set above)
  *   robots.txt, sitemap.xml, skill.md
  *                           web files; harmless here and cheaper than
  *                           remembering why they were special
@@ -82,7 +87,6 @@ export const RESERVED_LINK_SEGMENTS = new Set<string>([
   "feeds",
   "welcome",
   "auth-callback",
-  "bounty",
   "dpay",
   "robots.txt",
   "sitemap.xml",
