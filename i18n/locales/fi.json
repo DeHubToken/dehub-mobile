@@ -30,12 +30,12 @@
     "events": "Tapahtumat",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
+    "communities": "Yhteisöt",
+    "stages": "Lavat",
+    "affiliate": "Kumppanuus",
+    "ads": "Mainokset",
     "prompt": "Prompt",
-    "tv": "Live TV",
+    "tv": "Suora TV",
     "arcade": "Arcade"
   },
   "feed": {

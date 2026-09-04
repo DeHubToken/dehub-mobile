@@ -30,12 +30,12 @@
     "events": "Eventi",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
+    "communities": "Community",
+    "stages": "Palchi",
+    "affiliate": "Affiliazione",
+    "ads": "Annunci",
     "prompt": "Prompt",
-    "tv": "Live TV",
+    "tv": "TV in Diretta",
     "arcade": "Arcade"
   },
   "feed": {

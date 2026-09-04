@@ -30,13 +30,13 @@
     "events": "Догађaji",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "Заједнице",
+    "stages": "Сцене",
+    "affiliate": "Партнери",
+    "ads": "Огласи",
+    "prompt": "Промпт",
+    "tv": "ТВ уживо",
+    "arcade": "Аркада"
   },
   "feed": {
     "home": "Почетна",

@@ -30,13 +30,13 @@
     "events": "ပွဲများ",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "အသိုင်းအဝိုင်းများ",
+    "stages": "စင်မြင့်များ",
+    "affiliate": "လက်တွဲဖော်",
+    "ads": "ကြော်ငြာများ",
+    "prompt": "ပရွန့်",
+    "tv": "တိုက်ရိုက် TV",
+    "arcade": "ဂိမ်း"
   },
   "feed": {
     "home": "ပင်မ",

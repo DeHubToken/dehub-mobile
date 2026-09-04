@@ -30,13 +30,13 @@
     "events": "ღონისძიებები",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "საზოგადოებები",
+    "stages": "სცენები",
+    "affiliate": "პარტნიორი",
+    "ads": "რეკლამები",
+    "prompt": "პრომპტი",
+    "tv": "პირდაპირი TV",
+    "arcade": "არკადა"
   },
   "feed": {
     "home": "მთავარი",

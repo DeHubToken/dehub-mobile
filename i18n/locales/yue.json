@@ -30,13 +30,13 @@
     "events": "Events",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "社群",
+    "stages": "舞台",
+    "affiliate": "推廣聯盟",
+    "ads": "廣告",
+    "prompt": "提示詞",
+    "tv": "直播電視",
+    "arcade": "街機"
   },
   "feed": {
     "home": "主頁",

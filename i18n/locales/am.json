@@ -30,13 +30,13 @@
     "events": "ዝግጅቶች",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "ማህበረሰቦች",
+    "stages": "መድረኮች",
+    "affiliate": "አጋር",
+    "ads": "ማስታወቂያዎች",
+    "prompt": "ጥያቄ",
+    "tv": "ቀጥታ ቲቪ",
+    "arcade": "አርኬድ"
   },
   "feed": {
     "home": "መነሻ",

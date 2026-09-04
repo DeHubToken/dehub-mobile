@@ -30,13 +30,13 @@
     "events": "Events",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "ชุมชน",
+    "stages": "เวที",
+    "affiliate": "พันธมิตร",
+    "ads": "โฆษณา",
+    "prompt": "พรอมต์",
+    "tv": "ทีวีสด",
+    "arcade": "อาร์เคด"
   },
   "feed": {
     "home": "บ้าน",

@@ -30,13 +30,13 @@
     "events": "ກິດຈະກຳ",
     "staking": "Staking",
     "superpowers": "SuperPowers",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV",
-    "arcade": "Arcade"
+    "communities": "ຊຸມຊົນ",
+    "stages": "ເວທີ",
+    "affiliate": "ພັນທະມິດ",
+    "ads": "ໂຄສະນາ",
+    "prompt": "ພຣ້ອມ",
+    "tv": "ໂທລະທັດສົດ",
+    "arcade": "ອາເຄດ"
   },
   "feed": {
     "home": "ໜ້າຫຼັກ",
