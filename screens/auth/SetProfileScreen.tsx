@@ -15,6 +15,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect, CommonActions } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { AuthService } from "../../services/auth.service";
 import { useDebounceCallback } from "../../hooks/useDebounceCallback";
@@ -28,6 +29,8 @@ import {
   AuthTextButton,
   authColors,
   authText,
+  AUTH_CONTROL_HEIGHT,
+  AUTH_RADIUS,
 } from "../../components/auth/AuthControls";
 import { createLogger } from "../../libs/logger";
 import { isReservedUsername } from "../../libs/reserved-usernames";
@@ -37,6 +40,8 @@ import {
   createRNImageFile,
 } from "../../libs/assets.util";
 import { runWithPermissions } from "../../libs/permissions.util";
+import LanguageSelectModal from "../../components/Settings/LanguageSelectModal";
+import { SUPPORTED_LANGUAGES } from "../../i18n";
 
 const log = createLogger("SetProfileScreen");
 
@@ -51,7 +56,8 @@ interface SetProfileScreenProps {
 const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
   const { provisionalUser, needsUsername } = useAuthState();
   const { completeUsername, signOut } = useAuthActions();
-  
+  const { t, i18n } = useTranslation();
+
   const [username, setUsername] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [checking, setChecking] = useState(false);
@@ -61,6 +67,13 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
   // Optional on purpose: a missing picture must never block finishing sign-up.
   const [localAvatar, setLocalAvatar] = useState<string | null>(null);
   const [processingAvatar, setProcessingAvatar] = useState(false);
+  // Reading language, offered here instead of only in Settings. The picker
+  // writes AsyncStorage and switches i18next itself, so this screen only owns
+  // whether the sheet is open.
+  const [languageOpen, setLanguageOpen] = useState(false);
+  const currentLanguage =
+    SUPPORTED_LANGUAGES.find((l) => l.code === i18n.language) ??
+    SUPPORTED_LANGUAGES.find((l) => l.code === "en");
 
   const isMountedRef = useRef(true);
   const hasNavigatedRef = useRef(false);
@@ -355,6 +368,29 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
             <Text style={authText.caption}>Your public name shown on your profile.</Text>
           </View>
 
+          {/* Language — optional like the picture, and changeable in Settings
+              later. Picking one switches the app immediately, so the rest of
+              sign-up is already in the chosen language. */}
+          <Text style={styles.fieldLabel}>{t("settings.language")}</Text>
+          <TouchableOpacity
+            onPress={() => setLanguageOpen(true)}
+            disabled={submitting}
+            activeOpacity={0.8}
+            accessibilityRole="button"
+            accessibilityLabel={t("settings.language")}
+            accessibilityValue={{ text: currentLanguage?.nativeName }}
+            style={styles.languageRow}
+          >
+            <Ionicons name="globe-outline" size={20} color={authColors.label} />
+            <Text style={styles.languageValue} numberOfLines={1}>
+              {currentLanguage?.nativeName ?? i18n.language}
+            </Text>
+            <Ionicons name="chevron-down" size={18} color={authColors.subtle} />
+          </TouchableOpacity>
+          <View style={{ marginTop: 8, marginBottom: 24, minHeight: 20 }}>
+            <Text style={authText.caption}>{t("settings.languageDesc")}</Text>
+          </View>
+
           {/* Continue Button */}
           <AuthButton
             variant="primary"
@@ -388,11 +424,40 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
           />
         </ScrollView>
       </KeyboardAvoidingView>
+
+      <LanguageSelectModal
+        visible={languageOpen}
+        onClose={() => setLanguageOpen(false)}
+      />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  // Matched to AuthField's own label and container so the language row reads as
+  // one more field in the stack rather than a button dropped between them.
+  fieldLabel: {
+    color: authColors.muted,
+    fontSize: 13,
+    fontWeight: "500",
+    marginBottom: 8,
+  },
+  languageRow: {
+    minHeight: AUTH_CONTROL_HEIGHT,
+    borderRadius: AUTH_RADIUS,
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    backgroundColor: authColors.field,
+    borderWidth: 1,
+    borderColor: authColors.fieldBorder,
+  },
+  languageValue: {
+    flex: 1,
+    color: authColors.label,
+    fontSize: 16,
+  },
   avatarTarget: {
     width: AVATAR_PT,
     height: AVATAR_PT,
