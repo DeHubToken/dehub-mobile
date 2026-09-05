@@ -172,9 +172,16 @@ async function eoaSigner(live?: any): Promise<any> {
   // this, where it remembers a refusal for the session.
   if (typeof opener?.request !== "function") throw new NoSigningProviderError();
 
-  await opener.request({ method: OPEN_WALLET_METHOD });
+  try {
+    await opener.request({ method: OPEN_WALLET_METHOD });
+  } catch (e) {
+    // Only the locked shim knows this method. An external wallet rejects it as
+    // an unknown RPC call, which is not a failure here — it holds its own EOA
+    // and signs with it directly. A refused unlock is a failure, and says so.
+    if ((e as any)?.name === "WalletLockedError") throw e;
+  }
   const opened = getEoaSigningProvider();
-  // An external wallet registers nothing here; it signs as its own EOA anyway.
+  // An external wallet registers nothing above; it signs as its own EOA anyway.
   return typeof opened?.request === "function" ? opened : opener;
 }
 
