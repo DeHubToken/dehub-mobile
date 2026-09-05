@@ -1186,6 +1186,13 @@ const NotificationScreen = () => {
         });
         if (gen === fetchGenRef.current) {
           setLoadError((e as Error)?.message || "error");
+          // Stop the list asking for the next page. onEndReached fires again
+          // the moment loadingMore clears, and a failed page leaves the row
+          // count unchanged — so with hasMore still true the page counter
+          // walks up as fast as the API can refuse it, which is how one
+          // rate-limited refresh turns into fifty. Retry goes through
+          // onRefresh, which resets the page and clears the error.
+          setHasMore(false);
         }
       } finally {
         if (gen === fetchGenRef.current) {
