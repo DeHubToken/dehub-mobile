@@ -23,6 +23,7 @@ import {
 } from "../../services/view.service";
 import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+import { flattenFeedPages } from "../../libs/feed-pages";
 import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
 import { useWatchedVideoIds, filterWatched } from "../../hooks/useWatchedVideos";
 import { tabPressIntentOf } from "../../navigation/tabPressIntent";
@@ -254,21 +255,10 @@ const InfiniteFeedBase: React.FC<
     warmDeletedPosts().then(() => setTombstonesReady(true)).catch(() => {});
   }, []);
 
-  const rawItems = useMemo<FeedItem[]>(() => {
-    const pages = data?.pages ?? [];
-    return pages
-      .flatMap((res, pageNum) =>
-        (res.result || []).map((it, idx) => {
-          const base = (it as any).tokenId || (it as any).id || (it as any).nftId || `auto`;
-          const created = (it as any).createdAt || (it as any).created_at || `nocreated`;
-          return { ...(it as any), __listKey: `${base}-${created}-p${pageNum}-i${idx}` } as FeedItem;
-        }),
-      )
-      .filter((it: any) => {
-        const id = it.tokenId ?? it.id;
-        return id == null || !isPostDeletedSync(id);
-      });
-  }, [data, tombstonesReady]);
+  const rawItems = useMemo<FeedItem[]>(
+    () => flattenFeedPages<FeedItem>(data?.pages ?? [], isPostDeletedSync),
+    [data, tombstonesReady],
+  );
 
   // Videos already played, dropped only when the reader asked for that in
   // Settings. Kept as its own memo so the expensive flatMap above does not
