@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "له سره تر سره کوډ شوی",
+    "encryptionOff": "په دې وسیله کې کوډبندي فعاله نه ده",
+    "encryptionTurnOn": "فعال کړئ",
     "cannotDecrypt": "کوډ شوی پیغام — په دې وسیله کې نه شي پرانیستل کېدای",
     "title": "پیغامونه",
     "searchConversations": "خبرې اترې ولټوئ...",

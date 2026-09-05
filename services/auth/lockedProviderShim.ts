@@ -22,6 +22,7 @@
 import { ethersService } from "../ethers.service";
 import { defaultChainId } from "../../config/constants";
 import { requestWalletUnlock, WalletLockedError } from "../../libs/wallet-lock";
+import { OPEN_WALLET_METHOD } from "../../libs/provider.registry";
 import { createLogger } from "../../libs/logger";
 
 const log = createLogger("LockedProviderShim");
@@ -43,6 +44,11 @@ export type Eip1193Shim = {
  *
  * `private_key` is this app's own escape hatch (see localProviderAdapter) and
  * is the most sensitive of the lot — Settings' export flow rides on it.
+ *
+ * `dehub_openWallet` is not an RPC method at all: it is "open the wallet and
+ * tell me you did", for callers that need the EOA signer the unlock registers
+ * rather than a signature from this provider. It signs nothing and returns
+ * true, so it costs the same one unlock and no more.
  */
 const SIGNING_METHODS = new Set([
   "eth_sign",
@@ -53,6 +59,7 @@ const SIGNING_METHODS = new Set([
   "eth_sendTransaction",
   "eth_signTransaction",
   "private_key",
+  OPEN_WALLET_METHOD,
 ]);
 
 export function isSigningMethod(method: string): boolean {
@@ -129,6 +136,13 @@ export function createLockedEip1193(
 
   const shim: Eip1193Shim = {
     request: async ({ method, params }: { method: string; params?: any[] }) => {
+      if (method === OPEN_WALLET_METHOD) {
+        if (real) return true;
+        const opened = await unlockAndBuild(method);
+        if (!opened) throw new WalletLockedError();
+        return true;
+      }
+
       if (real) return real.request({ method, params });
 
       if (!SIGNING_METHODS.has(method)) {

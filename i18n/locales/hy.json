@@ -1114,6 +1114,8 @@
   },
   "messages": {
     "encrypted": "Ծայրից ծայր գաղտնագրված",
+    "encryptionOff": "Այս սարքում գաղտնագրումն անջատված է",
+    "encryptionTurnOn": "Միացնել",
     "cannotDecrypt": "Գաղտնագրված հաղորդագրություն — այս սարքում հնարավոր չէ բացել",
     "title": "Haghordagrotyunner",
     "searchConversations": "Voronel zrouytser...",

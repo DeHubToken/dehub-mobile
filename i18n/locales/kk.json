@@ -1193,6 +1193,8 @@
   },
   "messages": {
     "encrypted": "Толық шифрланған",
+    "encryptionOff": "Бұл құрылғыда шифрлау өшірулі",
+    "encryptionTurnOn": "Қосу",
     "cannotDecrypt": "Шифрланған хабарлама — бұл құрылғыда ашылмайды",
     "title": "Хабарлар",
     "searchConversations": "Сұхбаттарды іздеу...",

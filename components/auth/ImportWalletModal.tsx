@@ -20,7 +20,7 @@ import { WEBSITE_LINK } from "../../config";
 import { ChainId } from "../../config/constants";
 import { SUPPORTED_NETWORKS } from "../../config/web3.constants";
 import { createLocalEip1193Provider } from "../../services/localwallet.provider";
-import { setSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
+import { setSigningProvider, setEoaSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { toastError, toastInfo, toastWarning } from "../../libs";
 import { getPreferredChainId } from "../../libs/auth.utils";
@@ -110,6 +110,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
         const chainIdHex = (net?.chainId as string) || ('0x' + Number(effectiveChainId).toString(16)) || "0x2105";
         const localProvider = createLocalEip1193Provider({ privateKey, rpcUrl, chainIdHex });
         setSigningProvider(localProvider);
+        setEoaSigningProvider(localProvider);
         try {
             // Persist the address + private key immediately; username will be added later in AuthContext
             await upsertLocalAccount({ address, privateKey });
@@ -162,6 +163,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           const chainIdHex = (net?.chainId as string) || ('0x' + Number(effectiveChainId).toString(16)) || "0x2105";
           const localProvider = createLocalEip1193Provider({ privateKey: pk, rpcUrl, chainIdHex });
           setSigningProvider(localProvider);
+          setEoaSigningProvider(localProvider);
           try {
             await signInWithWallet(address, effectiveChainId, pk);
             // Ensure the account is persisted with its private key (idempotent)

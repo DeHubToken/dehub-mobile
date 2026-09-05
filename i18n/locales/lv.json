@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "Pilnībā šifrēts",
+    "encryptionOff": "Šifrēšana šajā ierīcē ir izslēgta",
+    "encryptionTurnOn": "Ieslēgt",
     "cannotDecrypt": "Šifrēta ziņa — šajā ierīcē to nevar atvērt",
     "title": "Ziņojumi",
     "searchConversations": "Meklēt sarunas...",

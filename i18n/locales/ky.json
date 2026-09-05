@@ -1114,6 +1114,8 @@
   },
   "messages": {
     "encrypted": "Толук шифрленген",
+    "encryptionOff": "Бул түзмөктө шифрлөө өчүрүлгөн",
+    "encryptionTurnOn": "Иштетүү",
     "cannotDecrypt": "Шифрленген билдирүү — бул түзмөктө ачылбайт",
     "title": "Кабарлар",
     "searchConversations": "Маектерди издөө...",

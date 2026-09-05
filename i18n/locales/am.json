@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "ከጫፍ እስከ ጫፍ የተመሰጠረ",
+    "encryptionOff": "በዚህ መሣሪያ ላይ ምስጠራ ጠፍቷል",
+    "encryptionTurnOn": "አብራ",
     "cannotDecrypt": "የተመሰጠረ መልእክት — በዚህ መሣሪያ ላይ ሊከፈት አይችልም",
     "title": "መልዕክቶች",
     "searchConversations": "ውይይቶችን ፈልግ...",

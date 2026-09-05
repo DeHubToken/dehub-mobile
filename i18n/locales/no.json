@@ -1114,6 +1114,8 @@
   },
   "messages": {
     "encrypted": "Ende-til-ende-kryptert",
+    "encryptionOff": "Kryptering er av på denne enheten",
+    "encryptionTurnOn": "Slå på",
     "cannotDecrypt": "Kryptert melding — kan ikke åpnes på denne enheten",
     "title": "Meldinger",
     "searchConversations": "Søk i samtaler...",

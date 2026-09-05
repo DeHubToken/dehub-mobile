@@ -1585,6 +1585,8 @@
   },
   "messages": {
     "encrypted": "Disulitkan hujung ke hujung",
+    "encryptionOff": "Penyulitan tidak aktif pada peranti ini",
+    "encryptionTurnOn": "Hidupkan",
     "cannotDecrypt": "Mesej disulitkan — tidak boleh dibuka pada peranti ini",
     "title": "Messages",
     "searchConversations": "Search conversations...",

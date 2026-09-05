@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "Chiffré de bout en bout",
+    "encryptionOff": "Chiffrement désactivé sur cet appareil",
+    "encryptionTurnOn": "Activer",
     "cannotDecrypt": "Message chiffré — impossible à ouvrir sur cet appareil",
     "title": "Messages",
     "searchConversations": "Rechercher des conversations...",

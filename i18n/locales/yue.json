@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "端到端加密",
+    "encryptionOff": "呢部裝置未開加密",
+    "encryptionTurnOn": "開啟",
     "cannotDecrypt": "加密訊息 — 喺呢部裝置打唔開",
     "title": "訊息",
     "searchConversations": "搜尋對話...",

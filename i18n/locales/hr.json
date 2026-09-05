@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "Šifrirano s kraja na kraj",
+    "encryptionOff": "Šifriranje je isključeno na ovom uređaju",
+    "encryptionTurnOn": "Uključi",
     "cannotDecrypt": "Šifrirana poruka — ne može se otvoriti na ovom uređaju",
     "title": "Poruke",
     "searchConversations": "Pretraži razgovore...",

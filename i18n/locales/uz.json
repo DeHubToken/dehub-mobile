@@ -1193,6 +1193,8 @@
   },
   "messages": {
     "encrypted": "Uchdan-uchga shifrlangan",
+    "encryptionOff": "Bu qurilmada shifrlash oʻchirilgan",
+    "encryptionTurnOn": "Yoqish",
     "cannotDecrypt": "Shifrlangan xabar — bu qurilmada ochib bo‘lmaydi",
     "title": "Xabarlar",
     "searchConversations": "Suhbatlarni qidirish...",

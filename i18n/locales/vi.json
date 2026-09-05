@@ -1407,6 +1407,8 @@
   },
   "messages": {
     "encrypted": "Mã hóa đầu cuối",
+    "encryptionOff": "Mã hóa chưa bật trên thiết bị này",
+    "encryptionTurnOn": "Bật",
     "cannotDecrypt": "Tin nhắn đã mã hóa — không thể mở trên thiết bị này",
     "title": "Messages",
     "searchConversations": "Search conversations...",

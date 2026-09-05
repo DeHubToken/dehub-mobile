@@ -1577,6 +1577,8 @@
   },
   "messages": {
     "encrypted": "End-to-end versleuteld",
+    "encryptionOff": "Versleuteling staat uit op dit apparaat",
+    "encryptionTurnOn": "Inschakelen",
     "cannotDecrypt": "Versleuteld bericht — kan niet worden geopend op dit apparaat",
     "title": "Berichten",
     "searchConversations": "Gesprekken zoeken...",
