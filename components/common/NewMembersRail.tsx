@@ -53,7 +53,13 @@ const NewMembersRail: FC = () => {
 
   const openProfile = useCallback(
     (member: NewMember) => {
-      showUserProfile(member.username || member.address);
+      // By address, never by the username on the row. The roster row is a
+      // snapshot from registration, and at that moment most accounts still
+      // carry the generated placeholder shown before a username is chosen
+      // ("rapidbadger_7a38"). That string was never a username the API knows,
+      // so opening it resolved to nothing and the reader got "not found" on a
+      // member who is perfectly real. The address cannot drift.
+      showUserProfile(member.address);
     },
     [showUserProfile],
   );
