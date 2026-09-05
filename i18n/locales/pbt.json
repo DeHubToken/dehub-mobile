@@ -1510,6 +1510,12 @@
     "noMenuMatches": "په مینو کې هیڅ سمون نه لري",
     "searchDehubFor": "په DeHub کې \"{{query}}\" ولټوئ"
   },
+  "comments": {
+    "discardTitle": "خپله تبصره پرېږدې؟",
+    "discardBody": "د مسودې په توګه خوندي شوې، نو کله چې راستون شې دلته به وي.",
+    "keepWriting": "لیکل ته دوام ورکړه",
+    "closeAnyway": "بیا هم بند کړه"
+  },
   "postInfo": {
     "title": "د پوسټ معلومات",
     "tokenId": "توکن ID",

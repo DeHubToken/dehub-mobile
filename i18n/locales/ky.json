@@ -1502,6 +1502,12 @@
     "noMenuMatches": "Менюда эч нерсе дал келбеди",
     "searchDehubFor": "DeHub'тан «{{query}}» издөө"
   },
+  "comments": {
+    "discardTitle": "Пикириңизди өчүрөсүзбү?",
+    "discardBody": "Ал долбоор катары сакталды, кайтып келгениңизде ушул жерде болот.",
+    "keepWriting": "Жазууну улантуу",
+    "closeAnyway": "Баары бир жабуу"
+  },
   "postInfo": {
     "title": "Пост маалыматы",
     "tokenId": "Токен ID",

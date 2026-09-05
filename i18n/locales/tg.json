@@ -1502,6 +1502,12 @@
     "noMenuMatches": "Ҳеҷ чиз дар меню мувофиқ нест",
     "searchDehubFor": "Дар DeHub \"{{query}}\"-ро ҷустуҷӯ кунед"
   },
+  "comments": {
+    "discardTitle": "Шарҳатонро партоед?",
+    "discardBody": "Он ҳамчун сиёҳнавис нигоҳ дошта шуд, ҳангоми баргаштан дар ҳамин ҷо мешавад.",
+    "keepWriting": "Навиштанро идома диҳед",
+    "closeAnyway": "Бо вуҷуди ин пӯшед"
+  },
   "postInfo": {
     "title": "Маълумоти пост",
     "tokenId": "Token ID",

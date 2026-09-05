@@ -29,6 +29,11 @@ import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import { getAvatarUrl, toastError } from "../libs";
 import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.util";
+import {
+  loadCommentDraft,
+  saveCommentDraft,
+  clearCommentDraft,
+} from "../libs/comment-draft-cache";
 import { theme } from "../theme";
 import { formatCompactNumber } from "../libs/numbers.util";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -73,20 +78,51 @@ export default function FeedDetailScreen() {
   const [privateError, setPrivateError] = useState(false);
   const [item, setItem] = useState<UnifiedFeedItem | null>(null);
   const [comments, setComments] = useState<ThreadedComment[]>([]);
-  const [replyTo, setReplyTo] = useState<ThreadedComment | null>(null);
+  // Whatever was left unsent last time, restored whole: the text and the reply
+  // it was aimed at. Backing out of this screen is the commonest way to lose a
+  // comment, and it took the text with it before this.
+  const [restoredDraft] = useState(() => (tokenId == null ? null : loadCommentDraft(tokenId)));
+  const [replyTo, setReplyTo] = useState<ThreadedComment | null>(() =>
+    restoredDraft?.parentId == null
+      ? null
+      : ({
+          id: restoredDraft.parentId,
+          content: "",
+          createdAt: new Date(restoredDraft.updatedAt).toISOString(),
+          likeCount: 0,
+          depth: 0,
+          user: { username: restoredDraft.parentUsername },
+        } as unknown as ThreadedComment),
+  );
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useState(restoredDraft?.text ?? "");
   const mentions = useMentions(inputText, setInputText);
   const [posting, setPosting] = useState(false);
   const [highlightedCommentId, setHighlightedCommentId] = useState<number | null>(null);
   /** Root comment ids whose full reply thread the reader has opened. */
   const [expandedThreads, setExpandedThreads] = useState<Set<string>>(() => new Set());
 
-  // Media attachment state
-  const [mediaAttachment, setMediaAttachment] = useState<MediaAttachment | null>(null);
+  // Media attachment state. A GIF is a hosted URL, so it is the one attachment
+  // a draft can carry; an image or voice note is a local file URI.
+  const [mediaAttachment, setMediaAttachment] = useState<MediaAttachment | null>(
+    restoredDraft?.gifUrl ? { type: "gif", url: restoredDraft.gifUrl } : null,
+  );
   const [mediaPosting, setMediaPosting] = useState(false);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
+
+  // Persist the composer on every keystroke, GIF and change of reply target.
+  // One entry per post, and an edit — which borrows the same box for text that
+  // belongs to an existing comment — must not overwrite the draft underneath.
+  useEffect(() => {
+    if (tokenId == null || editingComment) return;
+    saveCommentDraft(tokenId, {
+      text: inputText,
+      parentId: replyTo ? Number(replyTo.id) : undefined,
+      parentUsername: replyTo?.user?.displayName || replyTo?.user?.username,
+      gifUrl: mediaAttachment?.type === "gif" ? mediaAttachment.url : undefined,
+    });
+  }, [tokenId, inputText, replyTo, mediaAttachment, editingComment]);
 
   // Context menu state
   const [contextComment, setContextComment] = useState<Comment | null>(null);
@@ -123,8 +159,10 @@ export default function FeedDetailScreen() {
 
   // Voice recording callbacks
   const handleVoiceRecordingComplete = useCallback((result: VoiceNoteResult) => {
+    // The text is left alone. An attachment swaps the whole composer for its
+    // preview, so anything typed is out of sight either way — and blanking it
+    // here threw away a written comment the moment someone recorded a note.
     setMediaAttachment({ type: "audio", uri: result.uri, durationMs: result.durationMs });
-    setInputText("");
   }, []);
 
   const handleVoiceRecordingCancel = useCallback(() => {}, []);
@@ -146,8 +184,8 @@ export default function FeedDetailScreen() {
           quality: 0.85,
         });
         if (uri) {
+          // Typed text is kept — see handleVoiceRecordingComplete.
           setMediaAttachment({ type: "image", uri });
-          setInputText("");
           Keyboard.dismiss();
         }
       } catch (e: any) {
@@ -168,8 +206,8 @@ export default function FeedDetailScreen() {
 
   const handleGifPicked = useCallback((url: string) => {
     setGifPickerVisible(false);
+    // Typed text is kept — see handleVoiceRecordingComplete.
     setMediaAttachment({ type: "gif", url });
-    setInputText("");
     Keyboard.dismiss();
   }, []);
 
@@ -355,7 +393,7 @@ export default function FeedDetailScreen() {
     // optimistic row lands at the right tier.
     setReplyTo(cm as ThreadedComment);
     setEditingComment(null);
-    setInputText("");
+    // Aiming a half-written comment at someone must not throw it away.
     // Open the thread you are replying into, so your own reply lands somewhere
     // visible and you can read what you are answering. The root of any reply is
     // the nearest depth-0 row above it.
@@ -739,6 +777,8 @@ export default function FeedDetailScreen() {
       } catch (e) {
         console.error("[FeedDetailScreen] media post error", e);
         setComments((prev) => prev.filter((c) => c.id !== tempId));
+        // Hand the attachment back rather than making them pick it again.
+        setMediaAttachment(savedMedia);
         toastError("Failed to send media comment");
       } finally {
         setMediaPosting(false);
@@ -748,11 +788,17 @@ export default function FeedDetailScreen() {
 
   // Cancel reply or edit
   const cancelReplyOrEdit = useCallback(() => {
+    // Backing out of an EDIT puts back the draft that edit interrupted.
+    // Backing out of a REPLY keeps what is typed — it posts as a top-level
+    // comment instead. Blanking the box did neither: it destroyed a written
+    // comment on a tap meant only to change who it was aimed at.
+    if (editingComment) {
+      setInputText(tokenId == null ? "" : loadCommentDraft(tokenId)?.text ?? "");
+      mentions.reset();
+    }
     setReplyTo(null);
     setEditingComment(null);
-    setInputText("");
-    mentions.reset();
-  }, [mentions]);
+  }, [editingComment, tokenId, mentions]);
 
   const handleSend = useCallback(() => {
     const text = inputText.trim();
@@ -767,7 +813,8 @@ export default function FeedDetailScreen() {
             prev.map((c) => (c.id === commentId ? { ...c, content: text } : c))
           );
           setEditingComment(null);
-          setInputText("");
+          // Back to the draft the edit borrowed the box from, if there was one.
+          setInputText(tokenId == null ? "" : loadCommentDraft(tokenId)?.text ?? "");
           mentions.reset();
           Keyboard.dismiss();
           try {
@@ -799,6 +846,7 @@ export default function FeedDetailScreen() {
         const replyTarget = replyTo;
         setComments((prev) => insertThreaded(prev, tempComment, replyTarget));
 
+        clearCommentDraft(tokenId);
         if (replyTarget) setReplyTo(null);
         setInputText("");
         mentions.reset();
@@ -823,6 +871,11 @@ export default function FeedDetailScreen() {
           }
         } catch (e) {
           setComments((prev) => prev.filter((c) => c.id !== tempId));
+          // Put the message back in the box. It was cleared the moment Send
+          // was tapped, so a refusal used to destroy what was written — the
+          // one moment losing it hurts most.
+          setInputText(text);
+          setReplyTo(replyTarget);
           console.error("[FeedDetailScreen] postComment error", e);
           // The comment vanished from the thread with nothing said at all
           // before this. A refusal from the server explains itself — comments

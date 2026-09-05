@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Meniu niekas neatitinka",
     "searchDehubFor": "Ieškoti „{{query}}“ DeHub svetainėje"
   },
+  "comments": {
+    "discardTitle": "Atsisakyti komentaro?",
+    "discardBody": "Jis išsaugotas kaip juodraštis, tad lauks čia, kai grįši.",
+    "keepWriting": "Rašyti toliau",
+    "closeAnyway": "Vis tiek uždaryti"
+  },
   "postInfo": {
     "title": "Įrašo informacija",
     "tokenId": "Žetono ID",

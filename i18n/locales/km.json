@@ -1550,6 +1550,12 @@
     "noMenuMatches": "គ្មានអ្វីនៅក្នុងម៉ឺនុយត្រូវគ្នាទេ",
     "searchDehubFor": "ស្វែងរក \"{{query}}\" នៅលើ DeHub"
   },
+  "comments": {
+    "discardTitle": "បោះបង់មតិយោបល់របស់អ្នក?",
+    "discardBody": "វាត្រូវបានរក្សាទុកជាសេចក្ដីព្រាង ដូច្នេះវានឹងនៅទីនេះពេលអ្នកត្រឡប់មកវិញ។",
+    "keepWriting": "បន្តសរសេរ",
+    "closeAnyway": "បិទទោះយ៉ាងណា"
+  },
   "postInfo": {
     "title": "ព័ត៌មានប្រកាស",
     "tokenId": "Token ID",

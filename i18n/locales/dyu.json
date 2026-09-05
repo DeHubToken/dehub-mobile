@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Foyi tɛ bɛn sugandili kɔnɔ",
     "searchDehubFor": "\"{{query}}\" ɲini DeHub kan"
   },
+  "comments": {
+    "discardTitle": "I b'i ka kumasen bɔ?",
+    "discardBody": "A marana i ka sɛbɛnnifɔlɔ la, a bɛna to yan fo i seginna.",
+    "keepWriting": "Sɛbɛnni kɛ ka taa",
+    "closeAnyway": "A datugu"
+  },
   "postInfo": {
     "title": "Post kunnafoni",
     "tokenId": "Token ID",

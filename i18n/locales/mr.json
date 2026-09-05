@@ -1514,6 +1514,12 @@
     "noMenuMatches": "मेनूमध्ये काहीही जुळत नाही",
     "searchDehubFor": "DeHub वर \"{{query}}\" शोधा"
   },
+  "comments": {
+    "discardTitle": "तुमची टिप्पणी टाकून द्यायची?",
+    "discardBody": "ती मसुदा म्हणून जतन झाली आहे, परत आल्यावर इथेच मिळेल.",
+    "keepWriting": "लिहीत राहा",
+    "closeAnyway": "तरीही बंद करा"
+  },
   "postInfo": {
     "title": "पोस्ट माहिती",
     "tokenId": "टोकन ID",

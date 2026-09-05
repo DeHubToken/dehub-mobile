@@ -1891,6 +1891,12 @@
     "noMenuMatches": "Walang tumutugma sa menu",
     "searchDehubFor": "Maghanap ng \"{{query}}\" sa DeHub"
   },
+  "comments": {
+    "discardTitle": "Itatapon ang komento mo?",
+    "discardBody": "Naka-save ito bilang draft, kaya nandito pa rin ito pagbalik mo.",
+    "keepWriting": "Magpatuloy sa pagsulat",
+    "closeAnyway": "Isara pa rin"
+  },
   "postInfo": {
     "title": "Post Info",
     "tokenId": "Token ID",

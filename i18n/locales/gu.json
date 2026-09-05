@@ -1510,6 +1510,12 @@
     "noMenuMatches": "મેનૂમાં કંઈ મેળ ખાતું નથી",
     "searchDehubFor": "DeHub પર \"{{query}}\" શોધો"
   },
+  "comments": {
+    "discardTitle": "તમારી ટિપ્પણી કાઢી નાખવી છે?",
+    "discardBody": "તે ડ્રાફ્ટ તરીકે સાચવાઈ છે, તમે પાછા આવશો ત્યારે અહીં જ મળશે.",
+    "keepWriting": "લખવાનું ચાલુ રાખો",
+    "closeAnyway": "તોય બંધ કરો"
+  },
   "postInfo": {
     "title": "પોસ્ટ માહિતી",
     "tokenId": "ટોકન ID",

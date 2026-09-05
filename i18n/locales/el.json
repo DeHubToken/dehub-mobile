@@ -1540,6 +1540,12 @@
     "noMenuMatches": "Τίποτα στο μενού δεν ταιριάζει",
     "searchDehubFor": "Αναζήτηση «{{query}}» στο DeHub"
   },
+  "comments": {
+    "discardTitle": "Απόρριψη του σχολίου σου;",
+    "discardBody": "Αποθηκεύτηκε ως πρόχειρο, οπότε θα είναι εδώ όταν επιστρέψεις.",
+    "keepWriting": "Συνέχισε να γράφεις",
+    "closeAnyway": "Κλείσε ούτως ή άλλως"
+  },
   "postInfo": {
     "title": "Πληροφορίες ανάρτησης",
     "tokenId": "ID Token",

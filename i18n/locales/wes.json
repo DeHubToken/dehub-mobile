@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Notin fo di menu match",
     "searchDehubFor": "Search \"{{query}}\" fo DeHub"
   },
+  "comments": {
+    "discardTitle": "You wan throway ya comment?",
+    "discardBody": "We don keep-am as draft, so e go still dey here when you kam back.",
+    "keepWriting": "Continue for write",
+    "closeAnyway": "Close-am sef"
+  },
   "postInfo": {
     "title": "Post Info",
     "tokenId": "Token ID",

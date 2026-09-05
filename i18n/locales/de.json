@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Nichts im Menü passt",
     "searchDehubFor": "DeHub nach „{{query}}\" durchsuchen"
   },
+  "comments": {
+    "discardTitle": "Kommentar verwerfen?",
+    "discardBody": "Er ist als Entwurf gespeichert und wartet hier, wenn du zurückkommst.",
+    "keepWriting": "Weiterschreiben",
+    "closeAnyway": "Trotzdem schließen"
+  },
   "postInfo": {
     "title": "Beitragsinfo",
     "tokenId": "Token-ID",

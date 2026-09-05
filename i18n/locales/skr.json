@@ -1510,6 +1510,12 @@
     "noMenuMatches": "مینو وچ کجھ کائنی ملدا",
     "searchDehubFor": "DeHub تے \"{{query}}\" لبھو"
   },
+  "comments": {
+    "discardTitle": "اپݨا تبصرہ چھوڑ ݙیوو؟",
+    "discardBody": "ایہ مسودے وچ محفوظ ہے، واپس آوݨ تے ایتھاں ہی ملسی۔",
+    "keepWriting": "لکھدے رہوو",
+    "closeAnyway": "تاں وی بند کرو"
+  },
   "postInfo": {
     "title": "پوسٹ معلومات",
     "tokenId": "ٹوکن ID",

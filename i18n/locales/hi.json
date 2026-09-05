@@ -1322,6 +1322,12 @@
     "noMenuMatches": "मेन्यू में कुछ भी मेल नहीं खाता",
     "searchDehubFor": "DeHub पर \"{{query}}\" खोजें"
   },
+  "comments": {
+    "discardTitle": "अपनी टिप्पणी छोड़ दें?",
+    "discardBody": "यह ड्राफ़्ट के रूप में सहेजी गई है, लौटने पर यहीं मिलेगी।",
+    "keepWriting": "लिखते रहें",
+    "closeAnyway": "फिर भी बंद करें"
+  },
   "postInfo": {
     "title": "पोस्ट जानकारी",
     "tokenId": "टोकन ID",

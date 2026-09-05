@@ -1527,6 +1527,12 @@
     "noMenuMatches": "Мәзірде ештеңе сәйкес келмеді",
     "searchDehubFor": "DeHub-тан «{{query}}» іздеу"
   },
+  "comments": {
+    "discardTitle": "Пікіріңізді жоясыз ба?",
+    "discardBody": "Ол нобай ретінде сақталды, оралғанда осында болады.",
+    "keepWriting": "Жазуды жалғастыру",
+    "closeAnyway": "Бәрібір жабу"
+  },
   "postInfo": {
     "title": "Жазба ақпараты",
     "tokenId": "Токен ID",

@@ -1540,6 +1540,12 @@
     "noMenuMatches": "چیزی در منو مطابقت ندارد",
     "searchDehubFor": "جست‌وجوی «{{query}}» در DeHub"
   },
+  "comments": {
+    "discardTitle": "نظرت را رها می‌کنی؟",
+    "discardBody": "به‌صورت پیش‌نویس ذخیره شده و وقتی برگردی همین‌جاست.",
+    "keepWriting": "به نوشتن ادامه بده",
+    "closeAnyway": "به‌هرحال ببند"
+  },
   "postInfo": {
     "title": "اطلاعات پست",
     "tokenId": "شناسه توکن",

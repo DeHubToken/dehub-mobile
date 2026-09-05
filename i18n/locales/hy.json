@@ -1502,6 +1502,12 @@
     "noMenuMatches": "Ընտրացանկում ոչինչ չի համապատասխանում",
     "searchDehubFor": "Որոնել «{{query}}» DeHub-ում"
   },
+  "comments": {
+    "discardTitle": "Հրաժարվե՞լ ձեր մեկնաբանությունից։",
+    "discardBody": "Այն պահվել է որպես սևագիր և կլինի այստեղ, երբ վերադառնաք։",
+    "keepWriting": "Շարունակել գրելը",
+    "closeAnyway": "Այնուամենայնիվ փակել"
+  },
   "postInfo": {
     "title": "Գdelaysայթի տdelaysdelays",
     "tokenId": "Tige ID",
