@@ -9,6 +9,9 @@ jest.mock("expo-crypto", () => ({
 
 const mockRegistry = new Map<string, string>();
 let mockCaller = "";
+// Reproduces the server fault: its auth guard overwrote the address in the
+// path with the caller's own, so every key lookup answered about the caller.
+let mockGuardBug = false;
 
 jest.mock("../../libs/api.client", () => ({
   apiClient: {
@@ -20,7 +23,8 @@ jest.mock("../../libs/api.client", () => ({
     get: jest.fn(async (endpoint: string) => {
       const m = endpoint.match(/^\/dm\/e2ee-key\/(0x[0-9a-f]+)$/);
       if (!m) throw new Error(`unexpected get ${endpoint}`);
-      return { address: m[1], publicKey: mockRegistry.get(m[1]) ?? null };
+      const answered = mockGuardBug ? mockCaller : m[1];
+      return { address: answered, publicKey: mockRegistry.get(answered) ?? null };
     }),
   },
 }));
@@ -166,6 +170,22 @@ describe("dm-e2ee client flow", () => {
     await setupIdentity(A);
     expect(getIdentity()?.address).toBe(A);
     expect(mockRegistry.get(A)).toBe(getIdentity()!.publicKey);
+  });
+
+  it("sends plaintext rather than encrypt to a key the server answered about someone else", async () => {
+    await become(A);
+    await become(B);
+    mockGuardBug = true;
+    try {
+      // B asks for A's key and is handed B's own. Encrypting to it would seal
+      // the message to B — readable here, an unopenable envelope for A, and no
+      // error anywhere. Falling back to plaintext is the safe answer.
+      const wire = await prepareOutgoing(A, "hi from B");
+      expect(wire).toEqual({ content: "hi from B", encrypted: false });
+      expect(await encryptForPeer(A, "hi from B")).toBeNull();
+    } finally {
+      mockGuardBug = false;
+    }
   });
 
   it("sets up against a wallet that rejects the open-wallet call", async () => {
