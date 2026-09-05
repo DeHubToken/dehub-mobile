@@ -58,6 +58,8 @@
     "live": "Ao vivo"
   },
   "settings": {
+    "smartReplies": "Respostas sugeridas",
+    "smartRepliesDesc": "Escreve duas respostas em que podes tocar num chat. O × nas sugestões desativa isto.",
     "title": "Configurações",
     "manageAccount": "Gerencie sua conta e preferências",
     "logOut": "Sair",
@@ -1212,6 +1214,10 @@
     "attachmentTooLarge": "Cada ficheiro deve ter menos de 20 MB"
   },
   "messages": {
+    "smartRepliesOff": "Respostas sugeridas desativadas",
+    "smartRepliesOffWhere": "Volta a ativá-las em Configurações → Mensagens.",
+    "smartRepliesUndo": "Anular",
+    "turnOffSmartReplies": "Desativar respostas sugeridas",
     "encrypted": "Criptografado de ponta a ponta",
     "encryptionOff": "Encriptação desativada neste dispositivo",
     "encryptionTurnOn": "Ativar",

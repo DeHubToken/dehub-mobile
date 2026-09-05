@@ -58,6 +58,8 @@
     "live": "Élő"
   },
   "settings": {
+    "smartReplies": "Javasolt válaszok",
+    "smartRepliesDesc": "Két választ fogalmaz meg, amelyekre a csevegésben rákoppinthatsz. A javaslatokon lévő × kikapcsolja ezt.",
     "title": "Beállítások",
     "manageAccount": "Fiók és beállítások kezelése",
     "logOut": "Kijelentkezés",
@@ -1143,6 +1145,10 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "smartRepliesOff": "A javasolt válaszok ki vannak kapcsolva",
+    "smartRepliesOffWhere": "Kapcsold vissza a Beállítások → Üzenetek menüben.",
+    "smartRepliesUndo": "Visszavonás",
+    "turnOffSmartReplies": "Javasolt válaszok kikapcsolása",
     "encrypted": "Végpontok között titkosítva",
     "encryptionOff": "A titkosítás ezen az eszközön ki van kapcsolva",
     "encryptionTurnOn": "Bekapcsolás",

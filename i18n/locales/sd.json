@@ -58,6 +58,8 @@
     "live": "لائيو"
   },
   "settings": {
+    "smartReplies": "تجويز ڪيل جواب",
+    "smartRepliesDesc": "ٻه جواب تيار ڪري ٿو جن تي توهان چيٽ ۾ ٽيپ ڪري سگهو ٿا. تجويزن تي × هي بند ڪري ٿو.",
     "title": "سيٽنگون",
     "manageAccount": "پنهنجو اڪائونٽ ۽ ترجيحون منظم ڪريو",
     "logOut": "لاگ آئوٽ",
@@ -1212,6 +1214,10 @@
     "loginRequired": "لاگ ان ضروري"
   },
   "messages": {
+    "smartRepliesOff": "تجويز ڪيل جواب بند ٿي ويا",
+    "smartRepliesOffWhere": "انهن کي سيٽنگون ← پيغام مان ٻيهر آن ڪريو.",
+    "smartRepliesUndo": "واپس",
+    "turnOffSmartReplies": "تجويز ڪيل جواب بند ڪريو",
     "encrypted": "آخر کان آخر تائين انڪرپٽ ٿيل",
     "encryptionOff": "هن ڊوائيس تي انڪرپشن بند آهي",
     "encryptionTurnOn": "چالو ڪريو",

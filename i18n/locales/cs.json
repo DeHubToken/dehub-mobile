@@ -58,6 +58,8 @@
     "live": "Živě"
   },
   "settings": {
+    "smartReplies": "Navrhované odpovědi",
+    "smartRepliesDesc": "Připraví dvě odpovědi, na které v chatu klepneš. × u návrhů to vypne.",
     "title": "Nastavení",
     "manageAccount": "Spravujte svůj účet a předvolby",
     "logOut": "Odhlásit se",
@@ -1143,6 +1145,10 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "smartRepliesOff": "Navrhované odpovědi jsou vypnuté",
+    "smartRepliesOffWhere": "Znovu je zapneš v Nastavení → Zprávy.",
+    "smartRepliesUndo": "Zpět",
+    "turnOffSmartReplies": "Vypnout navrhované odpovědi",
     "encrypted": "Šifrováno end-to-end",
     "encryptionOff": "Šifrování je na tomto zařízení vypnuté",
     "encryptionTurnOn": "Zapnout",

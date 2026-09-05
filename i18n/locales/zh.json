@@ -58,6 +58,8 @@
     "live": "直播"
   },
   "settings": {
+    "smartReplies": "建议回复",
+    "smartRepliesDesc": "在聊天中生成两条可以点按的回复。建议上的 × 会关闭此功能。",
     "title": "设置",
     "manageAccount": "管理您的账户和偏好设置",
     "logOut": "退出登录",
@@ -1212,6 +1214,10 @@
     "attachmentTooLarge": "每个文件需小于 20MB"
   },
   "messages": {
+    "smartRepliesOff": "已关闭建议回复",
+    "smartRepliesOffWhere": "可在 设置 → 消息 中重新开启。",
+    "smartRepliesUndo": "撤销",
+    "turnOffSmartReplies": "关闭建议回复",
     "encrypted": "端到端加密",
     "encryptionOff": "此设备未开启加密",
     "encryptionTurnOn": "开启",

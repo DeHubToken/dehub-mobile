@@ -58,6 +58,8 @@
     "live": "Zindî"
   },
   "settings": {
+    "smartReplies": "Bersivên pêşniyarkirî",
+    "smartRepliesDesc": "Du bersivan amade dike ku tu dikarî di chatê de bitikînî. × ya li ser pêşniyaran vê digire.",
     "title": "Mîheng",
     "manageAccount": "Hesab û tercîhên xwe birêve bibe",
     "logOut": "Derketin",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Têketin pêwîst e"
   },
   "messages": {
+    "smartRepliesOff": "Bersivên pêşniyarkirî hatin girtin",
+    "smartRepliesOffWhere": "Wan ji Mîheng → Peyam dîsa veke.",
+    "smartRepliesUndo": "Vegerîne",
+    "turnOffSmartReplies": "Bersivên pêşniyarkirî bigire",
     "encrypted": "Ji dawî heta dawî şîfrekirî",
     "encryptionOff": "Şîfrekirin li ser vê amûrê ne çalak e",
     "encryptionTurnOn": "Çalak bike",

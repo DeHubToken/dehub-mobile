@@ -58,6 +58,8 @@
     "live": "Toos"
   },
   "settings": {
+    "smartReplies": "Jawaabaha la soo jeediyay",
+    "smartRepliesDesc": "Wuxuu diyaariyaa laba jawaabood oo aad ku taaban karto wada sheekaysiga. Calaamadda × ee talooyinka ayaa damineysa.",
     "title": "Dejinta",
     "manageAccount": "Maaree akoonkaaga iyo doorashooyinkaaga",
     "logOut": "Ka bax",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Soo galitaan waa loo baahan yahay"
   },
   "messages": {
+    "smartRepliesOff": "Jawaabaha la soo jeediyay waa la damiyay",
+    "smartRepliesOffWhere": "Dib uga shid Dejinta → Fariimaha.",
+    "smartRepliesUndo": "Ka noqo",
+    "turnOffSmartReplies": "Dami jawaabaha la soo jeediyay",
     "encrypted": "Si dhammaystiran loo sireeyay",
     "encryptionOff": "Sirayntu kuma shidna qalabkan",
     "encryptionTurnOn": "Shid",

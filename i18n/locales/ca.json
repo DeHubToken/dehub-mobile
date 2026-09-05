@@ -58,6 +58,8 @@
     "live": "En directe"
   },
   "settings": {
+    "smartReplies": "Respostes suggerides",
+    "smartRepliesDesc": "Redacta dues respostes que pots tocar en un xat. La × dels suggeriments ho desactiva.",
     "title": "Configuració",
     "manageAccount": "Gestiona el teu compte i preferències",
     "logOut": "Tancar sessió",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Cal iniciar sessió"
   },
   "messages": {
+    "smartRepliesOff": "Respostes suggerides desactivades",
+    "smartRepliesOffWhere": "Torna a activar-les a Configuració → Missatges.",
+    "smartRepliesUndo": "Desfés",
+    "turnOffSmartReplies": "Desactiva les respostes suggerides",
     "encrypted": "Xifrat d'extrem a extrem",
     "encryptionOff": "Xifratge desactivat en aquest dispositiu",
     "encryptionTurnOn": "Activa",

@@ -58,6 +58,8 @@
     "live": "Прамая трансляцыя"
   },
   "settings": {
+    "smartReplies": "Прапанаваныя адказы",
+    "smartRepliesDesc": "Складае два адказы, якіх можна крануць у чаце. × на падказках выключае гэта.",
     "title": "Налады",
     "manageAccount": "Кіруйце сваім акаўнтам і перавагамі",
     "logOut": "Выйсці",
@@ -1225,6 +1227,10 @@
     "loginRequired": "Патрабуецца ўваход"
   },
   "messages": {
+    "smartRepliesOff": "Прапанаваныя адказы выключаны",
+    "smartRepliesOffWhere": "Уключы іх зноў у Налады → Паведамленні.",
+    "smartRepliesUndo": "Адрабіць",
+    "turnOffSmartReplies": "Выключыць прапанаваныя адказы",
     "encrypted": "Скразное шыфраванне",
     "encryptionOff": "Шыфраванне на гэтай прыладзе выключана",
     "encryptionTurnOn": "Уключыць",

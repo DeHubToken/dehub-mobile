@@ -136,6 +136,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "settings": {
+    "smartReplies": "পরামর্শ দেওয়া জবাব",
+    "smartRepliesDesc": "চ্যাটত টিপ মারিবার লাই দুইটা জবাব বানায়। পরামর্শর উপরর × ইতা বন্ধ গরি দেয়।",
     "title": "সেটিংস",
     "account": "অ্যাকাউন্ট",
     "privacy": "গোপনীয়তা",
@@ -606,6 +608,10 @@
     "clearNotification": "বিজ্ঞপ্তি মুছন"
   },
   "messages": {
+    "smartRepliesOff": "পরামর্শ দেওয়া জবাব বন্ধ গরা অইছে",
+    "smartRepliesOffWhere": "সেটিংস → বার্তা তুন ইতা আবার চালু গরন।",
+    "smartRepliesUndo": "আগর অবস্থাত ফিরান",
+    "turnOffSmartReplies": "পরামর্শ দেওয়া জবাব বন্ধ গরন",
     "encrypted": "এন্ড-টু-এন্ড এনক্রিপ্টেড",
     "encryptionOff": "এই ডিভাইসত এনক্রিপশন বন্ধ আছে",
     "encryptionTurnOn": "চালু গরন",

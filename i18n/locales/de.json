@@ -58,6 +58,8 @@
     "live": "Live"
   },
   "settings": {
+    "smartReplies": "Antwortvorschläge",
+    "smartRepliesDesc": "Erstellt zwei Antworten, die du im Chat antippen kannst. Das × an den Vorschlägen schaltet sie ab.",
     "title": "Einstellungen",
     "manageAccount": "Verwalte dein Konto und deine Einstellungen",
     "logOut": "Abmelden",
@@ -1113,6 +1115,10 @@
     "clearNotification": "Benachrichtigung löschen"
   },
   "messages": {
+    "smartRepliesOff": "Antwortvorschläge ausgeschaltet",
+    "smartRepliesOffWhere": "Unter Einstellungen → Nachrichten wieder einschalten.",
+    "smartRepliesUndo": "Rückgängig",
+    "turnOffSmartReplies": "Antwortvorschläge ausschalten",
     "encrypted": "Ende-zu-Ende-verschlüsselt",
     "encryptionOff": "Verschlüsselung ist auf diesem Gerät aus",
     "encryptionTurnOn": "Aktivieren",

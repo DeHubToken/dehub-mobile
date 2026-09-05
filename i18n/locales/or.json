@@ -58,6 +58,8 @@
     "live": "ଲାଇଭ"
   },
   "settings": {
+    "smartReplies": "ପ୍ରସ୍ତାବିତ ଉତ୍ତର",
+    "smartRepliesDesc": "ଚାଟରେ ଟ୍ୟାପ୍ କରିବା ପାଇଁ ଦୁଇଟି ଉତ୍ତର ପ୍ରସ୍ତୁତ କରେ। ପରାମର୍ଶ ଉପରର × ଏହାକୁ ବନ୍ଦ କରିଦିଏ।",
     "title": "ସେଟିଂ",
     "manageAccount": "ଆପଣଙ୍କ ଆକାଉଣ୍ଟ ଏବଂ ପସନ୍ଦ ପରିଚାଳନା କରନ୍ତୁ",
     "logOut": "ଲଗ ଆଉଟ",
@@ -1212,6 +1214,10 @@
     "loginRequired": "ଲଗ ଇନ ଆବଶ୍ୟକ"
   },
   "messages": {
+    "smartRepliesOff": "ପ୍ରସ୍ତାବିତ ଉତ୍ତର ବନ୍ଦ କରାଗଲା",
+    "smartRepliesOffWhere": "ସେଟିଂ → ବାର୍ତ୍ତାରୁ ସେଗୁଡ଼ିକୁ ପୁଣି ଚାଲୁ କରନ୍ତୁ।",
+    "smartRepliesUndo": "ପୂର୍ବବତ୍ କରନ୍ତୁ",
+    "turnOffSmartReplies": "ପ୍ରସ୍ତାବିତ ଉତ୍ତର ବନ୍ଦ କରନ୍ତୁ",
     "encrypted": "ଏଣ୍ଡ-ଟୁ-ଏଣ୍ଡ ଏନକ୍ରିପ୍ଟେଡ୍",
     "encryptionOff": "ଏହି ଡିଭାଇସରେ ଏନକ୍ରିପସନ ବନ୍ଦ ଅଛି",
     "encryptionTurnOn": "ଚାଲୁ କରନ୍ତୁ",

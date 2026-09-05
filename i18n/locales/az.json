@@ -58,6 +58,8 @@
     "live": "Canlı"
   },
   "settings": {
+    "smartReplies": "Təklif olunan cavablar",
+    "smartRepliesDesc": "Söhbətdə toxuna biləcəyin iki cavab hazırlayır. Təkliflərdəki × bunu söndürür.",
     "title": "Parametrlər",
     "manageAccount": "Hesabınızı və seçimlərinizi idarə edin",
     "logOut": "Çıxış",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Daxil olmaq lazımdır"
   },
   "messages": {
+    "smartRepliesOff": "Təklif olunan cavablar söndürüldü",
+    "smartRepliesOffWhere": "Parametrlər → Mesajlar bölməsindən yenidən aç.",
+    "smartRepliesUndo": "Geri al",
+    "turnOffSmartReplies": "Təklif olunan cavabları söndür",
     "encrypted": "Uçdan-uca şifrələnib",
     "encryptionOff": "Bu cihazda şifrələmə söndürülüb",
     "encryptionTurnOn": "Aktivləşdir",

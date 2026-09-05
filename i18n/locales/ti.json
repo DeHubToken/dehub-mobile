@@ -58,6 +58,8 @@
     "live": "ቀጥታ"
   },
   "settings": {
+    "smartReplies": "ዝተጠቕሱ መልስታት",
+    "smartRepliesDesc": "ኣብ ዕላል ክትትንክፎም እትኽእል ክልተ መልስታት የዳሉ። ኣብቲ ምኽርታት ዘሎ × ነዚ የጥፍኦ።",
     "title": "ቅጥዕታት",
     "manageAccount": "ኣካውንትኻን ምርጫታትካን ኣመሓድር",
     "logOut": "ውጻእ",
@@ -1212,6 +1214,10 @@
     "loginRequired": "ብዓል ዝድሊ"
   },
   "messages": {
+    "smartRepliesOff": "ዝተጠቕሱ መልስታት ጠፊኦም",
+    "smartRepliesOffWhere": "ኣብ ቅጥዕታት → መልእኽትታት ደጊምካ ኣብርሆም።",
+    "smartRepliesUndo": "ምለስ",
+    "turnOffSmartReplies": "ዝተጠቕሱ መልስታት ኣጥፍእ",
     "encrypted": "ካብ ጫፍ ናብ ጫፍ ዝተመስጠረ",
     "encryptionOff": "ኣብዚ መሳርሒ እዚ ምስጠራ ጠፊኡ ኣሎ",
     "encryptionTurnOn": "ኣብርሆ",

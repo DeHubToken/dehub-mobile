@@ -58,6 +58,8 @@
     "live": "Jonli"
   },
   "settings": {
+    "smartReplies": "Tavsiya etilgan javoblar",
+    "smartRepliesDesc": "Suhbatda bosishingiz mumkin bo'lgan ikkita javob tayyorlaydi. Tavsiyalardagi × buni o'chiradi.",
     "title": "Sozlamalar",
     "manageAccount": "Hisobingiz va afzalliklaringizni boshqaring",
     "logOut": "Chiqish",
@@ -1192,6 +1194,10 @@
     "loginRequired": "Avtorizatsiya kerak"
   },
   "messages": {
+    "smartRepliesOff": "Tavsiya etilgan javoblar o'chirildi",
+    "smartRepliesOffWhere": "Ularni Sozlamalar → Xabarlar bo'limidan qayta yoqing.",
+    "smartRepliesUndo": "Bekor qilish",
+    "turnOffSmartReplies": "Tavsiya etilgan javoblarni o'chirish",
     "encrypted": "Uchdan-uchga shifrlangan",
     "encryptionOff": "Bu qurilmada shifrlash oʻchirilgan",
     "encryptionTurnOn": "Yoqish",
