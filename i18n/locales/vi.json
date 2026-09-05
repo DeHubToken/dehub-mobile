@@ -2059,14 +2059,14 @@
     "wallet": "Ví tiếp thị liên kết"
   },
   "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
+    "title": "Bạn muốn tạo gì?",
+    "subtitle": "Hỏi trợ lý DeHub bất cứ điều gì — hoặc bắt đầu từ một ý tưởng bên dưới.",
+    "placeholder": "Hỏi bất cứ điều gì…",
+    "suggestion1": "Tóm tắt những gì đang thịnh hành trên DeHub hôm nay",
+    "suggestion2": "Viết một bài về nội dung tôi vừa đăng",
+    "suggestion3": "Giải thích staking DHB một cách đơn giản",
+    "suggestion4": "Tìm những nhà sáng tạo tôi nên theo dõi",
+    "suggestion5": "Viết bản tóm tắt bounty cho một chiến dịch cắt clip"
   },
   "top100": {
     "title": "Top 100",

@@ -1261,7 +1261,7 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "फ़ॉलो सुझाव"
   },
   "tv": {
     "title": "TV",
@@ -1971,14 +1971,14 @@
     "wallet": "एफिलिएट वॉलेट"
   },
   "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
+    "title": "आप क्या बनाना चाहते हैं?",
+    "subtitle": "DeHub सहायक से कुछ भी पूछें — या नीचे दिए किसी विचार से शुरू करें।",
+    "placeholder": "कुछ भी पूछें…",
+    "suggestion1": "आज DeHub पर क्या ट्रेंड कर रहा है, बताओ",
+    "suggestion2": "मेरे नए अपलोड पर एक पोस्ट लिखो",
+    "suggestion3": "DHB स्टेकिंग को आसान शब्दों में समझाओ",
+    "suggestion4": "बताओ किन क्रिएटर्स को फ़ॉलो करना चाहिए",
+    "suggestion5": "क्लिपिंग अभियान के लिए बाउंटी ब्रीफ़ लिखो"
   },
   "top100": {
     "title": "शीर्ष 100",

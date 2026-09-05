@@ -1170,7 +1170,7 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "팔로우 추천"
   },
   "tv": {
     "title": "TV",
@@ -1975,14 +1975,14 @@
     "wallet": "제휴 지갑"
   },
   "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
+    "title": "무엇을 만들어 볼까요?",
+    "subtitle": "DeHub 어시스턴트에게 무엇이든 물어보세요. 아래 아이디어로 시작해도 좋습니다.",
+    "placeholder": "무엇이든 물어보세요…",
+    "suggestion1": "오늘 DeHub에서 인기 있는 것을 정리해 줘",
+    "suggestion2": "최근 업로드에 대한 게시물을 써 줘",
+    "suggestion3": "DHB 스테이킹을 쉽게 설명해 줘",
+    "suggestion4": "팔로우할 만한 크리에이터를 찾아 줘",
+    "suggestion5": "클리핑 캠페인용 바운티 브리프를 작성해 줘"
   },
   "top100": {
     "title": "톱 100",
