@@ -34,11 +34,15 @@ jest.mock("../../libs/api.client", () => ({
 // covers the path whose absence left every returning session with no identity
 // at all: sending in the clear and unable to open a line.
 let mockEoaProvider: any = null;
+// An external wallet has never heard of dehub_openWallet and rejects it. It
+// holds its own EOA, so setup has to carry on and sign with what it has.
+let mockRejectOpen = false;
 
 const mockWallet = {
   request: async ({ method, params }: { method: string; params?: any[] }) => {
     if (method === "eth_accounts") return [];
     if (method === "dehub_openWallet") {
+      if (mockRejectOpen) throw new Error("Unsupported method: dehub_openWallet");
       mockEoaProvider = mockWallet;
       return true;
     }
@@ -162,6 +166,18 @@ describe("dm-e2ee client flow", () => {
     await setupIdentity(A);
     expect(getIdentity()?.address).toBe(A);
     expect(mockRegistry.get(A)).toBe(getIdentity()!.publicKey);
+  });
+
+  it("sets up against a wallet that rejects the open-wallet call", async () => {
+    mockEoaProvider = null;
+    mockRejectOpen = true;
+    try {
+      mockCaller = A;
+      await setupIdentity(A);
+      expect(getIdentity()?.address).toBe(A);
+    } finally {
+      mockRejectOpen = false;
+    }
   });
 
   it("ignores a v1 keychain record rather than reusing a key web cannot match", async () => {
