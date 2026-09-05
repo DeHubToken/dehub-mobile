@@ -1,0 +1,76 @@
+name: OTA Rollback
+
+# Reverts installed apps to the JS bundle embedded in their binary.
+#
+# Needed when a published update reaches a binary that cannot run it. The
+# runtimeVersion in app.json is a hardcoded literal, so it does NOT track
+# native changes on its own — add a native module without bumping it and every
+# older binary on the same runtimeVersion is handed a bundle that calls into
+# something it does not have. That crashes on launch, before anything renders,
+# and the user cannot get far enough into the app to do anything about it.
+#
+# roll-back-to-embedded publishes a directive rather than a bundle: clients
+# stop applying the branch's latest update and fall back to what shipped inside
+# the APK. It cannot fix a device that never launches far enough to check, but
+# expo-updates starts its fetch from the native side as the process comes up,
+# so in practice a crash-looping app still picks this up within a launch or two.
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: EAS update branch(es) to roll back, space separated.
+        default: production preview
+        required: false
+
+concurrency:
+  group: ota-publish
+  cancel-in-progress: false
+
+jobs:
+  rollback:
+    name: Roll back to embedded
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+    steps:
+      - name: Say why nothing was rolled back
+        if: env.EXPO_TOKEN == ''
+        run: echo "::error::No EXPO_TOKEN secret is set, so there is nothing to publish with."
+
+      - uses: actions/checkout@v4
+        if: env.EXPO_TOKEN != ''
+
+      - uses: actions/setup-node@v4
+        if: env.EXPO_TOKEN != ''
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        if: env.EXPO_TOKEN != ''
+        run: npm ci --legacy-peer-deps
+
+      - uses: expo/expo-github-action@v8
+        if: env.EXPO_TOKEN != ''
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Roll back
+        if: env.EXPO_TOKEN != ''
+        env:
+          ROLLBACK_BRANCHES: ${{ github.event.inputs.branch }}
+        run: |
+          # Unquoted on purpose: this is a space-separated list, not one branch.
+          for BRANCH in ${ROLLBACK_BRANCHES:-production preview}; do
+            for PLATFORM in android ios; do
+              echo "Rolling back $BRANCH ($PLATFORM)"
+              eas update:roll-back-to-embedded \
+                --branch "$BRANCH" \
+                --platform "$PLATFORM" \
+                --message "Roll back: bundle calls native modules older binaries do not have" \
+                --non-interactive
+            done
+          done
