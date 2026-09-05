@@ -1550,6 +1550,12 @@
     "noMenuMatches": "මෙනුවේ කිසිවක් ගැළපෙන්නේ නැත",
     "searchDehubFor": "DeHub හි \"{{query}}\" සොයන්න"
   },
+  "comments": {
+    "discardTitle": "ඔබේ අදහස ඉවත දමන්නද?",
+    "discardBody": "එය කෙටුම්පතක් ලෙස සුරැකී ඇත, ආපසු එන විට මෙහි ඇත.",
+    "keepWriting": "ලිවීම දිගටම කරන්න",
+    "closeAnyway": "කෙසේ වෙතත් වසන්න"
+  },
   "postInfo": {
     "title": "පළ කිරීමේ තොරතුරු",
     "tokenId": "ටෝකන් ID",

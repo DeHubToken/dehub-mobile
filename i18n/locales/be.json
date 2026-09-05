@@ -1550,6 +1550,12 @@
     "noMenuMatches": "У меню нічога не знойдзена",
     "searchDehubFor": "Шукаць «{{query}}» у DeHub"
   },
+  "comments": {
+    "discardTitle": "Адкінуць каментарый?",
+    "discardBody": "Ён захаваны як чарнавік і будзе тут, калі вы вернецеся.",
+    "keepWriting": "Працягнуць пісаць",
+    "closeAnyway": "Усё роўна закрыць"
+  },
   "postInfo": {
     "title": "Інфармацыя пра пост",
     "tokenId": "ID токена",

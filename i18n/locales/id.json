@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Tidak ada yang cocok di menu",
     "searchDehubFor": "Cari \"{{query}}\" di DeHub"
   },
+  "comments": {
+    "discardTitle": "Buang komentar kamu?",
+    "discardBody": "Sudah tersimpan sebagai draf, jadi akan ada di sini saat kamu kembali.",
+    "keepWriting": "Lanjut menulis",
+    "closeAnyway": "Tetap tutup"
+  },
   "postInfo": {
     "title": "Info Postingan",
     "tokenId": "ID token",

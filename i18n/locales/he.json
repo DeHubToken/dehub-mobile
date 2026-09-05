@@ -1514,6 +1514,12 @@
     "noMenuMatches": "אין התאמה בתפריט",
     "searchDehubFor": "חיפוש \"{{query}}\" ב-DeHub"
   },
+  "comments": {
+    "discardTitle": "למחוק את התגובה שלך?",
+    "discardBody": "היא נשמרה כטיוטה, אז היא תחכה לך כאן.",
+    "keepWriting": "להמשיך לכתוב",
+    "closeAnyway": "לסגור בכל זאת"
+  },
   "postInfo": {
     "title": "מידע על הפוסט",
     "tokenId": "מזהה טוקן",

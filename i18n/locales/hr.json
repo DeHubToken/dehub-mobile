@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Ništa u izborniku ne odgovara",
     "searchDehubFor": "Pretraži „{{query}}” na DeHubu"
   },
+  "comments": {
+    "discardTitle": "Odbaciti komentar?",
+    "discardBody": "Spremljen je kao skica pa će biti ovdje kad se vratiš.",
+    "keepWriting": "Nastavi pisati",
+    "closeAnyway": "Ipak zatvori"
+  },
   "postInfo": {
     "title": "Informacije o objavi",
     "tokenId": "ID tokena",

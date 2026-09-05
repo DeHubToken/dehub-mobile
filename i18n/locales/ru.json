@@ -1514,6 +1514,12 @@
     "noMenuMatches": "В меню ничего не найдено",
     "searchDehubFor": "Искать «{{query}}» в DeHub"
   },
+  "comments": {
+    "discardTitle": "Отменить комментарий?",
+    "discardBody": "Он сохранён как черновик и будет здесь, когда вы вернётесь.",
+    "keepWriting": "Продолжить писать",
+    "closeAnyway": "Всё равно закрыть"
+  },
   "postInfo": {
     "title": "Информация о посте",
     "tokenId": "ID токена",

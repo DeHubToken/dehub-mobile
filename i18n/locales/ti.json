@@ -1510,6 +1510,12 @@
     "noMenuMatches": "ኣብ ሜኑ ዝሰማማዕ የለን",
     "searchDehubFor": "ኣብ DeHub \"{{query}}\" ድለ"
   },
+  "comments": {
+    "discardTitle": "ርእይቶኻ ክትሓድጎ?",
+    "discardBody": "ከም ንድፊ ተዓቂቡ ኣሎ፣ ምስ ተመለስካ ኣብዚ ክህሉ እዩ።",
+    "keepWriting": "ምጽሓፍ ቀጽል",
+    "closeAnyway": "ብዝኾነ ዕጸዎ"
+  },
   "postInfo": {
     "title": "ሓበሬታ ጽሑፍ",
     "tokenId": "ቶከን ID",

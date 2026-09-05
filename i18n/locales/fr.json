@@ -1514,6 +1514,12 @@
     "noMenuMatches": "Rien ne correspond dans le menu",
     "searchDehubFor": "Rechercher « {{query}} » sur DeHub"
   },
+  "comments": {
+    "discardTitle": "Abandonner votre commentaire ?",
+    "discardBody": "Il est enregistré comme brouillon : vous le retrouverez ici à votre retour.",
+    "keepWriting": "Continuer à écrire",
+    "closeAnyway": "Fermer quand même"
+  },
   "postInfo": {
     "title": "Info du Post",
     "tokenId": "Token ID",

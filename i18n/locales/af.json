@@ -1832,6 +1832,12 @@
     "noMenuMatches": "Niks in die kieslys pas nie",
     "searchDehubFor": "Soek “{{query}}” op DeHub"
   },
+  "comments": {
+    "discardTitle": "Kommentaar weggooi?",
+    "discardBody": "Dit is as konsep gestoor, so dit sal hier wees wanneer jy terugkom.",
+    "keepWriting": "Hou aan skryf",
+    "closeAnyway": "Sluit in elk geval"
+  },
   "postInfo": {
     "title": "Post Info",
     "tokenId": "Token ID",

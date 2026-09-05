@@ -1680,6 +1680,12 @@
     "compensationPlaceholder": "e.g., $100/month",
     "fillRequired": "Please fill in all required fields"
   },
+  "comments": {
+    "discardTitle": "আঁর মন্তব্য বাদ দিবা নি?",
+    "discardBody": "ইতা খসড়া হিসাবে রাখা অইয়ে, ফিরি আইলে ইখানে পাইবা।",
+    "keepWriting": "লেখা চালাই যাও",
+    "closeAnyway": "তারপরও বন্ধ গরো"
+  },
   "postInfo": {
     "title": "পোস্ট তথ্য",
     "tokenId": "টোকেন ID",

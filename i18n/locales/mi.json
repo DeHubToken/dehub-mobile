@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Kāore he mea e hāngai ana i te tahua",
     "searchDehubFor": "Rapua \"{{query}}\" i DeHub"
   },
+  "comments": {
+    "discardTitle": "Whakakorea tō kōrero?",
+    "discardBody": "Kua tiakina hei hukihuki, ka noho tonu ki konei ina hoki mai koe.",
+    "keepWriting": "Haere tonu te tuhi",
+    "closeAnyway": "Katia tonu"
+  },
   "postInfo": {
     "title": "Mōhiohio pou",
     "tokenId": "Token ID",

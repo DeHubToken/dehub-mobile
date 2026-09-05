@@ -1511,6 +1511,12 @@
     "noMenuMatches": "Hakuna kinacholingana kwenye menyu",
     "searchDehubFor": "Tafuta \"{{query}}\" kwenye DeHub"
   },
+  "comments": {
+    "discardTitle": "Utupe maoni yako?",
+    "discardBody": "Yamehifadhiwa kama rasimu, hivyo yatakuwa hapa utakaporudi.",
+    "keepWriting": "Endelea kuandika",
+    "closeAnyway": "Funga tu"
+  },
   "postInfo": {
     "title": "Taarifa ya chapisho",
     "tokenId": "Token ID",

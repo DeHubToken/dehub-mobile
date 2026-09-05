@@ -1514,6 +1514,12 @@
     "noMenuMatches": "మెనూలో ఏదీ సరిపోలడం లేదు",
     "searchDehubFor": "DeHubలో \"{{query}}\" కోసం వెతకండి"
   },
+  "comments": {
+    "discardTitle": "మీ వ్యాఖ్యను వదిలేయాలా?",
+    "discardBody": "ఇది డ్రాఫ్ట్‌గా సేవ్ అయింది, మీరు తిరిగి వచ్చినప్పుడు ఇక్కడే ఉంటుంది.",
+    "keepWriting": "రాయడం కొనసాగించండి",
+    "closeAnyway": "అయినా మూసివేయండి"
+  },
   "postInfo": {
     "title": "పోస్ట్ సమాచారం",
     "tokenId": "టోకెన్ ID",

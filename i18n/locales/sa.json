@@ -1510,6 +1510,12 @@
     "noMenuMatches": "सूच्यां किमपि न मेलति",
     "searchDehubFor": "DeHub इत्यत्र \"{{query}}\" अन्विष्यतु"
   },
+  "comments": {
+    "discardTitle": "भवतः टिप्पणीं त्यजतु?",
+    "discardBody": "इयं प्रारूपरूपेण रक्षिता, पुनरागमने अत्रैव प्राप्स्यते।",
+    "keepWriting": "लेखनं प्रवर्तताम्",
+    "closeAnyway": "तथापि पिधीयताम्"
+  },
   "postInfo": {
     "title": "प्रकाशनस्य सूचना",
     "tokenId": "टोकन ID",

@@ -1514,6 +1514,12 @@
     "noMenuMatches": "لا شيء في القائمة يطابق",
     "searchDehubFor": "ابحث في DeHub عن «{{query}}»"
   },
+  "comments": {
+    "discardTitle": "تجاهل تعليقك؟",
+    "discardBody": "تم حفظه كمسودة، وسيكون هنا عند عودتك.",
+    "keepWriting": "متابعة الكتابة",
+    "closeAnyway": "إغلاق على أي حال"
+  },
   "postInfo": {
     "title": "معلومات المنشور",
     "tokenId": "معرّف التوكن",

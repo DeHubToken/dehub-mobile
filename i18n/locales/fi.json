@@ -1502,6 +1502,12 @@
     "noMenuMatches": "Mikään valikossa ei täsmää",
     "searchDehubFor": "Hae DeHubista ”{{query}}”"
   },
+  "comments": {
+    "discardTitle": "Hylätäänkö kommenttisi?",
+    "discardBody": "Se on tallennettu luonnokseksi, joten se odottaa täällä, kun palaat.",
+    "keepWriting": "Jatka kirjoittamista",
+    "closeAnyway": "Sulje silti"
+  },
   "postInfo": {
     "title": "Julkaisun tiedot",
     "tokenId": "Token-ID",

@@ -1514,6 +1514,12 @@
     "noMenuMatches": "مینو میں کچھ بھی مماثل نہیں",
     "searchDehubFor": "DeHub پر \"{{query}}\" تلاش کریں"
   },
+  "comments": {
+    "discardTitle": "اپنا تبصرہ چھوڑ دیں؟",
+    "discardBody": "یہ مسودے کے طور پر محفوظ ہے، واپس آنے پر یہیں ملے گا۔",
+    "keepWriting": "لکھتے رہیں",
+    "closeAnyway": "پھر بھی بند کریں"
+  },
   "postInfo": {
     "title": "پوسٹ کی معلومات",
     "tokenId": "ٹوکن ID",

@@ -1540,6 +1540,12 @@
     "noMenuMatches": "በምናሌው ውስጥ ምንም አይዛመድም",
     "searchDehubFor": "በDeHub ላይ \"{{query}}\" ፈልግ"
   },
+  "comments": {
+    "discardTitle": "አስተያየትዎን ይጣሉ?",
+    "discardBody": "እንደ ረቂቅ ተቀምጧል፣ ስለዚህ ሲመለሱ እዚህ ይኖራል።",
+    "keepWriting": "መጻፍ ይቀጥሉ",
+    "closeAnyway": "ለማንኛውም ዝጋ"
+  },
   "postInfo": {
     "title": "የልጥፍ መረጃ",
     "tokenId": "ቶከን ID",

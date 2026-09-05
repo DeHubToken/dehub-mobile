@@ -1562,6 +1562,12 @@
     "noMenuMatches": "مینو میں کچھ نہیں مل رہل",
     "searchDehubFor": "DeHub پر \"{{query}}\" کھوجو"
   },
+  "comments": {
+    "discardTitle": "اپنا تبصرہ چھوڑ دیبے؟",
+    "discardBody": "ای ڈرافٹ میں سیو ہے، لوٹے پر اہیں ملے گا۔",
+    "keepWriting": "لکھتے رہو",
+    "closeAnyway": "تب بھی بند کرو"
+  },
   "postInfo": {
     "title": "پوسٹ کی معلومات",
     "tokenId": "ٹوکن ID",

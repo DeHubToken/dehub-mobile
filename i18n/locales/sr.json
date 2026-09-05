@@ -1514,6 +1514,12 @@
     "noMenuMatches": "Ништа у менију се не поклапа",
     "searchDehubFor": "Претражи „{{query}}” на DeHub-у"
   },
+  "comments": {
+    "discardTitle": "Одбацити коментар?",
+    "discardBody": "Сачуван је као нацрт, па ће бити овде када се вратиш.",
+    "keepWriting": "Настави да пишеш",
+    "closeAnyway": "Ипак затвори"
+  },
   "postInfo": {
     "title": "Информације о објави",
     "tokenId": "Токен ID",

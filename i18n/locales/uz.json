@@ -1527,6 +1527,12 @@
     "noMenuMatches": "Menyuda hech nima mos kelmadi",
     "searchDehubFor": "DeHub'da «{{query}}» ni qidirish"
   },
+  "comments": {
+    "discardTitle": "Izohingizni bekor qilasizmi?",
+    "discardBody": "U qoralama sifatida saqlandi, qaytganingizda shu yerda bo'ladi.",
+    "keepWriting": "Yozishda davom eting",
+    "closeAnyway": "Baribir yopish"
+  },
   "postInfo": {
     "title": "Post ma'lumoti",
     "tokenId": "Token ID",

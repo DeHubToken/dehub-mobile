@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Asgjë në meny nuk përputhet",
     "searchDehubFor": "Kërko „{{query}}” në DeHub"
   },
+  "comments": {
+    "discardTitle": "Ta heqësh komentin?",
+    "discardBody": "Është ruajtur si skicë, kështu që do të jetë këtu kur të kthehesh.",
+    "keepWriting": "Vazhdo të shkruash",
+    "closeAnyway": "Mbylle gjithsesi"
+  },
   "postInfo": {
     "title": "Informacione për postimin",
     "tokenId": "ID e tokenit",

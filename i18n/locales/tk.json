@@ -1502,6 +1502,12 @@
     "noMenuMatches": "Menýuda gabat gelýän zat ýok",
     "searchDehubFor": "DeHub-da \"{{query}}\" gözle"
   },
+  "comments": {
+    "discardTitle": "Teswiriňizi taşlaýarsyňyzmy?",
+    "discardBody": "Ol taslama hökmünde saklandy, gaýdyp geleniňizde şu ýerde bolar.",
+    "keepWriting": "Ýazmagy dowam et",
+    "closeAnyway": "Şonda-da ýap"
+  },
   "postInfo": {
     "title": "Ýazgy maglumaty",
     "tokenId": "Token ID",

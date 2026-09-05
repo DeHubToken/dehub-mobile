@@ -1510,6 +1510,12 @@
     "noMenuMatches": "選單入面冇嘢符合",
     "searchDehubFor": "喺 DeHub 搜尋「{{query}}」"
   },
+  "comments": {
+    "discardTitle": "要唔要放棄你嘅留言？",
+    "discardBody": "已經存咗做草稿，返嚟嗰陣仲喺度。",
+    "keepWriting": "繼續寫",
+    "closeAnyway": "照樣閂咗佢"
+  },
   "postInfo": {
     "title": "帖子資訊",
     "tokenId": "代幣ID",
