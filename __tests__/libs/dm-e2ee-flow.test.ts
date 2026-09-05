@@ -9,6 +9,9 @@ jest.mock("expo-crypto", () => ({
 
 const mockRegistry = new Map<string, string>();
 let mockCaller = "";
+// Reproduces the server fault: its auth guard overwrote the address in the
+// path with the caller's own, so every key lookup answered about the caller.
+let mockGuardBug = false;
 
 jest.mock("../../libs/api.client", () => ({
   apiClient: {
@@ -20,7 +23,8 @@ jest.mock("../../libs/api.client", () => ({
     get: jest.fn(async (endpoint: string) => {
       const m = endpoint.match(/^\/dm\/e2ee-key\/(0x[0-9a-f]+)$/);
       if (!m) throw new Error(`unexpected get ${endpoint}`);
-      return { address: m[1], publicKey: mockRegistry.get(m[1]) ?? null };
+      const answered = mockGuardBug ? mockCaller : m[1];
+      return { address: answered, publicKey: mockRegistry.get(answered) ?? null };
     }),
   },
 }));
@@ -71,7 +75,13 @@ import {
   setupIdentity,
   unloadIdentity,
 } from "../../libs/dm-e2ee/keys";
-import { isEncryptedContent } from "../../libs/dm-e2ee/crypto";
+import {
+  deriveIdentityFromSignature,
+  deriveSessionKey,
+  encryptText,
+  encryptionSignMessage,
+  isEncryptedContent,
+} from "../../libs/dm-e2ee/crypto";
 
 const A = "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 const B = "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
@@ -166,6 +176,43 @@ describe("dm-e2ee client flow", () => {
     await setupIdentity(A);
     expect(getIdentity()?.address).toBe(A);
     expect(mockRegistry.get(A)).toBe(getIdentity()!.publicKey);
+  });
+
+  it("sends plaintext rather than encrypt to a key the server answered about someone else", async () => {
+    await become(A);
+    await become(B);
+    mockGuardBug = true;
+    try {
+      // B asks for A's key and is handed B's own. Encrypting to it would seal
+      // the message to B — readable here, an unopenable envelope for A, and no
+      // error anywhere. Falling back to plaintext is the safe answer.
+      const wire = await prepareOutgoing(A, "hi from B");
+      expect(wire).toEqual({ content: "hi from B", encrypted: false });
+      expect(await encryptForPeer(A, "hi from B")).toBeNull();
+    } finally {
+      mockGuardBug = false;
+    }
+  });
+
+  it("still opens the sender's own messages from before the server was fixed", async () => {
+    // What the broken server made a device produce: the peer lookup handed back
+    // the CALLER's own key, so B sealed to itself. Built here from B's own
+    // keypair because the client now refuses to encrypt that way at all.
+    const sigB =
+      "0x" + Buffer.from(`${B}:${encryptionSignMessage(B)}`).toString("hex").padEnd(130, "0").slice(0, 130);
+    const idB = deriveIdentityFromSignature(sigB);
+    const selfKey = deriveSessionKey(idB.privateKey, idB.publicKey, B, A);
+    const sealed = encryptText("sent while the server was wrong", selfKey);
+
+    await become(A);
+    await become(B);
+    // B now gets A's real key, so the session key does not open its own old
+    // line — but B wrote it, and should still be able to read it.
+    expect(await decryptFromPeer(A, sealed)).toBe("sent while the server was wrong");
+
+    // A never could open it, and still cannot. Nothing here changes that.
+    await become(A);
+    expect(await decryptFromPeer(B, sealed)).toBeNull();
   });
 
   it("sets up against a wallet that rejects the open-wallet call", async () => {

@@ -258,10 +258,17 @@ export async function fetchPeerPublicKey(
   const ttl = cached?.key ? PEER_KEY_TTL_MS : PEER_KEY_MISS_TTL_MS;
   if (!opts.force && cached && Date.now() - cached.at < ttl) return cached.key;
   try {
-    const res = await apiClient.get<{ publicKey?: string | null }>(`/dm/e2ee-key/${addr}`, {
+    const res = await apiClient.get<{ address?: string; publicKey?: string | null }>(`/dm/e2ee-key/${addr}`, {
       isAuthRequired: true,
     });
-    const key = isValidPublicKey(res?.publicKey) ? res.publicKey : null;
+    // The response names the address it answered for, and it has to be the one
+    // we asked about. A key for anyone else is not a key we can use: encrypting
+    // to it produces a message only its holder can open, and the recipient sees
+    // an envelope they cannot touch. The server did exactly that for three days
+    // (its auth guard overwrote the address in the path with the caller's own),
+    // and no client could tell, because a wrong key is still a valid key.
+    const answered = String(res?.address || "").toLowerCase();
+    const key = answered === addr && isValidPublicKey(res?.publicKey) ? res.publicKey : null;
     peerKeys.set(addr, { key, at: Date.now() });
     return key;
   } catch {
@@ -281,6 +288,33 @@ async function getSessionKey(peerAddress: string): Promise<Uint8Array | null> {
   const key = deriveSessionKey(current.keys.privateKey, fromBase64(pub), current.address, peer);
   sessionKeys.set(peer, key);
   return key;
+}
+
+/**
+ * Open a message this device sealed to ITSELF, before 2026-09-05.
+ *
+ * Until then the API answered every peer-key lookup with the caller's own key,
+ * so everything sent was encrypted under a session key derived from this
+ * device's own keypair. Correcting the lookup would otherwise turn a sender's
+ * whole outbox into padlocks — the recipient never could open those lines, but
+ * the sender always could, and should keep being able to.
+ *
+ * Read-only and self-limiting: nothing is ever written this way again, and the
+ * key it derives is worthless to anyone but this device.
+ */
+function decryptLegacySelfSealed(peerAddress: string, envelope: string): string | null {
+  if (!current) return null;
+  try {
+    const key = deriveSessionKey(
+      current.keys.privateKey,
+      current.keys.publicKey,
+      current.address,
+      norm(peerAddress),
+    );
+    return decryptText(envelope, key);
+  } catch {
+    return null;
+  }
 }
 
 /** True once a session key for this peer is derived (sync decrypt possible). */
@@ -326,12 +360,12 @@ export async function prepareOutgoing(
 export async function decryptFromPeer(peerAddress: string, envelope: string): Promise<string | null> {
   if (!isEncryptedContent(envelope)) return envelope;
   const key = await getSessionKey(peerAddress);
-  if (!key) return null;
-  try {
-    return decryptText(envelope, key);
-  } catch {
-    return null;
+  if (key) {
+    try {
+      return decryptText(envelope, key);
+    } catch { /* not sealed with the current session key — try the legacy one */ }
   }
+  return decryptLegacySelfSealed(peerAddress, envelope);
 }
 
 /** Sync variant for hot paths; only works once the session key is cached. */
