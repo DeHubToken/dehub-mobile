@@ -1257,6 +1257,8 @@
   },
   "messages": {
     "encrypted": "End-to-end encrypted",
+    "encryptionOff": "Encryption is off on this device",
+    "encryptionTurnOn": "Turn on",
     "cannotDecrypt": "Encrypted message — can't be opened on this device",
     "title": "Messages",
     "searchConversations": "Search conversations...",

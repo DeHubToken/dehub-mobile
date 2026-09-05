@@ -1226,6 +1226,8 @@
   },
   "messages": {
     "encrypted": "អ៊ិនគ្រីបពីចុងដល់ចុង",
+    "encryptionOff": "ការអ៊ិនគ្រីបត្រូវបានបិទនៅលើឧបករណ៍នេះ",
+    "encryptionTurnOn": "បើក",
     "cannotDecrypt": "សារដែលបានអ៊ិនគ្រីប — មិនអាចបើកនៅលើឧបករណ៍នេះបានទេ",
     "title": "សារ",
     "searchConversations": "ស្វែងរកការសន្ទនា...",

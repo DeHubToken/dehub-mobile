@@ -1214,6 +1214,8 @@
   },
   "messages": {
     "encrypted": "Ìpamọ́ láti ìbẹ̀rẹ̀ dé òpin",
+    "encryptionOff": "A ti pa ìsekóòdù lórí ẹ̀rọ yìí",
+    "encryptionTurnOn": "Tàn án",
     "cannotDecrypt": "Ìfiránṣẹ́ tí a fi pamọ́ — kò lè ṣí lórí ẹ̀rọ yìí",
     "title": "Ìfiránṣẹ́",
     "searchConversations": "Wá àwọn ìfọ̀rọ̀wérọ̀...",

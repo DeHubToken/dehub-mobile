@@ -1144,6 +1144,8 @@
   },
   "messages": {
     "encrypted": "Végpontok között titkosítva",
+    "encryptionOff": "A titkosítás ezen az eszközön ki van kapcsolva",
+    "encryptionTurnOn": "Bekapcsolás",
     "cannotDecrypt": "Titkosított üzenet — ezen az eszközön nem nyitható meg",
     "title": "Üzenetek",
     "searchConversations": "Beszélgetések keresése...",

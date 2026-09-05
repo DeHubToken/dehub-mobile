@@ -1144,6 +1144,8 @@
   },
   "messages": {
     "encrypted": "एंड-टू-एंड एन्क्रिप्टेड",
+    "encryptionOff": "या डिव्हाइसवर एन्क्रिप्शन बंद आहे",
+    "encryptionTurnOn": "सुरू करा",
     "cannotDecrypt": "एन्क्रिप्टेड संदेश — या डिव्हाइसवर उघडता येत नाही",
     "title": "संदेश",
     "searchConversations": "संभाषणे शोधा...",

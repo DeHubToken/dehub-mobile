@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "Whakamunatia mai i tētahi pito ki tētahi",
+    "encryptionOff": "Kua weto te whakamunatanga i tēnei pūrere",
+    "encryptionTurnOn": "Whakahohea",
     "cannotDecrypt": "Karere whakamuna — kāore e taea te whakatuwhera i runga i tēnei pūrere",
     "title": "Karere",
     "searchConversations": "Rapu kōrerorero...",

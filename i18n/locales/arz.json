@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "مشفّر من طرف إلى طرف",
+    "encryptionOff": "التشفير مش مفعّل ع الجهاز ده",
+    "encryptionTurnOn": "فعّله",
     "cannotDecrypt": "رسالة مشفّرة — مش هتتفتح على الجهاز ده",
     "title": "الرسايل",
     "searchConversations": "ابحث في المحادثات...",

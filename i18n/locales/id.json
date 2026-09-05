@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "Terenkripsi end-to-end",
+    "encryptionOff": "Enkripsi tidak aktif di perangkat ini",
+    "encryptionTurnOn": "Aktifkan",
     "cannotDecrypt": "Pesan terenkripsi — tidak dapat dibuka di perangkat ini",
     "title": "Pesan",
     "searchConversations": "Cari percakapan...",

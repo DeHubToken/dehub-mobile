@@ -1362,6 +1362,8 @@
   },
   "messages": {
     "encrypted": "เข้ารหัสแบบต้นทางถึงปลายทาง",
+    "encryptionOff": "การเข้ารหัสปิดอยู่บนอุปกรณ์นี้",
+    "encryptionTurnOn": "เปิดใช้งาน",
     "cannotDecrypt": "ข้อความที่เข้ารหัส — ไม่สามารถเปิดบนอุปกรณ์นี้ได้",
     "title": "Messages",
     "searchConversations": "Search conversations...",

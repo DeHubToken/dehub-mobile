@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "Ji dawî heta dawî şîfrekirî",
+    "encryptionOff": "Şîfrekirin li ser vê amûrê ne çalak e",
+    "encryptionTurnOn": "Çalak bike",
     "cannotDecrypt": "Peyama şîfrekirî — li ser vê cîhazê nayê vekirin",
     "title": "Peyam",
     "searchConversations": "Sohbetan bigerin...",

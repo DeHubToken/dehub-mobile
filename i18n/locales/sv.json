@@ -1144,6 +1144,8 @@
   },
   "messages": {
     "encrypted": "Totalsträckskrypterad",
+    "encryptionOff": "Kryptering är avstängd på den här enheten",
+    "encryptionTurnOn": "Slå på",
     "cannotDecrypt": "Krypterat meddelande — kan inte öppnas på den här enheten",
     "title": "Meddelanden",
     "searchConversations": "Sök konversationer...",

@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "ካብ ጫፍ ናብ ጫፍ ዝተመስጠረ",
+    "encryptionOff": "ኣብዚ መሳርሒ እዚ ምስጠራ ጠፊኡ ኣሎ",
+    "encryptionTurnOn": "ኣብርሆ",
     "cannotDecrypt": "ዝተመስጠረ መልእኽቲ — ኣብዚ መሳርሒ ክኽፈት ኣይክእልን",
     "title": "መልእኽትታት",
     "searchConversations": "ዕላላት ድለ...",

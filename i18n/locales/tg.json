@@ -1114,6 +1114,8 @@
   },
   "messages": {
     "encrypted": "Рамзгузории сар то сар",
+    "encryptionOff": "Дар ин дастгоҳ рамзгузорӣ хомӯш аст",
+    "encryptionTurnOn": "Фаъол кардан",
     "cannotDecrypt": "Паёми рамзгузошта — дар ин дастгоҳ кушода намешавад",
     "title": "Паёмҳо",
     "searchConversations": "Ҷустуҷӯи суҳбатҳо...",

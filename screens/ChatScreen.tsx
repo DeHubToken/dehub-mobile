@@ -31,6 +31,7 @@ import MessageContextMenu, {
 } from "../components/DM/MessageContextMenu";
 import ForwardPickerModal from "../components/DM/ForwardPickerModal";
 import DmFeeBanner from "../components/DM/DmFeeBanner";
+import DmEncryptionBanner from "../components/DM/DmEncryptionBanner";
 import NewChatIntro from "../components/DM/NewChatIntro";
 import TipAmountSheet from "../components/DM/TipAmountSheet";
 import PollCard from "../components/DM/PollCard";
@@ -44,7 +45,7 @@ import ChatMenu from "../components/Chat/ChatMenu";
 import ConfirmBlockModal from "../components/common/ConfirmBlockModal";
 import PinnedMessageBanner from "../components/DM/PinnedMessageBanner";
 
-import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
+import { useUser, useAuthState, useAuthActions, useProvider } from "../context/AuthContext";
 import type { User } from "../context/AuthContext";
 import { useWebSocket } from "../context/WebSocketContext";
 import { useGateToHome } from "../hooks/useGateToHome";
@@ -90,7 +91,7 @@ import {
   getPeerPolicy,
 } from "../store/dm.store";
 import { dmSendQueue } from "../services/dm/dm.send";
-import { ensureDmEncryption } from "../libs/dm-e2ee/setup";
+import { ensureDmEncryption, retryDmEncryption, type DmEncryptionStatus } from "../libs/dm-e2ee/setup";
 import { decryptIncoming } from "../libs/dm-e2ee/peer";
 import { decryptFromPeerSync, onIdentityChange, prepareOutgoing } from "../libs/dm-e2ee/keys";
 import { getAccount, isFollowing as checkIsFollowing } from "../services/user.service";
@@ -137,6 +138,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
   const { patchUser } = useAuthActions();
+  // The session's own provider, not useWeb3Provider's read client below: on a
+  // returning session this is the locked shim, and it is the only thing that
+  // can open the wallet for the encryption signature.
+  const { provider: sessionProvider } = useProvider();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 
@@ -454,12 +459,37 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   }, [scrollToBottom]);
 
   // Encryption identity: silent when the key is already in the keychain, one
-  // signature (biometric sheet on a locked wallet) the first time. Opening a
-  // chat is the moment it makes sense to ask; app start is not.
+  // signature (unlock sheet on a locked wallet) the first time. Opening a chat
+  // is the moment it makes sense to ask; app start is not.
+  //
+  // Waits for the provider. Without one there is nothing to sign with, and the
+  // whole feature used to fail exactly here — every returning session, because
+  // the module-level signing registry is only filled during an interactive
+  // sign-in — leaving the phone sending in the clear and unable to open a
+  // single encrypted line, with nothing on screen to say so.
+  const [e2eeStatus, setE2eeStatus] = useState<DmEncryptionStatus | null>(null);
   useEffect(() => {
-    if (!address) return;
-    ensureDmEncryption(address).then((s) => log.info("e2ee:", s)).catch(() => {});
-  }, [address]);
+    if (!address || !sessionProvider) return;
+    ensureDmEncryption(address, sessionProvider)
+      .then((s) => {
+        setE2eeStatus(s);
+        log.info("e2ee:", s);
+      })
+      .catch(() => {});
+  }, [address, sessionProvider]);
+
+  const [e2eeRetrying, setE2eeRetrying] = useState(false);
+  const retryEncryption = useCallback(async () => {
+    if (!address || e2eeRetrying) return;
+    setE2eeRetrying(true);
+    try {
+      setE2eeStatus(await retryDmEncryption(address, sessionProvider));
+    } catch {
+      setE2eeStatus("error");
+    } finally {
+      setE2eeRetrying(false);
+    }
+  }, [address, sessionProvider, e2eeRetrying]);
 
   // Re-run the history fetch below once the identity comes online, so lines
   // fetched before it (held as "undecryptable") open.
@@ -1482,6 +1512,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
         {/* Per-message fee banner — always visible when fee info exists */}
         <DmFeeBanner dmFee={dmFee} peerDisplayName={peer.displayName} />
+
+        {/* Says so when this device has no key, instead of silently sending
+            in the clear and showing the peer's lines as unopenable. */}
+        <DmEncryptionBanner
+          status={e2eeStatus}
+          busy={e2eeRetrying}
+          onRetry={retryEncryption}
+        />
 
         {/* Pinned message banner */}
         {pinnedMessage && (

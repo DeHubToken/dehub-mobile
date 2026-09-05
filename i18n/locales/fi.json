@@ -1114,6 +1114,8 @@
   },
   "messages": {
     "encrypted": "Päästä päähän salattu",
+    "encryptionOff": "Salaus ei ole käytössä tässä laitteessa",
+    "encryptionTurnOn": "Ota käyttöön",
     "cannotDecrypt": "Salattu viesti — ei voida avata tällä laitteella",
     "title": "Viestit",
     "searchConversations": "Etsi keskusteluista...",

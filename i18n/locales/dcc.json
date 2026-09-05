@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "اینڈ ٹو اینڈ انکرپٹڈ",
+    "encryptionOff": "اِس ڈیوائس پہ انکرپشن بند ہے",
+    "encryptionTurnOn": "چالو کرو",
     "cannotDecrypt": "انکرپٹڈ پیغام — اس ڈیوائس پر نہیں کھل سکتا",
     "title": "پیغام",
     "searchConversations": "بات چیت ڈھونڈو...",

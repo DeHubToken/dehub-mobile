@@ -28,6 +28,7 @@ import { SUPPORTED_NETWORKS } from "../../config/web3.constants";
 import { createLocalEip1193Provider } from "../../services/localwallet.provider";
 import {
   setSigningProvider,
+  setEoaSigningProvider,
   clearSigningProvider,
 } from "../../libs/provider.registry";
 import { getPreferredChainId } from "../../libs/auth.utils";
@@ -146,6 +147,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
         chainIdHex,
       });
       setSigningProvider(localProvider);
+      setEoaSigningProvider(localProvider);
 
       try {
         await upsertLocalAccount({ address, privateKey });
@@ -201,6 +203,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
           chainIdHex,
         });
         setSigningProvider(localProvider);
+        setEoaSigningProvider(localProvider);
 
         try {
           await signInWithWallet(address, effectiveChainId, pk);

@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "Encrypted from end to end",
+    "encryptionOff": "Encryption no dey on for dis device",
+    "encryptionTurnOn": "Put am on",
     "cannotDecrypt": "Encrypted message — e no fit open for dis device",
     "title": "Messages",
     "searchConversations": "Search conversations...",

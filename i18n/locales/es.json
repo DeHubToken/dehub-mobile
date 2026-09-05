@@ -1114,6 +1114,8 @@
   },
   "messages": {
     "encrypted": "Cifrado de extremo a extremo",
+    "encryptionOff": "Cifrado desactivado en este dispositivo",
+    "encryptionTurnOn": "Activar",
     "cannotDecrypt": "Mensaje cifrado — no se puede abrir en este dispositivo",
     "title": "Mensajes",
     "searchConversations": "Buscar conversaciones...",
