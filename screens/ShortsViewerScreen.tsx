@@ -88,6 +88,8 @@ import ReactionInfoSheet from "../components/Home/ReactionInfoSheet";
 import ShareSheet from "../components/Home/ShareSheet";
 import PostOptionsMenu from "../components/common/PostOptionsMenu";
 import Avatar from "../components/common/Avatar";
+import TranslateButton from "../components/ui/TranslateButton";
+import { useTranslation } from "../hooks/useTranslation";
 import {
   applyReactionDelta,
   isPositiveReaction,
@@ -322,8 +324,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
   // The title carries the caption in practice: UploadScreen puts the composer
   // body into `name` and leaves `description` empty unless the author fills in
   // a separate one, so almost every live short has text here and nothing in
-  // `description`. Web's mobile overlay renders only the description — this
-  // one has to render both, or most shorts show no text at all.
+  // `description`. Rendering only the description shows no text at all on most
+  // shorts, which is why both are drawn here (and now on web too).
   //
   // Trimmed before the emptiness test as well as the "untitled" one: a
   // whitespace-only name passes a bare truthiness check and draws a blank line
@@ -332,7 +334,31 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
     const raw = (item.name || item.title || "").trim();
     return raw.toLowerCase() === "untitled" ? "" : raw;
   })();
-  const description = (item.description || "").trim();
+  // A description that only repeats the title is a second copy of the same
+  // line — and a second translation request for text already going out.
+  const rawDescription = (item.description || "").trim();
+  const description = rawDescription !== title ? rawDescription : "";
+
+  // Auto-translate the caption, the same way the feed card does.
+  //
+  // Shorts were the one place a reader's own language stopped at the feed: the
+  // card under the thumbnail came back translated, and opening it handed the
+  // original straight back.
+  const translationTexts = useMemo(
+    () => ({ title, description }),
+    [title, description],
+  );
+  const {
+    isTranslated,
+    translatedTexts,
+    isLoading: translating,
+    handleTranslate,
+    handleShowOriginal,
+    shouldShow: showTranslate,
+  } = useTranslation(translationTexts, item.detectedLanguage);
+  const shownTitle = (isTranslated ? translatedTexts.title : title) || "";
+  const shownDescription = (isTranslated ? translatedTexts.description : description) || "";
+
   const userAddress = user?.address || user?.walletAddress || "";
   // What one reaction from this viewer counts for — their badge multiplier.
   const voteWeight = useEngagementWeight();
@@ -990,33 +1016,49 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
                 </View>
               </Pressable>
 
-              {title || description ? (
+              {shownTitle || shownDescription ? (
                 <Pressable onPress={() => setCaptionExpanded((p) => !p)} hitSlop={8}>
-                  {title ? (
+                  {shownTitle ? (
                     <Text
                       numberOfLines={captionExpanded ? undefined : 1}
                       style={styles.captionTitle}
                     >
-                      {title}
+                      {shownTitle}
                     </Text>
                   ) : null}
-                  {description ? (
+                  {shownDescription ? (
                     <Text
                       numberOfLines={captionExpanded ? undefined : 2}
                       style={styles.captionBody}
                     >
-                      {description}
+                      {shownDescription}
                     </Text>
                   ) : null}
                   {/* Web shows the affordance on a long description; the title
                       is clamped to one line here, so a long one earns it too —
                       otherwise a clamped caption offers no hint it opens. */}
-                  {description.length > 80 || title.length > 40 ? (
+                  {shownDescription.length > 80 || shownTitle.length > 40 ? (
                     <Text style={styles.captionMore}>
                       {captionExpanded ? "less" : "more"}
                     </Text>
                   ) : null}
                 </Pressable>
+              ) : null}
+              {/* The way back to the original. Sits under the caption rather
+                  than in the metadata row the feed card puts it in — this
+                  overlay has no metadata row, and the action row below is a
+                  fixed six-cell grid with no spare cell to give it. */}
+              {showTranslate ? (
+                <View style={styles.captionTranslate}>
+                  <TranslateButton
+                    isTranslated={isTranslated}
+                    isLoading={translating}
+                    detectedLanguage={item.detectedLanguage}
+                    onTranslate={handleTranslate}
+                    onShowOriginal={handleShowOriginal}
+                    inline
+                  />
+                </View>
               ) : null}
             </View>
 
@@ -1765,6 +1807,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 4,
     ...TEXT_SHADOW,
+  },
+  // captionBlock's 12pt gap is the spacing between the creator row, the caption
+  // and the action row — far too much air for a control that belongs to the
+  // line above it. Pulled back to sit just under the caption.
+  captionTranslate: {
+    marginTop: -8,
   },
   // No wrapper and no fixed height any more: without a slab to fill, the row
   // is exactly as tall as its tallest cell.
