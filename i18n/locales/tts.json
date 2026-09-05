@@ -1299,7 +1299,7 @@
     "failedOnramp": "เริ่มออนแรมป์ล้มเหลว"
   },
   "agents": {
-    "title": "AI Agents",
+    "title": "AI Agent",
     "connectToManage": "เชื่อมต่อเพื่อจัดการ AI Agents",
     "signInToCreate": "เข้าสู่ระบบเพื่อสร้างและจัดการ AI agents",
     "description": "สร้าง AI agents ที่โต้ตอบกับ DeHub ผ่านโปรโตคอล MCP",
@@ -1317,7 +1317,7 @@
     "noAgents": "ยังบ่มี agent สร้างอันแรก!",
     "active": "ใช้งานอยู่",
     "inactive": "ไม่ใช้งาน",
-    "apiKey": "API Key",
+    "apiKey": "คีย์ API",
     "created": "สร้างแล้ว",
     "delete": "ลบ",
     "deleteConfirm": "ลบ agent นี้? เอาคืนบ่ได้",
