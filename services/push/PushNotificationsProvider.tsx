@@ -160,6 +160,14 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   const [softAskVisible, setSoftAskVisible] = useState(false);
   const softAskHandledRef = useRef(false);
 
+  // patchUser is read through a ref rather than taken as a dependency. It is
+  // rebuilt whenever the auth context re-renders, and this callback drives an
+  // effect: depending on it directly turns the poll below into a loop that
+  // fetches, patches, re-renders and fetches again as fast as the API answers.
+  const patchUserRef = useRef(patchUser);
+  patchUserRef.current = patchUser;
+  const lastUnreadCountRef = useRef<number | null>(null);
+
   const refreshUnreadCount = useCallback(async () => {
     if (!isFullySignedIn) return;
 
@@ -167,11 +175,16 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       // The backend defaults to unread-only. Fetch enough rows to support the
       // app's 99+ badge without downloading notification history.
       const response = await getNotifications({ limit: 100 });
-      await patchUser({ notificationCount: countUnreadNotifications(response) });
+      const unread = countUnreadNotifications(response);
+      // patchUser always builds a new user object, so writing an unchanged
+      // count still re-renders every consumer of the auth context.
+      if (unread === lastUnreadCountRef.current) return;
+      lastUnreadCountRef.current = unread;
+      await patchUserRef.current({ notificationCount: unread });
     } catch (error) {
       logger.warn('Unread notification refresh failed', error);
     }
-  }, [isFullySignedIn, patchUser]);
+  }, [isFullySignedIn]);
 
   const handleNotificationNavigation = useCallback((data: NotificationData, responseId?: string) => {
     // Guard: Don't navigate if no valid notification type
