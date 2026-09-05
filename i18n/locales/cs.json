@@ -1144,6 +1144,8 @@
   },
   "messages": {
     "encrypted": "Šifrováno end-to-end",
+    "encryptionOff": "Šifrování je na tomto zařízení vypnuté",
+    "encryptionTurnOn": "Zapnout",
     "cannotDecrypt": "Šifrovaná zpráva — na tomto zařízení ji nelze otevřít",
     "title": "Zprávy",
     "searchConversations": "Hledat konverzace...",

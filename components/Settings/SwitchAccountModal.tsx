@@ -26,7 +26,7 @@ import {
 import { getPreferredChainId } from "../../libs/auth.utils";
 import { ChainId } from "../../config/constants";
 import { createLocalEip1193ProviderForChain } from "../../services/localwallet.provider";
-import { setSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
+import { setSigningProvider, setEoaSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
 import { useAuthActions } from "../../context/AuthContext";
 import { toastSuccess } from "../../libs";
 import { createLogger } from "../../libs/logger";
@@ -190,6 +190,7 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
       const effectiveChainId = preferred ?? TARGET_CHAIN_ID;
       const localProvider = createLocalEip1193ProviderForChain(derivedPk, effectiveChainId);
       setSigningProvider(localProvider);
+      setEoaSigningProvider(localProvider);
       try {
         await signInWithWallet(address, effectiveChainId, derivedPk, web3AuthMeta);
       } finally {

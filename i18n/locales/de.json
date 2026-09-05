@@ -1114,6 +1114,8 @@
   },
   "messages": {
     "encrypted": "Ende-zu-Ende-verschlüsselt",
+    "encryptionOff": "Verschlüsselung ist auf diesem Gerät aus",
+    "encryptionTurnOn": "Aktivieren",
     "cannotDecrypt": "Verschlüsselte Nachricht — kann auf diesem Gerät nicht geöffnet werden",
     "title": "Nachrichten",
     "searchConversations": "Unterhaltungen suchen...",

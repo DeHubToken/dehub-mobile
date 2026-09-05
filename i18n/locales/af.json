@@ -1605,6 +1605,8 @@
   },
   "messages": {
     "encrypted": "End-tot-end geënkripteer",
+    "encryptionOff": "Enkripsie is af op hierdie toestel",
+    "encryptionTurnOn": "Skakel aan",
     "cannotDecrypt": "Geënkripteerde boodskap — kan nie op hierdie toestel oopgemaak word nie",
     "title": "Messages",
     "searchConversations": "Search conversations...",

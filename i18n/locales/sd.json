@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "آخر کان آخر تائين انڪرپٽ ٿيل",
+    "encryptionOff": "هن ڊوائيس تي انڪرپشن بند آهي",
+    "encryptionTurnOn": "چالو ڪريو",
     "cannotDecrypt": "انڪرپٽ ٿيل پيغام — هن ڊوائيس تي نه ٿو کلي سگهي",
     "title": "پيغام",
     "searchConversations": "ڳالهه ٻولهه ڳولهيو...",

@@ -1146,6 +1146,8 @@
   },
   "messages": {
     "encrypted": "Voasafidy hatrany am-piandohana ka hatrany am-piafarana",
+    "encryptionOff": "Maty ny fanafenana amin'ity fitaovana ity",
+    "encryptionTurnOn": "Alefaso",
     "cannotDecrypt": "Hafatra voasafidy — tsy azo sokafana amin'ity fitaovana ity",
     "title": "Hafatra",
     "searchConversations": "Hikaroka resaka...",

@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "Xifrat d'extrem a extrem",
+    "encryptionOff": "Xifratge desactivat en aquest dispositiu",
+    "encryptionTurnOn": "Activa",
     "cannotDecrypt": "Missatge xifrat — no es pot obrir en aquest dispositiu",
     "title": "Missatges",
     "searchConversations": "Cercar converses...",

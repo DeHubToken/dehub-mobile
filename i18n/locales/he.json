@@ -1144,6 +1144,8 @@
   },
   "messages": {
     "encrypted": "מוצפן מקצה לקצה",
+    "encryptionOff": "ההצפנה כבויה במכשיר הזה",
+    "encryptionTurnOn": "הפעלה",
     "cannotDecrypt": "הודעה מוצפנת — לא ניתן לפתוח במכשיר זה",
     "title": "הודעות",
     "searchConversations": "חפש שיחות...",

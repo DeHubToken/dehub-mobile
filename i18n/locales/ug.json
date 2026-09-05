@@ -1114,6 +1114,8 @@
   },
   "messages": {
     "encrypted": "ئۇچتىن ئۇچقىچە شىفىرلانغان",
+    "encryptionOff": "بۇ ئۈسكۈنىدە شىفىرلاش ئېتىۋېتىلگەن",
+    "encryptionTurnOn": "قوزغىتىش",
     "cannotDecrypt": "شىفىرلانغان ئۇچۇر — بۇ ئۈسكۈنىدە ئېچىلمايدۇ",
     "title": "ئۇچۇرلار",
     "searchConversations": "سۆھبەتلەرنى ئىزدەش...",

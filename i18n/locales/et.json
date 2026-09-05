@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "Otsast otsani krüpteeritud",
+    "encryptionOff": "Krüpteerimine on selles seadmes välja lülitatud",
+    "encryptionTurnOn": "Lülita sisse",
     "cannotDecrypt": "Krüpteeritud sõnum — seda ei saa selles seadmes avada",
     "title": "Sõnumid",
     "searchConversations": "Otsi vestlusi...",

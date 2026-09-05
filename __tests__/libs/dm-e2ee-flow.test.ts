@@ -25,18 +25,35 @@ jest.mock("../../libs/api.client", () => ({
   },
 }));
 
-// A wallet that signs deterministically: the same text always gives the same bytes.
+// A wallet that signs deterministically: the same text always gives the same
+// bytes.
+//
+// The EOA slot starts EMPTY, which is what a returning session actually finds
+// — the registry is only written during an interactive sign-in and cleared
+// again straight after. It fills when something opens the wallet, so this
+// covers the path whose absence left every returning session with no identity
+// at all: sending in the clear and unable to open a line.
+let mockEoaProvider: any = null;
+
+const mockWallet = {
+  request: async ({ method, params }: { method: string; params?: any[] }) => {
+    if (method === "eth_accounts") return [];
+    if (method === "dehub_openWallet") {
+      mockEoaProvider = mockWallet;
+      return true;
+    }
+    if (method === "personal_sign") {
+      const [message, address] = params as [string, string];
+      return "0x" + Buffer.from(`${address}:${message}`).toString("hex").padEnd(130, "0").slice(0, 130);
+    }
+    throw new Error(`unexpected ${method}`);
+  },
+};
+
 jest.mock("../../libs/provider.registry", () => ({
-  getSigningProvider: () => ({
-    request: async ({ method, params }: { method: string; params?: any[] }) => {
-      if (method === "eth_accounts") return [];
-      if (method === "personal_sign") {
-        const [message, address] = params as [string, string];
-        return "0x" + Buffer.from(`${address}:${message}`).toString("hex").padEnd(130, "0").slice(0, 130);
-      }
-      throw new Error(`unexpected ${method}`);
-    },
-  }),
+  getSigningProvider: () => mockWallet,
+  getEoaSigningProvider: () => mockEoaProvider,
+  OPEN_WALLET_METHOD: "dehub_openWallet",
 }));
 
 import * as SecureStore from "expo-secure-store";
@@ -133,6 +150,32 @@ describe("dm-e2ee client flow", () => {
     const pubA = getIdentity()!.publicKey;
     unloadIdentity();
     expect(await loadIdentity(A)).toBe(true);
+    expect(getIdentity()!.publicKey).toBe(pubA);
+  });
+
+  it("sets up on a session that has registered no signing provider yet", async () => {
+    // The bug this covers: the EOA slot is empty on every session that did not
+    // just sign in, setup threw "no signing provider", and the phone spent the
+    // session sending in the clear and unable to open a single line.
+    mockEoaProvider = null;
+    mockCaller = A;
+    await setupIdentity(A);
+    expect(getIdentity()?.address).toBe(A);
+    expect(mockRegistry.get(A)).toBe(getIdentity()!.publicKey);
+  });
+
+  it("ignores a v1 keychain record rather than reusing a key web cannot match", async () => {
+    await become(A);
+    const pubA = getIdentity()!.publicKey;
+    const key = "dehub_dm_e2ee_" + A.replace(/[^a-z0-9]/g, "");
+    const stored = JSON.parse((await SecureStore.getItemAsync(key))!);
+    await SecureStore.setItemAsync(key, JSON.stringify({ ...stored, v: 1 }));
+
+    unloadIdentity();
+    expect(await loadIdentity(A)).toBe(false);
+    // Re-derives from the same signature, so the key is the same one — the
+    // point is that the old record is not trusted, not that the key changes.
+    await setupIdentity(A);
     expect(getIdentity()!.publicKey).toBe(pubA);
   });
 });

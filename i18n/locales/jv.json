@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "Dienkripsi end-to-end",
+    "encryptionOff": "Enkripsi ora aktif ing piranti iki",
+    "encryptionTurnOn": "Aktifake",
     "cannotDecrypt": "Pesen sing dienkripsi — ora bisa dibukak ing piranti iki",
     "title": "Pesen",
     "searchConversations": "Goleki obrolan...",

@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "Uçdan-uca şifrələnib",
+    "encryptionOff": "Bu cihazda şifrələmə söndürülüb",
+    "encryptionTurnOn": "Aktivləşdir",
     "cannotDecrypt": "Şifrələnmiş mesaj — bu cihazda açıla bilmir",
     "title": "Mesajlar",
     "searchConversations": "Söhbətləri axtar...",

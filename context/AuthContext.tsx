@@ -23,7 +23,7 @@ import {
 } from "../libs/auth.utils";
 import { createLogger } from "../libs/logger";
 import { setLogUserAddress } from "../libs/errorReporter";
-import { getSigningProvider, clearSigningProvider } from "../libs/provider.registry";
+import { clearEoaSigningProvider, getSigningProvider, clearSigningProvider } from "../libs/provider.registry";
 import { useProviderLifecycle, type EIP1193Provider, type ProviderStatus } from "../hooks/useProviderLifecycle";
 import { useBalances } from "../hooks/useBalances";
 import { useAuthBoot } from "../hooks/useAuthBoot";
@@ -600,6 +600,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setBalancesLoading(false);
     didBootRefetchRef.current = true;
     resetProviderState();
+    clearEoaSigningProvider();
     clearSigningProvider();
     try {
       await forceReinitProvider();

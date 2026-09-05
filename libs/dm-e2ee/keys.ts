@@ -14,7 +14,8 @@
  */
 import * as SecureStore from "expo-secure-store";
 import { apiClient } from "../api.client";
-import { getSigningProvider } from "../provider.registry";
+import { getEoaSigningProvider, getSigningProvider, OPEN_WALLET_METHOD } from "../provider.registry";
+import { WalletLockedError } from "../wallet-lock";
 import {
   decryptText,
   deriveIdentityFromSignature,
@@ -28,15 +29,38 @@ import {
   type IdentityKeyPair,
 } from "./crypto";
 
+/**
+ * No wallet has been offered to sign with yet — the session is still coming
+ * up, or this account signs somewhere this app cannot reach. Deliberately not
+ * a `WalletLockedError`: nobody has refused anything, so it must not be
+ * remembered as a refusal.
+ */
+export class NoSigningProviderError extends Error {
+  constructor() {
+    super("No signing provider available for encrypted messages");
+    this.name = "NoSigningProviderError";
+  }
+}
+
 const STORE_PREFIX = "dehub_dm_e2ee_";
 const PEER_KEY_TTL_MS = 5 * 60_000;
 const PEER_KEY_MISS_TTL_MS = 30_000;
 
+/**
+ * v2 = derived from the EOA signature (see `eoaSigner`). v1 keys were signed
+ * by whatever provider the session happened to hold, which for most accounts
+ * was the Safe — so they do not match the key web derives for the same wallet.
+ * A v1 record is ignored rather than migrated: the signature it came from
+ * cannot be reproduced, and one silent re-derive on the next chat open puts
+ * the device back in step with every other device on the account.
+ */
 interface StoredIdentity {
-  v: 1;
+  v: 2;
   priv: string;
   pub: string;
 }
+
+const STORED_IDENTITY_VERSION = 2;
 
 let current: { address: string; keys: IdentityKeyPair } | null = null;
 let setupInFlight: Promise<{ publicKey: string }> | null = null;
@@ -70,7 +94,7 @@ async function readStored(address: string): Promise<StoredIdentity | null> {
     const raw = await SecureStore.getItemAsync(storeKey(address));
     if (!raw) return null;
     const parsed = JSON.parse(raw) as StoredIdentity;
-    if (parsed?.v !== 1 || !parsed.priv || !parsed.pub) return null;
+    if (parsed?.v !== STORED_IDENTITY_VERSION || !parsed.priv || !parsed.pub) return null;
     return parsed;
   } catch {
     return null;
@@ -78,7 +102,11 @@ async function readStored(address: string): Promise<StoredIdentity | null> {
 }
 
 async function writeStored(address: string, keys: IdentityKeyPair): Promise<void> {
-  const rec: StoredIdentity = { v: 1, priv: toBase64(keys.privateKey), pub: toBase64(keys.publicKey) };
+  const rec: StoredIdentity = {
+    v: STORED_IDENTITY_VERSION,
+    priv: toBase64(keys.privateKey),
+    pub: toBase64(keys.publicKey),
+  };
   try {
     await SecureStore.setItemAsync(storeKey(address), JSON.stringify(rec), {
       keychainAccessible: SecureStore.AFTER_FIRST_UNLOCK_THIS_DEVICE_ONLY,
@@ -120,11 +148,38 @@ export function unloadIdentity(): void {
   notify();
 }
 
-async function personalSign(message: string, address: string): Promise<string> {
-  const provider = getSigningProvider();
-  if (!provider || typeof provider.request !== "function") {
-    throw new Error("No signing provider available");
-  }
+/**
+ * Find the provider that must produce the identity signature.
+ *
+ * It has to be the plain EOA's. Most accounts sign in as a Safe smart account,
+ * and a Safe signs a message through ERC-1271 — a different value from its
+ * owner's EIP-191 signature over the same text. dehubweb derives its identity
+ * from the EOA signature, so a phone signing with the AA provider would derive
+ * a keypair web can never match, and the two devices would take turns
+ * overwriting each other's published key.
+ *
+ * `live` is the session's provider (AuthContext). On a returning session the
+ * registry is empty — it is only written during an interactive sign-in — and
+ * `live` is the locked shim, so one `dehub_openWallet` raises the unlock and
+ * registers the EOA signer for this and every later call.
+ */
+async function eoaSigner(live?: any): Promise<any> {
+  const registered = getEoaSigningProvider();
+  if (typeof registered?.request === "function") return registered;
+
+  const opener = live || getSigningProvider();
+  // Distinct from a refusal: nothing has been asked yet. The caller retries
+  // this, where it remembers a refusal for the session.
+  if (typeof opener?.request !== "function") throw new NoSigningProviderError();
+
+  await opener.request({ method: OPEN_WALLET_METHOD });
+  const opened = getEoaSigningProvider();
+  // An external wallet registers nothing here; it signs as its own EOA anyway.
+  return typeof opened?.request === "function" ? opened : opener;
+}
+
+async function personalSign(message: string, address: string, live?: any): Promise<string> {
+  const provider = await eoaSigner(live);
   let signer = address;
   try {
     const accounts = (await provider.request({ method: "eth_accounts" })) as string[];
@@ -144,11 +199,11 @@ async function personalSign(message: string, address: string): Promise<string> {
  * public key. On a locked wallet the provider shim raises the unlock sheet
  * itself; a rejection propagates as WalletLockedError for the caller to retry.
  */
-export function setupIdentity(address: string): Promise<{ publicKey: string }> {
+export function setupIdentity(address: string, provider?: any): Promise<{ publicKey: string }> {
   if (setupInFlight) return setupInFlight;
   const addr = norm(address);
   setupInFlight = (async () => {
-    const signature = await personalSign(encryptionSignMessage(addr), addr);
+    const signature = await personalSign(encryptionSignMessage(addr), addr, provider);
     const keys = deriveIdentityFromSignature(signature);
     current = { address: addr, keys };
     sessionKeys.clear();

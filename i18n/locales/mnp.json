@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "端到端加密",
+    "encryptionOff": "只台机器加密故未开",
+    "encryptionTurnOn": "开起",
     "cannotDecrypt": "加密消息 — 无法在此设备上打开",
     "title": "消息",
     "searchConversations": "搜索对话...",

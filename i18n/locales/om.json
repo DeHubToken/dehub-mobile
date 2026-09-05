@@ -1226,6 +1226,8 @@
   },
   "messages": {
     "encrypted": "Fiixee hanga fiixeetti icciteeffame",
+    "encryptionOff": "Iccitiin meeshaa kana irratti hin banamne",
+    "encryptionTurnOn": "Bani",
     "cannotDecrypt": "Ergaa icciteeffame — meeshaa kana irratti banamuu hin danda'u",
     "title": "Ergaawwan",
     "searchConversations": "Haasawa barbaadi...",
