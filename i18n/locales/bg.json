@@ -1514,6 +1514,12 @@
     "noMenuMatches": "Нищо в менюто не съвпада",
     "searchDehubFor": "Търсене на „{{query}}“ в DeHub"
   },
+  "comments": {
+    "discardTitle": "Да се отхвърли ли коментарът?",
+    "discardBody": "Запазен е като чернова и ще е тук, когато се върнете.",
+    "keepWriting": "Продължи писането",
+    "closeAnyway": "Затвори въпреки това"
+  },
   "postInfo": {
     "title": "Информация за публикацията",
     "tokenId": "Токен ID",

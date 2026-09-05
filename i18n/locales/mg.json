@@ -1443,6 +1443,12 @@
     "noMenuMatches": "Tsy misy mifanaraka ao amin'ny menio",
     "searchDehubFor": "Hikaroka \"{{query}}\" ao amin'ny DeHub"
   },
+  "comments": {
+    "discardTitle": "Hafoy ny hevitrao?",
+    "discardBody": "Voatahiry ho volavola izy, ka ho eto ihany rehefa miverina ianao.",
+    "keepWriting": "Manohy manoratra",
+    "closeAnyway": "Akatona ihany"
+  },
   "postInfo": {
     "title": "Fampahalalana momba ny lahatsoratra",
     "tokenId": "Token ID",

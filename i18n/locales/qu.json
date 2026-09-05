@@ -1541,6 +1541,12 @@
     "noMenuMatches": "Mana ima menú ukhupi tinkinchu",
     "searchDehubFor": "DeHub ukhupi \"{{query}}\" maskay"
   },
+  "comments": {
+    "discardTitle": "Comentarioykita wikch'unkichu?",
+    "discardBody": "Borradorpi waqaychasqa kashan, kutimuqtiykiqa kaypim kanqa.",
+    "keepWriting": "Qillqayta qatiy",
+    "closeAnyway": "Chaypas wichq'ay"
+  },
   "postInfo": {
     "title": "Post willay",
     "tokenId": "Token ID",

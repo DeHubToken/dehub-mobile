@@ -1510,6 +1510,12 @@
     "noMenuMatches": "मेनू में कुछो मेल नै खा' हे",
     "searchDehubFor": "DeHub पर \"{{query}}\" खोजूँ"
   },
+  "comments": {
+    "discardTitle": "अपन कमेंट छोड़ देब?",
+    "discardBody": "ई ड्राफ्ट में सेव हो गेल, लौटला पर इहँ मिली।",
+    "keepWriting": "लिखते रहू",
+    "closeAnyway": "तइयो बंद करू"
+  },
   "postInfo": {
     "title": "पोस्ट जानकारी",
     "tokenId": "टोकन ID",

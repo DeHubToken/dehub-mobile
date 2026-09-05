@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Menyuda uyğun heç nə yoxdur",
     "searchDehubFor": "DeHub-da «{{query}}» axtar"
   },
+  "comments": {
+    "discardTitle": "Şərhinizi ləğv edirsiniz?",
+    "discardBody": "Qaralama kimi saxlanılıb, qayıtdığınızda burada olacaq.",
+    "keepWriting": "Yazmağa davam et",
+    "closeAnyway": "Yenə də bağla"
+  },
   "postInfo": {
     "title": "Paylaşım məlumatı",
     "tokenId": "Token ID",

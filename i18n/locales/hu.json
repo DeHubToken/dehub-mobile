@@ -1514,6 +1514,12 @@
     "noMenuMatches": "Semmi sem egyezik a menüben",
     "searchDehubFor": "„{{query}}” keresése a DeHubon"
   },
+  "comments": {
+    "discardTitle": "Elveted a hozzászólásod?",
+    "discardBody": "Piszkozatként elmentettük, szóval itt lesz, ha visszatérsz.",
+    "keepWriting": "Írás folytatása",
+    "closeAnyway": "Bezárás mégis"
+  },
   "postInfo": {
     "title": "Bejegyzés infó",
     "tokenId": "Token ID",

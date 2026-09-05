@@ -1514,6 +1514,12 @@
     "noMenuMatches": "ਮੀਨੂ ਵਿੱਚ ਕੁਝ ਵੀ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ",
     "searchDehubFor": "DeHub 'ਤੇ \"{{query}}\" ਖੋਜੋ"
   },
+  "comments": {
+    "discardTitle": "ਆਪਣੀ ਟਿੱਪਣੀ ਛੱਡ ਦੇਣੀ ਹੈ?",
+    "discardBody": "ਇਹ ਡਰਾਫਟ ਵਜੋਂ ਸੰਭਾਲੀ ਗਈ ਹੈ, ਵਾਪਸ ਆਉਣ ਤੇ ਇੱਥੇ ਹੀ ਮਿਲੇਗੀ।",
+    "keepWriting": "ਲਿਖਦੇ ਰਹੋ",
+    "closeAnyway": "ਫਿਰ ਵੀ ਬੰਦ ਕਰੋ"
+  },
   "postInfo": {
     "title": "ਪੋਸਟ ਜਾਣਕਾਰੀ",
     "tokenId": "ਟੋਕਨ ID",

@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Babu abin da ya dace a cikin menu",
     "searchDehubFor": "Nemi \"{{query}}\" a DeHub"
   },
+  "comments": {
+    "discardTitle": "Ka jefar da sharhinka?",
+    "discardBody": "An ajiye shi a matsayin daftari, zai kasance nan sa'ad da ka dawo.",
+    "keepWriting": "Ci gaba da rubutu",
+    "closeAnyway": "Rufe duk da haka"
+  },
   "postInfo": {
     "title": "Bayanan bugu",
     "tokenId": "ID na Token",

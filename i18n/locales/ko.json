@@ -1514,6 +1514,12 @@
     "noMenuMatches": "메뉴에 일치하는 항목이 없습니다",
     "searchDehubFor": "DeHub에서 \"{{query}}\" 검색"
   },
+  "comments": {
+    "discardTitle": "댓글을 삭제할까요?",
+    "discardBody": "임시 저장되어 있어서 다시 오면 그대로 있어요.",
+    "keepWriting": "계속 쓰기",
+    "closeAnyway": "그래도 닫기"
+  },
   "postInfo": {
     "title": "게시물 정보",
     "tokenId": "토큰 ID",

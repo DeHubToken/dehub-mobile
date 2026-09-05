@@ -2190,6 +2190,12 @@
     "noMenuMatches": "У меню нічого не знайдено",
     "searchDehubFor": "Шукати «{{query}}» у DeHub"
   },
+  "comments": {
+    "discardTitle": "Скасувати коментар?",
+    "discardBody": "Його збережено як чернетку, тож він буде тут, коли повернетеся.",
+    "keepWriting": "Продовжити писати",
+    "closeAnyway": "Усе одно закрити"
+  },
   "postInfo": {
     "title": "Post Info",
     "tokenId": "Token ID",

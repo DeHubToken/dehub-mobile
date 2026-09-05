@@ -1514,6 +1514,12 @@
     "noMenuMatches": "Inget i menyn matchar",
     "searchDehubFor": "Sök efter ”{{query}}” på DeHub"
   },
+  "comments": {
+    "discardTitle": "Kasta kommentaren?",
+    "discardBody": "Den är sparad som utkast, så den finns här när du kommer tillbaka.",
+    "keepWriting": "Fortsätt skriva",
+    "closeAnyway": "Stäng ändå"
+  },
   "postInfo": {
     "title": "Inläggsinfo",
     "tokenId": "Token-ID",

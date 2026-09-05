@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Ọ dịghị ihe dabara na menu",
     "searchDehubFor": "Chọọ \"{{query}}\" na DeHub"
   },
+  "comments": {
+    "discardTitle": "Ị chọrọ ịhapụ okwu gị?",
+    "discardBody": "E chekwara ya dịka nchịkọta mbụ, ọ ga-adị ebe a mgbe ị lọghachiri.",
+    "keepWriting": "Nọgide na-ede",
+    "closeAnyway": "Mechie ya"
+  },
   "postInfo": {
     "title": "Ozi banyere mbipụta",
     "tokenId": "Token ID",

@@ -1510,6 +1510,12 @@
     "noMenuMatches": "مفيش حاجة في القائمة مطابقة",
     "searchDehubFor": "دوّر على \"{{query}}\" في DeHub"
   },
+  "comments": {
+    "discardTitle": "عايز تسيب تعليقك؟",
+    "discardBody": "اتحفظ كمسودة، وهيكون هنا لما ترجع.",
+    "keepWriting": "كمل كتابة",
+    "closeAnyway": "اقفل برضه"
+  },
   "postInfo": {
     "title": "معلومات المنشور",
     "tokenId": "رقم التوكن",
