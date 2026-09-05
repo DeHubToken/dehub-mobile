@@ -58,6 +58,8 @@
     "live": "लाइव"
   },
   "settings": {
+    "smartReplies": "सुझावल जवाब",
+    "smartRepliesDesc": "चैट में टैप करे लायक दू गो जवाब तैयार करऽ हे। सुझाव पर के × एकरा बंद कर दे हे।",
     "title": "सेटिंग",
     "manageAccount": "अपना अकाउंट आ पसंद मैनेज करो",
     "logOut": "लॉग आउट",
@@ -1212,6 +1214,10 @@
     "loginRequired": "लॉग इन चाहिं"
   },
   "messages": {
+    "smartRepliesOff": "सुझावल जवाब बंद हो गेल",
+    "smartRepliesOffWhere": "इनका सेटिंग → संदेश में जाके फेर से चालू करू।",
+    "smartRepliesUndo": "पहिले जइसन करू",
+    "turnOffSmartReplies": "सुझावल जवाब बंद करू",
     "encrypted": "एंड-टू-एंड एन्क्रिप्टेड",
     "encryptionOff": "ई डिवाइस पर एन्क्रिप्शन बंद हइ",
     "encryptionTurnOn": "चालू करू",

@@ -561,6 +561,8 @@
     "live": "Live"
   },
   "settings": {
+    "smartReplies": "Balasan yang dicadangkan",
+    "smartRepliesDesc": "Menyediakan dua balasan yang boleh anda ketik dalam sembang. Tanda × pada cadangan akan mematikannya.",
     "title": "Settings",
     "manageAccount": "Manage your account and preferences",
     "logOut": "Log out",
@@ -1584,6 +1586,10 @@
     "clearNotification": "Kosongkan pemberitahuan"
   },
   "messages": {
+    "smartRepliesOff": "Balasan yang dicadangkan dimatikan",
+    "smartRepliesOffWhere": "Hidupkan semula di Tetapan → Mesej.",
+    "smartRepliesUndo": "Buat asal",
+    "turnOffSmartReplies": "Matikan balasan yang dicadangkan",
     "encrypted": "Disulitkan hujung ke hujung",
     "encryptionOff": "Penyulitan tidak aktif pada peranti ini",
     "encryptionTurnOn": "Hidupkan",

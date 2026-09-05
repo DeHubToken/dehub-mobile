@@ -58,6 +58,8 @@
     "live": "ቀጥታ"
   },
   "settings": {
+    "smartReplies": "የተጠቆሙ ምላሾች",
+    "smartRepliesDesc": "በውይይት ውስጥ መንካት የሚችሏቸውን ሁለት ምላሾች ያዘጋጃል። በጥቆማዎቹ ላይ ያለው × ይህን ያጠፋዋል።",
     "title": "ቅንብሮች",
     "manageAccount": "መለያህንና ምርጫዎችህን አስተዳድር",
     "logOut": "ውጣ",
@@ -1212,6 +1214,10 @@
     "loginRequired": "መግባት ያስፈልጋል"
   },
   "messages": {
+    "smartRepliesOff": "የተጠቆሙ ምላሾች ጠፍተዋል",
+    "smartRepliesOffWhere": "ቅንብሮች → መልዕክቶች ውስጥ እንደገና ያብሩዋቸው።",
+    "smartRepliesUndo": "ቀልብስ",
+    "turnOffSmartReplies": "የተጠቆሙ ምላሾችን አጥፋ",
     "encrypted": "ከጫፍ እስከ ጫፍ የተመሰጠረ",
     "encryptionOff": "በዚህ መሣሪያ ላይ ምስጠራ ጠፍቷል",
     "encryptionTurnOn": "አብራ",

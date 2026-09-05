@@ -508,6 +508,8 @@
     "live": "Live"
   },
   "settings": {
+    "smartReplies": "Mga iminungkahing sagot",
+    "smartRepliesDesc": "Gumagawa ng dalawang sagot na puwede mong i-tap sa chat. Ang × sa mga mungkahi ang nagpapatay nito.",
     "title": "Settings",
     "manageAccount": "Manage your account and preferences",
     "logOut": "Log out",
@@ -1531,6 +1533,10 @@
     "clearNotification": "I-clear ang abiso"
   },
   "messages": {
+    "smartRepliesOff": "Naka-off na ang mga iminungkahing sagot",
+    "smartRepliesOffWhere": "I-on ulit ang mga ito sa Mga Setting → Mga Mensahe.",
+    "smartRepliesUndo": "I-undo",
+    "turnOffSmartReplies": "I-off ang mga iminungkahing sagot",
     "encrypted": "Naka-encrypt end-to-end",
     "encryptionOff": "Naka-off ang encryption sa device na ito",
     "encryptionTurnOn": "I-on",

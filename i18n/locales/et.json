@@ -58,6 +58,8 @@
     "live": "Otse"
   },
   "settings": {
+    "smartReplies": "Soovitatud vastused",
+    "smartRepliesDesc": "Koostab kaks vastust, mida saad vestluses puudutada. Soovituste × lülitab selle välja.",
     "title": "Seaded",
     "manageAccount": "Halda oma kontot ja eelistusi",
     "logOut": "Logi välja",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Sisselogimine nõutav"
   },
   "messages": {
+    "smartRepliesOff": "Soovitatud vastused on välja lülitatud",
+    "smartRepliesOffWhere": "Lülita need uuesti sisse jaotises Seaded → Sõnumid.",
+    "smartRepliesUndo": "Võta tagasi",
+    "turnOffSmartReplies": "Lülita soovitatud vastused välja",
     "encrypted": "Otsast otsani krüpteeritud",
     "encryptionOff": "Krüpteerimine on selles seadmes välja lülitatud",
     "encryptionTurnOn": "Lülita sisse",

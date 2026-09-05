@@ -58,6 +58,8 @@
     "live": "ສົດ"
   },
   "settings": {
+    "smartReplies": "ຄຳຕອບທີ່ແນະນຳ",
+    "smartRepliesDesc": "ຮ່າງສອງຄຳຕອບທີ່ທ່ານແຕະໄດ້ໃນການສົນທະນາ. ເຄື່ອງໝາຍ × ເທິງຄຳແນະນຳຈະປິດສິ່ງນີ້.",
     "title": "ການຕັ້ງຄ່າ",
     "manageAccount": "ຈັດການບັນຊີ ແລະ ການຕັ້ງຄ່າ",
     "logOut": "ອອກຈາກລະບົບ",
@@ -1212,6 +1214,10 @@
     "loginRequired": "ຕ້ອງເຂົ້າສູ່ລະບົບ"
   },
   "messages": {
+    "smartRepliesOff": "ປິດຄຳຕອບທີ່ແນະນຳແລ້ວ",
+    "smartRepliesOffWhere": "ເປີດຄືນໄດ້ທີ່ ການຕັ້ງຄ່າ → ຂໍ້ຄວາມ.",
+    "smartRepliesUndo": "ຍົກເລີກ",
+    "turnOffSmartReplies": "ປິດຄຳຕອບທີ່ແນະນຳ",
     "encrypted": "ເຂົ້າລະຫັດແບບຕົ້ນທາງເຖິງປາຍທາງ",
     "encryptionOff": "ການເຂົ້າລະຫັດຖືກປິດຢູ່ອຸປະກອນນີ້",
     "encryptionTurnOn": "ເປີດໃຊ້",

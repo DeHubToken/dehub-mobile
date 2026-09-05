@@ -338,6 +338,8 @@
     "live": "Live"
   },
   "settings": {
+    "smartReplies": "คำตอบแนะนำ",
+    "smartRepliesDesc": "ร่างคำตอบสองแบบที่คุณแตะได้ในแชท เครื่องหมาย × บนคำแนะนำจะปิดฟีเจอร์นี้",
     "title": "การตั้งค่า",
     "manageAccount": "จัดการบัญชีและการตั้งค่าของคุณ",
     "logOut": "ออกจากระบบ",
@@ -1361,6 +1363,10 @@
     "clearNotification": "ล้างการแจ้งเตือน"
   },
   "messages": {
+    "smartRepliesOff": "ปิดคำตอบแนะนำแล้ว",
+    "smartRepliesOffWhere": "เปิดอีกครั้งได้ที่ การตั้งค่า → ข้อความ",
+    "smartRepliesUndo": "เลิกทำ",
+    "turnOffSmartReplies": "ปิดคำตอบแนะนำ",
     "encrypted": "เข้ารหัสแบบต้นทางถึงปลายทาง",
     "encryptionOff": "การเข้ารหัสปิดอยู่บนอุปกรณ์นี้",
     "encryptionTurnOn": "เปิดใช้งาน",

@@ -58,6 +58,8 @@
     "live": "Siaran Langsung"
   },
   "settings": {
+    "smartReplies": "Balasan yang disarankan",
+    "smartRepliesDesc": "Menyusun dua balasan yang bisa kamu ketuk di obrolan. Tanda × pada saran akan mematikannya.",
     "title": "Pengaturan",
     "manageAccount": "Kelola akun dan preferensi Anda",
     "logOut": "Keluar",
@@ -1212,6 +1214,10 @@
     "attachmentTooLarge": "Setiap berkas harus di bawah 20MB"
   },
   "messages": {
+    "smartRepliesOff": "Balasan yang disarankan dimatikan",
+    "smartRepliesOffWhere": "Nyalakan lagi di Pengaturan → Pesan.",
+    "smartRepliesUndo": "Urungkan",
+    "turnOffSmartReplies": "Matikan balasan yang disarankan",
     "encrypted": "Terenkripsi end-to-end",
     "encryptionOff": "Enkripsi tidak aktif di perangkat ini",
     "encryptionTurnOn": "Aktifkan",

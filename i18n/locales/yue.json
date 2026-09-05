@@ -58,6 +58,8 @@
     "live": "直播"
   },
   "settings": {
+    "smartReplies": "建議回覆",
+    "smartRepliesDesc": "喺傾偈度寫兩個你可以撳嘅回覆。建議上面嘅 × 會閂咗佢。",
     "title": "設定",
     "manageAccount": "管理你嘅帳戶同設定",
     "logOut": "登出",
@@ -1212,6 +1214,10 @@
     "loginRequired": "需要登入"
   },
   "messages": {
+    "smartRepliesOff": "已閂咗建議回覆",
+    "smartRepliesOffWhere": "喺 設定 → 訊息 度再開返。",
+    "smartRepliesUndo": "復原",
+    "turnOffSmartReplies": "閂咗建議回覆",
     "encrypted": "端到端加密",
     "encryptionOff": "呢部裝置未開加密",
     "encryptionTurnOn": "開啟",

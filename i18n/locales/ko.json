@@ -58,6 +58,8 @@
     "live": "라이브"
   },
   "settings": {
+    "smartReplies": "추천 답장",
+    "smartRepliesDesc": "채팅에서 탭할 수 있는 답장 두 개를 만들어 줍니다. 추천의 × 를 누르면 꺼집니다.",
     "title": "설정",
     "manageAccount": "계정 및 환경설정 관리",
     "logOut": "로그아웃",
@@ -1121,6 +1123,10 @@
     "attachmentTooLarge": "파일당 20MB 미만이어야 합니다"
   },
   "messages": {
+    "smartRepliesOff": "추천 답장을 껐습니다",
+    "smartRepliesOffWhere": "설정 → 메시지 에서 다시 켤 수 있습니다.",
+    "smartRepliesUndo": "실행 취소",
+    "turnOffSmartReplies": "추천 답장 끄기",
     "encrypted": "종단 간 암호화됨",
     "encryptionOff": "이 기기에서는 암호화가 꺼져 있습니다",
     "encryptionTurnOn": "켜기",

@@ -58,6 +58,8 @@
     "live": "На живо"
   },
   "settings": {
+    "smartReplies": "Предложени отговори",
+    "smartRepliesDesc": "Съставя два отговора, които можеш да докоснеш в чат. × върху предложенията го изключва.",
     "title": "Настройки",
     "manageAccount": "Управлявайте акаунта и предпочитанията си",
     "logOut": "Изход",
@@ -1143,6 +1145,10 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "smartRepliesOff": "Предложените отговори са изключени",
+    "smartRepliesOffWhere": "Включи ги отново от Настройки → Съобщения.",
+    "smartRepliesUndo": "Отмени",
+    "turnOffSmartReplies": "Изключване на предложените отговори",
     "encrypted": "Криптирано от край до край",
     "encryptionOff": "Шифроването на това устройство е изключено",
     "encryptionTurnOn": "Включи",

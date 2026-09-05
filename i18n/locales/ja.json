@@ -58,6 +58,8 @@
     "live": "ライブ"
   },
   "settings": {
+    "smartReplies": "返信の候補",
+    "smartRepliesDesc": "チャットでタップできる返信を2つ用意します。候補の × でオフになります。",
     "title": "設定",
     "manageAccount": "アカウントと設定を管理",
     "logOut": "ログアウト",
@@ -1212,6 +1214,10 @@
     "attachmentTooLarge": "1ファイルあたり 20MB 未満にしてください"
   },
   "messages": {
+    "smartRepliesOff": "返信の候補をオフにしました",
+    "smartRepliesOffWhere": "設定 → メッセージ からいつでもオンに戻せます。",
+    "smartRepliesUndo": "元に戻す",
+    "turnOffSmartReplies": "返信の候補をオフにする",
     "encrypted": "エンドツーエンド暗号化",
     "encryptionOff": "このデバイスでは暗号化がオフです",
     "encryptionTurnOn": "オンにする",

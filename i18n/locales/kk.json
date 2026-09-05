@@ -58,6 +58,8 @@
     "live": "Тікелей"
   },
   "settings": {
+    "smartReplies": "Ұсынылған жауаптар",
+    "smartRepliesDesc": "Чатта түртуге болатын екі жауап дайындайды. Ұсыныстардағы × мұны өшіреді.",
     "title": "Параметрлер",
     "manageAccount": "Тіркелгіңіз бен таңдауларыңызды басқарыңыз",
     "logOut": "Шығу",
@@ -1192,6 +1194,10 @@
     "loginRequired": "Авторизация қажет"
   },
   "messages": {
+    "smartRepliesOff": "Ұсынылған жауаптар өшірілді",
+    "smartRepliesOffWhere": "Оларды Параметрлер → Хабарлар бөлімінен қайта қосыңыз.",
+    "smartRepliesUndo": "Болдырмау",
+    "turnOffSmartReplies": "Ұсынылған жауаптарды өшіру",
     "encrypted": "Толық шифрланған",
     "encryptionOff": "Бұл құрылғыда шифрлау өшірулі",
     "encryptionTurnOn": "Қосу",

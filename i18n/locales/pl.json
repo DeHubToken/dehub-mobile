@@ -58,6 +58,8 @@
     "live": "Na żywo"
   },
   "settings": {
+    "smartReplies": "Sugerowane odpowiedzi",
+    "smartRepliesDesc": "Przygotowuje dwie odpowiedzi, które możesz dotknąć na czacie. × przy sugestiach je wyłącza.",
     "title": "Ustawienia",
     "manageAccount": "Zarządzaj kontem i preferencjami",
     "logOut": "Wyloguj się",
@@ -1386,6 +1388,10 @@
     "clearNotification": "Wyczyść powiadomienie"
   },
   "messages": {
+    "smartRepliesOff": "Sugerowane odpowiedzi wyłączone",
+    "smartRepliesOffWhere": "Włącz je ponownie w Ustawienia → Wiadomości.",
+    "smartRepliesUndo": "Cofnij",
+    "turnOffSmartReplies": "Wyłącz sugerowane odpowiedzi",
     "encrypted": "Szyfrowane end-to-end",
     "encryptionOff": "Szyfrowanie na tym urządzeniu jest wyłączone",
     "encryptionTurnOn": "Włącz",

@@ -58,6 +58,8 @@
     "live": "Kai tsaye"
   },
   "settings": {
+    "smartReplies": "Amsoshin da aka ba da shawara",
+    "smartRepliesDesc": "Yana rubuta amsoshi biyu da za ka iya danna a hira. Alamar × a kan shawarwarin tana kashe wannan.",
     "title": "Saituna",
     "manageAccount": "Sarrafa asusunka da zaɓuɓɓuka",
     "logOut": "Fita",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Ana buƙatar shiga"
   },
   "messages": {
+    "smartRepliesOff": "An kashe amsoshin da aka ba da shawara",
+    "smartRepliesOffWhere": "Sake kunna su a Saituna → Saƙonni.",
+    "smartRepliesUndo": "Ja da baya",
+    "turnOffSmartReplies": "Kashe amsoshin da aka ba da shawara",
     "encrypted": "An ɓoye daga ƙarshe zuwa ƙarshe",
     "encryptionOff": "An kashe ɓoye bayanai a wannan na'urar",
     "encryptionTurnOn": "Kunna",

@@ -18,13 +18,14 @@ import {
   ActivityIndicator,
 } from "react-native";
 import Animated, { FadeIn, FadeOut, SlideInDown } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import { sendAIChat } from "../../services/ai.service";
 import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
 import * as VideoThumbnails from "expo-video-thumbnails";
 import { openCroppedImagePicker } from "../../libs/assets.util";
-import { toastError } from "../../libs/toast";
+import { toastError, toastInfo } from "../../libs/toast";
 import {
   ATTACHMENT_PICKER_TYPES,
   formatAttachmentSize,
@@ -35,6 +36,7 @@ import { runWithPermissions } from "../../libs/permissions.util";
 import GifPicker from "./GifPicker";
 import SmartReplyTray from "./SmartReplyTray";
 import { useSmartReplies } from "../../hooks/useSmartReplies";
+import { setAppPref, useAppPrefs } from "../../hooks/useAppPrefs";
 import { useDraft } from "../../hooks/useDraft";
 import type { SmartReplyTurn } from "../../services/ai.service";
 import type { DmMessage, DmFee } from "../../services/dm/dm.types";
@@ -124,6 +126,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   peerName,
   draftKey,
 }) => {
+  const { t } = useTranslation();
   const inputRef = useRef<TextInput>(null);
   /*
    * Editing an existing message borrows the same box. Persisting then would
@@ -136,10 +139,14 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const [gifUrl, setGifUrl] = useState<string | null>(null);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
   const [enhancing, setEnhancing] = useState(false);
+  // Down for THIS message only - the send handler drops the tray whose
+  // drafts the send just invalidated. Switching the feature off is a
+  // separate thing, and lives in the smartReplies preference.
   const [trayDismissed, setTrayDismissed] = useState(false);
   const typingRef = useRef(false);
   const typingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const smartRepliesEnabled = useAppPrefs().smartReplies;
   const smartReplies = useSmartReplies(thread ?? [], peerName);
   const hasThread = !!thread && thread.length > 0;
 
@@ -166,7 +173,8 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
    * user's own last word gets follow-ups. Mirrors dehubweb's ChatInput.
    */
   useEffect(() => {
-    if (!hasThread) return;
+    // Switched off is switched off: no tray, and no model call behind it.
+    if (!hasThread || !smartRepliesEnabled) return;
     const { smartReplies: sr, text: draft } = latest.current;
     if (draft.trim()) return;
     if (draftedFor.current === sr.tailKey) return;
@@ -175,16 +183,29 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     // SUCCESSFUL draft goes stale, so a single failure would otherwise leave
     // the tray showing that failure for every message after it.
     if (sr.status === "idle" || sr.status === "error") sr.generate();
-  }, [hasThread, smartReplies.tailKey]);
+  }, [hasThread, smartRepliesEnabled, smartReplies.tailKey]);
 
-  // A new message re-arms a dismissed tray. Dismissing is "not for this
-  // message", not "never again" — there is no orb anywhere else to press, so a
-  // permanent dismissal is a feature switched off by accident and never found.
+  // A new message re-arms the per-message stand-down. It does NOT reopen a
+  // tray the user switched off — that is what the preference is for.
   useEffect(() => {
     setTrayDismissed(false);
   }, [smartReplies.tailKey]);
 
-  const handleDismissTray = useCallback(() => setTrayDismissed(true), []);
+  // The x switches the feature off, in every thread, until it is switched
+  // back on. There is no orb anywhere else to press once it is down, so the
+  // toast has to say where the switch lives — otherwise this is a control
+  // that makes a feature disappear with no way back.
+  const handleDismissTray = useCallback(() => {
+    setAppPref("smartReplies", false);
+    toastInfo(t("messages.smartRepliesOff", "Suggested replies turned off"), {
+      description: t(
+        "messages.smartRepliesOffWhere",
+        "Turn them back on in Settings → Messages.",
+      ),
+      actionLabel: t("messages.smartRepliesUndo", "Undo"),
+      onActionPress: () => setAppPref("smartReplies", true),
+    });
+  }, [t]);
 
   /**
    * Drop a suggestion into the composer rather than sending it. The user still
@@ -430,7 +451,8 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   // nothing to draft from still gets its quiet one-liner, because an empty band
   // and a broken feature are indistinguishable at a glance. Anything the user
   // has already started (text, an attachment, an edit) takes the space back.
-  const showTray = hasThread && !trayDismissed && !hasContent && !editingMessage;
+  const showTray =
+    hasThread && smartRepliesEnabled && !trayDismissed && !hasContent && !editingMessage;
   const hasMediaOrGif = !!media || !!gifUrl;
   const placeholder = hasMediaOrGif ? "Add a caption…" : "Message…";
 
@@ -481,6 +503,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               onGenerate={() => smartReplies.generate()}
               onPick={handlePickSuggestion}
               onDismiss={handleDismissTray}
+              dismissLabel={t("messages.turnOffSmartReplies", "Turn off suggested replies")}
             />
           </Animated.View>
         )}

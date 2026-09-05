@@ -58,6 +58,8 @@
     "live": "بث مباشر"
   },
   "settings": {
+    "smartReplies": "الردود المقترحة",
+    "smartRepliesDesc": "بيجهّز ردّين فيك تضغط عليهن بالمحادثة. علامة × عالاقتراحات بتطفي هالميزة.",
     "title": "الإعدادات",
     "manageAccount": "دير حسابك وتفضيلاتك",
     "logOut": "تسجيل خروج",
@@ -1212,6 +1214,10 @@
     "loginRequired": "مطلوب تسجيل دخول"
   },
   "messages": {
+    "smartRepliesOff": "انطفت الردود المقترحة",
+    "smartRepliesOffWhere": "رجّعها من الإعدادات ← الرسائل.",
+    "smartRepliesUndo": "تراجع",
+    "turnOffSmartReplies": "إطفاء الردود المقترحة",
     "encrypted": "مشفّر من طرف إلى طرف",
     "encryptionOff": "التشفير مش مفعّل ع هالجهاز",
     "encryptionTurnOn": "فعّله",

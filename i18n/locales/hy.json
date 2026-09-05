@@ -58,6 +58,8 @@
     "live": "Ouvaghits"
   },
   "settings": {
+    "smartReplies": "Առաջարկվող պատասխաններ",
+    "smartRepliesDesc": "Կազմում է երկու պատասխան, որոնց կարող ես հպել զրույցում. Առաջարկների × -ը սա անջատում է։",
     "title": "Կargavoroumner",
     "manageAccount": "Kargatsel dzainor hashivne ev nahapatchoutyounere",
     "logOut": "Elq",
@@ -1113,6 +1115,10 @@
     "clearNotification": "Մաքրել ծանուցումը"
   },
   "messages": {
+    "smartRepliesOff": "Առաջարկվող պատասխանները անջատված են",
+    "smartRepliesOffWhere": "Նորից միացրու Կարգավորումներ → Հաղորդագրություններ բաժնում։",
+    "smartRepliesUndo": "Հետարկել",
+    "turnOffSmartReplies": "Անջատել առաջարկվող պատասխանները",
     "encrypted": "Ծայրից ծայր գաղտնագրված",
     "encryptionOff": "Այս սարքում գաղտնագրումն անջատված է",
     "encryptionTurnOn": "Միացնել",

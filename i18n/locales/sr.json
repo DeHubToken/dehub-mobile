@@ -58,6 +58,8 @@
     "live": "Уживо"
   },
   "settings": {
+    "smartReplies": "Предложени одговори",
+    "smartRepliesDesc": "Саставља два одговора које можеш да додирнеш у ћаскању. × на предлозима ово искључује.",
     "title": "Подешавања",
     "manageAccount": "Управљајте налогом и подешавањима",
     "logOut": "Одјави се",
@@ -1143,6 +1145,10 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "smartRepliesOff": "Предложени одговори су искључени",
+    "smartRepliesOffWhere": "Поново их укључи у Подешавања → Поруке.",
+    "smartRepliesUndo": "Опозови",
+    "turnOffSmartReplies": "Искључи предложене одговоре",
     "encrypted": "Шифровано с краја на крај",
     "encryptionOff": "Шифровање је искључено на овом уређају",
     "encryptionTurnOn": "Укључи",

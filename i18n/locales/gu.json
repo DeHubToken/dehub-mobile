@@ -58,6 +58,8 @@
     "live": "લાઇવ"
   },
   "settings": {
+    "smartReplies": "સૂચવેલા જવાબો",
+    "smartRepliesDesc": "ચેટમાં ટૅપ કરી શકાય એવા બે જવાબ તૈયાર કરે છે. સૂચનો પરનું × આ બંધ કરે છે.",
     "title": "સેટિંગ્સ",
     "manageAccount": "તમારા ખાતા અને પસંદગીઓ મેનેજ કરો",
     "logOut": "લૉગ આઉટ",
@@ -1212,6 +1214,10 @@
     "loginRequired": "લૉગ ઇન જરૂરી"
   },
   "messages": {
+    "smartRepliesOff": "સૂચવેલા જવાબો બંધ કર્યા",
+    "smartRepliesOffWhere": "તેમને સેટિંગ્સ → સંદેશાઓ માંથી ફરી ચાલુ કરો.",
+    "smartRepliesUndo": "પૂર્વવત્ કરો",
+    "turnOffSmartReplies": "સૂચવેલા જવાબો બંધ કરો",
     "encrypted": "એન્ડ-ટુ-એન્ડ એન્ક્રિપ્ટેડ",
     "encryptionOff": "આ ડિવાઇસ પર એન્ક્રિપ્શન બંધ છે",
     "encryptionTurnOn": "ચાલુ કરો",

@@ -58,6 +58,8 @@
     "live": "Moja kwa Moja"
   },
   "settings": {
+    "smartReplies": "Majibu yanayopendekezwa",
+    "smartRepliesDesc": "Huandaa majibu mawili unayoweza kugusa kwenye gumzo. Alama ya × kwenye mapendekezo huzima hii.",
     "title": "Mipangilio",
     "manageAccount": "Simamia akaunti na mapendeleo yako",
     "logOut": "Toka",
@@ -1213,6 +1215,10 @@
     "loginRequired": "Kuingia kunahitajika"
   },
   "messages": {
+    "smartRepliesOff": "Majibu yanayopendekezwa yamezimwa",
+    "smartRepliesOffWhere": "Yawashe tena kwenye Mipangilio → Ujumbe.",
+    "smartRepliesUndo": "Tendua",
+    "turnOffSmartReplies": "Zima majibu yanayopendekezwa",
     "encrypted": "Imesimbwa kutoka mwanzo hadi mwisho",
     "encryptionOff": "Usimbaji fiche umezimwa kwenye kifaa hiki",
     "encryptionTurnOn": "Washa",

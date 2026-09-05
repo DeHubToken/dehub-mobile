@@ -58,6 +58,8 @@
     "live": "ถ่ายทอดสด"
   },
   "settings": {
+    "smartReplies": "คำตอบแนะนำ",
+    "smartRepliesDesc": "ฮ่างคำตอบสองอันที่เจ้าแตะได้ในแชท เครื่องหมาย × เทิงคำแนะนำสิปิดอันนี้",
     "title": "ตั้งค่า",
     "manageAccount": "จัดการบัญชีและการตั้งค่า",
     "logOut": "ออกจากระบบ",
@@ -1212,6 +1214,10 @@
     "loginRequired": "ต้องเข้าสู่ระบบ"
   },
   "messages": {
+    "smartRepliesOff": "ปิดคำตอบแนะนำแล้ว",
+    "smartRepliesOffWhere": "เปิดคืนได้เทิง ตั้งค่า → ข้อความ",
+    "smartRepliesUndo": "เลิกเฮ็ด",
+    "turnOffSmartReplies": "ปิดคำตอบแนะนำ",
     "encrypted": "เข้ารหัสแบบต้นทางถึงปลายทาง",
     "encryptionOff": "การเข้ารหัสบ่ได้เปิดในเครื่องนี้",
     "encryptionTurnOn": "เปิดใซ้งาน",

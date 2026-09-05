@@ -231,6 +231,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "settings": {
+    "smartReplies": "Voorgestelde antwoorde",
+    "smartRepliesDesc": "Stel twee antwoorde op wat jy in 'n klets kan tik. Die × op die voorstelle skakel dit af.",
     "title": "Instellings",
     "general": "Algemeen",
     "language": "Taal",
@@ -1604,6 +1606,10 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "messages": {
+    "smartRepliesOff": "Voorgestelde antwoorde afgeskakel",
+    "smartRepliesOffWhere": "Skakel hulle weer aan by Instellings → Boodskappe.",
+    "smartRepliesUndo": "Ontdoen",
+    "turnOffSmartReplies": "Skakel voorgestelde antwoorde af",
     "encrypted": "End-tot-end geënkripteer",
     "encryptionOff": "Enkripsie is af op hierdie toestel",
     "encryptionTurnOn": "Skakel aan",

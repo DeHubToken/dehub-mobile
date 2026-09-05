@@ -58,6 +58,8 @@
     "live": "In diretta"
   },
   "settings": {
+    "smartReplies": "Risposte suggerite",
+    "smartRepliesDesc": "Prepara due risposte che puoi toccare in chat. La × sui suggerimenti le disattiva.",
     "title": "Impostazioni",
     "manageAccount": "Gestisci il tuo account e le preferenze",
     "logOut": "Esci",
@@ -1234,6 +1236,10 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "smartRepliesOff": "Risposte suggerite disattivate",
+    "smartRepliesOffWhere": "Riattivale in Impostazioni → Messaggi.",
+    "smartRepliesUndo": "Annulla",
+    "turnOffSmartReplies": "Disattiva le risposte suggerite",
     "encrypted": "Crittografato end-to-end",
     "encryptionOff": "Crittografia disattivata su questo dispositivo",
     "encryptionTurnOn": "Attiva",

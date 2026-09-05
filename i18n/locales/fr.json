@@ -58,6 +58,8 @@
     "live": "En direct"
   },
   "settings": {
+    "smartReplies": "Réponses suggérées",
+    "smartRepliesDesc": "Rédige deux réponses à toucher dans une discussion. La × sur les suggestions désactive l'option.",
     "title": "Paramètres",
     "manageAccount": "Gérez votre compte et vos préférences",
     "logOut": "Déconnexion",
@@ -1212,6 +1214,10 @@
     "attachmentTooLarge": "Chaque fichier doit faire moins de 20 Mo"
   },
   "messages": {
+    "smartRepliesOff": "Réponses suggérées désactivées",
+    "smartRepliesOffWhere": "Réactivez-les dans Paramètres → Messages.",
+    "smartRepliesUndo": "Annuler",
+    "turnOffSmartReplies": "Désactiver les réponses suggérées",
     "encrypted": "Chiffré de bout en bout",
     "encryptionOff": "Chiffrement désactivé sur cet appareil",
     "encryptionTurnOn": "Activer",

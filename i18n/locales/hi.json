@@ -58,6 +58,8 @@
     "live": "लाइव"
   },
   "settings": {
+    "smartReplies": "सुझाए गए जवाब",
+    "smartRepliesDesc": "चैट में टैप करने लायक दो जवाब तैयार करता है। सुझावों पर लगा × इसे बंद कर देता है।",
     "title": "सेटिंग्स",
     "manageAccount": "अपना खाता और प्राथमिकताएँ प्रबंधित करें",
     "logOut": "लॉग आउट",
@@ -1024,6 +1026,10 @@
     "attachmentTooLarge": "हर फ़ाइल 20MB से कम होनी चाहिए"
   },
   "messages": {
+    "smartRepliesOff": "सुझाए गए जवाब बंद कर दिए गए",
+    "smartRepliesOffWhere": "इन्हें सेटिंग्स → संदेश में जाकर फिर से चालू करें।",
+    "smartRepliesUndo": "पहले जैसा करें",
+    "turnOffSmartReplies": "सुझाए गए जवाब बंद करें",
     "encrypted": "एंड-टू-एंड एन्क्रिप्टेड",
     "encryptionOff": "इस डिवाइस पर एन्क्रिप्शन बंद है",
     "encryptionTurnOn": "चालू करें",

@@ -58,6 +58,8 @@
     "live": "Kawsaq"
   },
   "settings": {
+    "smartReplies": "Ñisqa kutichiykuna",
+    "smartRepliesDesc": "Rimanakuypi ñitiy atina iskay kutichiyta qillqan. Yuyaychaykunapi × nisqaqa kayta wañuchin.",
     "title": "Churana",
     "manageAccount": "Cuentaykita kamachiy",
     "logOut": "Lluqsiy",
@@ -1213,6 +1215,10 @@
     "loginRequired": "Yaykuy munakun"
   },
   "messages": {
+    "smartRepliesOff": "Ñisqa kutichiykunaqa wañuchisqa",
+    "smartRepliesOffWhere": "Churana → Willakuy nisqapi kutimanta hatarichiy.",
+    "smartRepliesUndo": "Kutichiy",
+    "turnOffSmartReplies": "Ñisqa kutichiykunata wañuchiy",
     "encrypted": "Puntamanta puntakama pakasqa",
     "encryptionOff": "Kay aparatupi manam pakachiy kanchu",
     "encryptionTurnOn": "Hap'ichiy",
