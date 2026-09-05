@@ -58,6 +58,8 @@
     "live": "لائیو"
   },
   "settings": {
+    "smartReplies": "تجویز کیل جواب",
+    "smartRepliesDesc": "دو جواب تیار کرے لا جن پر تو چیٹ میں ٹیپ کر سکے لا۔ تجویزن پر × ایکر بند کر دے لا۔",
     "title": "سیٹنگ",
     "manageAccount": "اپنا اکاؤنٹ اور ترجیحات سنبھالو",
     "logOut": "لاگ آؤٹ",
@@ -1212,6 +1214,10 @@
     "loginRequired": "لاگ ان ضروری ہے"
   },
   "messages": {
+    "smartRepliesOff": "تجویز کیل جواب بند ہو گیل",
+    "smartRepliesOffWhere": "اونکن سیٹنگ ← پیغام سے دوبارہ آن کرا۔",
+    "smartRepliesUndo": "واپس",
+    "turnOffSmartReplies": "تجویز کیل جواب بند کرا",
     "encrypted": "এন্ড-টু-এন্ড এনক্রিপ্টেড",
     "encryptionOff": "کۆدکردن لە ئی ئامێرەدا چالاک نییە",
     "encryptionTurnOn": "چالاک کە",

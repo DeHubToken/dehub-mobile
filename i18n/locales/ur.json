@@ -58,6 +58,8 @@
     "live": "لائیو"
   },
   "settings": {
+    "smartReplies": "تجویز کردہ جوابات",
+    "smartRepliesDesc": "دو جوابات تیار کرتا ہے جنہیں آپ چیٹ میں ٹیپ کر سکتے ہیں۔ تجاویز پر × اسے بند کر دیتا ہے۔",
     "title": "ترتیبات",
     "manageAccount": "اپنا اکاؤنٹ اور ترجیحات منظم کریں",
     "logOut": "لاگ آؤٹ",
@@ -1143,6 +1145,10 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "smartRepliesOff": "تجویز کردہ جوابات بند کر دیے گئے",
+    "smartRepliesOffWhere": "انہیں ترتیبات ← پیغامات سے دوبارہ آن کریں۔",
+    "smartRepliesUndo": "واپس لیں",
+    "turnOffSmartReplies": "تجویز کردہ جوابات بند کریں",
     "encrypted": "اینڈ ٹو اینڈ انکرپٹڈ",
     "encryptionOff": "اس ڈیوائس پر خفیہ کاری بند ہے",
     "encryptionTurnOn": "آن کریں",

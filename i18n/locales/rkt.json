@@ -136,6 +136,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "settings": {
+    "smartReplies": "পরামর্শ দেওয়া জবাব",
+    "smartRepliesDesc": "চ্যাটোত টিপ দেওয়ার মতোন দুইটা জবাব বানায়। পরামর্শের উপরের × এইটা বন্ধ করি দেয়।",
     "title": "সেটিংস",
     "account": "একাউন্ট",
     "privacy": "প্রাইভেসি",
@@ -606,6 +608,10 @@
     "clearNotification": "বিজ্ঞপ্তি মোছেন"
   },
   "messages": {
+    "smartRepliesOff": "পরামর্শ দেওয়া জবাব বন্ধ করা হইল",
+    "smartRepliesOffWhere": "সেটিংস → মেসেজ থাকি ওগুলা আবার চালু করেন।",
+    "smartRepliesUndo": "আগের মতোন করেন",
+    "turnOffSmartReplies": "পরামর্শ দেওয়া জবাব বন্ধ করেন",
     "encrypted": "এন্ড-টু-এন্ড এনক্রিপ্টেড",
     "encryptionOff": "এই ডিভাইসত এনক্রিপশন বন্ধ আছে",
     "encryptionTurnOn": "চালু করেন",

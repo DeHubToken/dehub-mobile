@@ -782,6 +782,8 @@
     "live": "Live"
   },
   "settings": {
+    "smartReplies": "Запропоновані відповіді",
+    "smartRepliesDesc": "Складає дві відповіді, які можна торкнутися в чаті. × на підказках вимикає це.",
     "title": "Settings",
     "manageAccount": "Manage your account and preferences",
     "logOut": "Log out",
@@ -1805,6 +1807,10 @@
     "clearNotification": "Прибрати сповіщення"
   },
   "messages": {
+    "smartRepliesOff": "Запропоновані відповіді вимкнено",
+    "smartRepliesOffWhere": "Увімкни їх знову в Налаштування → Повідомлення.",
+    "smartRepliesUndo": "Скасувати",
+    "turnOffSmartReplies": "Вимкнути запропоновані відповіді",
     "title": "Messages",
     "searchConversations": "Search conversations...",
     "failedToLoad": "Failed to load conversations",

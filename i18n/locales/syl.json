@@ -136,6 +136,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "settings": {
+    "smartReplies": "ꠙꠞꠣꠝꠞ꠆ꠡ ꠖꠤꠅꠣ ꠎꠛꠣꠛ",
+    "smartRepliesDesc": "ꠌ꠆ꠎꠣꠐꠧ ꠐꠤꠙ ꠝꠣꠞꠣꠞ ꠟꠣꠉꠤ ꠖꠥꠁꠐꠣ ꠎꠛꠣꠛ ꠛꠣꠘꠣꠄ। ꠙꠞꠣꠝꠞ꠆ꠡꠞ ꠅꠣꠔ × ꠁꠞ ꠛꠘ꠆ꠗ ꠇꠞꠦ।",
     "title": "সেটিংস",
     "account": "একাউন্ট",
     "privacy": "প্রাইভেসি",
@@ -606,6 +608,10 @@
     "clearNotification": "বিজ্ঞপ্তি মুছউক্কা"
   },
   "messages": {
+    "smartRepliesOff": "ꠙꠞꠣꠝꠞ꠆ꠡ ꠖꠤꠅꠣ ꠎꠛꠣꠛ ꠛꠘ꠆ꠗ ꠅꠁꠍꠦ",
+    "smartRepliesOffWhere": "ꠍꠦꠐꠤꠋꠍ → ꠝꠦꠍꠦꠎ ꠔꠘꠦ ꠅꠉꠥꠟꠣ ꠀꠞꠧ ꠌꠣꠟꠥ ꠇꠞꠂꠘ।",
+    "smartRepliesUndo": "ꠀꠉꠞ ꠝꠔꠧ ꠇꠞꠂꠘ",
+    "turnOffSmartReplies": "ꠙꠞꠣꠝꠞ꠆ꠡ ꠖꠤꠅꠣ ꠎꠛꠣꠛ ꠛꠘ꠆ꠗ ꠇꠞꠂꠘ",
     "encrypted": "এন্ড-টু-এন্ড এনক্রিপ্টেড",
     "encryptionOff": "এই ডিভাইসো এনক্রিপশন বন্ধ আসে",
     "encryptionTurnOn": "চালু করউ",

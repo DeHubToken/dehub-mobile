@@ -76,6 +76,8 @@ interface SmartReplyTrayProps {
   /** Card tapped: the text goes into the composer, unsent. */
   onPick: (text: string) => void;
   onDismiss: () => void;
+  /** Label for the x - the composer owns the copy, because it owns the `t`. */
+  dismissLabel?: string;
 }
 
 /**
@@ -99,6 +101,7 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
   onGenerate,
   onPick,
   onDismiss,
+  dismissLabel,
 }) => {
   // 'idle' is unresolved, not empty: the call is on its way, so it reads as
   // loading rather than as a tray with nothing in it.
@@ -246,7 +249,7 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
           hitSlop={10}
           style={{ position: "absolute", right: 2, top: 2, padding: 6 }}
           accessibilityRole="button"
-          accessibilityLabel="Hide suggested replies"
+          accessibilityLabel={dismissLabel ?? "Turn off suggested replies"}
         >
           <Icon name="X" size={14} color="#6F7174" />
         </TouchableOpacity>

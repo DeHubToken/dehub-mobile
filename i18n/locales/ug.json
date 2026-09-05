@@ -58,6 +58,8 @@
     "live": "جانلىق"
   },
   "settings": {
+    "smartReplies": "تەۋسىيە جاۋابلار",
+    "smartRepliesDesc": "پاراڭدا چېكەلەيدىغان ئىككى جاۋاب تەييارلايدۇ. تەۋسىيەلەردىكى × بۇنى ئېتىدۇ.",
     "title": "تەڭشەكلەر",
     "manageAccount": "ھېسابات ۋە مايىللىقلىرىڭىزنى باشقۇرۇڭ",
     "logOut": "چىقىش",
@@ -1113,6 +1115,10 @@
     "clearNotification": "ئۇقتۇرۇشنى تازىلاش"
   },
   "messages": {
+    "smartRepliesOff": "تەۋسىيە جاۋابلار ئېتىلدى",
+    "smartRepliesOffWhere": "ئۇلارنى تەڭشەكلەر ← ئۇچۇرلار دىن قايتا ئېچىڭ.",
+    "smartRepliesUndo": "يېنىۋېلىش",
+    "turnOffSmartReplies": "تەۋسىيە جاۋابلارنى ئېتىش",
     "encrypted": "ئۇچتىن ئۇچقىچە شىفىرلانغان",
     "encryptionOff": "بۇ ئۈسكۈنىدە شىفىرلاش ئېتىۋېتىلگەن",
     "encryptionTurnOn": "قوزغىتىش",

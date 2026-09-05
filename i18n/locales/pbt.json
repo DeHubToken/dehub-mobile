@@ -58,6 +58,8 @@
     "live": "ژوندی"
   },
   "settings": {
+    "smartReplies": "وړاندیز شوي ځوابونه",
+    "smartRepliesDesc": "دوه ځوابونه چمتو کوي چې په خبرو اترو کې یې ټک کولی شئ. په وړاندیزونو کې × دا بندوي.",
     "title": "تنظیمات",
     "manageAccount": "خپل حساب او ترجیحات اداره کړئ",
     "logOut": "وتل",
@@ -1212,6 +1214,10 @@
     "loginRequired": "ننوتل اړین دي"
   },
   "messages": {
+    "smartRepliesOff": "وړاندیز شوي ځوابونه بند شول",
+    "smartRepliesOffWhere": "هغه له تنظیمات ← پیغامونه څخه بیا فعال کړئ.",
+    "smartRepliesUndo": "بیرته",
+    "turnOffSmartReplies": "وړاندیز شوي ځوابونه بند کړئ",
     "encrypted": "له سره تر سره کوډ شوی",
     "encryptionOff": "په دې وسیله کې کوډبندي فعاله نه ده",
     "encryptionTurnOn": "فعال کړئ",

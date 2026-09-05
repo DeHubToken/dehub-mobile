@@ -58,6 +58,8 @@
     "live": "زنده"
   },
   "settings": {
+    "smartReplies": "پاسخ‌های پیشنهادی",
+    "smartRepliesDesc": "دو پاسخ آماده می‌کند که می‌توانید در گفت‌وگو روی آن‌ها بزنید. × روی پیشنهادها این را خاموش می‌کند.",
     "title": "تنظیمات",
     "manageAccount": "مدیریت حساب و ترجیحات شما",
     "logOut": "خروج",
@@ -1212,6 +1214,10 @@
     "attachmentTooLarge": "هر فایل باید کمتر از ۲۰ مگابایت باشد"
   },
   "messages": {
+    "smartRepliesOff": "پاسخ‌های پیشنهادی خاموش شد",
+    "smartRepliesOffWhere": "از تنظیمات ← پیام‌ها دوباره روشنش کنید.",
+    "smartRepliesUndo": "واگرد",
+    "turnOffSmartReplies": "خاموش کردن پاسخ‌های پیشنهادی",
     "encrypted": "رمزگذاری سرتاسری",
     "encryptionOff": "رمزگذاری روی این دستگاه فعال نیست",
     "encryptionTurnOn": "فعال کردن",

@@ -58,6 +58,8 @@
     "live": "Kɛnɛ"
   },
   "settings": {
+    "smartReplies": "Jaabi fɔlenw",
+    "smartRepliesDesc": "A bɛ jaabi fila sɛbɛn i bɛ se ka digi min kan baro kɔnɔ. × min bɛ fɔlenw kan, o bɛ nin faga.",
     "title": "Sɔrɔw",
     "manageAccount": "Kɔrɔbɔw kɛ",
     "logOut": "Sɔgɔma",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Sɔgɔma kɛ"
   },
   "messages": {
+    "smartRepliesOff": "Jaabi fɔlenw fagara",
+    "smartRepliesOffWhere": "Aw bɛ se k'u lawuli tuguni Sɔrɔw → Kɔrɔbɔw kɔnɔ.",
+    "smartRepliesUndo": "A segin",
+    "turnOffSmartReplies": "Jaabi fɔlenw faga",
     "encrypted": "Kunnafoni datugu ka bɔ fan bɛɛ",
     "encryptionOff": "Dogoli tɛ nin minɛn in kan",
     "encryptionTurnOn": "A daminɛ",

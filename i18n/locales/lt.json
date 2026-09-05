@@ -58,6 +58,8 @@
     "live": "Tiesiogiai"
   },
   "settings": {
+    "smartReplies": "Siūlomi atsakymai",
+    "smartRepliesDesc": "Parengia du atsakymus, kuriuos gali paliesti pokalbyje. × prie pasiūlymų tai išjungia.",
     "title": "Nustatymai",
     "manageAccount": "Tvarkykite savo paskyrą ir nuostatas",
     "logOut": "Atsijungti",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Reikia prisijungti"
   },
   "messages": {
+    "smartRepliesOff": "Siūlomi atsakymai išjungti",
+    "smartRepliesOffWhere": "Vėl juos įjunk skiltyje Nustatymai → Žinutės.",
+    "smartRepliesUndo": "Anuliuoti",
+    "turnOffSmartReplies": "Išjungti siūlomus atsakymus",
     "encrypted": "Užšifruota ištisai",
     "encryptionOff": "Šiame įrenginyje šifravimas išjungtas",
     "encryptionTurnOn": "Įjungti",

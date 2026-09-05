@@ -58,6 +58,8 @@
     "live": "En vivo"
   },
   "settings": {
+    "smartReplies": "Respuestas sugeridas",
+    "smartRepliesDesc": "Redacta dos respuestas que puedes tocar en un chat. La × de las sugerencias lo desactiva.",
     "title": "Ajustes",
     "manageAccount": "Administra tu cuenta y preferencias",
     "logOut": "Cerrar sesión",
@@ -1113,6 +1115,10 @@
     "clearNotification": "Borrar notificación"
   },
   "messages": {
+    "smartRepliesOff": "Respuestas sugeridas desactivadas",
+    "smartRepliesOffWhere": "Vuelve a activarlas en Ajustes → Mensajes.",
+    "smartRepliesUndo": "Deshacer",
+    "turnOffSmartReplies": "Desactivar las respuestas sugeridas",
     "encrypted": "Cifrado de extremo a extremo",
     "encryptionOff": "Cifrado desactivado en este dispositivo",
     "encryptionTurnOn": "Activar",

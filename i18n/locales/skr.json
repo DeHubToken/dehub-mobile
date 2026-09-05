@@ -58,6 +58,8 @@
     "live": "لائیو"
   },
   "settings": {
+    "smartReplies": "تجویز کیتے ڳئے جواب",
+    "smartRepliesDesc": "ڳالھ ٻات وچ ٹیپ کرݨ آلے ڳوں جواب تیار کریندے۔ تجویزاں تے × ایں کوں بند کر ڈیندے۔",
     "title": "ترتیباں",
     "manageAccount": "اپݨا اکاؤنٹ تے ترجیحاں سنبھالو",
     "logOut": "لاگ آؤٹ",
@@ -1212,6 +1214,10 @@
     "loginRequired": "لاگ ان ضروری ہے"
   },
   "messages": {
+    "smartRepliesOff": "تجویز کیتے ڳئے جواب بند تھی ڳئے",
+    "smartRepliesOffWhere": "اونھاں کوں ترتیباں ← پیغام کنوں ولدا آن کرو۔",
+    "smartRepliesUndo": "واپس",
+    "turnOffSmartReplies": "تجویز کیتے ڳئے جواب بند کرو",
     "encrypted": "اینڈ ٹو اینڈ انکرپٹڈ",
     "encryptionOff": "ایں ڈیوائس تے انکرپشن بند ہے",
     "encryptionTurnOn": "چالو کرو",

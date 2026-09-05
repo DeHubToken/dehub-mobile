@@ -58,6 +58,8 @@
     "live": "Ora"
   },
   "settings": {
+    "smartReplies": "Ngā whakautu tūtohu",
+    "smartRepliesDesc": "Ka tuhi i ētahi whakautu e rua hei pāwhiri i te kōrero. Mā te × i runga i ngā tūtohu e whakaweto.",
     "title": "Tautuhinga",
     "manageAccount": "Whakahaere i tō pūkete me ō hiahia",
     "logOut": "Takiputa",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Me takiuru"
   },
   "messages": {
+    "smartRepliesOff": "Kua whakawetohia ngā whakautu tūtohu",
+    "smartRepliesOffWhere": "Whakahohea anō i Tautuhinga → Karere.",
+    "smartRepliesUndo": "Whakakore",
+    "turnOffSmartReplies": "Whakawetohia ngā whakautu tūtohu",
     "encrypted": "Whakamunatia mai i tētahi pito ki tētahi",
     "encryptionOff": "Kua weto te whakamunatanga i tēnei pūrere",
     "encryptionTurnOn": "Whakahohea",

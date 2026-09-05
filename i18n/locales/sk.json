@@ -136,6 +136,8 @@
     "followSuggestions": "Follow Suggestions"
   },
   "settings": {
+    "smartReplies": "Navrhované odpovede",
+    "smartRepliesDesc": "Pripraví dve odpovede, na ktoré v chate klepneš. × pri návrhoch to vypne.",
     "title": "Nastavenia",
     "manageAccount": "Spravujte svoj účet a preferencie",
     "logOut": "Odhlásiť sa",
@@ -592,6 +594,10 @@
     "clearNotification": "Vymazať upozornenie"
   },
   "messages": {
+    "smartRepliesOff": "Navrhované odpovede sú vypnuté",
+    "smartRepliesOffWhere": "Znova ich zapneš v Nastavenia → Správy.",
+    "smartRepliesUndo": "Späť",
+    "turnOffSmartReplies": "Vypnúť navrhované odpovede",
     "encrypted": "Šifrované end-to-end",
     "encryptionOff": "Šifrovanie je na tomto zariadení vypnuté",
     "encryptionTurnOn": "Zapnúť",

@@ -58,6 +58,8 @@
     "live": "ਲਾਈਵ"
   },
   "settings": {
+    "smartReplies": "ਸੁਝਾਏ ਜਵਾਬ",
+    "smartRepliesDesc": "ਚੈਟ ਵਿੱਚ ਟੈਪ ਕਰਨ ਯੋਗ ਦੋ ਜਵਾਬ ਤਿਆਰ ਕਰਦਾ ਹੈ। ਸੁਝਾਵਾਂ ਉੱਤੇ ਲੱਗਾ × ਇਸਨੂੰ ਬੰਦ ਕਰ ਦਿੰਦਾ ਹੈ।",
     "title": "ਸੈਟਿੰਗਾਂ",
     "manageAccount": "ਆਪਣਾ ਖਾਤਾ ਅਤੇ ਤਰਜੀਹਾਂ ਪ੍ਰਬੰਧਿਤ ਕਰੋ",
     "logOut": "ਲੌਗ ਆਊਟ",
@@ -1143,6 +1145,10 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "smartRepliesOff": "ਸੁਝਾਏ ਜਵਾਬ ਬੰਦ ਕਰ ਦਿੱਤੇ",
+    "smartRepliesOffWhere": "ਇਹਨਾਂ ਨੂੰ ਸੈਟਿੰਗਾਂ → ਸੁਨੇਹੇ ਵਿੱਚ ਮੁੜ ਚਾਲੂ ਕਰੋ।",
+    "smartRepliesUndo": "ਵਾਪਸ ਕਰੋ",
+    "turnOffSmartReplies": "ਸੁਝਾਏ ਜਵਾਬ ਬੰਦ ਕਰੋ",
     "encrypted": "ਐਂਡ-ਟੂ-ਐਂਡ ਇਨਕ੍ਰਿਪਟਡ",
     "encryptionOff": "ਇਸ ਡਿਵਾਈਸ ਉੱਤੇ ਇਨਕ੍ਰਿਪਸ਼ਨ ਬੰਦ ਹੈ",
     "encryptionTurnOn": "ਚਾਲੂ ਕਰੋ",

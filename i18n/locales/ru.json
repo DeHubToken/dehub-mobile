@@ -58,6 +58,8 @@
     "live": "Прямой эфир"
   },
   "settings": {
+    "smartReplies": "Предлагаемые ответы",
+    "smartRepliesDesc": "Готовит два ответа, которые можно нажать в чате. × на подсказках отключает это.",
     "title": "Настройки",
     "manageAccount": "Управление аккаунтом и настройками",
     "logOut": "Выйти",
@@ -1143,6 +1145,10 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "smartRepliesOff": "Предлагаемые ответы отключены",
+    "smartRepliesOffWhere": "Включите их снова в Настройки → Сообщения.",
+    "smartRepliesUndo": "Отменить",
+    "turnOffSmartReplies": "Отключить предлагаемые ответы",
     "encrypted": "Сквозное шифрование",
     "encryptionOff": "Шифрование на этом устройстве отключено",
     "encryptionTurnOn": "Включить",

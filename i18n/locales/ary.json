@@ -58,6 +58,8 @@
     "live": "لايف"
   },
   "settings": {
+    "smartReplies": "الردود المقترحة",
+    "smartRepliesDesc": "كيوجد جوجّ ردود تقدر تنقر عليهم فالمحادثة. علامة × على الاقتراحات كتطفيها.",
     "title": "الإعدادات",
     "manageAccount": "دبر الحساب ديالك والتفضيلات",
     "logOut": "خرج",
@@ -1212,6 +1214,10 @@
     "loginRequired": "خاصك تدخل"
   },
   "messages": {
+    "smartRepliesOff": "تطفاو الردود المقترحة",
+    "smartRepliesOffWhere": "رجّعهم من الإعدادات ← الرسائل.",
+    "smartRepliesUndo": "تراجع",
+    "turnOffSmartReplies": "طفي الردود المقترحة",
     "encrypted": "مشفّر من طرف إلى طرف",
     "encryptionOff": "التشفير ماشي مفعّل ف هاد الجهاز",
     "encryptionTurnOn": "فعّلو",

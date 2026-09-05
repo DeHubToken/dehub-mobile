@@ -58,6 +58,8 @@
     "live": "Live"
   },
   "settings": {
+    "smartReplies": "Përgjigje të sugjeruara",
+    "smartRepliesDesc": "Harton dy përgjigje që mund t'i prekësh në një bisedë. × te sugjerimet e çaktivizon këtë.",
     "title": "Cilësimet",
     "manageAccount": "Menaxho llogarinë dhe preferencat tuaja",
     "logOut": "Dil",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Kërkohet hyrja"
   },
   "messages": {
+    "smartRepliesOff": "Përgjigjet e sugjeruara u çaktivizuan",
+    "smartRepliesOffWhere": "Aktivizoji sërish te Cilësimet → Mesazhet.",
+    "smartRepliesUndo": "Zhbëj",
+    "turnOffSmartReplies": "Çaktivizo përgjigjet e sugjeruara",
     "encrypted": "I enkriptuar nga skaji në skaj",
     "encryptionOff": "Enkriptimi është i çaktivizuar në këtë pajisje",
     "encryptionTurnOn": "Aktivizo",

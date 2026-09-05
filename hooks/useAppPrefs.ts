@@ -24,6 +24,9 @@ const KEYS = {
   dimLights: 'dehub.dimLights',
   dimStrength: 'dehub.dimStrength',
   buyBotHidden: 'dehub_hide_buy_bot',
+  // Suggested replies in DMs. The x on the tray switches them off; the
+  // Messages settings tab switches them back on. Web's key name.
+  smartReplies: 'dehub_smart_replies',
   quietHoursEnabled: 'dehub_qh_enabled',
   quietHoursStart: 'dehub_qh_start',
   quietHoursEnd: 'dehub_qh_end',
@@ -48,6 +51,7 @@ export interface AppPrefs {
   dimLights: boolean;
   dimStrength: number;
   buyBotHidden: boolean;
+  smartReplies: boolean;
   quietHoursEnabled: boolean;
   quietHoursStart: number;
   quietHoursEnd: number;
@@ -70,6 +74,7 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   dimLights: false,
   dimStrength: 50,
   buyBotHidden: false,
+  smartReplies: true,
   quietHoursEnabled: false,
   quietHoursStart: 22,
   quietHoursEnd: 8,
@@ -118,6 +123,7 @@ function init() {
         dimLights: parseBool(get('dimLights'), DEFAULT_APP_PREFS.dimLights),
         dimStrength: parseNum(get('dimStrength'), DEFAULT_APP_PREFS.dimStrength),
         buyBotHidden: parseBool(get('buyBotHidden'), DEFAULT_APP_PREFS.buyBotHidden),
+        smartReplies: parseBool(get('smartReplies'), DEFAULT_APP_PREFS.smartReplies),
         quietHoursEnabled: parseBool(get('quietHoursEnabled'), DEFAULT_APP_PREFS.quietHoursEnabled),
         quietHoursStart: parseNum(get('quietHoursStart'), DEFAULT_APP_PREFS.quietHoursStart),
         quietHoursEnd: parseNum(get('quietHoursEnd'), DEFAULT_APP_PREFS.quietHoursEnd),

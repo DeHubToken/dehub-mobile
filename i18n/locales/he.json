@@ -58,6 +58,8 @@
     "live": "שידור חי"
   },
   "settings": {
+    "smartReplies": "תשובות מוצעות",
+    "smartRepliesDesc": "מנסח שתי תשובות שאפשר להקיש עליהן בצ'אט. ה-× שעל ההצעות מכבה את זה.",
     "title": "הגדרות",
     "manageAccount": "נהל את החשבון וההעדפות שלך",
     "logOut": "התנתק",
@@ -1143,6 +1145,10 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "smartRepliesOff": "התשובות המוצעות כובו",
+    "smartRepliesOffWhere": "אפשר להפעיל אותן שוב בהגדרות → הודעות.",
+    "smartRepliesUndo": "ביטול",
+    "turnOffSmartReplies": "כיבוי התשובות המוצעות",
     "encrypted": "מוצפן מקצה לקצה",
     "encryptionOff": "ההצפנה כבויה במכשיר הזה",
     "encryptionTurnOn": "הפעלה",

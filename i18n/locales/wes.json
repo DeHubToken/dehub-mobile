@@ -58,6 +58,8 @@
     "live": "Live"
   },
   "settings": {
+    "smartReplies": "Ansa dem weh wi propose",
+    "smartRepliesDesc": "E di rait tu ansa weh yu fit tosh fo chat. Da × fo di propose dem di of-am.",
     "title": "Settings",
     "manageAccount": "Manage your account and wetin you prefer",
     "logOut": "Log out",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Log in required"
   },
   "messages": {
+    "smartRepliesOff": "Dem don of di ansa dem weh wi propose",
+    "smartRepliesOffWhere": "Put-am on bak fo Settings → Messages.",
+    "smartRepliesUndo": "Undu-am",
+    "turnOffSmartReplies": "Of di ansa dem weh wi propose",
     "encrypted": "Encrypted from end to end",
     "encryptionOff": "Encryption no dey on for dis device",
     "encryptionTurnOn": "Put am on",

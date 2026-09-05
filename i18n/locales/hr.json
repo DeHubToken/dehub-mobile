@@ -58,6 +58,8 @@
     "live": "Uživo"
   },
   "settings": {
+    "smartReplies": "Predloženi odgovori",
+    "smartRepliesDesc": "Sastavlja dva odgovora koje možeš dodirnuti u chatu. × na prijedlozima to isključuje.",
     "title": "Postavke",
     "manageAccount": "Upravljajte računom i postavkama",
     "logOut": "Odjava",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Potrebna prijava"
   },
   "messages": {
+    "smartRepliesOff": "Predloženi odgovori isključeni",
+    "smartRepliesOffWhere": "Ponovno ih uključi u Postavke → Poruke.",
+    "smartRepliesUndo": "Poništi",
+    "turnOffSmartReplies": "Isključi predložene odgovore",
     "encrypted": "Šifrirano s kraja na kraj",
     "encryptionOff": "Šifriranje je isključeno na ovom uređaju",
     "encryptionTurnOn": "Uključi",

@@ -58,6 +58,8 @@
     "live": "ផ្សាយផ្ទាល់"
   },
   "settings": {
+    "smartReplies": "ចម្លើយដែលបានស្នើ",
+    "smartRepliesDesc": "រៀបចំចម្លើយពីរដែលអ្នកអាចចុចក្នុងការជជែក។ សញ្ញា × លើសំណើបិទមុខងារនេះ។",
     "title": "ការកំណត់",
     "manageAccount": "គ្រប់គ្រងគណនី និងចំណូលចិត្តរបស់អ្នក",
     "logOut": "ចាកចេញ",
@@ -1225,6 +1227,10 @@
     "loginRequired": "តម្រូវឲ្យចូល"
   },
   "messages": {
+    "smartRepliesOff": "បានបិទចម្លើយដែលបានស្នើ",
+    "smartRepliesOffWhere": "បើកវាឡើងវិញនៅ ការកំណត់ → សារ។",
+    "smartRepliesUndo": "មិនធ្វើវិញ",
+    "turnOffSmartReplies": "បិទចម្លើយដែលបានស្នើ",
     "encrypted": "អ៊ិនគ្រីបពីចុងដល់ចុង",
     "encryptionOff": "ការអ៊ិនគ្រីបត្រូវបានបិទនៅលើឧបករណ៍នេះ",
     "encryptionTurnOn": "បើក",

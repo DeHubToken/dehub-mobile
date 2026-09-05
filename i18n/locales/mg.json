@@ -58,6 +58,8 @@
     "live": "Mivantana"
   },
   "settings": {
+    "smartReplies": "Valiny atolotra",
+    "smartRepliesDesc": "Manoratra valiny roa azonao tsindriana anaty resaka. Ny × eo amin'ny soso-kevitra dia mamono azy.",
     "title": "Fikirana",
     "manageAccount": "Tantano ny kaontinao sy ny safidianao",
     "logOut": "Hivoaka",
@@ -1145,6 +1147,10 @@
     "loginRequired": "Ilaina ny fidirana"
   },
   "messages": {
+    "smartRepliesOff": "Novonoina ny valiny atolotra",
+    "smartRepliesOffWhere": "Avereno alefa ao amin'ny Fikirana → Hafatra.",
+    "smartRepliesUndo": "Averina",
+    "turnOffSmartReplies": "Vonoy ny valiny atolotra",
     "encrypted": "Voasafidy hatrany am-piandohana ka hatrany am-piafarana",
     "encryptionOff": "Maty ny fanafenana amin'ity fitaovana ity",
     "encryptionTurnOn": "Alefaso",

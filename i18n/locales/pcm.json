@@ -58,6 +58,8 @@
     "live": "Live"
   },
   "settings": {
+    "smartReplies": "Reply wey we suggest",
+    "smartRepliesDesc": "E dey write two reply wey you fit tap for chat. The × wey dey the suggestion dey off am.",
     "title": "Settings",
     "manageAccount": "Manage your account and how you like am",
     "logOut": "Log out",
@@ -1213,6 +1215,10 @@
     "loginRequired": "Login dey required"
   },
   "messages": {
+    "smartRepliesOff": "Dem don off the reply wey we suggest",
+    "smartRepliesOffWhere": "Turn am on again for Setins → Messages.",
+    "smartRepliesUndo": "Undo am",
+    "turnOffSmartReplies": "Off the reply wey we suggest",
     "encrypted": "Encrypted from end to end",
     "encryptionOff": "Encryption no dey on for dis device",
     "encryptionTurnOn": "Turn am on",

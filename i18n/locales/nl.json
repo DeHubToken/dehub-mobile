@@ -58,6 +58,8 @@
     "live": "Live"
   },
   "settings": {
+    "smartReplies": "Voorgestelde antwoorden",
+    "smartRepliesDesc": "Stelt twee antwoorden op die je in een chat kunt aantikken. De × bij de suggesties zet dit uit.",
     "title": "Instellingen",
     "manageAccount": "Beheer je account en voorkeuren",
     "logOut": "Uitloggen",
@@ -1576,6 +1578,10 @@
     "clearNotification": "Melding wissen"
   },
   "messages": {
+    "smartRepliesOff": "Voorgestelde antwoorden uitgezet",
+    "smartRepliesOffWhere": "Zet ze weer aan in Instellingen → Berichten.",
+    "smartRepliesUndo": "Ongedaan maken",
+    "turnOffSmartReplies": "Voorgestelde antwoorden uitzetten",
     "encrypted": "End-to-end versleuteld",
     "encryptionOff": "Versleuteling staat uit op dit apparaat",
     "encryptionTurnOn": "Inschakelen",

@@ -58,6 +58,8 @@
     "live": "Canlı"
   },
   "settings": {
+    "smartReplies": "Önerilen yanıtlar",
+    "smartRepliesDesc": "Sohbette dokunabileceğin iki yanıt hazırlar. Önerilerdeki × bunu kapatır.",
     "ensHandle": "ENS adı",
     "ensHandleDesc": "Bir .eth adının sahibi olduğunuzu kanıtlayın; böylece dehub.io/adiniz.eth adresinden de erişilebilir olun. Kullanıcı adınız değişmez.",
     "ensLinkedDesc": "Ayrıca dehub.io/{{name}} adresindesiniz",
@@ -1234,6 +1236,10 @@
     "followSuggestions": "Takip Önerileri"
   },
   "messages": {
+    "smartRepliesOff": "Önerilen yanıtlar kapatıldı",
+    "smartRepliesOffWhere": "Ayarlar → Mesajlar bölümünden yeniden aç.",
+    "smartRepliesUndo": "Geri al",
+    "turnOffSmartReplies": "Önerilen yanıtları kapat",
     "encrypted": "Uçtan uca şifreli",
     "encryptionOff": "Bu cihazda şifreleme kapalı",
     "encryptionTurnOn": "Aç",

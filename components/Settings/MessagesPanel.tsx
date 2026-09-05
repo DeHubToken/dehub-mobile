@@ -22,11 +22,15 @@ import {
   Divider,
 } from './SettingsPrimitives';
 import { toastInfo } from '../../libs';
+import { setAppPref, useAppPrefs } from '../../hooks/useAppPrefs';
 
 const MessagesPanel: React.FC<{ onOpenFreeAccessList: () => void }> = ({
   onOpenFreeAccessList,
 }) => {
   const { t } = useTranslation();
+  // The x on the suggestion tray switches this off, which is the only way
+  // most people will ever meet this row - so it has to be findable after.
+  const smartReplies = useAppPrefs().smartReplies;
 
   return (
     <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
@@ -51,6 +55,17 @@ const MessagesPanel: React.FC<{ onOpenFreeAccessList: () => void }> = ({
       </SettingsSection>
 
       <SettingsSection label={t('settings.preferences')} icon="Settings" anchor="message-preferences">
+        <SettingsToggleRow
+          icon="WandSparkles"
+          label={t('settings.smartReplies', 'Suggested replies')}
+          description={t(
+            'settings.smartRepliesDesc',
+            'Draft two replies you can tap in a chat. The × on the suggestions turns this off.',
+          )}
+          value={smartReplies}
+          onValueChange={(v) => setAppPref('smartReplies', v)}
+        />
+        <Divider />
         <SettingsToggleRow
           icon="Bell"
           label={t('settings.messageNotifications')}

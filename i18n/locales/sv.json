@@ -58,6 +58,8 @@
     "live": "Live"
   },
   "settings": {
+    "smartReplies": "Föreslagna svar",
+    "smartRepliesDesc": "Skriver två svar som du kan trycka på i en chatt. × på förslagen stänger av det.",
     "title": "Inställningar",
     "manageAccount": "Hantera ditt konto och dina inställningar",
     "logOut": "Logga ut",
@@ -1143,6 +1145,10 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "smartRepliesOff": "Föreslagna svar avstängda",
+    "smartRepliesOffWhere": "Slå på dem igen i Inställningar → Meddelanden.",
+    "smartRepliesUndo": "Ångra",
+    "turnOffSmartReplies": "Stäng av föreslagna svar",
     "encrypted": "Totalsträckskrypterad",
     "encryptionOff": "Kryptering är avstängd på den här enheten",
     "encryptionTurnOn": "Slå på",
