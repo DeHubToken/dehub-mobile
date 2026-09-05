@@ -1514,6 +1514,12 @@
     "noMenuMatches": "菜单中没有匹配项",
     "searchDehubFor": "在 DeHub 中搜索\"{{query}}\""
   },
+  "comments": {
+    "discardTitle": "要放弃你的评论吗？",
+    "discardBody": "已保存为草稿，回来时还在这里。",
+    "keepWriting": "继续写",
+    "closeAnyway": "仍然关闭"
+  },
   "postInfo": {
     "title": "帖子信息",
     "tokenId": "代币ID",

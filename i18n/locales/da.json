@@ -1514,6 +1514,12 @@
     "noMenuMatches": "Intet i menuen matcher",
     "searchDehubFor": "Søg efter “{{query}}” på DeHub"
   },
+  "comments": {
+    "discardTitle": "Kassér din kommentar?",
+    "discardBody": "Den er gemt som kladde, så den er her, når du kommer tilbage.",
+    "keepWriting": "Bliv ved med at skrive",
+    "closeAnyway": "Luk alligevel"
+  },
   "postInfo": {
     "title": "Opslags-info",
     "tokenId": "Token-ID",

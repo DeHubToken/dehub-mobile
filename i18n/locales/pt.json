@@ -1514,6 +1514,12 @@
     "noMenuMatches": "Nada no menu corresponde",
     "searchDehubFor": "Pesquisar «{{query}}» na DeHub"
   },
+  "comments": {
+    "discardTitle": "Descartar o seu comentário?",
+    "discardBody": "Está guardado como rascunho, por isso estará aqui quando voltar.",
+    "keepWriting": "Continuar a escrever",
+    "closeAnyway": "Fechar mesmo assim"
+  },
   "postInfo": {
     "title": "Info do Post",
     "tokenId": "Token ID",

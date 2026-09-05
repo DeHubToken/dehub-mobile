@@ -19,6 +19,12 @@ import CommentLikersSheet from "./CommentLikersSheet";
 import type { CommentLayout } from "./CommentContextMenu";
 import CommentMediaPreview from "./CommentMediaPreview";
 import type { MediaAttachment } from "./CommentMediaPreview";
+import {
+  loadCommentDraft,
+  saveCommentDraft,
+  clearCommentDraft,
+  type CommentDraft,
+} from "../../libs/comment-draft-cache";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "./VoiceNoteRecorder";
 import type { VoiceNoteResult } from "./VoiceNoteRecorder";
 import GifPicker from "../DM/GifPicker";
@@ -74,6 +80,32 @@ interface CommentSectionProps {
   commentsDisabled?: boolean;
   /** The post creator, for the Creator / Not-the-creator chips on comments. */
   postCreator?: PostCreator | null;
+  /**
+   * Fires whenever the composer goes from empty to holding something unsent,
+   * and back. The host sheet uses it to refuse to close mid-sentence.
+   * Must be stable; it is an effect dependency.
+   */
+  onDirtyChange?: (dirty: boolean) => void;
+}
+
+/**
+ * Rebuild the "Replying to @x" target from a stored draft.
+ *
+ * A stub: the id is what the server needs and the username is all the chip
+ * shows. Depth and rootParentId are missing, so an optimistic reply would be
+ * placed as if the target were top-level — the effect below swaps this for the
+ * real comment as soon as the thread loads, which is well before anyone can
+ * finish typing.
+ */
+function draftReplyTarget(draft: CommentDraft | null): Comment | null {
+  if (draft?.parentId == null) return null;
+  return {
+    id: draft.parentId,
+    content: "",
+    createdAt: new Date(draft.updatedAt).toISOString(),
+    likeCount: 0,
+    user: { username: draft.parentUsername },
+  } as Comment;
 }
 
 const PAGE_SIZE = 50;
@@ -93,6 +125,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   contentType = "video",
   commentsDisabled = false,
   postCreator,
+  onDirtyChange,
 }) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
@@ -110,10 +143,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     highlightCommentId != null ? Number(highlightCommentId) : null
   );
 
-  // Input state
-  const [inputText, setInputText] = useState("");
+  // Input state. Whatever was left unsent last time comes back with it — the
+  // text and the reply it was aimed at — read once so the two can't disagree.
+  const [restoredDraft] = useState(() => loadCommentDraft(tokenId));
+  const [inputText, setInputText] = useState(restoredDraft?.text ?? "");
   const mentions = useMentions(inputText, setInputText);
-  const [replyingTo, setReplyingTo] = useState<Comment | null>(null);
+  const [replyingTo, setReplyingTo] = useState<Comment | null>(() => draftReplyTarget(restoredDraft));
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
   const [posting, setPosting] = useState(false);
 
@@ -130,14 +165,56 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     flatComments.map((c) => c.id),
   );
 
-  // Media attachment state
-  const [mediaAttachment, setMediaAttachment] = useState<MediaAttachment | null>(null);
+  // Media attachment state. A GIF is a hosted URL, so it is the one attachment
+  // that can come back from a draft; an image or a voice note is a local file
+  // URI belonging to one app run.
+  const [mediaAttachment, setMediaAttachment] = useState<MediaAttachment | null>(
+    restoredDraft?.gifUrl ? { type: "gif", url: restoredDraft.gifUrl } : null,
+  );
   const [mediaPosting, setMediaPosting] = useState(false);
+
+  // Persist the composer on every keystroke, GIF and change of reply target.
+  // One entry per post, so switching reply target carries the text over
+  // instead of filing it under a key nothing reads again.
+  useEffect(() => {
+    // An edit borrows the same box. What is in it belongs to the comment being
+    // edited, not to a new one, so it must not overwrite the draft underneath.
+    if (editingComment) return;
+    saveCommentDraft(tokenId, {
+      text: inputText,
+      parentId: replyingTo ? Number(replyingTo.id) : undefined,
+      parentUsername: replyingTo?.user?.displayName || replyingTo?.user?.username,
+      gifUrl: mediaAttachment?.type === "gif" ? mediaAttachment.url : undefined,
+    });
+  }, [tokenId, inputText, replyingTo, mediaAttachment]);
+
+  // Something unsent in the box. The sheet reads this to refuse to close
+  // mid-sentence; an unmount reports clean so a closed sheet can't latch it on.
+  const hasUnsentContent = Boolean(inputText.trim() || mediaAttachment);
+  useEffect(() => {
+    onDirtyChange?.(hasUnsentContent);
+  }, [hasUnsentContent, onDirtyChange]);
+  useEffect(() => () => onDirtyChange?.(false), [onDirtyChange]);
+
+  // A reply target restored from a draft is a stub with no depth or root id.
+  // Swap it for the real comment once the thread has loaded, so the optimistic
+  // reply lands where it belongs. If that comment is not on this page, the stub
+  // stands — the server still gets the right parentId either way.
+  const draftStubPending = useRef(restoredDraft?.parentId != null);
+  useEffect(() => {
+    if (!draftStubPending.current || !replyingTo) return;
+    const real = flatComments.find((c) => Number(c.id) === Number(replyingTo.id));
+    if (!real) return;
+    draftStubPending.current = false;
+    setReplyingTo(real);
+  }, [flatComments, replyingTo]);
 
   // Voice recording callbacks (defined before hook call)
   const handleVoiceRecordingComplete = useCallback((result: VoiceNoteResult) => {
+    // The text is left alone. An attachment swaps the whole composer for its
+    // preview, so anything typed is out of sight either way — and blanking it
+    // here threw away a written comment the moment someone recorded a note.
     setMediaAttachment({ type: "audio", uri: result.uri, durationMs: result.durationMs });
-    setInputText("");
   }, []);
 
   const handleVoiceRecordingCancel = useCallback(() => {
@@ -382,19 +459,26 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const handleReply = useCallback((comment: Comment) => {
     setReplyingTo(comment);
     setEditingComment(null);
-    // Prefill @mention of the author being replied to
+    // Prefill @mention of the author being replied to — but only into an empty
+    // box. Aiming a half-written comment at someone must not overwrite it.
     const mentionName = comment.user?.username || comment.user?.displayName || "user";
-    setInputText(`@${mentionName} `);
+    setInputText((current) => (current.trim() ? current : `@${mentionName} `));
     inputRef.current?.focus();
   }, []);
 
   // Cancel reply or edit
   const cancelReplyOrEdit = useCallback(() => {
+    // Backing out of an EDIT puts back the draft that edit interrupted.
+    // Backing out of a REPLY keeps what is typed — it posts as a top-level
+    // comment instead. Blanking the box did neither: it destroyed a written
+    // comment on a tap meant only to change who it was aimed at.
+    if (editingComment) {
+      setInputText(loadCommentDraft(tokenId)?.text ?? "");
+      mentions.reset();
+    }
     setReplyingTo(null);
     setEditingComment(null);
-    setInputText("");
-    mentions.reset();
-  }, [mentions]);
+  }, [editingComment, tokenId, mentions]);
 
 
   // Pick image → open cropper → set preview
@@ -409,8 +493,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           quality: 0.85,
         });
         if (uri) {
+          // Typed text is kept — see handleVoiceRecordingComplete.
           setMediaAttachment({ type: "image", uri });
-          setInputText("");
           Keyboard.dismiss();
         }
       } catch (e: any) {
@@ -455,8 +539,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // GIF selected from picker
   const handleGifPicked = useCallback((url: string) => {
     setGifPickerVisible(false);
+    // Typed text is kept — see handleVoiceRecordingComplete.
     setMediaAttachment({ type: "gif", url });
-    setInputText("");
     Keyboard.dismiss();
   }, []);
 
@@ -596,6 +680,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       } catch (e) {
         console.error("[CommentSection] media post error", e);
         setFlatComments((prev) => prev.filter((c) => c.id !== tempId));
+        // Hand the attachment back rather than making them pick it again.
+        setMediaAttachment(savedMedia);
+        setReplyingTo(replyingTo);
         toastError("Failed to send media comment");
       } finally {
         setMediaPosting(false);
@@ -623,7 +710,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             )
           );
           setEditingComment(null);
-          setInputText("");
+          // Back to the draft the edit borrowed the box from, if there was one.
+          setInputText(loadCommentDraft(tokenId)?.text ?? "");
           mentions.reset();
           Keyboard.dismiss();
 
@@ -684,6 +772,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           }
 
           const replyToId = replyingTo ? Number(replyingTo.id) : undefined;
+          clearCommentDraft(tokenId);
           setReplyingTo(null);
           setInputText("");
           mentions.reset();
@@ -727,6 +816,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         } else {
           // Revert optimistic comment
           setFlatComments((prev) => prev.filter((c) => c.id !== tempId));
+          // And put the message back in the box. It was cleared the moment
+          // Post was tapped, so a refusal used to destroy what was written —
+          // the one moment losing it hurts most. The draft store follows the
+          // state, so this lands on disk too.
+          setInputText(text);
+          setReplyingTo(replyingTo);
         }
         
         // The server's own words when it has them: a refusal explains itself,

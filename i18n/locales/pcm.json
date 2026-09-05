@@ -1511,6 +1511,12 @@
     "noMenuMatches": "Nothing for di menu match",
     "searchDehubFor": "Search \"{{query}}\" for DeHub"
   },
+  "comments": {
+    "discardTitle": "You wan trowey your comment?",
+    "discardBody": "We don save am as draft, so e go still dey here when you come back.",
+    "keepWriting": "Continue to write",
+    "closeAnyway": "Close am sef"
+  },
   "postInfo": {
     "title": "Post Info",
     "tokenId": "Token ID",

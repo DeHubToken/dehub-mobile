@@ -1510,6 +1510,12 @@
     "noMenuMatches": "บ่มีหยังในเมนูที่ตรงกัน",
     "searchDehubFor": "ค้นหา \"{{query}}\" อยู่ DeHub"
   },
+  "comments": {
+    "discardTitle": "ปะคำเห็นของเจ้าบ่?",
+    "discardBody": "จดไว้เป็นฮ่างแล้ว กลับมาเมื่อใดกะยังอยู่บ่อนนี้",
+    "keepWriting": "เขียนต่อไป",
+    "closeAnyway": "ปิดคือเก่า"
+  },
   "postInfo": {
     "title": "ข้อมูลโพสต์",
     "tokenId": "รหัสโทเคน",

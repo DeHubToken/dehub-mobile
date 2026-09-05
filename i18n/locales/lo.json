@@ -1510,6 +1510,12 @@
     "noMenuMatches": "ບໍ່ມີຫຍັງໃນເມນູທີ່ກົງກັນ",
     "searchDehubFor": "ຄົ້ນຫາ \"{{query}}\" ໃນ DeHub"
   },
+  "comments": {
+    "discardTitle": "ຍົກເລີກຄຳຄິດເຫັນຂອງທ່ານບໍ?",
+    "discardBody": "ມັນຖືກບັນທຶກເປັນຮ່າງແລ້ວ ດັ່ງນັ້ນມັນຈະຢູ່ນີ້ເມື່ອທ່ານກັບມາ.",
+    "keepWriting": "ຂຽນຕໍ່",
+    "closeAnyway": "ປິດຢູ່ດີ"
+  },
   "postInfo": {
     "title": "ຂໍ້ມູນໂພສ",
     "tokenId": "Token ID",

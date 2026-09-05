@@ -1527,6 +1527,12 @@
     "noMenuMatches": "მენიუში არაფერი ემთხვევა",
     "searchDehubFor": "მოძებნეთ „{{query}}“ DeHub-ზე"
   },
+  "comments": {
+    "discardTitle": "გსურთ კომენტარის გაუქმება?",
+    "discardBody": "შენახულია მონახაზად, ამიტომ დაბრუნებისას აქვე დაგხვდებათ.",
+    "keepWriting": "წერის გაგრძელება",
+    "closeAnyway": "მაინც დახურვა"
+  },
   "postInfo": {
     "title": "პოსტის ინფორმაცია",
     "tokenId": "ტოკენის ID",

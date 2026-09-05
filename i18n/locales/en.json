@@ -1625,6 +1625,12 @@
     "noMenuMatches": "Nothing in the menu matches",
     "searchDehubFor": "Search DeHub for \"{{query}}\""
   },
+  "comments": {
+    "discardTitle": "Discard your comment?",
+    "discardBody": "It's saved as a draft, so it will be here when you come back.",
+    "keepWriting": "Keep writing",
+    "closeAnyway": "Close anyway"
+  },
   "postInfo": {
     "title": "Post Info",
     "tokenId": "Token ID",

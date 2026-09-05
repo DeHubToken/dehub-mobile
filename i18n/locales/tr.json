@@ -1581,6 +1581,12 @@
     "noMenuMatches": "Menüde eşleşen bir şey yok",
     "searchDehubFor": "DeHub'ta \"{{query}}\" ara"
   },
+  "comments": {
+    "discardTitle": "Yorumun silinsin mi?",
+    "discardBody": "Taslak olarak kaydedildi, geri döndüğünde burada olacak.",
+    "keepWriting": "Yazmaya devam et",
+    "closeAnyway": "Yine de kapat"
+  },
   "postInfo": {
     "title": "Gönderi Bilgisi",
     "tokenId": "Token ID",

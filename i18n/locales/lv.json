@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Izvēlnē nekas nesakrīt",
     "searchDehubFor": "Meklēt “{{query}}” vietnē DeHub"
   },
+  "comments": {
+    "discardTitle": "Atmest komentāru?",
+    "discardBody": "Tas ir saglabāts kā melnraksts, tāpēc būs šeit, kad atgriezīsies.",
+    "keepWriting": "Turpināt rakstīt",
+    "closeAnyway": "Tomēr aizvērt"
+  },
   "postInfo": {
     "title": "Ieraksta informācija",
     "tokenId": "Žetona ID",

@@ -1973,6 +1973,12 @@
     "noMenuMatches": "Tiada yang sepadan dalam menu",
     "searchDehubFor": "Cari \"{{query}}\" di DeHub"
   },
+  "comments": {
+    "discardTitle": "Buang komen anda?",
+    "discardBody": "Ia disimpan sebagai draf, jadi ia akan ada di sini apabila anda kembali.",
+    "keepWriting": "Teruskan menulis",
+    "closeAnyway": "Tutup juga"
+  },
   "postInfo": {
     "title": "Post Info",
     "tokenId": "Token ID",

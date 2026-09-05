@@ -1775,6 +1775,12 @@
     "noMenuMatches": "Nic w menu nie pasuje",
     "searchDehubFor": "Szukaj „{{query}}\" w DeHub"
   },
+  "comments": {
+    "discardTitle": "Odrzucić komentarz?",
+    "discardBody": "Zapisaliśmy go jako szkic, więc będzie tu, gdy wrócisz.",
+    "keepWriting": "Pisz dalej",
+    "closeAnyway": "Zamknij mimo to"
+  },
   "postInfo": {
     "title": "Informacje o poście",
     "tokenId": "Token ID",

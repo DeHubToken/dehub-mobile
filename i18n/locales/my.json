@@ -1550,6 +1550,12 @@
     "noMenuMatches": "မီနူးတွင် ကိုက်ညီသည့်အရာ မရှိပါ",
     "searchDehubFor": "\"{{query}}\" ကို DeHub တွင် ရှာရန်"
   },
+  "comments": {
+    "discardTitle": "မှတ်ချက်ကို ဖျက်မလား။",
+    "discardBody": "မူကြမ်းအဖြစ် သိမ်းထားပြီးဖြစ်၍ ပြန်လာချိန်တွင် ဒီမှာရှိပါမည်။",
+    "keepWriting": "ဆက်ရေးမည်",
+    "closeAnyway": "ဘာဖြစ်ဖြစ် ပိတ်မည်"
+  },
   "postInfo": {
     "title": "ပို့စ်အချက်အလက်",
     "tokenId": "တိုကင် ID",

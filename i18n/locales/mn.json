@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Цэсэнд тохирох зүйл алга",
     "searchDehubFor": "DeHub дээр \"{{query}}\"-г хай"
   },
+  "comments": {
+    "discardTitle": "Сэтгэгдлээ хаях уу?",
+    "discardBody": "Ноорог болгон хадгалсан тул буцаж ирэхэд энд байх болно.",
+    "keepWriting": "Үргэлжлүүлэн бичих",
+    "closeAnyway": "Ямар ч байсан хаах"
+  },
   "postInfo": {
     "title": "Нийтлэлийн мэдээлэл",
     "tokenId": "Токен ID",

@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
-import { View, Modal, Pressable, Dimensions, StyleSheet } from "react-native";
+import { View, Text, Modal, Pressable, Dimensions, StyleSheet, Keyboard } from "react-native";
+import { useTranslation } from "react-i18next";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -50,16 +51,21 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   postCreator,
 }) => {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
   const SHEET_HEIGHT = SCREEN_HEIGHT * SHEET_FRACTION;
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
   const [activeTab, setActiveTab] = useState<SheetTab>("comments");
+  /** Something unsent in the composer — CommentSection tells us. */
+  const [hasUnsent, setHasUnsent] = useState(false);
+  const [confirming, setConfirming] = useState(false);
 
   useEffect(() => {
     if (visible) {
       setIsFullyClosed(false);
       setActiveTab("comments");
+      setConfirming(false);
       translateY.value = withTiming(0, {
         duration: 300,
         easing: Easing.out(Easing.cubic),
@@ -86,6 +92,38 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
     backdropOpacity.value = withTiming(0, { duration: 180 });
   }, [translateY, backdropOpacity, onClose, SHEET_HEIGHT]);
 
+  /**
+   * Nothing closes this sheet out from under someone mid-sentence.
+   *
+   * The backdrop, the swipe down and the Android back button all come through
+   * here, and while there is unsent text they raise a confirmation instead of
+   * closing. The text itself is safe either way — it is in the draft store
+   * before this runs (libs/comment-draft-cache) — but an unexpected dismiss
+   * still reads as "it deleted what I wrote".
+   */
+  const requestClose = useCallback(() => {
+    if (!hasUnsent) {
+      closeSheet();
+      return;
+    }
+    // Let the keyboard go first, or the confirmation lands under it.
+    Keyboard.dismiss();
+    setConfirming(true);
+  }, [hasUnsent, closeSheet]);
+
+  /** A swipe past the threshold: either it closes, or it springs back and asks. */
+  const handleSwipeEnd = useCallback(() => {
+    if (!hasUnsent) {
+      closeSheet();
+      return;
+    }
+    translateY.value = withTiming(0, { duration: 200, easing: Easing.out(Easing.cubic) });
+    Keyboard.dismiss();
+    setConfirming(true);
+  }, [hasUnsent, closeSheet, translateY]);
+
+  const onDirtyChange = useCallback((dirty: boolean) => setHasUnsent(dirty), []);
+
   const gesture = Gesture.Pan()
     .onUpdate((e) => {
       if (e.translationY > 0) {
@@ -94,7 +132,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
     })
     .onEnd((e) => {
       if (e.translationY > 100 || e.velocityY > 500) {
-        runOnJS(closeSheet)();
+        runOnJS(handleSwipeEnd)();
       } else {
         translateY.value = withTiming(0, {
           duration: 200,
@@ -119,13 +157,13 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
       transparent
       animationType="none"
       statusBarTranslucent
-      onRequestClose={closeSheet}
+      onRequestClose={requestClose}
     >
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Animated.View
           style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.5)" }, backdropStyle]}
         >
-          <Pressable style={{ flex: 1 }} onPress={closeSheet} />
+          <Pressable style={{ flex: 1 }} onPress={requestClose} />
         </Animated.View>
 
         <Animated.View
@@ -175,11 +213,12 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
           {activeTab === "comments" && (
             <CommentSection
               tokenId={tokenId}
-              onClose={closeSheet}
+              onClose={requestClose}
               highlightCommentId={highlightCommentId}
               contentType={contentType}
               commentsDisabled={commentsDisabled}
               postCreator={postCreator}
+              onDirtyChange={onDirtyChange}
             />
           )}
 
@@ -190,11 +229,67 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
           {activeTab === "reposts" && (
             <RepostTab tokenId={tokenId} />
           )}
+
+          {confirming && (
+            <View style={discardStyles.scrim}>
+              <View style={discardStyles.card}>
+                <Text style={discardStyles.title}>{t("comments.discardTitle")}</Text>
+                <Text style={discardStyles.body}>{t("comments.discardBody")}</Text>
+                <View style={discardStyles.row}>
+                  <Pressable
+                    style={[discardStyles.button, discardStyles.primary]}
+                    onPress={() => setConfirming(false)}
+                    accessibilityRole="button"
+                  >
+                    <Text style={discardStyles.primaryLabel}>{t("comments.keepWriting")}</Text>
+                  </Pressable>
+                  <Pressable
+                    style={[discardStyles.button, discardStyles.secondary]}
+                    onPress={() => {
+                      setConfirming(false);
+                      closeSheet();
+                    }}
+                    accessibilityRole="button"
+                  >
+                    <Text style={discardStyles.secondaryLabel}>{t("comments.closeAnyway")}</Text>
+                  </Pressable>
+                </View>
+              </View>
+            </View>
+          )}
         </Animated.View>
       </GestureHandlerRootView>
     </Modal>
   );
 };
+
+/** The "you're mid-sentence" confirmation, drawn over the sheet's own body. */
+const discardStyles = StyleSheet.create({
+  scrim: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 24,
+    backgroundColor: "rgba(0,0,0,0.7)",
+  },
+  card: {
+    width: "100%",
+    maxWidth: 320,
+    borderRadius: 16,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.12)",
+    backgroundColor: "#141416",
+    padding: 16,
+  },
+  title: { color: "#F9FBFF", fontSize: 15, fontWeight: "600", textAlign: "center" },
+  body: { color: "#9CA0A6", fontSize: 13, lineHeight: 18, textAlign: "center", marginTop: 6 },
+  row: { flexDirection: "row", gap: 8, marginTop: 16 },
+  button: { flex: 1, height: 42, borderRadius: 12, alignItems: "center", justifyContent: "center" },
+  primary: { backgroundColor: "#F9FBFF" },
+  primaryLabel: { color: "#010305", fontSize: 14, fontWeight: "600" },
+  secondary: { borderWidth: StyleSheet.hairlineWidth, borderColor: "rgba(255,255,255,0.18)" },
+  secondaryLabel: { color: "#C9CCD1", fontSize: 14, fontWeight: "500" },
+});
 
 const glassStyles = StyleSheet.create({
   sheet: {

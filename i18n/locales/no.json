@@ -1502,6 +1502,12 @@
     "noMenuMatches": "Ingenting i menyen samsvarer",
     "searchDehubFor": "Søk etter «{{query}}» på DeHub"
   },
+  "comments": {
+    "discardTitle": "Forkaste kommentaren?",
+    "discardBody": "Den er lagret som utkast, så den ligger her når du kommer tilbake.",
+    "keepWriting": "Fortsett å skrive",
+    "closeAnyway": "Lukk likevel"
+  },
   "postInfo": {
     "title": "Innleggsinformasjon",
     "tokenId": "Token-ID",

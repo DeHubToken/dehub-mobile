@@ -1510,6 +1510,12 @@
     "noMenuMatches": "مينيو ۾ ڪجهه به نٿو ملي",
     "searchDehubFor": "DeHub تي \"{{query}}\" ڳوليو"
   },
+  "comments": {
+    "discardTitle": "پنهنجو تبصرو ڇڏي ڏيو؟",
+    "discardBody": "اهو مسودي طور محفوظ آهي، واپس اچڻ تي هتي ئي ملندو.",
+    "keepWriting": "لکندا رهو",
+    "closeAnyway": "پوءِ به بند ڪريو"
+  },
   "postInfo": {
     "title": "پوسٽ معلومات",
     "tokenId": "ٽوڪن ID",

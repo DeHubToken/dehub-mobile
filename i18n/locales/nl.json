@@ -1965,6 +1965,12 @@
     "noMenuMatches": "Niets in het menu komt overeen",
     "searchDehubFor": "Zoek op DeHub naar \"{{query}}\""
   },
+  "comments": {
+    "discardTitle": "Reactie verwijderen?",
+    "discardBody": "Hij is opgeslagen als concept, dus hij staat hier nog als je terugkomt.",
+    "keepWriting": "Verder schrijven",
+    "closeAnyway": "Toch sluiten"
+  },
   "postInfo": {
     "title": "Berichtinfo",
     "tokenId": "Token-ID",

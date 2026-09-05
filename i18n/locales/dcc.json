@@ -1510,6 +1510,12 @@
     "noMenuMatches": "مینو میں کچھ نکو مل رہا",
     "searchDehubFor": "DeHub پر \"{{query}}\" ڈھونڈو"
   },
+  "comments": {
+    "discardTitle": "اپنا تبصرہ چھوڑ دینا ہے؟",
+    "discardBody": "یہ مسودے میں محفوظ ہے، واپس آنے پر یہیں ملے گا۔",
+    "keepWriting": "لکھتے رہو",
+    "closeAnyway": "پھر بھی بند کرو"
+  },
   "postInfo": {
     "title": "پوسٹ معلومات",
     "tokenId": "ٹوکن آئی ڈی",

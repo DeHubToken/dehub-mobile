@@ -1514,6 +1514,12 @@
     "noMenuMatches": "Nic v nabídce neodpovídá",
     "searchDehubFor": "Hledat „{{query}}“ na DeHubu"
   },
+  "comments": {
+    "discardTitle": "Zahodit komentář?",
+    "discardBody": "Uložili jsme ho jako koncept, takže tu bude, až se vrátíš.",
+    "keepWriting": "Psát dál",
+    "closeAnyway": "Přesto zavřít"
+  },
   "postInfo": {
     "title": "Informace o příspěvku",
     "tokenId": "ID tokenu",

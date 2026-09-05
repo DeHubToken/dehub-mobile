@@ -1540,6 +1540,12 @@
     "noMenuMatches": "Nüt im Menü passt",
     "searchDehubFor": "Uf DeHub noch \"{{query}}\" sueche"
   },
+  "comments": {
+    "discardTitle": "Kommentar verwärfe?",
+    "discardBody": "Er isch als Entwurf gspeicheret und isch no da, wenn du zrugg chunnsch.",
+    "keepWriting": "Wiiterschribe",
+    "closeAnyway": "Trotzdem zuemache"
+  },
   "postInfo": {
     "title": "Biitragsinformation",
     "tokenId": "Token-ID",

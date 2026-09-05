@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Res del menú no coincideix",
     "searchDehubFor": "Cerca «{{query}}» a DeHub"
   },
+  "comments": {
+    "discardTitle": "Vols descartar el comentari?",
+    "discardBody": "S'ha desat com a esborrany, així que hi serà quan tornis.",
+    "keepWriting": "Continua escrivint",
+    "closeAnyway": "Tanca igualment"
+  },
   "postInfo": {
     "title": "Informació de la publicació",
     "tokenId": "ID del token",

@@ -1510,6 +1510,12 @@
     "noMenuMatches": "Tiştek di menuyê de li hev nake",
     "searchDehubFor": "Li DeHub li \"{{query}}\" bigere"
   },
+  "comments": {
+    "discardTitle": "Şîroveya xwe bavêjî?",
+    "discardBody": "Wek reşnivîs hate tomarkirin, dema vegerî wê li vir be.",
+    "keepWriting": "Berdewam binivîse",
+    "closeAnyway": "Dîsa jî bigire"
+  },
   "postInfo": {
     "title": "Agahiya postê",
     "tokenId": "Token ID",
