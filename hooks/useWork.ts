@@ -613,12 +613,42 @@ function useWorkPayout() {
     // released total, and removes the Pay button, leaving no way to settle
     // the worker from the app. Same guard as post-quota-payment.ts and
     // useAiPayment.ts.
-    const receipt = await res.wait(1);
+    //
+    // A wait that *rejects* is the opposite case and must not be treated the
+    // same way. The transfer is already broadcast by then — an RPC that times
+    // out or drops the connection says nothing about whether it landed — so
+    // throwing here would discard the hash of money that has left the wallet,
+    // leave the row unpaid with its Pay button intact, and invite the poster
+    // to send it a second time. Keep the hash and let the row record it.
+    let receipt: any;
+    try {
+      receipt = await res.wait(1);
+    } catch {
+      return res?.hash || "";
+    }
     if (receipt && receipt.status !== undefined && receipt.status !== 1) {
       throw new Error("The DHB transfer did not go through. Nothing has been paid out.");
     }
     return res?.hash || receipt?.transactionHash || receipt?.hash || "";
   };
+}
+
+/**
+ * Refuse to pay a submission that already carries a payout hash.
+ *
+ * Read straight from the table rather than from the row the screen rendered:
+ * the guard has to see a payout written by the web app, another device, or
+ * this poster's own previous attempt that only looked like it failed.
+ */
+async function assertUnpaid(submissionId: string) {
+  const { data } = await supabase
+    .from(TBL_SUBS)
+    .select("payout_tx_hash")
+    .eq("id", submissionId)
+    .maybeSingle();
+  if ((data as any)?.payout_tx_hash) {
+    throw new Error("This submission has already been paid.");
+  }
 }
 
 /**
@@ -644,6 +674,8 @@ export function useApproveSubmission() {
     }) => {
       if (!wallet) throw new Error("Not authenticated");
       const addr = wallet.toLowerCase();
+
+      if (params.pay) await assertUnpaid(params.submission_id);
 
       const txHash = params.pay
         ? await payout(params.currency, params.worker_address, params.payout_amount)
@@ -703,6 +735,8 @@ export function usePaySubmission() {
     }) => {
       if (!wallet) throw new Error("Not authenticated");
       const addr = wallet.toLowerCase();
+
+      await assertUnpaid(params.submission_id);
 
       const txHash = await payout(params.currency, params.worker_address, params.payout_amount);
 
