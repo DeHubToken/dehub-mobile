@@ -120,27 +120,37 @@ const CaptionOverlay: React.FC<Props> = ({
   // synthesiser knows qualify; the rest keep captions only.
   const dubLang = targetLang === 'original' ? null : dubLangFor(targetLang);
   const wantDub = dubOn && isReady && !!dubLang && !!player;
-  const { dub } = useVideoDub(transcript?.id ?? null, dubLang, wantDub);
+  const { dub, stalled: dubStalled } = useVideoDub(transcript?.id ?? null, dubLang, wantDub);
   useDubbedAudio({
     url: wantDub && dub?.status === 'ready' && dub.audio_url ? dub.audio_url : null,
     player,
     isPlaying,
   });
+  // A row that has not moved in ten minutes is not on its way — say so rather
+  // than spinning at someone indefinitely.
   const dubHint = !wantDub || dub?.status === 'ready'
     ? null
-    : dub?.status === 'failed'
+    : dub?.status === 'failed' || dubStalled
     ? t('dub.unavailable')
     : t('dub.preparing');
 
+  // Nothing to dub into while captions sit on Original, so the toggle borrows
+  // the app's language — but only when it can be voiced and is not already
+  // what was spoken. An English viewer on an English video has nowhere to go,
+  // and the pill has to say so by dimming: switching on and then doing
+  // nothing, with no hint, is how this looked broken.
+  const autoDubLang = useMemo(() => {
+    if (targetLang !== 'original') return null;
+    const guess = dubLangFor(i18n.language);
+    return guess && guess !== sourceLang ? guess : null;
+  }, [targetLang, i18n.language, sourceLang]);
+
+  const dubPossible = !!player && (!!dubLang || !!autoDubLang);
+
   const toggleDub = (next: boolean) => {
-    if (next && targetLang === 'original') {
-      // Nothing to dub into while captions sit on Original: switch to the
-      // app's language if it can be voiced and is not what was spoken.
-      const guess = dubLangFor(i18n.language);
-      if (guess && guess !== sourceLang) {
-        setLang(guess);
-        setSubtitleLang(guess);
-      }
+    if (next && autoDubLang) {
+      setLang(autoDubLang);
+      setSubtitleLang(autoDubLang);
     }
     setDubOn(next);
     setDubEnabled(next);
@@ -291,8 +301,8 @@ const CaptionOverlay: React.FC<Props> = ({
               </Pressable>
               <Pressable
                 onPress={() => toggleDub(true)}
-                disabled={!player}
-                style={[styles.pill, dubOn && styles.pillOn, !player && styles.pillOff]}
+                disabled={!dubPossible}
+                style={[styles.pill, dubOn && styles.pillOn, !dubPossible && styles.pillOff]}
               >
                 <Text style={styles.pillText}>{t('dub.dubbed')}</Text>
               </Pressable>
