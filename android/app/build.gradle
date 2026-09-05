@@ -171,9 +171,19 @@ android {
     // NOTE: for Play Store multi-APK upload each ABI needs a distinct
     // versionCode (e.g. an applicationVariants versionCodeOverride offset).
     // Not added here — unnecessary for AAB uploads and for local size checks.
+    // A bundle already carries every ABI and Play serves each device only the
+    // slice it needs, so splitting at build time is redundant there. Since
+    // AGP 8.x it is also fatal: R8 writes one shrunk-resources file per split
+    // and the bundle task refuses the ambiguity, failing at
+    // :app:buildReleasePreBundle (https://issuetracker.google.com/402800800).
+    // APK builds still split, which test-apk and release-apk rely on to pin a
+    // single artifact path.
+    def isBundleBuild = gradle.startParameter.taskNames.any {
+        it.toLowerCase().contains("bundle")
+    }
     splits {
         abi {
-            enable true
+            enable !isBundleBuild
             reset()
             include "armeabi-v7a", "arm64-v8a"
             universalApk false
