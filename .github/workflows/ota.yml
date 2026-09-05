@@ -124,8 +124,15 @@ jobs:
           MESSAGE="$(git log -1 --pretty=%s)"
           # Unquoted on purpose: this is a space-separated list, not one branch.
           for BRANCH in $UPDATE_BRANCHES; do
-            echo "Publishing to $BRANCH"
-            eas update --branch "$BRANCH" --message "$MESSAGE" --non-interactive
+            # Only the two platforms that ship. app.json still carries a web
+            # block from the Expo template and `--platform all` honours it, so a
+            # publish also bundles for web and dies on the first native-only
+            # import it meets (react-native-agora). The web product is a
+            # separate repo and never receives these updates.
+            for PLATFORM in android ios; do
+              echo "Publishing to $BRANCH ($PLATFORM)"
+              eas update --branch "$BRANCH" --platform "$PLATFORM" --message "$MESSAGE" --non-interactive
+            done
           done
 
       - name: Flag native changes an update cannot carry
