@@ -116,23 +116,46 @@ export async function tipNotify(params: {
 }
 
 
+/**
+ * The person being granted access is `userAddress`, not `address`.
+ *
+ * The server takes the list OWNER from the auth token and ignores any
+ * `address` in the body, so a body keyed `address` arrived with the one
+ * required field missing and came back 400 — both of these have always failed.
+ */
 export async function addFreeAccess(address: string): Promise<void> {
-  await apiClient.post("/dm/free-access", { address }, { isAuthRequired: true });
+  await apiClient.post(
+    "/dm/free-access",
+    { userAddress: address },
+    { isAuthRequired: true },
+  );
 }
 
 export async function removeFreeAccess(address: string): Promise<void> {
   await apiClient.delete("/dm/free-access", {
-    data: { address },
+    data: { userAddress: address },
     isAuthRequired: true,
   } as any);
 }
 
+/**
+ * The response is `{ success, address, data }`, where `data` holds account
+ * objects — not the bare array this used to claim. Callers treat the result as
+ * addresses (they filter it with `!==`), so the addresses are what comes back.
+ *
+ * Typed as an array it was never one, so `Array.isArray(list) ? list : []` at
+ * the call site discarded every response and the list rendered empty.
+ */
 export async function getFreeAccessList(
   creatorAddress: string,
 ): Promise<string[]> {
-  return apiClient.get<string[]>(`/dm/free-access/${creatorAddress}`, {
-    isAuthRequired: true,
-  });
+  const res = await apiClient.get<{ data?: Array<{ address?: string }> }>(
+    `/dm/free-access/${creatorAddress}`,
+    { isAuthRequired: true },
+  );
+  return (res?.data ?? [])
+    .map((u) => (u?.address || "").toLowerCase())
+    .filter(Boolean);
 }
 
 
