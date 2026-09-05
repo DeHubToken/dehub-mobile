@@ -9,11 +9,10 @@
  * holds one row per post per category, written by a `sync-category-log` edge
  * function that pulls from the feed API. Nothing here writes to it.
  *
- * **The counting happens on the client.** The table is paged in full and
- * tallied here rather than aggregated server-side. That is web's design and
- * this follows it, because a second, differently-rounded answer on the phone
- * would be worse than a slow one — but it does mean the cost grows with the
- * table, and both clients will want a server-side count eventually.
+ * **The counting happens in Postgres.** The `category_counts` RPC groups the
+ * log server-side and both clients call it, so the two still cannot disagree.
+ * Normalising and merging stays on this side, over the ~335 rows that come
+ * back rather than the 12,500 the table holds.
  *
  * **A "topic" is a CATEGORY.** Hashtags are folded into categories when a post
  * is created, and the raw tag is not stored anywhere, so a category is the
@@ -42,7 +41,6 @@ export interface CategoryCount {
 
 /** Dropped from the list on both clients. Keep in step with web's copy. */
 const EXCLUDED_CATEGORIES = new Set(["general", "", "-", "other"]);
-const PAGE_SIZE = 1000;
 const TRENDING_CACHE_MS = 60_000;
 
 function periodCutoff(period: TopicPeriod): string | null {
@@ -69,36 +67,23 @@ function normalize(raw: string | null | undefined): string {
   return (raw || "").trim().toLowerCase();
 }
 
-/** Page the log and tally it. Returns every category, ranked. */
+/** Ask Postgres for the tally. Returns every category, ranked. */
 async function fetchTrendingCategories(period: TopicPeriod): Promise<CategoryCount[]> {
-  const cutoff = periodCutoff(period);
-  const names: Array<string | null> = [];
-  let from = 0;
+  const { data, error } = await supabase.rpc("category_counts" as never, {
+    p_since: periodCutoff(period),
+  } as never);
+  if (error) throw error;
 
-  // Paged rather than one open-ended select: PostgREST caps a response, and a
-  // silent cap would make a long window quietly under-count instead of failing.
-  for (;;) {
-    let query = supabase
-      .from("category_post_log")
-      .select("name")
-      .range(from, from + PAGE_SIZE - 1);
-    if (cutoff) query = query.gte("posted_at", cutoff).order("posted_at", { ascending: false });
-
-    const { data, error } = await query;
-    if (error) throw error;
-
-    const chunk = data ?? [];
-    if (!chunk.length) break;
-    names.push(...chunk.map((row: any) => row.name));
-    if (chunk.length < PAGE_SIZE) break;
-    from += PAGE_SIZE;
-  }
-
+  const rows = (data ?? []) as Array<{ name: string | null; post_count: number | string }>;
   const counts = new Map<string, number>();
-  for (const raw of names) {
-    const name = normalize(raw);
+
+  // Still merged here rather than trusted straight from the group-by: two raw
+  // spellings can fold to the same key, and the exclusion list lives on the
+  // clients. Over ~335 rows that is free.
+  for (const row of rows) {
+    const name = normalize(row.name);
     if (!name || EXCLUDED_CATEGORIES.has(name)) continue;
-    counts.set(name, (counts.get(name) ?? 0) + 1);
+    counts.set(name, (counts.get(name) ?? 0) + Number(row.post_count ?? 0));
   }
 
   return Array.from(counts.entries())
