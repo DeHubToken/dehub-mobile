@@ -47,6 +47,22 @@ export interface DubRecord {
   audio_url: string | null;
   error: string | null;
   attempts: number;
+  updated_at: string | null;
+}
+
+/**
+ * How long a row may sit `pending` or `processing` before the player stops
+ * believing in it. The worker answers in well under a minute once it holds
+ * the job, so anything past this is a queue with nothing on the far end —
+ * and without a ceiling the sheet spins a "Preparing…" hint forever and
+ * re-polls every five seconds for as long as the player is mounted.
+ */
+const STALL_MS = 10 * 60_000;
+
+function isStalled(row: DubRecord | null): boolean {
+  if (!row || (row.status !== "pending" && row.status !== "processing")) return false;
+  const touched = row.updated_at ? Date.parse(row.updated_at) : NaN;
+  return Number.isFinite(touched) && Date.now() - touched > STALL_MS;
 }
 
 export function useVideoDub(transcriptId: string | null, lang: string | null, enabled: boolean) {
@@ -59,13 +75,15 @@ export function useVideoDub(transcriptId: string | null, lang: string | null, en
     enabled: wanted,
     staleTime: 60 * 60_000,
     refetchInterval: (q) => {
-      const s = (q.state.data as DubRecord | null)?.status;
-      return s === "pending" || s === "processing" ? 5000 : false;
+      const row = q.state.data as DubRecord | null;
+      const s = row?.status;
+      if (s !== "pending" && s !== "processing") return false;
+      return isStalled(row) ? false : 5000;
     },
     queryFn: async () => {
       const { data, error } = await (supabase as any)
         .from("video_dubs")
-        .select("status, audio_url, error, attempts")
+        .select("status, audio_url, error, attempts, updated_at")
         .eq("transcript_id", transcriptId!)
         .eq("language", lang!)
         .maybeSingle();
@@ -99,7 +117,12 @@ export function useVideoDub(transcriptId: string | null, lang: string | null, en
     void request();
   }, [wanted, query.isLoading, query.data, transcriptId, lang, request]);
 
-  return { dub: query.data ?? null, isLoading: query.isLoading, request };
+  return {
+    dub: query.data ?? null,
+    isLoading: query.isLoading,
+    request,
+    stalled: isStalled(query.data ?? null),
+  };
 }
 
 interface DubbedAudioOptions {
