@@ -349,7 +349,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setBalancesLoading,
     setUser,
     isMountedRef,
-    setAuthUser: (u: User) => setAuthUser(u),
+    // Passed by reference, not wrapped: a fresh arrow here is a new identity on
+    // every render, which invalidates patchUser and every callback built on it.
+    setAuthUser,
     getChainId: () => chainId,
   });
 
@@ -435,7 +437,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setProvisionalUser,
     setProvisionalToken,
     setUser,
-    setAuthUser: (u: User) => setAuthUser(u),
+    // Passed by reference, not wrapped: a fresh arrow here is a new identity on
+    // every render, which invalidates patchUser and every callback built on it.
+    setAuthUser,
     setBalancesLoading,
     setChainId: (id) => {}, // chainId is controlled by provider lifecycle; keep no-op here
     setShowSignInModal,
