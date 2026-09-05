@@ -58,6 +58,8 @@
     "live": "Түз эфир"
   },
   "settings": {
+    "smartReplies": "Сунушталган жооптор",
+    "smartRepliesDesc": "Чатта басууга боло турган эки жооп даярдайт. Сунуштардагы × муну өчүрөт.",
     "title": "Орнотуулар",
     "manageAccount": "Каттоо эсебиңизди жана каалоолоруңузду башкарыңыз",
     "logOut": "Чыгуу",
@@ -1113,6 +1115,10 @@
     "clearNotification": "Эскертмени тазалоо"
   },
   "messages": {
+    "smartRepliesOff": "Сунушталган жооптор өчүрүлдү",
+    "smartRepliesOffWhere": "Аларды Орнотуулар → Кабарлар бөлүмүнөн кайра күйгүзүңүз.",
+    "smartRepliesUndo": "Кайтаруу",
+    "turnOffSmartReplies": "Сунушталган жоопторду өчүрүү",
     "encrypted": "Толук шифрленген",
     "encryptionOff": "Бул түзмөктө шифрлөө өчүрүлгөн",
     "encryptionTurnOn": "Иштетүү",

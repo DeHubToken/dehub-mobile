@@ -58,6 +58,8 @@
     "live": "Lásìkò"
   },
   "settings": {
+    "smartReplies": "Àwọn èsì tí a dábàá",
+    "smartRepliesDesc": "Ó ń kọ èsì méjì tí o lè tẹ̀ nínú ìjíròrò. Àmì × lórí àwọn àbá ń pa á.",
     "title": "Ètò",
     "manageAccount": "Ṣàkóso àkáǹtì àti àwọn àṣàyàn rẹ",
     "logOut": "Jáde",
@@ -1213,6 +1215,10 @@
     "loginRequired": "Wíwọlé ni a nílò"
   },
   "messages": {
+    "smartRepliesOff": "A ti pa àwọn èsì tí a dábàá",
+    "smartRepliesOffWhere": "Tún wọn ṣí ní Ètò → Ìfiránṣẹ́.",
+    "smartRepliesUndo": "Yí padà",
+    "turnOffSmartReplies": "Pa àwọn èsì tí a dábàá",
     "encrypted": "Ìpamọ́ láti ìbẹ̀rẹ̀ dé òpin",
     "encryptionOff": "A ti pa ìsekóòdù lórí ẹ̀rọ yìí",
     "encryptionTurnOn": "Tàn án",

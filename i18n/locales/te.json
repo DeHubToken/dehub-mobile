@@ -58,6 +58,8 @@
     "live": "లైవ్"
   },
   "settings": {
+    "smartReplies": "సూచించిన సమాధానాలు",
+    "smartRepliesDesc": "చాట్‌లో నొక్కగలిగే రెండు సమాధానాలను సిద్ధం చేస్తుంది. సూచనలపై ఉన్న × దీన్ని ఆఫ్ చేస్తుంది.",
     "title": "సెట్టింగ్‌లు",
     "manageAccount": "మీ ఖాతా మరియు ప్రాధాన్యతలను నిర్వహించండి",
     "logOut": "లాగ్ అవుట్",
@@ -1143,6 +1145,10 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "smartRepliesOff": "సూచించిన సమాధానాలు ఆఫ్ చేయబడ్డాయి",
+    "smartRepliesOffWhere": "సెట్టింగ్‌లు → సందేశాలు లో వాటిని మళ్లీ ఆన్ చేయండి.",
+    "smartRepliesUndo": "రద్దు చేయి",
+    "turnOffSmartReplies": "సూచించిన సమాధానాలను ఆఫ్ చేయి",
     "encrypted": "ఎండ్-టు-ఎండ్ ఎన్‌క్రిప్టెడ్",
     "encryptionOff": "ఈ పరికరంలో ఎన్‌క్రిప్షన్ ఆన్‌లో లేదు",
     "encryptionTurnOn": "ఆన్ చేయండి",

@@ -58,6 +58,8 @@
     "live": "සජීවී"
   },
   "settings": {
+    "smartReplies": "යෝජිත පිළිතුරු",
+    "smartRepliesDesc": "කතාබහක තට්ටු කළ හැකි පිළිතුරු දෙකක් සකසයි. යෝජනා මත ඇති × එය අක්‍රිය කරයි.",
     "title": "සැකසුම්",
     "manageAccount": "ඔබේ ගිණුම සහ මනාපයන් කළමනාකරණය කරන්න",
     "logOut": "පිටවීම",
@@ -1225,6 +1227,10 @@
     "loginRequired": "පිවිසීම අවශ්‍යයි"
   },
   "messages": {
+    "smartRepliesOff": "යෝජිත පිළිතුරු අක්‍රිය කෙරිණි",
+    "smartRepliesOffWhere": "සැකසුම් → පණිවිඩ තුළින් නැවත සක්‍රිය කරන්න.",
+    "smartRepliesUndo": "පෙරසේ",
+    "turnOffSmartReplies": "යෝජිත පිළිතුරු අක්‍රිය කරන්න",
     "encrypted": "අන්තයේ සිට අන්තය දක්වා සංකේතනය කර ඇත",
     "encryptionOff": "මෙම උපාංගයේ සංකේතනය ක්‍රියා විරහිතයි",
     "encryptionTurnOn": "සක්‍රිය කරන්න",

@@ -58,6 +58,8 @@
     "live": "Langsung"
   },
   "settings": {
+    "smartReplies": "Wangsulan sing disaranake",
+    "smartRepliesDesc": "Nyusun rong wangsulan sing bisa kokthuthuk ing obrolan. Tandha × ing saran bakal mateni iki.",
     "title": "Setelan",
     "manageAccount": "Atur akun lan setelanmu",
     "logOut": "Metu",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Kudu Mlebu"
   },
   "messages": {
+    "smartRepliesOff": "Wangsulan sing disaranake dipateni",
+    "smartRepliesOffWhere": "Uripake maneh ing Setelan → Pesen.",
+    "smartRepliesUndo": "Batalake",
+    "turnOffSmartReplies": "Pateni wangsulan sing disaranake",
     "encrypted": "Dienkripsi end-to-end",
     "encryptionOff": "Enkripsi ora aktif ing piranti iki",
     "encryptionTurnOn": "Aktifake",

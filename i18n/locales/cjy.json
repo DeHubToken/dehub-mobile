@@ -58,6 +58,8 @@
     "live": "直播"
   },
   "settings": {
+    "smartReplies": "建议回复",
+    "smartRepliesDesc": "在聊天里头写下两条能点嘞回复。建议上头嘞 × 就把它关咾。",
     "title": "设置",
     "manageAccount": "管理你的账户和偏好",
     "logOut": "退出登录",
@@ -1212,6 +1214,10 @@
     "loginRequired": "须登录"
   },
   "messages": {
+    "smartRepliesOff": "建议回复关咾",
+    "smartRepliesOffWhere": "到 设置 → 消息 里头再打开。",
+    "smartRepliesUndo": "撤销",
+    "turnOffSmartReplies": "关掉建议回复",
     "encrypted": "端到端加密",
     "encryptionOff": "这台机子上加密没打开",
     "encryptionTurnOn": "打开",

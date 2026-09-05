@@ -58,6 +58,8 @@
     "live": "Live"
   },
   "settings": {
+    "smartReplies": "Foreslåede svar",
+    "smartRepliesDesc": "Skriver to svar, du kan trykke på i en chat. × på forslagene slår det fra.",
     "title": "Indstillinger",
     "manageAccount": "Administrer din konto og præferencer",
     "logOut": "Log ud",
@@ -1143,6 +1145,10 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "smartRepliesOff": "Foreslåede svar er slået fra",
+    "smartRepliesOffWhere": "Slå dem til igen under Indstillinger → Beskeder.",
+    "smartRepliesUndo": "Fortryd",
+    "turnOffSmartReplies": "Slå foreslåede svar fra",
     "encrypted": "End-to-end-krypteret",
     "encryptionOff": "Kryptering er slået fra på denne enhed",
     "encryptionTurnOn": "Slå til",

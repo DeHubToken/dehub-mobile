@@ -58,6 +58,8 @@
     "live": "लाइव्ह"
   },
   "settings": {
+    "smartReplies": "सुचवलेली उत्तरे",
+    "smartRepliesDesc": "चॅटमध्ये टॅप करता येतील अशी दोन उत्तरे तयार करते. सूचनांवरील × हे बंद करते.",
     "title": "सेटिंग्ज",
     "manageAccount": "तुमचे खाते आणि प्राधान्ये व्यवस्थापित करा",
     "logOut": "लॉग आउट",
@@ -1143,6 +1145,10 @@
     "followSuggestions": "Follow Suggestions"
   },
   "messages": {
+    "smartRepliesOff": "सुचवलेली उत्तरे बंद केली",
+    "smartRepliesOffWhere": "ती सेटिंग्ज → संदेश मध्ये पुन्हा सुरू करा.",
+    "smartRepliesUndo": "पूर्ववत करा",
+    "turnOffSmartReplies": "सुचवलेली उत्तरे बंद करा",
     "encrypted": "एंड-टू-एंड एन्क्रिप्टेड",
     "encryptionOff": "या डिव्हाइसवर एन्क्रिप्शन बंद आहे",
     "encryptionTurnOn": "सुरू करा",

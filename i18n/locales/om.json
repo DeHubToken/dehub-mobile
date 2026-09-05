@@ -58,6 +58,8 @@
     "live": "Kallattii"
   },
   "settings": {
+    "smartReplies": "Deebiiwwan yaadaman",
+    "smartRepliesDesc": "Haasawa keessatti deebiiwwan lama kan tuquu dandeessu qopheessa. Mallattoon × yaadawwan irra jiru kana ni dhaamsa.",
     "title": "Qindaa'ina",
     "manageAccount": "Herrega fi filannoo kee bulchi",
     "logOut": "Ba'i",
@@ -1225,6 +1227,10 @@
     "loginRequired": "Seeninuun barbaachisa"
   },
   "messages": {
+    "smartRepliesOff": "Deebiiwwan yaadaman dhaamamaniiru",
+    "smartRepliesOffWhere": "Qindaa'ina → Ergaawwan irratti irra deebi'ii banaa.",
+    "smartRepliesUndo": "Deebisi",
+    "turnOffSmartReplies": "Deebiiwwan yaadaman dhaamsi",
     "encrypted": "Fiixee hanga fiixeetti icciteeffame",
     "encryptionOff": "Iccitiin meeshaa kana irratti hin banamne",
     "encryptionTurnOn": "Bani",

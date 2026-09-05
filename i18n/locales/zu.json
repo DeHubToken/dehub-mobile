@@ -58,6 +58,8 @@
     "live": "Bukhoma"
   },
   "settings": {
+    "smartReplies": "Izimpendulo eziphakanyisiwe",
+    "smartRepliesDesc": "Ibhala izimpendulo ezimbili ongazithepha engxoxweni. U-× ezincomweni uyakuvala lokhu.",
     "title": "Zilungiselelo",
     "manageAccount": "Phatha i-akhawunti yakho nezilungiselelo",
     "logOut": "Phuma",
@@ -1213,6 +1215,10 @@
     "loginRequired": "Ukungena kuyadingeka"
   },
   "messages": {
+    "smartRepliesOff": "Izimpendulo eziphakanyisiwe zivaliwe",
+    "smartRepliesOffWhere": "Ziphinde uzivule ku- Zilungiselelo → Layezo.",
+    "smartRepliesUndo": "Hlehlisa",
+    "turnOffSmartReplies": "Vala izimpendulo eziphakanyisiwe",
     "encrypted": "Kubethelwe kusukela ekuqaleni kuya ekugcineni",
     "encryptionOff": "Ukubethela kuvaliwe kule divayisi",
     "encryptionTurnOn": "Vula",

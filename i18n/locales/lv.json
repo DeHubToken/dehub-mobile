@@ -58,6 +58,8 @@
     "live": "Tiešraide"
   },
   "settings": {
+    "smartReplies": "Ieteiktās atbildes",
+    "smartRepliesDesc": "Sagatavo divas atbildes, kurām vari pieskarties tērzēšanā. × pie ieteikumiem to izslēdz.",
     "title": "Iestatījumi",
     "manageAccount": "Pārvaldiet savu kontu un preferences",
     "logOut": "Izrakstīties",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Nepieciešama pieteikšanās"
   },
   "messages": {
+    "smartRepliesOff": "Ieteiktās atbildes izslēgtas",
+    "smartRepliesOffWhere": "Ieslēdz tās atkal sadaļā Iestatījumi → Ziņojumi.",
+    "smartRepliesUndo": "Atsaukt",
+    "turnOffSmartReplies": "Izslēgt ieteiktās atbildes",
     "encrypted": "Pilnībā šifrēts",
     "encryptionOff": "Šifrēšana šajā ierīcē ir izslēgta",
     "encryptionTurnOn": "Ieslēgt",

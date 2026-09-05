@@ -58,6 +58,8 @@
     "live": "Live"
   },
   "settings": {
+    "smartReplies": "Antwortvorschläg",
+    "smartRepliesDesc": "Schriibt zwoo Antworte, wo du im Chat chasch aatippe. S × bi de Vorschläg schaltet sie ab.",
     "title": "Istelligä",
     "manageAccount": "Dis Konto und dini Preferänze verwaltä",
     "logOut": "Abmälde",
@@ -1212,6 +1214,10 @@
     "loginRequired": "Aamäldig erforderlich"
   },
   "messages": {
+    "smartRepliesOff": "Antwortvorschläg abgschaltet",
+    "smartRepliesOffWhere": "Under Istelligä → Nochrichtä wieder iischalte.",
+    "smartRepliesUndo": "Zrugg",
+    "turnOffSmartReplies": "Antwortvorschläg abschalte",
     "encrypted": "End-zu-End-verschlüsslet",
     "encryptionOff": "D Verschlüsselig isch uf däm Grät us",
     "encryptionTurnOn": "Aaschalte",

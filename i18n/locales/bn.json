@@ -58,6 +58,8 @@
     "live": "লাইভ"
   },
   "settings": {
+    "smartReplies": "প্রস্তাবিত উত্তর",
+    "smartRepliesDesc": "চ্যাটে ট্যাপ করার মতো দুটি উত্তর তৈরি করে। পরামর্শের উপরের × এটি বন্ধ করে দেয়।",
     "title": "সেটিংস",
     "manageAccount": "আপনার অ্যাকাউন্ট এবং পছন্দ পরিচালনা করুন",
     "logOut": "লগ আউট",
@@ -1212,6 +1214,10 @@
     "attachmentTooLarge": "প্রতিটি ফাইল 20MB-এর কম হতে হবে"
   },
   "messages": {
+    "smartRepliesOff": "প্রস্তাবিত উত্তর বন্ধ করা হয়েছে",
+    "smartRepliesOffWhere": "সেটিংস → বার্তা থেকে সেগুলো আবার চালু করুন।",
+    "smartRepliesUndo": "পূর্বাবস্থায় ফেরান",
+    "turnOffSmartReplies": "প্রস্তাবিত উত্তর বন্ধ করুন",
     "encrypted": "এন্ড-টু-এন্ড এনক্রিপ্টেড",
     "encryptionOff": "এই ডিভাইসে এনক্রিপশন বন্ধ আছে",
     "encryptionTurnOn": "চালু করুন",
