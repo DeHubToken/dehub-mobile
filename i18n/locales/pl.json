@@ -1526,7 +1526,7 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Propozycje obserwowania"
   },
   "tv": {
     "title": "TV",
@@ -2039,14 +2039,14 @@
     "wallet": "Portfel partnerski"
   },
   "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
+    "title": "Co chcesz stworzyć?",
+    "subtitle": "Zapytaj asystenta DeHub o cokolwiek — albo zacznij od pomysłu poniżej.",
+    "placeholder": "Zapytaj o cokolwiek…",
+    "suggestion1": "Podsumuj, co jest dziś na topie na DeHub",
+    "suggestion2": "Napisz post o moim ostatnim materiale",
+    "suggestion3": "Wyjaśnij staking DHB prostymi słowami",
+    "suggestion4": "Znajdź twórców, których warto obserwować",
+    "suggestion5": "Napisz brief bounty do kampanii clippingowej"
   },
   "top100": {
     "title": "Top 100",

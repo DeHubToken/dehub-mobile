@@ -2014,14 +2014,14 @@
     "wallet": "กระเป๋าผู้ร่วมแนะนำ"
   },
   "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
+    "title": "คุณอยากสร้างอะไร?",
+    "subtitle": "ถามผู้ช่วย DeHub ได้ทุกเรื่อง หรือเริ่มจากไอเดียด้านล่างก็ได้",
+    "placeholder": "ถามอะไรก็ได้…",
+    "suggestion1": "สรุปสิ่งที่กำลังมาแรงบน DeHub วันนี้",
+    "suggestion2": "ช่วยเขียนโพสต์เกี่ยวกับงานที่ฉันเพิ่งอัปโหลด",
+    "suggestion3": "อธิบายการสเตก DHB แบบเข้าใจง่าย",
+    "suggestion4": "หาครีเอเตอร์ที่ฉันน่าจะติดตาม",
+    "suggestion5": "เขียนบรีฟบาวน์ตีสำหรับแคมเปญตัดคลิป"
   },
   "top100": {
     "title": "100 อันดับแรก",
