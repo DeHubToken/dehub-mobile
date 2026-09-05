@@ -1261,7 +1261,7 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "关注推荐"
   },
   "tv": {
     "title": "电视",
@@ -1981,14 +1981,14 @@
     "wallet": "推广钱包"
   },
   "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
+    "title": "你想做点什么？",
+    "subtitle": "什么都可以问 DeHub 助手，或者从下面的点子开始。",
+    "placeholder": "随便问…",
+    "suggestion1": "总结今天 DeHub 上的热门内容",
+    "suggestion2": "帮我写一条关于最新上传的帖子",
+    "suggestion3": "用简单的话解释 DHB 质押",
+    "suggestion4": "找几个值得关注的创作者",
+    "suggestion5": "写一份剪辑活动的悬赏说明"
   },
   "top100": {
     "title": "百强榜",
