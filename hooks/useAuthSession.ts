@@ -18,7 +18,7 @@ import {
 } from "../libs/auth.utils";
 import { AuthService, WalletNotLinkedError, WalletLinkAmbiguousError } from "../services";
 import { apiClient } from "../libs/api.client";
-import { clearSigningProvider } from "../libs/provider.registry";
+import { clearEoaSigningProvider, clearSigningProvider } from "../libs/provider.registry";
 import { getPrivateKeyForAddress } from "../libs/wallets.local";
 import { clearPersistedNavigationState } from "./useNavigationPersistence";
 import { unregisterPushTokens } from "../services/push/push.service";
@@ -290,6 +290,7 @@ export function useAuthSession({
       setProvisionalToken(null);
       setBalancesLoading(false);
       providerReset();
+      clearEoaSigningProvider();
       clearSigningProvider();
       // Clear persisted navigation state to prevent restoring auth-gated screens
       clearPersistedNavigationState();

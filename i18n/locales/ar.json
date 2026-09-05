@@ -1144,6 +1144,8 @@
   },
   "messages": {
     "encrypted": "مشفّر من طرف إلى طرف",
+    "encryptionOff": "التشفير غير مفعّل على هذا الجهاز",
+    "encryptionTurnOn": "تفعيل",
     "cannotDecrypt": "رسالة مشفّرة — لا يمكن فتحها على هذا الجهاز",
     "title": "الرسائل",
     "searchConversations": "بحث في المحادثات...",

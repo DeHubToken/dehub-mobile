@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "رمزگذاری سرتاسری",
+    "encryptionOff": "رمزگذاری روی این دستگاه فعال نیست",
+    "encryptionTurnOn": "فعال کردن",
     "cannotDecrypt": "پیام رمزگذاری‌شده — در این دستگاه قابل باز کردن نیست",
     "title": "پیام‌ها",
     "searchConversations": "جستجوی مکالمات...",

@@ -593,6 +593,8 @@
   },
   "messages": {
     "encrypted": "Šifrované end-to-end",
+    "encryptionOff": "Šifrovanie je na tomto zariadení vypnuté",
+    "encryptionTurnOn": "Zapnúť",
     "cannotDecrypt": "Šifrovaná správa — na tomto zariadení sa nedá otvoriť",
     "title": "Správy",
     "search": "Hľadať správy",

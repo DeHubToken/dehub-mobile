@@ -1,5 +1,5 @@
 import { AuthAdapter } from './authAdapter';
-import { getSigningProvider, setSigningProvider } from '../../libs/provider.registry';
+import { getSigningProvider, setEoaSigningProvider, setSigningProvider } from '../../libs/provider.registry';
 import { NETWORK_URLS } from '../../config/web3.constants';
 import { defaultChainId } from '../../config/constants';
 import { getLocalAccountDetails } from '../../libs/wallets.local';
@@ -252,6 +252,12 @@ export class LocalProviderAdapter implements AuthAdapter {
     this.provider = built.provider;
     this.address = built.address;
     this.chainId = built.chainId;
+
+    // Publish the plain EOA shim before the Safe path can replace it below.
+    // A message signed by the Safe is a different value from one signed by its
+    // owner, so anything whose result has to match another device -- DM
+    // encryption keys, derived from exactly one signature -- signs here.
+    setEoaSigningProvider(built.shim as any);
 
     // Prefer the gasless Safe smart-account path (matches web's Pimlico setup).
     // setupAAProvider never throws -- it returns null on any failure (unsupported

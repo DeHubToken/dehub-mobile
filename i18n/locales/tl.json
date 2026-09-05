@@ -1532,6 +1532,8 @@
   },
   "messages": {
     "encrypted": "Naka-encrypt end-to-end",
+    "encryptionOff": "Naka-off ang encryption sa device na ito",
+    "encryptionTurnOn": "I-on",
     "cannotDecrypt": "Naka-encrypt na mensahe — hindi mabubuksan sa device na ito",
     "title": "Messages",
     "searchConversations": "Search conversations...",

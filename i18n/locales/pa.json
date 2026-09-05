@@ -1144,6 +1144,8 @@
   },
   "messages": {
     "encrypted": "ਐਂਡ-ਟੂ-ਐਂਡ ਇਨਕ੍ਰਿਪਟਡ",
+    "encryptionOff": "ਇਸ ਡਿਵਾਈਸ ਉੱਤੇ ਇਨਕ੍ਰਿਪਸ਼ਨ ਬੰਦ ਹੈ",
+    "encryptionTurnOn": "ਚਾਲੂ ਕਰੋ",
     "cannotDecrypt": "ਇਨਕ੍ਰਿਪਟਡ ਸੁਨੇਹਾ — ਇਸ ਡਿਵਾਈਸ 'ਤੇ ਨਹੀਂ ਖੋਲ੍ਹਿਆ ਜਾ ਸਕਦਾ",
     "title": "ਸੁਨੇਹੇ",
     "searchConversations": "ਗੱਲਬਾਤ ਖੋਜੋ...",

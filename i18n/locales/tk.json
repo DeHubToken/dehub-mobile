@@ -1114,6 +1114,8 @@
   },
   "messages": {
     "encrypted": "Uçdan-uca şifrlenen",
+    "encryptionOff": "Bu enjamda şifrleme öçürilen",
+    "encryptionTurnOn": "Açmak",
     "cannotDecrypt": "Şifrlenen habar — bu enjamda açyp bolmaýar",
     "title": "Habarlar",
     "searchConversations": "Söhbetleri gözle...",

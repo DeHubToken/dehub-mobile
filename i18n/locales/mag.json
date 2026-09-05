@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "एंड-टू-एंड एन्क्रिप्टेड",
+    "encryptionOff": "ई डिवाइस पर एन्क्रिप्शन बंद हइ",
+    "encryptionTurnOn": "चालू करू",
     "cannotDecrypt": "एन्क्रिप्टेड संदेश — ई डिवाइस पर ना खुल सकऽ हे",
     "title": "संदेश",
     "searchConversations": "बातचीत खोजो...",

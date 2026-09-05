@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "Si dhammaystiran loo sireeyay",
+    "encryptionOff": "Sirayntu kuma shidna qalabkan",
+    "encryptionTurnOn": "Shid",
     "cannotDecrypt": "Fariin sir ah — laguma furi karo qalabkan",
     "title": "Fariimaha",
     "searchConversations": "Raadi wada-sheekeysiyada...",

@@ -51,7 +51,7 @@ import { decryptString, getPayloadKdf } from "../../libs/wallet-core/crypto";
 import { fetchWalletReliably } from "../../libs/wallet-core/store";
 import { deriveFromSecret, generateMnemonic12, isValidMnemonic } from "../../libs/wallet-core/derive";
 import { createLocalEip1193ProviderForChain } from "../../services/localwallet.provider";
-import { setSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
+import { setSigningProvider, setEoaSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
 import { setupAAProvider } from "../../libs/wallet-core/smart-account";
 import { useWalletAuth } from "../../hooks/useWalletAuth";
 import { useScrollFieldIntoView } from "../../hooks/useScrollFieldIntoView";
@@ -217,7 +217,8 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       // or a Pimlico outage, in which case we fall back to the plain EOA
       // provider/address exactly as before.
       let signInAddress = evmAddress;
-      let localProvider: any = createLocalEip1193ProviderForChain(privateKey, effectiveChainId);
+      const eoaProvider: any = createLocalEip1193ProviderForChain(privateKey, effectiveChainId);
+      let localProvider: any = eoaProvider;
       try {
         const aaProvider = await setupAAProvider(evmAddress, privateKey, effectiveChainId);
         if (aaProvider) {
@@ -232,6 +233,10 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       }
 
       setSigningProvider(localProvider);
+      // Kept separately: `localProvider` is the Safe above, and a message
+      // signed by a Safe is a different value from the owner's signature over
+      // the same text. Anything deriving a key from one signs with the EOA.
+      setEoaSigningProvider(eoaProvider);
       try {
         // Runs here rather than in the caller: it needs the resolved
         // `signInAddress` — the Safe where there is one, which is the address

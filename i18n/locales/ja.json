@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "エンドツーエンド暗号化",
+    "encryptionOff": "このデバイスでは暗号化がオフです",
+    "encryptionTurnOn": "オンにする",
     "cannotDecrypt": "暗号化されたメッセージ — このデバイスでは開けません",
     "title": "メッセージ",
     "searchConversations": "会話を検索...",

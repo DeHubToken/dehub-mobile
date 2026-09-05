@@ -1235,6 +1235,8 @@
   },
   "messages": {
     "encrypted": "Crittografato end-to-end",
+    "encryptionOff": "Crittografia disattivata su questo dispositivo",
+    "encryptionTurnOn": "Attiva",
     "cannotDecrypt": "Messaggio crittografato — non può essere aperto su questo dispositivo",
     "title": "Messaggi",
     "searchConversations": "Cerca nelle conversazioni...",

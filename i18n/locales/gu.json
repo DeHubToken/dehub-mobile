@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "એન્ડ-ટુ-એન્ડ એન્ક્રિપ્ટેડ",
+    "encryptionOff": "આ ડિવાઇસ પર એન્ક્રિપ્શન બંધ છે",
+    "encryptionTurnOn": "ચાલુ કરો",
     "cannotDecrypt": "એન્ક્રિપ્ટેડ સંદેશ — આ ઉપકરણ પર ખોલી શકાતો નથી",
     "title": "સંદેશાઓ",
     "searchConversations": "વાતચીત શોધો...",

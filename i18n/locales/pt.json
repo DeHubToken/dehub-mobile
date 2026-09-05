@@ -1213,6 +1213,8 @@
   },
   "messages": {
     "encrypted": "Criptografado de ponta a ponta",
+    "encryptionOff": "Encriptação desativada neste dispositivo",
+    "encryptionTurnOn": "Ativar",
     "cannotDecrypt": "Mensagem criptografada — não pode ser aberta neste dispositivo",
     "title": "Mensagens",
     "searchConversations": "Buscar conversas...",
