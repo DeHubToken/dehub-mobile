@@ -2,6 +2,7 @@ import React, { memo, useCallback, useMemo, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import Icon from "../ui/Icon";
 import ConfirmModal from "../common/ConfirmModal";
+import { resolveChatGif, gifCaption } from "../../libs/chat-gif";
 import type { LiveChatMessageData } from "../../services/livechat.service";
 
 interface PinnedMessagesBarProps {
@@ -50,6 +51,17 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
   const senderName = useMemo(() => {
     if (!current?.sender) return current?.senderAddress?.slice(0, 8) || "User";
     return current.sender.displayName || current.sender.username || "User";
+  }, [current]);
+
+  // A pin's one-line summary. Web posts a GIF with its URL as the body, so the
+  // raw text would put an address here where every other kind gets a label.
+  const preview = useMemo(() => {
+    if (!current) return "";
+    const gif = resolveChatGif(current);
+    return (
+      gifCaption(current, gif) ||
+      (gif ? "GIF" : current.media?.length ? "Photo" : "Message")
+    );
   }, [current]);
 
   if (!current) return null;
@@ -107,7 +119,7 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
           )}
         </View>
         <Text className="text-white/60 text-[12px] mt-0.5" numberOfLines={1}>
-          {current.content || (current.gif ? "GIF" : current.media?.length ? "Photo" : "Message")}
+          {preview}
         </Text>
       </View>
 

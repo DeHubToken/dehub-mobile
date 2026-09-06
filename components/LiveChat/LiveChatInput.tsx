@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -13,6 +13,7 @@ import MentionSuggestions from "../common/MentionSuggestions";
 import { useMentions } from "../../hooks/useMentions";
 import { sendAIChat } from "../../services/ai.service";
 import { ASSISTANT_USERNAME, mentionsAssistant } from "../../libs/assistant";
+import { resolveChatGif, gifCaption } from "../../libs/chat-gif";
 import type { LiveChatMessageData } from "../../services/livechat.service";
 import { uploadLiveChatVoice } from "../../services/livechat.service";
 import { toastError } from "../../libs/toast";
@@ -167,6 +168,17 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
   const hasContent = text.length > 0;
 
+  // Web posts a GIF with its URL as the body, so quoting the body verbatim puts
+  // an address in the composer where a photo or a voice note gets a label.
+  const replyPreview = useMemo(() => {
+    if (!replyingTo) return "";
+    const gif = resolveChatGif(replyingTo);
+    return (
+      gifCaption(replyingTo, gif) ||
+      (gif ? "GIF" : replyingTo.media?.length ? "Photo" : "")
+    );
+  }, [replyingTo]);
+
   return (
     <View className="border-t border-white/5">
       {editingMessage && !recorder.isRecording && !uploadingVoice && (
@@ -193,7 +205,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               Replying to {replyingTo.sender?.displayName || replyingTo.sender?.username || "user"}
             </Text>
             <Text className="text-white/40 text-xs" numberOfLines={1}>
-              {replyingTo.content}
+              {replyPreview}
             </Text>
           </View>
           <TouchableOpacity onPress={onCancelReply} hitSlop={8}>
