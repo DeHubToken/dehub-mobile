@@ -27,7 +27,6 @@ import {
   RefreshControl,
   Modal,
   KeyboardAvoidingView,
-  Platform,
   Alert,
 } from "react-native";
 import Svg, { Polyline, Line as SvgLine } from "react-native-svg";
@@ -174,7 +173,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
   return (
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
       <View style={styles.backdrop}>
-        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
+        <KeyboardAvoidingView behavior="padding">
           <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
             <View style={styles.sheetHead}>
               <Text style={styles.sheetTitle}>{t("ads.newCampaign")}</Text>
