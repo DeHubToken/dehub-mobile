@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useKeyboard } from "./useKeyboard";
@@ -29,6 +30,17 @@ import { useKeyboard } from "./useKeyboard";
  * given that band up to the root SafeAreaView, so lifting by the raw height
  * pushes the composer a full home-indicator above the keys and leaves a dead
  * strip under it. Subtract what the container never had.
+ *
+ * Android is the other way round. React Native's `ReactRootView` (the
+ * `checkForKeyboardEvents` path every Android 11+ device takes) reports
+ * `imeInsets.bottom - systemBars.bottom` — the keyboard measured from the top
+ * of the navigation bar, with the bar already taken out. The container's
+ * bottom edge is that same navigation-bar top (the root SafeAreaView ends
+ * there), so the raw height is exactly the distance to the keys. Subtracting
+ * `insets.bottom` a second time left every composer that much under the
+ * keyboard: with a three-button bar (48pt) the whole 40pt input row was
+ * behind the keys, which is what "I can't see the text box while I type"
+ * looks like on the post page, in DMs and in community chat.
  */
 export function useKeyboardLift(): {
   /** Points to raise a bottom-anchored element by. 0 when the keyboard is down. */
@@ -40,8 +52,10 @@ export function useKeyboardLift(): {
   const { height, isVisible } = useKeyboard();
   const insets = useSafeAreaInsets();
 
+  const lift = Platform.OS === "android" ? height : Math.max(height - insets.bottom, 0);
+
   return {
-    lift: isVisible ? Math.max(height - insets.bottom, 0) : 0,
+    lift: isVisible ? lift : 0,
     isVisible,
     rawHeight: height,
   };
