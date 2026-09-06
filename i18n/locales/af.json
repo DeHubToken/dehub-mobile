@@ -473,6 +473,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Hierdie toestel is nie geregistreer om te druk nie",
+    "pushNotRegisteredDesc": "Kennisgewings kan u nie bereik terwyl die app gesluit is nie. Die heropening van die app maak dit gewoonlik skoon; As dit aanhou gebeur, installeer die nuutste bou van dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

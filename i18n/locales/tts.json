@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "ส่งการแจ้งเตือนไปยังอุปกรณ์ของคุณ",
     "pushNotificationsDisabled": "ปิดการแจ้งเตือนแบบพุชอยู่",
     "tapEnableSystemSettings": "แตะเพื่อเปิดในการตั้งค่าระบบ",
+    "pushNotRegistered": "เครื่องนี้ยังบ่ได้ลงทะเบียนสำหรับปุ๊ช",
+    "pushNotRegisteredDesc": "การแจ้งเตือนสิไปบ่ฮอดเจ้าตอนแอปปิดอยู่เด้ เปิดแอปใหม่กะมักสิหายเอง ถ้ามันยังเป็นอยู่ กะลงอันใหม่สุดจาก dehub.io/apk โลด",
     "categoryEngagement": "การมีส่วนร่วม",
     "categorySocial": "โซเชียล",
     "categoryEarnings": "รายได้",

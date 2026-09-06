@@ -390,6 +390,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "ई डिवाइस पुस खातिर रजिस्टर कोनी",
+    "pushNotRegisteredDesc": "App बंद होवे तो नोटिफिकेशन कोनी मिलें। ऐप ने वापस खोल ले तो ठीक हो जावे; अगर फिर भी होवे तो dehub.io/apk ते लेटेस्ट बिल्ड इनस्टॉल कर ले।",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

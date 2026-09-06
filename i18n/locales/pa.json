@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "ਇਹ ਡਿਵਾਈਸ ਪੁਸ਼ ਲਈ ਰਜਿਸਟਰਡ ਨਹੀਂ ਹੈ",
+    "pushNotRegisteredDesc": "ਐਪ ਬੰਦ ਹੋਣ ਦੇ ਦੌਰਾਨ ਸੂਚਨਾਵਾਂ ਤੁਹਾਡੇ ਤੱਕ ਨਹੀਂ ਪਹੁੰਚ ਸਕਦੀਆਂ । ਐਪ ਨੂੰ ਦੁਬਾਰਾ ਖੋਲ੍ਹਣਾ ਆਮ ਤੌਰ 'ਤੇ ਇਸ ਨੂੰ ਸਾਫ ਕਰਦਾ ਹੈ; ਜੇ ਇਹ ਹੁੰਦਾ ਰਹਿੰਦਾ ਹੈ, ਤਾਂ dehub. io/apk ਤੋਂ ਨਵੀਨਤਮ ਬਿਲਡ ਸਥਾਪਤ ਕਰੋ.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

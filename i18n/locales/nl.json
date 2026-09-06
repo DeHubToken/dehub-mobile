@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Meldingen naar je apparaat sturen",
     "pushNotificationsDisabled": "Pushmeldingen uitgeschakeld",
     "tapEnableSystemSettings": "Tik om dit in de systeeminstellingen aan te zetten",
+    "pushNotRegistered": "Dit apparaat is niet geregistreerd voor push",
+    "pushNotRegisteredDesc": "Meldingen kunnen je niet bereiken terwijl de app is gesloten. Door de app opnieuw te openen, wordt deze meestal gewist; als het blijft gebeuren, installeer dan de nieuwste build van dehub.io/apk.",
     "categoryEngagement": "Interactie",
     "categorySocial": "Sociaal",
     "categoryEarnings": "Inkomsten",

@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "एतादृशं यन्त्रं न प्रवेष्टव्यं",
+    "pushNotRegisteredDesc": "आवेदन समाप्त होने पर सूचनाएं आपके पास नहीं पहुंच पातीं । यदि भवान् अद्यापि नूतनपृष्ठं पूरयितुम् इच्छति, तर्हि भवान् dehub.io/apk इत्यस्मिन् जालपृष्ठे अद्यतनपृष्ठं स्थापयतु ।",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

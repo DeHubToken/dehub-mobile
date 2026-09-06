@@ -328,6 +328,8 @@
     "pushNotificationsDeviceDesc": "Cihazınıza bildirim gönder",
     "pushNotificationsDisabled": "Anlık Bildirimler Devre Dışı",
     "tapEnableSystemSettings": "Sistem ayarlarından etkinleştirmek için dokunun",
+    "pushNotRegistered": "Bu cihaz anlık ileti için kayıtlı değil",
+    "pushNotRegisteredDesc": "Uygulama kapalıyken bildirimler size ulaşamaz. Uygulamayı yeniden açmak genellikle uygulamayı temizler; devam ederse, dehub.io/apk adresinden en son sürümü yükleyin.",
     "categoryEngagement": "Etkileşim",
     "categorySocial": "Sosyal",
     "categoryEarnings": "Kazançlar",

@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "እዚ መሳርሒ እዚ ንተግሳጽ ኣይተመዝገበን",
+    "pushNotRegisteredDesc": "እቲ መተግበሪ ምስ ተዓጽዩ ፡ እቲ ኣፍልጦታት ክበጽሓካ ኣይክእልን እዩ ። እቲ መተግበሪ ዳግም ምኽፋት መብዛሕትኡ ግዜ ይጽረዮ ፣ እንተቐጺሉ ድማ ነቲ ናይ መወዳእታ ህንጻ ካብ dehub.io/apk ከተስፍር ትኽእል ኢኻ ።",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

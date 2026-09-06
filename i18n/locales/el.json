@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Αυτή η συσκευή δεν είναι καταχωρημένη για push",
+    "pushNotRegisteredDesc": "Οι ειδοποιήσεις δεν μπορούν να φτάσουν σε εσάς ενώ η εφαρμογή είναι κλειστή. Το εκ νέου άνοιγμα της εφαρμογής συνήθως την εκκαθαρίζει. Εάν συνεχίσει να συμβαίνει, εγκαταστήστε την πιο πρόσφατη έκδοση από τη διεύθυνση dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

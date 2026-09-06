@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Ev cîhaz ji bo push nehatiye qeydkirin.",
+    "pushNotRegisteredDesc": "Dema ku sepan girtî be, agahî nikarin bigihîjin we. Vekirina sepanê bi gelemperî wê vala dike; heke ev yek berdewam bike, guhertoya herî dawî ji dehub.io/apk saz bikin.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

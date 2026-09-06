@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Wannan na'urar ba a yi rajista don turawa ba",
+    "pushNotRegisteredDesc": "Sanarwa ba za ta iya isa gare ku ba yayin da aka rufe aikace-aikacen. Sake buɗe aikace-aikacen yawanci yana share shi; idan ya ci gaba da faruwa, shigar da sabon gini daga dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

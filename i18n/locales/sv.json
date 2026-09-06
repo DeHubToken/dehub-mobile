@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Den här enheten är inte registrerad för push",
+    "pushNotRegisteredDesc": "Aviseringar kan inte nå dig när appen är stängd. Om du öppnar appen igen rensas den vanligtvis; om det fortsätter att hända, installera den senaste versionen från dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

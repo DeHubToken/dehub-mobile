@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Tätä laitetta ei ole rekisteröity push-palveluun",
+    "pushNotRegisteredDesc": "Ilmoitukset eivät voi tavoittaa sinua, kun sovellus on suljettu. Sovelluksen avaaminen uudelleen tyhjentää sen yleensä. Jos se toistuu, asenna uusin versio osoitteesta dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

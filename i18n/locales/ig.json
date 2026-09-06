@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Edebabeghị ngwaọrụ a maka ịkwanye",
+    "pushNotRegisteredDesc": "Ịma ọkwa agaghị erute gị mgbe ngwa ahụ mechiri. Reopening ngwa na-emekarị clears ya; ma ọ bụrụ na ọ na-anọgide na-eme, wụnye ọhụrụ Mee si dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

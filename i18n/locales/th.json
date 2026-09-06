@@ -578,6 +578,8 @@
     "pushNotificationsDeviceDesc": "ส่งการแจ้งเตือนไปยังอุปกรณ์ของคุณ",
     "pushNotificationsDisabled": "ปิดการแจ้งเตือนแบบพุชอยู่",
     "tapEnableSystemSettings": "แตะเพื่อเปิดในการตั้งค่าระบบ",
+    "pushNotRegistered": "อุปกรณ์นี้ไม่ได้ลงทะเบียนสำหรับพุช",
+    "pushNotRegisteredDesc": "การแจ้งเตือนไม่สามารถติดต่อคุณได้ในขณะที่แอพปิดอยู่การเปิดแอปอีกครั้งมักจะล้างข้อมูลหากยังคงเกิดขึ้นให้ติดตั้งบิลด์ล่าสุดจาก dehub.io/apk",
     "categoryEngagement": "การมีส่วนร่วม",
     "categorySocial": "โซเชียล",
     "categoryEarnings": "รายได้",

@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Benachrichtigungen an dein Gerät senden",
     "pushNotificationsDisabled": "Push-Benachrichtigungen deaktiviert",
     "tapEnableSystemSettings": "Tippen, um es in den Systemeinstellungen zu aktivieren",
+    "pushNotRegistered": "Das Gerät isch nöd für Push registriert",
+    "pushNotRegisteredDesc": "Benachrichtigige chönd dich nöd erreiche, wänn d App zue isch. D App wider uffmache löst es meistens; wänn es immer wieder passiert, installier de neuschti Build vo dehub.io/apk.",
     "categoryEngagement": "Interaktion",
     "categorySocial": "Social",
     "categoryEarnings": "Einnahmen",

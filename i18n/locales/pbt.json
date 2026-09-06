@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "دا وسیله د فشار لپاره راجسټر شوې نه ده",
+    "pushNotRegisteredDesc": "خبرتیاوې نشي کولی تاسو ته ورسیږي پداسې حال کې چې اپلیکیشن بند دی. د اپلیکیشن بیا پرانستل معمولا دا پاکوي ؛ که دا پیښ شي، نو له dehub.io/apk څخه وروستی جوړونه نصب کړئ.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

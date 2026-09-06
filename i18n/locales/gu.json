@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "આ ઉપકરણ પુશ માટે રજીસ્ટર થયેલ નથી",
+    "pushNotRegisteredDesc": "જ્યારે એપ્લિકેશન બંધ હોય ત્યારે સૂચનાઓ તમારા સુધી પહોંચી શકતી નથી. એપ્લિકેશનને ફરીથી ખોલવાથી સામાન્ય રીતે તેને સાફ કરવામાં આવે છે; જો તે ચાલુ રહે છે, તો dehub.io/apk માંથી નવીનતમ બિલ્ડ ઇન્સ્ટોલ કરો.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "आपके डिवाइस पर सूचनाएँ भेजें",
     "pushNotificationsDisabled": "पुश सूचनाएँ बंद हैं",
     "tapEnableSystemSettings": "सिस्टम सेटिंग्स में चालू करने के लिए टैप करें",
+    "pushNotRegistered": "एह श्रेणी के हटावल न जाय; फिलहाल ई खाली बा ।",
+    "pushNotRegisteredDesc": "नोटबंदी के बाद भी आप आवेदन नहीं कर सकते । आवेदन खोलें आमतौर पर साफ हो जाता है; अगर यह चलता रहता है, dehub.io/apk पर नवीनतम बिल्ड स्थापित करें ।",
     "categoryEngagement": "सहभागिता",
     "categorySocial": "सोशल",
     "categoryEarnings": "कमाई",

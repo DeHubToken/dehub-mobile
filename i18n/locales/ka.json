@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Ეს მოწყობილობა არ არის რეგისტრირებული Push ‑ ზე",
+    "pushNotRegisteredDesc": "Აპის დახურვის შემდეგ შეტყობინებები ვერ დაგიკავშირდებათ. აპის ხელახლა გახსნა, როგორც წესი, ასუფთავებს მას; თუ ის კვლავ გრძელდება, დააინსტალირეთ უახლესი ანაწყობი dehub.io/apk-დან.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",
