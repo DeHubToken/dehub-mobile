@@ -21,7 +21,6 @@ import {
   RefreshControl,
   useWindowDimensions,
   KeyboardAvoidingView,
-  Platform,
 } from "react-native";
 import { Image } from "expo-image";
 import { ethers } from "ethers";
@@ -293,8 +292,8 @@ export default function ListingDetailScreen() {
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-        keyboardVerticalOffset={Platform.OS === "ios" ? keyboardOffset : 0}
+        behavior="padding"
+        keyboardVerticalOffset={keyboardOffset}
       >
       <ScrollView
         contentContainerStyle={{ paddingBottom: insets.bottom + 28 }}

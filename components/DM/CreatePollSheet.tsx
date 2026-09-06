@@ -7,7 +7,6 @@ import {
   Modal,
   Pressable,
   KeyboardAvoidingView,
-  Platform,
   ScrollView,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -102,7 +101,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
       </Pressable>
 
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        behavior="padding"
       >
         <Animated.View
           entering={SlideInUp.duration(300)}

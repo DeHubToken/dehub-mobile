@@ -28,7 +28,6 @@ import {
   TextInput,
   ScrollView,
   KeyboardAvoidingView,
-  Platform,
   ActivityIndicator,
   Easing,
   Animated as RNAnimated,
@@ -219,8 +218,8 @@ export default function PromptScreen() {
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-        keyboardVerticalOffset={Platform.OS === "ios" ? keyboardOffset : 0}
+        behavior="padding"
+        keyboardVerticalOffset={keyboardOffset}
       >
         <ScrollView
           contentContainerStyle={styles.body}

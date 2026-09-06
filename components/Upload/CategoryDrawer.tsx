@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   FlatList,
   KeyboardAvoidingView,
-  Platform,
   useWindowDimensions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -121,9 +120,9 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
       blurIntensity={40}
     >
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        behavior="padding"
         style={{ height: drawerHeight }}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
+        keyboardVerticalOffset={0}
       >
         <View style={{ flex: 1 }}>
           <View className="flex-row items-center justify-between px-4 pt-4 pb-2">

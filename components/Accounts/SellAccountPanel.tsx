@@ -29,7 +29,6 @@ import {
   ScrollView,
   ActivityIndicator,
   KeyboardAvoidingView,
-  Platform,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
@@ -110,7 +109,7 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
   return (
     <KeyboardAvoidingView
       style={styles.flex}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      behavior="padding"
       // The header sits above this panel, so it has to be declared here or the
       // keyboard covers the fields it is supposed to lift.
       keyboardVerticalOffset={SCREEN_HEADER_HEIGHT}
