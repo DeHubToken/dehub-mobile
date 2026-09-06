@@ -96,6 +96,7 @@ import {
   reactionForTap,
   reactionMeta,
   resolveLeadReaction,
+  resolveNegativeLeadReaction,
   type PostReaction,
 } from "../libs/reactions";
 import {
@@ -389,7 +390,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
   const shareCount = repostCount + Math.max(linkCopyCount, linkCopyFloor);
   const trackLinkCopy = useTrackPostLinkCopy();
 
-  const [pickerOpen, setPickerOpen] = useState(false);
+  // One tray per thumb: the seven positive faces on the thumbs-up, 👎 and 💩
+  // on the thumbs-down. One state rather than two booleans, so only one can be
+  // open — and `pickerOpen` below keeps reading as "a tray is up" for the
+  // chrome auto-hide, which does not care which.
+  const [openTray, setOpenTray] = useState<"positive" | "negative" | null>(null);
+  const pickerOpen = openTray !== null;
   const [showReactionInfo, setShowReactionInfo] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showTipModal, setShowTipModal] = useState(false);
@@ -594,6 +600,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
   const leadGlyph = leadReaction ? reactionMeta(leadReaction).emoji : undefined;
   /** A 👎 or 💩 belongs to the thumbs-DOWN; this button must not announce it. */
   const myPositiveReaction = myReaction && isPositiveReaction(myReaction) ? myReaction : null;
+  /* …and that button wears it — your own 💩 only, never the crowd's. */
+  const myNegativeReaction = myReaction && !isPositiveReaction(myReaction) ? myReaction : null;
+  const negativeLeadReaction = resolveNegativeLeadReaction(myReaction);
+  const negativeGlyph = negativeLeadReaction ? reactionMeta(negativeLeadReaction).emoji : undefined;
 
   const handleTip = useCallback(() => {
     if (!minterAddress) return;
@@ -761,7 +771,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
     if (longPressActiveRef.current) return;
     // A tap that dismisses the reaction tray is not also a play/pause.
     if (pickerOpen) {
-      setPickerOpen(false);
+      setOpenTray(null);
       return;
     }
     const { pageX, pageY } = e.nativeEvent;
@@ -1089,13 +1099,35 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
                 accessibilityLabel="Tip"
               />
 
-              <ActionButton
-                icon="ThumbsDown"
-                active={disliked}
-                label={formatCompactNumber(dislikeCount)}
-                onPress={handleDislike}
-                accessibilityLabel="Dislike"
-              />
+              {/* Downvotes — tap the thumb, hold it for 💩. The negative pair
+                  lives here rather than in the tray on the thumbs-UP: they
+                  move THIS count, and the button that means "no" is where a
+                  reader goes looking for them. */}
+              <View style={styles.actionCell}>
+                <View style={{ position: "relative" }}>
+                  <ReactionPicker
+                    open={openTray === "negative"}
+                    polarity="negative"
+                    current={myReaction}
+                    onSelect={(reaction) => { setOpenTray(null); handleReaction(reaction); }}
+                    align="right"
+                  />
+                  <ActionButton
+                    style={styles.actionInline}
+                    icon="ThumbsDown"
+                    glyph={negativeGlyph}
+                    active={disliked}
+                    label={formatCompactNumber(dislikeCount)}
+                    onPress={() => { if (openTray === "negative") { setOpenTray(null); return; } handleDislike(); }}
+                    onLongPress={() => setOpenTray("negative")}
+                    accessibilityLabel={
+                      myNegativeReaction
+                        ? `${reactionMeta(myNegativeReaction).label} — hold to change your reaction`
+                        : "Dislike — hold to react"
+                    }
+                  />
+                </View>
+              </View>
 
               {/* Share — carries the repost count, and opens the share sheet. */}
               <ActionButton
@@ -1121,13 +1153,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
               <View style={[styles.actionCell, styles.actionCellLast]}>
                 <View style={{ position: "relative" }}>
                   <ReactionPicker
-                    open={pickerOpen}
+                    open={openTray === "positive"}
                     current={myReaction}
-                    onSelect={(reaction) => { setPickerOpen(false); handleReaction(reaction); }}
+                    onSelect={(reaction) => { setOpenTray(null); handleReaction(reaction); }}
                     align="right"
                     onShowInfo={
                       isOwnShort && tokenId != null
-                        ? () => { setPickerOpen(false); setShowReactionInfo(true); }
+                        ? () => { setOpenTray(null); setShowReactionInfo(true); }
                         : undefined
                     }
                   />
@@ -1137,8 +1169,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
                     glyph={leadGlyph}
                     active={liked}
                     label={formatCompactNumber(likeCount)}
-                    onPress={() => { if (pickerOpen) { setPickerOpen(false); return; } handleLike(); }}
-                    onLongPress={() => setPickerOpen(true)}
+                    onPress={() => { if (openTray === "positive") { setOpenTray(null); return; } handleLike(); }}
+                    onLongPress={() => setOpenTray("positive")}
                     accessibilityLabel={
                       myPositiveReaction
                         ? `${reactionMeta(myPositiveReaction).label} — hold to change your reaction`

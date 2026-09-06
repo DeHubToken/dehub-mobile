@@ -3,8 +3,12 @@ import {
   reactionForTap,
   reconcileReactionCounts,
   resolveLeadReaction,
+  resolveNegativeLeadReaction,
   resolveReactionCounts,
+  NEGATIVE_REACTION_LIST,
+  POSITIVE_REACTION_LIST,
   POST_REACTIONS,
+  REACTION_LIST,
 } from "../../libs/reactions";
 
 describe("reaction taxonomy", () => {
@@ -189,5 +193,49 @@ describe("resolveReactionCounts — object identity", () => {
       reactionCounts: { like: 4, love: 0 },
     };
     expect(resolveReactionCounts(withZero)).toBe(withZero.reactionCounts);
+  });
+});
+
+describe("the two trays", () => {
+  it("puts 👎 and 💩 in the negative tray and nothing else", () => {
+    expect(NEGATIVE_REACTION_LIST.map((r) => r.key)).toEqual(["dislike", "poo"]);
+  });
+
+  it("keeps the seven positive faces on the thumbs-up", () => {
+    expect(POSITIVE_REACTION_LIST.map((r) => r.key)).toEqual([
+      "like",
+      "love",
+      "respect",
+      "hot",
+      "lol",
+      "sad",
+      "cry",
+    ]);
+  });
+
+  it("partitions the picker exactly — every reaction reachable from one thumb", () => {
+    expect([...POSITIVE_REACTION_LIST, ...NEGATIVE_REACTION_LIST]).toHaveLength(
+      REACTION_LIST.length,
+    );
+    for (const meta of REACTION_LIST) {
+      const tray = meta.positive ? POSITIVE_REACTION_LIST : NEGATIVE_REACTION_LIST;
+      expect(tray).toContain(meta);
+    }
+  });
+});
+
+describe("resolveNegativeLeadReaction", () => {
+  it("wears your own 💩", () => {
+    expect(resolveNegativeLeadReaction("poo")).toBe("poo");
+  });
+
+  it("draws the plain icon for a plain 👎, which is already that glyph", () => {
+    expect(resolveNegativeLeadReaction("dislike")).toBeNull();
+  });
+
+  it("never announces a positive reaction — that thumb is above it", () => {
+    expect(resolveNegativeLeadReaction("love")).toBeNull();
+    expect(resolveNegativeLeadReaction(null)).toBeNull();
+    expect(resolveNegativeLeadReaction(undefined)).toBeNull();
   });
 });

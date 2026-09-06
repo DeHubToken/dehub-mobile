@@ -14,6 +14,7 @@ import {
   isPositiveReaction,
   reactionMeta,
   resolveLeadReaction,
+  resolveNegativeLeadReaction,
   type PostReaction,
   type ReactionCounts,
 } from "../../libs/reactions";
@@ -169,14 +170,17 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   onReact,
   onShowReactionInfo,
 }) => {
-  const [pickerOpen, setPickerOpen] = useState(false);
+  // One tray per thumb: the seven positive faces on the thumbs-up, 👎 and 💩
+  // on the thumbs-down. Only ever one open — they sit inches apart on the same
+  // row, and two trays stacked over each other is unreadable.
+  const [openTray, setOpenTray] = useState<"positive" | "negative" | null>(null);
 
   // The tray needs a handler to route to; without one this stays a plain
   // like/dislike bar (governance and other non-post surfaces).
   const reactionsEnabled = !!onReact;
 
   const handleSelect = useCallback((reaction: PostReaction) => {
-    setPickerOpen(false);
+    setOpenTray(null);
     onReact?.(reaction);
   }, [onReact]);
 
@@ -189,6 +193,10 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   const leadGlyph = leadReaction ? reactionMeta(leadReaction).emoji : undefined;
   /** A 👎 or 💩 belongs to the thumbs-DOWN; this button must not announce it. */
   const myPositiveReaction = myReaction && isPositiveReaction(myReaction) ? myReaction : null;
+  /** …and that button wears it — your own 💩 only, never the crowd's. */
+  const myNegativeReaction = myReaction && !isPositiveReaction(myReaction) ? myReaction : null;
+  const negativeLeadReaction = resolveNegativeLeadReaction(myReaction);
+  const negativeGlyph = negativeLeadReaction ? reactionMeta(negativeLeadReaction).emoji : undefined;
 
   // Single row, every button a direct child spread edge-to-edge (matches the
   // web ActionBar). Order left → right: tip · dislike · share · comment · like
@@ -202,15 +210,38 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         count={tipCount}
         formatCount
       />
-      <AnimatedActionButton
-        onPress={onDislike}
-        accessibilityLabel="Dislike"
-        iconName="ThumbsDown"
-        active={disliked}
-        activeFill={ICON_ACTIVE}
-        count={dislikeCount}
-        formatCount
-      />
+      {/* Downvotes — tap the thumb, hold it for 💩. The negative pair lives
+          here rather than in the tray on the thumbs-UP: they move THIS count,
+          and the button that means "no" is where a reader goes looking for
+          them. The wrapper is the tray's positioning context and stays a
+          single flex item so the row's spacing is unchanged. */}
+      <View style={{ position: "relative" }}>
+        <ReactionPicker
+          open={openTray === "negative" && reactionsEnabled}
+          polarity="negative"
+          current={myReaction}
+          onSelect={handleSelect}
+          align="left"
+        />
+        <AnimatedActionButton
+          onPress={() => {
+            if (openTray === "negative") { setOpenTray(null); return; }
+            onDislike();
+          }}
+          onLongPress={reactionsEnabled ? () => setOpenTray("negative") : undefined}
+          accessibilityLabel={
+            myNegativeReaction
+              ? `${reactionMeta(myNegativeReaction).label} — hold to change your reaction`
+              : "Dislike — hold to react"
+          }
+          iconName="ThumbsDown"
+          glyph={negativeGlyph}
+          active={disliked}
+          activeFill={ICON_ACTIVE}
+          count={dislikeCount}
+          formatCount
+        />
+      </View>
       {/* Share — carries reposts + link copies; bolder + larger once reposted. */}
       <AnimatedActionButton
         onPress={onShare}
@@ -236,14 +267,14 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           item so the row's edge-to-edge spacing is unchanged. */}
       <View style={{ position: "relative" }}>
         <ReactionPicker
-          open={pickerOpen && reactionsEnabled}
+          open={openTray === "positive" && reactionsEnabled}
           current={myReaction}
           onSelect={handleSelect}
           align="right"
           onShowInfo={
             onShowReactionInfo
               ? () => {
-                  setPickerOpen(false);
+                  setOpenTray(null);
                   onShowReactionInfo();
                 }
               : undefined
@@ -251,10 +282,10 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         />
         <AnimatedActionButton
           onPress={() => {
-            if (pickerOpen) { setPickerOpen(false); return; }
+            if (openTray === "positive") { setOpenTray(null); return; }
             onLike();
           }}
-          onLongPress={reactionsEnabled ? () => setPickerOpen(true) : undefined}
+          onLongPress={reactionsEnabled ? () => setOpenTray("positive") : undefined}
           iconName="ThumbsUp"
           glyph={leadGlyph}
           active={liked}

@@ -63,6 +63,22 @@ const META: Record<PostReaction, ReactionMeta> = {
 export const REACTION_LIST: ReactionMeta[] = POST_REACTIONS.map((key) => META[key]);
 
 /**
+ * The picker's two halves.
+ *
+ * There is one tray per thumb, not one tray of nine hanging off the thumbs-UP:
+ * the seven positive faces belong to the button that already counts them, and
+ * 👎/💩 belong to the thumbs-DOWN, which is where a viewer looks for them and
+ * where the count they move is drawn. A single nine-emoji tray on the like
+ * button meant the only way to poo a post was through the button labelled
+ * "like", and the dislike button had no reaction of its own at all.
+ *
+ * Derived from POST_REACTIONS so both halves keep the canonical order and a
+ * tenth reaction lands in the right tray without a second edit.
+ */
+export const POSITIVE_REACTION_LIST: ReactionMeta[] = REACTION_LIST.filter((r) => r.positive);
+export const NEGATIVE_REACTION_LIST: ReactionMeta[] = REACTION_LIST.filter((r) => !r.positive);
+
+/**
  * Past-tense verb phrase for notification copy ("Ada loved your post").
  * Mirrors the API's REACTION_VERBS so a locally-rendered fallback reads the
  * same as the server-rendered `content`.
@@ -134,6 +150,27 @@ export function resolveLeadReaction(
   const own = myReaction && isPositiveReaction(myReaction) ? myReaction : null;
   const lead = own ?? topPositiveReaction(counts);
   return lead && lead !== DEFAULT_POSITIVE_REACTION ? lead : null;
+}
+
+/**
+ * The one glyph the thumbs-DOWN wears — the viewer's own 💩, else null for the
+ * plain icon.
+ *
+ * Deliberately NOT the mirror of `resolveLeadReaction`: it never leads with
+ * the crowd's pick. Negative reactions are anonymous across the whole product
+ * — they raise no notification and appear in no likers list — so drawing 💩 on
+ * every reader's copy of a post because some of them pooed it would be the one
+ * place the app pointed at them. Your own is different: you already know what
+ * you cast, and the glyph is what proves it landed.
+ *
+ * Null for a plain 👎 as well as for none, since the icon is already that
+ * reaction's glyph — same rule the positive side follows.
+ */
+export function resolveNegativeLeadReaction(
+  myReaction: PostReaction | null | undefined,
+): PostReaction | null {
+  if (!myReaction || isPositiveReaction(myReaction)) return null;
+  return myReaction === DEFAULT_NEGATIVE_REACTION ? null : myReaction;
 }
 
 /** Most-used positive reaction, ties broken by picker order. */

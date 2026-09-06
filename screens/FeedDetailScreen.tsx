@@ -4,7 +4,7 @@ import { View, Text, FlatList, TextInput, TouchableOpacity, ActivityIndicator, K
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
-import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, postComment, editComment, deleteComment, postImageComment, postGifComment, postAudioComment, recordCommentViews } from "../services/nft.service";
+import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, postImageComment, postGifComment, postAudioComment, recordCommentViews } from "../services/nft.service";
 import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard from "../components/Home/FeedCard";
 import { CommentItem } from "../components/Comments";
@@ -37,6 +37,7 @@ import {
 import { theme } from "../theme";
 import { formatCompactNumber } from "../libs/numbers.util";
 import { ScreenNames } from "../navigation/ScreenNames";
+import type { PostReaction } from "../libs/reactions";
 
 /** A comment plus how deep it sits in the thread (0 = top-level, 1 = direct reply, …). */
 type ThreadedComment = Comment & { depth: number };
@@ -452,6 +453,19 @@ export default function FeedDetailScreen() {
     }
   }, [address]);
 
+  /** One of the nine, from a comment row's hold-open tray. */
+  const handleReactComment = useCallback(
+    async (commentId: number, reaction: PostReaction): Promise<ReactCommentResult | void> => {
+      if (!address) return;
+      try {
+        return await reactComment({ commentId, reaction });
+      } catch (e) {
+        console.error("[FeedDetailScreen] reactComment error", e);
+      }
+    },
+    [address],
+  );
+
   const handleCommentLongPress = useCallback(
     (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean }) => {
       setContextComment(comment);
@@ -699,6 +713,7 @@ export default function FeedDetailScreen() {
             tipTotal={tipTotals[Number(c.id)]}
             onLike={handleLikeComment}
             onDislike={handleDislikeComment}
+            onReact={handleReactComment}
             onShowLikers={setLikersCommentId}
             onLongPress={handleCommentLongPress}
             tokenId={tokenId}
