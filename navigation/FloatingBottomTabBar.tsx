@@ -114,6 +114,7 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, params: { initialTab: "buy" } },
   { icon: "Vault", labelKey: "nav.staking", screen: ScreenNames.Dpay, params: { initialTab: "stake" } },
   { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
+  { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao },
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
   { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary },
   { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings },

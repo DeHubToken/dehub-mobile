@@ -96,6 +96,7 @@ const NAV_ITEMS: DrawerItem[] = [
   // of the screen.
   { icon: "Rocket", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers, storefrontHidden: true },
   { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
+  { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao },
   { icon: "Briefcase", labelKey: "screens.work", screen: ScreenNames.Work },
   { icon: "Users", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true },
   { icon: "Briefcase", labelKey: "nav.careers", screen: ScreenNames.Careers },
