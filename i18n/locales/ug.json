@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "بۇ ئۈسكۈنىنى قوزغىتىش ئۈچۈن تىزىملىتىلمىغان",
+    "pushNotRegisteredDesc": "ئەپ تاقالغاندا سىزگە ئۇقتۇرۇش كەلمەيدۇ. ئەپنى قايتا ئېچىش ئادەتتە ئۇنى تازىلايدۇ ؛ ئەگەر داۋاملاشسا، ئەڭ يېڭى قۇرۇلۇشنى dehub.io/apk دىن قاچىلاڭ.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

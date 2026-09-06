@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "ಈ ಸಾಧನವನ್ನು ಪುಶ್‌ಗಾಗಿ ನೋಂದಾಯಿಸಲಾಗಿಲ್ಲ",
+    "pushNotRegisteredDesc": "ಆ್ಯಪ್ ಅನ್ನು ಮುಚ್ಚಿದಾಗ ಅಧಿಸೂಚನೆಗಳು ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಆ್ಯಪ್ ಅನ್ನು ಪುನಃ ತೆರೆಯುವುದು ಸಾಮಾನ್ಯವಾಗಿ ಅದನ್ನು ತೆರವುಗೊಳಿಸುತ್ತದೆ; ಅದು ಸಂಭವಿಸುತ್ತಿದ್ದರೆ, dehub.io/apk ನಿಂದ ಇತ್ತೀಚಿನ ಬಿಲ್ಡ್ ಅನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "आपके डिवाइस पर सूचनाएँ भेजें",
     "pushNotificationsDisabled": "पुश सूचनाएँ बंद हैं",
     "tapEnableSystemSettings": "सिस्टम सेटिंग्स में चालू करने के लिए टैप करें",
+    "pushNotRegistered": "यह डिवाइस पुश के लिए रजिस्टर नहीं है",
+    "pushNotRegisteredDesc": "ऐप बंद होने के दौरान नोटिफ़िकेशन आपसे संपर्क नहीं कर सकते। ऐप को फिर से खोलना आमतौर पर इसे साफ़ करता है; अगर ऐसा होता रहता है, तो dehub.io/apk से नवीनतम बिल्ड इंस्टॉल करें।",
     "categoryEngagement": "सहभागिता",
     "categorySocial": "सोशल",
     "categoryEarnings": "कमाई",

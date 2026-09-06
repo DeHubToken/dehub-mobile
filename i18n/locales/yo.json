@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Ẹrọ yii ko forukọsilẹ fun titari.",
+    "pushNotRegisteredDesc": "Ìkìlọ̀ kò lè dé ọ̀dọ̀ rẹ nígbà tí ohun èlò náà ti di títì. Ṣíṣí ohun-èlò náà máa ń pa á mọ́; bí ó bá ṣì ń ṣẹlẹ̀, fi ilé tuntun sí i láti dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Ovaj uređaj nije registrovan za push",
+    "pushNotRegisteredDesc": "Obaveštenja ne mogu da vas kontaktiraju dok je aplikacija zatvorena. Ponovnim otvaranjem aplikacije obično se briše; ako se to nastavi, instalirajte najnoviju verziju sa dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

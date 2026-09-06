@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "आपके डिवाइस पर सूचनाएँ भेजें",
     "pushNotificationsDisabled": "पुश सूचनाएँ बंद हैं",
     "tapEnableSystemSettings": "सिस्टम सेटिंग्स में चालू करने के लिए टैप करें",
+    "pushNotRegistered": "ये उपकरन धक्का बर पंजीकृत नइ हे",
+    "pushNotRegisteredDesc": "जब एप बंद हो जाथे तहां सूचना आप तक नइ पहुंच सके. एप ल फिर से खोले बर आमतौर म साफ करे जात हवय; यदि ए जारी हवय, तो dehub.io/apk ले नवीनतम भवन स्थापित करे जा सकत हवय ।",
     "categoryEngagement": "सहभागिता",
     "categorySocial": "सोशल",
     "categoryEarnings": "कमाई",

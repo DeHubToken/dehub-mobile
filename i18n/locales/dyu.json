@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "O tɛ se ka kɛ sababu ye mɔgɔ tɛ se ka baara kɛ ni a ye.",
+    "pushNotRegisteredDesc": "N'i ye kunnafoni dɔ bila, i tɛ se ka kunnafoni wɛrɛw sɔrɔ. N'i b'a fɛ ka baara kɛ n'o ye, i ka kan ka dehub.io/apk ka baara kɛ n'o ye.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

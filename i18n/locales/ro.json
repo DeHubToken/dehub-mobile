@@ -517,6 +517,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Acest dispozitiv nu este înregistrat pentru push",
+    "pushNotRegisteredDesc": "Notificările nu te pot contacta cât timp aplicația este închisă. De obicei, redeschiderea aplicației o șterge; dacă se întâmplă în continuare, instalați cea mai recentă versiune de pe dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

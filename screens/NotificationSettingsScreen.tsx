@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useSyncExternalStore } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   View,
@@ -27,6 +27,8 @@ import {
   mergePreferences,
   updateNotificationPreferences,
   getNotificationPermissionStatus,
+  getPushRegistrationState,
+  subscribePushRegistrationState,
 } from '../services/push/push.service';
 import { theme } from '../theme';
 import { useAppPrefs, setAppPref } from '../hooks/useAppPrefs';
@@ -128,6 +130,14 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [pushPermissionGranted, setPushPermissionGranted] = useState(false);
+  // Permission is not delivery. This is the other half: whether a token was
+  // ever minted for this install.
+  const pushRegistration = useSyncExternalStore(
+    subscribePushRegistrationState,
+    getPushRegistrationState,
+    () => 'unknown' as const,
+  );
+  const pushUnreachable = pushPermissionGranted && pushRegistration === 'unavailable';
   const [prefs, setPrefs] = useState<NotificationPreferences>(getDefaultNotificationPreferences());
   /** Which quiet-hours bound the picker is editing, if any. */
   const [hourPicker, setHourPicker] = useState<'start' | 'end' | null>(null);
@@ -249,6 +259,18 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
             </View>
             <Icon name="ChevronRight" size={18} color="#D4D4D8" />
           </TouchableOpacity>
+        )}
+
+        {pushUnreachable && (
+          <View className="mx-4 mt-4 p-4 bg-white/10 border border-amber-500/40 rounded-xl flex-row items-center">
+            <View className="w-10 h-10 rounded-xl bg-white/15 items-center justify-center mr-3">
+              <Icon name="BellOff" size={20} color="#D4D4D8" />
+            </View>
+            <View className="flex-1">
+              <Text className="text-white/80 text-sm font-semibold">{t('settings.pushNotRegistered')}</Text>
+              <Text className="text-white/80 text-xs mt-0.5">{t('settings.pushNotRegisteredDesc')}</Text>
+            </View>
+          </View>
         )}
 
         <SettingsAnchor id="master-controls">

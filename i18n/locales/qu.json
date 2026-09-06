@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Kay aparatoqa manam tanqanapaq qillqasqachu",
+    "pushNotRegisteredDesc": "Willakuykuna mana chayayta atisunkichu app wichqasqa kachkaptin. Appta wakmanta kichayqa aswanta ch’uyanchan; sichus ruwakuchkanpuni, dehub.io/apk kaqmanta qhipa ruwayta churay.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

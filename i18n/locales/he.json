@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "מכשיר זה אינו רשום לדחיפה",
+    "pushNotRegisteredDesc": "התראות לא יכולות להגיע אליך בזמן שהאפליקציה סגורה. פתיחה מחדש של האפליקציה בדרך כלל מנקה אותה. אם זה ממשיך לקרות, יש להתקין את הגרסה העדכנית ביותר מ - dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

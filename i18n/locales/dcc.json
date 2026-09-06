@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Ee device push kosam register avvaledhu",
+    "pushNotRegisteredDesc": "App bandh vunte notifications meeku raavu. App malli open cheste saripotundi; ilaage jarugutunte, dehub.io/apk nunchi latest build install chesukondi.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

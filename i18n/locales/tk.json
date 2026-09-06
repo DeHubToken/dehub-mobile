@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Bu esbap basmak üçin ýazylan däl",
+    "pushNotRegisteredDesc": "Ulag ýapylýança, habarlar size ýetip bilmez. Adatça, ulag ýene-de açylýar; eger ol dowam etse, dehub.io/apk-dan iň soňky gurluşygy goýuň.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

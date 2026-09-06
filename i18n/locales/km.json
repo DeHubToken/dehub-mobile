@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "ឧបករណ៍នេះមិនត្រូវបានចុះឈ្មោះសម្រាប់ការរុញទេ",
+    "pushNotRegisteredDesc": "ការជូនដំណឹងមិនអាចទៅដល់អ្នកបានទេ ខណៈពេលដែលកម្មវិធីត្រូវបានបិទ ។ ការបើកកម្មវិធីឡើងវិញជាធម្មតាបោសសំអាតវា ។ ប្រសិនបើវានៅតែបន្តកើតឡើង សូមដំឡើងសំណង់ថ្មីបំផុតពី dehub.io/apk ។",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

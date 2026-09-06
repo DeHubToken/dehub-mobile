@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Отправлять уведомления на ваше устройство",
     "pushNotificationsDisabled": "Push-уведомления отключены",
     "tapEnableSystemSettings": "Нажмите, чтобы включить в настройках системы",
+    "pushNotRegistered": "Это устройство не зарегистрировано.",
+    "pushNotRegisteredDesc": "Уведомления не доходят до вас, пока приложение закрыто. При повторном открытии приложение обычно очищает его; если это продолжается, установите последнюю сборку с dehub.io/apk.",
     "categoryEngagement": "Вовлечённость",
     "categorySocial": "Социальное",
     "categoryEarnings": "Доходы",

@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Envoyer les notifications à votre appareil",
     "pushNotificationsDisabled": "Notifications push désactivées",
     "tapEnableSystemSettings": "Touchez pour activer dans les réglages du système",
+    "pushNotRegistered": "Cet appareil n'est pas enregistré pour le push",
+    "pushNotRegisteredDesc": "Les notifications ne peuvent pas vous atteindre tant que l'application est fermée. La réouverture de l'application l'efface généralement ; si cela continue, installez la dernière version de dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Revenus",

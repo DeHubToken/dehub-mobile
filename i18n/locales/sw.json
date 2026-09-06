@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Kifaa hiki hakijasajiliwa kwa push",
+    "pushNotRegisteredDesc": "Arifa haziwezi kukufikia wakati programu imefungwa. Kufungua upya programu kwa kawaida huiondoa; ikiwa inaendelea kutokea, weka jengo la hivi karibuni kutoka dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

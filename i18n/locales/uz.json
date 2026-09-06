@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Ushbu qurilma push uchun ro&#39;yxatdan o&#39;tmagan",
+    "pushNotRegisteredDesc": "Ilova yopilgan paytda sizga bildirishnomalar yetib bora olmaydi. Ilovani qayta ochish odatda uni o&#39;chiradi; agar bu davom etsa, dehub.io/apk saytidan eng so&#39;nggi versiyani o&#39;rnating.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

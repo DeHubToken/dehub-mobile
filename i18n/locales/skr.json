@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Hye aala device push wastay register naahi ahe",
+    "pushNotRegisteredDesc": "جڏهن ايپ بند هجي ته توهان کي اطلاع نه ٿا ملي سگهن. ايپ کي ٻيهر کولڻ سان اهو مسئلو حل ٿي ويندو آهي؛ جيڪڏهن اهو بار بار ٿئي ته dehub.io/apk تان جديد بلڊ انسٽال ڪريو.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

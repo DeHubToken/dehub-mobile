@@ -115,6 +115,50 @@ export function getCachedPushToken(): string | null {
 }
 
 /**
+ * Whether a push token actually exists, as distinct from whether the reader
+ * asked for notifications.
+ *
+ * Those come apart more often than the settings screen admitted. Registration
+ * returns null on a missing EAS project id, on an Expo call that throws, and
+ * on a simulator - none of which is a permission problem, and every one of
+ * which leaves the push switch sitting on over a device the server can never
+ * reach. The provider's only response was an early return, so nothing on the
+ * screen could tell the difference.
+ *
+ *   'unknown'     - registration has not run yet this launch
+ *   'unsupported' - a simulator, which cannot hold a token at all
+ *   'denied'      - the OS permission is not granted
+ *   'registered'  - a token exists and went to the backend
+ *   'unavailable' - we asked, and Expo or the app config could not produce one
+ */
+export type PushRegistrationState =
+  | 'unknown'
+  | 'unsupported'
+  | 'denied'
+  | 'registered'
+  | 'unavailable';
+
+let registrationState: PushRegistrationState = 'unknown';
+const registrationListeners = new Set<() => void>();
+
+function setRegistrationState(next: PushRegistrationState): void {
+  if (registrationState === next) return;
+  registrationState = next;
+  for (const listener of registrationListeners) listener();
+}
+
+export function getPushRegistrationState(): PushRegistrationState {
+  return registrationState;
+}
+
+export function subscribePushRegistrationState(onChange: () => void): () => void {
+  registrationListeners.add(onChange);
+  return () => {
+    registrationListeners.delete(onChange);
+  };
+}
+
+/**
  * Request push notification permissions and get Expo push token.
  * Returns null if permissions denied or not on physical device.
  * 
@@ -153,6 +197,7 @@ async function doRegisterForPushNotifications(): Promise<string | null> {
   // Must be a physical device for push notifications
   if (!Device.isDevice) {
     logger.warn('Push notifications require a physical device');
+    setRegistrationState('unsupported');
     return null;
   }
 
@@ -170,6 +215,7 @@ async function doRegisterForPushNotifications(): Promise<string | null> {
 
     if (finalStatus !== 'granted') {
       logger.warn('Push notification permission denied');
+      setRegistrationState('denied');
       return null;
     }
 
@@ -177,6 +223,9 @@ async function doRegisterForPushNotifications(): Promise<string | null> {
     const projectId = Constants.expoConfig?.extra?.eas?.projectId;
     if (!projectId) {
       logger.error('EAS project ID not found in app config');
+      // A bundle shipped without its config lands here, which is why this is
+      // reported rather than swallowed.
+      setRegistrationState('unavailable');
       return null;
     }
 
@@ -191,9 +240,11 @@ async function doRegisterForPushNotifications(): Promise<string | null> {
       androidChannelsConfigured = true;
     }
 
+    setRegistrationState('registered');
     return token;
   } catch (error) {
     logger.error('Failed to get push token', error);
+    setRegistrationState('unavailable');
     return null;
   }
 }

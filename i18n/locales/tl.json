@@ -748,6 +748,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Hindi nakarehistro ang device na ito para sa push",
+    "pushNotRegisteredDesc": "Hindi ka maaabot ng mga notipikasyon habang sarado ang app. Ang muling pagbubukas ng app ay karaniwang nililinis ito; kung patuloy itong nangyayari, i - install ang pinakabagong build mula sa dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

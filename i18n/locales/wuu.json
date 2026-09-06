@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "把通知发送到你的设备",
     "pushNotificationsDisabled": "推送通知已关闭",
     "tapEnableSystemSettings": "点击前往系统设置开启",
+    "pushNotRegistered": "箇設備嘸註冊推播",
+    "pushNotRegisteredDesc": "应用关脱了，通知就收不到。重新打开应用通常能解决，如果一直这样，请从 dehub.io/apk 下载最新版本。",
     "categoryEngagement": "互动",
     "categorySocial": "社交",
     "categoryEarnings": "收益",

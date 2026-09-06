@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "See seade ei ole tõukeseadmeks registreeritud",
+    "pushNotRegisteredDesc": "Teavitused ei jõua Sinuni, kui rakendus on suletud. Rakenduse uuesti avamine kustutab selle tavaliselt; kui see jätkub, installige uusim versioon aadressilt dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

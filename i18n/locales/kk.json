@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Бұл құрылғы итеру үшін тіркелмеген",
+    "pushNotRegisteredDesc": "Қолданба жабылған кезде хабарландырулар сізге жете алмайды. Қолданбаны қайта ашу әдетте оны тазалайды; егер ол жалғаса берсе, dehub.io/apk сайтынан соңғы құрастыруды орнатыңыз.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

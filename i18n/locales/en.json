@@ -378,6 +378,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "This device is not registered for push",
+    "pushNotRegisteredDesc": "Notifications cannot reach you while the app is closed. Reopening the app usually clears it; if it keeps happening, install the latest build from dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

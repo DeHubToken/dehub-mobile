@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "പുഷിനായി ഈ ഉപകരണം രജിസ്റ്റർ ചെയ്തിട്ടില്ല",
+    "pushNotRegisteredDesc": "ആപ്പ് ക്ലോസ് ചെയ്യുമ്പോൾ അറിയിപ്പുകൾ നിങ്ങളെ ബന്ധപ്പെടാൻ കഴിയില്ല. ആപ്പ് വീണ്ടും തുറക്കുന്നത് സാധാരണയായി അത് മായ്‌ക്കുന്നു; അത് സംഭവിച്ചുകൊണ്ടിരിക്കുകയാണെങ്കിൽ, dehub.io/apk-ൽ നിന്ന് ഏറ്റവും പുതിയ ബിൽഡ് ഇൻസ്റ്റാൾ ചെയ്യുക.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

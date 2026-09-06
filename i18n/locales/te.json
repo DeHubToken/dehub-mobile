@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "ఈ పరికరం పుష్ కోసం నమోదు చేయబడలేదు",
+    "pushNotRegisteredDesc": "యాప్ మూసివేయబడినప్పుడు నోటిఫికేషన్ ‌ లు మిమ్మల్ని సంప్రదించలేవు. యాప్ ‌ ను తిరిగి తెరవడం సాధారణంగా దాన్ని క్లియర్ చేస్తుంది; ఇది జరుగుతున్నట్లయితే, dehub.io/apk నుండి తాజా బిల్డ్ ‌ ను ఇన్ ‌ స్టాల్ చేయండి.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

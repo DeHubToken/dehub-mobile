@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Piranti iki ora kadhaptar kanggo push",
+    "pushNotRegisteredDesc": "Notifikasi ora bisa tekan sampeyan nalika aplikasi ditutup. Mbukak maneh aplikasi biasane ngatasi; yen terus kedadeyan, instal versi paling anyar saka dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

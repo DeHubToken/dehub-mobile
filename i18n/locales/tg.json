@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Ин дастгоҳ барои зеркашӣ ба қайд гирифта нашудааст",
+    "pushNotRegisteredDesc": "Ang mga abiso ay hindi maaaring makatakbo sa iyo habang isara ang app. Кушодани барнома одатан онро тоза мекунад; агар он рӯй диҳад, насб кардани бинои охирин аз dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

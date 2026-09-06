@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "இந்த சாதனம் புஷ் செய்ய பதிவு செய்யப்படவில்லை",
+    "pushNotRegisteredDesc": "ஆப் மூடப்பட்டிருக்கும்போது அறிவிப்புகள் உங்களைத் தொடர்புகொள்ள முடியாது. ஆப்பை மீண்டும் திறப்பது வழக்கமாக அதை அழிக்கிறது; அது தொடர்ந்து நடந்தால், dehub.io/apk இலிருந்து சமீபத்திய கட்டமைப்பை நிறுவவும்.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

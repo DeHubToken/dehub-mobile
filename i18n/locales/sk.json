@@ -376,6 +376,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Toto zariadenie nie je registrované na push",
+    "pushNotRegisteredDesc": "Keď je aplikácia zatvorená, upozornenia sa k vám nemôžu dostať. Opätovné otvorenie aplikácie ju zvyčajne vymaže; ak sa to deje stále, nainštalujte najnovšiu verziu z dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

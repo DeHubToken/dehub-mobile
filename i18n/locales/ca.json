@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Aquest dispositiu no està registrat per push",
+    "pushNotRegisteredDesc": "Les notificacions no et poden arribar mentre l'aplicació estigui tancada. Tornar a obrir l'aplicació sol esborrar-la; si continua passant, instal·la l'última compilació des de dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

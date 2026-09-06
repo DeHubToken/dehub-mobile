@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Ity fitaovana ity dia tsy voasoratra ny tosika",
+    "pushNotRegisteredDesc": "Ny fampandrenesana dia tsy afaka manatratra anao raha mbola mihidy ny app. Ny fanokafana ny fampiharana matetika dia manala izany; Raha tsy mitsahatra ny mitranga, dia mametraka ny fananganana farany avy amin'ny dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",
