@@ -37,7 +37,12 @@ export class RequestTimeoutError extends Error {
   readonly isTimeout = true;
   readonly url: string;
   constructor(url: string, ms: number) {
-    super(`Request timed out after ${ms}ms`);
+    // Keep the host and path in the user-visible error so a screenshot tells
+    // us which request stalled. Strip the query/fragment because those can
+    // contain identifiers or other values that should not be copied into a
+    // toast, screenshot, or support message.
+    const target = url.split(/[?#]/, 1)[0].replace(/^https?:\/\//i, '');
+    super(`Request to ${target} timed out after ${ms}ms`);
     this.name = 'RequestTimeoutError';
     this.url = url;
   }
