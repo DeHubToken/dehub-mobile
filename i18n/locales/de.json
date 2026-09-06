@@ -575,7 +575,7 @@
     "locked": "Geschützt",
     "any": "Alle",
     "resetFilters": "Filter zurücksetzen",
-    "mostTips": "Most Tips",
+    "mostTips": "Meiste Trinkgelder",
     "audio": "Audio",
     "live": "Live",
     "forYou": "Für dich"
@@ -859,7 +859,7 @@
     "txPpvSale": "PPV Verkauf — {{amount}} DHB",
     "txTipSent": "Trinkgeld an {{name}} — {{amount}} DHB",
     "txTipReceived": "{{name}} hat Trinkgeld gesendet — {{amount}} DHB",
-    "totalDhbBalance": "Total DHB Balance",
+    "totalDhbBalance": "DHB-Gesamtguthaben",
     "mobileSubtitle": "Wallet, Einnahmen und Reichweite an einem Ort",
     "balance": "Guthaben",
     "income": "Einnahmen",

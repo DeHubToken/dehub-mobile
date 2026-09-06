@@ -393,8 +393,8 @@
     "exportPkBullet2": "Jangan pernah membagikannya. Kami tidak akan pernah memintanya.",
     "exportPkBullet3": "Simpan dengan aman di pengelola kata sandi atau offline.",
     "exportPkBullet4": "Kami tidak bisa memulihkan dana yang hilang atau kunci yang bocor.",
-    "exportPkTypeToContinue": "Type \"{{phrase}}\" to continue",
-    "exportPkTypeToProceed": "Type \"{{phrase}}\" to proceed",
+    "exportPkTypeToContinue": "Ketik \"{{phrase}}\" untuk melanjutkan",
+    "exportPkTypeToProceed": "Ketik \"{{phrase}}\" untuk melanjutkan",
     "preparing": "Menyiapkan…",
     "iUnderstand": "Saya mengerti",
     "exportPkSmartAccount1": "Akun ini memakai smart account (Web3Auth). Kunci privat tidak bisa diekspor.",
@@ -684,7 +684,7 @@
   },
   "tip": {
     "title": "Kirim Tip",
-    "toCreator": "Tip {{name}}",
+    "toCreator": "Beri tip ke {{name}}",
     "quickAmounts": "Jumlah cepat",
     "customAmount": "Atau masukkan jumlah",
     "sending": "Mengirim...",
@@ -780,10 +780,10 @@
     "locked": "Terbatas",
     "any": "Semua",
     "resetFilters": "Reset filter",
-    "mostTips": "Most Tips",
+    "mostTips": "Tip terbanyak",
     "audio": "Audio",
     "live": "Live",
-    "forYou": "For You"
+    "forYou": "Untukmu"
   },
   "assistant": {
     "title": "Asisten",
