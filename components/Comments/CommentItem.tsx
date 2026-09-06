@@ -28,8 +28,19 @@ const resolveMediaUrl = (path: string): string => {
 };
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useUser } from "../../context/AuthContext";
-import { LikeCommentResult, DislikeCommentResult } from "../../services/nft.service";
+import { LikeCommentResult, DislikeCommentResult, ReactCommentResult } from "../../services/nft.service";
 import type { Comment } from "../../services/nft.service";
+import ReactionPicker from "../Home/ReactionPicker";
+import {
+  applyReactionDelta,
+  isPositiveReaction,
+  reactionForTap,
+  reactionMeta,
+  resolveLeadReaction,
+  resolveNegativeLeadReaction,
+  type PostReaction,
+  type ReactionCounts,
+} from "../../libs/reactions";
 import type { CommentLayout } from "./CommentContextMenu";
 import { WEBSITE_LINK } from "../../config";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
@@ -78,6 +89,12 @@ interface CommentItemProps {
   tipTotal?: number;
   onLike?: (commentId: number) => Promise<LikeCommentResult | void>;
   onDislike?: (commentId: number) => Promise<DislikeCommentResult | void>;
+  /**
+   * Cast a specific one of the nine — what the hold-open trays route to.
+   * Its presence is also what turns the trays on: a host that only knows
+   * like/dislike keeps the plain pair, as it did before reactions.
+   */
+  onReact?: (commentId: number, reaction: PostReaction) => Promise<ReactCommentResult | void>;
   /** Own comment's like button opens who-liked instead of liking — the server
    *  refuses self-likes, and this is the author's only door to the list. */
   onShowLikers?: (commentId: number) => void;
@@ -125,6 +142,16 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const [disliked, setDisliked] = useState(!!comment.isDisliked);
   const [dislikeCount, setDislikeCount] = useState(comment.dislikeCount || 0);
   const [isDisliking, setIsDisliking] = useState(false);
+  // Which of the nine this viewer holds. Falls back to the polarity flags,
+  // which is exactly what a plain like always was — a comment voted on before
+  // reactions shipped, or served by an API that has not deployed them yet,
+  // would otherwise draw the viewer's own like as no reaction at all.
+  const [myReaction, setMyReaction] = useState<PostReaction | null>(
+    comment.myReaction ?? (comment.isLiked ? "like" : comment.isDisliked ? "dislike" : null),
+  );
+  const [reactionCounts, setReactionCounts] = useState<ReactionCounts>(comment.reactionCounts ?? {});
+  // One tray per thumb, only ever one open — see FeedActionBar for the same pair.
+  const [openTray, setOpenTray] = useState<"positive" | "negative" | null>(null);
   const containerRef = useRef<View>(null);
 
   const likeScale = useSharedValue(1);
@@ -166,6 +193,17 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const isOwnComment = currentUser?.address === user?.address ||
                        currentUser?.walletAddress === user?.address ||
                        currentUser?.username === user?.username;
+
+  // The trays need a handler to route to; a host that only knows the plain
+  // pair keeps the plain pair, exactly as before reactions.
+  const reactionsEnabled = !!onReact;
+  /** The glyph the thumbs-up wears — yours, else the thread's most-used. */
+  const leadReaction = isOwnComment ? null : resolveLeadReaction(reactionCounts, myReaction);
+  const leadGlyph = leadReaction ? reactionMeta(leadReaction).emoji : undefined;
+  /** …and the thumbs-DOWN wears your own 💩, never the crowd's. */
+  const myNegativeReaction = myReaction && !isPositiveReaction(myReaction) ? myReaction : null;
+  const negativeLeadReaction = resolveNegativeLeadReaction(myReaction);
+  const negativeGlyph = negativeLeadReaction ? reactionMeta(negativeLeadReaction).emoji : undefined;
 
   // Address is the identity; the name is only ever evidence. A commenter with
   // no address makes no claim either way.
@@ -246,71 +284,103 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     }
   }, [userId, onUserPress, showUserProfile]);
 
-  const handleLikePress = useCallback(async () => {
-    if (isLiking) return;
+  /**
+   * Cast one of the nine on this comment.
+   *
+   * The single vote path for the row — the plain thumbs below only pick which
+   * reaction a tap means. Holds the same three rules the server does:
+   * re-casting what you hold removes it, the two counts move only when the
+   * polarity changes, and the per-reaction split moves every time.
+   */
+  const handleReact = useCallback(async (reaction: PostReaction) => {
+    if (isLiking || isDisliking) return;
+    setOpenTray(null);
 
-    if (isOwnComment) {
-      if (onShowLikers) {
-        onShowLikers(comment.id);
-        return;
-      }
-      // No likers sheet wired here — still never send a like the server will
-      // 400. Un-liking a historical self-like stays allowed.
-      if (!liked) return;
+    const nextPositive = isPositiveReaction(reaction);
+    if (isOwnComment && nextPositive) {
+      // Your own comment's thumb is the door to the likers list, and the
+      // server refuses a self-like anyway. Removing a historical one is fine.
+      if (onShowLikers) { onShowLikers(comment.id); return; }
+      if (myReaction !== reaction) return;
     }
 
-    const wasLiked = liked;
-    const oldCount = likeCount;
-    setLiked(!wasLiked);
-    setLikeCount((c) => wasLiked ? Math.max(0, c - 1) : c + 1);
+    const previous = myReaction;
+    const next: PostReaction | null = previous === reaction ? null : reaction;
+    const wasPositive = previous ? isPositiveReaction(previous) : null;
+    const nowPositive = next ? isPositiveReaction(next) : null;
 
-    likeScale.value = withSequence(
+    const before = { liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts };
+    let likes = likeCount;
+    let dislikes = dislikeCount;
+    if (wasPositive !== nowPositive) {
+      if (wasPositive === true) likes = Math.max(0, likes - 1);
+      if (wasPositive === false) dislikes = Math.max(0, dislikes - 1);
+      if (nowPositive === true) likes += 1;
+      if (nowPositive === false) dislikes += 1;
+    }
+
+    setLiked(nowPositive === true);
+    setDisliked(nowPositive === false);
+    setMyReaction(next);
+    setLikeCount(likes);
+    setDislikeCount(dislikes);
+    setReactionCounts((counts) => applyReactionDelta(counts, previous, next));
+
+    const scale = nextPositive ? likeScale : dislikeScale;
+    scale.value = withSequence(
       withTiming(1.3, { duration: 100 }),
       withSpring(1, { damping: 12, stiffness: 300 }),
     );
 
-    setIsLiking(true);
+    const setBusy = nextPositive ? setIsLiking : setIsDisliking;
+    setBusy(true);
     try {
-      const result = await onLike?.(comment.id);
-      if (result && typeof result.liked === "boolean") {
+      // A host that only knows the plain pair keeps working: those two
+      // endpoints are wrappers on the same server-side state machine.
+      const result = onReact
+        ? await onReact(comment.id, reaction)
+        : nextPositive
+          ? await onLike?.(comment.id)
+          : await onDislike?.(comment.id);
+      if (result && "currentReaction" in result) {
+        setLiked(result.liked);
+        setDisliked(result.disliked);
+        setMyReaction(result.currentReaction ?? null);
+        setLikeCount(result.likes);
+        setDislikeCount(result.dislikes);
+        if (result.reactionCounts) setReactionCounts(result.reactionCounts);
+      } else if (result && "liked" in result) {
         setLiked(result.liked);
         setLikeCount(result.likes);
-      }
-    } catch {
-      setLiked(wasLiked);
-      setLikeCount(oldCount);
-    } finally {
-      setIsLiking(false);
-    }
-  }, [liked, likeCount, isLiking, isOwnComment, comment.id, onLike, onShowLikers, likeScale]);
-
-  const handleDislikePress = useCallback(async () => {
-    if (isDisliking) return;
-
-    const wasDisliked = disliked;
-    const oldCount = dislikeCount;
-    setDisliked(!wasDisliked);
-    setDislikeCount((c) => wasDisliked ? Math.max(0, c - 1) : c + 1);
-
-    dislikeScale.value = withSequence(
-      withTiming(1.3, { duration: 100 }),
-      withSpring(1, { damping: 12, stiffness: 300 }),
-    );
-
-    setIsDisliking(true);
-    try {
-      const result = await onDislike?.(comment.id);
-      if (result && typeof result.disliked === "boolean") {
+      } else if (result && "disliked" in result) {
         setDisliked(result.disliked);
         setDislikeCount(result.dislikes);
       }
     } catch {
-      setDisliked(wasDisliked);
-      setDislikeCount(oldCount);
+      setLiked(before.liked);
+      setDisliked(before.disliked);
+      setMyReaction(before.myReaction);
+      setLikeCount(before.likeCount);
+      setDislikeCount(before.dislikeCount);
+      setReactionCounts(before.reactionCounts);
     } finally {
-      setIsDisliking(false);
+      setBusy(false);
     }
-  }, [disliked, dislikeCount, isDisliking, comment.id, onDislike, dislikeScale]);
+  }, [
+    liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts,
+    isLiking, isDisliking, isOwnComment, comment.id, onReact, onLike, onDislike,
+    onShowLikers, likeScale, dislikeScale,
+  ]);
+
+  /** A plain tap casts whatever the thumb is wearing — see reactionForTap. */
+  const handleLikePress = useCallback(
+    () => handleReact(reactionForTap(true, myReaction, reactionCounts)),
+    [handleReact, myReaction, reactionCounts],
+  );
+  const handleDislikePress = useCallback(
+    () => handleReact(reactionForTap(false, myReaction)),
+    [handleReact, myReaction],
+  );
 
   const handleReplyPress = useCallback(() => {
     onReply?.(comment);
@@ -521,55 +591,105 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
           ) : null}
 
           <View style={{ flexDirection: "row", alignItems: "center", marginTop: 6, gap: 12 }}>
-            <Pressable
-              onPress={handleLikePress}
-              disabled={isLiking}
-              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-              accessibilityRole="button"
-              accessibilityLabel="Like"
-              accessibilityState={{ selected: liked }}
-              style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
-            >
-              <Animated.View style={likeAnimStyle}>
-                <Icon
-                  name="ThumbsUp"
-                  size={14}
-                  color={liked ? ICON_ACTIVE : ICON_MUTED}
-                  fill={liked ? ICON_ACTIVE : undefined}
-                  strokeWidth={1.8}
+            {/* Hold either thumb for its tray: the seven positive faces on
+                this one, 👎 and 💩 on the next — each hanging off the button
+                whose count it moves. The wrapper is the tray's positioning
+                context. No tray on your own comment's thumbs-up, because
+                every reaction it could cast the server would refuse. */}
+            <View style={{ position: "relative" }}>
+              {reactionsEnabled && !isOwnComment && (
+                <ReactionPicker
+                  open={openTray === "positive"}
+                  current={myReaction}
+                  onSelect={handleReact}
+                  align="left"
                 />
-              </Animated.View>
-              {likeCount > 0 && (
-                <Text style={{ fontSize: 12, color: "#8B8D90" }}>{likeCount}</Text>
               )}
-            </Pressable>
+              <Pressable
+                onPress={handleLikePress}
+                onLongPress={reactionsEnabled && !isOwnComment ? () => setOpenTray("positive") : undefined}
+                delayLongPress={400}
+                disabled={isLiking}
+                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                accessibilityRole="button"
+                accessibilityLabel={
+                  isOwnComment
+                    ? "See who liked"
+                    : `${reactionMeta(leadReaction ?? "like").label} — hold to react`
+                }
+                accessibilityState={{ selected: liked }}
+                style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
+              >
+                <Animated.View style={likeAnimStyle}>
+                  {leadGlyph ? (
+                    <Text style={{ fontSize: 13, lineHeight: 17, width: 14, textAlign: "center" }}>
+                      {leadGlyph}
+                    </Text>
+                  ) : (
+                    <Icon
+                      name="ThumbsUp"
+                      size={14}
+                      color={liked ? ICON_ACTIVE : ICON_MUTED}
+                      fill={liked ? ICON_ACTIVE : undefined}
+                      strokeWidth={1.8}
+                    />
+                  )}
+                </Animated.View>
+                {likeCount > 0 && (
+                  <Text style={{ fontSize: 12, color: "#8B8D90" }}>{likeCount}</Text>
+                )}
+              </Pressable>
+            </View>
 
             {/* Gated on the handler like Reply below: a host that passes no
                 onDislike used to get a button whose taps stuck visually and
                 were never sent. */}
-            {onDislike && (
-              <Pressable
-                onPress={handleDislikePress}
-                disabled={isDisliking}
-                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-                accessibilityRole="button"
-                accessibilityLabel="Dislike"
-                accessibilityState={{ selected: disliked }}
-                style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
-              >
-                <Animated.View style={dislikeAnimStyle}>
-                  <Icon
-                    name="ThumbsDown"
-                    size={14}
-                    color={disliked ? ICON_ACTIVE : ICON_MUTED}
-                    fill={disliked ? ICON_ACTIVE : undefined}
-                    strokeWidth={1.8}
+            {(onDislike || onReact) && (
+              <View style={{ position: "relative" }}>
+                {reactionsEnabled && (
+                  <ReactionPicker
+                    open={openTray === "negative"}
+                    polarity="negative"
+                    current={myReaction}
+                    onSelect={handleReact}
+                    align="left"
                   />
-                </Animated.View>
-                {dislikeCount > 0 && (
-                  <Text style={{ fontSize: 12, color: "#8B8D90" }}>{dislikeCount}</Text>
                 )}
-              </Pressable>
+                <Pressable
+                  onPress={handleDislikePress}
+                  onLongPress={reactionsEnabled ? () => setOpenTray("negative") : undefined}
+                  delayLongPress={400}
+                  disabled={isDisliking}
+                  hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                  accessibilityRole="button"
+                  accessibilityLabel={
+                    myNegativeReaction
+                      ? `${reactionMeta(myNegativeReaction).label} — hold to change your reaction`
+                      : "Dislike — hold to react"
+                  }
+                  accessibilityState={{ selected: disliked }}
+                  style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
+                >
+                  <Animated.View style={dislikeAnimStyle}>
+                    {negativeGlyph ? (
+                      <Text style={{ fontSize: 13, lineHeight: 17, width: 14, textAlign: "center" }}>
+                        {negativeGlyph}
+                      </Text>
+                    ) : (
+                      <Icon
+                        name="ThumbsDown"
+                        size={14}
+                        color={disliked ? ICON_ACTIVE : ICON_MUTED}
+                        fill={disliked ? ICON_ACTIVE : undefined}
+                        strokeWidth={1.8}
+                      />
+                    )}
+                  </Animated.View>
+                  {dislikeCount > 0 && (
+                    <Text style={{ fontSize: 12, color: "#8B8D90" }}>{dislikeCount}</Text>
+                  )}
+                </Pressable>
+              </View>
             )}
 
             {onReply && (

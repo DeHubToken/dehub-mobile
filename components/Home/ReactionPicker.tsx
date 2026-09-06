@@ -28,7 +28,11 @@ import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { View, Pressable, Text, useWindowDimensions, type ViewStyle } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import Icon from "../ui/Icon";
-import { REACTION_LIST, type PostReaction } from "../../libs/reactions";
+import {
+  NEGATIVE_REACTION_LIST,
+  POSITIVE_REACTION_LIST,
+  type PostReaction,
+} from "../../libs/reactions";
 
 const TRAY_BG = "#0A0A0BE6";      // zinc-950 @ 90%
 const TRAY_BORDER = "#FFFFFF1A";  // white @ 10%
@@ -56,9 +60,15 @@ interface ReactionPickerProps {
   /**
    * Opens the who-reacted-what breakdown. Passed only on your own posts — that
    * list belongs to the author, and the API refuses it to everyone else — so on
-   * someone else's post the tray ends at the ninth emoji.
+   * someone else's post the tray ends at the last emoji.
    */
   onShowInfo?: () => void;
+  /**
+   * Which thumb this tray hangs off. The positive one wears the seven faces
+   * that count as a like; the negative one wears 👎 and 💩 — see the note on
+   * POSITIVE_REACTION_LIST for why they are not one tray of nine.
+   */
+  polarity?: "positive" | "negative";
 }
 
 const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
@@ -67,7 +77,9 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
   onSelect,
   align = "right",
   onShowInfo,
+  polarity = "positive",
 }) => {
+  const reactions = polarity === "negative" ? NEGATIVE_REACTION_LIST : POSITIVE_REACTION_LIST;
   const { width: screenWidth } = useWindowDimensions();
   const [placement, setPlacement] = useState<Placement | null>(null);
   const probeRef = useRef<View>(null);
@@ -134,7 +146,7 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
 
   const items = (
     <>
-      {REACTION_LIST.map((reaction) => (
+      {reactions.map((reaction) => (
         <Pressable
           key={reaction.key}
           accessibilityRole="menuitem"
@@ -209,7 +221,7 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
       entering={FadeIn.duration(140)}
       exiting={FadeOut.duration(120)}
       accessibilityRole="menu"
-      accessibilityLabel="Pick a reaction"
+      accessibilityLabel={polarity === "negative" ? "Pick a downvote reaction" : "Pick a reaction"}
       style={[
         trayStyle,
         { transform: [{ translateX: placed.dx }, { scale: placed.scale }] },
