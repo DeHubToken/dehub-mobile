@@ -2,18 +2,18 @@ name: OTA Rollback
 
 # Reverts installed apps to the JS bundle embedded in their binary.
 #
-# Needed when a published update reaches a binary that cannot run it. The
-# runtimeVersion in app.json is a hardcoded literal, so it does NOT track
-# native changes on its own — add a native module without bumping it and every
-# older binary on the same runtimeVersion is handed a bundle that calls into
-# something it does not have. That crashes on launch, before anything renders,
-# and the user cannot get far enough into the app to do anything about it.
+# Needed when a published update reaches devices that cannot run it. The case
+# this was built for: `eas update` in CI bundles with whatever environment the
+# runner has, and EXPO_PUBLIC_* values are inlined at bundle time. A build made
+# without them produces a bundle whose Supabase client has no key, which throws
+# at module load — the app dies before it renders, so there is no in-app route
+# back and the user cannot do anything but uninstall.
 #
-# roll-back-to-embedded publishes a directive rather than a bundle: clients
-# stop applying the branch's latest update and fall back to what shipped inside
-# the APK. It cannot fix a device that never launches far enough to check, but
-# expo-updates starts its fetch from the native side as the process comes up,
-# so in practice a crash-looping app still picks this up within a launch or two.
+# roll-back-to-embedded publishes a directive rather than a bundle: clients stop
+# applying the branch's latest update and fall back to what shipped inside their
+# APK. It cannot reach a device that never launches far enough to check, but
+# expo-updates starts its fetch from the native side as the process comes up, so
+# in practice a crash-looping app still picks it up within a launch or two.
 
 on:
   workflow_dispatch:
@@ -63,14 +63,15 @@ jobs:
         env:
           ROLLBACK_BRANCHES: ${{ github.event.inputs.branch }}
         run: |
+          # Non-interactive mode will not infer this, and it has to match the
+          # runtimeVersion the bad updates were published at or the directive
+          # reaches nobody. Read it from app.json so it cannot drift.
+          RUNTIME="$(node -p "require('./app.json').expo.runtimeVersion")"
+          echo "Rolling back runtime $RUNTIME"
           # Unquoted on purpose: this is a space-separated list, not one branch.
           for BRANCH in ${ROLLBACK_BRANCHES:-production preview}; do
             for PLATFORM in android ios; do
               echo "Rolling back $BRANCH ($PLATFORM)"
-              eas update:roll-back-to-embedded \
-                --branch "$BRANCH" \
-                --platform "$PLATFORM" \
-                --message "Roll back: bundle calls native modules older binaries do not have" \
-                --non-interactive
+              eas update:roll-back-to-embedded --branch "$BRANCH" --platform "$PLATFORM" --runtime-version "$RUNTIME" --message "Roll back: CI-built bundle shipped without the app env vars" --non-interactive
             done
           done
