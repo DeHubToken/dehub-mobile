@@ -440,6 +440,15 @@ export interface Comment {
   dislikeCount?: number;
   isDisliked?: boolean;
   /**
+   * Which of the nine reactions the viewer holds on this comment.
+   * `isLiked`/`isDisliked` are its POLARITY, exactly as on a post — a comment
+   * somebody loved is still a comment they liked, and every count beside it
+   * still means what it meant before reactions existed.
+   */
+  myReaction?: PostReaction | null;
+  /** Per-reaction totals, for the tray on the comment's thumb. */
+  reactionCounts?: Partial<Record<PostReaction, number>> | null;
+  /**
    * Times this comment has scrolled into a reader's viewport.
    *
    * A plain counter on the comment row. It has no denormalised sum and no
@@ -590,6 +599,45 @@ export async function dislikeComment(input: DislikeCommentInput): Promise<Dislik
     return res;
   } catch (e) {
     console.error('[NFTService] dislikeComment error', e);
+    throw e;
+  }
+}
+
+/** What /react_comment answers with — enough to settle a row without refetching. */
+export interface ReactCommentResult {
+  result?: boolean;
+  action?: 'added' | 'removed' | 'changed';
+  currentReaction: PostReaction | null;
+  previousReaction?: PostReaction | null;
+  liked: boolean;
+  disliked: boolean;
+  likes: number;
+  dislikes: number;
+  reactionCounts?: Partial<Record<PostReaction, number>>;
+}
+
+/**
+ * Cast one of the nine reactions on a comment or reply.
+ *
+ * The comment-level twin of requestReaction, and the endpoint likeComment and
+ * dislikeComment are wrappers on server-side. Same toggle contract: sending
+ * the reaction you already hold removes it, a different one swaps it, and
+ * likes/dislikes only move when the polarity changed.
+ */
+export async function reactComment(input: {
+  commentId: number | string;
+  reaction: PostReaction;
+}): Promise<ReactCommentResult> {
+  const { commentId, reaction } = input;
+  if (commentId == null) throw new Error('commentId required');
+  try {
+    return await apiClient.post<ReactCommentResult>(
+      '/react_comment',
+      { commentId: Number(commentId), reaction },
+      { isAuthRequired: true }
+    );
+  } catch (e) {
+    console.error('[NFTService] reactComment error', e);
     throw e;
   }
 }
