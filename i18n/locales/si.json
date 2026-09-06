@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "මෙම උපාංගය තල්ලු කිරීම සඳහා ලියාපදිංචි වී නැත",
+    "pushNotRegisteredDesc": "යෙදුම වසා ඇති අතරතුර දැනුම්දීම් ඔබ වෙත ළඟා විය නොහැක. යෙදුම නැවත විවෘත කිරීම සාමාන් ‍ යයෙන් එය ඉවත් කරයි; එය දිගටම සිදුවුවහොත්, dehub.io/apk වෙතින් නවතම ගොඩනැගීම ස්ථාපනය කරන්න.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

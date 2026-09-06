@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "إرسال الإشعارات إلى جهازك",
     "pushNotificationsDisabled": "إشعارات الدفع معطّلة",
     "tapEnableSystemSettings": "اضغط للتفعيل من إعدادات النظام",
+    "pushNotRegistered": "هذا الجهاز مش مسجل للإشعارات",
+    "pushNotRegisteredDesc": "الإشعارات ما بتوصلك إذا التطبيق مسكّر. عادةً فتح التطبيق مرة تانية بحل المشكلة، وإذا استمرت، نزّل آخر نسخة من dehub.io/apk.",
     "categoryEngagement": "التفاعل",
     "categorySocial": "اجتماعي",
     "categoryEarnings": "الأرباح",

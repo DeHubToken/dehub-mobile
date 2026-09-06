@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "ဤကိရိယာကို တွန်းအားပေးမှုအတွက် မှတ်ပုံတင်မထားပါ",
+    "pushNotRegisteredDesc": "အက်ပလီကေးရှင်း ပိတ်ထားစဉ် အသိပေးချက်များသည် သင့်ထံ မရောက်ရှိနိုင်ပါ ။ အက်ပလီကေးရှင်းကိုပြန်ဖွင့်ခြင်းသည်ပုံမှန်အားဖြင့်ရှင်းလင်းစေသည် ၊ ဖြစ်ပျက်နေဆဲဖြစ်ပါက dehub.io/apk မှနောက်ဆုံးတည်ဆောက်မှုကိုတပ်ဆင်ပါ ။",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

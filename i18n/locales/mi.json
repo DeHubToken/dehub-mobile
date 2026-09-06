@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Kaore tenei taputapu e rehitatia mo te pehanga",
+    "pushNotRegisteredDesc": "Kaore e taea e nga korero te tae atu ki a koe i te wa e kati ana te taupānga. Te whakatuwhera anō i te taupānga te tikanga horoi i te reira; ki te haere tonu te reira, tāuta te whare hou i dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

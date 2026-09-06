@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Enviar notificações para o seu dispositivo",
     "pushNotificationsDisabled": "Notificações push desativadas",
     "tapEnableSystemSettings": "Toque para ativar nas configurações do sistema",
+    "pushNotRegistered": "Este dispositivo não está registado para envio",
+    "pushNotRegisteredDesc": "Não é possível receber notificações enquanto a aplicação estiver fechada. A reabertura do aplicativo geralmente o limpa; se isso continuar acontecendo, instale a compilação mais recente em dehub.io/apk.",
     "categoryEngagement": "Engajamento",
     "categorySocial": "Social",
     "categoryEarnings": "Ganhos",

@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "إرسال الإشعارات إلى جهازك",
     "pushNotificationsDisabled": "إشعارات الدفع معطّلة",
     "tapEnableSystemSettings": "اضغط للتفعيل من إعدادات النظام",
+    "pushNotRegistered": "الجهاز ده ما مسجل للـ push",
+    "pushNotRegisteredDesc": "الإشعارات ما بتصلك والبرنامج مقفول. عادةً فتح البرنامج تاني بحل المشكلة؛ لو استمرت، نزل آخر تحديث من dehub.io/apk.",
     "categoryEngagement": "التفاعل",
     "categorySocial": "اجتماعي",
     "categoryEarnings": "الأرباح",

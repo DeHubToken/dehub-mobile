@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Meeshaan kun dhiibuuf hin galmaa&#39;u",
+    "pushNotRegisteredDesc": "Yeroo appichi cufame beeksisni isin bira gahuu hin danda&#39;u. Appicha irra deebi&#39;anii banuun yeroo baayyee ni qulqulleessa; yoo itti fufe, ijaarsa isa haaraa dehub.io/apk irraa fe&#39;i.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

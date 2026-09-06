@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Энэ төхөөрөмжийг түлхэх зорилгоор бүртгүүлээгүй болно",
+    "pushNotRegisteredDesc": "Апп хаалттай үед мэдэгдлүүд танд хүрч чадахгүй. Програмыг дахин нээх нь ихэвчлэн цэвэрлэх; хэрэв үргэлжилж байвал dehub.io/apk сайтаас хамгийн сүүлийн үеийн бүтээн байгуулалтыг суулгана уу.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

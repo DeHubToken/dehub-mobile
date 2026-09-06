@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Le divayisi ayibhaliselwe i-Push",
+    "pushNotRegisteredDesc": "Izaziso azikwazi ukukufinyelela ngenkathi i-app ivaliwe. Ukuvula kabusha i-app kuvame ukuyisusa; uma iqhubeka yenzeka, faka isakhiwo sakamuva ku-dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Šī ierīce nav reģistrēta pašpiegādei",
+    "pushNotRegisteredDesc": "Kamēr lietotne ir slēgta, ar tevi nevar sazināties ar paziņojumiem. Lietotnes atkārtota atvēršana parasti to notīra; ja tā turpinās, instalējiet jaunāko versiju no dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

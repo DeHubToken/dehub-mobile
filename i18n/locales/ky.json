@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "Бул түзмөк басуу үчүн катталган эмес",
+    "pushNotRegisteredDesc": "Колдонмо жабылып жатканда сизге билдирүүлөр жете албайт. Колдонмону кайра ачуу, адатта, аны тазалайт; эгер ал боло берсе, анда dehub.io/apk сайтынан акыркы курууну орнотуңуз.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

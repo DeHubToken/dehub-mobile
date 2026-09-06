@@ -298,6 +298,8 @@
     "pushNotificationsDeviceDesc": "Send notifications to your device",
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
+    "pushNotRegistered": "یہ آلہ پُش کے لیے رجسٹرڈ نہیں ہے",
+    "pushNotRegisteredDesc": "جب تک ایپ بند ہے نوٹیفکیشنز آپ سے رابطہ نہیں کر سکتی ہیں ۔ ایپ کو دوبارہ کھولنا عام طور پر اسے صاف کرتا ہے ؛ اگر ایسا ہوتا رہتا ہے تو، dehub.io/apk سے تازہ ترین بلڈ انسٹال کریں ۔",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",
