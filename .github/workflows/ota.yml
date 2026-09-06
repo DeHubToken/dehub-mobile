@@ -133,11 +133,19 @@ jobs:
           #
           # production is the strictest environment and a superset of preview,
           # so one export covers both branches.
-          echo "Variables the production environment resolves (values hidden):"
-          eas env:list --environment production --non-interactive | sed -E 's/=.*/= <set>/'
+          #
+          # env:list and env:exec take the environment POSITIONALLY on this CLI
+          # and reject --environment / --non-interactive, unlike almost every
+          # other eas subcommand. Print the version and the signatures next to
+          # the calls so the next flag rename is one log read, not one release.
+          eas --version
+          echo "--- eas env:exec ---"; eas env:exec --help || true
 
-          eas env:exec --environment production --non-interactive \
-            -- npx expo export --platform android --output-dir /tmp/otacheck
+          echo "Variables the production environment resolves (values hidden):"
+          eas env:list production | sed -E 's/=.*/= <set>/'
+
+          eas env:exec production \
+            "npx expo export --platform android --output-dir /tmp/otacheck"
 
           # A correctly configured bundle contains the Supabase host. One built
           # without env does not, and that is exactly the difference between a
