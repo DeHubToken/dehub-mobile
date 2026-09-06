@@ -121,6 +121,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   tipTotal,
   onLike,
   onDislike,
+  onReact,
   onShowLikers,
   onUserPress,
   onEdit,
