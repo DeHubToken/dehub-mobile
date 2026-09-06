@@ -6,7 +6,17 @@ import { storage } from "../libs/storage";
 
 // React Native has no window focus — drive react-query's focus state from
 // AppState so stale queries refetch when the app returns to the foreground.
+//
+// Only a real background counts. react-query pauses any request that is
+// between retries while focus is off (retryer: `focusManager.isFocused() &&
+// ...`), and a paused request is not a failed one — it makes no call, throws
+// nothing, and leaves the query pending, so the screen sits on its skeleton
+// with no error and no way back until focus returns. `inactive` is the state
+// Android reports for a notification shade, a permission dialog or the recents
+// preview; the app is still on screen and its requests must keep running. See
+// useAppLifecycle: those transitions fire constantly.
 AppState.addEventListener("change", (status) => {
+  if (status === "inactive") return;
   focusManager.setFocused(status === "active");
 });
 
