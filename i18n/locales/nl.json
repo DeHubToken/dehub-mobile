@@ -393,8 +393,8 @@
     "exportPkBullet2": "Deel hem nooit. Wij zullen er nooit om vragen.",
     "exportPkBullet3": "Bewaar hem veilig in een wachtwoordmanager of offline.",
     "exportPkBullet4": "Verloren tegoed of gelekte sleutels kunnen we niet herstellen.",
-    "exportPkTypeToContinue": "Type \"{{phrase}}\" to continue",
-    "exportPkTypeToProceed": "Type \"{{phrase}}\" to proceed",
+    "exportPkTypeToContinue": "Typ \"{{phrase}}\" om door te gaan",
+    "exportPkTypeToProceed": "Typ \"{{phrase}}\" om verder te gaan",
     "preparing": "Voorbereiden…",
     "iUnderstand": "Ik begrijp het",
     "exportPkSmartAccount1": "Dit account gebruikt een smart account (Web3Auth). Privésleutels kunnen niet worden geëxporteerd.",
@@ -1038,10 +1038,10 @@
     "locked": "Vergrendeld",
     "any": "Alle",
     "resetFilters": "Filters resetten",
-    "mostTips": "Most Tips",
+    "mostTips": "Meeste fooien",
     "audio": "Audio",
     "live": "Live",
-    "forYou": "For You"
+    "forYou": "Voor jou"
   },
   "drawers": {
     "ppvTitle": "Pay-per-view inhoud",
@@ -1322,7 +1322,7 @@
     "txPpvSale": "PPV-verkoop — {{amount}} DHB",
     "txTipSent": "Je gaf {{name}} een fooi — {{amount}} DHB",
     "txTipReceived": "{{name}} gaf je een fooi — {{amount}} DHB",
-    "totalDhbBalance": "Total DHB Balance",
+    "totalDhbBalance": "Totaal DHB-saldo",
     "mobileSubtitle": "Je wallet, inkomsten en bereik op één plek",
     "balance": "Saldo",
     "income": "Inkomsten",
@@ -2013,12 +2013,12 @@
     "privateDesc": "Alleen jij kunt dit bericht zien"
   },
   "tip": {
-    "title": "Send Tip",
-    "toCreator": "Tip {{name}}",
-    "quickAmounts": "Quick amounts",
-    "customAmount": "Or enter amount",
+    "title": "Fooi sturen",
+    "toCreator": "{{name}} een fooi geven",
+    "quickAmounts": "Snelle bedragen",
+    "customAmount": "Of voer een bedrag in",
     "sending": "Sending...",
-    "sendAmount": "Send {{amount}} DHB"
+    "sendAmount": "{{amount}} DHB sturen"
   },
   "staking": {
     "title": "Staking",
