@@ -1,4 +1,4 @@
-import { apiClient } from '../../libs/api.client';
+import { apiClient, RequestTimeoutError } from '../../libs/api.client';
 import * as SecureStore from 'expo-secure-store';
 
 const mockStore = SecureStore as jest.Mocked<typeof SecureStore> & {
@@ -243,8 +243,28 @@ describe('libs/api.client', () => {
       );
 
       await expect(
-        apiClient.get('/hangs', { isAuthRequired: false, timeoutMs: 10 }),
-      ).rejects.toMatchObject({ name: 'RequestTimeoutError', isTimeout: true });
+        apiClient.get('/hangs?session=do-not-display', {
+          isAuthRequired: false,
+          timeoutMs: 10,
+        }),
+      ).rejects.toMatchObject({
+        name: 'RequestTimeoutError',
+        isTimeout: true,
+        url: expect.stringContaining('/hangs?session=do-not-display'),
+      });
+    });
+
+    it('names the stalled endpoint without exposing query values', () => {
+      const error = new RequestTimeoutError(
+        'https://api.dehub.io/api/web/auth/supabase?session=do-not-display#private',
+        20_000,
+      );
+
+      expect(error.message).toBe(
+        'Request to api.dehub.io/api/web/auth/supabase timed out after 20000ms',
+      );
+      expect(error.message).not.toContain('do-not-display');
+      expect(error.url).toContain('session=do-not-display');
     });
 
     it('does not abort a request that answers in time', async () => {
