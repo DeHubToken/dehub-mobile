@@ -17,7 +17,7 @@ import {
   clearIngestUnreachable,
   isNetworkShapedError,
 } from "../../libs/live-ingest";
-import type { VideoLookId } from "./videoLooks";
+import { videoEffectChain, type VideoLookId } from "./videoLooks";
 
 /**
  * How long after a publish is accepted a dead connection still means the media
@@ -676,12 +676,13 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
    *
    * Always the LOCAL capture track, never the sender's: react-native-webrtc
    * hangs the processor off the camera's VideoSource, so a sender track would
-   * be ignored outright. An empty array is how a look is removed — there is no
-   * "off" processor, only an empty chain.
+   * be ignored outright. There is no "off" processor: removing a look means
+   * removing the chain, and `videoEffectChain` knows which shape of "nothing"
+   * each platform survives — on Android an empty array kills the app.
    *
    * Names that no processor is registered under are logged and dropped
-   * natively, so an iOS build (where none are registered yet) publishes a plain
-   * picture rather than failing.
+   * natively, so a build with none registered publishes a plain picture
+   * rather than failing.
    */
   useEffect(() => {
     if (!localReady) return;
@@ -689,7 +690,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
     const track: any = s?.getVideoTracks?.()[0];
     if (!track || typeof track._setVideoEffects !== "function") return;
     try {
-      track._setVideoEffects(videoLook && videoLook !== "none" ? [videoLook] : []);
+      track._setVideoEffects(videoEffectChain(videoLook));
       dbg("videoLook applied", { videoLook });
     } catch (e) {
       // Never fatal: the broadcast is worth more than the filter.
