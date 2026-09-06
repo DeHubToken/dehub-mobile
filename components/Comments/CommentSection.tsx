@@ -40,6 +40,7 @@ import {
   postComment,
   likeComment,
   dislikeComment,
+  reactComment,
   editComment,
   deleteComment,
   postImageComment,
@@ -59,6 +60,7 @@ import { useBookBoost, useSuperpowers } from "../../hooks/useSuperpowers";
 import { getNFT } from "../../services/nft.service";
 import { useQuery } from "@tanstack/react-query";
 import type { PostCreator } from "../../libs/impersonation";
+import type { PostReaction } from "../../libs/reactions";
 
 // Extended comment type for flat list with reply info
 interface FlatComment extends Comment {
@@ -435,6 +437,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
     return await requireAuth(async () => {
       return await likeComment({ commentId });
+    });
+  }, [requireAuth]);
+
+  /** One of the nine, from a comment row's hold-open tray. */
+  const handleReactComment = useCallback(async (commentId: number, reaction: PostReaction) => {
+    if (!requireAuth) return;
+
+    return await requireAuth(async () => {
+      return await reactComment({ commentId, reaction });
     });
   }, [requireAuth]);
 
@@ -1070,6 +1081,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           tipTotal={tipTotals[itemNumId]}
           onLike={handleLikeComment}
           onDislike={handleDislikeComment}
+          onReact={handleReactComment}
           onShowLikers={setLikersCommentId}
           onUserPress={handleUserPress}
           onEdit={handleStartEdit}
