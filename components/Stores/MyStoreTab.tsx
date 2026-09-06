@@ -20,7 +20,6 @@ import {
   ActivityIndicator,
   Modal,
   KeyboardAvoidingView,
-  Platform,
   Switch,
   Alert,
 } from "react-native";
@@ -147,7 +146,7 @@ const StoreForm: React.FC<{
   return (
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
       <View style={styles.backdrop}>
-        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
+        <KeyboardAvoidingView behavior="padding">
           <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
             <View style={styles.sheetHeader}>
               <Text style={styles.sheetTitle}>
@@ -327,7 +326,7 @@ const ListingForm: React.FC<{
   return (
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
       <View style={styles.backdrop}>
-        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
+        <KeyboardAvoidingView behavior="padding">
           <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
             <View style={styles.sheetHeader}>
               <Text style={styles.sheetTitle}>{t("stores.newListing")}</Text>

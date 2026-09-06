@@ -36,7 +36,6 @@ import {
   RefreshControl,
   Modal,
   KeyboardAvoidingView,
-  Platform,
   Alert,
   Share,
   useWindowDimensions,
@@ -686,7 +685,7 @@ const SubmitSheet: React.FC<{
     <Modal visible={visible} animationType="slide" transparent onRequestClose={handleClose}>
       <View style={styles.modalBackdrop}>
         <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : undefined}
+          behavior="padding"
           style={{ width: "100%" }}
         >
           <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>

@@ -19,7 +19,6 @@ import {
   Dimensions,
   KeyboardAvoidingView,
   Modal,
-  Platform,
   ScrollView,
   StyleSheet,
   Switch,
@@ -416,7 +415,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
       </Animated.View>
 
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior="padding"
         style={s.keyboardWrap}
         pointerEvents="box-none"
       >

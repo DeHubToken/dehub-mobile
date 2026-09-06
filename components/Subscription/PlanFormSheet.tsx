@@ -7,7 +7,6 @@ import {
   ScrollView,
   ActivityIndicator,
   KeyboardAvoidingView,
-  Platform,
 } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
@@ -193,7 +192,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       blurIntensity={30}
     >
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        behavior="padding"
         style={{ flex: 1 }}
       >
         <View className="flex-row items-center justify-between px-5 pt-4 pb-3 border-b border-white/10">
