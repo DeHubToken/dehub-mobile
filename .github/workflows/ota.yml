@@ -3,13 +3,23 @@ name: OTA Update
 # Publishes the JS bundle to EAS Update after CI goes green on main, so a
 # JS-only fix reaches installed apps without a 200 MB APK and a manual release.
 #
-# The pieces this depends on were put in place by #269 and are inert without a
-# publish: `updates.url` points at u.expo.dev, `runtimeVersion` is the literal
-# "1.17.0" in app.json and in both native projects, every build profile has a
-# channel, and the app checks on every launch. Until this workflow existed the
-# update server had never been given anything to serve.
+# READ THIS BEFORE CHANGING THE PUBLISH STEP.
 #
-# Two limits worth keeping in mind before relying on it:
+# On 2026-09-05 this workflow bricked every device that applied its output. The
+# app reads all of its configuration through `@env` (react-native-dotenv), whose
+# babel plugin inlines values AT BUNDLE TIME out of process.env. An EAS *build*
+# is handed those automatically from the project's EAS environment variables; a
+# bare `eas update` on a CI runner is handed nothing, so every value bundled as
+# undefined, `SUPABASE_PUBLISHABLE_KEY || ""` became an empty string, and
+# `createClient(url, "")` threw at module load. The app died before it rendered
+# — no error boundary, no in-app recovery, nothing the user could do but
+# uninstall. Recovery took a roll-back-to-embedded directive.
+#
+# That is why `--environment` below is load-bearing, and why the preflight
+# refuses to publish a bundle that does not contain the config. Neither is
+# optional or tidy-up; they are the whole reason this file can be trusted.
+#
+# Two further limits worth keeping in mind:
 #
 #   - An update only reaches binaries built at the SAME runtimeVersion. Bump it
 #     and every installed app stops receiving updates until a new build ships.
@@ -32,6 +42,10 @@ on:
           Defaults to every channel that has builds in circulation.
         default: production preview
         required: false
+      check_only:
+        description: Run the preflight and stop without publishing.
+        type: boolean
+        default: false
 
 concurrency:
   # Not cancel-in-progress: a half-run publish is worse than a queued one.
@@ -64,7 +78,7 @@ jobs:
        github.event.workflow_run.head_repository.full_name == github.repository &&
        github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     env:
       # Read through env so the steps below can test for it — the secrets
       # context is not available in an `if:` directly.
@@ -108,8 +122,45 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Publish the JS bundle
+      - name: Preflight - prove the config lands in a real bundle
         if: env.EXPO_TOKEN != ''
+        run: |
+          # The outage this guards against was invisible to every check we had:
+          # the publish succeeded, the update server answered 200, and the
+          # bundle it served killed the app on launch. A publish is not verified
+          # by anything the publish itself reports. The only honest test is to
+          # build a bundle the same way the publish will and look inside it.
+          #
+          # production is the strictest environment and a superset of preview,
+          # so one export covers both branches.
+          echo "Variables the production environment resolves (values hidden):"
+          eas env:list --environment production --non-interactive | sed -E 's/=.*/= <set>/'
+
+          eas env:exec --environment production --non-interactive \
+            -- npx expo export --platform android --output-dir /tmp/otacheck
+
+          # A correctly configured bundle contains the Supabase host. One built
+          # without env does not, and that is exactly the difference between a
+          # working app and one that throws "supabaseKey is required" before it
+          # renders. Grep for the value's shape; never print the value.
+          if grep -rqs "supabase.co" /tmp/otacheck; then
+            echo "Preflight OK - bundled config is present."
+          else
+            echo "::error::Bundle contains no Supabase host, so the app config did not resolve. Refusing to publish."
+            exit 1
+          fi
+
+      - name: Preflight only, nothing published
+        if: env.EXPO_TOKEN != '' && github.event.inputs.check_only == 'true'
+        run: |
+          {
+            echo "### Preflight only"
+            echo
+            echo "Config resolves and lands in a bundle. Nothing was published."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish the JS bundle
+        if: env.EXPO_TOKEN != '' && github.event.inputs.check_only != 'true'
         env:
           # An app only receives updates published to the channel it was built
           # on, and eas.json hands out two: `production` builds listen on
@@ -124,25 +175,33 @@ jobs:
           MESSAGE="$(git log -1 --pretty=%s)"
           # Unquoted on purpose: this is a space-separated list, not one branch.
           for BRANCH in $UPDATE_BRANCHES; do
+            # Each EAS branch takes the environment of the same name, so a
+            # preview bundle is built with preview config rather than
+            # production's. Without --environment the runner holds no app config
+            # at all and the bundle is a crash on launch — see the header.
+            case "$BRANCH" in
+              production) ENVIRONMENT=production ;;
+              *)          ENVIRONMENT=preview ;;
+            esac
             # Only the two platforms that ship. app.json still carries a web
             # block from the Expo template and `--platform all` honours it, so a
             # publish also bundles for web and dies on the first native-only
             # import it meets (react-native-agora). The web product is a
             # separate repo and never receives these updates.
             for PLATFORM in android ios; do
-              echo "Publishing to $BRANCH ($PLATFORM)"
-              eas update --branch "$BRANCH" --platform "$PLATFORM" --message "$MESSAGE" --non-interactive
+              echo "Publishing to $BRANCH ($PLATFORM) with $ENVIRONMENT config"
+              eas update --branch "$BRANCH" --platform "$PLATFORM" --environment "$ENVIRONMENT" --message "$MESSAGE" --non-interactive
             done
           done
 
       - name: Flag native changes an update cannot carry
-        if: env.EXPO_TOKEN != ''
+        if: env.EXPO_TOKEN != '' && github.event.inputs.check_only != 'true'
         run: |
           NATIVE="$(git diff --name-only HEAD~1..HEAD -- android ios app.json package.json || true)"
           {
             echo "### OTA published"
             echo
-            echo "Branch: \`${{ github.event.inputs.branch || 'production' }}\`"
+            echo "Branch: \`${{ github.event.inputs.branch || 'production preview' }}\`"
             echo "Commit: \`$(git log -1 --pretty='%h %s')\`"
             if [ -n "$NATIVE" ]; then
               echo
