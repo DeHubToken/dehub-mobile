@@ -17,6 +17,7 @@ import Avatar from "../common/Avatar";
 import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance, resolveBadgeLock } from "../../libs/misc";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import { theme } from "../../theme";
+import { resolveChatGif, gifCaption, gifBox } from "../../libs/chat-gif";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
 
 export interface MessageLayout {
@@ -93,6 +94,12 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
   const badgeImg = getBadgeUrl(badgeBalance, { lock: badgeLock });
   const isMod = sender?.isModerator;
 
+  // Same reading as the row this card floats over: web puts a GIF's URL in the
+  // body, so show the picture and drop the address rather than printing both.
+  const gif = resolveChatGif(message);
+  const bodyText = gifCaption(message, gif);
+  const attachments = (message.media || []).filter((m) => !!m?.url && m.url !== gif?.url);
+
   return (
     <View className="max-w-[85%] bg-theme-neutrals-900 rounded-xl p-3 shadow-lg">
       {/* Sender header */}
@@ -135,31 +142,25 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
         <Text className="text-white/30 text-sm italic">Message deleted</Text>
       ) : (
         <>
-          {!!message.content && (
-            <Text className="text-white/70 text-[13px] leading-5">{message.content}</Text>
+          {!!bodyText && (
+            <Text className="text-white/70 text-[13px] leading-5">{bodyText}</Text>
           )}
 
           {/* GIF */}
-          {message.gif && (
-            <View className="mt-1 rounded-xl overflow-hidden" style={{ maxWidth: 200 }}>
+          {gif && (
+            <View className="mt-1 rounded-xl overflow-hidden bg-white/5" style={{ maxWidth: 200 }}>
               <Image
-                source={{ uri: message.gif.previewUrl || message.gif.url }}
-                style={{
-                  width: Math.min(200, message.gif.width),
-                  height: Math.min(
-                    150,
-                    (message.gif.height / message.gif.width) * Math.min(200, message.gif.width),
-                  ),
-                }}
-                resizeMode="cover"
+                source={{ uri: gif.url }}
+                style={gifBox(gif, 200, 200)}
+                resizeMode="contain"
               />
             </View>
           )}
 
           {/* Media */}
-          {message.media && message.media.length > 0 && (
+          {attachments.length > 0 && (
             <View className="mt-1 flex-row flex-wrap gap-1">
-              {message.media.map((m, i) => (
+              {attachments.map((m, i) => (
                 <View key={i} className="rounded-xl overflow-hidden">
                   <Image
                     source={{ uri: m.url }}

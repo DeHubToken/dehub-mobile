@@ -57,6 +57,7 @@ import type { Community, CommunityChatMessage, CommunityMember } from "../../typ
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
 import LinkPreviewCard from "../common/LinkPreviewCard";
 import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
+import { chatBodyText } from "../../libs/chat-gif";
 import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 
@@ -132,15 +133,20 @@ const ChatRow: React.FC<{
 
   const profileId = message.username || message.wallet_address;
 
+  // Web sends a GIF with its URL as the message body and the same URL in
+  // image_url. The picture is already on screen, so printing the body as well
+  // just puts a stray link under it — drop it, and the link card with it.
+  const bodyText = useMemo(() => chatBodyText(message), [message]);
+
   // A shop item, an event or another community dropped into a channel arrived
   // as a bare URL; card it the same way the feed and DMs now do.
   const dehubLinks = useMemo(
-    () => findDehubLinks(message.content).slice(0, MAX_CARDS_PER_MESSAGE),
-    [message.content],
+    () => findDehubLinks(bodyText).slice(0, MAX_CARDS_PER_MESSAGE),
+    [bodyText],
   );
   const linkFreeContent = useMemo(
-    () => (dehubLinks.length ? stripDehubLinkMatches(message.content, dehubLinks) : message.content),
-    [message.content, dehubLinks],
+    () => (dehubLinks.length ? stripDehubLinkMatches(bodyText, dehubLinks) : bodyText),
+    [bodyText, dehubLinks],
   );
   // Same for a contract address or a ticker dropped into a channel.
   const assetRefs = useMemo(
@@ -205,7 +211,7 @@ const ChatRow: React.FC<{
         )}
 
         <DehubLinkCards links={dehubLinks} />
-        <LinkPreviewCard text={message.content} />
+        <LinkPreviewCard text={bodyText} />
         <AssetRefCards refs={assetRefs} />
 
         {!!message.edited_at && (
@@ -491,7 +497,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
       t("communities.chatPanel.anon", { defaultValue: "Anon" })
     : "";
   const pinnedPreview = pinnedMessage
-    ? pinnedMessage.content?.trim() ||
+    ? chatBodyText(pinnedMessage).trim() ||
       t("communities.chatPanel.mediaMessage", { defaultValue: "Media" })
     : "";
 
@@ -591,7 +597,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
                 t("communities.chatPanel.anon", { defaultValue: "Anon" })}
             </Text>
             <Text style={styles.contextBody} numberOfLines={1}>
-              {replyTo.content ||
+              {chatBodyText(replyTo) ||
                 t("communities.chatPanel.mediaMessage", { defaultValue: "Media" })}
             </Text>
           </View>
@@ -692,7 +698,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
             {!!sheetFor && (
               <>
                 <Text style={styles.sheetPreview} numberOfLines={2}>
-                  {sheetFor.content ||
+                  {chatBodyText(sheetFor) ||
                     t("communities.chatPanel.mediaMessage", { defaultValue: "Media" })}
                 </Text>
 

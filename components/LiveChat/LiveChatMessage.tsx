@@ -14,6 +14,7 @@ import Avatar from "../common/Avatar";
 import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance, resolveBadgeLock } from "../../libs/misc";
 import { openInApp } from "../../libs/links.utils";
 import { ASSISTANT_USERNAME, isAssistantAddress } from "../../libs/assistant";
+import { resolveChatGif, gifCaption, gifBox } from "../../libs/chat-gif";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
 import type { MessageLayout } from "./LiveChatContextMenu";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
@@ -125,7 +126,19 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
     });
   }, [onLongPress, message]);
 
-  const translationTexts = useMemo(() => ({ content: message.content || '' }), [message.content]);
+  // Web posts a GIF with its URL as the message body; mobile posts a `gif`
+  // object and no body at all. Resolve both, then keep that URL out of the text
+  // branch below — left there it renders as a tappable link, not a picture.
+  const gif = useMemo(() => resolveChatGif(message), [message]);
+  const bodyText = useMemo(() => gifCaption(message, gif), [message, gif]);
+  // Whatever we drew as the GIF must not be drawn a second time as an
+  // attachment: web mirrors the same URL into `media`.
+  const attachments = useMemo(
+    () => (message.media || []).filter((m) => !!m?.url && m.url !== gif?.url),
+    [message.media, gif],
+  );
+
+  const translationTexts = useMemo(() => ({ content: bodyText }), [bodyText]);
   const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate } =
     useTranslation(translationTexts, (message as any).detectedLanguage);
 
@@ -231,13 +244,13 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
           <Text className="text-white/30 text-sm italic">Message deleted</Text>
         ) : (
           <>
-            {!!message.content && (
+            {!!bodyText && (
               <Text className="text-white/70 text-[13px] leading-5">
-                {renderLinkedText(isTranslated ? (translatedTexts.content || message.content) : message.content)}
+                {renderLinkedText(isTranslated ? (translatedTexts.content || bodyText) : bodyText)}
               </Text>
             )}
 
-            {showTranslate && !!message.content && (
+            {showTranslate && !!bodyText && (
               <TranslateButton
                 isTranslated={isTranslated}
                 isLoading={translating}
@@ -247,15 +260,12 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
               />
             )}
 
-            {message.gif && (
-              <View className="mt-1 rounded-xl overflow-hidden" style={{ maxWidth: 240 }}>
+            {gif && (
+              <View className="mt-1 rounded-xl overflow-hidden bg-white/5" style={{ maxWidth: 240 }}>
                 <Image
-                  source={{ uri: message.gif.previewUrl || message.gif.url }}
-                  style={{
-                    width: Math.min(240, message.gif.width),
-                    height: Math.min(180, (message.gif.height / message.gif.width) * Math.min(240, message.gif.width)),
-                  }}
-                  resizeMode="cover"
+                  source={{ uri: gif.url }}
+                  style={gifBox(gif)}
+                  resizeMode="contain"
                 />
               </View>
             )}
@@ -268,9 +278,9 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
               />
             )}
 
-            {message.media && message.media.length > 0 && message.messageType !== "audio" && message.messageType !== "voice" && (
+            {attachments.length > 0 && message.messageType !== "audio" && message.messageType !== "voice" && (
               <View className="mt-1 flex-row flex-wrap gap-1">
-                {message.media.map((m, i) => (
+                {attachments.map((m, i) => (
                   <View key={i} className="rounded-xl overflow-hidden">
                     <Image
                       source={{ uri: m.url }}
