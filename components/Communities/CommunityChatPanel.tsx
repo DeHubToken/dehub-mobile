@@ -36,8 +36,6 @@ import {
   ActivityIndicator,
   Modal,
   Alert,
-  Platform,
-  KeyboardAvoidingView,
   Image as RNImage,
   StyleSheet,
 } from "react-native";
@@ -53,6 +51,7 @@ import { toastSuccess } from "../../libs/toast";
 import { useUser } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useCommunityChat } from "../../hooks/useCommunityChat";
+import { useKeyboardLift } from "../../hooks/useKeyboardLayout";
 import { getCommunityAbilities, isForever } from "../../libs/community-permissions";
 import type { Community, CommunityChatMessage, CommunityMember } from "../../types/community";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
@@ -253,6 +252,21 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
   const user = useUser() as any;
   const { showUserProfile } = useUserProfileSheet();
   const insets = useSafeAreaInsets();
+
+  /**
+   * Edge-to-edge (Expo 54 / targetSdk 35) makes Android ignore `adjustResize`:
+   * the window no longer shrinks for the keyboard, so a KeyboardAvoidingView
+   * with no Android behavior did nothing and the composer sat under the keys.
+   * You could not see what you were typing, and the send button was not there
+   * to press - the first tap landed on the message list, which dismissed the
+   * keyboard, and only a second tap reached send.
+   *
+   * Lift by hand on both platforms, as ChatScreen and LiveChatScreen do. Not
+   * the raw keyboard height: that is measured to the physical bottom of the
+   * screen, while this panel already stops `insets.bottom` short of it thanks
+   * to the root SafeAreaView in App.tsx.
+   */
+  const { lift: keyboardLift, isVisible: keyboardUp } = useKeyboardLift();
 
   const listRef = useRef<FlatList<CommunityChatMessage>>(null);
   const atBottomRef = useRef(true);
@@ -482,10 +496,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     : "";
 
   return (
-    <KeyboardAvoidingView
-      style={styles.root}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-    >
+    <View style={[styles.root, { paddingBottom: keyboardLift }]}>
       {!!pinnedMessage && (
         <Pressable style={styles.pinnedBar} onPress={() => jumpToMessage(pinnedMessage.id)}>
           <Icon name="Pin" size={13} color="#FFFFFF" />
@@ -630,8 +641,10 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
       )}
 
       {/* The panel is the last thing on the screen with no tab bar beneath it, so
-          the composer has to clear the home indicator itself. */}
-      <View style={[styles.composer, { paddingBottom: 8 + insets.bottom }]}>
+          the composer clears the home indicator itself - but only at rest. With
+          the keyboard up the lift above has already spent that band, and counting
+          it twice left a dead strip between the composer and the keys. */}
+      <View style={[styles.composer, { paddingBottom: 8 + (keyboardUp ? 0 : insets.bottom) }]}>
         {composerNotice ? (
           <View style={styles.noticeRow}>
             <Icon name={noticeIcon} size={14} color="#808089" />
@@ -788,7 +801,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
           </Pressable>
         </Pressable>
       </Modal>
-    </KeyboardAvoidingView>
+    </View>
   );
 }
 
