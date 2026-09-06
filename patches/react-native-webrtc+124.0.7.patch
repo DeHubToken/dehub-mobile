@@ -1,0 +1,18 @@
+diff --git a/node_modules/react-native-webrtc/android/src/main/java/com/oney/WebRTCModule/videoEffects/VideoEffectProcessor.java b/node_modules/react-native-webrtc/android/src/main/java/com/oney/WebRTCModule/videoEffects/VideoEffectProcessor.java
+index 925a840..4adbb38 100644
+--- a/node_modules/react-native-webrtc/android/src/main/java/com/oney/WebRTCModule/videoEffects/VideoEffectProcessor.java
++++ b/node_modules/react-native-webrtc/android/src/main/java/com/oney/WebRTCModule/videoEffects/VideoEffectProcessor.java
+@@ -53,7 +53,12 @@ public class VideoEffectProcessor implements VideoProcessor {
+         }
+ 
+         mSink.onFrame(outputFrame);
+-        outputFrame.release();
++        // With no processors, or a chain that handed its input straight back,
++        // outputFrame IS frame: releasing it twice drops the count below the
++        // capturer's own hold and WebRTC throws on the capture thread.
++        if (outputFrame != frame) {
++            outputFrame.release();
++        }
+         frame.release();
+     }
+ }

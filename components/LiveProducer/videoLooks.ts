@@ -57,3 +57,28 @@ export const VIDEO_LOOKS: VideoLook[] = [
  */
 export const videoLooksSupported =
   Platform.OS === "android" || Platform.OS === "ios";
+
+/**
+ * The chain to hand `track._setVideoEffects` for a look.
+ *
+ * "No look" is not the same thing on the two platforms. On Android an EMPTY
+ * chain is fatal, not idle: react-native-webrtc's VideoEffectProcessor retains
+ * every captured frame, and when no processor produces a replacement it hands
+ * the original to the sink and releases it twice (videoEffects/
+ * VideoEffectProcessor.java, onFrameCaptured). WebRTC's refcount guard throws
+ * on the camera thread and the process dies — which is how the producer used
+ * to close the instant its preview appeared, on every open, for anyone who had
+ * never touched a look (v1.17.2, 2026-09-06). A null chain takes the other
+ * branch of GetUserMediaImpl.setVideoEffects and removes the processor from
+ * the source altogether, which is what "no look" means.
+ *
+ * iOS has no refcount to trip, marks the argument nonnull, and forwards frames
+ * through an empty chain untouched, so it keeps the empty array.
+ */
+export function videoEffectChain(
+  look: VideoLookId,
+  os: string = Platform.OS,
+): string[] | null {
+  if (look && look !== "none") return [look];
+  return os === "android" ? null : [];
+}
