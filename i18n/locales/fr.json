@@ -631,7 +631,7 @@
     "copyWalletAddress": "Copier l'adresse du portefeuille",
     "sendToWalletOrUsername": "Envoyer vers un portefeuille ou un nom d'utilisateur",
     "withdrawToBank": "Retirer vers un compte bancaire",
-    "totalDhbBalance": "Total DHB Balance",
+    "totalDhbBalance": "Solde DHB total",
     "mobileSubtitle": "Votre portefeuille, vos revenus et votre portée au même endroit",
     "balance": "Solde",
     "income": "Revenus",
@@ -928,7 +928,7 @@
     "locked": "Restreint",
     "any": "Tous",
     "resetFilters": "Réinitialiser les filtres",
-    "mostTips": "Most Tips",
+    "mostTips": "Plus de pourboires",
     "audio": "Audio",
     "live": "Live",
     "forYou": "Pour vous"

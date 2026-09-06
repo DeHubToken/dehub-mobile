@@ -393,8 +393,8 @@
     "exportPkBullet2": "Nigdy go nie udostępniaj. Nigdy o niego nie poprosimy.",
     "exportPkBullet3": "Przechowuj go bezpiecznie w menedżerze haseł albo offline.",
     "exportPkBullet4": "Nie odzyskamy utraconych środków ani przejętych kluczy.",
-    "exportPkTypeToContinue": "Type \"{{phrase}}\" to continue",
-    "exportPkTypeToProceed": "Type \"{{phrase}}\" to proceed",
+    "exportPkTypeToContinue": "Wpisz \"{{phrase}}\", aby kontynuować",
+    "exportPkTypeToProceed": "Wpisz \"{{phrase}}\", aby przejść dalej",
     "preparing": "Przygotowywanie…",
     "iUnderstand": "Rozumiem",
     "exportPkSmartAccount1": "To konto korzysta ze smart accounta (Web3Auth). Kluczy prywatnych nie da się wyeksportować.",
@@ -848,10 +848,10 @@
     "locked": "Zablokowane",
     "any": "Dowolny",
     "resetFilters": "Resetuj filtry",
-    "mostTips": "Most Tips",
+    "mostTips": "Najwięcej napiwków",
     "audio": "Audio",
     "live": "Live",
-    "forYou": "For You"
+    "forYou": "Dla Ciebie"
   },
   "drawers": {
     "ppvTitle": "Treść pay-per-view",
@@ -1132,7 +1132,7 @@
     "txPpvSale": "Sprzedaż PPV — {{amount}} DHB",
     "txTipSent": "Dałeś napiwek {{name}} — {{amount}} DHB",
     "txTipReceived": "{{name}} dał Ci napiwek — {{amount}} DHB",
-    "totalDhbBalance": "Total DHB Balance",
+    "totalDhbBalance": "Łączne saldo DHB",
     "mobileSubtitle": "Twój portfel, przychody i zasięg w jednym miejscu",
     "balance": "Saldo",
     "income": "Przychody",
@@ -1823,12 +1823,12 @@
     "privateDesc": "Tylko Ty możesz zobaczyć ten post"
   },
   "tip": {
-    "title": "Send Tip",
-    "toCreator": "Tip {{name}}",
-    "quickAmounts": "Quick amounts",
-    "customAmount": "Or enter amount",
+    "title": "Wyślij napiwek",
+    "toCreator": "Daj napiwek {{name}}",
+    "quickAmounts": "Szybkie kwoty",
+    "customAmount": "Albo wpisz kwotę",
     "sending": "Sending...",
-    "sendAmount": "Send {{amount}} DHB"
+    "sendAmount": "Wyślij {{amount}} DHB"
   },
   "staking": {
     "title": "Staking",

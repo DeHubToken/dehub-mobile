@@ -1761,12 +1761,12 @@
     "generatedImage": "यह रही आपकी बनाई गई छवि!"
   },
   "tip": {
-    "title": "Send Tip",
-    "toCreator": "Tip {{name}}",
-    "quickAmounts": "Quick amounts",
-    "customAmount": "Or enter amount",
+    "title": "टिप भेजें",
+    "toCreator": "{{name}} को टिप दें",
+    "quickAmounts": "त्वरित राशि",
+    "customAmount": "या राशि दर्ज करें",
     "sending": "Sending...",
-    "sendAmount": "Send {{amount}} DHB"
+    "sendAmount": "{{amount}} DHB भेजें"
   },
   "staking": {
     "title": "स्टेकिंग",

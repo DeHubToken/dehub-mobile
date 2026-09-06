@@ -575,7 +575,7 @@
     "locked": "Restringido",
     "any": "Cualquiera",
     "resetFilters": "Restablecer filtros",
-    "mostTips": "Most Tips",
+    "mostTips": "Más propinas",
     "audio": "Audio",
     "live": "Live",
     "forYou": "Para ti"
@@ -859,7 +859,7 @@
     "txPpvSale": "Venta PPV — {{amount}} DHB",
     "txTipSent": "Propina a {{name}} — {{amount}} DHB",
     "txTipReceived": "{{name}} te dio propina — {{amount}} DHB",
-    "totalDhbBalance": "Total DHB Balance",
+    "totalDhbBalance": "Saldo total de DHB",
     "mobileSubtitle": "Tu cartera, ingresos y alcance en un solo lugar",
     "balance": "Saldo",
     "income": "Ingresos",
@@ -1811,12 +1811,12 @@
     "ofSupply": "del suministro"
   },
   "tip": {
-    "title": "Send Tip",
-    "toCreator": "Tip {{name}}",
-    "quickAmounts": "Quick amounts",
-    "customAmount": "Or enter amount",
+    "title": "Enviar propina",
+    "toCreator": "Dar propina a {{name}}",
+    "quickAmounts": "Cantidades rápidas",
+    "customAmount": "O introduce una cantidad",
     "sending": "Sending...",
-    "sendAmount": "Send {{amount}} DHB"
+    "sendAmount": "Enviar {{amount}} DHB"
   },
   "communities": {
     "title": "Comunidades",
