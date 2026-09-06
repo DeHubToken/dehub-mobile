@@ -55,22 +55,29 @@ function formatCompact(n: number | null | undefined): string {
 // ── SVG line chart ────────────────────────────────────────────────────────────
 function PriceChart({ candles, positive }: { candles: OhlcvCandle[]; positive: boolean }) {
   const W = 320, H = 80;
-  if (candles.length < 2) {
-    return <View style={{ height: H, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ color: "#4B5563", fontSize: 12 }}>No chart data</Text>
-    </View>;
-  }
+  const color = positive ? "#F4F4F5" : "#8B8D90";
+  const gradId = positive ? "grad-up" : "grad-dn";
 
-  const prices = candles.map((c) => c.close);
-  const min = Math.min(...prices);
-  const max = Math.max(...prices);
-  const range = max - min || 1;
-
-  const xStep = W / (candles.length - 1);
-  const points = prices.map((p, i) => ({
-    x: i * xStep,
-    y: H - ((p - min) / range) * H,
-  }));
+  // A pinned price and an unindexed pool both come back with no candles. The
+  // sheet still shows a price and a market cap, so "No chart data" read as
+  // breakage; a flat line says what the numbers already say.
+  const flat = candles.length < 2;
+  const points = flat
+    ? [
+        { x: 0, y: H / 2 },
+        { x: W, y: H / 2 },
+      ]
+    : (() => {
+        const prices = candles.map((c) => c.close);
+        const min = Math.min(...prices);
+        const max = Math.max(...prices);
+        const range = max - min || 1;
+        const xStep = W / (candles.length - 1);
+        return prices.map((p, i) => ({
+          x: i * xStep,
+          y: H - ((p - min) / range) * H,
+        }));
+      })();
 
   const linePath = points
     .map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`)
@@ -80,9 +87,6 @@ function PriceChart({ candles, positive }: { candles: OhlcvCandle[]; positive: b
     `M${points[0].x.toFixed(1)},${H} ` +
     points.map((p) => `L${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ") +
     ` L${points[points.length - 1].x.toFixed(1)},${H} Z`;
-
-  const color = positive ? "#F4F4F5" : "#8B8D90";
-  const gradId = positive ? "grad-up" : "grad-dn";
 
   return (
     <Svg width={W} height={H} style={{ marginVertical: 8 }}>

@@ -81,27 +81,37 @@ const Sparkline: React.FC<{ points: PricePoint[]; positive: boolean }> = ({
   points,
   positive,
 }) => {
-  if (points.length < 2) return null;
+  const color = positive ? '#F4F4F5' : '#8B8D90';
+  const gradientId = positive ? 'asset-spark-up' : 'asset-spark-down';
 
-  const prices = points.map((p) => p.price);
-  const min = Math.min(...prices);
-  const max = Math.max(...prices);
-  // A flat series has zero range; without the guard every y is NaN and the path
-  // silently disappears instead of drawing a straight line.
-  const range = max - min || Math.abs(max) || 1;
-  const step = SPARK_W / (points.length - 1);
-
-  const coords = prices.map((price, i) => ({
-    x: i * step,
-    y: SPARK_H - ((price - min) / range) * (SPARK_H - 4) - 2,
-  }));
+  // No series to draw — a pinned price, a token with no indexed pool, a
+  // rate-limited minute. The card already shows a price and a market cap, so
+  // hiding the chart made it look half-loaded; a flat line says the same thing
+  // the numbers do.
+  const flat = points.length < 2;
+  const coords = flat
+    ? [
+        { x: 0, y: SPARK_H / 2 },
+        { x: SPARK_W, y: SPARK_H / 2 },
+      ]
+    : (() => {
+        const prices = points.map((p) => p.price);
+        const min = Math.min(...prices);
+        const max = Math.max(...prices);
+        // A flat series has zero range; without the guard every y is NaN and the path
+        // silently disappears instead of drawing a straight line.
+        const range = max - min || Math.abs(max) || 1;
+        const step = SPARK_W / (points.length - 1);
+        return prices.map((price, i) => ({
+          x: i * step,
+          y: SPARK_H - ((price - min) / range) * (SPARK_H - 4) - 2,
+        }));
+      })();
 
   const line = coords
     .map((c, i) => `${i === 0 ? 'M' : 'L'}${c.x.toFixed(1)},${c.y.toFixed(1)}`)
     .join(' ');
   const area = `${line} L${SPARK_W},${SPARK_H} L0,${SPARK_H} Z`;
-  const color = positive ? '#F4F4F5' : '#8B8D90';
-  const gradientId = positive ? 'asset-spark-up' : 'asset-spark-down';
 
   return (
     <Svg width="100%" height={SPARK_H} viewBox={`0 0 ${SPARK_W} ${SPARK_H}`}>
@@ -147,7 +157,10 @@ const AddressChip: React.FC<{ address: string }> = ({ address }) => {
 
 const ResolvedCard: React.FC<{ asset: ResolvedAsset }> = ({ asset }) => {
   const [sheetOpen, setSheetOpen] = useState(false);
-  const { data: series } = useQuery({
+  // `isPending` gates the chart, not `series.length`: an asset whose series is
+  // still in flight and one that will never have a series both arrive as an
+  // empty array, and only the second should draw the flat line.
+  const { data: series, isPending: seriesPending } = useQuery({
     queryKey: [
       'asset-series',
       asset.assetClass,
@@ -229,10 +242,10 @@ const ResolvedCard: React.FC<{ asset: ResolvedAsset }> = ({ asset }) => {
           </View>
         </View>
 
-        {!!series && series.length >= 2 && (
+        {!seriesPending && (
           <View style={styles.chartRow}>
             <View style={styles.chartWrap}>
-              <Sparkline points={series} positive={positive} />
+              <Sparkline points={series ?? []} positive={positive} />
             </View>
             <Text style={styles.chartLabel}>24h</Text>
           </View>
