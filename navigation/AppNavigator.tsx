@@ -132,6 +132,10 @@ export default function AppNavigator() {
           name={ScreenNames.Governance}
           getComponent={() => require("../screens/GovernanceScreen").default}
         />
+        <Stack.Screen
+          name={ScreenNames.Dao}
+          getComponent={() => require("../screens/DaoScreen").default}
+        />
         {/* Public: the ladder is worth reading before you hold a badge, which
             is the whole point of the screen. */}
         <Stack.Screen

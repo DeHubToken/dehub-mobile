@@ -146,6 +146,7 @@ export const DeepLinkPaths = {
   // App sections — dehub.io/app/...
   NOTIFICATIONS: 'app/notifications',
   LEADERBOARD: 'app/leaderboard',
+  DAO: 'dao',
   MESSAGES: 'app/messages',
 
   // Communities — the invite path has to be declared before the slug one, or
@@ -230,6 +231,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Notifications]: DeepLinkPaths.NOTIFICATIONS,
 
           [ScreenNames.Leaderboard]: DeepLinkPaths.LEADERBOARD,
+          [ScreenNames.Dao]: DeepLinkPaths.DAO,
 
           // An invite link shared from either client opens straight into the
           // join screen rather than bouncing through the website.

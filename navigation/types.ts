@@ -202,6 +202,7 @@ export type AppStackParamList = {
   };
   [ScreenNames.WorkPost]: undefined;
   [ScreenNames.Governance]: undefined;
+  [ScreenNames.Dao]: undefined;
   [ScreenNames.SuperPowers]: undefined;
 };
 
