@@ -454,7 +454,13 @@
     "ensRemoveTitle": "ENS nomingizni o'chirasizmi?",
     "ensRemoveBody": "dehub.io/{{name}} endi sizga ishora qilmay qo'yadi. Foydalanuvchi nomingiz o'zgarmaydi, va nomni keyinroq yana isbotlashingiz mumkin — lekin buning uchun uni ushlab turgan hamyondan yana bir imzo kerak bo'ladi.",
     "ensUnlinked": "O'chirildi — foydalanuvchi nomingiz o'zgarmadi",
-    "ensUnlinkFailed": "Uni o'chirib bo'lmadi. Qayta urinib ko'ring."
+    "ensUnlinkFailed": "Uni o'chirib bo'lmadi. Qayta urinib ko'ring.",
+    "newMemberShown": "Yangi a'zo sifatida ko‘rsatilmoqda",
+    "newMemberHidden": "Yangi a'zolardan yashirilgan",
+    "signInTv": "Televizorda kirish",
+    "signInTvDesc": "Televizorda ko‘rsatilgan kodni kiriting",
+    "tvRequests": "TV so‘rovlari",
+    "tvRequestsDesc": "Televizor imzolashni so‘ragan choy pullarini tasdiqlang"
   },
   "common": {
     "mute": "Ovozni o‘chirish",

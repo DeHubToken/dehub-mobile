@@ -906,7 +906,13 @@
     "ensRemoveTitle": "Alisin ang ENS name mo?",
     "ensRemoveBody": "Hihinto nang mag-resolve sa iyo ang dehub.io/{{name}}. Hindi magbabago ang username mo, at puwede mo pang patunayan ulit ang pangalan sa hinaharap — pero kailangan nito ng isa pang signature mula sa wallet na may hawak nito.",
     "ensUnlinked": "Inalis — hindi nagbago ang username mo",
-    "ensUnlinkFailed": "Hindi ito naalis. Subukan ulit."
+    "ensUnlinkFailed": "Hindi ito naalis. Subukan ulit.",
+    "newMemberShown": "Ipinapakita bilang bagong miyembro",
+    "newMemberHidden": "Nakatago sa mga bagong miyembro",
+    "signInTv": "Mag-sign in sa TV",
+    "signInTvDesc": "I-type ang code na ipinapakita ng iyong TV",
+    "tvRequests": "Mga kahilingan mula sa TV",
+    "tvRequestsDesc": "Aprubahan ang mga tip na hinihiling ng iyong TV na pirmahan"
   },
   "postOptions": {
     "options": "Options",

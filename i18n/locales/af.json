@@ -633,7 +633,13 @@
     "ensRemoveTitle": "Verwyder jou ENS-naam?",
     "ensRemoveBody": "dehub.io/{{name}} verwys nie meer na jou nie. Jou gebruikersnaam verander nie, en jy kan die naam later weer bewys — maar dit benodig nog 'n handtekening van die beursie wat dit besit.",
     "ensUnlinked": "Verwyder — jou gebruikersnaam bly onveranderd",
-    "ensUnlinkFailed": "Kon nie dit verwyder nie. Probeer weer."
+    "ensUnlinkFailed": "Kon nie dit verwyder nie. Probeer weer.",
+    "newMemberShown": "Wys as 'n nuwe lid",
+    "newMemberHidden": "Versteek van nuwe lede",
+    "signInTv": "Meld 'n TV aan",
+    "signInTvDesc": "Tik die kode wat jou televisie wys",
+    "tvRequests": "TV-versoeke",
+    "tvRequestsDesc": "Keur fooitjies goed wat jou televisie vra om te teken"
   },
   "wallet": {
     "title": "Beursie",

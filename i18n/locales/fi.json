@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Poistetaanko ENS-nimesi?",
     "ensRemoveBody": "dehub.io/{{name}} lakkaa osoittamasta sinuun. Käyttäjänimesi ei muutu, ja voit todistaa nimen uudelleen myöhemmin — se vaatii kuitenkin uuden allekirjoituksen lompakolta, joka omistaa sen.",
     "ensUnlinked": "Poistettu — käyttäjänimesi pysyy ennallaan",
-    "ensUnlinkFailed": "Sitä ei voitu poistaa. Yritä uudelleen."
+    "ensUnlinkFailed": "Sitä ei voitu poistaa. Yritä uudelleen.",
+    "newMemberShown": "Näkyy uutena jäsenenä",
+    "newMemberHidden": "Piilotettu uusilta jäseniltä",
+    "signInTv": "Kirjaudu televisioon",
+    "signInTvDesc": "Kirjoita television näyttämä koodi",
+    "tvRequests": "TV-pyynnöt",
+    "tvRequestsDesc": "Hyväksy tipit, jotka televisio pyytää allekirjoittamaan"
   },
   "common": {
     "mute": "Mykistä",

@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Vols eliminar el teu nom ENS?",
     "ensRemoveBody": "dehub.io/{{name}} deixa d'apuntar cap a tu. El teu nom d'usuari no canvia, i podràs demostrar el nom de nou més endavant — però caldrà una altra signatura de la cartera que el té.",
     "ensUnlinked": "Eliminat — el teu nom d'usuari no ha canviat",
-    "ensUnlinkFailed": "No s'ha pogut eliminar. Torna-ho a provar."
+    "ensUnlinkFailed": "No s'ha pogut eliminar. Torna-ho a provar.",
+    "newMemberShown": "Es mostra com a membre nou",
+    "newMemberHidden": "Ocult per als membres nous",
+    "signInTv": "Inicia sessió en un televisor",
+    "signInTvDesc": "Escriu el codi que mostra el televisor",
+    "tvRequests": "Sol·licituds del televisor",
+    "tvRequestsDesc": "Aprova les propines que el televisor et demana signar"
   },
   "common": {
     "mute": "Silencia",

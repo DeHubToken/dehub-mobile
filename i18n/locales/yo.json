@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Yọ orúkọ ENS rẹ kúrò?",
     "ensRemoveBody": "dehub.io/{{name}} kò ní tọ́ka sí ọ mọ́. Orúkọ olùmúlò rẹ kò ní yípadà, o sì lè ṣàyẹ̀wò orúkọ náà lẹ́ẹ̀kan sí i lẹ́yìn náà — ṣùgbọ́n èyí nílò ìbùwọlú mìíràn láti ọ̀dọ̀ àpamọ́wọ́ tí ó ní i.",
     "ensUnlinked": "Tí a yọ kúrò — orúkọ olùmúlò rẹ kò yípadà",
-    "ensUnlinkFailed": "A kò lè yọ ọ́ kúrò. Gbìyànjú lẹ́ẹ̀kan sí i."
+    "ensUnlinkFailed": "A kò lè yọ ọ́ kúrò. Gbìyànjú lẹ́ẹ̀kan sí i.",
+    "newMemberShown": "Ń hàn gẹ́gẹ́ bí ọmọ ẹgbẹ́ tuntun",
+    "newMemberHidden": "Fi pamọ́ fún àwọn ọmọ ẹgbẹ́ tuntun",
+    "signInTv": "Wọlé lórí TV",
+    "signInTvDesc": "Tẹ koodu tí TV rẹ ń fi hàn",
+    "tvRequests": "Àwọn ìbéèrè TV",
+    "tvRequestsDesc": "Fọwọ́ sí àwọn ẹ̀bùn tí TV rẹ béèrè kí o fọwọ́ sí"
   },
   "common": {
     "mute": "Pa ohùn",

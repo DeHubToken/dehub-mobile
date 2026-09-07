@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Të heqësh emrin tënd ENS?",
     "ensRemoveBody": "dehub.io/{{name}} nuk do të çojë më te ti. Emri yt i përdoruesit nuk ndryshon, dhe mund ta vërtetosh sërish emrin më vonë — por kjo kërkon një nënshkrim tjetër nga portofoli që e mban.",
     "ensUnlinked": "U hoq — emri yt i përdoruesit mbetet i pandryshuar",
-    "ensUnlinkFailed": "Nuk u hoq dot. Provo sërish."
+    "ensUnlinkFailed": "Nuk u hoq dot. Provo sërish.",
+    "newMemberShown": "Shfaqet si anëtar i ri",
+    "newMemberHidden": "I fshehur nga anëtarët e rinj",
+    "signInTv": "Hyr në një TV",
+    "signInTvDesc": "Shkruaj kodin që tregon televizori",
+    "tvRequests": "Kërkesat e TV-së",
+    "tvRequestsDesc": "Mirato bakshishet që televizori kërkon t'i nënshkruash"
   },
   "common": {
     "mute": "Hiq zërin",

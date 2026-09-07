@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Ta bort ditt ENS-namn?",
     "ensRemoveBody": "dehub.io/{{name}} slutar peka på dig. Ditt användarnamn ändras inte, och du kan verifiera namnet igen senare — men det kräver en ny signatur från plånboken som äger det.",
     "ensUnlinked": "Borttaget — ditt användarnamn är oförändrat",
-    "ensUnlinkFailed": "Kunde inte ta bort det. Försök igen."
+    "ensUnlinkFailed": "Kunde inte ta bort det. Försök igen.",
+    "newMemberShown": "Visas som ny medlem",
+    "newMemberHidden": "Dold för nya medlemmar",
+    "signInTv": "Logga in på en TV",
+    "signInTvDesc": "Skriv koden som din TV visar",
+    "tvRequests": "TV-förfrågningar",
+    "tvRequestsDesc": "Godkänn dricks som din TV ber dig signera"
   },
   "common": {
     "mute": "Stäng av ljud",

@@ -454,7 +454,13 @@
     "earnings": "Kazançlar",
     "earningsDesc": "Bahşişler, abonelikler ve ödemeler",
     "freeAccessList": "Ücretsiz DM Erişimi",
-    "freeAccessListDesc": "Mesaj ücretinizi ödemeden size ücretsiz yazabilecek kullanıcılar."
+    "freeAccessListDesc": "Mesaj ücretinizi ödemeden size ücretsiz yazabilecek kullanıcılar.",
+    "newMemberShown": "Yeni üye olarak gösteriliyor",
+    "newMemberHidden": "Yeni üyelerden gizlendi",
+    "signInTv": "Bir TV'de oturum aç",
+    "signInTvDesc": "Televizyonunuzda görünen kodu yazın",
+    "tvRequests": "TV istekleri",
+    "tvRequestsDesc": "Televizyonunuzun imzalamanızı istediği bahşişleri onaylayın"
   },
   "common": {
     "mute": "Sesi kapat",

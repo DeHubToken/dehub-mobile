@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Deinen ENS-Namen entfernen?",
     "ensRemoveBody": "dehub.io/{{name}} verweist dann nicht mehr auf dich. Dein Benutzername ändert sich nicht, und du kannst den Namen später erneut nachweisen — dafür braucht es aber eine weitere Signatur der Wallet, die ihn hält.",
     "ensUnlinked": "Entfernt — dein Benutzername ist unverändert",
-    "ensUnlinkFailed": "Konnte nicht entfernt werden. Versuch es erneut."
+    "ensUnlinkFailed": "Konnte nicht entfernt werden. Versuch es erneut.",
+    "newMemberShown": "Wird als neues Mitglied angezeigt",
+    "newMemberHidden": "Für neue Mitglieder verborgen",
+    "signInTv": "Auf einem Fernseher anmelden",
+    "signInTvDesc": "Gib den Code ein, den dein Fernseher anzeigt",
+    "tvRequests": "TV-Anfragen",
+    "tvRequestsDesc": "Trinkgelder freigeben, die dein Fernseher signieren lassen will"
   },
   "common": {
     "mute": "Stumm schalten",

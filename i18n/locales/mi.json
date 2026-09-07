@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Tangohia tō ingoa ENS?",
     "ensRemoveBody": "Kāore a dehub.io/{{name}} e tohu ki a koe i muri mai. Kāore tō ingoa kaiwhakamahi e rerekē, ā, ka taea e koe te whakaū anō i te ingoa ā muri ake — engari me whai waitohu anō mai i te pūkoro nāna taua ingoa.",
     "ensUnlinked": "Kua tangohia — kāore i rerekē tō ingoa kaiwhakamahi",
-    "ensUnlinkFailed": "Kāore i taea te tango. Ngana anō."
+    "ensUnlinkFailed": "Kāore i taea te tango. Ngana anō.",
+    "newMemberShown": "E whakaatu ana hei mema hou",
+    "newMemberHidden": "Huna mai i ngā mema hou",
+    "signInTv": "Takiuru i tētahi pouaka whakaata",
+    "signInTvDesc": "Tāurua te waehere e whakaatu ana tō pouaka whakaata",
+    "tvRequests": "Ngā tono pouaka whakaata",
+    "tvRequestsDesc": "Whakaae ki ngā tīpi e tono ana tō pouaka whakaata kia hainatia"
   },
   "common": {
     "mute": "Whakangū",

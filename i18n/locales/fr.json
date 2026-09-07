@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Retirer votre nom ENS ?",
     "ensRemoveBody": "dehub.io/{{name}} cessera de pointer vers vous. Votre pseudo ne change pas et vous pourrez prouver le nom plus tard — mais cela nécessitera une nouvelle signature du portefeuille qui le détient.",
     "ensUnlinked": "Retiré — votre pseudo est inchangé",
-    "ensUnlinkFailed": "Impossible de le retirer. Réessayez."
+    "ensUnlinkFailed": "Impossible de le retirer. Réessayez.",
+    "newMemberShown": "Affiché comme nouveau membre",
+    "newMemberHidden": "Masqué pour les nouveaux membres",
+    "signInTv": "Connecter un téléviseur",
+    "signInTvDesc": "Saisissez le code affiché sur votre téléviseur",
+    "tvRequests": "Demandes du téléviseur",
+    "tvRequestsDesc": "Approuvez les pourboires que votre téléviseur vous demande de signer"
   },
   "common": {
     "mute": "Couper le son",

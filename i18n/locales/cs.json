@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Odebrat tvoje ENS jméno?",
     "ensRemoveBody": "dehub.io/{{name}} už nebude ukazovat na tebe. Tvoje uživatelské jméno se nemění a jméno můžeš znovu ověřit později — bude to ale chtít další podpis od peněženky, která ho drží.",
     "ensUnlinked": "Odebráno — tvoje uživatelské jméno se nezměnilo",
-    "ensUnlinkFailed": "Nepodařilo se ho odebrat. Zkus to znovu."
+    "ensUnlinkFailed": "Nepodařilo se ho odebrat. Zkus to znovu.",
+    "newMemberShown": "Zobrazeno jako nový člen",
+    "newMemberHidden": "Skryto před novými členy",
+    "signInTv": "Přihlásit televizi",
+    "signInTvDesc": "Zadejte kód zobrazený na televizi",
+    "tvRequests": "Požadavky z televize",
+    "tvRequestsDesc": "Schvalujte tipy, které televize žádá podepsat"
   },
   "common": {
     "mute": "Ztlumit",

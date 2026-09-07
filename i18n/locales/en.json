@@ -498,7 +498,13 @@
     "earnings": "Earnings",
     "earningsDesc": "Tips, subscriptions and payouts",
     "freeAccessList": "Free DM Access",
-    "freeAccessListDesc": "Users who can message you for free, bypassing your message fee."
+    "freeAccessListDesc": "Users who can message you for free, bypassing your message fee.",
+    "newMemberShown": "Showing as a new member",
+    "newMemberHidden": "Hidden from new members",
+    "signInTv": "Sign in a TV",
+    "signInTvDesc": "Type the code your television is showing",
+    "tvRequests": "TV requests",
+    "tvRequestsDesc": "Approve tips your television asks you to sign"
   },
   "common": {
     "mute": "Mute",

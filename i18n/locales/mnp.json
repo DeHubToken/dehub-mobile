@@ -454,7 +454,13 @@
     "ensRemoveTitle": "提掉汝其 ENS 名？",
     "ensRemoveBody": "dehub.io/{{name}} 就袂再指向汝。汝其用户名袂改，以后嘛会得再证明只个名 — 毋过爱持有只个名其钱包再签蜀摆。",
     "ensUnlinked": "提掉啊 — 汝其用户名无变",
-    "ensUnlinkFailed": "提掉袂成。再试。"
+    "ensUnlinkFailed": "提掉袂成。再试。",
+    "newMemberShown": "显示为新成员",
+    "newMemberHidden": "对新成员隐藏",
+    "signInTv": "登录电视",
+    "signInTvDesc": "输入电视上显示的代码",
+    "tvRequests": "电视请求",
+    "tvRequestsDesc": "批准电视请你签署的打赏"
   },
   "common": {
     "mute": "静音",
