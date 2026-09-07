@@ -73,17 +73,13 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           setClipboardPk(null);
           return;
         }
+        // Only check whether there is something to paste. Reading the
+        // pasteboard here fired the iOS paste-permission alert and the
+        // Android "pasted from" toast the moment the sheet opened; the actual
+        // read now happens on the Paste tap.
         try {
-          const clip = await Clipboard.getStringAsync();
-          const normalized = clip?.trim();
-          if (normalized && validatePk(normalized)) {
-            if (mounted)
-              setClipboardPk(
-                normalized.startsWith("0x") ? normalized : `0x${normalized}`
-              );
-          } else {
-            if (mounted) setClipboardPk(null);
-          }
+          const has = await Clipboard.hasStringAsync();
+          if (mounted) setClipboardPk(has ? "pending" : null);
         } catch {
           if (mounted) setClipboardPk(null);
         }
@@ -232,7 +228,18 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           {clipboardPk && !privateKey ? (
             <AuthTextButton
               label="Paste from clipboard"
-              onPress={() => setPrivateKey(clipboardPk)}
+              onPress={async () => {
+                try {
+                  const clip = (await Clipboard.getStringAsync())?.trim();
+                  if (clip && validatePk(clip)) {
+                    setPrivateKey(clip.startsWith("0x") ? clip : `0x${clip}`);
+                  } else {
+                    setClipboardPk(null);
+                  }
+                } catch {
+                  setClipboardPk(null);
+                }
+              }}
               tone="default"
               align="end"
             />
