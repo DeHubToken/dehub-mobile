@@ -302,7 +302,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
     opacity: highlightOpacity.value,
   }));
 
-  const isCallMsg = message.msgType === "msg" && /^[📞📹📵]/.test(message.content || "");
+  const isCallMsg = message.msgType === "msg" && /^[📞📹📵]/u.test(message.content || "");
 
   const REPLY_THRESHOLD = 60;
   const translateX = useSharedValue(0);
