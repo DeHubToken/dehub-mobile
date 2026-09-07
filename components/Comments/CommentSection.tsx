@@ -72,6 +72,8 @@ interface FlatComment extends Comment {
 }
 
 interface CommentSectionProps {
+  /** The split-view parent already sizes this area above the keyboard. */
+  keyboardHandled?: boolean;
   tokenId: number | string;
   onClose?: () => void;
   highlightCommentId?: number | string;
@@ -128,6 +130,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   commentsDisabled = false,
   postCreator,
   onDirtyChange,
+  keyboardHandled = false,
 }) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
@@ -238,7 +241,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const userAvatar = getAvatarUrl(user?.avatarImageUrl || "");
 
   // Keyboard lift for input
-  const inputLift = kbVisible ? kbHeight : 0;
+  const inputLift = !keyboardHandled && kbVisible ? kbHeight : 0;
 
   // Build flat list with replies inline after their parent using recursive depth tracking.
   // If highlightCommentId is a reply, its root ancestor chain is emitted first.
