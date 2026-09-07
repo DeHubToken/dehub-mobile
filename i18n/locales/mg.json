@@ -2698,7 +2698,8 @@
     "title": "Tamy_ts's chat",
     "mentionTitle": "Misoratra anarana ao amin'ny karajia ho an'ny besinimaro",
     "voiceMessage": "Hafatra am-peo",
-    "image": "Mandefa sary"
+    "image": "Mandefa sary",
+    "digest": "{{count}} hafatra vaovao avy amin'ny {{who}}: {{message}}"
   },
   "liveChat": {
     "attach": "Ampio sary, GIF na emoji",

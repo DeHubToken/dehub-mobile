@@ -2591,7 +2591,9 @@
     "yourDhb": "നിങ്ങളുടെ DHB"
   },
   "digest": {
-    "someone": "ആരെങ്കിലും"
+    "someone": "ആരെങ്കിലും",
+    "andOthers_one": "{{names}}, {{count}} മറ്റുള്ളവ",
+    "andOthers_other": "{{names}}, {{count}} മറ്റുള്ളവർ"
   },
   "publicChatAlerts": {
     "title": "പൊതു ചാറ്റ്",

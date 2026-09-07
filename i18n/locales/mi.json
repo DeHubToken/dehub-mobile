@@ -2595,7 +2595,8 @@
   },
   "digest": {
     "andOthers_other": "{{names}} me {{count}} Ētahi atu",
-    "someone": "He tangata"
+    "someone": "He tangata",
+    "andOthers_one": "{{names}} me {{count}} atu"
   },
   "publicChatAlerts": {
     "title": "Kōrerorero tūmatanui",

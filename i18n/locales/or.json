@@ -2593,7 +2593,8 @@
     "yourDhb": "ଆପଣଙ୍କ DHB"
   },
   "digest": {
-    "someone": "କେହି"
+    "someone": "କେହି",
+    "andOthers_one": "{{names}} ଏବଂ {{count}} ଅନ୍ୟ"
   },
   "publicChatAlerts": {
     "title": "ସାର୍ବଜନୀନ ଚାଟ",

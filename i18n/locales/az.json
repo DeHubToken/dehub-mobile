@@ -2593,13 +2593,16 @@
     "yourDhb": "Sənin DHB-n"
   },
   "digest": {
-    "someone": "Kimsə"
+    "someone": "Kimsə",
+    "andOthers_one": "{{names}} və {{count}} digər",
+    "andOthers_other": "{{names}} və {{count}} başqaları"
   },
   "publicChatAlerts": {
     "title": "İctimai söhbət",
     "mentionTitle": "İctimai söhbətdə qeyd edilib",
     "voiceMessage": "Səsli mesaj",
-    "image": "Təsvir göndərildi"
+    "image": "Təsvir göndərildi",
+    "digest": "{{count}} {{who}} yeni mesajlar: {{message}}"
   },
   "liveChat": {
     "attach": "Foto, GIF və ya emoji əlavə edin",

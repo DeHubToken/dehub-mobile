@@ -2594,13 +2594,16 @@
     "yourDhb": "DHB naka"
   },
   "digest": {
-    "someone": "Wani"
+    "someone": "Wani",
+    "andOthers_one": "{{names}} da {{count}} sauran",
+    "andOthers_other": "{{names}} da {{count}} wasu"
   },
   "publicChatAlerts": {
     "title": "Tattaunawar jama'a",
     "mentionTitle": "An ambata a cikin tattaunawar jama'a",
     "voiceMessage": "Sakon murya",
-    "image": "Aika da hoto"
+    "image": "Aika da hoto",
+    "digest": "{{count}} sabbin sakonni daga {{who}}: {{message}}"
   },
   "liveChat": {
     "attach": "Add a photo, GIF ko emoji",

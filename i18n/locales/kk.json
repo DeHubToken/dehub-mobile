@@ -2647,7 +2647,9 @@
     "yourDhb": "Сіздің DHB"
   },
   "digest": {
-    "someone": "Біреу"
+    "someone": "Біреу",
+    "andOthers_one": "{{names}} және {{count}} басқа",
+    "andOthers_other": "{{names}} және {{count}} басқалар"
   },
   "publicChatAlerts": {
     "title": "Көпшілікке арналған чат",
