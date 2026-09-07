@@ -704,7 +704,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "აუდიო შენახულია",
+    "audioSaveFailed": "ამ ჩანაწერის შენახვა ვერ მოხერხდა",
+    "generatedWithAssistant": "შექმნილია DeHub-ის ასისტენტით"
   },
   "publicChat": {
     "title": "საჯარო ჩეთი",

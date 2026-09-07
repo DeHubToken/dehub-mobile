@@ -696,7 +696,10 @@
     "generateImageOf": "Generar una imagen de ",
     "generateVideoOf": "Generar un vídeo de ",
     "whatsHappeningNews": "¿Qué está pasando en las noticias hoy?",
-    "loginRequired": "Inicia sesión para acceder al Asistente IA y desbloquear funciones como generación de imágenes y vídeos."
+    "loginRequired": "Inicia sesión para acceder al Asistente IA y desbloquear funciones como generación de imágenes y vídeos.",
+    "audioSaved": "Audio guardado",
+    "audioSaveFailed": "No se pudo guardar esa pista",
+    "generatedWithAssistant": "Generado con el asistente de DeHub"
   },
   "publicChat": {
     "title": "Chat Público",

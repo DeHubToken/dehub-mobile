@@ -861,7 +861,10 @@
     "fallbackGrokNotConfigured": "Memakai DeHub AI — kunci API Grok belum diatur",
     "paymentSuccessGenerating": "Pembayaran berhasil! Videomu sedang dibuat...",
     "imageGenerated": "Gambar dibuat!",
-    "videoGenFailedDetail": "Gagal membuat video: {{error}}"
+    "videoGenFailedDetail": "Gagal membuat video: {{error}}",
+    "audioSaved": "Audio disimpan",
+    "audioSaveFailed": "Tidak dapat menyimpan trek itu",
+    "generatedWithAssistant": "Dibuat dengan asisten DeHub"
   },
   "aiChat": {
     "title": "Asisten",

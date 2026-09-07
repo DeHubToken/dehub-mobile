@@ -1350,7 +1350,10 @@
     "fallbackGrokNotConfigured": "استخدام DeHub AI — مفتاح Grok API غير مهيأ",
     "paymentSuccessGenerating": "تم الدفع بنجاح! جارٍ إنشاء الفيديو...",
     "imageGenerated": "تم إنشاء الصورة!",
-    "videoGenFailedDetail": "فشل إنشاء الفيديو: {{error}}"
+    "videoGenFailedDetail": "فشل إنشاء الفيديو: {{error}}",
+    "audioSaved": "تم حفظ الصوت",
+    "audioSaveFailed": "تعذّر حفظ هذا المقطع",
+    "generatedWithAssistant": "تم إنشاؤه بمساعد DeHub"
   },
   "aiChat": {
     "title": "المساعد",

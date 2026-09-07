@@ -704,7 +704,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "ध्वनिः संरक्षितः",
+    "audioSaveFailed": "तत् गीतं संरक्षितुं न शक्यते",
+    "generatedWithAssistant": "DeHub सहायकेन निर्मितम्"
   },
   "publicChat": {
     "title": "सार्वजनिकसम्भाषणम्",

@@ -704,7 +704,10 @@
     "officialLogo": "Here's the official DeHub logo! 🎨",
     "generateImageOf": "Generate an image of ",
     "generateVideoOf": "Generate a video of ",
-    "whatsHappeningNews": "What's happening in the news today?"
+    "whatsHappeningNews": "What's happening in the news today?",
+    "audioSaved": "အသံ သိမ်းဆည်းပြီး",
+    "audioSaveFailed": "ထိုသီချင်းကို သိမ်း၍မရပါ",
+    "generatedWithAssistant": "DeHub လက်ထောက်ဖြင့် ဖန်တီးထားသည်"
   },
   "publicChat": {
     "title": "အများသုံးချက်တင်",

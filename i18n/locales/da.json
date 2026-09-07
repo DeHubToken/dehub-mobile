@@ -1350,7 +1350,10 @@
     "fallbackGrokNotConfigured": "Bruger DeHub AI — Grok API-nøgle ikke konfigureret",
     "paymentSuccessGenerating": "Betaling gennemført! Genererer din video...",
     "imageGenerated": "Billede genereret!",
-    "videoGenFailedDetail": "Videogenerering mislykkedes: {{error}}"
+    "videoGenFailedDetail": "Videogenerering mislykkedes: {{error}}",
+    "audioSaved": "Lyd gemt",
+    "audioSaveFailed": "Kunne ikke gemme dette nummer",
+    "generatedWithAssistant": "Genereret med DeHub-assistenten"
   },
   "aiChat": {
     "title": "Assistent",

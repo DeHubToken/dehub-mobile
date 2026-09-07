@@ -1159,7 +1159,10 @@
     "generateImageOf": "Genereer een afbeelding van ",
     "generateVideoOf": "Genereer een video van ",
     "whatsHappeningNews": "Wat is er aan de hand in het nieuws vandaag?",
-    "loginRequired": "Log in om de AI Assistent te openen en functies zoals afbeeldings- en videogeneratie te ontgrendelen."
+    "loginRequired": "Log in om de AI Assistent te openen en functies zoals afbeeldings- en videogeneratie te ontgrendelen.",
+    "audioSaved": "Audio opgeslagen",
+    "audioSaveFailed": "Kon dat nummer niet opslaan",
+    "generatedWithAssistant": "Gemaakt met de DeHub-assistent"
   },
   "publicChat": {
     "title": "Openbare Chat",

@@ -1114,7 +1114,10 @@
     "generateImageOf": "Generate an image of ",
     "generateVideoOf": "Generate a video of ",
     "whatsHappeningNews": "What's happening in the news today?",
-    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation."
+    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
+    "audioSaved": "Na-save ang audio",
+    "audioSaveFailed": "Hindi ma-save ang track na iyon",
+    "generatedWithAssistant": "Ginawa gamit ang DeHub assistant"
   },
   "publicChat": {
     "title": "Public Chat",

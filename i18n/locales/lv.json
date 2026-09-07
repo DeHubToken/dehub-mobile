@@ -704,7 +704,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "Audio saglabāts",
+    "audioSaveFailed": "Neizdevās saglabāt šo ierakstu",
+    "generatedWithAssistant": "Izveidots ar DeHub asistentu"
   },
   "publicChat": {
     "title": "Publiskā saruna",
