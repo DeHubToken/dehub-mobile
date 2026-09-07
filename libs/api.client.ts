@@ -8,8 +8,12 @@ import { getDeviceHeaders } from './device';
 const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
 const PLATFORM = Platform.OS; // 'ios' | 'android'
 
-// Base API URL - replace with your actual API URL
-const API_BASE_URL = env.API_URL;
+// Ordinary JSON calls travel over the same apex hostname as the web app. A
+// small number of mobile routes can reach dehub.io while a connection to the
+// api.dehub.io hostname stalls before the backend sees it. Uploads keep using
+// the direct API origin so large bodies do not cross Worker limits.
+const API_DIRECT_BASE_URL = env.API_URL || 'https://api.dehub.io/api';
+const API_RELAY_BASE_URL = `${(env.APP_ORIGIN || 'https://dehub.io').replace(/\/+$/, '')}/_api/api`;
 
 /**
  * Wall-clock ceiling on a single request.
@@ -86,17 +90,6 @@ export const apiClient = {
       quiet = false,
     } = options;
 
-    // Construct full URL, appending query params if provided
-    let url = `${API_BASE_URL}${endpoint}`;
-    if (params) {
-      const qs = Object.entries(params)
-        .filter(([, v]) => v !== undefined && v !== null)
-        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
-        .join('&');
-      if (qs) url += (url.includes('?') ? '&' : '?') + qs;
-    }
-    
-    // Prepare headers
     // Robust RN FormData detection: works across polyfills/realms
     const isFormData = (
       typeof FormData !== 'undefined' && (
@@ -105,6 +98,19 @@ export const apiClient = {
         (body && typeof (body as any).append === 'function' && typeof (body as any).getParts === 'function')
       )
     );
+
+    // Construct full URL, appending query params if provided. JSON traffic
+    // uses the reachable apex relay; multipart uploads remain direct.
+    let url = `${isFormData ? API_DIRECT_BASE_URL : API_RELAY_BASE_URL}${endpoint}`;
+    if (params) {
+      const qs = Object.entries(params)
+        .filter(([, v]) => v !== undefined && v !== null)
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+        .join('&');
+      if (qs) url += (url.includes('?') ? '&' : '?') + qs;
+    }
+
+    // Prepare headers
     const requestHeaders: Record<string, string> = {
       'Accept': 'application/json',
       'X-Client-Type': 'mobile',
