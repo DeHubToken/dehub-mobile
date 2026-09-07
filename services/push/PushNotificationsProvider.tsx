@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback, useState } from 'react';
 import * as Notifications from 'expo-notifications';
-import { AppState, AppStateStatus } from 'react-native';
+import { AppState, AppStateStatus, Linking } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { useUser, useAuthState, useAuthActions } from '../../context/AuthContext';
 import { usePublicChatAlerts } from '../../hooks/usePublicChatAlerts';
@@ -17,6 +17,8 @@ import { createLogger } from '../../libs/logger';
 import { openInApp } from '../../libs/links.utils';
 import { NotificationType, NotificationCategory } from '../enums/notification.enums';
 import { storage } from '../../libs/storage';
+import { toastWarning } from '../../libs/toast';
+import { t } from 'i18next';
 import { getNotifications } from '../user.service';
 import { countUnreadNotifications, incrementUnreadCount } from '../../libs/notifications.unread';
 import { emitProfileDeepLink } from '../../libs/deeplink.events';
@@ -36,6 +38,41 @@ const SOFT_ASK_COOLDOWN_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 // welcome copy a new user is still reading. The pre-prompt waits until they
 // have had time with the app instead.
 const SOFT_ASK_DELAY_MS = 12_000;
+
+// How long a "notifications are blocked" notice stays away once shown. Long
+// enough not to nag, short enough that it resurfaces for someone who meant to
+// fix it and forgot.
+const BLOCKED_NOTICE_KEY = 'push.blockedNoticeAt';
+const BLOCKED_NOTICE_COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
+
+/**
+ * Say when the OS is refusing notifications outright.
+ *
+ * A hard denial cannot be undone from inside the app, so the soft-ask has
+ * nothing to offer and correctly stays quiet. Staying *silent* is the bug:
+ * an account whose preferences ask for push then receives nothing, forever,
+ * with no way to find out short of opening Settings and reading the banner.
+ * Nobody opens Settings to check whether a thing they believe works still
+ * works. So: once a fortnight, with the one control that can change it.
+ *
+ * Reuses the strings the Settings banner already carries, so this adds no
+ * untranslated copy.
+ */
+function noticePushBlocked(wantsPush: boolean): void {
+  // Somebody who turned push off is not missing anything.
+  if (!wantsPush) return;
+  const shownAt = storage.getNumber(BLOCKED_NOTICE_KEY);
+  if (shownAt && Date.now() - shownAt < BLOCKED_NOTICE_COOLDOWN_MS) return;
+  storage.set(BLOCKED_NOTICE_KEY, Date.now());
+  toastWarning(t('settings.pushNotificationsDisabled'), {
+    description: t('settings.tapEnableSystemSettings'),
+    actionLabel: t('nav.settings'),
+    onActionPress: () => {
+      void Linking.openSettings();
+    },
+    duration: 12_000,
+  });
+}
 
 export interface NotificationData {
   type: NotificationType;
@@ -146,6 +183,10 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   const { patchUser } = useAuthActions();
   const isFullySignedIn = isSignedIn && !needsUsername;
   const userAddress = user?.walletAddress || user?.address;
+  // A plain boolean, not the prefs object: this feeds a useCallback dep array,
+  // and an object identity there is how the unread-count render loop started.
+  // Absent means enabled, matching the backend's own rule.
+  const wantsPush = ((user as any)?.notificationPreferences?.pushEnabled) !== false;
   
   // Refs for subscriptions
   const notificationListener = useRef<Notifications.Subscription | null>(null);
@@ -458,6 +499,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
     if (!canAskAgain) {
       logger.debug('Notification permission denied at OS level; not prompting');
       softAskHandledRef.current = true;
+      noticePushBlocked(wantsPush);
       return;
     }
 
@@ -470,7 +512,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
 
     softAskHandledRef.current = true;
     setSoftAskVisible(true);
-  }, [registerPushToken]);
+  }, [registerPushToken, wantsPush]);
 
   const handleSoftAskAllow = useCallback(() => {
     setSoftAskVisible(false);
