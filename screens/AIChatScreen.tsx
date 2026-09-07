@@ -129,6 +129,8 @@ interface PendingVideo {
   /** Id of the placeholder turn this render fills in. */
   messageId: string;
   content: string;
+  /** Thread the placeholder lives in, so the result lands even if another thread is open. */
+  conversationId?: string;
 }
 
 interface PendingTool {
@@ -139,6 +141,7 @@ interface PendingTool {
   responseUrl?: string;
   messageId: string;
   content: string;
+  conversationId?: string;
 }
 
 let turnSeq = 0;
@@ -183,6 +186,8 @@ function AIChatScreenInner() {
   const userId = walletAddress || 'anon';
   const {
     conversationId,
+    getConversationId,
+    patchStoredMessage,
     messages,
     conversations,
     startNewConversation,
@@ -561,11 +566,24 @@ function AIChatScreenInner() {
       // that — on a resumed poll the placeholder is still being re-injected —
       // so only a populated thread without the id ends the poll.
       const current = messagesRef.current;
-      if (current.length > 0 && !current.some((m) => m.id === pending.messageId)) {
+      // A record that knows its thread keeps polling even when another thread
+      // is open: the result is written into that stored thread instead of
+      // being dropped with the placeholder stuck on "Generating…".
+      if (
+        !pending.conversationId &&
+        current.length > 0 &&
+        !current.some((m) => m.id === pending.messageId)
+      ) {
         stopPoll(pending.predictionId);
         AsyncStorage.removeItem(PENDING_VIDEO_KEY).catch(() => {});
         return;
       }
+      const deliver = (patch: Partial<AIChatMessage>) => {
+        if (patchMessage(pending.messageId, patch)) return;
+        if (pending.conversationId) {
+          patchStoredMessage(pending.conversationId, pending.messageId, patch).catch(() => {});
+        }
+      };
       try {
         const res = await pollVideoGeneration(pending.predictionId, {
           provider: pending.provider,
@@ -575,7 +593,7 @@ function AIChatScreenInner() {
         if (res.status === 'succeeded' && res.videoUrl) {
           stopPoll(pending.predictionId);
           AsyncStorage.removeItem(PENDING_VIDEO_KEY).catch(() => {});
-          patchMessage(pending.messageId, {
+          deliver({
             content: '',
             videoUrl: res.videoUrl,
             isVideoGenerating: false,
@@ -585,7 +603,7 @@ function AIChatScreenInner() {
         } else if (res.status === 'failed') {
           stopPoll(pending.predictionId);
           AsyncStorage.removeItem(PENDING_VIDEO_KEY).catch(() => {});
-          patchMessage(pending.messageId, {
+          deliver({
             content: `Video generation failed: ${res.error || 'unknown error'}`,
             isVideoGenerating: false,
             isError: true,
@@ -597,7 +615,7 @@ function AIChatScreenInner() {
         log.error('video poll failed:', err);
       }
     },
-    [walletAddress, stopPoll, patchMessage],
+    [walletAddress, stopPoll, patchMessage, patchStoredMessage],
   );
 
   const startVideoPoll = useCallback(
@@ -685,6 +703,7 @@ function AIChatScreenInner() {
           falAppId: res.falAppId,
           messageId,
           content,
+          conversationId: getConversationId() ?? undefined,
         };
         // Persist so a backgrounded app that gets killed still finishes the
         // render it has already been charged for.
@@ -710,11 +729,23 @@ function AIChatScreenInner() {
   const pollTool = useCallback(
     async (pending: PendingTool) => {
       const current = messagesRef.current;
-      if (current.length > 0 && !current.some((m) => m.id === pending.messageId)) {
+      // Same as pollVideo: a record that knows its thread outlives a thread
+      // switch and lands in the stored thread.
+      if (
+        !pending.conversationId &&
+        current.length > 0 &&
+        !current.some((m) => m.id === pending.messageId)
+      ) {
         stopPoll(pending.requestId);
         AsyncStorage.removeItem(PENDING_TOOL_KEY).catch(() => {});
         return;
       }
+      const deliver = (patch: Partial<AIChatMessage>) => {
+        if (patchMessage(pending.messageId, patch)) return;
+        if (pending.conversationId) {
+          patchStoredMessage(pending.conversationId, pending.messageId, patch).catch(() => {});
+        }
+      };
       try {
         const res = await pollAiTool(
           {
@@ -729,7 +760,7 @@ function AIChatScreenInner() {
           stopPoll(pending.requestId);
           AsyncStorage.removeItem(PENDING_TOOL_KEY).catch(() => {});
           const toolModel = AI_TOOL_MODELS[pending.toolKey];
-          patchMessage(pending.messageId, {
+          deliver({
             isToolProcessing: false,
             toolRequestId: undefined,
             content: res.text
@@ -744,7 +775,7 @@ function AIChatScreenInner() {
         } else if (res.status === 'failed') {
           stopPoll(pending.requestId);
           AsyncStorage.removeItem(PENDING_TOOL_KEY).catch(() => {});
-          patchMessage(pending.messageId, {
+          deliver({
             isToolProcessing: false,
             toolRequestId: undefined,
             content: `Processing failed: ${res.error || 'unknown error'}`,
@@ -755,7 +786,7 @@ function AIChatScreenInner() {
         log.error('tool poll failed:', err);
       }
     },
-    [walletAddress, stopPoll, patchMessage],
+    [walletAddress, stopPoll, patchMessage, patchStoredMessage],
   );
 
   const startToolPoll = useCallback(
@@ -856,6 +887,7 @@ function AIChatScreenInner() {
           responseUrl: res.responseUrl,
           messageId,
           content,
+          conversationId: getConversationId() ?? undefined,
         };
         AsyncStorage.setItem(PENDING_TOOL_KEY, JSON.stringify(pending)).catch(() => {});
         startToolPoll(pending);
