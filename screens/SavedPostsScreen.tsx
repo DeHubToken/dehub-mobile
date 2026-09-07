@@ -245,7 +245,11 @@ const SavedPostsScreen: React.FC = () => {
               <TouchableOpacity
                 onPress={() => {
                   setShowMenuModal(false);
-                  if (activeMenuFolder) openEditModal(activeMenuFolder);
+                  // Present the edit sheet only after the menu has dismissed:
+                  // two native Modals crossing in one commit leaves iOS refusing
+                  // the second and the button dead for the visit.
+                  const folder = activeMenuFolder;
+                  if (folder) setTimeout(() => openEditModal(folder), 250);
                 }}
                 style={styles.menuItem}
               >
@@ -427,7 +431,9 @@ const SavedPostsScreen: React.FC = () => {
             <TouchableOpacity
               onPress={() => {
                 setShowMenuModal(false);
-                if (activeMenuFolder) openEditModal(activeMenuFolder);
+                // Same as above: let the menu dismiss before presenting.
+                const folder = activeMenuFolder;
+                if (folder) setTimeout(() => openEditModal(folder), 250);
               }}
               style={styles.menuItem}
             >
