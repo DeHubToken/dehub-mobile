@@ -48,6 +48,8 @@ import { buildCdnPath, getAvatarUrl, getShortsThumbnailUrl } from "../libs";
 import { cdnImage } from "../libs/cdnImage";
 import { addDismissedIds, getDismissedIds } from "../libs/notifications.dismissed";
 import { openInApp } from "../libs/links.utils";
+import { emitStageDeepLink } from "../libs/deeplink.events";
+import { stageDeepLinkFor } from "../libs/stage-notifications";
 import Avatar from "../components/common/Avatar";
 import SmartImage from "../components/common/SmartImage";
 import { reactionMeta } from "../libs/reactions";
@@ -280,6 +282,24 @@ const getMonoIconConfig = (type: NotificationType | string): { name: string; col
 /**
  * Check if notification is clickable based on type and available data
  */
+/**
+ * Supabase-backed rows this screen knows how to open, beyond the bounty and
+ * community ones handled just below. Each carries its destination in
+ * `customReferenceId`: a feature request uuid, a proposal uuid, a stage's
+ * short id or uuid, a post's token id.
+ */
+const SUPABASE_ROUTED_TYPES = new Set([
+  'feature_request_like',
+  'feature_request_comment',
+  'feature_request_reply',
+  'feature_request_mention',
+  'governance_vote',
+  'governance_comment',
+  'stage_live',
+  'stage_reminder',
+  'fraction_settled',
+]);
+
 const isNotificationClickable = (notification: NotificationItem): boolean => {
   const type = notification.type as NotificationType;
 
@@ -294,6 +314,15 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
   // needs. Without this they fell through to the default below, counted as
   // clickable on the strength of the actor alone, and then did nothing.
   if (typeStr === 'community_join' || typeStr === 'community_mention' || typeStr === 'community_here') {
+    return !!(notification as CustomNotificationItem).customReferenceId;
+  }
+
+  // Every other Supabase-backed row. They carry no tokenId, so the default at
+  // the bottom of this function passed them on the strength of having an actor
+  // — the row looked tappable and the switch below then navigated to a post
+  // that does not exist. What they all do carry is the id of the thing they
+  // are about, so that is the test.
+  if (SUPABASE_ROUTED_TYPES.has(typeStr)) {
     return !!(notification as CustomNotificationItem).customReferenceId;
   }
 
@@ -978,6 +1007,46 @@ const NotificationScreen = () => {
       case 'community_here': {
         const communitySlug = (notification as CustomNotificationItem).customReferenceId;
         if (communitySlug) navigation.navigate(ScreenNames.CommunityDetail as never, { slug: communitySlug } as never);
+        break;
+      }
+
+      // The board can't be relied on to be showing the request a row names —
+      // it may be shipped, declined, filtered out or pages down — so the id
+      // goes through and the screen pins that one request above the list.
+      case 'feature_request_like':
+      case 'feature_request_comment':
+      case 'feature_request_reply':
+      case 'feature_request_mention': {
+        const custom = notification as CustomNotificationItem;
+        if (!custom.customReferenceId) break;
+        navigation.navigate(ScreenNames.FeatureRequests as never, {
+          requestId: custom.customReferenceId,
+          commentId: custom.customCommentId,
+        } as never);
+        break;
+      }
+
+      case 'governance_vote':
+      case 'governance_comment': {
+        const proposalId = (notification as CustomNotificationItem).customReferenceId;
+        if (proposalId) navigation.navigate(ScreenNames.Governance as never, { proposalId } as never);
+        break;
+      }
+
+      // Stages are modals rather than routes, so they go through the same bus
+      // an invite link uses. stageDeepLinkFor has been sitting unused since it
+      // was written — this is the caller it was written for.
+      case 'stage_live':
+      case 'stage_reminder':
+        emitStageDeepLink(stageDeepLinkFor((notification as CustomNotificationItem).customReferenceId));
+        break;
+
+      // A settled trade is informational and its reference is the post's token
+      // id. The two rows that carry an obligation (fraction_sold /
+      // fraction_delivered) keep their inline action and stay unrouted.
+      case 'fraction_settled': {
+        const settledToken = Number((notification as CustomNotificationItem).customReferenceId);
+        if (Number.isFinite(settledToken)) navigateToFeed(settledToken, undefined, postType);
         break;
       }
 

@@ -205,6 +205,32 @@ export function useFeatureRequests(
   });
 }
 
+/**
+ * One feature request by id, for a notification's deep link.
+ *
+ * The list query can't be relied on to hold it — it may be shipped, declined,
+ * outside the active category, or pages down the infinite scroll — so the
+ * screen fetches the single row and pins it above everything else. A request
+ * that has since been deleted comes back null and the board renders normally.
+ */
+export function useFeatureRequest(id: string | null | undefined) {
+  return useQuery({
+    queryKey: ["feature-request", id],
+    queryFn: async () => {
+      if (!id) return null;
+      const { data, error } = await supabase
+        .from("feature_requests")
+        .select("*")
+        .eq("id", id)
+        .maybeSingle();
+      if (error) throw error;
+      return (data as FeatureRequest | null) ?? null;
+    },
+    enabled: !!id,
+    staleTime: 60_000,
+  });
+}
+
 export function useShippedFeatures() {
   return useQuery({
     queryKey: ["feature-requests-shipped"],

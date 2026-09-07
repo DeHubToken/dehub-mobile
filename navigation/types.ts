@@ -176,7 +176,9 @@ export type AppStackParamList = {
   [ScreenNames.Events]: undefined;
   [ScreenNames.Careers]: undefined;
   [ScreenNames.Affiliate]: undefined;
-  [ScreenNames.FeatureRequests]: undefined;
+  /** `requestId` is a notification's deep link into one request, `commentId`
+   *  the comment inside it the row was about. */
+  [ScreenNames.FeatureRequests]: { requestId?: string; commentId?: string } | undefined;
   /** `handle` is the shared-listing deep link (`dehub.io/usernames?handle=x`). */
   [ScreenNames.Usernames]: { handle?: string } | undefined;
   /** `handle` is the shared-listing deep link (`dehub.io/accounts?handle=x`). */
@@ -201,7 +203,8 @@ export type AppStackParamList = {
     job?: import('../hooks/useWork').WorkJob;
   };
   [ScreenNames.WorkPost]: undefined;
-  [ScreenNames.Governance]: undefined;
+  /** `proposalId` is a notification's deep link into one proposal. */
+  [ScreenNames.Governance]: { proposalId?: string } | undefined;
   [ScreenNames.Dao]: undefined;
   [ScreenNames.SuperPowers]: undefined;
 };
