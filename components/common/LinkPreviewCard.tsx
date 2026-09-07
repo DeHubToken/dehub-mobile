@@ -13,7 +13,7 @@
  * little payoff.
  */
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
 import Icon from '../ui/Icon';
 import { openInApp } from '../../libs/links.utils';
@@ -39,9 +39,15 @@ function domainOf(url: string): string {
 
 interface LinkPreviewCardProps {
   text?: string | null;
+  /**
+   * Extra layout for the card and its skeleton. A chat bubble sizes itself to
+   * its text, so a card with no intrinsic width collapses there — the DM bubble
+   * passes a fixed width the same way it does for the asset card.
+   */
+  style?: StyleProp<ViewStyle>;
 }
 
-const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text }) => {
+const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style }) => {
   const url = firstExternalUrl(text);
   const [preview, setPreview] = useState<LinkPreviewData | null>(null);
   const [loading, setLoading] = useState(!!url);
@@ -69,13 +75,13 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text }) => {
   }, [url]);
 
   if (!url) return null;
-  if (loading) return <View style={styles.skeleton} />;
+  if (loading) return <View style={[styles.skeleton, style]} />;
   if (!preview) return null;
 
   return (
     <TouchableOpacity
       activeOpacity={0.85}
-      style={styles.card}
+      style={[styles.card, style]}
       onPress={() => openInApp(preview.url)}
     >
       {!!preview.image && (
