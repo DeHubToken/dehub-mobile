@@ -47,13 +47,10 @@ export const queryClient = new QueryClient({
 // throttle tick while the user scrolls — the periodic scroll-stutter
 // signature. We keep only the first page before writing: enough to paint the
 // feed instantly on cold start, but a small, fixed-size payload to serialise.
-const INFINITE_FEED_KEYS = new Set([
-  "home-feed",
-  "home-images",
-  "home-shorts",
-  "infinite-feed",
-]);
-
+//
+// Any query whose data carries a `pages` array is an infinite query and gets
+// the same treatment. A fixed key list used to miss the music feed and the
+// feature-requests board, which were persisted whole on every throttle tick.
 type InfiniteData = { pages?: unknown[]; pageParams?: unknown[] };
 
 function trimPersistedClient(client: PersistedClient): PersistedClient {
@@ -62,12 +59,11 @@ function trimPersistedClient(client: PersistedClient): PersistedClient {
     clientState: {
       ...client.clientState,
       queries: client.clientState.queries.map((q) => {
-        const root = Array.isArray(q.queryKey) ? q.queryKey[0] : q.queryKey;
         const data = q.state?.data as InfiniteData | undefined;
         if (
-          typeof root === "string" &&
-          INFINITE_FEED_KEYS.has(root) &&
-          Array.isArray(data?.pages) &&
+          data &&
+          typeof data === "object" &&
+          Array.isArray(data.pages) &&
           data.pages.length > 1
         ) {
           return {
