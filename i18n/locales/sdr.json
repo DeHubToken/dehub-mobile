@@ -1121,7 +1121,17 @@
     "payments": "পেমেন্ট",
     "claimBounty": "তোমার পুরস্কার নাও",
     "noneForFilter": "এখনো {{filter}} নোটিফিকেশন নাই।",
-    "andNOthers": "আর {{count}} জন"
+    "andNOthers": "আর {{count}} জন",
+    "community": {
+      "joined": "{{name}} به انجمن شما پیوست",
+      "joinedNamed": "{{name}} به “{{community}}” پیوست",
+      "requested": "{{name}} درخواست پیوستن به انجمن شما را داد",
+      "requestedNamed": "{{name}} درخواست پیوستن به “{{community}}” را داد",
+      "mentioned": "{{name}} در انجمن از شما نام برد",
+      "mentionedNamed": "{{name}} در “{{community}}” از شما نام برد",
+      "here": "{{name}} به همه در انجمن پیام داد",
+      "hereNamed": "{{name}} به همه در “{{community}}” پیام داد"
+    }
   },
   "leaderboard": {
     "title": "لیڈر بورڈ",

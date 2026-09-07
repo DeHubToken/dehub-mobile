@@ -1125,7 +1125,17 @@
     "payments": "Pembayaran",
     "claimBounty": "Njupuk hadiahmu",
     "noneForFilter": "Durung ana notifikasi {{filter}}.",
-    "andNOthers": "lan {{count}} liyane"
+    "andNOthers": "lan {{count}} liyane",
+    "community": {
+      "joined": "{{name}} gabung ing komunitasmu",
+      "joinedNamed": "{{name}} gabung ing “{{community}}”",
+      "requested": "{{name}} njaluk gabung ing komunitasmu",
+      "requestedNamed": "{{name}} njaluk gabung ing “{{community}}”",
+      "mentioned": "{{name}} nyebut kowe ing komunitas",
+      "mentionedNamed": "{{name}} nyebut kowe ing “{{community}}”",
+      "here": "{{name}} ngirim pesen marang kabeh wong ing komunitas",
+      "hereNamed": "{{name}} ngirim pesen marang kabeh wong ing “{{community}}”"
+    }
   },
   "leaderboard": {
     "title": "Papan Peringkat",

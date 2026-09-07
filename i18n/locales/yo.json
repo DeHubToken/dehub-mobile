@@ -1187,7 +1187,17 @@
     "payments": "Àwọn ìsanwó",
     "claimBounty": "Gba ẹ̀bùn rẹ",
     "noneForFilter": "Kò sí ìfitónilétí {{filter}} síbẹ̀.",
-    "andNOthers": "àti {{count}} mìíràn"
+    "andNOthers": "àti {{count}} mìíràn",
+    "community": {
+      "joined": "{{name}} darapọ mọ agbegbe rẹ",
+      "joinedNamed": "{{name}} darapọ mọ \"{{community}}@\"",
+      "requested": "{{name}} beere lati darapọ mọ agbegbe rẹ",
+      "requestedNamed": "{{name}} béèrè láti darapọ̀ mọ́ \"{{community}}@\"",
+      "mentioned": "{{name}} darukọ rẹ ni agbegbe kan",
+      "mentionedNamed": "{{name}} darukọ rẹ ni \"{{community}}@\"",
+      "here": "{{name}} fi ránṣẹ́ sí gbogbo ènìyàn ní agbègbè",
+      "hereNamed": "{{name}} ránṣẹ́ sí gbogbo ènìyàn ní “{{community}}@”"
+    }
   },
   "leaderboard": {
     "title": "Àtòjọ Ìpò",

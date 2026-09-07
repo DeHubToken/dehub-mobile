@@ -1124,7 +1124,17 @@
     "payments": "付款",
     "claimBounty": "領取賞金",
     "noneForFilter": "仲未有{{filter}}通知。",
-    "andNOthers": "同其他 {{count}} 人"
+    "andNOthers": "同其他 {{count}} 人",
+    "community": {
+      "joined": "{{name}} 加入咗你嘅社群",
+      "joinedNamed": "{{name}} 加入 “ {{community}} ”",
+      "requested": "{{name}} 要求加入你嘅社群",
+      "requestedNamed": "{{name}} 要求加入 “ {{community}} ”",
+      "mentioned": "{{name}} 喺社區入面提過你",
+      "mentionedNamed": "{{name}} 喺「 {{community}} 」入面提過你",
+      "here": "{{name}} 留言畀社區入面嘅每個人",
+      "hereNamed": "{{name}} 喺「 {{community}} 」入面留言畀所有人"
+    }
   },
   "leaderboard": {
     "title": "排行榜",

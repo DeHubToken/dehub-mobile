@@ -1096,7 +1096,17 @@
     "payments": "Betalningar",
     "claimBounty": "Hämta din belöning",
     "noneForFilter": "Inga {{filter}}-aviseringar än.",
-    "andNOthers": "och {{count}} andra"
+    "andNOthers": "och {{count}} andra",
+    "community": {
+      "joined": "{{name}} gick med i din community",
+      "joinedNamed": "{{name}} gick med i \"{{community}}\"",
+      "requested": "{{name}} ombedd att gå med i din community",
+      "requestedNamed": "{{name}} bad om att gå med i \"{{community}}\"",
+      "mentioned": "{{name}} nämnde dig i en community",
+      "mentionedNamed": "{{name}} nämnde dig i \"{{community}}\"",
+      "here": "{{name}} skickade meddelanden till alla i communityn",
+      "hereNamed": "{{name}} skickade meddelanden till alla i \"{{community}}\""
+    }
   },
   "leaderboard": {
     "title": "Topplista",

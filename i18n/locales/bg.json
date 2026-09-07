@@ -1095,7 +1095,17 @@
     "payments": "Плащания",
     "claimBounty": "Вземи наградата си",
     "noneForFilter": "Все още няма известия за {{filter}}.",
-    "andNOthers": "и още {{count}}"
+    "andNOthers": "и още {{count}}",
+    "community": {
+      "joined": "{{name}} се присъедини към вашата общност",
+      "joinedNamed": "{{name}} се присъедини към „{{community}}“",
+      "requested": "{{name}} поиска да се присъедини към вашата общност",
+      "requestedNamed": "{{name}} поиска да се присъедини към „{{community}}“",
+      "mentioned": "{{name}} ви спомена в общност",
+      "mentionedNamed": "{{name}} ви спомена в „{{community}}“",
+      "here": "{{name}} изпрати съобщение на всички в общността",
+      "hereNamed": "{{name}} изпрати съобщение на всички в „{{community}}“"
+    }
   },
   "leaderboard": {
     "title": "Класация",

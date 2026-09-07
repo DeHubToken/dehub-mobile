@@ -1189,7 +1189,11 @@
     "payments": "Ịkwụ ụgwọ",
     "claimBounty": "Nweta ụgwọ gị",
     "noneForFilter": "Enwebeghị ọkwa {{filter}}.",
-    "andNOthers": "na {{count}} ndị ọzọ"
+    "andNOthers": "na {{count}} ndị ọzọ",
+    "community": {
+      "joined": "{{name}} sonyeere obodo gị",
+      "requested": "{{name}} jụrụ isonyere obodo gị"
+    }
   },
   "leaderboard": {
     "title": "Ndepụta Ọkwa",

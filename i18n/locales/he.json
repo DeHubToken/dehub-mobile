@@ -1095,7 +1095,17 @@
     "payments": "תשלומים",
     "claimBounty": "קבל את הפרס שלך",
     "noneForFilter": "אין עדיין התראות {{filter}}.",
-    "andNOthers": "ועוד {{count}}"
+    "andNOthers": "ועוד {{count}}",
+    "community": {
+      "joined": "{{name}} הצטרפת לקהילה שלך",
+      "joinedNamed": "{{name}} הצטרפו אל \"{{community}}\"",
+      "requested": "{{name}} ביקשו להצטרף לקהילה שלכם",
+      "requestedNamed": "{{name}} ביקשו להצטרף אל \"{{community}}\"",
+      "mentioned": "{{name}} הזכיר/ה אותך בקהילה",
+      "mentionedNamed": "{{name}} הזכיר/ה אותך ב -\"{{community}}\"",
+      "here": "{{name}} שלחה הודעה לכל חברי הקהילה",
+      "hereNamed": "{{name}} שלחה הודעה לכולם באזור \"{{community}}\""
+    }
   },
   "leaderboard": {
     "title": "טבלת מובילים",

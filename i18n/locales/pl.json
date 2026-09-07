@@ -1459,7 +1459,17 @@
     "payments": "Płatności",
     "claimBounty": "Odbierz nagrodę",
     "noneForFilter": "Brak powiadomień ({{filter}}).",
-    "andNOthers": "i {{count}} innych"
+    "andNOthers": "i {{count}} innych",
+    "community": {
+      "joined": "{{name}} dołączył do Twojej społeczności",
+      "joinedNamed": "{{name}} dołączył (a) do „{{community}}”",
+      "requested": "{{name}} prosi o dołączenie do Twojej społeczności",
+      "requestedNamed": "{{name}} poprosił o dołączenie do „{{community}}”",
+      "mentioned": "{{name}} wspomniał o Tobie w społeczności",
+      "mentionedNamed": "{{name}} wspomniał o Tobie w „{{community}}”",
+      "here": "{{name}} wysłał (a) wiadomość do wszystkich członków społeczności",
+      "hereNamed": "{{name}} wysłał (a) wiadomość do wszystkich w „{{community}}”"
+    }
   },
   "messages": {
     "smartRepliesOff": "Sugerowane odpowiedzi wyłączone",

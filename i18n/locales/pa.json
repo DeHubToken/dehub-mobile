@@ -1095,7 +1095,16 @@
     "payments": "ਭੁਗਤਾਨ",
     "claimBounty": "ਆਪਣਾ ਇਨਾਮ ਲਓ",
     "noneForFilter": "ਅਜੇ ਤੱਕ ਕੋਈ {{filter}} ਸੂਚਨਾ ਨਹੀਂ।",
-    "andNOthers": "ਅਤੇ {{count}} ਹੋਰ"
+    "andNOthers": "ਅਤੇ {{count}} ਹੋਰ",
+    "community": {
+      "joined": "{{name}} ਤੁਹਾਡੀ ਕਮਿ communityਨਿਟੀ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਏ",
+      "requested": "{{name}} ਨੂੰ ਤੁਹਾਡੀ ਕਮਿ communityਨਿਟੀ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਲਈ ਕਿਹਾ ਗਿਆ",
+      "requestedNamed": "{{name}} ਨੂੰ ਸ਼ਾਮਲ ਹੋਣ ਲਈ ਕਿਹਾ ਗਿਆ “{{community}}”",
+      "mentioned": "{{name}} ਇੱਕ ਕਮਿ communityਨਿਟੀ ਵਿੱਚ ਤੁਹਾਡਾ ਜ਼ਿਕਰ ਕੀਤਾ",
+      "mentionedNamed": "{{name}} ਨੇ ਤੁਹਾਨੂੰ “{{community}}” ਵਿੱਚ ਜ਼ਿਕਰ ਕੀਤਾ",
+      "here": "{{name}} ਕਮਿ communityਨਿਟੀ ਵਿੱਚ ਹਰੇਕ ਨੂੰ ਮੈਸੇਜ ਕੀਤਾ",
+      "hereNamed": "{{name}} ਸਾਰਿਆਂ ਨੂੰ “{{community}}” ਵਿੱਚ ਸੁਨੇਹਾ ਭੇਜਿਆ"
+    }
   },
   "leaderboard": {
     "title": "ਲੀਡਰ ਬੋਰਡ",

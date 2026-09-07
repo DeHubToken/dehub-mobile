@@ -1122,7 +1122,15 @@
     "payments": "പേയ്‌മെന്റുകൾ",
     "claimBounty": "നിങ്ങളുടെ പ്രതിഫലം നേടൂ",
     "noneForFilter": "ഇതുവരെ {{filter}} അറിയിപ്പുകളൊന്നുമില്ല.",
-    "andNOthers": "കൂടാതെ {{count}} പേർ"
+    "andNOthers": "കൂടാതെ {{count}} പേർ",
+    "community": {
+      "joinedNamed": "{{name}} @ ചേർന്നു “{{community}}”",
+      "requested": "{{name}}@ നിങ്ങളുടെ കമ്മ്യൂണിറ്റിയിൽ ചേരാൻ ആവശ്യപ്പെട്ടു",
+      "requestedNamed": "{{name}} @ \"{{community}}\" ചേരാൻ ആവശ്യപ്പെട്ടു",
+      "mentioned": "{{name}}@ നിങ്ങളെ ഒരു കമ്മ്യൂണിറ്റിയിൽ പരാമർശിച്ചു",
+      "mentionedNamed": "{{name}}@ നിങ്ങളെ \"{{community}}\" ൽ പരാമർശിച്ചു",
+      "hereNamed": "{{name}}@\"{{community}}\" എന്നതിൽ എല്ലാവർക്കും സന്ദേശമയച്ചു"
+    }
   },
   "leaderboard": {
     "title": "ലീഡർബോർഡ്",

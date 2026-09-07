@@ -1125,7 +1125,17 @@
     "payments": "ಪಾವತಿಗಳು",
     "claimBounty": "ನಿಮ್ಮ ಬಹುಮಾನ ಪಡೆಯಿರಿ",
     "noneForFilter": "ಇನ್ನೂ {{filter}} ಅಧಿಸೂಚನೆಗಳಿಲ್ಲ.",
-    "andNOthers": "ಮತ್ತು ಇತರ {{count}}"
+    "andNOthers": "ಮತ್ತು ಇತರ {{count}}",
+    "community": {
+      "joined": "{{name}}@ ನಿಮ್ಮ ಸಮುದಾಯಕ್ಕೆ ಸೇರಿದ್ದಾರೆ",
+      "joinedNamed": "{{name}} @ \"{{community}}\" ಸೇರಿಕೊಂಡರು",
+      "requested": "{{name}} @ ನಿಮ್ಮ ಸಮುದಾಯಕ್ಕೆ ಸೇರಲು ಕೇಳಿದ್ದಾರೆ",
+      "requestedNamed": "{{name}}@ \"@ {{community}}\" ಗೆ ಸೇರಲು ಕೇಳಲಾಯಿತು",
+      "mentioned": "{{name}} @ ನಿಮ್ಮನ್ನು ಸಮುದಾಯದಲ್ಲಿ ಉಲ್ಲೇಖಿಸಿದ್ದಾರೆ",
+      "mentionedNamed": "{{name}} @ ನಿಮ್ಮನ್ನು \"{{community}}\" ನಲ್ಲಿ ಉಲ್ಲೇಖಿಸಿದ್ದಾರೆ",
+      "here": "{{name}} ಸಮುದಾಯದಲ್ಲಿರುವ ಎಲ್ಲರಿಗೂ ಸಂದೇಶ ಕಳುಹಿಸಿದ್ದಾರೆ",
+      "hereNamed": "{{name}}@ \"@ {{community}}\" ನಲ್ಲಿ ಎಲ್ಲರಿಗೂ ಸಂದೇಶ ಕಳುಹಿಸಿದ್ದಾರೆ"
+    }
   },
   "leaderboard": {
     "title": "ಲೀಡರ್‌ಬೋರ್ಡ್",

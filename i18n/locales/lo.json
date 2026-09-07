@@ -1123,7 +1123,13 @@
     "payments": "ການຈ່າຍເງິນ",
     "claimBounty": "ຮັບລາງວັນຂອງທ່ານ",
     "noneForFilter": "ຍັງບໍ່ມີການແຈ້ງເຕືອນ {{filter}}.",
-    "andNOthers": "ແລະ ອີກ {{count}} ຄົນ"
+    "andNOthers": "ແລະ ອີກ {{count}} ຄົນ",
+    "community": {
+      "joined": "{{name}} ເຂົ້າຮ່ວມຊຸມຊົນຂອງທ່ານ",
+      "joinedNamed": "{{name}} ເຂົ້າຮ່ວມ \"{{community}}@\"",
+      "mentioned": "{{name}} ໄດ້ກ່າວເຖິງທ່ານໃນຊຸມຊົນ",
+      "here": "{{name}} ສົ່ງຂໍ້ຄວາມໃຫ້ທຸກຄົນໃນຊຸມຊົນ"
+    }
   },
   "leaderboard": {
     "title": "ກະດານຄະແນນ",

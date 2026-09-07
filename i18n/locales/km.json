@@ -1137,7 +1137,15 @@
     "payments": "ការទូទាត់",
     "claimBounty": "ទទួលរង្វាន់របស់អ្នក",
     "noneForFilter": "មិនទាន់មានការជូនដំណឹង {{filter}} ទេ។",
-    "andNOthers": "និង {{count}} នាក់ទៀត"
+    "andNOthers": "និង {{count}} នាក់ទៀត",
+    "community": {
+      "joined": "{{name}} @ បានចូលរួមសហគមន៍របស់អ្នក",
+      "joinedNamed": "{{name}} បានចូលរួម \"{{community}}\"",
+      "requested": "{{name}} បានស្នើសុំឱ្យចូលរួមសហគមន៍របស់អ្នក",
+      "mentioned": "{{name}} @ បានលើកឡើងពីអ្នកនៅក្នុងសហគមន៍មួយ",
+      "here": "{{name}} @ បានផ្ញើសារទៅគ្រប់គ្នានៅក្នុងសហគមន៍",
+      "hereNamed": "{{name}} @ បានផ្ញើសារទៅអ្នករាល់គ្នានៅក្នុង \"{{community}}\""
+    }
   },
   "leaderboard": {
     "title": "តារាងចំណាត់ថ្នាក់",

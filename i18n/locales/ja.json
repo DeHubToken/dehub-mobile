@@ -1189,7 +1189,17 @@
     "payments": "支払い",
     "claimBounty": "報酬を受け取る",
     "noneForFilter": "{{filter}}の通知はまだありません。",
-    "andNOthers": "他 {{count}} 人"
+    "andNOthers": "他 {{count}} 人",
+    "community": {
+      "joined": "{{name}}さんがコミュニティに参加しました",
+      "joinedNamed": "{{name}}さんが「{{community}}」に参加しました",
+      "requested": "{{name}}さんがコミュニティへの参加をリクエストしました",
+      "requestedNamed": "{{name}}さんが「{{community}}」への参加をリクエストしました",
+      "mentioned": "{{name}}さんがコミュニティであなたをメンションしました",
+      "mentionedNamed": "{{name}}さんが「{{community}}」であなたをメンションしました",
+      "here": "{{name}}さんがコミュニティの全員にメッセージを送りました",
+      "hereNamed": "{{name}}さんが「{{community}}」の全員にメッセージを送りました"
+    }
   },
   "leaderboard": {
     "title": "ランキング",

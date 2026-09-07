@@ -1096,7 +1096,17 @@
     "payments": "Platby",
     "claimBounty": "Vyzvednout odměnu",
     "noneForFilter": "Zatím žádná oznámení ({{filter}}).",
-    "andNOthers": "a {{count}} dalších"
+    "andNOthers": "a {{count}} dalších",
+    "community": {
+      "joined": "{{name}} se připojil k vaší komunitě",
+      "joinedNamed": "{{name}} se připojil/a k „{{community}}“",
+      "requested": "Uživatel{{name}} požádal o připojení ke své komunitě",
+      "requestedNamed": "{{name}} požádal o připojení k „{{community}}“",
+      "mentioned": "{{name}} vás zmínil/a v komunitě",
+      "mentionedNamed": "{{name}} vás zmínil/a v „{{community}}“",
+      "here": "{{name}} poslal/a zprávu všem členům komunity",
+      "hereNamed": "{{name}} všem v „{{community}}“ poslal/a zprávu"
+    }
   },
   "leaderboard": {
     "title": "Žebříček",

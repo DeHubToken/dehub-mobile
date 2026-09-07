@@ -1125,7 +1125,17 @@
     "payments": "Mokėjimai",
     "claimBounty": "Atsiimkite atlygį",
     "noneForFilter": "Kol kas nėra {{filter}} pranešimų.",
-    "andNOthers": "ir dar {{count}}"
+    "andNOthers": "ir dar {{count}}",
+    "community": {
+      "joined": "{{name}} prisijungė prie jūsų bendruomenės",
+      "joinedNamed": "{{name}} prisijungė prie „{{community}}“",
+      "requested": "{{name}} paprašė prisijungti prie jūsų bendruomenės",
+      "requestedNamed": "{{name}} paprašė prisijungti prie „{{community}}“",
+      "mentioned": "{{name}} paminėjo jus bendruomenėje",
+      "mentionedNamed": "{{name}} paminėjo jus „{{community}}“",
+      "here": "{{name}} susirašinėjo su visais bendruomenės nariais",
+      "hereNamed": "{{name}} susirašinėjo su visais „{{community}}“"
+    }
   },
   "leaderboard": {
     "title": "Lyderių lentelė",

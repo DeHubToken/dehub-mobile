@@ -652,7 +652,17 @@
     "payments": "Platby",
     "claimBounty": "Vyzdvihnúť odmenu",
     "noneForFilter": "Zatiaľ žiadne upozornenia ({{filter}}).",
-    "andNOthers": "a {{count}} ďalších"
+    "andNOthers": "a {{count}} ďalších",
+    "community": {
+      "joined": "{{name}} sa pripojil k vašej komunite",
+      "joinedNamed": "{{name}} sa pripojil/a k „{{community}}“",
+      "requested": "{{name}} požiadal o pripojenie k vašej komunite",
+      "requestedNamed": "{{name}} požiadal o pripojenie sa k „{{community}}“",
+      "mentioned": "{{name}} vás spomenul v komunite",
+      "mentionedNamed": "{{name}} vás spomenul v „{{community}}“",
+      "here": "{{name}} poslal správu všetkým v komunite",
+      "hereNamed": "{{name}} odoslal správu všetkým používateľom v „{{community}}“"
+    }
   },
   "messages": {
     "smartRepliesOff": "Navrhované odpovede sú vypnuté",
