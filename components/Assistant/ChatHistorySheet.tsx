@@ -277,6 +277,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
               </View>
             ) : (
               <FlatList
+                key="media"
                 data={media}
                 numColumns={MEDIA_COLUMNS}
                 keyExtractor={(item) => item.id}
@@ -315,6 +316,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
             </View>
           ) : (
             <FlatList
+              key="chats"
               data={conversations}
               renderItem={renderItem}
               keyExtractor={keyExtractor}
