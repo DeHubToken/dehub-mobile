@@ -559,21 +559,26 @@ export default function UploadScreen() {
   // matching dehubweb's PostActionBar — which also keeps the row short enough to
   // breathe on a narrow phone.
 
-  // One attach button covers photos and videos: gone once a video or audio clip
-  // is on the draft, or the 4-image cap is reached.
+  // The attach button covers photos and video and, as on web, never leaves the
+  // row while it still has something to pick. Folding video into it and then
+  // hiding it the moment a clip was attached left a video draft with no way to
+  // swap the clip and live mode with no way to set a preview — the two states
+  // where it is most obviously wanted. Only an audio draft has nothing for it
+  // to do: a post carries audio or visual media, never both.
   const mediaDisabled =
-    mediaMode === "video" ||
     mediaMode === "audio" ||
-    pickedImages.length >= IMAGES_MAX ||
-    isAudioRecording;
-  const showMediaButton = !isLiveMode && !mediaDisabled;
+    isAudioRecording ||
+    (!isLiveMode && !pickedVideo && pickedImages.length >= IMAGES_MAX);
+  const showMediaButton = !mediaDisabled;
   // Camera only ever starts a fresh capture, so it goes as soon as media exists.
   const showCameraButton = !isLiveMode && !hasMedia && !isAudioRecording;
   // audio button disabled when: any media is selected (but not during recording — that's the audio button's own mode)
   const audioDisabled = hasMedia;
-  // live button disabled when media is already selected OR recording
-  const liveDisabled = hasMedia || isAudioRecording;
-  const showLiveButton = !isQuoteMode && (isLiveMode || !liveDisabled);
+  // Live stays offered while the draft is still something a stream can carry:
+  // web keeps it up with an image attached, because there the image is the
+  // stream's cover. A video or an audio clip is a post, not a preview.
+  const showLiveButton =
+    !isQuoteMode && (isLiveMode || (!pickedVideo && !pickedAudio && !isAudioRecording));
   // Polls are text-only on web too — no video, no images.
   const showPollButton =
     !isLiveMode && !isQuoteMode && !pickedVideo && pickedImages.length === 0;
@@ -1395,13 +1400,23 @@ export default function UploadScreen() {
    */
   const handlePickMedia = useCallback(async () => {
     if (mediaDisabled) return;
+    // In live mode the file this button picks is the stream's preview image,
+    // not a second post — the same job web gives its attachment control while
+    // the composer is live.
+    if (isLiveMode) {
+      await handlePickLiveThumbnail();
+      return;
+    }
     try {
       await runWithPermissions(["photos"], async () => {
         const remaining = IMAGES_MAX - pickedImages.length;
         const result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ["images", "videos"],
-          allowsMultipleSelection: true,
-          selectionLimit: remaining,
+          // A draft that already holds a clip is replacing it, so the picker
+          // opens on videos alone rather than offering images it would have to
+          // refuse.
+          mediaTypes: pickedVideo ? ["videos"] : ["images", "videos"],
+          allowsMultipleSelection: !pickedVideo,
+          selectionLimit: pickedVideo ? 1 : remaining,
           quality: 0.8,
         });
 
@@ -1427,7 +1442,15 @@ export default function UploadScreen() {
     } catch (err) {
       console.error("[UploadScreen] media pick error:", err);
     }
-  }, [mediaDisabled, pickedImages.length, adoptVideoAsset, adoptImageAssets]);
+  }, [
+    mediaDisabled,
+    isLiveMode,
+    handlePickLiveThumbnail,
+    pickedVideo,
+    pickedImages.length,
+    adoptVideoAsset,
+    adoptImageAssets,
+  ]);
 
   /**
    * Camera capture — mobile's stand-in for web's CameraCaptureModal.
@@ -1797,14 +1820,14 @@ export default function UploadScreen() {
           />
         </View>
 
-        <View className="flex-row items-center">
+        <View className="flex-row items-center gap-2">
           {/* Schedule and Drafts sit beside the chain selector, the same cluster
               web puts them in — and off the action bar, which frees a slot. */}
           {!isLiveMode && !isQuoteMode && (
             <TouchableOpacity
               onPress={() => setShowScheduleSheet(true)}
               activeOpacity={0.7}
-              className="mr-3 w-9 h-9 rounded-xl items-center justify-center border"
+              className="w-9 h-9 rounded-xl items-center justify-center border"
               style={{
                 backgroundColor: scheduledDate ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.1)",
                 borderColor: scheduledDate ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.2)",
@@ -1821,7 +1844,7 @@ export default function UploadScreen() {
             <TouchableOpacity
               onPress={handleDraftButton}
               activeOpacity={0.7}
-              className="mr-3 w-9 h-9 rounded-xl bg-white/10 items-center justify-center border border-white/20"
+              className="w-9 h-9 rounded-xl bg-white/10 items-center justify-center border border-white/20"
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               accessibilityRole="button"
               accessibilityLabel="Save draft"
@@ -1841,31 +1864,6 @@ export default function UploadScreen() {
             </TouchableOpacity>
           )}
 
-          <TouchableOpacity
-            onPress={handlePost}
-            disabled={isLiveMode ? (!canGoLive || postInFlight) : (!canPost || postInFlight)}
-            activeOpacity={0.8}
-            className="h-10 px-5 rounded-full items-center justify-center"
-            accessibilityRole="button"
-            accessibilityLabel={isLiveMode ? "Go live" : scheduledDate ? "Schedule" : "Post"}
-            style={{
-              backgroundColor: (isLiveMode ? canGoLive : canPost)
-                ? (!isLiveMode && scheduledDate ? '#D4D4D8' : '#fff')
-                : 'rgba(255,255,255,0.1)',
-            }}
-          >
-            {/* Spins from the tap, not from the queue: the wait that invited a
-                second tap happens entirely before there is a job to report on. */}
-            {postInFlight ? (
-              <ActivityIndicator size="small" color={(isLiveMode ? canGoLive : canPost) ? '#000' : '#6F7174'} />
-            ) : (
-              <Icon
-                name={isLiveMode ? "Radio" : scheduledDate ? "Clock" : "Send"}
-                size={18}
-                color={(isLiveMode ? canGoLive : canPost) ? '#000' : '#6F7174'}
-              />
-            )}
-          </TouchableOpacity>
         </View>
       </View>
 
@@ -1980,22 +1978,10 @@ export default function UploadScreen() {
               loading={bodyAssets.loading}
             />
 
-            <View className="flex-row items-center justify-between mt-1">
-              <TouchableOpacity
-                onPress={() => setShowEnhanceSheet(true)}
-                disabled={!bodyText.trim() || isEnhancing}
-                activeOpacity={0.7}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                accessibilityRole="button"
-                accessibilityLabel="Enhance text"
-                style={{ opacity: !bodyText.trim() || isEnhancing ? 0.3 : 1 }}
-              >
-                {isEnhancing ? (
-                  <ActivityIndicator size="small" color="#fff" />
-                ) : (
-                  <Icon name="Sparkles" size={16} color="#fff" />
-                )}
-              </TouchableOpacity>
+            {/* Character count alone, right-aligned, as web ends this row.
+                Enhance moved down to the action bar beside Post, where web
+                keeps it. */}
+            <View className="flex-row items-center justify-end mt-1">
               <Text
                 className={`text-xs ${
                   bodyText.length >= DESCRIPTION_MAX
@@ -2655,194 +2641,255 @@ export default function UploadScreen() {
         </Animated.View>
       )}
 
-      <View className="h-px bg-theme-neutrals-700 mx-4" />
+      <View className="h-px bg-white/10" />
 
       <View
-        className="flex-row items-center px-4 h-12"
+        className="flex-row items-center justify-between px-4 py-2"
         style={{ marginBottom: bottomPad > 0 ? bottomPad : 0 }}
       >
-        {/* Camera — leftmost, as on web */}
-        {showCameraButton && (
-          <TouchableOpacity
-            onPress={handleCaptureMedia}
-            activeOpacity={0.7}
-            className="mr-4"
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            accessibilityRole="button"
-            accessibilityLabel="Take photo or record video"
-          >
-            <Icon name="Camera" size={24} color="#fff" />
-          </TouchableOpacity>
-        )}
-
-        {/* One attach button for photos and videos */}
-        {showMediaButton && (
-          <TouchableOpacity
-            onPress={handlePickMedia}
-            activeOpacity={0.7}
-            className="mr-4"
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            accessibilityRole="button"
-            accessibilityLabel="Add photos or video"
-          >
-            <Icon name="Image" size={24} color="#fff" />
-          </TouchableOpacity>
-        )}
-
-        {/* Audio: upload, record and sound search all live behind one button,
-            the same grouping web uses for its Music popover. */}
-        {showAudioButton && (
-          <View className="mr-4" style={{ position: "relative", zIndex: 100 }}>
+        {/* Left cluster. Web sets every control on this row in a 36pt square —
+            a 20pt glyph inside 8pt of padding — with the squares almost
+            touching, so the whole row reads as one strip rather than six loose
+            icons. The 24pt glyphs and 16pt gutters this used to carry were the
+            single biggest reason the bar looked like a different app. */}
+        {/* zIndex travels with the cluster: the audio menu opens upward out of
+            this row, and on Android a popup that loses its stacking context to
+            an intermediate view renders behind the composer. */}
+        <View className="flex-row items-center" style={{ zIndex: 100 }}>
+          {/* Camera — leftmost, as on web */}
+          {showCameraButton && (
             <TouchableOpacity
-              onPress={() => setShowAudioMenu((prev) => !prev)}
+              onPress={handleCaptureMedia}
               activeOpacity={0.7}
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
+              hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
               accessibilityRole="button"
-              accessibilityLabel="Audio options"
+              accessibilityLabel="Take photo or record video"
+            >
+              <Icon name="Camera" size={20} color="#fff" />
+            </TouchableOpacity>
+          )}
+
+          {/* One attach button for photos and videos — web's paperclip, which
+              says "image or video" where a photo glyph only ever said photos. */}
+          {showMediaButton && (
+            <TouchableOpacity
+              onPress={handlePickMedia}
+              activeOpacity={0.7}
+              className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
+              hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
+              accessibilityRole="button"
+              accessibilityLabel="Add photos or video"
+            >
+              <Icon name="Paperclip" size={20} color="#fff" />
+            </TouchableOpacity>
+          )}
+
+          {/* Audio: upload, record and sound search all live behind one button,
+              the same grouping web uses for its Music popover. */}
+          {showAudioButton && (
+            <View className="mr-0.5" style={{ position: "relative", zIndex: 100 }}>
+              <TouchableOpacity
+                onPress={() => setShowAudioMenu((prev) => !prev)}
+                activeOpacity={0.7}
+                className="w-9 h-9 rounded-xl items-center justify-center"
+                hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
+                style={{
+                  backgroundColor:
+                    pickedAudio || attachedSound ? "rgba(255,255,255,0.2)" : "transparent",
+                }}
+                accessibilityRole="button"
+                accessibilityLabel="Audio options"
+              >
+                <Icon name="Music" size={20} color="#fff" />
+              </TouchableOpacity>
+
+              {showAudioMenu && (
+                <>
+                  <Pressable
+                    onPress={() => setShowAudioMenu(false)}
+                    style={{
+                      position: "absolute",
+                      top: -1000,
+                      left: -1000,
+                      right: -1000,
+                      bottom: -1000,
+                      zIndex: 98,
+                    }}
+                  />
+                  <View
+                    className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl"
+                    style={{
+                      position: "absolute",
+                      bottom: 44,
+                      left: -8,
+                      zIndex: 99,
+                      minWidth: 160,
+                      shadowColor: "#000",
+                      shadowOffset: { width: 0, height: 4 },
+                      shadowOpacity: 0.4,
+                      shadowRadius: 8,
+                      elevation: 8,
+                    }}
+                  >
+                    {!audioDisabled && (
+                      <>
+                        <TouchableOpacity
+                          onPress={handlePickAudioFile}
+                          activeOpacity={0.7}
+                          className="flex-row items-center px-4 py-3"
+                        >
+                          <Icon name="CloudUpload" size={20} color="#fff" />
+                          <Text className="text-white text-sm ml-3">Upload Audio</Text>
+                        </TouchableOpacity>
+                        <View className="h-px bg-theme-neutrals-700 mx-3" />
+                        <TouchableOpacity
+                          onPress={handleStartAudioRecording}
+                          activeOpacity={0.7}
+                          className="flex-row items-center px-4 py-3"
+                        >
+                          <Icon name="Mic" size={20} color="#fff" />
+                          <Text className="text-white text-sm ml-3">Record Voice</Text>
+                        </TouchableOpacity>
+                      </>
+                    )}
+                    {soundtrackEnabled && (
+                      <>
+                        {!audioDisabled && <View className="h-px bg-theme-neutrals-700 mx-3" />}
+                        <TouchableOpacity
+                          onPress={() => {
+                            setShowAudioMenu(false);
+                            setShowSoundPicker(true);
+                          }}
+                          activeOpacity={0.7}
+                          className="flex-row items-center px-4 py-3"
+                        >
+                          <Icon name="Search" size={20} color="#fff" />
+                          <Text className="text-white text-sm ml-3">Search Sounds</Text>
+                        </TouchableOpacity>
+                      </>
+                    )}
+                  </View>
+                </>
+              )}
+            </View>
+          )}
+
+          {showLiveButton && (
+            <TouchableOpacity
+              onPress={() => {
+                if (isLiveMode) {
+                  handleToggleLiveMode();
+                } else {
+                  setShowLiveOptions(true);
+                }
+              }}
+              activeOpacity={0.7}
+              className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
+              hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
+              style={{
+                backgroundColor: isLiveMode ? "rgba(255,255,255,0.2)" : "transparent",
+              }}
+              accessibilityRole="button"
+              accessibilityLabel={isLiveMode ? "Exit livestream mode" : "Live features"}
+            >
+              <Icon name="Radio" size={20} color="#fff" />
+            </TouchableOpacity>
+          )}
+
+          {showPollButton && (
+            <TouchableOpacity
+              onPress={handleTogglePoll}
+              activeOpacity={0.7}
+              className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
+              hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
+              style={{
+                backgroundColor: pollEnabled ? "rgba(255,255,255,0.2)" : "transparent",
+              }}
+              accessibilityRole="button"
+              accessibilityLabel="Add poll"
+            >
+              <Icon name="ChartBarBig" size={20} color="#fff" />
+            </TouchableOpacity>
+          )}
+
+          {/* Emoji — always available, as on web */}
+          <TouchableOpacity
+            onPress={() => setShowEmojiSheet(true)}
+            activeOpacity={0.7}
+            className="w-9 h-9 rounded-xl items-center justify-center"
+            hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
+            accessibilityRole="button"
+            accessibilityLabel="Insert emoji"
+          >
+            <Icon name="Smile" size={20} color="#fff" />
+          </TouchableOpacity>
+        </View>
+
+        {/* Right cluster — Enhance then Post, the pair web keeps at this end of
+            the bar. Post used to sit up in the header, which put the one
+            control you finish on at the far corner from the row you compose
+            with; web's mobile layout ends the bar with it. */}
+        <View className="flex-row items-center">
+          {isLiveMode && (
+            <TouchableOpacity
+              onPress={toggleLiveSettings}
+              activeOpacity={0.7}
+              className="w-9 h-9 rounded-xl items-center justify-center mr-2"
+              hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
+              accessibilityRole="button"
+              accessibilityLabel="Livestream settings"
             >
               <Icon
-                name="Music"
-                size={22}
-                color={pickedAudio || attachedSound ? "#fff" : "#A1A1AA"}
+                name="Settings"
+                size={20}
+                color={showLiveSettings ? "#fff" : "#6F7174"}
               />
             </TouchableOpacity>
+          )}
 
-            {showAudioMenu && (
-              <>
-                <Pressable
-                  onPress={() => setShowAudioMenu(false)}
-                  style={{
-                    position: "absolute",
-                    top: -1000,
-                    left: -1000,
-                    right: -1000,
-                    bottom: -1000,
-                    zIndex: 98,
-                  }}
-                />
-                <View
-                  className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl"
-                  style={{
-                    position: "absolute",
-                    bottom: 44,
-                    left: -8,
-                    zIndex: 99,
-                    minWidth: 160,
-                    shadowColor: "#000",
-                    shadowOffset: { width: 0, height: 4 },
-                    shadowOpacity: 0.4,
-                    shadowRadius: 8,
-                    elevation: 8,
-                  }}
-                >
-                  {!audioDisabled && (
-                    <>
-                      <TouchableOpacity
-                        onPress={handlePickAudioFile}
-                        activeOpacity={0.7}
-                        className="flex-row items-center px-4 py-3"
-                      >
-                        <Icon name="CloudUpload" size={20} color="#fff" />
-                        <Text className="text-white text-sm ml-3">Upload Audio</Text>
-                      </TouchableOpacity>
-                      <View className="h-px bg-theme-neutrals-700 mx-3" />
-                      <TouchableOpacity
-                        onPress={handleStartAudioRecording}
-                        activeOpacity={0.7}
-                        className="flex-row items-center px-4 py-3"
-                      >
-                        <Icon name="Mic" size={20} color="#fff" />
-                        <Text className="text-white text-sm ml-3">Record Voice</Text>
-                      </TouchableOpacity>
-                    </>
-                  )}
-                  {soundtrackEnabled && (
-                    <>
-                      {!audioDisabled && <View className="h-px bg-theme-neutrals-700 mx-3" />}
-                      <TouchableOpacity
-                        onPress={() => {
-                          setShowAudioMenu(false);
-                          setShowSoundPicker(true);
-                        }}
-                        activeOpacity={0.7}
-                        className="flex-row items-center px-4 py-3"
-                      >
-                        <Icon name="Search" size={20} color="#fff" />
-                        <Text className="text-white text-sm ml-3">Search Sounds</Text>
-                      </TouchableOpacity>
-                    </>
-                  )}
-                </View>
-              </>
+          <TouchableOpacity
+            onPress={() => setShowEnhanceSheet(true)}
+            disabled={!bodyText.trim() || isEnhancing}
+            activeOpacity={0.7}
+            className="h-8 px-3 mr-2 rounded-xl flex-row items-center justify-center border border-white/20 bg-white/5"
+            style={{ opacity: !bodyText.trim() || isEnhancing ? 0.5 : 1 }}
+            accessibilityRole="button"
+            accessibilityLabel="Enhance text"
+          >
+            {isEnhancing ? (
+              <ActivityIndicator size="small" color="#fff" />
+            ) : (
+              <Icon name="Sparkles" size={14} color="#fff" />
             )}
-          </View>
-        )}
+          </TouchableOpacity>
 
-        {showLiveButton && (
           <TouchableOpacity
-            onPress={() => {
-              if (isLiveMode) {
-                handleToggleLiveMode();
-              } else {
-                setShowLiveOptions(true);
-              }
+            onPress={handlePost}
+            disabled={isLiveMode ? (!canGoLive || postInFlight) : (!canPost || postInFlight)}
+            activeOpacity={0.8}
+            className="h-8 px-4 rounded-xl items-center justify-center"
+            accessibilityRole="button"
+            accessibilityLabel={isLiveMode ? "Go live" : scheduledDate ? "Schedule" : "Post"}
+            style={{
+              backgroundColor: (isLiveMode ? canGoLive : canPost)
+                ? (!isLiveMode && scheduledDate ? '#D4D4D8' : '#fff')
+                : 'rgba(255,255,255,0.1)',
             }}
-            activeOpacity={0.7}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            className="mr-4"
-            accessibilityRole="button"
-            accessibilityLabel={isLiveMode ? "Exit livestream mode" : "Live features"}
           >
-            <Icon
-              name="Radio"
-              size={24}
-              color={isLiveMode ? "#F4F4F5" : "#fff"}
-            />
+            {/* Spins from the tap, not from the queue: the wait that invited a
+                second tap happens entirely before there is a job to report on. */}
+            {postInFlight ? (
+              <ActivityIndicator size="small" color={(isLiveMode ? canGoLive : canPost) ? '#000' : '#6F7174'} />
+            ) : (
+              <Icon
+                name={isLiveMode ? "Radio" : "Send"}
+                size={16}
+                color={(isLiveMode ? canGoLive : canPost) ? '#000' : '#6F7174'}
+              />
+            )}
           </TouchableOpacity>
-        )}
-
-        {showPollButton && (
-          <TouchableOpacity
-            onPress={handleTogglePoll}
-            activeOpacity={0.7}
-            className="mr-4"
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            accessibilityRole="button"
-            accessibilityLabel="Add poll"
-          >
-            <Icon name="ChartBarBig" size={22} color={pollEnabled ? "#fff" : "#A1A1AA"} />
-          </TouchableOpacity>
-        )}
-
-        {/* Emoji — always available, as on web */}
-        <TouchableOpacity
-          onPress={() => setShowEmojiSheet(true)}
-          activeOpacity={0.7}
-          className="mr-4"
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          accessibilityRole="button"
-          accessibilityLabel="Insert emoji"
-        >
-          <Icon name="Smile" size={22} color="#A1A1AA" />
-        </TouchableOpacity>
-
-        <View className="flex-1" />
-
-        {isLiveMode && (
-          <TouchableOpacity
-            onPress={toggleLiveSettings}
-            activeOpacity={0.7}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            accessibilityRole="button"
-            accessibilityLabel="Livestream settings"
-          >
-            <Icon
-              name="Settings"
-              size={22}
-              color={showLiveSettings ? "#fff" : "#6F7174"}
-            />
-          </TouchableOpacity>
-        )}
+        </View>
 
       </View>
 
