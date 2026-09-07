@@ -418,6 +418,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, view
   const [showShareSheet, setShowShareSheet] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isPausedByUser, setIsPausedByUser] = useState(false);
+  const [firstFrameRendered, setFirstFrameRendered] = useState(false);
   const [captionExpanded, setCaptionExpanded] = useState(false);
   const [screenshotMode, setScreenshotMode] = useState(false);
   const [is2xSpeed, setIs2xSpeed] = useState(false);
@@ -962,6 +963,15 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, view
         delayLongPress={400}
         style={[StyleSheet.absoluteFill, showComments && { bottom: undefined, height: splitHeight, backgroundColor: "#000" }]}
       >
+        {/* useVideoPlayer never returns null, so a thumbnail-instead-of-player
+            branch could never render and the short was a black frame until its
+            first frame (or forever on a load failure). Draw the thumbnail under
+            the VideoView and drop it once a frame has painted. */}
+        {thumbnail && !firstFrameRendered ? (
+          <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit={showComments ? "contain" : "cover"} pointerEvents="none" />
+        ) : (
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
+        )}
         {player ? (
           <VideoView
             player={player}
@@ -969,12 +979,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, view
             contentFit={showComments ? "contain" : "cover"}
             nativeControls={false}
             pointerEvents="none"
+            onFirstFrameRender={() => setFirstFrameRendered(true)}
           />
-        ) : thumbnail ? (
-          <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit={showComments ? "contain" : "cover"} pointerEvents="none" />
-        ) : (
-          <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
-        )}
+        ) : null}
       </Pressable>
 
       {/* Double-tap like animation */}
