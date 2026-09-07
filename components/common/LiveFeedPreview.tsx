@@ -56,6 +56,9 @@ function LivePlayer({ url }: { url: string }) {
       player={player}
       nativeControls={false}
       contentFit="cover"
+      // A SurfaceView is composited beneath the app window, so the card's
+      // rounded-corner clip never reached it on Android.
+      surfaceType="textureView"
     />
   );
 }
