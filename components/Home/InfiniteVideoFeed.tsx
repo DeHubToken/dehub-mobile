@@ -50,6 +50,7 @@ import {
 import { feedEvents } from "../../libs/eventBus";
 import { capFeedByAuthorAllowance } from "../../libs/postQuota";
 import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
+import { flattenFeedPages } from "../../libs/feed-pages";
 import { useWatchedVideoIds, filterWatched } from "../../hooks/useWatchedVideos";
 import { useLiveStreams } from "../../hooks/useLiveStreams";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
@@ -313,36 +314,13 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     warmDeletedPosts().then(() => setTombstonesReady(true)).catch(() => {});
   }, []);
 
-  const rawItems = useMemo<FeedItem[]>(() => {
-    const pages = data?.pages ?? [];
-    return pages
-      .flatMap((res, pageIdx) =>
-        (res.result || []).map((it, idx) => {
-          // Always include page + index to guarantee uniqueness even if backend returns duplicate ids
-          const base =
-            (it as any).tokenId ||
-            (it as any).id ||
-            (it as any).nftId ||
-            (it as any).streamKey ||
-            (it as any).stream?.id ||
-            (it as any).stream?.streamKey ||
-            `auto`; // fallback
-          const created =
-            (it as any).createdAt ||
-            (it as any).stream?.createdAt ||
-            (it as any).created_at ||
-            `nocreated`;
-          return {
-            ...it,
-            __listKey: `${base}-${created}-p${pageIdx + 1}-i${idx}`,
-          };
-        }),
-      )
-      .filter((it: any) => {
-        const id = it.tokenId ?? it.id ?? it.stream?.tokenId;
-        return id == null || !isPostDeletedSync(id);
-      });
-  }, [data, tombstonesReady]);
+  // Pages repeat rows across the offset boundary; flattenFeedPages keeps the
+  // first copy and drops tombstoned posts (see libs/feed-pages.ts).
+  const rawItems = useMemo<FeedItem[]>(
+    () => flattenFeedPages<FeedItem>(data?.pages ?? [], isPostDeletedSync),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [data, tombstonesReady],
+  );
 
   // Videos already played, dropped only when the reader asked for that in
   // Settings. Kept as its own memo so the expensive flatMap above does not
