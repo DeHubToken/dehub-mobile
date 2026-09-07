@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Dis device no dey register for push",
-    "pushNotRegisteredDesc": "Notifications no fit reach you when the app dey close. Open the app again, e go usually clear am; if e still dey happen, install the latest build from dehub.io/apk.",
+    "pushNotRegisteredDesc": "Notifications no fit reach you when the app don close: this install never register one push device. Dat usually mean the build no get im notification configuration, which installing the latest build from dehub.io/apk go fix.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "إشعارات الدفع معطّلة",
     "tapEnableSystemSettings": "اضغط للتفعيل من إعدادات النظام",
     "pushNotRegistered": "هذا الجهاز مش مسجل للـ push",
-    "pushNotRegisteredDesc": "الإشعارات ما توصلك إذا التطبيق مقفل. افتح التطبيق مرة ثانية وغالباً يضبط؛ إذا استمرت المشكلة، نزل آخر تحديث من dehub.io/apk.",
+    "pushNotRegisteredDesc": "الإشعارات ما توصلك والبرنامج مقفل: هذا التثبيت ما سجل جهاز إشعارات. هذا عادةً يعني إن النسخة ناقصها إعدادات الإشعارات، وتثبيت آخر نسخة من dehub.io/apk يصلحها.",
     "categoryEngagement": "التفاعل",
     "categorySocial": "اجتماعي",
     "categoryEarnings": "الأرباح",

@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "இந்த சாதனம் புஷ் செய்ய பதிவு செய்யப்படவில்லை",
-    "pushNotRegisteredDesc": "ஆப் மூடப்பட்டிருக்கும்போது அறிவிப்புகள் உங்களைத் தொடர்புகொள்ள முடியாது. ஆப்பை மீண்டும் திறப்பது வழக்கமாக அதை அழிக்கிறது; அது தொடர்ந்து நடந்தால், dehub.io/apk இலிருந்து சமீபத்திய கட்டமைப்பை நிறுவவும்.",
+    "pushNotRegisteredDesc": "ஆப் மூடப்பட்டிருக்கும்போது அறிவிப்புகள் உங்களைத் தொடர்பு கொள்ள முடியாது: இந்த நிறுவல் ஒருபோதும் புஷ் சாதனத்தை பதிவு செய்யவில்லை. பொதுவாக இதன் பொருள் பில்ட் அதன் அறிவிப்பு உள்ளமைவைக் காணவில்லை, இது dehub.io/apk இடமிருந்து சமீபத்திய பில்டை நிறுவுகிறது.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

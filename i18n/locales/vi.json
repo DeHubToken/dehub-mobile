@@ -627,7 +627,7 @@
     "pushNotificationsDisabled": "Thông báo đẩy đang tắt",
     "tapEnableSystemSettings": "Chạm để bật trong cài đặt hệ thống",
     "pushNotRegistered": "Thiết bị này chưa được đăng ký để đẩy",
-    "pushNotRegisteredDesc": "Không thể liên hệ với bạn khi ứng dụng đã đóng. Mở lại ứng dụng thường xóa nó; nếu nó tiếp tục xảy ra, hãy cài đặt bản dựng mới nhất từ dehub.io/apk.",
+    "pushNotRegisteredDesc": "Bạn không thể nhận được thông báo khi đóng ứng dụng: bản cài đặt này chưa bao giờ đăng ký thiết bị đẩy. Điều đó thường có nghĩa là bản dựng thiếu cấu hình thông báo của nó, cài đặt bản dựng mới nhất từ dehub.io/apk thay thế.",
     "categoryEngagement": "Tương tác",
     "categorySocial": "Mạng xã hội",
     "categoryEarnings": "Thu nhập",

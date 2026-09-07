@@ -481,7 +481,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Hierdie toestel is nie geregistreer om te druk nie",
-    "pushNotRegisteredDesc": "Kennisgewings kan u nie bereik terwyl die app gesluit is nie. Die heropening van die app maak dit gewoonlik skoon; As dit aanhou gebeur, installeer die nuutste bou van dehub.io/apk.",
+    "pushNotRegisteredDesc": "Kennisgewings kan jou nie bereik terwyl die app gesluit is nie: hierdie installasie het nooit 'n stoottoestel geregistreer nie. Dit beteken gewoonlik dat die bou sy kennisgewingkonfigurasie ontbreek, wat die installering van die nuutste bou van dehub.io/apk vervang.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "دا وسیله د فشار لپاره راجسټر شوې نه ده",
-    "pushNotRegisteredDesc": "خبرتیاوې نشي کولی تاسو ته ورسیږي پداسې حال کې چې اپلیکیشن بند دی. د اپلیکیشن بیا پرانستل معمولا دا پاکوي ؛ که دا پیښ شي، نو له dehub.io/apk څخه وروستی جوړونه نصب کړئ.",
+    "pushNotRegisteredDesc": "خبرتیاوې تاسو ته نشي رسیدلی پداسې حال کې چې ایپ بند دی: دا نصب هیڅکله د فشار وسیله ثبت نه کړه. دا معمولا پدې مانا ده چې ودانۍ د دې خبرتیا ترتیب له لاسه ورکوي، کوم چې د dehub.io/apk ځای په ځای کولو څخه وروستی ودانۍ نصبوي.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

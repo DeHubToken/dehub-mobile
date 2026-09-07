@@ -805,7 +805,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Peranti ini tidak didaftarkan untuk tolak",
-    "pushNotRegisteredDesc": "Pemberitahuan tidak dapat menghubungi anda semasa aplikasi ditutup. Membuka semula aplikasi biasanya membersihkannya; jika ia terus berlaku, pasang binaan terkini daripada dehub.io/apk.",
+    "pushNotRegisteredDesc": "Pemberitahuan tidak dapat menghubungi anda semasa aplikasi ditutup: pemasangan ini tidak pernah mendaftarkan peranti tolak. Ini biasanya bermakna binaan tidak mempunyai konfigurasi pemberitahuannya, yang menggantikan pemasangan binaan terkini daripada dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

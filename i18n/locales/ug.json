@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "بۇ ئۈسكۈنىنى قوزغىتىش ئۈچۈن تىزىملىتىلمىغان",
-    "pushNotRegisteredDesc": "ئەپ تاقالغاندا سىزگە ئۇقتۇرۇش كەلمەيدۇ. ئەپنى قايتا ئېچىش ئادەتتە ئۇنى تازىلايدۇ ؛ ئەگەر داۋاملاشسا، ئەڭ يېڭى قۇرۇلۇشنى dehub.io/apk دىن قاچىلاڭ.",
+    "pushNotRegisteredDesc": "ئەپ تاقالغاندا سىزگە ئۇقتۇرۇش كەلمەيدۇ: بۇ قاچىلاش ھەرگىزمۇ قوزغىتىش ئۈسكۈنىسىنى تىزىملىتىپ باقمىغان. بۇ ئادەتتە بىنانىڭ ئۇقتۇرۇش شەكلى يوقلۇقىنى بىلدۈرىدۇ، بۇ بىنا dehub.io/apk نىڭ ئەڭ يېڭى بىناسىنى ئورنىتىدۇ.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

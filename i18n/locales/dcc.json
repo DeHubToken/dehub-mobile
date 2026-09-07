@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Ee device push kosam register avvaledhu",
-    "pushNotRegisteredDesc": "App bandh vunte notifications meeku raavu. App malli open cheste saripotundi; ilaage jarugutunte, dehub.io/apk nunchi latest build install chesukondi.",
+    "pushNotRegisteredDesc": "App bandh vunte notificationlu raavu: ee install lo push device register avvaledhu. Idhi saadhaarananga build lo notification configuration miss avvadam valla avuthundhi, dehub.io/apk nunchi latest build install cheyadam tho idi sarididdipothundhi.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

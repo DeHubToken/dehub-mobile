@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "푸시 알림이 꺼져 있습니다",
     "tapEnableSystemSettings": "탭하여 시스템 설정에서 켜기",
     "pushNotRegistered": "이 장치는 푸시에 등록되어 있지 않습니다",
-    "pushNotRegisteredDesc": "앱이 종료된 후에는 알림을 받을 수 없습니다. 앱을 다시 열면 일반적으로 앱이 지워집니다. 계속 실행되면 dehub.io/apk에서 최신 빌드를 설치하세요.",
+    "pushNotRegisteredDesc": "앱이 종료된 후에는 알림을 받을 수 없습니다. 이 설치에서는 푸시 기기를 등록한 적이 없습니다. 이는 일반적으로 빌드가 dehub.io/apk에서 최신 빌드를 설치하는 알림 구성이 누락되었음을 의미합니다.",
     "categoryEngagement": "참여",
     "categorySocial": "소셜",
     "categoryEarnings": "수익",

@@ -392,7 +392,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "ई डिवाइस पुस खातिर रजिस्टर कोनी",
-    "pushNotRegisteredDesc": "App बंद होवे तो नोटिफिकेशन कोनी मिलें। ऐप ने वापस खोल ले तो ठीक हो जावे; अगर फिर भी होवे तो dehub.io/apk ते लेटेस्ट बिल्ड इनस्टॉल कर ले।",
+    "pushNotRegisteredDesc": "ऐप बंद होए तो नोटिफिकेशन कोनी मिलें: ई इंस्टॉल कदेई पुश डिवाइस रजिस्टर कोनी करियो। ई को मतलब होए कि बिल्ड में नोटिफिकेशन कॉन्फ़िगरेशन कोनी होए, जो dehub.io/apk सूं लेटेस्ट बिल्ड इंस्टॉल करियो तो ठीक हो जाए।",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

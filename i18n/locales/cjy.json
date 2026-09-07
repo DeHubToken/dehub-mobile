@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "推送通知已关闭",
     "tapEnableSystemSettings": "点击前往系统设置开启",
     "pushNotRegistered": "此设备未注册推送",
-    "pushNotRegisteredDesc": "当应用关闭时，您将无法收到通知。重新打开应用通常可以解决此问题；如果问题仍然存在，请从 dehub.io/apk 安装最新版本。",
+    "pushNotRegisteredDesc": "当应用关闭时，通知无法送达您：此安装从未注册过推送设备。这通常意味着构建缺少通知配置，而从 dehub.io/apk 安装最新构建可以解决此问题。",
     "categoryEngagement": "互动",
     "categorySocial": "社交",
     "categoryEarnings": "收益",

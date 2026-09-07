@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Ovaj uređaj nije registriran za push",
-    "pushNotRegisteredDesc": "Obavijesti ne mogu stupiti u kontakt s tobom dok je aplikacija zatvorena. Ponovno otvaranje aplikacije obično je briše; ako se to nastavi, instalirajte najnoviju verziju s dehub.io/apk.",
+    "pushNotRegisteredDesc": "Obavijesti vas ne mogu kontaktirati dok je aplikacija zatvorena: ova instalacija nikada nije registrirala push uređaj. To obično znači da nadogradnji nedostaje konfiguracija obavijesti, koju zamjenjuje instaliranje najnovije nadogradnje s dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

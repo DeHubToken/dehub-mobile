@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Гэтая прылада не зарэгістравана для штуршка",
-    "pushNotRegisteredDesc": "Апавяшчэнні не могуць дайсці да вас, калі праграма зачынена. Паўторнае адкрыццё праграмы звычайна ачышчае яе; калі яна працягвае адбывацца, усталюйце апошнюю зборку з dehub.io/apk.",
+    "pushNotRegisteredDesc": "Апавяшчэнні не могуць дайсці да вас, калі праграма зачынена: гэтая ўстаноўка ніколі не зарэгістравала штуршок. Гэта звычайна азначае, што ў будынку адсутнічае канфігурацыя апавяшчэнняў, якую замяняе ўстаноўка апошняй зборкі з dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

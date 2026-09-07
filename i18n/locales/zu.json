@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Le divayisi ayibhaliselwe i-Push",
-    "pushNotRegisteredDesc": "Izaziso azikwazi ukukufinyelela ngenkathi i-app ivaliwe. Ukuvula kabusha i-app kuvame ukuyisusa; uma iqhubeka yenzeka, faka isakhiwo sakamuva ku-dehub.io/apk.",
+    "pushNotRegisteredDesc": "Izaziso azikwazi ukukufinyelela ngenkathi i-app ivaliwe: lokhu kufaka akukaze kubhalise idivayisi ye-app. Lokho ngokuvamile kusho ukuthi isakhiwo asikho esimisweni saso sesaziso, esifaka isakhiwo sakamuva esivela ku-dehub.io/apk esikhundleni saso.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

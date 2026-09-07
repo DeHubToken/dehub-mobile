@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Bu cihaz mobil ödəniş üçün qeydiyyatdan keçirilməyib",
-    "pushNotRegisteredDesc": "Tətbiq bağlı olduğu müddətdə bildirişlər sizinlə əlaqə saxlaya bilməz. Tətbiqin yenidən açılması, adətən, onu təmizləyir; əgər baş verməyə davam edərsə, dehub.io/apk saytından ən son məlumatları quraşdırın.",
+    "pushNotRegisteredDesc": "Tətbiq bağlı olduğu müddətdə bildirişlər sizinlə əlaqə saxlaya bilməz: bu yükləmə heç vaxt mobil cihazı qeydiyyatdan keçirməyib. Bu, adətən, tikilinin bildiriş konfiqurasiyasının olmaması deməkdir, dehub.io/apk saytından ən son tikilini quraşdırmaq isə onu əvəz edir.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

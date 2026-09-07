@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "این دستگاه برای ارسال اعلان ثبت نشده است",
-    "pushNotRegisteredDesc": "وقتی برنامه بسته است، اعلان‌ها به شما نمی‌رسند. معمولاً با باز کردن مجدد برنامه، مشکل برطرف می‌شود؛ اگر این مشکل ادامه پیدا کرد، آخرین نسخه را از dehub.io/apk نصب کنید.",
+    "pushNotRegisteredDesc": "وقتی برنامه بسته است، اعلان‌ها به شما نمی‌رسند: این نصب هرگز دستگاه ارسال اعلان را ثبت نکرده است. این معمولاً به این معنی است که این نسخه پیکربندی اعلان‌های خود را از دست داده است، که نصب آخرین نسخه از dehub.io/apk جایگزین آن می‌شود.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Qalabkan looma diiwaangeliyo riixitaanka",
-    "pushNotRegisteredDesc": "Ogeysiisyada ma gaari karaan inta appku xiran yahay. Dib u furida app-ka caadi ahaan wuu nadiifiyaa; haddii ay sii socoto, ku rakib dhismaha ugu dambeeyay dehub.io/apk.",
+    "pushNotRegisteredDesc": "Ogeysiisyada ma gaari karaan inta appku xiran yahay: rakibidani waligeed ma diiwaangelin qalab riixaya. Taasi waxay caadi ahaan ka dhigan tahay in dhismuhu ka maqan yahay qaab-dhismeedkiisa ogeysiinta, kaas oo rakibaya dhismaha ugu dambeeyay ee ka yimaada dehub.io/apk beddelaya.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",
