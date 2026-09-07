@@ -530,7 +530,9 @@
     "blockUserTitle": "Block user?",
     "unblockUserTitle": "Unblock user?",
     "blockUserDesc": "You won't receive messages from {{name}}. You can unblock later.",
-    "unblockUserDesc": "Allow messages from {{name}} again."
+    "unblockUserDesc": "Allow messages from {{name}} again.",
+    "takePhoto": "Take photo",
+    "recordVideo": "Record video"
   },
   "tip": {
     "title": "Send Tip",

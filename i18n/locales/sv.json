@@ -486,7 +486,9 @@
     "test": "Test",
     "anonymous": "Anonym",
     "confirm": "Bekräfta",
-    "signIn": "Logga in"
+    "signIn": "Logga in",
+    "takePhoto": "Ta foto",
+    "recordVideo": "Spela in video"
   },
   "drawers": {
     "ppvTitle": "Betala per visning",

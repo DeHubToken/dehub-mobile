@@ -486,7 +486,9 @@
     "test": "Ukuhlola",
     "anonymous": "Ongaziwa",
     "confirm": "Qinisekisa",
-    "signIn": "Ngena"
+    "signIn": "Ngena",
+    "takePhoto": "Thatha isithombe",
+    "recordVideo": "Qopha ividiyo"
   },
   "tip": {
     "title": "Thumela Ithiphu",

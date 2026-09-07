@@ -484,7 +484,9 @@
     "test": "جانچ",
     "anonymous": "بے نام",
     "confirm": "پکا کرو",
-    "signIn": "سائن ان"
+    "signIn": "سائن ان",
+    "takePhoto": "ছবি তুলা",
+    "recordVideo": "ভিডিও রেকর্ড করা"
   },
   "tip": {
     "title": "ٹِپ بھیجو",

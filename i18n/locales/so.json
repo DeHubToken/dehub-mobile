@@ -486,7 +486,9 @@
     "test": "Tijaabo",
     "anonymous": "Qarsoodi",
     "confirm": "Xaqiiji",
-    "signIn": "Gal"
+    "signIn": "Gal",
+    "takePhoto": "Sawir qaad",
+    "recordVideo": "Duub muuqaal"
   },
   "tip": {
     "title": "Dir Bakhshiish",

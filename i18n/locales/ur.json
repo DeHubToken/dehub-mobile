@@ -486,7 +486,9 @@
     "test": "آزمائش",
     "anonymous": "گمنام",
     "confirm": "تصدیق کریں",
-    "signIn": "سائن اِن کریں"
+    "signIn": "سائن اِن کریں",
+    "takePhoto": "تصویر لیں",
+    "recordVideo": "ویڈیو ریکارڈ کریں"
   },
   "drawers": {
     "ppvTitle": "پے پر ویو مواد",

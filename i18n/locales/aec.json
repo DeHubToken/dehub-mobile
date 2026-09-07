@@ -486,7 +486,9 @@
     "test": "اختبار",
     "anonymous": "مجهول",
     "confirm": "أكّد",
-    "signIn": "سجّل دخول"
+    "signIn": "سجّل دخول",
+    "takePhoto": "صوّر صورة",
+    "recordVideo": "سجّل فيديو"
   },
   "tip": {
     "title": "ابعت بقشيش",

@@ -486,7 +486,9 @@
     "test": "សាកល្បង",
     "anonymous": "អនាមិក",
     "confirm": "បញ្ជាក់",
-    "signIn": "ចូល"
+    "signIn": "ចូល",
+    "takePhoto": "ថតរូប",
+    "recordVideo": "ថតវីដេអូ"
   },
   "tip": {
     "title": "ផ្ញើជំនួយ",

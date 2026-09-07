@@ -486,7 +486,9 @@
     "test": "Test",
     "anonymous": "Anonym",
     "confirm": "Bestätigen",
-    "signIn": "Anmelden"
+    "signIn": "Anmelden",
+    "takePhoto": "Foto aufnehmen",
+    "recordVideo": "Video aufnehmen"
   },
   "postOptions": {
     "options": "Optionen",

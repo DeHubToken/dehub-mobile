@@ -486,7 +486,9 @@
     "test": "Test",
     "anonymous": "Anonimowo",
     "confirm": "Potwierdź",
-    "signIn": "Zaloguj się"
+    "signIn": "Zaloguj się",
+    "takePhoto": "Zrób zdjęcie",
+    "recordVideo": "Nagraj wideo"
   },
   "glossary": {
     "title": "Słownik",

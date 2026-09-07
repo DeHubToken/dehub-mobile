@@ -486,7 +486,9 @@
     "test": "Փորձնական",
     "anonymous": "Անանուն",
     "confirm": "Հաստատել",
-    "signIn": "Մուտք գործել"
+    "signIn": "Մուտք գործել",
+    "takePhoto": "Լուսանկարել",
+    "recordVideo": "Տեսագրել"
   },
   "postOptions": {
     "options": "Entrankhner",

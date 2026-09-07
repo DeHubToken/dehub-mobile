@@ -486,7 +486,9 @@
     "test": "Provë",
     "anonymous": "Anonim",
     "confirm": "Konfirmo",
-    "signIn": "Hyr"
+    "signIn": "Hyr",
+    "takePhoto": "Bëj një foto",
+    "recordVideo": "Regjistro video"
   },
   "tip": {
     "title": "Dërgo Bakshish",

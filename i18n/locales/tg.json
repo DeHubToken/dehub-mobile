@@ -486,7 +486,9 @@
     "test": "Санҷиш",
     "anonymous": "Беном",
     "confirm": "Тасдиқ кардан",
-    "signIn": "Ворид шудан"
+    "signIn": "Ворид шудан",
+    "takePhoto": "Акс гирифтан",
+    "recordVideo": "Сабти видео"
   },
   "postOptions": {
     "options": "Имконот",

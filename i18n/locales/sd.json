@@ -486,7 +486,9 @@
     "test": "ٽيسٽ",
     "anonymous": "گمنام",
     "confirm": "تصديق ڪريو",
-    "signIn": "سائن ان"
+    "signIn": "سائن ان",
+    "takePhoto": "فوٽو وٺو",
+    "recordVideo": "وڊيو رڪارڊ ڪريو"
   },
   "tip": {
     "title": "ٽپ موڪليو",

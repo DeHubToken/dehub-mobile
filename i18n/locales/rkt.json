@@ -1170,7 +1170,9 @@
     "unblockUserDesc": "Allow messages from {{name}} again.",
     "test": "পরীক্ষা",
     "anonymous": "নামহীন",
-    "signIn": "সাইন ইন"
+    "signIn": "সাইন ইন",
+    "takePhoto": "ফটো তোলো",
+    "recordVideo": "ভিডিও রেকর্ড করো"
   },
   "featureRequests": {
     "title": "ফিচার রিকোয়েস্ট",

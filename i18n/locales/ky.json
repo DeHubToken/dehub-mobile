@@ -486,7 +486,9 @@
     "test": "Сыноо",
     "anonymous": "Аноним",
     "confirm": "Ырастоо",
-    "signIn": "Кирүү"
+    "signIn": "Кирүү",
+    "takePhoto": "Сүрөткө тартуу",
+    "recordVideo": "Видео жаздыруу"
   },
   "postOptions": {
     "options": "Тандоолор",

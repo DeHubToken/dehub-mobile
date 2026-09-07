@@ -486,7 +486,9 @@
     "test": "Bandymas",
     "anonymous": "Anonimas",
     "confirm": "Patvirtinti",
-    "signIn": "Prisijungti"
+    "signIn": "Prisijungti",
+    "takePhoto": "Fotografuoti",
+    "recordVideo": "Įrašyti vaizdo įrašą"
   },
   "tip": {
     "title": "Siųsti arbatpinigius",

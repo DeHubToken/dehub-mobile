@@ -486,7 +486,9 @@
     "test": "Jaribio",
     "anonymous": "Bila jina",
     "confirm": "Thibitisha",
-    "signIn": "Ingia"
+    "signIn": "Ingia",
+    "takePhoto": "Piga picha",
+    "recordVideo": "Rekodi video"
   },
   "tip": {
     "title": "Tuma Kidokezo",

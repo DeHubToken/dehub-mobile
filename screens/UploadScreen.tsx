@@ -12,6 +12,8 @@ import {
   ActivityIndicator,
   Pressable,
   BackHandler,
+  Alert,
+  Platform,
 } from "react-native";
 import { useNavigation, useRoute, CommonActions, useFocusEffect } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
@@ -1428,15 +1430,41 @@ export default function UploadScreen() {
   }, [mediaDisabled, pickedImages.length, adoptVideoAsset, adoptImageAssets]);
 
   /**
-   * Camera capture — the native camera handles the photo/video toggle itself,
-   * which is mobile's stand-in for web's CameraCaptureModal.
+   * Camera capture — mobile's stand-in for web's CameraCaptureModal.
+   *
+   * iOS shows the photo/video toggle inside the native camera when both media
+   * types are passed. Android folds ["images", "videos"] into a still-image
+   * capture intent, so video was unreachable there; ask first and launch the
+   * camera with a single media type.
    */
+  const chooseCaptureKind = useCallback((): Promise<"images" | "videos" | null> => {
+    if (Platform.OS !== "android") return Promise.resolve(null);
+    return new Promise((resolve) => {
+      Alert.alert(
+        "",
+        undefined,
+        [
+          { text: t("common.takePhoto"), onPress: () => resolve("images") },
+          { text: t("common.recordVideo"), onPress: () => resolve("videos") },
+          { text: t("common.cancel"), style: "cancel", onPress: () => resolve(null) },
+        ],
+        { cancelable: true, onDismiss: () => resolve(null) },
+      );
+    });
+  }, []);
+
   const handleCaptureMedia = useCallback(async () => {
     if (mediaDisabled) return;
     try {
+      let mediaTypes: ("images" | "videos")[] = ["images", "videos"];
+      if (Platform.OS === "android") {
+        const kind = await chooseCaptureKind();
+        if (!kind) return;
+        mediaTypes = [kind];
+      }
       await runWithPermissions(["camera", "microphone"], async () => {
         const result = await ImagePicker.launchCameraAsync({
-          mediaTypes: ["images", "videos"],
+          mediaTypes,
           quality: 0.8,
         });
 
@@ -1456,7 +1484,7 @@ export default function UploadScreen() {
     } catch (err) {
       console.error("[UploadScreen] camera capture error:", err);
     }
-  }, [mediaDisabled, pickedImages.length, adoptVideoAsset, adoptImageAssets]);
+  }, [mediaDisabled, pickedImages.length, adoptVideoAsset, adoptImageAssets, chooseCaptureKind]);
 
   const handleRemoveImage = useCallback((index: number) => {
     setPickedImages((prev) => {

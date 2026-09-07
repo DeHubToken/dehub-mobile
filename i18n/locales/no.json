@@ -486,7 +486,9 @@
     "test": "Test",
     "anonymous": "Anonym",
     "confirm": "Bekreft",
-    "signIn": "Logg inn"
+    "signIn": "Logg inn",
+    "takePhoto": "Ta bilde",
+    "recordVideo": "Ta opp video"
   },
   "postOptions": {
     "options": "Alternativer",

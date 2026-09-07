@@ -486,7 +486,9 @@
     "test": "테스트",
     "anonymous": "익명",
     "confirm": "확인",
-    "signIn": "로그인"
+    "signIn": "로그인",
+    "takePhoto": "사진 촬영",
+    "recordVideo": "동영상 촬영"
   },
   "drawers": {
     "ppvTitle": "유료 콘텐츠",

@@ -486,7 +486,9 @@
     "test": "ازموینه",
     "anonymous": "بې نومه",
     "confirm": "تایید کړئ",
-    "signIn": "ننوتل"
+    "signIn": "ننوتل",
+    "takePhoto": "عکس واخله",
+    "recordVideo": "ویډیو ثبت کړه"
   },
   "tip": {
     "title": "ټپ ولیږئ",

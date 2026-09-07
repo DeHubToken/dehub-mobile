@@ -486,7 +486,9 @@
     "test": "测试",
     "anonymous": "匿名",
     "confirm": "确认",
-    "signIn": "登录"
+    "signIn": "登录",
+    "takePhoto": "拍照",
+    "recordVideo": "录视频"
   },
   "tip": {
     "title": "送礼物",

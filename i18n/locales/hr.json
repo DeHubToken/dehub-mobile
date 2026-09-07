@@ -486,7 +486,9 @@
     "test": "Test",
     "anonymous": "Anonimno",
     "confirm": "Potvrdi",
-    "signIn": "Prijava"
+    "signIn": "Prijava",
+    "takePhoto": "Snimi fotografiju",
+    "recordVideo": "Snimi video"
   },
   "tip": {
     "title": "Pošalji napojnicu",

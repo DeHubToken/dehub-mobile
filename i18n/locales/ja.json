@@ -486,7 +486,9 @@
     "test": "テスト",
     "anonymous": "匿名",
     "confirm": "確認",
-    "signIn": "ログイン"
+    "signIn": "ログイン",
+    "takePhoto": "写真を撮る",
+    "recordVideo": "動画を撮る"
   },
   "postOptions": {
     "options": "オプション",

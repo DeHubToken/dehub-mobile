@@ -705,7 +705,9 @@
     "test": "Test",
     "anonymous": "Anonim",
     "confirm": "Confirmă",
-    "signIn": "Autentifică-te"
+    "signIn": "Autentifică-te",
+    "takePhoto": "Fă o poză",
+    "recordVideo": "Înregistrează video"
   },
   "postOptions": {
     "options": "Options",

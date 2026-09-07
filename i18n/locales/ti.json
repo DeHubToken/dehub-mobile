@@ -486,7 +486,9 @@
     "test": "ፈተነ",
     "anonymous": "ስም ኣልቦ",
     "confirm": "ኣረጋግጽ",
-    "signIn": "እቶ"
+    "signIn": "እቶ",
+    "takePhoto": "ስእሊ ኣልዕል",
+    "recordVideo": "ቪድዮ ቅረጽ"
   },
   "tip": {
     "title": "ሽልማት ስደድ",

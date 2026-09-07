@@ -486,7 +486,9 @@
     "test": "ሙከራ",
     "anonymous": "ስም-አልባ",
     "confirm": "አረጋግጥ",
-    "signIn": "ግባ"
+    "signIn": "ግባ",
+    "takePhoto": "ፎቶ አንሳ",
+    "recordVideo": "ቪዲዮ ቅረጽ"
   },
   "tip": {
     "title": "ጥቆማ ላክ",

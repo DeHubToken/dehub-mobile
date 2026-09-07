@@ -486,7 +486,9 @@
     "test": "تجريب",
     "anonymous": "مجهول",
     "confirm": "أكّد",
-    "signIn": "دخل"
+    "signIn": "دخل",
+    "takePhoto": "صوّر تصويرة",
+    "recordVideo": "سجّل فيديو"
   },
   "tip": {
     "title": "بعت تيب",

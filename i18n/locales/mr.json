@@ -486,7 +486,9 @@
     "test": "चाचणी",
     "anonymous": "निनावी",
     "confirm": "पुष्टी करा",
-    "signIn": "साइन इन"
+    "signIn": "साइन इन",
+    "takePhoto": "फोटो काढा",
+    "recordVideo": "व्हिडिओ रेकॉर्ड करा"
   },
   "drawers": {
     "ppvTitle": "पे पर व्ह्यू मजकूर",

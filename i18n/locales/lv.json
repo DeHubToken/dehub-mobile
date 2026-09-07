@@ -486,7 +486,9 @@
     "test": "Tests",
     "anonymous": "Anonīms",
     "confirm": "Apstiprināt",
-    "signIn": "Pieteikties"
+    "signIn": "Pieteikties",
+    "takePhoto": "Uzņemt foto",
+    "recordVideo": "Ierakstīt video"
   },
   "tip": {
     "title": "Sūtīt dzeramnaudu",

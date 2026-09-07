@@ -486,7 +486,9 @@
     "test": "Sınaq",
     "anonymous": "Anonim",
     "confirm": "Təsdiqlə",
-    "signIn": "Daxil ol"
+    "signIn": "Daxil ol",
+    "takePhoto": "Foto çək",
+    "recordVideo": "Video çək"
   },
   "tip": {
     "title": "Bəxşiş Göndər",

@@ -486,7 +486,9 @@
     "test": "Teszt",
     "anonymous": "Névtelen",
     "confirm": "Megerősítés",
-    "signIn": "Bejelentkezés"
+    "signIn": "Bejelentkezés",
+    "takePhoto": "Fénykép készítése",
+    "recordVideo": "Videó felvétele"
   },
   "drawers": {
     "ppvTitle": "Fizetés megtekintésenként",

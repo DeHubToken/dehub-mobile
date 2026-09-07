@@ -486,7 +486,9 @@
     "test": "בדיקה",
     "anonymous": "אנונימי",
     "confirm": "אישור",
-    "signIn": "התחברות"
+    "signIn": "התחברות",
+    "takePhoto": "צלם תמונה",
+    "recordVideo": "צלם וידאו"
   },
   "drawers": {
     "ppvTitle": "תוכן בתשלום",

@@ -486,7 +486,9 @@
     "test": "Сынақ",
     "anonymous": "Аноним",
     "confirm": "Растау",
-    "signIn": "Кіру"
+    "signIn": "Кіру",
+    "takePhoto": "Фото түсіру",
+    "recordVideo": "Бейне жазу"
   },
   "tip": {
     "title": "Тип жіберу",

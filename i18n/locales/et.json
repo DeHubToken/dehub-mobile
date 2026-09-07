@@ -486,7 +486,9 @@
     "test": "Test",
     "anonymous": "Anonüümne",
     "confirm": "Kinnita",
-    "signIn": "Logi sisse"
+    "signIn": "Logi sisse",
+    "takePhoto": "Tee foto",
+    "recordVideo": "Salvesta video"
   },
   "tip": {
     "title": "Saada jootraha",

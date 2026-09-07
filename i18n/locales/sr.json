@@ -486,7 +486,9 @@
     "test": "Тест",
     "anonymous": "Анонимно",
     "confirm": "Потврди",
-    "signIn": "Пријава"
+    "signIn": "Пријава",
+    "takePhoto": "Сними фотографију",
+    "recordVideo": "Сними видео"
   },
   "drawers": {
     "ppvTitle": "Плаћање по гледању",

@@ -95,7 +95,9 @@
     "retry": "ลองใหม่",
     "test": "ทดสอบ",
     "anonymous": "ไม่ระบุชื่อ",
-    "signIn": "เข้าสู่ระบบ"
+    "signIn": "เข้าสู่ระบบ",
+    "takePhoto": "ถ่ายรูป",
+    "recordVideo": "บันทึกวิดีโอ"
   },
   "glossary": {
     "title": "อภิธานศัพท์",
