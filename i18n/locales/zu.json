@@ -1188,7 +1188,17 @@
     "payments": "Izinkokhelo",
     "claimBounty": "Thatha umklomelo wakho",
     "noneForFilter": "Azikho izaziso ze-{{filter}} okwamanje.",
-    "andNOthers": "nabanye abangu-{{count}}"
+    "andNOthers": "nabanye abangu-{{count}}",
+    "community": {
+      "joined": "{{name}} ujoyine umphakathi wakini",
+      "joinedNamed": "{{name}} ujoyine \"{{community}}\"",
+      "requested": "{{name}} ucele ukujoyina umphakathi wakini",
+      "requestedNamed": "{{name}} ucele ukujoyina \"{{community}}\"",
+      "mentioned": "{{name}} ukhulume ngawe emphakathini",
+      "mentionedNamed": "{{name}} kukushilo kokuthi “{{community}}”",
+      "here": "{{name}} uthumele umyalezo kuwo wonke umuntu emphakathini",
+      "hereNamed": "{{name}} uthumele umyalezo kuwo wonke umuntu kokuthi “{{community}}”"
+    }
   },
   "leaderboard": {
     "title": "Bhodi Yabaholi",

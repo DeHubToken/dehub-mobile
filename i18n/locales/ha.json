@@ -1187,7 +1187,13 @@
     "payments": "Biyan kuɗi",
     "claimBounty": "Karɓi ladanka",
     "noneForFilter": "Babu sanarwar {{filter}} tukuna.",
-    "andNOthers": "da wasu {{count}}"
+    "andNOthers": "da wasu {{count}}",
+    "community": {
+      "joinedNamed": "{{name}} shiga “{{community}}@”",
+      "requested": "{{name}} an nemi shiga cikin al'ummar ku",
+      "mentioned": "{{name}} ya ambace ku a cikin al'umma",
+      "here": "{{name}} saƙon kowa a cikin al'umma"
+    }
   },
   "leaderboard": {
     "title": "Jadawalin Matsayi",

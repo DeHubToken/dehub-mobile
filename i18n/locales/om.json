@@ -1138,7 +1138,17 @@
     "payments": "Kaffaltiiwwan",
     "claimBounty": "Badhaasa kee fudhadhu",
     "noneForFilter": "Ammaan tana beeksisni {{filter}} hin jiru.",
-    "andNOthers": "fi kanneen {{count}}"
+    "andNOthers": "fi kanneen {{count}}",
+    "community": {
+      "joined": "{{name}} hawaasa keessanitti makame",
+      "joinedNamed": "{{name}} “{{community}}”tti makame.",
+      "requested": "{{name}} hawaasa keessanitti makamuuf gaafatan",
+      "requestedNamed": "{{name}} “{{community}}”tti akka makamaniif gaafatan.",
+      "mentioned": "{{name}} hawaasa tokko keessatti si kaase",
+      "mentionedNamed": "{{name}} “{{community}}” keessatti si kaase.",
+      "here": "{{name}} hawaasa keessa jiru hundaaf ergaa dabarseera",
+      "hereNamed": "{{name}} “{{community}}” jechuun hundaaf ergaa dabarseera."
+    }
   },
   "leaderboard": {
     "title": "Sadarkaa",

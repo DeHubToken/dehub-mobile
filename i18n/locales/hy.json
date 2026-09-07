@@ -1185,7 +1185,17 @@
     "payments": "Վճարումներ",
     "claimBounty": "Ստացեք ձեր պարգևը",
     "noneForFilter": "Դեռ {{filter}} ծանուցումներ չկան։",
-    "andNOthers": "և ևս {{count}}"
+    "andNOthers": "և ևս {{count}}",
+    "community": {
+      "joined": "{{name}}@ միացավ ձեր համայնքին",
+      "joinedNamed": "{{name}}@ միացել է «@{{community}}»- ին",
+      "requested": "{{name}}-ը խնդրել է միանալ ձեր համայնքին",
+      "requestedNamed": "{{name}}@-ը խնդրեց միանալ «@{{community}}»-ին",
+      "mentioned": "{{name}}-ը նշել է ձեզ համայնքում",
+      "mentionedNamed": "{{name}}-ը նշել է ձեզ «@{{community}}»- ում",
+      "here": "{{name}}@ հաղորդագրություն ուղարկեց համայնքի բոլոր անդամներին",
+      "hereNamed": "{{name}}@-ը բոլորին հաղորդագրություն է ուղարկել «@{{community}}»- ում"
+    }
   },
   "messages": {
     "smartRepliesOff": "Առաջարկվող պատասխանները անջատված են",

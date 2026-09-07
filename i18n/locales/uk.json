@@ -1877,7 +1877,17 @@
     "payments": "Платежі",
     "claimBounty": "Забрати винагороду",
     "noneForFilter": "Сповіщень ({{filter}}) поки немає.",
-    "andNOthers": "і ще {{count}}"
+    "andNOthers": "і ще {{count}}",
+    "community": {
+      "joined": "{{name}} приєднався (-лась) до вашої спільноти",
+      "joinedNamed": "{{name}} приєднався (-лась) до “{{community}}”",
+      "requested": "{{name}} попросив (-ла) приєднатися до вашої спільноти",
+      "requestedNamed": "{{name}} попросив (-ла) приєднатися до “{{community}}”",
+      "mentioned": "{{name}} згадав (-ла) про вас у спільноті",
+      "mentionedNamed": "{{name}} згадав (-ла) про Вас у розділі \"{{community}}\"",
+      "here": "{{name}} надіслали повідомлення всім учасникам спільноти",
+      "hereNamed": "{{name}} надіслали всім повідомлення в розділі «{{community}}»"
+    }
   },
   "messages": {
     "smartRepliesOff": "Запропоновані відповіді вимкнено",

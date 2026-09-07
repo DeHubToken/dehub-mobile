@@ -1103,7 +1103,10 @@
     "payments": "Төлемдер",
     "claimBounty": "Сыйақыңызды алыңыз",
     "noneForFilter": "Әзірге {{filter}} хабарландырулары жоқ.",
-    "andNOthers": "және тағы {{count}}"
+    "andNOthers": "және тағы {{count}}",
+    "community": {
+      "here": "{{name}} қауымдастықтағы барлық адамдарға хабарлама жіберді"
+    }
   },
   "leaderboard": {
     "title": "Рейтинг",

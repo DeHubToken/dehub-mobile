@@ -1605,7 +1605,17 @@
     "payments": "Mga bayad",
     "claimBounty": "Kunin ang iyong gantimpala",
     "noneForFilter": "Wala pang {{filter}} na notipikasyon.",
-    "andNOthers": "at {{count}} pa"
+    "andNOthers": "at {{count}} pa",
+    "community": {
+      "joined": "Sumali sa iyong komunidad si {{name}}",
+      "joinedNamed": "Sumali si {{name}} sa “{{community}}”",
+      "requested": "Hiniling ni {{name}} na sumali sa iyong komunidad",
+      "requestedNamed": "Hiniling ni {{name}} na sumali sa “{{community}}”",
+      "mentioned": "Binanggit ka ni {{name}} sa isang komunidad",
+      "mentionedNamed": "Binanggit ka ni {{name}} sa “{{community}}”",
+      "here": "Nagpadala ng mensahe si {{name}} sa lahat ng tao sa komunidad",
+      "hereNamed": "Nagpadala ang {{name}} ng mensahe sa lahat sa “{{community}}”"
+    }
   },
   "messages": {
     "smartRepliesOff": "Naka-off na ang mga iminungkahing sagot",

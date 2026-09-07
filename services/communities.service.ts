@@ -87,11 +87,22 @@ export async function getUserCommunities(walletAddress: string): Promise<UserCom
   return (data ?? []) as unknown as UserCommunityRow[];
 }
 
+/**
+ * A community by its slug — or by its uuid.
+ *
+ * Notification rows carry whichever form the join trigger was writing at the
+ * time, and it has written both. Web's useCommunity already resolves either;
+ * this did not, so a tapped "joined your community" whose row stored a uuid
+ * opened an empty screen. The route key is a slug everywhere else, so the
+ * uuid shape is detected rather than guessed at with two round trips.
+ */
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export async function getCommunityBySlug(slug: string): Promise<Community | null> {
   const { data, error } = await supabase
     .from("communities")
     .select("*")
-    .eq("slug", slug)
+    .eq(UUID.test(slug) ? "id" : "slug", slug)
     .maybeSingle();
   if (error) throw error;
   return (data as unknown as Community) ?? null;

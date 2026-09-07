@@ -1123,7 +1123,17 @@
     "payments": "المدفوعات",
     "claimBounty": "استلم مكافأتك",
     "noneForFilter": "مفيش إشعارات {{filter}} لسه.",
-    "andNOthers": "و {{count}} غيرهم"
+    "andNOthers": "و {{count}} غيرهم",
+    "community": {
+      "joined": "{{name}} انضم لـ مجتمعك",
+      "joinedNamed": "{{name}} انضم لـ \"{{community}}\"",
+      "requested": "{{name}} طلب الانضمام لـ مجتمعك",
+      "requestedNamed": "{{name}} طلب الانضمام لـ \"{{community}}\"",
+      "mentioned": "{{name}} عمل لك منشن في مجتمع",
+      "mentionedNamed": "{{name}} عمل لك منشن في \"{{community}}\"",
+      "here": "{{name}} بعت رسالة لكل الناس في المجتمع",
+      "hereNamed": "{{name}} بعت رسالة لكل الناس في \"{{community}}\""
+    }
   },
   "leaderboard": {
     "title": "لوحة الترتيب",

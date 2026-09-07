@@ -1186,7 +1186,17 @@
     "payments": "Pagos",
     "claimBounty": "Reclama tu recompensa",
     "noneForFilter": "Aún no hay notificaciones de {{filter}}.",
-    "andNOthers": "y {{count}} más"
+    "andNOthers": "y {{count}} más",
+    "community": {
+      "joined": "{{name}} se unió a tu comunidad",
+      "joinedNamed": "{{name}} se unió a “{{community}}”",
+      "requested": "{{name}} ha pedido unirse a tu comunidad",
+      "requestedNamed": "{{name}} ha pedido unirse a “{{community}}”",
+      "mentioned": "{{name}} te ha mencionado en una comunidad",
+      "mentionedNamed": "{{name}} te mencionó en “{{community}}”",
+      "here": "{{name}} ha enviado un mensaje a todos los miembros de la comunidad",
+      "hereNamed": "{{name}} ha enviado un mensaje a todos en “{{community}}”"
+    }
   },
   "messages": {
     "smartRepliesOff": "Respuestas sugeridas desactivadas",

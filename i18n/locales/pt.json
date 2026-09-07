@@ -1190,7 +1190,17 @@
     "payments": "Pagamentos",
     "claimBounty": "Resgate sua recompensa",
     "noneForFilter": "Ainda não há notificações de {{filter}}.",
-    "andNOthers": "e mais {{count}}"
+    "andNOthers": "e mais {{count}}",
+    "community": {
+      "joined": "{{name}} juntou-se à sua comunidade",
+      "joinedNamed": "{{name}} juntou-se a “{{community}}”",
+      "requested": "{{name}} pediu para se juntar à sua comunidade",
+      "requestedNamed": "{{name}} pediu para participar de \"{{community}}\"",
+      "mentioned": "{{name}} mencionou-o numa comunidade",
+      "mentionedNamed": "{{name}} mencionou-o em \"{{community}}\"",
+      "here": "{{name}} enviou mensagens a todos na comunidade",
+      "hereNamed": "{{name}} enviou uma mensagem a todos em \"{{community}}\""
+    }
   },
   "leaderboard": {
     "title": "Classificação",

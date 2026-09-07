@@ -1185,7 +1185,13 @@
     "payments": "ክፍያዎች",
     "claimBounty": "ሽልማትህን ውሰድ",
     "noneForFilter": "እስካሁን የ{{filter}} ማሳወቂያ የለም።",
-    "andNOthers": "እና ሌሎች {{count}}"
+    "andNOthers": "እና ሌሎች {{count}}",
+    "community": {
+      "joinedNamed": "{{name}} ተቀላቀል “{{community}}@”",
+      "requested": "{{name}} ማህበረሰብዎን እንዲቀላቀሉ ጠይቀዋል",
+      "here": "{{name}} በማህበረሰቡ ውስጥ ላሉት ሁሉ መልእክት አስተላልፈዋል",
+      "hereNamed": "{{name}}@ በ \"{{community}}@\" ውስጥ ለሁሉም ሰው መልእክት አስተላልፏል"
+    }
   },
   "leaderboard": {
     "title": "ደረጃ ሰሌዳዎች",

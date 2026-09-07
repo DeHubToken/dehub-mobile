@@ -1128,7 +1128,17 @@
     "payments": "Ödemeler",
     "claimBounty": "Ödülünü al",
     "noneForFilter": "Henüz {{filter}} bildirimi yok.",
-    "andNOthers": "ve {{count}} kişi daha"
+    "andNOthers": "ve {{count}} kişi daha",
+    "community": {
+      "joined": "{{name}} topluluğunuza katıldı",
+      "joinedNamed": "{{name}}“{{community}}” e katıldı",
+      "requested": "{{name}} topluluğunuza katılmak istedi",
+      "requestedNamed": "{{name}}“{{community}}” e katılmak istedi",
+      "mentioned": "{{name}} bir toplulukta sizden bahsetti",
+      "mentionedNamed": "{{name}} senden “{{community}}” de bahsetti",
+      "here": "{{name}} topluluktaki herkese mesaj gönderdi",
+      "hereNamed": "{{name}}“{{community}}” içindeki herkese mesaj gönderdi"
+    }
   },
   "leaderboard": {
     "title": "Sıralama Tablosu",

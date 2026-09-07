@@ -1125,7 +1125,13 @@
     "payments": "Ngā utu",
     "claimBounty": "Tīkina tō utu",
     "noneForFilter": "Kāore anō he whakamōhiotanga {{filter}}.",
-    "andNOthers": "me ētahi atu {{count}}"
+    "andNOthers": "me ētahi atu {{count}}",
+    "community": {
+      "joined": "{{name}} hono atu ki to hapori",
+      "requested": "{{name}} ka tono kia uru atu ki to hapori",
+      "mentioned": "{{name}} korero ki a koe i roto i te hapori",
+      "here": "{{name}} karere katoa i roto i te hapori"
+    }
   },
   "leaderboard": {
     "title": "Rārangi Rangatira",

@@ -1124,7 +1124,10 @@
     "payments": "Ödənişlər",
     "claimBounty": "Mükafatını al",
     "noneForFilter": "Hələ {{filter}} bildirişi yoxdur.",
-    "andNOthers": "və daha {{count}} nəfər"
+    "andNOthers": "və daha {{count}} nəfər",
+    "community": {
+      "here": "{{name}} icmadakı hər kəsə mesaj yazdı"
+    }
   },
   "leaderboard": {
     "title": "Lider Lövhəsi",

@@ -1649,7 +1649,17 @@
     "payments": "Betalingen",
     "claimBounty": "Claim je beloning",
     "noneForFilter": "Nog geen {{filter}}-meldingen.",
-    "andNOthers": "en {{count}} anderen"
+    "andNOthers": "en {{count}} anderen",
+    "community": {
+      "joined": "{{name}} is lid geworden van je community",
+      "joinedNamed": "{{name}} sloot zich aan bij “{{community}}”",
+      "requested": "{{name}} gevraagd om lid te worden van je community",
+      "requestedNamed": "{{name}} gevraagd om lid te worden van \"{{community}}\"",
+      "mentioned": "{{name}} heeft je genoemd in een community",
+      "mentionedNamed": "{{name}} heeft u vermeld in \"{{community}}\"",
+      "here": "{{name}} heeft iedereen in de community een bericht gestuurd",
+      "hereNamed": "{{name}} heeft iedereen in \"{{community}}\" een bericht gestuurd"
+    }
   },
   "messages": {
     "smartRepliesOff": "Voorgestelde antwoorden uitgezet",

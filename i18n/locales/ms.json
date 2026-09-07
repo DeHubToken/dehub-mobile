@@ -1657,7 +1657,17 @@
     "payments": "Pembayaran",
     "claimBounty": "Tuntut ganjaran anda",
     "noneForFilter": "Belum ada pemberitahuan {{filter}}.",
-    "andNOthers": "dan {{count}} lagi"
+    "andNOthers": "dan {{count}} lagi",
+    "community": {
+      "joined": "{{name}} menyertai komuniti anda",
+      "joinedNamed": "{{name}} menyertai “{{community}}”",
+      "requested": "{{name}} meminta untuk menyertai komuniti anda",
+      "requestedNamed": "{{name}} diminta untuk menyertai “{{community}}”",
+      "mentioned": "{{name}} menyebut anda dalam komuniti",
+      "mentionedNamed": "{{name}} menyebut anda dalam “{{community}}”",
+      "here": "{{name}} menghantar mesej kepada semua orang dalam komuniti",
+      "hereNamed": "{{name}} menghantar mesej kepada semua orang dalam “{{community}}”"
+    }
   },
   "messages": {
     "smartRepliesOff": "Balasan yang dicadangkan dimatikan",

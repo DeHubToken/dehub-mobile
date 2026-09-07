@@ -1405,7 +1405,17 @@
     "payments": "Plăți",
     "claimBounty": "Revendică recompensa",
     "noneForFilter": "Nicio notificare {{filter}} încă.",
-    "andNOthers": "și încă {{count}}"
+    "andNOthers": "și încă {{count}}",
+    "community": {
+      "joined": "{{name}} s-a alăturat comunității tale",
+      "joinedNamed": "{{name}} s-a alăturat “{{community}}”",
+      "requested": "{{name}} a solicitat să se alăture comunității tale",
+      "requestedNamed": "{{name}} a cerut să se alăture “{{community}}”",
+      "mentioned": "{{name}} te-a menționat într-o comunitate",
+      "mentionedNamed": "{{name}} te-a menționat în “{{community}}”",
+      "here": "{{name}} a trimis mesaje tuturor membrilor comunității",
+      "hereNamed": "{{name}} a trimis mesaje tuturor celor din “{{community}}”"
+    }
   },
   "messages": {
     "smartRepliesOff": "Răspunsurile sugerate au fost dezactivate",

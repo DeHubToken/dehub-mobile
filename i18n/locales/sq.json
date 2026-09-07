@@ -1125,7 +1125,17 @@
     "payments": "Pagesat",
     "claimBounty": "Merr shpërblimin tënd",
     "noneForFilter": "Ende nuk ka njoftime {{filter}}.",
-    "andNOthers": "dhe {{count}} të tjerë"
+    "andNOthers": "dhe {{count}} të tjerë",
+    "community": {
+      "joined": "{{name}} u bashkua me komunitetin tënd",
+      "joinedNamed": "{{name}} u bashkua me “{{community}}”",
+      "requested": "{{name}} të kërkuar për t 'u bashkuar me komunitetin tënd",
+      "requestedNamed": "{{name}} kërkoi të bashkohet me “{{community}}”",
+      "mentioned": "{{name}} të përmendi në një komunitet",
+      "mentionedNamed": "{{name}} të përmendi në “{{community}}”",
+      "here": "{{name}} u dërgoi mesazhe të gjithëve në komunitet",
+      "hereNamed": "{{name}} u dërgoi mesazhe të gjithëve në “{{community}}”"
+    }
   },
   "leaderboard": {
     "title": "Tabela e Liderëve",

@@ -1096,7 +1096,17 @@
     "payments": "Betalinger",
     "claimBounty": "Hent din dusør",
     "noneForFilter": "Ingen {{filter}}-notifikationer endnu.",
-    "andNOthers": "og {{count}} andre"
+    "andNOthers": "og {{count}} andre",
+    "community": {
+      "joined": "{{name}} tilsluttede sig dit netværk",
+      "joinedNamed": "{{name}} tilmeldte sig \"{{community}}\"",
+      "requested": "{{name}} blev bedt om at tilmelde sig dit fællesskab",
+      "requestedNamed": "{{name}} bad om at tilmelde sig \"{{community}}\"",
+      "mentioned": "{{name}} nævnte dig i et netværk",
+      "mentionedNamed": "{{name}} nævnte dig i \"{{community}}\"",
+      "here": "{{name}} sendte beskeder til alle i netværket",
+      "hereNamed": "{{name}} sendte beskeder til alle i \"{{community}}\""
+    }
   },
   "leaderboard": {
     "title": "Rangliste",

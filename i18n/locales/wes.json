@@ -1123,7 +1123,17 @@
     "payments": "Payments",
     "claimBounty": "Collect your bounty",
     "noneForFilter": "No {{filter}} notification yet.",
-    "andNOthers": "and {{count}} others"
+    "andNOthers": "and {{count}} others",
+    "community": {
+      "joined": "{{name}} join your community",
+      "joinedNamed": "{{name}} join “{{community}}”",
+      "requested": "{{name}} ask to join your community",
+      "requestedNamed": "{{name}} ask to join “{{community}}”",
+      "mentioned": "{{name}} mention you for community",
+      "mentionedNamed": "{{name}} mention you for “{{community}}”",
+      "here": "{{name}} send message to everybody for community",
+      "hereNamed": "{{name}} send message to everybody for “{{community}}”"
+    }
   },
   "leaderboard": {
     "title": "Leaderboards",
