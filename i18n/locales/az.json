@@ -2527,5 +2527,21 @@
     "failed": "Altyazılar yaradıla bilmədi.",
     "preparing": "Altyazılar hazırlanır.",
     "fixLine": "Cari sətri düzəlt"
+  },
+  "paywall": {
+    "subtitle": "Model seçin və ödənişi təsdiqləyin",
+    "generate": "Yarat",
+    "run": "İşlət",
+    "paymentConfirmed": "Ödəniş təsdiqləndi — yaradılır",
+    "paymentFailed": "Ödəniş alınmadı",
+    "paying": "Ödənilir…",
+    "generating": "Yaradılır…",
+    "buyDhb": "DHB al",
+    "payAmount": "{{amount}} DHB ödə və {{action}}",
+    "stakerDiscount": "Staker endirimi",
+    "total": "Cəmi",
+    "pricing": "Bu icra qiymətləndirilir…",
+    "payWithDhb": "DHB ilə ödə",
+    "yourDhb": "Sənin DHB-n"
   }
 }

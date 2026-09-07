@@ -2576,5 +2576,21 @@
     "failed": "Impossibile generare i sottotitoli.",
     "preparing": "I sottotitoli sono in preparazione.",
     "fixLine": "Correggi la riga corrente"
+  },
+  "paywall": {
+    "subtitle": "Scegli un modello e conferma il pagamento",
+    "generate": "Genera",
+    "run": "Esegui",
+    "paymentConfirmed": "Pagamento confermato — generazione in corso",
+    "paymentFailed": "Pagamento non riuscito",
+    "paying": "Pagamento…",
+    "generating": "Generazione…",
+    "buyDhb": "Compra DHB",
+    "payAmount": "Paga {{amount}} DHB e {{action}}",
+    "stakerDiscount": "Sconto staker",
+    "total": "Totale",
+    "pricing": "Calcolo del prezzo…",
+    "payWithDhb": "Paga con DHB",
+    "yourDhb": "I tuoi DHB"
   }
 }

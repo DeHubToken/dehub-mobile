@@ -2577,5 +2577,21 @@
     "failed": "字幕を作成できませんでした。",
     "preparing": "字幕を準備中です。",
     "fixLine": "この行を修正"
+  },
+  "paywall": {
+    "subtitle": "モデルを選択して支払いを確認",
+    "generate": "生成",
+    "run": "実行",
+    "paymentConfirmed": "支払い確認済み — 生成中",
+    "paymentFailed": "支払いに失敗しました",
+    "paying": "支払い中…",
+    "generating": "生成中…",
+    "buyDhb": "DHB を購入",
+    "payAmount": "{{amount}} DHB を支払って{{action}}",
+    "stakerDiscount": "ステーカー割引",
+    "total": "合計",
+    "pricing": "料金を計算中…",
+    "payWithDhb": "DHB で支払う",
+    "yourDhb": "保有 DHB"
   }
 }

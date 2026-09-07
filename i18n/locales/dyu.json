@@ -2527,5 +2527,21 @@
     "failed": "Sɛbɛnni ma se ka dilan.",
     "preparing": "Sɛbɛnni bɛ labɛn.",
     "fixLine": "Nin sira in latilen"
+  },
+  "paywall": {
+    "subtitle": "Modɛli dɔ sugandi ka sara jɔnjɔn",
+    "generate": "Dilan",
+    "run": "Boli",
+    "paymentConfirmed": "Sara jɔnjɔnna — dilanni bɛ kɛ",
+    "paymentFailed": "Sara ma ɲɛ",
+    "paying": "Sara bɛ kɛ…",
+    "generating": "Dilanni bɛ kɛ…",
+    "buyDhb": "DHB san",
+    "payAmount": "{{amount}} DHB sara ka {{action}}",
+    "stakerDiscount": "Staker sɔngɔ jigin",
+    "total": "Bɛɛ lajɛlen",
+    "pricing": "Sɔngɔ bɛ jate…",
+    "payWithDhb": "Sara ni DHB ye",
+    "yourDhb": "I ka DHB"
   }
 }

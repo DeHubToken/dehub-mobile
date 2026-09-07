@@ -2527,5 +2527,21 @@
     "failed": "Ba a iya ƙirƙirar fassarar ba.",
     "preparing": "Ana shirya fassarar.",
     "fixLine": "Gyara layin da ake ciki"
+  },
+  "paywall": {
+    "subtitle": "Zaɓi samfuri ka tabbatar da biyan kuɗi",
+    "generate": "Ƙirƙira",
+    "run": "Gudanar",
+    "paymentConfirmed": "An tabbatar da biyan kuɗi — ana ƙirƙira",
+    "paymentFailed": "Biyan kuɗi ya gaza",
+    "paying": "Ana biya…",
+    "generating": "Ana ƙirƙira…",
+    "buyDhb": "Sayi DHB",
+    "payAmount": "Biya {{amount}} DHB kuma {{action}}",
+    "stakerDiscount": "Rangwamen staker",
+    "total": "Jimla",
+    "pricing": "Ana lissafa farashi…",
+    "payWithDhb": "Biya da DHB",
+    "yourDhb": "DHB naka"
   }
 }

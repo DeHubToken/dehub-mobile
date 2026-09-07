@@ -2531,5 +2531,21 @@
     "failed": "ਸਬਟਾਈਟਲ ਨਹੀਂ ਬਣ ਸਕੇ।",
     "preparing": "ਸਬਟਾਈਟਲ ਤਿਆਰ ਹੋ ਰਹੇ ਹਨ।",
     "fixLine": "ਮੌਜੂਦਾ ਲਾਈਨ ਠੀਕ ਕਰੋ"
+  },
+  "paywall": {
+    "subtitle": "ਮਾਡਲ ਚੁਣੋ ਅਤੇ ਭੁਗਤਾਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
+    "generate": "ਬਣਾਓ",
+    "run": "ਚਲਾਓ",
+    "paymentConfirmed": "ਭੁਗਤਾਨ ਪੁਸ਼ਟੀ — ਬਣ ਰਿਹਾ ਹੈ",
+    "paymentFailed": "ਭੁਗਤਾਨ ਅਸਫਲ",
+    "paying": "ਭੁਗਤਾਨ ਹੋ ਰਿਹਾ…",
+    "generating": "ਬਣ ਰਿਹਾ ਹੈ…",
+    "buyDhb": "DHB ਖਰੀਦੋ",
+    "payAmount": "{{amount}} DHB ਦਿਓ ਅਤੇ {{action}}",
+    "stakerDiscount": "ਸਟੇਕਰ ਛੋਟ",
+    "total": "ਕੁੱਲ",
+    "pricing": "ਕੀਮਤ ਕੱਢੀ ਜਾ ਰਹੀ ਹੈ…",
+    "payWithDhb": "DHB ਨਾਲ ਭੁਗਤਾਨ ਕਰੋ",
+    "yourDhb": "ਤੁਹਾਡਾ DHB"
   }
 }

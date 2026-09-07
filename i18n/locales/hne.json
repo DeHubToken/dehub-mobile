@@ -2570,5 +2570,21 @@
     "failed": "सबटाइटल नइ बन सकिस।",
     "preparing": "सबटाइटल तइयार होवत हे।",
     "fixLine": "ए लाइन ल ठीक करव"
+  },
+  "paywall": {
+    "subtitle": "मॉडल चुनव अउ भुगतान पक्का करव",
+    "generate": "बनाव",
+    "run": "चलाव",
+    "paymentConfirmed": "भुगतान पक्का — बनत हे",
+    "paymentFailed": "भुगतान फेल होगे",
+    "paying": "भुगतान होवत हे…",
+    "generating": "बनत हे…",
+    "buyDhb": "DHB खरीदव",
+    "payAmount": "{{amount}} DHB देव अउ {{action}}",
+    "stakerDiscount": "स्टेकर छूट",
+    "total": "कुल",
+    "pricing": "दाम निकालत हे…",
+    "payWithDhb": "DHB ले भुगतान करव",
+    "yourDhb": "तोर DHB"
   }
 }

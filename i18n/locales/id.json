@@ -2576,5 +2576,21 @@
     "failed": "Subtitel tidak dapat dibuat.",
     "preparing": "Subtitel sedang disiapkan.",
     "fixLine": "Perbaiki baris ini"
+  },
+  "paywall": {
+    "subtitle": "Pilih model dan konfirmasi pembayaran",
+    "generate": "Buat",
+    "run": "Jalankan",
+    "paymentConfirmed": "Pembayaran dikonfirmasi — membuat",
+    "paymentFailed": "Pembayaran gagal",
+    "paying": "Membayar…",
+    "generating": "Membuat…",
+    "buyDhb": "Beli DHB",
+    "payAmount": "Bayar {{amount}} DHB & {{action}}",
+    "stakerDiscount": "Diskon staker",
+    "total": "Total",
+    "pricing": "Menghitung harga…",
+    "payWithDhb": "Bayar dengan DHB",
+    "yourDhb": "DHB Anda"
   }
 }

@@ -2530,5 +2530,21 @@
     "failed": "לא ניתן היה ליצור כתוביות.",
     "preparing": "הכתוביות בהכנה.",
     "fixLine": "תקן את השורה הנוכחית"
+  },
+  "paywall": {
+    "subtitle": "בחר מודל ואשר את התשלום",
+    "generate": "צור",
+    "run": "הפעל",
+    "paymentConfirmed": "התשלום אושר — יוצר",
+    "paymentFailed": "התשלום נכשל",
+    "paying": "משלם…",
+    "generating": "יוצר…",
+    "buyDhb": "קנה DHB",
+    "payAmount": "שלם {{amount}} DHB ו{{action}}",
+    "stakerDiscount": "הנחת סטייקר",
+    "total": "סה\"כ",
+    "pricing": "מחשב מחיר…",
+    "payWithDhb": "שלם ב-DHB",
+    "yourDhb": "ה-DHB שלך"
   }
 }

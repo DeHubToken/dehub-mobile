@@ -2793,5 +2793,21 @@
     "failed": "Sari kata tidak dapat dijana.",
     "preparing": "Sari kata sedang disediakan.",
     "fixLine": "Betulkan baris semasa"
+  },
+  "paywall": {
+    "subtitle": "Pilih model dan sahkan pembayaran",
+    "generate": "Jana",
+    "run": "Jalankan",
+    "paymentConfirmed": "Pembayaran disahkan — menjana",
+    "paymentFailed": "Pembayaran gagal",
+    "paying": "Membayar…",
+    "generating": "Menjana…",
+    "buyDhb": "Beli DHB",
+    "payAmount": "Bayar {{amount}} DHB & {{action}}",
+    "stakerDiscount": "Diskaun staker",
+    "total": "Jumlah",
+    "pricing": "Mengira harga…",
+    "payWithDhb": "Bayar dengan DHB",
+    "yourDhb": "DHB anda"
   }
 }

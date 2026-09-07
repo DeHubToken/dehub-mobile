@@ -2520,5 +2520,21 @@
     "failed": "سب ٹائٹل نئیں بن سکے۔",
     "preparing": "سب ٹائٹل تیار ہو رہے ہیں۔",
     "fixLine": "اس لائن کو ٹھیک کرو"
+  },
+  "paywall": {
+    "subtitle": "ماڈل چنو اور ادائیگی کنفرم کرو",
+    "generate": "بناؤ",
+    "run": "چلاؤ",
+    "paymentConfirmed": "ادائیگی کنفرم — بن رہا ہے",
+    "paymentFailed": "ادائیگی فیل",
+    "paying": "ادائیگی ہو رہی ہے…",
+    "generating": "بن رہا ہے…",
+    "buyDhb": "DHB خریدو",
+    "payAmount": "{{amount}} DHB دو اور {{action}}",
+    "stakerDiscount": "اسٹیکر رعایت",
+    "total": "کل",
+    "pricing": "قیمت نکالی جا رہی ہے…",
+    "payWithDhb": "DHB سے ادائیگی کرو",
+    "yourDhb": "تمہارا DHB"
   }
 }

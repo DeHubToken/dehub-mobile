@@ -2582,5 +2582,21 @@
     "failed": "Subtitrlar yaratib bo‘lmadi.",
     "preparing": "Subtitrlar tayyorlanmoqda.",
     "fixLine": "Joriy qatorni tuzatish"
+  },
+  "paywall": {
+    "subtitle": "Modelni tanlab, to‘lovni tasdiqlang",
+    "generate": "Yaratish",
+    "run": "Ishga tushirish",
+    "paymentConfirmed": "To‘lov tasdiqlandi — yaratilmoqda",
+    "paymentFailed": "To‘lov amalga oshmadi",
+    "paying": "To‘lanmoqda…",
+    "generating": "Yaratilmoqda…",
+    "buyDhb": "DHB sotib olish",
+    "payAmount": "{{amount}} DHB to‘lab {{action}}",
+    "stakerDiscount": "Staker chegirmasi",
+    "total": "Jami",
+    "pricing": "Narx hisoblanmoqda…",
+    "payWithDhb": "DHB bilan to‘lash",
+    "yourDhb": "Sizning DHB"
   }
 }

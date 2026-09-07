@@ -2579,5 +2579,21 @@
     "failed": "تعذّر إنشاء الترجمة.",
     "preparing": "جارٍ تجهيز الترجمة.",
     "fixLine": "تصحيح السطر الحالي"
+  },
+  "paywall": {
+    "subtitle": "اختر نموذجًا وأكّد الدفع",
+    "generate": "إنشاء",
+    "run": "تشغيل",
+    "paymentConfirmed": "تم تأكيد الدفع — جارٍ الإنشاء",
+    "paymentFailed": "فشل الدفع",
+    "paying": "جارٍ الدفع…",
+    "generating": "جارٍ الإنشاء…",
+    "buyDhb": "شراء DHB",
+    "payAmount": "ادفع {{amount}} DHB و{{action}}",
+    "stakerDiscount": "خصم المُراهنين",
+    "total": "الإجمالي",
+    "pricing": "جارٍ تسعير هذا التشغيل…",
+    "payWithDhb": "الدفع بـ DHB",
+    "yourDhb": "رصيدك من DHB"
   }
 }

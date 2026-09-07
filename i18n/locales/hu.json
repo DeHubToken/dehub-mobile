@@ -2531,5 +2531,21 @@
     "failed": "A feliratokat nem sikerült elkészíteni.",
     "preparing": "A feliratok készülnek.",
     "fixLine": "Aktuális sor javítása"
+  },
+  "paywall": {
+    "subtitle": "Válassz modellt és erősítsd meg a fizetést",
+    "generate": "Létrehozás",
+    "run": "Futtatás",
+    "paymentConfirmed": "Fizetés megerősítve — készül",
+    "paymentFailed": "A fizetés sikertelen",
+    "paying": "Fizetés…",
+    "generating": "Készül…",
+    "buyDhb": "DHB vásárlása",
+    "payAmount": "{{amount}} DHB fizetése és {{action}}",
+    "stakerDiscount": "Staker kedvezmény",
+    "total": "Összesen",
+    "pricing": "Árazás folyamatban…",
+    "payWithDhb": "Fizetés DHB-vel",
+    "yourDhb": "A te DHB-d"
   }
 }

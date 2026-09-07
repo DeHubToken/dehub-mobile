@@ -2527,5 +2527,21 @@
     "failed": "Kāore i taea te hanga hauraro.",
     "preparing": "Kei te whakaritea ngā hauraro.",
     "fixLine": "Whakatikaina te rārangi o nāianei"
+  },
+  "paywall": {
+    "subtitle": "Kōwhiria he tauira ka whakaū i te utu",
+    "generate": "Hanga",
+    "run": "Whakahaere",
+    "paymentConfirmed": "Kua whakaūngia te utu — e hanga ana",
+    "paymentFailed": "I rahua te utu",
+    "paying": "E utu ana…",
+    "generating": "E hanga ana…",
+    "buyDhb": "Hoko DHB",
+    "payAmount": "Utua {{amount}} DHB ka {{action}}",
+    "stakerDiscount": "Whakahekenga staker",
+    "total": "Tapeke",
+    "pricing": "E tatau ana i te utu…",
+    "payWithDhb": "Utu mā te DHB",
+    "yourDhb": "Ō DHB"
   }
 }

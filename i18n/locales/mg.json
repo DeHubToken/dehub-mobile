@@ -2626,5 +2626,21 @@
     "failed": "Tsy afaka namorona dikan-teny.",
     "preparing": "Efa omanina ny dikan-teny.",
     "fixLine": "Ahitsio ity andalana ity"
+  },
+  "paywall": {
+    "subtitle": "Mifidiana modely ary hamarino ny fandoavam-bola",
+    "generate": "Mamorona",
+    "run": "Ampandehano",
+    "paymentConfirmed": "Voamarina ny fandoavana — mamorona",
+    "paymentFailed": "Tsy nahomby ny fandoavana",
+    "paying": "Mandoa…",
+    "generating": "Mamorona…",
+    "buyDhb": "Mividy DHB",
+    "payAmount": "Aloavy {{amount}} DHB ary {{action}}",
+    "stakerDiscount": "Fihenam-bidy staker",
+    "total": "Totaly",
+    "pricing": "Mikajy ny vidiny…",
+    "payWithDhb": "Mandoa amin'ny DHB",
+    "yourDhb": "Ny DHB-nao"
   }
 }

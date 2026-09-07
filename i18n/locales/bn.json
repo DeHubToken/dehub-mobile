@@ -2527,5 +2527,21 @@
     "failed": "সাবটাইটেল তৈরি করা যায়নি।",
     "preparing": "সাবটাইটেল তৈরি হচ্ছে।",
     "fixLine": "এই লাইনটি ঠিক করুন"
+  },
+  "paywall": {
+    "subtitle": "একটি মডেল বেছে নিন এবং পেমেন্ট নিশ্চিত করুন",
+    "generate": "তৈরি করুন",
+    "run": "চালান",
+    "paymentConfirmed": "পেমেন্ট নিশ্চিত — তৈরি হচ্ছে",
+    "paymentFailed": "পেমেন্ট ব্যর্থ",
+    "paying": "পেমেন্ট হচ্ছে…",
+    "generating": "তৈরি হচ্ছে…",
+    "buyDhb": "DHB কিনুন",
+    "payAmount": "{{amount}} DHB দিন এবং {{action}}",
+    "stakerDiscount": "স্টেকার ছাড়",
+    "total": "মোট",
+    "pricing": "মূল্য নির্ধারণ হচ্ছে…",
+    "payWithDhb": "DHB দিয়ে পেমেন্ট করুন",
+    "yourDhb": "আপনার DHB"
   }
 }

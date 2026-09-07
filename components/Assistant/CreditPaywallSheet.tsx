@@ -89,14 +89,14 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   visible,
   title,
   icon,
-  subtitle = 'Select a model and confirm payment',
+  subtitle: subtitleProp,
   models,
   selectedModelId,
   onSelectModel,
   quoteKind,
   quoteExtras,
   footnote,
-  confirmLabel = 'Generate',
+  confirmLabel: confirmLabelProp,
   isBusy = false,
   onClose,
   onConfirm,
@@ -104,6 +104,9 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  // Defaults resolved here rather than in the destructure so they translate.
+  const subtitle = subtitleProp ?? t('paywall.subtitle');
+  const confirmLabel = confirmLabelProp ?? t('paywall.generate');
 
   const [modelListOpen, setModelListOpen] = useState(false);
   const [isPaying, setIsPaying] = useState(false);
@@ -216,11 +219,11 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
     setIsPaying(true);
     try {
       const txHash = await payForJob(priceDhb);
-      toastSuccess('Payment confirmed — generating');
+      toastSuccess(t('paywall.paymentConfirmed'));
       onConfirm(txHash);
     } catch (err) {
       log.error('payment failed:', err);
-      toastError(err instanceof Error ? err.message : 'Payment failed');
+      toastError(err instanceof Error ? err.message : t('paywall.paymentFailed'));
     } finally {
       setIsPaying(false);
     }
@@ -241,12 +244,12 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
     isQuoting || isWalletLoading || isBusy || isPaying || priceDhb <= 0 || !model;
 
   const buttonLabel = isPaying
-    ? 'Paying…'
+    ? t('paywall.paying')
     : isBusy
-      ? 'Generating…'
+      ? t('paywall.generating')
       : needsTokens
-        ? 'Buy DHB'
-        : `Pay ${formatDhb(priceDhb)} DHB & ${confirmLabel}`;
+        ? t('paywall.buyDhb')
+        : t('paywall.payAmount', { amount: formatDhb(priceDhb), action: confirmLabel });
 
   return (
     <Modal
@@ -348,12 +351,12 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
                 <Text style={s.lineValue}>${costUsd.toFixed(2)}</Text>
               </View>
               <View style={s.line}>
-                <Text style={s.lineLabel}>Staker Discount</Text>
+                <Text style={s.lineLabel}>{t('paywall.stakerDiscount')}</Text>
                 <Text style={s.lineValue}>0%</Text>
               </View>
               <View style={s.divider} />
               <View style={s.line}>
-                <Text style={[s.lineLabel, { fontWeight: '600' }]}>Total</Text>
+                <Text style={[s.lineLabel, { fontWeight: '600' }]}>{t('paywall.total')}</Text>
                 <Text style={[s.lineValue, { fontWeight: '700' }]}>${costUsd.toFixed(2)}</Text>
               </View>
             </View>
@@ -363,14 +366,14 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
               {isQuoting ? (
                 <View style={s.quoting}>
                   <ActivityIndicator size="small" color="#F4F4F5" />
-                  <Text style={s.quotingText}>Pricing this run…</Text>
+                  <Text style={s.quotingText}>{t('paywall.pricing')}</Text>
                 </View>
               ) : (
                 <>
                   <View style={s.line}>
                     <View style={s.payLeft}>
                       <Image source={DEHUB_COIN} style={s.coin} />
-                      <Text style={s.payLabel}>Pay with DHB</Text>
+                      <Text style={s.payLabel}>{t('paywall.payWithDhb')}</Text>
                     </View>
                     <Text style={s.payAmount}>{formatDhb(priceDhb)}</Text>
                   </View>
@@ -381,7 +384,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
 
             {/* Wallet balance */}
             <View style={s.balanceRow}>
-              <Text style={s.lineLabel}>Your DHB</Text>
+              <Text style={s.lineLabel}>{t('paywall.yourDhb')}</Text>
               <View style={s.balanceRight}>
                 <Image source={DEHUB_COIN} style={s.coinSmall} />
                 {isWalletLoading ? (
@@ -418,7 +421,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
               activeOpacity={0.7}
               disabled={isPaying}
             >
-              <Text style={s.cancelBtnText}>Cancel</Text>
+              <Text style={s.cancelBtnText}>{t('common.cancel')}</Text>
             </TouchableOpacity>
             {/* The App Store build can price a run but not sell it (3.1.1). */}
             {!DIGITAL_PURCHASES_ENABLED ? (

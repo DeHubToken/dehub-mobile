@@ -2566,5 +2566,21 @@
     "failed": "उपशीर्षक बनाउन सकिएन।",
     "preparing": "उपशीर्षक तयार हुँदैछ।",
     "fixLine": "यो लाइन सच्याउनुहोस्"
+  },
+  "paywall": {
+    "subtitle": "मोडेल छान्नुहोस् र भुक्तानी पुष्टि गर्नुहोस्",
+    "generate": "बनाउनुहोस्",
+    "run": "चलाउनुहोस्",
+    "paymentConfirmed": "भुक्तानी पुष्टि — बनाउँदै",
+    "paymentFailed": "भुक्तानी असफल",
+    "paying": "भुक्तानी हुँदै…",
+    "generating": "बनाउँदै…",
+    "buyDhb": "DHB किन्नुहोस्",
+    "payAmount": "{{amount}} DHB तिर्नुहोस् र {{action}}",
+    "stakerDiscount": "स्टेकर छुट",
+    "total": "जम्मा",
+    "pricing": "मूल्य निकाल्दै…",
+    "payWithDhb": "DHB ले भुक्तानी गर्नुहोस्",
+    "yourDhb": "तपाईंको DHB"
   }
 }

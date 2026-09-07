@@ -2531,5 +2531,21 @@
     "failed": "सबटायटल तयार करता आले नाहीत.",
     "preparing": "सबटायटल तयार होत आहेत.",
     "fixLine": "ही ओळ दुरुस्त करा"
+  },
+  "paywall": {
+    "subtitle": "मॉडेल निवडा आणि पेमेंट निश्चित करा",
+    "generate": "तयार करा",
+    "run": "चालवा",
+    "paymentConfirmed": "पेमेंट निश्चित — तयार होत आहे",
+    "paymentFailed": "पेमेंट अयशस्वी",
+    "paying": "पेमेंट होत आहे…",
+    "generating": "तयार होत आहे…",
+    "buyDhb": "DHB खरेदी करा",
+    "payAmount": "{{amount}} DHB द्या आणि {{action}}",
+    "stakerDiscount": "स्टेकर सवलत",
+    "total": "एकूण",
+    "pricing": "किंमत काढत आहे…",
+    "payWithDhb": "DHB ने पेमेंट करा",
+    "yourDhb": "तुमचे DHB"
   }
 }

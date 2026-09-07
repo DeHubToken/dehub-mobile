@@ -2528,5 +2528,21 @@
     "failed": "Kò lè ṣe àkọlé-ìsàlẹ̀.",
     "preparing": "Ń múra àkọlé-ìsàlẹ̀ sílẹ̀.",
     "fixLine": "Ṣàtúnṣe ìlà yìí"
+  },
+  "paywall": {
+    "subtitle": "Yan àwòkọ́ṣe kí o sì jẹ́rìí sí ìsanwó",
+    "generate": "Ṣẹ̀dá",
+    "run": "Ṣiṣẹ́",
+    "paymentConfirmed": "Ìsanwó jẹ́rìí — ń ṣẹ̀dá",
+    "paymentFailed": "Ìsanwó kùnà",
+    "paying": "Ń sanwó…",
+    "generating": "Ń ṣẹ̀dá…",
+    "buyDhb": "Ra DHB",
+    "payAmount": "San {{amount}} DHB kí o sì {{action}}",
+    "stakerDiscount": "Ẹ̀dínwó staker",
+    "total": "Àpapọ̀",
+    "pricing": "Ń ṣírò owó…",
+    "payWithDhb": "Sanwó pẹ̀lú DHB",
+    "yourDhb": "DHB rẹ"
   }
 }

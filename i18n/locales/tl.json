@@ -2711,5 +2711,21 @@
     "failed": "Hindi makagawa ng mga subtitle.",
     "preparing": "Inihahanda ang mga subtitle.",
     "fixLine": "Ayusin ang kasalukuyang linya"
+  },
+  "paywall": {
+    "subtitle": "Pumili ng model at kumpirmahin ang bayad",
+    "generate": "Gumawa",
+    "run": "Patakbuhin",
+    "paymentConfirmed": "Nakumpirma ang bayad — ginagawa",
+    "paymentFailed": "Nabigo ang bayad",
+    "paying": "Nagbabayad…",
+    "generating": "Ginagawa…",
+    "buyDhb": "Bumili ng DHB",
+    "payAmount": "Magbayad ng {{amount}} DHB at {{action}}",
+    "stakerDiscount": "Diskwento ng staker",
+    "total": "Kabuuan",
+    "pricing": "Kinakalkula ang presyo…",
+    "payWithDhb": "Magbayad gamit ang DHB",
+    "yourDhb": "Iyong DHB"
   }
 }

@@ -3009,5 +3009,21 @@
     "failed": "Не вдалося створити субтитри.",
     "preparing": "Субтитри готуються.",
     "fixLine": "Виправити поточний рядок"
+  },
+  "paywall": {
+    "subtitle": "Оберіть модель і підтвердьте оплату",
+    "generate": "Створити",
+    "run": "Запустити",
+    "paymentConfirmed": "Оплату підтверджено — створюємо",
+    "paymentFailed": "Оплата не пройшла",
+    "paying": "Оплата…",
+    "generating": "Створюємо…",
+    "buyDhb": "Купити DHB",
+    "payAmount": "Сплатити {{amount}} DHB і {{action}}",
+    "stakerDiscount": "Знижка стейкера",
+    "total": "Разом",
+    "pricing": "Рахуємо вартість…",
+    "payWithDhb": "Сплатити в DHB",
+    "yourDhb": "Ваш DHB"
   }
 }

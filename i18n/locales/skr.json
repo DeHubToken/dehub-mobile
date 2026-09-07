@@ -2527,5 +2527,21 @@
     "failed": "سب ٹائٹل نہ بݨ سڳے۔",
     "preparing": "سب ٹائٹل تیار تھیندے پئے ہن۔",
     "fixLine": "ایں لائن ٹھیک کرو"
+  },
+  "paywall": {
+    "subtitle": "ماڈل چݨو تے ادائیگی دی تصدیق کرو",
+    "generate": "بݨاؤ",
+    "run": "چلاؤ",
+    "paymentConfirmed": "ادائیگی دی تصدیق تھی ڳئی — بݨدا پیا ہے",
+    "paymentFailed": "ادائیگی ناکام",
+    "paying": "ادائیگی تھیندی پئی ہے…",
+    "generating": "بݨدا پیا ہے…",
+    "buyDhb": "DHB خریدو",
+    "payAmount": "{{amount}} DHB ݙیو تے {{action}}",
+    "stakerDiscount": "اسٹیکر رعایت",
+    "total": "کل",
+    "pricing": "قیمت کڈھی ونڄدی پئی ہے…",
+    "payWithDhb": "DHB نال ادائیگی کرو",
+    "yourDhb": "تہاڈا DHB"
   }
 }

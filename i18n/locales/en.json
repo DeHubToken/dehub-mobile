@@ -2576,5 +2576,21 @@
     "failed": "Subtitles could not be generated.",
     "preparing": "Subtitles are being prepared.",
     "fixLine": "Fix the current line"
+  },
+  "paywall": {
+    "subtitle": "Select a model and confirm payment",
+    "generate": "Generate",
+    "run": "Run",
+    "paymentConfirmed": "Payment confirmed — generating",
+    "paymentFailed": "Payment failed",
+    "paying": "Paying…",
+    "generating": "Generating…",
+    "buyDhb": "Buy DHB",
+    "payAmount": "Pay {{amount}} DHB & {{action}}",
+    "stakerDiscount": "Staker Discount",
+    "total": "Total",
+    "pricing": "Pricing this run…",
+    "payWithDhb": "Pay with DHB",
+    "yourDhb": "Your DHB"
   }
 }

@@ -2525,5 +2525,21 @@
     "failed": "ບໍ່ສາມາດສ້າງຄຳບັນຍາຍໄດ້.",
     "preparing": "ກຳລັງກຽມຄຳບັນຍາຍ.",
     "fixLine": "ແກ້ໄຂແຖວປັດຈຸບັນ"
+  },
+  "paywall": {
+    "subtitle": "ເລືອກໂມເດວ ແລະ ຢືນຢັນການຈ່າຍເງິນ",
+    "generate": "ສ້າງ",
+    "run": "ດຳເນີນການ",
+    "paymentConfirmed": "ຢືນຢັນການຈ່າຍເງິນແລ້ວ — ກຳລັງສ້າງ",
+    "paymentFailed": "ການຈ່າຍເງິນລົ້ມເຫຼວ",
+    "paying": "ກຳລັງຈ່າຍ…",
+    "generating": "ກຳລັງສ້າງ…",
+    "buyDhb": "ຊື້ DHB",
+    "payAmount": "ຈ່າຍ {{amount}} DHB ແລະ {{action}}",
+    "stakerDiscount": "ສ່ວນຫຼຸດ staker",
+    "total": "ລວມ",
+    "pricing": "ກຳລັງຄິດລາຄາ…",
+    "payWithDhb": "ຈ່າຍດ້ວຍ DHB",
+    "yourDhb": "DHB ຂອງທ່ານ"
   }
 }

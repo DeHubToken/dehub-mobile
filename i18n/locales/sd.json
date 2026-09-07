@@ -2526,5 +2526,21 @@
     "failed": "سب ٽائيٽل ٺاهي نه سگهيا.",
     "preparing": "سب ٽائيٽل تيار ٿي رهيا آهن.",
     "fixLine": "موجوده لائن درست ڪريو"
+  },
+  "paywall": {
+    "subtitle": "ماڊل چونڊيو ۽ ادائيگي جي تصديق ڪريو",
+    "generate": "ٺاهيو",
+    "run": "هلايو",
+    "paymentConfirmed": "ادائيگي جي تصديق ٿي — ٺهي رهيو آهي",
+    "paymentFailed": "ادائيگي ناڪام",
+    "paying": "ادائيگي ٿي رهي آهي…",
+    "generating": "ٺهي رهيو آهي…",
+    "buyDhb": "DHB خريد ڪريو",
+    "payAmount": "{{amount}} DHB ادا ڪريو ۽ {{action}}",
+    "stakerDiscount": "اسٽيڪر رعايت",
+    "total": "ڪل",
+    "pricing": "قيمت جو حساب ٿي رهيو آهي…",
+    "payWithDhb": "DHB سان ادا ڪريو",
+    "yourDhb": "توهان جو DHB"
   }
 }

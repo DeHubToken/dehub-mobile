@@ -2652,5 +2652,21 @@
     "failed": "Onderskrifte kon nie geskep word nie.",
     "preparing": "Onderskrifte word voorberei.",
     "fixLine": "Maak die huidige reël reg"
+  },
+  "paywall": {
+    "subtitle": "Kies 'n model en bevestig betaling",
+    "generate": "Genereer",
+    "run": "Voer uit",
+    "paymentConfirmed": "Betaling bevestig — genereer",
+    "paymentFailed": "Betaling het misluk",
+    "paying": "Betaal…",
+    "generating": "Genereer…",
+    "buyDhb": "Koop DHB",
+    "payAmount": "Betaal {{amount}} DHB & {{action}}",
+    "stakerDiscount": "Staker-afslag",
+    "total": "Totaal",
+    "pricing": "Prys hierdie lopie…",
+    "payWithDhb": "Betaal met DHB",
+    "yourDhb": "Jou DHB"
   }
 }

@@ -2579,5 +2579,21 @@
     "failed": "자막을 생성할 수 없습니다.",
     "preparing": "자막을 준비하고 있습니다.",
     "fixLine": "현재 줄 수정"
+  },
+  "paywall": {
+    "subtitle": "모델을 선택하고 결제를 확인하세요",
+    "generate": "생성",
+    "run": "실행",
+    "paymentConfirmed": "결제 확인됨 — 생성 중",
+    "paymentFailed": "결제 실패",
+    "paying": "결제 중…",
+    "generating": "생성 중…",
+    "buyDhb": "DHB 구매",
+    "payAmount": "{{amount}} DHB 결제 후 {{action}}",
+    "stakerDiscount": "스테이커 할인",
+    "total": "합계",
+    "pricing": "요금 계산 중…",
+    "payWithDhb": "DHB로 결제",
+    "yourDhb": "내 DHB"
   }
 }

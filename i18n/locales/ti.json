@@ -2526,5 +2526,21 @@
     "failed": "ትሕተ-ጽሑፍ ክፍጠር ኣይተኻእለን።",
     "preparing": "ትሕተ-ጽሑፍ ይዳሎ ኣሎ።",
     "fixLine": "ነዛ መስመር ኣዐርያ"
+  },
+  "paywall": {
+    "subtitle": "ሞዴል ምረጽ እሞ ክፍሊት ኣረጋግጽ",
+    "generate": "ፍጠር",
+    "run": "ኣካይድ",
+    "paymentConfirmed": "ክፍሊት ተረጋጊጹ — ይፍጠር ኣሎ",
+    "paymentFailed": "ክፍሊት ኣይተዓወተን",
+    "paying": "ይኸፍል ኣሎ…",
+    "generating": "ይፍጠር ኣሎ…",
+    "buyDhb": "DHB ግዛእ",
+    "payAmount": "{{amount}} DHB ክፈል እሞ {{action}}",
+    "stakerDiscount": "ናይ ስቴከር ቅናሽ",
+    "total": "ጠቕላላ",
+    "pricing": "ዋጋ ይሕሰብ ኣሎ…",
+    "payWithDhb": "ብ DHB ክፈል",
+    "yourDhb": "DHB ናትካ"
   }
 }

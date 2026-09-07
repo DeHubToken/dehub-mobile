@@ -2695,5 +2695,21 @@
     "failed": "সাবটাইটেল বানানো ন যায়।",
     "preparing": "সাবটাইটেল তৈয়ার অর।",
     "fixLine": "এই লাইন ঠিক গরন"
+  },
+  "paywall": {
+    "subtitle": "একখান মডেল বাছন আর পেমেন্ট নিশ্চিত গরন",
+    "generate": "বানান",
+    "run": "চালন",
+    "paymentConfirmed": "পেমেন্ট নিশ্চিত — বানার",
+    "paymentFailed": "পেমেন্ট ফেল অইছে",
+    "paying": "পেমেন্ট অর…",
+    "generating": "বানার…",
+    "buyDhb": "DHB কিনন",
+    "payAmount": "{{amount}} DHB দেন আর {{action}}",
+    "stakerDiscount": "স্টেকার ছাড়",
+    "total": "মোট",
+    "pricing": "দাম ঠিক গরা যার…",
+    "payWithDhb": "DHB দি পেমেন্ট গরন",
+    "yourDhb": "তোঁয়ার DHB"
   }
 }

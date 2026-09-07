@@ -2525,5 +2525,21 @@
     "failed": "无法生成字幕。",
     "preparing": "字幕准备中。",
     "fixLine": "修正当前字幕行"
+  },
+  "paywall": {
+    "subtitle": "选择模型并确认付款",
+    "generate": "生成",
+    "run": "运行",
+    "paymentConfirmed": "付款已确认 — 生成中",
+    "paymentFailed": "付款失败",
+    "paying": "付款中…",
+    "generating": "生成中…",
+    "buyDhb": "购买 DHB",
+    "payAmount": "支付 {{amount}} DHB 并{{action}}",
+    "stakerDiscount": "质押者折扣",
+    "total": "合计",
+    "pricing": "正在计算本次费用…",
+    "payWithDhb": "用 DHB 支付",
+    "yourDhb": "你的 DHB"
   }
 }

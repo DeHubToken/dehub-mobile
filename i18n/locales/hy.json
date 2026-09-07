@@ -2527,5 +2527,21 @@
     "failed": "Ենթագրերը չհաջողվեց ստեղծել։",
     "preparing": "Ենթագրերը պատրաստվում են։",
     "fixLine": "Ուղղել ընթացիկ տողը"
+  },
+  "paywall": {
+    "subtitle": "Ընտրեք մոդել և հաստատեք վճարումը",
+    "generate": "Ստեղծել",
+    "run": "Գործարկել",
+    "paymentConfirmed": "Վճարումը հաստատվեց — ստեղծվում է",
+    "paymentFailed": "Վճարումը ձախողվեց",
+    "paying": "Վճարում…",
+    "generating": "Ստեղծվում է…",
+    "buyDhb": "Գնել DHB",
+    "payAmount": "Վճարել {{amount}} DHB և {{action}}",
+    "stakerDiscount": "Ստեյքերի զեղչ",
+    "total": "Ընդամենը",
+    "pricing": "Գինը հաշվարկվում է…",
+    "payWithDhb": "Վճարել DHB-ով",
+    "yourDhb": "Ձեր DHB"
   }
 }

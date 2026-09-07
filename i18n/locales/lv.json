@@ -2527,5 +2527,21 @@
     "failed": "Neizdevās izveidot subtitrus.",
     "preparing": "Subtitri tiek gatavoti.",
     "fixLine": "Labot pašreizējo rindu"
+  },
+  "paywall": {
+    "subtitle": "Izvēlies modeli un apstiprini maksājumu",
+    "generate": "Ģenerēt",
+    "run": "Palaist",
+    "paymentConfirmed": "Maksājums apstiprināts — ģenerē",
+    "paymentFailed": "Maksājums neizdevās",
+    "paying": "Maksā…",
+    "generating": "Ģenerē…",
+    "buyDhb": "Pirkt DHB",
+    "payAmount": "Maksāt {{amount}} DHB un {{action}}",
+    "stakerDiscount": "Staker atlaide",
+    "total": "Kopā",
+    "pricing": "Aprēķina cenu…",
+    "payWithDhb": "Maksāt ar DHB",
+    "yourDhb": "Tavs DHB"
   }
 }

@@ -2527,5 +2527,21 @@
     "failed": "فرعي لیکنې جوړې نشوې.",
     "preparing": "فرعي لیکنې چمتو کیږي.",
     "fixLine": "اوسنۍ کرښه سمه کړئ"
+  },
+  "paywall": {
+    "subtitle": "یو ماډل وټاکئ او تادیه تایید کړئ",
+    "generate": "جوړ کړئ",
+    "run": "چل کړئ",
+    "paymentConfirmed": "تادیه تایید شوه — جوړیږي",
+    "paymentFailed": "تادیه ناکامه شوه",
+    "paying": "تادیه کیږي…",
+    "generating": "جوړیږي…",
+    "buyDhb": "DHB واخلئ",
+    "payAmount": "{{amount}} DHB ورکړئ او {{action}}",
+    "stakerDiscount": "د سټیکر تخفیف",
+    "total": "ټول",
+    "pricing": "بیه محاسبه کیږي…",
+    "payWithDhb": "په DHB تادیه وکړئ",
+    "yourDhb": "ستاسو DHB"
   }
 }

@@ -2527,5 +2527,21 @@
     "failed": "Tekstitystä ei voitu luoda.",
     "preparing": "Tekstitystä valmistellaan.",
     "fixLine": "Korjaa nykyinen rivi"
+  },
+  "paywall": {
+    "subtitle": "Valitse malli ja vahvista maksu",
+    "generate": "Luo",
+    "run": "Suorita",
+    "paymentConfirmed": "Maksu vahvistettu — luodaan",
+    "paymentFailed": "Maksu epäonnistui",
+    "paying": "Maksetaan…",
+    "generating": "Luodaan…",
+    "buyDhb": "Osta DHB",
+    "payAmount": "Maksa {{amount}} DHB ja {{action}}",
+    "stakerDiscount": "Staker-alennus",
+    "total": "Yhteensä",
+    "pricing": "Hinnoitellaan…",
+    "payWithDhb": "Maksa DHB:llä",
+    "yourDhb": "Sinun DHB"
   }
 }

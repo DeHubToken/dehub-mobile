@@ -2566,5 +2566,21 @@
     "failed": "Не ўдалося стварыць субцітры.",
     "preparing": "Субцітры рыхтуюцца.",
     "fixLine": "Выправіць бягучы радок"
+  },
+  "paywall": {
+    "subtitle": "Абярыце мадэль і пацвердзіце аплату",
+    "generate": "Стварыць",
+    "run": "Запусціць",
+    "paymentConfirmed": "Аплата пацверджана — ствараем",
+    "paymentFailed": "Аплата не прайшла",
+    "paying": "Аплата…",
+    "generating": "Ствараем…",
+    "buyDhb": "Купіць DHB",
+    "payAmount": "Заплаціць {{amount}} DHB і {{action}}",
+    "stakerDiscount": "Зніжка для стэйкераў",
+    "total": "Разам",
+    "pricing": "Разлік кошту…",
+    "payWithDhb": "Аплаціць DHB",
+    "yourDhb": "Ваш DHB"
   }
 }

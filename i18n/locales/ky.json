@@ -2527,5 +2527,21 @@
     "failed": "Субтитрлерди түзүү мүмкүн болбоду.",
     "preparing": "Субтитрлер даярдалууда.",
     "fixLine": "Учурдагы сапты оңдоо"
+  },
+  "paywall": {
+    "subtitle": "Модель тандап, төлөмдү ырастаңыз",
+    "generate": "Түзүү",
+    "run": "Иштетүү",
+    "paymentConfirmed": "Төлөм ырасталды — түзүлүүдө",
+    "paymentFailed": "Төлөм ишке ашкан жок",
+    "paying": "Төлөнүүдө…",
+    "generating": "Түзүлүүдө…",
+    "buyDhb": "DHB сатып алуу",
+    "payAmount": "{{amount}} DHB төлөп, {{action}}",
+    "stakerDiscount": "Стейкер арзандатуусу",
+    "total": "Жалпы",
+    "pricing": "Баасы эсептелүүдө…",
+    "payWithDhb": "DHB менен төлөө",
+    "yourDhb": "Сиздин DHB"
   }
 }

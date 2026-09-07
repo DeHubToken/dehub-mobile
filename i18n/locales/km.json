@@ -2566,5 +2566,21 @@
     "failed": "មិនអាចបង្កើតអក្សររត់បានទេ។",
     "preparing": "អក្សររត់កំពុងត្រូវបានរៀបចំ។",
     "fixLine": "កែបន្ទាត់បច្ចុប្បន្ន"
+  },
+  "paywall": {
+    "subtitle": "ជ្រើសរើសម៉ូដែល ហើយបញ្ជាក់ការទូទាត់",
+    "generate": "បង្កើត",
+    "run": "ដំណើរការ",
+    "paymentConfirmed": "ការទូទាត់ត្រូវបានបញ្ជាក់ — កំពុងបង្កើត",
+    "paymentFailed": "ការទូទាត់បរាជ័យ",
+    "paying": "កំពុងទូទាត់…",
+    "generating": "កំពុងបង្កើត…",
+    "buyDhb": "ទិញ DHB",
+    "payAmount": "បង់ {{amount}} DHB និង {{action}}",
+    "stakerDiscount": "បញ្ចុះតម្លៃ staker",
+    "total": "សរុប",
+    "pricing": "កំពុងគណនាតម្លៃ…",
+    "payWithDhb": "បង់ដោយ DHB",
+    "yourDhb": "DHB របស់អ្នក"
   }
 }

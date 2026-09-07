@@ -2580,5 +2580,21 @@
     "failed": "Não foi possível gerar legendas.",
     "preparing": "As legendas estão sendo preparadas.",
     "fixLine": "Corrigir a linha atual"
+  },
+  "paywall": {
+    "subtitle": "Selecione um modelo e confirme o pagamento",
+    "generate": "Gerar",
+    "run": "Executar",
+    "paymentConfirmed": "Pagamento confirmado — gerando",
+    "paymentFailed": "Falha no pagamento",
+    "paying": "Pagando…",
+    "generating": "Gerando…",
+    "buyDhb": "Comprar DHB",
+    "payAmount": "Pagar {{amount}} DHB e {{action}}",
+    "stakerDiscount": "Desconto de staker",
+    "total": "Total",
+    "pricing": "Calculando o preço…",
+    "payWithDhb": "Pagar com DHB",
+    "yourDhb": "Seu DHB"
   }
 }

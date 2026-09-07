@@ -2530,5 +2530,21 @@
     "failed": "سب ٹائٹل نہیں بن سکے۔",
     "preparing": "سب ٹائٹل تیار ہو رہے ہیں۔",
     "fixLine": "موجودہ لائن درست کریں"
+  },
+  "paywall": {
+    "subtitle": "ماڈل منتخب کریں اور ادائیگی کی تصدیق کریں",
+    "generate": "بنائیں",
+    "run": "چلائیں",
+    "paymentConfirmed": "ادائیگی کی تصدیق — بن رہا ہے",
+    "paymentFailed": "ادائیگی ناکام",
+    "paying": "ادائیگی ہو رہی ہے…",
+    "generating": "بن رہا ہے…",
+    "buyDhb": "DHB خریدیں",
+    "payAmount": "{{amount}} DHB ادا کریں اور {{action}}",
+    "stakerDiscount": "اسٹیکر رعایت",
+    "total": "کل",
+    "pricing": "قیمت لگائی جا رہی ہے…",
+    "payWithDhb": "DHB سے ادائیگی کریں",
+    "yourDhb": "آپ کا DHB"
   }
 }

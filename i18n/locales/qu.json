@@ -2558,5 +2558,21 @@
     "failed": "Sub-qillqakunata mana ruwayta atikunchu.",
     "preparing": "Sub-qillqakuna wakichikushan.",
     "fixLine": "Kunan siq'ita allichay"
+  },
+  "paywall": {
+    "subtitle": "Huk modelota akllay, pagota chaninchay",
+    "generate": "Ruway",
+    "run": "Purichiy",
+    "paymentConfirmed": "Pago chaninchasqa — ruwashan",
+    "paymentFailed": "Pagoqa mana atikunchu",
+    "paying": "Pagashan…",
+    "generating": "Ruwashan…",
+    "buyDhb": "DHB rantiy",
+    "payAmount": "{{amount}} DHB pagay hinaspa {{action}}",
+    "stakerDiscount": "Staker pisiyachiy",
+    "total": "Llapan",
+    "pricing": "Chaninta yupashan…",
+    "payWithDhb": "DHB-wan pagay",
+    "yourDhb": "Qampa DHB"
   }
 }

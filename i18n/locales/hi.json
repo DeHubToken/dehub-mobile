@@ -2582,5 +2582,21 @@
     "failed": "सबटाइटल नहीं बन सके।",
     "preparing": "सबटाइटल तैयार हो रहे हैं।",
     "fixLine": "मौजूदा लाइन ठीक करें"
+  },
+  "paywall": {
+    "subtitle": "मॉडल चुनें और भुगतान की पुष्टि करें",
+    "generate": "बनाएँ",
+    "run": "चलाएँ",
+    "paymentConfirmed": "भुगतान की पुष्टि — बनाया जा रहा है",
+    "paymentFailed": "भुगतान विफल",
+    "paying": "भुगतान हो रहा है…",
+    "generating": "बनाया जा रहा है…",
+    "buyDhb": "DHB खरीदें",
+    "payAmount": "{{amount}} DHB दें और {{action}}",
+    "stakerDiscount": "स्टेकर छूट",
+    "total": "कुल",
+    "pricing": "कीमत तय की जा रही है…",
+    "payWithDhb": "DHB से भुगतान करें",
+    "yourDhb": "आपका DHB"
   }
 }

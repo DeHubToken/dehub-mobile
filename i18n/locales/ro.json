@@ -2541,5 +2541,21 @@
     "failed": "Subtitrările nu au putut fi generate.",
     "preparing": "Subtitrările se pregătesc.",
     "fixLine": "Corectează rândul curent"
+  },
+  "paywall": {
+    "subtitle": "Alege un model și confirmă plata",
+    "generate": "Generează",
+    "run": "Rulează",
+    "paymentConfirmed": "Plată confirmată — se generează",
+    "paymentFailed": "Plata a eșuat",
+    "paying": "Se plătește…",
+    "generating": "Se generează…",
+    "buyDhb": "Cumpără DHB",
+    "payAmount": "Plătește {{amount}} DHB și {{action}}",
+    "stakerDiscount": "Reducere staker",
+    "total": "Total",
+    "pricing": "Se calculează prețul…",
+    "payWithDhb": "Plătește cu DHB",
+    "yourDhb": "DHB-ul tău"
   }
 }

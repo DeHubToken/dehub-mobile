@@ -2577,5 +2577,21 @@
     "failed": "Barreeffama jalaa uumuun hin dandaʼamne.",
     "preparing": "Barreeffamni jalaa qophaaʼaa jira.",
     "fixLine": "Sarara ammaa sirreessi"
+  },
+  "paywall": {
+    "subtitle": "Moodeela filadhuutii kaffaltii mirkaneessi",
+    "generate": "Uumi",
+    "run": "Hojjachiisi",
+    "paymentConfirmed": "Kaffaltiin mirkanaaʼe — uumaa jira",
+    "paymentFailed": "Kaffaltiin hin milkoofne",
+    "paying": "Kaffalaa jira…",
+    "generating": "Uumaa jira…",
+    "buyDhb": "DHB bitadhu",
+    "payAmount": "{{amount}} DHB kaffalii {{action}}",
+    "stakerDiscount": "Hir'ina staker",
+    "total": "Ida'a",
+    "pricing": "Gatii shallagaa jira…",
+    "payWithDhb": "DHB dhaan kaffali",
+    "yourDhb": "DHB kee"
   }
 }

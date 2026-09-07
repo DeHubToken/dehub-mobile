@@ -2527,5 +2527,21 @@
     "failed": "Titrat nuk u krijuan dot.",
     "preparing": "Titrat po përgatiten.",
     "fixLine": "Korrigjo rreshtin aktual"
+  },
+  "paywall": {
+    "subtitle": "Zgjidh një model dhe konfirmo pagesën",
+    "generate": "Gjenero",
+    "run": "Ekzekuto",
+    "paymentConfirmed": "Pagesa u konfirmua — po gjenerohet",
+    "paymentFailed": "Pagesa dështoi",
+    "paying": "Po paguhet…",
+    "generating": "Po gjenerohet…",
+    "buyDhb": "Bli DHB",
+    "payAmount": "Paguaj {{amount}} DHB dhe {{action}}",
+    "stakerDiscount": "Zbritje për staker",
+    "total": "Gjithsej",
+    "pricing": "Po llogaritet çmimi…",
+    "payWithDhb": "Paguaj me DHB",
+    "yourDhb": "DHB-ja jote"
   }
 }

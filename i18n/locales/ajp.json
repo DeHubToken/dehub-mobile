@@ -2525,5 +2525,21 @@
     "failed": "ما قدرنا نعمل الترجمة.",
     "preparing": "عم تتجهز الترجمة.",
     "fixLine": "صلّح هالسطر"
+  },
+  "paywall": {
+    "subtitle": "اختار موديل وأكّد الدفع",
+    "generate": "ولّد",
+    "run": "شغّل",
+    "paymentConfirmed": "الدفع تأكد — عم نولّد",
+    "paymentFailed": "الدفع فشل",
+    "paying": "عم ندفع…",
+    "generating": "عم نولّد…",
+    "buyDhb": "اشتري DHB",
+    "payAmount": "ادفع {{amount}} DHB و{{action}}",
+    "stakerDiscount": "خصم المشاركين",
+    "total": "المجموع",
+    "pricing": "عم نحسب سعر هالتشغيل…",
+    "payWithDhb": "ادفع بـ DHB",
+    "yourDhb": "الـ DHB تبعك"
   }
 }
