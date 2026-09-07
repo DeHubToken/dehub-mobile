@@ -295,6 +295,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // even though the user is signed in, and closing it restores whoever the
   // attempt displaced.
   const [addProfileIntent, setAddProfileIntent] = useState(false);
+  // A brand-new account flips needsUsername in the same commit that unmounts
+  // the sign-in sheet. Both are native Modals presented from the root
+  // controller, and iOS refuses the second presentation while the first is
+  // dismissing, so the username step never appeared. Mount it only once the
+  // sheet has had time to dismiss.
+  const [usernameStepReady, setUsernameStepReady] = useState(false);
+  useEffect(() => {
+    if (!(showSignInModal && needsUsername && provisionalUser)) {
+      setUsernameStepReady(false);
+      return;
+    }
+    const timer = setTimeout(() => setUsernameStepReady(true), 300);
+    return () => clearTimeout(timer);
+  }, [showSignInModal, needsUsername, provisionalUser]);
   const [authMethod, setAuthMethodState] = useState<'local' | null>(null);
   const isMountedRef = useRef(true);
   const [isSwitchingChain, setIsSwitchingChain] = useState(false);
@@ -880,7 +894,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                   }}
                 />
               )}
-              {showSignInModal && needsUsername && provisionalUser && (
+              {showSignInModal && needsUsername && provisionalUser && usernameStepReady && (
                 <UsernameRequiredModal
                   visible={true}
                   provisionalUser={provisionalUser}
