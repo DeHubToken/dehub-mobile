@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, ActivityIndicator, ScrollView, Alert, Share } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
@@ -94,8 +94,20 @@ const StagesBrowseModal: React.FC = () => {
   const { user } = useAuth();
   const userAddress = user?.walletAddress || user?.address || "";
 
-  // Selected past space for transcript sheet
+  // Selected past space for transcript sheet. The sheet is a second native
+  // Modal; on iOS it is refused if presented while this browse sheet is still
+  // up, so the browse sheet hides first and the transcript is presented once
+  // that dismissal has finished, then the browse sheet comes back after.
   const [selectedPastSpace, setSelectedPastSpace] = useState<AudioSpace | null>(null);
+  const [browseHidden, setBrowseHidden] = useState(false);
+  const openTranscript = useCallback((space: AudioSpace) => {
+    setBrowseHidden(true);
+    setTimeout(() => setSelectedPastSpace(space), 250);
+  }, []);
+  const closeTranscript = useCallback(() => {
+    setSelectedPastSpace(null);
+    setTimeout(() => setBrowseHidden(false), 250);
+  }, []);
 
   // Playback belongs to libs/stage-playback now, shared with the transcript
   // sheet and the stage card in the feed. This modal used to own a full copy of
@@ -450,7 +462,7 @@ const StagesBrowseModal: React.FC = () => {
           </View>
 
           {hasRecording && (
-            <TouchableOpacity onPress={() => setSelectedPastSpace(item)} style={styles.transcriptBtn}>
+            <TouchableOpacity onPress={() => openTranscript(item)} style={styles.transcriptBtn}>
               <Icon name="FileText" size={12} color="#FFFFFF" />
               <Text style={styles.transcriptBtnText}>Transcript</Text>
             </TouchableOpacity>
@@ -487,7 +499,7 @@ const StagesBrowseModal: React.FC = () => {
 
   return (
     <>
-      <GlassModal visible={true} onClose={closeModal} presentation="bottom" maxHeight="90%">
+      <GlassModal visible={!browseHidden} onClose={closeModal} presentation="bottom" maxHeight="90%">
         <View style={styles.container}>
           <View style={styles.header}>
             <Text style={styles.title}>Stages</Text>
@@ -541,7 +553,7 @@ const StagesBrowseModal: React.FC = () => {
       <StageTranscriptSheet
         space={selectedPastSpace}
         visible={!!selectedPastSpace}
-        onClose={() => setSelectedPastSpace(null)}
+        onClose={closeTranscript}
       />
     </>
   );
