@@ -28,6 +28,38 @@ function isAlreadyAddressable(url: string): boolean {
 }
 
 /**
+ * The hosts that serve our API. `api.dehub.io` is here as a literal as well as
+ * whatever `API_URL` points at, so a staging or LAN build still recognises a
+ * production URL that came back in a payload.
+ */
+const API_HOSTS = [
+  (env.API_URL ?? "").replace(/^https?:\/\//i, "").split("/")[0].toLowerCase(),
+  "api.dehub.io",
+].filter(Boolean);
+
+/**
+ * True for an absolute URL that addresses an avatar on our own API host.
+ *
+ * **The API does not serve avatar files — it 404s them**, and several endpoints
+ * hand the avatar out as a URL on that host anyway: the backend prefixes
+ * `DEFAULT_DOMAIN` onto the stored path in `livechat`'s sender lookup and in
+ * the comment `writor` mapping, so public chat arrives holding
+ * `https://api.dehub.io/avatars/0x….jpg`. Measured against production
+ * 2026-09-07: every one of those 404s, and the same file under
+ * `dehubcdn…/avatars/` returns 200. Only the CDN has the objects.
+ *
+ * So these are NOT addressable and must be pulled back onto the CDN, which is
+ * what web's `buildAvatarSourceUrl` has always done. A `statics/` prefix comes
+ * off on the way, same as for a stored path.
+ */
+function apiHostedAvatar(url: string): boolean {
+  const match = /^https?:\/\/([^/?#]+)\/([^?#]*)/i.exec(url);
+  if (!match) return false;
+  if (!API_HOSTS.includes(match[1].toLowerCase())) return false;
+  return /^(?:statics\/)?avatars\/[^/]+$/i.test(match[2]);
+}
+
+/**
  * A `blob:` URL only means anything inside the browser session that minted it,
  * so one that reached the database is dead for every other viewer and on every
  * native client — there is nothing to fetch and no size to ask for. Treat it as
@@ -66,8 +98,12 @@ export function getAvatarUrl(
   if (isDeadPreview(url)) return "default-avatar";
   // Already a URL: hand it to cdnImage as-is. cdnImage only rewrites our own
   // CDN prefixes, so a third-party host passes through untouched and one of
-  // ours still gets sized.
-  if (isAlreadyAddressable(url)) return cdnImage(url, { width: sizePt });
+  // ours still gets sized. An avatar addressed on the API host is the one
+  // exception — it falls through to the flattening below, which is where it
+  // resolves.
+  if (isAlreadyAddressable(url) && !apiHostedAvatar(url)) {
+    return cdnImage(url, { width: sizePt });
+  }
   const fileName = url.split("/").pop();
   const base = `${env.CDN_BASE_URL}/avatars/${fileName}`;
   return cdnImage(base, { width: sizePt });
