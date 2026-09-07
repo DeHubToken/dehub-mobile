@@ -2550,5 +2550,8 @@
   },
   "stages": {
     "microphoneDenied": "Waltajjii irratti dubbachuuf maayikiroofoonii hayyami"
+  },
+  "signInSheet": {
+    "continueAs": "Akka kanatti itti fufi"
   }
 }

@@ -2766,5 +2766,8 @@
   },
   "stages": {
     "microphoneDenied": "Benarkan akses mikrofon untuk bercakap di pentas"
+  },
+  "signInSheet": {
+    "continueAs": "Teruskan sebagai"
   }
 }

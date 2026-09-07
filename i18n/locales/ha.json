@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Ba da izinin makirufo don yin magana a dandali"
+  },
+  "signInSheet": {
+    "continueAs": "Ci gaba a matsayin"
   }
 }

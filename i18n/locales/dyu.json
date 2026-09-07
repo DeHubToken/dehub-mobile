@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Kumakan minɛlan ka daminɛ walisa ka kuma jɔyɔrɔ la"
+  },
+  "signInSheet": {
+    "continueAs": "Ka taa ɲɛ i n'a fɔ"
   }
 }

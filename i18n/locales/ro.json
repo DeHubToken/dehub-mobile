@@ -2514,5 +2514,8 @@
   },
   "stages": {
     "microphoneDenied": "Permite accesul la microfon pentru a vorbi pe o scenă"
+  },
+  "signInSheet": {
+    "continueAs": "Continuă ca"
   }
 }

@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "اسمح بالوصول للمايكروفون حتى تحچي على المسرح"
+  },
+  "signInSheet": {
+    "continueAs": "كمّل بصفة"
   }
 }

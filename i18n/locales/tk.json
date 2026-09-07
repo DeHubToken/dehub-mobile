@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Sahnada gürlemek üçin mikrofona rugsat beriň"
+  },
+  "signInSheet": {
+    "continueAs": "Şu hökmünde dowam et"
   }
 }

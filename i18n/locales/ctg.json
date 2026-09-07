@@ -2670,5 +2670,8 @@
   },
   "stages": {
     "microphoneDenied": "স্টেজত কথা কইতে মাইক্রোফোন অনুমতি দেন"
+  },
+  "signInSheet": {
+    "continueAs": "এই পরিচয়ে চালাই যন"
   }
 }

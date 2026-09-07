@@ -2504,5 +2504,8 @@
   },
   "stages": {
     "microphoneDenied": "اسٹیج پر بولنے کے لیے مائیکروفون کی اجازت دیں"
+  },
+  "signInSheet": {
+    "continueAs": "اس طور پر جاری رکھیں"
   }
 }

@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "اسمح بالوصول للمايك عشان تحكي على المسرح"
+  },
+  "signInSheet": {
+    "continueAs": "كمّل باسم"
   }
 }

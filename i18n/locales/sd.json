@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "اسٽيج تي ڳالهائڻ لاءِ مائڪروفون جي اجازت ڏيو"
+  },
+  "signInSheet": {
+    "continueAs": "هن طور جاري رکو"
   }
 }

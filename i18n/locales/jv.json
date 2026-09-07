@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Idinake akses mikrofon kanggo ngomong ing panggung"
+  },
+  "signInSheet": {
+    "continueAs": "Terusake minangka"
   }
 }

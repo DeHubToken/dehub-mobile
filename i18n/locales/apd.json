@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "اسمح بالوصول للمايك عشان تتكلم في المسرح"
+  },
+  "signInSheet": {
+    "continueAs": "واصل باسم"
   }
 }

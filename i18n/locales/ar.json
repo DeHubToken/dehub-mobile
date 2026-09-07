@@ -2553,5 +2553,8 @@
   },
   "stages": {
     "microphoneDenied": "اسمح بالوصول إلى الميكروفون للتحدث على المسرح"
+  },
+  "signInSheet": {
+    "continueAs": "المتابعة باسم"
   }
 }

@@ -2531,5 +2531,8 @@
   },
   "stages": {
     "microphoneDenied": "Vumela ukufinyelela kwemakrofoni ukuze ukhulume esiteji"
+  },
+  "signInSheet": {
+    "continueAs": "Qhubeka njengo"
   }
 }

@@ -2530,5 +2530,8 @@
   },
   "stages": {
     "microphoneDenied": "በመድረክ ላይ ለመናገር የማይክሮፎን መዳረሻ ይፍቀዱ"
+  },
+  "signInSheet": {
+    "continueAs": "እንደ ቀጥል"
   }
 }

@@ -2735,5 +2735,8 @@
   },
   "stages": {
     "microphoneDenied": "স্টেজো কথা কইতে মাইক্রোফোনর অনুমতি দেও"
+  },
+  "signInSheet": {
+    "continueAs": "এই পরিচয়ে চালাও"
   }
 }

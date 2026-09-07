@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Leiskite naudoti mikrofoną, kad galėtumėte kalbėti scenoje"
+  },
+  "signInSheet": {
+    "continueAs": "Tęsti kaip"
   }
 }
