@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Das Telefon vergisst, weli Wallet es für dini Google/E-Mail-Aamäldig automatisch uswählt. Du wirsch abgmäldet, und bim nächschte Aamälde wirsch gfrögt, di richtig Wallet mit ihrem Passwort z'entsperre (s gliiche wie d Website bruucht).",
     "resetAndSignOut": "Zruggsetze & abmälde",
     "deviceLinkReset": "Grätverknüpfig zrugggsetzt. Mäld dich nomol aa, zum s richtig Konto z'lade.",
-    "deviceLinkResetFailed": "D Grätverknüpfig het nid chönne zrugggsetzt wärde."
+    "deviceLinkResetFailed": "D Grätverknüpfig het nid chönne zrugggsetzt wärde.",
+    "emailNotificationsDescLinked": "Sent to {{email}}",
+    "emailNotificationsNoAddressMobile": "E-Mail-Adress uf dr Website drzue, zum die z'aktiviere."
   },
   "common": {
     "mute": "Stumm schalte",

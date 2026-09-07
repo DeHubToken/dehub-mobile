@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "이 기기는 Google/이메일 로그인 시 자동 선택하던 지갑을 잊습니다. 로그아웃되며, 다음 로그인 때 올바른 지갑을 그 비밀번호(웹사이트와 동일)로 잠금 해제해야 합니다.",
     "resetAndSignOut": "재설정 후 로그아웃",
     "deviceLinkReset": "기기 연결이 재설정되었습니다. 올바른 계정을 불러오려면 다시 로그인하세요.",
-    "deviceLinkResetFailed": "기기 연결을 재설정할 수 없습니다."
+    "deviceLinkResetFailed": "기기 연결을 재설정할 수 없습니다.",
+    "emailNotificationsDescLinked": "{{email}}님께 발송",
+    "emailNotificationsNoAddressMobile": "이메일 주소를 웹사이트에 추가하여 활성화하세요."
   },
   "common": {
     "mute": "음소거",

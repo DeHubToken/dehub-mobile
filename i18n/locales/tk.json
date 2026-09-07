@@ -516,7 +516,9 @@
     "resetDeviceLinkBody": "Bu telefon Google/e-poçta girişiňiz üçin awtomatik saýlaýan gapjygyny ýatdan çykarar. Siz çykarsyňyz we indiki gezek gireniňizde dogry gapjygy onuň paroly bilen (web sahypasynyň ulanýany) açmagyňyz soralar.",
     "resetAndSignOut": "Täzeden düz we çyk",
     "deviceLinkReset": "Enjam baglanyşygy täzeden düzüldi. Dogry hasaby almak üçin täzeden giriň.",
-    "deviceLinkResetFailed": "Enjam baglanyşygyny täzeden düzüp bolmady."
+    "deviceLinkResetFailed": "Enjam baglanyşygyny täzeden düzüp bolmady.",
+    "emailNotificationsDescLinked": "{{email}}-a ibermen",
+    "emailNotificationsNoAddressMobile": "Muny işjeňleşdirmek üçin web-saýtda e-poçta salgysyny goşuň."
   },
   "common": {
     "mute": "Sesi öçür",

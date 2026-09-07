@@ -517,7 +517,8 @@
     "resetDeviceLinkBody": "Dis phone go forget which wallet e dey auto-select for your Google/email sign-in. E go sign you out, and next time wey you sign in dem go ask you to unlock di correct wallet with im password (di same one wey di website dey use).",
     "resetAndSignOut": "Reset and sign out",
     "deviceLinkReset": "Device link don reset. Sign in again make you pick di correct account.",
-    "deviceLinkResetFailed": "We no fit reset di device link."
+    "deviceLinkResetFailed": "We no fit reset di device link.",
+    "emailNotificationsDescLinked": "Sent to {{email}}"
   },
   "common": {
     "mute": "Off di sound",

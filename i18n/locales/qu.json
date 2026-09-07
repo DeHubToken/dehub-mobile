@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Kay celularqa qunqanqa mayqen walletta kikinmanta akllan Google/correo yaykunaykipaq. Lluqsichisqa kanki, hinaspa qhipa kutipi yaykuspaykiqa chiqan walletta paypa contraseñanwan kichanaykipaq mañasqa kanki (web sitio llamk'achisqan kikin).",
     "resetAndSignOut": "Kutichiy hinaspa lluqsiy",
     "deviceLinkReset": "Dispositivo t'inkiy kutichisqa. Chiqan cuentata hap'inaykipaq yapamanta yaykuy.",
-    "deviceLinkResetFailed": "Dispositivo t'inkiyta mana kutichiyta atikunchu."
+    "deviceLinkResetFailed": "Dispositivo t'inkiyta mana kutichiyta atikunchu.",
+    "emailNotificationsDescLinked": "{{email}} kaqman kachasqa",
+    "emailNotificationsNoAddressMobile": "Kay webpi email kamachita yapay kaykunata activanapaq."
   },
   "common": {
     "mute": "Upallachiy",

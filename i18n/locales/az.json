@@ -516,7 +516,9 @@
     "resetDeviceLinkBody": "Bu telefon Google/e-poçt girişin üçün avtomatik seçdiyi pulqabını unudacaq. Çıxış ediləcəksən və növbəti girişdə düzgün pulqabını şifrəsi ilə (saytın istifadə etdiyi eyni şifrə) açmağın istəniləcək.",
     "resetAndSignOut": "Sıfırla və çıx",
     "deviceLinkReset": "Cihaz bağlantısı sıfırlandı. Düzgün hesabı götürmək üçün yenidən daxil ol.",
-    "deviceLinkResetFailed": "Cihaz bağlantısını sıfırlamaq mümkün olmadı."
+    "deviceLinkResetFailed": "Cihaz bağlantısını sıfırlamaq mümkün olmadı.",
+    "emailNotificationsDescLinked": "{{email}} ünvanına göndərildi",
+    "emailNotificationsNoAddressMobile": "Bunları aktiv etmək üçün veb saytda e-poçt ünvanı əlavə edin."
   },
   "common": {
     "mute": "Səssiz et",

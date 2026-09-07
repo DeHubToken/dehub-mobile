@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Ka wareware tēnei waea ko tēhea pūkoro e kōwhiria aunoatia ana mō tō takiuru Google/īmēra. Ka takiputa koe, ā, i tō takiuru anō ka tonoa koe kia whakatuwhera i te pūkoro tika me tōna kupuhipa (ko taua mea e whakamahia ana e te paetukutuku).",
     "resetAndSignOut": "Tautuhi anō, takiputa",
     "deviceLinkReset": "Kua tautuhia anō te hono pūrere. Takiuru anō kia tīkina te pūkete tika.",
-    "deviceLinkResetFailed": "Kāore i taea te tautuhi anō i te hono pūrere."
+    "deviceLinkResetFailed": "Kāore i taea te tautuhi anō i te hono pūrere.",
+    "emailNotificationsDescLinked": "Tukua ki {{email}}",
+    "emailNotificationsNoAddressMobile": "Tāpirihia he wāhitau īmēra ki te paetukutuku hei whakaka i ēnei."
   },
   "common": {
     "mute": "Whakangū",

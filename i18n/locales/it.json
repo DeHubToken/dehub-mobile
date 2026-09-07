@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Questo telefono dimenticherà quale wallet seleziona automaticamente per l'accesso con Google/email. Verrai disconnesso e al prossimo accesso ti verrà chiesto di sbloccare il wallet corretto con la sua password (la stessa usata dal sito).",
     "resetAndSignOut": "Reimposta ed esci",
     "deviceLinkReset": "Collegamento del dispositivo reimpostato. Accedi di nuovo per caricare l'account corretto.",
-    "deviceLinkResetFailed": "Impossibile reimpostare il collegamento del dispositivo."
+    "deviceLinkResetFailed": "Impossibile reimpostare il collegamento del dispositivo.",
+    "emailNotificationsDescLinked": "Inviato a {{email}}",
+    "emailNotificationsNoAddressMobile": "Aggiungi un indirizzo email sul sito web per attivarli."
   },
   "common": {
     "mute": "Disattiva audio",

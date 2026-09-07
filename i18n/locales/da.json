@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Denne telefon glemmer, hvilken wallet den automatisk vælger til dit Google/e-mail-login. Du bliver logget ud, og næste gang du logger ind, bliver du bedt om at låse den rigtige wallet op med dens adgangskode (den samme, som hjemmesiden bruger).",
     "resetAndSignOut": "Nulstil og log ud",
     "deviceLinkReset": "Enhedskobling nulstillet. Log ind igen for at få den rigtige konto.",
-    "deviceLinkResetFailed": "Kunne ikke nulstille enhedskoblingen."
+    "deviceLinkResetFailed": "Kunne ikke nulstille enhedskoblingen.",
+    "emailNotificationsDescLinked": "Sendt til {{email}}",
+    "emailNotificationsNoAddressMobile": "Tilføj en e-mailadresse på hjemmesiden for at aktivere disse."
   },
   "common": {
     "mute": "Slå lyd fra",

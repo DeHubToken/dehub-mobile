@@ -1022,7 +1022,9 @@
     "resetDeviceLinkBody": "Telefon ini akan lupa dompet mana yang dipilih automatik untuk log masuk Google/e-mel anda. Anda akan dilog keluar, dan kali seterusnya anda log masuk, anda diminta membuka dompet yang betul dengan kata laluannya (sama seperti yang digunakan laman web).",
     "resetAndSignOut": "Tetapkan semula & log keluar",
     "deviceLinkReset": "Pautan peranti ditetapkan semula. Log masuk semula untuk mendapatkan akaun yang betul.",
-    "deviceLinkResetFailed": "Tidak dapat menetapkan semula pautan peranti."
+    "deviceLinkResetFailed": "Tidak dapat menetapkan semula pautan peranti.",
+    "emailNotificationsDescLinked": "Dihantar kepada {{email}}",
+    "emailNotificationsNoAddressMobile": "Tambahkan alamat e-mel di laman web untuk mendayakan ini."
   },
   "postOptions": {
     "options": "Options",

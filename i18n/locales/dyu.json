@@ -516,7 +516,8 @@
     "resetDeviceLinkBody": "Nin telefɔni bɛna ɲinɛ wallet min bɛ sugandi a yɛrɛ ma i ka Google/email donni kama. I bɛna bɔ, ani siɲɛ wɛrɛ n'i donna, i bɛna ɲininka ka wallet ɲuman dayɛlɛ n'a tɔgɔla ye (site bɛ min kɛ).",
     "resetAndSignOut": "Segin ani bɔ",
     "deviceLinkReset": "Minɛn sirili seginna. Don kokura ka kɔnti ɲuman ta.",
-    "deviceLinkResetFailed": "Minɛn sirili ma se ka segin."
+    "deviceLinkResetFailed": "Minɛn sirili ma se ka segin.",
+    "emailNotificationsDescLinked": "Sent to {{email}}"
   },
   "common": {
     "mute": "Kan bɔ",
