@@ -44,7 +44,6 @@ import { createViewCountUpdater, seedViewerStats } from "../../libs/viewers.util
 import { likeLiveStream } from "../../services/live.service";
 import { shareProfile } from "../../libs/misc";
 import { WEBSITE_LINK } from "../../config";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import LiveViewerHeader from "../LiveViewer/LiveViewerHeader";
 import LiveViewerChat from "../LiveViewer/LiveViewerChat";
 import LiveViewerReactionsBar from "../LiveViewer/LiveViewerReactionsBar";
@@ -1266,8 +1265,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     [streamId, isSignedIn, user, activities.length, rememberOptimistic, addActivity, socketEmitAuthed]
   );
 
-  // Safe area insets for fullscreen layout
-  const insets = useSafeAreaInsets();
 
   // Determine status overlay type
   const overlayStatus = useMemo(() => {
@@ -1323,7 +1320,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         {immersive && (
           <View
             pointerEvents="box-none"
-            style={{ position: "absolute", top: insets.top + EDGE, right: insets.right + EDGE }}
+            style={{ position: "absolute", top: EDGE, right: EDGE }}
           >
             <LiveViewerPlayerControls
               isMuted={isMuted}
@@ -1339,7 +1336,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           {/* Top gradient for readability */}
           <LinearGradient
             colors={["rgba(0,0,0,0.7)", "rgba(0,0,0,0)"]}
-            style={{ height: 120 + insets.top, position: "absolute", top: 0, left: 0, right: 0 }}
+            style={{ height: 120, position: "absolute", top: 0, left: 0, right: 0 }}
             pointerEvents="none"
           />
   
@@ -1352,7 +1349,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   
           {/* Main content layout */}
           <View className="flex-1" pointerEvents="box-none">
-            <View className="flex-1" pointerEvents="box-none" style={{ paddingTop: insets.top }}>
+            {/* Flat EDGE, no inset: the root SafeAreaView already pays the status bar
+                and gesture bar, and useSafeAreaInsets reports them again. */}
+            <View className="flex-1" pointerEvents="box-none" style={{ paddingTop: EDGE }}>
               {/* Header: Creator info + LIVE badge + viewers + close */}
               <LiveViewerHeader
                 creator={creator}
@@ -1398,7 +1397,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
               <View className="flex-1" pointerEvents="box-none" />
   
               {/* Bottom section: shop + chat + reactions + input */}
-              <View pointerEvents="box-none" style={{ paddingBottom: Math.max(insets.bottom, 8) }}>
+              <View pointerEvents="box-none" style={{ paddingBottom: EDGE }}>
                 {/* Whatever the host has put "on air", above the chat so a busy
                     room cannot scroll it away. Renders nothing when the stream
                     has no products attached. */}
