@@ -1123,7 +1123,10 @@
     "payments": "ክፍሊታት",
     "claimBounty": "ሽልማትካ ውሰድ",
     "noneForFilter": "ገና {{filter}} መፍለጢ የለን።",
-    "andNOthers": "ከምኡውን ካልኦት {{count}}"
+    "andNOthers": "ከምኡውን ካልኦት {{count}}",
+    "community": {
+      "joined": "{{name}} ምስ ማሕበረሰብካ ተጸምቢርካ"
+    }
   },
   "leaderboard": {
     "title": "ሰሌዳ ደረጃ",

@@ -1104,7 +1104,17 @@
     "payments": "გადახდები",
     "claimBounty": "მიიღეთ თქვენი ჯილდო",
     "noneForFilter": "{{filter}} შეტყობინებები ჯერ არ არის.",
-    "andNOthers": "და კიდევ {{count}}"
+    "andNOthers": "და კიდევ {{count}}",
+    "community": {
+      "joined": "{{name}} შეუერთდა თქვენს გაერთიანებას",
+      "joinedNamed": "{{name}} შეუერთდა „{{community}}“",
+      "requested": "{{name}} ითხოვს გაერთიანებაში გაწევრიანებას",
+      "requestedNamed": "{{name}}-მა მოითხოვა „{{community}} @“ -ში გაწევრიანება",
+      "mentioned": "{{name}} @ მოგიხსენიათ გაერთიანებაში",
+      "mentionedNamed": "{{name}} @ მოგიხსენიათ „{{community}}“ -ში",
+      "here": "{{name}} მესიჯი მისწერა გაერთიანების ყველა წევრს",
+      "hereNamed": "{{name}} მესიჯი ყველასთვის: „{{community}}“"
+    }
   },
   "leaderboard": {
     "title": "რეიტინგი",

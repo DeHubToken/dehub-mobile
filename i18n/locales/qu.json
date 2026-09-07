@@ -1188,7 +1188,17 @@
     "payments": "Pagokuna",
     "claimBounty": "Premiuykita chaskiy",
     "noneForFilter": "Manaraq {{filter}} willakuykuna kanchu.",
-    "andNOthers": "hinaspa {{count}} hukkuna"
+    "andNOthers": "hinaspa {{count}} hukkuna",
+    "community": {
+      "joined": "{{name}} llaqtaykiman hukllawakurqa",
+      "joinedNamed": "{{name}} “{{community}}” nisqaman hukllawakurqan.",
+      "requested": "{{name}} llaqtaykiman hukllawakunanpaq mañakurqa",
+      "requestedNamed": "{{name}} mañasqa “{{community}}” nisqaman hukllawakunanpaq.",
+      "mentioned": "{{name}} huk ayllupi rimarqasunki",
+      "mentionedNamed": "{{name}} “{{community}}” nisqapi rimasqayki.",
+      "here": "{{name}} ayllupi llapa runakunaman mensajeta apachirqa",
+      "hereNamed": "{{name}} llapa runaman “{{community}}” nisqapi mensajeta apachirqan."
+    }
   },
   "leaderboard": {
     "title": "Ñawpaqkuna",

@@ -1095,7 +1095,11 @@
     "payments": "पेमेंट",
     "claimBounty": "तुमचे बक्षीस मिळवा",
     "noneForFilter": "अजून {{filter}} सूचना नाहीत.",
-    "andNOthers": "आणि इतर {{count}}"
+    "andNOthers": "आणि इतर {{count}}",
+    "community": {
+      "joined": "{{name}} आपल्या समुदायात सामील झाले",
+      "mentioned": "{{name}} ने एका समुदायात आपला उल्लेख केला"
+    }
   },
   "leaderboard": {
     "title": "लीडरबोर्ड",

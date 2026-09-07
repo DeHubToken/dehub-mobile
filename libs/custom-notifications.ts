@@ -27,6 +27,7 @@
  * ambiguous between the two sources would send the write to the wrong place.
  */
 
+import i18n from "../i18n";
 import { supabase } from "../services/supabase";
 import { getAccount } from "../services/user.service";
 import { withWalletHeader } from "./supabase-wallet-client";
@@ -123,6 +124,50 @@ async function resolveMissingActors(rows: CustomNotificationRow[]): Promise<void
 }
 
 /**
+ * The sentence a community row renders, matching web's
+ * `lib/community-notifications` word for word.
+ *
+ * A join stores the predicate ("joined your community"), so the actor's name
+ * in front of it is enough. A mention or an @here stores the chat message
+ * instead, which prefixed with a name read as "alice hey @bob" — the message
+ * belongs under the sentence, not in place of it.
+ */
+const composeCommunityContent = (row: CustomNotificationRow, actor: string): string => {
+  const community = row.reference_title?.trim();
+  const named = !!community;
+  const values = { name: actor, community };
+  const line = (key: string, fallback: string): string => {
+    const translated = i18n.t(key, { ...values, defaultValue: fallback });
+    const text = translated && translated !== key ? translated : fallback;
+    return text.replace(/\{\{(\w+)\}\}/g, (_m: string, name: string) => (values as Record<string, string | undefined>)[name] ?? "");
+  };
+
+  if (row.type === "community_join") {
+    const requested = row.content?.trim().toLowerCase() === "requested to join your community";
+    if (requested) {
+      return named
+        ? line("notifications.community.requestedNamed", "{{name}} asked to join “{{community}}”")
+        : line("notifications.community.requested", "{{name}} asked to join your community");
+    }
+    return named
+      ? line("notifications.community.joinedNamed", "{{name}} joined “{{community}}”")
+      : line("notifications.community.joined", "{{name}} joined your community");
+  }
+
+  const headline = row.type === "community_here"
+    ? (named
+        ? line("notifications.community.hereNamed", "{{name}} messaged everyone in “{{community}}”")
+        : line("notifications.community.here", "{{name}} messaged everyone in the community"))
+    : (named
+        ? line("notifications.community.mentionedNamed", "{{name}} mentioned you in “{{community}}”")
+        : line("notifications.community.mentioned", "{{name}} mentioned you in a community"));
+
+  const message = row.content?.trim();
+  return message ? `${headline}\n“${message}”` : headline;
+};
+
+const COMMUNITY_TYPES = new Set(["community_join", "community_mention", "community_here"]);
+/**
  * Compose the sentence the row renders.
  *
  * These rows store a bare predicate ("applied to your bounty") because web
@@ -133,6 +178,7 @@ async function resolveMissingActors(rows: CustomNotificationRow[]): Promise<void
 const composeContent = (row: CustomNotificationRow, resolvedUsername?: string | null): string => {
   const actor =
     row.actor_username?.trim() || resolvedUsername?.trim() || shortAddress(row.actor_address);
+  if (COMMUNITY_TYPES.has(row.type)) return composeCommunityContent(row, actor);
   const predicate = row.content?.trim() || "sent you a notification";
   const sentence = `${actor} ${predicate}`;
   const isBounty = row.type === "work_application" || row.type === "work_submission";

@@ -1125,7 +1125,17 @@
     "payments": "Maksed",
     "claimBounty": "Võta oma preemia",
     "noneForFilter": "Veel pole ühtegi {{filter}} teavitust.",
-    "andNOthers": "ja veel {{count}}"
+    "andNOthers": "ja veel {{count}}",
+    "community": {
+      "joined": "{{name}} liitus sinu kogukonnaga",
+      "joinedNamed": "{{name}} liitus kasutajaga „{{community}}“",
+      "requested": "{{name}} palus sul oma kogukonnaga liituda",
+      "requestedNamed": "{{name}} palus liituda dokumendiga „{{community}}“",
+      "mentioned": "{{name}} mainis sind kogukonnas",
+      "mentionedNamed": "{{name}} mainis sind dokumendis „{{community}}“",
+      "here": "{{name}} saatis sõnumi kõigile kogukonna liikmetele",
+      "hereNamed": "{{name}} saatis sõnumi kõigile asukohas „{{community}}“"
+    }
   },
   "leaderboard": {
     "title": "Edetabel",

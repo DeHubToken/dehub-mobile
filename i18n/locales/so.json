@@ -1125,7 +1125,15 @@
     "payments": "Lacag bixinno",
     "claimBounty": "Qaado abaalmarintaada",
     "noneForFilter": "Weli ma jiraan ogeysiisyo {{filter}}.",
-    "andNOthers": "iyo {{count}} kale"
+    "andNOthers": "iyo {{count}} kale",
+    "community": {
+      "joined": "{{name}} ku biiray bulshadaada",
+      "joinedNamed": "{{name}} ku biiray “{{community}}@”",
+      "requested": "{{name}} waxaa laga codsaday inuu ku biiro bulshadaada",
+      "mentioned": "{{name}} ku xusay bulshada dhexdeeda",
+      "mentionedNamed": "{{name}} ku xusay in “{{community}}@”",
+      "here": "{{name}} fariin qof walba oo bulshada ka mid ah"
+    }
   },
   "leaderboard": {
     "title": "Hogaamiyaha",

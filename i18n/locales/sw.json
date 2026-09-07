@@ -1188,7 +1188,17 @@
     "payments": "Malipo",
     "claimBounty": "Chukua zawadi yako",
     "noneForFilter": "Bado hakuna arifa za {{filter}}.",
-    "andNOthers": "na wengine {{count}}"
+    "andNOthers": "na wengine {{count}}",
+    "community": {
+      "joined": "{{name}} alijiunga na jumuiya yako",
+      "joinedNamed": "{{name}} amejiunga \"{{community}}\"",
+      "requested": "{{name}} ameombwa kujiunga na jumuiya yako",
+      "requestedNamed": "{{name}} ameomba kujiunga na \"{{community}}\"",
+      "mentioned": "{{name}} amekutaja katika jumuiya",
+      "mentionedNamed": "{{name}} amekutaja katika \"{{community}}\"",
+      "here": "{{name}} alituma ujumbe kwa kila mtu katika jumuiya",
+      "hereNamed": "{{name}} alituma ujumbe kwa kila mtu katika \"{{community}}\""
+    }
   },
   "leaderboard": {
     "title": "Ubao wa Viongozi",

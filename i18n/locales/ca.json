@@ -1125,7 +1125,17 @@
     "payments": "Pagaments",
     "claimBounty": "Reclama la teva recompensa",
     "noneForFilter": "Encara no hi ha notificacions de {{filter}}.",
-    "andNOthers": "i {{count}} més"
+    "andNOthers": "i {{count}} més",
+    "community": {
+      "joined": "{{name}} s'ha unit a la teva comunitat",
+      "joinedNamed": "{{name}} s'ha unit a “{{community}}”",
+      "requested": "{{name}}ha demanat unir-se a la teva comunitat",
+      "requestedNamed": "{{name}}ha demanat unir-se a “{{community}}”",
+      "mentioned": "{{name}} t'ha esmentat en una comunitat",
+      "mentionedNamed": "{{name}} t'ha esmentat a “{{community}}”",
+      "here": "{{name}} ha enviat un missatge a tothom de la comunitat",
+      "hereNamed": "{{name}}ha enviat un missatge a tothom a “{{community}}”"
+    }
   },
   "leaderboard": {
     "title": "Classificació",

@@ -1124,7 +1124,17 @@
     "payments": "Πληρωμές",
     "claimBounty": "Παραλάβετε την αμοιβή σας",
     "noneForFilter": "Δεν υπάρχουν ακόμη ειδοποιήσεις ({{filter}}).",
-    "andNOthers": "και {{count}} ακόμη"
+    "andNOthers": "και {{count}} ακόμη",
+    "community": {
+      "joined": "{{name}} έγινε μέλος της κοινότητάς σας",
+      "joinedNamed": "Ο/Η {{name}} έγινε μέλος στο “{{community}}”",
+      "requested": "Ο χρήστης{{name}} ζήτησε να γίνει μέλος της κοινότητάς σας",
+      "requestedNamed": "Οχρήστης {{name}} ζήτησε να συμμετάσχει στο \"{{community}}\"",
+      "mentioned": "Οχρήστης {{name}} σας ανέφερε σε μια κοινότητα",
+      "mentionedNamed": "Οχρήστης {{name}} σας ανέφερε στο \"{{community}}\"",
+      "here": "Ο χρήστης{{name}} έστειλε μήνυμα σε όλα τα μέλη της κοινότητας",
+      "hereNamed": "Ο χρήστης{{name}} έστειλε μήνυμα σε όλους στην τοποθεσία \"{{community}}\""
+    }
   },
   "leaderboard": {
     "title": "Κατάταξη",

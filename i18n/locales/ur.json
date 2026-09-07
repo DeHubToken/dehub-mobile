@@ -1095,7 +1095,17 @@
     "payments": "ادائیگیاں",
     "claimBounty": "اپنا انعام حاصل کریں",
     "noneForFilter": "ابھی تک کوئی {{filter}} اطلاع نہیں۔",
-    "andNOthers": "اور {{count}} دیگر"
+    "andNOthers": "اور {{count}} دیگر",
+    "community": {
+      "joined": "{{name}} آپ کی کمیونٹی میں شامل ہوئے",
+      "joinedNamed": "{{name}} نے \"{{community}}\" جوائن کیا",
+      "requested": "{{name}} کو آپ کی کمیونٹی میں شامل ہونے کے لیے کہا گیا",
+      "requestedNamed": "{{name}} کو \"{{community}}\" میں شامل ہونے کے لیے کہا گیا",
+      "mentioned": "{{name}} نے ایک کمیونٹی میں آپ کا ذکر کیا",
+      "mentionedNamed": "{{name}} نے \"{{community}}\" میں آپ کا ذکر کیا ہے",
+      "here": "{{name}} نے کمیونٹی میں ہر ایک کو پیغام بھیجا",
+      "hereNamed": "{{name}} نے \"{{community}}\" میں سب کو میسج کیا"
+    }
   },
   "leaderboard": {
     "title": "لیڈر بورڈ",

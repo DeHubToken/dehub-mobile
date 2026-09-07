@@ -1125,7 +1125,17 @@
     "payments": "ادائیگیاں",
     "claimBounty": "آپݨا انعام گھنو",
     "noneForFilter": "ہالے تک {{filter}} دی کوئی اطلاع کائنی۔",
-    "andNOthers": "تے {{count}} ٻئے"
+    "andNOthers": "تے {{count}} ٻئے",
+    "community": {
+      "joined": "{{name}} توهان جي ڪميونٽي ۾ شامل ٿيو",
+      "joinedNamed": "{{name}} ”{{community}}“ ۾ شامل ٿيو",
+      "requested": "{{name}} توهان جي ڪميونٽي ۾ شامل ٿيڻ جي درخواست ڪئي",
+      "requestedNamed": "{{name}} ”{{community}}“ ۾ شامل ٿيڻ جي درخواست ڪئي",
+      "mentioned": "{{name}} توهان کي ڪميونٽي ۾ ذڪر ڪيو",
+      "mentionedNamed": "{{name}} توهان کي ”{{community}}“ ۾ ذڪر ڪيو",
+      "here": "{{name}} ڪميونٽي ۾ سڀني کي پيغام موڪليو",
+      "hereNamed": "{{name}} ”{{community}}“ ۾ سڀني کي پيغام موڪليو"
+    }
   },
   "leaderboard": {
     "title": "لیڈر بورڈ",

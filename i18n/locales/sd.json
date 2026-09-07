@@ -1123,7 +1123,11 @@
     "payments": "ادائيگيون",
     "claimBounty": "پنهنجو انعام وٺو",
     "noneForFilter": "اڃا تائين ڪا {{filter}} اطلاع ناهي.",
-    "andNOthers": "۽ {{count}} ٻيا"
+    "andNOthers": "۽ {{count}} ٻيا",
+    "community": {
+      "mentioned": "{{name}} هڪ ڪميونٽي ۾ توهان جو ذڪر ڪيو",
+      "here": "{{name}} برادري ۾ سڀني کي پيغام موڪليو"
+    }
   },
   "leaderboard": {
     "title": "ليڊربورڊ",

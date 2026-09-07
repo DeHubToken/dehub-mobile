@@ -1125,7 +1125,17 @@
     "payments": "Plaćanja",
     "claimBounty": "Preuzmi nagradu",
     "noneForFilter": "Još nema obavijesti ({{filter}}).",
-    "andNOthers": "i još {{count}}"
+    "andNOthers": "i još {{count}}",
+    "community": {
+      "joined": "Korisnik{{name}} pridružio se vašoj zajednici",
+      "joinedNamed": "{{name}} se pridružio/la “{{community}}”",
+      "requested": "Korisnik{{name}} zatražio je da se pridruži vašoj zajednici",
+      "requestedNamed": "Korisnik{{name}} zatražio je da se pridruži korisniku „{{community}}”",
+      "mentioned": "{{name}} vas spominje u zajednici",
+      "mentionedNamed": "{{name}} vas spominje u “{{community}}”",
+      "here": "{{name}} šalje poruke svima u zajednici",
+      "hereNamed": "{{name}} šalje poruke svima u “{{community}}”"
+    }
   },
   "leaderboard": {
     "title": "Ljestvice",

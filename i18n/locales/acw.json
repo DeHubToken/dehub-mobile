@@ -1124,7 +1124,17 @@
     "payments": "المدفوعات",
     "claimBounty": "استلم مكافأتك",
     "noneForFilter": "ما فيه إشعارات {{filter}} لسا.",
-    "andNOthers": "و {{count}} غيرهم"
+    "andNOthers": "و {{count}} غيرهم",
+    "community": {
+      "joined": "{{name}} انضم لمجتمعك",
+      "joinedNamed": "{{name}} انضم لـ “{{community}}”",
+      "requested": "{{name}} طلب الانضمام لمجتمعك",
+      "requestedNamed": "{{name}} طلب الانضمام لـ “{{community}}”",
+      "mentioned": "{{name}} ذكرك في مجتمع",
+      "mentionedNamed": "{{name}} ذكرك في “{{community}}”",
+      "here": "{{name}} أرسل رسالة للجميع في المجتمع",
+      "hereNamed": "{{name}} أرسل رسالة للجميع في “{{community}}”"
+    }
   },
   "leaderboard": {
     "title": "لوحة المتصدرين",

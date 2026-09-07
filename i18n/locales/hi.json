@@ -999,7 +999,17 @@
     "payments": "भुगतान",
     "claimBounty": "अपना इनाम लें",
     "noneForFilter": "अभी तक कोई {{filter}} सूचना नहीं।",
-    "andNOthers": "और {{count}} अन्य"
+    "andNOthers": "और {{count}} अन्य",
+    "community": {
+      "joined": "{{name}} आपके समुदाय में शामिल हुए",
+      "joinedNamed": "{{name}} “{{community}}” में शामिल हुए",
+      "requested": "{{name}} को आपके समुदाय में शामिल होने के लिए कहा गया",
+      "requestedNamed": "{{name}} को “{{community}}” में शामिल होने के लिए कहा गया",
+      "mentioned": "{{name}} ने आपको एक समुदाय में बताया है",
+      "mentionedNamed": "{{name}} ने \"{{community}}\" में आपका उल्लेख किया है",
+      "here": "{{name}} ने समुदाय के सभी लोगों को मैसेज भेजा",
+      "hereNamed": "{{name}} ने \"{{community}}\" में सभी को मैसेज भेजा"
+    }
   },
   "leaderboard": {
     "title": "लीडरबोर्ड",

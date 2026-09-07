@@ -1125,7 +1125,17 @@
     "payments": "Maksājumi",
     "claimBounty": "Saņem savu atlīdzību",
     "noneForFilter": "Vēl nav {{filter}} paziņojumu.",
-    "andNOthers": "un vēl {{count}}"
+    "andNOthers": "un vēl {{count}}",
+    "community": {
+      "joined": "{{name}} pievienojās jūsu kopienai",
+      "joinedNamed": "{{name}} pievienojās “{{community}}”",
+      "requested": "{{name}} lūdza pievienoties jūsu kopienai",
+      "requestedNamed": "{{name}} lūdza pievienoties “{{community}}”",
+      "mentioned": "{{name}} pieminēja jūs kopienā",
+      "mentionedNamed": "{{name}} pieminēja jūs “{{community}}”",
+      "here": "{{name}} nosūtīja ziņojumu visiem kopienas dalībniekiem",
+      "hereNamed": "{{name}} ziņoja visiem \"{{community}}\""
+    }
   },
   "leaderboard": {
     "title": "Līderu tabula",

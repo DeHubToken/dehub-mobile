@@ -1124,7 +1124,17 @@
     "payments": "ચુકવણીઓ",
     "claimBounty": "તમારું ઇનામ મેળવો",
     "noneForFilter": "હજી કોઈ {{filter}} સૂચનાઓ નથી.",
-    "andNOthers": "અને {{count}} અન્ય"
+    "andNOthers": "અને {{count}} અન્ય",
+    "community": {
+      "joined": "{{name}} તમારા સમુદાયમાં જોડાયા",
+      "joinedNamed": "{{name}} જોડાયા \"{{community}}\"",
+      "requested": "{{name}} ને તમારા સમુદાયમાં જોડાવા માટે કહેવામાં આવ્યું",
+      "requestedNamed": "{{name}} ને \"{{community}}\" માં જોડાવા માટે કહેવામાં આવ્યું",
+      "mentioned": "{{name}}@ એ એક સમુદાયમાં તમારો ઉલ્લેખ કર્યો છે",
+      "mentionedNamed": "{{name}} એ \"{{community}}\" માં તમારો ઉલ્લેખ કર્યો છે",
+      "here": "{{name}} @ એ સમુદાયમાં દરેકને મેસેજ કર્યો",
+      "hereNamed": "{{name}} એ \"{{community}}\" માં દરેકને મેસેજ કર્યો"
+    }
   },
   "leaderboard": {
     "title": "લીડરબોર્ડ",

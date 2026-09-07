@@ -1105,7 +1105,15 @@
     "payments": "To‘lovlar",
     "claimBounty": "Mukofotingizni oling",
     "noneForFilter": "Hozircha {{filter}} bildirishnomalari yo‘q.",
-    "andNOthers": "va yana {{count}} kishi"
+    "andNOthers": "va yana {{count}} kishi",
+    "community": {
+      "joined": "{{name}} sizning hamjamiyatingizga qo&#39;shildi",
+      "requested": "{{name}} hamjamiyatingizga qo&#39;shilish so&#39;raldi",
+      "mentioned": "{{name}} sizni hamjamiyatda tilga oldi",
+      "mentionedNamed": "{{name}} sizni “{{community}}” da tilga olgan",
+      "here": "{{name}} hamjamiyatdagi barchaga xabar yubordi",
+      "hereNamed": "{{name}} hammaga “{{community}}” xatida xabar yubordi"
+    }
   },
   "leaderboard": {
     "title": "Reyting",

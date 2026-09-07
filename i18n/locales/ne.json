@@ -1137,7 +1137,17 @@
     "payments": "भुक्तानीहरू",
     "claimBounty": "आफ्नो इनाम लिनुहोस्",
     "noneForFilter": "अहिलेसम्म {{filter}} सूचना छैन।",
-    "andNOthers": "र अन्य {{count}}"
+    "andNOthers": "र अन्य {{count}}",
+    "community": {
+      "joined": "{{name}} तपाईंको समुदायमा सामेल भए",
+      "joinedNamed": "{{name}} सामेल भए \"{{community}}\"",
+      "requested": "{{name}} तपाईंको समुदायमा सामेल हुन आग्रह गरियो",
+      "requestedNamed": "{{name}}लाई \"{{community}}\" मा सामेल हुन अनुरोध गरियो",
+      "mentioned": "{{name}} ले तपाईंलाई एउटा समुदायमा उल्लेख गर्नुभयो",
+      "mentionedNamed": "{{name}}ले तपाईंलाई \"{{community}}\" मा उल्लेख गर्नुभयो",
+      "here": "{{name}} समुदायका सबैलाई सन्देश पठाइयो",
+      "hereNamed": "{{name}}ले \"{{community}}\" मा सबैलाई सन्देश पठायो"
+    }
   },
   "leaderboard": {
     "title": "लिडरबोर्ड",

@@ -1479,7 +1479,17 @@
     "payments": "Thanh toán",
     "claimBounty": "Nhận thưởng của bạn",
     "noneForFilter": "Chưa có thông báo {{filter}} nào.",
-    "andNOthers": "và {{count}} người khác"
+    "andNOthers": "và {{count}} người khác",
+    "community": {
+      "joined": "{{name}} đã tham gia cộng đồng của bạn",
+      "joinedNamed": "{{name}} đã tham gia “{{community}}”",
+      "requested": "{{name}} đã yêu cầu tham gia cộng đồng của bạn",
+      "requestedNamed": "{{name}} đã yêu cầu tham gia “{{community}}”",
+      "mentioned": "{{name}} đã đề cập đến bạn trong một cộng đồng",
+      "mentionedNamed": "{{name}} đã đề cập đến bạn trong “{{community}}”",
+      "here": "{{name}} đã nhắn tin cho mọi người trong cộng đồng",
+      "hereNamed": "{{name}} đã nhắn tin cho mọi người trong “{{community}}”"
+    }
   },
   "messages": {
     "smartRepliesOff": "Đã tắt câu trả lời gợi ý",

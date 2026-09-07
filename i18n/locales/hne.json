@@ -1123,7 +1123,10 @@
     "payments": "भुगतान",
     "claimBounty": "अपन इनाम लव",
     "noneForFilter": "अभी तक {{filter}} के कोनो सूचना नइ हे।",
-    "andNOthers": "अउ {{count}} अउर"
+    "andNOthers": "अउ {{count}} अउर",
+    "community": {
+      "requested": "{{name}} अपन समुदाय म शामिल होए बर अनुरोध करिस"
+    }
   },
   "leaderboard": {
     "title": "लीडरबोर्ड",
