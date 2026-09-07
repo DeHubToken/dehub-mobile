@@ -37,7 +37,7 @@ describe('libs/api.client', () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
 
       const [url, opts] = mockFetch.mock.calls[0];
-      expect(url).toContain('/test');
+      expect(url).toBe('https://dehub.io/_api/api/test');
       expect(opts.method).toBe('GET');
       expect(opts.headers['Accept']).toBe('application/json');
       expect(opts.headers['X-Client-Type']).toBe('mobile');
@@ -60,6 +60,26 @@ describe('libs/api.client', () => {
       expect(opts.method).toBe('POST');
       expect(opts.headers['Content-Type']).toBe('application/json');
       expect(JSON.parse(opts.body)).toEqual({ name: 'test' });
+    });
+
+    it('keeps multipart uploads on the direct API origin', async () => {
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        headers: { get: () => 'application/json' },
+        json: () => Promise.resolve({ success: true }),
+      });
+      const form = {
+        append: jest.fn(),
+        getParts: jest.fn(),
+        [Symbol.toStringTag]: 'FormData',
+      } as any;
+
+      await apiClient.post('/upload', form, { isAuthRequired: false });
+
+      const [url, opts] = mockFetch.mock.calls[0];
+      expect(url).toBe('https://api.dehub.io/api/upload');
+      expect(opts.headers['Content-Type']).toBeUndefined();
     });
   });
 
