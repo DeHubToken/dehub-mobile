@@ -2615,5 +2615,21 @@
     "failed": "Không thể tạo phụ đề.",
     "preparing": "Phụ đề đang được chuẩn bị.",
     "fixLine": "Sửa dòng hiện tại"
+  },
+  "paywall": {
+    "subtitle": "Chọn một mô hình và xác nhận thanh toán",
+    "generate": "Tạo",
+    "run": "Chạy",
+    "paymentConfirmed": "Đã xác nhận thanh toán — đang tạo",
+    "paymentFailed": "Thanh toán thất bại",
+    "paying": "Đang thanh toán…",
+    "generating": "Đang tạo…",
+    "buyDhb": "Mua DHB",
+    "payAmount": "Trả {{amount}} DHB và {{action}}",
+    "stakerDiscount": "Giảm giá staker",
+    "total": "Tổng",
+    "pricing": "Đang tính giá…",
+    "payWithDhb": "Thanh toán bằng DHB",
+    "yourDhb": "DHB của bạn"
   }
 }

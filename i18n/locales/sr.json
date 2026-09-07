@@ -2524,5 +2524,21 @@
     "failed": "Титлови нису могли да се направе.",
     "preparing": "Титлови се припремају.",
     "fixLine": "Исправи тренутни ред"
+  },
+  "paywall": {
+    "subtitle": "Изабери модел и потврди плаћање",
+    "generate": "Генериши",
+    "run": "Покрени",
+    "paymentConfirmed": "Плаћање потврђено — генерише се",
+    "paymentFailed": "Плаћање није успело",
+    "paying": "Плаћање…",
+    "generating": "Генерише се…",
+    "buyDhb": "Купи DHB",
+    "payAmount": "Плати {{amount}} DHB и {{action}}",
+    "stakerDiscount": "Попуст за стејкере",
+    "total": "Укупно",
+    "pricing": "Рачунање цене…",
+    "payWithDhb": "Плати DHB-ом",
+    "yourDhb": "Твој DHB"
   }
 }

@@ -2531,5 +2531,21 @@
     "failed": "Undertekster kunne ikke laves.",
     "preparing": "Undertekster forberedes.",
     "fixLine": "Ret den aktuelle linje"
+  },
+  "paywall": {
+    "subtitle": "Vælg en model og bekræft betalingen",
+    "generate": "Generér",
+    "run": "Kør",
+    "paymentConfirmed": "Betaling bekræftet — genererer",
+    "paymentFailed": "Betaling mislykkedes",
+    "paying": "Betaler…",
+    "generating": "Genererer…",
+    "buyDhb": "Køb DHB",
+    "payAmount": "Betal {{amount}} DHB og {{action}}",
+    "stakerDiscount": "Staker-rabat",
+    "total": "I alt",
+    "pricing": "Beregner pris…",
+    "payWithDhb": "Betal med DHB",
+    "yourDhb": "Din DHB"
   }
 }

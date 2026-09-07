@@ -2531,5 +2531,21 @@
     "failed": "Undertexter kunde inte skapas.",
     "preparing": "Undertexter förbereds.",
     "fixLine": "Rätta aktuell rad"
+  },
+  "paywall": {
+    "subtitle": "Välj en modell och bekräfta betalningen",
+    "generate": "Generera",
+    "run": "Kör",
+    "paymentConfirmed": "Betalning bekräftad — genererar",
+    "paymentFailed": "Betalningen misslyckades",
+    "paying": "Betalar…",
+    "generating": "Genererar…",
+    "buyDhb": "Köp DHB",
+    "payAmount": "Betala {{amount}} DHB & {{action}}",
+    "stakerDiscount": "Staker-rabatt",
+    "total": "Totalt",
+    "pricing": "Beräknar pris…",
+    "payWithDhb": "Betala med DHB",
+    "yourDhb": "Dina DHB"
   }
 }

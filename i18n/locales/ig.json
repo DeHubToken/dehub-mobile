@@ -2527,5 +2527,21 @@
     "failed": "Enweghị ike ịmepụta subtaịtl.",
     "preparing": "A na-akwadebe subtaịtl.",
     "fixLine": "Dozie ahịrị a"
+  },
+  "paywall": {
+    "subtitle": "Họrọ ụdị ma kwado ịkwụ ụgwọ",
+    "generate": "Mepụta",
+    "run": "Gbaa",
+    "paymentConfirmed": "Ịkwụ ụgwọ kwadoro — na-emepụta",
+    "paymentFailed": "Ịkwụ ụgwọ dara",
+    "paying": "Na-akwụ…",
+    "generating": "Na-emepụta…",
+    "buyDhb": "Zụta DHB",
+    "payAmount": "Kwụọ {{amount}} DHB ma {{action}}",
+    "stakerDiscount": "Mbelata staker",
+    "total": "Mkpokọta",
+    "pricing": "Na-agbakọ ọnụahịa…",
+    "payWithDhb": "Kwụọ ụgwọ na DHB",
+    "yourDhb": "DHB gị"
   }
 }

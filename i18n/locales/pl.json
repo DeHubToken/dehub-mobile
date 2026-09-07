@@ -2595,5 +2595,21 @@
     "failed": "Nie udało się utworzyć napisów.",
     "preparing": "Napisy są przygotowywane.",
     "fixLine": "Popraw bieżący wiersz"
+  },
+  "paywall": {
+    "subtitle": "Wybierz model i potwierdź płatność",
+    "generate": "Generuj",
+    "run": "Uruchom",
+    "paymentConfirmed": "Płatność potwierdzona — generowanie",
+    "paymentFailed": "Płatność nie powiodła się",
+    "paying": "Płacenie…",
+    "generating": "Generowanie…",
+    "buyDhb": "Kup DHB",
+    "payAmount": "Zapłać {{amount}} DHB i {{action}}",
+    "stakerDiscount": "Zniżka dla stakerów",
+    "total": "Razem",
+    "pricing": "Wyliczanie ceny…",
+    "payWithDhb": "Zapłać w DHB",
+    "yourDhb": "Twoje DHB"
   }
 }

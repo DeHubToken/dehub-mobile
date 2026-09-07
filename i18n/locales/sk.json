@@ -2698,5 +2698,21 @@
     "failed": "Titulky sa nepodarilo vytvoriť.",
     "preparing": "Titulky sa pripravujú.",
     "fixLine": "Opraviť aktuálny riadok"
+  },
+  "paywall": {
+    "subtitle": "Vyberte model a potvrďte platbu",
+    "generate": "Vytvoriť",
+    "run": "Spustiť",
+    "paymentConfirmed": "Platba potvrdená — vytvára sa",
+    "paymentFailed": "Platba zlyhala",
+    "paying": "Platím…",
+    "generating": "Vytvára sa…",
+    "buyDhb": "Kúpiť DHB",
+    "payAmount": "Zaplatiť {{amount}} DHB a {{action}}",
+    "stakerDiscount": "Zľava pre stakerov",
+    "total": "Spolu",
+    "pricing": "Počítam cenu…",
+    "payWithDhb": "Zaplatiť v DHB",
+    "yourDhb": "Váš DHB"
   }
 }

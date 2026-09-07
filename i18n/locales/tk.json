@@ -2527,5 +2527,21 @@
     "failed": "Subtitrleri döredip bolmady.",
     "preparing": "Subtitrler taýýarlanýar.",
     "fixLine": "Häzirki setiri düzediň"
+  },
+  "paywall": {
+    "subtitle": "Model saýlaň we tölegi tassyklaň",
+    "generate": "Dörediň",
+    "run": "Işlet",
+    "paymentConfirmed": "Töleg tassyklandy — döredilýär",
+    "paymentFailed": "Töleg şowsuz boldy",
+    "paying": "Tölenýär…",
+    "generating": "Döredilýär…",
+    "buyDhb": "DHB satyn al",
+    "payAmount": "{{amount}} DHB töläň we {{action}}",
+    "stakerDiscount": "Staker arzanladyşy",
+    "total": "Jemi",
+    "pricing": "Baha hasaplanýar…",
+    "payWithDhb": "DHB bilen töläň",
+    "yourDhb": "Siziň DHB-ňyz"
   }
 }

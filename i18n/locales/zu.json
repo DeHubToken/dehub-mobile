@@ -2558,5 +2558,21 @@
     "failed": "Imibhalo engezansi ayikwazanga ukwenziwa.",
     "preparing": "Imibhalo engezansi iyalungiswa.",
     "fixLine": "Lungisa umugqa wamanje"
+  },
+  "paywall": {
+    "subtitle": "Khetha imodeli bese uqinisekisa inkokhelo",
+    "generate": "Khiqiza",
+    "run": "Qhuba",
+    "paymentConfirmed": "Inkokhelo iqinisekisiwe — iyakhiqiza",
+    "paymentFailed": "Inkokhelo yehlulekile",
+    "paying": "Iyakhokha…",
+    "generating": "Iyakhiqiza…",
+    "buyDhb": "Thenga i-DHB",
+    "payAmount": "Khokha {{amount}} DHB bese {{action}}",
+    "stakerDiscount": "Isaphulelo se-staker",
+    "total": "Isamba",
+    "pricing": "Ibala intengo…",
+    "payWithDhb": "Khokha nge-DHB",
+    "yourDhb": "I-DHB yakho"
   }
 }

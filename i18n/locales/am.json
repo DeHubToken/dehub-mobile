@@ -2556,5 +2556,21 @@
     "failed": "የግርጌ ጽሑፎችን መፍጠር አልተቻለም።",
     "preparing": "የግርጌ ጽሑፎች እየተዘጋጁ ነው።",
     "fixLine": "የአሁኑን መስመር ያስተካክሉ"
+  },
+  "paywall": {
+    "subtitle": "ሞዴል ይምረጡ እና ክፍያውን ያረጋግጡ",
+    "generate": "ፍጠር",
+    "run": "አስኪድ",
+    "paymentConfirmed": "ክፍያ ተረጋግጧል — እየተፈጠረ ነው",
+    "paymentFailed": "ክፍያ አልተሳካም",
+    "paying": "እየከፈለ…",
+    "generating": "እየተፈጠረ…",
+    "buyDhb": "DHB ይግዙ",
+    "payAmount": "{{amount}} DHB ይክፈሉ እና {{action}}",
+    "stakerDiscount": "የስቴከር ቅናሽ",
+    "total": "ጠቅላላ",
+    "pricing": "የዚህን ሂደት ዋጋ በማስላት ላይ…",
+    "payWithDhb": "በ DHB ይክፈሉ",
+    "yourDhb": "የእርስዎ DHB"
   }
 }

@@ -2527,5 +2527,21 @@
     "failed": "उपशीर्षकाणि निर्मातुं न शक्यन्ते।",
     "preparing": "उपशीर्षकाणि सज्जीक्रियन्ते।",
     "fixLine": "वर्तमानपङ्क्तिं संशोधयतु"
+  },
+  "paywall": {
+    "subtitle": "प्रतिरूपं चिनुत भुगतानं च पुष्टिं कुरुत",
+    "generate": "निर्माणं कुरुत",
+    "run": "चालयतु",
+    "paymentConfirmed": "भुगतानं पुष्टम् — निर्मीयते",
+    "paymentFailed": "भुगतानं विफलम्",
+    "paying": "भुगतानं क्रियते…",
+    "generating": "निर्मीयते…",
+    "buyDhb": "DHB क्रीणातु",
+    "payAmount": "{{amount}} DHB ददातु {{action}} च",
+    "stakerDiscount": "स्टेकर-छूटः",
+    "total": "योगः",
+    "pricing": "मूल्यं गण्यते…",
+    "payWithDhb": "DHB द्वारा ददातु",
+    "yourDhb": "भवतः DHB"
   }
 }

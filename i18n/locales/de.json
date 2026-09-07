@@ -2576,5 +2576,21 @@
     "failed": "Untertitel konnten nicht erstellt werden.",
     "preparing": "Untertitel werden vorbereitet.",
     "fixLine": "Aktuelle Zeile korrigieren"
+  },
+  "paywall": {
+    "subtitle": "Modell wählen und Zahlung bestätigen",
+    "generate": "Erstellen",
+    "run": "Ausführen",
+    "paymentConfirmed": "Zahlung bestätigt — wird erstellt",
+    "paymentFailed": "Zahlung fehlgeschlagen",
+    "paying": "Zahlung läuft…",
+    "generating": "Wird erstellt…",
+    "buyDhb": "DHB kaufen",
+    "payAmount": "{{amount}} DHB zahlen & {{action}}",
+    "stakerDiscount": "Staker-Rabatt",
+    "total": "Gesamt",
+    "pricing": "Preis wird ermittelt…",
+    "payWithDhb": "Mit DHB bezahlen",
+    "yourDhb": "Dein DHB"
   }
 }

@@ -17,6 +17,7 @@
  */
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { t } from "i18next";
 import {
   View,
   Text,
@@ -1575,7 +1576,7 @@ function AIChatScreenInner() {
         selectedModelId={selectedToolId}
         onSelectModel={setSelectedToolId}
         quoteKind="tool"
-        confirmLabel="Run"
+        confirmLabel={t('paywall.run')}
         onClose={() => setToolPaywallVisible(false)}
         onConfirm={handleToolConfirm}
       />

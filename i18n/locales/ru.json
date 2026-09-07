@@ -2579,5 +2579,21 @@
     "failed": "Не удалось создать субтитры.",
     "preparing": "Субтитры готовятся.",
     "fixLine": "Исправить текущую строку"
+  },
+  "paywall": {
+    "subtitle": "Выберите модель и подтвердите оплату",
+    "generate": "Создать",
+    "run": "Запустить",
+    "paymentConfirmed": "Оплата подтверждена — создаём",
+    "paymentFailed": "Оплата не прошла",
+    "paying": "Оплата…",
+    "generating": "Создаём…",
+    "buyDhb": "Купить DHB",
+    "payAmount": "Заплатить {{amount}} DHB и {{action}}",
+    "stakerDiscount": "Скидка стейкера",
+    "total": "Итого",
+    "pricing": "Считаем стоимость…",
+    "payWithDhb": "Оплатить в DHB",
+    "yourDhb": "Ваш DHB"
   }
 }

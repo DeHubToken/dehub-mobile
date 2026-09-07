@@ -2521,5 +2521,21 @@
     "failed": "Jêrnivîs nehatin çêkirin.",
     "preparing": "Jêrnivîs tên amadekirin.",
     "fixLine": "Rêza niha rast bike"
+  },
+  "paywall": {
+    "subtitle": "Modelek hilbijêre û dayînê piştrast bike",
+    "generate": "Çêbike",
+    "run": "Bimeşîne",
+    "paymentConfirmed": "Dayîn piştrast bû — tê çêkirin",
+    "paymentFailed": "Dayîn têk çû",
+    "paying": "Tê dayîn…",
+    "generating": "Tê çêkirin…",
+    "buyDhb": "DHB bikire",
+    "payAmount": "{{amount}} DHB bide û {{action}}",
+    "stakerDiscount": "Daxistina staker",
+    "total": "Tevahî",
+    "pricing": "Biha tê hesibandin…",
+    "payWithDhb": "Bi DHB bide",
+    "yourDhb": "DHB-ya te"
   }
 }
