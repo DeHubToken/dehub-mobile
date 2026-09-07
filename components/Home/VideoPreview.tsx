@@ -59,6 +59,13 @@ export default function VideoPreview({
 
   useEffect(() => {
     playerRef.current = player;
+    return () => {
+      // Stop expo-video's native time-update clock before the instance is
+      // released; on Android release() never zeroes it (see FeedVideoPlayer).
+      try {
+        player.timeUpdateEventInterval = 0;
+      } catch {}
+    };
   }, [player]);
 
   // a stable stop implementation that always consults playerRef.current
