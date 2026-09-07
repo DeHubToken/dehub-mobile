@@ -6,7 +6,7 @@ import {
   Modal,
   Pressable,
   Platform,
-  Dimensions,
+  useWindowDimensions,
   Image,
 } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
@@ -51,7 +51,6 @@ interface MessageContextMenuProps {
 }
 
 
-const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window");
 
 const resolveMediaUrl = (path: string): string => {
   if (
@@ -102,13 +101,16 @@ const ActionRow: React.FC<ActionRowProps> = ({
 );
 
 
-const FLOAT_MAX_IMAGE_W = Math.round(SCREEN_WIDTH * 0.75 - 24);
 
 const FloatingMessage: React.FC<{
   message: DmMessage;
   isMine: boolean;
   senderInfo?: { displayName?: string; username?: string; avatarImageUrl?: string };
 }> = ({ message, isMine, senderInfo }) => {
+  // Live window size, not a module-level snapshot: on iPad the width changes
+  // on rotation and the float's image used to overflow the screen.
+  const { width: SCREEN_WIDTH } = useWindowDimensions();
+  const FLOAT_MAX_IMAGE_W = Math.round(SCREEN_WIDTH * 0.75 - 24);
   const hasMedia =
     (message.mediaUrls && message.mediaUrls.length > 0) ||
     message.msgType === "gif";
@@ -401,6 +403,9 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
   isPinned,
 }) => {
   const insets = useSafeAreaInsets();
+  // Live window size (iPad rotation, Android multi-window); a module-level
+  // Dimensions snapshot put the Reply/Copy/Delete card off-screen.
+  const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = useWindowDimensions();
 
   // Resolve sender info for the float header
   const senderInfo = useMemo(() => {
@@ -483,7 +488,7 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
 
     const aTop = below ? mTop + msgH + gap : mTop - gap - actionsH;
     return { messageTop: mTop, actionsTop: aTop, actionsBelow: below };
-  }, [layout, insets]);
+  }, [layout, insets, SCREEN_HEIGHT]);
 
   if (!visible || !message) return null;
 
