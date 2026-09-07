@@ -2617,5 +2617,8 @@
     "dubbed": "Dubbele klank",
     "preparing": "Voorbereiding van benoemde oudio...",
     "unavailable": "Dubbele klank is nie beskikbaar vir hierdie video nie."
+  },
+  "stages": {
+    "microphoneDenied": "Laat mikrofoontoegang toe om op 'n verhoog te praat"
   }
 }

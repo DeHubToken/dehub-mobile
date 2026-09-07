@@ -2492,5 +2492,8 @@
     "dubbed": "Dijagnosticirani zvuk",
     "preparing": "Priprema sinkroniziranog zvuka…",
     "unavailable": "Diferencirani zvuk nije dostupan za ovaj videozapis."
+  },
+  "stages": {
+    "microphoneDenied": "Dopustite pristup mikrofonu za govor na pozornici"
   }
 }

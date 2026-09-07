@@ -2492,5 +2492,8 @@
     "dubbed": "配音為音頻",
     "preparing": "準備緊配音音頻⋯",
     "unavailable": "呢段片冇配音音訊。"
+  },
+  "stages": {
+    "microphoneDenied": "允許使用麥克風先可以喺舞台上發言"
   }
 }

@@ -2523,5 +2523,8 @@
     "dubbed": "Umsindo obhalwe kabili",
     "preparing": "Ilungiselela umsindo obizwa ngegama...",
     "unavailable": "Umsindo onama-dubbed awutholakali kule vidiyo."
+  },
+  "stages": {
+    "microphoneDenied": "Vumela ukufinyelela kwemakrofoni ukuze ukhulume esiteji"
   }
 }

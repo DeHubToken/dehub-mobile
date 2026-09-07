@@ -2492,5 +2492,8 @@
     "dubbed": "డబ్బింగ్ ఆడియో",
     "preparing": "డబ్బింగ్ ఆడియో తయారుచేస్తున్నాం…",
     "unavailable": "Ee video ki dubbed audio available ga ledu."
+  },
+  "stages": {
+    "microphoneDenied": "اسٹیج پر بولنے کے لیے مائیک کی اجازت دو"
   }
 }

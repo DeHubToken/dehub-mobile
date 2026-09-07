@@ -2492,5 +2492,8 @@
     "dubbed": "Dublēts audio",
     "preparing": "Notiek dublētā audio sagatavošana...",
     "unavailable": "Šim videoklipam dublētais audio nav pieejams."
+  },
+  "stages": {
+    "microphoneDenied": "Atļaujiet piekļuvi mikrofonam, lai runātu uz skatuves"
   }
 }

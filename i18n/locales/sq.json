@@ -2492,5 +2492,8 @@
     "dubbed": "Audio e quajtur",
     "preparing": "Duke përgatitur audion e quajtur...",
     "unavailable": "Audio e quajtur nuk është e disponueshme për këtë video."
+  },
+  "stages": {
+    "microphoneDenied": "Lejo qasjen në mikrofon për të folur në skenë"
   }
 }

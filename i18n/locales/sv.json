@@ -2496,5 +2496,8 @@
     "dubbed": "Dubbade ljud",
     "preparing": "Förbereder dubbat ljud...",
     "unavailable": "Dubbat ljud är inte tillgängligt för den här videon."
+  },
+  "stages": {
+    "microphoneDenied": "Tillåt mikrofonåtkomst för att tala på en scen"
   }
 }

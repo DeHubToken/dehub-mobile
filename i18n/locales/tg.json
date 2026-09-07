@@ -2492,5 +2492,8 @@
     "dubbed": "Аудиои дубора",
     "preparing": "Тайёр кардани аудиои дубляжшуда...",
     "unavailable": "Hindi magagamit ang audio ng Dubbed para sa video na ito."
+  },
+  "stages": {
+    "microphoneDenied": "Барои дар саҳна сухан гуфтан ба микрофон иҷозат диҳед"
   }
 }

@@ -2496,5 +2496,8 @@
     "dubbed": "Dijagnostikovani zvuk",
     "preparing": "Pripremanje sinhronizovanog zvuka…",
     "unavailable": "Nazvani zvuk nije dostupan za ovaj video."
+  },
+  "stages": {
+    "microphoneDenied": "Дозволите приступ микрофону да бисте говорили на сцени"
   }
 }

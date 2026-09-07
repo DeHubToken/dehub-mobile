@@ -2541,5 +2541,8 @@
       "other": "Diğer"
     },
     "filedOn": "{{date}} tarihinde açıldı"
+  },
+  "stages": {
+    "microphoneDenied": "Sahnede konuşmak için mikrofon erişimine izin verin"
   }
 }

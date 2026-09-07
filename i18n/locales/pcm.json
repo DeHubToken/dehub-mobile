@@ -2491,5 +2491,8 @@
     "dubbed": "Dubbed audio",
     "preparing": "Preparing dubbed audio…",
     "unavailable": "Dubbed audio is not available for this video."
+  },
+  "stages": {
+    "microphoneDenied": "Allow microphone make you fit talk for stage"
   }
 }

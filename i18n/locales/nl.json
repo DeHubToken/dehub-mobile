@@ -2750,5 +2750,8 @@
     "dubbed": "Gesynchroniseerde audio",
     "preparing": "Voorbereiden van nagesynchroniseerde audio...",
     "unavailable": "Gesynchroniseerde audio is niet beschikbaar voor deze video."
+  },
+  "stages": {
+    "microphoneDenied": "Sta microfoontoegang toe om op een podium te spreken"
   }
 }

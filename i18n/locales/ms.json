@@ -2758,5 +2758,8 @@
     "dubbed": "Audio bergelar",
     "preparing": "Menyediakan audio yang digelar...",
     "unavailable": "Audio bergelar tidak tersedia untuk video ini."
+  },
+  "stages": {
+    "microphoneDenied": "Benarkan akses mikrofon untuk bercakap di pentas"
   }
 }

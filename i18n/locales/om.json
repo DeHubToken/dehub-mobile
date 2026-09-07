@@ -2542,5 +2542,8 @@
     "dubbed": "Sagalee maqaa itti moggaafame",
     "preparing": "Sagalee dubbed qopheessuu...",
     "unavailable": "Viidiyoo kanaaf sagaleen dubbed ta&#39;e hin jiru."
+  },
+  "stages": {
+    "microphoneDenied": "Waltajjii irratti dubbachuuf maayikiroofoonii hayyami"
   }
 }

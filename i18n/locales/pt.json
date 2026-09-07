@@ -2545,5 +2545,8 @@
       "other": "Outro"
     },
     "filedOn": "Aberto em {{date}}"
+  },
+  "stages": {
+    "microphoneDenied": "Permita o acesso ao microfone para falar em um palco"
   }
 }
