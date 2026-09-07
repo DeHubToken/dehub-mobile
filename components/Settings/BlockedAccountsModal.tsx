@@ -25,8 +25,11 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
   const [hasMore, setHasMore] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
 
-  // Unblock confirmation
+  // Unblock confirmation. The confirm is a second native Modal; on iOS it is
+  // refused if presented while the list sheet is still up, so the list hides
+  // first and the confirm is presented once that dismissal has finished.
   const [unblockTarget, setUnblockTarget] = useState<BlockListItem | null>(null);
+  const [listHidden, setListHidden] = useState(false);
   const [unblockLoading, setUnblockLoading] = useState(false);
 
   const fetchBlocked = useCallback(async (pageNum: number, append = false) => {
@@ -68,7 +71,14 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
   }, [hasMore, loadingMore, page, fetchBlocked]);
 
   const handleUnblockPress = useCallback((item: BlockListItem) => {
-    setUnblockTarget(item);
+    setListHidden(true);
+    setTimeout(() => setUnblockTarget(item), 250);
+  }, []);
+
+  // Drop the confirm, then bring the list back once it has dismissed.
+  const closeConfirm = useCallback(() => {
+    setUnblockTarget(null);
+    setTimeout(() => setListHidden(false), 250);
   }, []);
 
   const handleConfirmUnblock = useCallback(async () => {
@@ -84,9 +94,9 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
       toastError(t('settings.failedUnblock'));
     } finally {
       setUnblockLoading(false);
-      setUnblockTarget(null);
+      closeConfirm();
     }
-  }, [unblockTarget, t]);
+  }, [unblockTarget, t, closeConfirm]);
 
   const renderItem = useCallback(({ item }: ListRenderItemInfo<BlockListItem>) => {
     const avatar = getAvatarUrl(item.avatarImageUrl || '');
@@ -122,7 +132,7 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
 
   return (
     <>
-      <GlassModal visible={visible} onClose={onClose} presentation="bottom" maxHeight="75%" blurIntensity={30}>
+      <GlassModal visible={visible && !listHidden} onClose={onClose} presentation="bottom" maxHeight="75%" blurIntensity={30}>
         <View className="px-5 pt-4 pb-3 border-b border-white/10">
           <Text className="text-white font-bold text-base">{t('settings.blockedAccounts')}</Text>
           <Text className="text-theme-neutrals-400 text-xs mt-1">
@@ -171,7 +181,7 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
         mode="unblock"
         targetLabel={unblockTarget?.displayName || unblockTarget?.username || (unblockTarget ? truncateAddress(unblockTarget.address, 4, 4) : '')}
         onConfirm={handleConfirmUnblock}
-        onCancel={() => setUnblockTarget(null)}
+        onCancel={closeConfirm}
         loading={unblockLoading}
       />
     </>
