@@ -19,7 +19,7 @@ import {
   NativeScrollEvent,
   ViewToken,
 } from "react-native";
-import Animated from "react-native-reanimated";
+import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
 import EmptyFeedState from "./EmptyFeedState";
 import FeedCard from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
@@ -72,6 +72,12 @@ interface InfiniteVideoFeedProps {
   contentContainerStyle?: any;
   headerComponent?: React.ReactNode;
   headerInset?: number;
+  /**
+   * The collapsing header's translateY. The "new posts" pill sits just under
+   * the header and rides this so it follows the header off-screen instead of
+   * floating mid-feed once the header has slid away.
+   */
+  headerTranslateY?: SharedValue<number> | null;
   onEndReachedAll?: () => void;
   /** Reanimated worklet scroll handler — when provided, scroll events stay on the UI thread. */
   scrollHandler?: any;
@@ -130,6 +136,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   contentContainerStyle,
   headerComponent,
   headerInset = 0,
+  headerTranslateY = null,
   onEndReachedAll,
   scrollHandler,
   onScrollOffset,
@@ -734,6 +741,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     onScrollBegin?.();
   }, [onScrollBegin]);
 
+  // Follow the collapsing header (see the headerTranslateY prop). Declared
+  // before the early returns below so the hook order never changes.
+  const newPostsPillStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: headerTranslateY ? headerTranslateY.value : 0 }],
+  }));
+
   // Both guards count ORGANIC rows. A live boost is one item in the list, so
   // measuring `feedItems` let a boost mask a completely failed feed — the
   // viewer got the paid post and "No more content", with no error and no
@@ -769,9 +782,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   return (
     <View className="flex-1" onTouchStart={handleTouchStart}>
       {newPostCount > 0 && (
-        <View
+        <Animated.View
           pointerEvents="box-none"
-          style={{ position: "absolute", top: headerInset + 8, left: 0, right: 0, alignItems: "center", zIndex: 20 }}
+          style={[
+            { position: "absolute", top: headerInset + 8, left: 0, right: 0, alignItems: "center", zIndex: 20 },
+            newPostsPillStyle,
+          ]}
         >
           <Pressable
             onPress={showNewPosts}
@@ -785,7 +801,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
               {newPostsAtCap ? "+" : ""}
             </Text>
           </Pressable>
-        </View>
+        </Animated.View>
       )}
       <AnimatedFlatList
         ref={listRef}
