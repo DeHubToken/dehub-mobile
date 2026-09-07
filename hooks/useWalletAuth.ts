@@ -13,7 +13,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { toastError } from "../libs";
 import { reportWalletSignupBlocked } from "../libs/walletSignupGate";
-import { useAppKit, useAppKitAccount, useAppKitProvider } from "@reown/appkit-ethers5-react-native";
+import { useAppKitAccount, useAppKitProvider } from "@reown/appkit-ethers5-react-native";
 import { useAuthActions } from "../context/AuthContext";
 import { ChainId } from "../config/constants";
 import { getPreferredChainId as getStoredPreferredChainId } from "../libs/auth.utils";
@@ -39,7 +39,13 @@ export const useWalletAuth = () => {
   // than useAppKitState() so this stays safe on a build where createAppKit
   // never ran (missing REOWN_PROJECT_ID — see reown.config).
   const [isWalletSheetOpen, setIsWalletSheetOpen] = useState(false);
-  const { open } = useAppKit();
+  // Not useAppKit(): that hook throws when createAppKit never ran (no
+  // REOWN_PROJECT_ID), which took the whole sign-in screen and sheet down on
+  // such a build even though only the Connect Wallet button is gated. The
+  // account and provider hooks below read a store and are safe without it.
+  const open = useCallback(async () => {
+    await getAppKitInstance()?.open();
+  }, []);
   const { address: accountAddress, chainId: currentChainId } = useAppKitAccount();
   const { walletProvider } = useAppKitProvider();
   const { signInWithWallet } = useAuthActions();
