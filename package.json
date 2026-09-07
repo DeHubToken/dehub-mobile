@@ -18,7 +18,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
     "i18n:generate": "node scripts/generate-translations.js",
-    "i18n:coverage": "node scripts/i18n-coverage.js"
+    "i18n:coverage": "node scripts/i18n-coverage.js",
+    "i18n:mojibake": "node scripts/mojibake-check.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.2",

@@ -50,6 +50,12 @@ jobs:
       - name: i18n coverage
         run: npm run i18n:coverage
 
+      # A tool that reads UTF-8 as Latin-1 turns every dash, quote and emoji
+      # into two or three junk characters. The JSON still parses and the diff
+      # looks like ordinary copy, so nothing else here would catch it.
+      - name: Mangled encoding check
+        run: npm run i18n:mojibake
+
       - name: TypeScript check
         run: npx tsc --noEmit
 
