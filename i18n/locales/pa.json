@@ -1609,6 +1609,7 @@
     "searchDehubFor": "DeHub 'ਤੇ \"{{query}}\" ਖੋਜੋ"
   },
   "comments": {
+    "showAll": "ਟਿੱਪਣੀ:",
     "discardTitle": "ਆਪਣੀ ਟਿੱਪਣੀ ਛੱਡ ਦੇਣੀ ਹੈ?",
     "discardBody": "ਇਹ ਡਰਾਫਟ ਵਜੋਂ ਸੰਭਾਲੀ ਗਈ ਹੈ, ਵਾਪਸ ਆਉਣ ਤੇ ਇੱਥੇ ਹੀ ਮਿਲੇਗੀ।",
     "keepWriting": "ਲਿਖਦੇ ਰਹੋ",

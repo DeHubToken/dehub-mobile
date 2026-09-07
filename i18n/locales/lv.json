@@ -1606,6 +1606,7 @@
     "searchDehubFor": "Meklēt “{{query}}” vietnē DeHub"
   },
   "comments": {
+    "showAll": "Jaunāki komentāri",
     "discardTitle": "Atmest komentāru?",
     "discardBody": "Tas ir saglabāts kā melnraksts, tāpēc būs šeit, kad atgriezīsies.",
     "keepWriting": "Turpināt rakstīt",

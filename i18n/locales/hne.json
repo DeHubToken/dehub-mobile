@@ -1604,6 +1604,7 @@
     "searchDehubFor": "DeHub म \"{{query}}\" खोजव"
   },
   "comments": {
+    "showAll": "सब्बो टिप्पनी देखाव",
     "discardTitle": "अपन कमेंट ल छोड़ देबे?",
     "discardBody": "ये ड्राफ्ट म सहेजा गे हे, लहुटे के बाद इहें मिलही।",
     "keepWriting": "लिखत रहव",

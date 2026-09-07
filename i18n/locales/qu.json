@@ -1637,6 +1637,7 @@
     "searchDehubFor": "DeHub ukhupi \"{{query}}\" maskay"
   },
   "comments": {
+    "showAll": "Llapan rimaykunata qawachiy",
     "discardTitle": "Comentarioykita wikch'unkichu?",
     "discardBody": "Borradorpi waqaychasqa kashan, kutimuqtiykiqa kaypim kanqa.",
     "keepWriting": "Qillqayta qatiy",

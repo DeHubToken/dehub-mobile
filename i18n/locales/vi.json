@@ -1891,6 +1891,7 @@
     "searchDehubFor": "Tìm \"{{query}}\" trên DeHub"
   },
   "comments": {
+    "showAll": "Hiển thị tất cả <x id=\"1\"/> bình luận",
     "discardTitle": "Bỏ bình luận của bạn?",
     "discardBody": "Đã lưu thành bản nháp, nên nó vẫn ở đây khi bạn quay lại.",
     "keepWriting": "Viết tiếp",

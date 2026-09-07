@@ -70,7 +70,14 @@ export default function FeedDetailScreen() {
     route?.params?.nft?.tokenId ??
     route?.params?.nft?.id;
   const commentIdParam: number | string | undefined = route?.params?.commentId ?? route?.params?.c;
-  
+  /**
+   * The comment this screen was opened FOR, as a string, for the life of the
+   * screen. Distinct from `highlightedCommentId` below, which is the four-second
+   * ring: that one expiring used to take a linked reply out of the list with it,
+   * because the collapse rule read the ring rather than the destination.
+   */
+  const focusCommentId = commentIdParam != null ? String(commentIdParam) : undefined;
+
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const address = useMemo(() => user?.walletAddress || user?.address || undefined, [user?.walletAddress, user?.address]);
@@ -102,6 +109,16 @@ export default function FeedDetailScreen() {
   const [highlightedCommentId, setHighlightedCommentId] = useState<number | null>(null);
   /** Root comment ids whose full reply thread the reader has opened. */
   const [expandedThreads, setExpandedThreads] = useState<Set<string>>(() => new Set());
+  /**
+   * Arriving from a notification shows the linked thread on its own until the
+   * reader asks for the rest. A post with two hundred comments has none of them
+   * to do with why they tapped, and rendering all of them is what made the tap
+   * feel like it landed nowhere.
+   */
+  const [showAllThreads, setShowAllThreads] = useState(!focusCommentId);
+  useEffect(() => {
+    setShowAllThreads(!focusCommentId);
+  }, [focusCommentId]);
 
   // Media attachment state. A GIF is a hosted URL, so it is the one attachment
   // a draft can carry; an image or voice note is a local file URI.
@@ -612,7 +629,7 @@ export default function FeedDetailScreen() {
    * The list is already in reading order with roots at depth 0, so the root of
    * any reply is simply the last depth-0 row above it.
    */
-  const { visibleComments, threadMeta } = useMemo(() => {
+  const { visibleComments, threadMeta, focusRoot, focusOnly } = useMemo(() => {
     const rootOf = new Map<string, string>();
     const totalPerRoot = new Map<string, number>();
     let currentRoot = "";
@@ -628,13 +645,23 @@ export default function FeedDetailScreen() {
       totalPerRoot.set(currentRoot, (totalPerRoot.get(currentRoot) ?? 0) + 1);
     });
 
+    // The thread the linked comment belongs to, and whether it is the only one
+    // on screen. Resolved from the loaded comments, so a comment deleted
+    // between the notification and the tap simply drops the whole idea rather
+    // than leaving an empty list.
+    const focusRoot = focusCommentId ? rootOf.get(focusCommentId) : undefined;
+    const focusOnly = !!focusRoot && !showAllThreads;
+
     const shownPerRoot = new Map<string, number>();
     const visible = comments.filter((c) => {
+      const root = c.depth === 0 ? String(c.id) : rootOf.get(String(c.id)) ?? "";
+      if (focusOnly && root !== focusRoot) return false;
       if (c.depth === 0) return true;
-      const root = rootOf.get(String(c.id)) ?? "";
       if (expandedThreads.has(root)) return true;
       // Arriving from a notification means the reply itself is the destination.
-      if (highlightedCommentId != null && String(c.id) === String(highlightedCommentId)) return true;
+      // Keyed on the route param, not on the four-second ring — when that
+      // cleared, a linked reply inside a collapsed thread disappeared.
+      if (focusCommentId && String(c.id) === focusCommentId) return true;
       const shown = shownPerRoot.get(root) ?? 0;
       if (shown >= REPLIES_SHOWN_COLLAPSED) return false;
       shownPerRoot.set(root, shown + 1);
@@ -673,8 +700,66 @@ export default function FeedDetailScreen() {
       });
     });
 
-    return { visibleComments: visible, threadMeta: meta };
-  }, [comments, expandedThreads, highlightedCommentId]);
+    return { visibleComments: visible, threadMeta: meta, focusRoot, focusOnly };
+  }, [comments, expandedThreads, focusCommentId, showAllThreads]);
+
+  // Open the thread the linked comment sits in, so the reader lands on the
+  // conversation rather than on one line of it with the rest hidden.
+  useEffect(() => {
+    if (!focusRoot) return;
+    setExpandedThreads((prev) => (prev.has(focusRoot) ? prev : new Set(prev).add(focusRoot)));
+  }, [focusRoot]);
+
+  /**
+   * Bring the linked comment into view once the list holds it.
+   *
+   * The post itself is the list header, so on anything with a video or a wall
+   * of images the comments start a screen and a half down — which is why
+   * tapping a comment notification used to feel like it had opened the wrong
+   * thing. Runs once per id; a reader who has started scrolling is not dragged
+   * back.
+   */
+  const listRef = useRef<FlatList<ThreadedComment> | null>(null);
+  const scrolledToFocusRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!focusCommentId || scrolledToFocusRef.current === focusCommentId) return;
+    const index = visibleComments.findIndex((c) => String(c.id) === focusCommentId);
+    if (index < 0) return;
+    scrolledToFocusRef.current = focusCommentId;
+    // One frame, so the rows the jump measures against have been laid out.
+    requestAnimationFrame(() => {
+      listRef.current?.scrollToIndex({ index, viewPosition: 0.25, animated: true });
+    });
+  }, [focusCommentId, visibleComments]);
+
+  const handleScrollToIndexFailed = useCallback(
+    (info: { index: number; averageItemLength: number }) => {
+      listRef.current?.scrollToOffset({
+        offset: info.averageItemLength * info.index,
+        animated: true,
+      });
+      setTimeout(() => {
+        listRef.current?.scrollToIndex({ index: info.index, viewPosition: 0.25, animated: true });
+      }, 120);
+    },
+    [],
+  );
+
+  /**
+   * The way out of the focused view — the rest of the post's comments, one tap
+   * away rather than loaded over the thing they came to read.
+   */
+  const showAllCommentsRow = focusOnly ? (
+    <View className="px-8 py-3">
+      <TouchableOpacity
+        onPress={() => setShowAllThreads(true)}
+        activeOpacity={0.7}
+        className="self-start rounded-full bg-theme-neutrals-800/60 px-4 py-2"
+      >
+        <Text className="text-theme-neutrals-300 text-xs">{t("comments.showAll")}</Text>
+      </TouchableOpacity>
+    </View>
+  ) : null;
 
   const handleToggleThread = useCallback((rootId: string) => {
     setExpandedThreads((prev) => {
@@ -996,9 +1081,15 @@ export default function FeedDetailScreen() {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <FlatList
+        ref={listRef}
         data={visibleComments}
         keyExtractor={(c) => String(c.id)}
         ListHeaderComponent={renderHeader}
+        ListFooterComponent={showAllCommentsRow}
+        // Scrolling to a row this list has not measured yet is a normal miss on
+        // a post whose header is a video: land near it and let the next pass
+        // finish the job rather than dropping the jump.
+        onScrollToIndexFailed={handleScrollToIndexFailed}
         ListEmptyComponent={!loading ? (
           <View className="px-4 py-6">
             <Text className="text-theme-neutrals-400 text-sm">No comments yet, add yours.</Text>

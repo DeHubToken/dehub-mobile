@@ -2069,6 +2069,7 @@
     "searchDehubFor": "Cari \"{{query}}\" di DeHub"
   },
   "comments": {
+    "showAll": "All Comments",
     "discardTitle": "Buang komen anda?",
     "discardBody": "Ia disimpan sebagai draf, jadi ia akan ada di sini apabila anda kembali.",
     "keepWriting": "Teruskan menulis",

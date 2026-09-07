@@ -1645,6 +1645,7 @@
     "searchDehubFor": "DeHub मा \"{{query}}\" खोज्नुहोस्"
   },
   "comments": {
+    "showAll": "सबै टिप्पणी:",
     "discardTitle": "आफ्नो टिप्पणी हटाउने?",
     "discardBody": "यो मस्यौदाका रूपमा सुरक्षित छ, फर्केपछि यहीँ भेटिनेछ।",
     "keepWriting": "लेख्न जारी राख्नुहोस्",

@@ -1597,6 +1597,7 @@
     "searchDehubFor": "Претражи „{{query}}” на DeHub-у"
   },
   "comments": {
+    "showAll": "Сви коментари",
     "discardTitle": "Одбацити коментар?",
     "discardBody": "Сачуван је као нацрт, па ће бити овде када се вратиш.",
     "keepWriting": "Настави да пишеш",

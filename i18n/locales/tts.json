@@ -1606,6 +1606,7 @@
     "searchDehubFor": "ค้นหา \"{{query}}\" อยู่ DeHub"
   },
   "comments": {
+    "showAll": "แสดงความคิดเห็นทั้งหมด",
     "discardTitle": "ปะคำเห็นของเจ้าบ่?",
     "discardBody": "จดไว้เป็นฮ่างแล้ว กลับมาเมื่อใดกะยังอยู่บ่อนนี้",
     "keepWriting": "เขียนต่อไป",

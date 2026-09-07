@@ -1606,6 +1606,7 @@
     "searchDehubFor": "Cari \"{{query}}\" di DeHub"
   },
   "comments": {
+    "showAll": "Semua Komentar",
     "discardTitle": "Buang komentar kamu?",
     "discardBody": "Sudah tersimpan sebagai draf, jadi akan ada di sini saat kamu kembali.",
     "keepWriting": "Lanjut menulis",

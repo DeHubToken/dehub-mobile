@@ -1598,6 +1598,7 @@
     "searchDehubFor": "Buscar «{{query}}» en DeHub"
   },
   "comments": {
+    "showAll": "Mostrar todos los comentarios",
     "discardTitle": "¿Descartar tu comentario?",
     "discardBody": "Se guardó como borrador, así que estará aquí cuando vuelvas.",
     "keepWriting": "Seguir escribiendo",
