@@ -301,7 +301,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
           activeOpacity={0.7}
           accessibilityRole="button"
           accessibilityLabel={isPlaying ? "Pause voice note" : "Play voice note"}
-          className="w-9 h-9 rounded-full bg-white items-center justify-center mr-2.5"
+          className="w-9 h-9 rounded-xl bg-white items-center justify-center mr-2.5"
         >
           {isLoading ? (
             <ActivityIndicator size="small" color="#000" />

@@ -349,7 +349,7 @@ const UserProfileBottomContentTabs: React.FC<
     if (isBlocked) {
       return (
         <View className="flex-1 items-center justify-center px-6 py-12">
-          <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
+          <View className="bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5">
             <Icon name="Ban" size={40} color={theme.colors.neutrals[500]} />
           </View>
           {!youBlocked && (
@@ -368,7 +368,7 @@ const UserProfileBottomContentTabs: React.FC<
 
     return (
       <View className="flex-1 items-center justify-center px-6 py-12">
-        <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
+        <View className="bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5">
           <Icon name="Lock" size={40} color={theme.colors.neutrals[500]} />
         </View>
         <Text className="text-white text-lg font-bold text-center mb-2">
@@ -383,7 +383,7 @@ const UserProfileBottomContentTabs: React.FC<
           <AccentButtonGradient>
             <TouchableOpacity
               onPress={onFollow}
-              className="bg-transparent px-8 py-3 rounded-full"
+              className="bg-transparent px-8 py-3 rounded-xl"
               activeOpacity={0.8}
             >
               <Text className="text-white font-semibold text-sm">Follow</Text>
@@ -602,7 +602,7 @@ const UserProfileBottomContentTabs: React.FC<
           onPress={scrollToTop}
           accessibilityRole="button"
           accessibilityLabel="Back to top"
-          className="absolute bottom-6 right-5 bg-theme-neutrals-800/90 rounded-full p-3 active:opacity-80"
+          className="absolute bottom-6 right-5 bg-theme-neutrals-800/90 rounded-xl p-3 active:opacity-80"
           style={{
             zIndex: 20,
             elevation: 20,

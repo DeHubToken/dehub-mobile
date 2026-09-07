@@ -803,7 +803,7 @@ const styles = StyleSheet.create({
   successCircle: {
     width: 72,
     height: 72,
-    borderRadius: 36,
+    borderRadius: 16,
     backgroundColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
     justifyContent: "center",

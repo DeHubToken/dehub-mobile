@@ -68,7 +68,7 @@ export const UserProfileSocials: React.FC<UserProfileSocialsProps> = ({
         {items.map((s) => (
           <TouchableOpacity
             key={s.key}
-            className="flex-row items-center bg-theme-neutrals-800 px-3 py-2 rounded-full"
+            className="flex-row items-center bg-theme-neutrals-800 px-3 py-2 rounded-xl"
             onPress={() => openExternalLink(s.url)}
             accessibilityLabel={`Open ${s.label}`}
           >

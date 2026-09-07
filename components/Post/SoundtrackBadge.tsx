@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     paddingLeft: 6,
     paddingRight: 8,
     paddingVertical: 6,
-    borderRadius: 20,
+    borderRadius: 10,
     backgroundColor: "rgba(255,255,255,0.12)",
     alignSelf: "flex-start",
     maxWidth: "85%",
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   playBtn: {
     width: 18,
     height: 18,
-    borderRadius: 9,
+    borderRadius: 6,
     backgroundColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
     justifyContent: "center",

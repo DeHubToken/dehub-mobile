@@ -383,7 +383,7 @@ const EditProfileScreen = () => {
                 {processingCover ? (
                   <ActivityIndicator color="#fff" />
                 ) : (
-                  <View className="bg-black/50 rounded-full p-3">
+                  <View className="bg-black/50 rounded-xl p-3">
                     <Icon name="Camera" size={20} color="#fff" />
                   </View>
                 )}
@@ -401,7 +401,7 @@ const EditProfileScreen = () => {
                   borderColor="#010305"
                   name={displayName}
                 />
-                <View className="absolute bottom-0 right-0 bg-blue-600 rounded-full p-1.5 border-2 border-[#010305]">
+                <View className="absolute bottom-0 right-0 bg-blue-600 rounded-lg p-1.5 border-2 border-[#010305]">
                   {processingAvatar ? (
                     <ActivityIndicator size={14} color="#fff" />
                   ) : (

@@ -1126,7 +1126,7 @@ const LiveProducerScreen: React.FC = () => {
             </Text>
             <TouchableOpacity
               onPress={requestPermission}
-              className="px-5 py-2.5 rounded-full bg-white/10"
+              className="px-5 py-2.5 rounded-xl bg-white/10"
               activeOpacity={0.8}
             >
               <Text className="text-white text-xs font-medium">
@@ -1394,7 +1394,7 @@ const LiveProducerScreen: React.FC = () => {
             <View className="flex-row justify-end">
               <TouchableOpacity
                 onPress={closeEndConfirm}
-                className="px-4 h-10 rounded-full items-center justify-center bg-white/10 mr-3"
+                className="px-4 h-10 rounded-xl items-center justify-center bg-white/10 mr-3"
                 activeOpacity={0.85}
               >
                 <Text className="text-white text-xs font-semibold">
