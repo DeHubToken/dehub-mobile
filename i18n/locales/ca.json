@@ -2510,5 +2510,15 @@
   },
   "signInSheet": {
     "continueAs": "Continua com a"
+  },
+  "subtitles": {
+    "title": "Subtítols",
+    "on": "Activat",
+    "off": "Desactivat",
+    "writing": "S'estan escrivint els subtítols…",
+    "noSpeech": "No hi ha veu en aquest vídeo.",
+    "failed": "No s'han pogut generar els subtítols.",
+    "preparing": "S'estan preparant els subtítols.",
+    "fixLine": "Corregeix la línia actual"
   }
 }

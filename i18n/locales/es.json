@@ -2559,5 +2559,15 @@
   },
   "signInSheet": {
     "continueAs": "Continuar como"
+  },
+  "subtitles": {
+    "title": "Subtítulos",
+    "on": "Activado",
+    "off": "Desactivado",
+    "writing": "Escribiendo subtítulos…",
+    "noSpeech": "No hay voz en este video.",
+    "failed": "No se pudieron generar los subtítulos.",
+    "preparing": "Los subtítulos se están preparando.",
+    "fixLine": "Corregir la línea actual"
   }
 }

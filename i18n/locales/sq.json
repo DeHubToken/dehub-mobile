@@ -2510,5 +2510,15 @@
   },
   "signInSheet": {
     "continueAs": "Vazhdo si"
+  },
+  "subtitles": {
+    "title": "Titrat",
+    "on": "Aktiv",
+    "off": "Joaktiv",
+    "writing": "Po shkruhen titrat…",
+    "noSpeech": "Nuk ka të folur në këtë video.",
+    "failed": "Titrat nuk u krijuan dot.",
+    "preparing": "Titrat po përgatiten.",
+    "fixLine": "Korrigjo rreshtin aktual"
   }
 }

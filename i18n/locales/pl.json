@@ -2578,5 +2578,15 @@
   },
   "signInSheet": {
     "continueAs": "Kontynuuj jako"
+  },
+  "subtitles": {
+    "title": "Napisy",
+    "on": "Wł.",
+    "off": "Wył.",
+    "writing": "Tworzenie napisów…",
+    "noSpeech": "W tym filmie nikt nie mówi.",
+    "failed": "Nie udało się utworzyć napisów.",
+    "preparing": "Napisy są przygotowywane.",
+    "fixLine": "Popraw bieżący wiersz"
   }
 }

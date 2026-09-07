@@ -2510,5 +2510,15 @@
   },
   "signInSheet": {
     "continueAs": "Haere tonu hei"
+  },
+  "subtitles": {
+    "title": "Hauraro",
+    "on": "Kā",
+    "off": "Weto",
+    "writing": "E tuhi ana i ngā hauraro…",
+    "noSpeech": "Kāore he kōrero i tēnei ataata.",
+    "failed": "Kāore i taea te hanga hauraro.",
+    "preparing": "Kei te whakaritea ngā hauraro.",
+    "fixLine": "Whakatikaina te rārangi o nāianei"
   }
 }

@@ -2514,5 +2514,15 @@
   },
   "signInSheet": {
     "continueAs": "Pokračovat jako"
+  },
+  "subtitles": {
+    "title": "Titulky",
+    "on": "Zap.",
+    "off": "Vyp.",
+    "writing": "Titulky se píší…",
+    "noSpeech": "V tomto videu není žádná řeč.",
+    "failed": "Titulky se nepodařilo vytvořit.",
+    "preparing": "Titulky se připravují.",
+    "fixLine": "Opravit aktuální řádek"
   }
 }

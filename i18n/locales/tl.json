@@ -2694,5 +2694,15 @@
   },
   "signInSheet": {
     "continueAs": "Magpatuloy bilang"
+  },
+  "subtitles": {
+    "title": "Mga subtitle",
+    "on": "Naka-on",
+    "off": "Naka-off",
+    "writing": "Sinusulat ang mga subtitle…",
+    "noSpeech": "Walang pagsasalita sa video na ito.",
+    "failed": "Hindi makagawa ng mga subtitle.",
+    "preparing": "Inihahanda ang mga subtitle.",
+    "fixLine": "Ayusin ang kasalukuyang linya"
   }
 }

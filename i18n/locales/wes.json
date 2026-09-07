@@ -2508,5 +2508,15 @@
   },
   "signInSheet": {
     "continueAs": "Continue as"
+  },
+  "subtitles": {
+    "title": "Subtitles",
+    "on": "On",
+    "off": "Off",
+    "writing": "Dey write subtitles…",
+    "noSpeech": "No talk inside dis video.",
+    "failed": "We no fit make subtitles.",
+    "preparing": "Subtitles dey prepare.",
+    "fixLine": "Correct dis line"
   }
 }

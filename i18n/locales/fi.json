@@ -2510,5 +2510,15 @@
   },
   "signInSheet": {
     "continueAs": "Jatka käyttäjänä"
+  },
+  "subtitles": {
+    "title": "Tekstitys",
+    "on": "Päällä",
+    "off": "Pois",
+    "writing": "Kirjoitetaan tekstitystä…",
+    "noSpeech": "Videossa ei ole puhetta.",
+    "failed": "Tekstitystä ei voitu luoda.",
+    "preparing": "Tekstitystä valmistellaan.",
+    "fixLine": "Korjaa nykyinen rivi"
   }
 }

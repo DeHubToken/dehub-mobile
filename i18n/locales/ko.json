@@ -2562,5 +2562,15 @@
   },
   "signInSheet": {
     "continueAs": "다음 계정으로 계속"
+  },
+  "subtitles": {
+    "title": "자막",
+    "on": "켜짐",
+    "off": "꺼짐",
+    "writing": "자막 작성 중…",
+    "noSpeech": "이 영상에는 음성이 없습니다.",
+    "failed": "자막을 생성할 수 없습니다.",
+    "preparing": "자막을 준비하고 있습니다.",
+    "fixLine": "현재 줄 수정"
   }
 }

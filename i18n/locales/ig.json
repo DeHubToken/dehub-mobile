@@ -2510,5 +2510,15 @@
   },
   "signInSheet": {
     "continueAs": "Gaa n'ihu dịka"
+  },
+  "subtitles": {
+    "title": "Subtaịtl",
+    "on": "Gbanyere",
+    "off": "Gbanyụrụ",
+    "writing": "Na-ede subtaịtl…",
+    "noSpeech": "Enweghị okwu na vidiyo a.",
+    "failed": "Enweghị ike ịmepụta subtaịtl.",
+    "preparing": "A na-akwadebe subtaịtl.",
+    "fixLine": "Dozie ahịrị a"
   }
 }

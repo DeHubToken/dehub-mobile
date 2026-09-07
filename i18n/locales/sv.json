@@ -2514,5 +2514,15 @@
   },
   "signInSheet": {
     "continueAs": "Fortsätt som"
+  },
+  "subtitles": {
+    "title": "Undertexter",
+    "on": "På",
+    "off": "Av",
+    "writing": "Skriver undertexter…",
+    "noSpeech": "Inget tal i den här videon.",
+    "failed": "Undertexter kunde inte skapas.",
+    "preparing": "Undertexter förbereds.",
+    "fixLine": "Rätta aktuell rad"
   }
 }

@@ -2510,5 +2510,15 @@
   },
   "signInSheet": {
     "continueAs": "Sii wad ahaan"
+  },
+  "subtitles": {
+    "title": "Qoraal-hoosaad",
+    "on": "Shid",
+    "off": "Dami",
+    "writing": "Waa la qorayaa qoraal-hoosaadka…",
+    "noSpeech": "Hadal kuma jiro muuqaalkan.",
+    "failed": "Qoraal-hoosaadka lama samayn karin.",
+    "preparing": "Qoraal-hoosaadka waa la diyaarinayaa.",
+    "fixLine": "Sax xariiqda hadda"
   }
 }

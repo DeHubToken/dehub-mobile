@@ -2560,5 +2560,15 @@
   },
   "signInSheet": {
     "continueAs": "次のアカウントで続行"
+  },
+  "subtitles": {
+    "title": "字幕",
+    "on": "オン",
+    "off": "オフ",
+    "writing": "字幕を作成中…",
+    "noSpeech": "この動画には音声がありません。",
+    "failed": "字幕を作成できませんでした。",
+    "preparing": "字幕を準備中です。",
+    "fixLine": "この行を修正"
   }
 }

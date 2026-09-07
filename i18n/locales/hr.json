@@ -2510,5 +2510,15 @@
   },
   "signInSheet": {
     "continueAs": "Nastavi kao"
+  },
+  "subtitles": {
+    "title": "Titlovi",
+    "on": "Uključeno",
+    "off": "Isključeno",
+    "writing": "Pišu se titlovi…",
+    "noSpeech": "U ovom videu nema govora.",
+    "failed": "Titlovi se nisu mogli izraditi.",
+    "preparing": "Titlovi se pripremaju.",
+    "fixLine": "Ispravi trenutačni redak"
   }
 }

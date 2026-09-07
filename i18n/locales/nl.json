@@ -2768,5 +2768,15 @@
   },
   "signInSheet": {
     "continueAs": "Doorgaan als"
+  },
+  "subtitles": {
+    "title": "Ondertitels",
+    "on": "Aan",
+    "off": "Uit",
+    "writing": "Ondertitels schrijven…",
+    "noSpeech": "Geen spraak in deze video.",
+    "failed": "Ondertitels konden niet worden gemaakt.",
+    "preparing": "Ondertitels worden voorbereid.",
+    "fixLine": "Huidige regel corrigeren"
   }
 }

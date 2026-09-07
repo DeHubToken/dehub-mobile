@@ -2510,5 +2510,15 @@
   },
   "signInSheet": {
     "continueAs": "Terusake minangka"
+  },
+  "subtitles": {
+    "title": "Subtitel",
+    "on": "Urip",
+    "off": "Mati",
+    "writing": "Nulis subtitel…",
+    "noSpeech": "Ora ana wicara ing video iki.",
+    "failed": "Subtitel ora bisa digawe.",
+    "preparing": "Subtitel lagi disiapake.",
+    "fixLine": "Benerake baris iki"
   }
 }

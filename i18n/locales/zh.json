@@ -2562,5 +2562,15 @@
   },
   "signInSheet": {
     "continueAs": "以此身份继续"
+  },
+  "subtitles": {
+    "title": "字幕",
+    "on": "开",
+    "off": "关",
+    "writing": "正在生成字幕…",
+    "noSpeech": "这个视频里没有语音。",
+    "failed": "无法生成字幕。",
+    "preparing": "字幕准备中。",
+    "fixLine": "修正当前字幕行"
   }
 }

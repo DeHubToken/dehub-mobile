@@ -2776,5 +2776,15 @@
   },
   "signInSheet": {
     "continueAs": "Teruskan sebagai"
+  },
+  "subtitles": {
+    "title": "Sari kata",
+    "on": "Hidup",
+    "off": "Mati",
+    "writing": "Menulis sari kata…",
+    "noSpeech": "Tiada pertuturan dalam video ini.",
+    "failed": "Sari kata tidak dapat dijana.",
+    "preparing": "Sari kata sedang disediakan.",
+    "fixLine": "Betulkan baris semasa"
   }
 }

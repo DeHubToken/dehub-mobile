@@ -2563,5 +2563,15 @@
   },
   "signInSheet": {
     "continueAs": "Continuar como"
+  },
+  "subtitles": {
+    "title": "Legendas",
+    "on": "Ativadas",
+    "off": "Desativadas",
+    "writing": "Escrevendo legendas…",
+    "noSpeech": "Não há fala neste vídeo.",
+    "failed": "Não foi possível gerar legendas.",
+    "preparing": "As legendas estão sendo preparadas.",
+    "fixLine": "Corrigir a linha atual"
   }
 }

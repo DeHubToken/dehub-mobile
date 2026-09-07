@@ -2598,5 +2598,15 @@
   },
   "signInSheet": {
     "continueAs": "Tiếp tục với tư cách"
+  },
+  "subtitles": {
+    "title": "Phụ đề",
+    "on": "Bật",
+    "off": "Tắt",
+    "writing": "Đang viết phụ đề…",
+    "noSpeech": "Video này không có lời nói.",
+    "failed": "Không thể tạo phụ đề.",
+    "preparing": "Phụ đề đang được chuẩn bị.",
+    "fixLine": "Sửa dòng hiện tại"
   }
 }

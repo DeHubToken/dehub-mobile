@@ -2510,5 +2510,15 @@
   },
   "signInSheet": {
     "continueAs": "Turpināt kā"
+  },
+  "subtitles": {
+    "title": "Subtitri",
+    "on": "Ieslēgts",
+    "off": "Izslēgts",
+    "writing": "Raksta subtitrus…",
+    "noSpeech": "Šajā video nav runas.",
+    "failed": "Neizdevās izveidot subtitrus.",
+    "preparing": "Subtitri tiek gatavoti.",
+    "fixLine": "Labot pašreizējo rindu"
   }
 }
