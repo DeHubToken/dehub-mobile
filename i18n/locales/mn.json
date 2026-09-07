@@ -1122,7 +1122,16 @@
     "payments": "Төлбөр",
     "claimBounty": "Шагналаа авах",
     "noneForFilter": "Одоогоор {{filter}} мэдэгдэл алга.",
-    "andNOthers": "болон өөр {{count}}"
+    "andNOthers": "болон өөр {{count}}",
+    "community": {
+      "joined": "{{name}} танай нийгэмд нэгдэв",
+      "requested": "{{name}} танай нийгэмд нэгдэхийг хүссэн",
+      "requestedNamed": "{{name}}{{community}} ”элсэх хүсэлт гарав.",
+      "mentioned": "{{name}} таныг нийгэмд дурдсан",
+      "mentionedNamed": "{{name}} таныг “{{community}}” гэж дурдсан",
+      "here": "{{name}} messaged нийт хүн бүр",
+      "hereNamed": "{{name}} messaged хүн бүрийг “{{community}}”"
+    }
   },
   "leaderboard": {
     "title": "Тэргүүлэгчид",

@@ -1185,7 +1185,17 @@
     "payments": "Пардохтҳо",
     "claimBounty": "Мукофоти худро гиред",
     "noneForFilter": "Ҳоло огоҳиномаҳои {{filter}} нест.",
-    "andNOthers": "ва {{count}} нафари дигар"
+    "andNOthers": "ва {{count}} нафари дигар",
+    "community": {
+      "joined": "{{name}}adin ang iyong komunidad",
+      "joinedNamed": "{{name}} ҳамроҳ шуд “{{community}}”",
+      "requested": "{{name}} request to join your community",
+      "requestedNamed": "{{name}} хоҳиш карда шуд, ки ба “{{community}}” ҳамроҳ шавад",
+      "mentioned": "{{name}} tajikngo sa iyo sa isang komunidad",
+      "mentionedNamed": "{{name}} {{community}}",
+      "here": "{{name}}info: whatsthis",
+      "hereNamed": "{{name}} mesaged all in “{{community}}”"
+    }
   },
   "messages": {
     "smartRepliesOff": "Ҷавобҳои пешниҳодшуда хомӯш карда шуданд",

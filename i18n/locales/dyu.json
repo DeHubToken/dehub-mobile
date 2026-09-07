@@ -1124,7 +1124,13 @@
     "payments": "Sarali",
     "claimBounty": "I ka sara ta",
     "noneForFilter": "{{filter}} kunnafoni tɛ yen fɔlɔ.",
-    "andNOthers": "ani {{count}} wɛrɛw"
+    "andNOthers": "ani {{count}} wɛrɛw",
+    "community": {
+      "joinedNamed": "{{name}} joined {{community}}",
+      "requested": "{{name}} ka don i ka sigida la",
+      "here": "{{name}} Messaging all in the community",
+      "hereNamed": "{{name}} Messaging everyone in {{community}}"
+    }
   },
   "leaderboard": {
     "title": "Kɛlɛya",

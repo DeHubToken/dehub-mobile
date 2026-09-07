@@ -1098,7 +1098,12 @@
     "andNOthers": "आणि इतर {{count}}",
     "community": {
       "joined": "{{name}} आपल्या समुदायात सामील झाले",
-      "mentioned": "{{name}} ने एका समुदायात आपला उल्लेख केला"
+      "mentioned": "{{name}} ने एका समुदायात आपला उल्लेख केला",
+      "joinedNamed": "{{name}} सामील झाले “{{community}}”",
+      "requested": "{{name}}यांना आपल्या समुदायात सामील होण्यास सांगितले",
+      "requestedNamed": "{{name}} यांना “{{community}}” मध्ये सामील होण्यास सांगितले",
+      "mentionedNamed": "{{name}} यांनी “{{community}}” मध्ये आपला उल्लेख केला",
+      "hereNamed": "{{name}} सर्वांनी “{{community}}” मध्ये संदेश पाठविला"
     }
   },
   "leaderboard": {

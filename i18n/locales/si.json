@@ -1136,7 +1136,11 @@
     "payments": "ගෙවීම්",
     "claimBounty": "ඔබේ ත්‍යාගය ලබා ගන්න",
     "noneForFilter": "තවම {{filter}} දැනුම්දීම් නැත.",
-    "andNOthers": "සහ තවත් {{count}}"
+    "andNOthers": "සහ තවත් {{count}}",
+    "community": {
+      "joined": "{{name}} ඔබේ ප් ‍ රජාවට එක් විය",
+      "mentioned": "{{name}} ඔබ ගැන සඳහන් කර ඇත්තේ ප් ‍ රජාවක ය"
+    }
   },
   "leaderboard": {
     "title": "ශ්‍රේණිගත කිරීම",

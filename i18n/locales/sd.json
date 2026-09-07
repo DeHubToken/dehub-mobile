@@ -1126,7 +1126,12 @@
     "andNOthers": "۽ {{count}} ٻيا",
     "community": {
       "mentioned": "{{name}} هڪ ڪميونٽي ۾ توهان جو ذڪر ڪيو",
-      "here": "{{name}} برادري ۾ سڀني کي پيغام موڪليو"
+      "here": "{{name}} برادري ۾ سڀني کي پيغام موڪليو",
+      "joined": "{{name}} توهان جي ڪميونٽي ۾ شامل ٿيو",
+      "joinedNamed": "{{name}} شامل ٿيو “{{community}}",
+      "requested": "{{name}} توهان جي ڪميونٽي ۾ شامل ٿيڻ لاءِ چيو",
+      "requestedNamed": "{{name}} شامل ٿيڻ لاءِ چيو “{{community}}",
+      "mentionedNamed": "{{name}} ۾ توهان جو ذڪر ڪيو “{{community}}"
     }
   },
   "leaderboard": {
