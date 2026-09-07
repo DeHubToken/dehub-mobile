@@ -567,6 +567,7 @@
     "payAmount": "Pagar {{amount}} {{currency}}"
   },
   "wallet": {
+    "notReady": "Carteira não está pronta — tente novamente daqui a pouco.",
     "title": "Carteira",
     "loginRequired": "Faça login para acessar sua carteira.",
     "addressCopied": "Endereço copiado",

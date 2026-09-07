@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "Àpamọ́wọ́ kò tíì ṣetán — gbìyànjú lẹ́ẹ̀kan sí i lẹ́yìn ìgbà díẹ̀.",
     "title": "Àpò Owó",
     "loginRequired": "Wọlé láti wọlé sí àpò owó rẹ.",
     "addressCopied": "A ti dàkọ àdírẹ́sì",

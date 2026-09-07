@@ -567,6 +567,7 @@
     "payAmount": "{{amount}} {{currency}} ادا کریں"
   },
   "wallet": {
+    "notReady": "والٹ تیار نہیں — تھوڑی دیر بعد دوبارہ کوشش کریں۔",
     "title": "والٹ",
     "loginRequired": "اپنے والٹ تک رسائی کے لیے لاگ ان کریں۔",
     "addressCopied": "ایڈریس کاپی ہو گیا",

@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "Kāore te pūkoro e rite ana — ngana anō ā tētahi wā poto.",
     "title": "Pūkoro Moni",
     "loginRequired": "Takiuru ki te whakauru i te pūkoro moni.",
     "addressCopied": "Kua tāruatia te wāhitau",

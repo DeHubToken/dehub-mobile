@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "Novčanik nije spreman — pokušaj ponovno za koji trenutak.",
     "title": "Novčanik",
     "loginRequired": "Prijavite se za pristup novčaniku.",
     "addressCopied": "Adresa kopirana",

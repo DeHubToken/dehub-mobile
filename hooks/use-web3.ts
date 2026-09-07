@@ -1,3 +1,4 @@
+import i18n from "i18next";
 import { useEffect, useMemo, useState, useCallback } from "react";
 import STREAM_CONTROLLER_ABI from "../config/abis/stream-controller.json";
 import STREAMNFT_ABI from "../config/abis/erc1155.json";
@@ -417,6 +418,72 @@ export function usePaymentRouterContract(routerAddress?: string) {
     };
   }, [provider, chainId, routerAddress]);
   return contract;
+}
+
+/**
+ * Get a wallet ready to have DHB pulled out of it by a contract.
+ *
+ * Every STF revert this app has produced came from skipping one of these three
+ * steps. STF is TransferHelper's safeTransferFrom failure — the contract asked
+ * for tokens and the allowance or the balance was short — and it surfaces as a
+ * simulation revert at the bundler, a long way from the cause.
+ *
+ * 1. The owner is the address that will SIGN, read off the contract's own
+ *    signer. It used to be the address on the cached user record. Those are
+ *    normally the same, but an identity that signed in while the smart-account
+ *    provider was unavailable is registered as the raw EOA while every write
+ *    afterwards comes from the Safe — so we were reading one wallet's
+ *    allowance and spending from another's.
+ *
+ * 2. The balance is read from the chain, every time, and refused here. The tip
+ *    sheet used to gate on `user.tokenBalances.DHB`: a number fetched once per
+ *    session, stored under a single key with no chain dimension, persisted to
+ *    disk, and never reduced when the wallet spends. Someone who had just paid
+ *    for a post was still shown the figure from before they paid, and every
+ *    retry failed identically because nothing about it changed until the app
+ *    was relaunched.
+ *
+ * 3. The approval is for the maximum and is awaited. Approving the exact
+ *    amount leaves nothing for a fee on top, and returning before the approval
+ *    is mined lets the transfer race it.
+ *
+ * Returns the signing address so callers can use the same one downstream.
+ */
+export async function prepareDhbSpend(
+  tokenContract: any,
+  spender: string,
+  amountWei: any,
+): Promise<string> {
+  const ethers = await loadEthers();
+  if (!tokenContract || !spender) {
+    throw new Error(i18n.t("wallet.notReady"));
+  }
+
+  const amount = ethers.BigNumber.from(amountWei);
+
+  const owner: string | undefined = await tokenContract.signer?.getAddress?.();
+  if (!owner) throw new Error(i18n.t("wallet.notReady"));
+
+  const balance = await tokenContract.balanceOf(owner);
+  if (ethers.BigNumber.from(balance).lt(amount)) {
+    throw new Error(i18n.t("wallet.insufficientBalance", { symbol: "DHB" }));
+  }
+
+  const allowance = await tokenContract.allowance(owner, spender);
+  if (ethers.BigNumber.from(allowance).lt(amount)) {
+    const approval = await writeContractAA(
+      tokenContract,
+      "approve",
+      [spender, ethers.constants.MaxUint256],
+      { context: "approve" },
+    );
+    // Wait for it. The AA provider usually waits internally, but the plain-EOA
+    // fallback returns at broadcast, and that is the path where the transfer
+    // can outrun its own approval.
+    await approval?.wait?.(1);
+  }
+
+  return owner;
 }
 
 // Utility for allowance check and approve via the AA-aware write path

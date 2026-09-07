@@ -662,6 +662,7 @@
     "payAmount": "{{amount}} {{currency}}を支払う"
   },
   "wallet": {
+    "notReady": "ウォレットの準備ができていません。少ししてからもう一度お試しください。",
     "title": "ウォレット",
     "loginRequired": "ウォレットにアクセスするにはログインしてください。",
     "addressCopied": "アドレスがコピーされました",

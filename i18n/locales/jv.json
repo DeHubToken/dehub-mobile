@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "Dompet durung siap — coba maneh sedhela.",
     "title": "Dompet",
     "loginRequired": "Mlebu kanggo nggunakake dompet.",
     "addressCopied": "Alamat wis dikopi",

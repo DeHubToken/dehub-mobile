@@ -945,6 +945,7 @@
     }
   },
   "wallet": {
+    "notReady": "Դրամապանակը պատրաստ չէ — փորձեք մի փոքր ուշ։",
     "title": "Dramer",
     "loginRequired": "Moutq gortsuhr dzer damerayin hashiv hamar.",
     "addressCopied": "Hasce patchervaats e",

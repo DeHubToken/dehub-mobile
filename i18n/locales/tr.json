@@ -670,6 +670,7 @@
     "payAmount": "{{amount}} {{currency}} öde"
   },
   "wallet": {
+    "notReady": "Cüzdan hazır değil — birazdan tekrar deneyin.",
     "title": "Cüzdan",
     "loginRequired": "Cüzdanınıza erişmek için giriş yapın.",
     "addressCopied": "Adres kopyalandı",

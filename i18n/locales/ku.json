@@ -948,6 +948,7 @@
     }
   },
   "wallet": {
+    "notReady": "Cizdan ne amade ye — piştî kêliyekê dîsa biceribîne.",
     "title": "Berîk",
     "loginRequired": "Ji bo gihîştina berîka xwe têkevin.",
     "addressCopied": "Navnîşan hat kopîkirin",

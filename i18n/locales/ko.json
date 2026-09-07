@@ -567,6 +567,7 @@
     "payAmount": "{{amount}} {{currency}} 결제"
   },
   "wallet": {
+    "notReady": "지갑이 준비되지 않았습니다 — 잠시 후 다시 시도하세요.",
     "title": "지갑",
     "loginRequired": "지갑에 접근하려면 로그인하세요.",
     "addressCopied": "주소가 복사되었습니다",

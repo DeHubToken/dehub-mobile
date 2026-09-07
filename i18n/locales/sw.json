@@ -955,6 +955,7 @@
     }
   },
   "wallet": {
+    "notReady": "Pochi haijawa tayari — jaribu tena baada ya muda mfupi.",
     "title": "Pochi",
     "loginRequired": "Ingia ili kufikia pochi yako.",
     "addressCopied": "Anwani imenakiliwa",

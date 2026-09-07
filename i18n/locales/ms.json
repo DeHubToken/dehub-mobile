@@ -1417,6 +1417,7 @@
     }
   },
   "wallet": {
+    "notReady": "Dompet belum sedia — cuba lagi sebentar.",
     "title": "Wallet",
     "loginRequired": "Log in to access your wallet.",
     "addressCopied": "Address copied",

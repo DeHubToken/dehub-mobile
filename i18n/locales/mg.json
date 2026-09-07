@@ -886,6 +886,7 @@
     "txTipReceived": "{{name}} nanome fanomezana anao — {{amount}} DHB"
   },
   "wallet": {
+    "notReady": "Tsy vonona ny kitapom-bola — andramo indray afaka kelikely.",
     "title": "Kitapom-bola",
     "loginRequired": "Midira mba hidirana amin'ny kitapom-bolanao.",
     "addressCopied": "Adiresy voatahiry",

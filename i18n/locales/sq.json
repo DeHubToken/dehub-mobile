@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "Portofoli nuk është gati — provo sërish pas pak.",
     "title": "Portofoli",
     "loginRequired": "Hyni për të aksesuar portofolin tuaj.",
     "addressCopied": "Adresa u kopjua",

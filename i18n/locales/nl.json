@@ -1409,6 +1409,7 @@
     }
   },
   "wallet": {
+    "notReady": "Wallet nog niet klaar — probeer het zo nog eens.",
     "title": "Portemonnee",
     "loginRequired": "Log in om je portemonnee te openen.",
     "addressCopied": "Adres gekopieerd",

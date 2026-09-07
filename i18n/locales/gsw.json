@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "S'Wallet isch nonig parat — probier's i eme Momänt nomol.",
     "title": "Portmoneé",
     "loginRequired": "Mäld di aa zum uf dis Portmoneé zuezgriiffe.",
     "addressCopied": "Adrässe kopiert",

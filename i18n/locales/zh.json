@@ -567,6 +567,7 @@
     "payAmount": "支付 {{amount}} {{currency}}"
   },
   "wallet": {
+    "notReady": "钱包尚未就绪——请稍后再试。",
     "title": "钱包",
     "loginRequired": "登录以访问您的钱包。",
     "addressCopied": "地址已复制",

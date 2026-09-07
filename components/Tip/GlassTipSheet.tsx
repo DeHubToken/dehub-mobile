@@ -54,6 +54,7 @@ import {
   useWeb3Provider,
   useERC20Contract,
   useStreamControllerContract,
+  prepareDhbSpend,
 } from "../../hooks/use-web3";
 import * as ethersImport from "ethers";
 import { applyGasMargin, parseTxError } from "../../libs/web3.util";
@@ -245,13 +246,19 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   const balance = (user?.tokenBalances?.DHB ?? 0) as number;
   const overLimit = !isSolanaTip && numericAmount > limitTip;
   // Solana balance is enforced on-chain by the transfer itself.
+  //
+  // `balance` is the cached figure and it is routinely stale -- it is fetched once
+  // per session and never reduced when the wallet spends elsewhere. It is fine
+  // as a hint, but it must not be the thing that refuses a tip: when it reads
+  // low the owner is blocked from spending DHB they actually hold. The real
+  // refusal is prepareDhbSpend, which reads the chain at send time.
   const insufficient = !isSolanaTip && numericAmount > balance;
   const isSelf =
     !!user?.walletAddress &&
     user.walletAddress?.toLowerCase() === toAddress?.toLowerCase();
   const isBusy = phase === "approving" || phase === "sending";
   const disableSend =
-    isBusy || numericAmount <= 0 || insufficient || overLimit || isSelf;
+    isBusy || numericAmount <= 0 || overLimit || isSelf;
 
   const tokenMeta = useMemo(() => {
     if (!chainId) return undefined;
@@ -349,29 +356,16 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           tokenMeta.decimals || 18,
         );
 
-        // Approve
+        // Balance, allowance and approval, all against the address that will
+        // actually sign. Replaces a cached-balance gate that could not see a
+        // spend made anywhere else.
         setPhase("approving");
-        const currentAllowance = await tokenContract.allowance(
-          account,
-          controllerAddress,
-        );
-        if (ethers.BigNumber.from(currentAllowance).lt(amountBN)) {
-          try {
-            const userTokenBal = await tokenContract.balanceOf(account);
-            const approveAmount = userTokenBal.gte(amountBN)
-              ? userTokenBal
-              : amountBN;
-            await writeContractAA(
-              tokenContract,
-              "approve",
-              [controllerAddress, approveAmount],
-              { context: "approve" },
-            );
-          } catch (e) {
-            setPhase("error");
-            setTipError(parseTxError(e, "approve"));
-            return;
-          }
+        try {
+          await prepareDhbSpend(tokenContract, controllerAddress, amountBN);
+        } catch (e) {
+          setPhase("error");
+          setTipError(parseTxError(e, "approve"));
+          return;
         }
 
         // Send

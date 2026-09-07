@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "Wallet no ready yet — try again smol taim.",
     "title": "Wallet",
     "loginRequired": "Log in for access your wallet.",
     "addressCopied": "Address don copy",
