@@ -2576,13 +2576,16 @@
     "yourDhb": "DHB gị"
   },
   "digest": {
-    "someone": "Mmadụ"
+    "someone": "Mmadụ",
+    "andOthers_one": "{{names}} na {{count}} ndị ọzọ",
+    "andOthers_other": "{{names}} na {{count}} ndị ọzọ"
   },
   "publicChatAlerts": {
     "title": "Mkparịta ụka ọha",
     "mentionTitle": "Ekwuru na ọha chat",
     "voiceMessage": "Ozi olu",
-    "image": "Ziga inyogo"
+    "image": "Ziga inyogo",
+    "digest": "{{count}} ọhụrụ ozi si {{who}}: {{message}}"
   },
   "liveChat": {
     "attach": "Tinye a foto, GIF ma ọ bụ emoji",

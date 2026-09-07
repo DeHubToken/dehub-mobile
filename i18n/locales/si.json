@@ -2615,7 +2615,8 @@
     "yourDhb": "ඔබේ DHB"
   },
   "digest": {
-    "someone": "යමෙකු"
+    "someone": "යමෙකු",
+    "andOthers_one": "{{names}} සහ {{count}} වෙනත්"
   },
   "publicChatAlerts": {
     "title": "ප් ‍ රසිද්ධ කතාබහ",

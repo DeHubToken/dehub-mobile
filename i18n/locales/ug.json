@@ -2576,13 +2576,16 @@
     "yourDhb": "سىزنىڭ DHB"
   },
   "digest": {
-    "someone": "بىرسى"
+    "someone": "بىرسى",
+    "andOthers_one": "{{names}} ۋە {{count}} يەنە بىرسى",
+    "andOthers_other": "{{names}} ۋە {{count}} باشقىلار"
   },
   "publicChatAlerts": {
     "title": "ئاممىۋى پاراڭ",
     "mentionTitle": "ئاممىۋى پاراڭدا تىلغا ئېلىنغان",
     "voiceMessage": "ئاۋازلىق ئۇچۇر",
-    "image": "سۈرەت ئەۋەتىش پروگراممىسى"
+    "image": "سۈرەت ئەۋەتىش پروگراممىسى",
+    "digest": "{{count}} {{who}} نىڭ يېڭى ئۇچۇرلىرى: {{message}}"
   },
   "liveChat": {
     "attach": "سۈرەت، GIF ياكى emoji قوشۇش",

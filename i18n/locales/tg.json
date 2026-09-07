@@ -2576,7 +2576,9 @@
     "yourDhb": "DHB-и шумо"
   },
   "digest": {
-    "someone": "Касе"
+    "someone": "Касе",
+    "andOthers_one": "{{names}} ва {{count}} дигар",
+    "andOthers_other": "{{names}} ва {{count}} дигарон"
   },
   "publicChatAlerts": {
     "title": "Pampublikong chat",

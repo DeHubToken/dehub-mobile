@@ -2579,7 +2579,9 @@
     "yourDhb": "உங்கள் DHB"
   },
   "digest": {
-    "someone": "யாரோ"
+    "someone": "யாரோ",
+    "andOthers_one": "{{names}} மற்றும் {{count}} மற்றவை",
+    "andOthers_other": "{{names}} மற்றும் {{count}} மற்றவர்கள்"
   },
   "publicChatAlerts": {
     "title": "பொது அரட்டை",

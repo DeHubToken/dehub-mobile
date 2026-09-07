@@ -2615,7 +2615,9 @@
     "yourDhb": "သင့် DHB"
   },
   "digest": {
-    "someone": "တစ်စုံတစ်ဦး"
+    "someone": "တစ်စုံတစ်ဦး",
+    "andOthers_one": "{{names}} နှင့် {{count}} အခြား",
+    "andOthers_other": "{{names}} နှင့် {{count}} အခြားသူများ"
   },
   "publicChatAlerts": {
     "title": "အများပြည်သူစကားဝိုင်း",

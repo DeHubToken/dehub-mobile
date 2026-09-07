@@ -2605,13 +2605,16 @@
     "yourDhb": "የእርስዎ DHB"
   },
   "digest": {
-    "someone": "የሆነ ሰው"
+    "someone": "የሆነ ሰው",
+    "andOthers_one": "{{names}} እና {{count}} ሌላ",
+    "andOthers_other": "{{names}} እና {{count}} ሌሎች"
   },
   "publicChatAlerts": {
     "title": "የህዝብ ውይይት",
     "mentionTitle": "በአደባባይ ውይይት ውስጥ ተጠቅሷል",
     "voiceMessage": "የድምፅ መልዕክት",
-    "image": "ምስል ላክ"
+    "image": "ምስል ላክ",
+    "digest": "{{count}} አዲስ መልዕክቶች ከ {{who}}: {{message}}"
   },
   "liveChat": {
     "attach": "ፎቶ ፣ ጂአይኤፍ ወይም ኢሞጂ ያክሉ",

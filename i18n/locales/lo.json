@@ -2575,7 +2575,9 @@
     "yourDhb": "DHB ຂອງທ່ານ"
   },
   "digest": {
-    "someone": "ຜູ້ໃດຜູ້ໜຶ່ງ"
+    "someone": "ຜູ້ໃດຜູ້ໜຶ່ງ",
+    "andOthers_one": "{{names}} ແລະ {{count}} ອື່ນ ໆ",
+    "andOthers_other": "{{names}} ແລະ {{count}} ຄົນອື່ນ"
   },
   "publicChatAlerts": {
     "title": "ສົນທະນາສາທາລະນະ",

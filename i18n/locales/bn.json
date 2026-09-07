@@ -2576,13 +2576,16 @@
     "yourDhb": "আপনার DHB"
   },
   "digest": {
-    "someone": "কেউ"
+    "someone": "কেউ",
+    "andOthers_one": "{{names}} এবং {{count}} অন্যান্য",
+    "andOthers_other": "{{names}} এবং {{count}} অন্যান্য"
   },
   "publicChatAlerts": {
     "title": "পাবলিক চ্যাট",
     "mentionTitle": "পাবলিক চ্যাটে উল্লেখ করা হয়েছে",
     "voiceMessage": "ভয়েস মেসেজ",
-    "image": "একটি ছবি পাঠানো হয়েছে"
+    "image": "একটি ছবি পাঠানো হয়েছে",
+    "digest": "{{count}} থেকে নতুন বার্তা {{who}}: {{message}}"
   },
   "liveChat": {
     "attach": "একটি ফটো, GIF বা ইমোজি যোগ করুন",

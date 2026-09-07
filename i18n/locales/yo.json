@@ -2577,7 +2577,9 @@
     "yourDhb": "DHB rẹ"
   },
   "digest": {
-    "someone": "Ẹnikan"
+    "someone": "Ẹnikan",
+    "andOthers_one": "{{names}} àti {{count}} elomiran",
+    "andOthers_other": "{{names}} àti {{count}} àwọn míràn"
   },
   "publicChatAlerts": {
     "title": "Iwiregbe gbangba",

@@ -2581,7 +2581,8 @@
   },
   "digest": {
     "andOthers_one": "{{names}} మరియు {{count}} ఇతర",
-    "someone": "ఎవరో"
+    "someone": "ఎవరో",
+    "andOthers_other": "{{names}} మరియు {{count}} ఇతరులు"
   },
   "publicChatAlerts": {
     "title": "పబ్లిక్ చాట్",
