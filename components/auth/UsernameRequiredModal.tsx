@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, ActivityIndicator, type ViewStyle } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import GlassModal from '../ui/GlassModal';
-import { AuthButton, AuthField, authColors, authText } from './AuthControls';
+import { AuthButton, AuthErrorNotice, AuthField, authColors, authText } from './AuthControls';
 import { AuthService } from '../../services/auth.service';
 import { useDebounceCallback } from '../../hooks/useDebounceCallback';
-import { toastError, toastSuccess } from '../../libs';
+import { toastSuccess } from '../../libs';
 import { setAuthToken, setAuthUser } from '../../libs/auth.utils';
 import { User } from '../../context/AuthContext';
 
@@ -23,6 +23,9 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
   const [checking, setChecking] = useState(false);
   const [available, setAvailable] = useState<boolean | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  // Errors render inside the sheet: on Android a toast is drawn under the
+  // sheet's Dialog window, so a failed save used to look like nothing.
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!visible) {
@@ -31,6 +34,7 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
       setAvailable(null);
       setChecking(false);
       setSubmitting(false);
+      setError(null);
     }
   }, [visible]);
 
@@ -57,6 +61,7 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
   const handleSubmit = async () => {
     if (disabled) return;
     setSubmitting(true);
+    setError(null);
     try {
       await AuthService.updateProfile({ username: username.trim(), displayName: displayName.trim() });
       const finalUser: User = { ...provisionalUser, username: username.trim(), displayName: displayName.trim() };
@@ -65,7 +70,7 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
       toastSuccess('Username set');
       onComplete(finalUser);
     } catch (e: any) {
-      toastError(e, 'Failed to set username');
+      setError(e?.message || 'Failed to set username');
     } finally {
       setSubmitting(false);
     }
@@ -136,6 +141,7 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
           )}
         </View>
 
+        <AuthErrorNotice message={error} style={{ marginBottom: 12 }} />
         <AuthButton
           variant="primary"
           label="Continue"
