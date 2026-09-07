@@ -340,6 +340,14 @@ export async function fetchAssistantMedia(wallet: string): Promise<AssistantMedi
 
 export function useAIConversation(userId: string) {
   const [conversationId, setConversationId] = useState<string | null>(null);
+  // Live copy for saveMessage. The reply is committed by a callback captured
+  // before the first save assigned an id, so reading the state value there
+  // minted a second id and wrote the thread twice.
+  const conversationIdRef = useRef<string | null>(null);
+  const updateConversationId = useCallback((id: string | null) => {
+    conversationIdRef.current = id;
+    setConversationId(id);
+  }, []);
   const [messages, setMessages] = useState<AIChatMessage[]>([]);
   const [conversations, setConversations] = useState<ConversationEntry[]>([]);
   const [postContext, setPostContext] = useState<AIPostContext | undefined>();
@@ -391,7 +399,7 @@ export function useAIConversation(userId: string) {
   }, [refreshConversations]);
 
   const startNewConversation = useCallback(() => {
-    setConversationId(null);
+    updateConversationId(null);
     setMessages([]);
     setPostContext(undefined);
     remoteIdRef.current = null;
@@ -433,7 +441,7 @@ export function useAIConversation(userId: string) {
               : parsed.postContext;
             setMessages(msgs);
             setPostContext(ctx);
-            setConversationId(entry.id);
+            updateConversationId(entry.id);
             remoteIdRef.current = null;
             mirroredCountRef.current = msgs.length;
           }
@@ -449,7 +457,7 @@ export function useAIConversation(userId: string) {
         const msgs = await fetchRemoteMessages(userId, entry.remoteId);
         setMessages(msgs);
         setPostContext(undefined);
-        setConversationId(entry.id);
+        updateConversationId(entry.id);
         remoteIdRef.current = entry.remoteId;
         mirroredCountRef.current = msgs.length;
         return;
@@ -460,7 +468,7 @@ export function useAIConversation(userId: string) {
       if (data) {
         setMessages(data.messages);
         setPostContext(data.postContext);
-        setConversationId(entry.id);
+        updateConversationId(entry.id);
         remoteIdRef.current = data.remoteId ?? entry.remoteId ?? null;
         mirroredCountRef.current = data.messages.length;
       }
@@ -473,12 +481,12 @@ export function useAIConversation(userId: string) {
       if (!userId) return;
       setMessages(newMessages);
 
-      let cid = conversationId;
+      let cid = conversationIdRef.current;
       const now = Date.now();
 
       if (!cid) {
         cid = generateId();
-        setConversationId(cid);
+        updateConversationId(cid);
       }
 
       // Mirror before writing the index, so the entry lands with its remoteId
