@@ -123,6 +123,7 @@
       "expo-splash-screen",
       "expo-secure-store",
       "./libs/reown.queries.js",
+      "./libs/android.pointer-tagging.js",
       [
         "expo-notifications",
         {
