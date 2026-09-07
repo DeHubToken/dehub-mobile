@@ -1609,6 +1609,7 @@
     "searchDehubFor": "DeHub वर \"{{query}}\" शोधा"
   },
   "comments": {
+    "showAll": "सर्व टिप्‍पण्‍या",
     "discardTitle": "तुमची टिप्पणी टाकून द्यायची?",
     "discardBody": "ती मसुदा म्हणून जतन झाली आहे, परत आल्यावर इथेच मिळेल.",
     "keepWriting": "लिहीत राहा",

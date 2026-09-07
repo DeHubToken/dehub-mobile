@@ -1835,6 +1835,7 @@
     "failedSubmit": "Failed to submit application. Please try again."
   },
   "comments": {
+    "showAll": "সব মন্তব্য দেখান",
     "discardTitle": "তোমার মন্তব্য বাদ দিতায় নি?",
     "discardBody": "ইতা খসড়া হিসাবে রাখা অইছে, ফিরিয়া আইলে ইখানোউ পাইবায়।",
     "keepWriting": "লেখা চালাইয়া যাও",

@@ -1656,6 +1656,7 @@
     "searchDehubFor": "DeHub irratti \"{{query}}\" barbaadi"
   },
   "comments": {
+    "showAll": "Yaada hunda agarsiisi",
     "discardTitle": "Yaada kee gatta?",
     "discardBody": "Akka wixinee ol kaa'ameera, yeroo deebitu asuma jira.",
     "keepWriting": "Barreessuu itti fufi",

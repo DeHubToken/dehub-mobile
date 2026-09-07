@@ -1596,6 +1596,7 @@
     "searchDehubFor": "Søk etter «{{query}}» på DeHub"
   },
   "comments": {
+    "showAll": "Vis alle %d kommentarer",
     "discardTitle": "Forkaste kommentaren?",
     "discardBody": "Den er lagret som utkast, så den ligger her når du kommer tilbake.",
     "keepWriting": "Fortsett å skrive",

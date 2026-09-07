@@ -1597,6 +1597,7 @@
     "searchDehubFor": "Дар DeHub \"{{query}}\"-ро ҷустуҷӯ кунед"
   },
   "comments": {
+    "showAll": "Ipakita ang lahat ng mga",
     "discardTitle": "Шарҳатонро партоед?",
     "discardBody": "Он ҳамчун сиёҳнавис нигоҳ дошта шуд, ҳангоми баргаштан дар ҳамин ҷо мешавад.",
     "keepWriting": "Навиштанро идома диҳед",

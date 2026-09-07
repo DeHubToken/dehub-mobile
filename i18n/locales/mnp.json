@@ -1604,6 +1604,7 @@
     "searchDehubFor": "在 DeHub 顶寻「{{query}}」"
   },
   "comments": {
+    "showAll": "显示所有其评论",
     "discardTitle": "要放掉你其评论？",
     "discardBody": "已经存做草稿了，转来还会在。",
     "keepWriting": "继续写",

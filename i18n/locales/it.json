@@ -1606,6 +1606,7 @@
     "searchDehubFor": "Cerca «{{query}}» su DeHub"
   },
   "comments": {
+    "showAll": "Mostra tutti i commenti",
     "discardTitle": "Vuoi eliminare il commento?",
     "discardBody": "È salvato come bozza, lo ritrovi qui quando torni.",
     "keepWriting": "Continua a scrivere",

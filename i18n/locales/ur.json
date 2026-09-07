@@ -1609,6 +1609,7 @@
     "searchDehubFor": "DeHub پر \"{{query}}\" تلاش کریں"
   },
   "comments": {
+    "showAll": "تمام تبصرے دکھائیں",
     "discardTitle": "اپنا تبصرہ چھوڑ دیں؟",
     "discardBody": "یہ مسودے کے طور پر محفوظ ہے، واپس آنے پر یہیں ملے گا۔",
     "keepWriting": "لکھتے رہیں",

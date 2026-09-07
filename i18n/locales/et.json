@@ -1606,6 +1606,7 @@
     "searchDehubFor": "Otsi DeHubist „{{query}}“"
   },
   "comments": {
+    "showAll": "Näita kõiki kommentaare",
     "discardTitle": "Kas loobuda kommentaarist?",
     "discardBody": "See on salvestatud mustandina ja ootab siin, kui tagasi tuled.",
     "keepWriting": "Kirjuta edasi",

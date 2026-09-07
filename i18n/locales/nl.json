@@ -2061,6 +2061,7 @@
     "searchDehubFor": "Zoek op DeHub naar \"{{query}}\""
   },
   "comments": {
+    "showAll": "Toon alle reacties",
     "discardTitle": "Reactie verwijderen?",
     "discardBody": "Hij is opgeslagen als concept, dus hij staat hier nog als je terugkomt.",
     "keepWriting": "Verder schrijven",

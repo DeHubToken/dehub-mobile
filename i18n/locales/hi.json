@@ -1415,6 +1415,7 @@
     "searchDehubFor": "DeHub पर \"{{query}}\" खोजें"
   },
   "comments": {
+    "showAll": "सभी %d टिप्पणियाँ दिखाएँ",
     "discardTitle": "अपनी टिप्पणी छोड़ दें?",
     "discardBody": "यह ड्राफ़्ट के रूप में सहेजी गई है, लौटने पर यहीं मिलेगी।",
     "keepWriting": "लिखते रहें",

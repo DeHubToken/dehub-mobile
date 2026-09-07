@@ -1605,6 +1605,7 @@
     "searchDehubFor": "\"{{query}}\" ɲini DeHub kan"
   },
   "comments": {
+    "showAll": "Ka kuma dɔw lajɛ",
     "discardTitle": "I b'i ka kumasen bɔ?",
     "discardBody": "A marana i ka sɛbɛnnifɔlɔ la, a bɛna to yan fo i seginna.",
     "keepWriting": "Sɛbɛnni kɛ ka taa",

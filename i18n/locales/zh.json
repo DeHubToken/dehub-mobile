@@ -1609,6 +1609,7 @@
     "searchDehubFor": "在 DeHub 中搜索\"{{query}}\""
   },
   "comments": {
+    "showAll": "显示所有评论",
     "discardTitle": "要放弃你的评论吗？",
     "discardBody": "已保存为草稿，回来时还在这里。",
     "keepWriting": "继续写",

@@ -1605,6 +1605,7 @@
     "searchDehubFor": "Chọọ \"{{query}}\" na DeHub"
   },
   "comments": {
+    "showAll": "Gosi nkọwa niile",
     "discardTitle": "Ị chọrọ ịhapụ okwu gị?",
     "discardBody": "E chekwara ya dịka nchịkọta mbụ, ọ ga-adị ebe a mgbe ị lọghachiri.",
     "keepWriting": "Nọgide na-ede",
