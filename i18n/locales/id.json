@@ -2711,5 +2711,12 @@
     "needSignIn": "Kamu harus masuk dengan Google atau email untuk mengganti akun.",
     "switched": "Akun diganti",
     "failed": "Tidak dapat mengganti akun. Periksa kunci privat dan coba lagi."
+  },
+  "superpowers": {
+    "homePost": "Gunakan dari salah satu postingan Anda sendiri — lembar opsi, lalu Tingkatkan.",
+    "homeGift": "Gunakan pada postingan orang lain — lembar opsi, lalu Tingkatkan.",
+    "homeComment": "Gunakan pada komentar Anda sendiri, di utas orang lain.",
+    "homeStage": "Gunakan dari Panggung yang Anda selenggarakan.",
+    "homePage": "Gunakan di sini, di bagian atas layar ini."
   }
 }

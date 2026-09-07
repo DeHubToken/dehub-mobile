@@ -2657,5 +2657,12 @@
     "needSignIn": "Ị ga-abanye site na Google ma ọ bụ email iji gbanwee akaụntụ.",
     "switched": "Agbanwela akaụntụ",
     "failed": "Enweghị ike ịgbanwe akaụntụ. Biko lelee igodo nzuzo ma nwaa ọzọ."
+  },
+  "superpowers": {
+    "homePost": "Jiri ya site na otu n'ime posts gị — akwụkwọ nhọrọ, wee Bụkwuo elu.",
+    "homeGift": "Jiri ya na post onye ọzọ — akwụkwọ nhọrọ, wee Bụkwuo elu.",
+    "homeComment": "Jiri ya na nkọwa nke gị, na eri onye ọzọ.",
+    "homeStage": "Jiri ya site na Ọkwa ị na-anabata.",
+    "homePage": "Jiri ya ebe a, n'elu ihuenyo a."
   }
 }

@@ -2662,5 +2662,12 @@
     "needSignIn": "Has d'haver iniciat sessió amb Google o correu per canviar de compte.",
     "switched": "Compte canviat",
     "failed": "No s'ha pogut canviar de compte. Comprova la clau privada i torna-ho a provar."
+  },
+  "superpowers": {
+    "homePost": "Gasta'l des d'una de les teves publicacions: el full d'opcions, després Boost.",
+    "homeGift": "Gasta'l en la publicació d'algú altre: el full d'opcions, després Boost.",
+    "homeComment": "Gasta'l en el teu propi comentari, en el fil d'algú altre.",
+    "homeStage": "Gasta'l des d'un escenari que estiguis organitzant.",
+    "homePage": "Gasta'l aquí, a la part superior d'aquesta pantalla."
   }
 }

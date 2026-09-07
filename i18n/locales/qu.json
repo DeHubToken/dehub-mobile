@@ -2693,5 +2693,12 @@
     "needSignIn": "Cuentakunata tikranaykipaqqa Google utaq correowan yaykusqa kanayki tiyan.",
     "switched": "Cuenta tikrasqa",
     "failed": "Cuentakunata mana tikrayta atikunchu. Clave privadata qhaway hinaspa yapamanta yanay."
+  },
+  "superpowers": {
+    "homePost": "Sut'inmanta llamk'achiy imaymana kaqkunata mask'aspa, chaymantaqa \"Boost\" nisqata akllay.",
+    "homeGift": "Huk runap kaqninpi llamk'achiy imaymana kaqkunata mask'aspa, chaymantaqa \"Boost\" nisqata akllay.",
+    "homeComment": "Huk runap kaqninpi qhawariqniyki ukhupi llamk'achiy.",
+    "homeStage": "Kamachiykunapi kaqpi llamk'achiy.",
+    "homePage": "Kaypi llamk'achiy, kay p'anqa patapi."
   }
 }

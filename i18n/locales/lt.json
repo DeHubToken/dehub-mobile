@@ -2662,5 +2662,12 @@
     "needSignIn": "Norėdami perjungti paskyrą, turite būti prisijungę per Google arba el. paštą.",
     "switched": "Paskyra perjungta",
     "failed": "Nepavyko perjungti paskyros. Patikrinkite privatų raktą ir bandykite dar kartą."
+  },
+  "superpowers": {
+    "homePost": "Panaudokite jį iš savo įrašo – parinkčių lapelyje, tada „Boost“.",
+    "homeGift": "Panaudokite jį kito asmens įraše – parinkčių lapelyje, tada „Boost“.",
+    "homeComment": "Panaudokite jį savo komentare, kito asmens temoje.",
+    "homeStage": "Panaudokite jį iš scenos, kurią vedate.",
+    "homePage": "Panaudokite jį čia, šio ekrano viršuje."
   }
 }

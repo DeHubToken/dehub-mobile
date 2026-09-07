@@ -2666,5 +2666,12 @@
     "needSignIn": "Du skal være logget ind med Google eller e-mail for at skifte konto.",
     "switched": "Konto skiftet",
     "failed": "Kunne ikke skifte konto. Tjek den private nøgle og prøv igen."
+  },
+  "superpowers": {
+    "homePost": "Brug den fra et af dine egne opslag — valgmulighedsarket, derefter Boost.",
+    "homeGift": "Brug den på en andens opslag — valgmulighedsarket, derefter Boost.",
+    "homeComment": "Brug den på din egen kommentar, i en andens tråd.",
+    "homeStage": "Brug den fra en scene, du er vært for.",
+    "homePage": "Brug den her, øverst på denne skærm."
   }
 }

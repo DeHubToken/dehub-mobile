@@ -2692,5 +2692,12 @@
     "needSignIn": "Du muesch mit Google oder E-Mail aagmäldet si, zum Konte wächsle.",
     "switched": "Konto gwächslet",
     "failed": "D Konte händ nid chönne gwächslet wärde. Prüef de private Schlüssel und probiers nomol."
+  },
+  "superpowers": {
+    "homePost": "Gib's us dim eigete Post us – die Optionä, denn Boost.",
+    "homeGift": "Gib's us em Post vo öpper anders us – die Optionä, denn Boost.",
+    "homeComment": "Gib's us dim eigete Kommentar, i öpper anders sinere Thread.",
+    "homeStage": "Gib's us dimene Stage, wo du hostisch.",
+    "homePage": "Gib's us do, obe uf dere Bildschirm."
   }
 }

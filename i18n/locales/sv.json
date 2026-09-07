@@ -2666,5 +2666,12 @@
     "needSignIn": "Du måste vara inloggad med Google eller e-post för att byta konto.",
     "switched": "Konto bytt",
     "failed": "Kunde inte byta konto. Kontrollera den privata nyckeln och försök igen."
+  },
+  "superpowers": {
+    "homePost": "Använd den från ett av dina egna inlägg — alternativmenyn, sedan Boost.",
+    "homeGift": "Använd den på någons annans inlägg — alternativmenyn, sedan Boost.",
+    "homeComment": "Använd den på din egen kommentar, i någons annans tråd.",
+    "homeStage": "Använd den från en scen du är värd för.",
+    "homePage": "Använd den här, högst upp på skärmen."
   }
 }

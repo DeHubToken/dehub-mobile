@@ -2711,5 +2711,12 @@
     "needSignIn": "You need to be signed in with Google or email to switch accounts.",
     "switched": "Switched account",
     "failed": "Could not switch accounts. Please check the private key and try again."
+  },
+  "superpowers": {
+    "homePost": "Spend it from one of your own posts — the options sheet, then Boost.",
+    "homeGift": "Spend it on somebody else’s post — the options sheet, then Boost.",
+    "homeComment": "Spend it on your own comment, in somebody else’s thread.",
+    "homeStage": "Spend it from a Stage you are hosting.",
+    "homePage": "Spend it here, at the top of this screen."
   }
 }

@@ -2662,5 +2662,12 @@
     "needSignIn": "Lai mainītu kontu, tev jābūt pierakstītam ar Google vai e-pastu.",
     "switched": "Konts mainīts",
     "failed": "Neizdevās mainīt kontu. Pārbaudi privāto atslēgu un mēģini vēlreiz."
+  },
+  "superpowers": {
+    "homePost": "Tērē to no sava ieraksta — opciju lapa, tad Pastiprināt.",
+    "homeGift": "Tērē to kāda cita ierakstā — opciju lapa, tad Pastiprināt.",
+    "homeComment": "Tērē to savā komentārā, kāda cita pavedienā.",
+    "homeStage": "Tērē to no skatuves, ko rīko.",
+    "homePage": "Tērē to šeit, šī ekrāna augšdaļā."
   }
 }

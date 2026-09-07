@@ -2661,5 +2661,12 @@
     "needSignIn": "Hesabları dəyişmək üçün Google və ya e-poçt ilə daxil olmalısan.",
     "switched": "Hesab dəyişdirildi",
     "failed": "Hesabları dəyişmək mümkün olmadı. Şəxsi açarı yoxlayıb yenidən cəhd et."
+  },
+  "superpowers": {
+    "homePost": "Onunla öz paylaşımınızdan istifadə edin — parametrlər vərəqi, sonra \"Gücləndir\".",
+    "homeGift": "Onunla başqasının paylaşımından istifadə edin — parametrlər vərəqi, sonra \"Gücləndir\".",
+    "homeComment": "Onunla öz şərsinizdən, başqasının mövzusunda istifadə edin.",
+    "homeStage": "Onunla ev sahibliyi etdiyiniz səhnədən istifadə edin.",
+    "homePage": "Onunla burada, bu ekranın yuxarısından istifadə edin."
   }
 }

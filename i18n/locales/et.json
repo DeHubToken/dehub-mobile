@@ -2662,5 +2662,12 @@
     "needSignIn": "Konto vahetamiseks pead olema Google'i või e-postiga sisse logitud.",
     "switched": "Konto vahetatud",
     "failed": "Kontot ei õnnestunud vahetada. Kontrolli privaatvõtit ja proovi uuesti."
+  },
+  "superpowers": {
+    "homePost": "Kuluta seda oma postitusest – valikute lehelt, seejärel nuppu Boost.",
+    "homeGift": "Kuluta seda kellegi teise postitusele – valikute lehelt, seejärel nuppu Boost.",
+    "homeComment": "Kuluta seda oma kommentaarile, kellegi teise teemas.",
+    "homeStage": "Kuluta seda lavalt, mida sa korraldad.",
+    "homePage": "Kuluta seda siin, selle ekraani ülaosas."
   }
 }
