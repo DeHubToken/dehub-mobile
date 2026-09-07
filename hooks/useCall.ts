@@ -129,6 +129,16 @@ export function useCall(): UseCallReturn {
     } catch (e) {
       log.warn("Engine leave error (non-fatal):", e);
     }
+    // leaveChannel keeps the local preview and video capture running (the
+    // engine is a process-wide singleton), so every video call left the
+    // camera on until the app died, and the next stage join inherited it.
+    try {
+      engine.stopPreview();
+      engine.muteLocalVideoStream(true);
+      engine.enableLocalVideo(false);
+    } catch (e) {
+      log.warn("Engine video teardown error (non-fatal):", e);
+    }
     setRemoteUid(null);
     setIsCallActive(false);
     setIsConnecting(false);
@@ -213,6 +223,8 @@ export function useCall(): UseCallReturn {
         // Wait for React re-render + native surface creation before starting preview
         await new Promise(r => setTimeout(r, 300));
         engine.enableVideo();
+        // cleanupEngine turns local capture off after a call; turn it back on.
+        engine.enableLocalVideo(true);
         engine.startPreview();
         engine.muteLocalVideoStream(false);
       }
@@ -500,6 +512,7 @@ export function useCall(): UseCallReturn {
     const engine = getEngine();
     if (isCameraOff) {
       engine.enableVideo();
+      engine.enableLocalVideo(true);
       engine.startPreview();
       engine.muteLocalVideoStream(false);
       setIsCameraOff(false);
