@@ -22,6 +22,9 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
   const [displayName, setDisplayName] = useState('');
   const [checking, setChecking] = useState(false);
   const [available, setAvailable] = useState<boolean | null>(null);
+  // Why a name is unavailable: too short, bad characters, taken, or the
+  // lookup failed. It used to say "taken" for all four.
+  const [availabilityMessage, setAvailabilityMessage] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   // Errors render inside the sheet: on Android a toast is drawn under the
   // sheet's Dialog window, so a failed save used to look like nothing.
@@ -39,14 +42,18 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
   }, [visible]);
 
   const runAvailability = useDebounceCallback(async (name: string) => {
-    if (!name) { setAvailable(null); return; }
+    if (!name) { setAvailable(null); setAvailabilityMessage(null); return; }
     setChecking(true);
     const res = await AuthService.checkUsernameAvailability(name);
     setAvailable(res.available);
+    setAvailabilityMessage(res.available ? null : res.message || null);
     setChecking(false);
   }, 450);
 
-  const handleChange = (text: string) => {
+  const handleChange = (raw: string) => {
+    // Same sanitising as SetProfileScreen: only letters, digits and underscore
+    // can ever be valid, so drop the rest before the lookup.
+    const text = raw.replace(/[^a-zA-Z0-9_]/g, "").toLowerCase();
     setUsername(text);
     runAvailability(text.trim());
   };
@@ -112,7 +119,9 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
             <View style={statusRow}>
               <Ionicons name="close-circle" size={14} color={authColors.danger} />
               <Text style={[authText.caption, { color: authColors.danger }]}>
-                Username taken — try adding numbers or an underscore
+                {availabilityMessage && availabilityMessage !== 'Username taken'
+                  ? availabilityMessage
+                  : 'Username taken — try adding numbers or an underscore'}
               </Text>
             </View>
           )}
