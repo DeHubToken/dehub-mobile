@@ -1124,7 +1124,12 @@
     "newNotification": "新しい通知",
     "oneOther": "1人の他のユーザー",
     "nOthers": "{{count}}人の他のユーザー",
-    "clearNotification": "通知を消す"
+    "clearNotification": "通知を消す",
+    "reactions": "リアクション",
+    "payments": "支払い",
+    "claimBounty": "報酬を受け取る",
+    "noneForFilter": "{{filter}}の通知はまだありません。",
+    "andNOthers": "他 {{count}} 人"
   },
   "leaderboard": {
     "title": "ランキング",

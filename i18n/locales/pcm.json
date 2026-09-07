@@ -1120,7 +1120,12 @@
     "newNotification": "New notification",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "Clear notification"
+    "clearNotification": "Clear notification",
+    "reactions": "Reactions",
+    "payments": "Payments",
+    "claimBounty": "Collect your bounty",
+    "noneForFilter": "No {{filter}} notification yet.",
+    "andNOthers": "and {{count}} others"
   },
   "leaderboard": {
     "title": "Leaderboard",

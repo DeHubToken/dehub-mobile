@@ -1059,7 +1059,12 @@
     "newNotification": "ନୂଆ ସୂଚନା",
     "oneOther": "୧ ଅନ୍ୟ",
     "nOthers": "{{count}} ଅନ୍ୟ",
-    "clearNotification": "ବିଜ୍ଞପ୍ତି ସଫା କରନ୍ତୁ"
+    "clearNotification": "ବିଜ୍ଞପ୍ତି ସଫା କରନ୍ତୁ",
+    "reactions": "ପ୍ରତିକ୍ରିୟା",
+    "payments": "ପେମେଣ୍ଟ",
+    "claimBounty": "ଆପଣଙ୍କ ପୁରସ୍କାର ନିଅନ୍ତୁ",
+    "noneForFilter": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି {{filter}} ବିଜ୍ଞପ୍ତି ନାହିଁ।",
+    "andNOthers": "ଏବଂ ଅନ୍ୟ {{count}}"
   },
   "leaderboard": {
     "title": "ଲିଡରବୋର୍ଡ",

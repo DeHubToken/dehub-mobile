@@ -1030,7 +1030,12 @@
     "newNotification": "Ново обавештење",
     "oneOther": "1 други",
     "nOthers": "{{count}} других",
-    "clearNotification": "Обриши обавештење"
+    "clearNotification": "Обриши обавештење",
+    "reactions": "Реакције",
+    "payments": "Плаћања",
+    "claimBounty": "Преузми награду",
+    "noneForFilter": "Још нема обавештења ({{filter}}).",
+    "andNOthers": "и још {{count}}"
   },
   "leaderboard": {
     "title": "Ранг листа",

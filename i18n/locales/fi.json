@@ -1120,7 +1120,12 @@
     "newNotification": "Uusi ilmoitus",
     "oneOther": "1 muu",
     "nOthers": "{{count}} muuta",
-    "clearNotification": "Tyhjennä ilmoitus"
+    "clearNotification": "Tyhjennä ilmoitus",
+    "reactions": "Reaktiot",
+    "payments": "Maksut",
+    "claimBounty": "Lunasta palkkiosi",
+    "noneForFilter": "Ei vielä {{filter}}-ilmoituksia.",
+    "andNOthers": "ja {{count}} muuta"
   },
   "messages": {
     "smartRepliesOff": "Ehdotetut vastaukset poistettiin käytöstä",

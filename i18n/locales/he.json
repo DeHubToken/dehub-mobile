@@ -1030,7 +1030,12 @@
     "newNotification": "התראה חדשה",
     "oneOther": "אחד אחר",
     "nOthers": "{{count}} אחרים",
-    "clearNotification": "ניקוי ההתראה"
+    "clearNotification": "ניקוי ההתראה",
+    "reactions": "תגובות",
+    "payments": "תשלומים",
+    "claimBounty": "קבל את הפרס שלך",
+    "noneForFilter": "אין עדיין התראות {{filter}}.",
+    "andNOthers": "ועוד {{count}}"
   },
   "leaderboard": {
     "title": "טבלת מובילים",

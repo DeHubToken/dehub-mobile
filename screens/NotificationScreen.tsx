@@ -61,16 +61,18 @@ import {
 
 type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
 
+// `label` is an i18n key: the screen is wired to i18next, and hardcoded tab
+// names left 109 locales reading English here.
 const TYPE_TABS: { key: NotificationTypeFilter; icon: string; label: string }[] = [
-  { key: 'all', icon: 'Bell', label: 'All' },
-  { key: 'likes', icon: 'ThumbsUp', label: 'Reactions' },
-  { key: 'follows', icon: 'UserPlus', label: 'Follows' },
-  { key: 'comments', icon: 'MessageSquareText', label: 'Comments' },
-  { key: 'reposts', icon: 'Repeat2', label: 'Reposts' },
-  { key: 'subscriptions', icon: 'Users', label: 'Subs' },
-  { key: 'tips', icon: 'Gem', label: 'Tips' },
-  { key: 'payments', icon: 'CreditCard', label: 'Payments' },
-  { key: 'livestreams', icon: 'Zap', label: 'Live' },
+  { key: 'all', icon: 'Bell', label: 'notifications.all' },
+  { key: 'likes', icon: 'ThumbsUp', label: 'notifications.reactions' },
+  { key: 'follows', icon: 'UserPlus', label: 'notifications.follows' },
+  { key: 'comments', icon: 'MessageSquareText', label: 'notifications.comments' },
+  { key: 'reposts', icon: 'Repeat2', label: 'notifications.reposts' },
+  { key: 'subscriptions', icon: 'Users', label: 'notifications.subs' },
+  { key: 'tips', icon: 'Gem', label: 'notifications.tips' },
+  { key: 'payments', icon: 'CreditCard', label: 'notifications.payments' },
+  { key: 'livestreams', icon: 'Zap', label: 'notifications.live' },
 ];
 
 const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
@@ -132,6 +134,7 @@ interface TypeTabsProps {
 }
 
 const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, counts }) => {
+  const { t } = useTranslation();
   const tabWidths = useRef<Record<string, number>>({});
   const tabPositions = useRef<Record<string, number>>({});
   const indicatorX = useSharedValue(0);
@@ -202,7 +205,7 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, coun
                 onPress={() => onSelect(tab.key)}
                 activeOpacity={0.7}
                 accessibilityRole="button"
-                accessibilityLabel={tab.label}
+                accessibilityLabel={t(tab.label)}
                 accessibilityState={{ selected: isActive }}
                 onLayout={(e) => {
                   const { x, width } = e.nativeEvent.layout;
@@ -603,7 +606,8 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
           {item.aggregatedCount && item.aggregatedCount > 1 && item.latestActorNames && (
             <Text style={{ color: '#A1A1AA', fontSize: 12, marginTop: 4 }}>
               {item.latestActorNames.slice(0, 3).join(', ')}
-              {item.aggregatedCount > 3 && ` and ${item.aggregatedCount - 3} others`}
+              {item.aggregatedCount > 3 &&
+                ` ${t('notifications.andNOthers', { count: item.aggregatedCount - 3 })}`}
             </Text>
           )}
 
@@ -630,7 +634,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
               <View style={{ backgroundColor: 'rgba(255,255,255, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
                 <Text style={{ color: '#D4D4D8', fontSize: 12, fontWeight: '600' }}>
-                  Claim your bounty
+                  {t('notifications.claimBounty')}
                 </Text>
               </View>
             </View>
@@ -684,7 +688,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
                 }}
               >
                 <Text style={{ color: '#09090B', fontSize: 13, fontWeight: '600' }}>
-                  Accept
+                  {t('settings.accept')}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -698,7 +702,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
                 }}
               >
                 <Text style={{ color: '#A6A9AC', fontSize: 13, fontWeight: '600' }}>
-                  Decline
+                  {t('settings.decline')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -1441,12 +1445,16 @@ const NotificationScreen = () => {
           <Icon name="BellOff" size={32} color="#A1A1AA" />
         </View>
         <Text className="text-theme-neutrals-400 text-base font-medium mb-1">
-          No notifications
+          {t('notifications.noNotificationsYet')}
         </Text>
         <Text className="text-theme-neutrals-500 text-sm text-center px-8">
           {selectedFilter === 'all'
-            ? "You're all caught up! Check back later for updates."
-            : `No ${TYPE_TABS.find(t => t.key === selectedFilter)?.label?.toLowerCase() || selectedFilter} notifications yet.`}
+            ? t('notifications.noNotificationsDesc')
+            : t('notifications.noneForFilter', {
+                filter: t(
+                  TYPE_TABS.find((tab) => tab.key === selectedFilter)?.label || selectedFilter,
+                ).toLowerCase(),
+              })}
         </Text>
       </View>
     );
@@ -1468,7 +1476,7 @@ const NotificationScreen = () => {
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <Text className={`text-sm font-medium ${hasUnread ? 'text-theme-neutrals-100' : 'text-theme-neutrals-500'}`}>
-              Mark all read
+              {t('notifications.markAllRead')}
             </Text>
           </TouchableOpacity>
         }

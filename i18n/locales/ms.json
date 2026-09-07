@@ -1591,7 +1591,12 @@
     "newNotification": "New notification",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "Kosongkan pemberitahuan"
+    "clearNotification": "Kosongkan pemberitahuan",
+    "reactions": "Reaksi",
+    "payments": "Pembayaran",
+    "claimBounty": "Tuntut ganjaran anda",
+    "noneForFilter": "Belum ada pemberitahuan {{filter}}.",
+    "andNOthers": "dan {{count}} lagi"
   },
   "messages": {
     "smartRepliesOff": "Balasan yang dicadangkan dimatikan",

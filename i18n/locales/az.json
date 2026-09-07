@@ -1059,7 +1059,12 @@
     "newNotification": "Yeni bildiriş",
     "oneOther": "1 başqası",
     "nOthers": "{{count}} başqası",
-    "clearNotification": "Bildirişi təmizlə"
+    "clearNotification": "Bildirişi təmizlə",
+    "reactions": "Reaksiyalar",
+    "payments": "Ödənişlər",
+    "claimBounty": "Mükafatını al",
+    "noneForFilter": "Hələ {{filter}} bildirişi yoxdur.",
+    "andNOthers": "və daha {{count}} nəfər"
   },
   "leaderboard": {
     "title": "Lider Lövhəsi",

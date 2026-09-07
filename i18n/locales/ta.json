@@ -1030,7 +1030,12 @@
     "newNotification": "புதிய அறிவிப்பு",
     "oneOther": "1 மற்றொருவர்",
     "nOthers": "{{count}} மற்றவர்கள்",
-    "clearNotification": "அறிவிப்பை அழி"
+    "clearNotification": "அறிவிப்பை அழி",
+    "reactions": "எதிர்வினைகள்",
+    "payments": "பணம் செலுத்துதல்",
+    "claimBounty": "உங்கள் பரிசைப் பெறுங்கள்",
+    "noneForFilter": "இன்னும் {{filter}} அறிவிப்புகள் இல்லை.",
+    "andNOthers": "மேலும் {{count}} பேர்"
   },
   "leaderboard": {
     "title": "தரவரிசை",

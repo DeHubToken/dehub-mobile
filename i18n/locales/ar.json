@@ -1030,7 +1030,12 @@
     "newNotification": "إشعار جديد",
     "oneOther": "1 آخر",
     "nOthers": "{{count}} آخرين",
-    "clearNotification": "مسح الإشعار"
+    "clearNotification": "مسح الإشعار",
+    "reactions": "التفاعلات",
+    "payments": "المدفوعات",
+    "claimBounty": "استلم مكافأتك",
+    "noneForFilter": "لا توجد إشعارات {{filter}} بعد.",
+    "andNOthers": "و{{count}} آخرين"
   },
   "leaderboard": {
     "title": "لوحة المتصدرين",

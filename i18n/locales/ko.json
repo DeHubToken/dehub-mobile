@@ -1030,7 +1030,12 @@
     "newNotification": "새 알림",
     "oneOther": "1명",
     "nOthers": "{{count}}명",
-    "clearNotification": "알림 지우기"
+    "clearNotification": "알림 지우기",
+    "reactions": "반응",
+    "payments": "결제",
+    "claimBounty": "보상 받기",
+    "noneForFilter": "아직 {{filter}} 알림이 없습니다.",
+    "andNOthers": "외 {{count}}명"
   },
   "leaderboard": {
     "title": "리더보드",

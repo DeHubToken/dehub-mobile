@@ -1413,7 +1413,12 @@
     "newNotification": "Thông báo mới",
     "oneOther": "1 người khác",
     "nOthers": "{{count}} người khác",
-    "clearNotification": "Xóa thông báo"
+    "clearNotification": "Xóa thông báo",
+    "reactions": "Phản ứng",
+    "payments": "Thanh toán",
+    "claimBounty": "Nhận thưởng của bạn",
+    "noneForFilter": "Chưa có thông báo {{filter}} nào.",
+    "andNOthers": "và {{count}} người khác"
   },
   "messages": {
     "smartRepliesOff": "Đã tắt câu trả lời gợi ý",

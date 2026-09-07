@@ -1059,7 +1059,12 @@
     "newNotification": "ሓድሽ ምልክታ",
     "oneOther": "1 ካልእ",
     "nOthers": "{{count}} ካልኦት",
-    "clearNotification": "መፍለጢ ኣጽሪ"
+    "clearNotification": "መፍለጢ ኣጽሪ",
+    "reactions": "ግብረ መልሲ",
+    "payments": "ክፍሊታት",
+    "claimBounty": "ሽልማትካ ውሰድ",
+    "noneForFilter": "ገና {{filter}} መፍለጢ የለን።",
+    "andNOthers": "ከምኡውን ካልኦት {{count}}"
   },
   "leaderboard": {
     "title": "ሰሌዳ ደረጃ",

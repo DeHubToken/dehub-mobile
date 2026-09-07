@@ -1072,7 +1072,12 @@
     "newNotification": "New notification",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "දැනුම්දීම ඉවත් කරන්න"
+    "clearNotification": "දැනුම්දීම ඉවත් කරන්න",
+    "reactions": "ප්‍රතිචාර",
+    "payments": "ගෙවීම්",
+    "claimBounty": "ඔබේ ත්‍යාගය ලබා ගන්න",
+    "noneForFilter": "තවම {{filter}} දැනුම්දීම් නැත.",
+    "andNOthers": "සහ තවත් {{count}}"
   },
   "leaderboard": {
     "title": "ශ්‍රේණිගත කිරීම",

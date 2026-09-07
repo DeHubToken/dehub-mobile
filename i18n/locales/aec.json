@@ -1059,7 +1059,12 @@
     "newNotification": "إشعار جديد",
     "oneOther": "واحد تاني",
     "nOthers": "{{count}} تانيين",
-    "clearNotification": "امسح الإشعار"
+    "clearNotification": "امسح الإشعار",
+    "reactions": "التفاعلات",
+    "payments": "المدفوعات",
+    "claimBounty": "استلم مكافأتك",
+    "noneForFilter": "مفيش إشعارات {{filter}} لسه.",
+    "andNOthers": "و {{count}} غيرهم"
   },
   "leaderboard": {
     "title": "لوحة الترتيب",

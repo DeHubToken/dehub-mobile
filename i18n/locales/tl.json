@@ -1538,7 +1538,12 @@
     "newNotification": "New notification",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "I-clear ang abiso"
+    "clearNotification": "I-clear ang abiso",
+    "reactions": "Mga reaksyon",
+    "payments": "Mga bayad",
+    "claimBounty": "Kunin ang iyong gantimpala",
+    "noneForFilter": "Wala pang {{filter}} na notipikasyon.",
+    "andNOthers": "at {{count}} pa"
   },
   "messages": {
     "smartRepliesOff": "Naka-off na ang mga iminungkahing sagot",

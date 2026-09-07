@@ -1059,7 +1059,12 @@
     "newNotification": "Whakamōhio hou",
     "oneOther": "1 anō",
     "nOthers": "{{count}} anō",
-    "clearNotification": "Whakakorea te whakamōhio"
+    "clearNotification": "Whakakorea te whakamōhio",
+    "reactions": "Ngā urupare",
+    "payments": "Ngā utu",
+    "claimBounty": "Tīkina tō utu",
+    "noneForFilter": "Kāore anō he whakamōhiotanga {{filter}}.",
+    "andNOthers": "me ētahi atu {{count}}"
   },
   "leaderboard": {
     "title": "Rārangi Rangatira",

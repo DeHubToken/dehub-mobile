@@ -1121,7 +1121,12 @@
     "newNotification": "إشعار جديد",
     "oneOther": "1 آخر",
     "nOthers": "{{count}} آخرين",
-    "clearNotification": "مسح الإشعار"
+    "clearNotification": "مسح الإشعار",
+    "reactions": "التفاعلات",
+    "payments": "الخلاصات",
+    "claimBounty": "خود المكافأة ديالك",
+    "noneForFilter": "مازال ما كاينش إشعارات {{filter}}.",
+    "andNOthers": "و {{count}} خرين"
   },
   "leaderboard": {
     "title": "لوحة المتصدرين",

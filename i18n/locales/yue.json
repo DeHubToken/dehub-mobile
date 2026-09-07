@@ -1059,7 +1059,12 @@
     "newNotification": "新通知",
     "oneOther": "1位其他人",
     "nOthers": "{{count}}位其他人",
-    "clearNotification": "清除通知"
+    "clearNotification": "清除通知",
+    "reactions": "反應",
+    "payments": "付款",
+    "claimBounty": "領取賞金",
+    "noneForFilter": "仲未有{{filter}}通知。",
+    "andNOthers": "同其他 {{count}} 人"
   },
   "leaderboard": {
     "title": "排行榜",

@@ -1059,7 +1059,12 @@
     "newNotification": "Njoftim i ri",
     "oneOther": "1 tjetër",
     "nOthers": "{{count}} të tjerë",
-    "clearNotification": "Pastro njoftimin"
+    "clearNotification": "Pastro njoftimin",
+    "reactions": "Reagime",
+    "payments": "Pagesat",
+    "claimBounty": "Merr shpërblimin tënd",
+    "noneForFilter": "Ende nuk ka njoftime {{filter}}.",
+    "andNOthers": "dhe {{count}} të tjerë"
   },
   "leaderboard": {
     "title": "Tabela e Liderëve",

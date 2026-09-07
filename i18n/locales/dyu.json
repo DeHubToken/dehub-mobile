@@ -1059,7 +1059,12 @@
     "newNotification": "Kɔrɔbɔ",
     "oneOther": "1 kɔrɔbɔ",
     "nOthers": "{{count}} kɔrɔbɔ",
-    "clearNotification": "Kunnafoni jɔsi"
+    "clearNotification": "Kunnafoni jɔsi",
+    "reactions": "Jaabiw",
+    "payments": "Sarali",
+    "claimBounty": "I ka sara ta",
+    "noneForFilter": "{{filter}} kunnafoni tɛ yen fɔlɔ.",
+    "andNOthers": "ani {{count}} wɛrɛw"
   },
   "leaderboard": {
     "title": "Kɛlɛya",

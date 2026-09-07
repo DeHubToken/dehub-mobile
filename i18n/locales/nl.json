@@ -1583,7 +1583,12 @@
     "newNotification": "Nieuwe melding",
     "oneOther": "1 andere",
     "nOthers": "{{count}} anderen",
-    "clearNotification": "Melding wissen"
+    "clearNotification": "Melding wissen",
+    "reactions": "Reacties",
+    "payments": "Betalingen",
+    "claimBounty": "Claim je beloning",
+    "noneForFilter": "Nog geen {{filter}}-meldingen.",
+    "andNOthers": "en {{count}} anderen"
   },
   "messages": {
     "smartRepliesOff": "Voorgestelde antwoorden uitgezet",

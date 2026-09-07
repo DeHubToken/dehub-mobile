@@ -1124,7 +1124,12 @@
     "newNotification": "Notifikasi baru",
     "oneOther": "1 lainnya",
     "nOthers": "{{count}} lainnya",
-    "clearNotification": "Hapus notifikasi"
+    "clearNotification": "Hapus notifikasi",
+    "reactions": "Reaksi",
+    "payments": "Pembayaran",
+    "claimBounty": "Klaim hadiahmu",
+    "noneForFilter": "Belum ada notifikasi {{filter}}.",
+    "andNOthers": "dan {{count}} lainnya"
   },
   "leaderboard": {
     "title": "Papan Peringkat",

@@ -1039,7 +1039,12 @@
     "newNotification": "Yangi bildirishnoma",
     "oneOther": "1 boshqa",
     "nOthers": "{{count}} boshqa",
-    "clearNotification": "Bildirishnomani tozalash"
+    "clearNotification": "Bildirishnomani tozalash",
+    "reactions": "Reaksiyalar",
+    "payments": "To‘lovlar",
+    "claimBounty": "Mukofotingizni oling",
+    "noneForFilter": "Hozircha {{filter}} bildirishnomalari yo‘q.",
+    "andNOthers": "va yana {{count}} kishi"
   },
   "leaderboard": {
     "title": "Reyting",

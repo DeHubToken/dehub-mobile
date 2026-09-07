@@ -1122,7 +1122,12 @@
     "newNotification": "Isaziso esisha",
     "oneOther": "omunye omu-1",
     "nOthers": "abanye abangu-{{count}}",
-    "clearNotification": "Sula isaziso"
+    "clearNotification": "Sula isaziso",
+    "reactions": "Izimpendulo",
+    "payments": "Izinkokhelo",
+    "claimBounty": "Thatha umklomelo wakho",
+    "noneForFilter": "Azikho izaziso ze-{{filter}} okwamanje.",
+    "andNOthers": "nabanye abangu-{{count}}"
   },
   "leaderboard": {
     "title": "Bhodi Yabaholi",

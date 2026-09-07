@@ -1059,7 +1059,12 @@
     "newNotification": "نئين اطلاع",
     "oneOther": "1 ٻيو",
     "nOthers": "{{count}} ٻيا",
-    "clearNotification": "اطلاع صاف ڪريو"
+    "clearNotification": "اطلاع صاف ڪريو",
+    "reactions": "ردعمل",
+    "payments": "ادائيگيون",
+    "claimBounty": "پنهنجو انعام وٺو",
+    "noneForFilter": "اڃا تائين ڪا {{filter}} اطلاع ناهي.",
+    "andNOthers": "۽ {{count}} ٻيا"
   },
   "leaderboard": {
     "title": "ليڊربورڊ",

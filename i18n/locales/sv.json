@@ -1030,7 +1030,12 @@
     "newNotification": "Ny avisering",
     "oneOther": "1 annan",
     "nOthers": "{{count}} andra",
-    "clearNotification": "Rensa avisering"
+    "clearNotification": "Rensa avisering",
+    "reactions": "Reaktioner",
+    "payments": "Betalningar",
+    "claimBounty": "Hämta din belöning",
+    "noneForFilter": "Inga {{filter}}-aviseringar än.",
+    "andNOthers": "och {{count}} andra"
   },
   "leaderboard": {
     "title": "Topplista",

@@ -1124,7 +1124,12 @@
     "newNotification": "Nouvelle notification",
     "oneOther": "1 autre",
     "nOthers": "{{count}} autres",
-    "clearNotification": "Effacer la notification"
+    "clearNotification": "Effacer la notification",
+    "reactions": "Réactions",
+    "payments": "Paiements",
+    "claimBounty": "Récupérez votre prime",
+    "noneForFilter": "Aucune notification {{filter}} pour le moment.",
+    "andNOthers": "et {{count}} autres"
   },
   "leaderboard": {
     "title": "Classements",

@@ -1059,7 +1059,12 @@
     "newNotification": "Agahdariya nû",
     "oneOther": "1 yê din",
     "nOthers": "{{count}} yên din",
-    "clearNotification": "Agahdariyê pak bike"
+    "clearNotification": "Agahdariyê pak bike",
+    "reactions": "Bertek",
+    "payments": "Dayîn",
+    "claimBounty": "Xelata xwe bistîne",
+    "noneForFilter": "Hîn agahdariyên {{filter}} tune ne.",
+    "andNOthers": "û {{count}} kesên din"
   },
   "leaderboard": {
     "title": "Pêşengtî",

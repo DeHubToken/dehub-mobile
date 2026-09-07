@@ -1121,7 +1121,12 @@
     "newNotification": "አዲስ ማሳወቂያ",
     "oneOther": "1 ሌላ",
     "nOthers": "{{count}} ሌሎች",
-    "clearNotification": "ማሳወቂያ አጽዳ"
+    "clearNotification": "ማሳወቂያ አጽዳ",
+    "reactions": "ምላሾች",
+    "payments": "ክፍያዎች",
+    "claimBounty": "ሽልማትህን ውሰድ",
+    "noneForFilter": "እስካሁን የ{{filter}} ማሳወቂያ የለም።",
+    "andNOthers": "እና ሌሎች {{count}}"
   },
   "leaderboard": {
     "title": "ደረጃ ሰሌዳዎች",

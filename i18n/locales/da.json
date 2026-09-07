@@ -1030,7 +1030,12 @@
     "newNotification": "Ny notifikation",
     "oneOther": "1 anden",
     "nOthers": "{{count}} andre",
-    "clearNotification": "Ryd notifikation"
+    "clearNotification": "Ryd notifikation",
+    "reactions": "Reaktioner",
+    "payments": "Betalinger",
+    "claimBounty": "Hent din dusør",
+    "noneForFilter": "Ingen {{filter}}-notifikationer endnu.",
+    "andNOthers": "og {{count}} andre"
   },
   "leaderboard": {
     "title": "Rangliste",

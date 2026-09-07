@@ -1059,7 +1059,12 @@
     "newNotification": "Ogeysiis cusub",
     "oneOther": "1 kale",
     "nOthers": "{{count}} kale",
-    "clearNotification": "Nadiifi ogeysiiska"
+    "clearNotification": "Nadiifi ogeysiiska",
+    "reactions": "Falcelin",
+    "payments": "Lacag bixinno",
+    "claimBounty": "Qaado abaalmarintaada",
+    "noneForFilter": "Weli ma jiraan ogeysiisyo {{filter}}.",
+    "andNOthers": "iyo {{count}} kale"
   },
   "leaderboard": {
     "title": "Hogaamiyaha",

@@ -933,7 +933,12 @@
     "newNotification": "नई सूचना",
     "oneOther": "1 अन्य",
     "nOthers": "{{count}} अन्य",
-    "clearNotification": "सूचना हटाएँ"
+    "clearNotification": "सूचना हटाएँ",
+    "reactions": "प्रतिक्रियाएँ",
+    "payments": "भुगतान",
+    "claimBounty": "अपना इनाम लें",
+    "noneForFilter": "अभी तक कोई {{filter}} सूचना नहीं।",
+    "andNOthers": "और {{count}} अन्य"
   },
   "leaderboard": {
     "title": "लीडरबोर्ड",

@@ -1039,7 +1039,12 @@
     "newNotification": "ახალი შეტყობინება",
     "oneOther": "1 სხვა",
     "nOthers": "{{count}} სხვა",
-    "clearNotification": "შეტყობინების გასუფთავება"
+    "clearNotification": "შეტყობინების გასუფთავება",
+    "reactions": "რეაქციები",
+    "payments": "გადახდები",
+    "claimBounty": "მიიღეთ თქვენი ჯილდო",
+    "noneForFilter": "{{filter}} შეტყობინებები ჯერ არ არის.",
+    "andNOthers": "და კიდევ {{count}}"
   },
   "leaderboard": {
     "title": "რეიტინგი",

@@ -1030,7 +1030,12 @@
     "newNotification": "Nové oznámení",
     "oneOther": "1 další",
     "nOthers": "{{count}} dalších",
-    "clearNotification": "Smazat oznámení"
+    "clearNotification": "Smazat oznámení",
+    "reactions": "Reakce",
+    "payments": "Platby",
+    "claimBounty": "Vyzvednout odměnu",
+    "noneForFilter": "Zatím žádná oznámení ({{filter}}).",
+    "andNOthers": "a {{count}} dalších"
   },
   "leaderboard": {
     "title": "Žebříček",

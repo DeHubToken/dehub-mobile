@@ -1103,7 +1103,12 @@
     "postRemoved": "Your post was removed",
     "newNotification": "New notification",
     "oneOther": "1 other",
-    "nOthers": "{{count}} others"
+    "nOthers": "{{count}} others",
+    "reactions": "Reactions",
+    "payments": "Payments",
+    "claimBounty": "Claim your bounty",
+    "noneForFilter": "No {{filter}} notifications yet.",
+    "andNOthers": "and {{count}} others"
   },
   "leaderboard": {
     "title": "Leaderboards",

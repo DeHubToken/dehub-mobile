@@ -1072,7 +1072,12 @@
     "newNotification": "New notification",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "សម្អាតការជូនដំណឹង"
+    "clearNotification": "សម្អាតការជូនដំណឹង",
+    "reactions": "ប្រតិកម្ម",
+    "payments": "ការទូទាត់",
+    "claimBounty": "ទទួលរង្វាន់របស់អ្នក",
+    "noneForFilter": "មិនទាន់មានការជូនដំណឹង {{filter}} ទេ។",
+    "andNOthers": "និង {{count}} នាក់ទៀត"
   },
   "leaderboard": {
     "title": "តារាងចំណាត់ថ្នាក់",

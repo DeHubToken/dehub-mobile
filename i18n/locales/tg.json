@@ -1120,7 +1120,12 @@
     "newNotification": "Огоҳии нав",
     "oneOther": "1 дигар",
     "nOthers": "{{count}} дигар",
-    "clearNotification": "Пок кардани огоҳинома"
+    "clearNotification": "Пок кардани огоҳинома",
+    "reactions": "Вокунишҳо",
+    "payments": "Пардохтҳо",
+    "claimBounty": "Мукофоти худро гиред",
+    "noneForFilter": "Ҳоло огоҳиномаҳои {{filter}} нест.",
+    "andNOthers": "ва {{count}} нафари дигар"
   },
   "messages": {
     "smartRepliesOff": "Ҷавобҳои пешниҳодшуда хомӯш карда шуданд",

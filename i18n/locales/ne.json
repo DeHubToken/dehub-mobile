@@ -1072,7 +1072,12 @@
     "newNotification": "New notification",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "सूचना हटाउनुहोस्"
+    "clearNotification": "सूचना हटाउनुहोस्",
+    "reactions": "प्रतिक्रियाहरू",
+    "payments": "भुक्तानीहरू",
+    "claimBounty": "आफ्नो इनाम लिनुहोस्",
+    "noneForFilter": "अहिलेसम्म {{filter}} सूचना छैन।",
+    "andNOthers": "र अन्य {{count}}"
   },
   "leaderboard": {
     "title": "लिडरबोर्ड",

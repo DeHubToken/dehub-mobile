@@ -1120,7 +1120,12 @@
     "newNotification": "Nueva notificación",
     "oneOther": "1 otro",
     "nOthers": "{{count}} otros",
-    "clearNotification": "Borrar notificación"
+    "clearNotification": "Borrar notificación",
+    "reactions": "Reacciones",
+    "payments": "Pagos",
+    "claimBounty": "Reclama tu recompensa",
+    "noneForFilter": "Aún no hay notificaciones de {{filter}}.",
+    "andNOthers": "y {{count}} más"
   },
   "messages": {
     "smartRepliesOff": "Respuestas sugeridas desactivadas",

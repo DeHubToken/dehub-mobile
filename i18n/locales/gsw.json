@@ -1059,7 +1059,12 @@
     "newNotification": "Neui Nachricht",
     "oneOther": "1 andere",
     "nOthers": "{{count}} anderi",
-    "clearNotification": "Benachrichtigung lösche"
+    "clearNotification": "Benachrichtigung lösche",
+    "reactions": "Reaktione",
+    "payments": "Zahlige",
+    "claimBounty": "Hol dini Belohnig",
+    "noneForFilter": "No kei {{filter}}-Benachrichtigige.",
+    "andNOthers": "und {{count}} anderi"
   },
   "leaderboard": {
     "title": "Rangllischte",

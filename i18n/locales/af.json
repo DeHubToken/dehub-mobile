@@ -201,7 +201,12 @@
     "newNotification": "New notification",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "Vee kennisgewing uit"
+    "clearNotification": "Vee kennisgewing uit",
+    "reactions": "Reaksies",
+    "payments": "Betalings",
+    "claimBounty": "Eis jou beloning",
+    "noneForFilter": "Nog geen {{filter}}-kennisgewings nie.",
+    "andNOthers": "en {{count}} ander"
   },
   "profile": {
     "editProfile": "Wysig profiel",

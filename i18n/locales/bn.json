@@ -1124,7 +1124,12 @@
     "newNotification": "নতুন বিজ্ঞপ্তি",
     "oneOther": "১ জন অন্য",
     "nOthers": "{{count}} জন অন্য",
-    "clearNotification": "বিজ্ঞপ্তি মুছুন"
+    "clearNotification": "বিজ্ঞপ্তি মুছুন",
+    "reactions": "প্রতিক্রিয়া",
+    "payments": "পেমেন্ট",
+    "claimBounty": "আপনার পুরস্কার নিন",
+    "noneForFilter": "এখনও কোনো {{filter}} বিজ্ঞপ্তি নেই।",
+    "andNOthers": "এবং আরও {{count}} জন"
   },
   "leaderboard": {
     "title": "লিডারবোর্ড",

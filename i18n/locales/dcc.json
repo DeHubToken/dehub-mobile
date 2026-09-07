@@ -1059,7 +1059,12 @@
     "newNotification": "نئی اطلاع",
     "oneOther": "۱ اور",
     "nOthers": "{{count}} اور",
-    "clearNotification": "اطلاع مٹاؤ"
+    "clearNotification": "اطلاع مٹاؤ",
+    "reactions": "ری ایکشن",
+    "payments": "ادائیگیاں",
+    "claimBounty": "اپنا انعام لو",
+    "noneForFilter": "ابھی تک {{filter}} کی کوئی اطلاع نئیں۔",
+    "andNOthers": "اور {{count}} دوسرے"
   },
   "leaderboard": {
     "title": "لیڈر بورڈ",

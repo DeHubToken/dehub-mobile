@@ -1812,7 +1812,12 @@
     "newNotification": "New notification",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "Прибрати сповіщення"
+    "clearNotification": "Прибрати сповіщення",
+    "reactions": "Реакції",
+    "payments": "Платежі",
+    "claimBounty": "Забрати винагороду",
+    "noneForFilter": "Сповіщень ({{filter}}) поки немає.",
+    "andNOthers": "і ще {{count}}"
   },
   "messages": {
     "smartRepliesOff": "Запропоновані відповіді вимкнено",

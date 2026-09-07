@@ -1124,7 +1124,12 @@
     "newNotification": "اعلان جدید",
     "oneOther": "۱ نفر دیگر",
     "nOthers": "{{count}} نفر دیگر",
-    "clearNotification": "پاک کردن اعلان"
+    "clearNotification": "پاک کردن اعلان",
+    "reactions": "واکنش‌ها",
+    "payments": "پرداخت‌ها",
+    "claimBounty": "پاداشت را دریافت کن",
+    "noneForFilter": "هنوز اعلان {{filter}} وجود ندارد.",
+    "andNOthers": "و {{count}} نفر دیگر"
   },
   "leaderboard": {
     "title": "جدول امتیازات",

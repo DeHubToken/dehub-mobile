@@ -1062,7 +1062,12 @@
     "postRemoved": "Gönderiniz kaldırıldı",
     "newNotification": "Yeni bildirim",
     "oneOther": "1 diğer kişi",
-    "nOthers": "{{count}} diğer kişi"
+    "nOthers": "{{count}} diğer kişi",
+    "reactions": "Tepkiler",
+    "payments": "Ödemeler",
+    "claimBounty": "Ödülünü al",
+    "noneForFilter": "Henüz {{filter}} bildirimi yok.",
+    "andNOthers": "ve {{count}} kişi daha"
   },
   "leaderboard": {
     "title": "Sıralama Tablosu",

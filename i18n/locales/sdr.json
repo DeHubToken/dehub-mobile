@@ -1057,7 +1057,12 @@
     "newNotification": "نئی خبر",
     "oneOther": "1 اور",
     "nOthers": "{{count}} اور",
-    "clearNotification": "خبر مٹاؤ"
+    "clearNotification": "خبر مٹاؤ",
+    "reactions": "প্রতিক্রিয়া",
+    "payments": "পেমেন্ট",
+    "claimBounty": "তোমার পুরস্কার নাও",
+    "noneForFilter": "এখনো {{filter}} নোটিফিকেশন নাই।",
+    "andNOthers": "আর {{count}} জন"
   },
   "leaderboard": {
     "title": "لیڈر بورڈ",

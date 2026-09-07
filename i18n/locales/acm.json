@@ -1059,7 +1059,12 @@
     "newNotification": "إشعار جديد",
     "oneOther": "١ ثاني",
     "nOthers": "{{count}} ثانيين",
-    "clearNotification": "امحي الإشعار"
+    "clearNotification": "امحي الإشعار",
+    "reactions": "التفاعلات",
+    "payments": "المدفوعات",
+    "claimBounty": "استلم مكافأتك",
+    "noneForFilter": "ماكو إشعارات {{filter}} بعد.",
+    "andNOthers": "و {{count}} غيرهم"
   },
   "leaderboard": {
     "title": "لوحة المتصدرين",

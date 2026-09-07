@@ -1120,7 +1120,12 @@
     "newNotification": "Nytt varsel",
     "oneOther": "1 annen",
     "nOthers": "{{count}} andre",
-    "clearNotification": "Fjern varsel"
+    "clearNotification": "Fjern varsel",
+    "reactions": "Reaksjoner",
+    "payments": "Betalinger",
+    "claimBounty": "Hent belønningen din",
+    "noneForFilter": "Ingen {{filter}}-varsler ennå.",
+    "andNOthers": "og {{count}} andre"
   },
   "messages": {
     "smartRepliesOff": "Foreslåtte svar er slått av",

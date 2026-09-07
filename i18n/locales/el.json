@@ -1059,7 +1059,12 @@
     "newNotification": "Νέα ειδοποίηση",
     "oneOther": "1 ακόμα",
     "nOthers": "{{count}} ακόμα",
-    "clearNotification": "Καθαρισμός ειδοποίησης"
+    "clearNotification": "Καθαρισμός ειδοποίησης",
+    "reactions": "Αντιδράσεις",
+    "payments": "Πληρωμές",
+    "claimBounty": "Παραλάβετε την αμοιβή σας",
+    "noneForFilter": "Δεν υπάρχουν ακόμη ειδοποιήσεις ({{filter}}).",
+    "andNOthers": "και {{count}} ακόμη"
   },
   "leaderboard": {
     "title": "Κατάταξη",

@@ -1120,7 +1120,12 @@
     "newNotification": "يېڭى ئۇقتۇرۇش",
     "oneOther": "1 باشقا",
     "nOthers": "{{count}} باشقا",
-    "clearNotification": "ئۇقتۇرۇشنى تازىلاش"
+    "clearNotification": "ئۇقتۇرۇشنى تازىلاش",
+    "reactions": "ئىنكاسلار",
+    "payments": "پۇل تۆلەش",
+    "claimBounty": "مۇكاپاتىڭىزنى ئېلىڭ",
+    "noneForFilter": "تېخى {{filter}} ئۇقتۇرۇشى يوق.",
+    "andNOthers": "ۋە باشقا {{count}} كىشى"
   },
   "messages": {
     "smartRepliesOff": "تەۋسىيە جاۋابلار ئېتىلدى",

@@ -1368,7 +1368,12 @@
     "newNotification": "การแจ้งเตือนใหม่",
     "oneOther": "อีก 1 คน",
     "nOthers": "อีก {{count}} คน",
-    "clearNotification": "ล้างการแจ้งเตือน"
+    "clearNotification": "ล้างการแจ้งเตือน",
+    "reactions": "รีแอคชัน",
+    "payments": "การชำระเงิน",
+    "claimBounty": "รับรางวัลของคุณ",
+    "noneForFilter": "ยังไม่มีการแจ้งเตือน {{filter}}",
+    "andNOthers": "และอีก {{count}} คน"
   },
   "messages": {
     "smartRepliesOff": "ปิดคำตอบแนะนำแล้ว",
