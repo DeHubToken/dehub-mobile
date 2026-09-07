@@ -1871,6 +1871,7 @@
     "searchDehubFor": "Szukaj „{{query}}\" w DeHub"
   },
   "comments": {
+    "showAll": "Pokaż wszystkie komentarze",
     "discardTitle": "Odrzucić komentarz?",
     "discardBody": "Zapisaliśmy go jako szkic, więc będzie tu, gdy wrócisz.",
     "keepWriting": "Pisz dalej",

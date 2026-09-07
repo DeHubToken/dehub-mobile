@@ -1538,6 +1538,7 @@
     "searchDehubFor": "Hikaroka \"{{query}}\" ao amin'ny DeHub"
   },
   "comments": {
+    "showAll": "Asehoy ny fanehoan-kevitra rehetra",
     "discardTitle": "Hafoy ny hevitrao?",
     "discardBody": "Voatahiry ho volavola izy, ka ho eto ihany rehefa miverina ianao.",
     "keepWriting": "Manohy manoratra",

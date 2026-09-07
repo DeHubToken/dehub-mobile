@@ -1637,6 +1637,7 @@
     "searchDehubFor": "Sesha \"{{query}}\" ku-DeHub"
   },
   "comments": {
+    "showAll": "Bonisa wonke amakhomenti",
     "discardTitle": "Ulahla umbono wakho?",
     "discardBody": "Ulondolozwe njengohlaka, ngakho uzoba lapha uma ubuya.",
     "keepWriting": "Qhubeka ubhala",

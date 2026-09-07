@@ -1604,6 +1604,7 @@
     "searchDehubFor": "ኣብ DeHub \"{{query}}\" ድለ"
   },
   "comments": {
+    "showAll": "ንዅሉ ርእይቶታት ኣርኢ",
     "discardTitle": "ርእይቶኻ ክትሓድጎ?",
     "discardBody": "ከም ንድፊ ተዓቂቡ ኣሎ፣ ምስ ተመለስካ ኣብዚ ክህሉ እዩ።",
     "keepWriting": "ምጽሓፍ ቀጽል",

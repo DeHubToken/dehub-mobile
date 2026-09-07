@@ -1927,6 +1927,7 @@
     "searchDehubFor": "Soek “{{query}}” op DeHub"
   },
   "comments": {
+    "showAll": "Alle kommentaar",
     "discardTitle": "Kommentaar weggooi?",
     "discardBody": "Dit is as konsep gestoor, so dit sal hier wees wanneer jy terugkom.",
     "keepWriting": "Hou aan skryf",

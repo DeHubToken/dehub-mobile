@@ -1609,6 +1609,7 @@
     "searchDehubFor": "ابحث في DeHub عن «{{query}}»"
   },
   "comments": {
+    "showAll": "عرض جميع التعليقات",
     "discardTitle": "تجاهل تعليقك؟",
     "discardBody": "تم حفظه كمسودة، وسيكون هنا عند عودتك.",
     "keepWriting": "متابعة الكتابة",

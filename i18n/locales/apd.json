@@ -1605,6 +1605,7 @@
     "searchDehubFor": "دوّر على \"{{query}}\" في DeHub"
   },
   "comments": {
+    "showAll": "ورّيني كل التعليقات",
     "discardTitle": "عايز تلغي تعليقك؟",
     "discardBody": "اتحفظ كمسودة، وحا يكون هنا لمن ترجع.",
     "keepWriting": "واصل الكتابة",

@@ -1604,6 +1604,7 @@
     "searchDehubFor": "DeHub تي \"{{query}}\" ڳوليو"
   },
   "comments": {
+    "showAll": "سڀئي تبصرا ڏيکاريو",
     "discardTitle": "پنهنجو تبصرو ڇڏي ڏيو؟",
     "discardBody": "اهو مسودي طور محفوظ آهي، واپس اچڻ تي هتي ئي ملندو.",
     "keepWriting": "لکندا رهو",

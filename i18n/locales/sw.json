@@ -1607,6 +1607,7 @@
     "searchDehubFor": "Tafuta \"{{query}}\" kwenye DeHub"
   },
   "comments": {
+    "showAll": "Onyesha maoni yote",
     "discardTitle": "Utupe maoni yako?",
     "discardBody": "Yamehifadhiwa kama rasimu, hivyo yatakuwa hapa utakaporudi.",
     "keepWriting": "Endelea kuandika",

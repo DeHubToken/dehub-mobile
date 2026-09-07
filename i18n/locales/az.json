@@ -1605,6 +1605,7 @@
     "searchDehubFor": "DeHub-da «{{query}}» axtar"
   },
   "comments": {
+    "showAll": "Bütün şərhləri göstər",
     "discardTitle": "Şərhinizi ləğv edirsiniz?",
     "discardBody": "Qaralama kimi saxlanılıb, qayıtdığınızda burada olacaq.",
     "keepWriting": "Yazmağa davam et",

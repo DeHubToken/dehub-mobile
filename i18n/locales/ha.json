@@ -1606,6 +1606,7 @@
     "searchDehubFor": "Nemi \"{{query}}\" a DeHub"
   },
   "comments": {
+    "showAll": "Nuna duk sharhi",
     "discardTitle": "Ka jefar da sharhinka?",
     "discardBody": "An ajiye shi a matsayin daftari, zai kasance nan sa'ad da ka dawo.",
     "keepWriting": "Ci gaba da rubutu",

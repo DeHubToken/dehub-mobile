@@ -1610,6 +1610,7 @@
     "searchDehubFor": "Pesquisar «{{query}}» na DeHub"
   },
   "comments": {
+    "showAll": "Exibir todos os comentários",
     "discardTitle": "Descartar o seu comentário?",
     "discardBody": "Está guardado como rascunho, por isso estará aqui quando voltar.",
     "keepWriting": "Continuar a escrever",

@@ -1593,6 +1593,7 @@
     "searchDehubFor": "DeHub پر \"{{query}}\" ڈھونڈو"
   },
   "comments": {
+    "showAll": "سارے تبصرے دکھاؤ",
     "discardTitle": "اپنا تبصرہ چھوڑ دینا ہے؟",
     "discardBody": "یہ مسودے میں محفوظ ہے، واپس آنے پر یہیں ملے گا۔",
     "keepWriting": "لکھتے رہو",

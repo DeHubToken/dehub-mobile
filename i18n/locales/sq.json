@@ -1606,6 +1606,7 @@
     "searchDehubFor": "Kërko „{{query}}” në DeHub"
   },
   "comments": {
+    "showAll": "Të gjitha komentet",
     "discardTitle": "Ta heqësh komentin?",
     "discardBody": "Është ruajtur si skicë, kështu që do të jetë këtu kur të kthehesh.",
     "keepWriting": "Vazhdo të shkruash",

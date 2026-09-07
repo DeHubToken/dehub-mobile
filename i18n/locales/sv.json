@@ -1610,6 +1610,7 @@
     "searchDehubFor": "Sök efter ”{{query}}” på DeHub"
   },
   "comments": {
+    "showAll": "Visa alla kommentarer",
     "discardTitle": "Kasta kommentaren?",
     "discardBody": "Den är sparad som utkast, så den finns här när du kommer tillbaka.",
     "keepWriting": "Fortsätt skriva",

@@ -1605,6 +1605,7 @@
     "searchDehubFor": "DeHub पर \"{{query}}\" खोजूँ"
   },
   "comments": {
+    "showAll": "सभी तरह के प्रश्नो को हल करे",
     "discardTitle": "अपन कमेंट छोड़ देब?",
     "discardBody": "ई ड्राफ्ट में सेव हो गेल, लौटला पर इहँ मिली।",
     "keepWriting": "लिखते रहू",

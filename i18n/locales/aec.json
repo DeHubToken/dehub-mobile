@@ -1604,6 +1604,7 @@
     "searchDehubFor": "دوّر على \"{{query}}\" في DeHub"
   },
   "comments": {
+    "showAll": "ورّي كل التعليقات",
     "discardTitle": "عايز تسيب تعليقك؟",
     "discardBody": "اتحفظ كمسودة، وحيكون هنا لما ترجع.",
     "keepWriting": "كمّل كتابة",

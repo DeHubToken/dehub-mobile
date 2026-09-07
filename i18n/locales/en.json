@@ -1721,6 +1721,7 @@
     "searchDehubFor": "Search DeHub for \"{{query}}\""
   },
   "comments": {
+    "showAll": "Show all comments",
     "discardTitle": "Discard your comment?",
     "discardBody": "It's saved as a draft, so it will be here when you come back.",
     "keepWriting": "Keep writing",

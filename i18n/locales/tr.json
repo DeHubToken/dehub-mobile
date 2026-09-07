@@ -1677,6 +1677,7 @@
     "searchDehubFor": "DeHub'ta \"{{query}}\" ara"
   },
   "comments": {
+    "showAll": "Tüm Yorumları Göster",
     "discardTitle": "Yorumun silinsin mi?",
     "discardBody": "Taslak olarak kaydedildi, geri döndüğünde burada olacak.",
     "keepWriting": "Yazmaya devam et",

@@ -1605,6 +1605,7 @@
     "searchDehubFor": "په DeHub کې \"{{query}}\" ولټوئ"
   },
   "comments": {
+    "showAll": "ټولې تبصرې ښکاره کړئ",
     "discardTitle": "خپله تبصره پرېږدې؟",
     "discardBody": "د مسودې په توګه خوندي شوې، نو کله چې راستون شې دلته به وي.",
     "keepWriting": "لیکل ته دوام ورکړه",

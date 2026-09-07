@@ -1987,6 +1987,7 @@
     "searchDehubFor": "Maghanap ng \"{{query}}\" sa DeHub"
   },
   "comments": {
+    "showAll": "Ipakita ang lahat ng mga komento",
     "discardTitle": "Itatapon ang komento mo?",
     "discardBody": "Naka-save ito bilang draft, kaya nandito pa rin ito pagbalik mo.",
     "keepWriting": "Magpatuloy sa pagsulat",

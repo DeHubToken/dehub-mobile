@@ -1610,6 +1610,7 @@
     "searchDehubFor": "Rechercher « {{query}} » sur DeHub"
   },
   "comments": {
+    "showAll": "Afficher tous les commentaires",
     "discardTitle": "Abandonner votre commentaire ?",
     "discardBody": "Il est enregistré comme brouillon : vous le retrouverez ici à votre retour.",
     "keepWriting": "Continuer à écrire",
