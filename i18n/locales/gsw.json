@@ -2557,5 +2557,21 @@
     "failed": "Undertitel hend nid chönne erstellt wärde.",
     "preparing": "Undertitel wärde vorbereitet.",
     "fixLine": "Die Ziile korrigiere"
+  },
+  "paywall": {
+    "subtitle": "Wähl es Modell und bestätig d Zahlig",
+    "generate": "Erstelle",
+    "run": "Usfüehre",
+    "paymentConfirmed": "Zahlig bestätigt — wird erstellt",
+    "paymentFailed": "Zahlig fehlgschlage",
+    "paying": "Zahle…",
+    "generating": "Wird erstellt…",
+    "buyDhb": "DHB chaufe",
+    "payAmount": "{{amount}} DHB zahle & {{action}}",
+    "stakerDiscount": "Staker-Rabatt",
+    "total": "Total",
+    "pricing": "Priis wird berächnet…",
+    "payWithDhb": "Mit DHB zahle",
+    "yourDhb": "Dini DHB"
   }
 }

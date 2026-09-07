@@ -2527,5 +2527,21 @@
     "failed": "Qoraal-hoosaadka lama samayn karin.",
     "preparing": "Qoraal-hoosaadka waa la diyaarinayaa.",
     "fixLine": "Sax xariiqda hadda"
+  },
+  "paywall": {
+    "subtitle": "Dooro nooc oo xaqiiji lacag-bixinta",
+    "generate": "Samee",
+    "run": "Socodsii",
+    "paymentConfirmed": "Lacag-bixinta waa la xaqiijiyay — waa la samaynayaa",
+    "paymentFailed": "Lacag-bixintu way fashilantay",
+    "paying": "Waa la bixinayaa…",
+    "generating": "Waa la samaynayaa…",
+    "buyDhb": "Iibso DHB",
+    "payAmount": "Bixi {{amount}} DHB oo {{action}}",
+    "stakerDiscount": "Qiimo dhimis staker",
+    "total": "Wadarta",
+    "pricing": "Waa la xisaabinayaa qiimaha…",
+    "payWithDhb": "Ku bixi DHB",
+    "yourDhb": "DHB-gaaga"
   }
 }

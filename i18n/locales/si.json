@@ -2566,5 +2566,21 @@
     "failed": "උපසිරැසි සෑදිය නොහැකි විය.",
     "preparing": "උපසිරැසි සූදානම් වෙමින් පවතී.",
     "fixLine": "වත්මන් පේළිය නිවැරදි කරන්න"
+  },
+  "paywall": {
+    "subtitle": "මාදිලියක් තෝරා ගෙවීම තහවුරු කරන්න",
+    "generate": "සාදන්න",
+    "run": "ධාවනය",
+    "paymentConfirmed": "ගෙවීම තහවුරුයි — සාදමින්",
+    "paymentFailed": "ගෙවීම අසාර්ථකයි",
+    "paying": "ගෙවමින්…",
+    "generating": "සාදමින්…",
+    "buyDhb": "DHB මිලදී ගන්න",
+    "payAmount": "{{amount}} DHB ගෙවා {{action}}",
+    "stakerDiscount": "ස්ටේකර් වට්ටම",
+    "total": "එකතුව",
+    "pricing": "මිල ගණනය කරමින්…",
+    "payWithDhb": "DHB වලින් ගෙවන්න",
+    "yourDhb": "ඔබේ DHB"
   }
 }

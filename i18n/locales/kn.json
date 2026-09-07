@@ -2527,5 +2527,21 @@
     "failed": "ಉಪಶೀರ್ಷಿಕೆ ರಚಿಸಲಾಗಲಿಲ್ಲ.",
     "preparing": "ಉಪಶೀರ್ಷಿಕೆ ಸಿದ್ಧವಾಗುತ್ತಿದೆ.",
     "fixLine": "ಈ ಸಾಲನ್ನು ಸರಿಪಡಿಸಿ"
+  },
+  "paywall": {
+    "subtitle": "ಮಾದರಿ ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು ಪಾವತಿ ದೃಢೀಕರಿಸಿ",
+    "generate": "ರಚಿಸಿ",
+    "run": "ಚಲಾಯಿಸಿ",
+    "paymentConfirmed": "ಪಾವತಿ ದೃಢೀಕೃತ — ರಚಿಸಲಾಗುತ್ತಿದೆ",
+    "paymentFailed": "ಪಾವತಿ ವಿಫಲ",
+    "paying": "ಪಾವತಿಸಲಾಗುತ್ತಿದೆ…",
+    "generating": "ರಚಿಸಲಾಗುತ್ತಿದೆ…",
+    "buyDhb": "DHB ಖರೀದಿಸಿ",
+    "payAmount": "{{amount}} DHB ಪಾವತಿಸಿ ಮತ್ತು {{action}}",
+    "stakerDiscount": "ಸ್ಟೇಕರ್ ರಿಯಾಯಿತಿ",
+    "total": "ಒಟ್ಟು",
+    "pricing": "ಬೆಲೆ ಲೆಕ್ಕ ಹಾಕಲಾಗುತ್ತಿದೆ…",
+    "payWithDhb": "DHB ನಿಂದ ಪಾವತಿಸಿ",
+    "yourDhb": "ನಿಮ್ಮ DHB"
   }
 }

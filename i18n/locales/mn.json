@@ -2525,5 +2525,21 @@
     "failed": "Хадмал үүсгэж чадсангүй.",
     "preparing": "Хадмал бэлтгэгдэж байна.",
     "fixLine": "Одоогийн мөрийг засах"
+  },
+  "paywall": {
+    "subtitle": "Загвар сонгоод төлбөрөө баталгаажуулна уу",
+    "generate": "Үүсгэх",
+    "run": "Ажиллуулах",
+    "paymentConfirmed": "Төлбөр баталгаажлаа — үүсгэж байна",
+    "paymentFailed": "Төлбөр амжилтгүй",
+    "paying": "Төлж байна…",
+    "generating": "Үүсгэж байна…",
+    "buyDhb": "DHB худалдаж авах",
+    "payAmount": "{{amount}} DHB төлж {{action}}",
+    "stakerDiscount": "Стейкерийн хөнгөлөлт",
+    "total": "Нийт",
+    "pricing": "Үнийг тооцоолж байна…",
+    "payWithDhb": "DHB-ээр төлөх",
+    "yourDhb": "Таны DHB"
   }
 }

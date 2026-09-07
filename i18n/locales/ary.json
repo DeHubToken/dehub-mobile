@@ -2556,5 +2556,21 @@
     "failed": "ما قدرناش نصاوبو الترجمة.",
     "preparing": "الترجمة كتوجد.",
     "fixLine": "صلح هاد السطر"
+  },
+  "paywall": {
+    "subtitle": "ختار موديل وأكّد الخلاص",
+    "generate": "صاوب",
+    "run": "خدّم",
+    "paymentConfirmed": "الخلاص تأكد — كنصاوبو",
+    "paymentFailed": "الخلاص ما دازش",
+    "paying": "كنخلصو…",
+    "generating": "كنصاوبو…",
+    "buyDhb": "شري DHB",
+    "payAmount": "خلص {{amount}} DHB و{{action}}",
+    "stakerDiscount": "خصم المشاركين",
+    "total": "المجموع",
+    "pricing": "كنحسبو الثمن…",
+    "payWithDhb": "خلص بـ DHB",
+    "yourDhb": "الـ DHB ديالك"
   }
 }

@@ -2557,5 +2557,21 @@
     "failed": "زیرنویس ساخته نشد.",
     "preparing": "زیرنویس در حال آماده‌سازی است.",
     "fixLine": "اصلاح خط فعلی"
+  },
+  "paywall": {
+    "subtitle": "یک مدل انتخاب کنید و پرداخت را تأیید کنید",
+    "generate": "تولید",
+    "run": "اجرا",
+    "paymentConfirmed": "پرداخت تأیید شد — در حال تولید",
+    "paymentFailed": "پرداخت ناموفق بود",
+    "paying": "در حال پرداخت…",
+    "generating": "در حال تولید…",
+    "buyDhb": "خرید DHB",
+    "payAmount": "پرداخت {{amount}} DHB و {{action}}",
+    "stakerDiscount": "تخفیف استیکر",
+    "total": "مجموع",
+    "pricing": "در حال قیمت‌گذاری…",
+    "payWithDhb": "پرداخت با DHB",
+    "yourDhb": "DHB شما"
   }
 }

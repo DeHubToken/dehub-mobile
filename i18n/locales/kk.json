@@ -2581,5 +2581,21 @@
     "failed": "Субтитрлерді жасау мүмкін болмады.",
     "preparing": "Субтитрлер дайындалуда.",
     "fixLine": "Ағымдағы жолды түзету"
+  },
+  "paywall": {
+    "subtitle": "Модель таңдап, төлемді растаңыз",
+    "generate": "Жасау",
+    "run": "Іске қосу",
+    "paymentConfirmed": "Төлем расталды — жасалуда",
+    "paymentFailed": "Төлем сәтсіз аяқталды",
+    "paying": "Төленуде…",
+    "generating": "Жасалуда…",
+    "buyDhb": "DHB сатып алу",
+    "payAmount": "{{amount}} DHB төлеп, {{action}}",
+    "stakerDiscount": "Стейкер жеңілдігі",
+    "total": "Барлығы",
+    "pricing": "Бағасы есептелуде…",
+    "payWithDhb": "DHB арқылы төлеу",
+    "yourDhb": "Сіздің DHB"
   }
 }

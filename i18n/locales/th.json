@@ -2568,5 +2568,21 @@
     "failed": "ไม่สามารถสร้างคำบรรยายได้",
     "preparing": "กำลังเตรียมคำบรรยาย",
     "fixLine": "แก้ไขบรรทัดปัจจุบัน"
+  },
+  "paywall": {
+    "subtitle": "เลือกโมเดลและยืนยันการชำระเงิน",
+    "generate": "สร้าง",
+    "run": "เรียกใช้",
+    "paymentConfirmed": "ยืนยันการชำระเงินแล้ว — กำลังสร้าง",
+    "paymentFailed": "การชำระเงินล้มเหลว",
+    "paying": "กำลังชำระเงิน…",
+    "generating": "กำลังสร้าง…",
+    "buyDhb": "ซื้อ DHB",
+    "payAmount": "จ่าย {{amount}} DHB และ{{action}}",
+    "stakerDiscount": "ส่วนลดสำหรับ staker",
+    "total": "รวม",
+    "pricing": "กำลังคำนวณราคา…",
+    "payWithDhb": "จ่ายด้วย DHB",
+    "yourDhb": "DHB ของคุณ"
   }
 }

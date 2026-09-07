@@ -2527,5 +2527,21 @@
     "failed": "No s'han pogut generar els subtítols.",
     "preparing": "S'estan preparant els subtítols.",
     "fixLine": "Corregeix la línia actual"
+  },
+  "paywall": {
+    "subtitle": "Tria un model i confirma el pagament",
+    "generate": "Genera",
+    "run": "Executa",
+    "paymentConfirmed": "Pagament confirmat — generant",
+    "paymentFailed": "El pagament ha fallat",
+    "paying": "Pagant…",
+    "generating": "Generant…",
+    "buyDhb": "Compra DHB",
+    "payAmount": "Paga {{amount}} DHB i {{action}}",
+    "stakerDiscount": "Descompte per a stakers",
+    "total": "Total",
+    "pricing": "Calculant el preu…",
+    "payWithDhb": "Paga amb DHB",
+    "yourDhb": "El teu DHB"
   }
 }

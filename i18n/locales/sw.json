@@ -2528,5 +2528,21 @@
     "failed": "Manukuu hayakuweza kutengenezwa.",
     "preparing": "Manukuu yanaandaliwa.",
     "fixLine": "Rekebisha mstari huu"
+  },
+  "paywall": {
+    "subtitle": "Chagua modeli na uthibitishe malipo",
+    "generate": "Tengeneza",
+    "run": "Endesha",
+    "paymentConfirmed": "Malipo yamethibitishwa — inatengeneza",
+    "paymentFailed": "Malipo yameshindikana",
+    "paying": "Inalipa…",
+    "generating": "Inatengeneza…",
+    "buyDhb": "Nunua DHB",
+    "payAmount": "Lipa {{amount}} DHB na {{action}}",
+    "stakerDiscount": "Punguzo la staker",
+    "total": "Jumla",
+    "pricing": "Inakokotoa bei…",
+    "payWithDhb": "Lipa kwa DHB",
+    "yourDhb": "DHB yako"
   }
 }

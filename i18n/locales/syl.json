@@ -2756,5 +2756,21 @@
     "failed": "সাবটাইটেল বানানো গেল না।",
     "preparing": "সাবটাইটেল তৈয়ার হইছে।",
     "fixLine": "এই লাইন ঠিক করো"
+  },
+  "paywall": {
+    "subtitle": "একটা মডেল বাছো আর পেমেন্ট নিশ্চিত করো",
+    "generate": "বানাও",
+    "run": "চালাও",
+    "paymentConfirmed": "পেমেন্ট নিশ্চিত — বানাইছে",
+    "paymentFailed": "পেমেন্ট ফেল হইল",
+    "paying": "পেমেন্ট হইছে…",
+    "generating": "বানাইছে…",
+    "buyDhb": "DHB কেনো",
+    "payAmount": "{{amount}} DHB দেও আর {{action}}",
+    "stakerDiscount": "স্টেকার ছাড়",
+    "total": "মোট",
+    "pricing": "দাম হিসাব হইছে…",
+    "payWithDhb": "DHB দিয়া পেমেন্ট করো",
+    "yourDhb": "তোমার DHB"
   }
 }

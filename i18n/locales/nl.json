@@ -2785,5 +2785,21 @@
     "failed": "Ondertitels konden niet worden gemaakt.",
     "preparing": "Ondertitels worden voorbereid.",
     "fixLine": "Huidige regel corrigeren"
+  },
+  "paywall": {
+    "subtitle": "Kies een model en bevestig de betaling",
+    "generate": "Genereren",
+    "run": "Uitvoeren",
+    "paymentConfirmed": "Betaling bevestigd — bezig met genereren",
+    "paymentFailed": "Betaling mislukt",
+    "paying": "Betalen…",
+    "generating": "Bezig met genereren…",
+    "buyDhb": "DHB kopen",
+    "payAmount": "Betaal {{amount}} DHB & {{action}}",
+    "stakerDiscount": "Staker-korting",
+    "total": "Totaal",
+    "pricing": "Prijs berekenen…",
+    "payWithDhb": "Betalen met DHB",
+    "yourDhb": "Je DHB"
   }
 }

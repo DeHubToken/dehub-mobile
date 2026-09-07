@@ -2526,5 +2526,21 @@
     "failed": "સબટાઈટલ બનાવી શકાયા નહીં.",
     "preparing": "સબટાઈટલ તૈયાર થઈ રહ્યા છે.",
     "fixLine": "વર્તમાન લાઇન સુધારો"
+  },
+  "paywall": {
+    "subtitle": "મોડેલ પસંદ કરો અને ચુકવણી પુષ્ટિ કરો",
+    "generate": "બનાવો",
+    "run": "ચલાવો",
+    "paymentConfirmed": "ચુકવણી પુષ્ટિ — બનાવી રહ્યા છીએ",
+    "paymentFailed": "ચુકવણી નિષ્ફળ",
+    "paying": "ચુકવણી થઈ રહી છે…",
+    "generating": "બનાવી રહ્યા છીએ…",
+    "buyDhb": "DHB ખરીદો",
+    "payAmount": "{{amount}} DHB ચૂકવો અને {{action}}",
+    "stakerDiscount": "સ્ટેકર ડિસ્કાઉન્ટ",
+    "total": "કુલ",
+    "pricing": "કિંમત ગણાઈ રહી છે…",
+    "payWithDhb": "DHB થી ચૂકવો",
+    "yourDhb": "તમારું DHB"
   }
 }

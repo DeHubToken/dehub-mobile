@@ -2527,5 +2527,21 @@
     "failed": "Nepavyko sukurti subtitrų.",
     "preparing": "Subtitrai ruošiami.",
     "fixLine": "Taisyti dabartinę eilutę"
+  },
+  "paywall": {
+    "subtitle": "Pasirinkite modelį ir patvirtinkite mokėjimą",
+    "generate": "Generuoti",
+    "run": "Vykdyti",
+    "paymentConfirmed": "Mokėjimas patvirtintas — generuojama",
+    "paymentFailed": "Mokėjimas nepavyko",
+    "paying": "Mokama…",
+    "generating": "Generuojama…",
+    "buyDhb": "Pirkti DHB",
+    "payAmount": "Mokėti {{amount}} DHB ir {{action}}",
+    "stakerDiscount": "Staker nuolaida",
+    "total": "Iš viso",
+    "pricing": "Skaičiuojama kaina…",
+    "payWithDhb": "Mokėti DHB",
+    "yourDhb": "Jūsų DHB"
   }
 }

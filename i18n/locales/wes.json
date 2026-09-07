@@ -2525,5 +2525,21 @@
     "failed": "We no fit make subtitles.",
     "preparing": "Subtitles dey prepare.",
     "fixLine": "Correct dis line"
+  },
+  "paywall": {
+    "subtitle": "Choose model and confirm payment",
+    "generate": "Generate",
+    "run": "Run",
+    "paymentConfirmed": "Payment confirm — e dey generate",
+    "paymentFailed": "Payment fail",
+    "paying": "Dey pay…",
+    "generating": "Dey generate…",
+    "buyDhb": "Buy DHB",
+    "payAmount": "Pay {{amount}} DHB and {{action}}",
+    "stakerDiscount": "Staker discount",
+    "total": "Total",
+    "pricing": "Dey calculate price…",
+    "payWithDhb": "Pay with DHB",
+    "yourDhb": "Your DHB"
   }
 }

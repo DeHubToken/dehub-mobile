@@ -2527,5 +2527,21 @@
     "failed": "Subtiitreid ei õnnestunud luua.",
     "preparing": "Subtiitreid valmistatakse ette.",
     "fixLine": "Paranda praegune rida"
+  },
+  "paywall": {
+    "subtitle": "Vali mudel ja kinnita makse",
+    "generate": "Loo",
+    "run": "Käivita",
+    "paymentConfirmed": "Makse kinnitatud — loon",
+    "paymentFailed": "Makse ebaõnnestus",
+    "paying": "Maksan…",
+    "generating": "Loon…",
+    "buyDhb": "Osta DHB",
+    "payAmount": "Maksa {{amount}} DHB ja {{action}}",
+    "stakerDiscount": "Stakeri allahindlus",
+    "total": "Kokku",
+    "pricing": "Hinna arvutamine…",
+    "payWithDhb": "Maksa DHB-ga",
+    "yourDhb": "Sinu DHB"
   }
 }
