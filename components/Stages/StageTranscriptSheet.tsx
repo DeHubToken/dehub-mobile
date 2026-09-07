@@ -79,11 +79,15 @@ const formatTxt = (segments: Segment[], getSpeakerLabel: (spk: string) => string
     .join("\n");
 };
 
+// The query is raw search-box text; a lone ? ( + * [ or \ would otherwise
+// make the RegExp constructor throw during render and unmount the app.
+const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
 const HighlightText: React.FC<{ text: string; query: string }> = ({ text, query }) => {
   const q = query.trim().toLowerCase();
   if (!q) return <Text className="text-white/90 text-sm leading-relaxed">{text}</Text>;
 
-  const parts = text.split(new RegExp(`(${query})`, "gi"));
+  const parts = text.split(new RegExp(`(${escapeRegExp(query.trim())})`, "gi"));
   return (
     <Text className="text-white/90 text-sm leading-relaxed">
       {parts.map((part, i) => {
