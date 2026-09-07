@@ -2492,5 +2492,8 @@
     "dubbed": "Saýlamalary nusgalamak",
     "preparing": "Saýlanan sesleri tapmak üçin...",
     "unavailable": "Désolé, bu video indi ýok."
+  },
+  "stages": {
+    "microphoneDenied": "Sahnada gürlemek üçin mikrofona rugsat beriň"
   }
 }

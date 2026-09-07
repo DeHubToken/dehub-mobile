@@ -2560,5 +2560,8 @@
     "dubbed": "Dźwięk dubbingowany",
     "preparing": "Przygotowywanie dubbingowanego dźwięku…",
     "unavailable": "Dźwięk dubbingowany nie jest dostępny dla tego filmu."
+  },
+  "stages": {
+    "microphoneDenied": "Zezwól na dostęp do mikrofonu, aby mówić na scenie"
   }
 }

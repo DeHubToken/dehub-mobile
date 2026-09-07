@@ -2492,5 +2492,8 @@
     "dubbed": "Audio dubbing",
     "preparing": "Nyiapake swara dubbing…",
     "unavailable": "Audio dubbing ora kasedhiya kanggo video iki."
+  },
+  "stages": {
+    "microphoneDenied": "Idinake akses mikrofon kanggo ngomong ing panggung"
   }
 }

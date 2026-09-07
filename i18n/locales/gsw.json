@@ -2522,5 +2522,8 @@
     "dubbed": "Dübbedi Tohn",
     "preparing": "Tön vorbereite zum Synchronisiere...",
     "unavailable": "Für das Video isch kei synchronisierti Audio verfügbar."
+  },
+  "stages": {
+    "microphoneDenied": "Erlaub dr Mikrofon-Zuegriff, zum uf ere Bühni z rede"
   }
 }

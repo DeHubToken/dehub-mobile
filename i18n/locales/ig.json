@@ -2492,5 +2492,8 @@
     "dubbed": "Egwú a dọgburu adọ",
     "preparing": "Ịkwadebe ụda a na-akpọ dubbed...",
     "unavailable": "E nweghị ụda dọbbed maka ihe onyonyo a."
+  },
+  "stages": {
+    "microphoneDenied": "Kwe ka e jiri igwe okwu ka i kwuo okwu n'elu ikpo"
   }
 }

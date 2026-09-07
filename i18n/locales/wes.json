@@ -2492,5 +2492,8 @@
     "dubbed": "Audio wey dem dub",
     "preparing": "Prepare audio wey dem go dub…",
     "unavailable": "Dubbed audio no dey for this video."
+  },
+  "stages": {
+    "microphoneDenied": "Allow microphone make you fit talk for stage"
   }
 }

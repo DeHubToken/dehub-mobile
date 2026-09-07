@@ -2523,5 +2523,8 @@
     "dubbed": "Doblado audio nisqa",
     "preparing": "Doblado audiota wakichispa...",
     "unavailable": "Kay videopaqqa manam kanchu doblado audio."
+  },
+  "stages": {
+    "microphoneDenied": "Micrófono yaykuyta saqiy escenariopi rimanaykipaq"
   }
 }

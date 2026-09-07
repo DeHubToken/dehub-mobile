@@ -2492,5 +2492,8 @@
     "dubbed": "Àudio doblat",
     "preparing": "S'està preparant l'àudio doblat...",
     "unavailable": "L'àudio doblat no està disponible per a aquest vídeo."
+  },
+  "stages": {
+    "microphoneDenied": "Permet l'accés al micròfon per parlar en un escenari"
   }
 }

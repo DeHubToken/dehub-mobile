@@ -2580,5 +2580,8 @@
     "dubbed": "Âm thanh được lồng tiếng",
     "preparing": "Đang chuẩn bị âm thanh lồng tiếng...",
     "unavailable": "Âm thanh được lồng tiếng không khả dụng cho video này."
+  },
+  "stages": {
+    "microphoneDenied": "Cho phép truy cập micrô để nói trên sân khấu"
   }
 }

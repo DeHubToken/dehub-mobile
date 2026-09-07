@@ -2591,5 +2591,8 @@
     "dubbed": "Feo misy anarana",
     "preparing": "Manomana raki-peo misy lohateny...",
     "unavailable": "Tsy hita ato amin'ity lahatsary ity ny saripika."
+  },
+  "stages": {
+    "microphoneDenied": "Avelao ny fidirana amin'ny mikrô mba hiteny eny an-dampihazo"
   }
 }

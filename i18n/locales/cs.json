@@ -2496,5 +2496,8 @@
     "dubbed": "Dabovaný zvuk",
     "preparing": "Připravuje se dabovaný zvuk...",
     "unavailable": "Pro toto video není k dispozici dabovaný zvuk."
+  },
+  "stages": {
+    "microphoneDenied": "Povolte přístup k mikrofonu, abyste mohli mluvit na pódiu"
   }
 }

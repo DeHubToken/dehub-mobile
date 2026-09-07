@@ -2493,5 +2493,8 @@
     "dubbed": "Sauti iliyochapishwa mara mbili",
     "preparing": "Inaandaa sauti iliyopewa jina...",
     "unavailable": "Sauti iliyosambazwa haipatikani kwa video hii."
+  },
+  "stages": {
+    "microphoneDenied": "Ruhusu ufikiaji wa maikrofoni ili kuzungumza jukwaani"
   }
 }

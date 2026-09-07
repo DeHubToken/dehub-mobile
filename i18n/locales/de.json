@@ -2541,5 +2541,8 @@
       "other": "Sonstiges"
     },
     "filedOn": "Eingereicht am {{date}}"
+  },
+  "stages": {
+    "microphoneDenied": "Erlaube den Mikrofonzugriff, um auf einer Bühne zu sprechen"
   }
 }

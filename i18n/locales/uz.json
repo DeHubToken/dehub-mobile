@@ -2547,5 +2547,8 @@
     "dubbed": "Dublyaj qilingan audio",
     "preparing": "Dublyaj qilingan audio tayyorlanmoqda…",
     "unavailable": "Bu video uchun dublyaj qilingan audio mavjud emas."
+  },
+  "stages": {
+    "microphoneDenied": "Sahnada gapirish uchun mikrofonga ruxsat bering"
   }
 }

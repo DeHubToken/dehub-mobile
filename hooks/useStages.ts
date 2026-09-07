@@ -18,6 +18,8 @@ import { supabase, fetchAgoraToken } from "../services/supabase";
 import { AGORA_APP_ID } from "../config/agora.config";
 import { useAuth } from "../context/AuthContext";
 import { createLogger } from "../libs/logger";
+import { t } from "i18next";
+import { toastError } from "../libs/toast";
 import { persistableAvatar } from "../libs/misc";
 import env from "../config/env";
 import { getAuthToken } from "../libs/auth.utils";
@@ -580,10 +582,15 @@ export function useStages(): UseStagesReturn {
       const clientRole = role === "listener" ? ClientRoleType.ClientRoleAudience : ClientRoleType.ClientRoleBroadcaster;
       engine.setClientRole(clientRole);
 
-      if (Platform.OS === "android") {
+      // A listener never publishes a microphone track, so do not ask for one:
+      // after two refusals Android answers never_ask_again with no dialog, and
+      // the join used to die silently on that. Speakers and hosts are told
+      // when the microphone is refused instead of getting a dead tap.
+      if (Platform.OS === "android" && role !== "listener") {
         const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO);
         if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
           log.error("RECORD_AUDIO permission denied");
+          toastError(null, t("stages.microphoneDenied"));
           return false;
         }
       }
@@ -676,6 +683,16 @@ export function useStages(): UseStagesReturn {
   const upgradeSpeaker = useCallback(async () => {
     const engine = getStageEngine();
     try {
+      // Listeners join without asking for the microphone; ask now, when the
+      // seat actually needs one.
+      if (Platform.OS === "android") {
+        const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO);
+        if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+          log.error("RECORD_AUDIO permission denied on speaker upgrade");
+          toastError(null, t("stages.microphoneDenied"));
+          return;
+        }
+      }
       engine.setClientRole(ClientRoleType.ClientRoleBroadcaster);
       engine.updateChannelMediaOptions({
         publishMicrophoneTrack: true,
@@ -1260,7 +1277,17 @@ export function useStages(): UseStagesReturn {
       await recountSpace(spaceId);
 
       const success = await joinStageChannel(space, rejoiningRole);
-      if (!success) return false;
+      if (!success) {
+        // The seat was taken above; give it back or the room keeps a ghost.
+        await signed(
+          supabase.from("space_participants")
+            .update({ left_at: new Date().toISOString() })
+            .eq("space_id", spaceId)
+            .eq("wallet_address", userAddress),
+        );
+        await recountSpace(spaceId);
+        return false;
+      }
 
       setCurrentSpace(space);
       setMyRole(rejoiningRole);

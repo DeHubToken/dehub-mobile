@@ -2492,5 +2492,8 @@
     "dubbed": "Dubleeritud heli",
     "preparing": "Dubleeritud heli ettevalmistamine...",
     "unavailable": "Selle video jaoks pole dubleeritud heli saadaval."
+  },
+  "stages": {
+    "microphoneDenied": "Luba mikrofoni kasutamine, et laval rääkida"
   }
 }

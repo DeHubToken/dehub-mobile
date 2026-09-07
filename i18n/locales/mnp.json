@@ -2536,5 +2536,8 @@
     "dubbed": "配音",
     "preparing": "準備配音音檔…",
     "unavailable": "此视频无配音版本。"
+  },
+  "stages": {
+    "microphoneDenied": "允许使用麦克风才能在舞台上发言"
   }
 }

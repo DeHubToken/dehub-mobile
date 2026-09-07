@@ -2545,5 +2545,8 @@
       "other": "기타"
     },
     "filedOn": "{{date}} 접수"
+  },
+  "stages": {
+    "microphoneDenied": "스테이지에서 말하려면 마이크 접근을 허용하세요"
   }
 }

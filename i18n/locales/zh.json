@@ -2545,5 +2545,8 @@
       "other": "其他"
     },
     "filedOn": "提交于 {{date}}"
+  },
+  "stages": {
+    "microphoneDenied": "允许使用麦克风才能在舞台上发言"
   }
 }

@@ -2496,5 +2496,8 @@
     "dubbed": "Døbt lyd",
     "preparing": "Forbereder døbt lyd...",
     "unavailable": "Døbt lyd er ikke tilgængelig for denne video."
+  },
+  "stages": {
+    "microphoneDenied": "Tillad mikrofonadgang for at tale på en scene"
   }
 }

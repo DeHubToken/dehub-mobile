@@ -2676,5 +2676,8 @@
     "dubbed": "Audio na may Dubbed",
     "preparing": "Inihahanda ang tinaguriang audio...",
     "unavailable": "Hindi available ang Dubbed audio para sa video na ito."
+  },
+  "stages": {
+    "microphoneDenied": "Payagan ang mikropono para makapagsalita sa stage"
   }
 }

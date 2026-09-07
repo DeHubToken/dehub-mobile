@@ -2663,5 +2663,8 @@
     "dubbed": "Dabovaný zvuk",
     "preparing": "Pripravuje sa dabovaný zvuk...",
     "unavailable": "Pre toto video nie je k dispozícii dabovaný zvuk."
+  },
+  "stages": {
+    "microphoneDenied": "Povoľte prístup k mikrofónu, aby ste mohli hovoriť na pódiu"
   }
 }

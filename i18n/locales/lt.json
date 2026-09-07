@@ -2492,5 +2492,8 @@
     "dubbed": "Dubliuotas garsas",
     "preparing": "Ruošiamas dubliuotas garsas...",
     "unavailable": "Šiam vaizdo įrašui dubliuotas garsas negalimas."
+  },
+  "stages": {
+    "microphoneDenied": "Leiskite naudoti mikrofoną, kad galėtumėte kalbėti scenoje"
   }
 }

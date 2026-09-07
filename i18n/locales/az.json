@@ -2492,5 +2492,8 @@
     "dubbed": "Dublyaj edilmiş səs",
     "preparing": "Dublyaj səsi hazırlanır...",
     "unavailable": "Bu video üçün quraşdırılmış səs mövcud deyil."
+  },
+  "stages": {
+    "microphoneDenied": "Səhnədə danışmaq üçün mikrofona giriş icazəsi verin"
   }
 }

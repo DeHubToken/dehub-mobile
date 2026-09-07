@@ -2492,5 +2492,8 @@
     "dubbed": "Dengê dublajkirî",
     "preparing": "Dengê dublajkirî tê amadekirin…",
     "unavailable": "Dengê dublajkirî ji bo vê vîdyoyê peyda nabe."
+  },
+  "stages": {
+    "microphoneDenied": "Ji bo axaftina li ser sehneyê destûra mîkrofonê bide"
   }
 }

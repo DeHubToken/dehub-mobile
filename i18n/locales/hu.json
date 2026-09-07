@@ -2496,5 +2496,8 @@
     "dubbed": "Szinkronizált hang",
     "preparing": "Szinkronizált hang előkészítése…",
     "unavailable": "Ehhez a videóhoz nem áll rendelkezésre szinkronizált hang."
+  },
+  "stages": {
+    "microphoneDenied": "Engedélyezd a mikrofon használatát, hogy beszélhess a színpadon"
   }
 }
