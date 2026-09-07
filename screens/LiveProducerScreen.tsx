@@ -10,7 +10,6 @@ import {
 import { useNavigation, useRoute } from "@react-navigation/native";
 import NetInfo from "@react-native-community/netinfo";
 import { LinearGradient } from "expo-linear-gradient";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useLive } from "../hooks/use-live";
 import { useWebSocket } from "../context/WebSocketContext";
 import { useCameraPermissions } from "expo-camera";
@@ -134,7 +133,6 @@ const LiveProducerScreen: React.FC = () => {
   const inactivityTimerRef = useRef<NodeJS.Timeout | null>(null);
   const [uiHidden, setUiHidden] = useState(false);
   const uiTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const insets = useSafeAreaInsets();
   const {
     items: tipEffects,
     enqueueFromGift,
@@ -784,9 +782,9 @@ const LiveProducerScreen: React.FC = () => {
   const openDetails = useCallback(() => {
     if (!streamEntity) return;
     // Position the tooltip near the top of the screen (below header)
-    setSourceRect({ x: 16, y: insets.top + 80, width: 200, height: 30 });
+    setSourceRect({ x: 16, y: 80, width: 200, height: 30 });
     setShowDetailsModal(true);
-  }, [streamEntity, insets.top]);
+  }, [streamEntity]);
 
   const closeDetails = useCallback(() => {
     setShowDetailsModal(false);
@@ -1144,7 +1142,7 @@ const LiveProducerScreen: React.FC = () => {
           <LinearGradient
             colors={["rgba(0,0,0,0.6)", "rgba(0,0,0,0)"]}
             style={{
-              height: 100 + insets.top,
+              height: 100,
               position: "absolute",
               top: 0,
               left: 0,
@@ -1273,7 +1271,7 @@ const LiveProducerScreen: React.FC = () => {
               {/* Bottom section: Chat + Controls */}
               <View
                 pointerEvents="box-none"
-                style={{ paddingBottom: Math.max(insets.bottom, 8) }}
+                style={{ paddingBottom: 8 }}
               >
                 {/* TikTok-style join/gift banners */}
                 <LiveEventBanner joinEvent={joinEvent} giftEvent={giftEvent} />
