@@ -578,7 +578,14 @@
     "stake": "स्टेक",
     "cashOut": "कॅश आउट",
     "stakeComingSoon": "स्टेक लवकरच!",
-    "cashOutComingSoon": "कॅश आउट लवकरच!"
+    "cashOutComingSoon": "कॅश आउट लवकरच!",
+    "chooseAddressNetwork": "कोणते जाळे?",
+    "evmAddressLabel": "ईव्हीएम",
+    "evmAddressHint": "बेस, बीएनबी आणि इथरियम",
+    "evmAddressCopied": "ईव्हीएम पत्ता कॉपी केला",
+    "solanaAddressLabel": "सोलाना",
+    "solanaAddressHint": "एसओएल आणि एसपीएल टोकन केवळ",
+    "solanaAddressCopied": "सोलाना पत्ता कॉपी केला"
   },
   "publicChat": {
     "title": "सार्वजनिक चॅट",

@@ -965,7 +965,13 @@
     "stake": "ስቴክ",
     "cashOut": "ጥሬ ገንዘብ",
     "stakeComingSoon": "ስቴኪንግ በቅርቡ ይመጣል!",
-    "cashOutComingSoon": "ጥሬ ገንዘብ ማውጣት በቅርቡ ይመጣል!"
+    "cashOutComingSoon": "ጥሬ ገንዘብ ማውጣት በቅርቡ ይመጣል!",
+    "chooseAddressNetwork": "የትኛው አውታረ መረብ?",
+    "evmAddressHint": "ቤዝ, BNB እና Ethereum",
+    "evmAddressCopied": "EVM አድራሻ ተገለበጠ",
+    "solanaAddressLabel": "ሶላና",
+    "solanaAddressHint": "ሶል እና SPL ምልክቶች ብቻ",
+    "solanaAddressCopied": "የሶላና አድራሻ ተገለበጠ"
   },
   "explorePage": {
     "searchPlaceholder": "ሰዎች፣ ልጥፎች ወይም ይዘት ፈልግ...",

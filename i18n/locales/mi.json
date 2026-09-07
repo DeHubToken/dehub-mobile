@@ -965,7 +965,14 @@
     "stake": "Tuku haumitanga",
     "cashOut": "Tangohia te moni",
     "stakeComingSoon": "Haumitanga tata nei!",
-    "cashOutComingSoon": "Tango moni tata nei!"
+    "cashOutComingSoon": "Tango moni tata nei!",
+    "chooseAddressNetwork": "He aha te whatunga?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Pūnaha, BNB me Ethereum",
+    "evmAddressCopied": "Ko te wāhitau EVM kua kape",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "SOL me SPL tohu anake",
+    "solanaAddressCopied": "Ko te wāhitau Solana i tārua"
   },
   "bookmarks": {
     "title": "Ō tohuwāhi",

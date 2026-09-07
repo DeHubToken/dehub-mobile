@@ -696,7 +696,12 @@
     "stake": "Stake",
     "cashOut": "Cash Out",
     "stakeComingSoon": "Staking coming soon!",
-    "cashOutComingSoon": "Cash out coming soon!"
+    "cashOutComingSoon": "Cash out coming soon!",
+    "chooseAddressNetwork": "কোন নেটওয়ার্ক?",
+    "evmAddressHint": "Base, BNB আর Ethereum",
+    "evmAddressCopied": "EVM এড্রেস কপি অইগেছে",
+    "solanaAddressHint": "SOL আর SPL টোকেন শুধু",
+    "solanaAddressCopied": "Solana এড্রেস কপি অইগেছে"
   },
   "leaderboard": {
     "title": "লীডারবোর্ড",

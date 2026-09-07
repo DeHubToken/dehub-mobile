@@ -965,7 +965,14 @@
     "stake": "Apostar",
     "cashOut": "Retirar efectiu",
     "stakeComingSoon": "Staking aviat!",
-    "cashOutComingSoon": "Retirada d'efectiu aviat!"
+    "cashOutComingSoon": "Retirada d'efectiu aviat!",
+    "chooseAddressNetwork": "Quina xarxa?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB i Ethereum",
+    "evmAddressCopied": "S'ha copiat l'adreça EVM",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Només fitxes SOL i SPL",
+    "solanaAddressCopied": "S'ha copiat l'adreça de Solana"
   },
   "bookmarks": {
     "title": "Els teus marcadors",

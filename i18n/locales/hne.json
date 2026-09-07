@@ -965,7 +965,13 @@
     "stake": "स्टेक",
     "cashOut": "कैश आउट",
     "stakeComingSoon": "स्टेकिंग जल्दी आवत हे!",
-    "cashOutComingSoon": "कैश आउट जल्दी आवत हे!"
+    "cashOutComingSoon": "कैश आउट जल्दी आवत हे!",
+    "chooseAddressNetwork": "कोन नेटवर्क?",
+    "evmAddressHint": "आधार, बीएनबी अउ एथेरियम",
+    "evmAddressCopied": "ईवीएम पता नकल",
+    "solanaAddressLabel": "सोलानाCity name (optional, probably",
+    "solanaAddressHint": "सोल अउ एसपीएल टोकन",
+    "solanaAddressCopied": "सोलाना पता नकल"
   },
   "bookmarks": {
     "title": "तोर बुकमार्क",

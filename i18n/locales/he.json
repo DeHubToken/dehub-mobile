@@ -578,7 +578,13 @@
     "stake": "סטייק",
     "cashOut": "משיכה",
     "stakeComingSoon": "סטייק בקרוב!",
-    "cashOutComingSoon": "משיכה בקרוב!"
+    "cashOutComingSoon": "משיכה בקרוב!",
+    "chooseAddressNetwork": "איזו רשת?",
+    "evmAddressHint": "בסיס, BNB ואתריום",
+    "evmAddressCopied": "כתובת ה - EVM הועתקה",
+    "solanaAddressLabel": "סולאנה",
+    "solanaAddressHint": "אסימוני SOL ו - SPL בלבד",
+    "solanaAddressCopied": "כתובת Solana הועתקה"
   },
   "publicChat": {
     "title": "צ'אט ציבורי",

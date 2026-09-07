@@ -965,7 +965,14 @@
     "stake": "Stake",
     "cashOut": "Wepụta Ego",
     "stakeComingSoon": "Staking na-abịa n'oge na-adịghị anya!",
-    "cashOutComingSoon": "Ịwepụta ego na-abịa n'oge na-adịghị anya!"
+    "cashOutComingSoon": "Ịwepụta ego na-abịa n'oge na-adịghị anya!",
+    "chooseAddressNetwork": "Kedu netwọk?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Isi, BNB na Ethereum",
+    "evmAddressCopied": "EVM address depụtaghachiri",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "SOL na SPL tokens naanị",
+    "solanaAddressCopied": "Solana address depụtaghachiri"
   },
   "explorePage": {
     "searchPlaceholder": "Chọọ ndị mmadụ, ozi ma ọ bụ ọdịnaya...",

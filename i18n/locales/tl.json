@@ -1375,7 +1375,14 @@
     "stake": "Stake",
     "cashOut": "Cash Out",
     "stakeComingSoon": "Staking coming soon!",
-    "cashOutComingSoon": "Cash out coming soon!"
+    "cashOutComingSoon": "Cash out coming soon!",
+    "chooseAddressNetwork": "Anong network?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB at Ethereum",
+    "evmAddressCopied": "Nakopya na ang EVM address",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Mga token lamang ng SOL at SPL",
+    "solanaAddressCopied": "Kinopya ang Solana address"
   },
   "features": {
     "title": "Feature Requests",

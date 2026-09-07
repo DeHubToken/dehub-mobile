@@ -578,7 +578,14 @@
     "stake": "স্টেক",
     "cashOut": "ক্যাশ আউট",
     "stakeComingSoon": "স্টেকিং শীঘ্রই আসছে!",
-    "cashOutComingSoon": "ক্যাশ আউট শীঘ্রই আসছে!"
+    "cashOutComingSoon": "ক্যাশ আউট শীঘ্রই আসছে!",
+    "chooseAddressNetwork": "কোন নেটওয়ার্ক?",
+    "evmAddressLabel": "ইভিএম",
+    "evmAddressHint": "বেস, বিএনবি এবং ইথেরিয়াম",
+    "evmAddressCopied": "ইভিএম ঠিকানা অনুলিপি করা হয়েছে",
+    "solanaAddressLabel": "সোলানা",
+    "solanaAddressHint": "সল এবং এসপিএল টোকেন শুধুমাত্র",
+    "solanaAddressCopied": "সোলানার ঠিকানা অনুলিপি করা হয়েছে"
   },
   "publicChat": {
     "title": "পাবলিক চ্যাট",

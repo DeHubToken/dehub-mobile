@@ -578,7 +578,14 @@
     "stake": "Stake",
     "cashOut": "Sacar",
     "stakeComingSoon": "Staking em breve!",
-    "cashOutComingSoon": "Saque em breve!"
+    "cashOutComingSoon": "Saque em breve!",
+    "chooseAddressNetwork": "Qual rede?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB e Ethereum",
+    "evmAddressCopied": "Endereço EVM copiado",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Apenas tokens SOL e SPL",
+    "solanaAddressCopied": "Endereço Solana copiado"
   },
   "publicChat": {
     "title": "Chat Público",

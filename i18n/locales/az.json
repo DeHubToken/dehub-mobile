@@ -965,7 +965,14 @@
     "stake": "Stake",
     "cashOut": "Nağdlaşdır",
     "stakeComingSoon": "Staking tezliklə gəlir!",
-    "cashOutComingSoon": "Nağdlaşdırma tezliklə gəlir!"
+    "cashOutComingSoon": "Nağdlaşdırma tezliklə gəlir!",
+    "chooseAddressNetwork": "Hansı şəbəkə?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Baza, BNB və Ethereum",
+    "evmAddressCopied": "EVM ünvanı kopyalandı",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Yalnız SPL və SPL tokenləri",
+    "solanaAddressCopied": "Solana ünvanı kopyalandı"
   },
   "bookmarks": {
     "title": "Əlfəcinləriniz",

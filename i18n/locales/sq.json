@@ -965,7 +965,14 @@
     "stake": "Vendos në Stake",
     "cashOut": "Arkëto",
     "stakeComingSoon": "Stake do të vijë së shpejti!",
-    "cashOutComingSoon": "Arkëtimi do të vijë së shpejti!"
+    "cashOutComingSoon": "Arkëtimi do të vijë së shpejti!",
+    "chooseAddressNetwork": "Cilin rrjet?",
+    "evmAddressLabel": "MEV",
+    "evmAddressHint": "Baza, BNB dhe Ethereum",
+    "evmAddressCopied": "Adresa EVM u kopjua",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Vetëm argumentet SOL dhe SPL",
+    "solanaAddressCopied": "Adresa Solana u kopjua"
   },
   "bookmarks": {
     "title": "Faqeshënuesit Tuaj",

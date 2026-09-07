@@ -978,7 +978,14 @@
     "to": "Gara",
     "selectToken": "Tookenii Filadhu",
     "connectWallet": "Baallama Walqunnamsiisi",
-    "loginDescription": "Baallamaatti seeninuuf seeni."
+    "loginDescription": "Baallamaatti seeninuuf seeni.",
+    "chooseAddressNetwork": "Neetworkiin kam?",
+    "evmAddressLabel": "EVM jedhamuun beekama",
+    "evmAddressHint": "Base, BNB fi Ethereum jedhaman",
+    "evmAddressCopied": "Teessoo EVM waraabame",
+    "solanaAddressLabel": "Solanaa",
+    "solanaAddressHint": "Tookiin SOL fi SPL qofa",
+    "solanaAddressCopied": "Teessoo Solanaa waraabame"
   },
   "bookmarks": {
     "title": "Waraabiiwwan Kee",

@@ -965,7 +965,12 @@
     "stake": "ستيك",
     "cashOut": "اسحب فلوس",
     "stakeComingSoon": "الستيكنج قريباً!",
-    "cashOutComingSoon": "السحب قريباً!"
+    "cashOutComingSoon": "السحب قريباً!",
+    "chooseAddressNetwork": "أي شبكة؟",
+    "evmAddressHint": "Base، BNB و Ethereum",
+    "evmAddressCopied": "عنوان EVM اتنسخ",
+    "solanaAddressHint": "SOL و SPL tokens بس",
+    "solanaAddressCopied": "عنوان Solana اتنسخ"
   },
   "bookmarks": {
     "title": "علاماتك",

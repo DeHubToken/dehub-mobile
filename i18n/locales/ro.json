@@ -1176,7 +1176,14 @@
     "stake": "Stake",
     "cashOut": "Cash Out",
     "stakeComingSoon": "Staking coming soon!",
-    "cashOutComingSoon": "Cash out coming soon!"
+    "cashOutComingSoon": "Cash out coming soon!",
+    "chooseAddressNetwork": "Care rețea?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Bază, BNB și Ethereum",
+    "evmAddressCopied": "Adresa EVM a fost copiată",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Numai token-uri SOL și SPL",
+    "solanaAddressCopied": "Adresa Solana a fost copiată"
   },
   "features": {
     "title": "Feature Requests",

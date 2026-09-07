@@ -965,7 +965,14 @@
     "stake": "استیک",
     "cashOut": "برداشت",
     "stakeComingSoon": "استیکینگ به زودی!",
-    "cashOutComingSoon": "برداشت به زودی!"
+    "cashOutComingSoon": "برداشت به زودی!",
+    "chooseAddressNetwork": "کدام شبکه IRC؟",
+    "evmAddressLabel": "ای‌وی‌ام",
+    "evmAddressHint": "بیس، بایننس کوین و اتریوم",
+    "evmAddressCopied": "آدرس EVM کپی شد",
+    "solanaAddressLabel": "سولانا",
+    "solanaAddressHint": "فقط توکن‌های SOL و SPL",
+    "solanaAddressCopied": "آدرس سولانا کپی شد"
   },
   "auth": {
     "loginRequired": "ورود لازم است"

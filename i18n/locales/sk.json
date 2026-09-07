@@ -682,7 +682,14 @@
     "stake": "Stake",
     "cashOut": "Cash Out",
     "stakeComingSoon": "Staking coming soon!",
-    "cashOutComingSoon": "Cash out coming soon!"
+    "cashOutComingSoon": "Cash out coming soon!",
+    "chooseAddressNetwork": "Ktorá sieť?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB a Ethereum",
+    "evmAddressCopied": "EVM adresa skopírovaná",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Iba žetóny SOL a SPL",
+    "solanaAddressCopied": "Adresa Solana bola skopírovaná"
   },
   "leaderboard": {
     "title": "Rebríček",

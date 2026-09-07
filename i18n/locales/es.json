@@ -957,7 +957,14 @@
     "stake": "Stake",
     "cashOut": "Retirar",
     "stakeComingSoon": "¡Staking próximamente!",
-    "cashOutComingSoon": "¡Retiro próximamente!"
+    "cashOutComingSoon": "¡Retiro próximamente!",
+    "chooseAddressNetwork": "¿Qué red?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB y Ethereum",
+    "evmAddressCopied": "Dirección EVM copiada",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Solo tokens SOL y SPL",
+    "solanaAddressCopied": "Dirección de Solana copiada"
   },
   "features": {
     "title": "Solicitudes de funciones",

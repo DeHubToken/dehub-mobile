@@ -966,7 +966,14 @@
     "stake": "Stake",
     "cashOut": "Qullqi Hurquy",
     "stakeComingSoon": "Staking qhipaman hamunqa!",
-    "cashOutComingSoon": "Qullqi hurquy qhipaman hamunqa!"
+    "cashOutComingSoon": "Qullqi hurquy qhipaman hamunqa!",
+    "chooseAddressNetwork": "¿Mayqin llikataq?",
+    "evmAddressLabel": "EVM nisqa",
+    "evmAddressHint": "Base, BNB y Ethereum nisqa",
+    "evmAddressCopied": "EVM dirección copiasqa",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "SOL y SPL tokenkunalla",
+    "solanaAddressCopied": "Solana dirección copiasqa"
   },
   "explorePage": {
     "searchPlaceholder": "Runata, churasqata icha willakuyta maskay...",

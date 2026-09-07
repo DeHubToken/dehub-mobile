@@ -965,7 +965,14 @@
     "stake": "سٹیک",
     "cashOut": "کیش آؤٹ",
     "stakeComingSoon": "سٹیکنگ جلد آ ریہا ہے!",
-    "cashOutComingSoon": "کیش آؤٹ جلد آ ریہا ہے!"
+    "cashOutComingSoon": "کیش آؤٹ جلد آ ریہا ہے!",
+    "chooseAddressNetwork": "کاویں نیٹ ورک؟",
+    "evmAddressLabel": "ای وی ایم",
+    "evmAddressHint": "بیس، بی این بی تے ایتھریم",
+    "evmAddressCopied": "ای وی ایم ایڈریس کاپی تھی گئیا",
+    "solanaAddressLabel": "سولانا",
+    "solanaAddressHint": "صرف ایس او ایل تے ایس پی ایل ٹوکن",
+    "solanaAddressCopied": "سولانا ایڈریس کاپی تھی گئیا"
   },
   "bookmarks": {
     "title": "تہاڈے بُک مارک",

@@ -965,7 +965,13 @@
     "stake": "स्टेक",
     "cashOut": "नकद",
     "stakeComingSoon": "स्टेक जल्दी आवत बा!",
-    "cashOutComingSoon": "नकद जल्दी आवत बा!"
+    "cashOutComingSoon": "नकद जल्दी आवत बा!",
+    "chooseAddressNetwork": "कौन सा नेटवर्क?",
+    "evmAddressHint": "बेस, BNB और एथेरियम",
+    "evmAddressCopied": "EVM एड्रेस कॉपी हो गया",
+    "solanaAddressLabel": "सोलाना",
+    "solanaAddressHint": "केवल SOL और SPL टोकन",
+    "solanaAddressCopied": "सोलाना एड्रेस कॉपी हो गया"
   },
   "bookmarks": {
     "title": "रउआ बुकमार्क",

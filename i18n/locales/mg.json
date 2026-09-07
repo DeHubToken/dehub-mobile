@@ -898,7 +898,14 @@
     "stake": "Stake",
     "cashOut": "Avoaka vola",
     "stakeComingSoon": "Stake ho avy tsy ho ela!",
-    "cashOutComingSoon": "Famoahana vola ho avy tsy ho ela!"
+    "cashOutComingSoon": "Famoahana vola ho avy tsy ho ela!",
+    "chooseAddressNetwork": "Inona ny tambajotra?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "63 - Voalazan'ny and.",
+    "evmAddressCopied": "Adiresy EVM voadika",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "SOL sy SPL famantarana ihany",
+    "solanaAddressCopied": "Adiresy Solana nadika"
   },
   "bookmarks": {
     "title": "Ny marikinao",

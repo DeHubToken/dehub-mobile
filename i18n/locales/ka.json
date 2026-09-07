@@ -983,7 +983,13 @@
     "stake": "Stake",
     "cashOut": "Cash Out",
     "stakeComingSoon": "Staking coming soon!",
-    "cashOutComingSoon": "Cash out coming soon!"
+    "cashOutComingSoon": "Cash out coming soon!",
+    "chooseAddressNetwork": "Რომელი ქსელია?",
+    "evmAddressHint": "Საბაზისო, BNB და Ethereum",
+    "evmAddressCopied": "EVM მისამართი დაკოპირებულია",
+    "solanaAddressLabel": "Სოლანა",
+    "solanaAddressHint": "Მხოლოდ SOL და SPL ტოკენები",
+    "solanaAddressCopied": "Სოლანას მისამართი კოპირებულია"
   },
   "notifications": {
     "title": "შეტყობინებები",

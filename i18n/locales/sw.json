@@ -966,7 +966,14 @@
     "stake": "Weka Hisa",
     "cashOut": "Toa Pesa",
     "stakeComingSoon": "Kuweka hisa kunakuja hivi karibuni!",
-    "cashOutComingSoon": "Kutoa pesa kunakuja hivi karibuni!"
+    "cashOutComingSoon": "Kutoa pesa kunakuja hivi karibuni!",
+    "chooseAddressNetwork": "Mtandao upi?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB na Ethereum",
+    "evmAddressCopied": "Anwani ya EVM imenakiliwa",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Alama za SOL na SPL pekee",
+    "solanaAddressCopied": "Anwani ya Solana imenakiliwa"
   },
   "explorePage": {
     "searchPlaceholder": "Tafuta watu, machapisho au maudhui...",

@@ -964,7 +964,12 @@
     "stake": "Stake",
     "cashOut": "Cash Out",
     "stakeComingSoon": "Staking dey come soon!",
-    "cashOutComingSoon": "Cash out dey come soon!"
+    "cashOutComingSoon": "Cash out dey come soon!",
+    "chooseAddressNetwork": "Which network?",
+    "evmAddressLabel": "EVM",
+    "evmAddressCopied": "EVM address copied",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressCopied": "Solana address copied"
   },
   "explorePage": {
     "searchPlaceholder": "Find people, post or content...",

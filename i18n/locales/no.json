@@ -957,7 +957,13 @@
     "stake": "Stake",
     "cashOut": "Ta ut",
     "stakeComingSoon": "Staking kommer snart!",
-    "cashOutComingSoon": "Uttak kommer snart!"
+    "cashOutComingSoon": "Uttak kommer snart!",
+    "chooseAddressNetwork": "Hvilket nettverk?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB og Ethereum",
+    "evmAddressCopied": "Adresse kopiert",
+    "solanaAddressHint": "Kun SOL- og SPL-tokener",
+    "solanaAddressCopied": "Solana-adressen er kopiert"
   },
   "features": {
     "title": "Funksjonsforespørsler",

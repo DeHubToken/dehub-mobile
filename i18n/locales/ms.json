@@ -1428,7 +1428,14 @@
     "stake": "Stake",
     "cashOut": "Cash Out",
     "stakeComingSoon": "Staking coming soon!",
-    "cashOutComingSoon": "Cash out coming soon!"
+    "cashOutComingSoon": "Cash out coming soon!",
+    "chooseAddressNetwork": "Rangkaian yang mana?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB dan Ethereum",
+    "evmAddressCopied": "Alamat EVM disalin",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Token SOL dan SPL sahaja",
+    "solanaAddressCopied": "Alamat Solana disalin"
   },
   "features": {
     "title": "Feature Requests",

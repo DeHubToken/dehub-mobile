@@ -978,7 +978,13 @@
     "to": "ទៅ",
     "selectToken": "ជ្រើសរើសថូខឹន",
     "connectWallet": "ភ្ជាប់កាបូប",
-    "loginDescription": "ចូលដើម្បីចូលប្រើកាបូប។"
+    "loginDescription": "ចូលដើម្បីចូលប្រើកាបូប។",
+    "chooseAddressNetwork": "បណ្តាញមួយណា?",
+    "evmAddressHint": "មូលដ្ឋាន, BNB និង Ethereum",
+    "evmAddressCopied": "បានចម្លងអាសយដ្ឋាន EVM",
+    "solanaAddressLabel": "សូឡាណា",
+    "solanaAddressHint": "សញ្ញាសម្ងាត់ SOL និង SPL តែប៉ុណ្ណោះ",
+    "solanaAddressCopied": "បានចម្លងអាសយដ្ឋាន SOLANA"
   },
   "bookmarks": {
     "title": "ចំណាំរបស់អ្នក",

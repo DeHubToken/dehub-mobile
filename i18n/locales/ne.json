@@ -978,7 +978,13 @@
     "to": "मा",
     "selectToken": "टोकन छान्नुहोस्",
     "connectWallet": "वालेट जडान गर्नुहोस्",
-    "loginDescription": "वालेटमा पहुँच गर्न लगइन गर्नुहोस्।"
+    "loginDescription": "वालेटमा पहुँच गर्न लगइन गर्नुहोस्।",
+    "chooseAddressNetwork": "कुन सञ्जाल?",
+    "evmAddressHint": "आधार, BNB र Ethereum",
+    "evmAddressCopied": "EVM ठेगाना प्रतिलिपि गरियो",
+    "solanaAddressLabel": "सोलाना",
+    "solanaAddressHint": "SOL र SPL टोकनहरू मात्र",
+    "solanaAddressCopied": "सोलाना ठेगाना प्रतिलिपि गरियो"
   },
   "bookmarks": {
     "title": "तपाईंको बुकमार्कहरू",

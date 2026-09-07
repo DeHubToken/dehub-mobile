@@ -957,7 +957,14 @@
     "stake": "Steyq",
     "cashOut": "Drami hanom",
     "stakeComingSoon": "Steyqinge shootov!",
-    "cashOutComingSoon": "Drami hanome shootov!"
+    "cashOutComingSoon": "Drami hanome shootov!",
+    "chooseAddressNetwork": "Ո ՞ ր ցանցը",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB և Ethereum",
+    "evmAddressCopied": "EVM - ի հասցեն պատճենված է",
+    "solanaAddressLabel": "Սոլանա",
+    "solanaAddressHint": "Միայն SOL և SPL նշաններ",
+    "solanaAddressCopied": "Սոլանայի հասցեն պատճենված է"
   },
   "features": {
     "title": "Gortsiqi haytser",

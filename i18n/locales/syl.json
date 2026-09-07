@@ -696,7 +696,8 @@
     "stake": "Stake",
     "cashOut": "Cash Out",
     "stakeComingSoon": "Staking coming soon!",
-    "cashOutComingSoon": "Cash out coming soon!"
+    "cashOutComingSoon": "Cash out coming soon!",
+    "chooseAddressNetwork": "কোন নেটওয়ার্ক?"
   },
   "leaderboard": {
     "title": "লিডার বোর্ড",

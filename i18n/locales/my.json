@@ -978,7 +978,12 @@
     "to": "သို့",
     "selectToken": "တိုကင်ရွေးချယ်ရန်",
     "connectWallet": "ပိုက်ဆံအိတ်ချိတ်ဆက်ရန်",
-    "loginDescription": "ပိုက်ဆံအိတ်ဝင်ရောက်ရန် ဝင်ရောက်ပါ။"
+    "loginDescription": "ပိုက်ဆံအိတ်ဝင်ရောက်ရန် ဝင်ရောက်ပါ။",
+    "chooseAddressNetwork": "ဘယ်ကွန်ရက်လဲ ။",
+    "evmAddressHint": "အခြေခံ, BNB နှင့် Ethereum",
+    "evmAddressCopied": "EVM လိပ်စာကို မိတ္တူကူးထားသည်",
+    "solanaAddressHint": "SOL နှင့် SPL တိုကင်များသာ",
+    "solanaAddressCopied": "Solana လိပ်စာကိုကူးယူထားသည်"
   },
   "bookmarks": {
     "title": "သင့်စာမှတ်များ",

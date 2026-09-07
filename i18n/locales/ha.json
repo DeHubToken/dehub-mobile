@@ -965,7 +965,14 @@
     "stake": "Stake",
     "cashOut": "Cire Kuɗi",
     "stakeComingSoon": "Staking yana zuwa nan ba da jimawa ba!",
-    "cashOutComingSoon": "Cire kuɗi yana zuwa nan ba da jimawa ba!"
+    "cashOutComingSoon": "Cire kuɗi yana zuwa nan ba da jimawa ba!",
+    "chooseAddressNetwork": "Wanne cibiyar sadarwa?",
+    "evmAddressLabel": "Ввввввввввввввввввввввввввввввввв",
+    "evmAddressHint": "Base, BNB da Ethereum",
+    "evmAddressCopied": "An kwafa adireshin EVM",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "SOL da SPL alamomi kawai",
+    "solanaAddressCopied": "Solana adireshin da aka kwafa"
   },
   "explorePage": {
     "searchPlaceholder": "Nemo mutane, rubutu ko abun ciki...",

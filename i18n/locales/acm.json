@@ -965,7 +965,14 @@
     "stake": "ستايك",
     "cashOut": "صرف",
     "stakeComingSoon": "الستايكنق قريباً!",
-    "cashOutComingSoon": "الصرف قريباً!"
+    "cashOutComingSoon": "الصرف قريباً!",
+    "chooseAddressNetwork": "يا شبكة؟",
+    "evmAddressLabel": "إي في إم",
+    "evmAddressHint": "Base، BNB و Ethereum",
+    "evmAddressCopied": "عنوان EVM تم نسخه",
+    "solanaAddressLabel": "سولانا",
+    "solanaAddressHint": "SOL و SPL tokens فقط",
+    "solanaAddressCopied": "عنوان Solana تم نسخه"
   },
   "bookmarks": {
     "title": "علاماتك المرجعية",

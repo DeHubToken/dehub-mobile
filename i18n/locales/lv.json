@@ -965,7 +965,14 @@
     "stake": "Stakot",
     "cashOut": "Izņemt skaidrā",
     "stakeComingSoon": "Stakošana drīz!",
-    "cashOutComingSoon": "Izņemšana skaidrā drīz!"
+    "cashOutComingSoon": "Izņemšana skaidrā drīz!",
+    "chooseAddressNetwork": "Kurš tīkls?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB un Ethereum",
+    "evmAddressCopied": "EVM adrese nokopēta",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Tikai SOL un SPL marķieri",
+    "solanaAddressCopied": "Solana adrese ir nokopēta"
   },
   "bookmarks": {
     "title": "Jūsu grāmatzīmes",

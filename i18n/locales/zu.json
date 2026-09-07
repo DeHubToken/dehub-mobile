@@ -966,7 +966,14 @@
     "stake": "Stake",
     "cashOut": "Khipha Imali",
     "stakeComingSoon": "Ukufaka isibambiso kuyeza maduze!",
-    "cashOutComingSoon": "Ukukhipha imali kuyeza maduze!"
+    "cashOutComingSoon": "Ukukhipha imali kuyeza maduze!",
+    "chooseAddressNetwork": "Iyiphi inethiwekhi?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "I-Base, I-BNB NE-ETHEREUM",
+    "evmAddressCopied": "Ikheli le-EVM likopishiwe",
+    "solanaAddressLabel": "I-Solana",
+    "solanaAddressHint": "AMATHOKHENI e-SOL ne-SPL kuphela",
+    "solanaAddressCopied": "Ikheli le-Solana likopishiwe"
   },
   "explorePage": {
     "searchPlaceholder": "Sesha abantu, okuthunyelwe noma okuqukethwe...",

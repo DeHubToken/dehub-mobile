@@ -1250,7 +1250,14 @@
     "stake": "Gửi tiền",
     "cashOut": "Rút tiền",
     "stakeComingSoon": "Tính năng staking sắp ra mắt!",
-    "cashOutComingSoon": "Tính năng rút tiền sắp ra mắt!"
+    "cashOutComingSoon": "Tính năng rút tiền sắp ra mắt!",
+    "chooseAddressNetwork": "Mạng nào?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB và Ethereum",
+    "evmAddressCopied": "Đã sao chép địa chỉ EVM",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Chỉ token SOL và SPL",
+    "solanaAddressCopied": "Đã sao chép địa chỉ Solana"
   },
   "features": {
     "title": "Đề xuất tính năng",

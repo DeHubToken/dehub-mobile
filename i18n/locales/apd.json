@@ -965,7 +965,13 @@
     "stake": "ستيك",
     "cashOut": "صرف",
     "stakeComingSoon": "الستيك جاي قريباً!",
-    "cashOutComingSoon": "الصرف جاي قريباً!"
+    "cashOutComingSoon": "الصرف جاي قريباً!",
+    "chooseAddressNetwork": "يا شبكة؟",
+    "evmAddressHint": "بيس، بي إن بي والإيثيريوم",
+    "evmAddressCopied": "عنوان EVM تم نسخه",
+    "solanaAddressLabel": "سولانا",
+    "solanaAddressHint": "رموز SOL و SPL فقط",
+    "solanaAddressCopied": "عنوان سولانا تم نسخه"
   },
   "bookmarks": {
     "title": "محفوظاتك",

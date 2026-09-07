@@ -983,7 +983,13 @@
     "stake": "Stake",
     "cashOut": "Cash Out",
     "stakeComingSoon": "Staking coming soon!",
-    "cashOutComingSoon": "Cash out coming soon!"
+    "cashOutComingSoon": "Cash out coming soon!",
+    "chooseAddressNetwork": "Қандай желі?",
+    "evmAddressHint": "BASE, BNB және Ethereum",
+    "evmAddressCopied": "EVM мекенжайы көшірілді",
+    "solanaAddressLabel": "Солана",
+    "solanaAddressHint": "Тек SOL және SPL таңбалауыштары",
+    "solanaAddressCopied": "Солана мекенжайы көшірілді"
   },
   "notifications": {
     "title": "Хабарландырулар",
