@@ -2693,5 +2693,12 @@
     "needSignIn": "Udinga ukungena nge-Google noma i-imeyili ukuze ushintshe ama-akhawunti.",
     "switched": "I-akhawunti ishintshiwe",
     "failed": "Ayikwazanga ukushintsha ama-akhawunti. Sicela uhlole ukhiye oyimfihlo bese uzama futhi."
+  },
+  "superpowers": {
+    "homePost": "Yisebenzise kokuthunyelwe kwakho — ishidi lezinketho, bese u-Boost.",
+    "homeGift": "Yisebenzise kokuthunyelwe komunye umuntu — ishidi lezinketho, bese u-Boost.",
+    "homeComment": "Yisebenzise kumazwana akho, endaweni yomunye umuntu.",
+    "homeStage": "Yisebenzise esiteji osibambayo.",
+    "homePage": "Yisebenzise lapha, phezulu esikrinini."
   }
 }

@@ -2666,5 +2666,12 @@
     "needSignIn": "A fiókváltáshoz Google-lel vagy e-maillel kell bejelentkezve lenned.",
     "switched": "Fiók átváltva",
     "failed": "Nem sikerült fiókot váltani. Ellenőrizd a privát kulcsot, és próbáld újra."
+  },
+  "superpowers": {
+    "homePost": "Költsd el a saját bejegyzésedből – a beállítások lapon, majd a „Boost”.",
+    "homeGift": "Költsd el valaki más bejegyzésére – a beállítások lapon, majd a „Boost”.",
+    "homeComment": "Költsd el a saját hozzászólásodra, valaki más témájában.",
+    "homeStage": "Költsd el egy általad szervezett Stage-ről.",
+    "homePage": "Költsd el itt, ezen a képernyőn felül."
   }
 }

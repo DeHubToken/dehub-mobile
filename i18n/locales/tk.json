@@ -2653,5 +2653,12 @@
     "needSignIn": "Hasaplary çalyşmak üçin Google ýa-da e-poçta bilen girmeli.",
     "switched": "Hasap çalşyldy",
     "failed": "Hasaplary çalşyp bolmady. Hususy açary barlaň we täzeden synanyşyň."
+  },
+  "superpowers": {
+    "homePost": "Özüňiziň postuňyzdan sarp ediň — opsiýalar tabşyrygy, soňra güýçlendiriň.",
+    "homeGift": "Başga biriniň postuna sarp ediň — opsiýalar tabşyrygy, soňra güýçlendiriň.",
+    "homeComment": "Özüňiziň bellikleriňize, başga biriniň mowzugynda sarp ediň.",
+    "homeStage": "Siz alyp barýan sahnaňyzdan sarp ediň.",
+    "homePage": "Bu ýerde, şu ekranyň başynyň ýokarsynda sarp ediň."
   }
 }

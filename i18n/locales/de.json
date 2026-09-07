@@ -2711,5 +2711,12 @@
     "needSignIn": "Du musst mit Google oder E-Mail angemeldet sein, um Konten zu wechseln.",
     "switched": "Konto gewechselt",
     "failed": "Konten konnten nicht gewechselt werden. Bitte prüfe den privaten Schlüssel und versuche es erneut."
+  },
+  "superpowers": {
+    "homePost": "Gib es von einem deiner eigenen Beiträge aus – das Optionsmenü, dann „Boost“.",
+    "homeGift": "Gib es für den Beitrag von jemand anderem aus – das Optionsmenü, dann „Boost“.",
+    "homeComment": "Gib es für deinen eigenen Kommentar in einem Thread von jemand anderem aus.",
+    "homeStage": "Gib es von einer Bühne aus, die du veranstaltest.",
+    "homePage": "Gib es hier, oben auf diesem Bildschirm, aus."
   }
 }

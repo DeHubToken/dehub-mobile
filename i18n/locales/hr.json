@@ -2662,5 +2662,12 @@
     "needSignIn": "Za promjenu računa moraš biti prijavljen putem Googlea ili e-pošte.",
     "switched": "Račun promijenjen",
     "failed": "Račun nije bilo moguće promijeniti. Provjeri privatni ključ i pokušaj ponovno."
+  },
+  "superpowers": {
+    "homePost": "Potrošite ga iz vlastite objave — na listi opcija, zatim pojačajte.",
+    "homeGift": "Potrošite ga na tuđu objavu — na listi opcija, zatim pojačajte.",
+    "homeComment": "Potrošite ga na vlastiti komentar, u tuđoj temi.",
+    "homeStage": "Potrošite ga s pozornice koju vodite.",
+    "homePage": "Potrošite ga ovdje, na vrhu ovog zaslona."
   }
 }

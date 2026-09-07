@@ -2730,5 +2730,12 @@
     "needSignIn": "Aby przełączyć konto, musisz być zalogowany przez Google lub e-mail.",
     "switched": "Konto przełączone",
     "failed": "Nie udało się przełączyć konta. Sprawdź klucz prywatny i spróbuj ponownie."
+  },
+  "superpowers": {
+    "homePost": "Wykorzystaj je z jednego ze swoich postów — arkusz opcji, a następnie Wzmocnij.",
+    "homeGift": "Wykorzystaj je w poście kogoś innego — arkusz opcji, a następnie Wzmocnij.",
+    "homeComment": "Wykorzystaj je w swoim komentarzu, w wątku kogoś innego.",
+    "homeStage": "Wykorzystaj je ze Sceny, którą prowadzisz.",
+    "homePage": "Wykorzystaj je tutaj, u góry tego ekranu."
   }
 }

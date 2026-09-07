@@ -2833,5 +2833,12 @@
     "needSignIn": "Na prepnutie účtu musíte byť prihlásení cez Google alebo e-mail.",
     "switched": "Účet prepnutý",
     "failed": "Účet sa nepodarilo prepnúť. Skontrolujte súkromný kľúč a skúste to znova."
+  },
+  "superpowers": {
+    "homePost": "Použite ho z vášho vlastného príspevku — možnosti, potom Zvýrazniť.",
+    "homeGift": "Použite ho na príspevok niekoho iného — možnosti, potom Zvýrazniť.",
+    "homeComment": "Použite ho na vlastný komentár v cudzej téme.",
+    "homeStage": "Použite ho z javiska, ktoré hostíte.",
+    "homePage": "Použite ho tu, v hornej časti tejto obrazovky."
   }
 }
