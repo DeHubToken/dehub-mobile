@@ -22,6 +22,7 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { theme } from "../../theme";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+import { flattenFeedPages } from "../../libs/feed-pages";
 
 export interface HomeImageGridHandle {
   scrollToTopAndRefresh: () => void;
@@ -275,8 +276,9 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     },
   });
 
+  // Offset paging repeats rows across the page boundary; keep the first copy.
   const items = useMemo<UnifiedFeedItem[]>(
-    () => (data?.pages ?? []).flatMap((res) => res.result || []),
+    () => flattenFeedPages<UnifiedFeedItem>(data?.pages ?? [], () => false),
     [data],
   );
   const endReached = hasNextPage === false;
