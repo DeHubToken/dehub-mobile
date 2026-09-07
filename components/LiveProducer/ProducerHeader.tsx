@@ -1,6 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -76,7 +75,6 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
   onRequestClose,
   onRequestEndConfirmation,
 }) => {
-  const insets = useSafeAreaInsets();
   const [, forceUpdate] = useState(0);
 
   const isLive = stage === "live";
@@ -136,7 +134,9 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
   return (
     <View
       className="px-4 pb-2"
-      style={{ paddingTop: Math.max(insets.top + 4, 12) }}
+      // Flat: the root SafeAreaView already pays the status bar and the hook
+      // reports it again, so this header sat a full band too low.
+      style={{ paddingTop: 12 }}
       pointerEvents="box-none"
     >
       <View className="flex-row items-center" pointerEvents="box-none">
