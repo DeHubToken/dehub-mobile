@@ -666,7 +666,17 @@
     "payments": "পেমেন্ট",
     "claimBounty": "তোমার পুরস্কার নেও",
     "noneForFilter": "এখনো {{filter}} নোটিফিকেশন নাই।",
-    "andNOthers": "আর {{count}} জন"
+    "andNOthers": "আর {{count}} জন",
+    "community": {
+      "joined": "{{name}} আপনার কমিউনিটিতে যোগ দিয়েছেন",
+      "joinedNamed": "{{name}} “{{community}}” কমিউনিটিতে যোগ দিয়েছেন",
+      "requested": "{{name}} আপনার কমিউনিটিতে যোগ দেওয়ার জন্য অনুরোধ করেছেন",
+      "requestedNamed": "{{name}} “{{community}}” কমিউনিটিতে যোগ দেওয়ার জন্য অনুরোধ করেছেন",
+      "mentioned": "{{name}} আপনাকে একটি কমিউনিটিতে উল্লেখ করেছেন",
+      "mentionedNamed": "{{name}} আপনাকে “{{community}}” কমিউনিটিতে উল্লেখ করেছেন",
+      "here": "{{name}} কমিউনিটির সবাইকে মেসেজ করেছেন",
+      "hereNamed": "{{name}} “{{community}}” কমিউনিটির সবাইকে মেসেজ করেছেন"
+    }
   },
   "messages": {
     "smartRepliesOff": "ꠙꠞꠣꠝꠞ꠆ꠡ ꠖꠤꠅꠣ ꠎꠛꠣꠛ ꠛꠘ꠆ꠗ ꠅꠁꠍꠦ",

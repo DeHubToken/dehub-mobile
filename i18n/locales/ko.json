@@ -1095,7 +1095,16 @@
     "payments": "결제",
     "claimBounty": "보상 받기",
     "noneForFilter": "아직 {{filter}} 알림이 없습니다.",
-    "andNOthers": "외 {{count}}명"
+    "andNOthers": "외 {{count}}명",
+    "community": {
+      "joined": "{{name}} 님이 회원님의 커뮤니티에 가입했습니다",
+      "requested": "{{name}} 님이 커뮤니티 가입을 요청했습니다",
+      "requestedNamed": "{{name}} 님이 “{{community}}” 에 가입을 요청했습니다",
+      "mentioned": "{{name}} 님이 커뮤니티에서 회원님을 멘션했습니다",
+      "mentionedNamed": "{{name}} 님이 “{{community}}” 에서 회원님을 멘션했습니다",
+      "here": "{{name}} 님이 커뮤니티의 모든 사람에게 메시지를 보냈습니다.",
+      "hereNamed": "{{name}} 님이 '{{community}}' 의 모든 사람에게 메시지를 보냈습니다."
+    }
   },
   "leaderboard": {
     "title": "리더보드",

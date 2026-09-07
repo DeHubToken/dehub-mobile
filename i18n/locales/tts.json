@@ -1125,7 +1125,17 @@
     "payments": "การจ่ายเงิน",
     "claimBounty": "ฮับรางวัลของเจ้า",
     "noneForFilter": "ยังบ่มีการแจ้งเตือน {{filter}}",
-    "andNOthers": "และอีก {{count}} คน"
+    "andNOthers": "และอีก {{count}} คน",
+    "community": {
+      "joined": "{{name}} เข้าร่วมชุมชนของคุณ",
+      "joinedNamed": "{{name}} เข้าร่วม “{{community}}”",
+      "requested": "{{name}} ขอเข้าร่วมชุมชนของคุณ",
+      "requestedNamed": "{{name}} ขอเข้าร่วม “{{community}}”",
+      "mentioned": "{{name}} กล่าวถึงคุณในชุมชน",
+      "mentionedNamed": "{{name}} กล่าวถึงคุณใน “{{community}}”",
+      "here": "{{name}} ส่งข้อความถึงทุกคนในชุมชน",
+      "hereNamed": "{{name}} ส่งข้อความถึงทุกคนใน “{{community}}”"
+    }
   },
   "leaderboard": {
     "title": "กระดานคะแนน",

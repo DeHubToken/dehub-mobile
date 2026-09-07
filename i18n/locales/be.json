@@ -1137,7 +1137,14 @@
     "payments": "Плацяжы",
     "claimBounty": "Атрымаць узнагароду",
     "noneForFilter": "Пакуль няма апавяшчэнняў ({{filter}}).",
-    "andNOthers": "і яшчэ {{count}}"
+    "andNOthers": "і яшчэ {{count}}",
+    "community": {
+      "joined": "{{name}} далучыўся да вашай суполкі",
+      "joinedNamed": "{{name}} далучана “{{community}}”",
+      "requestedNamed": "{{name}} папрасіў далучыцца да “{{community}}”",
+      "mentionedNamed": "{{name}} згадваецца ў «{{community}}»",
+      "hereNamed": "{{name}} паведамляў усім у «{{community}}»"
+    }
   },
   "leaderboard": {
     "title": "Табліца лідараў",

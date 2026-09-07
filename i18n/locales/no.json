@@ -1184,7 +1184,17 @@
     "payments": "Betalinger",
     "claimBounty": "Hent belønningen din",
     "noneForFilter": "Ingen {{filter}}-varsler ennå.",
-    "andNOthers": "og {{count}} andre"
+    "andNOthers": "og {{count}} andre",
+    "community": {
+      "joined": "{{name}} ble med i fellesskapet ditt",
+      "joinedNamed": "{{name}} ble med i «{{community}}»",
+      "requested": "{{name}} spurte om å bli med i fellesskapet ditt",
+      "requestedNamed": "{{name}} spurte om å bli med i «{{community}}»",
+      "mentioned": "{{name}} nevnte deg i et fellesskap",
+      "mentionedNamed": "{{name}} nevnte deg i «{{community}}»",
+      "here": "{{name}} sendte melding til alle i fellesskapet",
+      "hereNamed": "{{name}} sendte melding til alle i «{{community}}»"
+    }
   },
   "messages": {
     "smartRepliesOff": "Foreslåtte svar er slått av",

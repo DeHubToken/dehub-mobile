@@ -1186,7 +1186,17 @@
     "payments": "الخلاصات",
     "claimBounty": "خود المكافأة ديالك",
     "noneForFilter": "مازال ما كاينش إشعارات {{filter}}.",
-    "andNOthers": "و {{count}} خرين"
+    "andNOthers": "و {{count}} خرين",
+    "community": {
+      "joined": "انضم {{name}} إلى مجتمعك",
+      "joinedNamed": "{{name}} انضم إلى \"{{community}}\"",
+      "requested": "طلب {{name}} الانضمام إلى مجتمعك",
+      "requestedNamed": "طلب {{name}} الانضمام إلى \"{{community}}\"",
+      "mentioned": "أشار {{name}} إليك في مجتمع",
+      "mentionedNamed": "أشار إليك {{name}} في \\\"{{community}}\\\"",
+      "here": "{{name}} راسل الجميع في المجتمع",
+      "hereNamed": "أرسل {{name}} رسالة إلى الجميع في \\\"{{community}}\\\""
+    }
   },
   "leaderboard": {
     "title": "لوحة المتصدرين",

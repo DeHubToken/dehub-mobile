@@ -1186,7 +1186,17 @@
     "payments": "Maksut",
     "claimBounty": "Lunasta palkkiosi",
     "noneForFilter": "Ei vielä {{filter}}-ilmoituksia.",
-    "andNOthers": "ja {{count}} muuta"
+    "andNOthers": "ja {{count}} muuta",
+    "community": {
+      "joined": "{{name}} liittyi yhteisöösi",
+      "joinedNamed": "{{name}} liittyi \"{{community}}\"",
+      "requested": "{{name}} pyysi saada liittyä yhteisöösi",
+      "requestedNamed": "{{name}} pyysi liittymään \"{{community}}\"",
+      "mentioned": "{{name}} mainitsi sinut yhteisössä",
+      "mentionedNamed": "{{name}} mainitsi sinut kohteessa \"{{community}}\"",
+      "here": "{{name}} lähetti viestin kaikille yhteisön jäsenille",
+      "hereNamed": "{{name}} viestitti kaikille kohteessa \"{{community}}\""
+    }
   },
   "messages": {
     "smartRepliesOff": "Ehdotetut vastaukset poistettiin käytöstä",

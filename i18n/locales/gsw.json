@@ -1125,7 +1125,17 @@
     "payments": "Zahlige",
     "claimBounty": "Hol dini Belohnig",
     "noneForFilter": "No kei {{filter}}-Benachrichtigige.",
-    "andNOthers": "und {{count}} anderi"
+    "andNOthers": "und {{count}} anderi",
+    "community": {
+      "joined": "{{name}} isch dinere Community biitrette",
+      "joinedNamed": "{{name}} isch de “{{community}}” biitrette",
+      "requested": "{{name}} het welle bi dinere Community biitrete",
+      "requestedNamed": "{{name}} het welle bi “{{community}}” biitrete",
+      "mentioned": "{{name}} het dich i dimere Community erwähnt",
+      "mentionedNamed": "{{name}} het dich i “{{community}}” erwähnt",
+      "here": "{{name}} het a alli i dimere Community gschriebe",
+      "hereNamed": "{{name}} het a alli i “{{community}}” gschriebe"
+    }
   },
   "leaderboard": {
     "title": "Rangllischte",

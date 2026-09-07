@@ -1189,7 +1189,17 @@
     "payments": "付款",
     "claimBounty": "领取赏金",
     "noneForFilter": "还没有{{filter}}通知。",
-    "andNOthers": "和其他 {{count}} 人"
+    "andNOthers": "和其他 {{count}} 人",
+    "community": {
+      "joined": "{{name}}已加入您的社区",
+      "joinedNamed": "{{name}}已加入「{{community}}」",
+      "requested": "{{name}}已申请加入您的社区",
+      "requestedNamed": "{{name}}要求加入「{{community}}」",
+      "mentioned": "{{name}}在社区中提到了您",
+      "mentionedNamed": "{{name}}在「{{community}}」中提到了您",
+      "here": "{{name}}向社区中的所有人发送了消息",
+      "hereNamed": "{{name}}向「{{community}}」中的所有人发送了消息"
+    }
   },
   "leaderboard": {
     "title": "排行榜",

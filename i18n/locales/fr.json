@@ -1190,7 +1190,17 @@
     "payments": "Paiements",
     "claimBounty": "Récupérez votre prime",
     "noneForFilter": "Aucune notification {{filter}} pour le moment.",
-    "andNOthers": "et {{count}} autres"
+    "andNOthers": "et {{count}} autres",
+    "community": {
+      "joined": "{{name}} a rejoint votre communauté",
+      "joinedNamed": "{{name}} a rejoint « {{community}} »",
+      "requested": "{{name}} a demandé à rejoindre votre communauté",
+      "requestedNamed": "{{name}} a demandé à rejoindre « {{community}} »",
+      "mentioned": "{{name}} vous a mentionné dans une communauté",
+      "mentionedNamed": "{{name}} vous a mentionné dans « {{community}} »",
+      "here": "{{name}} a envoyé un message à tous les membres de la communauté",
+      "hereNamed": "{{name}} a envoyé un message à tout le monde dans « {{community}} »"
+    }
   },
   "leaderboard": {
     "title": "Classements",

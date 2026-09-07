@@ -1125,7 +1125,17 @@
     "payments": "المدفوعات",
     "claimBounty": "استلم مكافأتك",
     "noneForFilter": "ماكو إشعارات {{filter}} بعد.",
-    "andNOthers": "و {{count}} غيرهم"
+    "andNOthers": "و {{count}} غيرهم",
+    "community": {
+      "joined": "{{name}} انضم لمجتمعك",
+      "joinedNamed": "{{name}} انضم لـ “{{community}}”",
+      "requested": "{{name}} طلب الانضمام لمجتمعك",
+      "requestedNamed": "{{name}} طلب الانضمام لـ “{{community}}”",
+      "mentioned": "{{name}} ذكرك في مجتمع",
+      "mentionedNamed": "{{name}} ذكرك في “{{community}}”",
+      "here": "{{name}} دز رسالة للكل بالمجتمع",
+      "hereNamed": "{{name}} دز رسالة للكل بـ “{{community}}”"
+    }
   },
   "leaderboard": {
     "title": "لوحة المتصدرين",

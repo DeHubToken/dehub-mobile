@@ -1182,7 +1182,10 @@
     "payments": "Payments",
     "claimBounty": "Collect your bounty",
     "noneForFilter": "No {{filter}} notification yet.",
-    "andNOthers": "and {{count}} others"
+    "andNOthers": "and {{count}} others",
+    "community": {
+      "joinedNamed": "{{name}} joined “{{community}}”"
+    }
   },
   "leaderboard": {
     "title": "Leaderboard",

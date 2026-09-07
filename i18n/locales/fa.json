@@ -1188,7 +1188,17 @@
     "payments": "پرداخت‌ها",
     "claimBounty": "پاداشت را دریافت کن",
     "noneForFilter": "هنوز اعلان {{filter}} وجود ندارد.",
-    "andNOthers": "و {{count}} نفر دیگر"
+    "andNOthers": "و {{count}} نفر دیگر",
+    "community": {
+      "joined": "{{name}} به انجمن شما پیوست",
+      "joinedNamed": "{{name}} به «{{community}}» پیوست",
+      "requested": "{{name}} از شما خواسته شده است که به انجمن شما بپیوندد",
+      "requestedNamed": "از {{name}} درخواست شد به «{{community}}» بپیوندد",
+      "mentioned": "{{name}} شما را در یک انجمن معرفی کرد",
+      "mentionedNamed": "{{name}} شما را در عبارت «{{community}}» معرفی کرد.",
+      "here": "{{name}} به همه افراد جامعه پیام داد",
+      "hereNamed": "{{name}} به همه افراد با شناسه «{{community}}» پیام داد"
+    }
   },
   "leaderboard": {
     "title": "جدول امتیازات",

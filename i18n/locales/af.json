@@ -207,7 +207,16 @@
     "payments": "Betalings",
     "claimBounty": "Eis jou beloning",
     "noneForFilter": "Nog geen {{filter}}-kennisgewings nie.",
-    "andNOthers": "en {{count}} ander"
+    "andNOthers": "en {{count}} ander",
+    "community": {
+      "joined": "{{name}} Sluit aan by jou gemeenskap",
+      "requested": "{{name}} gevra om by jou gemeenskap aan te sluit",
+      "requestedNamed": "{{name}}@ gevra om aan te sluit \"{{community}}\"",
+      "mentioned": "{{name}} meld jou in 'n gemeenskap aan",
+      "mentionedNamed": "{{name}} @ vermeld jy in \"{{community}}\"",
+      "here": "{{name}} almal in die gemeenskap",
+      "hereNamed": "{{name}} @ boodskap almal in \"{{community}}\""
+    }
   },
   "profile": {
     "editProfile": "Wysig profiel",

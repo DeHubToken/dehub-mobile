@@ -1096,7 +1096,17 @@
     "payments": "Fizetések",
     "claimBounty": "Vedd át a jutalmad",
     "noneForFilter": "Még nincs {{filter}} értesítés.",
-    "andNOthers": "és még {{count}}"
+    "andNOthers": "és még {{count}}",
+    "community": {
+      "joined": "{{name}} csatlakozott a közösségedhez",
+      "joinedNamed": "{{name}} csatlakozott: „{{community}}”",
+      "requested": "{{name}} kérte, hogy csatlakozhasson a közösségedhez",
+      "requestedNamed": "{{name}} kérte, hogy csatlakozhasson a következőhöz: „{{community}}”",
+      "mentioned": "{{name}} megemlített egy közösségben",
+      "mentionedNamed": "{{name}} megemlített „{{community}}” -ben",
+      "here": "{{name}} mindenkinek üzenetet küldött a közösségben",
+      "hereNamed": "{{name}} mindenkinek üzenetet küldött „{{community}}” területén"
+    }
   },
   "leaderboard": {
     "title": "Ranglista",
