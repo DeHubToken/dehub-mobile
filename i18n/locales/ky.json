@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Бул түзмөк басуу үчүн катталган эмес",
-    "pushNotRegisteredDesc": "Колдонмо жабылып жатканда сизге билдирүүлөр жете албайт. Колдонмону кайра ачуу, адатта, аны тазалайт; эгер ал боло берсе, анда dehub.io/apk сайтынан акыркы курууну орнотуңуз.",
+    "pushNotRegisteredDesc": "Колдонмо жабык болгондо сизге билдирүүлөр жете албайт: бул орнотуу эч качан басуу түзмөгүн каттаган эмес. Бул, адатта, анын кабарлоо конфигурациясын сагынып жатат дегенди билдирет, ал dehub.io/apk алмаштырган акыркы имаратты орнотуп жатат.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

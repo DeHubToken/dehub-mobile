@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "推送通知已关闭",
     "tapEnableSystemSettings": "点击前往系统设置开启",
     "pushNotRegistered": "呢部裝置未註冊嚟推送",
-    "pushNotRegisteredDesc": "喺應用程式閂咗嗰陣，通知唔可以聯絡到你。重新打開個應用程式通常會清除佢；如果呢個情況一直發生，喺 dehub.io/apk 安裝最新嘅版本。",
+    "pushNotRegisteredDesc": "喺個應用程式閂咗嗰陣，通知唔可以聯絡到你：呢個安裝從來都冇註冊過推送裝置。通常意味住個版本缺少佢嘅通知配置，而安裝喺 dehub.io/apk 嘅最新版本就會取代。",
     "categoryEngagement": "互动",
     "categorySocial": "社交",
     "categoryEarnings": "收益",

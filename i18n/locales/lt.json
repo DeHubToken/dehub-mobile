@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Šis įrenginys neužregistruotas „push“",
-    "pushNotRegisteredDesc": "Pranešimai negali su jumis susisiekti, kol programėlė uždaryta. Iš naujo atidarius programėlę, ji paprastai išvaloma; jei tai tęsiasi, įdiekite naujausią versiją iš dehub.io/apk.",
+    "pushNotRegisteredDesc": "Pranešimai negali su jumis susisiekti, kai programėlė uždaryta: šis diegimas niekada neužregistravo stumdomojo įrenginio. Tai paprastai reiškia, kad komponavimo versijai trūksta pranešimų konfigūracijos, kurią pakeičia naujausios komponavimo versijos iš dehub.io/apk diegimas.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

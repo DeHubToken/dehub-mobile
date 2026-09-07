@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "പുഷിനായി ഈ ഉപകരണം രജിസ്റ്റർ ചെയ്തിട്ടില്ല",
-    "pushNotRegisteredDesc": "ആപ്പ് ക്ലോസ് ചെയ്യുമ്പോൾ അറിയിപ്പുകൾ നിങ്ങളെ ബന്ധപ്പെടാൻ കഴിയില്ല. ആപ്പ് വീണ്ടും തുറക്കുന്നത് സാധാരണയായി അത് മായ്‌ക്കുന്നു; അത് സംഭവിച്ചുകൊണ്ടിരിക്കുകയാണെങ്കിൽ, dehub.io/apk-ൽ നിന്ന് ഏറ്റവും പുതിയ ബിൽഡ് ഇൻസ്റ്റാൾ ചെയ്യുക.",
+    "pushNotRegisteredDesc": "ആപ്പ് ക്ലോസ് ചെയ്യുമ്പോള്‍ അറിയിപ്പുകള്‍ക്ക് നിങ്ങളെ ബന്ധപ്പെടാന്‍ കഴിയില്ല: ഈ ഇന്‍സ്റ്റാള്‍ ഒരിക്കലും ഒരു പുഷ് ഉപകരണം രജിസ്റ്റര്‍ ചെയ്തിട്ടില്ല. സാധാരണഗതിയിൽ ബിൽഡിന് അതിന്റെ അറിയിപ്പ് കോൺഫിഗറേഷൻ നഷ്ടപ്പെടുന്നു എന്നാണ് ഇതിനർത്ഥം, ഇത് dehub.io/apk മാറ്റിസ്ഥാപിക്കലുകളിൽ നിന്ന് ഏറ്റവും പുതിയ ബിൽഡ് ഇൻസ്റ്റാൾ ചെയ്യുന്നു.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

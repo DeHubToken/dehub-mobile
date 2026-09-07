@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Այս սարքը գրանցված չէ push - ի համար",
-    "pushNotRegisteredDesc": "Ծանուցումները չեն կարող կապվել ձեզ հետ, քանի դեռ հավելվածը փակված է ։ Հավելվածի վերաբացումը սովորաբար մաքրում է այն. եթե այն շարունակվի, տեղադրեք dehub.io/apk կայքի վերջին կառուցվածքը ։",
+    "pushNotRegisteredDesc": "Ծանուցումները չեն կարող կապվել ձեզ հետ, քանի դեռ հավելվածը փակված է. այս տեղադրումը երբեք չի գրանցել push սարք ։ Դա սովորաբար նշանակում է, որ շենքը բացակայում է իր ծանուցման կոնֆիգուրացիայից, որը տեղադրում է dehub.io/apk- ի վերջին կառուցվածքը:",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

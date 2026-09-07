@@ -392,7 +392,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "এই ডিভাইসটা পুশ-এর লাইগা রেজিস্টার অইয়ে নাই",
-    "pushNotRegisteredDesc": "App bondho thakle notification paben na. App ta abar khulun, shob thik hoye jabo. Jodi abar hoy, dehub.io/apk theke latest build install korun.",
+    "pushNotRegisteredDesc": "App bonda thakle notification paimu na: ei install-e kono push device register hoynai. Eita shadharonoto bujhai je build-e notification configuration nai, jeta dehub.io/apk theke latest build install korle thik hoye jae.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

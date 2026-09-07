@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "एतादृशं यन्त्रं न प्रवेष्टव्यं",
-    "pushNotRegisteredDesc": "आवेदन समाप्त होने पर सूचनाएं आपके पास नहीं पहुंच पातीं । यदि भवान् अद्यापि नूतनपृष्ठं पूरयितुम् इच्छति, तर्हि भवान् dehub.io/apk इत्यस्मिन् जालपृष्ठे अद्यतनपृष्ठं स्थापयतु ।",
+    "pushNotRegisteredDesc": "सूचनां भवता प्राप्तुं न शक्यते यदा अनुप्रयोगः बन्दः भवति; इयं संस्था कदापि पुश यन्त्रं रजिस्टरं न करोति । इत्युक्ते, अस्य निर्माणस्य सूचना विन्यासस्य अभावः अस्ति, यत् dehub.io/apk इत्यस्मात् नवीनतमनिर्माणं स्थापयितुम् अर्हति ।",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

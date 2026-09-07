@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Ez az eszköz nincs regisztrálva leküldéses küldésre",
-    "pushNotRegisteredDesc": "Az értesítések nem érhetnek el, amíg az alkalmazás zárva van. Az alkalmazás újbóli megnyitása általában törli azt; ha továbbra is megtörténik, telepítse a legújabb buildet a dehub.io/apk webhelyről.",
+    "pushNotRegisteredDesc": "Az értesítések nem érnek el, amíg az alkalmazás zárva van: ez a telepítés soha nem regisztrált push-eszközt. Ez általában azt jelenti, hogy a buildből hiányzik az értesítési konfiguráció, amely a dehub.io/apk webhelyről telepíti a legújabb buildet.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

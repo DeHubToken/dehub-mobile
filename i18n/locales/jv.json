@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Piranti iki ora kadhaptar kanggo push",
-    "pushNotRegisteredDesc": "Notifikasi ora bisa tekan sampeyan nalika aplikasi ditutup. Mbukak maneh aplikasi biasane ngatasi; yen terus kedadeyan, instal versi paling anyar saka dehub.io/apk.",
+    "pushNotRegisteredDesc": "Notifikasi ora bisa tekan sampeyan nalika aplikasi ditutup: instalasi iki ora nate ndhaptar piranti push. Iki biasane tegese build kasebut ora duwe konfigurasi notifikasi, sing diinstal saka build paling anyar saka dehub.io/apk bakal ngganti.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

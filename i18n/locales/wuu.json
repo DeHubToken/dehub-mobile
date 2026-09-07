@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "推送通知已关闭",
     "tapEnableSystemSettings": "点击前往系统设置开启",
     "pushNotRegistered": "箇設備嘸註冊推播",
-    "pushNotRegisteredDesc": "应用关脱了，通知就收不到。重新打开应用通常能解决，如果一直这样，请从 dehub.io/apk 下载最新版本。",
+    "pushNotRegisteredDesc": "当App关闭辰，通知就收不到。迭个安装从未注册过推送设备。迭通常意味着迭个版本缺少通知配置，从 dehub.io/apk 安装最新版本可以解决迭个问题。",
     "categoryEngagement": "互动",
     "categorySocial": "社交",
     "categoryEarnings": "收益",

@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "මෙම උපාංගය තල්ලු කිරීම සඳහා ලියාපදිංචි වී නැත",
-    "pushNotRegisteredDesc": "යෙදුම වසා ඇති අතරතුර දැනුම්දීම් ඔබ වෙත ළඟා විය නොහැක. යෙදුම නැවත විවෘත කිරීම සාමාන් ‍ යයෙන් එය ඉවත් කරයි; එය දිගටම සිදුවුවහොත්, dehub.io/apk වෙතින් නවතම ගොඩනැගීම ස්ථාපනය කරන්න.",
+    "pushNotRegisteredDesc": "යෙදුම වසා ඇති අතරතුර දැනුම්දීම් ඔබ වෙත ළඟා විය නොහැක: මෙම ස්ථාපනය කිසි විටෙකත් තල්ලු උපාංගයක් ලියාපදිංචි කර නැත. සාමාන් ‍ යයෙන් මෙයින් අදහස් කරන්නේ ගොඩනැගීම එහි දැනුම්දීම් වින් ‍ යාසය මග හැරී ඇති බවයි, එය dehub.io/apk වෙතින් නවතම ගොඩනැගීම ස්ථාපනය කරයි.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

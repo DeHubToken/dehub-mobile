@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "מכשיר זה אינו רשום לדחיפה",
-    "pushNotRegisteredDesc": "התראות לא יכולות להגיע אליך בזמן שהאפליקציה סגורה. פתיחה מחדש של האפליקציה בדרך כלל מנקה אותה. אם זה ממשיך לקרות, יש להתקין את הגרסה העדכנית ביותר מ - dehub.io/apk.",
+    "pushNotRegisteredDesc": "התראות לא יכולות להגיע אליך בזמן שהאפליקציה סגורה: התקנה זו מעולם לא רשמה מכשיר דחיפה. זה בדרך כלל אומר ש - build חסר את תצורת ההתראות שלו, אשר מתקין את ה - build העדכני ביותר מ - dehub.io/apk מחליף.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

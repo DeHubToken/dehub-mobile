@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Энэ төхөөрөмжийг түлхэх зорилгоор бүртгүүлээгүй болно",
-    "pushNotRegisteredDesc": "Апп хаалттай үед мэдэгдлүүд танд хүрч чадахгүй. Програмыг дахин нээх нь ихэвчлэн цэвэрлэх; хэрэв үргэлжилж байвал dehub.io/apk сайтаас хамгийн сүүлийн үеийн бүтээн байгуулалтыг суулгана уу.",
+    "pushNotRegisteredDesc": "Програм хаагдсан үед мэдэгдлүүд танд хүрч чадахгүй: Энэ суулгалт хэзээ ч түлхэх төхөөрөмж бүртгэгдээгүй. Энэ нь ихэвчлэн барилга нь мэдэгдлийн тохиргоо байхгүй байгаа гэсэн үг бөгөөд энэ нь dehub.io/apk солихоос хамгийн сүүлийн үеийн бүтээн байгуулалтыг суулгадаг.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

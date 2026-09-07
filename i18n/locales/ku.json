@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Ev cîhaz ji bo push nehatiye qeydkirin.",
-    "pushNotRegisteredDesc": "Dema ku sepan girtî be, agahî nikarin bigihîjin we. Vekirina sepanê bi gelemperî wê vala dike; heke ev yek berdewam bike, guhertoya herî dawî ji dehub.io/apk saz bikin.",
+    "pushNotRegisteredDesc": "Dema ku sepan girtî be, agahî nikarin bigihîjin we: vê sazkirinê qet amûrek push tomar nekiriye. Ev bi gelemperî tê vê wateyê ku di avahiyê de mîhengên agahdariyê tune ne, ku sazkirina avakirina herî dawî ji dehub.io/apk şûna wê digire.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Notifikasi push dinonaktifkan",
     "tapEnableSystemSettings": "Ketuk untuk mengaktifkannya di pengaturan sistem",
     "pushNotRegistered": "Perangkat ini tidak terdaftar untuk push",
-    "pushNotRegisteredDesc": "Notifikasi tidak dapat menghubungi Anda saat aplikasi ditutup. Membuka kembali aplikasi biasanya akan menghapusnya; jika terus terjadi, instal build terbaru dari dehub.io/apk.",
+    "pushNotRegisteredDesc": "Pemberitahuan tidak dapat menghubungi Anda saat aplikasi ditutup: instalasi ini tidak pernah mendaftarkan perangkat push. Itu biasanya berarti build tidak memiliki konfigurasi notifikasi, yang menggantikan pemasangan build terbaru dari dehub.io/apk.",
     "categoryEngagement": "Interaksi",
     "categorySocial": "Sosial",
     "categoryEarnings": "Penghasilan",

@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push-Benachrichtigungen deaktiviert",
     "tapEnableSystemSettings": "Tippen, um es in den Systemeinstellungen zu aktivieren",
     "pushNotRegistered": "Das Gerät isch nöd für Push registriert",
-    "pushNotRegisteredDesc": "Benachrichtigige chönd dich nöd erreiche, wänn d App zue isch. D App wider uffmache löst es meistens; wänn es immer wieder passiert, installier de neuschti Build vo dehub.io/apk.",
+    "pushNotRegisteredDesc": "Benachrichtigige chönd dich nöd erreiche, wänn d App zue isch: Dä Install hät nie es Push-Device registriert. Das bedütet meischtens, dass em Build sis Benachrichtigigskonfiguration fehlt, was de Install vom neuste Build vo dehub.io/apk ersetzet.",
     "categoryEngagement": "Interaktion",
     "categorySocial": "Social",
     "categoryEarnings": "Einnahmen",

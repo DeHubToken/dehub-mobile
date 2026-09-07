@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "ይህ መሣሪያ ለግፋ አልተመዘገበም",
-    "pushNotRegisteredDesc": "መተግበሪያው ሲዘጋ ማሳወቂያዎች ወደ እርስዎ መድረስ አይችሉም. መተግበሪያውን እንደገና መክፈት አብዛኛውን ጊዜ ያጸዳል; ይህ እየተከናወነ የሚቀጥል ከሆነ, dehub.io/apk ከ የቅርብ ጊዜ ግንባታ መጫን.",
+    "pushNotRegisteredDesc": "መተግበሪያው በሚዘጋበት ጊዜ ማሳወቂያዎች ሊደርሱዎት አይችሉም-ይህ ጭነት በጭራሽ የግፋ መሣሪያ አልተመዘገበም ። ያ ማለት ግንባታው የቅርብ ጊዜውን ሕንፃ ከ dehub.io/apk የሚተካውን የማሳወቂያ ውቅሩ ጠፍቷል ማለት ነው ።",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

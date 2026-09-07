@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Това устройство не е регистрирано за насочване",
-    "pushNotRegisteredDesc": "Известията не могат да достигат до вас, докато приложението е затворено. Повторното отваряне на приложението обикновено го изчиства; ако продължава да се случва, инсталирайте най - новата компилация от dehub.io/apk.",
+    "pushNotRegisteredDesc": "Известията не могат да ви достигнат, докато приложението е затворено: тази инсталация никога не е регистрирала насочено устройство. Това обикновено означава, че на компилацията липсва нейната конфигурация за известия, която замества инсталирането на най - новата компилация от dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

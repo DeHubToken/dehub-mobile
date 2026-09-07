@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Bu esbap basmak üçin ýazylan däl",
-    "pushNotRegisteredDesc": "Ulag ýapylýança, habarlar size ýetip bilmez. Adatça, ulag ýene-de açylýar; eger ol dowam etse, dehub.io/apk-dan iň soňky gurluşygy goýuň.",
+    "pushNotRegisteredDesc": "Ulymaç ýapylýança habarlar size ýetip bilmez: bu gurluşyk hiç haçan push enjamyny ýazmady. Bu esasanam binanyň habar beriş konfigurasiýasy ýokdugyny aňladýar, ol dehub.io/apk ýerine iň soňky binany goýýar.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

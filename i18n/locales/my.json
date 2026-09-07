@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "ဤကိရိယာကို တွန်းအားပေးမှုအတွက် မှတ်ပုံတင်မထားပါ",
-    "pushNotRegisteredDesc": "အက်ပလီကေးရှင်း ပိတ်ထားစဉ် အသိပေးချက်များသည် သင့်ထံ မရောက်ရှိနိုင်ပါ ။ အက်ပလီကေးရှင်းကိုပြန်ဖွင့်ခြင်းသည်ပုံမှန်အားဖြင့်ရှင်းလင်းစေသည် ၊ ဖြစ်ပျက်နေဆဲဖြစ်ပါက dehub.io/apk မှနောက်ဆုံးတည်ဆောက်မှုကိုတပ်ဆင်ပါ ။",
+    "pushNotRegisteredDesc": "အက်ပ်ကို ပိတ်ထားစဉ် အသိပေးချက်များကို သင့်ထံ မရောက်ရှိနိုင်ပါ ။ ဤတပ်ဆင်မှုသည် တွန်းအားပေးကိရိယာကို မှတ်ပုံတင်ထားခြင်း မရှိပါ ။ ဆိုလိုသည်မှာတည်ဆောက်မှုသည် ၎ င်း ၏ အသိပေးချက်ဖွဲ့စည်းမှုပျောက်ဆုံးနေသည် ၊ ၎ င်းသည် dehub.io/apk မှနောက်ဆုံးတည်ဆောက်မှုကိုအစားထိုးသည် ။",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",
