@@ -978,7 +978,13 @@
     "to": "Да",
     "selectToken": "Абраць токен",
     "connectWallet": "Падключыць кашалёк",
-    "loginDescription": "Увайдзіце, каб атрымаць доступ да кашалька."
+    "loginDescription": "Увайдзіце, каб атрымаць доступ да кашалька.",
+    "chooseAddressNetwork": "Якая сетка?",
+    "evmAddressHint": "База, BNB і Эфириум",
+    "evmAddressCopied": "Адрас EVM скапіяваны",
+    "solanaAddressLabel": "Солана",
+    "solanaAddressHint": "Толькі маркеры SOL і SPL",
+    "solanaAddressCopied": "Адрас Саланы скапіяваны"
   },
   "bookmarks": {
     "title": "Вашы закладкі",

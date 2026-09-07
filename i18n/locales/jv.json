@@ -965,7 +965,14 @@
     "stake": "Stake",
     "cashOut": "Cairake",
     "stakeComingSoon": "Stake bakal teka!",
-    "cashOutComingSoon": "Cairake bakal teka!"
+    "cashOutComingSoon": "Cairake bakal teka!",
+    "chooseAddressNetwork": "Jaringan apa?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB lan Ethereum",
+    "evmAddressCopied": "Alamat EVM disalin",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Mung token SOL lan SPL",
+    "solanaAddressCopied": "Alamat Solana disalin"
   },
   "bookmarks": {
     "title": "Tetenger Kowe",

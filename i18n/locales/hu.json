@@ -578,7 +578,14 @@
     "stake": "Stake",
     "cashOut": "Kifizetés",
     "stakeComingSoon": "Stake hamarosan!",
-    "cashOutComingSoon": "Kifizetés hamarosan!"
+    "cashOutComingSoon": "Kifizetés hamarosan!",
+    "chooseAddressNetwork": "Melyik hálózat?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB és Ethereum",
+    "evmAddressCopied": "EVM-cím másolva",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Csak SOL és SPL tokenek",
+    "solanaAddressCopied": "Solana cím másolva"
   },
   "publicChat": {
     "title": "Nyilvános csevegés",

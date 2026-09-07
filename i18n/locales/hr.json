@@ -965,7 +965,14 @@
     "stake": "Stake",
     "cashOut": "Isplata",
     "stakeComingSoon": "Staking uskoro dolazi!",
-    "cashOutComingSoon": "Isplata uskoro dolazi!"
+    "cashOutComingSoon": "Isplata uskoro dolazi!",
+    "chooseAddressNetwork": "Koja mreža?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB i Ethereum",
+    "evmAddressCopied": "Adresa EVM-a je kopirana",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "SAMO SOL i SPL tokeni",
+    "solanaAddressCopied": "Solana adresa je kopirana"
   },
   "bookmarks": {
     "title": "Vaše oznake",

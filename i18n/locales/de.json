@@ -957,7 +957,14 @@
     "stake": "Staken",
     "cashOut": "Auszahlen",
     "stakeComingSoon": "Staking kommt bald!",
-    "cashOutComingSoon": "Auszahlung kommt bald!"
+    "cashOutComingSoon": "Auszahlung kommt bald!",
+    "chooseAddressNetwork": "Welches Netzwerk?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB und Ethereum",
+    "evmAddressCopied": "EVM-Adresse kopiert",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Nur SOL- und SPL-Token",
+    "solanaAddressCopied": "Solana-Adresse kopiert"
   },
   "features": {
     "title": "Funktionsanfragen",

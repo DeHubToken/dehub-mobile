@@ -673,7 +673,13 @@
     "stake": "ステーク",
     "cashOut": "出金",
     "stakeComingSoon": "ステーキングは近日公開！",
-    "cashOutComingSoon": "出金は近日公開！"
+    "cashOutComingSoon": "出金は近日公開！",
+    "chooseAddressNetwork": "どのネットワークですか？",
+    "evmAddressHint": "ベース、BNB、イーサリアム",
+    "evmAddressCopied": "EVMアドレスがコピーされました",
+    "solanaAddressLabel": "ソラナ",
+    "solanaAddressHint": "SOLとSPLトークンのみ",
+    "solanaAddressCopied": "Solanaの住所がコピーされました"
   },
   "publicChat": {
     "title": "パブリックチャット",

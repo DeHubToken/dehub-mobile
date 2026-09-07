@@ -578,7 +578,13 @@
     "stake": "تخزين",
     "cashOut": "سحب",
     "stakeComingSoon": "التخزين قريباً!",
-    "cashOutComingSoon": "السحب قريباً!"
+    "cashOutComingSoon": "السحب قريباً!",
+    "chooseAddressNetwork": "أي شبكة ؟",
+    "evmAddressHint": "BASE وBNB وEthereum",
+    "evmAddressCopied": "تم نسخ عنوان EVM",
+    "solanaAddressLabel": "سولانا",
+    "solanaAddressHint": "رموز SOL و SPL فقط",
+    "solanaAddressCopied": "تم نسخ عنوان سولانا"
   },
   "publicChat": {
     "title": "الدردشة العامة",

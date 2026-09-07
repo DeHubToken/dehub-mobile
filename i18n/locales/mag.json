@@ -965,7 +965,14 @@
     "stake": "स्टेक",
     "cashOut": "कैश आउट",
     "stakeComingSoon": "स्टेकिंग जल्दी आ रहल बा!",
-    "cashOutComingSoon": "कैश आउट जल्दी आ रहल बा!"
+    "cashOutComingSoon": "कैश आउट जल्दी आ रहल बा!",
+    "chooseAddressNetwork": "के केई नेट व्हाई के हो?",
+    "evmAddressLabel": "ई एम आई ई एम",
+    "evmAddressHint": "बेस, बीएनबी और एथेरियम",
+    "evmAddressCopied": "ईएमआई कैलक्यूलेटर",
+    "solanaAddressLabel": "सोलोना, हल्दी, हल्दी",
+    "solanaAddressHint": "केवल सोलो और सोलो कैलक्युलेशन",
+    "solanaAddressCopied": "कॉपी कैलक्यूलेटर"
   },
   "bookmarks": {
     "title": "तोहर बुकमार्क",

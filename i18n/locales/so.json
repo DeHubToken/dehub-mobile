@@ -965,7 +965,14 @@
     "stake": "Stake",
     "cashOut": "Lacagta Ka Saar",
     "stakeComingSoon": "Staking dhow ayay imanaysaa!",
-    "cashOutComingSoon": "Lacagta ka saaridda dhow ayay imanaysaa!"
+    "cashOutComingSoon": "Lacagta ka saaridda dhow ayay imanaysaa!",
+    "chooseAddressNetwork": "Waa maxay shabakad?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB iyo Ethereum",
+    "evmAddressCopied": "Cinwaanka EVM waa la nuqulay",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Calaamadaha SOL iyo SPL oo keliya",
+    "solanaAddressCopied": "Cinwaanka Solana waa la nuqulay"
   },
   "bookmarks": {
     "title": "Calaamadahaaga",

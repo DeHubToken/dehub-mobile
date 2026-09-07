@@ -957,7 +957,14 @@
     "stake": "Stake",
     "cashOut": "Çykarmak",
     "stakeComingSoon": "Staking ýakynda!",
-    "cashOutComingSoon": "Çykarmak ýakynda!"
+    "cashOutComingSoon": "Çykarmak ýakynda!",
+    "chooseAddressNetwork": "Näme üçin?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "BASE, BNB we Ethereum",
+    "evmAddressCopied": "EVM adresini nusgalamak",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "SOL & SPL diňe tokenler",
+    "solanaAddressCopied": "Solana adresiniň nusgalanmagy"
   },
   "features": {
     "title": "Funksiýa haýyşlary",

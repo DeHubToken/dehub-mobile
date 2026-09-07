@@ -957,7 +957,14 @@
     "stake": "Stake",
     "cashOut": "Nosta",
     "stakeComingSoon": "Staking tulossa pian!",
-    "cashOutComingSoon": "Nosto tulossa pian!"
+    "cashOutComingSoon": "Nosto tulossa pian!",
+    "chooseAddressNetwork": "Mikä verkko?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB ja Ethereum",
+    "evmAddressCopied": "EVM-osoite kopioitu",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "VAIN Sol- ja SPL-tunnukset",
+    "solanaAddressCopied": "Solana-osoite kopioitu"
   },
   "features": {
     "title": "Ominaisuuspyynnöt",

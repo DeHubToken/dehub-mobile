@@ -578,7 +578,14 @@
     "stake": "Stake",
     "cashOut": "Tarik Tunai",
     "stakeComingSoon": "Staking segera hadir!",
-    "cashOutComingSoon": "Tarik tunai segera hadir!"
+    "cashOutComingSoon": "Tarik tunai segera hadir!",
+    "chooseAddressNetwork": "Jaringan yang mana?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB dan Ethereum",
+    "evmAddressCopied": "Alamat EVM disalin",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Hanya token SOL dan SPL",
+    "solanaAddressCopied": "Alamat Solana disalin"
   },
   "publicChat": {
     "title": "Obrolan Publik",

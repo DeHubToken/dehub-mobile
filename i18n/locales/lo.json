@@ -965,7 +965,12 @@
     "stake": "ສະເຕັກ",
     "cashOut": "ຖອນເງິນ",
     "stakeComingSoon": "ສະເຕັກມາໄວໆນີ້!",
-    "cashOutComingSoon": "ຖອນເງິນມາໄວໆນີ້!"
+    "cashOutComingSoon": "ຖອນເງິນມາໄວໆນີ້!",
+    "chooseAddressNetwork": "ເຄືອຂ່າຍໃດ?",
+    "evmAddressHint": "ຖານ, BNB ແລະ Ethereum",
+    "evmAddressCopied": "EVM ທີ່ຢູ່ສໍາເນົາ",
+    "solanaAddressHint": "SOL ແລະ SPL tokens ພຽງແຕ່",
+    "solanaAddressCopied": "Solana ທີ່ຢູ່ ສໍາ ເນົາ"
   },
   "bookmarks": {
     "title": "ບຸກມາກຂອງທ່ານ",

@@ -578,7 +578,13 @@
     "stake": "اسٹیک",
     "cashOut": "نکلوائیں",
     "stakeComingSoon": "اسٹیک جلد آ رہا ہے!",
-    "cashOutComingSoon": "نکلوانا جلد آ رہا ہے!"
+    "cashOutComingSoon": "نکلوانا جلد آ رہا ہے!",
+    "chooseAddressNetwork": "کون سا نیٹ ورک ؟",
+    "evmAddressHint": "بیس، بی این بی اور ایتھرئم",
+    "evmAddressCopied": "ای وی ایم پتہ کاپی ہو گیا",
+    "solanaAddressLabel": "سولانا",
+    "solanaAddressHint": "صرف SOL اور SPL ٹوکنز",
+    "solanaAddressCopied": "سولانا کا پتہ کاپی ہو گیا"
   },
   "publicChat": {
     "title": "عوامی چیٹ",

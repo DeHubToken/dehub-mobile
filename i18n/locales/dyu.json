@@ -965,7 +965,14 @@
     "stake": "Kɔrɔbɔ",
     "cashOut": "Kɔrɔbɔ",
     "stakeComingSoon": "Kɔrɔbɔ",
-    "cashOutComingSoon": "Kɔrɔbɔ"
+    "cashOutComingSoon": "Kɔrɔbɔ",
+    "chooseAddressNetwork": "O ye mun lo ye?",
+    "evmAddressLabel": "Ne ye n yɛrɛ kali ni sanbɛrɛ ye,",
+    "evmAddressHint": "Modɛli: BNB ani Ethereum",
+    "evmAddressCopied": "Adres min sɛbɛra",
+    "solanaAddressLabel": "Solana ka koo",
+    "solanaAddressHint": "Tile ni SPL tagamasiyɛnw dɔrɔn lo",
+    "solanaAddressCopied": "Adresɛ min sɛbɛra ka ɲɛ"
   },
   "bookmarks": {
     "title": "I kɛ kɔrɔbɔ",

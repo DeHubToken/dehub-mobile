@@ -16,11 +16,12 @@ import Icon from '../ui/Icon';
 import ChainSwitchModal from './ChainSwitchModal';
 import ExportPrivateKeyModal from './ExportPrivateKeyModal';
 import SwitchAccountModal from './SwitchAccountModal';
+import CopyAddressSheet from '../Wallet/CopyAddressSheet';
 import BadgeDelegationSection from './BadgeDelegationSection';
 import { SettingsScrollView } from './SettingsAnchor';
 import { SettingsSection, SettingsLinkRow, SettingsInfoRow, Divider } from './SettingsPrimitives';
 import { useUser, useProvider, useAuthActions } from '../../context/AuthContext';
-import { copyToClipboard, toastSuccess, toastError, truncateAddress } from '../../libs';
+import { toastSuccess, toastError, truncateAddress } from '../../libs';
 import { ChainId } from '../../config/constants';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import { formatCompactNumber } from '../../libs/numbers.util';
@@ -64,11 +65,12 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
         ? 'BNB'
         : `Chain ${chainId ?? 'N/A'}`;
 
-  const handleCopy = () => {
-    if (!address) return;
-    copyToClipboard(address);
-    toastSuccess(t('settings.walletCopied'));
-  };
+  /**
+   * The wallet is payable on two address spaces, so this row asks which one
+   * instead of silently handing over the EVM address — a Solana deposit sent to
+   * an `0x…` address is unrecoverable.
+   */
+  const [copyAddressVisible, setCopyAddressVisible] = useState(false);
 
   /**
    * Fixes the case where THIS PHONE resolves Google/email sign-in to the
@@ -117,7 +119,7 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
   return (
     <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
       <SettingsSection label={t('settings.assets')} icon="Wallet" className="mt-4" anchor="assets">
-        <TouchableOpacity onPress={handleCopy} disabled={!address} activeOpacity={0.7}>
+        <TouchableOpacity onPress={() => setCopyAddressVisible(true)} disabled={!address} activeOpacity={0.7}>
           <View className={`px-4 py-3.5 flex-row items-center ${address ? '' : 'opacity-40'}`}>
             <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
               <Icon name="Wallet" size={18} color="#9ca3af" />
@@ -234,6 +236,11 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
         visible={switchAccountVisible}
         onClose={() => setSwitchAccountVisible(false)}
         currentAddress={address}
+      />
+      <CopyAddressSheet
+        visible={copyAddressVisible}
+        onClose={() => setCopyAddressVisible(false)}
+        evmAddress={address}
       />
     </SettingsScrollView>
   );

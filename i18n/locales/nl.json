@@ -1420,7 +1420,14 @@
     "stake": "Staken",
     "cashOut": "Uitbetalen",
     "stakeComingSoon": "Staking binnenkort beschikbaar!",
-    "cashOutComingSoon": "Uitbetaling binnenkort beschikbaar!"
+    "cashOutComingSoon": "Uitbetaling binnenkort beschikbaar!",
+    "chooseAddressNetwork": "Welk netwerk?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB en Ethereum",
+    "evmAddressCopied": "EVM-adres gekopieerd",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Alleen SOL- en SPL-tokens",
+    "solanaAddressCopied": "Solana-adres gekopieerd"
   },
   "features": {
     "title": "Functieverzoeken",

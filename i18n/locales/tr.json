@@ -681,7 +681,14 @@
     "stake": "Stake",
     "cashOut": "Çek",
     "stakeComingSoon": "Staking yakında geliyor!",
-    "cashOutComingSoon": "Çekim yakında geliyor!"
+    "cashOutComingSoon": "Çekim yakında geliyor!",
+    "chooseAddressNetwork": "Hangi ağ?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB ve Ethereum",
+    "evmAddressCopied": "EVM adresi kopyalandı",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Sadece SOL ve SPL tokenleri",
+    "solanaAddressCopied": "Solana adresi kopyalandı"
   },
   "publicChat": {
     "title": "Genel Sohbet",

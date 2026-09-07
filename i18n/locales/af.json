@@ -687,7 +687,14 @@
     "stake": "Stake",
     "cashOut": "Cash Out",
     "stakeComingSoon": "Staking coming soon!",
-    "cashOutComingSoon": "Cash out coming soon!"
+    "cashOutComingSoon": "Cash out coming soon!",
+    "chooseAddressNetwork": "Watter netwerk?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Basis, BNB en Ethereum",
+    "evmAddressCopied": "EVM-adres gekopieer",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "SOL- en SPL-tokens alleenlik",
+    "solanaAddressCopied": "Solana-adres gekopieer"
   },
   "docs": {
     "title": "Dokumente",

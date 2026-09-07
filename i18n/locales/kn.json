@@ -965,7 +965,14 @@
     "stake": "ಸ್ಟೇಕ್",
     "cashOut": "ನಗದು",
     "stakeComingSoon": "ಸ್ಟೇಕ್ ಶೀಘ್ರದಲ್ಲಿ ಬರುತ್ತಿದೆ!",
-    "cashOutComingSoon": "ನಗದು ಶೀಘ್ರದಲ್ಲಿ ಬರುತ್ತಿದೆ!"
+    "cashOutComingSoon": "ನಗದು ಶೀಘ್ರದಲ್ಲಿ ಬರುತ್ತಿದೆ!",
+    "chooseAddressNetwork": "ಯಾವ ನೆಟ್‌ವರ್ಕ್?",
+    "evmAddressLabel": "ಇವಿಎಂ",
+    "evmAddressHint": "ಬೇಸ್, ಬಿಎನ್‌ಬಿ ಮತ್ತು ಎಥೆರಿಯಮ್",
+    "evmAddressCopied": "ಇವಿಎಂ ವಿಳಾಸವನ್ನು ನಕಲಿಸಲಾಗಿದೆ",
+    "solanaAddressLabel": "ಸೋಲಾನಾ",
+    "solanaAddressHint": "SOL ಮತ್ತು SPL ಟೋಕನ್‌ಗಳು ಮಾತ್ರ",
+    "solanaAddressCopied": "ಸೋಲಾನಾ ವಿಳಾಸವನ್ನು ನಕಲಿಸಲಾಗಿದೆ"
   },
   "bookmarks": {
     "title": "ನಿಮ್ಮ ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು",

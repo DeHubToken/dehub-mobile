@@ -957,7 +957,14 @@
     "stake": "Stake",
     "cashOut": "Бароварда",
     "stakeComingSoon": "Staking ба наздикӣ!",
-    "cashOutComingSoon": "Бароварда ба наздикӣ!"
+    "cashOutComingSoon": "Бароварда ба наздикӣ!",
+    "chooseAddressNetwork": "Кадом шабака?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Пойгоҳи, BNB ва Ethereum",
+    "evmAddressCopied": "Адреси EVM нусхабардорӣ шудааст",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Танҳо нишонаҳои SOL ва SPL",
+    "solanaAddressCopied": "Суроғаи Solana нусхабардорӣ шудааст"
   },
   "features": {
     "title": "Дархостҳои имконият",

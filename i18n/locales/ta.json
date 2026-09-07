@@ -578,7 +578,13 @@
     "stake": "ஸ்டேக்",
     "cashOut": "கேஷ் அவுட்",
     "stakeComingSoon": "ஸ்டேக் விரைவில்!",
-    "cashOutComingSoon": "கேஷ் அவுட் விரைவில்!"
+    "cashOutComingSoon": "கேஷ் அவுட் விரைவில்!",
+    "chooseAddressNetwork": "எந்த நெட்வொர்க்?",
+    "evmAddressHint": "அடிப்படை, BNB மற்றும் Ethereum",
+    "evmAddressCopied": "EVM முகவரி நகலெடுக்கப்பட்டது",
+    "solanaAddressLabel": "சோலானா",
+    "solanaAddressHint": "SOL மற்றும் SPL டோக்கன்கள் மட்டுமே",
+    "solanaAddressCopied": "சோலானா முகவரி நகலெடுக்கப்பட்டது"
   },
   "publicChat": {
     "title": "பொது உரையாடல்",

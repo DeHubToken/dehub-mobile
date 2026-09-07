@@ -28,6 +28,7 @@ import { truncateAddress } from "../../libs/strings.util";
 import { formatJoinedDate } from "../../libs/date.util";
 import { formatCompactNumber, resolveCount } from "../../libs/numbers.util";
 import { shareProfile } from "../../libs/misc";
+import CopyAddressSheet from "../Wallet/CopyAddressSheet";
 import * as ImagePicker from "expo-image-picker";
 
 /** Matches the StoryAvatarRing `size={88}` below. */
@@ -55,6 +56,7 @@ const ProfileHeader = () => {
   const { refreshUser, patchUser } = useAuthActions();
   const [translatedBio, setTranslatedBio] = useState<string | null>(null);
   const [isTranslatingBio, setIsTranslatingBio] = useState(false);
+  const [copyAddressVisible, setCopyAddressVisible] = useState(false);
   // The reader's chosen language, not the handset's: a Turkish reader on an
   // English phone was being served "translations" back into English.
   //
@@ -463,8 +465,8 @@ const ProfileHeader = () => {
                   {shortAddr}
                 </Text>
                 <TouchableOpacity
-                  onPress={() => copyToClipboard(address)}
-                  accessibilityLabel="Copy address"
+                  onPress={() => setCopyAddressVisible(true)}
+                  accessibilityLabel={t("wallet.copyAddress")}
                   hitSlop={{ top: 16, right: 16, bottom: 16, left: 16 }}
                 >
                   <Ionicons name="copy-outline" size={13} color="#808089" />
@@ -512,6 +514,15 @@ const ProfileHeader = () => {
           </View>
         </View>
       </View>
+
+      {/* This is your own profile, so both address spaces are known — which is
+          why the picker belongs here and not on someone else's header, where
+          only the EVM address is ever available. */}
+      <CopyAddressSheet
+        visible={copyAddressVisible}
+        onClose={() => setCopyAddressVisible(false)}
+        evmAddress={address}
+      />
     </View>
   );
 };

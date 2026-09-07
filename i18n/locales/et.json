@@ -965,7 +965,14 @@
     "stake": "Panusta",
     "cashOut": "Võta raha välja",
     "stakeComingSoon": "Panustamine varsti!",
-    "cashOutComingSoon": "Raha väljavõtmine varsti!"
+    "cashOutComingSoon": "Raha väljavõtmine varsti!",
+    "chooseAddressNetwork": "Milline võrk?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB ja Ethereum",
+    "evmAddressCopied": "EVM-aadress on kopeeritud",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Ainult SOL-i ja SPL-i märgid",
+    "solanaAddressCopied": "Solana aadress kopeeritud"
   },
   "bookmarks": {
     "title": "Sinu järjehoidjad",

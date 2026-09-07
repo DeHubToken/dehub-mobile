@@ -965,7 +965,14 @@
     "stake": "स्तम्भयतु",
     "cashOut": "नकदीकुर्वन्तु",
     "stakeComingSoon": "स्तम्भनं शीघ्रम् आगमिष्यति!",
-    "cashOutComingSoon": "नकदीकरणं शीघ्रम् आगमिष्यति!"
+    "cashOutComingSoon": "नकदीकरणं शीघ्रम् आगमिष्यति!",
+    "chooseAddressNetwork": "कीदृशं जालम्?",
+    "evmAddressLabel": "ईवीएम",
+    "evmAddressHint": "BNB, BNB और Ethereum",
+    "evmAddressCopied": "ईवीएम पताः copyed",
+    "solanaAddressLabel": "सोलाना",
+    "solanaAddressHint": "केवल एससी/एसटी/एसटी",
+    "solanaAddressCopied": "SOLANA पते की प्रतिलिपि बनाई गई"
   },
   "bookmarks": {
     "title": "भवतः पुस्तकचिह्नानि",
