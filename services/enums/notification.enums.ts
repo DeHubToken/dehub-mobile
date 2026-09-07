@@ -113,9 +113,9 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
     case NotificationType.NEW_MESSAGE:
       return { name: 'Mail', color: '#F4F4F5' };
     case NotificationType.VIDEO_REMOVAL:
-      return { name: 'AlertCircle', color: '#D4D4D8' };
+      return { name: 'CircleAlert', color: '#D4D4D8' };
     case NotificationType.ACCOUNT_WARNING:
-      return { name: 'AlertTriangle', color: '#D4D4D8' };
+      return { name: 'TriangleAlert', color: '#D4D4D8' };
     case NotificationType.SYSTEM:
       return { name: 'Info', color: '#8B8D90' };
     case NotificationType.FIAT_PAYMENT_COMPLETED:
