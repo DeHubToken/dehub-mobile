@@ -4,6 +4,7 @@ import GlassModal from "../ui/GlassModal";
 import {
   AuthButton,
   AuthDivider,
+  AuthErrorNotice,
   AuthField,
   AuthIconButton,
   AuthTextButton,
@@ -22,7 +23,7 @@ import { SUPPORTED_NETWORKS } from "../../config/web3.constants";
 import { createLocalEip1193Provider } from "../../services/localwallet.provider";
 import { setSigningProvider, setEoaSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
-import { toastError, toastInfo, toastWarning } from "../../libs";
+import { toastInfo, toastWarning } from "../../libs";
 import { getPreferredChainId } from "../../libs/auth.utils";
 
 export interface ImportWalletModalProps {
@@ -42,6 +43,9 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
     const [isImporting, setIsImporting] = useState<boolean>(false);
   const [accounts, setAccounts] = useState<LocalAccount[]>([]);
   const [clipboardPk, setClipboardPk] = useState<string | null>(null);
+  // Errors render inside the sheet: on Android a toast is drawn under the
+  // sheet's Dialog window, so a failed import used to look like nothing.
+  const [error, setError] = useState<string | null>(null);
 
     const busy = (authLoading || isImporting) && !needsUsername;
 
@@ -96,6 +100,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
       let address: string | undefined;
       try {
         setIsImporting(true);
+        setError(null);
         address = deriveAddressFromPrivateKey(privateKey)?.toLowerCase();
         if (!address) throw new Error("Invalid private key");
         // Choose preferred chain (fallback to Base) for local EIP-1193 provider
@@ -128,7 +133,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           await removeLocalAccount(address).catch(() => {});
         }
         if (!reportWalletSignupBlocked(e)) {
-          toastError(e, "Could not import wallet");
+          setError((e as any)?.message || "Could not import wallet");
         }
       } finally {
         setIsImporting(false);
@@ -139,6 +144,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
       async (address: string) => {
         try {
           setIsImporting(true);
+        setError(null);
           const pk = await getPrivateKeyForAddress(address, {
             purpose: "Unlock this DeHub wallet to use it",
             onUnverified: () =>
@@ -147,7 +153,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
               ),
           });
           if (!pk) {
-            toastError(
+            setError(
               "No private key is stored for this account. Please re-import this wallet to link its key."
             );
             return;
@@ -170,7 +176,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           }
         } catch (e: any) {
           if (!reportWalletSignupBlocked(e)) {
-            toastError(e, "Failed to use this account");
+            setError((e as any)?.message || "Failed to use this account");
           }
         } finally {
           setIsImporting(false);
@@ -244,6 +250,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
               align="end"
             />
           ) : null}
+          <AuthErrorNotice message={error} style={{ marginBottom: 12 }} />
           <AuthButton
             variant="primary"
             icon="key"
