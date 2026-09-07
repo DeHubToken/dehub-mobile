@@ -676,6 +676,7 @@ export default function HomeScreen() {
         params={feedListParamsByType[feedType]}
         pageSize={10}
         headerInset={headerHeight}
+        headerTranslateY={headerTranslateY}
         onRefresh={handleRefresh}
         onScrollBegin={handleScrollBegin}
         scrollHandler={scrollHandler}
