@@ -360,10 +360,10 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
               }}
             >
               <PushNotificationsProvider>
-                <UserProfileSheetProvider>
-                  <MessagingProvider>
-                    <CallProvider>
-                      <StageProvider>
+                <StageProvider>
+                  <UserProfileSheetProvider>
+                    <MessagingProvider>
+                      <CallProvider>
                         <RootNavigator />
                         <NewMemberRegistrar />
                         <CallModalsHost />
@@ -372,10 +372,10 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                         <StageMiniPlayer />
                         <StageRecordingMiniPlayer />
                         <RadioMiniPlayer />
-                      </StageProvider>
-                    </CallProvider>
-                  </MessagingProvider>
-                </UserProfileSheetProvider>
+                      </CallProvider>
+                    </MessagingProvider>
+                  </UserProfileSheetProvider>
+                </StageProvider>
               </PushNotificationsProvider>
             </NavigationContainer>
           </ErrorBoundary>
