@@ -4,6 +4,18 @@
 import i18n from "i18next";
 import { pad } from './numbers.util';
 
+/**
+ * Parse a date-only string (YYYY-MM-DD) as a local calendar day. `new Date`
+ * treats that form as UTC midnight, which west of UTC displays as the day
+ * before; anything else falls through to the normal parser.
+ */
+export function parseDateOnly(value: string | Date): Date {
+  if (value instanceof Date) return value;
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  if (m) return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  return new Date(value);
+}
+
 /** Convert seconds to H:MM:SS or MM:SS */
 export function secondsToHMMSS(totalSeconds?: number): string | undefined {
   if (totalSeconds === undefined || totalSeconds === null) return undefined;

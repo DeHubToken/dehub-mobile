@@ -26,6 +26,7 @@ import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useAuthState } from "../context/AuthContext";
+import { parseDateOnly } from "../libs/date.util";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
   useCreateJob,
@@ -333,7 +334,7 @@ export default function WorkPostScreen() {
                 )}
                 {showDatePicker && (
                   <DateTimePicker
-                    value={deadline ? new Date(deadline) : new Date()}
+                    value={deadline ? parseDateOnly(deadline) : new Date()}
                     mode="date"
                     display={Platform.OS === "ios" ? "spinner" : "default"}
                     minimumDate={new Date()}
