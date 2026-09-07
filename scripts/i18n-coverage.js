@@ -86,7 +86,9 @@ const scanFallbackOnlyKeys = () => {
       let match;
       while ((match = CALL.exec(source))) {
         const key = match[1];
-        if (key in en) continue;
+        // A plural call passes {count} as its second argument and stores
+        // key_one / key_other, never the bare key, so look for the forms too.
+        if (key in en || `${key}_one` in en || `${key}_other` in en) continue;
         const rel = path.relative(REPO, full).replace(/\\/g, '/');
         if (!found.has(key)) found.set(key, new Set());
         found.get(key).add(rel);
