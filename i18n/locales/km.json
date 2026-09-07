@@ -2633,7 +2633,9 @@
     "yourDhb": "DHB របស់អ្នក"
   },
   "digest": {
-    "someone": "នរណាម្នាក់"
+    "someone": "នរណាម្នាក់",
+    "andOthers_one": "{{names}} និង {{count}} ផ្សេងទៀត",
+    "andOthers_other": "{{names}} និង {{count}} អ្នកផ្សេងទៀត"
   },
   "publicChatAlerts": {
     "title": "ការជជែកជាសាធារណៈ",

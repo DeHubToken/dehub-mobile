@@ -2597,13 +2597,16 @@
     "yourDhb": "ਤੁਹਾਡਾ DHB"
   },
   "digest": {
-    "someone": "ਕੋਈ"
+    "someone": "ਕੋਈ",
+    "andOthers_one": "{{names}} ਅਤੇ {{count}} ਹੋਰ",
+    "andOthers_other": "{{names}} ਅਤੇ {{count}} ਹੋਰ"
   },
   "publicChatAlerts": {
     "title": "ਜਨਤਕ ਚੈਟ",
     "mentionTitle": "ਜਨਤਕ ਚੈਟ ਵਿੱਚ ਜ਼ਿਕਰ ਕੀਤਾ",
     "voiceMessage": "ਆਵਾਜ਼ ਸੁਨੇਹਾ",
-    "image": "ਇੱਕ ਚਿੱਤਰ ਭੇਜਿਆ"
+    "image": "ਇੱਕ ਚਿੱਤਰ ਭੇਜਿਆ",
+    "digest": "{{count}} {{who}} ਤੋਂ ਨਵੇਂ ਸੁਨੇਹੇਃ {{message}}"
   },
   "liveChat": {
     "attach": "ਇੱਕ ਫੋਟੋ, GIF ਜਾਂ ਇਮੋਜੀ ਸ਼ਾਮਲ ਕਰੋ",

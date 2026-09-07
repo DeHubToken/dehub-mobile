@@ -2597,7 +2597,9 @@
     "yourDhb": "तुमचे DHB"
   },
   "digest": {
-    "someone": "कोणीतरी"
+    "someone": "कोणीतरी",
+    "andOthers_one": "{{names}} आणि {{count}} इतर",
+    "andOthers_other": "{{names}} आणि {{count}} इतर"
   },
   "publicChatAlerts": {
     "title": "सार्वजनिक गप्पा",

@@ -2593,7 +2593,9 @@
     "yourDhb": "Siziň DHB-ňyz"
   },
   "digest": {
-    "someone": "Biriniň"
+    "someone": "Biriniň",
+    "andOthers_one": "{{names}} we {{count}} başgalar",
+    "andOthers_other": "{{names}} we {{count}} başgalar"
   },
   "publicChatAlerts": {
     "title": "Halkara gürrüňdeşlik",

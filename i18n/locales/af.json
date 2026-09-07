@@ -2718,7 +2718,9 @@
     "yourDhb": "Jou DHB"
   },
   "digest": {
-    "someone": "Iemand"
+    "someone": "Iemand",
+    "andOthers_one": "{{names}} en {{count}} ander",
+    "andOthers_other": "{{names}} en {{count}} ander"
   },
   "publicChatAlerts": {
     "title": "Publieke klets",

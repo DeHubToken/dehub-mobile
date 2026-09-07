@@ -2594,13 +2594,16 @@
     "yourDhb": "DHB-gaaga"
   },
   "digest": {
-    "someone": "Qof"
+    "someone": "Qof",
+    "andOthers_one": "{{names}} iyo {{count}} kale",
+    "andOthers_other": "{{names}} iyo {{count}} kuwa kale"
   },
   "publicChatAlerts": {
     "title": "Wada sheekaysiga dadweynaha",
     "mentionTitle": "Waxaa lagu xusay wada sheekaysiga dadweynaha",
     "voiceMessage": "Fariin cod ah",
-    "image": "Soo diray image ah"
+    "image": "Soo diray image ah",
+    "digest": "{{count}} farriimaha cusub ee {{who}}: {{message}}"
   },
   "liveChat": {
     "attach": "Ku dar sawir, GIF ama emoji",

@@ -2594,7 +2594,9 @@
     "yourDhb": "Сиздин DHB"
   },
   "digest": {
-    "someone": "Кимдир бирөө"
+    "someone": "Кимдир бирөө",
+    "andOthers_one": "{{names}} жана {{count}} башка",
+    "andOthers_other": "{{names}} жана {{count}} башкалар"
   },
   "publicChatAlerts": {
     "title": "Коомдук баарлашуу",

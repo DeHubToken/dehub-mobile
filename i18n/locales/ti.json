@@ -2592,7 +2592,9 @@
     "yourDhb": "DHB ናትካ"
   },
   "digest": {
-    "someone": "ሓደ ሰብ"
+    "someone": "ሓደ ሰብ",
+    "andOthers_one": "{{names}} and {{count}} ካልኦት",
+    "andOthers_other": "{{names}} and {{count}} ካልኦት"
   },
   "publicChatAlerts": {
     "title": "ህዝባዊ ዝርርብ",

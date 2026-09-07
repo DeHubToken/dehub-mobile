@@ -2625,7 +2625,9 @@
     "yourDhb": "I-DHB yakho"
   },
   "digest": {
-    "someone": "Othile"
+    "someone": "Othile",
+    "andOthers_one": "{{names}} no {{count}} okunye",
+    "andOthers_other": "{{names}} no {{count}} abanye"
   },
   "publicChatAlerts": {
     "title": "Ingxoxo yomphakathi",

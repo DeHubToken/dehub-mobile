@@ -2591,7 +2591,8 @@
     "yourDhb": "Таны DHB"
   },
   "digest": {
-    "someone": "Хэн нэгэн"
+    "someone": "Хэн нэгэн",
+    "andOthers_one": "{{names}} ба {{count}} бусад"
   },
   "publicChatAlerts": {
     "title": "Нийтийн чат",

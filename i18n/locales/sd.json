@@ -2592,7 +2592,9 @@
     "yourDhb": "توهان جو DHB"
   },
   "digest": {
-    "someone": "ڪو ماڻهو"
+    "someone": "ڪو ماڻهو",
+    "andOthers_one": "{{names}} ۽ {{count}} ٻيا",
+    "andOthers_other": "{{names}} ۽ {{count}} ٻيا"
   },
   "publicChatAlerts": {
     "title": "عوامي چيٽ",
