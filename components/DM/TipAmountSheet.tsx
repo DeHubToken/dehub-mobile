@@ -304,10 +304,11 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
 
 const styles = StyleSheet.create({
   sheet: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
+    // A flex-end child, not position:absolute/bottom:0. The parent
+    // KeyboardAvoidingView lifts content with padding on iOS, and Yoga ignores
+    // padding when placing an absolute child, so the sheet stayed welded to
+    // the physical bottom under the number pad.
+    marginTop: "auto",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: "hidden",
