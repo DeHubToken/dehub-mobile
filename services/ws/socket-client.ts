@@ -272,6 +272,17 @@ export class WebSocketClient {
     this.destroySocketOnly();
   }
 
+  /**
+   * Drop the transport without retiring the client: listeners registered
+   * through on() survive and a later connect() rebuilds the socket. Used while
+   * the app is in the background; disconnect() would make connect() a no-op.
+   */
+  detach() {
+    this.stopHeartbeat();
+    this.stopPingCheck();
+    this.destroySocketOnly();
+  }
+
   private startHeartbeat() {
     this.stopHeartbeat();
     // Match frontend: emit 'heartbeat' every ~10s by default; respect configured interval
