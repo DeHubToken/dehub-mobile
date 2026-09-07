@@ -40,7 +40,6 @@ import {
   StyleSheet,
 } from "react-native";
 import { Image } from "expo-image";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import type { IconName } from "../ui/Icon";
@@ -257,7 +256,6 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
   const { t } = useTranslation();
   const user = useUser() as any;
   const { showUserProfile } = useUserProfileSheet();
-  const insets = useSafeAreaInsets();
 
   /**
    * Edge-to-edge (Expo 54 / targetSdk 35) makes Android ignore `adjustResize`:
@@ -646,11 +644,10 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
         </Text>
       )}
 
-      {/* The panel is the last thing on the screen with no tab bar beneath it, so
-          the composer clears the home indicator itself - but only at rest. With
-          the keyboard up the lift above has already spent that band, and counting
-          it twice left a dead strip between the composer and the keys. */}
-      <View style={[styles.composer, { paddingBottom: 8 + (keyboardUp ? 0 : insets.bottom) }]}>
+      {/* No insets.bottom pad here, at rest or otherwise: the root SafeAreaView
+          above the navigator already ends this panel above the home indicator,
+          and paying it again floated the composer a full band too high. */}
+      <View style={[styles.composer, { paddingBottom: 8 }]}>
         {composerNotice ? (
           <View style={styles.noticeRow}>
             <Icon name={noticeIcon} size={14} color="#808089" />
