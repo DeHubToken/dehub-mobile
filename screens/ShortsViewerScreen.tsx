@@ -47,7 +47,9 @@ import {
   ActivityIndicator,
   StyleProp,
   ViewStyle,
+  Platform,
 } from "react-native";
+import useKeyboard from "../hooks/useKeyboard";
 import { runOnJS, useSharedValue } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
@@ -272,6 +274,7 @@ interface ShortItemProps {
   item: UnifiedFeedItem;
   isActive: boolean;
   itemHeight: number;
+  viewportHeight: number;
   /** Viewer-level, so mute and speed carry across shorts as they do on web. */
   isMuted: boolean;
   playbackRate: number;
@@ -286,9 +289,10 @@ interface ShortItemProps {
    * and used to stay on screen through a "hide the chrome" gesture.
    */
   onChromeVisibilityChange: (visible: boolean) => void;
+  onCommentsVisibilityChange: (visible: boolean) => void;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMuted, playbackRate, pagerGesture, onChromeVisibilityChange }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, viewportHeight, isMuted, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
   const navigation = useNavigation<any>();
   const user = useUser();
   const { requireAuth } = useAuthActions();
@@ -398,6 +402,18 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
   const pickerOpen = openTray !== null;
   const [showReactionInfo, setShowReactionInfo] = useState(false);
   const [showComments, setShowComments] = useState(false);
+  const { height: keyboardHeight } = useKeyboard();
+  // Android resizes the screen; iOS overlays the keyboard.
+  const keyboardOffset = showComments
+    ? Math.max(0, itemHeight - viewportHeight) + (Platform.OS === "ios" ? keyboardHeight : 0)
+    : 0;
+  const splitHeight = Math.max(0, itemHeight - keyboardOffset) / 2;
+
+  useEffect(() => {
+    if (!isActive) return;
+    onCommentsVisibilityChange(showComments);
+    return () => onCommentsVisibilityChange(false);
+  }, [isActive, showComments, onCommentsVisibilityChange]);
   const [showTipModal, setShowTipModal] = useState(false);
   const [showShareSheet, setShowShareSheet] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -873,7 +889,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
     }
   }, [is2xSpeed, screenshotMode, player]);
 
-  const chromeVisible = !screenshotMode && !overlaysHidden && !autoHidden;
+  const chromeVisible = !showComments && !screenshotMode && !overlaysHidden && !autoHidden;
 
   // Swiping to another short brings the chrome back with it, so a cleared
   // frame never carries over to the next one.
@@ -944,18 +960,18 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
         onLongPress={handleLongPressIn}
         onPressOut={handleLongPressOut}
         delayLongPress={400}
-        style={StyleSheet.absoluteFill}
+        style={[StyleSheet.absoluteFill, showComments && { bottom: undefined, height: splitHeight, backgroundColor: "#000" }]}
       >
         {player ? (
           <VideoView
             player={player}
             style={StyleSheet.absoluteFill}
-            contentFit="cover"
+            contentFit={showComments ? "contain" : "cover"}
             nativeControls={false}
             pointerEvents="none"
           />
         ) : thumbnail ? (
-          <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="cover" pointerEvents="none" />
+          <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit={showComments ? "contain" : "cover"} pointerEvents="none" />
         ) : (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
         )}
@@ -1222,6 +1238,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
       {tokenId != null && (
         <CommentBottomSheet
           visible={showComments}
+          inlineHeight={splitHeight}
+          bottomOffset={keyboardOffset}
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           commentsDisabled={!!(item as any).commentsDisabled}
@@ -1273,6 +1291,7 @@ const ShortsViewerScreen = () => {
   const fetchingRef = useRef(false);
   const shuffleSeedRef = useRef<string | undefined>(feedParams.shuffleSeed);
   const [containerHeight, setContainerHeight] = useState(SCREEN_HEIGHT);
+  const [viewportHeight, setViewportHeight] = useState(SCREEN_HEIGHT);
   const [noMoreShorts, setNoMoreShorts] = useState(false);
   // True until the first page resolves when the viewer opened without items.
   const [initialLoading, setInitialLoading] = useState(initialItems.length === 0);
@@ -1285,6 +1304,7 @@ const ShortsViewerScreen = () => {
   // Clearing a short's chrome — by holding the middle of it, or by the
   // swipe-down — is reported up so the top bar goes with it.
   const [chromeVisible, setChromeVisible] = useState(true);
+  const [commentsVisible, setCommentsVisible] = useState(false);
   const topChromeOpacity = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
@@ -1322,8 +1342,12 @@ const ShortsViewerScreen = () => {
 
   const handleContainerLayout = useCallback((e: LayoutChangeEvent) => {
     const h = e.nativeEvent.layout.height;
-    if (h > 0) setContainerHeight(h);
-  }, []);
+    if (h <= 0) return;
+    setViewportHeight(h);
+    // Keep pager offsets stable while Android resizes for the reply keyboard.
+    // Only the active short's split area should shrink, not every list item.
+    if (!commentsVisible) setContainerHeight(h);
+  }, [commentsVisible]);
 
   /**
    * Fill in a caller that handed us only a tokenId.
@@ -1574,13 +1598,15 @@ const ShortsViewerScreen = () => {
         item={item}
         isActive={index === activeIndex}
         itemHeight={containerHeight}
+        viewportHeight={viewportHeight}
         isMuted={isMuted}
         playbackRate={playbackRate}
         pagerGesture={pagerGesture}
         onChromeVisibilityChange={setChromeVisible}
+        onCommentsVisibilityChange={setCommentsVisible}
       />
     ),
-    [activeIndex, containerHeight, isMuted, playbackRate, pagerGesture, setChromeVisible],
+    [activeIndex, containerHeight, viewportHeight, isMuted, playbackRate, pagerGesture, setChromeVisible],
   );
 
   const keyExtractor = useCallback(
@@ -1607,6 +1633,7 @@ const ShortsViewerScreen = () => {
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           pagingEnabled
+          scrollEnabled={!commentsVisible}
           horizontal={false}
           showsVerticalScrollIndicator={false}
           initialScrollIndex={initialIndex}

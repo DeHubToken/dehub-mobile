@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
-import { View, Text, Modal, Pressable, Dimensions, StyleSheet, Keyboard } from "react-native";
+import { View, Text, Modal, Pressable, Dimensions, StyleSheet, Keyboard, BackHandler } from "react-native";
 import { useTranslation } from "react-i18next";
 import Animated, {
   useAnimatedStyle,
@@ -30,6 +30,9 @@ const TAB_CONFIG: { key: SheetTab; icon: React.ComponentProps<typeof Icon>["name
 ];
 
 interface CommentBottomSheetProps {
+  /** Render within a shorts split view instead of covering the player. */
+  inlineHeight?: number;
+  bottomOffset?: number;
   visible: boolean;
   onClose: () => void;
   tokenId: number | string;
@@ -49,10 +52,13 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   contentType = "video",
   commentsDisabled = false,
   postCreator,
+  inlineHeight,
+  bottomOffset = 0,
 }) => {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
-  const SHEET_HEIGHT = SCREEN_HEIGHT * SHEET_FRACTION;
+  const inline = inlineHeight !== undefined;
+  const SHEET_HEIGHT = inlineHeight ?? SCREEN_HEIGHT * SHEET_FRACTION;
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
@@ -63,9 +69,14 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
 
   useEffect(() => {
     if (visible) {
-      setIsFullyClosed(false);
       setActiveTab("comments");
       setConfirming(false);
+    }
+  }, [visible]);
+
+  useEffect(() => {
+    if (visible) {
+      setIsFullyClosed(false);
       translateY.value = withTiming(0, {
         duration: 300,
         easing: Easing.out(Easing.cubic),
@@ -82,15 +93,20 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
     }
   }, [visible, translateY, backdropOpacity, SHEET_HEIGHT]);
 
+  const finishClose = useCallback(() => {
+    Keyboard.dismiss();
+    onClose();
+  }, [onClose]);
+
   const closeSheet = useCallback(() => {
     translateY.value = withTiming(SHEET_HEIGHT, {
       duration: 220,
       easing: Easing.in(Easing.cubic),
     }, () => {
-      runOnJS(onClose)();
+      runOnJS(finishClose)();
     });
     backdropOpacity.value = withTiming(0, { duration: 180 });
-  }, [translateY, backdropOpacity, onClose, SHEET_HEIGHT]);
+  }, [translateY, backdropOpacity, finishClose, SHEET_HEIGHT]);
 
   /**
    * Nothing closes this sheet out from under someone mid-sentence.
@@ -110,6 +126,15 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
     Keyboard.dismiss();
     setConfirming(true);
   }, [hasUnsent, closeSheet]);
+
+  useEffect(() => {
+    if (!inline || !visible) return;
+    const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
+      requestClose();
+      return true;
+    });
+    return () => subscription.remove();
+  }, [inline, visible, requestClose]);
 
   /** A swipe past the threshold: either it closes, or it springs back and asks. */
   const handleSwipeEnd = useCallback(() => {
@@ -151,25 +176,18 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
 
   if (!visible && isFullyClosed) return null;
 
-  return (
-    <Modal
-      visible={visible}
-      transparent
-      animationType="none"
-      statusBarTranslucent
-      onRequestClose={requestClose}
-    >
+  const content = (
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <Animated.View
+        {!inline && <Animated.View
           style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.5)" }, backdropStyle]}
         >
           <Pressable style={{ flex: 1 }} onPress={requestClose} />
-        </Animated.View>
+        </Animated.View>}
 
         <Animated.View
           style={[
             glassStyles.sheet,
-            { height: SHEET_HEIGHT, paddingBottom: insets.bottom },
+            { height: SHEET_HEIGHT, paddingBottom: inline ? 0 : insets.bottom },
             sheetStyle,
           ]}
         >
@@ -179,7 +197,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
           <View style={[StyleSheet.absoluteFill, glassStyles.overlay]} />
 
           <GestureDetector gesture={gesture}>
-            <Animated.View className="items-center py-2.5">
+            <Animated.View style={{ height: inline ? 44 : 24, alignItems: "center", justifyContent: "center" }}>
               <View style={{ width: 36, height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.2)" }} />
             </Animated.View>
           </GestureDetector>
@@ -208,6 +226,11 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
             })}
 
 
+            {inline && (
+              <Pressable onPress={requestClose} accessibilityRole="button" accessibilityLabel="Close comments" style={{ marginLeft: "auto", padding: 8 }}>
+                <Icon name="ChevronDown" size={22} color="#F9FBFF" />
+              </Pressable>
+            )}
           </View>
 
           {activeTab === "comments" && (
@@ -219,6 +242,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
               commentsDisabled={commentsDisabled}
               postCreator={postCreator}
               onDirtyChange={onDirtyChange}
+              keyboardHandled={inline}
             />
           )}
 
@@ -259,6 +283,14 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
           )}
         </Animated.View>
       </GestureHandlerRootView>
+  );
+
+  if (inline) {
+    return <View style={{ position: "absolute", left: 0, right: 0, bottom: bottomOffset, height: SHEET_HEIGHT, overflow: "hidden" }}>{content}</View>;
+  }
+  return (
+    <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={requestClose}>
+      {content}
     </Modal>
   );
 };
