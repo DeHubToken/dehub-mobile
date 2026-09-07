@@ -27,6 +27,7 @@ import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
 import { getPreferredChainId } from "../../libs/auth.utils";
 import { KeyboardAvoidingView } from "react-native";
 import { CommonActions } from "@react-navigation/native";
+import { useKeyboardOffset } from "../../hooks/useKeyboardLayout";
 import { AuthService } from "../../services";
 import { createLogger } from "../../libs/logger";
 import {
@@ -71,6 +72,10 @@ interface SignInScreenProps {
 }
 
 const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
+  // The keyboard offset is the chrome above the KeyboardAvoidingView, which
+  // here is the status-bar inset alone. A literal 64 over-lifted the form by
+  // up to 44pt on SE/8-class iPhones and iPads.
+  const keyboardOffset = useKeyboardOffset(0);
   const [isLocalLoading, setIsLocalLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
   const [authStep, setAuthStep] = useState<"main" | "email-code" | "phone-code">("main");
@@ -678,7 +683,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           shrinks the hook can never see the field as clipped either. */}
       <KeyboardAvoidingView
         behavior="padding"
-        keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+        keyboardVerticalOffset={Platform.OS === "ios" ? keyboardOffset : 0}
         style={{ flex: 1 }}
       >
         <ScrollView
