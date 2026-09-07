@@ -27,6 +27,8 @@ import {
   ScrollView,
   ActivityIndicator,
   TextInput,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { ShoppingBag, X, Package } from "lucide-react-native";
 import {
@@ -219,7 +221,13 @@ export function CheckoutSheet({
 
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <View className="flex-1 justify-end bg-black/60">
+      {/* The shipping and note inputs sit near the bottom of the sheet; without
+          this the keyboard covered them on both platforms (edge-to-edge Android
+          ignores adjustResize, iOS never resizes a modal window). */}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        className="flex-1 justify-end bg-black/60"
+      >
         <View className="bg-zinc-900 rounded-t-3xl border-t border-white/10 px-4 pt-4 pb-8">
           <View className="flex-row items-center justify-between mb-4">
             <Text className="text-white font-semibold text-base flex-1 mr-3" numberOfLines={1}>
@@ -335,7 +343,7 @@ export function CheckoutSheet({
             </Text>
           ) : null}
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 }
