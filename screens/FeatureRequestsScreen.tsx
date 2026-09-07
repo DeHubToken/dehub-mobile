@@ -43,7 +43,7 @@ import {
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
 import Avatar from "../components/common/Avatar";
 import { runWithPermissions } from "../libs/permissions.util";
@@ -58,6 +58,7 @@ import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import {
   useFeatureRequests,
+  useFeatureRequest,
   useShippedFeatures,
   useInProgressFeatures,
   useFeatureCounts,
@@ -375,11 +376,13 @@ const FeatureCard: React.FC<{
   myVote: number | undefined;
   onVote: (voteType: 1 | -1) => void;
   isAuthed: boolean;
-}> = ({ feature, myVote, onVote, isAuthed }) => {
+  /** Open the thread on mount — set by a comment notification's deep link. */
+  defaultCommentsOpen?: boolean;
+}> = ({ feature, myVote, onVote, isAuthed, defaultCommentsOpen = false }) => {
   const { t } = useTranslation();
   const user = useUser() as any;
   const { showUserProfile } = useUserProfileSheet();
-  const [showComments, setShowComments] = useState(false);
+  const [showComments, setShowComments] = useState(defaultCommentsOpen);
   const [editing, setEditing] = useState(false);
 
   const editMutation = useEditFeatureRequest();
@@ -870,13 +873,26 @@ export default function FeatureRequestsScreen() {
   const voteMutation = useVoteFeatureRequest();
   const submitMutation = useSubmitFeatureRequest();
 
+  // A notification about one request pins it above the board. The list query
+  // can't be relied on to hold it — it may be shipped, declined, outside the
+  // active category, or pages down the infinite scroll — so it is fetched by id
+  // and rendered on its own, then dropped from whichever list would repeat it.
+  const route = useRoute<any>();
+  const focusedRequestId: string | undefined = route.params?.requestId;
+  const focusedCommentId: string | undefined = route.params?.commentId;
+  const { data: focusedRequest } = useFeatureRequest(focusedRequestId);
+
   const requestItems = useMemo(() => data?.pages.flat() ?? [], [data]);
-  const items =
+  const rawItems =
     tab === "shipped"
       ? shipped.data ?? []
       : tab === "shipping"
         ? inProgress.data ?? []
         : requestItems;
+  const items = useMemo(
+    () => (focusedRequest ? rawItems.filter((f) => f.id !== focusedRequest.id) : rawItems),
+    [rawItems, focusedRequest],
+  );
 
   const totalCount = counts?.total ?? requestItems.length;
   const openCount = counts?.open ?? requestItems.length;
@@ -1131,6 +1147,17 @@ export default function FeatureRequestsScreen() {
             paddingTop: 8,
             gap: 12,
           }}
+          ListHeaderComponent={
+            focusedRequest ? (
+              <FeatureCard
+                feature={focusedRequest}
+                myVote={votes?.[focusedRequest.id]}
+                onVote={(v) => handleVote(focusedRequest, v)}
+                isAuthed={isAuthed}
+                defaultCommentsOpen={!!focusedCommentId}
+              />
+            ) : null
+          }
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           refreshControl={
