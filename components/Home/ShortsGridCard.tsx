@@ -25,6 +25,93 @@ interface ShortsGridCardProps {
   onUnavailable?: (key: string) => void;
 }
 
+/**
+ * The autoplaying preview for one visible cell. Mounted only while the cell is
+ * in view, so off-screen cells hold no native player at all; unmounting
+ * releases the player, which is what used to be done by hand on visibility.
+ */
+const CellPreview: React.FC<{ previewUrl: string }> = ({ previewUrl }) => {
+  const [hasStarted, setHasStarted] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  // Android can hand the VideoView a surface still holding a frame from another
+  // cell's video; stay transparent until THIS source draws its first frame.
+  const [firstFrameRendered, setFirstFrameRendered] = useState(false);
+  const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isPlayingRef = useRef(false);
+
+  const player = useVideoPlayer(previewUrl, (p) => {
+    p.loop = true;
+    p.muted = true;
+    p.bufferOptions = FEED_BUFFER_OPTIONS;
+  });
+
+  useEffect(() => {
+    // New player instance = new source; the previous first frame no longer counts.
+    setFirstFrameRendered(false);
+    if (!player) return;
+    const subs: Array<{ remove: () => void }> = [];
+    try {
+      subs.push(
+        player.addListener("statusChange", ({ status }) => {
+          if (status === "readyToPlay") setIsReady(true);
+        }),
+      );
+      subs.push(
+        player.addListener("playingChange", ({ isPlaying: playing }) => {
+          isPlayingRef.current = playing;
+        }),
+      );
+    } catch {}
+    return () => { subs.forEach((s) => { try { s.remove(); } catch {} }); };
+  }, [player]);
+
+  useEffect(() => {
+    if (!player || hasStarted) return;
+    autoplayTimerRef.current = setTimeout(() => {
+      // The cell may have been recycled/removed since this was scheduled, which
+      // releases the native player — guard so a released VideoPlayer access
+      // ("shared object already released") can't crash the JS thread.
+      if (!isPlayingRef.current && player) {
+        try {
+          player.muted = true;
+          player.play();
+          isPlayingRef.current = true;
+          setHasStarted(true);
+        } catch {}
+      }
+    }, AUTOPLAY_DELAY);
+    return () => { if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; } };
+  }, [player, hasStarted]);
+
+  useEffect(() => {
+    return () => {
+      if (autoplayTimerRef.current) clearTimeout(autoplayTimerRef.current);
+      try { player?.pause(); } catch {}
+      // Stop expo-video's native time-update clock before release (Android
+      // never zeroes it on close).
+      try { player.timeUpdateEventInterval = 0; } catch {}
+    };
+  }, [player]);
+
+  const showVideo = hasStarted && isReady && firstFrameRendered;
+
+  return (
+    <View style={StyleSheet.absoluteFill} pointerEvents="none">
+      <VideoView
+        player={player}
+        style={[StyleSheet.absoluteFill, { opacity: showVideo ? 1 : 0 }]}
+        contentFit="cover"
+        nativeControls={false}
+        onFirstFrameRender={() => setFirstFrameRendered(true)}
+        // TextureView instead of Android's default SurfaceView so the video
+        // renders in the view hierarchy and can't punch through / overlap
+        // other grid cells while scrolling.
+        surfaceType="textureView"
+      />
+    </View>
+  );
+};
+
 const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, isVisible = false, onPress, onUnavailable }) => {
   const tokenId = item.tokenId ?? item.id;
   const mediaKey = String(tokenId);
@@ -67,11 +154,6 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   const views = resolveViewCount(item);
   const likes = (item as any).totalVotes?.for || item.likes || 0;
 
-  const [hasStarted, setHasStarted] = useState(false);
-  const [isReady, setIsReady] = useState(false);
-  // Android can hand the VideoView a surface still holding a frame from another
-  // cell's video; stay transparent until THIS source draws its first frame.
-  const [firstFrameRendered, setFirstFrameRendered] = useState(false);
   // The thumbnail is the always-visible base layer; if it can't load (or there's
   // no poster at all) the cell is just a grey box, so treat the card as broken
   // and let the grid remove it rather than showing a dead short.
@@ -84,79 +166,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   useEffect(() => {
     if (thumbFailed) onUnavailable?.(mediaKey);
   }, [thumbFailed, mediaKey, onUnavailable]);
-  const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const isPlayingRef = useRef(false);
-
-  // Only attach the media source while the cell is visible — the 2-column
-  // grid keeps 20+ cells mounted, and a live ExoPlayer per cell was causing
-  // OutOfMemoryError on Android.
-  const player = useVideoPlayer(isVisible && previewUrl ? previewUrl : null, (p) => {
-    p.loop = true;
-    p.muted = true;
-    p.bufferOptions = FEED_BUFFER_OPTIONS;
-  });
-
-  useEffect(() => {
-    // New player instance = new source; the previous first frame no longer counts.
-    setFirstFrameRendered(false);
-    if (!player) return;
-    const subs: Array<{ remove: () => void }> = [];
-    try {
-      subs.push(
-        player.addListener("statusChange", ({ status }) => {
-          if (status === "readyToPlay") setIsReady(true);
-        }),
-      );
-      subs.push(
-        player.addListener("playingChange", ({ isPlaying: playing }) => {
-          isPlayingRef.current = playing;
-        }),
-      );
-    } catch {}
-    return () => { subs.forEach((s) => { try { s.remove(); } catch {} }); };
-  }, [player]);
-
-  useEffect(() => {
-    if (!player || !previewUrl) return;
-
-    if (!isVisible) {
-      if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; }
-      if (isPlayingRef.current) { try { player.pause(); } catch {} isPlayingRef.current = false; }
-      setHasStarted(false);
-      setIsReady(false);
-      setFirstFrameRendered(false);
-      return;
-    }
-
-    if (hasStarted) return;
-
-    autoplayTimerRef.current = setTimeout(() => {
-      // The cell may have been recycled/removed since this was scheduled, which
-      // releases the native player — guard so a released VideoPlayer access
-      // ("shared object already released") can't crash the JS thread.
-      if (!isPlayingRef.current && player) {
-        try {
-          player.muted = true;
-          player.play();
-          isPlayingRef.current = true;
-          setHasStarted(true);
-        } catch {}
-      }
-    }, AUTOPLAY_DELAY);
-
-    return () => { if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; } };
-  }, [player, previewUrl, isVisible, hasStarted]);
-
-  useEffect(() => {
-    return () => {
-      if (autoplayTimerRef.current) clearTimeout(autoplayTimerRef.current);
-      try { player?.pause(); } catch {}
-    };
-  }, [player]);
-
   const handlePress = useCallback(() => onPress(index), [onPress, index]);
-
-  const showVideo = hasStarted && isReady && firstFrameRendered;
 
   // Broken/missing media — render nothing; the grid drops it via onUnavailable.
   if (thumbFailed) return null;
@@ -174,22 +184,11 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
         onError={() => setThumbFailed(true)}
       />
 
-      {/* Video preview layer — fades in once ready */}
-      {player && previewUrl && (
-        <View style={StyleSheet.absoluteFill} pointerEvents="none">
-          <VideoView
-            player={player}
-            style={[StyleSheet.absoluteFill, { opacity: showVideo ? 1 : 0 }]}
-            contentFit="cover"
-            nativeControls={false}
-            onFirstFrameRender={() => setFirstFrameRendered(true)}
-            // TextureView instead of Android's default SurfaceView so the video
-            // renders in the view hierarchy and can't punch through / overlap
-            // other grid cells while scrolling.
-            surfaceType="textureView"
-          />
-        </View>
-      )}
+      {/* Video preview layer — only the visible cells mount a player at all.
+          expo-video builds a native ExoPlayer in the constructor whether or not
+          a source is attached, so a player per mounted cell (20+ in this grid)
+          was a player object graph per cell regardless of the null source. */}
+      {isVisible && previewUrl && <CellPreview previewUrl={previewUrl} />}
 
       {/* Bottom gradient + info overlay */}
       <View style={styles.overlay} pointerEvents="none" />
