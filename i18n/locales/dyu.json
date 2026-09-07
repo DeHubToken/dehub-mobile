@@ -2516,5 +2516,15 @@
   },
   "signInSheet": {
     "continueAs": "Ka taa ɲɛ i n'a fɔ"
+  },
+  "subtitles": {
+    "title": "Sɛbɛnni duguma",
+    "on": "Dabɔlen",
+    "off": "Fagalen",
+    "writing": "Sɛbɛnni bɛ sɛbɛn…",
+    "noSpeech": "Kuma tɛ wideyo in kɔnɔ.",
+    "failed": "Sɛbɛnni ma se ka dilan.",
+    "preparing": "Sɛbɛnni bɛ labɛn.",
+    "fixLine": "Nin sira in latilen"
   }
 }

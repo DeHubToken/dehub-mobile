@@ -2515,5 +2515,15 @@
   },
   "signInSheet": {
     "continueAs": "Fortsett som"
+  },
+  "subtitles": {
+    "title": "Undertekster",
+    "on": "På",
+    "off": "Av",
+    "writing": "Skriver undertekster…",
+    "noSpeech": "Ingen tale i denne videoen.",
+    "failed": "Kunne ikke lage undertekster.",
+    "preparing": "Undertekster forberedes.",
+    "fixLine": "Rett gjeldende linje"
   }
 }

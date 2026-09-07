@@ -2517,5 +2517,15 @@
   },
   "signInSheet": {
     "continueAs": "Endelea kama"
+  },
+  "subtitles": {
+    "title": "Manukuu",
+    "on": "Imewashwa",
+    "off": "Imezimwa",
+    "writing": "Inaandika manukuu…",
+    "noSpeech": "Hakuna mazungumzo katika video hii.",
+    "failed": "Manukuu hayakuweza kutengenezwa.",
+    "preparing": "Manukuu yanaandaliwa.",
+    "fixLine": "Rekebisha mstari huu"
   }
 }

@@ -2615,5 +2615,15 @@
   },
   "signInSheet": {
     "continueAs": "Tohizo amin'ny maha"
+  },
+  "subtitles": {
+    "title": "Dikan-teny",
+    "on": "Mandeha",
+    "off": "Tsy mandeha",
+    "writing": "Manoratra dikan-teny…",
+    "noSpeech": "Tsy misy resaka ao amin'ity horonan-tsary ity.",
+    "failed": "Tsy afaka namorona dikan-teny.",
+    "preparing": "Efa omanina ny dikan-teny.",
+    "fixLine": "Ahitsio ity andalana ity"
   }
 }

@@ -2565,5 +2565,15 @@
   },
   "signInSheet": {
     "continueAs": "Şu hesapla devam et"
+  },
+  "subtitles": {
+    "title": "Altyazılar",
+    "on": "Açık",
+    "off": "Kapalı",
+    "writing": "Altyazılar yazılıyor…",
+    "noSpeech": "Bu videoda konuşma yok.",
+    "failed": "Altyazılar oluşturulamadı.",
+    "preparing": "Altyazılar hazırlanıyor.",
+    "fixLine": "Bu satırı düzelt"
   }
 }

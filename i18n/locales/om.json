@@ -2566,5 +2566,15 @@
   },
   "signInSheet": {
     "continueAs": "Akka kanatti itti fufi"
+  },
+  "subtitles": {
+    "title": "Barreeffama jalaa",
+    "on": "Banaa",
+    "off": "Cufaa",
+    "writing": "Barreeffama jalaa barreessaa jira…",
+    "noSpeech": "Viidiyoo kana keessa haasaan hin jiru.",
+    "failed": "Barreeffama jalaa uumuun hin dandaʼamne.",
+    "preparing": "Barreeffamni jalaa qophaaʼaa jira.",
+    "fixLine": "Sarara ammaa sirreessi"
   }
 }

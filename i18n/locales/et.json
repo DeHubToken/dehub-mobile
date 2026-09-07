@@ -2516,5 +2516,15 @@
   },
   "signInSheet": {
     "continueAs": "Jätka kui"
+  },
+  "subtitles": {
+    "title": "Subtiitrid",
+    "on": "Sees",
+    "off": "Väljas",
+    "writing": "Subtiitreid kirjutatakse…",
+    "noSpeech": "Selles videos pole kõnet.",
+    "failed": "Subtiitreid ei õnnestunud luua.",
+    "preparing": "Subtiitreid valmistatakse ette.",
+    "fixLine": "Paranda praegune rida"
   }
 }

@@ -2516,5 +2516,15 @@
   },
   "signInSheet": {
     "continueAs": "Belə davam et"
+  },
+  "subtitles": {
+    "title": "Altyazılar",
+    "on": "Açıq",
+    "off": "Bağlı",
+    "writing": "Altyazılar yazılır…",
+    "noSpeech": "Bu videoda danışıq yoxdur.",
+    "failed": "Altyazılar yaradıla bilmədi.",
+    "preparing": "Altyazılar hazırlanır.",
+    "fixLine": "Cari sətri düzəlt"
   }
 }

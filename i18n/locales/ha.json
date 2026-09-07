@@ -2516,5 +2516,15 @@
   },
   "signInSheet": {
     "continueAs": "Ci gaba a matsayin"
+  },
+  "subtitles": {
+    "title": "Fassarar rubutu",
+    "on": "A kunne",
+    "off": "A kashe",
+    "writing": "Ana rubuta fassarar…",
+    "noSpeech": "Babu magana a wannan bidiyo.",
+    "failed": "Ba a iya ƙirƙirar fassarar ba.",
+    "preparing": "Ana shirya fassarar.",
+    "fixLine": "Gyara layin da ake ciki"
   }
 }

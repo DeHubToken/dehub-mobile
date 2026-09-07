@@ -2571,5 +2571,15 @@
   },
   "signInSheet": {
     "continueAs": "Sifatida davom etish"
+  },
+  "subtitles": {
+    "title": "Subtitrlar",
+    "on": "Yoqilgan",
+    "off": "O‘chirilgan",
+    "writing": "Subtitrlar yozilmoqda…",
+    "noSpeech": "Bu videoda nutq yo‘q.",
+    "failed": "Subtitrlar yaratib bo‘lmadi.",
+    "preparing": "Subtitrlar tayyorlanmoqda.",
+    "fixLine": "Joriy qatorni tuzatish"
   }
 }

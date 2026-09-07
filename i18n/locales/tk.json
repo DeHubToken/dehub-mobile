@@ -2516,5 +2516,15 @@
   },
   "signInSheet": {
     "continueAs": "Şu hökmünde dowam et"
+  },
+  "subtitles": {
+    "title": "Subtitrler",
+    "on": "Açyk",
+    "off": "Ýapyk",
+    "writing": "Subtitrler ýazylýar…",
+    "noSpeech": "Bu wideoda gürrüň ýok.",
+    "failed": "Subtitrleri döredip bolmady.",
+    "preparing": "Subtitrler taýýarlanýar.",
+    "fixLine": "Häzirki setiri düzediň"
   }
 }

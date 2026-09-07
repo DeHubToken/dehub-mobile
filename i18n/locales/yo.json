@@ -2517,5 +2517,15 @@
   },
   "signInSheet": {
     "continueAs": "Tẹ̀síwájú gẹ́gẹ́ bí"
+  },
+  "subtitles": {
+    "title": "Àkọlé-ìsàlẹ̀",
+    "on": "Tàn",
+    "off": "Pa",
+    "writing": "Ń kọ àkọlé-ìsàlẹ̀…",
+    "noSpeech": "Kò sí ọ̀rọ̀ nínú fídíò yìí.",
+    "failed": "Kò lè ṣe àkọlé-ìsàlẹ̀.",
+    "preparing": "Ń múra àkọlé-ìsàlẹ̀ sílẹ̀.",
+    "fixLine": "Ṣàtúnṣe ìlà yìí"
   }
 }
