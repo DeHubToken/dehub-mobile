@@ -867,14 +867,10 @@ const NotificationScreen = () => {
     }
   }, []);
 
-  const navigateToFeed = useCallback((tokenId: number, commentId?: string, postType?: string) => {
-    if (postType === 'video' || postType === 'short') {
-      navigation.navigate(ScreenNames.ShortsViewer, {
-        initialIndex: 0,
-        initialItems: [{ tokenId, postType: 'short' } as any],
-      });
-      return;
-    }
+  // Every post type goes to the post page, matching the push-tap handler. The
+  // shorts viewer used to be seeded with a bare { tokenId } item, so the first
+  // slide had no creator, no caption and zero counts.
+  const navigateToFeed = useCallback((tokenId: number, commentId?: string, _postType?: string) => {
     navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
   }, [navigation]);
 
