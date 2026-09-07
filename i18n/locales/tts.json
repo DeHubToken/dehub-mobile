@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "เพิ่มเจ้าแล้ว! ยอด: {{balance}} DHB",
     "balanceTooLow": "ยอดต่ำเกินไป ({{balance}} DHB)",
     "refreshFailed": "เกิดข้อผิดพลาด",
-    "noWalletAddress": "บ่พบที่อยู่กระเป๋า"
+    "noWalletAddress": "บ่พบที่อยู่กระเป๋า",
+    "assets": "สินทรัพย์"
   },
   "explorePage": {
     "searchPlaceholder": "ค้นหาคน โพสต์ หรือเนื้อหา...",

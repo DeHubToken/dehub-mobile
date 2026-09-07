@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "Esat pievienots! Atlikums: {{balance}} DHB",
     "balanceTooLow": "Atlikums pārāk zems ({{balance}} DHB)",
     "refreshFailed": "Kaut kas neizdevās",
-    "noWalletAddress": "Maka adrese nav atrasta"
+    "noWalletAddress": "Maka adrese nav atrasta",
+    "assets": "Aktīvi"
   },
   "explorePage": {
     "searchPlaceholder": "Meklēt cilvēkus, ierakstus vai saturu...",

@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "Jeni shtuar! Bilanci: {{balance}} DHB",
     "balanceTooLow": "Bilanci shumë i ulët ({{balance}} DHB)",
     "refreshFailed": "Diçka shkoi keq",
-    "noWalletAddress": "Nuk u gjet adresë portofoli"
+    "noWalletAddress": "Nuk u gjet adresë portofoli",
+    "assets": "Asete"
   },
   "explorePage": {
     "searchPlaceholder": "Kërkoni për njerëz, postime, ose përmbajtje...",

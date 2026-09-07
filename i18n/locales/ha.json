@@ -1168,7 +1168,8 @@
     "addedToLeaderboard": "An ƙara ka! Ma'auni: {{balance}} DHB",
     "balanceTooLow": "Ma'auni ya yi ƙasa ({{balance}} DHB)",
     "refreshFailed": "Wani abu ya yi kuskure",
-    "noWalletAddress": "Ba a sami adireshin walat ba"
+    "noWalletAddress": "Ba a sami adireshin walat ba",
+    "assets": "Kadarori"
   },
   "features": {
     "title": "Buƙatun Fasaloli",

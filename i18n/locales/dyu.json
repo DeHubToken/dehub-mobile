@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "I bɛɛ kɔrɔbɔ! Kɔrɔbɔ: {{balance}} DHB",
     "balanceTooLow": "Kɔrɔbɔ ({{balance}} DHB)",
     "refreshFailed": "Kɔrɔbɔ bɔ",
-    "noWalletAddress": "Kɔrɔbɔ bɔ"
+    "noWalletAddress": "Kɔrɔbɔ bɔ",
+    "assets": "Nafolow"
   },
   "explorePage": {
     "searchPlaceholder": "Dɔ, kɔrɔbɔw, fɔlɔw fɛɛrɛ...",

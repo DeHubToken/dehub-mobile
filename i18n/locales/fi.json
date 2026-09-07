@@ -1191,7 +1191,8 @@
     "addedToLeaderboard": "Sinut on lisätty! Saldo: {{balance}} DHB",
     "balanceTooLow": "Saldo liian pieni ({{balance}} DHB)",
     "refreshFailed": "Jokin meni pieleen",
-    "noWalletAddress": "Lompakko-osoitetta ei löytynyt"
+    "noWalletAddress": "Lompakko-osoitetta ei löytynyt",
+    "assets": "Varat"
   },
   "explorePage": {
     "searchPlaceholder": "Etsi ihmisiä, julkaisuja tai sisältöä...",

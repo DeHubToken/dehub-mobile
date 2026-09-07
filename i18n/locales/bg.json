@@ -1076,7 +1076,8 @@
     "addedToLeaderboard": "Добавено! Баланс: {{balance}} DHB",
     "balanceTooLow": "Балансът е прекалено нисък ({{balance}} DHB)",
     "refreshFailed": "Възникна грешка",
-    "noWalletAddress": "Адресът на портфейла не е наличен"
+    "noWalletAddress": "Адресът на портфейла не е наличен",
+    "assets": "Активи"
   },
   "features": {
     "title": "Заявки за функции",

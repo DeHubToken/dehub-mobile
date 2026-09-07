@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "Əlavə edildiniz! Balans: {{balance}} DHB",
     "balanceTooLow": "Balans çox aşağıdır ({{balance}} DHB)",
     "refreshFailed": "Xəta baş verdi",
-    "noWalletAddress": "Cüzdan ünvanı tapılmadı"
+    "noWalletAddress": "Cüzdan ünvanı tapılmadı",
+    "assets": "Aktivlər"
   },
   "explorePage": {
     "searchPlaceholder": "İnsanlar, paylaşımlar və ya məzmun axtar...",

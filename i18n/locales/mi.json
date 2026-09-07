@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "Kua tāpiritia koe! Toenga: {{balance}} DHB",
     "balanceTooLow": "Toenga iti rawa ({{balance}} DHB)",
     "refreshFailed": "I hapa tētahi mea",
-    "noWalletAddress": "Kāore i kitea te wāhitau pūkoro moni"
+    "noWalletAddress": "Kāore i kitea te wāhitau pūkoro moni",
+    "assets": "Rawa"
   },
   "explorePage": {
     "searchPlaceholder": "Rapu tāngata, pānui, ihirangi rānei...",

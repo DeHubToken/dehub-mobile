@@ -1077,7 +1077,8 @@
     "addedToLeaderboard": "जोडले! शिल्लक: {{balance}} DHB",
     "balanceTooLow": "शिल्लक खूप कमी ({{balance}} DHB)",
     "refreshFailed": "त्रुटी आली",
-    "noWalletAddress": "वॉलेट पत्ता उपलब्ध नाही"
+    "noWalletAddress": "वॉलेट पत्ता उपलब्ध नाही",
+    "assets": "मालमत्ता"
   },
   "features": {
     "title": "वैशिष्ट्य विनंत्या",

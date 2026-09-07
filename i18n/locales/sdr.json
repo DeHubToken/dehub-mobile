@@ -1102,7 +1102,8 @@
     "addedToLeaderboard": "تم شامل ہو گئے! بیلنس: {{balance}} DHB",
     "balanceTooLow": "بیلنس بہت کم ہے ({{balance}} DHB)",
     "refreshFailed": "کچھ غلط ہو گیا",
-    "noWalletAddress": "والٹ ایڈریس نہیں ملا"
+    "noWalletAddress": "والٹ ایڈریس نہیں ملا",
+    "assets": "সম্পদ"
   },
   "explorePage": {
     "searchPlaceholder": "لوگ، پوسٹ، یا مواد کھوجو...",

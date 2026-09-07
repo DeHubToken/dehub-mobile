@@ -1070,7 +1070,8 @@
     "addedToLeaderboard": "Додато! Салдо: {{balance}} DHB",
     "balanceTooLow": "Салдо прениско ({{balance}} DHB)",
     "refreshFailed": "Дошло је до грешке",
-    "noWalletAddress": "Адреса новчаника није доступна"
+    "noWalletAddress": "Адреса новчаника није доступна",
+    "assets": "Имовина"
   },
   "features": {
     "title": "Захтеви за функције",

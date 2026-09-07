@@ -1117,7 +1117,8 @@
     "addedToLeaderboard": "You've been added! Balance: {{balance}} DHB",
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
-    "noWalletAddress": "No wallet address found"
+    "noWalletAddress": "No wallet address found",
+    "assets": "ပိုင်ဆိုင်မှုများ"
   },
   "explorePage": {
     "searchPlaceholder": "လူများ၊ ပို့စ်များ သို့မဟုတ် အကြောင်းအရာ ရှာဖွေပါ...",

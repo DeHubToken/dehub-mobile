@@ -1191,7 +1191,8 @@
     "addedToLeaderboard": "¡Has sido añadido! Saldo: {{balance}} DHB",
     "balanceTooLow": "Saldo muy bajo ({{balance}} DHB)",
     "refreshFailed": "Algo salió mal",
-    "noWalletAddress": "No se encontró dirección de billetera"
+    "noWalletAddress": "No se encontró dirección de billetera",
+    "assets": "Activos"
   },
   "explorePage": {
     "searchPlaceholder": "Buscar personas, publicaciones o contenido...",

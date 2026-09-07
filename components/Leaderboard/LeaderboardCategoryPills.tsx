@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useRef, useEffect } from "react";
 import { Text, ScrollView, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../../theme";
+import { useTranslation } from "react-i18next";
 
 export type SortCategory = "holdings" | "sentTips" | "receivedTips" | "followers" | "likes";
 
@@ -18,13 +19,15 @@ interface CategoryDef {
   icon: keyof typeof Ionicons.glyphMap;
 }
 
+// `label` is an i18n key; the screen is translated and these pills were the
+// one English strip left on it.
 const CATEGORIES: CategoryDef[] = [
-  { key: "holdings", label: "Holdings", icon: "wallet-outline" },
-  { key: "sentTips", label: "Spent", icon: "arrow-up-outline" },
-  { key: "receivedTips", label: "Earned", icon: "card-outline" },
-  { key: "followers", label: "Followers", icon: "people-outline" },
-  { key: "likes", label: "Likes", icon: "heart-outline" },
-  { key: "assets", label: "Assets", icon: "stats-chart-outline" },
+  { key: "holdings", label: "leaderboard.holdings", icon: "wallet-outline" },
+  { key: "sentTips", label: "leaderboard.spent", icon: "arrow-up-outline" },
+  { key: "receivedTips", label: "leaderboard.earned", icon: "card-outline" },
+  { key: "followers", label: "leaderboard.followers", icon: "people-outline" },
+  { key: "likes", label: "leaderboard.likes", icon: "heart-outline" },
+  { key: "assets", label: "leaderboard.assets", icon: "stats-chart-outline" },
 ];
 
 interface Props {
@@ -33,6 +36,7 @@ interface Props {
 }
 
 const LeaderboardCategoryPills: React.FC<Props> = ({ active, onSelect }) => {
+  const { t } = useTranslation();
   const scrollRef = useRef<ScrollView>(null);
 
   // Reorder so the active category is always first. "assets" never becomes
@@ -88,7 +92,7 @@ const LeaderboardCategoryPills: React.FC<Props> = ({ active, onSelect }) => {
                 isActive ? "text-theme-neutrals-900" : "text-theme-neutrals-400"
               }`}
             >
-              {cat.label}
+              {t(cat.label)}
             </Text>
           </TouchableOpacity>
         );

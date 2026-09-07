@@ -1165,7 +1165,8 @@
     "addedToLeaderboard": "You don add! Balance: {{balance}} DHB",
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something go wrong",
-    "noWalletAddress": "No wallet address dey"
+    "noWalletAddress": "No wallet address dey",
+    "assets": "Assets"
   },
   "features": {
     "title": "Feature Requests",

@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "Waa lagu daray! Miisaan: {{balance}} DHB",
     "balanceTooLow": "Miisaanku aad u yar yahay ({{balance}} DHB)",
     "refreshFailed": "Wax baa qaldamay",
-    "noWalletAddress": "Cinwaanka jeebka lama helin"
+    "noWalletAddress": "Cinwaanka jeebka lama helin",
+    "assets": "Hantida"
   },
   "explorePage": {
     "searchPlaceholder": "Raadi dadka, qoraallada, ama nuxurka...",

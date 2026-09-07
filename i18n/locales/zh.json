@@ -1170,7 +1170,8 @@
     "addedToLeaderboard": "已添加！余额：{{balance}} DHB",
     "balanceTooLow": "余额太低 ({{balance}} DHB)",
     "refreshFailed": "出了点问题",
-    "noWalletAddress": "未找到钱包地址"
+    "noWalletAddress": "未找到钱包地址",
+    "assets": "资产"
   },
   "features": {
     "title": "功能请求",

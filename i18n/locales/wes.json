@@ -1104,7 +1104,8 @@
     "addedToLeaderboard": "You don enter! Balance: {{balance}} DHB",
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something go wrong",
-    "noWalletAddress": "No wallet address dey"
+    "noWalletAddress": "No wallet address dey",
+    "assets": "Assets"
   },
   "explorePage": {
     "searchPlaceholder": "Search for people, posts, or content...",
