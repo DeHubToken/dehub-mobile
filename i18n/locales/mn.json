@@ -1104,7 +1104,8 @@
     "addedToLeaderboard": "Та нэмэгдлээ! Үлдэгдэл: {{balance}} DHB",
     "balanceTooLow": "Үлдэгдэл хэт бага ({{balance}} DHB)",
     "refreshFailed": "Алдаа гарлаа",
-    "noWalletAddress": "Хэтэвчний хаяг олдсонгүй"
+    "noWalletAddress": "Хэтэвчний хаяг олдсонгүй",
+    "assets": "Хөрөнгө"
   },
   "explorePage": {
     "searchPlaceholder": "Хүмүүс, нийтлэл эсвэл агуулга хайх...",

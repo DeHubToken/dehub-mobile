@@ -1085,7 +1085,8 @@
     "addedToLeaderboard": "Қосылды! Баланс: {{balance}} DHB",
     "balanceTooLow": "Баланс тым төмен ({{balance}} DHB)",
     "refreshFailed": "Бірдеңе дұрыс болмады",
-    "noWalletAddress": "Әмиян мекенжайы табылмады"
+    "noWalletAddress": "Әмиян мекенжайы табылмады",
+    "assets": "Активтер"
   },
   "explorePage": {
     "searchPlaceholder": "Адамдарды, жазбаларды немесе мазмұнды іздеу...",

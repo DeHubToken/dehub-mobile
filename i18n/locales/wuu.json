@@ -1104,7 +1104,8 @@
     "addedToLeaderboard": "侬已加入！余额：{{balance}} DHB",
     "balanceTooLow": "余额太低（{{balance}} DHB）",
     "refreshFailed": "出错了",
-    "noWalletAddress": "搜弗到钱包地址"
+    "noWalletAddress": "搜弗到钱包地址",
+    "assets": "资产"
   },
   "explorePage": {
     "searchPlaceholder": "搜索用户、帖子或内容...",

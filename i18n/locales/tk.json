@@ -1191,7 +1191,8 @@
     "addedToLeaderboard": "Goşuldyňyz! Balans: {{balance}} DHB",
     "balanceTooLow": "Balans gaty pes ({{balance}} DHB)",
     "refreshFailed": "Ýalňyşlyk ýüze çykdy",
-    "noWalletAddress": "Gapjyk salgysy tapylmady"
+    "noWalletAddress": "Gapjyk salgysy tapylmady",
+    "assets": "Aktiwler"
   },
   "explorePage": {
     "searchPlaceholder": "Adam, ýazgy ýa-da mazmun gözle...",

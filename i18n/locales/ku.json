@@ -1100,7 +1100,8 @@
     "addedToLeaderboard": "Hûn hatin zêdekirin! Balance: {{balance}} DHB",
     "balanceTooLow": "Balance pir kêm e ({{balance}} DHB)",
     "refreshFailed": "Tiştek xelet çû",
-    "noWalletAddress": "Navnîşana berîkê nehat dîtin"
+    "noWalletAddress": "Navnîşana berîkê nehat dîtin",
+    "assets": "Malî"
   },
   "explorePage": {
     "searchPlaceholder": "Li kes, şandin, an naverokê bigerin...",

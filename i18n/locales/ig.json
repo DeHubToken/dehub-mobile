@@ -1171,7 +1171,8 @@
     "addedToLeaderboard": "Atịnyela gị! Ego: {{balance}} DHB",
     "balanceTooLow": "Ego dị ala ({{balance}} DHB)",
     "refreshFailed": "Ihe mere njehie",
-    "noWalletAddress": "Achọtaghị adreesị obere akpa"
+    "noWalletAddress": "Achọtaghị adreesị obere akpa",
+    "assets": "Akụ"
   },
   "features": {
     "title": "Arịrịọ Atụmatụ",

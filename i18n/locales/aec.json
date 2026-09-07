@@ -1104,7 +1104,8 @@
     "addedToLeaderboard": "اتضفت! الرصيد: {{balance}} DHB",
     "balanceTooLow": "الرصيد قليل ({{balance}} DHB)",
     "refreshFailed": "حصل مشكلة",
-    "noWalletAddress": "مالقيناش عنوان محفظة"
+    "noWalletAddress": "مالقيناش عنوان محفظة",
+    "assets": "الأصول"
   },
   "explorePage": {
     "searchPlaceholder": "دوّر على ناس أو منشورات أو محتوى...",

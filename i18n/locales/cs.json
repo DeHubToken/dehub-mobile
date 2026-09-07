@@ -1077,7 +1077,8 @@
     "addedToLeaderboard": "Přidáno! Zůstatek: {{balance}} DHB",
     "balanceTooLow": "Zůstatek příliš nízký ({{balance}} DHB)",
     "refreshFailed": "Došlo k chybě",
-    "noWalletAddress": "Adresa peněženky není dostupná"
+    "noWalletAddress": "Adresa peněženky není dostupná",
+    "assets": "Aktiva"
   },
   "features": {
     "title": "Požadavky na funkce",

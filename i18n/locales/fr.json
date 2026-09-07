@@ -1171,7 +1171,8 @@
     "addedToLeaderboard": "Vous avez été ajouté ! Solde : {{balance}} DHB",
     "balanceTooLow": "Solde trop bas ({{balance}} DHB)",
     "refreshFailed": "Quelque chose s'est mal passé",
-    "noWalletAddress": "Aucune adresse de portefeuille trouvée"
+    "noWalletAddress": "Aucune adresse de portefeuille trouvée",
+    "assets": "Actifs"
   },
   "features": {
     "title": "Demandes de fonctionnalités",

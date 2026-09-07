@@ -1118,7 +1118,8 @@
     "addedToLeaderboard": "You've been added! Balance: {{balance}} DHB",
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
-    "noWalletAddress": "No wallet address found"
+    "noWalletAddress": "No wallet address found",
+    "assets": "सम्पत्ति"
   },
   "explorePage": {
     "searchPlaceholder": "मानिसहरू, पोस्टहरू वा सामग्री खोज्नुहोस्...",

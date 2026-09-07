@@ -1076,7 +1076,8 @@
     "addedToLeaderboard": "추가됨! 잔액: {{balance}} DHB",
     "balanceTooLow": "잔액 부족 ({{balance}} DHB)",
     "refreshFailed": "오류 발생",
-    "noWalletAddress": "지갑 주소 없음"
+    "noWalletAddress": "지갑 주소 없음",
+    "assets": "자산"
   },
   "features": {
     "title": "기능 요청",

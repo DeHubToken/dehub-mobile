@@ -1437,7 +1437,8 @@
     "addedToLeaderboard": "เพิ่มคุณเข้าไปแล้ว! ยอดคงเหลือ: {{balance}} DHB",
     "balanceTooLow": "ยอดคงเหลือน้อยเกินไป ({{balance}} DHB)",
     "refreshFailed": "เกิดข้อผิดพลาดบางอย่าง",
-    "noWalletAddress": "ไม่พบที่อยู่กระเป๋าเงิน"
+    "noWalletAddress": "ไม่พบที่อยู่กระเป๋าเงิน",
+    "assets": "สินทรัพย์"
   },
   "explorePage": {
     "searchPlaceholder": "ค้นหาผู้คน โพสต์ หรือเนื้อหา...",

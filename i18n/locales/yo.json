@@ -1169,7 +1169,8 @@
     "addedToLeaderboard": "A ti ṣàfikún ọ! Ìwọ̀ntúnwọ̀nsí: {{balance}} DHB",
     "balanceTooLow": "Ìwọ̀ntúnwọ̀nsí kéré jù ({{balance}} DHB)",
     "refreshFailed": "Nǹkan kan kò tọ́",
-    "noWalletAddress": "A kò rí àdírẹ́sì àpò owó"
+    "noWalletAddress": "A kò rí àdírẹ́sì àpò owó",
+    "assets": "Àwọn ohun ìní"
   },
   "features": {
     "title": "Àwọn Ìbéèrè Ẹ̀yà",

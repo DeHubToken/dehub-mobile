@@ -1105,7 +1105,8 @@
     "addedToLeaderboard": "شامل ٿيا! بيلنس: {{balance}} DHB",
     "balanceTooLow": "بيلنس تمام گهٽ ({{balance}} DHB)",
     "refreshFailed": "ڪجهه غلط ٿي ويو",
-    "noWalletAddress": "والٽ ايڊريس نه مليو"
+    "noWalletAddress": "والٽ ايڊريس نه مليو",
+    "assets": "اثاثا"
   },
   "explorePage": {
     "searchPlaceholder": "ماڻهو، پوسٽون يا مواد ڳولهيو...",

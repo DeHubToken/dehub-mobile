@@ -1039,7 +1039,8 @@
     "addedToLeaderboard": "Voasoratra ianao! Vola: {{balance}} DHB",
     "balanceTooLow": "Vola kely loatra ({{balance}} DHB)",
     "refreshFailed": "Nisy hadisoana",
-    "noWalletAddress": "Tsy nahitana adiresy kitapom-bola"
+    "noWalletAddress": "Tsy nahitana adiresy kitapom-bola",
+    "assets": "Fananana"
   },
   "explorePage": {
     "searchPlaceholder": "Hikaroka olona, lahatsoratra na atiny...",

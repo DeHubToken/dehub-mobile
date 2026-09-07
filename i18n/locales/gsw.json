@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "Du bisch dezuegfüegt worde! Guthabe: {{balance}} DHB",
     "balanceTooLow": "Guthabe z tüüf ({{balance}} DHB)",
     "refreshFailed": "Öppis isch schief gangä",
-    "noWalletAddress": "Kei Wallet-Adrässe gfunde"
+    "noWalletAddress": "Kei Wallet-Adrässe gfunde",
+    "assets": "Assets"
   },
   "explorePage": {
     "searchPlaceholder": "Such nach Lüt, Biträg oder Inhalt...",

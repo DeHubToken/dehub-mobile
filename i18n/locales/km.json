@@ -1118,7 +1118,8 @@
     "addedToLeaderboard": "You've been added! Balance: {{balance}} DHB",
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
-    "noWalletAddress": "No wallet address found"
+    "noWalletAddress": "No wallet address found",
+    "assets": "ទ្រព្យសកម្ម"
   },
   "explorePage": {
     "searchPlaceholder": "ស្វែងរកមនុស្ស ការបង្ហោះ ឬមាតិកា...",

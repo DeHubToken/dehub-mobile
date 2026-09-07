@@ -1076,7 +1076,8 @@
     "addedToLeaderboard": "சேர்க்கப்பட்டது! இருப்பு: {{balance}} DHB",
     "balanceTooLow": "இருப்பு மிகக் குறைவு ({{balance}} DHB)",
     "refreshFailed": "பிழை ஏற்பட்டது",
-    "noWalletAddress": "பணப்பை முகவரி கிடைக்கவில்லை"
+    "noWalletAddress": "பணப்பை முகவரி கிடைக்கவில்லை",
+    "assets": "சொத்துகள்"
   },
   "features": {
     "title": "அம்ச கோரிக்கைகள்",

@@ -1076,7 +1076,8 @@
     "addedToLeaderboard": "נוסף! יתרה: {{balance}} DHB",
     "balanceTooLow": "יתרה נמוכה מדי ({{balance}} DHB)",
     "refreshFailed": "אירעה שגיאה",
-    "noWalletAddress": "כתובת ארנק לא זמינה"
+    "noWalletAddress": "כתובת ארנק לא זמינה",
+    "assets": "נכסים"
   },
   "features": {
     "title": "בקשות תכונות",

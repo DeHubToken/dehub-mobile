@@ -2,6 +2,7 @@ import React from "react";
 import { View, TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../../theme";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   value: string;
@@ -12,21 +13,24 @@ interface Props {
   onFocus?: () => void;
 }
 
-const LeaderboardSearchBar: React.FC<Props> = ({ value, onChangeText, onFocus }) => (
-  <View className="mx-4 mt-3 mb-2 flex-row items-center bg-theme-neutrals-800 rounded-xl px-3 py-2.5">
-    <Ionicons name="search" size={16} color={theme.colors.neutrals[400]} style={{ marginRight: 8 }} />
-    <TextInput
-      value={value}
-      onChangeText={onChangeText}
-      onFocus={onFocus}
-      placeholder="Search users..."
-      placeholderTextColor={theme.colors.neutrals[400]}
-      className="flex-1 text-white text-sm p-0"
-      autoCapitalize="none"
-      autoCorrect={false}
-      returnKeyType="search"
-    />
-  </View>
-);
+const LeaderboardSearchBar: React.FC<Props> = ({ value, onChangeText, onFocus }) => {
+  const { t } = useTranslation();
+  return (
+    <View className="mx-4 mt-3 mb-2 flex-row items-center bg-theme-neutrals-800 rounded-xl px-3 py-2.5">
+      <Ionicons name="search" size={16} color={theme.colors.neutrals[400]} style={{ marginRight: 8 }} />
+      <TextInput
+        value={value}
+        onChangeText={onChangeText}
+        onFocus={onFocus}
+        placeholder={t("leaderboard.searchUsers")}
+        placeholderTextColor={theme.colors.neutrals[400]}
+        className="flex-1 text-white text-sm p-0"
+        autoCapitalize="none"
+        autoCorrect={false}
+        returnKeyType="search"
+      />
+    </View>
+  );
+};
 
 export default React.memo(LeaderboardSearchBar);

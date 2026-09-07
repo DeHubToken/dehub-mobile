@@ -1171,7 +1171,8 @@
     "addedToLeaderboard": "Você foi adicionado! Saldo: {{balance}} DHB",
     "balanceTooLow": "Saldo muito baixo ({{balance}} DHB)",
     "refreshFailed": "Algo deu errado",
-    "noWalletAddress": "Endereço não encontrado"
+    "noWalletAddress": "Endereço não encontrado",
+    "assets": "Ativos"
   },
   "features": {
     "title": "Solicitações de recursos",

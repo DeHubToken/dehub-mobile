@@ -1171,7 +1171,8 @@
     "addedToLeaderboard": "اضافه شدید! موجودی: {{balance}} DHB",
     "balanceTooLow": "موجودی کم است ({{balance}} DHB)",
     "refreshFailed": "مشکلی پیش آمد",
-    "noWalletAddress": "آدرس کیف پول یافت نشد"
+    "noWalletAddress": "آدرس کیف پول یافت نشد",
+    "assets": "دارایی‌ها"
   },
   "features": {
     "title": "درخواست‌های ویژگی",

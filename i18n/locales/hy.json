@@ -1191,7 +1191,8 @@
     "addedToLeaderboard": "Douq avelatsvaats eq! Hashvekshir: {{balance}} DHB",
     "balanceTooLow": "Hashvekshire shaht tsatr e ({{balance}} DHB)",
     "refreshFailed": "Inch-vor ban aybn gnatsa",
-    "noWalletAddress": "Drami hasce chen gnvaats"
+    "noWalletAddress": "Drami hasce chen gnvaats",
+    "assets": "Ակտիվներ"
   },
   "explorePage": {
     "searchPlaceholder": "Voronel mardkanits, groumerits kam bovalandakoutyunits...",

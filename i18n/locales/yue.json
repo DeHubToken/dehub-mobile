@@ -1105,7 +1105,8 @@
     "addedToLeaderboard": "你已加入！餘額：{{balance}} DHB",
     "balanceTooLow": "餘額太低（{{balance}} DHB）",
     "refreshFailed": "出錯喇",
-    "noWalletAddress": "搵唔到錢包地址"
+    "noWalletAddress": "搵唔到錢包地址",
+    "assets": "資產"
   },
   "explorePage": {
     "searchPlaceholder": "搜尋用戶、帖文或內容...",

@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "تاسو اضافه شوئ! بیلانس: {{balance}} DHB",
     "balanceTooLow": "بیلانس ډیر ټیټ دی ({{balance}} DHB)",
     "refreshFailed": "یو څه غلط شول",
-    "noWalletAddress": "د والټ پته ونه موندل شوه"
+    "noWalletAddress": "د والټ پته ونه موندل شوه",
+    "assets": "شتمنۍ"
   },
   "explorePage": {
     "searchPlaceholder": "خلک، پوسټونه، یا منځپانګه ولټوئ...",

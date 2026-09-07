@@ -1076,7 +1076,8 @@
     "addedToLeaderboard": "شامل ہو گئے! بیلنس: {{balance}} DHB",
     "balanceTooLow": "بیلنس بہت کم ({{balance}} DHB)",
     "refreshFailed": "خرابی ہوئی",
-    "noWalletAddress": "والٹ ایڈریس نہیں ملا"
+    "noWalletAddress": "والٹ ایڈریس نہیں ملا",
+    "assets": "اثاثے"
   },
   "features": {
     "title": "فیچر درخواستیں",

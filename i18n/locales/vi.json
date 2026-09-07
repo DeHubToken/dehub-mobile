@@ -1484,7 +1484,8 @@
     "addedToLeaderboard": "Bạn đã được thêm vào! Số dư: {{balance}} DHB",
     "balanceTooLow": "Số dư quá thấp ({{balance}} DHB)",
     "refreshFailed": "Đã xảy ra lỗi",
-    "noWalletAddress": "Không tìm thấy địa chỉ ví"
+    "noWalletAddress": "Không tìm thấy địa chỉ ví",
+    "assets": "Tài sản"
   },
   "explorePage": {
     "searchPlaceholder": "Tìm người, bài viết hoặc nội dung...",

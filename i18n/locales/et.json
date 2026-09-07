@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "Oled lisatud! Jääk: {{balance}} DHB",
     "balanceTooLow": "Jääk liiga madal ({{balance}} DHB)",
     "refreshFailed": "Midagi läks valesti",
-    "noWalletAddress": "Rahakoti aadressi ei leitud"
+    "noWalletAddress": "Rahakoti aadressi ei leitud",
+    "assets": "Varad"
   },
   "explorePage": {
     "searchPlaceholder": "Otsi inimesi, postitusi või sisu...",

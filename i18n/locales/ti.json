@@ -1105,7 +1105,8 @@
     "addedToLeaderboard": "ተወሲኽካ! ስልቲ: {{balance}} DHB",
     "balanceTooLow": "ስልቲ ኣዝዩ ትሑት ({{balance}} DHB)",
     "refreshFailed": "ገለ ጌጋ ኣጋጢሙ",
-    "noWalletAddress": "ኣድራሻ ዋሌት ኣይተረኽበን"
+    "noWalletAddress": "ኣድራሻ ዋሌት ኣይተረኽበን",
+    "assets": "ንብረታት"
   },
   "explorePage": {
     "searchPlaceholder": "ሰባት፣ ጽሑፋት፣ ወይ ትሕዝቶ ድለ...",

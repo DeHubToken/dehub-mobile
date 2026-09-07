@@ -1171,7 +1171,8 @@
     "addedToLeaderboard": "আপনাকে যোগ করা হয়েছে! ব্যালেন্স: {{balance}} DHB",
     "balanceTooLow": "ব্যালেন্স খুব কম ({{balance}} DHB)",
     "refreshFailed": "কিছু ভুল হয়েছে",
-    "noWalletAddress": "কোনো ওয়ালেট ঠিকানা পাওয়া যায়নি"
+    "noWalletAddress": "কোনো ওয়ালেট ঠিকানা পাওয়া যায়নি",
+    "assets": "সম্পদ"
   },
   "features": {
     "title": "ফিচার রিকোয়েস্ট",

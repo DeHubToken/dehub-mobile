@@ -1167,7 +1167,8 @@
     "addedToLeaderboard": "تزدتي! الرصيد: {{balance}} DHB",
     "balanceTooLow": "الرصيد قليل بزاف ({{balance}} DHB)",
     "refreshFailed": "وقع شي مشكل",
-    "noWalletAddress": "ما كاين حتى عنوان محفظة"
+    "noWalletAddress": "ما كاين حتى عنوان محفظة",
+    "assets": "الأصول"
   },
   "features": {
     "title": "طلبات الميزات",

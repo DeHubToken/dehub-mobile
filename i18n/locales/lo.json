@@ -1104,7 +1104,8 @@
     "addedToLeaderboard": "ເພີ່ມທ່ານແລ້ວ! ຍອດ: {{balance}} DHB",
     "balanceTooLow": "ຍອດຕ່ຳເກີນໄປ ({{balance}} DHB)",
     "refreshFailed": "ເກີດຂໍ້ຜິດພາດ",
-    "noWalletAddress": "ບໍ່ພົບທີ່ຢູ່ກະເປົາ"
+    "noWalletAddress": "ບໍ່ພົບທີ່ຢູ່ກະເປົາ",
+    "assets": "ຊັບສິນ"
   },
   "explorePage": {
     "searchPlaceholder": "ຄົ້ນຫາຄົນ, ໂພສ ຫຼື ເນື້ອຫາ...",

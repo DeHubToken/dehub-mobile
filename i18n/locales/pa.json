@@ -1077,7 +1077,8 @@
     "addedToLeaderboard": "ਸ਼ਾਮਲ ਹੋ ਗਏ! ਬੈਲੰਸ: {{balance}} DHB",
     "balanceTooLow": "ਬੈਲੰਸ ਬਹੁਤ ਘੱਟ ({{balance}} DHB)",
     "refreshFailed": "ਗ਼ਲਤੀ ਹੋਈ",
-    "noWalletAddress": "ਵਾਲਿਟ ਐਡਰੈੱਸ ਨਹੀਂ ਮਿਲਿਆ"
+    "noWalletAddress": "ਵਾਲਿਟ ਐਡਰੈੱਸ ਨਹੀਂ ਮਿਲਿਆ",
+    "assets": "ਸੰਪਤੀਆਂ"
   },
   "features": {
     "title": "ਫੀਚਰ ਬੇਨਤੀਆਂ",

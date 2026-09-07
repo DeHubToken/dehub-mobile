@@ -1191,7 +1191,8 @@
     "addedToLeaderboard": "Du wurdest hinzugefügt! Saldo: {{balance}} DHB",
     "balanceTooLow": "Saldo zu niedrig ({{balance}} DHB)",
     "refreshFailed": "Etwas ist schiefgelaufen",
-    "noWalletAddress": "Keine Wallet-Adresse gefunden"
+    "noWalletAddress": "Keine Wallet-Adresse gefunden",
+    "assets": "Assets"
   },
   "explorePage": {
     "searchPlaceholder": "Personen, Beiträge oder Inhalte suchen...",

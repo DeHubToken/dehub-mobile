@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "Buvote pridėtas! Likutis: {{balance}} DHB",
     "balanceTooLow": "Likutis per mažas ({{balance}} DHB)",
     "refreshFailed": "Kažkas nepavyko",
-    "noWalletAddress": "Piniginės adresas nerastas"
+    "noWalletAddress": "Piniginės adresas nerastas",
+    "assets": "Turtas"
   },
   "explorePage": {
     "searchPlaceholder": "Ieškoti žmonių, įrašų ar turinio...",

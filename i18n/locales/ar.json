@@ -1076,7 +1076,8 @@
     "addedToLeaderboard": "تمت إضافتك! الرصيد: {{balance}} DHB",
     "balanceTooLow": "الرصيد منخفض جداً ({{balance}} DHB)",
     "refreshFailed": "حدث خطأ",
-    "noWalletAddress": "لم يتم العثور على عنوان محفظة"
+    "noWalletAddress": "لم يتم العثور على عنوان محفظة",
+    "assets": "الأصول"
   },
   "features": {
     "title": "طلبات الميزات",

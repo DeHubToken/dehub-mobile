@@ -1105,7 +1105,8 @@
     "addedToLeaderboard": "रउआ जुड़ गइलीं! बैलेंस: {{balance}} DHB",
     "balanceTooLow": "बैलेंस बहुत कम बा ({{balance}} DHB)",
     "refreshFailed": "गड़बड़ भइल",
-    "noWalletAddress": "बटुआ पता नइखे मिलल"
+    "noWalletAddress": "बटुआ पता नइखे मिलल",
+    "assets": "संपत्ति"
   },
   "explorePage": {
     "searchPlaceholder": "लोग, पोस्ट या सामग्री खोजीं...",

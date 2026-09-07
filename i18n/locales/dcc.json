@@ -1099,7 +1099,8 @@
     "addedToLeaderboard": "تم شامل ہو گئے! بیلنس: {{balance}} DHB",
     "balanceTooLow": "بیلنس بہت کم ہے ({{balance}} DHB)",
     "refreshFailed": "کچھ غلط ہو گیا",
-    "noWalletAddress": "والیٹ ایڈریس نئیں ملا"
+    "noWalletAddress": "والیٹ ایڈریس نئیں ملا",
+    "assets": "اثاثے"
   },
   "explorePage": {
     "searchPlaceholder": "لوگ، پوسٹ، یا کانٹینٹ ڈھونڈو...",

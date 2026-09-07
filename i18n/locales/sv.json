@@ -1077,7 +1077,8 @@
     "addedToLeaderboard": "Tillagd! Saldo: {{balance}} DHB",
     "balanceTooLow": "Saldot för lågt ({{balance}} DHB)",
     "refreshFailed": "Ett fel uppstod",
-    "noWalletAddress": "Ingen plånboksadress tillgänglig"
+    "noWalletAddress": "Ingen plånboksadress tillgänglig",
+    "assets": "Tillgångar"
   },
   "features": {
     "title": "Funktionsförfrågningar",

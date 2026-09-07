@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "Has estat afegit! Saldo: {{balance}} DHB",
     "balanceTooLow": "Saldo massa baix ({{balance}} DHB)",
     "refreshFailed": "Alguna cosa ha anat malament",
-    "noWalletAddress": "No s'ha trobat adreça de cartera"
+    "noWalletAddress": "No s'ha trobat adreça de cartera",
+    "assets": "Actius"
   },
   "explorePage": {
     "searchPlaceholder": "Cercar persones, publicacions o contingut...",
