@@ -486,7 +486,9 @@
     "test": "Fitsapana",
     "anonymous": "Tsy fantatra anarana",
     "confirm": "Hamarino",
-    "signIn": "Hiditra"
+    "signIn": "Hiditra",
+    "takePhoto": "Maka sary",
+    "recordVideo": "Mandray horonan-tsary"
   },
   "tip": {
     "title": "Handefa fanomezana",

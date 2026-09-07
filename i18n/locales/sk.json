@@ -1023,7 +1023,9 @@
     "unblockUserDesc": "Allow messages from {{name}} again.",
     "test": "Test",
     "anonymous": "Anonymný",
-    "signIn": "Prihlásiť sa"
+    "signIn": "Prihlásiť sa",
+    "takePhoto": "Odfotiť",
+    "recordVideo": "Nahrať video"
   },
   "featureRequests": {
     "title": "Požiadavky na funkcie",

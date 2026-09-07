@@ -486,7 +486,9 @@
     "test": "سىناق",
     "anonymous": "ئىسىمسىز",
     "confirm": "جەزملەشتۈرۈش",
-    "signIn": "كىرىش"
+    "signIn": "كىرىش",
+    "takePhoto": "سۈرەت تارتىش",
+    "recordVideo": "سىن خاتىرىلەش"
   },
   "postOptions": {
     "options": "تاللانمىلار",

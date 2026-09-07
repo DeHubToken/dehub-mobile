@@ -486,7 +486,9 @@
     "test": "சோதனை",
     "anonymous": "அநாமதேய",
     "confirm": "உறுதிசெய்",
-    "signIn": "உள்நுழை"
+    "signIn": "உள்நுழை",
+    "takePhoto": "புகைப்படம் எடு",
+    "recordVideo": "வீடியோ பதிவு செய்"
   },
   "drawers": {
     "ppvTitle": "பே பெர் வியூ உள்ளடக்கம்",

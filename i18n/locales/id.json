@@ -486,7 +486,9 @@
     "test": "Uji",
     "anonymous": "Anonim",
     "confirm": "Konfirmasi",
-    "signIn": "Masuk"
+    "signIn": "Masuk",
+    "takePhoto": "Ambil foto",
+    "recordVideo": "Rekam video"
   },
   "drawers": {
     "ppvTitle": "Konten Bayar-Per-Tayang",

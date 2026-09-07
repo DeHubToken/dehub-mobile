@@ -486,7 +486,9 @@
     "test": "Whakamātau",
     "anonymous": "Ingoakore",
     "confirm": "Whakaū",
-    "signIn": "Takiuru"
+    "signIn": "Takiuru",
+    "takePhoto": "Tango whakaahua",
+    "recordVideo": "Hopu ataata"
   },
   "tip": {
     "title": "Tukuna koha",

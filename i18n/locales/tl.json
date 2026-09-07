@@ -114,7 +114,9 @@
     "retry": "Subukan ulit",
     "test": "Pagsubok",
     "anonymous": "Anonimo",
-    "signIn": "Mag-sign in"
+    "signIn": "Mag-sign in",
+    "takePhoto": "Kumuha ng larawan",
+    "recordVideo": "Mag-record ng video"
   },
   "walletSelector": {
     "title": "Piliin ang Wallet",

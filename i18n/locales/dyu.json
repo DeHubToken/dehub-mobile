@@ -486,7 +486,9 @@
     "test": "Kɔrɔbɔli",
     "anonymous": "Tɔgɔntan",
     "confirm": "A dafalen",
-    "signIn": "Don"
+    "signIn": "Don",
+    "takePhoto": "Ja ta",
+    "recordVideo": "Wideyo ta"
   },
   "tip": {
     "title": "Kɔrɔbɔ",

@@ -486,7 +486,9 @@
     "test": "測試",
     "anonymous": "匿名",
     "confirm": "確認",
-    "signIn": "登入"
+    "signIn": "登入",
+    "takePhoto": "影相",
+    "recordVideo": "拍片"
   },
   "tip": {
     "title": "送禮物",

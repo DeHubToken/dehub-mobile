@@ -431,7 +431,9 @@
     "unblockUserDesc": "Allow messages from {{name}} again.",
     "retry": "Повторити",
     "test": "Тест",
-    "signIn": "Увійти"
+    "signIn": "Увійти",
+    "takePhoto": "Зробити фото",
+    "recordVideo": "Записати відео"
   },
   "pages": {
     "home": {

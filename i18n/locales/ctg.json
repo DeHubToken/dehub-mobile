@@ -1170,7 +1170,9 @@
     "unblockUserDesc": "Allow messages from {{name}} again.",
     "test": "পরীক্ষা",
     "anonymous": "নামহীন",
-    "signIn": "সাইন ইন"
+    "signIn": "সাইন ইন",
+    "takePhoto": "ফটো তুলন",
+    "recordVideo": "ভিডিও রেকর্ড গরন"
   },
   "featureRequests": {
     "title": "ফিচার অনুরোধ",

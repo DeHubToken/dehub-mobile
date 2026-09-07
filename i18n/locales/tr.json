@@ -486,7 +486,9 @@
     "blockUserTitle": "Kullanıcı engellensin mi?",
     "unblockUserTitle": "Kullanıcının engeli kaldırılsın mı?",
     "blockUserDesc": "{{name}} kullanıcısından mesaj almayacaksınız. Daha sonra engeli kaldırabilirsiniz.",
-    "unblockUserDesc": "{{name}} kullanıcısından tekrar mesaj alınmasına izin ver."
+    "unblockUserDesc": "{{name}} kullanıcısından tekrar mesaj alınmasına izin ver.",
+    "takePhoto": "Fotoğraf çek",
+    "recordVideo": "Video kaydet"
   },
   "tip": {
     "title": "Bahşiş Gönder",

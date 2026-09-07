@@ -486,7 +486,9 @@
     "test": "اختبار",
     "anonymous": "مجهول",
     "confirm": "تأكيد",
-    "signIn": "تسجيل الدخول"
+    "signIn": "تسجيل الدخول",
+    "takePhoto": "التقاط صورة",
+    "recordVideo": "تسجيل فيديو"
   },
   "drawers": {
     "ppvTitle": "محتوى الدفع لكل مشاهدة",

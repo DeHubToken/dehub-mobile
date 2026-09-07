@@ -335,7 +335,9 @@
     "unblockUserDesc": "Allow messages from {{name}} again.",
     "test": "Ujian",
     "anonymous": "Tanpa nama",
-    "signIn": "Log masuk"
+    "signIn": "Log masuk",
+    "takePhoto": "Ambil foto",
+    "recordVideo": "Rakam video"
   },
   "profileOptions": {
     "copyProfileUrl": "Salin URL profil",

@@ -486,7 +486,9 @@
     "test": "Test",
     "anonymous": "Anonymní",
     "confirm": "Potvrdit",
-    "signIn": "Přihlásit se"
+    "signIn": "Přihlásit se",
+    "takePhoto": "Vyfotit",
+    "recordVideo": "Natočit video"
   },
   "drawers": {
     "ppvTitle": "Platba za zhlédnutí",
