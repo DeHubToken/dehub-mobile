@@ -79,6 +79,29 @@ describe('libs/misc', () => {
         'https://dehub.io/cdn-cgi/image/format=webp,quality=80,width=96/https://cdn.test.dehub.io/avatars/abc.png'
       );
     });
+
+    // The API host 404s every avatar — public chat's sender is the live case:
+    // the gateway prefixes DEFAULT_DOMAIN onto the stored path, so this exact
+    // URL is what a message arrives holding, and it has to come back to the CDN.
+    it('pulls an avatar addressed on the API host back onto the CDN', () => {
+      expect(
+        getAvatarUrl('https://api.dehub.io/avatars/0x9324840523a5d17dd12a2f11a9472e5a199c1937.jpg')
+      ).toBe(
+        'https://dehub.io/cdn-cgi/image/format=webp,quality=80,width=96/https://cdn.test.dehub.io/avatars/0x9324840523a5d17dd12a2f11a9472e5a199c1937.jpg'
+      );
+      // …including the statics/ shape, which is the larger half of the stored
+      // paths, and whatever host this build's API_URL points at.
+      expect(getAvatarUrl('https://api.test.dehub.io/statics/avatars/0xabc.jpeg', 0)).toBe(
+        'https://cdn.test.dehub.io/avatars/0xabc.jpeg'
+      );
+    });
+
+    // The rewrite is scoped to our own API hosts: an /avatars/ path on somebody
+    // else's origin is still theirs to serve.
+    it('leaves an /avatars/ path on a third-party host alone', () => {
+      const external = 'https://xyz.supabase.co/avatars/johncena.png';
+      expect(getAvatarUrl(external, 0)).toBe(external);
+    });
   });
 
   describe('persistableAvatar', () => {
