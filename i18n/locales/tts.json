@@ -2561,5 +2561,14 @@
     "digest": "ข้อความใหม่ {{count}} จาก {{who}}: {{message}}",
     "voiceMessage": "ข้อความเสียง",
     "image": "ส่งรูปภาพ"
+  },
+  "liveChat": {
+    "attach": "เพิ่มรูปภาพ, GIF หรืออิโมจิ",
+    "attachTitle": "เพิ่มในข้อความของคุณ",
+    "attachPhoto": "รูปภาพ",
+    "attachGif": "GIF",
+    "attachEmoji": "อิโมจิ",
+    "removeAttachment": "ลบไฟล์แนบ",
+    "attachFailed": "ส่งรูปภาพนั้นไม่ได้"
   }
 }

@@ -5,10 +5,13 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
+  Image,
   Platform,
   Keyboard,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
+import LiveChatAttachSheet from "./LiveChatAttachSheet";
 import MentionSuggestions from "../common/MentionSuggestions";
 import { useMentions } from "../../hooks/useMentions";
 import { sendAIChat } from "../../services/ai.service";
@@ -35,6 +38,13 @@ interface LiveChatInputProps {
   slowMode?: boolean;
   slowModeSeconds?: number;
   onGifPress?: () => void;
+  /** Opens the photo library. The screen owns the pick, upload and send. */
+  onPickImage?: () => void;
+  /** A picture chosen but not yet sent, shown as a strip above the field. */
+  attachmentUri?: string | null;
+  onRemoveAttachment?: () => void;
+  /** True while that picture is being uploaded, so send stays pressed-out. */
+  attachmentBusy?: boolean;
 }
 
 const LiveChatInput: React.FC<LiveChatInputProps> = ({
@@ -49,8 +59,14 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   slowMode,
   slowModeSeconds = 5,
   onGifPress,
+  onPickImage,
+  attachmentUri,
+  onRemoveAttachment,
+  attachmentBusy,
 }) => {
+  const { t } = useTranslation();
   const [text, setText] = useState("");
+  const [attachOpen, setAttachOpen] = useState(false);
   const mentions = useMentions(text, setText);
   const [cooldown, setCooldown] = useState(false);
   const [enhancing, setEnhancing] = useState(false);
@@ -114,7 +130,8 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
   const handleSend = useCallback(() => {
     const trimmed = text.trim();
-    if (!trimmed || isBanned || !canSend || cooldown || isOverLimit) return;
+    // A picture on its own is a message; only a wholly empty composer is not.
+    if ((!trimmed && !attachmentUri) || isBanned || !canSend || cooldown || isOverLimit) return;
 
     onSend(trimmed, replyingTo?._id);
     setText("");
@@ -128,7 +145,26 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         setCooldown(false);
       }, (slowModeSeconds || 5) * 1000);
     }
-  }, [text, isBanned, canSend, cooldown, isOverLimit, onSend, replyingTo, onCancelReply, slowMode, slowModeSeconds, editingMessage, onCancelEdit]);
+  }, [text, attachmentUri, isBanned, canSend, cooldown, isOverLimit, onSend, replyingTo, onCancelReply, slowMode, slowModeSeconds, editingMessage, onCancelEdit]);
+
+  /**
+   * Appended rather than inserted at the caret: the field is multiline with a
+   * mention tracker on its selection, and moving the caret out from under that
+   * is how the suggestion list starts matching the wrong word.
+   */
+  const handlePickEmoji = useCallback((emoji: string) => {
+    setText((prev) => prev + emoji);
+  }, []);
+
+  const handlePickImage = useCallback(() => {
+    setAttachOpen(false);
+    onPickImage?.();
+  }, [onPickImage]);
+
+  const handlePickGif = useCallback(() => {
+    setAttachOpen(false);
+    onGifPress?.();
+  }, [onGifPress]);
 
   const handleEnhance = useCallback(async () => {
     const trimmed = text.trim();
@@ -166,7 +202,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
     ? `Slow mode (${slowModeSeconds}s)...`
     : "Type a message...";
 
-  const hasContent = text.length > 0;
+  const canSubmit = (!!text.trim() || !!attachmentUri) && !attachmentBusy;
 
   // Web posts a GIF with its URL as the body, so quoting the body verbatim puts
   // an address in the composer where a photo or a voice note gets a label.
@@ -248,6 +284,28 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         </View>
       )}
 
+      {attachmentUri && !recorder.isRecording && !uploadingVoice && (
+        <View className="px-4 pt-2">
+          <View className="w-16 h-16 rounded-xl overflow-hidden bg-theme-neutrals-800">
+            <Image source={{ uri: attachmentUri }} style={{ width: 64, height: 64 }} resizeMode="cover" />
+            {attachmentBusy && (
+              <View className="absolute inset-0 items-center justify-center bg-black/50">
+                <ActivityIndicator size="small" color="#F4F4F5" />
+              </View>
+            )}
+            <TouchableOpacity
+              onPress={onRemoveAttachment}
+              className="absolute -top-1.5 -right-1.5 bg-white rounded-full w-5 h-5 items-center justify-center"
+              hitSlop={12}
+              accessibilityRole="button"
+              accessibilityLabel={t('liveChat.removeAttachment', 'Remove attachment')}
+            >
+              <Icon name="X" size={12} color="#09090B" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
+
       {uploadingVoice ? (
         <View className="flex-row items-center justify-center py-4 bg-theme-neutrals-800 rounded-xl mx-2 my-1.5">
           <ActivityIndicator size="small" color="#F4F4F5" />
@@ -257,17 +315,17 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         <VoiceNoteRecordingOverlay recorder={recorder} />
       ) : (
         <View className="flex-row items-end px-2 py-1.5 gap-0.5">
-          {!hasContent && onGifPress && !disabled && (
+          {!disabled && (
             <TouchableOpacity
-              onPress={onGifPress}
+              onPress={() => setAttachOpen(true)}
               className="p-2 items-center justify-center"
               hitSlop={4}
               activeOpacity={0.6}
               style={{ width: 38, height: 38 }}
               accessibilityRole="button"
-              accessibilityLabel="Add a GIF"
+              accessibilityLabel={t('liveChat.attach', 'Add a photo, GIF or emoji')}
             >
-              <Text style={{ fontSize: 12, fontWeight: '900', color: '#A6A9AC', letterSpacing: 0.5 }}>GIF</Text>
+              <Icon name="Plus" size={22} color="#A6A9AC" />
             </TouchableOpacity>
           )}
 
@@ -318,23 +376,27 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             )}
           </TouchableOpacity>
 
-          {text.trim() || editingMessage ? (
+          {text.trim() || editingMessage || attachmentUri ? (
             <TouchableOpacity
               onPress={handleSend}
-              disabled={disabled || !text.trim() || cooldown || isOverLimit || enhancing}
+              disabled={disabled || !canSubmit || cooldown || isOverLimit || enhancing}
               className="p-2"
               hitSlop={4}
               accessibilityRole="button"
               accessibilityLabel="Send message"
               accessibilityState={{
-                disabled: disabled || !text.trim() || cooldown || isOverLimit || enhancing,
+                disabled: disabled || !canSubmit || cooldown || isOverLimit || enhancing,
               }}
             >
-              <Icon
-                name="Send"
-                size={22}
-                color={text.trim() && !disabled && !cooldown && !isOverLimit ? "#F4F4F5" : "#52525B"}
-              />
+              {attachmentBusy ? (
+                <ActivityIndicator size={18} color="#F4F4F5" />
+              ) : (
+                <Icon
+                  name="Send"
+                  size={22}
+                  color={canSubmit && !disabled && !cooldown && !isOverLimit ? "#F4F4F5" : "#52525B"}
+                />
+              )}
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
@@ -355,6 +417,14 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
           )}
         </View>
       )}
+
+      <LiveChatAttachSheet
+        visible={attachOpen}
+        onClose={() => setAttachOpen(false)}
+        onPickImage={handlePickImage}
+        onPickGif={handlePickGif}
+        onPickEmoji={handlePickEmoji}
+      />
     </View>
   );
 };

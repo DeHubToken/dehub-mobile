@@ -2575,5 +2575,14 @@
     "digest": "{{count}} mesaje noi de la {{who}}: {{message}}",
     "voiceMessage": "Mesaj vocal",
     "image": "A trimis o imagine"
+  },
+  "liveChat": {
+    "attach": "Adaugă o fotografie, un GIF sau un emoji",
+    "attachTitle": "Adaugă la mesajul tău",
+    "attachPhoto": "Fotografie",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Eliminați accesoriul",
+    "attachFailed": "Nu am putut trimite acea fotografie."
   }
 }

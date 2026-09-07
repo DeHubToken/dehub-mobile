@@ -2649,5 +2649,14 @@
     "digest": "{{count}} tin nhắn mới từ {{who}}: {{message}}",
     "voiceMessage": "Tin nhắn thoại",
     "image": "Đã gửi hình ảnh"
+  },
+  "liveChat": {
+    "attach": "Thêm ảnh, GIF hoặc biểu tượng cảm xúc",
+    "attachTitle": "Thêm vào tin nhắn của bạn",
+    "attachPhoto": "Ảnh",
+    "attachGif": "GIF",
+    "attachEmoji": "Biểu tượng cảm xúc",
+    "removeAttachment": "Xóa tệp đính kèm",
+    "attachFailed": "Không thể gửi ảnh đó."
   }
 }

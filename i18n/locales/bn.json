@@ -2557,5 +2557,13 @@
     "mentionTitle": "পাবলিক চ্যাটে উল্লেখ করা হয়েছে",
     "voiceMessage": "ভয়েস মেসেজ",
     "image": "একটি ছবি পাঠানো হয়েছে"
+  },
+  "liveChat": {
+    "attach": "একটি ফটো, GIF বা ইমোজি যোগ করুন",
+    "attachTitle": "আপনার বার্তায় যোগ করুন",
+    "attachPhoto": "ছবি",
+    "attachEmoji": "ইমোজি",
+    "removeAttachment": "সংযুক্তি সরান",
+    "attachFailed": "সেই ফটোটি পাঠানো যায়নি ।"
   }
 }

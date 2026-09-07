@@ -2557,5 +2557,14 @@
     "mentionTitle": "Ekwuru na ọha chat",
     "voiceMessage": "Ozi olu",
     "image": "Ziga inyogo"
+  },
+  "liveChat": {
+    "attach": "Tinye a foto, GIF ma ọ bụ emoji",
+    "attachTitle": "Tinye na gị ozi",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Wepụ mgbakwunye",
+    "attachFailed": "Enweghị m ike iziga foto ahụ."
   }
 }

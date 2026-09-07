@@ -2611,5 +2611,13 @@
     "digest": "{{who}}からの{{count}}件の新着メッセージ：{{message}}",
     "voiceMessage": "ボイスメッセージ",
     "image": "画像を送信しました"
+  },
+  "liveChat": {
+    "attach": "写真、GIF、絵文字を追加",
+    "attachTitle": "メッセージに追加",
+    "attachPhoto": "写真",
+    "attachEmoji": "絵文字",
+    "removeAttachment": "添付ファイルを削除",
+    "attachFailed": "写真を送信できませんでした。"
   }
 }

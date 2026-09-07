@@ -2559,5 +2559,13 @@
     "digest": "来自 {{who}} 的 {{count}} 条新消息：{{message}}",
     "voiceMessage": "语音消息",
     "image": "发送了图片"
+  },
+  "liveChat": {
+    "attach": "加张照片、GIF 或表情符号",
+    "attachTitle": "添加到你的消息",
+    "attachPhoto": "照片",
+    "attachEmoji": "表情符号",
+    "removeAttachment": "移除附件",
+    "attachFailed": "照片发出去倷。"
   }
 }

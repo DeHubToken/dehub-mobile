@@ -2560,5 +2560,14 @@
     "digest": "{{count}}@ նոր հաղորդագրություններ {{who}} @:{{message}}- ից",
     "voiceMessage": "Ձայնային հաղորդագրություն",
     "image": "Ուղարկել պատկեր"
+  },
+  "liveChat": {
+    "attach": "Ավելացրեք լուսանկար, gif կամ էմոջի",
+    "attachTitle": "Ավելացրեք ձեր հաղորդագրությանը",
+    "attachPhoto": "Լուսանկար",
+    "attachGif": "GIF",
+    "attachEmoji": "Էմոջի",
+    "removeAttachment": "Հեռացնել կցորդը",
+    "attachFailed": "Չհաջողվեց ուղարկել այդ լուսանկարը ։"
   }
 }

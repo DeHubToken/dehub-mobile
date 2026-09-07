@@ -2562,5 +2562,14 @@
     "digest": "{{count}} ujumbe mpya kutoka {{who}}: {{message}}",
     "voiceMessage": "Ujumbe wa sauti",
     "image": "Tuma picha"
+  },
+  "liveChat": {
+    "attach": "Weka picha, GIF au emoji",
+    "attachTitle": "Weka kwenye ujumbe wako",
+    "attachPhoto": "Picha",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Ondoa kiambatisho",
+    "attachFailed": "Imeshindwa kutuma picha hiyo."
   }
 }

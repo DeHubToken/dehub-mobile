@@ -2615,5 +2615,13 @@
     "mentionTitle": "सार्वजनिक चैट में उल्लेख किया गया",
     "voiceMessage": "वॉइस मैसेज",
     "image": "एक इमेज भेजी"
+  },
+  "liveChat": {
+    "attach": "फ़ोटो, GIF या इमोजी जोड़ें",
+    "attachTitle": "अपने मैसेज में जोड़ें",
+    "attachPhoto": "फ़ोटो",
+    "attachEmoji": "इमोजी",
+    "removeAttachment": "अटैचमेंट हटाएँ",
+    "attachFailed": "वह फ़ोटो नहीं भेजी जा सकी।"
   }
 }

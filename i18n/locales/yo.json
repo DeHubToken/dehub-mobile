@@ -2559,5 +2559,14 @@
     "digest": "{{count}} awọn ifiranṣẹ tuntun lati {{who}}@: {{message}}@",
     "voiceMessage": "Ifiranṣẹ ohùn",
     "image": "Fi àwòrán ránṣẹ́"
+  },
+  "liveChat": {
+    "attach": "Ṣàfikún àwòrán, GIF tàbí emoji",
+    "attachTitle": "Ṣafikun si ifiranṣẹ rẹ",
+    "attachPhoto": "Fọto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Yọ asomọ kuro",
+    "attachFailed": "N kò lè fi àwòrán yẹn ránṣẹ́."
   }
 }

@@ -2596,5 +2596,13 @@
     "mentionTitle": "ප් ‍ රසිද්ධ කතාබහක සඳහන් කර ඇත",
     "voiceMessage": "හඬ පණිවිඩය",
     "image": "රූපයක් යවන ලදි"
+  },
+  "liveChat": {
+    "attach": "ඡායාරූපයක්, GIF හෝ ඉමොජි එක් කරන්න",
+    "attachTitle": "ඔබේ පණිවිඩයට එක් කරන්න",
+    "attachPhoto": "ඡායාරූපය",
+    "attachEmoji": "ඉමොජි",
+    "removeAttachment": "ඇමුණුම ඉවත් කරන්න",
+    "attachFailed": "මට ඒ ඡායාරූපය එවන්න බැරි වුණා."
   }
 }

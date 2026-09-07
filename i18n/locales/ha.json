@@ -2558,5 +2558,14 @@
     "mentionTitle": "An ambata a cikin tattaunawar jama'a",
     "voiceMessage": "Sakon murya",
     "image": "Aika da hoto"
+  },
+  "liveChat": {
+    "attach": "Add a photo, GIF ko emoji",
+    "attachTitle": "Ƙara zuwa sakonka",
+    "attachPhoto": "Hoto",
+    "attachGif": "Ввввввввввввввввввввввввввввввввв",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Cire haše-haše",
+    "attachFailed": "Ba zan iya aika wannan hoton ba."
   }
 }

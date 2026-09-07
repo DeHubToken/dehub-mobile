@@ -2561,5 +2561,14 @@
     "digest": "{{count}} nove poruke od {{who}}: {{message}}",
     "voiceMessage": "Glasovna poruka",
     "image": "Poslana je slika"
+  },
+  "liveChat": {
+    "attach": "Dodajte fotografiju, GIF ili emoji",
+    "attachTitle": "Dodajte u poruku",
+    "attachPhoto": "Fotografija",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Ukloni privitak",
+    "attachFailed": "Slanje te fotografije nije uspjelo."
   }
 }

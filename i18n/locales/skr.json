@@ -2561,5 +2561,13 @@
     "digest": "{{count}} نوان پيغام {{who}} کان: {{message}}",
     "voiceMessage": "آواز جو پيغام",
     "image": "تصوير موڪلي"
+  },
+  "liveChat": {
+    "attach": "تصویر، GIF یا ایموجی شامل کریں",
+    "attachTitle": "اپنے پیغام میں شامل کریں",
+    "attachPhoto": "تصویر",
+    "attachEmoji": "ایموجی",
+    "removeAttachment": "اٹیچمنٹ ہٹائیں",
+    "attachFailed": "وہ تصویر بھیج نہ سکا۔"
   }
 }

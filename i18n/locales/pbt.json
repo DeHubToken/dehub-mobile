@@ -2557,5 +2557,14 @@
     "mentionTitle": "په عامه خبرو اترو کې برخه واخلئ",
     "voiceMessage": "د غږ پيغام",
     "image": "یو انځور ته لاړ شئ"
+  },
+  "liveChat": {
+    "attach": "یو عکس، GIF یا emoji اضافه کړئ",
+    "attachTitle": "خپل پیغام ته اضافه کړئ",
+    "attachPhoto": "په انځور کې",
+    "attachGif": "د GIF په اړه",
+    "attachEmoji": "Emoji د اخيستلو لپاره وکارول",
+    "removeAttachment": "د انسټاګرام حساب حذف کړئ",
+    "attachFailed": "ما نه شو کولای چې دغه انځور واخلم."
   }
 }

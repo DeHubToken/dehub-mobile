@@ -2558,5 +2558,14 @@
     "mentionTitle": "Waxaa lagu xusay wada sheekaysiga dadweynaha",
     "voiceMessage": "Fariin cod ah",
     "image": "Soo diray image ah"
+  },
+  "liveChat": {
+    "attach": "Ku dar sawir, GIF ama emoji",
+    "attachTitle": "Ku dar fariintaada",
+    "attachPhoto": "Sawir",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Ka saar lifaaq",
+    "attachFailed": "Suurtagal ma ahan in aan soo diro sawirkaas."
   }
 }
