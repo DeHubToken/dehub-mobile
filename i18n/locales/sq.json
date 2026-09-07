@@ -702,7 +702,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "Audio u ruajt",
+    "audioSaveFailed": "Nuk u ruajt dot ajo pjesë",
+    "generatedWithAssistant": "Krijuar me asistentin e DeHub"
   },
   "publicChat": {
     "title": "Bisedë Publike",

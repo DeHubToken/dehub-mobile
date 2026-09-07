@@ -702,7 +702,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "ઑડિયો સાચવ્યો",
+    "audioSaveFailed": "તે ટ્રેક સાચવી શકાયો નહીં",
+    "generatedWithAssistant": "DeHub સહાયક સાથે બનાવેલ"
   },
   "publicChat": {
     "title": "જાહેર ચેટ",

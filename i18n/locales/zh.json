@@ -859,7 +859,10 @@
     "fallbackGrokNotConfigured": "使用 DeHub AI - Grok API 密钥未配置",
     "paymentSuccessGenerating": "支付成功！正在生成您的视频...",
     "imageGenerated": "图片已生成！",
-    "videoGenFailedDetail": "视频生成失败：{{error}}"
+    "videoGenFailedDetail": "视频生成失败：{{error}}",
+    "audioSaved": "音频已保存",
+    "audioSaveFailed": "无法保存该音轨",
+    "generatedWithAssistant": "由 DeHub 助手生成"
   },
   "aiChat": {
     "title": "助手",

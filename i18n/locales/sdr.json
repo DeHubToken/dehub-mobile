@@ -700,7 +700,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "অডিও সেভ হইল",
+    "audioSaveFailed": "ঐ ট্র্যাক সেভ করা গেল না",
+    "generatedWithAssistant": "DeHub সহকারী দিয়া বানানো"
   },
   "publicChat": {
     "title": "عام چیٹ",

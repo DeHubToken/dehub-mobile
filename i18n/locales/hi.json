@@ -1780,7 +1780,10 @@
     "generateImageOf": "इसकी छवि बनाएँ",
     "generateVideoOf": "इसका वीडियो बनाएँ",
     "whatsHappeningNews": "आज खबरों में क्या है?",
-    "loginRequired": "सहायक का उपयोग करने और छवि व वीडियो बनाने जैसी सुविधाएँ खोलने के लिए लॉग इन करें।"
+    "loginRequired": "सहायक का उपयोग करने और छवि व वीडियो बनाने जैसी सुविधाएँ खोलने के लिए लॉग इन करें।",
+    "audioSaved": "ऑडियो सहेजा गया",
+    "audioSaveFailed": "वह ट्रैक सहेजा नहीं जा सका",
+    "generatedWithAssistant": "DeHub असिस्टेंट से बनाया गया"
   },
   "aiChat": {
     "title": "सहायक",

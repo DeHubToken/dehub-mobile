@@ -702,7 +702,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "Kumakan maradon",
+    "audioSaveFailed": "O kuma ma se ka maradon",
+    "generatedWithAssistant": "A dilanna ni DeHub dɛmɛbaga ye"
   },
   "publicChat": {
     "title": "Kɔrɔbɔ",

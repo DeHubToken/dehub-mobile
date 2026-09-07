@@ -859,7 +859,10 @@
     "generateImageOf": "画像を生成：",
     "generateVideoOf": "動画を生成：",
     "whatsHappeningNews": "今日のニュースは？",
-    "loginRequired": "アシスタントにアクセスするにはログインしてください。"
+    "loginRequired": "アシスタントにアクセスするにはログインしてください。",
+    "audioSaved": "音声を保存しました",
+    "audioSaveFailed": "そのトラックを保存できませんでした",
+    "generatedWithAssistant": "DeHub アシスタントで生成"
   },
   "aiChat": {
     "title": "アシスタント",

@@ -702,7 +702,10 @@
     "officialLogo": "Here's the official DeHub logo! 🎨",
     "generateImageOf": "Generate an image of ",
     "generateVideoOf": "Generate a video of ",
-    "whatsHappeningNews": "What's happening in the news today?"
+    "whatsHappeningNews": "What's happening in the news today?",
+    "audioSaved": "បានរក្សាទុកសំឡេង",
+    "audioSaveFailed": "មិនអាចរក្សាទុកបទនោះបានទេ",
+    "generatedWithAssistant": "បង្កើតដោយជំនួយការ DeHub"
   },
   "publicChat": {
     "title": "ជជែកសាធារណៈ",

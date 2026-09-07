@@ -702,7 +702,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "ድምፅ ተቀምጧል",
+    "audioSaveFailed": "ያንን ትራክ ማስቀመጥ አልተቻለም",
+    "generatedWithAssistant": "በ DeHub ረዳት የተፈጠረ"
   },
   "publicChat": {
     "title": "ይፋ ውይይት",

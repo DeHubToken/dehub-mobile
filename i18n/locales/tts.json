@@ -702,7 +702,10 @@
     "fallbackGrokNotConfigured": "กำลังใช้ DeHub AI — ยังไม่ได้ตั้งค่าคีย์ API ของ Grok",
     "paymentSuccessGenerating": "ชำระเงินสำเร็จ! กำลังสร้างวิดีโอให้คุณ...",
     "imageGenerated": "สร้างรูปภาพแล้ว!",
-    "videoGenFailedDetail": "สร้างวิดีโอไม่สำเร็จ: {{error}}"
+    "videoGenFailedDetail": "สร้างวิดีโอไม่สำเร็จ: {{error}}",
+    "audioSaved": "บันทึกเสียงแล้ว",
+    "audioSaveFailed": "บันทึกเพลงนั้นบ่ได้",
+    "generatedWithAssistant": "สร้างด้วยผู้ช่วย DeHub"
   },
   "publicChat": {
     "title": "แชทสาธารณะ",

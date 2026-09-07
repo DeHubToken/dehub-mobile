@@ -702,7 +702,10 @@
     "officialLogo": "Here's the official DeHub logo! 🎨",
     "generateImageOf": "Generate an image of ",
     "generateVideoOf": "Generate a video of ",
-    "whatsHappeningNews": "What's happening in the news today?"
+    "whatsHappeningNews": "What's happening in the news today?",
+    "audioSaved": "अडियो सुरक्षित गरियो",
+    "audioSaveFailed": "त्यो ट्र्याक सुरक्षित गर्न सकिएन",
+    "generatedWithAssistant": "DeHub सहायकद्वारा बनाइएको"
   },
   "publicChat": {
     "title": "सार्वजनिक च्याट",

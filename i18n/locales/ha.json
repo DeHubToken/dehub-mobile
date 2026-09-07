@@ -702,7 +702,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "An ajiye sauti",
+    "audioSaveFailed": "Ba a iya ajiye wannan waƙar ba",
+    "generatedWithAssistant": "An ƙirƙira da mataimakin DeHub"
   },
   "publicChat": {
     "title": "Tattaunawar Jama'a",

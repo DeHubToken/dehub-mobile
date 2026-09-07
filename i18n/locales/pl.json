@@ -967,7 +967,10 @@
     "generateImageOf": "Wygeneruj obraz ",
     "generateVideoOf": "Wygeneruj film ",
     "whatsHappeningNews": "Co dzieje się dzisiaj w wiadomościach?",
-    "loginRequired": "Zaloguj się, aby uzyskać dostęp do Asystenta AI i odblokować funkcje takie jak generowanie obrazów i filmów."
+    "loginRequired": "Zaloguj się, aby uzyskać dostęp do Asystenta AI i odblokować funkcje takie jak generowanie obrazów i filmów.",
+    "audioSaved": "Dźwięk zapisany",
+    "audioSaveFailed": "Nie udało się zapisać tego utworu",
+    "generatedWithAssistant": "Wygenerowano z asystentem DeHub"
   },
   "publicChat": {
     "title": "Czat publiczny",

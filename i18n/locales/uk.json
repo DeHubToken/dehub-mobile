@@ -1386,7 +1386,10 @@
     "generateImageOf": "Generate an image of ",
     "generateVideoOf": "Generate a video of ",
     "whatsHappeningNews": "What's happening in the news today?",
-    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation."
+    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
+    "audioSaved": "Аудіо збережено",
+    "audioSaveFailed": "Не вдалося зберегти цей трек",
+    "generatedWithAssistant": "Створено за допомогою асистента DeHub"
   },
   "publicChat": {
     "title": "Public Chat",

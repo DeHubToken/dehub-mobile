@@ -797,7 +797,10 @@
     "generateImageOf": "Şunun görselini oluştur: ",
     "generateVideoOf": "Şunun videosunu oluştur: ",
     "whatsHappeningNews": "Bugün haberlerde neler oluyor?",
-    "loginRequired": "Asistana erişmek ve görsel ile video oluşturma gibi güçlü özelliklerin kilidini açmak için giriş yapın."
+    "loginRequired": "Asistana erişmek ve görsel ile video oluşturma gibi güçlü özelliklerin kilidini açmak için giriş yapın.",
+    "audioSaved": "Ses kaydedildi",
+    "audioSaveFailed": "Bu parça kaydedilemedi",
+    "generatedWithAssistant": "DeHub asistanı ile oluşturuldu"
   },
   "aiChat": {
     "title": "Asistan",

@@ -694,7 +694,10 @@
     "generateImageOf": "Bild generieren von ",
     "generateVideoOf": "Video generieren von ",
     "whatsHappeningNews": "Was passiert gerade in den Nachrichten?",
-    "loginRequired": "Melde dich an, um den KI-Assistenten zu nutzen und Funktionen wie Bild- und Videogenerierung freizuschalten."
+    "loginRequired": "Melde dich an, um den KI-Assistenten zu nutzen und Funktionen wie Bild- und Videogenerierung freizuschalten.",
+    "audioSaved": "Audio gespeichert",
+    "audioSaveFailed": "Dieser Track konnte nicht gespeichert werden",
+    "generatedWithAssistant": "Erstellt mit dem DeHub-Assistenten"
   },
   "publicChat": {
     "title": "Öffentlicher Chat",

@@ -702,7 +702,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "Deng hate tomarkirin",
+    "audioSaveFailed": "Ew stran nehat tomarkirin",
+    "generatedWithAssistant": "Bi alîkarê DeHub hate çêkirin"
   },
   "publicChat": {
     "title": "Sohbeta Giştî",

@@ -702,7 +702,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "Àudio desat",
+    "audioSaveFailed": "No s'ha pogut desar aquesta pista",
+    "generatedWithAssistant": "Generat amb l'assistent de DeHub"
   },
   "publicChat": {
     "title": "Xat públic",

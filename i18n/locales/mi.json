@@ -702,7 +702,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "Kua tiakina te oro",
+    "audioSaveFailed": "Kāore i taea te tiaki i taua oro",
+    "generatedWithAssistant": "I hangaia mā te kaiāwhina DeHub"
   },
   "publicChat": {
     "title": "Kōrerorero tūmatanui",

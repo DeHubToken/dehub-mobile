@@ -987,7 +987,10 @@
     "generateImageOf": "Tạo một ảnh về",
     "generateVideoOf": "Tạo một video về",
     "whatsHappeningNews": "Hôm nay có tin gì mới?",
-    "loginRequired": "Đăng nhập để dùng Trợ lý và mở khoá các tính năng mạnh như tạo ảnh và video."
+    "loginRequired": "Đăng nhập để dùng Trợ lý và mở khoá các tính năng mạnh như tạo ảnh và video.",
+    "audioSaved": "Đã lưu âm thanh",
+    "audioSaveFailed": "Không thể lưu bản nhạc đó",
+    "generatedWithAssistant": "Được tạo bằng trợ lý DeHub"
   },
   "publicChat": {
     "title": "Trò chuyện công khai",

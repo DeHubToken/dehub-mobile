@@ -1348,7 +1348,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "ਆਡੀਓ ਸੰਭਾਲਿਆ ਗਿਆ",
+    "audioSaveFailed": "ਉਹ ਟਰੈਕ ਸੰਭਾਲਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ",
+    "generatedWithAssistant": "DeHub ਸਹਾਇਕ ਨਾਲ ਬਣਾਇਆ ਗਿਆ"
   },
   "aiChat": {
     "title": "ਸਹਾਇਕ",

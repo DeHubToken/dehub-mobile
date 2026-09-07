@@ -746,7 +746,10 @@
     "generateImageOf": "Generate an image of ",
     "generateVideoOf": "Generate a video of ",
     "whatsHappeningNews": "What's happening in the news today?",
-    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation."
+    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
+    "audioSaved": "Audio saved",
+    "audioSaveFailed": "Could not save that track",
+    "generatedWithAssistant": "Generated with the DeHub assistant"
   },
   "publicChat": {
     "title": "Public Chat",
