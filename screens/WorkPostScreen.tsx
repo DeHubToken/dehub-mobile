@@ -460,7 +460,7 @@ const styles = StyleSheet.create({
   totalLabel: { color: "#A1A1AA", fontSize: 13 },
   totalValue: { color: "#FFFFFF", fontSize: 14, fontWeight: "700" },
   totalHint: { color: "#808089", fontSize: 11.5, marginTop: 5 },
-  totalWarn: { color: "rgba(253,230,138,0.80)", fontSize: 11, marginTop: 8, lineHeight: 16 },
+  totalWarn: { color: "rgba(255,255,255,0.7)", fontSize: 11, marginTop: 8, lineHeight: 16 },
 
   navRow: { flexDirection: "row", gap: 8, marginTop: 18 },
   primaryBtn: {
