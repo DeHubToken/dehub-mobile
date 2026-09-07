@@ -2067,16 +2067,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Шилдэг 100",
     "subtitle": "Зах зээлийн үнэлгээгээр крипто, хувьцаа, түүхий эд",
@@ -2587,5 +2577,20 @@
     "attachEmoji": "Эможи",
     "removeAttachment": "Хавсралтыг устгах",
     "attachFailed": "Тэр зургийг явуулж чадсангүй."
+  },
+  "promptFeed": {
+    "headline": "Та юу үзэхийг хүсэж байна?",
+    "subheadline": "Төгс фийдээ тодорхойлно уу.",
+    "placeholder": "Илүү AI, тоглоомын клип, инди хөгжим…",
+    "suggestion1": "Илүү AI болон крипто мэдээ",
+    "suggestion2": "Тоглоомын клип ба и-спорт",
+    "suggestion3": "Инди хөгжмийн нээлтүүд",
+    "suggestion4": "Технологийн үүсгэн байгуулагчид ба стартапууд",
+    "suggestion5": "Хөлбөмбөгийн онцлох мөчүүд",
+    "skip": "Алгасах — шууд фийд рүү",
+    "analysing": "Таны сонирхлыг шинжилж байна…",
+    "timelineReady": "Таны цаг хугацааны шугам бэлэн боллоо",
+    "dragToTune": "Холимогоо нарийн тохируулахын тулд чирнэ үү.",
+    "save": "Хадгалах"
   }
 }

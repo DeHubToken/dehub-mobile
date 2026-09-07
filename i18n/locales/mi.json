@@ -2070,16 +2070,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Runga 100",
     "subtitle": "Kripto, hea me ngā taonga mā te rahi mākete",
@@ -2592,5 +2582,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Whakakorea te whakauru",
     "attachFailed": "Kaore e taea e au te tuku i taua whakaahua."
+  },
+  "promptFeed": {
+    "headline": "He aha tāu e hiahia ana kia kite?",
+    "subheadline": "Whakaahuatia tō whāngai tino pai.",
+    "placeholder": "He AI anō, kiriata kēmu, puoro indie…",
+    "suggestion1": "He rongo AI me te crypto anō",
+    "suggestion2": "Kiriata kēmu me te esports",
+    "suggestion3": "Ngā kitenga puoro indie",
+    "suggestion4": "Ngā kaiwhakatū hangarau me ngā pakihi tīmata",
+    "suggestion5": "Ngā wā whakahirahira whutupōro",
+    "skip": "Hīpoki — kawea noa ahau ki te whāngai",
+    "analysing": "E tātari ana i ō kaingākau…",
+    "timelineReady": "Kua rite tō rārangi wā",
+    "dragToTune": "Tōia hei whakatika i tō ranunga.",
+    "save": "Tiaki"
   }
 }

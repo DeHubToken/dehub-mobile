@@ -2068,16 +2068,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "ອັນດັບ 100",
     "subtitle": "ຄຣິບໂຕ, ຫຸ້ນ ແລະ ສິນຄ້າໂພກໄພຕາມມູນຄ່າຕະຫຼາດ",
@@ -2589,5 +2579,20 @@
     "attachEmoji": "ອີໂມຈິ",
     "removeAttachment": "ເອົາເອກະສານຄັດຕິດອອກ",
     "attachFailed": "ຂ້ອຍບໍ່ສາມາດເບິ່ງຮູບພາບໄດ້."
+  },
+  "promptFeed": {
+    "headline": "ທ່ານຢາກເບິ່ງຫຍັງ?",
+    "subheadline": "ອະທິບາຍຟີດທີ່ສົມບູນແບບຂອງທ່ານ.",
+    "placeholder": "AI ເພີ່ມເຕີມ, ຄລິບເກມ, ດົນຕີອິນດີ້…",
+    "suggestion1": "ຂ່າວ AI ແລະ ຄຣິບໂຕເພີ່ມເຕີມ",
+    "suggestion2": "ຄລິບເກມ ແລະ ອີສປອດ",
+    "suggestion3": "ການຄົ້ນພົບດົນຕີອິນດີ້",
+    "suggestion4": "ຜູ້ກໍ່ຕັ້ງເທັກ ແລະ ສະຕາດອັບ",
+    "suggestion5": "ໄຮໄລທ໌ບານເຕະ",
+    "skip": "ຂ້າມ — ພາຂ້ອຍໄປຟີດເລີຍ",
+    "analysing": "ກຳລັງວິເຄາະຄວາມສົນໃຈຂອງທ່ານ…",
+    "timelineReady": "ໄທມ໌ໄລນ໌ຂອງທ່ານພ້ອມແລ້ວ",
+    "dragToTune": "ລາກເພື່ອປັບແຕ່ງສ່ວນປະສົມຂອງທ່ານ.",
+    "save": "ບັນທຶກ"
   }
 }

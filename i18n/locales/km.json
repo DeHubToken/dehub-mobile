@@ -2109,16 +2109,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "កំពូល 100",
     "subtitle": "គ្រីបតូ ភាគហ៊ុន និងទំនិញតាមទំហំទីផ្សារ",
@@ -2630,5 +2620,20 @@
     "attachEmoji": "អេម៉ូជី",
     "removeAttachment": "យក ឯកសារ ភ្ជាប់ ចេញ",
     "attachFailed": "ខ្ញុំ មិន អាច ចោល រូបថត នោះ បាន ទេ ។"
+  },
+  "promptFeed": {
+    "headline": "តើអ្នកចង់មើលអ្វី?",
+    "subheadline": "ពិពណ៌នាអំពីព័ត៌មានដ៏ល្អឥតខ្ចោះរបស់អ្នក។",
+    "placeholder": "AI បន្ថែម, ក្លីបហ្គេម, តន្ត្រី indie…",
+    "suggestion1": "ព័ត៌មាន AI និង crypto បន្ថែម",
+    "suggestion2": "ក្លីបហ្គេម និង esports",
+    "suggestion3": "ការរកឃើញតន្ត្រី indie",
+    "suggestion4": "ស្ថាបនិកបច្ចេកវិទ្យា និង startups",
+    "suggestion5": "ចំណុចសំខាន់បាល់ទាត់",
+    "skip": "រំលង — នាំខ្ញុំទៅព័ត៌មានតែម្តង",
+    "analysing": "កំពុងវិភាគចំណាប់អារម្មណ៍របស់អ្នក…",
+    "timelineReady": "ទំព័រព័ត៌មានរបស់អ្នករួចរាល់ហើយ",
+    "dragToTune": "អូសដើម្បីកែសម្រួលការលាយរបស់អ្នក។",
+    "save": "រក្សាទុក"
   }
 }

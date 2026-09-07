@@ -2109,16 +2109,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Топ-100",
     "subtitle": "Крыпта, акцыі і сыравіна паводле капіталізацыі",
@@ -2632,5 +2622,20 @@
     "attachEmoji": "Смайлікі",
     "removeAttachment": "Выдаліць укладанне",
     "attachFailed": "Немагчыма даслаць гэтую фатаграфію."
+  },
+  "promptFeed": {
+    "headline": "Што вы хочаце бачыць?",
+    "subheadline": "Апішыце сваю ідэальную стужку.",
+    "placeholder": "Больш ШІ, гульнявыя кліпы, інды-музыка…",
+    "suggestion1": "Больш навін пра ШІ і крыпту",
+    "suggestion2": "Гульнявыя кліпы і кіберспорт",
+    "suggestion3": "Адкрыцці інды-музыкі",
+    "suggestion4": "Тэхзаснавальнікі і стартапы",
+    "suggestion5": "Лепшыя моманты футбола",
+    "skip": "Прапусціць — проста да стужкі",
+    "analysing": "Аналізуем вашы інтарэсы…",
+    "timelineReady": "Ваша стужка гатовая",
+    "dragToTune": "Перацягвайце, каб дакладна наладзіць мікс.",
+    "save": "Захаваць"
   }
 }

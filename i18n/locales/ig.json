@@ -2069,16 +2069,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Kacha elu 100",
     "subtitle": "Kripto, ngalaba na ngwongwo site n'ọnụahịa ahịa",
@@ -2590,5 +2580,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Wepụ mgbakwunye",
     "attachFailed": "Enweghị m ike iziga foto ahụ."
+  },
+  "promptFeed": {
+    "headline": "Gịnị ka ị chọrọ ịhụ?",
+    "subheadline": "Kọwaa feed gị kacha mma.",
+    "placeholder": "AI karịa, klips egwuregwu, egwu indie…",
+    "suggestion1": "Akụkọ AI na crypto karịa",
+    "suggestion2": "Klips egwuregwu na esports",
+    "suggestion3": "Nchọpụta egwu indie",
+    "suggestion4": "Ndị guzobere teknụzụ na startups",
+    "suggestion5": "Ihe ngosi bọọlụ",
+    "skip": "Wụfee — kpọga m na feed",
+    "analysing": "Na-enyocha mmasị gị…",
+    "timelineReady": "Usoro oge gị adịla njikere",
+    "dragToTune": "Dọrọ iji mezie ngwakọta gị.",
+    "save": "Chekwaa"
   }
 }

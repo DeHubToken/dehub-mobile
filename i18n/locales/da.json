@@ -2074,16 +2074,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Top 100",
     "subtitle": "Krypto, aktier og råvarer efter markedsværdi",
@@ -2598,5 +2588,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Fjern vedhæftet fil",
     "attachFailed": "Kunne ikke sende det billede."
+  },
+  "promptFeed": {
+    "headline": "Hvad vil du se?",
+    "subheadline": "Beskriv dit perfekte feed.",
+    "placeholder": "Mere AI, gaming-klip, indie-musik…",
+    "suggestion1": "Mere AI- og kryptonyheder",
+    "suggestion2": "Gaming-klip og esport",
+    "suggestion3": "Indie-musikopdagelser",
+    "suggestion4": "Tech-stiftere og startups",
+    "suggestion5": "Fodboldhøjdepunkter",
+    "skip": "Spring over — tag mig bare til feedet",
+    "analysing": "Analyserer dine interesser…",
+    "timelineReady": "Din tidslinje er klar",
+    "dragToTune": "Træk for at finjustere dit mix.",
+    "save": "Gem"
   }
 }

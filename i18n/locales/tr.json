@@ -2377,16 +2377,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "Ne oluşturmak istiyorsun?",
-    "subtitle": "DeHub asistanına istediğini sor veya aşağıdaki fikirlerden biriyle başla.",
-    "placeholder": "Bir şey sor…",
-    "suggestion1": "Bugün DeHub'da öne çıkanları özetle",
-    "suggestion2": "Son yüklemem hakkında bir gönderi taslağı hazırla",
-    "suggestion3": "DHB staking'i basitçe açıkla",
-    "suggestion4": "Takip etmem gereken içerik üreticilerini bul",
-    "suggestion5": "Bir klip kampanyası için ödül ilanı hazırla"
-  },
   "arcade": {
     "intro": "Doğrudan uygulamanın içinde çalışan oyunlar. Kurulacak bir şey yok, satın alınacak bir şey yok — açık kaynak ve DeHub'ın kendisinden sunuluyor."
   },
@@ -2643,5 +2633,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Eki kaldır",
     "attachFailed": "O fotoğraf gönderilemedi."
+  },
+  "promptFeed": {
+    "headline": "Ne görmek istiyorsun?",
+    "subheadline": "Mükemmel akışını tarif et.",
+    "placeholder": "Daha çok yapay zekâ, oyun klipleri, indie müzik…",
+    "suggestion1": "Daha çok yapay zekâ ve kripto haberi",
+    "suggestion2": "Oyun klipleri ve e-spor",
+    "suggestion3": "Indie müzik keşifleri",
+    "suggestion4": "Teknoloji kurucuları ve girişimler",
+    "suggestion5": "Futbol özetleri",
+    "skip": "Atla — beni doğrudan akışa götür",
+    "analysing": "İlgi alanların çözümleniyor…",
+    "timelineReady": "Zaman akışın hazır",
+    "dragToTune": "Karışımını ince ayarlamak için sürükle.",
+    "save": "Kaydet"
   }
 }

@@ -2068,16 +2068,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "مٿيان 100",
     "subtitle": "مارڪيٽ ڪيپ مطابق ڪرپٽو، اسٽاڪ ۽ اجناس",
@@ -2588,5 +2578,20 @@
     "attachEmoji": "ايموجي",
     "removeAttachment": "منسلڪ ختم ڪريو",
     "attachFailed": "اها تصوير موڪلي نه سگهيس."
+  },
+  "promptFeed": {
+    "headline": "توهان ڇا ڏسڻ چاهيو ٿا؟",
+    "subheadline": "پنهنجي بهترين فيڊ بيان ڪريو.",
+    "placeholder": "وڌيڪ AI، گيمنگ ڪلپس، انڊي ميوزڪ…",
+    "suggestion1": "وڌيڪ AI ۽ ڪرپٽو خبرون",
+    "suggestion2": "گيمنگ ڪلپس ۽ اي اسپورٽس",
+    "suggestion3": "انڊي ميوزڪ جون دريافتون",
+    "suggestion4": "ٽيڪ باني ۽ اسٽارٽ اپس",
+    "suggestion5": "فٽبال جون جهلڪيون",
+    "skip": "ڇڏيو — سڌو فيڊ تي وٺي هلو",
+    "analysing": "توهان جي دلچسپين جو تجزيو ٿي رهيو آهي…",
+    "timelineReady": "توهان جي ٽائيم لائين تيار آهي",
+    "dragToTune": "پنهنجو مڪس ٺيڪ ڪرڻ لاءِ ڇڪيو.",
+    "save": "محفوظ ڪريو"
   }
 }

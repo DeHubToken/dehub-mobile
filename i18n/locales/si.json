@@ -2108,16 +2108,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "ඉහළම 100",
     "subtitle": "වෙළඳපොළ ප්‍රාග්ධනය අනුව ක්‍රිප්ටෝ, කොටස් සහ භාණ්ඩ",
@@ -2628,5 +2618,20 @@
     "attachEmoji": "ඉමොජි",
     "removeAttachment": "ඇමුණුම ඉවත් කරන්න",
     "attachFailed": "මට ඒ ඡායාරූපය එවන්න බැරි වුණා."
+  },
+  "promptFeed": {
+    "headline": "ඔබට බලන්න ඕනෑ මොනවාද?",
+    "subheadline": "ඔබේ පරිපූර්ණ ෆීඩ් විස්තර කරන්න.",
+    "placeholder": "තවත් AI, ගේමිං ක්ලිප්, ඉන්ඩි සංගීතය…",
+    "suggestion1": "තවත් AI සහ crypto පුවත්",
+    "suggestion2": "ගේමිං ක්ලිප් සහ ඊස්පෝට්ස්",
+    "suggestion3": "ඉන්ඩි සංගීත සොයාගැනීම්",
+    "suggestion4": "තාක්ෂණ ආරම්භකයින් සහ ස්ටාර්ට්අප්",
+    "suggestion5": "පාපන්දු විශේෂ අවස්ථා",
+    "skip": "මඟ හරින්න — කෙලින්ම ෆීඩ් වෙත",
+    "analysing": "ඔබේ රුචිකත්වයන් විශ්ලේෂණය කරමින්…",
+    "timelineReady": "ඔබේ කාලරේඛාව සූදානම්",
+    "dragToTune": "ඔබේ මිශ්‍රණය හැඩගැස්වීමට ඇදගෙන යන්න.",
+    "save": "සුරකින්න"
   }
 }
