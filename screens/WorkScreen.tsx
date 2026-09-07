@@ -194,6 +194,7 @@ export default function WorkScreen() {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
+        style={styles.strip}
         contentContainerStyle={styles.chipRow}
       >
         {TABS.map((tabItem) => {
@@ -239,6 +240,7 @@ export default function WorkScreen() {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
+        style={styles.strip}
         contentContainerStyle={styles.chipRow}
       >
         {CURRENCIES.map((currencyKey) => (
@@ -338,6 +340,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
+  // A horizontal ScrollView defaults to flexGrow 1 and would split the free
+  // space with the list below when the board is short.
+  strip: { flexGrow: 0 },
   chipRow: { gap: 8, paddingHorizontal: 12, paddingVertical: 8, alignItems: "center" },
   tabChip: {
     flexDirection: "row",
