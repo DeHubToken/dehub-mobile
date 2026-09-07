@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Ten telefon zapomni, który portfel automatycznie wybiera dla logowania Google/e-mail. Zostaniesz wylogowany, a przy następnym logowaniu poprosimy o odblokowanie właściwego portfela jego hasłem (tym samym, którego używa strona).",
     "resetAndSignOut": "Zresetuj i wyloguj",
     "deviceLinkReset": "Powiązanie urządzenia zresetowane. Zaloguj się ponownie, aby pobrać właściwe konto.",
-    "deviceLinkResetFailed": "Nie udało się zresetować powiązania urządzenia."
+    "deviceLinkResetFailed": "Nie udało się zresetować powiązania urządzenia.",
+    "emailNotificationsDescLinked": "Wysłałem do {{email}}",
+    "emailNotificationsNoAddressMobile": "Dodaj adres e-mail na stronie internetowej, aby je włączyć."
   },
   "common": {
     "mute": "Wycisz",

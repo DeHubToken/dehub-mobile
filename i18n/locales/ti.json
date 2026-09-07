@@ -516,7 +516,9 @@
     "resetDeviceLinkBody": "እዚ ተሌፎን ንGoogle/ኢመይል መእተዊኻ ባዕሉ ዝመርጾ ቦርሳ ክርስዖ እዩ። ክትወጽእ ኢኻ፣ ኣብ ዝቕጽል እትኣትወሉ እዋን ነቲ ቅኑዕ ቦርሳ ብመሕለፊ ቃሉ (እቲ ወብሳይት ዝጥቀመሉ) ክትከፍቶ ክትሕተት ኢኻ።",
     "resetAndSignOut": "ዳግም ኣቐምጥን ውጻእን",
     "deviceLinkReset": "ምትእስሳር መሳርሒ ዳግም ተቐሚጡ። ነቲ ቅኑዕ ሕሳብ ንምውሳድ ደጊምካ እቶ።",
-    "deviceLinkResetFailed": "ምትእስሳር መሳርሒ ዳግም ክቕመጥ ኣይተኻእለን።"
+    "deviceLinkResetFailed": "ምትእስሳር መሳርሒ ዳግም ክቕመጥ ኣይተኻእለን።",
+    "emailNotificationsDescLinked": "ን {{email}} ተላኢኹ",
+    "emailNotificationsNoAddressMobile": "ኣድራሻ ኢመይል ኣብ ዌብሳይት ኣስዕብካ እዚኣቶም ንኽነብርዎ።"
   },
   "common": {
     "mute": "ድምጺ ኣጥፍእ",

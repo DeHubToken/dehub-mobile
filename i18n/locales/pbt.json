@@ -516,7 +516,9 @@
     "resetDeviceLinkBody": "دا تلیفون به هېر کړي چې ستاسو د Google/بریښنالیک ننوتلو لپاره کومه بټوه پخپله ټاکي. تاسو به ووځئ، او بل ځل چې ننوځئ نو غوښتنه به وشي چې سمه بټوه د هغې پاسورډ سره پرانیزئ (هماغه چې ویب پاڼه یې کاروي).",
     "resetAndSignOut": "بیا تنظیم او ووځئ",
     "deviceLinkReset": "د وسیلې اړیکه بیا تنظیم شوه. د سم حساب لپاره بیا ننوځئ.",
-    "deviceLinkResetFailed": "د وسیلې اړیکه بیا تنظیم نشوه."
+    "deviceLinkResetFailed": "د وسیلې اړیکه بیا تنظیم نشوه.",
+    "emailNotificationsDescLinked": "{{email}} ته واستول شو",
+    "emailNotificationsNoAddressMobile": "په ویب پاڼه کې د بریښنالیک پته اضافه کړئ ترڅو دا فعال شي."
   },
   "common": {
     "mute": "غږ بند کړئ",

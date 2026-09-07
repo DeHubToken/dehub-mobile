@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Bu telefon Google/email orqali kirishingiz uchun avtomatik tanlaydigan hamyonni unutadi. Siz chiqasiz va keyingi kirishda to‘g‘ri hamyonni uning paroli bilan (sayt ishlatadigan xuddi shu parol) ochish so‘raladi.",
     "resetAndSignOut": "Tiklash va chiqish",
     "deviceLinkReset": "Qurilma bog‘lanishi tiklandi. To‘g‘ri hisobni olish uchun qayta kiring.",
-    "deviceLinkResetFailed": "Qurilma bog‘lanishini tiklab bo‘lmadi."
+    "deviceLinkResetFailed": "Qurilma bog‘lanishini tiklab bo‘lmadi.",
+    "emailNotificationsDescLinked": "{{email}} ga yuborildi",
+    "emailNotificationsNoAddressMobile": "Bularni yoqish uchun veb-saytga elektron pochta manzilini qo'shing."
   },
   "common": {
     "mute": "Ovozni o‘chirish",

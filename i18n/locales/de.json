@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Dieses Telefon vergisst, welche Wallet es für deine Google/E-Mail-Anmeldung automatisch auswählt. Du wirst abgemeldet, und bei der nächsten Anmeldung wirst du gebeten, die richtige Wallet mit ihrem Passwort zu entsperren (dasselbe, das die Website verwendet).",
     "resetAndSignOut": "Zurücksetzen & abmelden",
     "deviceLinkReset": "Geräteverknüpfung zurückgesetzt. Melde dich erneut an, um das richtige Konto zu laden.",
-    "deviceLinkResetFailed": "Die Geräteverknüpfung konnte nicht zurückgesetzt werden."
+    "deviceLinkResetFailed": "Die Geräteverknüpfung konnte nicht zurückgesetzt werden.",
+    "emailNotificationsDescLinked": "Gesendet an {{email}}",
+    "emailNotificationsNoAddressMobile": "Fügen Sie eine E-Mail-Adresse auf der Website hinzu, um diese zu aktivieren."
   },
   "common": {
     "mute": "Stumm schalten",

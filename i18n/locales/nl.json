@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Deze telefoon vergeet welke wallet hij automatisch kiest voor je Google/e-mail-aanmelding. Je wordt uitgelogd en bij de volgende aanmelding wordt gevraagd de juiste wallet te ontgrendelen met het wachtwoord (hetzelfde als op de website).",
     "resetAndSignOut": "Resetten en uitloggen",
     "deviceLinkReset": "Apparaatkoppeling gereset. Log opnieuw in om het juiste account op te halen.",
-    "deviceLinkResetFailed": "Kon de apparaatkoppeling niet resetten."
+    "deviceLinkResetFailed": "Kon de apparaatkoppeling niet resetten.",
+    "emailNotificationsDescLinked": "Verzonden naar {{email}}",
+    "emailNotificationsNoAddressMobile": "Voeg een e-mailadres toe op de website om deze in te schakelen."
   },
   "common": {
     "mute": "Dempen",

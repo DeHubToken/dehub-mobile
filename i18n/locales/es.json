@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Este teléfono olvidará qué billetera selecciona automáticamente para tu inicio de sesión con Google/correo. Se cerrará tu sesión y, la próxima vez, se te pedirá desbloquear la billetera correcta con su contraseña (la misma que usa el sitio web).",
     "resetAndSignOut": "Restablecer y cerrar sesión",
     "deviceLinkReset": "Vínculo del dispositivo restablecido. Vuelve a iniciar sesión para cargar la cuenta correcta.",
-    "deviceLinkResetFailed": "No se pudo restablecer el vínculo del dispositivo."
+    "deviceLinkResetFailed": "No se pudo restablecer el vínculo del dispositivo.",
+    "emailNotificationsDescLinked": "Enviado a {{email}}",
+    "emailNotificationsNoAddressMobile": "Agrega una dirección de correo electrónico en el sitio web para activarlos."
   },
   "common": {
     "mute": "Silenciar",

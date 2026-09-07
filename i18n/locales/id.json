@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Ponsel ini akan melupakan dompet mana yang dipilih otomatis untuk masuk Google/email Anda. Anda akan keluar, dan saat masuk lagi Anda diminta membuka dompet yang benar dengan kata sandinya (sama seperti yang dipakai situs web).",
     "resetAndSignOut": "Setel ulang & keluar",
     "deviceLinkReset": "Tautan perangkat disetel ulang. Masuk lagi untuk mengambil akun yang benar.",
-    "deviceLinkResetFailed": "Tidak dapat menyetel ulang tautan perangkat."
+    "deviceLinkResetFailed": "Tidak dapat menyetel ulang tautan perangkat.",
+    "emailNotificationsDescLinked": "Dikirim ke {{email}}",
+    "emailNotificationsNoAddressMobile": "Tambahkan alamat email di situs web untuk mengaktifkan ini."
   },
   "common": {
     "mute": "Bisukan",

@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "此手机将忘记为你的 Google/邮箱登录自动选择的钱包。你将被登出，下次登录时需要用密码解锁正确的钱包（与网站相同的密码）。",
     "resetAndSignOut": "重置并退出",
     "deviceLinkReset": "设备关联已重置。请重新登录以选取正确的账户。",
-    "deviceLinkResetFailed": "无法重置设备关联。"
+    "deviceLinkResetFailed": "无法重置设备关联。",
+    "emailNotificationsDescLinked": "发送至 {{email}}",
+    "emailNotificationsNoAddressMobile": "在网站上添加电子邮件地址即可启用这些功能。"
   },
   "common": {
     "mute": "静音",

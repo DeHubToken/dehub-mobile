@@ -595,7 +595,9 @@
     "resetDeviceLinkBody": "Tento telefón zabudne, ktorú peňaženku automaticky vyberá pre prihlásenie cez Google/e-mail. Budete odhlásení a pri ďalšom prihlásení vás požiada o odomknutie správnej peňaženky jej heslom (rovnakým, aké používa web).",
     "resetAndSignOut": "Resetovať a odhlásiť",
     "deviceLinkReset": "Prepojenie zariadenia resetované. Prihláste sa znova, aby sa načítal správny účet.",
-    "deviceLinkResetFailed": "Prepojenie zariadenia sa nepodarilo resetovať."
+    "deviceLinkResetFailed": "Prepojenie zariadenia sa nepodarilo resetovať.",
+    "emailNotificationsDescLinked": "Odoslané {{email}}",
+    "emailNotificationsNoAddressMobile": "Pridajte na webovú stránku e-mailovú adresu, aby ste ich zapli."
   },
   "notifications": {
     "title": "Upozornenia",

@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Bu telefon, Google/e-posta girişin için otomatik seçtiği cüzdanı unutacak. Oturumun kapatılacak ve bir sonraki girişte doğru cüzdanı şifresiyle (web sitesinin kullandığı aynı şifre) açman istenecek.",
     "resetAndSignOut": "Sıfırla ve çıkış yap",
     "deviceLinkReset": "Cihaz bağlantısı sıfırlandı. Doğru hesabı almak için tekrar oturum aç.",
-    "deviceLinkResetFailed": "Cihaz bağlantısı sıfırlanamadı."
+    "deviceLinkResetFailed": "Cihaz bağlantısı sıfırlanamadı.",
+    "emailNotificationsDescLinked": "{{email}}'ya gönderildi",
+    "emailNotificationsNoAddressMobile": "Bunları etkinleştirmek için web sitesine bir e-posta adresi ekleyin."
   },
   "common": {
     "mute": "Sesi kapat",

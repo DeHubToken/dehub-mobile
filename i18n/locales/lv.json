@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Šis tālrunis aizmirsīs, kuru maku tas automātiski izvēlas tavai Google/e-pasta pierakstīšanai. Tu tiksi izrakstīts, un nākamreiz pierakstoties tev lūgs atbloķēt pareizo maku ar tā paroli (to pašu, ko izmanto vietne).",
     "resetAndSignOut": "Atiestatīt un izrakstīties",
     "deviceLinkReset": "Ierīces saite atiestatīta. Pieraksties vēlreiz, lai iegūtu pareizo kontu.",
-    "deviceLinkResetFailed": "Neizdevās atiestatīt ierīces saiti."
+    "deviceLinkResetFailed": "Neizdevās atiestatīt ierīces saiti.",
+    "emailNotificationsDescLinked": "Nosūtīts {{email}}",
+    "emailNotificationsNoAddressMobile": "Pievienojiet e-pasta adresi vietnē, lai tos ieslēgtu."
   },
   "common": {
     "mute": "Izslēgt skaņu",

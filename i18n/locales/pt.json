@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Este celular esquecerá qual carteira seleciona automaticamente para seu login com Google/e-mail. Você será desconectado e, na próxima vez, terá que desbloquear a carteira correta com a senha dela (a mesma que o site usa).",
     "resetAndSignOut": "Redefinir e sair",
     "deviceLinkReset": "Vínculo do dispositivo redefinido. Entre novamente para carregar a conta correta.",
-    "deviceLinkResetFailed": "Não foi possível redefinir o vínculo do dispositivo."
+    "deviceLinkResetFailed": "Não foi possível redefinir o vínculo do dispositivo.",
+    "emailNotificationsDescLinked": "Enviado para {{email}}",
+    "emailNotificationsNoAddressMobile": "Adicione um endereço de e-mail no site para ativá-los."
   },
   "common": {
     "mute": "Silenciar",

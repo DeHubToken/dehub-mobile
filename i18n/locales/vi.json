@@ -844,7 +844,9 @@
     "resetDeviceLinkBody": "Điện thoại này sẽ quên ví nào được tự động chọn cho đăng nhập Google/email của bạn. Bạn sẽ bị đăng xuất, và lần đăng nhập tới bạn sẽ được yêu cầu mở khóa đúng ví bằng mật khẩu của nó (cùng mật khẩu trang web dùng).",
     "resetAndSignOut": "Đặt lại và đăng xuất",
     "deviceLinkReset": "Đã đặt lại liên kết thiết bị. Đăng nhập lại để lấy đúng tài khoản.",
-    "deviceLinkResetFailed": "Không thể đặt lại liên kết thiết bị."
+    "deviceLinkResetFailed": "Không thể đặt lại liên kết thiết bị.",
+    "emailNotificationsDescLinked": "Gửi đến {{email}}",
+    "emailNotificationsNoAddressMobile": "Thêm địa chỉ email trên trang web để bật những thứ này."
   },
   "postOptions": {
     "options": "Tuỳ chọn",

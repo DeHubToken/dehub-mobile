@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Wannan wayar za ta manta wace walat take zaɓa kai tsaye don shigar ka ta Google/imel. Za a fitar da kai, kuma lokaci na gaba da ka shiga za a nemi ka buɗe walat ɗin da ya dace da kalmar sirrinsa (wanda gidan yanar gizo ke amfani da shi).",
     "resetAndSignOut": "Sake saita kuma fita",
     "deviceLinkReset": "An sake saita haɗin na'ura. Sake shiga don samun asusun da ya dace.",
-    "deviceLinkResetFailed": "Ba a iya sake saita haɗin na'ura ba."
+    "deviceLinkResetFailed": "Ba a iya sake saita haɗin na'ura ba.",
+    "emailNotificationsDescLinked": "An aika wa {{email}}",
+    "emailNotificationsNoAddressMobile": "Ƙara adireshin imel a shafin yanar gizon don kunna waɗannan."
   },
   "common": {
     "mute": "Kashe sauti",

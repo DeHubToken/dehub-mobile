@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Ez a telefon elfelejti, melyik tárcát választja automatikusan a Google/e-mail bejelentkezésedhez. Kijelentkeztetünk, és a következő bejelentkezéskor a megfelelő tárcát a jelszavával kell feloldanod (ugyanazzal, amit a weboldal használ).",
     "resetAndSignOut": "Visszaállítás és kijelentkezés",
     "deviceLinkReset": "Eszközkapcsolat visszaállítva. Jelentkezz be újra a megfelelő fiók betöltéséhez.",
-    "deviceLinkResetFailed": "Nem sikerült visszaállítani az eszközkapcsolatot."
+    "deviceLinkResetFailed": "Nem sikerült visszaállítani az eszközkapcsolatot.",
+    "emailNotificationsDescLinked": "{{email}}-nak küldve",
+    "emailNotificationsNoAddressMobile": "Adj hozzá egy e-mail címet a weboldalon ezek bekapcsolásához."
   },
   "common": {
     "mute": "Némítás",

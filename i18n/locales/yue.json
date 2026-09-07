@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "呢部手機會唔記得為你嘅 Google/電郵登入自動揀嘅錢包。你會被登出，下次登入時要用密碼解鎖正確嘅錢包（同網站相同嘅密碼）。",
     "resetAndSignOut": "重設並登出",
     "deviceLinkReset": "裝置關聯已重設。請重新登入以揀取正確嘅帳戶。",
-    "deviceLinkResetFailed": "無法重設裝置關聯。"
+    "deviceLinkResetFailed": "無法重設裝置關聯。",
+    "emailNotificationsDescLinked": "發送至 {{email}}",
+    "emailNotificationsNoAddressMobile": "喺網站度加一個電郵地址就可以開啟呢啲功能。"
   },
   "common": {
     "mute": "靜音",

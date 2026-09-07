@@ -551,7 +551,9 @@
     "resetDeviceLinkBody": "This phone will forget which wallet it auto-selects for your Google/email sign-in. You'll be signed out, and next time you sign in you'll be asked to unlock the correct wallet with its password (the same one the website uses).",
     "resetAndSignOut": "Reset & sign out",
     "deviceLinkReset": "Device link reset. Sign in again to pick up the right account.",
-    "deviceLinkResetFailed": "Could not reset the device link."
+    "deviceLinkResetFailed": "Could not reset the device link.",
+    "emailNotificationsDescLinked": "Sent to {{email}}",
+    "emailNotificationsNoAddressMobile": "Add an email address on the website to turn these on."
   },
   "common": {
     "mute": "Mute",

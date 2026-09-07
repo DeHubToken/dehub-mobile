@@ -736,7 +736,9 @@
     "resetDeviceLinkBody": "Acest telefon va uita ce portofel selectează automat pentru autentificarea ta cu Google/e-mail. Vei fi deconectat, iar la următoarea autentificare ți se va cere să deblochezi portofelul corect cu parola lui (aceeași pe care o folosește site-ul).",
     "resetAndSignOut": "Resetează și deconectează-te",
     "deviceLinkReset": "Legătura dispozitivului a fost resetată. Conectează-te din nou pentru a prelua contul corect.",
-    "deviceLinkResetFailed": "Legătura dispozitivului nu a putut fi resetată."
+    "deviceLinkResetFailed": "Legătura dispozitivului nu a putut fi resetată.",
+    "emailNotificationsDescLinked": "Trimis către {{email}}",
+    "emailNotificationsNoAddressMobile": "Adaugă o adresă de email pe site pentru a le activa."
   },
   "common": {
     "mute": "Dezactivează sunetul",

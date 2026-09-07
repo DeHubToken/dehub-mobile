@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Simu hii itasahau pochi inayochagua kiotomatiki kwa kuingia kwako kwa Google/barua pepe. Utatoka, na utakapoingia tena utaombwa kufungua pochi sahihi kwa nenosiri lake (lile lile tovuti inalotumia).",
     "resetAndSignOut": "Weka upya na utoke",
     "deviceLinkReset": "Kiungo cha kifaa kimewekwa upya. Ingia tena ili kupata akaunti sahihi.",
-    "deviceLinkResetFailed": "Imeshindwa kuweka upya kiungo cha kifaa."
+    "deviceLinkResetFailed": "Imeshindwa kuweka upya kiungo cha kifaa.",
+    "emailNotificationsDescLinked": "Tuma kwa {{email}}",
+    "emailNotificationsNoAddressMobile": "Ongeza anwani ya barua pepe kwenye tovuti ili kuwasha hizi."
   },
   "common": {
     "mute": "Nyamazisha",

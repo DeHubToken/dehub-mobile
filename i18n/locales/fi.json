@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Tämä puhelin unohtaa, minkä lompakon se valitsee automaattisesti Google/sähköposti-kirjautumiseesi. Sinut kirjataan ulos, ja seuraavalla kerralla sinua pyydetään avaamaan oikea lompakko sen salasanalla (samalla, jota sivusto käyttää).",
     "resetAndSignOut": "Nollaa ja kirjaudu ulos",
     "deviceLinkReset": "Laitelinkitys nollattu. Kirjaudu uudelleen saadaksesi oikean tilin.",
-    "deviceLinkResetFailed": "Laitelinkitystä ei voitu nollata."
+    "deviceLinkResetFailed": "Laitelinkitystä ei voitu nollata.",
+    "emailNotificationsDescLinked": "Lähetetty {{email}}:lle",
+    "emailNotificationsNoAddressMobile": "Lisää sähköpostiosoite verkkosivustolle kytkeäksesi nämä päälle."
   },
   "common": {
     "mute": "Mykistä",

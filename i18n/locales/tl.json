@@ -970,7 +970,9 @@
     "resetDeviceLinkBody": "Makakalimutan ng phone na ito kung aling wallet ang awtomatikong pinipili para sa iyong Google/email sign-in. Masa-sign out ka, at sa susunod na pag-sign in ay hihilingin sa iyong i-unlock ang tamang wallet gamit ang password nito (kapareho ng ginagamit ng website).",
     "resetAndSignOut": "I-reset at mag-sign out",
     "deviceLinkReset": "Na-reset ang link ng device. Mag-sign in muli para makuha ang tamang account.",
-    "deviceLinkResetFailed": "Hindi ma-reset ang link ng device."
+    "deviceLinkResetFailed": "Hindi ma-reset ang link ng device.",
+    "emailNotificationsDescLinked": "Ipadala kay {{email}}",
+    "emailNotificationsNoAddressMobile": "Magdagdag ng email address sa website para i-on ang mga ito."
   },
   "postOptions": {
     "options": "Options",

@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Šis telefonas pamirš, kurią piniginę automatiškai parenka jūsų Google/el. pašto prisijungimui. Būsite atjungti, o kitą kartą prisijungdami turėsite atrakinti teisingą piniginę jos slaptažodžiu (tuo pačiu, kurį naudoja svetainė).",
     "resetAndSignOut": "Nustatyti iš naujo ir atsijungti",
     "deviceLinkReset": "Įrenginio ryšys nustatytas iš naujo. Prisijunkite dar kartą, kad gautumėte tinkamą paskyrą.",
-    "deviceLinkResetFailed": "Nepavyko iš naujo nustatyti įrenginio ryšio."
+    "deviceLinkResetFailed": "Nepavyko iš naujo nustatyti įrenginio ryšio.",
+    "emailNotificationsDescLinked": "Siųsta {{email}}",
+    "emailNotificationsNoAddressMobile": "Pridėkite el. pašto adresą svetainėje, kad juos įjungtumėte."
   },
   "common": {
     "mute": "Nutildyti",
