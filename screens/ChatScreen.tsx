@@ -130,6 +130,8 @@ export type ChatScreenProps = {
 
 
 const PAGE_SIZE = 30;
+/** How long an edit may go unacknowledged before the old words are put back. */
+const EDIT_CONFIRM_TIMEOUT_MS = 10_000;
 const log = createLogger("ChatScreen");
 
 
@@ -209,6 +211,33 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   // Reply / edit
   const [replyTo, setReplyTo] = useState<DmMessage | null>(null);
   const [editingMessage, setEditingMessage] = useState<DmMessage | null>(null);
+
+  /*
+   * An edit is a fire-and-forget socket emit with an optimistic patch painted
+   * in front of it, so one the server never accepted looked exactly like one it
+   * saved — right up until the thread was reopened and the old words came back.
+   * Each edit parks a timer here until the server echoes it back. An edit that
+   * goes unacknowledged puts the old words back on screen and says so, rather
+   * than leaving a change that only exists on this phone.
+   */
+  const pendingEditsRef = useRef<Map<string, ReturnType<typeof setTimeout>>>(
+    new Map(),
+  );
+
+  const settlePendingEdit = useCallback((messageId: string) => {
+    const timer = pendingEditsRef.current.get(messageId);
+    if (timer === undefined) return;
+    clearTimeout(timer);
+    pendingEditsRef.current.delete(messageId);
+  }, []);
+
+  useEffect(() => {
+    const pending = pendingEditsRef.current;
+    return () => {
+      pending.forEach((timer) => clearTimeout(timer));
+      pending.clear();
+    };
+  }, []);
 
   // Forward
   const [forwardVisible, setForwardVisible] = useState(false);
@@ -743,6 +772,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     // Edit
     unsubs.push(
       ws.on(DMSocketEvent.EditMessage, (payload: EditMessageResponse) => {
+        settlePendingEdit(payload.messageId);
         if (payload.dmId === currentConvId) {
           dmActions.applyEdit(payload);
         }
@@ -825,7 +855,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     );
 
     return () => unsubs.forEach((u) => { try { u(); } catch {} });
-  }, [ws, currentConvId, userId]);
+  }, [ws, currentConvId, userId, settlePendingEdit]);
 
   // Auto-clear typing after 5s silence
   useEffect(() => {
@@ -1024,24 +1054,48 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
       // Editing is still handled inline (not queued)
       if (editingMessage) {
+        const target = editingMessage;
+        const previousContent = target.content || "";
+        if (content === previousContent.trim()) {
+          setEditingMessage(null);
+          return;
+        }
         (async () => {
           try {
             const cId = await ensureConversation();
             const wire = await prepareOutgoing(peer.address, content);
             ws.emitAuthed(DMSocketEvent.EditMessage, {
               dmId: cId,
-              messageId: editingMessage._id,
+              messageId: target._id,
               content: wire.content,
             });
             dmActions.applyEdit({
               dmId: cId,
-              messageId: editingMessage._id,
+              messageId: target._id,
               content,
               isEdited: true,
               editedAt: new Date().toISOString(),
               author: "me",
             });
             setEditingMessage(null);
+
+            settlePendingEdit(target._id);
+            const revert = () => {
+              pendingEditsRef.current.delete(target._id);
+              dmActions.applyEdit({
+                dmId: cId,
+                messageId: target._id,
+                content: previousContent,
+                isEdited: !!target.isEdited,
+                editedAt: target.editedAt || new Date().toISOString(),
+                author: "me",
+              });
+              toastError("Failed to edit");
+            };
+            pendingEditsRef.current.set(
+              target._id,
+              setTimeout(revert, EDIT_CONFIRM_TIMEOUT_MS),
+            );
           } catch (e) {
             toastError(e, "Failed to edit");
           }
@@ -1070,7 +1124,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       setReplyTo(null);
       setTipAmount(0);
     },
-    [dmDisabled, dmReason, dmFee, editingMessage, currentConvId, userId, address, peer.address, ensureConversation, ws, scrollToBottom, replyTo, tipAmount, dispatchStandaloneTip],
+    [dmDisabled, dmReason, dmFee, editingMessage, currentConvId, userId, address, peer.address, ensureConversation, ws, scrollToBottom, replyTo, tipAmount, dispatchStandaloneTip, settlePendingEdit],
   );
 
   const onSendGif = useCallback(

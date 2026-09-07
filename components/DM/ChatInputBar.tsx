@@ -676,12 +676,12 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
         </View>
 
         {/* Toolbar row */}
-        <View className="flex-row items-center justify-around px-4 py-2">
+        <View className="flex-row items-center justify-between px-3 pt-0.5 pb-2">
           {/* Gem (tip / diamond) */}
           {canAddTip && onTipPress ? (
             <TouchableOpacity
               onPress={onTipPress}
-              className="p-2"
+              className="w-9 h-9 items-center justify-center"
               hitSlop={4}
               activeOpacity={0.6}
               disabled={enhancing}
@@ -692,7 +692,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               <Icon name="Gem" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
             </TouchableOpacity>
           ) : (
-            <View className="p-2">
+            <View className="w-9 h-9 items-center justify-center">
               <Icon name="Gem" size={22} color="#3F3F46" />
             </View>
           )}
@@ -700,7 +700,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           {/* GIF picker */}
           <TouchableOpacity
             onPress={() => setGifPickerVisible(true)}
-            className="p-2"
+            className="w-9 h-9 items-center justify-center"
             hitSlop={4}
             activeOpacity={0.6}
             disabled={enhancing}
@@ -708,13 +708,13 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             accessibilityLabel="Choose a GIF"
             accessibilityState={{ disabled: enhancing }}
           >
-            <Text style={{ fontSize: 13, fontWeight: '800', color: enhancing ? '#3F3F46' : '#A6A9AC' }}>GIF</Text>
+            <Text style={{ fontSize: 14, lineHeight: 22, fontWeight: '800', color: enhancing ? '#3F3F46' : '#A6A9AC' }}>GIF</Text>
           </TouchableOpacity>
 
           {/* Image picker */}
           <TouchableOpacity
             onPress={handlePickImage}
-            className="p-2"
+            className="w-9 h-9 items-center justify-center"
             hitSlop={4}
             activeOpacity={0.6}
             disabled={enhancing}
@@ -728,7 +728,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           {/* Video picker */}
           <TouchableOpacity
             onPress={handlePickVideo}
-            className="p-2"
+            className="w-9 h-9 items-center justify-center"
             hitSlop={4}
             activeOpacity={0.6}
             disabled={enhancing}
@@ -742,7 +742,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           {/* File picker */}
           <TouchableOpacity
             onPress={handlePickFile}
-            className="p-2"
+            className="w-9 h-9 items-center justify-center"
             hitSlop={4}
             activeOpacity={0.6}
             disabled={enhancing}
@@ -756,7 +756,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           {/* Mic */}
           <TouchableOpacity
             onPress={onStartVoice}
-            className="p-2"
+            className="w-9 h-9 items-center justify-center"
             hitSlop={4}
             activeOpacity={0.6}
             disabled={enhancing}
@@ -771,7 +771,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           {onPollPress && (
             <TouchableOpacity
               onPress={onPollPress}
-              className="p-2"
+              className="w-9 h-9 items-center justify-center"
               hitSlop={4}
               activeOpacity={0.6}
               disabled={enhancing}
@@ -788,7 +788,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               is the one at the bottom of that tray. */}
           <TouchableOpacity
             onPress={handleEnhance}
-            className="p-2"
+            className="w-9 h-9 items-center justify-center"
             hitSlop={4}
             activeOpacity={0.6}
             disabled={!text.trim() || enhancing}
@@ -802,7 +802,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               <Icon
                 name="Sparkles"
                 size={22}
-                color={text.trim() ? '#F4F4F5' : '#3F3F46'}
+                color={text.trim() ? '#A6A9AC' : '#3F3F46'}
               />
             )}
           </TouchableOpacity>
@@ -817,7 +817,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 accessibilityRole="button"
                 accessibilityLabel="Send message"
                 accessibilityState={{ disabled: sending || enhancing || insufficientBalance || tipBelowFee }}
-                className={`flex-row items-center rounded-full px-3 py-2.5 ${
+                className={`h-9 flex-row items-center justify-center rounded-full px-3 ${
                   insufficientBalance || tipBelowFee
                     ? "bg-theme-neutrals-700"
                     : "bg-white/10 border border-white/20"
@@ -838,7 +838,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               <TouchableOpacity
                 onPress={handleSend}
                 disabled={sending || enhancing}
-                className="p-2"
+                className="w-9 h-9 items-center justify-center"
                 accessibilityRole="button"
                 accessibilityLabel="Send message"
                 accessibilityState={{ disabled: sending || enhancing }}
@@ -852,7 +852,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             )
           ) : (
             <TouchableOpacity
-              className="p-2"
+              className="w-9 h-9 items-center justify-center"
               activeOpacity={0.6}
               disabled
               accessibilityRole="button"

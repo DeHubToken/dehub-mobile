@@ -19,7 +19,7 @@ import PaymentBadge from "./PaymentBadge";
 import { getAvatarUrl, buildCdnPath } from "../../libs/misc";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import { formatChatTimeSmart } from "../../libs/date.util";
-import type { DmMessage, DmUser } from "../../services/dm/dm.types";
+import type { DmMessage, DmUser, OptimisticMessage } from "../../services/dm/dm.types";
 import { getSenderUser } from "../../services/dm/dm.types";
 
 
@@ -382,7 +382,9 @@ const FloatingMessage: React.FC<{
 };
 
 
-const ACTIONS_CARD_HEIGHT = 280;
+/** One ActionRow: 20px icon, py-3, plus the card's own py-1 once. */
+const ACTION_ROW_HEIGHT = 45;
+const ACTIONS_CARD_PADDING = 8;
 const PADDING = 16;
 
 const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
@@ -452,6 +454,69 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
   }, [onClose, onUnpin]);
 
 
+  /**
+   * The rows this message actually gets, resolved once so the card can be
+   * placed against its real height. A fixed 280 was right for a six-row card
+   * and wrong for every shorter one, which is what pushed the menu off the
+   * bottom of a short thread.
+   *
+   * Everything that names a message to the server is held back until the
+   * server has one to name: an unsent bubble still carries a local id, so an
+   * edit, a delete or a pin aimed at it reached the API as an id it has never
+   * seen and died there without a word. Copy needs no id, so it stays.
+   */
+  const actions = useMemo(() => {
+    if (!message) return [] as ActionRowProps[];
+
+    const optimistic = message as Partial<OptimisticMessage>;
+    const unsent =
+      !!optimistic._optimistic ||
+      !!optimistic._tempId ||
+      message.uploadStatus === "pending" ||
+      message.uploadStatus === "failed";
+
+    const isTextOnly =
+      message.msgType === "msg" || (!message.msgType && !!message.content);
+    const hasContent = !!message.content?.trim();
+    const rows: ActionRowProps[] = [];
+
+    if (onReply && !unsent)
+      rows.push({ icon: "MessageCircle", label: "Reply", onPress: handleReply });
+    if (hasContent) rows.push({ icon: "Copy", label: "Copy", onPress: handleCopy });
+    if (onForward && !unsent)
+      rows.push({ icon: "Forward", label: "Forward", onPress: handleForward });
+    if (isMine && isTextOnly && !unsent && onEdit)
+      rows.push({ icon: "Pencil", label: "Edit", onPress: handleEdit });
+    if (onPin && !isPinned && !unsent)
+      rows.push({ icon: "Pin", label: "Pin", onPress: handlePin });
+    if (onUnpin && isPinned && !unsent)
+      rows.push({ icon: "Pin", label: "Unpin", onPress: handleUnpin });
+    if (isMine && onDelete && !unsent)
+      rows.push({ icon: "Trash2", label: "Delete", onPress: handleDelete, destructive: true });
+
+    return rows;
+  }, [
+    message,
+    isMine,
+    isPinned,
+    onReply,
+    onForward,
+    onEdit,
+    onPin,
+    onUnpin,
+    onDelete,
+    handleReply,
+    handleCopy,
+    handleForward,
+    handleEdit,
+    handlePin,
+    handleUnpin,
+    handleDelete,
+  ]);
+
+  const actionsCardHeight =
+    actions.length * ACTION_ROW_HEIGHT + ACTIONS_CARD_PADDING;
+
   const { messageTop, actionsTop, actionsBelow } = useMemo(() => {
     if (!layout)
       return {
@@ -465,7 +530,7 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     // Float includes sender header (~36px) + date below bubble (~24px)
     const FLOAT_EXTRA = 60;
     const msgH = layout.height + FLOAT_EXTRA;
-    const actionsH = ACTIONS_CARD_HEIGHT;
+    const actionsH = actionsCardHeight;
     const gap = 8;
 
     let mTop = layout.y - 36; // offset up to account for sender header above bubble
@@ -488,13 +553,9 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
 
     const aTop = below ? mTop + msgH + gap : mTop - gap - actionsH;
     return { messageTop: mTop, actionsTop: aTop, actionsBelow: below };
-  }, [layout, insets, SCREEN_HEIGHT]);
+  }, [layout, insets, SCREEN_HEIGHT, actionsCardHeight]);
 
   if (!visible || !message) return null;
-
-  const isTextOnly = message.msgType === "msg" || (!message.msgType && !!message.content);
-  const canEdit = isMine && isTextOnly;
-  const hasContent = !!message.content?.trim();
 
   return (
     <Modal
@@ -562,61 +623,9 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
       >
         <Pressable>
           <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden py-1">
-            {onReply && (
-              <ActionRow
-                icon="MessageCircle"
-                label="Reply"
-                onPress={handleReply}
-              />
-            )}
-
-            {hasContent && (
-              <ActionRow
-                icon="Copy"
-                label="Copy"
-                onPress={handleCopy}
-              />
-            )}
-
-            {onForward && (
-              <ActionRow
-                icon="Forward"
-                label="Forward"
-                onPress={handleForward}
-              />
-            )}
-
-            {canEdit && onEdit && (
-              <ActionRow
-                icon="Pencil"
-                label="Edit"
-                onPress={handleEdit}
-              />
-            )}
-
-            {onPin && !isPinned && (
-              <ActionRow
-                icon="Pin"
-                label="Pin"
-                onPress={handlePin}
-              />
-            )}
-            {onUnpin && isPinned && (
-              <ActionRow
-                icon="Pin"
-                label="Unpin"
-                onPress={handleUnpin}
-              />
-            )}
-
-            {isMine && onDelete && (
-              <ActionRow
-                icon="Trash2"
-                label="Delete"
-                onPress={handleDelete}
-                destructive
-              />
-            )}
+            {actions.map((action) => (
+              <ActionRow key={action.label} {...action} />
+            ))}
           </View>
         </Pressable>
       </Animated.View>
