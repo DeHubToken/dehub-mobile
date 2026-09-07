@@ -33,6 +33,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
           right. */}
       <TouchableOpacity
         onPress={onMenuPress}
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
         activeOpacity={0.7}
         accessibilityRole="button"
         // Signed in this control is the user's own avatar, which is why the
@@ -80,6 +81,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
       {isSignedIn ? (
         <TouchableOpacity
           onPress={handleNotificationPress}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           activeOpacity={0.7}
           accessibilityRole="button"
           accessibilityLabel={hasUnread ? `Notifications, ${unreadCount} unread` : "Notifications"}
