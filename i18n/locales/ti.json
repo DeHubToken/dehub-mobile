@@ -965,7 +965,13 @@
     "stake": "ስቴክ",
     "cashOut": "ገንዘብ ኣውጽእ",
     "stakeComingSoon": "ስቴኪንግ ቀሪቡ!",
-    "cashOutComingSoon": "ምውጻእ ገንዘብ ቀሪቡ!"
+    "cashOutComingSoon": "ምውጻእ ገንዘብ ቀሪቡ!",
+    "chooseAddressNetwork": "ኣየናይ መርበብ?",
+    "evmAddressHint": "ቤዝ ፣ ቢንቢን ኤትሬም",
+    "evmAddressCopied": "ኣድራሻ EVM ተቐቢሉ",
+    "solanaAddressLabel": "ሶላና",
+    "solanaAddressHint": "ናይ ሶል ኤንድ SPL ምልክታት ጥራይ",
+    "solanaAddressCopied": "ናይ ሶላና ኣድራሻ ቅዳሕ"
   },
   "bookmarks": {
     "title": "ዕልባታትካ",

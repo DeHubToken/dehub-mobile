@@ -578,7 +578,13 @@
     "stake": "Stake",
     "cashOut": "Теглене",
     "stakeComingSoon": "Stake скоро!",
-    "cashOutComingSoon": "Теглене скоро!"
+    "cashOutComingSoon": "Теглене скоро!",
+    "chooseAddressNetwork": "Коя мрежа?",
+    "evmAddressHint": "Base, BNB и Ethereum",
+    "evmAddressCopied": "EVM адресът е копиран",
+    "solanaAddressLabel": "Солана",
+    "solanaAddressHint": "Само жетони SOL и SPL",
+    "solanaAddressCopied": "Адресът на Солана е копиран"
   },
   "publicChat": {
     "title": "Публичен чат",

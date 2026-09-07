@@ -578,7 +578,14 @@
     "stake": "ਸਟੇਕ",
     "cashOut": "ਕੈਸ਼ ਆਊਟ",
     "stakeComingSoon": "ਸਟੇਕ ਜਲਦੀ ਆ ਰਿਹਾ ਹੈ!",
-    "cashOutComingSoon": "ਕੈਸ਼ ਆਊਟ ਜਲਦੀ ਆ ਰਿਹਾ ਹੈ!"
+    "cashOutComingSoon": "ਕੈਸ਼ ਆਊਟ ਜਲਦੀ ਆ ਰਿਹਾ ਹੈ!",
+    "chooseAddressNetwork": "ਕਿਹੜਾ ਨੈੱਟਵਰਕ?",
+    "evmAddressLabel": "ਈਵੀਐਮ",
+    "evmAddressHint": "ਬੇਸ, BNB ਅਤੇ Ethereum",
+    "evmAddressCopied": "ਈਵੀਐਮ ਪਤਾ ਕਾਪੀ ਕੀਤਾ ਗਿਆ",
+    "solanaAddressLabel": "ਸੋਲਾਨਾ",
+    "solanaAddressHint": "SOL ਅਤੇ SPL ਸਿਰਫ ਟੋਕਨ",
+    "solanaAddressCopied": "ਸੋਲਾਨਾ ਐਡਰੈੱਸ ਕਾਪੀ ਕੀਤਾ ਗਿਆ"
   },
   "publicChat": {
     "title": "ਜਨਤਕ ਚੈਟ",

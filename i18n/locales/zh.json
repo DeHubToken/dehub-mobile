@@ -578,7 +578,13 @@
     "stake": "质押",
     "cashOut": "提现",
     "stakeComingSoon": "质押功能即将推出！",
-    "cashOutComingSoon": "提现功能即将推出！"
+    "cashOutComingSoon": "提现功能即将推出！",
+    "chooseAddressNetwork": "哪个网络？",
+    "evmAddressHint": "BASE、BNB和以太坊",
+    "evmAddressCopied": "EVM地址已复制",
+    "solanaAddressLabel": "索拉纳",
+    "solanaAddressHint": "仅限SOL和SPL代币",
+    "solanaAddressCopied": "索拉纳地址已复制"
   },
   "publicChat": {
     "title": "公共聊天",

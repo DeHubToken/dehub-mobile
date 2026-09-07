@@ -978,7 +978,13 @@
     "to": "වෙත",
     "selectToken": "ටෝකනය තෝරන්න",
     "connectWallet": "මුදල් පසුම්බිය සම්බන්ධ කරන්න",
-    "loginDescription": "මුදල් පසුම්බියට ප්‍රවේශ වීමට පිවිසෙන්න."
+    "loginDescription": "මුදල් පසුම්බියට ප්‍රවේශ වීමට පිවිසෙන්න.",
+    "chooseAddressNetwork": "මොන ජාලයද?",
+    "evmAddressHint": "මූලික, BNB සහ Ethereum",
+    "evmAddressCopied": "EVM ලිපිනය පිටපත් කරන ලදී",
+    "solanaAddressLabel": "සොලානා",
+    "solanaAddressHint": "SOL සහ SPL ටෝකන පමණි",
+    "solanaAddressCopied": "සොලානා ලිපිනය පිටපත් කරන ලදි"
   },
   "bookmarks": {
     "title": "ඔබේ පිටු සලකුණු",

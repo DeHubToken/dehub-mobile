@@ -1649,7 +1649,13 @@
     "stake": "Stake",
     "cashOut": "Cash Out",
     "stakeComingSoon": "Staking coming soon!",
-    "cashOutComingSoon": "Cash out coming soon!"
+    "cashOutComingSoon": "Cash out coming soon!",
+    "chooseAddressNetwork": "Яка мережа?",
+    "evmAddressHint": "Base, BNB та Ethereum",
+    "evmAddressCopied": "Адресу EVM скопійовано",
+    "solanaAddressLabel": "Солана",
+    "solanaAddressHint": "Тільки токени SOL і SPL",
+    "solanaAddressCopied": "Адресу Solana скопійовано"
   },
   "features": {
     "title": "Feature Requests",

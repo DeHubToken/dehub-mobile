@@ -1205,7 +1205,12 @@
     "stake": "ฝาก",
     "cashOut": "ถอนเงิน",
     "stakeComingSoon": "การสเตกจะมาเร็ว ๆ นี้!",
-    "cashOutComingSoon": "การถอนเงินจะมาเร็ว ๆ นี้!"
+    "cashOutComingSoon": "การถอนเงินจะมาเร็ว ๆ นี้!",
+    "chooseAddressNetwork": "เครือข่ายใด?",
+    "evmAddressHint": "Base, BNB และ Ethereum",
+    "evmAddressCopied": "คัดลอกที่อยู่ EVM แล้ว",
+    "solanaAddressHint": "เฉพาะโทเค็น SOL และ SPL",
+    "solanaAddressCopied": "คัดลอกที่อยู่ Solana แล้ว"
   },
   "features": {
     "title": "คำขอฟีเจอร์",

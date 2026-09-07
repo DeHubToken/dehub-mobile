@@ -578,7 +578,14 @@
     "stake": "Stake",
     "cashOut": "Výběr",
     "stakeComingSoon": "Stake brzy!",
-    "cashOutComingSoon": "Výběr brzy!"
+    "cashOutComingSoon": "Výběr brzy!",
+    "chooseAddressNetwork": "Která síť?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB a Ethereum",
+    "evmAddressCopied": "EVM adresa zkopírována",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Pouze tokeny SOL a SPL",
+    "solanaAddressCopied": "Adresa Solana zkopírována"
   },
   "publicChat": {
     "title": "Veřejný chat",

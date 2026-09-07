@@ -965,7 +965,13 @@
     "stake": "質押",
     "cashOut": "提現",
     "stakeComingSoon": "質押即將推出！",
-    "cashOutComingSoon": "提現即將推出！"
+    "cashOutComingSoon": "提現即將推出！",
+    "chooseAddressNetwork": "邊個網絡？",
+    "evmAddressHint": "基礎、 BNB 同以太坊",
+    "evmAddressCopied": "複製咗 EVM 地址",
+    "solanaAddressLabel": "索拉娜",
+    "solanaAddressHint": "只限 SOL 同 SPL 代幣",
+    "solanaAddressCopied": "複製咗索拉納地址"
   },
   "bookmarks": {
     "title": "你嘅書籤",

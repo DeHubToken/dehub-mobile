@@ -966,7 +966,14 @@
     "stake": "Stake",
     "cashOut": "Gba Owó",
     "stakeComingSoon": "Staking ń bọ̀ láìpẹ́!",
-    "cashOutComingSoon": "Gbígba owó ń bọ̀ láìpẹ́!"
+    "cashOutComingSoon": "Gbígba owó ń bọ̀ láìpẹ́!",
+    "chooseAddressNetwork": "Nẹ́tìwọ̀n wo?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Ipilẹ, BNB ati Ethereum",
+    "evmAddressCopied": "Àdàkọ àdírẹ̀sì EVM",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Àmì SOL àti SPL nìkan",
+    "solanaAddressCopied": "A daakọ adirẹsi Solana"
   },
   "explorePage": {
     "searchPlaceholder": "Wá àwọn ènìyàn, àròkọ tàbí àkóónú...",

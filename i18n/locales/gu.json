@@ -965,7 +965,13 @@
     "stake": "સ્ટેક",
     "cashOut": "કેશ આઉટ",
     "stakeComingSoon": "સ્ટેકિંગ ટૂંક સમયમાં!",
-    "cashOutComingSoon": "કેશ આઉટ ટૂંક સમયમાં!"
+    "cashOutComingSoon": "કેશ આઉટ ટૂંક સમયમાં!",
+    "chooseAddressNetwork": "કયું નેટવર્ક?",
+    "evmAddressHint": "આધાર, BNB અને Ethereum",
+    "evmAddressCopied": "EVM સરનામું કૉપિ કરેલું",
+    "solanaAddressLabel": "સોલાના",
+    "solanaAddressHint": "ફક્ત SOL અને SPL ટોકન્સ",
+    "solanaAddressCopied": "સોલાના સરનામાની નકલ કરવામાં આવી"
   },
   "bookmarks": {
     "title": "તમારા બુકમાર્ક્સ",

@@ -965,7 +965,14 @@
     "stake": "ଷ୍ଟେକ",
     "cashOut": "କ୍ୟାସ ଆଉଟ",
     "stakeComingSoon": "ଷ୍ଟେକିଂ ଶୀଘ୍ର!",
-    "cashOutComingSoon": "କ୍ୟାସ ଆଉଟ ଶୀଘ୍ର!"
+    "cashOutComingSoon": "କ୍ୟାସ ଆଉଟ ଶୀଘ୍ର!",
+    "chooseAddressNetwork": "କେଉଁ ନେଟୱାର୍କ?",
+    "evmAddressLabel": "ଇଭିଏମ୍",
+    "evmAddressHint": "ଆଧାର, BNB ଏବଂ Ethereum",
+    "evmAddressCopied": "EVM ଠିକଣା ନକଲ ହୋଇଛି",
+    "solanaAddressLabel": "ଏଲିନା କହିଲ",
+    "solanaAddressHint": "କେବଳ SOL ଏବଂ SPL ଟୋକନଗୁଡ଼ିକ",
+    "solanaAddressCopied": "ସୋଲାନା ଠିକଣା ନକଲ ହୋଇଛି"
   },
   "bookmarks": {
     "title": "ଆପଣଙ୍କ ବୁକମାର୍କ",

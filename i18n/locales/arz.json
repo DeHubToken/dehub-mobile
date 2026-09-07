@@ -965,7 +965,13 @@
     "stake": "ستيك",
     "cashOut": "كاش آوت",
     "stakeComingSoon": "الستيكينج قريباً!",
-    "cashOutComingSoon": "الكاش آوت قريباً!"
+    "cashOutComingSoon": "الكاش آوت قريباً!",
+    "chooseAddressNetwork": "أي شبكة ؟",
+    "evmAddressHint": "BASE وBNB وEthereum",
+    "evmAddressCopied": "تم نسخ عنوان EVM",
+    "solanaAddressLabel": "سولانا",
+    "solanaAddressHint": "رموز SOL و SPL فقط",
+    "solanaAddressCopied": "تم نسخ عنوان سولانا"
   },
   "bookmarks": {
     "title": "محفوظاتك",

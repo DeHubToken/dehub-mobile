@@ -965,7 +965,14 @@
     "stake": "Statyti",
     "cashOut": "Išsigryninti",
     "stakeComingSoon": "Statymas greitai!",
-    "cashOutComingSoon": "Išsigryninimas greitai!"
+    "cashOutComingSoon": "Išsigryninimas greitai!",
+    "chooseAddressNetwork": "Kuris tinklas?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB ir Ethereum",
+    "evmAddressCopied": "EVM adresas nukopijuotas",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Tik SOL ir SPL žetonai",
+    "solanaAddressCopied": "Solana adresas nukopijuotas"
   },
   "bookmarks": {
     "title": "Jūsų žymės",

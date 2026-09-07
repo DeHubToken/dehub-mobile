@@ -965,7 +965,12 @@
     "stake": "Стэйк",
     "cashOut": "Мөнгө гаргах",
     "stakeComingSoon": "Стэйк тун удахгүй!",
-    "cashOutComingSoon": "Мөнгө гаргах тун удахгүй!"
+    "cashOutComingSoon": "Мөнгө гаргах тун удахгүй!",
+    "chooseAddressNetwork": "Аль сүлжээ вэ?",
+    "evmAddressHint": "Суурь, BNB ба Ethereum",
+    "evmAddressCopied": "EVM хаяг хуулсан",
+    "solanaAddressHint": "Зөвхөн SOL болон SPL токенс",
+    "solanaAddressCopied": "Solana хаягийг хуулсан"
   },
   "bookmarks": {
     "title": "Таны хавчуурга",

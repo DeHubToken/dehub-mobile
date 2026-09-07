@@ -965,7 +965,12 @@
     "stake": "സ്റ്റേക്ക്",
     "cashOut": "ക്യാഷ് ഔട്ട്",
     "stakeComingSoon": "സ്റ്റേക്കിംഗ് ഉടൻ!",
-    "cashOutComingSoon": "ക്യാഷ് ഔട്ട് ഉടൻ!"
+    "cashOutComingSoon": "ക്യാഷ് ഔട്ട് ഉടൻ!",
+    "chooseAddressNetwork": "ഏത് നെറ്റ്‌വർക്ക്?",
+    "evmAddressCopied": "EVM വിലാസം പകർത്തി",
+    "solanaAddressLabel": "സോളാന",
+    "solanaAddressHint": "SOL, SPL ടോക്കണുകൾ മാത്രം",
+    "solanaAddressCopied": "സോളാന വിലാസം പകർത്തി"
   },
   "bookmarks": {
     "title": "നിങ്ങളുടെ ബുക്ക്മാർക്കുകൾ",

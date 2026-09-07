@@ -957,7 +957,14 @@
     "stake": "Стейк",
     "cashOut": "Акча алуу",
     "stakeComingSoon": "Стейкинг жакында!",
-    "cashOutComingSoon": "Акча алуу жакында!"
+    "cashOutComingSoon": "Акча алуу жакында!",
+    "chooseAddressNetwork": "Кайсы тармак?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Негизги, BNB жана Ethereum",
+    "evmAddressCopied": "EVM дареги көчүрүлгөн",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "SOL жана SPL токендери гана",
+    "solanaAddressCopied": "Солана дареги көчүрүлдү"
   },
   "features": {
     "title": "Функция сурамдары",

@@ -578,7 +578,14 @@
     "stake": "Stake",
     "cashOut": "Ta ut",
     "stakeComingSoon": "Stake kommer snart!",
-    "cashOutComingSoon": "Uttag kommer snart!"
+    "cashOutComingSoon": "Uttag kommer snart!",
+    "chooseAddressNetwork": "Vilket nätverk?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB och Ethereum",
+    "evmAddressCopied": "EVM-adress kopierad",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Endast sol- och SPL-tokens",
+    "solanaAddressCopied": "Solana-adress kopierad"
   },
   "publicChat": {
     "title": "Offentlig chatt",

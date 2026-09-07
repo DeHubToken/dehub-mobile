@@ -578,7 +578,14 @@
     "stake": "Stake",
     "cashOut": "Udbetal",
     "stakeComingSoon": "Stake kommer snart!",
-    "cashOutComingSoon": "Udbetaling kommer snart!"
+    "cashOutComingSoon": "Udbetaling kommer snart!",
+    "chooseAddressNetwork": "Hvilket netværk?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB og Ethereum",
+    "evmAddressCopied": "EVM-adresse kopieret",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Kun SOL og SPL tokens",
+    "solanaAddressCopied": "Solana-adresse kopieret"
   },
   "publicChat": {
     "title": "Offentlig chat",

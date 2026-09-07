@@ -957,7 +957,14 @@
     "stake": "Stake",
     "cashOut": "پۇل ئېلىش",
     "stakeComingSoon": "Staking پات يېقىندا!",
-    "cashOutComingSoon": "پۇل ئېلىش پات يېقىندا!"
+    "cashOutComingSoon": "پۇل ئېلىش پات يېقىندا!",
+    "chooseAddressNetwork": "قايسى توردىن ؟",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base، BNB ۋە Ethereum",
+    "evmAddressCopied": "EVM ئادرېسى كۆچۈرۈلگەن",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "پەقەت SOL ۋە SPL بەلگىلىرىلا",
+    "solanaAddressCopied": "Solana ئادرېسى كۆچۈرۈلگەن"
   },
   "features": {
     "title": "ئىقتىدار ئىلتىماسلىرى",

@@ -965,7 +965,13 @@
     "stake": "Stake",
     "cashOut": "Ανάληψη",
     "stakeComingSoon": "Το staking έρχεται σύντομα!",
-    "cashOutComingSoon": "Η ανάληψη έρχεται σύντομα!"
+    "cashOutComingSoon": "Η ανάληψη έρχεται σύντομα!",
+    "chooseAddressNetwork": "Ποιο δίκτυο;",
+    "evmAddressHint": "Base, BNB και Ethereum",
+    "evmAddressCopied": "Η διεύθυνση EVM αντιγράφηκε",
+    "solanaAddressLabel": "Σολάνα",
+    "solanaAddressHint": "Διακριτικά SOL και SPL μόνο",
+    "solanaAddressCopied": "Η διεύθυνση Solana αντιγράφηκε"
   },
   "bookmarks": {
     "title": "Οι Σελιδοδείκτες Σας",

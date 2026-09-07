@@ -1009,7 +1009,14 @@
     "stake": "Stake",
     "cashOut": "Cash Out",
     "stakeComingSoon": "Staking coming soon!",
-    "cashOutComingSoon": "Cash out coming soon!"
+    "cashOutComingSoon": "Cash out coming soon!",
+    "chooseAddressNetwork": "Which network?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB and Ethereum",
+    "evmAddressCopied": "EVM address copied",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "SOL and SPL tokens only",
+    "solanaAddressCopied": "Solana address copied"
   },
   "bookmarks": {
     "title": "Your Bookmarks",

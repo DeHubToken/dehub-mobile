@@ -578,7 +578,14 @@
     "stake": "Stake",
     "cashOut": "Prelievo",
     "stakeComingSoon": "Staking in arrivo!",
-    "cashOutComingSoon": "Prelievo in arrivo!"
+    "cashOutComingSoon": "Prelievo in arrivo!",
+    "chooseAddressNetwork": "Quale rete?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB ed Ethereum",
+    "evmAddressCopied": "Indirizzo EVM copiato",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Solo token SOL e SPL",
+    "solanaAddressCopied": "Indirizzo Solana copiato"
   },
   "publicChat": {
     "title": "Chat Pubblica",

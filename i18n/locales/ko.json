@@ -578,7 +578,13 @@
     "stake": "스테이킹",
     "cashOut": "출금",
     "stakeComingSoon": "스테이킹이 곧 출시됩니다!",
-    "cashOutComingSoon": "출금이 곧 출시됩니다!"
+    "cashOutComingSoon": "출금이 곧 출시됩니다!",
+    "chooseAddressNetwork": "어떤 네트워크인가요?",
+    "evmAddressHint": "기본, BNB 및 이더리움",
+    "evmAddressCopied": "EVM 주소 복사 완료",
+    "solanaAddressLabel": "솔라나",
+    "solanaAddressHint": "SOL 및 SPL 토큰만",
+    "solanaAddressCopied": "Solana 주소 복사 완료"
   },
   "publicChat": {
     "title": "공개 채팅",

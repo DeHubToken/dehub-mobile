@@ -965,7 +965,13 @@
     "stake": "اسٽيڪ",
     "cashOut": "ڪيش آئوٽ",
     "stakeComingSoon": "اسٽيڪنگ جلد!",
-    "cashOutComingSoon": "ڪيش آئوٽ جلد!"
+    "cashOutComingSoon": "ڪيش آئوٽ جلد!",
+    "chooseAddressNetwork": "ڪهڙو نيٽورڪ ؟",
+    "evmAddressHint": "بيس، بي اين بي ۽ ايٿيروم",
+    "evmAddressCopied": "EVM ايڊريس ڪاپي ڪئي وئي",
+    "solanaAddressLabel": "سولنگي",
+    "solanaAddressHint": "SOL ۽ SPL ٽوڪن صرف",
+    "solanaAddressCopied": "Solana ايڊريس نقل ڪئي وئي"
   },
   "bookmarks": {
     "title": "توهان جا بڪ مارڪ",

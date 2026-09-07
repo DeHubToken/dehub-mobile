@@ -983,7 +983,14 @@
     "stake": "Stake",
     "cashOut": "Cash Out",
     "stakeComingSoon": "Staking coming soon!",
-    "cashOutComingSoon": "Cash out coming soon!"
+    "cashOutComingSoon": "Cash out coming soon!",
+    "chooseAddressNetwork": "Қайси IRC тармоғи?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB va Ethereum",
+    "evmAddressCopied": "EVM manzili nusxalandi",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Faqat SOL va SPL tokenlari",
+    "solanaAddressCopied": "Solana manzili nusxalandi"
   },
   "notifications": {
     "title": "Bildirishnomalar",

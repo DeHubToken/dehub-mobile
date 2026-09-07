@@ -963,7 +963,12 @@
     "stake": "سٹیک",
     "cashOut": "کیش آؤٹ",
     "stakeComingSoon": "سٹیکنگ جلد آ رہی ہے!",
-    "cashOutComingSoon": "کیش آؤٹ جلد آ رہا ہے!"
+    "cashOutComingSoon": "کیش آؤٹ جلد آ رہا ہے!",
+    "chooseAddressNetwork": "Which network?",
+    "evmAddressLabel": "EVM",
+    "evmAddressCopied": "EVM address copied",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressCopied": "Solana address copied"
   },
   "bookmarks": {
     "title": "تمہاری نشانیاں",

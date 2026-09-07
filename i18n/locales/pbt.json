@@ -965,7 +965,14 @@
     "stake": "سټیک",
     "cashOut": "وباسئ",
     "stakeComingSoon": "سټیکینګ ډیر ژر راځي!",
-    "cashOutComingSoon": "وباسئ ډیر ژر راځي!"
+    "cashOutComingSoon": "وباسئ ډیر ژر راځي!",
+    "chooseAddressNetwork": "کومې شبکې ؟",
+    "evmAddressLabel": "EVM د اخيستلو لپاره وکارول",
+    "evmAddressHint": "د BNB او Ethereum په اړه",
+    "evmAddressCopied": "د EVM ادرس کاپي شوی",
+    "solanaAddressLabel": "د سولی په اړه",
+    "solanaAddressHint": "یوازې او یوازې د سولی سولی",
+    "solanaAddressCopied": "د سولی ادرس کاپي شوی"
   },
   "bookmarks": {
     "title": "ستاسو بوکمارکونه",

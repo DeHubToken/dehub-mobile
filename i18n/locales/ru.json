@@ -578,7 +578,13 @@
     "stake": "Стейкинг",
     "cashOut": "Вывод",
     "stakeComingSoon": "Стейкинг скоро будет доступен!",
-    "cashOutComingSoon": "Вывод скоро будет доступен!"
+    "cashOutComingSoon": "Вывод скоро будет доступен!",
+    "chooseAddressNetwork": "Какая сеть?",
+    "evmAddressHint": "Base, BNB и Ethereum",
+    "evmAddressCopied": "Адрес EVM скопирован",
+    "solanaAddressLabel": "Солана",
+    "solanaAddressHint": "Только токены SOL и SPL",
+    "solanaAddressCopied": "Адрес Solana скопирован"
   },
   "publicChat": {
     "title": "Публичный чат",

@@ -726,7 +726,14 @@
     "stake": "Staker",
     "cashOut": "Retirer",
     "stakeComingSoon": "Le staking arrive bientôt !",
-    "cashOutComingSoon": "Le retrait arrive bientôt !"
+    "cashOutComingSoon": "Le retrait arrive bientôt !",
+    "chooseAddressNetwork": "Quel réseau ?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB et Ethereum",
+    "evmAddressCopied": "Adresse EVM copiée",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Jetons SOL et SPL uniquement",
+    "solanaAddressCopied": "Adresse Solana copiée"
   },
   "publicChat": {
     "title": "Chat Public",

@@ -965,7 +965,14 @@
     "stake": "Stake",
     "cashOut": "Uszahle",
     "stakeComingSoon": "Staking chunnt bald!",
-    "cashOutComingSoon": "Uszahlig chunnt bald!"
+    "cashOutComingSoon": "Uszahlig chunnt bald!",
+    "chooseAddressNetwork": "Welches Netzwerk?",
+    "evmAddressLabel": "EVM",
+    "evmAddressHint": "Base, BNB und Ethereum",
+    "evmAddressCopied": "EVM Adrässe kopiert",
+    "solanaAddressLabel": "Solana",
+    "solanaAddressHint": "Nur SOL und SPL Tokens",
+    "solanaAddressCopied": "Solana Adrässe kopiert"
   },
   "bookmarks": {
     "title": "Dini Lesezeiche",

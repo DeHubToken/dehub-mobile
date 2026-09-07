@@ -578,7 +578,13 @@
     "stake": "స్టేక్",
     "cashOut": "క్యాష్ అవుట్",
     "stakeComingSoon": "స్టేక్ త్వరలో!",
-    "cashOutComingSoon": "క్యాష్ అవుట్ త్వరలో!"
+    "cashOutComingSoon": "క్యాష్ అవుట్ త్వరలో!",
+    "chooseAddressNetwork": "ఏ నెట్ ‌ వర్క్?",
+    "evmAddressHint": "బేస్, బిఎన్ ‌ బి మరియు ఎథెరియం",
+    "evmAddressCopied": "EVM చిరునామా కాపీ చేయబడింది",
+    "solanaAddressLabel": "సోలానా",
+    "solanaAddressHint": "SOL మరియు SPL టోకెన్ ‌ లు మాత్రమే",
+    "solanaAddressCopied": "సోలానా చిరునామా కాపీ చేయబడింది"
   },
   "publicChat": {
     "title": "పబ్లిక్ చాట్",

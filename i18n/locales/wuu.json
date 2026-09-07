@@ -965,7 +965,12 @@
     "stake": "质押",
     "cashOut": "提现",
     "stakeComingSoon": "质押即将推出！",
-    "cashOutComingSoon": "提现即将推出！"
+    "cashOutComingSoon": "提现即将推出！",
+    "chooseAddressNetwork": "哪个网络？",
+    "evmAddressHint": "Base、BNB 和 Ethereum",
+    "evmAddressCopied": "EVM 地址已复制",
+    "solanaAddressHint": "仅限 SOL 和 SPL 代币",
+    "solanaAddressCopied": "Solana 地址已复制"
   },
   "bookmarks": {
     "title": "侬个书签",
