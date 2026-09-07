@@ -953,8 +953,10 @@ export default function FeatureRequestsScreen() {
           ? { title: t("features.noSearchResults"), body: "" }
           : { title: t("features.noRequestsYet"), body: t("features.beFirstIdea") };
 
+  // The root SafeAreaView above the navigator already pays the status bar
+  // inset; paying it again here pushed the header down a second band.
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
+    <View style={[styles.root, { paddingTop: 6 }]}>
       {/* Back sits above the bento, not inside it. Web's app shell carries the
           back affordance in its own chrome; folding it into the title row here
           cost ~40pt and left "Feature Requests" one device width from
