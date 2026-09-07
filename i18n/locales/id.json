@@ -460,7 +460,13 @@
     "signInTv": "Masuk di TV",
     "signInTvDesc": "Ketik kode yang ditampilkan televisi",
     "tvRequests": "Permintaan TV",
-    "tvRequestsDesc": "Setujui tip yang diminta televisi untuk ditandatangani"
+    "tvRequestsDesc": "Setujui tip yang diminta televisi untuk ditandatangani",
+    "publicChatAlerts": "Obrolan publik",
+    "publicChatAlertsDesc": "Dapatkan informasi saat obrolan publik sedang berbicara saat Anda berada di tempat lain",
+    "publicChatAlertsOnDesc": "Peregangan sibuk tiba sebagai satu peringatan gabungan",
+    "publicChatAlertsRate": "Paling banyak",
+    "publicChatAlertsRateOption": "{{count}} per jam",
+    "publicChatAlertsRateHint": "Tidak ada yang hilang ketika ruangan lebih sibuk dari ini — pesan ditahan dan tiba bersamaan pada peringatan berikutnya."
   },
   "common": {
     "mute": "Bisukan",
@@ -2592,5 +2598,17 @@
     "pricing": "Menghitung harga…",
     "payWithDhb": "Bayar dengan DHB",
     "yourDhb": "DHB Anda"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} dan {{count}} lainnya",
+    "andOthers_other": "{{names}} dan {{count}} lainnya",
+    "someone": "Seseorang"
+  },
+  "publicChatAlerts": {
+    "title": "Obrolan publik",
+    "mentionTitle": "Disebutkan dalam obrolan publik",
+    "digest": "{{count}} pesan baru dari {{who}}:{{message}}",
+    "voiceMessage": "Pesan suara",
+    "image": "Mengirim gambar"
   }
 }

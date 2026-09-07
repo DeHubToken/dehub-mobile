@@ -460,7 +460,12 @@
     "signInTv": "Hiditra amin'ny fahitalavitra",
     "signInTvDesc": "Soraty ny kaody aseho amin'ny fahitalavitrao",
     "tvRequests": "Fangatahana avy amin'ny fahitalavitra",
-    "tvRequestsDesc": "Ankatoavy ny tip angatahin'ny fahitalavitra hosoniavinao"
+    "tvRequestsDesc": "Ankatoavy ny tip angatahin'ny fahitalavitra hosoniavinao",
+    "publicChatAlerts": "Tamy_ts's chat",
+    "publicChatAlertsDesc": "Get nilaza rehefa ny vahoaka no miresaka amin'ny chat raha toa ianao any amin'ny toeran-kafa",
+    "publicChatAlertsOnDesc": "Busy stretches tonga toy ny iray miaraka fanairana",
+    "publicChatAlertsRate": "Ary ny ankamaroany",
+    "publicChatAlertsRateHint": "Tsy misy na inona na inona very rehefa busier noho izany — ny hafatra dia natao, ary tonga miaraka amin'ny fanairana manaraka."
   },
   "common": {
     "mute": "Hampangina",
@@ -2642,5 +2647,14 @@
     "pricing": "Mikajy ny vidiny…",
     "payWithDhb": "Mandoa amin'ny DHB",
     "yourDhb": "Ny DHB-nao"
+  },
+  "digest": {
+    "someone": "Olona iray"
+  },
+  "publicChatAlerts": {
+    "title": "Tamy_ts's chat",
+    "mentionTitle": "Misoratra anarana ao amin'ny karajia ho an'ny besinimaro",
+    "voiceMessage": "Hafatra am-peo",
+    "image": "Mandefa sary"
   }
 }

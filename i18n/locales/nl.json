@@ -460,7 +460,13 @@
     "signInTv": "Aanmelden op een tv",
     "signInTvDesc": "Typ de code die je televisie toont",
     "tvRequests": "Tv-verzoeken",
-    "tvRequestsDesc": "Keur fooien goed die je televisie wil laten ondertekenen"
+    "tvRequestsDesc": "Keur fooien goed die je televisie wil laten ondertekenen",
+    "publicChatAlerts": "Openbare chat",
+    "publicChatAlertsDesc": "Krijg te horen wanneer de openbare chat praat terwijl je ergens anders bent",
+    "publicChatAlertsOnDesc": "Drukke stukken komen aan als één gecombineerde waarschuwing",
+    "publicChatAlertsRate": "Hoogstens",
+    "publicChatAlertsRateOption": "{{count}} per uur",
+    "publicChatAlertsRateHint": "Er gaat niets verloren als de kamer drukker is dan dit — de berichten worden vastgehouden en komen samen aan bij de volgende waarschuwing."
   },
   "common": {
     "mute": "Dempen",
@@ -2801,5 +2807,17 @@
     "pricing": "Prijs berekenen…",
     "payWithDhb": "Betalen met DHB",
     "yourDhb": "Je DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} en {{count}} anders",
+    "andOthers_other": "{{names}} en {{count}} anderen",
+    "someone": "Iemand"
+  },
+  "publicChatAlerts": {
+    "title": "Openbare chat",
+    "mentionTitle": "Genoemd in openbare chat",
+    "digest": "{{count}} nieuwe berichten van {{who}}: {{message}}",
+    "voiceMessage": "Spraakbericht",
+    "image": "Een afbeelding verzenden"
   }
 }

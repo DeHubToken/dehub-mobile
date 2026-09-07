@@ -460,7 +460,13 @@
     "signInTv": "Увайсці на тэлевізары",
     "signInTvDesc": "Увядзіце код, які паказвае тэлевізар",
     "tvRequests": "Запыты з тэлевізара",
-    "tvRequestsDesc": "Пацвярджайце чаявыя, якія тэлевізар просіць падпісаць"
+    "tvRequestsDesc": "Пацвярджайце чаявыя, якія тэлевізар просіць падпісаць",
+    "publicChatAlerts": "Публічны чат",
+    "publicChatAlertsDesc": "Паведаміце, калі публічны чат размаўляе, пакуль вы знаходзіцеся ў іншым месцы",
+    "publicChatAlertsOnDesc": "Напружаныя адлегласці прыходзяць як адно аб 'яднанае папярэджанне",
+    "publicChatAlertsRate": "Не больш за",
+    "publicChatAlertsRateOption": "{{count}} гадзіну",
+    "publicChatAlertsRateHint": "Нішто не губляецца, калі пакой заняты больш, чым гэта — паведамленні ўтрымліваюцца і прыходзяць разам на наступнае папярэджанне."
   },
   "common": {
     "mute": "Выключыць гук",
@@ -2582,5 +2588,17 @@
     "pricing": "Разлік кошту…",
     "payWithDhb": "Аплаціць DHB",
     "yourDhb": "Ваш DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} і {{count}} іншыя",
+    "andOthers_other": "{{names}} і {{count}} іншыя",
+    "someone": "Хтосьці"
+  },
+  "publicChatAlerts": {
+    "title": "Публічны чат",
+    "mentionTitle": "Згадваецца ў публічным чаце",
+    "digest": "{{count}} новыя паведамленні ад {{who}}: {{message}}",
+    "voiceMessage": "Галасавое паведамленне",
+    "image": "Даслаць малюнак"
   }
 }

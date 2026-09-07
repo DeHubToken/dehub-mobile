@@ -552,7 +552,13 @@
     "signInTv": "টিভিত সাইন ইন গরন",
     "signInTvDesc": "টিভিত দেখানো কোডখান লেখন",
     "tvRequests": "টিভি অনুরোধ",
-    "tvRequestsDesc": "টিভি যেই টিপ সাইন গরিতে কয় ইতা অনুমোদন গরন"
+    "tvRequestsDesc": "টিভি যেই টিপ সাইন গরিতে কয় ইতা অনুমোদন গরন",
+    "publicChatAlerts": "পাবলিক চ্যাট",
+    "publicChatAlertsDesc": "অন্য কোথাও থাকাকালীন পাবলিক চ্যাট কী বলছে তা জানান",
+    "publicChatAlertsOnDesc": "ব্যস্ততার সময়গুলো একটি সম্মিলিত সতর্কবার্তা হিসেবে আসে",
+    "publicChatAlertsRate": "সর্বোচ্চ",
+    "publicChatAlertsRateOption": "প্রতি ঘন্টায় {{count}}",
+    "publicChatAlertsRateHint": "এই চেয়ে বেশি ব্যস্ত থাকলে কিছুই হারাবে না — বার্তাগুলো ধরে রাখা হবে এবং পরবর্তী সতর্কবার্তায় একসাথে আসবে।"
   },
   "notifications": {
     "title": "জানাইন",
@@ -2711,5 +2717,17 @@
     "pricing": "দাম ঠিক গরা যার…",
     "payWithDhb": "DHB দি পেমেন্ট গরন",
     "yourDhb": "তোঁয়ার DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} এবং {{count}} অন্য",
+    "andOthers_other": "{{names}} এবং {{count}} জন অন্য",
+    "someone": "কেউ"
+  },
+  "publicChatAlerts": {
+    "title": "পাবলিক চ্যাট",
+    "mentionTitle": "পাবলিক চ্যাটে উল্লেখ করা হয়েছে",
+    "digest": "{{who}} থেকে {{count}} টি নতুন বার্তা: {{message}}",
+    "voiceMessage": "ভয়েস মেসেজ",
+    "image": "একটি ছবি পাঠানো হয়েছে"
   }
 }

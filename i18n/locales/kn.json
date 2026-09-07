@@ -460,7 +460,13 @@
     "signInTv": "ಟಿವಿಯಲ್ಲಿ ಸೈನ್ ಇನ್ ಮಾಡಿ",
     "signInTvDesc": "ಟಿವಿ ತೋರಿಸುತ್ತಿರುವ ಕೋಡ್ ನಮೂದಿಸಿ",
     "tvRequests": "ಟಿವಿ ವಿನಂತಿಗಳು",
-    "tvRequestsDesc": "ಟಿವಿ ಸಹಿ ಮಾಡಲು ಕೇಳುವ ಟಿಪ್‌ಗಳನ್ನು ಅನುಮೋದಿಸಿ"
+    "tvRequestsDesc": "ಟಿವಿ ಸಹಿ ಮಾಡಲು ಕೇಳುವ ಟಿಪ್‌ಗಳನ್ನು ಅನುಮೋದಿಸಿ",
+    "publicChatAlerts": "ಸಾರ್ವಜನಿಕ ಚಾಟ್",
+    "publicChatAlertsDesc": "ನೀವು ಬೇರೆಲ್ಲಿಯಾದರೂ ಇರುವಾಗ ಸಾರ್ವಜನಿಕ ಚಾಟ್ ಮಾತನಾಡುವಾಗ ತಿಳಿಸಿ",
+    "publicChatAlertsOnDesc": "ಒಂದು ಸಂಯೋಜಿತ ಎಚ್ಚರಿಕೆಯಂತೆ ಕಾರ್ಯನಿರತ ವಿಸ್ತರಣೆಗಳು ಬರುತ್ತವೆ",
+    "publicChatAlertsRate": "ಗರಿಷ್ಠ",
+    "publicChatAlertsRateOption": "{{count}} ಗಂಟೆಗೆ",
+    "publicChatAlertsRateHint": "ಕೊಠಡಿಯು ಇದಕ್ಕಿಂತ ಹೆಚ್ಚು ಕಾರ್ಯನಿರತವಾಗಿದ್ದಾಗ ಏನೂ ಕಳೆದುಹೋಗುವುದಿಲ್ಲ — ಸಂದೇಶಗಳನ್ನು ಹಿಡಿದಿಟ್ಟುಕೊಳ್ಳಲಾಗುತ್ತದೆ ಮತ್ತು ಮುಂದಿನ ಎಚ್ಚರಿಕೆಯಲ್ಲಿ ಒಟ್ಟಿಗೆ ಬರುತ್ತವೆ."
   },
   "common": {
     "mute": "ಮ್ಯೂಟ್ ಮಾಡಿ",
@@ -2543,5 +2549,16 @@
     "pricing": "ಬೆಲೆ ಲೆಕ್ಕ ಹಾಕಲಾಗುತ್ತಿದೆ…",
     "payWithDhb": "DHB ನಿಂದ ಪಾವತಿಸಿ",
     "yourDhb": "ನಿಮ್ಮ DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} ಮತ್ತು {{count}} ಇತರ",
+    "andOthers_other": "{{names}} ಮತ್ತು {{count}} ಇತರರು",
+    "someone": "ಯಾರಾದರೂ"
+  },
+  "publicChatAlerts": {
+    "title": "ಸಾರ್ವಜನಿಕ ಚಾಟ್",
+    "mentionTitle": "ಸಾರ್ವಜನಿಕ ಚಾಟ್‌ನಲ್ಲಿ ಉಲ್ಲೇಖಿಸಲಾಗಿದೆ",
+    "voiceMessage": "ಧ್ವನಿ ಸಂದೇಶ",
+    "image": "ಚಿತ್ರವನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ"
   }
 }

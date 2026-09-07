@@ -460,7 +460,13 @@
     "signInTv": "テレビでサインイン",
     "signInTvDesc": "テレビに表示されているコードを入力",
     "tvRequests": "テレビからのリクエスト",
-    "tvRequestsDesc": "テレビが署名を求めるチップを承認"
+    "tvRequestsDesc": "テレビが署名を求めるチップを承認",
+    "publicChatAlerts": "公開チャット",
+    "publicChatAlertsDesc": "他の場所にいる間に公開チャットが話をしているときに通知されます",
+    "publicChatAlertsOnDesc": "混雑したストレッチが1つのアラートとして届きます",
+    "publicChatAlertsRate": "せいぜい",
+    "publicChatAlertsRateOption": "{{count}}/時間",
+    "publicChatAlertsRateHint": "部屋がこれよりも忙しいときに失われるものはありません。メッセージは保持され、次のアラートで一緒に到着します。"
   },
   "common": {
     "mute": "ミュート",
@@ -2593,5 +2599,17 @@
     "pricing": "料金を計算中…",
     "payWithDhb": "DHB で支払う",
     "yourDhb": "保有 DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}}と他{{count}}人",
+    "andOthers_other": "{{names}}と他{{count}}人",
+    "someone": "誰か"
+  },
+  "publicChatAlerts": {
+    "title": "公開チャット",
+    "mentionTitle": "公開チャットで言及されました",
+    "digest": "{{who}}からの{{count}}件の新着メッセージ：{{message}}",
+    "voiceMessage": "ボイスメッセージ",
+    "image": "画像を送信しました"
   }
 }

@@ -460,7 +460,13 @@
     "signInTv": "Kirjaudu televisioon",
     "signInTvDesc": "Kirjoita television näyttämä koodi",
     "tvRequests": "TV-pyynnöt",
-    "tvRequestsDesc": "Hyväksy tipit, jotka televisio pyytää allekirjoittamaan"
+    "tvRequestsDesc": "Hyväksy tipit, jotka televisio pyytää allekirjoittamaan",
+    "publicChatAlerts": "Julkinen chat",
+    "publicChatAlertsDesc": "Saat tietää, kun julkinen keskustelu on käynnissä, kun olet jossain muualla",
+    "publicChatAlertsOnDesc": "Kiireiset venytykset saapuvat yhtenä yhdistettynä hälytyksenä",
+    "publicChatAlertsRate": "Enintään",
+    "publicChatAlertsRateOption": "{{count}} tunnissa",
+    "publicChatAlertsRateHint": "Mitään ei menetetä, kun huone on kiireisempi kuin tämä — viestit pidetään ja saapuvat yhdessä seuraavaan hälytykseen."
   },
   "common": {
     "mute": "Mykistä",
@@ -2543,5 +2549,17 @@
     "pricing": "Hinnoitellaan…",
     "payWithDhb": "Maksa DHB:llä",
     "yourDhb": "Sinun DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} ja {{count}} muu",
+    "andOthers_other": "{{names}} ja {{count}} muuta",
+    "someone": "Joku"
+  },
+  "publicChatAlerts": {
+    "title": "Julkinen chat",
+    "mentionTitle": "Mainittu julkisessa chatissa",
+    "digest": "{{count}} uutta viestiä käyttäjältä {{who}}: {{message}}",
+    "voiceMessage": "Ääniviesti",
+    "image": "Lähetti kuvan"
   }
 }

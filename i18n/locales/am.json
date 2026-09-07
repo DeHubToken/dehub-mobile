@@ -460,7 +460,12 @@
     "signInTv": "ቲቪ ያስገቡ",
     "signInTvDesc": "ቴሌቪዥንዎ የሚያሳየውን ኮድ ያስገቡ",
     "tvRequests": "የቲቪ ጥያቄዎች",
-    "tvRequestsDesc": "ቴሌቪዥንዎ እንዲፈርሙ የሚጠይቅዎትን ጉርሻዎች ያጽድቁ"
+    "tvRequestsDesc": "ቴሌቪዥንዎ እንዲፈርሙ የሚጠይቅዎትን ጉርሻዎች ያጽድቁ",
+    "publicChatAlerts": "የህዝብ ውይይት",
+    "publicChatAlertsDesc": "ሌላ ቦታ በሚሆኑበት ጊዜ የህዝብ ውይይት በሚናገርበት ጊዜ ይንገሩ",
+    "publicChatAlertsOnDesc": "Busy ዝርጋታዎች አንድ የተዋሃደ ማንቂያ እንደ ይደርሳሉ",
+    "publicChatAlertsRate": "በአብዛኛዎቹ",
+    "publicChatAlertsRateHint": "ክፍሉ ከዚህ የበለጠ ሲበዛ ምንም ነገር አይጠፋም — መልዕክቶቹ ይካሄዳሉ እና በሚቀጥለው ማንቂያ ላይ አንድ ላይ ይደርሳሉ ።"
   },
   "common": {
     "mute": "ድምፅ አጥፋ",
@@ -2572,5 +2577,14 @@
     "pricing": "የዚህን ሂደት ዋጋ በማስላት ላይ…",
     "payWithDhb": "በ DHB ይክፈሉ",
     "yourDhb": "የእርስዎ DHB"
+  },
+  "digest": {
+    "someone": "የሆነ ሰው"
+  },
+  "publicChatAlerts": {
+    "title": "የህዝብ ውይይት",
+    "mentionTitle": "በአደባባይ ውይይት ውስጥ ተጠቅሷል",
+    "voiceMessage": "የድምፅ መልዕክት",
+    "image": "ምስል ላክ"
   }
 }

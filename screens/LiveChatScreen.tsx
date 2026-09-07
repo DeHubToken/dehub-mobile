@@ -11,7 +11,7 @@ import {
   NativeScrollEvent,
 } from "react-native";
 import Icon from "../components/ui/Icon";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import ConfirmModal from "../components/common/ConfirmModal";
 import LiveChatMessage from "../components/LiveChat/LiveChatMessage";
@@ -30,6 +30,7 @@ import {
 } from "../services/livechat.service";
 import type { LiveChatMessageData, LiveChatUser, SendMessagePayload } from "../services/livechat.service";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { setPublicChatOpen } from "../libs/public-chat-alerts";
 
 /** Returns a readable date label for message grouping */
 const getDateLabel = (iso: string): string => {
@@ -88,6 +89,16 @@ const LiveChatScreen: React.FC = () => {
   // screen, so using it whole leaves a home-indicator gap under the composer.
   const { lift: inputLift } = useKeyboardLift();
   const listBottomPadding = 88 + inputLift;
+
+  // Tell the alert engine the room is on screen. It drops its own connection
+  // while this is true: there is nothing to announce to someone already
+  // reading, and a second socket into the room this screen holds is waste.
+  useFocusEffect(
+    useCallback(() => {
+      setPublicChatOpen(true);
+      return () => setPublicChatOpen(false);
+    }, []),
+  );
 
   const {
     connected,

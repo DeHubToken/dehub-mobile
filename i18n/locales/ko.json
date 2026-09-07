@@ -460,7 +460,13 @@
     "signInTv": "TV에서 로그인",
     "signInTvDesc": "TV에 표시된 코드를 입력하세요",
     "tvRequests": "TV 요청",
-    "tvRequestsDesc": "TV가 서명을 요청한 팁 승인"
+    "tvRequestsDesc": "TV가 서명을 요청한 팁 승인",
+    "publicChatAlerts": "공개 채팅",
+    "publicChatAlertsDesc": "다른 곳에 있는 동안 공개 채팅이 대화 중일 때 알림을 받으세요.",
+    "publicChatAlertsOnDesc": "혼잡한 스트레칭은 하나의 복합 경보로 도착합니다",
+    "publicChatAlertsRate": "최대",
+    "publicChatAlertsRateOption": "시간당 {{count}}",
+    "publicChatAlertsRateHint": "방이 이보다 더 혼잡하면 아무것도 손실되지 않습니다. 메시지는 다음 알림에 함께 보관되고 도착합니다."
   },
   "common": {
     "mute": "음소거",
@@ -2595,5 +2601,17 @@
     "pricing": "요금 계산 중…",
     "payWithDhb": "DHB로 결제",
     "yourDhb": "내 DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} 외 {{count}} 명",
+    "andOthers_other": "{{names}} 외 {{count}} 명",
+    "someone": "누군가"
+  },
+  "publicChatAlerts": {
+    "title": "공개 채팅",
+    "mentionTitle": "공개 채팅에서 언급됨",
+    "digest": "{{who}} 님의 {{count}} 새 메시지: {{message}}",
+    "voiceMessage": "음성 메시지",
+    "image": "이미지 전송 완료"
   }
 }

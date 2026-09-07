@@ -504,7 +504,13 @@
     "signInTv": "Sign in a TV",
     "signInTvDesc": "Type the code your television is showing",
     "tvRequests": "TV requests",
-    "tvRequestsDesc": "Approve tips your television asks you to sign"
+    "tvRequestsDesc": "Approve tips your television asks you to sign",
+    "publicChatAlerts": "Public chat",
+    "publicChatAlertsDesc": "Get told when the public chat is talking while you’re somewhere else",
+    "publicChatAlertsOnDesc": "Busy stretches arrive as one combined alert",
+    "publicChatAlertsRate": "At most",
+    "publicChatAlertsRateOption": "{{count}} an hour",
+    "publicChatAlertsRateHint": "Nothing is lost when the room is busier than this — the messages are held and arrive together on the next alert."
   },
   "common": {
     "mute": "Mute",
@@ -2592,5 +2598,17 @@
     "pricing": "Pricing this run…",
     "payWithDhb": "Pay with DHB",
     "yourDhb": "Your DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} and {{count}} other",
+    "andOthers_other": "{{names}} and {{count}} others",
+    "someone": "Someone"
+  },
+  "publicChatAlerts": {
+    "title": "Public chat",
+    "mentionTitle": "Mentioned in public chat",
+    "digest": "{{count}} new messages from {{who}}: {{message}}",
+    "voiceMessage": "Voice message",
+    "image": "Sent an image"
   }
 }

@@ -460,7 +460,13 @@
     "signInTv": "ล็อกอินเทิงทีวี",
     "signInTvDesc": "พิมพ์รหัสที่ทีวีสะแดง",
     "tvRequests": "คำขอจากทีวี",
-    "tvRequestsDesc": "อนุมัติทิปที่ทีวีขอให้เจ้าเซ็น"
+    "tvRequestsDesc": "อนุมัติทิปที่ทีวีขอให้เจ้าเซ็น",
+    "publicChatAlerts": "ห้องแชทสาธารณะ",
+    "publicChatAlertsDesc": "รับการแจ้งเตือนเมื่อห้องแชทสาธารณะกำลังคุยกัน ขณะที่คุณอยู่ที่อื่น",
+    "publicChatAlertsOnDesc": "ช่วงเวลาที่ยุ่งจะมาพร้อมกับการแจ้งเตือนรวมกันครั้งเดียว",
+    "publicChatAlertsRate": "อย่างมากที่สุด",
+    "publicChatAlertsRateOption": "{{count}} ต่อชั่วโมง",
+    "publicChatAlertsRateHint": "ไม่มีอะไรสูญหายไปเมื่อห้องแชทมีคนคุยเยอะกว่านี้ — ข้อความจะถูกเก็บไว้และมาพร้อมกันในการแจ้งเตือนครั้งต่อไป"
   },
   "common": {
     "mute": "ปิดเสียง",
@@ -2543,5 +2549,17 @@
     "pricing": "กำลังคิดราคา…",
     "payWithDhb": "จ่ายด้วย DHB",
     "yourDhb": "DHB ของเจ้า"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} และ {{count}} อื่น",
+    "andOthers_other": "{{names}} และ {{count}} คนอื่น",
+    "someone": "ใครบางคน"
+  },
+  "publicChatAlerts": {
+    "title": "ห้องแชทสาธารณะ",
+    "mentionTitle": "ถูกกล่าวถึงในห้องแชทสาธารณะ",
+    "digest": "ข้อความใหม่ {{count}} จาก {{who}}: {{message}}",
+    "voiceMessage": "ข้อความเสียง",
+    "image": "ส่งรูปภาพ"
   }
 }

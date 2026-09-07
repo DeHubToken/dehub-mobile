@@ -460,7 +460,13 @@
     "signInTv": "Hyr në një TV",
     "signInTvDesc": "Shkruaj kodin që tregon televizori",
     "tvRequests": "Kërkesat e TV-së",
-    "tvRequestsDesc": "Mirato bakshishet që televizori kërkon t'i nënshkruash"
+    "tvRequestsDesc": "Mirato bakshishet që televizori kërkon t'i nënshkruash",
+    "publicChatAlerts": "Bisedë publike",
+    "publicChatAlertsDesc": "Tregohu kur biseda publike është duke folur ndërsa je diku tjetër",
+    "publicChatAlertsOnDesc": "Shtrirjet e ngarkuara mbërrijnë si një lajmërim i kombinuar",
+    "publicChatAlertsRate": "Më së shumti",
+    "publicChatAlertsRateOption": "{{count}} një orë",
+    "publicChatAlertsRateHint": "Asgjë nuk humbet kur dhoma është më e ngarkuar se kjo — mesazhet mbahen dhe mbërrijnë së bashku në alarmin tjetër."
   },
   "common": {
     "mute": "Hiq zërin",
@@ -2543,5 +2549,17 @@
     "pricing": "Po llogaritet çmimi…",
     "payWithDhb": "Paguaj me DHB",
     "yourDhb": "DHB-ja jote"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} dhe {{count}} tjetër",
+    "andOthers_other": "{{names}} dhe {{count}} të tjerë",
+    "someone": "Dikush"
+  },
+  "publicChatAlerts": {
+    "title": "Bisedë publike",
+    "mentionTitle": "Përmendur në bisedën publike",
+    "digest": "{{count}} mesazhe të reja nga {{who}}: {{message}}",
+    "voiceMessage": "Mesazh zanor",
+    "image": "Dërgoi një imazh"
   }
 }

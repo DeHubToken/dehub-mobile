@@ -460,7 +460,13 @@
     "signInTv": "TV-pi yaykuy",
     "signInTvDesc": "TV rikuchisqan codigota qillqay",
     "tvRequests": "TV mañakuykuna",
-    "tvRequestsDesc": "TV firmanaykipaq mañakusqan tipkunata chaskiy"
+    "tvRequestsDesc": "TV firmanaykipaq mañakusqan tipkunata chaskiy",
+    "publicChatAlerts": "Llaqta runakunawan rimanakuy",
+    "publicChatAlertsDesc": "Willasqa kay mayk’aqchus llaqtapaq rimanakuy rimachkan wakpi kachkaspa",
+    "publicChatAlertsOnDesc": "Ocupado estiramientos chayamunku huk combinado alerta hina",
+    "publicChatAlertsRate": "Yaqa llapanpiqa",
+    "publicChatAlertsRateOption": "{{count}} huk hora",
+    "publicChatAlertsRateHint": "Mana imapas chinkanchu kaymanta aswan llamk&#39;ayniyuq kaptin — willakuykunaqa hap&#39;isqa kanku chaymanta qatiq alertapi kuska chayanku."
   },
   "common": {
     "mute": "Upallachiy",
@@ -2574,5 +2580,17 @@
     "pricing": "Chaninta yupashan…",
     "payWithDhb": "DHB-wan pagay",
     "yourDhb": "Qampa DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} hinaspa {{count}} huk",
+    "andOthers_other": "{{names}} hinaspa {{count}} hukkunapas",
+    "someone": "Pipas"
+  },
+  "publicChatAlerts": {
+    "title": "Llaqta runakunawan rimanakuy",
+    "mentionTitle": "Llaqta runakunapa rimanakuyninpi rimasqa",
+    "digest": "{{count}} musuq willakuykunata {{who}}: {{message}}",
+    "voiceMessage": "Kunkawan willakuy",
+    "image": "Huk rikch&#39;ayta apachisqa"
   }
 }

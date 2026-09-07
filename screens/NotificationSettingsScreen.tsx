@@ -32,9 +32,24 @@ import {
 } from '../services/push/push.service';
 import { theme } from '../theme';
 import { useAppPrefs, setAppPref } from '../hooks/useAppPrefs';
+import {
+  PUBLIC_CHAT_MAX_PER_HOUR,
+  setPublicChatAlertsEnabled,
+  setPublicChatAlertsPerHour,
+  usePublicChatAlertsEnabled,
+  usePublicChatAlertsPerHour,
+} from '../libs/public-chat-alerts';
 import { SettingsOptionModal, Divider } from '../components/Settings/SettingsPrimitives';
 
 const logger = createLogger('NotificationSettings');
+
+/**
+ * A ladder rather than every number to 69: the useful range is logarithmic —
+ * the difference between 1 and 3 an hour is a different product, the difference
+ * between 44 and 45 is nothing — and 69 is the ceiling the room may reach for.
+ * Same steps web offers.
+ */
+const PUBLIC_CHAT_RATE_STEPS = [1, 3, 6, 12, 20, 30, 45, PUBLIC_CHAT_MAX_PER_HOUR];
 
 /** 00:00–23:00, the same 24 options web's quiet-hours selects offer. */
 const HOURS = Array.from({ length: 24 }, (_, i) => i);
@@ -148,6 +163,13 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
   // `dehub_buybot_hidden`, which web never reads — web's `use-buy-bot-hidden`
   // uses `dehub_hide_buy_bot`. `useAppPrefs` owns that key now, so the two
   // clients finally name the same preference the same way.
+  // Public chat alerts: opt-in, with a ceiling on how often the room may
+  // interrupt. Device-local on both clients, under web's key names.
+  const publicChatAlerts = usePublicChatAlertsEnabled();
+  const publicChatPerHour = usePublicChatAlertsPerHour();
+  /** Whether the cards-per-hour picker is open. */
+  const [ratePicker, setRatePicker] = useState(false);
+
   const { buyBotHidden } = useAppPrefs();
   const buyBotAlerts = !buyBotHidden;
   const onToggleBuyBot = useCallback((val: boolean) => {
@@ -357,6 +379,43 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
               <View className="px-4 py-3.5 flex-row items-center justify-between">
                 <View className="flex-row items-center flex-1 pr-3">
                   <View className="mr-3 w-8 h-8 rounded-lg bg-theme-neutrals-700/50 items-center justify-center">
+                    <Icon name="MessagesSquare" size={16} color="#9ca3af" />
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-white text-sm font-medium">{t('settings.publicChatAlerts')}</Text>
+                    <Text className="text-theme-neutrals-500 text-xs">
+                      {publicChatAlerts
+                        ? t('settings.publicChatAlertsOnDesc')
+                        : t('settings.publicChatAlertsDesc')}
+                    </Text>
+                  </View>
+                </View>
+                <CustomSwitch value={publicChatAlerts} onValueChange={setPublicChatAlertsEnabled} />
+              </View>
+              {publicChatAlerts && (
+                <>
+                  <Divider />
+                  <TouchableOpacity
+                    onPress={() => setRatePicker(true)}
+                    activeOpacity={0.7}
+                    className="px-4 py-3.5 flex-row items-center justify-between"
+                  >
+                    <View className="flex-1 pr-3">
+                      <Text className="text-white text-sm font-medium">{t('settings.publicChatAlertsRate')}</Text>
+                      <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.publicChatAlertsRateHint')}</Text>
+                    </View>
+                    <View className="bg-theme-neutrals-700 px-4 py-2.5 rounded-xl">
+                      <Text className="text-white text-sm">
+                        {t('settings.publicChatAlertsRateOption', { count: publicChatPerHour })}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                </>
+              )}
+              <Divider />
+              <View className="px-4 py-3.5 flex-row items-center justify-between">
+                <View className="flex-row items-center flex-1 pr-3">
+                  <View className="mr-3 w-8 h-8 rounded-lg bg-theme-neutrals-700/50 items-center justify-center">
                     <Icon name="Bot" size={16} color="#9ca3af" />
                   </View>
                   <View className="flex-1">
@@ -459,6 +518,21 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
           });
         }}
         maxHeight="60%"
+      />
+
+      {/* How often public chat may interrupt. The limit counts cards, not
+          messages — see libs/notification-digest for why running out delays a
+          card instead of dropping what it would have said. */}
+      <SettingsOptionModal
+        visible={ratePicker}
+        onClose={() => setRatePicker(false)}
+        title={t('settings.publicChatAlertsRate')}
+        value={String(publicChatPerHour)}
+        options={PUBLIC_CHAT_RATE_STEPS.map((n) => ({
+          value: String(n),
+          label: t('settings.publicChatAlertsRateOption', { count: n }),
+        }))}
+        onSelect={(value) => setPublicChatAlertsPerHour(Number(value))}
       />
     </View>
   );

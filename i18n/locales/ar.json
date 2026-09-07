@@ -460,7 +460,13 @@
     "signInTv": "تسجيل الدخول على تلفاز",
     "signInTvDesc": "اكتب الرمز الظاهر على التلفاز",
     "tvRequests": "طلبات التلفاز",
-    "tvRequestsDesc": "وافق على الإكراميات التي يطلب التلفاز توقيعها"
+    "tvRequestsDesc": "وافق على الإكراميات التي يطلب التلفاز توقيعها",
+    "publicChatAlerts": "دردشة عامة",
+    "publicChatAlertsDesc": "احصل على معلومات عندما تتحدث الدردشة العامة أثناء وجودك في مكان آخر",
+    "publicChatAlertsOnDesc": "تصل الامتدادات المزدحمة كتنبيه واحد مشترك",
+    "publicChatAlertsRate": "على الأكثر",
+    "publicChatAlertsRateOption": "{{count}} في الساعة",
+    "publicChatAlertsRateHint": "لا شيء يضيع عندما تكون الغرفة أكثر انشغالًا من هذا — يتم الاحتفاظ بالرسائل وتصل معًا في التنبيه التالي."
   },
   "common": {
     "mute": "كتم الصوت",
@@ -2595,5 +2601,17 @@
     "pricing": "جارٍ تسعير هذا التشغيل…",
     "payWithDhb": "الدفع بـ DHB",
     "yourDhb": "رصيدك من DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} و {{count}} أخرى",
+    "andOthers_other": "{{names}} و {{count}} آخرين",
+    "someone": "شخص ما"
+  },
+  "publicChatAlerts": {
+    "title": "دردشة عامة",
+    "mentionTitle": "مذكور في الدردشة العامة",
+    "digest": "{{count}} رسائل جديدة من {{who}}:{{message}}",
+    "voiceMessage": "رسالة صوتية",
+    "image": "أرسل صورة"
   }
 }
