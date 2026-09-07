@@ -219,6 +219,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     playerRef.current = player;
     // New player instance = new source; the previous first frame no longer counts.
     setFirstFrameRendered(false);
+    return () => {
+      // expo-video's Android time-update clock re-posts itself on the main
+      // looper and release() never zeroes it, so every player this card ever
+      // created kept a 2 Hz native timer ticking in the background. Stop the
+      // clock before the instance is released.
+      try {
+        player.timeUpdateEventInterval = 0;
+      } catch {}
+    };
   }, [player]);
 
   // Crowdsourced sponsor reads and intros. Fetched only while this card has a
