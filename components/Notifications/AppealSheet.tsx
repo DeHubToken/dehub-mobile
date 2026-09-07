@@ -127,7 +127,7 @@ const AppealSheet: React.FC<AppealSheetProps> = ({
               "moderation.appealPlaceholder",
               "What do you think was missed? Context about the content helps more than anything else.",
             )}
-            placeholderTextColor="#52525b"
+            placeholderTextColor="#808089"
             style={{
               minHeight: 120,
               maxHeight: 220,
@@ -142,7 +142,7 @@ const AppealSheet: React.FC<AppealSheetProps> = ({
             }}
           />
 
-          <Text style={{ color: "#52525b", fontSize: 11, textAlign: "right" }}>
+          <Text style={{ color: "#808089", fontSize: 11, textAlign: "right" }}>
             {trimmed.length < MIN_REASON
               ? t("moderation.appealMore", {
                   defaultValue: "{{count}} more characters",
@@ -170,7 +170,7 @@ const AppealSheet: React.FC<AppealSheetProps> = ({
             )}
           </Pressable>
 
-          <Text style={{ color: "#52525b", fontSize: 11 }}>
+          <Text style={{ color: "#808089", fontSize: 11 }}>
             {t(
               "moderation.appealFootnote",
               "You get a reference number, and the answer comes back here. One appeal per decision.",
