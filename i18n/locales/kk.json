@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Бұл құрылғы итеру үшін тіркелмеген",
-    "pushNotRegisteredDesc": "Қолданба жабылған кезде хабарландырулар сізге жете алмайды. Қолданбаны қайта ашу әдетте оны тазалайды; егер ол жалғаса берсе, dehub.io/apk сайтынан соңғы құрастыруды орнатыңыз.",
+    "pushNotRegisteredDesc": "Қолданба жабылған кезде хабарландырулар сізге жете алмайды: бұл орнату ешқашан итеру құрылғысын тіркемеген. Әдетте, бұл құрылыстың dehub.io/apk жаңартуларынан соңғы құрылысты орнататын хабарлама конфигурациясы жоқ екенін білдіреді.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

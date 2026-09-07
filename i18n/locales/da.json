@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Denne enhed er ikke registreret til push",
-    "pushNotRegisteredDesc": "Meddelelser kan ikke nå dig, mens appen er lukket. Genåbning af appen rydder den normalt. Hvis det bliver ved med at ske, skal du installere den nyeste version fra dehub.io/apk.",
+    "pushNotRegisteredDesc": "Meddelelser kan ikke nå dig, mens appen er lukket: denne installation registrerede aldrig en push-enhed. Det betyder normalt, at opbygningen mangler sin notifikationskonfiguration, som installerer den nyeste opbygning fra dehub.io/apk erstatter.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

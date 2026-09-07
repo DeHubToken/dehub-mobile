@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "ਇਹ ਡਿਵਾਈਸ ਪੁਸ਼ ਲਈ ਰਜਿਸਟਰਡ ਨਹੀਂ ਹੈ",
-    "pushNotRegisteredDesc": "ਐਪ ਬੰਦ ਹੋਣ ਦੇ ਦੌਰਾਨ ਸੂਚਨਾਵਾਂ ਤੁਹਾਡੇ ਤੱਕ ਨਹੀਂ ਪਹੁੰਚ ਸਕਦੀਆਂ । ਐਪ ਨੂੰ ਦੁਬਾਰਾ ਖੋਲ੍ਹਣਾ ਆਮ ਤੌਰ 'ਤੇ ਇਸ ਨੂੰ ਸਾਫ ਕਰਦਾ ਹੈ; ਜੇ ਇਹ ਹੁੰਦਾ ਰਹਿੰਦਾ ਹੈ, ਤਾਂ dehub. io/apk ਤੋਂ ਨਵੀਨਤਮ ਬਿਲਡ ਸਥਾਪਤ ਕਰੋ.",
+    "pushNotRegisteredDesc": "ਐਪ ਬੰਦ ਹੋਣ ਦੌਰਾਨ ਸੂਚਨਾਵਾਂ ਤੁਹਾਡੇ ਤੱਕ ਨਹੀਂ ਪਹੁੰਚ ਸਕਦੀਆਂਃ ਇਸ ਇੰਸਟਾਲ ਨੇ ਕਦੇ ਵੀ ਪੁਸ਼ ਡਿਵਾਈਸ ਨੂੰ ਰਜਿਸਟਰ ਨਹੀਂ ਕੀਤਾ । ਇਸ ਦਾ ਆਮ ਤੌਰ 'ਤੇ ਮਤਲਬ ਹੈ ਕਿ ਬਿਲਡ ਇਸ ਦੀ ਨੋਟੀਫਿਕੇਸ਼ਨ ਕੌਨਫਿਗਰੇਸ਼ਨ ਤੋਂ ਖੁੰਝ ਗਿਆ ਹੈ, ਜੋ ਕਿ dehub. io/apk ਤੋਂ ਨਵੀਨਤਮ ਬਿਲਡ ਨੂੰ ਸਥਾਪਤ ਕਰ ਰਿਹਾ ਹੈ.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

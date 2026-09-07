@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Ეს მოწყობილობა არ არის რეგისტრირებული Push ‑ ზე",
-    "pushNotRegisteredDesc": "Აპის დახურვის შემდეგ შეტყობინებები ვერ დაგიკავშირდებათ. აპის ხელახლა გახსნა, როგორც წესი, ასუფთავებს მას; თუ ის კვლავ გრძელდება, დააინსტალირეთ უახლესი ანაწყობი dehub.io/apk-დან.",
+    "pushNotRegisteredDesc": "Გაფრთხილებები ვერ დაგიკავშირდებათ, სანამ აპი დახურულია: ამ ინსტალაციას არასდროს დაურეგისტრირებია Push-მოწყობილობა. ეს, როგორც წესი, ნიშნავს, რომ აგებულებას აკლია შეტყობინების კონფიგურაცია, რომელსაც dehub.io/apk-ის უახლესი აგებულების ინსტალაცია ცვლის.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

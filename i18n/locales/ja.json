@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "プッシュ通知はオフです",
     "tapEnableSystemSettings": "タップしてシステム設定で有効にする",
     "pushNotRegistered": "このデバイスはプッシュ通知用に登録されていません",
-    "pushNotRegisteredDesc": "アプリが閉じられている間、通知は届きません。通常、アプリを再度開くとクリアされます。この状態が続く場合は、dehub.io/apkから最新のビルドをインストールしてください。",
+    "pushNotRegisteredDesc": "アプリが閉じられている間は通知が届きません。このインストールではプッシュデバイスが登録されていません。これは通常、ビルドが通知設定を欠いていることを意味します。これは、dehub.io/apkから最新のビルドをインストールすることで置き換えられます。",
     "categoryEngagement": "エンゲージメント",
     "categorySocial": "ソーシャル",
     "categoryEarnings": "収益",

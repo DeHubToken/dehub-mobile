@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "ಈ ಸಾಧನವನ್ನು ಪುಶ್‌ಗಾಗಿ ನೋಂದಾಯಿಸಲಾಗಿಲ್ಲ",
-    "pushNotRegisteredDesc": "ಆ್ಯಪ್ ಅನ್ನು ಮುಚ್ಚಿದಾಗ ಅಧಿಸೂಚನೆಗಳು ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಆ್ಯಪ್ ಅನ್ನು ಪುನಃ ತೆರೆಯುವುದು ಸಾಮಾನ್ಯವಾಗಿ ಅದನ್ನು ತೆರವುಗೊಳಿಸುತ್ತದೆ; ಅದು ಸಂಭವಿಸುತ್ತಿದ್ದರೆ, dehub.io/apk ನಿಂದ ಇತ್ತೀಚಿನ ಬಿಲ್ಡ್ ಅನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ.",
+    "pushNotRegisteredDesc": "ಅಪ್ಲಿಕೇಶನ್ ಮುಚ್ಚಿದಾಗ ಅಧಿಸೂಚನೆಗಳು ನಿಮ್ಮನ್ನು ತಲುಪಲು ಸಾಧ್ಯವಿಲ್ಲ: ಈ ಇನ್‌ಸ್ಟಾಲ್ ಎಂದಿಗೂ ಪುಶ್ ಸಾಧನವನ್ನು ನೋಂದಾಯಿಸಿಲ್ಲ. ಸಾಮಾನ್ಯವಾಗಿ ಇದರರ್ಥ ಬಿಲ್ಡ್ ತನ್ನ ಅಧಿಸೂಚನೆ ಸಂರಚನೆಯನ್ನು ಕಳೆದುಕೊಂಡಿದೆ, ಇದು dehub.io/apk ನಿಂದ ಇತ್ತೀಚಿನ ಬಿಲ್ಡ್ ಅನ್ನು ಸ್ಥಾಪಿಸುತ್ತದೆ.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

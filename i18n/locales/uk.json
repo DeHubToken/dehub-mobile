@@ -1026,7 +1026,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Цей пристрій не зареєстровано для push",
-    "pushNotRegisteredDesc": "Сповіщення не надходять, поки додаток закрито. Повторне відкриття програми зазвичай очищає її; якщо це продовжується, встановіть останню збірку з dehub.io/apk.",
+    "pushNotRegisteredDesc": "Повідомлення не можуть надходити до вас, поки додаток закритий: ця установка ніколи не реєструвала push-пристрій. Зазвичай це означає, що в збірці відсутня конфігурація сповіщень, яку замінює встановлення останньої збірки з dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

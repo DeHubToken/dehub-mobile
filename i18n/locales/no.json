@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Denne enheten er ikke registrert for push",
-    "pushNotRegisteredDesc": "Varsler kan ikke nå deg mens appen er lukket. Hvis du åpner appen på nytt, slettes den vanligvis. Hvis det skjer vedvarende, installer den nyeste versjonen fra dehub.io/apk.",
+    "pushNotRegisteredDesc": "Varsler kan ikke nå deg mens appen er lukket: denne installasjonen registrerte aldri en push-enhet. Det betyr vanligvis at byggingen mangler varslingskonfigurasjonen sin, som erstattes av installasjon av den nyeste byggingen fra dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

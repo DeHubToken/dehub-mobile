@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Toto zařízení není registrováno pro push",
-    "pushNotRegisteredDesc": "Když je aplikace zavřená, oznámení se k tobě nemůžou dostat. Opětovné otevření aplikace ji obvykle vymaže; pokud se to děje, nainstalujte nejnovější verzi z dehub.io/apk.",
+    "pushNotRegisteredDesc": "Oznámení se k vám nemohou dostat, když je aplikace zavřená: tato instalace nikdy nezaregistrovala push zařízení. To obvykle znamená, že sestavení postrádá konfiguraci oznámení, kterou nahrazuje instalace nejnovějšího sestavení z dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

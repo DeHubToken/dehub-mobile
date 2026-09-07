@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push-Benachrichtigungen deaktiviert",
     "tapEnableSystemSettings": "Tippen, um es in den Systemeinstellungen zu aktivieren",
     "pushNotRegistered": "Dieses Gerät ist nicht für Push registriert",
-    "pushNotRegisteredDesc": "Benachrichtigungen können dich nicht erreichen, während die App geschlossen ist. Wenn Sie die App erneut öffnen, wird sie normalerweise gelöscht. Wenn dies weiterhin geschieht, installieren Sie den neuesten Build von dehub.io/apk.",
+    "pushNotRegisteredDesc": "Benachrichtigungen können Sie nicht erreichen, während die App geschlossen ist: Diese Installation hat nie ein Push-Gerät registriert. Das bedeutet in der Regel, dass dem Build die Benachrichtigungskonfiguration fehlt, die durch die Installation des neuesten Builds von dehub.io/apk ersetzt wird.",
     "categoryEngagement": "Interaktion",
     "categorySocial": "Social",
     "categoryEarnings": "Einnahmen",

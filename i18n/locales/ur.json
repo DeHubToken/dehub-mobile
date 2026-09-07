@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "یہ آلہ پُش کے لیے رجسٹرڈ نہیں ہے",
-    "pushNotRegisteredDesc": "جب تک ایپ بند ہے نوٹیفکیشنز آپ سے رابطہ نہیں کر سکتی ہیں ۔ ایپ کو دوبارہ کھولنا عام طور پر اسے صاف کرتا ہے ؛ اگر ایسا ہوتا رہتا ہے تو، dehub.io/apk سے تازہ ترین بلڈ انسٹال کریں ۔",
+    "pushNotRegisteredDesc": "ایپ بند ہونے کے دوران اطلاعات آپ تک نہیں پہنچ سکتیں: اس انسٹال نے کبھی بھی پُش ڈیوائس رجسٹر نہیں کی ۔ اس کا عام طور پر مطلب یہ ہے کہ بلڈ اپنی نوٹیفکیشن کنفیگریشن سے محروم ہے، جو dehub.io/apk سے تازہ ترین بلڈ انسٹال کر رہا ہے ۔",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

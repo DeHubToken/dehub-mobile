@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "ອຸປະກອນນີ້ບໍ່ໄດ້ລົງທະບຽນສຳລັບການຊຸກຍູ້",
-    "pushNotRegisteredDesc": "ການແຈ້ງເຕືອນບໍ່ສາມາດເຂົ້າເຖິງທ່ານໃນຂະນະທີ່ແອັບພລິເຄຊັນຖືກປິດ. ການເປີດ ໃຫມ່ ຂອງແອັບ app ປົກກະຕິແລ້ວຈະເຮັດໃຫ້ມັນສະອາດ; ຖ້າມັນສືບຕໍ່ເກີດຂື້ນ, ຕິດຕັ້ງອາຄານລ້າສຸດຈາກ dehub.io/apk.",
+    "pushNotRegisteredDesc": "ແຈ້ງການບໍ່ສາມາດເຂົ້າເຖິງທ່ານໃນຂະນະທີ່ແອັບພລິເຄຊັນຖືກປິດ: ການຕິດຕັ້ງນີ້ບໍ່ເຄີຍລົງທະບຽນອຸປະກອນກົດ. ນັ້ນມັກຈະ ຫມາຍ ຄວາມວ່າອາຄານຂາດການຕັ້ງຄ່າແຈ້ງການຂອງມັນ, ເຊິ່ງຕິດຕັ້ງອາຄານລ້າສຸດຈາກ dehub.io/apk ທົດແທນ.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

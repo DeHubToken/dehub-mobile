@@ -519,7 +519,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Acest dispozitiv nu este înregistrat pentru push",
-    "pushNotRegisteredDesc": "Notificările nu te pot contacta cât timp aplicația este închisă. De obicei, redeschiderea aplicației o șterge; dacă se întâmplă în continuare, instalați cea mai recentă versiune de pe dehub.io/apk.",
+    "pushNotRegisteredDesc": "Notificările nu vă pot contacta în timp ce aplicația este închisă: această instalare nu a înregistrat niciodată un dispozitiv de împingere. Aceasta înseamnă, de obicei, că construcției îi lipsește configurația de notificare, pe care instalarea celei mai recente versiuni de la dehub.io/apk o înlocuiește.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

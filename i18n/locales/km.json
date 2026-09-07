@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "ឧបករណ៍នេះមិនត្រូវបានចុះឈ្មោះសម្រាប់ការរុញទេ",
-    "pushNotRegisteredDesc": "ការជូនដំណឹងមិនអាចទៅដល់អ្នកបានទេ ខណៈពេលដែលកម្មវិធីត្រូវបានបិទ ។ ការបើកកម្មវិធីឡើងវិញជាធម្មតាបោសសំអាតវា ។ ប្រសិនបើវានៅតែបន្តកើតឡើង សូមដំឡើងសំណង់ថ្មីបំផុតពី dehub.io/apk ។",
+    "pushNotRegisteredDesc": "ការជូនដំណឹងមិនអាចទៅដល់អ្នកបានទេ ខណៈពេលដែលកម្មវិធីត្រូវបានបិទ៖ ការដំឡើងនេះមិនដែលបានចុះឈ្មោះឧបករណ៍ជំរុញទេ ។ នោះជាធម្មតាមានន័យថាអគារកំពុងខកខានការកំណត់រចនាសម្ព័ន្ធការជូនដំណឹងរបស់ខ្លួនដែលការដំឡើងអគារចុងក្រោយបំផុតពី dehub.io/apk ជំនួស ។",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

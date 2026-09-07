@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Tätä laitetta ei ole rekisteröity push-palveluun",
-    "pushNotRegisteredDesc": "Ilmoitukset eivät voi tavoittaa sinua, kun sovellus on suljettu. Sovelluksen avaaminen uudelleen tyhjentää sen yleensä. Jos se toistuu, asenna uusin versio osoitteesta dehub.io/apk.",
+    "pushNotRegisteredDesc": "Ilmoitukset eivät voi tavoittaa sinua, kun sovellus on suljettu: tämä asennus ei ole koskaan rekisteröinyt push-laitetta. Tämä tarkoittaa yleensä sitä, että koontiversiosta puuttuu ilmoituskonfiguraatio, joka korvaa uusimman koontiversion asennuksen osoitteesta dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

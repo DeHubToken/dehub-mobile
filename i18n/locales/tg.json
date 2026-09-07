@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Ин дастгоҳ барои зеркашӣ ба қайд гирифта нашудааст",
-    "pushNotRegisteredDesc": "Ang mga abiso ay hindi maaaring makatakbo sa iyo habang isara ang app. Кушодани барнома одатан онро тоза мекунад; агар он рӯй диҳад, насб кардани бинои охирин аз dehub.io/apk.",
+    "pushNotRegisteredDesc": "Ang mga abiso ay hindi maaaring makatakbo sa iyo habang nakababa ang app: ang install na ito ay hindi nagrehistro ng isang push device. Ин одатан маънои онро дорад, ки бино конфигуратсияи огоҳиномаи худро надорад, ки насб кардани сохтмони охирин аз dehub.io/apk иваз мекунад.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

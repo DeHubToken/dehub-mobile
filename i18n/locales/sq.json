@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "Kjo pajisje nuk është e regjistruar për shtytje",
-    "pushNotRegisteredDesc": "Njoftimet nuk mund të të arrijnë ndërsa aplikacioni është i mbyllur. Rihapja e aplikacionit zakonisht e pastron atë; nëse vazhdon të ndodhë, instaloni ndërtimin më të fundit nga dehub.io/apk.",
+    "pushNotRegisteredDesc": "Njoftimet nuk mund të të arrijnë ndërsa aplikacioni është i mbyllur: ky instalim nuk ka regjistruar kurrë një pajisje shtytëse. Kjo zakonisht do të thotë se ndërtesës i mungon konfigurimi i saj i njoftimit, i cili zëvendëson instalimin e ndërtesës më të fundit nga dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

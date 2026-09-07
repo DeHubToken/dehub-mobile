@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "हे डिव्हाइस पुशसाठी नोंदणीकृत नाही",
-    "pushNotRegisteredDesc": "अ‍ॅप बंद असताना सूचना तुमच्याशी संपर्क साधू शकत नाहीत. ॲप पुन्हा उघडणे सहसा ते साफ करते; ते होत राहिल्यास, dehub.io/apk वरून नवीनतम बिल्ड इन्स्टॉल करा.",
+    "pushNotRegisteredDesc": "अ‍ॅप बंद असताना सूचना तुमच्यापर्यंत पोहोचू शकत नाहीत: या इन्स्टॉलने पुश डिव्हाइसची नोंदणी केली नाही. याचा सहसा अर्थ असा होतो की बिल्डची सूचना कॉन्फिगरेशन गहाळ आहे, जी dehub.io/apk पुनर्स्थितांमधून नवीन बिल्ड स्थापित करीत आहे.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

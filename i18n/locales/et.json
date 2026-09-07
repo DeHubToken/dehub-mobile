@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "See seade ei ole tõukeseadmeks registreeritud",
-    "pushNotRegisteredDesc": "Teavitused ei jõua Sinuni, kui rakendus on suletud. Rakenduse uuesti avamine kustutab selle tavaliselt; kui see jätkub, installige uusim versioon aadressilt dehub.io/apk.",
+    "pushNotRegisteredDesc": "Teavitused ei jõua teieni, kui rakendus on suletud: see install ei ole kunagi tõukeseadet registreerinud. See tähendab tavaliselt, et ehitisel puudub teavituskonfiguratsioon, mis asendab uusima ehitise paigaldamist veebisaidilt dehub.io/apk.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

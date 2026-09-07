@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "هي ڊوائيس پش لاءِ رجسٽر ٿيل ناهي",
-    "pushNotRegisteredDesc": "اطلاع توهان تائين پهچي نٿا سگهن جڏهن ته ايپ بند آهي. ايپ کي ٻيهر کولڻ عام طور تي ان کي صاف ڪري ٿو ؛ جيڪڏهن اهو ٿيندو رهي ٿو، dehub. io/apk کان جديد بلڊ انسٽال ڪريو.",
+    "pushNotRegisteredDesc": "اطلاعن توهان تائين نٿا پهچي سگهن جڏهن ته ايپ بند آهي: هي انسٽال ڪڏهن به پش ڊيوائس رجسٽرڊ نه ڪيو. اهو عام طور تي مطلب آهي ته تعمير پنهنجي نوٽيفڪيشن جي ترتيب کان محروم آهي، جيڪا dehub. io/apk مٽائي کان جديد بلڊ انسٽال ڪندي آهي.",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",

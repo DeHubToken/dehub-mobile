@@ -300,7 +300,7 @@
     "pushNotificationsDisabled": "Push Notifications Disabled",
     "tapEnableSystemSettings": "Tap to enable in system settings",
     "pushNotRegistered": "ଏହି ଉପକରଣଟି push ପାଇଁ ପଞ୍ଜିକୃତ ହୋଇନାହିଁ",
-    "pushNotRegisteredDesc": "ଆପ ବନ୍ଦ ହେବା ପର୍ଯ୍ୟନ୍ତ ବିଜ୍ଞପ୍ତି ଆପଣଙ୍କ ନିକଟରେ ପହଞ୍ଚିପାରିବ ନାହିଁ । ଏହି ଆପକୁ ପୁନଃ ଖୋଲିବା ସାଧାରଣତ ଏହାକୁ ସଫା କରିଥାଏ; ଯଦି ଏହା ଜାରି ରହେ, ତେବେ dehub.io/apk ରେ ସଦ୍ୟତମ ବିଲ୍ଡିଂ ସ୍ଥାପନ କରନ୍ତୁ ।",
+    "pushNotRegisteredDesc": "ଆପ୍ ବନ୍ଦ ଥିବା ସମୟରେ ବିଜ୍ଞପ୍ତି ଆପଣଙ୍କ ନିକଟରେ ପହଞ୍ଚିପାରିବ ନାହିଁ: ଏହି ସ୍ଥାପନ କେବେହେଲେ କୌଣସି ପୁସ୍ ଉପକରଣକୁ ପଞ୍ଜିକୃତ କରିନାହିଁ । ଏହାର ଅର୍ଥ ହେଉଛି ବିଲ୍ଡିଂଟି ଏହାର ବିଜ୍ଞପ୍ତି ବିନ୍ୟାସକୁ ଅନୁପସ୍ଥିତ ଅଛି, ଯାହା dehub.io/apk ସ୍ଥାନରୁ ସଦ୍ୟତମ ବିଲ୍ଡିଂ ସ୍ଥାପନ କରୁଛି ।",
     "categoryEngagement": "Engagement",
     "categorySocial": "Social",
     "categoryEarnings": "Earnings",
