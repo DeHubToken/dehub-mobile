@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -54,6 +54,8 @@ const CommunityDetailScreen: React.FC = () => {
   const slug: string = route.params?.slug || "";
   const user = useUser() as any;
   const walletAddress = user?.address || user?.walletAddress || "";
+  const walletRef = useRef(walletAddress);
+  walletRef.current = walletAddress;
   const { requireAuth } = useAuthActions();
 
   const [community, setCommunity] = useState<Community | null>(null);
@@ -148,22 +150,26 @@ const CommunityDetailScreen: React.FC = () => {
       return;
     }
     requireAuth(async () => {
-      if (!walletAddress) return;
+      // requireAuth stores this closure and replays it after sign-in, when the
+      // walletAddress it captured is still the signed-out "". Read the live
+      // value from the ref, as the invite screen does.
+      const wallet = walletRef.current;
+      if (!wallet) return;
       setActionLoading(true);
       try {
         if (isMember) {
           // The owner has to transfer or delete rather than walk away — the
           // database refuses the delete, so do not offer it.
           if (isOwner) return;
-          await leaveCommunity(walletAddress, community.id);
+          await leaveCommunity(wallet, community.id);
           toastSuccess(t("communities.leftCommunity"));
         } else if (isPending) {
-          await leaveCommunity(walletAddress, community.id);
+          await leaveCommunity(wallet, community.id);
           toastSuccess(t("communities.requestCancelled"));
         } else {
           // Whether this lands as 'active' or 'pending' is decided server-side
           // from the community's privacy, not asked for by the client.
-          await joinCommunity(walletAddress, community.id);
+          await joinCommunity(wallet, community.id);
           toastSuccess(
             community.is_private ? t("communities.joinRequestSent") : t("communities.joined"),
           );
