@@ -397,6 +397,8 @@ export function useAIConversation(userId: string) {
     conversationIdRef.current = id;
     setConversationId(id);
   }, []);
+  /** The live conversation id, for work that outlives the render it started in. */
+  const getConversationId = useCallback(() => conversationIdRef.current, []);
   const [messages, setMessages] = useState<AIChatMessage[]>([]);
   const [conversations, setConversations] = useState<ConversationEntry[]>([]);
   const [postContext, setPostContext] = useState<AIPostContext | undefined>();
@@ -666,8 +668,34 @@ export function useAIConversation(userId: string) {
     }
   }, [userId, startNewConversation, signedIn]);
 
+  /**
+   * Patch one message in a stored thread that is not the one on screen. A
+   * video or tool render takes minutes; if the reader opened another thread
+   * meanwhile, the result used to be dropped and the placeholder kept its
+   * "Generating…" skeleton for good.
+   */
+  const patchStoredMessage = useCallback(
+    async (cid: string, id: string, patch: Partial<AIChatMessage>): Promise<boolean> => {
+      if (!userId) return false;
+      const data = await readConversation(userId, cid);
+      if (!data) return false;
+      const idx = data.messages.findIndex((m) => m.id === id);
+      if (idx === -1) return false;
+      const next = [...data.messages];
+      next[idx] = { ...next[idx], ...patch };
+      await writeConversation(userId, cid, {
+        ...data,
+        messages: await slimForStorage(next, dataUrlFilesRef.current),
+      });
+      return true;
+    },
+    [userId],
+  );
+
   return {
     conversationId,
+    getConversationId,
+    patchStoredMessage,
     messages,
     conversations,
     postContext,
