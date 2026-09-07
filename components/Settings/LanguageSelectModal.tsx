@@ -79,7 +79,9 @@ const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
         </Text>
       </View>
 
-      <View className="px-4 pb-4">
+      {/* Shrinkable, so GlassModal's 82% cap bounds the list instead of a fixed
+          420pt that overflowed the sheet and clipped the bottom rows. */}
+      <View className="px-4 pb-4" style={{ flexShrink: 1 }}>
         {/* Search */}
         <View className="mt-4 bg-theme-neutrals-800 rounded-xl border border-theme-neutrals-700 flex-row items-center px-3">
           <Icon name="Search" size={14} color="#6b7280" />
@@ -106,7 +108,7 @@ const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
 
         {/* Language list */}
         <ScrollView
-          style={{ maxHeight: 420, marginTop: 10 }}
+          style={{ flexShrink: 1, marginTop: 10 }}
           nestedScrollEnabled
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
