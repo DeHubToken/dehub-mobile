@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Ce téléphone oubliera quel portefeuille il sélectionne automatiquement pour votre connexion Google/e-mail. Vous serez déconnecté et, à la prochaine connexion, il vous sera demandé de déverrouiller le bon portefeuille avec son mot de passe (le même que sur le site).",
     "resetAndSignOut": "Réinitialiser et se déconnecter",
     "deviceLinkReset": "Lien de l'appareil réinitialisé. Reconnectez-vous pour récupérer le bon compte.",
-    "deviceLinkResetFailed": "Impossible de réinitialiser le lien de l'appareil."
+    "deviceLinkResetFailed": "Impossible de réinitialiser le lien de l'appareil.",
+    "emailNotificationsDescLinked": "Envoyé à {{email}}",
+    "emailNotificationsNoAddressMobile": "Ajoutez une adresse e-mail sur le site web pour les activer."
   },
   "common": {
     "mute": "Couper le son",

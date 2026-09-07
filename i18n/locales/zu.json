@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Le foni izokhohlwa ukuthi iyiphi isikhwama esizikhethela sona ekungeneni kwakho nge-Google/i-imeyili. Uzophuma, futhi ngesikhathi esilandelayo ungena uzocelwa ukuvula isikhwama esifanele ngephasiwedi yaso (efanayo nesetshenziswa yiwebhusayithi).",
     "resetAndSignOut": "Setha kabusha bese uphuma",
     "deviceLinkReset": "Isixhumanisi sedivayisi sisethwe kabusha. Ngena futhi ukuze uthole i-akhawunti efanele.",
-    "deviceLinkResetFailed": "Ayikwazanga ukusetha kabusha isixhumanisi sedivayisi."
+    "deviceLinkResetFailed": "Ayikwazanga ukusetha kabusha isixhumanisi sedivayisi.",
+    "emailNotificationsDescLinked": "Thumela ku-{{email}}",
+    "emailNotificationsNoAddressMobile": "Faka ikheli le-imeyili kuwebhusayithi ukuze uvule lezi."
   },
   "common": {
     "mute": "Thulisa",

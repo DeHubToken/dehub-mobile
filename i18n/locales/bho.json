@@ -516,7 +516,9 @@
     "resetDeviceLinkBody": "ई फोन भुला जाई कि Google/ईमेल साइन-इन खातिर कवन वॉलेट अपने आप चुने ला। रउआ साइन आउट हो जाईं, आ अगिला बेर साइन इन करत घरी सही वॉलेट ओकर पासवर्ड से खोले के कहल जाई (उहे जवन वेबसाइट इस्तेमाल करेला)।",
     "resetAndSignOut": "रीसेट आ साइन आउट",
     "deviceLinkReset": "डिवाइस लिंक रीसेट हो गइल। सही खाता खातिर फेर से साइन इन करीं।",
-    "deviceLinkResetFailed": "डिवाइस लिंक रीसेट ना हो पावल।"
+    "deviceLinkResetFailed": "डिवाइस लिंक रीसेट ना हो पावल।",
+    "emailNotificationsDescLinked": "{{email}} के पास भेजा गया",
+    "emailNotificationsNoAddressMobile": "इनको चालू करने के लिए वेबसाइट पर एक ईमेल पता जोड़ें।"
   },
   "common": {
     "mute": "आवाज़ बंद करीं",

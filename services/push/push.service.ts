@@ -34,6 +34,13 @@ export interface QuietHours {
 export interface NotificationPreferences {
   inAppEnabled: boolean;
   pushEnabled: boolean;
+  /**
+   * Notification emails. Opt-in, unlike the other two masters: the address is
+   * the one the account signs in with, and consent to a login code is not
+   * consent to be mailed. Which types may mail is decided server-side from the
+   * `inApp` switches below, so there is no `email` block to go with this.
+   */
+  emailEnabled: boolean;
   inApp: Record<NotificationPreferenceKey, boolean>;
   push: Record<NotificationPreferenceKey, boolean>;
   quietHours: QuietHours;
@@ -445,6 +452,7 @@ export function getDefaultNotificationPreferences(): NotificationPreferences {
   return {
     inAppEnabled: true,
     pushEnabled: true,
+    emailEnabled: false,
     inApp: { ...defaultTypePrefs },
     push: { ...defaultTypePrefs },
     quietHours: {

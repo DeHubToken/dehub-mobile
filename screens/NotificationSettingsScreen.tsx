@@ -17,6 +17,7 @@ import {
 import Icon, { type IconName } from '../components/ui/Icon';
 import CustomSwitch from '../components/ui/CustomSwitch';
 import { useUser, useAuthState, useAuthActions } from '../context/AuthContext';
+import { getEmailLinkStatus } from '../services/email-link.service';
 import { useGateToHome } from '../hooks/useGateToHome';
 import { toastError } from '../libs';
 import { createLogger } from '../libs/logger';
@@ -156,6 +157,13 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
   );
   const pushUnreachable = pushPermissionGranted && pushRegistration === 'unavailable';
   const [prefs, setPrefs] = useState<NotificationPreferences>(getDefaultNotificationPreferences());
+  /**
+   * The address notification emails would go to, masked, or null if this
+   * account has none. Linking one is web-only, so here it only decides whether
+   * the email switch can be flipped at all — a switch sitting on over a
+   * channel with no destination is worse than no switch.
+   */
+  const [notifyEmail, setNotifyEmail] = useState<string | null>(null);
   /** Which quiet-hours bound the picker is editing, if any. */
   const [hourPicker, setHourPicker] = useState<'start' | 'end' | null>(null);
 
@@ -195,6 +203,9 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
       }
     };
     loadPrefs();
+    getEmailLinkStatus().then(status => {
+      setNotifyEmail(status?.notifyEmail ?? null);
+    });
     // Load once per account. The user object is replaced on every patch (the
     // unread-count poll does it every minute), and re-reading the server
     // snapshot then snapped the switches back to it, and the next toggle
@@ -336,6 +347,27 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                   value={prefs.pushEnabled}
                   onValueChange={(v) => updatePrefs({ pushEnabled: v })}
                   disabled={!pushPermissionGranted}
+                />
+              </View>
+              <Divider />
+              <View className="px-4 py-3.5 flex-row items-center justify-between">
+                <View className="flex-row items-center flex-1 pr-3">
+                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+                    <Icon name="Mail" size={18} color="#9ca3af" />
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-white text-sm font-medium">{t('settings.emailNotifications')}</Text>
+                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                      {notifyEmail
+                        ? t('settings.emailNotificationsDescLinked', { email: notifyEmail })
+                        : t('settings.emailNotificationsNoAddressMobile')}
+                    </Text>
+                  </View>
+                </View>
+                <CustomSwitch
+                  value={prefs.emailEnabled}
+                  onValueChange={(v) => updatePrefs({ emailEnabled: v })}
+                  disabled={!notifyEmail}
                 />
               </View>
             </View>

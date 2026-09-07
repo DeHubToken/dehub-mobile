@@ -609,7 +609,9 @@
     "resetDeviceLinkBody": "এই ফোন ভুলি যাইবো তোমার Google/ইমেইল সাইন-ইনর লাগি কোন ওয়ালেট নিজে বাছে। তুমি সাইন আউট অইবায়, আর পরের বার সাইন ইন করলে ঠিক ওয়ালেট তার পাসওয়ার্ড দিয়া খুলতে কওয়া অইবো (ওয়েবসাইট যেটা ব্যবহার করে)।",
     "resetAndSignOut": "রিসেট আর সাইন আউট",
     "deviceLinkReset": "ডিভাইস লিংক রিসেট অইছে। ঠিক একাউন্ট পাইতে আবার সাইন ইন করো।",
-    "deviceLinkResetFailed": "ডিভাইস লিংক রিসেট করা গেল না।"
+    "deviceLinkResetFailed": "ডিভাইস লিংক রিসেট করা গেল না।",
+    "emailNotificationsDescLinked": "{{email}}-রে পাঠানো হয়েছে",
+    "emailNotificationsNoAddressMobile": "এগুলো চালু করতে ওয়েবসাইটে একটি ইমেইল ঠিকানা যোগ করুন।"
   },
   "notifications": {
     "title": "খবর",

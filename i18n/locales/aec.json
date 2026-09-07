@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "التليفون ده هينسى أنهي محفظة بيختارها تلقائي لتسجيل دخولك بـ Google/الإيميل. هتتسجل خروج، والمرة الجاية لما تسجل دخول هيتطلب منك تفتح المحفظة الصح بكلمة سرها (نفس اللي الموقع بيستخدمها).",
     "resetAndSignOut": "إعادة ضبط وتسجيل خروج",
     "deviceLinkReset": "اتعاد ضبط ربط الجهاز. سجّل دخول تاني عشان تاخد الحساب الصح.",
-    "deviceLinkResetFailed": "ما قدرناش نعيد ضبط ربط الجهاز."
+    "deviceLinkResetFailed": "ما قدرناش نعيد ضبط ربط الجهاز.",
+    "emailNotificationsDescLinked": "ابعت لـ {{email}}",
+    "emailNotificationsNoAddressMobile": "حط إيميل على الموقع عشان تشغلهم."
   },
   "common": {
     "mute": "اكتم الصوت",

@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "この端末は、Google/メールでのサインイン時に自動選択するウォレットを忘れます。サインアウトされ、次回サインイン時に正しいウォレットをそのパスワード（ウェブサイトと同じもの）で解除するよう求められます。",
     "resetAndSignOut": "リセットしてサインアウト",
     "deviceLinkReset": "端末の紐付けをリセットしました。正しいアカウントを取得するには再度サインインしてください。",
-    "deviceLinkResetFailed": "端末の紐付けをリセットできませんでした。"
+    "deviceLinkResetFailed": "端末の紐付けをリセットできませんでした。",
+    "emailNotificationsDescLinked": "{{email}}に送信",
+    "emailNotificationsNoAddressMobile": "これらを有効にするには、ウェブサイトにメールアドレスを追加してください。"
   },
   "common": {
     "mute": "ミュート",

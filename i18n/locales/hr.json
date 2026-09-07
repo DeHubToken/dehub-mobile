@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Ovaj će telefon zaboraviti koji novčanik automatski odabire za tvoju prijavu putem Googlea/e-pošte. Bit ćeš odjavljen, a pri sljedećoj prijavi tražit će se da otključaš ispravan novčanik njegovom lozinkom (istom koju koristi web).",
     "resetAndSignOut": "Poništi i odjavi se",
     "deviceLinkReset": "Veza uređaja poništena. Prijavi se ponovno kako bi se učitao ispravan račun.",
-    "deviceLinkResetFailed": "Vezu uređaja nije moguće poništiti."
+    "deviceLinkResetFailed": "Vezu uređaja nije moguće poništiti.",
+    "emailNotificationsDescLinked": "Poslano {{email}}",
+    "emailNotificationsNoAddressMobile": "Dodajte adresu e-pošte na web-mjesto da biste ih uključili."
   },
   "common": {
     "mute": "Isključi zvuk",

@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "הטלפון הזה ישכח איזה ארנק הוא בוחר אוטומטית עבור הכניסה שלך עם Google/אימייל. תנותק, ובפעם הבאה שתתחבר תתבקש לפתוח את הארנק הנכון עם הסיסמה שלו (אותה סיסמה שהאתר משתמש בה).",
     "resetAndSignOut": "אפס והתנתק",
     "deviceLinkReset": "קישור המכשיר אופס. התחבר שוב כדי לקבל את החשבון הנכון.",
-    "deviceLinkResetFailed": "לא ניתן היה לאפס את קישור המכשיר."
+    "deviceLinkResetFailed": "לא ניתן היה לאפס את קישור המכשיר.",
+    "emailNotificationsDescLinked": "נשלח אל {{email}}",
+    "emailNotificationsNoAddressMobile": "הוסף כתובת דוא\"ל באתר כדי להפעיל אותם."
   },
   "common": {
     "mute": "השתק",

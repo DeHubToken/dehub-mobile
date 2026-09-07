@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Ky telefon do të harrojë cilin portofol zgjedh automatikisht për hyrjen tënde me Google/email. Do të dalësh, dhe herën tjetër që hyn do të të kërkohet të zhbllokosh portofolin e saktë me fjalëkalimin e tij (i njëjti që përdor faqja e internetit).",
     "resetAndSignOut": "Rivendos dhe dil",
     "deviceLinkReset": "Lidhja e pajisjes u rivendos. Hyr përsëri për të marrë llogarinë e duhur.",
-    "deviceLinkResetFailed": "Lidhja e pajisjes nuk u rivendos dot."
+    "deviceLinkResetFailed": "Lidhja e pajisjes nuk u rivendos dot.",
+    "emailNotificationsDescLinked": "Dërguar {{email}}",
+    "emailNotificationsNoAddressMobile": "Shtoni një adresë emaili në faqen e internetit për t'i aktivizuar këto."
   },
   "common": {
     "mute": "Hiq zërin",

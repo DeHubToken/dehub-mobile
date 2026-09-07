@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Bilbilli kun boorsaa Google/imeelii seensa keetiif ofumaan filatu ni dagata. Ni baata, yeroo itti aanutti yoo seentu boorsaa sirrii jecha icciitii isaatiin (kan marsariitiin fayyadamu) akka bantu gaafatamta.",
     "resetAndSignOut": "Haaromsi fi ba'i",
     "deviceLinkReset": "Hidhaan meeshaa haaromfameera. Akkaawuntii sirrii argachuuf irra deebi'ii seeni.",
-    "deviceLinkResetFailed": "Hidhaa meeshaa haaromsuun hin dandaʼamne."
+    "deviceLinkResetFailed": "Hidhaa meeshaa haaromsuun hin dandaʼamne.",
+    "emailNotificationsDescLinked": "{{email}} irratti ergame",
+    "emailNotificationsNoAddressMobile": "Isaan kana  itti  jijjiiruuf  saaytin  warqii  imelii  itti  dabalaa."
   },
   "common": {
     "mute": "Sagalee cufi",

@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Taleefankan wuxuu ilaawi doonaa boorsada uu si toos ah u doorto gelitaankaaga Google/iimayl. Waa lagaa saari doonaa, marka xigta ee aad gasho waxaa lagu weydiin doonaa inaad boorsada saxda ah ku furto eraygeeda sirta ah (kan websaydku isticmaalo).",
     "resetAndSignOut": "Dib u deji oo ka bax",
     "deviceLinkReset": "Xiriirka qalabka waa la dib u dejiyay. Mar kale gal si aad u hesho akoonka saxda ah.",
-    "deviceLinkResetFailed": "Lama dib u dejin karin xiriirka qalabka."
+    "deviceLinkResetFailed": "Lama dib u dejin karin xiriirka qalabka.",
+    "emailNotificationsDescLinked": "U dir {{email}}",
+    "emailNotificationsNoAddressMobile": "Ku dar ciwaan email ah website-ka si aad kuwan u shiddo."
   },
   "common": {
     "mute": "Aamusi",

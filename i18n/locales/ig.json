@@ -516,7 +516,9 @@
     "resetDeviceLinkBody": "Ekwentị a ga-echefu obere akpa ọ na-ahọrọ n'onwe ya maka mbanye Google/email gị. A ga-apụ gị, ma oge ọzọ ị banye a ga-agwa gị ka ị kpọghee obere akpa ziri ezi site na okwuntughe ya (otu nke weebụsaịtị na-eji).",
     "resetAndSignOut": "Tọgharịa ma pụọ",
     "deviceLinkReset": "Njikọ ngwaọrụ atọgharịala. Banye ọzọ iji nweta akaụntụ ziri ezi.",
-    "deviceLinkResetFailed": "Enweghị ike ịtọgharịa njikọ ngwaọrụ."
+    "deviceLinkResetFailed": "Enweghị ike ịtọgharịa njikọ ngwaọrụ.",
+    "emailNotificationsDescLinked": "Ezitere {{email}}",
+    "emailNotificationsNoAddressMobile": "Tinye adreesị email na weebụsaịtị iji gbanye ndị a."
   },
   "common": {
     "mute": "Mechie ụda",

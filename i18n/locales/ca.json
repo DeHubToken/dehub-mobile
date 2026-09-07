@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Aquest telèfon oblidarà quina cartera selecciona automàticament per a l'inici de sessió amb Google/correu. Tancaràs la sessió i, la propera vegada, se't demanarà desbloquejar la cartera correcta amb la seva contrasenya (la mateixa que fa servir el web).",
     "resetAndSignOut": "Restableix i tanca la sessió",
     "deviceLinkReset": "Enllaç del dispositiu restablert. Torna a iniciar sessió per agafar el compte correcte.",
-    "deviceLinkResetFailed": "No s'ha pogut restablir l'enllaç del dispositiu."
+    "deviceLinkResetFailed": "No s'ha pogut restablir l'enllaç del dispositiu.",
+    "emailNotificationsDescLinked": "Enviat a {{email}}",
+    "emailNotificationsNoAddressMobile": "Afegiu una adreça electrònica al lloc web per activar-les."
   },
   "common": {
     "mute": "Silencia",

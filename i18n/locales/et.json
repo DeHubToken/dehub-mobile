@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "See telefon unustab, millise rahakoti ta sinu Google'i/e-posti sisselogimiseks automaatselt valib. Sind logitakse välja ja järgmisel sisselogimisel palutakse sul õige rahakott selle parooliga avada (sama, mida veebisait kasutab).",
     "resetAndSignOut": "Lähtesta ja logi välja",
     "deviceLinkReset": "Seadme seos lähtestatud. Logi uuesti sisse, et õige konto laadida.",
-    "deviceLinkResetFailed": "Seadme seost ei õnnestunud lähtestada."
+    "deviceLinkResetFailed": "Seadme seost ei õnnestunud lähtestada.",
+    "emailNotificationsDescLinked": "Saadetud {{email}}-le",
+    "emailNotificationsNoAddressMobile": "Lisage veebisaidile e-posti aadress, et need sisse lülitada."
   },
   "common": {
     "mute": "Vaigista",

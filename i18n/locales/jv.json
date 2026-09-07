@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Telpon iki bakal lali dompet endi sing dipilih otomatis kanggo mlebu Google/email sampeyan. Sampeyan bakal metu, lan nalika mlebu maneh bakal dijaluk mbukak dompet sing bener nganggo tembung sandine (padha karo sing dienggo situs web).",
     "resetAndSignOut": "Reset & metu",
     "deviceLinkReset": "Tautan piranti wis direset. Mlebu maneh kanggo njupuk akun sing bener.",
-    "deviceLinkResetFailed": "Ora bisa ngreset tautan piranti."
+    "deviceLinkResetFailed": "Ora bisa ngreset tautan piranti.",
+    "emailNotificationsDescLinked": "Dikirim menyang {{email}}",
+    "emailNotificationsNoAddressMobile": "Tambahake alamat email ing situs web kanggo ngaktifake iki."
   },
   "common": {
     "mute": "Bisu",

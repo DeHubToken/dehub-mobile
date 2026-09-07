@@ -516,7 +516,9 @@
     "resetDeviceLinkBody": "Fóònù yìí yóò gbàgbé àpò tí ó máa ń yàn fúnra rẹ̀ fún ìwọlé Google/íméèlì rẹ. A ó jáde ọ, nígbà tí o bá tún wọlé a ó bèèrè kí o ṣí àpò tó tọ́ pẹ̀lú ọ̀rọ̀ aṣínà rẹ̀ (èyí kan náà tí ojú-òpó ń lò).",
     "resetAndSignOut": "Tún ṣe kí o sì jáde",
     "deviceLinkReset": "A ti tún ìsopọ̀ ẹ̀rọ ṣe. Tún wọlé láti gba àkọọ́lẹ̀ tó tọ́.",
-    "deviceLinkResetFailed": "Kò lè tún ìsopọ̀ ẹ̀rọ ṣe."
+    "deviceLinkResetFailed": "Kò lè tún ìsopọ̀ ẹ̀rọ ṣe.",
+    "emailNotificationsDescLinked": "Ranṣẹ si {{email}}",
+    "emailNotificationsNoAddressMobile": "Ṣafikun adirẹsi imeeli kan lori oju opo wẹẹbu lati tan iwọnyi."
   },
   "common": {
     "mute": "Pa ohùn",

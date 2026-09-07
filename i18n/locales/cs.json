@@ -517,7 +517,9 @@
     "resetDeviceLinkBody": "Tento telefon zapomene, kterou peněženku automaticky vybírá pro přihlášení přes Google/e-mail. Budete odhlášeni a při dalším přihlášení budete vyzváni k odemknutí správné peněženky jejím heslem (stejným, jaké používá web).",
     "resetAndSignOut": "Resetovat a odhlásit",
     "deviceLinkReset": "Propojení zařízení resetováno. Přihlaste se znovu, aby se načetl správný účet.",
-    "deviceLinkResetFailed": "Propojení zařízení se nepodařilo resetovat."
+    "deviceLinkResetFailed": "Propojení zařízení se nepodařilo resetovat.",
+    "emailNotificationsDescLinked": "Odesláno {{email}}",
+    "emailNotificationsNoAddressMobile": "Přidejte na web e-mailovou adresu, abyste je zapnuli."
   },
   "common": {
     "mute": "Ztlumit",

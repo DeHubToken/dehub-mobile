@@ -516,7 +516,9 @@
     "resetDeviceLinkBody": "ይህ ስልክ ለGoogle/ኢሜይል መግቢያዎ ራሱ የሚመርጠውን ቦርሳ ይረሳል። ይወጣሉ፣ በሚቀጥለው ጊዜ ሲገቡ ትክክለኛውን ቦርሳ በይለፍ ቃሉ (ድረ-ገጹ የሚጠቀመው ተመሳሳይ) እንዲከፍቱ ይጠየቃሉ።",
     "resetAndSignOut": "ዳግም አስጀምር እና ውጣ",
     "deviceLinkReset": "የመሳሪያ ማገናኛ ዳግም ተጀምሯል። ትክክለኛውን መለያ ለማግኘት እንደገና ይግቡ።",
-    "deviceLinkResetFailed": "የመሳሪያ ማገናኛን ዳግም ማስጀመር አልተቻለም።"
+    "deviceLinkResetFailed": "የመሳሪያ ማገናኛን ዳግም ማስጀመር አልተቻለም።",
+    "emailNotificationsDescLinked": "ለ{{email}} ተላከ",
+    "emailNotificationsNoAddressMobile": "እነዚህን ለማብራት በድር ጣቢያው ላይ የኢሜል አድራሻ ይጨምሩ።"
   },
   "common": {
     "mute": "ድምፅ አጥፋ",

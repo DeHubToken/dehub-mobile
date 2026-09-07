@@ -516,7 +516,9 @@
     "resetDeviceLinkBody": "Denne telefonen vil glemme hvilken lommebok den automatisk velger for Google/e-post-innloggingen din. Du blir logget ut, og neste gang du logger inn blir du bedt om å låse opp riktig lommebok med passordet dens (det samme som nettstedet bruker).",
     "resetAndSignOut": "Tilbakestill og logg ut",
     "deviceLinkReset": "Enhetskobling tilbakestilt. Logg inn igjen for å hente riktig konto.",
-    "deviceLinkResetFailed": "Kunne ikke tilbakestille enhetskoblingen."
+    "deviceLinkResetFailed": "Kunne ikke tilbakestille enhetskoblingen.",
+    "emailNotificationsDescLinked": "Sendt til {{email}}",
+    "emailNotificationsNoAddressMobile": "Legg til en e-postadresse på nettstedet for å aktivere disse."
   },
   "common": {
     "mute": "Demp",

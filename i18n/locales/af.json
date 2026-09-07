@@ -706,7 +706,9 @@
     "resetDeviceLinkBody": "Hierdie foon sal vergeet watter beursie dit outomaties kies vir jou Google/e-pos-aanmelding. Jy word afgemeld, en die volgende keer wat jy aanmeld sal jy gevra word om die regte beursie met sy wagwoord te ontsluit (dieselfde een wat die webwerf gebruik).",
     "resetAndSignOut": "Herstel en meld af",
     "deviceLinkReset": "Toestelkoppeling herstel. Meld weer aan om die regte rekening op te tel.",
-    "deviceLinkResetFailed": "Kon nie die toestelkoppeling herstel nie."
+    "deviceLinkResetFailed": "Kon nie die toestelkoppeling herstel nie.",
+    "emailNotificationsDescLinked": "Gestuur na {{email}}",
+    "emailNotificationsNoAddressMobile": "Voeg 'n e-posadres op die webwerf by om dit aan te skakel."
   },
   "wallet": {
     "notReady": "Beursie is nie gereed nie — probeer oor 'n oomblik weer.",
