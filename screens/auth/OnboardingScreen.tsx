@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import {
   View,
-  Dimensions,
+  useWindowDimensions,
   StyleSheet,
   Pressable,
 } from "react-native";
@@ -28,7 +28,6 @@ import {
   type SwipeButtonRef,
 } from "../../components/Onboarding";
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 const SLIDES: StorySlide[] = [
   {
@@ -59,6 +58,9 @@ type OnboardingNavigationProp = StackNavigationProp<AuthStackParamList, typeof S
 
 const OnboardingScreen: React.FC = () => {
   const navigation = useNavigation<OnboardingNavigationProp>();
+  // Live width, not a module-level snapshot: on iPad the tap zones were
+  // computed from the launch orientation and wrong after a rotation.
+  const { width: SCREEN_WIDTH } = useWindowDimensions();
   const activeIndex = useSharedValue(0);
   const progress = useSharedValue(0);
   const isAnimating = useRef(true);
@@ -147,7 +149,7 @@ const OnboardingScreen: React.FC = () => {
       const nextIndex = (currentIdx + 1) % SLIDES.length;
       goToSlide(nextIndex);
     }
-  }, [goToSlide]);
+  }, [goToSlide, SCREEN_WIDTH]);
 
   // Update Rive swipe progress
   const updateSwipeProgress = useCallback((swipeProgress: number) => {
