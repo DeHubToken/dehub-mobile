@@ -43,6 +43,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
+import { useFeedCardVisibility } from "../hooks/useFeedCardVisibility";
 import FeedCard from "../components/Home/FeedCard";
 import { resolveViewCount } from "../libs/numbers.util";
 import SearchAccountCard from "../components/Search/SearchAccountCard";
@@ -456,16 +457,36 @@ const SearchScreen: React.FC = () => {
     );
   }, []);
 
+  const contentKeyExtractor = useCallback(
+    (item: SearchContentResult, index: number) => `content-${item.tokenId}-${index}`,
+    [],
+  );
+
+  // Only rows in view may hold a native player, and only one autoplays.
+  // Without this FeedCard defaults to visible + autoplay for every row, so
+  // every live card streamed and every video played at once.
+  const {
+    viewabilityConfig,
+    onViewableItemsChanged,
+    isItemVisible,
+    isItemAutoplayActive,
+  } = useFeedCardVisibility(contentKeyExtractor as (item: unknown, index: number) => string);
+
   const renderContentItem = useCallback(
-    ({ item }: { item: SearchContentResult }) => {
+    ({ item, index }: { item: SearchContentResult; index: number }) => {
       const feedItem = toFeedItem(item);
+      const key = contentKeyExtractor(item, index);
       return (
         <View className="px-4">
-          <FeedCard item={feedItem} />
+          <FeedCard
+            item={feedItem}
+            isVisible={isItemVisible(key)}
+            isAutoplayActive={isItemAutoplayActive(key)}
+          />
         </View>
       );
     },
-    [],
+    [contentKeyExtractor, isItemVisible, isItemAutoplayActive],
   );
 
   const renderAccountItem = useCallback(
@@ -475,11 +496,6 @@ const SearchScreen: React.FC = () => {
       </View>
     ),
     [handleFollowChange],
-  );
-
-  const contentKeyExtractor = useCallback(
-    (item: SearchContentResult, index: number) => `content-${item.tokenId}-${index}`,
-    [],
   );
 
   const accountKeyExtractor = useCallback(
@@ -643,6 +659,8 @@ const SearchScreen: React.FC = () => {
           data={content}
           renderItem={renderContentItem}
           keyExtractor={contentKeyExtractor}
+          viewabilityConfig={viewabilityConfig}
+          onViewableItemsChanged={onViewableItemsChanged}
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.5}
           ListHeaderComponent={AccountsCarousel}
@@ -776,7 +794,9 @@ const SearchScreen: React.FC = () => {
             </View>
             {trendingVideos.map((item, index) => (
               <View key={`trending-${item.tokenId ?? item.id}-${index}`} className="px-4">
-                <FeedCard item={item} />
+                {/* A plain map inside a ScrollView has no viewability, so no
+                    row may autoplay or stream here; tap to play. */}
+                <FeedCard item={item} isAutoplayActive={false} />
               </View>
             ))}
           </View>
