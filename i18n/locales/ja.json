@@ -2543,5 +2543,8 @@
       "other": "その他"
     },
     "filedOn": "{{date}} に作成"
+  },
+  "stages": {
+    "microphoneDenied": "ステージで話すにはマイクへのアクセスを許可してください"
   }
 }

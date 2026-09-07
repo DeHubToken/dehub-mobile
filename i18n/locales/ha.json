@@ -2492,5 +2492,8 @@
     "dubbed": "Sauti mai ban sha'awa",
     "preparing": "Shirya sautin da aka yi wa lakabi...",
     "unavailable": "Dubbed audio ba samuwa ga wannan video."
+  },
+  "stages": {
+    "microphoneDenied": "Ba da izinin makirufo don yin magana a dandali"
   }
 }

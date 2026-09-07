@@ -2492,5 +2492,8 @@
     "dubbed": "Audio ka baara kɛ",
     "preparing": "O ye kumakanw ye minw man kan ka mɛn.",
     "unavailable": "O video nin tɛ se ka mɔgɔ bali ka kuma n'a ye."
+  },
+  "stages": {
+    "microphoneDenied": "Kumakan minɛlan ka daminɛ walisa ka kuma jɔyɔrɔ la"
   }
 }

@@ -2561,5 +2561,8 @@
     "dubbed": "Dubbed audio",
     "preparing": "Dabbed audio tayar kar rahey hain…",
     "unavailable": "ई वीडियो खातिर डबेड ऑडियो उपलब्ध नइखे।"
+  },
+  "stages": {
+    "microphoneDenied": "স্টেজত কথা কবার জন্যে মাইক্রোফোনের অনুমতি দেও"
   }
 }

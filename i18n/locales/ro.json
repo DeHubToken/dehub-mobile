@@ -2506,5 +2506,8 @@
     "dubbed": "Sunet dublat",
     "preparing": "Se pregătește sunetul dublat...",
     "unavailable": "Sunetul dublat nu este disponibil pentru acest videoclip."
+  },
+  "stages": {
+    "microphoneDenied": "Permite accesul la microfon pentru a vorbi pe o scenă"
   }
 }

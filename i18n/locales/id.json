@@ -2541,5 +2541,8 @@
       "other": "Lainnya"
     },
     "filedOn": "Dikirim {{date}}"
+  },
+  "stages": {
+    "microphoneDenied": "Izinkan akses mikrofon untuk berbicara di panggung"
   }
 }
