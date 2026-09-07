@@ -16,7 +16,7 @@ import {
 } from '../components/Settings/SettingsAnchor';
 import Icon, { type IconName } from '../components/ui/Icon';
 import CustomSwitch from '../components/ui/CustomSwitch';
-import { useUser, useAuthState } from '../context/AuthContext';
+import { useUser, useAuthState, useAuthActions } from '../context/AuthContext';
 import { useGateToHome } from '../hooks/useGateToHome';
 import { toastError } from '../libs';
 import { createLogger } from '../libs/logger';
@@ -100,6 +100,8 @@ const TypeRow: React.FC<TypeRowProps> = ({
 const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
+  const { patchUser } = useAuthActions();
+  const userAddress = ((user as any)?.address || (user as any)?.walletAddress || '') as string;
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
   const { t } = useTranslation();
@@ -171,20 +173,28 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
       }
     };
     loadPrefs();
-  }, [user]);
+    // Load once per account. The user object is replaced on every patch (the
+    // unread-count poll does it every minute), and re-reading the server
+    // snapshot then snapped the switches back to it, and the next toggle
+    // saved those reverted values.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userAddress]);
 
   const savePreferences = useCallback(async (newPrefs: NotificationPreferences) => {
     setSaving(true);
     try {
       const success = await updateNotificationPreferences(newPrefs);
       if (!success) toastError(null, t('toasts.failed_to_save_settings'));
+      // Keep the cached user in step with what was sent, so anything that
+      // reads user.notificationPreferences later sees the saved values.
+      else patchUser({ notificationPreferences: newPrefs } as any).catch(() => {});
     } catch (error) {
       logger.error('Failed to save preferences', error);
       toastError(error, t('toasts.failed_to_save_settings'));
     } finally {
       setSaving(false);
     }
-  }, [t]);
+  }, [t, patchUser]);
 
   const updatePrefs = useCallback((updates: Partial<NotificationPreferences>) => {
     setPrefs(prev => {
