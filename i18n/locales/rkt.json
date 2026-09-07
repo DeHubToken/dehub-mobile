@@ -809,7 +809,10 @@
     "generateImageOf": "Generate an image of ",
     "generateVideoOf": "Generate a video of ",
     "whatsHappeningNews": "What's happening in the news today?",
-    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation."
+    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
+    "audioSaved": "অডিও সেভ হইল",
+    "audioSaveFailed": "ঐ ট্র্যাক সেভ করা গেইল না",
+    "generatedWithAssistant": "DeHub সহকারী দিয়া বানানো"
   },
   "dao": {
     "title": "DAO ট্রেজারি",

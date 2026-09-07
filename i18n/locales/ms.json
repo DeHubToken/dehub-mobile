@@ -1167,7 +1167,10 @@
     "generateImageOf": "Generate an image of ",
     "generateVideoOf": "Generate a video of ",
     "whatsHappeningNews": "What's happening in the news today?",
-    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation."
+    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
+    "audioSaved": "Audio disimpan",
+    "audioSaveFailed": "Tidak dapat menyimpan trek itu",
+    "generatedWithAssistant": "Dijana dengan pembantu DeHub"
   },
   "publicChat": {
     "title": "Public Chat",

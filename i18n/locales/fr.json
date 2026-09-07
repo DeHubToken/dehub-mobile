@@ -1009,7 +1009,10 @@
     "fallbackGrokNotConfigured": "Utilisation de DeHub AI - Clé API Grok non configurée",
     "paymentSuccessGenerating": "Paiement réussi ! Génération de votre vidéo en cours...",
     "imageGenerated": "Image générée !",
-    "videoGenFailedDetail": "Échec de la génération vidéo : {{error}}"
+    "videoGenFailedDetail": "Échec de la génération vidéo : {{error}}",
+    "audioSaved": "Audio enregistré",
+    "audioSaveFailed": "Impossible d'enregistrer cette piste",
+    "generatedWithAssistant": "Généré avec l'assistant DeHub"
   },
   "aiChat": {
     "title": "Assistant",

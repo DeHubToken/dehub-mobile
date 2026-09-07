@@ -13,7 +13,8 @@
  *    entry point.
  */
 
-import { Share } from 'react-native';
+import { Platform, Share } from 'react-native';
+import { t } from 'i18next';
 import * as FileSystem from 'expo-file-system/legacy';
 import * as MediaLibrary from 'expo-media-library';
 import * as Clipboard from 'expo-clipboard';
@@ -125,21 +126,53 @@ export async function saveToLibrary(uri: string, kind: 'image' | 'video'): Promi
   }
 }
 
+const AUDIO_MIME_BY_EXT: Record<string, string> = {
+  mp3: 'audio/mpeg',
+  wav: 'audio/wav',
+  m4a: 'audio/mp4',
+  aac: 'audio/aac',
+  ogg: 'audio/ogg',
+  opus: 'audio/ogg',
+  flac: 'audio/flac',
+};
+
 /**
- * Hand generated audio to the OS share sheet.
+ * Get generated audio off the screen. Web offers a straight download; the
+ * camera roll will not take an audio file, and there is no expo-sharing here.
  *
- * Web offers a straight download. The camera roll will not take an audio file,
- * and this app has no expo-sharing dependency, so the platform share sheet
- * (core `Share`) is the way to get a generated track off the screen and into
+ * iOS: the platform share sheet (core `Share`) carries the file URL into
  * Files, a DM or anywhere else.
+ *
+ * Android: core `Share` only carries text there, so the track never left the
+ * device. Write the file into a folder the user picks through the Storage
+ * Access Framework instead, the same path the JSON export uses.
  */
 export async function shareAudio(uri: string): Promise<void> {
   try {
     const local = await materialise(uri, 'audio');
-    await Share.share({ url: local, message: 'Generated with the DeHub assistant' });
+    if (Platform.OS === 'android') {
+      const permission =
+        await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync();
+      if (!permission.granted) return;
+      const ext = (local.split('?')[0].match(/\.([a-z0-9]{2,4})$/i)?.[1] || 'mp3').toLowerCase();
+      const target = await FileSystem.StorageAccessFramework.createFileAsync(
+        permission.directoryUri,
+        `dehub_ai_${Date.now()}.${ext}`,
+        AUDIO_MIME_BY_EXT[ext] || 'audio/mpeg',
+      );
+      const base64 = await FileSystem.readAsStringAsync(local, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+      await FileSystem.writeAsStringAsync(target, base64, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+      toastSuccess(t('assistant.audioSaved'));
+      return;
+    }
+    await Share.share({ url: local, message: t('assistant.generatedWithAssistant') });
   } catch (err) {
     log.error('share failed:', err);
-    toastError('Could not share that track');
+    toastError(t('assistant.audioSaveFailed'));
   }
 }
 

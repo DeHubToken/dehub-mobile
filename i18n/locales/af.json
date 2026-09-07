@@ -1478,7 +1478,10 @@
     "generateImageOf": "Generate an image of ",
     "generateVideoOf": "Generate a video of ",
     "whatsHappeningNews": "What's happening in the news today?",
-    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation."
+    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
+    "audioSaved": "Klank gestoor",
+    "audioSaveFailed": "Kon nie daardie snit stoor nie",
+    "generatedWithAssistant": "Geskep met die DeHub-assistent"
   },
   "publicChat": {
     "title": "Public Chat",

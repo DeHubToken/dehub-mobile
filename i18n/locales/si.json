@@ -704,7 +704,10 @@
     "officialLogo": "Here's the official DeHub logo! 🎨",
     "generateImageOf": "Generate an image of ",
     "generateVideoOf": "Generate a video of ",
-    "whatsHappeningNews": "What's happening in the news today?"
+    "whatsHappeningNews": "What's happening in the news today?",
+    "audioSaved": "ශ්‍රව්‍යය සුරකින ලදී",
+    "audioSaveFailed": "එම ගීතය සුරැකීමට නොහැකි විය",
+    "generatedWithAssistant": "DeHub සහායක සමඟ සාදන ලදී"
   },
   "publicChat": {
     "title": "පොදු කතාබහ",

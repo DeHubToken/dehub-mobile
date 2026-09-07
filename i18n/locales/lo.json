@@ -704,7 +704,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "ບັນທຶກສຽງແລ້ວ",
+    "audioSaveFailed": "ບໍ່ສາມາດບັນທຶກເພງນັ້ນໄດ້",
+    "generatedWithAssistant": "ສ້າງດ້ວຍຜູ້ຊ່ວຍ DeHub"
   },
   "publicChat": {
     "title": "ແຊັດສາທາລະນະ",

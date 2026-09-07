@@ -1350,7 +1350,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "Звук сачуван",
+    "audioSaveFailed": "Није могуће сачувати ту нумеру",
+    "generatedWithAssistant": "Направљено помоћу DeHub асистента"
   },
   "aiChat": {
     "title": "Асистент",

@@ -795,7 +795,10 @@
     "generateImageOf": "Generate an image of ",
     "generateVideoOf": "Generate a video of ",
     "whatsHappeningNews": "What's happening in the news today?",
-    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation."
+    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
+    "audioSaved": "Zvuk uložený",
+    "audioSaveFailed": "Túto stopu sa nepodarilo uložiť",
+    "generatedWithAssistant": "Vytvorené asistentom DeHub"
   },
   "dao": {
     "title": "DAO pokladnica",

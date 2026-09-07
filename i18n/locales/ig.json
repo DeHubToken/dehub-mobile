@@ -704,7 +704,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "Echekwala ụda",
+    "audioSaveFailed": "Enweghị ike ichekwa egwu ahụ",
+    "generatedWithAssistant": "Ejiri onye inyeaka DeHub mepụta"
   },
   "publicChat": {
     "title": "Nkata Ọha",

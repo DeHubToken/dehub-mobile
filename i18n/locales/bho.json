@@ -704,7 +704,10 @@
     "fallbackGrokNotConfigured": "DeHub AI का उपयोग हो रहा है — Grok API कुंजी सेट नहीं है",
     "paymentSuccessGenerating": "भुगतान सफल! आपका वीडियो बनाया जा रहा है...",
     "imageGenerated": "छवि बन गई!",
-    "videoGenFailedDetail": "वीडियो नहीं बन सका: {{error}}"
+    "videoGenFailedDetail": "वीडियो नहीं बन सका: {{error}}",
+    "audioSaved": "ऑडियो सेव हो गइल",
+    "audioSaveFailed": "ई ट्रैक सेव ना हो पावल",
+    "generatedWithAssistant": "DeHub असिस्टेंट से बनावल गइल"
   },
   "publicChat": {
     "title": "सार्वजनिक चैट",

@@ -1350,7 +1350,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "ఆడియో సేవ్ చేయబడింది",
+    "audioSaveFailed": "ఆ ట్రాక్‌ను సేవ్ చేయలేకపోయాము",
+    "generatedWithAssistant": "DeHub అసిస్టెంట్‌తో రూపొందించబడింది"
   },
   "aiChat": {
     "title": "సహాయకుడు",

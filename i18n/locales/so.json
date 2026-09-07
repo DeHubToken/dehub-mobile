@@ -704,7 +704,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "Codka waa la keydiyay",
+    "audioSaveFailed": "Lama keydin karin heestaas",
+    "generatedWithAssistant": "Waxaa lagu sameeyay kaaliyaha DeHub"
   },
   "publicChat": {
     "title": "Sheeko Dadweyne",

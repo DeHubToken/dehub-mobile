@@ -704,7 +704,10 @@
     "fallbackGrokNotConfigured": "Using DeHub AI - Grok API key not configured",
     "paymentSuccessGenerating": "Payment successful! Generating your video...",
     "imageGenerated": "Image generated!",
-    "videoGenFailedDetail": "Video generation failed: {{error}}"
+    "videoGenFailedDetail": "Video generation failed: {{error}}",
+    "audioSaved": "ഓഡിയോ സേവ് ചെയ്തു",
+    "audioSaveFailed": "ആ ട്രാക്ക് സേവ് ചെയ്യാനായില്ല",
+    "generatedWithAssistant": "DeHub അസിസ്റ്റന്റ് ഉപയോഗിച്ച് സൃഷ്ടിച്ചത്"
   },
   "publicChat": {
     "title": "പൊതു ചാറ്റ്",

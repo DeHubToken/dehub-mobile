@@ -809,7 +809,10 @@
     "generateImageOf": "Generate an image of ",
     "generateVideoOf": "Generate a video of ",
     "whatsHappeningNews": "What's happening in the news today?",
-    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation."
+    "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
+    "audioSaved": "অডিও সেভ অইছে",
+    "audioSaveFailed": "এই ট্র্যাক সেভ গরা ন যায়",
+    "generatedWithAssistant": "DeHub সহকারী দিয়া বানানো"
   },
   "dao": {
     "subtitle": "এক ওয়ালেট, কমিউনিটি ফান্ডের, ভোট দিয়া খরচ",
