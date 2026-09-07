@@ -1606,6 +1606,7 @@
     "searchDehubFor": "Wá \"{{query}}\" lórí DeHub"
   },
   "comments": {
+    "showAll": "gbogbo àwọn èsì",
     "discardTitle": "Ṣé kí a pa ọ̀rọ̀ rẹ rẹ́?",
     "discardBody": "A ti fi pamọ́ gẹ́gẹ́ bí àkọsílẹ̀, yóò wà níbí nígbà tí o bá padà.",
     "keepWriting": "Máa bá kíkọ lọ",

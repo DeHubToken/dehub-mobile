@@ -1636,6 +1636,7 @@
     "searchDehubFor": "Uf DeHub noch \"{{query}}\" sueche"
   },
   "comments": {
+    "showAll": "Zeig alli Kommentär",
     "discardTitle": "Kommentar verwärfe?",
     "discardBody": "Er isch als Entwurf gspeicheret und isch no da, wenn du zrugg chunnsch.",
     "keepWriting": "Wiiterschribe",

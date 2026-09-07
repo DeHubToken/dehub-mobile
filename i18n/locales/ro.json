@@ -1817,6 +1817,7 @@
     "searchDehubFor": "Caută „{{query}}” pe DeHub"
   },
   "comments": {
+    "showAll": "Afișează toate comentariile",
     "discardTitle": "Renunți la comentariu?",
     "discardBody": "E salvat ca ciornă, așa că îl găsești aici când revii.",
     "keepWriting": "Continuă să scrii",

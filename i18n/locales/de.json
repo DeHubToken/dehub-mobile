@@ -1606,6 +1606,7 @@
     "searchDehubFor": "DeHub nach „{{query}}\" durchsuchen"
   },
   "comments": {
+    "showAll": "Alle Kommentare anzeigen",
     "discardTitle": "Kommentar verwerfen?",
     "discardBody": "Er ist als Entwurf gespeichert und wartet hier, wenn du zurückkommst.",
     "keepWriting": "Weiterschreiben",

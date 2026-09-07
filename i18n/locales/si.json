@@ -1644,6 +1644,7 @@
     "searchDehubFor": "DeHub හි \"{{query}}\" සොයන්න"
   },
   "comments": {
+    "showAll": "සියලු අදහස් පෙන්වන්න",
     "discardTitle": "ඔබේ අදහස ඉවත දමන්නද?",
     "discardBody": "එය කෙටුම්පතක් ලෙස සුරැකී ඇත, ආපසු එන විට මෙහි ඇත.",
     "keepWriting": "ලිවීම දිගටම කරන්න",

@@ -1604,6 +1604,7 @@
     "searchDehubFor": "DeHub पर \"{{query}}\" खोजीं"
   },
   "comments": {
+    "showAll": "दिखावे के सभी टाइलें",
     "discardTitle": "आपन कमेंट छोड़ दीं?",
     "discardBody": "ई ड्राफ्ट में सेव बा, लौटला पर इहँवे मिली।",
     "keepWriting": "लिखत रहीं",

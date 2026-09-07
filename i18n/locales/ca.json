@@ -1606,6 +1606,7 @@
     "searchDehubFor": "Cerca «{{query}}» a DeHub"
   },
   "comments": {
+    "showAll": "Mostra tots els comentaris",
     "discardTitle": "Vols descartar el comentari?",
     "discardBody": "S'ha desat com a esborrany, així que hi serà quan tornis.",
     "keepWriting": "Continua escrivint",

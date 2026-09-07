@@ -1607,6 +1607,7 @@
     "searchDehubFor": "DeHub で「{{query}}」を検索"
   },
   "comments": {
+    "showAll": "全てのコメントを表示する",
     "discardTitle": "コメントを破棄しますか？",
     "discardBody": "下書きとして保存されているので、戻ればここにあります。",
     "keepWriting": "書き続ける",

@@ -1195,6 +1195,7 @@
     "searchDehubFor": "Hľadať „{{query}}“ na DeHube"
   },
   "comments": {
+    "showAll": "Zobraziť všetky komentáre v počte: %d",
     "discardTitle": "Zahodiť komentár?",
     "discardBody": "Uložili sme ho ako koncept, takže tu bude, keď sa vrátiš.",
     "keepWriting": "Písať ďalej",

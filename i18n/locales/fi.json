@@ -1598,6 +1598,7 @@
     "searchDehubFor": "Hae DeHubista ”{{query}}”"
   },
   "comments": {
+    "showAll": "Kaikki kommentit",
     "discardTitle": "Hylätäänkö kommenttisi?",
     "discardBody": "Se on tallennettu luonnokseksi, joten se odottaa täällä, kun palaat.",
     "keepWriting": "Jatka kirjoittamista",

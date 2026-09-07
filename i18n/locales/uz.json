@@ -1623,6 +1623,7 @@
     "searchDehubFor": "DeHub'da «{{query}}» ni qidirish"
   },
   "comments": {
+    "showAll": "Barcha izohlarni ko&#39;rsatish",
     "discardTitle": "Izohingizni bekor qilasizmi?",
     "discardBody": "U qoralama sifatida saqlandi, qaytganingizda shu yerda bo'ladi.",
     "keepWriting": "Yozishda davom eting",

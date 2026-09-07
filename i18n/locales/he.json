@@ -1609,6 +1609,7 @@
     "searchDehubFor": "חיפוש \"{{query}}\" ב-DeHub"
   },
   "comments": {
+    "showAll": "להציג כל %d התגובות",
     "discardTitle": "למחוק את התגובה שלך?",
     "discardBody": "היא נשמרה כטיוטה, אז היא תחכה לך כאן.",
     "keepWriting": "להמשיך לכתוב",

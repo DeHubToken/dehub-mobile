@@ -1634,6 +1634,7 @@
     "searchDehubFor": "በDeHub ላይ \"{{query}}\" ፈልግ"
   },
   "comments": {
+    "showAll": "ሁሉንም አስተያየቶች አሳይ",
     "discardTitle": "አስተያየትዎን ይጣሉ?",
     "discardBody": "እንደ ረቂቅ ተቀምጧል፣ ስለዚህ ሲመለሱ እዚህ ይኖራል።",
     "keepWriting": "መጻፍ ይቀጥሉ",

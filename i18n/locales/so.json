@@ -1606,6 +1606,7 @@
     "searchDehubFor": "Ka raadi \"{{query}}\" DeHub"
   },
   "comments": {
+    "showAll": "Muuji dhammaan faallooyinka",
     "discardTitle": "Ma tuuraysaa faalladaada?",
     "discardBody": "Waxaa loo kaydiyay qabyo, markaad soo noqotona halkan bay joogi doontaa.",
     "keepWriting": "Sii qor",

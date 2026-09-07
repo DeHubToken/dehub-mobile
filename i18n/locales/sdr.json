@@ -1654,6 +1654,7 @@
     "searchDehubFor": "DeHub پر \"{{query}}\" کھوجو"
   },
   "comments": {
+    "showAll": "Nang show ko tanan nga mga komento",
     "discardTitle": "اپنا تبصرہ چھوڑ دیبے؟",
     "discardBody": "ای ڈرافٹ میں سیو ہے، لوٹے پر اہیں ملے گا۔",
     "keepWriting": "لکھتے رہو",

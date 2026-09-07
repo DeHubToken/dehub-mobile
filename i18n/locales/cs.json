@@ -1610,6 +1610,7 @@
     "searchDehubFor": "Hledat „{{query}}“ na DeHubu"
   },
   "comments": {
+    "showAll": "Zobrazit všechny komentáře %d",
     "discardTitle": "Zahodit komentář?",
     "discardBody": "Uložili jsme ho jako koncept, takže tu bude, až se vrátíš.",
     "keepWriting": "Psát dál",

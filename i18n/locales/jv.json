@@ -1606,6 +1606,7 @@
     "searchDehubFor": "Goleki \"{{query}}\" ing DeHub"
   },
   "comments": {
+    "showAll": "Tampilake kabeh komentar",
     "discardTitle": "Mbuwang komentarmu?",
     "discardBody": "Wis disimpen dadi konsep, dadi bakal ana ing kene nalika kowe bali.",
     "keepWriting": "Terusake nulis",

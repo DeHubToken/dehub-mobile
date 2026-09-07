@@ -1603,6 +1603,7 @@
     "searchDehubFor": "DeHub дээр \"{{query}}\"-г хай"
   },
   "comments": {
+    "showAll": "Бүх Сэтгэгдэл",
     "discardTitle": "Сэтгэгдлээ хаях уу?",
     "discardBody": "Ноорог болгон хадгалсан тул буцаж ирэхэд энд байх болно.",
     "keepWriting": "Үргэлжлүүлэн бичих",

@@ -1634,6 +1634,7 @@
     "searchDehubFor": "جست‌وجوی «{{query}}» در DeHub"
   },
   "comments": {
+    "showAll": "نمایش همه  %d نظرات",
     "discardTitle": "نظرت را رها می‌کنی؟",
     "discardBody": "به‌صورت پیش‌نویس ذخیره شده و وقتی برگردی همین‌جاست.",
     "keepWriting": "به نوشتن ادامه بده",

@@ -1774,6 +1774,7 @@
     "fillRequired": "Please fill in all required fields"
   },
   "comments": {
+    "showAll": "হকল কমেন্ট দেখাও",
     "discardTitle": "আঁর মন্তব্য বাদ দিবা নি?",
     "discardBody": "ইতা খসড়া হিসাবে রাখা অইয়ে, ফিরি আইলে ইখানে পাইবা।",
     "keepWriting": "লেখা চালাই যাও",

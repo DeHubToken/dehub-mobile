@@ -1604,6 +1604,7 @@
     "searchDehubFor": "Search \"{{query}}\" fo DeHub"
   },
   "comments": {
+    "showAll": "Show all de comment dem",
     "discardTitle": "You wan throway ya comment?",
     "discardBody": "We don keep-am as draft, so e go still dey here when you kam back.",
     "keepWriting": "Continue for write",

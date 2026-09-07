@@ -1606,6 +1606,7 @@
     "searchDehubFor": "Ieškoti „{{query}}“ DeHub svetainėje"
   },
   "comments": {
+    "showAll": "Rodyti visus %d komentarus",
     "discardTitle": "Atsisakyti komentaro?",
     "discardBody": "Jis išsaugotas kaip juodraštis, tad lauks čia, kai grįši.",
     "keepWriting": "Rašyti toliau",
