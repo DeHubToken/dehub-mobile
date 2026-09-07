@@ -1237,6 +1237,9 @@ const NotificationScreen = () => {
     // is declared earlier in the file, and React fires effects in declaration
     // order.
     setPage(1);
+    // Show the skeleton while the new tab loads; emptying the list without it
+    // flashed "No ... notifications yet" under a badge that said otherwise.
+    setLoading(true);
     setNotifications([]);
     fetchNotificationsRef.current(true, { skipCounts: true });
   }, [selectedFilter]);
