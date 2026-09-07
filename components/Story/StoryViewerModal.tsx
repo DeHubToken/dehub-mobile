@@ -5,7 +5,6 @@ import {
   Modal,
   Pressable,
   StyleSheet,
-  Dimensions,
   StatusBar,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -27,7 +26,6 @@ function resolveStoryAvatar(avatar?: string | null): string | undefined {
   return url === "default-avatar" ? undefined : url;
 }
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 interface StorySlideProps {
   story: Story;
@@ -286,20 +284,23 @@ const styles = StyleSheet.create({
   username: { color: "#fff", fontSize: 14, fontWeight: "600" },
   timeAgo: { color: "rgba(255,255,255,0.7)", fontSize: 11 },
   closeBtn: { padding: 4 },
+  // Percentages of the full-screen container, not a launch-time Dimensions
+  // snapshot: on an iPad rotated after launch the zones used to leave a dead
+  // band or an unreachable "previous" zone.
   tapLeft: {
     position: "absolute",
     left: 0,
-    top: SCREEN_HEIGHT * 0.15,
+    top: "15%",
     bottom: 0,
-    width: SCREEN_WIDTH * 0.33,
+    width: "33%",
     zIndex: 10,
   },
   tapRight: {
     position: "absolute",
     right: 0,
-    top: SCREEN_HEIGHT * 0.15,
+    top: "15%",
     bottom: 0,
-    width: SCREEN_WIDTH * 0.67,
+    width: "67%",
     zIndex: 10,
   },
 });
