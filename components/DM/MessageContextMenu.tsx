@@ -255,7 +255,7 @@ const FloatingMessage: React.FC<{
         {isVoice && (
           <View className="flex-row items-center px-3 py-2.5 gap-2.5 min-w-[160px]">
             <View
-              className={`w-8 h-8 rounded-full items-center justify-center ${
+              className={`w-8 h-8 rounded-xl items-center justify-center ${
                 isMine ? "bg-white/15" : "bg-accent/20"
               }`}
             >

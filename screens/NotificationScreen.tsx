@@ -1444,13 +1444,13 @@ const NotificationScreen = () => {
     if (loadError) {
       return (
         <View className="flex-1 items-center justify-center py-20">
-          <View className="w-16 h-16 rounded-full bg-theme-neutrals-800 items-center justify-center mb-4">
+          <View className="w-16 h-16 rounded-2xl bg-theme-neutrals-800 items-center justify-center mb-4">
             <Icon name="BellOff" size={32} color="#A1A1AA" />
           </View>
           <Text className="text-theme-neutrals-400 text-base font-medium mb-1">
             {t("notifications.loadFailed")}
           </Text>
-          <TouchableOpacity onPress={onRefresh} className="mt-3 px-5 py-2 rounded-full bg-theme-neutrals-800">
+          <TouchableOpacity onPress={onRefresh} className="mt-3 px-5 py-2 rounded-xl bg-theme-neutrals-800">
             <Text className="text-theme-neutrals-100 text-sm font-medium">{t("common.tryAgain")}</Text>
           </TouchableOpacity>
         </View>
@@ -1458,7 +1458,7 @@ const NotificationScreen = () => {
     }
     return (
       <View className="flex-1 items-center justify-center py-20">
-        <View className="w-16 h-16 rounded-full bg-theme-neutrals-800 items-center justify-center mb-4">
+        <View className="w-16 h-16 rounded-2xl bg-theme-neutrals-800 items-center justify-center mb-4">
           <Icon name="BellOff" size={32} color="#A1A1AA" />
         </View>
         <Text className="text-theme-neutrals-400 text-base font-medium mb-1">

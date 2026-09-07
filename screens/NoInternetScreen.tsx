@@ -13,7 +13,7 @@ export default function NoInternetScreen({ onRetry }: NoInternetScreenProps) {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <View className="flex-1 justify-center items-center px-6">
-        <View className="bg-theme-neutrals-800 rounded-full p-6 mb-6 relative">
+        <View className="bg-theme-neutrals-800 rounded-2xl p-6 mb-6 relative">
           <Ionicons
             name="wifi-outline"
             size={64}

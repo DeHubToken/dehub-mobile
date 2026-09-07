@@ -781,7 +781,7 @@ const styles = StyleSheet.create({
   floatingButton: {
     width: 45,
     height: 45,
-    borderRadius: 28,
+    borderRadius: 12,
     overflow: "hidden",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
@@ -793,7 +793,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 28,
+    borderRadius: 12,
     overflow: "hidden",
   },
   androidBlurFallback: {
@@ -802,7 +802,7 @@ const styles = StyleSheet.create({
   glassOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(255, 255, 255, 0.1)",
-    borderRadius: 28,
+    borderRadius: 12,
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.2)",
   },

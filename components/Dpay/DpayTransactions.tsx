@@ -148,7 +148,7 @@ const DpayTransactions: React.FC = () => {
         <TouchableOpacity
           onPress={onShowAll}
           hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }}
-          className="px-3 py-1 rounded-full bg-theme-neutrals-800 border border-theme-neutrals-700 flex-row items-center"
+          className="px-3 py-1 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700 flex-row items-center"
         >
           <Text className="text-white text-xs mr-1">Show all</Text>
           <Ionicons name="open-outline" size={14} color="#FFFFFF" />

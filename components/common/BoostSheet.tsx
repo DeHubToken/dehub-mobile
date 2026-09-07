@@ -281,7 +281,7 @@ export default function BoostSheet({
                             prev.includes(name) ? prev.filter(t => t !== name) : [...prev, name],
                           )
                         }
-                        className={`rounded-full border px-3 py-1 ${
+                        className={`rounded-lg border px-3 py-1 ${
                           picked ? "border-white/40 bg-white/15" : "border-white/10"
                         }`}
                       >

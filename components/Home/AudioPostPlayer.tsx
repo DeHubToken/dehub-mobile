@@ -725,7 +725,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
               onPress={handlePlayPause}
               activeOpacity={0.7}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              className="w-8 h-8 rounded-full bg-white/10 items-center justify-center"
+              className="w-8 h-8 rounded-xl bg-white/10 items-center justify-center"
             >
               {isLoading ? (
                 <Icon name="Loader" size={14} color="#fff" />

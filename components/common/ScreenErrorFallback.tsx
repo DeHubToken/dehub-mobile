@@ -32,8 +32,8 @@ const Action: FC<{ label: string; onPress: () => void; primary?: boolean }> = ({
     onPress={onPress}
     className={
       primary
-        ? "h-11 px-6 rounded-full bg-white items-center justify-center"
-        : "h-11 px-6 rounded-full bg-zinc-800 items-center justify-center"
+        ? "h-11 px-6 rounded-xl bg-white items-center justify-center"
+        : "h-11 px-6 rounded-xl bg-zinc-800 items-center justify-center"
     }
     accessibilityRole="button"
   >
@@ -67,7 +67,7 @@ export const ScreenErrorFallback: FC<FallbackProps> = ({ retry }) => {
 
   return (
     <View className="flex-1 bg-theme-background items-center justify-center px-8">
-      <View className="rounded-full bg-zinc-900 p-6 mb-4">
+      <View className="rounded-2xl bg-zinc-900 p-6 mb-4">
         <Ionicons name="alert-circle-outline" size={48} color="#a1a1aa" />
       </View>
       <Text className="text-white text-xl font-bold text-center mb-2">

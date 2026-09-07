@@ -345,7 +345,7 @@ const styles = StyleSheet.create({
     gap: 8,
     paddingVertical: 13,
     paddingHorizontal: 20,
-    borderRadius: 999,
+    borderRadius: 12,
     backgroundColor: "#F4F4F5",
   },
   // The accent is near-white; its foreground has to be the near-black.
@@ -353,7 +353,7 @@ const styles = StyleSheet.create({
   iconBtn: {
     width: 46,
     height: 46,
-    borderRadius: 999,
+    borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "rgba(255,255,255,0.08)",

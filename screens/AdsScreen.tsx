@@ -643,15 +643,15 @@ export default function AdsScreen() {
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
   addBtn: {
-    width: 34, height: 34, borderRadius: 999, backgroundColor: "#FFFFFF",
+    width: 34, height: 34, borderRadius: 12, backgroundColor: "#FFFFFF",
     alignItems: "center", justifyContent: "center",
   },
 
   segment: {
     flexDirection: "row", gap: 4, marginHorizontal: 16, marginBottom: 10,
-    backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 999, padding: 3,
+    backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 12, padding: 3,
   },
-  segmentBtn: { flex: 1, paddingVertical: 7, borderRadius: 999, alignItems: "center" },
+  segmentBtn: { flex: 1, paddingVertical: 7, borderRadius: 9, alignItems: "center" },
   segmentBtnActive: { backgroundColor: "rgba(255,255,255,0.15)" },
   segmentText: { color: "#A1A1AA", fontSize: 12.5, fontWeight: "600" },
   segmentTextActive: { color: "#FFFFFF" },
@@ -715,7 +715,7 @@ const styles = StyleSheet.create({
   },
   chipWrap: { flexDirection: "row", flexWrap: "wrap", gap: 7 },
   chip: {
-    paddingHorizontal: 12, paddingVertical: 7, borderRadius: 999,
+    paddingHorizontal: 12, paddingVertical: 7, borderRadius: 8,
     backgroundColor: "rgba(255,255,255,0.06)", borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",
   },

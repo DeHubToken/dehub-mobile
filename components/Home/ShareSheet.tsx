@@ -25,13 +25,13 @@ const ShareRow: React.FC<ShareRowProps> = memo(
       onPress={onPress}
       disabled={loading}
       activeOpacity={0.7}
-      className="flex-row items-center px-5 py-3.5"
+      className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
     >
-      <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+      <View className="w-5 h-5 items-center justify-center mr-3">
         {loading ? (
           <ActivityIndicator size="small" color={color} />
         ) : (
-          <Icon name={icon} size={18} color={color} strokeWidth={1.9} />
+          <Icon name={icon} size={20} color={color} strokeWidth={1.9} />
         )}
       </View>
       <Text style={{ color }} className="text-[15px] font-medium">

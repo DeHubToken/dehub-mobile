@@ -700,7 +700,7 @@ const LiveChatScreen: React.FC = () => {
             <Text className="text-white/60 text-sm mt-3">Not connected</Text>
             <TouchableOpacity
               onPress={reconnect}
-              className="mt-3 px-4 py-2 bg-blue-500/20 rounded-full"
+              className="mt-3 px-4 py-2 bg-blue-500/20 rounded-xl"
             >
               <Text className="text-blue-400 text-sm font-medium">Reconnect</Text>
             </TouchableOpacity>
@@ -790,7 +790,7 @@ const LiveChatScreen: React.FC = () => {
             style={{ bottom: inputLift + 100 }}
             activeOpacity={0.7}
           >
-            <View className="bg-white/10 rounded-full w-10 h-10 items-center justify-center">
+            <View className="bg-white/10 rounded-xl w-10 h-10 items-center justify-center">
               <Icon name="ChevronDown" size={22} color="rgba(255,255,255,0.6)" />
             </View>
           </TouchableOpacity>

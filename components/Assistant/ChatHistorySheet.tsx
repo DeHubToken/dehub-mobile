@@ -382,7 +382,7 @@ const s = StyleSheet.create({
   tab: {
     paddingHorizontal: 14,
     paddingVertical: 7,
-    borderRadius: 20,
+    borderRadius: 9,
     backgroundColor: 'rgba(255,255,255,0.05)',
   },
   tabActive: { backgroundColor: 'rgba(255,255,255,0.14)' },

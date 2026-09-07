@@ -82,7 +82,7 @@ const MatureContentGate: React.FC<{
     <TouchableOpacity
       onPress={onReveal}
       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-      className="rounded-full"
+      className="rounded-xl"
       style={{
         paddingHorizontal: 16,
         paddingVertical: 7,
