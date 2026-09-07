@@ -13,6 +13,7 @@ import {
   revokeDelegation,
   type BadgeDelegationSummary,
 } from '../services/badge-delegation.service';
+import { t } from 'i18next';
 import { useUser } from '../context/AuthContext';
 import { toastError, toastSuccess } from '../libs/toast';
 
@@ -45,12 +46,12 @@ export function useGrantDelegation() {
   return useMutation({
     mutationFn: (to: string) => grantDelegation(to),
     onSuccess: (result, to) => {
-      toastSuccess(`${to} is now wearing your ${result.tier} badge`);
+      toastSuccess(t('settings.badgeDelegationGranted', { to, tier: result.tier }));
       queryClient.invalidateQueries({ queryKey: BADGE_DELEGATIONS_KEY });
       queryClient.invalidateQueries({ queryKey: ['badge-balance'] });
     },
     onError: (error: Error) => {
-      toastError(error?.message || 'Could not lend your badge');
+      toastError(error?.message || t('settings.badgeDelegationGrantFailed'));
     },
   });
 }
@@ -61,12 +62,12 @@ export function useRevokeDelegation() {
   return useMutation({
     mutationFn: (counterparty: string) => revokeDelegation(counterparty),
     onSuccess: () => {
-      toastSuccess('Delegation ended');
+      toastSuccess(t('settings.badgeDelegationEnded'));
       queryClient.invalidateQueries({ queryKey: BADGE_DELEGATIONS_KEY });
       queryClient.invalidateQueries({ queryKey: ['badge-balance'] });
     },
     onError: (error: Error) => {
-      toastError(error?.message || 'Could not end the delegation');
+      toastError(error?.message || t('settings.badgeDelegationEndFailed'));
     },
   });
 }
