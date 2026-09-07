@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Hapus nama ENS kamu?",
     "ensRemoveBody": "dehub.io/{{name}} berhenti mengarah ke kamu. Nama penggunamu tidak berubah, dan kamu bisa membuktikan nama itu lagi nanti — tapi itu butuh tanda tangan lain dari dompet yang memilikinya.",
     "ensUnlinked": "Dihapus — nama penggunamu tidak berubah",
-    "ensUnlinkFailed": "Tidak bisa menghapusnya. Coba lagi."
+    "ensUnlinkFailed": "Tidak bisa menghapusnya. Coba lagi.",
+    "newMemberShown": "Ditampilkan sebagai anggota baru",
+    "newMemberHidden": "Disembunyikan dari anggota baru",
+    "signInTv": "Masuk di TV",
+    "signInTvDesc": "Ketik kode yang ditampilkan televisi",
+    "tvRequests": "Permintaan TV",
+    "tvRequestsDesc": "Setujui tip yang diminta televisi untuk ditandatangani"
   },
   "common": {
     "mute": "Bisukan",

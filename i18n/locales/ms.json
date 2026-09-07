@@ -959,7 +959,13 @@
     "ensRemoveTitle": "Buang nama ENS anda?",
     "ensRemoveBody": "dehub.io/{{name}} berhenti menunjuk kepada anda. Nama pengguna anda tidak berubah, dan anda boleh membuktikan nama itu semula kemudian — tetapi itu memerlukan tandatangan lain daripada dompet yang memegangnya.",
     "ensUnlinked": "Dibuang — nama pengguna anda tidak berubah",
-    "ensUnlinkFailed": "Tidak dapat membuangnya. Cuba lagi."
+    "ensUnlinkFailed": "Tidak dapat membuangnya. Cuba lagi.",
+    "newMemberShown": "Dipaparkan sebagai ahli baharu",
+    "newMemberHidden": "Disembunyikan daripada ahli baharu",
+    "signInTv": "Log masuk di TV",
+    "signInTvDesc": "Taip kod yang dipaparkan televisyen anda",
+    "tvRequests": "Permintaan TV",
+    "tvRequestsDesc": "Luluskan tip yang televisyen minta anda tandatangani"
   },
   "postOptions": {
     "options": "Options",

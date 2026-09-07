@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Din ENS-Name entferne?",
     "ensRemoveBody": "dehub.io/{{name}} zeigt nüme uf dich. Din Benutzername ändered sich nid, und du chasch de Name spöter wieder nochwyyse — das bruucht aber nomol e Unterschrift vom Wallet wo en hebt.",
     "ensUnlinked": "Entfernt — din Benutzername isch unverändert",
-    "ensUnlinkFailed": "Het nid chöne entfernt wärde. Probier's nomol."
+    "ensUnlinkFailed": "Het nid chöne entfernt wärde. Probier's nomol.",
+    "newMemberShown": "Wird als neus Mitglid zeigt",
+    "newMemberHidden": "Vor neue Mitglider versteckt",
+    "signInTv": "Uf eme Fernseh aamälde",
+    "signInTvDesc": "Gib de Code ii, wo di Fernseh zeigt",
+    "tvRequests": "TV-Aafrage",
+    "tvRequestsDesc": "Trinkgälder freigäh, wo di Fernseh signiere wott"
   },
   "common": {
     "mute": "Stumm schalte",

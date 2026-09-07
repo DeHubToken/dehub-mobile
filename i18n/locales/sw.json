@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Ondoa jina lako la ENS?",
     "ensRemoveBody": "dehub.io/{{name}} kitaacha kuelekeza kwako. Jina lako la mtumiaji halibadiliki, na unaweza kuthibitisha jina hilo tena baadaye — lakini hilo linahitaji sahihi nyingine kutoka kwa pochi inayolimiliki.",
     "ensUnlinked": "Imeondolewa — jina lako la mtumiaji halijabadilika",
-    "ensUnlinkFailed": "Imeshindwa kuliondoa. Jaribu tena."
+    "ensUnlinkFailed": "Imeshindwa kuliondoa. Jaribu tena.",
+    "newMemberShown": "Inaonyeshwa kama mwanachama mpya",
+    "newMemberHidden": "Imefichwa kwa wanachama wapya",
+    "signInTv": "Ingia kwenye TV",
+    "signInTvDesc": "Andika msimbo unaoonyeshwa kwenye TV yako",
+    "tvRequests": "Maombi ya TV",
+    "tvRequestsDesc": "Idhinisha tipu ambazo TV yako inakuomba usaini"
   },
   "common": {
     "mute": "Nyamazisha",

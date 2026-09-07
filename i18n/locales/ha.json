@@ -454,7 +454,13 @@
     "ensRemoveTitle": "A cire sunan ENS naka?",
     "ensRemoveBody": "dehub.io/{{name}} zai daina nuni zuwa gareka. Sunan mai amfani naka ba ya canjawa, kuma za ka iya tabbatar da sunan kuma daga baya — amma hakan na buƙatar wani sa hannu daga walat ɗin da ke riƙe da shi.",
     "ensUnlinked": "An cire — sunan mai amfani naka bai canja ba",
-    "ensUnlinkFailed": "An kasa cire shi. Sake gwadawa."
+    "ensUnlinkFailed": "An kasa cire shi. Sake gwadawa.",
+    "newMemberShown": "Ana nuna a matsayin sabon memba",
+    "newMemberHidden": "An ɓoye daga sababbin membobi",
+    "signInTv": "Shiga a TV",
+    "signInTvDesc": "Rubuta lambar da talabijin ɗinka ke nunawa",
+    "tvRequests": "Buƙatun TV",
+    "tvRequestsDesc": "Amince da tips da talabijin ɗinka ke neman ka sa hannu"
   },
   "common": {
     "mute": "Kashe sauti",

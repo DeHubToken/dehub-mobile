@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Rimuovere il tuo nome ENS?",
     "ensRemoveBody": "dehub.io/{{name}} smette di indicarti. Il tuo nome utente non cambia e potrai dimostrare il nome più avanti, ma servirà un'altra firma dal portafoglio che lo detiene.",
     "ensUnlinked": "Rimosso — il tuo nome utente è invariato",
-    "ensUnlinkFailed": "Impossibile rimuoverlo. Riprova."
+    "ensUnlinkFailed": "Impossibile rimuoverlo. Riprova.",
+    "newMemberShown": "Mostrato come nuovo membro",
+    "newMemberHidden": "Nascosto ai nuovi membri",
+    "signInTv": "Accedi su un TV",
+    "signInTvDesc": "Digita il codice mostrato dal televisore",
+    "tvRequests": "Richieste dal TV",
+    "tvRequestsDesc": "Approva le mance che il televisore ti chiede di firmare"
   },
   "common": {
     "mute": "Disattiva audio",

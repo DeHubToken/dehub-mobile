@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Noņemt tavu ENS vārdu?",
     "ensRemoveBody": "dehub.io/{{name}} vairs nenorādīs uz tevi. Tavs lietotājvārds nemainās, un vārdu vēlāk vari pierādīt no jauna — bet tam būs nepieciešams jauns paraksts no maka, kuram tas pieder.",
     "ensUnlinked": "Noņemts — tavs lietotājvārds nav mainījies",
-    "ensUnlinkFailed": "Neizdevās to noņemt. Mēģini vēlreiz."
+    "ensUnlinkFailed": "Neizdevās to noņemt. Mēģini vēlreiz.",
+    "newMemberShown": "Rāda kā jaunu dalībnieku",
+    "newMemberHidden": "Paslēpts no jaunajiem dalībniekiem",
+    "signInTv": "Pieteikties televizorā",
+    "signInTvDesc": "Ievadi kodu, ko rāda televizors",
+    "tvRequests": "Televizora pieprasījumi",
+    "tvRequestsDesc": "Apstiprini dzeramnaudas, ko televizors lūdz parakstīt"
   },
   "common": {
     "mute": "Izslēgt skaņu",

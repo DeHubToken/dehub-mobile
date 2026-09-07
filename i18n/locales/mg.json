@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Esorina ve ny anaranao ENS?",
     "ensRemoveBody": "Tsy hitondra mankany aminao intsony ny dehub.io/{{name}}. Tsy miova ny anaranao, ary afaka manaporofo ny anarana indray ianao any aoriana — saingy mila sonia hafa avy amin'ny kitapom-bola tompony izany.",
     "ensUnlinked": "Nesorina — tsy niova ny anaranao",
-    "ensUnlinkFailed": "Tsy afaka nanaisotra azy io. Andramo indray."
+    "ensUnlinkFailed": "Tsy afaka nanaisotra azy io. Andramo indray.",
+    "newMemberShown": "Aseho ho mpikambana vaovao",
+    "newMemberHidden": "Miafina amin'ny mpikambana vaovao",
+    "signInTv": "Hiditra amin'ny fahitalavitra",
+    "signInTvDesc": "Soraty ny kaody aseho amin'ny fahitalavitrao",
+    "tvRequests": "Fangatahana avy amin'ny fahitalavitra",
+    "tvRequestsDesc": "Ankatoavy ny tip angatahin'ny fahitalavitra hosoniavinao"
   },
   "common": {
     "mute": "Hampangina",

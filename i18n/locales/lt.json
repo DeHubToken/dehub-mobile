@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Pašalinti tavo ENS vardą?",
     "ensRemoveBody": "dehub.io/{{name}} nebenukreips į tave. Tavo naudotojo vardas nesikeičia, o vardą vėliau gali įrodyti iš naujo — tam prireiks dar vieno parašo iš piniginės, kuriai jis priklauso.",
     "ensUnlinked": "Pašalinta — tavo naudotojo vardas nepasikeitė",
-    "ensUnlinkFailed": "Nepavyko pašalinti. Bandyk dar kartą."
+    "ensUnlinkFailed": "Nepavyko pašalinti. Bandyk dar kartą.",
+    "newMemberShown": "Rodoma kaip naujas narys",
+    "newMemberHidden": "Paslėpta nuo naujų narių",
+    "signInTv": "Prisijungti televizoriuje",
+    "signInTvDesc": "Įveskite televizoriuje rodomą kodą",
+    "tvRequests": "Televizoriaus užklausos",
+    "tvRequestsDesc": "Patvirtinkite arbatpinigius, kuriuos prašo pasirašyti televizorius"
   },
   "common": {
     "mute": "Nutildyti",

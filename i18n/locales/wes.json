@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Remove yua ENS nem?",
     "ensRemoveBody": "dehub.io/{{name}} go stop for point go yu. Yua username no go chenj, an yu fit proov di nem again afta — bot dat wan nid anoda signature from di wallet weh di hold-am.",
     "ensUnlinked": "Dem don remove-am — yua username no chenj",
-    "ensUnlinkFailed": "I no fit remove-am. Try again."
+    "ensUnlinkFailed": "I no fit remove-am. Try again.",
+    "newMemberShown": "E dey show as new member",
+    "newMemberHidden": "Hide from new members",
+    "signInTv": "Sign in for TV",
+    "signInTvDesc": "Type di code wey your TV dey show",
+    "tvRequests": "TV requests",
+    "tvRequestsDesc": "Approve tips wey your TV ask you to sign"
   },
   "common": {
     "mute": "Off di sound",

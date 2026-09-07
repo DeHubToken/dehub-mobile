@@ -781,7 +781,13 @@
     "ensRemoveTitle": "Gỡ tên ENS của bạn?",
     "ensRemoveBody": "dehub.io/{{name}} sẽ không còn trỏ tới bạn. Tên người dùng của bạn không đổi, và bạn có thể chứng minh lại tên sau — nhưng việc đó cần thêm một chữ ký từ ví đang giữ nó.",
     "ensUnlinked": "Đã gỡ — tên người dùng của bạn không đổi",
-    "ensUnlinkFailed": "Không thể gỡ. Hãy thử lại."
+    "ensUnlinkFailed": "Không thể gỡ. Hãy thử lại.",
+    "newMemberShown": "Đang hiển thị là thành viên mới",
+    "newMemberHidden": "Ẩn với thành viên mới",
+    "signInTv": "Đăng nhập trên TV",
+    "signInTvDesc": "Nhập mã đang hiển thị trên TV",
+    "tvRequests": "Yêu cầu từ TV",
+    "tvRequestsDesc": "Duyệt các khoản tip mà TV yêu cầu bạn ký"
   },
   "postOptions": {
     "options": "Tuỳ chọn",

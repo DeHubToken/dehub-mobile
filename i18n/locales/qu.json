@@ -454,7 +454,13 @@
     "ensRemoveTitle": "¿ENS sutiykita hurquyta munanki?",
     "ensRemoveBody": "dehub.io/{{name}}qa manaña qanman k'askanqachu. Ruraq sutiykiqa mana t'ikrakunchu, qhipamantaq yapamanta takyachiyta atinki — ichaqa hukmanta firmata sutita hap'iq qullqi wayaqamanta munan.",
     "ensUnlinked": "Hurqusqa — ruraq sutiyki mana t'ikrakunchu",
-    "ensUnlinkFailed": "Hurquy mana atirqanchu. Yapamanta ruway."
+    "ensUnlinkFailed": "Hurquy mana atirqanchu. Yapamanta ruway.",
+    "newMemberShown": "Musuq miembro hina rikuchikun",
+    "newMemberHidden": "Musuq miembrokunamanta pakasqa",
+    "signInTv": "TV-pi yaykuy",
+    "signInTvDesc": "TV rikuchisqan codigota qillqay",
+    "tvRequests": "TV mañakuykuna",
+    "tvRequestsDesc": "TV firmanaykipaq mañakusqan tipkunata chaskiy"
   },
   "common": {
     "mute": "Upallachiy",

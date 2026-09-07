@@ -454,7 +454,13 @@
     "ensRemoveTitle": "ናይ ENS ስምካ ኣወግድ?",
     "ensRemoveBody": "dehub.io/{{name}} ናብኻ ምምልካት ይውድእ። ናይ ተጠቃሚ ስምካ ኣይቅየርን፡ ደሓር እንደገና ነቲ ስም ከተረጋግጾ ትኽእል ኢኻ — ግን እዚ ካብቲ ንዑኡ ዝሓዞ ዋሌት ካልእ ፊርማ የድሊ።",
     "ensUnlinked": "ተኣልዩ — ናይ ተጠቃሚ ስምካ ኣይተቐየረን",
-    "ensUnlinkFailed": "ምውጋድ ኣይተኻእለን። እንደገና ፈትን።"
+    "ensUnlinkFailed": "ምውጋድ ኣይተኻእለን። እንደገና ፈትን።",
+    "newMemberShown": "ከም ሓድሽ ኣባል ይርአ",
+    "newMemberHidden": "ካብ ሓደስቲ ኣባላት ተሓቢኡ",
+    "signInTv": "ኣብ ቲቪ እቶ",
+    "signInTvDesc": "እቲ ቲቪኻ ዘርእዮ ኮድ ጽሓፍ",
+    "tvRequests": "ሕቶታት ቲቪ",
+    "tvRequestsDesc": "እቲ ቲቪኻ ክትፍርም ዝሓቶ ቲፕ ኣጽድቕ"
   },
   "common": {
     "mute": "ድምጺ ኣጥፍእ",

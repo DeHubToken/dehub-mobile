@@ -454,7 +454,13 @@
     "ensRemoveTitle": "ENS adyňyzy aýyrmalymy?",
     "ensRemoveBody": "dehub.io/{{name}} indi sizi görkezmez. Ulanyjy adyňyz üýtgemez, we ady soňra ýene subut edip bilersiňiz — ýöne muňa ony saklaýan gapjykdan ýene bir gol gerek.",
     "ensUnlinked": "Aýryldy — ulanyjy adyňyz üýtgewsiz",
-    "ensUnlinkFailed": "Aýryp bolmady. Gaýtadan synanyşyň."
+    "ensUnlinkFailed": "Aýryp bolmady. Gaýtadan synanyşyň.",
+    "newMemberShown": "Täze agza hökmünde görkezilýär",
+    "newMemberHidden": "Täze agzalardan gizlenen",
+    "signInTv": "Telewizorda giriň",
+    "signInTvDesc": "Telewizoryň görkezýän koduny ýazyň",
+    "tvRequests": "TV haýyşlary",
+    "tvRequestsDesc": "Telewizoryň gol çekmegi soraýan çaý pullaryny tassyklaň"
   },
   "common": {
     "mute": "Sesi öçür",

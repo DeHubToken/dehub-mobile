@@ -532,7 +532,13 @@
     "ensRemoveTitle": "Odstrániť tvoje meno ENS?",
     "ensRemoveBody": "dehub.io/{{name}} sa prestane odkazovať na teba. Tvoje používateľské meno sa nemení a meno môžeš preukázať znova aj neskôr — ale bude to vyžadovať ďalší podpis od peňaženky, ktorá ho drží.",
     "ensUnlinked": "Odstránené — tvoje používateľské meno je nezmenené",
-    "ensUnlinkFailed": "Nepodarilo sa to odstrániť. Skús to znova."
+    "ensUnlinkFailed": "Nepodarilo sa to odstrániť. Skús to znova.",
+    "newMemberShown": "Zobrazený ako nový člen",
+    "newMemberHidden": "Skryté pred novými členmi",
+    "signInTv": "Prihlásiť televízor",
+    "signInTvDesc": "Zadaj kód zobrazený na televízore",
+    "tvRequests": "Požiadavky z televízora",
+    "tvRequestsDesc": "Schvaľuj sprepitné, ktoré televízor žiada podpísať"
   },
   "notifications": {
     "title": "Upozornenia",

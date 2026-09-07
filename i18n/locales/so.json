@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Ka saar magacaaga ENS?",
     "ensRemoveBody": "dehub.io/{{name}} wuu joojin doonaa inuu kuu jeedo. Magacaaga isticmaalaha ma beddelmayo, waxaanad mar dambe caddayn kartaa magaca — laakiin taasi waxay u baahan tahay saxeex kale oo ka socda boorsada haysata.",
     "ensUnlinked": "Waa la saaray — magacaaga isticmaalaha wuu ismayl",
-    "ensUnlinkFailed": "Lama saari karin. Isku day mar kale."
+    "ensUnlinkFailed": "Lama saari karin. Isku day mar kale.",
+    "newMemberShown": "Waxaa lagu muujinayaa xubin cusub",
+    "newMemberHidden": "Waa laga qariyay xubnaha cusub",
+    "signInTv": "Ku gal TV",
+    "signInTvDesc": "Qor koodhka uu TV-gaagu muujinayo",
+    "tvRequests": "Codsiyada TV",
+    "tvRequestsDesc": "Ansixi tips-ka uu TV-gaagu ku weydiisto inaad saxiixdo"
   },
   "common": {
     "mute": "Aamusi",

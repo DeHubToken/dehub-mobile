@@ -77,9 +77,9 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     async (visible: boolean) => {
       try {
         await setNewMemberOptedOut(!visible);
-        toastSuccess(visible ? 'Showing as a new member' : 'Hidden from new members');
+        toastSuccess(visible ? t('settings.newMemberShown') : t('settings.newMemberHidden'));
       } catch {
-        toastError('Failed to update');
+        toastError(t('settings.failedUpdateSetting'));
       }
     },
     [setNewMemberOptedOut],
@@ -526,20 +526,18 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
           />
           <Divider />
           {/* Sits with Active sessions because it is the same subject: other
-              devices signed into this account. Literal strings rather than
-              i18n keys — a new key here means touching every locale file, and
-              that is a separate change from shipping the feature. */}
+              devices signed into this account. */}
           <SettingsLinkRow
             icon="Tv"
-            label="Sign in a TV"
-            description="Type the code your television is showing"
+            label={t('settings.signInTv')}
+            description={t('settings.signInTvDesc')}
             onPress={() => navigation?.navigate(ScreenNames.SignInTv)}
           />
           <Divider />
           <SettingsLinkRow
             icon="Tv"
-            label="TV requests"
-            description="Approve tips your television asks you to sign"
+            label={t('settings.tvRequests')}
+            description={t('settings.tvRequestsDesc')}
             onPress={() => navigation?.navigate(ScreenNames.TvRequests)}
           />
           <Divider />

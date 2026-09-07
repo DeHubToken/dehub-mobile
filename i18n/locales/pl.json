@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Usunąć Twoją nazwę ENS?",
     "ensRemoveBody": "dehub.io/{{name}} przestanie wskazywać na Ciebie. Twoja nazwa użytkownika się nie zmienia i możesz udowodnić nazwę później — ale będzie do tego potrzebny kolejny podpis portfela, który ją posiada.",
     "ensUnlinked": "Usunięto — Twoja nazwa użytkownika bez zmian",
-    "ensUnlinkFailed": "Nie udało się usunąć. Spróbuj ponownie."
+    "ensUnlinkFailed": "Nie udało się usunąć. Spróbuj ponownie.",
+    "newMemberShown": "Widoczny jako nowy członek",
+    "newMemberHidden": "Ukryty przed nowymi członkami",
+    "signInTv": "Zaloguj się na telewizorze",
+    "signInTvDesc": "Wpisz kod wyświetlany na telewizorze",
+    "tvRequests": "Żądania z telewizora",
+    "tvRequestsDesc": "Zatwierdzaj napiwki, o których podpisanie prosi telewizor"
   },
   "common": {
     "mute": "Wycisz",

@@ -454,7 +454,13 @@
     "ensRemoveTitle": "移除你嘅 ENS 名？",
     "ensRemoveBody": "dehub.io/{{name}} 唔會再指向你。你嘅用戶名唔會變，之後仲可以再核實個名 —— 不過要用持有嗰個名嘅銀包再簽多次名。",
     "ensUnlinked": "已移除 —— 你嘅用戶名冇變",
-    "ensUnlinkFailed": "移除唔到。再試多次。"
+    "ensUnlinkFailed": "移除唔到。再試多次。",
+    "newMemberShown": "顯示為新成員",
+    "newMemberHidden": "對新成員隱藏",
+    "signInTv": "喺電視登入",
+    "signInTvDesc": "輸入電視顯示嘅代碼",
+    "tvRequests": "電視請求",
+    "tvRequestsDesc": "批准電視要求你簽署嘅打賞"
   },
   "common": {
     "mute": "靜音",

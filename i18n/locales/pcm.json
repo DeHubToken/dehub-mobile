@@ -452,7 +452,13 @@
     "ensRemoveTitle": "You wan remove your ENS name?",
     "ensRemoveBody": "dehub.io/{{name}} go stop to point go your side. Your username no go change, and you fit prove di name again later — but dat one need another signature from di wallet wey hold am.",
     "ensUnlinked": "E don remove — your username no change",
-    "ensUnlinkFailed": "E no fit remove am. Try again."
+    "ensUnlinkFailed": "E no fit remove am. Try again.",
+    "newMemberShown": "E dey show as new member",
+    "newMemberHidden": "Hide from new members",
+    "signInTv": "Sign in for TV",
+    "signInTvDesc": "Type di code wey your TV dey show",
+    "tvRequests": "TV requests",
+    "tvRequestsDesc": "Approve tips wey your TV ask you to sign"
   },
   "common": {
     "mute": "Off di sound",

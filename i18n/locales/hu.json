@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Eltávolítod az ENS nevedet?",
     "ensRemoveBody": "A dehub.io/{{name}} többé nem mutat rád. A felhasználóneved nem változik, és később újra igazolhatod a nevet — de ehhez újabb aláírás kell attól a tárcától, amelyiké a név.",
     "ensUnlinked": "Eltávolítva — a felhasználóneved változatlan",
-    "ensUnlinkFailed": "Nem sikerült eltávolítani. Próbáld újra."
+    "ensUnlinkFailed": "Nem sikerült eltávolítani. Próbáld újra.",
+    "newMemberShown": "Új tagként jelenik meg",
+    "newMemberHidden": "Elrejtve az új tagok elől",
+    "signInTv": "Bejelentkezés tévén",
+    "signInTvDesc": "Írd be a tévén látható kódot",
+    "tvRequests": "TV-kérések",
+    "tvRequestsDesc": "Hagyd jóvá a tévé által aláírásra kért borravalókat"
   },
   "common": {
     "mute": "Némítás",

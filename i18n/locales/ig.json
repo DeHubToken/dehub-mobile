@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Wepụ aha ENS gị?",
     "ensRemoveBody": "dehub.io/{{name}} akwụsị ịrụ ozi gaa gị. Aha ojiji gị agaghị agbanwe, ị nwekwara ike igosipụta aha ahụ ọzọ mgbe e mesịrị — mana nke ahụ chọrọ mbinye aka ọzọ site n'obere akpa ego nke ji ya.",
     "ensUnlinked": "Ewepụla — aha ojiji gị agbanwebeghị",
-    "ensUnlinkFailed": "Enweghị ike iwepụ ya. Nwaa ọzọ."
+    "ensUnlinkFailed": "Enweghị ike iwepụ ya. Nwaa ọzọ.",
+    "newMemberShown": "Na-egosi dịka onye ọhụrụ",
+    "newMemberHidden": "Ezoro n'ebe ndị ọhụrụ nọ",
+    "signInTv": "Banye na TV",
+    "signInTvDesc": "Pịnye koodu TV gị na-egosi",
+    "tvRequests": "Arịrịọ TV",
+    "tvRequestsDesc": "Kwado ntụrụ TV gị na-arịọ ka ị bịanye aka"
   },
   "common": {
     "mute": "Mechie ụda",

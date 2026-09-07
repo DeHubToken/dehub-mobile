@@ -454,7 +454,13 @@
     "ensRemoveTitle": "I ka ENS tɔgɔ bɔ wa?",
     "ensRemoveBody": "dehub.io/{{name}} tɛna bolo ci i ma tuguni. I ka baarakɛla tɔgɔ tɛ yɛlɛma, i bɛ se ka tɔgɔ jira tuguni kɔfɛ — nka o bɛ bolonɔ donni wɛrɛ wajibiya ka bɔ waribon min bɛ a minɛ.",
     "ensUnlinked": "Bɔra — i ka baarakɛla tɔgɔ ma yɛlɛma",
-    "ensUnlinkFailed": "A bɔli ma se. A lajɛ tuguni."
+    "ensUnlinkFailed": "A bɔli ma se. A lajɛ tuguni.",
+    "newMemberShown": "A bɛ ye i ko mɔgɔ kura",
+    "newMemberHidden": "Dogolen mɔgɔ kuraw ma",
+    "signInTv": "Ka don TV kɔnɔ",
+    "signInTvDesc": "Kode min bɛ TV kan, o sɛbɛn",
+    "tvRequests": "TV ɲininkaliw",
+    "tvRequestsDesc": "TV bɛ tip minnu ɲini ka sinyɛ, o jɔnjɔn"
   },
   "common": {
     "mute": "Kan bɔ",

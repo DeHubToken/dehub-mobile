@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Navê te yê ENS were rakirin?",
     "ensRemoveBody": "dehub.io/{{name}} êdî ber bi te ve nayê xwendin. Navê te yê bikarhêner naguhere, û tu dikarî paşê dîsa navî piştrast bikî — lê ev îmzeyeke din a ji cizdana ku navî lê ye hewce dike.",
     "ensUnlinked": "Hate rakirin — navê te yê bikarhêner neguheriye",
-    "ensUnlinkFailed": "Nehate rakirin. Dîsa biceribîne."
+    "ensUnlinkFailed": "Nehate rakirin. Dîsa biceribîne.",
+    "newMemberShown": "Wekî endamekî nû tê nîşandan",
+    "newMemberHidden": "Ji endamên nû veşartî",
+    "signInTv": "Li TV-yê têkeve",
+    "signInTvDesc": "Koda ku TV-ya te nîşan dide binivîse",
+    "tvRequests": "Daxwazên TV",
+    "tvRequestsDesc": "Bexşîşên ku TV dixwaze îmze bikî erê bike"
   },
   "common": {
     "mute": "Bêdeng bike",

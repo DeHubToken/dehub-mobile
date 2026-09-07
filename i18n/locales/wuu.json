@@ -454,7 +454,13 @@
     "ensRemoveTitle": "移除侬个 ENS 名字？",
     "ensRemoveBody": "dehub.io/{{name}} 勿会再指到侬哉。侬个用户名勿会变，以后好再核实转来 —— 但是要用有搿个名字个钱包再签一遍名。",
     "ensUnlinked": "移除脱哉 —— 侬个用户名呒没变",
-    "ensUnlinkFailed": "移除勿脱。再试一记。"
+    "ensUnlinkFailed": "移除勿脱。再试一记。",
+    "newMemberShown": "显示为新成员",
+    "newMemberHidden": "对新成员隐藏",
+    "signInTv": "登录电视",
+    "signInTvDesc": "输入电视上显示的代码",
+    "tvRequests": "电视请求",
+    "tvRequestsDesc": "批准电视请你签署的打赏"
   },
   "common": {
     "mute": "静音",
