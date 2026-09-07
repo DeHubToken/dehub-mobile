@@ -2652,5 +2652,21 @@
     "needSignIn": "I ka kan ka don ni Google walima email ye walasa ka kɔnti caman.",
     "switched": "Kɔnti camanna",
     "failed": "Kɔntiw ma se ka caman. Private key lajɛ ka a kɛ kokura."
+  },
+  "transfer": {
+    "title": "Tokenw ci",
+    "recipient": "Sɔrɔbaga: {{address}}",
+    "enterAmount": "Hakɛ sɛbɛn",
+    "balance": "Balansi: {{balance}}",
+    "insufficient": "Balansi man ca",
+    "toSelfHint": "I tɛ se ka ci i yɛrɛ ma",
+    "searchUser": "Mɔgɔ ɲini",
+    "searchPlaceholder": "Tɔgɔ sɛbɛn walima adrɛsi don",
+    "clearRecipient": "Sɔrɔbaga bɔ",
+    "transferringTo": "Ci ka taa",
+    "transferring": "Ci bɛ kɛ...",
+    "sent": "Ci cira",
+    "toSelf": "I tɛ se ka tokenw ci i yɛrɛ ma",
+    "insufficientOnChain": "Nin token ka balansi man ca chain kan"
   }
 }

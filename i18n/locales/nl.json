@@ -2918,5 +2918,21 @@
     "needSignIn": "Je moet ingelogd zijn met Google of e-mail om van account te wisselen.",
     "switched": "Account gewisseld",
     "failed": "Kon niet van account wisselen. Controleer de privésleutel en probeer het opnieuw."
+  },
+  "transfer": {
+    "title": "Tokens overmaken",
+    "recipient": "Ontvanger: {{address}}",
+    "enterAmount": "Voer bedrag in van",
+    "balance": "Saldo: {{balance}}",
+    "insufficient": "Onvoldoende saldo",
+    "toSelfHint": "Je kunt niet naar jezelf overmaken",
+    "searchUser": "Zoek een gebruiker",
+    "searchPlaceholder": "Voer gebruikersnaam in of plak adres",
+    "clearRecipient": "Ontvanger wissen",
+    "transferringTo": "Overmaken naar",
+    "transferring": "Overmaken...",
+    "sent": "Overboeking verzonden",
+    "toSelf": "Je kunt geen tokens naar jezelf sturen",
+    "insufficientOnChain": "Onvoldoende on-chain saldo voor deze token"
   }
 }

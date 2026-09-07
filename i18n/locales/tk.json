@@ -2651,5 +2651,21 @@
     "needSignIn": "Hasaplary çalyşmak üçin Google ýa-da e-poçta bilen girmeli.",
     "switched": "Hasap çalşyldy",
     "failed": "Hasaplary çalşyp bolmady. Hususy açary barlaň we täzeden synanyşyň."
+  },
+  "transfer": {
+    "title": "Tokenleri geçir",
+    "recipient": "Alyjy: {{address}}",
+    "enterAmount": "Mukdary giriziň:",
+    "balance": "Balans: {{balance}}",
+    "insufficient": "Balans ýeterlik däl",
+    "toSelfHint": "Özüňize geçirip bilmersiňiz",
+    "searchUser": "Ulanyjy gözle",
+    "searchPlaceholder": "Ulanyjy adyny giriziň ýa-da salgyny goýuň",
+    "clearRecipient": "Alyjyny arassala",
+    "transferringTo": "Geçirilýär:",
+    "transferring": "Geçirilýär...",
+    "sent": "Geçirim iberildi",
+    "toSelf": "Özüňize token iberip bilmersiňiz",
+    "insufficientOnChain": "Bu token üçin zynjyrdaky balans ýeterlik däl"
   }
 }

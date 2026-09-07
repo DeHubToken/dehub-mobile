@@ -2709,5 +2709,21 @@
     "needSignIn": "アカウントを切り替えるには、Googleまたはメールでサインインしている必要があります。",
     "switched": "アカウントを切り替えました",
     "failed": "アカウントを切り替えられませんでした。秘密鍵を確認してもう一度お試しください。"
+  },
+  "transfer": {
+    "title": "トークンを送金",
+    "recipient": "受取先：{{address}}",
+    "enterAmount": "金額を入力：",
+    "balance": "残高：{{balance}}",
+    "insufficient": "残高不足",
+    "toSelfHint": "自分自身には送金できません",
+    "searchUser": "ユーザーを検索",
+    "searchPlaceholder": "ユーザー名を入力するかアドレスを貼り付け",
+    "clearRecipient": "受取先をクリア",
+    "transferringTo": "送金先",
+    "transferring": "送金中...",
+    "sent": "送金しました",
+    "toSelf": "自分自身にトークンを送ることはできません",
+    "insufficientOnChain": "このトークンのオンチェーン残高が不足しています"
   }
 }

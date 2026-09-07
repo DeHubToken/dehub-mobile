@@ -2827,5 +2827,21 @@
     "needSignIn": "একাউন্ট বদলাইতে অনরে Google বা ইমেইল দি সাইন ইন থাকা লাগিব।",
     "switched": "একাউন্ট বদলাইছে",
     "failed": "একাউন্ট বদলানো ন যায়। প্রাইভেট কী দেখি আবার চেষ্টা গরন।"
+  },
+  "transfer": {
+    "title": "টোকেন পাঠান",
+    "recipient": "প্রাপক: {{address}}",
+    "enterAmount": "পরিমাণ লেখন",
+    "balance": "ব্যালেন্স: {{balance}}",
+    "insufficient": "ব্যালেন্স কম",
+    "toSelfHint": "নিজেরে পাঠাইত পারিবেন ন",
+    "searchUser": "ইউজার তোয়ান",
+    "searchPlaceholder": "ইউজারনেম লেখন বা ঠিকানা পেস্ট গরন",
+    "clearRecipient": "প্রাপক মুছন",
+    "transferringTo": "যারে পাঠানো অর",
+    "transferring": "পাঠানো অর...",
+    "sent": "পাঠানো অইছে",
+    "toSelf": "নিজেরে টোকেন পাঠাইত পারিবেন ন",
+    "insufficientOnChain": "এই টোকেনর লাই চেইনত ব্যালেন্স কম"
   }
 }

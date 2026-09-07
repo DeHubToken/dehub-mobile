@@ -2692,5 +2692,21 @@
     "needSignIn": "खाता बदले बर तुमन ल Google या ईमेल ले साइन इन होय ल परही।",
     "switched": "खाता बदल गे",
     "failed": "खाता नइ बदल सकिस। प्राइवेट की जांच के फेर कोसिस करव।"
+  },
+  "transfer": {
+    "title": "टोकन भेजव",
+    "recipient": "पाइया: {{address}}",
+    "enterAmount": "रकम डारव",
+    "balance": "बैलेंस: {{balance}}",
+    "insufficient": "बैलेंस कम हे",
+    "toSelfHint": "तुमन खुद ल नइ भेज सकव",
+    "searchUser": "यूजर खोजव",
+    "searchPlaceholder": "यूजरनेम डारव या पता पेस्ट करव",
+    "clearRecipient": "पाइया हटावव",
+    "transferringTo": "ल भेजत हे",
+    "transferring": "भेजत हे...",
+    "sent": "ट्रांसफर भेज दे गे",
+    "toSelf": "तुमन खुद ल टोकन नइ भेज सकव",
+    "insufficientOnChain": "ए टोकन बर चेन म बैलेंस कम हे"
   }
 }

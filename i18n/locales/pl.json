@@ -2728,5 +2728,21 @@
     "needSignIn": "Aby przełączyć konto, musisz być zalogowany przez Google lub e-mail.",
     "switched": "Konto przełączone",
     "failed": "Nie udało się przełączyć konta. Sprawdź klucz prywatny i spróbuj ponownie."
+  },
+  "transfer": {
+    "title": "Przelej tokeny",
+    "recipient": "Odbiorca: {{address}}",
+    "enterAmount": "Wpisz kwotę w",
+    "balance": "Saldo: {{balance}}",
+    "insufficient": "Niewystarczające saldo",
+    "toSelfHint": "Nie możesz przelać do siebie",
+    "searchUser": "Wyszukaj użytkownika",
+    "searchPlaceholder": "Wpisz nazwę użytkownika lub wklej adres",
+    "clearRecipient": "Wyczyść odbiorcę",
+    "transferringTo": "Przelew do",
+    "transferring": "Przelewanie...",
+    "sent": "Przelew wysłany",
+    "toSelf": "Nie możesz wysłać tokenów do siebie",
+    "insufficientOnChain": "Niewystarczające saldo on-chain dla tego tokena"
   }
 }

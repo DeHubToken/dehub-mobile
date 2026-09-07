@@ -2660,5 +2660,21 @@
     "needSignIn": "Norėdami perjungti paskyrą, turite būti prisijungę per Google arba el. paštą.",
     "switched": "Paskyra perjungta",
     "failed": "Nepavyko perjungti paskyros. Patikrinkite privatų raktą ir bandykite dar kartą."
+  },
+  "transfer": {
+    "title": "Pervesti žetonus",
+    "recipient": "Gavėjas: {{address}}",
+    "enterAmount": "Įveskite sumą:",
+    "balance": "Likutis: {{balance}}",
+    "insufficient": "Nepakankamas likutis",
+    "toSelfHint": "Negalite pervesti sau",
+    "searchUser": "Ieškoti naudotojo",
+    "searchPlaceholder": "Įveskite naudotojo vardą arba įklijuokite adresą",
+    "clearRecipient": "Išvalyti gavėją",
+    "transferringTo": "Pervedimas į",
+    "transferring": "Pervedama...",
+    "sent": "Pervedimas išsiųstas",
+    "toSelf": "Negalite siųsti žetonų sau",
+    "insufficientOnChain": "Nepakankamas šio žetono likutis grandinėje"
   }
 }

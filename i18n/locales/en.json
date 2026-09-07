@@ -2709,5 +2709,21 @@
     "needSignIn": "You need to be signed in with Google or email to switch accounts.",
     "switched": "Switched account",
     "failed": "Could not switch accounts. Please check the private key and try again."
+  },
+  "transfer": {
+    "title": "Transfer tokens",
+    "recipient": "Recipient: {{address}}",
+    "enterAmount": "Enter amount of",
+    "balance": "Balance: {{balance}}",
+    "insufficient": "Insufficient balance",
+    "toSelfHint": "You can't transfer to yourself",
+    "searchUser": "Search for a user",
+    "searchPlaceholder": "Enter username or paste address",
+    "clearRecipient": "Clear recipient",
+    "transferringTo": "Transferring to",
+    "transferring": "Transferring...",
+    "sent": "Transfer sent",
+    "toSelf": "You cannot send tokens to yourself",
+    "insufficientOnChain": "Insufficient on-chain balance for this token"
   }
 }

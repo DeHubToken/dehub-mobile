@@ -2756,5 +2756,21 @@
     "needSignIn": "Tsy maintsy tafiditra amin'ny Google na mailaka ianao mba hanovana kaonty.",
     "switched": "Novaina ny kaonty",
     "failed": "Tsy afaka nanova kaonty. Jereo ny lakile manokana ary andramo indray."
+  },
+  "transfer": {
+    "title": "Mamindra tokens",
+    "recipient": "Mpandray: {{address}}",
+    "enterAmount": "Ampidiro ny habetsahan'ny",
+    "balance": "Ambiny: {{balance}}",
+    "insufficient": "Tsy ampy ny ambiny",
+    "toSelfHint": "Tsy afaka mamindra ho an'ny tenanao ianao",
+    "searchUser": "Mitady mpampiasa",
+    "searchPlaceholder": "Ampidiro ny anaran'ny mpampiasa na apetaho ny adiresy",
+    "clearRecipient": "Fafao ny mpandray",
+    "transferringTo": "Mamindra ho an'ny",
+    "transferring": "Mamindra...",
+    "sent": "Nalefa ny famindrana",
+    "toSelf": "Tsy afaka mandefa tokens ho an'ny tenanao ianao",
+    "insufficientOnChain": "Tsy ampy ny ambiny eo amin'ny rojo ho an'ity token ity"
   }
 }

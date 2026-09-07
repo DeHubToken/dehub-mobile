@@ -2664,5 +2664,21 @@
     "needSignIn": "Pro přepnutí účtu musíte být přihlášeni přes Google nebo e-mail.",
     "switched": "Účet přepnut",
     "failed": "Účet se nepodařilo přepnout. Zkontrolujte soukromý klíč a zkuste to znovu."
+  },
+  "transfer": {
+    "title": "Převést tokeny",
+    "recipient": "Příjemce: {{address}}",
+    "enterAmount": "Zadejte částku v",
+    "balance": "Zůstatek: {{balance}}",
+    "insufficient": "Nedostatečný zůstatek",
+    "toSelfHint": "Nelze převést sám sobě",
+    "searchUser": "Vyhledat uživatele",
+    "searchPlaceholder": "Zadejte uživatelské jméno nebo vložte adresu",
+    "clearRecipient": "Vymazat příjemce",
+    "transferringTo": "Převod na",
+    "transferring": "Převádí se...",
+    "sent": "Převod odeslán",
+    "toSelf": "Nelze poslat tokeny sám sobě",
+    "insufficientOnChain": "Nedostatečný on-chain zůstatek pro tento token"
   }
 }

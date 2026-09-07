@@ -2660,5 +2660,21 @@
     "needSignIn": "Konto vahetamiseks pead olema Google'i või e-postiga sisse logitud.",
     "switched": "Konto vahetatud",
     "failed": "Kontot ei õnnestunud vahetada. Kontrolli privaatvõtit ja proovi uuesti."
+  },
+  "transfer": {
+    "title": "Kanna tokenid üle",
+    "recipient": "Saaja: {{address}}",
+    "enterAmount": "Sisesta summa:",
+    "balance": "Saldo: {{balance}}",
+    "insufficient": "Ebapiisav saldo",
+    "toSelfHint": "Sa ei saa endale üle kanda",
+    "searchUser": "Otsi kasutajat",
+    "searchPlaceholder": "Sisesta kasutajanimi või kleebi aadress",
+    "clearRecipient": "Eemalda saaja",
+    "transferringTo": "Ülekanne aadressile",
+    "transferring": "Ülekanne...",
+    "sent": "Ülekanne saadetud",
+    "toSelf": "Sa ei saa endale tokeneid saata",
+    "insufficientOnChain": "Selle tokeni jaoks ebapiisav ahelasaldo"
   }
 }

@@ -2661,5 +2661,21 @@
     "needSignIn": "Unahitaji kuingia kwa Google au barua pepe ili kubadilisha akaunti.",
     "switched": "Akaunti imebadilishwa",
     "failed": "Imeshindwa kubadilisha akaunti. Tafadhali angalia ufunguo wa faragha na ujaribu tena."
+  },
+  "transfer": {
+    "title": "Hamisha tokeni",
+    "recipient": "Mpokeaji: {{address}}",
+    "enterAmount": "Weka kiasi cha",
+    "balance": "Salio: {{balance}}",
+    "insufficient": "Salio halitoshi",
+    "toSelfHint": "Huwezi kuhamisha kwako mwenyewe",
+    "searchUser": "Tafuta mtumiaji",
+    "searchPlaceholder": "Weka jina la mtumiaji au bandika anwani",
+    "clearRecipient": "Futa mpokeaji",
+    "transferringTo": "Inahamisha kwa",
+    "transferring": "Inahamisha...",
+    "sent": "Uhamisho umetumwa",
+    "toSelf": "Huwezi kujitumia tokeni",
+    "insufficientOnChain": "Salio la kwenye mnyororo halitoshi kwa tokeni hii"
   }
 }

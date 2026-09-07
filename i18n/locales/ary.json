@@ -2688,5 +2688,21 @@
     "needSignIn": "خاصك تكون داخل بـ Google ولا الإيميل باش تبدل الحسابات.",
     "switched": "تبدل الحساب",
     "failed": "ما قدرناش نبدلو الحسابات. تأكد من المفتاح الخاص وعاود حاول."
+  },
+  "transfer": {
+    "title": "حول التوكنات",
+    "recipient": "المستلم: {{address}}",
+    "enterAmount": "دخل المبلغ ديال",
+    "balance": "الرصيد: {{balance}}",
+    "insufficient": "الرصيد ما كافيش",
+    "toSelfHint": "ما يمكنش تحول لراسك",
+    "searchUser": "قلب على مستخدم",
+    "searchPlaceholder": "دخل سمية المستخدم ولا لصق العنوان",
+    "clearRecipient": "مسح المستلم",
+    "transferringTo": "التحويل لـ",
+    "transferring": "كيحول...",
+    "sent": "تصيفط التحويل",
+    "toSelf": "ما يمكنش تصيفط التوكنات لراسك",
+    "insufficientOnChain": "الرصيد فالشبكة ما كافيش لهاد التوكن"
   }
 }

@@ -2662,5 +2662,21 @@
     "needSignIn": "עליך להיות מחובר עם Google או אימייל כדי להחליף חשבון.",
     "switched": "החשבון הוחלף",
     "failed": "לא ניתן היה להחליף חשבון. בדוק את המפתח הפרטי ונסה שוב."
+  },
+  "transfer": {
+    "title": "העברת טוקנים",
+    "recipient": "נמען: {{address}}",
+    "enterAmount": "הזן סכום של",
+    "balance": "יתרה: {{balance}}",
+    "insufficient": "יתרה לא מספיקה",
+    "toSelfHint": "אי אפשר להעביר לעצמך",
+    "searchUser": "חפש משתמש",
+    "searchPlaceholder": "הזן שם משתמש או הדבק כתובת",
+    "clearRecipient": "נקה נמען",
+    "transferringTo": "מעביר אל",
+    "transferring": "מעביר...",
+    "sent": "ההעברה נשלחה",
+    "toSelf": "אי אפשר לשלוח טוקנים לעצמך",
+    "insufficientOnChain": "יתרה לא מספיקה בשרשרת עבור טוקן זה"
   }
 }

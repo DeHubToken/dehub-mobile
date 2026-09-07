@@ -2657,5 +2657,21 @@
     "needSignIn": "Me takiuru koe mā Google, mā te īmēra rānei hei whakawhiti pūkete.",
     "switched": "Kua whakawhiti te pūkete",
     "failed": "Kāore i taea te whakawhiti pūkete. Tirohia te kī tūmataiti, ka ngana anō."
+  },
+  "transfer": {
+    "title": "Whakawhiti tohu",
+    "recipient": "Kaiwhiwhi: {{address}}",
+    "enterAmount": "Whakaurua te moni o",
+    "balance": "Toenga: {{balance}}",
+    "insufficient": "Kāore i rawaka te toenga",
+    "toSelfHint": "Kāore e taea te whakawhiti ki a koe anō",
+    "searchUser": "Rapu kaiwhakamahi",
+    "searchPlaceholder": "Whakaurua te ingoa kaiwhakamahi, whakapiri rānei i te wāhitau",
+    "clearRecipient": "Ūkui kaiwhiwhi",
+    "transferringTo": "E whakawhiti ana ki",
+    "transferring": "E whakawhiti ana...",
+    "sent": "Kua tukuna te whakawhiti",
+    "toSelf": "Kāore e taea te tuku tohu ki a koe anō",
+    "insufficientOnChain": "Kāore i rawaka te toenga i runga i te mekameka mō tēnei tohu"
   }
 }

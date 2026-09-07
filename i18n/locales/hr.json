@@ -2660,5 +2660,21 @@
     "needSignIn": "Za promjenu računa moraš biti prijavljen putem Googlea ili e-pošte.",
     "switched": "Račun promijenjen",
     "failed": "Račun nije bilo moguće promijeniti. Provjeri privatni ključ i pokušaj ponovno."
+  },
+  "transfer": {
+    "title": "Prijenos tokena",
+    "recipient": "Primatelj: {{address}}",
+    "enterAmount": "Unesi iznos u",
+    "balance": "Stanje: {{balance}}",
+    "insufficient": "Nedovoljno stanje",
+    "toSelfHint": "Ne možeš prenijeti sam sebi",
+    "searchUser": "Pretraži korisnika",
+    "searchPlaceholder": "Unesi korisničko ime ili zalijepi adresu",
+    "clearRecipient": "Ukloni primatelja",
+    "transferringTo": "Prijenos na",
+    "transferring": "Prijenos...",
+    "sent": "Prijenos poslan",
+    "toSelf": "Ne možeš slati tokene samom sebi",
+    "insufficientOnChain": "Nedovoljno stanje na lancu za ovaj token"
   }
 }

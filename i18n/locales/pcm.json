@@ -2641,5 +2641,21 @@
     "needSignIn": "You need to sign in with Google or email before you fit switch account.",
     "switched": "Account don switch",
     "failed": "We no fit switch account. Abeg check di private key and try again."
+  },
+  "transfer": {
+    "title": "Transfer tokens",
+    "recipient": "Recipient: {{address}}",
+    "enterAmount": "Enter amount of",
+    "balance": "Balance: {{balance}}",
+    "insufficient": "Balance no reach",
+    "toSelfHint": "You no fit transfer to yourself",
+    "searchUser": "Search for user",
+    "searchPlaceholder": "Enter username or paste address",
+    "clearRecipient": "Clear recipient",
+    "transferringTo": "Transferring to",
+    "transferring": "Transferring...",
+    "sent": "Transfer don send",
+    "toSelf": "You no fit send tokens to yourself",
+    "insufficientOnChain": "On-chain balance no reach for dis token"
   }
 }

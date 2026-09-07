@@ -2660,5 +2660,21 @@
     "needSignIn": "Duhet të jesh i futur me Google ose email për të ndërruar llogari.",
     "switched": "Llogaria u ndërrua",
     "failed": "Llogaria nuk u ndërrua dot. Kontrollo çelësin privat dhe provo përsëri."
+  },
+  "transfer": {
+    "title": "Transfero tokena",
+    "recipient": "Marrësi: {{address}}",
+    "enterAmount": "Vendos shumën në",
+    "balance": "Bilanci: {{balance}}",
+    "insufficient": "Bilanc i pamjaftueshëm",
+    "toSelfHint": "Nuk mund t'i transferosh vetes",
+    "searchUser": "Kërko një përdorues",
+    "searchPlaceholder": "Vendos emrin e përdoruesit ose ngjit adresën",
+    "clearRecipient": "Pastro marrësin",
+    "transferringTo": "Transferim te",
+    "transferring": "Po transferohet...",
+    "sent": "Transferimi u dërgua",
+    "toSelf": "Nuk mund t'i dërgosh tokena vetes",
+    "insufficientOnChain": "Bilanc i pamjaftueshëm on-chain për këtë token"
   }
 }

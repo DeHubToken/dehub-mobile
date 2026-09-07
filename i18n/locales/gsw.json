@@ -2690,5 +2690,21 @@
     "needSignIn": "Du muesch mit Google oder E-Mail aagmäldet si, zum Konte wächsle.",
     "switched": "Konto gwächslet",
     "failed": "D Konte händ nid chönne gwächslet wärde. Prüef de private Schlüssel und probiers nomol."
+  },
+  "transfer": {
+    "title": "Token überträge",
+    "recipient": "Empfänger: {{address}}",
+    "enterAmount": "Betrag iigäh in",
+    "balance": "Guthabe: {{balance}}",
+    "insufficient": "Z'wenig Guthabe",
+    "toSelfHint": "Du chasch nid a dich sälber überträge",
+    "searchUser": "Benutzer sueche",
+    "searchPlaceholder": "Benutzername iigäh oder Adrässe iifüege",
+    "clearRecipient": "Empfänger entferne",
+    "transferringTo": "Übertragig a",
+    "transferring": "Am überträge...",
+    "sent": "Übertragig gschickt",
+    "toSelf": "Du chasch dir sälber kei Token schicke",
+    "insufficientOnChain": "Z'wenig On-Chain-Guthabe für dä Token"
   }
 }

@@ -2620,5 +2620,21 @@
     "needSignIn": "Ji bo guhertina hesaban divê tu bi Google an e-nameyê têketî bî.",
     "switched": "Hesab hat guhertin",
     "failed": "Hesab nehat guhertin. Ji kerema xwe mifteya taybet kontrol bike û dîsa biceribîne."
+  },
+  "transfer": {
+    "title": "Tokenan veguhezîne",
+    "recipient": "Wergir: {{address}}",
+    "enterAmount": "Mîqdarê binivîse:",
+    "balance": "Hevseng: {{balance}}",
+    "insufficient": "Hevseng têrê nake",
+    "toSelfHint": "Tu nikarî bo xwe veguhezînî",
+    "searchUser": "Li bikarhênerekî bigere",
+    "searchPlaceholder": "Navê bikarhêner binivîse an navnîşanê bixe",
+    "clearRecipient": "Wergir paqij bike",
+    "transferringTo": "Veguhastin bo",
+    "transferring": "Tê veguhastin...",
+    "sent": "Veguhastin hat şandin",
+    "toSelf": "Tu nikarî tokenan ji xwe re bişînî",
+    "insufficientOnChain": "Ji bo vê tokenê hevsenga li ser zincîrê têrê nake"
   }
 }

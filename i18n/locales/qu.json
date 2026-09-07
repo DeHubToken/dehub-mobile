@@ -2691,5 +2691,21 @@
     "needSignIn": "Cuentakunata tikranaykipaqqa Google utaq correowan yaykusqa kanayki tiyan.",
     "switched": "Cuenta tikrasqa",
     "failed": "Cuentakunata mana tikrayta atikunchu. Clave privadata qhaway hinaspa yapamanta yanay."
+  },
+  "transfer": {
+    "title": "Tokenkunata apachiy",
+    "recipient": "Chaskiq: {{address}}",
+    "enterAmount": "Hayk'a kasqanta churay:",
+    "balance": "Saldo: {{balance}}",
+    "insufficient": "Mana aypaq saldo",
+    "toSelfHint": "Kikiykiman mana apachiyta atinkichu",
+    "searchUser": "Llamk'achiqta maskay",
+    "searchPlaceholder": "Sutiykita churay utaq direccionta churay",
+    "clearRecipient": "Chaskiqta pichay",
+    "transferringTo": "Apachichkan",
+    "transferring": "Apachichkan...",
+    "sent": "Apachiy kachasqa",
+    "toSelf": "Kikiykiman tokenkunata mana kachayta atinkichu",
+    "insufficientOnChain": "Kay tokenpaq chainpi mana aypaq saldo"
   }
 }

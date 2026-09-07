@@ -2784,5 +2784,21 @@
     "needSignIn": "Jy moet met Google of e-pos aangemeld wees om rekeninge te wissel.",
     "switched": "Rekening gewissel",
     "failed": "Kon nie rekeninge wissel nie. Kontroleer die privaat sleutel en probeer weer."
+  },
+  "transfer": {
+    "title": "Dra tokens oor",
+    "recipient": "Ontvanger: {{address}}",
+    "enterAmount": "Voer bedrag in van",
+    "balance": "Balans: {{balance}}",
+    "insufficient": "Onvoldoende balans",
+    "toSelfHint": "Jy kan nie na jouself oordra nie",
+    "searchUser": "Soek 'n gebruiker",
+    "searchPlaceholder": "Voer gebruikersnaam in of plak adres",
+    "clearRecipient": "Verwyder ontvanger",
+    "transferringTo": "Oordrag na",
+    "transferring": "Dra oor...",
+    "sent": "Oordrag gestuur",
+    "toSelf": "Jy kan nie tokens na jouself stuur nie",
+    "insufficientOnChain": "Onvoldoende on-chain balans vir hierdie token"
   }
 }
