@@ -95,6 +95,52 @@ async function writeConversation(
 }
 
 /**
+ * Generated media arrives as a multi-megabyte `data:` URL. Writing that into
+ * AsyncStorage broke Android: the whole store is capped at 6 MB, and a single
+ * row over the 2 MB cursor window cannot be read back, so saving failed and
+ * reloading the thread returned nothing. Swap each data URL for a cache file
+ * path before the write; the file is written once per data URL and reused.
+ */
+async function slimForStorage(
+  messages: AIChatMessage[],
+  files: Map<string, string>,
+): Promise<AIChatMessage[]> {
+  const swap = async (
+    url: string | undefined,
+    kind: 'image' | 'video' | 'audio',
+  ): Promise<string | undefined> => {
+    if (!url || !url.startsWith('data:')) return url;
+    const cached = files.get(url);
+    if (cached) return cached;
+    try {
+      const local = await materialise(url, kind);
+      files.set(url, local);
+      return local;
+    } catch (err) {
+      log.error('media materialise failed:', err);
+      return undefined;
+    }
+  };
+  return Promise.all(
+    messages.map(async (m) => {
+      if (
+        !m.imageUrl?.startsWith('data:') &&
+        !m.videoUrl?.startsWith('data:') &&
+        !m.audioUrl?.startsWith('data:')
+      ) {
+        return m;
+      }
+      return {
+        ...m,
+        imageUrl: await swap(m.imageUrl, 'image'),
+        videoUrl: await swap(m.videoUrl, 'video'),
+        audioUrl: await swap(m.audioUrl, 'audio'),
+      };
+    }),
+  );
+}
+
+/**
  * Scan legacy AskAISheet keys to include post-based chats in history.
  * Keys are `ai_chat_{userId}_{postId}`.
  */
@@ -344,6 +390,9 @@ export function useAIConversation(userId: string) {
   // before the first save assigned an id, so reading the state value there
   // minted a second id and wrote the thread twice.
   const conversationIdRef = useRef<string | null>(null);
+  // data URL -> cache file path, so a thread saved on every turn does not
+  // rewrite the same image to disk each time (see slimForStorage).
+  const dataUrlFilesRef = useRef(new Map<string, string>());
   const updateConversationId = useCallback((id: string | null) => {
     conversationIdRef.current = id;
     setConversationId(id);
@@ -511,7 +560,7 @@ export function useAIConversation(userId: string) {
       mirroredCountRef.current = newMessages.length;
 
       await writeConversation(userId, cid, {
-        messages: newMessages,
+        messages: await slimForStorage(newMessages, dataUrlFilesRef.current),
         postContext,
         remoteId: remoteIdRef.current ?? undefined,
       });
