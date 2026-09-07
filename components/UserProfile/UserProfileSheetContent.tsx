@@ -289,6 +289,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
             <PinnedCommunities
               walletAddress={profileData.address}
               isOwnProfile={!!isOwnProfile}
+              onNavigate={onClose}
             />
           </View>
         )}

@@ -31,9 +31,15 @@ const MAX_PINS = 3;
 interface Props {
   walletAddress: string;
   isOwnProfile: boolean;
+  /**
+   * Called before navigating away. The profile sheet is a native Modal above
+   * the whole navigator, so without closing it first the community screen
+   * opens underneath the still-presented sheet.
+   */
+  onNavigate?: () => void;
 }
 
-const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile }) => {
+const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNavigate }) => {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const currentUser = useUser() as any;
@@ -68,9 +74,10 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile }) => 
 
   const openCommunity = useCallback(
     (slug: string) => {
+      onNavigate?.();
       navigation.navigate(ScreenNames.CommunityDetail, { slug });
     },
-    [navigation],
+    [navigation, onNavigate],
   );
 
   if (loading) return null;
