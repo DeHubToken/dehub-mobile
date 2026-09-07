@@ -2600,5 +2600,13 @@
     "digest": "{{count}} новыя паведамленні ад {{who}}: {{message}}",
     "voiceMessage": "Галасавое паведамленне",
     "image": "Даслаць малюнак"
+  },
+  "liveChat": {
+    "attach": "Дадаць фатаграфію, GIF або смайлік",
+    "attachTitle": "Дадаць у паведамленне",
+    "attachPhoto": "Фота",
+    "attachEmoji": "Смайлікі",
+    "removeAttachment": "Выдаліць укладанне",
+    "attachFailed": "Немагчыма даслаць гэтую фатаграфію."
   }
 }

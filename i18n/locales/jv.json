@@ -2561,5 +2561,14 @@
     "digest": "{{count}} pesen anyar saka {{who}}: {{message}}",
     "voiceMessage": "Pesen swara",
     "image": "Ngirim gambar"
+  },
+  "liveChat": {
+    "attach": "Tambah foto, GIF utawa emoji",
+    "attachTitle": "Tambahake menyang pesenmu",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Copot lampiran",
+    "attachFailed": "Ora bisa ngirim foto kuwi."
   }
 }

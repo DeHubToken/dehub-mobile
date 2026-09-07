@@ -2561,5 +2561,14 @@
     "digest": "{{count}} uued sõnumid kasutajalt {{who}}: {{message}}",
     "voiceMessage": "Kõnepostiteade",
     "image": "Pilt on saadetud"
+  },
+  "liveChat": {
+    "attach": "Lisa foto, GIF või emotikon",
+    "attachTitle": "Lisa oma sõnumisse",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Eemalda manus",
+    "attachFailed": "Seda fotot ei saanud saata."
   }
 }

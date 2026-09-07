@@ -2613,5 +2613,13 @@
     "digest": "{{count}} Новые сообщения от {{who}}: {{message}}",
     "voiceMessage": "Голосовое сообщение",
     "image": "Отправить изображение"
+  },
+  "liveChat": {
+    "attach": "Добавьте фото, GIF или эмодзи",
+    "attachTitle": "Добавить к сообщению",
+    "attachPhoto": "Фото",
+    "attachEmoji": "Эмодзи",
+    "removeAttachment": "Удалить вложение",
+    "attachFailed": "Не удалось отправить это фото."
   }
 }

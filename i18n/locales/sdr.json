@@ -2628,5 +2628,11 @@
     "digest": "{{who}} se {{count}} naye messages: {{message}}",
     "voiceMessage": "Voice message",
     "image": "Ek image bheja"
+  },
+  "liveChat": {
+    "attachPhoto": "Photo",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Remove attachment"
   }
 }

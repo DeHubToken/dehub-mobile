@@ -2559,5 +2559,13 @@
     "digest": "{{count}} new message from {{who}}: {{message}}",
     "voiceMessage": "Voice message",
     "image": "Sent an image"
+  },
+  "liveChat": {
+    "attach": "Add wan picture, GIF or emoji",
+    "attachPhoto": "Picture",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Remove attachment",
+    "attachFailed": "No fit send dat picture."
   }
 }

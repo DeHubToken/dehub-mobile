@@ -27,7 +27,11 @@ import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import {
   pinMessage as pinMessageApi,
   unpinMessage as unpinMessageApi,
+  uploadLiveChatImage,
 } from "../services/livechat.service";
+import { openCroppedImagePicker } from "../libs/assets.util";
+import { runWithPermissions } from "../libs/permissions.util";
+import { toastError } from "../libs/toast";
 import type { LiveChatMessageData, LiveChatUser, SendMessagePayload } from "../services/livechat.service";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { setPublicChatOpen } from "../libs/public-chat-alerts";
@@ -125,6 +129,15 @@ const LiveChatScreen: React.FC = () => {
   const [replyingTo, setReplyingTo] = useState<LiveChatMessageData | null>(null);
   const [showReactionPicker, setShowReactionPicker] = useState<string | null>(null);
   const [showGifPicker, setShowGifPicker] = useState(false);
+  /**
+   * A picture chosen from the library. `url` appears once it has uploaded —
+   * the send is held until then, so a failed upload costs the picture and not
+   * the caption the reader had already typed.
+   */
+  const [attachment, setAttachment] = useState<{ uri: string; url?: string } | null>(null);
+  const [attachmentBusy, setAttachmentBusy] = useState(false);
+  /** Identifies the pick an upload belongs to, so a replaced one cannot win. */
+  const attachmentToken = useRef(0);
   const [contextMenuVisible, setContextMenuVisible] = useState(false);
   const [contextMenuMessage, setContextMenuMessage] = useState<LiveChatMessageData | null>(null);
   const [contextMenuLayout, setContextMenuLayout] = useState<MessageLayout | null>(null);
@@ -240,11 +253,96 @@ const LiveChatScreen: React.FC = () => {
     [hasMore, loadingMore, loadMoreMessages]
   );
 
+  /**
+   * Pick a picture. Cropped and re-encoded as JPEG on the way out, because the
+   * upload function's allow-list is jpeg/png/gif/webp and a phone library is
+   * full of HEIC — an uncropped pick was rejected at the edge with a message
+   * nobody would have understood.
+   */
+  /**
+   * Pick a picture, and start uploading it straight away.
+   *
+   * Uploading on pick rather than on send is what keeps a failure cheap: the
+   * composer clears its text the moment send is pressed, so an upload that
+   * fails at that point would take the caption with it. Here the picture is
+   * already a URL by the time anyone presses send, and a failure lands while
+   * they are still typing, with the caption untouched.
+   *
+   * Cropped and re-encoded as JPEG on the way out, because the upload
+   * function's allow-list is jpeg/png/gif/webp and a phone library is full of
+   * HEIC — an uncropped pick was rejected at the edge with a message nobody
+   * would have understood.
+   */
+  const handlePickImage = useCallback(async () => {
+    await runWithPermissions(["photos"], async () => {
+      let uri: string | null = null;
+      try {
+        uri = await openCroppedImagePicker({
+          width: 1200,
+          height: 900,
+          free: true,
+          forceJpg: true,
+          quality: 0.85,
+        });
+      } catch (e: unknown) {
+        const err = e as { code?: string };
+        if (err?.code !== "E_PICKER_CANCELLED") {
+          console.error("[LiveChat] image picker error", e);
+        }
+        return;
+      }
+      if (!uri) return;
+
+      const token = ++attachmentToken.current;
+      setAttachment({ uri });
+      setAttachmentBusy(true);
+      try {
+        const name = uri.split("/").pop() || "photo.jpg";
+        const { url } = await uploadLiveChatImage(uri, "image/jpeg", name, myAddress);
+        // A second pick while this one was in flight owns the composer now.
+        if (token !== attachmentToken.current) return;
+        setAttachment({ uri, url });
+      } catch (e) {
+        console.error("[LiveChat] image upload failed", e);
+        if (token !== attachmentToken.current) return;
+        setAttachment(null);
+        toastError(t("liveChat.attachFailed", "Couldn't send that photo."));
+      } finally {
+        if (token === attachmentToken.current) setAttachmentBusy(false);
+      }
+    });
+  }, [myAddress, t]);
+
+  const handleRemoveAttachment = useCallback(() => {
+    attachmentToken.current += 1;
+    setAttachment(null);
+    setAttachmentBusy(false);
+  }, []);
+
   const handleSend = useCallback(
     (content: string, replyTo?: string, audioUrl?: string, audioDuration?: number) => {
       if (editingMessage) {
         editMessage(editingMessage._id, content);
         setEditingMessage(null);
+        return;
+      }
+      // A picture that has finished uploading takes the send: it carries the
+      // text as its caption, so the two must not go out as two messages. One
+      // still uploading cannot be sent at all — the composer's send button is
+      // held while attachmentBusy is true.
+      if (attachment?.url) {
+        const media: SendMessagePayload = {
+          content,
+          messageType: "media",
+          media: [{ url: attachment.url, type: "image", mimeType: "image/jpeg" }],
+        };
+        if (replyTo) media.replyTo = replyTo;
+        sendMessage(media);
+        attachmentToken.current += 1;
+        setAttachment(null);
+        setReplyingTo(null);
+        isAtBottomRef.current = true;
+        setTimeout(() => scrollToBottom(true), 300);
         return;
       }
       const payload: SendMessagePayload = { content };
@@ -258,7 +356,7 @@ const LiveChatScreen: React.FC = () => {
       isAtBottomRef.current = true;
       setTimeout(() => scrollToBottom(true), 300);
     },
-    [sendMessage, scrollToBottom, editingMessage, editMessage]
+    [sendMessage, scrollToBottom, editingMessage, editMessage, attachment]
   );
 
   const handleGifPicked = useCallback(
@@ -720,6 +818,10 @@ const LiveChatScreen: React.FC = () => {
             slowMode={room?.slowMode}
             slowModeSeconds={room?.slowModeSeconds}
             onGifPress={() => setShowGifPicker(true)}
+            onPickImage={handlePickImage}
+            attachmentUri={attachment?.uri ?? null}
+            onRemoveAttachment={handleRemoveAttachment}
+            attachmentBusy={attachmentBusy}
           />
         </View>
       </View>

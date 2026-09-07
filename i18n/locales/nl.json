@@ -2819,5 +2819,14 @@
     "digest": "{{count}} nieuwe berichten van {{who}}: {{message}}",
     "voiceMessage": "Spraakbericht",
     "image": "Een afbeelding verzenden"
+  },
+  "liveChat": {
+    "attach": "Voeg een foto, gif of emoji toe",
+    "attachTitle": "Voeg toe aan je bericht",
+    "attachPhoto": "Foto",
+    "attachGif": "Gif",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Bijlage verwijderen",
+    "attachFailed": "Kon die foto niet verzenden."
   }
 }

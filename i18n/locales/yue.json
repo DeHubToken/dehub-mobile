@@ -2560,5 +2560,13 @@
     "digest": "{{count}} 新訊息來自 {{who}} ： {{message}}",
     "voiceMessage": "語音訊息",
     "image": "傳送咗張圖片"
+  },
+  "liveChat": {
+    "attach": "加入相片、 GIF 或者表情符號",
+    "attachTitle": "加入你嘅訊息",
+    "attachPhoto": "相",
+    "attachEmoji": "表情符號",
+    "removeAttachment": "移除附件",
+    "attachFailed": "寄唔到嗰張相。"
   }
 }

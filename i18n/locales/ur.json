@@ -2564,5 +2564,13 @@
     "digest": "{{count}} کی جانب سے {{who}}:{{message}} نئے پیغامات",
     "voiceMessage": "صوتی پیغام",
     "image": "ایک تصویر بھیجی"
+  },
+  "liveChat": {
+    "attach": "تصویر، GIF یا ایموجی شامل کریں",
+    "attachTitle": "اپنے پیغام میں شامل کریں",
+    "attachPhoto": "تصویر",
+    "attachEmoji": "ایموجی",
+    "removeAttachment": "اٹیچمنٹ ہٹائیں",
+    "attachFailed": "وہ تصویر نہیں بھیجی جا سکی ۔"
   }
 }

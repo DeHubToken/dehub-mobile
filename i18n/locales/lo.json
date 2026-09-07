@@ -2557,5 +2557,13 @@
     "digest": "{{count}} @ ຂໍ້ຄວາມ ໃຫມ່ ຈາກ {{who}}: {{message}}",
     "voiceMessage": "ຂໍ້ຄວາມສຽງ",
     "image": "ຊອກຫາຮູບພາບ"
+  },
+  "liveChat": {
+    "attach": "ເພີ່ມຮູບຖ່າຍ, GIF ຫຼື emoji",
+    "attachTitle": "ເພີ່ມຂໍ້ຄວາມຂອງທ່ານ",
+    "attachPhoto": "ຮູບພາບ",
+    "attachEmoji": "ອີໂມຈິ",
+    "removeAttachment": "ເອົາເອກະສານຄັດຕິດອອກ",
+    "attachFailed": "ຂ້ອຍບໍ່ສາມາດເບິ່ງຮູບພາບໄດ້."
   }
 }

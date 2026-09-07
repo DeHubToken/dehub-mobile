@@ -2561,5 +2561,14 @@
     "digest": "{{count}} missatges nous de {{who}}: {{message}}",
     "voiceMessage": "Missatge de veu",
     "image": "Envia una imatge"
+  },
+  "liveChat": {
+    "attach": "Afegeix una foto, un GIF o un emoji",
+    "attachTitle": "Afegeix-ho al missatge",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Elimina l'adjunt",
+    "attachFailed": "No s'ha pogut enviar aquesta foto."
   }
 }

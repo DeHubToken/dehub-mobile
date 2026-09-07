@@ -2561,5 +2561,13 @@
     "mentionTitle": "ਜਨਤਕ ਚੈਟ ਵਿੱਚ ਜ਼ਿਕਰ ਕੀਤਾ",
     "voiceMessage": "ਆਵਾਜ਼ ਸੁਨੇਹਾ",
     "image": "ਇੱਕ ਚਿੱਤਰ ਭੇਜਿਆ"
+  },
+  "liveChat": {
+    "attach": "ਇੱਕ ਫੋਟੋ, GIF ਜਾਂ ਇਮੋਜੀ ਸ਼ਾਮਲ ਕਰੋ",
+    "attachTitle": "ਆਪਣੇ ਸੁਨੇਹੇ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ",
+    "attachPhoto": "ਫੋਟੋ",
+    "attachEmoji": "ਈਮੋਜੀ",
+    "removeAttachment": "ਅਟੈਚਮੈਂਟ ਹਟਾਓ",
+    "attachFailed": "ਉਹ ਫੋਟੋ ਭੇਜੀ ਨਹੀਂ ਜਾ ਸਕੀ ।"
   }
 }

@@ -2561,5 +2561,13 @@
     "digest": "{{count}} رسالة جديدة من {{who}}: {{message}}",
     "voiceMessage": "رسالة صوتية",
     "image": "دز صورة"
+  },
+  "liveChat": {
+    "attach": "أضف صورة، GIF أو إيموجي",
+    "attachTitle": "أضف إلى رسالتك",
+    "attachPhoto": "صورة",
+    "attachEmoji": "إيموجي",
+    "removeAttachment": "إزالة المرفق",
+    "attachFailed": "لم يتم إرسال هذه الصورة."
   }
 }

@@ -2564,5 +2564,13 @@
     "digest": "{{count}} הודעות חדשות מ {{who}}: {{message}}",
     "voiceMessage": "הודעה קולית",
     "image": "שלח/ה תמונה"
+  },
+  "liveChat": {
+    "attach": "הוספת תמונה, תמונת GIF או אמוג'י",
+    "attachTitle": "הוספה להודעה שלכם",
+    "attachPhoto": "תמונה",
+    "attachEmoji": "אימוג'י",
+    "removeAttachment": "הסר קובץ מצורף",
+    "attachFailed": "לא ניתן לשלוח את התמונה הזו."
   }
 }

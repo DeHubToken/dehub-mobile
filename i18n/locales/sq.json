@@ -2561,5 +2561,14 @@
     "digest": "{{count}} mesazhe të reja nga {{who}}: {{message}}",
     "voiceMessage": "Mesazh zanor",
     "image": "Dërgoi një imazh"
+  },
+  "liveChat": {
+    "attach": "Shto një fotografi, GIF ose emoji",
+    "attachTitle": "Shto në mesazhin tënd",
+    "attachPhoto": "Fotografia",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Hiq dokumentin e bashkangjitur",
+    "attachFailed": "Nuk mund ta dërgoja atë fotografi."
   }
 }

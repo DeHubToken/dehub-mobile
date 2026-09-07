@@ -2610,5 +2610,14 @@
     "digest": "{{count}} new messages from {{who}}: {{message}}",
     "voiceMessage": "Voice message",
     "image": "Sent an image"
+  },
+  "liveChat": {
+    "attach": "Add a photo, GIF or emoji",
+    "attachTitle": "Add to your message",
+    "attachPhoto": "Photo",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Remove attachment",
+    "attachFailed": "Couldn’t send that photo."
   }
 }

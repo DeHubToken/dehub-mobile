@@ -2561,5 +2561,14 @@
     "digest": "{{count}} uutta viestiä käyttäjältä {{who}}: {{message}}",
     "voiceMessage": "Ääniviesti",
     "image": "Lähetti kuvan"
+  },
+  "liveChat": {
+    "attach": "Lisää kuva, GIF tai emoji",
+    "attachTitle": "Lisää viestiisi",
+    "attachPhoto": "Kuva",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Poista liite",
+    "attachFailed": "Kuvan lähettäminen epäonnistui."
   }
 }

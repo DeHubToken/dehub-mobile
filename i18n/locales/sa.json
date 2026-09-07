@@ -2557,5 +2557,14 @@
     "mentionTitle": "सार्वजनिक चॅट मध्ये उल्लेखित",
     "voiceMessage": "ध्वनि संदेश",
     "image": "चित्रं प्रेष्यताम्"
+  },
+  "liveChat": {
+    "attach": "तस्विरः जिफ, इमोजी",
+    "attachTitle": "अपना संदेश प्रेषित करना",
+    "attachPhoto": "चित्राणि",
+    "attachGif": "GIF",
+    "attachEmoji": "इमोजी",
+    "removeAttachment": "संलग्नता हटाउनुहोस्",
+    "attachFailed": "तस्विरं पठितुं न शक्नोमि ।"
   }
 }

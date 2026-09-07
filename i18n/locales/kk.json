@@ -2612,5 +2612,13 @@
     "digest": "{{count}} {{who}}@: {{message}} @ жаңа хабарлары",
     "voiceMessage": "Дауыстық хабарлама",
     "image": "Кескінді жіберу"
+  },
+  "liveChat": {
+    "attach": "Фотосурет, GIF немесе эмодзи қосыңыз",
+    "attachTitle": "Хабарламаңызға қосыңыз",
+    "attachPhoto": "ФОТО",
+    "attachEmoji": "Эмодзи",
+    "removeAttachment": "Тіркемені алып тастау",
+    "attachFailed": "Бұл фотосуретті жіберу мүмкін болмады."
   }
 }

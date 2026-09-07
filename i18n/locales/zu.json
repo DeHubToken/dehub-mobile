@@ -2590,5 +2590,14 @@
     "digest": "{{count}} @ imiyalezo emisha evela ku-{{who}}: {{message}}",
     "voiceMessage": "Umlayezo wezwi",
     "image": "Thumela isithombe"
+  },
+  "liveChat": {
+    "attach": "Faka isithombe, i-GIF noma i-emoji",
+    "attachTitle": "Faka emyalezweni wakho",
+    "attachPhoto": "Isithombe",
+    "attachGif": "I-GIF",
+    "attachEmoji": "I-Emoji",
+    "removeAttachment": "Susa okunamathiselwe",
+    "attachFailed": "Ayikwazanga ukuthumela leso sithombe."
   }
 }

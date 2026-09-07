@@ -2610,5 +2610,14 @@
     "digest": "{{who}} tarafından gönderilen {{count}} yeni mesaj: {{message}}",
     "voiceMessage": "Sesli mesaj",
     "image": "Bir resim gönderildi"
+  },
+  "liveChat": {
+    "attach": "Fotoğraf, GIF veya emoji ekleyin",
+    "attachTitle": "Mesajınıza ekleyin",
+    "attachPhoto": "Photo",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Eki kaldır",
+    "attachFailed": "O fotoğraf gönderilemedi."
   }
 }
