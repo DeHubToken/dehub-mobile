@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useRef, useCallba
 import { useUser } from './AuthContext';
 import { WebSocketClient } from '../services/ws/socket-client';
 import env from '../config/env';
-import { AppState } from 'react-native';
+import { AppState, Platform } from 'react-native';
 import { getAuthToken as readStoredAuthToken } from '../libs/auth.utils';
 import { tokenRefreshManager } from '../libs/token-refresh';
 import { createLogger } from '../libs/logger';
@@ -191,20 +191,46 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   // Track background timestamp for smart reconnection
   const backgroundTimestampRef = useRef<number | null>(null);
-  
+  // Sockets used to stay attached for the whole background stay: every server
+  // push still ran JS handlers in a cached process, and on resume the frozen
+  // ping-timeout fired at once and forced a handshake on both namespaces
+  // anyway. Detach after a short grace instead and reconnect on return.
+  const backgroundDisconnectRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const BACKGROUND_DISCONNECT_MS = 20_000;
+
   // App foreground resume with smart reconnection
   useEffect(() => {
     const sub = AppState.addEventListener('change', (s) => {
       if (s === 'background' || s === 'inactive') {
-        backgroundTimestampRef.current = Date.now();
+        if (backgroundTimestampRef.current == null) backgroundTimestampRef.current = Date.now();
+        const detach = () => {
+          backgroundDisconnectRef.current = null;
+          try {
+            clientRef.current?.detach();
+            dmClientRef.current?.detach();
+          } catch (error) {
+            log.error('Failed to detach WebSocket in background', error);
+          }
+        };
+        if (s === 'background' && !backgroundDisconnectRef.current) {
+          // Android freezes JS timers the moment the host pauses, so a grace
+          // timer there would only fire on resume, after 'active' had already
+          // cleared it. Detach at once on Android; iOS keeps the grace.
+          if (Platform.OS === 'android') detach();
+          else backgroundDisconnectRef.current = setTimeout(detach, BACKGROUND_DISCONNECT_MS);
+        }
       } else if (s === 'active') {
+        if (backgroundDisconnectRef.current) {
+          clearTimeout(backgroundDisconnectRef.current);
+          backgroundDisconnectRef.current = null;
+        }
         const bgTime = backgroundTimestampRef.current;
         const wasLongBackground = bgTime && (Date.now() - bgTime) > 30000; // 30 seconds
-        
+
         // If app was in background for a long time, delay reconnection slightly
         // to let other initialization complete first
         const delay = wasLongBackground ? 500 : 0;
-        
+
         setTimeout(() => {
           try {
             clientRef.current?.connect();
