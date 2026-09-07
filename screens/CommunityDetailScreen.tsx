@@ -554,7 +554,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  badgeText: { color: "#fff", fontSize: 10, fontWeight: "700", lineHeight: 12 },
+  // destructive is #F4F4F5 on the monochrome ramp; white on it is invisible.
+  badgeText: { color: theme.colors.accentForeground, fontSize: 10, fontWeight: "700", lineHeight: 12 },
   settingCard: {
     marginTop: 16,
     borderRadius: 12,
