@@ -2071,16 +2071,6 @@
     "step4Body": "招待した人がさらに友達を招待すると、その収益の {{l2}}% も受け取れます。継続・生涯有効。",
     "wallet": "アフィリエイトウォレット"
   },
-  "prompt": {
-    "title": "何をつくりますか？",
-    "subtitle": "DeHub アシスタントに何でも聞いてください。下のアイデアから始めても大丈夫です。",
-    "placeholder": "何でも聞いてください…",
-    "suggestion1": "今日 DeHub で話題になっていることをまとめて",
-    "suggestion2": "最新の投稿について文章を書いて",
-    "suggestion3": "DHB のステーキングをわかりやすく説明して",
-    "suggestion4": "フォローすべきクリエイターを探して",
-    "suggestion5": "クリッピング企画のバウンティ要項を書いて"
-  },
   "top100": {
     "title": "トップ 100",
     "subtitle": "時価総額順の暗号資産・株式・コモディティ",
@@ -2643,5 +2633,20 @@
     "attachEmoji": "絵文字",
     "removeAttachment": "添付ファイルを削除",
     "attachFailed": "写真を送信できませんでした。"
+  },
+  "promptFeed": {
+    "headline": "何を見たいですか？",
+    "subheadline": "理想のフィードを教えてください。",
+    "placeholder": "AI、ゲームクリップ、インディー音楽をもっと…",
+    "suggestion1": "AIと暗号資産のニュースをもっと",
+    "suggestion2": "ゲームクリップとeスポーツ",
+    "suggestion3": "インディー音楽の発見",
+    "suggestion4": "テック創業者とスタートアップ",
+    "suggestion5": "サッカーのハイライト",
+    "skip": "スキップしてフィードへ",
+    "analysing": "興味を分析しています…",
+    "timelineReady": "タイムラインの準備ができました",
+    "dragToTune": "ドラッグしてミックスを微調整します。",
+    "save": "保存"
   }
 }

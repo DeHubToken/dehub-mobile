@@ -2084,16 +2084,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Top 100",
     "subtitle": "Cripto, acțiuni și mărfuri după capitalizare",
@@ -2608,5 +2598,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Eliminați accesoriul",
     "attachFailed": "Nu am putut trimite acea fotografie."
+  },
+  "promptFeed": {
+    "headline": "Ce vrei să vezi?",
+    "subheadline": "Descrie feedul tău perfect.",
+    "placeholder": "Mai mult AI, clipuri de gaming, muzică indie…",
+    "suggestion1": "Mai multe știri despre AI și cripto",
+    "suggestion2": "Clipuri de gaming și esports",
+    "suggestion3": "Descoperiri de muzică indie",
+    "suggestion4": "Fondatori tech și startupuri",
+    "suggestion5": "Rezumate de fotbal",
+    "skip": "Sari — du-mă direct la feed",
+    "analysing": "Analizăm interesele tale…",
+    "timelineReady": "Cronologia ta este gata",
+    "dragToTune": "Trage pentru a-ți regla mixul.",
+    "save": "Salvează"
   }
 }

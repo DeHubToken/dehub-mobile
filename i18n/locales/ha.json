@@ -2070,16 +2070,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Na sama 100",
     "subtitle": "Kirifto, hannun jari da kayayyaki bisa girman kasuwa",
@@ -2591,5 +2581,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Cire haše-haše",
     "attachFailed": "Ba zan iya aika wannan hoton ba."
+  },
+  "promptFeed": {
+    "headline": "Me kake son gani?",
+    "subheadline": "Bayyana feed ɗinka mafi kyau.",
+    "placeholder": "Ƙarin AI, faifan wasanni, kiɗan indie…",
+    "suggestion1": "Ƙarin labaran AI da crypto",
+    "suggestion2": "Faifan wasanni da esports",
+    "suggestion3": "Sabbin kiɗan indie",
+    "suggestion4": "Masu kafa fasaha da sababbin kamfanoni",
+    "suggestion5": "Manyan lokutan ƙwallon ƙafa",
+    "skip": "Tsallake — kai ni feed kawai",
+    "analysing": "Ana nazarin abubuwan da kake so…",
+    "timelineReady": "Layin lokacinka ya shirya",
+    "dragToTune": "Ja don daidaita haɗinka.",
+    "save": "Ajiye"
   }
 }

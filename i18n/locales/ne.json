@@ -2109,16 +2109,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "शीर्ष 100",
     "subtitle": "बजार पुँजीअनुसार क्रिप्टो, स्टक र वस्तुहरू",
@@ -2632,5 +2622,20 @@
     "attachEmoji": "इमोजी",
     "removeAttachment": "सङ्लग्नता हटाउनुहोस्",
     "attachFailed": "त्यो फोटो पठाउन सकिएन ।"
+  },
+  "promptFeed": {
+    "headline": "तपाईं के हेर्न चाहनुहुन्छ?",
+    "subheadline": "आफ्नो उत्तम फिड वर्णन गर्नुहोस्।",
+    "placeholder": "थप AI, गेमिङ क्लिप, इन्डी संगीत…",
+    "suggestion1": "थप AI र क्रिप्टो समाचार",
+    "suggestion2": "गेमिङ क्लिप र ईस्पोर्ट्स",
+    "suggestion3": "इन्डी संगीत खोजहरू",
+    "suggestion4": "टेक संस्थापक र स्टार्टअप",
+    "suggestion5": "फुटबल हाइलाइट",
+    "skip": "छोड्नुहोस् — सिधै फिडमा लैजानुहोस्",
+    "analysing": "तपाईंका रुचिहरू विश्लेषण गर्दै…",
+    "timelineReady": "तपाईंको टाइमलाइन तयार छ",
+    "dragToTune": "आफ्नो मिक्स मिलाउन तान्नुहोस्।",
+    "save": "सुरक्षित गर्नुहोस्"
   }
 }

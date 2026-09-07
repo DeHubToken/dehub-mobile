@@ -2070,16 +2070,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Top 100",
     "subtitle": "Cripto, accions i matèries primeres per capitalització",
@@ -2594,5 +2584,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Elimina l'adjunt",
     "attachFailed": "No s'ha pogut enviar aquesta foto."
+  },
+  "promptFeed": {
+    "headline": "Què vols veure?",
+    "subheadline": "Descriu el teu feed perfecte.",
+    "placeholder": "Més IA, clips de videojocs, música indie…",
+    "suggestion1": "Més notícies d'IA i cripto",
+    "suggestion2": "Clips de videojocs i esports electrònics",
+    "suggestion3": "Descobertes de música indie",
+    "suggestion4": "Fundadors tecnològics i startups",
+    "suggestion5": "Resums de futbol",
+    "skip": "Omet — porta'm al feed",
+    "analysing": "Analitzant els teus interessos…",
+    "timelineReady": "La teva línia de temps està a punt",
+    "dragToTune": "Arrossega per ajustar la teva barreja.",
+    "save": "Desa"
   }
 }

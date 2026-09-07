@@ -2069,16 +2069,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Լավագույն 100",
     "subtitle": "Կրիպտո, բաժնետոմսեր և ապրանքներ ըստ շուկայական կապիտալիզացիայի",
@@ -2593,5 +2583,20 @@
     "attachEmoji": "Էմոջի",
     "removeAttachment": "Հեռացնել կցորդը",
     "attachFailed": "Չհաջողվեց ուղարկել այդ լուսանկարը ։"
+  },
+  "promptFeed": {
+    "headline": "Ի՞նչ եք ուզում տեսնել։",
+    "subheadline": "Նկարագրեք ձեր իդեալական հոսքը։",
+    "placeholder": "Ավելի շատ AI, խաղային հոլովակներ, ինդի երաժշտություն…",
+    "suggestion1": "Ավելի շատ AI և կրիպտո նորություններ",
+    "suggestion2": "Խաղային հոլովակներ և կիբերսպորտ",
+    "suggestion3": "Ինդի երաժշտության բացահայտումներ",
+    "suggestion4": "Տեխնոլոգիական հիմնադիրներ և ստարտափներ",
+    "suggestion5": "Ֆուտբոլի լավագույն պահեր",
+    "skip": "Բաց թողնել — ուղիղ դեպի հոսք",
+    "analysing": "Վերլուծում ենք ձեր հետաքրքրությունները…",
+    "timelineReady": "Ձեր ժամանակագիծը պատրաստ է",
+    "dragToTune": "Քաշեք՝ ձեր խառնուրդը ճշգրտելու համար։",
+    "save": "Պահպանել"
   }
 }

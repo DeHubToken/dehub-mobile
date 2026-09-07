@@ -2070,16 +2070,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "اُتلے 100",
     "subtitle": "بازار قیمت دے حساب نال کرپٹو، حصص تے اجناس",
@@ -2593,5 +2583,20 @@
     "attachEmoji": "ایموجی",
     "removeAttachment": "اٹیچمنٹ ہٹائیں",
     "attachFailed": "وہ تصویر بھیج نہ سکا۔"
+  },
+  "promptFeed": {
+    "headline": "تساں کیا ݙیکھݨ چاہندے ہو؟",
+    "subheadline": "آپݨی بہترین فیڈ بیان کرو۔",
+    "placeholder": "ودھ AI، گیمنگ کلپ، انڈی موسیقی…",
+    "suggestion1": "ودھ AI تے کرپٹو خبراں",
+    "suggestion2": "گیمنگ کلپ تے ای سپورٹس",
+    "suggestion3": "انڈی موسیقی دیاں دریافتاں",
+    "suggestion4": "ٹیک بانی تے اسٹارٹ اپ",
+    "suggestion5": "فٹ بال دیاں جھلکیاں",
+    "skip": "چھوڑو — سدھا فیڈ تے گھن ونڄو",
+    "analysing": "تہاڈیاں دلچسپیاں دا تجزیہ تھیندا پیا ہے…",
+    "timelineReady": "تہاڈی ٹائم لائن تیار ہے",
+    "dragToTune": "آپݨا مکس ٹھیک کرݨ کیتے کھچو۔",
+    "save": "محفوظ کرو"
   }
 }

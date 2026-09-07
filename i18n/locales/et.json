@@ -2070,16 +2070,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Top 100",
     "subtitle": "Krüpto, aktsiad ja toorained turuväärtuse järgi",
@@ -2594,5 +2584,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Eemalda manus",
     "attachFailed": "Seda fotot ei saanud saata."
+  },
+  "promptFeed": {
+    "headline": "Mida sa näha tahad?",
+    "subheadline": "Kirjelda oma täiuslikku voogu.",
+    "placeholder": "Rohkem tehisaru, mänguklippe, indie-muusikat…",
+    "suggestion1": "Rohkem tehisaru- ja krüptouudiseid",
+    "suggestion2": "Mänguklipid ja e-sport",
+    "suggestion3": "Indie-muusika avastused",
+    "suggestion4": "Tehnoloogia asutajad ja idufirmad",
+    "suggestion5": "Jalgpalli tipphetked",
+    "skip": "Jäta vahele — vii mind kohe voogu",
+    "analysing": "Analüüsime sinu huve…",
+    "timelineReady": "Sinu ajajoon on valmis",
+    "dragToTune": "Lohista, et oma segu täpsustada.",
+    "save": "Salvesta"
   }
 }

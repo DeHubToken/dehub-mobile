@@ -2070,16 +2070,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Top 100",
     "subtitle": "Kripto, akcijas un izejvielas pēc tirgus kapitalizācijas",
@@ -2594,5 +2584,20 @@
     "attachEmoji": "Emocijzīmes",
     "removeAttachment": "Noņemt pielikumu",
     "attachFailed": "Nevarēja nosūtīt šo bildi."
+  },
+  "promptFeed": {
+    "headline": "Ko tu vēlies redzēt?",
+    "subheadline": "Apraksti savu ideālo plūsmu.",
+    "placeholder": "Vairāk AI, spēļu klipu, indie mūzikas…",
+    "suggestion1": "Vairāk AI un kripto ziņu",
+    "suggestion2": "Spēļu klipi un e-sports",
+    "suggestion3": "Indie mūzikas atklājumi",
+    "suggestion4": "Tehnoloģiju dibinātāji un jaunuzņēmumi",
+    "suggestion5": "Futbola spilgtākie mirkļi",
+    "skip": "Izlaist — uzreiz uz plūsmu",
+    "analysing": "Analizējam tavas intereses…",
+    "timelineReady": "Tava laika josla ir gatava",
+    "dragToTune": "Velc, lai precizētu savu miksu.",
+    "save": "Saglabāt"
   }
 }
