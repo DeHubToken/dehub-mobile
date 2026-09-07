@@ -17,6 +17,7 @@ import {
   TextInput,
   Pressable,
   FlatList,
+  Platform,
   ActivityIndicator,
   Image,
   StyleSheet,
@@ -178,9 +179,21 @@ interface TVChatPanelProps {
   enabled?: boolean;
   /** Extra bottom padding for the safe-area inset when the keyboard is closed. */
   bottomInset?: number;
+  /**
+   * Closes the player this panel lives in. The profile sheet is a native
+   * Modal presented from the app root, and on iOS UIKit refuses that while the
+   * player Modal is up, so a profile tap closes the player first and opens the
+   * sheet once the dismissal has finished.
+   */
+  onClosePlayer?: () => void;
 }
 
-const TVChatPanel: React.FC<TVChatPanelProps> = ({ channelId, enabled = true, bottomInset = 0 }) => {
+const TVChatPanel: React.FC<TVChatPanelProps> = ({
+  channelId,
+  enabled = true,
+  bottomInset = 0,
+  onClosePlayer,
+}) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { showUserProfile } = useUserProfileSheet();
@@ -233,8 +246,15 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({ channelId, enabled = true, bo
   );
 
   const handleOpenProfile = useCallback(
-    (identifier: string) => showUserProfile(identifier, { source: "tv-chat" }),
-    [showUserProfile]
+    (identifier: string) => {
+      if (Platform.OS === "ios" && onClosePlayer) {
+        onClosePlayer();
+        setTimeout(() => showUserProfile(identifier, { source: "tv-chat" }), 300);
+        return;
+      }
+      showUserProfile(identifier, { source: "tv-chat" });
+    },
+    [showUserProfile, onClosePlayer]
   );
 
   const renderItem = useCallback(
