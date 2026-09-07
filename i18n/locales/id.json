@@ -567,6 +567,7 @@
     "payAmount": "Bayar {{amount}} {{currency}}"
   },
   "wallet": {
+    "notReady": "Dompet belum siap — coba lagi sebentar lagi.",
     "title": "Dompet",
     "loginRequired": "Masuk untuk mengakses dompet Anda.",
     "addressCopied": "Alamat disalin",

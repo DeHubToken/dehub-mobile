@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "Boorsadu diyaar ma aha — isku day mar kale wax yar ka dib.",
     "title": "Jeebka",
     "loginRequired": "Soo gal si aad u hesho jeebkaaga.",
     "addressCopied": "Cinwaanka waa la nuqulay",

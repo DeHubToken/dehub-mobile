@@ -1638,6 +1638,7 @@
     }
   },
   "wallet": {
+    "notReady": "Гаманець не готовий — спробуйте за хвилину.",
     "title": "Wallet",
     "loginRequired": "Log in to access your wallet.",
     "addressCopied": "Address copied",

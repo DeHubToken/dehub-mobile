@@ -567,6 +567,7 @@
     "payAmount": "Betala {{amount}} {{currency}}"
   },
   "wallet": {
+    "notReady": "Plånboken är inte redo — försök igen om en stund.",
     "title": "Plånbok",
     "loginRequired": "Logga in för att komma åt din plånbok.",
     "addressCopied": "Adress kopierad",

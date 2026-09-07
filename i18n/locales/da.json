@@ -567,6 +567,7 @@
     "payAmount": "Betal {{amount}} {{currency}}"
   },
   "wallet": {
+    "notReady": "Tegnebogen er ikke klar — prøv igen om lidt.",
     "title": "Tegnebog",
     "loginRequired": "Log ind for at få adgang til tegnebogen.",
     "addressCopied": "Adresse kopieret",

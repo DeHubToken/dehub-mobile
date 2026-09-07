@@ -998,6 +998,7 @@
     "tryAgain": "Try Again"
   },
   "wallet": {
+    "notReady": "Wallet not ready — try again in a moment.",
     "title": "Wallet",
     "loginRequired": "Log in to access your wallet.",
     "addressCopied": "Address copied",

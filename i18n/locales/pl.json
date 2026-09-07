@@ -1219,6 +1219,7 @@
     }
   },
   "wallet": {
+    "notReady": "Portfel niegotowy — spróbuj za chwilę.",
     "title": "Portfel",
     "loginRequired": "Zaloguj się, aby uzyskać dostęp do portfela.",
     "addressCopied": "Adres skopiowany",

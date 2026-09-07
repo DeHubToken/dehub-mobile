@@ -945,6 +945,7 @@
     }
   },
   "wallet": {
+    "notReady": "Gapjyk taýýar däl — biraz wagtdan gaýtadan synanyşyň.",
     "title": "Gapjyk",
     "loginRequired": "Gapjygyňyza girmek üçin hasaba giriň.",
     "addressCopied": "Salgy göçürildi",

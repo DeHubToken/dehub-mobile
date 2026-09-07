@@ -953,6 +953,7 @@
     }
   },
   "wallet": {
+    "notReady": "Pulqabı hazır deyil — bir azdan yenidən cəhd et.",
     "title": "Cüzdan",
     "loginRequired": "Cüzdanınıza daxil olmaq üçün giriş edin.",
     "addressCopied": "Ünvan kopyalandı",

@@ -946,6 +946,7 @@
     }
   },
   "wallet": {
+    "notReady": "Lompakko ei ole valmis — yritä hetken päästä uudelleen.",
     "title": "Lompakko",
     "loginRequired": "Kirjaudu sisään käyttääksesi lompakkoasi.",
     "addressCopied": "Osoite kopioitu",
