@@ -20,12 +20,65 @@ export function isWalletLockedError(err: any): boolean {
   return message.toLowerCase().includes("wallet is locked");
 }
 
+/**
+ * Everything an AA error might be hiding the real reason in.
+ *
+ * `err.message` alone is not enough. A userOp that reverts arrives as viem's
+ * UserOperationExecutionError, which puts the useful part on `details` /
+ * `shortMessage` / `cause`, and dumps the whole request body — including the
+ * word "paymaster" and the bundler URL — into `message`. Reading only
+ * `message` is how a token-transfer revert came to be reported as a gas
+ * sponsorship outage.
+ */
+function rawErrorText(err: any): string {
+  return [
+    err?.data?.message,
+    err?.error?.message,
+    err?.message,
+    err?.details,
+    err?.shortMessage,
+    err?.cause?.message,
+    err?.cause?.reason,
+    err?.cause?.details,
+    err?.reason,
+  ]
+    .filter(Boolean)
+    .join(" | ");
+}
+
+/**
+ * Pull the readable string out of an ABI-encoded `Error(string)` revert.
+ *
+ * The bundler hands back the raw payload — `0x08c379a0` followed by the
+ * encoded reason — so the actual word ("STF") never appears in the text we
+ * match on until it is decoded. Same job as tryDecodeHexReason on the web.
+ */
+function decodeRevertReason(text: string): string {
+  const match = text.match(/0x08c379a0[0-9a-fA-F]{128,}/);
+  if (!match) return "";
+  try {
+    const body = match[0].slice(10);
+    const length = parseInt(body.slice(64, 128), 16);
+    if (!Number.isFinite(length) || length <= 0 || length > 256) return "";
+    const chars = body.slice(128, 128 + length * 2);
+    let out = "";
+    for (let i = 0; i < chars.length; i += 2) {
+      out += String.fromCharCode(parseInt(chars.slice(i, i + 2), 16));
+    }
+    return out;
+  } catch {
+    return "";
+  }
+}
+
 export function parseTxError(err: any, context: TxContext): string {
   if (!err)
     return context === "approve" ? "Approval failed" : "Transaction failed";
   const code = err.code || err.error?.code;
-  const raw = err?.data?.message || err?.error?.message || err?.message || "";
-  const msg = String(raw).toLowerCase();
+  const raw = rawErrorText(err);
+  // The decoded revert reason is appended so the branches below can match on
+  // the word itself ("STF") rather than on its hex encoding.
+  const msg = (raw + " " + decodeRevertReason(raw)).toLowerCase();
 
   // Wallet locked. Not a failure and not something the user did wrong: signing
   // reached the unlock sheet (lockedProviderShim) and it did not produce a
@@ -81,7 +134,32 @@ export function parseTxError(err: any, context: TxContext): string {
   if (msg.includes("nonce too low"))
     return "Network nonce mismatch — wait for pending transactions to confirm";
   // Revert with reason
-  if (msg.includes("execution reverted")) {
+  // STF — the DHB pull itself failed, and this MUST be tested before the
+  // paymaster branch below.
+  //
+  // STF is TransferHelper's safeTransferFrom failure: the allowance or the
+  // balance was short when the contract tried to move the tokens. It has
+  // nothing to do with gas sponsorship. But every viem userOp error carries
+  // the request body, which contains the word "paymaster" and the bundler
+  // URL, so a revert that reaches the paymaster branch first is reported as
+  // "sponsorship unavailable" — telling someone the network is down when in
+  // fact their approval was short. That is what shipped, and it is why a
+  // healthy Pimlico account was blamed for three days.
+  //
+  // 535446 is "STF" hex-encoded, for the case where the payload arrives
+  // undecoded.
+  if (
+    msg.includes("stf") ||
+    msg.includes("535446") ||
+    msg.includes("safetransfer") ||
+    msg.includes("transfer_from_failed")
+  ) {
+    return "Token transfer failed — check your DHB balance and approval";
+  }
+  // Pimlico says "reverted during simulation with reason: 0x…" and ethers
+  // v5 says "reverted with reason string", so matching the literal
+  // "execution reverted" missed both real phrasings.
+  if (/revert/.test(msg)) {
     const match = raw.match(/execution reverted(:)?\s?(.*)/i);
     if (match && match[2]) {
       const reason = match[2].replace(/revert/i, "").trim();
@@ -91,7 +169,9 @@ export function parseTxError(err: any, context: TxContext): string {
     return "Transaction reverted";
   }
   // Paymaster / sponsorship issues (AA)
-  if (msg.includes("paymaster") || msg.includes("sponsor")) {
+  // Guarded: a reverted userOp names the paymaster in its request body
+  // without the paymaster being at fault.
+  if ((msg.includes("paymaster") && !/revert/.test(msg)) || msg.includes("sponsor")) {
     if (msg.includes("insufficient") && msg.includes("balance")) {
       return "No gas sponsor available — try again later or switch method";
     }
