@@ -301,6 +301,8 @@ const LiveChatPanel: React.FC<Props> = ({
             // No removeClippedSubviews here either — it detaches the very
             // children maintainVisibleContentPosition anchors against, so an
             // incoming message can shift a chat the reader is scrolled back in.
+            // Omitting the prop is NOT off: RN defaults it to true on Android.
+            removeClippedSubviews={false}
             inverted
             maintainVisibleContentPosition={{ minIndexForVisible: 0 }}
             onContentSizeChange={() => {

@@ -409,6 +409,8 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
                 // and this list's parent is translated by the full height of
                 // the nav chrome, which blanks the rows nearest the fold.
                 // windowSize already bounds what stays mounted.
+                // Omitting the prop is NOT off: RN defaults it to true on Android.
+                removeClippedSubviews={false}
                 windowSize={5}
                 maxToRenderPerBatch={3}
                 // One, not three: the tapped post is rotated to the front, so

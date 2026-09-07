@@ -1510,6 +1510,8 @@ const NotificationScreen = () => {
           // No removeClippedSubviews: every row is a Reanimated view with its own
           // animated style, and Android detaching and re-attaching those mid-fling
           // is the jitter people saw. windowSize above still unmounts distant rows.
+          // Omitting the prop is NOT off: RN defaults it to true on Android.
+          removeClippedSubviews={false}
           ListFooterComponent={ListFooter}
           ListEmptyComponent={ListEmpty}
         />

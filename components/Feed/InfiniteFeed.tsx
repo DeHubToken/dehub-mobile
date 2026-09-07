@@ -422,6 +422,8 @@ const InfiniteFeedBase: React.FC<
         // Android walks to pick the maintainVisibleContentPosition anchor. The
         // two together make the anchor a different row on every frame of a
         // fling, which is what threw the viewport when a page landed mid-scroll.
+        // Omitting the prop is NOT off: RN defaults it to true on Android.
+        removeClippedSubviews={false}
         updateCellsBatchingPeriod={80}
         contentContainerStyle={
           contentContainerStyle || { paddingBottom: 80 }
