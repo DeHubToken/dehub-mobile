@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} hadda wuxuu xidhan yahay calaamaddaada {{tier}}",
     "badgeDelegationGrantFailed": "Lama amaahin karin calaamaddaada",
     "badgeDelegationEnded": "Wareejinta waa dhammaatay",
-    "badgeDelegationEndFailed": "Lama joojin karin wareejinta"
+    "badgeDelegationEndFailed": "Lama joojin karin wareejinta",
+    "resetDeviceLink": "Dib u deji xiriirka akoonka qalabka",
+    "resetDeviceLinkDesc": "Halkan ma waxaad ku aragtaa akoon ka duwan kan websaydka? Hagaaji (fure gaar ah looma baahna)",
+    "switchAccount": "Beddel akoonka",
+    "switchAccountDesc": "Ma haysaa fure gaar ah akoonka aad rabto? Si toos ah ugu beddel",
+    "notSignedInGoogleEmail": "Kuma soo gelin Google ama iimayl qalabkan.",
+    "resetDeviceLinkTitle": "Dib u dejiso xiriirka akoonka qalabka?",
+    "resetDeviceLinkBody": "Taleefankan wuxuu ilaawi doonaa boorsada uu si toos ah u doorto gelitaankaaga Google/iimayl. Waa lagaa saari doonaa, marka xigta ee aad gasho waxaa lagu weydiin doonaa inaad boorsada saxda ah ku furto eraygeeda sirta ah (kan websaydku isticmaalo).",
+    "resetAndSignOut": "Dib u deji oo ka bax",
+    "deviceLinkReset": "Xiriirka qalabka waa la dib u dejiyay. Mar kale gal si aad u hesho akoonka saxda ah.",
+    "deviceLinkResetFailed": "Lama dib u dejin karin xiriirka qalabka."
   },
   "common": {
     "mute": "Aamusi",
@@ -2628,5 +2638,27 @@
     "timelineReady": "Waqtigaagu diyaar buu yahay",
     "dragToTune": "Jiid si aad u hagaajiso isku-darkaaga.",
     "save": "Kaydi"
+  },
+  "switchAccount": {
+    "intro": "Gelitaanka Google/iimayl wuxuu aqoonsan karaa HAL boorso oo keliya akoonkaaga hal mar. Halkii taas, ku gal gelitaanka HORE ee akoonka aad rabto — tani waxay boorsadiisa dib ugu dhisaysaa halkan taleefankaaga, sida \"U beddel akoon kale oo hore\" ee websaydka.",
+    "retrieving": "Waxaa la soo qaadayaa boorsadii hore…",
+    "oldAccount": "Akoon hore: {{provider}}",
+    "oldEmail": "Iimaylka akoonka hore",
+    "recoveredWallet": "Boorsada la soo celiyay",
+    "alreadyActive": "Tani waa boorsadaada firfircoon horeba — wax la beddelo ma jiro.",
+    "useSignIn": "Beddelkeeda isticmaal gelitaanka",
+    "pasteKey": "Ama gacanta ku dheji furaha gaarka ah",
+    "keyOfOther": "Furaha gaarka ah ee akoonka kale",
+    "resolvesTo": "Waxay u dhigantaa {{address}}",
+    "newPassword": "Erayga sirta ah ee cusub (wuxuu ilaalinayaa boorsadan hadda ka dib, ugu yaraan {{min}} xaraf)",
+    "password": "Erayga sirta ah",
+    "confirmPassword": "Xaqiiji erayga sirta ah",
+    "backupWarning": "Marka hore hubi inaad kaydisay furaha gaarka ah ee boorsadaada HADDA (Dejinta → Dhoofi furaha gaarka ah) — qalabkani ma bixin doono marka aad beddesho.",
+    "recoverFailed": "Lama soo qaadi karin boorsadaas hore qalabkan. Beddelkeeda waxaad hoos ku dhejin kartaa furaheeda gaarka ah.",
+    "breached": "Erayga sirta ah ayaa ka soo muuqday xog-baxsi — dooro mid kale",
+    "stronger": "Dooro eray sir ah oo ka xoog badan",
+    "needSignIn": "Waa inaad ku gashaa Google ama iimayl si aad u beddesho akoonnada.",
+    "switched": "Akoonka waa la beddelay",
+    "failed": "Lama beddeli karin akoonnada. Fadlan hubi furaha gaarka ah oo mar kale isku day."
   }
 }

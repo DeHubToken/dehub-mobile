@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} draagt nu je {{tier}}-badge",
     "badgeDelegationGrantFailed": "Kon je badge niet uitlenen",
     "badgeDelegationEnded": "Delegatie beëindigd",
-    "badgeDelegationEndFailed": "Kon de delegatie niet beëindigen"
+    "badgeDelegationEndFailed": "Kon de delegatie niet beëindigen",
+    "resetDeviceLink": "Apparaat-accountkoppeling resetten",
+    "resetDeviceLinkDesc": "Zie je hier een ander account dan op de website? Herstel het (geen privésleutel nodig)",
+    "switchAccount": "Account wisselen",
+    "switchAccountDesc": "Heb je de privésleutel van het account dat je wilt? Wissel er direct naar",
+    "notSignedInGoogleEmail": "Je bent op dit apparaat niet ingelogd met Google of e-mail.",
+    "resetDeviceLinkTitle": "Apparaat-accountkoppeling resetten?",
+    "resetDeviceLinkBody": "Deze telefoon vergeet welke wallet hij automatisch kiest voor je Google/e-mail-aanmelding. Je wordt uitgelogd en bij de volgende aanmelding wordt gevraagd de juiste wallet te ontgrendelen met het wachtwoord (hetzelfde als op de website).",
+    "resetAndSignOut": "Resetten en uitloggen",
+    "deviceLinkReset": "Apparaatkoppeling gereset. Log opnieuw in om het juiste account op te halen.",
+    "deviceLinkResetFailed": "Kon de apparaatkoppeling niet resetten."
   },
   "common": {
     "mute": "Dempen",
@@ -2886,5 +2896,27 @@
     "timelineReady": "Je tijdlijn is klaar",
     "dragToTune": "Sleep om je mix te verfijnen.",
     "save": "Opslaan"
+  },
+  "switchAccount": {
+    "intro": "Google/e-mail-aanmelding kan maar ÉÉN wallet tegelijk voor je account herkennen. Meld je in plaats daarvan aan met de OUDE login van het account dat je wilt — dat bouwt de wallet hier op je telefoon opnieuw op, net als \"Overschakelen naar een ander oud account\" op het web.",
+    "retrieving": "Oude wallet ophalen…",
+    "oldAccount": "Oud account: {{provider}}",
+    "oldEmail": "E-mail van oud account",
+    "recoveredWallet": "Herstelde wallet",
+    "alreadyActive": "Dit is al je actieve wallet — niets om te wisselen.",
+    "useSignIn": "Gebruik in plaats daarvan aanmelden",
+    "pasteKey": "Of plak de privésleutel handmatig",
+    "keyOfOther": "Privésleutel van het andere account",
+    "resolvesTo": "Komt overeen met {{address}}",
+    "newPassword": "Nieuw wachtwoord (beschermt deze wallet voortaan, min. {{min}} tekens)",
+    "password": "Wachtwoord",
+    "confirmPassword": "Wachtwoord bevestigen",
+    "backupWarning": "Zorg eerst dat je een back-up hebt van de privésleutel van je HUIDIGE wallet (Instellingen → Privésleutel exporteren) — dit apparaat biedt hem niet meer aan zodra je wisselt.",
+    "recoverFailed": "Kon die oude wallet niet ophalen op dit apparaat. Je kunt in plaats daarvan hieronder de privésleutel plakken.",
+    "breached": "Dit wachtwoord is in een datalek verschenen — kies een ander",
+    "stronger": "Kies een sterker wachtwoord",
+    "needSignIn": "Je moet ingelogd zijn met Google of e-mail om van account te wisselen.",
+    "switched": "Account gewisseld",
+    "failed": "Kon niet van account wisselen. Controleer de privésleutel en probeer het opnieuw."
   }
 }

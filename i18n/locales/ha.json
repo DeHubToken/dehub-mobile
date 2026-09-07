@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} yanzu yana sanye da bajin ka na {{tier}}",
     "badgeDelegationGrantFailed": "Ba a iya ba da bajin ka aro ba",
     "badgeDelegationEnded": "An kawo ƙarshen ba da aro",
-    "badgeDelegationEndFailed": "Ba a iya kawo ƙarshen ba da aro ba"
+    "badgeDelegationEndFailed": "Ba a iya kawo ƙarshen ba da aro ba",
+    "resetDeviceLink": "Sake saita haɗin asusun na'ura",
+    "resetDeviceLinkDesc": "Kana ganin wani asusu daban a nan da na gidan yanar gizo? Gyara shi (ba a buƙatar maɓalli na sirri)",
+    "switchAccount": "Canza asusu",
+    "switchAccountDesc": "Kana da maɓallin sirri na asusun da kake so? Canza zuwa gare shi kai tsaye",
+    "notSignedInGoogleEmail": "Ba ka shiga da Google ko imel a wannan na'urar ba.",
+    "resetDeviceLinkTitle": "Sake saita haɗin asusun na'ura?",
+    "resetDeviceLinkBody": "Wannan wayar za ta manta wace walat take zaɓa kai tsaye don shigar ka ta Google/imel. Za a fitar da kai, kuma lokaci na gaba da ka shiga za a nemi ka buɗe walat ɗin da ya dace da kalmar sirrinsa (wanda gidan yanar gizo ke amfani da shi).",
+    "resetAndSignOut": "Sake saita kuma fita",
+    "deviceLinkReset": "An sake saita haɗin na'ura. Sake shiga don samun asusun da ya dace.",
+    "deviceLinkResetFailed": "Ba a iya sake saita haɗin na'ura ba."
   },
   "common": {
     "mute": "Kashe sauti",
@@ -2628,5 +2638,27 @@
     "timelineReady": "Layin lokacinka ya shirya",
     "dragToTune": "Ja don daidaita haɗinka.",
     "save": "Ajiye"
+  },
+  "switchAccount": {
+    "intro": "Shiga ta Google/imel na iya gane walat ƊAYA kawai ga asusunka a lokaci guda. Maimakon haka, shiga da TSOHON hanyar shiga na asusun da kake so — wannan yana sake gina walat ɗinsa a nan cikin wayarka, kamar \"Canza zuwa wani tsohon asusu\" na yanar gizo.",
+    "retrieving": "Ana ɗauko tsohuwar walat…",
+    "oldAccount": "Tsohon asusu: {{provider}}",
+    "oldEmail": "Imel na tsohon asusu",
+    "recoveredWallet": "Walat da aka dawo da ita",
+    "alreadyActive": "Wannan tuni walat ɗinka mai aiki ce — babu abin canzawa.",
+    "useSignIn": "Yi amfani da shiga maimakon haka",
+    "pasteKey": "Ko manna maɓallin sirri da hannu",
+    "keyOfOther": "Maɓallin sirri na ɗayan asusun",
+    "resolvesTo": "Yana nufin {{address}}",
+    "newPassword": "Sabuwar kalmar sirri (tana kare wannan walat daga yanzu, aƙalla haruffa {{min}})",
+    "password": "Kalmar sirri",
+    "confirmPassword": "Tabbatar da kalmar sirri",
+    "backupWarning": "Tabbatar ka fara adana maɓallin sirri na walat ɗinka na YANZU (Saituna → Fitar da maɓallin sirri) — wannan na'urar za ta daina bayar da shi da zarar ka canza.",
+    "recoverFailed": "Ba a iya ɗauko wannan tsohuwar walat a wannan na'urar ba. Za ka iya manna maɓallin sirrinta a ƙasa maimakon haka.",
+    "breached": "Wannan kalmar sirri ta bayyana a cikin ɓarna bayanai — zaɓi wata daban",
+    "stronger": "Zaɓi kalmar sirri mafi ƙarfi",
+    "needSignIn": "Kana buƙatar shiga da Google ko imel don canza asusu.",
+    "switched": "An canza asusu",
+    "failed": "Ba a iya canza asusu ba. Da fatan za a duba maɓallin sirri a sake gwadawa."
   }
 }

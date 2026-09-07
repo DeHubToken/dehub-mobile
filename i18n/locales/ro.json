@@ -726,7 +726,17 @@
     "badgeDelegationGranted": "{{to}} poartă acum insigna ta {{tier}}",
     "badgeDelegationGrantFailed": "Insigna nu a putut fi împrumutată",
     "badgeDelegationEnded": "Delegare încheiată",
-    "badgeDelegationEndFailed": "Delegarea nu a putut fi încheiată"
+    "badgeDelegationEndFailed": "Delegarea nu a putut fi încheiată",
+    "resetDeviceLink": "Resetează legătura contului cu dispozitivul",
+    "resetDeviceLinkDesc": "Vezi aici alt cont decât pe site? Repară (fără cheie privată)",
+    "switchAccount": "Schimbă contul",
+    "switchAccountDesc": "Ai cheia privată a contului dorit? Treci direct la el",
+    "notSignedInGoogleEmail": "Nu ești conectat cu Google sau e-mail pe acest dispozitiv.",
+    "resetDeviceLinkTitle": "Resetezi legătura contului cu dispozitivul?",
+    "resetDeviceLinkBody": "Acest telefon va uita ce portofel selectează automat pentru autentificarea ta cu Google/e-mail. Vei fi deconectat, iar la următoarea autentificare ți se va cere să deblochezi portofelul corect cu parola lui (aceeași pe care o folosește site-ul).",
+    "resetAndSignOut": "Resetează și deconectează-te",
+    "deviceLinkReset": "Legătura dispozitivului a fost resetată. Conectează-te din nou pentru a prelua contul corect.",
+    "deviceLinkResetFailed": "Legătura dispozitivului nu a putut fi resetată."
   },
   "common": {
     "mute": "Dezactivează sunetul",
@@ -2642,5 +2652,27 @@
     "timelineReady": "Cronologia ta este gata",
     "dragToTune": "Trage pentru a-ți regla mixul.",
     "save": "Salvează"
+  },
+  "switchAccount": {
+    "intro": "Autentificarea cu Google/e-mail poate recunoaște un SINGUR portofel pentru contul tău la un moment dat. Autentifică-te în schimb cu login-ul VECHI al contului dorit — asta reconstruiește portofelul lui chiar aici, pe telefon, la fel ca „Treci la alt cont vechi” de pe web.",
+    "retrieving": "Se recuperează portofelul vechi…",
+    "oldAccount": "Cont vechi: {{provider}}",
+    "oldEmail": "E-mailul contului vechi",
+    "recoveredWallet": "Portofel recuperat",
+    "alreadyActive": "Acesta este deja portofelul tău activ — nimic de schimbat.",
+    "useSignIn": "Folosește autentificarea în schimb",
+    "pasteKey": "Sau lipește cheia privată manual",
+    "keyOfOther": "Cheia privată a celuilalt cont",
+    "resolvesTo": "Corespunde cu {{address}}",
+    "newPassword": "Parolă nouă (protejează acest portofel de acum înainte, min. {{min}} caractere)",
+    "password": "Parolă",
+    "confirmPassword": "Confirmă parola",
+    "backupWarning": "Asigură-te mai întâi că ai salvat cheia privată a portofelului ACTUAL (Setări → Exportă cheia privată) — după schimbare, acest dispozitiv nu o va mai oferi.",
+    "recoverFailed": "Portofelul vechi nu a putut fi recuperat pe acest dispozitiv. Poți lipi cheia lui privată mai jos în schimb.",
+    "breached": "Această parolă a apărut într-o scurgere de date — alege alta",
+    "stronger": "Alege o parolă mai puternică",
+    "needSignIn": "Trebuie să fii conectat cu Google sau e-mail pentru a schimba contul.",
+    "switched": "Cont schimbat",
+    "failed": "Contul nu a putut fi schimbat. Verifică cheia privată și încearcă din nou."
   }
 }

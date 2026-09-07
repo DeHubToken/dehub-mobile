@@ -506,7 +506,17 @@
     "badgeDelegationGranted": "{{to}} ሕጂ ባጅ {{tier}} ናትካ ለቢሱ",
     "badgeDelegationGrantFailed": "ባጅካ ክለቅሕ ኣይተኻእለን",
     "badgeDelegationEnded": "ውክልና ተወዲኡ",
-    "badgeDelegationEndFailed": "እቲ ውክልና ክውዳእ ኣይተኻእለን"
+    "badgeDelegationEndFailed": "እቲ ውክልና ክውዳእ ኣይተኻእለን",
+    "resetDeviceLink": "ምትእስሳር ሕሳብ መሳርሒ ዳግም ኣቐምጥ",
+    "resetDeviceLinkDesc": "ኣብዚ ካብቲ ወብሳይት ዝፍለ ሕሳብ ትርኢ ኣለኻ? ኣዐርዮ (ብሕታዊ መፍትሕ ኣየድልን)",
+    "switchAccount": "ሕሳብ ቀይር",
+    "switchAccountDesc": "ንእትደልዮ ሕሳብ ብሕታዊ መፍትሕ ኣለካ? ብቐጥታ ናብኡ ቀይር",
+    "notSignedInGoogleEmail": "ኣብዚ መሳርሒ ብGoogle ወይ ኢመይል ኣይኣተኻን።",
+    "resetDeviceLinkTitle": "ምትእስሳር ሕሳብ መሳርሒ ዳግም ክቕመጥ?",
+    "resetDeviceLinkBody": "እዚ ተሌፎን ንGoogle/ኢመይል መእተዊኻ ባዕሉ ዝመርጾ ቦርሳ ክርስዖ እዩ። ክትወጽእ ኢኻ፣ ኣብ ዝቕጽል እትኣትወሉ እዋን ነቲ ቅኑዕ ቦርሳ ብመሕለፊ ቃሉ (እቲ ወብሳይት ዝጥቀመሉ) ክትከፍቶ ክትሕተት ኢኻ።",
+    "resetAndSignOut": "ዳግም ኣቐምጥን ውጻእን",
+    "deviceLinkReset": "ምትእስሳር መሳርሒ ዳግም ተቐሚጡ። ነቲ ቅኑዕ ሕሳብ ንምውሳድ ደጊምካ እቶ።",
+    "deviceLinkResetFailed": "ምትእስሳር መሳርሒ ዳግም ክቕመጥ ኣይተኻእለን።"
   },
   "common": {
     "mute": "ድምጺ ኣጥፍእ",
@@ -2617,5 +2627,27 @@
     "timelineReady": "መስመር ግዜኻ ድሉው እዩ",
     "dragToTune": "ሕውስዋስካ ንምስትኽኻል ስሓብ።",
     "save": "ዓቅብ"
+  },
+  "switchAccount": {
+    "intro": "መእተዊ Google/ኢመይል ንሕሳብካ ብሓደ ግዜ ሓደ ቦርሳ ጥራይ ክፈልጥ ይኽእል። ኣብ ክንድኡ ብናይቲ እትደልዮ ሕሳብ ኣረጊት መእተዊ እቶ — እዚ ነቲ ቦርሳኡ ኣብዚ ተሌፎንካ ዳግም ይሃንጾ፣ ከምቲ ናይ ወብ \"ናብ ካልእ ኣረጊት ሕሳብ ቀይር\"።",
+    "retrieving": "ኣረጊት ቦርሳ ይምጻእ ኣሎ…",
+    "oldAccount": "ኣረጊት ሕሳብ፡ {{provider}}",
+    "oldEmail": "ኢመይል ኣረጊት ሕሳብ",
+    "recoveredWallet": "ዝተመልሰ ቦርሳ",
+    "alreadyActive": "እዚ ድሮ ንጡፍ ቦርሳኻ እዩ — ዝቕየር የለን።",
+    "useSignIn": "ኣብ ክንድኡ መእተዊ ተጠቐም",
+    "pasteKey": "ወይ ብሕታዊ መፍትሕ ብኢድ ልጠፍ",
+    "keyOfOther": "ብሕታዊ መፍትሕ ናይቲ ካልእ ሕሳብ",
+    "resolvesTo": "ናብ {{address}} ይምልስ",
+    "newPassword": "ሓድሽ መሕለፊ ቃል (ካብ ሕጂ ንደሓር ነዚ ቦርሳ ይሕሉ፣ እንተወሓደ {{min}} ፊደላት)",
+    "password": "መሕለፊ ቃል",
+    "confirmPassword": "መሕለፊ ቃል ኣረጋግጽ",
+    "backupWarning": "ፈለማ ብሕታዊ መፍትሕ ናይቲ ሕጂ ዘሎ ቦርሳኻ ከም ዝዓቀብካዮ ኣረጋግጽ (ቅጥዕታት → ብሕታዊ መፍትሕ ስደድ) — ምስ ቀየርካ እዚ መሳርሒ ደጊሙ ኣየቕርቦን።",
+    "recoverFailed": "እታ ኣረጊት ቦርሳ ኣብዚ መሳርሒ ክትምጻእ ኣይተኻእለትን። ኣብ ክንድኡ ብሕታዊ መፍትሓ ኣብ ታሕቲ ክትልጥፍ ትኽእል።",
+    "breached": "እዚ መሕለፊ ቃል ኣብ ምፍሳስ ዳታ ተራእዩ — ካልእ ምረጽ",
+    "stronger": "ዝሓየለ መሕለፊ ቃል ምረጽ",
+    "needSignIn": "ሕሳባት ንምቕያር ብGoogle ወይ ኢመይል ኣቲኻ ክትህሉ ኣለካ።",
+    "switched": "ሕሳብ ተቐዪሩ",
+    "failed": "ሕሳባት ክቕየሩ ኣይተኻእለን። በጃኻ ብሕታዊ መፍትሕ ኣረጋግጽ እሞ ደጊምካ ፈትን።"
   }
 }

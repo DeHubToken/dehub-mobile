@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "Kei te mau a {{to}} i tō tohu {{tier}} ināianei",
     "badgeDelegationGrantFailed": "Kāore i taea te tuku i tō tohu",
     "badgeDelegationEnded": "Kua mutu te tuku",
-    "badgeDelegationEndFailed": "Kāore i taea te whakamutu i te tuku"
+    "badgeDelegationEndFailed": "Kāore i taea te whakamutu i te tuku",
+    "resetDeviceLink": "Tautuhi anō te hono pūkete pūrere",
+    "resetDeviceLinkDesc": "Kei te kite koe i tētahi pūkete rerekē i konei i tērā o te paetukutuku? Whakatikaina (kāore he kī tūmataiti e hiahiatia)",
+    "switchAccount": "Whakawhiti pūkete",
+    "switchAccountDesc": "He kī tūmataiti tāu mō te pūkete e hiahia ana koe? Whakawhiti tika ki reira",
+    "notSignedInGoogleEmail": "Kāore koe i te takiuru mā Google, mā te īmēra rānei i tēnei pūrere.",
+    "resetDeviceLinkTitle": "Tautuhi anō te hono pūkete pūrere?",
+    "resetDeviceLinkBody": "Ka wareware tēnei waea ko tēhea pūkoro e kōwhiria aunoatia ana mō tō takiuru Google/īmēra. Ka takiputa koe, ā, i tō takiuru anō ka tonoa koe kia whakatuwhera i te pūkoro tika me tōna kupuhipa (ko taua mea e whakamahia ana e te paetukutuku).",
+    "resetAndSignOut": "Tautuhi anō, takiputa",
+    "deviceLinkReset": "Kua tautuhia anō te hono pūrere. Takiuru anō kia tīkina te pūkete tika.",
+    "deviceLinkResetFailed": "Kāore i taea te tautuhi anō i te hono pūrere."
   },
   "common": {
     "mute": "Whakangū",
@@ -2625,5 +2635,27 @@
     "timelineReady": "Kua rite tō rārangi wā",
     "dragToTune": "Tōia hei whakatika i tō ranunga.",
     "save": "Tiaki"
+  },
+  "switchAccount": {
+    "intro": "Ka taea e te takiuru Google/īmēra te mōhio ki te pūkoro KOTAHI anake mō tō pūkete i te wā kotahi. Takiuru kē mā te takiuru TAWHITO o te pūkete e hiahia ana koe — ka hanga anō tēnei i tōna pūkoro i konei i tō waea, pēnei i te \"Whakawhiti ki tētahi atu pūkete tawhito\" o te tukutuku.",
+    "retrieving": "E tiki ana i te pūkoro tawhito…",
+    "oldAccount": "Pūkete tawhito: {{provider}}",
+    "oldEmail": "Īmēra pūkete tawhito",
+    "recoveredWallet": "Pūkoro kua whakaora",
+    "alreadyActive": "Ko tō pūkoro hohe kē tēnei — kāore he mea hei whakawhiti.",
+    "useSignIn": "Whakamahia kē te takiuru",
+    "pasteKey": "Whakapiri rānei ā-ringa i te kī tūmataiti",
+    "keyOfOther": "Kī tūmataiti o tērā atu pūkete",
+    "resolvesTo": "Ka whakatau ki {{address}}",
+    "newPassword": "Kupuhipa hou (ka tiaki i tēnei pūkoro ā muri ake, iti rawa {{min}} pūāhua)",
+    "password": "Kupuhipa",
+    "confirmPassword": "Whakaū kupuhipa",
+    "backupWarning": "Kia mōhio kua pūrua e koe te kī tūmataiti o tō pūkoro O NĀIANEI i te tuatahi (Tautuhinga → Kaweake kī tūmataiti) — ka mutu te tuku a tēnei pūrere i taua mea ina whakawhiti koe.",
+    "recoverFailed": "Kāore i taea te tiki i taua pūkoro tawhito i tēnei pūrere. Ka taea kē e koe te whakapiri i tōna kī tūmataiti i raro nei.",
+    "breached": "Kua puta tēnei kupuhipa i tētahi pakaru raraunga — kōwhiria tētahi atu",
+    "stronger": "Kōwhiria he kupuhipa kaha ake",
+    "needSignIn": "Me takiuru koe mā Google, mā te īmēra rānei hei whakawhiti pūkete.",
+    "switched": "Kua whakawhiti te pūkete",
+    "failed": "Kāore i taea te whakawhiti pūkete. Tirohia te kī tūmataiti, ka ngana anō."
   }
 }

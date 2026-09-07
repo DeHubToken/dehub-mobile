@@ -541,7 +541,17 @@
     "badgeDelegationGranted": "{{to}} is now wearing your {{tier}} badge",
     "badgeDelegationGrantFailed": "Could not lend your badge",
     "badgeDelegationEnded": "Delegation ended",
-    "badgeDelegationEndFailed": "Could not end the delegation"
+    "badgeDelegationEndFailed": "Could not end the delegation",
+    "resetDeviceLink": "Reset device account link",
+    "resetDeviceLinkDesc": "Seeing a different account here than on the website? Fix it (no private key needed)",
+    "switchAccount": "Switch account",
+    "switchAccountDesc": "Have a private key for the account you want instead? Switch to it directly",
+    "notSignedInGoogleEmail": "You're not signed in with Google or email on this device.",
+    "resetDeviceLinkTitle": "Reset device account link?",
+    "resetDeviceLinkBody": "This phone will forget which wallet it auto-selects for your Google/email sign-in. You'll be signed out, and next time you sign in you'll be asked to unlock the correct wallet with its password (the same one the website uses).",
+    "resetAndSignOut": "Reset & sign out",
+    "deviceLinkReset": "Device link reset. Sign in again to pick up the right account.",
+    "deviceLinkResetFailed": "Could not reset the device link."
   },
   "common": {
     "mute": "Mute",
@@ -2677,5 +2687,27 @@
     "timelineReady": "Your timeline is ready",
     "dragToTune": "Drag to fine-tune your mix.",
     "save": "Save"
+  },
+  "switchAccount": {
+    "intro": "Google/email sign-in can only recognize ONE wallet for your account at a time. Sign in with the OLD login for the account you want instead — this reconstructs its wallet right here on your phone, same as web's \"Switch to a different old account\".",
+    "retrieving": "Retrieving old wallet…",
+    "oldAccount": "Old account: {{provider}}",
+    "oldEmail": "Old account email",
+    "recoveredWallet": "Recovered wallet",
+    "alreadyActive": "This is already your active wallet — nothing to switch.",
+    "useSignIn": "Use sign-in instead",
+    "pasteKey": "Or paste the private key manually",
+    "keyOfOther": "Private key of the other account",
+    "resolvesTo": "Resolves to {{address}}",
+    "newPassword": "New password (protects this wallet going forward, min {{min}} chars)",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "backupWarning": "Make sure you've backed up the private key of your CURRENT wallet first (Settings → Export Private Key) — this device will stop offering it once you switch.",
+    "recoverFailed": "Could not retrieve that old wallet on this device. You can paste its private key below instead.",
+    "breached": "This password has appeared in a data breach — choose a different one",
+    "stronger": "Choose a stronger password",
+    "needSignIn": "You need to be signed in with Google or email to switch accounts.",
+    "switched": "Switched account",
+    "failed": "Could not switch accounts. Please check the private key and try again."
   }
 }

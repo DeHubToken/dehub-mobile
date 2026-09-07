@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} tagad nēsā tavu {{tier}} nozīmīti",
     "badgeDelegationGrantFailed": "Neizdevās aizdot nozīmīti",
     "badgeDelegationEnded": "Deleģēšana beigta",
-    "badgeDelegationEndFailed": "Neizdevās beigt deleģēšanu"
+    "badgeDelegationEndFailed": "Neizdevās beigt deleģēšanu",
+    "resetDeviceLink": "Atiestatīt ierīces konta saiti",
+    "resetDeviceLinkDesc": "Redzi šeit citu kontu nekā vietnē? Izlabo to (privātā atslēga nav vajadzīga)",
+    "switchAccount": "Mainīt kontu",
+    "switchAccountDesc": "Tev ir vēlamā konta privātā atslēga? Pārslēdzies uz to tieši",
+    "notSignedInGoogleEmail": "Šajā ierīcē tu neesi pierakstījies ar Google vai e-pastu.",
+    "resetDeviceLinkTitle": "Atiestatīt ierīces konta saiti?",
+    "resetDeviceLinkBody": "Šis tālrunis aizmirsīs, kuru maku tas automātiski izvēlas tavai Google/e-pasta pierakstīšanai. Tu tiksi izrakstīts, un nākamreiz pierakstoties tev lūgs atbloķēt pareizo maku ar tā paroli (to pašu, ko izmanto vietne).",
+    "resetAndSignOut": "Atiestatīt un izrakstīties",
+    "deviceLinkReset": "Ierīces saite atiestatīta. Pieraksties vēlreiz, lai iegūtu pareizo kontu.",
+    "deviceLinkResetFailed": "Neizdevās atiestatīt ierīces saiti."
   },
   "common": {
     "mute": "Izslēgt skaņu",
@@ -2628,5 +2638,27 @@
     "timelineReady": "Tava laika josla ir gatava",
     "dragToTune": "Velc, lai precizētu savu miksu.",
     "save": "Saglabāt"
+  },
+  "switchAccount": {
+    "intro": "Google/e-pasta pierakstīšanās vienlaikus atpazīst tikai VIENU maku tavam kontam. Tā vietā pieraksties ar vēlamā konta VECO pieteikšanos — tas atjauno tā maku tieši tavā tālrunī, tāpat kā vietnes \"Pārslēgties uz citu veco kontu\".",
+    "retrieving": "Iegūst veco maku…",
+    "oldAccount": "Vecais konts: {{provider}}",
+    "oldEmail": "Vecā konta e-pasts",
+    "recoveredWallet": "Atjaunotais maks",
+    "alreadyActive": "Šis jau ir tavs aktīvais maks — nav ko pārslēgt.",
+    "useSignIn": "Tā vietā izmantot pierakstīšanos",
+    "pasteKey": "Vai ielīmē privāto atslēgu manuāli",
+    "keyOfOther": "Otra konta privātā atslēga",
+    "resolvesTo": "Atbilst {{address}}",
+    "newPassword": "Jauna parole (turpmāk aizsargā šo maku, min. {{min}} rakstzīmes)",
+    "password": "Parole",
+    "confirmPassword": "Apstiprināt paroli",
+    "backupWarning": "Vispirms pārliecinies, ka esi dublējis sava PAŠREIZĒJĀ maka privāto atslēgu (Iestatījumi → Eksportēt privāto atslēgu) — pēc pārslēgšanas šī ierīce to vairs nepiedāvās.",
+    "recoverFailed": "Neizdevās iegūt to veco maku šajā ierīcē. Tā vietā vari zemāk ielīmēt tā privāto atslēgu.",
+    "breached": "Šī parole ir parādījusies datu noplūdē — izvēlies citu",
+    "stronger": "Izvēlies stiprāku paroli",
+    "needSignIn": "Lai mainītu kontu, tev jābūt pierakstītam ar Google vai e-pastu.",
+    "switched": "Konts mainīts",
+    "failed": "Neizdevās mainīt kontu. Pārbaudi privāto atslēgu un mēģini vēlreiz."
   }
 }

@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} 现在佩戴着你的 {{tier}} 徽章",
     "badgeDelegationGrantFailed": "无法出借你的徽章",
     "badgeDelegationEnded": "委托已结束",
-    "badgeDelegationEndFailed": "无法结束委托"
+    "badgeDelegationEndFailed": "无法结束委托",
+    "resetDeviceLink": "重置设备账户关联",
+    "resetDeviceLinkDesc": "这里显示的账户与网站不同？修复它（无需私钥）",
+    "switchAccount": "切换账户",
+    "switchAccountDesc": "有想要的账户的私钥？直接切换过去",
+    "notSignedInGoogleEmail": "你在此设备上未使用 Google 或邮箱登录。",
+    "resetDeviceLinkTitle": "重置设备账户关联？",
+    "resetDeviceLinkBody": "此手机将忘记为你的 Google/邮箱登录自动选择的钱包。你将被登出，下次登录时需要用密码解锁正确的钱包（与网站相同的密码）。",
+    "resetAndSignOut": "重置并退出",
+    "deviceLinkReset": "设备关联已重置。请重新登录以选取正确的账户。",
+    "deviceLinkResetFailed": "无法重置设备关联。"
   },
   "common": {
     "mute": "静音",
@@ -2679,5 +2689,27 @@
     "timelineReady": "你的时间线已就绪",
     "dragToTune": "拖动以微调你的组合。",
     "save": "保存"
+  },
+  "switchAccount": {
+    "intro": "Google/邮箱登录一次只能识别你账户的一个钱包。请改用你想要的账户的旧登录方式登录，这会在你的手机上重建它的钱包，与网页版的“切换到另一个旧账户”相同。",
+    "retrieving": "正在获取旧钱包…",
+    "oldAccount": "旧账户：{{provider}}",
+    "oldEmail": "旧账户邮箱",
+    "recoveredWallet": "已恢复的钱包",
+    "alreadyActive": "这已经是你当前的钱包，无需切换。",
+    "useSignIn": "改用登录方式",
+    "pasteKey": "或手动粘贴私钥",
+    "keyOfOther": "另一个账户的私钥",
+    "resolvesTo": "对应 {{address}}",
+    "newPassword": "新密码（今后保护此钱包，至少 {{min}} 个字符）",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "backupWarning": "请先确保已备份当前钱包的私钥（设置 → 导出私钥），切换后此设备将不再提供它。",
+    "recoverFailed": "无法在此设备上获取该旧钱包。你可以改为在下方粘贴它的私钥。",
+    "breached": "此密码曾出现在数据泄露中，请换一个",
+    "stronger": "请选择更强的密码",
+    "needSignIn": "你需要使用 Google 或邮箱登录才能切换账户。",
+    "switched": "已切换账户",
+    "failed": "无法切换账户。请检查私钥后重试。"
   }
 }

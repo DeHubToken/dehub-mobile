@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} sekarang memakai lencana {{tier}} Anda",
     "badgeDelegationGrantFailed": "Tidak dapat meminjamkan lencanamu",
     "badgeDelegationEnded": "Delegasi berakhir",
-    "badgeDelegationEndFailed": "Tidak dapat mengakhiri delegasi"
+    "badgeDelegationEndFailed": "Tidak dapat mengakhiri delegasi",
+    "resetDeviceLink": "Setel ulang tautan akun perangkat",
+    "resetDeviceLinkDesc": "Melihat akun berbeda di sini dari di situs web? Perbaiki (tanpa kunci privat)",
+    "switchAccount": "Ganti akun",
+    "switchAccountDesc": "Punya kunci privat untuk akun yang kamu inginkan? Beralih langsung ke sana",
+    "notSignedInGoogleEmail": "Kamu tidak masuk dengan Google atau email di perangkat ini.",
+    "resetDeviceLinkTitle": "Setel ulang tautan akun perangkat?",
+    "resetDeviceLinkBody": "Ponsel ini akan melupakan dompet mana yang dipilih otomatis untuk masuk Google/email Anda. Anda akan keluar, dan saat masuk lagi Anda diminta membuka dompet yang benar dengan kata sandinya (sama seperti yang dipakai situs web).",
+    "resetAndSignOut": "Setel ulang & keluar",
+    "deviceLinkReset": "Tautan perangkat disetel ulang. Masuk lagi untuk mengambil akun yang benar.",
+    "deviceLinkResetFailed": "Tidak dapat menyetel ulang tautan perangkat."
   },
   "common": {
     "mute": "Bisukan",
@@ -2677,5 +2687,27 @@
     "timelineReady": "Linimasa Anda siap",
     "dragToTune": "Seret untuk menyempurnakan campuranmu.",
     "save": "Simpan"
+  },
+  "switchAccount": {
+    "intro": "Masuk Google/email hanya bisa mengenali SATU dompet untuk akunmu pada satu waktu. Masuklah dengan login LAMA akun yang kamu inginkan — ini membangun ulang dompetnya langsung di ponselmu, sama seperti \"Beralih ke akun lama lain\" di web.",
+    "retrieving": "Mengambil dompet lama…",
+    "oldAccount": "Akun lama: {{provider}}",
+    "oldEmail": "Email akun lama",
+    "recoveredWallet": "Dompet yang dipulihkan",
+    "alreadyActive": "Ini sudah dompet aktifmu — tidak ada yang perlu diganti.",
+    "useSignIn": "Gunakan masuk saja",
+    "pasteKey": "Atau tempel kunci privat secara manual",
+    "keyOfOther": "Kunci privat akun lainnya",
+    "resolvesTo": "Menghasilkan {{address}}",
+    "newPassword": "Kata sandi baru (melindungi dompet ini ke depannya, min. {{min}} karakter)",
+    "password": "Kata sandi",
+    "confirmPassword": "Konfirmasi kata sandi",
+    "backupWarning": "Pastikan Anda sudah mencadangkan kunci privat dompet SAAT INI (Pengaturan → Ekspor Kunci Privat) — perangkat ini tidak akan menawarkannya lagi setelah beralih.",
+    "recoverFailed": "Tidak dapat mengambil dompet lama itu di perangkat ini. Kamu bisa menempel kunci privatnya di bawah sebagai gantinya.",
+    "breached": "Kata sandi ini pernah muncul dalam kebocoran data — pilih yang lain",
+    "stronger": "Pilih kata sandi yang lebih kuat",
+    "needSignIn": "Kamu harus masuk dengan Google atau email untuk mengganti akun.",
+    "switched": "Akun diganti",
+    "failed": "Tidak dapat mengganti akun. Periksa kunci privat dan coba lagi."
   }
 }

@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} ara porta la teva insígnia {{tier}}",
     "badgeDelegationGrantFailed": "No s'ha pogut prestar la teva insígnia",
     "badgeDelegationEnded": "Delegació acabada",
-    "badgeDelegationEndFailed": "No s'ha pogut acabar la delegació"
+    "badgeDelegationEndFailed": "No s'ha pogut acabar la delegació",
+    "resetDeviceLink": "Restableix l'enllaç del compte al dispositiu",
+    "resetDeviceLinkDesc": "Veus aquí un compte diferent del web? Arregla-ho (sense clau privada)",
+    "switchAccount": "Canvia de compte",
+    "switchAccountDesc": "Tens la clau privada del compte que vols? Canvia-hi directament",
+    "notSignedInGoogleEmail": "No has iniciat sessió amb Google o correu en aquest dispositiu.",
+    "resetDeviceLinkTitle": "Vols restablir l'enllaç del compte al dispositiu?",
+    "resetDeviceLinkBody": "Aquest telèfon oblidarà quina cartera selecciona automàticament per a l'inici de sessió amb Google/correu. Tancaràs la sessió i, la propera vegada, se't demanarà desbloquejar la cartera correcta amb la seva contrasenya (la mateixa que fa servir el web).",
+    "resetAndSignOut": "Restableix i tanca la sessió",
+    "deviceLinkReset": "Enllaç del dispositiu restablert. Torna a iniciar sessió per agafar el compte correcte.",
+    "deviceLinkResetFailed": "No s'ha pogut restablir l'enllaç del dispositiu."
   },
   "common": {
     "mute": "Silencia",
@@ -2628,5 +2638,27 @@
     "timelineReady": "La teva línia de temps està a punt",
     "dragToTune": "Arrossega per ajustar la teva barreja.",
     "save": "Desa"
+  },
+  "switchAccount": {
+    "intro": "L'inici de sessió amb Google/correu només pot reconèixer UNA cartera per al teu compte alhora. Inicia sessió amb l'inici de sessió ANTIC del compte que vols — això reconstrueix la seva cartera aquí al telèfon, igual que \"Canvia a un altre compte antic\" del web.",
+    "retrieving": "Recuperant la cartera antiga…",
+    "oldAccount": "Compte antic: {{provider}}",
+    "oldEmail": "Correu del compte antic",
+    "recoveredWallet": "Cartera recuperada",
+    "alreadyActive": "Aquesta ja és la teva cartera activa — no hi ha res a canviar.",
+    "useSignIn": "Fes servir l'inici de sessió",
+    "pasteKey": "O enganxa la clau privada manualment",
+    "keyOfOther": "Clau privada de l'altre compte",
+    "resolvesTo": "Correspon a {{address}}",
+    "newPassword": "Contrasenya nova (protegeix aquesta cartera d'ara endavant, mín. {{min}} caràcters)",
+    "password": "Contrasenya",
+    "confirmPassword": "Confirma la contrasenya",
+    "backupWarning": "Assegura't primer d'haver fet còpia de la clau privada de la teva cartera ACTUAL (Configuració → Exporta la clau privada) — aquest dispositiu deixarà d'oferir-la un cop canviïs.",
+    "recoverFailed": "No s'ha pogut recuperar aquella cartera antiga en aquest dispositiu. Pots enganxar-ne la clau privada a sota.",
+    "breached": "Aquesta contrasenya ha aparegut en una filtració de dades — tria'n una altra",
+    "stronger": "Tria una contrasenya més segura",
+    "needSignIn": "Has d'haver iniciat sessió amb Google o correu per canviar de compte.",
+    "switched": "Compte canviat",
+    "failed": "No s'ha pogut canviar de compte. Comprova la clau privada i torna-ho a provar."
   }
 }

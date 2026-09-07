@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} saiki nganggo lencana {{tier}} sampeyan",
     "badgeDelegationGrantFailed": "Ora bisa nyilihake lencanamu",
     "badgeDelegationEnded": "Delegasi rampung",
-    "badgeDelegationEndFailed": "Ora bisa mungkasi delegasi"
+    "badgeDelegationEndFailed": "Ora bisa mungkasi delegasi",
+    "resetDeviceLink": "Reset tautan akun piranti",
+    "resetDeviceLinkDesc": "Ndeleng akun sing beda ing kene karo ing situs web? Ndandani (ora butuh kunci pribadi)",
+    "switchAccount": "Ganti akun",
+    "switchAccountDesc": "Duwe kunci pribadi kanggo akun sing dikarepake? Ganti langsung",
+    "notSignedInGoogleEmail": "Sampeyan ora mlebu nganggo Google utawa email ing piranti iki.",
+    "resetDeviceLinkTitle": "Reset tautan akun piranti?",
+    "resetDeviceLinkBody": "Telpon iki bakal lali dompet endi sing dipilih otomatis kanggo mlebu Google/email sampeyan. Sampeyan bakal metu, lan nalika mlebu maneh bakal dijaluk mbukak dompet sing bener nganggo tembung sandine (padha karo sing dienggo situs web).",
+    "resetAndSignOut": "Reset & metu",
+    "deviceLinkReset": "Tautan piranti wis direset. Mlebu maneh kanggo njupuk akun sing bener.",
+    "deviceLinkResetFailed": "Ora bisa ngreset tautan piranti."
   },
   "common": {
     "mute": "Bisu",
@@ -2628,5 +2638,27 @@
     "timelineReady": "Linimasa sampeyan wis siap",
     "dragToTune": "Seret kanggo nyetel campuranmu.",
     "save": "Simpen"
+  },
+  "switchAccount": {
+    "intro": "Mlebu Google/email mung bisa ngenali SIJI dompet kanggo akunmu sepisan. Mlebua nganggo login LAWAS akun sing dikarepake — iki mbangun maneh dompete ing telponmu, padha karo \"Ganti menyang akun lawas liyane\" ing web.",
+    "retrieving": "Njupuk dompet lawas…",
+    "oldAccount": "Akun lawas: {{provider}}",
+    "oldEmail": "Email akun lawas",
+    "recoveredWallet": "Dompet sing dipulihake",
+    "alreadyActive": "Iki wis dadi dompet aktifmu — ora ana sing kudu diganti.",
+    "useSignIn": "Nganggo mlebu wae",
+    "pasteKey": "Utawa tempel kunci pribadi kanthi manual",
+    "keyOfOther": "Kunci pribadi akun liyane",
+    "resolvesTo": "Dadi {{address}}",
+    "newPassword": "Tembung sandi anyar (nglindhungi dompet iki sabanjure, min. {{min}} karakter)",
+    "password": "Tembung sandi",
+    "confirmPassword": "Konfirmasi tembung sandi",
+    "backupWarning": "Pesthekake dhisik sampeyan wis nggawe cadangan kunci pribadi dompet SAIKI (Setelan → Ekspor kunci pribadi) — piranti iki ora bakal nawakake maneh sawise ganti.",
+    "recoverFailed": "Ora bisa njupuk dompet lawas kasebut ing piranti iki. Sampeyan bisa nempel kunci pribadine ing ngisor.",
+    "breached": "Tembung sandi iki wis tau bocor ing data — pilih liyane",
+    "stronger": "Pilih tembung sandi sing luwih kuwat",
+    "needSignIn": "Sampeyan kudu mlebu nganggo Google utawa email kanggo ganti akun.",
+    "switched": "Akun wis diganti",
+    "failed": "Ora bisa ganti akun. Priksa kunci pribadi lan coba maneh."
   }
 }

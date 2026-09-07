@@ -506,7 +506,17 @@
     "badgeDelegationGranted": "{{to}} indi seniň {{tier}} nyşanyňy dakynýar",
     "badgeDelegationGrantFailed": "Nyşanyňy karz berip bolmady",
     "badgeDelegationEnded": "Tabşyrma gutardy",
-    "badgeDelegationEndFailed": "Tabşyrmany gutaryp bolmady"
+    "badgeDelegationEndFailed": "Tabşyrmany gutaryp bolmady",
+    "resetDeviceLink": "Enjam hasap baglanyşygyny täzeden düz",
+    "resetDeviceLinkDesc": "Bu ýerde web sahypasyndan başga hasap görýärsiňizmi? Düzediň (hususy açar gerek däl)",
+    "switchAccount": "Hasaby çalyş",
+    "switchAccountDesc": "Islän hasabyňyzyň hususy açary barmy? Göni oňa geçiň",
+    "notSignedInGoogleEmail": "Bu enjamda Google ýa-da e-poçta bilen girmediňiz.",
+    "resetDeviceLinkTitle": "Enjam hasap baglanyşygy täzeden düzülsinmi?",
+    "resetDeviceLinkBody": "Bu telefon Google/e-poçta girişiňiz üçin awtomatik saýlaýan gapjygyny ýatdan çykarar. Siz çykarsyňyz we indiki gezek gireniňizde dogry gapjygy onuň paroly bilen (web sahypasynyň ulanýany) açmagyňyz soralar.",
+    "resetAndSignOut": "Täzeden düz we çyk",
+    "deviceLinkReset": "Enjam baglanyşygy täzeden düzüldi. Dogry hasaby almak üçin täzeden giriň.",
+    "deviceLinkResetFailed": "Enjam baglanyşygyny täzeden düzüp bolmady."
   },
   "common": {
     "mute": "Sesi öçür",
@@ -2619,5 +2629,27 @@
     "timelineReady": "Lentaňyz taýýar",
     "dragToTune": "Garyndyňyzy sazlamak üçin süýşüriň.",
     "save": "Ýatda sakla"
+  },
+  "switchAccount": {
+    "intro": "Google/e-poçta girişi hasabyňyz üçin bir wagtda diňe BIR gapjygy tanap bilýär. Muňa derek islän hasabyňyzyň KÖNE girişi bilen giriň — bu onuň gapjygyny şu ýerde telefonyňyzda täzeden gurýar, webdäki \"Başga köne hasaba geç\" ýaly.",
+    "retrieving": "Köne gapjyk alynýar…",
+    "oldAccount": "Köne hasap: {{provider}}",
+    "oldEmail": "Köne hasabyň e-poçtasy",
+    "recoveredWallet": "Dikeldilen gapjyk",
+    "alreadyActive": "Bu eýýäm siziň işjeň gapjygyňyz — çalyşmaly zat ýok.",
+    "useSignIn": "Muňa derek girişi ulanyň",
+    "pasteKey": "Ýa-da hususy açary el bilen goýuň",
+    "keyOfOther": "Beýleki hasabyň hususy açary",
+    "resolvesTo": "{{address}} salgysyna gabat gelýär",
+    "newPassword": "Täze parol (mundan beýläk bu gapjygy goraýar, iň az {{min}} nyşan)",
+    "password": "Parol",
+    "confirmPassword": "Paroly tassykla",
+    "backupWarning": "Ilki bilen HÄZIRKI gapjygyňyzyň hususy açaryny ätiýaçlandyrandygyňyza göz ýetiriň (Sazlamalar → Hususy açary eksport et) — çalşanyňyzdan soň bu enjam ony teklip etmegini bes eder.",
+    "recoverFailed": "Bu enjamda şol köne gapjygy alyp bolmady. Muňa derek onuň hususy açaryny aşakda goýup bilersiňiz.",
+    "breached": "Bu parol maglumat syzmasynda ýüze çykdy — başgasyny saýlaň",
+    "stronger": "Has güýçli parol saýlaň",
+    "needSignIn": "Hasaplary çalyşmak üçin Google ýa-da e-poçta bilen girmeli.",
+    "switched": "Hasap çalşyldy",
+    "failed": "Hasaplary çalşyp bolmady. Hususy açary barlaň we täzeden synanyşyň."
   }
 }

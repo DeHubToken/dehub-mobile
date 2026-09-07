@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} bærer nu dit {{tier}}-badge",
     "badgeDelegationGrantFailed": "Kunne ikke låne dit badge ud",
     "badgeDelegationEnded": "Delegering afsluttet",
-    "badgeDelegationEndFailed": "Kunne ikke afslutte delegeringen"
+    "badgeDelegationEndFailed": "Kunne ikke afslutte delegeringen",
+    "resetDeviceLink": "Nulstil enhedens kontokobling",
+    "resetDeviceLinkDesc": "Ser du en anden konto her end på hjemmesiden? Ret det (ingen privat nøgle nødvendig)",
+    "switchAccount": "Skift konto",
+    "switchAccountDesc": "Har du en privat nøgle til den konto, du vil have? Skift direkte til den",
+    "notSignedInGoogleEmail": "Du er ikke logget ind med Google eller e-mail på denne enhed.",
+    "resetDeviceLinkTitle": "Nulstil enhedens kontokobling?",
+    "resetDeviceLinkBody": "Denne telefon glemmer, hvilken wallet den automatisk vælger til dit Google/e-mail-login. Du bliver logget ud, og næste gang du logger ind, bliver du bedt om at låse den rigtige wallet op med dens adgangskode (den samme, som hjemmesiden bruger).",
+    "resetAndSignOut": "Nulstil og log ud",
+    "deviceLinkReset": "Enhedskobling nulstillet. Log ind igen for at få den rigtige konto.",
+    "deviceLinkResetFailed": "Kunne ikke nulstille enhedskoblingen."
   },
   "common": {
     "mute": "Slå lyd fra",
@@ -2632,5 +2642,27 @@
     "timelineReady": "Din tidslinje er klar",
     "dragToTune": "Træk for at finjustere dit mix.",
     "save": "Gem"
+  },
+  "switchAccount": {
+    "intro": "Google/e-mail-login kan kun genkende ÉN wallet for din konto ad gangen. Log i stedet ind med det GAMLE login for den konto, du vil have — det genopbygger dens wallet lige her på din telefon, ligesom webbens \"Skift til en anden gammel konto\".",
+    "retrieving": "Henter gammel wallet…",
+    "oldAccount": "Gammel konto: {{provider}}",
+    "oldEmail": "Gammel kontos e-mail",
+    "recoveredWallet": "Gendannet wallet",
+    "alreadyActive": "Dette er allerede din aktive wallet — intet at skifte.",
+    "useSignIn": "Brug login i stedet",
+    "pasteKey": "Eller indsæt den private nøgle manuelt",
+    "keyOfOther": "Privat nøgle til den anden konto",
+    "resolvesTo": "Svarer til {{address}}",
+    "newPassword": "Ny adgangskode (beskytter denne wallet fremover, min. {{min}} tegn)",
+    "password": "Adgangskode",
+    "confirmPassword": "Bekræft adgangskode",
+    "backupWarning": "Sørg først for at have sikkerhedskopieret den private nøgle til din NUVÆRENDE wallet (Indstillinger → Eksportér privat nøgle) — denne enhed holder op med at tilbyde den, når du skifter.",
+    "recoverFailed": "Kunne ikke hente den gamle wallet på denne enhed. Du kan i stedet indsætte dens private nøgle nedenfor.",
+    "breached": "Denne adgangskode er set i et datalæk — vælg en anden",
+    "stronger": "Vælg en stærkere adgangskode",
+    "needSignIn": "Du skal være logget ind med Google eller e-mail for at skifte konto.",
+    "switched": "Konto skiftet",
+    "failed": "Kunne ikke skifte konto. Tjek den private nøgle og prøv igen."
   }
 }

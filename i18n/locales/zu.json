@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} manje ugqoke ibheji lakho le-{{tier}}",
     "badgeDelegationGrantFailed": "Ayikwazanga ukuboleka ibheji lakho",
     "badgeDelegationEnded": "Ukudlulisela kuphelile",
-    "badgeDelegationEndFailed": "Ayikwazanga ukuqeda ukudlulisela"
+    "badgeDelegationEndFailed": "Ayikwazanga ukuqeda ukudlulisela",
+    "resetDeviceLink": "Setha kabusha isixhumanisi se-akhawunti yedivayisi",
+    "resetDeviceLinkDesc": "Ubona i-akhawunti ehlukile lapha kunakuwebhusayithi? Yilungise (akudingeki ukhiye oyimfihlo)",
+    "switchAccount": "Shintsha i-akhawunti",
+    "switchAccountDesc": "Unokhiye oyimfihlo we-akhawunti oyifunayo? Shintshela kuyo ngqo",
+    "notSignedInGoogleEmail": "Awungenanga nge-Google noma i-imeyili kule divayisi.",
+    "resetDeviceLinkTitle": "Setha kabusha isixhumanisi se-akhawunti yedivayisi?",
+    "resetDeviceLinkBody": "Le foni izokhohlwa ukuthi iyiphi isikhwama esizikhethela sona ekungeneni kwakho nge-Google/i-imeyili. Uzophuma, futhi ngesikhathi esilandelayo ungena uzocelwa ukuvula isikhwama esifanele ngephasiwedi yaso (efanayo nesetshenziswa yiwebhusayithi).",
+    "resetAndSignOut": "Setha kabusha bese uphuma",
+    "deviceLinkReset": "Isixhumanisi sedivayisi sisethwe kabusha. Ngena futhi ukuze uthole i-akhawunti efanele.",
+    "deviceLinkResetFailed": "Ayikwazanga ukusetha kabusha isixhumanisi sedivayisi."
   },
   "common": {
     "mute": "Thulisa",
@@ -2659,5 +2669,27 @@
     "timelineReady": "Umugqa wakho wesikhathi usulungile",
     "dragToTune": "Hudula ukuze ulungise ingxube yakho.",
     "save": "Londoloza"
+  },
+  "switchAccount": {
+    "intro": "Ukungena nge-Google/i-imeyili kungabona isikhwama ESISODWA kuphela se-akhawunti yakho ngesikhathi. Esikhundleni salokho ngena ngokungena OKUDALA kwe-akhawunti oyifunayo — lokhu kwakha kabusha isikhwama sayo lapha efonini yakho, njengokuthi \"Shintshela kwenye i-akhawunti endala\" kwewebhu.",
+    "retrieving": "Ilanda isikhwama esidala…",
+    "oldAccount": "I-akhawunti endala: {{provider}}",
+    "oldEmail": "I-imeyili ye-akhawunti endala",
+    "recoveredWallet": "Isikhwama esibuyisiwe",
+    "alreadyActive": "Lesi kakade yisikhwama sakho esisebenzayo — akukho okumele kushintshwe.",
+    "useSignIn": "Sebenzisa ukungena esikhundleni salokho",
+    "pasteKey": "Noma namathisela ukhiye oyimfihlo ngesandla",
+    "keyOfOther": "Ukhiye oyimfihlo wenye i-akhawunti",
+    "resolvesTo": "Ihambisana no-{{address}}",
+    "newPassword": "Iphasiwedi entsha (ivikela lesi sikhwama kusukela manje, okungenani izinhlamvu ezingu-{{min}})",
+    "password": "Iphasiwedi",
+    "confirmPassword": "Qinisekisa iphasiwedi",
+    "backupWarning": "Qiniseka ukuthi uqale wenza ikhophi yokhiye oyimfihlo wesikhwama sakho SAMANJE (Izilungiselelo → Khipha ukhiye oyimfihlo) — le divayisi izoyeka ukuwunikeza uma usushintshile.",
+    "recoverFailed": "Ayikwazanga ukulanda leso sikhwama esidala kule divayisi. Ungananathisela ukhiye waso oyimfihlo ngezansi esikhundleni salokho.",
+    "breached": "Le phasiwedi ivele ekuvuzeni kwedatha — khetha enye",
+    "stronger": "Khetha iphasiwedi eqinile kakhudlwana",
+    "needSignIn": "Udinga ukungena nge-Google noma i-imeyili ukuze ushintshe ama-akhawunti.",
+    "switched": "I-akhawunti ishintshiwe",
+    "failed": "Ayikwazanga ukushintsha ama-akhawunti. Sicela uhlole ukhiye oyimfihlo bese uzama futhi."
   }
 }

@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} agora usa seu emblema {{tier}}",
     "badgeDelegationGrantFailed": "Não foi possível emprestar seu emblema",
     "badgeDelegationEnded": "Delegação encerrada",
-    "badgeDelegationEndFailed": "Não foi possível encerrar a delegação"
+    "badgeDelegationEndFailed": "Não foi possível encerrar a delegação",
+    "resetDeviceLink": "Redefinir o vínculo da conta do dispositivo",
+    "resetDeviceLinkDesc": "Vendo aqui uma conta diferente da do site? Corrija (sem chave privada)",
+    "switchAccount": "Trocar de conta",
+    "switchAccountDesc": "Tem a chave privada da conta que você quer? Troque diretamente para ela",
+    "notSignedInGoogleEmail": "Você não está conectado com Google ou e-mail neste dispositivo.",
+    "resetDeviceLinkTitle": "Redefinir o vínculo da conta do dispositivo?",
+    "resetDeviceLinkBody": "Este celular esquecerá qual carteira seleciona automaticamente para seu login com Google/e-mail. Você será desconectado e, na próxima vez, terá que desbloquear a carteira correta com a senha dela (a mesma que o site usa).",
+    "resetAndSignOut": "Redefinir e sair",
+    "deviceLinkReset": "Vínculo do dispositivo redefinido. Entre novamente para carregar a conta correta.",
+    "deviceLinkResetFailed": "Não foi possível redefinir o vínculo do dispositivo."
   },
   "common": {
     "mute": "Silenciar",
@@ -2681,5 +2691,27 @@
     "timelineReady": "Sua linha do tempo está pronta",
     "dragToTune": "Arraste para ajustar sua mistura.",
     "save": "Salvar"
+  },
+  "switchAccount": {
+    "intro": "O login com Google/e-mail só reconhece UMA carteira para sua conta por vez. Em vez disso, entre com o login ANTIGO da conta que você quer; isso reconstrói a carteira dela aqui no seu celular, igual ao \"Trocar para outra conta antiga\" da web.",
+    "retrieving": "Recuperando a carteira antiga…",
+    "oldAccount": "Conta antiga: {{provider}}",
+    "oldEmail": "E-mail da conta antiga",
+    "recoveredWallet": "Carteira recuperada",
+    "alreadyActive": "Esta já é sua carteira ativa; nada a trocar.",
+    "useSignIn": "Usar o login em vez disso",
+    "pasteKey": "Ou cole a chave privada manualmente",
+    "keyOfOther": "Chave privada da outra conta",
+    "resolvesTo": "Corresponde a {{address}}",
+    "newPassword": "Nova senha (protege esta carteira daqui em diante, mín. {{min}} caracteres)",
+    "password": "Senha",
+    "confirmPassword": "Confirmar senha",
+    "backupWarning": "Primeiro, garanta que fez backup da chave privada da sua carteira ATUAL (Configurações → Exportar chave privada); este dispositivo deixará de oferecê-la quando você trocar.",
+    "recoverFailed": "Não foi possível recuperar essa carteira antiga neste dispositivo. Em vez disso, você pode colar a chave privada dela abaixo.",
+    "breached": "Esta senha apareceu em um vazamento de dados; escolha outra",
+    "stronger": "Escolha uma senha mais forte",
+    "needSignIn": "Você precisa estar conectado com Google ou e-mail para trocar de conta.",
+    "switched": "Conta trocada",
+    "failed": "Não foi possível trocar de conta. Verifique a chave privada e tente novamente."
   }
 }

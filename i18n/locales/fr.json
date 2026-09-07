@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} porte maintenant votre badge {{tier}}",
     "badgeDelegationGrantFailed": "Impossible de prêter votre badge",
     "badgeDelegationEnded": "Délégation terminée",
-    "badgeDelegationEndFailed": "Impossible de terminer la délégation"
+    "badgeDelegationEndFailed": "Impossible de terminer la délégation",
+    "resetDeviceLink": "Réinitialiser le lien de compte de l'appareil",
+    "resetDeviceLinkDesc": "Vous voyez ici un compte différent de celui du site ? Corrigez-le (sans clé privée)",
+    "switchAccount": "Changer de compte",
+    "switchAccountDesc": "Vous avez la clé privée du compte souhaité ? Passez-y directement",
+    "notSignedInGoogleEmail": "Vous n'êtes pas connecté avec Google ou l'e-mail sur cet appareil.",
+    "resetDeviceLinkTitle": "Réinitialiser le lien de compte de l'appareil ?",
+    "resetDeviceLinkBody": "Ce téléphone oubliera quel portefeuille il sélectionne automatiquement pour votre connexion Google/e-mail. Vous serez déconnecté et, à la prochaine connexion, il vous sera demandé de déverrouiller le bon portefeuille avec son mot de passe (le même que sur le site).",
+    "resetAndSignOut": "Réinitialiser et se déconnecter",
+    "deviceLinkReset": "Lien de l'appareil réinitialisé. Reconnectez-vous pour récupérer le bon compte.",
+    "deviceLinkResetFailed": "Impossible de réinitialiser le lien de l'appareil."
   },
   "common": {
     "mute": "Couper le son",
@@ -2681,5 +2691,27 @@
     "timelineReady": "Votre fil est prêt",
     "dragToTune": "Faites glisser pour affiner votre mix.",
     "save": "Enregistrer"
+  },
+  "switchAccount": {
+    "intro": "La connexion Google/e-mail ne peut reconnaître qu'UN seul portefeuille pour votre compte à la fois. Connectez-vous plutôt avec l'ANCIENNE méthode du compte souhaité — cela reconstruit son portefeuille ici, sur votre téléphone, comme « Passer à un autre ancien compte » sur le web.",
+    "retrieving": "Récupération de l'ancien portefeuille…",
+    "oldAccount": "Ancien compte : {{provider}}",
+    "oldEmail": "E-mail de l'ancien compte",
+    "recoveredWallet": "Portefeuille récupéré",
+    "alreadyActive": "C'est déjà votre portefeuille actif — rien à changer.",
+    "useSignIn": "Utiliser plutôt la connexion",
+    "pasteKey": "Ou coller la clé privée manuellement",
+    "keyOfOther": "Clé privée de l'autre compte",
+    "resolvesTo": "Correspond à {{address}}",
+    "newPassword": "Nouveau mot de passe (protège ce portefeuille désormais, min. {{min}} caractères)",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "backupWarning": "Assurez-vous d'abord d'avoir sauvegardé la clé privée de votre portefeuille ACTUEL (Réglages → Exporter la clé privée) — cet appareil cessera de la proposer une fois le changement effectué.",
+    "recoverFailed": "Impossible de récupérer cet ancien portefeuille sur cet appareil. Vous pouvez plutôt coller sa clé privée ci-dessous.",
+    "breached": "Ce mot de passe est apparu dans une fuite de données — choisissez-en un autre",
+    "stronger": "Choisissez un mot de passe plus fort",
+    "needSignIn": "Vous devez être connecté avec Google ou l'e-mail pour changer de compte.",
+    "switched": "Compte changé",
+    "failed": "Impossible de changer de compte. Vérifiez la clé privée et réessayez."
   }
 }

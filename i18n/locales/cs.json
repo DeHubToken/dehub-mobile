@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} nyní nosí váš odznak {{tier}}",
     "badgeDelegationGrantFailed": "Odznak se nepodařilo půjčit",
     "badgeDelegationEnded": "Delegování ukončeno",
-    "badgeDelegationEndFailed": "Delegování se nepodařilo ukončit"
+    "badgeDelegationEndFailed": "Delegování se nepodařilo ukončit",
+    "resetDeviceLink": "Resetovat propojení účtu se zařízením",
+    "resetDeviceLinkDesc": "Vidíte zde jiný účet než na webu? Opravte to (bez soukromého klíče)",
+    "switchAccount": "Přepnout účet",
+    "switchAccountDesc": "Máte soukromý klíč k účtu, který chcete? Přepněte na něj přímo",
+    "notSignedInGoogleEmail": "Na tomto zařízení nejste přihlášeni přes Google ani e-mail.",
+    "resetDeviceLinkTitle": "Resetovat propojení účtu se zařízením?",
+    "resetDeviceLinkBody": "Tento telefon zapomene, kterou peněženku automaticky vybírá pro přihlášení přes Google/e-mail. Budete odhlášeni a při dalším přihlášení budete vyzváni k odemknutí správné peněženky jejím heslem (stejným, jaké používá web).",
+    "resetAndSignOut": "Resetovat a odhlásit",
+    "deviceLinkReset": "Propojení zařízení resetováno. Přihlaste se znovu, aby se načetl správný účet.",
+    "deviceLinkResetFailed": "Propojení zařízení se nepodařilo resetovat."
   },
   "common": {
     "mute": "Ztlumit",
@@ -2632,5 +2642,27 @@
     "timelineReady": "Vaše časová osa je připravená",
     "dragToTune": "Tažením dolaďte svůj mix.",
     "save": "Uložit"
+  },
+  "switchAccount": {
+    "intro": "Přihlášení přes Google/e-mail dokáže pro váš účet rozpoznat jen JEDNU peněženku najednou. Přihlaste se místo toho STARÝM přihlášením účtu, který chcete — tím se jeho peněženka obnoví přímo tady v telefonu, stejně jako webové „Přepnout na jiný starý účet“.",
+    "retrieving": "Načítání staré peněženky…",
+    "oldAccount": "Starý účet: {{provider}}",
+    "oldEmail": "E-mail starého účtu",
+    "recoveredWallet": "Obnovená peněženka",
+    "alreadyActive": "Toto už je vaše aktivní peněženka — není co přepínat.",
+    "useSignIn": "Použít místo toho přihlášení",
+    "pasteKey": "Nebo vložte soukromý klíč ručně",
+    "keyOfOther": "Soukromý klíč druhého účtu",
+    "resolvesTo": "Odpovídá {{address}}",
+    "newPassword": "Nové heslo (od teď chrání tuto peněženku, min. {{min}} znaků)",
+    "password": "Heslo",
+    "confirmPassword": "Potvrdit heslo",
+    "backupWarning": "Nejprve se ujistěte, že máte zálohovaný soukromý klíč své SOUČASNÉ peněženky (Nastavení → Exportovat soukromý klíč) — po přepnutí ho toto zařízení přestane nabízet.",
+    "recoverFailed": "Starou peněženku se na tomto zařízení nepodařilo načíst. Místo toho můžete níže vložit její soukromý klíč.",
+    "breached": "Toto heslo se objevilo v úniku dat — zvolte jiné",
+    "stronger": "Zvolte silnější heslo",
+    "needSignIn": "Pro přepnutí účtu musíte být přihlášeni přes Google nebo e-mail.",
+    "switched": "Účet přepnut",
+    "failed": "Účet se nepodařilo přepnout. Zkontrolujte soukromý klíč a zkuste to znovu."
   }
 }

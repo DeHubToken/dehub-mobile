@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} ahora lleva tu insignia {{tier}}",
     "badgeDelegationGrantFailed": "No se pudo prestar tu insignia",
     "badgeDelegationEnded": "Delegación terminada",
-    "badgeDelegationEndFailed": "No se pudo terminar la delegación"
+    "badgeDelegationEndFailed": "No se pudo terminar la delegación",
+    "resetDeviceLink": "Restablecer el vínculo de cuenta del dispositivo",
+    "resetDeviceLinkDesc": "¿Ves aquí una cuenta distinta a la del sitio web? Arréglalo (sin clave privada)",
+    "switchAccount": "Cambiar de cuenta",
+    "switchAccountDesc": "¿Tienes la clave privada de la cuenta que quieres? Cambia a ella directamente",
+    "notSignedInGoogleEmail": "No has iniciado sesión con Google o correo en este dispositivo.",
+    "resetDeviceLinkTitle": "¿Restablecer el vínculo de cuenta del dispositivo?",
+    "resetDeviceLinkBody": "Este teléfono olvidará qué billetera selecciona automáticamente para tu inicio de sesión con Google/correo. Se cerrará tu sesión y, la próxima vez, se te pedirá desbloquear la billetera correcta con su contraseña (la misma que usa el sitio web).",
+    "resetAndSignOut": "Restablecer y cerrar sesión",
+    "deviceLinkReset": "Vínculo del dispositivo restablecido. Vuelve a iniciar sesión para cargar la cuenta correcta.",
+    "deviceLinkResetFailed": "No se pudo restablecer el vínculo del dispositivo."
   },
   "common": {
     "mute": "Silenciar",
@@ -2677,5 +2687,27 @@
     "timelineReady": "Tu línea de tiempo está lista",
     "dragToTune": "Arrastra para afinar tu mezcla.",
     "save": "Guardar"
+  },
+  "switchAccount": {
+    "intro": "El inicio de sesión con Google/correo solo puede reconocer UNA billetera para tu cuenta a la vez. Inicia sesión con el acceso ANTIGUO de la cuenta que quieres; esto reconstruye su billetera aquí en tu teléfono, igual que \"Cambiar a otra cuenta antigua\" en la web.",
+    "retrieving": "Recuperando la billetera antigua…",
+    "oldAccount": "Cuenta antigua: {{provider}}",
+    "oldEmail": "Correo de la cuenta antigua",
+    "recoveredWallet": "Billetera recuperada",
+    "alreadyActive": "Esta ya es tu billetera activa; no hay nada que cambiar.",
+    "useSignIn": "Usar el inicio de sesión",
+    "pasteKey": "O pega la clave privada manualmente",
+    "keyOfOther": "Clave privada de la otra cuenta",
+    "resolvesTo": "Corresponde a {{address}}",
+    "newPassword": "Contraseña nueva (protege esta billetera de ahora en adelante, mín. {{min}} caracteres)",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "backupWarning": "Asegúrate primero de haber respaldado la clave privada de tu billetera ACTUAL (Ajustes → Exportar clave privada); este dispositivo dejará de ofrecerla cuando cambies.",
+    "recoverFailed": "No se pudo recuperar esa billetera antigua en este dispositivo. Puedes pegar su clave privada abajo en su lugar.",
+    "breached": "Esta contraseña apareció en una filtración de datos; elige otra",
+    "stronger": "Elige una contraseña más segura",
+    "needSignIn": "Debes haber iniciado sesión con Google o correo para cambiar de cuenta.",
+    "switched": "Cuenta cambiada",
+    "failed": "No se pudo cambiar de cuenta. Revisa la clave privada e inténtalo de nuevo."
   }
 }

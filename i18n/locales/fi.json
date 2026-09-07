@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} kantaa nyt {{tier}}-merkkiäsi",
     "badgeDelegationGrantFailed": "Merkkiäsi ei voitu lainata",
     "badgeDelegationEnded": "Delegointi lopetettu",
-    "badgeDelegationEndFailed": "Delegointia ei voitu lopettaa"
+    "badgeDelegationEndFailed": "Delegointia ei voitu lopettaa",
+    "resetDeviceLink": "Nollaa laitteen tililinkitys",
+    "resetDeviceLinkDesc": "Näetkö täällä eri tilin kuin sivustolla? Korjaa se (yksityistä avainta ei tarvita)",
+    "switchAccount": "Vaihda tiliä",
+    "switchAccountDesc": "Onko sinulla haluamasi tilin yksityinen avain? Vaihda siihen suoraan",
+    "notSignedInGoogleEmail": "Et ole kirjautunut Googlella tai sähköpostilla tällä laitteella.",
+    "resetDeviceLinkTitle": "Nollataanko laitteen tililinkitys?",
+    "resetDeviceLinkBody": "Tämä puhelin unohtaa, minkä lompakon se valitsee automaattisesti Google/sähköposti-kirjautumiseesi. Sinut kirjataan ulos, ja seuraavalla kerralla sinua pyydetään avaamaan oikea lompakko sen salasanalla (samalla, jota sivusto käyttää).",
+    "resetAndSignOut": "Nollaa ja kirjaudu ulos",
+    "deviceLinkReset": "Laitelinkitys nollattu. Kirjaudu uudelleen saadaksesi oikean tilin.",
+    "deviceLinkResetFailed": "Laitelinkitystä ei voitu nollata."
   },
   "common": {
     "mute": "Mykistä",
@@ -2628,5 +2638,27 @@
     "timelineReady": "Aikajanasi on valmis",
     "dragToTune": "Vedä hienosäätääksesi sekoitustasi.",
     "save": "Tallenna"
+  },
+  "switchAccount": {
+    "intro": "Google/sähköposti-kirjautuminen tunnistaa tilillesi vain YHDEN lompakon kerrallaan. Kirjaudu sen sijaan haluamasi tilin VANHALLA kirjautumisella — se rakentaa lompakon uudelleen tähän puhelimeesi, kuten verkon \"Vaihda toiseen vanhaan tiliin\".",
+    "retrieving": "Haetaan vanhaa lompakkoa…",
+    "oldAccount": "Vanha tili: {{provider}}",
+    "oldEmail": "Vanhan tilin sähköposti",
+    "recoveredWallet": "Palautettu lompakko",
+    "alreadyActive": "Tämä on jo aktiivinen lompakkosi — ei mitään vaihdettavaa.",
+    "useSignIn": "Käytä sen sijaan kirjautumista",
+    "pasteKey": "Tai liitä yksityinen avain käsin",
+    "keyOfOther": "Toisen tilin yksityinen avain",
+    "resolvesTo": "Vastaa osoitetta {{address}}",
+    "newPassword": "Uusi salasana (suojaa tätä lompakkoa jatkossa, väh. {{min}} merkkiä)",
+    "password": "Salasana",
+    "confirmPassword": "Vahvista salasana",
+    "backupWarning": "Varmista ensin, että olet varmuuskopioinut NYKYISEN lompakkosi yksityisen avaimen (Asetukset → Vie yksityinen avain) — tämä laite lakkaa tarjoamasta sitä vaihdon jälkeen.",
+    "recoverFailed": "Vanhaa lompakkoa ei voitu hakea tällä laitteella. Voit sen sijaan liittää sen yksityisen avaimen alle.",
+    "breached": "Tämä salasana on esiintynyt tietovuodossa — valitse toinen",
+    "stronger": "Valitse vahvempi salasana",
+    "needSignIn": "Sinun on oltava kirjautunut Googlella tai sähköpostilla vaihtaaksesi tiliä.",
+    "switched": "Tili vaihdettu",
+    "failed": "Tiliä ei voitu vaihtaa. Tarkista yksityinen avain ja yritä uudelleen."
   }
 }

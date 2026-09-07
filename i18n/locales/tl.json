@@ -960,7 +960,17 @@
     "badgeDelegationGranted": "Suot na ni {{to}} ang iyong {{tier}} badge",
     "badgeDelegationGrantFailed": "Hindi maipahiram ang badge mo",
     "badgeDelegationEnded": "Natapos ang pagpapahiram",
-    "badgeDelegationEndFailed": "Hindi matapos ang pagpapahiram"
+    "badgeDelegationEndFailed": "Hindi matapos ang pagpapahiram",
+    "resetDeviceLink": "I-reset ang link ng account sa device",
+    "resetDeviceLinkDesc": "May ibang account na nakikita dito kaysa sa website? Ayusin ito (hindi kailangan ng private key)",
+    "switchAccount": "Magpalit ng account",
+    "switchAccountDesc": "May private key ka ng account na gusto mo? Direktang lumipat dito",
+    "notSignedInGoogleEmail": "Hindi ka naka-sign in gamit ang Google o email sa device na ito.",
+    "resetDeviceLinkTitle": "I-reset ang link ng account sa device?",
+    "resetDeviceLinkBody": "Makakalimutan ng phone na ito kung aling wallet ang awtomatikong pinipili para sa iyong Google/email sign-in. Masa-sign out ka, at sa susunod na pag-sign in ay hihilingin sa iyong i-unlock ang tamang wallet gamit ang password nito (kapareho ng ginagamit ng website).",
+    "resetAndSignOut": "I-reset at mag-sign out",
+    "deviceLinkReset": "Na-reset ang link ng device. Mag-sign in muli para makuha ang tamang account.",
+    "deviceLinkResetFailed": "Hindi ma-reset ang link ng device."
   },
   "postOptions": {
     "options": "Options",
@@ -2812,5 +2822,27 @@
     "timelineReady": "Handa na ang iyong timeline",
     "dragToTune": "I-drag para ayusin ang iyong mix.",
     "save": "I-save"
+  },
+  "switchAccount": {
+    "intro": "Ang Google/email sign-in ay nakakakilala lamang ng ISANG wallet para sa iyong account sa isang pagkakataon. Sa halip, mag-sign in gamit ang LUMANG login ng account na gusto mo — muling binubuo nito ang wallet nito dito mismo sa iyong phone, kapareho ng \"Lumipat sa ibang lumang account\" sa web.",
+    "retrieving": "Kinukuha ang lumang wallet…",
+    "oldAccount": "Lumang account: {{provider}}",
+    "oldEmail": "Email ng lumang account",
+    "recoveredWallet": "Na-recover na wallet",
+    "alreadyActive": "Ito na ang iyong aktibong wallet — walang ililipat.",
+    "useSignIn": "Gamitin na lang ang sign-in",
+    "pasteKey": "O manu-manong i-paste ang private key",
+    "keyOfOther": "Private key ng kabilang account",
+    "resolvesTo": "Tumutugma sa {{address}}",
+    "newPassword": "Bagong password (pinoprotektahan ang wallet na ito mula ngayon, min. {{min}} character)",
+    "password": "Password",
+    "confirmPassword": "Kumpirmahin ang password",
+    "backupWarning": "Tiyaking na-back up mo muna ang private key ng iyong KASALUKUYANG wallet (Settings → Export Private Key) — hindi na ito iaalok ng device na ito kapag lumipat ka.",
+    "recoverFailed": "Hindi makuha ang lumang wallet na iyon sa device na ito. Maaari mong i-paste ang private key nito sa ibaba sa halip.",
+    "breached": "Lumabas ang password na ito sa isang data breach — pumili ng iba",
+    "stronger": "Pumili ng mas matibay na password",
+    "needSignIn": "Kailangan mong naka-sign in gamit ang Google o email para magpalit ng account.",
+    "switched": "Napalitan ang account",
+    "failed": "Hindi mapalitan ang account. Pakisuri ang private key at subukang muli."
   }
 }
