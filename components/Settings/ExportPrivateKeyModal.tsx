@@ -35,6 +35,14 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
   const { t } = useTranslation();
   const { ensureProvider } = useAuthActions();
   const { providerStatus, provider, authMethod } = useProvider();
+  // The fetch below awaits ensureProvider() and then needs the provider that
+  // call produced; the render closure still holds the pre-call value, which
+  // made the first attempt fail whenever the provider was not already ready.
+  const providerRef = useRef<{ status: typeof providerStatus; provider: typeof provider }>({
+    status: providerStatus,
+    provider,
+  });
+  providerRef.current = { status: providerStatus, provider };
   const isLocal = useMemo(() => authMethod === 'local', [authMethod]);
   const [step, setStep] = useState<Step>("warn");
   const [confirmText, setConfirmText] = useState<string>("");
@@ -74,9 +82,16 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
         );
       }
       await ensureProvider();
-      const ready = providerStatus === "ready" && provider;
+      // The provider lands in context state; give React a few frames to
+      // commit it before giving up.
+      let live = providerRef.current;
+      for (let i = 0; i < 20 && !(live.status === "ready" && live.provider); i += 1) {
+        await new Promise((r) => setTimeout(r, 50));
+        live = providerRef.current;
+      }
+      const ready = live.status === "ready" && live.provider;
       if (!ready) throw new Error("Wallet provider is not ready");
-      const pk = await (provider as any)?.request?.({ method: "private_key" });
+      const pk = await (live.provider as any)?.request?.({ method: "private_key" });
       if (!pk || typeof pk !== "string")
         throw new Error("Could not retrieve private key");
       setPrivateKey(pk);
