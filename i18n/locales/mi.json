@@ -1130,7 +1130,9 @@
       "joined": "{{name}} hono atu ki to hapori",
       "requested": "{{name}} ka tono kia uru atu ki to hapori",
       "mentioned": "{{name}} korero ki a koe i roto i te hapori",
-      "here": "{{name}} karere katoa i roto i te hapori"
+      "here": "{{name}} karere katoa i roto i te hapori",
+      "joinedNamed": "{{name}} hono {{community}}",
+      "hereNamed": "{{name}} karere katoa i roto i {{community}}"
     }
   },
   "leaderboard": {

@@ -1185,7 +1185,17 @@
     "payments": "پۇل تۆلەش",
     "claimBounty": "مۇكاپاتىڭىزنى ئېلىڭ",
     "noneForFilter": "تېخى {{filter}} ئۇقتۇرۇشى يوق.",
-    "andNOthers": "ۋە باشقا {{count}} كىشى"
+    "andNOthers": "ۋە باشقا {{count}} كىشى",
+    "community": {
+      "joined": "{{name}} جەمئىيىتىڭىزگە قوشۇلدى",
+      "joinedNamed": "{{name}} قوشۇلدى \"{{community}}\"",
+      "requested": "{{name}} جەمئىيىتىڭىزگە قوشۇلۇشنى تەلەپ قىلدى",
+      "requestedNamed": "{{name}}\" {{community}} \"گە قوشۇلۇشنى تەلەپ قىلدى",
+      "mentioned": "{{name}} بىر جەمئىيەتتە سىزنى تىلغا ئالغان",
+      "mentionedNamed": "{{name}}\" {{community}} \"دا سىزنى تىلغا ئالغان",
+      "here": "{{name}} جەمئىيەتتىكى ھەممە ئادەمنى خەۋەرلەندۈردى",
+      "hereNamed": "{{name}} ھەممىگە \"{{community}}\" دەپ ئۇچۇر يوللىدى"
+    }
   },
   "messages": {
     "smartRepliesOff": "تەۋسىيە جاۋابلار ئېتىلدى",

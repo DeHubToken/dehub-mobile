@@ -1143,7 +1143,10 @@
       "joinedNamed": "{{name}} далучана “{{community}}”",
       "requestedNamed": "{{name}} папрасіў далучыцца да “{{community}}”",
       "mentionedNamed": "{{name}} згадваецца ў «{{community}}»",
-      "hereNamed": "{{name}} паведамляў усім у «{{community}}»"
+      "hereNamed": "{{name}} паведамляў усім у «{{community}}»",
+      "requested": "{{name}} папрасілі далучыцца да вашай суполкі",
+      "mentioned": "{{name}} згадваў вас у супольнасці",
+      "here": "{{name}} паведамляў усім у супольнасці"
     }
   },
   "leaderboard": {

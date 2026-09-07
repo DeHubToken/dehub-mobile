@@ -1144,7 +1144,9 @@
       "requested": "{{name}} បានស្នើសុំឱ្យចូលរួមសហគមន៍របស់អ្នក",
       "mentioned": "{{name}} @ បានលើកឡើងពីអ្នកនៅក្នុងសហគមន៍មួយ",
       "here": "{{name}} @ បានផ្ញើសារទៅគ្រប់គ្នានៅក្នុងសហគមន៍",
-      "hereNamed": "{{name}} @ បានផ្ញើសារទៅអ្នករាល់គ្នានៅក្នុង \"{{community}}\""
+      "hereNamed": "{{name}} @ បានផ្ញើសារទៅអ្នករាល់គ្នានៅក្នុង \"{{community}}\"",
+      "requestedNamed": "{{name}} បានស្នើសុំឱ្យចូលរួម \"{{community}}\"",
+      "mentionedNamed": "{{name}} បានលើកឡើងអ្នកនៅក្នុង \"{{community}}\""
     }
   },
   "leaderboard": {

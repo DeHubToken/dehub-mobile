@@ -215,7 +215,8 @@
       "mentioned": "{{name}} meld jou in 'n gemeenskap aan",
       "mentionedNamed": "{{name}} @ vermeld jy in \"{{community}}\"",
       "here": "{{name}} almal in die gemeenskap",
-      "hereNamed": "{{name}} @ boodskap almal in \"{{community}}\""
+      "hereNamed": "{{name}} @ boodskap almal in \"{{community}}\"",
+      "joinedNamed": "{{name}} het by “{{community}}” aangesluit"
     }
   },
   "profile": {
