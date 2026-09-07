@@ -1598,7 +1598,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               entering={FadeIn.duration(200)}
               exiting={FadeOut.duration(150)}
               className="absolute right-4"
-              style={{ bottom: inputLift + 100 }}
+              // Sit on the measured composer, not a fixed 100pt: with the
+              // suggested-replies tray or a reply strip the composer is ~200pt
+              // tall and paints over the pill.
+              style={{ bottom: inputBarHeight + inputLift + 12 }}
             >
               <TouchableOpacity
                 onPress={scrollToBottom}
