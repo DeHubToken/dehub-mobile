@@ -17,6 +17,7 @@
  * on a profile are the only two places that say otherwise.
  */
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, Text, Image, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import Icon from '../ui/Icon';
 import { SettingsSection, Divider } from './SettingsPrimitives';
@@ -43,7 +44,9 @@ const DelegationRow: React.FC<{
   label: string;
   ending: boolean;
   onEnd: () => void;
-}> = ({ entry, label, ending, onEnd }) => (
+}> = ({ entry, label, ending, onEnd }) => {
+  const { t } = useTranslation();
+  return (
   <View className="px-4 py-3.5 flex-row items-center">
     <View className="flex-1 mr-2">
       <Text className="text-white text-sm font-mono">{truncateAddress(entry.address, 8, 6)}</Text>
@@ -56,7 +59,7 @@ const DelegationRow: React.FC<{
       onPress={onEnd}
       disabled={ending}
       activeOpacity={0.7}
-      accessibilityLabel={`End delegation with ${entry.address}`}
+      accessibilityLabel={t('settings.badgeDelegationEnd', { address: entry.address })}
       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
     >
       {ending ? (
@@ -66,9 +69,11 @@ const DelegationRow: React.FC<{
       )}
     </TouchableOpacity>
   </View>
-);
+  );
+};
 
 const BadgeDelegationSection: React.FC = () => {
+  const { t } = useTranslation();
   const { data, isLoading } = useBadgeDelegations();
   const grant = useGrantDelegation();
   const revoke = useRevokeDelegation();
@@ -87,32 +92,27 @@ const BadgeDelegationSection: React.FC = () => {
 
   return (
     <SettingsSection
-      label="Badge delegation"
+      label={t('settings.badgeDelegation')}
       icon="Award"
       note={
         data.ownTier
-          ? 'A slot lends your own badge to another account. Take it back whenever you like — the slot frees up a day later.'
-          : 'Delegation slots come with a staking badge. Stake DHB to earn one.'
+          ? t('settings.badgeDelegationNote')
+          : t('settings.badgeDelegationNoBadge')
       }
     >
       <View className="px-4 py-3.5">
         {data.ownTier ? (
           <Text className="text-theme-neutrals-400 text-xs leading-5">
-            Your <Text className="text-white">{data.ownTier}</Text> badge carries{' '}
-            <Text className="text-white">
-              {data.slots} slot{data.slots === 1 ? '' : 's'}
-            </Text>
-            , {slotsFree} free.
-            <Text>
-              {' '}
-              Each one lends another account your own{' '}
-              <Text className="text-white">{data.grantableTier ?? data.ownTier}</Text> badge — they
-              wear what you wear.
-            </Text>
+            {t('settings.badgeDelegationSlots', {
+              count: data.slots,
+              tier: data.ownTier,
+              free: slotsFree,
+            })}{' '}
+            {t('settings.badgeDelegationLends', { tier: data.grantableTier ?? data.ownTier })}
           </Text>
         ) : (
           <Text className="text-theme-neutrals-400 text-xs leading-5">
-            Stake DHB to earn a badge, and it comes with a slot for every tier you climb.
+            {t('settings.badgeDelegationEarn')}
           </Text>
         )}
       </View>
@@ -124,7 +124,7 @@ const BadgeDelegationSection: React.FC = () => {
             <TextInput
               value={recipient}
               onChangeText={setRecipient}
-              placeholder="Username or wallet address"
+              placeholder={t('settings.badgeDelegationPlaceholder')}
               placeholderTextColor="#52525b"
               autoCapitalize="none"
               autoCorrect={false}
@@ -146,14 +146,14 @@ const BadgeDelegationSection: React.FC = () => {
               {grant.isPending ? (
                 <ActivityIndicator size="small" color="#09090B" />
               ) : (
-                <Text className="text-[#09090B] text-sm font-medium">Lend</Text>
+                <Text className="text-[#09090B] text-sm font-medium">{t('settings.badgeDelegationLend')}</Text>
               )}
             </TouchableOpacity>
           </View>
           {!canGrant ? (
             <View className="px-4 pb-3">
               <Text className="text-theme-neutrals-500 text-xs">
-                Every slot is in use. End one below, or climb a tier for another.
+                {t('settings.badgeDelegationFull')}
               </Text>
             </View>
           ) : null}
@@ -165,7 +165,7 @@ const BadgeDelegationSection: React.FC = () => {
           <Divider />
           <DelegationRow
             entry={entry}
-            label="Wearing your badge"
+            label={t('settings.badgeDelegationWearing')}
             ending={revoke.isPending && revoke.variables === entry.address}
             onEnd={() => revoke.mutate(entry.address)}
           />
@@ -177,7 +177,7 @@ const BadgeDelegationSection: React.FC = () => {
           <Divider />
           <DelegationRow
             entry={data.received}
-            label="Lent to you — tap to hand it back"
+            label={t('settings.badgeDelegationReceived')}
             ending={revoke.isPending && revoke.variables === data.received.address}
             onEnd={() => revoke.mutate(data.received!.address)}
           />
