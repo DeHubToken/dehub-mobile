@@ -58,8 +58,10 @@ interface AssistantBubbleProps {
 /** The floating action row web overlays on generated media. */
 const MediaActions: React.FC<{
   actions: { icon: string; label: string; onPress: () => void }[];
-}> = ({ actions }) => (
-  <View style={s.mediaActions}>
+  /** Top-right for a video: the native controller owns the bottom-right corner. */
+  placement?: 'bottom' | 'top';
+}> = ({ actions, placement = 'bottom' }) => (
+  <View style={[s.mediaActions, placement === 'top' && s.mediaActionsTop]}>
     {actions.map((action) => (
       <TouchableOpacity
         key={action.label}
@@ -103,7 +105,7 @@ const GeneratedVideo: React.FC<{
         nativeControls
         allowsFullscreen
       />
-      {actions.length > 0 && <MediaActions actions={actions} />}
+      {actions.length > 0 && <MediaActions actions={actions} placement="top" />}
     </View>
   );
 };
@@ -327,6 +329,10 @@ const s = StyleSheet.create({
     right: 10,
     flexDirection: 'row',
     gap: 8,
+  },
+  mediaActionsTop: {
+    bottom: undefined,
+    top: 10,
   },
   mediaActionBtn: {
     width: 34,
