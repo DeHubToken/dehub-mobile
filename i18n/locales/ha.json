@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "Walat ɗin bai shirya ba — sake gwadawa bayan ɗan lokaci.",
     "title": "Walat",
     "loginRequired": "Shiga don samun damar walatinka.",
     "addressCopied": "An kwafi adireshi",

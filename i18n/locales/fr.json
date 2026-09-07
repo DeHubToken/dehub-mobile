@@ -715,6 +715,7 @@
     }
   },
   "wallet": {
+    "notReady": "Portefeuille pas prêt — réessayez dans un instant.",
     "title": "Portefeuille",
     "loginRequired": "Connectez-vous pour accéder à votre portefeuille.",
     "addressCopied": "Adresse copiée",

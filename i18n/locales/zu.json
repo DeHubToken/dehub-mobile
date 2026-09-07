@@ -955,6 +955,7 @@
     }
   },
   "wallet": {
+    "notReady": "Isikhwama asikulungele — zama futhi emzuzwini.",
     "title": "Isikhwama",
     "loginRequired": "Ngena ukufinyelela isikhwama sakho.",
     "addressCopied": "Ikheli likopishiwe",

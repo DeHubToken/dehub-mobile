@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "Hamyon tayyor emas — bir ozdan keyin qayta urinib ko'ring.",
     "title": "Hamyon",
     "totalBalance": "Umumiy balans",
     "send": "Yuborish",

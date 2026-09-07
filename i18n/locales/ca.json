@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "La cartera no està a punt: torna-ho a provar d'aquí a un moment.",
     "title": "Cartera",
     "loginRequired": "Inicia sessió per accedir a la teva cartera.",
     "addressCopied": "Adreça copiada",

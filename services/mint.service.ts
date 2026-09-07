@@ -3,6 +3,8 @@ import { applyGasMargin } from "../libs/web3.util";
 import { writeContractAA, writeBatchAA } from "../libs/aa.write";
 import { getAuthMethod } from "../libs/auth.utils";
 import { ethersService } from "./ethers.service";
+import ERC20_ABI from "../config/abis/erc20.json";
+import { prepareDhbSpend } from "../hooks/use-web3";
 
 export type MinimalToken = {
   address: string;
@@ -33,6 +35,24 @@ export async function mintWithBounty(
   if (!controllerContract) throw new Error("Controller contract unavailable");
   const amountBN = toBigAmount(bountyAmount, bountyToken);
   const path = uri ?? `/${createdTokenId}.json`;
+
+  // The controller pulls the WHOLE bounty out of the poster in this call —
+  // amount per person, times everyone who can claim it — with safeTransferFrom.
+  // Nothing here used to approve any of it, so a bounty post reverted with STF
+  // for anyone who had not left a standing allowance behind from some earlier
+  // tip. That was every new poster, every time, and the failure surfaced as a
+  // gas-sponsorship error a long way from the cause.
+  const claimants = Math.max(0, countOfViewers) + Math.max(0, countOfCommentor);
+  const totalBN = amountBN.mul(claimants > 0 ? claimants : 1);
+  if (totalBN.gt(0)) {
+    const token = new ethers.Contract(
+      bountyToken.address,
+      ERC20_ABI as any,
+      controllerContract.signer,
+    );
+    await prepareDhbSpend(token, controllerContract.address, totalBN);
+  }
+
   // Use AA-aware writer; return shim with wait() for caller compatibility
   const res = await writeContractAA(
     controllerContract,

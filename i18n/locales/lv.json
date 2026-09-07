@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "Maks nav gatavs — mēģini vēlreiz pēc brīža.",
     "title": "Maks",
     "loginRequired": "Piesakieties, lai piekļūtu makam.",
     "addressCopied": "Adrese nokopēta",

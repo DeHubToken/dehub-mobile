@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "钱包还未便 — 等蜀下再试。",
     "title": "钱包",
     "loginRequired": "登录来访问你其钱包。",
     "addressCopied": "地址已复制",

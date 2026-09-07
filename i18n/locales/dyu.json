@@ -953,6 +953,7 @@
     }
   },
   "wallet": {
+    "notReady": "Waribon ma labɛn fɔlɔ — a lajɛ tuguni dɔɔnin kɔfɛ.",
     "title": "Kɔrɔbɔ",
     "loginRequired": "Sɔgɔma kɛ",
     "addressCopied": "Kɔrɔbɔ",

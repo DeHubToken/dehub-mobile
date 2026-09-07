@@ -567,6 +567,7 @@
     "payAmount": "Плати {{amount}} {{currency}}"
   },
   "wallet": {
+    "notReady": "Портфейлът не е готов — опитайте отново след малко.",
     "title": "Портфейл",
     "loginRequired": "Влезте за достъп до портфейла.",
     "addressCopied": "Адресът е копиран",

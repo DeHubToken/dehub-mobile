@@ -567,6 +567,7 @@
     "payAmount": "Fizetés: {{amount}} {{currency}}"
   },
   "wallet": {
+    "notReady": "A tárca nem áll készen — próbáld újra pár pillanat múlva.",
     "title": "Pénztárca",
     "loginRequired": "Jelentkezzen be a pénztárca eléréséhez.",
     "addressCopied": "Cím másolva",

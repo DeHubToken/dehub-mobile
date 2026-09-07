@@ -1365,6 +1365,7 @@
     }
   },
   "wallet": {
+    "notReady": "Hindi pa handa ang wallet — subukan ulit maya-maya.",
     "title": "Wallet",
     "loginRequired": "Log in to access your wallet.",
     "addressCopied": "Address copied",

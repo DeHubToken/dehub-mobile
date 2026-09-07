@@ -945,6 +945,7 @@
     }
   },
   "wallet": {
+    "notReady": "Lommeboken er ikke klar — prøv igjen om litt.",
     "title": "Lommebok",
     "loginRequired": "Logg inn for å få tilgang til lommeboken din.",
     "addressCopied": "Adresse kopiert",

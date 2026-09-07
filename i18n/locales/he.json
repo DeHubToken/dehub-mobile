@@ -567,6 +567,7 @@
     "payAmount": "שלם {{amount}} {{currency}}"
   },
   "wallet": {
+    "notReady": "הארנק לא מוכן — נסו שוב בעוד רגע.",
     "title": "ארנק",
     "loginRequired": "התחבר כדי לגשת לארנק שלך.",
     "addressCopied": "הכתובת הועתקה",

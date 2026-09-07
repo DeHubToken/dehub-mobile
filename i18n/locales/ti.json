@@ -953,6 +953,7 @@
     }
   },
   "wallet": {
+    "notReady": "ዋሌት ድሉው ኣይኮነን — ድሕሪ ቁሩብ እዋን እንደገና ፈትን።",
     "title": "ዋሌት",
     "loginRequired": "ዋሌትካ ንምብጻሕ ብዓል።",
     "addressCopied": "ኣድራሻ ተቐዲሑ",
