@@ -49,9 +49,13 @@ export enum ScreenNames {
   SignInTv = 'SignInTv',
   ShortsViewer = 'ShortsViewer',
   ImageFeed = 'ImageFeed',
-  // Calls and Stages are presented as app-wide modals (CallModalsHost /
-  // StagesModalsHost in App.tsx), not routes — they deliberately have no
-  // ScreenNames entry. Navigating to an unregistered name throws at runtime.
+  // Stages discovery is a screen; only the live room and the create form are
+  // modals (StagesModalsHost in App.tsx), the same split web has between
+  // /stages and its persistent AudioSpacesModal.
+  Stages = 'Stages',
+  // Calls are presented as an app-wide modal (CallModalsHost in App.tsx), not a
+  // route — they deliberately have no ScreenNames entry. Navigating to an
+  // unregistered name throws at runtime.
   Earnings = 'Earnings',
   Communities = 'Communities',
   CommunityDetail = 'CommunityDetail',

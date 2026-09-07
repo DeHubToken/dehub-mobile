@@ -53,7 +53,10 @@ const CreateStageModal: React.FC = () => {
 
   if (!isModalOpen || initialModalView !== "create") return null;
 
-  const handleBack = () => openModal("browse");
+  // Back closes the sheet rather than opening a list on top of whatever is
+  // underneath: this form is opened from the Stages screen, the drawer, the nav
+  // pill and the upload sheet, and closing returns you to whichever it was.
+  const handleBack = () => closeModal();
 
   const reset = () => {
     setTitle("");
@@ -215,7 +218,7 @@ const CreateStageModal: React.FC = () => {
 
           <TouchableOpacity
             style={styles.secondaryBtn}
-            onPress={() => { reset(); openModal("browse"); }}
+            onPress={() => { reset(); closeModal(); }}
           >
             <Text style={styles.secondaryText}>Done</Text>
           </TouchableOpacity>
