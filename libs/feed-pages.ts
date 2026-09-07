@@ -28,7 +28,8 @@ export function flattenFeedPages<T>(
   pages.forEach((res, pageNum) => {
     (res?.result || []).forEach((raw, idx) => {
       const it = raw as any;
-      const id = it?.tokenId ?? it?.id;
+      // Live rows carry no tokenId; the stream id is what repeats across pages.
+      const id = it?.tokenId ?? it?.id ?? it?.stream?.tokenId ?? it?.streamKey ?? it?.stream?.id;
 
       if (id != null) {
         const key = String(id);
@@ -37,8 +38,15 @@ export function flattenFeedPages<T>(
         if (isDeleted(id)) return;
       }
 
-      const base = it?.tokenId || it?.id || it?.nftId || `auto`;
-      const created = it?.createdAt || it?.created_at || `nocreated`;
+      const base =
+        it?.tokenId ||
+        it?.id ||
+        it?.nftId ||
+        it?.streamKey ||
+        it?.stream?.id ||
+        it?.stream?.streamKey ||
+        `auto`;
+      const created = it?.createdAt || it?.stream?.createdAt || it?.created_at || `nocreated`;
       out.push({ ...it, __listKey: `${base}-${created}-p${pageNum}-i${idx}` } as T);
     });
   });
