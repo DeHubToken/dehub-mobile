@@ -2099,16 +2099,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Sare 100",
     "subtitle": "Kirbto, saamiyo iyo badeecado sida suuqa",
@@ -2623,5 +2613,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Ka saar lifaaq",
     "attachFailed": "Suurtagal ma ahan in aan soo diro sawirkaas."
+  },
+  "promptFeed": {
+    "headline": "Maxaad rabtaa inaad aragto?",
+    "subheadline": "Sharax feed-kaaga ugu fiican.",
+    "placeholder": "AI badan, muuqaallo ciyaareed, muusik indie…",
+    "suggestion1": "Wararka AI iyo crypto oo badan",
+    "suggestion2": "Muuqaallo ciyaareed iyo esports",
+    "suggestion3": "Hal-abuur muusik indie",
+    "suggestion4": "Aasaasayaasha tignoolajiyada iyo startups",
+    "suggestion5": "Muuqaallada kubadda cagta",
+    "skip": "Ka bood — kaliya feed-ka i gee",
+    "analysing": "Waxaa la falanqaynayaa waxyaabaha aad xiiseyso…",
+    "timelineReady": "Waqtigaagu diyaar buu yahay",
+    "dragToTune": "Jiid si aad u hagaajiso isku-darkaaga.",
+    "save": "Kaydi"
   }
 }

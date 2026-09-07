@@ -2127,16 +2127,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "ከፍተኛ 100",
     "subtitle": "በገበያ ካፒታል ክሪፕቶ፣ አክሲዮኖች እና ሸቀጦች",
@@ -2650,5 +2640,20 @@
     "attachEmoji": "ኢሞጂ",
     "removeAttachment": "አባሪ አስወግድ",
     "attachFailed": "ያንን ፎቶ መላክ አልተቻለም ።"
+  },
+  "promptFeed": {
+    "headline": "ምን ማየት ይፈልጋሉ?",
+    "subheadline": "ፍጹም ምግብዎን ይግለጹ።",
+    "placeholder": "ተጨማሪ AI፣ የጌም ክሊፖች፣ ኢንዲ ሙዚቃ…",
+    "suggestion1": "ተጨማሪ የAI እና የክሪፕቶ ዜና",
+    "suggestion2": "የጌም ክሊፖች እና ኢስፖርት",
+    "suggestion3": "የኢንዲ ሙዚቃ ግኝቶች",
+    "suggestion4": "የቴክ መስራቾች እና ጀማሪ ኩባንያዎች",
+    "suggestion5": "የእግር ኳስ ድምቀቶች",
+    "skip": "ዝለል — ወደ ምግቡ ብቻ ውሰደኝ",
+    "analysing": "ፍላጎቶችዎን በመተንተን ላይ…",
+    "timelineReady": "የጊዜ መስመርዎ ዝግጁ ነው",
+    "dragToTune": "ድብልቅዎን ለማስተካከል ይጎትቱ።",
+    "save": "አስቀምጥ"
   }
 }

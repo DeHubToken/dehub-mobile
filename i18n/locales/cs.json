@@ -2103,16 +2103,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Top 100",
     "subtitle": "Krypto, akcie a komodity podle tržní kapitalizace",
@@ -2627,5 +2617,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Odebrat přílohu",
     "attachFailed": "Tuto fotku se nepodařilo odeslat."
+  },
+  "promptFeed": {
+    "headline": "Co chcete vidět?",
+    "subheadline": "Popište svůj ideální feed.",
+    "placeholder": "Více AI, herní klipy, indie hudba…",
+    "suggestion1": "Více zpráv o AI a kryptu",
+    "suggestion2": "Herní klipy a esport",
+    "suggestion3": "Objevy indie hudby",
+    "suggestion4": "Technologičtí zakladatelé a startupy",
+    "suggestion5": "Fotbalové sestřihy",
+    "skip": "Přeskočit — rovnou do feedu",
+    "analysing": "Analyzujeme vaše zájmy…",
+    "timelineReady": "Vaše časová osa je připravená",
+    "dragToTune": "Tažením dolaďte svůj mix.",
+    "save": "Uložit"
   }
 }

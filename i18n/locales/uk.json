@@ -2581,16 +2581,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Топ-100",
     "subtitle": "Криптовалюти, акції та сировина за капіталізацією",
@@ -3104,5 +3094,20 @@
     "attachEmoji": "Емодзі",
     "removeAttachment": "Видалити вкладення",
     "attachFailed": "Не вдалося надіслати цю фотографію."
+  },
+  "promptFeed": {
+    "headline": "Що ви хочете бачити?",
+    "subheadline": "Опишіть свою ідеальну стрічку.",
+    "placeholder": "Більше ШІ, ігрових кліпів, інді-музики…",
+    "suggestion1": "Більше новин про ШІ та крипту",
+    "suggestion2": "Ігрові кліпи та кіберспорт",
+    "suggestion3": "Відкриття інді-музики",
+    "suggestion4": "Техзасновники та стартапи",
+    "suggestion5": "Найкращі моменти футболу",
+    "skip": "Пропустити — одразу до стрічки",
+    "analysing": "Аналізуємо ваші інтереси…",
+    "timelineReady": "Ваша стрічка готова",
+    "dragToTune": "Перетягніть, щоб точно налаштувати свій мікс.",
+    "save": "Зберегти"
   }
 }

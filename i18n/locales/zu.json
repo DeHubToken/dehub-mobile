@@ -2130,16 +2130,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Okuphezulu okungu-100",
     "subtitle": "Ikhripto, amasheya nempahla ngesamba semakethe",
@@ -2654,5 +2644,20 @@
     "attachEmoji": "I-Emoji",
     "removeAttachment": "Susa okunamathiselwe",
     "attachFailed": "Ayikwazanga ukuthumela leso sithombe."
+  },
+  "promptFeed": {
+    "headline": "Ufuna ukubona ini?",
+    "subheadline": "Chaza ifidi yakho ephelele.",
+    "placeholder": "I-AI eyengeziwe, amaklipu emidlalo, umculo we-indie…",
+    "suggestion1": "Izindaba ze-AI ne-crypto eziningi",
+    "suggestion2": "Amaklipu emidlalo ne-esports",
+    "suggestion3": "Ukutholakala komculo we-indie",
+    "suggestion4": "Abasunguli bezobuchwepheshe nama-startup",
+    "suggestion5": "Okuqavile kwebhola",
+    "skip": "Yeqa — ngiyise nje efidini",
+    "analysing": "Ihlaziya izintshisekelo zakho…",
+    "timelineReady": "Umugqa wakho wesikhathi usulungile",
+    "dragToTune": "Hudula ukuze ulungise ingxube yakho.",
+    "save": "Londoloza"
   }
 }

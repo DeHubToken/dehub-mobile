@@ -2101,16 +2101,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "சிறந்த 100",
     "subtitle": "சந்தை மதிப்பின்படி கிரிப்டோ, பங்குகள், பண்டங்கள்",
@@ -2623,5 +2613,20 @@
     "attachEmoji": "ஈமோஜி",
     "removeAttachment": "இணைப்பை அகற்றவும்",
     "attachFailed": "அந்தப் புகைப்படத்தை அனுப்ப முடியவில்லை."
+  },
+  "promptFeed": {
+    "headline": "நீங்கள் என்ன பார்க்க விரும்புகிறீர்கள்?",
+    "subheadline": "உங்கள் சிறந்த ஊட்டத்தை விவரிக்கவும்.",
+    "placeholder": "மேலும் AI, கேமிங் கிளிப்புகள், இண்டி இசை…",
+    "suggestion1": "மேலும் AI மற்றும் கிரிப்டோ செய்திகள்",
+    "suggestion2": "கேமிங் கிளிப்புகளும் இஸ்போர்ட்ஸும்",
+    "suggestion3": "இண்டி இசை கண்டுபிடிப்புகள்",
+    "suggestion4": "டெக் நிறுவனர்களும் ஸ்டார்ட்அப்களும்",
+    "suggestion5": "கால்பந்து சிறப்பு தருணங்கள்",
+    "skip": "தவிர்க்கவும் — நேராக ஊட்டத்திற்கு",
+    "analysing": "உங்கள் ஆர்வங்களை ஆய்வு செய்கிறோம்…",
+    "timelineReady": "உங்கள் டைம்லைன் தயார்",
+    "dragToTune": "உங்கள் கலவையை நுணுக்கமாக மாற்ற இழுக்கவும்.",
+    "save": "சேமி"
   }
 }

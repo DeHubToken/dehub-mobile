@@ -2099,16 +2099,6 @@
     "step4Body": "Cuando tus invitados invitan a sus amigos, también ganas el {{l2}}% de sus ingresos. Recurrente, de por vida.",
     "wallet": "Billetera de afiliado"
   },
-  "prompt": {
-    "title": "¿Qué quieres crear?",
-    "subtitle": "Pregúntale lo que sea al asistente de DeHub — o empieza con una idea de abajo.",
-    "placeholder": "Pregunta lo que quieras…",
-    "suggestion1": "Resume lo que es tendencia hoy en DeHub",
-    "suggestion2": "Escribe una publicación sobre mi última subida",
-    "suggestion3": "Explica el staking de DHB en palabras sencillas",
-    "suggestion4": "Encuentra creadores a los que debería seguir",
-    "suggestion5": "Redacta un briefing de bounty para una campaña de clips"
-  },
   "top100": {
     "title": "Top 100",
     "subtitle": "Cripto, acciones y materias primas por capitalización",
@@ -2672,5 +2662,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Eliminar archivo adjunto",
     "attachFailed": "No se ha podido enviar esa foto."
+  },
+  "promptFeed": {
+    "headline": "¿Qué quieres ver?",
+    "subheadline": "Describe tu feed perfecto.",
+    "placeholder": "Más IA, clips de videojuegos, música indie…",
+    "suggestion1": "Más noticias de IA y cripto",
+    "suggestion2": "Clips de videojuegos y esports",
+    "suggestion3": "Descubrimientos de música indie",
+    "suggestion4": "Fundadores tecnológicos y startups",
+    "suggestion5": "Resúmenes de fútbol",
+    "skip": "Omitir; llévame al feed",
+    "analysing": "Analizando tus intereses…",
+    "timelineReady": "Tu línea de tiempo está lista",
+    "dragToTune": "Arrastra para afinar tu mezcla.",
+    "save": "Guardar"
   }
 }

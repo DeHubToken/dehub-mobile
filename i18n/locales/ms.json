@@ -2365,16 +2365,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Top 100",
     "subtitle": "Kripto, saham dan komoditi mengikut permodalan pasaran",
@@ -2889,5 +2879,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Buang lampiran",
     "attachFailed": "Tidak dapat menghantar gambar itu."
+  },
+  "promptFeed": {
+    "headline": "Apa yang anda mahu lihat?",
+    "subheadline": "Gambarkan feed sempurna anda.",
+    "placeholder": "Lebih banyak AI, klip permainan, muzik indie…",
+    "suggestion1": "Lebih banyak berita AI dan kripto",
+    "suggestion2": "Klip permainan dan e-sukan",
+    "suggestion3": "Penemuan muzik indie",
+    "suggestion4": "Pengasas teknologi dan syarikat pemula",
+    "suggestion5": "Sorotan bola sepak",
+    "skip": "Langkau — terus ke feed",
+    "analysing": "Menganalisis minat anda…",
+    "timelineReady": "Garis masa anda sedia",
+    "dragToTune": "Seret untuk melaraskan campuran anda.",
+    "save": "Simpan"
   }
 }

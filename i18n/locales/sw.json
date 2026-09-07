@@ -2100,16 +2100,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Bora 100",
     "subtitle": "Krypto, hisa na bidhaa kwa thamani ya soko",
@@ -2624,5 +2614,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Ondoa kiambatisho",
     "attachFailed": "Imeshindwa kutuma picha hiyo."
+  },
+  "promptFeed": {
+    "headline": "Unataka kuona nini?",
+    "subheadline": "Eleza mlisho wako bora.",
+    "placeholder": "AI zaidi, klipu za michezo, muziki wa indie…",
+    "suggestion1": "Habari zaidi za AI na crypto",
+    "suggestion2": "Klipu za michezo na esports",
+    "suggestion3": "Uvumbuzi wa muziki wa indie",
+    "suggestion4": "Waanzilishi wa teknolojia na startups",
+    "suggestion5": "Vipande bora vya soka",
+    "skip": "Ruka — nipeleke kwenye mlisho",
+    "analysing": "Inachanganua mapendeleo yako…",
+    "timelineReady": "Ratiba yako iko tayari",
+    "dragToTune": "Buruta ili kurekebisha mchanganyiko wako.",
+    "save": "Hifadhi"
   }
 }

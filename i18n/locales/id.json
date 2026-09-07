@@ -2099,16 +2099,6 @@
     "step4Body": "Saat undanganmu mengundang teman mereka, kamu juga dapat {{l2}}% dari pendapatan mereka. Berulang, seumur hidup.",
     "wallet": "Dompet afiliasi"
   },
-  "prompt": {
-    "title": "Kamu mau bikin apa?",
-    "subtitle": "Tanya apa saja ke asisten DeHub — atau mulai dari ide di bawah.",
-    "placeholder": "Tanya apa saja…",
-    "suggestion1": "Rangkum apa yang sedang tren di DeHub hari ini",
-    "suggestion2": "Buatkan postingan tentang unggahan terbaru saya",
-    "suggestion3": "Jelaskan staking DHB dengan bahasa sederhana",
-    "suggestion4": "Carikan kreator yang sebaiknya saya ikuti",
-    "suggestion5": "Tuliskan brief bounty untuk kampanye clipping"
-  },
   "top100": {
     "title": "Top 100",
     "subtitle": "Kripto, saham, dan komoditas berdasarkan kapitalisasi pasar",
@@ -2672,5 +2662,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Hapus lampiran",
     "attachFailed": "Tidak dapat mengirim foto itu."
+  },
+  "promptFeed": {
+    "headline": "Apa yang ingin kamu lihat?",
+    "subheadline": "Gambarkan feed sempurnamu.",
+    "placeholder": "Lebih banyak AI, klip game, musik indie…",
+    "suggestion1": "Lebih banyak berita AI dan kripto",
+    "suggestion2": "Klip game dan esports",
+    "suggestion3": "Temuan musik indie",
+    "suggestion4": "Pendiri teknologi dan startup",
+    "suggestion5": "Sorotan sepak bola",
+    "skip": "Lewati — langsung ke feed",
+    "analysing": "Menganalisis minatmu…",
+    "timelineReady": "Linimasa Anda siap",
+    "dragToTune": "Seret untuk menyempurnakan campuranmu.",
+    "save": "Simpan"
   }
 }

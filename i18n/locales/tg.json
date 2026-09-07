@@ -2098,16 +2098,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Беҳтарин 100",
     "subtitle": "Крипто, саҳмияҳо ва молҳо аз рӯи ҳаҷми бозор",
@@ -2621,5 +2611,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Удалить замима",
     "attachFailed": "Hindi maipadala ang larawan na ito."
+  },
+  "promptFeed": {
+    "headline": "Шумо чиро дидан мехоҳед?",
+    "subheadline": "Лентаи беҳтарини худро тасвир кунед.",
+    "placeholder": "AI-и бештар, клипҳои бозӣ, мусиқии инди…",
+    "suggestion1": "Ахбори бештари AI ва крипто",
+    "suggestion2": "Клипҳои бозӣ ва киберварзиш",
+    "suggestion3": "Кашфиёти мусиқии инди",
+    "suggestion4": "Асосгузорони технологӣ ва стартапҳо",
+    "suggestion5": "Лаҳзаҳои беҳтарини футбол",
+    "skip": "Гузаштан — рост ба лента",
+    "analysing": "Таваҷҷуҳҳои шумо таҳлил мешаванд…",
+    "timelineReady": "Лентаи шумо омода аст",
+    "dragToTune": "Барои танзими дақиқи омехтаи худ кашед.",
+    "save": "Захира"
   }
 }

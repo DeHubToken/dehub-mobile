@@ -2154,16 +2154,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Top 100",
     "subtitle": "Bozor kapitalizatsiyasi bo'yicha kripto, aksiyalar va tovarlar",
@@ -2678,5 +2668,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Ilovani & olib tashlash",
     "attachFailed": "Bu rasmni yuborib bo&#39;lmadi."
+  },
+  "promptFeed": {
+    "headline": "Nimani ko‘rmoqchisiz?",
+    "subheadline": "Mukammal lentangizni tasvirlang.",
+    "placeholder": "Ko‘proq AI, o‘yin kliplari, indie musiqa…",
+    "suggestion1": "Ko‘proq AI va kripto yangiliklari",
+    "suggestion2": "O‘yin kliplari va kibersport",
+    "suggestion3": "Indie musiqa kashfiyotlari",
+    "suggestion4": "Texnologiya asoschilari va startaplar",
+    "suggestion5": "Futbol eng yaxshi lahzalari",
+    "skip": "O‘tkazib yuborish — to‘g‘ridan lentaga",
+    "analysing": "Qiziqishlaringiz tahlil qilinmoqda…",
+    "timelineReady": "Lentangiz tayyor",
+    "dragToTune": "Aralashmangizni sozlash uchun torting.",
+    "save": "Saqlash"
   }
 }

@@ -2098,16 +2098,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "ئالدىنقى 100",
     "subtitle": "بازار قىممىتى بويىچە كىرىپتو، پاي ۋە تاۋار",
@@ -2622,5 +2612,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "قوشۇشنى چىقىرىۋېتىش",
     "attachFailed": "ئۇ سۈرەتنى ئەۋەتكىلى بولمىدى."
+  },
+  "promptFeed": {
+    "headline": "نېمىنى كۆرمەكچىسىز؟",
+    "subheadline": "ئەڭ ياخشى كۆرىدىغان يېڭىلىقلار ئېقىمىڭىزنى تەسۋىرلەڭ.",
+    "placeholder": "تېخىمۇ كۆپ AI، ئويۇن كلىپلىرى، ئىندى مۇزىكا…",
+    "suggestion1": "تېخىمۇ كۆپ AI ۋە كرىپتو خەۋەرلىرى",
+    "suggestion2": "ئويۇن كلىپلىرى ۋە ئېلېكترونلۇق تەنتەربىيە",
+    "suggestion3": "ئىندى مۇزىكا بايقاشلىرى",
+    "suggestion4": "تېخنىكا قۇرغۇچىلار ۋە يېڭى شىركەتلەر",
+    "suggestion5": "پۇتبول ھالقىلىق كۆرۈنۈشلىرى",
+    "skip": "ئاتلاش — بىۋاسىتە ئېقىمغا",
+    "analysing": "قىزىقىشلىرىڭىز تەھلىل قىلىنىۋاتىدۇ…",
+    "timelineReady": "ۋاقىت ئېقىمىڭىز تەييار",
+    "dragToTune": "ئارىلاشمىڭىزنى ئىنچىكە تەڭشەش ئۈچۈن سۆرەڭ.",
+    "save": "ساقلاش"
   }
 }

@@ -2141,16 +2141,6 @@
     "step4Body": "当你邀请的人再邀请朋友时，你还能拿到他们收入的 {{l2}}%。持续且终身有效。",
     "wallet": "推广钱包"
   },
-  "prompt": {
-    "title": "你想做点什么？",
-    "subtitle": "什么都可以问 DeHub 助手，或者从下面的点子开始。",
-    "placeholder": "随便问…",
-    "suggestion1": "总结今天 DeHub 上的热门内容",
-    "suggestion2": "帮我写一条关于最新上传的帖子",
-    "suggestion3": "用简单的话解释 DHB 质押",
-    "suggestion4": "找几个值得关注的创作者",
-    "suggestion5": "写一份剪辑活动的悬赏说明"
-  },
   "top100": {
     "title": "头 100",
     "subtitle": "按市值排嘞加密货币、股票跟商品",
@@ -2664,5 +2654,20 @@
     "attachEmoji": "表情符号",
     "removeAttachment": "移除附件",
     "attachFailed": "无法发送该照片。"
+  },
+  "promptFeed": {
+    "headline": "你想看什么？",
+    "subheadline": "描述你理想中的信息流。",
+    "placeholder": "更多 AI、游戏剪辑、独立音乐…",
+    "suggestion1": "更多 AI 和加密货币资讯",
+    "suggestion2": "游戏剪辑和电竞",
+    "suggestion3": "独立音乐新发现",
+    "suggestion4": "科技创始人和创业公司",
+    "suggestion5": "足球集锦",
+    "skip": "跳过，直接进入信息流",
+    "analysing": "正在分析你的兴趣…",
+    "timelineReady": "你的时间线已就绪",
+    "dragToTune": "拖动以微调你的组合。",
+    "save": "保存"
   }
 }

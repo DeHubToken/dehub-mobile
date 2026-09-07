@@ -2094,16 +2094,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Sanfɛ 100",
     "subtitle": "Kripito, jɛkulu jɔyɔrɔw ni feereta suguw sugu hakɛ fɛ",
@@ -2615,5 +2605,20 @@
     "attachEmoji": "Emoji ka koo",
     "removeAttachment": "Ka taga ni a ye",
     "attachFailed": "Ne tɛ se ka n ka fotogwɛlɛsi to yen."
+  },
+  "promptFeed": {
+    "headline": "I b'a fɛ ka mun ye?",
+    "subheadline": "I ka feed ɲuman ɲɛfɔ.",
+    "placeholder": "AI caman, tulon kilipw, indie dɔnkili…",
+    "suggestion1": "AI ni kripto kibaruw caman",
+    "suggestion2": "Tulon kilipw ni esports",
+    "suggestion3": "Indie dɔnkili kuraw",
+    "suggestion4": "Tɛknoloji sigibagaw ni startupw",
+    "suggestion5": "Ntolatan yɔrɔ ɲumanw",
+    "skip": "A tɛmɛ — n ta feed la dɔrɔn",
+    "analysing": "I ka nafaw sɛgɛsɛgɛli bɛ kɛ…",
+    "timelineReady": "I ka timeline labɛnna",
+    "dragToTune": "A sama k'i ka mix labɛn.",
+    "save": "Mara"
   }
 }

@@ -2149,16 +2149,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Ol'aanaa 100",
     "subtitle": "Kiriiptoo, aksiyoonaa fi meeshaalee guddina gabaatiin",
@@ -2673,5 +2663,20 @@
     "attachEmoji": "😊",
     "removeAttachment": "Attachment irraa kaasi",
     "attachFailed": "Suuraa sana erguu hin dandeenye."
+  },
+  "promptFeed": {
+    "headline": "Maal ilaaluu barbaadda?",
+    "subheadline": "Feed kee kan mudaa hin qabne ibsi.",
+    "placeholder": "AI dabalataa, kiliippii taphaa, muuziqaa indie…",
+    "suggestion1": "Oduu AI fi kiriiptoo dabalataa",
+    "suggestion2": "Kiliippii taphaa fi ispoortii elektirooniksii",
+    "suggestion3": "Argannoo muuziqaa indie",
+    "suggestion4": "Hundeessitoota teeknooloojii fi startups",
+    "suggestion5": "Yaadannoo kubbaa miilaa",
+    "skip": "Darbi — kallattiin feed-tti na geessi",
+    "analysing": "Fedhii kee xiinxalaa jira…",
+    "timelineReady": "Sararri yeroo kee qophaa'eera",
+    "dragToTune": "Makaa kee sirreessuuf harkisi.",
+    "save": "Olkaa'i"
   }
 }
