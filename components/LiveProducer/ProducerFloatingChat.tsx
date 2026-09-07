@@ -191,7 +191,9 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
           still just a gradient over the viewport, opaque at the bottom. */}
       <MaskedView
         style={{ maxHeight: 200 }}
-        pointerEvents="none"
+        // box-none, not none: the mask must stay inert but the list underneath
+        // has to receive taps and scrolls, or names, avatars and history are dead.
+        pointerEvents="box-none"
         maskElement={
           <LinearGradient
             style={{ flex: 1 }}
