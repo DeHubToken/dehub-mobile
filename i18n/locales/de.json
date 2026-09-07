@@ -946,6 +946,7 @@
     }
   },
   "wallet": {
+    "notReady": "Wallet nicht bereit – versuch es gleich noch einmal.",
     "title": "Geldbörse",
     "loginRequired": "Melde dich an, um auf deine Geldbörse zuzugreifen.",
     "addressCopied": "Adresse kopiert",

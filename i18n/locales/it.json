@@ -567,6 +567,7 @@
     "payAmount": "Paga {{amount}} {{currency}}"
   },
   "wallet": {
+    "notReady": "Portafoglio non pronto: riprova tra un momento.",
     "title": "Portafoglio",
     "loginRequired": "Accedi per accedere al tuo portafoglio.",
     "addressCopied": "Indirizzo copiato",

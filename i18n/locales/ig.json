@@ -953,6 +953,7 @@
     }
   },
   "wallet": {
+    "notReady": "Obere akpa ego adịghị njikere — nwaa ọzọ ntakịrị oge.",
     "title": "Obere Akpa",
     "loginRequired": "Banye iji nweta ohere obere akpa gị.",
     "addressCopied": "Edetuola adreesị",

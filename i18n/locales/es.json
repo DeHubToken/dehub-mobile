@@ -946,6 +946,7 @@
     }
   },
   "wallet": {
+    "notReady": "La cartera no está lista: inténtalo de nuevo en un momento.",
     "title": "Billetera",
     "loginRequired": "Inicia sesión para acceder a tu billetera.",
     "addressCopied": "Dirección copiada",

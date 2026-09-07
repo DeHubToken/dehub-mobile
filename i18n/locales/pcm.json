@@ -951,6 +951,7 @@
     }
   },
   "wallet": {
+    "notReady": "Wallet never ready — try again small time.",
     "title": "Wallet",
     "loginRequired": "Log in to access your wallet.",
     "addressCopied": "Address don copy",

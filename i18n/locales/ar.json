@@ -567,6 +567,7 @@
     "payAmount": "دفع {{amount}} {{currency}}"
   },
   "wallet": {
+    "notReady": "المحفظة غير جاهزة — أعد المحاولة بعد قليل.",
     "title": "المحفظة",
     "loginRequired": "سجّل الدخول للوصول إلى محفظتك.",
     "addressCopied": "تم نسخ العنوان",

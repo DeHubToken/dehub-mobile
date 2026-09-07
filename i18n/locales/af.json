@@ -672,6 +672,7 @@
     "noSearchResults": "Geen ooreenstemmende instellings nie"
   },
   "wallet": {
+    "notReady": "Beursie is nie gereed nie — probeer oor 'n oomblik weer.",
     "title": "Beursie",
     "connectWallet": "Koppel beursie",
     "disconnectWallet": "Ontkoppel beursie",

@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "Boorsaan qophaa'aa miti — yeroo muraasa booda irra deebi'ii yaali.",
     "title": "Baallama",
     "loginRequired": "Baallamaatti seeninuuf seeni.",
     "addressCopied": "Teessoon waraabbame",

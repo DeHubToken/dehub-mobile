@@ -660,6 +660,7 @@
     "tryAgain": "Try Again"
   },
   "wallet": {
+    "notReady": "Peňaženka nie je pripravená — skús to o chvíľu znova.",
     "title": "Peňaženka",
     "balance": "Zostatok",
     "send": "Odoslať",

@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "Rahakott pole valmis — proovi hetke pärast uuesti.",
     "title": "Rahakott",
     "loginRequired": "Logi sisse rahakotile ligipääsuks.",
     "addressCopied": "Aadress kopeeritud",

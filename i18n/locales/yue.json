@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "銀包仲未準備好 — 遲啲再試。",
     "title": "錢包",
     "loginRequired": "登入嚟使用錢包。",
     "addressCopied": "地址已複製",

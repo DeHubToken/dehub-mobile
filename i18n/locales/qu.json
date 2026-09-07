@@ -955,6 +955,7 @@
     }
   },
   "wallet": {
+    "notReady": "Qullqi wayaqa manaraq wakichisqachu — pisi pachamanta yapamanta ruway.",
     "title": "Qullqi Wasi",
     "loginRequired": "Yaykuy qullqi wasiykiman yaykumunaykipaq.",
     "addressCopied": "Churana copiasqa",

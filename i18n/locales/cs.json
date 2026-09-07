@@ -567,6 +567,7 @@
     "payAmount": "Zaplatit {{amount}} {{currency}}"
   },
   "wallet": {
+    "notReady": "Peněženka není připravená — zkus to za chvíli znovu.",
     "title": "Peněženka",
     "loginRequired": "Přihlaste se pro přístup k peněžence.",
     "addressCopied": "Adresa zkopírována",

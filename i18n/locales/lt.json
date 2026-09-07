@@ -954,6 +954,7 @@
     }
   },
   "wallet": {
+    "notReady": "Piniginė neparuošta — pabandykite po akimirkos.",
     "title": "Piniginė",
     "loginRequired": "Prisijunkite, kad pasiektumėte piniginę.",
     "addressCopied": "Adresas nukopijuotas",

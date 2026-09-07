@@ -1239,6 +1239,7 @@
     }
   },
   "wallet": {
+    "notReady": "Ví chưa sẵn sàng — thử lại sau giây lát.",
     "title": "Ví",
     "loginRequired": "Đăng nhập để mở ví của bạn.",
     "addressCopied": "Đã sao chép địa chỉ",
