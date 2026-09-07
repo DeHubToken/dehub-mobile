@@ -368,7 +368,7 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
           className="mt-5 rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent"
           style={{ opacity: !canSubmit || busy ? 0.5 : 1 }}
         >
-          {busy ? <ActivityIndicator color="#fff" /> : <Text className="text-white text-sm font-medium">Switch account</Text>}
+          {busy ? <ActivityIndicator color="#09090B" /> : <Text className="text-theme-accent-foreground text-sm font-medium">Switch account</Text>}
         </TouchableOpacity>
 
         <TouchableOpacity onPress={handleClose} disabled={busy || !!busyProvider} className="mt-4 items-center py-2">
