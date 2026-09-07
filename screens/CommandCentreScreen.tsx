@@ -195,7 +195,7 @@ const EngagementChart: React.FC<{ data?: AnalyticsResponse }> = ({ data }) => {
         );
       })}
       {!!likesPts && (
-        <Polyline points={likesPts} fill="none" stroke="#F4F4F5" strokeWidth="2" strokeLinejoin="round" />
+        <Polyline points={likesPts} fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="2" strokeLinejoin="round" />
       )}
       {!!followersPts && (
         <Polyline points={followersPts} fill="none" stroke="#F4F4F5" strokeWidth="2" strokeLinejoin="round" />
@@ -407,7 +407,7 @@ export default function CommandCentreScreen() {
               <EngagementChart data={analytics.data} />
               <View style={styles.legend}>
                 <View style={styles.legendItem}>
-                  <View style={[styles.legendDot, { backgroundColor: "rgba(255,255,255,0.15)" }]} />
+                  <View style={[styles.legendDot, { backgroundColor: "rgba(255,255,255,0.45)" }]} />
                   <Text style={styles.legendText}>{t("commandCentre.likes")}</Text>
                 </View>
                 <View style={styles.legendItem}>
