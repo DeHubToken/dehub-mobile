@@ -471,15 +471,10 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   }, []);
 
   useEffect(() => {
-    // Ask once the user is settled in the app, not the instant auth resolves.
-    if (isFullySignedIn && userAddress && !hasRegisteredRef.current) {
-      const timer = setTimeout(() => {
-        maybeAskForPushPermission();
-      }, SOFT_ASK_DELAY_MS);
-      return () => clearTimeout(timer);
-    }
-
-    // Handle pending navigation after auth completes (cold-start stored pending)
+    // Handle pending navigation after auth completes (cold-start stored pending).
+    // Checked before the soft-ask branch below: that branch returns early on
+    // the very transition this replay exists for (first sign-in of the run),
+    // so a push tapped while signed out was never followed.
     if (isFullySignedIn && pendingNavigationRef.current) {
       const pendingData = pendingNavigationRef.current;
       pendingNavigationRef.current = null;
@@ -487,6 +482,14 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       setTimeout(() => {
         handleNotificationNavigation(pendingData);
       }, 500);
+    }
+
+    // Ask once the user is settled in the app, not the instant auth resolves.
+    if (isFullySignedIn && userAddress && !hasRegisteredRef.current) {
+      const timer = setTimeout(() => {
+        maybeAskForPushPermission();
+      }, SOFT_ASK_DELAY_MS);
+      return () => clearTimeout(timer);
     }
 
     // Reset registration flag when user signs out
