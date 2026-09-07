@@ -290,6 +290,13 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
     return !!(notification as CustomNotificationItem).customReferenceId;
   }
 
+  // Community rows carry the community slug, which is all CommunityDetail
+  // needs. Without this they fell through to the default below, counted as
+  // clickable on the strength of the actor alone, and then did nothing.
+  if (typeStr === 'community_join' || typeStr === 'community_mention' || typeStr === 'community_here') {
+    return !!(notification as CustomNotificationItem).customReferenceId;
+  }
+
   // Non-clickable types (dislike doesn't generate notifications but just in case)
   if (NON_CLICKABLE_TYPES.has(type)) return false;
   
@@ -964,6 +971,16 @@ const NotificationScreen = () => {
         openBountyByNumber((notification as CustomNotificationItem).customReferenceId);
         break;
 
+      // Community joins, @mentions and @here all land on the community they
+      // came from; the row stores its slug, which is what the screen is keyed on.
+      case 'community_join':
+      case 'community_mention':
+      case 'community_here': {
+        const communitySlug = (notification as CustomNotificationItem).customReferenceId;
+        if (communitySlug) navigation.navigate(ScreenNames.CommunityDetail as never, { slug: communitySlug } as never);
+        break;
+      }
+
       case NotificationType.FOLLOWING:
       case NotificationType.SUBSCRIPTION:
       case NotificationType.FOLLOW_REQUEST_ACCEPTED:
@@ -1046,6 +1063,7 @@ const NotificationScreen = () => {
     navigateToDM,
     markAsReadAsync,
     openBountyByNumber,
+    navigation,
   ]);
 
   const pageRef = useRef(1);
