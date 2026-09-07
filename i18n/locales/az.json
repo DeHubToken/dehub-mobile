@@ -460,7 +460,12 @@
     "signInTv": "TV-də daxil ol",
     "signInTvDesc": "Televizorda görünən kodu daxil edin",
     "tvRequests": "TV sorğuları",
-    "tvRequestsDesc": "Televizorun imzalamağı istədiyi bəxşişləri təsdiqlə"
+    "tvRequestsDesc": "Televizorun imzalamağı istədiyi bəxşişləri təsdiqlə",
+    "publicChatAlerts": "İctimai söhbət",
+    "publicChatAlertsDesc": "Başqa bir yerdə olduğunuz zaman ictimai söhbətin nə vaxt danışdığını bildirin",
+    "publicChatAlertsOnDesc": "Məşğul zolaqlar bir birləşdirilmiş xəbərdarlıq kimi çatır",
+    "publicChatAlertsRate": "Ən çox",
+    "publicChatAlertsRateHint": "Otaq bundan daha sürətli olduqda heç nə itirilmir — mesajlar saxlanılır və növbəti xəbərdarlıqda bir araya gəlir."
   },
   "common": {
     "mute": "Səssiz et",
@@ -2543,5 +2548,14 @@
     "pricing": "Bu icra qiymətləndirilir…",
     "payWithDhb": "DHB ilə ödə",
     "yourDhb": "Sənin DHB-n"
+  },
+  "digest": {
+    "someone": "Kimsə"
+  },
+  "publicChatAlerts": {
+    "title": "İctimai söhbət",
+    "mentionTitle": "İctimai söhbətdə qeyd edilib",
+    "voiceMessage": "Səsli mesaj",
+    "image": "Təsvir göndərildi"
   }
 }

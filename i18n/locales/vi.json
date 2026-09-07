@@ -787,7 +787,13 @@
     "signInTv": "Đăng nhập trên TV",
     "signInTvDesc": "Nhập mã đang hiển thị trên TV",
     "tvRequests": "Yêu cầu từ TV",
-    "tvRequestsDesc": "Duyệt các khoản tip mà TV yêu cầu bạn ký"
+    "tvRequestsDesc": "Duyệt các khoản tip mà TV yêu cầu bạn ký",
+    "publicChatAlerts": "Trò chuyện công khai",
+    "publicChatAlertsDesc": "Được thông báo khi trò chuyện công khai đang nói chuyện trong khi bạn đang ở một nơi khác",
+    "publicChatAlertsOnDesc": "Trải dài bận rộn đến dưới dạng một cảnh báo kết hợp",
+    "publicChatAlertsRate": "Tối đa",
+    "publicChatAlertsRateOption": "{{count}} một giờ",
+    "publicChatAlertsRateHint": "Không có gì bị mất khi phòng bận rộn hơn thế này — các tin nhắn được giữ và đến cùng nhau trong cảnh báo tiếp theo."
   },
   "postOptions": {
     "options": "Tuỳ chọn",
@@ -2631,5 +2637,17 @@
     "pricing": "Đang tính giá…",
     "payWithDhb": "Thanh toán bằng DHB",
     "yourDhb": "DHB của bạn"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} và {{count}} khác",
+    "andOthers_other": "{{names}} và {{count}} người khác",
+    "someone": "Ai đó"
+  },
+  "publicChatAlerts": {
+    "title": "Trò chuyện công khai",
+    "mentionTitle": "Được đề cập trong cuộc trò chuyện công khai",
+    "digest": "{{count}} tin nhắn mới từ {{who}}: {{message}}",
+    "voiceMessage": "Tin nhắn thoại",
+    "image": "Đã gửi hình ảnh"
   }
 }

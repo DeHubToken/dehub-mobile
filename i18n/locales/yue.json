@@ -460,7 +460,13 @@
     "signInTv": "喺電視登入",
     "signInTvDesc": "輸入電視顯示嘅代碼",
     "tvRequests": "電視請求",
-    "tvRequestsDesc": "批准電視要求你簽署嘅打賞"
+    "tvRequestsDesc": "批准電視要求你簽署嘅打賞",
+    "publicChatAlerts": "公開即時通訊",
+    "publicChatAlertsDesc": "當你喺其他地方嗰陣公開即時通訊講緊嘢嗰陣，就會收到通知",
+    "publicChatAlertsOnDesc": "繁忙嘅延伸係一個組合警報",
+    "publicChatAlertsRate": "最多都係",
+    "publicChatAlertsRateOption": "{{count}} 一個鐘",
+    "publicChatAlertsRateHint": "當房間比呢個繁忙嘅時候，冇嘢會失去 — 訊息會保留，並且喺下一個警示嗰陣一齊到達。"
   },
   "common": {
     "mute": "靜音",
@@ -2542,5 +2548,17 @@
     "pricing": "正在計算費用…",
     "payWithDhb": "用 DHB 支付",
     "yourDhb": "你嘅 DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} 同 {{count}} 其他",
+    "andOthers_other": "{{names}} 同 {{count}} 其他",
+    "someone": "有人"
+  },
+  "publicChatAlerts": {
+    "title": "公開即時通訊",
+    "mentionTitle": "喺公開即時通訊入面提到",
+    "digest": "{{count}} 新訊息來自 {{who}} ： {{message}}",
+    "voiceMessage": "語音訊息",
+    "image": "傳送咗張圖片"
   }
 }

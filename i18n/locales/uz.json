@@ -460,7 +460,13 @@
     "signInTv": "Televizorda kirish",
     "signInTvDesc": "Televizorda ko‘rsatilgan kodni kiriting",
     "tvRequests": "TV so‘rovlari",
-    "tvRequestsDesc": "Televizor imzolashni so‘ragan choy pullarini tasdiqlang"
+    "tvRequestsDesc": "Televizor imzolashni so‘ragan choy pullarini tasdiqlang",
+    "publicChatAlerts": "Ommaviy chat",
+    "publicChatAlertsDesc": "Boshqa joyda bo&#39;lganingizda ommaviy chat suhbatlashayotganini bilib oling",
+    "publicChatAlertsOnDesc": "Band bo&#39;lgan masofalar bitta ogohlantirish sifatida keladi",
+    "publicChatAlertsRate": "Koʻpida",
+    "publicChatAlertsRateOption": "soatiga {{count}}",
+    "publicChatAlertsRateHint": "Xona bundan gavjum bo&#39;lganda hech narsa yo&#39;qolmaydi — xabarlar ushlab turiladi va keyingi ogohlantirishda birga yetib boradi."
   },
   "common": {
     "mute": "Ovozni o‘chirish",
@@ -2598,5 +2604,17 @@
     "pricing": "Narx hisoblanmoqda…",
     "payWithDhb": "DHB bilan to‘lash",
     "yourDhb": "Sizning DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} va {{count}} boshqa",
+    "andOthers_other": "{{names}} va {{count}} boshqalar",
+    "someone": "Kimdir"
+  },
+  "publicChatAlerts": {
+    "title": "Ommaviy chat",
+    "mentionTitle": "Ommaviy chatda tilga olingan",
+    "digest": "{{count}} {{who}} dan yangi xabarlar: {{message}}",
+    "voiceMessage": "Ovozli xabar",
+    "image": "Rasm yuborildi"
   }
 }

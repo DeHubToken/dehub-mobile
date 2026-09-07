@@ -460,7 +460,13 @@
     "signInTv": "登录电视",
     "signInTvDesc": "输入电视上显示的代码",
     "tvRequests": "电视请求",
-    "tvRequestsDesc": "批准电视请你签署的打赏"
+    "tvRequestsDesc": "批准电视请你签署的打赏",
+    "publicChatAlerts": "公共聊天",
+    "publicChatAlertsDesc": "当您在别处时，会收到公共聊天正在进行的通知",
+    "publicChatAlertsOnDesc": "忙碌时段会合并成一次统一的提醒",
+    "publicChatAlertsRate": "最多",
+    "publicChatAlertsRateOption": "每小时 {{count}} 次",
+    "publicChatAlertsRateHint": "当房间比这更忙时，不会丢失任何信息 — 消息会被暂存，并在下次提醒时一起送达。"
   },
   "common": {
     "mute": "静音",
@@ -2585,5 +2591,17 @@
     "pricing": "正在计算本次费用…",
     "payWithDhb": "用 DHB 支付",
     "yourDhb": "你的 DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} 和 {{count}} 个",
+    "andOthers_other": "{{names}} 和 {{count}} 个其他人",
+    "someone": "有人"
+  },
+  "publicChatAlerts": {
+    "title": "公共聊天",
+    "mentionTitle": "在公共聊天中被提及",
+    "digest": "来自 {{who}} 的 {{count}} 条新消息：{{message}}",
+    "voiceMessage": "语音消息",
+    "image": "发送了图片"
   }
 }

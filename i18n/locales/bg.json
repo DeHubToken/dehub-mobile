@@ -460,7 +460,13 @@
     "signInTv": "Вход на телевизор",
     "signInTvDesc": "Въведете кода, показан на телевизора",
     "tvRequests": "Заявки от телевизора",
-    "tvRequestsDesc": "Одобрявайте бакшишите, които телевизорът иска да подпишете"
+    "tvRequestsDesc": "Одобрявайте бакшишите, които телевизорът иска да подпишете",
+    "publicChatAlerts": "Публичен чат",
+    "publicChatAlertsDesc": "Получавайте известие, когато общественият чат говори, докато сте някъде другаде",
+    "publicChatAlertsOnDesc": "Натоварените участъци пристигат като едно комбинирано предупреждение",
+    "publicChatAlertsRate": "Най - много",
+    "publicChatAlertsRateOption": "{{count}} час",
+    "publicChatAlertsRateHint": "Нищо не се губи, когато стаята е по — натоварена от това — съобщенията се задържат и пристигат заедно при следващото предупреждение."
   },
   "common": {
     "mute": "Без звук",
@@ -2546,5 +2552,17 @@
     "pricing": "Изчисляване на цената…",
     "payWithDhb": "Плати с DHB",
     "yourDhb": "Вашият DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} и {{count}} други",
+    "andOthers_other": "{{names}} и {{count}} други",
+    "someone": "Някой"
+  },
+  "publicChatAlerts": {
+    "title": "Публичен чат",
+    "mentionTitle": "Споменато в публичен чат",
+    "digest": "{{count}} нови съобщения от {{who}}:{{message}}",
+    "voiceMessage": "Гласово съобщение",
+    "image": "Изпратено изображение"
   }
 }

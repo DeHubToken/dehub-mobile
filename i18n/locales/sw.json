@@ -460,7 +460,13 @@
     "signInTv": "Ingia kwenye TV",
     "signInTvDesc": "Andika msimbo unaoonyeshwa kwenye TV yako",
     "tvRequests": "Maombi ya TV",
-    "tvRequestsDesc": "Idhinisha tipu ambazo TV yako inakuomba usaini"
+    "tvRequestsDesc": "Idhinisha tipu ambazo TV yako inakuomba usaini",
+    "publicChatAlerts": "Gumzo la umma",
+    "publicChatAlertsDesc": "Pata habari wakati gumzo la umma linazungumza wakati uko mahali pengine",
+    "publicChatAlertsOnDesc": "Mikondo yenye shughuli nyingi hufika kama arifa moja ya pamoja",
+    "publicChatAlertsRate": "Kwa kiwango cha juu zaidi",
+    "publicChatAlertsRateOption": "{{count}} saa moja",
+    "publicChatAlertsRateHint": "Hakuna kinachopotea wakati chumba kina shughuli nyingi kuliko hiki — ujumbe unashikiliwa na kufika pamoja kwenye arifa inayofuata."
   },
   "common": {
     "mute": "Nyamazisha",
@@ -2544,5 +2550,17 @@
     "pricing": "Inakokotoa bei…",
     "payWithDhb": "Lipa kwa DHB",
     "yourDhb": "DHB yako"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} na {{count}}@ nyingine",
+    "andOthers_other": "{{names}} na {{count}} wengine",
+    "someone": "Mtu"
+  },
+  "publicChatAlerts": {
+    "title": "Gumzo la umma",
+    "mentionTitle": "Imetajwa kwenye gumzo la umma",
+    "digest": "{{count}} ujumbe mpya kutoka {{who}}: {{message}}",
+    "voiceMessage": "Ujumbe wa sauti",
+    "image": "Tuma picha"
   }
 }

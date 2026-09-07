@@ -62,6 +62,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'notifications', anchor: 'notify-monetization', label: 'Earnings', labelKey: 'settings.categoryEarnings', keywords: 'tips subscriptions ppv sales' },
   { tab: 'notifications', anchor: 'notify-content', label: 'Content', labelKey: 'settings.categoryContent', keywords: 'livestream milestones announcements' },
   { tab: 'notifications', anchor: 'chat', label: 'Chat', labelKey: 'settings.chatSection', keywords: 'buy bot messages' },
+  { tab: 'notifications', anchor: 'chat', label: 'Public chat', labelKey: 'settings.publicChatAlerts', keywords: 'public chat room global alerts rate limit per hour raid spam' },
   { tab: 'notifications', anchor: 'quiet-hours', label: 'Quiet Hours', labelKey: 'settings.quietHours', keywords: 'silence mute schedule night' },
 
   // Privacy

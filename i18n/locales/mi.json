@@ -460,7 +460,13 @@
     "signInTv": "Takiuru i tētahi pouaka whakaata",
     "signInTvDesc": "Tāurua te waehere e whakaatu ana tō pouaka whakaata",
     "tvRequests": "Ngā tono pouaka whakaata",
-    "tvRequestsDesc": "Whakaae ki ngā tīpi e tono ana tō pouaka whakaata kia hainatia"
+    "tvRequestsDesc": "Whakaae ki ngā tīpi e tono ana tō pouaka whakaata kia hainatia",
+    "publicChatAlerts": "Kōrerorero tūmatanui",
+    "publicChatAlertsDesc": "Haere ki te korero i te wa e korero ana te korerorero a te iwi i te wa e noho ana koe i tetahi atu wahi",
+    "publicChatAlertsOnDesc": "Ka tae mai nga rohe o Busy hei whakatupato kotahi",
+    "publicChatAlertsRate": "I te nuinga o te wā",
+    "publicChatAlertsRateOption": "{{count}} 1 haora",
+    "publicChatAlertsRateHint": "Kaore he mea e ngaro i te wa e kaha ake ana te ruma i tenei — ka mau nga karere, ka tae mai ki te whakatupato e whai ake nei."
   },
   "common": {
     "mute": "Whakangū",
@@ -2543,5 +2549,15 @@
     "pricing": "E tatau ana i te utu…",
     "payWithDhb": "Utu mā te DHB",
     "yourDhb": "Ō DHB"
+  },
+  "digest": {
+    "andOthers_other": "{{names}} me {{count}} Ētahi atu",
+    "someone": "He tangata"
+  },
+  "publicChatAlerts": {
+    "title": "Kōrerorero tūmatanui",
+    "mentionTitle": "Kua whakahuatia i roto i te kōrerorero tūmatanui",
+    "voiceMessage": "Kōrero reo",
+    "image": "Tukuna he whakaahua"
   }
 }

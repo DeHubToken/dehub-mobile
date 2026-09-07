@@ -1186,7 +1186,13 @@
     "signInTv": "Увійти на телевізорі",
     "signInTvDesc": "Введіть код, який показує телевізор",
     "tvRequests": "Запити з телевізора",
-    "tvRequestsDesc": "Підтверджуйте чайові, які телевізор просить підписати"
+    "tvRequestsDesc": "Підтверджуйте чайові, які телевізор просить підписати",
+    "publicChatAlerts": "Публічний чат",
+    "publicChatAlertsDesc": "Отримуйте повідомлення, коли публічний чат розмовляє, поки ви перебуваєте в іншому місці",
+    "publicChatAlertsOnDesc": "Завантажені ділянки надходять як одне комбіноване сповіщення",
+    "publicChatAlertsRate": "Щонайбільше",
+    "publicChatAlertsRateOption": "{{count}} на годину",
+    "publicChatAlertsRateHint": "Нічого не втрачається, коли в кімнаті більше зайнято — повідомлення тримаються і надходять разом під час наступного сповіщення."
   },
   "postOptions": {
     "options": "Options",
@@ -3025,5 +3031,17 @@
     "pricing": "Рахуємо вартість…",
     "payWithDhb": "Сплатити в DHB",
     "yourDhb": "Ваш DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} та {{count}} інше",
+    "andOthers_other": "{{names}} та {{count}} інші",
+    "someone": "Хтось"
+  },
+  "publicChatAlerts": {
+    "title": "Публічний чат",
+    "mentionTitle": "Згадується в загальнодоступному чаті",
+    "digest": "{{count}} Нові повідомлення від {{who}}: {{message}}",
+    "voiceMessage": "Голосове повідомлення",
+    "image": "Надіслати зображення"
   }
 }

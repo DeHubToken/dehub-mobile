@@ -460,7 +460,13 @@
     "signInTv": "ٹی وی پر سائن ان کریں",
     "signInTvDesc": "وہ کوڈ لکھیں جو آپ کا ٹی وی دکھا رہا ہے",
     "tvRequests": "ٹی وی درخواستیں",
-    "tvRequestsDesc": "وہ ٹپس منظور کریں جو آپ کا ٹی وی سائن کرنے کو کہے"
+    "tvRequestsDesc": "وہ ٹپس منظور کریں جو آپ کا ٹی وی سائن کرنے کو کہے",
+    "publicChatAlerts": "عوامی چیٹ",
+    "publicChatAlertsDesc": "جب آپ کہیں اور ہوں تو عوامی چیٹ بات کر رہی ہو تو مطلع کریں",
+    "publicChatAlertsOnDesc": "مصروف اسٹریچز ایک مشترکہ الرٹ کے طور پر پہنچتے ہیں",
+    "publicChatAlertsRate": "زیادہ سے زیادہ",
+    "publicChatAlertsRateOption": "{{count}} ایک گھنٹہ",
+    "publicChatAlertsRateHint": "جب کمرہ اس سے زیادہ مصروف ہوتا ہے تو کچھ بھی ضائع نہیں ہوتا ہے — پیغامات کو منعقد کیا جاتا ہے اور اگلے انتباہ پر ایک ساتھ پہنچ جاتا ہے ۔"
   },
   "common": {
     "mute": "آواز بند کریں",
@@ -2546,5 +2552,17 @@
     "pricing": "قیمت لگائی جا رہی ہے…",
     "payWithDhb": "DHB سے ادائیگی کریں",
     "yourDhb": "آپ کا DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} اور {{count}} دیگر",
+    "andOthers_other": "{{names}} اور {{count}} دیگر",
+    "someone": "کوئی"
+  },
+  "publicChatAlerts": {
+    "title": "عوامی چیٹ",
+    "mentionTitle": "عوامی چیٹ میں ذکر کیا گیا ہے",
+    "digest": "{{count}} کی جانب سے {{who}}:{{message}} نئے پیغامات",
+    "voiceMessage": "صوتی پیغام",
+    "image": "ایک تصویر بھیجی"
   }
 }

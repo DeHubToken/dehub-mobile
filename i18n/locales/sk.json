@@ -538,7 +538,13 @@
     "signInTv": "Prihlásiť televízor",
     "signInTvDesc": "Zadaj kód zobrazený na televízore",
     "tvRequests": "Požiadavky z televízora",
-    "tvRequestsDesc": "Schvaľuj sprepitné, ktoré televízor žiada podpísať"
+    "tvRequestsDesc": "Schvaľuj sprepitné, ktoré televízor žiada podpísať",
+    "publicChatAlerts": "Verejný chat",
+    "publicChatAlertsDesc": "Nechajte sa informovať, keď sa verejný chat rozpráva, kým ste niekde inde",
+    "publicChatAlertsOnDesc": "Rušné úseky dorazia ako jedno kombinované upozornenie",
+    "publicChatAlertsRate": "Najviac",
+    "publicChatAlertsRateOption": "{{count}} za hodinu",
+    "publicChatAlertsRateHint": "Nič sa nestratí, keď je miestnosť rušnejšia ako toto — správy sú držané a dorazia spolu pri ďalšom upozornení."
   },
   "notifications": {
     "title": "Upozornenia",
@@ -2714,5 +2720,17 @@
     "pricing": "Počítam cenu…",
     "payWithDhb": "Zaplatiť v DHB",
     "yourDhb": "Váš DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} a {{count}} iné",
+    "andOthers_other": "{{names}} a {{count}} ďalšie",
+    "someone": "Niekto"
+  },
+  "publicChatAlerts": {
+    "title": "Verejný chat",
+    "mentionTitle": "Spomenuté vo verejnom chate",
+    "digest": "{{count}} nové správy od {{who}}: {{message}}",
+    "voiceMessage": "Hlasová správa",
+    "image": "Odoslané obrázky"
   }
 }

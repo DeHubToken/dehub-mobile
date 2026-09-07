@@ -460,7 +460,13 @@
     "signInTv": "Телевизордо кирүү",
     "signInTvDesc": "Телевизордо көрүнгөн кодду жазыңыз",
     "tvRequests": "Телевизор сурамдары",
-    "tvRequestsDesc": "Телевизор кол коюуну сураган чайлыктарды бекитиңиз"
+    "tvRequestsDesc": "Телевизор кол коюуну сураган чайлыктарды бекитиңиз",
+    "publicChatAlerts": "Коомдук баарлашуу",
+    "publicChatAlertsDesc": "Коомдук баарлашуу башка жерде жүргөндө сүйлөшкөндө кабарлаңыз",
+    "publicChatAlertsOnDesc": "Бош орундар бириктирилген эскертүү катары келет",
+    "publicChatAlertsRate": "Эң көп",
+    "publicChatAlertsRateOption": "{{count}} 1 саат",
+    "publicChatAlertsRateHint": "Бөлмө бош болгондо эч нерсе жоголбойт — билдирүүлөр өткөрүлүп, кийинки эскертүүдө чогуу келет."
   },
   "common": {
     "mute": "Үнүн өчүрүү",
@@ -2543,5 +2549,15 @@
     "pricing": "Баасы эсептелүүдө…",
     "payWithDhb": "DHB менен төлөө",
     "yourDhb": "Сиздин DHB"
+  },
+  "digest": {
+    "someone": "Кимдир бирөө"
+  },
+  "publicChatAlerts": {
+    "title": "Коомдук баарлашуу",
+    "mentionTitle": "Коомдук баарлашууда айтылды",
+    "digest": "{{count}} {{who}} @: {{message}}@",
+    "voiceMessage": "Үн билдирүүсү",
+    "image": "Undo-type"
   }
 }

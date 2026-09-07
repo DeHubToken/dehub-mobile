@@ -458,7 +458,13 @@
     "signInTv": "টিভিত সাইন ইন করো",
     "signInTvDesc": "টিভিত দেখানো কোডটা লেখো",
     "tvRequests": "টিভি অনুরোধ",
-    "tvRequestsDesc": "টিভি যেটা টিপ সাইন করবার কয়, সেটা মঞ্জুর করো"
+    "tvRequestsDesc": "টিভি যেটা টিপ সাইন করবার কয়, সেটা মঞ্জুর করো",
+    "publicChatAlerts": "Public chat",
+    "publicChatAlertsDesc": "Public chat ke bare mein batao jab tum kahin aur ho",
+    "publicChatAlertsOnDesc": "Busy time ek saath ek alert mein aayega",
+    "publicChatAlertsRate": "Zyada se zyada",
+    "publicChatAlertsRateOption": "{{count}} ghante mein",
+    "publicChatAlertsRateHint": "Jab room isse zyada busy ho to kuch nahi khoega — messages hold ho jayenge aur agli alert mein saath mein aayenge."
   },
   "common": {
     "mute": "आवाज बंद करा",
@@ -2610,5 +2616,17 @@
     "pricing": "দাম হিসাব হইছে…",
     "payWithDhb": "DHB দিয়া পেমেন্ট করো",
     "yourDhb": "তোমার DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} aur {{count}} doosra",
+    "andOthers_other": "{{names}} aur {{count}} doosre",
+    "someone": "Koi"
+  },
+  "publicChatAlerts": {
+    "title": "Public chat",
+    "mentionTitle": "Public chat mein mention kiya gaya",
+    "digest": "{{who}} se {{count}} naye messages: {{message}}",
+    "voiceMessage": "Voice message",
+    "image": "Ek image bheja"
   }
 }

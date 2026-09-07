@@ -460,7 +460,13 @@
     "signInTv": "TV irratti seeni",
     "signInTvDesc": "Koodii TV-n kee agarsiisu barreessi",
     "tvRequests": "Gaaffilee TV",
-    "tvRequestsDesc": "Tippii TV-n kee akka mallatteessitu gaafatu mirkaneessi"
+    "tvRequestsDesc": "Tippii TV-n kee akka mallatteessitu gaafatu mirkaneessi",
+    "publicChatAlerts": "Chaat ummataa",
+    "publicChatAlertsDesc": "Yeroo ati bakka biraa jirtutti yeroo chat ummataa haasa&#39;u itti himama",
+    "publicChatAlertsOnDesc": "Busy stretches akka akeekkachiisa walitti makame tokkootti dhufa",
+    "publicChatAlertsRate": "Yoo baay&#39;ate",
+    "publicChatAlertsRateOption": "{{count}} sa&#39;aatii tokkotti",
+    "publicChatAlertsRateHint": "Yeroo kutaan kana caalaa hojiin itti baay’atu wanti bade hin jiru — ergaawwan qabamaniiru, akeekkachiisa itti aanu irrattis waliin ga’u."
   },
   "common": {
     "mute": "Sagalee cufi",
@@ -2593,5 +2599,17 @@
     "pricing": "Gatii shallagaa jira…",
     "payWithDhb": "DHB dhaan kaffali",
     "yourDhb": "DHB kee"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} fi {{count}} kanneen biroo",
+    "andOthers_other": "{{names}} fi {{count}} kanneen biroo",
+    "someone": "Nama ta&#39;e"
+  },
+  "publicChatAlerts": {
+    "title": "Chaat ummataa",
+    "mentionTitle": "Chaat ummataa irratti kan caqafame",
+    "digest": "{{count}} ergaa haaraa {{who}} irraa: {{message}}",
+    "voiceMessage": "Ergaa sagalee",
+    "image": "Suuraa erge"
   }
 }

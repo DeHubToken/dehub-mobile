@@ -460,7 +460,13 @@
     "signInTv": "ເຂົ້າສູ່ລະບົບໃນ TV",
     "signInTvDesc": "ພິມລະຫັດທີ່ໂທລະທັດສະແດງ",
     "tvRequests": "ຄຳຂໍຈາກ TV",
-    "tvRequestsDesc": "ອະນຸມັດທິບທີ່ໂທລະທັດຂໍໃຫ້ທ່ານເຊັນ"
+    "tvRequestsDesc": "ອະນຸມັດທິບທີ່ໂທລະທັດຂໍໃຫ້ທ່ານເຊັນ",
+    "publicChatAlerts": "ສົນທະນາສາທາລະນະ",
+    "publicChatAlertsDesc": "ໃຫ້ຮູ້ເມື່ອການສົນທະນາສາທາລະນະເວົ້າໃນຂະນະທີ່ທ່ານຢູ່ບ່ອນອື່ນ",
+    "publicChatAlertsOnDesc": "ການຍືດຍາວທີ່ຫຸ້ນວາຍມາເປັນໜຶ່ງການແຈ້ງເຕືອນລວມ",
+    "publicChatAlertsRate": "ສູງສຸດ",
+    "publicChatAlertsRateOption": "{{count}} 1 ຊົ່ວໂມງ",
+    "publicChatAlertsRateHint": "ບໍ່ມີຫຍັງສູນເສຍເມື່ອຫ້ອງມີຄວາມເຄັ່ງຕຶງກວ່ານີ້ — ຂໍ້ຄວາມຖືກເກັບໄວ້ແລະມາພ້ອມກັນໃນເຕືອນຕໍ່ໄປ."
   },
   "common": {
     "mute": "ປິດສຽງ",
@@ -2541,5 +2547,15 @@
     "pricing": "ກຳລັງຄິດລາຄາ…",
     "payWithDhb": "ຈ່າຍດ້ວຍ DHB",
     "yourDhb": "DHB ຂອງທ່ານ"
+  },
+  "digest": {
+    "someone": "ຜູ້ໃດຜູ້ໜຶ່ງ"
+  },
+  "publicChatAlerts": {
+    "title": "ສົນທະນາສາທາລະນະ",
+    "mentionTitle": "ໄດ້ກ່າວເຖິງໃນ Public Chat",
+    "digest": "{{count}} @ ຂໍ້ຄວາມ ໃຫມ່ ຈາກ {{who}}: {{message}}",
+    "voiceMessage": "ຂໍ້ຄວາມສຽງ",
+    "image": "ຊອກຫາຮູບພາບ"
   }
 }

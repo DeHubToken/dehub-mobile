@@ -460,7 +460,13 @@
     "signInTv": "Logi teleris sisse",
     "signInTvDesc": "Sisesta teleris kuvatav kood",
     "tvRequests": "Teleri taotlused",
-    "tvRequestsDesc": "Kinnita jootrahad, mida teler palub allkirjastada"
+    "tvRequestsDesc": "Kinnita jootrahad, mida teler palub allkirjastada",
+    "publicChatAlerts": "Avalik vestlus",
+    "publicChatAlertsDesc": "Saa teada, kui avalik vestlus räägib, kui oled kuskil mujal",
+    "publicChatAlertsOnDesc": "Hõivatud venitused saabuvad ühe kombineeritud teatena",
+    "publicChatAlertsRate": "Maksimaalselt",
+    "publicChatAlertsRateOption": "{{count}} tunnis",
+    "publicChatAlertsRateHint": "Midagi ei lähe kaduma, kui tuba on hõivatud rohkem kui see — sõnumeid hoitakse ja need jõuavad koos järgmise hoiatusega."
   },
   "common": {
     "mute": "Vaigista",
@@ -2543,5 +2549,17 @@
     "pricing": "Hinna arvutamine…",
     "payWithDhb": "Maksa DHB-ga",
     "yourDhb": "Sinu DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} ja {{count}} muu",
+    "andOthers_other": "{{names}} ja {{count}} muud",
+    "someone": "Keegi"
+  },
+  "publicChatAlerts": {
+    "title": "Avalik vestlus",
+    "mentionTitle": "Mainitud avalikus vestluses",
+    "digest": "{{count}} uued sõnumid kasutajalt {{who}}: {{message}}",
+    "voiceMessage": "Kõnepostiteade",
+    "image": "Pilt on saadetud"
   }
 }

@@ -460,7 +460,13 @@
     "signInTv": "Auf einem Fernseher anmelden",
     "signInTvDesc": "Gib den Code ein, den dein Fernseher anzeigt",
     "tvRequests": "TV-Anfragen",
-    "tvRequestsDesc": "Trinkgelder freigeben, die dein Fernseher signieren lassen will"
+    "tvRequestsDesc": "Trinkgelder freigeben, die dein Fernseher signieren lassen will",
+    "publicChatAlerts": "Öffentlicher Chat",
+    "publicChatAlertsDesc": "Lassen Sie sich sagen, wenn der öffentliche Chat spricht, während Sie woanders sind",
+    "publicChatAlertsOnDesc": "Beschäftigte Strecken kommen als eine kombinierte Warnung an",
+    "publicChatAlertsRate": "Höchstens",
+    "publicChatAlertsRateOption": "{{count}} eine Stunde",
+    "publicChatAlertsRateHint": "Nichts geht verloren, wenn der Raum belebter ist als dies — die Nachrichten werden gehalten und treffen beim nächsten Alarm zusammen ein."
   },
   "common": {
     "mute": "Stumm schalten",
@@ -2592,5 +2598,17 @@
     "pricing": "Preis wird ermittelt…",
     "payWithDhb": "Mit DHB bezahlen",
     "yourDhb": "Dein DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} und {{count}} andere",
+    "andOthers_other": "{{names}} und {{count}} andere",
+    "someone": "Jemand"
+  },
+  "publicChatAlerts": {
+    "title": "Öffentlicher Chat",
+    "mentionTitle": "Erwähnt im öffentlichen Chat",
+    "digest": "{{count}} neue Nachrichten von {{who}}: {{message}}",
+    "voiceMessage": "Sprachnachricht",
+    "image": "Ein Bild gesendet"
   }
 }

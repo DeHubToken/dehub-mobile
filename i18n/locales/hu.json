@@ -460,7 +460,13 @@
     "signInTv": "Bejelentkezés tévén",
     "signInTvDesc": "Írd be a tévén látható kódot",
     "tvRequests": "TV-kérések",
-    "tvRequestsDesc": "Hagyd jóvá a tévé által aláírásra kért borravalókat"
+    "tvRequestsDesc": "Hagyd jóvá a tévé által aláírásra kért borravalókat",
+    "publicChatAlerts": "Nyilvános csevegés",
+    "publicChatAlertsDesc": "Tájékozódj, ha a nyilvános csevegés közben valahol máshol vagy",
+    "publicChatAlertsOnDesc": "A forgalmas szakaszok egy kombinált riasztásként érkeznek",
+    "publicChatAlertsRate": "Legfeljebb",
+    "publicChatAlertsRateOption": "{{count}} óránként",
+    "publicChatAlertsRateHint": "Semmi sem vész el, ha a szoba ennél zsúfoltabb — az üzenetek a következő riasztáskor együtt érkeznek."
   },
   "common": {
     "mute": "Némítás",
@@ -2547,5 +2553,17 @@
     "pricing": "Árazás folyamatban…",
     "payWithDhb": "Fizetés DHB-vel",
     "yourDhb": "A te DHB-d"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} és {{count}} egyéb",
+    "andOthers_other": "{{names}} és {{count}} egyéb",
+    "someone": "Valaki"
+  },
+  "publicChatAlerts": {
+    "title": "Nyilvános csevegés",
+    "mentionTitle": "Említve a nyilvános csevegésben",
+    "digest": "{{count}} új üzenet tőle: {{who}}: {{message}}",
+    "voiceMessage": "Hangüzenet",
+    "image": "Kép elküldve"
   }
 }

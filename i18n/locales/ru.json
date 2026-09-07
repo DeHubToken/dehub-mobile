@@ -460,7 +460,13 @@
     "signInTv": "Войти на телевизоре",
     "signInTvDesc": "Введите код, который показывает телевизор",
     "tvRequests": "Запросы с телевизора",
-    "tvRequestsDesc": "Подтверждайте чаевые, которые телевизор просит подписать"
+    "tvRequestsDesc": "Подтверждайте чаевые, которые телевизор просит подписать",
+    "publicChatAlerts": "Публичный чат",
+    "publicChatAlertsDesc": "Сообщайте, когда публичный чат разговаривает с вами, пока вы находитесь в другом месте",
+    "publicChatAlertsOnDesc": "Занятые участки прибывают как одно комбинированное оповещение",
+    "publicChatAlertsRate": "Не более",
+    "publicChatAlertsRateOption": "{{count}} в час",
+    "publicChatAlertsRateHint": "Ничего не теряется, когда комната занята больше — сообщения удерживаются и поступают вместе при следующем оповещении."
   },
   "common": {
     "mute": "Выключить звук",
@@ -2595,5 +2601,17 @@
     "pricing": "Считаем стоимость…",
     "payWithDhb": "Оплатить в DHB",
     "yourDhb": "Ваш DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} и {{count}} другое",
+    "andOthers_other": "{{names}} и {{count}} другие",
+    "someone": "Кто-то"
+  },
+  "publicChatAlerts": {
+    "title": "Публичный чат",
+    "mentionTitle": "Упоминается в публичном чате",
+    "digest": "{{count}} Новые сообщения от {{who}}: {{message}}",
+    "voiceMessage": "Голосовое сообщение",
+    "image": "Отправить изображение"
   }
 }
