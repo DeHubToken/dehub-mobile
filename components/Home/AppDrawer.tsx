@@ -427,7 +427,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                   onPress={() => navigate(ScreenNames.SignIn)}
                   activeOpacity={0.7}
                 >
-                  <View className="w-12 h-12 rounded-full bg-white/10 items-center justify-center">
+                  <View className="w-12 h-12 rounded-xl bg-white/10 items-center justify-center">
                     <Icon name="User" size={24} color="#9CA3AF" />
                   </View>
                   <View className="ml-3">

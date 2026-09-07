@@ -294,7 +294,7 @@ const LiveChatInfoScreen: React.FC = () => {
         }
       >
         <View className="items-center pt-6 pb-4 px-4">
-          <View className="w-16 h-16 bg-blue-500/20 rounded-full items-center justify-center mb-3">
+          <View className="w-16 h-16 bg-blue-500/20 rounded-2xl items-center justify-center mb-3">
             <Ionicons name="chatbubbles" size={28} color="#F4F4F5" />
           </View>
           <Text className="text-white text-lg font-bold">{room?.name || "Public Chat"}</Text>

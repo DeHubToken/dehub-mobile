@@ -423,7 +423,7 @@ const styles = StyleSheet.create({
   chip: {
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.1)",
-    borderRadius: 999,
+    borderRadius: 8,
     paddingHorizontal: 10,
     paddingVertical: 4,
   },

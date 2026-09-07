@@ -778,7 +778,7 @@ const styles = StyleSheet.create({
   micBtn: {
     width: 36,
     height: 36,
-    borderRadius: 18,
+    borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -792,7 +792,7 @@ const styles = StyleSheet.create({
   sendBtn: {
     width: 36,
     height: 36,
-    borderRadius: 18,
+    borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
   },

@@ -219,7 +219,7 @@ const s = StyleSheet.create({
   playBtn: {
     width: 36,
     height: 36,
-    borderRadius: 18,
+    borderRadius: 12,
     backgroundColor: '#F4F4F5',
     alignItems: 'center',
     justifyContent: 'center',

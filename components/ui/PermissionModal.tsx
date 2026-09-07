@@ -112,7 +112,7 @@ const PermissionModalProvider: React.FC = memo(() => {
       dismissible
     >
       <View className="items-center px-6 pt-8 pb-6">
-        <View className="w-16 h-16 rounded-full bg-white/10 items-center justify-center mb-5">
+        <View className="w-16 h-16 rounded-2xl bg-white/10 items-center justify-center mb-5">
           <Ionicons name={config.icon} size={30} color="#F4F4F5" />
         </View>
 

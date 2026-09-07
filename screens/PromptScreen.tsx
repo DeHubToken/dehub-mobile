@@ -349,7 +349,7 @@ const styles = StyleSheet.create({
   wandWrap: {
     width: 64,
     height: 64,
-    borderRadius: 999,
+    borderRadius: 16,
     backgroundColor: "rgba(255,255,255,0.08)",
     alignItems: "center",
     justifyContent: "center",
@@ -381,7 +381,7 @@ const styles = StyleSheet.create({
   sendBtn: {
     width: 34,
     height: 34,
-    borderRadius: 999,
+    borderRadius: 12,
     backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center",
@@ -475,7 +475,7 @@ const styles = StyleSheet.create({
     marginTop: 26,
     width: "100%",
     height: 48,
-    borderRadius: 999,
+    borderRadius: 12,
     backgroundColor: "#FFFFFF",
     flexDirection: "row",
     alignItems: "center",

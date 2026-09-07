@@ -754,7 +754,7 @@ export default function FeedDetailScreen() {
       <TouchableOpacity
         onPress={() => setShowAllThreads(true)}
         activeOpacity={0.7}
-        className="self-start rounded-full bg-theme-neutrals-800/60 px-4 py-2"
+        className="self-start rounded-xl bg-theme-neutrals-800/60 px-4 py-2"
       >
         <Text className="text-theme-neutrals-300 text-xs">{t("comments.showAll")}</Text>
       </TouchableOpacity>
@@ -1016,7 +1016,7 @@ export default function FeedDetailScreen() {
         </View>
       ) : privateError ? (
         <View className="items-center justify-center px-6 py-16">
-          <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
+          <View className="bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5">
             <Ionicons name="lock-closed" size={40} color="#666" />
           </View>
           <Text className="text-white text-lg font-bold text-center mb-2">

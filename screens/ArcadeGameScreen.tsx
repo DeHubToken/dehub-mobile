@@ -408,7 +408,7 @@ const styles = StyleSheet.create({
     top: 10,
     width: 36,
     height: 36,
-    borderRadius: 18,
+    borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "rgba(0,0,0,0.55)",
@@ -469,7 +469,7 @@ const styles = StyleSheet.create({
   panelSlug: { color: "#E4E4E7", fontFamily: "monospace" },
   panelButton: {
     marginTop: 6,
-    borderRadius: 999,
+    borderRadius: 12,
     paddingHorizontal: 18,
     paddingVertical: 9,
     backgroundColor: colors.accent,

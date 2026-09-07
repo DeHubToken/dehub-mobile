@@ -270,7 +270,7 @@ export default function ShopSheet({
           }}
           disabled={!canSave}
           activeOpacity={0.7}
-          className="mt-4 mb-2 py-3 rounded-full items-center"
+          className="mt-4 mb-2 py-3 rounded-xl items-center"
           style={{ backgroundColor: canSave ? "#fff" : "rgba(255,255,255,0.1)" }}
         >
           <Text className="text-sm font-semibold" style={{ color: canSave ? "#09090B" : "#808089" }}>

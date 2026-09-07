@@ -124,7 +124,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
             <TouchableOpacity
               onPress={handleCreate}
               disabled={!canCreate}
-              className={`px-4 py-1.5 rounded-full ${
+              className={`px-4 py-1.5 rounded-lg ${
                 canCreate ? "bg-white" : "bg-white/10"
               }`}
             >

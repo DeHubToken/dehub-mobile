@@ -1845,7 +1845,7 @@ export default function UploadScreen() {
             onPress={handlePost}
             disabled={isLiveMode ? (!canGoLive || postInFlight) : (!canPost || postInFlight)}
             activeOpacity={0.8}
-            className="h-10 px-5 rounded-full items-center justify-center"
+            className="h-10 px-5 rounded-xl items-center justify-center"
             accessibilityRole="button"
             accessibilityLabel={isLiveMode ? "Go live" : scheduledDate ? "Schedule" : "Post"}
             style={{
@@ -2031,7 +2031,7 @@ export default function UploadScreen() {
                       <TouchableOpacity
                         onPress={handlePickLiveThumbnail}
                         activeOpacity={0.7}
-                        className="mr-2 w-8 h-8 rounded-full bg-black/60 items-center justify-center border border-white/10"
+                        className="mr-2 w-8 h-8 rounded-xl bg-black/60 items-center justify-center border border-white/10"
                         accessibilityRole="button"
                         accessibilityLabel="Change thumbnail"
                       >
@@ -2040,7 +2040,7 @@ export default function UploadScreen() {
                       <TouchableOpacity
                         onPress={() => setLiveThumbnailUri(null)}
                         activeOpacity={0.7}
-                        className="w-8 h-8 rounded-full bg-black/60 items-center justify-center border border-white/10"
+                        className="w-8 h-8 rounded-xl bg-black/60 items-center justify-center border border-white/10"
                         accessibilityRole="button"
                         accessibilityLabel="Remove thumbnail"
                       >
@@ -2094,7 +2094,7 @@ export default function UploadScreen() {
                       />
                       <TouchableOpacity
                         onPress={() => handleRemoveImage(idx)}
-                        className="absolute top-2 right-2 w-7 h-7 rounded-full items-center justify-center bg-black/70"
+                        className="absolute top-2 right-2 w-7 h-7 rounded-lg items-center justify-center bg-black/70"
                         hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                         accessibilityRole="button"
                         accessibilityLabel="Remove image"
@@ -2148,7 +2148,7 @@ export default function UploadScreen() {
                 <View className="absolute inset-0 items-center justify-center">
                   <TouchableOpacity
                     onPress={handleTogglePlay}
-                    className="w-12 h-12 rounded-full bg-black/50 items-center justify-center"
+                    className="w-12 h-12 rounded-xl bg-black/50 items-center justify-center"
                     accessibilityRole="button"
                     accessibilityLabel={isPlaying ? "Pause video" : "Play video"}
                   >
@@ -2161,7 +2161,7 @@ export default function UploadScreen() {
                 </View>
                 <TouchableOpacity
                   onPress={handleToggleMute}
-                  className="absolute bottom-2 left-2 w-8 h-8 rounded-full bg-black/60 items-center justify-center"
+                  className="absolute bottom-2 left-2 w-8 h-8 rounded-xl bg-black/60 items-center justify-center"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                   accessibilityRole="button"
                   accessibilityLabel={isMuted ? "Unmute video" : "Mute video"}
@@ -2174,7 +2174,7 @@ export default function UploadScreen() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={handleRemoveVideo}
-                  className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/70 items-center justify-center"
+                  className="absolute top-2 right-2 w-8 h-8 rounded-xl bg-black/70 items-center justify-center"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                   accessibilityRole="button"
                   accessibilityLabel="Remove video"
@@ -2183,7 +2183,7 @@ export default function UploadScreen() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={handleChangeVideo}
-                  className="absolute top-2 right-12 w-8 h-8 rounded-full bg-black/70 items-center justify-center"
+                  className="absolute top-2 right-12 w-8 h-8 rounded-xl bg-black/70 items-center justify-center"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                   accessibilityRole="button"
                   accessibilityLabel="Change video"
@@ -2209,7 +2209,7 @@ export default function UploadScreen() {
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={toggleCoverHidden}
-                      className="absolute -top-2 right-1 w-5 h-5 rounded-full bg-black/70 items-center justify-center"
+                      className="absolute -top-2 right-1 w-5 h-5 rounded-lg bg-black/70 items-center justify-center"
                       hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                       accessibilityRole="button"
                       accessibilityLabel="Hide cover"
@@ -2251,7 +2251,7 @@ export default function UploadScreen() {
                   <TouchableOpacity
                     onPress={handleCancelAudioRecording}
                     activeOpacity={0.7}
-                    className="w-9 h-9 rounded-full bg-theme-neutrals-700 items-center justify-center mr-2 ml-auto"
+                    className="w-9 h-9 rounded-xl bg-theme-neutrals-700 items-center justify-center mr-2 ml-auto"
                     accessibilityRole="button"
                     accessibilityLabel="Discard recording"
                   >
@@ -2261,7 +2261,7 @@ export default function UploadScreen() {
                   <TouchableOpacity
                     onPress={handleStopAudioRecording}
                     activeOpacity={0.7}
-                    className="w-9 h-9 rounded-full bg-white items-center justify-center"
+                    className="w-9 h-9 rounded-xl bg-white items-center justify-center"
                     accessibilityRole="button"
                     accessibilityLabel="Finish recording"
                   >
@@ -2305,7 +2305,7 @@ export default function UploadScreen() {
                   <TouchableOpacity
                     onPress={handleToggleAudioPreview}
                     activeOpacity={0.7}
-                    className="w-10 h-10 rounded-full bg-theme-neutrals-700 items-center justify-center mr-3"
+                    className="w-10 h-10 rounded-xl bg-theme-neutrals-700 items-center justify-center mr-3"
                   >
                     <Icon
                       name={isAudioPreviewPlaying ? "Pause" : "Play"}
@@ -2325,7 +2325,7 @@ export default function UploadScreen() {
                   </View>
                   <TouchableOpacity
                     onPress={handleRemoveAudio}
-                    className="w-8 h-8 rounded-full bg-black/60 items-center justify-center"
+                    className="w-8 h-8 rounded-xl bg-black/60 items-center justify-center"
                     hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                     accessibilityRole="button"
                     accessibilityLabel="Remove audio"
@@ -2344,7 +2344,7 @@ export default function UploadScreen() {
                 />
                 <TouchableOpacity
                   onPress={handleRemoveQuoteEmbed}
-                  className="absolute top-1 right-1 w-7 h-7 rounded-full bg-black/70 items-center justify-center z-10"
+                  className="absolute top-1 right-1 w-7 h-7 rounded-lg bg-black/70 items-center justify-center z-10"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                   accessibilityRole="button"
                   accessibilityLabel="Remove quoted post"
@@ -2901,14 +2901,14 @@ export default function UploadScreen() {
             <TouchableOpacity
               onPress={() => setShowSaveDraftModal(false)}
               activeOpacity={0.7}
-              className="flex-1 px-4 py-3 rounded-full bg-theme-neutrals-800 border border-theme-neutrals-700 mr-2"
+              className="flex-1 px-4 py-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 mr-2"
             >
               <Text className="text-white text-center font-medium">Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={handleConfirmSaveDraft}
               activeOpacity={0.7}
-              className="flex-1 px-4 py-3 rounded-full bg-white"
+              className="flex-1 px-4 py-3 rounded-xl bg-white"
             >
               <Text className="text-black text-center font-semibold">Save</Text>
             </TouchableOpacity>
@@ -3031,14 +3031,14 @@ export default function UploadScreen() {
             <TouchableOpacity
               onPress={handleDiscardSaveDraft}
               activeOpacity={0.7}
-              className="px-4 py-3 rounded-full bg-white"
+              className="px-4 py-3 rounded-xl bg-white"
             >
               <Text className="text-black text-center font-semibold">Save to Drafts</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={handleDiscard}
               activeOpacity={0.7}
-              className="px-4 py-3 rounded-full bg-theme-neutrals-800 border border-theme-neutrals-700"
+              className="px-4 py-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700"
             >
               <Text className="text-white/80 text-center font-medium">Discard</Text>
             </TouchableOpacity>

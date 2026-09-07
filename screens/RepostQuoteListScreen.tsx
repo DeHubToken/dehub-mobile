@@ -297,7 +297,7 @@ const RepostQuoteListScreen: React.FC = () => {
     if (repostLoading) return null;
     return (
       <View className="flex-1 items-center justify-center py-16">
-        <View className="bg-theme-neutrals-800/30 rounded-full p-5 mb-4">
+        <View className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
           <Ionicons name="git-compare-outline" size={40} color="#A1A1AA" />
         </View>
         <Text className="text-gray-400 text-base text-center px-8">
@@ -311,7 +311,7 @@ const RepostQuoteListScreen: React.FC = () => {
     if (quoteLoading) return null;
     return (
       <View className="flex-1 items-center justify-center py-16">
-        <View className="bg-theme-neutrals-800/30 rounded-full p-5 mb-4">
+        <View className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
           <Ionicons name="chatbubble-ellipses-outline" size={40} color="#A1A1AA" />
         </View>
         <Text className="text-gray-400 text-base text-center px-8">

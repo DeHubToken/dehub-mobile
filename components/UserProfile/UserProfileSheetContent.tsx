@@ -305,7 +305,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
                 onPress={onUnblock}
                 disabled={blockLoading}
                 activeOpacity={0.8}
-                className="bg-white/20 px-3 py-1.5 rounded-full"
+                className="bg-white/20 px-3 py-1.5 rounded-xl"
               >
                 <Text className="text-white/80 text-xs font-semibold">
                   {blockLoading ? "..." : "Unblock"}
@@ -410,9 +410,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           <TouchableOpacity
             onPress={handleMenuMessage}
             activeOpacity={0.7}
-            className="flex-row items-center px-5 py-3.5"
+            className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
           >
-            <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+            <View className="w-5 h-5 items-center justify-center mr-3">
               <Icon name="MessageSquare" size={18} color="#fff" />
             </View>
             <View className="flex-1">
@@ -428,9 +428,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           <TouchableOpacity
             onPress={handleMenuTip}
             activeOpacity={0.7}
-            className="flex-row items-center px-5 py-3.5"
+            className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
           >
-            <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+            <View className="w-5 h-5 items-center justify-center mr-3">
               <Icon name="HandCoins" size={18} color="#fff" />
             </View>
             <View className="flex-1">
@@ -446,9 +446,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           <TouchableOpacity
             onPress={handleMenuShare}
             activeOpacity={0.7}
-            className="flex-row items-center px-5 py-3.5"
+            className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
           >
-            <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+            <View className="w-5 h-5 items-center justify-center mr-3">
               <Icon name="Share2" size={18} color="#fff" />
             </View>
             <View className="flex-1">
@@ -464,9 +464,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           <TouchableOpacity
             onPress={handleMenuCopyUrl}
             activeOpacity={0.7}
-            className="flex-row items-center px-5 py-3.5"
+            className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
           >
-            <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+            <View className="w-5 h-5 items-center justify-center mr-3">
               <Icon name="Link" size={18} color="#fff" />
             </View>
             <View className="flex-1">
@@ -482,9 +482,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           <TouchableOpacity
             onPress={handleMenuCopyAddress}
             activeOpacity={0.7}
-            className="flex-row items-center px-5 py-3.5"
+            className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
           >
-            <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+            <View className="w-5 h-5 items-center justify-center mr-3">
               <Icon name="Copy" size={18} color="#fff" />
             </View>
             <View className="flex-1">
@@ -502,9 +502,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               <TouchableOpacity
                 onPress={handleRemoveFollowerPress}
                 activeOpacity={0.7}
-                className="flex-row items-center px-5 py-3.5"
+                className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
               >
-                <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+                <View className="w-5 h-5 items-center justify-center mr-3">
                   <Ionicons name="person-remove-outline" size={18} color="#fff" />
                 </View>
                 <View className="flex-1">
@@ -524,9 +524,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           <TouchableOpacity
             onPress={handleBlockPress}
             activeOpacity={0.7}
-            className="flex-row items-center px-5 py-3.5"
+            className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
           >
-            <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+            <View className="w-5 h-5 items-center justify-center mr-3">
               <Ionicons
                 name={youBlocked ? "lock-open-outline" : "ban-outline"}
                 size={18}
@@ -552,9 +552,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           <TouchableOpacity
             onPress={handleReportPress}
             activeOpacity={0.7}
-            className="flex-row items-center px-5 py-3.5"
+            className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
           >
-            <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+            <View className="w-5 h-5 items-center justify-center mr-3">
               <Ionicons name="flag-outline" size={18} color="#D4D4D8" />
             </View>
             <View className="flex-1">
@@ -577,7 +577,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         blurIntensity={50}
       >
         <View className="px-5 py-6 items-center">
-          <View className="w-14 h-14 rounded-full bg-white/10 items-center justify-center mb-4">
+          <View className="w-14 h-14 rounded-2xl bg-white/10 items-center justify-center mb-4">
             <Ionicons name="person-remove-outline" size={28} color="#fff" />
           </View>
           <Text className="text-white text-lg font-semibold text-center mb-2">

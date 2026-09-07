@@ -168,7 +168,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
         blurIntensity={40}
       >
         <View className="p-6 items-center">
-          <View className="w-16 h-16 rounded-full bg-white/10 items-center justify-center mb-4">
+          <View className="w-16 h-16 rounded-2xl bg-white/10 items-center justify-center mb-4">
             <Ionicons name="checkmark-circle" size={36} color="#F4F4F5" />
           </View>
           <Text className="text-white text-lg font-bold text-center mb-2">
@@ -238,7 +238,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
             onPress={handleClose}
             disabled={submitting}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            className="p-2 bg-white/5 rounded-full"
+            className="p-2 bg-white/5 rounded-xl"
             activeOpacity={0.8}
           >
             <Ionicons name="close" size={20} color="#A6A9AC" />

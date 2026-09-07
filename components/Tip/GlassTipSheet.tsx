@@ -914,7 +914,7 @@ const styles = StyleSheet.create({
   successGemFill: {
     width: 80,
     height: 80,
-    borderRadius: 40,
+    borderRadius: 20,
     backgroundColor: "#F4F4F5",
     alignItems: "center",
     justifyContent: "center",

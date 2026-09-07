@@ -231,7 +231,7 @@ const VideoThumb: React.FC<VideoThumbProps> = memo(({ uri, width, height, onPres
           </View>
         )}
         <View className="absolute inset-0 items-center justify-center">
-          <View className="bg-black/50 rounded-full p-2">
+          <View className="bg-black/50 rounded-xl p-2">
             <Icon name="Play" size={24} color="#fff" />
           </View>
         </View>
@@ -623,7 +623,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
           },
         ]}
       >
-        <View className="w-8 h-8 rounded-full bg-theme-neutrals-800 items-center justify-center">
+        <View className="w-8 h-8 rounded-xl bg-theme-neutrals-800 items-center justify-center">
           <Icon name="Undo2" size={18} color="#F4F4F5" />
         </View>
       </Animated.View>
@@ -863,7 +863,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
               ) : (
                 <View className="flex-row items-center px-3 py-2.5 gap-2.5 min-w-[160px]">
                   <View
-                    className={`w-8 h-8 rounded-full items-center justify-center ${
+                    className={`w-8 h-8 rounded-xl items-center justify-center ${
                       isMine ? "bg-white/15" : "bg-accent/20"
                     }`}
                   >
