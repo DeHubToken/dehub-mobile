@@ -323,6 +323,8 @@ const LiveStageModal: React.FC = () => {
       animationType="slide"
       presentationStyle="fullScreen"
       statusBarTranslucent
+      // Without this Android swallowed the hardware/gesture back inside the room.
+      onRequestClose={closeModal}
     >
       <StatusBar barStyle="light-content" backgroundColor="#000" />
       <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
