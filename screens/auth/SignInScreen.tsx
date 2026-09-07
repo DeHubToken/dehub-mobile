@@ -516,10 +516,17 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   // mismatch case, so the user just sets a password to finish.
   const handleLegacyRecovered = useCallback(
     (privateKey: string, label?: string) => {
-      if (!pendingCreateUserId) return;
-      setWalletSetupRequest({ mode: "legacy-recovered", supabaseUserId: pendingCreateUserId, privateKey, label });
+      const userId = pendingCreateUserId;
+      if (!userId) return;
+      // Close the warning first; present the wallet sheet once it has dismissed
+      // (see onCreateAnyway below for why).
       setLegacyAccounts(null);
       setPendingCreateUserId(null);
+      setTimeout(
+        () =>
+          setWalletSetupRequest({ mode: "legacy-recovered", supabaseUserId: userId, privateKey, label }),
+        250,
+      );
     },
     [pendingCreateUserId]
   );
@@ -743,9 +750,18 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             accounts={legacyAccounts ?? []}
             onRecovered={handleLegacyRecovered}
             onCreateAnyway={() => {
-              if (pendingCreateUserId) setWalletSetupRequest({ mode: "create", supabaseUserId: pendingCreateUserId });
+              // Close the warning first and present the wallet sheet once it has
+              // dismissed: two native Modals crossing in one commit leaves iOS
+              // refusing the second, and the sheet never appears.
+              const userId = pendingCreateUserId;
               setLegacyAccounts(null);
               setPendingCreateUserId(null);
+              if (userId) {
+                setTimeout(
+                  () => setWalletSetupRequest({ mode: "create", supabaseUserId: userId }),
+                  250,
+                );
+              }
             }}
             onClose={() => {
               setLegacyAccounts(null);
