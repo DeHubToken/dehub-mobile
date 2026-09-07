@@ -252,14 +252,16 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   const { t } = useTranslation();
   const [categorySearch, setCategorySearch] = useState("");
 
+  // Engagement sorts lead: they are what people actually reach for, and they
+  // were sitting behind the algorithmic and chronological options.
   const SORT_OPTIONS = useMemo(() => [
     { id: "score" as SortOption, label: t("filters.forYou", "For You") },
-    { id: "random" as SortOption, label: t("filters.random") },
-    { id: "createdAt" as SortOption, label: t("filters.latest") },
-    { id: "views" as SortOption, label: t("filters.mostViewed") },
     { id: "likes" as SortOption, label: t("filters.mostLiked") },
-    { id: "comments" as SortOption, label: t("filters.mostComments") },
     { id: "tips" as SortOption, label: t("filters.mostTips") },
+    { id: "views" as SortOption, label: t("filters.mostViewed") },
+    { id: "comments" as SortOption, label: t("filters.mostComments") },
+    { id: "createdAt" as SortOption, label: t("filters.latest") },
+    { id: "random" as SortOption, label: t("filters.random") },
   ], [t]);
 
   const DATE_RANGE_OPTIONS = useMemo(() => [
