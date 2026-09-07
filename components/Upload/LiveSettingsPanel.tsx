@@ -224,32 +224,48 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
             </View>
           </View>
 
-          <View className="flex-row gap-3 mb-2">
-            <TouchableOpacity
-              onPress={() => setShowDatePicker(true)}
-              className="flex-1 flex-row items-center justify-center h-10 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700"
-            >
-              <Ionicons name="calendar" size={16} color="#fff" />
-              <Text className="text-white text-xs ml-2">Pick Date</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => setShowTimePicker(true)}
-              className="flex-1 flex-row items-center justify-center h-10 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700"
-            >
-              <Ionicons name="time" size={16} color="#fff" />
-              <Text className="text-white text-xs ml-2">Pick Time</Text>
-            </TouchableOpacity>
-          </View>
+          {/* iOS renders its own compact date and time controls inline below, so
+              the Pick buttons only exist on Android, where they open the system
+              dialogs. On iOS they used to set state that nothing rendered. */}
+          {Platform.OS === "android" && (
+            <View className="flex-row gap-3 mb-2">
+              <TouchableOpacity
+                onPress={() => setShowDatePicker(true)}
+                className="flex-1 flex-row items-center justify-center h-10 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700"
+              >
+                <Ionicons name="calendar" size={16} color="#fff" />
+                <Text className="text-white text-xs ml-2">Pick Date</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => setShowTimePicker(true)}
+                className="flex-1 flex-row items-center justify-center h-10 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700"
+              >
+                <Ionicons name="time" size={16} color="#fff" />
+                <Text className="text-white text-xs ml-2">Pick Time</Text>
+              </TouchableOpacity>
+            </View>
+          )}
 
           {(showDatePicker || (Platform.OS === "ios" && expandedSection === "schedule")) && (
-            <DateTimePicker
-              value={state.scheduledDate ?? new Date(Date.now() + 6 * 60 * 60 * 1000)}
-              mode="date"
-              display={Platform.OS === "ios" ? "compact" : "default"}
-              minimumDate={new Date()}
-              onChange={handleDateChange}
-              themeVariant="dark"
-            />
+            <View className="flex-row items-center gap-3 mb-2">
+              <DateTimePicker
+                value={state.scheduledDate ?? new Date(Date.now() + 6 * 60 * 60 * 1000)}
+                mode="date"
+                display={Platform.OS === "ios" ? "compact" : "default"}
+                minimumDate={new Date()}
+                onChange={handleDateChange}
+                themeVariant="dark"
+              />
+              {Platform.OS === "ios" && (
+                <DateTimePicker
+                  value={state.scheduledDate ?? new Date(Date.now() + 6 * 60 * 60 * 1000)}
+                  mode="time"
+                  display="compact"
+                  onChange={handleTimeChange}
+                  themeVariant="dark"
+                />
+              )}
+            </View>
           )}
 
           {showTimePicker && Platform.OS === "android" && (
