@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   View,
   Text,
@@ -43,6 +43,18 @@ export default function ScheduleSheet({
   );
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [androidPickerMode, setAndroidPickerMode] = useState<"date" | "time">("date");
+
+  // The sheet stays mounted between opens, so its state outlived a schedule
+  // removed from the banner and reopened showing the old date. Re-seed from
+  // the prop each time it opens.
+  useEffect(() => {
+    if (!visible) return;
+    setCurrentMonth(scheduledDate ?? startOfToday());
+    setSelectedDate(scheduledDate);
+    setSelectedTime(scheduledDate ?? new Date(Date.now() + 60 * 60 * 1000));
+    setShowTimePicker(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
 
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
