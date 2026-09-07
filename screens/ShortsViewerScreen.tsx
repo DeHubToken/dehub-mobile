@@ -94,6 +94,7 @@ import TranslateButton from "../components/ui/TranslateButton";
 import { useTranslation } from "../hooks/useTranslation";
 import {
   applyReactionDelta,
+  HAS_NEGATIVE_TRAY,
   isPositiveReaction,
   reactionForTap,
   reactionMeta,
@@ -396,10 +397,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, view
   const shareCount = repostCount + Math.max(linkCopyCount, linkCopyFloor);
   const trackLinkCopy = useTrackPostLinkCopy();
 
-  // One tray per thumb: the seven positive faces on the thumbs-up, 👎 and 💩
-  // on the thumbs-down. One state rather than two booleans, so only one can be
-  // open — and `pickerOpen` below keeps reading as "a tray is up" for the
-  // chrome auto-hide, which does not care which.
+  // One tray per thumb: every positive face on the thumbs-up, the downvote on
+  // the thumbs-down — which no longer opens a tray at all, holding one option.
+  // One state rather than two booleans, so only one can be open, and
+  // `pickerOpen` below keeps reading as "a tray is up" for the chrome
+  // auto-hide, which does not care which.
   const [openTray, setOpenTray] = useState<"positive" | "negative" | null>(null);
   const pickerOpen = openTray !== null;
   const [showReactionInfo, setShowReactionInfo] = useState(false);
@@ -640,9 +642,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, view
   /** The one glyph the thumb wears — and, on a tap, the reaction it casts. */
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
   const leadGlyph = leadReaction ? reactionMeta(leadReaction).emoji : undefined;
-  /** A 👎 or 💩 belongs to the thumbs-DOWN; this button must not announce it. */
+  /** A downvote belongs to the thumbs-DOWN; this button must not announce it. */
   const myPositiveReaction = myReaction && isPositiveReaction(myReaction) ? myReaction : null;
-  /* …and that button wears it — your own 💩 only, never the crowd's. */
+  /* …and that button would wear it, though 👎 is its own glyph already. */
   const myNegativeReaction = myReaction && !isPositiveReaction(myReaction) ? myReaction : null;
   const negativeLeadReaction = resolveNegativeLeadReaction(myReaction);
   const negativeGlyph = negativeLeadReaction ? reactionMeta(negativeLeadReaction).emoji : undefined;
@@ -1147,10 +1149,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, view
                 accessibilityLabel="Tip"
               />
 
-              {/* Downvotes — tap the thumb, hold it for 💩. The negative pair
-                  lives here rather than in the tray on the thumbs-UP: they
-                  move THIS count, and the button that means "no" is where a
-                  reader goes looking for them. */}
+              {/* Downvotes — one tap, no tray: 👎 is the only reaction on this
+                  side, and a hold-to-open menu of one would just get in the
+                  way of the press that already casts it. */}
               <View style={styles.actionCell}>
                 <View style={{ position: "relative" }}>
                   <ReactionPicker
@@ -1167,7 +1168,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, view
                     active={disliked}
                     label={formatCompactNumber(dislikeCount)}
                     onPress={() => { if (openTray === "negative") { setOpenTray(null); return; } handleDislike(); }}
-                    onLongPress={() => setOpenTray("negative")}
+                    onLongPress={HAS_NEGATIVE_TRAY ? () => setOpenTray("negative") : undefined}
                     accessibilityLabel={
                       myNegativeReaction
                         ? `${reactionMeta(myNegativeReaction).label} — hold to change your reaction`
@@ -1193,7 +1194,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, view
                 accessibilityLabel="Comments"
               />
 
-              {/* Reactions — tap to like/unlike, hold to pick one of the nine.
+              {/* Reactions — tap to like/unlike, hold to pick a reaction.
                   The outer view is the cell; the inner one is the tray's
                   positioning context and stays button-sized, so the tray anchors
                   to the thumb rather than to the whole cell. The tray keeps
