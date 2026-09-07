@@ -11,7 +11,6 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { FULLSCREEN_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import {
@@ -55,7 +54,6 @@ const formatTime = (seconds: number) => {
 const FullscreenVideoScreen = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
-  const insets = useSafeAreaInsets();
 
   const {
     videoUrl,
@@ -339,7 +337,10 @@ const FullscreenVideoScreen = () => {
         <View
           style={[
             styles.controlsOverlay,
-            { paddingTop: insets.top + 8, paddingBottom: insets.bottom + 8 },
+            // Flat, no inset: this screen sits inside the root SafeAreaView, which
+            // already pays both edges, so adding them again floated the controls
+            // a full band in from each edge.
+            { paddingTop: 12, paddingBottom: 12 },
           ]}
           pointerEvents="box-none"
         >
