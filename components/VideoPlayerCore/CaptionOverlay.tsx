@@ -278,7 +278,7 @@ const CaptionOverlay: React.FC<Props> = ({
         <Pressable style={styles.backdrop} onPress={() => setPickerOpen(false)} />
         <View style={styles.sheet}>
           <View style={styles.sheetHeader}>
-            <Text style={styles.sheetTitle}>Subtitles</Text>
+            <Text style={styles.sheetTitle}>{t('subtitles.title')}</Text>
             <Pressable
               onPress={() => {
                 const next = !enabled;
@@ -287,7 +287,7 @@ const CaptionOverlay: React.FC<Props> = ({
               }}
               style={[styles.pill, enabled && styles.pillOn]}
             >
-              <Text style={styles.pillText}>{enabled ? 'On' : 'Off'}</Text>
+              <Text style={styles.pillText}>{enabled ? t('subtitles.on') : t('subtitles.off')}</Text>
             </Pressable>
           </View>
 
@@ -315,12 +315,12 @@ const CaptionOverlay: React.FC<Props> = ({
           {!isReady && (
             <Text style={styles.sheetHint}>
               {inFlight
-                ? 'Writing subtitles…'
+                ? t('subtitles.writing')
                 : status === 'empty'
-                ? 'No speech in this video.'
+                ? t('subtitles.noSpeech')
                 : status === 'failed'
-                ? 'Subtitles could not be generated.'
-                : 'Subtitles are being prepared.'}
+                ? t('subtitles.failed')
+                : t('subtitles.preparing')}
             </Text>
           )}
 
@@ -336,7 +336,7 @@ const CaptionOverlay: React.FC<Props> = ({
               }}
               style={styles.langRow}
             >
-              <Text style={styles.langText}>Fix the current line</Text>
+              <Text style={styles.langText}>{t('subtitles.fixLine')}</Text>
               <Ionicons name="create-outline" size={16} color="rgba(255,255,255,0.6)" />
             </Pressable>
           )}

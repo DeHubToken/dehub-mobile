@@ -2516,5 +2516,15 @@
   },
   "signInSheet": {
     "continueAs": "Tęsti kaip"
+  },
+  "subtitles": {
+    "title": "Subtitrai",
+    "on": "Įjungta",
+    "off": "Išjungta",
+    "writing": "Rašomi subtitrai…",
+    "noSpeech": "Šiame vaizdo įraše nėra kalbos.",
+    "failed": "Nepavyko sukurti subtitrų.",
+    "preparing": "Subtitrai ruošiami.",
+    "fixLine": "Taisyti dabartinę eilutę"
   }
 }

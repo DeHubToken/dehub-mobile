@@ -2546,5 +2546,15 @@
   },
   "signInSheet": {
     "continueAs": "Wiiter als"
+  },
+  "subtitles": {
+    "title": "Undertitel",
+    "on": "Ii",
+    "off": "Us",
+    "writing": "Undertitel wärde gschribe…",
+    "noSpeech": "I dem Video wird nüt gredt.",
+    "failed": "Undertitel hend nid chönne erstellt wärde.",
+    "preparing": "Undertitel wärde vorbereitet.",
+    "fixLine": "Die Ziile korrigiere"
   }
 }

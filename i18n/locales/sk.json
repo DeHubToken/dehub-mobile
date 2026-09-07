@@ -2687,5 +2687,15 @@
   },
   "signInSheet": {
     "continueAs": "Pokračovať ako"
+  },
+  "subtitles": {
+    "title": "Titulky",
+    "on": "Zap.",
+    "off": "Vyp.",
+    "writing": "Titulky sa píšu…",
+    "noSpeech": "V tomto videu nie je reč.",
+    "failed": "Titulky sa nepodarilo vytvoriť.",
+    "preparing": "Titulky sa pripravujú.",
+    "fixLine": "Opraviť aktuálny riadok"
   }
 }

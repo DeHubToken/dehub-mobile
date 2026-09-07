@@ -2641,5 +2641,15 @@
   },
   "signInSheet": {
     "continueAs": "Gaan voort as"
+  },
+  "subtitles": {
+    "title": "Onderskrifte",
+    "on": "Aan",
+    "off": "Af",
+    "writing": "Onderskrifte word geskryf…",
+    "noSpeech": "Geen spraak in hierdie video nie.",
+    "failed": "Onderskrifte kon nie geskep word nie.",
+    "preparing": "Onderskrifte word voorberei.",
+    "fixLine": "Maak die huidige reël reg"
   }
 }

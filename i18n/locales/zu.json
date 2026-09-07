@@ -2547,5 +2547,15 @@
   },
   "signInSheet": {
     "continueAs": "Qhubeka njengo"
+  },
+  "subtitles": {
+    "title": "Imibhalo engezansi",
+    "on": "Vuliwe",
+    "off": "Valiwe",
+    "writing": "Ibhala imibhalo engezansi…",
+    "noSpeech": "Akukho nkulumo kule vidiyo.",
+    "failed": "Imibhalo engezansi ayikwazanga ukwenziwa.",
+    "preparing": "Imibhalo engezansi iyalungiswa.",
+    "fixLine": "Lungisa umugqa wamanje"
   }
 }

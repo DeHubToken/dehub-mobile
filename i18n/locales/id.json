@@ -2565,5 +2565,15 @@
   },
   "signInSheet": {
     "continueAs": "Lanjutkan sebagai"
+  },
+  "subtitles": {
+    "title": "Subtitel",
+    "on": "Aktif",
+    "off": "Nonaktif",
+    "writing": "Menulis subtitel…",
+    "noSpeech": "Tidak ada ucapan di video ini.",
+    "failed": "Subtitel tidak dapat dibuat.",
+    "preparing": "Subtitel sedang disiapkan.",
+    "fixLine": "Perbaiki baris ini"
   }
 }

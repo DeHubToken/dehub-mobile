@@ -2547,5 +2547,15 @@
   },
   "signInSheet": {
     "continueAs": "Kayhina hina qatipay"
+  },
+  "subtitles": {
+    "title": "Sub-qillqakuna",
+    "on": "Kicharisqa",
+    "off": "Wichq'asqa",
+    "writing": "Sub-qillqakunata qillqashan…",
+    "noSpeech": "Kay videopi mana rimayqa kanchu.",
+    "failed": "Sub-qillqakunata mana ruwayta atikunchu.",
+    "preparing": "Sub-qillqakuna wakichikushan.",
+    "fixLine": "Kunan siq'ita allichay"
   }
 }

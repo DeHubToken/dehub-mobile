@@ -2520,5 +2520,15 @@
   },
   "signInSheet": {
     "continueAs": "Folytatás mint"
+  },
+  "subtitles": {
+    "title": "Feliratok",
+    "on": "Be",
+    "off": "Ki",
+    "writing": "Feliratok készítése…",
+    "noSpeech": "Ebben a videóban nincs beszéd.",
+    "failed": "A feliratokat nem sikerült elkészíteni.",
+    "preparing": "A feliratok készülnek.",
+    "fixLine": "Aktuális sor javítása"
   }
 }

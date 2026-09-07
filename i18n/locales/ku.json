@@ -2510,5 +2510,15 @@
   },
   "signInSheet": {
     "continueAs": "Wekî vê bidomîne"
+  },
+  "subtitles": {
+    "title": "Jêrnivîs",
+    "on": "Vekirî",
+    "off": "Girtî",
+    "writing": "Jêrnivîs tên nivîsandin…",
+    "noSpeech": "Di vê vîdyoyê de axaftin tune.",
+    "failed": "Jêrnivîs nehatin çêkirin.",
+    "preparing": "Jêrnivîs tên amadekirin.",
+    "fixLine": "Rêza niha rast bike"
   }
 }

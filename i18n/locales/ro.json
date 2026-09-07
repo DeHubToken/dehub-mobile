@@ -2530,5 +2530,15 @@
   },
   "signInSheet": {
     "continueAs": "Continuă ca"
+  },
+  "subtitles": {
+    "title": "Subtitrări",
+    "on": "Activat",
+    "off": "Dezactivat",
+    "writing": "Se scriu subtitrările…",
+    "noSpeech": "Nu există vorbire în acest videoclip.",
+    "failed": "Subtitrările nu au putut fi generate.",
+    "preparing": "Subtitrările se pregătesc.",
+    "fixLine": "Corectează rândul curent"
   }
 }
