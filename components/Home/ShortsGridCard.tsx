@@ -196,7 +196,13 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
 
       <View style={styles.bottomInfo} pointerEvents="none">
         <View className="flex-row items-center gap-1.5 mb-1">
-          <Image source={avatarUri} style={styles.avatar} contentFit="cover" />
+          <Image
+            // getAvatarUrl hands back the "default-avatar" sentinel, which expo-image
+            // cannot load, so the creator showed as an empty dot.
+            source={avatarUri && avatarUri !== "default-avatar" ? avatarUri : undefined}
+            style={styles.avatar}
+            contentFit="cover"
+          />
           <Text numberOfLines={1} style={styles.username}>
             @{username}
           </Text>
