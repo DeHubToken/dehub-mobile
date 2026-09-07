@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "ನೀವು ಸೇರಿಸಲ್ಪಟ್ಟಿದ್ದೀರಿ! ಬ್ಯಾಲೆನ್ಸ್: {{balance}} DHB",
     "balanceTooLow": "ಬ್ಯಾಲೆನ್ಸ್ ತುಂಬಾ ಕಡಿಮೆ ({{balance}} DHB)",
     "refreshFailed": "ದೋಷ ಸಂಭವಿಸಿದೆ",
-    "noWalletAddress": "ವಾಲೆಟ್ ವಿಳಾಸ ಕಂಡುಬಂದಿಲ್ಲ"
+    "noWalletAddress": "ವಾಲೆಟ್ ವಿಳಾಸ ಕಂಡುಬಂದಿಲ್ಲ",
+    "assets": "ಆಸ್ತಿಗಳು"
   },
   "explorePage": {
     "searchPlaceholder": "ಜನರು, ಪೋಸ್ಟ್‌ಗಳು ಅಥವಾ ವಿಷಯ ಹುಡುಕಿ...",

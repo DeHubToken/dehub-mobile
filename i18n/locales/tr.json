@@ -1109,7 +1109,8 @@
     "addedToLeaderboard": "Eklendiniz! Bakiye: {{balance}} DHB",
     "balanceTooLow": "Bakiye çok düşük ({{balance}} DHB)",
     "refreshFailed": "Bir şeyler yanlış gitti",
-    "noWalletAddress": "Cüzdan adresi bulunamadı"
+    "noWalletAddress": "Cüzdan adresi bulunamadı",
+    "assets": "Varlıklar"
   },
   "explorePage": {
     "searchPlaceholder": "Kişi, gönderi veya içerik ara...",

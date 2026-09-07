@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "ଯୋଡ଼ାଗଲେ! ବ୍ୟାଲାନ୍ସ: {{balance}} DHB",
     "balanceTooLow": "ବ୍ୟାଲାନ୍ସ ବହୁତ କମ ({{balance}} DHB)",
     "refreshFailed": "କିଛି ଭୁଲ ହେଲା",
-    "noWalletAddress": "ୱାଲେଟ ଆଡ୍ରେସ ମିଳିଲା ନାହିଁ"
+    "noWalletAddress": "ୱାଲେଟ ଆଡ୍ରେସ ମିଳିଲା ନାହିଁ",
+    "assets": "ସମ୍ପତ୍ତି"
   },
   "explorePage": {
     "searchPlaceholder": "ଲୋକ, ପୋଷ୍ଟ କିମ୍ବା ବିଷୟବସ୍ତୁ ଖୋଜନ୍ତୁ...",

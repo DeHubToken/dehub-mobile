@@ -1077,7 +1077,8 @@
     "addedToLeaderboard": "Tilføjet! Saldo: {{balance}} DHB",
     "balanceTooLow": "Saldo for lav ({{balance}} DHB)",
     "refreshFailed": "Der opstod en fejl",
-    "noWalletAddress": "Tegnebogsadresse ikke tilgængelig"
+    "noWalletAddress": "Tegnebogsadresse ikke tilgængelig",
+    "assets": "Aktiver"
   },
   "features": {
     "title": "Funktionsønsker",

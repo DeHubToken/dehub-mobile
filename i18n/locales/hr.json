@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "Dodani ste! Saldo: {{balance}} DHB",
     "balanceTooLow": "Saldo prenizak ({{balance}} DHB)",
     "refreshFailed": "Nešto je pošlo po krivu",
-    "noWalletAddress": "Adresa novčanika nije pronađena"
+    "noWalletAddress": "Adresa novčanika nije pronađena",
+    "assets": "Imovina"
   },
   "explorePage": {
     "searchPlaceholder": "Pretraži ljude, objave ili sadržaj...",

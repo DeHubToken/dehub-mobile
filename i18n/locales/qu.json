@@ -1169,7 +1169,8 @@
     "addedToLeaderboard": "Yapasqa! Yupay: {{balance}} DHB",
     "balanceTooLow": "Yupay pisilla ({{balance}} DHB)",
     "refreshFailed": "Huk pantay kachkan",
-    "noWalletAddress": "Mana qullqi wasi churana tarisqachu"
+    "noWalletAddress": "Mana qullqi wasi churana tarisqachu",
+    "assets": "Kaqkuna"
   },
   "features": {
     "title": "Musuq mañakuy",

@@ -1105,7 +1105,8 @@
     "addedToLeaderboard": "Προστεθήκατε! Υπόλοιπο: {{balance}} DHB",
     "balanceTooLow": "Υπόλοιπο πολύ χαμηλό ({{balance}} DHB)",
     "refreshFailed": "Κάτι πήγε στραβά",
-    "noWalletAddress": "Δεν βρέθηκε διεύθυνση πορτοφολιού"
+    "noWalletAddress": "Δεν βρέθηκε διεύθυνση πορτοφολιού",
+    "assets": "Περιουσιακά"
   },
   "explorePage": {
     "searchPlaceholder": "Αναζήτηση ατόμων, δημοσιεύσεων ή περιεχομένου...",

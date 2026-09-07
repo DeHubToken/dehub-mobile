@@ -1169,7 +1169,8 @@
     "addedToLeaderboard": "Wengeziwe! Ibhalansi: {{balance}} DHB",
     "balanceTooLow": "Ibhalansi iphansi kakhulu ({{balance}} DHB)",
     "refreshFailed": "Kukhona okungahambanga kahle",
-    "noWalletAddress": "Alikho ikheli lesikhwama elitholakalayo"
+    "noWalletAddress": "Alikho ikheli lesikhwama elitholakalayo",
+    "assets": "Izimpahla"
   },
   "features": {
     "title": "Zicelo Zezici",

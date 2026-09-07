@@ -1191,7 +1191,8 @@
     "addedToLeaderboard": "Сиз кошулдуңуз! Баланс: {{balance}} DHB",
     "balanceTooLow": "Баланс өтө аз ({{balance}} DHB)",
     "refreshFailed": "Бир нерсе туура эмес болду",
-    "noWalletAddress": "Капчык дареги табылган жок"
+    "noWalletAddress": "Капчык дареги табылган жок",
+    "assets": "Активдер"
   },
   "explorePage": {
     "searchPlaceholder": "Адамдарды, жазууларды же мазмунду издөө...",

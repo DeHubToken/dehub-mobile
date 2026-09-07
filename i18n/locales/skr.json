@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "تسیں شامل ہو گئے! بیلنس: {{balance}} DHB",
     "balanceTooLow": "بیلنس بہوں گھٹ ({{balance}} DHB)",
     "refreshFailed": "کجھ غلط ہو گیا",
-    "noWalletAddress": "والیٹ ایڈریس کائنی ملیا"
+    "noWalletAddress": "والیٹ ایڈریس کائنی ملیا",
+    "assets": "اثاثے"
   },
   "explorePage": {
     "searchPlaceholder": "لوک، پوسٹاں یا مواد ڳولو...",

@@ -1171,7 +1171,8 @@
     "addedToLeaderboard": "Anda telah ditambahkan! Saldo: {{balance}} DHB",
     "balanceTooLow": "Saldo terlalu rendah ({{balance}} DHB)",
     "refreshFailed": "Terjadi kesalahan",
-    "noWalletAddress": "Alamat dompet tidak ditemukan"
+    "noWalletAddress": "Alamat dompet tidak ditemukan",
+    "assets": "Aset"
   },
   "features": {
     "title": "Permintaan Fitur",

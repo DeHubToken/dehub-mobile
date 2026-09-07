@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "भवान् योजितः! शेषम्: {{balance}} DHB",
     "balanceTooLow": "शेषम् अत्यन्तं न्यूनम् ({{balance}} DHB)",
     "refreshFailed": "किमपि दोषः अभवत्",
-    "noWalletAddress": "कोषसङ्केतः न प्राप्तः"
+    "noWalletAddress": "कोषसङ्केतः न प्राप्तः",
+    "assets": "सम्पत्तयः"
   },
   "explorePage": {
     "searchPlaceholder": "जनान्, प्रकाशनानि, वा विषयम् अन्विष्यतु...",

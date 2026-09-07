@@ -1077,7 +1077,8 @@
     "addedToLeaderboard": "Hozzáadva! Egyenleg: {{balance}} DHB",
     "balanceTooLow": "Egyenleg túl alacsony ({{balance}} DHB)",
     "refreshFailed": "Hiba történt",
-    "noWalletAddress": "Pénztárca cím nem elérhető"
+    "noWalletAddress": "Pénztárca cím nem elérhető",
+    "assets": "Eszközök"
   },
   "features": {
     "title": "Funkciókérések",

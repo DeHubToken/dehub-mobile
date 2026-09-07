@@ -1076,7 +1076,8 @@
     "addedToLeaderboard": "జోడించబడింది! బ్యాలెన్స్: {{balance}} DHB",
     "balanceTooLow": "బ్యాలెన్స్ చాలా తక్కువ ({{balance}} DHB)",
     "refreshFailed": "లోపం సంభవించింది",
-    "noWalletAddress": "వాలెట్ చిరునామా అందుబాటులో లేదు"
+    "noWalletAddress": "వాలెట్ చిరునామా అందుబాటులో లేదు",
+    "assets": "ఆస్తులు"
   },
   "features": {
     "title": "ఫీచర్ అభ్యర్థనలు",

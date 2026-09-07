@@ -1190,7 +1190,8 @@
     "addedToLeaderboard": "Du er lagt til! Saldo: {{balance}} DHB",
     "balanceTooLow": "Saldo for lav ({{balance}} DHB)",
     "refreshFailed": "Noe gikk galt",
-    "noWalletAddress": "Ingen lommebokadresse funnet"
+    "noWalletAddress": "Ingen lommebokadresse funnet",
+    "assets": "Eiendeler"
   },
   "explorePage": {
     "searchPlaceholder": "Søk etter folk, innlegg eller innhold...",

@@ -1104,7 +1104,8 @@
     "addedToLeaderboard": "ചേർത്തു! ബാലൻസ്: {{balance}} DHB",
     "balanceTooLow": "ബാലൻസ് വളരെ കുറവ് ({{balance}} DHB)",
     "refreshFailed": "എന്തോ തെറ്റ് സംഭവിച്ചു",
-    "noWalletAddress": "വാലറ്റ് വിലാസം കണ്ടെത്തിയില്ല"
+    "noWalletAddress": "വാലറ്റ് വിലാസം കണ്ടെത്തിയില്ല",
+    "assets": "ആസ്തികൾ"
   },
   "explorePage": {
     "searchPlaceholder": "ആളുകൾ, പോസ്റ്റുകൾ അല്ലെങ്കിൽ ഉള്ളടക്കം തിരയുക...",

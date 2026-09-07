@@ -1076,7 +1076,8 @@
     "addedToLeaderboard": "Вы добавлены! Баланс: {{balance}} DHB",
     "balanceTooLow": "Баланс слишком низкий ({{balance}} DHB)",
     "refreshFailed": "Что-то пошло не так",
-    "noWalletAddress": "Адрес кошелька не найден"
+    "noWalletAddress": "Адрес кошелька не найден",
+    "assets": "Активы"
   },
   "features": {
     "title": "Запросы функций",

@@ -1105,7 +1105,8 @@
     "addedToLeaderboard": "ઉમેરાયા! બેલેન્સ: {{balance}} DHB",
     "balanceTooLow": "બેલેન્સ ખૂબ ઓછું ({{balance}} DHB)",
     "refreshFailed": "કંઈક ખોટું થયું",
-    "noWalletAddress": "વૉલેટ એડ્રેસ મળ્યું નથી"
+    "noWalletAddress": "વૉલેટ એડ્રેસ મળ્યું નથી",
+    "assets": "સંપત્તિ"
   },
   "explorePage": {
     "searchPlaceholder": "લોકો, પોસ્ટ્સ અથવા સામગ્રી શોધો...",

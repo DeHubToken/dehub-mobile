@@ -1169,7 +1169,8 @@
     "addedToLeaderboard": "Umeongezwa! Salio: {{balance}} DHB",
     "balanceTooLow": "Salio ni dogo sana ({{balance}} DHB)",
     "refreshFailed": "Kitu kimeharibika",
-    "noWalletAddress": "Hakuna anwani ya pochi iliyopatikana"
+    "noWalletAddress": "Hakuna anwani ya pochi iliyopatikana",
+    "assets": "Mali"
   },
   "features": {
     "title": "Maombi ya Vipengele",

@@ -1086,7 +1086,8 @@
     "addedToLeaderboard": "Qoʻshildi! Balans: {{balance}} DHB",
     "balanceTooLow": "Balans juda past ({{balance}} DHB)",
     "refreshFailed": "Nimadir xato ketdi",
-    "noWalletAddress": "Hamyon manzili topilmadi"
+    "noWalletAddress": "Hamyon manzili topilmadi",
+    "assets": "Aktivlar"
   },
   "explorePage": {
     "searchPlaceholder": "Odamlar, postlar yoki kontent qidirish...",

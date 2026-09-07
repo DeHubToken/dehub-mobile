@@ -1191,7 +1191,8 @@
     "addedToLeaderboard": "قوشۇلدىڭىز! قالدۇق: {{balance}} DHB",
     "balanceTooLow": "قالدۇق بەك تۆۋەن ({{balance}} DHB)",
     "refreshFailed": "خاتالىق يۈز بەردى",
-    "noWalletAddress": "ھەمياق ئادرېسى تېپىلمىدى"
+    "noWalletAddress": "ھەمياق ئادرېسى تېپىلمىدى",
+    "assets": "مۈلۈكلەر"
   },
   "explorePage": {
     "searchPlaceholder": "كىشى، يوللانما ياكى مەزمۇن ئىزدەش...",

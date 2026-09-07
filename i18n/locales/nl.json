@@ -1654,7 +1654,8 @@
     "addedToLeaderboard": "Je bent toegevoegd! Saldo: {{balance}} DHB",
     "balanceTooLow": "Saldo te laag ({{balance}} DHB)",
     "refreshFailed": "Er ging iets mis",
-    "noWalletAddress": "Geen portemonnee-adres gevonden"
+    "noWalletAddress": "Geen portemonnee-adres gevonden",
+    "assets": "Activa"
   },
   "explorePage": {
     "searchPlaceholder": "Zoek mensen, berichten of inhoud...",

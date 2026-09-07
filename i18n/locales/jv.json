@@ -1106,7 +1106,8 @@
     "addedToLeaderboard": "Kowe wis ditambahake! Saldo: {{balance}} DHB",
     "balanceTooLow": "Saldo kurang ({{balance}} DHB)",
     "refreshFailed": "Ana kesalahan",
-    "noWalletAddress": "Ora nemokake alamat dompet"
+    "noWalletAddress": "Ora nemokake alamat dompet",
+    "assets": "Aset"
   },
   "explorePage": {
     "searchPlaceholder": "Goleki wong, kiriman, utawa konten...",

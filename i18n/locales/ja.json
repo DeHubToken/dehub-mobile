@@ -1170,7 +1170,8 @@
     "addedToLeaderboard": "追加されました！残高：{{balance}} DHB",
     "balanceTooLow": "残高が低すぎます ({{balance}} DHB)",
     "refreshFailed": "エラーが発生しました",
-    "noWalletAddress": "ウォレットアドレスが見つかりません"
+    "noWalletAddress": "ウォレットアドレスが見つかりません",
+    "assets": "アセット"
   },
   "features": {
     "title": "機能リクエスト",

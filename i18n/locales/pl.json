@@ -1464,7 +1464,8 @@
     "addedToLeaderboard": "Zostałeś dodany! Saldo: {{balance}} DHB",
     "balanceTooLow": "Saldo zbyt niskie ({{balance}} DHB)",
     "refreshFailed": "Coś poszło nie tak",
-    "noWalletAddress": "Nie znaleziono adresu portfela"
+    "noWalletAddress": "Nie znaleziono adresu portfela",
+    "assets": "Aktywa"
   },
   "explorePage": {
     "searchPlaceholder": "Szukaj ludzi, postów lub treści...",

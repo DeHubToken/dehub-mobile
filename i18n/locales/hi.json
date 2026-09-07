@@ -980,7 +980,8 @@
     "addedToLeaderboard": "आप जोड़े गए! शेष: {{balance}} DHB",
     "balanceTooLow": "शेष बहुत कम ({{balance}} DHB)",
     "refreshFailed": "कुछ गलत हो गया",
-    "noWalletAddress": "कोई वॉलेट पता नहीं मिला"
+    "noWalletAddress": "कोई वॉलेट पता नहीं मिला",
+    "assets": "संपत्ति"
   },
   "features": {
     "title": "फ़ीचर अनुरोध",

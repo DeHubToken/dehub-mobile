@@ -1167,7 +1167,8 @@
     "addedToLeaderboard": "ታክለሃል! ሚዛን: {{balance}} DHB",
     "balanceTooLow": "ሚዛን በጣም ዝቅተኛ ({{balance}} DHB)",
     "refreshFailed": "የሆነ ስህተት ተፈጥሯል",
-    "noWalletAddress": "የቦርሳ አድራሻ አልተገኘም"
+    "noWalletAddress": "የቦርሳ አድራሻ አልተገኘም",
+    "assets": "ንብረቶች"
   },
   "features": {
     "title": "የባህሪ ጥያቄዎች",

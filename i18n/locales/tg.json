@@ -1191,7 +1191,8 @@
     "addedToLeaderboard": "Илова шудед! Тавозун: {{balance}} DHB",
     "balanceTooLow": "Тавозун хеле кам ({{balance}} DHB)",
     "refreshFailed": "Хатогӣ рух дод",
-    "noWalletAddress": "Суроғаи ҳамён ёфт нашуд"
+    "noWalletAddress": "Суроғаи ҳамён ёфт нашуд",
+    "assets": "Дороиҳо"
   },
   "explorePage": {
     "searchPlaceholder": "Ҷустуҷӯи одамон, нашрҳо ё мундариҷа...",

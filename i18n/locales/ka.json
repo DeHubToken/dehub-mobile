@@ -1085,7 +1085,8 @@
     "addedToLeaderboard": "დამატებულია! ბალანსი: {{balance}} DHB",
     "balanceTooLow": "ბალანსი ძალიან დაბალია ({{balance}} DHB)",
     "refreshFailed": "რაღაც შეცდომა მოხდა",
-    "noWalletAddress": "საფულის მისამართი ვერ მოიძებნა"
+    "noWalletAddress": "საფულის მისამართი ვერ მოიძებნა",
+    "assets": "აქტივები"
   },
   "explorePage": {
     "searchPlaceholder": "ხალხის, პოსტების ან კონტენტის ძებნა...",
