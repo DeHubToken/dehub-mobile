@@ -460,7 +460,13 @@
     "signInTv": "Bir TV'de oturum aç",
     "signInTvDesc": "Televizyonunuzda görünen kodu yazın",
     "tvRequests": "TV istekleri",
-    "tvRequestsDesc": "Televizyonunuzun imzalamanızı istediği bahşişleri onaylayın"
+    "tvRequestsDesc": "Televizyonunuzun imzalamanızı istediği bahşişleri onaylayın",
+    "publicChatAlerts": "Herkese açık sohbet",
+    "publicChatAlertsDesc": "Başka bir yerdeyken genel sohbet konuşurken haberdar olun",
+    "publicChatAlertsOnDesc": "Yoğun uzanmalar birleşik bir alarmla geliyor",
+    "publicChatAlertsRate": "En fazla",
+    "publicChatAlertsRateOption": "Saatte {{count}}",
+    "publicChatAlertsRateHint": "Oda bundan daha yoğun olduğunda hiçbir şey kaybolmaz — mesajlar tutulur ve bir sonraki uyarıda birlikte gelir."
   },
   "common": {
     "mute": "Sesi kapat",
@@ -2592,5 +2598,17 @@
     "pricing": "Fiyat hesaplanıyor…",
     "payWithDhb": "DHB ile öde",
     "yourDhb": "DHB bakiyeniz"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} ve {{count}} diğer",
+    "andOthers_other": "{{names}} ve {{count}} diğer",
+    "someone": "Birisi"
+  },
+  "publicChatAlerts": {
+    "title": "Herkese açık sohbet",
+    "mentionTitle": "Herkese açık sohbette bahsedildi",
+    "digest": "{{who}} tarafından gönderilen {{count}} yeni mesaj: {{message}}",
+    "voiceMessage": "Sesli mesaj",
+    "image": "Bir resim gönderildi"
   }
 }

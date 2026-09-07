@@ -460,7 +460,13 @@
     "signInTv": "Shiga a TV",
     "signInTvDesc": "Rubuta lambar da talabijin ɗinka ke nunawa",
     "tvRequests": "Buƙatun TV",
-    "tvRequestsDesc": "Amince da tips da talabijin ɗinka ke neman ka sa hannu"
+    "tvRequestsDesc": "Amince da tips da talabijin ɗinka ke neman ka sa hannu",
+    "publicChatAlerts": "Tattaunawar jama'a",
+    "publicChatAlertsDesc": "Samun gaya lokacin da tattaunawar jama'a ke magana yayin da kake wani wuri",
+    "publicChatAlertsOnDesc": "Busy stretches isa kamar yadda daya hade faɗakarwa",
+    "publicChatAlertsRate": "A mafi yawan",
+    "publicChatAlertsRateOption": "{{count}} awa daya",
+    "publicChatAlertsRateHint": "Babu wani abu da ya ɓace lokacin da ɗakin ya fi wannan busier — ana gudanar da saƙonnin kuma ya isa tare a faɗakarwa na gaba."
   },
   "common": {
     "mute": "Kashe sauti",
@@ -2543,5 +2549,14 @@
     "pricing": "Ana lissafa farashi…",
     "payWithDhb": "Biya da DHB",
     "yourDhb": "DHB naka"
+  },
+  "digest": {
+    "someone": "Wani"
+  },
+  "publicChatAlerts": {
+    "title": "Tattaunawar jama'a",
+    "mentionTitle": "An ambata a cikin tattaunawar jama'a",
+    "voiceMessage": "Sakon murya",
+    "image": "Aika da hoto"
   }
 }

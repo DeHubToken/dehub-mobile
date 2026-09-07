@@ -460,7 +460,13 @@
     "signInTv": "Uf eme Fernseh aamälde",
     "signInTvDesc": "Gib de Code ii, wo di Fernseh zeigt",
     "tvRequests": "TV-Aafrage",
-    "tvRequestsDesc": "Trinkgälder freigäh, wo di Fernseh signiere wott"
+    "tvRequestsDesc": "Trinkgälder freigäh, wo di Fernseh signiere wott",
+    "publicChatAlerts": "Öffentl. Chat",
+    "publicChatAlertsDesc": "Werded informiert, wänn im öff. Chat gredt wird, wänn du wo anders bisch",
+    "publicChatAlertsOnDesc": "Beschäftigti Zite chömed als ei kombinierti Alarm",
+    "publicChatAlertsRate": "Maximal",
+    "publicChatAlertsRateOption": "{{count}} pro Stund",
+    "publicChatAlertsRateHint": "Nüt gaht verlore, wänn de Ruum meh als das bruucht – d Nöchrichte werde ghaute und chömed zäme bi de nächschte Alarm."
   },
   "common": {
     "mute": "Stumm schalte",
@@ -2573,5 +2579,17 @@
     "pricing": "Priis wird berächnet…",
     "payWithDhb": "Mit DHB zahle",
     "yourDhb": "Dini DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} und {{count}} anderi",
+    "andOthers_other": "{{names}} und {{count}} anderi",
+    "someone": "Öpper"
+  },
+  "publicChatAlerts": {
+    "title": "Öffentl. Chat",
+    "mentionTitle": "Im öff. Chat erwähnt",
+    "digest": "{{count}} nöii Nöchrichte vo {{who}}: {{message}}",
+    "voiceMessage": "Stimm-Nöchricht",
+    "image": "Bild gschickt"
   }
 }

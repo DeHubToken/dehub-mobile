@@ -679,7 +679,13 @@
     "signInTv": "Conectează un televizor",
     "signInTvDesc": "Introdu codul afișat de televizor",
     "tvRequests": "Solicitări de la televizor",
-    "tvRequestsDesc": "Aprobă bacșișurile pe care televizorul îți cere să le semnezi"
+    "tvRequestsDesc": "Aprobă bacșișurile pe care televizorul îți cere să le semnezi",
+    "publicChatAlerts": "Chat public",
+    "publicChatAlertsDesc": "Primești informații atunci când chatul public vorbește în timp ce ești în altă parte",
+    "publicChatAlertsOnDesc": "Intinderile aglomerate sosesc ca o alertă combinată",
+    "publicChatAlertsRate": "Cel mult",
+    "publicChatAlertsRateOption": "{{count}} pe oră",
+    "publicChatAlertsRateHint": "Nimic nu se pierde atunci când camera este mai ocupată decât aceasta — mesajele sunt reținute și sosesc împreună la următoarea alertă."
   },
   "common": {
     "mute": "Dezactivează sunetul",
@@ -2557,5 +2563,17 @@
     "pricing": "Se calculează prețul…",
     "payWithDhb": "Plătește cu DHB",
     "yourDhb": "DHB-ul tău"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} și încă {{count}}",
+    "andOthers_other": "{{names}} și încă {{count}}",
+    "someone": "Cineva"
+  },
+  "publicChatAlerts": {
+    "title": "Chat public",
+    "mentionTitle": "Menționat în chatul public",
+    "digest": "{{count}} mesaje noi de la {{who}}: {{message}}",
+    "voiceMessage": "Mesaj vocal",
+    "image": "A trimis o imagine"
   }
 }

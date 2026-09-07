@@ -460,7 +460,13 @@
     "signInTv": "Prijava na TV",
     "signInTvDesc": "Upiši kôd koji prikazuje televizor",
     "tvRequests": "TV zahtjevi",
-    "tvRequestsDesc": "Odobri napojnice koje televizor traži da potpišeš"
+    "tvRequestsDesc": "Odobri napojnice koje televizor traži da potpišeš",
+    "publicChatAlerts": "Javni chat",
+    "publicChatAlertsDesc": "Primite obavijest kada javni chat govori dok ste negdje drugdje",
+    "publicChatAlertsOnDesc": "Gužve stižu kao jedno kombinirano upozorenje",
+    "publicChatAlertsRate": "Najviše",
+    "publicChatAlertsRateOption": "{{count}} na sat",
+    "publicChatAlertsRateHint": "Ništa se ne gubi kada je soba prometnija od ovoga — poruke se čuvaju i stižu zajedno na sljedeću uzbunu."
   },
   "common": {
     "mute": "Isključi zvuk",
@@ -2543,5 +2549,17 @@
     "pricing": "Izračun cijene…",
     "payWithDhb": "Plati DHB-om",
     "yourDhb": "Tvoj DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} i {{count}} ostalo",
+    "andOthers_other": "{{names}} i još {{count}}",
+    "someone": "Netko"
+  },
+  "publicChatAlerts": {
+    "title": "Javni chat",
+    "mentionTitle": "Spominje se u javnom chatu",
+    "digest": "{{count}} nove poruke od {{who}}: {{message}}",
+    "voiceMessage": "Glasovna poruka",
+    "image": "Poslana je slika"
   }
 }

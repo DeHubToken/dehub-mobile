@@ -460,7 +460,13 @@
     "signInTv": "Inicia sessió en un televisor",
     "signInTvDesc": "Escriu el codi que mostra el televisor",
     "tvRequests": "Sol·licituds del televisor",
-    "tvRequestsDesc": "Aprova les propines que el televisor et demana signar"
+    "tvRequestsDesc": "Aprova les propines que el televisor et demana signar",
+    "publicChatAlerts": "Xat públic",
+    "publicChatAlertsDesc": "S'indica quan el xat públic està parlant mentre estàs en un altre lloc",
+    "publicChatAlertsOnDesc": "Els trams ocupats arriben com una alerta combinada",
+    "publicChatAlertsRate": "Com a màxim",
+    "publicChatAlertsRateOption": "{{count}} per hora",
+    "publicChatAlertsRateHint": "No es perd res quan l'habitació està més ocupada que això: els missatges es guarden i arriben junts a la següent alerta."
   },
   "common": {
     "mute": "Silencia",
@@ -2543,5 +2549,17 @@
     "pricing": "Calculant el preu…",
     "payWithDhb": "Paga amb DHB",
     "yourDhb": "El teu DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} i {{count}} més",
+    "andOthers_other": "{{names}} i {{count}} més",
+    "someone": "Algú"
+  },
+  "publicChatAlerts": {
+    "title": "Xat públic",
+    "mentionTitle": "S'ha esmentat al xat públic",
+    "digest": "{{count}} missatges nous de {{who}}: {{message}}",
+    "voiceMessage": "Missatge de veu",
+    "image": "Envia una imatge"
   }
 }

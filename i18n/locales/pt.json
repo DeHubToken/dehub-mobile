@@ -460,7 +460,13 @@
     "signInTv": "Entrar em uma TV",
     "signInTvDesc": "Digite o código que sua TV está mostrando",
     "tvRequests": "Solicitações da TV",
-    "tvRequestsDesc": "Aprove gorjetas que sua TV pede para você assinar"
+    "tvRequestsDesc": "Aprove gorjetas que sua TV pede para você assinar",
+    "publicChatAlerts": "Chat público",
+    "publicChatAlertsDesc": "Seja informado quando o chat público estiver a falar enquanto estiver noutro lugar",
+    "publicChatAlertsOnDesc": "Os trechos movimentados chegam como um alerta combinado",
+    "publicChatAlertsRate": "No máximo",
+    "publicChatAlertsRateOption": "{{count}} por hora",
+    "publicChatAlertsRateHint": "Nada se perde quando a sala está mais ocupada do que isso — as mensagens são mantidas e chegam juntas no próximo alerta."
   },
   "common": {
     "mute": "Silenciar",
@@ -2596,5 +2602,17 @@
     "pricing": "Calculando o preço…",
     "payWithDhb": "Pagar com DHB",
     "yourDhb": "Seu DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} e {{count}} outro",
+    "andOthers_other": "{{names}} e {{count}} outros",
+    "someone": "Alguém"
+  },
+  "publicChatAlerts": {
+    "title": "Chat público",
+    "mentionTitle": "Mencionado no chat público",
+    "digest": "{{count}} novas mensagens de {{who}}: {{message}}",
+    "voiceMessage": "Mensagem de voz",
+    "image": "Enviou uma imagem"
   }
 }

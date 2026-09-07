@@ -458,7 +458,11 @@
     "signInTv": "Sign in for TV",
     "signInTvDesc": "Type di code wey your TV dey show",
     "tvRequests": "TV requests",
-    "tvRequestsDesc": "Approve tips wey your TV ask you to sign"
+    "tvRequestsDesc": "Approve tips wey your TV ask you to sign",
+    "publicChatAlerts": "Public chat",
+    "publicChatAlertsOnDesc": "Busy stretches arrive as one combined alert",
+    "publicChatAlertsRate": "At most",
+    "publicChatAlertsRateOption": "{{count}} an hour"
   },
   "common": {
     "mute": "Off di sound",
@@ -2540,5 +2544,13 @@
     "pricing": "Dey calculate price…",
     "payWithDhb": "Pay with DHB",
     "yourDhb": "Your DHB"
+  },
+  "digest": {
+    "someone": "Someone"
+  },
+  "publicChatAlerts": {
+    "title": "Public chat",
+    "voiceMessage": "Voice message",
+    "image": "Sent an image"
   }
 }

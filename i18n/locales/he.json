@@ -460,7 +460,13 @@
     "signInTv": "כניסה בטלוויזיה",
     "signInTvDesc": "הקלד את הקוד שמוצג בטלוויזיה",
     "tvRequests": "בקשות מהטלוויזיה",
-    "tvRequestsDesc": "אשר טיפים שהטלוויזיה מבקשת שתחתום עליהם"
+    "tvRequestsDesc": "אשר טיפים שהטלוויזיה מבקשת שתחתום עליהם",
+    "publicChatAlerts": "צ'אט ציבורי",
+    "publicChatAlertsDesc": "מקבלים הודעה כשהצ'אט הציבורי מדבר בזמן שאתם במקום אחר",
+    "publicChatAlertsOnDesc": "מתיחות עמוסות מגיעות כהתראה אחת משולבת",
+    "publicChatAlertsRate": "לכל היותר",
+    "publicChatAlertsRateOption": "{{count}} לשעה",
+    "publicChatAlertsRateHint": "שום דבר לא הולך לאיבוד כשהחדר עמוס יותר מזה — ההודעות מוחזקות ומגיעות יחד בהתראה הבאה."
   },
   "common": {
     "mute": "השתק",
@@ -2546,5 +2552,17 @@
     "pricing": "מחשב מחיר…",
     "payWithDhb": "שלם ב-DHB",
     "yourDhb": "ה-DHB שלך"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} ועוד {{count}}",
+    "andOthers_other": "{{names}} וגם {{count}} נוספים",
+    "someone": "מישהו"
+  },
+  "publicChatAlerts": {
+    "title": "צ'אט ציבורי",
+    "mentionTitle": "הוזכר בצ'אט ציבורי",
+    "digest": "{{count}} הודעות חדשות מ {{who}}: {{message}}",
+    "voiceMessage": "הודעה קולית",
+    "image": "שלח/ה תמונה"
   }
 }

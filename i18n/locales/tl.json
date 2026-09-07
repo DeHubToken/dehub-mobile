@@ -913,7 +913,13 @@
     "signInTv": "Mag-sign in sa TV",
     "signInTvDesc": "I-type ang code na ipinapakita ng iyong TV",
     "tvRequests": "Mga kahilingan mula sa TV",
-    "tvRequestsDesc": "Aprubahan ang mga tip na hinihiling ng iyong TV na pirmahan"
+    "tvRequestsDesc": "Aprubahan ang mga tip na hinihiling ng iyong TV na pirmahan",
+    "publicChatAlerts": "Pampublikong chat",
+    "publicChatAlertsDesc": "Makakuha ng sinabi kapag ang mga pampublikong chat ay pakikipag - usap habang ikaw ay sa ibang lugar",
+    "publicChatAlertsOnDesc": "Ang mga busy stretches ay dumarating bilang isang pinagsamang alerto",
+    "publicChatAlertsRate": "Karamihan",
+    "publicChatAlertsRateOption": "{{count}} kada oras",
+    "publicChatAlertsRateHint": "Walang nawala kapag ang kuwarto ay mas abala kaysa sa ito — ang mga mensahe ay gaganapin at dumating nang magkasama sa susunod na alerto."
   },
   "postOptions": {
     "options": "Options",
@@ -2727,5 +2733,17 @@
     "pricing": "Kinakalkula ang presyo…",
     "payWithDhb": "Magbayad gamit ang DHB",
     "yourDhb": "Iyong DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} at {{count}} iba pa",
+    "andOthers_other": "{{names}} at {{count}} iba pa",
+    "someone": "Isang tao"
+  },
+  "publicChatAlerts": {
+    "title": "Pampublikong chat",
+    "mentionTitle": "Banggitin sa pampublikong chat",
+    "digest": "{{count}} mga bagong mensahe mula {{who}}:{{message}}",
+    "voiceMessage": "Mensahe ng boses",
+    "image": "Nagpadala ng larawan"
   }
 }

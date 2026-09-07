@@ -460,7 +460,13 @@
     "signInTv": "ტელევიზორზე შესვლა",
     "signInTvDesc": "ჩაწერეთ ტელევიზორზე ნაჩვენები კოდი",
     "tvRequests": "ტელევიზორის მოთხოვნები",
-    "tvRequestsDesc": "დაადასტურეთ ტელევიზორის ხელმოსაწერი ჩაის ფული"
+    "tvRequestsDesc": "დაადასტურეთ ტელევიზორის ხელმოსაწერი ჩაის ფული",
+    "publicChatAlerts": "Საჯარო ჩატი",
+    "publicChatAlertsDesc": "Შეიტყვეთ, როდის საუბრობს საჯარო ჩატი, როცა სხვაგან იმყოფებით",
+    "publicChatAlertsOnDesc": "Დატვირთული მონაკვეთები ერთი კომბინირებული გაფრთხილების სახით იგზავნება",
+    "publicChatAlertsRate": "Მაქსიმუმ",
+    "publicChatAlertsRateOption": "{{count}} @ საათი",
+    "publicChatAlertsRateHint": "Არაფერია დაკარგული, როდესაც ოთახი ამაზე უფრო დატვირთულია — შეტყობინებები იმართება და ერთად მოდიან შემდეგ გაფრთხილებაზე."
   },
   "common": {
     "mute": "დადუმება",
@@ -2597,5 +2603,17 @@
     "pricing": "ფასის გამოთვლა…",
     "payWithDhb": "გადახდა DHB-ით",
     "yourDhb": "თქვენი DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} და {{count}} სხვა",
+    "andOthers_other": "{{names}} და {{count}} სხვები",
+    "someone": "Ვიღაც"
+  },
+  "publicChatAlerts": {
+    "title": "Საჯარო ჩატი",
+    "mentionTitle": "Ნახსენებია საჯარო ჩატში",
+    "digest": "{{count}} @ ახალი შეტყობინებები {{who}}@: {{message}}",
+    "voiceMessage": "Ხმოვანი შეტყობინება",
+    "image": "Გააგზავნეთ სურათი"
   }
 }

@@ -460,7 +460,12 @@
     "signInTv": "Wọlé lórí TV",
     "signInTvDesc": "Tẹ koodu tí TV rẹ ń fi hàn",
     "tvRequests": "Àwọn ìbéèrè TV",
-    "tvRequestsDesc": "Fọwọ́ sí àwọn ẹ̀bùn tí TV rẹ béèrè kí o fọwọ́ sí"
+    "tvRequestsDesc": "Fọwọ́ sí àwọn ẹ̀bùn tí TV rẹ béèrè kí o fọwọ́ sí",
+    "publicChatAlerts": "Iwiregbe gbangba",
+    "publicChatAlertsDesc": "Sọ fun wọn nigbati iwiregbe gbogbo eniyan n sọrọ lakoko ti o wa ni ibomiiran.",
+    "publicChatAlertsOnDesc": "Awọn fifẹ ti o nšišẹ de bi itaniji apapo kan.",
+    "publicChatAlertsRate": "Ó pọ̀ jù",
+    "publicChatAlertsRateHint": "Kò sí ohun tí ó sọnù nígbà tí yàrá náà bá ń ṣiṣẹ́ ju èyí lọ — àwọn àtẹ̀jísẹ́ náà ni wọ́n mú tí wọ́n sì wá papọ̀ ní ìkìlọ̀ tó kàn."
   },
   "common": {
     "mute": "Pa ohùn",
@@ -2544,5 +2549,15 @@
     "pricing": "Ń ṣírò owó…",
     "payWithDhb": "Sanwó pẹ̀lú DHB",
     "yourDhb": "DHB rẹ"
+  },
+  "digest": {
+    "someone": "Ẹnikan"
+  },
+  "publicChatAlerts": {
+    "title": "Iwiregbe gbangba",
+    "mentionTitle": "Ti a darukọ ninu iwiregbe gbangba",
+    "digest": "{{count}} awọn ifiranṣẹ tuntun lati {{who}}@: {{message}}@",
+    "voiceMessage": "Ifiranṣẹ ohùn",
+    "image": "Fi àwòrán ránṣẹ́"
   }
 }

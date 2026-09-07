@@ -460,7 +460,13 @@
     "signInTv": "टिभीमा साइन इन गर्नुहोस्",
     "signInTvDesc": "टिभीमा देखिएको कोड टाइप गर्नुहोस्",
     "tvRequests": "टिभी अनुरोधहरू",
-    "tvRequestsDesc": "टिभीले साइन गर्न भनेका टिपहरू स्वीकृत गर्नुहोस्"
+    "tvRequestsDesc": "टिभीले साइन गर्न भनेका टिपहरू स्वीकृत गर्नुहोस्",
+    "publicChatAlerts": "सार्वजनिक कुराकानी",
+    "publicChatAlertsDesc": "तपाईं अन्यत्र हुँदा सार्वजनिक च्याटले कुरा गरिरहेको बेला बताउनुहोस्",
+    "publicChatAlertsOnDesc": "व्यस्त स्ट्रेचहरू एक संयुक्त सतर्कताको रूपमा आइपुग्छन्",
+    "publicChatAlertsRate": "बढीमा",
+    "publicChatAlertsRateOption": "{{count}} एक घण्टा",
+    "publicChatAlertsRateHint": "कोठा यसभन्दा बढी व्यस्त हुँदा केही पनि हराउँदैन — सन्देशहरू समातिन्छन् र अर्को अलर्टमा सँगै आउँछन् ।"
   },
   "common": {
     "mute": "म्युट गर्नुहोस्",
@@ -2582,5 +2588,17 @@
     "pricing": "मूल्य निकाल्दै…",
     "payWithDhb": "DHB ले भुक्तानी गर्नुहोस्",
     "yourDhb": "तपाईंको DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} र {{count}} अन्य",
+    "andOthers_other": "{{names}} र {{count}} अन्य",
+    "someone": "कोही"
+  },
+  "publicChatAlerts": {
+    "title": "सार्वजनिक कुराकानी",
+    "mentionTitle": "सार्वजनिक कुराकानीमा उल्लेख गरिएको",
+    "digest": "{{count}} नयाँ सन्देशहरू {{who}}: {{message}} बाट",
+    "voiceMessage": "भ्वाइस सन्देश",
+    "image": "एउटा छवि पठाइयो"
   }
 }

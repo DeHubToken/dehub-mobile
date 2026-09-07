@@ -460,7 +460,12 @@
     "signInTv": "Ворид шудан дар телевизор",
     "signInTvDesc": "Рамзеро, ки телевизор нишон медиҳад, ворид кунед",
     "tvRequests": "Дархостҳои телевизор",
-    "tvRequestsDesc": "Чойпулиеро, ки телевизор имзо карданро мепурсад, тасдиқ кунед"
+    "tvRequestsDesc": "Чойпулиеро, ки телевизор имзо карданро мепурсад, тасдиқ кунед",
+    "publicChatAlerts": "Pampublikong chat",
+    "publicChatAlertsDesc": "Get said when the public chat is talking when you are another place",
+    "publicChatAlertsOnDesc": "Comment",
+    "publicChatAlertsRate": "На зиёда",
+    "publicChatAlertsRateHint": "Ҳеҷ чиз гум намешавад, вақте ки ҳуҷра аз ин бандтар аст — паёмҳо нигоҳ дошта мешаванд ва дар огоҳи оянда якҷоя меоянд."
   },
   "common": {
     "mute": "Хомӯш кардани садо",
@@ -2543,5 +2548,14 @@
     "pricing": "Нарх ҳисоб мешавад…",
     "payWithDhb": "Пардохт бо DHB",
     "yourDhb": "DHB-и шумо"
+  },
+  "digest": {
+    "someone": "Касе"
+  },
+  "publicChatAlerts": {
+    "title": "Pampublikong chat",
+    "mentionTitle": "Дар сӯҳбати оммавӣ зикр шудааст",
+    "voiceMessage": "Паёми овозӣ",
+    "image": "Тасвир фиристода шуд"
   }
 }

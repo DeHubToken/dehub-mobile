@@ -460,7 +460,13 @@
     "signInTv": "Ku gal TV",
     "signInTvDesc": "Qor koodhka uu TV-gaagu muujinayo",
     "tvRequests": "Codsiyada TV",
-    "tvRequestsDesc": "Ansixi tips-ka uu TV-gaagu ku weydiisto inaad saxiixdo"
+    "tvRequestsDesc": "Ansixi tips-ka uu TV-gaagu ku weydiisto inaad saxiixdo",
+    "publicChatAlerts": "Wada sheekaysiga dadweynaha",
+    "publicChatAlertsDesc": "U sheeg marka sheekada dadweynaha ay ka hadlayso inta aad meel kale joogto",
+    "publicChatAlertsOnDesc": "Faafinta Busy waxay u yimaadaan sidii hal digniin oo isku dhafan",
+    "publicChatAlertsRate": "Ugu badnaan",
+    "publicChatAlertsRateOption": "{{count}} saacad",
+    "publicChatAlertsRateHint": "Ma jiraan wax khasaare ah marka qolka uu ka bislaado tan — farriimaha ayaa la qabtaa oo la isugu yimaadaa digniinta xigta."
   },
   "common": {
     "mute": "Aamusi",
@@ -2543,5 +2549,14 @@
     "pricing": "Waa la xisaabinayaa qiimaha…",
     "payWithDhb": "Ku bixi DHB",
     "yourDhb": "DHB-gaaga"
+  },
+  "digest": {
+    "someone": "Qof"
+  },
+  "publicChatAlerts": {
+    "title": "Wada sheekaysiga dadweynaha",
+    "mentionTitle": "Waxaa lagu xusay wada sheekaysiga dadweynaha",
+    "voiceMessage": "Fariin cod ah",
+    "image": "Soo diray image ah"
   }
 }

@@ -460,7 +460,12 @@
     "signInTv": "ኣብ ቲቪ እቶ",
     "signInTvDesc": "እቲ ቲቪኻ ዘርእዮ ኮድ ጽሓፍ",
     "tvRequests": "ሕቶታት ቲቪ",
-    "tvRequestsDesc": "እቲ ቲቪኻ ክትፍርም ዝሓቶ ቲፕ ኣጽድቕ"
+    "tvRequestsDesc": "እቲ ቲቪኻ ክትፍርም ዝሓቶ ቲፕ ኣጽድቕ",
+    "publicChatAlerts": "ህዝባዊ ዝርርብ",
+    "publicChatAlertsDesc": "ኣብ ካልእ ቦታ ምስ እትኸውን ፡ እቲ ህዝባዊ ዝርርብ መዓስ ከም ዚዛረብ ንገሮ",
+    "publicChatAlertsOnDesc": "ከም ሓደ ናይ ሓባር መጠንቀቕታ",
+    "publicChatAlertsRate": "መብዛሕትኡ",
+    "publicChatAlertsRateHint": "እቲ ክፍሊ ካብዚ ንላዕሊ ምስ ዚዓዪ ፡ ዋላ ሓንቲ ኣይጠፍእን እዩ — እቲ መልእኽቲ ይዕቀብን ኣብ ቀጻሊ መጠንቀቕታ ይእከብን እዩ ።"
   },
   "common": {
     "mute": "ድምጺ ኣጥፍእ",
@@ -2542,5 +2547,14 @@
     "pricing": "ዋጋ ይሕሰብ ኣሎ…",
     "payWithDhb": "ብ DHB ክፈል",
     "yourDhb": "DHB ናትካ"
+  },
+  "digest": {
+    "someone": "ሓደ ሰብ"
+  },
+  "publicChatAlerts": {
+    "title": "ህዝባዊ ዝርርብ",
+    "mentionTitle": "ኣብ ህዝባዊ ቻት እተጠቕሰ",
+    "voiceMessage": "መልእኽቲ ድምጺ",
+    "image": "ስእሊ ልኢኽካ"
   }
 }

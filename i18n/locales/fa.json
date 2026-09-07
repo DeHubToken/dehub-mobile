@@ -460,7 +460,11 @@
     "signInTv": "ورود در تلویزیون",
     "signInTvDesc": "کدی که تلویزیون نشان می‌دهد را وارد کنید",
     "tvRequests": "درخواست‌های تلویزیون",
-    "tvRequestsDesc": "انعام‌هایی که تلویزیون می‌خواهد امضا کنید را تأیید کنید"
+    "tvRequestsDesc": "انعام‌هایی که تلویزیون می‌خواهد امضا کنید را تأیید کنید",
+    "publicChatAlerts": "چت عمومی",
+    "publicChatAlertsDesc": "وقتی در جای دیگری هستید و چت عمومی در حال صحبت است، مطلع شوید",
+    "publicChatAlertsOnDesc": "مسیرهای شلوغ به صورت یک هشدار ترکیبی از راه می‌رسند",
+    "publicChatAlertsRateHint": "وقتی اتاق شلوغ‌تر از این باشد، چیزی از دست نمی‌رود - پیام‌ها نگه داشته می‌شوند و در هشدار بعدی با هم می‌رسند."
   },
   "common": {
     "mute": "بی‌صدا",
@@ -2573,5 +2577,17 @@
     "pricing": "در حال قیمت‌گذاری…",
     "payWithDhb": "پرداخت با DHB",
     "yourDhb": "DHB شما"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} و {{count}} دیگر",
+    "andOthers_other": "{{names}} و {{count}} دیگران",
+    "someone": "شخصی"
+  },
+  "publicChatAlerts": {
+    "title": "چت عمومی",
+    "mentionTitle": "در چت عمومی ذکر شده است",
+    "digest": "{{count}} پیام‌های جدید از {{who}}: {{message}}",
+    "voiceMessage": "پیام صوتی",
+    "image": "یک تصویر"
   }
 }

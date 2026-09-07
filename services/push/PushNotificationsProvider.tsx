@@ -3,6 +3,7 @@ import * as Notifications from 'expo-notifications';
 import { AppState, AppStateStatus } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { useUser, useAuthState, useAuthActions } from '../../context/AuthContext';
+import { usePublicChatAlerts } from '../../hooks/usePublicChatAlerts';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import {
   registerForPushNotifications,
@@ -135,6 +136,10 @@ interface PushNotificationsProviderProps {
 }
 
 export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps> = ({ children }) => {
+  // Public chat is opt-in and paced by the reader — see the hook. It lives
+  // here rather than on the chat screen because the whole point is being told
+  // while you are somewhere else.
+  usePublicChatAlerts();
   const navigation = useNavigation<NavigationProp<any>>();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -222,6 +227,16 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       if (articleUrl) {
         navigation.navigate(ScreenNames.Notifications);
         openInApp(articleUrl);
+        return;
+      }
+
+      // Raised locally by usePublicChatAlerts, never by the backend: the
+      // platform chat has no push type of its own, and a fan-out per chat
+      // message would be the wrong shape for a firehose anyway. Handled before the
+      // switch, and compared as a string, because both narrow `type` to the
+      // union the backend sends and this value is not in it.
+      if ((type as string) === 'public_chat') {
+        navigation.navigate(ScreenNames.LiveChat);
         return;
       }
 

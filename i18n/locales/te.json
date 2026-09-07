@@ -460,7 +460,13 @@
     "signInTv": "టీవీలో సైన్ ఇన్ చేయండి",
     "signInTvDesc": "మీ టీవీ చూపిస్తున్న కోడ్‌ను టైప్ చేయండి",
     "tvRequests": "టీవీ అభ్యర్థనలు",
-    "tvRequestsDesc": "మీ టీవీ సైన్ చేయమని అడిగే టిప్‌లను ఆమోదించండి"
+    "tvRequestsDesc": "మీ టీవీ సైన్ చేయమని అడిగే టిప్‌లను ఆమోదించండి",
+    "publicChatAlerts": "పబ్లిక్ చాట్",
+    "publicChatAlertsDesc": "మీరు వేరే చోట ఉన్నప్పుడు పబ్లిక్ చాట్ మాట్లాడుతున్నప్పుడు తెలియజేయండి",
+    "publicChatAlertsOnDesc": "ఒక కంబైన్డ్ అలర్ట్ ‌ గా రద్దీ విస్తరణలు వస్తాయి",
+    "publicChatAlertsRate": "గరిష్టంగా",
+    "publicChatAlertsRateOption": "{{count}} గంటకు",
+    "publicChatAlertsRateHint": "గది దీని కంటే రద్దీగా ఉన్నప్పుడు ఏమీ కోల్పోదు — సందేశాలు పట్టుకొని తదుపరి హెచ్చరికపై కలిసి వస్తాయి."
   },
   "common": {
     "mute": "మ్యూట్ చేయి",
@@ -2546,5 +2552,15 @@
     "pricing": "ధర లెక్కిస్తోంది…",
     "payWithDhb": "DHB తో చెల్లించండి",
     "yourDhb": "మీ DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} మరియు {{count}} ఇతర",
+    "someone": "ఎవరో"
+  },
+  "publicChatAlerts": {
+    "title": "పబ్లిక్ చాట్",
+    "mentionTitle": "పబ్లిక్ చాట్ ‌ లో ప్రస్తావించబడింది",
+    "voiceMessage": "వాయిస్ సందేశం",
+    "image": "చిత్రాన్ని పంపారు"
   }
 }

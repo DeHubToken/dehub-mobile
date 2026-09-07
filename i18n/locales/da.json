@@ -460,7 +460,13 @@
     "signInTv": "Log ind på et tv",
     "signInTvDesc": "Indtast koden, dit tv viser",
     "tvRequests": "Tv-anmodninger",
-    "tvRequestsDesc": "Godkend drikkepenge, dit tv beder dig signere"
+    "tvRequestsDesc": "Godkend drikkepenge, dit tv beder dig signere",
+    "publicChatAlerts": "Offentlig chat",
+    "publicChatAlertsDesc": "Få besked, når den offentlige chat taler, mens du er et andet sted",
+    "publicChatAlertsOnDesc": "Travle strækninger ankommer som en kombineret alarm",
+    "publicChatAlertsRate": "Højst",
+    "publicChatAlertsRateOption": "{{count}} en time",
+    "publicChatAlertsRateHint": "Intet går tabt, når rummet er mere travlt end dette — meddelelserne holdes og ankommer sammen på den næste alarm."
   },
   "common": {
     "mute": "Slå lyd fra",
@@ -2547,5 +2553,17 @@
     "pricing": "Beregner pris…",
     "payWithDhb": "Betal med DHB",
     "yourDhb": "Din DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} og {{count}} andet",
+    "andOthers_other": "{{names}} og {{count}} andre",
+    "someone": "Nogen"
+  },
+  "publicChatAlerts": {
+    "title": "Offentlig chat",
+    "mentionTitle": "Nævnt i offentlig chat",
+    "digest": "{{count}} nye beskeder fra {{who}}:{{message}}",
+    "voiceMessage": "Talebesked",
+    "image": "Har sendt et billede"
   }
 }
