@@ -2102,16 +2102,6 @@
     "step4Body": "내가 초대한 사람이 친구를 초대하면 그 매출의 {{l2}}%도 받습니다. 반복 수익, 평생 유지됩니다.",
     "wallet": "제휴 지갑"
   },
-  "prompt": {
-    "title": "무엇을 만들어 볼까요?",
-    "subtitle": "DeHub 어시스턴트에게 무엇이든 물어보세요. 아래 아이디어로 시작해도 좋습니다.",
-    "placeholder": "무엇이든 물어보세요…",
-    "suggestion1": "오늘 DeHub에서 인기 있는 것을 정리해 줘",
-    "suggestion2": "최근 업로드에 대한 게시물을 써 줘",
-    "suggestion3": "DHB 스테이킹을 쉽게 설명해 줘",
-    "suggestion4": "팔로우할 만한 크리에이터를 찾아 줘",
-    "suggestion5": "클리핑 캠페인용 바운티 브리프를 작성해 줘"
-  },
   "top100": {
     "title": "톱 100",
     "subtitle": "시가총액순 암호화폐, 주식, 원자재",
@@ -2674,5 +2664,20 @@
     "attachEmoji": "이모티콘",
     "removeAttachment": "첨부 파일 제거",
     "attachFailed": "사진을 전송할 수 없습니다."
+  },
+  "promptFeed": {
+    "headline": "무엇을 보고 싶으신가요?",
+    "subheadline": "이상적인 피드를 설명해 주세요.",
+    "placeholder": "AI, 게임 클립, 인디 음악 더 보기…",
+    "suggestion1": "AI와 암호화폐 뉴스 더 보기",
+    "suggestion2": "게임 클립과 e스포츠",
+    "suggestion3": "인디 음악 발견",
+    "suggestion4": "테크 창업자와 스타트업",
+    "suggestion5": "축구 하이라이트",
+    "skip": "건너뛰고 피드로 이동",
+    "analysing": "관심사를 분석하는 중…",
+    "timelineReady": "타임라인이 준비되었습니다",
+    "dragToTune": "드래그하여 조합을 세밀하게 조정하세요.",
+    "save": "저장"
   }
 }

@@ -2097,16 +2097,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Top 100",
     "subtitle": "Crypto, stock dem an commodity dem bai market cap",
@@ -2620,5 +2610,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Remove attachment",
     "attachFailed": "No fit send dat picture."
+  },
+  "promptFeed": {
+    "headline": "Wetin you wan see?",
+    "subheadline": "Describe your perfect feed.",
+    "placeholder": "More AI, gaming clips, indie music…",
+    "suggestion1": "More AI and crypto news",
+    "suggestion2": "Gaming clips and esports",
+    "suggestion3": "Indie music discoveries",
+    "suggestion4": "Tech founders and startups",
+    "suggestion5": "Football highlights",
+    "skip": "Skip — just carry me go feed",
+    "analysing": "We dey check wetin you like…",
+    "timelineReady": "Your timeline don ready",
+    "dragToTune": "Drag make you adjust your mix.",
+    "save": "Save"
   }
 }

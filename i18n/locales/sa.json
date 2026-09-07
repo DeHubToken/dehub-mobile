@@ -2088,16 +2088,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "उच्चतमानि 100",
     "subtitle": "विपणिमूल्यानुसारं क्रिप्टो, अंशाः, पण्यानि च",
@@ -2609,5 +2599,20 @@
     "attachEmoji": "इमोजी",
     "removeAttachment": "संलग्नता हटाउनुहोस्",
     "attachFailed": "तस्विरं पठितुं न शक्नोमि ।"
+  },
+  "promptFeed": {
+    "headline": "भवान् किं द्रष्टुम् इच्छति?",
+    "subheadline": "भवतः आदर्शं प्रवाहं वर्णयतु।",
+    "placeholder": "अधिकं AI, क्रीडा-खण्डाः, स्वतन्त्र-सङ्गीतम्…",
+    "suggestion1": "अधिकं AI क्रिप्टो च वार्ताः",
+    "suggestion2": "क्रीडा-खण्डाः ई-क्रीडाश्च",
+    "suggestion3": "स्वतन्त्र-सङ्गीत-आविष्काराः",
+    "suggestion4": "प्रौद्योगिकी-संस्थापकाः नवोद्यमाश्च",
+    "suggestion5": "पादकन्दुक-मुख्यांशाः",
+    "skip": "अतिक्रामतु — मां प्रवाहं प्रति नयतु",
+    "analysing": "भवतः रुचयः विश्लिष्यन्ते…",
+    "timelineReady": "भवतः कालरेखा सज्जा अस्ति",
+    "dragToTune": "भवतः मिश्रणं सूक्ष्मीकर्तुं कर्षतु।",
+    "save": "रक्षतु"
   }
 }

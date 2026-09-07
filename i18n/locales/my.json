@@ -2137,16 +2137,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "ထိပ်တန်း ၁၀၀",
     "subtitle": "ဈေးကွက်တန်ဖိုးအလိုက် ခရစ်ပတို၊ စတော့နှင့် ကုန်စည်များ",
@@ -2658,5 +2648,20 @@
     "attachPhoto": "ဓာတ်ပုံ",
     "removeAttachment": "တွဲထားချက်ကို ဖယ်ရှားပါ",
     "attachFailed": "ဒီဓာတ်ပုံကို ပို့လို့မရဘူး ။"
+  },
+  "promptFeed": {
+    "headline": "ဘာကြည့်ချင်ပါသလဲ?",
+    "subheadline": "သင့်အကောင်းဆုံး ဖိဒ်ကို ဖော်ပြပါ။",
+    "placeholder": "AI ပိုများများ၊ ဂိမ်းကလစ်များ၊ အင်ဒီဂီတ…",
+    "suggestion1": "AI နှင့် crypto သတင်း ပိုများများ",
+    "suggestion2": "ဂိမ်းကလစ်များနှင့် အီးစပို့",
+    "suggestion3": "အင်ဒီဂီတ ရှာဖွေတွေ့ရှိမှုများ",
+    "suggestion4": "နည်းပညာတည်ထောင်သူများနှင့် စတက်အပ်များ",
+    "suggestion5": "ဘောလုံး ထူးခြားမှုများ",
+    "skip": "ကျော်မည် — ဖိဒ်သို့ တိုက်ရိုက်သွားမည်",
+    "analysing": "သင့်စိတ်ဝင်စားမှုများကို ခွဲခြမ်းစိတ်ဖြာနေသည်…",
+    "timelineReady": "သင့် timeline အဆင်သင့်ဖြစ်ပါပြီ",
+    "dragToTune": "သင့်ပေါင်းစပ်မှုကို ချိန်ညှိရန် ဆွဲပါ။",
+    "save": "သိမ်းရန်"
   }
 }

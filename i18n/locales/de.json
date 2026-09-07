@@ -2099,16 +2099,6 @@
     "step4Body": "Wenn deine Eingeladenen ihre Freunde einladen, verdienst du zusätzlich {{l2}} % von deren Umsatz. Wiederkehrend, lebenslang.",
     "wallet": "Partner-Wallet"
   },
-  "prompt": {
-    "title": "Was möchtest du erstellen?",
-    "subtitle": "Frag den DeHub-Assistenten alles — oder starte mit einer Idee von unten.",
-    "placeholder": "Frag einfach…",
-    "suggestion1": "Fasse zusammen, was heute auf DeHub im Trend liegt",
-    "suggestion2": "Entwirf einen Beitrag über meinen letzten Upload",
-    "suggestion3": "Erkläre DHB-Staking in einfachen Worten",
-    "suggestion4": "Finde Creator, denen ich folgen sollte",
-    "suggestion5": "Schreib ein Bounty-Briefing für eine Clipping-Kampagne"
-  },
   "top100": {
     "title": "Top 100",
     "subtitle": "Krypto, Aktien und Rohstoffe nach Marktkapitalisierung",
@@ -2672,5 +2662,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Anhang entfernen",
     "attachFailed": "Das Foto konnte nicht gesendet werden."
+  },
+  "promptFeed": {
+    "headline": "Was möchtest du sehen?",
+    "subheadline": "Beschreibe deinen perfekten Feed.",
+    "placeholder": "Mehr KI, Gaming-Clips, Indie-Musik…",
+    "suggestion1": "Mehr KI- und Krypto-News",
+    "suggestion2": "Gaming-Clips und E-Sport",
+    "suggestion3": "Indie-Musik-Entdeckungen",
+    "suggestion4": "Tech-Gründer und Start-ups",
+    "suggestion5": "Fußball-Highlights",
+    "skip": "Überspringen — direkt zum Feed",
+    "analysing": "Deine Interessen werden analysiert…",
+    "timelineReady": "Deine Timeline ist bereit",
+    "dragToTune": "Ziehen, um deinen Mix fein abzustimmen.",
+    "save": "Speichern"
   }
 }

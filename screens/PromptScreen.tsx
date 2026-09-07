@@ -63,20 +63,12 @@ const ORBIT_ICONS: IconName[] = [
 
 /** Same five suggestion slots as web's SUGGESTION_KEYS. */
 const SUGGESTION_KEYS = [
-  "prompt.suggestion1",
-  "prompt.suggestion2",
-  "prompt.suggestion3",
-  "prompt.suggestion4",
-  "prompt.suggestion5",
+  "promptFeed.suggestion1",
+  "promptFeed.suggestion2",
+  "promptFeed.suggestion3",
+  "promptFeed.suggestion4",
+  "promptFeed.suggestion5",
 ] as const;
-
-const SUGGESTION_FALLBACKS: Record<string, string> = {
-  "prompt.suggestion1": "More AI and crypto news",
-  "prompt.suggestion2": "Gaming clips and esports",
-  "prompt.suggestion3": "Indie music discoveries",
-  "prompt.suggestion4": "Tech founders and startups",
-  "prompt.suggestion5": "Football highlights",
-};
 
 /** Web fakes the analysis with a 1400ms timer; matched here. */
 const ANALYSE_MS = 1400;
@@ -231,9 +223,9 @@ export default function PromptScreen() {
               <View style={styles.wandWrap}>
                 <Icon name="Wand" size={30} color="#FFFFFF" />
               </View>
-              <Text style={styles.title}>{t("prompt.headline", "What do you want to see?")}</Text>
+              <Text style={styles.title}>{t("promptFeed.headline")}</Text>
               <Text style={styles.subtitle}>
-                {t("prompt.subheadline", "Describe your perfect feed.")}
+                {t("promptFeed.subheadline")}
               </Text>
 
               <View style={styles.composer}>
@@ -241,7 +233,7 @@ export default function PromptScreen() {
                   ref={inputRef}
                   value={text}
                   onChangeText={setText}
-                  placeholder={t("prompt.placeholder", "More AI, gaming clips, indie music…")}
+                  placeholder={t("promptFeed.placeholder")}
                   placeholderTextColor="#52525B"
                   style={styles.input}
                   multiline
@@ -260,7 +252,7 @@ export default function PromptScreen() {
 
               <View style={styles.suggestions}>
                 {SUGGESTION_KEYS.map((k) => {
-                  const label = t(k, SUGGESTION_FALLBACKS[k]);
+                  const label = t(k);
                   return (
                     <Pressable key={k} style={styles.suggestion} onPress={() => submit(label)}>
                       <Icon name="Sparkles" size={13} color="#A1A1AA" />
@@ -275,7 +267,7 @@ export default function PromptScreen() {
                 onPress={() => navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home })}
               >
                 <Text style={styles.skipText}>
-                  {t("prompt.skip", "Skip — just take me to the feed")}
+                  {t("promptFeed.skip")}
                 </Text>
               </Pressable>
             </>
@@ -285,16 +277,16 @@ export default function PromptScreen() {
             <View style={styles.analysing}>
               <AnalysingOrbit />
               <Text style={styles.analysingText}>
-                {t("prompt.analysing", "Analysing your interests…")}
+                {t("promptFeed.analysing")}
               </Text>
             </View>
           )}
 
           {stage === "tune" && (
             <View style={styles.tune}>
-              <Text style={styles.title}>{t("prompt.timelineReady", "Your timeline is ready")}</Text>
+              <Text style={styles.title}>{t("promptFeed.timelineReady")}</Text>
               <Text style={styles.subtitle}>
-                {t("prompt.dragToTune", "Drag to fine-tune your mix.")}
+                {t("promptFeed.dragToTune")}
               </Text>
 
               {weights.length === 0 ? (
@@ -328,7 +320,7 @@ export default function PromptScreen() {
 
               <Pressable style={styles.saveBtn} onPress={handleSave}>
                 <Icon name="Check" size={17} color="#000000" />
-                <Text style={styles.saveText}>{t("prompt.save", "Save")}</Text>
+                <Text style={styles.saveText}>{t("promptFeed.save")}</Text>
               </Pressable>
             </View>
           )}

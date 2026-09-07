@@ -2099,16 +2099,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Мыкты 100",
     "subtitle": "Базар капиталдашуусу боюнча крипто, акциялар жана товарлар",
@@ -2623,5 +2613,20 @@
     "attachEmoji": "Эмодзи",
     "removeAttachment": "Тиркемени алып салуу",
     "attachFailed": "Сүрөттү жөнөтүүгө болбоду."
+  },
+  "promptFeed": {
+    "headline": "Эмнени көргүңүз келет?",
+    "subheadline": "Идеалдуу лентаңызды сүрөттөңүз.",
+    "placeholder": "Көбүрөөк AI, оюн клиптери, инди музыка…",
+    "suggestion1": "Көбүрөөк AI жана крипто жаңылыктары",
+    "suggestion2": "Оюн клиптери жана киберспорт",
+    "suggestion3": "Инди музыка ачылыштары",
+    "suggestion4": "Тех негиздөөчүлөр жана стартаптар",
+    "suggestion5": "Футбол учурлары",
+    "skip": "Өткөрүп жиберүү — түз лентага",
+    "analysing": "Кызыгууларыңыз талданууда…",
+    "timelineReady": "Лентаңыз даяр",
+    "dragToTune": "Миксиңизди тууралоо үчүн сүйрөңүз.",
+    "save": "Сактоо"
   }
 }

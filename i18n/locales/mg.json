@@ -2197,16 +2197,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Ambony 100",
     "subtitle": "Kripto, petra-bola sy entana araka ny haben'ny tsena",
@@ -2719,5 +2709,20 @@
     "attachEmoji": "Emoji",
     "removeAttachment": "Mpanaraka",
     "attachFailed": "Tsy afaka mahazo izany sary izany aho."
+  },
+  "promptFeed": {
+    "headline": "Inona no tianao hojerena?",
+    "subheadline": "Lazao ny feed tsara indrindra ho anao.",
+    "placeholder": "AI bebe kokoa, clips lalao, mozika indie…",
+    "suggestion1": "Vaovao AI sy crypto bebe kokoa",
+    "suggestion2": "Clips lalao sy esports",
+    "suggestion3": "Fahitana mozika indie",
+    "suggestion4": "Mpanorina teknolojia sy startups",
+    "suggestion5": "Fotoana manaitra amin'ny baolina kitra",
+    "skip": "Dinganina — ento mankany amin'ny feed fotsiny",
+    "analysing": "Mandinika ny zavatra mahaliana anao…",
+    "timelineReady": "Vonona ny timeline-nao",
+    "dragToTune": "Tariho mba hanitsiana ny fifangaroanao.",
+    "save": "Tehirizo"
   }
 }

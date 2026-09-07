@@ -2080,16 +2080,6 @@
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
   },
-  "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
-  },
   "top100": {
     "title": "Топ 100",
     "subtitle": "Крипто, акције и робе према тржишној капитализацији",
@@ -2583,5 +2573,20 @@
     "pricing": "Рачунање цене…",
     "payWithDhb": "Плати DHB-ом",
     "yourDhb": "Твој DHB"
+  },
+  "promptFeed": {
+    "headline": "Шта желиш да гледаш?",
+    "subheadline": "Опиши свој савршени фид.",
+    "placeholder": "Више AI-ја, гејминг клипова, инди музике…",
+    "suggestion1": "Више вести о AI-ју и крипту",
+    "suggestion2": "Гејминг клипови и еспорт",
+    "suggestion3": "Открића инди музике",
+    "suggestion4": "Tech оснивачи и стартапи",
+    "suggestion5": "Фудбалски резимеи",
+    "skip": "Прескочи — одведи ме на фид",
+    "analysing": "Анализирамо твоја интересовања…",
+    "timelineReady": "Твоја временска линија је спремна",
+    "dragToTune": "Превуци за фино подешавање микса.",
+    "save": "Сачувај"
   }
 }

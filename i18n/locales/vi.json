@@ -2187,16 +2187,6 @@
     "step4Body": "Khi người bạn mời tiếp tục mời bạn bè, bạn còn nhận {{l2}}% doanh thu của họ. Lặp lại, trọn đời.",
     "wallet": "Ví tiếp thị liên kết"
   },
-  "prompt": {
-    "title": "Bạn muốn tạo gì?",
-    "subtitle": "Hỏi trợ lý DeHub bất cứ điều gì — hoặc bắt đầu từ một ý tưởng bên dưới.",
-    "placeholder": "Hỏi bất cứ điều gì…",
-    "suggestion1": "Tóm tắt những gì đang thịnh hành trên DeHub hôm nay",
-    "suggestion2": "Viết một bài về nội dung tôi vừa đăng",
-    "suggestion3": "Giải thích staking DHB một cách đơn giản",
-    "suggestion4": "Tìm những nhà sáng tạo tôi nên theo dõi",
-    "suggestion5": "Viết bản tóm tắt bounty cho một chiến dịch cắt clip"
-  },
   "top100": {
     "title": "Top 100",
     "subtitle": "Tiền mã hóa, cổ phiếu và hàng hóa theo vốn hóa",
@@ -2711,5 +2701,20 @@
     "attachEmoji": "Biểu tượng cảm xúc",
     "removeAttachment": "Xóa tệp đính kèm",
     "attachFailed": "Không thể gửi ảnh đó."
+  },
+  "promptFeed": {
+    "headline": "Bạn muốn xem gì?",
+    "subheadline": "Mô tả bảng tin lý tưởng của bạn.",
+    "placeholder": "Thêm AI, clip game, nhạc indie…",
+    "suggestion1": "Thêm tin tức AI và crypto",
+    "suggestion2": "Clip game và thể thao điện tử",
+    "suggestion3": "Khám phá nhạc indie",
+    "suggestion4": "Nhà sáng lập công nghệ và startup",
+    "suggestion5": "Điểm nhấn bóng đá",
+    "skip": "Bỏ qua — đưa tôi đến bảng tin",
+    "analysing": "Đang phân tích sở thích của bạn…",
+    "timelineReady": "Dòng thời gian của bạn đã sẵn sàng",
+    "dragToTune": "Kéo để tinh chỉnh tổ hợp của bạn.",
+    "save": "Lưu"
   }
 }
