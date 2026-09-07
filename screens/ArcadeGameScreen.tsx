@@ -35,7 +35,7 @@
  * otherwise be the only exit, and a hidden only-exit is a trap.
  */
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, Pressable, StatusBar } from "react-native";
+import { View, Text, StyleSheet, Pressable, StatusBar, AppState } from "react-native";
 import { WebView } from "react-native-webview";
 import type { WebViewMessageEvent, WebViewNavigation } from "react-native-webview";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -179,6 +179,18 @@ const ArcadeGameScreen = () => {
   const [fault, setFault] = useState("");
   const { pct, showBoot, dismiss } = useBootProgress(ready || failed, game?.bootTauMs ?? 8000);
 
+  // react-native-webview never pauses the Android WebView on host pause, so a
+  // backgrounded game kept its own loop, WebAudio and GL burning CPU in a
+  // cached process. There is no pause API, so unmount it while backgrounded
+  // and let it reload on return.
+  const [suspended, setSuspended] = useState(false);
+  useEffect(() => {
+    const sub = AppState.addEventListener("change", (state) => {
+      setSuspended(state === "background");
+    });
+    return () => sub.remove();
+  }, []);
+
   // A deep link opens the player with nothing beneath it, so "back" has to mean
   // the grid rather than an empty stack the app cannot pop.
   const goBack = useCallback(() => {
@@ -282,6 +294,8 @@ const ArcadeGameScreen = () => {
             <Text style={styles.panelButtonLabel}>Back to the arcade</Text>
           </Pressable>
         </View>
+      ) : suspended ? (
+        <View style={styles.web} />
       ) : (
         <WebView
           source={{ uri: game.url }}
