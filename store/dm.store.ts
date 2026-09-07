@@ -205,19 +205,38 @@ export const dmActions = {
     }
   },
 
-  /** Apply an edit to a stored message. */
+  /**
+   * Apply an edit to a stored message.
+   *
+   * A message the server has not acknowledged yet still sits in the optimistic
+   * list rather than the stored one, so patching `messagesByConversation` alone
+   * left the bubble showing the old words with no sign anything had happened.
+   */
   applyEdit(edit: EditMessageResponse): void {
-    const list = dmState.messagesByConversation[edit.dmId];
-    if (!list) return;
-    const idx = list.findIndex((m) => m._id === edit.messageId);
-    if (idx < 0) return;
-    list[idx] = {
-      ...list[idx],
+    const patch = <T extends DmMessage>(m: T): T => ({
+      ...m,
       content: edit.content,
-      isEdited: true,
+      isEdited: edit.isEdited ?? true,
       editedAt: edit.editedAt,
-    };
-    dmState.messagesByConversation[edit.dmId] = [...list];
+    });
+
+    const list = dmState.messagesByConversation[edit.dmId];
+    if (list) {
+      const idx = list.findIndex((m) => m._id === edit.messageId);
+      if (idx >= 0) {
+        list[idx] = patch(list[idx]);
+        dmState.messagesByConversation[edit.dmId] = [...list];
+      }
+    }
+
+    const pending = dmState.optimisticByConversation[edit.dmId];
+    if (pending) {
+      const idx = pending.findIndex((m) => m._id === edit.messageId);
+      if (idx >= 0) {
+        pending[idx] = patch(pending[idx]);
+        dmState.optimisticByConversation[edit.dmId] = [...pending];
+      }
+    }
   },
 
   /** Remove a message from the store. */
