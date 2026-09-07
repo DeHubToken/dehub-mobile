@@ -275,6 +275,7 @@ export default function WorkScreen() {
       ) : (
         <FlatList
           data={jobs}
+          keyboardShouldPersistTaps="handled"
           keyExtractor={(j) => j.id}
           renderItem={({ item }) => <JobCard job={item} onPress={() => openJob(item)} />}
           contentContainerStyle={{
