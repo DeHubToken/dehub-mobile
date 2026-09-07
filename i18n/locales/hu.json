@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} mostantól a(z) {{tier}} jelvényedet viseli",
     "badgeDelegationGrantFailed": "Nem sikerült kölcsönadni a jelvényedet",
     "badgeDelegationEnded": "Átruházás befejezve",
-    "badgeDelegationEndFailed": "Nem sikerült befejezni az átruházást"
+    "badgeDelegationEndFailed": "Nem sikerült befejezni az átruházást",
+    "resetDeviceLink": "Eszköz-fiók kapcsolat visszaállítása",
+    "resetDeviceLinkDesc": "Más fiókot látsz itt, mint a weboldalon? Javítsd ki (nem kell privát kulcs)",
+    "switchAccount": "Fiókváltás",
+    "switchAccountDesc": "Megvan a kívánt fiók privát kulcsa? Válts rá közvetlenül",
+    "notSignedInGoogleEmail": "Ezen az eszközön nem vagy bejelentkezve Google-lel vagy e-maillel.",
+    "resetDeviceLinkTitle": "Visszaállítod az eszköz-fiók kapcsolatot?",
+    "resetDeviceLinkBody": "Ez a telefon elfelejti, melyik tárcát választja automatikusan a Google/e-mail bejelentkezésedhez. Kijelentkeztetünk, és a következő bejelentkezéskor a megfelelő tárcát a jelszavával kell feloldanod (ugyanazzal, amit a weboldal használ).",
+    "resetAndSignOut": "Visszaállítás és kijelentkezés",
+    "deviceLinkReset": "Eszközkapcsolat visszaállítva. Jelentkezz be újra a megfelelő fiók betöltéséhez.",
+    "deviceLinkResetFailed": "Nem sikerült visszaállítani az eszközkapcsolatot."
   },
   "common": {
     "mute": "Némítás",
@@ -2632,5 +2642,27 @@
     "timelineReady": "Az idővonalad készen áll",
     "dragToTune": "Húzd a mix finomhangolásához.",
     "save": "Mentés"
+  },
+  "switchAccount": {
+    "intro": "A Google/e-mail bejelentkezés egyszerre csak EGY tárcát ismer fel a fiókodhoz. Jelentkezz be inkább a kívánt fiók RÉGI bejelentkezésével — ez itt, a telefonodon újraépíti annak tárcáját, ugyanúgy, mint a web „Váltás másik régi fiókra” funkciója.",
+    "retrieving": "Régi tárca lekérése…",
+    "oldAccount": "Régi fiók: {{provider}}",
+    "oldEmail": "Régi fiók e-mail-címe",
+    "recoveredWallet": "Helyreállított tárca",
+    "alreadyActive": "Ez már az aktív tárcád — nincs mit váltani.",
+    "useSignIn": "Inkább bejelentkezéssel",
+    "pasteKey": "Vagy illeszd be kézzel a privát kulcsot",
+    "keyOfOther": "A másik fiók privát kulcsa",
+    "resolvesTo": "Ennek felel meg: {{address}}",
+    "newPassword": "Új jelszó (mostantól ezt a tárcát védi, min. {{min}} karakter)",
+    "password": "Jelszó",
+    "confirmPassword": "Jelszó megerősítése",
+    "backupWarning": "Előbb győződj meg róla, hogy lementetted a JELENLEGI tárcád privát kulcsát (Beállítások → Privát kulcs exportálása) — a váltás után ez az eszköz már nem ajánlja fel.",
+    "recoverFailed": "Nem sikerült lekérni azt a régi tárcát ezen az eszközön. Helyette beillesztheted a privát kulcsát alább.",
+    "breached": "Ez a jelszó adatszivárgásban szerepelt — válassz másikat",
+    "stronger": "Válassz erősebb jelszót",
+    "needSignIn": "A fiókváltáshoz Google-lel vagy e-maillel kell bejelentkezve lenned.",
+    "switched": "Fiók átváltva",
+    "failed": "Nem sikerült fiókot váltani. Ellenőrizd a privát kulcsot, és próbáld újra."
   }
 }

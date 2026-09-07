@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} endi sizning {{tier}} nishoningizni taqmoqda",
     "badgeDelegationGrantFailed": "Nishoningizni berib bo‘lmadi",
     "badgeDelegationEnded": "Topshirish tugadi",
-    "badgeDelegationEndFailed": "Topshirishni tugatib bo‘lmadi"
+    "badgeDelegationEndFailed": "Topshirishni tugatib bo‘lmadi",
+    "resetDeviceLink": "Qurilma hisob bog‘lanishini tiklash",
+    "resetDeviceLinkDesc": "Bu yerda saytdagidan boshqa hisob ko‘rinyaptimi? Tuzating (shaxsiy kalit kerak emas)",
+    "switchAccount": "Hisobni almashtirish",
+    "switchAccountDesc": "Kerakli hisobning shaxsiy kaliti bormi? To‘g‘ridan unga o‘ting",
+    "notSignedInGoogleEmail": "Bu qurilmada Google yoki email orqali kirmagansiz.",
+    "resetDeviceLinkTitle": "Qurilma hisob bog‘lanishi tiklansinmi?",
+    "resetDeviceLinkBody": "Bu telefon Google/email orqali kirishingiz uchun avtomatik tanlaydigan hamyonni unutadi. Siz chiqasiz va keyingi kirishda to‘g‘ri hamyonni uning paroli bilan (sayt ishlatadigan xuddi shu parol) ochish so‘raladi.",
+    "resetAndSignOut": "Tiklash va chiqish",
+    "deviceLinkReset": "Qurilma bog‘lanishi tiklandi. To‘g‘ri hisobni olish uchun qayta kiring.",
+    "deviceLinkResetFailed": "Qurilma bog‘lanishini tiklab bo‘lmadi."
   },
   "common": {
     "mute": "Ovozni o‘chirish",
@@ -2683,5 +2693,27 @@
     "timelineReady": "Lentangiz tayyor",
     "dragToTune": "Aralashmangizni sozlash uchun torting.",
     "save": "Saqlash"
+  },
+  "switchAccount": {
+    "intro": "Google/email orqali kirish hisobingiz uchun bir vaqtda faqat BITTA hamyonni taniydi. Buning o‘rniga kerakli hisobning ESKI kirish usuli bilan kiring — bu uning hamyonini shu yerda telefoningizda qayta tiklaydi, vebdagi «Boshqa eski hisobga o‘tish» kabi.",
+    "retrieving": "Eski hamyon olinmoqda…",
+    "oldAccount": "Eski hisob: {{provider}}",
+    "oldEmail": "Eski hisob emaili",
+    "recoveredWallet": "Tiklangan hamyon",
+    "alreadyActive": "Bu allaqachon sizning faol hamyoningiz — almashtiradigan narsa yo‘q.",
+    "useSignIn": "Buning o‘rniga kirishdan foydalanish",
+    "pasteKey": "Yoki shaxsiy kalitni qo‘lda joylashtiring",
+    "keyOfOther": "Boshqa hisobning shaxsiy kaliti",
+    "resolvesTo": "{{address}} manziliga mos",
+    "newPassword": "Yangi parol (bundan buyon bu hamyonni himoya qiladi, kamida {{min}} belgi)",
+    "password": "Parol",
+    "confirmPassword": "Parolni tasdiqlang",
+    "backupWarning": "Avval HOZIRGI hamyoningizning shaxsiy kalitini zaxiralaganingizga ishonch hosil qiling (Sozlamalar → Shaxsiy kalitni eksport qilish) — o‘tganingizdan keyin bu qurilma uni boshqa taklif qilmaydi.",
+    "recoverFailed": "Bu qurilmada o‘sha eski hamyonni olib bo‘lmadi. Buning o‘rniga uning shaxsiy kalitini quyida joylashtirishingiz mumkin.",
+    "breached": "Bu parol ma’lumotlar sizib chiqishida uchragan — boshqasini tanlang",
+    "stronger": "Kuchliroq parol tanlang",
+    "needSignIn": "Hisoblarni almashtirish uchun Google yoki email orqali kirgan bo‘lishingiz kerak.",
+    "switched": "Hisob almashtirildi",
+    "failed": "Hisobni almashtirib bo‘lmadi. Shaxsiy kalitni tekshirib, qayta urinib ko‘ring."
   }
 }

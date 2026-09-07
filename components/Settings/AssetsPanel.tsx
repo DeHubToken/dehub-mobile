@@ -87,26 +87,26 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
     if (resettingLink) return;
     const supabaseUserId = await getSupabaseUserId();
     if (!supabaseUserId) {
-      toastError(null, "You're not signed in with Google or email on this device.");
+      toastError(null, t('settings.notSignedInGoogleEmail'));
       return;
     }
     Alert.alert(
-      'Reset device account link?',
-      "This phone will forget which wallet it auto-selects for your Google/email sign-in. You'll be signed out, and next time you sign in you'll be asked to unlock the correct wallet with its password (the same one the website uses).",
+      t('settings.resetDeviceLinkTitle'),
+      t('settings.resetDeviceLinkBody'),
       [
-        { text: 'Cancel', style: 'cancel' },
+        { text: t('common.cancel'), style: 'cancel' },
         {
-          text: 'Reset & sign out',
+          text: t('settings.resetAndSignOut'),
           style: 'destructive',
           onPress: async () => {
             setResettingLink(true);
             try {
               await forgetLocalWalletForIdentity(supabaseUserId);
               await signOut();
-              toastSuccess('Device link reset. Sign in again to pick up the right account.');
+              toastSuccess(t('settings.deviceLinkReset'));
             } catch (e) {
               console.error('[AssetsPanel] resetDeviceLink error', e);
-              toastError(e, 'Could not reset the device link.');
+              toastError(e, t('settings.deviceLinkResetFailed'));
             } finally {
               setResettingLink(false);
             }
@@ -114,7 +114,7 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
         },
       ]
     );
-  }, [resettingLink, signOut]);
+  }, [resettingLink, signOut, t]);
 
   return (
     <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
@@ -185,16 +185,16 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
             <Divider />
             <SettingsLinkRow
               icon="RefreshCw"
-              label="Reset device account link"
-              description="Seeing a different account here than on the website? Fix it (no private key needed)"
+              label={t('settings.resetDeviceLink')}
+              description={t('settings.resetDeviceLinkDesc')}
               disabled={resettingLink}
               onPress={handleResetDeviceLink}
             />
             <Divider />
             <SettingsLinkRow
               icon="Repeat"
-              label="Switch account"
-              description="Have a private key for the account you want instead? Switch to it directly"
+              label={t('settings.switchAccount')}
+              description={t('settings.switchAccountDesc')}
               onPress={() => setSwitchAccountVisible(true)}
             />
           </>

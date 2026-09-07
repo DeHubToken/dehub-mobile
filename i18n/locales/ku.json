@@ -501,7 +501,17 @@
     "badgeDelegationGranted": "{{to}} niha nîşana te ya {{tier}} li xwe dike",
     "badgeDelegationGrantFailed": "Nîşana te nehat deyn dayîn",
     "badgeDelegationEnded": "Spartin qediya",
-    "badgeDelegationEndFailed": "Spartin nehat qedandin"
+    "badgeDelegationEndFailed": "Spartin nehat qedandin",
+    "resetDeviceLink": "Girêdana hesabê cîhazê ji nû ve saz bike",
+    "resetDeviceLinkDesc": "Li vir hesabekî ji malperê cuda dibînî? Rast bike (mifteya taybet ne hewce ye)",
+    "switchAccount": "Hesabê biguherîne",
+    "switchAccountDesc": "Mifteya taybet a hesabê ku tu dixwazî heye? Rasterast biguherîne",
+    "notSignedInGoogleEmail": "Tu li ser vê cîhazê bi Google an e-nameyê têketî nîne.",
+    "resetDeviceLinkTitle": "Girêdana hesabê cîhazê ji nû ve were sazkirin?",
+    "resetDeviceLinkBody": "Ev telefon dê ji bîr bike ku ji bo têketina te ya Google/e-nameyê kîjan berîkê bixweber hildibijêre. Tu dê derkevî, û cara din ku têkevî dê ji te were xwestin ku berîka rast bi şîfreya wê vekî (heman a ku malper bikar tîne).",
+    "resetAndSignOut": "Ji nû ve saz bike û derkeve",
+    "deviceLinkReset": "Girêdana cîhazê hat sazkirin. Dîsa têkeve da ku hesabê rast bigirî.",
+    "deviceLinkResetFailed": "Girêdana cîhazê nehat sazkirin."
   },
   "common": {
     "mute": "Bêdeng bike",
@@ -2588,5 +2598,27 @@
     "timelineReady": "Timeline'a te amade ye",
     "dragToTune": "Bikişîne da ku tevlihevkirina xwe rast bikî.",
     "save": "Tomar bike"
+  },
+  "switchAccount": {
+    "intro": "Têketina Google/e-nameyê di heman demê de tenê YEK berîkê ji bo hesabê te nas dike. Li şûna wê bi têketina KEVN a hesabê ku tu dixwazî têkeve — ev berîka wê li vir li ser telefona te ji nû ve ava dike, wek \"Biguherîne hesabekî kevn ê din\" ê webê.",
+    "retrieving": "Berîka kevn tê anîn…",
+    "oldAccount": "Hesabê kevn: {{provider}}",
+    "oldEmail": "E-nameya hesabê kevn",
+    "recoveredWallet": "Berîka vegerandî",
+    "alreadyActive": "Ev jixwe berîka te ya çalak e — tiştek ji bo guhertinê tune.",
+    "useSignIn": "Li şûna wê têketinê bikar bîne",
+    "pasteKey": "An mifteya taybet bi destan bixe",
+    "keyOfOther": "Mifteya taybet a hesabê din",
+    "resolvesTo": "Bi {{address}} re têkildar e",
+    "newPassword": "Şîfreya nû (ji niha pê ve vê berîkê diparêze, herî kêm {{min}} tîp)",
+    "password": "Şîfre",
+    "confirmPassword": "Şîfreyê piştrast bike",
+    "backupWarning": "Pêşî pê bawer be ku te mifteya taybet a berîka xwe ya NIHA tomar kiriye (Mîheng → Mifteya taybet hinarde bike) — piştî guhertinê ev cîhaz êdî wê pêşkêş nake.",
+    "recoverFailed": "Ew berîka kevn li ser vê cîhazê nehat anîn. Li şûna wê tu dikarî mifteya wê ya taybet li jêr bixî.",
+    "breached": "Ev şîfre di derketina daneyan de xuya bûye — yekê din hilbijêre",
+    "stronger": "Şîfreyeke bihêztir hilbijêre",
+    "needSignIn": "Ji bo guhertina hesaban divê tu bi Google an e-nameyê têketî bî.",
+    "switched": "Hesab hat guhertin",
+    "failed": "Hesab nehat guhertin. Ji kerema xwe mifteya taybet kontrol bike û dîsa biceribîne."
   }
 }

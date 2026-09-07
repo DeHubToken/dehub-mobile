@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} sasa anavaa beji yako ya {{tier}}",
     "badgeDelegationGrantFailed": "Imeshindwa kuazima beji yako",
     "badgeDelegationEnded": "Ukabidhi umemalizika",
-    "badgeDelegationEndFailed": "Imeshindwa kumaliza ukabidhi"
+    "badgeDelegationEndFailed": "Imeshindwa kumaliza ukabidhi",
+    "resetDeviceLink": "Weka upya kiungo cha akaunti ya kifaa",
+    "resetDeviceLinkDesc": "Unaona akaunti tofauti hapa na kwenye tovuti? Irekebishe (hakuna ufunguo wa faragha unaohitajika)",
+    "switchAccount": "Badilisha akaunti",
+    "switchAccountDesc": "Una ufunguo wa faragha wa akaunti unayotaka? Badilisha moja kwa moja kwenda kwake",
+    "notSignedInGoogleEmail": "Hujaingia kwa Google au barua pepe kwenye kifaa hiki.",
+    "resetDeviceLinkTitle": "Weka upya kiungo cha akaunti ya kifaa?",
+    "resetDeviceLinkBody": "Simu hii itasahau pochi inayochagua kiotomatiki kwa kuingia kwako kwa Google/barua pepe. Utatoka, na utakapoingia tena utaombwa kufungua pochi sahihi kwa nenosiri lake (lile lile tovuti inalotumia).",
+    "resetAndSignOut": "Weka upya na utoke",
+    "deviceLinkReset": "Kiungo cha kifaa kimewekwa upya. Ingia tena ili kupata akaunti sahihi.",
+    "deviceLinkResetFailed": "Imeshindwa kuweka upya kiungo cha kifaa."
   },
   "common": {
     "mute": "Nyamazisha",
@@ -2629,5 +2639,27 @@
     "timelineReady": "Ratiba yako iko tayari",
     "dragToTune": "Buruta ili kurekebisha mchanganyiko wako.",
     "save": "Hifadhi"
+  },
+  "switchAccount": {
+    "intro": "Kuingia kwa Google/barua pepe kunaweza kutambua pochi MOJA tu kwa akaunti yako kwa wakati mmoja. Badala yake ingia kwa kuingia kwa ZAMANI kwa akaunti unayotaka — hii inaunda upya pochi yake hapa hapa kwenye simu yako, sawa na \"Badilisha kwenda akaunti nyingine ya zamani\" ya wavuti.",
+    "retrieving": "Inapata pochi ya zamani…",
+    "oldAccount": "Akaunti ya zamani: {{provider}}",
+    "oldEmail": "Barua pepe ya akaunti ya zamani",
+    "recoveredWallet": "Pochi iliyorejeshwa",
+    "alreadyActive": "Hii tayari ni pochi yako inayotumika — hakuna cha kubadilisha.",
+    "useSignIn": "Tumia kuingia badala yake",
+    "pasteKey": "Au bandika ufunguo wa faragha mwenyewe",
+    "keyOfOther": "Ufunguo wa faragha wa akaunti nyingine",
+    "resolvesTo": "Inalingana na {{address}}",
+    "newPassword": "Nenosiri jipya (linalinda pochi hii kuanzia sasa, angalau herufi {{min}})",
+    "password": "Nenosiri",
+    "confirmPassword": "Thibitisha nenosiri",
+    "backupWarning": "Hakikisha kwanza umehifadhi nakala ya ufunguo wa faragha wa pochi yako ya SASA (Mipangilio → Hamisha ufunguo wa faragha) — kifaa hiki kitaacha kuutoa ukishabadilisha.",
+    "recoverFailed": "Imeshindwa kupata pochi hiyo ya zamani kwenye kifaa hiki. Badala yake unaweza kubandika ufunguo wake wa faragha hapa chini.",
+    "breached": "Nenosiri hili limeonekana katika uvujaji wa data — chagua lingine",
+    "stronger": "Chagua nenosiri imara zaidi",
+    "needSignIn": "Unahitaji kuingia kwa Google au barua pepe ili kubadilisha akaunti.",
+    "switched": "Akaunti imebadilishwa",
+    "failed": "Imeshindwa kubadilisha akaunti. Tafadhali angalia ufunguo wa faragha na ujaribu tena."
   }
 }

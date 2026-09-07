@@ -1012,7 +1012,17 @@
     "badgeDelegationGranted": "{{to}} kini memakai lencana {{tier}} anda",
     "badgeDelegationGrantFailed": "Tidak dapat meminjamkan lencana anda",
     "badgeDelegationEnded": "Delegasi tamat",
-    "badgeDelegationEndFailed": "Tidak dapat menamatkan delegasi"
+    "badgeDelegationEndFailed": "Tidak dapat menamatkan delegasi",
+    "resetDeviceLink": "Tetapkan semula pautan akaun peranti",
+    "resetDeviceLinkDesc": "Nampak akaun berbeza di sini berbanding laman web? Betulkan (tanpa kunci peribadi)",
+    "switchAccount": "Tukar akaun",
+    "switchAccountDesc": "Ada kunci peribadi untuk akaun yang anda mahu? Tukar terus kepadanya",
+    "notSignedInGoogleEmail": "Anda tidak log masuk dengan Google atau e-mel di peranti ini.",
+    "resetDeviceLinkTitle": "Tetapkan semula pautan akaun peranti?",
+    "resetDeviceLinkBody": "Telefon ini akan lupa dompet mana yang dipilih automatik untuk log masuk Google/e-mel anda. Anda akan dilog keluar, dan kali seterusnya anda log masuk, anda diminta membuka dompet yang betul dengan kata laluannya (sama seperti yang digunakan laman web).",
+    "resetAndSignOut": "Tetapkan semula & log keluar",
+    "deviceLinkReset": "Pautan peranti ditetapkan semula. Log masuk semula untuk mendapatkan akaun yang betul.",
+    "deviceLinkResetFailed": "Tidak dapat menetapkan semula pautan peranti."
   },
   "postOptions": {
     "options": "Options",
@@ -2894,5 +2904,27 @@
     "timelineReady": "Garis masa anda sedia",
     "dragToTune": "Seret untuk melaraskan campuran anda.",
     "save": "Simpan"
+  },
+  "switchAccount": {
+    "intro": "Log masuk Google/e-mel hanya boleh mengenali SATU dompet untuk akaun anda pada satu masa. Sebaliknya log masuk dengan log masuk LAMA akaun yang anda mahu — ini membina semula dompetnya di sini pada telefon anda, sama seperti \"Tukar ke akaun lama lain\" di web.",
+    "retrieving": "Mendapatkan dompet lama…",
+    "oldAccount": "Akaun lama: {{provider}}",
+    "oldEmail": "E-mel akaun lama",
+    "recoveredWallet": "Dompet yang dipulihkan",
+    "alreadyActive": "Ini sudah dompet aktif anda — tiada apa untuk ditukar.",
+    "useSignIn": "Guna log masuk sebaliknya",
+    "pasteKey": "Atau tampal kunci peribadi secara manual",
+    "keyOfOther": "Kunci peribadi akaun yang satu lagi",
+    "resolvesTo": "Menjadi {{address}}",
+    "newPassword": "Kata laluan baharu (melindungi dompet ini seterusnya, min. {{min}} aksara)",
+    "password": "Kata laluan",
+    "confirmPassword": "Sahkan kata laluan",
+    "backupWarning": "Pastikan anda telah menyandarkan kunci peribadi dompet SEMASA anda dahulu (Tetapan → Eksport Kunci Peribadi) — peranti ini akan berhenti menawarkannya sebaik sahaja anda bertukar.",
+    "recoverFailed": "Tidak dapat mendapatkan dompet lama itu pada peranti ini. Sebaliknya anda boleh tampal kunci peribadinya di bawah.",
+    "breached": "Kata laluan ini pernah muncul dalam kebocoran data — pilih yang lain",
+    "stronger": "Pilih kata laluan yang lebih kukuh",
+    "needSignIn": "Anda perlu log masuk dengan Google atau e-mel untuk menukar akaun.",
+    "switched": "Akaun ditukar",
+    "failed": "Tidak dapat menukar akaun. Sila semak kunci peribadi dan cuba lagi."
   }
 }

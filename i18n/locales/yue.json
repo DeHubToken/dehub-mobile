@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} 而家戴住你嘅 {{tier}} 徽章",
     "badgeDelegationGrantFailed": "無法借出你嘅徽章",
     "badgeDelegationEnded": "委託已結束",
-    "badgeDelegationEndFailed": "無法結束委託"
+    "badgeDelegationEndFailed": "無法結束委託",
+    "resetDeviceLink": "重設裝置帳戶關聯",
+    "resetDeviceLinkDesc": "呢度顯示嘅帳戶同網站唔同？修正佢（唔需要私鑰）",
+    "switchAccount": "切換帳戶",
+    "switchAccountDesc": "有想要嘅帳戶嘅私鑰？直接切換過去",
+    "notSignedInGoogleEmail": "你喺呢部裝置上未用 Google 或電郵登入。",
+    "resetDeviceLinkTitle": "重設裝置帳戶關聯？",
+    "resetDeviceLinkBody": "呢部手機會唔記得為你嘅 Google/電郵登入自動揀嘅錢包。你會被登出，下次登入時要用密碼解鎖正確嘅錢包（同網站相同嘅密碼）。",
+    "resetAndSignOut": "重設並登出",
+    "deviceLinkReset": "裝置關聯已重設。請重新登入以揀取正確嘅帳戶。",
+    "deviceLinkResetFailed": "無法重設裝置關聯。"
   },
   "common": {
     "mute": "靜音",
@@ -2626,5 +2636,27 @@
     "timelineReady": "你嘅時間線已經準備好",
     "dragToTune": "拖動嚟微調你嘅組合。",
     "save": "儲存"
+  },
+  "switchAccount": {
+    "intro": "Google/電郵登入一次只可以識別你帳戶嘅一個錢包。請改用你想要嘅帳戶嘅舊登入方式登入，呢個會喺你手機上重建佢嘅錢包，同網頁版嘅「切換到另一個舊帳戶」一樣。",
+    "retrieving": "正在攞舊錢包…",
+    "oldAccount": "舊帳戶：{{provider}}",
+    "oldEmail": "舊帳戶電郵",
+    "recoveredWallet": "已恢復嘅錢包",
+    "alreadyActive": "呢個已經係你而家嘅錢包，唔使切換。",
+    "useSignIn": "改用登入方式",
+    "pasteKey": "或者手動貼上私鑰",
+    "keyOfOther": "另一個帳戶嘅私鑰",
+    "resolvesTo": "對應 {{address}}",
+    "newPassword": "新密碼（今後保護呢個錢包，至少 {{min}} 個字元）",
+    "password": "密碼",
+    "confirmPassword": "確認密碼",
+    "backupWarning": "請先確保已備份當前錢包嘅私鑰（設定 → 匯出私鑰），切換之後呢部裝置將唔再提供佢。",
+    "recoverFailed": "無法喺呢部裝置上攞到該舊錢包。你可以改為喺下方貼上佢嘅私鑰。",
+    "breached": "呢個密碼曾經出現喺資料外洩中，請換一個",
+    "stronger": "請揀一個更強嘅密碼",
+    "needSignIn": "你需要用 Google 或電郵登入先可以切換帳戶。",
+    "switched": "已切換帳戶",
+    "failed": "無法切換帳戶。請檢查私鑰後再試。"
   }
 }

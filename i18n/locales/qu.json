@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} kunan {{tier}} insigniaykita churakuchkan",
     "badgeDelegationGrantFailed": "Insigniaykita mana mañachiyta atikunchu",
     "badgeDelegationEnded": "Mink'akuy tukukun",
-    "badgeDelegationEndFailed": "Mink'akuyta mana tukuchiyta atikunchu"
+    "badgeDelegationEndFailed": "Mink'akuyta mana tukuchiyta atikunchu",
+    "resetDeviceLink": "Dispositivo cuenta t'inkiyta kutichiy",
+    "resetDeviceLinkDesc": "Kaypi web sitiomanta huk cuentata rikuchkankichu? Allichay (mana clave privada necesitakunchu)",
+    "switchAccount": "Cuentata tikray",
+    "switchAccountDesc": "Munasqayki cuentapaq clave privada kapusunkichu? Chayman tikray kikillanmanta",
+    "notSignedInGoogleEmail": "Kay dispositivopi Google utaq correowan mana yaykusqachu kanki.",
+    "resetDeviceLinkTitle": "Dispositivo cuenta t'inkiyta kutichiychu?",
+    "resetDeviceLinkBody": "Kay celularqa qunqanqa mayqen walletta kikinmanta akllan Google/correo yaykunaykipaq. Lluqsichisqa kanki, hinaspa qhipa kutipi yaykuspaykiqa chiqan walletta paypa contraseñanwan kichanaykipaq mañasqa kanki (web sitio llamk'achisqan kikin).",
+    "resetAndSignOut": "Kutichiy hinaspa lluqsiy",
+    "deviceLinkReset": "Dispositivo t'inkiy kutichisqa. Chiqan cuentata hap'inaykipaq yapamanta yaykuy.",
+    "deviceLinkResetFailed": "Dispositivo t'inkiyta mana kutichiyta atikunchu."
   },
   "common": {
     "mute": "Upallachiy",
@@ -2659,5 +2669,27 @@
     "timelineReady": "Timelineyki listo kachkan",
     "dragToTune": "Aysay chaqrusqaykita allichanaykipaq.",
     "save": "Waqaychay"
+  },
+  "switchAccount": {
+    "intro": "Google/correo yaykuyqa cuentaykipaq HUK walletllata riqsiyta atin huk kutipi. Chaymantaqa munasqayki cuentapa ÑAWPA yaykuyninwan yaykuy — kayqa walletninta kaypi celularniykipi wakmanta ruwan, webpa \"Huk ñawpa cuentaman tikray\" hina.",
+    "retrieving": "Ñawpa walletta hap'ichkan…",
+    "oldAccount": "Ñawpa cuenta: {{provider}}",
+    "oldEmail": "Ñawpa cuenta correo",
+    "recoveredWallet": "Kutichisqa wallet",
+    "alreadyActive": "Kayqa ñam wallet llamkachkaqniyki — mana ima tikranapaq kanchu.",
+    "useSignIn": "Chaymantaqa yaykuyta llamk'achiy",
+    "pasteKey": "Utaq clave privadata makiwan churay",
+    "keyOfOther": "Huk cuentapa clave privadan",
+    "resolvesTo": "{{address}}-man tukun",
+    "newPassword": "Musuq contraseña (kunanmanta kay walletta harkan, pisipas {{min}} sanampa)",
+    "password": "Contraseña",
+    "confirmPassword": "Contraseñata takyachiy",
+    "backupWarning": "Ñawpaqta KUNAN walletniykipa clave privadanta waqaychasqaykita chiqaqchay (Configuracionkuna → Clave privadata exportay) — tikraspaykiqa kay dispositivoqa manañam chayta quwanqachu.",
+    "recoverFailed": "Kay dispositivopi chay ñawpa walletta mana hap'iyta atikunchu. Chaymantaqa clave privadanta uraypi churayta atinki.",
+    "breached": "Kay contraseñaqa datos lluqsisqapi rikhurirqan — huk contraseñata akllay",
+    "stronger": "Aswan kallpayuq contraseñata akllay",
+    "needSignIn": "Cuentakunata tikranaykipaqqa Google utaq correowan yaykusqa kanayki tiyan.",
+    "switched": "Cuenta tikrasqa",
+    "failed": "Cuentakunata mana tikrayta atikunchu. Clave privadata qhaway hinaspa yapamanta yanay."
   }
 }

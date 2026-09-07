@@ -506,7 +506,17 @@
     "badgeDelegationGranted": "{{to}} ti ń wọ àmì {{tier}} rẹ báyìí",
     "badgeDelegationGrantFailed": "Kò lè yá àmì rẹ",
     "badgeDelegationEnded": "Ìfúnni ti parí",
-    "badgeDelegationEndFailed": "Kò lè parí ìfúnni náà"
+    "badgeDelegationEndFailed": "Kò lè parí ìfúnni náà",
+    "resetDeviceLink": "Tún ìsopọ̀ àkọọ́lẹ̀ ẹ̀rọ ṣe",
+    "resetDeviceLinkDesc": "Ǹjẹ́ o rí àkọọ́lẹ̀ tó yàtọ̀ níbí sí ti ojú-òpó? Tún un ṣe (kò nílò kọ́kọ́rọ́ àdáni)",
+    "switchAccount": "Yí àkọọ́lẹ̀ padà",
+    "switchAccountDesc": "O ní kọ́kọ́rọ́ àdáni fún àkọọ́lẹ̀ tí o fẹ́? Yí padà sí i tààrà",
+    "notSignedInGoogleEmail": "O kò wọlé pẹ̀lú Google tàbí íméèlì lórí ẹ̀rọ yìí.",
+    "resetDeviceLinkTitle": "Tún ìsopọ̀ àkọọ́lẹ̀ ẹ̀rọ ṣe?",
+    "resetDeviceLinkBody": "Fóònù yìí yóò gbàgbé àpò tí ó máa ń yàn fúnra rẹ̀ fún ìwọlé Google/íméèlì rẹ. A ó jáde ọ, nígbà tí o bá tún wọlé a ó bèèrè kí o ṣí àpò tó tọ́ pẹ̀lú ọ̀rọ̀ aṣínà rẹ̀ (èyí kan náà tí ojú-òpó ń lò).",
+    "resetAndSignOut": "Tún ṣe kí o sì jáde",
+    "deviceLinkReset": "A ti tún ìsopọ̀ ẹ̀rọ ṣe. Tún wọlé láti gba àkọọ́lẹ̀ tó tọ́.",
+    "deviceLinkResetFailed": "Kò lè tún ìsopọ̀ ẹ̀rọ ṣe."
   },
   "common": {
     "mute": "Pa ohùn",
@@ -2628,5 +2638,27 @@
     "timelineReady": "Àkókò ìṣẹ̀lẹ̀ rẹ ti ṣetán",
     "dragToTune": "Fà láti ṣàtúnṣe àdàpọ̀ rẹ.",
     "save": "Fi pamọ́"
+  },
+  "switchAccount": {
+    "intro": "Ìwọlé Google/íméèlì lè mọ àpò KAN ṣoṣo fún àkọọ́lẹ̀ rẹ lẹ́ẹ̀kan. Dípò bẹ́ẹ̀, wọlé pẹ̀lú ìwọlé ÀTIJỌ́ fún àkọọ́lẹ̀ tí o fẹ́ — èyí tún kọ́ àpò rẹ̀ níbí lórí fóònù rẹ, gẹ́gẹ́ bí \"Yí padà sí àkọọ́lẹ̀ àtijọ́ mìíràn\" ti wẹ́ẹ̀bù.",
+    "retrieving": "Ń gba àpò àtijọ́…",
+    "oldAccount": "Àkọọ́lẹ̀ àtijọ́: {{provider}}",
+    "oldEmail": "Íméèlì àkọọ́lẹ̀ àtijọ́",
+    "recoveredWallet": "Àpò tí a gbà padà",
+    "alreadyActive": "Èyí ti jẹ́ àpò rẹ tó ń ṣiṣẹ́ — kò sí ohun tí a ó yí padà.",
+    "useSignIn": "Lo ìwọlé dípò",
+    "pasteKey": "Tàbí lẹ̀ kọ́kọ́rọ́ àdáni pọ̀ pẹ̀lú ọwọ́",
+    "keyOfOther": "Kọ́kọ́rọ́ àdáni ti àkọọ́lẹ̀ mìíràn",
+    "resolvesTo": "Ó bá {{address}} mu",
+    "newPassword": "Ọ̀rọ̀ aṣínà tuntun (ó ń dáàbò bo àpò yìí láti ìsinsìnyí lọ, ó kéré tán {{min}} lẹ́tà)",
+    "password": "Ọ̀rọ̀ aṣínà",
+    "confirmPassword": "Jẹ́rìí ọ̀rọ̀ aṣínà",
+    "backupWarning": "Rí i dájú pé o ti kọ́kọ́ fi kọ́kọ́rọ́ àdáni àpò rẹ LỌ́WỌ́LỌ́WỌ́ pamọ́ (Ètò → Gbé kọ́kọ́rọ́ àdáni jáde) — ẹ̀rọ yìí kò ní fún ọ mọ́ lẹ́yìn tí o bá yí padà.",
+    "recoverFailed": "Kò lè gba àpò àtijọ́ yẹn lórí ẹ̀rọ yìí. O lè lẹ̀ kọ́kọ́rọ́ àdáni rẹ̀ pọ̀ nísàlẹ̀ dípò.",
+    "breached": "Ọ̀rọ̀ aṣínà yìí ti fara hàn nínú ìjábọ̀ dátà — yan òmíràn",
+    "stronger": "Yan ọ̀rọ̀ aṣínà tó lágbára síi",
+    "needSignIn": "O nílò láti wọlé pẹ̀lú Google tàbí íméèlì láti yí àkọọ́lẹ̀ padà.",
+    "switched": "A ti yí àkọọ́lẹ̀ padà",
+    "failed": "Kò lè yí àkọọ́lẹ̀ padà. Jọ̀wọ́ ṣàyẹ̀wò kọ́kọ́rọ́ àdáni kí o sì gbìyànjú lẹ́ẹ̀kan sí i."
   }
 }

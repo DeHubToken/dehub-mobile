@@ -506,7 +506,17 @@
     "badgeDelegationGranted": "{{to}} indi sənin {{tier}} nişanını taxır",
     "badgeDelegationGrantFailed": "Nişanını vermək mümkün olmadı",
     "badgeDelegationEnded": "Həvalə bitdi",
-    "badgeDelegationEndFailed": "Həvaləni bitirmək mümkün olmadı"
+    "badgeDelegationEndFailed": "Həvaləni bitirmək mümkün olmadı",
+    "resetDeviceLink": "Cihaz hesab bağlantısını sıfırla",
+    "resetDeviceLinkDesc": "Burada saytdakından fərqli hesab görürsən? Düzəlt (şəxsi açar lazım deyil)",
+    "switchAccount": "Hesabı dəyiş",
+    "switchAccountDesc": "İstədiyin hesabın şəxsi açarı var? Birbaşa ona keç",
+    "notSignedInGoogleEmail": "Bu cihazda Google və ya e-poçt ilə daxil olmamısan.",
+    "resetDeviceLinkTitle": "Cihaz hesab bağlantısı sıfırlansın?",
+    "resetDeviceLinkBody": "Bu telefon Google/e-poçt girişin üçün avtomatik seçdiyi pulqabını unudacaq. Çıxış ediləcəksən və növbəti girişdə düzgün pulqabını şifrəsi ilə (saytın istifadə etdiyi eyni şifrə) açmağın istəniləcək.",
+    "resetAndSignOut": "Sıfırla və çıx",
+    "deviceLinkReset": "Cihaz bağlantısı sıfırlandı. Düzgün hesabı götürmək üçün yenidən daxil ol.",
+    "deviceLinkResetFailed": "Cihaz bağlantısını sıfırlamaq mümkün olmadı."
   },
   "common": {
     "mute": "Səssiz et",
@@ -2627,5 +2637,27 @@
     "timelineReady": "Lentin hazırdır",
     "dragToTune": "Qarışığını dəqiqləşdirmək üçün sürüşdür.",
     "save": "Saxla"
+  },
+  "switchAccount": {
+    "intro": "Google/e-poçt girişi hesabın üçün eyni anda yalnız BİR pulqabı tanıya bilir. Bunun əvəzinə istədiyin hesabın KÖHNƏ girişi ilə daxil ol — bu onun pulqabını birbaşa telefonunda yenidən qurur, vebdəki \"Başqa köhnə hesaba keç\" kimi.",
+    "retrieving": "Köhnə pulqabı gətirilir…",
+    "oldAccount": "Köhnə hesab: {{provider}}",
+    "oldEmail": "Köhnə hesabın e-poçtu",
+    "recoveredWallet": "Bərpa olunan pulqabı",
+    "alreadyActive": "Bu artıq sənin aktiv pulqabındır — dəyişəcək bir şey yoxdur.",
+    "useSignIn": "Əvəzinə girişdən istifadə et",
+    "pasteKey": "Və ya şəxsi açarı əl ilə yapışdır",
+    "keyOfOther": "Digər hesabın şəxsi açarı",
+    "resolvesTo": "{{address}} ünvanına uyğundur",
+    "newPassword": "Yeni şifrə (bundan sonra bu pulqabını qoruyur, min. {{min}} simvol)",
+    "password": "Şifrə",
+    "confirmPassword": "Şifrəni təsdiqlə",
+    "backupWarning": "Əvvəlcə CARİ pulqabının şəxsi açarını ehtiyat nüsxə etdiyindən əmin ol (Ayarlar → Şəxsi açarı ixrac et) — keçdikdən sonra bu cihaz onu təklif etməyəcək.",
+    "recoverFailed": "Bu cihazda həmin köhnə pulqabını bərpa etmək mümkün olmadı. Əvəzinə onun şəxsi açarını aşağıya yapışdıra bilərsən.",
+    "breached": "Bu şifrə məlumat sızıntısında görünüb — başqasını seç",
+    "stronger": "Daha güclü şifrə seç",
+    "needSignIn": "Hesabları dəyişmək üçün Google və ya e-poçt ilə daxil olmalısan.",
+    "switched": "Hesab dəyişdirildi",
+    "failed": "Hesabları dəyişmək mümkün olmadı. Şəxsi açarı yoxlayıb yenidən cəhd et."
   }
 }

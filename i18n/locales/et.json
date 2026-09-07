@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} kannab nüüd sinu {{tier}} märki",
     "badgeDelegationGrantFailed": "Sinu märki ei õnnestunud laenata",
     "badgeDelegationEnded": "Delegeerimine lõpetatud",
-    "badgeDelegationEndFailed": "Delegeerimist ei õnnestunud lõpetada"
+    "badgeDelegationEndFailed": "Delegeerimist ei õnnestunud lõpetada",
+    "resetDeviceLink": "Lähtesta seadme kontoseos",
+    "resetDeviceLinkDesc": "Näed siin teistsugust kontot kui veebis? Paranda see (privaatvõtit pole vaja)",
+    "switchAccount": "Vaheta kontot",
+    "switchAccountDesc": "Sul on soovitud konto privaatvõti? Vaheta otse sellele",
+    "notSignedInGoogleEmail": "Sa pole selles seadmes Google'i ega e-postiga sisse loginud.",
+    "resetDeviceLinkTitle": "Kas lähtestada seadme kontoseos?",
+    "resetDeviceLinkBody": "See telefon unustab, millise rahakoti ta sinu Google'i/e-posti sisselogimiseks automaatselt valib. Sind logitakse välja ja järgmisel sisselogimisel palutakse sul õige rahakott selle parooliga avada (sama, mida veebisait kasutab).",
+    "resetAndSignOut": "Lähtesta ja logi välja",
+    "deviceLinkReset": "Seadme seos lähtestatud. Logi uuesti sisse, et õige konto laadida.",
+    "deviceLinkResetFailed": "Seadme seost ei õnnestunud lähtestada."
   },
   "common": {
     "mute": "Vaigista",
@@ -2628,5 +2638,27 @@
     "timelineReady": "Sinu ajajoon on valmis",
     "dragToTune": "Lohista, et oma segu täpsustada.",
     "save": "Salvesta"
+  },
+  "switchAccount": {
+    "intro": "Google'i/e-posti sisselogimine tunneb sinu konto jaoks korraga ära ainult ÜHE rahakoti. Logi selle asemel sisse soovitud konto VANA sisselogimisega — see ehitab selle rahakoti siinsamas telefonis uuesti üles, nagu veebi \"Vaheta teisele vanale kontole\".",
+    "retrieving": "Vana rahakoti toomine…",
+    "oldAccount": "Vana konto: {{provider}}",
+    "oldEmail": "Vana konto e-post",
+    "recoveredWallet": "Taastatud rahakott",
+    "alreadyActive": "See on juba sinu aktiivne rahakott — pole midagi vahetada.",
+    "useSignIn": "Kasuta selle asemel sisselogimist",
+    "pasteKey": "Või kleebi privaatvõti käsitsi",
+    "keyOfOther": "Teise konto privaatvõti",
+    "resolvesTo": "Vastab aadressile {{address}}",
+    "newPassword": "Uus parool (kaitseb seda rahakotti edaspidi, vähemalt {{min}} tähemärki)",
+    "password": "Parool",
+    "confirmPassword": "Kinnita parool",
+    "backupWarning": "Veendu esmalt, et oled oma PRAEGUSE rahakoti privaatvõtme varundanud (Seaded → Ekspordi privaatvõti) — pärast vahetust see seade seda enam ei paku.",
+    "recoverFailed": "Seda vana rahakotti ei õnnestunud selles seadmes kätte saada. Selle asemel võid allpool kleepida selle privaatvõtme.",
+    "breached": "See parool on andmelekkes esinenud — vali teine",
+    "stronger": "Vali tugevam parool",
+    "needSignIn": "Konto vahetamiseks pead olema Google'i või e-postiga sisse logitud.",
+    "switched": "Konto vahetatud",
+    "failed": "Kontot ei õnnestunud vahetada. Kontrolli privaatvõtit ja proovi uuesti."
   }
 }

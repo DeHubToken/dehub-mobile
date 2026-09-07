@@ -506,7 +506,17 @@
     "badgeDelegationGranted": "{{to}} bærer nå {{tier}}-merket ditt",
     "badgeDelegationGrantFailed": "Kunne ikke låne ut merket ditt",
     "badgeDelegationEnded": "Delegering avsluttet",
-    "badgeDelegationEndFailed": "Kunne ikke avslutte delegeringen"
+    "badgeDelegationEndFailed": "Kunne ikke avslutte delegeringen",
+    "resetDeviceLink": "Tilbakestill enhetens kontokobling",
+    "resetDeviceLinkDesc": "Ser du en annen konto her enn på nettstedet? Fiks det (ingen privat nøkkel nødvendig)",
+    "switchAccount": "Bytt konto",
+    "switchAccountDesc": "Har du en privat nøkkel til kontoen du vil ha? Bytt direkte til den",
+    "notSignedInGoogleEmail": "Du er ikke logget inn med Google eller e-post på denne enheten.",
+    "resetDeviceLinkTitle": "Tilbakestille enhetens kontokobling?",
+    "resetDeviceLinkBody": "Denne telefonen vil glemme hvilken lommebok den automatisk velger for Google/e-post-innloggingen din. Du blir logget ut, og neste gang du logger inn blir du bedt om å låse opp riktig lommebok med passordet dens (det samme som nettstedet bruker).",
+    "resetAndSignOut": "Tilbakestill og logg ut",
+    "deviceLinkReset": "Enhetskobling tilbakestilt. Logg inn igjen for å hente riktig konto.",
+    "deviceLinkResetFailed": "Kunne ikke tilbakestille enhetskoblingen."
   },
   "common": {
     "mute": "Demp",
@@ -2626,5 +2636,27 @@
     "timelineReady": "Tidslinjen din er klar",
     "dragToTune": "Dra for å finjustere miksen din.",
     "save": "Lagre"
+  },
+  "switchAccount": {
+    "intro": "Google/e-post-innlogging kan bare gjenkjenne ÉN lommebok for kontoen din om gangen. Logg heller inn med den GAMLE innloggingen til kontoen du vil ha — det gjenoppbygger lommeboken rett her på telefonen din, som nettets \"Bytt til en annen gammel konto\".",
+    "retrieving": "Henter gammel lommebok…",
+    "oldAccount": "Gammel konto: {{provider}}",
+    "oldEmail": "Gammel kontos e-post",
+    "recoveredWallet": "Gjenopprettet lommebok",
+    "alreadyActive": "Dette er allerede den aktive lommeboken din — ingenting å bytte.",
+    "useSignIn": "Bruk innlogging i stedet",
+    "pasteKey": "Eller lim inn den private nøkkelen manuelt",
+    "keyOfOther": "Privat nøkkel til den andre kontoen",
+    "resolvesTo": "Tilsvarer {{address}}",
+    "newPassword": "Nytt passord (beskytter denne lommeboken fremover, min. {{min}} tegn)",
+    "password": "Passord",
+    "confirmPassword": "Bekreft passord",
+    "backupWarning": "Sørg først for at du har sikkerhetskopiert den private nøkkelen til NÅVÆRENDE lommebok (Innstillinger → Eksporter privat nøkkel) — denne enheten slutter å tilby den når du bytter.",
+    "recoverFailed": "Kunne ikke hente den gamle lommeboken på denne enheten. Du kan i stedet lime inn den private nøkkelen nedenfor.",
+    "breached": "Dette passordet har dukket opp i en datalekkasje — velg et annet",
+    "stronger": "Velg et sterkere passord",
+    "needSignIn": "Du må være logget inn med Google eller e-post for å bytte konto.",
+    "switched": "Konto byttet",
+    "failed": "Kunne ikke bytte konto. Sjekk den private nøkkelen og prøv igjen."
   }
 }

@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import PasswordStrengthMeter from "../auth/PasswordStrengthMeter";
 import {
@@ -71,6 +72,7 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
   onClose,
   currentAddress,
 }) => {
+  const { t } = useTranslation();
   const { signInWithWallet } = useAuthActions();
   const [showManualEntry, setShowManualEntry] = useState(false);
   const [busyProvider, setBusyProvider] = useState<LegacyProvider | null>(null);
@@ -148,13 +150,13 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
         log.error("recover:error", { provider, message: e?.message });
         setError(
           e?.message ||
-            "Could not retrieve that old wallet on this device. You can paste its private key below instead."
+            t("switchAccount.recoverFailed")
         );
       } finally {
         setBusyProvider(null);
       }
     },
-    [busyProvider]
+    [busyProvider, t]
   );
 
   const handleSubmit = useCallback(async () => {
@@ -166,15 +168,15 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
       if (!full.acceptable) {
         setError(
           full.breached === true
-            ? "This password has appeared in a data breach — choose a different one"
-            : full.warnings[0] || "Choose a stronger password"
+            ? t("switchAccount.breached")
+            : full.warnings[0] || t("switchAccount.stronger")
         );
         return;
       }
 
       const supabaseUserId = await getSupabaseUserId();
       if (!supabaseUserId) {
-        setError("You need to be signed in with Google or email to switch accounts.");
+        setError(t("switchAccount.needSignIn"));
         return;
       }
 
@@ -197,16 +199,16 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
         clearSigningProvider();
       }
 
-      toastSuccess("Switched account");
+      toastSuccess(t("switchAccount.switched"));
       reset();
       onClose();
     } catch (e: any) {
       log.error("switch:error", e);
-      setError(e?.message || "Could not switch accounts. Please check the private key and try again.");
+      setError(e?.message || t("switchAccount.failed"));
     } finally {
       setBusy(false);
     }
-  }, [canSubmit, busy, password, privateKey, signInWithWallet, reset, onClose]);
+  }, [canSubmit, busy, password, privateKey, signInWithWallet, reset, onClose, t]);
 
   return (
     <GlassModal
@@ -222,17 +224,13 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{ flexGrow: 1 }}
       >
-        <Text className="text-white text-2xl font-bold mb-2">Switch account</Text>
-        <Text className="text-theme-neutrals-400 text-sm mb-5">
-          Google/email sign-in can only recognize ONE wallet for your account at a time. Sign in
-          with the OLD login for the account you want instead — this reconstructs its wallet right
-          here on your phone, same as web's "Switch to a different old account".
-        </Text>
+        <Text className="text-white text-2xl font-bold mb-2">{t("settings.switchAccount")}</Text>
+        <Text className="text-theme-neutrals-400 text-sm mb-5">{t("switchAccount.intro")}</Text>
 
         {busyProvider ? (
           <View className="flex-row items-center py-3" style={{ gap: 8 }}>
             <ActivityIndicator color="#fff" />
-            <Text className="text-theme-neutrals-400 text-sm">Retrieving old wallet…</Text>
+            <Text className="text-theme-neutrals-400 text-sm">{t("switchAccount.retrieving")}</Text>
           </View>
         ) : (
           <View style={{ gap: 8 }}>
@@ -243,7 +241,7 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
                 disabled={!!busyProvider}
                 className="rounded-xl px-4 py-3 flex-row items-center justify-between bg-white/10 border border-white/10"
               >
-                <Text className="text-white text-sm font-medium">Old account: {label}</Text>
+                <Text className="text-white text-sm font-medium">{t("switchAccount.oldAccount", { provider: label })}</Text>
               </TouchableOpacity>
             ))}
             <View className="flex-row items-center" style={{ gap: 8 }}>
@@ -251,7 +249,7 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
                 <TextInput
                   value={email}
                   onChangeText={setEmail}
-                  placeholder="Old account email"
+                  placeholder={t("switchAccount.oldEmail")}
                   placeholderTextColor="#6B7280"
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -273,7 +271,7 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
 
         {derivedAddress && !showManualEntry && (
           <View className="rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-900 px-4 py-3 mt-4">
-            <Text className="text-theme-neutrals-500 text-xs mb-1">Recovered wallet</Text>
+            <Text className="text-theme-neutrals-500 text-xs mb-1">{t("switchAccount.recoveredWallet")}</Text>
             <Text className="text-white text-sm font-medium">
               {derivedAddress.slice(0, 6)}…{derivedAddress.slice(-4)}
             </Text>
@@ -281,7 +279,7 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
         )}
         {isSameAsCurrent && (
           <Text className="text-amber-400 text-xs mt-2">
-            This is already your active wallet — nothing to switch.
+            {t("switchAccount.alreadyActive")}
           </Text>
         )}
 
@@ -291,13 +289,13 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
           className="mt-4 items-center py-2"
         >
           <Text className="text-theme-neutrals-500 text-xs underline">
-            {showManualEntry ? "Use sign-in instead" : "Or paste the private key manually"}
+            {showManualEntry ? t("switchAccount.useSignIn") : t("switchAccount.pasteKey")}
           </Text>
         </TouchableOpacity>
 
         {showManualEntry && (
           <View className="mt-2">
-            <Text className="text-theme-neutrals-500 text-xs mb-2">Private key of the other account</Text>
+            <Text className="text-theme-neutrals-500 text-xs mb-2">{t("switchAccount.keyOfOther")}</Text>
             <View className={inputWrapClass}>
               <TextInput
                 value={privateKey}
@@ -314,19 +312,19 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
               </TouchableOpacity>
             </View>
             {derivedAddress && !isSameAsCurrent && (
-              <Text className="text-theme-neutrals-500 text-xs mt-2">Resolves to {derivedAddress}</Text>
+              <Text className="text-theme-neutrals-500 text-xs mt-2">{t("switchAccount.resolvesTo", { address: derivedAddress })}</Text>
             )}
           </View>
         )}
 
         <Text className="text-theme-neutrals-500 text-xs mb-2 mt-4">
-          New password (protects this wallet going forward, min {MIN_PASSWORD_LENGTH} chars)
+          {t("switchAccount.newPassword", { min: MIN_PASSWORD_LENGTH })}
         </Text>
         <View className={inputWrapClass}>
           <TextInput
             value={password}
             onChangeText={handlePasswordChange}
-            placeholder="Password"
+            placeholder={t("switchAccount.password")}
             placeholderTextColor="#6B7280"
             autoCapitalize="none"
             autoCorrect={false}
@@ -343,7 +341,7 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
           <TextInput
             value={confirm}
             onChangeText={setConfirm}
-            placeholder="Confirm password"
+            placeholder={t("switchAccount.confirmPassword")}
             placeholderTextColor="#6B7280"
             autoCapitalize="none"
             autoCorrect={false}
@@ -355,8 +353,7 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
         <View className="rounded-xl border border-amber-400/30 bg-amber-400/10 p-3 mt-4 flex-row items-start" style={{ gap: 8 }}>
           <Ionicons name="warning-outline" size={18} color="#D4D4D8" />
           <Text className="text-amber-200 text-xs flex-1">
-            Make sure you've backed up the private key of your CURRENT wallet first (Settings →
-            Export Private Key) — this device will stop offering it once you switch.
+            {t("switchAccount.backupWarning")}
           </Text>
         </View>
 
@@ -368,11 +365,11 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
           className="mt-5 rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent"
           style={{ opacity: !canSubmit || busy ? 0.5 : 1 }}
         >
-          {busy ? <ActivityIndicator color="#09090B" /> : <Text className="text-theme-accent-foreground text-sm font-medium">Switch account</Text>}
+          {busy ? <ActivityIndicator color="#09090B" /> : <Text className="text-theme-accent-foreground text-sm font-medium">{t("settings.switchAccount")}</Text>}
         </TouchableOpacity>
 
         <TouchableOpacity onPress={handleClose} disabled={busy || !!busyProvider} className="mt-4 items-center py-2">
-          <Text className="text-theme-neutrals-500 text-xs">Cancel</Text>
+          <Text className="text-theme-neutrals-500 text-xs">{t("common.cancel")}</Text>
         </TouchableOpacity>
       </ScrollView>
     </GlassModal>

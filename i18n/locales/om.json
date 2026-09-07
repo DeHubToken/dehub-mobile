@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} amma baajii kee {{tier}} uffatee jira",
     "badgeDelegationGrantFailed": "Baajii kee liqeessuun hin dandaʼamne",
     "badgeDelegationEnded": "Kennuun xumurame",
-    "badgeDelegationEndFailed": "Kennuu xumuruun hin dandaʼamne"
+    "badgeDelegationEndFailed": "Kennuu xumuruun hin dandaʼamne",
+    "resetDeviceLink": "Hidhaa akkaawuntii meeshaa haaromsi",
+    "resetDeviceLinkDesc": "Asitti akkaawuntii marsariitii irraa adda ta'e argaa jirtaa? Sirreessi (furtuu dhuunfaa hin barbaachisu)",
+    "switchAccount": "Akkaawuntii jijjiiri",
+    "switchAccountDesc": "Furtuu dhuunfaa akkaawuntii barbaaddu qabdaa? Kallattiin gara isaatti jijjiiri",
+    "notSignedInGoogleEmail": "Meeshaa kana irratti Google ykn imeeliidhaan hin seenne.",
+    "resetDeviceLinkTitle": "Hidhaa akkaawuntii meeshaa haaromsuu?",
+    "resetDeviceLinkBody": "Bilbilli kun boorsaa Google/imeelii seensa keetiif ofumaan filatu ni dagata. Ni baata, yeroo itti aanutti yoo seentu boorsaa sirrii jecha icciitii isaatiin (kan marsariitiin fayyadamu) akka bantu gaafatamta.",
+    "resetAndSignOut": "Haaromsi fi ba'i",
+    "deviceLinkReset": "Hidhaan meeshaa haaromfameera. Akkaawuntii sirrii argachuuf irra deebi'ii seeni.",
+    "deviceLinkResetFailed": "Hidhaa meeshaa haaromsuun hin dandaʼamne."
   },
   "common": {
     "mute": "Sagalee cufi",
@@ -2678,5 +2688,27 @@
     "timelineReady": "Sararri yeroo kee qophaa'eera",
     "dragToTune": "Makaa kee sirreessuuf harkisi.",
     "save": "Olkaa'i"
+  },
+  "switchAccount": {
+    "intro": "Seensi Google/imeelii yeroo tokkotti akkaawuntii keetiif boorsaa TOKKO qofa beekuu danda'a. Bakka kanaa seensa DURII akkaawuntii barbaadduu seeni — kun boorsaa isaa asuma bilbila kee irratti deebisee ijaara, akkuma \"Gara akkaawuntii durii biraatti jijjiiri\" kan weebii.",
+    "retrieving": "Boorsaa durii fidaa jira…",
+    "oldAccount": "Akkaawuntii durii: {{provider}}",
+    "oldEmail": "Imeelii akkaawuntii durii",
+    "recoveredWallet": "Boorsaa deebi'e",
+    "alreadyActive": "Kun duraan boorsaa kee hojiirra jiru dha — wanti jijjiiramu hin jiru.",
+    "useSignIn": "Bakka kanaa seensa fayyadami",
+    "pasteKey": "Ykn furtuu dhuunfaa harkaan maxxansi",
+    "keyOfOther": "Furtuu dhuunfaa akkaawuntii biraa",
+    "resolvesTo": "Gara {{address}} deema",
+    "newPassword": "Jecha icciitii haaraa (kana booda boorsaa kana eega, yoo xiqqaate qubee {{min}})",
+    "password": "Jecha icciitii",
+    "confirmPassword": "Jecha icciitii mirkaneessi",
+    "backupWarning": "Dursa furtuu dhuunfaa boorsaa kee AMMAA kuustee jiraachuu kee mirkaneeffadhu (Qindaa'ina → Furtuu dhuunfaa alergi) — erga jijjiirtee booda meeshaan kun isa dhiyeessuu dhaaba.",
+    "recoverFailed": "Boorsaa durii sana meeshaa kana irratti fiduun hin dandaʼamne. Bakka kanaa furtuu dhuunfaa isaa gadiitti maxxansuu dandeessa.",
+    "breached": "Jechi icciitii kun cabiinsa daataa keessatti mul'ateera — kan biraa filadhu",
+    "stronger": "Jecha icciitii cimaa filadhu",
+    "needSignIn": "Akkaawuntii jijjiiruuf Google ykn imeeliidhaan seenuu qabda.",
+    "switched": "Akkaawuntiin jijjiirame",
+    "failed": "Akkaawuntii jijjiiruun hin dandaʼamne. Furtuu dhuunfaa mirkaneessii irra deebi'ii yaali."
   }
 }

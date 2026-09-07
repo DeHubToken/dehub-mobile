@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}}があなたの{{tier}}バッジを着用しました",
     "badgeDelegationGrantFailed": "バッジを貸し出せませんでした",
     "badgeDelegationEnded": "委任を終了しました",
-    "badgeDelegationEndFailed": "委任を終了できませんでした"
+    "badgeDelegationEndFailed": "委任を終了できませんでした",
+    "resetDeviceLink": "端末のアカウント紐付けをリセット",
+    "resetDeviceLinkDesc": "ウェブサイトと違うアカウントが表示されていますか？修正します（秘密鍵は不要）",
+    "switchAccount": "アカウントを切り替え",
+    "switchAccountDesc": "使いたいアカウントの秘密鍵をお持ちですか？直接切り替えます",
+    "notSignedInGoogleEmail": "この端末ではGoogleまたはメールでサインインしていません。",
+    "resetDeviceLinkTitle": "端末のアカウント紐付けをリセットしますか？",
+    "resetDeviceLinkBody": "この端末は、Google/メールでのサインイン時に自動選択するウォレットを忘れます。サインアウトされ、次回サインイン時に正しいウォレットをそのパスワード（ウェブサイトと同じもの）で解除するよう求められます。",
+    "resetAndSignOut": "リセットしてサインアウト",
+    "deviceLinkReset": "端末の紐付けをリセットしました。正しいアカウントを取得するには再度サインインしてください。",
+    "deviceLinkResetFailed": "端末の紐付けをリセットできませんでした。"
   },
   "common": {
     "mute": "ミュート",
@@ -2677,5 +2687,27 @@
     "timelineReady": "タイムラインの準備ができました",
     "dragToTune": "ドラッグしてミックスを微調整します。",
     "save": "保存"
+  },
+  "switchAccount": {
+    "intro": "Google/メールでのサインインは、一度に1つのウォレットしかアカウントに紐付けられません。代わりに使いたいアカウントの以前のログイン方法でサインインしてください。ウェブ版の「別の以前のアカウントに切り替え」と同じく、そのウォレットをこの端末上で復元します。",
+    "retrieving": "以前のウォレットを取得中…",
+    "oldAccount": "以前のアカウント：{{provider}}",
+    "oldEmail": "以前のアカウントのメール",
+    "recoveredWallet": "復元したウォレット",
+    "alreadyActive": "これはすでに使用中のウォレットです。切り替える必要はありません。",
+    "useSignIn": "代わりにサインインを使う",
+    "pasteKey": "または秘密鍵を手動で貼り付け",
+    "keyOfOther": "もう一方のアカウントの秘密鍵",
+    "resolvesTo": "{{address}} に対応",
+    "newPassword": "新しいパスワード（今後このウォレットを保護します。{{min}}文字以上）",
+    "password": "パスワード",
+    "confirmPassword": "パスワードを確認",
+    "backupWarning": "先に現在のウォレットの秘密鍵をバックアップしてください（設定 → 秘密鍵をエクスポート）。切り替え後、この端末では取得できなくなります。",
+    "recoverFailed": "この端末では以前のウォレットを取得できませんでした。代わりに下に秘密鍵を貼り付けてください。",
+    "breached": "このパスワードはデータ漏洩で見つかっています。別のものを選んでください",
+    "stronger": "より強力なパスワードを選んでください",
+    "needSignIn": "アカウントを切り替えるには、Googleまたはメールでサインインしている必要があります。",
+    "switched": "アカウントを切り替えました",
+    "failed": "アカウントを切り替えられませんでした。秘密鍵を確認してもう一度お試しください。"
   }
 }

@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} dabar nešioja jūsų {{tier}} ženklelį",
     "badgeDelegationGrantFailed": "Nepavyko paskolinti ženklelio",
     "badgeDelegationEnded": "Delegavimas baigtas",
-    "badgeDelegationEndFailed": "Nepavyko baigti delegavimo"
+    "badgeDelegationEndFailed": "Nepavyko baigti delegavimo",
+    "resetDeviceLink": "Iš naujo nustatyti įrenginio paskyros ryšį",
+    "resetDeviceLinkDesc": "Čia matote kitą paskyrą nei svetainėje? Ištaisykite (privataus rakto nereikia)",
+    "switchAccount": "Perjungti paskyrą",
+    "switchAccountDesc": "Turite norimos paskyros privatų raktą? Perjunkite tiesiogiai",
+    "notSignedInGoogleEmail": "Šiame įrenginyje neprisijungėte per Google ar el. paštą.",
+    "resetDeviceLinkTitle": "Iš naujo nustatyti įrenginio paskyros ryšį?",
+    "resetDeviceLinkBody": "Šis telefonas pamirš, kurią piniginę automatiškai parenka jūsų Google/el. pašto prisijungimui. Būsite atjungti, o kitą kartą prisijungdami turėsite atrakinti teisingą piniginę jos slaptažodžiu (tuo pačiu, kurį naudoja svetainė).",
+    "resetAndSignOut": "Nustatyti iš naujo ir atsijungti",
+    "deviceLinkReset": "Įrenginio ryšys nustatytas iš naujo. Prisijunkite dar kartą, kad gautumėte tinkamą paskyrą.",
+    "deviceLinkResetFailed": "Nepavyko iš naujo nustatyti įrenginio ryšio."
   },
   "common": {
     "mute": "Nutildyti",
@@ -2628,5 +2638,27 @@
     "timelineReady": "Jūsų laiko juosta paruošta",
     "dragToTune": "Vilkite, kad patikslintumėte savo mišinį.",
     "save": "Išsaugoti"
+  },
+  "switchAccount": {
+    "intro": "Prisijungimas per Google/el. paštą vienu metu atpažįsta tik VIENĄ jūsų paskyros piniginę. Vietoj to prisijunkite SENUOJU norimos paskyros prisijungimu — tai atkuria jos piniginę čia, jūsų telefone, kaip svetainės „Perjungti į kitą seną paskyrą“.",
+    "retrieving": "Gaunama sena piniginė…",
+    "oldAccount": "Sena paskyra: {{provider}}",
+    "oldEmail": "Senos paskyros el. paštas",
+    "recoveredWallet": "Atkurta piniginė",
+    "alreadyActive": "Tai jau jūsų aktyvi piniginė — nėra ko perjungti.",
+    "useSignIn": "Vietoj to naudoti prisijungimą",
+    "pasteKey": "Arba įklijuokite privatų raktą rankiniu būdu",
+    "keyOfOther": "Kitos paskyros privatus raktas",
+    "resolvesTo": "Atitinka {{address}}",
+    "newPassword": "Naujas slaptažodis (nuo šiol saugo šią piniginę, min. {{min}} simbolių)",
+    "password": "Slaptažodis",
+    "confirmPassword": "Patvirtinti slaptažodį",
+    "backupWarning": "Pirmiausia įsitikinkite, kad pasidarėte DABARTINĖS piniginės privataus rakto atsarginę kopiją (Nustatymai → Eksportuoti privatų raktą) — perjungus šis įrenginys jo nebesiūlys.",
+    "recoverFailed": "Nepavyko gauti tos senos piniginės šiame įrenginyje. Vietoj to galite žemiau įklijuoti jos privatų raktą.",
+    "breached": "Šis slaptažodis pasirodė duomenų nutekėjime — pasirinkite kitą",
+    "stronger": "Pasirinkite stipresnį slaptažodį",
+    "needSignIn": "Norėdami perjungti paskyrą, turite būti prisijungę per Google arba el. paštą.",
+    "switched": "Paskyra perjungta",
+    "failed": "Nepavyko perjungti paskyros. Patikrinkite privatų raktą ir bandykite dar kartą."
   }
 }

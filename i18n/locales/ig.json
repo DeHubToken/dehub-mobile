@@ -506,7 +506,17 @@
     "badgeDelegationGranted": "{{to}} na-eyi baajị {{tier}} gị ugbu a",
     "badgeDelegationGrantFailed": "Enweghị ike ịgbazinye baajị gị",
     "badgeDelegationEnded": "Nnyefe akwụsịla",
-    "badgeDelegationEndFailed": "Enweghị ike ịkwụsị nnyefe ahụ"
+    "badgeDelegationEndFailed": "Enweghị ike ịkwụsị nnyefe ahụ",
+    "resetDeviceLink": "Tọgharịa njikọ akaụntụ ngwaọrụ",
+    "resetDeviceLinkDesc": "Ị na-ahụ akaụntụ dị iche ebe a karịa na weebụsaịtị? Dozie ya (achọghị igodo nzuzo)",
+    "switchAccount": "Gbanwee akaụntụ",
+    "switchAccountDesc": "Ị nwere igodo nzuzo maka akaụntụ ị chọrọ? Gbanwee gaa na ya ozugbo",
+    "notSignedInGoogleEmail": "Ị banyeghị site na Google ma ọ bụ email na ngwaọrụ a.",
+    "resetDeviceLinkTitle": "Tọgharịa njikọ akaụntụ ngwaọrụ?",
+    "resetDeviceLinkBody": "Ekwentị a ga-echefu obere akpa ọ na-ahọrọ n'onwe ya maka mbanye Google/email gị. A ga-apụ gị, ma oge ọzọ ị banye a ga-agwa gị ka ị kpọghee obere akpa ziri ezi site na okwuntughe ya (otu nke weebụsaịtị na-eji).",
+    "resetAndSignOut": "Tọgharịa ma pụọ",
+    "deviceLinkReset": "Njikọ ngwaọrụ atọgharịala. Banye ọzọ iji nweta akaụntụ ziri ezi.",
+    "deviceLinkResetFailed": "Enweghị ike ịtọgharịa njikọ ngwaọrụ."
   },
   "common": {
     "mute": "Mechie ụda",
@@ -2623,5 +2633,27 @@
     "timelineReady": "Usoro oge gị adịla njikere",
     "dragToTune": "Dọrọ iji mezie ngwakọta gị.",
     "save": "Chekwaa"
+  },
+  "switchAccount": {
+    "intro": "Mbanye Google/email nwere ike ịmata naanị OTU obere akpa maka akaụntụ gị n'otu oge. Kama, jiri mbanye OCHIE nke akaụntụ ị chọrọ banye — nke a na-ewughachi obere akpa ya ebe a n'ekwentị gị, dịka \"Gbanwee gaa n'akaụntụ ochie ọzọ\" nke weebụ.",
+    "retrieving": "Na-eweta obere akpa ochie…",
+    "oldAccount": "Akaụntụ ochie: {{provider}}",
+    "oldEmail": "Email akaụntụ ochie",
+    "recoveredWallet": "Obere akpa eweghachiri",
+    "alreadyActive": "Nke a abụrụlarị obere akpa gị na-arụ ọrụ — ọ dịghị ihe ị ga-agbanwe.",
+    "useSignIn": "Jiri mbanye kama",
+    "pasteKey": "Ma ọ bụ mado igodo nzuzo n'aka",
+    "keyOfOther": "Igodo nzuzo nke akaụntụ ọzọ",
+    "resolvesTo": "Na-abụ {{address}}",
+    "newPassword": "Okwuntughe ọhụrụ (na-echebe obere akpa a site ugbu a, opekata mpe mkpụrụedemede {{min}})",
+    "password": "Okwuntughe",
+    "confirmPassword": "Kwenye okwuntughe",
+    "backupWarning": "Jide n'aka na ị kwadoro igodo nzuzo nke obere akpa gị UGBU A na mbụ (Ntọala → Bupụ igodo nzuzo) — ngwaọrụ a agaghị enye ya ọzọ ozugbo ị gbanwere.",
+    "recoverFailed": "Enweghị ike iweta obere akpa ochie ahụ na ngwaọrụ a. Ị nwere ike ịmado igodo nzuzo ya n'okpuru kama.",
+    "breached": "Okwuntughe a apụtala na mmebi data — họrọ nke ọzọ",
+    "stronger": "Họrọ okwuntughe siri ike karịa",
+    "needSignIn": "Ị ga-abanye site na Google ma ọ bụ email iji gbanwee akaụntụ.",
+    "switched": "Agbanwela akaụntụ",
+    "failed": "Enweghị ike ịgbanwe akaụntụ. Biko lelee igodo nzuzo ma nwaa ọzọ."
   }
 }

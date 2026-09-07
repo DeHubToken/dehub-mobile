@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} sada nosi tvoju značku {{tier}}",
     "badgeDelegationGrantFailed": "Značku nije moguće posuditi",
     "badgeDelegationEnded": "Delegiranje završeno",
-    "badgeDelegationEndFailed": "Delegiranje nije moguće završiti"
+    "badgeDelegationEndFailed": "Delegiranje nije moguće završiti",
+    "resetDeviceLink": "Poništi vezu računa s uređajem",
+    "resetDeviceLinkDesc": "Vidiš ovdje drugačiji račun nego na webu? Popravi (bez privatnog ključa)",
+    "switchAccount": "Promijeni račun",
+    "switchAccountDesc": "Imaš privatni ključ računa koji želiš? Prebaci se izravno na njega",
+    "notSignedInGoogleEmail": "Na ovom uređaju nisi prijavljen putem Googlea ili e-pošte.",
+    "resetDeviceLinkTitle": "Poništiti vezu računa s uređajem?",
+    "resetDeviceLinkBody": "Ovaj će telefon zaboraviti koji novčanik automatski odabire za tvoju prijavu putem Googlea/e-pošte. Bit ćeš odjavljen, a pri sljedećoj prijavi tražit će se da otključaš ispravan novčanik njegovom lozinkom (istom koju koristi web).",
+    "resetAndSignOut": "Poništi i odjavi se",
+    "deviceLinkReset": "Veza uređaja poništena. Prijavi se ponovno kako bi se učitao ispravan račun.",
+    "deviceLinkResetFailed": "Vezu uređaja nije moguće poništiti."
   },
   "common": {
     "mute": "Isključi zvuk",
@@ -2628,5 +2638,27 @@
     "timelineReady": "Tvoja vremenska crta je spremna",
     "dragToTune": "Povuci za fino podešavanje miksa.",
     "save": "Spremi"
+  },
+  "switchAccount": {
+    "intro": "Prijava putem Googlea/e-pošte može prepoznati samo JEDAN novčanik za tvoj račun odjednom. Umjesto toga prijavi se STAROM prijavom računa koji želiš — to rekonstruira njegov novčanik ovdje na telefonu, kao \"Prebaci se na drugi stari račun\" na webu.",
+    "retrieving": "Dohvaćanje starog novčanika…",
+    "oldAccount": "Stari račun: {{provider}}",
+    "oldEmail": "E-pošta starog računa",
+    "recoveredWallet": "Oporavljeni novčanik",
+    "alreadyActive": "Ovo je već tvoj aktivni novčanik — nema što mijenjati.",
+    "useSignIn": "Umjesto toga koristi prijavu",
+    "pasteKey": "Ili ručno zalijepi privatni ključ",
+    "keyOfOther": "Privatni ključ drugog računa",
+    "resolvesTo": "Odgovara {{address}}",
+    "newPassword": "Nova lozinka (od sada štiti ovaj novčanik, min. {{min}} znakova)",
+    "password": "Lozinka",
+    "confirmPassword": "Potvrdi lozinku",
+    "backupWarning": "Prvo provjeri da si sigurnosno kopirao privatni ključ svog TRENUTNOG novčanika (Postavke → Izvezi privatni ključ) — nakon prebacivanja ovaj ga uređaj više neće nuditi.",
+    "recoverFailed": "Stari novčanik nije bilo moguće dohvatiti na ovom uređaju. Umjesto toga možeš zalijepiti njegov privatni ključ ispod.",
+    "breached": "Ova se lozinka pojavila u curenju podataka — odaberi drugu",
+    "stronger": "Odaberi jaču lozinku",
+    "needSignIn": "Za promjenu računa moraš biti prijavljen putem Googlea ili e-pošte.",
+    "switched": "Račun promijenjen",
+    "failed": "Račun nije bilo moguće promijeniti. Provjeri privatni ključ i pokušaj ponovno."
   }
 }

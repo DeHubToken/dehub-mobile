@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} ora indossa il tuo badge {{tier}}",
     "badgeDelegationGrantFailed": "Impossibile prestare il tuo badge",
     "badgeDelegationEnded": "Delega terminata",
-    "badgeDelegationEndFailed": "Impossibile terminare la delega"
+    "badgeDelegationEndFailed": "Impossibile terminare la delega",
+    "resetDeviceLink": "Reimposta il collegamento account del dispositivo",
+    "resetDeviceLinkDesc": "Vedi qui un account diverso da quello del sito? Sistemalo (senza chiave privata)",
+    "switchAccount": "Cambia account",
+    "switchAccountDesc": "Hai la chiave privata dell'account che vuoi? Passa direttamente a quello",
+    "notSignedInGoogleEmail": "Non hai effettuato l'accesso con Google o email su questo dispositivo.",
+    "resetDeviceLinkTitle": "Reimpostare il collegamento account del dispositivo?",
+    "resetDeviceLinkBody": "Questo telefono dimenticherà quale wallet seleziona automaticamente per l'accesso con Google/email. Verrai disconnesso e al prossimo accesso ti verrà chiesto di sbloccare il wallet corretto con la sua password (la stessa usata dal sito).",
+    "resetAndSignOut": "Reimposta ed esci",
+    "deviceLinkReset": "Collegamento del dispositivo reimpostato. Accedi di nuovo per caricare l'account corretto.",
+    "deviceLinkResetFailed": "Impossibile reimpostare il collegamento del dispositivo."
   },
   "common": {
     "mute": "Disattiva audio",
@@ -2677,5 +2687,27 @@
     "timelineReady": "La tua timeline è pronta",
     "dragToTune": "Trascina per rifinire il tuo mix.",
     "save": "Salva"
+  },
+  "switchAccount": {
+    "intro": "L'accesso con Google/email può riconoscere UN solo wallet per il tuo account alla volta. Accedi invece con il VECCHIO login dell'account che vuoi — questo ricostruisce il suo wallet qui sul tuo telefono, come \"Passa a un altro vecchio account\" sul web.",
+    "retrieving": "Recupero del vecchio wallet…",
+    "oldAccount": "Vecchio account: {{provider}}",
+    "oldEmail": "Email del vecchio account",
+    "recoveredWallet": "Wallet recuperato",
+    "alreadyActive": "Questo è già il tuo wallet attivo — niente da cambiare.",
+    "useSignIn": "Usa invece l'accesso",
+    "pasteKey": "Oppure incolla la chiave privata manualmente",
+    "keyOfOther": "Chiave privata dell'altro account",
+    "resolvesTo": "Corrisponde a {{address}}",
+    "newPassword": "Nuova password (protegge questo wallet d'ora in poi, min. {{min}} caratteri)",
+    "password": "Password",
+    "confirmPassword": "Conferma password",
+    "backupWarning": "Assicurati prima di aver salvato la chiave privata del tuo wallet ATTUALE (Impostazioni → Esporta chiave privata) — questo dispositivo smetterà di offrirla dopo il cambio.",
+    "recoverFailed": "Impossibile recuperare quel vecchio wallet su questo dispositivo. Puoi incollare la sua chiave privata qui sotto.",
+    "breached": "Questa password è comparsa in una violazione di dati — scegline un'altra",
+    "stronger": "Scegli una password più sicura",
+    "needSignIn": "Devi aver effettuato l'accesso con Google o email per cambiare account.",
+    "switched": "Account cambiato",
+    "failed": "Impossibile cambiare account. Controlla la chiave privata e riprova."
   }
 }

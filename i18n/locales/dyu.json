@@ -506,7 +506,17 @@
     "badgeDelegationGranted": "{{to}} bɛ i ka {{tier}} baaji don sisan",
     "badgeDelegationGrantFailed": "I ka baaji ma se ka juru",
     "badgeDelegationEnded": "Dili banna",
-    "badgeDelegationEndFailed": "Dili ma se ka ban"
+    "badgeDelegationEndFailed": "Dili ma se ka ban",
+    "resetDeviceLink": "Minɛn kɔnti sirili segin",
+    "resetDeviceLinkDesc": "I bɛ kɔnti wɛrɛ ye yan ka tɛmɛ site kan? A labɛn (private key man kan)",
+    "switchAccount": "Kɔnti caman",
+    "switchAccountDesc": "I bɛ ni kɔnti min fɛ, o private key b'i bolo? Taa o la tilennen",
+    "notSignedInGoogleEmail": "I ma don ni Google walima email ye nin minɛn kan.",
+    "resetDeviceLinkTitle": "Minɛn kɔnti sirili segin?",
+    "resetDeviceLinkBody": "Nin telefɔni bɛna ɲinɛ wallet min bɛ sugandi a yɛrɛ ma i ka Google/email donni kama. I bɛna bɔ, ani siɲɛ wɛrɛ n'i donna, i bɛna ɲininka ka wallet ɲuman dayɛlɛ n'a tɔgɔla ye (site bɛ min kɛ).",
+    "resetAndSignOut": "Segin ani bɔ",
+    "deviceLinkReset": "Minɛn sirili seginna. Don kokura ka kɔnti ɲuman ta.",
+    "deviceLinkResetFailed": "Minɛn sirili ma se ka segin."
   },
   "common": {
     "mute": "Kan bɔ",
@@ -2620,5 +2630,27 @@
     "timelineReady": "I ka timeline labɛnna",
     "dragToTune": "A sama k'i ka mix labɛn.",
     "save": "Mara"
+  },
+  "switchAccount": {
+    "intro": "Google/email donni bɛ se ka wallet KELEN dɔrɔn dɔn i ka kɔnti kama tuma kelen na. Don ni kɔnti min b'i fɛ o ka donni KƆRƆ ye — o bɛ a ka wallet jɔ kokura yan i ka telefɔni kan, i n'a fɔ web ka \"Taa kɔnti kɔrɔ wɛrɛ la\".",
+    "retrieving": "Wallet kɔrɔ bɛ ta…",
+    "oldAccount": "Kɔnti kɔrɔ: {{provider}}",
+    "oldEmail": "Kɔnti kɔrɔ email",
+    "recoveredWallet": "Wallet seginnen",
+    "alreadyActive": "Nin ye i ka wallet baarakɛla ye ka ban — foyi tɛ caman.",
+    "useSignIn": "Donni kɛ o nɔ na",
+    "pasteKey": "Walima private key don ni bolo ye",
+    "keyOfOther": "Kɔnti wɛrɛ ka private key",
+    "resolvesTo": "A bɛ kɛ {{address}} ye",
+    "newPassword": "Tɔgɔla kura (bɛ nin wallet tanga ka taa ɲɛ, {{min}} sɛbɛnden dɔgɔmannin)",
+    "password": "Tɔgɔla",
+    "confirmPassword": "Tɔgɔla dafa",
+    "backupWarning": "A lajɛ fɔlɔ ko i ye i ka wallet SISAN ka private key mara (Setinw → Private key bɔ) — nin minɛn tɛna a di tugun n'i ye caman kɛ.",
+    "recoverFailed": "O wallet kɔrɔ ma se ka ta nin minɛn kan. I bɛ se ka a ka private key don duguma o nɔ na.",
+    "breached": "Nin tɔgɔla bɔra kunnafoni bɔli dɔ la — wɛrɛ sugandi",
+    "stronger": "Tɔgɔla barikama sugandi",
+    "needSignIn": "I ka kan ka don ni Google walima email ye walasa ka kɔnti caman.",
+    "switched": "Kɔnti camanna",
+    "failed": "Kɔntiw ma se ka caman. Private key lajɛ ka a kɛ kokura."
   }
 }

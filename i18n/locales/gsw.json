@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} treit jetz dis {{tier}}-Abzeiche",
     "badgeDelegationGrantFailed": "Dis Abzeiche het nid chönne verlehnt wärde",
     "badgeDelegationEnded": "Verleih beändet",
-    "badgeDelegationEndFailed": "De Verleih het nid chönne beändet wärde"
+    "badgeDelegationEndFailed": "De Verleih het nid chönne beändet wärde",
+    "resetDeviceLink": "Grät-Konto-Verknüpfig zruggsetze",
+    "resetDeviceLinkDesc": "Gsehsch do es anders Konto als uf de Website? Behebs (kei private Schlüssel nötig)",
+    "switchAccount": "Konto wächsle",
+    "switchAccountDesc": "Häsch de private Schlüssel vom gwünschte Konto? Wächsle direkt dethi",
+    "notSignedInGoogleEmail": "Du bisch uf dem Grät nid mit Google oder E-Mail aagmäldet.",
+    "resetDeviceLinkTitle": "Grät-Konto-Verknüpfig zruggsetze?",
+    "resetDeviceLinkBody": "Das Telefon vergisst, weli Wallet es für dini Google/E-Mail-Aamäldig automatisch uswählt. Du wirsch abgmäldet, und bim nächschte Aamälde wirsch gfrögt, di richtig Wallet mit ihrem Passwort z'entsperre (s gliiche wie d Website bruucht).",
+    "resetAndSignOut": "Zruggsetze & abmälde",
+    "deviceLinkReset": "Grätverknüpfig zrugggsetzt. Mäld dich nomol aa, zum s richtig Konto z'lade.",
+    "deviceLinkResetFailed": "D Grätverknüpfig het nid chönne zrugggsetzt wärde."
   },
   "common": {
     "mute": "Stumm schalte",
@@ -2658,5 +2668,27 @@
     "timelineReady": "Dini Timeline isch parat",
     "dragToTune": "Zieh, zum din Mix fiin abstimme.",
     "save": "Speichere"
+  },
+  "switchAccount": {
+    "intro": "D Google/E-Mail-Aamäldig cha für dis Konto immer nur EI Wallet erkenne. Mäld dich stattdesse mit em ALTE Login vom gwünschte Konto aa — das baut sini Wallet grad da uf dim Telefon wider uf, gliich wie «Zu eme andere alte Konto wächsle» im Web.",
+    "retrieving": "Alti Wallet wird gholt…",
+    "oldAccount": "Alts Konto: {{provider}}",
+    "oldEmail": "E-Mail vom alte Konto",
+    "recoveredWallet": "Widerhärgstellti Wallet",
+    "alreadyActive": "Das isch scho dini aktivi Wallet — nüt zum wächsle.",
+    "useSignIn": "Stattdesse Aamäldig bruuche",
+    "pasteKey": "Oder de private Schlüssel manuell iifüege",
+    "keyOfOther": "Private Schlüssel vom andere Konto",
+    "resolvesTo": "Entspricht {{address}}",
+    "newPassword": "Neus Passwort (schützt die Wallet ab jetz, mind. {{min}} Zeiche)",
+    "password": "Passwort",
+    "confirmPassword": "Passwort bestätige",
+    "backupWarning": "Sicher zerscht de private Schlüssel vo dinere AKTUELLE Wallet (Iistellige → Private Schlüssel exportiere) — das Grät biet en nach em Wächsle nüme aa.",
+    "recoverFailed": "Die alti Wallet het uf dem Grät nid chönne gholt wärde. Du chasch stattdesse ihre private Schlüssel unde iifüege.",
+    "breached": "Das Passwort isch i eme Datenleck uftaucht — wähl es anders",
+    "stronger": "Wähl es stercher Passwort",
+    "needSignIn": "Du muesch mit Google oder E-Mail aagmäldet si, zum Konte wächsle.",
+    "switched": "Konto gwächslet",
+    "failed": "D Konte händ nid chönne gwächslet wärde. Prüef de private Schlüssel und probiers nomol."
   }
 }

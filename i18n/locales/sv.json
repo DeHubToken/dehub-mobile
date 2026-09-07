@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} bär nu ditt {{tier}}-märke",
     "badgeDelegationGrantFailed": "Kunde inte låna ut ditt märke",
     "badgeDelegationEnded": "Delegering avslutad",
-    "badgeDelegationEndFailed": "Kunde inte avsluta delegeringen"
+    "badgeDelegationEndFailed": "Kunde inte avsluta delegeringen",
+    "resetDeviceLink": "Återställ enhetens kontokoppling",
+    "resetDeviceLinkDesc": "Ser du ett annat konto här än på webbplatsen? Åtgärda det (ingen privat nyckel behövs)",
+    "switchAccount": "Byt konto",
+    "switchAccountDesc": "Har du en privat nyckel till kontot du vill ha? Byt direkt till det",
+    "notSignedInGoogleEmail": "Du är inte inloggad med Google eller e-post på den här enheten.",
+    "resetDeviceLinkTitle": "Återställ enhetens kontokoppling?",
+    "resetDeviceLinkBody": "Den här telefonen glömmer vilken plånbok den automatiskt väljer för din Google/e-post-inloggning. Du loggas ut, och nästa gång du loggar in ombeds du låsa upp rätt plånbok med dess lösenord (samma som webbplatsen använder).",
+    "resetAndSignOut": "Återställ och logga ut",
+    "deviceLinkReset": "Enhetskoppling återställd. Logga in igen för att hämta rätt konto.",
+    "deviceLinkResetFailed": "Kunde inte återställa enhetskopplingen."
   },
   "common": {
     "mute": "Stäng av ljud",
@@ -2632,5 +2642,27 @@
     "timelineReady": "Din tidslinje är klar",
     "dragToTune": "Dra för att finjustera din mix.",
     "save": "Spara"
+  },
+  "switchAccount": {
+    "intro": "Google/e-post-inloggning kan bara känna igen EN plånbok för ditt konto åt gången. Logga i stället in med den GAMLA inloggningen för kontot du vill ha — det bygger upp dess plånbok här på din telefon, precis som webbens \"Byt till ett annat gammalt konto\".",
+    "retrieving": "Hämtar gammal plånbok…",
+    "oldAccount": "Gammalt konto: {{provider}}",
+    "oldEmail": "Gammalt kontos e-post",
+    "recoveredWallet": "Återställd plånbok",
+    "alreadyActive": "Det här är redan din aktiva plånbok — inget att byta.",
+    "useSignIn": "Använd inloggning i stället",
+    "pasteKey": "Eller klistra in den privata nyckeln manuellt",
+    "keyOfOther": "Privat nyckel för det andra kontot",
+    "resolvesTo": "Motsvarar {{address}}",
+    "newPassword": "Nytt lösenord (skyddar den här plånboken framöver, minst {{min}} tecken)",
+    "password": "Lösenord",
+    "confirmPassword": "Bekräfta lösenord",
+    "backupWarning": "Se först till att du har säkerhetskopierat den privata nyckeln för din NUVARANDE plånbok (Inställningar → Exportera privat nyckel) — den här enheten slutar erbjuda den när du byter.",
+    "recoverFailed": "Kunde inte hämta den gamla plånboken på den här enheten. Du kan i stället klistra in dess privata nyckel nedan.",
+    "breached": "Det här lösenordet har förekommit i en dataläcka — välj ett annat",
+    "stronger": "Välj ett starkare lösenord",
+    "needSignIn": "Du måste vara inloggad med Google eller e-post för att byta konto.",
+    "switched": "Konto bytt",
+    "failed": "Kunde inte byta konto. Kontrollera den privata nyckeln och försök igen."
   }
 }
