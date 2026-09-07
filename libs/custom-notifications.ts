@@ -32,6 +32,7 @@ import { supabase } from "../services/supabase";
 import { getAccount } from "../services/user.service";
 import { withWalletHeader } from "./supabase-wallet-client";
 import type { NotificationItem } from "../services/user.service";
+import { stageLiveSentence, stageReminderSentence } from "./stage-notifications";
 
 /** Rows older than this are not worth merging into a bell that pages 30 at a time. */
 const CUSTOM_NOTIFICATION_LIMIT = 30;
@@ -55,6 +56,8 @@ interface CustomNotificationRow {
   content: string;
   reference_id: string | null;
   reference_title: string | null;
+  /** The comment a row is about, where its type has one. */
+  reference_comment_id: string | null;
   read: boolean;
   created_at: string;
 }
@@ -67,6 +70,8 @@ interface CustomNotificationRow {
 export type CustomNotificationItem = NotificationItem & {
   customReferenceId?: string;
   customReferenceTitle?: string;
+  /** The comment inside the referenced thing, for rows that name one. */
+  customCommentId?: string;
 };
 
 const shortAddress = (address: string): string =>
@@ -175,10 +180,56 @@ const COMMUNITY_TYPES = new Set(["community_join", "community_mention", "communi
  * an unprefixed row would read as though it had no subject. Naming the bounty
  * matters too: a poster with several open ones cannot act on "someone applied".
  */
+/**
+ * Rows whose `content` is not a predicate.
+ *
+ * The fallback below prints `${actor} ${content}`, which only reads as English
+ * for the rows that store a bare verb phrase. A feature-request like stores an
+ * empty string (rendering a lone name), a comment stores the comment text
+ * (rendering "alice for sure, should be this week"), and a stage stores nothing
+ * at all. These carry the sentence instead, matching web word for word.
+ */
+const composeReferenceContent = (row: CustomNotificationRow, actor: string): string | null => {
+  const title = row.reference_title?.trim();
+  const quoted = title ? `“${title}”` : null;
+  switch (row.type) {
+    case "feature_request_like":
+      return quoted
+        ? `${actor} liked your feature request ${quoted}`
+        : `${actor} liked your feature request`;
+    case "feature_request_comment":
+      return quoted
+        ? `${actor} commented on your feature request ${quoted}`
+        : `${actor} commented on your feature request`;
+    case "feature_request_reply":
+      return quoted ? `${actor} replied to you on ${quoted}` : `${actor} replied to your comment`;
+    case "feature_request_mention":
+      return quoted
+        ? `${actor} mentioned you on ${quoted}`
+        : `${actor} mentioned you on a feature request`;
+    case "governance_vote":
+      return quoted ? `${actor} voted on your proposal ${quoted}` : `${actor} voted on your proposal`;
+    case "governance_comment":
+      return quoted
+        ? `${actor} commented on your proposal ${quoted}`
+        : `${actor} commented on your proposal`;
+    case "stage_live":
+      return stageLiveSentence(actor, title);
+    case "stage_reminder":
+      return stageReminderSentence(title);
+    case "store_order":
+      return quoted ? `${actor} purchased your listing ${quoted}` : `${actor} purchased your listing`;
+    default:
+      return null;
+  }
+};
+
 const composeContent = (row: CustomNotificationRow, resolvedUsername?: string | null): string => {
   const actor =
     row.actor_username?.trim() || resolvedUsername?.trim() || shortAddress(row.actor_address);
   if (COMMUNITY_TYPES.has(row.type)) return composeCommunityContent(row, actor);
+  const composed = composeReferenceContent(row, actor);
+  if (composed) return composed;
   const predicate = row.content?.trim() || "sent you a notification";
   const sentence = `${actor} ${predicate}`;
   const isBounty = row.type === "work_application" || row.type === "work_submission";
@@ -203,6 +254,7 @@ const toNotificationItem = (row: CustomNotificationRow): CustomNotificationItem 
     actorAvatar: row.actor_avatar || resolved?.avatar || undefined,
     ...(row.reference_id ? { customReferenceId: row.reference_id } : {}),
     ...(row.reference_title ? { customReferenceTitle: row.reference_title } : {}),
+    ...(row.reference_comment_id ? { customCommentId: row.reference_comment_id } : {}),
   };
 };
 
