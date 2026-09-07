@@ -11,6 +11,7 @@ import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import ReactionPicker from "./ReactionPicker";
 import {
+  HAS_NEGATIVE_TRAY,
   isPositiveReaction,
   reactionMeta,
   resolveLeadReaction,
@@ -47,7 +48,7 @@ interface FeedActionBarProps {
   onTip: () => void;
   onSave: () => void;
   onInfo: () => void;
-  /** Which of the nine reactions the viewer holds. `liked`/`disliked` are its polarity. */
+  /** Which of the ten reactions the viewer holds. `liked`/`disliked` are its polarity. */
   myReaction?: PostReaction | null;
   /** Per-reaction totals — the most-used one leads on the card. */
   reactionCounts?: ReactionCounts | null;
@@ -170,9 +171,10 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   onReact,
   onShowReactionInfo,
 }) => {
-  // One tray per thumb: the seven positive faces on the thumbs-up, 👎 and 💩
-  // on the thumbs-down. Only ever one open — they sit inches apart on the same
-  // row, and two trays stacked over each other is unreadable.
+  // One tray per thumb: every positive face on the thumbs-up, the downvote on
+  // the thumbs-down — which no longer opens a tray at all, holding one option.
+  // Only ever one open either way: they sit inches apart on the same row, and
+  // two trays stacked over each other is unreadable.
   const [openTray, setOpenTray] = useState<"positive" | "negative" | null>(null);
 
   // The tray needs a handler to route to; without one this stays a plain
@@ -191,9 +193,9 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
    */
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
   const leadGlyph = leadReaction ? reactionMeta(leadReaction).emoji : undefined;
-  /** A 👎 or 💩 belongs to the thumbs-DOWN; this button must not announce it. */
+  /** A downvote belongs to the thumbs-DOWN; this button must not announce it. */
   const myPositiveReaction = myReaction && isPositiveReaction(myReaction) ? myReaction : null;
-  /** …and that button wears it — your own 💩 only, never the crowd's. */
+  /** …and that button would wear it, though 👎 is its own glyph already. */
   const myNegativeReaction = myReaction && !isPositiveReaction(myReaction) ? myReaction : null;
   const negativeLeadReaction = resolveNegativeLeadReaction(myReaction);
   const negativeGlyph = negativeLeadReaction ? reactionMeta(negativeLeadReaction).emoji : undefined;
@@ -210,11 +212,11 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         count={tipCount}
         formatCount
       />
-      {/* Downvotes — tap the thumb, hold it for 💩. The negative pair lives
-          here rather than in the tray on the thumbs-UP: they move THIS count,
-          and the button that means "no" is where a reader goes looking for
-          them. The wrapper is the tray's positioning context and stays a
-          single flex item so the row's spacing is unchanged. */}
+      {/* Downvotes — one tap, no tray: 👎 is the only reaction on this side,
+          and a hold-to-open menu of one option would only get in the way of
+          the press that already casts it. The wrapper is still the tray's
+          positioning context, and stays a single flex item so the row's
+          spacing is unchanged whichever way that goes. */}
       <View style={{ position: "relative" }}>
         <ReactionPicker
           open={openTray === "negative" && reactionsEnabled}
@@ -228,7 +230,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
             if (openTray === "negative") { setOpenTray(null); return; }
             onDislike();
           }}
-          onLongPress={reactionsEnabled ? () => setOpenTray("negative") : undefined}
+          onLongPress={reactionsEnabled && HAS_NEGATIVE_TRAY ? () => setOpenTray("negative") : undefined}
           accessibilityLabel={
             myNegativeReaction
               ? `${reactionMeta(myNegativeReaction).label} — hold to change your reaction`
@@ -262,7 +264,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         count={commentCount}
         formatCount
       />
-      {/* Reactions — tap to like/unlike, hold to pick one of the nine. The
+      {/* Reactions — tap to like/unlike, hold to pick a reaction. The
           wrapper is the tray's positioning context, and stays a single flex
           item so the row's edge-to-edge spacing is unchanged. */}
       <View style={{ position: "relative" }}>

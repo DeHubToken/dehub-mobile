@@ -33,6 +33,7 @@ import type { Comment } from "../../services/nft.service";
 import ReactionPicker from "../Home/ReactionPicker";
 import {
   applyReactionDelta,
+  HAS_NEGATIVE_TRAY,
   isPositiveReaction,
   reactionForTap,
   reactionMeta,
@@ -90,7 +91,7 @@ interface CommentItemProps {
   onLike?: (commentId: number) => Promise<LikeCommentResult | void>;
   onDislike?: (commentId: number) => Promise<DislikeCommentResult | void>;
   /**
-   * Cast a specific one of the nine — what the hold-open trays route to.
+   * Cast a specific one of the ten — what the hold-open trays route to.
    * Its presence is also what turns the trays on: a host that only knows
    * like/dislike keeps the plain pair, as it did before reactions.
    */
@@ -143,7 +144,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const [disliked, setDisliked] = useState(!!comment.isDisliked);
   const [dislikeCount, setDislikeCount] = useState(comment.dislikeCount || 0);
   const [isDisliking, setIsDisliking] = useState(false);
-  // Which of the nine this viewer holds. Falls back to the polarity flags,
+  // Which of the ten this viewer holds. Falls back to the polarity flags,
   // which is exactly what a plain like always was — a comment voted on before
   // reactions shipped, or served by an API that has not deployed them yet,
   // would otherwise draw the viewer's own like as no reaction at all.
@@ -201,7 +202,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   /** The glyph the thumbs-up wears — yours, else the thread's most-used. */
   const leadReaction = isOwnComment ? null : resolveLeadReaction(reactionCounts, myReaction);
   const leadGlyph = leadReaction ? reactionMeta(leadReaction).emoji : undefined;
-  /** …and the thumbs-DOWN wears your own 💩, never the crowd's. */
+  /** …and the thumbs-DOWN would wear it, though 👎 is its own glyph already. */
   const myNegativeReaction = myReaction && !isPositiveReaction(myReaction) ? myReaction : null;
   const negativeLeadReaction = resolveNegativeLeadReaction(myReaction);
   const negativeGlyph = negativeLeadReaction ? reactionMeta(negativeLeadReaction).emoji : undefined;
@@ -286,7 +287,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   }, [userId, onUserPress, showUserProfile]);
 
   /**
-   * Cast one of the nine on this comment.
+   * Cast one of the ten on this comment.
    *
    * The single vote path for the row — the plain thumbs below only pick which
    * reaction a tap means. Holds the same three rules the server does:
@@ -592,11 +593,11 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
           ) : null}
 
           <View style={{ flexDirection: "row", alignItems: "center", marginTop: 6, gap: 12 }}>
-            {/* Hold either thumb for its tray: the seven positive faces on
-                this one, 👎 and 💩 on the next — each hanging off the button
-                whose count it moves. The wrapper is the tray's positioning
-                context. No tray on your own comment's thumbs-up, because
-                every reaction it could cast the server would refuse. */}
+            {/* Hold this thumb for its tray of positive faces; the next one
+                is a plain downvote with no tray of its own, since 👎 is the
+                only reaction left on that side. The wrapper is the tray's
+                positioning context. No tray on your own comment's thumbs-up,
+                because every reaction it could cast the server would refuse. */}
             <View style={{ position: "relative" }}>
               {reactionsEnabled && !isOwnComment && (
                 <ReactionPicker
@@ -658,7 +659,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 )}
                 <Pressable
                   onPress={handleDislikePress}
-                  onLongPress={reactionsEnabled ? () => setOpenTray("negative") : undefined}
+                  onLongPress={reactionsEnabled && HAS_NEGATIVE_TRAY ? () => setOpenTray("negative") : undefined}
                   delayLongPress={400}
                   disabled={isDisliking}
                   hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}

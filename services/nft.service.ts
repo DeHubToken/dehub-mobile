@@ -306,7 +306,7 @@ export interface ReactToNFTResponse {
 }
 
 /**
- * Cast one of the nine reactions on a post.
+ * Cast one of the ten reactions on a post.
  *
  * The server toggles: sending the reaction the user already holds removes it,
  * and sending a different one swaps it (moving `totalVotes` only when the
@@ -440,7 +440,7 @@ export interface Comment {
   dislikeCount?: number;
   isDisliked?: boolean;
   /**
-   * Which of the nine reactions the viewer holds on this comment.
+   * Which of the ten reactions the viewer holds on this comment.
    * `isLiked`/`isDisliked` are its POLARITY, exactly as on a post — a comment
    * somebody loved is still a comment they liked, and every count beside it
    * still means what it meant before reactions existed.
@@ -617,7 +617,7 @@ export interface ReactCommentResult {
 }
 
 /**
- * Cast one of the nine reactions on a comment or reply.
+ * Cast one of the ten reactions on a comment or reply.
  *
  * The comment-level twin of requestReaction, and the endpoint likeComment and
  * dislikeComment are wrappers on server-side. Same toggle contract: sending
@@ -1328,7 +1328,7 @@ export interface LikerUser {
   displayName?: string;
   avatarImageUrl?: string;
   followers?: number;
-  /** Which of the nine reactions this person left. */
+  /** Which of the ten reactions this person left. */
   reaction?: PostReaction;
   likedAt?: string;
 }
