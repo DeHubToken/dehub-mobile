@@ -144,20 +144,28 @@ export class LocalProviderAdapter implements AuthAdapter {
 
   async getProvider(): Promise<any | null> {
     // Only serve a local provider if the stored method is 'local'
+    let methodAddress: string | null = null;
     try {
-      const { method } = await getAuthMethod();
+      const { method, address } = await getAuthMethod();
       if (method && method !== 'local') {
         return null;
       }
+      methodAddress = address;
     } catch {}
     // Prefer existing override set elsewhere
     const existing = getSigningProvider();
     if (existing) return existing;
 
-    // Determine active address from persisted auth user
+    // Determine the active address. The persisted auth user is written only
+    // after the provider is rebuilt during sign-in, so on a returning-user
+    // social/email/phone sign-in it is still absent here and this used to
+    // return null ("authAdapter.getProvider() returned null/undefined"),
+    // leaving the whole session with no wallet provider. setAuthMethod has
+    // already stored the address by then, so fall back to it.
     try {
       const user: any | null = await getAuthUser<any>();
-      const activeAddr: string | undefined = user?.walletAddress || user?.address;
+      const activeAddr: string | undefined =
+        user?.walletAddress || user?.address || methodAddress || undefined;
       if (activeAddr) {
         // Deliberately does NOT build from the stored key here.
         //
