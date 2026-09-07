@@ -2499,5 +2499,8 @@
   },
   "stages": {
     "microphoneDenied": "Allow microphone make you fit talk for stage"
+  },
+  "signInSheet": {
+    "continueAs": "Continue as"
   }
 }

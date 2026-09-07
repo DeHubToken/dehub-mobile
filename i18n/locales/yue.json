@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "允許使用麥克風先可以喺舞台上發言"
+  },
+  "signInSheet": {
+    "continueAs": "以此身份繼續"
   }
 }

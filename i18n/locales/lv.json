@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Atļaujiet piekļuvi mikrofonam, lai runātu uz skatuves"
+  },
+  "signInSheet": {
+    "continueAs": "Turpināt kā"
   }
 }

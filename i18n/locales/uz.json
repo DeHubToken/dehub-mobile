@@ -2555,5 +2555,8 @@
   },
   "stages": {
     "microphoneDenied": "Sahnada gapirish uchun mikrofonga ruxsat bering"
+  },
+  "signInSheet": {
+    "continueAs": "Sifatida davom etish"
   }
 }

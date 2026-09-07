@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Səhnədə danışmaq üçün mikrofona giriş icazəsi verin"
+  },
+  "signInSheet": {
+    "continueAs": "Belə davam et"
   }
 }

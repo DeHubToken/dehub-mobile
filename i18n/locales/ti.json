@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "ኣብ መድረኽ ንምዝራብ ማይክሮፎን ፍቐድ"
+  },
+  "signInSheet": {
+    "continueAs": "ከም ቀጽል"
   }
 }

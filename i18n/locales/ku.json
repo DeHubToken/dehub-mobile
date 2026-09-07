@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Ji bo axaftina li ser sehneyê destûra mîkrofonê bide"
+  },
+  "signInSheet": {
+    "continueAs": "Wekî vê bidomîne"
   }
 }

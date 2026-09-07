@@ -2553,5 +2553,8 @@
   },
   "stages": {
     "microphoneDenied": "스테이지에서 말하려면 마이크 접근을 허용하세요"
+  },
+  "signInSheet": {
+    "continueAs": "다음 계정으로 계속"
   }
 }

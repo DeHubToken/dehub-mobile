@@ -2551,5 +2551,8 @@
   },
   "stages": {
     "microphoneDenied": "ステージで話すにはマイクへのアクセスを許可してください"
+  },
+  "signInSheet": {
+    "continueAs": "次のアカウントで続行"
   }
 }

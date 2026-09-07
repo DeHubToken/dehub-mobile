@@ -2671,5 +2671,8 @@
   },
   "stages": {
     "microphoneDenied": "Povoľte prístup k mikrofónu, aby ste mohli hovoriť na pódiu"
+  },
+  "signInSheet": {
+    "continueAs": "Pokračovať ako"
   }
 }

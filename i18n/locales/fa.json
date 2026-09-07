@@ -2530,5 +2530,8 @@
   },
   "stages": {
     "microphoneDenied": "برای صحبت روی صحنه، دسترسی به میکروفون را مجاز کنید"
+  },
+  "signInSheet": {
+    "continueAs": "ادامه به عنوان"
   }
 }

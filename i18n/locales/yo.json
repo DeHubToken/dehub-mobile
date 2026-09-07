@@ -2501,5 +2501,8 @@
   },
   "stages": {
     "microphoneDenied": "Gba ìwọlé gbohùngbohùn láti sọ̀rọ̀ lórí ìtàgé"
+  },
+  "signInSheet": {
+    "continueAs": "Tẹ̀síwájú gẹ́gẹ́ bí"
   }
 }

@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Permet l'accés al micròfon per parlar en un escenari"
+  },
+  "signInSheet": {
+    "continueAs": "Continua com a"
   }
 }
