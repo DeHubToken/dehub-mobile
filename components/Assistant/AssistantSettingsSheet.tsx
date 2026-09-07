@@ -13,7 +13,7 @@
 
 import React, { memo, useEffect, useMemo, useState } from 'react';
 import {
-  Dimensions,
+  useWindowDimensions,
   Modal,
   ScrollView,
   StyleSheet,
@@ -40,8 +40,6 @@ import {
   type VideoModel,
 } from '../../config/ai-models.constants';
 
-const { height: SCREEN_HEIGHT } = Dimensions.get('window');
-const SHEET_HEIGHT = SCREEN_HEIGHT * 0.85;
 
 export interface AssistantSettings {
   chatModel: string;
@@ -103,7 +101,12 @@ const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = (
   onChange,
 }) => {
   const insets = useSafeAreaInsets();
-  const translateY = useSharedValue(SHEET_HEIGHT);
+  // Live height, not a launch-time snapshot: a sheet sized at 85% of the
+  // portrait height put its header and close control off the top of an
+  // iPad rotated to landscape.
+  const { height: windowHeight } = useWindowDimensions();
+  const sheetHeight = windowHeight * 0.85;
+  const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
 
@@ -114,7 +117,7 @@ const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = (
       backdropOpacity.value = withTiming(1, { duration: 200 });
     } else {
       translateY.value = withTiming(
-        SHEET_HEIGHT,
+        sheetHeight,
         { duration: 220, easing: Easing.in(Easing.cubic) },
         () => runOnJS(setIsFullyClosed)(true),
       );
@@ -125,7 +128,7 @@ const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = (
 
   const closeSheet = () => {
     translateY.value = withTiming(
-      SHEET_HEIGHT,
+      sheetHeight,
       { duration: 220, easing: Easing.in(Easing.cubic) },
       () => runOnJS(onClose)(),
     );
@@ -274,7 +277,7 @@ const s = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: SHEET_HEIGHT,
+    maxHeight: '85%',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: 'hidden',
