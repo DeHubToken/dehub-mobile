@@ -191,7 +191,13 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
             )}
             <NewMemberChip address={other?.address} />
             {username && (
-              <Text className="text-zinc-400 text-[12px]" numberOfLines={1}>
+              // Shrinkable, unlike the badges: a long handle used to keep its
+              // full width and squeeze the display name down to an ellipsis.
+              <Text
+                className="text-zinc-400 text-[12px]"
+                style={{ flexShrink: 1, maxWidth: "45%" }}
+                numberOfLines={1}
+              >
                 @{username}
               </Text>
             )}
