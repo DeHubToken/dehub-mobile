@@ -2544,5 +2544,8 @@
   },
   "stages": {
     "microphoneDenied": "स्टेज म बोले बर माइक्रोफोन के अनुमति दव"
+  },
+  "signInSheet": {
+    "continueAs": "ए रूप म आगू बढ़व"
   }
 }

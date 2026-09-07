@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Oggolow makarafoonka si aad ugu hadasho masraxa"
+  },
+  "signInSheet": {
+    "continueAs": "Sii wad ahaan"
   }
 }

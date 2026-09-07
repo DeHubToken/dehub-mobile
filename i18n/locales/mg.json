@@ -2599,5 +2599,8 @@
   },
   "stages": {
     "microphoneDenied": "Avelao ny fidirana amin'ny mikrô mba hiteny eny an-dampihazo"
+  },
+  "signInSheet": {
+    "continueAs": "Tohizo amin'ny maha"
   }
 }

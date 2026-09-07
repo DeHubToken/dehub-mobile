@@ -2684,5 +2684,8 @@
   },
   "stages": {
     "microphoneDenied": "Payagan ang mikropono para makapagsalita sa stage"
+  },
+  "signInSheet": {
+    "continueAs": "Magpatuloy bilang"
   }
 }

@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Lejo qasjen në mikrofon për të folur në skenë"
+  },
+  "signInSheet": {
+    "continueAs": "Vazhdo si"
   }
 }

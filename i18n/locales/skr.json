@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "سٹیج تے ڳالھ کرݨ کیتے مائیکروفون دی اجازت ݙیو"
+  },
+  "signInSheet": {
+    "continueAs": "ایں طرح جاری رکھو"
   }
 }

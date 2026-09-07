@@ -2501,5 +2501,8 @@
   },
   "stages": {
     "microphoneDenied": "Ruhusu ufikiaji wa maikrofoni ili kuzungumza jukwaani"
+  },
+  "signInSheet": {
+    "continueAs": "Endelea kama"
   }
 }

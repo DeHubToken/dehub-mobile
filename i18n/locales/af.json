@@ -2625,5 +2625,8 @@
   },
   "stages": {
     "microphoneDenied": "Laat mikrofoontoegang toe om op 'n verhoog te praat"
+  },
+  "signInSheet": {
+    "continueAs": "Gaan voort as"
   }
 }

@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Whakaaetia te hopuoro kia kōrero ai koe i runga i te atamira"
+  },
+  "signInSheet": {
+    "continueAs": "Haere tonu hei"
   }
 }

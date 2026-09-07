@@ -2544,5 +2544,8 @@
   },
   "stages": {
     "microphoneDenied": "允许使用麦克风才能在舞台上发言"
+  },
+  "signInSheet": {
+    "continueAs": "以此身份继续"
   }
 }

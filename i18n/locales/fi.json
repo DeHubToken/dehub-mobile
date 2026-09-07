@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Salli mikrofonin käyttö puhuaksesi lavalla"
+  },
+  "signInSheet": {
+    "continueAs": "Jatka käyttäjänä"
   }
 }

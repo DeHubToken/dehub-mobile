@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Tillat mikrofontilgang for å snakke på en scene"
+  },
+  "signInSheet": {
+    "continueAs": "Fortsett som"
   }
 }

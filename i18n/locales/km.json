@@ -2540,5 +2540,8 @@
   },
   "stages": {
     "microphoneDenied": "អនុញ្ញាតការចូលប្រើមីក្រូហ្វូនដើម្បីនិយាយនៅលើឆាក"
+  },
+  "signInSheet": {
+    "continueAs": "បន្តជា"
   }
 }

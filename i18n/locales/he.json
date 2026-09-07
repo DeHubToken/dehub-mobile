@@ -2504,5 +2504,8 @@
   },
   "stages": {
     "microphoneDenied": "אפשר גישה למיקרופון כדי לדבר על במה"
+  },
+  "signInSheet": {
+    "continueAs": "המשך בתור"
   }
 }

@@ -2549,5 +2549,8 @@
   },
   "stages": {
     "microphoneDenied": "Izinkan akses mikrofon untuk berbicara di panggung"
+  },
+  "signInSheet": {
+    "continueAs": "Lanjutkan sebagai"
   }
 }

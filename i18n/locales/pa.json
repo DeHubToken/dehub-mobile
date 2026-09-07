@@ -2504,5 +2504,8 @@
   },
   "stages": {
     "microphoneDenied": "ਸਟੇਜ 'ਤੇ ਬੋਲਣ ਲਈ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਪਹੁੰਚ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ"
+  },
+  "signInSheet": {
+    "continueAs": "ਇਸ ਵਜੋਂ ਜਾਰੀ ਰੱਖੋ"
   }
 }

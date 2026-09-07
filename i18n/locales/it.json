@@ -2549,5 +2549,8 @@
   },
   "stages": {
     "microphoneDenied": "Consenti l'accesso al microfono per parlare su un palco"
+  },
+  "signInSheet": {
+    "continueAs": "Continua come"
   }
 }

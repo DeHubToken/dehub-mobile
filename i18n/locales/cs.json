@@ -2504,5 +2504,8 @@
   },
   "stages": {
     "microphoneDenied": "Povolte přístup k mikrofonu, abyste mohli mluvit na pódiu"
+  },
+  "signInSheet": {
+    "continueAs": "Pokračovat jako"
   }
 }

@@ -2758,5 +2758,8 @@
   },
   "stages": {
     "microphoneDenied": "Sta microfoontoegang toe om op een podium te spreken"
+  },
+  "signInSheet": {
+    "continueAs": "Doorgaan als"
   }
 }

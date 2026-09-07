@@ -2530,5 +2530,8 @@
   },
   "stages": {
     "microphoneDenied": "Erlaub dr Mikrofon-Zuegriff, zum uf ere Bühni z rede"
+  },
+  "signInSheet": {
+    "continueAs": "Wiiter als"
   }
 }

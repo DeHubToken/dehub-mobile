@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Dopustite pristup mikrofonu za govor na pozornici"
+  },
+  "signInSheet": {
+    "continueAs": "Nastavi kao"
   }
 }

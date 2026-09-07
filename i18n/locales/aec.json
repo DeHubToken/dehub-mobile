@@ -2544,5 +2544,8 @@
   },
   "stages": {
     "microphoneDenied": "اسمح بالوصول للمايك علشان تتكلم على المسرح"
+  },
+  "signInSheet": {
+    "continueAs": "كمّل باسم"
   }
 }

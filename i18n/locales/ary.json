@@ -2530,5 +2530,8 @@
   },
   "stages": {
     "microphoneDenied": "سمح بالوصول للميكرو باش تهضر فالمسرح"
+  },
+  "signInSheet": {
+    "continueAs": "كمّل باسم"
   }
 }

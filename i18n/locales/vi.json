@@ -2588,5 +2588,8 @@
   },
   "stages": {
     "microphoneDenied": "Cho phép truy cập micrô để nói trên sân khấu"
+  },
+  "signInSheet": {
+    "continueAs": "Tiếp tục với tư cách"
   }
 }

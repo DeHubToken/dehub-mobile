@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "อนุญาตให้ใช้ไมค์เพื่อเว้าเทิงเวที"
+  },
+  "signInSheet": {
+    "continueAs": "ต่อในชื่อ"
   }
 }

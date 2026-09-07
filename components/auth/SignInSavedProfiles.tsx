@@ -82,7 +82,7 @@ export function SignInSavedProfiles({ disabled }: SignInSavedProfilesProps) {
   return (
     <View style={{ marginBottom: 24 }}>
       <Text className="text-theme-neutrals-500 text-xs uppercase mb-2 px-1">
-        {t('signInSheet.continueAs', 'Continue as')}
+        {t('signInSheet.continueAs')}
       </Text>
       {restorable.map((profile) => (
         <TouchableOpacity

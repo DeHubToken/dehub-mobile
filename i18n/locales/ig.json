@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Kwe ka e jiri igwe okwu ka i kwuo okwu n'elu ikpo"
+  },
+  "signInSheet": {
+    "continueAs": "Gaa n'ihu dịka"
   }
 }

@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "स्टेज पर बोले खातिर माइक्रोफोन के अनुमति दीं"
+  },
+  "signInSheet": {
+    "continueAs": "एह रूप में जारी राखीं"
   }
 }

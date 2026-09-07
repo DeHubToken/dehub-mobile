@@ -2531,5 +2531,8 @@
   },
   "stages": {
     "microphoneDenied": "Micrófono yaykuyta saqiy escenariopi rimanaykipaq"
+  },
+  "signInSheet": {
+    "continueAs": "Kayhina hina qatipay"
   }
 }

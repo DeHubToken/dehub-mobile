@@ -2504,5 +2504,8 @@
   },
   "stages": {
     "microphoneDenied": "Engedélyezd a mikrofon használatát, hogy beszélhess a színpadon"
+  },
+  "signInSheet": {
+    "continueAs": "Folytatás mint"
   }
 }

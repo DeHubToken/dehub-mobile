@@ -2500,5 +2500,8 @@
   },
   "stages": {
     "microphoneDenied": "Luba mikrofoni kasutamine, et laval rääkida"
+  },
+  "signInSheet": {
+    "continueAs": "Jätka kui"
   }
 }

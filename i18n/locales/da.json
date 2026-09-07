@@ -2504,5 +2504,8 @@
   },
   "stages": {
     "microphoneDenied": "Tillad mikrofonadgang for at tale på en scene"
+  },
+  "signInSheet": {
+    "continueAs": "Fortsæt som"
   }
 }
