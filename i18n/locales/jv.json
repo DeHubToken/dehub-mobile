@@ -2662,5 +2662,12 @@
     "needSignIn": "Sampeyan kudu mlebu nganggo Google utawa email kanggo ganti akun.",
     "switched": "Akun wis diganti",
     "failed": "Ora bisa ganti akun. Priksa kunci pribadi lan coba maneh."
+  },
+  "superpowers": {
+    "homePost": "Ginaké saka salah sawijining kirimanmu dhéwé — lembar pilihan, banjur Boost.",
+    "homeGift": "Ginaké ing kirimané wong liya — lembar pilihan, banjur Boost.",
+    "homeComment": "Ginaké ing komentaré dhéwé, ing utasé wong liya.",
+    "homeStage": "Ginaké saka Stage sing kok-host.",
+    "homePage": "Ginaké ing kéné, ing pucuké layar iki."
   }
 }

@@ -2846,5 +2846,12 @@
     "needSignIn": "Kailangan mong naka-sign in gamit ang Google o email para magpalit ng account.",
     "switched": "Napalitan ang account",
     "failed": "Hindi mapalitan ang account. Pakisuri ang private key at subukang muli."
+  },
+  "superpowers": {
+    "homePost": "Gamitin ito mula sa isa sa iyong sariling mga post — ang sheet ng mga opsyon, pagkatapos ay i-Boost.",
+    "homeGift": "Gamitin ito sa post ng ibang tao — ang sheet ng mga opsyon, pagkatapos ay i-Boost.",
+    "homeComment": "Gamitin ito sa iyong sariling komento, sa thread ng iba.",
+    "homeStage": "Gamitin ito mula sa isang Stage na iyong ino-host.",
+    "homePage": "Gamitin ito dito, sa itaas ng screen na ito."
   }
 }

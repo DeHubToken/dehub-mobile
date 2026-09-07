@@ -2663,5 +2663,12 @@
     "needSignIn": "Unahitaji kuingia kwa Google au barua pepe ili kubadilisha akaunti.",
     "switched": "Akaunti imebadilishwa",
     "failed": "Imeshindwa kubadilisha akaunti. Tafadhali angalia ufunguo wa faragha na ujaribu tena."
+  },
+  "superpowers": {
+    "homePost": "Tumia kutoka kwenye mojawapo ya machapisho yako — karatasi ya chaguo, kisha Boresha.",
+    "homeGift": "Tumia kwenye chapisho la mtu mwingine — karatasi ya chaguo, kisha Boresha.",
+    "homeComment": "Tumia kwenye maoni yako mwenyewe, katika uzi wa mtu mwingine.",
+    "homeStage": "Tumia kutoka kwenye Jukwaa unaloendesha.",
+    "homePage": "Tumia hapa, juu ya skrini hii."
   }
 }

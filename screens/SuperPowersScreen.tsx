@@ -17,6 +17,7 @@
  * one holds.
  */
 import React, { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -41,6 +42,45 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { getCategories } from "../services/nft.service";
 import { toastError, toastSuccess } from "../libs";
+import { powerHome, type SuperPowerKey } from "../services/superpower.service";
+
+/**
+ * Where an unlocked power is spent, in one sentence.
+ *
+ * A badge at the middle of the ladder ticks five powers on this screen and
+ * shows a control for one of them, which reads as four powers that do not
+ * work. They do work — from the post, the comment or the stage they act on,
+ * because that is where the decision happens — and until this line existed
+ * nothing here said where to look. `powerHome` is the same table the boost
+ * sheet filters on, so the two cannot drift apart.
+ */
+function spendHint(
+  key: SuperPowerKey,
+  t: (k: string, o?: Record<string, unknown>) => string,
+): string {
+  switch (powerHome(key)) {
+    case "gift":
+      return t("superpowers.homeGift", {
+        defaultValue: "Spend it on somebody else's post — the options sheet, then Boost.",
+      });
+    case "comment":
+      return t("superpowers.homeComment", {
+        defaultValue: "Spend it on your own comment, in somebody else's thread.",
+      });
+    case "stage":
+      return t("superpowers.homeStage", {
+        defaultValue: "Spend it from a Stage you are hosting.",
+      });
+    case "page":
+      return t("superpowers.homePage", {
+        defaultValue: "Spend it here, at the top of this screen.",
+      });
+    default:
+      return t("superpowers.homePost", {
+        defaultValue: "Spend it from one of your own posts — the options sheet, then Boost.",
+      });
+  }
+}
 
 /** Total slot minutes a tier holds per cycle — the number worth comparing. */
 function formatMinutes(total: number): string {
@@ -52,6 +92,7 @@ function formatMinutes(total: number): string {
 
 export default function SuperPowersScreen() {
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
   const { data: status, isLoading: loadingStatus } = useSuperpowers();
   const { data: ladder, isLoading: loadingLadder } = useSuperpowerLadder();
   const cancelBoost = useCancelBoost();
@@ -315,6 +356,12 @@ export default function SuperPowersScreen() {
                   />
                 </View>
                 <Text style={styles.powerSummary}>{power.summary}</Text>
+                {/* Only on a power this account actually has. On a locked one
+                    it would be instructions for something they cannot do, and
+                    the tier line below already says what it costs. */}
+                {unlocked ? (
+                  <Text style={styles.powerWhere}>{spendHint(power.key, t)}</Text>
+                ) : null}
                 <Text style={styles.powerTier}>
                   {power.tier}
                   {!power.available ? " · coming soon" : ""}
@@ -463,6 +510,7 @@ const styles = StyleSheet.create({
   powerName: { color: "#fff", fontSize: 14, fontWeight: "500", flex: 1 },
   powerNameOff: { color: "#A1A1AA" },
   powerSummary: { color: "#808089", fontSize: 12.5, lineHeight: 17 },
+  powerWhere: { color: "#A1A1AA", fontSize: 11, lineHeight: 15 },
   powerTier: { color: "#52525B", fontSize: 11 },
 
   table: {

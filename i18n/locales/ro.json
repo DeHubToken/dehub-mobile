@@ -2676,5 +2676,12 @@
     "needSignIn": "Trebuie să fii conectat cu Google sau e-mail pentru a schimba contul.",
     "switched": "Cont schimbat",
     "failed": "Contul nu a putut fi schimbat. Verifică cheia privată și încearcă din nou."
+  },
+  "superpowers": {
+    "homePost": "Cheltuiește-l dintr-una dintre propriile tale postări — foaia de opțiuni, apoi Boost.",
+    "homeGift": "Cheltuiește-l pe postarea altcuiva — foaia de opțiuni, apoi Boost.",
+    "homeComment": "Cheltuiește-l pe propriul tău comentariu, într-un fir al altcuiva.",
+    "homeStage": "Cheltuiește-l dintr-o scenă pe care o găzduiești.",
+    "homePage": "Cheltuiește-l aici, în partea de sus a acestui ecran."
   }
 }

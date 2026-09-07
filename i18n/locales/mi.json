@@ -2659,5 +2659,12 @@
     "needSignIn": "Me takiuru koe mā Google, mā te īmēra rānei hei whakawhiti pūkete.",
     "switched": "Kua whakawhiti te pūkete",
     "failed": "Kāore i taea te whakawhiti pūkete. Tirohia te kī tūmataiti, ka ngana anō."
+  },
+  "superpowers": {
+    "homePost": "Whakamahia mai i tētahi o ō ake whakairinga — te pepa kōwhiringa, kātahi ka Whakanui.",
+    "homeGift": "Whakamahia ki te whakairinga a tētahi atu — te pepa kōwhiringa, kātahi ka Whakanui.",
+    "homeComment": "Whakamahia ki tō ake kōrero, i roto i te miro a tētahi atu.",
+    "homeStage": "Whakamahia mai i tētahi atamira e manaaki ana koe.",
+    "homePage": "Whakamahia ki konei, ki te tihi o tēnei mata."
   }
 }

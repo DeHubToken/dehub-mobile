@@ -2666,5 +2666,12 @@
     "needSignIn": "Pro přepnutí účtu musíte být přihlášeni přes Google nebo e-mail.",
     "switched": "Účet přepnut",
     "failed": "Účet se nepodařilo přepnout. Zkontrolujte soukromý klíč a zkuste to znovu."
+  },
+  "superpowers": {
+    "homePost": "Použijte ho z jednoho ze svých vlastních příspěvků — list možností, pak Zvýšit.",
+    "homeGift": "Použijte ho na příspěvek někoho jiného — list možností, pak Zvýšit.",
+    "homeComment": "Použijte ho na svůj vlastní komentář, ve vlákně někoho jiného.",
+    "homeStage": "Použijte ho z pódia, které hostujete.",
+    "homePage": "Použijte ho zde, v horní části této obrazovky."
   }
 }

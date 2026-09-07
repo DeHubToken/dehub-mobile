@@ -2920,5 +2920,12 @@
     "needSignIn": "Je moet ingelogd zijn met Google of e-mail om van account te wisselen.",
     "switched": "Account gewisseld",
     "failed": "Kon niet van account wisselen. Controleer de privésleutel en probeer het opnieuw."
+  },
+  "superpowers": {
+    "homePost": "Besteed het vanuit een van je eigen berichten — het optiemenu, dan Boost.",
+    "homeGift": "Besteed het aan het bericht van iemand anders — het optiemenu, dan Boost.",
+    "homeComment": "Besteed het aan je eigen reactie, in de thread van iemand anders.",
+    "homeStage": "Besteed het vanuit een Stage die je host.",
+    "homePage": "Besteed het hier, bovenaan dit scherm."
   }
 }

@@ -2711,5 +2711,12 @@
     "needSignIn": "Debes haber iniciado sesión con Google o correo para cambiar de cuenta.",
     "switched": "Cuenta cambiada",
     "failed": "No se pudo cambiar de cuenta. Revisa la clave privada e inténtalo de nuevo."
+  },
+  "superpowers": {
+    "homePost": "Gástalo desde una de tus propias publicaciones — la hoja de opciones, luego Impulsar.",
+    "homeGift": "Gástalo en la publicación de otra persona — la hoja de opciones, luego Impulsar.",
+    "homeComment": "Gástalo en tu propio comentario, en el hilo de otra persona.",
+    "homeStage": "Gástalo desde un Escenario que estés organizando.",
+    "homePage": "Gástalo aquí, en la parte superior de esta pantalla."
   }
 }

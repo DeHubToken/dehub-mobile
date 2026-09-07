@@ -2662,5 +2662,12 @@
     "needSignIn": "Waa inaad ku gashaa Google ama iimayl si aad u beddesho akoonnada.",
     "switched": "Akoonka waa la beddelay",
     "failed": "Lama beddeli karin akoonnada. Fadlan hubi furaha gaarka ah oo mar kale isku day."
+  },
+  "superpowers": {
+    "homePost": "Ku bixi mid ka mid ah boostadaada - xaashida doorashada, ka dibna Boost.",
+    "homeGift": "Ku bixi boostada qof kale - xaashida doorashada, ka dibna Boost.",
+    "homeComment": "Ku bixi faallo kuu gaar ah, oo ku taal qoraal qof kale.",
+    "homeStage": "Ku bixi Masraxa aad martigelinayso.",
+    "homePage": "Ku bixi halkan, dusha sare ee shaashaddan."
   }
 }

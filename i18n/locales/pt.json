@@ -2715,5 +2715,12 @@
     "needSignIn": "Você precisa estar conectado com Google ou e-mail para trocar de conta.",
     "switched": "Conta trocada",
     "failed": "Não foi possível trocar de conta. Verifique a chave privada e tente novamente."
+  },
+  "superpowers": {
+    "homePost": "Gaste-o de uma das suas próprias publicações — a folha de opções, depois Impulsionar.",
+    "homeGift": "Gaste-o numa publicação de outra pessoa — a folha de opções, depois Impulsionar.",
+    "homeComment": "Gaste-o no seu próprio comentário, num tópico de outra pessoa.",
+    "homeStage": "Gaste-o de um Palco que esteja a organizar.",
+    "homePage": "Gaste-o aqui, no topo deste ecrã."
   }
 }

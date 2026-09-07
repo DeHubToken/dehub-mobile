@@ -2711,5 +2711,12 @@
     "needSignIn": "Devi aver effettuato l'accesso con Google o email per cambiare account.",
     "switched": "Account cambiato",
     "failed": "Impossibile cambiare account. Controlla la chiave privata e riprova."
+  },
+  "superpowers": {
+    "homePost": "Usalo da uno dei tuoi post — il foglio delle opzioni, poi Boost.",
+    "homeGift": "Usalo sul post di qualcun altro — il foglio delle opzioni, poi Boost.",
+    "homeComment": "Usalo sul tuo commento, in un thread di qualcun altro.",
+    "homeStage": "Usalo da uno Stage che stai ospitando.",
+    "homePage": "Usalo qui, in cima a questa schermata."
   }
 }

@@ -2622,5 +2622,12 @@
     "needSignIn": "Ji bo guhertina hesaban divê tu bi Google an e-nameyê têketî bî.",
     "switched": "Hesab hat guhertin",
     "failed": "Hesab nehat guhertin. Ji kerema xwe mifteya taybet kontrol bike û dîsa biceribîne."
+  },
+  "superpowers": {
+    "homePost": "خەرجی بکە لە یەکێک لە پۆستەکانی خۆتەوە — وریاکەرەوەی بژاردەکان، پاشان بەهێزکردن.",
+    "homeGift": "خەرجی بکە لەسەر پۆستی کەسێکی تر — وریاکەرەوەی بژاردەکان، پاشان بەهێزکردن.",
+    "homeComment": "خەرجی بکە لەسەر کۆمێنتی خۆت، لە گفتوگۆی کەسێکی تردا.",
+    "homeStage": "خەرجی بکە لەسەر قۆناغێک کە میوانداری دەکەیت.",
+    "homePage": "لێرە خەرجی بکە، لە سەرەوەی ئەم شاشەیە."
   }
 }

@@ -2756,5 +2756,12 @@
     "needSignIn": "Tsy maintsy tafiditra amin'ny Google na mailaka ianao mba hanovana kaonty.",
     "switched": "Novaina ny kaonty",
     "failed": "Tsy afaka nanova kaonty. Jereo ny lakile manokana ary andramo indray."
+  },
+  "superpowers": {
+    "homePost": "Ampiasao amin'ny iray amin'ny lahatsoratrao manokana — ny takelaka safidy, avy eo Boost.",
+    "homeGift": "Ampiasao amin'ny lahatsoratry ny olona hafa — ny takelaka safidy, avy eo Boost.",
+    "homeComment": "Ampiasao amin'ny fanehoan-kevitrao manokana, ao anaty kofehy an'ny olon-kafa.",
+    "homeStage": "Ampiasao amin'ny Stage (Seho) izay anananao.",
+    "homePage": "Ampiasao eto, eo an-tampon'ity efijery ity."
   }
 }

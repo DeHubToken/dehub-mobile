@@ -2928,5 +2928,12 @@
     "needSignIn": "Anda perlu log masuk dengan Google atau e-mel untuk menukar akaun.",
     "switched": "Akaun ditukar",
     "failed": "Tidak dapat menukar akaun. Sila semak kunci peribadi dan cuba lagi."
+  },
+  "superpowers": {
+    "homePost": "Belanjakan daripada salah satu siaran anda sendiri — helaian pilihan, kemudian Tingkatkan.",
+    "homeGift": "Belanjakan pada siaran orang lain — helaian pilihan, kemudian Tingkatkan.",
+    "homeComment": "Belanjakan pada ulasan anda sendiri, dalam benang orang lain.",
+    "homeStage": "Belanjakan daripada Pentas yang anda hoskan.",
+    "homePage": "Belanjakan di sini, di bahagian atas skrin ini."
   }
 }

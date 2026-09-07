@@ -2662,5 +2662,12 @@
     "needSignIn": "Sinun on oltava kirjautunut Googlella tai sähköpostilla vaihtaaksesi tiliä.",
     "switched": "Tili vaihdettu",
     "failed": "Tiliä ei voitu vaihtaa. Tarkista yksityinen avain ja yritä uudelleen."
+  },
+  "superpowers": {
+    "homePost": "Käytä sitä omasta julkaisustasi – valintaikkunasta, sitten Boost.",
+    "homeGift": "Käytä sitä jonkun muun julkaisussa – valintaikkunasta, sitten Boost.",
+    "homeComment": "Käytä sitä omassa kommentissasi, jonkun muun ketjussa.",
+    "homeStage": "Käytä sitä isännöimälläsi Stagella.",
+    "homePage": "Käytä sitä tässä, tämän näytön yläosassa."
   }
 }

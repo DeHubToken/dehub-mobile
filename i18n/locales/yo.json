@@ -2662,5 +2662,12 @@
     "needSignIn": "O nílò láti wọlé pẹ̀lú Google tàbí íméèlì láti yí àkọọ́lẹ̀ padà.",
     "switched": "A ti yí àkọọ́lẹ̀ padà",
     "failed": "Kò lè yí àkọọ́lẹ̀ padà. Jọ̀wọ́ ṣàyẹ̀wò kọ́kọ́rọ́ àdáni kí o sì gbìyànjú lẹ́ẹ̀kan sí i."
+  },
+  "superpowers": {
+    "homePost": "Lo o lati ọkan ninu awọn ifiweranṣẹ tirẹ — iwe aṣayan, lẹhinna Pọ̀.",
+    "homeGift": "Lo o lori ifiweranṣẹ ẹni miiran — iwe aṣayan, lẹhinna Pọ̀.",
+    "homeComment": "Lo o lori asọye tirẹ, ninu okun ẹni miiran.",
+    "homeStage": "Lo o lati Ipele ti o nṣe agbalebu.",
+    "homePage": "Lo o nibi, ni oke iboju yii."
   }
 }

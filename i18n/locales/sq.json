@@ -2662,5 +2662,12 @@
     "needSignIn": "Duhet të jesh i futur me Google ose email për të ndërruar llogari.",
     "switched": "Llogaria u ndërrua",
     "failed": "Llogaria nuk u ndërrua dot. Kontrollo çelësin privat dhe provo përsëri."
+  },
+  "superpowers": {
+    "homePost": "Shpenzojeni nga një nga postimet tuaja — fleta e opsioneve, pastaj Boost.",
+    "homeGift": "Shpenzojeni në postimin e dikujt tjetër — fleta e opsioneve, pastaj Boost.",
+    "homeComment": "Shpenzojeni në komentin tuaj, në një temë të dikujt tjetër.",
+    "homeStage": "Shpenzojeni nga një Stage që po organizoni.",
+    "homePage": "Shpenzojeni këtu, në krye të kësaj ekrani."
   }
 }

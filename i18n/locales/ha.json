@@ -2662,5 +2662,12 @@
     "needSignIn": "Kana buƙatar shiga da Google ko imel don canza asusu.",
     "switched": "An canza asusu",
     "failed": "Ba a iya canza asusu ba. Da fatan za a duba maɓallin sirri a sake gwadawa."
+  },
+  "superpowers": {
+    "homePost": "Kashe shi daga ɗaya daga cikin post ɗinka—takardar zaɓi, sannan ka haɓaka.",
+    "homeGift": "Kashe shi a kan post na wani—takardar zaɓi, sannan ka haɓaka.",
+    "homeComment": "Kashe shi a kan tsokacinka, a cikin wata zaren wani.",
+    "homeStage": "Kashe shi daga Mataki da kake gudanarwa.",
+    "homePage": "Kashe shi anan, a saman wannan allon."
   }
 }

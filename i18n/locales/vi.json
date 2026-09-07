@@ -2750,5 +2750,12 @@
     "needSignIn": "Bạn cần đăng nhập bằng Google hoặc email để chuyển tài khoản.",
     "switched": "Đã chuyển tài khoản",
     "failed": "Không thể chuyển tài khoản. Vui lòng kiểm tra khóa riêng và thử lại."
+  },
+  "superpowers": {
+    "homePost": "Dùng nó từ một bài đăng của riêng bạn — bảng tùy chọn, sau đó Tăng cường.",
+    "homeGift": "Dùng nó cho bài đăng của người khác — bảng tùy chọn, sau đó Tăng cường.",
+    "homeComment": "Dùng nó cho bình luận của riêng bạn, trong chuỗi của người khác.",
+    "homeStage": "Dùng nó từ một Sân khấu bạn đang tổ chức.",
+    "homePage": "Dùng nó ở đây, trên cùng màn hình này."
   }
 }

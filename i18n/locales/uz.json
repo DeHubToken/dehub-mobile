@@ -2717,5 +2717,12 @@
     "needSignIn": "Hisoblarni almashtirish uchun Google yoki email orqali kirgan bo‘lishingiz kerak.",
     "switched": "Hisob almashtirildi",
     "failed": "Hisobni almashtirib bo‘lmadi. Shaxsiy kalitni tekshirib, qayta urinib ko‘ring."
+  },
+  "superpowers": {
+    "homePost": "Uni o‘zingizning postlaridan biridan sarflang — variantlar varag‘i, keyin esa Ko‘taring.",
+    "homeGift": "Boshqa birovning postiga sarflang — variantlar varag‘i, keyin esa Ko‘taring.",
+    "homeComment": "Boshqa birovning mavzusidagi o‘zingizning sharhingizga sarflang.",
+    "homeStage": "Siz olib borayotgan Sahna sahifasidan sarflang.",
+    "homePage": "Bu yerdan, ushbu ekranning yuqori qismidan sarflang."
   }
 }

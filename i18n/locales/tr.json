@@ -2711,5 +2711,12 @@
     "needSignIn": "Hesap değiştirmek için Google veya e-posta ile oturum açmış olmalısın.",
     "switched": "Hesap değiştirildi",
     "failed": "Hesap değiştirilemedi. Lütfen özel anahtarı kontrol edip tekrar dene."
+  },
+  "superpowers": {
+    "homePost": "Kendi gönderilerinden birinden harca — seçenekler sayfası, sonra Yükselt.",
+    "homeGift": "Başkalarının gönderilerinden birinden harca — seçenekler sayfası, sonra Yükselt.",
+    "homeComment": "Kendi yorumunda, başkasının başlığında harca.",
+    "homeStage": "Ev sahipliği yaptığın bir Sahneden harca.",
+    "homePage": "Burada, bu ekranın üst kısmında harca."
   }
 }

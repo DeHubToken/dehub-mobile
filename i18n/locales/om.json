@@ -2712,5 +2712,12 @@
     "needSignIn": "Akkaawuntii jijjiiruuf Google ykn imeeliidhaan seenuu qabda.",
     "switched": "Akkaawuntiin jijjiirame",
     "failed": "Akkaawuntii jijjiiruun hin dandaʼamne. Furtuu dhuunfaa mirkaneessii irra deebi'ii yaali."
+  },
+  "superpowers": {
+    "homePost": "Isin keessan irraa barreessitan irraa itti dabalaa — filannoo isheetii, achiin booda dabalaa.",
+    "homeGift": "Isin biraa namoota biroon irratti dabarsaa — filannoo isaa, achiin booda Boost godhaa.",
+    "homeComment": "Isinuma irratti, suura namoota biroo keessatti.",
+    "homeStage": "Isin miseensa isin qabattan irraa itti dabarsaa.",
+    "homePage": "Achi irratti, gubba kana irratti, itti fayyadami."
   }
 }

@@ -2786,5 +2786,12 @@
     "needSignIn": "Jy moet met Google of e-pos aangemeld wees om rekeninge te wissel.",
     "switched": "Rekening gewissel",
     "failed": "Kon nie rekeninge wissel nie. Kontroleer die privaat sleutel en probeer weer."
+  },
+  "superpowers": {
+    "homePost": "Spandeer dit vanaf een van jou eie plasings — die opsiesblad, dan Versterk.",
+    "homeGift": "Spandeer dit op iemand anders se plasing — die opsiesblad, dan Versterk.",
+    "homeComment": "Spandeer dit op jou eie opmerking, in iemand anders se draad.",
+    "homeStage": "Spandeer dit vanaf 'n Verhoog wat jy aanbied.",
+    "homePage": "Spandeer dit hier, bo-aan hierdie skerm."
   }
 }
