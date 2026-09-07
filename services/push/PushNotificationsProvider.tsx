@@ -609,11 +609,33 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   // Keep the home bell and navigation badge fresh even when push permission is
   // denied or a delivery is missed. This also replaces the auth-time snapshot,
   // which otherwise remains stale for the entire session.
+  //
+  // Only while the app is on screen: on iOS the interval kept hitting
+  // /api/notification every minute in the background (Android freezes JS
+  // timers, so there it only produced a burst on resume). The foreground
+  // handler below refreshes once on return, so nothing is missed.
   useEffect(() => {
     if (!isFullySignedIn) return;
     void refreshUnreadCount();
-    const interval = setInterval(() => void refreshUnreadCount(), 60_000);
-    return () => clearInterval(interval);
+    let interval: ReturnType<typeof setInterval> | null = null;
+    const start = () => {
+      if (interval) return;
+      interval = setInterval(() => void refreshUnreadCount(), 60_000);
+    };
+    const stop = () => {
+      if (!interval) return;
+      clearInterval(interval);
+      interval = null;
+    };
+    if (AppState.currentState === 'active') start();
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      stop();
+      sub.remove();
+    };
   }, [isFullySignedIn, refreshUnreadCount]);
 
   useEffect(() => {
