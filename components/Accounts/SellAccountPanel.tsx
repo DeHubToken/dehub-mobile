@@ -33,7 +33,6 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
-import { SCREEN_HEADER_HEIGHT } from "../ScreenHeader";
 import {
   useAccountMarketConfig,
   useCancelAccountListing,
@@ -112,7 +111,7 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
       behavior="padding"
       // The header sits above this panel, so it has to be declared here or the
       // keyboard covers the fields it is supposed to lift.
-      keyboardVerticalOffset={SCREEN_HEADER_HEIGHT}
+      keyboardVerticalOffset={insets.top}
     >
       <ScrollView
         contentContainerStyle={[styles.scroll, { paddingBottom: insets.bottom + 110 }]}
