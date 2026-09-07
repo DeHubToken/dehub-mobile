@@ -28,6 +28,7 @@
  */
 
 import { supabase } from "../services/supabase";
+import { getAccount } from "../services/user.service";
 import { withWalletHeader } from "./supabase-wallet-client";
 import type { NotificationItem } from "../services/user.service";
 
@@ -71,6 +72,57 @@ const shortAddress = (address: string): string =>
   address ? `${address.slice(0, 6)}…${address.slice(-4)}` : "Someone";
 
 /**
+ * Address → profile, resolved once per session.
+ *
+ * The rows a database trigger writes — community joins, feature-request
+ * likes, governance votes, bounty applications — carry an actor ADDRESS and
+ * nothing else. Postgres holds no profile table, so there is no handle for
+ * the trigger to put in `actor_username` and no avatar path for
+ * `actor_avatar`. Left alone the row reads "0x9324…1937 requested to join
+ * your community" beside an empty circle, which names nobody the recipient
+ * can act on.
+ *
+ * One lookup per distinct actor fills both. The cache is what makes it
+ * affordable: this bell refetches on every focus, and the API throttles at
+ * 20 requests per 10s per IP, so re-asking for the same wallet on each pass
+ * is exactly the request storm this app has already had to fix once.
+ */
+const actorProfileCache = new Map<string, { username: string | null; avatar: string | null }>();
+
+/** Ceiling on one refresh's fan-out, so a page of 30 strangers cannot burst the throttle. */
+const MAX_ACTOR_LOOKUPS = 12;
+
+/** Fill the cache for every actor on this page the trigger left anonymous. Never throws. */
+async function resolveMissingActors(rows: CustomNotificationRow[]): Promise<void> {
+  const pending = [
+    ...new Set(
+      rows
+        .filter((row) => !row.actor_username?.trim() && !!row.actor_address)
+        .map((row) => row.actor_address.toLowerCase())
+        .filter((address) => !actorProfileCache.has(address)),
+    ),
+  ].slice(0, MAX_ACTOR_LOOKUPS);
+  if (pending.length === 0) return;
+
+  await Promise.allSettled(
+    pending.map(async (address) => {
+      try {
+        const res: any = await getAccount(address);
+        const user = res?.data?.result || res?.result || null;
+        actorProfileCache.set(address, {
+          username: user?.username || null,
+          avatar: user?.avatarImageUrl || null,
+        });
+      } catch {
+        // Cache the miss too. A wallet with no profile is a permanent answer,
+        // not a reason to re-ask on every refresh for the rest of the session.
+        actorProfileCache.set(address, { username: null, avatar: null });
+      }
+    }),
+  );
+}
+
+/**
  * Compose the sentence the row renders.
  *
  * These rows store a bare predicate ("applied to your bounty") because web
@@ -78,8 +130,9 @@ const shortAddress = (address: string): string =>
  * an unprefixed row would read as though it had no subject. Naming the bounty
  * matters too: a poster with several open ones cannot act on "someone applied".
  */
-const composeContent = (row: CustomNotificationRow): string => {
-  const actor = row.actor_username?.trim() || shortAddress(row.actor_address);
+const composeContent = (row: CustomNotificationRow, resolvedUsername?: string | null): string => {
+  const actor =
+    row.actor_username?.trim() || resolvedUsername?.trim() || shortAddress(row.actor_address);
   const predicate = row.content?.trim() || "sent you a notification";
   const sentence = `${actor} ${predicate}`;
   const isBounty = row.type === "work_application" || row.type === "work_submission";
@@ -88,21 +141,24 @@ const composeContent = (row: CustomNotificationRow): string => {
     : sentence;
 };
 
-const toNotificationItem = (row: CustomNotificationRow): CustomNotificationItem => ({
-  _id: `${CUSTOM_ID_PREFIX}${row.id}`,
-  address: row.recipient_address,
-  type: row.type as NotificationItem["type"],
-  category: "engagement" as NotificationItem["category"],
-  content: composeContent(row),
-  read: row.read,
-  createdAt: row.created_at,
-  updatedAt: row.created_at,
-  actorAddress: row.actor_address,
-  actorUsername: row.actor_username || undefined,
-  actorAvatar: row.actor_avatar || undefined,
-  ...(row.reference_id ? { customReferenceId: row.reference_id } : {}),
-  ...(row.reference_title ? { customReferenceTitle: row.reference_title } : {}),
-});
+const toNotificationItem = (row: CustomNotificationRow): CustomNotificationItem => {
+  const resolved = actorProfileCache.get(row.actor_address?.toLowerCase() || "");
+  return {
+    _id: `${CUSTOM_ID_PREFIX}${row.id}`,
+    address: row.recipient_address,
+    type: row.type as NotificationItem["type"],
+    category: "engagement" as NotificationItem["category"],
+    content: composeContent(row, resolved?.username),
+    read: row.read,
+    createdAt: row.created_at,
+    updatedAt: row.created_at,
+    actorAddress: row.actor_address,
+    actorUsername: row.actor_username || resolved?.username || undefined,
+    actorAvatar: row.actor_avatar || resolved?.avatar || undefined,
+    ...(row.reference_id ? { customReferenceId: row.reference_id } : {}),
+    ...(row.reference_title ? { customReferenceTitle: row.reference_title } : {}),
+  };
+};
 
 /**
  * The most recent Supabase-side notifications for this wallet.
@@ -126,7 +182,9 @@ export async function fetchCustomNotifications(
       walletAddress,
     );
     if (error) throw error;
-    return ((data as CustomNotificationRow[] | null) || []).map(toNotificationItem);
+    const rows = (data as CustomNotificationRow[] | null) || [];
+    await resolveMissingActors(rows);
+    return rows.map(toNotificationItem);
   } catch (e) {
     console.warn("[custom-notifications] fetch failed", e);
     return [];
