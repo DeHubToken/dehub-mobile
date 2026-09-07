@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Busak jeneng ENS-mu?",
     "ensRemoveBody": "dehub.io/{{name}} bakal mandheg nuduhake sampeyan. Jeneng penggunamu ora owah, lan sampeyan bisa mbuktekake jeneng kuwi maneh mengko — nanging kuwi mbutuhake tandatangan liyane saka dompet sing nduweni.",
     "ensUnlinked": "Wis dibusak — jeneng penggunamu ora owah",
-    "ensUnlinkFailed": "Ora bisa mbusak. Coba maneh."
+    "ensUnlinkFailed": "Ora bisa mbusak. Coba maneh.",
+    "newMemberShown": "Ditampilake minangka anggota anyar",
+    "newMemberHidden": "Didhelikake saka anggota anyar",
+    "signInTv": "Mlebu ing TV",
+    "signInTvDesc": "Ketik kode sing ditampilake TV",
+    "tvRequests": "Panjaluk TV",
+    "tvRequestsDesc": "Setujoni tip sing dijaluk TV kanggo ditandatangani"
   },
   "common": {
     "mute": "Bisu",

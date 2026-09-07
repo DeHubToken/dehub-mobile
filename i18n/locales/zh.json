@@ -454,7 +454,13 @@
     "ensRemoveTitle": "移除你的 ENS 名称？",
     "ensRemoveBody": "dehub.io/{{name}} 将不再指向你。你的用户名不会改变，之后仍可重新证明该名称 — 但那需要持有它的钱包再签一次名。",
     "ensUnlinked": "已移除 — 你的用户名未改变",
-    "ensUnlinkFailed": "无法移除。请重试。"
+    "ensUnlinkFailed": "无法移除。请重试。",
+    "newMemberShown": "显示为新成员",
+    "newMemberHidden": "对新成员隐藏",
+    "signInTv": "登录电视",
+    "signInTvDesc": "输入电视上显示的代码",
+    "tvRequests": "电视请求",
+    "tvRequestsDesc": "批准电视请你签署的打赏"
   },
   "common": {
     "mute": "静音",

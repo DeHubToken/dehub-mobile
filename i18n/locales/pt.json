@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Remover o seu nome ENS?",
     "ensRemoveBody": "dehub.io/{{name}} deixa de o identificar. O seu nome de utilizador não muda e pode provar o nome mais tarde — mas isso exige outra assinatura da carteira que o detém.",
     "ensUnlinked": "Removido — o seu nome de utilizador está inalterado",
-    "ensUnlinkFailed": "Não foi possível remover. Tente novamente."
+    "ensUnlinkFailed": "Não foi possível remover. Tente novamente.",
+    "newMemberShown": "Mostrando como novo membro",
+    "newMemberHidden": "Oculto para novos membros",
+    "signInTv": "Entrar em uma TV",
+    "signInTvDesc": "Digite o código que sua TV está mostrando",
+    "tvRequests": "Solicitações da TV",
+    "tvRequestsDesc": "Aprove gorjetas que sua TV pede para você assinar"
   },
   "common": {
     "mute": "Silenciar",

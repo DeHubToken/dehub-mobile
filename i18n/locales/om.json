@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Maqaa ENS kee haquu?",
     "ensRemoveBody": "dehub.io/{{name}} siif hin qajeelu deemsa dhaaba. Maqaan fayyadamaa kee hin jijjiiramu, boodas maqaa sana irra deebitee mirkaneessuu dandeessa — kun garuu boorsaa maqaa qabu irraa mallattoo biraa gaafata.",
     "ensUnlinked": "Haqameera — maqaan fayyadamaa kee hin jijjiiramne",
-    "ensUnlinkFailed": "Haquu hin dandeenye. Irra deebi'ii yaali."
+    "ensUnlinkFailed": "Haquu hin dandeenye. Irra deebi'ii yaali.",
+    "newMemberShown": "Akka miseensa haaraatti mul'ata",
+    "newMemberHidden": "Miseensota haaraa irraa dhokfame",
+    "signInTv": "TV irratti seeni",
+    "signInTvDesc": "Koodii TV-n kee agarsiisu barreessi",
+    "tvRequests": "Gaaffilee TV",
+    "tvRequestsDesc": "Tippii TV-n kee akka mallatteessitu gaafatu mirkaneessi"
   },
   "common": {
     "mute": "Sagalee cufi",

@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Je ENS-naam verwijderen?",
     "ensRemoveBody": "dehub.io/{{name}} verwijst dan niet meer naar jou. Je gebruikersnaam verandert niet en je kunt de naam later opnieuw bewijzen — maar daarvoor is weer een handtekening nodig van de wallet die hem bezit.",
     "ensUnlinked": "Verwijderd — je gebruikersnaam is ongewijzigd",
-    "ensUnlinkFailed": "Kon niet verwijderd worden. Probeer opnieuw."
+    "ensUnlinkFailed": "Kon niet verwijderd worden. Probeer opnieuw.",
+    "newMemberShown": "Weergegeven als nieuw lid",
+    "newMemberHidden": "Verborgen voor nieuwe leden",
+    "signInTv": "Aanmelden op een tv",
+    "signInTvDesc": "Typ de code die je televisie toont",
+    "tvRequests": "Tv-verzoeken",
+    "tvRequestsDesc": "Keur fooien goed die je televisie wil laten ondertekenen"
   },
   "common": {
     "mute": "Dempen",

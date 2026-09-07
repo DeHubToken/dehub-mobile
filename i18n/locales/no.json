@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Fjerne ENS-navnet ditt?",
     "ensRemoveBody": "dehub.io/{{name}} slutter å peke til deg. Brukernavnet ditt endres ikke, og du kan bevise navnet på nytt senere — men det krever enda en signatur fra lommeboken som eier det.",
     "ensUnlinked": "Fjernet — brukernavnet ditt er uendret",
-    "ensUnlinkFailed": "Kunne ikke fjerne det. Prøv igjen."
+    "ensUnlinkFailed": "Kunne ikke fjerne det. Prøv igjen.",
+    "newMemberShown": "Vises som nytt medlem",
+    "newMemberHidden": "Skjult for nye medlemmer",
+    "signInTv": "Logg inn på en TV",
+    "signInTvDesc": "Skriv inn koden TV-en viser",
+    "tvRequests": "TV-forespørsler",
+    "tvRequestsDesc": "Godkjenn tips TV-en ber deg signere"
   },
   "common": {
     "mute": "Demp",

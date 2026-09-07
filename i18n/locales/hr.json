@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Ukloniti tvoje ENS ime?",
     "ensRemoveBody": "dehub.io/{{name}} više neće upućivati na tebe. Tvoje korisničko ime se ne mijenja, a ime možeš ponovno dokazati kasnije — no za to je potreban još jedan potpis iz novčanika koji ga drži.",
     "ensUnlinked": "Uklonjeno — tvoje korisničko ime je nepromijenjeno",
-    "ensUnlinkFailed": "Nije ga bilo moguće ukloniti. Pokušaj ponovno."
+    "ensUnlinkFailed": "Nije ga bilo moguće ukloniti. Pokušaj ponovno.",
+    "newMemberShown": "Prikazano kao novi član",
+    "newMemberHidden": "Skriveno od novih članova",
+    "signInTv": "Prijava na TV",
+    "signInTvDesc": "Upiši kôd koji prikazuje televizor",
+    "tvRequests": "TV zahtjevi",
+    "tvRequestsDesc": "Odobri napojnice koje televizor traži da potpišeš"
   },
   "common": {
     "mute": "Isključi zvuk",

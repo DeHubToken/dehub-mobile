@@ -454,7 +454,13 @@
     "ensRemoveTitle": "ENS 名を削除しますか？",
     "ensRemoveBody": "dehub.io/{{name}} はあなたを指さなくなります。ユーザー名は変わらず、後で再度その名前を証明することもできますが、それには保有ウォレットからの再署名が必要です。",
     "ensUnlinked": "削除しました — ユーザー名は変わっていません",
-    "ensUnlinkFailed": "削除できませんでした。もう一度お試しください。"
+    "ensUnlinkFailed": "削除できませんでした。もう一度お試しください。",
+    "newMemberShown": "新しいメンバーとして表示中",
+    "newMemberHidden": "新しいメンバーには非表示",
+    "signInTv": "テレビでサインイン",
+    "signInTvDesc": "テレビに表示されているコードを入力",
+    "tvRequests": "テレビからのリクエスト",
+    "tvRequestsDesc": "テレビが署名を求めるチップを承認"
   },
   "common": {
     "mute": "ミュート",

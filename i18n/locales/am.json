@@ -454,7 +454,13 @@
     "ensRemoveTitle": "የENS ስምዎን ያስወግዱ?",
     "ensRemoveBody": "dehub.io/{{name}} ወደ እርስዎ መምራት ያቆማል። የተጠቃሚ ስምዎ አይቀየርም፣ እና ስሙን በኋላ እንደገና ማረጋገጥ ይችላሉ — ነገር ግን ያ ስሙን ከያዘው ቦርሳ ሌላ ፊርማ ይፈልጋል።",
     "ensUnlinked": "ተወግዷል — የተጠቃሚ ስምዎ አልተቀየረም",
-    "ensUnlinkFailed": "ማስወገድ አልተቻለም። እንደገና ይሞክሩ።"
+    "ensUnlinkFailed": "ማስወገድ አልተቻለም። እንደገና ይሞክሩ።",
+    "newMemberShown": "እንደ አዲስ አባል እየታየ ነው",
+    "newMemberHidden": "ከአዲስ አባላት ተደብቋል",
+    "signInTv": "ቲቪ ያስገቡ",
+    "signInTvDesc": "ቴሌቪዥንዎ የሚያሳየውን ኮድ ያስገቡ",
+    "tvRequests": "የቲቪ ጥያቄዎች",
+    "tvRequestsDesc": "ቴሌቪዥንዎ እንዲፈርሙ የሚጠይቅዎትን ጉርሻዎች ያጽድቁ"
   },
   "common": {
     "mute": "ድምፅ አጥፋ",

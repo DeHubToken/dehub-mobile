@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Susa igama lakho le-ENS?",
     "ensRemoveBody": "I-dehub.io/{{name}} iyeka ukukhomba kuwe. Igama lakho lomsebenzisi alishintshi, futhi ungaphinde ulifakazele kamuva — kodwa lokho kudinga esinye isignesha esivela esikhwameni esiphethe lona.",
     "ensUnlinked": "Kususiwe — igama lakho lomsebenzisi alishintshanga",
-    "ensUnlinkFailed": "Ayikwazanga ukukususa. Zama futhi."
+    "ensUnlinkFailed": "Ayikwazanga ukukususa. Zama futhi.",
+    "newMemberShown": "Kuboniswa njengelungu elisha",
+    "newMemberHidden": "Kufihliwe emalungwini amasha",
+    "signInTv": "Ngena ku-TV",
+    "signInTvDesc": "Thayipha ikhodi ebonisa i-TV yakho",
+    "tvRequests": "Izicelo ze-TV",
+    "tvRequestsDesc": "Vumela amathiphu i-TV yakho ecela ukuthi uwasayine"
   },
   "common": {
     "mute": "Thulisa",

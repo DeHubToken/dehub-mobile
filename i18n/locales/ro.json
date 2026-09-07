@@ -673,7 +673,13 @@
     "ensRemoveTitle": "Elimini numele tău ENS?",
     "ensRemoveBody": "dehub.io/{{name}} nu mai indică spre tine. Numele tău de utilizator nu se schimbă, iar mai târziu poți dovedi din nou numele — dar asta cere altă semnătură de la portofelul care îl deține.",
     "ensUnlinked": "Eliminat — numele tău de utilizator rămâne neschimbat",
-    "ensUnlinkFailed": "Nu a putut fi eliminat. Încearcă din nou."
+    "ensUnlinkFailed": "Nu a putut fi eliminat. Încearcă din nou.",
+    "newMemberShown": "Afișat ca membru nou",
+    "newMemberHidden": "Ascuns pentru membrii noi",
+    "signInTv": "Conectează un televizor",
+    "signInTvDesc": "Introdu codul afișat de televizor",
+    "tvRequests": "Solicitări de la televizor",
+    "tvRequestsDesc": "Aprobă bacșișurile pe care televizorul îți cere să le semnezi"
   },
   "common": {
     "mute": "Dezactivează sunetul",

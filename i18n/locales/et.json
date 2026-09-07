@@ -454,7 +454,13 @@
     "ensRemoveTitle": "Kas eemaldada sinu ENS nimi?",
     "ensRemoveBody": "dehub.io/{{name}} lakkab sinule osutamast. Sinu kasutajanimi ei muutu ja sa saad nime hiljem uuesti tõendada — kuid selleks on vaja veel üht allkirja rahakotist, mis seda omab.",
     "ensUnlinked": "Eemaldatud — sinu kasutajanimi jääb samaks",
-    "ensUnlinkFailed": "Seda ei õnnestunud eemaldada. Proovi uuesti."
+    "ensUnlinkFailed": "Seda ei õnnestunud eemaldada. Proovi uuesti.",
+    "newMemberShown": "Kuvatakse uue liikmena",
+    "newMemberHidden": "Uute liikmete eest peidetud",
+    "signInTv": "Logi teleris sisse",
+    "signInTvDesc": "Sisesta teleris kuvatav kood",
+    "tvRequests": "Teleri taotlused",
+    "tvRequestsDesc": "Kinnita jootrahad, mida teler palub allkirjastada"
   },
   "common": {
     "mute": "Vaigista",

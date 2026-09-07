@@ -454,7 +454,13 @@
     "ensRemoveTitle": "ENS adın silinsin?",
     "ensRemoveBody": "dehub.io/{{name}} artıq sənə işarə etmir. İstifadəçi adın dəyişmir və adı sonra yenidən sübut edə bilərsən — amma bu, onu saxlayan pulqabıdan yeni bir imza tələb edir.",
     "ensUnlinked": "Silindi — istifadəçi adın dəyişməyib",
-    "ensUnlinkFailed": "Silinə bilmədi. Yenidən cəhd et."
+    "ensUnlinkFailed": "Silinə bilmədi. Yenidən cəhd et.",
+    "newMemberShown": "Yeni üzv kimi göstərilir",
+    "newMemberHidden": "Yeni üzvlərdən gizlədilib",
+    "signInTv": "TV-də daxil ol",
+    "signInTvDesc": "Televizorda görünən kodu daxil edin",
+    "tvRequests": "TV sorğuları",
+    "tvRequestsDesc": "Televizorun imzalamağı istədiyi bəxşişləri təsdiqlə"
   },
   "common": {
     "mute": "Səssiz et",
