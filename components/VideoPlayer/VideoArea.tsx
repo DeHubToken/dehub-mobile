@@ -126,10 +126,18 @@ const VideoArea: React.FC<VideoAreaProps> = ({
     requireAuth(() => setPpvOpen(true));
   };
 
+  // Gate panels (sign in / PPV / locked / loading) fill the viewer when it is
+  // fullscreen. As a fixed 16:9 box they sat jammed under the header with the
+  // rest of the screen empty.
+  const gatePlainClass = fullscreen
+    ? "flex-1 bg-black items-center justify-center"
+    : "w-full aspect-video bg-black items-center justify-center";
+  const gateClass = `${gatePlainClass} px-6`;
+
   // Transcoding state
   if (isTranscoding) {
     return (
-      <View className="w-full aspect-video bg-black items-center justify-center">
+      <View className={gatePlainClass}>
         <Ionicons name="videocam" size={48} color="#8B8D90" />
         <Text className="text-theme-neutrals-300 mt-2 text-sm">
           Transcoding…
@@ -141,7 +149,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   // Live streams require sign in even if free
   if (isLive && !isSignedIn) {
     return (
-      <View className="w-full aspect-video bg-black items-center justify-center px-6">
+      <View className={gateClass}>
         <Ionicons name="log-in" size={46} color="#8B8D90" />
         <Text
           className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
@@ -164,7 +172,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
 
   if (!isFree && !isSignedIn) {
     return (
-      <View className="w-full aspect-video bg-black items-center justify-center px-6">
+      <View className={gateClass}>
         <Ionicons name="log-in" size={46} color="#8B8D90" />
         <Text
           className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
@@ -188,7 +196,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   // While awaiting locked NFT/access resolution
   if (isLockedOrPPV && lockedFetchLoading) {
     return (
-      <View className="w-full aspect-video bg-black items-center justify-center">
+      <View className={gatePlainClass}>
         <ActivityIndicator size="large" color="#fff" />
       </View>
     );
@@ -206,7 +214,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
       const neededAmt = streamInfo?.lockContentAmount ?? "—";
       const neededSymbol = streamInfo?.lockContentTokenSymbol || "";
       return (
-        <View className="w-full aspect-video bg-black items-center justify-center px-6">
+        <View className={gateClass}>
           <Ionicons name="lock-closed" size={46} color="#8B8D90" />
           <Text
             className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
@@ -235,7 +243,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
       // If the PPV network(s) are not supported by this app, inform the user and block unlock
       if (ppvChainIds.length > 0 && !hasSupportedPPVChain) {
         return (
-          <View className="w-full aspect-video bg-black items-center justify-center px-6">
+          <View className={gateClass}>
             <Ionicons name="warning" size={46} color="#8B8D90" />
             <Text
               className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
@@ -251,7 +259,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
       }
       if (isWrongChainForPPV) {
         return (
-          <View className="w-full aspect-video bg-black items-center justify-center px-6">
+          <View className={gateClass}>
             <Ionicons name="swap-horizontal" size={46} color="#8B8D90" />
             <Text
               className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
@@ -273,7 +281,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
         );
       }
       return (
-        <View className="w-full aspect-video bg-black items-center justify-center px-6">
+        <View className={gateClass}>
           <Ionicons name="pricetag" size={46} color="#8B8D90" />
           <Text
             className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
@@ -314,7 +322,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
     // and sends them to the profile that sells the plans.
     if (isLockedWithSubscription) {
       return (
-        <View className="w-full aspect-video bg-black items-center justify-center px-6">
+        <View className={gateClass}>
           <Ionicons name="star" size={46} color="#8B8D90" />
           <Text
             className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
@@ -335,7 +343,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
       );
     }
     return (
-      <View className="w-full aspect-video bg-black items-center justify-center px-6">
+      <View className={gateClass}>
         <Ionicons name="alert-circle" size={46} color="#8B8D90" />
         <Text
           className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
