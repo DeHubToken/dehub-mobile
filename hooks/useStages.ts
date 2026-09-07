@@ -25,6 +25,7 @@ import env from "../config/env";
 import { getAuthToken } from "../libs/auth.utils";
 import { dehubAuthHeaders } from "../services/ai.service";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
+import { openStagesHub } from "../libs/openStagesHub";
 import { useFrontRow } from './useSuperpowers';
 
 const log = createLogger("useStages");
@@ -429,7 +430,20 @@ export function useStages(): UseStagesReturn {
 
   // ── Modal ─────────────────────────────────────────────────────────────────
 
+  /**
+   * "browse" is a screen, not a modal.
+   *
+   * Discovery used to be `StagesBrowseModal` — a bottom sheet with all three
+   * lists stacked inside one 520pt scroller — and every entry point in the app
+   * asks for it by calling this with "browse". It is StagesScreen now, so the
+   * word keeps its meaning ("show me the stages") and lands somewhere better;
+   * the modal state stays for the two views that really are overlays.
+   */
   const openModal = useCallback((view: "browse" | "create" | "live" = "browse") => {
+    if (view === "browse") {
+      openStagesHub();
+      return;
+    }
     setInitialModalView(view);
     setIsModalOpen(true);
   }, []);

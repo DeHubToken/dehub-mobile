@@ -35,8 +35,6 @@ import { ScreenNames } from "./ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
 import { openInApp } from "../libs/links.utils";
 import { useTabBarHide } from "../context/TabBarHideContext";
-// Imperative opener rather than `useStages()` — see the note on the export.
-import { openStageModal } from "../context/StageContext";
 import { useAuthState, useUser } from "../context/AuthContext";
 import { useTotalUnreadMessagesCount } from "../store/dm.store";
 import { storage } from "../libs/storage";
@@ -86,12 +84,6 @@ interface ScrollNavItem {
   screen?: string;
   params?: Record<string, unknown>;
   url?: string;
-  /**
-   * Feature presented as a global modal rather than a route — same escape
-   * hatch AppDrawer uses, because this list is module-level and cannot hold
-   * hook-derived callbacks.
-   */
-  action?: "stages";
 }
 
 // Mirror the web nav pill (MobileBottomNav's SCROLL_NAV_ITEMS): same icons and
@@ -104,9 +96,7 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "Bell", labelKey: "nav.notifications", screen: ScreenNames.Notifications },
   { icon: "Wand", labelKey: "nav.prompt", screen: ScreenNames.Prompt },
   { icon: "CalendarDays", labelKey: "nav.events", screen: ScreenNames.Events },
-  // Stages is modal-based on native (StagesModalsHost is mounted app-wide in
-  // App.tsx), so it opens the browse modal instead of navigating to a route.
-  { icon: "Mic", labelKey: "nav.stages", action: "stages" },
+  { icon: "Mic", labelKey: "nav.stages", screen: ScreenNames.Stages },
   { icon: "LayoutDashboard", labelKey: "nav.commandCentre", screen: ScreenNames.CommandCentre },
   // Wallet and Staking are the same screen on native, split by tab — hence the
   // explicit initialTab on both, so arriving from one never inherits the
@@ -444,9 +434,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
 
   const handleScrollItemPress = useCallback(
     (item: ScrollNavItem) => {
-      if (item.action === "stages") {
-        openStageModal("browse");
-      } else if (item.url) {
+      if (item.url) {
         openInApp(item.url);
       } else if (item.screen) {
         // Cast the function, not the arguments: `navigate(x as never, y as never)`

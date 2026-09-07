@@ -330,12 +330,11 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       return getStateFromPath(newPath, options);
     }
 
-    // Stage invite links, both shapes the web app hands out. Stages are modals
-    // rather than a screen, so there is no route for React Navigation to
-    // resolve and these previously fell through to "could not be resolved" —
-    // an invite link tapped on a phone with the app installed did nothing.
-    // Handled through the same event bus profiles use, with the app itself
-    // sent to Home so the modal opens over something.
+    // Stage invite links, both shapes the web app hands out. A link has to do
+    // two things — land on the Stages hub and then join the room it names — and
+    // only the first half is a route, so both go through the same event bus
+    // profiles use, with the app itself sent to Home so the hub has something
+    // to sit on and Back has somewhere to go.
     if (segments[0] === 'stage' && segments[1]) {
       const id = decodeURIComponent(segments[1]);
       logger.info('Stage deep link', { id });
@@ -343,8 +342,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       return homeState();
     }
     if (segments[0] === 'stages') {
-      // Only the numeric shape is a stage; bare /stages is the hub, and
-      // anything else under it has no route on the web either.
+      // Only the numeric shape is one stage; a bare /stages is the hub itself,
+      // which the handler opens with no id to join.
       const shortId = segments[1] && /^\d+$/.test(segments[1]) ? Number(segments[1]) : undefined;
       logger.info('Stage deep link', { shortId });
       emitStageDeepLink(shortId != null ? { shortId } : {});

@@ -10,23 +10,6 @@ const log = createLogger("StageDeepLink");
 
 const StageContext = createContext<UseStagesReturn | null>(null);
 
-type StageModalView = "browse" | "create" | "live";
-
-let openStageModalImpl: ((view?: StageModalView) => void) | null = null;
-
-/**
- * Imperative opener, mirroring web's `openStageModal` export.
- *
- * The nav pill needs to open Stages, but it must not *subscribe* to stage
- * state: the context value is one object that changes on every floating
- * reaction (300ms cooldown), every participant update and every poll, and a
- * `useStages()` in the tab bar would re-render it on all of them, on every
- * screen in the app. The provider parks its opener here instead.
- */
-export const openStageModal = (view: StageModalView = "browse") => {
-  openStageModalImpl?.(view);
-};
-
 export const StageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const stages = useStagesImpl();
   const { openModal, joinSpace, guestListenSpace } = stages;
@@ -37,25 +20,19 @@ export const StageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   // toast's action lands in exactly the same place an invite link does.
   useStageAlerts();
 
-  useEffect(() => {
-    openStageModalImpl = openModal;
-    return () => {
-      openStageModalImpl = null;
-    };
-  }, [openModal]);
-
   /**
    * Open whatever a stage invite link points at.
    *
    * Registered here rather than in a component so nothing has to subscribe to
-   * the context to receive a link — same reasoning as openStageModal above.
+   * the context to receive a link: the context value is one object that changes
+   * on every floating reaction, every participant update and every poll.
    *
-   * Browse opens first and unconditionally: joining can only succeed for a
-   * stage that is actually live, and the browse list carries the upcoming
-   * shelf, which is the right landing spot both for an announcement whose host
-   * has not started it and for a room that has already ended. Same ordering
-   * the in-app link cards use, so a stage link behaves identically whether it
-   * arrives from a DM or from the operating system.
+   * The hub opens first and unconditionally: joining can only succeed for a
+   * stage that is actually live, and the hub carries the upcoming and recorded
+   * shelves, which is the right landing spot both for an announcement whose
+   * host has not started it and for a room that has already ended. Same
+   * ordering the in-app link cards use, so a stage link behaves identically
+   * whether it arrives from a DM or from the operating system.
    */
   useEffect(() => {
     setStageDeepLinkHandler((link) => {
