@@ -30,6 +30,16 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
     // do not auto-play here; wait for sourceLoad
   });
 
+  useEffect(() => {
+    return () => {
+      // Stop expo-video's native time-update clock before the instance is
+      // released; on Android release() never zeroes it (see FeedVideoPlayer).
+      try {
+        player.timeUpdateEventInterval = 0;
+      } catch {}
+    };
+  }, [player]);
+
   const unlockOrientation = useCallback(async () => {
     try { await ScreenOrientation.unlockAsync(); } catch {}
   }, []);

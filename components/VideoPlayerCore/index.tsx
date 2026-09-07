@@ -223,6 +223,16 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     }
   });
 
+  useEffect(() => {
+    return () => {
+      // Stop expo-video's native time-update clock before the instance is
+      // released; on Android release() never zeroes it (see FeedVideoPlayer).
+      try {
+        player.timeUpdateEventInterval = 0;
+      } catch {}
+    };
+  }, [player]);
+
   // Crowdsourced sponsor reads and intros. Never on a live stream — there is
   // nothing to skip past in something that has not happened yet.
   const { skipSegments: skipSegmentsPref } = useAppPrefs();

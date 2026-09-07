@@ -137,6 +137,16 @@ const FullscreenVideoScreen = () => {
   });
 
   useEffect(() => {
+    return () => {
+      // Stop expo-video's native time-update clock before the instance is
+      // released; on Android release() never zeroes it (see FeedVideoPlayer).
+      try {
+        player.timeUpdateEventInterval = 0;
+      } catch {}
+    };
+  }, [player]);
+
+  useEffect(() => {
     if (!player) return;
     requestFeedVideoFocus(() => { try { player.pause(); } catch {} });
     if (!initialMuted) requestAudioFocus(() => { try { player.pause(); } catch {} });
