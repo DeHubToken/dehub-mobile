@@ -381,6 +381,7 @@ const CommunityDetailScreen: React.FC = () => {
         <ScrollView
           className="flex-1"
           contentContainerStyle={{ paddingBottom: 80 }}
+          keyboardShouldPersistTaps="handled"
           refreshControl={
             <RefreshControl
               refreshing={refreshing}
