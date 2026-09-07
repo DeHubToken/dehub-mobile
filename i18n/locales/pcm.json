@@ -2552,5 +2552,11 @@
     "title": "Public chat",
     "voiceMessage": "Voice message",
     "image": "Sent an image"
+  },
+  "liveChat": {
+    "attachPhoto": "Photo",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Remove attachment"
   }
 }

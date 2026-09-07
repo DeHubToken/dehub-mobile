@@ -2610,5 +2610,14 @@
     "digest": "{{count}} pesan baru dari {{who}}:{{message}}",
     "voiceMessage": "Pesan suara",
     "image": "Mengirim gambar"
+  },
+  "liveChat": {
+    "attach": "Tambahkan foto, GIF, atau emoji",
+    "attachTitle": "Tambahkan ke pesan Anda",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Hapus lampiran",
+    "attachFailed": "Tidak dapat mengirim foto itu."
   }
 }

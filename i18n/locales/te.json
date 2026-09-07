@@ -2562,5 +2562,13 @@
     "mentionTitle": "పబ్లిక్ చాట్ ‌ లో ప్రస్తావించబడింది",
     "voiceMessage": "వాయిస్ సందేశం",
     "image": "చిత్రాన్ని పంపారు"
+  },
+  "liveChat": {
+    "attach": "ఫోటో, GIF లేదా ఎమోజీని జోడించండి",
+    "attachTitle": "మీ సందేశానికి జోడించండి",
+    "attachPhoto": "ఫోటో",
+    "attachEmoji": "ఎమోజి",
+    "removeAttachment": "అటాచ్ ‌ మెంట్ ‌ ను తీసివేయండి",
+    "attachFailed": "ఆ ఫోటోను పంపలేకపోయాము."
   }
 }

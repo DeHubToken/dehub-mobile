@@ -2557,5 +2557,14 @@
     "mentionTitle": "ସାର୍ବଜନୀନ ଚାଟରେ ଉଲ୍ଲେଖ କରାଯାଇଛି",
     "voiceMessage": "ସ୍ୱର ସନ୍ଦେଶ",
     "image": "ଗୋଟିଏ ପ୍ରତିଛବି ପଠାଯାଇଛି"
+  },
+  "liveChat": {
+    "attach": "ଗୋଟିଏ ଫୋଟୋ, GIF କିମ୍ବା Emoji ଯୋଗ କରନ୍ତୁ",
+    "attachTitle": "ଆପଣଙ୍କର ସନ୍ଦେଶରେ ଯୋଗ କରନ୍ତୁ",
+    "attachPhoto": "ଫଟୋ",
+    "attachGif": "GIF",
+    "attachEmoji": "Smruti",
+    "removeAttachment": "ସଂଲଗ୍ନକକୁ ଅପସାରଣ କରନ୍ତୁ",
+    "attachFailed": "ସେହି ଫଟୋକୁ ପଠାଯାଇପାରିଲା ନାହିଁ ।"
   }
 }

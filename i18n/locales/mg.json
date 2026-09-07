@@ -2656,5 +2656,14 @@
     "mentionTitle": "Misoratra anarana ao amin'ny karajia ho an'ny besinimaro",
     "voiceMessage": "Hafatra am-peo",
     "image": "Mandefa sary"
+  },
+  "liveChat": {
+    "attach": "Ampio sary, GIF na emoji",
+    "attachTitle": "Ampio ny hafatrao",
+    "attachPhoto": "Sary",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Mpanaraka",
+    "attachFailed": "Tsy afaka mahazo izany sary izany aho."
   }
 }

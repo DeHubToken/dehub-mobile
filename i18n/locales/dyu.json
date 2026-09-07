@@ -2557,5 +2557,14 @@
     "mentionTitle": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
     "voiceMessage": "N'i ye n ka kuma lamɛn,",
     "image": "I ka jaa dɔ ta"
+  },
+  "liveChat": {
+    "attach": "I be se ka fotow, fotow ani videwow bila ɲɔgɔn na cogo di?",
+    "attachTitle": "I ka ci dɔ fara i ka ci dɔ kan",
+    "attachPhoto": "O ye foto ɲuman ye",
+    "attachGif": "GIF ka koo",
+    "attachEmoji": "Emoji ka koo",
+    "removeAttachment": "Ka taga ni a ye",
+    "attachFailed": "Ne tɛ se ka n ka fotogwɛlɛsi to yen."
   }
 }

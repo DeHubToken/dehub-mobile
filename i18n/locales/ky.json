@@ -2559,5 +2559,14 @@
     "digest": "{{count}} {{who}} @: {{message}}@",
     "voiceMessage": "Үн билдирүүсү",
     "image": "Undo-type"
+  },
+  "liveChat": {
+    "attach": "Сүрөт, GIF же эмодзи кошуу",
+    "attachTitle": "Билдирүүңүзгө кошуу",
+    "attachPhoto": "Сүрөт",
+    "attachGif": "GIF",
+    "attachEmoji": "Эмодзи",
+    "removeAttachment": "Тиркемени алып салуу",
+    "attachFailed": "Сүрөттү жөнөтүүгө болбоду."
   }
 }

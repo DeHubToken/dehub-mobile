@@ -2559,5 +2559,14 @@
     "mentionTitle": "Kua whakahuatia i roto i te kōrerorero tūmatanui",
     "voiceMessage": "Kōrero reo",
     "image": "Tukuna he whakaahua"
+  },
+  "liveChat": {
+    "attach": "Tāpirihia he whakaahua, GIF, emoji ranei",
+    "attachTitle": "Tāpirihia tō karere",
+    "attachPhoto": "Whakaahua",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Whakakorea te whakauru",
+    "attachFailed": "Kaore e taea e au te tuku i taua whakaahua."
   }
 }

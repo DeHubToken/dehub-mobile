@@ -2615,5 +2615,13 @@
     "digest": "{{count}} @ ახალი შეტყობინებები {{who}}@: {{message}}",
     "voiceMessage": "Ხმოვანი შეტყობინება",
     "image": "Გააგზავნეთ სურათი"
+  },
+  "liveChat": {
+    "attach": "Დაამატეთ ფოტო, GIF ან ემოჯი",
+    "attachTitle": "Დაამატეთ შეტყობინებას",
+    "attachPhoto": "Ფოტო",
+    "attachEmoji": "Ემოჯი",
+    "removeAttachment": "Დანართის წაშლა",
+    "attachFailed": "Ამ ფოტოს გაგზავნა ვერ მოხერხდა."
   }
 }

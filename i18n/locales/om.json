@@ -2611,5 +2611,14 @@
     "digest": "{{count}} ergaa haaraa {{who}} irraa: {{message}}",
     "voiceMessage": "Ergaa sagalee",
     "image": "Suuraa erge"
+  },
+  "liveChat": {
+    "attach": "Suuraa, GIF ykn emoji itti dabali",
+    "attachTitle": "Ergaa keessan irratti dabalaa",
+    "attachPhoto": "Suuraa",
+    "attachGif": "GIF",
+    "attachEmoji": "😊",
+    "removeAttachment": "Attachment irraa kaasi",
+    "attachFailed": "Suuraa sana erguu hin dandeenye."
   }
 }

@@ -2729,5 +2729,13 @@
     "digest": "{{who}} থেকে {{count}} টি নতুন বার্তা: {{message}}",
     "voiceMessage": "ভয়েস মেসেজ",
     "image": "একটি ছবি পাঠানো হয়েছে"
+  },
+  "liveChat": {
+    "attach": "ফটো, GIF বা ইমোজি যোগ করুন",
+    "attachTitle": "আপনার মেসেজে যোগ করুন",
+    "attachPhoto": "ফটো",
+    "attachEmoji": "ইমোজি",
+    "removeAttachment": "এটাচমেন্ট সরান",
+    "attachFailed": "এই ফটোটা পাঠানো যায় নাই।"
   }
 }

@@ -2629,5 +2629,14 @@
     "digest": "{{count}} nowych wiadomości od {{who}}: {{message}}",
     "voiceMessage": "Wiadomość głosowa",
     "image": "Wysłano zdjęcie"
+  },
+  "liveChat": {
+    "attach": "Dodaj zdjęcie, plik GIF lub emotikonę",
+    "attachTitle": "Dodaj do wiadomości",
+    "attachPhoto": "Zdjęcie",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Usuń załącznik",
+    "attachFailed": "Nie udało się wysłać tego zdjęcia."
   }
 }

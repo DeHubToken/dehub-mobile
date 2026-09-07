@@ -2561,5 +2561,14 @@
     "digest": "{{count}} naujos žinutės iš {{who}}: {{message}}",
     "voiceMessage": "Balso žinutė",
     "image": "Išsiųsta nuotrauka"
+  },
+  "liveChat": {
+    "attach": "Pridėti nuotrauką, GIF arba jaustuką",
+    "attachTitle": "Pridėti prie žinutės",
+    "attachPhoto": "Nuotrauka",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Pašalinti priedą",
+    "attachFailed": "Nepavyko išsiųsti šios nuotraukos."
   }
 }

@@ -2683,5 +2683,14 @@
     "digest": "{{count}}@ nuwe boodskappe van {{who}}@: {{message}}@",
     "voiceMessage": "Stem boodskap",
     "image": "Stuur 'n beeld"
+  },
+  "liveChat": {
+    "attach": "Voeg 'n foto, GIF of emoji by",
+    "attachTitle": "Voeg by jou boodskap",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Verwyder aanhegsel",
+    "attachFailed": "Ek kon nie die foto stuur nie."
   }
 }

@@ -2565,5 +2565,14 @@
     "digest": "{{count}} nye beskeder fra {{who}}:{{message}}",
     "voiceMessage": "Talebesked",
     "image": "Har sendt et billede"
+  },
+  "liveChat": {
+    "attach": "Tilføj et foto, en GIF eller en emoji",
+    "attachTitle": "Føj til din besked",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Fjern vedhæftet fil",
+    "attachFailed": "Kunne ikke sende det billede."
   }
 }

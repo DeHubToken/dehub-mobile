@@ -2613,5 +2613,13 @@
     "digest": "{{count}}条新消息来自{{who}} ： {{message}}",
     "voiceMessage": "语音留言",
     "image": "已发送图片"
+  },
+  "liveChat": {
+    "attach": "添加照片、GIF或表情符号",
+    "attachTitle": "添加至您的消息",
+    "attachPhoto": "照片",
+    "attachEmoji": "表情符号",
+    "removeAttachment": "删除附件",
+    "attachFailed": "无法发送该照片。"
   }
 }

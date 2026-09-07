@@ -2557,5 +2557,14 @@
     "mentionTitle": "ئاممىۋى پاراڭدا تىلغا ئېلىنغان",
     "voiceMessage": "ئاۋازلىق ئۇچۇر",
     "image": "سۈرەت ئەۋەتىش پروگراممىسى"
+  },
+  "liveChat": {
+    "attach": "سۈرەت، GIF ياكى emoji قوشۇش",
+    "attachTitle": "ئۇچۇرغا قوشۇش",
+    "attachPhoto": "سۈرەت",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "قوشۇشنى چىقىرىۋېتىش",
+    "attachFailed": "ئۇ سۈرەتنى ئەۋەتكىلى بولمىدى."
   }
 }
