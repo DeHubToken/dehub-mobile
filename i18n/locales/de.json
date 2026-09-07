@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} trägt jetzt dein {{tier}}-Abzeichen",
     "badgeDelegationGrantFailed": "Dein Abzeichen konnte nicht verliehen werden",
     "badgeDelegationEnded": "Verleih beendet",
-    "badgeDelegationEndFailed": "Der Verleih konnte nicht beendet werden"
+    "badgeDelegationEndFailed": "Der Verleih konnte nicht beendet werden",
+    "resetDeviceLink": "Gerätekonto-Verknüpfung zurücksetzen",
+    "resetDeviceLinkDesc": "Siehst du hier ein anderes Konto als auf der Website? Behebe es (kein privater Schlüssel nötig)",
+    "switchAccount": "Konto wechseln",
+    "switchAccountDesc": "Du hast den privaten Schlüssel des gewünschten Kontos? Wechsle direkt dorthin",
+    "notSignedInGoogleEmail": "Du bist auf diesem Gerät nicht mit Google oder E-Mail angemeldet.",
+    "resetDeviceLinkTitle": "Gerätekonto-Verknüpfung zurücksetzen?",
+    "resetDeviceLinkBody": "Dieses Telefon vergisst, welche Wallet es für deine Google/E-Mail-Anmeldung automatisch auswählt. Du wirst abgemeldet, und bei der nächsten Anmeldung wirst du gebeten, die richtige Wallet mit ihrem Passwort zu entsperren (dasselbe, das die Website verwendet).",
+    "resetAndSignOut": "Zurücksetzen & abmelden",
+    "deviceLinkReset": "Geräteverknüpfung zurückgesetzt. Melde dich erneut an, um das richtige Konto zu laden.",
+    "deviceLinkResetFailed": "Die Geräteverknüpfung konnte nicht zurückgesetzt werden."
   },
   "common": {
     "mute": "Stumm schalten",
@@ -2677,5 +2687,27 @@
     "timelineReady": "Deine Timeline ist bereit",
     "dragToTune": "Ziehen, um deinen Mix fein abzustimmen.",
     "save": "Speichern"
+  },
+  "switchAccount": {
+    "intro": "Die Google/E-Mail-Anmeldung erkennt für dein Konto immer nur EINE Wallet. Melde dich stattdessen mit dem ALTEN Login des gewünschten Kontos an — das baut dessen Wallet direkt hier auf deinem Telefon wieder auf, genau wie „Zu einem anderen alten Konto wechseln“ im Web.",
+    "retrieving": "Alte Wallet wird abgerufen…",
+    "oldAccount": "Altes Konto: {{provider}}",
+    "oldEmail": "E-Mail des alten Kontos",
+    "recoveredWallet": "Wiederhergestellte Wallet",
+    "alreadyActive": "Das ist bereits deine aktive Wallet — nichts zu wechseln.",
+    "useSignIn": "Stattdessen Anmeldung verwenden",
+    "pasteKey": "Oder den privaten Schlüssel manuell einfügen",
+    "keyOfOther": "Privater Schlüssel des anderen Kontos",
+    "resolvesTo": "Entspricht {{address}}",
+    "newPassword": "Neues Passwort (schützt diese Wallet ab jetzt, mind. {{min}} Zeichen)",
+    "password": "Passwort",
+    "confirmPassword": "Passwort bestätigen",
+    "backupWarning": "Sichere zuerst den privaten Schlüssel deiner AKTUELLEN Wallet (Einstellungen → Privaten Schlüssel exportieren) — dieses Gerät bietet ihn nach dem Wechsel nicht mehr an.",
+    "recoverFailed": "Diese alte Wallet konnte auf diesem Gerät nicht abgerufen werden. Du kannst stattdessen unten ihren privaten Schlüssel einfügen.",
+    "breached": "Dieses Passwort ist in einem Datenleck aufgetaucht — wähle ein anderes",
+    "stronger": "Wähle ein stärkeres Passwort",
+    "needSignIn": "Du musst mit Google oder E-Mail angemeldet sein, um Konten zu wechseln.",
+    "switched": "Konto gewechselt",
+    "failed": "Konten konnten nicht gewechselt werden. Bitte prüfe den privaten Schlüssel und versuche es erneut."
   }
 }

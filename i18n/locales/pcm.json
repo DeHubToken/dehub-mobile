@@ -503,7 +503,17 @@
     "badgeDelegationGranted": "{{to}} don dey wear your {{tier}} badge now",
     "badgeDelegationGrantFailed": "We no fit lend your badge",
     "badgeDelegationEnded": "Delegation don end",
-    "badgeDelegationEndFailed": "We no fit end di delegation"
+    "badgeDelegationEndFailed": "We no fit end di delegation",
+    "resetDeviceLink": "Reset device account link",
+    "resetDeviceLinkDesc": "You dey see different account here from di website? Fix am (no private key needed)",
+    "switchAccount": "Switch account",
+    "switchAccountDesc": "You get private key for di account wey you want? Switch go am direct",
+    "notSignedInGoogleEmail": "You no sign in with Google or email for dis device.",
+    "resetDeviceLinkTitle": "Reset device account link?",
+    "resetDeviceLinkBody": "Dis phone go forget which wallet e dey auto-select for your Google/email sign-in. E go sign you out, and next time wey you sign in dem go ask you to unlock di correct wallet with im password (di same one wey di website dey use).",
+    "resetAndSignOut": "Reset and sign out",
+    "deviceLinkReset": "Device link don reset. Sign in again make you pick di correct account.",
+    "deviceLinkResetFailed": "We no fit reset di device link."
   },
   "common": {
     "mute": "Off di sound",
@@ -2609,5 +2619,27 @@
     "timelineReady": "Your timeline don ready",
     "dragToTune": "Drag make you adjust your mix.",
     "save": "Save"
+  },
+  "switchAccount": {
+    "intro": "Google/email sign-in fit only recognize ONE wallet for your account at a time. Instead, sign in with di OLD login for di account wey you want — dis go rebuild im wallet right here for your phone, same as web \"Switch to a different old account\".",
+    "retrieving": "We dey bring di old wallet…",
+    "oldAccount": "Old account: {{provider}}",
+    "oldEmail": "Old account email",
+    "recoveredWallet": "Wallet wey we recover",
+    "alreadyActive": "Dis one na your active wallet already — nothing to switch.",
+    "useSignIn": "Use sign-in instead",
+    "pasteKey": "Or paste di private key by yourself",
+    "keyOfOther": "Private key of di other account",
+    "resolvesTo": "E resolve go {{address}}",
+    "newPassword": "New password (e go protect dis wallet from now on, minimum {{min}} characters)",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "backupWarning": "Make sure say you don back up di private key of your CURRENT wallet first (Settings → Export Private Key) — dis device no go offer am again once you switch.",
+    "recoverFailed": "We no fit bring dat old wallet for dis device. You fit paste im private key below instead.",
+    "breached": "Dis password don show for data breach — choose another one",
+    "stronger": "Choose stronger password",
+    "needSignIn": "You need to sign in with Google or email before you fit switch account.",
+    "switched": "Account don switch",
+    "failed": "We no fit switch account. Abeg check di private key and try again."
   }
 }

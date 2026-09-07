@@ -696,7 +696,17 @@
     "badgeDelegationGranted": "{{to}} dra nou jou {{tier}}-kenteken",
     "badgeDelegationGrantFailed": "Kon nie jou kenteken leen nie",
     "badgeDelegationEnded": "Delegering beëindig",
-    "badgeDelegationEndFailed": "Kon nie die delegering beëindig nie"
+    "badgeDelegationEndFailed": "Kon nie die delegering beëindig nie",
+    "resetDeviceLink": "Herstel toestel-rekeningkoppeling",
+    "resetDeviceLinkDesc": "Sien jy hier 'n ander rekening as op die webwerf? Herstel dit (geen privaat sleutel nodig nie)",
+    "switchAccount": "Wissel rekening",
+    "switchAccountDesc": "Het jy 'n privaat sleutel vir die rekening wat jy eerder wil hê? Wissel direk daarheen",
+    "notSignedInGoogleEmail": "Jy is nie met Google of e-pos op hierdie toestel aangemeld nie.",
+    "resetDeviceLinkTitle": "Herstel toestel-rekeningkoppeling?",
+    "resetDeviceLinkBody": "Hierdie foon sal vergeet watter beursie dit outomaties kies vir jou Google/e-pos-aanmelding. Jy word afgemeld, en die volgende keer wat jy aanmeld sal jy gevra word om die regte beursie met sy wagwoord te ontsluit (dieselfde een wat die webwerf gebruik).",
+    "resetAndSignOut": "Herstel en meld af",
+    "deviceLinkReset": "Toestelkoppeling herstel. Meld weer aan om die regte rekening op te tel.",
+    "deviceLinkResetFailed": "Kon nie die toestelkoppeling herstel nie."
   },
   "wallet": {
     "notReady": "Beursie is nie gereed nie — probeer oor 'n oomblik weer.",
@@ -2752,5 +2762,27 @@
     "timelineReady": "Jou tydlyn is gereed",
     "dragToTune": "Sleep om jou mengsel fyn in te stel.",
     "save": "Stoor"
+  },
+  "switchAccount": {
+    "intro": "Google/e-pos-aanmelding kan net EEN beursie vir jou rekening op 'n slag herken. Meld eerder aan met die OU aanmelding vir die rekening wat jy wil hê — dit herbou sy beursie hier op jou foon, dieselfde as die web se \"Skakel oor na 'n ander ou rekening\".",
+    "retrieving": "Haal ou beursie op…",
+    "oldAccount": "Ou rekening: {{provider}}",
+    "oldEmail": "Ou rekening se e-pos",
+    "recoveredWallet": "Herstelde beursie",
+    "alreadyActive": "Dit is reeds jou aktiewe beursie — niks om te wissel nie.",
+    "useSignIn": "Gebruik eerder aanmelding",
+    "pasteKey": "Of plak die privaat sleutel handmatig",
+    "keyOfOther": "Privaat sleutel van die ander rekening",
+    "resolvesTo": "Verwys na {{address}}",
+    "newPassword": "Nuwe wagwoord (beskerm hierdie beursie voortaan, min. {{min}} karakters)",
+    "password": "Wagwoord",
+    "confirmPassword": "Bevestig wagwoord",
+    "backupWarning": "Maak seker jy het eers die privaat sleutel van jou HUIDIGE beursie gerugsteun (Instellings → Voer privaat sleutel uit) — hierdie toestel sal dit nie meer aanbied sodra jy wissel nie.",
+    "recoverFailed": "Kon nie daardie ou beursie op hierdie toestel herstel nie. Jy kan eerder sy privaat sleutel hieronder plak.",
+    "breached": "Hierdie wagwoord het in 'n datalek verskyn — kies 'n ander een",
+    "stronger": "Kies 'n sterker wagwoord",
+    "needSignIn": "Jy moet met Google of e-pos aangemeld wees om rekeninge te wissel.",
+    "switched": "Rekening gewissel",
+    "failed": "Kon nie rekeninge wissel nie. Kontroleer die privaat sleutel en probeer weer."
   }
 }

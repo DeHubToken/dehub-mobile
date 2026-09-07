@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} artık {{tier}} rozetini takıyor",
     "badgeDelegationGrantFailed": "Rozetin ödünç verilemedi",
     "badgeDelegationEnded": "Devir bitti",
-    "badgeDelegationEndFailed": "Devir bitirilemedi"
+    "badgeDelegationEndFailed": "Devir bitirilemedi",
+    "resetDeviceLink": "Cihaz hesap bağlantısını sıfırla",
+    "resetDeviceLinkDesc": "Burada web sitesinden farklı bir hesap mı görüyorsun? Düzelt (özel anahtar gerekmez)",
+    "switchAccount": "Hesap değiştir",
+    "switchAccountDesc": "İstediğin hesabın özel anahtarı sende mi? Doğrudan ona geç",
+    "notSignedInGoogleEmail": "Bu cihazda Google veya e-posta ile oturum açmadın.",
+    "resetDeviceLinkTitle": "Cihaz hesap bağlantısı sıfırlansın mı?",
+    "resetDeviceLinkBody": "Bu telefon, Google/e-posta girişin için otomatik seçtiği cüzdanı unutacak. Oturumun kapatılacak ve bir sonraki girişte doğru cüzdanı şifresiyle (web sitesinin kullandığı aynı şifre) açman istenecek.",
+    "resetAndSignOut": "Sıfırla ve çıkış yap",
+    "deviceLinkReset": "Cihaz bağlantısı sıfırlandı. Doğru hesabı almak için tekrar oturum aç.",
+    "deviceLinkResetFailed": "Cihaz bağlantısı sıfırlanamadı."
   },
   "common": {
     "mute": "Sesi kapat",
@@ -2677,5 +2687,27 @@
     "timelineReady": "Zaman akışın hazır",
     "dragToTune": "Karışımını ince ayarlamak için sürükle.",
     "save": "Kaydet"
+  },
+  "switchAccount": {
+    "intro": "Google/e-posta girişi hesabın için aynı anda yalnızca TEK bir cüzdanı tanıyabilir. Bunun yerine istediğin hesabın ESKİ girişiyle oturum aç — bu, cüzdanını tam burada, telefonunda yeniden oluşturur; web'deki \"Farklı bir eski hesaba geç\" ile aynı.",
+    "retrieving": "Eski cüzdan alınıyor…",
+    "oldAccount": "Eski hesap: {{provider}}",
+    "oldEmail": "Eski hesap e-postası",
+    "recoveredWallet": "Kurtarılan cüzdan",
+    "alreadyActive": "Bu zaten etkin cüzdanın — değiştirecek bir şey yok.",
+    "useSignIn": "Bunun yerine oturum açmayı kullan",
+    "pasteKey": "Ya da özel anahtarı elle yapıştır",
+    "keyOfOther": "Diğer hesabın özel anahtarı",
+    "resolvesTo": "{{address}} adresine karşılık gelir",
+    "newPassword": "Yeni şifre (bundan sonra bu cüzdanı korur, en az {{min}} karakter)",
+    "password": "Şifre",
+    "confirmPassword": "Şifreyi onayla",
+    "backupWarning": "Önce MEVCUT cüzdanının özel anahtarını yedeklediğinden emin ol (Ayarlar → Özel anahtarı dışa aktar) — geçiş yaptıktan sonra bu cihaz onu artık sunmayacak.",
+    "recoverFailed": "Bu cihazda o eski cüzdan alınamadı. Bunun yerine özel anahtarını aşağıya yapıştırabilirsin.",
+    "breached": "Bu şifre bir veri sızıntısında görülmüş — başka bir şifre seç",
+    "stronger": "Daha güçlü bir şifre seç",
+    "needSignIn": "Hesap değiştirmek için Google veya e-posta ile oturum açmış olmalısın.",
+    "switched": "Hesap değiştirildi",
+    "failed": "Hesap değiştirilemedi. Lütfen özel anahtarı kontrol edip tekrar dene."
   }
 }

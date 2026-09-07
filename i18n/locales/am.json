@@ -506,7 +506,17 @@
     "badgeDelegationGranted": "{{to}} አሁን የእርስዎን {{tier}} ባጅ ለብሷል",
     "badgeDelegationGrantFailed": "ባጅዎን ማዋስ አልተቻለም",
     "badgeDelegationEnded": "ውክልና ተጠናቀቀ",
-    "badgeDelegationEndFailed": "ውክልናውን ማጠናቀቅ አልተቻለም"
+    "badgeDelegationEndFailed": "ውክልናውን ማጠናቀቅ አልተቻለም",
+    "resetDeviceLink": "የመሳሪያ መለያ ማገናኛን ዳግም አስጀምር",
+    "resetDeviceLinkDesc": "እዚህ ከድረ-ገጹ የተለየ መለያ እያዩ ነው? ያስተካክሉት (የግል ቁልፍ አያስፈልግም)",
+    "switchAccount": "መለያ ቀይር",
+    "switchAccountDesc": "ለሚፈልጉት መለያ የግል ቁልፍ አለዎት? በቀጥታ ወደ እሱ ይቀይሩ",
+    "notSignedInGoogleEmail": "በዚህ መሳሪያ ላይ በGoogle ወይም በኢሜይል አልገቡም።",
+    "resetDeviceLinkTitle": "የመሳሪያ መለያ ማገናኛን ዳግም ያስጀምሩ?",
+    "resetDeviceLinkBody": "ይህ ስልክ ለGoogle/ኢሜይል መግቢያዎ ራሱ የሚመርጠውን ቦርሳ ይረሳል። ይወጣሉ፣ በሚቀጥለው ጊዜ ሲገቡ ትክክለኛውን ቦርሳ በይለፍ ቃሉ (ድረ-ገጹ የሚጠቀመው ተመሳሳይ) እንዲከፍቱ ይጠየቃሉ።",
+    "resetAndSignOut": "ዳግም አስጀምር እና ውጣ",
+    "deviceLinkReset": "የመሳሪያ ማገናኛ ዳግም ተጀምሯል። ትክክለኛውን መለያ ለማግኘት እንደገና ይግቡ።",
+    "deviceLinkResetFailed": "የመሳሪያ ማገናኛን ዳግም ማስጀመር አልተቻለም።"
   },
   "common": {
     "mute": "ድምፅ አጥፋ",
@@ -2655,5 +2665,27 @@
     "timelineReady": "የጊዜ መስመርዎ ዝግጁ ነው",
     "dragToTune": "ድብልቅዎን ለማስተካከል ይጎትቱ።",
     "save": "አስቀምጥ"
+  },
+  "switchAccount": {
+    "intro": "የGoogle/ኢሜይል መግቢያ ለመለያዎ በአንድ ጊዜ አንድ ቦርሳ ብቻ ማወቅ ይችላል። በምትኩ ለሚፈልጉት መለያ በአሮጌው መግቢያ ይግቡ — ይህ ቦርሳውን እዚሁ ስልክዎ ላይ ይገነባል፣ ልክ በድሩ ላይ እንዳለው \"ወደ ሌላ አሮጌ መለያ ቀይር\"።",
+    "retrieving": "አሮጌ ቦርሳ በማምጣት ላይ…",
+    "oldAccount": "አሮጌ መለያ፦ {{provider}}",
+    "oldEmail": "የአሮጌ መለያ ኢሜይል",
+    "recoveredWallet": "የተመለሰ ቦርሳ",
+    "alreadyActive": "ይህ አስቀድሞ ንቁ ቦርሳዎ ነው — የሚቀየር ነገር የለም።",
+    "useSignIn": "በምትኩ መግቢያ ይጠቀሙ",
+    "pasteKey": "ወይም የግል ቁልፉን በእጅ ይለጥፉ",
+    "keyOfOther": "የሌላው መለያ የግል ቁልፍ",
+    "resolvesTo": "ወደ {{address}} ይመራል",
+    "newPassword": "አዲስ የይለፍ ቃል (ከዚህ በኋላ ይህን ቦርሳ ይጠብቃል፣ ቢያንስ {{min}} ቁምፊዎች)",
+    "password": "የይለፍ ቃል",
+    "confirmPassword": "የይለፍ ቃል ያረጋግጡ",
+    "backupWarning": "መጀመሪያ የአሁኑን ቦርሳዎን የግል ቁልፍ ምትኬ እንደያዙ ያረጋግጡ (ቅንብሮች → የግል ቁልፍ ላክ) — ከቀየሩ በኋላ ይህ መሳሪያ ከእንግዲህ አያቀርበውም።",
+    "recoverFailed": "ያንን አሮጌ ቦርሳ በዚህ መሳሪያ ላይ ማምጣት አልተቻለም። በምትኩ የግል ቁልፉን ከታች መለጠፍ ይችላሉ።",
+    "breached": "ይህ የይለፍ ቃል በውሂብ ጥሰት ውስጥ ታይቷል — ሌላ ይምረጡ",
+    "stronger": "ጠንካራ የይለፍ ቃል ይምረጡ",
+    "needSignIn": "መለያዎችን ለመቀየር በGoogle ወይም በኢሜይል መግባት አለብዎት።",
+    "switched": "መለያ ተቀይሯል",
+    "failed": "መለያዎችን መቀየር አልተቻለም። እባክዎ የግል ቁልፉን ያረጋግጡና እንደገና ይሞክሩ።"
   }
 }

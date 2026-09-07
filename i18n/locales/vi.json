@@ -834,7 +834,17 @@
     "badgeDelegationGranted": "{{to}} hiện đang đeo huy hiệu {{tier}} của bạn",
     "badgeDelegationGrantFailed": "Không thể cho mượn huy hiệu của bạn",
     "badgeDelegationEnded": "Đã kết thúc ủy quyền",
-    "badgeDelegationEndFailed": "Không thể kết thúc ủy quyền"
+    "badgeDelegationEndFailed": "Không thể kết thúc ủy quyền",
+    "resetDeviceLink": "Đặt lại liên kết tài khoản thiết bị",
+    "resetDeviceLinkDesc": "Thấy tài khoản ở đây khác với trên trang web? Sửa lại (không cần khóa riêng)",
+    "switchAccount": "Chuyển tài khoản",
+    "switchAccountDesc": "Có khóa riêng cho tài khoản bạn muốn? Chuyển thẳng sang tài khoản đó",
+    "notSignedInGoogleEmail": "Bạn chưa đăng nhập bằng Google hoặc email trên thiết bị này.",
+    "resetDeviceLinkTitle": "Đặt lại liên kết tài khoản thiết bị?",
+    "resetDeviceLinkBody": "Điện thoại này sẽ quên ví nào được tự động chọn cho đăng nhập Google/email của bạn. Bạn sẽ bị đăng xuất, và lần đăng nhập tới bạn sẽ được yêu cầu mở khóa đúng ví bằng mật khẩu của nó (cùng mật khẩu trang web dùng).",
+    "resetAndSignOut": "Đặt lại và đăng xuất",
+    "deviceLinkReset": "Đã đặt lại liên kết thiết bị. Đăng nhập lại để lấy đúng tài khoản.",
+    "deviceLinkResetFailed": "Không thể đặt lại liên kết thiết bị."
   },
   "postOptions": {
     "options": "Tuỳ chọn",
@@ -2716,5 +2726,27 @@
     "timelineReady": "Dòng thời gian của bạn đã sẵn sàng",
     "dragToTune": "Kéo để tinh chỉnh tổ hợp của bạn.",
     "save": "Lưu"
+  },
+  "switchAccount": {
+    "intro": "Đăng nhập Google/email chỉ nhận diện được MỘT ví cho tài khoản của bạn tại một thời điểm. Thay vào đó hãy đăng nhập bằng cách đăng nhập CŨ của tài khoản bạn muốn — điều này tái tạo ví của nó ngay trên điện thoại của bạn, giống \"Chuyển sang tài khoản cũ khác\" trên web.",
+    "retrieving": "Đang lấy ví cũ…",
+    "oldAccount": "Tài khoản cũ: {{provider}}",
+    "oldEmail": "Email tài khoản cũ",
+    "recoveredWallet": "Ví đã khôi phục",
+    "alreadyActive": "Đây đã là ví đang dùng của bạn — không có gì để chuyển.",
+    "useSignIn": "Dùng đăng nhập thay thế",
+    "pasteKey": "Hoặc dán khóa riêng thủ công",
+    "keyOfOther": "Khóa riêng của tài khoản kia",
+    "resolvesTo": "Tương ứng với {{address}}",
+    "newPassword": "Mật khẩu mới (bảo vệ ví này từ nay về sau, tối thiểu {{min}} ký tự)",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "backupWarning": "Hãy đảm bảo bạn đã sao lưu khóa riêng của ví HIỆN TẠI trước (Cài đặt → Xuất khóa riêng) — thiết bị này sẽ không cung cấp nó nữa sau khi bạn chuyển.",
+    "recoverFailed": "Không thể lấy ví cũ đó trên thiết bị này. Thay vào đó bạn có thể dán khóa riêng của nó bên dưới.",
+    "breached": "Mật khẩu này đã xuất hiện trong một vụ rò rỉ dữ liệu — hãy chọn mật khẩu khác",
+    "stronger": "Hãy chọn mật khẩu mạnh hơn",
+    "needSignIn": "Bạn cần đăng nhập bằng Google hoặc email để chuyển tài khoản.",
+    "switched": "Đã chuyển tài khoản",
+    "failed": "Không thể chuyển tài khoản. Vui lòng kiểm tra khóa riêng và thử lại."
   }
 }

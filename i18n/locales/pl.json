@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} nosi teraz twoją odznakę {{tier}}",
     "badgeDelegationGrantFailed": "Nie udało się wypożyczyć odznaki",
     "badgeDelegationEnded": "Delegowanie zakończone",
-    "badgeDelegationEndFailed": "Nie udało się zakończyć delegowania"
+    "badgeDelegationEndFailed": "Nie udało się zakończyć delegowania",
+    "resetDeviceLink": "Zresetuj powiązanie konta z urządzeniem",
+    "resetDeviceLinkDesc": "Widzisz tu inne konto niż na stronie? Napraw to (bez klucza prywatnego)",
+    "switchAccount": "Przełącz konto",
+    "switchAccountDesc": "Masz klucz prywatny do konta, którego chcesz? Przełącz się na nie bezpośrednio",
+    "notSignedInGoogleEmail": "Nie jesteś zalogowany przez Google ani e-mail na tym urządzeniu.",
+    "resetDeviceLinkTitle": "Zresetować powiązanie konta z urządzeniem?",
+    "resetDeviceLinkBody": "Ten telefon zapomni, który portfel automatycznie wybiera dla logowania Google/e-mail. Zostaniesz wylogowany, a przy następnym logowaniu poprosimy o odblokowanie właściwego portfela jego hasłem (tym samym, którego używa strona).",
+    "resetAndSignOut": "Zresetuj i wyloguj",
+    "deviceLinkReset": "Powiązanie urządzenia zresetowane. Zaloguj się ponownie, aby pobrać właściwe konto.",
+    "deviceLinkResetFailed": "Nie udało się zresetować powiązania urządzenia."
   },
   "common": {
     "mute": "Wycisz",
@@ -2696,5 +2706,27 @@
     "timelineReady": "Twoja oś czasu jest gotowa",
     "dragToTune": "Przeciągnij, aby dopracować swój miks.",
     "save": "Zapisz"
+  },
+  "switchAccount": {
+    "intro": "Logowanie Google/e-mail rozpoznaje naraz tylko JEDEN portfel dla twojego konta. Zamiast tego zaloguj się STARYM logowaniem konta, którego chcesz — to odbuduje jego portfel tutaj, na twoim telefonie, tak jak „Przełącz na inne stare konto” w wersji webowej.",
+    "retrieving": "Pobieranie starego portfela…",
+    "oldAccount": "Stare konto: {{provider}}",
+    "oldEmail": "E-mail starego konta",
+    "recoveredWallet": "Odzyskany portfel",
+    "alreadyActive": "To już twój aktywny portfel — nie ma czego przełączać.",
+    "useSignIn": "Zamiast tego użyj logowania",
+    "pasteKey": "Lub wklej klucz prywatny ręcznie",
+    "keyOfOther": "Klucz prywatny drugiego konta",
+    "resolvesTo": "Odpowiada {{address}}",
+    "newPassword": "Nowe hasło (od teraz chroni ten portfel, min. {{min}} znaków)",
+    "password": "Hasło",
+    "confirmPassword": "Potwierdź hasło",
+    "backupWarning": "Najpierw upewnij się, że masz kopię zapasową klucza prywatnego OBECNEGO portfela (Ustawienia → Eksportuj klucz prywatny) — po przełączeniu to urządzenie przestanie go oferować.",
+    "recoverFailed": "Nie udało się pobrać tego starego portfela na tym urządzeniu. Zamiast tego możesz wkleić poniżej jego klucz prywatny.",
+    "breached": "To hasło pojawiło się w wycieku danych — wybierz inne",
+    "stronger": "Wybierz silniejsze hasło",
+    "needSignIn": "Aby przełączyć konto, musisz być zalogowany przez Google lub e-mail.",
+    "switched": "Konto przełączone",
+    "failed": "Nie udało się przełączyć konta. Sprawdź klucz prywatny i spróbuj ponownie."
   }
 }

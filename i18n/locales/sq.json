@@ -507,7 +507,17 @@
     "badgeDelegationGranted": "{{to}} tani mban stemën tënde {{tier}}",
     "badgeDelegationGrantFailed": "Stema jote nuk u huazua dot",
     "badgeDelegationEnded": "Delegimi përfundoi",
-    "badgeDelegationEndFailed": "Delegimi nuk u përfundua dot"
+    "badgeDelegationEndFailed": "Delegimi nuk u përfundua dot",
+    "resetDeviceLink": "Rivendos lidhjen e llogarisë së pajisjes",
+    "resetDeviceLinkDesc": "Sheh këtu një llogari të ndryshme nga faqja e internetit? Rregulloje (pa çelës privat)",
+    "switchAccount": "Ndërro llogarinë",
+    "switchAccountDesc": "Ke çelësin privat të llogarisë që do? Kalo drejtpërdrejt tek ajo",
+    "notSignedInGoogleEmail": "Nuk je futur me Google ose email në këtë pajisje.",
+    "resetDeviceLinkTitle": "Të rivendoset lidhja e llogarisë së pajisjes?",
+    "resetDeviceLinkBody": "Ky telefon do të harrojë cilin portofol zgjedh automatikisht për hyrjen tënde me Google/email. Do të dalësh, dhe herën tjetër që hyn do të të kërkohet të zhbllokosh portofolin e saktë me fjalëkalimin e tij (i njëjti që përdor faqja e internetit).",
+    "resetAndSignOut": "Rivendos dhe dil",
+    "deviceLinkReset": "Lidhja e pajisjes u rivendos. Hyr përsëri për të marrë llogarinë e duhur.",
+    "deviceLinkResetFailed": "Lidhja e pajisjes nuk u rivendos dot."
   },
   "common": {
     "mute": "Hiq zërin",
@@ -2628,5 +2638,27 @@
     "timelineReady": "Kronologjia jote është gati",
     "dragToTune": "Zvarrit për të rregulluar përzierjen tënde.",
     "save": "Ruaj"
+  },
+  "switchAccount": {
+    "intro": "Hyrja me Google/email mund të njohë vetëm NJË portofol për llogarinë tënde në një kohë. Në vend të kësaj hyr me hyrjen e VJETËR të llogarisë që do — kjo rindërton portofolin e saj këtu në telefonin tënd, njësoj si \"Kalo në një llogari tjetër të vjetër\" në ueb.",
+    "retrieving": "Po merret portofoli i vjetër…",
+    "oldAccount": "Llogari e vjetër: {{provider}}",
+    "oldEmail": "Email-i i llogarisë së vjetër",
+    "recoveredWallet": "Portofoli i rikuperuar",
+    "alreadyActive": "Ky është tashmë portofoli yt aktiv — asgjë për të ndërruar.",
+    "useSignIn": "Përdor hyrjen në vend të kësaj",
+    "pasteKey": "Ose ngjit çelësin privat manualisht",
+    "keyOfOther": "Çelësi privat i llogarisë tjetër",
+    "resolvesTo": "I përgjigjet {{address}}",
+    "newPassword": "Fjalëkalim i ri (mbron këtë portofol tani e tutje, min. {{min}} karaktere)",
+    "password": "Fjalëkalimi",
+    "confirmPassword": "Konfirmo fjalëkalimin",
+    "backupWarning": "Sigurohu më parë që ke bërë kopje rezervë të çelësit privat të portofolit tënd AKTUAL (Cilësimet → Eksporto çelësin privat) — kjo pajisje nuk do ta ofrojë më pasi të ndërrosh.",
+    "recoverFailed": "Ai portofol i vjetër nuk u mor dot në këtë pajisje. Në vend të kësaj mund të ngjitësh çelësin e tij privat më poshtë.",
+    "breached": "Ky fjalëkalim është shfaqur në një rrjedhje të dhënash — zgjidh një tjetër",
+    "stronger": "Zgjidh një fjalëkalim më të fortë",
+    "needSignIn": "Duhet të jesh i futur me Google ose email për të ndërruar llogari.",
+    "switched": "Llogaria u ndërrua",
+    "failed": "Llogaria nuk u ndërrua dot. Kontrollo çelësin privat dhe provo përsëri."
   }
 }

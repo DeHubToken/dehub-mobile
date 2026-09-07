@@ -506,7 +506,17 @@
     "badgeDelegationGranted": "{{to}} dia manao ny mari-pankasitrahana {{tier}} anao izao",
     "badgeDelegationGrantFailed": "Tsy afaka nampindrana ny mari-pankasitrahanao",
     "badgeDelegationEnded": "Nifarana ny fanomezana",
-    "badgeDelegationEndFailed": "Tsy afaka nampitsahatra ny fanomezana"
+    "badgeDelegationEndFailed": "Tsy afaka nampitsahatra ny fanomezana",
+    "resetDeviceLink": "Avereno ny rohin'ny kaontin'ny fitaovana",
+    "resetDeviceLinkDesc": "Mahita kaonty hafa noho ny ao amin'ny tranonkala ve ianao eto? Ahitsio (tsy mila lakile manokana)",
+    "switchAccount": "Ovay ny kaonty",
+    "switchAccountDesc": "Manana lakile manokana ho an'ny kaonty tianao ve ianao? Mivadiha mivantana amin'izy io",
+    "notSignedInGoogleEmail": "Tsy niditra tamin'ny Google na mailaka ianao amin'ity fitaovana ity.",
+    "resetDeviceLinkTitle": "Averina ve ny rohin'ny kaontin'ny fitaovana?",
+    "resetDeviceLinkBody": "Hanadino ity finday ity hoe iza no kitapom-bola fidiny ho azy ho an'ny fidiranao Google/mailaka. Hivoaka ianao, ary amin'ny fidirana manaraka dia hangatahina hanokatra ny kitapom-bola marina amin'ny teny miafiny (ilay ampiasain'ny tranonkala ihany).",
+    "resetAndSignOut": "Avereno ary mivoaha",
+    "deviceLinkReset": "Naverina ny rohin'ny fitaovana. Midira indray mba hahazoana ny kaonty marina.",
+    "deviceLinkResetFailed": "Tsy afaka namerina ny rohin'ny fitaovana."
   },
   "common": {
     "mute": "Hampangina",
@@ -2724,5 +2734,27 @@
     "timelineReady": "Vonona ny timeline-nao",
     "dragToTune": "Tariho mba hanitsiana ny fifangaroanao.",
     "save": "Tehirizo"
+  },
+  "switchAccount": {
+    "intro": "Ny fidirana Google/mailaka dia tsy afaka mamantatra afa-tsy kitapom-bola IRAY ho an'ny kaontinao amin'ny fotoana iray. Midira amin'ny fidirana TALOHA an'ny kaonty tianao kosa — izany dia mamerina mamorona ny kitapom-bolany eto amin'ny findainao, toy ny \"Mivadiha amin'ny kaonty taloha hafa\" amin'ny web.",
+    "retrieving": "Maka ny kitapom-bola taloha…",
+    "oldAccount": "Kaonty taloha: {{provider}}",
+    "oldEmail": "Mailaka kaonty taloha",
+    "recoveredWallet": "Kitapom-bola voaverina",
+    "alreadyActive": "Ity efa ny kitapom-bolanao mavitrika — tsy misy hovaina.",
+    "useSignIn": "Ampiasao ny fidirana kosa",
+    "pasteKey": "Na apetaho tanana ny lakile manokana",
+    "keyOfOther": "Lakile manokan'ny kaonty hafa",
+    "resolvesTo": "Mifanaraka amin'ny {{address}}",
+    "newPassword": "Teny miafina vaovao (miaro ity kitapom-bola ity manomboka izao, farafahakeliny {{min}} tarehintsoratra)",
+    "password": "Teny miafina",
+    "confirmPassword": "Hamarino ny teny miafina",
+    "backupWarning": "Ataovy azo antoka aloha fa efa nanao dika mitovy ny lakile manokan'ny kitapom-bolanao ANKEHITRINY ianao (Fikirakirana → Avoahy ny lakile manokana) — tsy hanolotra azy intsony ity fitaovana ity rehefa mivadika ianao.",
+    "recoverFailed": "Tsy afaka naka io kitapom-bola taloha io amin'ity fitaovana ity. Azonao apetaka etsy ambany kosa ny lakile manokany.",
+    "breached": "Ity teny miafina ity dia efa niseho tamin'ny fivoahan'angona — mifidiana hafa",
+    "stronger": "Mifidiana teny miafina matanjaka kokoa",
+    "needSignIn": "Tsy maintsy tafiditra amin'ny Google na mailaka ianao mba hanovana kaonty.",
+    "switched": "Novaina ny kaonty",
+    "failed": "Tsy afaka nanova kaonty. Jereo ny lakile manokana ary andramo indray."
   }
 }
