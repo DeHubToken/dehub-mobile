@@ -486,7 +486,9 @@
     "test": "Watukuy",
     "anonymous": "Mana sutiyuq",
     "confirm": "Takyachiy",
-    "signIn": "Yaykuy"
+    "signIn": "Yaykuy",
+    "takePhoto": "Fotota hurquy",
+    "recordVideo": "Videota grabay"
   },
   "tip": {
     "title": "Propina apachiy",

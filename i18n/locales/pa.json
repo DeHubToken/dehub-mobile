@@ -486,7 +486,9 @@
     "test": "ਟੈਸਟ",
     "anonymous": "ਗੁਮਨਾਮ",
     "confirm": "ਪੁਸ਼ਟੀ ਕਰੋ",
-    "signIn": "ਸਾਈਨ ਇਨ"
+    "signIn": "ਸਾਈਨ ਇਨ",
+    "takePhoto": "ਫੋਟੋ ਖਿੱਚੋ",
+    "recordVideo": "ਵੀਡੀਓ ਰਿਕਾਰਡ ਕਰੋ"
   },
   "drawers": {
     "ppvTitle": "ਪੇ ਪਰ ਵਿਊ ਸਮੱਗਰੀ",

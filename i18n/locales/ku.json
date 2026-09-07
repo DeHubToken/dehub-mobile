@@ -486,7 +486,9 @@
     "test": "Test",
     "anonymous": "Nenas",
     "confirm": "Piştrast bike",
-    "signIn": "Têkeve"
+    "signIn": "Têkeve",
+    "takePhoto": "Wêne bikişîne",
+    "recordVideo": "Vîdyo tomar bike"
   },
   "tip": {
     "title": "Bexşîş Bişîne",

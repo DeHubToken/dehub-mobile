@@ -486,7 +486,9 @@
     "test": "Gwaji",
     "anonymous": "Ba a san sunan ba",
     "confirm": "Tabbatar",
-    "signIn": "Shiga"
+    "signIn": "Shiga",
+    "takePhoto": "Ɗauki hoto",
+    "recordVideo": "Ɗauki bidiyo"
   },
   "tip": {
     "title": "Aika Kyauta",

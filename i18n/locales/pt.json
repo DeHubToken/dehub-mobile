@@ -486,7 +486,9 @@
     "test": "Teste",
     "anonymous": "Anónimo",
     "confirm": "Confirmar",
-    "signIn": "Iniciar sessão"
+    "signIn": "Iniciar sessão",
+    "takePhoto": "Tirar foto",
+    "recordVideo": "Gravar vídeo"
   },
   "drawers": {
     "ppvTitle": "Conteúdo Pay-Per-View",

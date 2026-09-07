@@ -486,7 +486,9 @@
     "test": "آزمایش",
     "anonymous": "ناشناس",
     "confirm": "تأیید",
-    "signIn": "ورود"
+    "signIn": "ورود",
+    "takePhoto": "گرفتن عکس",
+    "recordVideo": "ضبط ویدیو"
   },
   "tip": {
     "title": "ارسال انعام",

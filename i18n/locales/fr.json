@@ -486,7 +486,9 @@
     "test": "Test",
     "anonymous": "Anonyme",
     "confirm": "Confirmer",
-    "signIn": "Se connecter"
+    "signIn": "Se connecter",
+    "takePhoto": "Prendre une photo",
+    "recordVideo": "Enregistrer une vidéo"
   },
   "drawers": {
     "ppvTitle": "Contenu à la carte",

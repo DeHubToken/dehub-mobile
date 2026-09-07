@@ -486,7 +486,9 @@
     "test": "Test",
     "anonymous": "No nem",
     "confirm": "Confam",
-    "signIn": "Sign in"
+    "signIn": "Sign in",
+    "takePhoto": "Snap foto",
+    "recordVideo": "Record video"
   },
   "tip": {
     "title": "Send Tip",

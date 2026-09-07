@@ -486,7 +486,9 @@
     "test": "ทดสอบ",
     "anonymous": "บ่ระบุซื่อ",
     "confirm": "ยืนยัน",
-    "signIn": "เข้าสู่ระบบ"
+    "signIn": "เข้าสู่ระบบ",
+    "takePhoto": "ถ่ายฮูป",
+    "recordVideo": "อัดวิดีโอ"
   },
   "tip": {
     "title": "ส่งทิป",

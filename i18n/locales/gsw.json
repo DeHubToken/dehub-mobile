@@ -486,7 +486,9 @@
     "test": "Täscht",
     "anonymous": "Anonym",
     "confirm": "Bstätige",
-    "signIn": "Aamälde"
+    "signIn": "Aamälde",
+    "takePhoto": "Foto mache",
+    "recordVideo": "Video ufnäh"
   },
   "tip": {
     "title": "Trinkgäld schicke",

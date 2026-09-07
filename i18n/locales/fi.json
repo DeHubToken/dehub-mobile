@@ -486,7 +486,9 @@
     "test": "Testi",
     "anonymous": "Nimetön",
     "confirm": "Vahvista",
-    "signIn": "Kirjaudu sisään"
+    "signIn": "Kirjaudu sisään",
+    "takePhoto": "Ota kuva",
+    "recordVideo": "Tallenna video"
   },
   "postOptions": {
     "options": "Vaihtoehdot",

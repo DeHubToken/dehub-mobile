@@ -486,7 +486,9 @@
     "test": "Qorannoo",
     "anonymous": "Maqaa hin qabne",
     "confirm": "Mirkaneessi",
-    "signIn": "Seeni"
+    "signIn": "Seeni",
+    "takePhoto": "Suuraa kaasi",
+    "recordVideo": "Viidiyoo waraabi"
   },
   "tip": {
     "title": "Tiippii Ergi",

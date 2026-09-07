@@ -82,7 +82,9 @@
     "retry": "Thử lại",
     "test": "Kiểm thử",
     "anonymous": "Ẩn danh",
-    "signIn": "Đăng nhập"
+    "signIn": "Đăng nhập",
+    "takePhoto": "Chụp ảnh",
+    "recordVideo": "Quay video"
   },
   "glossary": {
     "title": "Bảng thuật ngữ",

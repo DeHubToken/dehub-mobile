@@ -486,7 +486,9 @@
     "test": "Тест",
     "anonymous": "Аноним",
     "confirm": "Подтвердить",
-    "signIn": "Войти"
+    "signIn": "Войти",
+    "takePhoto": "Сделать фото",
+    "recordVideo": "Записать видео"
   },
   "drawers": {
     "ppvTitle": "Платный контент",

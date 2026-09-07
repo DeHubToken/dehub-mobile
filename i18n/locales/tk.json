@@ -486,7 +486,9 @@
     "test": "Synag",
     "anonymous": "Näbelli",
     "confirm": "Tassykla",
-    "signIn": "Gir"
+    "signIn": "Gir",
+    "takePhoto": "Surata düşür",
+    "recordVideo": "Wideo ýazga al"
   },
   "postOptions": {
     "options": "Saýlawlar",

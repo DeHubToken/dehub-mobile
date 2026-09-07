@@ -486,7 +486,9 @@
     "test": "جانچ",
     "anonymous": "گمنام",
     "confirm": "تصدیق کرو",
-    "signIn": "سائن ان"
+    "signIn": "سائن ان",
+    "takePhoto": "فوٹو لو",
+    "recordVideo": "ویڈیو ریکارڈ کرو"
   },
   "tip": {
     "title": "ٹپ بھیجو",

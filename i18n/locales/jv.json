@@ -486,7 +486,9 @@
     "test": "Tes",
     "anonymous": "Anonim",
     "confirm": "Konfirmasi",
-    "signIn": "Mlebu"
+    "signIn": "Mlebu",
+    "takePhoto": "Njupuk foto",
+    "recordVideo": "Rekam video"
   },
   "tip": {
     "title": "Kirim Hadiah",

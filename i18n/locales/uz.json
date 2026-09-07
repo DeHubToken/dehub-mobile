@@ -486,7 +486,9 @@
     "test": "Sinov",
     "anonymous": "Anonim",
     "confirm": "Tasdiqlash",
-    "signIn": "Kirish"
+    "signIn": "Kirish",
+    "takePhoto": "Suratga olish",
+    "recordVideo": "Video yozib olish"
   },
   "tip": {
     "title": "Tip yuborish",

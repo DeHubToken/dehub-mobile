@@ -486,7 +486,9 @@
     "test": "Prova",
     "anonymous": "Anònim",
     "confirm": "Confirma",
-    "signIn": "Inicia la sessió"
+    "signIn": "Inicia la sessió",
+    "takePhoto": "Fer una foto",
+    "recordVideo": "Gravar vídeo"
   },
   "tip": {
     "title": "Enviar propina",

@@ -486,7 +486,9 @@
     "test": "પરીક્ષણ",
     "anonymous": "અનામી",
     "confirm": "પુષ્ટિ કરો",
-    "signIn": "સાઇન ઇન"
+    "signIn": "સાઇન ઇન",
+    "takePhoto": "ફોટો લો",
+    "recordVideo": "વિડિઓ રેકોર્ડ કરો"
   },
   "tip": {
     "title": "ટિપ મોકલો",

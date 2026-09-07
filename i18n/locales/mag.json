@@ -486,7 +486,9 @@
     "test": "जाँच",
     "anonymous": "गुमनाम",
     "confirm": "पुष्टि करूँ",
-    "signIn": "साइन इन"
+    "signIn": "साइन इन",
+    "takePhoto": "फोटो खींचू",
+    "recordVideo": "वीडियो रिकॉर्ड करू"
   },
   "tip": {
     "title": "टिप भेजो",
