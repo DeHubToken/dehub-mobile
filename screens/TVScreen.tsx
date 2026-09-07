@@ -148,6 +148,7 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
             channelId={channel.id}
             enabled={!!channel}
             bottomInset={kbVisible ? 0 : insets.bottom}
+            onClosePlayer={onClose}
           />
         )}
       </View>
