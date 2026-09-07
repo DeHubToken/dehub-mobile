@@ -411,18 +411,45 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     setShowJumpBtn(!atBottom);
   }, []);
 
+  const scrollRetryRef = useRef(0);
   const highlightAndScroll = useCallback(
     (messageId: string) => {
       const idx = messageList.findIndex((m) => m._id === messageId);
       if (idx < 0) return;
       setHighlightedId(null);
-      listRef.current?.scrollToIndex({ index: idx, animated: true, viewPosition: 0.3 });
+      scrollRetryRef.current = 0;
+      try {
+        listRef.current?.scrollToIndex({ index: idx, animated: true, viewPosition: 0.3 });
+      } catch {
+        listRef.current?.scrollToOffset({ offset: 0, animated: true });
+      }
       setTimeout(() => {
         setHighlightedId(messageId);
         setTimeout(() => setHighlightedId(null), 4000);
       }, 300);
     },
     [messageList],
+  );
+
+  // The target of a pinned banner or quoted reply can sit far beyond the
+  // cells the list has measured (the store keeps the whole thread). Without
+  // this handler scrollToIndex throws RN's invariant, which is fatal from an
+  // event handler. Jump near the estimated offset, then retry once measured.
+  const onScrollToIndexFailed = useCallback(
+    (info: { index: number; averageItemLength: number }) => {
+      listRef.current?.scrollToOffset({
+        offset: info.averageItemLength * info.index,
+        animated: false,
+      });
+      if (scrollRetryRef.current >= 3) return;
+      scrollRetryRef.current += 1;
+      setTimeout(() => {
+        try {
+          listRef.current?.scrollToIndex({ index: info.index, animated: true, viewPosition: 0.3 });
+        } catch {}
+      }, 250);
+    },
+    [],
   );
 
   // Depends on highlightAndScroll — must be declared after it
@@ -1560,6 +1587,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               onContentSizeChange={onContentSizeChange}
               onEndReached={loadMore}
               onEndReachedThreshold={0.3}
+              onScrollToIndexFailed={onScrollToIndexFailed}
               ListFooterComponent={listFooter}
             />
           )}
