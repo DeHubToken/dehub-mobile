@@ -279,6 +279,7 @@ export default function AccountsScreen() {
           ) : (
             <FlatList
               data={listings}
+              keyboardShouldPersistTaps="handled"
               keyExtractor={(l) => l.id}
               renderItem={({ item }) => (
                 <AccountCard listing={item} onPress={() => openListing(item)} />
