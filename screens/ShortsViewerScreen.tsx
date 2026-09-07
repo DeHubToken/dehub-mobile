@@ -462,6 +462,29 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
     };
   }, [isActive, player]);
 
+  // A screen pushed over the viewer (quote, comments, a profile) keeps this
+  // item mounted, and freezeOnBlur stops it re-rendering, so the effect above
+  // never sees a change and the short keeps looping underneath. The
+  // navigation emitter fires regardless of freeze, so pause on blur there and
+  // resume on focus if this is still the active, unpaused item.
+  const itemNavigation = useNavigation();
+  useEffect(() => {
+    if (!player) return;
+    const onBlur = () => {
+      try { player.pause(); } catch {}
+    };
+    const onFocus = () => {
+      if (!isActive || isPausedByUser) return;
+      try { player.play(); } catch {}
+    };
+    const unsubBlur = itemNavigation.addListener("blur", onBlur);
+    const unsubFocus = itemNavigation.addListener("focus", onFocus);
+    return () => {
+      unsubBlur();
+      unsubFocus();
+    };
+  }, [itemNavigation, player, isActive, isPausedByUser]);
+
   useEffect(() => {
     if (!player) return;
     try { player.muted = isMuted; } catch {}
