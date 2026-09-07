@@ -1059,7 +1059,12 @@
     "newNotification": "નવી સૂચના",
     "oneOther": "1 અન્ય",
     "nOthers": "{{count}} અન્ય",
-    "clearNotification": "સૂચના સાફ કરો"
+    "clearNotification": "સૂચના સાફ કરો",
+    "reactions": "પ્રતિક્રિયાઓ",
+    "payments": "ચુકવણીઓ",
+    "claimBounty": "તમારું ઇનામ મેળવો",
+    "noneForFilter": "હજી કોઈ {{filter}} સૂચનાઓ નથી.",
+    "andNOthers": "અને {{count}} અન્ય"
   },
   "leaderboard": {
     "title": "લીડરબોર્ડ",

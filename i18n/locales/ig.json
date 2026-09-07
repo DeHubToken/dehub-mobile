@@ -1124,7 +1124,12 @@
     "newNotification": "Ọkwa ọhụrụ",
     "oneOther": "1 ọzọ",
     "nOthers": "{{count}} ndị ọzọ",
-    "clearNotification": "Hichapụ ọkwa"
+    "clearNotification": "Hichapụ ọkwa",
+    "reactions": "Mmeghachi omume",
+    "payments": "Ịkwụ ụgwọ",
+    "claimBounty": "Nweta ụgwọ gị",
+    "noneForFilter": "Enwebeghị ọkwa {{filter}}.",
+    "andNOthers": "na {{count}} ndị ọzọ"
   },
   "leaderboard": {
     "title": "Ndepụta Ọkwa",

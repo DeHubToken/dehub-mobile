@@ -1059,7 +1059,12 @@
     "newNotification": "Naujas pranešimas",
     "oneOther": "1 kitas",
     "nOthers": "{{count}} kitų",
-    "clearNotification": "Išvalyti pranešimą"
+    "clearNotification": "Išvalyti pranešimą",
+    "reactions": "Reakcijos",
+    "payments": "Mokėjimai",
+    "claimBounty": "Atsiimkite atlygį",
+    "noneForFilter": "Kol kas nėra {{filter}} pranešimų.",
+    "andNOthers": "ir dar {{count}}"
   },
   "leaderboard": {
     "title": "Lyderių lentelė",

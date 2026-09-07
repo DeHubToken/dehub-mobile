@@ -1030,7 +1030,12 @@
     "newNotification": "नवीन सूचना",
     "oneOther": "1 इतर",
     "nOthers": "{{count}} इतर",
-    "clearNotification": "सूचना साफ करा"
+    "clearNotification": "सूचना साफ करा",
+    "reactions": "प्रतिक्रिया",
+    "payments": "पेमेंट",
+    "claimBounty": "तुमचे बक्षीस मिळवा",
+    "noneForFilter": "अजून {{filter}} सूचना नाहीत.",
+    "andNOthers": "आणि इतर {{count}}"
   },
   "leaderboard": {
     "title": "लीडरबोर्ड",

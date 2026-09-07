@@ -1059,7 +1059,12 @@
     "newNotification": "ಹೊಸ ಅಧಿಸೂಚನೆ",
     "oneOther": "1 ಇತರ",
     "nOthers": "{{count}} ಇತರರು",
-    "clearNotification": "ಅಧಿಸೂಚನೆ ತೆರವುಗೊಳಿಸಿ"
+    "clearNotification": "ಅಧಿಸೂಚನೆ ತೆರವುಗೊಳಿಸಿ",
+    "reactions": "ಪ್ರತಿಕ್ರಿಯೆಗಳು",
+    "payments": "ಪಾವತಿಗಳು",
+    "claimBounty": "ನಿಮ್ಮ ಬಹುಮಾನ ಪಡೆಯಿರಿ",
+    "noneForFilter": "ಇನ್ನೂ {{filter}} ಅಧಿಸೂಚನೆಗಳಿಲ್ಲ.",
+    "andNOthers": "ಮತ್ತು ಇತರ {{count}}"
   },
   "leaderboard": {
     "title": "ಲೀಡರ್‌ಬೋರ್ಡ್",

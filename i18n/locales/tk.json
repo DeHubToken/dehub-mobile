@@ -1120,7 +1120,12 @@
     "newNotification": "Täze bildiriş",
     "oneOther": "1 beýleki",
     "nOthers": "{{count}} beýleki",
-    "clearNotification": "Habarnamany arassala"
+    "clearNotification": "Habarnamany arassala",
+    "reactions": "Reaksiýalar",
+    "payments": "Tölegler",
+    "claimBounty": "Baýragyňy al",
+    "noneForFilter": "Häzirlikçe {{filter}} habarnamasy ýok.",
+    "andNOthers": "we ýene {{count}}"
   },
   "messages": {
     "smartRepliesOff": "Teklip edilýän jogaplar öçürildi",

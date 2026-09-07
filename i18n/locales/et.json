@@ -1059,7 +1059,12 @@
     "newNotification": "Uus teade",
     "oneOther": "1 teine",
     "nOthers": "{{count}} teist",
-    "clearNotification": "Kustuta teavitus"
+    "clearNotification": "Kustuta teavitus",
+    "reactions": "Reaktsioonid",
+    "payments": "Maksed",
+    "claimBounty": "Võta oma preemia",
+    "noneForFilter": "Veel pole ühtegi {{filter}} teavitust.",
+    "andNOthers": "ja veel {{count}}"
   },
   "leaderboard": {
     "title": "Edetabel",

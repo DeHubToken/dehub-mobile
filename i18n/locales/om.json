@@ -1072,7 +1072,12 @@
     "postRemoved": "Your post was removed",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "Beeksisa haqi"
+    "clearNotification": "Beeksisa haqi",
+    "reactions": "Deebii",
+    "payments": "Kaffaltiiwwan",
+    "claimBounty": "Badhaasa kee fudhadhu",
+    "noneForFilter": "Ammaan tana beeksisni {{filter}} hin jiru.",
+    "andNOthers": "fi kanneen {{count}}"
   },
   "leaderboard": {
     "title": "Sadarkaa",

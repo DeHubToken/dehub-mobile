@@ -1039,7 +1039,12 @@
     "newNotification": "Жаңа хабарландыру",
     "oneOther": "1 басқа",
     "nOthers": "{{count}} басқа",
-    "clearNotification": "Хабарландыруды тазарту"
+    "clearNotification": "Хабарландыруды тазарту",
+    "reactions": "Реакциялар",
+    "payments": "Төлемдер",
+    "claimBounty": "Сыйақыңызды алыңыз",
+    "noneForFilter": "Әзірге {{filter}} хабарландырулары жоқ.",
+    "andNOthers": "және тағы {{count}}"
   },
   "leaderboard": {
     "title": "Рейтинг",

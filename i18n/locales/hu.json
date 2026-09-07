@@ -1030,7 +1030,12 @@
     "newNotification": "Új értesítés",
     "oneOther": "1 másik",
     "nOthers": "{{count}} másik",
-    "clearNotification": "Értesítés törlése"
+    "clearNotification": "Értesítés törlése",
+    "reactions": "Reakciók",
+    "payments": "Fizetések",
+    "claimBounty": "Vedd át a jutalmad",
+    "noneForFilter": "Még nincs {{filter}} értesítés.",
+    "andNOthers": "és még {{count}}"
   },
   "leaderboard": {
     "title": "Ranglista",

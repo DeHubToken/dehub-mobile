@@ -1030,7 +1030,12 @@
     "newNotification": "Новое уведомление",
     "oneOther": "1 другой",
     "nOthers": "{{count}} других",
-    "clearNotification": "Убрать уведомление"
+    "clearNotification": "Убрать уведомление",
+    "reactions": "Реакции",
+    "payments": "Платежи",
+    "claimBounty": "Забрать награду",
+    "noneForFilter": "Уведомлений ({{filter}}) пока нет.",
+    "andNOthers": "и ещё {{count}}"
   },
   "leaderboard": {
     "title": "Рейтинг",

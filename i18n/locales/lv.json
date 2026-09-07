@@ -1059,7 +1059,12 @@
     "newNotification": "Jauns paziņojums",
     "oneOther": "1 cits",
     "nOthers": "{{count}} citi",
-    "clearNotification": "Notīrīt paziņojumu"
+    "clearNotification": "Notīrīt paziņojumu",
+    "reactions": "Reakcijas",
+    "payments": "Maksājumi",
+    "claimBounty": "Saņem savu atlīdzību",
+    "noneForFilter": "Vēl nav {{filter}} paziņojumu.",
+    "andNOthers": "un vēl {{count}}"
   },
   "leaderboard": {
     "title": "Līderu tabula",

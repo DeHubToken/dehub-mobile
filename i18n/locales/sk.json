@@ -594,7 +594,12 @@
     "newNotification": "New notification",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "Vymazať upozornenie"
+    "clearNotification": "Vymazať upozornenie",
+    "reactions": "Reakcie",
+    "payments": "Platby",
+    "claimBounty": "Vyzdvihnúť odmenu",
+    "noneForFilter": "Zatiaľ žiadne upozornenia ({{filter}}).",
+    "andNOthers": "a {{count}} ďalších"
   },
   "messages": {
     "smartRepliesOff": "Navrhované odpovede sú vypnuté",

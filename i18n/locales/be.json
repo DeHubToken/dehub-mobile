@@ -1072,7 +1072,12 @@
     "newNotification": "New notification",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "Прыбраць апавяшчэнне"
+    "clearNotification": "Прыбраць апавяшчэнне",
+    "reactions": "Рэакцыі",
+    "payments": "Плацяжы",
+    "claimBounty": "Атрымаць узнагароду",
+    "noneForFilter": "Пакуль няма апавяшчэнняў ({{filter}}).",
+    "andNOthers": "і яшчэ {{count}}"
   },
   "leaderboard": {
     "title": "Табліца лідараў",

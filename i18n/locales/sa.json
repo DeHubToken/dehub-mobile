@@ -1059,7 +1059,12 @@
     "newNotification": "नवसूचना",
     "oneOther": "१ अन्यः",
     "nOthers": "{{count}} अन्ये",
-    "clearNotification": "सूचनां निष्कासयतु"
+    "clearNotification": "सूचनां निष्कासयतु",
+    "reactions": "प्रतिक्रियाः",
+    "payments": "भुगतानानि",
+    "claimBounty": "स्वपुरस्कारं गृह्णातु",
+    "noneForFilter": "अद्यापि {{filter}} सूचना नास्ति।",
+    "andNOthers": "अन्ये {{count}} च"
   },
   "leaderboard": {
     "title": "श्रेष्ठतासूची",

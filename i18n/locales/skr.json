@@ -1059,7 +1059,12 @@
     "newNotification": "نویں اطلاع",
     "oneOther": "1 ہور",
     "nOthers": "{{count}} ہور",
-    "clearNotification": "اطلاع مٹاؤ"
+    "clearNotification": "اطلاع مٹاؤ",
+    "reactions": "ردعمل",
+    "payments": "ادائیگیاں",
+    "claimBounty": "آپݨا انعام گھنو",
+    "noneForFilter": "ہالے تک {{filter}} دی کوئی اطلاع کائنی۔",
+    "andNOthers": "تے {{count}} ٻئے"
   },
   "leaderboard": {
     "title": "لیڈر بورڈ",

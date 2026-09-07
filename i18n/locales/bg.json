@@ -1030,7 +1030,12 @@
     "newNotification": "Ново известие",
     "oneOther": "1 друг",
     "nOthers": "{{count}} други",
-    "clearNotification": "Изчистване на известието"
+    "clearNotification": "Изчистване на известието",
+    "reactions": "Реакции",
+    "payments": "Плащания",
+    "claimBounty": "Вземи наградата си",
+    "noneForFilter": "Все още няма известия за {{filter}}.",
+    "andNOthers": "и още {{count}}"
   },
   "leaderboard": {
     "title": "Класация",

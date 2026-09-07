@@ -1120,7 +1120,12 @@
     "newNotification": "Жаңы билдирүү",
     "oneOther": "1 башка",
     "nOthers": "{{count}} башка",
-    "clearNotification": "Эскертмени тазалоо"
+    "clearNotification": "Эскертмени тазалоо",
+    "reactions": "Реакциялар",
+    "payments": "Төлөмдөр",
+    "claimBounty": "Сыйлыгыңызды алыңыз",
+    "noneForFilter": "Азырынча {{filter}} билдирмелери жок.",
+    "andNOthers": "жана дагы {{count}}"
   },
   "messages": {
     "smartRepliesOff": "Сунушталган жооптор өчүрүлдү",
