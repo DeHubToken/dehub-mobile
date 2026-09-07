@@ -182,7 +182,13 @@ const FullscreenVideoScreen = () => {
 
   useEffect(() => {
     StatusBar.setHidden(true);
-    return () => { StatusBar.setHidden(false); };
+    return () => {
+      StatusBar.setHidden(false);
+      // The orientation lock is process-wide and outlives this screen. The
+      // interactive back gesture pops without closeScreen, which used to leave
+      // the whole app in landscape.
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP).catch(() => {});
+    };
   }, []);
 
   const closeScreen = useCallback(() => {
