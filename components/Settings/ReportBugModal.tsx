@@ -65,10 +65,15 @@ const ReportBugModal: React.FC<ReportBugModalProps> = ({
       const url = `mailto:${toList}?subject=${encodeURIComponent(
         subject
       )}&body=${encodeURIComponent(body)}`;
-      const supported = await Linking.canOpenURL(url);
-      if (supported) {
+      // No canOpenURL gate: on Android 11+ it answers false for a mailto:
+      // intent unless the manifest declares a matching <queries> entry, which
+      // sent every device to the bare-address fallback with no subject or
+      // body. openURL itself is not subject to package visibility.
+      try {
         await Linking.openURL(url);
         return;
+      } catch (e) {
+        console.warn("[Settings] Full mailto failed", e);
       }
 
       // Fallback 1: Just email addresses
