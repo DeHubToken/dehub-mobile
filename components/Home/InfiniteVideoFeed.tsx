@@ -839,6 +839,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         // one it measured before, so appending a page mid-fling walks the
         // viewport backwards instead of holding it. Virtualisation still
         // unmounts distant rows; only the native detach-in-place trick goes.
+        // Omitting the prop is NOT off: RN defaults it to true on Android.
+        removeClippedSubviews={false}
         updateCellsBatchingPeriod={80}
         contentContainerStyle={
           contentContainerStyle || {
