@@ -86,8 +86,8 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
       translateY.value = withTiming(SHEET_HEIGHT, {
         duration: 220,
         easing: Easing.in(Easing.cubic),
-      }, () => {
-        runOnJS(setIsFullyClosed)(true);
+      }, (finished) => {
+        if (finished) runOnJS(setIsFullyClosed)(true);
       });
       backdropOpacity.value = withTiming(0, { duration: 180 });
     }
@@ -102,8 +102,8 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
     translateY.value = withTiming(SHEET_HEIGHT, {
       duration: 220,
       easing: Easing.in(Easing.cubic),
-    }, () => {
-      runOnJS(finishClose)();
+    }, (finished) => {
+      if (finished) runOnJS(finishClose)();
     });
     backdropOpacity.value = withTiming(0, { duration: 180 });
   }, [translateY, backdropOpacity, finishClose, SHEET_HEIGHT]);
