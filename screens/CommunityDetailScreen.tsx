@@ -303,7 +303,7 @@ const CommunityDetailScreen: React.FC = () => {
         <View className="flex-row items-start justify-between gap-2">
           <View className="flex-1">
             <View className="flex-row items-center gap-2">
-              <Text className="text-white text-xl font-bold" numberOfLines={2}>
+              <Text className="text-white text-xl font-bold" style={{ flexShrink: 1 }} numberOfLines={2}>
                 {community.name}
               </Text>
               {community.is_private && <Icon name="Lock" size={14} color="#808089" />}
