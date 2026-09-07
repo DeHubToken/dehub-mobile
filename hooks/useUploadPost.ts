@@ -351,7 +351,7 @@ export function useUploadPost() {
 
       return true;
     },
-    [buildStreamInfo, user?.walletAddress, user?.address, activeChainId],
+    [buildStreamInfo, user?.walletAddress, user?.address, activeChainId, myPlanIds],
   );
 
   const enqueueQuoteJob = useCallback(
