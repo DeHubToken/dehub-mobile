@@ -174,6 +174,7 @@ const FadeEdgeRow: React.FC<{ children: React.ReactNode }> = memo(({ children })
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
       contentContainerStyle={sectionStyles.rowContent}
       onLayout={handleLayout}
       onContentSizeChange={handleContentSizeChange}
@@ -343,6 +344,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
       <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEnabled={innerScrollEnabled}
+        keyboardShouldPersistTaps="handled"
         contentContainerStyle={panelStyles.content}
       >
         {!hideSort && (
