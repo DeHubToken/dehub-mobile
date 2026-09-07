@@ -533,6 +533,9 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
       ) : (
         <FlatList
           ref={listRef}
+          // "Show earlier messages" prepends a page; without this the list jumped
+          // to the top of the new page instead of holding the reader in place.
+          maintainVisibleContentPosition={{ minIndexForVisible: 0 }}
           data={visibleMessages}
           keyExtractor={(m) => m.id}
           renderItem={renderItem}
