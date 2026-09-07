@@ -742,7 +742,13 @@
     "signInTv": "ลงชื่อเข้าใช้บนทีวี",
     "signInTvDesc": "พิมพ์รหัสที่แสดงบนทีวี",
     "tvRequests": "คำขอจากทีวี",
-    "tvRequestsDesc": "อนุมัติทิปที่ทีวีขอให้คุณลงนาม"
+    "tvRequestsDesc": "อนุมัติทิปที่ทีวีขอให้คุณลงนาม",
+    "publicChatAlerts": "แชทสาธารณะ",
+    "publicChatAlertsDesc": "รับการแจ้งเตือนเมื่อมีการแชทสาธารณะในขณะที่คุณอยู่ที่อื่น",
+    "publicChatAlertsOnDesc": "การยืดเส้นยืดสายที่วุ่นวายจะมาถึงเมื่อมีการแจ้งเตือนรวมกัน",
+    "publicChatAlertsRate": "อย่างมาก",
+    "publicChatAlertsRateOption": "{{count}} ต่อชั่วโมง",
+    "publicChatAlertsRateHint": "ไม่มีอะไรสูญหายเมื่อห้องพักยุ่งกว่านี้ข้อความจะถูกเก็บไว้และมาถึงพร้อมกันในการแจ้งเตือนครั้งต่อไป"
   },
   "postOptions": {
     "options": "ตัวเลือก",
@@ -2584,5 +2590,17 @@
     "pricing": "กำลังคำนวณราคา…",
     "payWithDhb": "จ่ายด้วย DHB",
     "yourDhb": "DHB ของคุณ"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} และ {{count}} อื่นๆ",
+    "andOthers_other": "{{names}} และ {{count}} คนอื่นๆ",
+    "someone": "ใครบางคน"
+  },
+  "publicChatAlerts": {
+    "title": "แชทสาธารณะ",
+    "mentionTitle": "พูดถึงในแชทสาธารณะ",
+    "digest": "{{count}} ข้อความใหม่จาก {{who}}: {{message}}",
+    "voiceMessage": "ข้อความเสียง",
+    "image": "ส่งภาพแล้ว"
   }
 }

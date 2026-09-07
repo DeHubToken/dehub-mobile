@@ -965,7 +965,13 @@
     "signInTv": "Log masuk di TV",
     "signInTvDesc": "Taip kod yang dipaparkan televisyen anda",
     "tvRequests": "Permintaan TV",
-    "tvRequestsDesc": "Luluskan tip yang televisyen minta anda tandatangani"
+    "tvRequestsDesc": "Luluskan tip yang televisyen minta anda tandatangani",
+    "publicChatAlerts": "Sembang awam",
+    "publicChatAlertsDesc": "Diberitahu apabila sembang awam sedang bercakap semasa anda berada di tempat lain",
+    "publicChatAlertsOnDesc": "Rentang sibuk tiba sebagai satu amaran gabungan",
+    "publicChatAlertsRate": "Paling banyak",
+    "publicChatAlertsRateOption": "{{count}} sejam",
+    "publicChatAlertsRateHint": "Tiada apa yang hilang apabila bilik lebih sibuk daripada ini — mesej ditahan dan tiba bersama-sama pada makluman seterusnya."
   },
   "postOptions": {
     "options": "Options",
@@ -2809,5 +2815,17 @@
     "pricing": "Mengira harga…",
     "payWithDhb": "Bayar dengan DHB",
     "yourDhb": "DHB anda"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} dan {{count}} lain",
+    "andOthers_other": "{{names}} dan {{count}} yang lain",
+    "someone": "Seseorang"
+  },
+  "publicChatAlerts": {
+    "title": "Sembang awam",
+    "mentionTitle": "Disebut dalam sembang awam",
+    "digest": "{{count}} mesej baharu daripada {{who}}: {{message}}",
+    "voiceMessage": "Mesej suara",
+    "image": "Menghantar imej"
   }
 }

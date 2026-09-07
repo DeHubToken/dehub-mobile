@@ -460,7 +460,13 @@
     "signInTv": "ટીવીમાં સાઇન ઇન કરો",
     "signInTvDesc": "તમારું ટીવી બતાવે છે તે કોડ લખો",
     "tvRequests": "ટીવી વિનંતીઓ",
-    "tvRequestsDesc": "તમારું ટીવી સાઇન કરવા કહે તે ટિપ્સ મંજૂર કરો"
+    "tvRequestsDesc": "તમારું ટીવી સાઇન કરવા કહે તે ટિપ્સ મંજૂર કરો",
+    "publicChatAlerts": "સાર્વજનિક ચેટ",
+    "publicChatAlertsDesc": "જ્યારે તમે બીજે ક્યાંક હોવ ત્યારે જાહેર ચેટ વાત કરી રહી હોય ત્યારે જણાવો",
+    "publicChatAlertsOnDesc": "વ્યસ્ત સ્ટ્રેચ એક સંયુક્ત ચેતવણી તરીકે આવે છે",
+    "publicChatAlertsRate": "વધુમાં વધુ",
+    "publicChatAlertsRateOption": "{{count}}@ એક કલાક",
+    "publicChatAlertsRateHint": "જ્યારે રૂમ આના કરતાં વધુ વ્યસ્ત હોય ત્યારે કંઈપણ ખોવાઈ જતું નથી — સંદેશાઓ રાખવામાં આવે છે અને આગલી ચેતવણી પર એક સાથે આવે છે."
   },
   "common": {
     "mute": "મ્યૂટ કરો",
@@ -2542,5 +2548,16 @@
     "pricing": "કિંમત ગણાઈ રહી છે…",
     "payWithDhb": "DHB થી ચૂકવો",
     "yourDhb": "તમારું DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} અને {{count}}@ અન્ય",
+    "andOthers_other": "{{names}} અને {{count}}@ અન્ય",
+    "someone": "કોઈક"
+  },
+  "publicChatAlerts": {
+    "title": "સાર્વજનિક ચેટ",
+    "mentionTitle": "સાર્વજનિક ચેટમાં ઉલ્લેખિત",
+    "voiceMessage": "વૉઇસ સંદેશ",
+    "image": "એક ચિત્ર મોકલ્યું"
   }
 }

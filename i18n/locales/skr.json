@@ -460,7 +460,13 @@
     "signInTv": "ٹی وی وچ سائن ان کرو",
     "signInTvDesc": "او کوڈ لکھو جیہڑا تہاڈا ٹی وی ݙکھیندا پیا ہے",
     "tvRequests": "ٹی وی دیاں درخواستاں",
-    "tvRequestsDesc": "او ٹپس منظور کرو جیہڑے تہاڈا ٹی وی سائن کرݨ کیتے آکھے"
+    "tvRequestsDesc": "او ٹپس منظور کرو جیہڑے تہاڈا ٹی وی سائن کرݨ کیتے آکھے",
+    "publicChatAlerts": "عوامی چیٹ",
+    "publicChatAlertsDesc": "عوامی چیٹ دے دوران ٻڌايو وڃي جڏهن توهان ٻئي هنڌ آهيو",
+    "publicChatAlertsOnDesc": "مصروفيت واريون لهرون گڏيل اطلاع جي صورت ۾ اچن ٿيون",
+    "publicChatAlertsRate": "گهٽ ۾ گهٽ",
+    "publicChatAlertsRateOption": "{{count}} هڪ ڪلاڪ ۾",
+    "publicChatAlertsRateHint": "جڏهن ڪمرو ان کان وڌيڪ مصروف هجي ته ڪجهه به ضايع نٿو ٿئي - پيغام رڪجي ويندا آهن ۽ ايندڙ اطلاع تي گڏجي اچن ٿا."
   },
   "common": {
     "mute": "آواز بند کرو",
@@ -2543,5 +2549,17 @@
     "pricing": "قیمت کڈھی ونڄدی پئی ہے…",
     "payWithDhb": "DHB نال ادائیگی کرو",
     "yourDhb": "تہاڈا DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} ۽ {{count}} ٻيا",
+    "andOthers_other": "{{names}} ۽ {{count}} ٻيا",
+    "someone": "ڪو ماڻهو"
+  },
+  "publicChatAlerts": {
+    "title": "عوامی چیٹ",
+    "mentionTitle": "عوامي چيٽ ۾ ذڪر ڪيو ويو",
+    "digest": "{{count}} نوان پيغام {{who}} کان: {{message}}",
+    "voiceMessage": "آواز جو پيغام",
+    "image": "تصوير موڪلي"
   }
 }

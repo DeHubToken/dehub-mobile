@@ -460,7 +460,13 @@
     "signInTv": "Ngena ku-TV",
     "signInTvDesc": "Thayipha ikhodi ebonisa i-TV yakho",
     "tvRequests": "Izicelo ze-TV",
-    "tvRequestsDesc": "Vumela amathiphu i-TV yakho ecela ukuthi uwasayine"
+    "tvRequestsDesc": "Vumela amathiphu i-TV yakho ecela ukuthi uwasayine",
+    "publicChatAlerts": "Ingxoxo yomphakathi",
+    "publicChatAlertsDesc": "Tshelwa lapho ingxoxo yomphakathi ikhuluma ngenkathi ukwezinye izindawo",
+    "publicChatAlertsOnDesc": "Ukunwebeka okumatasa kufika njengomyalezo owodwa ohlangene",
+    "publicChatAlertsRate": "Kakhulu",
+    "publicChatAlertsRateOption": "{{count}} ihora",
+    "publicChatAlertsRateHint": "Ayikho into elahlekile lapho igumbi limatasa kakhulu kunalokhu — imiyalezo ibanjwa futhi ifika ndawonye kumyalezo olandelayo."
   },
   "common": {
     "mute": "Thulisa",
@@ -2574,5 +2580,15 @@
     "pricing": "Ibala intengo…",
     "payWithDhb": "Khokha nge-DHB",
     "yourDhb": "I-DHB yakho"
+  },
+  "digest": {
+    "someone": "Othile"
+  },
+  "publicChatAlerts": {
+    "title": "Ingxoxo yomphakathi",
+    "mentionTitle": "Kushiwo engxoxweni yomphakathi",
+    "digest": "{{count}} @ imiyalezo emisha evela ku-{{who}}: {{message}}",
+    "voiceMessage": "Umlayezo wezwi",
+    "image": "Thumela isithombe"
   }
 }

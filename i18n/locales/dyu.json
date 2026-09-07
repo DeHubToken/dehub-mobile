@@ -460,7 +460,12 @@
     "signInTv": "Ka don TV kɔnɔ",
     "signInTvDesc": "Kode min bɛ TV kan, o sɛbɛn",
     "tvRequests": "TV ɲininkaliw",
-    "tvRequestsDesc": "TV bɛ tip minnu ɲini ka sinyɛ, o jɔnjɔn"
+    "tvRequestsDesc": "TV bɛ tip minnu ɲini ka sinyɛ, o jɔnjɔn",
+    "publicChatAlerts": "Jama ka baro",
+    "publicChatAlertsDesc": "N'i be yɔrɔ wɛrɛ la, i ka kan ka kuma jama fɛ tuma min na",
+    "publicChatAlertsOnDesc": "O kɔ, u y'a fɔ ko: \"Aw ye to ka taga n'a ye\".",
+    "publicChatAlertsRate": "Ka tɛmɛ",
+    "publicChatAlertsRateHint": "O kama, n'i ye mɔgɔ dɔ ye, i be se k'a fɔ ko i ye mɔgɔ dɔ ye min be se ka mɔgɔ dɔ faga."
   },
   "common": {
     "mute": "Kan bɔ",
@@ -2543,5 +2548,14 @@
     "pricing": "Sɔngɔ bɛ jate…",
     "payWithDhb": "Sara ni DHB ye",
     "yourDhb": "I ka DHB"
+  },
+  "digest": {
+    "someone": "Mɔgɔ dɔ"
+  },
+  "publicChatAlerts": {
+    "title": "Jama ka baro",
+    "mentionTitle": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
+    "voiceMessage": "N'i ye n ka kuma lamɛn,",
+    "image": "I ka jaa dɔ ta"
   }
 }

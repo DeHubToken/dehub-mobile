@@ -460,7 +460,13 @@
     "signInTv": "Zaloguj się na telewizorze",
     "signInTvDesc": "Wpisz kod wyświetlany na telewizorze",
     "tvRequests": "Żądania z telewizora",
-    "tvRequestsDesc": "Zatwierdzaj napiwki, o których podpisanie prosi telewizor"
+    "tvRequestsDesc": "Zatwierdzaj napiwki, o których podpisanie prosi telewizor",
+    "publicChatAlerts": "Czat publiczny",
+    "publicChatAlertsDesc": "Otrzymuj informacje, gdy czat publiczny mówi, podczas gdy jesteś gdzie indziej",
+    "publicChatAlertsOnDesc": "Ruchliwe odcinki docierają jako jeden połączony alert",
+    "publicChatAlertsRate": "Co najwyżej",
+    "publicChatAlertsRateOption": "{{count}} na godzinę",
+    "publicChatAlertsRateHint": "Nic nie zostanie utracone, gdy w pokoju panuje większy ruch — wiadomości są przechowywane i docierają razem w następnym alarmie."
   },
   "common": {
     "mute": "Wycisz",
@@ -2611,5 +2617,17 @@
     "pricing": "Wyliczanie ceny…",
     "payWithDhb": "Zapłać w DHB",
     "yourDhb": "Twoje DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} i {{count}} inne",
+    "andOthers_other": "{{names}} i {{count}} innych",
+    "someone": "Ktoś"
+  },
+  "publicChatAlerts": {
+    "title": "Czat publiczny",
+    "mentionTitle": "Wymienione na czacie publicznym",
+    "digest": "{{count}} nowych wiadomości od {{who}}: {{message}}",
+    "voiceMessage": "Wiadomość głosowa",
+    "image": "Wysłano zdjęcie"
   }
 }

@@ -460,7 +460,13 @@
     "signInTv": "Logga in på en TV",
     "signInTvDesc": "Skriv koden som din TV visar",
     "tvRequests": "TV-förfrågningar",
-    "tvRequestsDesc": "Godkänn dricks som din TV ber dig signera"
+    "tvRequestsDesc": "Godkänn dricks som din TV ber dig signera",
+    "publicChatAlerts": "Offentlig chatt",
+    "publicChatAlertsDesc": "Få veta när den offentliga chatten pratar medan du är någon annanstans",
+    "publicChatAlertsOnDesc": "Upptagna sträckor anländer som en kombinerad varning",
+    "publicChatAlertsRate": "Som mest",
+    "publicChatAlertsRateOption": "{{count}} en timme",
+    "publicChatAlertsRateHint": "Ingenting går förlorat när rummet är mer upptagen än så här — meddelandena hålls kvar och anländer tillsammans vid nästa varning."
   },
   "common": {
     "mute": "Stäng av ljud",
@@ -2547,5 +2553,17 @@
     "pricing": "Beräknar pris…",
     "payWithDhb": "Betala med DHB",
     "yourDhb": "Dina DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} och {{count}} annan",
+    "andOthers_other": "{{names}} och {{count}} andra",
+    "someone": "Någon"
+  },
+  "publicChatAlerts": {
+    "title": "Offentlig chatt",
+    "mentionTitle": "Nämns i allmän chatt",
+    "digest": "{{count}} nya meddelanden från {{who}}: {{message}}",
+    "voiceMessage": "Röstmeddelande",
+    "image": "Skickade en bild"
   }
 }

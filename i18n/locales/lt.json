@@ -460,7 +460,13 @@
     "signInTv": "Prisijungti televizoriuje",
     "signInTvDesc": "Įveskite televizoriuje rodomą kodą",
     "tvRequests": "Televizoriaus užklausos",
-    "tvRequestsDesc": "Patvirtinkite arbatpinigius, kuriuos prašo pasirašyti televizorius"
+    "tvRequestsDesc": "Patvirtinkite arbatpinigius, kuriuos prašo pasirašyti televizorius",
+    "publicChatAlerts": "Viešas pokalbis",
+    "publicChatAlertsDesc": "Gaukite informaciją, kada viešas pokalbis vyksta jums būnant kur nors kitur",
+    "publicChatAlertsOnDesc": "Didelio aktyvumo ruožai pasiekiami kaip vienas bendras įspėjimas",
+    "publicChatAlertsRate": "Daugiausia",
+    "publicChatAlertsRateOption": "{{count}} valanda",
+    "publicChatAlertsRateHint": "Niekas neprarandama, kai kambarys užimtas labiau nei šis — žinutės laikomos ir gaunamos kartu su kitu įspėjimu."
   },
   "common": {
     "mute": "Nutildyti",
@@ -2543,5 +2549,17 @@
     "pricing": "Skaičiuojama kaina…",
     "payWithDhb": "Mokėti DHB",
     "yourDhb": "Jūsų DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} ir {{count}} kita",
+    "andOthers_other": "{{names}} ir {{count}} kiti",
+    "someone": "Kažkas"
+  },
+  "publicChatAlerts": {
+    "title": "Viešas pokalbis",
+    "mentionTitle": "Paminėta viešame pokalbyje",
+    "digest": "{{count}} naujos žinutės iš {{who}}: {{message}}",
+    "voiceMessage": "Balso žinutė",
+    "image": "Išsiųsta nuotrauka"
   }
 }

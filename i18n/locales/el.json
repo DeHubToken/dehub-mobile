@@ -460,7 +460,13 @@
     "signInTv": "Σύνδεση σε τηλεόραση",
     "signInTvDesc": "Πληκτρολογήστε τον κωδικό που δείχνει η τηλεόραση",
     "tvRequests": "Αιτήματα τηλεόρασης",
-    "tvRequestsDesc": "Εγκρίνετε τα φιλοδωρήματα που ζητά να υπογράψετε η τηλεόραση"
+    "tvRequestsDesc": "Εγκρίνετε τα φιλοδωρήματα που ζητά να υπογράψετε η τηλεόραση",
+    "publicChatAlerts": "Δημόσια συνομιλία",
+    "publicChatAlertsDesc": "Ενημερωθείτε όταν η δημόσια συνομιλία μιλάει ενώ βρίσκεστε κάπου αλλού",
+    "publicChatAlertsOnDesc": "Οι πολυσύχναστες εκτάσεις φτάνουν ως μία συνδυασμένη ειδοποίηση",
+    "publicChatAlertsRate": "Το πολύ",
+    "publicChatAlertsRateOption": "{{count}} την ώρα",
+    "publicChatAlertsRateHint": "Τίποτα δεν χάνεται όταν το δωμάτιο είναι πιο απασχολημένο από αυτό — τα μηνύματα κρατούνται και φτάνουν μαζί στην επόμενη ειδοποίηση."
   },
   "common": {
     "mute": "Σίγαση",
@@ -2572,5 +2578,17 @@
     "pricing": "Υπολογισμός κόστους…",
     "payWithDhb": "Πληρωμή με DHB",
     "yourDhb": "Τα DHB σας"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} και {{count}} άλλα",
+    "andOthers_other": "{{names}} και {{count}} ακόμα άτομα",
+    "someone": "Κάποιος"
+  },
+  "publicChatAlerts": {
+    "title": "Δημόσια συνομιλία",
+    "mentionTitle": "Αναφέρεται σε δημόσια συνομιλία",
+    "digest": "{{count}} νέα μηνύματα από {{who}}: {{message}}",
+    "voiceMessage": "Φωνητικό μήνυμα",
+    "image": "Αποστολή εικόνας"
   }
 }

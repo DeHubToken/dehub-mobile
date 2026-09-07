@@ -460,7 +460,12 @@
     "signInTv": "Telewizorda giriň",
     "signInTvDesc": "Telewizoryň görkezýän koduny ýazyň",
     "tvRequests": "TV haýyşlary",
-    "tvRequestsDesc": "Telewizoryň gol çekmegi soraýan çaý pullaryny tassyklaň"
+    "tvRequestsDesc": "Telewizoryň gol çekmegi soraýan çaý pullaryny tassyklaň",
+    "publicChatAlerts": "Halkara gürrüňdeşlik",
+    "publicChatAlertsDesc": "Başga bir ýerde bolanyňda, jemagat gürrüňi gepleşende, habar beriň",
+    "publicChatAlertsOnDesc": "Birleşen duýduryş hökmünde gelýän işli uzynlyklar",
+    "publicChatAlertsRate": "Galyberse-de",
+    "publicChatAlertsRateHint": "Otagyň işli bolany üçin hiç zat ýitirilmeýär — habarlar saklanýar we indiki duýduryşda bir ýere gelýär."
   },
   "common": {
     "mute": "Sesi öçür",
@@ -2543,5 +2548,14 @@
     "pricing": "Baha hasaplanýar…",
     "payWithDhb": "DHB bilen töläň",
     "yourDhb": "Siziň DHB-ňyz"
+  },
+  "digest": {
+    "someone": "Biriniň"
+  },
+  "publicChatAlerts": {
+    "title": "Halkara gürrüňdeşlik",
+    "mentionTitle": "Jemagat gürrüňdeşliginde agzalýar",
+    "voiceMessage": "Sesli habar",
+    "image": "Resimi iber"
   }
 }

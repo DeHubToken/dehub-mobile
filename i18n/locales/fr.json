@@ -460,7 +460,13 @@
     "signInTv": "Connecter un téléviseur",
     "signInTvDesc": "Saisissez le code affiché sur votre téléviseur",
     "tvRequests": "Demandes du téléviseur",
-    "tvRequestsDesc": "Approuvez les pourboires que votre téléviseur vous demande de signer"
+    "tvRequestsDesc": "Approuvez les pourboires que votre téléviseur vous demande de signer",
+    "publicChatAlerts": "Chat public",
+    "publicChatAlertsDesc": "Être informé lorsque le chat public parle pendant que vous êtes ailleurs",
+    "publicChatAlertsOnDesc": "Les tronçons occupés arrivent sous la forme d'une alerte combinée",
+    "publicChatAlertsRate": "Tout au plus",
+    "publicChatAlertsRateOption": "{{count}} une heure",
+    "publicChatAlertsRateHint": "Rien n'est perdu lorsque la pièce est plus occupée que cela — les messages sont conservés et arrivent ensemble à l'alerte suivante."
   },
   "common": {
     "mute": "Couper le son",
@@ -2596,5 +2602,17 @@
     "pricing": "Calcul du prix…",
     "payWithDhb": "Payer en DHB",
     "yourDhb": "Vos DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} et {{count}} autres",
+    "andOthers_other": "{{names}} et {{count}} autres",
+    "someone": "Quelqu'un"
+  },
+  "publicChatAlerts": {
+    "title": "Chat public",
+    "mentionTitle": "Mentionné dans le chat public",
+    "digest": "{{count}} nouveaux messages de {{who}} : {{message}}",
+    "voiceMessage": "Message vocal",
+    "image": "Envoi d'une image"
   }
 }

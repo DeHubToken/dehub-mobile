@@ -460,7 +460,13 @@
     "signInTv": "Pieteikties televizorā",
     "signInTvDesc": "Ievadi kodu, ko rāda televizors",
     "tvRequests": "Televizora pieprasījumi",
-    "tvRequestsDesc": "Apstiprini dzeramnaudas, ko televizors lūdz parakstīt"
+    "tvRequestsDesc": "Apstiprini dzeramnaudas, ko televizors lūdz parakstīt",
+    "publicChatAlerts": "Publiskā tērzēšana",
+    "publicChatAlertsDesc": "Saņemiet informāciju, kad publiskajā tērzēšanā tiek runāts, kamēr atrodaties citur",
+    "publicChatAlertsOnDesc": "Noslogoti posmi pienāk kā viens kombinēts brīdinājums",
+    "publicChatAlertsRate": "Ne vairāk kā",
+    "publicChatAlertsRateOption": "{{count}} stunda",
+    "publicChatAlertsRateHint": "Nekas netiek zaudēts, ja telpa ir noslogotāka par šo — ziņojumi tiek turēti un nonāk kopā nākamajā brīdinājumā."
   },
   "common": {
     "mute": "Izslēgt skaņu",
@@ -2543,5 +2549,17 @@
     "pricing": "Aprēķina cenu…",
     "payWithDhb": "Maksāt ar DHB",
     "yourDhb": "Tavs DHB"
+  },
+  "digest": {
+    "andOthers_one": "{{names}} un {{count}} cits",
+    "andOthers_other": "{{names}} un {{count}} citi",
+    "someone": "Kāds"
+  },
+  "publicChatAlerts": {
+    "title": "Publiskā tērzēšana",
+    "mentionTitle": "Minēts publiskajā tērzēšanā",
+    "digest": "{{count}} jauni ziņojumi no {{who}}: {{message}}",
+    "voiceMessage": "Balss ziņojums",
+    "image": "Nosūtīja attēlu"
   }
 }

@@ -460,7 +460,12 @@
     "signInTv": "Banye na TV",
     "signInTvDesc": "Pịnye koodu TV gị na-egosi",
     "tvRequests": "Arịrịọ TV",
-    "tvRequestsDesc": "Kwado ntụrụ TV gị na-arịọ ka ị bịanye aka"
+    "tvRequestsDesc": "Kwado ntụrụ TV gị na-arịọ ka ị bịanye aka",
+    "publicChatAlerts": "Mkparịta ụka ọha",
+    "publicChatAlertsDesc": "Gwa gị mgbe nkwurịta okwu ọha na eze na-ekwu okwu mgbe ị nọ ebe ọzọ",
+    "publicChatAlertsOnDesc": "Busy agbatị-abịa dị ka otu jikọtara anya",
+    "publicChatAlertsRate": "Na kasị",
+    "publicChatAlertsRateHint": "Onweghi ihe furu efu mgbe ime ụlọ ahụ dị nnukwu ọrụ karịa nke a — a na-ejide ozi ndị ahụ ma bịakọọ ọnụ na ọkwa ọzọ."
   },
   "common": {
     "mute": "Mechie ụda",
@@ -2543,5 +2548,14 @@
     "pricing": "Na-agbakọ ọnụahịa…",
     "payWithDhb": "Kwụọ ụgwọ na DHB",
     "yourDhb": "DHB gị"
+  },
+  "digest": {
+    "someone": "Mmadụ"
+  },
+  "publicChatAlerts": {
+    "title": "Mkparịta ụka ọha",
+    "mentionTitle": "Ekwuru na ọha chat",
+    "voiceMessage": "Ozi olu",
+    "image": "Ziga inyogo"
   }
 }
