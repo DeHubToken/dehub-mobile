@@ -173,7 +173,17 @@ const LiveChatScreen: React.FC = () => {
 
     // ── Phase 1: initial setup (list hidden via opacity 0) ──
     if (!hasInitialScrolledRef.current) {
-      if (messagesRef.current.length === 0 || layoutHeightRef.current === 0 || h <= layoutHeightRef.current) return;
+      if (messagesRef.current.length === 0 || layoutHeightRef.current === 0) return;
+
+      // History that fits on one screen is already "at the bottom". Content
+      // size only reports again when it changes, so returning here left the
+      // list at opacity 0 for good.
+      if (h <= layoutHeightRef.current) {
+        hasInitialScrolledRef.current = true;
+        scrollOffsetRef.current = 0;
+        setInitialScrollDone(true);
+        return;
+      }
 
       flatListRef.current?.scrollToOffset({ offset: h - layoutHeightRef.current, animated: false });
 
