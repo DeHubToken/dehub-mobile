@@ -1171,7 +1171,10 @@ function AIChatScreenInner() {
       setPendingToolLyrics(params.lyrics || undefined);
       setToolCategory('music');
       setSelectedToolId(DEFAULT_TOOL_FOR_CATEGORY.music);
-      setToolPaywallVisible(true);
+      // Present the paywall only after the music sheet has finished closing:
+      // its Modal stays mounted for its 220 ms close animation, and a second
+      // native Modal presented while it is still up is refused on iOS.
+      setTimeout(() => setToolPaywallVisible(true), 300);
     },
     [pendingPrompt],
   );
