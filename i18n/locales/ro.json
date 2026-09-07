@@ -1339,7 +1339,12 @@
     "newNotification": "New notification",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "Șterge notificarea"
+    "clearNotification": "Șterge notificarea",
+    "reactions": "Reacții",
+    "payments": "Plăți",
+    "claimBounty": "Revendică recompensa",
+    "noneForFilter": "Nicio notificare {{filter}} încă.",
+    "andNOthers": "și încă {{count}}"
   },
   "messages": {
     "smartRepliesOff": "Răspunsurile sugerate au fost dezactivate",

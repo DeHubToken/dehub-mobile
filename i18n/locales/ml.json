@@ -1059,7 +1059,12 @@
     "newNotification": "പുതിയ അറിയിപ്പ്",
     "oneOther": "1 മറ്റൊരാൾ",
     "nOthers": "{{count}} മറ്റുള്ളവർ",
-    "clearNotification": "അറിയിപ്പ് മായ്ക്കുക"
+    "clearNotification": "അറിയിപ്പ് മായ്ക്കുക",
+    "reactions": "പ്രതികരണങ്ങൾ",
+    "payments": "പേയ്‌മെന്റുകൾ",
+    "claimBounty": "നിങ്ങളുടെ പ്രതിഫലം നേടൂ",
+    "noneForFilter": "ഇതുവരെ {{filter}} അറിയിപ്പുകളൊന്നുമില്ല.",
+    "andNOthers": "കൂടാതെ {{count}} പേർ"
   },
   "leaderboard": {
     "title": "ലീഡർബോർഡ്",

@@ -992,7 +992,12 @@
     "newNotification": "Fampandrenesana vaovao",
     "oneOther": "1 hafa",
     "nOthers": "{{count}} hafa",
-    "clearNotification": "Hamafa ny fampandrenesana"
+    "clearNotification": "Hamafa ny fampandrenesana",
+    "reactions": "Fihetsika",
+    "payments": "Fandoavam-bola",
+    "claimBounty": "Alao ny valisoanao",
+    "noneForFilter": "Tsy mbola misy fampandrenesana {{filter}}.",
+    "andNOthers": "sy {{count}} hafa"
   },
   "leaderboard": {
     "title": "Lisitry ny tsara indrindra",

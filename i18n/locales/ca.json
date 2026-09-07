@@ -1059,7 +1059,12 @@
     "newNotification": "Nova notificació",
     "oneOther": "1 altre",
     "nOthers": "{{count}} altres",
-    "clearNotification": "Esborra la notificació"
+    "clearNotification": "Esborra la notificació",
+    "reactions": "Reaccions",
+    "payments": "Pagaments",
+    "claimBounty": "Reclama la teva recompensa",
+    "noneForFilter": "Encara no hi ha notificacions de {{filter}}.",
+    "andNOthers": "i {{count}} més"
   },
   "leaderboard": {
     "title": "Classificació",

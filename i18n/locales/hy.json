@@ -1120,7 +1120,12 @@
     "newNotification": "Nor tsanoutsagroum",
     "oneOther": "1 ourishe",
     "nOthers": "{{count}} ourishner",
-    "clearNotification": "Մաքրել ծանուցումը"
+    "clearNotification": "Մաքրել ծանուցումը",
+    "reactions": "Արձագանքներ",
+    "payments": "Վճարումներ",
+    "claimBounty": "Ստացեք ձեր պարգևը",
+    "noneForFilter": "Դեռ {{filter}} ծանուցումներ չկան։",
+    "andNOthers": "և ևս {{count}}"
   },
   "messages": {
     "smartRepliesOff": "Առաջարկվող պատասխանները անջատված են",

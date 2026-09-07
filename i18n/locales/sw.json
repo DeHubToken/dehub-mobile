@@ -1122,7 +1122,12 @@
     "newNotification": "Arifa mpya",
     "oneOther": "1 mwingine",
     "nOthers": "{{count}} wengine",
-    "clearNotification": "Futa arifa"
+    "clearNotification": "Futa arifa",
+    "reactions": "Miitikio",
+    "payments": "Malipo",
+    "claimBounty": "Chukua zawadi yako",
+    "noneForFilter": "Bado hakuna arifa za {{filter}}.",
+    "andNOthers": "na wengine {{count}}"
   },
   "leaderboard": {
     "title": "Ubao wa Viongozi",

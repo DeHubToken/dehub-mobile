@@ -1059,7 +1059,12 @@
     "newNotification": "नया सूचना",
     "oneOther": "1 और",
     "nOthers": "{{count}} और",
-    "clearNotification": "सूचना हटाईं"
+    "clearNotification": "सूचना हटाईं",
+    "reactions": "प्रतिक्रिया",
+    "payments": "भुगतान",
+    "claimBounty": "आपन इनाम लीं",
+    "noneForFilter": "अबहीं {{filter}} के कवनो सूचना नइखे।",
+    "andNOthers": "आ {{count}} अउरी"
   },
   "leaderboard": {
     "title": "लीडरबोर्ड",

@@ -1059,7 +1059,12 @@
     "newNotification": "نوې خبرتیا",
     "oneOther": "۱ بل",
     "nOthers": "{{count}} نور",
-    "clearNotification": "خبرتیا پاکه کړئ"
+    "clearNotification": "خبرتیا پاکه کړئ",
+    "reactions": "غبرګونونه",
+    "payments": "تادیات",
+    "claimBounty": "خپل انعام واخلئ",
+    "noneForFilter": "تر اوسه د {{filter}} خبرتیا نشته.",
+    "andNOthers": "او {{count}} نور"
   },
   "leaderboard": {
     "title": "لیډربورډونه",

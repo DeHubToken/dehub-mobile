@@ -1122,7 +1122,12 @@
     "newNotification": "Ìwífúnni tuntun",
     "oneOther": "1 mìíràn",
     "nOthers": "{{count}} mìíràn",
-    "clearNotification": "Pa ìfitónilétí rẹ́"
+    "clearNotification": "Pa ìfitónilétí rẹ́",
+    "reactions": "Àwọn ìdáhùn",
+    "payments": "Àwọn ìsanwó",
+    "claimBounty": "Gba ẹ̀bùn rẹ",
+    "noneForFilter": "Kò sí ìfitónilétí {{filter}} síbẹ̀.",
+    "andNOthers": "àti {{count}} mìíràn"
   },
   "leaderboard": {
     "title": "Àtòjọ Ìpò",

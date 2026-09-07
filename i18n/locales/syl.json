@@ -608,7 +608,12 @@
     "newNotification": "New notification",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "বিজ্ঞপ্তি মুছউক্কা"
+    "clearNotification": "বিজ্ঞপ্তি মুছউক্কা",
+    "reactions": "প্রতিক্রিয়া",
+    "payments": "পেমেন্ট",
+    "claimBounty": "তোমার পুরস্কার নেও",
+    "noneForFilter": "এখনো {{filter}} নোটিফিকেশন নাই।",
+    "andNOthers": "আর {{count}} জন"
   },
   "messages": {
     "smartRepliesOff": "ꠙꠞꠣꠝꠞ꠆ꠡ ꠖꠤꠅꠣ ꠎꠛꠣꠛ ꠛꠘ꠆ꠗ ꠅꠁꠍꠦ",

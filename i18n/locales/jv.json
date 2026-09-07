@@ -1059,7 +1059,12 @@
     "newNotification": "Notifikasi Anyar",
     "oneOther": "1 liyane",
     "nOthers": "{{count}} liyane",
-    "clearNotification": "Busak kabar"
+    "clearNotification": "Busak kabar",
+    "reactions": "Reaksi",
+    "payments": "Pembayaran",
+    "claimBounty": "Njupuk hadiahmu",
+    "noneForFilter": "Durung ana notifikasi {{filter}}.",
+    "andNOthers": "lan {{count}} liyane"
   },
   "leaderboard": {
     "title": "Papan Peringkat",

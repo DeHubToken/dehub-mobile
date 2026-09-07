@@ -1121,7 +1121,12 @@
     "newNotification": "Sabuwar sanarwa",
     "oneOther": "1 daban",
     "nOthers": "{{count}} dabam",
-    "clearNotification": "Share sanarwa"
+    "clearNotification": "Share sanarwa",
+    "reactions": "Martani",
+    "payments": "Biyan kuɗi",
+    "claimBounty": "Karɓi ladanka",
+    "noneForFilter": "Babu sanarwar {{filter}} tukuna.",
+    "andNOthers": "da wasu {{count}}"
   },
   "leaderboard": {
     "title": "Jadawalin Matsayi",

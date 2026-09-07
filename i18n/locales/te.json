@@ -1030,7 +1030,12 @@
     "newNotification": "కొత్త నోటిఫికేషన్",
     "oneOther": "1 ఇతరుడు",
     "nOthers": "{{count}} ఇతరులు",
-    "clearNotification": "నోటిఫికేషన్ తొలగించండి"
+    "clearNotification": "నోటిఫికేషన్ తొలగించండి",
+    "reactions": "ప్రతిస్పందనలు",
+    "payments": "చెల్లింపులు",
+    "claimBounty": "మీ బహుమతిని పొందండి",
+    "noneForFilter": "ఇంకా {{filter}} నోటిఫికేషన్‌లు లేవు.",
+    "andNOthers": "మరియు ఇతర {{count}}"
   },
   "leaderboard": {
     "title": "లీడర్‌బోర్డ్",

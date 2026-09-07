@@ -1,6 +1,7 @@
 // Date & time utilities
 // (Filename uses 'utl' per user instruction; consider aliasing if needed later.)
 
+import i18n from "i18next";
 import { pad } from './numbers.util';
 
 /** Convert seconds to H:MM:SS or MM:SS */
@@ -52,14 +53,13 @@ function formatTime(date: Date) {
 export function formatNotificationDate(isoDateString: Date | string) {
   const date = new Date(isoDateString);
   const now = new Date();
-  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   if (
     date.getDate() === now.getDate() &&
     date.getMonth() === now.getMonth() &&
     date.getFullYear() === now.getFullYear()
   ) {
-    return formatTime(date) + ", Today";
+    return formatTime(date) + ", " + i18n.t("communities.time.today");
   }
 
   const yesterday = new Date(now);
@@ -70,10 +70,18 @@ export function formatNotificationDate(isoDateString: Date | string) {
     date.getMonth() === yesterday.getMonth() &&
     date.getFullYear() === yesterday.getFullYear()
   ) {
-    return formatTime(date) + ", Yesterday";
+    return formatTime(date) + ", " + i18n.t("communities.time.yesterday");
   }
 
-  return formatTime(date) + ", " + daysOfWeek[date.getDay()];
+  // The weekday in the reader's language; the English list this used to hold
+  // showed on every notification row in all 110 locales.
+  let weekday: string;
+  try {
+    weekday = date.toLocaleDateString(i18n.language || undefined, { weekday: "long" });
+  } catch {
+    weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][date.getDay()];
+  }
+  return formatTime(date) + ", " + weekday;
 }
 /**
  * Relative time formatter for chat/DM contexts.

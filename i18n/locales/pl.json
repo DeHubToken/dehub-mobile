@@ -1393,7 +1393,12 @@
     "newNotification": "Nowe powiadomienie",
     "oneOther": "1 inny",
     "nOthers": "{{count}} innych",
-    "clearNotification": "Wyczyść powiadomienie"
+    "clearNotification": "Wyczyść powiadomienie",
+    "reactions": "Reakcje",
+    "payments": "Płatności",
+    "claimBounty": "Odbierz nagrodę",
+    "noneForFilter": "Brak powiadomień ({{filter}}).",
+    "andNOthers": "i {{count}} innych"
   },
   "messages": {
     "smartRepliesOff": "Sugerowane odpowiedzi wyłączone",

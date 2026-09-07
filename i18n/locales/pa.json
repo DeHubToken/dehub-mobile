@@ -1030,7 +1030,12 @@
     "newNotification": "ਨਵੀਂ ਸੂਚਨਾ",
     "oneOther": "1 ਹੋਰ",
     "nOthers": "{{count}} ਹੋਰ",
-    "clearNotification": "ਸੂਚਨਾ ਸਾਫ਼ ਕਰੋ"
+    "clearNotification": "ਸੂਚਨਾ ਸਾਫ਼ ਕਰੋ",
+    "reactions": "ਪ੍ਰਤੀਕਿਰਿਆਵਾਂ",
+    "payments": "ਭੁਗਤਾਨ",
+    "claimBounty": "ਆਪਣਾ ਇਨਾਮ ਲਓ",
+    "noneForFilter": "ਅਜੇ ਤੱਕ ਕੋਈ {{filter}} ਸੂਚਨਾ ਨਹੀਂ।",
+    "andNOthers": "ਅਤੇ {{count}} ਹੋਰ"
   },
   "leaderboard": {
     "title": "ਲੀਡਰ ਬੋਰਡ",

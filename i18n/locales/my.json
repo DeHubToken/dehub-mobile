@@ -1072,7 +1072,12 @@
     "newNotification": "New notification",
     "oneOther": "1 other",
     "nOthers": "{{count}} others",
-    "clearNotification": "အကြောင်းကြားချက် ရှင်းရန်"
+    "clearNotification": "အကြောင်းကြားချက် ရှင်းရန်",
+    "reactions": "တုံ့ပြန်မှုများ",
+    "payments": "ငွေပေးချေမှုများ",
+    "claimBounty": "ဆုကြေး ရယူပါ",
+    "noneForFilter": "{{filter}} အကြောင်းကြားချက် မရှိသေးပါ။",
+    "andNOthers": "နှင့် အခြား {{count}} ဦး"
   },
   "leaderboard": {
     "title": "အဆင့်ဇယား",

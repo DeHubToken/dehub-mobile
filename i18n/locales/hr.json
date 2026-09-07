@@ -1059,7 +1059,12 @@
     "newNotification": "Nova obavijest",
     "oneOther": "1 drugi",
     "nOthers": "{{count}} drugih",
-    "clearNotification": "Očisti obavijest"
+    "clearNotification": "Očisti obavijest",
+    "reactions": "Reakcije",
+    "payments": "Plaćanja",
+    "claimBounty": "Preuzmi nagradu",
+    "noneForFilter": "Još nema obavijesti ({{filter}}).",
+    "andNOthers": "i još {{count}}"
   },
   "leaderboard": {
     "title": "Ljestvice",

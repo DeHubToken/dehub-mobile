@@ -1059,7 +1059,12 @@
     "newNotification": "ແຈ້ງເຕືອນໃໝ່",
     "oneOther": "1 ຄົນອື່ນ",
     "nOthers": "{{count}} ຄົນອື່ນ",
-    "clearNotification": "ລ້າງການແຈ້ງເຕືອນ"
+    "clearNotification": "ລ້າງການແຈ້ງເຕືອນ",
+    "reactions": "ປະຕິກິລິຍາ",
+    "payments": "ການຈ່າຍເງິນ",
+    "claimBounty": "ຮັບລາງວັນຂອງທ່ານ",
+    "noneForFilter": "ຍັງບໍ່ມີການແຈ້ງເຕືອນ {{filter}}.",
+    "andNOthers": "ແລະ ອີກ {{count}} ຄົນ"
   },
   "leaderboard": {
     "title": "ກະດານຄະແນນ",

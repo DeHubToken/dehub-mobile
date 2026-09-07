@@ -1122,7 +1122,12 @@
     "newNotification": "Musuq willay",
     "oneOther": "1 huk",
     "nOthers": "{{count}} hukkuna",
-    "clearNotification": "Willayta pichay"
+    "clearNotification": "Willayta pichay",
+    "reactions": "Kutichiykuna",
+    "payments": "Pagokuna",
+    "claimBounty": "Premiuykita chaskiy",
+    "noneForFilter": "Manaraq {{filter}} willakuykuna kanchu.",
+    "andNOthers": "hinaspa {{count}} hukkuna"
   },
   "leaderboard": {
     "title": "Ñawpaqkuna",

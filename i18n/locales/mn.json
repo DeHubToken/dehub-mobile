@@ -1059,7 +1059,12 @@
     "newNotification": "Шинэ мэдэгдэл",
     "oneOther": "1 бусад",
     "nOthers": "{{count}} бусад",
-    "clearNotification": "Мэдэгдлийг арилгах"
+    "clearNotification": "Мэдэгдлийг арилгах",
+    "reactions": "Хариу үйлдэл",
+    "payments": "Төлбөр",
+    "claimBounty": "Шагналаа авах",
+    "noneForFilter": "Одоогоор {{filter}} мэдэгдэл алга.",
+    "andNOthers": "болон өөр {{count}}"
   },
   "leaderboard": {
     "title": "Тэргүүлэгчид",

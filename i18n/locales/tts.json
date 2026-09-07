@@ -1059,7 +1059,12 @@
     "newNotification": "แจ้งเตือนใหม่",
     "oneOther": "1 คนอื่น",
     "nOthers": "{{count}} คนอื่น",
-    "clearNotification": "ล้างการแจ้งเตือน"
+    "clearNotification": "ล้างการแจ้งเตือน",
+    "reactions": "รีแอคชัน",
+    "payments": "การจ่ายเงิน",
+    "claimBounty": "ฮับรางวัลของเจ้า",
+    "noneForFilter": "ยังบ่มีการแจ้งเตือน {{filter}}",
+    "andNOthers": "และอีก {{count}} คน"
   },
   "leaderboard": {
     "title": "กระดานคะแนน",
