@@ -2557,5 +2557,14 @@
     "mentionTitle": "Дар сӯҳбати оммавӣ зикр шудааст",
     "voiceMessage": "Паёми овозӣ",
     "image": "Тасвир фиристода шуд"
+  },
+  "liveChat": {
+    "attach": "Magdagdag ng larawan, GIF o emoji",
+    "attachTitle": "Magdagdag sa iyong mensa",
+    "attachPhoto": "Сурат",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Удалить замима",
+    "attachFailed": "Hindi maipadala ang larawan na ito."
   }
 }

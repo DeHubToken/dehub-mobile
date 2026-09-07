@@ -2565,5 +2565,14 @@
     "digest": "{{count}} nya meddelanden från {{who}}: {{message}}",
     "voiceMessage": "Röstmeddelande",
     "image": "Skickade en bild"
+  },
+  "liveChat": {
+    "attach": "Lägg till ett foto, GIF eller emoji",
+    "attachTitle": "Lägg till i ditt meddelande",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Ta bort bilaga",
+    "attachFailed": "Det gick inte att skicka fotot."
   }
 }

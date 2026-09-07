@@ -2586,5 +2586,13 @@
     "mentionTitle": "በአደባባይ ውይይት ውስጥ ተጠቅሷል",
     "voiceMessage": "የድምፅ መልዕክት",
     "image": "ምስል ላክ"
+  },
+  "liveChat": {
+    "attach": "ፎቶ ፣ ጂአይኤፍ ወይም ኢሞጂ ያክሉ",
+    "attachTitle": "ወደ መልእክትዎ ያክሉ",
+    "attachPhoto": "ፎቶ",
+    "attachEmoji": "ኢሞጂ",
+    "removeAttachment": "አባሪ አስወግድ",
+    "attachFailed": "ያንን ፎቶ መላክ አልተቻለም ።"
   }
 }

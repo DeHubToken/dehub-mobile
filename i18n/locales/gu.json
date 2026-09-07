@@ -2559,5 +2559,13 @@
     "mentionTitle": "સાર્વજનિક ચેટમાં ઉલ્લેખિત",
     "voiceMessage": "વૉઇસ સંદેશ",
     "image": "એક ચિત્ર મોકલ્યું"
+  },
+  "liveChat": {
+    "attach": "ફોટો, GIF અથવા ઇમોજી ઉમેરો",
+    "attachTitle": "તમારા સંદેશમાં ઉમેરો",
+    "attachPhoto": "ફોટો",
+    "attachEmoji": "ઇમોજી",
+    "removeAttachment": "જોડાણ દૂર કરો",
+    "attachFailed": "તે ફોટો મોકલી શક્યા નહીં."
   }
 }

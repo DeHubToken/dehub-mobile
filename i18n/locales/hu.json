@@ -2565,5 +2565,14 @@
     "digest": "{{count}} új üzenet tőle: {{who}}: {{message}}",
     "voiceMessage": "Hangüzenet",
     "image": "Kép elküldve"
+  },
+  "liveChat": {
+    "attach": "Fénykép, GIF vagy emoji hozzáadása",
+    "attachTitle": "Hozzáadás az üzenetedhez",
+    "attachPhoto": "Fénykép",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Melléklet eltávolítása",
+    "attachFailed": "Nem sikerült elküldeni a fényképet."
   }
 }

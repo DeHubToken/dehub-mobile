@@ -2557,5 +2557,14 @@
     "mentionTitle": "Jemagat gürrüňdeşliginde agzalýar",
     "voiceMessage": "Sesli habar",
     "image": "Resimi iber"
+  },
+  "liveChat": {
+    "attach": "Foto, GIF ýa-da emojileri goş",
+    "attachTitle": "Bize habaryňy iber",
+    "attachPhoto": "Resim",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Baglaýyşy Çykar",
+    "attachFailed": "Men bu suraty iberip bilmedim."
   }
 }

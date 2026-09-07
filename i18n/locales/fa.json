@@ -2589,5 +2589,13 @@
     "digest": "{{count}} پیام‌های جدید از {{who}}: {{message}}",
     "voiceMessage": "پیام صوتی",
     "image": "یک تصویر"
+  },
+  "liveChat": {
+    "attach": "اضافه کردن عکس، گیف یا ایموجی",
+    "attachTitle": "به پیام خود اضافه کنید",
+    "attachPhoto": "عکس",
+    "attachEmoji": "ایموجی",
+    "removeAttachment": "حذف پيوست",
+    "attachFailed": "نتونستم اون عکس رو بفرستم."
   }
 }

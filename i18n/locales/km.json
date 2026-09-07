@@ -2598,5 +2598,13 @@
     "digest": "{{count}}សារថ្មីពី {{who}}: {{message}}@",
     "voiceMessage": "សារជាសំឡេង",
     "image": "ផ្ញើ រូបភាព"
+  },
+  "liveChat": {
+    "attach": "បន្ថែមរូបថត GIF ឬ emoji",
+    "attachTitle": "បន្ថែម ទៅ សារ របស់ អ្នក",
+    "attachPhoto": "រូបថត",
+    "attachEmoji": "អេម៉ូជី",
+    "removeAttachment": "យក ឯកសារ ភ្ជាប់ ចេញ",
+    "attachFailed": "ខ្ញុំ មិន អាច ចោល រូបថត នោះ បាន ទេ ។"
   }
 }

@@ -2827,5 +2827,14 @@
     "digest": "{{count}} mesej baharu daripada {{who}}: {{message}}",
     "voiceMessage": "Mesej suara",
     "image": "Menghantar imej"
+  },
+  "liveChat": {
+    "attach": "Tambah gambar, GIF atau emoji",
+    "attachTitle": "Tambah ke mesej anda",
+    "attachPhoto": "Gambar",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Buang lampiran",
+    "attachFailed": "Tidak dapat menghantar gambar itu."
   }
 }

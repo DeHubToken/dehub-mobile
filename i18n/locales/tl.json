@@ -2745,5 +2745,14 @@
     "digest": "{{count}} mga bagong mensahe mula {{who}}:{{message}}",
     "voiceMessage": "Mensahe ng boses",
     "image": "Nagpadala ng larawan"
+  },
+  "liveChat": {
+    "attach": "Magdagdag ng larawan, GIF o emoji",
+    "attachTitle": "Idagdag sa iyong mensahe",
+    "attachPhoto": "Larawan",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Alisin ang attachment",
+    "attachFailed": "Hindi maipadala ang litratong iyon."
   }
 }

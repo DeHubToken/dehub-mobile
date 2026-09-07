@@ -2592,5 +2592,14 @@
     "digest": "{{count}} musuq willakuykunata {{who}}: {{message}}",
     "voiceMessage": "Kunkawan willakuy",
     "image": "Huk rikch&#39;ayta apachisqa"
+  },
+  "liveChat": {
+    "attach": "Fotota, GIFta utaq emojita yapay",
+    "attachTitle": "Willakuyniykiman yapay",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF nisqa",
+    "attachEmoji": "Emoji nisqa",
+    "removeAttachment": "K’askachiyta hurquy",
+    "attachFailed": "Mana chay fotota apachiyta atirqanichu."
   }
 }

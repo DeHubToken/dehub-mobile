@@ -2556,5 +2556,13 @@
     "mentionTitle": "عوامي چيٽ ۾ ذڪر ڪيل",
     "voiceMessage": "آواز جو پيغام",
     "image": "تصوير موڪليو"
+  },
+  "liveChat": {
+    "attach": "هڪ فوٽو، GIF يا emoji شامل ڪريو",
+    "attachTitle": "پنهنجي پيغام ۾ شامل ڪريو",
+    "attachPhoto": "تصوير",
+    "attachEmoji": "ايموجي",
+    "removeAttachment": "منسلڪ ختم ڪريو",
+    "attachFailed": "اها تصوير موڪلي نه سگهيس."
   }
 }

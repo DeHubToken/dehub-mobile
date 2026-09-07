@@ -2600,5 +2600,14 @@
     "mentionTitle": "सार्वजनिक चैट म प्रकाशित",
     "voiceMessage": "अवाज संदेस",
     "image": "एक छवि ल बैट कर"
+  },
+  "liveChat": {
+    "attach": "फोटो, जीआईएफ या इमोजी जोड़व",
+    "attachTitle": "अपन संदेश भेजव",
+    "attachPhoto": "फोटू",
+    "attachGif": "जीआईएफ",
+    "attachEmoji": "इमोजी",
+    "removeAttachment": "संलग्नक मेटाव",
+    "attachFailed": "मैं ए तस्वीर ल प्राप्त करे म असमर्थ हंव ।"
   }
 }

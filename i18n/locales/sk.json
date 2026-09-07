@@ -2732,5 +2732,14 @@
     "digest": "{{count}} nové správy od {{who}}: {{message}}",
     "voiceMessage": "Hlasová správa",
     "image": "Odoslané obrázky"
+  },
+  "liveChat": {
+    "attach": "Pridajte fotku, GIF alebo emoji",
+    "attachTitle": "Pridať do správy",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Odstrániť prílohu",
+    "attachFailed": "Túto fotku sa nepodarilo odoslať."
   }
 }

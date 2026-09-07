@@ -2561,5 +2561,14 @@
     "digest": "{{count}} jauni ziņojumi no {{who}}: {{message}}",
     "voiceMessage": "Balss ziņojums",
     "image": "Nosūtīja attēlu"
+  },
+  "liveChat": {
+    "attach": "Pievienojiet bildi, GIF vai emocijzīmi",
+    "attachTitle": "Pievienojiet ziņojumam",
+    "attachPhoto": "Bilde",
+    "attachGif": "GIF",
+    "attachEmoji": "Emocijzīmes",
+    "removeAttachment": "Noņemt pielikumu",
+    "attachFailed": "Nevarēja nosūtīt šo bildi."
   }
 }

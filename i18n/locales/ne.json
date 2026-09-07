@@ -2600,5 +2600,13 @@
     "digest": "{{count}} नयाँ सन्देशहरू {{who}}: {{message}} बाट",
     "voiceMessage": "भ्वाइस सन्देश",
     "image": "एउटा छवि पठाइयो"
+  },
+  "liveChat": {
+    "attach": "फोटो, GIF वा इमोजी थप्नुहोस्",
+    "attachTitle": "तपाईंको सन्देशमा थप्नुहोस्",
+    "attachPhoto": "फोटो",
+    "attachEmoji": "इमोजी",
+    "removeAttachment": "सङ्लग्नता हटाउनुहोस्",
+    "attachFailed": "त्यो फोटो पठाउन सकिएन ।"
   }
 }

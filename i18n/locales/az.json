@@ -2557,5 +2557,14 @@
     "mentionTitle": "İctimai söhbətdə qeyd edilib",
     "voiceMessage": "Səsli mesaj",
     "image": "Təsvir göndərildi"
+  },
+  "liveChat": {
+    "attach": "Foto, GIF və ya emoji əlavə edin",
+    "attachTitle": "Mesajınıza əlavə edin",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Qoşmanı silin",
+    "attachFailed": "Bu fotonu göndərmək mümkün olmadı."
   }
 }

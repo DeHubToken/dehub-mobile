@@ -2610,5 +2610,14 @@
     "digest": "{{count}} neue Nachrichten von {{who}}: {{message}}",
     "voiceMessage": "Sprachnachricht",
     "image": "Ein Bild gesendet"
+  },
+  "liveChat": {
+    "attach": "Füge ein Foto, GIF oder Emoji hinzu",
+    "attachTitle": "Zu Ihrer Nachricht hinzufügen",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Anhang entfernen",
+    "attachFailed": "Das Foto konnte nicht gesendet werden."
   }
 }

@@ -2591,5 +2591,14 @@
     "digest": "{{count}} nöii Nöchrichte vo {{who}}: {{message}}",
     "voiceMessage": "Stimm-Nöchricht",
     "image": "Bild gschickt"
+  },
+  "liveChat": {
+    "attach": "Foto, GIF oder Emoji dezuefüüge",
+    "attachTitle": "Zu dim Nöchricht dezuefüüge",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Uusnäh",
+    "attachFailed": "Das Foto chont nid a."
   }
 }

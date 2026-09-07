@@ -2616,5 +2616,14 @@
     "digest": "{{count}} {{who}} dan yangi xabarlar: {{message}}",
     "voiceMessage": "Ovozli xabar",
     "image": "Rasm yuborildi"
+  },
+  "liveChat": {
+    "attach": "Surat, GIF yoki emoji qo&#39;shing",
+    "attachTitle": "Xabaringizga qo&#39;shing",
+    "attachPhoto": "Foto",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Ilovani & olib tashlash",
+    "attachFailed": "Bu rasmni yuborib bo&#39;lmadi."
   }
 }

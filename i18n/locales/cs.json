@@ -2565,5 +2565,14 @@
     "digest": "{{count}} nové zprávy od {{who}}: {{message}}",
     "voiceMessage": "Hlasová zpráva",
     "image": "Odeslat obrázek"
+  },
+  "liveChat": {
+    "attach": "Přidej fotku, GIF nebo emodži",
+    "attachTitle": "Přidat do zprávy",
+    "attachPhoto": "Fotografie",
+    "attachGif": "GIF",
+    "attachEmoji": "Emoji",
+    "removeAttachment": "Odebrat přílohu",
+    "attachFailed": "Tuto fotku se nepodařilo odeslat."
   }
 }

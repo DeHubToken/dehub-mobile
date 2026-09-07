@@ -2556,5 +2556,13 @@
     "mentionTitle": "ኣብ ህዝባዊ ቻት እተጠቕሰ",
     "voiceMessage": "መልእኽቲ ድምጺ",
     "image": "ስእሊ ልኢኽካ"
+  },
+  "liveChat": {
+    "attach": "ስእሊ ፡ ጂአይኤፍ ወይ ኢሞጂ ኣክል",
+    "attachTitle": "መልእኽቲኻ ኣክሊልካ",
+    "attachPhoto": "ስእሊ",
+    "attachEmoji": "ኢሞጂ",
+    "removeAttachment": "ኣሳእል ኣወግድ",
+    "attachFailed": "ነዚ ስእሊ እዚ ክሕዝ ኣይከኣልኩን ።"
   }
 }

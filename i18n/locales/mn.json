@@ -2555,5 +2555,13 @@
     "mentionTitle": "Олон нийтийн чатад дурдсан",
     "voiceMessage": "Дуут мессеж",
     "image": "Зураг илгээсэн"
+  },
+  "liveChat": {
+    "attach": "Зураг, GIF эсвэл emoji нэмэх",
+    "attachTitle": "Зурвас дээр нэмэх",
+    "attachPhoto": "Зураг",
+    "attachEmoji": "Эможи",
+    "removeAttachment": "Хавсралтыг устгах",
+    "attachFailed": "Тэр зургийг явуулж чадсангүй."
   }
 }

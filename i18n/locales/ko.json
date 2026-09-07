@@ -2613,5 +2613,13 @@
     "digest": "{{who}} 님의 {{count}} 새 메시지: {{message}}",
     "voiceMessage": "음성 메시지",
     "image": "이미지 전송 완료"
+  },
+  "liveChat": {
+    "attach": "사진, GIF 또는 이모티콘 추가",
+    "attachTitle": "메시지에 추가",
+    "attachPhoto": "사진",
+    "attachEmoji": "이모티콘",
+    "removeAttachment": "첨부 파일 제거",
+    "attachFailed": "사진을 전송할 수 없습니다."
   }
 }

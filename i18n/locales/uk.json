@@ -3043,5 +3043,13 @@
     "digest": "{{count}} Нові повідомлення від {{who}}: {{message}}",
     "voiceMessage": "Голосове повідомлення",
     "image": "Надіслати зображення"
+  },
+  "liveChat": {
+    "attach": "Додайте фотографію, GIF або емодзі",
+    "attachTitle": "Додати до повідомлення",
+    "attachPhoto": "Фото",
+    "attachEmoji": "Емодзі",
+    "removeAttachment": "Видалити вкладення",
+    "attachFailed": "Не вдалося надіслати цю фотографію."
   }
 }

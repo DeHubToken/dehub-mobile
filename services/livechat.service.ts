@@ -1,4 +1,6 @@
 import { apiClient } from "../libs/api.client";
+import env from "../config/env";
+import { getAuthToken } from "../libs/auth.utils";
 
 /* ─── Types ─────────────────────────────────────────────────── */
 
@@ -201,4 +203,50 @@ export async function uploadLiveChatVoice(
     "/livechat/upload-voice",
     formData
   );
+}
+
+/**
+ * Upload an image for public chat.
+ *
+ * Goes to the same Supabase edge function web uses (`dm-upload-media`, see
+ * dehubweb src/lib/api/dehub/dm.ts) rather than the DeHub API: livechat has no
+ * upload route of its own for pictures, only for voice, and the bucket the
+ * function writes to is what both clients already render from.
+ *
+ * A plain fetch rather than supabase.functions.invoke because the body is
+ * multipart with a React Native file descriptor, and invoke() would set its own
+ * content type over the boundary fetch generates.
+ *
+ * The function accepts jpeg, png, gif and webp up to 10 MB and nothing else —
+ * video is rejected there as well as by the chat message type, so a picker that
+ * offers it would be offering something no client can post.
+ */
+export async function uploadLiveChatImage(
+  fileUri: string,
+  mimeType: string,
+  fileName: string,
+  walletAddress: string,
+): Promise<{ url: string }> {
+  const token = await getAuthToken();
+  if (!token) throw new Error("Not signed in");
+
+  const form = new FormData();
+  form.append("file", { uri: fileUri, name: fileName, type: mimeType } as any);
+
+  const res = await fetch(`${env.SUPABASE_URL}/functions/v1/dm-upload-media`, {
+    method: "POST",
+    headers: {
+      apikey: env.SUPABASE_PUBLISHABLE_KEY,
+      Authorization: `Bearer ${env.SUPABASE_PUBLISHABLE_KEY}`,
+      "x-wallet-address": walletAddress.toLowerCase(),
+      "x-dehub-token": token,
+    },
+    body: form,
+  });
+
+  const data = await res.json().catch(() => null);
+  if (!res.ok || !data?.ok || !data?.url) {
+    throw new Error(data?.error || "Upload failed");
+  }
+  return { url: data.url as string };
 }
