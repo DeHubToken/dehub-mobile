@@ -2748,5 +2748,21 @@
     "needSignIn": "Bạn cần đăng nhập bằng Google hoặc email để chuyển tài khoản.",
     "switched": "Đã chuyển tài khoản",
     "failed": "Không thể chuyển tài khoản. Vui lòng kiểm tra khóa riêng và thử lại."
+  },
+  "transfer": {
+    "title": "Chuyển token",
+    "recipient": "Người nhận: {{address}}",
+    "enterAmount": "Nhập số lượng",
+    "balance": "Số dư: {{balance}}",
+    "insufficient": "Số dư không đủ",
+    "toSelfHint": "Bạn không thể chuyển cho chính mình",
+    "searchUser": "Tìm người dùng",
+    "searchPlaceholder": "Nhập tên người dùng hoặc dán địa chỉ",
+    "clearRecipient": "Xóa người nhận",
+    "transferringTo": "Chuyển đến",
+    "transferring": "Đang chuyển...",
+    "sent": "Đã gửi chuyển khoản",
+    "toSelf": "Bạn không thể gửi token cho chính mình",
+    "insufficientOnChain": "Số dư trên chuỗi không đủ cho token này"
   }
 }

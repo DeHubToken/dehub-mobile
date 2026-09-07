@@ -2664,5 +2664,21 @@
     "needSignIn": "Du måste vara inloggad med Google eller e-post för att byta konto.",
     "switched": "Konto bytt",
     "failed": "Kunde inte byta konto. Kontrollera den privata nyckeln och försök igen."
+  },
+  "transfer": {
+    "title": "Överför tokens",
+    "recipient": "Mottagare: {{address}}",
+    "enterAmount": "Ange belopp i",
+    "balance": "Saldo: {{balance}}",
+    "insufficient": "Otillräckligt saldo",
+    "toSelfHint": "Du kan inte överföra till dig själv",
+    "searchUser": "Sök efter en användare",
+    "searchPlaceholder": "Ange användarnamn eller klistra in adress",
+    "clearRecipient": "Rensa mottagare",
+    "transferringTo": "Överför till",
+    "transferring": "Överför...",
+    "sent": "Överföring skickad",
+    "toSelf": "Du kan inte skicka tokens till dig själv",
+    "insufficientOnChain": "Otillräckligt on-chain-saldo för den här tokenen"
   }
 }

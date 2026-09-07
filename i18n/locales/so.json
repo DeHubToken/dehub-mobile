@@ -2660,5 +2660,21 @@
     "needSignIn": "Waa inaad ku gashaa Google ama iimayl si aad u beddesho akoonnada.",
     "switched": "Akoonka waa la beddelay",
     "failed": "Lama beddeli karin akoonnada. Fadlan hubi furaha gaarka ah oo mar kale isku day."
+  },
+  "transfer": {
+    "title": "Wareeji tokens",
+    "recipient": "Qaataha: {{address}}",
+    "enterAmount": "Geli lacagta",
+    "balance": "Haraaga: {{balance}}",
+    "insufficient": "Haraag aan ku filnayn",
+    "toSelfHint": "Naftaada uma wareejin kartid",
+    "searchUser": "Raadi isticmaale",
+    "searchPlaceholder": "Geli magaca isticmaalaha ama dheji ciwaanka",
+    "clearRecipient": "Tirtir qaataha",
+    "transferringTo": "Waxaa loo wareejinayaa",
+    "transferring": "Waa la wareejinayaa...",
+    "sent": "Wareejinta waa la diray",
+    "toSelf": "Naftaada uma diri kartid tokens",
+    "insufficientOnChain": "Haraaga silsiladda kuma filna tokenkan"
   }
 }

@@ -2659,5 +2659,21 @@
     "needSignIn": "لازم تكون مسجل دخول بـ Google أو الإيميل حتى تبدل الحسابات.",
     "switched": "تبدل الحساب",
     "failed": "ما گدرنا نبدل الحسابات. دقق بالمفتاح الخاص وحاول مرة ثانية."
+  },
+  "transfer": {
+    "title": "تحويل التوكنات",
+    "recipient": "المستلم: {{address}}",
+    "enterAmount": "أدخل مبلغ",
+    "balance": "الرصيد: {{balance}}",
+    "insufficient": "الرصيد ما يكفي",
+    "toSelfHint": "ما تگدر تحول لنفسك",
+    "searchUser": "دوّر على مستخدم",
+    "searchPlaceholder": "أدخل اسم المستخدم أو الصق العنوان",
+    "clearRecipient": "امسح المستلم",
+    "transferringTo": "تحويل إلى",
+    "transferring": "دا يحوّل...",
+    "sent": "انبعث التحويل",
+    "toSelf": "ما تگدر تدز توكنات لنفسك",
+    "insufficientOnChain": "الرصيد على الشبكة ما يكفي لهذا التوكن"
   }
 }

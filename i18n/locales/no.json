@@ -2658,5 +2658,21 @@
     "needSignIn": "Du må være logget inn med Google eller e-post for å bytte konto.",
     "switched": "Konto byttet",
     "failed": "Kunne ikke bytte konto. Sjekk den private nøkkelen og prøv igjen."
+  },
+  "transfer": {
+    "title": "Overfør tokens",
+    "recipient": "Mottaker: {{address}}",
+    "enterAmount": "Skriv inn beløp i",
+    "balance": "Saldo: {{balance}}",
+    "insufficient": "Utilstrekkelig saldo",
+    "toSelfHint": "Du kan ikke overføre til deg selv",
+    "searchUser": "Søk etter en bruker",
+    "searchPlaceholder": "Skriv inn brukernavn eller lim inn adresse",
+    "clearRecipient": "Fjern mottaker",
+    "transferringTo": "Overfører til",
+    "transferring": "Overfører...",
+    "sent": "Overføring sendt",
+    "toSelf": "Du kan ikke sende tokens til deg selv",
+    "insufficientOnChain": "Utilstrekkelig on-chain saldo for denne tokenen"
   }
 }

@@ -2926,5 +2926,21 @@
     "needSignIn": "Anda perlu log masuk dengan Google atau e-mel untuk menukar akaun.",
     "switched": "Akaun ditukar",
     "failed": "Tidak dapat menukar akaun. Sila semak kunci peribadi dan cuba lagi."
+  },
+  "transfer": {
+    "title": "Pindahkan token",
+    "recipient": "Penerima: {{address}}",
+    "enterAmount": "Masukkan jumlah",
+    "balance": "Baki: {{balance}}",
+    "insufficient": "Baki tidak mencukupi",
+    "toSelfHint": "Anda tidak boleh pindah kepada diri sendiri",
+    "searchUser": "Cari pengguna",
+    "searchPlaceholder": "Masukkan nama pengguna atau tampal alamat",
+    "clearRecipient": "Kosongkan penerima",
+    "transferringTo": "Memindahkan kepada",
+    "transferring": "Memindahkan...",
+    "sent": "Pemindahan dihantar",
+    "toSelf": "Anda tidak boleh hantar token kepada diri sendiri",
+    "insufficientOnChain": "Baki on-chain tidak mencukupi untuk token ini"
   }
 }

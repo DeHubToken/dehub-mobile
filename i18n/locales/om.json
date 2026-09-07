@@ -2710,5 +2710,21 @@
     "needSignIn": "Akkaawuntii jijjiiruuf Google ykn imeeliidhaan seenuu qabda.",
     "switched": "Akkaawuntiin jijjiirame",
     "failed": "Akkaawuntii jijjiiruun hin dandaʼamne. Furtuu dhuunfaa mirkaneessii irra deebi'ii yaali."
+  },
+  "transfer": {
+    "title": "Tokenoota dabarsi",
+    "recipient": "Fudhataa: {{address}}",
+    "enterAmount": "Hamma galchi:",
+    "balance": "Hafee: {{balance}}",
+    "insufficient": "Hafeen gahaa miti",
+    "toSelfHint": "Ofii keetiif dabarsuu hin dandeessu",
+    "searchUser": "Fayyadamaa barbaadi",
+    "searchPlaceholder": "Maqaa fayyadamaa galchi ykn teessoo maxxansi",
+    "clearRecipient": "Fudhataa haqi",
+    "transferringTo": "Gara dabarsaa jira",
+    "transferring": "Dabarsaa jira...",
+    "sent": "Dabarsi ergameera",
+    "toSelf": "Ofii keetiif tokenoota erguu hin dandeessu",
+    "insufficientOnChain": "Tokenii kanaaf hafeen chain irraa gahaa miti"
   }
 }

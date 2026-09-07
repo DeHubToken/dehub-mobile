@@ -2658,5 +2658,21 @@
     "needSignIn": "你需要用 Google 或電郵登入先可以切換帳戶。",
     "switched": "已切換帳戶",
     "failed": "無法切換帳戶。請檢查私鑰後再試。"
+  },
+  "transfer": {
+    "title": "轉帳代幣",
+    "recipient": "收款人：{{address}}",
+    "enterAmount": "輸入金額",
+    "balance": "餘額：{{balance}}",
+    "insufficient": "餘額不足",
+    "toSelfHint": "唔可以轉畀自己",
+    "searchUser": "搜尋用戶",
+    "searchPlaceholder": "輸入用戶名或貼上地址",
+    "clearRecipient": "清除收款人",
+    "transferringTo": "轉帳至",
+    "transferring": "轉帳中...",
+    "sent": "轉帳已發送",
+    "toSelf": "唔可以向自己發送代幣",
+    "insufficientOnChain": "呢個代幣嘅鏈上餘額不足"
   }
 }

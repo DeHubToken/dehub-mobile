@@ -2660,5 +2660,21 @@
     "needSignIn": "Lai mainītu kontu, tev jābūt pierakstītam ar Google vai e-pastu.",
     "switched": "Konts mainīts",
     "failed": "Neizdevās mainīt kontu. Pārbaudi privāto atslēgu un mēģini vēlreiz."
+  },
+  "transfer": {
+    "title": "Pārskaitīt tokenus",
+    "recipient": "Saņēmējs: {{address}}",
+    "enterAmount": "Ievadi summu:",
+    "balance": "Bilance: {{balance}}",
+    "insufficient": "Nepietiekama bilance",
+    "toSelfHint": "Tu nevari pārskaitīt sev",
+    "searchUser": "Meklēt lietotāju",
+    "searchPlaceholder": "Ievadi lietotājvārdu vai ielīmē adresi",
+    "clearRecipient": "Notīrīt saņēmēju",
+    "transferringTo": "Pārskaitījums uz",
+    "transferring": "Pārskaita...",
+    "sent": "Pārskaitījums nosūtīts",
+    "toSelf": "Tu nevari sūtīt tokenus sev",
+    "insufficientOnChain": "Nepietiekama ķēdes bilance šim tokenam"
   }
 }

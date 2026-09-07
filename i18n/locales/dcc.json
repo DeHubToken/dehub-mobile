@@ -2616,5 +2616,21 @@
     "needSignIn": "اکاؤنٹ بدلنے کے لیے تمہیں Google یا ای میل سے سائن ان ہونا ہوگا۔",
     "switched": "اکاؤنٹ بدل گیا",
     "failed": "اکاؤنٹ نئیں بدل سکے۔ پرائیویٹ کی چیک کر کے دوبارہ کوشش کرو۔"
+  },
+  "transfer": {
+    "title": "ٹوکن بھیجو",
+    "recipient": "وصول کنندہ: {{address}}",
+    "enterAmount": "رقم درج کرو",
+    "balance": "بیلنس: {{balance}}",
+    "insufficient": "بیلنس کم ہے",
+    "toSelfHint": "خود کو نئیں بھیج سکتے",
+    "searchUser": "یوزر تلاش کرو",
+    "searchPlaceholder": "یوزرنیم لکھو یا پتہ پیسٹ کرو",
+    "clearRecipient": "وصول کنندہ ہٹاؤ",
+    "transferringTo": "بھیجا جا رہا ہے",
+    "transferring": "بھیج رہا ہے...",
+    "sent": "ٹرانسفر بھیج دیا",
+    "toSelf": "خود کو ٹوکن نئیں بھیج سکتے",
+    "insufficientOnChain": "اس ٹوکن کے لیے چین پر بیلنس کم ہے"
   }
 }

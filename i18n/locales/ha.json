@@ -2660,5 +2660,21 @@
     "needSignIn": "Kana buƙatar shiga da Google ko imel don canza asusu.",
     "switched": "An canza asusu",
     "failed": "Ba a iya canza asusu ba. Da fatan za a duba maɓallin sirri a sake gwadawa."
+  },
+  "transfer": {
+    "title": "Tura tokens",
+    "recipient": "Mai karɓa: {{address}}",
+    "enterAmount": "Shigar da adadin",
+    "balance": "Ma'auni: {{balance}}",
+    "insufficient": "Ma'auni bai isa ba",
+    "toSelfHint": "Ba za ka iya tura wa kanka ba",
+    "searchUser": "Nemo mai amfani",
+    "searchPlaceholder": "Shigar da sunan mai amfani ko manna adireshi",
+    "clearRecipient": "Share mai karɓa",
+    "transferringTo": "Ana turawa zuwa",
+    "transferring": "Ana turawa...",
+    "sent": "An aika tura",
+    "toSelf": "Ba za ka iya tura wa kanka tokens ba",
+    "insufficientOnChain": "Ma'auni a kan chain bai isa ba ga wannan token"
   }
 }

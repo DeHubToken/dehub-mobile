@@ -2646,5 +2646,21 @@
     "needSignIn": "खाता बदले लेल अहाँ के Google या ईमेल सँ साइन इन रहबाक चाही।",
     "switched": "खाता बदल गेल",
     "failed": "खाता नै बदलल गेल। प्राइवेट की जाँच क फेर कोशिश करू।"
+  },
+  "transfer": {
+    "title": "टोकन भेजू",
+    "recipient": "पावे वाला: {{address}}",
+    "enterAmount": "रकम डालू",
+    "balance": "बैलेंस: {{balance}}",
+    "insufficient": "बैलेंस कम अछि",
+    "toSelfHint": "अहाँ अपने के नै भेज सकैत छी",
+    "searchUser": "यूजर खोजू",
+    "searchPlaceholder": "यूजरनेम डालू या पता पेस्ट करू",
+    "clearRecipient": "पावे वाला हटाउ",
+    "transferringTo": "के भेजल जा रहल अछि",
+    "transferring": "भेजल जा रहल अछि...",
+    "sent": "ट्रांसफर भेजल गेल",
+    "toSelf": "अहाँ अपने के टोकन नै भेज सकैत छी",
+    "insufficientOnChain": "ई टोकन लेल चेन पर बैलेंस कम अछि"
   }
 }

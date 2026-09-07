@@ -2844,5 +2844,21 @@
     "needSignIn": "Kailangan mong naka-sign in gamit ang Google o email para magpalit ng account.",
     "switched": "Napalitan ang account",
     "failed": "Hindi mapalitan ang account. Pakisuri ang private key at subukang muli."
+  },
+  "transfer": {
+    "title": "Maglipat ng token",
+    "recipient": "Tatanggap: {{address}}",
+    "enterAmount": "Ilagay ang halaga ng",
+    "balance": "Balanse: {{balance}}",
+    "insufficient": "Kulang ang balanse",
+    "toSelfHint": "Hindi ka makakapaglipat sa iyong sarili",
+    "searchUser": "Maghanap ng user",
+    "searchPlaceholder": "Ilagay ang username o i-paste ang address",
+    "clearRecipient": "Alisin ang tatanggap",
+    "transferringTo": "Inililipat kay",
+    "transferring": "Inililipat...",
+    "sent": "Naipadala ang paglipat",
+    "toSelf": "Hindi ka makakapagpadala ng token sa iyong sarili",
+    "insufficientOnChain": "Kulang ang on-chain na balanse para sa token na ito"
   }
 }

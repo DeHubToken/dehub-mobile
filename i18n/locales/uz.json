@@ -2715,5 +2715,21 @@
     "needSignIn": "Hisoblarni almashtirish uchun Google yoki email orqali kirgan bo‘lishingiz kerak.",
     "switched": "Hisob almashtirildi",
     "failed": "Hisobni almashtirib bo‘lmadi. Shaxsiy kalitni tekshirib, qayta urinib ko‘ring."
+  },
+  "transfer": {
+    "title": "Tokenlarni o‘tkazish",
+    "recipient": "Qabul qiluvchi: {{address}}",
+    "enterAmount": "Miqdorni kiriting:",
+    "balance": "Balans: {{balance}}",
+    "insufficient": "Balans yetarli emas",
+    "toSelfHint": "O‘zingizga o‘tkaza olmaysiz",
+    "searchUser": "Foydalanuvchi qidirish",
+    "searchPlaceholder": "Foydalanuvchi nomini kiriting yoki manzilni joylashtiring",
+    "clearRecipient": "Qabul qiluvchini tozalash",
+    "transferringTo": "O‘tkazilmoqda:",
+    "transferring": "O‘tkazilmoqda...",
+    "sent": "O‘tkazma yuborildi",
+    "toSelf": "O‘zingizga token yubora olmaysiz",
+    "insufficientOnChain": "Bu token uchun zanjirdagi balans yetarli emas"
   }
 }

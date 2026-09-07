@@ -2851,5 +2851,21 @@
     "needSignIn": "একাউন্ট বদলাবার জন্য তোমাক Google বা ইমেইল দিয়া সাইন ইন থাকা লাগিবে।",
     "switched": "একাউন্ট বদলাইছে",
     "failed": "একাউন্ট বদলানো গেইল না। প্রাইভেট কী দেখি আবার চেষ্টা করো।"
+  },
+  "transfer": {
+    "title": "টোকেন পাঠাও",
+    "recipient": "প্রাপক: {{address}}",
+    "enterAmount": "পরিমাণ লেখো:",
+    "balance": "ব্যালেন্স: {{balance}}",
+    "insufficient": "ব্যালেন্স কম",
+    "toSelfHint": "নিজেক পাঠাবার পারো না",
+    "searchUser": "ইউজার খোজো",
+    "searchPlaceholder": "ইউজারনেম লেখো বা ঠিকানা পেস্ট করো",
+    "clearRecipient": "প্রাপক মুছো",
+    "transferringTo": "যাক পাঠাইছে",
+    "transferring": "পাঠাইছে...",
+    "sent": "ট্রান্সফার পাঠাইছে",
+    "toSelf": "নিজেক টোকেন পাঠাবার পারো না",
+    "insufficientOnChain": "এই টোকেনের জন্য চেইনত ব্যালেন্স কম"
   }
 }

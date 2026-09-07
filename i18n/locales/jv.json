@@ -2660,5 +2660,21 @@
     "needSignIn": "Sampeyan kudu mlebu nganggo Google utawa email kanggo ganti akun.",
     "switched": "Akun wis diganti",
     "failed": "Ora bisa ganti akun. Priksa kunci pribadi lan coba maneh."
+  },
+  "transfer": {
+    "title": "Transfer token",
+    "recipient": "Panampa: {{address}}",
+    "enterAmount": "Lebokake jumlah",
+    "balance": "Saldo: {{balance}}",
+    "insufficient": "Saldo ora cukup",
+    "toSelfHint": "Sampeyan ora bisa transfer menyang awake dhewe",
+    "searchUser": "Golek pangguna",
+    "searchPlaceholder": "Lebokake jeneng pangguna utawa tempel alamat",
+    "clearRecipient": "Busak panampa",
+    "transferringTo": "Transfer menyang",
+    "transferring": "Lagi transfer...",
+    "sent": "Transfer dikirim",
+    "toSelf": "Sampeyan ora bisa ngirim token menyang awake dhewe",
+    "insufficientOnChain": "Saldo on-chain ora cukup kanggo token iki"
   }
 }

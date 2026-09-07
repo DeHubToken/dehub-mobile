@@ -2709,5 +2709,21 @@
     "needSignIn": "Kamu harus masuk dengan Google atau email untuk mengganti akun.",
     "switched": "Akun diganti",
     "failed": "Tidak dapat mengganti akun. Periksa kunci privat dan coba lagi."
+  },
+  "transfer": {
+    "title": "Transfer token",
+    "recipient": "Penerima: {{address}}",
+    "enterAmount": "Masukkan jumlah",
+    "balance": "Saldo: {{balance}}",
+    "insufficient": "Saldo tidak cukup",
+    "toSelfHint": "Kamu tidak bisa transfer ke diri sendiri",
+    "searchUser": "Cari pengguna",
+    "searchPlaceholder": "Masukkan nama pengguna atau tempel alamat",
+    "clearRecipient": "Hapus penerima",
+    "transferringTo": "Transfer ke",
+    "transferring": "Mentransfer...",
+    "sent": "Transfer terkirim",
+    "toSelf": "Kamu tidak bisa mengirim token ke diri sendiri",
+    "insufficientOnChain": "Saldo on-chain tidak cukup untuk token ini"
   }
 }

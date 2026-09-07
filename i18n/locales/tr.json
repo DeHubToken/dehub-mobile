@@ -2709,5 +2709,21 @@
     "needSignIn": "Hesap değiştirmek için Google veya e-posta ile oturum açmış olmalısın.",
     "switched": "Hesap değiştirildi",
     "failed": "Hesap değiştirilemedi. Lütfen özel anahtarı kontrol edip tekrar dene."
+  },
+  "transfer": {
+    "title": "Token aktar",
+    "recipient": "Alıcı: {{address}}",
+    "enterAmount": "Tutarı gir:",
+    "balance": "Bakiye: {{balance}}",
+    "insufficient": "Yetersiz bakiye",
+    "toSelfHint": "Kendine aktaramazsın",
+    "searchUser": "Kullanıcı ara",
+    "searchPlaceholder": "Kullanıcı adı gir veya adres yapıştır",
+    "clearRecipient": "Alıcıyı temizle",
+    "transferringTo": "Şuraya aktarılıyor:",
+    "transferring": "Aktarılıyor...",
+    "sent": "Aktarım gönderildi",
+    "toSelf": "Kendine token gönderemezsin",
+    "insufficientOnChain": "Bu token için zincir üstü bakiye yetersiz"
   }
 }

@@ -2649,5 +2649,21 @@
     "needSignIn": "ሕሳባት ንምቕያር ብGoogle ወይ ኢመይል ኣቲኻ ክትህሉ ኣለካ።",
     "switched": "ሕሳብ ተቐዪሩ",
     "failed": "ሕሳባት ክቕየሩ ኣይተኻእለን። በጃኻ ብሕታዊ መፍትሕ ኣረጋግጽ እሞ ደጊምካ ፈትን።"
+  },
+  "transfer": {
+    "title": "ቶከናት ኣመሓላልፍ",
+    "recipient": "ተቐባሊ፡ {{address}}",
+    "enterAmount": "መጠን ኣእቱ፡",
+    "balance": "ተረፍ፡ {{balance}}",
+    "insufficient": "ዘይኣኽል ተረፍ",
+    "toSelfHint": "ናብ ነብስኻ ከተመሓላልፍ ኣይትኽእልን",
+    "searchUser": "ተጠቃሚ ድለ",
+    "searchPlaceholder": "ስም ተጠቃሚ ኣእቱ ወይ ኣድራሻ ልጠፍ",
+    "clearRecipient": "ተቐባሊ ኣጽሪ",
+    "transferringTo": "ናብ ምምሕልላፍ",
+    "transferring": "ይመሓላለፍ ኣሎ...",
+    "sent": "ምምሕልላፍ ተላኢኹ",
+    "toSelf": "ናብ ነብስኻ ቶከናት ክትሰድድ ኣይትኽእልን",
+    "insufficientOnChain": "ነዚ ቶከን ኣብ ቸይን ዘይኣኽል ተረፍ"
   }
 }

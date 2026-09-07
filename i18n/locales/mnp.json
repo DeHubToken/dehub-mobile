@@ -2701,5 +2701,21 @@
     "needSignIn": "你需要使用 Google 或邮箱登录才能切换账户。",
     "switched": "已切换账户",
     "failed": "无法切换账户。请检查私钥后重试。"
+  },
+  "transfer": {
+    "title": "转账代币",
+    "recipient": "收款人：{{address}}",
+    "enterAmount": "输入金额",
+    "balance": "余额：{{balance}}",
+    "insufficient": "余额不足",
+    "toSelfHint": "不能转给自己",
+    "searchUser": "搜索用户",
+    "searchPlaceholder": "输入用户名或粘贴地址",
+    "clearRecipient": "清除收款人",
+    "transferringTo": "转账至",
+    "transferring": "转账中...",
+    "sent": "转账已发送",
+    "toSelf": "不能向自己发送代币",
+    "insufficientOnChain": "此代币的链上余额不足"
   }
 }

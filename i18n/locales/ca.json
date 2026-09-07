@@ -2660,5 +2660,21 @@
     "needSignIn": "Has d'haver iniciat sessió amb Google o correu per canviar de compte.",
     "switched": "Compte canviat",
     "failed": "No s'ha pogut canviar de compte. Comprova la clau privada i torna-ho a provar."
+  },
+  "transfer": {
+    "title": "Transfereix tokens",
+    "recipient": "Destinatari: {{address}}",
+    "enterAmount": "Introdueix la quantitat de",
+    "balance": "Saldo: {{balance}}",
+    "insufficient": "Saldo insuficient",
+    "toSelfHint": "No pots transferir-te a tu mateix",
+    "searchUser": "Cerca un usuari",
+    "searchPlaceholder": "Introdueix el nom d'usuari o enganxa l'adreça",
+    "clearRecipient": "Esborra el destinatari",
+    "transferringTo": "Transferint a",
+    "transferring": "Transferint...",
+    "sent": "Transferència enviada",
+    "toSelf": "No pots enviar-te tokens a tu mateix",
+    "insufficientOnChain": "Saldo on-chain insuficient per a aquest token"
   }
 }

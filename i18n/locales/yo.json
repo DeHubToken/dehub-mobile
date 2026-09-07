@@ -2660,5 +2660,21 @@
     "needSignIn": "O nílò láti wọlé pẹ̀lú Google tàbí íméèlì láti yí àkọọ́lẹ̀ padà.",
     "switched": "A ti yí àkọọ́lẹ̀ padà",
     "failed": "Kò lè yí àkọọ́lẹ̀ padà. Jọ̀wọ́ ṣàyẹ̀wò kọ́kọ́rọ́ àdáni kí o sì gbìyànjú lẹ́ẹ̀kan sí i."
+  },
+  "transfer": {
+    "title": "Gbé àwọn tọ́kìn",
+    "recipient": "Olùgbà: {{address}}",
+    "enterAmount": "Tẹ iye",
+    "balance": "Ìwọ̀n: {{balance}}",
+    "insufficient": "Ìwọ̀n kò tó",
+    "toSelfHint": "O kò lè gbé sí ara rẹ",
+    "searchUser": "Wá olùmúlò",
+    "searchPlaceholder": "Tẹ orúkọ olùmúlò tàbí lẹ̀ àdírẹ́sì pọ̀",
+    "clearRecipient": "Pa olùgbà rẹ́",
+    "transferringTo": "Ń gbé sí",
+    "transferring": "Ń gbé...",
+    "sent": "A ti fi ìgbé ránṣẹ́",
+    "toSelf": "O kò lè fi tọ́kìn ránṣẹ́ sí ara rẹ",
+    "insufficientOnChain": "Ìwọ̀n orí ẹ̀wọ̀n kò tó fún tọ́kìn yìí"
   }
 }

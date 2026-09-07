@@ -2709,5 +2709,21 @@
     "needSignIn": "Du musst mit Google oder E-Mail angemeldet sein, um Konten zu wechseln.",
     "switched": "Konto gewechselt",
     "failed": "Konten konnten nicht gewechselt werden. Bitte prüfe den privaten Schlüssel und versuche es erneut."
+  },
+  "transfer": {
+    "title": "Token übertragen",
+    "recipient": "Empfänger: {{address}}",
+    "enterAmount": "Betrag eingeben in",
+    "balance": "Guthaben: {{balance}}",
+    "insufficient": "Guthaben reicht nicht",
+    "toSelfHint": "Du kannst nicht an dich selbst übertragen",
+    "searchUser": "Nutzer suchen",
+    "searchPlaceholder": "Nutzernamen eingeben oder Adresse einfügen",
+    "clearRecipient": "Empfänger entfernen",
+    "transferringTo": "Übertragung an",
+    "transferring": "Wird übertragen...",
+    "sent": "Übertragung gesendet",
+    "toSelf": "Du kannst keine Token an dich selbst senden",
+    "insufficientOnChain": "On-Chain-Guthaben für diesen Token reicht nicht"
   }
 }

@@ -2659,5 +2659,21 @@
     "needSignIn": "Hesabları dəyişmək üçün Google və ya e-poçt ilə daxil olmalısan.",
     "switched": "Hesab dəyişdirildi",
     "failed": "Hesabları dəyişmək mümkün olmadı. Şəxsi açarı yoxlayıb yenidən cəhd et."
+  },
+  "transfer": {
+    "title": "Tokenləri köçür",
+    "recipient": "Alıcı: {{address}}",
+    "enterAmount": "Məbləği daxil et:",
+    "balance": "Balans: {{balance}}",
+    "insufficient": "Balans kifayət deyil",
+    "toSelfHint": "Özünə köçürə bilməzsən",
+    "searchUser": "İstifadəçi axtar",
+    "searchPlaceholder": "İstifadəçi adı daxil et və ya ünvanı yapışdır",
+    "clearRecipient": "Alıcını təmizlə",
+    "transferringTo": "Köçürülür:",
+    "transferring": "Köçürülür...",
+    "sent": "Köçürmə göndərildi",
+    "toSelf": "Özünə token göndərə bilməzsən",
+    "insufficientOnChain": "Bu token üçün zəncirdə balans kifayət deyil"
   }
 }
