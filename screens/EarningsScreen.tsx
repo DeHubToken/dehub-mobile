@@ -129,9 +129,14 @@ function PieChart({ tips, ppv }: { tips: number; ppv: number }) {
     <View style={{ width: 140, height: 140 }}>
       <Svg width={140} height={140}>
         <G>
-          {paths.map((p, i) => (
-            <Path key={i} d={p.d} fill={p.color} />
-          ))}
+          {slices.length === 1 ? (
+            // A full 360° arc ends where it starts, and react-native-svg's
+            // path parser turns such an arc into a line, so a single-source
+            // donut painted nothing. Draw the full ring as a stroked circle.
+            <Circle cx={CX} cy={CY} r={R - 9} fill="none" stroke={slices[0].color} strokeWidth={18} />
+          ) : (
+            paths.map((p, i) => <Path key={i} d={p.d} fill={p.color} />)
+          )}
         </G>
       </Svg>
       <View style={[StyleSheet.absoluteFill as any, { alignItems: "center", justifyContent: "center" }]}>
