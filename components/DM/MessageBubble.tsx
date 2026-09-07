@@ -37,6 +37,7 @@ import { getSenderUser } from "../../services/dm/dm.types";
 import type { MessageLayout } from "./MessageContextMenu";
 import DehubLinkCard from "../common/DehubLinkCard";
 import LinkedText from "../common/LinkedText";
+import LinkPreviewCard from "../common/LinkPreviewCard";
 import { findDehubLink, stripDehubLinkMatches } from "../../libs/dehub-links";
 import {
   AssetRefCards,
@@ -932,6 +933,18 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                       <AssetRefCards refs={assetRefs} />
                     </View>
                   )}
+                  {/* An outside link gets the OG card the web bubble already
+                      shows. Fixed width for the same reason the asset card has
+                      one, and it renders nothing at all when the message holds
+                      no external link, so a plain text bubble is untouched. */}
+                  <LinkPreviewCard
+                    text={assetDisplayText}
+                    style={{
+                      width: BUBBLE_ASSET_CARD_WIDTH,
+                      marginHorizontal: 12,
+                      marginBottom: 4,
+                    }}
+                  />
                 </>
               )
             )}
