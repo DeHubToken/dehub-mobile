@@ -1105,7 +1105,14 @@
     "noneForFilter": "Әзірге {{filter}} хабарландырулары жоқ.",
     "andNOthers": "және тағы {{count}}",
     "community": {
-      "here": "{{name}} қауымдастықтағы барлық адамдарға хабарлама жіберді"
+      "here": "{{name}} қауымдастықтағы барлық адамдарға хабарлама жіберді",
+      "joined": "{{name}} Сіздің қауымдастығыңызға қосылды",
+      "joinedNamed": "{{name}} «{{community}}» қосылды",
+      "requested": "{{name}} Сіздің қауымдастығыңызға қосылуды сұрады",
+      "requestedNamed": "{{name}} «{{community}}» қосылуды сұрады",
+      "mentioned": "{{name}} Сізді қоғамдастықта атап өтті",
+      "mentionedNamed": "{{name}} Сізді «{{community}}» бөлімінде атап өтті",
+      "hereNamed": "{{name}} Барлығына «{{community}}» хабарлама жіберді"
     }
   },
   "leaderboard": {

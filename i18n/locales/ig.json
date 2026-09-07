@@ -1192,7 +1192,9 @@
     "andNOthers": "na {{count}} ndị ọzọ",
     "community": {
       "joined": "{{name}} sonyeere obodo gị",
-      "requested": "{{name}} jụrụ isonyere obodo gị"
+      "requested": "{{name}} jụrụ isonyere obodo gị",
+      "requestedNamed": "{{name}} jụrụ isonyere \"{{community}}\"",
+      "hereNamed": "{{name}} ozi onye ọ bụla na \"{{community}}\""
     }
   },
   "leaderboard": {

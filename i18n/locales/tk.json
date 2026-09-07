@@ -1185,7 +1185,10 @@
     "payments": "Tölegler",
     "claimBounty": "Baýragyňy al",
     "noneForFilter": "Häzirlikçe {{filter}} habarnamasy ýok.",
-    "andNOthers": "we ýene {{count}}"
+    "andNOthers": "we ýene {{count}}",
+    "community": {
+      "joinedNamed": "{{name}} \"{{community}}\" bilen birleşdi"
+    }
   },
   "messages": {
     "smartRepliesOff": "Teklip edilýän jogaplar öçürildi",

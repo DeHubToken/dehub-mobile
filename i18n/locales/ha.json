@@ -1192,7 +1192,11 @@
       "joinedNamed": "{{name}} shiga “{{community}}@”",
       "requested": "{{name}} an nemi shiga cikin al'ummar ku",
       "mentioned": "{{name}} ya ambace ku a cikin al'umma",
-      "here": "{{name}} saƙon kowa a cikin al'umma"
+      "here": "{{name}} saƙon kowa a cikin al'umma",
+      "joined": "{{name}} shiga cikin al'ummar ku",
+      "requestedNamed": "{{name}} ya nemi shiga “{{community}}”",
+      "mentionedNamed": "{{name}} ya ambace ku a “{{community}}”",
+      "hereNamed": "{{name}} saƙon kowa a cikin “{{community}}”"
     }
   },
   "leaderboard": {

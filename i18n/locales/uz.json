@@ -1112,7 +1112,9 @@
       "mentioned": "{{name}} sizni hamjamiyatda tilga oldi",
       "mentionedNamed": "{{name}} sizni “{{community}}” da tilga olgan",
       "here": "{{name}} hamjamiyatdagi barchaga xabar yubordi",
-      "hereNamed": "{{name}} hammaga “{{community}}” xatida xabar yubordi"
+      "hereNamed": "{{name}} hammaga “{{community}}” xatida xabar yubordi",
+      "joinedNamed": "{{name}} “{{community}}” ga qo&#39;shildi",
+      "requestedNamed": "{{name}} “{{community}}” ga qo‘shilish so‘raldi"
     }
   },
   "leaderboard": {

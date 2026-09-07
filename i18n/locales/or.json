@@ -1124,7 +1124,10 @@
     "payments": "ପେମେଣ୍ଟ",
     "claimBounty": "ଆପଣଙ୍କ ପୁରସ୍କାର ନିଅନ୍ତୁ",
     "noneForFilter": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି {{filter}} ବିଜ୍ଞପ୍ତି ନାହିଁ।",
-    "andNOthers": "ଏବଂ ଅନ୍ୟ {{count}}"
+    "andNOthers": "ଏବଂ ଅନ୍ୟ {{count}}",
+    "community": {
+      "joinedNamed": "{{name}} ଯୋଡିହେଲା “{{community}}”"
+    }
   },
   "leaderboard": {
     "title": "ଲିଡରବୋର୍ଡ",

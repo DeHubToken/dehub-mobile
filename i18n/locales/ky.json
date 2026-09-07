@@ -1191,7 +1191,11 @@
       "joined": "{{name}} Сиздин жамаатка кошулду",
       "requested": "{{name}} Сиздин жамаатка кошулууну суранды",
       "mentioned": "{{name}} Сизди коомчулукта эскертти",
-      "here": "{{name}} Коомчулуктун баарына билдирүү жөнөттү"
+      "here": "{{name}} Коомчулуктун баарына билдирүү жөнөттү",
+      "joinedNamed": "{{name}} кошулду “{{community}}”",
+      "requestedNamed": "{{name}} “{{community}}” кошулууну суранды",
+      "mentionedNamed": "{{name}} Сизди “{{community}}” деп атаган",
+      "hereNamed": "{{name}} \"{{community}}\" ичиндеги баарына билдирүү жөнөттү"
     }
   },
   "messages": {

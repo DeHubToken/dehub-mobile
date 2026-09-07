@@ -1057,7 +1057,17 @@
     "payments": "Fandoavam-bola",
     "claimBounty": "Alao ny valisoanao",
     "noneForFilter": "Tsy mbola misy fampandrenesana {{filter}}.",
-    "andNOthers": "sy {{count}} hafa"
+    "andNOthers": "sy {{count}} hafa",
+    "community": {
+      "joined": "{{name}} manatevin-daharana ny vondrom-piarahamonina misy anao",
+      "joinedNamed": "{{name}} nandray anjara {{community}} \"",
+      "requested": "{{name}} Nangataka ny hiditra ao amin'ny vondrom-piarahamonina misy anao aho",
+      "requestedNamed": "{{name}} nangatahana mba hanatevin-daharana ny \"{{community}}\"",
+      "mentioned": "{{name}} nanonona anao tanatinà vondrom-piarahamonina iray ianao",
+      "mentionedNamed": "{{name}} nanonona anao tao amin'ny “{{community}}”",
+      "here": "{{name}} messaged ny tsirairay tao anatin'ilay vondrom-piarahamonina",
+      "hereNamed": "{{name}} messaged ny rehetra {{community}} \""
+    }
   },
   "leaderboard": {
     "title": "Lisitry ny tsara indrindra",
