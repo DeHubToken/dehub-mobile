@@ -1190,7 +1190,11 @@
       "joinedNamed": "{{name}} ተቀላቀል “{{community}}@”",
       "requested": "{{name}} ማህበረሰብዎን እንዲቀላቀሉ ጠይቀዋል",
       "here": "{{name}} በማህበረሰቡ ውስጥ ላሉት ሁሉ መልእክት አስተላልፈዋል",
-      "hereNamed": "{{name}}@ በ \"{{community}}@\" ውስጥ ለሁሉም ሰው መልእክት አስተላልፏል"
+      "hereNamed": "{{name}}@ በ \"{{community}}@\" ውስጥ ለሁሉም ሰው መልእክት አስተላልፏል",
+      "joined": "{{name}} ማህበረሰብዎን ተቀላቀሉ",
+      "requestedNamed": "{{name}} ለመቀላቀል ጠየቀ “{{community}}”",
+      "mentioned": "{{name}} በማህበረሰብ ውስጥ ጠቅሶሃል",
+      "mentionedNamed": "{{name}} በ “{{community}}” ውስጥ ጠቅሷል"
     }
   },
   "leaderboard": {

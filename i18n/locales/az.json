@@ -1126,7 +1126,14 @@
     "noneForFilter": "Hələ {{filter}} bildirişi yoxdur.",
     "andNOthers": "və daha {{count}} nəfər",
     "community": {
-      "here": "{{name}} icmadakı hər kəsə mesaj yazdı"
+      "here": "{{name}} icmadakı hər kəsə mesaj yazdı",
+      "joined": "{{name}} icmanıza qoşuldu",
+      "joinedNamed": "{{name}} qoşuldu “{{community}}”",
+      "requested": "{{name}} icmanıza qoşulmaq istədi",
+      "requestedNamed": "{{name}} “{{community}}” -a qoşulmaq istədi",
+      "mentioned": "{{name}} sizi icmada qeyd etdi",
+      "mentionedNamed": "{{name}} sizi “{{community}}” -da qeyd edib",
+      "hereNamed": "{{name}} “{{community}}” -da hər kəs mesajlaşdı"
     }
   },
   "leaderboard": {

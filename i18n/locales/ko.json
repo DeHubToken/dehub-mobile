@@ -1103,7 +1103,8 @@
       "mentioned": "{{name}} 님이 커뮤니티에서 회원님을 멘션했습니다",
       "mentionedNamed": "{{name}} 님이 “{{community}}” 에서 회원님을 멘션했습니다",
       "here": "{{name}} 님이 커뮤니티의 모든 사람에게 메시지를 보냈습니다.",
-      "hereNamed": "{{name}} 님이 '{{community}}' 의 모든 사람에게 메시지를 보냈습니다."
+      "hereNamed": "{{name}} 님이 '{{community}}' 의 모든 사람에게 메시지를 보냈습니다.",
+      "joinedNamed": "{{name}} 님이 “{{community}}” 에 가입했습니다"
     }
   },
   "leaderboard": {

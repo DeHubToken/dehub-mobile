@@ -1189,7 +1189,17 @@
     "payments": "পেমেন্ট",
     "claimBounty": "আপনার পুরস্কার নিন",
     "noneForFilter": "এখনও কোনো {{filter}} বিজ্ঞপ্তি নেই।",
-    "andNOthers": "এবং আরও {{count}} জন"
+    "andNOthers": "এবং আরও {{count}} জন",
+    "community": {
+      "joined": "{{name}} আপনার কমিউনিটিতে যোগ দিন",
+      "joinedNamed": "{{name}} যোগদান করেছেন “{{community}}”",
+      "requested": "{{name}} কে আপনার কমিউনিটিতে যোগ দিতে বলা হয়েছে",
+      "requestedNamed": "{{name}} কে \"{{community}}\" -এ যোগ দিতে বলা হয়েছে",
+      "mentioned": "{{name}} আপনাকে একটি কমিউনিটিতে উল্লেখ করেছেন",
+      "mentionedNamed": "{{name}} আপনাকে “{{community}}” -এ উল্লেখ করেছেন",
+      "here": "{{name}} কমিউনিটির সবাইকে মেসেজ করেছেন",
+      "hereNamed": "{{name}} সবাইকে “{{community}}” -এ মেসেজ করেছেন"
+    }
   },
   "leaderboard": {
     "title": "লিডারবোর্ড",
