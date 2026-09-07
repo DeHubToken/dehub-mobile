@@ -11,6 +11,8 @@ import {
   Modal,
   TextInput,
   Alert,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import ScreenHeader from "../components/ScreenHeader";
 import PostsInfiniteList from "../components/Profile/PostsInfiniteList";
@@ -465,7 +467,10 @@ const SavedPostsScreen: React.FC = () => {
           setFolderDesc("");
         }}
       >
-        <View style={styles.modalBackdrop}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.modalBackdrop}
+        >
           <View style={styles.modalCard}>
             <Text style={styles.modalTitle}>Create Collection</Text>
             <TextInput
@@ -510,7 +515,7 @@ const SavedPostsScreen: React.FC = () => {
               </TouchableOpacity>
             </View>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </Modal>
 
       {/* Edit Folder Modal */}
@@ -524,7 +529,10 @@ const SavedPostsScreen: React.FC = () => {
           setFolderDesc("");
         }}
       >
-        <View style={styles.modalBackdrop}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.modalBackdrop}
+        >
           <View style={styles.modalCard}>
             <Text style={styles.modalTitle}>Edit Collection</Text>
             <TextInput
@@ -568,7 +576,7 @@ const SavedPostsScreen: React.FC = () => {
               </TouchableOpacity>
             </View>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </Modal>
     </View>
   );
