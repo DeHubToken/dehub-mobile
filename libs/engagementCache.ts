@@ -54,7 +54,7 @@ export interface EngagementFields {
   /** reposts + quotes, matching how FeedCard displays it. */
   repostCount: number;
   /**
-   * Which of the nine reactions the viewer holds, or null for none.
+   * Which of the ten reactions the viewer holds, or null for none.
    * `isLiked`/`isDisliked` remain its POLARITY, so a post the viewer loved
    * still reads as liked to anything that only knows about likes.
    */

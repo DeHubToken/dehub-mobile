@@ -5,6 +5,7 @@ import {
   resolveLeadReaction,
   resolveNegativeLeadReaction,
   resolveReactionCounts,
+  HAS_NEGATIVE_TRAY,
   NEGATIVE_REACTION_LIST,
   POSITIVE_REACTION_LIST,
   POST_REACTIONS,
@@ -12,11 +13,19 @@ import {
 } from "../../libs/reactions";
 
 describe("reaction taxonomy", () => {
-  it("treats only dislike and poo as negative", () => {
+  it("exposes all ten reactions in picker order", () => {
+    expect(POST_REACTIONS).toEqual([
+      "like", "love", "respect", "hot", "hundred", "lol", "sad", "cry", "poo", "dislike",
+    ]);
+  });
+
+  it("treats only dislike as negative — 💩 counts as engagement", () => {
     expect(POST_REACTIONS.filter((key) => !isPositiveReaction(key))).toEqual([
       "dislike",
-      "poo",
     ]);
+    // The reason it moved: a negative reaction feeds the API's downvote-burial
+    // filter, and a joke should not take a post out of public discovery.
+    expect(isPositiveReaction("poo")).toBe(true);
   });
 });
 
@@ -37,9 +46,14 @@ describe("resolveLeadReaction", () => {
   });
 
   it("never wears a negative reaction — that is the thumbs-down's", () => {
-    expect(resolveLeadReaction({ like: 1, poo: 9 })).toBeNull();
+    expect(resolveLeadReaction({ like: 1, dislike: 9 })).toBeNull();
     expect(resolveLeadReaction({ love: 1, dislike: 9 })).toBe("love");
-    expect(resolveLeadReaction({ hot: 3 }, "poo")).toBe("hot");
+    expect(resolveLeadReaction({ hot: 3 }, "dislike")).toBe("hot");
+  });
+
+  it("wears a 💩, which is an ordinary positive reaction now", () => {
+    expect(resolveLeadReaction({ like: 1, poo: 9 })).toBe("poo");
+    expect(resolveLeadReaction({ hot: 3 }, "poo")).toBe("poo");
   });
 
   it("lets the viewer's own reaction outrank the crowd's", () => {
@@ -63,7 +77,7 @@ describe("reactionForTap", () => {
   it("re-sends the held reaction, which is how the server un-reacts it", () => {
     expect(reactionForTap(true, "lol", { hot: 40 })).toBe("lol");
     expect(reactionForTap(true, "like", { hot: 40 })).toBe("like");
-    expect(reactionForTap(false, "poo", {})).toBe("poo");
+    expect(reactionForTap(true, "poo", {})).toBe("poo");
     expect(reactionForTap(false, "dislike", {})).toBe("dislike");
   });
 
@@ -73,8 +87,8 @@ describe("reactionForTap", () => {
   });
 
   it("switches polarity to whatever the thumb shows", () => {
-    expect(reactionForTap(true, "poo", { hot: 5 })).toBe("hot");
-    expect(reactionForTap(true, "poo", { like: 5 })).toBe("like");
+    expect(reactionForTap(true, "dislike", { hot: 5 })).toBe("hot");
+    expect(reactionForTap(true, "dislike", { like: 5 })).toBe("like");
   });
 });
 
@@ -85,8 +99,9 @@ describe("reconcileReactionCounts", () => {
     const counts = reconcileReactionCounts(101, 7, { like: 13, love: 5, hot: 1, dislike: 2, poo: 1 });
     const positive =
       (counts.like ?? 0) + (counts.love ?? 0) + (counts.hot ?? 0) +
-      (counts.respect ?? 0) + (counts.lol ?? 0) + (counts.sad ?? 0) + (counts.cry ?? 0);
-    const negative = (counts.dislike ?? 0) + (counts.poo ?? 0);
+      (counts.respect ?? 0) + (counts.hundred ?? 0) + (counts.lol ?? 0) +
+      (counts.sad ?? 0) + (counts.cry ?? 0) + (counts.poo ?? 0);
+    const negative = counts.dislike ?? 0;
     expect(positive).toBe(101);
     expect(negative).toBe(7);
   });
@@ -197,19 +212,25 @@ describe("resolveReactionCounts — object identity", () => {
 });
 
 describe("the two trays", () => {
-  it("puts 👎 and 💩 in the negative tray and nothing else", () => {
-    expect(NEGATIVE_REACTION_LIST.map((r) => r.key)).toEqual(["dislike", "poo"]);
+  it("leaves the thumbs-down with the downvote and nothing else", () => {
+    expect(NEGATIVE_REACTION_LIST.map((r) => r.key)).toEqual(["dislike"]);
   });
 
-  it("keeps the seven positive faces on the thumbs-up", () => {
+  it("does not open a tray of one — a hold there would delay the downvote", () => {
+    expect(HAS_NEGATIVE_TRAY).toBe(false);
+  });
+
+  it("keeps every positive face on the thumbs-up", () => {
     expect(POSITIVE_REACTION_LIST.map((r) => r.key)).toEqual([
       "like",
       "love",
       "respect",
       "hot",
+      "hundred",
       "lol",
       "sad",
       "cry",
+      "poo",
     ]);
   });
 
@@ -225,12 +246,12 @@ describe("the two trays", () => {
 });
 
 describe("resolveNegativeLeadReaction", () => {
-  it("wears your own 💩", () => {
-    expect(resolveNegativeLeadReaction("poo")).toBe("poo");
-  });
-
   it("draws the plain icon for a plain 👎, which is already that glyph", () => {
     expect(resolveNegativeLeadReaction("dislike")).toBeNull();
+  });
+
+  it("leaves the thumbs-down bare now that 💩 belongs to the other thumb", () => {
+    expect(resolveNegativeLeadReaction("poo")).toBeNull();
   });
 
   it("never announces a positive reaction — that thumb is above it", () => {

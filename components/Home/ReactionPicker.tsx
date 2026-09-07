@@ -1,7 +1,7 @@
 /**
  * Reaction Picker
  * ===============
- * The nine-reaction tray that opens when you hold the thumbs-up on a post.
+ * The reaction tray that opens when you hold the thumbs-up on a post.
  *
  * WHY IT ISN'T A MODAL
  * A Modal would take the touch responder away from the thumbs-up that is still
@@ -65,8 +65,8 @@ interface ReactionPickerProps {
   onShowInfo?: () => void;
   /**
    * Which thumb this tray hangs off. The positive one wears the seven faces
-   * that count as a like; the negative one wears 👎 and 💩 — see the note on
-   * POSITIVE_REACTION_LIST for why they are not one tray of nine.
+   * that count as a like; the negative one wears the downvote — see the note
+   * on POSITIVE_REACTION_LIST for why they are not one tray.
    */
   polarity?: "positive" | "negative";
 }

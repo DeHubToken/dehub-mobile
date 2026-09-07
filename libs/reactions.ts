@@ -11,8 +11,8 @@
  * that polarity is what `totalVotes.for` / `totalVotes.against` and
  * `isLiked` / `isDisliked` keep counting:
  *
- *   positive → isLiked    (like, love, respect, hot, lol, sad, cry)
- *   negative → isDisliked (dislike, poo)
+ *   positive → isLiked    (like, love, respect, hot, hundred, lol, sad, cry, poo)
+ *   negative → isDisliked (dislike)
  *
  * So `likeCount` still means "how many people reacted positively" — it does not
  * turn into a like-only count when someone loves a post. The per-reaction split
@@ -25,17 +25,27 @@ export const POST_REACTIONS = [
   "love",
   "respect",
   "hot",
+  "hundred",
   "lol",
   "sad",
   "cry",
-  "dislike",
   "poo",
+  "dislike",
 ] as const;
 
 export type PostReaction = (typeof POST_REACTIONS)[number];
 
-/** Reactions that land in `totalVotes.against` and light the thumbs-down. */
-export const NEGATIVE_REACTIONS: readonly PostReaction[] = ["dislike", "poo"] as const;
+/**
+ * Reactions that land in `totalVotes.against` and light the thumbs-down.
+ *
+ * Just the one, since 2026-09-07. 💩 was negative until then and is now an
+ * ordinary positive reaction: it was always cast as a joke, but polarity is
+ * not a joke — a negative reaction feeds `totalVotes.against` and
+ * `totalVoters.against`, which is what the API's downvote-burial filter
+ * measures, so two of them dropped a post out of public discovery. The
+ * thumbs-DOWN is the one control that means "no".
+ */
+export const NEGATIVE_REACTIONS: readonly PostReaction[] = ["dislike"] as const;
 
 export const DEFAULT_POSITIVE_REACTION: PostReaction = "like";
 export const DEFAULT_NEGATIVE_REACTION: PostReaction = "dislike";
@@ -52,11 +62,12 @@ const META: Record<PostReaction, ReactionMeta> = {
   love:    { key: "love",    label: "Love",    emoji: "❤️", positive: true },
   respect: { key: "respect", label: "Respect", emoji: "✊", positive: true },
   hot:     { key: "hot",     label: "Hot",     emoji: "🔥", positive: true },
+  hundred: { key: "hundred", label: "100",     emoji: "💯", positive: true },
   lol:     { key: "lol",     label: "LOL",     emoji: "😂", positive: true },
   sad:     { key: "sad",     label: "Sad",     emoji: "😢", positive: true },
   cry:     { key: "cry",     label: "Crying",  emoji: "😭", positive: true },
+  poo:     { key: "poo",     label: "Poo",     emoji: "💩", positive: true },
   dislike: { key: "dislike", label: "Dislike", emoji: "👎", positive: false },
-  poo:     { key: "poo",     label: "Poo",     emoji: "💩", positive: false },
 };
 
 /** Ordered metadata for the picker tray. */
@@ -65,18 +76,28 @@ export const REACTION_LIST: ReactionMeta[] = POST_REACTIONS.map((key) => META[ke
 /**
  * The picker's two halves.
  *
- * There is one tray per thumb, not one tray of nine hanging off the thumbs-UP:
- * the seven positive faces belong to the button that already counts them, and
- * 👎/💩 belong to the thumbs-DOWN, which is where a viewer looks for them and
- * where the count they move is drawn. A single nine-emoji tray on the like
- * button meant the only way to poo a post was through the button labelled
- * "like", and the dislike button had no reaction of its own at all.
+ * There is one tray per thumb, not one tray of everything hanging off the
+ * thumbs-UP: the faces that count as a like belong to the button that already
+ * counts them, and the thumbs-DOWN carries whatever counts against. A single
+ * tray on the like button meant the only way to downvote through a face was
+ * the button labelled "like".
  *
  * Derived from POST_REACTIONS so both halves keep the canonical order and a
- * tenth reaction lands in the right tray without a second edit.
+ * new reaction lands in the right tray without a second edit.
  */
 export const POSITIVE_REACTION_LIST: ReactionMeta[] = REACTION_LIST.filter((r) => r.positive);
 export const NEGATIVE_REACTION_LIST: ReactionMeta[] = REACTION_LIST.filter((r) => !r.positive);
+
+/**
+ * Whether the thumbs-DOWN has a tray worth opening.
+ *
+ * It has held a single 👎 since poo crossed to the positive side, and a
+ * long-press menu of one option is worse than no menu: the press opens a tray
+ * the viewer then has to aim at to cast the downvote they had already asked
+ * for. Surfaces pass this before opening `openTray: 'negative'`, so the tray
+ * comes back on its own the day a second negative reaction is added.
+ */
+export const HAS_NEGATIVE_TRAY = NEGATIVE_REACTION_LIST.length > 1;
 
 /**
  * Past-tense verb phrase for notification copy ("Ada loved your post").
@@ -88,11 +109,12 @@ export const REACTION_VERBS: Record<PostReaction, string> = {
   love: "loved",
   respect: "respected",
   hot: "thinks 🔥 of",
+  hundred: "gave 💯 to",
   lol: "laughed at",
   sad: "felt sad about",
   cry: "cried at",
-  dislike: "disliked",
   poo: "pooed on",
+  dislike: "disliked",
 };
 
 export function reactionMeta(reaction: PostReaction): ReactionMeta {
@@ -133,8 +155,8 @@ export type ReactionCounts = Partial<Record<PostReaction, number>>;
  *    at is what tells you the reaction registered; the crowd's pick is the
  *    fallback, not the override.
  * 2. **Negative reactions never lead.** They belong to the thumbs-DOWN button,
- *    and a 👎 or 💩 drawn beside the *like* count reads as a rendering bug
- *    rather than as data.
+ *    and a 👎 drawn beside the *like* count reads as a rendering bug rather
+ *    than as data.
  *
  * Null means "draw the plain thumbs-up icon" — returned both when no positive
  * reaction leads and when the leader is a plain like, since the icon is already
@@ -153,18 +175,20 @@ export function resolveLeadReaction(
 }
 
 /**
- * The one glyph the thumbs-DOWN wears — the viewer's own 💩, else null for the
- * plain icon.
+ * The one glyph the thumbs-DOWN wears — the viewer's own negative reaction,
+ * else null for the plain icon.
+ *
+ * Currently always null, because 👎 is the only negative reaction left and the
+ * button already draws that glyph. Kept rather than deleted: it is the rule,
+ * not a special case, and the day a second negative reaction is added the
+ * thumb wears it again with no change here.
  *
  * Deliberately NOT the mirror of `resolveLeadReaction`: it never leads with
  * the crowd's pick. Negative reactions are anonymous across the whole product
- * — they raise no notification and appear in no likers list — so drawing 💩 on
- * every reader's copy of a post because some of them pooed it would be the one
- * place the app pointed at them. Your own is different: you already know what
- * you cast, and the glyph is what proves it landed.
- *
- * Null for a plain 👎 as well as for none, since the icon is already that
- * reaction's glyph — same rule the positive side follows.
+ * — they raise no notification and appear in no likers list — so drawing one
+ * on every reader's copy of a post because some of them cast it would be the
+ * one place the app pointed at them. Your own is different: you already know
+ * what you cast, and the glyph is what proves it landed.
  */
 export function resolveNegativeLeadReaction(
   myReaction: PostReaction | null | undefined,
@@ -202,8 +226,9 @@ function topPositiveReaction(counts: ReactionCounts | null | undefined): PostRea
  * "remove it", so this doubles as the un-react path — tapping the thumb clears
  * a 🔥 the same way it clears a 👍, rather than downgrading it to a like.
  *
- * The thumbs-DOWN never wears a glyph, so it stays a plain dislike unless the
- * viewer is toggling off a 💩.
+ * The thumbs-DOWN never wears a glyph — 👎 is the only reaction on that side
+ * and the button is already drawing it — so a tap there is always a plain
+ * dislike, cast or toggled off.
  */
 export function reactionForTap(
   positive: boolean,
