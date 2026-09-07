@@ -34,7 +34,7 @@ import {
   View,
   Text,
   FlatList,
-  Dimensions,
+  useWindowDimensions,
   Pressable,
   StatusBar,
   StyleSheet,
@@ -125,7 +125,6 @@ import GlassTipSheet from "../components/Tip/GlassTipSheet";
 import { resolveViewCount } from "../libs/numbers.util";
 
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 /** Same ladder the web viewer cycles through on its speed button. */
 const PLAYBACK_RATES = [0.5, 1, 1.25, 1.5, 2] as const;
@@ -293,6 +292,9 @@ interface ShortItemProps {
 }
 
 const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, viewportHeight, isMuted, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
+  // Live window size, not a module-level snapshot: on iPad the pager cells
+  // and tap zones were sized for the launch orientation.
+  const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
   const navigation = useNavigation<any>();
   const user = useUser();
   const { requireAuth } = useAuthActions();
@@ -1297,6 +1299,7 @@ const ShortsViewerScreen = () => {
   const endReachedRef = useRef(false);
   const fetchingRef = useRef(false);
   const shuffleSeedRef = useRef<string | undefined>(feedParams.shuffleSeed);
+  const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
   const [containerHeight, setContainerHeight] = useState(SCREEN_HEIGHT);
   const [viewportHeight, setViewportHeight] = useState(SCREEN_HEIGHT);
   const [noMoreShorts, setNoMoreShorts] = useState(false);
