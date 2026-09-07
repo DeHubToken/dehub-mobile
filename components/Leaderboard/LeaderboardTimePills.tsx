@@ -43,7 +43,7 @@ const LeaderboardTimePills: React.FC<Props> = ({ active, onSelect }) => {
             key={p.key}
             onPress={handlePress(p.key)}
             activeOpacity={0.7}
-            className={`px-4 py-1.5 rounded-full ${
+            className={`px-4 py-1.5 rounded-lg ${
               isActive ? "bg-theme-neutrals-700" : "bg-transparent"
             }`}
           >

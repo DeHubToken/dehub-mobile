@@ -817,7 +817,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 accessibilityRole="button"
                 accessibilityLabel="Send message"
                 accessibilityState={{ disabled: sending || enhancing || insufficientBalance || tipBelowFee }}
-                className={`h-9 flex-row items-center justify-center rounded-full px-3 ${
+                className={`h-9 flex-row items-center justify-center rounded-xl px-3 ${
                   insufficientBalance || tipBelowFee
                     ? "bg-theme-neutrals-700"
                     : "bg-white/10 border border-white/20"

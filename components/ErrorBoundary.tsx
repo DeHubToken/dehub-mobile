@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
   },
   iconCircle: {
     backgroundColor: colors.neutrals[800],
-    borderRadius: 999,
+    borderRadius: 16,
     padding: 24,
     marginBottom: 16,
   },

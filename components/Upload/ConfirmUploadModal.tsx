@@ -64,7 +64,7 @@ const ConfirmUploadModal: React.FC<Props> = ({
           <TouchableOpacity
             disabled={busy}
             onPress={onClose}
-            className={`px-4 py-3 rounded-full bg-theme-neutrals-800 border border-theme-neutrals-700 mr-2 ${
+            className={`px-4 py-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 mr-2 ${
               busy ? "opacity-50" : ""
             }`}
           >
@@ -73,7 +73,7 @@ const ConfirmUploadModal: React.FC<Props> = ({
           <TouchableOpacity
               disabled={busy}
               onPress={onConfirm}
-              className={`px-4 py-3 rounded-full overflow-hidden ${
+              className={`px-4 py-3 rounded-xl overflow-hidden ${
                 busy ? "opacity-50" : ""
               }`}
             >

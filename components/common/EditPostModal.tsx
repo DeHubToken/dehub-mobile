@@ -345,7 +345,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             onPress={onClose}
             disabled={saving}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            className="p-2 bg-white/5 rounded-full"
+            className="p-2 bg-white/5 rounded-xl"
             activeOpacity={0.8}
           >
             <Ionicons name="close" size={20} color="#A6A9AC" />
@@ -420,7 +420,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
                 {selectedCategories.map((c) => (
                   <View
                     key={c}
-                    className="flex-row items-center px-2.5 py-1 rounded-full bg-theme-accent/15 border border-theme-accent/30"
+                    className="flex-row items-center px-2.5 py-1 rounded-lg bg-theme-accent/15 border border-theme-accent/30"
                   >
                     <Text className="text-theme-accent text-xs font-medium">
                       {c.charAt(0).toUpperCase() + c.slice(1)}

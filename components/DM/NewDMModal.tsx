@@ -273,7 +273,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
               accessibilityRole="button"
               accessibilityLabel="Clear search"
               hitSlop={8}
-              className="w-7 h-7 rounded-full bg-theme-neutrals-700 items-center justify-center"
+              className="w-7 h-7 rounded-lg bg-theme-neutrals-700 items-center justify-center"
             >
               <Ionicons name="close" size={14} color="#B4B8BE" />
             </TouchableOpacity>

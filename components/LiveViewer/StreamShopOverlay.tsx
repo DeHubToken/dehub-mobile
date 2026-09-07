@@ -465,7 +465,7 @@ export default function StreamShopOverlay({ tokenId }: Props) {
         <View className="flex-row justify-end mx-3 mb-2">
           <TouchableOpacity
             onPress={() => setListOpen(true)}
-            className="flex-row items-center rounded-full bg-black/70 border border-white/15 px-3 py-2"
+            className="flex-row items-center rounded-xl bg-black/70 border border-white/15 px-3 py-2"
           >
             <ShoppingBag size={14} color="#ffffff" />
             <Text className="text-white text-xs font-semibold ml-1.5">

@@ -139,7 +139,7 @@ const CommunitiesScreen: React.FC = () => {
   const createButton = isSignedIn ? (
     <TouchableOpacity
       onPress={handleCreate}
-      className="flex-row items-center gap-1 bg-white px-3 py-2 rounded-full"
+      className="flex-row items-center gap-1 bg-white px-3 py-2 rounded-xl"
     >
       <Icon name="Plus" size={16} color="#000" />
       <Text className="text-black text-sm font-semibold">{t("communities.create")}</Text>
@@ -165,7 +165,7 @@ const CommunitiesScreen: React.FC = () => {
             key={mode}
             onPress={() => setSortMode(mode)}
             hitSlop={{ top: 8, bottom: 8 }}
-            className={`px-3 py-1.5 rounded-full border ${
+            className={`px-3 py-1.5 rounded-lg border ${
               sortMode === mode ? "bg-white/10 border-white/20" : "border-white/10"
             }`}
           >

@@ -245,7 +245,7 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
       <View className="flex-1">
         {!!headerComponent && <View>{headerComponent}</View>}
         <View className="flex-1 items-center justify-center px-8 py-16">
-          <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
+          <View className="bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5">
             <Ionicons name="chatbubbles-outline" size={40} color="#666" />
           </View>
           <Text className="text-white text-lg font-bold text-center mb-2">

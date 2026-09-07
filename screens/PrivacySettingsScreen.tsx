@@ -582,7 +582,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       >
         <View className="p-5">
           <View className="items-center mb-4">
-            <View className="w-14 h-14 rounded-full bg-amber-500/20 items-center justify-center">
+            <View className="w-14 h-14 rounded-2xl bg-amber-500/20 items-center justify-center">
               <Icon name="Users" size={28} color="#D4D4D8" />
             </View>
           </View>

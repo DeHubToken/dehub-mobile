@@ -61,7 +61,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           accessibilityRole="button"
           accessibilityLabel="Send"
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          className="ml-2 w-9 h-9 rounded-full bg-white items-center justify-center"
+          className="ml-2 w-9 h-9 rounded-xl bg-white items-center justify-center"
         >
           <Ionicons name="send" size={16} color="#000" />
         </TouchableOpacity>
@@ -86,7 +86,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           accessibilityRole="button"
           accessibilityLabel="Remove media"
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-black/60 items-center justify-center"
+          className="absolute -top-1 -right-1 w-6 h-6 rounded-lg bg-black/60 items-center justify-center"
         >
           <Ionicons name="close" size={14} color="#FFFFFF" />
         </TouchableOpacity>
@@ -101,7 +101,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
         accessibilityRole="button"
         accessibilityLabel="Send"
         hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-        className="w-9 h-9 rounded-full bg-white items-center justify-center"
+        className="w-9 h-9 rounded-xl bg-white items-center justify-center"
       >
         {sending ? (
           <ActivityIndicator size="small" color="#000" />

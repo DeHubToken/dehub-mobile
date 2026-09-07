@@ -483,7 +483,7 @@ const styles = StyleSheet.create({
     bottom: -2,
     width: 30,
     height: 30,
-    borderRadius: 15,
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: authColors.surfacePressed,

@@ -81,7 +81,7 @@ const ProfileApps: React.FC = () => {
             }`}
           >
             <View
-              className={`w-14 h-14 rounded-full items-center justify-center ${
+              className={`w-14 h-14 rounded-2xl items-center justify-center ${
                 app.active ? "bg-theme-neutrals-700" : "bg-theme-neutrals-800"
               }`}
             >

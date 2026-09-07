@@ -404,7 +404,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
                       }`}
                     >
                       <View className="flex-row items-center gap-2">
-                        <View className={`rounded-full p-2 bg-white/10`}>
+                        <View className={`rounded-xl p-2 bg-white/10`}>
                           <Icon size={16} color="#fff" />
                         </View>
                         <View className="flex-1">
@@ -479,7 +479,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
               <TouchableOpacity
                 disabled={isBusy}
                 onPress={() => onOpenChange(false)}
-                className={`px-5 h-11 rounded-full bg-white/10 items-center justify-center ${
+                className={`px-5 h-11 rounded-xl bg-white/10 items-center justify-center ${
                   isBusy ? "opacity-60" : ""
                 }`}
               >
@@ -541,7 +541,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
               </AccentButtonGradient>
               <TouchableOpacity
                 onPress={() => onOpenChange(false)}
-                className="px-5 h-11 rounded-full bg-white/10 items-center justify-center"
+                className="px-5 h-11 rounded-xl bg-white/10 items-center justify-center"
               >
                 <Text className="text-white font-semibold">Close</Text>
               </TouchableOpacity>

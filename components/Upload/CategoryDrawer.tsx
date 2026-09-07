@@ -149,7 +149,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
                   onPress={() => onRemove(c)}
                   disabled={categories.length <= min}
                   activeOpacity={0.7}
-                  className="flex-row items-center px-2.5 py-1 rounded-full bg-theme-accent/15 border border-theme-accent/30"
+                  className="flex-row items-center px-2.5 py-1 rounded-lg bg-theme-accent/15 border border-theme-accent/30"
                 >
                   <Text className="text-theme-accent text-xs font-medium">
                     {cap(c)}

@@ -518,7 +518,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 6,
     backgroundColor: "#FFFFFF",
-    borderRadius: 999,
+    borderRadius: 12,
     paddingHorizontal: 12,
     paddingVertical: 7,
   },
@@ -533,7 +533,7 @@ const styles = StyleSheet.create({
   rangeChip: {
     paddingHorizontal: 11,
     paddingVertical: 5,
-    borderRadius: 999,
+    borderRadius: 8,
     backgroundColor: "rgba(255,255,255,0.06)",
   },
   rangeChipActive: { backgroundColor: "#FFFFFF" },
@@ -568,7 +568,7 @@ const styles = StyleSheet.create({
   activityIcon: {
     width: 30,
     height: 30,
-    borderRadius: 999,
+    borderRadius: 12,
     backgroundColor: "rgba(255,255,255,0.06)",
     alignItems: "center",
     justifyContent: "center",

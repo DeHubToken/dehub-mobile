@@ -120,7 +120,7 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
         style={{
           width: 64,
           height: 64,
-          borderRadius: 32,
+          borderRadius: 16,
           backgroundColor: "rgba(255,255,255,0.08)",
           alignItems: "center",
           justifyContent: "center",
@@ -206,7 +206,7 @@ const HandRequestRow: React.FC<HandRequestRowProps> = ({ request, onApprove }) =
         style={{
           width: 36,
           height: 36,
-          borderRadius: 18,
+          borderRadius: 12,
           backgroundColor: "rgba(255,255,255,0.08)",
           alignItems: "center",
           justifyContent: "center",
@@ -436,7 +436,7 @@ const LiveStageModal: React.FC = () => {
               style={{
                 width: 38,
                 height: 38,
-                borderRadius: 19,
+                borderRadius: 12,
                 backgroundColor: "rgba(255,255,255,0.07)",
                 alignItems: "center",
                 justifyContent: "center",
@@ -455,7 +455,7 @@ const LiveStageModal: React.FC = () => {
             style={{
               width: 38,
               height: 38,
-              borderRadius: 19,
+              borderRadius: 12,
               backgroundColor: "rgba(255,255,255,0.07)",
               alignItems: "center",
               justifyContent: "center",
@@ -472,7 +472,7 @@ const LiveStageModal: React.FC = () => {
             style={{
               width: 38,
               height: 38,
-              borderRadius: 19,
+              borderRadius: 12,
               backgroundColor: "rgba(255,255,255,0.07)",
               alignItems: "center",
               justifyContent: "center",
@@ -596,7 +596,7 @@ const LiveStageModal: React.FC = () => {
                   style={{
                     width: 40,
                     height: 40,
-                    borderRadius: 20,
+                    borderRadius: 12,
                     backgroundColor: "rgba(255,255,255,0.07)",
                     alignItems: "center",
                     justifyContent: "center",
@@ -646,7 +646,7 @@ const LiveStageModal: React.FC = () => {
                   style={{
                     paddingHorizontal: 12,
                     paddingVertical: 7,
-                    borderRadius: 20,
+                    borderRadius: 8,
                     backgroundColor: voiceEffect === effect.id ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.06)",
                     borderWidth: 1,
                     borderColor: voiceEffect === effect.id ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.1)",
@@ -754,7 +754,7 @@ const LiveStageModal: React.FC = () => {
                 }}
                 disabled={isTtsGenerating || !ttsText.trim()}
                 style={{
-                  width: 44, height: 44, borderRadius: 22,
+                  width: 44, height: 44, borderRadius: 12,
                   backgroundColor: ttsText.trim() ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)",
                   alignItems: "center", justifyContent: "center",
                   borderWidth: 1, borderColor: "rgba(255,255,255,0.2)",
@@ -788,7 +788,7 @@ const LiveStageModal: React.FC = () => {
               style={{
                 width: 56,
                 height: 56,
-                borderRadius: 28,
+                borderRadius: 16,
                 backgroundColor: isMuted ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.15)",
                 borderWidth: 1,
                 borderColor: isMuted ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.35)",
@@ -809,7 +809,7 @@ const LiveStageModal: React.FC = () => {
                 gap: 8,
                 paddingHorizontal: 20,
                 height: 56,
-                borderRadius: 28,
+                borderRadius: 16,
                 backgroundColor: "rgba(255,255,255,0.08)",
                 borderWidth: 1,
                 borderColor: "rgba(255,255,255,0.12)",
@@ -828,7 +828,7 @@ const LiveStageModal: React.FC = () => {
               style={{
                 width: 56,
                 height: 56,
-                borderRadius: 28,
+                borderRadius: 16,
                 backgroundColor: hasRaisedHand ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.08)",
                 borderWidth: 1,
                 borderColor: hasRaisedHand ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.12)",
@@ -848,7 +848,7 @@ const LiveStageModal: React.FC = () => {
               gap: 8,
               paddingHorizontal: 24,
               height: 56,
-              borderRadius: 28,
+              borderRadius: 16,
               backgroundColor: isHostRole ? "#F4F4F5" : "rgba(255,255,255,0.15)",
               borderWidth: isHostRole ? 0 : 1,
               borderColor: "rgba(255,255,255,0.4)",

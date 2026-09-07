@@ -141,7 +141,7 @@ export default function ScheduleSheet({
           <TouchableOpacity
             onPress={handlePrevMonth}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            className="w-8 h-8 items-center justify-center rounded-full"
+            className="w-8 h-8 items-center justify-center rounded-lg"
           >
             <Icon name="ChevronLeft" size={18} color="#fff" />
           </TouchableOpacity>
@@ -153,7 +153,7 @@ export default function ScheduleSheet({
           <TouchableOpacity
             onPress={handleNextMonth}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            className="w-8 h-8 items-center justify-center rounded-full"
+            className="w-8 h-8 items-center justify-center rounded-lg"
           >
             <Icon name="ChevronRight" size={18} color="#fff" />
           </TouchableOpacity>
@@ -188,7 +188,7 @@ export default function ScheduleSheet({
                 className="items-center py-1"
               >
                 <View
-                  className="w-9 h-9 items-center justify-center rounded-full"
+                  className="w-9 h-9 items-center justify-center rounded-lg"
                   style={{
                     backgroundColor: isSelected ? "#fff" : "transparent",
                     borderWidth: isToday && !isSelected ? 1 : 0,
@@ -253,7 +253,7 @@ export default function ScheduleSheet({
           onPress={handleConfirm}
           disabled={!selectedDate}
           activeOpacity={0.7}
-          className="mx-4 mt-4 py-3 rounded-full items-center"
+          className="mx-4 mt-4 py-3 rounded-xl items-center"
           style={{
             backgroundColor: selectedDate ? "#fff" : "rgba(255,255,255,0.1)",
           }}

@@ -215,7 +215,7 @@ const FollowRequestRow: React.FC<FollowRequestRowProps> = React.memo(
 
 const HiddenFollowersMessage: React.FC<{ username?: string }> = ({ username }) => (
   <View className="flex-1 items-center justify-center px-8">
-    <View className="bg-theme-neutrals-800/50 rounded-full p-6 mb-6">
+    <View className="bg-theme-neutrals-800/50 rounded-2xl p-6 mb-6">
       <Ionicons name="lock-closed" size={48} color="#A1A1AA" />
     </View>
     <Text className="text-white text-xl font-bold text-center mb-2">
@@ -578,7 +578,7 @@ const FollowListScreen: React.FC = () => {
     if (loading) return null;
     return (
       <View className="flex-1 items-center justify-center py-16">
-        <View className="bg-theme-neutrals-800/30 rounded-full p-5 mb-4">
+        <View className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
           <Ionicons name="people-outline" size={40} color="#A1A1AA" />
         </View>
         <Text className="text-gray-400 text-base text-center px-8">
@@ -673,7 +673,7 @@ const FollowListScreen: React.FC = () => {
             }
             ListEmptyComponent={
               <View className="flex-1 items-center justify-center py-16">
-                <View className="bg-theme-neutrals-800/30 rounded-full p-5 mb-4">
+                <View className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
                   <Ionicons name="person-add-outline" size={40} color="#A1A1AA" />
                 </View>
                 <Text className="text-gray-400 text-base text-center px-8">
@@ -813,7 +813,7 @@ const FollowListScreen: React.FC = () => {
         blurIntensity={50}
       >
         <View className="px-5 py-6 items-center">
-          <View className="w-14 h-14 rounded-full bg-white/10 items-center justify-center mb-4">
+          <View className="w-14 h-14 rounded-2xl bg-white/10 items-center justify-center mb-4">
             <Ionicons name="person-remove-outline" size={28} color="#fff" />
           </View>
           <Text className="text-white text-lg font-semibold text-center mb-2">

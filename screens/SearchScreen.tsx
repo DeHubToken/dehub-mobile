@@ -746,7 +746,7 @@ const SearchScreen: React.FC = () => {
                   {item}
                 </Text>
                 <TouchableOpacity
-                  className="w-8 h-8 rounded-full bg-theme-neutrals-700 items-center justify-center"
+                  className="w-8 h-8 rounded-xl bg-theme-neutrals-700 items-center justify-center"
                   onPress={() => handleReplaceSearchBox(item)}
                 >
                   <Icon name="ArrowUpLeft" size={16} color="#E5E7EB" />
@@ -835,7 +835,7 @@ const SearchScreen: React.FC = () => {
             underneath them rather than below them. */}
         <View className="bg-theme-neutrals-900">
           <View className="px-4 pb-2">
-            <View className="flex-row items-center bg-theme-neutrals-800 rounded-full px-3 py-2">
+            <View className="flex-row items-center bg-theme-neutrals-800 rounded-xl px-3 py-2">
               <Icon name="Search" size={18} color="#9CA3AF" />
               <TextInput
                 ref={inputRef}
@@ -861,13 +861,13 @@ const SearchScreen: React.FC = () => {
                   accessibilityRole="button"
                   accessibilityLabel="Clear search"
                   hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                  className="w-6 h-6 rounded-full bg-theme-neutrals-700 items-center justify-center mr-2"
+                  className="w-6 h-6 rounded-lg bg-theme-neutrals-700 items-center justify-center mr-2"
                 >
                   <Icon name="X" size={14} color="#E5E7EB" />
                 </TouchableOpacity>
               )}
               <TouchableOpacity
-                className="w-9 h-9 rounded-full bg-theme-neutrals-700 items-center justify-center"
+                className="w-9 h-9 rounded-xl bg-theme-neutrals-700 items-center justify-center"
                 onPress={handleSearch}
                 disabled={loading || !searchQuery.trim()}
               >

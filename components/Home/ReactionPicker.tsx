@@ -131,7 +131,7 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
     gap: 2,
     paddingHorizontal: 6,
     paddingVertical: 6,
-    borderRadius: 999,
+    borderRadius: 16,
     backgroundColor: TRAY_BG,
     borderWidth: 1,
     borderColor: TRAY_BORDER,
@@ -158,7 +158,7 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
             height: 34,
             alignItems: "center",
             justifyContent: "center",
-            borderRadius: 999,
+            borderRadius: 12,
             backgroundColor: current === reaction.key ? ACTIVE_BG : "transparent",
           }}
         >
@@ -187,7 +187,7 @@ const ReactionPickerComponent: React.FC<ReactionPickerProps> = ({
               height: 34,
               alignItems: "center",
               justifyContent: "center",
-              borderRadius: 999,
+              borderRadius: 12,
             }}
           >
             <Icon name="Info" size={18} color="#8B8D90" strokeWidth={1.9} />

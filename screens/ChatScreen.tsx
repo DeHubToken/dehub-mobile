@@ -1661,7 +1661,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 onPress={scrollToBottom}
                 activeOpacity={0.8}
                 hitSlop={8}
-                className="bg-theme-neutrals-700/90 rounded-full px-3 py-2 flex-row items-center"
+                className="bg-theme-neutrals-700/90 rounded-xl px-3 py-2 flex-row items-center"
               >
                 <Icon name="ChevronDown" size={16} color="#E5E7EB" />
                 <Text className="text-theme-neutrals-100 text-xs ml-1">New</Text>

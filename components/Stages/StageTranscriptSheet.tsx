@@ -516,7 +516,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
             <TouchableOpacity
               onPress={onClose}
               hitSlop={8}
-              className="w-8 h-8 rounded-full bg-white/10 items-center justify-center"
+              className="w-8 h-8 rounded-xl bg-white/10 items-center justify-center"
               accessibilityRole="button"
               accessibilityLabel="Close"
             >

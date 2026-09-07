@@ -58,7 +58,7 @@ const DraftItem: React.FC<DraftItemProps> = React.memo(
         className="flex-row items-center px-4 py-4 border-b border-theme-neutrals-800"
       >
         {/* Icon */}
-        <View className="w-10 h-10 rounded-full bg-theme-neutrals-800 items-center justify-center mr-3">
+        <View className="w-10 h-10 rounded-xl bg-theme-neutrals-800 items-center justify-center mr-3">
           <Ionicons
             name={draft.videoUri ? "videocam" : draft.imageUris.length > 0 ? "image" : "document-text"}
             size={20}

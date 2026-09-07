@@ -75,7 +75,7 @@ const LeaderboardCategoryPills: React.FC<Props> = ({ active, onSelect }) => {
             onPress={handlePress(cat.key)}
             activeOpacity={0.7}
             hitSlop={{ top: 8, bottom: 8 }}
-            className={`flex-row items-center px-4 py-2 rounded-full border ${
+            className={`flex-row items-center px-4 py-2 rounded-lg border ${
               isActive
                 ? "bg-white border-white"
                 : "bg-transparent border-theme-neutrals-600"

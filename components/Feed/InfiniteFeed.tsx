@@ -465,7 +465,7 @@ const InfiniteFeedBase: React.FC<
           onPress={scrollToTop}
           accessibilityRole="button"
           accessibilityLabel="Back to top"
-          className="absolute bottom-6 right-5 bg-theme-neutrals-800/80 rounded-full p-3 active:opacity-80"
+          className="absolute bottom-6 right-5 bg-theme-neutrals-800/80 rounded-xl p-3 active:opacity-80"
         >
           <Ionicons
             name="chevron-up"

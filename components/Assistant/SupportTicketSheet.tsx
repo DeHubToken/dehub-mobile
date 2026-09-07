@@ -397,7 +397,7 @@ const s = StyleSheet.create({
     gap: 4,
     paddingHorizontal: 8,
     paddingVertical: 3,
-    borderRadius: 999,
+    borderRadius: 8,
     borderWidth: 1,
   },
   pillOpen: { borderColor: 'rgba(255,255,255,0.3)' },
@@ -417,7 +417,7 @@ const s = StyleSheet.create({
   option: {
     paddingHorizontal: 12,
     paddingVertical: 7,
-    borderRadius: 999,
+    borderRadius: 8,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.12)',
     marginRight: 6,

@@ -43,7 +43,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
           accessibilityRole="button"
           accessibilityLabel={isFilterOpen ? "Close filter options" : "Open filter options"}
           onPress={onFilterPress}
-          className={`w-8 h-8 items-center justify-center rounded-full mr-2 ${
+          className={`w-8 h-8 items-center justify-center rounded-lg mr-2 ${
             isFilterOpen ? "bg-theme-neutrals-100" : "bg-theme-neutrals-800"
           }`}
           hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
@@ -61,7 +61,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
           return (
             <TouchableOpacity
               key={`cat-${index}-${category}`}
-              className={`px-4 h-8 items-center justify-center rounded-full mr-2 bg-theme-neutrals-800 ${
+              className={`px-4 h-8 items-center justify-center rounded-lg mr-2 bg-theme-neutrals-800 ${
                 isSelected && !isAll ? "border border-theme-neutrals-400" : ""
               }`}
               onPress={() => onCategoryPress(category)}

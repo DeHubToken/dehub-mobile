@@ -136,7 +136,7 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
               onPress={onPressClose}
               accessibilityRole="button"
               accessibilityLabel="Close"
-              className="ml-2 w-10 h-10 rounded-full bg-theme-neutrals-800 items-center justify-center active:opacity-80"
+              className="ml-2 w-10 h-10 rounded-xl bg-theme-neutrals-800 items-center justify-center active:opacity-80"
             >
               <Ionicons name="close" size={18} color="#E5E7EB" />
             </TouchableOpacity>

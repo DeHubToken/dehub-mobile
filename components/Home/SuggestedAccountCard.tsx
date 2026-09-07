@@ -152,7 +152,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
       <TouchableOpacity
         onPress={handleDismiss}
         activeOpacity={0.6}
-        className="absolute top-2 right-2 w-5 h-5 items-center justify-center rounded-full bg-theme-neutrals-700/60"
+        className="absolute top-2 right-2 w-5 h-5 items-center justify-center rounded-lg bg-theme-neutrals-700/60"
         hitSlop={{ top: 6, right: 6, bottom: 6, left: 6 }}
       >
         <Icon name="X" size={12} color="#9CA3AF" />

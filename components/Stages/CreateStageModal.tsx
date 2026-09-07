@@ -516,7 +516,7 @@ const styles = StyleSheet.create({
   successIcon: {
     width: 48,
     height: 48,
-    borderRadius: 24,
+    borderRadius: 14,
     backgroundColor: "rgba(255,255,255,0.1)",
     alignItems: "center",
     justifyContent: "center",

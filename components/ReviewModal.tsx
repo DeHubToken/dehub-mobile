@@ -238,7 +238,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
     <Animated.View style={contentAnimatedStyle} className="p-6">
       <View className="items-center mb-4">
         <Animated.View
-          className="bg-theme-accent/10 rounded-full p-4"
+          className="bg-theme-accent/10 rounded-2xl p-4"
           style={heartAnimatedStyle}
         >
           <Ionicons
@@ -270,7 +270,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
 
         <TouchableOpacity
           onPress={() => handleEnjoyingApp(false)}
-          className="py-3 px-6 items-center bg-theme-neutrals-800 rounded-full"
+          className="py-3 px-6 items-center bg-theme-neutrals-800 rounded-xl"
           activeOpacity={0.7}
         >
           <Text className="text-white text-base">Not Really 😕</Text>
@@ -284,7 +284,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
       <Animated.View style={contentAnimatedStyle} className="p-6">
         <View className="items-center mb-4">
           <Animated.View
-            className="bg-theme-accent/10 rounded-full p-4"
+            className="bg-theme-accent/10 rounded-2xl p-4"
             style={starAnimatedStyle}
           >
             <Ionicons name="star" size={48} color={theme.colors.accent} />
@@ -331,7 +331,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
   const renderStarRatingStep = () => (
     <View className="p-6">
       <View className="items-center mb-4">
-        <View className="bg-theme-accent/10 rounded-full p-4">
+        <View className="bg-theme-accent/10 rounded-2xl p-4">
           <Ionicons name="star-half" size={48} color={theme.colors.accent} />
         </View>
       </View>

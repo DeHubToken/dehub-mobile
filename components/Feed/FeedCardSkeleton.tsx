@@ -26,9 +26,9 @@ const FeedCardSkeleton: React.FC<FeedCardSkeletonProps> = ({ count = 3 }) => {
 
           {/* Action bar – just 3 circles */}
           <View className="flex-row items-center gap-5 mt-3">
-            <View className="w-5 h-5 rounded-full bg-theme-neutrals-800" />
-            <View className="w-5 h-5 rounded-full bg-theme-neutrals-800" />
-            <View className="w-5 h-5 rounded-full bg-theme-neutrals-800" />
+            <View className="w-5 h-5 rounded-md bg-theme-neutrals-800" />
+            <View className="w-5 h-5 rounded-md bg-theme-neutrals-800" />
+            <View className="w-5 h-5 rounded-md bg-theme-neutrals-800" />
           </View>
         </View>
       ))}

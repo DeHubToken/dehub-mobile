@@ -170,7 +170,7 @@ const StageSoundboard: React.FC = () => {
   const padStyle = (active: boolean) => ({
     paddingHorizontal: 12,
     paddingVertical: 7,
-    borderRadius: 20,
+    borderRadius: 10,
     backgroundColor: active ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.06)",
     borderWidth: 1,
     borderColor: active ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.1)",

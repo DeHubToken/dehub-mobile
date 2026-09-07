@@ -52,7 +52,7 @@ export const CoverSocialsOverlay: React.FC<CoverSocialsOverlayProps> = ({ social
   }, []);
 
   return (
-    <FakeGlass className="rounded-full">
+    <FakeGlass className="rounded-xl">
       <View className="flex-row items-center px-2 py-1.5">
         {items.length > 0 && (
           <View className="flex-row items-center">
@@ -62,7 +62,7 @@ export const CoverSocialsOverlay: React.FC<CoverSocialsOverlayProps> = ({ social
                 accessibilityLabel={`Open ${s.label}`}
                 onPress={() => handleOpen(s.url)}
                 activeOpacity={0.85}
-                className="w-9 h-9 rounded-full items-center justify-center mx-1"
+                className="w-9 h-9 rounded-xl items-center justify-center mx-1"
               >
                 <Ionicons name={s.icon as any} size={16} color="#fff" />
               </TouchableOpacity>
@@ -74,7 +74,7 @@ export const CoverSocialsOverlay: React.FC<CoverSocialsOverlayProps> = ({ social
             onPress={onMessage}
             accessibilityLabel="Message user"
             activeOpacity={0.85}
-            className="w-9 h-9 rounded-full items-center justify-center ml-1"
+            className="w-9 h-9 rounded-xl items-center justify-center ml-1"
           >
             <Ionicons name="chatbubble-ellipses-outline" size={16} color="#fff" />
           </TouchableOpacity>
@@ -83,7 +83,7 @@ export const CoverSocialsOverlay: React.FC<CoverSocialsOverlayProps> = ({ social
           onPress={onShare}
           accessibilityLabel="Share profile"
           activeOpacity={0.85}
-          className="w-9 h-9 rounded-full items-center justify-center ml-1"
+          className="w-9 h-9 rounded-xl items-center justify-center ml-1"
         >
           <Ionicons name="share-social" size={16} color="#fff" />
         </TouchableOpacity>

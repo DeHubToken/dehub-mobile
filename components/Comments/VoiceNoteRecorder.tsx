@@ -336,7 +336,7 @@ const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
         activeOpacity={0.7}
         accessibilityRole="button"
         accessibilityLabel="Cancel recording"
-        className="ml-3 w-10 h-10 rounded-full bg-theme-neutrals-700 items-center justify-center"
+        className="ml-3 w-10 h-10 rounded-xl bg-theme-neutrals-700 items-center justify-center"
       >
         <Ionicons name="trash-outline" size={20} color="#F4F4F5" />
       </TouchableOpacity>
@@ -346,7 +346,7 @@ const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
         activeOpacity={0.7}
         accessibilityRole="button"
         accessibilityLabel="Send voice note"
-        className="ml-2 w-10 h-10 rounded-full bg-white items-center justify-center"
+        className="ml-2 w-10 h-10 rounded-xl bg-white items-center justify-center"
       >
         {isStopping ? (
           <ActivityIndicator size="small" color="#000" />

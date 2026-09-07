@@ -368,7 +368,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
                     key={emoji}
                     onPress={() => handleReaction(emoji)}
                     hitSlop={4}
-                    className={`w-10 h-10 items-center justify-center rounded-full ${
+                    className={`w-10 h-10 items-center justify-center rounded-xl ${
                       alreadyReacted ? "bg-blue-500/20" : ""
                     }`}
                     activeOpacity={0.6}
