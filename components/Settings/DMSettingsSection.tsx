@@ -124,7 +124,16 @@ const DMSettingsSection: React.FC = () => {
         fee: Number((user as any)?.dmSettings?.perMessageFee || 0),
       };
 
-      optimisticPatch({ dmsEnabled, allowNew, fee: parsedFee });
+      // Derive the optimistic state from `desired`, not from the closure's
+      // dmsEnabled/allowNew: the toggles call submit through a setTimeout with
+      // the closure from the render before the tap, so those are the
+      // pre-toggle values and the cached user showed the old switch position
+      // after the panel remounted.
+      optimisticPatch({
+        dmsEnabled: desired.status !== DmDisableStatus.ALL,
+        allowNew: desired.status === DmDisableStatus.ACTIVE_ALL,
+        fee: parsedFee,
+      });
       try {
         await updateDmUserStatus(address, desired.status, desired.action, parsedFee);
         if (opts?.spinner === "fee") {
