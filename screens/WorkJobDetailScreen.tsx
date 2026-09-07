@@ -730,7 +730,9 @@ export default function WorkJobDetailScreen() {
         animationType="fade"
         onRequestClose={() => setRejectTarget(null)}
       >
-        <View style={styles.modalBackdrop}>
+        {/* The edge-to-edge Android dialog window ignores adjustResize, so the
+            centred card sat under the keyboard the autofocus raised. */}
+        <KeyboardAvoidingView behavior="padding" style={styles.modalBackdrop}>
           <View style={styles.modalCard}>
             <Text style={styles.modalTitle}>{t("work.detail.rejectionReason")}</Text>
             <TextInput
@@ -768,7 +770,7 @@ export default function WorkJobDetailScreen() {
               </Pressable>
             </View>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </Modal>
     </View>
   );
