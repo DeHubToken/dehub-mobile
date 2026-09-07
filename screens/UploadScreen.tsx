@@ -2973,7 +2973,10 @@ export default function UploadScreen() {
             activeOpacity={0.8}
             onPress={() => {
               setShowLiveOptions(false);
-              openStages("browse");
+              // Open Stages only after this sheet has dismissed: two native
+              // Modals crossing in one commit leaves iOS refusing the second
+              // and Stages unopenable until the app restarts.
+              setTimeout(() => openStages("browse"), 250);
             }}
             className="flex-row items-center gap-3 py-4 px-4 rounded-xl"
             style={{ backgroundColor: "rgba(255,255,255,0.15)", borderWidth: 1, borderColor: "rgba(255,255,255,0.3)" }}
