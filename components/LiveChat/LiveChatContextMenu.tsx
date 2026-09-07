@@ -6,7 +6,7 @@ import {
   Modal,
   Pressable,
   Platform,
-  Dimensions,
+  useWindowDimensions,
   Image,
 } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
@@ -41,7 +41,6 @@ interface LiveChatContextMenuProps {
   onPin?: (msg: LiveChatMessageData) => void;
 }
 
-const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window");
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 
 /* ─── ActionRow ────────────────────────────────────────────── */
@@ -205,6 +204,9 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
   onPin,
 }) => {
   const insets = useSafeAreaInsets();
+  // Live height, not a module-level snapshot: on an iPad rotated after launch
+  // the card was positioned against the wrong screen height.
+  const { height: SCREEN_HEIGHT } = useWindowDimensions();
 
   const handleReply = useCallback(() => {
     if (!message) return;
@@ -289,7 +291,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
     }
 
     return { messageTop: mTop, actionsTop: aTop };
-  }, [layout, insets, estimatedActionsHeight]);
+  }, [layout, insets, estimatedActionsHeight, SCREEN_HEIGHT]);
 
   if (!visible || !message) return null;
 
