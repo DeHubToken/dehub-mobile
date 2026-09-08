@@ -2724,5 +2724,8 @@
     "cancel": "Cancel",
     "remove": "Remove",
     "thisUser": "Dis user"
+  },
+  "superpowers": {
+    "noPostsFound": "No posts found."
   }
 }
