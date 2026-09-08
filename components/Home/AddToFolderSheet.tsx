@@ -237,7 +237,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
         activeOpacity={0.7}
       >
         <View style={styles.folderInfo}>
-          <Icon name="Folder" size={20} color="#D4D4D8" />
+          <Icon name="Folder" size={20} color="#FACC15" />
           <View style={{ marginLeft: 12, flex: 1 }}>
             <Text style={styles.folderName} numberOfLines={1}>
               {item.name}
@@ -283,28 +283,37 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
           <Pressable style={{ flex: 1 }} onPress={closeSheet} />
         </Animated.View>
 
-        <Animated.View
-          style={[
-            styles.sheet,
-            { maxHeight: SHEET_MAX_HEIGHT, paddingBottom: Math.max(insets.bottom, 16) },
-            sheetStyle,
-          ]}
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.keyboardAvoider}
+          pointerEvents="box-none"
         >
-          <View style={[StyleSheet.absoluteFill, styles.overlay]} />
-
-          <GestureDetector gesture={panGesture}>
-            <Animated.View style={styles.handleWrap}>
-              <View style={styles.handle} />
-            </Animated.View>
-          </GestureDetector>
-
-          <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={{ flex: 1 }}
+          <Animated.View
+            style={[
+              styles.sheet,
+              { height: SHEET_MAX_HEIGHT, paddingBottom: Math.max(insets.bottom, 16) },
+              sheetStyle,
+            ]}
           >
+            <View style={[StyleSheet.absoluteFill, styles.overlay]} />
+
+            <GestureDetector gesture={panGesture}>
+              <Animated.View style={styles.handleWrap}>
+                <View style={styles.handle} />
+              </Animated.View>
+            </GestureDetector>
+
             <View style={styles.header}>
-              <Text style={styles.title}>Save to Folder</Text>
-              <TouchableOpacity onPress={closeSheet}>
+              <View style={styles.headerCopy}>
+                <Text style={styles.title}>Save to folder</Text>
+                <Text style={styles.subtitle}>Choose where you want to keep this post.</Text>
+              </View>
+              <TouchableOpacity
+                onPress={closeSheet}
+                style={styles.closeButton}
+                accessibilityRole="button"
+                accessibilityLabel="Close folder picker"
+              >
                 <Icon name="X" size={20} color="#8B8D90" />
               </TouchableOpacity>
             </View>
@@ -319,82 +328,97 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
                 data={folders}
                 keyExtractor={(item) => String(item._id)}
                 renderItem={renderFolderItem}
+                style={styles.folderList}
                 contentContainerStyle={styles.listContent}
+                keyboardShouldPersistTaps="handled"
+                showsVerticalScrollIndicator={false}
                 ListEmptyComponent={
                   <View style={styles.emptyContainer}>
-                    <Icon name="FolderPlus" size={48} color="#8B8D90" />
+                    <View style={styles.emptyIcon}>
+                      <Icon name="FolderPlus" size={28} color="#FACC15" />
+                    </View>
                     <Text style={styles.emptyText}>No folders created yet</Text>
+                    <Text style={styles.emptyHint}>Create one to organize this post.</Text>
                   </View>
                 }
               />
             )}
 
-            {showCreateForm ? (
-              <View style={styles.createForm}>
-                <TextInput
-                  placeholder="Folder Name (e.g. Cooking, Travel)"
-                  placeholderTextColor="#8B8D90"
-                  value={newFolderName}
-                  onChangeText={setNewFolderName}
-                  style={styles.input}
-                  maxLength={50}
-                  autoFocus
-                />
-                <TextInput
-                  placeholder="Description (Optional)"
-                  placeholderTextColor="#8B8D90"
-                  value={newFolderDesc}
-                  onChangeText={setNewFolderDesc}
-                  style={[styles.input, { height: 60, textAlignVertical: "top" }]}
-                  multiline
-                  maxLength={200}
-                />
-                <View style={styles.formButtons}>
-                  <TouchableOpacity
-                    onPress={() => setShowCreateForm(false)}
-                    style={styles.cancelBtn}
-                  >
-                    <Text style={styles.cancelBtnText}>Cancel</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={handleCreateFolder}
-                    disabled={!newFolderName.trim() || creating}
-                    style={[
-                      styles.createSubmitBtn,
-                      (!newFolderName.trim() || creating) && styles.disabledBtn,
-                    ]}
-                  >
-                    {creating ? (
-                      <ActivityIndicator size="small" color="#1E1E1E" />
-                    ) : (
-                      <Text style={styles.createSubmitBtnText}>Create & Save</Text>
-                    )}
-                  </TouchableOpacity>
+            <View style={styles.footer}>
+              {showCreateForm ? (
+                <View style={styles.createForm}>
+                  <Text style={styles.fieldLabel}>Folder name</Text>
+                  <TextInput
+                    placeholder="e.g. Cooking, Travel"
+                    placeholderTextColor="#6F7174"
+                    value={newFolderName}
+                    onChangeText={setNewFolderName}
+                    style={styles.input}
+                    maxLength={50}
+                    autoFocus
+                    returnKeyType="next"
+                  />
+                  <Text style={styles.fieldLabel}>Description <Text style={styles.optionalLabel}>(optional)</Text></Text>
+                  <TextInput
+                    placeholder="What belongs in this folder?"
+                    placeholderTextColor="#6F7174"
+                    value={newFolderDesc}
+                    onChangeText={setNewFolderDesc}
+                    style={[styles.input, styles.descriptionInput]}
+                    multiline
+                    maxLength={200}
+                    returnKeyType="done"
+                  />
+                  <View style={styles.formButtons}>
+                    <TouchableOpacity
+                      onPress={() => setShowCreateForm(false)}
+                      style={styles.cancelBtn}
+                      accessibilityRole="button"
+                    >
+                      <Text style={styles.cancelBtnText}>Cancel</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={handleCreateFolder}
+                      disabled={!newFolderName.trim() || creating}
+                      style={[
+                        styles.createSubmitBtn,
+                        (!newFolderName.trim() || creating) && styles.disabledBtn,
+                      ]}
+                      accessibilityRole="button"
+                    >
+                      {creating ? (
+                        <ActivityIndicator size="small" color="#18181B" />
+                      ) : (
+                        <Text style={styles.createSubmitBtnText}>Create & save</Text>
+                      )}
+                    </TouchableOpacity>
+                  </View>
                 </View>
-              </View>
-            ) : (
-              <TouchableOpacity
-                onPress={() => setShowCreateForm(true)}
-                style={styles.addFolderBtn}
-                activeOpacity={0.8}
-              >
-                <Icon name="FolderPlus" size={20} color="#D4D4D8" />
-                <Text style={styles.addFolderBtnText}>Create New Folder</Text>
-              </TouchableOpacity>
-            )}
-          </KeyboardAvoidingView>
-        </Animated.View>
+              ) : (
+                <TouchableOpacity
+                  onPress={() => setShowCreateForm(true)}
+                  style={styles.addFolderBtn}
+                  activeOpacity={0.8}
+                  accessibilityRole="button"
+                >
+                  <Icon name="FolderPlus" size={20} color="#18181B" />
+                  <Text style={styles.addFolderBtnText}>Create new folder</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          </Animated.View>
+        </KeyboardAvoidingView>
       </GestureHandlerRootView>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
+  keyboardAvoider: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
   sheet: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     overflow: "hidden",
@@ -419,14 +443,32 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 20,
-    paddingBottom: 16,
+    paddingBottom: 14,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "rgba(255,255,255,0.1)",
+  },
+  headerCopy: {
+    flex: 1,
+    paddingRight: 16,
   },
   title: {
     color: "#F9FBFF",
     fontSize: 18,
     fontWeight: "700",
+  },
+  subtitle: {
+    color: "#8B8D90",
+    fontSize: 12,
+    lineHeight: 17,
+    marginTop: 3,
+  },
+  closeButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    backgroundColor: "rgba(255,255,255,0.06)",
+    alignItems: "center",
+    justifyContent: "center",
   },
   loadingContainer: {
     paddingVertical: 40,
@@ -440,15 +482,24 @@ const styles = StyleSheet.create({
   },
   listContent: {
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 12,
+    flexGrow: 1,
+  },
+  folderList: {
+    flex: 1,
   },
   folderRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingVertical: 14,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "rgba(255,255,255,0.06)",
+    minHeight: 58,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    marginBottom: 8,
+    borderRadius: 14,
+    backgroundColor: "rgba(255,255,255,0.045)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.07)",
   },
   folderInfo: {
     flexDirection: "row",
@@ -476,50 +527,83 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   checkboxChecked: {
-    backgroundColor: "#D4D4D8",
-    borderColor: "#D4D4D8",
+    backgroundColor: "#FACC15",
+    borderColor: "#FACC15",
   },
   emptyContainer: {
+    flex: 1,
     alignItems: "center",
-    paddingVertical: 40,
+    justifyContent: "center",
+    paddingVertical: 24,
+  },
+  emptyIcon: {
+    width: 56,
+    height: 56,
+    borderRadius: 18,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(250,204,21,0.1)",
   },
   emptyText: {
-    color: "#6F7174",
-    fontSize: 14,
+    color: "#F9FBFF",
+    fontSize: 15,
+    fontWeight: "600",
     marginTop: 12,
+  },
+  emptyHint: {
+    color: "#6F7174",
+    fontSize: 12,
+    marginTop: 4,
+  },
+  footer: {
+    flexShrink: 0,
+    paddingHorizontal: 20,
+    paddingTop: 12,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: "rgba(255,255,255,0.1)",
   },
   addFolderBtn: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     gap: 8,
-    backgroundColor: "rgba(255,255,255,0.08)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.2)",
+    backgroundColor: "#FACC15",
     borderRadius: 14,
-    marginHorizontal: 20,
-    marginTop: 8,
-    paddingVertical: 14,
+    minHeight: 50,
+    paddingHorizontal: 16,
+    paddingVertical: 13,
   },
   addFolderBtnText: {
-    color: "#D4D4D8",
+    color: "#18181B",
     fontSize: 14,
-    fontWeight: "600",
+    fontWeight: "700",
   },
   createForm: {
-    paddingHorizontal: 20,
-    paddingTop: 12,
-    gap: 10,
+    gap: 7,
+  },
+  fieldLabel: {
+    color: "#D4D4D8",
+    fontSize: 12,
+    fontWeight: "600",
+  },
+  optionalLabel: {
+    color: "#6F7174",
+    fontWeight: "400",
   },
   input: {
-    backgroundColor: "rgba(255,255,255,0.05)",
+    backgroundColor: "rgba(255,255,255,0.06)",
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(255,255,255,0.12)",
     borderRadius: 12,
     color: "#F9FBFF",
-    paddingHorizontal: 16,
+    paddingHorizontal: 14,
     height: 48,
     fontSize: 14,
+  },
+  descriptionInput: {
+    height: 56,
+    paddingTop: 12,
+    textAlignVertical: "top",
   },
   formButtons: {
     flexDirection: "row",
@@ -543,12 +627,12 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 46,
     borderRadius: 12,
-    backgroundColor: "#D4D4D8",
+    backgroundColor: "#FACC15",
     alignItems: "center",
     justifyContent: "center",
   },
   createSubmitBtnText: {
-    color: "#1E1E1E",
+    color: "#18181B",
     fontSize: 14,
     fontWeight: "600",
   },
