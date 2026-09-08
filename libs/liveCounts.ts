@@ -29,6 +29,7 @@
  */
 
 import type { InfiniteData, QueryClient } from "@tanstack/react-query";
+import { reconcileEngagement } from "./engagementCache";
 
 /** A raw /api/feed row, as cached in a feed page's `result`. */
 export type RawFeedRow = Record<string, any>;
@@ -83,6 +84,7 @@ export function mergeLiveCounts(
   rows: readonly RawFeedRow[],
 ): void {
   if (!rows?.length) return;
+  reconcileEngagement(rows);
 
   const fresh = new Map<string, RawFeedRow>();
   for (const row of rows) {

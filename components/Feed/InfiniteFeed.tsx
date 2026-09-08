@@ -24,6 +24,7 @@ import {
 import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { flattenFeedPages } from "../../libs/feed-pages";
+import { mergeLiveCounts } from "../../libs/liveCounts";
 import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
 import { useWatchedVideoIds, filterWatched } from "../../hooks/useWatchedVideos";
 import { tabPressIntentOf } from "../../navigation/tabPressIntent";
@@ -229,17 +230,18 @@ const InfiniteFeedBase: React.FC<
     refetch,
   } = useInfiniteQuery({
     queryKey,
-    queryFn: ({ pageParam }) => {
+    queryFn: async ({ pageParam }) => {
       const page = pageParam as number;
       const fetcher = fetchPageRef.current;
-      if (fetcher) return fetcher(page, pageSize);
       const p = paramsRef.current || {};
-      return getFeedNFTs({
+      const response = await (fetcher ? fetcher(page, pageSize) : getFeedNFTs({
         ...p,
         unit: pageSize,
         page,
         postType: (p as any)?.postType,
-      });
+      }));
+      mergeLiveCounts(queryClient, response.result || []);
+      return response;
     },
     initialPageParam: 0,
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
