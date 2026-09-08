@@ -55,6 +55,8 @@ import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { VideoView, useVideoPlayer } from "expo-video";
+import PictureInPictureButton from "../components/common/PictureInPictureButton";
+import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../libs/audioSession";
 import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
@@ -273,6 +275,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 interface ShortItemProps {
   item: UnifiedFeedItem;
   isActive: boolean;
+  activeVideoRef: React.RefObject<VideoView | null>;
   itemHeight: number;
   viewportHeight: number;
   /** Viewer-level, so mute and speed carry across shorts as they do on web. */
@@ -292,7 +295,7 @@ interface ShortItemProps {
   onCommentsVisibilityChange: (visible: boolean) => void;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, viewportHeight, isMuted, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, itemHeight, viewportHeight, isMuted, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
   // Live window size, not a module-level snapshot: on iPad the pager cells
   // and tap zones were sized for the launch orientation.
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
@@ -457,6 +460,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, view
   mutedRef.current = isMuted;
 
   const player = useVideoPlayer(videoUrl || null, (p) => {
+    p.staysActiveInBackground = isActive;
+    p.showNowPlayingNotification = isActive;
     p.loop = true;
     p.muted = mutedRef.current;
     p.bufferOptions = FEED_BUFFER_OPTIONS;
@@ -464,6 +469,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, view
 
   useEffect(() => {
     if (!player) return;
+    player.staysActiveInBackground = isActive;
+    player.showNowPlayingNotification = isActive;
     if (isActive) {
       requestFeedVideoFocus(() => { try { player.pause(); } catch {} });
       requestAudioFocus(() => { try { player.pause(); } catch {} });
@@ -482,6 +489,17 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, view
       }
     };
   }, [isActive, player]);
+
+  useEffect(() => {
+    if (!isActive) return;
+    configureForBackgroundPlayback().catch(() => {});
+    return () => { releaseBackgroundPlayback().catch(() => {}); };
+  }, [isActive]);
+
+  useEffect(() => {
+    const sub = player.addListener("playingChange", ({ isPlaying }) => setIsPlaying(isPlaying));
+    return () => sub.remove();
+  }, [player]);
 
   // A screen pushed over the viewer (quote, comments, a profile) keeps this
   // item mounted, and freezeOnBlur stops it re-rendering, so the effect above
@@ -971,13 +989,18 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, view
             branch could never render and the short was a black frame until its
             first frame (or forever on a load failure). Draw the thumbnail under
             the VideoView and drop it once a frame has painted. */}
-        {thumbnail && !firstFrameRendered ? (
+        {thumbnail && (!firstFrameRendered || !isActive) ? (
           <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit={showComments ? "contain" : "cover"} pointerEvents="none" />
         ) : (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
         )}
-        {player ? (
+        {/* Only the current short owns a native view: preloaded neighbours must
+            not overwrite the activity's automatic PiP configuration. */}
+        {player && isActive ? (
           <VideoView
+            ref={activeVideoRef}
+            allowsPictureInPicture
+            startsPictureInPictureAutomatically={isPlaying}
             player={player}
             style={StyleSheet.absoluteFill}
             contentFit={showComments ? "contain" : "cover"}
@@ -1603,11 +1626,14 @@ const ShortsViewerScreen = () => {
     }, 1500);
   }, [noMoreShorts, items.length, containerHeight]);
 
+  const activeVideoRef = useRef<VideoView>(null);
+
   const renderItem = useCallback(
     ({ item, index }: { item: UnifiedFeedItem; index: number }) => (
       <ShortItem
         item={item}
         isActive={index === activeIndex}
+        activeVideoRef={activeVideoRef}
         itemHeight={containerHeight}
         viewportHeight={viewportHeight}
         isMuted={isMuted}
@@ -1696,6 +1722,7 @@ const ShortsViewerScreen = () => {
           </Pressable>
 
           <View style={styles.topRight}>
+            <PictureInPictureButton videoRef={activeVideoRef} />
             <Pressable
               onPress={handleCycleSpeed}
               hitSlop={CHROME_HIT_SLOP}
