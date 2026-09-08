@@ -41,6 +41,14 @@ export interface NotificationPreferences {
    * `inApp` switches below, so there is no `email` block to go with this.
    */
   emailEnabled: boolean;
+  /**
+   * Notification texts. Opt-in like email and gated harder: this one costs
+   * money to send, so the switch does nothing until the account has
+   * unlocked the channel with a deposit and verified a number. Both live
+   * behind /notification/sms/* rather than in this object, because they are
+   * a purchase and not a preference.
+   */
+  smsEnabled: boolean;
   inApp: Record<NotificationPreferenceKey, boolean>;
   push: Record<NotificationPreferenceKey, boolean>;
   quietHours: QuietHours;
@@ -453,6 +461,7 @@ export function getDefaultNotificationPreferences(): NotificationPreferences {
     inAppEnabled: true,
     pushEnabled: true,
     emailEnabled: false,
+    smsEnabled: false,
     inApp: { ...defaultTypePrefs },
     push: { ...defaultTypePrefs },
     quietHours: {

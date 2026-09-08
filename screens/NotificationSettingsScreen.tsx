@@ -18,6 +18,11 @@ import Icon, { type IconName } from '../components/ui/Icon';
 import CustomSwitch from '../components/ui/CustomSwitch';
 import { useUser, useAuthState, useAuthActions } from '../context/AuthContext';
 import { getEmailLinkStatus } from '../services/email-link.service';
+import {
+  smsNotificationsService,
+  type SmsNotificationStatus,
+} from '../services/sms-notifications.service';
+import SmsNotificationsSheet from '../components/Settings/SmsNotificationsSheet';
 import { useGateToHome } from '../hooks/useGateToHome';
 import { toastError } from '../libs';
 import { createLogger } from '../libs/logger';
@@ -164,6 +169,14 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
    * channel with no destination is worse than no switch.
    */
   const [notifyEmail, setNotifyEmail] = useState<string | null>(null);
+  /**
+   * The paid channel's state: whether it is available at all, unlocked, and
+   * pointed at a proven number. The switch below cannot do anything useful
+   * without all three, so this decides whether it is even enabled — the same
+   * reasoning as notifyEmail above, with money on top.
+   */
+  const [smsStatus, setSmsStatus] = useState<SmsNotificationStatus | null>(null);
+  const [smsSheetOpen, setSmsSheetOpen] = useState(false);
   /** Which quiet-hours bound the picker is editing, if any. */
   const [hourPicker, setHourPicker] = useState<'start' | 'end' | null>(null);
 
@@ -206,6 +219,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
     getEmailLinkStatus().then(status => {
       setNotifyEmail(status?.notifyEmail ?? null);
     });
+    smsNotificationsService.status().then(setSmsStatus);
     // Load once per account. The user object is replaced on every patch (the
     // unread-count poll does it every minute), and re-reading the server
     // snapshot then snapped the switches back to it, and the next toggle
@@ -228,6 +242,33 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
       setSaving(false);
     }
   }, [t, patchUser]);
+
+  /** All three conditions the switch needs before it can mean anything. */
+  const smsReady = !!smsStatus?.available && smsStatus.unlocked && smsStatus.phoneVerified;
+
+  /**
+   * Which of those is missing, in the reader's words. Out of credit leads,
+   * because it is the state an ordinary "on" switch would hide.
+   */
+  const smsRowDescription = useMemo(() => {
+    if (!smsStatus) return t('settings.smsNotificationsDesc');
+    if (!smsStatus.available) return t('settings.smsUnavailable');
+    if (!smsStatus.unlocked) {
+      return t('settings.smsNotificationsLocked', {
+        dhb: smsStatus.minDepositDhb.toLocaleString('en-US'),
+        usd: smsStatus.minDepositUsd,
+      });
+    }
+    if (!smsStatus.phoneVerified) return t('settings.smsNotificationsNeedsNumber');
+    if (smsStatus.priceDhb && smsStatus.balanceDhb < smsStatus.priceDhb) {
+      return t('settings.smsNotificationsEmpty');
+    }
+    return t('settings.smsNotificationsDescReady', {
+      phone: smsStatus.phone,
+      dhb: (smsStatus.priceDhb ?? 0).toLocaleString('en-US'),
+      count: smsStatus.messagesRemaining ?? 0,
+    });
+  }, [smsStatus, t]);
 
   const updatePrefs = useCallback((updates: Partial<NotificationPreferences>) => {
     setPrefs(prev => {
@@ -368,6 +409,34 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                   value={prefs.emailEnabled}
                   onValueChange={(v) => updatePrefs({ emailEnabled: v })}
                   disabled={!notifyEmail}
+                />
+              </View>
+              <Divider />
+              {/*
+                The only switch on this screen that spends money. It stays
+                disabled until the channel is unlocked and a number is proven,
+                and the row's second line says which of those is missing —
+                a toggle that turns on over a channel that cannot deliver is
+                worse than one that will not turn on.
+              */}
+              <View className="px-4 py-3.5 flex-row items-center justify-between">
+                <TouchableOpacity
+                  className="flex-row items-center flex-1 pr-3"
+                  activeOpacity={0.7}
+                  onPress={() => setSmsSheetOpen(true)}
+                >
+                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+                    <Icon name="MessageSquare" size={18} color="#9ca3af" />
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-white text-sm font-medium">{t('settings.smsNotifications')}</Text>
+                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">{smsRowDescription}</Text>
+                  </View>
+                </TouchableOpacity>
+                <CustomSwitch
+                  value={prefs.smsEnabled && smsReady}
+                  onValueChange={(v) => updatePrefs({ smsEnabled: v })}
+                  disabled={!smsReady}
                 />
               </View>
             </View>
@@ -565,6 +634,18 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
           label: t('settings.publicChatAlertsRateOption', { count: n }),
         }))}
         onSelect={(value) => setPublicChatAlertsPerHour(Number(value))}
+      />
+
+      {/* Deposit and phone verification for the paid channel. Everything with
+          a price on it lives in here rather than on the row, so nothing on
+          this screen can start spending money by accident. */}
+      <SmsNotificationsSheet
+        visible={smsSheetOpen}
+        onClose={() => setSmsSheetOpen(false)}
+        status={smsStatus}
+        onChanged={() => {
+          smsNotificationsService.status().then(setSmsStatus);
+        }}
       />
     </View>
   );
