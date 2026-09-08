@@ -539,11 +539,11 @@ export function useOpenDehubLink() {
           navigation.navigate(ScreenNames.Events);
           return;
         case 'stage': {
-          // Stages are modal-based on native — there is no stage screen to
-          // navigate to. Joining is attempted first because a live stage is
-          // what the link most often points at; joinSpace refuses anything
-          // that is not live, and the browse modal (which lists upcoming) is
-          // the right landing spot for a stage that has not started.
+          // There is no per-stage screen, so the hub is where a link lands and
+          // joining is attempted on top of it: a live stage is what the link
+          // most often points at, joinSpace refuses anything that is not live,
+          // and the hub's upcoming and recorded shelves are the right landing
+          // spot for a stage that has not started or has already ended.
           openStages('browse');
           void (async () => {
             // A /stages/7 link carries no uuid, and joinSpace keys on one.

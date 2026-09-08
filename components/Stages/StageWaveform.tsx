@@ -110,13 +110,18 @@ const StageWaveform: React.FC<StageWaveformProps> = ({
       });
 
     // activeOffsetX so a vertical flick still scrolls the list underneath —
-    // these rows live inside a scrolling modal and a bar that claimed every
+    // these rows live inside a scrolling list and a bar that claimed every
     // touch would make the Recorded list impossible to scroll past.
+    //
+    // The local fill follows from `onStart`, not `onBegin`: onBegin fires on
+    // touch-down, before the horizontal threshold decides whether this is a
+    // scrub at all, so a finger landing on a bar to scroll the list yanked the
+    // playhead to that point for the length of the swipe.
     const pan = Gesture.Pan()
       .runOnJS(true)
       .activeOffsetX([-6, 6])
       .failOffsetY([-12, 12])
-      .onBegin((e) => setDragAt(ratioAt(e.x)))
+      .onStart((e) => setDragAt(ratioAt(e.x)))
       .onUpdate((e) => setDragAt(ratioAt(e.x)))
       .onEnd((e) => onSeek(ratioAt(e.x)))
       .onFinalize(() => setDragAt(null));

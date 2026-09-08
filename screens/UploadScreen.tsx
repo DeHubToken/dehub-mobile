@@ -3020,9 +3020,8 @@ export default function UploadScreen() {
             activeOpacity={0.8}
             onPress={() => {
               setShowLiveOptions(false);
-              // Open Stages only after this sheet has dismissed: two native
-              // Modals crossing in one commit leaves iOS refusing the second
-              // and Stages unopenable until the app restarts.
+              // Navigate only after this sheet has dismissed, so the push does
+              // not race the dismissal animation.
               setTimeout(() => openStages("browse"), 250);
             }}
             className="flex-row items-center gap-3 py-4 px-4 rounded-xl"
