@@ -13,7 +13,6 @@ interface StoryAvatarRingProps {
   unwatched?: boolean;
   onPressStory?: () => void;
   onPressAvatar?: () => void;
-  rounded?: boolean;
 }
 
 const StoryAvatarRing: React.FC<StoryAvatarRingProps> = ({
@@ -24,9 +23,8 @@ const StoryAvatarRing: React.FC<StoryAvatarRingProps> = ({
   unwatched = true,
   onPressStory,
   onPressAvatar,
-  rounded = false,
 }) => {
-  const borderRadius = rounded ? size / 2 : 12;
+  const borderRadius = 12;
   const innerSize = hasStories ? Math.max(size - 8, size * 0.82) : size;
 
   const avatar = (
@@ -34,7 +32,6 @@ const StoryAvatarRing: React.FC<StoryAvatarRingProps> = ({
       uri={uri}
       size={innerSize}
       name={name}
-      rounded={rounded}
       style={{ borderWidth: hasStories ? 2 : 3, borderColor: "#010305" }}
     />
   );
@@ -46,7 +43,6 @@ const StoryAvatarRing: React.FC<StoryAvatarRingProps> = ({
           uri={uri}
           size={size}
           name={name}
-          rounded={rounded}
           onPress={onPressAvatar}
           style={{ borderWidth: 3, borderColor: "#010305" }}
         />

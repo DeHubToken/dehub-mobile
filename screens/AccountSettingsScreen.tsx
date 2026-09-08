@@ -457,7 +457,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                 const busy = revokingAddress === address;
                 return (
                   <View className="flex-row items-center bg-theme-neutrals-800/60 rounded-xl px-3 py-3 gap-3">
-                    <View className="w-9 h-9 rounded-full bg-theme-neutrals-700 items-center justify-center">
+                    <View className="w-9 h-9 rounded-md bg-theme-neutrals-700 items-center justify-center">
                       <Icon name="User" size={16} color="#9ca3af" />
                     </View>
                     <Text className="flex-1 text-white text-sm font-mono">

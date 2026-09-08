@@ -1465,7 +1465,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           if (id) showUserProfile(id, { source: "chat-header" });
         }}
       >
-        <Avatar uri={peerAvatarUri} size={32} rounded={false} name={peer.displayName || peer.username} />
+        <Avatar uri={peerAvatarUri} size={32} name={peer.displayName || peer.username} />
       </TouchableOpacity>
     ),
     [peerAvatarUri, peer.username, peer.address, showUserProfile, peer.displayName],

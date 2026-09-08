@@ -629,7 +629,6 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
           <Avatar
             uri={activeStore?.avatar_url ?? undefined}
             size={48}
-            rounded
             name={activeStore?.name || t("stores.store")}
           />
           <View style={{ flex: 1, minWidth: 0 }}>
@@ -896,7 +895,7 @@ const styles = StyleSheet.create({
   avatarPick: {
     width: 64,
     height: 64,
-    borderRadius: 999,
+    borderRadius: 10,
     overflow: "hidden",
     backgroundColor: "rgba(255,255,255,0.05)",
     marginBottom: 6,

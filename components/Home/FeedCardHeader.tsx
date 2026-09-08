@@ -37,7 +37,6 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
         <Avatar
           uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
           size={avatarSize}
-          rounded={false}
           className="mr-2"
           name={displayName || username}
         />

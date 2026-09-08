@@ -169,7 +169,7 @@ const StoriesBar: React.FC<StoriesBarProps> = ({ refreshKey = 0 }) => {
                     cachePolicy="memory-disk"
                   />
                 ) : (
-                  <Avatar uri={avatar} size={BUBBLE - 4} name={label} rounded={false} />
+                  <Avatar uri={avatar} size={BUBBLE - 4} name={label} />
                 )}
               </ShimmerBorder>
               <Text style={styles.label} numberOfLines={1}>

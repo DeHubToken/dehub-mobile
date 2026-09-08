@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 34,
     height: 34,
-    borderRadius: 17,
+    borderRadius: 5,
     backgroundColor: "#333",
   },
   username: { color: "#fff", fontSize: 14, fontWeight: "600" },

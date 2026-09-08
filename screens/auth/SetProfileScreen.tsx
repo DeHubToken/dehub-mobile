@@ -465,12 +465,12 @@ const styles = StyleSheet.create({
   avatarImage: {
     width: AVATAR_PT,
     height: AVATAR_PT,
-    borderRadius: AVATAR_PT / 2,
+    borderRadius: 18,
   },
   avatarPlaceholder: {
     width: AVATAR_PT,
     height: AVATAR_PT,
-    borderRadius: AVATAR_PT / 2,
+    borderRadius: 18,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: authColors.field,

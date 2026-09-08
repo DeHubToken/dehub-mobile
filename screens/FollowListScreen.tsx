@@ -114,7 +114,7 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(
         {/* Rounded square, the same shape avatars take everywhere else in both
             apps. This row used to wrap it in a circular ring, which left a
             squared image sitting inside a circle. */}
-        <Avatar uri={avatarUrl} size={48} rounded={false} name={displayName} />
+        <Avatar uri={avatarUrl} size={48} name={displayName} />
 
         {/* Name and handle get a row each so neither has to be cut short. */}
         <View className="flex-1 ml-3 mr-3">
@@ -187,7 +187,7 @@ const FollowRequestRow: React.FC<FollowRequestRowProps> = React.memo(
     return (
       <View className="flex-row items-center px-4 py-3">
         <TouchableOpacity activeOpacity={0.6} onPress={handlePress}>
-          <Avatar uri={avatarUrl} size={48} rounded={false} name={displayName} />
+          <Avatar uri={avatarUrl} size={48} name={displayName} />
         </TouchableOpacity>
 
         <TouchableOpacity className="flex-1 ml-3 mr-3" activeOpacity={0.6} onPress={handlePress}>

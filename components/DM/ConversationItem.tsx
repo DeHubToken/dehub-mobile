@@ -171,7 +171,6 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
                 : undefined
             }
             size={52}
-            rounded={false}
             name={displayName}
           />
         </TouchableOpacity>
