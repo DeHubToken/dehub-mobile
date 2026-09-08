@@ -89,7 +89,7 @@ function setCache(text: string, targetLang: string, entry: CacheEntry): void {
 // is one shared decision rather than two.
 // ---------------------------------------------------------------------------
 
-const TRANSLATION_STORE_KEY = 'dehub-translation-cache-v2';
+const TRANSLATION_STORE_KEY = 'dehub-translation-cache-v3';
 
 function loadPersistedTranslations(): void {
   try {

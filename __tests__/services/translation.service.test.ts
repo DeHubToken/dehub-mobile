@@ -153,7 +153,7 @@ describe('services/translation.service', () => {
       jest.advanceTimersByTime(1000);
       jest.useRealTimers();
 
-      expect(storage.getString('dehub-translation-cache-v2')).toBeTruthy();
+      expect(storage.getString('dehub-translation-cache-v3')).toBeTruthy();
 
       // A relaunch: fresh module state, same storage.
       const relaunched = loadService();
@@ -164,7 +164,7 @@ describe('services/translation.service', () => {
     });
 
     it('starts empty rather than throwing on a corrupt blob', async () => {
-      storage.set('dehub-translation-cache-v2', '{not json');
+      storage.set('dehub-translation-cache-v3', '{not json');
       mockInvoke.mockResolvedValue({ data: { translatedText: 'Merhaba' }, error: null });
 
       const { translateText } = loadService();

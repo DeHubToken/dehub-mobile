@@ -12,6 +12,7 @@ interface UseTranslationResult {
   handleTranslate: () => void;
   handleShowOriginal: () => void;
   shouldShow: boolean;
+  sourceLang: string | null;
 }
 
 // Matches web (MIN_TEXT_LENGTH_FOR_TRANSLATION), so the same post offers the
@@ -88,7 +89,9 @@ export function useTranslation(
     return stripEmojis(combined).length >= MIN_TRANSLATABLE_LENGTH;
   }, [texts]);
 
-  const knownLang = detectedLanguage || resolvedLang;
+  const combinedProse = Object.values(texts).join(' ').replace(/https?:\/\/\S+|[@#$]\S+/g, '').replace(/[^\p{L}]/gu, '');
+  const reliableBackendLang = combinedProse.length >= 60 && detectedLanguage !== 'und' ? detectedLanguage : null;
+  const knownLang = resolvedLang || reliableBackendLang;
 
   // Shown once there is a translation to toggle, or once we know the post is in
   // a language the reader did not pick. `isTranslated` is checked first because
@@ -96,7 +99,7 @@ export function useTranslation(
   const shouldShow =
     hasEnoughText &&
     (isTranslated ||
-      (!!knownLang && knownLang !== 'und' && baseLang(knownLang) !== baseLang(targetLang)));
+      (!knownLang || knownLang === 'und' || baseLang(knownLang) !== baseLang(targetLang)));
 
   /**
    * @param silent - auto-translation, which the reader did not ask for and must
@@ -115,17 +118,20 @@ export function useTranslation(
         // through it becomes a `und|tr` language pair at the provider, which
         // MyMemory answers with a segment out of its shared memory rather than
         // an error — a stranger's sentence, rendered as this post's translation.
-        const source = !detectedLanguage || detectedLanguage === 'und' ? 'auto' : detectedLanguage;
+        const source = reliableBackendLang || 'auto';
         const entries = Object.entries(texts).filter(([, v]) => v && v.trim().length > 0);
-        const results = await Promise.all(
+        const settled = await Promise.allSettled(
           entries.map(async ([key, text]) => {
             const result = await translateText(text, targetLang, source);
             return [key, result] as const;
           }),
         );
+        const results = settled.flatMap(result => result.status === 'fulfilled' ? [result.value] : []);
+        const partialFailure = results.length !== entries.length;
+        if (!results.length) throw new Error('Translation unavailable');
 
         const translations = Object.fromEntries(
-          results.map(([key, result]) => [key, result.translatedText] as const),
+          [...entries, ...results.map(([key, result]) => [key, result.translatedText] as const)],
         );
         // The server returns the body untouched when it is already in the
         // target language. Flipping to the translated state on that would put a
@@ -146,7 +152,8 @@ export function useTranslation(
           // looks broken.
           if (toastId !== null) {
             dismissToast(toastId);
-            toastSuccess('Already in your language');
+            if (partialFailure) toastError('Translation failed. Please try again.');
+            else toastSuccess('Already in your language');
           }
           return;
         }
@@ -158,7 +165,8 @@ export function useTranslation(
         }
         if (toastId !== null) {
           dismissToast(toastId);
-          toastSuccess('Post translated');
+          if (partialFailure) toastError('Some text could not be translated.');
+          else toastSuccess('Post translated');
         }
       } catch {
         if (toastId !== null) {
@@ -170,7 +178,7 @@ export function useTranslation(
         if (mountedRef.current && !silent) setIsLoading(false);
       }
     },
-    [texts, detectedLanguage, targetLang],
+    [texts, reliableBackendLang, targetLang],
   );
 
   const handleTranslate = useCallback(() => {
@@ -207,14 +215,15 @@ export function useTranslation(
     // the reader's language. The edge function would answer `sameLanguage` to
     // the same effect, but not asking is cheaper than being told — and on a
     // feed whose majority language matches the reader, this is most of it.
-    if (detectedLanguage && baseLang(detectedLanguage) === baseLang(targetLang)) return;
+    if (reliableBackendLang && baseLang(reliableBackendLang) === baseLang(targetLang)) return;
+    if (!reliableBackendLang && combinedProse.length < 30 && /^[\p{Script=Latin}]*$/u.test(combinedProse)) return;
 
     const key = `${combinedText}::${targetLang}`;
     if (autoDoneRef.current === key) return;
     autoDoneRef.current = key;
 
     return queueAutoTranslate(() => runRef.current(true));
-  }, [combinedText, targetLang, hasEnoughText, auto, detectedLanguage]);
+  }, [combinedText, targetLang, hasEnoughText, auto, reliableBackendLang, combinedProse]);
 
-  return { isTranslated, translatedTexts, isLoading, handleTranslate, handleShowOriginal, shouldShow };
+  return { isTranslated, translatedTexts, isLoading, handleTranslate, handleShowOriginal, shouldShow, sourceLang: combinedProse.length >= 60 ? knownLang || null : null };
 }

@@ -482,7 +482,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     title: localTitle || '',
     description: localDescription || '',
   }), [localTitle, localDescription]);
-  const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate } =
+  const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate, sourceLang: translationSourceLang } =
     useTranslation(translationTexts, item.detectedLanguage);
   // DeHub links in the caption become entity cards, and the URLs that became
   // cards come out of the text — the same contract the DM, comment and
@@ -1570,7 +1570,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <TranslateButton
               isTranslated={isTranslated}
               isLoading={translating}
-              detectedLanguage={item.detectedLanguage}
+              detectedLanguage={translationSourceLang}
               onTranslate={handleTranslate}
               onShowOriginal={handleShowOriginal}
               inline
