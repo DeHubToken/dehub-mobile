@@ -1168,7 +1168,12 @@
       "mentionedNamed": "{{name}} nævnte dig i \"{{community}}\"",
       "here": "{{name}} sendte beskeder til alle i netværket",
       "hereNamed": "{{name}} sendte beskeder til alle i \"{{community}}\""
-    }
+    },
+    "sortOrder": "Notifikationsordre",
+    "priority": "Prioritet",
+    "newest": "Nyeste",
+    "actNow": "Handl nu",
+    "important": "Vigtigt"
   },
   "leaderboard": {
     "title": "Rangliste",

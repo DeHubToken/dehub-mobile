@@ -1253,7 +1253,12 @@
       "requestedNamed": "{{name}} “{{community}}” кошулууну суранды",
       "mentionedNamed": "{{name}} Сизди “{{community}}” деп атаган",
       "hereNamed": "{{name}} \"{{community}}\" ичиндеги баарына билдирүү жөнөттү"
-    }
+    },
+    "sortOrder": "Билдирүү тартиби",
+    "priority": "Приоритет",
+    "newest": "Жаңы",
+    "actNow": "Азыр иштөө",
+    "important": "Маанилүү"
   },
   "messages": {
     "smartRepliesOff": "Сунушталган жооптор өчүрүлдү",

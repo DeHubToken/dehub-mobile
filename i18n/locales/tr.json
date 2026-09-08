@@ -1214,7 +1214,12 @@
       "mentionedNamed": "{{name}} senden “{{community}}” de bahsetti",
       "here": "{{name}} topluluktaki herkese mesaj gönderdi",
       "hereNamed": "{{name}}“{{community}}” içindeki herkese mesaj gönderdi"
-    }
+    },
+    "sortOrder": "Bildirim sırası",
+    "priority": "Öncelik",
+    "newest": "En Yeni",
+    "actNow": "Hemen harekete geçin",
+    "important": "Önemli"
   },
   "leaderboard": {
     "title": "Sıralama Tablosu",

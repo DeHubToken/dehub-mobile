@@ -1177,7 +1177,12 @@
     "andNOthers": "ከምኡውን ካልኦት {{count}}",
     "community": {
       "joined": "{{name}} ምስ ማሕበረሰብካ ተጸምቢርካ"
-    }
+    },
+    "sortOrder": "ናይ ኣፍልጦ ትእዛዝ",
+    "priority": "ቀዳምነት",
+    "newest": "ሓድሽ",
+    "actNow": "ሕጂ ስጕምቲ ውሰድ",
+    "important": "ኣገዳሲ"
   },
   "leaderboard": {
     "title": "ሰሌዳ ደረጃ",

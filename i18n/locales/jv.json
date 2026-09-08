@@ -1155,7 +1155,12 @@
       "mentionedNamed": "{{name}} nyebut kowe ing “{{community}}”",
       "here": "{{name}} ngirim pesen marang kabeh wong ing komunitas",
       "hereNamed": "{{name}} ngirim pesen marang kabeh wong ing “{{community}}”"
-    }
+    },
+    "sortOrder": "Notifikasi pesan",
+    "priority": "Prioritas",
+    "newest": "Paling anyar",
+    "actNow": "Tumindak saiki",
+    "important": "Penting"
   },
   "leaderboard": {
     "title": "Papan Peringkat",

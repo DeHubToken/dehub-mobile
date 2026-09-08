@@ -690,7 +690,12 @@
       "mentionedNamed": "{{name}} “{{community}}” এ আপনার নাম উল্লেখ করছে",
       "here": "{{name}} কমিউনিটির সবায়কে মেসেজ পাঠাইছে",
       "hereNamed": "{{name}} “{{community}}” এর সবায়কে মেসেজ পাঠাইছে"
-    }
+    },
+    "sortOrder": "নোটিফিকেশন অর্ডার",
+    "priority": "প্রায়োরিটি",
+    "newest": "নিউয়েস্ট",
+    "actNow": "এক্ট নাও",
+    "important": "ইম্পরট্যান্ট"
   },
   "messages": {
     "smartRepliesOff": "পরামর্শ দেওয়া জবাব বন্ধ গরা অইছে",

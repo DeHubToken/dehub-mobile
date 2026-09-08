@@ -1243,7 +1243,12 @@
     "andNOthers": "we ýene {{count}}",
     "community": {
       "joinedNamed": "{{name}} \"{{community}}\" bilen birleşdi"
-    }
+    },
+    "sortOrder": "Habar beriş tabşyrygy",
+    "priority": "Öňürti",
+    "newest": "Täze",
+    "actNow": "Häzir hereket et",
+    "important": "Öňki"
   },
   "messages": {
     "smartRepliesOff": "Teklip edilýän jogaplar öçürildi",

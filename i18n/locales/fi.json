@@ -1257,7 +1257,12 @@
       "mentionedNamed": "{{name}} mainitsi sinut kohteessa \"{{community}}\"",
       "here": "{{name}} lähetti viestin kaikille yhteisön jäsenille",
       "hereNamed": "{{name}} viestitti kaikille kohteessa \"{{community}}\""
-    }
+    },
+    "sortOrder": "Ilmoitustilaus",
+    "priority": "Prioriteetti",
+    "newest": "Uusin",
+    "actNow": "Toimi nyt",
+    "important": "Tärkeää"
   },
   "messages": {
     "smartRepliesOff": "Ehdotetut vastaukset poistettiin käytöstä",

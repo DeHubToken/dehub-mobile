@@ -1187,7 +1187,12 @@
       "here": "{{name}} fariin qof walba oo bulshada ka mid ah",
       "requestedNamed": "{{name}} waxaa laga codsaday inuu ku biiro “{{community}}”",
       "hereNamed": "{{name}} farriinta qof walba ee “{{community}}”"
-    }
+    },
+    "sortOrder": "Amarka ogeysiinta",
+    "priority": "Mudnaanta",
+    "newest": "Cusub",
+    "actNow": "Wax ka qabso hadda",
+    "important": "Muhiim ah"
   },
   "leaderboard": {
     "title": "Hogaamiyaha",

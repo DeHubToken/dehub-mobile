@@ -1167,7 +1167,12 @@
       "mentionedNamed": "{{name}} megemlített „{{community}}” -ben",
       "here": "{{name}} mindenkinek üzenetet küldött a közösségben",
       "hereNamed": "{{name}} mindenkinek üzenetet küldött „{{community}}” területén"
-    }
+    },
+    "sortOrder": "Értesítési megbízás",
+    "priority": "Elsőbbség",
+    "newest": "Legújabb",
+    "actNow": "Cselekedj most",
+    "important": "Fontos"
   },
   "leaderboard": {
     "title": "Ranglista",

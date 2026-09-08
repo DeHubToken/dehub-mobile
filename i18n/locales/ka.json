@@ -1189,7 +1189,12 @@
       "mentionedNamed": "{{name}} @ მოგიხსენიათ „{{community}}“ -ში",
       "here": "{{name}} მესიჯი მისწერა გაერთიანების ყველა წევრს",
       "hereNamed": "{{name}} მესიჯი ყველასთვის: „{{community}}“"
-    }
+    },
+    "sortOrder": "Გაფრთხილების ბრძანება",
+    "priority": "Პრიორიტეტი",
+    "newest": "Უახლესი",
+    "actNow": "Იმოქმედეთ ახლავე",
+    "important": "Მნიშვნელოვანი"
   },
   "leaderboard": {
     "title": "რეიტინგი",

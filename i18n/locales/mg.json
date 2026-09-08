@@ -1115,7 +1115,12 @@
       "mentionedNamed": "{{name}} nanonona anao tao amin'ny “{{community}}”",
       "here": "{{name}} messaged ny tsirairay tao anatin'ilay vondrom-piarahamonina",
       "hereNamed": "{{name}} messaged ny rehetra {{community}} \""
-    }
+    },
+    "sortOrder": "Filaharana fampahafantarana",
+    "priority": "Hamehana",
+    "newest": "Latsia",
+    "actNow": "Amin'izao fotoana izao",
+    "important": "Mavesa-danja"
   },
   "leaderboard": {
     "title": "Lisitry ny tsara indrindra",
