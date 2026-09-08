@@ -515,7 +515,23 @@
     "resetAndSignOut": "Reset and sign out",
     "deviceLinkReset": "Device link don reset. Sign in again make you pick di correct account.",
     "deviceLinkResetFailed": "We no fit reset di device link.",
-    "emailNotificationsDescLinked": "Sent to {{email}}"
+    "emailNotificationsDescLinked": "Sent to {{email}}",
+    "smsNotifications": "Text Notifications",
+    "smsPricePerMessage": "{{dhb}} DHB (${{usd}})",
+    "smsBand": {
+      "domestic": "United Kingdom",
+      "europe": "Europe",
+      "global": "Most other countries",
+      "premium": "Everywhere else"
+    },
+    "smsDepositAction": "Send {{dhb}} DHB",
+    "smsUnlocked": "Text notifications unlocked",
+    "smsBalance": "{{dhb}} DHB left (${{usd}})",
+    "smsNumberLabel": "Phone number",
+    "smsSendCode": "Text me a code",
+    "smsVerify": "Confirm code",
+    "smsNumberVerified": "Number verified",
+    "smsNumberRemoved": "Number removed"
   },
   "common": {
     "mute": "Off di sound",

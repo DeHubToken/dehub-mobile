@@ -612,7 +612,8 @@
     "deviceLinkReset": "ডিভাইস লিংক রিসেট অইছে। সঠিক একাউন্ট পাইতে আবার সাইন ইন গরন।",
     "deviceLinkResetFailed": "ডিভাইস লিংক রিসেট গরা ন যায়।",
     "emailNotificationsDescLinked": "{{email}}-রে পাঠানো হইসে",
-    "emailNotificationsNoAddressMobile": "ওয়েবসাইটে একটা ইমেইল এড্রেস যোগ কর, এইগুলা চালু করার লাই।"
+    "emailNotificationsNoAddressMobile": "ওয়েবসাইটে একটা ইমেইল এড্রেস যোগ কর, এইগুলা চালু করার লাই।",
+    "smsUnavailable": "টেক্সট নোটিফিকেশন এহন ফাইর্যে নাতুন"
   },
   "notifications": {
     "title": "জানাইন",
