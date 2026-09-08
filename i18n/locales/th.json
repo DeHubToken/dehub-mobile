@@ -526,6 +526,7 @@
     "exportChats": "ส่งออกแชท",
     "notConnected": "ยังไม่เชื่อมต่อ",
     "manage": "จัดการ →",
+    "dhbBalanceIncludesStaked": "กระเป๋าเงินและเดิมพัน DHB รวมกัน",
     "fractionsOwn": "ส่วนแบ่งที่คุณถือครอง",
     "noFractions": "คุณยังไม่ได้ถือครองส่วนแบ่งใด",
     "usernamesOwn": "ชื่อผู้ใช้ที่คุณถือครอง",

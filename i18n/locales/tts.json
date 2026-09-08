@@ -244,6 +244,7 @@
     "exportChats": "ส่งออกแชท",
     "notConnected": "บ่ได้เชื่อมต่อ",
     "manage": "จัดการ →",
+    "dhbBalanceIncludesStaked": "Wallet and staked DHB combined",
     "fractionsOwn": "เศษส่วนที่เจ้ามี",
     "noFractions": "เจ้ายังบ่มีเศษส่วน",
     "usernamesOwn": "ชื่อผู้ใช้ที่เจ้ามี",

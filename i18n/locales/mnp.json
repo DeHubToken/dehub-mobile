@@ -244,6 +244,7 @@
     "exportChats": "导出聊天",
     "notConnected": "未连接",
     "manage": "管理 →",
+    "dhbBalanceIncludesStaked": "Wallet and staked DHB combined",
     "fractionsOwn": "你持有其碎片",
     "noFractions": "你还无持有任何碎片",
     "usernamesOwn": "你持有其用户名",

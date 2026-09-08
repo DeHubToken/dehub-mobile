@@ -244,6 +244,7 @@
     "exportChats": "Exporter les discussions",
     "notConnected": "Non connecté",
     "manage": "Gérer →",
+    "dhbBalanceIncludesStaked": "Portefeuille et DHB jalonnés combinés",
     "fractionsOwn": "Fractions que vous possédez",
     "noFractions": "Vous ne possédez pas encore de fractions",
     "usernamesOwn": "Noms d'utilisateur que vous possédez",

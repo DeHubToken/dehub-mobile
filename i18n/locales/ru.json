@@ -244,6 +244,7 @@
     "exportChats": "Экспорт чатов",
     "notConnected": "Не подключено",
     "manage": "Управление →",
+    "dhbBalanceIncludesStaked": "Кошелек и стейкинг DHB вместе",
     "fractionsOwn": "Ваши доли",
     "noFractions": "У вас ещё нет долей",
     "usernamesOwn": "Ваши имена пользователей",
