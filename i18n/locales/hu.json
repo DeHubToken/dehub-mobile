@@ -244,6 +244,7 @@
     "exportChats": "Csevegések exportálása",
     "notConnected": "Nincs csatlakoztatva",
     "manage": "Kezelés →",
+    "dhbBalanceIncludesStaked": "Pénztárca és rögzített DHB kombinálva",
     "fractionsOwn": "Az ön részesedései",
     "noFractions": "Még nincsenek részesedései",
     "usernamesOwn": "Az ön felhasználónevei",

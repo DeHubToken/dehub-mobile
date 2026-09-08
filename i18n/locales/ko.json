@@ -244,6 +244,7 @@
     "exportChats": "채팅 내보내기",
     "notConnected": "연결되지 않음",
     "manage": "관리 →",
+    "dhbBalanceIncludesStaked": "지갑과 스테이킹된 DHB 결합",
     "fractionsOwn": "소유한 프랙션",
     "noFractions": "아직 프랙션을 소유하고 있지 않습니다",
     "usernamesOwn": "소유한 사용자 이름",

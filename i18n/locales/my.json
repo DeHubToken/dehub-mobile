@@ -245,6 +245,7 @@
     "exportChats": "Export Chats",
     "notConnected": "Not connected",
     "manage": "Manage →",
+    "dhbBalanceIncludesStaked": "ပိုက်ဆံအိတ်နှင့် staked DHB ပေါင်းစပ်",
     "fractionsOwn": "Fractions You Own",
     "noFractions": "You don't own any fractions yet",
     "usernamesOwn": "Usernames You Own",

@@ -244,6 +244,7 @@
     "exportChats": "导出聊天",
     "notConnected": "未连接",
     "manage": "管理 →",
+    "dhbBalanceIncludesStaked": "钱包和质押DHB相结合",
     "fractionsOwn": "你拥有的份额",
     "noFractions": "你还没有拥有任何份额",
     "usernamesOwn": "你拥有的用户名",

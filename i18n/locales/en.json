@@ -323,6 +323,7 @@
     "exportChats": "Export Chats",
     "notConnected": "Not connected",
     "manage": "Manage →",
+    "dhbBalanceIncludesStaked": "Wallet and staked DHB combined",
     "fractionsOwn": "Fractions You Own",
     "noFractions": "You don't own any fractions yet",
     "usernamesOwn": "Usernames You Own",

@@ -25,6 +25,7 @@ import { toastSuccess, toastError, truncateAddress } from '../../libs';
 import { ChainId } from '../../config/constants';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import { formatCompactNumber } from '../../libs/numbers.util';
+import { dhbPosition } from '../../libs/dhb-position';
 import { isChainAASupported } from '../../libs/wallet-core/smart-account';
 import { forgetLocalWalletForIdentity } from '../../libs/identity-wallet';
 import { getSupabaseUserId } from '../../services/auth/supabaseAuth.service';
@@ -56,7 +57,9 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
   // Gas is sponsored for any local wallet on a chain with Safe/Pimlico support (Base, BNB) --
   // "local" alone (used for the "Imported" label) no longer implies self-paid gas.
   const gasSponsored = authMethod === 'local' && isChainAASupported(chainId ?? ChainId.BASE_MAINNET);
-  const dhbBalance = user?.tokenBalances?.DHB ?? 0;
+  // Was `tokenBalances.DHB`, the liquid half only — and most DHB is staked, so
+  // a staker saw a fraction of what they hold. This is the whole position.
+  const dhbBalance = dhbPosition(user, user?.tokenBalances?.DHB ?? 0);
 
   const chainLabel =
     chainId === ChainId.BASE_MAINNET
@@ -134,7 +137,7 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
         <SettingsLinkRow
           icon="Coins"
           label={`${formatCompactNumber(dhbBalance)} DHB`}
-          description={t('settings.manage')}
+          description={t('settings.dhbBalanceIncludesStaked')}
           onPress={() => navigation.navigate(ScreenNames.Dpay)}
         />
         <Divider />

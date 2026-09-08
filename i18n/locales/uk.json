@@ -970,6 +970,7 @@
     "exportChats": "Export Chats",
     "notConnected": "Not connected",
     "manage": "Manage →",
+    "dhbBalanceIncludesStaked": "Гаманець і стейкінг DHB разом",
     "fractionsOwn": "Fractions You Own",
     "noFractions": "You don't own any fractions yet",
     "usernamesOwn": "Usernames You Own",
