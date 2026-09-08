@@ -9,11 +9,9 @@
  * expo-video natively. Playback failures auto-report through the same
  * `report-broken-channel` edge function web uses.
  *
- * Web's floating picture-in-picture player is not ported; the player here is a
- * full-screen modal. PiP across a native navigator is a bigger piece of work
- * and is tracked separately.
+ * The channel player supports native picture-in-picture and background audio.
  */
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -29,6 +27,8 @@ import {
 } from "react-native";
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer, type VideoPlayer } from "expo-video";
+import PictureInPictureButton from "../components/common/PictureInPictureButton";
+import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../libs/audioSession";
 import { FULLSCREEN_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
@@ -61,16 +61,32 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const [failed, setFailed] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<VideoView>(null);
   // Edge-to-edge Android ignores adjustResize, so the window does not shrink
   // when the keyboard opens — lift manually on both platforms, same as
   // LiveChatScreen/CommentSection.
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
 
   const player: VideoPlayer = useVideoPlayer(channel?.streamUrl ?? null, (p) => {
+    p.staysActiveInBackground = true;
+    p.showNowPlayingNotification = true;
     p.loop = false;
     p.bufferOptions = FULLSCREEN_BUFFER_OPTIONS;
     p.play();
   });
+
+  useEffect(() => {
+    setIsPlaying(player.playing);
+    const sub = player.addListener("playingChange", ({ isPlaying }) => setIsPlaying(isPlaying));
+    return () => sub.remove();
+  }, [player]);
+
+  useEffect(() => {
+    if (!channel) return;
+    configureForBackgroundPlayback().catch(() => {});
+    return () => { releaseBackgroundPlayback().catch(() => {}); };
+  }, [channel]);
 
   // A dead stream is the normal failure here — surface it and tell the backend,
   // which is how web keeps the verified channel list clean.
@@ -119,6 +135,7 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
               {channel?.country}
             </Text>
           </View>
+          <PictureInPictureButton videoRef={videoRef} />
         </View>
 
         <View style={[styles.videoWrap, { height: Math.round((width * 9) / 16) }]}>
@@ -130,6 +147,9 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
             </View>
           ) : (
             <VideoView
+              ref={videoRef}
+              allowsPictureInPicture
+              startsPictureInPictureAutomatically={!!channel && isPlaying}
               player={player}
               style={StyleSheet.absoluteFill}
               contentFit="contain"
