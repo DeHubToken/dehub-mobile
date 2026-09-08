@@ -22,6 +22,7 @@ import { seekStageRecordingToTime, useStagePlayback } from "../../libs/stage-pla
 import type { AudioSpace, StageTranscript, Segment, Chapter, SpeakerMapEntry, SpeakerOverride } from "../../hooks/useStages";
 import { ButtonLoader } from "../DeHubLoader";
 import { usePendingAction } from "../../hooks/usePendingAction";
+import { FIELD_TEXT } from "../../theme/inputs";
 
 interface Props {
   space: AudioSpace | null;
@@ -621,6 +622,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                   placeholder="Search transcript..."
                   placeholderTextColor="#8B8D90"
                   className="flex-1 ml-2 text-white text-xs"
+                  style={FIELD_TEXT}
                 />
                 {searchQuery.length > 0 && (
                   <TouchableOpacity onPress={() => setSearchQuery("")}>

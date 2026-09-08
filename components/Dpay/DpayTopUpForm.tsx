@@ -18,6 +18,7 @@ import { openInApp } from "../../libs/links.utils";
 import { theme } from "../../theme";
 import { appScheme } from "../../config/web3.constants";
 import DpayCheckoutStatus from "./DpayCheckoutStatus";
+import { FIELD_TEXT } from "../../theme/inputs";
 // Auth signing not required here; apiClient handles auth via isAuthRequired
 
 type DpayTopUpFormProps = {
@@ -409,6 +410,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
             placeholder="10"
             placeholderTextColor="#9CA3AF"
             className="flex-1 text-white text-base ml-2"
+            style={FIELD_TEXT}
           />
         </View>
         {amountValidationError ? (

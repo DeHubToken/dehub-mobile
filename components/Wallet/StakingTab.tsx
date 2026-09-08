@@ -15,6 +15,7 @@ import { getSigningProvider } from "../../libs/provider.registry";
 import { supabase } from "../../services/supabase";
 import { toastError, toastInfo, toastSuccess } from "../../libs/toast";
 import { refreshStakingPosition } from "../../services/staking.service";
+import { FIELD_TEXT } from "../../theme/inputs";
 
 const DHB_BASE = "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c";
 // Unified transfer-based staking target (same address on Base + BNB)
@@ -525,6 +526,7 @@ const StakingTab: React.FC = () => {
             keyboardType="decimal-pad"
             value={amount}
             onChangeText={setAmount}
+            style={FIELD_TEXT}
           />
           <TouchableOpacity
             onPress={() => setAmount(String(max))}

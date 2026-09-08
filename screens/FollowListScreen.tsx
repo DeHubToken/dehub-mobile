@@ -35,6 +35,7 @@ import ScreenHeader from "../components/ScreenHeader";
 import GlassFollowButton from "../components/ui/GlassFollowButton";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 import GlassModal from "../components/ui/GlassModal";
+import { FIELD_TEXT } from "../theme/inputs";
 
 type RouteParams = {
   FollowList: {
@@ -1039,6 +1040,7 @@ const FollowListScreen: React.FC = () => {
                 onSubmitEditing={dismissKeyboard}
                 autoCorrect={false}
                 autoCapitalize="none"
+                style={FIELD_TEXT}
               />
               {searchQuery.length > 0 && (
                 <TouchableOpacity

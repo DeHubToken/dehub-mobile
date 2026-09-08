@@ -20,6 +20,7 @@ import { isSolanaChain, SOLANA_SPL_TOKENS } from "../../config/solana.constants"
 import { supportedTokens, ChainId } from "../../config/constants";
 import { useCreatorPlans } from "../../hooks/useCreatorPlans";
 import { useUser } from "../../context/AuthContext";
+import { FIELD_TEXT } from "../../theme/inputs";
 
 
 export type PpvData = {
@@ -440,6 +441,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
                 placeholderTextColor="#6F7174"
                 keyboardType="number-pad"
                 className="h-10 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700 text-white text-sm"
+                style={FIELD_TEXT}
               />
             </View>
             <View className="flex-1">
@@ -455,6 +457,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
                 placeholderTextColor="#6F7174"
                 keyboardType="number-pad"
                 className="h-10 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700 text-white text-sm"
+                style={FIELD_TEXT}
               />
             </View>
           </View>
@@ -470,6 +473,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
             placeholderTextColor="#6F7174"
             keyboardType="decimal-pad"
             className="h-10 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700 text-white text-sm"
+            style={FIELD_TEXT}
           />
           <View className="flex-row justify-end mt-2 gap-3">
             <TouchableOpacity onPress={cancelBounty} className="px-4 py-2">
@@ -572,6 +576,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
                     autoCapitalize="none"
                     autoCorrect={false}
                     className="h-11 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700 text-white text-xs mb-2"
+                    style={FIELD_TEXT}
                   />
                   <TextInput
                     value={tokenGateDraft.tokenSymbol}
@@ -581,6 +586,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
                     autoCapitalize="characters"
                     autoCorrect={false}
                     className="h-11 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700 text-white text-sm mb-2"
+                    style={FIELD_TEXT}
                   />
                 </>
               )}
