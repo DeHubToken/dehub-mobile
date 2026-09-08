@@ -156,6 +156,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const [replyingTo, setReplyingTo] = useState<Comment | null>(() => draftReplyTarget(restoredDraft));
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
   const [posting, setPosting] = useState(false);
+  // Android may move the composer between touch-down and touch-up while the
+  // keyboard closes. Remember when touch-down already submitted so the
+  // accessibility-friendly onPress fallback cannot dispatch it twice.
+  const submittedOnPressInRef = useRef(false);
 
   // Context menu state (WhatsApp/IG-style long-press)
   const [contextComment, setContextComment] = useState<Comment | null>(null);
@@ -848,6 +852,25 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     });
   }, [inputText, posting, requireAuth, tokenId, replyingTo, editingComment, loadComments, user, userAddress, armAssistantReply]);
 
+  const handlePostPressIn = useCallback(() => {
+    if (Platform.OS !== "android") return;
+    submittedOnPressInRef.current = true;
+    // onPress may be cancelled when the button moves, so do not let that
+    // suppression leak into a later accessibility activation.
+    setTimeout(() => {
+      submittedOnPressInRef.current = false;
+    }, 1500);
+    void handlePost();
+  }, [handlePost]);
+
+  const handlePostPress = useCallback(() => {
+    if (submittedOnPressInRef.current) {
+      submittedOnPressInRef.current = false;
+      return;
+    }
+    void handlePost();
+  }, [handlePost]);
+
   // Handle user press
   const handleUserPress = useCallback((userId: string) => {
     showUserProfile(userId);
@@ -1304,7 +1327,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
             {inputText.trim() || editingComment ? (
               <Pressable
-                onPress={handlePost}
+                onPress={handlePostPress}
+                // Android can resize the sheet as the keyboard dismisses before
+                // touch-up, moving this control out from under the finger and
+                // cancelling onPress. Submit while the finger is still down.
+                onPressIn={handlePostPressIn}
                 disabled={posting || !inputText.trim()}
                 accessibilityRole="button"
                 accessibilityLabel="Post comment"
