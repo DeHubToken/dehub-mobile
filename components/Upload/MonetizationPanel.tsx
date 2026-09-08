@@ -60,6 +60,8 @@ export type MonetizationState = {
 type MonetizationPanelProps = {
   state: MonetizationState;
   onChange: (next: MonetizationState) => void;
+  /** Open plan setup above the composer without abandoning the post draft. */
+  onCreatePlan?: () => void;
   /** Which section to auto-expand when the panel mounts, if any. */
   autoExpandSection?: "ppv" | "bounty" | "tokenGated" | null;
   onAutoExpandHandled?: () => void;
@@ -143,6 +145,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
   autoExpandSection,
   onAutoExpandHandled,
   postChainId,
+  onCreatePlan,
 }) => {
   const isSolana = isSolanaChain(postChainId);
   // The gate is the creator's own plans, so with none there is nothing to gate
@@ -335,11 +338,23 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
               a draft. Telling someone who already has two to create one is how
               a post ended up gated behind plans nobody could buy. */}
           {!hasPlans && !plansLoading && (
-            <Text className="text-theme-neutrals-500 text-xs mt-1.5">
-              {hasAnyPlan
-                ? "Publish your subscription plan on chain first."
-                : "Create a subscription plan on your profile first."}
-            </Text>
+            hasAnyPlan ? (
+              <Text className="text-theme-neutrals-500 text-xs mt-1.5">
+                Publish your subscription plan on chain first.
+              </Text>
+            ) : (
+              <TouchableOpacity
+                onPress={onCreatePlan}
+                disabled={!onCreatePlan}
+                activeOpacity={0.7}
+                accessibilityRole="button"
+                accessibilityLabel="Create a subscription plan"
+              >
+                <Text className="text-theme-neutrals-400 text-xs mt-1.5 underline">
+                  Create a plan first
+                </Text>
+              </TouchableOpacity>
+            )
           )}
           {state.subscribersEnabled && hasPlans && (
             <Text className="text-theme-neutrals-500 text-xs mt-1.5">
