@@ -51,6 +51,7 @@ import { feedEvents } from "../../libs/eventBus";
 import { capFeedByAuthorAllowance } from "../../libs/postQuota";
 import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
 import { flattenFeedPages } from "../../libs/feed-pages";
+import { mergeLiveCounts } from "../../libs/liveCounts";
 import { useWatchedVideoIds, filterWatched } from "../../hooks/useWatchedVideos";
 import { useLiveStreams } from "../../hooks/useLiveStreams";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
@@ -302,8 +303,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     refetch,
   } = useInfiniteQuery({
     queryKey,
-    queryFn: ({ pageParam }) =>
-      getUnifiedFeed({ ...(params || {}), limit: pageSize, page: pageParam }),
+    queryFn: async ({ pageParam }) => {
+      const response = await getUnifiedFeed({ ...(params || {}), limit: pageSize, page: pageParam });
+      mergeLiveCounts(queryClient, response.result);
+      return response;
+    },
     initialPageParam: 1,
     getNextPageParam: (lastPage, _allPages, lastPageParam) => {
       const results = lastPage.result || [];
