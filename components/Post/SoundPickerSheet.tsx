@@ -12,7 +12,9 @@ import {
   Animated,
   TextInput,
   KeyboardAvoidingView,
+  Platform,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
 import Avatar from "../common/Avatar";
@@ -49,6 +51,7 @@ const resolveTrackTitle = (item: UnifiedFeedItem): string => {
 };
 
 const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, currentSound }) => {
+  const insets = useSafeAreaInsets();
   const [searchText, setSearchText] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [results, setResults] = useState<UnifiedFeedItem[]>([]);
@@ -297,9 +300,10 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      {/* Edge-to-edge Android doesn't resize for the keyboard; the padding
-          lifts the absolute-bottom sheet so the search stays visible. */}
-      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={{ flex: 1 }}
+      >
       <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose}>
         <BlurView intensity={30} tint="dark" style={StyleSheet.absoluteFill} />
       </TouchableOpacity>
@@ -343,7 +347,9 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
           data={results}
           renderItem={renderItem}
           keyExtractor={(item) => String(item.tokenId ?? Math.random())}
-          contentContainerStyle={styles.list}
+          contentContainerStyle={[styles.list, { paddingBottom: Math.max(insets.bottom, 16) }]}
+          keyboardShouldPersistTaps="handled"
+          keyboardDismissMode="interactive"
           ListEmptyComponent={
             loading ? (
               <ActivityIndicator style={{ marginTop: 40 }} color="#A1A1AA" />
@@ -370,10 +376,9 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
 const styles = StyleSheet.create({
   backdrop: { flex: 1 },
   sheet: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
+    marginTop: "auto",
+    width: "100%",
+    maxHeight: "100%",
     backgroundColor: "rgba(12,12,14,0.96)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.1)",
@@ -403,7 +408,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   searchInput: { flex: 1, fontSize: 15, color: "#fff" },
-  list: { paddingHorizontal: 16, paddingBottom: 40 },
+  list: { paddingHorizontal: 16 },
   trackRow: {
     flexDirection: "row",
     alignItems: "center",

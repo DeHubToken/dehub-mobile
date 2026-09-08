@@ -456,9 +456,12 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
       onRequestClose={isBusy ? undefined : closeSheet}
     >
       <GestureHandlerRootView style={{ flex: 1 }}>
-        {/* Edge-to-edge Android doesn't resize for the keyboard; the padding
-            lifts the absolute-bottom sheet so its input stays visible. */}
-        <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+        {/* Keep the sheet in normal flex layout so keyboard avoidance can move
+            it. Padding cannot reposition an absolute-bottom child on Android. */}
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={{ flex: 1 }}
+        >
         <Animated.View
           style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.5)" }, backdropStyle]}
         >
@@ -644,10 +647,8 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
 
 const styles = StyleSheet.create({
   sheet: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
+    marginTop: "auto",
+    width: "100%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: "hidden",
