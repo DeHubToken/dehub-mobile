@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, TextInput, FlatList } from "react-native"
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "./GlassModal";
 import { colors } from "../../theme/colors";
+import { FIELD_TEXT } from "../../theme/inputs";
 
 export type DropdownOption = { label: string; value: string; disabled?: boolean };
 
@@ -71,6 +72,7 @@ const Dropdown: React.FC<Props> = ({
                   value={query}
                   onChangeText={setQuery}
                   autoFocus
+                  style={FIELD_TEXT}
                 />
               </View>
             </View>

@@ -2,6 +2,7 @@ import React from "react";
 import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import Icon from "../ui/Icon";
 import { useTranslation } from "react-i18next";
+import { FIELD_TEXT } from "../../theme/inputs";
 
 /**
  * Sort, search and filter over one creator's own posts.
@@ -83,7 +84,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
             autoCapitalize="none"
             returnKeyType="search"
             className="flex-1 ml-2 text-white text-sm"
-            style={{ paddingVertical: 0 }}
+            style={FIELD_TEXT}
           />
           {search.length > 0 && (
             <Pressable

@@ -15,6 +15,7 @@ import { useUser, useProvider, useAuthActions } from "../../context/AuthContext"
 import { getSigningProvider } from "../../libs/provider.registry";
 import { supabase } from "../../services/supabase";
 import { toastError, toastSuccess } from "../../libs/toast";
+import { FIELD_TEXT } from "../../theme/inputs";
 
 interface BridgeTransfer {
   txHash: string;
@@ -283,6 +284,7 @@ const BridgeTab: React.FC = () => {
             keyboardType="decimal-pad"
             value={amount}
             onChangeText={setAmount}
+            style={FIELD_TEXT}
           />
           <TouchableOpacity
             onPress={() => {
