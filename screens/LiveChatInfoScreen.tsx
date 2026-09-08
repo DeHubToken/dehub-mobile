@@ -21,7 +21,7 @@ import {
   unbanUser as unbanUserApi,
 } from "../services/livechat.service";
 import type { LiveChatRoom, LiveChatUser } from "../services/livechat.service";
-import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor } from "../libs/misc";
 
 /* ─── Types ─────────────────────────────────────────────────── */
 
@@ -62,8 +62,7 @@ const UserRow: React.FC<{
 }> = ({ user, trailing, onPress }) => {
   const avatarUrl = getAvatarUrl(user.avatarUrl || "");
   const displayName = user.displayName || user.username || user.address?.slice(0, 10) || "Unknown";
-  const badgeBalance = resolveBadgeBalance(user);
-  const badgeImg = getBadgeUrl(badgeBalance);
+  const badgeImg = getBadgeUrlFor(user);
 
   return (
     <TouchableOpacity
