@@ -40,7 +40,7 @@ import {
   type FeedPostType,
 } from "../services/feed.unified.service";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import ScreenHeader from "../components/ScreenHeader";
+import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import { useFeedCardVisibility } from "../hooks/useFeedCardVisibility";
@@ -147,13 +147,19 @@ const SearchScreen: React.FC = () => {
   // positioned over the content, slides out on a scroll down and comes back on
   // a scroll up. `headerHeight` is measured from its own layout, so every
   // scrollable below pads itself by exactly the space it covers.
+  //
+  // Capped at the ScreenHeader, though: only the title bar leaves, and the
+  // search box and its tabs stay pinned to the top edge. Everything below here
+  // is search results, and a query you cannot edit without scrolling back to
+  // the top is the wrong trade — the same reason web's Explore pill stays put
+  // while the rest of its chrome slides away.
   const {
     headerHeight,
     headerAnimatedStyle,
     onHeaderLayout,
     scrollHandler,
     showHeader,
-  } = useCollapsibleHeader();
+  } = useCollapsibleHeader({ collapseHeight: SCREEN_HEADER_HEIGHT });
   // The app drawer's menu search hands off here when what was typed is not a
   // page — see AppDrawer's runFullSearch.
   const route = useRoute<{ key: string; name: string; params?: { q?: string } }>();
