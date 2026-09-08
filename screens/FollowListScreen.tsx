@@ -69,6 +69,8 @@ const PAGE_LIMIT = 20;
 // own following list instead, capped so a phone never fires more than this.
 const FALLBACK_PAGES = 3;
 const FALLBACK_PAGE_SIZE = 100;
+const FOLLOW_BACK_ALL_REVEAL_THRESHOLD = 2;
+const BULK_FOLLOW_CONCURRENCY = 4;
 
 const lower = (value?: string | null) => (value || "").toLowerCase();
 
@@ -114,7 +116,7 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(
         {/* Rounded square, the same shape avatars take everywhere else in both
             apps. This row used to wrap it in a circular ring, which left a
             squared image sitting inside a circle. */}
-        <Avatar uri={avatarUrl} size={48} name={displayName} />
+        <Avatar uri={avatarUrl} size={68} name={displayName} />
 
         {/* Name and handle get a row each so neither has to be cut short. */}
         <View className="flex-1 ml-3 mr-3">
@@ -279,6 +281,9 @@ const FollowListScreen: React.FC = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
+  const [showFollowBackAll, setShowFollowBackAll] = useState(false);
+  const [isFollowingBackAll, setIsFollowingBackAll] = useState(false);
+  const [bulkFollowProgress, setBulkFollowProgress] = useState({ completed: 0, total: 0 });
 
   // Viewer's own relationship to each listed account, keyed by lowercased address.
   const [relationships, setRelationships] = useState<Record<string, Relationship>>({});
@@ -291,6 +296,7 @@ const FollowListScreen: React.FC = () => {
   relationshipsRef.current = relationships;
   const pendingFollowRef = useRef(pendingFollow);
   pendingFollowRef.current = pendingFollow;
+  const followBackStreakRef = useRef(0);
 
   // Follow requests state
   const [requestsData, setRequestsData] = useState<FollowRequestItem[]>([]);
@@ -572,6 +578,13 @@ const FollowListScreen: React.FC = () => {
     }
   }, []);
 
+  const recordFollowBack = useCallback(() => {
+    followBackStreakRef.current += 1;
+    if (followBackStreakRef.current >= FOLLOW_BACK_ALL_REVEAL_THRESHOLD) {
+      setShowFollowBackAll(true);
+    }
+  }, []);
+
   /**
    * Follow / unfollow straight from the row. The button carries the state, so
    * this is the only place either list mutates a relationship.
@@ -585,6 +598,8 @@ const FollowListScreen: React.FC = () => {
 
       const current = relationshipsRef.current[key];
       const wasFollowing = !!current?.isFollowing || !!current?.isPending;
+      const isFollowBack = isOwnFollowersList && !!current?.followsYou && !wasFollowing;
+      if (!isFollowBack) followBackStreakRef.current = 0;
 
       setPendingFollow((prev) => ({ ...prev, [key]: true }));
       // Optimistic: the row flips now, and reverts below if the call fails.
@@ -613,8 +628,10 @@ const FollowListScreen: React.FC = () => {
             },
           }));
           if (!isPending) followingSetRef.current?.add(key);
+          if (isFollowBack) recordFollowBack();
         }
       } catch (e) {
+        if (isFollowBack) followBackStreakRef.current = 0;
         console.error("[FollowListScreen] follow toggle error:", e);
         setRelationships((prev) => ({
           ...prev,
@@ -632,8 +649,113 @@ const FollowListScreen: React.FC = () => {
         });
       }
     },
-    [viewerAddress]
+    [isOwnFollowersList, recordFollowBack, viewerAddress]
   );
+
+  const getEntireFollowList = useCallback(async (type: "followers" | "following") => {
+    const items: FollowListItem[] = [];
+    if (!viewerAddress) return items;
+
+    let pageNum = 1;
+    let hasNextPage = true;
+    while (hasNextPage) {
+      const response = await getFollowList({
+        address: viewerAddress,
+        type,
+        page: pageNum,
+        limit: FALLBACK_PAGE_SIZE,
+        sortBy: "createdAt",
+        sortOrder: "desc",
+      });
+      const pageItems = response.result?.items || [];
+      items.push(...pageItems);
+      hasNextPage = pageItems.length > 0 && !!response.result?.pagination?.hasMore;
+      pageNum += 1;
+    }
+
+    return items;
+  }, [viewerAddress]);
+
+  const handleFollowBackAll = useCallback(async () => {
+    if (!isOwnFollowersList || !viewerAddress || isFollowingBackAll) return;
+
+    setIsFollowingBackAll(true);
+    setBulkFollowProgress({ completed: 0, total: 0 });
+
+    try {
+      const [allFollowers, allFollowing] = await Promise.all([
+        getEntireFollowList("followers"),
+        getEntireFollowList("following"),
+      ]);
+      const followingAddresses = new Set(
+        allFollowing.map((entry) => lower(entry.user.address)),
+      );
+      followingSetRef.current?.forEach((entry) => followingAddresses.add(entry));
+      Object.entries(relationshipsRef.current).forEach(([key, relationship]) => {
+        if (relationship.isFollowing || relationship.isPending) followingAddresses.add(key);
+      });
+
+      const candidates = Array.from(
+        new Map(
+          allFollowers
+            .filter((entry) => {
+              const key = lower(entry.user.address);
+              return key && key !== lower(viewerAddress) && !followingAddresses.has(key);
+            })
+            .map((entry) => [lower(entry.user.address), entry]),
+        ).values(),
+      );
+
+      followingSetRef.current ??= followingAddresses;
+      setBulkFollowProgress({ completed: 0, total: candidates.length });
+
+      let nextIndex = 0;
+      let completed = 0;
+      const worker = async () => {
+        while (nextIndex < candidates.length) {
+          const item = candidates[nextIndex++];
+          const target = item.user.address;
+          const key = lower(target);
+          setPendingFollow((prev) => ({ ...prev, [key]: true }));
+
+          try {
+            const response = await followUser(viewerAddress, target);
+            const isPending = response.status === "pending";
+            setRelationships((prev) => ({
+              ...prev,
+              [key]: {
+                isFollowing: !isPending,
+                followsYou: true,
+                isPending,
+              },
+            }));
+            if (!isPending) followingSetRef.current?.add(key);
+          } catch (error) {
+            console.error("[FollowListScreen] follow back all error:", error);
+          } finally {
+            setPendingFollow((prev) => {
+              const next = { ...prev };
+              delete next[key];
+              return next;
+            });
+            completed += 1;
+            setBulkFollowProgress({ completed, total: candidates.length });
+          }
+        }
+      };
+
+      await Promise.all(
+        Array.from(
+          { length: Math.min(BULK_FOLLOW_CONCURRENCY, candidates.length) },
+          () => worker(),
+        ),
+      );
+    } catch (error) {
+      console.error("[FollowListScreen] follow back all list error:", error);
+    } finally {
+      setIsFollowingBackAll(false);
+    }
+  }, [getEntireFollowList, isFollowingBackAll, isOwnFollowersList, viewerAddress]);
 
   const handleRemoveFollower = useCallback((followerAddress: string) => {
     const targetItem = data.find(
@@ -704,6 +826,8 @@ const FollowListScreen: React.FC = () => {
     setSearchQuery("");
     setDebouncedSearch("");
     setShowSortPicker(false);
+    followBackStreakRef.current = 0;
+    setShowFollowBackAll(false);
   }, []);
 
   const handleSortChange = useCallback((option: SortOption) => {
@@ -759,7 +883,7 @@ const FollowListScreen: React.FC = () => {
   const requestKeyExtractor = useCallback((item: FollowRequestItem) => item.requestId, []);
 
   const ItemSeparatorComponent = useCallback(() => (
-    <View className="h-[1px] bg-theme-neutrals-800/50 ml-[76px]" />
+    <View className="h-[1px] bg-theme-neutrals-800/50 ml-[96px]" />
   ), []);
 
   const ListFooterComponent = useMemo(() => {
@@ -800,6 +924,11 @@ const FollowListScreen: React.FC = () => {
   }, [loading, debouncedSearch, activeTab, t]);
 
   const headerTitle = username ? `@${username}` : truncate(address, 12, "..");
+  const hasVisibleFollowBacks = data.some((item) => {
+    const key = lower(item.user.address);
+    const relationship = relationships[key];
+    return !!relationship?.followsYou && !relationship.isFollowing && !relationship.isPending;
+  });
 
   return (
     <View
@@ -934,6 +1063,35 @@ const FollowListScreen: React.FC = () => {
               />
             </TouchableOpacity>
           </View>
+
+          {isOwnFollowersList && showFollowBackAll && (hasVisibleFollowBacks || hasMore || isFollowingBackAll) && (
+            <View className="px-4 pb-3">
+              <TouchableOpacity
+                onPress={handleFollowBackAll}
+                disabled={isFollowingBackAll}
+                activeOpacity={0.8}
+                className={`h-11 rounded-xl flex-row items-center justify-center ${
+                  isFollowingBackAll ? "bg-white/15" : "bg-white"
+                }`}
+              >
+                {isFollowingBackAll ? (
+                  <ActivityIndicator size="small" color="#A1A1AA" />
+                ) : (
+                  <Ionicons name="people-outline" size={18} color="#09090B" />
+                )}
+                <Text
+                  className={`ml-2 font-semibold ${
+                    isFollowingBackAll ? "text-theme-neutrals-400" : "text-zinc-950"
+                  }`}
+                >
+                  {t("follow.followBack")} {t("explore.all").toLocaleLowerCase()}
+                  {isFollowingBackAll && bulkFollowProgress.total > 0
+                    ? ` ${bulkFollowProgress.completed}/${bulkFollowProgress.total}`
+                    : ""}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
 
           {/* Sort Picker Dropdown */}
           {showSortPicker && (
