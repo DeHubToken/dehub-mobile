@@ -122,7 +122,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
 
       {/* Reply preview */}
       {(message.replyToContent || message.replyTo?.content) && (
-        <View className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1.5 border-l-2 border-blue-500/50">
+        <View className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1.5">
           <Text className="text-blue-400/70 text-[11px] font-medium" numberOfLines={1}>
             {message.replyTo?.senderUsername ||
               message.replyTo?.sender?.displayName ||

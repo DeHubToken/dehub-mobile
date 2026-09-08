@@ -251,7 +251,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
       )}
 
       {replyingTo && !editingMessage && !recorder.isRecording && !uploadingVoice && (
-        <View className="flex-row items-center px-4 py-2 bg-white/5 border-l-2 border-blue-500 mx-3 mt-2 rounded-lg">
+        <View className="flex-row items-center px-4 py-2 bg-white/5 mx-3 mt-2 rounded-lg">
           <View className="flex-1 mr-2">
             <Text className="text-blue-400 text-[11px] font-medium">
               Replying to {replyingTo.sender?.displayName || replyingTo.sender?.username || "user"}

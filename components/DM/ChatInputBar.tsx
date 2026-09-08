@@ -513,7 +513,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           <Animated.View
             entering={SlideInDown.duration(200)}
             exiting={FadeOut.duration(100)}
-            className="flex-row items-center px-4 py-2 bg-theme-neutrals-800/50 border-l-2 border-accent mx-3 mt-2 rounded-lg"
+            className="flex-row items-center px-4 py-2 bg-theme-neutrals-800/50 mx-3 mt-2 rounded-lg"
           >
             <View className="flex-1 mr-2">
               <Text className="text-[11px] text-accent font-medium">
