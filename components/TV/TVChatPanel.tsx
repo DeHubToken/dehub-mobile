@@ -90,7 +90,7 @@ const ChatRow: React.FC<{
         </View>
 
         {!!message.reply_to && (
-          <View className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1 border-l-2 border-white/30">
+          <View className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1">
             <Text className="text-white/70 text-xs font-medium" numberOfLines={1}>
               {message.reply_to.sender_name}
             </Text>
@@ -435,8 +435,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 6,
     borderRadius: 10,
-    borderLeftWidth: 2,
-    borderLeftColor: "rgba(255,255,255,0.3)",
     backgroundColor: "rgba(39,39,42,0.7)",
   },
   replyName: { color: "#FFFFFF", fontSize: 12, fontWeight: "600" },
