@@ -36,7 +36,7 @@ jest.mock('../../libs/auto-translate-queue', () => ({
 const mockTranslate = translateText as jest.Mock;
 const mockQueue = queueAutoTranslate as jest.Mock;
 
-const SPANISH_POST = { title: 'Hola', description: 'Buenos días a todos' };
+const SPANISH_POST = { title: 'Hola', description: 'Buenos días a todos, estamos preparando una nueva comunidad para compartir nuestras historias y nuestros proyectos.' };
 
 async function runQueuedWork() {
   const jobs = mockQueued.splice(0, mockQueued.length);
@@ -72,14 +72,14 @@ describe('hooks/useTranslation', () => {
     });
 
     it('asks the provider for the language the reader chose', async () => {
-      renderHook(() => useTranslation({ title: 'Hola' }, 'es'));
+      renderHook(() => useTranslation(SPANISH_POST, 'es'));
       await runQueuedWork();
 
       expect(mockTranslate).toHaveBeenCalledWith('Hola', 'tr', 'es');
     });
 
     it('does not pass "und" off as a source language', async () => {
-      renderHook(() => useTranslation({ title: 'Hola' }, 'und'));
+      renderHook(() => useTranslation(SPANISH_POST, 'und'));
       await runQueuedWork();
 
       // A `und|tr` pair is answered by MyMemory with a stranger's segment out
@@ -169,7 +169,7 @@ describe('hooks/useTranslation', () => {
     it('offers a control on a post the backend never labelled, once translated', async () => {
       const { result } = renderHook(() => useTranslation(SPANISH_POST, undefined));
 
-      expect(result.current.shouldShow).toBe(false);
+      expect(result.current.shouldShow).toBe(true);
 
       await runQueuedWork();
 
@@ -183,9 +183,9 @@ describe('hooks/useTranslation', () => {
       expect(result.current.shouldShow).toBe(true);
     });
 
-    it('offers none on a post in the reader’s own language', () => {
+    it('offers manual translation when a short caption cannot be identified reliably', () => {
       const { result } = renderHook(() => useTranslation({ title: 'Merhaba' }, 'tr'));
-      expect(result.current.shouldShow).toBe(false);
+      expect(result.current.shouldShow).toBe(true);
     });
 
     it('returns to the original on request and stays there', async () => {
@@ -204,6 +204,24 @@ describe('hooks/useTranslation', () => {
   });
 
   describe('manual translate', () => {
+    it('does not label English captions with a legacy Swedish guess', async () => {
+      const { result } = renderHook(() => useTranslation({ content: 'It is well' }, 'sv'));
+      expect(result.current.sourceLang).toBeNull();
+      expect(mockQueue).not.toHaveBeenCalled();
+      await act(async () => { result.current.handleTranslate(); });
+      expect(mockTranslate).toHaveBeenCalledWith('It is well', 'tr', 'auto');
+    });
+
+    it('keeps a successful title and the original body when the body fails', async () => {
+      mockTranslate.mockImplementation((text: string) => text === 'Hola'
+        ? Promise.resolve({ translatedText: 'Merhaba', sourceLang: 'es', sameLanguage: false })
+        : Promise.reject(new Error('unavailable')));
+      const { result } = renderHook(() => useTranslation(SPANISH_POST, 'es', false));
+      await act(async () => { result.current.handleTranslate(); });
+      expect(result.current.isTranslated).toBe(true);
+      expect(result.current.translatedTexts).toEqual({ title: 'Merhaba', description: SPANISH_POST.description });
+      expect(toastSuccess).not.toHaveBeenCalled();
+    });
     it('narrates the work the reader asked for', async () => {
       setAutoTranslateEnabled(false);
       const { result } = renderHook(() => useTranslation(SPANISH_POST, 'es'));

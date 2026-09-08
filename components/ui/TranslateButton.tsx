@@ -36,8 +36,8 @@ const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
 
   // "und" is the backend's way of saying it could not tell.
   const sourceLangName =
-    detectedLanguage && detectedLanguage !== 'und'
-      ? LANGUAGE_NAMES[detectedLanguage] || detectedLanguage.toUpperCase()
+    detectedLanguage && !['und', 'auto', 'unknown'].includes(detectedLanguage)
+      ? LANGUAGE_NAMES[detectedLanguage]
       : undefined;
 
   if (isLoading) {
