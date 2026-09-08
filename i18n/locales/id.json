@@ -830,7 +830,14 @@
     "blockUser": "Blokir {{name}}",
     "blockDesc": "Menyembunyikan kontennya dan membatasi interaksi",
     "unblockUser": "Buka blokir {{name}}",
-    "unblockDesc": "Izinkan pengguna ini muncul lagi di feed kamu"
+    "unblockDesc": "Izinkan pengguna ini muncul lagi di feed kamu",
+    "bookmark": "Bookmark",
+    "removeBookmark": "Hapus bookmark",
+    "pinPost": "Sematkan ke profil Anda",
+    "unpinPost": "Batalkan sematan dari profil Anda",
+    "postPinned": "Disematkan ke profil Anda",
+    "postUnpinned": "Tidak disematkan dari profil Anda",
+    "pinFailed": "Tidak dapat menyematkan atau membatalkan sematan postingan ini"
   },
   "filters": {
     "sort": "Urutkan",

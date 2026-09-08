@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Pukapuka",
+    "removeBookmark": "Tangohia te tohu pukapuka",
+    "pinPost": "PIN ki tou kōtaha",
+    "unpinPost": "Unpin i tō kōtaha",
+    "postPinned": "Whakapā mai ki tō kōtaha",
+    "postUnpinned": "Te kore e taea te tiki i to koutou pūkete",
+    "pinFailed": "Kaore e taea e au te tuhi, te whakakore ranei i tenei tuhinga"
   },
   "filters": {
     "sort": "Raupapa",

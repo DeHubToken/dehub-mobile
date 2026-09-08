@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Alamar littafi",
+    "removeBookmark": "Cire alamar littafi",
+    "pinPost": "Pin zuwa bayaninka",
+    "unpinPost": "Unpin daga bayaninka",
+    "postPinned": "Pinned zuwa bayaninka",
+    "postUnpinned": "Unpinned daga bayanin martaba",
+    "pinFailed": "Ba zai iya PIN ko unpin wannan post"
   },
   "filters": {
     "sort": "Tsara",

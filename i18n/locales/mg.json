@@ -622,7 +622,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Ampidiro anaty toby",
+    "removeBookmark": "Manesotra ny rohy",
+    "pinPost": "Pin ny mombamomba",
+    "unpinPost": "Unpin avy amin'ny mombamomba anao",
+    "postPinned": "Nafotaka tamin'ny mombamomba anao",
+    "postUnpinned": "Tsy tafalatsaka amin'ny mombamomba anao",
+    "pinFailed": "Tsy nahafaritra na nangeja ity lahatsoratra ity"
   },
   "filters": {
     "sort": "Alamino",

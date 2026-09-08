@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Xatchoʻp",
+    "removeBookmark": "Xatchoʻpni olib tashlash",
+    "pinPost": "Profilingizga qadab qo&#39;ying",
+    "unpinPost": "Profilingizdan olib tashlash",
+    "postPinned": "Profilingizga mahkamlandi",
+    "postUnpinned": "Profilingizdan olib tashlandi",
+    "pinFailed": "Bu postni mahkamlab yoki olib tashlab bo&#39;lmadi"
   },
   "filters": {
     "sort": "Saralash",

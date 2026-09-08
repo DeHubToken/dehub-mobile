@@ -616,7 +616,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Էջանշան դնել",
+    "removeBookmark": "Հեռացնել էջանիշը",
+    "pinPost": "Նշեք ձեր պրոֆիլը",
+    "unpinPost": "Հանեք ձեր պրոֆիլից",
+    "postPinned": "Կցված է ձեր պրոֆիլին",
+    "postUnpinned": "Հանվել է ձեր պրոֆիլից",
+    "pinFailed": "Չհաջողվեց կապել կամ անջատել այս գրառումը"
   },
   "filters": {
     "sort": "Dasavorel",

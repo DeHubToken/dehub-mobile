@@ -624,7 +624,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Бетбелгі",
+    "removeBookmark": "Бетбелгіні алып тастау",
+    "pinPost": "Профиліңізге енгізіңіз",
+    "unpinPost": "Профиліңізден шығарыңыз",
+    "postPinned": "Профиліңізге енгізілді",
+    "postUnpinned": "Профиліңізден ажыратылған",
+    "pinFailed": "Бұл лауазымды енгізу немесе алып тастау мүмкін болмады"
   },
   "filters": {
     "sort": "Сұрыптау",

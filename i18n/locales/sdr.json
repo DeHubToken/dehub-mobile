@@ -622,7 +622,11 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Bookmark",
+    "removeBookmark": "Remove bookmark",
+    "postPinned": "Tohre profile mein pin kar dehel",
+    "pinFailed": "دې پوسټ ته نشي پین یا انپین کیدی"
   },
   "filters": {
     "sort": "ترتیب",

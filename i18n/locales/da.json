@@ -830,7 +830,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Bogmærke",
+    "removeBookmark": "Fjern bogmærke",
+    "pinPost": "Fastgør til din profil",
+    "unpinPost": "Fjern fastgørelse fra din profil",
+    "postPinned": "Fastgjort til din profil",
+    "postUnpinned": "Ikke fastgjort fra din profil",
+    "pinFailed": "Kunne ikke fastgøre eller frigøre dette indlæg"
   },
   "filters": {
     "sort": "Sorter",

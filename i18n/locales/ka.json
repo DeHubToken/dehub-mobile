@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Სანიშნე",
+    "removeBookmark": "Სანიშნის წაშლა",
+    "pinPost": "Თქვენს პროფილზე მიმაგრება",
+    "unpinPost": "Პროფილიდან მოხსნა",
+    "postPinned": "Მიმაგრებულია თქვენს პროფილზე",
+    "postUnpinned": "Მოხსნილია თქვენი პროფილიდან",
+    "pinFailed": "Ჩანაწერის მიმაგრების ან მოხსნის შეცდომა"
   },
   "filters": {
     "sort": "სორტირება",

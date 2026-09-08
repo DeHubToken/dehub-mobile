@@ -616,7 +616,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Nyşan",
+    "removeBookmark": "Nyşany Ewez Et",
+    "pinPost": "Profiline gir",
+    "unpinPost": "Profilinden çyk",
+    "postPinned": "Profiline gir",
+    "postUnpinned": "Profilinden çykyş",
+    "pinFailed": "Bu posty ýazmaga ýa-da ýazmaga rugsat berilmeýär"
   },
   "filters": {
     "sort": "Tertiple",

@@ -830,7 +830,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Záložka",
+    "removeBookmark": "Odstranit záložku",
+    "pinPost": "Připnout ke svému profilu",
+    "unpinPost": "Odpojit od profilu",
+    "postPinned": "Připnuto k tvému profilu",
+    "postUnpinned": "Odpojeno od tvého profilu",
+    "pinFailed": "Tento příspěvek se nepodařilo připnout nebo odepnout"
   },
   "filters": {
     "sort": "Řadit",

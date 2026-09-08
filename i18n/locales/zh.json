@@ -829,7 +829,14 @@
     "blockUser": "屏蔽 {{name}}",
     "blockDesc": "隐藏其内容并限制互动",
     "unblockUser": "解除屏蔽 {{name}}",
-    "unblockDesc": "允许该用户重新出现在你的信息流中"
+    "unblockDesc": "允许该用户重新出现在你的信息流中",
+    "bookmark": "书签",
+    "removeBookmark": "删除书签",
+    "pinPost": "固定到您的个人资料",
+    "unpinPost": "取消固定您的个人资料",
+    "postPinned": "已固定到您的个人资料",
+    "postUnpinned": "已从您的个人资料中取消固定",
+    "pinFailed": "无法固定或取消固定此帖子"
   },
   "filters": {
     "sort": "排序",

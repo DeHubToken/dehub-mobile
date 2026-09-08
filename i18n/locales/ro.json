@@ -836,7 +836,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Marcaj",
+    "removeBookmark": "Elimină marcajul",
+    "pinPost": "Fixează la profilul tău",
+    "unpinPost": "Anulează fixarea din profilul tău",
+    "postPinned": "Fixat la profilul tău",
+    "postUnpinned": "S-a deconectat de la profilul tău",
+    "pinFailed": "Nu s-a putut fixa sau anula fixarea acestei postări"
   },
   "filters": {
     "sort": "Sort",

@@ -829,7 +829,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "బుక్ ‌ మార్క్",
+    "removeBookmark": "బుక్ ‌ మార్క్ ‌ ను తీసివేయండి",
+    "pinPost": "మీ ప్రొఫైల్ ‌ కు పిన్ చేయండి",
+    "unpinPost": "మీ ప్రొఫైల్ నుండి అన్ ‌ పిన్ చేయండి",
+    "postPinned": "మీ ప్రొఫైల్ ‌ కు పిన్ చేయబడింది",
+    "postUnpinned": "మీ ప్రొఫైల్ నుండి అన్ ‌ పిన్ చేయబడింది",
+    "pinFailed": "ఈ పోస్ట్ ‌ ను పిన్ చేయడం లేదా అన్ ‌ పిన్ చేయడం సాధ్యం కాలేదు"
   },
   "filters": {
     "sort": "సార్ట్",

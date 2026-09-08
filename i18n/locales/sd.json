@@ -624,7 +624,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "بک مارڪ",
+    "removeBookmark": "بک مارڪ هٽايو",
+    "pinPost": "پنهنجي پروفائل تي پن پن ڪريو",
+    "unpinPost": "پنهنجي پروفائل مان پن ڪ unيو",
+    "postPinned": "توھان جي پروفائل تي پن",
+    "postUnpinned": "توهان جي پروفائيل مان Unpinned",
+    "pinFailed": "هن پوسٽ کي پن يا ڪ unي نه سگھيو"
   },
   "filters": {
     "sort": "ترتيب",
