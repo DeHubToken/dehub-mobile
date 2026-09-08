@@ -177,8 +177,13 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.1)",
   },
   triggerIcon: {
-    paddingHorizontal: 6,
-    paddingVertical: 6,
+    width: 28,
+    height: 28,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+    justifyContent: "center",
+    backgroundColor: "transparent",
+    borderWidth: 0,
   },
   triggerIconImg: {
     width: 20,
