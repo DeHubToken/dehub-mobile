@@ -284,6 +284,13 @@ const FollowListScreen: React.FC = () => {
   const [relationships, setRelationships] = useState<Record<string, Relationship>>({});
   const [pendingFollow, setPendingFollow] = useState<Record<string, boolean>>({});
   const followingSetRef = useRef<Set<string> | null>(null);
+  // Read by the follow handler so it can stay identity-stable. A handler that
+  // closes over the maps is rebuilt on every toggle, which re-renders every
+  // memoised row in the list instead of the one that changed.
+  const relationshipsRef = useRef(relationships);
+  relationshipsRef.current = relationships;
+  const pendingFollowRef = useRef(pendingFollow);
+  pendingFollowRef.current = pendingFollow;
 
   // Follow requests state
   const [requestsData, setRequestsData] = useState<FollowRequestItem[]>([]);
@@ -574,9 +581,9 @@ const FollowListScreen: React.FC = () => {
       const target = item.user.address;
       const key = lower(target);
       if (!viewerAddress || !target || key === lower(viewerAddress)) return;
-      if (pendingFollow[key]) return;
+      if (pendingFollowRef.current[key]) return;
 
-      const current = relationships[key];
+      const current = relationshipsRef.current[key];
       const wasFollowing = !!current?.isFollowing || !!current?.isPending;
 
       setPendingFollow((prev) => ({ ...prev, [key]: true }));
@@ -625,7 +632,7 @@ const FollowListScreen: React.FC = () => {
         });
       }
     },
-    [viewerAddress, relationships, pendingFollow]
+    [viewerAddress]
   );
 
   const handleRemoveFollower = useCallback((followerAddress: string) => {
