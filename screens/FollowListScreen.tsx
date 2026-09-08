@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -10,28 +10,29 @@ import {
   Keyboard,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { LinearGradient } from "expo-linear-gradient";
+import { useTranslation } from "react-i18next";
+import { useRoute, RouteProp } from "@react-navigation/native";
 import { useUser } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
-import { 
-  getFollowList, 
-  FollowListItem, 
-  GetFollowListParams, 
+import {
+  getFollowList,
+  FollowListItem,
+  GetFollowListParams,
   FollowListResponse,
   getFollowRequests,
   acceptFollowRequest,
   rejectFollowRequest,
   FollowRequestItem,
   removeFollower,
+  followUser,
+  unfollowUser,
 } from "../services/user.service";
 import { getAvatarUrl } from "../libs/misc";
 import { truncate } from "../libs/strings.util";
 import { formatCompactNumber } from "../libs/numbers.util";
 import Avatar from "../components/common/Avatar";
 import ScreenHeader from "../components/ScreenHeader";
-import { ScreenNames } from "../navigation/ScreenNames";
+import GlassFollowButton from "../components/ui/GlassFollowButton";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 import GlassModal from "../components/ui/GlassModal";
 
@@ -48,91 +49,115 @@ type RouteParams = {
 type TabKey = "followers" | "following" | "requests";
 type SortOption = "recent" | "oldest" | "alphabetical";
 
-const TAB_OPTIONS: { key: TabKey; label: string }[] = [
-  { key: "followers", label: "Followers" },
-  { key: "following", label: "Following" },
-];
+/** What the viewer's own relationship to a listed account is. */
+interface Relationship {
+  isFollowing: boolean;
+  followsYou: boolean;
+  isPending: boolean;
+}
 
-const SORT_OPTIONS: { key: SortOption; label: string; icon: string }[] = [
-  { key: "recent", label: "Most Recent", icon: "time-outline" },
-  { key: "oldest", label: "Oldest First", icon: "hourglass-outline" },
-  { key: "alphabetical", label: "A-Z", icon: "text-outline" },
+const SORT_OPTIONS: { key: SortOption; labelKey: string; icon: string }[] = [
+  { key: "recent", labelKey: "follow.sortRecent", icon: "time-outline" },
+  { key: "oldest", labelKey: "follow.sortOldest", icon: "hourglass-outline" },
+  { key: "alphabetical", labelKey: "follow.sortAlphabetical", icon: "text-outline" },
 ];
 
 const PAGE_LIMIT = 20;
 
+// Fallback only. The API stamps every row with isFollowing/followsYou for the
+// authenticated viewer; if it ever answers without them we page the viewer's
+// own following list instead, capped so a phone never fires more than this.
+const FALLBACK_PAGES = 3;
+const FALLBACK_PAGE_SIZE = 100;
+
+const lower = (value?: string | null) => (value || "").toLowerCase();
+
 interface FollowUserRowProps {
   item: FollowListItem;
+  relationship?: Relationship;
+  isSelf: boolean;
+  busy: boolean;
+  showFollowButton: boolean;
   onPress: (address: string) => void;
-  onRemove?: (address: string) => void;
+  onToggleFollow: (item: FollowListItem) => void;
+  onLongPress?: (address: string) => void;
 }
 
-const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(({ item, onPress, onRemove }) => {
-  const user = item.user;
-  const displayName = user.displayName || user.username || truncate(user.address, 12, "..");
-  const avatarUrl = getAvatarUrl(user.avatarImageUrl);
-  const hasUsername = !!user.username;
+const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(
+  ({ item, relationship, isSelf, busy, showFollowButton, onPress, onToggleFollow, onLongPress }) => {
+    const { t } = useTranslation();
+    const user = item.user;
+    const displayName = user.displayName || user.username || truncate(user.address, 12, "..");
+    const avatarUrl = getAvatarUrl(user.avatarImageUrl);
+    const hasUsername = !!user.username;
 
-  const handlePress = useCallback(() => {
-    onPress(user.address);
-  }, [onPress, user.address]);
+    const handlePress = useCallback(() => {
+      onPress(user.address);
+    }, [onPress, user.address]);
 
-  const handleRemove = useCallback(() => {
-    onRemove?.(user.address);
-  }, [onRemove, user.address]);
+    const handleLongPress = useCallback(() => {
+      onLongPress?.(user.address);
+    }, [onLongPress, user.address]);
 
-  return (
-    <TouchableOpacity
-      onPress={handlePress}
-      activeOpacity={0.6}
-      className="flex-row items-center px-4 py-3"
-    >
-      {/* Avatar with gradient ring */}
-      <View className="relative">
-        <LinearGradient
-          colors={["#383A3D", "#383A3D", "#383A3D"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={{ borderRadius: 30, padding: 2 }}
-        >
-          <View className="bg-black rounded-full p-[2px]">
-            <Avatar uri={avatarUrl} size={52} name={displayName} />
+    const handleFollow = useCallback(() => {
+      onToggleFollow(item);
+    }, [onToggleFollow, item]);
+
+    return (
+      <TouchableOpacity
+        onPress={handlePress}
+        onLongPress={onLongPress ? handleLongPress : undefined}
+        delayLongPress={350}
+        activeOpacity={0.6}
+        className="flex-row items-center px-4 py-3"
+      >
+        {/* Rounded square, the same shape avatars take everywhere else in both
+            apps. This row used to wrap it in a circular ring, which left a
+            squared image sitting inside a circle. */}
+        <Avatar uri={avatarUrl} size={48} rounded={false} name={displayName} />
+
+        {/* Name and handle get a row each so neither has to be cut short. */}
+        <View className="flex-1 ml-3 mr-3">
+          <Text className="text-white font-semibold text-[15px]" numberOfLines={2}>
+            {displayName}
+          </Text>
+          {hasUsername && (
+            <Text className="text-theme-neutrals-400 text-[13px] mt-0.5" numberOfLines={1}>
+              @{user.username}
+            </Text>
+          )}
+          <View className="flex-row items-center flex-wrap mt-1">
+            {relationship?.followsYou && !isSelf && (
+              <View className="bg-theme-neutrals-800 rounded px-1.5 py-0.5 mr-2">
+                <Text className="text-theme-neutrals-300 text-[10px] font-medium">
+                  {t("follow.followsYou")}
+                </Text>
+              </View>
+            )}
+            {user.followers !== undefined && (
+              <Text className="text-theme-neutrals-500 text-[11px]">
+                {t("follow.followerCount", { compact: formatCompactNumber(user.followers) })}
+              </Text>
+            )}
           </View>
-        </LinearGradient>
-      </View>
+        </View>
 
-      {/* User Info */}
-      <View className="flex-1 ml-3">
-        <Text className="text-white font-semibold text-[15px]" numberOfLines={1}>
-          {displayName}
-        </Text>
-        {hasUsername && (
-          <Text className="text-gray-500 text-sm" numberOfLines={1}>
-            @{user.username}
-          </Text>
+        {showFollowButton && !isSelf ? (
+          <GlassFollowButton
+            isFollowing={!!relationship?.isFollowing}
+            isPending={!!relationship?.isPending}
+            isLoading={busy}
+            followsYou={!!relationship?.followsYou}
+            onPress={handleFollow}
+            style={{ minWidth: 92 }}
+          />
+        ) : (
+          <Ionicons name="chevron-forward" size={20} color="#A1A1AA" />
         )}
-        {user.followers !== undefined && (
-          <Text className="text-zinc-400 text-xs mt-0.5">
-            {formatCompactNumber(user.followers)} followers
-          </Text>
-        )}
-      </View>
-
-      {/* Remove button or chevron */}
-      {onRemove ? (
-        <TouchableOpacity
-          onPress={handleRemove}
-          activeOpacity={0.7}
-          className="bg-theme-neutrals-800 px-3.5 py-1.5 rounded-lg ml-2"
-        >
-          <Text className="text-gray-300 text-xs font-semibold">Remove</Text>
-        </TouchableOpacity>
-      ) : (
-        <Ionicons name="chevron-forward" size={20} color="#A1A1AA" />
-      )}
-    </TouchableOpacity>
-  );
-});
+      </TouchableOpacity>
+    );
+  }
+);
 
 interface FollowRequestRowProps {
   item: FollowRequestItem;
@@ -143,6 +168,7 @@ interface FollowRequestRowProps {
 
 const FollowRequestRow: React.FC<FollowRequestRowProps> = React.memo(
   ({ item, onAccept, onReject, onPress }) => {
+    const { t } = useTranslation();
     const displayName = item.user.displayName || item.user.username || truncate(item.user.address, 12, "..");
     const avatarUrl = getAvatarUrl(item.user.avatarImageUrl);
 
@@ -160,36 +186,22 @@ const FollowRequestRow: React.FC<FollowRequestRowProps> = React.memo(
 
     return (
       <View className="flex-row items-center px-4 py-3">
-        {/* Avatar */}
         <TouchableOpacity activeOpacity={0.6} onPress={handlePress}>
-          <View className="relative">
-            <LinearGradient
-              colors={["#383A3D", "#383A3D", "#383A3D"]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={{ borderRadius: 30, padding: 2 }}
-            >
-              <View className="bg-black rounded-full p-[2px]">
-                <Avatar uri={avatarUrl} size={52} name={displayName} />
-              </View>
-            </LinearGradient>
-          </View>
+          <Avatar uri={avatarUrl} size={48} rounded={false} name={displayName} />
         </TouchableOpacity>
 
-        {/* User Info */}
-        <TouchableOpacity className="flex-1 ml-3" activeOpacity={0.6} onPress={handlePress}>
-          <Text className="text-white font-semibold text-[15px]" numberOfLines={1}>
+        <TouchableOpacity className="flex-1 ml-3 mr-3" activeOpacity={0.6} onPress={handlePress}>
+          <Text className="text-white font-semibold text-[15px]" numberOfLines={2}>
             {displayName}
           </Text>
           {item.user.username && (
-            <Text className="text-gray-500 text-sm" numberOfLines={1}>
+            <Text className="text-theme-neutrals-400 text-[13px] mt-0.5" numberOfLines={1}>
               @{item.user.username}
             </Text>
           )}
         </TouchableOpacity>
 
-        {/* Accept/Reject buttons */}
-        <View className="flex-row items-center gap-2 ml-2">
+        <View className="flex-row items-center gap-2">
           <AccentButtonGradient style={{ borderRadius: 8 }}>
             <TouchableOpacity
               onPress={handleAccept}
@@ -197,7 +209,7 @@ const FollowRequestRow: React.FC<FollowRequestRowProps> = React.memo(
               style={{ backgroundColor: 'transparent' }}
               activeOpacity={0.85}
             >
-              <Text className="text-white text-xs font-semibold">Accept</Text>
+              <Text className="text-white text-xs font-semibold">{t("follow.accept")}</Text>
             </TouchableOpacity>
           </AccentButtonGradient>
           <TouchableOpacity
@@ -205,7 +217,7 @@ const FollowRequestRow: React.FC<FollowRequestRowProps> = React.memo(
             className="bg-theme-neutrals-800 px-4 py-2 rounded-lg"
             activeOpacity={0.85}
           >
-            <Text className="text-gray-400 text-xs font-semibold">Decline</Text>
+            <Text className="text-gray-400 text-xs font-semibold">{t("follow.decline")}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -213,37 +225,43 @@ const FollowRequestRow: React.FC<FollowRequestRowProps> = React.memo(
   }
 );
 
-const HiddenFollowersMessage: React.FC<{ username?: string }> = ({ username }) => (
-  <View className="flex-1 items-center justify-center px-8">
-    <View className="bg-theme-neutrals-800/50 rounded-2xl p-6 mb-6">
-      <Ionicons name="lock-closed" size={48} color="#A1A1AA" />
+const HiddenFollowersMessage: React.FC<{ username?: string }> = ({ username }) => {
+  const { t } = useTranslation();
+  return (
+    <View className="flex-1 items-center justify-center px-8">
+      <View className="bg-theme-neutrals-800/50 rounded-2xl p-6 mb-6">
+        <Ionicons name="lock-closed" size={48} color="#A1A1AA" />
+      </View>
+      <Text className="text-white text-xl font-bold text-center mb-2">
+        {t("follow.privateTitle")}
+      </Text>
+      <Text className="text-gray-400 text-center text-base leading-6">
+        {username
+          ? t("follow.privateBody", { name: `@${username}` })
+          : t("follow.privateBodyGeneric")}
+      </Text>
     </View>
-    <Text className="text-white text-xl font-bold text-center mb-2">
-      This Account is Private
-    </Text>
-    <Text className="text-gray-400 text-center text-base leading-6">
-      {username ? `@${username}` : "This user"} has chosen to keep their followers and following list private.
-    </Text>
-  </View>
-);
+  );
+};
 
 const FollowListScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const { t } = useTranslation();
   const route = useRoute<RouteProp<RouteParams, "FollowList">>();
-  const insets = useSafeAreaInsets();
   const authUser = useUser();
   const { showUserProfile } = useUserProfileSheet();
 
-  const { 
-    address, 
-    username, 
+  const {
+    address,
+    username,
     initialTab = "followers",
     hideFollowers = false,
     isOwnProfile = false,
   } = route.params;
 
+  const viewerAddress = authUser?.address;
+
   // Determine if we can show the list
-  const isOwner = isOwnProfile || authUser?.address?.toLowerCase() === address.toLowerCase();
+  const isOwner = isOwnProfile || lower(authUser?.address) === lower(address);
   const canViewList = !hideFollowers || isOwner;
 
   const isPrivateForTab = authUser?.isPrivate === true;
@@ -262,6 +280,18 @@ const FollowListScreen: React.FC = () => {
   const [hasMore, setHasMore] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
 
+  // Viewer's own relationship to each listed account, keyed by lowercased address.
+  const [relationships, setRelationships] = useState<Record<string, Relationship>>({});
+  const [pendingFollow, setPendingFollow] = useState<Record<string, boolean>>({});
+  const followingSetRef = useRef<Set<string> | null>(null);
+  // Read by the follow handler so it can stay identity-stable. A handler that
+  // closes over the maps is rebuilt on every toggle, which re-renders every
+  // memoised row in the list instead of the one that changed.
+  const relationshipsRef = useRef(relationships);
+  relationshipsRef.current = relationships;
+  const pendingFollowRef = useRef(pendingFollow);
+  pendingFollowRef.current = pendingFollow;
+
   // Follow requests state
   const [requestsData, setRequestsData] = useState<FollowRequestItem[]>([]);
   const [requestsLoading, setRequestsLoading] = useState(false);
@@ -274,15 +304,21 @@ const FollowListScreen: React.FC = () => {
   // Remove follower modal state
   const [removeTarget, setRemoveTarget] = useState<{ address: string; displayName: string } | null>(null);
 
+  const isOwnFollowingList = isOwner && activeTab === "following";
+  const isOwnFollowersList = isOwner && activeTab === "followers";
+
   // Build tabs dynamically — only show "Requests" for own private profile
   const isPrivateAccount = authUser?.isPrivate === true;
   const tabs = useMemo(() => {
-    const base = [...TAB_OPTIONS];
+    const base: { key: TabKey; label: string }[] = [
+      { key: "followers", label: t("follow.followers") },
+      { key: "following", label: t("follow.following") },
+    ];
     if (isOwner && isPrivateAccount) {
-      base.push({ key: "requests", label: "Requests" });
+      base.push({ key: "requests", label: t("follow.requests") });
     }
     return base;
-  }, [isOwner, isPrivateAccount]);
+  }, [isOwner, isPrivateAccount, t]);
 
   // Debounce search
   const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -305,6 +341,72 @@ const FollowListScreen: React.FC = () => {
         return {};
     }
   }, []);
+
+  /**
+   * Older API builds answer the follow list with profile fields only. Rather
+   * than one is_following call per visible row, page the viewer's own following
+   * list once per screen and reuse it. Capped: this is a stopgap, not the path.
+   */
+  const ensureFollowingSet = useCallback(async (): Promise<Set<string>> => {
+    if (followingSetRef.current) return followingSetRef.current;
+    const set = new Set<string>();
+    if (!viewerAddress) {
+      followingSetRef.current = set;
+      return set;
+    }
+    try {
+      for (let p = 1; p <= FALLBACK_PAGES; p++) {
+        const res = await getFollowList({
+          address: viewerAddress,
+          type: "following",
+          page: p,
+          limit: FALLBACK_PAGE_SIZE,
+        });
+        for (const entry of res.result?.items || []) {
+          if (entry.user?.address) set.add(lower(entry.user.address));
+        }
+        if (!res.result?.pagination?.hasMore) break;
+      }
+    } catch (error) {
+      console.warn("[FollowListScreen] following cache failed:", error);
+    }
+    followingSetRef.current = set;
+    return set;
+  }, [viewerAddress]);
+
+  /**
+   * Fold a page of rows into the relationship map. Server flags win; what the
+   * list itself proves (your own following list means you follow every row)
+   * comes next; the cached set is the last resort.
+   */
+  const mergeRelationships = useCallback(
+    (items: FollowListItem[], followingSet?: Set<string> | null) => {
+      setRelationships((prev) => {
+        const next = { ...prev };
+        for (const entry of items) {
+          const user = entry.user;
+          const key = lower(user?.address);
+          if (!key) continue;
+
+          const serverFollowing = typeof user.isFollowing === "boolean" ? user.isFollowing : undefined;
+          const serverFollowsYou = typeof user.followsYou === "boolean" ? user.followsYou : undefined;
+
+          const cached = followingSet ? followingSet.has(key) : prev[key]?.isFollowing;
+          next[key] = {
+            isFollowing: isOwnFollowingList
+              ? true
+              : serverFollowing ?? cached ?? false,
+            followsYou: isOwnFollowersList
+              ? true
+              : serverFollowsYou ?? prev[key]?.followsYou ?? false,
+            isPending: prev[key]?.isPending ?? false,
+          };
+        }
+        return next;
+      });
+    },
+    [isOwnFollowingList, isOwnFollowersList]
+  );
 
   const fetchData = useCallback(
     async (pageNum: number, isRefresh = false) => {
@@ -336,16 +438,28 @@ const FollowListScreen: React.FC = () => {
         };
 
         const response: FollowListResponse = await getFollowList(params);
-        
+
         if (response.result?.items) {
+          const items = response.result.items;
           if (pageNum === 1) {
-            setData(response.result.items);
+            setData(items);
           } else {
-            setData((prev) => [...prev, ...response.result.items]);
+            setData((prev) => [...prev, ...items]);
           }
           setHasMore(response.result.pagination.hasMore);
           setTotalCount(response.result.pagination.totalCount);
           setPage(pageNum);
+
+          const missingFlags = items.some(
+            (entry) => typeof entry.user?.isFollowing !== "boolean"
+          );
+          if (missingFlags && !isOwnFollowingList && viewerAddress) {
+            mergeRelationships(items);
+            const set = await ensureFollowingSet();
+            mergeRelationships(items, set);
+          } else {
+            mergeRelationships(items);
+          }
         }
       } catch (error) {
         console.error("[FollowListScreen] fetchData error:", error);
@@ -355,7 +469,18 @@ const FollowListScreen: React.FC = () => {
         setLoadingMore(false);
       }
     },
-    [address, activeTab, debouncedSearch, sortOption, getSortParams, canViewList]
+    [
+      address,
+      activeTab,
+      debouncedSearch,
+      sortOption,
+      getSortParams,
+      canViewList,
+      mergeRelationships,
+      ensureFollowingSet,
+      isOwnFollowingList,
+      viewerAddress,
+    ]
   );
 
   // Initial load and refetch on tab/search/sort change
@@ -447,26 +572,90 @@ const FollowListScreen: React.FC = () => {
     }
   }, []);
 
+  /**
+   * Follow / unfollow straight from the row. The button carries the state, so
+   * this is the only place either list mutates a relationship.
+   */
+  const handleToggleFollow = useCallback(
+    async (item: FollowListItem) => {
+      const target = item.user.address;
+      const key = lower(target);
+      if (!viewerAddress || !target || key === lower(viewerAddress)) return;
+      if (pendingFollowRef.current[key]) return;
+
+      const current = relationshipsRef.current[key];
+      const wasFollowing = !!current?.isFollowing || !!current?.isPending;
+
+      setPendingFollow((prev) => ({ ...prev, [key]: true }));
+      // Optimistic: the row flips now, and reverts below if the call fails.
+      setRelationships((prev) => ({
+        ...prev,
+        [key]: {
+          isFollowing: !wasFollowing,
+          followsYou: prev[key]?.followsYou ?? false,
+          isPending: false,
+        },
+      }));
+
+      try {
+        if (wasFollowing) {
+          await unfollowUser(viewerAddress, target);
+          followingSetRef.current?.delete(key);
+        } else {
+          const res = await followUser(viewerAddress, target);
+          const isPending = res.status === "pending";
+          setRelationships((prev) => ({
+            ...prev,
+            [key]: {
+              isFollowing: !isPending,
+              followsYou: prev[key]?.followsYou ?? false,
+              isPending,
+            },
+          }));
+          if (!isPending) followingSetRef.current?.add(key);
+        }
+      } catch (e) {
+        console.error("[FollowListScreen] follow toggle error:", e);
+        setRelationships((prev) => ({
+          ...prev,
+          [key]: {
+            isFollowing: wasFollowing,
+            followsYou: prev[key]?.followsYou ?? false,
+            isPending: !!current?.isPending,
+          },
+        }));
+      } finally {
+        setPendingFollow((prev) => {
+          const next = { ...prev };
+          delete next[key];
+          return next;
+        });
+      }
+    },
+    [viewerAddress]
+  );
+
   const handleRemoveFollower = useCallback((followerAddress: string) => {
     const targetItem = data.find(
-      (d) => d.user.address.toLowerCase() === followerAddress.toLowerCase()
+      (d) => lower(d.user.address) === lower(followerAddress)
     );
-    const displayName = targetItem?.user.displayName || targetItem?.user.username || "this user";
+    const displayName =
+      targetItem?.user.displayName || targetItem?.user.username || t("follow.thisUser");
     setRemoveTarget({ address: followerAddress, displayName });
-  }, [data]);
+  }, [data, t]);
 
   const handleConfirmRemoveFollower = useCallback(async () => {
     if (!removeTarget) return;
     const { address: followerAddress } = removeTarget;
     const targetItem = data.find(
-      (d) => d.user.address.toLowerCase() === followerAddress.toLowerCase()
+      (d) => lower(d.user.address) === lower(followerAddress)
     );
 
     setRemoveTarget(null);
 
     // Optimistic removal
     setData((prev) => prev.filter(
-      (d) => d.user.address.toLowerCase() !== followerAddress.toLowerCase()
+      (d) => lower(d.user.address) !== lower(followerAddress)
     ));
     setTotalCount((prev) => Math.max(0, prev - 1));
     try {
@@ -486,6 +675,7 @@ const FollowListScreen: React.FC = () => {
       return;
     }
     if (canViewList) {
+      followingSetRef.current = null;
       fetchData(1, true);
     }
   }, [fetchData, fetchRequests, canViewList, activeTab]);
@@ -527,14 +717,30 @@ const FollowListScreen: React.FC = () => {
   }, []);
 
   const renderItem = useCallback(
-    ({ item }: { item: FollowListItem }) => (
-      <FollowUserRow
-        item={item}
-        onPress={handleUserPress}
-        onRemove={isOwner && activeTab === "followers" ? handleRemoveFollower : undefined}
-      />
-    ),
-    [handleUserPress, isOwner, activeTab, handleRemoveFollower]
+    ({ item }: { item: FollowListItem }) => {
+      const key = lower(item.user.address);
+      return (
+        <FollowUserRow
+          item={item}
+          relationship={relationships[key]}
+          isSelf={!!viewerAddress && key === lower(viewerAddress)}
+          busy={!!pendingFollow[key]}
+          showFollowButton={!!viewerAddress}
+          onPress={handleUserPress}
+          onToggleFollow={handleToggleFollow}
+          onLongPress={isOwnFollowersList ? handleRemoveFollower : undefined}
+        />
+      );
+    },
+    [
+      handleUserPress,
+      handleToggleFollow,
+      handleRemoveFollower,
+      isOwnFollowersList,
+      relationships,
+      pendingFollow,
+      viewerAddress,
+    ]
   );
 
   const renderRequestItem = useCallback(
@@ -567,34 +773,37 @@ const FollowListScreen: React.FC = () => {
     if (!hasMore && data.length > 0) {
       return (
         <View className="py-6 items-center">
-          <Text className="text-zinc-400 text-sm">No more {activeTab}</Text>
+          <Text className="text-zinc-400 text-sm">
+            {activeTab === "followers" ? t("follow.noMoreFollowers") : t("follow.noMoreFollowing")}
+          </Text>
         </View>
       );
     }
     return <View className="h-6" />;
-  }, [loadingMore, hasMore, data.length, activeTab]);
+  }, [loadingMore, hasMore, data.length, activeTab, t]);
 
   const ListEmptyComponent = useMemo(() => {
     if (loading) return null;
+    const message = debouncedSearch
+      ? t("follow.noMatches", { query: debouncedSearch })
+      : activeTab === "followers"
+        ? t("follow.noFollowersYet")
+        : t("follow.notFollowingAnyone");
     return (
       <View className="flex-1 items-center justify-center py-16">
         <View className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
           <Ionicons name="people-outline" size={40} color="#A1A1AA" />
         </View>
-        <Text className="text-gray-400 text-base text-center px-8">
-          {debouncedSearch
-            ? `No ${activeTab} found matching "${debouncedSearch}"`
-            : `No ${activeTab} yet`}
-        </Text>
+        <Text className="text-gray-400 text-base text-center px-8">{message}</Text>
       </View>
     );
-  }, [loading, debouncedSearch, activeTab]);
+  }, [loading, debouncedSearch, activeTab, t]);
 
   const headerTitle = username ? `@${username}` : truncate(address, 12, "..");
 
   return (
-    <View 
-      className="flex-1 bg-black" 
+    <View
+      className="flex-1 bg-black"
       style={{ paddingTop: 0 }}
     >
       {/* Header */}
@@ -677,7 +886,7 @@ const FollowListScreen: React.FC = () => {
                   <Ionicons name="person-add-outline" size={40} color="#A1A1AA" />
                 </View>
                 <Text className="text-gray-400 text-base text-center px-8">
-                  No pending follow requests
+                  {t("follow.noRequests")}
                 </Text>
               </View>
             }
@@ -694,7 +903,7 @@ const FollowListScreen: React.FC = () => {
               <TextInput
                 value={searchQuery}
                 onChangeText={setSearchQuery}
-                placeholder="Search"
+                placeholder={t("follow.searchPlaceholder")}
                 placeholderTextColor="#A1A1AA"
                 className="flex-1 ml-2 text-white text-[15px]"
                 returnKeyType="search"
@@ -703,7 +912,7 @@ const FollowListScreen: React.FC = () => {
                 autoCapitalize="none"
               />
               {searchQuery.length > 0 && (
-                <TouchableOpacity 
+                <TouchableOpacity
                   onPress={() => setSearchQuery("")}
                   hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                 >
@@ -718,10 +927,10 @@ const FollowListScreen: React.FC = () => {
               }`}
               activeOpacity={0.7}
             >
-              <Ionicons 
-                name="options-outline" 
-                size={20} 
-                color={showSortPicker ? "#000" : "#fff"} 
+              <Ionicons
+                name="options-outline"
+                size={20}
+                color={showSortPicker ? "#000" : "#fff"}
               />
             </TouchableOpacity>
           </View>
@@ -739,17 +948,17 @@ const FollowListScreen: React.FC = () => {
                     }`}
                     activeOpacity={0.6}
                   >
-                    <Ionicons 
-                      name={option.icon as any} 
-                      size={20} 
-                      color={sortOption === option.key ? "#fff" : "#A1A1AA"} 
+                    <Ionicons
+                      name={option.icon as any}
+                      size={20}
+                      color={sortOption === option.key ? "#fff" : "#A1A1AA"}
                     />
-                    <Text 
+                    <Text
                       className={`flex-1 ml-3 text-[15px] ${
                         sortOption === option.key ? "text-white font-medium" : "text-gray-400"
                       }`}
                     >
-                      {option.label}
+                      {t(option.labelKey)}
                     </Text>
                     {sortOption === option.key && (
                       <Ionicons name="checkmark-circle" size={20} color="#F4F4F5" />
@@ -760,12 +969,20 @@ const FollowListScreen: React.FC = () => {
             </View>
           )}
 
-          {/* Count indicator */}
+          {/* Count indicator, plus how to get rid of a follower now that the
+              row's button carries the follow state instead. */}
           {!loading && totalCount > 0 && (
             <View className="px-4 pb-2">
               <Text className="text-gray-500 text-sm font-medium">
-                {formatCompactNumber(totalCount)} {activeTab}
+                {activeTab === "followers"
+                  ? t("follow.countFollowers", { compact: formatCompactNumber(totalCount) })
+                  : t("follow.countFollowing", { compact: formatCompactNumber(totalCount) })}
               </Text>
+              {isOwnFollowersList && (
+                <Text className="text-theme-neutrals-600 text-xs mt-0.5">
+                  {t("follow.removeFollowerHint")}
+                </Text>
+              )}
             </View>
           )}
 
@@ -787,9 +1004,9 @@ const FollowListScreen: React.FC = () => {
               onEndReached={handleLoadMore}
               onEndReachedThreshold={0.3}
               refreshControl={
-                <RefreshControl 
-                  refreshing={refreshing} 
-                  onRefresh={handleRefresh} 
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={handleRefresh}
                   tintColor="#fff"
                   progressBackgroundColor="#1a1a1a"
                 />
@@ -817,10 +1034,12 @@ const FollowListScreen: React.FC = () => {
             <Ionicons name="person-remove-outline" size={28} color="#fff" />
           </View>
           <Text className="text-white text-lg font-semibold text-center mb-2">
-            Remove follower?
+            {t("follow.removeFollowerTitle")}
           </Text>
           <Text className="text-theme-neutrals-400 text-sm text-center mb-6 leading-5">
-            {removeTarget?.displayName || "This user"} won't be notified that they were removed from your followers.
+            {t("follow.removeFollowerBody", {
+              name: removeTarget?.displayName || t("follow.thisUser"),
+            })}
           </Text>
           <View className="flex-row gap-3 w-full">
             <TouchableOpacity
@@ -828,14 +1047,14 @@ const FollowListScreen: React.FC = () => {
               className="flex-1 bg-theme-neutrals-800 py-3 rounded-xl items-center"
               activeOpacity={0.7}
             >
-              <Text className="text-white font-semibold">Cancel</Text>
+              <Text className="text-white font-semibold">{t("follow.cancel")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={handleConfirmRemoveFollower}
               className="flex-1 bg-white/15 border border-white/25 py-3 rounded-xl items-center"
               activeOpacity={0.7}
             >
-              <Text className="text-white font-semibold">Remove</Text>
+              <Text className="text-white font-semibold">{t("follow.remove")}</Text>
             </TouchableOpacity>
           </View>
         </View>

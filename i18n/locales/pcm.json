@@ -2680,5 +2680,30 @@
     "needSignIn": "You need to sign in with Google or email before you fit switch account.",
     "switched": "Account don switch",
     "failed": "We no fit switch account. Abeg check di private key and try again."
+  },
+  "follow": {
+    "followers": "Followers",
+    "following": "Following",
+    "requests": "Requests",
+    "follow": "Follow",
+    "followBack": "Follow back",
+    "requested": "Requested",
+    "followsYou": "Follows you",
+    "searchPlaceholder": "Search",
+    "sortRecent": "Most recent",
+    "sortOldest": "Oldest first",
+    "sortAlphabetical": "A-Z",
+    "followerCount": "{{compact}} followers",
+    "countFollowers": "{{compact}} followers",
+    "countFollowing": "{{compact}} following",
+    "noMoreFollowers": "No more followers",
+    "noMoreFollowing": "No more following",
+    "noFollowersYet": "No followers yet",
+    "accept": "Accept",
+    "decline": "Decline",
+    "removeFollowerTitle": "Remove follower?",
+    "cancel": "Cancel",
+    "remove": "Remove",
+    "thisUser": "This user"
   }
 }
