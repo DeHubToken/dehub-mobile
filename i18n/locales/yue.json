@@ -625,7 +625,14 @@
     "blockUser": "屏蔽 {{name}}",
     "blockDesc": "隐藏其内容并限制互动",
     "unblockUser": "解除屏蔽 {{name}}",
-    "unblockDesc": "允许该用户重新出现在你的信息流中"
+    "unblockDesc": "允许该用户重新出现在你的信息流中",
+    "bookmark": "書籤",
+    "removeBookmark": "移除書籤",
+    "pinPost": "固定到你嘅個人檔案",
+    "unpinPost": "喺你嘅個人檔案度取消固定",
+    "postPinned": "固定喺你嘅個人檔案",
+    "postUnpinned": "喺你嘅個人檔案入面取消固定",
+    "pinFailed": "固定或者解除固定唔到呢個帖子"
   },
   "filters": {
     "sort": "排序",

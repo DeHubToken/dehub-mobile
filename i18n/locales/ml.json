@@ -624,7 +624,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "ബുക്ക്‌മാര്‍ക്ക്",
+    "removeBookmark": "ബുക്ക്‌മാർക്ക് നീക്കംചെയ്യുക",
+    "pinPost": "നിങ്ങളുടെ പ്രൊഫൈലിലേക്ക് പിൻ ചെയ്യുക",
+    "unpinPost": "നിങ്ങളുടെ പ്രൊഫൈലിൽ നിന്ന് അൺപിൻ ചെയ്യുക",
+    "postPinned": "നിങ്ങളുടെ പ്രൊഫൈലിലേക്ക് പിൻ ചെയ്‌തു",
+    "postUnpinned": "നിങ്ങളുടെ പ്രൊഫൈലിൽ നിന്ന് അച്ചടിച്ചിട്ടില്ല",
+    "pinFailed": "ഈ പോസ്റ്റ് പിൻ ചെയ്യാനോ അൺപിൻ ചെയ്യാനോ കഴിഞ്ഞില്ല"
   },
   "filters": {
     "sort": "ക്രമം",

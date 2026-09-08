@@ -624,7 +624,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "පිටු සලකුණ",
+    "removeBookmark": "පිටු සලකුණ ඉවත් කරන්න",
+    "pinPost": "ඔබේ පැතිකඩට PIN අංකය",
+    "unpinPost": "ඔබේ පැතිකඩෙන් අස්ථාපනය කරන්න",
+    "postPinned": "ඔබේ පැතිකඩට Pin කර ඇත",
+    "postUnpinned": "ඔබේ පැතිකඩෙන් අහුරා නැත",
+    "pinFailed": "මෙම තනතුර සලකුණු කිරීමට හෝ අස්ථාපනය කිරීමට නොහැකි විය"
   },
   "filters": {
     "sort": "වර්ග කරන්න",

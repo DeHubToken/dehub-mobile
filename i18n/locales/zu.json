@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Ibhukumaka",
+    "removeBookmark": "Susa ibhukumaka",
+    "pinPost": "Faka iphrofayili yakho",
+    "unpinPost": "Khipha kuphrofayili yakho",
+    "postPinned": "Kuphinwe kuphrofayili yakho",
+    "postUnpinned": "Kukhishwe kuphrofayili yakho",
+    "pinFailed": "Ayikwazanga ukufaka iphini noma ukususa le phosti"
   },
   "filters": {
     "sort": "Hlela",

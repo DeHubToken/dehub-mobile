@@ -830,7 +830,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Bokmärke",
+    "removeBookmark": "Ta bort bokmärke",
+    "pinPost": "Fäst i din profil",
+    "unpinPost": "Ta bort fästet från din profil",
+    "postPinned": "Fäst i din profil",
+    "postUnpinned": "Frigjord från din profil",
+    "pinFailed": "Det gick inte att fästa eller ta bort det här inlägget"
   },
   "filters": {
     "sort": "Sortera",

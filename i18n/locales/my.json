@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "မှတ်သားရန်",
+    "removeBookmark": "မှတ်တမ်းမှတ်ရာကို ဖယ်ရှားပါ",
+    "pinPost": "သင် ၏ ပရိုဖိုင်သို့ PIN နံပါတ်",
+    "unpinPost": "သင် ၏ ပရိုဖိုင်မှ PIN ကိုဖြုတ်ပါ",
+    "postPinned": "သင် ၏ ပရိုဖိုင်သို့ Pinned",
+    "postUnpinned": "သင် ၏ ပရိုဖိုင်မှ မထည့်သွင်းရသေးပါ",
+    "pinFailed": "ဤပို့စ်ကို PIN သို့မဟုတ် ဖြုတ် ၍ မရပါ"
   },
   "filters": {
     "sort": "စီရန်",

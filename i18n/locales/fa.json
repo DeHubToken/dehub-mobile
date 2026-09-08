@@ -623,7 +623,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "نشانک",
+    "removeBookmark": "پاک کردن علاقه مندي ها",
+    "pinPost": "سنجاق کردن به نمایه",
+    "unpinPost": "برداشتن سنجاق از نمایه",
+    "postPinned": "به نمایه شما سنجاق شد",
+    "postUnpinned": "سنجاق از نمایه شما برداشته شد",
+    "pinFailed": "سنجاق کردن یا برداشتن سنجاق این پست ممکن نشد"
   },
   "filters": {
     "sort": "مرتب‌سازی",

@@ -616,7 +616,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Lagre",
+    "removeBookmark": "Fjern bokmerke",
+    "pinPost": "Fest til profilen din",
+    "unpinPost": "Fjern fra profilen din",
+    "postPinned": "Festet til profilen din",
+    "postUnpinned": "Løsnet fra profilen din",
+    "pinFailed": "Kunne ikke feste eller løsne dette innlegget"
   },
   "filters": {
     "sort": "Sorter",

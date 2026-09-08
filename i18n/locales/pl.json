@@ -890,7 +890,14 @@
     "blockUser": "Zablokuj {{name}}",
     "blockDesc": "Ukrywa jego treści i ogranicza interakcje",
     "unblockUser": "Odblokuj {{name}}",
-    "unblockDesc": "Pozwól, by ten użytkownik znów pojawiał się w Twoich kanałach"
+    "unblockDesc": "Pozwól, by ten użytkownik znów pojawiał się w Twoich kanałach",
+    "bookmark": "Zakładka",
+    "removeBookmark": "Usuń zakładkę",
+    "pinPost": "Przypnij do swojego profilu",
+    "unpinPost": "Odepnij od swojego profilu",
+    "postPinned": "Przypięte do Twojego profilu",
+    "postUnpinned": "Odepnij od swojego profilu",
+    "pinFailed": "Nie można przypiąć ani odpiąć tego wpisu"
   },
   "filters": {
     "sort": "Sortuj",

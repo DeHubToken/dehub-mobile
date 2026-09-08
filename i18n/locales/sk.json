@@ -1696,7 +1696,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Záložka",
+    "removeBookmark": "Odstrániť záložku",
+    "pinPost": "Pripnúť na svoj profil",
+    "unpinPost": "Zrušiť pripnutie zo svojho profilu",
+    "postPinned": "Pripnuté k vášmu profilu",
+    "postUnpinned": "Odpojené od vášho profilu",
+    "pinFailed": "Nepodarilo sa pripnúť alebo zrušiť pripnutie tohto príspevku"
   },
   "filters": {
     "sort": "Sort",

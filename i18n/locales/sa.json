@@ -624,7 +624,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "पुस्तकचिह्नम्",
+    "removeBookmark": "पुस्तकचिह्नम् निष्कासितम्",
+    "pinPost": "अपना अपना Profile लिखे",
+    "unpinPost": "तेरे चित्रो पे न जाऊं",
+    "postPinned": "भवतः प्रोफाइलम् प्रति निवर्त्यताम्",
+    "postUnpinned": "तेरे नखरे पे न जाऊं",
+    "pinFailed": "एतत् पदं पञ्जीकर्तुम् अहं न शक्नोमि/न शक्नोमि"
   },
   "filters": {
     "sort": "क्रमयतु",

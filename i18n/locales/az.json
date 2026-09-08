@@ -624,7 +624,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Əlfəcin",
+    "removeBookmark": "Əlfəcini sil",
+    "pinPost": "Profilinizə sancaqlayın",
+    "unpinPost": "Profilinizdən silin",
+    "postPinned": "Profilinizə bərkidilib",
+    "postUnpinned": "Profilinizdən silinmədi",
+    "pinFailed": "Bu yazını sancmaq və ya açmaq mümkün olmadı"
   },
   "filters": {
     "sort": "Sırala",

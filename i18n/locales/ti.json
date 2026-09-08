@@ -624,7 +624,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "ምልክት ምልክት",
+    "removeBookmark": "ናይ መጽሓፍ ምልክት ኣወግድ",
+    "pinPost": "ናብ መገለጺኻ ስዓቦ",
+    "unpinPost": "ካብ መገለጺኻ ኣርሕቕ",
+    "postPinned": "ኣብ መገለጺኻ ተጸሚድካ",
+    "postUnpinned": "ካብ መገለጺኻ ርሒቕካ",
+    "pinFailed": "ነዚ ጽሑፍ እዚ ክተኣታተወሉ ወይ ክተኣታተወሉ ኣይከኣለን ።"
   },
   "filters": {
     "sort": "ደርድር",

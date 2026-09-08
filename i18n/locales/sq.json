@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Libërshënues",
+    "removeBookmark": "Hiq libërshënuesin",
+    "pinPost": "Vendos shënjuesin tek profili yt",
+    "unpinPost": "Hiqe nga profili yt",
+    "postPinned": "Pinned në profilin tënd",
+    "postUnpinned": "Shkëputur nga profili yt",
+    "pinFailed": "Nuk mund ta shënjoj ose çaktivizoj këtë postim"
   },
   "filters": {
     "sort": "Rendit",

@@ -1080,7 +1080,14 @@
     "blockUser": "{{name}} blokkeren",
     "blockDesc": "Verbergt hun content en beperkt interacties",
     "unblockUser": "{{name}} deblokkeren",
-    "unblockDesc": "Deze gebruiker weer toestaan in je feeds"
+    "unblockDesc": "Deze gebruiker weer toestaan in je feeds",
+    "bookmark": "Bladwijzer",
+    "removeBookmark": "Bladwijzer verwijderen",
+    "pinPost": "Vastmaken aan je profiel",
+    "unpinPost": "Loskoppelen van je profiel",
+    "postPinned": "Vastgemaakt aan je profiel",
+    "postUnpinned": "Ontkoppeld van je profiel",
+    "pinFailed": "Kan dit bericht niet vastmaken of losmaken"
   },
   "filters": {
     "sort": "Sorteren",

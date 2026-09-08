@@ -625,7 +625,14 @@
     "blockUser": "{{name}} blockieren",
     "blockDesc": "Blendet die Inhalte aus und schränkt Interaktionen ein",
     "unblockUser": "{{name}} entsperren",
-    "unblockDesc": "Diesen Nutzer wieder in deinen Feeds zulassen"
+    "unblockDesc": "Diesen Nutzer wieder in deinen Feeds zulassen",
+    "bookmark": "Bookmark",
+    "removeBookmark": "Bookmark lösche",
+    "pinPost": "Auf Profil pinnen",
+    "unpinPost": "Vom Profil entpinnen",
+    "postPinned": "Auf Profil gepinnt",
+    "postUnpinned": "Vom Profil entpinnt",
+    "pinFailed": "Konntä de Beitrag nöd pinnen oder entpinne"
   },
   "filters": {
     "sort": "Sortiere",
