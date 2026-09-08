@@ -124,6 +124,12 @@ export default function AppNavigator() {
           name={ScreenNames.Events}
           getComponent={() => require("../screens/EventsScreen").default}
         />
+        {/* Discovery only. The live room and the create form stay modals, so a
+            stage keeps running while you browse away from here. */}
+        <Stack.Screen
+          name={ScreenNames.Stages}
+          getComponent={() => require("../screens/StagesScreen").default}
+        />
         <Stack.Screen
           name={ScreenNames.Careers}
           getComponent={() => require("../screens/CareersScreen").default}

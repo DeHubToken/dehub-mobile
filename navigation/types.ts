@@ -174,6 +174,7 @@ export type AppStackParamList = {
   /** `slug` keys into ARCADE_GAMES; an unknown one renders the "no such game" panel. */
   [ScreenNames.ArcadeGame]: { slug: string };
   [ScreenNames.Events]: undefined;
+  [ScreenNames.Stages]: undefined;
   [ScreenNames.Careers]: undefined;
   [ScreenNames.Affiliate]: undefined;
   /** `requestId` is a notification's deep link into one request, `commentId`
