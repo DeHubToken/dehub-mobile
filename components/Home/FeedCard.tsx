@@ -1425,10 +1425,18 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       */}
       {!!(item as any).__boosted && (
         <View className="flex-row items-center gap-1.5 mb-2">
-          <Icon name="Rocket" size={14} color="#9CA3AF" />
-          <Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">
-            Boosted
-          </Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(ScreenNames.SuperPowers)}
+            accessibilityRole="button"
+            accessibilityLabel="Open SuperPowers"
+            hitSlop={6}
+            className="flex-row items-center gap-1.5"
+          >
+            <Icon name="Rocket" size={14} color="#9CA3AF" />
+            <Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">
+              Boosted
+            </Text>
+          </TouchableOpacity>
           {/*
             Backing a Crew Boost, offered exactly where one is being served
             rather than on a screen nobody visits — the moment you are looking
