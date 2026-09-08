@@ -1802,107 +1802,6 @@ export default function UploadScreen() {
 
   return (
     <View className="flex-1 bg-black">{/* don't add top inset */}
-      <View className="flex-row items-center justify-between px-4 h-14">
-        <View className="flex-row items-center gap-3">
-          <TouchableOpacity
-            onPress={handleClose}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            accessibilityRole="button"
-            accessibilityLabel="Close"
-          >
-            <Icon name="X" size={26} color="#fff" />
-          </TouchableOpacity>
-
-          <ChainSelector
-            selectedChainId={effectivePostChainId}
-            onChange={handleMintChainChange}
-            variant="compact"
-            disabled={activeIsUploading || isSwitchingChain}
-            title="Mint on network"
-            includeSolana
-            allowedChainIds={postChainIds}
-          />
-        </View>
-
-        <View className="flex-row items-center gap-2">
-          {/* Schedule and Drafts sit beside the chain selector, the same cluster
-              web puts them in — and off the action bar, which frees a slot. */}
-          {!isLiveMode && !isQuoteMode && (
-            <TouchableOpacity
-              onPress={() => setShowScheduleSheet(true)}
-              activeOpacity={0.7}
-              className="w-9 h-9 rounded-xl items-center justify-center border"
-              style={{
-                backgroundColor: scheduledDate ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.1)",
-                borderColor: scheduledDate ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.2)",
-              }}
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              accessibilityRole="button"
-              accessibilityLabel={scheduledDate ? "Edit schedule" : "Schedule post"}
-            >
-              <Icon name="Calendar" size={16} color="#fff" />
-            </TouchableOpacity>
-          )}
-
-          {formHasContent && !activeIsUploading && (
-            <TouchableOpacity
-              onPress={handleDraftButton}
-              activeOpacity={0.7}
-              className="w-9 h-9 rounded-xl bg-white/10 items-center justify-center border border-white/20"
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              accessibilityRole="button"
-              accessibilityLabel="Save draft"
-            >
-              <Icon name="Save" size={16} color="#fff" />
-              {/* Saved-draft count, as web badges its Drafts button */}
-              {drafts.length > 0 && (
-                <View
-                  className="absolute w-4 h-4 rounded-full bg-white items-center justify-center"
-                  style={{ top: -4, right: -4 }}
-                >
-                  <Text className="text-black font-bold" style={{ fontSize: 10 }}>
-                    {drafts.length}
-                  </Text>
-                </View>
-              )}
-            </TouchableOpacity>
-          )}
-
-        </View>
-      </View>
-
-      {scheduledDate && (
-        <View
-          className="mx-4 mb-2 flex-row items-center px-3 py-2 rounded-xl"
-          style={{ backgroundColor: "rgba(255,255,255,0.2)", borderWidth: 1, borderColor: "rgba(255,255,255,0.4)" }}
-        >
-          <TouchableOpacity
-            onPress={() => setShowScheduleSheet(true)}
-            activeOpacity={0.7}
-            className="flex-row items-center flex-1"
-          >
-            <Icon name="Clock" size={14} color="#D4D4D8" />
-            <Text className="text-xs font-medium ml-2" style={{ color: "#D4D4D8" }}>
-              Scheduled for{" "}
-              {scheduledDate.toLocaleString(undefined, {
-                month: "short",
-                day: "numeric",
-                hour: "numeric",
-                minute: "2-digit",
-              })}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => setScheduledDate(null)}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            accessibilityRole="button"
-            accessibilityLabel="Remove schedule"
-          >
-            <Icon name="X" size={14} color="#A1A1AA" />
-          </TouchableOpacity>
-        </View>
-      )}
-
       <ScrollView
         className="flex-1"
         keyboardShouldPersistTaps="handled"
@@ -1911,8 +1810,11 @@ export default function UploadScreen() {
         showsVerticalScrollIndicator={false}
       >
         <Pressable className="flex-1">
-        <View className="flex-row px-4 pt-2">
-          <View className="pt-1 mr-3">
+        <View className="px-4 pt-4">
+          {/* Match web's composer header exactly: identity on the left, then
+              chain, schedule and drafts on the right. The editor starts below
+              this row and owns the full width. */}
+          <View className="flex-row items-center justify-between">
             <Avatar
               uri={
                 avatarUri && avatarUri !== "default-avatar"
@@ -1922,9 +1824,82 @@ export default function UploadScreen() {
               size={40}
               name={authUser?.displayName}
             />
+
+            <View className="flex-row items-center gap-2">
+              <ChainSelector
+                selectedChainId={effectivePostChainId}
+                onChange={handleMintChainChange}
+                variant="icon"
+                disabled={activeIsUploading || isSwitchingChain}
+                title="Choose Decentralized Database"
+                includeSolana
+                allowedChainIds={postChainIds}
+              />
+
+              {!isLiveMode && !isQuoteMode && (
+                <TouchableOpacity
+                  onPress={() => setShowScheduleSheet(true)}
+                  activeOpacity={0.7}
+                  className="w-9 h-9 rounded-xl items-center justify-center border"
+                  style={{
+                    backgroundColor: scheduledDate ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.1)",
+                    borderColor: scheduledDate ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.2)",
+                  }}
+                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  accessibilityRole="button"
+                  accessibilityLabel={scheduledDate ? "Edit schedule" : "Schedule post"}
+                >
+                  <Icon name="Calendar" size={16} color="#fff" />
+                </TouchableOpacity>
+              )}
+
+              {!activeIsUploading && (
+                <TouchableOpacity
+                  onPress={formHasContent ? handleDraftButton : () => nav.navigate(ScreenNames.Drafts)}
+                  activeOpacity={0.7}
+                  className="w-9 h-9 rounded-xl bg-white/10 items-center justify-center border border-white/20"
+                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Drafts"
+                >
+                  <Icon name="Save" size={16} color="#fff" />
+                  {drafts.length > 0 && (
+                    <View
+                      className="absolute w-4 h-4 rounded-full bg-white items-center justify-center"
+                      style={{ top: -4, right: -4 }}
+                    >
+                      <Text className="text-black font-bold" style={{ fontSize: 10 }}>
+                        {drafts.length}
+                      </Text>
+                    </View>
+                  )}
+                </TouchableOpacity>
+              )}
+            </View>
           </View>
 
-          <View className="flex-1">
+          {scheduledDate && (
+            <TouchableOpacity
+              onPress={() => setShowScheduleSheet(true)}
+              activeOpacity={0.7}
+              className="self-end flex-row items-center gap-1.5 px-2.5 py-1 rounded-lg mt-2"
+              style={{ backgroundColor: "rgba(245,158,11,0.2)" }}
+              accessibilityRole="button"
+              accessibilityLabel="Edit schedule"
+            >
+              <Icon name="Clock" size={12} color="#FBBF24" />
+              <Text className="text-amber-400 text-xs font-medium">
+                {scheduledDate.toLocaleString(undefined, {
+                  month: "short",
+                  day: "numeric",
+                  hour: "numeric",
+                  minute: "2-digit",
+                })}
+              </Text>
+            </TouchableOpacity>
+          )}
+
+          <View className="mt-3">
             {showTitleInput && (
               <TextInput
                 ref={titleRef}
@@ -1958,7 +1933,7 @@ export default function UploadScreen() {
               multiline
               blurOnSubmit={false}
               returnKeyType="default"
-              className="text-white text-lg"
+              className="text-white text-base"
               style={{ textAlignVertical: "top" }}
               autoFocus
               scrollEnabled={false}
