@@ -26,6 +26,28 @@ import type { VoiceNoteResult } from "../Comments/VoiceNoteRecorder";
 const MAX_LENGTH = 500;
 const WARN_THRESHOLD = 50;
 
+/**
+ * Composer metrics. Every control is one CONTROL-tall box and the field pads
+ * to the same height, so a single line of text sits on the icons' centre line
+ * instead of drifting a few pixels off it. The field carries all of its own
+ * padding — the TextInput's own box is zeroed, including Android's font
+ * padding, which is what used to make the text ride high inside the row.
+ */
+const CONTROL = 38;
+const LINE = 20;
+const FIELD_PAD = (CONTROL - LINE) / 2;
+
+const CONTROL_BOX = { width: CONTROL, height: CONTROL } as const;
+const INPUT_BOX = { paddingHorizontal: 4, paddingVertical: FIELD_PAD, maxHeight: 100 } as const;
+const INPUT_TEXT = {
+  margin: 0,
+  padding: 0,
+  minHeight: LINE,
+  maxHeight: 100 - FIELD_PAD * 2,
+  includeFontPadding: false,
+  textAlignVertical: "top",
+} as const;
+
 interface LiveChatInputProps {
   onSend: (content: string, replyTo?: string, audioUrl?: string, audioDuration?: number) => void;
   replyingTo: LiveChatMessageData | null;
@@ -121,12 +143,6 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   const remaining = MAX_LENGTH - text.length;
   const showCounter = remaining <= WARN_THRESHOLD;
   const isOverLimit = remaining < 0;
-
-  /** Prefix the draft with the mention and put the cursor after it. */
-  const handleAskAssistant = useCallback(() => {
-    setText((prev) => (mentionsAssistant(prev) ? prev : `@${ASSISTANT_USERNAME} ${prev.trimStart()}`));
-    inputRef.current?.focus();
-  }, []);
 
   const handleSend = useCallback(() => {
     const trimmed = text.trim();
@@ -257,32 +273,20 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         loading={mentions.loading}
       />
 
-      {/* The bot only ever answers a direct mention, so the tag has to be
-          discoverable — otherwise nobody knows it is there. */}
-      {!disabled && !editingMessage && !recorder.isRecording && !uploadingVoice && (
-        <View className="flex-row items-center px-3 pt-1.5">
-          {mentionsAssistant(text) ? (
-            <View className="flex-row items-center gap-1">
-              <Icon name="Sparkles" size={11} color="#A6A9AC" />
-              <Text className="text-white/50 text-[11px]">
-                {ASSISTANT_USERNAME} will reply in chat
-              </Text>
-            </View>
-          ) : (
-            <TouchableOpacity
-              onPress={handleAskAssistant}
-              hitSlop={6}
-              activeOpacity={0.6}
-              className="flex-row items-center gap-1"
-              accessibilityRole="button"
-              accessibilityLabel="Ask the assistant"
-            >
-              <Icon name="Sparkles" size={11} color="#8B8D90" />
-              <Text className="text-white/35 text-[11px]">Tag @assistant for help</Text>
-            </TouchableOpacity>
-          )}
-        </View>
-      )}
+      {/* Only a confirmation now. The tag is discoverable through the mention
+          list, so the composer does not carry a standing advert for it. */}
+      {!disabled &&
+        !editingMessage &&
+        !recorder.isRecording &&
+        !uploadingVoice &&
+        mentionsAssistant(text) && (
+          <View className="flex-row items-center gap-1 px-3 pt-1.5">
+            <Icon name="Sparkles" size={11} color="#A6A9AC" />
+            <Text className="text-white/50 text-[11px]">
+              {ASSISTANT_USERNAME} will reply in chat
+            </Text>
+          </View>
+        )}
 
       {attachmentUri && !recorder.isRecording && !uploadingVoice && (
         <View className="px-4 pt-2">
@@ -318,10 +322,10 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
           {!disabled && (
             <TouchableOpacity
               onPress={() => setAttachOpen(true)}
-              className="p-2 items-center justify-center"
+              className="items-center justify-center"
               hitSlop={4}
               activeOpacity={0.6}
-              style={{ width: 38, height: 38 }}
+              style={CONTROL_BOX}
               accessibilityRole="button"
               accessibilityLabel={t('liveChat.attach', 'Add a photo, GIF or emoji')}
             >
@@ -329,7 +333,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             </TouchableOpacity>
           )}
 
-          <View className="flex-1 bg-theme-neutrals-800 rounded-xl px-3 py-1.5 max-h-[100px]">
+          <View className="flex-1" style={INPUT_BOX}>
             <TextInput
               ref={inputRef}
               value={text}
@@ -340,26 +344,29 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               multiline
               maxLength={MAX_LENGTH}
               editable={!disabled && !enhancing}
-              className="text-white text-[14px] leading-5 p-2 m-0"
-              style={{ maxHeight: 80 }}
+              className="text-white text-[14px] leading-5"
+              style={INPUT_TEXT}
             />
           </View>
 
           {showCounter && (
-            <Text
-              className={`text-[11px] font-medium px-1 self-center ${
-                isOverLimit ? "text-white/80" : remaining <= 20 ? "text-amber-400" : "text-white/30"
-              }`}
-            >
-              {remaining}
-            </Text>
+            <View className="items-center justify-center px-1" style={{ height: CONTROL }}>
+              <Text
+                className={`text-[11px] font-medium ${
+                  isOverLimit ? "text-white/80" : remaining <= 20 ? "text-amber-400" : "text-white/30"
+                }`}
+              >
+                {remaining}
+              </Text>
+            </View>
           )}
 
           <TouchableOpacity
             onPress={handleEnhance}
-            className="p-2"
+            className="items-center justify-center"
             hitSlop={4}
             activeOpacity={0.6}
+            style={CONTROL_BOX}
             disabled={!text.trim() || enhancing}
             accessibilityRole="button"
             accessibilityLabel="Enhance message"
@@ -380,8 +387,9 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             <TouchableOpacity
               onPress={handleSend}
               disabled={disabled || !canSubmit || cooldown || isOverLimit || enhancing}
-              className="p-2"
+              className="items-center justify-center"
               hitSlop={4}
+              style={CONTROL_BOX}
               accessibilityRole="button"
               accessibilityLabel="Send message"
               accessibilityState={{
@@ -402,8 +410,9 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             <TouchableOpacity
               onPress={handleStartRecording}
               disabled={disabled}
-              className="p-2"
+              className="items-center justify-center"
               hitSlop={4}
+              style={CONTROL_BOX}
               accessibilityRole="button"
               accessibilityLabel="Record voice message"
               accessibilityState={{ disabled }}
