@@ -252,7 +252,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
     let count = 0;
     if (onReply) count++; // Reply
     if (message.content?.trim()) count++; // Copy
-    if (isMe && message.messageType !== "system") count++; // Edit
+    if (isMe && message.messageType === "text" && message.content?.trim()) count++; // Edit
     if (isMe || isModerator) count++; // Delete
     if (isModerator) count++; // Pin/Unpin
     return count;
@@ -296,7 +296,9 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
   if (!visible || !message) return null;
 
   const hasContent = !!message.content?.trim();
-  const canEdit = isMe && message.messageType !== "system" && hasContent;
+  // The API only rewrites a text body — a caption on a photo, GIF or voice
+  // note is refused, so offering Edit there is a button that can only fail.
+  const canEdit = isMe && message.messageType === "text" && hasContent;
   const canDelete = isMe || isModerator;
   const myAddress = message.senderAddress?.toLowerCase();
 
