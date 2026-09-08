@@ -90,6 +90,8 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import QuotedPostEmbed from "../components/common/QuotedPostEmbed";
 import { enhanceText } from "../services/ai.service";
 import type { EnhanceMode } from "../services/ai.service";
+import PlanFormSheet from "../components/Subscription/PlanFormSheet";
+import { useQueryClient } from "@tanstack/react-query";
 
 /** Same key web writes to localStorage — see hooks/useAppPrefs.ts on naming. */
 const SHOULD_MINT_KEY = "post_should_mint";
@@ -162,6 +164,7 @@ const isVideoAsset = (asset: PickedAsset): boolean =>
   asset.type === "video" || !!asset.mimeType?.startsWith("video/");
 
 export default function UploadScreen() {
+  const queryClient = useQueryClient();
   const nav = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, typeof ScreenNames.Upload>>();
   const incomingDraft = route.params?.draft as Draft | undefined;
@@ -303,6 +306,7 @@ export default function UploadScreen() {
 
   const [showSaveDraftModal, setShowSaveDraftModal] = useState(false);
   const [showDiscardModal, setShowDiscardModal] = useState(false);
+  const [showPlanForm, setShowPlanForm] = useState(false);
   const [isEnhancing, setIsEnhancing] = useState(false);
   const [showEnhanceSheet, setShowEnhanceSheet] = useState(false);
   const [showEmojiSheet, setShowEmojiSheet] = useState(false);
@@ -2565,6 +2569,7 @@ export default function UploadScreen() {
                   state={monetization}
                   onChange={handleMonetizationChange}
                   postChainId={effectivePostChainId}
+                  onCreatePlan={() => setShowPlanForm(true)}
                 />
               )}
 
@@ -3097,6 +3102,17 @@ export default function UploadScreen() {
           </View>
         </View>
       </GlassModal>
+
+      <PlanFormSheet
+        visible={showPlanForm}
+        onClose={() => setShowPlanForm(false)}
+        onSuccess={() => {
+          void queryClient.invalidateQueries({ queryKey: ["cc-creator-plans"] });
+        }}
+        onPublished={() => {
+          setMonetization((current) => ({ ...current, subscribersEnabled: true }));
+        }}
+      />
     </View>
   );
 }
