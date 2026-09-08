@@ -690,8 +690,8 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={() => message.replyTo?._id && onReplyPress?.(message.replyTo._id)}
-                className={`mx-2 mt-2 rounded-lg overflow-hidden border-l-2 ${
-                  isMine ? "bg-white/10 border-white/30" : "bg-theme-neutrals-700 border-accent"
+                className={`mx-2 mt-2 rounded-lg overflow-hidden ${
+                  isMine ? "bg-white/10" : "bg-theme-neutrals-700"
                 }`}
               >
                 <View className="px-2.5 py-2">
