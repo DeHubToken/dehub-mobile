@@ -30,6 +30,8 @@ interface PlanFormSheetProps {
   visible: boolean;
   onClose: () => void;
   onSuccess: (plan: SubscriptionPlan) => void;
+  /** Called only after a newly created plan is confirmed on chain. */
+  onPublished?: () => void;
   /** If provided, we're editing an existing plan */
   editPlan?: SubscriptionPlan | null;
 }
@@ -51,6 +53,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
   visible,
   onClose,
   onSuccess,
+  onPublished,
   editPlan,
 }) => {
   const { chainId } = useProvider();
@@ -171,6 +174,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
           setStage("Finishing up…");
           await confirmPlanPublished(String(planId), targetChain);
           toastSuccess("Plan created and published");
+          onPublished?.();
         }
       }
       if (result) onSuccess(result);
@@ -181,7 +185,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       setSaving(false);
       setStage("");
     }
-  }, [name, description, price, duration, benefits, isEditing, editPlan, chainId, subscriptionContract, onSuccess, onClose]);
+  }, [name, description, price, duration, benefits, isEditing, editPlan, chainId, subscriptionContract, onSuccess, onPublished, onClose]);
 
   return (
     <GlassModal
