@@ -623,7 +623,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "O ye sɛbɛ ye",
+    "removeBookmark": "Ka gafew bila sen kan",
+    "pinPost": "I ka kunnafoniw lajɛ",
+    "unpinPost": "Ka bɔ i ka sɛbɛ kɔnɔ",
+    "postPinned": "I ka kunnafoniw lajɛ",
+    "postUnpinned": "Ka bɔ i ka sɛbɛ kɔnɔ",
+    "pinFailed": "Ne tɛ se ka n yɛrɛ tanga o ma"
   },
   "filters": {
     "sort": "Kɔrɔbɔ",

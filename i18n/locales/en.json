@@ -659,7 +659,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Bookmark",
+    "removeBookmark": "Remove bookmark",
+    "pinPost": "Pin to your profile",
+    "unpinPost": "Unpin from your profile",
+    "postPinned": "Pinned to your profile",
+    "postUnpinned": "Unpinned from your profile",
+    "pinFailed": "Could not pin or unpin this post"
   },
   "filters": {
     "sort": "Sort",

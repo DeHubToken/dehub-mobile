@@ -617,7 +617,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Kirjanmerkki",
+    "removeBookmark": "Poista kirjanmerkki",
+    "pinPost": "Kiinnitä profiilisi",
+    "unpinPost": "Poista kiinnitys profiilistasi",
+    "postPinned": "Kiinnitetty profiiliisi",
+    "postUnpinned": "Profiilisi kiinnitys poistettu",
+    "pinFailed": "Tätä julkaisua ei voitu kiinnittää tai poistaa"
   },
   "filters": {
     "sort": "Lajittele",

@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Adreça d'interès",
+    "removeBookmark": "Elimina l'adreça d'interès",
+    "pinPost": "Fixa'l al teu perfil",
+    "unpinPost": "Desenllaça el teu perfil",
+    "postPinned": "S'ha fixat al teu perfil",
+    "postUnpinned": "S'ha desvinculat del teu perfil",
+    "pinFailed": "No s'ha pogut fixar ni desanclar aquesta publicació"
   },
   "filters": {
     "sort": "Ordenar",

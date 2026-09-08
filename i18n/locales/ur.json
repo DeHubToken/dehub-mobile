@@ -829,7 +829,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "بک مارک",
+    "removeBookmark": "بُک مارک ہٹائیں",
+    "pinPost": "اپنی پروفائل پر پن کریں",
+    "unpinPost": "اپنی پروفائل سے ان پن کریں",
+    "postPinned": "آپ کے پروفائل پر پن کر دیا گیا ہے",
+    "postUnpinned": "آپ کے پروفائل سے انپنڈ",
+    "pinFailed": "اس پوسٹ کو پن یا ان پن نہیں کیا جا سکا"
   },
   "filters": {
     "sort": "ترتیب",

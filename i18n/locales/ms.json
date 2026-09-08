@@ -1088,7 +1088,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Penanda halaman",
+    "removeBookmark": "Buang penanda halaman",
+    "pinPost": "Sematkan pada profil anda",
+    "unpinPost": "Buang sematan daripada profil anda",
+    "postPinned": "Disematkan pada profil anda",
+    "postUnpinned": "Tidak disematkan daripada profil anda",
+    "pinFailed": "Tidak dapat menyematkan atau membatalkan pin hantaran ini"
   },
   "filters": {
     "sort": "Sort",

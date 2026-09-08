@@ -617,7 +617,14 @@
     "blockUser": "{{name}} blockieren",
     "blockDesc": "Blendet die Inhalte aus und schränkt Interaktionen ein",
     "unblockUser": "{{name}} entsperren",
-    "unblockDesc": "Diesen Nutzer wieder in deinen Feeds zulassen"
+    "unblockDesc": "Diesen Nutzer wieder in deinen Feeds zulassen",
+    "bookmark": "Lesezeichen",
+    "removeBookmark": "Lesezeichen entfernen",
+    "pinPost": "An Ihr Profil anheften",
+    "unpinPost": "Aus deinem Profil entfernen",
+    "postPinned": "An Ihr Profil angeheftet",
+    "postUnpinned": "Aus Ihrem Profil entfernt",
+    "pinFailed": "Dieser Beitrag konnte nicht angeheftet oder gelöst werden"
   },
   "filters": {
     "sort": "Sortieren",

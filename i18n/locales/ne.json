@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "बुकमार्क",
+    "removeBookmark": "पुस्तकचिनो हटाउनुहोस्",
+    "pinPost": "तपाईंको प्रोफाइलमा पिन गर्नुहोस्",
+    "unpinPost": "तपाईंको प्रोफाइलबाट अनपिन गर्नुहोस्",
+    "postPinned": "तपाईंको प्रोफाइलमा पिन गरियो",
+    "postUnpinned": "तपाईंको प्रोफाइलबाट पिन हटाइयो",
+    "pinFailed": "यो पोस्ट पिन गर्न वा अनपिन गर्न सकिएन"
   },
   "filters": {
     "sort": "क्रमबद्ध गर्नुहोस्",

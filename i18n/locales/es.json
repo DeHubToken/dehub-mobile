@@ -617,7 +617,14 @@
     "blockUser": "Bloquear a {{name}}",
     "blockDesc": "Oculta su contenido y limita las interacciones",
     "unblockUser": "Desbloquear a {{name}}",
-    "unblockDesc": "Permite que este usuario aparezca en tus feeds"
+    "unblockDesc": "Permite que este usuario aparezca en tus feeds",
+    "bookmark": "Marcador",
+    "removeBookmark": "Eliminar marcador",
+    "pinPost": "Fijar a tu perfil",
+    "unpinPost": "Desanclar de tu perfil",
+    "postPinned": "Fijado a tu perfil",
+    "postUnpinned": "Desanclado de tu perfil",
+    "pinFailed": "No se ha podido anclar o desanclar esta publicación"
   },
   "filters": {
     "sort": "Ordenar",

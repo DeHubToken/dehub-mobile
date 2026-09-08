@@ -624,7 +624,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "መለያ ምልክት",
+    "removeBookmark": "መለያ ምልክት አስወግድ",
+    "pinPost": "PIN ወደ መገለጫዎ",
+    "unpinPost": "ከመገለጫዎ ያስወግዱ",
+    "postPinned": "ወደ መገለጫዎ ተጣብቋል",
+    "postUnpinned": "ከመገለጫዎ ያልታሸገ",
+    "pinFailed": "ይህንን ልኡክ ጽሁፍ ማንሸራተት ወይም ማንሸራተት አልተቻለም"
   },
   "filters": {
     "sort": "ደርድር",

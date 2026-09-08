@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Закладка",
+    "removeBookmark": "Выдаліць закладку",
+    "pinPost": "PIN-код да вашага профілю",
+    "unpinPost": "Выдаліць з вашага профілю",
+    "postPinned": "Прышпілены да вашага профілю",
+    "postUnpinned": "Адлучаны ад вашага профілю",
+    "pinFailed": "Немагчыма зафіксаваць або адключыць гэты пост"
   },
   "filters": {
     "sort": "Сартаваць",

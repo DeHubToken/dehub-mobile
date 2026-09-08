@@ -829,7 +829,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "סימנייה",
+    "removeBookmark": "הסר סימניה",
+    "pinPost": "הצמד לפרופיל שלך",
+    "unpinPost": "הסרת הצמדה מהפרופיל שלך",
+    "postPinned": "מוצמדים לפרופיל שלך",
+    "postUnpinned": "הסיכה בוטלה מהפרופיל שלך",
+    "pinFailed": "לא ניתן היה להצמיד או לבטל את הצמדת הפוסט הזה"
   },
   "filters": {
     "sort": "מיון",

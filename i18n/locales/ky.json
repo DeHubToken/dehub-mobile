@@ -617,7 +617,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Бетбелги",
+    "removeBookmark": "Бетбелгини алып салуу",
+    "pinPost": "Профилиңизге пин-код",
+    "unpinPost": "Профилиңизден өчүрүү",
+    "postPinned": "Профилиңизге чапталган",
+    "postUnpinned": "Профилиңизден өчүрүлгөн",
+    "pinFailed": "Бул постту киргизүүгө же алып салууга болбоду"
   },
   "filters": {
     "sort": "Иреттөө",

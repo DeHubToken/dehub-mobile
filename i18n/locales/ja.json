@@ -617,7 +617,14 @@
     "blockUser": "{{name}} をブロック",
     "blockDesc": "コンテンツを非表示にし、やり取りを制限します",
     "unblockUser": "{{name}} のブロックを解除",
-    "unblockDesc": "このユーザーをフィードに再び表示します"
+    "unblockDesc": "このユーザーをフィードに再び表示します",
+    "bookmark": "ブックマーク",
+    "removeBookmark": "ブックマークを削除",
+    "pinPost": "プロフィールにピン留め",
+    "unpinPost": "プロフィールからピンを外す",
+    "postPinned": "プロフィールにピン留めされました",
+    "postUnpinned": "プロフィールからピンを外しました",
+    "pinFailed": "この投稿をピン留めまたはピン留め解除できませんでした"
   },
   "filters": {
     "sort": "並べ替え",

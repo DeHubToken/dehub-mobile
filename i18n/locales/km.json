@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "ចំណាំ",
+    "removeBookmark": "យក ចំណាំ ចេញ",
+    "pinPost": "ខ្ទាស់ទៅប្រូហ្វាលរបស់អ្នក",
+    "unpinPost": "ដកខ្ទាស់ពីប្រូហ្វាលរបស់អ្នក",
+    "postPinned": "បានខ្ទាស់ចូលប្រូហ្វាលរបស់អ្នក",
+    "postUnpinned": "បានដកហូតពីប្រូហ្វាលរបស់អ្នក",
+    "pinFailed": "មិន អាច ខ្ទាស់ ឬ ដក ខ្ទាស់ ប្រកាស នេះ បាន ទេ"
   },
   "filters": {
     "sort": "តម្រៀប",

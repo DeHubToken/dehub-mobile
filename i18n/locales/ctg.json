@@ -1448,7 +1448,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "বুকমার্ক",
+    "removeBookmark": "বুকমার্ক সরান",
+    "pinPost": "তুমার প্রোফাইলর লগে পিন কর",
+    "unpinPost": "তুমার প্রোফাইলর থেইন্য আনপিন কর",
+    "postPinned": "তুমার প্রোফাইলর লগে পিন অইছে",
+    "postUnpinned": "তুমার প্রোফাইলর থেইন্য আনপিন অইগেছে",
+    "pinFailed": "এই পোস্ট পিন বা আনপিন করতা পারতা নাই"
   },
   "filters": {
     "sort": "সাজাও",

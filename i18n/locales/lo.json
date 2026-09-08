@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "ເຄື່ອງໝາຍປຶ້ມ",
+    "removeBookmark": "ລຶບເຄື່ອງໝາຍປຶ້ມ",
+    "pinPost": "ເຊື່ອມຕໍ່ໂປຣໄຟລ໌ຂອງທ່ານ",
+    "unpinPost": "Unpin ຈາກໂປຣໄຟລ໌ຂອງທ່ານ",
+    "postPinned": "ເອົາໄປໃສ່ໂປຣໄຟລ໌ຂອງທ່ານ",
+    "postUnpinned": "Unpinned ຈາກໂປຣໄຟລ໌ຂອງທ່ານ",
+    "pinFailed": "ບໍ່ສາມາດໃສ່ລະຫັດ PIN ຫຼື ຖອນລະຫັດ PIN ຂອງໂພສນີ້ໄດ້"
   },
   "filters": {
     "sort": "ຈັດລຽງ",

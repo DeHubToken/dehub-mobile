@@ -829,7 +829,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "বুকমার্ক",
+    "removeBookmark": "বুকমার্ক সরান",
+    "pinPost": "আপনার প্রোফাইলে পিন করুন",
+    "unpinPost": "আপনার প্রোফাইল থেকে আনপিন করুন",
+    "postPinned": "আপনার প্রোফাইলে পিন করা হয়েছে",
+    "postUnpinned": "আপনার প্রোফাইল থেকে আনপিন করা হয়েছে",
+    "pinFailed": "এই পোস্টটি পিন বা আনপিন করা যায়নি"
   },
   "filters": {
     "sort": "সাজান",

@@ -829,7 +829,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "वाचनखूण",
+    "removeBookmark": "वाचनखूण काढूण टाका",
+    "pinPost": "तुमच्या प्रोफाइलवर पिन करा",
+    "unpinPost": "तुमच्या प्रोफाइलमधून पिन अनपिन करा",
+    "postPinned": "तुमच्या प्रोफाइलवर पिन केले",
+    "postUnpinned": "तुमच्या प्रोफाइलमधून अनपिन केलेले",
+    "pinFailed": "या पोस्टला पिन करणे किंवा अनपिन करणे शक्य नाही"
   },
   "filters": {
     "sort": "क्रमवारी",

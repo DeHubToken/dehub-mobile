@@ -624,7 +624,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "ଚିହ୍ନିତ ସ୍ଥାନ",
+    "removeBookmark": "ଚିହ୍ନିତ ସ୍ଥାନକୁ ଅପସାରଣ କରନ୍ତୁ",
+    "pinPost": "ଆପଣଙ୍କର ପ୍ରୋଫାଇଲକୁ ପିନ୍ କରନ୍ତୁ",
+    "unpinPost": "ଆପଣଙ୍କର ପ୍ରୋଫାଇଲରୁ ଅପସାରଣ କରନ୍ତୁ",
+    "postPinned": "ଆପଣଙ୍କର ପ୍ରୋଫାଇଲକୁ ପିନ କରାଯାଇଛି",
+    "postUnpinned": "ଆପଣଙ୍କର ପ୍ରୋଫାଇଲରୁ ଅପରିବର୍ତ୍ତିତ",
+    "pinFailed": "ଏହି ପୋଷ୍ଟକୁ ବିନ୍ଯାସ କିମ୍ବା ବିନ୍ଯାସ କରିପାରିଲା ନାହିଁ"
   },
   "filters": {
     "sort": "କ୍ରମ",

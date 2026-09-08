@@ -616,7 +616,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Хатбарак",
+    "removeBookmark": "Нест кардани хатбарак",
+    "pinPost": "Pin sa iyong profile",
+    "unpinPost": "I-unpin mula sa iyong profile",
+    "postPinned": "Ipinapakita sa iyong profile",
+    "postUnpinned": "Hindi nagpinapakita mula sa iyong profile",
+    "pinFailed": "Наметавонам ин постро PIN кунам ё ғайри фаъол созам"
   },
   "filters": {
     "sort": "Мураттаб",

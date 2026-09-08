@@ -624,7 +624,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "په نښه کول",
+    "removeBookmark": "د فېسبوک نښه لرې کړئ",
+    "pinPost": "خپل انسټاګرام پروفایل ته ننوتل",
+    "unpinPost": "ستاسو د انسټاګرام پروفایل څخه غیر فعال کړئ",
+    "postPinned": "خپل پروفایل ته ننوتل",
+    "postUnpinned": "ستاسو د انسټاګرام پروفایل څخه غیر فعال کړئ",
+    "pinFailed": "تاسو نشئ کولی دا پوسټ پین یا غیر فعال کړئ"
   },
   "filters": {
     "sort": "ترتیب",

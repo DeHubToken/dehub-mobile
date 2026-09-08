@@ -36,6 +36,7 @@ import { toastSuccess, toastError } from "../../libs";
 import { WEBSITE_LINK } from "../../config";
 import { markPostDeleted } from "../../libs/deleted-posts-store";
 import { useMintExistingPost } from "../../hooks/useMintExistingPost";
+import { useIsPostPinned, useTogglePin } from "../../hooks/usePinnedPosts";
 import { defaultChainId } from "../../config/constants";
 
 export interface PostOptionsMenuProps {
@@ -130,11 +131,14 @@ export interface PostOptionsMenuProps {
   /** Whether the viewer has bookmarked this post. Only read when `onToggleSave` is set. */
   isSaved?: boolean;
   /**
-   * Toggle the bookmark from inside this menu. Surfaces with no bookmark button
-   * of their own pass this — the shorts viewer keeps it here, as web does —
-   * while the feed card leaves it out and keeps bookmark on its action bar.
+   * Toggle the bookmark from inside this menu. Every host passes this now: a
+   * card carrying the action on its action bar as well is the point — one
+   * icon row for the thumb, one labelled row for anyone who opens the menu
+   * looking for it.
    */
   onToggleSave?: () => void;
+  /** Open the post's info page. Hosts that can navigate pass this. */
+  onInfoPress?: () => void;
   /** Hide the report content option (e.g., for livestreams) */
   hideReportContent?: boolean;
   /** Hide the edit option (e.g., for livestreams) */
@@ -210,11 +214,18 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onMuteChange,
   isSaved = false,
   onToggleSave,
+  onInfoPress,
   hideReportContent = false,  hideEdit = false,}) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { t } = useTranslation();
   const { mint: mintExisting, isMinting } = useMintExistingPost();
+
+  // Pin state is shared across every card on screen, so this row opens on the
+  // right label rather than assuming the post is unpinned.
+  const numericTokenId = typeof tokenId === "string" ? parseInt(tokenId, 10) : tokenId;
+  const isPinned = useIsPostPinned(numericTokenId);
+  const togglePinMutation = useTogglePin();
 
   // Sub-modal states
   const [showEdit, setShowEdit] = useState(false);
@@ -447,13 +458,44 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
         {/* Options list */}
         <View className="pb-6">
-          {/* Bookmark — first row, as in the web drawer. Only for hosts that
-              don't carry a bookmark button of their own. */}
+          {/* Bookmark / pin / post info — first, as in the web drawer. A host
+              that also shows these on its action bar still passes them: the
+              menu is where people look for an action by name. */}
           {!!onToggleSave && (
             <OptionRow
               icon={isSaved ? "bookmark" : "bookmark-outline"}
-              label={isSaved ? "Remove bookmark" : "Bookmark"}
+              label={
+                isSaved
+                  ? t("postOptions.removeBookmark", "Remove bookmark")
+                  : t("postOptions.bookmark", "Bookmark")
+              }
               onPress={() => { onToggleSave(); onClose(); }}
+            />
+          )}
+
+          {/* Pin — the creator's own posts only, and only once we have a token
+              id to send. It lands on their profile's Pinned tab. */}
+          {isOwner && numericTokenId != null && !Number.isNaN(numericTokenId) && (
+            <OptionRow
+              icon={isPinned ? "pin" : "pin-outline"}
+              label={
+                isPinned
+                  ? t("postOptions.unpinPost", "Unpin from your profile")
+                  : t("postOptions.pinPost", "Pin to your profile")
+              }
+              loading={togglePinMutation.isPending}
+              onPress={() => {
+                if (togglePinMutation.isPending) return;
+                togglePinMutation.mutate(numericTokenId);
+              }}
+            />
+          )}
+
+          {!!onInfoPress && (
+            <OptionRow
+              icon="information-circle-outline"
+              label={t("postInfo.title", "Post info")}
+              onPress={() => { onClose(); onInfoPress(); }}
             />
           )}
 

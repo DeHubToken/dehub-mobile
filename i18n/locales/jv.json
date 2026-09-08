@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Tetenger",
+    "removeBookmark": "Busak tetenger",
+    "pinPost": "Sematke menyang profilmu",
+    "unpinPost": "Copot sematan saka profilmu",
+    "postPinned": "Disematke menyang profilmu",
+    "postUnpinned": "Dicopot sematane saka profilmu",
+    "pinFailed": "Ora bisa nyemak utawa mbusak sematan kiriman iki"
   },
   "filters": {
     "sort": "Urutake",

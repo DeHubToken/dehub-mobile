@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Pasižymėti",
+    "removeBookmark": "Pašalinti žymę",
+    "pinPost": "Prisegti prie profilio",
+    "unpinPost": "Atsekti nuo savo profilio",
+    "postPinned": "Prisegta prie jūsų profilio",
+    "postUnpinned": "Atsegta nuo jūsų profilio",
+    "pinFailed": "Nepavyko prisegti arba atsegti šio įrašo"
   },
   "filters": {
     "sort": "Rūšiuoti",

@@ -1036,7 +1036,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Bookmark",
+    "removeBookmark": "Alisin ang bookmark",
+    "pinPost": "I - pin sa iyong profile",
+    "unpinPost": "I - unpin mula sa iyong profile",
+    "postPinned": "Na - pin sa iyong profile",
+    "postUnpinned": "Na - unpin mula sa iyong profile",
+    "pinFailed": "Hindi ma - pin o ma - unpin ang post na ito"
   },
   "filters": {
     "sort": "Sort",

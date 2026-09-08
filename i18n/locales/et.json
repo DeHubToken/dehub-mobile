@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Järjehoidja",
+    "removeBookmark": "Eemalda järjehoidja",
+    "pinPost": "Kinnita oma profiilile",
+    "unpinPost": "Tühista oma profiili kinnitamine",
+    "postPinned": "Kinnitatud sinu profiilile",
+    "postUnpinned": "Sinu profiili kinnitamine on tühistatud",
+    "pinFailed": "Seda postitust ei saanud kinnitada või eemaldada"
   },
   "filters": {
     "sort": "Sorteeri",

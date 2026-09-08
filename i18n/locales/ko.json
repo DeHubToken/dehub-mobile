@@ -829,7 +829,14 @@
     "blockUser": "{{name}} 차단",
     "blockDesc": "콘텐츠를 숨기고 상호작용을 제한합니다",
     "unblockUser": "{{name}} 차단 해제",
-    "unblockDesc": "이 사용자가 다시 피드에 표시되도록 허용합니다"
+    "unblockDesc": "이 사용자가 다시 피드에 표시되도록 허용합니다",
+    "bookmark": "북마크",
+    "removeBookmark": "북마크 삭제",
+    "pinPost": "프로필에 고정하기",
+    "unpinPost": "프로필에서 고정 해제하기",
+    "postPinned": "프로필에 고정됨",
+    "postUnpinned": "프로필에서 고정 해제됨",
+    "pinFailed": "이 포스트를 고정하거나 고정 해제할 수 없습니다."
   },
   "filters": {
     "sort": "정렬",

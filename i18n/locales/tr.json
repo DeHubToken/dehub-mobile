@@ -625,7 +625,14 @@
     "blockDesc": "İçeriğini gizle ve etkileşimleri kısıtla",
     "unblockUser": "{{name}} Engeli Kaldır",
     "unblockDesc": "Bu kullanıcının akışlarınızda görünmesine izin ver",
-    "translateImageDesc": "Extract and translate text from image"
+    "translateImageDesc": "Extract and translate text from image",
+    "bookmark": "Yer imi",
+    "removeBookmark": "Yer işaretini kaldır",
+    "pinPost": "Profiline sabitle",
+    "unpinPost": "Profilinden sabitlemeyi kaldır",
+    "postPinned": "Profiline sabitlendi",
+    "postUnpinned": "Profilinden sabitleme kaldırıldı",
+    "pinFailed": "Bu gönderi sabitlenemedi veya sabitlemesi kaldırılamadı"
   },
   "filters": {
     "sort": "Sırala",

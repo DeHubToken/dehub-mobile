@@ -616,7 +616,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "بېكەت بەلگىسى",
+    "removeBookmark": "بەت بەلگىسىنى چىقىرىۋېتىش",
+    "pinPost": "پروفىللىڭىزغا كىرگۈزۈڭ",
+    "unpinPost": "پروفىللىڭىزدىن چىقىرىش پروگراممىسى",
+    "postPinned": "پروفىللىڭىزغا كىرگۈزۈلدى",
+    "postUnpinned": "پروفىللىڭىزدىن چىقىرىلمىغان",
+    "pinFailed": "بۇ يازمىنى كىرگۈزگىلى ياكى چىقىرىۋەتكىلى بولمىدى"
   },
   "filters": {
     "sort": "تەرتىپلەش",

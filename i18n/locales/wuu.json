@@ -625,7 +625,14 @@
     "blockUser": "屏蔽 {{name}}",
     "blockDesc": "隐藏其内容并限制互动",
     "unblockUser": "解除屏蔽 {{name}}",
-    "unblockDesc": "允许该用户重新出现在你的信息流中"
+    "unblockDesc": "允许该用户重新出现在你的信息流中",
+    "bookmark": "书签",
+    "removeBookmark": "取消书签",
+    "pinPost": "钉到你的个人资料",
+    "unpinPost": "从你的个人资料取消钉扎",
+    "postPinned": "已钉到你的个人资料",
+    "postUnpinned": "已从你的个人资料取消钉扎",
+    "pinFailed": "无法钉扎或取消钉扎此帖子"
   },
   "filters": {
     "sort": "排序",

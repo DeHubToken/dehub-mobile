@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Knjižna oznaka",
+    "removeBookmark": "Ukloni knjižnu oznaku",
+    "pinPost": "Prikvači na svoj profil",
+    "unpinPost": "Otkvači sa svog profila",
+    "postPinned": "Prikvačeno na tvoj profil",
+    "postUnpinned": "Otkvačeno s tvog profila",
+    "pinFailed": "Nije moguće prikvačiti ili otkvačiti ovu objavu"
   },
   "filters": {
     "sort": "Sortiraj",

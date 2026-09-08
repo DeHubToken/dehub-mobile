@@ -829,7 +829,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Отметка",
+    "removeBookmark": "Премахване на отметка",
+    "pinPost": "Закачете към профила си",
+    "unpinPost": "Откачване от профила ви",
+    "postPinned": "Закачено към профила ви",
+    "postUnpinned": "Откачено от профила ви",
+    "pinFailed": "Тази публикация не може да бъде закачена или откачена"
   },
   "filters": {
     "sort": "Сортирай",

@@ -830,7 +830,14 @@
     "blockUser": "Blocca {{name}}",
     "blockDesc": "Nasconde i suoi contenuti e limita le interazioni",
     "unblockUser": "Sblocca {{name}}",
-    "unblockDesc": "Permetti a questo utente di ricomparire nei tuoi feed"
+    "unblockDesc": "Permetti a questo utente di ricomparire nei tuoi feed",
+    "bookmark": "Segnalibro",
+    "removeBookmark": "Rimuovi segnalibro",
+    "pinPost": "Fissa sul tuo profilo",
+    "unpinPost": "Rimuovi dal tuo profilo",
+    "postPinned": "Fissato sul tuo profilo",
+    "postUnpinned": "Rimosso dal tuo profilo",
+    "pinFailed": "Impossibile fissare o rimuovere questo post"
   },
   "filters": {
     "sort": "Ordina",

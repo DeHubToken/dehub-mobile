@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Alamisho",
+    "removeBookmark": "Ondoa alamisho",
+    "pinPost": "Piga siri kwenye wasifu wako",
+    "unpinPost": "Ondoa kwenye wasifu wako",
+    "postPinned": "Imewekwa kwenye wasifu wako",
+    "postUnpinned": "Imeondolewa kwenye wasifu wako",
+    "pinFailed": "Haikuweza kuweka PIN au kuiondoa kwenye chapisho hili"
   },
   "filters": {
     "sort": "Panga",

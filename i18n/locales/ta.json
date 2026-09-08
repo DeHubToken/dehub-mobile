@@ -828,7 +828,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "புக்மார்க்",
+    "removeBookmark": "புக்மார்க்கை அகற்றவும்",
+    "pinPost": "உங்கள் சுயவிவரத்தில் பின் செய்யவும்",
+    "unpinPost": "உங்கள் சுயவிவரத்திலிருந்து உள்நுழையவும்",
+    "postPinned": "உங்கள் சுயவிவரத்தில் பின் செய்யப்பட்டது",
+    "postUnpinned": "உங்கள் சுயவிவரத்திலிருந்து உள்நுழையவில்லை",
+    "pinFailed": "இந்த இடுகையை பின் செய்யவோ அல்லது நீக்கவோ முடியவில்லை"
   },
   "filters": {
     "sort": "வரிசைப்படுத்து",

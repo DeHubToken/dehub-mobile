@@ -624,7 +624,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Хавчуурга",
+    "removeBookmark": "Хавчуургыг устга",
+    "pinPost": "Профайлдаа зүү",
+    "unpinPost": "Профайлаасаа хасах",
+    "postPinned": "Таны профайл руу зүүсэн",
+    "postUnpinned": "Профайлаасаа хасагдахгүй",
+    "pinFailed": "Энэ нийтлэлийг зүүж эсвэл задалж чадсангүй"
   },
   "filters": {
     "sort": "Эрэмбэлэх",

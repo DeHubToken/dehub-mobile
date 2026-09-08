@@ -829,7 +829,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "ਬੁੱਕਮਾਰਕ",
+    "removeBookmark": "ਬੁੱਕਮਾਰਕ ਹਟਾਓ",
+    "pinPost": "ਆਪਣੀ ਪ੍ਰੋਫਾਈਲ ਨੂੰ ਪਿੰਨ ਕਰੋ",
+    "unpinPost": "ਆਪਣੀ ਪ੍ਰੋਫਾਈਲ ਤੋਂ ਅਨਪਿਨ ਕਰੋ",
+    "postPinned": "ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ 'ਤੇ ਪਿੰਨ ਕੀਤਾ ਗਿਆ",
+    "postUnpinned": "ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਤੋਂ ਅਨਪਿਨਡ",
+    "pinFailed": "ਇਸ ਪੋਸਟ ਨੂੰ ਪਿੰਨ ਜਾਂ ਅਨਪਿਨ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ"
   },
   "filters": {
     "sort": "ਕ੍ਰਮ",

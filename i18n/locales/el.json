@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Σελιδοδείκτης",
+    "removeBookmark": "Αφαίρεση σελιδοδείκτη",
+    "pinPost": "Καρφιτσώστε στο προφίλ σας",
+    "unpinPost": "Ξεκαρφίτσωμα από το προφίλ σας",
+    "postPinned": "Καρφιτσωμένο στο προφίλ σας",
+    "postUnpinned": "Αποκαρφιτσωμένο από το προφίλ σας",
+    "pinFailed": "Δεν ήταν δυνατό το καρφίτσωμα ή το ξεκαρφίτσωμα"
   },
   "filters": {
     "sort": "Ταξινόμηση",

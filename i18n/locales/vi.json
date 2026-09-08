@@ -910,7 +910,14 @@
     "blockUser": "Chặn {{name}}",
     "blockDesc": "Ẩn nội dung của họ và hạn chế tương tác",
     "unblockUser": "Bỏ chặn {{name}}",
-    "unblockDesc": "Cho phép người này xuất hiện lại trên bảng tin của bạn"
+    "unblockDesc": "Cho phép người này xuất hiện lại trên bảng tin của bạn",
+    "bookmark": "Dấu trang",
+    "removeBookmark": "Xóa dấu trang",
+    "pinPost": "Ghim vào hồ sơ của bạn",
+    "unpinPost": "Bỏ ghim khỏi hồ sơ của bạn",
+    "postPinned": "Đã ghim vào hồ sơ của bạn",
+    "postUnpinned": "Đã bỏ ghim khỏi hồ sơ của bạn",
+    "pinFailed": "Không thể ghim hoặc bỏ ghim bài đăng này"
   },
   "filters": {
     "sort": "Sắp xếp",

@@ -978,7 +978,14 @@
     "blockUser": "Bloquer {{name}}",
     "blockDesc": "Masque son contenu et limite les interactions",
     "unblockUser": "Débloquer {{name}}",
-    "unblockDesc": "Autoriser cet utilisateur à réapparaître dans vos fils"
+    "unblockDesc": "Autoriser cet utilisateur à réapparaître dans vos fils",
+    "bookmark": "Signet",
+    "removeBookmark": "Supprimer le signet",
+    "pinPost": "Épingler sur votre profil",
+    "unpinPost": "Désépingler de votre profil",
+    "postPinned": "Épinglé à votre profil",
+    "postUnpinned": "Désépinglé de votre profil",
+    "pinFailed": "Impossible d'épingler ou de désépingler cette publication"
   },
   "filters": {
     "sort": "Trier",

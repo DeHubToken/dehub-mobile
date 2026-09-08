@@ -625,7 +625,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Bookmark",
+    "removeBookmark": "Ka saar calaamadda buugaagta",
+    "pinPost": "Pin si aad profile",
+    "unpinPost": "Ka saar astaantaada",
+    "postPinned": "Ku dheji astaantaada",
+    "postUnpinned": "La 'aan ka timid astaantaada",
+    "pinFailed": "Can 't pin or unpin this post"
   },
   "filters": {
     "sort": "Kala sooc",

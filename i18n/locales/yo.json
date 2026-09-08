@@ -624,7 +624,14 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "bookmark": "Àmì-ìwé",
+    "removeBookmark": "Yí àmì-ìwé kúrò",
+    "pinPost": "Pin si profaili rẹ",
+    "unpinPost": "Yọ kuro ninu profaili rẹ",
+    "postPinned": "Pọn si profaili rẹ",
+    "postUnpinned": "Unpinned lati rẹ profaili",
+    "pinFailed": "Ko le pin tabi yọ ifiweranṣẹ yii kuro."
   },
   "filters": {
     "sort": "Tò",
