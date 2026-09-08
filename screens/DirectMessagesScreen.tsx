@@ -36,6 +36,7 @@ import { useDmContacts, dmActions } from "../store/dm.store";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useDMContext } from "../context/DMContext";
 import AppTopBar from "../components/AppTopBar";
+import { FIELD_TEXT } from "../theme/inputs";
 
 const DirectMessagesInner: React.FC = () => {
   const { t } = useTranslation();
@@ -360,8 +361,9 @@ const DirectMessagesInner: React.FC = () => {
               onChangeText={setQuery}
               placeholder="Search conversations..."
               placeholderTextColor="#8B8D90"
-              className="flex-1 text-white text-sm py-0"
+              className="flex-1 text-white text-sm"
               returnKeyType="search"
+              style={FIELD_TEXT}
             />
             <TouchableOpacity
               onPress={openNewDM}
