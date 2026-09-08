@@ -2774,7 +2774,11 @@
     "homeGift": "د بل چا پوسټ باندې وکاروئ — د اختيارونو پاڼه، بیا بوسټ.",
     "homeComment": "د بل چا په تار کې، د خپل نظر په اړه وکاروئ.",
     "homeStage": "د هغه سټیج څخه وکاروئ چې تاسو یې کوربه توب کوئ.",
-    "homePage": "دلته، د دې سکرین په سر کې وکاروئ."
+    "homePage": "دلته، د دې سکرین په سر کې وکاروئ.",
+    "actsGift": "A gift — it lands on somebody else's post. Tap to pick one.",
+    "actsComment": "Acts on your comment in somebody else's thread. Tap to pick one.",
+    "noPostsFound": "No posts found.",
+    "anchorNeedsTheirThread": "An Anchor holds your comment at the top of somebody else's thread — on your own post a pin is already free."
   },
   "follow": {
     "followers": "فالوورز",
