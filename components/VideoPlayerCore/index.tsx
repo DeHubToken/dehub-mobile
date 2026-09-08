@@ -41,6 +41,7 @@ import {
 } from '../../libs/audioSession';
 import { Ionicons } from '@expo/vector-icons';
 import TopControls from './TopControls';
+import PictureInPictureButton from '../common/PictureInPictureButton';
 import CenterControls from './CenterControls';
 import ProgressBar from './ProgressBar';
 import SeekOverlay from './SeekOverlay';
@@ -722,7 +723,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
           // session above: wanting the video to follow you out of the app has
           // nothing to do with how large it currently is on screen.
           allowsPictureInPicture={true}
-          startsPictureInPictureAutomatically={true}
+          startsPictureInPictureAutomatically={isPlaying}
           onPictureInPictureStart={handlePiPStart}
           onPictureInPictureStop={handlePiPStop}
         />
@@ -788,7 +789,9 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
         >
           {/* Top Controls — suppressed when an external header already provides them */}
           {hideTopControls ? (
-            <View />
+            <View style={{ alignItems: 'flex-end' }}>
+              <PictureInPictureButton videoRef={viewRef} />
+            </View>
           ) : (
             <TopControls
               onClose={handleClosePress}

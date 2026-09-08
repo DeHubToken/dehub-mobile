@@ -5,13 +5,13 @@ import {
   Image,
   Pressable,
   StyleSheet,
-  AppState,
-  AppStateStatus,
   TouchableOpacity,
   ActivityIndicator,
   Dimensions,
 } from "react-native";
 import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
+import PictureInPictureButton from "../common/PictureInPictureButton";
+import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../../libs/audioSession";
 import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from "../../libs/video-preferences";
 import SmartImage from "../common/SmartImage";
@@ -95,6 +95,7 @@ interface FeedVideoPlayerProps {
   startOnMount?: boolean;
   /** The person tapped play here, so the wrapper must keep this card mounted. */
   onUserStarted?: () => void;
+  onPictureInPictureChange?: (active: boolean) => void;
 }
 
 // Grace period before a scrolled-to video gets a media source at all, so a
@@ -140,6 +141,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   hideControls = false,
   startOnMount = false,
   onUserStarted,
+  onPictureInPictureChange,
 }) => {
   const navigation = useNavigation<any>();
   const [isPlaying, setIsPlaying] = useState(false);
@@ -206,6 +208,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // released — with FlatList's render window this is the difference between 1
   // and 10+ live players and was causing OutOfMemoryError on Android.
   const player = useVideoPlayer(canPlay && isVisible && sourceRequested ? videoUrl : null, (p) => {
+    p.staysActiveInBackground = true;
+    p.showNowPlayingNotification = true;
     p.loop = true;
     p.muted = getCachedMuted();
     p.timeUpdateEventInterval = 0.5;
@@ -525,14 +529,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   }, [isAutoplayActive, stopPlayback, endStarting]);
 
   useEffect(() => {
-    const h = (state: AppStateStatus) => {
-      if (state !== "active" && isPlayingRef.current) {
-        stopPlayback();
-      }
-    };
-    const sub = AppState.addEventListener("change", h);
-    return () => sub.remove();
-  }, [stopPlayback]);
+    if (!isPlaying) return;
+    configureForBackgroundPlayback().catch(() => {});
+    return () => { releaseBackgroundPlayback().catch(() => {}); };
+  }, [isPlaying]);
 
   useEffect(() => {
     return () => { if (autoplayTimerRef.current) clearTimeout(autoplayTimerRef.current); stopPlayback(); };
@@ -744,6 +744,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           player={player}
           contentFit="contain"
           nativeControls={false}
+          allowsPictureInPicture
+          onPictureInPictureStart={() => onPictureInPictureChange?.(true)}
+          onPictureInPictureStop={() => onPictureInPictureChange?.(false)}
+          startsPictureInPictureAutomatically={isPlaying}
           // Android defaults to a SurfaceView, which renders in its own window
           // layer and can punch through / appear on top of other feed cards
           // while scrolling and recycling. A TextureView renders inside the
@@ -837,6 +841,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 <Icon name={isMuted ? "VolumeX" : "Volume2"} size={16} color="#fff" />
               </Pressable>
               
+              <PictureInPictureButton videoRef={videoViewRef} />
               <Pressable onPress={handleFullscreen} style={styles.glassButton}>
                 <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
                 <View style={styles.glassOverlay} />
@@ -1198,12 +1203,13 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   const { autoplay: autoplayEnabled } = useAppPrefs();
   const { liteMode } = useDataSaver();
   const [wanted, setWanted] = useState(false);
+  const [inPictureInPicture, setInPictureInPicture] = useState(false);
 
   const { isVisible, isAutoplayActive = true, isContentGated, transcodingStatus, videoUrl, onPress } = props;
   const needsChrome =
     isContentGated || transcodingStatus === "pending" || transcodingStatus === "on" || transcodingStatus === "failed";
   const autoplayHere = isVisible && isAutoplayActive && autoplayEnabled && !liteMode;
-  const mountPlayer = isVisible && (wanted || autoplayHere || needsChrome);
+  const mountPlayer = inPictureInPicture || (isVisible && (wanted || autoplayHere || needsChrome));
 
   // Off screen, the tap is forgotten: coming back autoplays or shows the
   // poster, the same as any other card.
@@ -1222,7 +1228,14 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   const markWanted = useCallback(() => setWanted(true), []);
 
   return mountPlayer ? (
-    <FeedVideoPlayerActive {...props} startOnMount={wanted && !autoplayHere} onUserStarted={markWanted} />
+    <FeedVideoPlayerActive
+      {...props}
+      isVisible={isVisible || inPictureInPicture}
+      isAutoplayActive={isAutoplayActive || inPictureInPicture}
+      onPictureInPictureChange={setInPictureInPicture}
+      startOnMount={wanted && !autoplayHere}
+      onUserStarted={markWanted}
+    />
   ) : (
     <FeedVideoPoster
       thumbnail={props.thumbnail}

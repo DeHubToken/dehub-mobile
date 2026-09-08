@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { VideoView, useVideoPlayer } from "expo-video";
+import PictureInPictureButton from "../components/common/PictureInPictureButton";
 import { FULLSCREEN_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import {
   configureForBackgroundPlayback,
@@ -90,6 +91,7 @@ const FullscreenVideoScreen = () => {
   const opacity = useSharedValue(1);
   const isDismissing = useRef(false);
   const isInPiPRef = useRef(false);
+  const videoViewRef = useRef<VideoView>(null);
 
   // Prevent screen close during Picture-in-Picture
   useEffect(() => {
@@ -320,6 +322,7 @@ const FullscreenVideoScreen = () => {
           <Pressable onPress={handleScreenTap} style={styles.videoWrap}>
             {player && (
               <VideoView
+                ref={videoViewRef}
                 player={player}
                 contentFit="contain"
                 nativeControls={false}
@@ -329,7 +332,7 @@ const FullscreenVideoScreen = () => {
                 // only permits PiP, it never enters it — which is why PiP has
                 // been technically enabled here and invisible in practice.
                 // Android 12+ and iOS; a no-op everywhere else.
-                startsPictureInPictureAutomatically={true}
+                startsPictureInPictureAutomatically={isPlaying}
                 onPictureInPictureStart={() => {
                   isInPiPRef.current = true;
                 }}
@@ -374,6 +377,7 @@ const FullscreenVideoScreen = () => {
             <View style={{ flex: 1 }} />
 
             <View style={styles.topButtonGroup}>
+              <PictureInPictureButton videoRef={videoViewRef} />
               <Pressable
                 onPress={handleToggleMute}
                 style={styles.glassButton}
