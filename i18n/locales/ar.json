@@ -244,6 +244,7 @@
     "exportChats": "تصدير المحادثات",
     "notConnected": "غير متصل",
     "manage": "إدارة →",
+    "dhbBalanceIncludesStaked": "المحفظة و DHB المربوطة معًا",
     "fractionsOwn": "الحصص التي تملكها",
     "noFractions": "لا تملك أي حصص بعد",
     "usernamesOwn": "أسماء المستخدمين التي تملكها",

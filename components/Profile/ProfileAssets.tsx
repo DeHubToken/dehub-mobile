@@ -14,6 +14,10 @@ import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { toastInfo } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
+import {
+  dhbBreakdown as computeDhbBreakdown,
+  dhbPosition as computeDhbPosition,
+} from "../../libs/dhb-position";
 import TransferModal from "../Transfer/TransferModal";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 
@@ -54,46 +58,17 @@ const ProfileAssets = () => {
   const showSkeleton = isInitialLoad;
 
   /**
-   * DHB is a position, not a chain balance.
-   *
-   * Every other row here is what you hold on the chain you have selected, and
-   * for DHB that is close to meaningless: it lives on Base and BNB at once,
-   * and most of it is staked, so a wallet holding 11.1M DHB reported 0. The
-   * DHB row is the whole position instead — held plus staked, both chains —
-   * and the (i) above breaks it down.
-   *
-   * `ownBadgeBalance` is the server's version of exactly this sum and is the
-   * number the leaderboard and the badge ladder use, so preferring it keeps
-   * all three agreeing. Note it is `ownBadgeBalance` and never `badgeBalance`:
-   * the latter is the *rendered* badge number and a delegation can hold it
-   * above what the wallet owns, which on a wallet screen would be someone
-   * else's tokens shown as yours. Falling back to `balanceData` — the raw
-   * per-chain rows — gives the same figure without that risk.
+   * DHB is a position, not a chain balance — held plus staked, across Base and
+   * BNB at once. The rules live in libs/dhb-position.ts so the Settings row
+   * cannot drift from this one; the (i) above breaks the sum down per chain.
    */
-  const dhbBreakdown = useMemo(() => {
-    const BADGE_CHAINS: Record<number, string> = {
-      [ChainId.BSC_MAINNET]: "BNB Chain",
-      [ChainId.BASE_MAINNET]: "Base",
-    };
-    const rows = (user?.balanceData || [])
-      .filter((entry) => BADGE_CHAINS[entry.chainId] !== undefined)
-      .map((entry) => ({
-        chain: BADGE_CHAINS[entry.chainId],
-        wallet: Number(entry.walletBalance) || 0,
-        staked: Number(entry.staked) || 0,
-      }))
-      .filter((row) => row.wallet > 0 || row.staked > 0);
-    const summed = rows.reduce((acc, row) => acc + row.wallet + row.staked, 0);
-    return { rows, summed };
-  }, [user?.balanceData]);
+  const dhbBreakdown = useMemo(() => computeDhbBreakdown(user), [user]);
 
-  const dhbPosition = useMemo(() => {
-    const own = user?.ownBadgeBalance;
-    if (typeof own === "number" && own > 0) return own;
-    if (dhbBreakdown.summed > 0) return dhbBreakdown.summed;
+  const dhbPosition = useMemo(
     // Nothing from the server yet — the liquid balance is all we can stand behind.
-    return Number(walletBalances["DHB"] ?? 0);
-  }, [user?.ownBadgeBalance, dhbBreakdown.summed, walletBalances]);
+    () => computeDhbPosition(user, walletBalances["DHB"] ?? 0),
+    [user, walletBalances],
+  );
 
   const assets = useMemo(() => {
     const isBase = chainId === 8453; // ChainId.BASE_MAINNET

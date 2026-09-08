@@ -244,6 +244,7 @@
     "exportChats": "ສົ່ງອອກແຊັດ",
     "notConnected": "ບໍ່ໄດ້ເຊື່ອມຕໍ່",
     "manage": "ຈັດການ →",
+    "dhbBalanceIncludesStaked": "ກະເປົາເງິນແລະ staked DHB ປະສົມປະສານ",
     "fractionsOwn": "ເສດສ່ວນທີ່ທ່ານມີ",
     "noFractions": "ທ່ານຍັງບໍ່ມີເສດສ່ວນ",
     "usernamesOwn": "ຊື່ຜູ້ໃຊ້ທີ່ທ່ານມີ",
