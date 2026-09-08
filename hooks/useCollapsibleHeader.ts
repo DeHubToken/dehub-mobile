@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   useSharedValue,
   useAnimatedStyle,
@@ -23,10 +23,23 @@ const JUMP_GUARD = 300;
 // header would reverse from a partial offset — the "header flapping" jitter.
 const COOLDOWN_MS = ANIM_DURATION;
 
-export const useCollapsibleHeader = () => {
+/**
+ * @param collapseHeight How far the header is allowed to slide, in points.
+ *   Defaults to its whole measured height. Pass the height of the chrome at its
+ *   top — the ScreenHeader — to take only that away and leave the rest of the
+ *   header pinned to the top edge. SearchScreen does: its header IS the search
+ *   box, and part-way down a list of results is exactly when someone reaches
+ *   back for it. Clamped to the measured height, so an over-large value just
+ *   gives the default behaviour back.
+ */
+export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: number } = {}) => {
   const translateY = useSharedValue(0);
   const headerHeightSV = useSharedValue(0);
   const visibleSV = useSharedValue(1);
+  // Mirrored into a shared value for the worklet path and a ref for the JS one,
+  // the same split every other measurement in here already uses.
+  const collapseHeightSV = useSharedValue(0);
+  const collapseHeightRef = useRef(0);
 
   const wPrevY = useSharedValue(0);
   const wAccum = useSharedValue(0);
@@ -39,6 +52,12 @@ export const useCollapsibleHeader = () => {
   const heightRef = useRef(0);
 
   const [headerHeight, setHeaderHeight] = useState(0);
+
+  useEffect(() => {
+    const limit = collapseHeight && collapseHeight > 0 ? collapseHeight : 0;
+    collapseHeightRef.current = limit;
+    collapseHeightSV.value = limit;
+  }, [collapseHeight, collapseHeightSV]);
 
   const headerAnimatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
@@ -90,7 +109,8 @@ export const useCollapsibleHeader = () => {
     // top spacer is a fixed `headerInset` tall, so hiding earlier would leave a
     // blank strip where the header used to be.
     if (wAccum.value > SCROLL_DEAD_ZONE && visibleSV.value === 1 && scrollY > h) {
-      animateTo(-h);
+      const limit = collapseHeightSV.value;
+      animateTo(-(limit > 0 ? Math.min(limit, h) : h));
       wAccum.value = 0;
       wLastToggle.value = now;
     } else if (wAccum.value < -SCROLL_DEAD_ZONE && visibleSV.value === 0) {
@@ -138,7 +158,8 @@ export const useCollapsibleHeader = () => {
         jsVisible.current = false;
         jsLastToggle.current = now;
         jsAccum.current = 0;
-        animateTo(-h);
+        const limit = collapseHeightRef.current;
+        animateTo(-(limit > 0 ? Math.min(limit, h) : h));
       } else if (jsAccum.current < -SCROLL_DEAD_ZONE && !jsVisible.current) {
         jsVisible.current = true;
         jsLastToggle.current = now;
