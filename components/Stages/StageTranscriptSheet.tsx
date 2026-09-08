@@ -696,7 +696,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                       {/* Segment Header */}
                       <View className="flex-row items-center justify-between mb-2">
                         <View className="flex-row items-center gap-2 flex-1">
-                          <View className="w-5 h-5 rounded-full bg-white/10 items-center justify-center">
+                          <View className="w-5 h-5 rounded bg-white/10 items-center justify-center">
                             <Icon name="User" size={11} color="#D4D4D8" />
                           </View>
                           <Text

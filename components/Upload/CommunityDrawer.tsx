@@ -71,12 +71,12 @@ const CommunityDrawer: React.FC<CommunityDrawerProps> = ({
           {item.avatar_url ? (
             <Image
               source={{ uri: item.avatar_url }}
-              style={{ width: 34, height: 34, borderRadius: 17 }}
+              style={{ width: 34, height: 34, borderRadius: 5 }}
             />
           ) : (
             <View
               className="items-center justify-center bg-theme-neutrals-800"
-              style={{ width: 34, height: 34, borderRadius: 17 }}
+              style={{ width: 34, height: 34, borderRadius: 5 }}
             >
               <Ionicons name="people" size={16} color="#9CA3AF" />
             </View>

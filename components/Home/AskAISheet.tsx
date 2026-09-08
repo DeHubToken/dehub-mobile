@@ -662,7 +662,7 @@ const styles = StyleSheet.create({
   headerAvatar: {
     width: 28,
     height: 28,
-    borderRadius: 14,
+    borderRadius: 4,
   },
   headerTitle: {
     color: "#F9FBFF",
@@ -706,7 +706,7 @@ const styles = StyleSheet.create({
   bubbleAvatar: {
     width: 24,
     height: 24,
-    borderRadius: 12,
+    borderRadius: 4,
     marginRight: 8,
     marginTop: 2,
   },
@@ -748,7 +748,7 @@ const styles = StyleSheet.create({
   typingAvatar: {
     width: 24,
     height: 24,
-    borderRadius: 12,
+    borderRadius: 4,
     marginRight: 8,
   },
   typingBubble: {

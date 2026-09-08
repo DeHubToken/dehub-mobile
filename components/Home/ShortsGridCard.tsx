@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 20,
     height: 20,
-    borderRadius: 10,
+    borderRadius: 3,
     backgroundColor: "#333",
   },
   username: {

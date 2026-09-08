@@ -137,7 +137,6 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
         <Avatar
           uri={getAvatarUrl(participant.avatar, 64)}
           size={64}
-          rounded
           name={participant.username || participant.wallet_address}
         />
         {participant.is_muted && (
@@ -216,7 +215,6 @@ const HandRequestRow: React.FC<HandRequestRowProps> = ({ request, onApprove }) =
         <Avatar
           uri={getAvatarUrl(request.avatar, 36)}
           size={36}
-          rounded
           name={request.username || request.wallet_address}
         />
       </View>

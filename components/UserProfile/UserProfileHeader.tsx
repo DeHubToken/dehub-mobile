@@ -295,7 +295,6 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             unwatched={hasUnwatchedStories}
             onPressStory={onStoryPress}
             onPressAvatar={() => onOpenImage("avatar")}
-            rounded={false}
           />
           {!isBlocked && (
             <View className="flex-row items-center gap-2 mb-1">

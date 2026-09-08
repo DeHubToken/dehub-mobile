@@ -595,7 +595,7 @@ const styles = StyleSheet.create({
   stepNum: {
     width: 20,
     height: 20,
-    borderRadius: 10,
+    borderRadius: 6,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "rgba(255,255,255,0.10)",

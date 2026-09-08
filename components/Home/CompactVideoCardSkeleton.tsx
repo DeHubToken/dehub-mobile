@@ -23,7 +23,7 @@ const CompactVideoCardSkeletonComponent: React.FC = () => {
           {/* Creator row */}
           <View className="flex-row items-center mt-2">
             <View className="w-20 h-3 bg-theme-neutrals-800 rounded" />
-            <View className="w-4 h-4 rounded-full bg-theme-neutrals-800 ml-1.5" />
+            <View className="w-4 h-4 rounded bg-theme-neutrals-800 ml-1.5" />
           </View>
           
           {/* Stats row - views, likes, time */}

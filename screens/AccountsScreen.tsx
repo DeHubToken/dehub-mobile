@@ -84,7 +84,6 @@ const AccountCard: React.FC<{
       <Avatar
         uri={getAvatarUrl(seller.avatarUrl, 44)}
         size={44}
-        rounded
         name={seller.displayName || listing.username}
       />
 

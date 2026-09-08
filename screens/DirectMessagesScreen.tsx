@@ -282,7 +282,7 @@ const DirectMessagesInner: React.FC = () => {
         activeOpacity={0.7}
         className="flex-row items-center px-4 py-3 gap-3"
       >
-        {/* Logo styled like Avatar size={52} rounded={false} */}
+        {/* Logo styled like Avatar size={52} */}
         <View
           style={{ width: 52, height: 52, borderRadius: Math.round(52 * 0.16) }}
           className="bg-black items-center justify-center overflow-hidden"

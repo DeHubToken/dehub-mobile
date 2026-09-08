@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
   ctrlBtn: {
     width: 52,
     height: 52,
-    borderRadius: 26,
+    borderRadius: 16,
     backgroundColor: "rgba(255,255,255,0.12)",
     alignItems: "center",
     justifyContent: "center",
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
   endBtn: {
     width: 60,
     height: 60,
-    borderRadius: 30,
+    borderRadius: 16,
     backgroundColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
     justifyContent: "center",

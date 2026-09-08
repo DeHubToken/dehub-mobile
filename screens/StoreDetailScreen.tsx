@@ -71,7 +71,6 @@ export default function StoreDetailScreen() {
         <Avatar
           uri={getAvatarUrl(store?.avatar_url)}
           size={54}
-          rounded
           name={store?.name || t("stores.store")}
         />
         <View style={{ flex: 1, minWidth: 0 }}>

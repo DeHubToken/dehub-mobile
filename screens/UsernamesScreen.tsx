@@ -115,7 +115,6 @@ const UsernameCard: React.FC<{
           <Avatar
             uri={getAvatarUrl(seller.avatarUrl, 14)}
             size={14}
-            rounded
             name={seller.displayName || seller.address}
           />
           <Text style={styles.sellerName} numberOfLines={1}>

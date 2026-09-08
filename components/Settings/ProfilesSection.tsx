@@ -129,7 +129,7 @@ export function ProfilesSection() {
         activeOpacity={0.7}
         className="px-4 py-3 flex-row items-center"
       >
-        <View className="mr-3 w-9 h-9 rounded-full border border-dashed border-theme-neutrals-500 items-center justify-center">
+        <View className="mr-3 w-9 h-9 rounded-md border border-dashed border-theme-neutrals-500 items-center justify-center">
           <Icon name="Plus" size={16} color="#9ca3af" />
         </View>
         <View className="flex-1">

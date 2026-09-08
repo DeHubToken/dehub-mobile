@@ -11,7 +11,6 @@ import SmartImage from "./SmartImage";
 interface AvatarProps {
   uri?: string | null;
   size?: number;
-  rounded?: boolean;
   onPress?: () => void;
   style?: ViewStyle;
   fallback?: ImageSourcePropType;
@@ -31,12 +30,13 @@ function getInitial(name?: string): string {
   return trimmed.charAt(0).toUpperCase();
 }
 
-// Web renders avatars as rounded squares everywhere (rounded-md/lg), so the
-// squared shape is the default; pass rounded to get a circle.
+// Web renders every avatar as a rounded square -- its Avatar primitive is
+// rounded-lg and nothing overrides it -- so there is no circular variant here
+// to reach for. Only coins and chain logos stay round, and those are images,
+// not avatars.
 const Avatar: React.FC<AvatarProps> = ({
   uri,
   size = 40,
-  rounded = false,
   onPress,
   style,
   fallback,
@@ -59,7 +59,7 @@ const Avatar: React.FC<AvatarProps> = ({
   if (load.uri !== uri) setLoad({ uri, errored: false });
   const { errored } = load;
 
-  const radius = rounded ? size / 2 : Math.round(size * 0.16);
+  const radius = Math.round(size * 0.16);
   const isRemote = !!uri && uri !== "default-avatar";
   const showImage = isRemote && !errored;
 

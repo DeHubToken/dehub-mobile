@@ -1004,7 +1004,7 @@ export default function FeedDetailScreen() {
         <View className="px-4 pt-4">
           {/* Minimal inline skeleton — just header + content placeholder */}
           <View className="flex-row items-center">
-            <View className="w-9 h-9 rounded-full bg-theme-neutrals-800" />
+            <View className="w-9 h-9 rounded-md bg-theme-neutrals-800" />
             <View className="ml-3 flex-1">
               <View className="w-24 h-3.5 bg-theme-neutrals-800 rounded" />
               <View className="w-16 h-2.5 bg-theme-neutrals-800 rounded mt-1.5" />

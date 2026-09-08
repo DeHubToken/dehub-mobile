@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   avatarRing: {
     width: 88,
     height: 88,
-    borderRadius: 44,
+    borderRadius: 14,
     borderWidth: 2,
     borderColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 72,
     height: 72,
-    borderRadius: 36,
+    borderRadius: 12,
     backgroundColor: "rgba(255,255,255,0.08)",
     alignItems: "center",
     justifyContent: "center",
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   rejectBtn: {
     width: 60,
     height: 60,
-    borderRadius: 30,
+    borderRadius: 16,
     backgroundColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
     justifyContent: "center",
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   acceptBtn: {
     width: 60,
     height: 60,
-    borderRadius: 30,
+    borderRadius: 16,
     // Accept is the solid control, decline the glass one — the pair used to be
     // green and red, which the design system keeps off every surface.
     backgroundColor: "#FAFAFA",

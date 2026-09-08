@@ -1625,7 +1625,7 @@ const s = StyleSheet.create({
   typingAvatar: {
     width: 28,
     height: 28,
-    borderRadius: 14,
+    borderRadius: 4,
     marginRight: 8,
   },
   typingBubble: {
