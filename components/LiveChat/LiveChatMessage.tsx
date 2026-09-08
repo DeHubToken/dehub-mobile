@@ -78,7 +78,9 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
   highlighted = false,
 }) => {
   const sender = message.sender;
-  const isMe = message.senderAddress?.toLowerCase() === myAddress;
+  // Both sides can be empty — a signed-out reader has no address, and a
+  // message can arrive with no author — and empty must not match empty.
+  const isMe = !!myAddress && message.senderAddress?.toLowerCase() === myAddress;
   const isSystem = message.messageType === "system";
   // The @assistant bot posts as a real account, so its reply arrives here like
   // any other message — it just gets an AI tag instead of a holder badge.

@@ -15,16 +15,11 @@ import type {
   LiveChatRoomJoinedPayload,
 } from "../services/livechat.service";
 import { getLiveChatMessages, getLiveChatOnlineCount } from "../services/livechat.service";
+import { normalizeMsg } from "../libs/livechat-normalize";
 
 const log = createLogger("LiveChat");
 
 const MAX_CHAT_MESSAGES = 200;
-
-/** Ensure every message has _id (server may return `id` instead) */
-const normalizeMsg = (m: any): LiveChatMessageData => ({
-  ...m,
-  _id: m._id || m.id,
-});
 
 const EVENTS = {
   // Client → Server
@@ -161,7 +156,13 @@ export const useLiveChat = (): UseLiveChatReturn => {
       socket.on(EVENTS.ROOM_JOINED, (data: LiveChatRoomJoinedPayload) => {
         if (cancelled) return;
         log.debug("Room joined, messages:", data.messages?.length);
-        setRoom(data.room);
+        // The pins ride in on the room rather than in `messages`, so they need
+        // the same normalising or the pinned bar reads a blank author.
+        setRoom(
+          data.room
+            ? { ...data.room, pinnedMessages: (data.room.pinnedMessages || []).map(normalizeMsg) }
+            : data.room,
+        );
         setMessages((data.messages || []).map(normalizeMsg).reverse());
         setMyUser(data.yourUser);
         setIsBanned(data.isBanned);
