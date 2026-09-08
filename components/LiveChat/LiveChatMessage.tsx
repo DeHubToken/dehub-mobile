@@ -139,7 +139,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
   );
 
   const translationTexts = useMemo(() => ({ content: bodyText }), [bodyText]);
-  const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate } =
+  const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate, sourceLang: translationSourceLang } =
     useTranslation(translationTexts, (message as any).detectedLanguage);
 
   // System messages
@@ -254,7 +254,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
               <TranslateButton
                 isTranslated={isTranslated}
                 isLoading={translating}
-                detectedLanguage={(message as any).detectedLanguage}
+                detectedLanguage={translationSourceLang}
                 onTranslate={handleTranslate}
                 onShowOriginal={handleShowOriginal}
               />
