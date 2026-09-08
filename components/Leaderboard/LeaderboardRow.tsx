@@ -60,7 +60,7 @@ const LeaderboardRowItem: React.FC<Props> = ({ item, sort, onPress }) => {
   const medalImage = MEDAL_IMAGES[item.rank];
   const metricValue = getMetricValue(item, sort);
   const suffix = METRIC_SUFFIX[sort];
-  const badgeImage = getBadgeUrl(item.total);
+  const badgeImage = getBadgeUrl(item.total, { username: item.username });
 
   return (
     <TouchableOpacity

@@ -1,6 +1,7 @@
 import env from "../config/env";
 import { Share, Platform } from "react-native";
 import { cdnImage } from "./cdnImage";
+import { overrideTierNameFor } from "./badgeOverrides";
 
 /**
  * Default avatar request size, in CSS points. Every avatar in this app renders
@@ -425,6 +426,8 @@ export interface BadgeLock {
 export interface BadgeContext {
   scale?: number;
   lock?: BadgeLock | null;
+  /** Checked against the grant table before the ladder is consulted. */
+  username?: string | null;
 }
 
 /**
@@ -457,7 +460,9 @@ function earnedTier(amount: number, scale: number): string | undefined {
 /**
  * Get badge name for a given staking/holdings amount.
  *
- * Returns the highest badge the holder qualifies for on the live ladder, or
+ * A granted username wins outright — before the balance is even read, and
+ * without needing to be a finite number, because a grant is not a balance.
+ * Otherwise: the highest badge the holder qualifies for on the live ladder, or
  * the tier their lock grandfathers if that is higher. Undefined below the
  * entry rung.
  */
@@ -465,6 +470,9 @@ export function getBadgeName(
   stakingAmount: number | string,
   context?: BadgeContext,
 ): string | undefined {
+  const granted = overrideTierNameFor(context?.username);
+  if (granted) return granted;
+
   const amt =
     typeof stakingAmount === "string"
       ? parseFloat(stakingAmount)
@@ -556,7 +564,32 @@ export function getBadgeUrlFor(
 ): number | undefined {
   return getBadgeUrl(resolveBadgeBalance(userOrItem), {
     lock: resolveBadgeLock(userOrItem),
+    username: resolveBadgeUsername(userOrItem),
   });
+}
+
+/**
+ * The handle to check the grant table against.
+ *
+ * Payloads disagree about where the handle lives — a chat row calls it
+ * `sender_username`, a feed card nests it under `sender`, a leaderboard row
+ * has it flat — so the grant only draws on some screens unless they are read
+ * together in one place.
+ */
+export function resolveBadgeUsername(
+  userOrItem: Record<string, any> | null | undefined,
+): string | undefined {
+  if (!userOrItem) return undefined;
+  const candidate =
+    userOrItem.username ??
+    userOrItem.minterUsername ??
+    userOrItem.sender_username ??
+    userOrItem.senderUsername ??
+    userOrItem.minterUser?.username ??
+    userOrItem.sender?.username ??
+    userOrItem.user?.username ??
+    userOrItem.owner?.username;
+  return typeof candidate === "string" && candidate ? candidate : undefined;
 }
 
 /** Where a holder sits on the ladder — the progress panel's data model. */
@@ -709,6 +742,7 @@ export const Misc = {
   getBadgeStanding,
   resolveBadgeBalance,
   resolveBadgeLock,
+  resolveBadgeUsername,
   getDefaultBanner,
   getExtension,
   buildImageUrl,

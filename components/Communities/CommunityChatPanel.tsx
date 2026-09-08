@@ -123,7 +123,7 @@ const ChatRow: React.FC<{
     message.wallet_address?.slice(0, 8) ||
     t("communities.chatPanel.anon", { defaultValue: "Anon" });
   const avatarUrl = getAvatarUrl(message.avatar_url || "");
-  const badgeImg = getBadgeUrl(resolveBadgeBalance({ badgeBalance: message.badge_balance }));
+  const badgeImg = getBadgeUrl(resolveBadgeBalance({ badgeBalance: message.badge_balance }), { username: message.username });
 
   const reactionEntries = useMemo(
     () => Object.entries(message.reactions || {}).filter(([, addrs]) => addrs.length > 0),

@@ -3,7 +3,7 @@ import {
   getShortsThumbnailUrl, getPreviewUrl, resolveThumbnail,
   getImageUrl, getExtension, buildImageUrl, getImageUrlApi,
   getImageUrlApiSimple, getAudioUrl, getBadgeName, getBadgeUrl,
-  resolveBadgeBalance, getDefaultBanner,
+  resolveBadgeBalance, getDefaultBanner, resolveBadgeUsername, getBadgeUrlFor,
 } from '../../libs/misc';
 
 jest.mock('../../config/env', () => ({
@@ -339,6 +339,45 @@ describe('libs/misc', () => {
     it('returns undefined for NaN/Infinity', () => {
       expect(getBadgeName('not-a-number')).toBeUndefined();
       expect(getBadgeName(Infinity)).toBeUndefined();
+    });
+
+    // Web has always drawn a granted account's tier; mobile drew their
+    // balance's tier, so the same person wore two different badges.
+    it('draws the granted tier regardless of balance', () => {
+      expect(getBadgeName(0, { username: 'maldoteth' })).toBe('Meglodon');
+      expect(getBadgeName(10_000, { username: '@Maldoteth' })).toBe('Meglodon');
+    });
+
+    it('draws the granted tier even with no readable balance', () => {
+      expect(getBadgeName('not-a-number', { username: 'maldoteth' })).toBe('Meglodon');
+    });
+
+    it('leaves an ungranted handle on the ladder', () => {
+      expect(getBadgeName(10_000, { username: 'someoneelse' })).toBe('Crab');
+      expect(getBadgeName(0, { username: 'someoneelse' })).toBeUndefined();
+    });
+  });
+
+  describe('resolveBadgeUsername', () => {
+    it('reads the handle wherever the payload puts it', () => {
+      expect(resolveBadgeUsername({ username: 'a' })).toBe('a');
+      expect(resolveBadgeUsername({ minterUsername: 'b' })).toBe('b');
+      expect(resolveBadgeUsername({ sender: { username: 'c' } })).toBe('c');
+      expect(resolveBadgeUsername({ minterUser: { username: 'd' } })).toBe('d');
+    });
+
+    it('is undefined when there is no handle to read', () => {
+      expect(resolveBadgeUsername(null)).toBeUndefined();
+      expect(resolveBadgeUsername({})).toBeUndefined();
+      expect(resolveBadgeUsername({ username: '' })).toBeUndefined();
+    });
+  });
+
+  describe('getBadgeUrlFor', () => {
+    it('draws the grant for a granted handle on any balance', () => {
+      expect(getBadgeUrlFor({ username: 'maldoteth', badgeBalance: 0 })).toBe(
+        getBadgeUrl(50_000_000),
+      );
     });
   });
 

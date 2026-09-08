@@ -11,10 +11,13 @@
  * `profileLimits.ts` — because each needed it and neither wanted to own it.
  * This is that table, once.
  *
- * **A grant decides allowances and influence, never which badge image draws.**
- * `getBadgeName` in `libs/misc.ts` has never carried these and still does not:
- * routing them through it would restyle badges across the app as a side effect
- * of an allowance change. Callers that want the grant ask for it by name.
+ * **A grant decides the badge as well as the allowance.** `getBadgeName` in
+ * `libs/misc.ts` reads this table before it reads the ladder, matching web's
+ * `getBadgeName`, which has always done so. It deliberately did not here, on
+ * the reasoning that an allowance change should not restyle badges — but the
+ * two apps then drew different badges for the same account, which is the
+ * louder bug: a granted holder wore their tier on the website and their
+ * balance's tier in the app.
  *
  * The API applies the grant to reactions and views, so `useEngagementWeight`
  * has to as well or the optimistic count moves by the wrong amount and settles
