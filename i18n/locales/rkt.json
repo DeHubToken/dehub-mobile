@@ -337,6 +337,7 @@
     "archivedChats": "Archived Chats",
     "exportChats": "Export Chats",
     "manage": "Manage →",
+    "dhbBalanceIncludesStaked": "Wallet and staked DHB combined",
     "fractionsOwn": "Fractions You Own",
     "noFractions": "You don't own any fractions yet",
     "usernamesOwn": "Usernames You Own",

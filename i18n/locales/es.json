@@ -244,6 +244,7 @@
     "exportChats": "Exportar chats",
     "notConnected": "No conectado",
     "manage": "Administrar →",
+    "dhbBalanceIncludesStaked": "Monedero y DHB apostado combinados",
     "fractionsOwn": "Fracciones que posees",
     "noFractions": "Aún no posees ninguna fracción",
     "usernamesOwn": "Nombres de usuario que posees",

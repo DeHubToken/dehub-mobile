@@ -274,6 +274,7 @@
     "exportChats": "Sohbetleri Dışa Aktar",
     "notConnected": "Bağlı değil",
     "manage": "Yönet →",
+    "dhbBalanceIncludesStaked": "Cüzdan ve stake edilmiş DHB kombine",
     "fractionsOwn": "Sahip olduğunuz paylar",
     "noFractions": "Henüz hiçbir payınız yok",
     "usernamesOwn": "Sahip olduğunuz kullanıcı adları",

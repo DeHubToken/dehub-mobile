@@ -244,6 +244,7 @@
     "exportChats": "チャットをエクスポート",
     "notConnected": "未接続",
     "manage": "管理 →",
+    "dhbBalanceIncludesStaked": "ウォレットとステークされたDHBを組み合わせたもの",
     "fractionsOwn": "所有しているフラクション",
     "noFractions": "まだフラクションを所有していません",
     "usernamesOwn": "所有しているユーザー名",
