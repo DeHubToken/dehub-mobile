@@ -514,7 +514,8 @@
     "deviceLinkReset": "Girêdana cîhazê hat sazkirin. Dîsa têkeve da ku hesabê rast bigirî.",
     "deviceLinkResetFailed": "Girêdana cîhazê nehat sazkirin.",
     "emailNotificationsDescLinked": "نێردرا بۆ {{email}}",
-    "emailNotificationsNoAddressMobile": "ئیمەیلێک لەسەر وێبسایتەکە زیاد بکە بۆ چالاککردنی ئەمەکانە."
+    "emailNotificationsNoAddressMobile": "ئیمەیلێک لەسەر وێبسایتەکە زیاد بکە بۆ چالاککردنی ئەمەکانە.",
+    "smsNumberLabel": "ژمارە تەلەفۆن"
   },
   "common": {
     "mute": "Bêdeng bike",
