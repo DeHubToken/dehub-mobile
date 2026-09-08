@@ -21,6 +21,7 @@ import {
   getDefaultBanner,
   resolveBadgeBalance,
   resolveBadgeLock,
+  resolveBadgeUsername,
 } from "../../libs/misc";
 import { openExternalLink } from "../../libs/links.utils";
 import { ensProfileUrl } from "../../libs/ens-handle";
@@ -109,8 +110,11 @@ const ProfileHeader = () => {
   // The lock alongside the balance: a tier earned before the ladder moved is
   // still theirs, and the badge here has to agree with the one on their posts.
   const badgeLock = resolveBadgeLock(user as any);
-  const badge = getBadgeName(badgeVal, { lock: badgeLock });
-  const badgeImage = getBadgeUrl(badgeVal, { lock: badgeLock });
+  // The handle too: a granted account wears its tier here and on its posts,
+  // the same way it does on the website.
+  const badgeCtx = { lock: badgeLock, username: resolveBadgeUsername(user as any) };
+  const badge = getBadgeName(badgeVal, badgeCtx);
+  const badgeImage = getBadgeUrl(badgeVal, badgeCtx);
 
   // account_info returns followers/followings as arrays of addresses (or a
   // plain number elsewhere) — resolveCount normalises both to a count.

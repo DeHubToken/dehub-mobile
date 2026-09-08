@@ -54,7 +54,7 @@ const ChatRow: React.FC<{
   const displayName =
     message.display_name || message.username || message.wallet_address?.slice(0, 8) || "Anon";
   const avatarUrl = getAvatarUrl(message.avatar_url || "");
-  const badgeImg = getBadgeUrl(resolveBadgeBalance({ badgeBalance: message.badge_balance }));
+  const badgeImg = getBadgeUrl(resolveBadgeBalance({ badgeBalance: message.badge_balance }), { username: message.username });
 
   const reactionEntries = useMemo(
     () => Object.entries(message.reactions || {}).filter(([, addrs]) => addrs.length > 0),

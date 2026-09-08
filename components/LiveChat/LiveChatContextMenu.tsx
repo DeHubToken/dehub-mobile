@@ -14,7 +14,7 @@ import { BlurView } from "expo-blur";
 import Icon, { type IconName } from "../ui/Icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance, resolveBadgeLock } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import { theme } from "../../theme";
 import { resolveChatGif, gifCaption, gifBox } from "../../libs/chat-gif";
@@ -90,9 +90,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
   const avatarUrl = getAvatarUrl(sender?.avatarUrl || "");
   const displayName =
     sender?.displayName || sender?.username || message.senderAddress?.slice(0, 8) || "Anon";
-  const badgeBalance = resolveBadgeBalance(sender || {});
-  const badgeLock = resolveBadgeLock(sender || {});
-  const badgeImg = getBadgeUrl(badgeBalance, { lock: badgeLock });
+  const badgeImg = getBadgeUrlFor(sender);
   const isMod = sender?.isModerator;
 
   // Same reading as the row this card floats over: web puts a GIF's URL in the
