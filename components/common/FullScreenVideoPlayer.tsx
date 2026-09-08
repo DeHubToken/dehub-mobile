@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Modal, View, TouchableOpacity, Text, AppState } from 'react-native';
+import { Modal, View, TouchableOpacity, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { VideoView, useVideoPlayer, type VideoPlayer } from 'expo-video';
+import PictureInPictureButton from "./PictureInPictureButton";
+import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../../libs/audioSession";
 import { FULLSCREEN_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import * as ScreenOrientation from 'expo-screen-orientation';
 import Slider from '@react-native-community/slider';
@@ -20,9 +22,12 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
   const [position, setPosition] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
   const [isLandscape, setIsLandscape] = useState<boolean>(false);
+  const videoViewRef = useRef<VideoView>(null);
   const seekingRef = useRef<boolean>(false);
   const [sessionKey, setSessionKey] = useState<string | null>(null);
   const player: VideoPlayer = useVideoPlayer(sourceUrl ?? null, (p) => {
+    p.staysActiveInBackground = true;
+    p.showNowPlayingNotification = true;
     p.loop = true;
     p.muted = false;
     p.timeUpdateEventInterval = 0.5; // ensure frequent progress updates
@@ -97,15 +102,11 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
     return () => subs.forEach((s) => s.remove());
   }, [player, visible]);
 
-  // Pause when app is backgrounded
   useEffect(() => {
-    const sub = AppState.addEventListener('change', (state) => {
-      if (state !== 'active') {
-        try { player.pause(); } catch {}
-      }
-    });
-    return () => { try { sub.remove(); } catch {} };
-  }, [player]);
+    if (!visible) return;
+    configureForBackgroundPlayback().catch(() => {});
+    return () => { releaseBackgroundPlayback().catch(() => {}); };
+  }, [visible]);
 
   const handleClose = useCallback(async () => {
     try { player.pause(); } catch {}
@@ -172,6 +173,9 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
         {/* Video Area */}
         {visible && sourceUrl ? (
           <VideoView
+            ref={videoViewRef}
+            allowsPictureInPicture
+            startsPictureInPictureAutomatically={visible && isPlaying}
             key={sessionKey || undefined}
             player={player}
             style={{ flex: 1, backgroundColor: 'black' }}
@@ -204,7 +208,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
               <Text className="text-white text-xs w-10 text-center">{formatTime(duration)}</Text>
             </View>
             <View className="flex-row items-center justify-between mt-2">
-              <View className="w-10" />
+              <PictureInPictureButton videoRef={videoViewRef} />
               <TouchableOpacity
                 onPress={handlePlayPause}
                 className="self-center bg-white/15 p-3 rounded-2xl"
