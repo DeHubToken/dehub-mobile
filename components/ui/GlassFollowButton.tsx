@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useTranslation } from "react-i18next";
 import { View, Text, TouchableOpacity, ActivityIndicator, ViewStyle, StyleSheet } from "react-native";
 import Icon from "./Icon";
 import { colors } from "../../theme/colors";
@@ -25,6 +26,8 @@ const GlassFollowButton: FC<GlassFollowButtonProps> = ({
   className = "",
   style,
 }) => {
+  const { t } = useTranslation();
+
   if (isLoading) {
     return (
       <View className={`h-8 items-center justify-center ${className}`} style={style}>
@@ -33,16 +36,16 @@ const GlassFollowButton: FC<GlassFollowButtonProps> = ({
     );
   }
 
-  let label = followsYou ? "Follow Back" : "Follow";
+  let label = followsYou ? t("follow.followBack") : t("follow.follow");
   let labelColor = "#fff";
   let iconNode: React.ReactNode = null;
 
   if (isPending) {
-    label = "Requested";
+    label = t("follow.requested");
     labelColor = colors.neutrals[400];
     iconNode = <Icon name="Clock" size={12} color={colors.neutrals[400]} />;
   } else if (isFollowing) {
-    label = "Following";
+    label = t("follow.following");
     labelColor = colors.neutrals[300];
   }
 

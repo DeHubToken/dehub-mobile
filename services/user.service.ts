@@ -26,6 +26,10 @@ export interface FollowListUser {
   sentTips?: number;
   receivedTips?: number;
   createdAt?: string;
+  isPrivate?: boolean;
+  /** Viewer relationship, stamped by the API when the request is authenticated. */
+  isFollowing?: boolean;
+  followsYou?: boolean;
 }
 
 /** Single item in follow list */
