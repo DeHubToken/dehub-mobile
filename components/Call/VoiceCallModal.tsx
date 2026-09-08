@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   avatarRing: {
     width: 88,
     height: 88,
-    borderRadius: 44,
+    borderRadius: 14,
     borderWidth: 2,
     borderColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 72,
     height: 72,
-    borderRadius: 36,
+    borderRadius: 12,
     backgroundColor: "rgba(255,255,255,0.08)",
     alignItems: "center",
     justifyContent: "center",
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   roundBtn: {
     width: 52,
     height: 52,
-    borderRadius: 26,
+    borderRadius: 16,
     backgroundColor: "rgba(255,255,255,0.1)",
     alignItems: "center",
     justifyContent: "center",
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   endBtn: {
     width: 60,
     height: 60,
-    borderRadius: 30,
+    borderRadius: 16,
     backgroundColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
     justifyContent: "center",

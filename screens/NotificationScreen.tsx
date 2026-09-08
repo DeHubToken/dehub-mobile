@@ -585,7 +585,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
               style={{
                 width: 44,
                 height: 44,
-                borderRadius: 22,
+                borderRadius: 7,
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: `${icon.color}20`,
@@ -1477,7 +1477,7 @@ const NotificationScreen = () => {
       <View className="flex-row items-start p-4 border-b border-theme-neutrals-800">
         {/* Avatar with badge overlay */}
         <View className="relative">
-          <View className="w-11 h-11 rounded-full bg-theme-neutrals-800" />
+          <View className="w-11 h-11 rounded-md bg-theme-neutrals-800" />
           {/* Type badge */}
           <View
             className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-theme-neutrals-700"

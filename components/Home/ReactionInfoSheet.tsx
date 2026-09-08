@@ -78,7 +78,7 @@ const PersonRow: React.FC<{ item: LikerUser; onPress: (address: string) => void 
         onPress={handlePress}
         style={{ flexDirection: "row", alignItems: "center", paddingHorizontal: 16, paddingVertical: 10 }}
       >
-        <Avatar uri={getAvatarUrl(item.avatarImageUrl)} size={38} rounded={false} name={displayName} />
+        <Avatar uri={getAvatarUrl(item.avatarImageUrl)} size={38} name={displayName} />
         <View style={{ flex: 1, marginLeft: 12 }}>
           <Text style={{ color: "#F9FBFF", fontWeight: "600", fontSize: 14 }} numberOfLines={1}>
             {displayName}

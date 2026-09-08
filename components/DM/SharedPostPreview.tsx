@@ -164,7 +164,7 @@ const SharedPostPreviewComponent: React.FC<SharedPostPreviewProps> = ({
             {meta.creatorAvatar && meta.creatorAvatar !== "default-avatar" ? (
               <Image
                 source={{ uri: meta.creatorAvatar }}
-                style={{ width: 16, height: 16, borderRadius: 8 }}
+                style={{ width: 16, height: 16, borderRadius: 3 }}
               />
             ) : null}
             <Text className={`text-[12px] ${subColor}`} numberOfLines={1}>

@@ -40,7 +40,7 @@ export default function WorkUser({
       style={[styles.wrap, style]}
       hitSlop={6}
     >
-      <Avatar uri={uri} size={size} rounded name={name} />
+      <Avatar uri={uri} size={size} name={name} />
       <View style={styles.text}>
         <Text style={styles.name} numberOfLines={1}>
           {name}

@@ -78,7 +78,7 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
       className="w-[150px] items-center rounded-xl py-3.5 px-3 mr-2.5"
       style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
     >
-      <Avatar uri={displayAvatar} size={72} rounded={false} name={displayName} />
+      <Avatar uri={displayAvatar} size={72} name={displayName} />
 
       <View className="flex-row items-center mt-2 px-0.5" style={{ maxWidth: 130 }}>
         <Text

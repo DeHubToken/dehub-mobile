@@ -280,7 +280,7 @@ const s = StyleSheet.create({
   avatar: {
     width: 28,
     height: 28,
-    borderRadius: 14,
+    borderRadius: 4,
     marginRight: 8,
     marginTop: 2,
   },

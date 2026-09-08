@@ -455,7 +455,6 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
           <Avatar
             uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
             size={32}
-            rounded={false}
             name={displayName}
           />
         </Pressable>

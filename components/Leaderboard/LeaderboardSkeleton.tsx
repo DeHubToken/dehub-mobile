@@ -9,7 +9,7 @@ const LeaderboardSkeleton: React.FC = () => (
       <View key={i} className="flex-row items-center px-4 py-3.5">
         {/* Rank */}
         <View className="w-9 items-center justify-center">
-          <View className="w-6 h-6 bg-theme-neutrals-800 rounded-full animate-pulse" />
+          <View className="w-6 h-6 bg-theme-neutrals-800 rounded animate-pulse" />
         </View>
         {/* Avatar + Name. The rank medallion above stays round — that is a
             badge, not an avatar — but this one stands in for Avatar, whose

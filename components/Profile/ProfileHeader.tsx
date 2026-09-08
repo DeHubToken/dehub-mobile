@@ -332,7 +332,6 @@ const ProfileHeader = () => {
                   avatarFullUrl === "default-avatar" ? undefined : avatarFullUrl
                 )
               }
-              rounded={false}
             />
             <TouchableOpacity
               onPress={startChangeAvatar}

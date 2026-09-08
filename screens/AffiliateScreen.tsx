@@ -144,7 +144,6 @@ const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry }> = ({ entry }) =>
       <Avatar
         uri={getAvatarUrl(profile?.avatarImageUrl)}
         size={40}
-        rounded
         name={name}
       />
       <View style={{ flex: 1, minWidth: 0 }}>
@@ -659,7 +658,7 @@ const styles = StyleSheet.create({
   stepNum: {
     width: 26,
     height: 26,
-    borderRadius: 999,
+    borderRadius: 8,
     backgroundColor: "rgba(255,255,255,0.10)",
     alignItems: "center",
     justifyContent: "center",

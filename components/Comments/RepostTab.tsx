@@ -44,7 +44,7 @@ const RepostUserRow: React.FC<RepostUserRowProps> = memo(({ item, onPress }) => 
         pressed && { opacity: 0.7 },
       ]}
     >
-      <Avatar uri={avatarUrl} size={40} rounded={false} name={displayName} />
+      <Avatar uri={avatarUrl} size={40} name={displayName} />
       <View style={{ flex: 1, marginLeft: 12 }}>
         <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
           <Text
