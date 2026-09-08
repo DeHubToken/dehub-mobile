@@ -32,6 +32,8 @@ interface LiveChatContextMenuProps {
   message: LiveChatMessageData | null;
   layout: MessageLayout | null;
   isMe: boolean;
+  /** The viewer's address, for marking which reactions are already theirs. */
+  viewerAddress?: string;
   isModerator: boolean;
   onClose: () => void;
   onReply?: (msg: LiveChatMessageData) => void;
@@ -195,6 +197,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
   message,
   layout,
   isMe,
+  viewerAddress,
   isModerator,
   onClose,
   onReply,
@@ -300,7 +303,10 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
   // note is refused, so offering Edit there is a button that can only fail.
   const canEdit = isMe && message.messageType === "text" && hasContent;
   const canDelete = isMe || isModerator;
-  const myAddress = message.senderAddress?.toLowerCase();
+  // The viewer's own address, not the author's. Reading it off the message
+  // marked a reaction as yours whenever the person you were reacting to had
+  // used that emoji themselves.
+  const myAddress = viewerAddress?.toLowerCase();
 
   return (
     <Modal transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>

@@ -837,8 +837,10 @@ const LiveChatScreen: React.FC = () => {
         message={contextMenuMessage}
         layout={contextMenuLayout}
         isMe={
+          !!myAddress &&
           contextMenuMessage?.senderAddress?.toLowerCase() === myAddress
         }
+        viewerAddress={myAddress}
         isModerator={isModerator}
         onClose={handleContextMenuClose}
         onReply={handleContextReply}
