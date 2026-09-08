@@ -140,7 +140,11 @@ export default function BoostSheet({
       },
       {
         onSuccess: booking => {
-          toastSuccess(`${active?.label} running for ${booking.minutes} minutes`);
+          toastSuccess(
+            chosen === "signal_flare"
+              ? "Signal Flare sent to your followers."
+              : `${active?.label} running for ${booking.minutes} minutes`,
+          );
           onClose();
         },
         // The server writes these sentences for a person to read — "That
@@ -298,11 +302,13 @@ export default function BoostSheet({
             {/* The honest sentence. The slot rotates and a higher tier is dealt
                 more often, so what is bought is a window plus a share of voice
                 — never sole possession of the top of the feed. */}
-            <Text className="text-xs text-zinc-500">
-              The boost slot rotates. When several boosts are running, viewers are dealt one
-              weighted by badge tier — a higher tier is shown more often, and everybody gets the
-              window they were granted.
-            </Text>
+            {chosen !== "signal_flare" && (
+              <Text className="text-xs text-zinc-500">
+                The boost slot rotates. When several boosts are running, viewers are dealt one
+                weighted by badge tier — a higher tier is shown more often, and everybody gets the
+                window they were granted.
+              </Text>
+            )}
 
             <Pressable
               onPress={handleBoost}
@@ -319,7 +325,9 @@ export default function BoostSheet({
                       "no boosts left" that is wrong for a Signal Flare. */}
                   {!active?.enabled && active?.blockedReason
                     ? active.blockedReason
-                    : `${active?.label ?? "Spend"} for ${status.minutesPerBoost} minutes`}
+                    : chosen === "signal_flare"
+                      ? "Send Signal Flare"
+                      : `${active?.label ?? "Spend"} for ${status.minutesPerBoost} minutes`}
                 </Text>
               )}
             </Pressable>
