@@ -212,8 +212,8 @@ const FloatingMessage: React.FC<{
         {/* Reply-to preview */}
         {message.replyTo && (
           <View
-            className={`mx-2 mt-2 rounded-lg overflow-hidden border-l-2 ${
-              isMine ? "bg-white/10 border-white/30" : "bg-theme-neutrals-700 border-accent"
+            className={`mx-2 mt-2 rounded-lg overflow-hidden ${
+              isMine ? "bg-white/10" : "bg-theme-neutrals-700"
             }`}
           >
             <View className="px-2.5 py-2">

@@ -225,7 +225,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
               const replyId = message.replyTo?._id || message.replyTo?.id;
               if (replyId && onReplyPress) onReplyPress(replyId);
             }}
-            className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1 border-l-2 border-blue-500/50"
+            className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1"
           >
             <Text className="text-blue-400/70 text-[11px] font-medium" numberOfLines={1}>
               {message.replyTo?.senderUsername ||
