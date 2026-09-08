@@ -743,10 +743,10 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
 // ── Styles ───────────────────────────────────────────────────────────────────
 const styles = StyleSheet.create({
   sheet: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
+    // A flex-end child can be lifted by KeyboardAvoidingView. Absolute-bottom
+    // positioning leaves the amount input behind the keyboard on Android.
+    marginTop: "auto",
+    width: "100%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: "hidden",

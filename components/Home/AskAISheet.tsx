@@ -20,6 +20,8 @@ import {
   InteractionManager,
   FlatList,
   Pressable,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import Animated, {
   useAnimatedStyle,
@@ -53,7 +55,6 @@ import {
 import { getDeviceLanguage } from "../../services/translation.service";
 import { toastError } from "../../libs";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { useKeyboard } from "../../hooks/useKeyboard";
 
 const AI_AVATAR = require("../../assets/web-icons/profile-icon.png");
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
@@ -201,8 +202,6 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
   const user = useUser();
   const navigation = useNavigation<any>();
   const flatListRef = useRef<FlatList<AIChatMessage>>(null);
-  const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
-
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
@@ -523,14 +522,15 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
           />
         </Animated.View>
 
-        <View
-          style={StyleSheet.absoluteFill}
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.keyboardWrap}
           pointerEvents="box-none"
         >
           <Animated.View
             style={[
               styles.sheet,
-              { maxHeight: SHEET_HEIGHT, paddingBottom: insets.bottom },
+              { maxHeight: SHEET_HEIGHT, paddingBottom: Math.max(insets.bottom, 8) },
               sheetStyle,
             ]}
           >
@@ -584,7 +584,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
                 </View>
               )}
 
-              <View style={[styles.inputRow, { marginBottom: kbVisible ? kbHeight : Math.max(insets.bottom, 8) }]}>
+              <View style={styles.inputRow}>
                 <TouchableOpacity style={styles.micBtn} disabled>
                   <Icon name="Mic" size={18} color="#6F7174" />
                 </TouchableOpacity>
@@ -615,19 +615,20 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
                 </TouchableOpacity>
               </View>
           </Animated.View>
-        </View>
+        </KeyboardAvoidingView>
       </GestureHandlerRootView>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
+  keyboardWrap: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
   sheet: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    minHeight: SCREEN_HEIGHT * 0.7,
+    width: "100%",
+    height: "85%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: "hidden",
