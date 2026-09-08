@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect, useDeferredValue } from "react";
-import { View, StyleSheet, InteractionManager, useWindowDimensions } from "react-native";
+import { BackHandler, View, StyleSheet, InteractionManager, useWindowDimensions } from "react-native";
+import { useIsFocused } from "@react-navigation/native";
 import Animated, {
   cancelAnimation,
   runOnJS,
@@ -37,6 +38,11 @@ import type {
   UnifiedFeedItem,
 } from "../services/feed.unified.service";
 import { TAB_BAR_CONTENT_INSET } from "../navigation/tabBarLayout";
+import {
+  useUserProfilePresentation,
+  useUserProfileSheet,
+} from "../context/UserProfileSheetContext";
+import UserProfileBottomSheet from "../components/UserProfile/UserProfileBottomSheet";
 
 const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
@@ -119,6 +125,27 @@ export default function HomeScreen() {
   const [filters, setFilters] = useState<FeedFilters>(DEFAULT_FILTERS);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const { width: pageWidth } = useWindowDimensions();
+  const isFocused = useIsFocused();
+  const { hideUserProfile } = useUserProfileSheet();
+  const {
+    profileVisible,
+    profileIdentifier,
+    profilePresentation,
+    setFeedProfileHostActive,
+  } = useUserProfilePresentation();
+  const feedProfileVisible =
+    profileVisible && profilePresentation === "feed" && !!profileIdentifier;
+
+  // Only the focused Home tab may claim profile opens for the persistent feed
+  // surface. Other screens keep the standalone profile presentation.
+  useEffect(() => {
+    setFeedProfileHostActive(isFocused);
+    return () => setFeedProfileHostActive(false);
+  }, [isFocused, setFeedProfileHostActive]);
+
+  useEffect(() => {
+    if (!isFocused && feedProfileVisible) hideUserProfile();
+  }, [feedProfileVisible, hideUserProfile, isFocused]);
 
   // Load persisted category on mount (MMKV is sync — no async race)
   useEffect(() => {
@@ -287,6 +314,14 @@ export default function HomeScreen() {
     setFilters((prev) => (prev.postType === postType ? prev : { ...prev, postType }));
   }, []);
 
+  const handleNavPostTypeChange = useCallback(
+    (postType: PostTypeOption) => {
+      if (feedProfileVisible) hideUserProfile();
+      setPostType(postType);
+    },
+    [feedProfileVisible, hideUserProfile, setPostType],
+  );
+
   const handleOpenImageFeed = useCallback(
     (index: number, items: UnifiedFeedItem[]) => {
       // The sheet rests against the bottom of the header, so the header has to
@@ -308,6 +343,22 @@ export default function HomeScreen() {
     if (imageDrawerRef.current) imageDrawerRef.current.close();
     else setImageFeed(null);
   }, []);
+
+  useEffect(() => {
+    if (!feedProfileVisible) return;
+    showHeader();
+    setFilterPanelVisible(false);
+    setImageFeed(null);
+  }, [feedProfileVisible, showHeader]);
+
+  useEffect(() => {
+    if (!feedProfileVisible) return;
+    const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
+      hideUserProfile();
+      return true;
+    });
+    return () => subscription.remove();
+  }, [feedProfileVisible, hideUserProfile]);
 
   // Called from the UI thread once a drag has picked its landing page. The
   // animation is already running by then; this only catches React up.
@@ -617,7 +668,7 @@ export default function HomeScreen() {
     if (!visibleTabs.has(key)) return null;
     // `active` gates video playback, not visibility, so it rides the deferred
     // index — see deferredIndex above.
-    const isPlaybackActive = index === deferredIndex;
+    const isPlaybackActive = index === deferredIndex && !feedProfileVisible;
 
     if (key === "feed-images") {
       return (
@@ -705,16 +756,16 @@ export default function HomeScreen() {
           progress={progress}
           isFilterOpen={filterPanelVisible}
           hasActiveFilters={hasActiveFilters}
-          onPostTypeChange={setPostType}
+          onPostTypeChange={handleNavPostTypeChange}
           onFilterPress={handleFilterPress}
-          backMode={!!imageFeed}
-          onBackPress={handleImageFeedBack}
+          backMode={feedProfileVisible || !!imageFeed}
+          onBackPress={feedProfileVisible ? hideUserProfile : handleImageFeedBack}
         />
 
-        {filters.postType === "all" ? <StoriesBar /> : null}
+        {!feedProfileVisible && filters.postType === "all" ? <StoriesBar /> : null}
 
         <FeedFilterPanel
-          visible={filterPanelVisible}
+          visible={!feedProfileVisible && filterPanelVisible}
           filters={filters}
           onFiltersChange={handleFiltersChange}
           categories={categories}
@@ -747,6 +798,20 @@ export default function HomeScreen() {
           {filterLoaderActive && <FeedFilterLoader topInset={headerHeight} />}
         </View>
       </GestureDetector>
+
+      {feedProfileVisible ? (
+        <View
+          style={[styles.profileSurface, { top: headerHeight }]}
+          accessibilityViewIsModal
+        >
+          <UserProfileBottomSheet
+            embedded
+            visible
+            usernameOrAddress={profileIdentifier}
+            onClose={hideUserProfile}
+          />
+        </View>
+      ) : null}
 
       {/* Outside the pager's GestureDetector on purpose: while the drawer is up
           a horizontal drag on it belongs to the post's own image gallery, not
@@ -791,6 +856,14 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 10,
     overflow: "hidden",
+    backgroundColor: "#010305",
+  },
+  profileSurface: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 9,
     backgroundColor: "#010305",
   },
 });
