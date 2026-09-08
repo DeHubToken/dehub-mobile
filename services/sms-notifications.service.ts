@@ -59,6 +59,12 @@ export interface SmsNotificationStatus {
   priceDhb: number | null;
   priceUsd: number | null;
   prices: SmsPriceBand[];
+  /**
+   * Values the "what to text" preference may hold, in display order,
+   * starting with 'all'. Served rather than hardcoded so this client can
+   * never offer a choice the server would refuse to honour.
+   */
+  scopes: string[];
   /** Display only. Every figure above is denominated in DHB. */
   dhbUsdPeg: number;
   messagesSent: number;

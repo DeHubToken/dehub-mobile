@@ -177,6 +177,8 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
    */
   const [smsStatus, setSmsStatus] = useState<SmsNotificationStatus | null>(null);
   const [smsSheetOpen, setSmsSheetOpen] = useState(false);
+  /** Whether the "what to text" picker is open. */
+  const [smsScopePicker, setSmsScopePicker] = useState(false);
   /** Which quiet-hours bound the picker is editing, if any. */
   const [hourPicker, setHourPicker] = useState<'start' | 'end' | null>(null);
 
@@ -245,6 +247,26 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
 
   /** All three conditions the switch needs before it can mean anything. */
   const smsReady = !!smsStatus?.available && smsStatus.unlocked && smsStatus.phoneVerified;
+
+  /**
+   * The "what to text" options, straight from the server.
+   *
+   * Never a list written here: a scope this client invented would be refused
+   * on write and read as 'all' at send time, so the reader would be billed
+   * for exactly what they thought they had turned off.
+   */
+  const smsScopeOptions = useMemo(
+    () =>
+      (smsStatus?.scopes ?? []).map((value) => ({
+        value,
+        label: t(`settings.smsScope.${value}`, value),
+      })),
+    [smsStatus, t],
+  );
+
+  // Absent means 'all' — every account that predates this picker carries
+  // nothing here, and none of them asked for their texts to stop.
+  const smsScope = prefs.smsScope || 'all';
 
   /**
    * Which of those is missing, in the reader's words. Out of credit leads,
@@ -439,6 +461,35 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                   disabled={!smsReady}
                 />
               </View>
+              {/*
+                Only while the channel is on. A "what to text" picker above a
+                channel that is off is a control over nothing, and the row
+                above already carries two states — locked, no number — that
+                need the reader's attention more.
+              */}
+              {smsReady && prefs.smsEnabled && smsScopeOptions.length > 0 && (
+                <>
+                  <Divider />
+                  <TouchableOpacity
+                    className="px-4 py-3.5 flex-row items-center justify-between"
+                    activeOpacity={0.7}
+                    onPress={() => setSmsScopePicker(true)}
+                  >
+                    <View className="flex-row items-center flex-1 pr-3">
+                      <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+                        <Icon name="ListFilter" size={18} color="#9ca3af" />
+                      </View>
+                      <View className="flex-1">
+                        <Text className="text-white text-sm font-medium">{t('settings.smsScopeLabel')}</Text>
+                        <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.smsScopeDesc')}</Text>
+                      </View>
+                    </View>
+                    <Text className="text-theme-neutrals-400 text-sm" numberOfLines={1}>
+                      {t(`settings.smsScope.${smsScope}`, smsScope)}
+                    </Text>
+                  </TouchableOpacity>
+                </>
+              )}
             </View>
           </View>
         </SettingsAnchor>
@@ -634,6 +685,19 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
           label: t('settings.publicChatAlertsRateOption', { count: n }),
         }))}
         onSelect={(value) => setPublicChatAlertsPerHour(Number(value))}
+      />
+
+      {/* The one control that narrows what the paid channel is for. Its
+          options come from the server, so this can never offer a choice the
+          backend would refuse to honour. */}
+      <SettingsOptionModal
+        visible={smsScopePicker}
+        onClose={() => setSmsScopePicker(false)}
+        title={t('settings.smsScopeLabel')}
+        value={smsScope}
+        options={smsScopeOptions}
+        onSelect={(value) => updatePrefs({ smsScope: value })}
+        maxHeight="70%"
       />
 
       {/* Deposit and phone verification for the paid channel. Everything with

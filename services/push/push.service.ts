@@ -49,6 +49,15 @@ export interface NotificationPreferences {
    * a purchase and not a preference.
    */
   smsEnabled: boolean;
+  /**
+   * Which of the eligible types are worth paying to be texted about.
+   * 'all' is the default and means every one already switched on below;
+   * anything else only narrows. The valid values come from
+   * /notification/sms/status — never invent one here, because a scope the
+   * server does not know is read as 'all' at send time, so a wrong value
+   * bills the reader for exactly what they thought they had turned off.
+   */
+  smsScope: string;
   inApp: Record<NotificationPreferenceKey, boolean>;
   push: Record<NotificationPreferenceKey, boolean>;
   quietHours: QuietHours;
@@ -462,6 +471,7 @@ export function getDefaultNotificationPreferences(): NotificationPreferences {
     pushEnabled: true,
     emailEnabled: false,
     smsEnabled: false,
+    smsScope: 'all',
     inApp: { ...defaultTypePrefs },
     push: { ...defaultTypePrefs },
     quietHours: {
