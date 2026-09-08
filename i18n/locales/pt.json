@@ -1276,7 +1276,12 @@
       "mentionedNamed": "{{name}} mencionou-o em \"{{community}}\"",
       "here": "{{name}} enviou mensagens a todos na comunidade",
       "hereNamed": "{{name}} enviou uma mensagem a todos em \"{{community}}\""
-    }
+    },
+    "sortOrder": "Ordem de notificação",
+    "priority": "Prioridade",
+    "newest": "Mais recentes",
+    "actNow": "Agir agora",
+    "important": "Importante"
   },
   "leaderboard": {
     "title": "Classificação",

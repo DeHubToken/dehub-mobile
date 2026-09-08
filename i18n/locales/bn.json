@@ -1249,7 +1249,12 @@
       "mentionedNamed": "{{name}} আপনাকে “{{community}}” -এ উল্লেখ করেছেন",
       "here": "{{name}} কমিউনিটির সবাইকে মেসেজ করেছেন",
       "hereNamed": "{{name}} সবাইকে “{{community}}” -এ মেসেজ করেছেন"
-    }
+    },
+    "sortOrder": "নোটিফিকেশন অর্ডার",
+    "priority": "অগ্রাধিকার",
+    "newest": "নতুন",
+    "actNow": "এখনই আইন করুন",
+    "important": "গুরুত্বপূর্ণ"
   },
   "leaderboard": {
     "title": "লিডারবোর্ড",

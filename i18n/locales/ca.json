@@ -1196,7 +1196,12 @@
       "mentionedNamed": "{{name}} t'ha esmentat a “{{community}}”",
       "here": "{{name}} ha enviat un missatge a tothom de la comunitat",
       "hereNamed": "{{name}}ha enviat un missatge a tothom a “{{community}}”"
-    }
+    },
+    "sortOrder": "Ordre de notificació",
+    "priority": "Prioritat",
+    "newest": "Més recent",
+    "actNow": "Actua ara",
+    "important": "Important"
   },
   "leaderboard": {
     "title": "Classificació",

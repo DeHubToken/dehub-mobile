@@ -1220,7 +1220,12 @@
       "hereNamed": "{{name}} @ បានផ្ញើសារទៅអ្នករាល់គ្នានៅក្នុង \"{{community}}\"",
       "requestedNamed": "{{name}} បានស្នើសុំឱ្យចូលរួម \"{{community}}\"",
       "mentionedNamed": "{{name}} បានលើកឡើងអ្នកនៅក្នុង \"{{community}}\""
-    }
+    },
+    "sortOrder": "លំដាប់នៃការជូនដំណឹង",
+    "priority": "អាទិភាព",
+    "newest": "ថ្មីបំផុត",
+    "actNow": "ធ្វើសកម្មភាពឥឡូវនេះ",
+    "important": "សំខាន់"
   },
   "leaderboard": {
     "title": "តារាងចំណាត់ថ្នាក់",

@@ -1186,7 +1186,12 @@
       "mentioned": "{{name}} sizi icmada qeyd etdi",
       "mentionedNamed": "{{name}} sizi “{{community}}” -da qeyd edib",
       "hereNamed": "{{name}} “{{community}}” -da hər kəs mesajlaşdı"
-    }
+    },
+    "sortOrder": "Bildiriş sifarişi",
+    "priority": "Prioritet",
+    "newest": "Ən yeni",
+    "actNow": "İndi hərəkət et",
+    "important": "Vacib"
   },
   "leaderboard": {
     "title": "Lider Lövhəsi",

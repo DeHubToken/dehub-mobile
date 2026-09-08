@@ -1191,7 +1191,12 @@
       "requestedNamed": "{{name}} ຖືກຮ້ອງຂໍໃຫ້ເຂົ້າຮ່ວມ \"{{community}}\"",
       "mentionedNamed": "{{name}} ໄດ້ກ່າວເຖິງທ່ານໃນ \"{{community}}\"",
       "hereNamed": "{{name}} ສົ່ງຂໍ້ຄວາມໃຫ້ທຸກຄົນໃນ \"{{community}}\""
-    }
+    },
+    "sortOrder": "ຄໍາສັ່ງແຈ້ງການ",
+    "priority": "ບູລິມະສິດ",
+    "newest": "ໃໝ່ທີ່ສຸດ",
+    "actNow": "ປະຕິບັດດຽວນີ້",
+    "important": "ສຳຄັນ"
   },
   "leaderboard": {
     "title": "ກະດານຄະແນນ",

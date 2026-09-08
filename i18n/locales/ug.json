@@ -1251,7 +1251,12 @@
       "mentionedNamed": "{{name}}\" {{community}} \"دا سىزنى تىلغا ئالغان",
       "here": "{{name}} جەمئىيەتتىكى ھەممە ئادەمنى خەۋەرلەندۈردى",
       "hereNamed": "{{name}} ھەممىگە \"{{community}}\" دەپ ئۇچۇر يوللىدى"
-    }
+    },
+    "sortOrder": "ئۇقتۇرۇش بۇيرۇقى",
+    "priority": "ئەۋزەللىك",
+    "newest": "ئەڭ يېڭى",
+    "actNow": "ھازىرلا ئىجرا قىل",
+    "important": "ئەھمىيەتلىك"
   },
   "messages": {
     "smartRepliesOff": "تەۋسىيە جاۋابلار ئېتىلدى",

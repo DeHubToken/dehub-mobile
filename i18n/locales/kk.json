@@ -1183,7 +1183,12 @@
       "mentioned": "{{name}} Сізді қоғамдастықта атап өтті",
       "mentionedNamed": "{{name}} Сізді «{{community}}» бөлімінде атап өтті",
       "hereNamed": "{{name}} Барлығына «{{community}}» хабарлама жіберді"
-    }
+    },
+    "sortOrder": "Хабарландыру тәртібі",
+    "priority": "Басымдық",
+    "newest": "Ең жаңа",
+    "actNow": "Қазір әрекет етіңіз",
+    "important": "МАҢЫЗДЫ"
   },
   "leaderboard": {
     "title": "Рейтинг",

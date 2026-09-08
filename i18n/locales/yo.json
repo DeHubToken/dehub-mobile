@@ -1254,7 +1254,12 @@
       "mentionedNamed": "{{name}} darukọ rẹ ni \"{{community}}@\"",
       "here": "{{name}} fi ránṣẹ́ sí gbogbo ènìyàn ní agbègbè",
       "hereNamed": "{{name}} ránṣẹ́ sí gbogbo ènìyàn ní “{{community}}@”"
-    }
+    },
+    "sortOrder": "Bere fun iwifunni",
+    "priority": "Àkójọpọ̀",
+    "newest": "Tuntun julọ",
+    "actNow": "Ṣiṣẹ ni bayi",
+    "important": "Pataki"
   },
   "leaderboard": {
     "title": "Àtòjọ Ìpò",

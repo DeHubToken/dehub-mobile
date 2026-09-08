@@ -1248,7 +1248,12 @@
       "requestedNamed": "{{name}} ለመቀላቀል ጠየቀ “{{community}}”",
       "mentioned": "{{name}} በማህበረሰብ ውስጥ ጠቅሶሃል",
       "mentionedNamed": "{{name}} በ “{{community}}” ውስጥ ጠቅሷል"
-    }
+    },
+    "sortOrder": "የማሳወቂያ ትዕዛዝ",
+    "priority": "ቅድሚያ",
+    "newest": "አዲስ",
+    "actNow": "አሁን እርምጃ ውሰድ",
+    "important": "አስፈላጊ"
   },
   "leaderboard": {
     "title": "ደረጃ ሰሌዳዎች",

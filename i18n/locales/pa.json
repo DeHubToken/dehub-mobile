@@ -1154,7 +1154,12 @@
       "mentionedNamed": "{{name}} ਨੇ ਤੁਹਾਨੂੰ “{{community}}” ਵਿੱਚ ਜ਼ਿਕਰ ਕੀਤਾ",
       "here": "{{name}} ਕਮਿ communityਨਿਟੀ ਵਿੱਚ ਹਰੇਕ ਨੂੰ ਮੈਸੇਜ ਕੀਤਾ",
       "hereNamed": "{{name}} ਸਾਰਿਆਂ ਨੂੰ “{{community}}” ਵਿੱਚ ਸੁਨੇਹਾ ਭੇਜਿਆ"
-    }
+    },
+    "sortOrder": "ਨੋਟੀਫਿਕੇਸ਼ਨ ਆਰਡਰ",
+    "priority": "ਤਰਜੀਹ",
+    "newest": "ਸਭ ਤੋਂ ਨਵਾਂ",
+    "actNow": "ਹੁਣੇ ਕੰਮ ਕਰੋ",
+    "important": "ਖਾਸ"
   },
   "leaderboard": {
     "title": "ਲੀਡਰ ਬੋਰਡ",

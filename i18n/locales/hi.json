@@ -1062,7 +1062,12 @@
       "mentionedNamed": "{{name}} ने \"{{community}}\" में आपका उल्लेख किया है",
       "here": "{{name}} ने समुदाय के सभी लोगों को मैसेज भेजा",
       "hereNamed": "{{name}} ने \"{{community}}\" में सभी को मैसेज भेजा"
-    }
+    },
+    "sortOrder": "नोटिफ़िकेशन ऑर्डर",
+    "priority": "प्राथमिकता",
+    "newest": "सबसे नया",
+    "actNow": "अभी कार्रवाई करें",
+    "important": "महत्वपूर्ण"
   },
   "leaderboard": {
     "title": "लीडरबोर्ड",

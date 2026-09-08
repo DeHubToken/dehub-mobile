@@ -716,7 +716,12 @@
       "mentionedNamed": "{{name}} vás spomenul v „{{community}}“",
       "here": "{{name}} poslal správu všetkým v komunite",
       "hereNamed": "{{name}} odoslal správu všetkým používateľom v „{{community}}“"
-    }
+    },
+    "sortOrder": "Objednávka upozornenia",
+    "priority": "Priorita",
+    "newest": "Najnovšie",
+    "actNow": "Konajte teraz",
+    "important": "Dôležité"
   },
   "messages": {
     "smartRepliesOff": "Navrhované odpovede sú vypnuté",

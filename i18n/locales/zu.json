@@ -1257,7 +1257,12 @@
       "mentionedNamed": "{{name}} kukushilo kokuthi “{{community}}”",
       "here": "{{name}} uthumele umyalezo kuwo wonke umuntu emphakathini",
       "hereNamed": "{{name}} uthumele umyalezo kuwo wonke umuntu kokuthi “{{community}}”"
-    }
+    },
+    "sortOrder": "I-oda lesaziso",
+    "priority": "Into eza kuqala",
+    "newest": "Okusha kakhulu",
+    "actNow": "Thatha isinyathelo manje",
+    "important": "Okubalulekile"
   },
   "leaderboard": {
     "title": "Bhodi Yabaholi",

@@ -1224,7 +1224,12 @@
       "mentionedNamed": "{{name}} “{{community}}” keessatti si kaase.",
       "here": "{{name}} hawaasa keessa jiru hundaaf ergaa dabarseera",
       "hereNamed": "{{name}} “{{community}}” jechuun hundaaf ergaa dabarseera."
-    }
+    },
+    "sortOrder": "Ajaja beeksisa",
+    "priority": "Dursa",
+    "newest": "Kan haaraa",
+    "actNow": "Amma hojjedhu",
+    "important": "Barbaachisaa"
   },
   "leaderboard": {
     "title": "Sadarkaa",

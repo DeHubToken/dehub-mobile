@@ -1195,7 +1195,12 @@
       "mentionedNamed": "{{name}} એ \"{{community}}\" માં તમારો ઉલ્લેખ કર્યો છે",
       "here": "{{name}} @ એ સમુદાયમાં દરેકને મેસેજ કર્યો",
       "hereNamed": "{{name}} એ \"{{community}}\" માં દરેકને મેસેજ કર્યો"
-    }
+    },
+    "sortOrder": "નોટિફિકેશન ઓર્ડર",
+    "priority": "પ્રાધાન્યતા",
+    "newest": "નવીનતમ",
+    "actNow": "હમણાં કાર્ય કરો",
+    "important": "મહત્વપૂર્ણ"
   },
   "leaderboard": {
     "title": "લીડરબોર્ડ",

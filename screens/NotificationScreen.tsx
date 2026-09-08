@@ -55,6 +55,12 @@ import SmartImage from "../components/common/SmartImage";
 import { reactionMeta } from "../libs/reactions";
 import AppealSheet from "../components/Notifications/AppealSheet";
 import { createLogger } from "../libs/logger";
+import { useWebSocket } from "../context/WebSocketContext";
+import {
+  notificationPriorityBand,
+  sortNotifications,
+  type NotificationSortMode,
+} from "../libs/notification-priority";
 import {
   NotificationType,
   getNotificationIconConfig,
@@ -446,6 +452,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
 }) => {
   const { t } = useTranslation();
   const icon = getMonoIconConfig(item.type);
+  const priorityBand = notificationPriorityBand(item);
   // Every positive reaction arrives as a `like`; show which one it was.
   // Absent on legacy rows and on aggregated rows whose actors disagreed —
   // the thumbs-up icon is right for both. The message text needs no special
@@ -647,10 +654,26 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             </Text>
           )}
 
-          {/* Timestamp */}
-          <Text style={{ color: '#A1A1AA', fontSize: 12, marginTop: 4 }}>
-            {formatNotificationDate(item.updatedAt || item.createdAt)}
-          </Text>
+          {/* Timestamp and priority */}
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 4 }}>
+            <Text style={{ color: '#A1A1AA', fontSize: 12 }}>
+              {formatNotificationDate(item.updatedAt || item.createdAt)}
+            </Text>
+            {priorityBand === 'action' && (
+              <View style={{ borderRadius: 6, backgroundColor: 'rgba(239,68,68,0.15)', paddingHorizontal: 6, paddingVertical: 2 }}>
+                <Text style={{ color: '#FCA5A5', fontSize: 11, fontWeight: '700' }}>
+                  {t('notifications.actNow', 'Act now')}
+                </Text>
+              </View>
+            )}
+            {priorityBand === 'important' && (
+              <View style={{ borderRadius: 6, backgroundColor: 'rgba(245,158,11,0.15)', paddingHorizontal: 6, paddingVertical: 2 }}>
+                <Text style={{ color: '#FCD34D', fontSize: 11, fontWeight: '700' }}>
+                  {t('notifications.important', 'Important')}
+                </Text>
+              </View>
+            )}
+          </View>
 
           {/* Tip/Bounty amount badge */}
           {(item.type === NotificationType.TIP ||
@@ -840,6 +863,7 @@ const NotificationScreen = () => {
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
   const navigation = useNavigation<any>();
+  const { on: onSocketEvent } = useWebSocket();
   const { showUserProfile } = useUserProfileSheet();
   
   const walletAddress = user?.walletAddress || user?.address || null;
@@ -863,6 +887,8 @@ const NotificationScreen = () => {
   // notifications", which is a lie the person cannot act on.
   const [loadError, setLoadError] = useState<string | null>(null);
   const [selectedFilter, setSelectedFilter] = useState<NotificationTypeFilter>('all');
+  const [sortMode, setSortMode] = useState<NotificationSortMode>('priority');
+  const [priorityNow, setPriorityNow] = useState(Date.now);
   // Unfiltered snapshot kept alongside the (now server-filtered) list purely so
   // the tab badges and the app badge keep seeing every type.
   const [countsSource, setCountsSource] = useState<NotificationItem[]>(() => cached?.countsSource ?? []);
@@ -874,6 +900,12 @@ const NotificationScreen = () => {
     if (loading || selectedFilter !== "all") return;
     lastPainted = { wallet: walletAddress, notifications, countsSource };
   }, [loading, selectedFilter, notifications, countsSource, walletAddress]);
+
+  useEffect(() => {
+    if (sortMode !== 'priority') return;
+    const timer = setInterval(() => setPriorityNow(Date.now()), 30_000);
+    return () => clearInterval(timer);
+  }, [sortMode]);
 
   // Cleared rows are per account: two wallets on one phone must not inherit
   // each other's list.
@@ -1153,10 +1185,14 @@ const NotificationScreen = () => {
     const visible = dismissedIds.size
       ? notifications.filter((n) => !dismissedIds.has(n._id))
       : notifications;
-    if (selectedFilter === 'all') return visible;
+    if (selectedFilter === 'all') return sortNotifications(visible, sortMode, priorityNow);
     const allowedTypes = FILTER_TYPE_MAP[selectedFilter];
-    return visible.filter((n) => allowedTypes.includes(n.type as NotificationType));
-  }, [notifications, selectedFilter, dismissedIds]);
+    return sortNotifications(
+      visible.filter((n) => allowedTypes.includes(n.type as NotificationType)),
+      sortMode,
+      priorityNow,
+    );
+  }, [notifications, selectedFilter, dismissedIds, sortMode, priorityNow]);
 
   // Both badge sources — the tabs and the app icon — count what is still on
   // screen, so a cleared row stops being counted the moment it goes.
@@ -1296,6 +1332,36 @@ const NotificationScreen = () => {
   const fetchNotificationsRef = useRef(fetchNotifications);
   fetchNotificationsRef.current = fetchNotifications;
 
+  useEffect(() => {
+    if (!walletAddress) return;
+    let refreshTimer: ReturnType<typeof setTimeout> | null = null;
+    const refreshLiveList = () => {
+      if (refreshTimer) clearTimeout(refreshTimer);
+      refreshTimer = setTimeout(() => fetchNotificationsRef.current(true), 150);
+    };
+
+    const unsubscribeSocket = onSocketEvent('notification', refreshLiveList);
+    const channel = supabase
+      .channel(`notification-list:${walletAddress.toLowerCase()}`)
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'custom_notifications',
+          filter: `recipient_address=eq.${walletAddress.toLowerCase()}`,
+        },
+        refreshLiveList,
+      )
+      .subscribe();
+
+    return () => {
+      if (refreshTimer) clearTimeout(refreshTimer);
+      unsubscribeSocket();
+      void supabase.removeChannel(channel);
+    };
+  }, [onSocketEvent, walletAddress]);
+
   const hasFetchedRef = useRef(!!cached);
 
   useFocusEffect(
@@ -1351,6 +1417,11 @@ const NotificationScreen = () => {
 
   const handleFilterChange = useCallback((filter: NotificationTypeFilter) => {
     setSelectedFilter(filter);
+  }, []);
+
+  const handleSortModeChange = useCallback((mode: NotificationSortMode) => {
+    setSortMode(mode);
+    setPriorityNow(Date.now());
   }, []);
 
   const handleMarkAllRead = useCallback(async () => {
@@ -1574,6 +1645,49 @@ const NotificationScreen = () => {
         onSelect={handleFilterChange} 
         counts={tabCounts}
       />
+
+      <View
+        style={{
+          flexDirection: 'row',
+          alignSelf: 'flex-start',
+          marginHorizontal: 16,
+          marginTop: 10,
+          marginBottom: 6,
+          padding: 3,
+          borderRadius: 10,
+          backgroundColor: '#18181B',
+        }}
+        accessibilityRole="tablist"
+      >
+        {(['priority', 'newest'] as const).map((mode) => {
+          const selected = sortMode === mode;
+          return (
+            <TouchableOpacity
+              key={mode}
+              onPress={() => handleSortModeChange(mode)}
+              activeOpacity={0.75}
+              accessibilityRole="tab"
+              accessibilityState={{ selected }}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 5,
+                minHeight: 34,
+                paddingHorizontal: 11,
+                borderRadius: 8,
+                backgroundColor: selected ? '#303034' : 'transparent',
+              }}
+            >
+              {mode === 'priority' && <Icon name="ArrowDownUp" size={13} color={selected ? '#F4F4F5' : '#71717A'} />}
+              <Text style={{ color: selected ? '#F4F4F5' : '#71717A', fontSize: 12, fontWeight: '600' }}>
+                {mode === 'priority'
+                  ? t('notifications.priority', 'Priority')
+                  : t('notifications.newest', 'Newest')}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
       
       {showLoading ? (
         <FlatList

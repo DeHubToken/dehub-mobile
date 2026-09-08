@@ -1182,7 +1182,12 @@
       "requested": "{{name}} توهان جي ڪميونٽي ۾ شامل ٿيڻ لاءِ چيو",
       "requestedNamed": "{{name}} شامل ٿيڻ لاءِ چيو “{{community}}",
       "mentionedNamed": "{{name}} ۾ توهان جو ذڪر ڪيو “{{community}}"
-    }
+    },
+    "sortOrder": "نوٽيفڪيشن آرڊر",
+    "priority": "ترجيح",
+    "newest": "نئون",
+    "actNow": "ھاڻي عمل ڪريو",
+    "important": "اهم"
   },
   "leaderboard": {
     "title": "ليڊربورڊ",

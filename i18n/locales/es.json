@@ -1272,7 +1272,12 @@
       "mentionedNamed": "{{name}} te mencionó en “{{community}}”",
       "here": "{{name}} ha enviado un mensaje a todos los miembros de la comunidad",
       "hereNamed": "{{name}} ha enviado un mensaje a todos en “{{community}}”"
-    }
+    },
+    "sortOrder": "Orden de notificación",
+    "priority": "Prioridad",
+    "newest": "Más reciente",
+    "actNow": "Actúa ahora",
+    "important": "Importante"
   },
   "messages": {
     "smartRepliesOff": "Respuestas sugeridas desactivadas",

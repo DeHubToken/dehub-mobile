@@ -1153,7 +1153,12 @@
       "mentionedNamed": "{{name}} عمل لك منشن في \"{{community}}\"",
       "here": "{{name}} بعت رسالة لكل الناس في المجتمع",
       "hereNamed": "{{name}} بعت رسالة لكل الناس في \"{{community}}\""
-    }
+    },
+    "sortOrder": "ترتيب التنبيهات",
+    "priority": "الأولوية",
+    "newest": "الأحدث",
+    "actNow": "تصرف دلوقتي",
+    "important": "مهم"
   },
   "leaderboard": {
     "title": "لوحة الترتيب",

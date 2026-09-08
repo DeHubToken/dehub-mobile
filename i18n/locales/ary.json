@@ -1256,7 +1256,12 @@
       "mentionedNamed": "أشار إليك {{name}} في \\\"{{community}}\\\"",
       "here": "{{name}} راسل الجميع في المجتمع",
       "hereNamed": "أرسل {{name}} رسالة إلى الجميع في \\\"{{community}}\\\""
-    }
+    },
+    "sortOrder": "أمر الإشعار",
+    "priority": "الأولوية",
+    "newest": "الأحدث",
+    "actNow": "تصرّف الآن",
+    "important": "مهم"
   },
   "leaderboard": {
     "title": "لوحة المتصدرين",

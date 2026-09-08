@@ -1259,7 +1259,12 @@
       "mentionedNamed": "{{name}} شما را در عبارت «{{community}}» معرفی کرد.",
       "here": "{{name}} به همه افراد جامعه پیام داد",
       "hereNamed": "{{name}} به همه افراد با شناسه «{{community}}» پیام داد"
-    }
+    },
+    "sortOrder": "دستور ابلاغ",
+    "priority": "اولویت",
+    "newest": "جدیدترین",
+    "actNow": "همین الان عمل کنید.",
+    "important": "مهم"
   },
   "leaderboard": {
     "title": "جدول امتیازات",

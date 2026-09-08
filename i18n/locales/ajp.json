@@ -1153,7 +1153,12 @@
       "mentionedNamed": "{{name}} عمل لك منشن في “{{community}}”",
       "here": "{{name}} بعت رسالة لكل الموجودين بالمجتمع",
       "hereNamed": "{{name}} بعت رسالة لكل الموجودين بـ “{{community}}”"
-    }
+    },
+    "sortOrder": "ترتيب الإشعارات",
+    "priority": "الأولوية",
+    "newest": "الأحدث",
+    "actNow": "تصرف الآن",
+    "important": "هام"
   },
   "leaderboard": {
     "title": "لوحة المتصدرين",

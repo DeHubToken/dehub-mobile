@@ -1164,7 +1164,12 @@
       "mentionedNamed": "{{name}} הזכיר/ה אותך ב -\"{{community}}\"",
       "here": "{{name}} שלחה הודעה לכל חברי הקהילה",
       "hereNamed": "{{name}} שלחה הודעה לכולם באזור \"{{community}}\""
-    }
+    },
+    "sortOrder": "סדר התראות",
+    "priority": "עדיפות",
+    "newest": "החדש ביותר",
+    "actNow": "לפעול עכשיו",
+    "important": "חשוב"
   },
   "leaderboard": {
     "title": "טבלת מובילים",

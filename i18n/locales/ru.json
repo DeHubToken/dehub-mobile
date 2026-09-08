@@ -1180,7 +1180,12 @@
       "mentionedNamed": "{{name}} упомянул (-а) вас в «{{community}}»",
       "here": "{{name}} написали всем в сообществе",
       "hereNamed": "{{name}} отправил всем сообщение «{{community}}»"
-    }
+    },
+    "sortOrder": "Порядок уведомления",
+    "priority": "Приоритет",
+    "newest": "Новейшие",
+    "actNow": "Действовать сейчас",
+    "important": "Важно"
   },
   "leaderboard": {
     "title": "Рейтинг",

@@ -1174,7 +1174,12 @@
     "payments": "تادیات",
     "claimBounty": "خپل انعام واخلئ",
     "noneForFilter": "تر اوسه د {{filter}} خبرتیا نشته.",
-    "andNOthers": "او {{count}} نور"
+    "andNOthers": "او {{count}} نور",
+    "sortOrder": "د خبرتیا امر",
+    "priority": "لومړيتوبونه",
+    "newest": "په نه په جديد",
+    "actNow": "د اوس لپاره ګډون وکړئ",
+    "important": "مهم او مهم"
   },
   "leaderboard": {
     "title": "لیډربورډونه",
