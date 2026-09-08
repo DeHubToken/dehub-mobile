@@ -151,6 +151,9 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
     onSend(trimmed, replyingTo?._id);
     setText("");
+    // Clear the native buffer too: multiline TextInput can retain its last
+    // measured content height for one render after the controlled value clears.
+    inputRef.current?.clear();
     mentions.reset();
     onCancelReply();
     if (editingMessage) onCancelEdit();
