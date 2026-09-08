@@ -155,6 +155,25 @@ export function clearAllEngagement(): void {
   emit();
 }
 
+/** Carry confirmed totals to copies whose viewer flags have not refetched yet. */
+export function reconcileEngagement(rows: readonly any[]): void {
+  let changed = false;
+  for (const row of rows) {
+    const key = engagementKeyOf(row);
+    const entry = store.get(key);
+    if (!entry || !itemHasViewerFields(row)) continue;
+    const resolved = resolve(row, entry);
+    const patch = { ...entry.patch };
+    for (const field of Object.keys(patch) as (keyof EngagementFields)[]) {
+      Object.assign(patch, { [field]: resolved[field] });
+    }
+    if (JSON.stringify(patch) === JSON.stringify(entry.patch)) continue;
+    store.set(key, { ...entry, patch: Object.freeze(patch) });
+    changed = true;
+  }
+  if (changed) emit();
+}
+
 function fromItem(item: any): EngagementFields {
   return {
     isLiked: !!item?.isLiked,
@@ -202,15 +221,26 @@ function resolve(item: any, entry: Entry | undefined): EngagementFields {
   // swapping like → love leaves isLiked true on BOTH sides, so without it the
   // overlay would read as "confirmed" the instant it was written and the card
   // would snap straight back to 👍.
-  const confirmed =
+  const voteConfirmed =
     (p.isLiked === undefined || p.isLiked === base.isLiked) &&
     (p.isDisliked === undefined || p.isDisliked === base.isDisliked) &&
-    (p.myReaction === undefined || p.myReaction === base.myReaction) &&
-    (p.isSaved === undefined || p.isSaved === base.isSaved) &&
-    (p.isReposted === undefined || p.isReposted === base.isReposted);
-  if (confirmed) return base;
-
-  return { ...base, ...p };
+    (p.myReaction === undefined || p.myReaction === base.myReaction);
+  const resolved = { ...base, ...p };
+  // A pending save/repost must not freeze unrelated reaction totals.
+  if (voteConfirmed) {
+    resolved.isLiked = base.isLiked;
+    resolved.isDisliked = base.isDisliked;
+    resolved.myReaction = base.myReaction;
+    resolved.likeCount = base.likeCount;
+    resolved.dislikeCount = base.dislikeCount;
+    resolved.reactionCounts = base.reactionCounts;
+  }
+  if (p.isSaved === undefined || p.isSaved === base.isSaved) resolved.isSaved = base.isSaved;
+  if (p.isReposted === undefined || p.isReposted === base.isReposted) {
+    resolved.isReposted = base.isReposted;
+    resolved.repostCount = base.repostCount;
+  }
+  return resolved;
 }
 
 /**
