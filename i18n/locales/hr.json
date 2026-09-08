@@ -1196,7 +1196,12 @@
       "mentionedNamed": "{{name}} vas spominje u “{{community}}”",
       "here": "{{name}} šalje poruke svima u zajednici",
       "hereNamed": "{{name}} šalje poruke svima u “{{community}}”"
-    }
+    },
+    "sortOrder": "Narudžba obavijesti",
+    "priority": "Prioritet",
+    "newest": "Najnovije",
+    "actNow": "Djelujte odmah",
+    "important": "Važno"
   },
   "leaderboard": {
     "title": "Ljestvice",

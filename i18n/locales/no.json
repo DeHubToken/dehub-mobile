@@ -1253,7 +1253,12 @@
       "mentionedNamed": "{{name}} nevnte deg i «{{community}}»",
       "here": "{{name}} sendte melding til alle i fellesskapet",
       "hereNamed": "{{name}} sendte melding til alle i «{{community}}»"
-    }
+    },
+    "sortOrder": "Varslingsordre",
+    "priority": "Prioritet",
+    "newest": "Nyest",
+    "actNow": "Handle nå.",
+    "important": "Viktig"
   },
   "messages": {
     "smartRepliesOff": "Foreslåtte svar er slått av",

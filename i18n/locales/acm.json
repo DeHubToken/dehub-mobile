@@ -1155,7 +1155,12 @@
       "mentionedNamed": "{{name}} ذكرك في “{{community}}”",
       "here": "{{name}} دز رسالة للكل بالمجتمع",
       "hereNamed": "{{name}} دز رسالة للكل بـ “{{community}}”"
-    }
+    },
+    "sortOrder": "ترتيب الإشعارات",
+    "priority": "الأولوية",
+    "newest": "الأحدث",
+    "actNow": "تصرف الآن",
+    "important": "مهم"
   },
   "leaderboard": {
     "title": "لوحة المتصدرين",

@@ -1735,7 +1735,12 @@
       "mentionedNamed": "{{name}} heeft u vermeld in \"{{community}}\"",
       "here": "{{name}} heeft iedereen in de community een bericht gestuurd",
       "hereNamed": "{{name}} heeft iedereen in \"{{community}}\" een bericht gestuurd"
-    }
+    },
+    "sortOrder": "Meldingsvolgorde",
+    "priority": "Prioriteit",
+    "newest": "Nieuwste",
+    "actNow": "Handelen nu",
+    "important": "Belangrijk"
   },
   "messages": {
     "smartRepliesOff": "Voorgestelde antwoorden uitgezet",

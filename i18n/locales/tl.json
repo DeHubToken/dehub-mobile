@@ -1676,7 +1676,12 @@
       "mentionedNamed": "Binanggit ka ni {{name}} sa “{{community}}”",
       "here": "Nagpadala ng mensahe si {{name}} sa lahat ng tao sa komunidad",
       "hereNamed": "Nagpadala ang {{name}} ng mensahe sa lahat sa “{{community}}”"
-    }
+    },
+    "sortOrder": "Notification",
+    "priority": "Priyoridad",
+    "newest": "Pinakabago",
+    "actNow": "Kumilos ngayon",
+    "important": "Mahalaga"
   },
   "messages": {
     "smartRepliesOff": "Naka-off na ang mga iminungkahing sagot",

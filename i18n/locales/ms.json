@@ -1727,7 +1727,12 @@
       "mentionedNamed": "{{name}} menyebut anda dalam “{{community}}”",
       "here": "{{name}} menghantar mesej kepada semua orang dalam komuniti",
       "hereNamed": "{{name}} menghantar mesej kepada semua orang dalam “{{community}}”"
-    }
+    },
+    "sortOrder": "Pesanan pemberitahuan",
+    "priority": "Keutamaan",
+    "newest": "Terbaru",
+    "actNow": "Bertindak sekarang",
+    "important": "Penting"
   },
   "messages": {
     "smartRepliesOff": "Balasan yang dicadangkan dimatikan",

@@ -1195,7 +1195,12 @@
       "mentionedNamed": "{{name}} 喺「 {{community}} 」入面提過你",
       "here": "{{name}} 留言畀社區入面嘅每個人",
       "hereNamed": "{{name}} 喺「 {{community}} 」入面留言畀所有人"
-    }
+    },
+    "sortOrder": "通知令",
+    "priority": "優先",
+    "newest": "最新嘅",
+    "actNow": "即刻行動",
+    "important": "重要"
   },
   "leaderboard": {
     "title": "排行榜",

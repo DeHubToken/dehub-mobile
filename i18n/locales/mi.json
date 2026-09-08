@@ -1186,7 +1186,12 @@
       "here": "{{name}} karere katoa i roto i te hapori",
       "joinedNamed": "{{name}} hono {{community}}",
       "hereNamed": "{{name}} karere katoa i roto i {{community}}"
-    }
+    },
+    "sortOrder": "Whakahau whakamōhio",
+    "priority": "Te kaupapa matua",
+    "newest": "Ko te mea hou",
+    "actNow": "Mahi inaianei",
+    "important": "He mea nui"
   },
   "leaderboard": {
     "title": "Rārangi Rangatira",

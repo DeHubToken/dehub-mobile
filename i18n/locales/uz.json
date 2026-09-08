@@ -1175,7 +1175,12 @@
       "hereNamed": "{{name}} hammaga “{{community}}” xatida xabar yubordi",
       "joinedNamed": "{{name}} “{{community}}” ga qo&#39;shildi",
       "requestedNamed": "{{name}} “{{community}}” ga qo‘shilish so‘raldi"
-    }
+    },
+    "sortOrder": "Bildirishnoma buyurtmasi",
+    "priority": "Ustuvorlik",
+    "newest": "Yangi roʻyxat",
+    "actNow": "Hozir harakat qiling",
+    "important": "Muhim"
   },
   "leaderboard": {
     "title": "Reyting",
