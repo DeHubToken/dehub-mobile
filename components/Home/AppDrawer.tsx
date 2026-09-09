@@ -24,11 +24,11 @@ import Animated, {
 } from "react-native-reanimated";
 import Avatar from "../common/Avatar";
 import Icon, { type IconName } from "../ui/Icon";
-import { useUser, useAuthState } from "../../context/AuthContext";
+import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { WEBSITE_LINK } from "../../config/links";
 import { getAvatarUrl } from "../../libs/misc";
-import { toastInfo } from "../../libs";
+import { toastError, toastInfo } from "../../libs";
 import { openInApp } from "../../libs/links.utils";
 import { useTranslation } from "react-i18next";
 
@@ -175,9 +175,11 @@ interface AppDrawerProps {
 const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const navigation = useNavigation<any>();
   const { isSignedIn } = useAuthState();
+  const { signOut } = useAuthActions();
   const user = useUser();
   const { t } = useTranslation();
   const [menuQuery, setMenuQuery] = useState("");
+  const [isSigningOut, setIsSigningOut] = useState(false);
 
   // Current route name, so the matching drawer item highlights like the web
   // sidebar. Tab screens live nested under Root — descend into it to find them.
@@ -308,6 +310,19 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
     },
     [navigate, onClose, t],
   );
+
+  const handleSignOut = useCallback(async () => {
+    if (isSigningOut) return;
+    setIsSigningOut(true);
+    onClose();
+    try {
+      await signOut();
+    } catch (error) {
+      toastError(error, t("settings.logoutFailed"));
+    } finally {
+      setIsSigningOut(false);
+    }
+  }, [isSigningOut, onClose, signOut, t]);
 
   const displayName = user?.displayName || user?.username || t("common.anonymous");
   const handle = user?.username ? `@${user.username}` : "";
@@ -505,6 +520,22 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               )}
             </View>
           </ScrollView>
+
+          {isSignedIn && (
+            <View style={styles.logoutFooter}>
+              <TouchableOpacity
+                accessibilityRole="button"
+                accessibilityLabel={t("sidebar.logOut")}
+                activeOpacity={0.6}
+                disabled={isSigningOut}
+                onPress={handleSignOut}
+                style={[styles.logoutButton, isSigningOut && styles.logoutButtonDisabled]}
+              >
+                <Icon name="LogOut" size={20} color="#A1A1AA" strokeWidth={1.8} />
+                <Text style={styles.logoutLabel}>{t("sidebar.logOut")}</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </Animated.View>
       </GestureDetector>
     </View>
@@ -567,6 +598,29 @@ const styles = StyleSheet.create({
     marginHorizontal: 18,
     marginVertical: 8,
     backgroundColor: "rgba(255, 255, 255, 0.10)",
+  },
+  logoutFooter: {
+    paddingHorizontal: 10,
+    paddingTop: 10,
+    paddingBottom: 12,
+    borderTopWidth: 1,
+    borderTopColor: "rgba(255, 255, 255, 0.10)",
+  },
+  logoutButton: {
+    height: 48,
+    paddingHorizontal: 14,
+    borderRadius: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+  },
+  logoutButtonDisabled: {
+    opacity: 0.5,
+  },
+  logoutLabel: {
+    color: "#A1A1AA",
+    fontSize: 15,
+    fontWeight: "500",
   },
   iconChip: {
     width: 40,
