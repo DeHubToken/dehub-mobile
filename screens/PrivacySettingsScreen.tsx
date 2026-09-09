@@ -90,6 +90,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
 
   const [hideFollowers, setHideFollowers] = useState(false);
   const [isPrivate, setIsPrivate] = useState(false);
+  const [hideBadgeAndBalance, setHideBadgeAndBalance] = useState(false);
   const [followerVisibility, setFollowerVisibility] = useState<FollowerVisibility>('public');
   const [defaultPostVisibility, setDefaultPostVisibility] = useState<PostVisibility>('public');
 
@@ -131,6 +132,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const initial = useMemo(() => ({
     hideFollowers: (user as any)?.hideFollowers ?? false,
     isPrivate: (user as any)?.isPrivate ?? false,
+    hideBadgeAndBalance: (user as any)?.hideBadgeAndBalance ?? false,
     followerVisibility: (() => {
       const fromCustoms = customs.followVisibility as FollowerVisibility | undefined;
       if (fromCustoms === 'hidden' || fromCustoms === 'counts-only' || fromCustoms === 'public') {
@@ -149,13 +151,14 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   }), [user, customs]);
 
   const userKey = useMemo(() => {
-    return `${(user as any)?.hideFollowers}|${(user as any)?.isPrivate}|${customs.followVisibility}|${customs.defaultPostVisibility}|${(user as any)?.hideFollowerCounts}|${(user as any)?.showFollowersFollowing}|${(user as any)?.defaultPostVisibility}`;
+    return `${(user as any)?.hideFollowers}|${(user as any)?.isPrivate}|${(user as any)?.hideBadgeAndBalance}|${customs.followVisibility}|${customs.defaultPostVisibility}|${(user as any)?.hideFollowerCounts}|${(user as any)?.showFollowersFollowing}|${(user as any)?.defaultPostVisibility}`;
   }, [user, customs]);
 
   useEffect(() => {
     if (saving) return;
     setHideFollowers(initial.hideFollowers);
     setIsPrivate(initial.isPrivate);
+    setHideBadgeAndBalance(initial.hideBadgeAndBalance);
     setFollowerVisibility(initial.followerVisibility);
     setDefaultPostVisibility(initial.defaultPostVisibility);
     if (user) setLoading(false);
@@ -193,6 +196,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       optimisticPatch(initial);
       setHideFollowers(initial.hideFollowers);
       setIsPrivate(initial.isPrivate);
+      setHideBadgeAndBalance(initial.hideBadgeAndBalance);
       setFollowerVisibility(initial.followerVisibility);
       setDefaultPostVisibility(initial.defaultPostVisibility);
     } finally {
@@ -212,6 +216,11 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const handleToggleHideFollowers = useCallback((value: boolean) => {
     setHideFollowers(value);
     saveSetting({ hideFollowers: value });
+  }, [saveSetting]);
+
+  const handleTogglePrivateBalance = useCallback((value: boolean) => {
+    setHideBadgeAndBalance(value);
+    saveSetting({ hideBadgeAndBalance: value });
   }, [saveSetting]);
 
   const handleFollowerVisChange = useCallback((vis: FollowerVisibility) => {
@@ -363,6 +372,22 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                 <CustomSwitch value={isPrivate} onValueChange={handleTogglePrivate} disabled={saving} />
               </View>
 
+              <View className="h-px bg-theme-neutrals-700 ml-16" />
+              <View className="px-4 py-3.5 flex-row items-center justify-between">
+                <View className="flex-row items-center flex-1 pr-3">
+                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+                    <Icon name="EyeOff" size={18} color="#9ca3af" />
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-white text-sm font-medium">Hide badge and balance</Text>
+                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                      Hides financial details and disables sends and tips to you.
+                    </Text>
+                  </View>
+                </View>
+                <CustomSwitch value={hideBadgeAndBalance} onValueChange={handleTogglePrivateBalance} disabled={saving} />
+              </View>
+
               {isPrivate && pendingCount > 0 && (
                 <>
                   <View className="h-px bg-theme-neutrals-700 ml-16" />
@@ -390,6 +415,11 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
             <Text className="text-theme-neutrals-500 text-xs mt-2 mx-1">
               {t('settings.privateAccountNote')}
             </Text>
+            <View className="mt-3 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3">
+              <Text className="text-amber-100/80 text-xs leading-5">
+                On-chain transactions are public. Sending tokens or tips can reveal your wallet address, including transactions made before private balance mode was enabled.
+              </Text>
+            </View>
           </View>
         </SettingsAnchor>
 

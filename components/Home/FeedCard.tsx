@@ -243,7 +243,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const username = minterUser?.username || item.minterUsername || item.minter || "";
   const minterAddress = minterUser?.address || item.minter || item.owner || "";
   const avatar = getAvatarUrl(minterUser?.avatarImageUrl || item.minterAvatarUrl || "");
-  const badgeImg = getBadgeUrlFor(minterUser || item);
+  const badgeImg = minterUser?.hideBadgeAndBalance ? null : getBadgeUrlFor(minterUser || item);
 
   const createdAt = item.createdAt || stream?.createdAt;
   const title = (() => {
@@ -1606,7 +1606,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           reactionCounts={reactionCounts}
           onComment={handleCommentPress}
           onShare={handleOpenShare}
-          onTip={handleTipPress}
+          onTip={minterUser?.hideBadgeAndBalance ? undefined : handleTipPress}
           onSave={handleSavePress}
           onInfo={handleInfoPress}
           onShowReactionInfo={
@@ -1642,7 +1642,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
-      {showTipModal && minterAddress ? (
+      {showTipModal && minterAddress && !minterUser?.hideBadgeAndBalance ? (
         <GlassTipSheet
           visible={showTipModal}
           onClose={() => setShowTipModal(false)}

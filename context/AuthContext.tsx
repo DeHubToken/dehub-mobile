@@ -114,6 +114,7 @@ export interface User {
   followings?: number; // count of following
   hideFollowers?: boolean; // privacy setting to hide follow lists
   isPrivate?: boolean; // privacy setting to make account private
+  hideBadgeAndBalance?: boolean; // hides public badge/balances and disables incoming DeHub payments
   /**
    * This viewer asked to be served mature posts in the public feeds, and to
    * see them without a content warning elsewhere. Off by default. Says

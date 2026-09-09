@@ -62,6 +62,7 @@ export interface MinterUser {
   sentTips?: number;
   receivedTips?: number;
   badgeBalance?: number;
+  hideBadgeAndBalance?: boolean;
   createdAt?: string;
 }
 

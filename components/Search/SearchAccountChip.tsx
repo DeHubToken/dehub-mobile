@@ -35,7 +35,7 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
   const avatarSrc = getAvatarUrl(account.avatarImageUrl || "");
   const displayAvatar = avatarSrc && avatarSrc !== "default-avatar" ? avatarSrc : undefined;
   const followers = account.followers ?? 0;
-  const badgeImage = getBadgeUrl(account.badgeBalance ?? 0, { username: account.username });
+  const badgeImage = getBadgeUrl(account.hideBadgeAndBalance ? 0 : (account.badgeBalance ?? 0), { username: account.username });
 
   const handlePress = useCallback(() => {
     const identifier = account.username || account.address;

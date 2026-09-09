@@ -40,6 +40,7 @@ interface RemoteUser {
   followings?: number;
   hideFollowers?: boolean;
   isPrivate?: boolean;
+  hideBadgeAndBalance?: boolean;
   likes?: any[];
 }
 
@@ -249,7 +250,7 @@ export const useUserProfileData = (
 
   const stats = useMemo(() => {
     if (!data) return [] as { label: string; value: number; key: string }[];
-    return [
+    const socialStats = [
       {
         key: "followers",
         label: "Followers",
@@ -261,6 +262,12 @@ export const useUserProfileData = (
         label: "Following",
         value: resolveCount(data.followings, (data as any).following_count),
       },
+    ];
+    const viewerAddress = authUser?.walletAddress || authUser?.address;
+    const viewingSelf = !!viewerAddress && viewerAddress.toLowerCase() === data.address?.toLowerCase();
+    if (data.hideBadgeAndBalance && !viewingSelf) return socialStats;
+    return [
+      ...socialStats,
       {
         key: "tipsReceived",
         label: "Tips earned",
@@ -272,7 +279,7 @@ export const useUserProfileData = (
         value: (data as any).sentTips || 0,
       },
     ];
-  }, [data]);
+  }, [data, authUser]);
 
   const handleFollow = useCallback(() => {
     if (isFollowing || isFollowRequestPending || !profileData) return;

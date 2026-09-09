@@ -656,6 +656,7 @@ export interface CommentLikersResponse {
   /** False for everyone but the comment's author — `data` is then empty by
    *  design, not because nobody liked it. Same contract as post likers. */
   canViewLikers: boolean;
+  anonymousBadgeHolderCount?: number;
   data: CommentLiker[];
   pagination?: { page: number; limit: number; totalCount: number; hasMore: boolean };
 }
@@ -1349,6 +1350,7 @@ export interface GetPostLikersResult {
   data: LikerUser[];
   /** Per-reaction totals for the whole post; null unless you own it. */
   reactionCounts: Partial<Record<PostReaction, number>> | null;
+  anonymousBadgeHolderCount?: number;
   pagination: {
     page: number;
     limit: number;
@@ -1391,6 +1393,7 @@ export async function getPostLikers(input: GetPostLikersInput): Promise<GetPostL
     canViewLikers: false,
     data: [],
     reactionCounts: null,
+    anonymousBadgeHolderCount: 0,
     pagination: { page, limit, totalCount: 0, hasMore: false },
   };
   try {
@@ -1404,6 +1407,7 @@ export async function getPostLikers(input: GetPostLikersInput): Promise<GetPostL
       canViewLikers: !!res.canViewLikers,
       data: Array.isArray(res.data) ? res.data : [],
       reactionCounts: res.reactionCounts ?? null,
+      anonymousBadgeHolderCount: res.anonymousBadgeHolderCount ?? 0,
       pagination: res.pagination ?? { page, limit, totalCount: 0, hasMore: false },
     };
   } catch (e) {
