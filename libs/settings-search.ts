@@ -70,7 +70,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'privacy', anchor: 'post-visibility', label: 'Post Visibility', labelKey: 'settings.postVisibility', keywords: 'default public private posts' },
   { tab: 'privacy', anchor: 'follower-visibility', label: 'Follower Visibility', labelKey: 'settings.followerVisibilitySection', keywords: 'followers following hide counts' },
   { tab: 'privacy', anchor: 'profile-visibility', label: 'Profile Visibility', labelKey: 'settings.profileVisibility', keywords: 'public profile search engine indexing google new member' },
-  { tab: 'privacy', anchor: 'account-security', label: 'Account Security', labelKey: 'settings.accountSecurity', keywords: 'two-factor 2fa mfa security tv sign in' },
+  { tab: 'privacy', anchor: 'account-security', label: 'Account Security', labelKey: 'settings.accountSecurity', keywords: 'two-factor 2fa mfa security tv sign in biometric fingerprint face id wallet unlock android passkey' },
   { tab: 'privacy', anchor: 'account-security', label: 'Active sessions', labelKey: 'settings.activeSessions', keywords: 'devices logged in revoke' },
   { tab: 'privacy', anchor: 'account-security', label: 'Blocked accounts', labelKey: 'settings.blockedAccounts', keywords: 'block unblock mute' },
   { tab: 'privacy', anchor: 'your-data', label: 'Your Data', labelKey: 'settings.yourData', keywords: 'export download import gdpr' },

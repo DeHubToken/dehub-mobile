@@ -30,7 +30,10 @@ import {
   releaseWalletKeyForSignIn,
   switchActiveWalletForIdentity,
 } from "../../libs/identity-wallet";
-import { upsertLocalAccount } from "../../libs/wallets.local";
+import {
+  rememberSuccessfulWalletUnlock,
+  upsertLocalAccount,
+} from "../../libs/wallets.local";
 import { getAuthUser } from "../../libs/auth.utils";
 import { decryptString } from "../../libs/wallet-core/crypto";
 import { deriveFromSecret } from "../../libs/wallet-core/derive";
@@ -169,6 +172,11 @@ const WalletUnlockHost: React.FC = () => {
       derived.ethPrivateKey,
       current.sessionAddress,
     );
+    // Set this before settling the request. Settling wakes the locked provider,
+    // which immediately reloads the key; the password just accepted here is
+    // sufficient proof for that same action and must not produce a second,
+    // surprise fingerprint sheet.
+    rememberSuccessfulWalletUnlock();
     settle(true);
   }, [settle]);
 
@@ -182,6 +190,7 @@ const WalletUnlockHost: React.FC = () => {
       payload,
     );
     await adoptKeyForSession(supabaseUserId, derivedAddress, privateKey, current.sessionAddress);
+    rememberSuccessfulWalletUnlock();
     settle(true);
   }, [settle]);
 
@@ -204,6 +213,7 @@ const WalletUnlockHost: React.FC = () => {
       address,
     );
     await adoptKeyForSession(supabaseUserId, newAddress, privateKey, current.sessionAddress);
+    rememberSuccessfulWalletUnlock();
     settle(true);
   }, [settle]);
 

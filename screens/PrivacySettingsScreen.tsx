@@ -43,6 +43,7 @@ import {
 } from '../components/Settings/SettingsPrimitives';
 import { toastInfo } from '../libs';
 import { useNewMemberSelf } from '../hooks/useNewMembers';
+import AndroidBiometricUnlockRow from '../components/Settings/AndroidBiometricUnlockRow';
 
 const logger = createLogger('PrivacySettings');
 
@@ -547,6 +548,8 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
             value={t('settings.comingSoon')}
             onPress={() => toastInfo(t('settings.comingSoon'))}
           />
+          <Divider />
+          <AndroidBiometricUnlockRow />
           <Divider />
           <SettingsLinkRow
             icon="Smartphone"

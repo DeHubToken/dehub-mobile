@@ -331,9 +331,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => { needsUsernameRef.current = needsUsername; }, [needsUsername]);
   const chainIdRef = useRef<number | undefined>(undefined);
   const providerStatusRef = useRef<ProviderStatus>('idle' as ProviderStatus);
-  // Bridge session-expired from session hook into provider lifecycle
-  const sessionExpiredHandlerRef = useRef<(trigger: string) => Promise<void>>(async () => {});
-
   // Logging handled via createLogger; set DEBUG env var to enable debug-level logs.
 
   // console.log({user, provider})
@@ -353,7 +350,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   } = useProviderLifecycle({
     log,
     getActiveAddress: () => userRef.current?.walletAddress || userRef.current?.address,
-    onSessionExpired: async (trigger) => sessionExpiredHandlerRef.current(trigger),
   });
   useEffect(() => { chainIdRef.current = chainId; }, [chainId]);
   useEffect(() => { providerStatusRef.current = providerStatus; }, [providerStatus]);
@@ -441,7 +437,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     patchUser: patchUserRaw,
     refreshUser,
     enrichAndStoreUser,
-    handleSessionExpired,
     signOut,
   } = useAuthSession({
     log,
@@ -469,9 +464,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setAuthMethodState,
     didBootRefetchRef,
   });
-  // Update session-expired handler ref
-  useEffect(() => { sessionExpiredHandlerRef.current = handleSessionExpired; }, [handleSessionExpired]);
-
   /** Who the freshly built provider actually signs as. */
   const getProviderAccount = useCallback(async (): Promise<string | null> => {
     try {
