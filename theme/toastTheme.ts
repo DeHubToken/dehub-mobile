@@ -22,14 +22,14 @@ export const toastTheme = {
     color: theme.colors.cardForeground,
   },
   warning: {
-    backgroundColor: 'rgba(255,255,255,0.15)', // amber-ish
+    backgroundColor: '#1C1C1C',
     color: theme.colors.foreground,
   },
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(20,20,20,0.45)',
+    backgroundColor: '#101014',
     borderRadius: 12,
     paddingVertical: 14,
     paddingHorizontal: 16,
