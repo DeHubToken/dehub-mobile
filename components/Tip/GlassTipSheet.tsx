@@ -65,6 +65,7 @@ import { formatCompactNumber } from "../../libs";
 import { supabase } from "../../services/supabase";
 import { withWalletHeader } from "../../libs/supabase-wallet-client";
 import { ButtonLoader } from "../DeHubLoader";
+import { getAccount } from "../../services/user.service";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -239,6 +240,22 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   >("idle");
   const [tipError, setTipError] = useState<string | null>(null);
   const [lastAmount, setLastAmount] = useState<number | null>(null);
+  const [recipientPrivate, setRecipientPrivate] = useState(false);
+  const [privacyChecking, setPrivacyChecking] = useState(false);
+
+  useEffect(() => {
+    if (!visible || !toAddress) return;
+    let cancelled = false;
+    setPrivacyChecking(true);
+    getAccount(toAddress)
+      .then((res: any) => {
+        const profile = res?.data?.result || res?.result || res;
+        if (!cancelled) setRecipientPrivate(profile?.hideBadgeAndBalance === true);
+      })
+      .catch(() => { if (!cancelled) setRecipientPrivate(false); })
+      .finally(() => { if (!cancelled) setPrivacyChecking(false); });
+    return () => { cancelled = true; };
+  }, [visible, toAddress]);
 
   const isSolanaTip = isSolanaChain(paymentChainId);
   const tipCurrency = isSolanaTip ? "SOL" : "DHB";
@@ -258,7 +275,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     user.walletAddress?.toLowerCase() === toAddress?.toLowerCase();
   const isBusy = phase === "approving" || phase === "sending";
   const disableSend =
-    isBusy || numericAmount <= 0 || overLimit || isSelf;
+    isBusy || privacyChecking || recipientPrivate || numericAmount <= 0 || overLimit || isSelf;
 
   const tokenMeta = useMemo(() => {
     if (!chainId) return undefined;
@@ -306,6 +323,18 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   // ── Send tip (on-chain) ──────────────────────────────────────────────────
   const handleSend = useCallback(() => {
     requireAuth(async () => {
+      try {
+        const res: any = await getAccount(toAddress);
+        const profile = res?.data?.result || res?.result || res;
+        if (profile?.hideBadgeAndBalance) {
+          setRecipientPrivate(true);
+          setTipError("This account has disabled tips while private balance mode is on.");
+          return;
+        }
+      } catch {
+        setTipError("Could not verify the recipient privacy setting. No tip was sent.");
+        return;
+      }
       if (disableSend || (phase !== "idle" && phase !== "error")) return;
       setTipError(null);
 
@@ -456,6 +485,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   }, [
     requireAuth,
     disableSend,
+    recipientPrivate,
     phase,
     provider,
     account,
@@ -542,6 +572,15 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                   <Text style={styles.headerTitle}>Send Tip</Text>
                 </View>
                 <Text style={styles.recipientText}>{subheader}</Text>
+
+                {recipientPrivate ? (
+                  <View style={styles.privateNotice}>
+                    <Icon name="EyeOff" size={16} color="#A1A1AA" />
+                    <Text style={styles.privateNoticeText}>
+                      This account has private balance mode on, so DeHub cannot send tokens or tips to it.
+                    </Text>
+                  </View>
+                ) : null}
 
                 {/* Quick amounts — DHB only (SOL tips use the custom field),
                     and never when the amount is fixed by whatever raised this. */}
@@ -787,6 +826,24 @@ const styles = StyleSheet.create({
     fontSize: 13,
     textAlign: "center",
     marginBottom: 16,
+  },
+  privateNotice: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    marginTop: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    borderRadius: 12,
+    backgroundColor: "rgba(255,255,255,0.05)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.10)",
+  },
+  privateNoticeText: {
+    flex: 1,
+    marginLeft: 8,
+    color: "#D4D4D8",
+    fontSize: 12,
+    lineHeight: 17,
   },
   sectionLabel: {
     color: "#8B8D90",

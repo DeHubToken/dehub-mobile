@@ -38,6 +38,7 @@ export interface SearchAccountResult {
   followers?: number;
   followings?: number;
   badgeBalance?: number;
+  hideBadgeAndBalance?: boolean;
   createdAt?: string;
   /** Backend-provided: is the authenticated user following this account? */
   isFollowing?: boolean;

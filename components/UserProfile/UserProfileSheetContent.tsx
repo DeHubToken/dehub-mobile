@@ -111,6 +111,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   const { isSignedIn } = useAuthState();
   const viewerUser = useUser() as any;
   const viewerWallet = viewerUser?.walletAddress || viewerUser?.address || "";
+  const paymentsHidden = data?.hideBadgeAndBalance === true && !isOwnProfile;
 
   useEffect(() => {
     let cancelled = false;
@@ -216,9 +217,10 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   }, [onMessage]);
 
   const handleMenuTip = useCallback(() => {
+    if (paymentsHidden) return;
     setShowProfileMenu(false);
     setTimeout(() => setShowTip(true), 200);
-  }, []);
+  }, [paymentsHidden]);
 
   const handleMenuShare = useCallback(() => {
     setShowProfileMenu(false);
@@ -427,16 +429,17 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
 
           <TouchableOpacity
             onPress={handleMenuTip}
+            disabled={paymentsHidden}
             activeOpacity={0.7}
-            className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
+            className={`mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10 ${paymentsHidden ? "opacity-40" : ""}`}
           >
             <View className="w-5 h-5 items-center justify-center mr-3">
               <Icon name="HandCoins" size={18} color="#fff" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-[15px] font-medium">Send Tip</Text>
+              <Text className="text-white text-[15px] font-medium">{paymentsHidden ? "Tips disabled" : "Send Tip"}</Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                Send a tip to {profileData?.displayName || "this user"}
+                {paymentsHidden ? "Private balance mode is enabled" : `Send a tip to ${profileData?.displayName || "this user"}`}
               </Text>
             </View>
           </TouchableOpacity>
@@ -481,14 +484,15 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
 
           <TouchableOpacity
             onPress={handleMenuCopyAddress}
+            disabled={paymentsHidden}
             activeOpacity={0.7}
-            className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
+            className={`mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10 ${paymentsHidden ? "opacity-40" : ""}`}
           >
             <View className="w-5 h-5 items-center justify-center mr-3">
               <Icon name="Copy" size={18} color="#fff" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-[15px] font-medium">Copy Address</Text>
+              <Text className="text-white text-[15px] font-medium">{paymentsHidden ? "Address hidden" : "Copy Address"}</Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
                 Copy wallet address to clipboard
               </Text>
@@ -623,7 +627,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
       />
 
       <GlassTipSheet
-        visible={showTip}
+        visible={showTip && !paymentsHidden}
         onClose={() => setShowTip(false)}
         toAddress={profileData?.address || ""}
         recipientName={profileData?.displayName}

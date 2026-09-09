@@ -405,6 +405,20 @@ const ArcadeGameScreen = () => {
         />
       )}
 
+      {game.socialPresence ? (
+        <Pressable
+          onPress={() => navigation.navigate(ScreenNames.PrivacySettings)}
+          accessibilityRole="button"
+          accessibilityLabel="Open privacy settings"
+          style={styles.privacyWarning}
+        >
+          <Icon name="TriangleAlert" size={16} color="#FCD34D" />
+          <Text style={styles.privacyWarningText}>
+            If you hold a large amount of tokens or live in an insecure area, hide your badge and balance before using this feature. On-chain transactions still reveal your address. Open settings.
+          </Text>
+        </Pressable>
+      ) : null}
+
       {/* The way out. Always visible: an edge-swipe belongs to the board and on
           iOS there is no hardware back, so this is the only exit and must not
           be something the player has to discover.
@@ -459,6 +473,27 @@ const ArcadeGameScreen = () => {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: "#000" },
   web: { flex: 1, backgroundColor: "#000" },
+  privacyWarning: {
+    position: "absolute",
+    right: 12,
+    bottom: 12,
+    maxWidth: 360,
+    flexDirection: "row",
+    alignItems: "flex-start",
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    borderRadius: 12,
+    backgroundColor: "rgba(0,0,0,0.82)",
+    borderWidth: 1,
+    borderColor: "rgba(251,191,36,0.28)",
+  },
+  privacyWarningText: {
+    flex: 1,
+    marginLeft: 8,
+    color: "#D4D4D8",
+    fontSize: 11,
+    lineHeight: 16,
+  },
   exit: {
     position: "absolute",
     top: 10,
