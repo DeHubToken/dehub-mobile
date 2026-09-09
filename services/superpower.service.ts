@@ -85,6 +85,10 @@ export interface SuperPowerBooking {
   /** Times this boost has been dealt to a viewer. */
   served: number;
   live: boolean;
+  /** Delivery receipt for Signal Flare. Null or absent for every other power. */
+  signalDeliveryStatus?: 'pending' | 'processing' | 'sent' | 'failed' | null;
+  /** Followers who received the in-app Signal Flare notification. */
+  signalRecipients?: number | null;
 }
 
 export interface SuperPowerStatus {
@@ -243,6 +247,35 @@ export async function bookBoost(
     isAuthRequired: true,
   });
   return response.result;
+}
+
+/**
+ * Wait briefly for the asynchronous Signal Flare fan-out receipt.
+ *
+ * The API returns the booking before it writes every notification. Reading
+ * the receipt from status gives the UI the real recipient count without
+ * holding the booking request open for a large following.
+ */
+export async function waitForSignalFlareReceipt(
+  bookingId: string,
+  attempts = 20,
+  intervalMs = 500,
+): Promise<number | null> {
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    try {
+      const status = await fetchSuperpowerStatus();
+      const booking = status.bookings.find(row => row.id === bookingId);
+      if (booking?.signalDeliveryStatus === 'sent') return booking.signalRecipients ?? 0;
+      if (booking?.signalDeliveryStatus === 'failed') return null;
+    } catch {
+      // The flare is already booked. A transient receipt read must not turn
+      // that success into an error toast; keep trying, then fall back cleanly.
+    }
+    if (attempt < attempts - 1) {
+      await new Promise(resolve => setTimeout(resolve, intervalMs));
+    }
+  }
+  return null;
 }
 
 /**
