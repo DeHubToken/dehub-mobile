@@ -37,6 +37,7 @@ import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
 import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import SmartImage from "../common/SmartImage";
+import ContainedFeedImage from "./ContainedFeedImage";
 import LiveFeedPreview from "../common/LiveFeedPreview";
 import { cdnImage } from "../../libs/cdnImage";
 import { hlsUrlFor, liveThumbnailFor } from "../../libs/live-ingest";
@@ -1146,12 +1147,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
     if (!hasMultipleImages) {
       return (
-        <Pressable onPress={() => handleImagePress(0)} className="mt-2">
-          <SmartImage
-            source={{ uri: galleryImages[0] }}
-            className="w-full rounded-xl"
-            style={{ height: IMAGE_WIDTH * 0.75 }}
-            recyclingKey={galleryImages[0]}
+        <Pressable
+          onPress={() => handleImagePress(0)}
+          className="mt-2"
+          style={{ alignSelf: "stretch" }}
+        >
+          <ContainedFeedImage
+            uri={galleryImages[0]}
+            fallbackWidth={IMAGE_WIDTH}
           />
         </Pressable>
       );
@@ -1175,11 +1178,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       >
         {galleryImages.map((uri, index) => (
           <Pressable key={index} onPress={() => handleImagePress(index)} style={{ width: itemWidth }}>
-            <SmartImage
-              source={{ uri }}
-              className="rounded-xl"
-              style={{ width: itemWidth, height: itemWidth }}
-              recyclingKey={uri}
+            <ContainedFeedImage
+              uri={uri}
+              width={itemWidth}
+              fallbackWidth={IMAGE_WIDTH}
             />
           </Pressable>
         ))}
