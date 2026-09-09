@@ -110,6 +110,20 @@ export interface NotificationItem {
   actorAddress?: string;
   actorUsername?: string;
   actorAvatar?: string;
+  actor?: {
+    address?: string;
+    username?: string;
+    displayName?: string;
+    avatarImageUrl?: string;
+    followers?: number;
+    followings?: number;
+    createdAt?: string;
+    isPrivate?: boolean;
+    badgeBalance?: number;
+    isFollowing?: boolean;
+    followsYou?: boolean;
+    isFollowRequestPending?: boolean;
+  };
   // Content info
   tokenId?: number;
   tokenTitle?: string;
