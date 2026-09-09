@@ -172,6 +172,8 @@ interface FeedCardProps {
   onBeforeNavigate?: () => void;
   /** Show a "Reposted" label inside the card above the user header row. */
   showRepostLabel?: boolean;
+  /** Post-detail media is already on screen and must not wait behind feed images. */
+  prioritizeMedia?: boolean;
 }
 
 const FeedCardComponent: React.FC<FeedCardProps> = ({
@@ -185,6 +187,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   enablePreview = true,
   onBeforeNavigate,
   showRepostLabel = false,
+  prioritizeMedia = false,
 }) => {
   const navigation = useNavigation<any>();
   const user = useUser();
@@ -1019,6 +1022,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             source={{ uri: galleryImages[0] }}
             style={{ width: "100%", height: "100%" }}
             recyclingKey={galleryImages[0]}
+            priority={prioritizeMedia ? "high" : "normal"}
             blurRadius={20}
           />
           <View className="absolute inset-0 bg-black/30 items-center justify-center">
@@ -1065,6 +1069,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             source={{ uri: galleryImages[0] }}
             style={{ width: "100%", height: "100%" }}
             recyclingKey={galleryImages[0]}
+            priority={prioritizeMedia ? "high" : "normal"}
             blurRadius={20}
           />
           <View className="absolute inset-0 bg-black/30 items-center justify-center">
@@ -1099,6 +1104,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             source={{ uri: galleryImages[0] }}
             style={{ width: "100%", height: "100%" }}
             recyclingKey={galleryImages[0]}
+            priority={prioritizeMedia ? "high" : "normal"}
             blurRadius={20}
           />
           <View className="absolute inset-0 bg-black/30 items-center justify-center">
@@ -1124,6 +1130,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             source={{ uri: galleryImages[0] }}
             style={{ width: "100%", height: "100%" }}
             recyclingKey={galleryImages[0]}
+            priority={prioritizeMedia ? "high" : "normal"}
             blurRadius={20}
           />
           <View className="absolute inset-0 bg-black/30 items-center justify-center">
@@ -1155,6 +1162,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           <ContainedFeedImage
             uri={galleryImages[0]}
             fallbackWidth={IMAGE_WIDTH}
+            priority={prioritizeMedia ? "high" : "normal"}
           />
         </Pressable>
       );
@@ -1182,6 +1190,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               uri={uri}
               width={itemWidth}
               fallbackWidth={IMAGE_WIDTH}
+              priority={prioritizeMedia && index === 0 ? "high" : "normal"}
             />
           </Pressable>
         ))}
@@ -1282,6 +1291,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           source={{ uri: thumbnail }}
           className="absolute inset-0 w-full h-full"
           recyclingKey={thumbnail}
+          priority={prioritizeMedia ? "high" : "normal"}
         />
       ) : (
         /* Last resort: no cover, no provider poster, nothing on the post.
