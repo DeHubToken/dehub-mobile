@@ -27,15 +27,29 @@ const KEY_ACCESSIBILITY = {
   keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
 } as const;
 
-// Releasing a key requires a fresh device-owner check, but the signer is built
-// once per session and would otherwise re-prompt on every provider rebuild.
-// A short grace window keeps that to a single prompt without leaving the door
-// open: it is memory-only (cleared on app restart) and never persisted.
+// Releasing a key requires a fresh wallet credential or device-owner check,
+// but the signer is built once per session and would otherwise re-prompt on
+// every provider rebuild. A short grace window keeps that to a single prompt
+// without leaving the door open: it is memory-only (cleared on app restart)
+// and never persisted.
 const UNLOCK_GRACE_MS = 5 * 60 * 1000;
-let lastVerifiedAt = 0;
+let lastWalletProofAt = 0;
+
+/**
+ * Reuse a wallet credential that was just accepted by the unlock sheet.
+ *
+ * The password/recovery/biometric sheet has already proved access to the
+ * wallet and written its key. The signing provider rebuilds immediately after
+ * that promise resolves; without this in-memory marker the rebuild asks for a
+ * fingerprint as a second credential for the very same action.
+ */
+export function rememberSuccessfulWalletUnlock(): void {
+  lastWalletProofAt = Date.now();
+  log.info("verifyOwner:grace-window-from-wallet-unlock");
+}
 
 async function verifyOwner(purpose: string, forcePrompt: boolean): Promise<VerificationOutcome> {
-  if (!forcePrompt && Date.now() - lastVerifiedAt < UNLOCK_GRACE_MS) {
+  if (!forcePrompt && Date.now() - lastWalletProofAt < UNLOCK_GRACE_MS) {
     log.debug("verifyOwner:grace-window");
     return "verified";
   }
@@ -44,13 +58,13 @@ async function verifyOwner(purpose: string, forcePrompt: boolean): Promise<Verif
   // an unenforceable release would be recording proof that never happened —
   // and would then suppress the prompt on a device that later GAINS a screen
   // lock partway through a session.
-  if (outcome === "verified") lastVerifiedAt = Date.now();
+  if (outcome === "verified") lastWalletProofAt = Date.now();
   return outcome;
 }
 
 /** Drop the grace window — call on sign-out or when the app backgrounds. */
 export function forgetDeviceVerification(): void {
-  lastVerifiedAt = 0;
+  lastWalletProofAt = 0;
 }
 
 async function readAll(): Promise<LocalAccount[]> {
@@ -323,5 +337,6 @@ export default {
   getLocalAccount,
   getLocalAccountDetails,
   hardenStoredKey,
+  rememberSuccessfulWalletUnlock,
   forgetDeviceVerification,
 };

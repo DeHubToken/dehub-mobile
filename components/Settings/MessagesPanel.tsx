@@ -16,6 +16,7 @@ import { SettingsAnchor, SettingsScrollView } from './SettingsAnchor';
 import {
   SettingsSection,
   SettingsLinkRow,
+  SettingsInfoRow,
   SettingsToggleRow,
   SectionLabel,
   SectionCard,
@@ -82,12 +83,15 @@ const MessagesPanel: React.FC<{ onOpenFreeAccessList: () => void }> = ({
           comingSoon
         />
         <Divider />
-        <SettingsToggleRow
+        <SettingsInfoRow
           icon="Lock"
           label={t('settings.e2eEncryption')}
           description={t('settings.e2eEncryptionDesc')}
-          value
-          comingSoon
+          right={
+            <Text className="text-theme-neutrals-300 text-xs font-medium">
+              Automatic
+            </Text>
+          }
         />
         <Divider />
         <SettingsToggleRow
