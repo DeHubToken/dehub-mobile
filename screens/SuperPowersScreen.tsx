@@ -34,7 +34,6 @@ import { theme } from "../theme";
 import { getBadgeUrl } from "../libs";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
-  useBookBoost,
   useCancelBoost,
   useSuperpowerLadder,
   useSuperpowers,
@@ -42,6 +41,7 @@ import {
 import { toastError, toastSuccess } from "../libs";
 import { useUser } from "../context/AuthContext";
 import SpendPowerSheet from "../components/common/SpendPowerSheet";
+import GlassModal from "../components/ui/GlassModal";
 import {
   powerHome,
   type SuperPowerInfo,
@@ -100,7 +100,7 @@ function formatMinutes(total: number): string {
 export default function SuperPowersScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
-  const { data: status, isLoading: loadingStatus } = useSuperpowers();
+  const { data: status, isLoading: loadingStatus, refetch: refetchStatus } = useSuperpowers();
   const { data: ladder, isLoading: loadingLadder } = useSuperpowerLadder();
   const cancelBoost = useCancelBoost();
 
@@ -114,16 +114,18 @@ export default function SuperPowersScreen() {
     return new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "long" });
   }, [status?.cycleEndsAt, ladder?.cycleEndsAt]);
 
-  const liveBookings = status?.bookings.filter(b => b.status === "active") ?? [];
-
   // One sheet for all thirteen. It resolves the target a power needs — a
   // post, a comment, a Stage, a category — and books it; the server re-checks
   // every one of those, so this only decides what is worth offering.
   const user = useUser();
   const myAddress = (user?.walletAddress || user?.address || null) as string | null;
   const [spending, setSpending] = useState<SuperPowerInfo | null>(null);
+  const [historyPower, setHistoryPower] = useState<SuperPowerInfo | null>(null);
 
   const badgeArt = status?.tier ? getBadgeUrl(status.badgeBalance) : undefined;
+  const historyBookings = historyPower
+    ? (status?.bookings.filter(booking => booking.power === historyPower.key) ?? [])
+    : [];
 
   const handleCancel = (id: string) =>
     cancelBoost.mutate(id, {
@@ -166,50 +168,12 @@ export default function SuperPowersScreen() {
                   {status.boostsPerCycle} × {status.minutesPerBoost} minutes a cycle
                 </Text>
               </View>
-              <View style={styles.countBlock}>
-                <Text style={styles.count}>{status.boostsLeft}</Text>
-                <Text style={styles.countLabel}>LEFT</Text>
-              </View>
             </View>
 
             {!!refillsOn && (
               <Text style={styles.footnote}>
                 Refills on {refillsOn} — the same moment for everybody.
               </Text>
-            )}
-
-
-            {liveBookings.length > 0 && (
-              <View style={styles.bookings}>
-                {liveBookings.map(booking => (
-                  <View key={booking.id} style={styles.bookingRow}>
-                    <Icon
-                      name="Clock"
-                      size={14}
-                      color={booking.live ? "#F4F4F5" : "#808089"}
-                    />
-                    {/* A Golden Hour acts on the whole account, so it has no
-                        post id to show. */}
-                    <Text style={styles.bookingId}>
-                      {booking.tokenId != null
-                        ? `#${booking.tokenId}`
-                        : (status?.powers.find(p => p.key === booking.power)?.label ?? booking.power)}
-                    </Text>
-                    <Text style={styles.bookingState}>
-                      {booking.live
-                        ? `live until ${new Date(booking.endsAt).toLocaleTimeString(undefined, {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })}`
-                        : "queued"}
-                    </Text>
-                    <Text style={styles.bookingSeen}>{booking.served} seen</Text>
-                    <Pressable onPress={() => handleCancel(booking.id)} disabled={cancelBoost.isPending}>
-                      <Text style={styles.cancel}>Cancel</Text>
-                    </Pressable>
-                  </View>
-                ))}
-              </View>
             )}
           </View>
         ) : (
@@ -234,37 +198,64 @@ export default function SuperPowersScreen() {
             // Held AND built. A locked card stays inert rather than opening a
             // picker for something the server would refuse.
             const unlocked = !!power.unlocked && power.available;
+            const allowance =
+              power.key === "signal_flare"
+                ? (status?.signalsLeft ?? status?.boostsLeft)
+                : status?.boostsLeft;
             return (
-              <Pressable
+              <View
                 key={power.key}
-                disabled={!unlocked}
-                onPress={() => setSpending(power)}
                 style={[styles.powerCard, unlocked && styles.powerCardOn]}
               >
-                <View style={styles.powerTop}>
-                  {/* Numbered because it IS a sequence: one power per rung. */}
-                  <Text style={styles.rung}>{String(index + 1).padStart(2, "0")}</Text>
-                  <Text style={[styles.powerName, !unlocked && styles.powerNameOff]}>
-                    {power.label}
+                <Pressable
+                  disabled={!unlocked}
+                  onPress={() => setSpending(power)}
+                  style={({ pressed }) => [styles.powerBody, pressed && unlocked && styles.powerBodyPressed]}
+                >
+                  <View style={styles.powerTop}>
+                    {/* Numbered because it IS a sequence: one power per rung. */}
+                    <Text style={styles.rung}>{String(index + 1).padStart(2, "0")}</Text>
+                    <Text style={[styles.powerName, !unlocked && styles.powerNameOff]}>
+                      {power.label}
+                    </Text>
+                    <Icon
+                      name={unlocked ? "Check" : "Lock"}
+                      size={13}
+                      color={unlocked ? "#F4F4F5" : "#52525B"}
+                    />
+                  </View>
+                  <Text style={styles.powerSummary}>{power.summary}</Text>
+                  {unlocked ? (
+                    <Text style={styles.powerWhere}>{actsOn(power.key, t)}</Text>
+                  ) : null}
+                </Pressable>
+                <View style={styles.powerFooter}>
+                  <Text style={[styles.powerCount, !unlocked && styles.powerCountOff]}>
+                    {unlocked && allowance !== undefined
+                      ? `${allowance} ${allowance === 1 ? "use" : "uses"} left`
+                      : !power.available
+                        ? "Coming soon"
+                        : "Locked"}
                   </Text>
-                  <Icon
-                    name={unlocked ? "Check" : "Lock"}
-                    size={13}
-                    color={unlocked ? "#F4F4F5" : "#52525B"}
-                  />
+                  <Pressable
+                    onPress={() => {
+                      setHistoryPower(power);
+                      void refetchStatus();
+                    }}
+                    disabled={!status?.tier}
+                    accessibilityRole="button"
+                    accessibilityLabel={`Show past ${power.label} usage`}
+                    style={({ pressed }) => [
+                      styles.historyLink,
+                      !status?.tier && styles.historyLinkDisabled,
+                      pressed && styles.historyLinkPressed,
+                    ]}
+                  >
+                    <Text style={styles.historyLinkText}>Past usage</Text>
+                    <Icon name="ChevronRight" size={14} color="#A1A1AA" />
+                  </Pressable>
                 </View>
-                <Text style={styles.powerSummary}>{power.summary}</Text>
-                {/* Only on a power this account actually has. On a locked one
-                    it would describe a choice they cannot make, and the tier
-                    line below already says what it costs. */}
-                {unlocked ? (
-                  <Text style={styles.powerWhere}>{actsOn(power.key, t)}</Text>
-                ) : null}
-                <Text style={styles.powerTier}>
-                  {power.tier}
-                  {!power.available ? " · coming soon" : ""}
-                </Text>
-              </Pressable>
+              </View>
             );
           })}
         </View>
@@ -320,6 +311,86 @@ export default function SuperPowersScreen() {
         address={myAddress}
         onClose={() => setSpending(null)}
       />
+
+      <GlassModal
+        visible={!!historyPower}
+        onClose={() => setHistoryPower(null)}
+        presentation="bottom"
+      >
+        <View style={styles.historySheet}>
+          <View style={styles.historyHeader}>
+            <View style={styles.historyHeaderText}>
+              <Text style={styles.historyTitle}>{historyPower?.label} usage</Text>
+              <Text style={styles.historySubtitle}>This cycle and anything still active.</Text>
+            </View>
+            <Pressable
+              onPress={() => setHistoryPower(null)}
+              hitSlop={10}
+              accessibilityRole="button"
+              accessibilityLabel="Close"
+            >
+              <Icon name="X" size={18} color="#A1A1AA" />
+            </Pressable>
+          </View>
+
+          <ScrollView style={styles.historyList} contentContainerStyle={styles.historyListContent}>
+            {historyBookings.length === 0 ? (
+              <View style={styles.historyEmpty}>
+                <Icon name="History" size={25} color="#71717A" />
+                <Text style={styles.historyEmptyText}>No past usage for this power yet.</Text>
+              </View>
+            ) : (
+              historyBookings.map(booking => {
+                const flare = booking.power === "signal_flare";
+                const result = flare
+                  ? booking.signalDeliveryStatus === "sent"
+                    ? `${booking.signalRecipients ?? 0} notified`
+                    : booking.signalDeliveryStatus === "failed"
+                      ? "Delivery retrying"
+                      : "Notifying followers"
+                  : `${booking.served} seen`;
+                const subject = booking.tokenId != null
+                  ? `Post #${booking.tokenId}`
+                  : booking.category || historyPower?.label || booking.power;
+
+                return (
+                  <View key={booking.id} style={styles.historyRow}>
+                    <Icon name="Clock" size={16} color="#71717A" />
+                    <View style={styles.historySubject}>
+                      <Text numberOfLines={1} style={styles.historySubjectText}>{subject}</Text>
+                      <Text style={styles.historyDate}>
+                        {new Date(booking.startsAt).toLocaleString(undefined, {
+                          day: "numeric",
+                          month: "short",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </Text>
+                    </View>
+                    <View style={styles.historyResult}>
+                      <Text style={styles.historyResultText}>{result}</Text>
+                      {!flare ? (
+                        <Text style={styles.historyState}>
+                          {booking.live ? "Live" : booking.status === "active" ? "Queued" : "Finished"}
+                        </Text>
+                      ) : null}
+                    </View>
+                    {booking.status === "active" && !flare ? (
+                      <Pressable
+                        onPress={() => handleCancel(booking.id)}
+                        disabled={cancelBoost.isPending}
+                        hitSlop={8}
+                      >
+                        <Text style={styles.cancel}>Cancel</Text>
+                      </Pressable>
+                    ) : null}
+                  </View>
+                );
+              })
+            )}
+          </ScrollView>
+        </View>
+      </GlassModal>
     </View>
   );
 }
@@ -341,9 +412,6 @@ const styles = StyleSheet.create({
   tierText: { flex: 1, minWidth: 0 },
   tierName: { color: "#fff", fontSize: 15, fontWeight: "600" },
   muted: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
-  countBlock: { alignItems: "flex-end" },
-  count: { color: "#fff", fontSize: 24, fontWeight: "700" },
-  countLabel: { color: "#808089", fontSize: 9, letterSpacing: 1 },
   footnote: { color: "#808089", fontSize: 12, lineHeight: 17 },
   body: { color: "#fff", fontSize: 13, lineHeight: 19 },
 
@@ -381,11 +449,6 @@ const styles = StyleSheet.create({
   chipPicked: { borderColor: "rgba(255,255,255,0.4)", backgroundColor: "rgba(255,255,255,0.15)" },
   chipText: { color: "#A1A1AA", fontSize: 11 },
   chipTextPicked: { color: "#fff" },
-  bookings: { borderTopWidth: 1, borderTopColor: "rgba(255,255,255,0.1)", paddingTop: 10, gap: 8 },
-  bookingRow: { flexDirection: "row", alignItems: "center", gap: 8 },
-  bookingId: { color: "#fff", fontSize: 13 },
-  bookingState: { color: "#808089", fontSize: 12, flex: 1 },
-  bookingSeen: { color: "#808089", fontSize: 12 },
   cancel: { color: "#A1A1AA", fontSize: 12 },
 
   heading: {
@@ -402,20 +465,80 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.1)",
     backgroundColor: "rgba(255,255,255,0.02)",
     borderRadius: 14,
-    padding: 14,
-    gap: 5,
+    overflow: "hidden",
   },
   powerCardOn: {
     borderColor: "rgba(255,255,255,0.2)",
     backgroundColor: "rgba(255,255,255,0.05)",
   },
+  powerBody: { padding: 14, paddingBottom: 12, gap: 5 },
+  powerBodyPressed: { backgroundColor: "rgba(255,255,255,0.06)" },
   powerTop: { flexDirection: "row", alignItems: "center", gap: 8 },
   rung: { color: "#52525B", fontSize: 11 },
   powerName: { color: "#fff", fontSize: 14, fontWeight: "500", flex: 1 },
   powerNameOff: { color: "#A1A1AA" },
   powerSummary: { color: "#808089", fontSize: 12.5, lineHeight: 17 },
   powerWhere: { color: "#A1A1AA", fontSize: 11, lineHeight: 15 },
-  powerTier: { color: "#52525B", fontSize: 11 },
+  powerFooter: {
+    minHeight: 44,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderTopWidth: 1,
+    borderTopColor: "rgba(255,255,255,0.1)",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 12,
+  },
+  powerCount: { color: "#F4F4F5", fontSize: 12, fontWeight: "600" },
+  powerCountOff: { color: "#71717A" },
+  historyLink: { flexDirection: "row", alignItems: "center", gap: 2 },
+  historyLinkDisabled: { opacity: 0.35 },
+  historyLinkPressed: { opacity: 0.65 },
+  historyLinkText: { color: "#A1A1AA", fontSize: 12 },
+
+  historySheet: { paddingHorizontal: 20, paddingTop: 16, paddingBottom: 32 },
+  historyHeader: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    gap: 12,
+    marginBottom: 12,
+  },
+  historyHeaderText: { flex: 1, minWidth: 0 },
+  historyTitle: { color: "#fff", fontSize: 18, fontWeight: "600" },
+  historySubtitle: { color: "#71717A", fontSize: 12, marginTop: 3 },
+  historyList: { maxHeight: 440 },
+  historyListContent: { gap: 8 },
+  historyEmpty: {
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    paddingHorizontal: 20,
+    paddingVertical: 32,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+    backgroundColor: "rgba(255,255,255,0.03)",
+    borderRadius: 14,
+  },
+  historyEmptyText: { color: "#D4D4D8", fontSize: 13, textAlign: "center" },
+  historyRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 11,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+    backgroundColor: "rgba(255,255,255,0.03)",
+    borderRadius: 14,
+  },
+  historySubject: { flex: 1, minWidth: 0 },
+  historySubjectText: { color: "#fff", fontSize: 13 },
+  historyDate: { color: "#71717A", fontSize: 10.5, marginTop: 3 },
+  historyResult: { alignItems: "flex-end" },
+  historyResultText: { color: "#E4E4E7", fontSize: 12, fontWeight: "500" },
+  historyState: { color: "#71717A", fontSize: 10, marginTop: 2 },
 
   table: {
     borderWidth: 1,
