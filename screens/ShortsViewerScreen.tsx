@@ -796,15 +796,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
 
   const commitTapReaction = useCallback((
     reaction: "like" | "love",
-    x: number,
-    y: number,
   ) => {
     // Tap gestures add or upgrade, never toggle an existing reaction off.
     if (myReaction === reaction) return;
     if (reaction === "like" && liked) return;
-    showTapReactionAnimation(reaction, x, y);
     handleReaction(reaction);
-  }, [handleReaction, liked, myReaction, showTapReactionAnimation]);
+  }, [handleReaction, liked, myReaction]);
 
   /**
    * Swipe down over the bottom stack to clear the chrome — web's
@@ -923,20 +920,25 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     if (tapCountRef.current === 1) {
       tapCountRef.current = 2;
       if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
+      // Feedback stays immediate. Only the request waits long enough for a
+      // third tap to upgrade it, so the gesture never feels swallowed.
+      showTapReactionAnimation("like", pageX, pageY);
       tapTimerRef.current = setTimeout(() => {
         tapTimerRef.current = null;
         if (tapCountRef.current !== 2) return;
         tapCountRef.current = 0;
         lastTapRef.current = 0;
-        commitTapReaction("like", pageX, pageY);
+        commitTapReaction("like");
       }, REACTION_RESOLUTION_MS);
       return;
     }
 
-    // Tap three cancels the pending Like, so the server and UI see Love only.
+    // Tap three cancels the pending Like request and replaces its thumb with a
+    // single Love bloom. The animation state is shared, so nothing layers.
     resetTapSequence();
-    commitTapReaction("love", pageX, pageY);
-  }, [commitTapReaction, pickerOpen, overlaysHidden, autoHidden, resetTapSequence]);
+    showTapReactionAnimation("love", pageX, pageY);
+    commitTapReaction("love");
+  }, [commitTapReaction, pickerOpen, overlaysHidden, autoHidden, resetTapSequence, showTapReactionAnimation]);
 
   // Long press — detect center vs right side
   const handleLongPressIn = useCallback((e: GestureResponderEvent) => {
