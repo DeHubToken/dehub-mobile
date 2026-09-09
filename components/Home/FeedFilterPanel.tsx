@@ -252,15 +252,14 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   const { t } = useTranslation();
   const [categorySearch, setCategorySearch] = useState("");
 
-  // Engagement sorts lead: they are what people actually reach for, and they
-  // were sitting behind the algorithmic and chronological options.
   const SORT_OPTIONS = useMemo(() => [
+    // Keep the default home sort at the leading edge of the filter row.
+    { id: "createdAt" as SortOption, label: t("filters.latest") },
     { id: "score" as SortOption, label: t("filters.forYou", "For You") },
     { id: "likes" as SortOption, label: t("filters.mostLiked") },
     { id: "tips" as SortOption, label: t("filters.mostTips") },
     { id: "views" as SortOption, label: t("filters.mostViewed") },
     { id: "comments" as SortOption, label: t("filters.mostComments") },
-    { id: "createdAt" as SortOption, label: t("filters.latest") },
     { id: "random" as SortOption, label: t("filters.random") },
   ], [t]);
 
