@@ -26,7 +26,6 @@ type Logger = {
 type UseProviderLifecycleParams = {
   log: Logger;
   getActiveAddress: () => string | undefined;
-  onSessionExpired: (trigger: string) => Promise<void>;
   validationThrottleMs?: number;
   reinitBackoffMs?: number;
   healthIntervalMs?: number;
@@ -53,7 +52,6 @@ type UseProviderLifecycleReturn = {
 export function useProviderLifecycle({
   log,
   getActiveAddress,
-  onSessionExpired,
   validationThrottleMs = 15_000,
   reinitBackoffMs = 3_000,
   healthIntervalMs = 120_000,
@@ -252,8 +250,11 @@ export function useProviderLifecycle({
         log.warn("provider:init:chainId:error", e);
       }
       const accounts = await fetchAccounts(eip1193);
-      if (!accounts || accounts.length === 0)
+      if (!accounts || accounts.length === 0) {
         scheduleValidation("initial-accounts-empty");
+      } else {
+        providerMetaRef.current.consecutiveEmptyAccounts = 0;
+      }
       setProviderStatus("ready");
     } catch (e) {
       log.error("provider:init:error", e);
@@ -319,21 +320,15 @@ export function useProviderLifecycle({
           // After first attempt, try reinit
           await attemptReinitializeProvider(reason + "->empty-accounts");
           
-          // Final check after reinit with longer timeout
-          setTimeout(async () => {
-            if (!provider || providerStatus !== "ready") return;
-            const postAccounts = await fetchAccounts(provider);
-            if (!postAccounts || postAccounts.length === 0) {
-              providerMetaRef.current.consecutiveEmptyAccounts += 1;
-            } else {
-              providerMetaRef.current.consecutiveEmptyAccounts = 0;
-            }
-            // Only trigger session expired after 3+ failed attempts
-            if (providerMetaRef.current.consecutiveEmptyAccounts >= 3) {
-              log.error("session expired - provider has no accounts after repeated reinit");
-              await onSessionExpired(reason);
-            }
-          }, 2500); // Give more time for reinit to complete
+          // A wallet provider is not the DeHub session. In particular Android
+          // backgrounds the app while showing its fingerprint sheet, and a
+          // provider can briefly return no accounts as the app resumes. The
+          // old final check ran against this callback's stale provider and
+          // signed the user out after three empty reads. Rebuild the signing
+          // surface here; only the auth/token layer may expire the login.
+          log.warn("provider unavailable after account check; authenticated session kept", {
+            reason,
+          });
         } else if (providerMetaRef.current.consecutiveEmptyAccounts !== 0) {
           providerMetaRef.current.consecutiveEmptyAccounts = 0;
         }
@@ -347,7 +342,6 @@ export function useProviderLifecycle({
       attemptReinitializeProvider,
       fetchAccounts,
       log,
-      onSessionExpired,
       provider,
       providerStatus,
       validationThrottleMs,

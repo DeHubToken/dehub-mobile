@@ -14,11 +14,19 @@
  * line. A missing provider is a state that changes on its own; it is retried.
  */
 import { hasIdentityFor, loadIdentity, setupIdentity, syncPublishedKey } from "./keys";
+import { createLogger } from "../logger";
 
 export type DmEncryptionStatus = "ready" | "locked" | "error";
 
 const declined = new Set<string>();
 const listeners = new Set<(status: DmEncryptionStatus) => void>();
+const log = createLogger("dm-e2ee/setup");
+
+function shortAddress(address: string): string {
+  return address.length > 12
+    ? `${address.slice(0, 6)}...${address.slice(-4)}`
+    : address;
+}
 
 /** Subscribe to the setup outcome. Returns unsubscribe. */
 export function onDmEncryptionStatus(cb: (status: DmEncryptionStatus) => void): () => void {
@@ -55,7 +63,21 @@ export async function ensureDmEncryption(address: string, provider?: any): Promi
     // to it. Anything else (no provider yet, a failed publish, a dead socket)
     // is a condition, and conditions are retried on the next chat open.
     const refused = name === "WalletLockedError" || name === "BiometricRejectedError" || e?.code === 4001;
-    if (refused) declined.add(addr);
+    if (refused) {
+      declined.add(addr);
+      log.info("ensure:declined", { address: shortAddress(addr), name, code: e?.code });
+    } else {
+      const error = e instanceof Error ? e : new Error(String(e?.message || e || "Unknown encryption setup error"));
+      // This is deliberately an error-level row: mobile error logs are shipped
+      // only from logger.error, and this catch previously converted every real
+      // setup failure into a generic banner with no record to investigate.
+      log.error(error, {
+        event: "ensure:failed",
+        address: shortAddress(addr),
+        name: name || "Error",
+        code: e?.code,
+      });
+    }
     return report(refused ? "locked" : "error");
   }
 }
