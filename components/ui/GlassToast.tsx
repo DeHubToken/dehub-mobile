@@ -4,7 +4,9 @@ import {
   Text,
   TouchableOpacity,
   ActivityIndicator,
+  Image,
 } from "react-native";
+import type { ImageSourcePropType } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 type GlassToastType = "success" | "error" | "info" | "warning" | "loading";
@@ -15,6 +17,7 @@ export interface GlassToastProps {
   description?: string;
   onClose?: () => void;
   actionLabel?: string;
+  actionIcon?: ImageSourcePropType;
   onActionPress?: () => void;
 }
 
@@ -41,6 +44,7 @@ const GlassToast: React.FC<GlassToastProps> = ({
   description,
   onClose,
   actionLabel,
+  actionIcon,
   onActionPress,
 }) => {
   if (!title) return null;
@@ -82,9 +86,14 @@ const GlassToast: React.FC<GlassToastProps> = ({
               className="mt-3 h-9 w-full items-center justify-center rounded-xl bg-white/10"
               style={{ borderWidth: 1, borderColor: "rgba(255,255,255,0.3)" }}
             >
-              <Text className="text-sm font-medium text-white">
-                {actionLabel}
-              </Text>
+              <View className="flex-row items-center justify-center gap-2">
+                {actionIcon ? (
+                  <Image source={actionIcon} className="h-5 w-5" resizeMode="contain" />
+                ) : null}
+                <Text className="text-sm font-medium text-white">
+                  {actionLabel}
+                </Text>
+              </View>
             </TouchableOpacity>
           )}
         </View>
