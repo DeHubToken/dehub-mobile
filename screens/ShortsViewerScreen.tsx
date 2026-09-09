@@ -43,7 +43,6 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
   Animated,
-  GestureResponderEvent,
   ActivityIndicator,
   StyleProp,
   ViewStyle,
@@ -133,6 +132,7 @@ import {
   TAP_LOVE_ANIMATION_MS,
   TAP_REACTION_RESOLUTION_MS,
 } from "../libs/tap-gesture";
+import { MEDIA_TAP_SLOP_PX } from "../libs/media-gesture";
 import GlassTipSheet from "../components/Tip/GlassTipSheet";
 import { resolveViewCount } from "../libs/numbers.util";
 
@@ -469,9 +469,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   const tapAnimProgress = useRef(new Animated.Value(0)).current;
   const [tapAnimReaction, setTapAnimReaction] = useState<"like" | "love" | null>(null);
   const [tapAnimPos, setTapAnimPos] = useState({ x: 0, y: 0 });
+  const [tapAnimRun, setTapAnimRun] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
   const longPressActiveRef = useRef(false);
+  const activeLongPressKindRef = useRef<"speed" | "screenshot" | null>(null);
   const wasPlayingBeforeLongPress = useRef(true);
+  const isPlayingRef = useRef(isPlaying);
+  isPlayingRef.current = isPlaying;
 
   const resetTapSequence = useCallback(() => {
     if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
@@ -579,9 +583,6 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     if (!player) return;
     try { (player as any).playbackRate = is2xSpeed ? 2 : playbackRate; } catch {}
   }, [player, playbackRate, is2xSpeed]);
-
-  const isPlayingRef = useRef(isPlaying);
-  isPlayingRef.current = isPlaying;
 
   const togglePlayPauseRef = useRef(() => {});
   // keep ref current so timeout closures always call latest
@@ -784,17 +785,28 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     if (reduceMotion) return;
     setTapAnimReaction(reaction);
     setTapAnimPos({ x: x - 32, y: y - 32 });
+    setTapAnimRun((run) => run + 1);
+  }, [reduceMotion]);
+
+  // Start only after the burst has mounted. Starting a native-driver animation
+  // in the same callback that first rendered its Animated.View left Android
+  // with no attached native node, so the Like/Love state changed but no glyph
+  // ever painted over the video.
+  useEffect(() => {
+    if (!tapAnimReaction || tapAnimRun === 0) return;
     tapAnimProgress.stopAnimation();
     tapAnimProgress.setValue(0);
-    Animated.timing(tapAnimProgress, {
+    const animation = Animated.timing(tapAnimProgress, {
       toValue: 1,
-      duration: reaction === "love" ? TAP_LOVE_ANIMATION_MS : TAP_LIKE_ANIMATION_MS,
+      duration: tapAnimReaction === "love" ? TAP_LOVE_ANIMATION_MS : TAP_LIKE_ANIMATION_MS,
       easing: Easing.bezier(0.22, 1, 0.36, 1),
       useNativeDriver: true,
-    }).start(({ finished }) => {
+    });
+    animation.start(({ finished }) => {
       if (finished) setTapAnimReaction(null);
     });
-  }, [reduceMotion, tapAnimProgress]);
+    return () => animation.stop();
+  }, [tapAnimReaction, tapAnimRun, tapAnimProgress]);
 
   const commitTapReaction = useCallback((
     reaction: "like" | "love",
@@ -871,7 +883,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   );
 
   // Resolve the complete tap gesture before casting: double = Like, triple = Love.
-  const handleScreenPress = useCallback((e: GestureResponderEvent) => {
+  const handleScreenTap = useCallback((pageX: number, pageY: number) => {
     if (longPressActiveRef.current) return;
     // A tap that dismisses the reaction tray is not also a play/pause.
     if (pickerOpen) {
@@ -879,7 +891,6 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
       setOpenTray(null);
       return;
     }
-    const { pageX, pageY } = e.nativeEvent;
     // Tap the middle band to bring cleared chrome back — web's
     // `handleRestoreTouchEnd`. It restores on a tap rather than an upward
     // swipe because an upward flick is exactly the gesture that pages to the
@@ -943,32 +954,35 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   }, [commitTapReaction, pickerOpen, overlaysHidden, autoHidden, resetTapSequence, showTapReactionAnimation]);
 
   // Long press — detect center vs right side
-  const handleLongPressIn = useCallback((e: GestureResponderEvent) => {
-    const { locationX } = e.nativeEvent;
+  const handleLongPressIn = useCallback((locationX: number) => {
     resetTapSequence();
     longPressActiveRef.current = true;
     const isRightSide = locationX > SCREEN_WIDTH * 0.6;
 
     if (isRightSide) {
       // Right side → 2x speed
+      activeLongPressKindRef.current = "speed";
       setIs2xSpeed(true);
     } else {
       // Center/left → screenshot mode: pause + hide UI
-      wasPlayingBeforeLongPress.current = isPlaying;
+      activeLongPressKindRef.current = "screenshot";
+      wasPlayingBeforeLongPress.current = isPlayingRef.current;
       setScreenshotMode(true);
       if (player) {
         try { player.pause(); } catch {}
       }
     }
-  }, [player, isPlaying, resetTapSequence]);
+  }, [player, resetTapSequence]);
 
   const handleLongPressOut = useCallback(() => {
     longPressActiveRef.current = false;
+    const kind = activeLongPressKindRef.current;
+    activeLongPressKindRef.current = null;
 
     // Clearing the flag restores the viewer's chosen rate via the effect above.
-    if (is2xSpeed) setIs2xSpeed(false);
+    if (kind === "speed") setIs2xSpeed(false);
 
-    if (screenshotMode) {
+    if (kind === "screenshot") {
       setScreenshotMode(false);
       if (wasPlayingBeforeLongPress.current && player) {
         try {
@@ -977,7 +991,30 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
         } catch {}
       }
     }
-  }, [is2xSpeed, screenshotMode, player]);
+  }, [player]);
+
+  /**
+   * Native recognizers arbitrate with the FlatList's own native scroll gesture.
+   * RN Pressable used to resolve some short vertical flicks as `onPress` after
+   * the pager had already moved, pausing the clip and starving the second and
+   * third taps before the Like/Love ladder could see them. Both recognizers
+   * fail at the same 10px boundary used by feed cards, leaving the pager alone.
+   */
+  const screenGesture = useMemo(() => {
+    const tap = Gesture.Tap()
+      .maxDistance(MEDIA_TAP_SLOP_PX)
+      .runOnJS(true)
+      .onEnd((event, success) => {
+        if (success) handleScreenTap(event.absoluteX, event.absoluteY);
+      });
+    const hold = Gesture.LongPress()
+      .minDuration(400)
+      .maxDistance(MEDIA_TAP_SLOP_PX)
+      .runOnJS(true)
+      .onStart((event) => handleLongPressIn(event.x))
+      .onFinalize(() => handleLongPressOut());
+    return Gesture.Race(hold, tap);
+  }, [handleLongPressIn, handleLongPressOut, handleScreenTap]);
 
   const chromeVisible = !showComments && !screenshotMode && !overlaysHidden && !autoHidden;
 
@@ -1048,13 +1085,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
 
   return (
     <View style={{ width: SCREEN_WIDTH, height: itemHeight }}>
-      <Pressable
-        onPress={handleScreenPress}
-        onLongPress={handleLongPressIn}
-        onPressOut={handleLongPressOut}
-        delayLongPress={400}
-        style={[StyleSheet.absoluteFill, showComments && { bottom: undefined, height: splitHeight, backgroundColor: "#000" }]}
-      >
+      <GestureDetector gesture={screenGesture}>
+        <View
+          style={[StyleSheet.absoluteFill, showComments && { bottom: undefined, height: splitHeight, backgroundColor: "#000" }]}
+        >
         {/* useVideoPlayer never returns null, so a thumbnail-instead-of-player
             branch could never render and the short was a black frame until its
             first frame (or forever on a load failure). Draw the thumbnail under
@@ -1079,7 +1113,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
             onFirstFrameRender={() => setFirstFrameRendered(true)}
           />
         ) : null}
-      </Pressable>
+        </View>
+      </GestureDetector>
 
       {tapAnimReaction && (
         <View
