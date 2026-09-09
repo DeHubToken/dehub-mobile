@@ -661,7 +661,7 @@ export async function switchActiveWalletForIdentity(
         derived: `${derived.ethAddress.slice(0, 6)}...${derived.ethAddress.slice(-4)}`,
       });
       throw new Error(
-        `That recovery phrase or private key belongs to a different wallet (${derived.ethAddress.slice(0, 6)}…${derived.ethAddress.slice(-4)}), not this account's (${expectedAddress.slice(0, 6)}…${expectedAddress.slice(-4)}). Nothing was changed.`
+        "That recovery belongs to a different wallet than this DeHub profile. Nothing was changed."
       );
     }
   }
