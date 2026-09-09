@@ -48,6 +48,8 @@ import {
   StyleProp,
   ViewStyle,
   Platform,
+  AccessibilityInfo,
+  Easing,
 } from "react-native";
 import useKeyboard from "../hooks/useKeyboard";
 import { runOnJS, useSharedValue } from "react-native-reanimated";
@@ -193,6 +195,20 @@ const RESTORE_ZONE_BOTTOM = 0.85;
  * carries to the next short, because the timer restarts with each one.
  */
 const AUTO_HIDE_MS = 3000;
+
+/** A comfortable window for deciding whether another tap belongs to the gesture. */
+const TAP_WINDOW_MS = 300;
+/** Tap two waits briefly so tap three can replace Like with Love before any request is sent. */
+const REACTION_RESOLUTION_MS = 220;
+
+/** Small, upward-weighted satellites for the Love bloom. */
+const LOVE_BLOOM = [
+  { x: -14, y: -54, size: 14 },
+  { x: -44, y: -30, size: 10 },
+  { x: 38, y: -34, size: 11 },
+  { x: -50, y: 2, size: 8 },
+  { x: 46, y: 4, size: 9 },
+] as const;
 
 interface ActionButtonProps {
   icon: IconName;
@@ -444,14 +460,40 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   /** Touch origin for the swipe-down, read on the UI thread by hidePan. */
   const panStart = useSharedValue({ x: 0, y: 0 });
 
-  // Double-tap like animation
+  // Double-tap Like / triple-tap Love gesture and animation.
   const lastTapRef = useRef(0);
-  const likeAnimOpacity = useRef(new Animated.Value(0)).current;
-  const likeAnimScale = useRef(new Animated.Value(0.5)).current;
-  const likeAnimTransY = useRef(new Animated.Value(0)).current;
-  const [likeAnimPos, setLikeAnimPos] = useState({ x: 0, y: 0 });
+  const tapCountRef = useRef(0);
+  const tapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tapAnimProgress = useRef(new Animated.Value(0)).current;
+  const [tapAnimReaction, setTapAnimReaction] = useState<"like" | "love" | null>(null);
+  const [tapAnimPos, setTapAnimPos] = useState({ x: 0, y: 0 });
+  const [reduceMotion, setReduceMotion] = useState(false);
   const longPressActiveRef = useRef(false);
   const wasPlayingBeforeLongPress = useRef(true);
+
+  const resetTapSequence = useCallback(() => {
+    if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
+    tapTimerRef.current = null;
+    tapCountRef.current = 0;
+    lastTapRef.current = 0;
+  }, []);
+
+  useEffect(() => {
+    let mounted = true;
+    AccessibilityInfo.isReduceMotionEnabled().then((enabled) => {
+      if (mounted) setReduceMotion(enabled);
+    });
+    const subscription = AccessibilityInfo.addEventListener(
+      "reduceMotionChanged",
+      setReduceMotion,
+    );
+    return () => {
+      mounted = false;
+      subscription.remove();
+      resetTapSequence();
+      tapAnimProgress.stopAnimation();
+    };
+  }, [resetTapSequence, tapAnimProgress]);
 
   // The initialiser runs once, so read the current mute through a ref —
   // otherwise a short opened while muted plays a burst of sound before the
@@ -732,36 +774,37 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   // Signed-out viewers are already folded into totalViews by the API.
   const views = resolveViewCount(item);
 
-  // Trigger the floating like animation
-  const showLikeAnimation = useCallback((x: number, y: number) => {
-    setLikeAnimPos({ x: x - 36, y: y - 36 });
-    likeAnimOpacity.setValue(1);
-    likeAnimScale.setValue(0.3);
-    likeAnimTransY.setValue(0);
-    Animated.parallel([
-      Animated.spring(likeAnimScale, {
-        toValue: 1,
-        friction: 4,
-        tension: 100,
-        useNativeDriver: true,
-      }),
-      Animated.sequence([
-        Animated.delay(400),
-        Animated.parallel([
-          Animated.timing(likeAnimOpacity, {
-            toValue: 0,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-          Animated.timing(likeAnimTransY, {
-            toValue: -80,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-        ]),
-      ]),
-    ]).start();
-  }, [likeAnimOpacity, likeAnimScale, likeAnimTransY]);
+  const showTapReactionAnimation = useCallback((
+    reaction: "like" | "love",
+    x: number,
+    y: number,
+  ) => {
+    if (reduceMotion) return;
+    setTapAnimReaction(reaction);
+    setTapAnimPos({ x: x - 32, y: y - 32 });
+    tapAnimProgress.stopAnimation();
+    tapAnimProgress.setValue(0);
+    Animated.timing(tapAnimProgress, {
+      toValue: 1,
+      duration: reaction === "love" ? 760 : 620,
+      easing: Easing.bezier(0.22, 1, 0.36, 1),
+      useNativeDriver: true,
+    }).start(({ finished }) => {
+      if (finished) setTapAnimReaction(null);
+    });
+  }, [reduceMotion, tapAnimProgress]);
+
+  const commitTapReaction = useCallback((
+    reaction: "like" | "love",
+    x: number,
+    y: number,
+  ) => {
+    // Tap gestures add or upgrade, never toggle an existing reaction off.
+    if (myReaction === reaction) return;
+    if (reaction === "like" && liked) return;
+    showTapReactionAnimation(reaction, x, y);
+    handleReaction(reaction);
+  }, [handleReaction, liked, myReaction, showTapReactionAnimation]);
 
   /**
    * Swipe down over the bottom stack to clear the chrome — web's
@@ -828,11 +871,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     [panStart, pagerGesture],
   );
 
-  // Handle screen tap — double tap = like, single tap = play/pause
+  // Resolve the complete tap gesture before casting: double = Like, triple = Love.
   const handleScreenPress = useCallback((e: GestureResponderEvent) => {
     if (longPressActiveRef.current) return;
     // A tap that dismisses the reaction tray is not also a play/pause.
     if (pickerOpen) {
+      resetTapSequence();
       setOpenTray(null);
       return;
     }
@@ -851,6 +895,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
       ) {
         setOverlaysHidden(false);
       }
+      resetTapSequence();
       return;
     }
     // The auto-clear takes no band and swallows no tap: it was not asked for,
@@ -858,27 +903,45 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     // timer re-arms from the state change and clears the frame again.
     if (autoHidden) setAutoHidden(false);
     const now = Date.now();
-    if (now - lastTapRef.current < 300) {
-      // Double tap → like
-      lastTapRef.current = 0;
-      showLikeAnimation(pageX, pageY);
-      if (!liked) {
-        handleLike();
-      }
-    } else {
+    const continuesGesture = now - lastTapRef.current < TAP_WINDOW_MS;
+
+    if (!continuesGesture || tapCountRef.current === 0) {
+      if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
       lastTapRef.current = now;
-      // Wait to see if a second tap comes
-      setTimeout(() => {
-        if (lastTapRef.current === now) {
-          togglePlayPauseRef.current();
-        }
-      }, 300);
+      tapCountRef.current = 1;
+      tapTimerRef.current = setTimeout(() => {
+        tapTimerRef.current = null;
+        if (tapCountRef.current !== 1) return;
+        tapCountRef.current = 0;
+        lastTapRef.current = 0;
+        togglePlayPauseRef.current();
+      }, TAP_WINDOW_MS);
+      return;
     }
-  }, [liked, handleLike, showLikeAnimation, pickerOpen, overlaysHidden, autoHidden]);
+
+    lastTapRef.current = now;
+    if (tapCountRef.current === 1) {
+      tapCountRef.current = 2;
+      if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
+      tapTimerRef.current = setTimeout(() => {
+        tapTimerRef.current = null;
+        if (tapCountRef.current !== 2) return;
+        tapCountRef.current = 0;
+        lastTapRef.current = 0;
+        commitTapReaction("like", pageX, pageY);
+      }, REACTION_RESOLUTION_MS);
+      return;
+    }
+
+    // Tap three cancels the pending Like, so the server and UI see Love only.
+    resetTapSequence();
+    commitTapReaction("love", pageX, pageY);
+  }, [commitTapReaction, pickerOpen, overlaysHidden, autoHidden, resetTapSequence]);
 
   // Long press — detect center vs right side
   const handleLongPressIn = useCallback((e: GestureResponderEvent) => {
     const { locationX } = e.nativeEvent;
+    resetTapSequence();
     longPressActiveRef.current = true;
     const isRightSide = locationX > SCREEN_WIDTH * 0.6;
 
@@ -893,7 +956,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
         try { player.pause(); } catch {}
       }
     }
-  }, [player, isPlaying]);
+  }, [player, isPlaying, resetTapSequence]);
 
   const handleLongPressOut = useCallback(() => {
     longPressActiveRef.current = false;
@@ -918,10 +981,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   // frame never carries over to the next one.
   useEffect(() => {
     if (isActive) return;
+    resetTapSequence();
+    tapAnimProgress.stopAnimation();
+    setTapAnimReaction(null);
     setOverlaysHidden(false);
     setAutoHidden(false);
     setCaptionExpanded(false);
-  }, [isActive]);
+  }, [isActive, resetTapSequence, tapAnimProgress]);
 
   /**
    * Clear the chrome once the short has played untouched for AUTO_HIDE_MS.
@@ -1011,20 +1077,91 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
         ) : null}
       </Pressable>
 
-      {/* Double-tap like animation */}
-      <Animated.View
-        pointerEvents="none"
-        style={{
-          position: "absolute",
-          left: likeAnimPos.x,
-          top: likeAnimPos.y,
-          opacity: likeAnimOpacity,
-          transform: [{ scale: likeAnimScale }, { translateY: likeAnimTransY }],
-          zIndex: 100,
-        }}
-      >
-        <Icon name="ThumbsUp" size={72} color="#F9FBFF" fill="#F9FBFF" />
-      </Animated.View>
+      {tapAnimReaction && (
+        <View
+          pointerEvents="none"
+          style={{
+            position: "absolute",
+            left: tapAnimPos.x,
+            top: tapAnimPos.y,
+            width: 64,
+            height: 64,
+            zIndex: 100,
+          }}
+        >
+          <Animated.View
+            style={{
+              position: "absolute",
+              width: 64,
+              height: 64,
+              alignItems: "center",
+              justifyContent: "center",
+              opacity: tapAnimProgress.interpolate({
+                inputRange: [0, 0.18, 0.68, 1],
+                outputRange: [0, 1, 1, 0],
+              }),
+              transform: [
+                {
+                  translateY: tapAnimProgress.interpolate({
+                    inputRange: [0, 0.2, 0.68, 1],
+                    outputRange: [6, 0, -2, -12],
+                  }),
+                },
+                {
+                  scale: tapAnimProgress.interpolate({
+                    inputRange: [0, 0.2, 0.42, 1],
+                    outputRange: [0.68, 1.08, 1, 0.94],
+                  }),
+                },
+              ],
+            }}
+          >
+            <Icon
+              name={tapAnimReaction === "love" ? "Heart" : "ThumbsUp"}
+              size={tapAnimReaction === "love" ? 64 : 56}
+              color={tapAnimReaction === "love" ? "#F43F5E" : "#0EA5E9"}
+              fill={tapAnimReaction === "love" ? "#F43F5E" : "#0EA5E9"}
+            />
+          </Animated.View>
+
+          {tapAnimReaction === "love" && LOVE_BLOOM.map((spark, index) => (
+            <Animated.View
+              key={index}
+              style={{
+                position: "absolute",
+                left: 32 - spark.size / 2,
+                top: 32 - spark.size / 2,
+                opacity: tapAnimProgress.interpolate({
+                  inputRange: [0, 0.16, 0.72, 1],
+                  outputRange: [0, 0.9, 0.72, 0],
+                }),
+                transform: [
+                  {
+                    translateX: tapAnimProgress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0, spark.x],
+                    }),
+                  },
+                  {
+                    translateY: tapAnimProgress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0, spark.y],
+                    }),
+                  },
+                  {
+                    scale: tapAnimProgress.interpolate({
+                      inputRange: [0, 0.24, 1],
+                      outputRange: [0.55, 1, 0.7],
+                    }),
+                  },
+                ],
+              }}
+            >
+              <Icon name="Heart" size={spark.size} color="#FB7185" fill="#FB7185" />
+            </Animated.View>
+          ))}
+        </View>
+      )}
 
       {/* 2x speed indicator */}
       {is2xSpeed && (
