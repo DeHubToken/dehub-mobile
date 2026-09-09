@@ -1,10 +1,11 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useEffect, useRef } from "react";
 import {
   View,
   Text,
-  TouchableOpacity,
+  Pressable,
   FlatList,
   ActivityIndicator,
+  Platform,
 } from "react-native";
 import Avatar from "./Avatar";
 import { getAvatarUrl } from "../../libs";
@@ -24,6 +25,38 @@ const MentionSuggestions: React.FC<MentionSuggestionsProps> = ({
   onSelect,
   loading,
 }) => {
+  // Android can resize the sheet as soon as the focused input loses its
+  // keyboard. Select on touch-down, before that resize can move this row out
+  // from under the finger, while retaining onPress for accessibility and the
+  // non-touch platforms.
+  const selectedOnTouchStartRef = useRef<string | null>(null);
+  const touchStartResetRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => () => {
+    if (touchStartResetRef.current) clearTimeout(touchStartResetRef.current);
+  }, []);
+
+  const selectOnTouchStart = useCallback((item: MentionUser) => {
+    if (Platform.OS !== "android") return;
+
+    const key = item.address || item.username;
+    selectedOnTouchStartRef.current = key;
+    if (touchStartResetRef.current) clearTimeout(touchStartResetRef.current);
+    touchStartResetRef.current = setTimeout(() => {
+      selectedOnTouchStartRef.current = null;
+    }, 1500);
+    onSelect(item);
+  }, [onSelect]);
+
+  const selectOnPress = useCallback((item: MentionUser) => {
+    const key = item.address || item.username;
+    if (selectedOnTouchStartRef.current === key) {
+      selectedOnTouchStartRef.current = null;
+      return;
+    }
+    onSelect(item);
+  }, [onSelect]);
+
   const renderItem = useCallback(
     ({ item }: { item: MentionUser }) => {
       const avatar = getAvatarUrl(item.avatarImageUrl || "");
@@ -31,9 +64,12 @@ const MentionSuggestions: React.FC<MentionSuggestionsProps> = ({
       // the badge still shows against an older API build.
       const isAssistant = item.isAssistant || isAssistantAddress(item.address);
       return (
-        <TouchableOpacity
-          onPress={() => onSelect(item)}
-          activeOpacity={0.7}
+        <Pressable
+          onTouchStart={() => selectOnTouchStart(item)}
+          onPress={() => selectOnPress(item)}
+          style={({ pressed }) => ({ opacity: pressed ? 0.7 : 1 })}
+          accessibilityRole="button"
+          accessibilityLabel={`Mention @${item.username}`}
           className="flex-row items-center px-4 py-2.5"
         >
           <Avatar
@@ -74,10 +110,10 @@ const MentionSuggestions: React.FC<MentionSuggestionsProps> = ({
               Following
             </Text>
           )}
-        </TouchableOpacity>
+        </Pressable>
       );
     },
-    [onSelect],
+    [selectOnPress, selectOnTouchStart],
   );
 
   if (!visible) return null;
