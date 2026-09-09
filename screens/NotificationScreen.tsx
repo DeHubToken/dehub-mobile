@@ -44,6 +44,7 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { formatNotificationDate } from "../libs/date.util";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
+import { seedUserProfileCache } from "../hooks/useUserProfileData";
 import { buildCdnPath, getAvatarUrl, getShortsThumbnailUrl } from "../libs";
 import { cdnImage } from "../libs/cdnImage";
 import { addDismissedIds, getDismissedIds } from "../libs/notifications.dismissed";
@@ -438,7 +439,11 @@ interface NotificationRowProps {
   onPress: (item: NotificationItem) => void;
   onMarkRead: (item: NotificationItem) => void;
   onClear: (item: NotificationItem) => void;
-  onOpenProfile: (actorAddress?: string, actorUsername?: string) => void;
+  onOpenProfile: (
+    actorAddress?: string,
+    actorUsername?: string,
+    actor?: NotificationItem['actor'],
+  ) => void;
   onAcceptFollowRequest: (item: NotificationItem) => void;
   onRejectFollowRequest: (item: NotificationItem) => void;
 }
@@ -583,7 +588,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
         <TouchableOpacity
           activeOpacity={0.7}
           disabled={!item.actorUsername && !item.actorAddress}
-          onPress={() => onOpenProfile(item.actorAddress, item.actorUsername)}
+          onPress={() => onOpenProfile(item.actorAddress, item.actorUsername, item.actor)}
           style={{ position: 'relative' }}
         >
           {hasAvatar ? (
@@ -919,9 +924,21 @@ const NotificationScreen = () => {
     navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
   }, [navigation]);
 
-  const openUserProfile = useCallback((actorAddress?: string, actorUsername?: string) => {
-    const identifier = actorUsername || actorAddress;
+  const openUserProfile = useCallback((
+    actorAddress?: string,
+    actorUsername?: string,
+    actor?: NotificationItem['actor'],
+  ) => {
+    const identifier = actorAddress || actorUsername;
     if (!identifier) return;
+    if (actor) {
+      seedUserProfileCache({
+        ...actor,
+        address: actor.address || actorAddress,
+        username: actor.username || actorUsername,
+        avatarImageUrl: actor.avatarImageUrl || undefined,
+      }, actorAddress, actorUsername);
+    }
     showUserProfile(identifier);
   }, [showUserProfile]);
 
@@ -1062,7 +1079,7 @@ const NotificationScreen = () => {
       case NotificationType.FOLLOWING:
       case NotificationType.SUBSCRIPTION:
       case NotificationType.FOLLOW_REQUEST_ACCEPTED:
-        openUserProfile(actorAddress, actorUsername);
+        openUserProfile(actorAddress, actorUsername, notification.actor);
         break;
 
       case 'like':
