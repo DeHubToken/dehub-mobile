@@ -127,6 +127,8 @@ export interface ArcadeGame {
    * already lives in that corner.
    */
   exitPlacement?: 'left' | 'center';
+  /** Enables the DeHub opt-in location bridge in the player WebView. */
+  socialPresence?: boolean;
 }
 
 /**
@@ -142,6 +144,25 @@ export interface ArcadeGame {
  */
 
 export const ARCADE_GAMES: ArcadeGame[] = [
+  {
+    slug: 'gods-eye',
+    title: "God's Eye",
+    tagline: 'Find the DeHub community across a living 3D Earth.',
+    description:
+      'Explore a live spatial-intelligence globe and, if you choose, place a deliberately approximate version of yourself among the DeHub community.',
+    action: 'Open the globe',
+    art: `${WEBSITE_LINK}/arcade/gods-eye.gif`,
+    artAlt: "God's Eye View orbiting a live 3D globe through its spatial-intelligence displays",
+    credit: {
+      name: "God's Eye View",
+      url: 'https://github.com/bilawalsidhu/gods-eye-view',
+      licence: 'MIT',
+      licenceFile: 'LICENSE-GodsEyeView',
+    },
+    url: 'https://dehubtoken.github.io/gods-eye-view/',
+    bootTauMs: 8000,
+    socialPresence: true,
+  },
   {
     slug: 'kings-gambit',
     title: "King's Gambit",
