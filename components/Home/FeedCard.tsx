@@ -707,6 +707,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const handleLikePress = useCallback(() => togglePolarity(true), [togglePolarity]);
   const handleDislikePress = useCallback(() => togglePolarity(false), [togglePolarity]);
+  const handleVideoTapReaction = useCallback((reaction: "like" | "love") => {
+    // Media gestures only add or upgrade; they never toggle an existing vote
+    // off when a deliberate play/pause tap happens to become a double tap.
+    if (myReaction === reaction) return;
+    if (reaction === "like" && liked) return;
+    handleReaction(reaction);
+  }, [handleReaction, liked, myReaction]);
 
   const handleSavePress = useCallback(() => {
     requireAuth?.(() => {
@@ -1268,6 +1275,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       isAutoplayActive={isAutoplayActive}
       isSignedIn={isSignedIn}
       onPress={handleCardPress}
+      onTapReaction={handleVideoTapReaction}
       onPPVPress={handlePPVPress}
       onLockPress={handleCardPress}
       onBountyPress={handleBountyBadgePress}
