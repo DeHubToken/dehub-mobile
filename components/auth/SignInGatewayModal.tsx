@@ -328,7 +328,8 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   //  - legacy-recovered: native Web3Auth migration retrieved a pre-migration
   //    account's key, mirroring dehubweb's "Switch to a different old account"
   //    (AuthProvider.switchActiveWallet / WalletRecoveryTools.tsx). Which
-  //    wallet it lands on is the whole point, so no address is enforced.
+  //    account's profile address comes from the authenticated legacy detector,
+  //    and enforcing it prevents a different old login from replacing the row.
   //  - biometric-unlock: the user is restoring the wallet this row already
   //    names, from its recovery phrase, because the device that held its wrap
   //    key is gone. Here the address IS known, and enforcing it stops a
@@ -347,7 +348,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
         walletSetupRequest.supabaseUserId,
         secret,
         password,
-        walletSetupRequest.mode === "biometric-unlock" ? walletSetupRequest.address : undefined
+        walletSetupRequest.mode === "biometric-unlock"
+          ? walletSetupRequest.address
+          : walletSetupRequest.expectedAddress
       );
       await finishWalletSetupSignIn(address, derivedPk);
     },
@@ -402,7 +405,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   // "legacy-recovered" WalletSetupScreen mode used for the cloud/backend-link
   // mismatch case, so the user just sets a password to finish.
   const handleLegacyRecovered = useCallback(
-    (privateKey: string, label?: string) => {
+    (privateKey: string, account: LegacyAccountMatch) => {
       const userId = pendingCreateUserId;
       if (!userId) return;
       // Close the warning first; present the wallet sheet once it has dismissed
@@ -411,7 +414,13 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       setPendingCreateUserId(null);
       setTimeout(
         () =>
-          setWalletSetupRequest({ mode: "legacy-recovered", supabaseUserId: userId, privateKey, label }),
+          setWalletSetupRequest({
+            mode: "legacy-recovered",
+            supabaseUserId: userId,
+            privateKey,
+            label: account.username ? `@${account.username}` : undefined,
+            expectedAddress: account.ethAddress,
+          }),
         250,
       );
     },
