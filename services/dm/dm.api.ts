@@ -1,19 +1,112 @@
 import { apiClient } from "../../libs/api.client";
 import { getFileName, guessMime } from "../../libs/assets.util";
+import { getAccount } from "../user.service";
 import { DmAction, DmDisableStatus } from "../enums/dm-preferences.enum";
-import type {
-  DmConversation,
-  DmMessage,
-  DmMsgType,
-  UploadDmMediaParams,
+import {
+  getOtherParticipant,
+  type DmConversation,
+  type DmMessage,
+  type DmMsgType,
+  type DmUser,
+  type UploadDmMediaParams,
 } from "./dm.types";
+
+function accountPayload(response: any): Record<string, any> | null {
+  const value = response?.data?.result ?? response?.result ?? response;
+  return value && typeof value === "object" ? value : null;
+}
+
+function firstBadgeBalance(...values: unknown[]): number | string | null | undefined {
+  return values.find((value) => {
+    if (typeof value === "number") return Number.isFinite(value);
+    return typeof value === "string" && value.trim() !== "" && Number.isFinite(Number(value));
+  }) as number | string | null | undefined;
+}
+
+/** Merge the thin DM participant shape with the canonical account row. */
+export function mergeDmUserProfile(user: DmUser, profile: Record<string, any>): DmUser {
+  return {
+    ...user,
+    username: user.username || profile.username,
+    address: user.address || profile.address || profile.walletAddress || profile.wallet_address,
+    displayName: user.displayName || profile.displayName || profile.display_name,
+    avatarImageUrl:
+      user.avatarImageUrl || profile.avatarImageUrl || profile.avatarUrl || profile.avatar_url,
+    badgeBalance: firstBadgeBalance(
+      user.badgeBalance,
+      profile.badgeBalance,
+      profile.badge_balance,
+      profile.stakedDHB,
+      profile.staked,
+    ),
+    badgeLock: user.badgeLock || profile.badgeLock || profile.badge_lock || null,
+    stakedDHB: user.stakedDHB ?? profile.stakedDHB,
+    staked: user.staked ?? profile.staked,
+  };
+}
+
+function sameDmUser(a: DmUser | undefined, b: DmUser): boolean {
+  if (!a) return false;
+  if (a._id && b._id && String(a._id) === String(b._id)) return true;
+  const aAddress = String(a.address || "").toLowerCase();
+  const bAddress = String(b.address || "").toLowerCase();
+  return !!aAddress && aAddress === bAddress;
+}
+
+/**
+ * Contacts intentionally return a compact participant. Web fills any missing
+ * identity fields from account_info; doing the same here keeps badges and
+ * names consistent across clients and lets React Native render one packed row.
+ */
+export async function enrichDmContacts(
+  contacts: DmConversation[],
+  myAddress: string,
+): Promise<DmConversation[]> {
+  return Promise.all(
+    contacts.map(async (conversation) => {
+      const other = getOtherParticipant(conversation, undefined, myAddress);
+      if (!other) return conversation;
+
+      const hasBadgeBalance = firstBadgeBalance(other.badgeBalance) !== undefined;
+      if (other.displayName && hasBadgeBalance) {
+        return conversation;
+      }
+
+      const lookup = other.address || other.username;
+      if (!lookup) return conversation;
+
+      try {
+        const profile = accountPayload(await getAccount(lookup));
+        if (!profile) return conversation;
+        const merged = mergeDmUserProfile(other, profile);
+
+        return {
+          ...conversation,
+          participants: conversation.participants.map((entry) =>
+            sameDmUser(entry.participant, other)
+              ? { ...entry, participant: merged }
+              : entry,
+          ),
+          messages: conversation.messages?.map((message) =>
+            typeof message.sender === "object" && sameDmUser(message.sender, other)
+              ? { ...message, sender: merged }
+              : message,
+          ),
+        };
+      } catch {
+        return conversation;
+      }
+    }),
+  );
+}
 
 
 export async function getContactsByAddress(
   address: string,
 ): Promise<DmConversation[]> {
   const addr = (address || "").toLowerCase();
-  return apiClient.get<DmConversation[]>(`/dm/contacts/${addr}`);
+  const contacts = await apiClient.get<DmConversation[]>(`/dm/contacts/${addr}`);
+  return Array.isArray(contacts) ? enrichDmContacts(contacts, addr) : contacts;
 }
 
 export async function getConversation(id: string): Promise<DmConversation> {

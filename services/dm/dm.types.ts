@@ -10,6 +10,13 @@ export interface DmUser {
   address?: string;
   displayName?: string;
   avatarImageUrl?: string;
+  /** Backend-computed holdings used by the shared staking badge resolver. */
+  badgeBalance?: number | string | null;
+  /** Grandfathered badge tier, when the live ladder has moved since purchase. */
+  badgeLock?: { tier: string; requirement: number } | null;
+  /** Older account payloads may expose stake totals instead of badgeBalance. */
+  stakedDHB?: number | string | null;
+  staked?: number | string | null;
 }
 
 
@@ -306,6 +313,19 @@ export function getOtherParticipant(
 ): DmUser | undefined {
   for (const p of conversation.participants) {
     const u = p.participant;
+    if (!u) continue;
+    const isMe =
+      (myUserId && String(u._id) === String(myUserId)) ||
+      (myAddress &&
+        String(u.address || "").toLowerCase() === String(myAddress).toLowerCase());
+    if (!isMe) return u;
+  }
+
+  // Some contacts responses populate only the current participant but still
+  // include recent messages. Recover the peer from those populated senders so
+  // the row can show the same identity data as web instead of "Unknown".
+  for (const message of conversation.messages || []) {
+    const u = getSenderUser(message);
     if (!u) continue;
     const isMe =
       (myUserId && String(u._id) === String(myUserId)) ||
