@@ -32,8 +32,12 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { getBadgeUrl } from "../../libs";
 import { getNFT } from "../../services/nft.service";
 import { useBookBoost, useSuperpowerLadder, useSuperpowers } from "../../hooks/useSuperpowers";
-import { spendablePowers, type SuperPowerKey } from "../../services/superpower.service";
-import { toastError, toastSuccess } from "../../libs";
+import {
+  spendablePowers,
+  waitForSignalFlareReceipt,
+  type SuperPowerKey,
+} from "../../services/superpower.service";
+import { toastError, toastPromise, toastSuccess } from "../../libs";
 
 export interface BoostSheetProps {
   visible: boolean;
@@ -140,11 +144,17 @@ export default function BoostSheet({
       },
       {
         onSuccess: booking => {
-          toastSuccess(
-            chosen === "signal_flare"
-              ? "Signal Flare sent to your followers."
-              : `${active?.label} running for ${booking.minutes} minutes`,
-          );
+          if (chosen === "signal_flare") {
+            void toastPromise(waitForSignalFlareReceipt(booking.id), {
+              loading: "Signal Flare sent. Counting notifications...",
+              success: recipients =>
+                recipients === null
+                  ? "Signal Flare sent. The final count will appear in Past usage."
+                  : `Signal Flare notified ${recipients} ${recipients === 1 ? "person" : "people"}`,
+            });
+          } else {
+            toastSuccess(`${active?.label} running for ${booking.minutes} minutes`);
+          }
           onClose();
         },
         // The server writes these sentences for a person to read — "That
