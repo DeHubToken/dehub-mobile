@@ -21,7 +21,7 @@ import { maxStacked } from "../libs/validators.util";
 import { resolveCount } from "../libs/numbers.util";
 import { WEBSITE_LINK } from "../config";
 
-interface RemoteUser {
+export interface RemoteUser {
   username?: string;
   /**
    * A verified `.eth` name, when the account has proved one. An alias beside
@@ -42,11 +42,31 @@ interface RemoteUser {
   isPrivate?: boolean;
   hideBadgeAndBalance?: boolean;
   likes?: any[];
+  isFollowing?: boolean;
+  followsYou?: boolean;
+  isFollowRequestPending?: boolean;
+  youBlocked?: boolean;
+  blockedYou?: boolean;
+  isBlocked?: boolean;
 }
 
 const PROFILE_CACHE_TTL = 60_000;
 const MAX_CACHE_SIZE = 50;
 const profileCache = new Map<string, { data: RemoteUser; ts: number }>();
+
+/** Prime every identity key we know from a notification actor snapshot. */
+export const seedUserProfileCache = (
+  data: RemoteUser,
+  ...identifiers: Array<string | null | undefined>
+) => {
+  const keys = [data.address, data.username, ...identifiers]
+    .filter((value): value is string => !!value)
+    .map((value) => value.replace(/^@/, '').toLowerCase());
+  for (const key of new Set(keys)) {
+    profileCache.set(key, { data, ts: Date.now() });
+  }
+  pruneCache();
+};
 
 const pruneCache = () => {
   if (profileCache.size > MAX_CACHE_SIZE) {
