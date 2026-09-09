@@ -23,6 +23,7 @@ function extractMessage(err: unknown): string {
 interface ToastOptions extends Omit<Parameters<typeof toast>[1], 'description'> {
   description?: string;
   actionLabel?: string;
+  actionIcon?: GlassToastProps['actionIcon'];
   onActionPress?: () => void;
   dismissible?: boolean; // Whether to show close button
   /**
@@ -43,7 +44,7 @@ const createGlassToast = (
   message: string,
   options?: ToastOptions
 ) => {
-  const { description, actionLabel, onActionPress, dismissible = true, ...sonnerOpts } = options || {};
+  const { description, actionLabel, actionIcon, onActionPress, dismissible = true, ...sonnerOpts } = options || {};
   
   return toast.custom(
     React.createElement(GlassToast, {
@@ -51,6 +52,7 @@ const createGlassToast = (
       type,
       description,
       actionLabel,
+      actionIcon,
       onActionPress,
       onClose: dismissible ? () => toast.dismiss(sonnerOpts.id) : undefined,
     }),
