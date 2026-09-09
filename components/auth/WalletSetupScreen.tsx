@@ -27,7 +27,6 @@ import { probeOtherSeedCopies, type OtherSeedCopies } from "../../libs/wallet-co
 import { isRawPrivateKey, isValidMnemonic } from "../../libs/wallet-core/derive";
 import { openInApp } from "../../libs/links.utils";
 import { WEBSITE_LINK } from "../../config/links";
-import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
 
 import type { EncryptedPayload } from "../../libs/wallet-core/crypto";
 import { getPayloadKdf } from "../../libs/wallet-core/crypto";
@@ -41,6 +40,8 @@ export type WalletSetupRequest =
       supabaseUserId: string;
       privateKey: string;
       label?: string;
+      /** Profile wallet recorded by the legacy-account detector. */
+      expectedAddress: string;
     }
   | {
       mode: "create";
@@ -566,11 +567,8 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       return true;
     }, [password, confirm, mode]);
 
-    const legacyRecoveredAddress = useMemo(
-      () =>
-        request?.mode === "legacy-recovered" ? deriveAddressFromPrivateKey(request.privateKey) : null,
-      [request]
-    );
+    const legacyRecoveredAddress =
+      request?.mode === "legacy-recovered" ? request.expectedAddress : null;
 
     const canSubmitLegacyRecovered = useMemo(
       () => password.length >= MIN_PASSWORD_LENGTH && password === confirm,
@@ -1109,7 +1107,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
               </Text>
               {legacyRecoveredAddress && (
                 <View style={styles.summaryCard}>
-                  <Text style={[authText.caption, { marginBottom: 4 }]}>Recovered wallet</Text>
+                  <Text style={[authText.caption, { marginBottom: 4 }]}>DeHub profile wallet</Text>
                   <Text style={styles.summaryValue}>
                     {legacyRecoveredAddress.slice(0, 6)}…{legacyRecoveredAddress.slice(-4)}
                   </Text>
