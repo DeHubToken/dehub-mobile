@@ -8,6 +8,9 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Dimensions,
+  GestureResponderEvent,
+  Animated,
+  Easing,
 } from "react-native";
 import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
 import PictureInPictureButton from "../common/PictureInPictureButton";
@@ -38,6 +41,14 @@ import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
 import { useMediaAspect } from "../../hooks/useMediaAspect";
 import { SEGMENT_LABELS } from "../../services/video-segments.service";
 import { toastInfo } from "../../libs";
+import { movedBeyondMediaTapSlop } from "../../libs/media-gesture";
+import {
+  continuesTapGesture,
+  TAP_GESTURE_WINDOW_MS,
+  TAP_LIKE_ANIMATION_MS,
+  TAP_LOVE_ANIMATION_MS,
+  TAP_REACTION_RESOLUTION_MS,
+} from "../../libs/tap-gesture";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -84,6 +95,8 @@ interface FeedVideoPlayerProps {
   isAutoplayActive?: boolean;
   isSignedIn: boolean;
   onPress: () => void;
+  /** Double tap casts Like; triple tap upgrades it to Love. */
+  onTapReaction?: (reaction: "like" | "love") => void;
   onPPVPress?: () => void;
   onLockPress?: () => void;
   onBountyPress?: () => void;
@@ -111,6 +124,51 @@ const formatTime = (seconds: number) => {
   return `${mins}:${secs.toString().padStart(2, "0")}`;
 };
 
+/**
+ * A media press lives inside the feed's vertical FlatList. Keep a local travel
+ * guard even though Pressable normally cancels under a scroll: Android can
+ * still deliver `onPress` when the native list intercepts a short, fast flick.
+ */
+const useTapOnlyPress = (onPress: (event: GestureResponderEvent) => void) => {
+  const originRef = useRef<{ x: number; y: number } | null>(null);
+  const movedRef = useRef(false);
+
+  const onTouchStart = useCallback((event: GestureResponderEvent) => {
+    const { pageX, pageY } = event.nativeEvent;
+    originRef.current = { x: pageX, y: pageY };
+    movedRef.current = false;
+  }, []);
+
+  const onTouchMove = useCallback((event: GestureResponderEvent) => {
+    const origin = originRef.current;
+    if (!origin || movedRef.current) return;
+    const { pageX, pageY } = event.nativeEvent;
+    if (movedBeyondMediaTapSlop(origin, { x: pageX, y: pageY })) {
+      movedRef.current = true;
+    }
+  }, []);
+
+  const handlePress = useCallback((event: GestureResponderEvent) => {
+    if (movedRef.current) return;
+    onPress(event);
+  }, [onPress]);
+
+  const onTouchCancel = useCallback(() => {
+    movedRef.current = true;
+    originRef.current = null;
+  }, []);
+
+  return { onPress: handlePress, onTouchStart, onTouchMove, onTouchCancel };
+};
+
+const LOVE_BLOOM = [
+  { x: -14, y: -54, size: 14 },
+  { x: -44, y: -30, size: 10 },
+  { x: 38, y: -34, size: 11 },
+  { x: -50, y: 2, size: 8 },
+  { x: 46, y: 4, size: 9 },
+] as const;
+
 const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   thumbnail,
   videoUrl,
@@ -134,6 +192,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   isAutoplayActive = true,
   isSignedIn,
   onPress,
+  onTapReaction,
   onPPVPress,
   onLockPress,
   onBountyPress,
@@ -179,6 +238,56 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const playerRef = useRef<VideoPlayer | null>(null);
   const videoViewRef = useRef<VideoView>(null);
   const progressTrackWidthRef = useRef(0);
+  const lastSurfaceTapRef = useRef(0);
+  const surfaceTapCountRef = useRef(0);
+  const surfaceTapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const surfaceWasPlayingRef = useRef(false);
+  const surfaceWasUserStartedRef = useRef(false);
+  const tapAnimProgress = useRef(new Animated.Value(0)).current;
+  const [tapAnimReaction, setTapAnimReaction] = useState<"like" | "love" | null>(null);
+  const [tapAnimPos, setTapAnimPos] = useState({ x: 0, y: 0 });
+  const [tapAnimRun, setTapAnimRun] = useState(0);
+
+  const resetSurfaceTapSequence = useCallback(() => {
+    if (surfaceTapTimerRef.current) clearTimeout(surfaceTapTimerRef.current);
+    surfaceTapTimerRef.current = null;
+    surfaceTapCountRef.current = 0;
+    lastSurfaceTapRef.current = 0;
+  }, []);
+
+  useEffect(() => () => {
+    resetSurfaceTapSequence();
+    tapAnimProgress.stopAnimation();
+  }, [resetSurfaceTapSequence, tapAnimProgress]);
+
+  // As in the shorts viewer, attach the native driver only after the overlay
+  // exists. Starting it in the callback that mounted the view dropped the
+  // first frames on Android's video compositor.
+  useEffect(() => {
+    if (!tapAnimReaction || tapAnimRun === 0) return;
+    tapAnimProgress.stopAnimation();
+    tapAnimProgress.setValue(0);
+    const animation = Animated.timing(tapAnimProgress, {
+      toValue: 1,
+      duration: tapAnimReaction === "love" ? TAP_LOVE_ANIMATION_MS : TAP_LIKE_ANIMATION_MS,
+      easing: Easing.bezier(0.22, 1, 0.36, 1),
+      useNativeDriver: true,
+    });
+    animation.start(({ finished }) => {
+      if (finished) setTapAnimReaction(null);
+    });
+    return () => animation.stop();
+  }, [tapAnimReaction, tapAnimRun, tapAnimProgress]);
+
+  const showTapReactionAnimation = useCallback((
+    reaction: "like" | "love",
+    x: number,
+    y: number,
+  ) => {
+    setTapAnimReaction(reaction);
+    setTapAnimPos({ x: x - 32, y: y - 32 });
+    setTapAnimRun((run) => run + 1);
+  }, []);
 
   const viewRecorderRef = useRef(
     tokenId != null
@@ -538,7 +647,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     return () => { if (autoplayTimerRef.current) clearTimeout(autoplayTimerRef.current); stopPlayback(); };
   }, [stopPlayback]);
 
-  const handleVideoPress = useCallback(() => {
+  const handleVideoPress = useCallback((preserveAutoplay = false) => {
     if (!canPlay) { onPress(); return; }
 
     // Already loading from an earlier tap. Swallow the repeat rather than
@@ -555,9 +664,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       return;
     }
 
-    // A deliberate tap, so this card keeps playing even when autoplay moves on.
-    userStartedRef.current = true;
-    onUserStarted?.();
+    // A deliberate single tap keeps this card playing even when autoplay moves
+    // on. Reversing the pause half of a double tap preserves the earlier
+    // autoplay ownership instead of accidentally turning it into background
+    // manual playback.
+    userStartedRef.current = !preserveAutoplay;
+    if (!preserveAutoplay) onUserStarted?.();
     // Before any of the state churn below: the viewer gets a spinner in the
     // same frame as their tap, so the press is acknowledged whether the source
     // still has to be fetched or is merely a few hundred ms from ready.
@@ -577,6 +689,58 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     setShowControls(true);
     startHideTimer(); // Auto-hide after 1.5s when playing
   }, [canPlay, onPress, stopPlayback, flushPendingPlay, clearHideTimer, startHideTimer, onUserStarted, beginStarting, videoReady, firstFrameRendered]);
+
+  const handleMediaSurfacePress = useCallback((event: GestureResponderEvent) => {
+    if (!onTapReaction) {
+      handleVideoPress();
+      return;
+    }
+
+    const now = Date.now();
+    const continuesGesture = continuesTapGesture(lastSurfaceTapRef.current, now);
+    const { locationX, locationY } = event.nativeEvent;
+
+    if (!continuesGesture || surfaceTapCountRef.current === 0) {
+      resetSurfaceTapSequence();
+      lastSurfaceTapRef.current = now;
+      surfaceTapCountRef.current = 1;
+      surfaceWasPlayingRef.current = isPlayingRef.current;
+      surfaceWasUserStartedRef.current = userStartedRef.current;
+      // Playback is reversible, so keep the primary gesture instant. Tap two
+      // toggles it straight back before resolving the reaction.
+      handleVideoPress();
+      surfaceTapTimerRef.current = setTimeout(() => {
+        surfaceTapTimerRef.current = null;
+        surfaceTapCountRef.current = 0;
+        lastSurfaceTapRef.current = 0;
+      }, TAP_GESTURE_WINDOW_MS);
+      return;
+    }
+
+    lastSurfaceTapRef.current = now;
+    if (surfaceTapCountRef.current === 1) {
+      surfaceTapCountRef.current = 2;
+      if (surfaceTapTimerRef.current) clearTimeout(surfaceTapTimerRef.current);
+      handleVideoPress(
+        surfaceWasPlayingRef.current && !surfaceWasUserStartedRef.current,
+      );
+      showTapReactionAnimation("like", locationX, locationY);
+      surfaceTapTimerRef.current = setTimeout(() => {
+        surfaceTapTimerRef.current = null;
+        if (surfaceTapCountRef.current !== 2) return;
+        surfaceTapCountRef.current = 0;
+        lastSurfaceTapRef.current = 0;
+        onTapReaction("like");
+      }, TAP_REACTION_RESOLUTION_MS);
+      return;
+    }
+
+    resetSurfaceTapSequence();
+    showTapReactionAnimation("love", locationX, locationY);
+    onTapReaction("love");
+  }, [handleVideoPress, onTapReaction, resetSurfaceTapSequence, showTapReactionAnimation]);
+
+  const mediaTap = useTapOnlyPress(handleMediaSurfacePress);
 
   // This card was a poster until a tap asked for it; the tap is honoured here,
   // now that the player exists to honour it.
@@ -800,7 +964,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       )}
 
       {!hideControls && !isContentGated && !isPlaying && !isProcessing && !isFailed && (
-        <Pressable onPress={handleVideoPress} style={styles.playOverlay}>
+        <Pressable {...mediaTap} style={styles.playOverlay}>
           <View style={styles.glassPlayButton}>
             <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
             <View style={styles.glassOverlay} />
@@ -819,9 +983,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       )}
 
       {!hideControls && (isPlaying || showControls) && (
-        <Pressable onPress={handleVideoPress} style={StyleSheet.absoluteFill}>
+        <>
+          {/* The video tap target is a sibling behind the controls. Nesting the
+              timeline inside it let a seek bubble into play/pause, and made the
+              whole media box too eager to claim vertical feed flicks. */}
+          <Pressable {...mediaTap} style={StyleSheet.absoluteFill} />
           {showControls && (
-            <View style={styles.controlsContainer}>
+            <View style={styles.controlsContainer} pointerEvents="box-none">
             <View style={styles.topControls}>
               <Pressable onPress={handleToggleSpeed} style={styles.glassButton}>
                 <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
@@ -871,7 +1039,93 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
             </View>
           </View>
           )}
-        </Pressable>
+        </>
+      )}
+
+      {tapAnimReaction && (
+        <View
+          pointerEvents="none"
+          style={{
+            position: "absolute",
+            left: tapAnimPos.x,
+            top: tapAnimPos.y,
+            width: 64,
+            height: 64,
+            zIndex: 100,
+          }}
+        >
+          <Animated.View
+            style={{
+              position: "absolute",
+              width: 64,
+              height: 64,
+              alignItems: "center",
+              justifyContent: "center",
+              opacity: tapAnimProgress.interpolate({
+                inputRange: [0, 0.18, 0.68, 1],
+                outputRange: [1, 1, 0.96, 0],
+              }),
+              transform: [
+                {
+                  translateY: tapAnimProgress.interpolate({
+                    inputRange: [0, 0.2, 0.68, 1],
+                    outputRange: [6, 0, -2, -12],
+                  }),
+                },
+                {
+                  scale: tapAnimProgress.interpolate({
+                    inputRange: [0, 0.2, 0.42, 1],
+                    outputRange: [0.76, 1.08, 1, 0.92],
+                  }),
+                },
+              ],
+            }}
+          >
+            <Icon
+              name={tapAnimReaction === "love" ? "Heart" : "ThumbsUp"}
+              size={tapAnimReaction === "love" ? 72 : 64}
+              color={tapAnimReaction === "love" ? "#F43F5E" : "#0EA5E9"}
+              fill={tapAnimReaction === "love" ? "#F43F5E" : "#0EA5E9"}
+            />
+          </Animated.View>
+
+          {tapAnimReaction === "love" && LOVE_BLOOM.map((spark, index) => (
+            <Animated.View
+              key={index}
+              style={{
+                position: "absolute",
+                left: 32 - spark.size / 2,
+                top: 32 - spark.size / 2,
+                opacity: tapAnimProgress.interpolate({
+                  inputRange: [0, 0.16, 0.72, 1],
+                  outputRange: [0, 0.9, 0.72, 0],
+                }),
+                transform: [
+                  {
+                    translateX: tapAnimProgress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0, spark.x],
+                    }),
+                  },
+                  {
+                    translateY: tapAnimProgress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0, spark.y],
+                    }),
+                  },
+                  {
+                    scale: tapAnimProgress.interpolate({
+                      inputRange: [0, 0.24, 1],
+                      outputRange: [0.55, 1, 0.7],
+                    }),
+                  },
+                ],
+              }}
+            >
+              <Icon name="Heart" size={spark.size} color="#FB7185" fill="#FB7185" />
+            </Animated.View>
+          ))}
+        </View>
       )}
 
       {isBuffering && isPlaying && !isStarting && (
@@ -1142,6 +1396,7 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
 const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "thumbnail" | "duration" | "hideControls" | "onPress">> = memo(
   ({ thumbnail, duration, hideControls, onPress }) => {
     const mediaAspect = useMediaAspect(thumbnail);
+    const mediaTap = useTapOnlyPress(() => onPress());
     return (
       <View
         style={[
@@ -1168,7 +1423,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "thumbnail" | "durati
           </View>
         )}
         {!hideControls && (
-          <Pressable onPress={onPress} style={styles.playOverlay}>
+          <Pressable {...mediaTap} style={styles.playOverlay}>
             <View style={styles.glassPlayButton}>
               <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
               <View style={styles.glassOverlay} />
