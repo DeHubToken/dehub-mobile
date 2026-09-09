@@ -1176,12 +1176,7 @@
     "andNOthers": "अउ {{count}} अउर",
     "community": {
       "requested": "{{name}} अपन समुदाय म शामिल होए बर अनुरोध करिस"
-    },
-    "sortOrder": "अधिसूचना अनुक्रम",
-    "priority": "प्राथमिकता",
-    "newest": "नवा",
-    "actNow": "अभी काम करव",
-    "important": "महत्वपूर्ण"
+    }
   },
   "leaderboard": {
     "title": "लीडरबोर्ड",

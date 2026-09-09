@@ -217,12 +217,7 @@
       "here": "{{name}} almal in die gemeenskap",
       "hereNamed": "{{name}} @ boodskap almal in \"{{community}}\"",
       "joinedNamed": "{{name}} het by “{{community}}” aangesluit"
-    },
-    "sortOrder": "Kennisgewing volgorde",
-    "priority": "Prioriteit",
-    "newest": "Nuutste",
-    "actNow": "WET NOU",
-    "important": "Belangrik"
+    }
   },
   "profile": {
     "editProfile": "Wysig profiel",

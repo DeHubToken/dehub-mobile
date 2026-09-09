@@ -1178,12 +1178,7 @@
       "here": "{{name}} 님이 커뮤니티의 모든 사람에게 메시지를 보냈습니다.",
       "hereNamed": "{{name}} 님이 '{{community}}' 의 모든 사람에게 메시지를 보냈습니다.",
       "joinedNamed": "{{name}} 님이 “{{community}}” 에 가입했습니다"
-    },
-    "sortOrder": "알림 순서",
-    "priority": "우선순위",
-    "newest": "최신순",
-    "actNow": "지금 실행하기",
-    "important": "중요"
+    }
   },
   "leaderboard": {
     "title": "리더보드",

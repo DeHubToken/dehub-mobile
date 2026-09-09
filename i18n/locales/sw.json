@@ -1258,12 +1258,7 @@
       "mentionedNamed": "{{name}} amekutaja katika \"{{community}}\"",
       "here": "{{name}} alituma ujumbe kwa kila mtu katika jumuiya",
       "hereNamed": "{{name}} alituma ujumbe kwa kila mtu katika \"{{community}}\""
-    },
-    "sortOrder": "Agizo la arifa",
-    "priority": "Kipaumbele",
-    "newest": "Mpya zaidi",
-    "actNow": "Chukua hatua sasa",
-    "important": "Muhimu"
+    }
   },
   "leaderboard": {
     "title": "Ubao wa Viongozi",

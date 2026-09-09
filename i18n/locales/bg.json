@@ -1166,12 +1166,7 @@
       "mentionedNamed": "{{name}} ви спомена в „{{community}}“",
       "here": "{{name}} изпрати съобщение на всички в общността",
       "hereNamed": "{{name}} изпрати съобщение на всички в „{{community}}“"
-    },
-    "sortOrder": "Заповед за уведомяване",
-    "priority": "Приоритет",
-    "newest": "Най - нови",
-    "actNow": "Действайте сега",
-    "important": "Важно"
+    }
   },
   "leaderboard": {
     "title": "Класация",

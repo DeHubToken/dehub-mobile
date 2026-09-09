@@ -1165,12 +1165,7 @@
       "mentionedNamed": "{{name}} نے \"{{community}}\" میں آپ کا ذکر کیا ہے",
       "here": "{{name}} نے کمیونٹی میں ہر ایک کو پیغام بھیجا",
       "hereNamed": "{{name}} نے \"{{community}}\" میں سب کو میسج کیا"
-    },
-    "sortOrder": "نوٹیفکیشن آرڈر",
-    "priority": "ترجیح",
-    "newest": "تازہ ترین",
-    "actNow": "ابھی عمل کریں",
-    "important": "اہم"
+    }
   },
   "leaderboard": {
     "title": "لیڈر بورڈ",

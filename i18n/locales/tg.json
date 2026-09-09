@@ -1244,12 +1244,7 @@
       "mentionedNamed": "{{name}} {{community}}",
       "here": "{{name}}info: whatsthis",
       "hereNamed": "{{name}} mesaged all in “{{community}}”"
-    },
-    "sortOrder": "Тартиби огоҳӣ",
-    "priority": "Афзалият",
-    "newest": "Навтарин",
-    "actNow": "Ҳоло амал кунед",
-    "important": "Муҳим"
+    }
   },
   "messages": {
     "smartRepliesOff": "Ҷавобҳои пешниҳодшуда хомӯш карда шуданд",

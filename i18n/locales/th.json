@@ -1502,12 +1502,7 @@
       "mentionedNamed": "{{name}} กล่าวถึงคุณใน “{{community}}”",
       "here": "{{name}} ส่งข้อความถึงทุกคนในชุมชน",
       "hereNamed": "{{name}} ส่งข้อความถึงทุกคนใน “{{community}}”"
-    },
-    "sortOrder": "ลำดับการแจ้งเตือน",
-    "priority": "ลำดับความสำคัญ",
-    "newest": "ใหม่ล่าสุด",
-    "actNow": "ดำเนินการเลย",
-    "important": "สำคัญ"
+    }
   },
   "messages": {
     "smartRepliesOff": "ปิดคำตอบแนะนำแล้ว",

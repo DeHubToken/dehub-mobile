@@ -1155,12 +1155,7 @@
       "mentionedNamed": "{{name}} กล่าวถึงคุณใน “{{community}}”",
       "here": "{{name}} ส่งข้อความถึงทุกคนในชุมชน",
       "hereNamed": "{{name}} ส่งข้อความถึงทุกคนใน “{{community}}”"
-    },
-    "sortOrder": "การแจ้งเตือนคำสั่ง",
-    "priority": "ลำดับความสำคัญ",
-    "newest": "ใหม่ล่าสุด",
-    "actNow": "ดำเนินการทันที",
-    "important": "สำคัญ"
+    }
   },
   "leaderboard": {
     "title": "กระดานคะแนน",

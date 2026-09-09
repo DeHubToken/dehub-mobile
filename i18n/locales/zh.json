@@ -1260,12 +1260,7 @@
       "mentionedNamed": "{{name}}在「{{community}}」中提到了您",
       "here": "{{name}}向社区中的所有人发送了消息",
       "hereNamed": "{{name}}向「{{community}}」中的所有人发送了消息"
-    },
-    "sortOrder": "通知顺序",
-    "priority": "优先级",
-    "newest": "最新",
-    "actNow": "立即行动",
-    "important": "重要"
+    }
   },
   "leaderboard": {
     "title": "排行榜",

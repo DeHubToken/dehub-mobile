@@ -1148,12 +1148,7 @@
       "mentionedNamed": "{{name}} توهان کي ”{{community}}“ ۾ ذڪر ڪيو",
       "here": "{{name}} ڪميونٽي ۾ سڀني کي پيغام موڪليو",
       "hereNamed": "{{name}} ”{{community}}“ ۾ سڀني کي پيغام موڪليو"
-    },
-    "sortOrder": "اطلاع دی ترتیب",
-    "priority": "ترجیح",
-    "newest": "نویا ترین",
-    "actNow": "ہن کم کرو",
-    "important": "اہم"
+    }
   },
   "leaderboard": {
     "title": "لیڈر بورڈ",

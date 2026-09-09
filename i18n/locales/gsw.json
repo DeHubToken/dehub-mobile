@@ -1155,12 +1155,7 @@
       "mentionedNamed": "{{name}} het dich i “{{community}}” erwähnt",
       "here": "{{name}} het a alli i dimere Community gschriebe",
       "hereNamed": "{{name}} het a alli i “{{community}}” gschriebe"
-    },
-    "sortOrder": "Benachrichtigungsreihenfolge",
-    "priority": "Priorität",
-    "newest": "Neueste",
-    "actNow": "Jetzt handeln",
-    "important": "Wichtig"
+    }
   },
   "leaderboard": {
     "title": "Rangllischte",

@@ -1195,12 +1195,7 @@
       "mentionedNamed": "{{name}} mainis sind dokumendis „{{community}}“",
       "here": "{{name}} saatis sõnumi kõigile kogukonna liikmetele",
       "hereNamed": "{{name}} saatis sõnumi kõigile asukohas „{{community}}“"
-    },
-    "sortOrder": "Teavituskorraldus",
-    "priority": "Prioriteet",
-    "newest": "Uusimad",
-    "actNow": "Tegutse kohe",
-    "important": "Oluline"
+    }
   },
   "leaderboard": {
     "title": "Edetabel",
