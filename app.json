@@ -41,7 +41,8 @@
           "uniswap"
         ],
         "NSCameraUsageDescription": "This app requires access to your camera.",
-        "NSMicrophoneUsageDescription": "This app requires access to your microphone."
+        "NSMicrophoneUsageDescription": "This app requires access to your microphone.",
+        "NSLocationWhenInUseUsageDescription": "Share an approximate location on the DeHub community globe only when you choose Place Me."
       },
       "bitcode": false
     },
@@ -67,7 +68,8 @@
         "android.permission.INTERNET",
         "android.permission.SYSTEM_ALERT_WINDOW",
         "android.permission.WAKE_LOCK",
-        "android.permission.BLUETOOTH"
+        "android.permission.BLUETOOTH",
+        "android.permission.ACCESS_COARSE_LOCATION"
       ],
       "googleServicesFile": "./google-services.json",
       "intentFilters": [
