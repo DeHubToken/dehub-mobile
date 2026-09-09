@@ -42,7 +42,7 @@ import { isShortOfMintFee } from "../services/mint.service";
 import { getPostQuota, quotePostCharge } from "../services/post-quota.service";
 import type { PostQuotaStatus } from "../services/post-quota.service";
 import { defaultChainId } from "../config/constants";
-import { toastError, toastSuccess } from "../libs/toast";
+import { toastError, toastSuccess, toastWithAction } from "../libs/toast";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { useUser, useAuthActions, useProvider } from "../context/AuthContext";
 import { useWeb3Provider } from "../hooks/use-web3";
@@ -137,12 +137,6 @@ async function measureUploadBytes(payload: {
   return sizes.reduce((sum, n) => sum + n, 0);
 }
 
-/** Bytes as MB or GB, matching the server's 1024-based gigabyte. */
-function formatDataSize(bytes: number): string {
-  const GB = 1024 * 1024 * 1024;
-  if (bytes >= GB) return `${(bytes / GB).toFixed(bytes >= 10 * GB ? 0 : 1)} GB`;
-  return `${Math.round(bytes / (1024 * 1024))} MB`;
-}
 const SHOW_TITLE_PREF_KEY = "@dhb_post_show_title";
 const IMAGES_MAX = 4;
 const MAX_IMAGE_SIZE_BYTES = 20 * 1024 * 1024; // 20 MB per image
@@ -152,6 +146,8 @@ const MAX_AUDIO_DURATION_MS = 60_000; // 60 seconds
 const AUDIO_MIME_TYPES = ["audio/mpeg", "audio/wav", "audio/aac", "audio/ogg", "audio/x-m4a", "audio/mp4", "audio/webm"];
 const CATEGORIES_MIN = 0;
 const CATEGORIES_MAX = 5;
+const TIER_VISIBILITY_MESSAGE =
+  "Climb tiers to increase your visibility and get more feeds on the post per day";
 
 type PickedAsset = ImagePicker.ImagePickerAsset;
 type MediaMode = "none" | "images" | "video" | "audio";
@@ -447,40 +443,6 @@ export default function UploadScreen() {
     })();
     return () => { cancelled = true; };
   }, [authUser?.address]);
-
-  /**
-   * The one line the composer shows about the allowance.
-   *
-   * Follows what is actually attached, because text posts and media draw on
-   * separate pools — telling someone with a video queued how many text posts
-   * they have left would answer a question they did not ask. Null when there
-   * is nothing to say; never a zero, which reads as "you are out" when it
-   * really means "we do not know".
-   */
-  const postQuotaLabel = useMemo(() => {
-    if (!postQuota?.chargingEnabled) return null;
-
-    const spendsData = !!pickedVideo || !!pickedAudio || pickedImages.length > 0 || isLiveMode;
-    if (spendsData) {
-      const left = Math.max(0, postQuota.mediaBytesPerDay - postQuota.mediaBytesUsed);
-      return left > 0
-        ? `${formatDataSize(left)} of ${formatDataSize(postQuota.mediaBytesPerDay)} left today`
-        : `${postQuota.dhbPerGb.toLocaleString()} DHB/GB — today's data used`;
-    }
-
-    const left = Math.max(0, postQuota.textPostsPerDay - postQuota.textPostsUsed);
-    return left > 0
-      ? `${left} of ${postQuota.textPostsPerDay} free posts left today`
-      : `${postQuota.dhbPerTextPost.toLocaleString()} DHB per post — today's free posts used`;
-  }, [postQuota, pickedVideo, pickedAudio, pickedImages.length, isLiveMode]);
-
-  /** True once today's allowance is spent and the next post costs DHB. */
-  const quotaExhausted = useMemo(() => {
-    if (!postQuota?.chargingEnabled) return false;
-    return !!pickedVideo || !!pickedAudio || pickedImages.length > 0 || isLiveMode
-      ? postQuota.mediaBytesUsed >= postQuota.mediaBytesPerDay
-      : postQuota.textPostsUsed >= postQuota.textPostsPerDay;
-  }, [postQuota, pickedVideo, pickedAudio, pickedImages.length, isLiveMode]);
 
   /**
    * A post is filed under a community by carrying its slug as a category —
@@ -1093,13 +1055,17 @@ export default function UploadScreen() {
       const { readDhbBalance } = await import("../services/post-quota-payment");
       const held = await readDhbBalance();
       const owed = quotaCost.amountDhb + (postQuota?.outstandingDhb ?? 0);
+      const openBuyDehub = () => nav.navigate(ScreenNames.Dpay, { initialTab: "buy" });
       if (held < owed) {
-        toastError(
-          `This post costs ${owed.toLocaleString()} DHB and you hold ${Math.floor(held).toLocaleString()}. Top up, or it's free again tomorrow.`,
-          "You've used today's free posting allowance",
-        );
+        toastWithAction("info", TIER_VISIBILITY_MESSAGE, "Buy DEHUB", openBuyDehub, {
+          description: `This post costs ${owed.toLocaleString()} DHB and you hold ${Math.floor(held).toLocaleString()}.`,
+          duration: 10_000,
+        });
         return false;
       }
+      toastWithAction("info", TIER_VISIBILITY_MESSAGE, "Buy DEHUB", openBuyDehub, {
+        duration: 10_000,
+      });
     }
 
     const ok = enqueueJob(payload);
@@ -1113,7 +1079,7 @@ export default function UploadScreen() {
       releaseSubmit();
     }, 120);
     return true;
-  }, [getPayload, enqueueJob, navigateHome, releaseSubmit, solanaAddress, mintFee, mintChainId, consumeRestoredDraft, postQuota]);
+  }, [getPayload, enqueueJob, navigateHome, releaseSubmit, solanaAddress, mintFee, mintChainId, consumeRestoredDraft, postQuota, nav]);
 
   const handleRemoveQuoteEmbed = useCallback(() => {
     setIsQuoteMode(false);
@@ -2413,20 +2379,6 @@ export default function UploadScreen() {
                 video. Rendered whatever the draft holds, so the options are on
                 screen from first open. */}
             <View className="mt-4">
-              {/* Daily posting allowance. Quiet while there is headroom; it
-                  only speaks up once the next post starts costing DHB. */}
-              {postQuotaLabel ? (
-                <View className="flex-row items-center py-3">
-                  <Icon name="Gauge" size={18} color={quotaExhausted ? "#fff" : "#8f8f8f"} />
-                  <Text
-                    className={`text-xs ml-3 flex-1 ${quotaExhausted ? "text-white" : "text-theme-neutrals-500"}`}
-                    numberOfLines={1}
-                  >
-                    {postQuotaLabel}
-                  </Text>
-                </View>
-              ) : null}
-
               {/* Mint sits in the list rather than in a card of its own, as
                   web's first PostAccessToggles row. Off by default, so a first
                   post needs no wallet at all. */}
