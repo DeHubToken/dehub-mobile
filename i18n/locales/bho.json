@@ -1173,12 +1173,7 @@
     "payments": "भुगतान",
     "claimBounty": "आपन इनाम लीं",
     "noneForFilter": "अबहीं {{filter}} के कवनो सूचना नइखे।",
-    "andNOthers": "आ {{count}} अउरी",
-    "sortOrder": "अधिसूचना जारी कइल गइल",
-    "priority": "प्राथमिकता हवे",
-    "newest": "नया नया सब कुछ",
-    "actNow": "अभी खातिर एक्टिंग",
-    "important": "अउरी महत्ववाला"
+    "andNOthers": "आ {{count}} अउरी"
   },
   "leaderboard": {
     "title": "लीडरबोर्ड",

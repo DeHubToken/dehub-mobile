@@ -1196,12 +1196,7 @@
       "mentionedNamed": "{{name}} të përmendi në “{{community}}”",
       "here": "{{name}} u dërgoi mesazhe të gjithëve në komunitet",
       "hereNamed": "{{name}} u dërgoi mesazhe të gjithëve në “{{community}}”"
-    },
-    "sortOrder": "Urdhër njoftimi",
-    "priority": "Prioriteti",
-    "newest": "Më të rejat",
-    "actNow": "Vepro tani",
-    "important": "E rëndësishme"
+    }
   },
   "leaderboard": {
     "title": "Tabela e Liderëve",

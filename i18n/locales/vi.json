@@ -1550,12 +1550,7 @@
       "mentionedNamed": "{{name}} đã đề cập đến bạn trong “{{community}}”",
       "here": "{{name}} đã nhắn tin cho mọi người trong cộng đồng",
       "hereNamed": "{{name}} đã nhắn tin cho mọi người trong “{{community}}”"
-    },
-    "sortOrder": "Lệnh thông báo",
-    "priority": "Ưu tiên",
-    "newest": "Mới nhất",
-    "actNow": "Hành động ngay",
-    "important": "Quan trọng"
+    }
   },
   "messages": {
     "smartRepliesOff": "Đã tắt câu trả lời gợi ý",

@@ -1195,12 +1195,7 @@
       "mentionedNamed": "{{name}} pieminēja jūs “{{community}}”",
       "here": "{{name}} nosūtīja ziņojumu visiem kopienas dalībniekiem",
       "hereNamed": "{{name}} ziņoja visiem \"{{community}}\""
-    },
-    "sortOrder": "Paziņojuma secība",
-    "priority": "Prioritāte",
-    "newest": "Jaunākais",
-    "actNow": "Rīcībā uzreiz",
-    "important": "Svarīgi"
+    }
   },
   "leaderboard": {
     "title": "Līderu tabula",

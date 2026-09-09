@@ -1260,12 +1260,7 @@
       "mentionedNamed": "{{name}} “{{community}}” nisqapi rimasqayki.",
       "here": "{{name}} ayllupi llapa runakunaman mensajeta apachirqa",
       "hereNamed": "{{name}} llapa runaman “{{community}}” nisqapi mensajeta apachirqan."
-    },
-    "sortOrder": "Willakuy kamachiy",
-    "priority": "Ñawpariq",
-    "newest": "Aswan musuq",
-    "actNow": "Kunanpacha ruway",
-    "important": "Chaniyuq"
+    }
   },
   "leaderboard": {
     "title": "Ñawpaqkuna",

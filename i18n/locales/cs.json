@@ -1167,12 +1167,7 @@
       "mentionedNamed": "{{name}} vás zmínil/a v „{{community}}“",
       "here": "{{name}} poslal/a zprávu všem členům komunity",
       "hereNamed": "{{name}} všem v „{{community}}“ poslal/a zprávu"
-    },
-    "sortOrder": "Objednávka oznámení",
-    "priority": "Priorita",
-    "newest": "Nejnovější",
-    "actNow": "Jednat nyní",
-    "important": "Důležité"
+    }
   },
   "leaderboard": {
     "title": "Žebříček",

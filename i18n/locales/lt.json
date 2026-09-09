@@ -1195,12 +1195,7 @@
       "mentionedNamed": "{{name}} paminėjo jus „{{community}}“",
       "here": "{{name}} susirašinėjo su visais bendruomenės nariais",
       "hereNamed": "{{name}} susirašinėjo su visais „{{community}}“"
-    },
-    "sortOrder": "Pranešimų tvarka",
-    "priority": "Pirmenybė",
-    "newest": "Naujausi",
-    "actNow": "Veikite dabar",
-    "important": "Svarbu"
+    }
   },
   "leaderboard": {
     "title": "Lyderių lentelė",

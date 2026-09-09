@@ -1249,12 +1249,7 @@
       "requestedNamed": "{{name}} ya nemi shiga “{{community}}”",
       "mentionedNamed": "{{name}} ya ambace ku a “{{community}}”",
       "hereNamed": "{{name}} saƙon kowa a cikin “{{community}}”"
-    },
-    "sortOrder": "Umurnin sanarwar",
-    "priority": "Mahimmanci",
-    "newest": "Sabon",
-    "actNow": "Yi aiki yanzu",
-    "important": "Muhimmancin"
+    }
   },
   "leaderboard": {
     "title": "Jadawalin Matsayi",

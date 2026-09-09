@@ -1215,12 +1215,7 @@
     "andNOthers": "and {{count}} others",
     "community": {
       "joinedNamed": "{{name}} joined “{{community}}”"
-    },
-    "sortOrder": "Notification order",
-    "priority": "Priority",
-    "newest": "Newest",
-    "actNow": "Act now",
-    "important": "Important"
+    }
   },
   "leaderboard": {
     "title": "Leaderboard",

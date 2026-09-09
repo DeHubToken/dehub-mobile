@@ -689,12 +689,7 @@
       "mentionedNamed": "{{name}} আপনাকে “{{community}}” কমিউনিটিতে উল্লেখ করেছেন",
       "here": "{{name}} কমিউনিটির সবাইকে মেসেজ করেছেন",
       "hereNamed": "{{name}} “{{community}}” কমিউনিটির সবাইকে মেসেজ করেছেন"
-    },
-    "sortOrder": "নোটিফিকেশন অর্ডার",
-    "priority": "অগ্রাধিকার",
-    "newest": "নতুনতম",
-    "actNow": "এখনই কাজ করুন",
-    "important": "গুরুত্বপূর্ণ"
+    }
   },
   "messages": {
     "smartRepliesOff": "ꠙꠞꠣꠝꠞ꠆ꠡ ꠖꠤꠅꠣ ꠎꠛꠣꠛ ꠛꠘ꠆ꠗ ꠅꠁꠍꠦ",

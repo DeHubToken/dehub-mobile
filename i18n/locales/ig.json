@@ -1249,12 +1249,7 @@
       "requested": "{{name}} jụrụ isonyere obodo gị",
       "requestedNamed": "{{name}} jụrụ isonyere \"{{community}}\"",
       "hereNamed": "{{name}} ozi onye ọ bụla na \"{{community}}\""
-    },
-    "sortOrder": "Usoro ngosi",
-    "priority": "Ihe kacha mkpa",
-    "newest": "Kacha ọhụrụ",
-    "actNow": "Mee ugbu a",
-    "important": "Mkpa"
+    }
   },
   "leaderboard": {
     "title": "Ndepụta Ọkwa",

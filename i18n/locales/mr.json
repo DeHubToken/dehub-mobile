@@ -1157,12 +1157,7 @@
       "requestedNamed": "{{name}} यांना “{{community}}” मध्ये सामील होण्यास सांगितले",
       "mentionedNamed": "{{name}} यांनी “{{community}}” मध्ये आपला उल्लेख केला",
       "hereNamed": "{{name}} सर्वांनी “{{community}}” मध्ये संदेश पाठविला"
-    },
-    "sortOrder": "अधिसूचना ऑर्डर",
-    "priority": "प्राधान्य",
-    "newest": "नवीनतम",
-    "actNow": "आता कृती करा",
-    "important": "महत्त्वाचे"
+    }
   },
   "leaderboard": {
     "title": "लीडरबोर्ड",

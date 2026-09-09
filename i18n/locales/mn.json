@@ -1181,12 +1181,7 @@
       "mentionedNamed": "{{name}} таныг “{{community}}” гэж дурдсан",
       "here": "{{name}} messaged нийт хүн бүр",
       "hereNamed": "{{name}} messaged хүн бүрийг “{{community}}”"
-    },
-    "sortOrder": "Мэдэгдэлийн дараалал",
-    "priority": "Тэргүүлэх чиглэл",
-    "newest": "Шинэ",
-    "actNow": "Одоо ажиллах",
-    "important": "Чухал"
+    }
   },
   "leaderboard": {
     "title": "Тэргүүлэгчид",

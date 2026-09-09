@@ -1476,12 +1476,7 @@
       "mentionedNamed": "{{name}} te-a menționat în “{{community}}”",
       "here": "{{name}} a trimis mesaje tuturor membrilor comunității",
       "hereNamed": "{{name}} a trimis mesaje tuturor celor din “{{community}}”"
-    },
-    "sortOrder": "Ordin de notificare",
-    "priority": "Prioritate",
-    "newest": "Cele mai noi",
-    "actNow": "Acționează acum",
-    "important": "Important"
+    }
   },
   "messages": {
     "smartRepliesOff": "Răspunsurile sugerate au fost dezactivate",

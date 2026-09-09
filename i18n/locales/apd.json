@@ -1154,12 +1154,7 @@
       "mentionedNamed": "{{name}} ذكرك في “{{community}}”",
       "here": "{{name}} أرسل رسالة للجميع في المجموعة",
       "hereNamed": "{{name}} أرسل رسالة للجميع في “{{community}}”"
-    },
-    "sortOrder": "ترتيب التنبيهات",
-    "priority": "الأولوية",
-    "newest": "الأحدث",
-    "actNow": "تصرف الآن",
-    "important": "مهم"
+    }
   },
   "leaderboard": {
     "title": "لوحة الترتيب",

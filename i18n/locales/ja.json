@@ -1274,12 +1274,7 @@
       "mentionedNamed": "{{name}}さんが「{{community}}」であなたをメンションしました",
       "here": "{{name}}さんがコミュニティの全員にメッセージを送りました",
       "hereNamed": "{{name}}さんが「{{community}}」の全員にメッセージを送りました"
-    },
-    "sortOrder": "通知順序",
-    "priority": "優先順位",
-    "newest": "最新",
-    "actNow": "今すぐ行動する",
-    "important": "重要"
+    }
   },
   "leaderboard": {
     "title": "ランキング",

@@ -1147,12 +1147,7 @@
       "mentionedNamed": "{{name}} در “{{community}}” از شما نام برد",
       "here": "{{name}} به همه در انجمن پیام داد",
       "hereNamed": "{{name}} به همه در “{{community}}” پیام داد"
-    },
-    "sortOrder": "सूचना क्रम",
-    "priority": "प्राथमिकता",
-    "newest": "नवीनतम",
-    "actNow": "अभी कार्य करें",
-    "important": "महत्वपूर्ण"
+    }
   },
   "leaderboard": {
     "title": "لیڈر بورڈ",
