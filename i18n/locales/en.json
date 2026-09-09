@@ -2843,11 +2843,7 @@
     "noFlaresLeft": "No Signal Flares left this cycle",
     "boostFailed": "Could not spend that",
     "spendFor": "{{power}} for {{minutes}} minutes",
-    "spentFor": "{{power}} running for {{minutes}} minutes",
-    "flareCounting": "Signal Flare sent. Counting notifications...",
-    "flareCountPending": "Signal Flare sent. The final count will appear in Past usage.",
-    "flareNotified_one": "Signal Flare notified {{count}} person",
-    "flareNotified_other": "Signal Flare notified {{count}} people"
+    "spentFor": "{{power}} running for {{minutes}} minutes"
   },
   "follow": {
     "followers": "Followers",

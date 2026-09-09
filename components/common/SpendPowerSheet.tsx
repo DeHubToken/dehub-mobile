@@ -205,18 +205,11 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
         onSuccess: (booking: any) => {
           if (power.key === "signal_flare") {
             void toastPromise(waitForSignalFlareReceipt(booking.id), {
-              loading: t("superpowers.flareCounting", {
-                defaultValue: "Signal Flare sent. Counting notifications...",
-              }),
+              loading: "Signal Flare sent. Counting notifications...",
               success: recipients =>
                 recipients === null
-                  ? t("superpowers.flareCountPending", {
-                      defaultValue: "Signal Flare sent. The final count will appear in Past usage.",
-                    })
-                  : t("superpowers.flareNotified", {
-                      count: recipients,
-                      defaultValue: `Signal Flare notified ${recipients} ${recipients === 1 ? "person" : "people"}`,
-                    }),
+                  ? "Signal Flare sent. The final count will appear in Past usage."
+                  : `Signal Flare notified ${recipients} ${recipients === 1 ? "person" : "people"}`,
             });
           } else {
             toastSuccess(
