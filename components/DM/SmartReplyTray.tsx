@@ -37,7 +37,7 @@ const SKELETON = "rgba(255,255,255,0.07)";
 const ORB = 44;
 const SOCKET = 48;
 const NOTCH = SOCKET / 2;
-const CARD_MIN_HEIGHT = 108;
+const CARD_MIN_HEIGHT = 120;
 /** Padding on the edge each card turns to the orb. Must clear the hole. */
 const CARD_PAD_INNER = NOTCH + 4;
 
@@ -152,7 +152,7 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
   );
 
   return (
-    <View className="px-3 pt-2 pb-3 border-b border-theme-neutrals-800/50">
+    <View className="px-4 pt-3 pb-4 border-b border-theme-neutrals-800/50">
       <View style={{ position: "relative" }}>
         {notice ? (
           // No socket to sit in, so the orb goes under the line instead of
@@ -177,6 +177,7 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
                   style={({ pressed }) => ({
                     flex: 1,
                     minHeight: CARD_MIN_HEIGHT,
+                    alignItems: "center",
                     justifyContent: "center",
                     marginLeft: i === 1 ? -1 : 0,
                     borderWidth: 1,
@@ -184,12 +185,12 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
                     borderBottomLeftRadius: i === 0 ? 16 : 0,
                     borderTopRightRadius: i === 1 ? 16 : 0,
                     borderBottomRightRadius: i === 1 ? 16 : 0,
-                    paddingVertical: 12,
+                    paddingVertical: 16,
                     // The socket sits on the seam, so the inner edge of each
                     // card has to stand clear of it. The right card also
                     // reserves the dismiss control's corner.
-                    paddingLeft: i === 0 ? 12 : CARD_PAD_INNER,
-                    paddingRight: i === 0 ? CARD_PAD_INNER : 32,
+                    paddingLeft: i === 0 ? 16 : CARD_PAD_INNER,
+                    paddingRight: i === 0 ? CARD_PAD_INNER : 16,
                     backgroundColor: !s
                       ? CARD_BG_EMPTY
                       : pressed
@@ -202,13 +203,17 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
                     <>
                       <Text
                         className="text-[9px] uppercase leading-4 text-theme-neutrals-500"
-                        style={{ letterSpacing: 0.9 }}
+                        style={{ width: "100%", letterSpacing: 0.9, textAlign: "center" }}
+                        numberOfLines={1}
+                        ellipsizeMode="tail"
                       >
                         {s.label}
                       </Text>
                       <Text
-                        className="mt-1.5 text-[13px] leading-[18px] text-white"
+                        className="mt-2 text-[13px] leading-[19px] text-white"
+                        style={{ width: "100%", textAlign: "center" }}
                         numberOfLines={3}
+                        ellipsizeMode="tail"
                       >
                         {s.text}
                       </Text>
