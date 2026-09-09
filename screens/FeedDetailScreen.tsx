@@ -997,6 +997,7 @@ export default function FeedDetailScreen() {
             item={item} 
             fullContent 
             disablePress
+            prioritizeMedia
             onCommentPress={focusCommentInput}
           />
         </View>

@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   image: { width: '100%', aspectRatio: 1.91, backgroundColor: 'rgba(255,255,255,0.05)' },
-  body: { padding: 10 },
+  body: { paddingHorizontal: 12, paddingBottom: 12, paddingTop: 14 },
   eyebrowRow: { flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: 2 },
   eyebrow: { color: '#808089', fontSize: 10, fontWeight: '600' },
   title: { color: '#fff', fontSize: 13, fontWeight: '600' },

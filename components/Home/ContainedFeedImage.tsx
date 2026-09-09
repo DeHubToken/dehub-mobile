@@ -9,6 +9,7 @@ interface ContainedFeedImageProps {
   /** Fixed carousel page width. Omit for a single image that fills its parent. */
   width?: number;
   fallbackWidth: number;
+  priority?: "low" | "normal" | "high";
 }
 
 /** Natural-ratio feed image with the same 600-unit height cap as the web app. */
@@ -16,6 +17,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   uri,
   width,
   fallbackWidth,
+  priority,
 }) => {
   const aspectRatio = useImageAspect(uri);
   const [measuredWidth, setMeasuredWidth] = useState(fallbackWidth);
@@ -46,6 +48,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         className="rounded-xl"
         style={{ width: dimensions.width, height: dimensions.height }}
         recyclingKey={uri}
+        priority={priority}
       />
     </View>
   );
