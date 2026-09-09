@@ -1057,13 +1057,15 @@ export default function UploadScreen() {
       const owed = quotaCost.amountDhb + (postQuota?.outstandingDhb ?? 0);
       const openBuyDehub = () => nav.navigate(ScreenNames.Dpay, { initialTab: "buy" });
       if (held < owed) {
-        toastWithAction("info", TIER_VISIBILITY_MESSAGE, "Buy DEHUB", openBuyDehub, {
+        toastWithAction("info", TIER_VISIBILITY_MESSAGE, "Buy Tokens", openBuyDehub, {
+          actionIcon: require("../assets/web-icons/dehub-coin.png"),
           description: `This post costs ${owed.toLocaleString()} DHB and you hold ${Math.floor(held).toLocaleString()}.`,
           duration: 10_000,
         });
         return false;
       }
-      toastWithAction("info", TIER_VISIBILITY_MESSAGE, "Buy DEHUB", openBuyDehub, {
+      toastWithAction("info", TIER_VISIBILITY_MESSAGE, "Buy Tokens", openBuyDehub, {
+        actionIcon: require("../assets/web-icons/dehub-coin.png"),
         duration: 10_000,
       });
     }
