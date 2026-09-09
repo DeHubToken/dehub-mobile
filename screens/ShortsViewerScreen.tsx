@@ -126,6 +126,11 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { ShareLinks } from "../navigation/linking.config";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { requestFeedVideoFocus, releaseFeedVideoFocus } from "../libs/feedVideoFocus";
+import {
+  continuesTapGesture,
+  TAP_GESTURE_WINDOW_MS,
+  TAP_REACTION_RESOLUTION_MS,
+} from "../libs/tap-gesture";
 import GlassTipSheet from "../components/Tip/GlassTipSheet";
 import { resolveViewCount } from "../libs/numbers.util";
 
@@ -195,11 +200,6 @@ const RESTORE_ZONE_BOTTOM = 0.85;
  * carries to the next short, because the timer restarts with each one.
  */
 const AUTO_HIDE_MS = 3000;
-
-/** A comfortable window for deciding whether another tap belongs to the gesture. */
-const TAP_WINDOW_MS = 300;
-/** Tap two waits briefly so tap three can replace Like with Love before any request is sent. */
-const REACTION_RESOLUTION_MS = 220;
 
 /** Small, upward-weighted satellites for the Love bloom. */
 const LOVE_BLOOM = [
@@ -900,7 +900,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     // timer re-arms from the state change and clears the frame again.
     if (autoHidden) setAutoHidden(false);
     const now = Date.now();
-    const continuesGesture = now - lastTapRef.current < TAP_WINDOW_MS;
+    const continuesGesture = continuesTapGesture(lastTapRef.current, now);
 
     if (!continuesGesture || tapCountRef.current === 0) {
       if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
@@ -912,7 +912,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
         tapCountRef.current = 0;
         lastTapRef.current = 0;
         togglePlayPauseRef.current();
-      }, TAP_WINDOW_MS);
+      }, TAP_GESTURE_WINDOW_MS);
       return;
     }
 
@@ -929,7 +929,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
         tapCountRef.current = 0;
         lastTapRef.current = 0;
         commitTapReaction("like");
-      }, REACTION_RESOLUTION_MS);
+      }, TAP_REACTION_RESOLUTION_MS);
       return;
     }
 
