@@ -4,9 +4,7 @@ import {
   Text,
   TouchableOpacity,
   ActivityIndicator,
-  Platform,
 } from "react-native";
-import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
 
 type GlassToastType = "success" | "error" | "info" | "warning" | "loading";
@@ -52,19 +50,11 @@ const GlassToast: React.FC<GlassToastProps> = ({
       className="w-[92%] self-center overflow-hidden rounded-2xl my-2"
       style={{ borderWidth: 1, borderColor: "rgba(255,255,255,0.2)" }}
     >
-      {/* Android's experimental blur (dimezisBlurView) crashes with
-          IndexOutOfBoundsException when list views mutate during its pre-draw
-          snapshot — toasts show over live feeds, so real blur is iOS-only and
-          Android gets a translucent glass fallback. */}
-      {Platform.OS === "ios" ? (
-        <BlurView intensity={20} tint="dark" className="absolute inset-0" />
-      ) : (
-        <View
-          className="absolute inset-0"
-          style={{ backgroundColor: "rgba(16, 16, 20, 0.65)" }}
-        />
-      )}
-      <View className="absolute inset-0 bg-black/25" />
+      {/* Toast copy must remain legible over every feed and media surface. */}
+      <View
+        className="absolute inset-0"
+        style={{ backgroundColor: "#101014" }}
+      />
 
       <View className="flex-row items-start p-4 gap-3 z-10">
         {type === "loading" && (
