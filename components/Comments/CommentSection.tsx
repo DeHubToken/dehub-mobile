@@ -1305,7 +1305,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 value={inputText}
                 onChangeText={mentions.handleChangeText}
                 onSelectionChange={mentions.handleSelectionChange}
-                placeholder={editingComment ? "Edit your comment..." : replyingTo ? "Write a reply..." : "Type here..."}
+                placeholder={editingComment ? "Edit your comment..." : replyingTo ? "Write a reply..." : "Type here"}
                 placeholderTextColor="#6F7174"
                 style={{
                   flex: 1,
@@ -1322,6 +1322,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 }}
                 maxLength={500}
                 multiline
+                numberOfLines={inputText.length === 0 ? 1 : undefined}
               />
             </View>
 
