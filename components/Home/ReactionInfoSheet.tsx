@@ -109,6 +109,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
 
   const [people, setPeople] = useState<LikerUser[]>([]);
   const [counts, setCounts] = useState<Partial<Record<PostReaction, number>> | null>(null);
+  const [anonymousCount, setAnonymousCount] = useState(0);
   const [canView, setCanView] = useState(true);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -123,6 +124,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
         const res = await getPostLikers({ tokenId, page: pageNum, limit: PAGE_LIMIT });
         setCanView(res.canViewLikers);
         setCounts(res.reactionCounts);
+        if (pageNum === 0) setAnonymousCount(res.anonymousBadgeHolderCount ?? 0);
         setPeople((prev) => (pageNum === 0 ? res.data : [...prev, ...res.data]));
         setPage(pageNum);
         setHasMore(!!res.pagination?.hasMore);
@@ -258,7 +260,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
                 Only the author can see who reacted to a post.
               </Text>
             </View>
-          ) : sections.length === 0 ? (
+          ) : sections.length === 0 && anonymousCount === 0 ? (
             <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
               <Text style={{ color: "#6F7174", fontSize: 14 }}>No reactions yet.</Text>
             </View>
@@ -276,6 +278,14 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
                   <Text style={{ color: "#8B8D90", fontSize: 13, marginLeft: 6 }}>{section.total}</Text>
                 </View>
               )}
+              ListHeaderComponent={anonymousCount > 0 ? (
+                <View style={glassStyles.anonymousRow}>
+                  <Icon name="EyeOff" size={16} color="#A1A1AA" />
+                  <Text style={{ color: "#D4D4D8", fontSize: 13, marginLeft: 8 }}>
+                    {anonymousCount} {anonymousCount === 1 ? "like" : "likes"} from anonymous badge {anonymousCount === 1 ? "holder" : "holders"}
+                  </Text>
+                </View>
+              ) : null}
               stickySectionHeadersEnabled={false}
               onEndReached={() => {
                 if (hasMore && !loadingMore && !loading) fetchPage(page + 1);
@@ -318,6 +328,18 @@ const glassStyles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 14,
     paddingBottom: 6,
+  },
+  anonymousRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginHorizontal: 16,
+    marginVertical: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    borderRadius: 12,
+    backgroundColor: "rgba(255,255,255,0.05)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.10)",
   },
 });
 

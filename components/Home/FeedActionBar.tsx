@@ -45,7 +45,7 @@ interface FeedActionBarProps {
   onComment: () => void;
   /** Opens the Share sheet (repost / quote / copy-link / send-in-DM / share-as-image). */
   onShare: () => void;
-  onTip: () => void;
+  onTip?: () => void;
   onSave: () => void;
   onInfo: () => void;
   /** Which of the ten reactions the viewer holds. `liked`/`disliked` are its polarity. */
@@ -205,13 +205,15 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   // · bookmark · info.
   return (
     <View className="flex-row items-center justify-between pt-2">
-      <AnimatedActionButton
-        onPress={onTip}
-        accessibilityLabel="Tip"
-        iconName="Gem"
-        count={tipCount}
-        formatCount
-      />
+      {onTip ? (
+        <AnimatedActionButton
+          onPress={onTip}
+          accessibilityLabel="Tip"
+          iconName="Gem"
+          count={tipCount}
+          formatCount
+        />
+      ) : null}
       {/* Downvotes — one tap, no tray: 👎 is the only reaction on this side,
           and a hold-to-open menu of one option would only get in the way of
           the press that already casts it. The wrapper is still the tray's
