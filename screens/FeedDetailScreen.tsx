@@ -1180,7 +1180,7 @@ export default function FeedDetailScreen() {
                 value={inputText}
                 onChangeText={mentions.handleChangeText}
                 onSelectionChange={mentions.handleSelectionChange}
-                placeholder={editingComment ? "Edit your comment..." : replyTo ? "Write a reply..." : "Add a comment..."}
+                placeholder={editingComment ? "Edit your comment..." : replyTo ? "Write a reply..." : "Type here"}
                 placeholderTextColor={theme.colors.mutedForeground}
                 className="flex-1 text-sm text-theme-neutrals-100"
                 style={{
@@ -1193,6 +1193,7 @@ export default function FeedDetailScreen() {
                   textAlignVertical: "center",
                 }}
                 multiline
+                numberOfLines={inputText.length === 0 ? 1 : undefined}
                 // No returnKeyType="send"/onSubmitEditing here on purpose: on a
                 // multiline field that turns the keyboard's return key into a
                 // post button, so a reply cannot be written across two lines.
