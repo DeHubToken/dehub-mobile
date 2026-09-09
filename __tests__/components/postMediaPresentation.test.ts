@@ -16,9 +16,16 @@ describe('post media presentation', () => {
     expect(containedImage).toContain('priority={priority}');
   });
 
-  it('keeps breathing room between link-preview media and metadata', () => {
+  it('keeps breathing room inside link-preview metadata', () => {
     const preview = readSource('components', 'common', 'LinkPreviewCard.tsx');
 
     expect(preview).toContain('paddingHorizontal: 12, paddingBottom: 12, paddingTop: 14');
+  });
+
+  it('separates post content from its metadata row', () => {
+    const feedCard = readSource('components', 'Home', 'FeedCard.tsx');
+
+    expect(feedCard).toContain('<View className="flex-row items-center gap-2 pt-3">');
+    expect(feedCard).not.toContain('<View className="flex-row items-center gap-2 pt-1.5">');
   });
 });
