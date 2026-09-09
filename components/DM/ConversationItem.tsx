@@ -175,31 +175,32 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
           />
         </TouchableOpacity>
 
-        <View className="flex-1 justify-center">
+        <View className="flex-1 min-w-0 justify-center">
           <View className="flex-row items-center gap-1.5">
-            <Text
-              className={`text-[15px] font-semibold flex-1 ${
-                unreadCount > 0 ? "text-white" : "text-theme-neutrals-100"
-              }`}
-              numberOfLines={1}
-            >
-              {displayName}
-            </Text>
-            {badgeImg && (
-              <Image source={badgeImg} style={{ width: 14, height: 14 }} resizeMode="contain" />
-            )}
-            <NewMemberChip address={other?.address} />
-            {username && (
-              // Shrinkable, unlike the badges: a long handle used to keep its
-              // full width and squeeze the display name down to an ellipsis.
+            <View className="flex-1 min-w-0 flex-row items-center gap-1.5">
               <Text
-                className="text-zinc-400 text-[12px]"
-                style={{ flexShrink: 1, maxWidth: "45%" }}
+                className={`text-[15px] font-semibold ${
+                  unreadCount > 0 ? "text-white" : "text-theme-neutrals-100"
+                }`}
+                style={{ flexShrink: 1 }}
                 numberOfLines={1}
               >
-                @{username}
+                {displayName}
               </Text>
-            )}
+              {badgeImg && (
+                <Image source={badgeImg} style={{ width: 14, height: 14 }} resizeMode="contain" />
+              )}
+              <NewMemberChip address={other?.address} />
+              {username && (
+                <Text
+                  className="text-zinc-400 text-[12px]"
+                  style={{ flexShrink: 1, maxWidth: "45%" }}
+                  numberOfLines={1}
+                >
+                  @{username}
+                </Text>
+              )}
+            </View>
             {unreadCount > 0 && (
               <View className="bg-theme-accent rounded-full min-w-[18px] h-[18px] items-center justify-center px-1">
                 <Text className="text-[10px] text-theme-accent-foreground font-bold">
