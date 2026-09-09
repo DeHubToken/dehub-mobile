@@ -1147,12 +1147,7 @@
       "mentionedNamed": "{{name}} mention you for “{{community}}”",
       "here": "{{name}} send message to everybody for community",
       "hereNamed": "{{name}} send message to everybody for “{{community}}”"
-    },
-    "sortOrder": "Notification order",
-    "priority": "Priority",
-    "newest": "Newest",
-    "actNow": "Act now",
-    "important": "Important"
+    }
   },
   "leaderboard": {
     "title": "Leaderboards",

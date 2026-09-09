@@ -1179,12 +1179,7 @@
       "requested": "{{name}} ka don i ka sigida la",
       "here": "{{name}} Messaging all in the community",
       "hereNamed": "{{name}} Messaging everyone in {{community}}"
-    },
-    "sortOrder": "Kɔrɔbɔli ɲini",
-    "priority": "Fɛɛn minw kɔrɔtanin lo ka tɛmɛ",
-    "newest": "O ye koo kura ye.",
-    "actNow": "An ka baara kɛ sisan",
-    "important": "Min kɔrɔtanin lo"
+    }
   },
   "leaderboard": {
     "title": "Kɛlɛya",

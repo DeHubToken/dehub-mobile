@@ -1175,12 +1175,7 @@
     "payments": "भुगतानानि",
     "claimBounty": "स्वपुरस्कारं गृह्णातु",
     "noneForFilter": "अद्यापि {{filter}} सूचना नास्ति।",
-    "andNOthers": "अन्ये {{count}} च",
-    "sortOrder": "अधिसूचना क्रम",
-    "priority": "प्राधान्यम्",
-    "newest": "नवीनतमम्",
-    "actNow": "अधुना क्रियताम्",
-    "important": "महत्वपूर्णम्"
+    "andNOthers": "अन्ये {{count}} च"
   },
   "leaderboard": {
     "title": "श्रेष्ठतासूची",

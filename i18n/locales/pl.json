@@ -1530,12 +1530,7 @@
       "mentionedNamed": "{{name}} wspomniał o Tobie w „{{community}}”",
       "here": "{{name}} wysłał (a) wiadomość do wszystkich członków społeczności",
       "hereNamed": "{{name}} wysłał (a) wiadomość do wszystkich w „{{community}}”"
-    },
-    "sortOrder": "Kolejność powiadomień",
-    "priority": "Priorytet",
-    "newest": "Najnowsze",
-    "actNow": "Działaj teraz",
-    "important": "Ważne"
+    }
   },
   "messages": {
     "smartRepliesOff": "Sugerowane odpowiedzi wyłączone",

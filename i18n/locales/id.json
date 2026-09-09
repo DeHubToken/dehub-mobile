@@ -1262,12 +1262,7 @@
       "mentionedNamed": "{{name}} menyebut Anda di “{{community}}”",
       "here": "{{name}} mengirim pesan kepada semua orang di komunitas ini",
       "hereNamed": "{{name}} mengirim pesan kepada semua orang di “{{community}}”"
-    },
-    "sortOrder": "Perintah notifikasi",
-    "priority": "Prioritas",
-    "newest": "Terbaru",
-    "actNow": "Bertindak sekarang",
-    "important": "Penting"
+    }
   },
   "leaderboard": {
     "title": "Papan Peringkat",

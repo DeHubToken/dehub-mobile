@@ -1179,12 +1179,7 @@
     "andNOthers": "ଏବଂ ଅନ୍ୟ {{count}}",
     "community": {
       "joinedNamed": "{{name}} ଯୋଡିହେଲା “{{community}}”"
-    },
-    "sortOrder": "ବିଜ୍ଞପ୍ତି ଆଦେଶ",
-    "priority": "ଅଗ୍ରାଧିକାର",
-    "newest": "ନୂତନ",
-    "actNow": "ବର୍ତ୍ତମାନ କାର୍ଯ୍ୟ କରନ୍ତୁ",
-    "important": "ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ"
+    }
   },
   "leaderboard": {
     "title": "ଲିଡରବୋର୍ଡ",

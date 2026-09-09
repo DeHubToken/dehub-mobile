@@ -1271,12 +1271,7 @@
       "mentionedNamed": "{{name}} hat Sie in „{{community}}“ erwähnt",
       "here": "{{name}} hat allen in der Community eine Nachricht gesendet",
       "hereNamed": "{{name}} hat alle in „{{community}}“ benachrichtigt"
-    },
-    "sortOrder": "Benachrichtigungsauftrag",
-    "priority": "Priorität",
-    "newest": "Neueste",
-    "actNow": "Jetzt handeln",
-    "important": "Wichtig"
+    }
   },
   "messages": {
     "smartRepliesOff": "Antwortvorschläge ausgeschaltet",
