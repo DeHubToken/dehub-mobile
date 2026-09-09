@@ -46,6 +46,12 @@ import { getArcadeGame } from "../config/arcade-games";
 import { openInApp } from "../libs/links.utils";
 import { WEBSITE_LINK } from "../config/links";
 import { colors } from "../theme/colors";
+import { useAuth } from "../context/AuthContext";
+import { getAuthToken } from "../libs/auth.utils";
+import { toastError, toastSuccess } from "../libs";
+import env from "../config/env";
+
+const MAP_PRESENCE_ENDPOINT = `${env.SUPABASE_URL}/functions/v1/map-presence`;
 
 /** Nothing below this is reported: an opening 0% reads as "did not start". */
 const FLOOR = 2;
@@ -94,6 +100,28 @@ const READY_BRIDGE = `
       if (!d || !d.source) return;
       window.ReactNativeWebView.postMessage(JSON.stringify(d));
     } catch (err) {}
+  });
+})();
+true;
+`;
+
+const PRESENCE_BRIDGE = `
+(function () {
+  if (window.__dehubPresenceBridge) return;
+  window.__dehubPresenceBridge = true;
+  window.addEventListener('gev:presence-place-requested', function () {
+    if (!navigator.geolocation) {
+      window.ReactNativeWebView.postMessage(JSON.stringify({ source: 'gods-eye-view', type: 'presence-location-error' }));
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(function (position) {
+      window.ReactNativeWebView.postMessage(JSON.stringify({
+        source: 'gods-eye-view', type: 'presence-location',
+        latitude: position.coords.latitude, longitude: position.coords.longitude
+      }));
+    }, function () {
+      window.ReactNativeWebView.postMessage(JSON.stringify({ source: 'gods-eye-view', type: 'presence-location-error' }));
+    }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 300000 });
   });
 })();
 true;
@@ -164,6 +192,8 @@ const ArcadeGameScreen = () => {
   const route = useRoute<any>();
   const slug: string | undefined = route.params?.slug;
   const game = getArcadeGame(slug);
+  const webRef = useRef<WebView>(null);
+  const { user } = useAuth();
 
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -235,18 +265,39 @@ const ArcadeGameScreen = () => {
    * page can never break this screen.
    */
   const onFrameMessage = useCallback(
-    (e: WebViewMessageEvent) => {
-      if (!game?.readySource) return;
+    async (e: WebViewMessageEvent) => {
       try {
-        const d = JSON.parse(e.nativeEvent.data) as { source?: string; type?: string; text?: string };
-        if (d.source !== game.readySource) return;
+        const d = JSON.parse(e.nativeEvent.data) as {
+          source?: string; type?: string; text?: string; latitude?: number; longitude?: number;
+        };
+        if (game?.socialPresence && d.source === 'gods-eye-view') {
+          if (d.type === 'presence-location-error') toastError('Location permission was not granted.');
+          if (d.type === 'presence-location') {
+            const token = await getAuthToken();
+            const wallet = user?.walletAddress?.toLowerCase();
+            if (!token || !wallet) { toastError('Sign in to place yourself on the globe.'); return; }
+            const response = await fetch(MAP_PRESENCE_ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'x-dehub-token': token, 'x-wallet-address': wallet },
+              body: JSON.stringify({
+                latitude: d.latitude, longitude: d.longitude, precisionKm: 25,
+                username: user?.username, avatarUrl: user?.avatarImageUrl || user?.avatarUrl,
+              }),
+            });
+            if (!response.ok) { toastError('Could not place you on the globe.'); return; }
+            webRef.current?.injectJavaScript(`window.postMessage({source:'social-presence-host',type:'refresh'}, '*'); true;`);
+            toastSuccess('You are on the globe — shown within an approximate 25 km area.');
+          }
+          return;
+        }
+        if (d.source !== game?.readySource) return;
         if (d.type === 'ready') setReady(true);
         else if (d.type === 'error') setFault(d.text || 'unknown');
       } catch {
         // Not our JSON. A page is free to post whatever it likes at itself.
       }
     },
-    [game?.readySource],
+    [game?.readySource, game?.socialPresence, user],
   );
 
   /**
@@ -298,6 +349,7 @@ const ArcadeGameScreen = () => {
         <View style={styles.web} />
       ) : (
         <WebView
+          ref={webRef}
           source={{ uri: game.url }}
           style={styles.web}
           // The game is the only thing on screen and it paints black before it
@@ -316,6 +368,7 @@ const ArcadeGameScreen = () => {
           // The engine remembers the player's quality override between sessions.
           domStorageEnabled
           javaScriptEnabled
+          geolocationEnabled={Boolean(game.socialPresence)}
           // The score and the battle cries should start with the game rather
           // than wait for a second tap the player has no reason to make.
           mediaPlaybackRequiresUserAction={false}
@@ -333,7 +386,7 @@ const ArcadeGameScreen = () => {
           // the top-level document, so `parent === window`, the message is
           // dispatched to the game's own window, and nothing outside ever sees
           // it. This listener is the missing hop.
-          injectedJavaScript={READY_BRIDGE}
+          injectedJavaScript={`${READY_BRIDGE}\n${game.socialPresence ? PRESENCE_BRIDGE : ''}`}
           onMessage={onFrameMessage}
           // For a game with NO readiness bridge, the document's load event is
           // the hand-off: King's Gambit has a real loading screen of its own,
@@ -342,6 +395,9 @@ const ArcadeGameScreen = () => {
           // wrong — for the other two, `onLoadEnd` is the moment a 25-60s bake
           // BEGINS, and they render black throughout it.
           onLoadEnd={() => {
+            if (game.socialPresence) {
+              webRef.current?.injectJavaScript(`window.postMessage({source:'social-presence-host',type:'configure',endpoint:${JSON.stringify(MAP_PRESENCE_ENDPOINT)}}, '*'); true;`);
+            }
             if (!game.readySource) setReady(true);
           }}
           onError={() => setFailed(true)}
