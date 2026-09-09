@@ -41,12 +41,16 @@ import { useQuery } from "@tanstack/react-query";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import { useBookBoost, useSuperpowerLadder, useSuperpowers } from "../../hooks/useSuperpowers";
-import { powerHome, type SuperPowerInfo } from "../../services/superpower.service";
+import {
+  powerHome,
+  waitForSignalFlareReceipt,
+  type SuperPowerInfo,
+} from "../../services/superpower.service";
 import { ageSuits, postIdFromInput, FRONT_ROW_STATUSES } from "../../libs/spendPowerTarget";
 import { getNFT, getNFTs, getCategoriesCached } from "../../services/nft.service";
 import { getUserReplies } from "../../services/user.service";
 import { supabase } from "../../services/supabase";
-import { getImageUrl, toastError, toastSuccess } from "../../libs";
+import { getImageUrl, toastError, toastPromise, toastSuccess } from "../../libs";
 
 interface SpendPowerSheetProps {
   /** The power being spent. Null keeps the sheet closed. */
@@ -199,13 +203,30 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
       },
       {
         onSuccess: (booking: any) => {
-          toastSuccess(
-            t("superpowers.spentFor", {
-              power: power.label,
-              minutes: booking?.minutes,
-              defaultValue: `${power.label} running for ${booking?.minutes} minutes`,
-            }),
-          );
+          if (power.key === "signal_flare") {
+            void toastPromise(waitForSignalFlareReceipt(booking.id), {
+              loading: t("superpowers.flareCounting", {
+                defaultValue: "Signal Flare sent. Counting notifications...",
+              }),
+              success: recipients =>
+                recipients === null
+                  ? t("superpowers.flareCountPending", {
+                      defaultValue: "Signal Flare sent. The final count will appear in Past usage.",
+                    })
+                  : t("superpowers.flareNotified", {
+                      count: recipients,
+                      defaultValue: `Signal Flare notified ${recipients} ${recipients === 1 ? "person" : "people"}`,
+                    }),
+            });
+          } else {
+            toastSuccess(
+              t("superpowers.spentFor", {
+                power: power.label,
+                minutes: booking?.minutes,
+                defaultValue: `${power.label} running for ${booking?.minutes} minutes`,
+              }),
+            );
+          }
           onClose();
         },
         // The server writes these sentences for a person to read — "Post in
@@ -320,6 +341,11 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
                 const id = Number(post.tokenId);
                 const picked = pickedPost === id;
                 const thumb = getImageUrl(post.imageUrl || post.thumbnailUrl || "", 96);
+                const postText = String(post.description ?? "").trim();
+                const postTitle = String(post.name ?? "").trim();
+                const hasVideo = Boolean(
+                  post.videoUrl || post.media_url || post.postType === "video" || post.media_type === "video",
+                );
                 return (
                   <Pressable
                     key={id}
@@ -327,15 +353,26 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
                     className={row(picked)}
                   >
                     {thumb ? (
-                      <Image source={{ uri: thumb }} className="h-12 w-12 rounded-xl bg-white/5" />
+                      <Image
+                        source={{ uri: thumb }}
+                        resizeMode="cover"
+                        className="h-14 w-14 rounded-xl bg-white/5"
+                      />
                     ) : (
-                      <View className="h-12 w-12 rounded-xl bg-white/5" />
+                      <View className="h-14 w-14 items-center justify-center rounded-xl bg-white/[0.07]">
+                        <Icon name={hasVideo ? "Play" : "SquarePen"} size={22} color="#A1A1AA" />
+                      </View>
                     )}
                     <View className="min-w-0 flex-1">
-                      <Text numberOfLines={1} className="text-sm text-white">
-                        {post.name || `#${id}`}
+                      <Text numberOfLines={2} className="text-sm leading-5 text-white">
+                        {postText || postTitle || `Post #${id}`}
                       </Text>
-                      <Text className="text-[11px] text-zinc-500">
+                      {postText && postTitle && postText !== postTitle ? (
+                        <Text numberOfLines={1} className="mt-0.5 text-[11px] text-zinc-400">
+                          {postTitle}
+                        </Text>
+                      ) : null}
+                      <Text className="mt-0.5 text-[11px] text-zinc-500">
                         {post.createdAt ? new Date(post.createdAt).toLocaleDateString() : `#${id}`}
                       </Text>
                     </View>
