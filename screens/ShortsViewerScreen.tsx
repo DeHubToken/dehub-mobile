@@ -129,6 +129,8 @@ import { requestFeedVideoFocus, releaseFeedVideoFocus } from "../libs/feedVideoF
 import {
   continuesTapGesture,
   TAP_GESTURE_WINDOW_MS,
+  TAP_LIKE_ANIMATION_MS,
+  TAP_LOVE_ANIMATION_MS,
   TAP_REACTION_RESOLUTION_MS,
 } from "../libs/tap-gesture";
 import GlassTipSheet from "../components/Tip/GlassTipSheet";
@@ -786,7 +788,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     tapAnimProgress.setValue(0);
     Animated.timing(tapAnimProgress, {
       toValue: 1,
-      duration: reaction === "love" ? 760 : 620,
+      duration: reaction === "love" ? TAP_LOVE_ANIMATION_MS : TAP_LIKE_ANIMATION_MS,
       easing: Easing.bezier(0.22, 1, 0.36, 1),
       useNativeDriver: true,
     }).start(({ finished }) => {
@@ -1100,7 +1102,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
               justifyContent: "center",
               opacity: tapAnimProgress.interpolate({
                 inputRange: [0, 0.18, 0.68, 1],
-                outputRange: [0, 1, 1, 0],
+                // The overlay is mounted in response to the tap. Beginning at
+                // zero let the video compositor consume its entrance before a
+                // visible frame reached the screen.
+                outputRange: [1, 1, 0.96, 0],
               }),
               transform: [
                 {
@@ -1112,7 +1117,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
                 {
                   scale: tapAnimProgress.interpolate({
                     inputRange: [0, 0.2, 0.42, 1],
-                    outputRange: [0.68, 1.08, 1, 0.94],
+                    outputRange: [0.76, 1.08, 1, 0.92],
                   }),
                 },
               ],
@@ -1120,7 +1125,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
           >
             <Icon
               name={tapAnimReaction === "love" ? "Heart" : "ThumbsUp"}
-              size={tapAnimReaction === "love" ? 64 : 56}
+              size={tapAnimReaction === "love" ? 72 : 64}
               color={tapAnimReaction === "love" ? "#F43F5E" : "#0EA5E9"}
               fill={tapAnimReaction === "love" ? "#F43F5E" : "#0EA5E9"}
             />
