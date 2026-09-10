@@ -146,7 +146,7 @@ export default function BoostSheet({
         onSuccess: booking => {
           if (chosen === "signal_flare") {
             void toastPromise(waitForSignalFlareReceipt(booking.id), {
-              loading: "Signal Flare sent. Counting notifications...",
+              loading: "Counting notifications...",
               success: recipients =>
                 recipients === null
                   ? "Signal Flare sent. The final count will appear in Past usage."
