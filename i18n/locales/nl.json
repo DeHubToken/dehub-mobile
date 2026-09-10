@@ -37,7 +37,8 @@
     "ads": "Advertenties",
     "prompt": "Prompt",
     "tv": "Live-tv",
-    "arcade": "Arcade"
+    "arcade": "Arcade",
+    "stats": "Live statistieken"
   },
   "feed": {
     "home": "Home",
