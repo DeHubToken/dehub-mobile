@@ -22,8 +22,13 @@ import {
   cancelBoost,
   fetchBoostSlot,
   fetchFrontRow,
+  fetchMyTeamUp,
+  fetchTeamUpTeams,
   fetchTrendingTopic,
-  joinCrewBoost,
+  createTeamUp,
+  joinTeamUp,
+  leaveTeamUp,
+  removeTeamUpMember,
   fetchSuperpowerStatus,
   fetchSuperpowerTiers,
   type SuperPowerKey,
@@ -34,6 +39,7 @@ import { useUser } from '../context/AuthContext';
 export const SUPERPOWERS_KEY = ['superpowers', 'status'] as const;
 export const SUPERPOWERS_SLOT_KEY = ['superpowers', 'slot'] as const;
 export const SUPERPOWERS_TIERS_KEY = ['superpowers', 'tiers'] as const;
+export const TEAM_UP_KEY = ['superpowers', 'team-up'] as const;
 
 /** How long a viewer keeps the boost they were dealt. See the note above. */
 const SLOT_ROTATION_MS = 5 * 60 * 1000;
@@ -125,17 +131,55 @@ export function useTrendingTopic() {
   });
 }
 
-/** Put one of your own boosts behind somebody else's Crew Boost. */
-export function useJoinCrewBoost() {
-  const queryClient = useQueryClient();
+export function useTeamUp(enabled = true) {
+  const user = useUser();
+  const address = (user?.walletAddress || user?.address || '') as string;
+  return useQuery({
+    queryKey: [...TEAM_UP_KEY, 'mine'],
+    queryFn: fetchMyTeamUp,
+    enabled: Boolean(address) && enabled,
+    staleTime: 30_000,
+    retry: 1,
+  });
+}
 
+export function useTeamUpTeams(query: string, enabled = true) {
+  return useQuery({
+    queryKey: [...TEAM_UP_KEY, 'teams', query.trim()],
+    queryFn: () => fetchTeamUpTeams(query),
+    enabled,
+    staleTime: 15_000,
+    retry: 1,
+  });
+}
+
+function useTeamUpMutation<TVariables>(mutationFn: (variables: TVariables) => Promise<unknown>) {
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (bookingId: string) => joinCrewBoost(bookingId),
+    mutationFn,
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: TEAM_UP_KEY });
       queryClient.invalidateQueries({ queryKey: SUPERPOWERS_KEY });
-      queryClient.invalidateQueries({ queryKey: SUPERPOWERS_SLOT_KEY });
+      queryClient.invalidateQueries({ queryKey: ['account'] });
     },
   });
+}
+
+export function useCreateTeamUp() {
+  return useTeamUpMutation((name: string) => createTeamUp(name));
+}
+
+export function useJoinTeamUp() {
+  return useTeamUpMutation((teamId: string) => joinTeamUp(teamId));
+}
+
+export function useLeaveTeamUp() {
+  return useTeamUpMutation(() => leaveTeamUp());
+}
+
+export function useRemoveTeamUpMember() {
+  return useTeamUpMutation(({ teamId, address }: { teamId: string; address: string }) =>
+    removeTeamUpMember(teamId, address));
 }
 
 /** Spend a boost, then refresh the allowance and re-deal the slot. */
