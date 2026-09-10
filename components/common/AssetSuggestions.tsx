@@ -114,7 +114,7 @@ const AssetSuggestionsComponent: React.FC<AssetSuggestionsProps> = ({
 
   return (
     <View
-      className="rounded-2xl bg-black/95 border border-white/[0.08] overflow-hidden"
+      className="rounded-2xl dark-surface bg-black/95 border border-white/[0.08] overflow-hidden"
       style={{ maxHeight: 240 }}
     >
       <View className="flex-row items-center justify-between px-4 pt-2.5 pb-1">

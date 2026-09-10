@@ -1033,15 +1033,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             priority={prioritizeMedia ? "high" : "normal"}
             blurRadius={20}
           />
-          <View className="absolute inset-0 bg-black/30 items-center justify-center">
+          <View className="absolute inset-0 dark-surface bg-black/30 items-center justify-center">
             <View className="absolute top-3 left-3 flex-row gap-2">
-              <View className="flex-row items-center gap-1 bg-black/60 rounded-full px-2.5 py-1">
+              <View className="flex-row items-center gap-1 dark-surface bg-black/60 rounded-full px-2.5 py-1">
                 <Icon name="Ticket" size={12} color="#fff" />
                 <Text className="text-white text-xs font-medium">
                   {formatCompactNumber(payPerViewAmount)} {payPerViewTokenSymbol}
                 </Text>
               </View>
-              <View className="flex-row items-center gap-1 bg-black/60 rounded-full px-2.5 py-1">
+              <View className="flex-row items-center gap-1 dark-surface bg-black/60 rounded-full px-2.5 py-1">
                 <Icon name="Lock" size={12} color="#fff" />
                 <Text className="text-white text-xs font-medium">
                   {formatCompactNumber(lockContentAmount)} {lockContentTokenSymbol}
@@ -1049,10 +1049,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               </View>
             </View>
             <View className="flex-row gap-3 mb-3">
-              <View className="w-14 h-14 rounded-xl bg-black/40 border border-white/10 items-center justify-center">
+              <View className="w-14 h-14 rounded-xl dark-surface bg-black/40 border border-white/10 items-center justify-center">
                 <Icon name="Ticket" size={24} color="#fff" />
               </View>
-              <View className="w-14 h-14 rounded-xl bg-black/40 border border-white/10 items-center justify-center">
+              <View className="w-14 h-14 rounded-xl dark-surface bg-black/40 border border-white/10 items-center justify-center">
                 <Icon name="Lock" size={24} color="#fff" />
               </View>
             </View>
@@ -1080,14 +1080,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             priority={prioritizeMedia ? "high" : "normal"}
             blurRadius={20}
           />
-          <View className="absolute inset-0 bg-black/30 items-center justify-center">
-            <View className="absolute top-3 left-3 flex-row items-center gap-1 bg-black/60 rounded-full px-2.5 py-1">
+          <View className="absolute inset-0 dark-surface bg-black/30 items-center justify-center">
+            <View className="absolute top-3 left-3 flex-row items-center gap-1 dark-surface bg-black/60 rounded-full px-2.5 py-1">
               <Icon name="Ticket" size={12} color="#fff" />
               <Text className="text-white text-xs font-medium">
                 {formatCompactNumber(payPerViewAmount)} {payPerViewTokenSymbol}
               </Text>
             </View>
-            <View className="w-16 h-16 rounded-xl bg-black/40 border border-white/10 items-center justify-center mb-3">
+            <View className="w-16 h-16 rounded-xl dark-surface bg-black/40 border border-white/10 items-center justify-center mb-3">
               <Icon name="Ticket" size={28} color="#fff" />
             </View>
             <Text className="text-white font-semibold text-sm mb-1">Pay-Per-View Content</Text>
@@ -1115,8 +1115,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             priority={prioritizeMedia ? "high" : "normal"}
             blurRadius={20}
           />
-          <View className="absolute inset-0 bg-black/30 items-center justify-center">
-            <View className="w-14 h-14 rounded-2xl bg-black/50 items-center justify-center mb-2">
+          <View className="absolute inset-0 dark-surface bg-black/30 items-center justify-center">
+            <View className="w-14 h-14 rounded-2xl dark-surface bg-black/50 items-center justify-center mb-2">
               <Icon name="Star" size={24} color="#fff" />
             </View>
             <Text className="text-white text-sm font-semibold">Subscribers only</Text>
@@ -1141,14 +1141,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             priority={prioritizeMedia ? "high" : "normal"}
             blurRadius={20}
           />
-          <View className="absolute inset-0 bg-black/30 items-center justify-center">
-            <View className="absolute top-3 left-3 flex-row items-center gap-1 bg-black/60 rounded-full px-2.5 py-1">
+          <View className="absolute inset-0 dark-surface bg-black/30 items-center justify-center">
+            <View className="absolute top-3 left-3 flex-row items-center gap-1 dark-surface bg-black/60 rounded-full px-2.5 py-1">
               <Icon name="Lock" size={12} color="#fff" />
               <Text className="text-white text-xs font-medium">
                 {formatCompactNumber(lockContentAmount)} {lockContentTokenSymbol}
               </Text>
             </View>
-            <View className="w-16 h-16 rounded-xl bg-black/40 border border-white/10 items-center justify-center mb-3">
+            <View className="w-16 h-16 rounded-xl dark-surface bg-black/40 border border-white/10 items-center justify-center mb-3">
               <Icon name="Lock" size={28} color="#fff" />
             </View>
             <Text className="text-white font-semibold text-sm mb-1">Holdings Required</Text>
@@ -1228,7 +1228,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             costs nothing and lets taps fall through to open the viewer. */}
         <View
           pointerEvents="none"
-          className="absolute top-3 right-3 bg-black/60 rounded-full px-2.5 py-1"
+          className="absolute top-3 right-3 dark-surface bg-black/60 rounded-full px-2.5 py-1"
         >
           <Text className="text-white text-xs font-medium">
             {activeImageIndex + 1}/{galleryImages.length}
@@ -1319,7 +1319,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       )}
       {status && <StatusBadge status={status} />}
       {isHidden && (
-        <View className="absolute top-2 right-2 flex-row items-center bg-black/60 rounded-full px-2 py-1 z-20">
+        <View className="absolute top-2 right-2 flex-row items-center dark-surface bg-black/60 rounded-full px-2 py-1 z-20">
           <Icon name="EyeOff" size={12} color="#6F7174" />
           <Text style={{ color: "#8B8D90", fontSize: 10, marginLeft: 4 }}>Hidden</Text>
         </View>

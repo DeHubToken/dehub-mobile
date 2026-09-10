@@ -933,7 +933,7 @@ const FollowListScreen: React.FC = () => {
 
   return (
     <View
-      className="flex-1 bg-black"
+      className="flex-1 bg-theme-background"
       style={{ paddingTop: 0 }}
     >
       {/* Header */}

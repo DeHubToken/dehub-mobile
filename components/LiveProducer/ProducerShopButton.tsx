@@ -139,7 +139,7 @@ export default function ProducerShopButton({ tokenId, visible = true }: Props) {
       </TouchableOpacity>
 
       <Modal visible={open} transparent animationType="slide" onRequestClose={() => setOpen(false)}>
-        <View className="flex-1 justify-end bg-black/60">
+        <View className="flex-1 justify-end dark-surface bg-black/60">
           <View className="bg-zinc-900 rounded-t-3xl border-t border-white/10 px-4 pt-4 pb-8 max-h-[75%]">
             <View className="flex-row items-center justify-between mb-4">
               <Text className="text-white font-semibold text-base">

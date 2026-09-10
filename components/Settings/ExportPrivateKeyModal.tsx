@@ -264,7 +264,7 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
                 {t("settings.addressLabel")}: {address}
               </Text>
             ) : null}
-            <View className="flex-row items-center bg-black/50 rounded-md p-3 border border-theme-neutrals-700 mb-3">
+            <View className="flex-row items-center dark-surface bg-black/50 rounded-md p-3 border border-theme-neutrals-700 mb-3">
               <TouchableOpacity
                 onPress={toggleMasked}
                 className="mr-3 p-1"

@@ -1279,7 +1279,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   }, [streamLoading, streamEntity, isPausedEffective, isLiveEffective, isEndedEffective, isPlayingReplay, isScheduledEffective, isOfflineEffective]);
 
   return (
-    <View className="flex-1 bg-black">
+    <View className="flex-1 dark-surface bg-black">
       {/* Full-screen video player as background */}
       <View className="absolute inset-0">
         {(isLiveEffective || isEndedEffective) && effectiveVideoUrl ? (
@@ -1310,7 +1310,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             onVideoSize={handleVideoSize}
           />
         ) : (
-          <View className="flex-1 bg-black" />
+          <View className="flex-1 dark-surface bg-black" />
         )}
       </View>
 

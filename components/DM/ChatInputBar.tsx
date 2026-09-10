@@ -643,7 +643,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 </View>
               )}
               {gifUrl && (
-                <View className="absolute bottom-1 left-1 bg-black/60 rounded px-1">
+                <View className="absolute bottom-1 left-1 dark-surface bg-black/60 rounded px-1">
                   <Text className="text-[11px] text-white font-bold">GIF</Text>
                 </View>
               )}

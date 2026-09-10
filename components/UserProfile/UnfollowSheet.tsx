@@ -30,7 +30,7 @@ const UnfollowSheet: React.FC<UnfollowSheetProps> = memo(
         <TouchableOpacity
           activeOpacity={1}
           onPress={onClose}
-          className="flex-1 bg-black/40"
+          className="flex-1 dark-surface bg-black/40"
         >
           <View
             className="mt-auto rounded-t-[20px] border border-white/10 px-5 pt-4 pb-6"

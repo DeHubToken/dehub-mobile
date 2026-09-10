@@ -305,7 +305,7 @@ const ProfileHeader = () => {
           />
           <TouchableOpacity
             onPress={startChangeCover}
-            className="absolute right-2 bottom-2 bg-black/50 rounded-xl p-2"
+            className="absolute right-2 bottom-2 dark-surface bg-black/50 rounded-xl p-2"
             accessibilityLabel="Change cover image"
             activeOpacity={0.85}
           >
@@ -339,7 +339,7 @@ const ProfileHeader = () => {
             />
             <TouchableOpacity
               onPress={startChangeAvatar}
-              className="absolute right-0 bottom-0 bg-black/60 rounded-lg p-1.5 border border-white/20"
+              className="absolute right-0 bottom-0 dark-surface bg-black/60 rounded-lg p-1.5 border border-white/20"
               accessibilityLabel="Change avatar"
               activeOpacity={0.85}
             >

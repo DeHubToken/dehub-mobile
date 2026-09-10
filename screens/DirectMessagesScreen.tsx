@@ -286,7 +286,7 @@ const DirectMessagesInner: React.FC = () => {
         {/* Logo styled like Avatar size={52} */}
         <View
           style={{ width: 52, height: 52, borderRadius: Math.round(52 * 0.16) }}
-          className="bg-black items-center justify-center overflow-hidden"
+          className="dark-surface bg-black items-center justify-center overflow-hidden"
         >
           <Image
             source={require("../assets/web-icons/dehub-logo-compact.png")}

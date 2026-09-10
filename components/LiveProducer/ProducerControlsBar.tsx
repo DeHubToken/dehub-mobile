@@ -25,7 +25,7 @@ interface Props {
 /**
  * The secondary controls float on the picture with nothing behind them.
  *
- * They used to each carry a `bg-black/40 border border-white/10` pill, which
+ * They used to each carry a `dark-surface bg-black/40 border border-white/10` pill, which
  * over a moving camera reads as a row of boxes sitting on the shot rather than
  * controls belonging to it. Legibility comes from the scrim below instead — one
  * gradient across the foot of the screen, which is what keeps white icons

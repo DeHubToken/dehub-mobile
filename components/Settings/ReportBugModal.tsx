@@ -115,7 +115,7 @@ const ReportBugModal: React.FC<ReportBugModalProps> = ({
           <Text className="text-theme-neutrals-400 text-[11px] mb-2">
             {t("settings.templatePreview")}
           </Text>
-          <View className="bg-black/50 rounded-md p-3">
+          <View className="dark-surface bg-black/50 rounded-md p-3">
             <Text selectable className="text-theme-neutrals-200 text-xs">
               {templatePreview}
             </Text>

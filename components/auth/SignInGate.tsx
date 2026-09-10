@@ -71,7 +71,7 @@ const FullScreenSignInPrompt: React.FC = () => {
 
   return (
     <View
-      className="flex-1 bg-black"
+      className="flex-1 bg-theme-background"
       style={{ paddingTop: insets.top, paddingBottom: insets.bottom + 80 }}
     >
       <SignInPrompt />

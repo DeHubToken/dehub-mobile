@@ -718,7 +718,7 @@ const LiveChatScreen: React.FC = () => {
   );
 
   return (
-    <View className="flex-1 bg-black">
+    <View className="flex-1 dark-surface bg-black">
       <ScreenHeader
         title={t("publicChat.title")}
         subtitle={subtitle}

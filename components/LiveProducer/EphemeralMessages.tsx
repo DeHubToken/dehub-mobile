@@ -16,7 +16,7 @@ const EphemeralMessages: React.FC<EphemeralMessagesProps> = ({ messages, fadeAni
         {messages.map((m) => {
           const color = m.isOwner ? 'text-white' : m.isModerator ? 'text-white/80' : 'text-white/60';
           return (
-            <View key={m.id} className="mb-1 bg-black/55 px-3 py-1.5 rounded-lg border border-white/10">
+            <View key={m.id} className="mb-1 dark-surface bg-black/55 px-3 py-1.5 rounded-lg border border-white/10">
               <Text className="text-white text-[11px]" numberOfLines={2}>
                 <Text className={`font-semibold ${color}`}>{m.user}: </Text>
                 {m.message}

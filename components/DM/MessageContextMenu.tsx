@@ -318,7 +318,7 @@ const FloatingMessage: React.FC<{
             )}
             <View
               className={`${
-                isPaidMsg ? "px-2 pb-1.5 justify-end" : "absolute bottom-1.5 right-2 bg-black/50 rounded-full px-1.5 py-0.5"
+                isPaidMsg ? "px-2 pb-1.5 justify-end" : "absolute bottom-1.5 right-2 dark-surface bg-black/50 rounded-full px-1.5 py-0.5"
               } flex-row items-center gap-1`}
             >
               <Text className="text-[10px] text-white/80">

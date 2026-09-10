@@ -273,7 +273,7 @@ const LiveChatInfoScreen: React.FC = () => {
 
   if (loading) {
     return (
-      <View className="flex-1 bg-black">
+      <View className="flex-1 bg-theme-background">
         <ScreenHeader title={t("screens.chatInfo")} />
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color="rgba(255,255,255,0.3)" />
@@ -283,7 +283,7 @@ const LiveChatInfoScreen: React.FC = () => {
   }
 
   return (
-    <View className="flex-1 bg-black">
+    <View className="flex-1 bg-theme-background">
       <ScreenHeader title={t("screens.chatInfo")} />
 
       <ScrollView
