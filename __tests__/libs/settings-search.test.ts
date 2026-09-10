@@ -83,13 +83,13 @@ describe('searchSettings', () => {
   });
 
   it('puts the closest label first', () => {
-    expect(top('the')?.anchor).toBe('theme');
+    expect(top('language')?.anchor).toBe('language');
     expect(top('quiet')?.anchor).toBe('quiet-hours');
     expect(top('storage')?.anchor).toBe('message-storage');
   });
 
   it('finds settings by what people call them, not what we called them', () => {
-    expect(top('dark mode')?.anchor).toBe('theme');
+    expect(top('blue light')?.anchor).toBe('dim-lights');
     expect(top('nsfw')?.anchor).toBe('content-filtering');
     expect(top('2fa')?.anchor).toBe('account-security');
     expect(top('dnd')?.anchor).toBe('dm-access');
