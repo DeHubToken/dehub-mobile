@@ -31,6 +31,7 @@ import { getAvatarUrl } from "../../libs/misc";
 import { toastError, toastInfo } from "../../libs";
 import { openInApp } from "../../libs/links.utils";
 import { useTranslation } from "react-i18next";
+import { navigationRef } from "../../App";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const DRAWER_WIDTH = SCREEN_WIDTH * 0.82;
@@ -329,6 +330,19 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
     navigate(ScreenNames.Upload);
   }, [navigate]);
 
+  // The drawer is rendered alongside the stack instead of inside a screen, so
+  // Android can retain a stale nearest navigator while its closing animation is
+  // in flight. Route this entry through the ready root container immediately;
+  // the drawer still closes over the transition as usual.
+  const handleSignIn = useCallback(() => {
+    onClose();
+    if (navigationRef.isReady()) {
+      navigationRef.navigate(ScreenNames.SignIn as never);
+      return;
+    }
+    navigation.navigate(ScreenNames.SignIn);
+  }, [navigation, onClose]);
+
   const displayName = user?.displayName || user?.username || t("common.anonymous");
   const handle = user?.username ? `@${user.username}` : "";
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl);
@@ -429,7 +443,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               <View className="px-5 pb-4 mb-2">
                 <TouchableOpacity
                   className="flex-row items-center"
-                  onPress={() => navigate(ScreenNames.SignIn)}
+                  onPress={handleSignIn}
                   activeOpacity={0.7}
                 >
                   <View className="w-12 h-12 rounded-xl bg-white/10 items-center justify-center">
