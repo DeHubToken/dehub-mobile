@@ -525,6 +525,12 @@ const BADGE_OPTICS: Record<string, { scale: number; bottomInset: number }> = {
   Meglodon: { scale: 1.08, bottomInset: 4 },
 };
 
+// At compact sizes the source artwork's narrowest transparent edge is less
+// than one rendered point. Keep a full point of protected internal space so
+// anti-aliased details cannot be sampled against the image boundary. Padding
+// expands the outer box while preserving the artwork's rendered size.
+const BADGE_ARTWORK_GUTTER = 1;
+
 /** Twitter-style size, spacing, and artwork-baseline alignment. */
 export function getBadgeOpticalStyle(source: number, size: number) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source);
@@ -532,11 +538,12 @@ export function getBadgeOpticalStyle(source: number, size: number) {
   const renderedSize = size * 1.15 * (optics?.scale ?? 1);
   const artworkBaselineOffset = ((optics?.bottomInset ?? 0) / 128) * renderedSize;
   return {
-    width: renderedSize,
-    height: renderedSize,
+    width: renderedSize + BADGE_ARTWORK_GUTTER * 2,
+    height: renderedSize + BADGE_ARTWORK_GUTTER * 2,
+    padding: BADGE_ARTWORK_GUTTER,
     marginLeft: 6,
     alignSelf: "baseline" as const,
-    transform: [{ translateY: artworkBaselineOffset }],
+    transform: [{ translateY: artworkBaselineOffset + BADGE_ARTWORK_GUTTER }],
   };
 }
 
