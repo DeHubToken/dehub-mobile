@@ -1564,7 +1564,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
-      <View className="flex-row items-center gap-2 pt-1.5">
+      <View className="flex-row items-center gap-2 pt-3">
         <Text style={{ fontSize: 11, color: "#8B8D90" }}>
           {formatShortTimeAgo(createdAt)}
         </Text>
