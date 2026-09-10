@@ -16,6 +16,20 @@ export const AFFILIATE_L1_COMMISSION_PCT = 20;
 /** Secondary (tier 2) commission — your invites invited them. */
 export const AFFILIATE_L2_COMMISSION_PCT = 5;
 
+export type AffiliateLandingCustomization = {
+  headline: string;
+  message: string;
+  ctaLabel: string;
+  destination: string;
+};
+
+export const DEFAULT_AFFILIATE_LANDING: AffiliateLandingCustomization = {
+  headline: "Join me on DeHub",
+  message: "Create, share and earn on a platform built for creators and their communities.",
+  ctaLabel: "Join me on DeHub",
+  destination: "/app",
+};
+
 const randomCode = (len = 8) => {
   const alphabet = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
   let out = "";
@@ -134,6 +148,10 @@ export type AffiliateStats = {
   l1EarnedCents: number;
   l2EarnedCents: number;
   currency: string;
+  totalViews: number;
+  uniqueVisitors: number;
+  views30d: number;
+  landing: AffiliateLandingCustomization;
 };
 
 // Most-recent referrals returned for the "who" list. The exact total still
@@ -161,7 +179,7 @@ export async function loadAffiliateStats(
   // All four queries only depend on the address — run them in parallel.
   // The referral queries select the rows with an exact count, so a single
   // round-trip yields both the "who" list and the counter total.
-  const [codeRes, refRes, l2RefRes, earnRes] = await Promise.all([
+  const [codeRes, refRes, l2RefRes, earnRes, viewRes] = await Promise.all([
     getOrCreateAffiliateCode(addr, shareName),
     // @ts-ignore - affiliate_referrals not in generated Database types
     supabase
@@ -184,6 +202,11 @@ export async function loadAffiliateStats(
         .select("commission_cents,currency,tier"),
       addr,
     ) as unknown as Promise<{ data: Array<{ commission_cents: number; currency: string; tier: number }> | null }>,
+    withWalletHeader(
+      // @ts-ignore - RPC is introduced by the shared affiliate migration
+      supabase.rpc("get_affiliate_page_stats" as never),
+      addr,
+    ) as unknown as Promise<{ data: Array<{ total_views: number; unique_visitors: number; views_30d: number }> | null }>,
   ]);
 
   const l1List = mapReferralRows(refRes.data);
@@ -192,9 +215,17 @@ export async function loadAffiliateStats(
   const rows = earnRes.data ?? [];
   const l1EarnedCents = rows.filter((r) => r.tier !== 2).reduce((s, r) => s + (r.commission_cents ?? 0), 0);
   const l2EarnedCents = rows.filter((r) => r.tier === 2).reduce((s, r) => s + (r.commission_cents ?? 0), 0);
+  const code = codeRes?.code ?? null;
+  // @ts-ignore - customization columns are introduced by the shared migration
+  const { data: landingRow } = code ? await supabase
+    .from("affiliate_codes" as never)
+    .select("landing_headline,landing_message,landing_cta_label,landing_destination")
+    .eq("code", code)
+    .maybeSingle() as unknown as { data: { landing_headline: string | null; landing_message: string | null; landing_cta_label: string | null; landing_destination: string | null } | null } : { data: null };
+  const view = viewRes.data?.[0];
 
   return {
-    code: codeRes?.code ?? null,
+    code,
     shareName: codeRes?.share_name ?? null,
     // Prefer the exact server count; fall back to the fetched rows so a missing
     // count header never silently collapses the counter to zero.
@@ -206,7 +237,39 @@ export async function loadAffiliateStats(
     l1EarnedCents,
     l2EarnedCents,
     currency: (rows[0]?.currency || "usd").toUpperCase(),
+    totalViews: Number(view?.total_views ?? 0),
+    uniqueVisitors: Number(view?.unique_visitors ?? 0),
+    views30d: Number(view?.views_30d ?? 0),
+    landing: {
+      headline: landingRow?.landing_headline || DEFAULT_AFFILIATE_LANDING.headline,
+      message: landingRow?.landing_message || DEFAULT_AFFILIATE_LANDING.message,
+      ctaLabel: landingRow?.landing_cta_label || DEFAULT_AFFILIATE_LANDING.ctaLabel,
+      destination: landingRow?.landing_destination || DEFAULT_AFFILIATE_LANDING.destination,
+    },
   };
+}
+
+export async function saveAffiliateLanding(
+  ownerAddress: string,
+  code: string,
+  value: AffiliateLandingCustomization,
+): Promise<void> {
+  const addr = ownerAddress.toLowerCase();
+  const destination = value.destination.trim();
+  if (!destination.startsWith("/") || destination.startsWith("//") || destination.startsWith("/r/")) {
+    throw new Error("Choose a DeHub destination beginning with /");
+  }
+  const { error } = await withWalletHeader(
+    // @ts-ignore - customization columns are introduced by the shared migration
+    supabase.from("affiliate_codes" as never).update({
+      landing_headline: value.headline.trim().slice(0, 80) || null,
+      landing_message: value.message.trim().slice(0, 280) || null,
+      landing_cta_label: value.ctaLabel.trim().slice(0, 32) || null,
+      landing_destination: destination.slice(0, 200),
+    } as never).eq("code", code).ilike("owner_address", addr),
+    addr,
+  ) as unknown as { error: { message?: string } | null };
+  if (error) throw new Error(error.message || "Could not save invite page");
 }
 
 /** Resolve the wallet's invite code and open the native share sheet. Returns false if unavailable. */
