@@ -113,7 +113,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
           </View>
         )}
         {!!badgeImg && (
-          <Image source={badgeImg} style={{ width: 14, height: 14 }} resizeMode="contain" />
+          <Image source={badgeImg} style={{ width: 13, height: 13 }} resizeMode="contain" />
         )}
         <Text className="text-white/50 text-[11px] ml-auto">
           {formatTime(message.createdAt)}

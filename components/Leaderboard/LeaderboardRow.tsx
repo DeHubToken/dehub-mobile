@@ -88,7 +88,7 @@ const LeaderboardRowItem: React.FC<Props> = ({ item, sort, onPress }) => {
               {item.displayName || item.username || truncate(item.account, 10, "..")}
             </Text>
             {badgeImage ? (
-              <Image source={badgeImage} className="w-4 h-4 ml-1" resizeMode="contain" />
+              <Image source={badgeImage} style={{ width: 14, height: 14, marginLeft: 4 }} resizeMode="contain" />
             ) : null}
           </View>
           {item.username ? (

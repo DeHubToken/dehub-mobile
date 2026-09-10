@@ -219,7 +219,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
                 onPress={handlePressCreator}
               >
                 <Text
-                  className="text-theme-neutrals-300 text-[10px] flex-shrink"
+                  className="text-theme-neutrals-300 text-sm flex-shrink"
                   numberOfLines={1}
                 >
                   {creator}
@@ -229,8 +229,9 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
                 <TouchableOpacity
                   activeOpacity={0.7}
                   onPress={handlePressCreator}
+                  className="self-center"
                 >
-                  <Image source={badgeImage} className="w-3 h-3 ml-1" />
+                  <Image source={badgeImage} style={{ width: 14, height: 14, marginLeft: 4 }} resizeMode="contain" />
                 </TouchableOpacity>
               )}
             </View>
