@@ -43,4 +43,12 @@ describe('video gesture wiring', () => {
     expect(player).toContain('onTapReaction("love");');
     expect(card).toContain('onTapReaction={handleVideoTapReaction}');
   });
+
+  it('keeps video views out of native focus decoration', () => {
+    const feedPlayer = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
+    const corePlayer = readSource('components', 'VideoPlayerCore', 'index.tsx');
+
+    expect(feedPlayer).toContain('focusable={false}');
+    expect(corePlayer).toContain('focusable={false}');
+  });
 });

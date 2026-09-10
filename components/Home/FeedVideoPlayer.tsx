@@ -906,6 +906,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         <VideoView
           ref={videoViewRef}
           player={player}
+          focusable={false}
           contentFit="contain"
           nativeControls={false}
           allowsPictureInPicture
