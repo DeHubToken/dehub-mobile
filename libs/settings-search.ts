@@ -46,8 +46,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'profile', anchor: 'profiles', label: 'Profiles', labelKey: 'settings.profiles', keywords: 'accounts switch add account multiple' },
 
   // Appearance
-  { tab: 'appearance', anchor: 'theme', label: 'Theme', labelKey: 'settings.theme', keywords: 'dark light mode skin appearance' },
-  { tab: 'appearance', anchor: 'theme', label: 'Dim Lights', labelKey: 'settings.dimLights', keywords: 'brightness blue light night filter' },
+  { tab: 'appearance', anchor: 'dim-lights', label: 'Dim Lights', labelKey: 'settings.dimLights', keywords: 'brightness blue light night filter' },
   { tab: 'appearance', anchor: 'language', label: 'Language', labelKey: 'settings.language', keywords: 'translate locale english' },
   { tab: 'appearance', anchor: 'media', label: 'Media', labelKey: 'settings.media', keywords: 'video images playback' },
   { tab: 'appearance', anchor: 'media', label: 'Auto-play', labelKey: 'settings.autoPlay', keywords: 'autoplay play automatically' },

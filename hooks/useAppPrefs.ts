@@ -46,7 +46,7 @@ const KEYS = {
 export type AppPrefKey = keyof typeof KEYS;
 
 export interface AppPrefs {
-  theme: 'system' | 'light';
+  theme: 'system';
   autoplay: boolean;
   animations: boolean;
   shorts: boolean;
@@ -119,8 +119,11 @@ function init() {
     .then((entries) => {
       const map = new Map(entries);
       const get = (k: AppPrefKey) => map.get(KEYS[k]) ?? null;
+      if (get('theme') === 'light') {
+        AsyncStorage.setItem(KEYS.theme, 'system').catch(() => { /* best effort migration */ });
+      }
       cache = {
-        theme: get('theme') === 'light' ? 'light' : 'system',
+        theme: 'system',
         autoplay: parseBool(get('autoplay'), DEFAULT_APP_PREFS.autoplay),
         animations: parseBool(get('animations'), DEFAULT_APP_PREFS.animations),
         shorts: parseBool(get('shorts'), DEFAULT_APP_PREFS.shorts),
