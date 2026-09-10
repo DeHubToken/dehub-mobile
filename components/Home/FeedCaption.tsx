@@ -249,7 +249,8 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
           the native feed read denser and quieter than the web's. */}
       {hasTitle && (
         <Text
-          className="text-base font-semibold text-theme-neutrals-100"
+          className="font-semibold text-theme-neutrals-100"
+          style={{ fontSize: 18, lineHeight: 24 }}
           numberOfLines={fullContent ? undefined : 2}
           ellipsizeMode="tail"
         >
@@ -261,7 +262,8 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
       {hasDescription && (
         <View className="mt-1">
           <Text
-            className="text-sm text-theme-neutrals-300"
+            className="text-theme-neutrals-300"
+            style={{ fontSize: 17, lineHeight: 24 }}
             numberOfLines={fullContent || expanded ? undefined : maxLines}
             ellipsizeMode="tail"
             onTextLayout={handleTextLayout}
@@ -270,7 +272,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
           </Text>
           {showSeeMore && !fullContent && (
             <TouchableOpacity onPress={toggleExpanded} activeOpacity={0.7}>
-              <Text className="text-sm text-theme-neutrals-500 mt-0.5">
+              <Text className="text-theme-neutrals-500 mt-0.5" style={{ fontSize: 15, lineHeight: 20 }}>
                 {expanded ? "see less" : "see more"}
               </Text>
             </TouchableOpacity>
@@ -288,7 +290,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
               activeOpacity={0.7}
               className="mr-2"
             >
-              <Text className="text-sm text-theme-neutrals-300">
+              <Text className="text-theme-neutrals-300" style={{ fontSize: 15, lineHeight: 20 }}>
                 #{cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase().replace(/\s+/g, '')}
               </Text>
             </TouchableOpacity>

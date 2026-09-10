@@ -462,7 +462,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
         <View style={{ flex: 1, marginLeft: 10 }}>
           <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
             <Text
-              style={{ fontSize: 14, fontWeight: "600", color: ICON_ACTIVE }}
+              style={{ fontSize: 16, lineHeight: 20, fontWeight: "600", color: ICON_ACTIVE }}
               onPress={handleUserPress}
               numberOfLines={1}
             >
@@ -525,11 +525,11 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 </Text>
               </View>
             )}
-            <Text style={{ fontSize: 12, color: "#8B8D90" }}>{timeAgo}</Text>
+            <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{timeAgo}</Text>
           </View>
 
           {assetFreeContent ? (
-            <Text style={{ fontSize: 14, color: "#C2C4C7", marginTop: 3, lineHeight: 19 }}>
+            <Text style={{ fontSize: 16, color: "#C2C4C7", marginTop: 3, lineHeight: 22 }}>
               {parsedContent.map((part, idx) =>
                 part.isMention ? (
                   <Text
