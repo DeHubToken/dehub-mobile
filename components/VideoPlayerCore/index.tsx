@@ -716,6 +716,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
             viewRef.current = r as VideoView | null;
           }}
           player={player}
+          focusable={false}
           style={styles.video}
           contentFit="contain"
           nativeControls={false}
