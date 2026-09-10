@@ -386,19 +386,13 @@ const ProfileHeader = () => {
               <Text className="text-white text-xl font-bold" numberOfLines={1}>
                 {displayName}
               </Text>
-              {badge && (
-                <View className="w-4 h-4 rounded-full bg-theme-neutrals-800 items-center justify-center overflow-hidden">
-                  {badgeImage ? (
-                    <SmartImage
-                      source={badgeImage as any}
-                      contentFit="cover"
-                      cachePolicy="memory-disk"
-                      style={{ width: 10, height: 10 }}
-                    />
-                  ) : (
-                    <Ionicons name="star" size={10} color="#fff" />
-                  )}
-                </View>
+              {badge && badgeImage && (
+                <SmartImage
+                  source={badgeImage as any}
+                  contentFit="contain"
+                  cachePolicy="memory-disk"
+                  style={{ width: 14, height: 14 }}
+                />
               )}
             </View>
             {socials.length > 0 && (
