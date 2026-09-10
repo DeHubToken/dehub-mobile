@@ -31,7 +31,7 @@ const LiveViewerScreen: React.FC = () => {
     null;
 
   return (
-    <View className="flex-1 bg-black">
+    <View className="flex-1 dark-surface bg-black">
       <StatusBar
         barStyle="light-content"
         backgroundColor="transparent"

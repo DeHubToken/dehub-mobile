@@ -347,7 +347,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         <Animated.View
           style={[styles.drawer, drawerStyle, { width: DRAWER_WIDTH }]}
         >
-          {/* Web sidebar parity: bg-black/60 + backdrop-blur(24px) +
+          {/* Web sidebar parity: dark-surface bg-black/60 + backdrop-blur(24px) +
               border-white/10. The blur samples what's behind the drawer;
               glassOverlay supplies the black/60 wash on top. */}
           {Platform.OS === "ios" ? (
@@ -555,7 +555,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderRightColor: "rgba(255, 255, 255, 0.10)",
   },
-  // Web: bg-black/60 over the backdrop blur, but lighter here so the blur
+  // Web: dark-surface bg-black/60 over the backdrop blur, but lighter here so the blur
   // reads through more — the dark BlurView tint already darkens on top.
   glassOverlay: {
     backgroundColor: "rgba(0, 0, 0, 0.0)",

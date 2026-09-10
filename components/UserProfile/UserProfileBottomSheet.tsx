@@ -111,7 +111,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
             onPress={menuTrigger}
             activeOpacity={0.7}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            className="absolute right-3 top-3 z-20 w-10 h-10 items-center justify-center rounded-xl bg-black/40"
+            className="absolute right-3 top-3 z-20 w-10 h-10 items-center justify-center rounded-xl dark-surface bg-black/40"
             accessibilityRole="button"
             accessibilityLabel="Profile options"
           >

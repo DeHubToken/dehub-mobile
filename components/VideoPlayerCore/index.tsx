@@ -706,7 +706,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
 
   return (
     <View
-      className={fullscreen ? '' : 'w-full aspect-video bg-black overflow-hidden'}
+      className={fullscreen ? '' : 'w-full aspect-video dark-surface bg-black overflow-hidden'}
       style={fullscreenStyle}
     >
       {/* Video View — always mounted, never moves between trees */}
@@ -738,7 +738,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
 
       {/* Error state */}
       {hasError && (
-        <View className="absolute inset-0 items-center justify-center bg-black/80">
+        <View className="absolute inset-0 items-center justify-center dark-surface bg-black/80">
           <View className="items-center">
             <Ionicons name="alert-circle" size={46} color="#8B8D90" />
           </View>

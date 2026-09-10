@@ -46,7 +46,7 @@ interface Props {
   autoJoinRoom?: boolean;
 }
 
-const panelBg = 'bg-black/60';
+const panelBg = 'dark-surface bg-black/60';
 
 const LiveChatPanel: React.FC<Props> = ({
   streamId,
@@ -255,7 +255,7 @@ const LiveChatPanel: React.FC<Props> = ({
       {/* Header */}
       <View
         className={`flex-row items-center justify-between px-4 py-3 ${
-          mode === 'panel' ? 'border-b border-white/10 bg-black/30' : ''
+          mode === 'panel' ? 'border-b border-white/10 dark-surface bg-black/30' : ''
         }`}
       >
         <Text className="text-white font-semibold text-[12px] tracking-wide">LIVE CHAT</Text>

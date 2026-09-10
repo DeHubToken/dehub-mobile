@@ -1,45 +1,37 @@
-import { theme } from '.';
-import { StyleSheet } from 'react-native';
+import type { ThemeColors } from './colors';
 
-// Centralized styling tokens for sonner-native
-export const toastTheme = {
-  get containerStyle() {
-    return styles.container;
-  },
-  get textStyle() {
-    return styles.text;
-  },
-  success: {
-    backgroundColor: theme.colors.accent,
-    color: theme.colors.accentForeground,
-  },
-  error: {
-    backgroundColor: theme.colors.destructive,
-    color: theme.colors.destructiveForeground,
-  },
-  info: {
-    backgroundColor: theme.colors.card,
-    color: theme.colors.cardForeground,
-  },
-  warning: {
-    backgroundColor: '#1C1C1C',
-    color: theme.colors.foreground,
-  },
-};
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#101014',
-    borderRadius: 12,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.12)',
-  },
-  text: {
-    color: theme.colors.foreground,
-    fontSize: 14,
-    lineHeight: 18,
-    fontWeight: '500',
-  },
-});
+/** Build toast styles from the active palette instead of freezing system colors at import time. */
+export function createToastTheme(colors: ThemeColors) {
+  return {
+    containerStyle: {
+      backgroundColor: colors.card,
+      borderRadius: 12,
+      paddingVertical: 14,
+      paddingHorizontal: 16,
+      borderWidth: 1,
+      borderColor: colors.border,
+    },
+    textStyle: {
+      color: colors.foreground,
+      fontSize: 14,
+      lineHeight: 18,
+      fontWeight: '500' as const,
+    },
+    success: {
+      backgroundColor: colors.accent,
+      color: colors.accentForeground,
+    },
+    error: {
+      backgroundColor: colors.destructive,
+      color: colors.destructiveForeground,
+    },
+    info: {
+      backgroundColor: colors.card,
+      color: colors.cardForeground,
+    },
+    warning: {
+      backgroundColor: colors.muted,
+      color: colors.foreground,
+    },
+  };
+}

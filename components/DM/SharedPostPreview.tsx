@@ -138,7 +138,7 @@ const SharedPostPreviewComponent: React.FC<SharedPostPreviewProps> = ({
       style={{ width: CARD_WIDTH }}
     >
       {loading ? (
-        <View className="h-32 items-center justify-center bg-black/20">
+        <View className="h-32 items-center justify-center dark-surface bg-black/20">
           <ActivityIndicator size="small" color={isMine ? "#fff" : "#888"} />
         </View>
       ) : meta?.thumbnail ? (

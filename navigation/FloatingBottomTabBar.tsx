@@ -42,6 +42,7 @@ import { bootRevealed } from "../libs/bootReveal";
 import { TAB_BAR_PILL_HEIGHT, TAB_BAR_SCRIM_HEIGHT } from "./tabBarLayout";
 import type { TabPressIntent } from "./tabPressIntent";
 import { useTranslation } from "react-i18next";
+import { useAppTheme } from "../context/ThemeContext";
 
 const SCROLL_HINT_SEEN_KEY = "dehub:navScrollHintSeen";
 
@@ -163,6 +164,7 @@ const NavButton = memo<{
   animProgress: SharedValue<number>;
   badgeCount?: number;
 }>(({ icon, label, isActive, isCenter, routeName, onPress, index, tabW, animProgress, badgeCount = 0 }) => {
+  const { colors, isLight } = useAppTheme();
   const scale = useSharedValue(1);
 
   const handlePress = useCallback(() => onPress(routeName), [onPress, routeName]);
@@ -210,9 +212,23 @@ const NavButton = memo<{
             tint="light"
             style={styles.centerGlassBlur}
           />
-          <View style={styles.centerGlass} />
-          <View style={styles.centerGlassInsetTop} pointerEvents="none" />
-          <Icon name={icon} size={20} color="#FFFFFF" strokeWidth={2} />
+          <View
+            style={[
+              styles.centerGlass,
+              isLight && {
+                backgroundColor: 'rgba(26, 26, 26, 0.06)',
+                borderColor: 'rgba(26, 26, 26, 0.25)',
+              },
+            ]}
+          />
+          <View
+            style={[
+              styles.centerGlassInsetTop,
+              isLight && { backgroundColor: 'rgba(26, 26, 26, 0.12)' },
+            ]}
+            pointerEvents="none"
+          />
+          <Icon name={icon} size={20} color={colors.foreground} strokeWidth={2} />
         </View>
       </AnimatedPressable>
     );
@@ -233,17 +249,17 @@ const NavButton = memo<{
       onPressOut={handlePressOut}
       style={[styles.tabButton, { width: tabW }, animatedStyle]}
     >
-      <View style={isActive ? styles.activeGlow : undefined}>
+      <View style={isActive && !isLight ? styles.activeGlow : undefined}>
         <Icon
           name={icon}
           size={20}
-          color={isActive ? "#FFFFFF" : "rgba(255, 255, 255, 0.72)"}
+          color={isActive ? colors.foreground : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"}
           strokeWidth={isActive ? 2 : 1.75}
         />
       </View>
       {badgeCount > 0 && (
-        <View style={[styles.badge, { right: tabW / 2 - 18 }]} pointerEvents="none">
-          <Text style={styles.badgeText} numberOfLines={1}>
+        <View style={[styles.badge, { right: tabW / 2 - 18, backgroundColor: colors.accent }]} pointerEvents="none">
+          <Text style={[styles.badgeText, { color: colors.accentForeground }]} numberOfLines={1}>
             {badgeCount > 99 ? "99+" : badgeCount}
           </Text>
         </View>
@@ -261,6 +277,7 @@ const ScrollNavButton = memo<{
   badgeCount?: number;
 }>(
   ({ icon, label, item, onPress, tabW, badgeCount = 0 }) => {
+    const { colors, isLight } = useAppTheme();
     const scale = useSharedValue(1);
 
     // SCROLL_NAV_ITEMS is module scope, so `item` is a stable identity and this
@@ -288,10 +305,15 @@ const ScrollNavButton = memo<{
         onPressOut={handlePressOut}
         style={[styles.scrollNavItem, { width: tabW }, animatedStyle]}
       >
-        <Icon name={icon} size={20} color="rgba(255, 255, 255, 0.72)" strokeWidth={1.75} />
+        <Icon
+          name={icon}
+          size={20}
+          color={isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"}
+          strokeWidth={1.75}
+        />
         {badgeCount > 0 && (
-          <View style={[styles.badge, { right: tabW / 2 - 18 }]} pointerEvents="none">
-            <Text style={styles.badgeText} numberOfLines={1}>
+          <View style={[styles.badge, { right: tabW / 2 - 18, backgroundColor: colors.accent }]} pointerEvents="none">
+            <Text style={[styles.badgeText, { color: colors.accentForeground }]} numberOfLines={1}>
               {badgeCount > 99 ? "99+" : badgeCount}
             </Text>
           </View>
@@ -303,6 +325,7 @@ const ScrollNavButton = memo<{
 
 const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   const { t } = useTranslation();
+  const { colors, isLight } = useAppTheme();
   const insets = useSafeAreaInsets();
   // Live, not a module constant — see tabWidthFor.
   const { width: screenW } = useWindowDimensions();
@@ -512,7 +535,12 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
           ~0.3-0.5 across the band the pill actually occupies. Peak now lands at
           0.42 — just as the pill starts — and holds flat to the bottom. */}
       <LinearGradient
-        colors={[
+        colors={isLight ? [
+          "rgba(249,248,244,0)",
+          "rgba(249,248,244,0.52)",
+          "rgba(249,248,244,0.92)",
+          "rgba(249,248,244,0.92)",
+        ] : [
           "rgba(9,9,11,0)",
           "rgba(9,9,11,0.42)",
           "rgba(9,9,11,0.75)",
@@ -547,7 +575,9 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             IndexOutOfBoundsException in ViewGroup.dispatchDraw that killed the
             process on every fast scroll of 1.17.0. It was enabled here on
             purpose as a bet that #191 would stay theoretical. It did not. */}
-        {Platform.OS === "ios" ? (
+        {isLight ? (
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: colors.background }]} />
+        ) : Platform.OS === "ios" ? (
           <GlassBlurView
             blurType="thinMaterialDark"
             blurAmount={40}
@@ -557,7 +587,15 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
         ) : (
           <View style={[StyleSheet.absoluteFill, styles.androidGlassFallback]} />
         )}
-        <View style={styles.glassOverlay} />
+        <View
+          style={[
+            styles.glassOverlay,
+            isLight && {
+              backgroundColor: colors.background,
+              borderColor: 'rgba(0, 0, 0, 0.12)',
+            },
+          ]}
+        />
         <ScrollView
           ref={scrollRef}
           horizontal

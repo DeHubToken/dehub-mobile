@@ -82,7 +82,7 @@ const TrimModal: React.FC<TrimModalProps> = ({
                 left: 0,
                 width: timelineWidth * (startSec / Math.max(1, toSeconds(media?.duration) ?? endSec)),
               }}
-              className="absolute top-0 bottom-0 bg-black/50"
+              className="absolute top-0 bottom-0 dark-surface bg-black/50"
             />
             <View
               style={{
@@ -92,7 +92,7 @@ const TrimModal: React.FC<TrimModalProps> = ({
                   (Math.max(0, (toSeconds(media?.duration) ?? endSec) - endSec) /
                     Math.max(1, toSeconds(media?.duration) ?? endSec)),
               }}
-              className="absolute top-0 bottom-0 bg-black/50"
+              className="absolute top-0 bottom-0 dark-surface bg-black/50"
             />
             <View
               style={{

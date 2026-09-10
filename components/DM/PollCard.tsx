@@ -199,7 +199,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
                       }`}
                     >
                       {isSelected && (
-                        <View className="w-2 h-2 rounded-sm bg-black" />
+                        <View className="w-2 h-2 rounded-sm dark-surface bg-black" />
                       )}
                     </View>
                   )}

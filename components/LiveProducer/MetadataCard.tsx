@@ -18,7 +18,7 @@ const MetadataCard = forwardRef<View, MetadataCardProps>(({ loading, streamEntit
         activeOpacity={0.85}
         onPress={onPress}
         disabled={!streamEntity}
-        className="bg-black/40 rounded-xl p-3 border border-white/10"
+        className="dark-surface bg-black/40 rounded-xl p-3 border border-white/10"
       >
         {loading ? (
           <View>

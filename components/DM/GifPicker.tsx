@@ -119,7 +119,7 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
     <Modal visible={visible} animationType="slide" onRequestClose={onClose} transparent>
       {/* Edge-to-edge Android doesn't resize for the keyboard — lift the sheet. */}
       <KeyboardAvoidingView behavior="padding" className="flex-1 justify-end">
-        <TouchableOpacity activeOpacity={1} onPress={onClose} className="flex-1 bg-black/40" />
+        <TouchableOpacity activeOpacity={1} onPress={onClose} className="flex-1 dark-surface bg-black/40" />
         <View
           className="bg-[#0C0C0E] rounded-t-[20px] border-t border-white/10 p-3 h-[70%]"
           style={{ paddingBottom: insets.bottom + 12 }}

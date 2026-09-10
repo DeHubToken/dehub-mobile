@@ -6,7 +6,7 @@ import Animated, {
   withTiming,
   interpolateColor,
 } from "react-native-reanimated";
-import { colors } from "../../theme/colors";
+import { useAppTheme } from "../../context/ThemeContext";
 
 type CustomSwitchProps = {
   value: boolean;
@@ -25,6 +25,7 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
   onValueChange,
   disabled = false,
 }) => {
+  const { colors } = useAppTheme();
   const progress = useSharedValue(value ? 1 : 0);
 
   useEffect(() => {
@@ -35,18 +36,18 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
     backgroundColor: interpolateColor(
       progress.value,
       [0, 1],
-      [colors.neutrals[800], "#FFFFFF"],
+      [colors.neutrals[800], colors.accent],
     ),
-  }));
+  }), [colors.accent, colors.neutrals]);
 
   const thumbStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: progress.value * TRAVEL }],
     backgroundColor: interpolateColor(
       progress.value,
       [0, 1],
-      [colors.accentSecondary, "#000000"],
+      [colors.accentSecondary, colors.accentForeground],
     ),
-  }));
+  }), [colors.accentForeground, colors.accentSecondary]);
 
   const handlePress = () => {
     if (!disabled) onValueChange(!value);

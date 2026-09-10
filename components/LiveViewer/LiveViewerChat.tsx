@@ -116,7 +116,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
   switch (a.status) {
     case StreamActivityType.MESSAGE:
       return (
-        <View className="mb-1.5 bg-black/60 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] flex-row items-start">
+        <View className="mb-1.5 dark-surface bg-black/60 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] flex-row items-start">
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
             <Avatar uri={avatarUrl} size={20} name={displayName} />
           </TouchableOpacity>

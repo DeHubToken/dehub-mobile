@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { getAvatarUrl } from "../libs/misc";
+import { useAppTheme } from "../context/ThemeContext";
 
 interface HomeHeaderProps {
   onLogoPress?: () => void;
@@ -17,6 +18,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
   const navigation = useNavigation<any>();
   const { isSignedIn } = useAuthState();
   const user = useUser();
+  const { colors } = useAppTheme();
 
   const hasUnread = (user?.notificationCount || 0) > 0;
   const unreadCount = user?.notificationCount || 0;
@@ -44,7 +46,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
         {isSignedIn ? (
           <Avatar uri={avatarUrl} size={27} name={user?.displayName || user?.username} />
         ) : (
-          <Icon name="Menu" size={31} color="#FFFFFF" />
+          <Icon name="Menu" size={31} color={colors.foreground} />
         )}
       </TouchableOpacity>
 
@@ -68,7 +70,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
         >
           <SmartImage
             source={require("../assets/web-icons/dehub-logo-compact.png")}
-            style={{ width: 33, height: 28 }}
+            style={{ width: 33, height: 28, tintColor: colors.foreground }}
             contentFit="contain"
             cachePolicy="memory-disk"
             transition={150}
@@ -87,7 +89,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
           accessibilityLabel={hasUnread ? `Notifications, ${unreadCount} unread` : "Notifications"}
           className="w-9 h-9 items-center justify-center"
         >
-          <Icon name="Bell" size={24} color="#E5E7EB" />
+          <Icon name="Bell" size={24} color={colors.neutrals[200]} />
           {hasUnread && (
             // rounded-md on an 18px box read as a square block. A full pill
             // with a black ring separates it from the bell the way the rest of

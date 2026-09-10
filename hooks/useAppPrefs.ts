@@ -18,6 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /** Web key names — see dehubweb src/contexts/*.tsx and src/hooks/use-buy-bot-hidden.ts. */
 const KEYS = {
+  theme: 'dehub.theme',
   autoplay: 'autoplay-videos',
   animations: 'show-animations',
   shorts: 'shorts-enabled',
@@ -45,6 +46,7 @@ const KEYS = {
 export type AppPrefKey = keyof typeof KEYS;
 
 export interface AppPrefs {
+  theme: 'system' | 'light';
   autoplay: boolean;
   animations: boolean;
   shorts: boolean;
@@ -63,6 +65,7 @@ export interface AppPrefs {
 
 /** Same defaults web falls back to when a key is absent. */
 export const DEFAULT_APP_PREFS: AppPrefs = {
+  theme: 'system',
   // Off by default on the phone, unlike web. Every autoplaying card is an
   // ExoPlayer with a live buffer, and on a mid-range Android the feed was
   // closing the app with an OutOfMemoryError before the JS thread heard a
@@ -117,6 +120,7 @@ function init() {
       const map = new Map(entries);
       const get = (k: AppPrefKey) => map.get(KEYS[k]) ?? null;
       cache = {
+        theme: get('theme') === 'light' ? 'light' : 'system',
         autoplay: parseBool(get('autoplay'), DEFAULT_APP_PREFS.autoplay),
         animations: parseBool(get('animations'), DEFAULT_APP_PREFS.animations),
         shorts: parseBool(get('shorts'), DEFAULT_APP_PREFS.shorts),

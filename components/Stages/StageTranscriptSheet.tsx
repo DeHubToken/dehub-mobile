@@ -756,7 +756,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
         {renamingSpeaker && (
           <View
             style={StyleSheet.absoluteFillObject}
-            className="bg-black/70 items-center justify-center p-4 z-50 rounded-xl"
+            className="dark-surface bg-black/70 items-center justify-center p-4 z-50 rounded-xl"
           >
             <View
               className="border border-white/10 rounded-xl p-4 w-full max-w-xs shadow-2xl"
@@ -771,7 +771,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                 onChangeText={setRenameText}
                 placeholder="Enter speaker name or handle"
                 placeholderTextColor="#8B8D90"
-                className="bg-black/50 border border-white/10 rounded-xl h-10 px-3 text-white text-xs mb-4"
+                className="dark-surface bg-black/50 border border-white/10 rounded-xl h-10 px-3 text-white text-xs mb-4"
                 autoFocus
               />
               <View className="flex-row justify-end gap-2">
