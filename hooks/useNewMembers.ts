@@ -31,10 +31,6 @@ export const NEW_MEMBER_WINDOW_DAYS = 30;
 
 const WINDOW_MS = NEW_MEMBER_WINDOW_DAYS * 24 * 60 * 60 * 1000;
 
-/** The greeting a wave drafts. Meant to be edited before sending, not fired off as-is. */
-export const NEW_MEMBER_WELCOME =
-  "Welcome to DeHub! 👋 Give me a shout if you need anything.";
-
 export interface NewMember {
   address: string;
   username: string | null;
