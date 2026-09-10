@@ -44,7 +44,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
       </Pressable>
 
       <View className="flex-1 min-w-0 mr-2">
-        <View style={{ flexDirection: "row", alignItems: "baseline" }}>
+        <View style={{ flexDirection: "row", alignItems: "center", minWidth: 0 }}>
           <Text
             className="font-semibold"
             style={{ color: "#F9FBFF", flexShrink: 1, fontSize: 16, lineHeight: 20 }}
@@ -57,14 +57,14 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           {badgeImage && (
             <Pressable
               onPress={onUserPress}
-              style={{ alignSelf: "baseline" }}
+              style={{ flexShrink: 0, marginLeft: 4 }}
               hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
             >
               <Image source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} resizeMode="contain" />
             </Pressable>
           )}
           {address && (
-            <View style={{ marginLeft: 4 }}>
+            <View style={{ flexShrink: 0, marginLeft: 4 }}>
               <NewMemberChip address={address} />
             </View>
           )}
