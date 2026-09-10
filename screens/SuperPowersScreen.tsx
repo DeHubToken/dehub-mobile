@@ -30,7 +30,7 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { theme } from "../theme";
-import { getBadgeUrl } from "../libs";
+import { badgeImage, getBadgeUrl } from "../libs";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
   useCancelBoost,
@@ -102,9 +102,9 @@ export default function SuperPowersScreen() {
 
   // The public ladder carries every power; the signed-in one adds `unlocked`.
   // Prefer the personal copy so the screen lights up without a second render.
-  const powers = (status?.powers ?? ladder?.powers ?? []).filter(
-    power => String(power.key) !== "golden_hour",
-  );
+  const powers = [...(status?.powers ?? ladder?.powers ?? [])]
+    .filter(power => String(power.key) !== "golden_hour")
+    .sort((a, b) => Number(b.key === "team_up") - Number(a.key === "team_up"));
 
   const refillsOn = useMemo(() => {
     const iso = status?.cycleEndsAt ?? ladder?.cycleEndsAt;
@@ -197,6 +197,7 @@ export default function SuperPowersScreen() {
             // Held AND built. A locked card stays inert rather than opening a
             // picker for something the server would refuse.
             const isTeamUp = power.key === "team_up";
+            const unlockBadge = badgeImage(power.tier);
             // Team up itself is public. Opening it while signed out leads
             // straight to the sign-in action in the sheet.
             const unlocked = (isTeamUp || !!power.unlocked) && power.available;
@@ -227,6 +228,13 @@ export default function SuperPowersScreen() {
                     />
                   </View>
                   <Text style={styles.powerSummary}>{power.summary}</Text>
+                  {!isTeamUp && !!unlockBadge ? (
+                    <View style={styles.unlockTier}>
+                      <Text style={styles.unlockTierLabel}>Unlocks at</Text>
+                      <Image source={unlockBadge} style={styles.unlockBadge} resizeMode="contain" />
+                      <Text style={styles.unlockTierName}>{power.tier}</Text>
+                    </View>
+                  ) : null}
                   {unlocked ? <Text style={styles.powerWhere}>
                     {isTeamUp ? "Make or join a team. Tap to manage yours." : actsOn(power.key, t)}
                   </Text> : null}
@@ -486,6 +494,10 @@ const styles = StyleSheet.create({
   rung: { color: "#52525B", fontSize: 11 },
   powerName: { color: "#fff", fontSize: 14, fontWeight: "500", flex: 1 },
   powerNameOff: { color: "#A1A1AA" },
+  unlockTier: { flexDirection: "row", alignItems: "center", alignSelf: "flex-start", gap: 5 },
+  unlockTierLabel: { color: "#A1A1AA", fontSize: 10 },
+  unlockBadge: { width: 24, height: 24 },
+  unlockTierName: { color: "#D4D4D8", fontSize: 10 },
   powerSummary: { color: "#808089", fontSize: 12.5, lineHeight: 17 },
   powerWhere: { color: "#A1A1AA", fontSize: 11, lineHeight: 15 },
   powerFooter: {
