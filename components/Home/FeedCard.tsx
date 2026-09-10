@@ -238,7 +238,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const description = item.description || stream?.description || "";
   const soundtrack = useMemo(() => parseSoundtrack(description), [description]);
   const hasSoundtrack = !!soundtrack;
-  const commentCount = item.commentCount || (item as any).comments || stream?.commentCount || 0;
+  // Keep the API's zero authoritative. Falling through on zero can revive a
+  // stale stream count and make the card disagree with the opened thread.
+  const commentCount = item.commentCount ?? (item as any).comments ?? stream?.commentCount ?? 0;
   // The canonical count, for EVERY post type — the API already folds the
   // signed-out and badge-weighted halves into totalViews and the web card
   // renders exactly this number. The old `|| peakViewers || stream.totalViews`
