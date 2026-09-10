@@ -466,6 +466,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   const lastTapRef = useRef(0);
   const tapCountRef = useRef(0);
   const tapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** The first tap pauses/resumes immediately. If tap two arrives, put that
+   *  reversible toggle back before resolving Like/Love. */
+  const singleTapToggledPlaybackRef = useRef(false);
   const tapAnimProgress = useRef(new Animated.Value(0)).current;
   const [tapAnimReaction, setTapAnimReaction] = useState<"like" | "love" | null>(null);
   const [tapAnimPos, setTapAnimPos] = useState({ x: 0, y: 0 });
@@ -482,6 +485,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     tapTimerRef.current = null;
     tapCountRef.current = 0;
     lastTapRef.current = 0;
+    singleTapToggledPlaybackRef.current = false;
   }, []);
 
   useEffect(() => {
@@ -919,12 +923,17 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
       if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
       lastTapRef.current = now;
       tapCountRef.current = 1;
+      // Play/pause is reversible, so do it on finger-up instead of making a
+      // normal tap feel broken for the whole double-tap window. Tap two below
+      // silently reverses this before showing the reaction.
+      singleTapToggledPlaybackRef.current = true;
+      togglePlayPauseRef.current();
       tapTimerRef.current = setTimeout(() => {
         tapTimerRef.current = null;
         if (tapCountRef.current !== 1) return;
         tapCountRef.current = 0;
         lastTapRef.current = 0;
-        togglePlayPauseRef.current();
+        singleTapToggledPlaybackRef.current = false;
       }, TAP_GESTURE_WINDOW_MS);
       return;
     }
@@ -933,6 +942,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     if (tapCountRef.current === 1) {
       tapCountRef.current = 2;
       if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
+      if (singleTapToggledPlaybackRef.current) {
+        singleTapToggledPlaybackRef.current = false;
+        togglePlayPauseRef.current();
+      }
       // Feedback stays immediate. Only the request waits long enough for a
       // third tap to upgrade it, so the gesture never feels swallowed.
       showTapReactionAnimation("like", pageX, pageY);
@@ -1003,6 +1016,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   const screenGesture = useMemo(() => {
     const tap = Gesture.Tap()
       .maxDistance(MEDIA_TAP_SLOP_PX)
+      .simultaneousWithExternalGesture(pagerGesture)
       .runOnJS(true)
       .onEnd((event, success) => {
         if (success) handleScreenTap(event.absoluteX, event.absoluteY);
@@ -1010,11 +1024,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     const hold = Gesture.LongPress()
       .minDuration(400)
       .maxDistance(MEDIA_TAP_SLOP_PX)
+      .simultaneousWithExternalGesture(pagerGesture)
       .runOnJS(true)
       .onStart((event) => handleLongPressIn(event.x))
       .onFinalize(() => handleLongPressOut());
     return Gesture.Race(hold, tap);
-  }, [handleLongPressIn, handleLongPressOut, handleScreenTap]);
+  }, [handleLongPressIn, handleLongPressOut, handleScreenTap, pagerGesture]);
 
   const chromeVisible = !showComments && !screenshotMode && !overlaysHidden && !autoHidden;
 
