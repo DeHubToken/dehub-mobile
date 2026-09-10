@@ -17,11 +17,11 @@ import Avatar from "../components/common/Avatar";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import {
   getLiveChatRoom,
-  getLiveChatUserProfile,
   unbanUser as unbanUserApi,
 } from "../services/livechat.service";
 import type { LiveChatRoom, LiveChatUser } from "../services/livechat.service";
 import { getAvatarUrl, getBadgeUrlFor } from "../libs/misc";
+import { getAccountSummaries } from "../services/user.service";
 
 /* ─── Types ─────────────────────────────────────────────────── */
 
@@ -186,26 +186,22 @@ const LiveChatInfoScreen: React.FC = () => {
   const resolveProfiles = useCallback(async (currentRoom: LiveChatRoom) => {
     setProfilesLoading(true);
     try {
-      const [mods, banned] = await Promise.all([
-        Promise.all(
-          (currentRoom.moderators || []).map(async (addr) => {
-            try {
-              return await getLiveChatUserProfile(addr);
-            } catch {
-              return { address: addr } as LiveChatUser;
-            }
-          }),
-        ),
-        Promise.all(
-          (currentRoom.bannedUsers || []).map(async (addr) => {
-            try {
-              return await getLiveChatUserProfile(addr);
-            } catch {
-              return { address: addr } as LiveChatUser;
-            }
-          }),
-        ),
-      ]);
+      const modAddresses = currentRoom.moderators || [];
+      const bannedAddresses = currentRoom.bannedUsers || [];
+      const summaries = await getAccountSummaries([...modAddresses, ...bannedAddresses]);
+      const byAddress = new Map(summaries.map(profile => [profile.address.toLowerCase(), profile] as const));
+      const toLiveUser = (address: string): LiveChatUser => {
+        const profile = byAddress.get(address.toLowerCase());
+        return {
+          address,
+          username: profile?.username || undefined,
+          displayName: profile?.displayName || undefined,
+          avatarUrl: profile?.avatarImageUrl || undefined,
+          badgeBalance: profile?.badgeBalance ?? 0,
+        };
+      };
+      const mods = modAddresses.map(toLiveUser);
+      const banned = bannedAddresses.map(toLiveUser);
       setModProfiles(mods);
       setBannedProfiles(banned);
     } catch (e) {
