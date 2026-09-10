@@ -29,7 +29,7 @@
 
 import i18n from "../i18n";
 import { supabase } from "../services/supabase";
-import { getAccount } from "../services/user.service";
+import { getAccountSummaries } from "../services/user.service";
 import { withWalletHeader } from "./supabase-wallet-client";
 import type { NotificationItem } from "../services/user.service";
 import { stageLiveSentence, stageReminderSentence } from "./stage-notifications";
@@ -88,15 +88,10 @@ const shortAddress = (address: string): string =>
  * your community" beside an empty circle, which names nobody the recipient
  * can act on.
  *
- * One lookup per distinct actor fills both. The cache is what makes it
- * affordable: this bell refetches on every focus, and the API throttles at
- * 20 requests per 10s per IP, so re-asking for the same wallet on each pass
- * is exactly the request storm this app has already had to fix once.
+ * One batch lookup fills both. The cache avoids re-asking for the same wallet
+ * on every focus without a throttle-exhausting request fan-out.
  */
 const actorProfileCache = new Map<string, { username: string | null; avatar: string | null }>();
-
-/** Ceiling on one refresh's fan-out, so a page of 30 strangers cannot burst the throttle. */
-const MAX_ACTOR_LOOKUPS = 12;
 
 /** Fill the cache for every actor on this page the trigger left anonymous. Never throws. */
 async function resolveMissingActors(rows: CustomNotificationRow[]): Promise<void> {
@@ -107,25 +102,22 @@ async function resolveMissingActors(rows: CustomNotificationRow[]): Promise<void
         .map((row) => row.actor_address.toLowerCase())
         .filter((address) => !actorProfileCache.has(address)),
     ),
-  ].slice(0, MAX_ACTOR_LOOKUPS);
+  ];
   if (pending.length === 0) return;
 
-  await Promise.allSettled(
-    pending.map(async (address) => {
-      try {
-        const res: any = await getAccount(address);
-        const user = res?.data?.result || res?.result || null;
-        actorProfileCache.set(address, {
-          username: user?.username || null,
-          avatar: user?.avatarImageUrl || null,
-        });
-      } catch {
-        // Cache the miss too. A wallet with no profile is a permanent answer,
-        // not a reason to re-ask on every refresh for the rest of the session.
-        actorProfileCache.set(address, { username: null, avatar: null });
-      }
-    }),
-  );
+  try {
+    const users = await getAccountSummaries(pending);
+    const byAddress = new Map(users.map((user) => [user.address.toLowerCase(), user]));
+    for (const address of pending) {
+      const user = byAddress.get(address);
+      actorProfileCache.set(address, {
+        username: user?.username || null,
+        avatar: user?.avatarImageUrl || null,
+      });
+    }
+  } catch {
+    // Leave misses uncached after a request failure so a focus refresh retries.
+  }
 }
 
 /**
