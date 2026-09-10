@@ -2,54 +2,82 @@
  * New Members Rail (mobile)
  * =========================
  * Horizontal rail of everyone who joined in the last 30 days, newest first,
- * each with a one-tap way to say hello. Twin of web's right-rail
+ * each with a one-tap way to follow. Twin of web's right-rail
  * `SidebarNewMembers` tab; Search's idle state is the mobile equivalent of that
  * slot — it is where people already go to find other people.
  *
- * Wave opens the DM with a greeting typed and waiting (`sharedText`), never
- * pre-sent: an identical canned message fired off unseen is the bot behaviour
- * this feature exists to avoid. Web's `draftBody` does the same thing.
- *
- * Waves are remembered per device — the worst case of losing that is a button
- * that says "Wave" again after a reinstall.
+ * The action uses the same follow request as the web carousel. Relationship
+ * state is fetched when the rail appears so existing follows and private
+ * account requests never look actionable again.
  */
-import React, { FC, useCallback, useEffect, useState } from "react";
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { FC, useCallback, useEffect, useRef, useState } from "react";
+import { ActivityIndicator, Alert, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import Avatar from "./Avatar";
-import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import { useAuth, useUser } from "../../context/AuthContext";
+import { followUser, isFollowing } from "../../services/user.service";
 import {
   joinedAgoLabel,
   useNewMembers,
-  NEW_MEMBER_WELCOME,
   type NewMember,
 } from "../../hooks/useNewMembers";
 
-const WAVED_KEY = "dehub_waved_at";
+type FollowState = {
+  isFollowing: boolean;
+  isPending: boolean;
+  isLoading?: boolean;
+};
 
 const NewMembersRail: FC = () => {
-  const navigation = useNavigation<any>();
   const { showUserProfile } = useUserProfileSheet();
+  const { requireAuth } = useAuth();
+  const authUser = useUser() as { address?: string; walletAddress?: string } | null;
+  const viewerAddress = authUser?.address ?? authUser?.walletAddress;
   const { data: members = [] } = useNewMembers(20);
-  const [waved, setWaved] = useState<string[]>([]);
+  const viewerAddressRef = useRef(viewerAddress);
+  const [followStates, setFollowStates] = useState<Record<string, FollowState>>({});
+
+  // `requireAuth` can resume the saved press immediately after sign-in, before
+  // an effect would have a chance to refresh this value.
+  viewerAddressRef.current = viewerAddress;
 
   useEffect(() => {
     let cancelled = false;
-    AsyncStorage.getItem(WAVED_KEY)
-      .then((raw) => {
-        if (cancelled || !raw) return;
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) setWaved(parsed);
-      })
-      .catch(() => {
-        // A missing or corrupt list only costs the "Waved" label.
+    if (!viewerAddress || members.length === 0) {
+      setFollowStates({});
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    void Promise.all(
+      members.map(async (member) => {
+        const relationship = await isFollowing(member.address);
+        return [member.address.toLowerCase(), relationship] as const;
+      }),
+    ).then((relationships) => {
+      if (cancelled) return;
+      setFollowStates((current) => {
+        const next: Record<string, FollowState> = {};
+        for (const [address, relationship] of relationships) {
+          // A successful tap wins over an in-flight status lookup.
+          if (current[address]?.isFollowing || current[address]?.isPending) {
+            next[address] = current[address];
+          } else {
+            next[address] = {
+              isFollowing: relationship.isFollowing,
+              isPending: !!relationship.isFollowRequestPending,
+            };
+          }
+        }
+        return next;
       });
+    });
+
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [members, viewerAddress]);
 
   const openProfile = useCallback(
     (member: NewMember) => {
@@ -64,28 +92,44 @@ const NewMembersRail: FC = () => {
     [showUserProfile],
   );
 
-  const handleWave = useCallback(
+  const followMember = useCallback(async (member: NewMember) => {
+    const viewer = viewerAddressRef.current;
+    const address = member.address.toLowerCase();
+    if (!viewer || !member.address) return;
+
+    setFollowStates((current) => ({
+      ...current,
+      [address]: { ...current[address], isFollowing: false, isPending: false, isLoading: true },
+    }));
+
+    try {
+      const response = await followUser(viewer, member.address);
+      setFollowStates((current) => ({
+        ...current,
+        [address]: {
+          isFollowing: response.status === "following",
+          isPending: response.status === "pending",
+        },
+      }));
+    } catch {
+      setFollowStates((current) => ({
+        ...current,
+        [address]: { ...(current[address] ?? { isFollowing: false, isPending: false }), isLoading: false },
+      }));
+      Alert.alert("Couldn't follow this member", "Please check your connection and try again.");
+    }
+  }, []);
+
+  const handleFollow = useCallback(
     (member: NewMember) => {
       const address = member.address.toLowerCase();
-      setWaved((prev) => {
-        if (prev.includes(address)) return prev;
-        const next = [...prev, address];
-        AsyncStorage.setItem(WAVED_KEY, JSON.stringify(next)).catch(() => {});
-        return next;
+      const state = followStates[address];
+      if (state?.isFollowing || state?.isPending || state?.isLoading) return;
+      requireAuth(() => {
+        void followMember(member);
       });
-
-      navigation.navigate(ScreenNames.Chat as never, {
-        targetAddress: member.address,
-        title: member.displayName,
-        targetUser: {
-          username: member.username ?? undefined,
-          displayName: member.displayName,
-          address: member.address,
-        },
-        sharedText: NEW_MEMBER_WELCOME,
-      } as never);
     },
-    [navigation],
+    [followMember, followStates, requireAuth],
   );
 
   if (members.length === 0) return null;
@@ -102,7 +146,10 @@ const NewMembersRail: FC = () => {
         contentContainerStyle={{ paddingHorizontal: 16, gap: 12 }}
       >
         {members.map((member) => {
-          const hasWaved = waved.includes(member.address.toLowerCase());
+          const state = followStates[member.address.toLowerCase()];
+          const isFollowed = state?.isFollowing ?? false;
+          const isPending = state?.isPending ?? false;
+          const isLoading = state?.isLoading ?? false;
           return (
             <View
               key={member.address}
@@ -122,18 +169,23 @@ const NewMembersRail: FC = () => {
               </Text>
               <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={() => handleWave(member)}
+                onPress={() => handleFollow(member)}
                 className={`mt-2 flex-row items-center rounded-lg px-2.5 py-1 ${
-                  hasWaved ? "bg-white/10" : "border border-white/20 bg-white/15"
+                  isFollowed || isPending ? "bg-white/10" : "border border-white/20 bg-white/15"
                 }`}
+                disabled={isFollowed || isPending || isLoading}
               >
-                <Text
-                  className={`text-[11px] font-semibold ${
-                    hasWaved ? "text-white/40" : "text-white"
-                  }`}
-                >
-                  {hasWaved ? "Waved" : "Wave 👋"}
-                </Text>
+                {isLoading ? (
+                  <ActivityIndicator size="small" color="#fff" />
+                ) : (
+                  <Text
+                    className={`text-[11px] font-semibold ${
+                      isFollowed || isPending ? "text-white/40" : "text-white"
+                    }`}
+                  >
+                    {isPending ? "Requested" : isFollowed ? "Following" : "Follow"}
+                  </Text>
+                )}
               </TouchableOpacity>
             </View>
           );
