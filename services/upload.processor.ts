@@ -20,6 +20,7 @@ import { feedEvents } from "../libs/eventBus";
 import type { MintNftResponse } from "../services/nft.service";
 import type { CreateQuotePostResponse } from "../services/repost.service";
 import { createPoll } from "../services/polls.service";
+import { prepareWalletForQueuedMint } from "../libs/wallet-signing-preflight";
 
 // Abort tracking per-job
 const abortFlags: Record<string, { current: boolean }> = {};
@@ -204,6 +205,15 @@ async function processJob(job: UploadJob): Promise<void> {
   abortRef.current = false;
 
   let mintParams = job.mintParams;
+
+  // The queue outlives the composer, so it cannot rely on the Post button's
+  // foreground wallet state. Ask for the wallet explicitly before either the
+  // first upload or a retry. This keeps a locked wallet as a prompt, not a red
+  // failed row after the backend has already created the post.
+  if (!job.mintOptOut && !job.isSolana) {
+    const provider = await createAuthAdapter().getProvider();
+    await prepareWalletForQueuedMint(provider);
+  }
 
   // Upload phase (skip if we already have mintParams from a previous attempt)
   if (!mintParams) {
