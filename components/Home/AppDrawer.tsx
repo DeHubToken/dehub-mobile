@@ -325,6 +325,10 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
     }
   }, [isSigningOut, onClose, signOut, t]);
 
+  const handlePost = useCallback(() => {
+    navigate(ScreenNames.Upload);
+  }, [navigate]);
+
   const displayName = user?.displayName || user?.username || t("common.anonymous");
   const handle = user?.username ? `@${user.username}` : "";
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl);
@@ -535,6 +539,16 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                 <Icon name="LogOut" size={20} color="#A1A1AA" strokeWidth={1.8} />
                 <Text style={styles.logoutLabel}>{t("sidebar.logOut")}</Text>
               </TouchableOpacity>
+              <TouchableOpacity
+                accessibilityRole="button"
+                accessibilityLabel={t("sidebar.post")}
+                activeOpacity={0.7}
+                onPress={handlePost}
+                style={styles.postButton}
+              >
+                <Icon name="SquarePen" size={20} color="#050505" strokeWidth={2} />
+                <Text style={styles.postLabel}>{t("sidebar.post")}</Text>
+              </TouchableOpacity>
             </View>
           )}
         </Animated.View>
@@ -601,6 +615,9 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 0.10)",
   },
   logoutFooter: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingHorizontal: 10,
     paddingTop: 10,
     paddingBottom: 12,
@@ -615,6 +632,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 12,
   },
+  postButton: {
+    height: 44,
+    paddingHorizontal: 16,
+    borderRadius: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 9,
+    backgroundColor: "#FFFFFF",
+  },
   logoutButtonDisabled: {
     opacity: 0.5,
   },
@@ -622,6 +648,11 @@ const styles = StyleSheet.create({
     color: "#A1A1AA",
     fontSize: 15,
     fontWeight: "500",
+  },
+  postLabel: {
+    color: "#050505",
+    fontSize: 15,
+    fontWeight: "700",
   },
   iconChip: {
     width: 40,
