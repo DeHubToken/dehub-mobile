@@ -24,7 +24,7 @@ import {
 } from "react-native";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
+import { getAvatarUrl, getBadgeOpticalStyle, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { useTvChat, type TvChatMessage } from "../../hooks/useTvChat";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -82,7 +82,7 @@ const ChatRow: React.FC<{
             {displayName}
           </Text>
           {!!badgeImg && (
-            <Image source={badgeImg} style={{ width: 13, height: 13 }} resizeMode="contain" />
+            <Image source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 13), { marginLeft: 0 }]} resizeMode="contain" />
           )}
           <Text className="text-white/60 text-xs ml-auto">
             {formatTime(message.created_at)}
