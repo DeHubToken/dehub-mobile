@@ -40,6 +40,7 @@ import {
 import { toastError, toastSuccess } from "../libs";
 import { useUser } from "../context/AuthContext";
 import SpendPowerSheet from "../components/common/SpendPowerSheet";
+import TeamUpSheet from "../components/common/TeamUpSheet";
 import GlassModal from "../components/ui/GlassModal";
 import {
   powerHome,
@@ -111,13 +112,14 @@ export default function SuperPowersScreen() {
     return new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "long" });
   }, [status?.cycleEndsAt, ladder?.cycleEndsAt]);
 
-  // One sheet for all twelve. It resolves the target a power needs — a
+  // One sheet for every spendable power. It resolves the target a power needs — a
   // post, a comment, a Stage, a category — and books it; the server re-checks
   // every one of those, so this only decides what is worth offering.
   const user = useUser();
   const myAddress = (user?.walletAddress || user?.address || null) as string | null;
   const [spending, setSpending] = useState<SuperPowerInfo | null>(null);
   const [historyPower, setHistoryPower] = useState<SuperPowerInfo | null>(null);
+  const [teamUpOpen, setTeamUpOpen] = useState(false);
 
   const badgeArt = status?.tier ? getBadgeUrl(status.badgeBalance) : undefined;
   const historyBookings = historyPower
@@ -139,15 +141,14 @@ export default function SuperPowersScreen() {
     <View style={styles.root}>
       <ScreenHeader
         title="SuperPowers"
-        subtitle="Spend your badge on the top of the feed"
+        subtitle="Badge boosts and Team up"
         rightContent={<Icon name="Rocket" size={22} color={theme.colors.accent} />}
       />
 
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.intro}>
-          A badge buys more than the art beside your name. Every fortnight it grants boosts that
-          put posts at the top of the home feed. Thirteen tiers, twelve powers, and a stronger
-          allowance at every rung.
+          Badge holders get fresh boosts every fortnight. Team up is open to everyone: combine
+          wallet power with up to seven others and every member gets the badge your total unlocks.
         </Text>
 
         {/* ── Your allowance ───────────────────────────────────────────── */}
@@ -179,6 +180,7 @@ export default function SuperPowersScreen() {
             <Text style={styles.body}>
               You have no badge yet, so no boosts. Staking DHB unlocks the ladder below.
             </Text>
+            <Text style={styles.muted}>Team up is open to every account, even without a badge.</Text>
             <Pressable
               onPress={() => navigation.navigate(ScreenNames.Dpay, { initialTab: "stake" })}
               style={styles.cta}
@@ -194,7 +196,8 @@ export default function SuperPowersScreen() {
           {powers.map((power, index) => {
             // Held AND built. A locked card stays inert rather than opening a
             // picker for something the server would refuse.
-            const unlocked = !!power.unlocked && power.available;
+            const isTeamUp = power.key === "team_up";
+            const unlocked = (isTeamUp ? !!myAddress : !!power.unlocked) && power.available;
             const allowance =
               power.key === "signal_flare"
                 ? (status?.signalsLeft ?? status?.boostsLeft)
@@ -206,35 +209,37 @@ export default function SuperPowersScreen() {
               >
                 <Pressable
                   disabled={!unlocked}
-                  onPress={() => setSpending(power)}
+                  onPress={() => isTeamUp ? setTeamUpOpen(true) : setSpending(power)}
                   style={({ pressed }) => [styles.powerBody, pressed && unlocked && styles.powerBodyPressed]}
                 >
                   <View style={styles.powerTop}>
-                    {/* Numbered because it IS a sequence: one power per rung. */}
+                    {/* Numbered because this is a fixed, ordered power list. */}
                     <Text style={styles.rung}>{String(index + 1).padStart(2, "0")}</Text>
                     <Text style={[styles.powerName, !unlocked && styles.powerNameOff]}>
                       {power.label}
                     </Text>
                     <Icon
-                      name={unlocked ? "Check" : "Lock"}
+                      name={isTeamUp && unlocked ? "Users" : unlocked ? "Check" : "Lock"}
                       size={13}
                       color={unlocked ? "#F4F4F5" : "#52525B"}
                     />
                   </View>
                   <Text style={styles.powerSummary}>{power.summary}</Text>
-                  {unlocked ? (
-                    <Text style={styles.powerWhere}>{actsOn(power.key, t)}</Text>
-                  ) : null}
+                  {unlocked ? <Text style={styles.powerWhere}>
+                    {isTeamUp ? "Make or join a team. Tap to manage yours." : actsOn(power.key, t)}
+                  </Text> : null}
                 </Pressable>
                 <View style={styles.powerFooter}>
                   <Text style={[styles.powerCount, !unlocked && styles.powerCountOff]}>
-                    {unlocked && allowance !== undefined
+                    {isTeamUp && unlocked
+                      ? "Open to everyone"
+                      : unlocked && allowance !== undefined
                       ? `${allowance} ${allowance === 1 ? "use" : "uses"} left`
                       : !power.available
                         ? "Coming soon"
                         : "Locked"}
                   </Text>
-                  <Pressable
+                  {!isTeamUp ? <Pressable
                     onPress={() => {
                       setHistoryPower(power);
                       void refetchStatus();
@@ -250,7 +255,7 @@ export default function SuperPowersScreen() {
                   >
                     <Text style={styles.historyLinkText}>Past usage</Text>
                     <Icon name="ChevronRight" size={14} color="#A1A1AA" />
-                  </Pressable>
+                  </Pressable> : null}
                 </View>
               </View>
             );
@@ -307,6 +312,11 @@ export default function SuperPowersScreen() {
         power={spending}
         address={myAddress}
         onClose={() => setSpending(null)}
+      />
+      <TeamUpSheet
+        visible={teamUpOpen}
+        onClose={() => setTeamUpOpen(false)}
+        address={myAddress}
       />
 
       <GlassModal
