@@ -211,7 +211,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
             </View>
           )}
           {!!badgeImg && (
-            <Image source={badgeImg} style={getBadgeOpticalStyle(badgeImg, 14)} resizeMode="contain" />
+            <Image source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 14), { marginLeft: 0 }]} resizeMode="contain" />
           )}
           <Text className="text-white/50 text-[11px] ml-auto">
             {formatTime(message.createdAt)}

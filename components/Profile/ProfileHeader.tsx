@@ -392,7 +392,7 @@ const ProfileHeader = () => {
                   source={badgeImage as any}
                   contentFit="contain"
                   cachePolicy="memory-disk"
-                  style={getBadgeOpticalStyle(badgeImage as number, 20)}
+                  style={[getBadgeOpticalStyle(badgeImage as number, 20), { marginLeft: 0 }]}
                 />
               )}
             </View>
