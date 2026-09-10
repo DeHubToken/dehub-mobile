@@ -202,6 +202,24 @@ export async function getAccount(usernameOrAddress: string) {
   return response;
 }
 
+export interface AccountSummary {
+  address: string;
+  username?: string | null;
+  displayName?: string | null;
+  avatarImageUrl?: string | null;
+}
+
+/** Resolve many notification actors with one lightweight API request. */
+export async function getAccountSummaries(addresses: string[]): Promise<AccountSummary[]> {
+  if (addresses.length === 0) return [];
+  const response = await apiClient.post<{ result: AccountSummary[] }>(
+    "/account_info/batch",
+    { addresses },
+    { isAuthRequired: false },
+  );
+  return response?.result || [];
+}
+
 /**
  * Search for users
  */

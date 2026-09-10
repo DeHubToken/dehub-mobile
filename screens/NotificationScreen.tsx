@@ -64,7 +64,7 @@ import {
   NON_CLICKABLE_TYPES,
 } from "../services/enums/notification.enums";
 
-type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
+type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'communities' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
 
 // `label` is an i18n key: the screen is wired to i18next, and hardcoded tab
 // names left 109 locales reading English here.
@@ -74,6 +74,7 @@ const TYPE_TABS: { key: NotificationTypeFilter; icon: string; label: string }[] 
   { key: 'follows', icon: 'UserPlus', label: 'notifications.follows' },
   { key: 'comments', icon: 'MessageSquareText', label: 'notifications.comments' },
   { key: 'reposts', icon: 'Repeat2', label: 'notifications.reposts' },
+  { key: 'communities', icon: 'UsersRound', label: 'nav.communities' },
   { key: 'subscriptions', icon: 'Users', label: 'notifications.subs' },
   { key: 'tips', icon: 'Gem', label: 'notifications.tips' },
   { key: 'payments', icon: 'CreditCard', label: 'notifications.payments' },
@@ -86,6 +87,9 @@ const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
   follows: [NotificationType.FOLLOWING, NotificationType.FOLLOW_REQUEST, NotificationType.FOLLOW_REQUEST_ACCEPTED],
   comments: [NotificationType.COMMENT, NotificationType.COMMENT_REPLY, NotificationType.MENTION],
   reposts: [NotificationType.REPOST, NotificationType.QUOTE],
+  communities: [
+    ...(['community_join', 'community_mention', 'community_here'] as unknown as NotificationType[]),
+  ],
   subscriptions: [NotificationType.SUBSCRIPTION, NotificationType.PPV_PURCHASE],
   // work_application / work_submission are Supabase-side rows with no entry in
   // this enum — cast in rather than invented as enum members, so nothing else
@@ -115,6 +119,9 @@ const CLIENT_ONLY_TYPES = new Set<string>([
   // an unfiltered page, which is exactly the bug this set exists to prevent.
   'work_application',
   'work_submission',
+  'community_join',
+  'community_mention',
+  'community_here',
 ]);
 
 /** The subset of a tab's types the API can filter on, or undefined for no server filter. */
@@ -1193,7 +1200,7 @@ const NotificationScreen = () => {
 
   const tabCounts = useMemo(() => {
     const counts: Record<NotificationTypeFilter, number> = {
-      all: 0, likes: 0, follows: 0, comments: 0,
+      all: 0, likes: 0, follows: 0, comments: 0, communities: 0,
       reposts: 0, subscriptions: 0, tips: 0, payments: 0, livestreams: 0,
     };
     const unread = visibleCountsSource.filter((n) => !n.read);
@@ -1208,16 +1215,15 @@ const NotificationScreen = () => {
     return counts;
   }, [visibleCountsSource]);
 
-  // Rank categories using the recent notification snapshot, including read
-  // rows. Reading one row therefore does not make the tabs jump under the
-  // user's finger. All remains fixed in the first position.
+  // Rank categories by the unread counts printed on the tabs. Historical read
+  // rows must not outrank a category whose visible badge is larger.
   const tabActivityCounts = useMemo(() => {
     const counts: Record<NotificationTypeFilter, number> = {
-      all: visibleCountsSource.length, likes: 0, follows: 0, comments: 0,
+      all: tabCounts.all, likes: 0, follows: 0, comments: 0, communities: 0,
       reposts: 0, subscriptions: 0, tips: 0, payments: 0, livestreams: 0,
     };
 
-    for (const notification of visibleCountsSource) {
+    for (const notification of visibleCountsSource.filter((item) => !item.read)) {
       for (const [key, types] of Object.entries(FILTER_TYPE_MAP)) {
         if (key !== 'all' && types.includes(notification.type as NotificationType)) {
           counts[key as NotificationTypeFilter] += 1;
@@ -1226,7 +1232,7 @@ const NotificationScreen = () => {
     }
 
     return counts;
-  }, [visibleCountsSource]);
+  }, [visibleCountsSource, tabCounts.all]);
 
   // App badge follows the unfiltered snapshot, so selecting a tab no longer
   // rewrites it with just that tab's unread count.
