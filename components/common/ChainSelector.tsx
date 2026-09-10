@@ -49,7 +49,7 @@ export function getChainOption(chainId?: number): ChainOption | undefined {
 interface ChainSelectorProps {
   selectedChainId?: number;
   onChange: (chainId: number) => void;
-  variant?: "icon" | "compact";
+  variant?: "icon" | "compact" | "settings";
   disabled?: boolean;
   /** Heading inside the picker sheet */
   title?: string;
@@ -61,6 +61,10 @@ interface ChainSelectorProps {
    * EOA — a different account — rather than letting the pick fail on selection.
    */
   allowedChainIds?: number[];
+  /** Exact ordered options for a feature-specific picker. */
+  options?: ChainOption[];
+  /** Options that should remain visible but cannot be selected yet. */
+  unavailableChainIds?: number[];
 }
 
 const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
@@ -71,11 +75,14 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
   title = "Choose network",
   includeSolana = false,
   allowedChainIds,
+  options,
+  unavailableChainIds = [],
 }) => {
   const insets = useSafeAreaInsets();
   const [open, setOpen] = useState(false);
   const chains = useMemo(() => {
-    const base = includeSolana ? ALL_CHAINS : EVM_CHAINS;
+    const base = options || (includeSolana ? ALL_CHAINS : EVM_CHAINS);
+    if (options) return options;
     if (!allowedChainIds?.length) return base;
     const allowed = new Set(allowedChainIds);
     // Solana is governed by includeSolana alone — it is derived from the same
@@ -84,13 +91,15 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
       (c) => allowed.has(c.id) || (includeSolana && c.id === SOLANA_MAINNET_CHAIN_ID),
     );
     return filtered.length ? filtered : base;
-  }, [includeSolana, allowedChainIds]);
+  }, [includeSolana, allowedChainIds, options]);
   const selected = useMemo(
-    () => getChainOption(selectedChainId) || chains[0],
+    () => chains.find((c) => c.id === selectedChainId) || getChainOption(selectedChainId) || chains[0],
     [selectedChainId, chains],
   );
+  const unavailable = useMemo(() => new Set(unavailableChainIds), [unavailableChainIds]);
 
   const handleSelect = (id: number) => {
+    if (unavailable.has(id)) return;
     setOpen(false);
     if (id !== selectedChainId) onChange(id);
   };
@@ -100,14 +109,24 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
       <TouchableOpacity
         onPress={() => !disabled && setOpen(true)}
         disabled={disabled}
+        accessibilityRole="button"
+        accessibilityLabel={`${title}: ${selected.name}`}
         activeOpacity={0.7}
         style={[
           styles.trigger,
           variant === "icon" && styles.triggerIcon,
+          variant === "settings" && styles.triggerSettings,
           disabled && { opacity: 0.5 },
         ]}
       >
-        <Image source={selected.icon} style={styles.triggerIconImg} />
+        {variant === "settings" ? (
+          <View style={styles.settingsIconWrap}>
+            <Icon name="Settings2" size={20} color="#A1A1AA" />
+            <Image source={selected.icon} style={styles.settingsChainImg} />
+          </View>
+        ) : (
+          <Image source={selected.icon} style={styles.triggerIconImg} />
+        )}
         {variant === "compact" && (
           <>
             <Text style={styles.triggerText}>{selected.name}</Text>
@@ -141,18 +160,24 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
             <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
             {chains.map((chain) => {
               const active = chain.id === selectedChainId;
+              const isUnavailable = unavailable.has(chain.id);
               return (
                 <TouchableOpacity
                   key={chain.id}
                   onPress={() => handleSelect(chain.id)}
+                  disabled={isUnavailable}
                   activeOpacity={0.7}
-                  style={[styles.row, active && styles.rowActive]}
+                  style={[styles.row, active && styles.rowActive, isUnavailable && styles.rowUnavailable]}
                 >
                   <View style={styles.rowLeft}>
                     <Image source={chain.icon} style={styles.rowIcon} />
                     <Text style={styles.rowName}>{chain.name}</Text>
                   </View>
-                  {active && <Icon name="Check" size={18} color="#F9FBFF" />}
+                  {isUnavailable ? (
+                    <Text style={styles.soonText}>Soon</Text>
+                  ) : (
+                    active && <Icon name="Check" size={18} color="#F9FBFF" />
+                  )}
                 </TouchableOpacity>
               );
             })}
@@ -184,6 +209,31 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "transparent",
     borderWidth: 0,
+  },
+  triggerSettings: {
+    width: 36,
+    height: 36,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+    justifyContent: "center",
+    backgroundColor: "transparent",
+    borderWidth: 0,
+  },
+  settingsIconWrap: {
+    width: 28,
+    height: 28,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  settingsChainImg: {
+    position: "absolute",
+    width: 11,
+    height: 11,
+    borderRadius: 4,
+    right: 0,
+    bottom: 0,
+    borderWidth: 1,
+    borderColor: "#18181B",
   },
   triggerIconImg: {
     width: 20,
@@ -237,6 +287,9 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.12)",
     borderColor: "rgba(255,255,255,0.2)",
   },
+  rowUnavailable: {
+    opacity: 0.45,
+  },
   rowLeft: {
     flexDirection: "row",
     alignItems: "center",
@@ -251,6 +304,13 @@ const styles = StyleSheet.create({
     color: "#F9FBFF",
     fontSize: 15,
     fontWeight: "600",
+  },
+  soonText: {
+    color: "#71717A",
+    fontSize: 10,
+    fontWeight: "700",
+    textTransform: "uppercase",
+    letterSpacing: 0.8,
   },
 });
 

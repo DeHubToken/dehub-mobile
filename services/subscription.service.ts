@@ -15,6 +15,8 @@ export interface SubscriptionPlanChain {
   chainId: number;
   token: string;
   price: number;
+  currency?: string;
+  decimals?: number;
   isPublished?: boolean;
   status?: boolean;
 }
@@ -29,6 +31,7 @@ export interface SubscriptionPlan {
   /** Headline price, mirrored from the primary chain entry. */
   price?: number;
   currency?: string;
+  decimals?: number;
   /** Whole months. 0 is lifetime — see normaliseDuration below. */
   duration: number;
   tier?: number;
@@ -74,6 +77,7 @@ export interface SubscriptionIntent {
   token: string;
   price: number;
   currency: string;
+  decimals?: number;
 }
 
 // ── Duration ────────────────────────────────────────────────────────────
@@ -157,7 +161,7 @@ export async function createPlan(planData: {
   duration: number;
   tier: number;
   benefits?: string[];
-  chains: { chainId: number; token: string; price: number }[];
+  chains: { chainId: number; token: string; price: number; currency?: string; decimals?: number }[];
 }): Promise<SubscriptionPlan | undefined> {
   const res = await apiClient.post<Envelope<SubscriptionPlan>>("/plans", planData);
   return unwrap<SubscriptionPlan>(res, "plan");
@@ -171,7 +175,7 @@ export async function updatePlan(
     price: number;
     duration: number;
     benefits: string[];
-    chains: { chainId: number; token: string; price: number }[];
+    chains: { chainId: number; token: string; price: number; currency?: string; decimals?: number }[];
   }>,
 ): Promise<SubscriptionPlan | undefined> {
   const res = await apiClient.post<Envelope<SubscriptionPlan>>(`/plans/${planId}`, planData);
