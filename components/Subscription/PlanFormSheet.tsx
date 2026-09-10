@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
-  KeyboardAvoidingView,
 } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
@@ -286,12 +285,10 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       onClose={onClose}
       presentation="bottom"
       maxHeight="90%"
+      panelHeight="90%"
       blurIntensity={30}
     >
-      <KeyboardAvoidingView
-        behavior="padding"
-        style={{ flex: 1 }}
-      >
+      <View style={{ flex: 1 }}>
         <View className="flex-row items-center justify-between px-5 pt-4 pb-3 border-b border-white/10">
           <Text className="text-white font-bold text-base">
             {isEditing ? "Edit Plan" : "Create Subscription Plan"}
@@ -451,7 +448,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
             {stage || (isEditing ? " " : "Publishing is an on-chain transaction")}
           </Text>
         </View>
-      </KeyboardAvoidingView>
+      </View>
     </GlassModal>
   );
 };

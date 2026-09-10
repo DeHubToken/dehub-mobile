@@ -22,7 +22,7 @@ export interface GlassModalProps {
   maxHeight?: number | string;
   // New: Control backdrop blur area and panel wrapping
   backdropScope?: "full" | "panel";
-  panelHeight?: number | Animated.Value;
+  panelHeight?: number | string | Animated.Value;
   wrapPanel?: boolean;
   // When false, disable closing via backdrop press and Android back button
   dismissible?: boolean;
@@ -155,6 +155,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
                   isBottom ? styles.panelDrawer : styles.panelCard,
                   {
                     maxHeight: maxHeight as any,
+                    height: panelHeight as any,
                     paddingBottom: isBottom && !keyboardUp ? insets.bottom : 0,
                   },
                 ]}
