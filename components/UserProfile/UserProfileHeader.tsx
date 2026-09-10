@@ -6,7 +6,7 @@ import { SvgXml } from "react-native-svg";
 import Avatar from "../common/Avatar";
 import StoryAvatarRing from "../Story/StoryAvatarRing";
 import Icon from "../ui/Icon";
-import { copyToClipboard } from "../../libs";
+import { copyToClipboard, getBadgeOpticalStyle } from "../../libs";
 import { toastSuccess } from "../../libs/toast";
 import { ensProfileUrl } from "../../libs/ens-handle";
 import { getSocialLink, openExternalLink } from "../../libs/links.utils";
@@ -322,9 +322,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         <View className="mt-2">
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-center gap-1.5 flex-1 mr-2">
-              <Text className="text-white text-xl font-bold" numberOfLines={1}>{displayName}</Text>
+              <Text className="text-white text-xl font-bold" numberOfLines={1} style={{ flexShrink: 1 }}>{displayName}</Text>
               {badge && badgeImage && (
-                <Image source={badgeImage} style={{ width: 20, height: 20 }} resizeMode="contain" />
+                <Image source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} resizeMode="contain" />
               )}
             </View>
             {socialItems.length > 0 && (

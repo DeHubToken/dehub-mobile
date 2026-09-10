@@ -1,7 +1,7 @@
 /**
  * New Member Chip (mobile)
  * ========================
- * The temporary "New here" marker beside a name, for the first
+ * The temporary "New" marker beside a name, for the first
  * NEW_MEMBER_WINDOW_DAYS after an account is created. Twin of web's
  * `components/app/NewMemberChip.tsx`.
  *
@@ -25,7 +25,7 @@ const NewMemberChip: FC<NewMemberChipProps> = ({ address }) => {
   return (
     <View className="flex-row items-center rounded-md border border-white/15 bg-white/10 px-2 py-0.5">
       <Icon name="Sparkles" size={11} color="#FFFFFF" />
-      <Text className="text-white text-[11px] font-medium ml-1">New here</Text>
+      <Text className="text-white text-[11px] font-medium ml-1">New</Text>
     </View>
   );
 };
