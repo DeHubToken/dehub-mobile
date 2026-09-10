@@ -1,5 +1,7 @@
 export const FEED_IMAGE_MAX_HEIGHT = 600;
 export const FEED_IMAGE_FALLBACK_ASPECT = 4 / 3;
+/** Shared corner radius for a feed bento and the media nested inside it. */
+export const FEED_BENTO_RADIUS = 12;
 
 export interface FeedImageDimensions {
   width: number;

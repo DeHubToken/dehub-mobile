@@ -28,4 +28,14 @@ describe('post media presentation', () => {
     expect(feedCard).toContain('<View className="flex-row items-center gap-2 pt-3">');
     expect(feedCard).not.toContain('<View className="flex-row items-center gap-2 pt-1.5">');
   });
+
+  it('clips feed photos to the same radius as their bento on Android', () => {
+    const card = readSource('components', 'Home', 'FeedCard.tsx');
+    const containedImage = readSource('components', 'Home', 'ContainedFeedImage.tsx');
+
+    expect(card).toContain('borderRadius: FEED_BENTO_RADIUS');
+    expect(containedImage).toContain('borderRadius: FEED_BENTO_RADIUS');
+    expect(containedImage).toContain('overflow: "hidden"');
+    expect(containedImage).toContain('style={{ width: "100%", height: "100%" }}');
+  });
 });

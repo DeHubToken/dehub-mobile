@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { View, type LayoutChangeEvent } from "react-native";
-import { fitFeedImageWithin } from "../../libs/feed-image-layout";
+import { FEED_BENTO_RADIUS, fitFeedImageWithin } from "../../libs/feed-image-layout";
 import { useImageAspect } from "../../hooks/useImageAspect";
 import SmartImage from "../common/SmartImage";
 
@@ -42,14 +42,26 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         alignItems: "flex-start",
       }}
     >
-      <SmartImage
-        source={{ uri }}
-        contentFit="contain"
-        className="rounded-xl"
-        style={{ width: dimensions.width, height: dimensions.height }}
-        recyclingKey={uri}
-        priority={priority}
-      />
+      {/* Android does not consistently clip expo-image's native surface when
+          the radius lives on the image itself. The ordinary system-theme feed
+          made that visible as square photo corners inside a rounded bento.
+          Clip in a plain View using the exact radius the card uses instead. */}
+      <View
+        style={{
+          width: dimensions.width,
+          height: dimensions.height,
+          borderRadius: FEED_BENTO_RADIUS,
+          overflow: "hidden",
+        }}
+      >
+        <SmartImage
+          source={{ uri }}
+          contentFit="contain"
+          style={{ width: "100%", height: "100%" }}
+          recyclingKey={uri}
+          priority={priority}
+        />
+      </View>
     </View>
   );
 };

@@ -1,10 +1,15 @@
 import {
   FEED_IMAGE_FALLBACK_ASPECT,
   FEED_IMAGE_MAX_HEIGHT,
+  FEED_BENTO_RADIUS,
   fitFeedImageWithin,
 } from "../../libs/feed-image-layout";
 
 describe("feed image layout", () => {
+  it("uses the native bento radius for feed media", () => {
+    expect(FEED_BENTO_RADIUS).toBe(12);
+  });
+
   it("uses the full feed width when the natural height fits", () => {
     expect(fitFeedImageWithin(360, 16 / 9)).toEqual({ width: 360, height: 202.5 });
     expect(fitFeedImageWithin(360, 1)).toEqual({ width: 360, height: 360 });

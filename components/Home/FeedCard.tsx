@@ -40,6 +40,7 @@ import SmartImage from "../common/SmartImage";
 import ContainedFeedImage from "./ContainedFeedImage";
 import LiveFeedPreview from "../common/LiveFeedPreview";
 import { cdnImage } from "../../libs/cdnImage";
+import { FEED_BENTO_RADIUS } from "../../libs/feed-image-layout";
 import { hlsUrlFor, liveThumbnailFor } from "../../libs/live-ingest";
 import { extractReplayUrl, replayDurationSec } from "../../libs/live-replay";
 import GlassTipSheet from "../Tip/GlassTipSheet";
@@ -1423,7 +1424,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.12)',
         backgroundColor: 'rgba(255,255,255,0.03)',
-        borderRadius: 12,
+        borderRadius: FEED_BENTO_RADIUS,
         paddingTop: 12,
         paddingHorizontal: 12,
         paddingBottom: 24,
