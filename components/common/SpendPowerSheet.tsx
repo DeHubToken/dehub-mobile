@@ -7,8 +7,8 @@
  *
  * The screen used to tick a power and then leave you to find the surface it is
  * spent from — a post's options sheet, a comment, a Stage. At Cobra that was
- * five ticks and one control; at Meglodon it is thirteen ticks and two, which
- * reads as eleven powers that do not work. They all work. What they need is a
+ * five ticks and one control; at Meglodon it is twelve ticks and two, which
+ * reads as ten powers that do not work. They all work. What they need is a
  * target, and picking the target is the whole job of this sheet.
  *
  * **One box, two behaviours.** The post picker takes a search term *or* a
@@ -173,7 +173,7 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
 
   const targetChosen =
     home === "page"
-      ? power?.key !== "trend_jacker" || !!category
+      ? !!category
       : home === "comment"
         ? !!pickedComment
         : home === "stage"
@@ -249,14 +249,6 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
 
         <ScrollView className="max-h-[70%]" contentContainerClassName="gap-3">
           <Text className="text-[13px] leading-5 text-zinc-400">{power?.summary}</Text>
-
-          {home === "page" && power?.key !== "trend_jacker" ? (
-            <Text className="text-xs text-zinc-500">
-              {t("superpowers.actsOnAccount", {
-                defaultValue: "This one acts on your whole account — there is nothing to choose.",
-              })}
-            </Text>
-          ) : null}
 
           {power?.key === "trend_jacker" ? (
             <View className="flex-row flex-wrap gap-2">

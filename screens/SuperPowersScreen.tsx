@@ -12,9 +12,8 @@
  * them nothing about why they would want to. The ladder comes from the public
  * endpoint; only the allowance panel needs an account.
  *
- * **All thirteen powers are listed, not just the two that are built.** The
- * ladder is the product: the reason to climb a rung is knowing what the next
- * one holds.
+ * All twelve powers are listed in unlock order. Killer Whale remains a badge
+ * tier with a stronger allowance, but it does not add a separate power.
  */
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -75,13 +74,9 @@ function actsOn(
         defaultValue: "Acts on a Stage you host. Tap to pick one.",
       });
     case "page":
-      return key === "trend_jacker"
-        ? t("superpowers.actsCategory", {
-            defaultValue: "Acts on one of your categories. Tap to pick one.",
-          })
-        : t("superpowers.actsAccount", {
-            defaultValue: "Acts on your whole account. Tap to start it.",
-          });
+      return t("superpowers.actsCategory", {
+        defaultValue: "Acts on one of your categories. Tap to pick one.",
+      });
     default:
       return t("superpowers.actsPost", {
         defaultValue: "Acts on one of your posts. Tap to pick one.",
@@ -106,7 +101,9 @@ export default function SuperPowersScreen() {
 
   // The public ladder carries every power; the signed-in one adds `unlocked`.
   // Prefer the personal copy so the screen lights up without a second render.
-  const powers = status?.powers ?? ladder?.powers ?? [];
+  const powers = (status?.powers ?? ladder?.powers ?? []).filter(
+    power => String(power.key) !== "golden_hour",
+  );
 
   const refillsOn = useMemo(() => {
     const iso = status?.cycleEndsAt ?? ladder?.cycleEndsAt;
@@ -114,7 +111,7 @@ export default function SuperPowersScreen() {
     return new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "long" });
   }, [status?.cycleEndsAt, ladder?.cycleEndsAt]);
 
-  // One sheet for all thirteen. It resolves the target a power needs — a
+  // One sheet for all twelve. It resolves the target a power needs — a
   // post, a comment, a Stage, a category — and books it; the server re-checks
   // every one of those, so this only decides what is worth offering.
   const user = useUser();
@@ -148,9 +145,9 @@ export default function SuperPowersScreen() {
 
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.intro}>
-          A badge buys more than the art beside your name. Every fortnight it grants boosts — each
-          one puts a post in the slot at the top of the home feed. Thirteen tiers, thirteen powers,
-          one unlock per rung.
+          A badge buys more than the art beside your name. Every fortnight it grants boosts that
+          put posts at the top of the home feed. Thirteen tiers, twelve powers, and a stronger
+          allowance at every rung.
         </Text>
 
         {/* ── Your allowance ───────────────────────────────────────────── */}
@@ -191,8 +188,8 @@ export default function SuperPowersScreen() {
           </View>
         )}
 
-        {/* ── The thirteen powers ──────────────────────────────────────── */}
-        <Text style={styles.heading}>THE THIRTEEN POWERS</Text>
+        {/* ── The twelve powers ────────────────────────────────────────── */}
+        <Text style={styles.heading}>THE TWELVE POWERS</Text>
         <View style={styles.powerGrid}>
           {powers.map((power, index) => {
             // Held AND built. A locked card stays inert rather than opening a

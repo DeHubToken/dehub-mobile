@@ -6,10 +6,8 @@
  * allowance of boosts each fortnight, and a boost puts one of their posts in
  * the slot at the top of the home feed.
  *
- * Thirteen tiers, thirteen powers, one unlock per rung. Two are built: **Boost**
- * for a post under a week old, and **Second Wind** for anything older, which
- * unlocks a rung up because bringing something back from the archive is a
- * different act from amplifying what you just posted.
+ * Thirteen tiers grant twelve powers. Every rung improves the allowance,
+ * window, or share of voice; most also unlock a new way to spend that reach.
  *
  * **The slot rotates; it is not a pin.** A fortnight is 20,160 minutes and the
  * ladder hands out more than that as soon as a few thousand badges exist. When
@@ -38,7 +36,6 @@ export type SuperPowerKey =
   | 'flak_jacket'
   | 'precision_strike'
   | 'harpoon'
-  | 'golden_hour'
   | 'crew_boost'
   | 'front_row'
   | 'deep_current';
@@ -57,10 +54,7 @@ export interface SuperPowerInfo {
 
 export interface SuperPowerBooking {
   id: string;
-  /**
-   * Null for a power that does not act on a post — a Golden Hour acts on the
-   * whole account. Check before navigating to a post.
-   */
+  /** Null for powers that act on a comment, stage, or category. */
   tokenId: number | null;
   power: SuperPowerKey;
   startsAt: string;
@@ -364,9 +358,8 @@ export function powerForPostAge(createdAt: string | Date | undefined): SuperPowe
  * Mirror of web's `POWER_HOME`. One table, read by the sheet that offers
  * powers on a post AND by the SuperPowers screen that tells a holder where the
  * rest of theirs live. They disagreed before it existed: the sheet offered
- * every power that was not a Golden Hour, including the three that need a
- * comment, a stage or a category it never sends — so tapping them spent
- * nothing and returned a refusal — and the screen ticked five powers with a
+ * powers that need a comment, a stage, or a category it never sends, so
+ * tapping them spent nothing and returned a refusal, and the screen ticked five powers with a
  * control for one, which reads as four powers that do not work.
  *
  *   - `post`    your own post's options sheet → Boost
@@ -375,7 +368,7 @@ export function powerForPostAge(createdAt: string | Date | undefined): SuperPowe
  *   - `stage`   a Stage you are hosting
  *   - `page`    the SuperPowers screen itself — no subject to hang off
  *
- * Keyed by the whole union so a fourteenth power cannot be added without
+ * Keyed by the whole union so a new power cannot be added without
  * deciding where it is spent.
  */
 export type PowerHome = 'post' | 'gift' | 'comment' | 'stage' | 'page';
@@ -390,7 +383,6 @@ export const POWER_HOME: Record<SuperPowerKey, PowerHome> = {
   flak_jacket: 'post',
   precision_strike: 'post',
   harpoon: 'post',
-  golden_hour: 'page',
   crew_boost: 'post',
   front_row: 'stage',
   deep_current: 'gift',
