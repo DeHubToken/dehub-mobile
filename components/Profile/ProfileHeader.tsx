@@ -17,6 +17,7 @@ import {
   getAvatarUrl,
   getCoverUrl,
   getBadgeName,
+  getBadgeOpticalStyle,
   getBadgeUrl,
   getDefaultBanner,
   resolveBadgeBalance,
@@ -391,7 +392,7 @@ const ProfileHeader = () => {
                   source={badgeImage as any}
                   contentFit="contain"
                   cachePolicy="memory-disk"
-                  style={{ width: 20, height: 20 }}
+                  style={getBadgeOpticalStyle(badgeImage as number, 20)}
                 />
               )}
             </View>
