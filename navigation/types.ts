@@ -166,6 +166,7 @@ export type AppStackParamList = {
     feedParams?: Record<string, any>;
   };
   [ScreenNames.Communities]: undefined;
+  [ScreenNames.Stats]: undefined;
   [ScreenNames.CommunityDetail]: { slug: string };
   [ScreenNames.CommunityInvite]: { code: string };
   [ScreenNames.Glossary]: undefined;
