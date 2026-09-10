@@ -37,7 +37,8 @@
     "ads": "Mainokset",
     "prompt": "Prompt",
     "tv": "Suora TV",
-    "arcade": "Arcade"
+    "arcade": "Arcade",
+    "stats": "Reaaliaikaiset tilastot"
   },
   "feed": {
     "home": "Koti",

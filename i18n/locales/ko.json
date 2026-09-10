@@ -37,7 +37,8 @@
     "ads": "광고",
     "prompt": "프롬프트",
     "tv": "라이브 TV",
-    "arcade": "아케이드"
+    "arcade": "아케이드",
+    "stats": "실시간 통계"
   },
   "feed": {
     "home": "홈",
