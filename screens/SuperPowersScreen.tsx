@@ -16,7 +16,6 @@
  * tier with a stronger allowance, but it does not add a separate power.
  */
 import React, { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -43,47 +42,8 @@ import SpendPowerSheet from "../components/common/SpendPowerSheet";
 import TeamUpSheet from "../components/common/TeamUpSheet";
 import GlassModal from "../components/ui/GlassModal";
 import {
-  powerHome,
   type SuperPowerInfo,
-  type SuperPowerKey,
 } from "../services/superpower.service";
-
-/**
- * What an unlocked power acts on, in one line under its name.
- *
- * Not directions any more. Every bento this account holds is a button that
- * opens the picker for its own target, so the only thing left worth saying on
- * the card is what kind of thing you are about to be asked to choose.
- * `powerHome` is the same table the sheet and the post options sheet read, so
- * the three cannot drift apart.
- */
-function actsOn(
-  key: SuperPowerKey,
-  t: (k: string, o?: Record<string, unknown>) => string,
-): string {
-  switch (powerHome(key)) {
-    case "gift":
-      return t("superpowers.actsGift", {
-        defaultValue: "A gift — it lands on somebody else's post. Tap to pick one.",
-      });
-    case "comment":
-      return t("superpowers.actsComment", {
-        defaultValue: "Acts on your comment in somebody else's thread. Tap to pick one.",
-      });
-    case "stage":
-      return t("superpowers.actsStage", {
-        defaultValue: "Acts on a Stage you host. Tap to pick one.",
-      });
-    case "page":
-      return t("superpowers.actsCategory", {
-        defaultValue: "Acts on one of your categories. Tap to pick one.",
-      });
-    default:
-      return t("superpowers.actsPost", {
-        defaultValue: "Acts on one of your posts. Tap to pick one.",
-      });
-  }
-}
 
 /** Total slot minutes a tier holds per cycle — the number worth comparing. */
 function formatMinutes(total: number): string {
@@ -95,7 +55,6 @@ function formatMinutes(total: number): string {
 
 export default function SuperPowersScreen() {
   const navigation = useNavigation<any>();
-  const { t } = useTranslation();
   const { data: status, isLoading: loadingStatus, refetch: refetchStatus } = useSuperpowers();
   const { data: ladder, isLoading: loadingLadder } = useSuperpowerLadder();
   const cancelBoost = useCancelBoost();
@@ -235,9 +194,6 @@ export default function SuperPowersScreen() {
                       <Text style={styles.unlockTierName}>{power.tier}</Text>
                     </View>
                   ) : null}
-                  {unlocked ? <Text style={styles.powerWhere}>
-                    {isTeamUp ? "Make or join a team. Tap to manage yours." : actsOn(power.key, t)}
-                  </Text> : null}
                 </Pressable>
                 <View style={styles.powerFooter}>
                   <Text style={[styles.powerCount, !unlocked && styles.powerCountOff]}>
@@ -499,7 +455,6 @@ const styles = StyleSheet.create({
   unlockBadge: { width: 24, height: 24 },
   unlockTierName: { color: "#D4D4D8", fontSize: 10 },
   powerSummary: { color: "#808089", fontSize: 12.5, lineHeight: 17 },
-  powerWhere: { color: "#A1A1AA", fontSize: 11, lineHeight: 15 },
   powerFooter: {
     minHeight: 44,
     paddingHorizontal: 14,
