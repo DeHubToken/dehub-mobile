@@ -46,8 +46,8 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
       <View className="flex-1 min-w-0 mr-2">
         <View style={{ flexDirection: "row", alignItems: "baseline" }}>
           <Text
-            className="text-sm font-semibold"
-            style={{ color: "#F9FBFF", flexShrink: 1 }}
+            className="font-semibold"
+            style={{ color: "#F9FBFF", flexShrink: 1, fontSize: 16, lineHeight: 20 }}
             numberOfLines={1}
             ellipsizeMode="tail"
             onPress={onUserPress}
@@ -71,8 +71,8 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
         </View>
         {username ? (
           <Text
-            className="text-[11px] mt-0.5"
-            style={{ color: "#A6A9AC" }}
+            className="mt-0.5"
+            style={{ color: "#A6A9AC", fontSize: 14, lineHeight: 18 }}
             numberOfLines={1}
             ellipsizeMode="tail"
             onPress={onUserPress}

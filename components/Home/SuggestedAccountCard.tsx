@@ -163,7 +163,8 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
       {/* Name + badge */}
       <View className="flex-row items-center mt-2 px-0.5" style={{ maxWidth: 130 }}>
         <Text
-          className="text-white text-sm font-semibold text-center flex-shrink"
+          className="text-white font-semibold text-center flex-shrink"
+          style={{ fontSize: 16, lineHeight: 20 }}
           numberOfLines={1}
         >
           {displayName}
@@ -177,19 +178,21 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
         ) : null}
       </View>
       <Text
-        className="text-theme-neutrals-400 text-[10px] text-center"
+        className="text-theme-neutrals-400 text-center"
+        style={{ fontSize: 14, lineHeight: 18 }}
         numberOfLines={1}
       >
         @{username}
       </Text>
-      <Text className="text-theme-neutrals-500 text-[10px] mt-0.5">
+      <Text className="text-theme-neutrals-500 mt-0.5" style={{ fontSize: 13, lineHeight: 18 }}>
         {formatCompactNumber(followers)} followers
       </Text>
 
       {/* Contextual reason line */}
       {reasonLine ? (
         <Text
-          className="text-theme-neutrals-400 text-[9px] font-medium mt-1 text-center px-1"
+          className="text-theme-neutrals-400 font-medium mt-1 text-center px-1"
+          style={{ fontSize: 12, lineHeight: 16 }}
           numberOfLines={1}
         >
           {reasonLine}
