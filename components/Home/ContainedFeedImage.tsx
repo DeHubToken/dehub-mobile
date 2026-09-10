@@ -57,6 +57,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         <SmartImage
           source={{ uri }}
           contentFit="contain"
+          cachePolicy="disk"
           style={{ width: "100%", height: "100%" }}
           recyclingKey={uri}
           priority={priority}
