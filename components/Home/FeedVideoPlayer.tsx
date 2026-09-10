@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   Dimensions,
   GestureResponderEvent,
+  PanResponder,
   Animated,
   Easing,
 } from "react-native";
@@ -813,6 +814,24 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     [videoDuration]
   );
 
+  // Pressable only reports the release point, so the thin timeline used to be
+  // tappable but could not actually be scrubbed. Claim gestures that begin in
+  // its generous invisible hit area and seek continuously as the thumb moves.
+  // Refusing termination also keeps the surrounding profile/feed FlatList from
+  // stealing a deliberate horizontal scrub halfway through it on Android.
+  const seekPanResponder = useMemo(
+    () => PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderGrant: (event) => handleSeek(event.nativeEvent.locationX),
+      onPanResponderMove: (event) => handleSeek(event.nativeEvent.locationX),
+      onPanResponderTerminationRequest: () => false,
+      onPanResponderRelease: startHideTimer,
+      onPanResponderTerminate: startHideTimer,
+    }),
+    [handleSeek, startHideTimer],
+  );
+
   const handleGatedOverlayPress = useCallback(() => {
     if (isPPVLocked) onPPVPress?.();
     else if (isHoldingsLocked) onLockPress?.();
@@ -1025,8 +1044,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 </View>
                 <Pressable
                   style={styles.progressTrack}
-                  onPress={(e) => handleSeek(e.nativeEvent.locationX)}
+                  {...seekPanResponder.panHandlers}
                   onLayout={(e) => { progressTrackWidthRef.current = e.nativeEvent.layout.width; }}
+                  accessibilityRole="adjustable"
+                  accessibilityLabel="Video progress"
                 >
                   <View style={styles.progressTrackInner}>
                     <View style={[styles.progressFill, { width: `${progressPercent}%` }]} />
@@ -1255,7 +1276,7 @@ const styles = StyleSheet.create({
   },
   progressTrack: {
     flex: 1,
-    height: 20,
+    height: 32,
     justifyContent: "center",
   },
   progressTrackInner: {
