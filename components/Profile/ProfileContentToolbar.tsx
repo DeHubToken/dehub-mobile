@@ -67,51 +67,41 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
   // fallback ships the English immediately, and a key added to the catalogue
   // later starts being used without touching this file.
   const { t } = useTranslation();
-  const [isSearchOpen, setIsSearchOpen] = React.useState(Boolean(search));
-  const searchInputRef = React.useRef<TextInput>(null);
-
-  React.useEffect(() => {
-    if (isSearchOpen) requestAnimationFrame(() => searchInputRef.current?.focus());
-  }, [isSearchOpen]);
-
-  const closeSearch = () => {
-    onSearchChange("");
-    setIsSearchOpen(false);
-  };
 
   return (
     <View className="px-3 pb-2">
-      {isSearchOpen ? (
-        <View className="flex-row items-center rounded-xl bg-white/5 border border-white/10 px-3 h-10">
-          <Icon name="Search" size={16} color="#808089" />
-          <TextInput
-            ref={searchInputRef}
-            value={search}
-            onChangeText={onSearchChange}
-            placeholder={t("profile.searchThisChannel", "Search this channel")}
-            placeholderTextColor="#808089"
-            // A phone keyboard offering autocorrect on a search field turns
-            // "dehub" into "debug" and the reader blames the search.
-            autoCorrect={false}
-            autoCapitalize="none"
-            returnKeyType="search"
-            className="flex-1 ml-2 text-white text-sm"
-            style={FIELD_TEXT}
-          />
+      <View className="flex-row items-center rounded-xl bg-white/5 border border-white/10 px-3 h-10">
+        <Icon name="Search" size={16} color="#808089" />
+        <TextInput
+          value={search}
+          onChangeText={onSearchChange}
+          placeholder={t("profile.searchThisChannel", "Search this channel")}
+          placeholderTextColor="#808089"
+          // A phone keyboard offering autocorrect on a search field turns
+          // "dehub" into "debug" and the reader blames the search.
+          autoCorrect={false}
+          autoCapitalize="none"
+          returnKeyType="search"
+          className="flex-1 ml-2 text-white text-sm"
+          style={FIELD_TEXT}
+        />
+        {!!search && (
           <Pressable
-            onPress={closeSearch}
+            onPress={() => onSearchChange("")}
             hitSlop={8}
-            accessibilityLabel={search ? "Clear search" : "Close search"}
+            accessibilityLabel="Clear search"
           >
             <Icon name="X" size={14} color="#a1a1aa" />
           </Pressable>
-        </View>
-      ) : (
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ gap: 8 }}
-        >
+        )}
+      </View>
+
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        className="mt-2"
+        contentContainerStyle={{ gap: 8 }}
+      >
         {SORT_LABELS.map(({ key, labelKey, fallback }) => {
           const isActive = sort === key;
           return (
@@ -130,15 +120,6 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
             </Pressable>
           );
         })}
-        <Pressable
-          onPress={() => setIsSearchOpen(true)}
-          hitSlop={6}
-          accessibilityRole="button"
-          accessibilityLabel={t("profile.searchThisChannel", "Search this channel")}
-          className="h-10 w-10 rounded-xl items-center justify-center bg-white/5 border border-white/10"
-        >
-          <Icon name="Search" size={16} color="#a1a1aa" />
-        </Pressable>
         <Pressable
           onPress={onFiltersToggle}
           hitSlop={6}
@@ -161,8 +142,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
             <Text className="text-white text-xs font-medium">{activeFilterCount}</Text>
           )}
         </Pressable>
-        </ScrollView>
-      )}
+      </ScrollView>
     </View>
   );
 };
