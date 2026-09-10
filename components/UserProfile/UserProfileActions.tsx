@@ -86,7 +86,7 @@ const UserProfileActions: React.FC<UserProfileActionsProps> = ({
           <View style={glassBtn.topHighlight} />
           <View style={glassBtn.content}>
             <Text style={glassBtn.label}>Following</Text>
-            <Icon name="ChevronDown" size={14} color="#fff" />
+            <Icon name="Check" size={14} color="#fff" />
           </View>
         </TouchableOpacity>
       );

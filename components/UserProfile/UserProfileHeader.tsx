@@ -246,7 +246,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
           <View style={s.glassBtnContent}>
             <Text style={s.glassBtnLabel}>Following</Text>
-            <Icon name="ChevronDown" size={14} color="#fff" />
+            <Icon name="Check" size={14} color="#fff" />
           </View>
         </TouchableOpacity>
       );
