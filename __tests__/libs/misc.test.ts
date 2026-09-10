@@ -4,6 +4,7 @@ import {
   getImageUrl, getExtension, buildImageUrl, getImageUrlApi,
   getImageUrlApiSimple, getAudioUrl, getBadgeName, getBadgeUrl,
   resolveBadgeBalance, getDefaultBanner, resolveBadgeUsername, getBadgeUrlFor,
+  getBadgeOpticalStyle,
 } from '../../libs/misc';
 
 jest.mock('../../config/env', () => ({
@@ -378,6 +379,19 @@ describe('libs/misc', () => {
       expect(getBadgeUrlFor({ username: 'maldoteth', badgeBalance: 0 })).toBe(
         getBadgeUrl(50_000_000),
       );
+    });
+  });
+
+  describe('getBadgeOpticalStyle', () => {
+    it('keeps badge artwork out of the text baseline calculation', () => {
+      const source = getBadgeUrl(50_000_000);
+      expect(source).toBeDefined();
+
+      const style = getBadgeOpticalStyle(source!, 20);
+      expect(style.alignSelf).toBe('center');
+      expect(style.marginTop).toBeLessThanOrEqual(0);
+      expect(style.marginBottom).toBe(style.marginTop);
+      expect(Number.isFinite(style.transform[0].translateY)).toBe(true);
     });
   });
 
