@@ -67,6 +67,8 @@ interface FeedFilterPanelProps {
    * `maxHeight` has to be tall enough for every row on show.
    */
   innerScrollEnabled?: boolean;
+  /** Removes the card shell when a parent drawer already provides the surface. */
+  embedded?: boolean;
 }
 
 
@@ -248,6 +250,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   hideSort,
   maxHeight = MAX_HEIGHT,
   innerScrollEnabled = true,
+  embedded = false,
 }) => {
   const { t } = useTranslation();
   const [categorySearch, setCategorySearch] = useState("");
@@ -340,7 +343,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
 
   return (
     <Animated.View
-      style={[animatedStyle, panelStyles.outerWrap]}
+      style={[animatedStyle, embedded ? panelStyles.embeddedOuterWrap : panelStyles.outerWrap]}
     >
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -457,6 +460,9 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
 };
 
 const panelStyles = StyleSheet.create({
+  embeddedOuterWrap: {
+    overflow: "hidden",
+  },
   outerWrap: {
     overflow: "hidden",
     backgroundColor: "#09090b",

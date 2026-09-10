@@ -39,7 +39,7 @@ import FeedRoute from "../Profile/FeedRoute";
 import ProfileTabBar, { type ProfileTabItem } from "../Profile/ProfileTabBar";
 import ProfileEmptyState from "../Profile/ProfileEmptyState";
 import ProfileContentToolbar from "../Profile/ProfileContentToolbar";
-import FeedFilterPanel from "../Home/FeedFilterPanel";
+import ProfileFilterDrawer from "../Profile/ProfileFilterDrawer";
 import {
   CONTENT_BACKED_TABS,
   useProfileContentFilters,
@@ -412,7 +412,7 @@ const UserProfileBottomContentTabs: React.FC<
     return (
       <>
         <ProfileContentToolbar {...toolbar} />
-        <FeedFilterPanel {...panel} />
+        <ProfileFilterDrawer {...panel} onClose={toolbar.onFiltersClose} />
       </>
     );
   }, [isFullScreen, activeTab, toolbar, panel]);
