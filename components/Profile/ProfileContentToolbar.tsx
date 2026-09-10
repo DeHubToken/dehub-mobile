@@ -36,11 +36,11 @@ export const PROFILE_SORT_PARAMS: Record<
   likes: { sortBy: "likes", sortOrder: "desc" },
 };
 
-const SORT_LABELS: { key: ProfileSortMode; fallback: string }[] = [
-  { key: "newest", fallback: "Newest" },
-  { key: "oldest", fallback: "Oldest" },
-  { key: "views", fallback: "Most viewed" },
-  { key: "likes", fallback: "Most liked" },
+const SORT_LABELS: { key: ProfileSortMode; labelKey: string; fallback: string }[] = [
+  { key: "newest", labelKey: "profile.sort.newest", fallback: "Newest" },
+  { key: "oldest", labelKey: "profile.sort.oldest", fallback: "Oldest" },
+  { key: "views", labelKey: "profile.sortViewsShort", fallback: "Views" },
+  { key: "likes", labelKey: "profile.sortLikesShort", fallback: "Likes" },
 ];
 
 interface ProfileContentToolbarProps {
@@ -70,8 +70,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
 
   return (
     <View className="px-3 pb-2">
-      <View className="flex-row items-center" style={{ gap: 8 }}>
-        <View className="flex-1 flex-row items-center rounded-xl bg-white/5 border border-white/10 px-3 h-10">
+      <View className="flex-row items-center rounded-xl bg-white/5 border border-white/10 px-3 h-10">
           <Icon name="Search" size={16} color="#808089" />
           <TextInput
             value={search}
@@ -95,8 +94,32 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
               <Icon name="X" size={14} color="#a1a1aa" />
             </Pressable>
           )}
-        </View>
+      </View>
 
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        className="mt-2"
+        contentContainerStyle={{ gap: 8 }}
+      >
+        {SORT_LABELS.map(({ key, labelKey, fallback }) => {
+          const isActive = sort === key;
+          return (
+            <Pressable
+              key={key}
+              onPress={() => onSortChange(key)}
+              className={
+                isActive
+                  ? "h-10 px-3 rounded-xl items-center justify-center bg-white/20 border border-white/30"
+                  : "h-10 px-3 rounded-xl items-center justify-center bg-white/5 border border-white/10"
+              }
+            >
+              <Text className={isActive ? "text-white text-xs font-medium" : "text-zinc-300 text-xs font-medium"}>
+                {t(labelKey, fallback)}
+              </Text>
+            </Pressable>
+          );
+        })}
         <Pressable
           onPress={onFiltersToggle}
           hitSlop={6}
@@ -119,32 +142,6 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
             <Text className="text-white text-xs font-medium">{activeFilterCount}</Text>
           )}
         </Pressable>
-      </View>
-
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        className="mt-2"
-        contentContainerStyle={{ gap: 8 }}
-      >
-        {SORT_LABELS.map(({ key, fallback }) => {
-          const isActive = sort === key;
-          return (
-            <Pressable
-              key={key}
-              onPress={() => onSortChange(key)}
-              className={
-                isActive
-                  ? "h-10 px-3 rounded-xl items-center justify-center bg-white/20 border border-white/30"
-                  : "h-10 px-3 rounded-xl items-center justify-center bg-white/5 border border-white/10"
-              }
-            >
-              <Text className={isActive ? "text-white text-xs font-medium" : "text-zinc-300 text-xs font-medium"}>
-                {t(`profile.sort.${key}`, fallback)}
-              </Text>
-            </Pressable>
-          );
-        })}
       </ScrollView>
     </View>
   );
