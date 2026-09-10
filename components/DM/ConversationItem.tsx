@@ -188,7 +188,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
                 {displayName}
               </Text>
               {badgeImg && (
-                <Image source={badgeImg} style={{ width: 14, height: 14 }} resizeMode="contain" />
+                <Image source={badgeImg} style={{ width: 15, height: 15 }} resizeMode="contain" />
               )}
               <NewMemberChip address={other?.address} />
               {username && (

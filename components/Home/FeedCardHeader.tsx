@@ -56,10 +56,10 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           {badgeImage && (
             <Pressable
               onPress={onUserPress}
-              style={{ marginLeft: 4 }}
+              style={{ marginLeft: 4, alignSelf: "center" }}
               hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
             >
-              <Image source={badgeImage} style={{ width: 10, height: 10 }} resizeMode="contain" />
+              <Image source={badgeImage} style={{ width: 14, height: 14 }} resizeMode="contain" />
             </Pressable>
           )}
           {address && (
