@@ -25,6 +25,15 @@ describe('video gesture wiring', () => {
     expect(controls).toBeGreaterThan(videoPressClose);
   });
 
+  it('gives the feed timeline a draggable Android responder and a thumb-sized hit area', () => {
+    const player = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
+
+    expect(player).toContain('const seekPanResponder = useMemo(');
+    expect(player).toContain('onPanResponderMove: (event) => handleSeek(event.nativeEvent.locationX)');
+    expect(player).toContain('{...seekPanResponder.panHandlers}');
+    expect(player).toMatch(/progressTrack:\s*\{[\s\S]*?height: 32,/);
+  });
+
   it('guards both loaded videos and posters against scroll travel', () => {
     const player = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
 
