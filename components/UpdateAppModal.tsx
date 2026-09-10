@@ -68,8 +68,11 @@ const UpdateAppModal: React.FC<UpdateAppModalProps> = ({
         {/* Release Notes */}
         {releaseNotes && (
           <View className="bg-theme-neutrals-800 rounded-xl p-4 mb-6">
-            <Text className="text-theme-neutrals-400 text-xs uppercase tracking-wide mb-2">
-              What's New
+            <Text
+              className="text-theme-neutrals-400 text-xs uppercase tracking-wide mb-2"
+              numberOfLines={1}
+            >
+              Changes
             </Text>
             <Text className="text-theme-neutrals-100 text-sm leading-5">
               {releaseNotes}
@@ -92,7 +95,7 @@ const UpdateAppModal: React.FC<UpdateAppModalProps> = ({
               className="py-3 px-6 items-center"
               activeOpacity={0.8}
             >
-              <Text className="text-white text-base font-semibold">
+              <Text className="text-white text-base font-semibold" numberOfLines={1}>
                 Update Now
               </Text>
             </TouchableOpacity>
@@ -104,7 +107,7 @@ const UpdateAppModal: React.FC<UpdateAppModalProps> = ({
               className="py-3 px-6 items-center"
               activeOpacity={0.7}
             >
-              <Text className="text-theme-neutrals-400 text-base">
+              <Text className="text-theme-neutrals-400 text-base" numberOfLines={1}>
                 Remind Me Later
               </Text>
             </TouchableOpacity>
