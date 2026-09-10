@@ -384,7 +384,7 @@ const ProfileHeader = () => {
         <View className="mt-2">
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-baseline gap-1.5 flex-1 mr-2">
-              <Text className="text-white text-xl font-bold" numberOfLines={1}>
+              <Text className="text-white text-xl font-bold" numberOfLines={1} style={{ flexShrink: 1 }}>
                 {displayName}
               </Text>
               {badge && badgeImage && (

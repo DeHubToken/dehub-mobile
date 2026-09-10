@@ -536,14 +536,28 @@ export function getBadgeOpticalStyle(source: number, size: number) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source);
   const optics = tier ? BADGE_OPTICS[tier] : undefined;
   const renderedSize = size * 1.15 * (optics?.scale ?? 1);
-  const artworkBaselineOffset = ((optics?.bottomInset ?? 0) / 128) * renderedSize;
+  const outerSize = renderedSize + BADGE_ARTWORK_GUTTER * 2;
+  // Native text uses a roughly 1.4x line box. Centre the image in that box,
+  // then move only its pixels to the glyph bottom. A flex baseline on the
+  // oversized image changes the name row's height and pushes the username.
+  const lineHeight = size * 1.4;
+  const targetArtworkBottom = lineHeight - size * 0.1;
+  const centredImageTop = (lineHeight - outerSize) / 2;
+  const visibleArtworkBottom =
+    centredImageTop +
+    BADGE_ARTWORK_GUTTER +
+    renderedSize * (1 - (optics?.bottomInset ?? 0) / 128);
+  const translateY = targetArtworkBottom - visibleArtworkBottom;
+  const verticalMargin = Math.min(0, (lineHeight - outerSize) / 2);
   return {
-    width: renderedSize + BADGE_ARTWORK_GUTTER * 2,
-    height: renderedSize + BADGE_ARTWORK_GUTTER * 2,
+    width: outerSize,
+    height: outerSize,
     padding: BADGE_ARTWORK_GUTTER,
     marginLeft: 6,
-    alignSelf: "baseline" as const,
-    transform: [{ translateY: artworkBaselineOffset + BADGE_ARTWORK_GUTTER }],
+    marginTop: verticalMargin,
+    marginBottom: verticalMargin,
+    alignSelf: "center" as const,
+    transform: [{ translateY }],
   };
 }
 
