@@ -534,7 +534,7 @@ export function getBadgeOpticalStyle(source: number, size: number) {
     height: size * 1.15,
     marginLeft: 6,
     alignSelf: "center" as const,
-    transform: [{ scale: opticalScale ?? 1 }],
+    transform: [{ translateY: -1 }, { scale: opticalScale ?? 1 }],
   };
 }
 
