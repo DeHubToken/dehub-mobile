@@ -288,8 +288,8 @@ const styles = StyleSheet.create({
     ...TEXT_SHADOW,
   },
   badge: {
-    width: 12,
-    height: 12,
+    width: 13,
+    height: 13,
   },
   metaRow: {
     flexDirection: "row",

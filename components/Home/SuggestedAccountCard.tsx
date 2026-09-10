@@ -163,7 +163,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
       {/* Name + badge */}
       <View className="flex-row items-center mt-2 px-0.5" style={{ maxWidth: 130 }}>
         <Text
-          className="text-white text-xs font-semibold text-center flex-shrink"
+          className="text-white text-sm font-semibold text-center flex-shrink"
           numberOfLines={1}
         >
           {displayName}
