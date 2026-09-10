@@ -71,6 +71,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Sparkles", labelKey: "nav.assistant", screen: ScreenNames.AIChat, tab: true },
   { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
+  { icon: "ChartNoAxesCombined", labelKey: "nav.stats", screen: ScreenNames.Stats },
   { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary, requiresAuth: true },
   { icon: "LayoutDashboard", labelKey: "nav.command", screen: ScreenNames.CommandCentre, requiresAuth: true },
   // Passes initialTab explicitly so returning here from the Staking entry

@@ -97,6 +97,10 @@ export default function AppNavigator() {
           getComponent={() => require("../screens/LeaderboardScreen").default}
         />
         <Stack.Screen
+          name={ScreenNames.Stats}
+          getComponent={() => require("../screens/StatsScreen").default}
+        />
+        <Stack.Screen
           name={ScreenNames.Communities}
           getComponent={() => require("../screens/CommunitiesScreen").default}
         />
