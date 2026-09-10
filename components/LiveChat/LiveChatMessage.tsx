@@ -11,7 +11,7 @@ import Icon from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
 import { useTranslation } from "../../hooks/useTranslation";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
+import { getAvatarUrl, getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
 import { openInApp } from "../../libs/links.utils";
 import { ASSISTANT_USERNAME, isAssistantAddress } from "../../libs/assistant";
 import { resolveChatGif, gifCaption, gifBox } from "../../libs/chat-gif";
@@ -211,7 +211,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
             </View>
           )}
           {!!badgeImg && (
-            <Image source={badgeImg} style={{ width: 14, height: 14 }} resizeMode="contain" />
+            <Image source={badgeImg} style={getBadgeOpticalStyle(badgeImg, 14)} resizeMode="contain" />
           )}
           <Text className="text-white/50 text-[11px] ml-auto">
             {formatTime(message.createdAt)}

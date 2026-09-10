@@ -3,6 +3,7 @@ import { View, Text, Image, Pressable } from "react-native";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import Icon from "../ui/Icon";
+import { getBadgeOpticalStyle } from "../../libs/misc";
 
 const ICON_MUTED = "#6F7174";
 
@@ -56,10 +57,10 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           {badgeImage && (
             <Pressable
               onPress={onUserPress}
-              style={{ marginLeft: 4, alignSelf: "center" }}
+              style={{ alignSelf: "flex-end" }}
               hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
             >
-              <Image source={badgeImage} style={{ width: 14, height: 14 }} resizeMode="contain" />
+              <Image source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} resizeMode="contain" />
             </Pressable>
           )}
           {address && (

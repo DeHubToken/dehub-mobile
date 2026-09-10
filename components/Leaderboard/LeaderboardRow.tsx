@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, ImageSourcePropType } from "react-
 import Avatar from "../common/Avatar";
 import { truncate } from "../../libs/strings.util";
 import { formatCompactNumber } from "../../libs/numbers.util";
-import { getBadgeUrl } from "../../libs/misc";
+import { getBadgeOpticalStyle, getBadgeUrl } from "../../libs/misc";
 import type { SortCategory } from "./LeaderboardCategoryPills";
 
 export interface LBRow {
@@ -88,7 +88,7 @@ const LeaderboardRowItem: React.FC<Props> = ({ item, sort, onPress }) => {
               {item.displayName || item.username || truncate(item.account, 10, "..")}
             </Text>
             {badgeImage ? (
-              <Image source={badgeImage} style={{ width: 14, height: 14, marginLeft: 4 }} resizeMode="contain" />
+              <Image source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} resizeMode="contain" />
             ) : null}
           </View>
           {item.username ? (
