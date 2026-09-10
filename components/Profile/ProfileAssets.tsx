@@ -12,7 +12,7 @@ import { useUser, useAuthState, useProvider } from "../../context/AuthContext";
 import { ChainId } from "../../config/constants";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { toastInfo } from "../../libs";
+import { toastError, toastInfo, toastSuccess } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import {
   dhbBreakdown as computeDhbBreakdown,
@@ -20,6 +20,11 @@ import {
 } from "../../libs/dhb-position";
 import TransferModal from "../Transfer/TransferModal";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
+import {
+  getSubscriptionEarnings,
+  withdrawSubscriptionEarnings,
+  type SubscriptionEarnings,
+} from "../../services/subscription.service";
 
 /** Shimmering placeholder shown while balances load for the first time. */
 const BalanceSkeleton: React.FC = () => (
@@ -39,6 +44,20 @@ const ProfileAssets = () => {
   const navigation = useNavigation<any>();
   const [showDHBOptions, setShowDHBOptions] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [subscriptionEarnings, setSubscriptionEarnings] = useState<SubscriptionEarnings | null>(null);
+  const [withdrawingSubscriptions, setWithdrawingSubscriptions] = useState(false);
+
+  React.useEffect(() => {
+    let active = true;
+    const refresh = () => {
+      getSubscriptionEarnings()
+        .then((value) => { if (active) setSubscriptionEarnings(value); })
+        .catch(() => { /* the on-chain wallet still renders if this private read is unavailable */ });
+    };
+    refresh();
+    const timer = setInterval(refresh, 30_000);
+    return () => { active = false; clearInterval(timer); };
+  }, [user?.address, user?.walletAddress]);
 
   const walletBalances =
     (user?.tokenBalances as Record<string, number> | undefined) || {};
@@ -119,6 +138,23 @@ const ProfileAssets = () => {
 
   const toggleDHBOptions = () => {
     setShowDHBOptions((prev) => !prev);
+  };
+
+  const handleSubscriptionWithdrawal = async () => {
+    if (!subscriptionEarnings?.withdrawalAvailable) {
+      toastInfo(subscriptionEarnings?.withdrawalMessage || "Subscription fees will be withdrawable soon");
+      return;
+    }
+    setWithdrawingSubscriptions(true);
+    try {
+      const result = await withdrawSubscriptionEarnings();
+      setSubscriptionEarnings(result.status);
+      toastSuccess(`${result.amountUsdt.toLocaleString()} USDT sent`);
+    } catch (error) {
+      toastError(error, "Subscription fees will be withdrawable soon");
+    } finally {
+      setWithdrawingSubscriptions(false);
+    }
   };
 
   return (
@@ -256,6 +292,35 @@ const ProfileAssets = () => {
           )}
         </View>
       ))}
+      {subscriptionEarnings && (subscriptionEarnings.pendingUsdt + subscriptionEarnings.processingUsdt) > 0 && (
+        <View className="mt-2 pt-3 border-t border-white/10">
+          <View className="flex-row items-center justify-between">
+            <View className="flex-row items-center flex-1">
+              <Image source={usdtIcon} className="w-8 h-8 rounded-full mr-3" />
+              <View className="flex-1">
+                <Text className="text-sm text-white font-semibold">Subscription earnings</Text>
+                <Text className="text-[11px] text-white/50">
+                  {subscriptionEarnings.withdrawalAvailable
+                    ? "Available to withdraw on Base"
+                    : "USDT-denominated · pending treasury reserve"}
+                </Text>
+              </View>
+            </View>
+            <Text className="text-base text-gray-300">
+              {(subscriptionEarnings.pendingUsdt + subscriptionEarnings.processingUsdt).toLocaleString()} USDT
+            </Text>
+          </View>
+          <TouchableOpacity
+            onPress={handleSubscriptionWithdrawal}
+            disabled={withdrawingSubscriptions}
+            className="mt-3 py-2.5 rounded-xl items-center bg-theme-neutrals-700"
+          >
+            <Text className="text-xs text-white font-semibold">
+              {withdrawingSubscriptions ? "Withdrawing…" : "Cash out"}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
       <TransferModal open={transferOpen} onOpenChange={setTransferOpen} />
     </View>
   );
