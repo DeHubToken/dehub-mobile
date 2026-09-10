@@ -51,7 +51,7 @@ import AddToFolderSheet from "./AddToFolderSheet";
 import ShareToDmSheet from "../DM/ShareToDmSheet";
 import BoostSheet from "../common/BoostSheet";
 import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
-import { useJoinCrewBoost, useSuperpowers } from "../../hooks/useSuperpowers";
+import { useSuperpowers } from "../../hooks/useSuperpowers";
 import ShareSheet from "./ShareSheet";
 import CashtagSheet from "./CashtagSheet";
 import Icon from "../ui/Icon";
@@ -201,26 +201,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // badge the client draws from a live wallet read deliberately over-reports.
   const { data: superpowerStatus } = useSuperpowers();
 
-  // Backing a Crew Boost. Only offered on the row that is one, only to an
-  // account with a badge and a spare boost of its own, and never on your own
-  // — the server refuses all three, and the client should not make somebody
-  // tap to find that out.
-  const crewBookingId = (item as any).__crewBookingId as string | undefined;
-  const joinCrew = useJoinCrewBoost();
-  const canJoinCrew =
-    !!superpowerStatus?.tier &&
-    superpowerStatus.boostsLeft > 0 &&
-    (((item as any).__booster ?? "") as string).toLowerCase() !==
-      ((user?.address || user?.walletAddress || "") as string).toLowerCase();
-
-  const handleJoinCrew = () => {
-    if (!crewBookingId) return;
-    joinCrew.mutate(crewBookingId, {
-      onSuccess: booking => toastSuccess(`Backed — it now runs ${booking.minutes} minutes`),
-      // The server writes these sentences for a person to read.
-      onError: (error: any) => toastError(error?.message || "Could not back that boost"),
-    });
-  };
   const canGiftBoost = !!superpowerStatus?.powers.some(
     p => p.key === 'deep_current' && p.unlocked && p.available,
   );
@@ -1458,27 +1438,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               Boosted
             </Text>
           </TouchableOpacity>
-          {/*
-            Backing a Crew Boost, offered exactly where one is being served
-            rather than on a screen nobody visits — the moment you are looking
-            at the post is the moment the question makes sense.
-
-            The copy says minutes, never reach: minutes are what pool, and the
-            leader's tier still decides how often the slot is dealt.
-          */}
-          {!!crewBookingId && canJoinCrew && (
-            <TouchableOpacity
-              onPress={handleJoinCrew}
-              disabled={joinCrew.isPending}
-              hitSlop={6}
-              className="ml-auto"
-              style={{ opacity: joinCrew.isPending ? 0.4 : 1 }}
-            >
-              <Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">
-                Back this
-              </Text>
-            </TouchableOpacity>
-          )}
         </View>
       )}
       <View className="flex-row items-start">
