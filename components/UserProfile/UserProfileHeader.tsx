@@ -308,7 +308,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             <View className="flex-row items-center gap-1.5 flex-1 mr-2">
               <Text className="text-white text-xl font-bold" numberOfLines={1}>{displayName}</Text>
               {badge && badgeImage && (
-                <Image source={badgeImage} className="w-3.5 h-3.5" resizeMode="contain" />
+                <Image source={badgeImage} style={{ width: 20, height: 20 }} resizeMode="contain" />
               )}
             </View>
             {socialItems.length > 0 && (

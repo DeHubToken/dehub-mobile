@@ -391,7 +391,7 @@ const ProfileHeader = () => {
                   source={badgeImage as any}
                   contentFit="contain"
                   cachePolicy="memory-disk"
-                  style={{ width: 14, height: 14 }}
+                  style={{ width: 20, height: 20 }}
                 />
               )}
             </View>

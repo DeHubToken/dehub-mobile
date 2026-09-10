@@ -399,7 +399,7 @@ const styles = StyleSheet.create({
   handleRow: { flexDirection: "row", alignItems: "center", gap: 6 },
   handle: { color: "#FFFFFF", fontSize: 17, fontWeight: "700", flexShrink: 1 },
   at: { color: "#808089" },
-  badge: { width: 14, height: 14 },
+  badge: { width: 17, height: 17 },
   chipWrap: { flexDirection: "row", flexWrap: "wrap", gap: 5 },
   metaChip: {
     flexDirection: "row",
