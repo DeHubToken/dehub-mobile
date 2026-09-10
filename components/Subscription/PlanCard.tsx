@@ -1,7 +1,7 @@
 import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import { useTranslation } from "react-i18next";
 import { DhbCoin } from "../common/DhbCoin";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
 import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
@@ -22,9 +22,10 @@ import { useAuthActions } from "../../context/AuthContext";
 import { useSubscriptionContract, useERC20Contract, useWeb3Provider, ensureAllowance } from "../../hooks/use-web3";
 import { writeContractAA } from "../../libs/aa.write";
 import { parseTxError } from "../../libs/web3.util";
-import { DHB_TOKEN_ADDRESSES } from "../../config/web3.constants";
 import { ethers } from "ethers";
 import { toastSuccess, toastError } from "../../libs/toast";
+import { useTokenPrices } from "../../hooks/useStores";
+import { dhbForUsd, formatDhbEstimate } from "../../libs/subscription-pricing";
 
 const GLASS_GRADIENT: [string, string, string] = [
   "rgba(255,255,255,0.12)",
@@ -39,38 +40,74 @@ interface PlanCardProps {
   onEdit?: () => void;
 }
 
+function formatAmount(value: number | undefined, maximumFractionDigits = 4): string {
+  if (value === undefined || value === null || Number.isNaN(value)) return "Unavailable";
+  return value.toLocaleString(undefined, { maximumFractionDigits });
+}
+
 const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit }) => {
   const { t } = useTranslation();
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [subscribing, setSubscribing] = useState(false);
   const [stage, setStage] = useState<string>("");
   const [total, setTotal] = useState<number | null>(null);
-  const { requireAuth } = useAuthActions();
+  const { requireAuth, switchChain } = useAuthActions();
   const { account, chainId } = useWeb3Provider();
   const subscriptionContract = useSubscriptionContract();
-  const dhbContract = useERC20Contract(chainId ? DHB_TOKEN_ADDRESSES[chainId] : undefined);
+  const { data: tokenPrices = {} } = useTokenPrices();
 
   const price = planPrice(plan);
+  const chainEntry = primaryPlanChain(plan);
+  const targetChainId = chainEntry?.chainId || plan.chainId || 8453;
+  const paymentToken = chainEntry?.token || plan.token || "";
+  const paymentContract = useERC20Contract(paymentToken || undefined);
+  const currency = (chainEntry?.currency || plan.currency || "DHB").toUpperCase();
+  const settlementCurrency = currency === "USD" ? "USDT" : currency;
+  const decimals = chainEntry?.decimals ?? plan.decimals ?? 18;
+  const isUsdPriced = ["USD", "USDT", "USDC"].includes(currency);
+  const dhbUsd = Number(tokenPrices.DHB);
+  const dhbEstimate = isUsdPriced ? dhbForUsd(Number(price || 0), dhbUsd) : null;
+  const formattedPrice = isUsdPriced
+    ? `${formatAmount(price, 2)} ${settlementCurrency}`
+    : `${formatAmount(price)} DHB`;
   const published = isPlanPublished(plan);
   // 999 is what lifetime plans were stored as before the contract's 0–12 range
   // was respected. Buying one reverts, so it is surfaced rather than hidden.
   const isBuyable = normaliseDuration(plan.duration) !== null;
   const creator = plan.address || plan.creatorAddress || "";
 
-  const handleSubscribe = () => {
-    requireAuth(async () => {
-      setConfirmVisible(true);
-      // The platform fee is charged on TOP of the price and varies with the
-      // buyer's badges, so the only honest total is one the contract quotes.
-      if (!subscriptionContract || !account || !creator || price == null) return;
+  useEffect(() => {
+    if (!confirmVisible) return;
+    setTotal(null);
+    if (!subscriptionContract || !account || !creator || price == null || chainId !== targetChainId) return;
+
+    let active = true;
+    const quote = async () => {
       try {
         const months = normaliseDuration(plan.duration);
         if (months === null) return;
         const fee = await subscriptionContract._checkFeeByBadges(creator, account, months);
-        const priceWei = ethers.utils.parseUnits(String(price), 18);
-        setTotal(Number(ethers.utils.formatUnits(priceWei.add(fee), 18)));
+        const priceWei = ethers.utils.parseUnits(String(price), decimals);
+        if (active) {
+          setTotal(Number(ethers.utils.formatUnits(priceWei.add(fee), decimals)));
+        }
       } catch {
-        /* leave the total unquoted rather than show one we cannot stand behind */
+        // Keep the total unquoted when the contract cannot provide its buyer-specific fee.
+      }
+    };
+    void quote();
+    return () => {
+      active = false;
+    };
+  }, [confirmVisible, subscriptionContract, account, creator, price, decimals, chainId, targetChainId, plan.duration]);
+
+  const handleSubscribe = () => {
+    requireAuth(async () => {
+      try {
+        if (chainId !== targetChainId) await switchChain(targetChainId);
+        setConfirmVisible(true);
+      } catch (error) {
+        toastError(error, "Could not switch subscription network");
       }
     });
   };
@@ -78,13 +115,13 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
   const handleConfirm = async () => {
     const planId = plan.id || plan._id;
     if (!planId) return;
-    if (!subscriptionContract || !dhbContract || !account) {
+    if (!subscriptionContract || !paymentContract || !account) {
       toastError(null, "Connect your wallet to subscribe");
       return;
     }
     const months = normaliseDuration(plan.duration);
     if (months === null) {
-      toastError(null, "This plan cannot be bought — ask the creator to recreate it");
+      toastError(null, "This plan cannot be bought. Ask the creator to recreate it");
       return;
     }
 
@@ -92,10 +129,15 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
     try {
       // 1. Reserve the row the purchase settles against.
       setStage("Preparing…");
-      const intent = await buyPlan(String(planId), chainId);
+      const intent = await buyPlan(String(planId), targetChainId);
       if (!intent?.id) throw new Error("Could not start the subscription");
+      if (intent.token.toLowerCase() !== paymentToken.toLowerCase()) {
+        throw new Error("The plan payment token changed. Close this confirmation and try again");
+      }
 
-      const priceWei = ethers.utils.parseUnits(String(intent.price ?? price ?? 0), 18);
+      const intentDecimals = intent.decimals ?? decimals;
+      const intentCurrency = (intent.currency || settlementCurrency).toUpperCase();
+      const priceWei = ethers.utils.parseUnits(String(intent.price ?? price ?? 0), intentDecimals);
       const fee = await subscriptionContract._checkFeeByBadges(
         intent.creatorAddress || creator,
         account,
@@ -106,12 +148,12 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
       // 2. Approve the full debit — price plus fee, not the list price.
       setStage("Approving…");
       const approved = await ensureAllowance(
-        dhbContract,
+        paymentContract,
         account,
         subscriptionContract.address,
         totalWei.toString(),
       );
-      if (!approved) throw new Error("Could not approve DHB");
+      if (!approved) throw new Error(`Could not approve ${intentCurrency}`);
 
       // 3. Pay.
       setStage("Confirm in your wallet…");
@@ -143,6 +185,10 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
     }
   };
 
+  const totalDhbEstimate = isUsdPriced && total != null
+    ? dhbForUsd(total, dhbUsd)
+    : null;
+
   return (
     <>
       <View style={s.card}>
@@ -172,11 +218,19 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           </View>
 
           {/* Price + duration */}
-          <View style={s.priceRow}>
-            <Text style={s.priceLabel}>$DHB</Text>
-            {/* The price lives inside `chains`; `plan.price` alone rendered 0. */}
-            <Text style={s.price}>{price ?? 0}</Text>
-            <Text style={s.duration}> / {formatDuration(plan.duration)}</Text>
+          <View>
+            <View style={s.priceRow}>
+              <Text style={s.price}>{formattedPrice}</Text>
+              <Text style={s.duration}> / {formatDuration(plan.duration)}</Text>
+            </View>
+            {isUsdPriced && (
+              <View style={s.dhbEquivalentRow}>
+                <DhbCoin size={13} />
+                <Text style={s.dhbEquivalentText}>
+                  {formatDhbEstimate(dhbEstimate)} at the current price
+                </Text>
+              </View>
+            )}
           </View>
 
           {/* Benefits */}
@@ -248,15 +302,26 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
             <Text style={{ color: "#fff", fontWeight: "600" }}>{plan.name}</Text>{" "}
             for{" "}
             <Text style={{ color: "#D4D4D8", fontWeight: "600" }}>
-              {price ?? 0} <DhbCoin />
+              {formattedPrice}
             </Text>{" "}
             / {formatDuration(plan.duration)}?
           </Text>
+          {isUsdPriced && (
+            <View style={s.confirmEquivalentRow}>
+              <DhbCoin size={14} />
+              <Text style={s.confirmEquivalentText}>{formatDhbEstimate(dhbEstimate)}</Text>
+            </View>
+          )}
           <Text style={s.confirmTotal}>
             {total != null
-              ? `You pay ${total.toLocaleString(undefined, { maximumFractionDigits: 4 })} DHB including the platform fee`
+              ? `You pay ${formatAmount(total, isUsdPriced ? 2 : 4)} ${settlementCurrency} including the platform fee`
               : "Calculating the total…"}
           </Text>
+          {totalDhbEstimate !== null && (
+            <Text style={s.confirmCheckoutDhb}>
+              {formatDhbEstimate(totalDhbEstimate)} at checkout
+            </Text>
+          )}
           {!!stage && <Text style={s.confirmStage}>{stage}</Text>}
           <View style={s.confirmBtns}>
             <TouchableOpacity
@@ -335,11 +400,6 @@ const s = StyleSheet.create({
     flexDirection: "row",
     alignItems: "baseline",
   },
-  priceLabel: {
-    color: "#a1a1aa",
-    fontSize: 13,
-    marginRight: 4,
-  },
   price: {
     color: "#fff",
     fontSize: 24,
@@ -348,6 +408,16 @@ const s = StyleSheet.create({
   duration: {
     color: "#a1a1aa",
     fontSize: 14,
+  },
+  dhbEquivalentRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    marginTop: 4,
+  },
+  dhbEquivalentText: {
+    color: "#A1A1AA",
+    fontSize: 12,
   },
   benefits: {
     gap: 6,
@@ -419,6 +489,22 @@ const s = StyleSheet.create({
     fontSize: 13,
     textAlign: "center",
     fontWeight: "600",
+  },
+  confirmEquivalentRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 6,
+  },
+  confirmEquivalentText: {
+    color: "#D4D4D8",
+    fontSize: 13,
+    fontWeight: "600",
+  },
+  confirmCheckoutDhb: {
+    color: "#A1A1AA",
+    fontSize: 12,
+    textAlign: "center",
   },
   confirmStage: {
     color: "#808089",

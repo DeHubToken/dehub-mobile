@@ -16,15 +16,27 @@ import {
   confirmPlanPublished,
   normaliseDuration,
   planPrice,
+  primaryPlanChain,
   type SubscriptionPlan,
 } from "../../services/subscription.service";
 import { toastError, toastSuccess } from "../../libs/toast";
-import { useProvider } from "../../context/AuthContext";
+import { useAuthActions, useProvider } from "../../context/AuthContext";
 import { useSubscriptionContract } from "../../hooks/use-web3";
 import { writeContractAA } from "../../libs/aa.write";
 import { parseTxError } from "../../libs/web3.util";
-import { DHB_TOKEN_ADDRESSES } from "../../config/web3.constants";
 import { ethers } from "ethers";
+import { ChainId, chainIcons } from "../../config/constants";
+import ChainSelector, {
+  SOLANA_CHAIN_OPTION,
+  type ChainOption,
+} from "../common/ChainSelector";
+import { SOLANA_MAINNET_CHAIN_ID } from "../../config/solana.constants";
+import { useTokenPrices } from "../../hooks/useStores";
+import {
+  dhbForUsd,
+  formatDhbEstimate,
+  subscriptionPaymentToken,
+} from "../../libs/subscription-pricing";
 
 interface PlanFormSheetProps {
   visible: boolean;
@@ -49,6 +61,33 @@ const DURATION_OPTIONS = [
   { label: "Lifetime", months: 0 },
 ];
 
+const SUBSCRIPTION_CHAIN_OPTIONS: ChainOption[] = [
+  {
+    id: ChainId.BASE_MAINNET,
+    name: "Base",
+    symbol: "BASE",
+    icon: chainIcons[ChainId.BASE_MAINNET],
+  },
+  {
+    id: ChainId.BSC_MAINNET,
+    name: "BNB",
+    symbol: "BNB",
+    icon: chainIcons[ChainId.BSC_MAINNET],
+  },
+  {
+    id: ChainId.ROBINHOOD_MAINNET,
+    name: "Robinhood",
+    symbol: "RHC",
+    icon: chainIcons[ChainId.ROBINHOOD_MAINNET],
+  },
+  SOLANA_CHAIN_OPTION,
+];
+
+const UNAVAILABLE_SUBSCRIPTION_CHAINS = [
+  ChainId.ROBINHOOD_MAINNET,
+  SOLANA_MAINNET_CHAIN_ID,
+];
+
 const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
   visible,
   onClose,
@@ -57,7 +96,9 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
   editPlan,
 }) => {
   const { chainId } = useProvider();
+  const { switchChain } = useAuthActions();
   const subscriptionContract = useSubscriptionContract();
+  const { data: tokenPrices = {} } = useTokenPrices();
   const isEditing = !!editPlan;
 
   const [name, setName] = useState("");
@@ -68,6 +109,17 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
   const [benefitInput, setBenefitInput] = useState("");
   const [benefits, setBenefits] = useState<string[]>([]);
   const [saving, setSaving] = useState(false);
+  const [switchingChain, setSwitchingChain] = useState(false);
+  const [selectedChainId, setSelectedChainId] = useState<number>(ChainId.BASE_MAINNET);
+
+  const existingChain = editPlan ? primaryPlanChain(editPlan) : undefined;
+  const priceCurrency = (
+    existingChain?.currency || editPlan?.currency || (isEditing ? "DHB" : "USDT")
+  ).toUpperCase();
+  const isUsdPriced = !isEditing || ["USD", "USDT", "USDC"].includes(priceCurrency);
+  const dhbEstimate = isUsdPriced
+    ? dhbForUsd(Number(price), Number(tokenPrices.DHB))
+    : null;
 
   // Populate fields when editing
   useEffect(() => {
@@ -79,15 +131,38 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       // Legacy 999 lifetime plans fold onto 0 so the preset lights up.
       setDuration(normaliseDuration(editPlan.duration) ?? 1);
       setBenefits(editPlan.benefits || []);
+      setSelectedChainId(primaryPlanChain(editPlan)?.chainId || ChainId.BASE_MAINNET);
     } else {
       setName("");
       setDescription("");
       setPrice("");
       setDuration(1);
       setBenefits([]);
+      setSelectedChainId(ChainId.BASE_MAINNET);
     }
     setBenefitInput("");
   }, [editPlan, visible]);
+
+  // The subscription contract hook follows the active wallet chain. Keep it
+  // aligned with the network selected in the header before the publish step.
+  useEffect(() => {
+    if (!visible || isEditing || selectedChainId === chainId) return;
+    if (UNAVAILABLE_SUBSCRIPTION_CHAINS.includes(selectedChainId)) return;
+
+    let active = true;
+    setSwitchingChain(true);
+    switchChain(selectedChainId)
+      .catch((error) => {
+        if (active) toastError(error, "Could not switch subscription network");
+      })
+      .finally(() => {
+        if (active) setSwitchingChain(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [visible, isEditing, selectedChainId, chainId, switchChain]);
 
   const addBenefit = useCallback(() => {
     const trimmed = benefitInput.trim();
@@ -111,10 +186,18 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       return;
     }
 
-    const targetChain = chainId || 8453;
-    const dhbToken = DHB_TOKEN_ADDRESSES[targetChain];
-    if (!isEditing && !dhbToken) {
-      toastError(null, "Subscriptions are not available on this network — switch to Base or BNB");
+    const targetChain = selectedChainId;
+    const paymentToken = subscriptionPaymentToken(targetChain);
+    if (!isEditing && (!paymentToken || UNAVAILABLE_SUBSCRIPTION_CHAINS.includes(targetChain))) {
+      toastError(null, "Subscriptions are currently available on Base and BNB");
+      return;
+    }
+    if (!isEditing && (switchingChain || chainId !== targetChain)) {
+      toastError(null, "Wait for the subscription network to finish switching");
+      return;
+    }
+    if (!isEditing && !subscriptionContract) {
+      toastError(null, "Connect your wallet and wait for the subscription network");
       return;
     }
 
@@ -132,9 +215,6 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
         });
         toastSuccess("Plan updated");
       } else {
-        // The token is the chain's DHB **address**. This used to send the
-        // string "DHB", which is not an address and cannot be charged — the
-        // API now rejects it rather than storing an unbuyable plan.
         setStage("Creating…");
         result = await createPlan({
           name: name.trim(),
@@ -142,7 +222,13 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
           duration,
           tier: 1,
           benefits,
-          chains: [{ chainId: targetChain, token: dhbToken, price: parsedPrice }],
+          chains: [{
+            chainId: targetChain,
+            token: paymentToken!.address,
+            price: parsedPrice,
+            currency: paymentToken!.symbol,
+            decimals: paymentToken!.decimals,
+          }],
         });
 
         const planId = result?.id || result?._id;
@@ -151,31 +237,27 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
         // A plan only becomes buyable once it is listed on chain. If this leg
         // fails the plan survives unpublished and can be published later,
         // rather than silently reverting for every buyer.
-        if (!subscriptionContract) {
-          toastSuccess("Plan created — connect your wallet to publish it");
-        } else {
-          setStage("Confirm in your wallet…");
-          const tx = await writeContractAA(
-            subscriptionContract,
-            "createPlan",
-            [
-              ethers.BigNumber.from(String(planId)),
-              duration,
-              name.trim(),
-              description.trim() || "",
-              ethers.utils.parseUnits(String(parsedPrice), 18),
-              true,
-              dhbToken,
-            ],
-            { context: "send" },
-          );
-          setStage("Waiting for the transaction…");
-          await tx.wait(1);
-          setStage("Finishing up…");
-          await confirmPlanPublished(String(planId), targetChain);
-          toastSuccess("Plan created and published");
-          onPublished?.();
-        }
+        setStage("Confirm in your wallet…");
+        const tx = await writeContractAA(
+          subscriptionContract,
+          "createPlan",
+          [
+            ethers.BigNumber.from(String(planId)),
+            duration,
+            name.trim(),
+            description.trim() || "",
+            ethers.utils.parseUnits(String(parsedPrice), paymentToken!.decimals),
+            true,
+            paymentToken!.address,
+          ],
+          { context: "send" },
+        );
+        setStage("Waiting for the transaction…");
+        await tx.wait(1);
+        setStage("Finishing up…");
+        await confirmPlanPublished(String(planId), targetChain);
+        toastSuccess("Plan created and published");
+        onPublished?.();
       }
       if (result) onSuccess(result);
       onClose();
@@ -185,7 +267,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       setSaving(false);
       setStage("");
     }
-  }, [name, description, price, duration, benefits, isEditing, editPlan, chainId, subscriptionContract, onSuccess, onPublished, onClose]);
+  }, [name, description, price, duration, benefits, isEditing, editPlan, selectedChainId, switchingChain, chainId, subscriptionContract, onSuccess, onPublished, onClose]);
 
   return (
     <GlassModal
@@ -203,9 +285,20 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
           <Text className="text-white font-bold text-base">
             {isEditing ? "Edit Plan" : "Create Subscription Plan"}
           </Text>
-          <TouchableOpacity onPress={onClose} activeOpacity={0.7} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
-            <Icon name="X" size={20} color="#A1A1AA" />
-          </TouchableOpacity>
+          <View className="flex-row items-center gap-1">
+            <ChainSelector
+              selectedChainId={selectedChainId}
+              onChange={setSelectedChainId}
+              variant="settings"
+              title="Subscription network"
+              options={SUBSCRIPTION_CHAIN_OPTIONS}
+              unavailableChainIds={UNAVAILABLE_SUBSCRIPTION_CHAINS}
+              disabled={isEditing || saving}
+            />
+            <TouchableOpacity onPress={onClose} activeOpacity={0.7} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+              <Icon name="X" size={20} color="#A1A1AA" />
+            </TouchableOpacity>
+          </View>
         </View>
 
         <ScrollView
@@ -244,15 +337,26 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
 
           {/* Price */}
           <View>
-            <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">Price (DHB) *</Text>
-            <TextInput
-              className="bg-theme-neutrals-800 border border-theme-neutrals-700 text-white text-sm px-4 py-3 rounded-xl"
-              placeholderTextColor="#8B8D90"
-              placeholder="0"
-              value={price}
-              onChangeText={setPrice}
-              keyboardType="numeric"
-            />
+            <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">
+              Price ({isUsdPriced ? "USD" : priceCurrency}) *
+            </Text>
+            <View className="relative">
+              <TextInput
+                className="bg-theme-neutrals-800 border border-theme-neutrals-700 text-white text-sm pl-4 pr-40 py-3 rounded-xl"
+                placeholderTextColor="#8B8D90"
+                placeholder={isUsdPriced ? "0.00" : "0"}
+                value={price}
+                onChangeText={setPrice}
+                keyboardType="decimal-pad"
+              />
+              {isUsdPriced && (
+                <View pointerEvents="none" className="absolute right-3 inset-y-0 justify-center">
+                  <Text className="text-theme-neutrals-400 text-xs">
+                    {price ? formatDhbEstimate(dhbEstimate) : "DHB"}
+                  </Text>
+                </View>
+              )}
+            </View>
           </View>
 
           {/* Duration */}
@@ -315,11 +419,11 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
         <View className="px-5 pb-6 pt-2 border-t border-white/10">
           <TouchableOpacity
             onPress={handleSave}
-            disabled={saving}
+            disabled={saving || switchingChain || (!isEditing && (chainId !== selectedChainId || !subscriptionContract))}
             activeOpacity={0.85}
-            className={`py-3.5 rounded-xl items-center bg-white ${saving ? "opacity-60" : ""}`}
+            className={`py-3.5 rounded-xl items-center bg-white ${saving || switchingChain ? "opacity-60" : ""}`}
           >
-            {saving ? (
+            {saving || switchingChain ? (
               <ActivityIndicator color="#000000" size="small" />
             ) : (
               <Text className="text-black font-semibold text-sm">
