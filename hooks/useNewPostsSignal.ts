@@ -27,8 +27,12 @@ import { mergeLiveCounts, type RawFeedRow } from "../libs/liveCounts";
 /** Rows pulled per poll. Also the ceiling on the count the pill can show. */
 const HEAD_SIZE = 20;
 
-/** How often the head is re-checked while the feed is on screen. */
-const POLL_MS = 60_000;
+/**
+ * How often the visible head is re-checked while the feed is on screen.
+ * The response is also merged into every cached copy of each post, so views
+ * and reactions move on screen without the reader pulling to refresh.
+ */
+export const LIVE_ENGAGEMENT_POLL_MS = 10_000;
 
 interface UseNewPostsSignalOptions {
   /** Poll only while this tab is on screen. */
@@ -107,8 +111,8 @@ export function useNewPostsSignal({
     queryKey: ["home-feed-head", params ?? {}],
     queryFn: () => getUnifiedFeed({ ...(params || {}), page: 1, limit: HEAD_SIZE }),
     enabled: polling,
-    refetchInterval: polling ? POLL_MS : false,
-    staleTime: POLL_MS / 2,
+    refetchInterval: polling ? LIVE_ENGAGEMENT_POLL_MS : false,
+    staleTime: LIVE_ENGAGEMENT_POLL_MS / 2,
     gcTime: 5 * 60_000,
     retry: 1,
   });
