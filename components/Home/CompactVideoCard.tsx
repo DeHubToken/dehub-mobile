@@ -190,7 +190,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
           )}
           {isLive && status && <StatusBadge status={status as any} />}
           {duration && (
-            <View className="absolute bottom-2 right-2 bg-black/60 rounded px-1.5 py-0.5">
+            <View className="absolute bottom-2 right-2 dark-surface bg-black/60 rounded px-1.5 py-0.5">
               <Text className="text-theme-neutrals-200 text-xs">
                 {duration}
               </Text>

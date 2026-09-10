@@ -59,7 +59,7 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
       <Pressable
         onPress={onClose}
         style={{ flex: 1 }}
-        className="bg-black/40"
+        className="dark-surface bg-black/40"
       >
         <Pressable
           onPress={(e) => e.stopPropagation()}

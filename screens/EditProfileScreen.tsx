@@ -336,7 +336,7 @@ const EditProfileScreen = () => {
     (usernameEdited && (usernameAvailable !== true || isReservedUsername(username)));
 
   return (
-    <View className="flex-1 bg-black">
+    <View className="flex-1 bg-theme-background">
       <ScreenHeader
         title={t("screens.editProfile")}
         rightContent={
@@ -379,11 +379,11 @@ const EditProfileScreen = () => {
                   resizeMode="cover"
                 />
               )}
-              <View className="flex-1 items-center justify-center bg-black/30">
+              <View className="flex-1 items-center justify-center dark-surface bg-black/30">
                 {processingCover ? (
                   <ActivityIndicator color="#fff" />
                 ) : (
-                  <View className="bg-black/50 rounded-xl p-3">
+                  <View className="dark-surface bg-black/50 rounded-xl p-3">
                     <Icon name="Camera" size={20} color="#fff" />
                   </View>
                 )}

@@ -65,7 +65,7 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
       >
         <View className="rounded-xl overflow-hidden border border-white/10" onTouchStart={onInteract}>
           <BlurView intensity={80} tint="dark" style={{ position: 'absolute', inset: 0 }} />
-            <View className="absolute inset-0 bg-black/30" />
+            <View className="absolute inset-0 dark-surface bg-black/30" />
             <View className="p-4 pb-5">
               <TouchableOpacity
                 onPress={onClose}
@@ -148,7 +148,7 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
           }}
         >
           <BlurView intensity={80} tint="dark" style={{ position: 'absolute', inset: 0, borderRadius: 4 }} />
-          <View className="absolute inset-0 bg-black/30 rounded" />
+          <View className="absolute inset-0 dark-surface bg-black/30 rounded" />
           <View className="absolute inset-0 rounded border border-white/10" />
         </View>
       </View>

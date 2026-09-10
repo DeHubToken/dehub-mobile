@@ -52,7 +52,7 @@ const GiftModal: React.FC<GiftModalProps> = ({ visible, onClose, onSend, balance
 
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <View className="flex-1 bg-black/70 justify-end">
+      <View className="flex-1 dark-surface bg-black/70 justify-end">
         <View className="bg-zinc-900 rounded-t-2xl p-4 max-h-[75%]">
           <View className="flex-row items-center justify-between mb-3">
             <Text className="text-white font-semibold text-base">Send a Gift</Text>

@@ -86,7 +86,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           accessibilityRole="button"
           accessibilityLabel="Remove media"
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          className="absolute -top-1 -right-1 w-6 h-6 rounded-lg bg-black/60 items-center justify-center"
+          className="absolute -top-1 -right-1 w-6 h-6 rounded-lg dark-surface bg-black/60 items-center justify-center"
         >
           <Ionicons name="close" size={14} color="#FFFFFF" />
         </TouchableOpacity>

@@ -164,7 +164,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
               resizeMode="cover"
             />
             {quotedPost.postType === "video" && (
-              <View className="absolute bottom-2 right-2 bg-black/60 rounded px-1.5 py-0.5">
+              <View className="absolute bottom-2 right-2 dark-surface bg-black/60 rounded px-1.5 py-0.5">
                 <Ionicons name="play" size={12} color="#fff" />
               </View>
             )}

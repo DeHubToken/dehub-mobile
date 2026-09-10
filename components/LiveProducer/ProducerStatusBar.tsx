@@ -69,7 +69,7 @@ const ProducerStatusBar: React.FC<Props> = ({
 
   return (
     <View
-      className="absolute top-4 left-4 right-4 z-20 bg-black/50 rounded-xl border border-white/10"
+      className="absolute top-4 left-4 right-4 z-20 dark-surface bg-black/50 rounded-xl border border-white/10"
       style={{ paddingHorizontal: 10, paddingVertical: 8 }}
     >
       <View className="flex-row items-center">

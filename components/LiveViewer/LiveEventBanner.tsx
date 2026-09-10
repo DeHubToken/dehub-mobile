@@ -112,7 +112,7 @@ const LiveEventBanner: React.FC<LiveEventBannerProps> = ({ joinEvent, giftEvent 
         <BannerRow
           event={joinEvent}
           label="joined"
-          bgClass="bg-black/40"
+          bgClass="dark-surface bg-black/40"
           textColor="#D4D4D8"
         />
       ) : null}

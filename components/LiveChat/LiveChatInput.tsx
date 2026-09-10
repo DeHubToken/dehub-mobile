@@ -296,7 +296,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
           <View className="w-16 h-16 rounded-xl overflow-hidden bg-theme-neutrals-800">
             <Image source={{ uri: attachmentUri }} style={{ width: 64, height: 64 }} resizeMode="cover" />
             {attachmentBusy && (
-              <View className="absolute inset-0 items-center justify-center bg-black/50">
+              <View className="absolute inset-0 items-center justify-center dark-surface bg-black/50">
                 <ActivityIndicator size="small" color="#F4F4F5" />
               </View>
             )}

@@ -830,7 +830,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
 
   // UI
   return (
-    <View className="flex-1 bg-black">
+    <View className="flex-1 dark-surface bg-black">
       {localURL ? (
         <RTCView
           streamURL={localURL}

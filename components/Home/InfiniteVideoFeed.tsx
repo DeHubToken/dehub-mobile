@@ -797,7 +797,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
             onPress={showNewPosts}
             accessibilityRole="button"
             accessibilityLabel={`${newPostCount} new posts, tap to refresh`}
-            className="flex-row items-center gap-1.5 rounded-full border border-white/20 bg-black/85 px-4 py-2"
+            className="flex-row items-center gap-1.5 rounded-full border border-white/20 dark-surface bg-black/85 px-4 py-2"
           >
             <Icon name="ArrowUp" size={14} color="#E5E7EB" />
             <Text className="text-xs font-semibold text-white">

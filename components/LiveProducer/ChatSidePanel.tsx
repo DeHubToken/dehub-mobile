@@ -14,7 +14,7 @@ interface ChatSidePanelProps {
 
 const ChatSidePanel: React.FC<ChatSidePanelProps> = ({ messages, input, onChangeInput, onSend, onClose, isLive }) => {
   return (
-    <View className="absolute right-0 top-0 bottom-0 w-[46%] bg-black/60 border-l border-white/10 pt-16 pb-44">
+    <View className="absolute right-0 top-0 bottom-0 w-[46%] dark-surface bg-black/60 border-l border-white/10 pt-16 pb-44">
       <View className="flex-row items-center justify-between px-3 py-2">
         <Text className="text-white font-semibold text-xs">{isLive ? 'Live Chat' : 'Chat Offline'}</Text>
         <TouchableOpacity onPress={onClose} className="p-1 -m-1">

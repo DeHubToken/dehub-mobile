@@ -1,12 +1,13 @@
 import {
   NavigationContainer,
   DarkTheme as RNDarkTheme,
+  DefaultTheme as RNLightTheme,
   NavigationState,
   createNavigationContainerRef,
 } from "@react-navigation/native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Toaster } from "sonner-native";
-import { toastTheme } from "./theme/toastTheme";
+import { createToastTheme } from "./theme/toastTheme";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import {
@@ -36,7 +37,6 @@ import {
   Exo_600SemiBold,
   Exo_700Bold,
 } from "@expo-google-fonts/exo";
-import { theme } from "./theme";
 import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
 import WalletUnlockHost from "./components/auth/WalletUnlockHost";
 import { WebSocketProvider } from "./context/WebSocketContext";
@@ -77,6 +77,7 @@ import { AppKit } from "@reown/appkit-ethers5-react-native";
 import { isWalletConnectAvailable } from "./config/reown.config";
 import { markBootRevealed } from "./libs/bootReveal";
 import BadgeLadderSync from "./components/Badge/BadgeLadderSync";
+import { AppThemeProvider, useAppTheme } from "./context/ThemeContext";
 
 const logger = createLogger("App");
 
@@ -149,7 +150,8 @@ export default function App() {
   const staged = fontsSettled && hasInternet !== null && isConnected !== null;
 
   return (
-    <I18nextProvider i18n={i18n}>
+    <AppThemeProvider>
+      <I18nextProvider i18n={i18n}>
       <ErrorBoundary showDetails={__DEV__}>
         <PersistQueryClientProvider
           client={queryClient}
@@ -165,7 +167,7 @@ export default function App() {
           // open. See markRestoredCacheStale.
           onSuccess={markRestoredCacheStale}
         >
-        <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#000" }}>
+        <GestureHandlerRootView className="flex-1 bg-theme-background">
           <SafeAreaProvider className="flex-1 select-none bg-theme-background">
             <AuthProvider>
               <WebSocketProvider>
@@ -184,14 +186,7 @@ export default function App() {
             {/* Outside AuthProvider: badges draw for signed-out viewers too,
                 and every one of them resolves against this scale. */}
             <BadgeLadderSync />
-            <Toaster
-              position="top-center"
-              offset={56}
-              richColors
-              toastOptions={{
-                style: toastTheme.containerStyle,
-              }}
-            />
+            <ThemedToaster />
             <PermissionModalProvider />
             {/* Only when createAppKit actually succeeded — see reown.config.
                 Rendering AppKit against a configuration that never initialised
@@ -221,9 +216,24 @@ export default function App() {
         </GestureHandlerRootView>
         </PersistQueryClientProvider>
       </ErrorBoundary>
-    </I18nextProvider>
+      </I18nextProvider>
+    </AppThemeProvider>
   );
 }
+
+const ThemedToaster: React.FC = () => {
+  const { colors } = useAppTheme();
+  const toastTheme = React.useMemo(() => createToastTheme(colors), [colors]);
+
+  return (
+    <Toaster
+      position="top-center"
+      offset={56}
+      richColors
+      toastOptions={{ style: toastTheme.containerStyle }}
+    />
+  );
+};
 
 // How long the curtain fade runs once the app underneath is genuinely ready.
 const REVEAL_FADE_MS = 220;
@@ -232,6 +242,7 @@ const REVEAL_FADE_MS = 220;
 const REVEAL_FAILSAFE_MS = 5000;
 
 const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
+  const { colors, isLight } = useAppTheme();
   const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
   const user = useUser();
   // Only run update checks in production builds
@@ -331,7 +342,10 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     <>
       {settled ? (
         <SafeAreaView className="flex-1 bg-theme-background">
-          <StatusBar barStyle="light-content" backgroundColor="#010305" />
+          <StatusBar
+            barStyle={isLight ? "dark-content" : "light-content"}
+            backgroundColor={colors.background}
+          />
           <ErrorBoundary
             showDetails={__DEV__}
             onError={(error) => {
@@ -344,14 +358,14 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
               initialState={initialState}
               onStateChange={handleStateChange}
               theme={{
-                ...RNDarkTheme,
+                ...(isLight ? RNLightTheme : RNDarkTheme),
                 colors: {
-                  ...RNDarkTheme.colors,
-                  background: "#000000",
-                  card: "#000000",
-                  border: "#000000",
-                  text: "#ffffff",
-                  primary: theme.colors.accent,
+                  ...(isLight ? RNLightTheme.colors : RNDarkTheme.colors),
+                  background: colors.background,
+                  card: colors.card,
+                  border: colors.border,
+                  text: colors.foreground,
+                  primary: colors.accent,
                 },
               }}
               onReady={() => {

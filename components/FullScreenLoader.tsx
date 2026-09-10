@@ -11,7 +11,7 @@ interface FullScreenLoaderProps {
  */
 export const FullScreenLoader: React.FC<FullScreenLoaderProps> = ({ message }) => {
   return (
-    <View className="absolute inset-0 z-20 items-center justify-center bg-black/70">
+    <View className="absolute inset-0 z-20 items-center justify-center dark-surface bg-black/70">
       <ActivityIndicator size="large" color="#fff" />
       {message ? <Text className="text-white mt-4">{message}</Text> : null}
     </View>

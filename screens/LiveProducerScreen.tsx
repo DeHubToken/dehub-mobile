@@ -1077,7 +1077,7 @@ const LiveProducerScreen: React.FC = () => {
         backgroundColor="transparent"
         barStyle="light-content"
       />
-      <View className="flex-1 bg-black">
+      <View className="flex-1 dark-surface bg-black">
         {/* Full-screen camera/publisher as background */}
         <View className="absolute inset-0">
           {redirecting ? (
@@ -1120,7 +1120,7 @@ const LiveProducerScreen: React.FC = () => {
 
         {/* Permission overlay */}
         {!permission?.granted ? (
-          <View className="absolute inset-0 bg-black/80 items-center justify-center z-20">
+          <View className="absolute inset-0 dark-surface bg-black/80 items-center justify-center z-20">
             <Text className="text-zinc-400 mb-3 text-sm">
               Camera permission required
             </Text>
@@ -1338,10 +1338,10 @@ const LiveProducerScreen: React.FC = () => {
           {/* Stream paused overlay with countdown */}
           {streamPaused && stage === "live" ? (
             <View
-              className="absolute inset-0 z-30 items-center justify-center bg-black/70"
+              className="absolute inset-0 z-30 items-center justify-center dark-surface bg-black/70"
               pointerEvents="box-none"
             >
-              <View className="bg-black/80 rounded-xl px-6 py-5 items-center border border-white/10 mx-8">
+              <View className="dark-surface bg-black/80 rounded-xl px-6 py-5 items-center border border-white/10 mx-8">
                 <Text className="text-yellow-400 text-2xl mb-2">{"⏸"}</Text>
                 <Text className="text-white font-semibold text-sm">
                   Connection Interrupted

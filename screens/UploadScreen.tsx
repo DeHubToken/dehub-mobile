@@ -1769,7 +1769,7 @@ export default function UploadScreen() {
   const bottomPad = kbLift;
 
   return (
-    <View className="flex-1 bg-black">{/* don't add top inset */}
+    <View className="flex-1 bg-theme-background">{/* don't add top inset */}
       <ScrollView
         className="flex-1"
         keyboardShouldPersistTaps="handled"
@@ -1963,7 +1963,7 @@ export default function UploadScreen() {
                       <TouchableOpacity
                         onPress={handlePickLiveThumbnail}
                         activeOpacity={0.7}
-                        className="mr-2 w-8 h-8 rounded-xl bg-black/60 items-center justify-center border border-white/10"
+                        className="mr-2 w-8 h-8 rounded-xl dark-surface bg-black/60 items-center justify-center border border-white/10"
                         accessibilityRole="button"
                         accessibilityLabel="Change thumbnail"
                       >
@@ -1972,7 +1972,7 @@ export default function UploadScreen() {
                       <TouchableOpacity
                         onPress={() => setLiveThumbnailUri(null)}
                         activeOpacity={0.7}
-                        className="w-8 h-8 rounded-xl bg-black/60 items-center justify-center border border-white/10"
+                        className="w-8 h-8 rounded-xl dark-surface bg-black/60 items-center justify-center border border-white/10"
                         accessibilityRole="button"
                         accessibilityLabel="Remove thumbnail"
                       >
@@ -2026,7 +2026,7 @@ export default function UploadScreen() {
                       />
                       <TouchableOpacity
                         onPress={() => handleRemoveImage(idx)}
-                        className="absolute top-2 right-2 w-7 h-7 rounded-lg items-center justify-center bg-black/70"
+                        className="absolute top-2 right-2 w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
                         hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                         accessibilityRole="button"
                         accessibilityLabel="Remove image"
@@ -2061,7 +2061,7 @@ export default function UploadScreen() {
                   nativeControls={false}
                 />
                 {attachedSound && (
-                  <View className="absolute top-2 left-2 bg-black/70 rounded-lg px-3 py-1.5 flex-row items-center z-20">
+                  <View className="absolute top-2 left-2 dark-surface bg-black/70 rounded-lg px-3 py-1.5 flex-row items-center z-20">
                     <Icon name="Music" size={14} color="#A1A1AA" />
                     <Text className="text-white text-xs ml-1.5" numberOfLines={1} style={{ maxWidth: 160 }}>
                       {attachedSound.title}
@@ -2080,7 +2080,7 @@ export default function UploadScreen() {
                 <View className="absolute inset-0 items-center justify-center">
                   <TouchableOpacity
                     onPress={handleTogglePlay}
-                    className="w-12 h-12 rounded-xl bg-black/50 items-center justify-center"
+                    className="w-12 h-12 rounded-xl dark-surface bg-black/50 items-center justify-center"
                     accessibilityRole="button"
                     accessibilityLabel={isPlaying ? "Pause video" : "Play video"}
                   >
@@ -2093,7 +2093,7 @@ export default function UploadScreen() {
                 </View>
                 <TouchableOpacity
                   onPress={handleToggleMute}
-                  className="absolute bottom-2 left-2 w-8 h-8 rounded-xl bg-black/60 items-center justify-center"
+                  className="absolute bottom-2 left-2 w-8 h-8 rounded-xl dark-surface bg-black/60 items-center justify-center"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                   accessibilityRole="button"
                   accessibilityLabel={isMuted ? "Unmute video" : "Mute video"}
@@ -2106,7 +2106,7 @@ export default function UploadScreen() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={handleRemoveVideo}
-                  className="absolute top-2 right-2 w-8 h-8 rounded-xl bg-black/70 items-center justify-center"
+                  className="absolute top-2 right-2 w-8 h-8 rounded-xl dark-surface bg-black/70 items-center justify-center"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                   accessibilityRole="button"
                   accessibilityLabel="Remove video"
@@ -2115,7 +2115,7 @@ export default function UploadScreen() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={handleChangeVideo}
-                  className="absolute top-2 right-12 w-8 h-8 rounded-xl bg-black/70 items-center justify-center"
+                  className="absolute top-2 right-12 w-8 h-8 rounded-xl dark-surface bg-black/70 items-center justify-center"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                   accessibilityRole="button"
                   accessibilityLabel="Change video"
@@ -2135,13 +2135,13 @@ export default function UploadScreen() {
                         style={{ width: 80, height: 45 }}
                         resizeMode="cover"
                       />
-                      <View className="absolute inset-0 bg-black/40 items-center justify-center">
+                      <View className="absolute inset-0 dark-surface bg-black/40 items-center justify-center">
                         <Icon name="Pencil" size={20} color="#fff" />
                       </View>
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={toggleCoverHidden}
-                      className="absolute -top-2 right-1 w-5 h-5 rounded-lg bg-black/70 items-center justify-center"
+                      className="absolute -top-2 right-1 w-5 h-5 rounded-lg dark-surface bg-black/70 items-center justify-center"
                       hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                       accessibilityRole="button"
                       accessibilityLabel="Hide cover"
@@ -2257,7 +2257,7 @@ export default function UploadScreen() {
                   </View>
                   <TouchableOpacity
                     onPress={handleRemoveAudio}
-                    className="w-8 h-8 rounded-xl bg-black/60 items-center justify-center"
+                    className="w-8 h-8 rounded-xl dark-surface bg-black/60 items-center justify-center"
                     hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                     accessibilityRole="button"
                     accessibilityLabel="Remove audio"
@@ -2276,7 +2276,7 @@ export default function UploadScreen() {
                 />
                 <TouchableOpacity
                   onPress={handleRemoveQuoteEmbed}
-                  className="absolute top-1 right-1 w-7 h-7 rounded-lg bg-black/70 items-center justify-center z-10"
+                  className="absolute top-1 right-1 w-7 h-7 rounded-lg dark-surface bg-black/70 items-center justify-center z-10"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                   accessibilityRole="button"
                   accessibilityLabel="Remove quoted post"
@@ -2301,12 +2301,12 @@ export default function UploadScreen() {
                   placeholder="Ask a question..."
                   placeholderTextColor="#6F7174"
                   maxLength={200}
-                  className="bg-black/30 rounded-xl px-3 py-2.5 text-white text-sm mb-3"
+                  className="dark-surface bg-black/30 rounded-xl px-3 py-2.5 text-white text-sm mb-3"
                 />
 
                 {pollOptions.map((opt, idx) => (
                   <View key={idx} className="flex-row items-center mb-2">
-                    <View className="flex-1 flex-row items-center bg-black/30 rounded-xl px-3 py-2.5">
+                    <View className="flex-1 flex-row items-center dark-surface bg-black/30 rounded-xl px-3 py-2.5">
                       <Text className="text-theme-neutrals-500 text-xs w-4">{idx + 1}</Text>
                       <TextInput
                         value={opt}

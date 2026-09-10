@@ -130,8 +130,8 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   // fullscreen. As a fixed 16:9 box they sat jammed under the header with the
   // rest of the screen empty.
   const gatePlainClass = fullscreen
-    ? "flex-1 bg-black items-center justify-center"
-    : "w-full aspect-video bg-black items-center justify-center";
+    ? "flex-1 dark-surface bg-black items-center justify-center"
+    : "w-full aspect-video dark-surface bg-black items-center justify-center";
   const gateClass = `${gatePlainClass} px-6`;
 
   // Transcoding state
@@ -356,8 +356,8 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   }
 
   const containerClass = fullscreen
-    ? "flex-1 bg-black"
-    : "w-full aspect-video bg-black";
+    ? "flex-1 dark-surface bg-black"
+    : "w-full aspect-video dark-surface bg-black";
 
   return (
   <View className={containerClass} pointerEvents="auto">

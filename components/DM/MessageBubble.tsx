@@ -175,7 +175,7 @@ const AutoImage: React.FC<AutoImageProps> = memo(({ uri, isGif, onPress, onLongP
           onError={() => { setLoading(false); setError(true); }}
         />
         {isGif && (
-          <View className="absolute bottom-1.5 left-1.5 bg-black/60 rounded px-1.5 py-0.5">
+          <View className="absolute bottom-1.5 left-1.5 dark-surface bg-black/60 rounded px-1.5 py-0.5">
             <Text className="text-[11px] text-white font-bold">GIF</Text>
           </View>
         )}
@@ -231,7 +231,7 @@ const VideoThumb: React.FC<VideoThumbProps> = memo(({ uri, width, height, onPres
           </View>
         )}
         <View className="absolute inset-0 items-center justify-center">
-          <View className="bg-black/50 rounded-xl p-2">
+          <View className="dark-surface bg-black/50 rounded-xl p-2">
             <Icon name="Play" size={24} color="#fff" />
           </View>
         </View>
@@ -828,7 +828,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                 )}
                 {/* Upload progress / failure overlay */}
                 {isUploading && (
-                  <View className="absolute inset-0 items-center justify-center bg-black/40">
+                  <View className="absolute inset-0 items-center justify-center dark-surface bg-black/40">
                     <ActivityIndicator color="#fff" size="small" />
                     <Text className="text-[11px] text-white/80 mt-1">
                       Sending…
@@ -836,7 +836,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                   </View>
                 )}
                 {isUploadFailed && (
-                  <View className="absolute inset-0 items-center justify-center bg-black/50">
+                  <View className="absolute inset-0 items-center justify-center dark-surface bg-black/50">
                     <Icon name="CircleAlert" size={28} color="#F4F4F5" />
                     <Text className="text-[11px] text-white/80 mt-1 font-medium">
                       Failed to send
@@ -989,7 +989,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                     />
                   </View>
                 )}
-                <View className={`${isPaidMsg ? "px-2 pb-1.5" : "absolute bottom-1.5 right-2"} flex-row items-center gap-1 ${isPaidMsg ? "justify-end" : "bg-black/50 rounded-full px-1.5 py-0.5"}`}>
+                <View className={`${isPaidMsg ? "px-2 pb-1.5" : "absolute bottom-1.5 right-2"} flex-row items-center gap-1 ${isPaidMsg ? "justify-end" : "dark-surface bg-black/50 rounded-full px-1.5 py-0.5"}`}>
                   <Text className="text-[11px] text-white/80">{timeStr}</Text>
                   {message.isEdited && (
                     <Text className="text-[11px] text-white/50">· edited</Text>

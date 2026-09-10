@@ -27,7 +27,7 @@ const DMSettingsMenu: React.FC<DMSettingsMenuProps> = ({
       <TouchableOpacity
         activeOpacity={1}
         onPress={onClose}
-        className="flex-1 bg-black/40"
+        className="flex-1 dark-surface bg-black/40"
       >
         <View
           style={{ top: insets.top + 56 }}

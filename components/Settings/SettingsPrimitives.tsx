@@ -18,17 +18,21 @@ import CustomSwitch from '../ui/CustomSwitch';
 import GlassModal from '../ui/GlassModal';
 import { SettingsAnchor } from './SettingsAnchor';
 import { toastInfo } from '../../libs';
+import { useAppTheme } from '../../context/ThemeContext';
 
-export const SectionLabel: React.FC<{ label: string; icon?: IconName }> = ({ label, icon }) => (
-  <View className="flex-row items-center mb-2 ml-1">
-    {icon ? <Icon name={icon} size={13} color="#A6A9AC" /> : null}
-    <Text
-      className={`text-theme-neutrals-500 text-[11px] uppercase tracking-widest font-semibold ${icon ? 'ml-1.5' : ''}`}
-    >
-      {label}
-    </Text>
-  </View>
-);
+export const SectionLabel: React.FC<{ label: string; icon?: IconName }> = ({ label, icon }) => {
+  const { colors } = useAppTheme();
+  return (
+    <View className="flex-row items-center mb-2 ml-1">
+      {icon ? <Icon name={icon} size={13} color={colors.neutrals[400]} /> : null}
+      <Text
+        className={`text-theme-neutrals-500 text-[11px] uppercase tracking-widest font-semibold ${icon ? 'ml-1.5' : ''}`}
+      >
+        {label}
+      </Text>
+    </View>
+  );
+};
 
 export const SectionCard: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
@@ -83,45 +87,52 @@ const RowShell: React.FC<BaseRowProps & { right?: React.ReactNode }> = ({
   disabled,
   destructive,
   right,
-}) => (
-  <View className={`px-4 py-3.5 flex-row items-center ${disabled ? 'opacity-40' : ''}`}>
-    <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-      <Icon name={icon} size={18} color={destructive ? '#F4F4F5' : iconColor} />
+}) => {
+  const { colors } = useAppTheme();
+  const resolvedIconColor = iconColor === '#A6A9AC' ? colors.neutrals[400] : iconColor;
+  return (
+    <View className={`px-4 py-3.5 flex-row items-center ${disabled ? 'opacity-40' : ''}`}>
+      <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+        <Icon name={icon} size={18} color={destructive ? colors.foreground : resolvedIconColor} />
+      </View>
+      <View className="flex-1 mr-2">
+        <Text className={`text-sm font-medium ${destructive ? 'text-white/80' : 'text-white'}`}>
+          {label}
+        </Text>
+        {description ? (
+          <Text className="text-theme-neutrals-500 text-xs mt-0.5">{description}</Text>
+        ) : null}
+      </View>
+      {right}
     </View>
-    <View className="flex-1 mr-2">
-      <Text className={`text-sm font-medium ${destructive ? 'text-white/80' : 'text-white'}`}>
-        {label}
-      </Text>
-      {description ? (
-        <Text className="text-theme-neutrals-500 text-xs mt-0.5">{description}</Text>
-      ) : null}
-    </View>
-    {right}
-  </View>
-);
+  );
+};
 
 /** Tappable row that opens something else (modal, screen, external link). */
 export const SettingsLinkRow: React.FC<
   BaseRowProps & { onPress: () => void; value?: string; external?: boolean }
-> = ({ onPress, value, external, ...rest }) => (
-  <TouchableOpacity onPress={onPress} disabled={rest.disabled} activeOpacity={0.7}>
-    <RowShell
-      {...rest}
-      right={
-        <View className="flex-row items-center">
-          {value ? (
-            <Text className="text-theme-neutrals-400 text-xs mr-2">{value}</Text>
-          ) : null}
-          <Icon
-            name={external ? 'ExternalLink' : 'ChevronRight'}
-            size={18}
-            color={rest.destructive ? '#F4F4F5' : '#8B8D90'}
-          />
-        </View>
-      }
-    />
-  </TouchableOpacity>
-);
+> = ({ onPress, value, external, ...rest }) => {
+  const { colors } = useAppTheme();
+  return (
+    <TouchableOpacity onPress={onPress} disabled={rest.disabled} activeOpacity={0.7}>
+      <RowShell
+        {...rest}
+        right={
+          <View className="flex-row items-center">
+            {value ? (
+              <Text className="text-theme-neutrals-400 text-xs mr-2">{value}</Text>
+            ) : null}
+            <Icon
+              name={external ? 'ExternalLink' : 'ChevronRight'}
+              size={18}
+              color={rest.destructive ? colors.foreground : colors.neutrals[500]}
+            />
+          </View>
+        }
+      />
+    </TouchableOpacity>
+  );
+};
 
 /** Static row that only displays state (badges, counts). */
 export const SettingsInfoRow: React.FC<BaseRowProps & { right?: React.ReactNode }> = (props) => (

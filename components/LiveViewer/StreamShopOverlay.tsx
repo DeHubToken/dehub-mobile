@@ -226,7 +226,7 @@ export function CheckoutSheet({
           ignores adjustResize, iOS never resizes a modal window). */}
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        className="flex-1 justify-end bg-black/60"
+        className="flex-1 justify-end dark-surface bg-black/60"
       >
         <View className="bg-zinc-900 rounded-t-3xl border-t border-white/10 px-4 pt-4 pb-8">
           <View className="flex-row items-center justify-between mb-4">
@@ -362,7 +362,7 @@ function ProductSheet({
 }) {
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <View className="flex-1 justify-end bg-black/60">
+      <View className="flex-1 justify-end dark-surface bg-black/60">
         <View className="bg-zinc-900 rounded-t-3xl border-t border-white/10 px-4 pt-4 pb-8 max-h-[70%]">
           <View className="flex-row items-center justify-between mb-4">
             <Text className="text-white font-semibold text-base">Shop this stream</Text>
@@ -432,7 +432,7 @@ export default function StreamShopOverlay({ tokenId }: Props) {
   return (
     <View pointerEvents="box-none">
       {activePinned ? (
-        <View className="mx-3 mb-2 flex-row items-center rounded-2xl bg-black/70 border border-white/15 p-2">
+        <View className="mx-3 mb-2 flex-row items-center rounded-2xl dark-surface bg-black/70 border border-white/15 p-2">
           <Thumb product={activePinned} size={44} />
           <View className="flex-1 mx-2.5">
             <Text className="text-white text-xs font-medium" numberOfLines={1}>
@@ -465,7 +465,7 @@ export default function StreamShopOverlay({ tokenId }: Props) {
         <View className="flex-row justify-end mx-3 mb-2">
           <TouchableOpacity
             onPress={() => setListOpen(true)}
-            className="flex-row items-center rounded-xl bg-black/70 border border-white/15 px-3 py-2"
+            className="flex-row items-center rounded-xl dark-surface bg-black/70 border border-white/15 px-3 py-2"
           >
             <ShoppingBag size={14} color="#ffffff" />
             <Text className="text-white text-xs font-semibold ml-1.5">

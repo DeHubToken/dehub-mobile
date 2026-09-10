@@ -1,19 +1,15 @@
-const monochrome = {
-  50: "#FAFAFA",
-  100: "#F4F4F5",
-  200: "#E4E4E7",
-  300: "#D4D4D8",
-  400: "#A1A1AA",
-  500: "#808089", // was #71717A: 4.15:1 on near-black, under the 4.5:1 AA floor
-  600: "#52525B",
-  700: "#3F3F46",
-  800: "#27272A",
-  900: "#18181B",
-  950: "#09090B",
-};
+const variableColor = (name) => `rgb(var(--color-${name}) / <alpha-value>)`;
+
+const dynamicZinc = Object.fromEntries(
+  [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].map((step) => [
+    step,
+    variableColor(`zinc-${step}`),
+  ]),
+);
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./App.{js,jsx,ts,tsx}",
     "./components/**/*.{js,jsx,ts,tsx}",
@@ -24,23 +20,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Muted grey lifted from stock #71717a to clear WCAG AA on the black
-        // surfaces (5.1:1). Same value as the web app's dark-surface token.
-        zinc: { 500: "#808089" },
-        blue: monochrome,
-        cyan: monochrome,
-        sky: monochrome,
-        teal: monochrome,
-        indigo: monochrome,
-        purple: monochrome,
-        violet: monochrome,
-        fuchsia: monochrome,
-        pink: monochrome,
-        rose: monochrome,
-        orange: monochrome,
-        amber: monochrome,
-        yellow: monochrome,
-        lime: monochrome,
+        black: variableColor("black"),
+        white: variableColor("white"),
+        zinc: dynamicZinc,
+        blue: dynamicZinc,
+        cyan: dynamicZinc,
+        sky: dynamicZinc,
+        teal: dynamicZinc,
+        indigo: dynamicZinc,
+        purple: dynamicZinc,
+        violet: dynamicZinc,
+        fuchsia: dynamicZinc,
+        pink: dynamicZinc,
+        rose: dynamicZinc,
+        orange: dynamicZinc,
+        amber: dynamicZinc,
+        yellow: dynamicZinc,
+        lime: dynamicZinc,
         border: "hsl(214.3 31.8% 91.4%)",
         input: "hsl(214.3 31.8% 91.4%)",
         ring: "hsl(222.2 84% 4.9%)",
@@ -75,7 +71,7 @@ module.exports = {
           foreground: "hsl(222.2 84% 4.9%)",
         },
         theme: {
-          background: "hsl(210 67% 1%)" /* #010305 — matches theme.neutrals.900 */,
+          background: variableColor("theme-background"),
           "mine-shaft-dark": "hsl(0 0% 16%)" /* #292929 */,
           "cloud-burst": "hsl(215 35% 20%)" /* #223146 */,
           "mine-shaft": "hsl(0 0% 23%)" /* #3a3a3a */,
@@ -119,7 +115,7 @@ module.exports = {
             800: "hsl(155 90% 20%)" /* #05603A */,
             900: "hsl(156 88% 16%)" /* #054F31 */,
           },
-          blue: monochrome,
+          blue: dynamicZinc,
           sky: {
             25: "hsl(192 100% 99%)" /* #FAFEFF */,
             50: "hsl(198 100% 98%)" /* #F5FCFF */,
@@ -134,20 +130,21 @@ module.exports = {
             900: "hsl(222 70% 17%)" /* #0D1F4A */,
           },
           neutrals: {
-            100: "hsl(220 100% 99%)" /* #F9FBFF */,
-            200: "hsl(210 10% 88%)" /* #DDE0E3 */,
-            300: "hsl(216 4% 77%)" /* #C2C4C7 */,
-            400: "hsl(210 3% 66%)" /* #A6A9AC */,
-            500: "hsl(216 2% 55%)" /* #8B8D90 */,
-            600: "hsl(216 2% 45%)" /* #6F7174 */,
-            700: "hsl(216 4% 23%)" /* #383A3D */,
-            800: "hsl(210 6% 12%)" /* #1D1F21 */,
-            900: "hsl(210 67% 1%)" /* #010305 */,
+            50: variableColor("theme-neutrals-50"),
+            100: variableColor("theme-neutrals-100"),
+            200: variableColor("theme-neutrals-200"),
+            300: variableColor("theme-neutrals-300"),
+            400: variableColor("theme-neutrals-400"),
+            500: variableColor("theme-neutrals-500"),
+            600: variableColor("theme-neutrals-600"),
+            700: variableColor("theme-neutrals-700"),
+            800: variableColor("theme-neutrals-800"),
+            900: variableColor("theme-neutrals-900"),
           },
           accent: {
-            DEFAULT: "#F4F4F5",
-            foreground: "#09090B",
-            secondary: "#A1A1AA"
+            DEFAULT: variableColor("theme-accent"),
+            foreground: variableColor("theme-accent-foreground"),
+            secondary: variableColor("theme-accent-secondary")
           },
         },
       },

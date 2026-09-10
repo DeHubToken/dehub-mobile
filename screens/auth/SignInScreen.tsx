@@ -673,7 +673,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const isLoading = authLoading || isLocalLoading || isWalletLoading;
   const showLoader = isLoading && !needsUsername;;
   return (
-    <SafeAreaView className="flex-1 bg-black">
+    <SafeAreaView className="flex-1 bg-theme-background">
       {showLoader && (
         <FullScreenLoader message="Signing you in…" />
       )}
