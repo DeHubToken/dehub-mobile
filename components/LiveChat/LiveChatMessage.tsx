@@ -187,7 +187,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
       </TouchableOpacity>
 
       <View className="flex-1 ml-2.5">
-        <View className="flex-row items-center gap-1.5 mb-0.5 flex-wrap">
+        <View className="flex-row items-baseline gap-1.5 mb-0.5 flex-wrap">
           <Text
             className={`font-bold text-[14px] ${isMe ? "text-blue-400" : "text-white"}`}
             numberOfLines={1}

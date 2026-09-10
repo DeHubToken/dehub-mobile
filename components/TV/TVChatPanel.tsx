@@ -73,7 +73,7 @@ const ChatRow: React.FC<{
       </Pressable>
 
       <View className="flex-1 ml-2.5">
-        <View className="flex-row items-center gap-1.5 mb-0.5 flex-wrap">
+        <View className="flex-row items-baseline gap-1.5 mb-0.5 flex-wrap">
           <Text
             className={`font-bold text-[13px] ${isMe ? "text-theme-accent" : "text-white"}`}
             numberOfLines={1}
