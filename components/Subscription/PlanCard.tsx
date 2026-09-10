@@ -19,13 +19,26 @@ import {
   primaryPlanChain,
 } from "../../services/subscription.service";
 import { useAuthActions } from "../../context/AuthContext";
-import { useSubscriptionContract, useERC20Contract, useWeb3Provider, ensureAllowance } from "../../hooks/use-web3";
+import {
+  buildContract,
+  useSubscriptionContract,
+  useERC20Contract,
+  useWeb3Provider,
+  ensureAllowance,
+} from "../../hooks/use-web3";
 import { writeContractAA } from "../../libs/aa.write";
 import { parseTxError } from "../../libs/web3.util";
 import { ethers } from "ethers";
 import { toastSuccess, toastError } from "../../libs/toast";
 import { useTokenPrices } from "../../hooks/useStores";
 import { dhbForUsd, formatDhbEstimate } from "../../libs/subscription-pricing";
+import ERC20_ABI from "../../config/abis/erc20.json";
+import {
+  executeSubscriptionFundingRoute,
+  findSubscriptionFundingRoute,
+  getSubscriptionDexConfig,
+  waitForSubscriptionFunding,
+} from "../../services/subscription-funding.service";
 
 const GLASS_GRADIENT: [string, string, string] = [
   "rgba(255,255,255,0.12)",
@@ -52,7 +65,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
   const [stage, setStage] = useState<string>("");
   const [total, setTotal] = useState<number | null>(null);
   const { requireAuth, switchChain } = useAuthActions();
-  const { account, chainId } = useWeb3Provider();
+  const { account, chainId, provider } = useWeb3Provider();
   const subscriptionContract = useSubscriptionContract();
   const { data: tokenPrices = {} } = useTokenPrices();
 
@@ -137,6 +150,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
 
       const intentDecimals = intent.decimals ?? decimals;
       const intentCurrency = (intent.currency || settlementCurrency).toUpperCase();
+      const intentSettlementCurrency = intentCurrency === "USD" ? "USDT" : intentCurrency;
       const priceWei = ethers.utils.parseUnits(String(intent.price ?? price ?? 0), intentDecimals);
       const fee = await subscriptionContract._checkFeeByBadges(
         intent.creatorAddress || creator,
@@ -144,6 +158,53 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
         months,
       );
       const totalWei = priceWei.add(fee);
+
+      // Use USDT already in the wallet first. If it is short, buy only the
+      // missing amount from another liquid asset on this same chain, then
+      // continue into the unchanged USDT approval and subscription call.
+      if (["USD", "USDT", "USDC"].includes(intentCurrency)) {
+        setStage("Checking your wallet…");
+        const funding = await findSubscriptionFundingRoute({
+          chainId: targetChainId,
+          owner: account,
+          outputToken: intent.token,
+          total: totalWei,
+        });
+        if (funding.balance.lt(totalWei)) {
+          if (!funding.route) {
+            throw new Error(
+              `Not enough ${intentSettlementCurrency}, and no safe in-app swap route can cover the difference from this wallet.`,
+            );
+          }
+          const dex = getSubscriptionDexConfig(targetChainId);
+          if (!dex || !provider) throw new Error("Smart funding is not ready on this chain");
+
+          setStage(`Swapping ${funding.route.token.symbol} to ${intentSettlementCurrency}…`);
+          const router = await buildContract(provider, dex.routerAbi, dex.router, true);
+          const sourceToken = funding.route.token.native
+            ? undefined
+            : await buildContract(provider, ERC20_ABI, funding.route.token.address, true);
+          await executeSubscriptionFundingRoute({
+            route: funding.route,
+            owner: account,
+            routerContract: router,
+            tokenContract: sourceToken,
+          });
+
+          setStage("Waiting for the swap…");
+          const funded = await waitForSubscriptionFunding({
+            chainId: targetChainId,
+            owner: account,
+            outputToken: intent.token,
+            total: totalWei,
+          });
+          if (!funded) {
+            throw new Error(
+              `The swap may still be settling. Check your ${intentSettlementCurrency} balance before trying again so it is not swapped twice.`,
+            );
+          }
+        }
+      }
 
       // 2. Approve the full debit — price plus fee, not the list price.
       setStage("Approving…");
@@ -320,6 +381,11 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           {totalDhbEstimate !== null && (
             <Text style={s.confirmCheckoutDhb}>
               {formatDhbEstimate(totalDhbEstimate)} at checkout
+            </Text>
+          )}
+          {isUsdPriced && (
+            <Text style={s.smartFundingText}>
+              Uses USDT already in your wallet first. If you are short, DeHub automatically swaps a supported asset on this chain to cover only the difference.
             </Text>
           )}
           {!!stage && <Text style={s.confirmStage}>{stage}</Text>}
@@ -504,6 +570,12 @@ const s = StyleSheet.create({
   confirmCheckoutDhb: {
     color: "#A1A1AA",
     fontSize: 12,
+    textAlign: "center",
+  },
+  smartFundingText: {
+    color: "#71717A",
+    fontSize: 11,
+    lineHeight: 16,
     textAlign: "center",
   },
   confirmStage: {

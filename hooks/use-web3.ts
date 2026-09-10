@@ -40,7 +40,7 @@ interface ContractParams {
   withSigner?: boolean;
 }
 
-async function buildContract(
+export async function buildContract(
   provider: any,
   abi: any,
   address?: string,
