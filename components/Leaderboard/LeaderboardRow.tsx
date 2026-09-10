@@ -83,7 +83,7 @@ const LeaderboardRowItem: React.FC<Props> = ({ item, sort, onPress }) => {
       <View className="flex-1 flex-row items-center ml-2">
         <Avatar uri={item.avatarUrl} size={40} className="mr-3" name={item.displayName || item.username || item.account} />
         <View className="flex-shrink">
-          <View className="flex-row items-center">
+          <View className="flex-row items-baseline">
             <Text className="text-white text-sm font-semibold" numberOfLines={1}>
               {item.displayName || item.username || truncate(item.account, 10, "..")}
             </Text>

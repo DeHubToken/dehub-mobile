@@ -509,32 +509,34 @@ const BADGE_IMAGES: Record<string, number> = {
   Meglodon: require("../assets/badges/Meglodon.png"),
 };
 
-const BADGE_OPTICS: Record<string, number> = {
-  Crab: 1,
-  Lobster: 1.04,
-  Piranha: 1,
-  Tortoise: 1,
-  Cobra: 1,
-  Octopus: 1.02,
-  Crocodite: 1,
-  Dolphin: 1.03,
-  "Tiger Shark": 1.03,
-  "Killer Whale": 1.04,
-  "Great White Shark": 1.04,
-  "Blue Whale": 1.1,
-  Meglodon: 1.08,
+const BADGE_OPTICS: Record<string, { scale: number; bottomInset: number }> = {
+  Crab: { scale: 1, bottomInset: 5 },
+  Lobster: { scale: 1.04, bottomInset: 4 },
+  Piranha: { scale: 1, bottomInset: 7 },
+  Tortoise: { scale: 1, bottomInset: 10 },
+  Cobra: { scale: 1, bottomInset: 4 },
+  Octopus: { scale: 1.02, bottomInset: 4 },
+  Crocodite: { scale: 1, bottomInset: 10 },
+  Dolphin: { scale: 1.03, bottomInset: 4 },
+  "Tiger Shark": { scale: 1.03, bottomInset: 5 },
+  "Killer Whale": { scale: 1.04, bottomInset: 6 },
+  "Great White Shark": { scale: 1.04, bottomInset: 4 },
+  "Blue Whale": { scale: 1.1, bottomInset: 11 },
+  Meglodon: { scale: 1.08, bottomInset: 4 },
 };
 
-/** Twitter-style optical size and spacing for the visible badge artwork. */
+/** Twitter-style size, spacing, and artwork-baseline alignment. */
 export function getBadgeOpticalStyle(source: number, size: number) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source);
-  const opticalScale = tier ? BADGE_OPTICS[tier] : undefined;
+  const optics = tier ? BADGE_OPTICS[tier] : undefined;
+  const renderedSize = size * 1.15 * (optics?.scale ?? 1);
+  const artworkBaselineOffset = ((optics?.bottomInset ?? 0) / 128) * renderedSize;
   return {
-    width: size * 1.15,
-    height: size * 1.15,
+    width: renderedSize,
+    height: renderedSize,
     marginLeft: 6,
-    alignSelf: "center" as const,
-    transform: [{ translateY: -1 }, { scale: opticalScale ?? 1 }],
+    alignSelf: "baseline" as const,
+    transform: [{ translateY: artworkBaselineOffset }],
   };
 }
 
