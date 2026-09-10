@@ -125,7 +125,7 @@
           "color": "white"
         },
         {
-          "name": "Crocodite",
+          "name": "Crocodile",
           "min": 1000000,
           "color": "white"
         },
@@ -155,7 +155,7 @@
           "color": "white"
         },
         {
-          "name": "Meglodon",
+          "name": "Megalodon",
           "min": 50000000,
           "color": "white"
         }
