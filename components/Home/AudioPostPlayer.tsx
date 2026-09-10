@@ -462,13 +462,28 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   }, [isVisible, isFocused, audioUrl, stopPositionTracking, applyPendingSeek]);
 
   useEffect(() => {
-    if ((!isVisible || !isFocused) && isPlaying && playerRef.current) {
-      playerRef.current.pause();
-      setIsPlaying(false);
-      stopPositionTracking();
-      releaseLockScreen(lockScreenId);
+    if (isVisible && isFocused) return;
+
+    // A hidden card cannot be heard or interacted with, so keeping its native
+    // decoder and OkHttp buffers buys nothing. Home deliberately keeps every
+    // feed tab mounted; pausing here without removing the player therefore
+    // retained one decoder per audio card the user had scrolled past. On
+    // Android those buffers accumulated across tab switches until MediaCodec,
+    // Okio or DirectByteBuffer was the allocation that finally OOMed.
+    stopPositionTracking();
+    releaseLockScreen(lockScreenId);
+    releaseAudioFocus(focusStopRef.current);
+
+    const player = playerRef.current;
+    if (player) {
+      try { player.pause(); } catch {}
+      try { player.remove(); } catch {}
+      playerRef.current = null;
     }
-  }, [isVisible, isFocused, isPlaying, stopPositionTracking]);
+    preloadedRef.current = false;
+    setIsPlaying(false);
+    setIsLoading(false);
+  }, [isVisible, isFocused, stopPositionTracking, lockScreenId]);
 
   useEffect(() => {
     const stopFn = focusStopRef.current;
