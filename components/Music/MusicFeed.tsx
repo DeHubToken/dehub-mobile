@@ -688,7 +688,8 @@ const styles = StyleSheet.create({
   subTabRow: {
     gap: 8,
     paddingHorizontal: 12,
-    paddingVertical: 10,
+    paddingTop: 4,
+    paddingBottom: 10,
   },
   subTab: {
     flexDirection: "row",

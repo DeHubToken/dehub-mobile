@@ -260,7 +260,9 @@ const styles = StyleSheet.create({
   outerWrap: {
     paddingHorizontal: 8,
     paddingTop: 8,
-    paddingBottom: 8,
+    // The feed rows contribute 4pt above their first card, so 12pt here
+    // gives the nav surface and content a consistent 16pt visible gap.
+    paddingBottom: 12,
   },
   container: {
     borderRadius: 12,

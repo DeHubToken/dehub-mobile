@@ -389,7 +389,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         ListHeaderComponent={listHeader}
         // Reserve room for the floating nav pill; without it the last grid row
         // is stuck underneath it.
-        contentContainerStyle={{ paddingTop: 0, paddingBottom: TAB_BAR_CONTENT_INSET }}
+        contentContainerStyle={{ paddingTop: 4, paddingBottom: TAB_BAR_CONTENT_INSET }}
         style={{ borderRadius: 12, overflow: 'hidden' }}
         showsVerticalScrollIndicator={false}
         initialNumToRender={6}
