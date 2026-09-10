@@ -1,7 +1,5 @@
 import React, { useCallback } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { View, StyleSheet } from "react-native";
-import AppDrawer from "../components/Home/AppDrawer";
 import FloatingBottomTabBar from "./FloatingBottomTabBar";
 import { withScreenBoundary } from "../components/common/ScreenErrorFallback";
 import HomeScreen from "../screens/HomeScreen";
@@ -9,7 +7,6 @@ import { ScreenNames } from "./ScreenNames";
 import type { BottomTabParamList, AppStackNavigationProp } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import { useAuthState } from "../context/AuthContext";
-import { DrawerProvider, useDrawer } from "../context/DrawerContext";
 import { TabBarHideProvider } from "../context/TabBarHideContext";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
@@ -19,25 +16,22 @@ function BottomTabNavigator() {
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
 
-  const { drawerOpen, closeDrawer } = useDrawer();
-
   const renderTabBar = useCallback(
     (props: any) => <FloatingBottomTabBar {...props} />,
     [],
   );
 
   return (
-    <View style={styles.root}>
-      <Tab.Navigator
-        tabBar={renderTabBar}
-        screenLayout={withScreenBoundary}
-        screenOptions={{
-          headerShown: false,
-          tabBarShowLabel: false,
-          freezeOnBlur: true,
-          lazy: true,
-        }}
-      >
+    <Tab.Navigator
+      tabBar={renderTabBar}
+      screenLayout={withScreenBoundary}
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: false,
+        freezeOnBlur: true,
+        lazy: true,
+      }}
+    >
         {/* Home is the initial route, so it is imported statically — deferring
             it would only add a hop. Every other tab is attached with
             getComponent so its module (and its import graph) is evaluated on
@@ -75,24 +69,16 @@ function BottomTabNavigator() {
           name={ScreenNames.Explore}
           getComponent={() => require("../screens/SearchScreen").default}
         />
-      </Tab.Navigator>
-      <AppDrawer visible={drawerOpen} onClose={closeDrawer} />
-    </View>
+    </Tab.Navigator>
   );
 }
 
 function BottomTabNavigatorWithDrawer() {
   return (
     <TabBarHideProvider>
-      <DrawerProvider>
-        <BottomTabNavigator />
-      </DrawerProvider>
+      <BottomTabNavigator />
     </TabBarHideProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  root: { flex: 1 },
-});
 
 export default BottomTabNavigatorWithDrawer;
