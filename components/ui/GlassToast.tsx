@@ -60,7 +60,9 @@ const GlassToast: React.FC<GlassToastProps> = ({
         style={{ backgroundColor: "#101014" }}
       />
 
-      <View className="flex-row items-center p-4 gap-3 z-10">
+      <View
+        className={`flex-row p-4 gap-3 z-10 ${type === "loading" ? "items-center" : "items-start"}`}
+      >
         {type === "loading" && (
           <ButtonLoader size={18} />
         )}
@@ -100,6 +102,7 @@ const GlassToast: React.FC<GlassToastProps> = ({
 
         {onClose && (
           <TouchableOpacity
+            className="self-start"
             accessibilityLabel="Close"
             accessibilityRole="button"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
