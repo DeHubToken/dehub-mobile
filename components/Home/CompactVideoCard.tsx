@@ -206,7 +206,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
             {title}
           </Text>
           {showCreator && creator && (
-            <View className="flex-row items-center mt-1">
+            <View className="flex-row items-baseline mt-1">
               {avatarUrl ? (
                 <TouchableOpacity activeOpacity={0.7} onPress={handlePressAvatar}>
                   <Image
@@ -230,7 +230,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
                 <TouchableOpacity
                   activeOpacity={0.7}
                   onPress={handlePressCreator}
-                  className="self-end"
+                  className="self-baseline"
                 >
                   <Image source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} resizeMode="contain" />
                 </TouchableOpacity>
