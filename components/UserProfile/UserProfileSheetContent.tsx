@@ -243,6 +243,12 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   }, [profileData]);
   const ProfileHeader = useMemo(() => {
     if (!profileData) return null;
+    const rawDmSettings = (data as any)?.dmSettings ?? (data as any)?.dmSetting;
+    const dmSettings = Array.isArray(rawDmSettings) ? rawDmSettings[0] : rawDmSettings;
+    const messagesDisabled = dmSettings?.disables?.some((value: unknown) => {
+      const status = String(value).toUpperCase();
+      return status === "ALL" || status === "NEW_DM";
+    });
     
     return (
       <View>
@@ -272,7 +278,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           onOpenUnfollow={onOpenUnfollow}
           onOpenImage={onOpenImage}
           onShare={onShare}
-          onMessage={isOwnProfile ? undefined : onMessage}
+          onMessage={isOwnProfile || messagesDisabled ? undefined : onMessage}
           onEditProfile={onEditProfile}
           stats={stats}
           onStatPress={onStatPress}

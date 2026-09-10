@@ -67,82 +67,102 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
   // fallback ships the English immediately, and a key added to the catalogue
   // later starts being used without touching this file.
   const { t } = useTranslation();
+  const [isSearchOpen, setIsSearchOpen] = React.useState(Boolean(search));
+  const searchInputRef = React.useRef<TextInput>(null);
+
+  React.useEffect(() => {
+    if (isSearchOpen) requestAnimationFrame(() => searchInputRef.current?.focus());
+  }, [isSearchOpen]);
+
+  const closeSearch = () => {
+    onSearchChange("");
+    setIsSearchOpen(false);
+  };
 
   return (
     <View className="px-3 pb-2">
-      <View className="flex-row items-center rounded-xl bg-white/5 border border-white/10 px-3 h-10">
-        <Icon name="Search" size={16} color="#808089" />
-        <TextInput
-          value={search}
-          onChangeText={onSearchChange}
-          placeholder={t("profile.searchThisChannel", "Search this channel")}
-          placeholderTextColor="#808089"
-          // A phone keyboard offering autocorrect on a search field turns
-          // "dehub" into "debug" and the reader blames the search.
-          autoCorrect={false}
-          autoCapitalize="none"
-          returnKeyType="search"
-          className="flex-1 ml-2 text-white text-sm"
-          style={FIELD_TEXT}
-        />
-        {!!search && (
+      {isSearchOpen ? (
+        <View className="flex-row items-center rounded-xl bg-white/5 border border-white/10 px-3 h-10">
+          <Icon name="Search" size={16} color="#808089" />
+          <TextInput
+            ref={searchInputRef}
+            value={search}
+            onChangeText={onSearchChange}
+            placeholder={t("profile.searchThisChannel", "Search this channel")}
+            placeholderTextColor="#808089"
+            // A phone keyboard offering autocorrect on a search field turns
+            // "dehub" into "debug" and the reader blames the search.
+            autoCorrect={false}
+            autoCapitalize="none"
+            returnKeyType="search"
+            className="flex-1 ml-2 text-white text-sm"
+            style={FIELD_TEXT}
+          />
           <Pressable
-            onPress={() => onSearchChange("")}
+            onPress={closeSearch}
             hitSlop={8}
-            accessibilityLabel="Clear search"
+            accessibilityLabel={search ? "Clear search" : "Close search"}
           >
             <Icon name="X" size={14} color="#a1a1aa" />
           </Pressable>
-        )}
-      </View>
-
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        className="mt-2"
-        contentContainerStyle={{ gap: 8 }}
-      >
-        {SORT_LABELS.map(({ key, labelKey, fallback }) => {
-          const isActive = sort === key;
-          return (
-            <Pressable
-              key={key}
-              onPress={() => onSortChange(key)}
-              className={
-                isActive
-                  ? "h-10 px-3 rounded-xl items-center justify-center bg-white/20 border border-white/30"
-                  : "h-10 px-3 rounded-xl items-center justify-center bg-white/5 border border-white/10"
-              }
-            >
-              <Text className={isActive ? "text-white text-xs font-medium" : "text-zinc-300 text-xs font-medium"}>
-                {t(labelKey, fallback)}
-              </Text>
-            </Pressable>
-          );
-        })}
-        <Pressable
-          onPress={onFiltersToggle}
-          hitSlop={6}
-          accessibilityRole="button"
-          accessibilityState={{ expanded: filtersOpen }}
-          accessibilityLabel={t("filters.filters", "Filters")}
-          className={
-            filtersOpen || activeFilterCount > 0
-              ? "flex-row items-center rounded-xl border border-white/30 bg-white/15 px-3 h-10"
-              : "flex-row items-center rounded-xl border border-white/10 bg-white/5 px-3 h-10"
-          }
-          style={{ gap: 6 }}
+        </View>
+      ) : (
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ gap: 8 }}
         >
-          <Icon
-            name="SlidersHorizontal"
-            size={16}
-            color={filtersOpen || activeFilterCount > 0 ? "#ffffff" : "#a1a1aa"}
-          />
-          {activeFilterCount > 0 && (
-            <Text className="text-white text-xs font-medium">{activeFilterCount}</Text>
-          )}
-        </Pressable>
-      </ScrollView>
+          <Pressable
+            onPress={() => setIsSearchOpen(true)}
+            hitSlop={6}
+            accessibilityRole="button"
+            accessibilityLabel={t("profile.searchThisChannel", "Search this channel")}
+            className="h-10 w-10 rounded-xl items-center justify-center bg-white/5 border border-white/10"
+          >
+            <Icon name="Search" size={16} color="#a1a1aa" />
+          </Pressable>
+          <Pressable
+            onPress={onFiltersToggle}
+            hitSlop={6}
+            accessibilityRole="button"
+            accessibilityState={{ expanded: filtersOpen }}
+            accessibilityLabel={t("filters.filters", "Filters")}
+            className={
+              filtersOpen || activeFilterCount > 0
+                ? "flex-row items-center rounded-xl border border-white/30 bg-white/15 px-3 h-10"
+                : "flex-row items-center rounded-xl border border-white/10 bg-white/5 px-3 h-10"
+            }
+            style={{ gap: 6 }}
+          >
+            <Icon
+              name="SlidersHorizontal"
+              size={16}
+              color={filtersOpen || activeFilterCount > 0 ? "#ffffff" : "#a1a1aa"}
+            />
+            {activeFilterCount > 0 && (
+              <Text className="text-white text-xs font-medium">{activeFilterCount}</Text>
+            )}
+          </Pressable>
+          {SORT_LABELS.map(({ key, labelKey, fallback }) => {
+            const isActive = sort === key;
+            return (
+              <Pressable
+                key={key}
+                onPress={() => onSortChange(key)}
+                className={
+                  isActive
+                    ? "h-10 px-3 rounded-xl items-center justify-center bg-white/20 border border-white/30"
+                    : "h-10 px-3 rounded-xl items-center justify-center bg-white/5 border border-white/10"
+                }
+              >
+                <Text className={isActive ? "text-white text-xs font-medium" : "text-zinc-300 text-xs font-medium"}>
+                  {t(labelKey, fallback)}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </ScrollView>
+      )}
     </View>
   );
 };
