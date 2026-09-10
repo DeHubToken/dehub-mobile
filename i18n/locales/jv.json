@@ -37,7 +37,8 @@
     "ads": "Iklan",
     "prompt": "Prompt",
     "tv": "TV Langsung",
-    "arcade": "Arcade"
+    "arcade": "Arcade",
+    "stats": "Statistik langsung"
   },
   "feed": {
     "home": "Beranda",
