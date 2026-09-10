@@ -230,6 +230,7 @@ const ThemedToaster: React.FC = () => {
       position="top-center"
       offset={56}
       richColors
+      visibleToasts={1}
       toastOptions={{ style: toastTheme.containerStyle }}
     />
   );
