@@ -119,7 +119,7 @@
       "favicon": "./assets/AppIcons/web/favicon.png",
       "bundler": "metro"
     },
-    "description": "The decentralised entertainment hub, watch, shop & play on-chain today.",
+    "description": "DeHub is an open source, user owned and censorship resistant social media protocol giving you all the features incumbents refused to.",
     "jsEngine": "hermes",
     "plugins": [
       "expo-splash-screen",
