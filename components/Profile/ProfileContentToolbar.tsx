@@ -14,10 +14,10 @@ import { FIELD_TEXT } from "../../theme/inputs";
  * *loaded* post first rather than the creator's first upload, and a search
  * would only ever find what the reader had already scrolled past.
  *
- * The button beside search toggles the home feed's own filter panel
- * (`FeedFilterPanel`, sort row hidden — this toolbar already has one, with an
- * ascending option that row cannot express). Its badge carries the active
- * count, so a collapsed panel still says a filter is on.
+ * The button beside search opens the home feed's filter controls in a bottom
+ * drawer (`FeedFilterPanel`, sort row hidden because this toolbar already has
+ * one with an ascending option that row cannot express). Its badge carries the
+ * active count, so the closed drawer still says a filter is on.
  *
  * Rendered inside the profile's list header so it scrolls with the content
  * rather than pinning a bar over a small screen.
@@ -125,7 +125,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
         horizontal
         showsHorizontalScrollIndicator={false}
         className="mt-2"
-        contentContainerStyle={{ gap: 6 }}
+        contentContainerStyle={{ gap: 8 }}
       >
         {SORT_LABELS.map(({ key, fallback }) => {
           const isActive = sort === key;
@@ -135,8 +135,8 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
               onPress={() => onSortChange(key)}
               className={
                 isActive
-                  ? "px-3 py-1.5 rounded-lg bg-white/20 border border-white/30"
-                  : "px-3 py-1.5 rounded-lg bg-zinc-800"
+                  ? "h-10 px-3 rounded-xl items-center justify-center bg-white/20 border border-white/30"
+                  : "h-10 px-3 rounded-xl items-center justify-center bg-white/5 border border-white/10"
               }
             >
               <Text className={isActive ? "text-white text-xs font-medium" : "text-zinc-300 text-xs font-medium"}>

@@ -43,9 +43,9 @@ const EMPTY_PROFILE_FILTERS: FeedFilters = {
 };
 
 /**
- * Tall enough for every row the profile shows (category + date + post type +
- * access, no sort), because the panel's own scrolling is turned off on both
- * surfaces — see `innerScrollEnabled`. Raise it if a row is ever added.
+ * The drawer's filter viewport. It fits the common case without making the
+ * sheet dominate the screen, while its inner scroller keeps every row usable
+ * on shorter phones and with larger accessibility text.
  */
 const PROFILE_FILTER_PANEL_HEIGHT = 420;
 
@@ -101,6 +101,7 @@ export function useProfileContentFilters(activeTab: string, resetKey?: string) {
   }, []);
 
   const handleFiltersToggle = useCallback(() => setFiltersOpen((open) => !open), []);
+  const handleFiltersClose = useCallback(() => setFiltersOpen(false), []);
 
   const handleCategoryPress = useCallback((category: string) => {
     setSelectedCategory((prev) => (prev === category ? "All" : category));
@@ -147,6 +148,7 @@ export function useProfileContentFilters(activeTab: string, resetKey?: string) {
     onSearchChange: setSearch,
     filtersOpen,
     onFiltersToggle: handleFiltersToggle,
+    onFiltersClose: handleFiltersClose,
     activeFilterCount,
   };
 
@@ -161,7 +163,7 @@ export function useProfileContentFilters(activeTab: string, resetKey?: string) {
     hidePostType: !showPostType,
     hideSort: true,
     maxHeight: PROFILE_FILTER_PANEL_HEIGHT,
-    innerScrollEnabled: false,
+    innerScrollEnabled: true,
   };
 
   return { toolbar, panel, contentQuery, homePostType };

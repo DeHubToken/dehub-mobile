@@ -16,7 +16,7 @@ import PinnedRoute from "./PinnedRoute";
 import FractionsRoute from "./FractionsRoute";
 import ProfileTabBar, { type ProfileTabItem } from "./ProfileTabBar";
 import ProfileContentToolbar from "./ProfileContentToolbar";
-import FeedFilterPanel from "../Home/FeedFilterPanel";
+import ProfileFilterDrawer from "./ProfileFilterDrawer";
 import {
   CONTENT_BACKED_TABS,
   useProfileContentFilters,
@@ -97,7 +97,7 @@ const ProfileTabs: React.FC = () => {
       {CONTENT_BACKED_TABS.includes(activeKey) && (
         <>
           <ProfileContentToolbar {...toolbar} />
-          <FeedFilterPanel {...panel} />
+          <ProfileFilterDrawer {...panel} onClose={toolbar.onFiltersClose} />
         </>
       )}
     </View>
