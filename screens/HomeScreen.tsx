@@ -693,6 +693,7 @@ export default function HomeScreen() {
     if (key === "feed-audio") {
       return (
         <MusicFeed
+          active={isPlaybackActive}
           feedRef={musicFeedRef}
           headerInset={headerHeight}
           scrollHandler={scrollHandler}

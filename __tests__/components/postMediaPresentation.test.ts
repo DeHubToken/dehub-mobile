@@ -38,4 +38,19 @@ describe('post media presentation', () => {
     expect(containedImage).toContain('overflow: "hidden"');
     expect(containedImage).toContain('style={{ width: "100%", height: "100%" }}');
   });
+
+  it('does not retain decoded feed bitmaps or hidden audio players', () => {
+    const containedImage = readSource('components', 'Home', 'ContainedFeedImage.tsx');
+    const imageGrid = readSource('components', 'Home', 'HomeImageGrid.tsx');
+    const audioPlayer = readSource('components', 'Home', 'AudioPostPlayer.tsx');
+    const musicFeed = readSource('components', 'Music', 'MusicFeed.tsx');
+    const home = readSource('screens', 'HomeScreen.tsx');
+
+    expect(containedImage).toContain('cachePolicy="disk"');
+    expect(imageGrid).toContain('cachePolicy="disk"');
+    expect(audioPlayer).toContain('if (isVisible && isFocused) return;');
+    expect(audioPlayer).toContain('player.remove()');
+    expect(musicFeed).toContain('isVisible={active && visibleIds.has(');
+    expect(home).toContain('active={isPlaybackActive}');
+  });
 });

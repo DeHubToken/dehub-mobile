@@ -86,6 +86,7 @@ export interface MusicFeedHandle {
 }
 
 export interface MusicFeedProps {
+  active?: boolean;
   headerInset?: number;
   scrollHandler?: any;
   onScrollBegin?: () => void;
@@ -161,6 +162,7 @@ const EmptyShelf: React.FC<{ icon: IconName; title: string; note: string }> = ({
 // ── The tab ─────────────────────────────────────────────────────────────────
 
 const MusicFeed: React.FC<MusicFeedProps> = ({
+  active = true,
   headerInset = 0,
   scrollHandler,
   onScrollBegin,
@@ -346,7 +348,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
               ) : audioUploads.length === 0 ? (
                 <Text style={styles.shelfNote}>No audio uploads yet</Text>
               ) : (
-                <AudioUploadsShelf items={audioUploads} />
+                <AudioUploadsShelf items={audioUploads} active={active} />
               )}
             </View>
           );
@@ -358,7 +360,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
           return <EmptyShelf icon="MicVocal" title="Podcasts" note="No podcasts yet" />;
       }
     },
-    [carouselVideos, loadingCarouselVideos, curatedStations, audioUploads, loadingAudio],
+    [carouselVideos, loadingCarouselVideos, curatedStations, audioUploads, loadingAudio, active],
   );
 
   const { data, renderItem, keyExtractor } = useMemo(() => {
@@ -575,7 +577,7 @@ const AUDIO_CARD_WIDTH = 280;
  * pull half a dozen audio files down for a shelf nobody has touched. Only what
  * the shelf has actually settled on counts.
  */
-const AudioUploadsShelf: React.FC<{ items: GetNFTsResult[] }> = ({ items }) => {
+const AudioUploadsShelf: React.FC<{ items: GetNFTsResult[]; active: boolean }> = ({ items, active }) => {
   const scrollGuard = useHorizontalScrollGuard();
   const [visibleIds, setVisibleIds] = useState<ReadonlySet<string>>(() => new Set());
 
@@ -603,7 +605,7 @@ const AudioUploadsShelf: React.FC<{ items: GetNFTsResult[] }> = ({ items }) => {
       renderItem={({ item, index }) => (
         <AudioUploadCard
           nft={item}
-          isVisible={visibleIds.has(String(item.tokenId ?? item.id ?? index))}
+          isVisible={active && visibleIds.has(String(item.tokenId ?? item.id ?? index))}
         />
       )}
       extraData={visibleIds}
