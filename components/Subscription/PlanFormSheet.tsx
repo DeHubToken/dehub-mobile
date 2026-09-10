@@ -31,10 +31,10 @@ import ChainSelector, {
   type ChainOption,
 } from "../common/ChainSelector";
 import { SOLANA_MAINNET_CHAIN_ID } from "../../config/solana.constants";
-import { useTokenPrices } from "../../hooks/useStores";
 import {
+  DHB_PRELISTING_USD,
   dhbForUsd,
-  formatDhbEstimate,
+  formatDhbPayment,
   subscriptionPaymentToken,
 } from "../../libs/subscription-pricing";
 
@@ -98,7 +98,6 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
   const { chainId } = useProvider();
   const { switchChain } = useAuthActions();
   const subscriptionContract = useSubscriptionContract();
-  const { data: tokenPrices = {} } = useTokenPrices();
   const isEditing = !!editPlan;
 
   const [name, setName] = useState("");
@@ -116,18 +115,19 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
   const priceCurrency = (
     existingChain?.currency || editPlan?.currency || (isEditing ? "DHB" : "USDT")
   ).toUpperCase();
-  const isUsdPriced = !isEditing || ["USD", "USDT", "USDC"].includes(priceCurrency);
-  const dhbEstimate = isUsdPriced
-    ? dhbForUsd(Number(price), Number(tokenPrices.DHB))
-    : null;
+  const existingIsUsdPriced = !isEditing || ["USD", "USDT", "USDC"].includes(priceCurrency);
+  const originalPrice = editPlan ? (planPrice(editPlan) || 0) : 0;
+  const originalDollarPrice = existingIsUsdPriced
+    ? originalPrice
+    : originalPrice * DHB_PRELISTING_USD;
+  const dhbEstimate = dhbForUsd(Number(price), DHB_PRELISTING_USD);
 
   // Populate fields when editing
   useEffect(() => {
     if (editPlan) {
       setName(editPlan.name || "");
       setDescription(editPlan.description || "");
-      const chainPrice = planPrice(editPlan) ?? 0;
-      setPrice(chainPrice > 0 ? String(chainPrice) : "");
+      setPrice(originalDollarPrice > 0 ? String(originalDollarPrice) : "");
       // Legacy 999 lifetime plans fold onto 0 so the preset lights up.
       setDuration(normaliseDuration(editPlan.duration) ?? 1);
       setBenefits(editPlan.benefits || []);
@@ -141,7 +141,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       setSelectedChainId(ChainId.BASE_MAINNET);
     }
     setBenefitInput("");
-  }, [editPlan, visible]);
+  }, [editPlan, visible, originalDollarPrice]);
 
   // The subscription contract hook follows the active wallet chain. Keep it
   // aligned with the network selected in the header before the publish step.
@@ -188,7 +188,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
 
     const targetChain = selectedChainId;
     const paymentToken = subscriptionPaymentToken(targetChain);
-    if (!isEditing && (!paymentToken || UNAVAILABLE_SUBSCRIPTION_CHAINS.includes(targetChain))) {
+    if (!paymentToken || UNAVAILABLE_SUBSCRIPTION_CHAINS.includes(targetChain)) {
       toastError(null, "Subscriptions are currently available on Base and BNB");
       return;
     }
@@ -206,12 +206,23 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       let result: SubscriptionPlan | undefined;
       if (isEditing && editPlan) {
         const planId = editPlan.id || editPlan._id || "";
+        const migratePricing = !existingIsUsdPriced || parsedPrice !== originalDollarPrice;
         result = await updatePlan(planId, {
           name: name.trim(),
           description: description.trim() || undefined,
           duration,
           benefits,
-          price: parsedPrice,
+          ...(migratePricing
+            ? {
+                chains: [{
+                  chainId: targetChain,
+                  token: paymentToken.address,
+                  price: parsedPrice,
+                  currency: paymentToken.symbol,
+                  decimals: paymentToken.decimals,
+                }],
+              }
+            : {}),
         });
         toastSuccess("Plan updated");
       } else {
@@ -267,7 +278,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       setSaving(false);
       setStage("");
     }
-  }, [name, description, price, duration, benefits, isEditing, editPlan, selectedChainId, switchingChain, chainId, subscriptionContract, onSuccess, onPublished, onClose]);
+  }, [name, description, price, duration, benefits, isEditing, editPlan, existingIsUsdPriced, originalDollarPrice, selectedChainId, switchingChain, chainId, subscriptionContract, onSuccess, onPublished, onClose]);
 
   return (
     <GlassModal
@@ -338,25 +349,28 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
           {/* Price */}
           <View>
             <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">
-              Price ({isUsdPriced ? "USD" : priceCurrency}) *
+              Price (USD) *
             </Text>
             <View className="relative">
               <TextInput
                 className="bg-theme-neutrals-800 border border-theme-neutrals-700 text-white text-sm pl-4 pr-40 py-3 rounded-xl"
                 placeholderTextColor="#8B8D90"
-                placeholder={isUsdPriced ? "0.00" : "0"}
+                placeholder="0.00"
                 value={price}
                 onChangeText={setPrice}
                 keyboardType="decimal-pad"
               />
-              {isUsdPriced && (
-                <View pointerEvents="none" className="absolute right-3 inset-y-0 justify-center">
-                  <Text className="text-theme-neutrals-400 text-xs">
-                    {price ? formatDhbEstimate(dhbEstimate) : "DHB"}
-                  </Text>
-                </View>
-              )}
+              <View pointerEvents="none" className="absolute right-3 inset-y-0 justify-center">
+                <Text className="text-theme-neutrals-400 text-xs">
+                  {price ? formatDhbPayment(dhbEstimate) : "DHB"}
+                </Text>
+              </View>
             </View>
+            {!existingIsUsdPriced && (
+              <Text className="text-theme-neutrals-500 text-xs mt-1.5">
+                Saving migrates this legacy DHB plan to dollar pricing at the pre-listing rate.
+              </Text>
+            )}
           </View>
 
           {/* Duration */}

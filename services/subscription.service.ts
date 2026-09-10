@@ -1,4 +1,5 @@
 import { apiClient } from "../libs";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /**
  * Creator subscription plans.
@@ -78,6 +79,80 @@ export interface SubscriptionIntent {
   price: number;
   currency: string;
   decimals?: number;
+  settlementMode?: "onchain_usdt" | "dhb_custody";
+  dhbToken?: string;
+  treasuryAddress?: string;
+  dhbAmount?: number;
+  dhbAmountWei?: string;
+  usdtCredit?: number;
+  quoteExpiresAt?: string;
+}
+
+export interface SubscriptionEarnings {
+  currency: "USDT";
+  payoutChainId: number;
+  pendingUsdt: number;
+  processingUsdt: number;
+  paidUsdt: number;
+  totalEarnedUsdt: number;
+  reserveCovered: boolean;
+  withdrawalAvailable: boolean;
+  withdrawalMessage: string | null;
+}
+
+interface PendingSubscriptionPayment {
+  subId: string;
+  hash: string;
+  chainId: number;
+}
+
+const PENDING_SUBSCRIPTION_PAYMENTS_KEY = "dehub.pending-subscription-payments.v1";
+
+async function pendingSubscriptionPayments(): Promise<PendingSubscriptionPayment[]> {
+  try {
+    const stored = JSON.parse((await AsyncStorage.getItem(PENDING_SUBSCRIPTION_PAYMENTS_KEY)) || "[]");
+    return Array.isArray(stored) ? stored : [];
+  } catch {
+    return [];
+  }
+}
+
+async function storePendingSubscriptionPayments(
+  payments: PendingSubscriptionPayment[],
+): Promise<void> {
+  if (payments.length) {
+    await AsyncStorage.setItem(PENDING_SUBSCRIPTION_PAYMENTS_KEY, JSON.stringify(payments));
+  } else {
+    await AsyncStorage.removeItem(PENDING_SUBSCRIPTION_PAYMENTS_KEY);
+  }
+}
+
+export async function rememberPendingSubscriptionPayment(
+  payment: PendingSubscriptionPayment,
+): Promise<void> {
+  const payments = (await pendingSubscriptionPayments()).filter(
+    (item) => item.subId !== payment.subId,
+  );
+  await storePendingSubscriptionPayments([...payments, payment]);
+}
+
+export async function clearPendingSubscriptionPayment(subId: string): Promise<void> {
+  await storePendingSubscriptionPayments(
+    (await pendingSubscriptionPayments()).filter((payment) => payment.subId !== subId),
+  );
+}
+
+/** Finish a paid checkout after an interrupted backend confirmation. */
+export async function reconcilePendingSubscriptionPayments(): Promise<void> {
+  for (const payment of await pendingSubscriptionPayments()) {
+    try {
+      await confirmSubscriptionPurchase(payment.subId, payment.hash, payment.chainId);
+      await clearPendingSubscriptionPayment(payment.subId);
+    } catch {
+      // Keep the verified transaction for the next authenticated read. The
+      // backend is idempotent, so this can never charge the subscriber again.
+    }
+  }
 }
 
 // ── Duration ────────────────────────────────────────────────────────────
@@ -151,8 +226,38 @@ export async function getPlans(creatorAddress?: string): Promise<SubscriptionPla
 }
 
 export async function getMySubscriptions(): Promise<Subscription[]> {
+  await reconcilePendingSubscriptionPayments();
   const res = await apiClient.get<Envelope<Subscription[]>>("/subscription/me");
   return unwrap<Subscription[]>(res, "subscription", "subscriptions") || [];
+}
+
+export async function getSubscriptionEarnings(): Promise<SubscriptionEarnings> {
+  const res = await apiClient.get<Envelope<SubscriptionEarnings>>("/subscription/earnings");
+  return unwrap<SubscriptionEarnings>(res, "earnings") || {
+    currency: "USDT",
+    payoutChainId: 8453,
+    pendingUsdt: 0,
+    processingUsdt: 0,
+    paidUsdt: 0,
+    totalEarnedUsdt: 0,
+    reserveCovered: false,
+    withdrawalAvailable: false,
+    withdrawalMessage: "Subscription fees will be withdrawable soon",
+  };
+}
+
+export async function withdrawSubscriptionEarnings(): Promise<{
+  success: true;
+  amountUsdt: number;
+  txHash: string;
+  status: SubscriptionEarnings;
+}> {
+  return apiClient.post<{
+    success: true;
+    amountUsdt: number;
+    txHash: string;
+    status: SubscriptionEarnings;
+  }>("/subscription/earnings/withdraw", {});
 }
 
 export async function createPlan(planData: {

@@ -1,7 +1,7 @@
 import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import { useTranslation } from "react-i18next";
 import { DhbCoin } from "../common/DhbCoin";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
 import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
@@ -11,34 +11,26 @@ import AccentButtonGradient from "../ui/AccentButtonGradient";
 import type { SubscriptionPlan } from "../../services/subscription.service";
 import {
   buyPlan,
+  clearPendingSubscriptionPayment,
   confirmSubscriptionPurchase,
   formatDuration,
   isPlanPublished,
   normaliseDuration,
   planPrice,
   primaryPlanChain,
+  rememberPendingSubscriptionPayment,
 } from "../../services/subscription.service";
 import { useAuthActions } from "../../context/AuthContext";
 import {
   buildContract,
-  useSubscriptionContract,
-  useERC20Contract,
   useWeb3Provider,
-  ensureAllowance,
 } from "../../hooks/use-web3";
 import { writeContractAA } from "../../libs/aa.write";
 import { parseTxError } from "../../libs/web3.util";
 import { ethers } from "ethers";
 import { toastSuccess, toastError } from "../../libs/toast";
-import { useTokenPrices } from "../../hooks/useStores";
-import { dhbForUsd, formatDhbEstimate } from "../../libs/subscription-pricing";
+import { DHB_PRELISTING_USD, dhbForUsd, formatDhbPayment } from "../../libs/subscription-pricing";
 import ERC20_ABI from "../../config/abis/erc20.json";
-import {
-  executeSubscriptionFundingRoute,
-  findSubscriptionFundingRoute,
-  getSubscriptionDexConfig,
-  waitForSubscriptionFunding,
-} from "../../services/subscription-funding.service";
 
 const GLASS_GRADIENT: [string, string, string] = [
   "rgba(255,255,255,0.12)",
@@ -63,23 +55,17 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [subscribing, setSubscribing] = useState(false);
   const [stage, setStage] = useState<string>("");
-  const [total, setTotal] = useState<number | null>(null);
   const { requireAuth, switchChain } = useAuthActions();
   const { account, chainId, provider } = useWeb3Provider();
-  const subscriptionContract = useSubscriptionContract();
-  const { data: tokenPrices = {} } = useTokenPrices();
 
   const price = planPrice(plan);
   const chainEntry = primaryPlanChain(plan);
   const targetChainId = chainEntry?.chainId || plan.chainId || 8453;
-  const paymentToken = chainEntry?.token || plan.token || "";
-  const paymentContract = useERC20Contract(paymentToken || undefined);
   const currency = (chainEntry?.currency || plan.currency || "DHB").toUpperCase();
   const settlementCurrency = currency === "USD" ? "USDT" : currency;
-  const decimals = chainEntry?.decimals ?? plan.decimals ?? 18;
   const isUsdPriced = ["USD", "USDT", "USDC"].includes(currency);
-  const dhbUsd = Number(tokenPrices.DHB);
-  const dhbEstimate = isUsdPriced ? dhbForUsd(Number(price || 0), dhbUsd) : null;
+  const dhbUsd = DHB_PRELISTING_USD;
+  const dhbEstimate = isUsdPriced ? dhbForUsd(Number(price || 0), dhbUsd) : Number(price || 0);
   const formattedPrice = isUsdPriced
     ? `${formatAmount(price, 2)} ${settlementCurrency}`
     : `${formatAmount(price)} DHB`;
@@ -87,32 +73,6 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
   // 999 is what lifetime plans were stored as before the contract's 0–12 range
   // was respected. Buying one reverts, so it is surfaced rather than hidden.
   const isBuyable = normaliseDuration(plan.duration) !== null;
-  const creator = plan.address || plan.creatorAddress || "";
-
-  useEffect(() => {
-    if (!confirmVisible) return;
-    setTotal(null);
-    if (!subscriptionContract || !account || !creator || price == null || chainId !== targetChainId) return;
-
-    let active = true;
-    const quote = async () => {
-      try {
-        const months = normaliseDuration(plan.duration);
-        if (months === null) return;
-        const fee = await subscriptionContract._checkFeeByBadges(creator, account, months);
-        const priceWei = ethers.utils.parseUnits(String(price), decimals);
-        if (active) {
-          setTotal(Number(ethers.utils.formatUnits(priceWei.add(fee), decimals)));
-        }
-      } catch {
-        // Keep the total unquoted when the contract cannot provide its buyer-specific fee.
-      }
-    };
-    void quote();
-    return () => {
-      active = false;
-    };
-  }, [confirmVisible, subscriptionContract, account, creator, price, decimals, chainId, targetChainId, plan.duration]);
 
   const handleSubscribe = () => {
     requireAuth(async () => {
@@ -128,7 +88,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
   const handleConfirm = async () => {
     const planId = plan.id || plan._id;
     if (!planId) return;
-    if (!subscriptionContract || !paymentContract || !account) {
+    if (!provider || !account) {
       toastError(null, "Connect your wallet to subscribe");
       return;
     }
@@ -144,97 +104,41 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
       setStage("Preparing…");
       const intent = await buyPlan(String(planId), targetChainId);
       if (!intent?.id) throw new Error("Could not start the subscription");
-      if (intent.token.toLowerCase() !== paymentToken.toLowerCase()) {
-        throw new Error("The plan payment token changed. Close this confirmation and try again");
+      if (
+        intent.settlementMode !== "dhb_custody" ||
+        !intent.dhbToken ||
+        !intent.treasuryAddress ||
+        !intent.dhbAmountWei
+      ) {
+        throw new Error("The DHB subscription checkout is not ready. Try again shortly");
       }
 
-      const intentDecimals = intent.decimals ?? decimals;
-      const intentCurrency = (intent.currency || settlementCurrency).toUpperCase();
-      const intentSettlementCurrency = intentCurrency === "USD" ? "USDT" : intentCurrency;
-      const priceWei = ethers.utils.parseUnits(String(intent.price ?? price ?? 0), intentDecimals);
-      const fee = await subscriptionContract._checkFeeByBadges(
-        intent.creatorAddress || creator,
-        account,
-        months,
-      );
-      const totalWei = priceWei.add(fee);
-
-      // Use USDT already in the wallet first. If it is short, buy only the
-      // missing amount from another liquid asset on this same chain, then
-      // continue into the unchanged USDT approval and subscription call.
-      if (["USD", "USDT", "USDC"].includes(intentCurrency)) {
-        setStage("Checking your wallet…");
-        const funding = await findSubscriptionFundingRoute({
-          chainId: targetChainId,
-          owner: account,
-          outputToken: intent.token,
-          total: totalWei,
-        });
-        if (funding.balance.lt(totalWei)) {
-          if (!funding.route) {
-            throw new Error(
-              `Not enough ${intentSettlementCurrency}, and no safe in-app swap route can cover the difference from this wallet.`,
-            );
-          }
-          const dex = getSubscriptionDexConfig(targetChainId);
-          if (!dex || !provider) throw new Error("Smart funding is not ready on this chain");
-
-          setStage(`Swapping ${funding.route.token.symbol} to ${intentSettlementCurrency}…`);
-          const router = await buildContract(provider, dex.routerAbi, dex.router, true);
-          const sourceToken = funding.route.token.native
-            ? undefined
-            : await buildContract(provider, ERC20_ABI, funding.route.token.address, true);
-          await executeSubscriptionFundingRoute({
-            route: funding.route,
-            owner: account,
-            routerContract: router,
-            tokenContract: sourceToken,
-          });
-
-          setStage("Waiting for the swap…");
-          const funded = await waitForSubscriptionFunding({
-            chainId: targetChainId,
-            owner: account,
-            outputToken: intent.token,
-            total: totalWei,
-          });
-          if (!funded) {
-            throw new Error(
-              `The swap may still be settling. Check your ${intentSettlementCurrency} balance before trying again so it is not swapped twice.`,
-            );
-          }
-        }
-      }
-
-      // 2. Approve the full debit — price plus fee, not the list price.
-      setStage("Approving…");
-      const approved = await ensureAllowance(
-        paymentContract,
-        account,
-        subscriptionContract.address,
-        totalWei.toString(),
-      );
-      if (!approved) throw new Error(`Could not approve ${intentCurrency}`);
-
-      // 3. Pay.
+      // DHB is transferred into treasury custody and is not sold. The server
+      // verifies this payment before it activates access and credits the
+      // creator the plan's frozen USDT value.
       setStage("Confirm in your wallet…");
+      const dhbContract = await buildContract(provider, ERC20_ABI, intent.dhbToken, true);
       const tx = await writeContractAA(
-        subscriptionContract,
-        "buySubscription",
-        [intent.creatorAddress || creator, ethers.BigNumber.from(String(planId)), months],
+        dhbContract,
+        "transfer",
+        [intent.treasuryAddress, ethers.BigNumber.from(intent.dhbAmountWei)],
         { context: "send" },
       );
       setStage("Waiting for the transaction…");
       await tx.wait(1);
 
-      // 4. Have the server verify it against chain state. A failure here costs
-      //    the buyer nothing permanent — their next read reconciles it.
+      if (!tx?.hash) throw new Error("The wallet did not return a transaction hash");
+
+      // 3. Have the server verify the transfer and create the creator credit.
       setStage("Finishing up…");
-      if (tx?.hash) {
-        confirmSubscriptionPurchase(String(intent.id), tx.hash, intent.chainId || chainId || 0).catch(
-          err => console.warn("[Subscription] confirm failed, will reconcile on next read:", err),
-        );
-      }
+      const paymentChainId = intent.chainId || chainId || targetChainId;
+      await rememberPendingSubscriptionPayment({
+        subId: String(intent.id),
+        hash: tx.hash,
+        chainId: paymentChainId,
+      });
+      await confirmSubscriptionPurchase(String(intent.id), tx.hash, paymentChainId);
+      await clearPendingSubscriptionPayment(String(intent.id));
 
       toastSuccess("Subscribed");
       setConfirmVisible(false);
@@ -246,9 +150,10 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
     }
   };
 
-  const totalDhbEstimate = isUsdPriced && total != null
-    ? dhbForUsd(total, dhbUsd)
-    : null;
+  const total = isUsdPriced
+    ? Number(price || 0)
+    : Number(price || 0) * DHB_PRELISTING_USD;
+  const totalDhbEstimate = dhbEstimate;
 
   return (
     <>
@@ -288,7 +193,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
               <View style={s.dhbEquivalentRow}>
                 <DhbCoin size={13} />
                 <Text style={s.dhbEquivalentText}>
-                  {formatDhbEstimate(dhbEstimate)} at the current price
+                  {formatDhbPayment(dhbEstimate)} at the pre-listing rate
                 </Text>
               </View>
             )}
@@ -370,22 +275,22 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           {isUsdPriced && (
             <View style={s.confirmEquivalentRow}>
               <DhbCoin size={14} />
-              <Text style={s.confirmEquivalentText}>{formatDhbEstimate(dhbEstimate)}</Text>
+              <Text style={s.confirmEquivalentText}>{formatDhbPayment(dhbEstimate)}</Text>
             </View>
           )}
           <Text style={s.confirmTotal}>
             {total != null
-              ? `You pay ${formatAmount(total, isUsdPriced ? 2 : 4)} ${settlementCurrency} including the platform fee`
+              ? `You pay ${formatDhbPayment(totalDhbEstimate)}`
               : "Calculating the total…"}
           </Text>
           {totalDhbEstimate !== null && (
             <Text style={s.confirmCheckoutDhb}>
-              {formatDhbEstimate(totalDhbEstimate)} at checkout
+              Creator receives {formatAmount(total ?? undefined, 2)} USDT credit
             </Text>
           )}
           {isUsdPriced && (
             <Text style={s.smartFundingText}>
-              Uses USDT already in your wallet first. If you are short, DeHub automatically swaps a supported asset on this chain to cover only the difference.
+              Your DHB stays in DeHub treasury custody and is not sold. The creator receives a USDT-denominated subscription balance.
             </Text>
           )}
           {!!stage && <Text style={s.confirmStage}>{stage}</Text>}
