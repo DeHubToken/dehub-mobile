@@ -384,7 +384,7 @@ const ProfileHeader = () => {
         <View className="mt-2">
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-baseline gap-1.5 flex-1 mr-2">
-              <Text className="text-white text-xl font-bold" numberOfLines={1} style={{ flexShrink: 1 }}>
+              <Text className="text-white font-bold" numberOfLines={1} style={{ flexShrink: 1, fontSize: 24, lineHeight: 30 }}>
                 {displayName}
               </Text>
               {badge && badgeImage && (
@@ -423,7 +423,7 @@ const ProfileHeader = () => {
           <View className="flex-row items-center mt-0.5 gap-2 flex-wrap">
             {!!username && (
               <TouchableOpacity onPress={() => copyToClipboard(username)} activeOpacity={0.7}>
-                <Text className="text-zinc-400 text-sm">@{username}</Text>
+                <Text className="text-zinc-400" style={{ fontSize: 16, lineHeight: 22 }}>@{username}</Text>
               </TouchableOpacity>
             )}
             {/* Beside the handle, never instead of it. Tapping copies the .eth
@@ -476,7 +476,7 @@ const ProfileHeader = () => {
           {/* Bio */}
           {!!aboutText && (
             <View className="mt-3">
-              <Text className="text-white/90 text-sm">{translatedBio ?? aboutText}</Text>
+              <Text className="text-white/90" style={{ fontSize: 17, lineHeight: 24 }}>{translatedBio ?? aboutText}</Text>
               <TranslateButton
                 isTranslated={!!translatedBio}
                 isLoading={isTranslatingBio}
