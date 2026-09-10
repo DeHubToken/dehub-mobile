@@ -197,7 +197,9 @@ export default function SuperPowersScreen() {
             // Held AND built. A locked card stays inert rather than opening a
             // picker for something the server would refuse.
             const isTeamUp = power.key === "team_up";
-            const unlocked = (isTeamUp ? !!myAddress : !!power.unlocked) && power.available;
+            // Team up itself is public. Opening it while signed out leads
+            // straight to the sign-in action in the sheet.
+            const unlocked = (isTeamUp || !!power.unlocked) && power.available;
             const allowance =
               power.key === "signal_flare"
                 ? (status?.signalsLeft ?? status?.boostsLeft)
