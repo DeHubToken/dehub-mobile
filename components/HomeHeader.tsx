@@ -69,7 +69,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
           accessibilityHint="Scrolls to the top of the feed and refreshes it"
         >
           <SmartImage
-            source={require("../assets/web-icons/dehub-logo-compact.png")}
+            source={require("../assets/web-icons/dehub-logo-center.png")}
             style={{ width: 33, height: 28, tintColor: colors.foreground }}
             contentFit="contain"
             cachePolicy="memory-disk"

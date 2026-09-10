@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import SmartImage from "./common/SmartImage";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { useAppTheme } from "../context/ThemeContext";
 
 /**
  * Height of the mark bar in points. Web's mobile chrome is a fixed 44px bar
@@ -29,6 +30,7 @@ export const APP_TOP_BAR_HEIGHT = 44;
  */
 const AppTopBar: React.FC<{ onPress?: () => void }> = ({ onPress }) => {
   const navigation = useNavigation<any>();
+  const { colors } = useAppTheme();
 
   const handlePress = useCallback(() => {
     if (onPress) {
@@ -52,8 +54,8 @@ const AppTopBar: React.FC<{ onPress?: () => void }> = ({ onPress }) => {
         hitSlop={{ top: 8, bottom: 8, left: 16, right: 16 }}
       >
         <SmartImage
-          source={require("../assets/web-icons/dehub-logo-compact.png")}
-          style={{ width: 33, height: 28 }}
+          source={require("../assets/web-icons/dehub-logo-center.png")}
+          style={{ width: 33, height: 28, tintColor: colors.foreground }}
           contentFit="contain"
           cachePolicy="memory-disk"
           transition={150}

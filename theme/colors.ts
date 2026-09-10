@@ -1,4 +1,4 @@
-export type AppThemeName = 'system' | 'light';
+export type AppThemeName = 'system';
 
 export type ThemeColors = {
   background: string;
@@ -46,49 +46,14 @@ export const systemColors: ThemeColors = {
   },
 };
 
-/**
- * Web light theme tokens from dehubweb/src/index.css.
- *
- * Paper: #f9f8f4, paper deep: #ece8df, ink: #1a1a1a,
- * muted ink: #5a5a5a, zinc-500: #71717a.
- */
-export const lightColors: ThemeColors = {
-  background: '#F9F8F4',
-  foreground: '#1A1A1A',
-  card: '#F9F8F4',
-  cardForeground: '#1A1A1A',
-  border: '#DEDAD1',
-  accent: '#1A1A1A',
-  accentSecondary: '#5A5A5A',
-  accentForeground: '#F9F8F4',
-  muted: '#ECE8DF',
-  mutedForeground: '#5A5A5A',
-  destructive: '#1A1A1A',
-  destructiveForeground: '#F9F8F4',
-  success: '#1A1A1A',
-  neutrals: {
-    50: '#1A1A1A',
-    100: '#1A1A1A',
-    200: '#2E2E2E',
-    300: '#2E2E2E',
-    400: '#5A5A5A',
-    500: '#71717A',
-    600: '#707070',
-    700: '#DEDAD1',
-    800: '#ECE8DF',
-    900: '#F9F8F4',
-  },
-};
-
 const palettes: Record<AppThemeName, ThemeColors> = {
   system: systemColors,
-  light: lightColors,
 };
 
 let activeTheme: AppThemeName = 'system';
 
 export function isAppThemeName(value: unknown): value is AppThemeName {
-  return value === 'system' || value === 'light';
+  return value === 'system';
 }
 
 export function getThemeColors(name: AppThemeName): ThemeColors {
