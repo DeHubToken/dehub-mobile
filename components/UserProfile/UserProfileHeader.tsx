@@ -299,6 +299,22 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           {!isBlocked && (
             <View className="flex-row items-center gap-2 mb-1">
               {renderFollowButton()}
+              {!!onMessage && (
+                <TouchableOpacity
+                  onPress={onMessage}
+                  activeOpacity={0.7}
+                  accessibilityRole="button"
+                  accessibilityLabel="Message user"
+                  style={[s.glassBtn, s.iconBtn]}
+                >
+                  <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
+                  <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
+                  <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
+                  <View style={s.glassBtnContent}>
+                    <Icon name="MessageSquare" size={16} color="#fff" />
+                  </View>
+                </TouchableOpacity>
+              )}
             </View>
           )}
         </View>
@@ -449,6 +465,10 @@ const s = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: BTN_RADIUS,
     overflow: "hidden",
+  },
+  iconBtn: {
+    width: BTN_H,
+    paddingHorizontal: 0,
   },
   glassOverlay: {
     backgroundColor: "rgba(24,24,27,0.3)",
