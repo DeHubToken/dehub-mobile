@@ -32,7 +32,7 @@ import Avatar from "../components/common/Avatar";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { useGateToHome } from "../hooks/useGateToHome";
-import { getAccount } from "../services/user.service";
+import { getAccountSummaries, type AccountSummary } from "../services/user.service";
 import { getAvatarUrl, shareProfile } from "../libs/misc";
 import { copyToClipboard } from "../libs/clipboard.utils";
 import { toastError, toastSuccess } from "../libs/toast";
@@ -117,20 +117,8 @@ const Step: React.FC<{ n: number; title: string; body: string }> = ({ n, title, 
  * from addresses and enriches with names/avatars as they load — react-query
  * dedupes across rows and caches between visits.
  */
-const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry }> = ({ entry }) => {
+const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry; profile?: AccountSummary }> = ({ entry, profile }) => {
   const { showUserProfile } = useUserProfileSheet();
-
-  const { data: profile, isLoading } = useQuery({
-    queryKey: ["affiliate-profile", entry.address],
-    queryFn: async () => {
-      const res: any = await getAccount(entry.address);
-      return (res?.data?.result ?? null) as
-        | { username?: string; displayName?: string; avatarImageUrl?: string }
-        | null;
-    },
-    staleTime: 5 * 60 * 1000,
-    retry: 1,
-  });
 
   const username = profile?.username || null;
   const name = profile?.displayName || username || truncateAddress(entry.address);
@@ -147,13 +135,9 @@ const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry }> = ({ entry }) =>
         name={name}
       />
       <View style={{ flex: 1, minWidth: 0 }}>
-        {isLoading && !profile ? (
-          <View style={styles.rowNameSkeleton} />
-        ) : (
-          <Text style={styles.rowName} numberOfLines={1}>
-            {name}
-          </Text>
-        )}
+        <Text style={styles.rowName} numberOfLines={1}>
+          {name}
+        </Text>
         <Text style={styles.rowSub} numberOfLines={1}>
           {username ? `@${username}` : truncateAddress(entry.address)}
           {joined ? ` · joined ${joined}` : ""}
@@ -248,6 +232,17 @@ export default function AffiliateScreen() {
   const hydrating = list.length === 0 && (loading || activeCount > 0);
   const hasSecondary = l2List.length > 0 || (stats?.l2Referrals ?? 0) > 0;
   const shown = list.slice(0, visible);
+  const { data: shownProfiles = [] } = useQuery({
+    queryKey: ["affiliate-profiles", shown.map((entry) => entry.address.toLowerCase()).join(",")],
+    queryFn: () => getAccountSummaries(shown.map((entry) => entry.address)),
+    enabled: shown.length > 0,
+    staleTime: 5 * 60 * 1000,
+    retry: 1,
+  });
+  const profileByAddress = useMemo(
+    () => new Map(shownProfiles.map((profile) => [profile.address.toLowerCase(), profile] as const)),
+    [shownProfiles],
+  );
 
   return (
     <View style={styles.root}>
@@ -430,7 +425,11 @@ export default function AffiliateScreen() {
           ) : (
             <>
               {shown.map((entry) => (
-                <AffiliateRow key={entry.address} entry={entry} />
+                <AffiliateRow
+                  key={entry.address}
+                  entry={entry}
+                  profile={profileByAddress.get(entry.address.toLowerCase())}
+                />
               ))}
               {visible < list.length && (
                 <Pressable

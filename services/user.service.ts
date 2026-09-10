@@ -207,17 +207,24 @@ export interface AccountSummary {
   username?: string | null;
   displayName?: string | null;
   avatarImageUrl?: string | null;
+  badgeBalance?: number | null;
+  isBanned?: boolean;
 }
 
 /** Resolve many notification actors with one lightweight API request. */
 export async function getAccountSummaries(addresses: string[]): Promise<AccountSummary[]> {
   if (addresses.length === 0) return [];
-  const response = await apiClient.post<{ result: AccountSummary[] }>(
-    "/account_info/batch",
-    { addresses },
-    { isAuthRequired: false },
-  );
-  return response?.result || [];
+  const unique = [...new Set(addresses.filter(Boolean).map((address) => address.toLowerCase()))];
+  const batches: string[][] = [];
+  for (let start = 0; start < unique.length; start += 100) {
+    batches.push(unique.slice(start, start + 100));
+  }
+  const responses = await Promise.all(batches.map((batch) => apiClient.post<{ result: AccountSummary[] }>(
+      "/account_info/batch",
+      { addresses: batch },
+      { isAuthRequired: false },
+    )));
+  return responses.flatMap((response) => response?.result || []);
 }
 
 /**

@@ -1,6 +1,6 @@
 import { apiClient } from "../../libs/api.client";
 import { getFileName, guessMime } from "../../libs/assets.util";
-import { getAccount } from "../user.service";
+import { getAccountSummaries } from "../user.service";
 import { DmAction, DmDisableStatus } from "../enums/dm-preferences.enum";
 import {
   getOtherParticipant,
@@ -10,11 +10,6 @@ import {
   type DmUser,
   type UploadDmMediaParams,
 } from "./dm.types";
-
-function accountPayload(response: any): Record<string, any> | null {
-  const value = response?.data?.result ?? response?.result ?? response;
-  return value && typeof value === "object" ? value : null;
-}
 
 function firstBadgeBalance(...values: unknown[]): number | string | null | undefined {
   return values.find((value) => {
@@ -62,8 +57,15 @@ export async function enrichDmContacts(
   contacts: DmConversation[],
   myAddress: string,
 ): Promise<DmConversation[]> {
-  return Promise.all(
-    contacts.map(async (conversation) => {
+  const missing = contacts.flatMap((conversation) => {
+    const other = getOtherParticipant(conversation, undefined, myAddress);
+    if (!other?.address) return [];
+    const hasBadgeBalance = firstBadgeBalance(other.badgeBalance) !== undefined;
+    return other.displayName && hasBadgeBalance ? [] : [other.address];
+  });
+  const profiles = await getAccountSummaries(missing).catch(() => []);
+  const profileByAddress = new Map(profiles.map(profile => [profile.address.toLowerCase(), profile] as const));
+  return contacts.map((conversation) => {
       const other = getOtherParticipant(conversation, undefined, myAddress);
       if (!other) return conversation;
 
@@ -72,12 +74,9 @@ export async function enrichDmContacts(
         return conversation;
       }
 
-      const lookup = other.address || other.username;
-      if (!lookup) return conversation;
-
-      try {
-        const profile = accountPayload(await getAccount(lookup));
-        if (!profile) return conversation;
+      if (!other.address) return conversation;
+      const profile = profileByAddress.get(other.address.toLowerCase());
+      if (!profile) return conversation;
         const merged = mergeDmUserProfile(other, profile);
 
         return {
@@ -93,11 +92,7 @@ export async function enrichDmContacts(
               : message,
           ),
         };
-      } catch {
-        return conversation;
-      }
-    }),
-  );
+    });
 }
 
 

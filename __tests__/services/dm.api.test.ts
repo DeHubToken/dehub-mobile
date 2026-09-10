@@ -1,5 +1,5 @@
 import { apiClient } from '../../libs/api.client';
-import { getAccount } from '../../services/user.service';
+import { getAccountSummaries } from '../../services/user.service';
 import {
   getContactsByAddress,
   mergeDmUserProfile,
@@ -19,11 +19,11 @@ jest.mock('../../libs/assets.util', () => ({
 }));
 
 jest.mock('../../services/user.service', () => ({
-  getAccount: jest.fn(),
+  getAccountSummaries: jest.fn(),
 }));
 
 const mockGet = apiClient.get as jest.Mock;
-const mockGetAccount = getAccount as jest.Mock;
+const mockGetAccountSummaries = getAccountSummaries as jest.Mock;
 
 describe('DM contact identity enrichment', () => {
   beforeEach(() => {
@@ -61,23 +61,19 @@ describe('DM contact identity enrichment', () => {
       createdAt: '2026-09-10T00:00:00.000Z',
       updatedAt: '2026-09-10T00:00:00.000Z',
     }]);
-    mockGetAccount.mockResolvedValue({
-      data: {
-        result: {
-          address: '0xpeer',
-          username: 'alice',
-          displayName: 'Alice',
-          avatarImageUrl: '/alice.jpg',
-          badgeBalance: 50000,
-        },
-      },
-    });
+    mockGetAccountSummaries.mockResolvedValue([{
+      address: '0xpeer',
+      username: 'alice',
+      displayName: 'Alice',
+      avatarImageUrl: '/alice.jpg',
+      badgeBalance: 50000,
+    }]);
 
     const contacts = await getContactsByAddress('0xME');
     const peer = contacts[0].participants[1].participant;
 
     expect(mockGet).toHaveBeenCalledWith('/dm/contacts/0xme');
-    expect(mockGetAccount).toHaveBeenCalledWith('0xpeer');
+    expect(mockGetAccountSummaries).toHaveBeenCalledWith(['0xpeer']);
     expect(peer.displayName).toBe('Alice');
     expect(peer.badgeBalance).toBe(50000);
   });
@@ -95,7 +91,7 @@ describe('DM contact identity enrichment', () => {
       updatedAt: '2026-09-10T00:00:00.000Z',
     };
     mockGet.mockResolvedValue([contact]);
-    mockGetAccount.mockRejectedValue(new Error('offline'));
+    mockGetAccountSummaries.mockRejectedValue(new Error('offline'));
 
     await expect(getContactsByAddress('0xme')).resolves.toEqual([contact]);
   });
