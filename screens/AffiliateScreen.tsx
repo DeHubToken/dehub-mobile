@@ -21,6 +21,7 @@ import {
   ScrollView,
   ActivityIndicator,
   RefreshControl,
+  TextInput,
 } from "react-native";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -43,6 +44,9 @@ import {
   buildInviteLink,
   buildInviteMessage,
   loadAffiliateStats,
+  saveAffiliateLanding,
+  DEFAULT_AFFILIATE_LANDING,
+  type AffiliateLandingCustomization,
   type AffiliateStats,
   type AffiliateReferralEntry,
 } from "../libs/affiliate";
@@ -167,6 +171,8 @@ export default function AffiliateScreen() {
   const [visible, setVisible] = useState(AFFILIATES_PAGE_SIZE);
   const [imgVersion, setImgVersion] = useState("1");
   const [imgLoaded, setImgLoaded] = useState(false);
+  const [landing, setLanding] = useState<AffiliateLandingCustomization>(DEFAULT_AFFILIATE_LANDING);
+  const [savingLanding, setSavingLanding] = useState(false);
 
   const statsRef = useRef(stats);
   useEffect(() => {
@@ -184,6 +190,7 @@ export default function AffiliateScreen() {
         const fallbackName = `${wallet.slice(0, 6)}…${wallet.slice(-4)}`;
         const s = await loadAffiliateStats(wallet, displayName ?? fallbackName);
         setStats(s);
+        setLanding(s.landing);
         if (opts?.refreshImage && s.code) {
           setImgLoaded(false);
           setImgVersion(String(Date.now()));
@@ -222,6 +229,20 @@ export default function AffiliateScreen() {
     if (!stats?.code || !inviteLink) return;
     void shareProfile(inviteLink, buildInviteMessage(stats.code, inviteLink));
   }, [stats?.code, inviteLink]);
+
+  const onSaveLanding = useCallback(async () => {
+    if (!wallet || !stats?.code) return;
+    setSavingLanding(true);
+    try {
+      await saveAffiliateLanding(wallet, stats.code, landing);
+      setStats((current) => current ? { ...current, landing } : current);
+      toastSuccess("Invite page published");
+    } catch (error) {
+      toastError(error instanceof Error ? error.message : "Could not save invite page");
+    } finally {
+      setSavingLanding(false);
+    }
+  }, [wallet, stats?.code, landing, t]);
 
   const l1List = stats?.l1List ?? [];
   const l2List = stats?.l2List ?? [];
@@ -294,6 +315,18 @@ export default function AffiliateScreen() {
         {/* Stats */}
         <View style={styles.statGrid}>
           <StatCard
+            icon="ExternalLink"
+            label="Page views"
+            value={loading ? null : String(stats?.totalViews ?? 0)}
+            hint={`${stats?.views30d ?? 0} in 30 days`}
+          />
+          <StatCard
+            icon="Users"
+            label="Unique visitors"
+            value={loading ? null : String(stats?.uniqueVisitors ?? 0)}
+            hint={stats?.uniqueVisitors ? `${((stats.referrals / stats.uniqueVisitors) * 100).toFixed(1)}% joined` : "No visits yet"}
+          />
+          <StatCard
             icon="Users"
             label={t("affiliate.direct", "Direct")}
             value={loading ? null : String(stats?.referrals ?? 0)}
@@ -324,6 +357,64 @@ export default function AffiliateScreen() {
             value={`${AFFILIATE_L1_COMMISSION_PCT}% + ${AFFILIATE_L2_COMMISSION_PCT}%`}
             hint={t("affiliate.residual", "residual · perpetual")}
           />
+        </View>
+
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Customize your invite page</Text>
+          <Text style={styles.cardSub}>Make the page sound like you. Visitors see this copy before they join.</Text>
+
+          <Text style={styles.fieldLabel}>Headline · {landing.headline.length}/80</Text>
+          <TextInput
+            value={landing.headline}
+            onChangeText={(headline) => setLanding((v) => ({ ...v, headline }))}
+            maxLength={80}
+            placeholder={DEFAULT_AFFILIATE_LANDING.headline}
+            placeholderTextColor="#52525B"
+            style={styles.input}
+          />
+          <Text style={styles.fieldLabel}>Welcome message · {landing.message.length}/280</Text>
+          <TextInput
+            value={landing.message}
+            onChangeText={(message) => setLanding((v) => ({ ...v, message }))}
+            maxLength={280}
+            multiline
+            textAlignVertical="top"
+            style={[styles.input, styles.messageInput]}
+          />
+          <Text style={styles.fieldLabel}>Button text · {landing.ctaLabel.length}/32</Text>
+          <TextInput
+            value={landing.ctaLabel}
+            onChangeText={(ctaLabel) => setLanding((v) => ({ ...v, ctaLabel }))}
+            maxLength={32}
+            style={styles.input}
+          />
+          <Text style={styles.fieldLabel}>DeHub destination</Text>
+          <TextInput
+            value={landing.destination}
+            onChangeText={(destination) => setLanding((v) => ({ ...v, destination }))}
+            maxLength={200}
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder="/app"
+            placeholderTextColor="#52525B"
+            style={styles.input}
+          />
+
+          <View style={styles.preview}>
+            <Text style={styles.previewLabel}>Live preview</Text>
+            <Text style={styles.previewHeadline}>{landing.headline || DEFAULT_AFFILIATE_LANDING.headline}</Text>
+            <Text style={styles.previewMessage}>{landing.message || DEFAULT_AFFILIATE_LANDING.message}</Text>
+            <View style={styles.previewButton}><Text style={styles.previewButtonText}>{landing.ctaLabel || DEFAULT_AFFILIATE_LANDING.ctaLabel}</Text></View>
+          </View>
+
+          <View style={styles.linkActions}>
+            <Pressable style={styles.secondaryBtn} onPress={() => setLanding(DEFAULT_AFFILIATE_LANDING)}>
+              <Text style={styles.secondaryBtnText}>Reset</Text>
+            </Pressable>
+            <Pressable style={styles.primaryBtn} onPress={() => void onSaveLanding()} disabled={savingLanding || !landing.headline.trim() || !landing.message.trim() || !landing.ctaLabel.trim()}>
+              {savingLanding ? <ActivityIndicator size="small" color="#000000" /> : <Text style={styles.primaryBtnText}>Publish changes</Text>}
+            </Pressable>
+          </View>
         </View>
 
         {/* Invite link */}
@@ -523,6 +614,16 @@ const styles = StyleSheet.create({
 
   headline: { color: "#FFFFFF", fontSize: 20, fontWeight: "700", lineHeight: 27 },
   intro: { color: "#A1A1AA", fontSize: 13, lineHeight: 19, marginTop: 6, marginBottom: 16 },
+
+  fieldLabel: { color: "#A1A1AA", fontSize: 12, fontWeight: "600", marginTop: 14, marginBottom: 6 },
+  input: { minHeight: 44, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)", borderRadius: 10, backgroundColor: "rgba(255,255,255,0.04)", color: "#FFFFFF", paddingHorizontal: 12, paddingVertical: 10, fontSize: 14 },
+  messageInput: { minHeight: 104 },
+  preview: { marginTop: 18, borderWidth: 1, borderColor: "rgba(255,255,255,0.10)", borderRadius: 16, backgroundColor: "#000000", padding: 20, alignItems: "center" },
+  previewLabel: { color: "#71717A", fontSize: 10, letterSpacing: 2, textTransform: "uppercase" },
+  previewHeadline: { color: "#FFFFFF", fontSize: 22, lineHeight: 28, fontWeight: "700", textAlign: "center", marginTop: 12 },
+  previewMessage: { color: "#A1A1AA", fontSize: 13, lineHeight: 19, textAlign: "center", marginTop: 8 },
+  previewButton: { backgroundColor: "#FFFFFF", borderRadius: 8, paddingHorizontal: 18, paddingVertical: 10, marginTop: 16 },
+  previewButtonText: { color: "#000000", fontSize: 13, fontWeight: "700" },
 
   statGrid: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 16 },
   statCard: {
