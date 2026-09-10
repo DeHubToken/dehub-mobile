@@ -5,6 +5,8 @@ import type { AppStackParamList } from "./types";
 import BottomTabNavigator from "./BottomTabNavigator";
 import { withScreenBoundary } from "../components/common/ScreenErrorFallback";
 import { useAuthState } from "../context/AuthContext";
+import { DrawerProvider, useDrawer } from "../context/DrawerContext";
+import AppDrawer from "../components/Home/AppDrawer";
 
 /**
  * Native stack, not @react-navigation/stack.
@@ -67,25 +69,27 @@ const getLiveViewerScreen = () => {
   return liveViewerScreen;
 };
 
-export default function AppNavigator() {
+function AppNavigatorContent() {
   const { isSignedIn, needsUsername } = useAuthState();
+  const { drawerOpen, closeDrawer } = useDrawer();
   const isAuthed = isSignedIn && !needsUsername;
 
   return (
-    <Stack.Navigator
-      initialRouteName={ScreenNames.Root}
-      screenLayout={withScreenBoundary}
-      screenOptions={{
-        headerShown: false,
-        contentStyle: { backgroundColor: '#010305' },
-        // A screen you have navigated away from keeps rendering otherwise —
-        // this stack holds sixty-odd of them, so Home -> Profile -> Community
-        // -> Post left four live at once, all re-rendering together on every
-        // context change. freezeOnBlur suspends the blurred subtree's
-        // rendering; native views and their playback are untouched.
-        freezeOnBlur: true,
-      }}
-    >
+    <>
+      <Stack.Navigator
+        initialRouteName={ScreenNames.Root}
+        screenLayout={withScreenBoundary}
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: '#010305' },
+          // A screen you have navigated away from keeps rendering otherwise —
+          // this stack holds sixty-odd of them, so Home -> Profile -> Community
+          // -> Post left four live at once, all re-rendering together on every
+          // context change. freezeOnBlur suspends the blurred subtree's
+          // rendering; native views and their playback are untouched.
+          freezeOnBlur: true,
+        }}
+      >
       <Stack.Screen
         name={ScreenNames.Root}
         component={BottomTabNavigator}
@@ -423,7 +427,17 @@ export default function AppNavigator() {
           </>
         ) : null}
       </Stack.Group>
-    </Stack.Navigator>
+      </Stack.Navigator>
+      <AppDrawer visible={drawerOpen} onClose={closeDrawer} />
+    </>
+  );
+}
+
+export default function AppNavigator() {
+  return (
+    <DrawerProvider>
+      <AppNavigatorContent />
+    </DrawerProvider>
   );
 }
 
