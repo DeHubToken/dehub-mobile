@@ -1527,10 +1527,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       )}
 
       <View className="flex-row items-center gap-2 pt-3">
-        <Text style={{ fontSize: 11, color: "#8B8D90" }}>
+        <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>
           {formatShortTimeAgo(createdAt)}
         </Text>
-        <Text style={{ fontSize: 11, color: "#6F7174" }}>·</Text>
+        <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>·</Text>
         <View className="flex-row items-center gap-1">
           <Icon
             name={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"}
@@ -1542,21 +1542,21 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               audio post's listen tally lives inside the player, where it is
               labelled; printed here it read as the view count and undercounted
               by an order of magnitude. */}
-          <Text style={{ fontSize: 11, color: "#8B8D90" }}>
+          <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>
             {formatCompactNumber(views)}
           </Text>
         </View>
         {isLive && peakAudience > 0 && (
           <>
-            <Text style={{ fontSize: 11, color: "#6F7174" }}>·</Text>
-            <Text style={{ fontSize: 11, color: "#6F7174" }}>
+            <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>·</Text>
+            <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>
               Peak: {formatCompactNumber(peakAudience)}
             </Text>
           </>
         )}
         {showTranslate && (
           <>
-            <Text style={{ fontSize: 11, color: "#6F7174" }}>·</Text>
+            <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>·</Text>
             <TranslateButton
               isTranslated={isTranslated}
               isLoading={translating}
