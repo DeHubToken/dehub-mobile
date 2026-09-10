@@ -3,11 +3,11 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ActivityIndicator,
   Image,
 } from "react-native";
 import type { ImageSourcePropType } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { ButtonLoader } from "../DeHubLoader";
 
 type GlassToastType = "success" | "error" | "info" | "warning" | "loading";
 
@@ -60,12 +60,12 @@ const GlassToast: React.FC<GlassToastProps> = ({
         style={{ backgroundColor: "#101014" }}
       />
 
-      <View className="flex-row items-start p-4 gap-3 z-10">
+      <View className="flex-row items-center p-4 gap-3 z-10">
         {type === "loading" && (
-          <ActivityIndicator size="small" color="#FFFFFF" className="mt-0.5" />
+          <ButtonLoader size={18} />
         )}
 
-        <View className="flex-1">
+        <View className="flex-1 min-w-0">
           <Text className="text-white text-base leading-5 font-bold">
             {title}
           </Text>
