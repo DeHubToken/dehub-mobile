@@ -289,7 +289,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         // and it left bright video hard against the pill's edge, which is what
         // made the glass there look like it had lost its blur.
         contentContainerStyle={{
-          paddingTop: 0,
+          paddingTop: 4,
           paddingBottom: TAB_BAR_CONTENT_INSET,
           gap: GRID_GAP,
         }}

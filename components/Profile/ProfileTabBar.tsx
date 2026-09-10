@@ -99,8 +99,10 @@ const styles = StyleSheet.create({
   outerWrap: {
     width: "100%",
     paddingHorizontal: 8,
-    paddingTop: 8,
-    paddingBottom: 8,
+    // Keep the profile bento, tab bar, and content controls on the same
+    // 16pt vertical rhythm. These are visible gaps, not internal pill inset.
+    paddingTop: 16,
+    paddingBottom: 16,
   },
   container: {
     width: "100%",
