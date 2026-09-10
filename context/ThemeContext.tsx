@@ -26,7 +26,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   setActiveTheme(theme);
 
   useEffect(() => {
-    colorScheme.set(theme === 'light' ? 'light' : 'dark');
+    colorScheme.set('dark');
     SystemUI.setBackgroundColorAsync(colors.background).catch(() => {});
   }, [colors.background, theme]);
 
@@ -35,7 +35,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, []);
 
   const value = useMemo<AppThemeContextValue>(
-    () => ({ theme, isLight: theme === 'light', colors, setTheme }),
+    () => ({ theme, isLight: false, colors, setTheme }),
     [colors, setTheme, theme],
   );
 

@@ -2,17 +2,15 @@
  * Appearance panel — mirrors web's `AppearanceSettings`
  * (dehubweb src/pages/app/SettingsPage.tsx).
  *
- * Ported: Theme, Language, Dim Lights (+ strength), Auto-play, Data Saver.
+ * Ported: Language, Dim Lights (+ strength), Auto-play, Data Saver.
  * Not ported, deliberately:
- *  - Theme Color: light has no custom hue on web. Hue controls arrive with
- *    the first hue-driven theme instead of appearing as a dead control.
  *  - Feed layout (comfortable/compact): web's is a desktop-sidebar collapse.
  *  - Shorts toggle: Home's pager addresses its six tabs by index
  *    (`TAB_ORDER` in screens/HomeScreen.tsx), so hiding one is a pager change,
  *    not a settings change.
  */
 import React, { useState } from 'react';
-import { View, Text, Alert, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Slider from '@react-native-community/slider';
 import LanguageSelectModal from './LanguageSelectModal';
@@ -37,7 +35,7 @@ import { useAppTheme } from '../../context/ThemeContext';
 const AppearancePanel: React.FC = () => {
   const { t } = useTranslation();
   const prefs = useAppPrefs();
-  const { theme, colors, setTheme } = useAppTheme();
+  const { colors } = useAppTheme();
   const { pref: dataSaverPref } = useDataSaver();
   const highQuality = useHighQualityImages();
   const [languageModalVisible, setLanguageModalVisible] = useState(false);
@@ -74,38 +72,7 @@ const AppearancePanel: React.FC = () => {
 
   return (
     <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
-      <SettingsSection label={t('settings.theme')} icon="Palette" className="mt-4" anchor="theme">
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 14, gap: 12 }}
-        >
-          {[
-            { value: 'system' as const, icon: 'Monitor' as const, label: t('settings.system') },
-            { value: 'light' as const, icon: 'Sun' as const, label: t('settings.light') },
-          ].map((option) => {
-            const selected = theme === option.value;
-            return (
-              <TouchableOpacity
-                key={option.value}
-                onPress={() => setTheme(option.value)}
-                activeOpacity={0.72}
-                accessibilityRole="radio"
-                accessibilityState={{ selected }}
-                accessibilityLabel={option.label}
-                className={`min-w-[104px] items-center rounded-xl border-2 px-4 py-4 ${
-                  selected
-                    ? 'border-theme-neutrals-100 bg-theme-neutrals-800/50'
-                    : 'border-transparent bg-theme-neutrals-800/50'
-                }`}
-              >
-                <Icon name={option.icon} size={24} color={colors.neutrals[400]} />
-                <Text className="mt-2 text-sm text-theme-neutrals-100">{option.label}</Text>
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
-        <Divider />
+      <SettingsSection label={t('settings.appearance')} icon="Monitor" className="mt-4" anchor="dim-lights">
         <SettingsToggleRow
           icon="Lamp"
           label={t('settings.dimLights')}
