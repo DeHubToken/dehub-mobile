@@ -10,6 +10,7 @@ export enum ScreenNames {
   NotificationSettings = 'NotificationSettings',
   Search = 'Search',
   Leaderboard = 'Leaderboard',
+  Stats = 'Stats',
   Feed = 'Feed',
   FeedDetail = 'FeedDetail',
   Upload = 'Upload',
