@@ -20,6 +20,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { resolveViewCount } from "../../libs/numbers.util";
+import { getBadgeOpticalStyle } from "../../libs/misc";
 
 /** Matches the thumbnail's own box below (`width: 150`). */
 const COMPACT_THUMB_PT = 150;
@@ -229,9 +230,9 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
                 <TouchableOpacity
                   activeOpacity={0.7}
                   onPress={handlePressCreator}
-                  className="self-center"
+                  className="self-end"
                 >
-                  <Image source={badgeImage} style={{ width: 14, height: 14, marginLeft: 4 }} resizeMode="contain" />
+                  <Image source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14)} resizeMode="contain" />
                 </TouchableOpacity>
               )}
             </View>
