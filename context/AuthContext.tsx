@@ -366,19 +366,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     getChainId: () => chainId,
   });
 
-  // Boot hydration
-  useAuthBoot<User>({
-    getAuthUser,
-    getAuthToken,
-    hasSeenAuth,
-    setUser,
-    setIsSignedIn,
-    setIsFirstTimeUser,
-    setIsBootLoading,
-    ensureProvider,
-    log,
-  });
-
   // Load persisted auth method once and when user changes
   useEffect(() => {
     let mounted = true;
@@ -465,6 +452,26 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setAuthMethodState,
     didBootRefetchRef,
   });
+  // Boot hydration
+  useAuthBoot<User>({
+    getAuthUser,
+    getAuthToken,
+    hasSeenAuth,
+    setUser,
+    setIsSignedIn,
+    setIsFirstTimeUser,
+    setIsBootLoading,
+    ensureProvider,
+    reconcileProfile: async () => {
+      if ((await getAuthMethod())?.method !== 'local') return false;
+      const { supabase } = await import('../services/supabase');
+      const { data } = await supabase.auth.getSession();
+      if (!data.session) return false;
+      return await signInWithSupabaseSession(data.session.access_token, chainIdRef.current ?? 8453, undefined, data.session.user.id, { allowLocked: true }) === 'linked';
+    },
+    log,
+  });
+
   /** Who the freshly built provider actually signs as. */
   const getProviderAccount = useCallback(async (): Promise<string | null> => {
     try {
