@@ -342,7 +342,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isLocked = isHoldGated(streamInfo?.isLockContent, streamInfo?.lockAmount ?? streamInfo?.lockContentAmount);
   const lockContentAmount = streamInfo?.lockAmount || streamInfo?.lockContentAmount || 0;
   const lockContentTokenSymbol = streamInfo?.lockContentTokenSymbol || "DHB";
-  const isBounty = !!streamInfo?.isAddBounty;
+  const isBounty = !!(streamInfo?.isAddBounty || (item as any).is_w2e);
   const bountyAmount = streamInfo?.addBountyAmount || 0;
   const bountyTokenSymbol = streamInfo?.addBountyTokenSymbol || "DHB";
 

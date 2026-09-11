@@ -968,6 +968,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
       {isBounty && (
         <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityLabel="Watch2Earn bounty details"
           onPress={onBountyPress}
           activeOpacity={0.75}
           style={styles.bountyPill}
