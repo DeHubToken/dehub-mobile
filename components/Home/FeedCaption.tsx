@@ -244,13 +244,12 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
 
   return (
     <View className="mt-2">
-      {/* Title — web uses text-base/semibold (dehubweb PostCard.tsx:404). This
-          was text-sm/medium, part of a systematic ~10% type shrink that made
-          the native feed read denser and quieter than the web's. */}
+      {/* Titles label the media; they should sit with the caption rather than
+          compete with it as a headline. */}
       {hasTitle && (
         <Text
-          className="font-semibold text-theme-neutrals-100"
-          style={{ fontSize: 18, lineHeight: 24 }}
+          className="text-theme-neutrals-100"
+          style={{ fontSize: 16, lineHeight: 22 }}
           numberOfLines={fullContent ? undefined : 2}
           ellipsizeMode="tail"
         >
@@ -263,7 +262,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
         <View className="mt-1">
           <Text
             className="text-theme-neutrals-300"
-            style={{ fontSize: 17, lineHeight: 24 }}
+            style={{ fontSize: 15, lineHeight: 22 }}
             numberOfLines={fullContent || expanded ? undefined : maxLines}
             ellipsizeMode="tail"
             onTextLayout={handleTextLayout}
@@ -272,7 +271,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
           </Text>
           {showSeeMore && !fullContent && (
             <TouchableOpacity onPress={toggleExpanded} activeOpacity={0.7}>
-              <Text className="text-theme-neutrals-500 mt-0.5" style={{ fontSize: 15, lineHeight: 20 }}>
+              <Text className="text-theme-neutrals-500 mt-0.5" style={{ fontSize: 14, lineHeight: 18 }}>
                 {expanded ? "see less" : "see more"}
               </Text>
             </TouchableOpacity>
