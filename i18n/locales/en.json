@@ -2399,7 +2399,13 @@
     "staleListing": "This listing is for @{{listed}}, but you are now @{{current}}. It will not sell until you re-list under your current handle — updating above does that.",
     "history": "History",
     "sold": "Sold",
-    "bought": "Bought"
+    "bought": "Bought",
+    "askingPriceUsd": "Asking price (USD)",
+    "dollarPriceRange": "Enter $1–$1,000,000, with up to two decimal places.",
+    "fixedDollarPrice": "Dollar price stays fixed; token amount updates.",
+    "priceUpdated": "Price updated. Review the amount and tap Buy again.",
+    "tokensPaidToSeller": "Paid directly to the seller",
+    "priceUsd": "Price (USD)"
   },
   "stores": {
     "subtitle": "Discover products from the DeHub community",

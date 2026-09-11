@@ -2535,7 +2535,13 @@
     "staleListing": "此挂牌对应的是 @{{listed}}，但你现在是 @{{current}}。除非你用当前用户名重新挂牌，否则不会售出 — 在上方更新即可完成。",
     "history": "历史",
     "sold": "已售出",
-    "bought": "已购买"
+    "bought": "已购买",
+    "askingPriceUsd": "售价（美元）",
+    "dollarPriceRange": "请输入1至1,000,000美元，最多保留两位小数。",
+    "fixedDollarPrice": "美元价格保持固定，代币数量随价格更新。",
+    "priceUpdated": "价格已更新。请核对金额后再次点击购买。",
+    "tokensPaidToSeller": "直接支付给卖家",
+    "priceUsd": "价格（美元）"
   },
   "accounts": {
     "subtitle": "整个账号出售，以 DHB 计价",
