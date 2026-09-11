@@ -4,6 +4,7 @@ import * as Device from "expo-device";
 import { AppState, Platform } from "react-native";
 import env from "../config/env";
 import { restartApp, takeCrashMarker } from "./crashRecovery";
+import { readLogIdentity } from "./logIdentity";
 
 /**
  * Ships error logs off the device.
@@ -71,7 +72,7 @@ type Row = {
 let queue: Row[] = [];
 let flushTimer: ReturnType<typeof setTimeout> | null = null;
 let rowsThisSession = 0;
-let userAddress: string | null = null;
+let userAddress: string | null = readLogIdentity();
 let installed = false;
 
 /** Called by AuthContext so a row can be tied to the account that hit it. */

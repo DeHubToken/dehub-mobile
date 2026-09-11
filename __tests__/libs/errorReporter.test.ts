@@ -71,6 +71,20 @@ describe('error reporter', () => {
     expect(body((global.fetch as jest.Mock).mock.calls[0]).logs[0].user_address).toBe('0xabcdef');
   });
 
+  it('tags startup crashes before the auth provider mounts', async () => {
+    jest.resetModules();
+    const secure = require('expo-secure-store');
+    await secure.setItemAsync('auth_user', JSON.stringify({ address: '0xABCDEF' }));
+    reporter = require('../../libs/errorReporter');
+    reporter.reportError('JavaCrash', [new Error('native crash from previous launch')]);
+    await reporter.flushLogs();
+    expect(body((global.fetch as jest.Mock).mock.calls[0]).logs[0].user_address).toBe('0xabcdef');
+    reporter.setLogUserAddress(null);
+    reporter.reportError('Auth', ['signed out']);
+    await reporter.flushLogs();
+    expect(body((global.fetch as jest.Mock).mock.calls[1]).logs[0].user_address).toBeUndefined();
+  });
+
   it('keeps a batch the network refused, and sends it on the next launch', async () => {
     (global.fetch as jest.Mock).mockResolvedValue({ ok: false });
     reporter.reportError('Feed', ['offline when it happened']);

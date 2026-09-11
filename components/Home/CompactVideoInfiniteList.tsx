@@ -188,7 +188,7 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
       ListFooterComponent={ListFooter}
       initialNumToRender={10}
       windowSize={11}
-      removeClippedSubviews
+      removeClippedSubviews={false}
       ListHeaderComponent={ListHeaderComponent || undefined}
       refreshControl={
         <RefreshControl

@@ -309,7 +309,7 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
           initialNumToRender={15}
           maxToRenderPerBatch={20}
           windowSize={5}
-          removeClippedSubviews
+          removeClippedSubviews={false}
           inverted
           showsVerticalScrollIndicator={false}
         />

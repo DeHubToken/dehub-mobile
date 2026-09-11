@@ -992,7 +992,7 @@ const FollowListScreen: React.FC = () => {
             initialNumToRender={12}
             maxToRenderPerBatch={10}
             windowSize={9}
-            removeClippedSubviews
+            removeClippedSubviews={false}
             onEndReached={handleLoadMore}
             onEndReachedThreshold={0.3}
             refreshControl={
@@ -1160,7 +1160,7 @@ const FollowListScreen: React.FC = () => {
               initialNumToRender={12}
               maxToRenderPerBatch={10}
               windowSize={9}
-              removeClippedSubviews
+              removeClippedSubviews={false}
               onEndReached={handleLoadMore}
               onEndReachedThreshold={0.3}
               refreshControl={

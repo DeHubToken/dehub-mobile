@@ -619,7 +619,7 @@ const SearchScreen: React.FC = () => {
             initialNumToRender={12}
             maxToRenderPerBatch={10}
             windowSize={9}
-            removeClippedSubviews
+            removeClippedSubviews={false}
             onEndReached={handleLoadMore}
             onEndReachedThreshold={0.5}
             ListFooterComponent={ListFooter}

@@ -397,8 +397,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // Tag error rows with whoever hit them. Without it every crash in
   // client_error_logs is anonymous and cannot be tied back to a report.
   useEffect(() => {
+    if (isBootLoading) return;
     setLogUserAddress(user?.walletAddress || user?.address || null);
-  }, [user?.address, user?.walletAddress]);
+  }, [isBootLoading, user?.address, user?.walletAddress]);
 
   // Load preferred chain id on mount
   useEffect(() => {
