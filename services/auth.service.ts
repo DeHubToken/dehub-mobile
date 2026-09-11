@@ -168,9 +168,8 @@ export const AuthService = {
       const isAmbiguous =
         error?.code === "WALLET_LINK_AMBIGUOUS" ||
         /more than one wallet/i.test(error?.message || "");
-      // Mirrors dehubweb: ambiguous link is resolved by signing once, so treat
-      // it like "not linked" for session exchange and fall back to unlock/sign.
-      if (error?.status === 409 || error?.code === "WALLET_NOT_LINKED" || isAmbiguous) {
+      if (isAmbiguous) throw new WalletLinkAmbiguousError("This login is linked to more than one profile. Please contact support.");
+      if (error?.code === "WALLET_NOT_LINKED") {
         throw new WalletNotLinkedError(error?.message);
       }
       console.error("Supabase session auth error:", error);
