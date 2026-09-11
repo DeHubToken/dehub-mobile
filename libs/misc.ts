@@ -532,7 +532,7 @@ const BADGE_OPTICS: Record<string, { scale: number; bottomInset: number }> = {
 const BADGE_ARTWORK_GUTTER = 1;
 
 /** Twitter-style size, spacing, and artwork-baseline alignment. */
-export function getBadgeOpticalStyle(source: number, size: number) {
+export function getBadgeOpticalStyle(source: number, size: number, verticalOffset = 0) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source);
   const optics = tier ? BADGE_OPTICS[tier] : undefined;
   const renderedSize = size * 1.15 * (optics?.scale ?? 1);
@@ -557,7 +557,7 @@ export function getBadgeOpticalStyle(source: number, size: number) {
     marginTop: verticalMargin,
     marginBottom: verticalMargin,
     alignSelf: "center" as const,
-    transform: [{ translateY }],
+    transform: [{ translateY: translateY + verticalOffset }],
   };
 }
 
