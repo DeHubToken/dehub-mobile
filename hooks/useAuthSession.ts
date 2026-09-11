@@ -661,12 +661,13 @@ export function useAuthSession({
         // same comment but the opposite order.
         try {
           if (await displacesAnotherAccount(address)) {
-            await stageIncomingIdentity();
+            await stageIncomingIdentity(walletUid ?? undefined);
           }
         } catch (e) {
           log.warn("signInWithSupabaseSession:stageIncoming:error", e as any);
         }
 
+        if (walletUid) await setStoredSupabaseUserId(walletUid);
         await setAuthToken(res.token);
         if (res.refreshToken) await setRefreshToken(res.refreshToken);
         if (res.expiresIn) await setTokenExpiresAt(Date.now() + res.expiresIn * 1000);
