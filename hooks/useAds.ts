@@ -27,6 +27,26 @@ export type CampaignStatus =
 export type CreativeKind = "image" | "video" | "text";
 export type AdBehavior = "tippers" | "ppv_buyers" | "stakers" | "streamers";
 
+/** Ad payload returned by ads-serve, ready for native feed rendering. */
+export interface ServedAd {
+  serveId: string;
+  token: string;
+  campaignId: string;
+  creativeId: string;
+  kind: CreativeKind;
+  mediaUrl: string | null;
+  thumbnailUrl: string | null;
+  headline: string;
+  body: string | null;
+  ctaLabel: string;
+  ctaUrl: string | null;
+  advertiser: string;
+  advertiserWallet?: string;
+  width: number | null;
+  height: number | null;
+  durationSeconds: number | null;
+}
+
 export interface AdTargeting {
   tiers?: string[];
   followerMin?: number;

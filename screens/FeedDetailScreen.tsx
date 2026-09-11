@@ -38,6 +38,7 @@ import { theme } from "../theme";
 import { formatCompactNumber } from "../libs/numbers.util";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { PostReaction } from "../libs/reactions";
+import PostDetailContinuation from "../components/Advertising/PostDetailContinuation";
 
 /** A comment plus how deep it sits in the thread (0 = top-level, 1 = direct reply, …). */
 type ThreadedComment = Comment & { depth: number };
@@ -1086,7 +1087,14 @@ export default function FeedDetailScreen() {
         data={visibleComments}
         keyExtractor={(c) => String(c.id)}
         ListHeaderComponent={renderHeader}
-        ListFooterComponent={showAllCommentsRow}
+        ListFooterComponent={(
+          <View>
+            {showAllCommentsRow}
+            {item && tokenId != null && (
+              <PostDetailContinuation currentPostId={String(tokenId)} />
+            )}
+          </View>
+        )}
         // Scrolling to a row this list has not measured yet is a normal miss on
         // a post whose header is a video: land near it and let the next pass
         // finish the job rather than dropping the jump.
