@@ -11,6 +11,7 @@ type BootDeps<User> = {
   setIsFirstTimeUser: (v: boolean) => void;
   setIsBootLoading: (v: boolean) => void;
   ensureProvider: () => Promise<void>;
+  reconcileProfile?: () => Promise<boolean>;
   log: { warn: (...a: any[]) => void; error: (...a: any[]) => void; info?: (...a: any[]) => void };
 };
 
@@ -23,6 +24,7 @@ export function useAuthBoot<User>({
   setIsFirstTimeUser,
   setIsBootLoading,
   ensureProvider,
+  reconcileProfile,
   log,
 }: BootDeps<User>) {
   useEffect(() => {
@@ -34,6 +36,10 @@ export function useAuthBoot<User>({
           hasSeenAuth(),
         ]);
         
+        if (seenAuth) setIsFirstTimeUser(false);
+        // Replace a cached owner-wallet profile with the verified social profile.
+        if (userData && token && await reconcileProfile?.()) return;
+
         if (userData && token) {
           // Validate token expiration before restoring session
           if (isTokenExpired(token)) {
