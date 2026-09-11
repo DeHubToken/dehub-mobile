@@ -536,10 +536,7 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
                 : signals
                   ? isMegalodon
                     ? "Signal Flare to everyone"
-                    : t("superpowers.signalFlareTo", {
-                        people: signalFlarePeople ?? 0,
-                        defaultValue: `Signal Flare to ${(signalFlarePeople ?? 0).toLocaleString()} people`,
-                      })
+                    : `Signal Flare to ${(signalFlarePeople ?? 0).toLocaleString()} people`
                   : t("superpowers.spendFor", {
                       power: power?.label ?? "",
                       minutes: status?.minutesPerBoost ?? 0,
