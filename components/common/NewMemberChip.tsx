@@ -17,15 +17,41 @@ interface NewMemberChipProps {
   address?: string | null;
 }
 
+const CHIP_HEIGHT = 16;
+const CHIP_ICON_SIZE = 10;
+const CHIP_TEXT_LINE_HEIGHT = 12;
+
 const NewMemberChip: FC<NewMemberChipProps> = ({ address }) => {
   const { isNew } = useIsNewMember(address);
 
   if (!isNew) return null;
 
   return (
-    <View className="flex-row items-center rounded-md border border-white/15 bg-white/10 px-2 py-0.5">
-      <Icon name="Sparkles" size={11} color="#FFFFFF" />
-      <Text className="text-white text-[11px] font-medium ml-1">New</Text>
+    <View
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        flexShrink: 0,
+        height: CHIP_HEIGHT,
+        paddingHorizontal: 6,
+        borderRadius: 6,
+        borderWidth: 1,
+        borderColor: "rgba(255,255,255,0.15)",
+        backgroundColor: "rgba(255,255,255,0.10)",
+      }}
+    >
+      <Icon name="Sparkles" size={CHIP_ICON_SIZE} color="#FFFFFF" />
+      <Text
+        style={{
+          color: "#FFFFFF",
+          fontSize: 10,
+          lineHeight: CHIP_TEXT_LINE_HEIGHT,
+          fontWeight: "600",
+          marginLeft: 4,
+        }}
+      >
+        New
+      </Text>
     </View>
   );
 };
