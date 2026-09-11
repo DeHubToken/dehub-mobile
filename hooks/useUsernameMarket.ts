@@ -9,9 +9,7 @@
  * moves before the handle does:
  *
  * - **Nothing is priced here.** The server quotes the asking price and names
- *   the seller; the wallet sends exactly that, to exactly them. The USD figure
- *   beside it is decoration. Note this is the opposite of `useStores`, which
- *   still derives DHB from `useTokenPrices` in the browser.
+ *   the seller; the wallet sends exactly that, to exactly them. The dollar asking price is fixed.
  * - **The transfer must come from the account you are signed in as.** On Base
  *   and BNB that is the Safe, and `writeContractAA` sends from it — which is
  *   why the server matches the ERC-20 `Transfer` event's `from` rather than
@@ -65,16 +63,17 @@ const CLAIM_INTERVAL_MS = 3000;
 export interface BrowseParams {
   search?: string;
   sort?: UsernameSort;
-  minPriceDhb?: number;
-  maxPriceDhb?: number;
+  minPriceUsd?: number;
+  maxPriceUsd?: number;
 }
 
-/** Price floor, DHB contracts and the peg — read once, cached for the session. */
+/** Price limits, token contracts and the current rate, refreshed every 30 seconds. */
 export function useUsernameMarketConfig() {
   return useQuery({
     queryKey: ['username-market-config'],
     queryFn: () => usernameMarketService.config(),
-    staleTime: 60 * 60 * 1000,
+    staleTime: 30 * 1000,
+    refetchInterval: 30 * 1000,
     gcTime: 24 * 60 * 60 * 1000,
   });
 }
@@ -85,14 +84,15 @@ export function useBrowseUsernames(params: BrowseParams) {
       'username-market-browse',
       params.search || '',
       params.sort || 'newest',
-      params.minPriceDhb ?? null,
-      params.maxPriceDhb ?? null,
+      params.minPriceUsd ?? null,
+      params.maxPriceUsd ?? null,
     ],
     queryFn: () => usernameMarketService.browse({ ...params, limit: 48 }),
     // Typing in the search box keeps the current grid on screen rather than
     // flashing an empty state between keystrokes.
     placeholderData: keepPreviousData,
     staleTime: 30 * 1000,
+    refetchInterval: 30 * 1000,
   });
 }
 
@@ -102,6 +102,7 @@ export function useMyUsernameMarket(enabled: boolean) {
     queryFn: () => usernameMarketService.mine(),
     enabled,
     staleTime: 30 * 1000,
+    refetchInterval: 30 * 1000,
   });
 }
 
@@ -169,6 +170,9 @@ export function useBuyUsername() {
 
   const buy = useMutation({
     mutationFn: async (quote: UsernameQuote) => {
+      if (!quote.quoteId || Date.parse(quote.expiresAt) < Date.now() + 30_000) {
+        throw new Error('Refresh the checkout price before paying.');
+      }
       if (!canPayHere) {
         throw new Error('Switch to Base or BNB Chain in Settings to buy a handle.');
       }
@@ -219,6 +223,7 @@ export function useBuyUsername() {
         try {
           const result = await usernameMarketService.claim({
             listingId: quote.listingId,
+            quoteId: quote.quoteId,
             txHash,
             chainId: activeChainId,
           });

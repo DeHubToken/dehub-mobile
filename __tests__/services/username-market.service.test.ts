@@ -29,10 +29,10 @@ describe('services/username-market.service', () => {
     await usernameMarketService.config();
     await usernameMarketService.browse({});
     await usernameMarketService.mine();
-    await usernameMarketService.createListing({ priceDhb: 1000, replacementUsername: 'x' });
+    await usernameMarketService.createListing({ priceUsd: 1, replacementUsername: 'x' });
     await usernameMarketService.cancelListing('abc');
     await usernameMarketService.quote('abc');
-    await usernameMarketService.claim({ listingId: 'abc', txHash: '0x1', chainId: 8453 });
+    await usernameMarketService.claim({ listingId: 'abc', quoteId: 'quote-1', txHash: '0x1', chainId: 8453 });
 
     for (const call of mockFetch.mock.calls) {
       expect(call[0].startsWith('/username_market/')).toBe(true);
@@ -56,8 +56,8 @@ describe('services/username-market.service', () => {
 
     await usernameMarketService.mine();
     await usernameMarketService.quote('abc');
-    await usernameMarketService.claim({ listingId: 'abc', txHash: '0x1', chainId: 8453 });
-    await usernameMarketService.createListing({ priceDhb: 1000, replacementUsername: 'x' });
+    await usernameMarketService.claim({ listingId: 'abc', quoteId: 'quote-1', txHash: '0x1', chainId: 8453 });
+    await usernameMarketService.createListing({ priceUsd: 1, replacementUsername: 'x' });
     await usernameMarketService.cancelListing('abc');
 
     for (const call of mockFetch.mock.calls) {
@@ -70,11 +70,11 @@ describe('services/username-market.service', () => {
   it('passes browse filters through as query params, dropping empty ones', async () => {
     mockFetch.mockResolvedValueOnce({ result: { listings: [] } });
 
-    await usernameMarketService.browse({ search: '', sort: 'shortest', minPriceDhb: 10_000 });
+    await usernameMarketService.browse({ search: '', sort: 'shortest', minPriceUsd: 10_000 });
 
     const [, options] = mockFetch.mock.calls[0];
     expect(options.params).toEqual(
-      expect.objectContaining({ sort: 'shortest', minPriceDhb: 10_000 }),
+      expect.objectContaining({ sort: 'shortest', minPriceUsd: 10_000 }),
     );
     // An empty search must not become `search=`, which the server would read as
     // a filter and answer an empty grid to.
@@ -100,7 +100,7 @@ describe('services/username-market.service', () => {
     mockFetch.mockResolvedValueOnce({ result: { id: '1' } });
 
     await usernameMarketService.createListing({
-      priceDhb: 50_000,
+      priceUsd: 50,
       replacementUsername: 'satoshi_two',
       description: 'The original.',
     });
@@ -113,7 +113,7 @@ describe('services/username-market.service', () => {
     // hold.
     expect(options.body).not.toHaveProperty('username');
     expect(options.body).toEqual({
-      priceDhb: 50_000,
+      priceUsd: 50,
       replacementUsername: 'satoshi_two',
       description: 'The original.',
     });
@@ -122,13 +122,13 @@ describe('services/username-market.service', () => {
   it('claims against a hash and a chain, so the server can read the transfer back', async () => {
     mockFetch.mockResolvedValueOnce({ result: { pending: false, username: 'satoshi' } });
 
-    await usernameMarketService.claim({ listingId: 'abc', txHash: '0xdead', chainId: 56 });
+    await usernameMarketService.claim({ listingId: 'abc', quoteId: 'quote-1', txHash: '0xdead', chainId: 56 });
 
     expect(mockFetch).toHaveBeenCalledWith(
       '/username_market/claim',
       expect.objectContaining({
         method: 'POST',
-        body: { listingId: 'abc', txHash: '0xdead', chainId: 56 },
+        body: { listingId: 'abc', quoteId: 'quote-1', txHash: '0xdead', chainId: 56 },
       }),
     );
   });
