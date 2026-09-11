@@ -15,3 +15,20 @@ index 1234567..abcdefg 100644
      }
      rootViewChildrenOriginalVisibility.clear()
      this.addView(playerView)
+diff --git a/node_modules/expo-video/android/src/main/java/expo/modules/video/playbackService/ExpoVideoPlaybackService.kt b/node_modules/expo-video/android/src/main/java/expo/modules/video/playbackService/ExpoVideoPlaybackService.kt
+index 8761f9c9..323c544d 100644
+--- a/node_modules/expo-video/android/src/main/java/expo/modules/video/playbackService/ExpoVideoPlaybackService.kt
++++ b/node_modules/expo-video/android/src/main/java/expo/modules/video/playbackService/ExpoVideoPlaybackService.kt
+@@ -154,6 +154,12 @@ class ExpoVideoPlaybackService : MediaSessionService() {
+   }
+ 
+   override fun onTaskRemoved(rootIntent: Intent?) {
++    // Releasing a MediaSession does not stop its underlying player.
++    for (session in mediaSessions.values.toList()) {
++      session.player.pause()
++      session.player.stop()
++      session.player.clearMediaItems()
++    }
+     cleanup()
+     stopSelf()
+   }
