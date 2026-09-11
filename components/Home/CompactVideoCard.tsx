@@ -113,7 +113,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const isSubGated = isSubscriberGated((nft as any).plansDetails, (nft as any).isOwner === true);
   const lockContentAmount = streamInfo?.lockContentAmount;
   const lockContentTokenSymbol = streamInfo?.lockContentTokenSymbol;
-  const isBounty = !!streamInfo?.isAddBounty;
+  const isBounty = !!(streamInfo?.isAddBounty || nft.is_w2e);
   const bountyAmount = streamInfo?.addBountyAmount;
   const bountyTokenSymbol = streamInfo?.addBountyTokenSymbol;
   const badgeImage = getBadgeUrlFor((nft as any).minterUser || nft);
