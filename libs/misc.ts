@@ -532,7 +532,12 @@ const BADGE_OPTICS: Record<string, { scale: number; bottomInset: number }> = {
 const BADGE_ARTWORK_GUTTER = 1;
 
 /** Twitter-style size, spacing, and artwork-baseline alignment. */
-export function getBadgeOpticalStyle(source: number, size: number, verticalOffset = 0) {
+export function getBadgeOpticalStyle(
+  source: number,
+  size: number,
+  verticalOffset = 0,
+  textLineHeight = size * 1.4,
+) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source);
   const optics = tier ? BADGE_OPTICS[tier] : undefined;
   const renderedSize = size * 1.15 * (optics?.scale ?? 1);
@@ -540,15 +545,14 @@ export function getBadgeOpticalStyle(source: number, size: number, verticalOffse
   // Native text uses a roughly 1.4x line box. Centre the image in that box,
   // then move only its pixels to the glyph bottom. A flex baseline on the
   // oversized image changes the name row's height and pushes the username.
-  const lineHeight = size * 1.4;
-  const targetArtworkBottom = lineHeight - size * 0.1;
-  const centredImageTop = (lineHeight - outerSize) / 2;
+  const targetArtworkBottom = textLineHeight - size * 0.1;
+  const centredImageTop = (textLineHeight - outerSize) / 2;
   const visibleArtworkBottom =
     centredImageTop +
     BADGE_ARTWORK_GUTTER +
     renderedSize * (1 - (optics?.bottomInset ?? 0) / 128);
   const translateY = targetArtworkBottom - visibleArtworkBottom;
-  const verticalMargin = Math.min(0, (lineHeight - outerSize) / 2);
+  const verticalMargin = Math.min(0, (textLineHeight - outerSize) / 2);
   return {
     width: outerSize,
     height: outerSize,

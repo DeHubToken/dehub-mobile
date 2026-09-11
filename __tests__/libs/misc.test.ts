@@ -4,7 +4,7 @@ import {
   getImageUrl, getExtension, buildImageUrl, getImageUrlApi,
   getImageUrlApiSimple, getAudioUrl, getBadgeName, getBadgeUrl,
   resolveBadgeBalance, getDefaultBanner, resolveBadgeUsername, getBadgeUrlFor,
-  getBadgeOpticalStyle,
+  getBadgeOpticalStyle, badgeImageFor,
 } from '../../libs/misc';
 
 jest.mock('../../config/env', () => ({
@@ -392,6 +392,19 @@ describe('libs/misc', () => {
       expect(style.marginTop).toBeLessThanOrEqual(0);
       expect(style.marginBottom).toBe(style.marginTop);
       expect(Number.isFinite(style.transform[0].translateY)).toBe(true);
+    });
+
+    it.each([
+      'Crab', 'Lobster', 'Piranha', 'Tortoise', 'Cobra', 'Octopus',
+      'Crocodite', 'Dolphin', 'Tiger Shark', 'Killer Whale',
+      'Great White Shark', 'Blue Whale', 'Meglodon',
+    ])('keeps the %s artwork raised inside an explicit text line height', (tier) => {
+      const source = badgeImageFor(tier);
+      expect(source).toBeDefined();
+
+      const style = getBadgeOpticalStyle(source!, 16, -1, 20);
+      expect(style.height + style.marginTop + style.marginBottom).toBeCloseTo(20);
+      expect(style.transform[0].translateY).toBeLessThan(0);
     });
   });
 
