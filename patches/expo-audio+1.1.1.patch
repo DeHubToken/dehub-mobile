@@ -1,0 +1,73 @@
+diff --git a/node_modules/expo-audio/android/src/main/java/expo/modules/audio/service/AudioControlsService.kt b/node_modules/expo-audio/android/src/main/java/expo/modules/audio/service/AudioControlsService.kt
+index 04486e21..ef86788b 100644
+--- a/node_modules/expo-audio/android/src/main/java/expo/modules/audio/service/AudioControlsService.kt
++++ b/node_modules/expo-audio/android/src/main/java/expo/modules/audio/service/AudioControlsService.kt
+@@ -53,6 +53,15 @@ class AudioControlsService : MediaSessionService() {
+   }
+ 
+   override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
++    // Every foreground-service start must be acknowledged, including a
++    // delayed start whose player was cleared before the service was created.
++    postOrStartForegroundNotification(startInForeground = true)
++    if (currentPlayer == null) {
++      stopForeground(STOP_FOREGROUND_REMOVE)
++      stopSelf(startId)
++      return START_NOT_STICKY
++    }
++
+     // Handle media button actions dispatched from notification
+     when (intent?.action) {
+       ACTION_PLAY -> withPlayerOnAppThread { it.play() }
+@@ -113,7 +122,7 @@ class AudioControlsService : MediaSessionService() {
+   }
+ 
+   private fun buildNotification(): Notification? {
+-    val session = mediaSession ?: return null
++    val session = mediaSession
+ 
+     val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+       .setSmallIcon(androidx.media3.session.R.drawable.media3_icon_circular_play)
+@@ -127,7 +136,9 @@ class AudioControlsService : MediaSessionService() {
+ 
+     // Using only session custom layout: do NOT call setShowActionsInCompactView.
+     // The compact layout will follow the order of the custom layout provided to the session.
+-    builder.setStyle(MediaStyleNotificationHelper.MediaStyle(session))
++    if (session != null) {
++      builder.setStyle(MediaStyleNotificationHelper.MediaStyle(session))
++    }
+ 
+     return builder.build()
+   }
+@@ -361,16 +372,18 @@ class AudioControlsService : MediaSessionService() {
+       if (service != null) {
+         service.setActivePlayerInternal(player, metadata, options)
+       } else {
++        pendingPlayer = player
++        pendingMetadata = metadata
++        pendingOptions = options
++        // Clearing controls must not start a service without a player.
++        if (player == null) return
++
+         val intent = Intent(context, AudioControlsService::class.java)
+         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+           context.startForegroundService(intent)
+         } else {
+           context.startService(intent)
+         }
+-
+-        pendingPlayer = player
+-        pendingMetadata = metadata
+-        pendingOptions = options
+       }
+     }
+ 
+@@ -379,6 +392,9 @@ class AudioControlsService : MediaSessionService() {
+     }
+ 
+     fun clearSession() {
++      pendingPlayer = null
++      pendingMetadata = null
++      pendingOptions = null
+       getInstance()?.clearSessionInternal()
+     }
+   }
