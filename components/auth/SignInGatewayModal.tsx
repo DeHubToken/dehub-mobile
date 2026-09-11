@@ -41,6 +41,7 @@ import { provisionAndSignIn, markProvisionedIdentity } from "../../libs/provisio
 import { decryptString, getPayloadKdf } from "../../libs/wallet-core/crypto";
 import { fetchWalletReliably } from "../../libs/wallet-core/store";
 import { deriveFromSecret, generateMnemonic12, isValidMnemonic } from "../../libs/wallet-core/derive";
+import { assertWalletAddress } from "../../libs/wallet-core/assert-wallet-address";
 import { createLocalEip1193ProviderForChain } from "../../services/localwallet.provider";
 import { setSigningProvider, setEoaSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
 import { setupAAProvider } from "../../libs/wallet-core/smart-account";
@@ -236,22 +237,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       }
       const secret = await decryptString(walletSetupRequest.payload, password);
       const derived = deriveFromSecret(secret);
-      if (derived.ethAddress.toLowerCase() !== walletSetupRequest.address.toLowerCase()) {
-        // The password was correct (decryption succeeded) but the secret it
-        // unwrapped derives to a DIFFERENT address than this Supabase
-        // identity's user_wallets row claims — e.g. two different DeHub
-        // accounts were created under the same identity at different times,
-        // and the stored seed belongs to the wrong one. Signing in anyway
-        // would silently switch the user into an account they didn't ask
-        // for, so refuse instead of warning-and-proceeding.
-        log.error("walletSetup:unlock:address-mismatch", {
-          derived: derived.ethAddress,
-          expected: walletSetupRequest.address,
-        });
-        throw new Error(
-          "This password unlocked a different wallet than expected for this account. Nothing was changed — please contact support, or use \"Import external wallet\" if you know the correct private key."
-        );
-      }
+      await assertWalletAddress(derived.ethAddress, walletSetupRequest.address);
+      // Preserve the cloud-address alias so the next resolve finds this key.
+      await finishWalletUnlock(walletSetupRequest.supabaseUserId, walletSetupRequest.address, derived.ethPrivateKey);
       await finishWalletUnlock(walletSetupRequest.supabaseUserId, derived.ethAddress, derived.ethPrivateKey);
       await finishWalletSetupSignIn(derived.ethAddress, derived.ethPrivateKey);
     },
