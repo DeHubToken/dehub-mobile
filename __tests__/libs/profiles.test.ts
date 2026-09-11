@@ -79,6 +79,24 @@ describe('libs/profiles', () => {
     consumeAddProfileAttempt();
   });
 
+  it('keeps the verified Google session when correcting its profile address', async () => {
+    await seedAccountA();
+    const key = 'sb-example-auth-token';
+    const session = JSON.stringify({ user: { id: 'uid-a' }, access_token: 'identity-token', refresh_token: 'identity-refresh' });
+    await AsyncStorage.setItem(key, session);
+    await stageIncomingIdentity('uid-a');
+    expect(await AsyncStorage.getItem(key)).toBe(session);
+    expect(await SecureStore.getItemAsync('auth_token')).toBeNull();
+  });
+
+  it.each([undefined, 'uid-b'])('clears another identity session when preserving %s', async (uid) => {
+    await seedAccountA();
+    const key = 'sb-example-auth-token';
+    await AsyncStorage.setItem(key, JSON.stringify({ user: { id: 'uid-a' }, access_token: 'old-token', refresh_token: 'old-refresh' }));
+    await stageIncomingIdentity(uid);
+    expect(await AsyncStorage.getItem(key)).toBeNull();
+  });
+
   describe('preserveOutgoingProfile', () => {
     it('saves an account that was never explicitly added, so a second login cannot lose it', async () => {
       await seedAccountA();
