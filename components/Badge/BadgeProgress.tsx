@@ -22,8 +22,6 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-  withRepeat,
-  withSequence,
   Easing,
 } from "react-native-reanimated";
 import {
@@ -32,10 +30,6 @@ import {
   getBadgeStanding,
   type BadgeLock,
 } from "../../libs/misc";
-import {
-  engagementWeightForBadge,
-  formatEngagementWeight,
-} from "../../libs/engagement-weight";
 import { useBadgeLadderPrice, useBadgeScale } from "../../hooks/useBadgeScale";
 
 export interface BadgeProgressProps {
@@ -75,14 +69,10 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
   );
 
   const percent = Math.round(standing.progress * 100);
-  const weight = engagementWeightForBadge(standing.tier);
-
   // Width as a percentage string, driven once on mount and whenever the tier
   // moves. `withTiming` lives in the worklet, never in the style literal —
   // a bare withTiming in a style resolves to NaN and the view disappears.
   const fill = useSharedValue(0);
-  const glow = useSharedValue(0.45);
-
   React.useEffect(() => {
     fill.value = withTiming(Math.max(percent, standing.progress > 0 ? 2 : 0), {
       duration: 900,
@@ -90,53 +80,23 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
     });
   }, [percent, standing.progress, fill]);
 
-  React.useEffect(() => {
-    glow.value = withRepeat(
-      withSequence(
-        withTiming(0.9, { duration: 1400, easing: Easing.inOut(Easing.ease) }),
-        withTiming(0.45, { duration: 1400, easing: Easing.inOut(Easing.ease) }),
-      ),
-      -1,
-      false,
-    );
-  }, [glow]);
-
   const fillStyle = useAnimatedStyle(() => ({ width: `${fill.value}%` }));
-  const glowStyle = useAnimatedStyle(() => ({ opacity: glow.value }));
 
   return (
     <View className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 overflow-hidden">
       <View className="flex-row items-center gap-3">
         <View className="w-14 h-14 items-center justify-center">
-          {/* Plain style, not className: NativeWind does not interop
-              Animated.View, and a className here silently renders nothing. */}
-          <Animated.View
-            style={[
-              glowStyle,
-              {
-                position: "absolute",
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0,
-                borderRadius: 28,
-                backgroundColor: "rgba(255,255,255,0.10)",
-              },
-            ]}
-          />
-          <View className="w-14 h-14 rounded-full border border-white/15 bg-white/[0.04] items-center justify-center">
-            {standing.image ? (
-              <Image
-                source={standing.image}
-                style={{ width: 30, height: 30 }}
-                resizeMode="contain"
-              />
-            ) : (
-              <Text className="text-[9px] uppercase tracking-wider text-white/30">
-                None
-              </Text>
-            )}
-          </View>
+          {standing.image ? (
+            <Image
+              source={standing.image}
+              style={{ width: 56, height: 56 }}
+              resizeMode="contain"
+            />
+          ) : (
+            <Text className="text-[9px] uppercase tracking-wider text-white/30">
+              None
+            </Text>
+          )}
         </View>
 
         <View className="flex-1 min-w-0">
@@ -196,16 +156,6 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
         </Text>
       </View>
 
-      {/* What the tier actually does, beyond drawing a picture. */}
-      <View className="mt-3 flex-row items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2">
-        <Text className="text-sm text-white">{formatEngagementWeight(weight)}</Text>
-        <Text className="text-[11px] leading-4 text-white/55 flex-1">
-          {standing.tier
-            ? `Every view you give and every reaction you leave counts ${formatEngagementWeight(weight)}. Still one reaction — it is just worth more.`
-            : "Views and reactions count once. A badge multiplies that — ×2 at Crab, up to ×14 at Meglodon."}
-        </Text>
-      </View>
-
       {!compact && (
         <ScrollView
           horizontal
@@ -221,7 +171,7 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
                 key={rung.name}
                 className={`w-8 h-8 rounded-lg items-center justify-center ${
                   current
-                    ? "bg-white/[0.12] border border-white/50"
+                    ? "bg-white/[0.12]"
                     : earned
                       ? "bg-white/[0.07]"
                       : "bg-white/[0.02]"
@@ -238,21 +188,10 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
         </ScrollView>
       )}
 
-      <Text className="mt-3 text-[10px] leading-4 text-white/35">
-        Tiers are priced in dollars, so the DHB each one costs moves with the
-        token.
-        {standing.nextTier
-          ? ` ${standing.nextTier} is ${formatDhb(standing.nextThreshold ?? 0)} DHB at today's price.`
-          : " Meglodon is about $50,000 of DHB at any price."}
+      <Text className="mt-3 text-[10px] leading-4 text-white/45">
+        Once a badge is unlocked, it is yours for as long as you hold your DHB. The number of tokens
+        needed to unlock a new badge can change with the token price.
       </Text>
-
-      {standing.grandfathered && lock ? (
-        <Text className="mt-1.5 text-[10px] leading-4 text-white/50">
-          {standing.tier} is locked in. You keep it while you hold at least{" "}
-          {formatDhb(lock.requirement)} <DhbCoin /> — what it cost when you earned it —
-          whatever the ladder does after.
-        </Text>
-      ) : null}
     </View>
   );
 }
