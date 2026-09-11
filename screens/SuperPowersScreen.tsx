@@ -29,7 +29,8 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { theme } from "../theme";
-import { badgeImage, getBadgeUrl } from "../libs";
+import { badgeImage } from "../libs";
+import { BadgeProgress } from "../components/Badge/BadgeProgress";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
   useCancelBoost,
@@ -80,7 +81,6 @@ export default function SuperPowersScreen() {
   const [historyPower, setHistoryPower] = useState<SuperPowerInfo | null>(null);
   const [teamUpOpen, setTeamUpOpen] = useState(false);
 
-  const badgeArt = status?.tier ? getBadgeUrl(status.badgeBalance) : undefined;
   const historyBookings = historyPower
     ? (status?.bookings.filter(booking => booking.power === historyPower.key) ?? [])
     : [];
@@ -116,35 +116,27 @@ export default function SuperPowersScreen() {
             <ActivityIndicator color="#fff" />
           </View>
         ) : status?.tier ? (
-          <View style={styles.panel}>
-            <View style={styles.tierRow}>
-              {!!badgeArt && <Image source={badgeArt} style={styles.badge} resizeMode="contain" />}
-              <View style={styles.tierText}>
-                <Text style={styles.tierName}>{status.tier}</Text>
-                <Text style={styles.muted}>
-                  {status.boostsPerCycle} × {status.minutesPerBoost} minutes a cycle
-                </Text>
-              </View>
-            </View>
-
+          <>
+            <BadgeProgress balance={status.badgeBalance} compact />
             {!!refillsOn && (
               <Text style={styles.footnote}>
                 Refills on {refillsOn} — the same moment for everybody.
               </Text>
             )}
-          </View>
+          </>
         ) : (
           // No badge — this screen's real audience. Say what it costs and where.
           <View style={styles.panel}>
             <Text style={styles.body}>
-              You have no badge yet, so no boosts. Staking DHB unlocks the ladder below.
+              Hold DHB to unlock a badge and its SuperPowers.
             </Text>
             <Text style={styles.muted}>Team up is open to every account, even without a badge.</Text>
+            <BadgeProgress balance={status?.badgeBalance ?? 0} compact />
             <Pressable
-              onPress={() => navigation.navigate(ScreenNames.Dpay, { initialTab: "stake" })}
+              onPress={() => navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" })}
               style={styles.cta}
             >
-              <Text style={styles.ctaText}>Stake DHB</Text>
+              <Text style={styles.ctaText}>Get DHB</Text>
             </Pressable>
           </View>
         )}
