@@ -1,0 +1,63 @@
+name: iOS release build
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-release-build
+  cancel-in-progress: false
+
+jobs:
+  build-and-upload:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - run: npx patch-package --error-on-fail
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Build signed iOS archive on EAS
+        run: eas build --platform ios --profile production --non-interactive --wait --json > ios-build.json
+      - name: Validate build result
+        id: build
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const result = JSON.parse(fs.readFileSync('ios-build.json', 'utf8'));
+          const build = Array.isArray(result) ? result[0] : result;
+          if (build.status !== 'FINISHED' || build.platform !== 'IOS' || !build.id) {
+            throw new Error('EAS did not return a completed iOS build');
+          }
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `id=${build.id}\n`);
+          console.log(JSON.stringify({
+            id: build.id,
+            status: build.status,
+            appVersion: build.appVersion,
+            appBuildVersion: build.appBuildVersion,
+            gitCommitHash: build.gitCommitHash,
+            completedAt: build.completedAt,
+          }, null, 2));
+          NODE
+      - name: Upload build to App Store Connect
+        env:
+          BUILD_ID: ${{ steps.build.outputs.id }}
+        run: eas submit --platform ios --profile production --id "$BUILD_ID" --non-interactive --wait | tee ios-submit.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ios-release-result
+          path: |
+            ios-build.json
+            ios-submit.log
+          if-no-files-found: ignore
