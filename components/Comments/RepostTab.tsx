@@ -6,6 +6,7 @@ import {
   Pressable,
   ActivityIndicator,
   RefreshControl,
+  Image,
 } from "react-native";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
@@ -15,7 +16,7 @@ import {
   getRepostUsers,
   RepostUser,
 } from "../../services/repost.service";
-import { getAvatarUrl } from "../../libs/misc";
+import { getAvatarUrl, getBadgeOpticalStyle, getBadgeUrl } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import { formatCompactNumber } from "../../libs/numbers.util";
 
@@ -31,6 +32,9 @@ const RepostUserRow: React.FC<RepostUserRowProps> = memo(({ item, onPress }) => 
     item.displayName || item.username || truncate(item.address, 12, "..");
   const hasUsername = !!item.username;
   const avatarUrl = getAvatarUrl(item.avatarImageUrl);
+  const badgeImage = item.hideBadgeAndBalance
+    ? null
+    : getBadgeUrl(item.badgeBalance ?? 0, { username: item.username });
 
   const handlePress = useCallback(() => {
     onPress(item.address);
@@ -53,6 +57,13 @@ const RepostUserRow: React.FC<RepostUserRowProps> = memo(({ item, onPress }) => 
           >
             {displayName}
           </Text>
+          {!!badgeImage && (
+            <Image
+              source={badgeImage}
+              style={getBadgeOpticalStyle(badgeImage, 14, -1)}
+              resizeMode="contain"
+            />
+          )}
           <NewMemberChip address={item.address} />
         </View>
         {hasUsername && (

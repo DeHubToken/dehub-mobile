@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, getAudioUrl } from "../../libs/misc";
+import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, getAudioUrl, getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import { getNFT } from "../../services/nft.service";
 import Avatar from "./Avatar";
@@ -108,6 +108,9 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
     const avatarUrl = getAvatarUrl(
       minterUser?.avatarImageUrl || quotedPost.minterAvatarUrl || ""
     );
+    const badgeImage = minterUser?.hideBadgeAndBalance
+      ? null
+      : getBadgeUrlFor(minterUser || quotedPost);
     const text = quotedPost.description || quotedPost.name || quotedPost.title || "";
     const truncatedText = text.length > 140 ? text.slice(0, 140) + "…" : text;
 
@@ -179,6 +182,13 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
             <Text className="text-white font-semibold text-xs" numberOfLines={1}>
               {displayName}
             </Text>
+            {!!badgeImage && (
+              <Image
+                source={badgeImage}
+                style={getBadgeOpticalStyle(badgeImage, 13, -1)}
+                resizeMode="contain"
+              />
+            )}
             {username && (
               <Text className="text-theme-neutrals-500 text-xs" numberOfLines={1}>
                 @{username}
