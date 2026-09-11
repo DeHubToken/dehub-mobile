@@ -142,6 +142,12 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
   const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate, sourceLang: translationSourceLang } =
     useTranslation(translationTexts, (message as any).detectedLanguage);
 
+  // Reactions display
+  const reactionEntries = useMemo(() => {
+    if (!message.reactions) return [];
+    return Object.entries(message.reactions).filter(([, addrs]) => addrs.length > 0);
+  }, [message.reactions]);
+
   // System messages
   if (isSystem) {
     return (
@@ -152,12 +158,6 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
       </View>
     );
   }
-
-  // Reactions display
-  const reactionEntries = useMemo(() => {
-    if (!message.reactions) return [];
-    return Object.entries(message.reactions).filter(([, addrs]) => addrs.length > 0);
-  }, [message.reactions]);
 
   return (
     <Pressable

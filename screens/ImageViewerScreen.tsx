@@ -417,7 +417,7 @@ const ImageViewerScreen = () => {
             bounces={false}
             windowSize={3}
             maxToRenderPerBatch={3}
-            removeClippedSubviews={Platform.OS !== "ios"}
+            removeClippedSubviews={false}
           />
         </Animated.View>
       </GestureDetector>

@@ -212,7 +212,7 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
           initialNumToRender={12}
           maxToRenderPerBatch={16}
           windowSize={5}
-          removeClippedSubviews
+          removeClippedSubviews={false}
           keyboardShouldPersistTaps="handled"
         />
       </MaskedView>

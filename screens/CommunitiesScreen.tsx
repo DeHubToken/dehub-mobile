@@ -201,7 +201,7 @@ const CommunitiesScreen: React.FC = () => {
         // The search field is this list's header; without this the first tap
         // on a result only dismissed the keyboard.
         keyboardShouldPersistTaps="handled"
-        removeClippedSubviews
+        removeClippedSubviews={false}
         ListHeaderComponent={ListHeader}
         refreshControl={
           <RefreshControl

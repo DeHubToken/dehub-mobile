@@ -395,7 +395,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         initialNumToRender={6}
         maxToRenderPerBatch={6}
         windowSize={9}
-        removeClippedSubviews
+        removeClippedSubviews={false}
         onEndReached={loadMore}
         onEndReachedThreshold={0.8}
         onScroll={scrollHandler ?? handleScroll}

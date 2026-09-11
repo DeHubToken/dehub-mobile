@@ -229,7 +229,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
       maxToRenderPerBatch={4}
       // Was 11 — twenty-plus feed cards resident at once on a profile list.
       windowSize={7}
-      removeClippedSubviews
+      removeClippedSubviews={false}
       viewabilityConfig={viewabilityConfig}
       onViewableItemsChanged={onViewableItemsChanged}
       extraData={visibilityExtraData}
