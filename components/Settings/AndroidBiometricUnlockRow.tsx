@@ -67,10 +67,11 @@ const AndroidBiometricUnlockRow: React.FC = () => {
         toastSuccess('Biometric wallet unlock verified');
       } else {
         const unlocked = await requestWalletUnlock('Set up biometric wallet unlock on this phone');
-        const hasDeviceKey = unlocked && (await hasPrivateKeyForAddress(address));
+        if (!unlocked) return;
+        const hasDeviceKey = await hasPrivateKeyForAddress(address);
         if (!hasDeviceKey) {
           throw new Error(
-            'A web passkey cannot unlock the Android app. Use your wallet password or recovery phrase on this phone.',
+            'The wallet key is not available on this phone yet. Restore this wallet with an existing password, recovery phrase, or private key before enabling device unlock.',
           );
         }
         toastSuccess('Biometric wallet unlock is ready on this phone');
@@ -102,7 +103,7 @@ const AndroidBiometricUnlockRow: React.FC = () => {
     ? 'Add a fingerprint, face unlock, or screen lock to protect wallet actions.'
     : state?.hasDeviceKey
       ? `${platformName} verifies your fingerprint, face, or device lock when the wallet signs. Web passkeys are separate.`
-      : `Unlock with your wallet password once to add this phone. A web passkey does not transfer into the app.`;
+      : 'Restore this wallet on this phone using an existing wallet password, recovery phrase, or private key. Then protect it with your phone’s device lock.';
 
   return (
     <SettingsLinkRow
