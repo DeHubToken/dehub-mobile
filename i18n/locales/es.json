@@ -2547,7 +2547,13 @@
     "staleListing": "Este anuncio es para @{{listed}}, pero ahora eres @{{current}}. No se venderá hasta que lo vuelvas a publicar con tu alias actual — actualizarlo arriba hace eso.",
     "history": "Historial",
     "sold": "Vendido",
-    "bought": "Comprado"
+    "bought": "Comprado",
+    "askingPriceUsd": "Precio de venta (USD)",
+    "dollarPriceRange": "Introduce entre 1 y 1.000.000 USD, con hasta dos decimales.",
+    "fixedDollarPrice": "El precio en dólares es fijo; la cantidad de tokens se actualiza.",
+    "priceUpdated": "Precio actualizado. Revisa el importe y pulsa Comprar de nuevo.",
+    "tokensPaidToSeller": "Pago directo al vendedor",
+    "priceUsd": "Precio (USD)"
   },
   "accounts": {
     "subtitle": "Cuentas completas en venta, con precio en DHB",

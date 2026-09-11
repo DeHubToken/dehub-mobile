@@ -2546,7 +2546,13 @@
     "staleListing": "Dieses Angebot gilt für @{{listed}}, aber du bist jetzt @{{current}}. Es wird sich nicht verkaufen, bis du es unter deinem aktuellen Handle neu einstellst — die Aktualisierung oben erledigt das.",
     "history": "Verlauf",
     "sold": "Verkauft",
-    "bought": "Gekauft"
+    "bought": "Gekauft",
+    "askingPriceUsd": "Verkaufspreis (USD)",
+    "dollarPriceRange": "Gib 1 bis 1.000.000 USD mit höchstens zwei Nachkommastellen ein.",
+    "fixedDollarPrice": "Der Dollarpreis bleibt fest; die Tokenmenge wird aktualisiert.",
+    "priceUpdated": "Preis aktualisiert. Prüfe den Betrag und tippe erneut auf Kaufen.",
+    "tokensPaidToSeller": "Direkt an den Verkäufer gezahlt",
+    "priceUsd": "Preis (USD)"
   },
   "accounts": {
     "subtitle": "Ganze Konten zu verkaufen, Preis in DHB",

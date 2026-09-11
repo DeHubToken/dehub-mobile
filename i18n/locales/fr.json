@@ -2551,7 +2551,13 @@
     "staleListing": "Cette annonce concerne @{{listed}}, mais vous êtes maintenant @{{current}}. Elle ne se vendra pas tant que vous ne la republierez pas sous votre pseudo actuel — la mise à jour ci-dessus le fait.",
     "history": "Historique",
     "sold": "Vendu",
-    "bought": "Acheté"
+    "bought": "Acheté",
+    "askingPriceUsd": "Prix demandé (USD)",
+    "dollarPriceRange": "Saisissez de 1 à 1 000 000 USD, avec deux décimales maximum.",
+    "fixedDollarPrice": "Le prix en dollars reste fixe ; le nombre de jetons évolue.",
+    "priceUpdated": "Prix mis à jour. Vérifiez le montant et appuyez à nouveau sur Acheter.",
+    "tokensPaidToSeller": "Payé directement au vendeur",
+    "priceUsd": "Prix (USD)"
   },
   "accounts": {
     "subtitle": "Comptes entiers à vendre, en DHB",
