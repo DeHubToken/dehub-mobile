@@ -2472,7 +2472,7 @@
     "intro": "Pelejä, jotka pyörivät suoraan tässä sovelluksessa. Ei asennettavaa, ei ostettavaa — avointa lähdekoodia ja DeHubin itsensä tarjoamia."
   },
   "usernames": {
-    "subtitle": "Myytäviä käyttäjätunnuksia, hinnat DHB:nä",
+    "subtitle": "Myytäviä käyttäjätunnuksia, hinnat USD:nä",
     "browse": "Selaa",
     "sell": "Myy",
     "searchPlaceholder": "Hae käyttäjätunnusta...",

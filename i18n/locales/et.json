@@ -2471,7 +2471,7 @@
     "intro": "Mängud, mis töötavad siinsamas rakenduses. Midagi ei pea paigaldama ega ostma — avatud lähtekoodiga ja serveeritud DeHubi enda poolt."
   },
   "usernames": {
-    "subtitle": "Müügis olevad kasutajanimed, hind DHB-des",
+    "subtitle": "Müügis olevad kasutajanimed, hind USD-des",
     "browse": "Sirvi",
     "sell": "Müü",
     "searchPlaceholder": "Otsi kasutajanime...",
