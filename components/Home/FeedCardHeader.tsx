@@ -6,6 +6,9 @@ import Icon from "../ui/Icon";
 import { getBadgeOpticalStyle } from "../../libs/misc";
 
 const ICON_MUTED = "#6F7174";
+const DISPLAY_NAME_FONT_SIZE = 16;
+const DISPLAY_NAME_LINE_HEIGHT = 20;
+const HOLDER_BADGE_SIZE = 16;
 
 export interface FeedCardHeaderProps {
   avatarUrl?: string;
@@ -44,10 +47,10 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
       </Pressable>
 
       <View className="flex-1 min-w-0 mr-2">
-        <View style={{ flexDirection: "row", alignItems: "baseline", minWidth: 0 }}>
+        <View style={{ flexDirection: "row", alignItems: "center", minWidth: 0, height: DISPLAY_NAME_LINE_HEIGHT }}>
           <Text
             className="font-semibold"
-            style={{ color: "#F9FBFF", flexShrink: 1, fontSize: 16, lineHeight: 20 }}
+            style={{ color: "#F9FBFF", flexShrink: 1, fontSize: DISPLAY_NAME_FONT_SIZE, lineHeight: DISPLAY_NAME_LINE_HEIGHT }}
             numberOfLines={1}
             ellipsizeMode="tail"
             onPress={onUserPress}
@@ -57,14 +60,21 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           {badgeImage && (
             <Pressable
               onPress={onUserPress}
-              style={{ flexShrink: 0, marginLeft: 4 }}
+              style={{ flexShrink: 0, height: DISPLAY_NAME_LINE_HEIGHT, marginLeft: 4, justifyContent: "center" }}
               hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
             >
-              <Image source={badgeImage} style={getBadgeOpticalStyle(badgeImage, 14, -1)} resizeMode="contain" />
+              <Image
+                source={badgeImage}
+                style={[
+                  getBadgeOpticalStyle(badgeImage, HOLDER_BADGE_SIZE, -1, DISPLAY_NAME_LINE_HEIGHT),
+                  { marginLeft: 0 },
+                ]}
+                resizeMode="contain"
+              />
             </Pressable>
           )}
           {address && (
-            <View style={{ flexShrink: 0, marginLeft: 4 }}>
+            <View style={{ flexShrink: 0, height: DISPLAY_NAME_LINE_HEIGHT, marginLeft: 4, justifyContent: "center" }}>
               <NewMemberChip address={address} />
             </View>
           )}
