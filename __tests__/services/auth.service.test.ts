@@ -1,4 +1,4 @@
-import { AuthService, WalletNotLinkedError } from '../../services/auth.service';
+import { AuthService, WalletNotLinkedError, WalletLinkAmbiguousError } from '../../services/auth.service';
 import { apiClient } from '../../libs/api.client';
 import { getOrCreateAuthSignature } from '../../libs/web3.auth.sign';
 import { getSupabaseAccessToken } from '../../services/auth/supabaseAuth.service';
@@ -157,6 +157,16 @@ describe('services/auth.service', () => {
     it('throws when API returns error', async () => {
       mockApiPost.mockResolvedValueOnce({ error: true, error_msg: 'Username taken' });
       await expect(AuthService.updateProfile({ username: 'taken' })).rejects.toThrow('Username taken');
+    });
+  });
+
+  describe('profile session exchange', () => {
+    it('distinguishes an ambiguous existing profile from a new identity', async () => {
+      mockApiPost.mockRejectedValueOnce({ status: 409, code: 'WALLET_LINK_AMBIGUOUS' });
+      await expect(AuthService.authenticateWithSupabaseSession('identity-token')).rejects.toBeInstanceOf(WalletLinkAmbiguousError);
+      mockApiPost.mockRejectedValueOnce({ status: 409, code: 'WALLET_NOT_LINKED' });
+      await expect(AuthService.authenticateWithSupabaseSession('identity-token')).rejects.toBeInstanceOf(WalletNotLinkedError);
+      expect(mockGetOrCreateAuthSignature).not.toHaveBeenCalled();
     });
   });
 
