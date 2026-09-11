@@ -510,6 +510,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   // sync effect below lands.
   const mutedRef = useRef(isMuted);
   mutedRef.current = isMuted;
+  // Native play events can arrive after the pager has moved. Every path that
+  // can start playback reads this ref so a recycled/inactive cell cannot bring
+  // back audio from the short that just left the screen.
+  const isActiveRef = useRef(isActive);
+  isActiveRef.current = isActive;
 
   const player = useVideoPlayer(videoUrl || null, (p) => {
     p.staysActiveInBackground = isActive;
@@ -519,28 +524,50 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     p.bufferOptions = FEED_BUFFER_OPTIONS;
   });
 
+  const stopPlayback = useCallback(() => {
+    try {
+      player.staysActiveInBackground = false;
+      player.showNowPlayingNotification = false;
+      player.pause();
+    } catch {}
+    setIsPlaying(false);
+  }, [player]);
+
+  const playIfActive = useCallback(() => {
+    if (!isActiveRef.current) {
+      stopPlayback();
+      return false;
+    }
+    try {
+      player.play();
+      setIsPlaying(true);
+      return true;
+    } catch {
+      return false;
+    }
+  }, [player, stopPlayback]);
+
   useEffect(() => {
     if (!player) return;
     player.staysActiveInBackground = isActive;
     player.showNowPlayingNotification = isActive;
     if (isActive) {
-      requestFeedVideoFocus(() => { try { player.pause(); } catch {} });
-      requestAudioFocus(() => { try { player.pause(); } catch {} });
-      player.play();
-      setIsPlaying(true);
+      // The same callback identity must be used for request and release. The
+      // old anonymous callbacks could never release either global focus slot.
+      requestFeedVideoFocus(stopPlayback);
+      requestAudioFocus(stopPlayback);
+      playIfActive();
       setIsPausedByUser(false);
     } else {
-      try { player.pause(); } catch {}
-      setIsPlaying(false);
+      stopPlayback();
       setIsPausedByUser(false);
     }
     return () => {
-      if (isActive) {
-        releaseFeedVideoFocus(() => {});
-        releaseAudioFocus(() => {});
-      }
+      stopPlayback();
+      releaseFeedVideoFocus(stopPlayback);
+      releaseAudioFocus(stopPlayback);
     };
-  }, [isActive, player]);
+  }, [isActive, player, playIfActive, stopPlayback]);
 
   useEffect(() => {
     if (!isActive) return;
@@ -549,9 +576,17 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   }, [isActive]);
 
   useEffect(() => {
-    const sub = player.addListener("playingChange", ({ isPlaying }) => setIsPlaying(isPlaying));
+    const sub = player.addListener("playingChange", ({ isPlaying: playing }) => {
+      // iOS may finish an earlier native play request after the pager's pause.
+      // Immediately reject that stale start instead of trusting event order.
+      if (playing && !isActiveRef.current) {
+        stopPlayback();
+        return;
+      }
+      setIsPlaying(playing);
+    });
     return () => sub.remove();
-  }, [player]);
+  }, [player, stopPlayback]);
 
   // A screen pushed over the viewer (quote, comments, a profile) keeps this
   // item mounted, and freezeOnBlur stops it re-rendering, so the effect above
@@ -566,7 +601,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     };
     const onFocus = () => {
       if (!isActive || isPausedByUser) return;
-      try { player.play(); } catch {}
+      playIfActive();
     };
     const unsubBlur = itemNavigation.addListener("blur", onBlur);
     const unsubFocus = itemNavigation.addListener("focus", onFocus);
@@ -574,7 +609,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
       unsubBlur();
       unsubFocus();
     };
-  }, [itemNavigation, player, isActive, isPausedByUser]);
+  }, [itemNavigation, player, isActive, isPausedByUser, playIfActive]);
 
   useEffect(() => {
     if (!player) return;
@@ -597,9 +632,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
       setIsPlaying(false);
       setIsPausedByUser(true);
     } else {
-      player.play();
-      setIsPlaying(true);
-      setIsPausedByUser(false);
+      if (playIfActive()) setIsPausedByUser(false);
     }
   };
 
@@ -997,14 +1030,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
 
     if (kind === "screenshot") {
       setScreenshotMode(false);
-      if (wasPlayingBeforeLongPress.current && player) {
-        try {
-          player.play();
-          setIsPlaying(true);
-        } catch {}
-      }
+      if (wasPlayingBeforeLongPress.current) playIfActive();
     }
-  }, [player]);
+  }, [playIfActive]);
 
   /**
    * Native recognizers arbitrate with the FlatList's own native scroll gesture.
