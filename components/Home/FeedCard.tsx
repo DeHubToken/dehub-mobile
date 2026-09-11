@@ -1401,7 +1401,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // Matches the web feed tile (dehubweb HomeFeed.tsx:1066 + index.css:1264):
       // translucent white fill and hairline rather than an opaque grey outline,
       // 6pt vertical margin = 12pt inter-card gap (web `space-y-3`, was 8pt),
-      // and 24pt bottom padding (web overrides the uniform p-3 to pb-6).
+      // and one 12pt inset on every edge. Keeping the action row's bottom
+      // inset equal to its side inset makes the controls sit squarely in the
+      // bento instead of looking dropped toward its lower edge.
       style={{
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.12)',
@@ -1409,7 +1411,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         borderRadius: FEED_BENTO_RADIUS,
         paddingTop: 12,
         paddingHorizontal: 12,
-        paddingBottom: 24,
+        paddingBottom: 12,
         marginVertical: 6,
       }}
     >
