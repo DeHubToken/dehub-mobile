@@ -31,9 +31,10 @@ import {
   ActivityIndicator,
   Easing,
   Animated as RNAnimated,
+  BackHandler,
 } from "react-native";
 import Slider from "@react-native-community/slider";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -133,6 +134,24 @@ export default function PromptScreen() {
   const [weights, setWeights] = useState<CategoryWeight[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const inputRef = useRef<TextInput>(null);
+  const analysisTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleBack = useCallback(() => {
+    if (analysisTimer.current) clearTimeout(analysisTimer.current);
+    if (stage !== "input") setStage("input");
+    else if (navigation.canGoBack()) navigation.goBack();
+    else navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home });
+    return true;
+  }, [navigation, stage]);
+
+  useFocusEffect(useCallback(() => {
+    const subscription = BackHandler.addEventListener("hardwareBackPress", handleBack);
+    return () => subscription.remove();
+  }, [handleBack]));
+
+  useEffect(() => () => {
+    if (analysisTimer.current) clearTimeout(analysisTimer.current);
+  }, []);
 
   // Keep latest categories in a ref so the deferred timer always scores against
   // fresh data — same guard web uses via `categoriesRef`.
@@ -165,7 +184,8 @@ export default function PromptScreen() {
       if (!v) return;
       setText(v);
       setStage("analysing");
-      setTimeout(() => {
+      if (analysisTimer.current) clearTimeout(analysisTimer.current);
+      analysisTimer.current = setTimeout(() => {
         setWeights(scorePromptAgainstCategories(v, categoriesRef.current));
         setStage("tune");
       }, ANALYSE_MS);
@@ -199,7 +219,9 @@ export default function PromptScreen() {
     <View style={styles.root}>
       <View style={styles.header}>
         <Pressable
-          onPress={() => (stage === "input" ? navigation.goBack() : setStage("input"))}
+          onPress={handleBack}
+          accessibilityRole="button"
+          accessibilityLabel={t("profile.back", "Back")}
           hitSlop={10}
           style={styles.backBtn}
         >
