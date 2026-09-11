@@ -170,6 +170,27 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
   const left = signals
     ? (status?.signalsLeft ?? status?.boostsLeft ?? 0)
     : (status?.boostsLeft ?? 0);
+  const statusTier = (status?.tier ?? "").toLowerCase();
+  const isMegalodon =
+    statusTier.includes("megalodon") ||
+    statusTier.includes("meglodon");
+
+  const selectedPost =
+    home === "post" || home === "gift"
+      ? posts.find(row => Number((row as any)?.tokenId) === pickedPost)
+      : null;
+
+  const signalFlarePeople = signals
+    ? Number(
+        (selectedPost as any)?.creator?.followers ??
+          (selectedPost as any)?.creator?.follower_count ??
+          (selectedPost as any)?.followers ??
+          (selectedPost as any)?.followerCount ??
+          (selectedPost as any)?.creator?.followersList?.length ??
+          (selectedPost as any)?.followersList?.length ??
+          0,
+      )
+    : null;
 
   const targetChosen =
     home === "page"
@@ -512,11 +533,18 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
                       defaultValue: "No Signal Flares left this cycle",
                     })
                   : t("superpowers.noBoostsLeft", { defaultValue: "No boosts left this cycle" })
-                : t("superpowers.spendFor", {
-                    power: power?.label ?? "",
-                    minutes: status?.minutesPerBoost ?? 0,
-                    defaultValue: `${power?.label ?? "Spend"} for ${status?.minutesPerBoost ?? 0} minutes`,
-                  })}
+                : signals
+                  ? isMegalodon
+                    ? "Signal Flare to everyone"
+                    : t("superpowers.signalFlareTo", {
+                        people: signalFlarePeople ?? 0,
+                        defaultValue: `Signal Flare to ${(signalFlarePeople ?? 0).toLocaleString()} people`,
+                      })
+                  : t("superpowers.spendFor", {
+                      power: power?.label ?? "",
+                      minutes: status?.minutesPerBoost ?? 0,
+                      defaultValue: `${power?.label ?? "Spend"} for ${status?.minutesPerBoost ?? 0} minutes`,
+                    })}
             </Text>
           )}
         </Pressable>
