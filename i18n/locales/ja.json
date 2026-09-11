@@ -2487,7 +2487,7 @@
     "intro": "アプリ内でそのまま動くゲーム。インストールも購入も不要 — オープンソースで、DeHub 自身から配信しています。"
   },
   "usernames": {
-    "subtitle": "DHB建てで売り出し中のハンドル",
+    "subtitle": "USD建てで売り出し中のハンドル",
     "browse": "見る",
     "sell": "売る",
     "searchPlaceholder": "ハンドルを検索...",
@@ -2547,7 +2547,13 @@
     "staleListing": "この出品は@{{listed}}のものですが、現在あなたは@{{current}}です。現在のハンドルで出品し直すまで売れません — 上で更新すればそれができます。",
     "history": "履歴",
     "sold": "売却済み",
-    "bought": "購入済み"
+    "bought": "購入済み",
+    "askingPriceUsd": "販売価格（米ドル）",
+    "dollarPriceRange": "1～1,000,000米ドルを小数点以下2桁までで入力してください。",
+    "fixedDollarPrice": "ドル価格は固定され、トークン数は更新されます。",
+    "priceUpdated": "価格が更新されました。金額を確認して、もう一度購入をタップしてください。",
+    "tokensPaidToSeller": "売り手に直接支払われます",
+    "priceUsd": "価格（米ドル）"
   },
   "accounts": {
     "subtitle": "アカウントまるごと売り出し中、DHB建て",

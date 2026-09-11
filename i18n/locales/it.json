@@ -2487,7 +2487,7 @@
     "intro": "Giochi che girano direttamente nell'app. Niente da installare, niente da comprare: open source e serviti da DeHub stessa."
   },
   "usernames": {
-    "subtitle": "Handle in vendita, prezzo in DHB",
+    "subtitle": "Handle in vendita, prezzo in USD",
     "browse": "Sfoglia",
     "sell": "Vendi",
     "searchPlaceholder": "Cerca un handle...",
@@ -2547,7 +2547,13 @@
     "staleListing": "Questo annuncio è per @{{listed}}, ma ora sei @{{current}}. Non si venderà finché non lo ripubblichi con il tuo handle attuale — aggiornarlo qui sopra fa proprio questo.",
     "history": "Cronologia",
     "sold": "Venduto",
-    "bought": "Comprato"
+    "bought": "Comprato",
+    "askingPriceUsd": "Prezzo di vendita (USD)",
+    "dollarPriceRange": "Inserisci da 1 a 1.000.000 USD, con un massimo di due decimali.",
+    "fixedDollarPrice": "Il prezzo in dollari resta fisso; la quantità di token si aggiorna.",
+    "priceUpdated": "Prezzo aggiornato. Controlla l’importo e tocca di nuovo Acquista.",
+    "tokensPaidToSeller": "Pagato direttamente al venditore",
+    "priceUsd": "Prezzo (USD)"
   },
   "accounts": {
     "subtitle": "Account interi in vendita, prezzo in DHB",

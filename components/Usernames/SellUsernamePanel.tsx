@@ -50,7 +50,7 @@ const SellUsernamePanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
   const createListing = useCreateUsernameListing();
   const cancelListing = useCancelUsernameListing();
 
-  const [priceDhb, setPriceDhb] = useState("");
+  const [priceUsd, setPriceUsd] = useState("");
   const [replacement, setReplacement] = useState("");
   const [description, setDescription] = useState("");
 
@@ -60,7 +60,7 @@ const SellUsernamePanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
   // Seed the form from an existing listing so "list" doubles as "edit".
   useEffect(() => {
     if (!active) return;
-    setPriceDhb(String(active.priceDhb));
+    setPriceUsd(String(active.priceUsd));
     setReplacement(active.replacementUsername);
     setDescription(active.description || "");
   }, [active?.id]);
@@ -93,16 +93,16 @@ const SellUsernamePanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
     );
   }
 
-  const minPrice = config?.minPriceDhb ?? 1000;
-  const maxPrice = config?.maxPriceDhb ?? Number.MAX_SAFE_INTEGER;
-  const priceNumber = Math.floor(Number(priceDhb));
-  const priceValid = Number.isFinite(priceNumber) && priceNumber >= minPrice && priceNumber <= maxPrice;
+  const minPrice = config?.minPriceUsd ?? 1;
+  const maxPrice = config?.maxPriceUsd ?? Number.MAX_SAFE_INTEGER;
+  const priceNumber = Number(priceUsd);
+  const priceValid = Number.isFinite(priceNumber) && Math.abs(priceNumber * 100 - Math.round(priceNumber * 100)) < 0.000001 && priceNumber >= minPrice && priceNumber <= maxPrice;
   const replacementValid = /^[a-z0-9_-]{1,30}$/.test(replacement.trim().toLowerCase());
-  const canSubmit = priceValid && replacementValid && !createListing.isPending;
+  const canSubmit = !!config && config.dhbUsdPeg > 0 && priceValid && replacementValid && !createListing.isPending;
 
   const submit = () => {
     createListing.mutate({
-      priceDhb: priceNumber,
+      priceUsd: priceNumber,
       replacementUsername: replacement.trim().toLowerCase(),
       description: description.trim() || undefined,
     });
@@ -131,26 +131,20 @@ const SellUsernamePanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
           </View>
 
           <View style={styles.field}>
-            <Text style={styles.fieldLabel}>{t("usernames.askingPriceDhb")}</Text>
+            <Text style={styles.fieldLabel}>{t("usernames.askingPriceUsd", "Asking price (USD)")}</Text>
             <TextInput
-              value={priceDhb}
-              onChangeText={(v) => setPriceDhb(v.replace(/[^0-9]/g, ""))}
-              keyboardType="number-pad"
+              value={priceUsd}
+              onChangeText={(v) => setPriceUsd(v.replace(/[^0-9.]/g, ""))}
+              keyboardType="decimal-pad"
               placeholder={String(minPrice)}
               placeholderTextColor="#8B8D90"
               style={styles.input}
             />
             <Text style={styles.hint}>
-              {priceValid && config
-                ? t("usernames.priceOk", {
-                    usd: (priceNumber * config.dhbUsdPeg).toLocaleString("en-US", {
-                      maximumFractionDigits: 2,
-                    }),
-                  })
-                : t("usernames.priceRange", {
-                    min: minPrice.toLocaleString("en-US"),
-                    max: maxPrice.toLocaleString("en-US"),
-                  })}
+              {priceValid && config && config.dhbUsdPeg > 0 ? <>
+                ≈ <DhbCoin /> {(Math.ceil(priceNumber / config.dhbUsdPeg * 1e6) / 1e6).toLocaleString('en-US', { maximumFractionDigits: 6 })}
+                {' · '}{t('usernames.fixedDollarPrice', 'Dollar price stays fixed; token amount updates.')}
+              </> : t('usernames.dollarPriceRange', 'Enter $1–$1,000,000, with up to two decimal places.')}
             </Text>
           </View>
 
@@ -257,7 +251,7 @@ const SaleRow: React.FC<{ sale: UsernameSale; label: string }> = ({ sale, label 
       </Text>
       <Text style={styles.rowSub}>{label}</Text>
     </View>
-    <Text style={styles.rowPrice}>{sale.paidDhb.toLocaleString("en-US")} <DhbCoin /></Text>
+    <Text style={styles.rowPrice}>${sale.priceUsd.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{"\n"}<DhbCoin /> {sale.paidDhb.toLocaleString("en-US")}</Text>
   </View>
 );
 
@@ -275,7 +269,7 @@ const HistoryRow: React.FC<{ listing: MyUsernameListing; soldLabel: string }> = 
         {listing.status === "cancelled" ? listing.cancelReason || "Withdrawn" : soldLabel}
       </Text>
     </View>
-    <Text style={styles.rowPriceMuted}>{listing.priceDhb.toLocaleString("en-US")} <DhbCoin /></Text>
+    <Text style={styles.rowPriceMuted}>${listing.priceUsd.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{"\n"}<DhbCoin /> {listing.priceDhb.toLocaleString("en-US")}</Text>
   </View>
 );
 
