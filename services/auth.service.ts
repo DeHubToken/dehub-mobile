@@ -126,18 +126,19 @@ export const AuthService = {
    * signInWithWallet's web3AuthMeta), instead of always minting a new local
    * wallet on first mobile login.
    *
-   * Mirrors dehubweb's authenticateWithSupabaseSession: does not create
-   * accounts or link wallets — throws WalletNotLinkedError (backend 409) when
-   * this identity has no link yet, so the caller can fall back to the
-   * signature flow to establish one.
+   * Mirrors dehubweb's authenticateWithSupabaseSession. The backend does not
+   * create or move accounts; it may repair a stale identity link only after it
+   * independently confirms expectedAddress from the authenticated Supabase
+   * wallet row. A genuinely new identity still falls back to signing.
    */
   async authenticateWithSupabaseSession(
-    supabaseAccessToken: string
+    supabaseAccessToken: string,
+    expectedAddress?: string,
   ): Promise<AuthResponse> {
     try {
       const response = await apiClient.post<any>(
         "/web/auth/supabase",
-        {},
+        expectedAddress ? { expectedAddress } : {},
         {
           isAuthRequired: false,
           // Sent as a header rather than in the body so it does not land in
