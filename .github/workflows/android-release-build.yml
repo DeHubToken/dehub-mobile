@@ -1,0 +1,39 @@
+name: Android release build
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-release-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      # Native fixes must be present in the APK, not silently skipped by the
+      # repository's best-effort postinstall hook.
+      - run: npx patch-package --error-on-fail
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Build signed APK on EAS
+        run: eas build --platform android --profile production-apk --non-interactive --wait --json > android-build.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: android-build-result
+          path: android-build.json
+          if-no-files-found: ignore
