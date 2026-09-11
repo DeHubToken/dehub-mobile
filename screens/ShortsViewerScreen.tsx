@@ -1875,7 +1875,7 @@ const ShortsViewerScreen = () => {
           onMomentumScrollEnd={handleScrollEnd}
           ListFooterComponent={renderFooter}
           ListEmptyComponent={renderEmpty}
-          removeClippedSubviews
+          removeClippedSubviews={false}
           windowSize={3}
           maxToRenderPerBatch={2}
           initialNumToRender={2}

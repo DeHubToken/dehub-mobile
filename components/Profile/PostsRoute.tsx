@@ -256,7 +256,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         windowSize={7}
         maxToRenderPerBatch={4}
         initialNumToRender={4}
-        removeClippedSubviews
+        removeClippedSubviews={false}
         onScroll={onScroll}
         scrollEventThrottle={16}
         viewabilityConfig={viewabilityConfig}
