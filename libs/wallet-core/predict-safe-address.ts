@@ -1,109 +1,28 @@
-/**
- * Predict the Safe smart-account address for an owner EOA — no private key, no
- * unlock, no signature, no user interaction.
- *
- * Direct port of dehubweb's `src/lib/smart-account-address.ts`. The two must
- * stay identical: they answer the same question about the same accounts, and a
- * divergence would mean one client accepting a session the other rejects.
- *
- * Why it is needed here. The DeHub backend links whatever address a user last
- * SIGNED with; for the built-in wallet that is the Safe smart account, because
- * the AA provider does the signing. `user_wallets` stores the owner EOA the
- * seed derives to. Two different strings for the same person — so comparing
- * the Supabase exchange's linked address against the stored EOA rejects every
- * healthy smart-account session, which is what kept mobile from completing a
- * login without first opening the wallet.
- *
- * A Safe's address is a pure CREATE2 function of (proxy factory, singleton,
- * initializer, saltNonce), and the initializer commits only to owner
- * ADDRESSES — never to a key — so the address is derivable from the EOA alone.
- *
- * The parameters below MUST stay identical to the ones that actually create
- * the account (libs/wallet-core/smart-account.ts builds `new SafeSmartAccount()`
- * with no options, so every default applies):
- *
- *   entryPoint  { address: entryPoint07Address, version: "0.7" }   (its default)
- *   version     "1.4.1"                                            (its default)
- *   owners      [ the single EOA ]  -> threshold defaults to 1
- *   saltNonce   not passed          -> defaults to 0n
- *
- * `viem` and `permissionless` are imported without appearing in package.json's
- * dependencies. Both are already in the installed tree —
- * @web3auth/account-abstraction-provider pulls permissionless in, and the root
- * `overrides` block pins it to 0.2.57 so every copy is the same one this
- * predicts with. Declaring them would mean regenerating package-lock, which
- * invalidates CI's node_modules cache for a tree that already contains them.
- * If either ever stops being reachable, tsc says so before anything ships.
- */
-import { createLogger } from "../logger";
+import { encodeFunctionData, encodePacked, getContractAddress, keccak256, parseAbi, zeroAddress, type Address } from 'viem';
 
-const log = createLogger("predict-safe-address");
+// DeHub's Safe 1.4.1 / EntryPoint 0.7 defaults, shared with web and mobile.
+// Pin the factory's immutable proxyCreationCode so profile selection needs no RPC.
+const FACTORY = '0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67';
+const SINGLETON = '0x41675C099F32341bf84BFc5382aF534df5C7461a';
+const MODULE_SETUP = '0x2dd68b007B46fBe91B9A7c3EDa5A7a1063cB5b47';
+const MODULE = '0x75cf11467937ce3F2f357CE24ffc3DBF8fD5c226';
+const MULTISEND = '0x38869bf66a61cF6bDB996A6aE40D5853Fd43B526';
+const PROXY_CODE = '0x608060405234801561001057600080fd5b506040516101e63803806101e68339818101604052602081101561003357600080fd5b8101908080519060200190929190505050600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156100ca576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260228152602001806101c46022913960400191505060405180910390fd5b806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505060ab806101196000396000f3fe608060405273ffffffffffffffffffffffffffffffffffffffff600054167fa619486e0000000000000000000000000000000000000000000000000000000060003514156050578060005260206000f35b3660008037600080366000845af43d6000803e60008114156070573d6000fd5b3d6000f3fea264697066735822122003d1488ee65e08fa41e58e888a9865554c535f2c77126a82cb4c0f917f31441364736f6c63430007060033496e76616c69642073696e676c65746f6e20616464726573732070726f7669646564';
 
-/** The same endpoint smart-account.ts hands the AA provider for Base. */
-const BASE_RPC_URL = "https://base-rpc.publicnode.com";
 
-/**
- * This sits between a tapped "sign in" and the app appearing, so it gets a
- * hard ceiling rather than viem's default. Timing out costs the user nothing
- * they were not already paying: the fallback is the unlock sheet, which is
- * exactly what they would have got without this check at all.
- */
-const RPC_TIMEOUT_MS = 4000;
-
-const EOA_RE = /^0x[0-9a-f]{40}$/;
-
-/** owner EOA (lowercased) -> predicted Safe address (lowercased). */
-const predictionCache = new Map<string, string>();
-
-/**
- * The Safe smart account `ownerEoa` controls on Base, lowercased.
- *
- * Returns null rather than throwing for every failure — a malformed address,
- * an RPC outage, a library change, a module that will not load under Metro.
- * Callers must treat null as "cannot prove it", never as "not the same
- * wallet": failing closed here drops the user onto the unlock sheet, which is
- * where they were already headed.
- */
-export async function predictSafeAddress(
-  ownerEoa: string | null | undefined,
-): Promise<string | null> {
-  const owner = (ownerEoa ?? "").trim().toLowerCase();
-  if (!EOA_RE.test(owner)) return null;
-
-  const cached = predictionCache.get(owner);
-  if (cached) return cached;
-
+/** Derive the profile address locally; no RPC, private key, or wallet unlock. */
+export async function predictSafeAddress(ownerEoa: string | null | undefined): Promise<string | null> {
+  const owner = (ownerEoa ?? '').trim().toLowerCase();
+  if (!/^0x[0-9a-f]{40}$/.test(owner)) return null;
   try {
-    // Dynamic so a resolution or Metro-interop problem surfaces as a null
-    // prediction on one login rather than a module-load crash at boot.
-    const { createClient, http } = await import("viem");
-    const { base } = await import("viem/chains");
-    const { entryPoint07Address } = await import("viem/account-abstraction");
-    const { toSafeSmartAccount } = await import("permissionless/accounts");
-
-    // createClient, not createPublicClient: the extended public actions make
-    // the argument type collapse to `never` against toSafeSmartAccount's
-    // `client` parameter, and tsc is the only gate CI runs.
-    const client = createClient({
-      chain: base,
-      transport: http(BASE_RPC_URL, { timeout: RPC_TIMEOUT_MS, retryCount: 0 }),
-    });
-
-    const account = await toSafeSmartAccount({
-      client,
-      // A bare { address, type: 'json-rpc' } satisfies viem's JsonRpcAccount,
-      // which is a valid owner. Address prediction never signs, so the missing
-      // signing methods are never reached.
-      owners: [{ address: owner as `0x${string}`, type: "json-rpc" }],
-      entryPoint: { address: entryPoint07Address, version: "0.7" },
-      version: "1.4.1",
-    });
-
-    const predicted = (await account.getAddress()).toLowerCase();
-    predictionCache.set(owner, predicted);
-    return predicted;
-  } catch (e) {
-    log.warn("predict:failed", e);
+    const enable = encodeFunctionData({ abi: parseAbi(['function enableModules(address[])']), functionName: 'enableModules', args: [[MODULE]] });
+    const transaction = encodePacked(['uint8', 'address', 'uint256', 'uint256', 'bytes'], [1, MODULE_SETUP, 0n, BigInt((enable.length - 2) / 2), enable]);
+    const multiSend = encodeFunctionData({ abi: parseAbi(['function multiSend(bytes)']), functionName: 'multiSend', args: [transaction] });
+    const initializer = encodeFunctionData({ abi: parseAbi(['function setup(address[],uint256,address,bytes,address,address,uint256,address)']), functionName: 'setup', args: [[owner as Address], 1n, MULTISEND, multiSend, MODULE, zeroAddress, 0n, zeroAddress] });
+    const salt = keccak256(encodePacked(['bytes32', 'uint256'], [keccak256(initializer), 0n]));
+    const bytecode = encodePacked(['bytes', 'uint256'], [PROXY_CODE, BigInt(SINGLETON)]);
+    return getContractAddress({ from: FACTORY, opcode: 'CREATE2', salt, bytecode }).toLowerCase();
+  } catch {
     return null;
   }
 }
