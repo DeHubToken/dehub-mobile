@@ -9,6 +9,7 @@
  * useful answer is often "nobody has it". A marketplace that lets someone pay
  * for a name they could have claimed in Settings is not one they come back to.
  */
+import { DhbCoin } from "../components/common/DhbCoin";
 import React, { useCallback, useMemo, useState } from "react";
 import {
   View,
@@ -50,11 +51,11 @@ const H_PADDING = 16;
  * no room for a filter sheet over the list, and the whole filter set is four
  * sorts and four bands.
  */
-const PRICE_BANDS: { key: string; min?: number; max?: number }[] = [
-  { key: "under10k", max: 10_000 },
-  { key: "10kTo100k", min: 10_000, max: 100_000 },
-  { key: "100kTo1m", min: 100_000, max: 1_000_000 },
-  { key: "over1m", min: 1_000_000 },
+const PRICE_BANDS: { key: string; label: string; min?: number; max?: number }[] = [
+  { key: "under10k", label: "< $10", max: 10 },
+  { key: "10kTo100k", label: "$10–$100", min: 10, max: 100 },
+  { key: "100kTo1m", label: "$100–$1,000", min: 100, max: 1_000 },
+  { key: "over1m", label: "$1,000+", min: 1_000 },
 ];
 
 /**
@@ -137,9 +138,9 @@ const UsernameCard: React.FC<{
       {/* Right: right-aligned so a column of rows lines up on the digits. */}
       <View style={styles.cardPriceCol}>
         <Text style={styles.cardPrice} numberOfLines={1}>
-          {listing.priceDhb.toLocaleString("en-US")}
+          ${listing.priceUsd.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
         </Text>
-        <Text style={styles.cardPriceUnit}>DHB</Text>
+        <Text style={styles.cardPriceUnit}><DhbCoin size={12} /> {listing.priceDhb.toLocaleString("en-US", { maximumFractionDigits: 6 })}</Text>
       </View>
     </Pressable>
   );
@@ -170,8 +171,8 @@ export default function UsernamesScreen() {
   const { data, isLoading, isError, refetch, isRefetching } = useBrowseUsernames({
     search: debouncedSearch,
     sort,
-    minPriceDhb: activeBand?.min,
-    maxPriceDhb: activeBand?.max,
+    minPriceUsd: activeBand?.min,
+    maxPriceUsd: activeBand?.max,
   });
 
   const listings = data?.listings ?? [];
@@ -301,7 +302,7 @@ export default function UsernamesScreen() {
                 style={[styles.chip, band === b.key && styles.chipActive]}
               >
                 <Text style={[styles.chipText, band === b.key && styles.chipTextActive]}>
-                  {t(`usernames.bands.${b.key}`)}
+                  {b.label}
                 </Text>
               </Pressable>
             ))}

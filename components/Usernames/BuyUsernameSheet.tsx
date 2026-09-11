@@ -14,7 +14,7 @@
  * stop doing.
  */
 import { DhbCoin } from "../common/DhbCoin";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, ActivityIndicator, Share } from "react-native";
 import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
@@ -40,6 +40,8 @@ const CHAIN_NAMES: Record<number, string> = {
 const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed, onSignIn }) => {
   const { t } = useTranslation();
   const { getQuote, buy, stage, activeChainId, canPayHere, myAddress } = useBuyUsername();
+  const paying = useRef(false);
+  paying.current = buy.isPending;
   const [quote, setQuote] = useState<UsernameQuote | null>(null);
   const [quoteError, setQuoteError] = useState<string | null>(null);
 
@@ -67,9 +69,13 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
       .catch((err: Error) => {
         if (!cancelled) setQuoteError(err.message);
       });
-    return () => {
-      cancelled = true;
-    };
+    const interval = setInterval(() => {
+      if (paying.current) return;
+      getQuote.mutateAsync(listingId!).then(q => {
+        if (!cancelled && !paying.current) setQuote(q);
+      }).catch((err: Error) => { if (!cancelled) setQuoteError(err.message); });
+    }, 30_000);
+    return () => { cancelled = true; clearInterval(interval); };
     // getQuote is a fresh mutation object each render; keying on the listing is
     // what stops this re-firing forever.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -77,14 +83,22 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
 
   if (!listing) return null;
 
-  const busy = stage === "paying" || stage === "confirming";
+  const busy = stage === "quoting" || stage === "paying" || stage === "confirming";
   const priceDhb = quote?.priceDhb ?? listing.priceDhb;
   const priceUsd = quote?.priceUsd ?? listing.priceUsd;
 
   const handleBuy = async () => {
     if (!isAuthed) return onSignIn();
     if (!quote) return;
-    const result = await buy.mutateAsync(quote).catch(() => null);
+    const fresh = await getQuote.mutateAsync(quote.listingId).catch((err: Error) => { setQuoteError(err.message); return null; });
+    if (!fresh) return;
+    setQuote(fresh);
+    if (fresh.priceDhb !== quote.priceDhb || fresh.priceUsd !== quote.priceUsd) {
+      setQuoteError(t('usernames.priceUpdated', 'Price updated. Review the amount and tap Buy again.'));
+      return;
+    }
+    setQuoteError(null);
+    const result = await buy.mutateAsync(fresh).catch(() => null);
     if (result && !result.pending) onClose();
   };
 
@@ -128,13 +142,11 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
           <View style={styles.panel}>
             <Text style={styles.panelLabel}>{t("usernames.askingPrice")}</Text>
             <Text style={styles.price}>
-              {priceDhb.toLocaleString("en-US")}
-              <Text style={styles.priceUnit}> <DhbCoin size={14} /></Text>
+              ${priceUsd.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </Text>
             <Text style={styles.panelHint}>
-              {t("usernames.priceHint", {
-                usd: priceUsd.toLocaleString("en-US", { maximumFractionDigits: 2 }),
-              })}
+              <DhbCoin size={14} /> {priceDhb.toLocaleString('en-US', { maximumFractionDigits: 6 })}
+              {' · '}{t('usernames.tokensPaidToSeller', 'Paid directly to the seller')}
             </Text>
           </View>
 

@@ -27,11 +27,13 @@
 import { apiClient } from '../libs/api.client';
 
 export interface UsernameMarketConfig {
+  minPriceUsd: number;
+  maxPriceUsd: number;
   minPriceDhb: number;
   maxPriceDhb: number;
   maxDescriptionLength: number;
   usernameMaxLength: number;
-  /** USD per DHB. Display only — every price here is denominated in DHB. */
+  /** Current USD per token. Listing dollar prices stay fixed. */
   dhbUsdPeg: number;
   chains: { chainId: number; tokenAddress: string }[];
 }
@@ -103,6 +105,8 @@ export interface MyUsernameMarket {
 }
 
 export interface UsernameQuote {
+  quoteId: string;
+  expiresAt: string;
   listingId: string;
   username: string;
   priceDhb: number;
@@ -143,8 +147,8 @@ export const usernameMarketService = {
   async browse(params: {
     search?: string;
     sort?: UsernameSort;
-    minPriceDhb?: number;
-    maxPriceDhb?: number;
+    minPriceUsd?: number;
+    maxPriceUsd?: number;
     page?: number;
     limit?: number;
   }): Promise<BrowseUsernamesResult> {
@@ -155,8 +159,8 @@ export const usernameMarketService = {
         params: {
           search: params.search || undefined,
           sort: params.sort,
-          minPriceDhb: params.minPriceDhb,
-          maxPriceDhb: params.maxPriceDhb,
+          minPriceUsd: params.minPriceUsd,
+          maxPriceUsd: params.maxPriceUsd,
           page: params.page,
           limit: params.limit,
         },
@@ -180,12 +184,12 @@ export const usernameMarketService = {
    * not a recoverable position.
    */
   async createListing(input: {
-    priceDhb: number;
+    priceUsd: number;
     replacementUsername: string;
     description?: string;
-  }): Promise<{ id: string; username: string; priceDhb: number; replacementUsername: string }> {
+  }): Promise<{ id: string; username: string; priceUsd: number; priceDhb: number; replacementUsername: string }> {
     const res = await apiClient.fetch<
-      Envelope<{ id: string; username: string; priceDhb: number; replacementUsername: string }>
+      Envelope<{ id: string; username: string; priceUsd: number; priceDhb: number; replacementUsername: string }>
     >('/username_market/listings', { method: 'POST', body: input });
     return res.result;
   },
@@ -206,6 +210,7 @@ export const usernameMarketService = {
 
   async claim(input: {
     listingId: string;
+    quoteId: string;
     txHash: string;
     chainId: number;
   }): Promise<ClaimResult> {
