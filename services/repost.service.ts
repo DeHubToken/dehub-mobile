@@ -79,7 +79,19 @@ export interface RepostUserRaw {
     avatarUrl?: string;
     followers?: number;
     address?: string;
+    badgeBalance?: number | string | null;
+    badge_balance?: number | string | null;
+    hideBadgeAndBalance?: boolean;
   };
+  account?: RepostUserRaw["user"];
+  minterUser?: RepostUserRaw["user"];
+  username?: string;
+  displayName?: string;
+  avatarImageUrl?: string;
+  avatarUrl?: string;
+  badgeBalance?: number | string | null;
+  badge_balance?: number | string | null;
+  hideBadgeAndBalance?: boolean;
 }
 
 /** Normalised repost-user (flat shape expected by the UI row). */
@@ -90,18 +102,24 @@ export interface RepostUser {
   avatarImageUrl?: string;
   followers?: number;
   repostedAt?: string;
+  badgeBalance?: number | string | null;
+  hideBadgeAndBalance?: boolean;
 }
 
 /** Map the raw API shape into the flat UI shape. */
 function normaliseRepostUser(raw: RepostUserRaw): RepostUser {
-  const u = raw.user;
+  const u = raw.user || raw.account || raw.minterUser;
+  const badgeBalance = u?.badgeBalance ?? u?.badge_balance ?? raw.badgeBalance ?? raw.badge_balance;
+  const hideBadgeAndBalance = u?.hideBadgeAndBalance ?? raw.hideBadgeAndBalance;
   return {
     address: u?.address || raw.address,
-    username: u?.username,
-    displayName: u?.displayName,
-    avatarImageUrl: u?.avatarImageUrl || u?.avatarUrl,
+    username: u?.username || raw.username,
+    displayName: u?.displayName || raw.displayName,
+    avatarImageUrl: u?.avatarImageUrl || u?.avatarUrl || raw.avatarImageUrl || raw.avatarUrl,
     followers: u?.followers,
     repostedAt: raw.repostedAt,
+    ...(badgeBalance != null ? { badgeBalance } : {}),
+    ...(hideBadgeAndBalance != null ? { hideBadgeAndBalance: !!hideBadgeAndBalance } : {}),
   };
 }
 
