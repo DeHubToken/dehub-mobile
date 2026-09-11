@@ -2,6 +2,11 @@ name: Android release build
 
 on:
   workflow_dispatch:
+    inputs:
+      existing_build_id:
+        description: Optional completed EAS build to verify without compiling again
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -30,7 +35,13 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Build signed APK on EAS
-        run: eas build --platform android --profile production-apk --non-interactive --wait --json > android-build.json
+        if: inputs.existing_build_id == ''
+        run: eas build --platform android --profile release-apk --non-interactive --wait --json > android-build.json
+      - name: Recover a completed EAS build
+        if: inputs.existing_build_id != ''
+        env:
+          BUILD_ID: ${{ inputs.existing_build_id }}
+        run: eas build:view "$BUILD_ID" --json > android-build.json
       - name: Download and verify the signed APK
         run: |
           node <<'NODE'
@@ -42,7 +53,21 @@ jobs:
           }
           fs.writeFileSync('apk-url.txt', build.artifacts.buildUrl);
           NODE
-          curl --fail --location --retry 3 "$(cat apk-url.txt)" --output dehub.apk
+          curl --fail --location --retry 3 "$(cat apk-url.txt)" --output build-artifact
+          python3 <<'PY'
+          import shutil, tarfile, zipfile
+          if zipfile.is_zipfile('build-artifact'):
+              shutil.copyfile('build-artifact', 'dehub.apk')
+          else:
+              # Older production-apk builds archive both architecture outputs.
+              # Select the same ARM64 artifact used by the public release.
+              with tarfile.open('build-artifact') as archive:
+                  matches = [m for m in archive.getmembers() if m.isfile() and m.name.rsplit('/', 1)[-1] == 'app-arm64-v8a-release.apk']
+                  if len(matches) != 1:
+                      raise RuntimeError('Expected exactly one ARM64 release APK')
+                  with archive.extractfile(matches[0]) as source, open('dehub.apk', 'wb') as target:
+                      shutil.copyfileobj(source, target)
+          PY
           BUILD_TOOLS="$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -n 1)"
           "$BUILD_TOOLS/aapt" dump badging dehub.apk > apk-badging.txt
           VERSION="$(node -p 'require("./app.json").expo.version')"
