@@ -588,6 +588,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     // the overlay asserting a reaction the server no longer holds.
     if (voteInFlightRef.current) return;
     requireAuth?.(() => {
+      // Auth can defer callbacks; recheck when the authorized action runs.
+      if (voteInFlightRef.current) return;
       voteInFlightRef.current = true;
       const wasLiked = liked;
       const wasDisliked = disliked;

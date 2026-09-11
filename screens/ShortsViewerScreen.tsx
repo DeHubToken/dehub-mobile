@@ -648,6 +648,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     // One vote at a time — same double-tap guard as FeedCard.
     if (voteInFlightRef.current) return;
     requireAuth(() => {
+      // Auth can defer callbacks; recheck when the authorized action runs.
+      if (voteInFlightRef.current) return;
       voteInFlightRef.current = true;
       const wasLiked = liked;
       const wasDisliked = disliked;
