@@ -26,6 +26,7 @@ jest.mock('react-native', () => ({
 jest.mock('expo-secure-store', () => {
   const store: Record<string, string> = {};
   return {
+    getItem: jest.fn((key: string) => store[key] ?? null),
     getItemAsync: jest.fn((key: string) => Promise.resolve(store[key] ?? null)),
     setItemAsync: jest.fn((key: string, value: string) => {
       store[key] = value;

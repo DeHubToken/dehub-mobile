@@ -189,7 +189,7 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePres
       initialNumToRender={6}
       maxToRenderPerBatch={6}
       windowSize={5}
-      removeClippedSubviews
+      removeClippedSubviews={false}
       scrollEnabled={scrollEnabled}
       onScroll={onScroll}
       ListHeaderComponent={ListHeaderComponent}

@@ -653,7 +653,7 @@ const FeedScreen = () => {
             initialNumToRender={4}
             maxToRenderPerBatch={4}
             windowSize={7}
-            removeClippedSubviews
+            removeClippedSubviews={false}
             onScroll={scrollHandler}
             onScrollBeginDrag={handleScrollBegin}
             scrollEventThrottle={16}

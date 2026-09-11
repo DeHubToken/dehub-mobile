@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -115,7 +115,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
     const truncatedText = text.length > 140 ? text.slice(0, 140) + "…" : text;
 
     // Thumbnail for image/video posts
-    const thumbnailUrl = useMemo(() => {
+    const thumbnailUrl = (() => {
       // Audio posts don't use a thumbnail — they render the AudioPostPlayer
       if (quotedPost.postType === "feed-audio") return "";
       // feed-images: imageUrls are relative API paths, need getImageUrlApiSimple
@@ -134,7 +134,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
         return getImageUrl(imageUrls[0]);
       }
       return getImageUrl(quotedPost.imageUrl || quotedPost.thumbnailUrl || "");
-    }, [quotedPost]);
+    })();
 
     const isAudioPost = quotedPost.postType === "feed-audio" && !!quotedPost.audioUrl;
     const hasThumbnail = !!thumbnailUrl;

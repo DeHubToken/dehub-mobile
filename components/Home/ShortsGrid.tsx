@@ -297,7 +297,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         initialNumToRender={8}
         maxToRenderPerBatch={8}
         windowSize={9}
-        removeClippedSubviews
+        removeClippedSubviews={false}
         onEndReached={loadMore}
         onEndReachedThreshold={0.8}
         onViewableItemsChanged={onViewableItemsChanged}

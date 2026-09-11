@@ -213,7 +213,7 @@ const LeaderboardScreen = () => {
           windowSize={10}
           maxToRenderPerBatch={20}
           updateCellsBatchingPeriod={50}
-          removeClippedSubviews
+          removeClippedSubviews={false}
           getItemLayout={getItemLayout}
           keyboardShouldPersistTaps="handled"
           keyboardDismissMode="on-drag"

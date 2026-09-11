@@ -66,6 +66,27 @@ const Icon: React.FC<IconProps> = ({
   const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number; w: number } | null>(null);
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const showTooltip = useCallback(() => {
+    if (!tooltip || !iconRef.current) return;
+    iconRef.current.measureInWindow((x, y, w, _h) => {
+      setTooltipPos({ x, y, w });
+      setTooltipVisible(true);
+      if (hideTimer.current) clearTimeout(hideTimer.current);
+      hideTimer.current = setTimeout(() => {
+        setTooltipVisible(false);
+        setTooltipPos(null);
+      }, TOOLTIP_SHOW_DURATION);
+    });
+  }, [tooltip]);
+
+  const handleLongPress = useCallback(() => {
+    if (onLongPress) {
+      onLongPress();
+      return;
+    }
+    showTooltip();
+  }, [onLongPress, showTooltip]);
+
   if (!LucideIcon) {
     if (__DEV__) console.warn(`[Icon] "${name}" not found in lucide-react-native`);
     return <View style={{ width: size, height: size }} />;
@@ -90,27 +111,6 @@ const Icon: React.FC<IconProps> = ({
   );
 
   const isInteractive = !!(tooltip || onPress || onLongPress);
-
-  const showTooltip = useCallback(() => {
-    if (!tooltip || !iconRef.current) return;
-    iconRef.current.measureInWindow((x, y, w, _h) => {
-      setTooltipPos({ x, y, w });
-      setTooltipVisible(true);
-      if (hideTimer.current) clearTimeout(hideTimer.current);
-      hideTimer.current = setTimeout(() => {
-        setTooltipVisible(false);
-        setTooltipPos(null);
-      }, TOOLTIP_SHOW_DURATION);
-    });
-  }, [tooltip]);
-
-  const handleLongPress = useCallback(() => {
-    if (onLongPress) {
-      onLongPress();
-      return;
-    }
-    showTooltip();
-  }, [onLongPress, showTooltip]);
 
   const tooltipModal = tooltipVisible && tooltipPos ? (
     <Modal

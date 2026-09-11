@@ -367,7 +367,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
                   )}
                   keyboardShouldPersistTaps="handled"
                   keyboardDismissMode="on-drag"
-                  removeClippedSubviews
+                  removeClippedSubviews={false}
                   initialNumToRender={10}
                   maxToRenderPerBatch={10}
                   windowSize={5}
