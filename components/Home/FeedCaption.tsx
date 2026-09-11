@@ -249,7 +249,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
       {hasTitle && (
         <Text
           className="text-theme-neutrals-100"
-          style={{ fontSize: 16, lineHeight: 22 }}
+          style={{ fontSize: 16.8, lineHeight: 23.1 }}
           numberOfLines={fullContent ? undefined : 2}
           ellipsizeMode="tail"
         >
@@ -262,7 +262,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
         <View className="mt-1">
           <Text
             className="text-theme-neutrals-300"
-            style={{ fontSize: 15, lineHeight: 22 }}
+            style={{ fontSize: 15.75, lineHeight: 23.1 }}
             numberOfLines={fullContent || expanded ? undefined : maxLines}
             ellipsizeMode="tail"
             onTextLayout={handleTextLayout}
@@ -271,7 +271,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
           </Text>
           {showSeeMore && !fullContent && (
             <TouchableOpacity onPress={toggleExpanded} activeOpacity={0.7}>
-              <Text className="text-theme-neutrals-500 mt-0.5" style={{ fontSize: 14, lineHeight: 18 }}>
+              <Text className="text-theme-neutrals-500 mt-0.5" style={{ fontSize: 14.7, lineHeight: 18.9 }}>
                 {expanded ? "see less" : "see more"}
               </Text>
             </TouchableOpacity>
