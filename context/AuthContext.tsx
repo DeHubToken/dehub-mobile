@@ -99,6 +99,7 @@ export interface User {
   /** When that name was last proven against Ethereum. */
   ensVerifiedAt?: string | null;
   badgeBalance?: number; // backend-computed badge balance
+  badgeLock?: { tier: string; requirement: number } | null;
   /**
    * What the chain says this wallet owns — held plus staked, on Base and BNB.
    *

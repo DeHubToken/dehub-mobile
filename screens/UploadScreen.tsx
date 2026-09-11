@@ -53,6 +53,7 @@ import { getSolanaAddress, getSolanaMintStatus } from "../services/solana.servic
 import { useKeyboardLift } from "../hooks/useKeyboardLayout";
 import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
+import { getPostImageLimitForBadge } from "../libs/post-image-allowance";
 import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import AssetSuggestions from "../components/common/AssetSuggestions";
@@ -138,7 +139,6 @@ async function measureUploadBytes(payload: {
 }
 
 const SHOW_TITLE_PREF_KEY = "@dhb_post_show_title";
-const IMAGES_MAX = 4;
 const MAX_IMAGE_SIZE_BYTES = 20 * 1024 * 1024; // 20 MB per image
 const MAX_VIDEO_SIZE_BYTES = 200 * 1024 * 1024; // 200 MB
 const MAX_AUDIO_SIZE_BYTES = 20 * 1024 * 1024; // 20 MB
@@ -168,6 +168,11 @@ export default function UploadScreen() {
   const incomingQuotedPost = route.params?.quotedPost as Record<string, any> | undefined;
   const incomingInitialText = route.params?.initialText;
   const authUser = useUser();
+  const imageLimit = getPostImageLimitForBadge(
+    authUser?.badgeBalance,
+    authUser?.username,
+    authUser?.badgeLock,
+  );
   const { switchChain } = useAuthActions();
   const { isSwitchingChain } = useProvider();
   const { chainId: activeChainId } = useWeb3Provider();
@@ -534,7 +539,7 @@ export default function UploadScreen() {
   const mediaDisabled =
     mediaMode === "audio" ||
     isAudioRecording ||
-    (!isLiveMode && !pickedVideo && pickedImages.length >= IMAGES_MAX);
+    (!isLiveMode && !pickedVideo && pickedImages.length >= imageLimit);
   const showMediaButton = !mediaDisabled;
   // Camera only ever starts a fresh capture, so it goes as soon as media exists.
   const showCameraButton = !isLiveMode && !hasMedia && !isAudioRecording;
@@ -1326,7 +1331,7 @@ export default function UploadScreen() {
     [generateThumbnail, movePendingBodyToTitle],
   );
 
-  /** Size-filters image assets and appends them up to the 4-image cap. */
+  /** Size-filters image assets and appends them up to the creator's badge cap. */
   const adoptImageAssets = useCallback(async (assets: PickedAsset[]) => {
     const validAssets: PickedAsset[] = [];
     for (const asset of assets) {
@@ -1341,19 +1346,19 @@ export default function UploadScreen() {
       validAssets.push(asset);
     }
     if (validAssets.length > 0) {
-      setPickedImages((prev) => [...prev, ...validAssets].slice(0, IMAGES_MAX));
+      setPickedImages((prev) => [...prev, ...validAssets].slice(0, imageLimit));
     }
-  }, []);
+  }, [imageLimit]);
 
   /** "Add more" tile on the image grid — already in image mode, so images only. */
   const handlePickMoreImages = useCallback(async () => {
-    if (pickedImages.length >= IMAGES_MAX) return;
+    if (pickedImages.length >= imageLimit) return;
     try {
       await runWithPermissions(["photos"], async () => {
         const result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ["images"],
           allowsMultipleSelection: true,
-          selectionLimit: IMAGES_MAX - pickedImages.length,
+          selectionLimit: imageLimit - pickedImages.length,
           quality: 0.8,
         });
         if (result.canceled || !result.assets?.length) return;
@@ -1362,11 +1367,11 @@ export default function UploadScreen() {
     } catch (err) {
       console.error("[UploadScreen] image pick error:", err);
     }
-  }, [pickedImages.length, adoptImageAssets]);
+  }, [pickedImages.length, imageLimit, adoptImageAssets]);
 
   /**
    * One attach button for photos and videos. A post carries either a single
-   * video or up to four images — never both — the same rule dehubweb enforces
+   * video or up to the creator's badge image allowance — never both — the same rule dehubweb enforces
    * with its two separate inputs, so a mixed selection keeps the video and
    * says so rather than silently dropping half the pick.
    */
@@ -1381,7 +1386,7 @@ export default function UploadScreen() {
     }
     try {
       await runWithPermissions(["photos"], async () => {
-        const remaining = IMAGES_MAX - pickedImages.length;
+        const remaining = imageLimit - pickedImages.length;
         const result = await ImagePicker.launchImageLibraryAsync({
           // A draft that already holds a clip is replacing it, so the picker
           // opens on videos alone rather than offering images it would have to
@@ -1420,6 +1425,7 @@ export default function UploadScreen() {
     handlePickLiveThumbnail,
     pickedVideo,
     pickedImages.length,
+    imageLimit,
     adoptVideoAsset,
     adoptImageAssets,
   ]);
@@ -2036,7 +2042,7 @@ export default function UploadScreen() {
                     </View>
                   </View>
                 ))}
-                {pickedImages.length < IMAGES_MAX && (
+                {pickedImages.length < imageLimit && (
                   <View className="w-1/2 p-1">
                     <TouchableOpacity
                       onPress={handlePickMoreImages}
