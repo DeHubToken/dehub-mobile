@@ -23,6 +23,7 @@ import { clearPersistedNavigationState } from "./useNavigationPersistence";
 import { unregisterPushTokens } from "../services/push/push.service";
 import { getAppKitInstance } from "../config/reown.config";
 import { getSupabaseUserId } from "../services/auth/supabaseAuth.service";
+import { fetchWalletReliably } from "../libs/wallet-core/store";
 import { predictSafeAddress } from "../libs/wallet-core/predict-safe-address";
 import {
   takeWalletDrift,
@@ -598,7 +599,7 @@ export function useAuthSession({
     async (
       supabaseAccessToken: string,
       chainId: number,
-      _expectedAddress?: string,
+      expectedAddress?: string,
       supabaseUserId?: string,
       // Kept for caller compatibility; session exchange always leaves keys locked.
       _opts?: { allowLocked?: boolean }
@@ -606,6 +607,13 @@ export function useAuthSession({
       setIsLoading(true);
       try {
         if (supabaseUserId && await getSupabaseUserId() !== supabaseUserId) return "failed";
+        // Send an address hint for server-verified link recovery, but never
+        // require wallet storage or release a key to access the profile.
+        const walletUid = supabaseUserId || await getSupabaseUserId();
+        if (!expectedAddress && walletUid) {
+          const lookup = await fetchWalletReliably(walletUid).catch(() => null);
+          expectedAddress = lookup?.wallet?.ethAddress;
+        }
         let res: Awaited<ReturnType<typeof AuthService.authenticateWithSupabaseSession>>;
         try {
           res = await AuthService.authenticateWithSupabaseSession(supabaseAccessToken, expectedAddress);
