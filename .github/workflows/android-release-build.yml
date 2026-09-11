@@ -31,6 +31,31 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Build signed APK on EAS
         run: eas build --platform android --profile production-apk --non-interactive --wait --json > android-build.json
+      - name: Download and verify the signed APK
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const result = JSON.parse(fs.readFileSync('android-build.json', 'utf8'));
+          const build = Array.isArray(result) ? result[0] : result;
+          if (build.status !== 'FINISHED' || build.platform !== 'ANDROID' || !build.artifacts?.buildUrl) {
+            throw new Error('EAS did not return a completed Android artifact');
+          }
+          fs.writeFileSync('apk-url.txt', build.artifacts.buildUrl);
+          NODE
+          curl --fail --location --retry 3 "$(cat apk-url.txt)" --output dehub.apk
+          BUILD_TOOLS="$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -n 1)"
+          "$BUILD_TOOLS/aapt" dump badging dehub.apk > apk-badging.txt
+          VERSION="$(node -p 'require("./app.json").expo.version')"
+          grep '^package:' apk-badging.txt
+          grep '^package:' apk-badging.txt | grep -F "name='io.dehub.mobile'" | grep -F "versionName='$VERSION'"
+          "$BUILD_TOOLS/apksigner" verify --verbose --print-certs dehub.apk
+          sha256sum dehub.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: signed-android-apk
+          path: |
+            dehub.apk
+            apk-badging.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
