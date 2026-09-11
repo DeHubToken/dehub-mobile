@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: npm
+      - run: npm ci --legacy-peer-deps
       - uses: expo/expo-github-action@v8
         with:
           eas-version: latest
