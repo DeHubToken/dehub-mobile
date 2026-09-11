@@ -169,20 +169,15 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   }));
 
   const highlightAnimStyle = useAnimatedStyle(() => ({
-    opacity: highlightOpacity.value,
+    textShadowColor: `rgba(194,196,199,${highlightOpacity.value * 0.6})`,
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 6 * highlightOpacity.value,
   }));
 
   React.useEffect(() => {
     if (highlighted) {
-      highlightOpacity.value = withSequence(
-        withTiming(1, { duration: 300 }),
-        withTiming(0.5, { duration: 350 }),
-        withTiming(1, { duration: 350 }),
-        withTiming(0.5, { duration: 350 }),
-        withTiming(1, { duration: 350 }),
-        withTiming(1, { duration: 800 }),
-        withTiming(0, { duration: 600 }),
-      );
+      highlightOpacity.value = 1;
+      highlightOpacity.value = withTiming(0, { duration: 1600 });
     } else {
       highlightOpacity.value = withTiming(0, { duration: 200 });
     }
@@ -435,22 +430,6 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
       delayLongPress={300}
     >
       <View ref={containerRef} style={{ flexDirection: "row", paddingVertical: 10 }}>
-        <Animated.View
-          style={[
-            {
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: "rgba(255,255,255,0.12)",
-              borderRadius: 10,
-            },
-            highlightAnimStyle,
-          ]}
-          pointerEvents="none"
-        />
-
         <Pressable onPress={handleUserPress}>
           <Avatar
             uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
@@ -529,7 +508,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
           </View>
 
           {assetFreeContent ? (
-            <Text style={{ fontSize: 16, color: "#C2C4C7", marginTop: 3, lineHeight: 22 }}>
+            <Animated.Text style={[{ fontSize: 16, color: "#C2C4C7", marginTop: 3, lineHeight: 22 }, highlightAnimStyle]}>
               {parsedContent.map((part, idx) =>
                 part.isMention ? (
                   <Text
@@ -544,7 +523,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                   <Text key={idx}>{part.text}</Text>
                 )
               )}
-            </Text>
+            </Animated.Text>
           ) : null}
 
           <DehubLinkCards links={dehubLinks} />
