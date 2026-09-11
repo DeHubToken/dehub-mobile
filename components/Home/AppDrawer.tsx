@@ -10,9 +10,10 @@ import {
   Dimensions,
   Platform,
   BackHandler,
+  Keyboard,
 } from "react-native";
 import { BlurView } from "expo-blur";
-import { useNavigation, useNavigationState } from "@react-navigation/native";
+import { CommonActions, useNavigation, useNavigationState } from "@react-navigation/native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   useSharedValue,
@@ -31,7 +32,6 @@ import { getAvatarUrl } from "../../libs/misc";
 import { toastError, toastInfo } from "../../libs";
 import { openInApp } from "../../libs/links.utils";
 import { useTranslation } from "react-i18next";
-import { navigationRef } from "../../App";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const DRAWER_WIDTH = SCREEN_WIDTH * 0.82;
@@ -187,7 +187,9 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   // sidebar. Tab screens live nested under Root — descend into it to find them.
   const activeRouteName = useNavigationState((state: any) => {
     if (!state) return undefined;
-    const top = state.routes?.[state.index];
+    const root = state.routes?.[state.index];
+    const app = root?.name === ScreenNames.App ? root.state : state;
+    const top = app?.routes?.[app.index ?? 0];
     if (top?.name === ScreenNames.Root) {
       const nested = top.state;
       if (nested && typeof nested.index === "number") {
@@ -218,6 +220,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
 
   const panGesture = Gesture.Pan()
     .activeOffsetX([-15, 15])
+    .failOffsetY([-15, 15])
     .onStart(() => {
       dragging.value = true;
     })
@@ -237,6 +240,13 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
       } else {
         progress.value = withTiming(1, OPEN_TIMING);
       }
+    })
+    .onFinalize(() => {
+      // A cancelled gesture must not leave the next open/close animation locked.
+      if (dragging.value) {
+        dragging.value = false;
+        progress.value = withTiming(visible ? 1 : 0, visible ? OPEN_TIMING : CLOSE_TIMING);
+      }
     });
 
   const backdropStyle = useAnimatedStyle(() => ({
@@ -252,15 +262,16 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const navigate = useCallback(
     (screen: string, params?: Record<string, any>, tab?: boolean) => {
       onClose();
-      setTimeout(() => {
-        // Tab screens live inside the bottom-tab navigator (Root); navigating to
-        // them directly from the root stack fails, so target the nested screen.
-        if (tab) {
-          navigation.navigate(ScreenNames.Root, { screen, params });
-        } else {
-          navigation.navigate(screen, params);
-        }
-      }, 260);
+      Keyboard.dismiss();
+      // This drawer is a sibling of AppNavigator's stack, so useNavigation
+      // belongs to the outer App screen. Actions cannot navigate down into
+      // that stack implicitly: include App, and Root for bottom-tab routes.
+      navigation.dispatch(CommonActions.navigate({
+        name: ScreenNames.App,
+        params: tab
+          ? { screen: ScreenNames.Root, params: { screen, params } }
+          : { screen, params },
+      }));
     },
     [navigation, onClose],
   );
@@ -330,18 +341,9 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
     navigate(ScreenNames.Upload);
   }, [navigate]);
 
-  // The drawer is rendered alongside the stack instead of inside a screen, so
-  // Android can retain a stale nearest navigator while its closing animation is
-  // in flight. Route this entry through the ready root container immediately;
-  // the drawer still closes over the transition as usual.
   const handleSignIn = useCallback(() => {
-    onClose();
-    if (navigationRef.isReady()) {
-      navigationRef.navigate(ScreenNames.SignIn as never);
-      return;
-    }
-    navigation.navigate(ScreenNames.SignIn);
-  }, [navigation, onClose]);
+    navigate(ScreenNames.SignIn);
+  }, [navigate]);
 
   const displayName = user?.displayName || user?.username || t("common.anonymous");
   const handle = user?.username ? `@${user.username}` : "";
@@ -371,6 +373,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               glassOverlay supplies the black/60 wash on top. */}
           {Platform.OS === "ios" ? (
             <BlurView
+              pointerEvents="none"
               intensity={70}
               tint="dark"
               style={StyleSheet.absoluteFill}
@@ -379,9 +382,9 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
             // A tint, not a blur, on Android: dimezisBlurView re-snapshots the
             // whole root every frame and crashes the process when the feed
             // underneath mutates mid-draw (Dimezis/BlurView #191).
-            <View style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(9, 9, 11, 0.94)" }]} />
+            <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(9, 9, 11, 0.94)" }]} />
           )}
-          <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
+          <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
 
           {/* The profile block and the search field are pinned; only the item
               list scrolls under them. The field has to sit outside the
