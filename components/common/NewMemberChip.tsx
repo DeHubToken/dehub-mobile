@@ -10,7 +10,6 @@
  */
 import React, { FC } from "react";
 import { View, Text } from "react-native";
-import Icon from "../ui/Icon";
 import { useIsNewMember } from "../../hooks/useNewMembers";
 
 interface NewMemberChipProps {
@@ -18,7 +17,6 @@ interface NewMemberChipProps {
 }
 
 const CHIP_HEIGHT = 16;
-const CHIP_ICON_SIZE = 10;
 const CHIP_TEXT_LINE_HEIGHT = 12;
 
 const NewMemberChip: FC<NewMemberChipProps> = ({ address }) => {
@@ -40,14 +38,12 @@ const NewMemberChip: FC<NewMemberChipProps> = ({ address }) => {
         backgroundColor: "rgba(255,255,255,0.10)",
       }}
     >
-      <Icon name="Sparkles" size={CHIP_ICON_SIZE} color="#FFFFFF" />
       <Text
         style={{
           color: "#FFFFFF",
           fontSize: 10,
           lineHeight: CHIP_TEXT_LINE_HEIGHT,
           fontWeight: "600",
-          marginLeft: 4,
         }}
       >
         New
