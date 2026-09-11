@@ -647,7 +647,7 @@ export function useAuthSession({
       try {
         let res: Awaited<ReturnType<typeof AuthService.authenticateWithSupabaseSession>>;
         try {
-          res = await AuthService.authenticateWithSupabaseSession(supabaseAccessToken);
+          res = await AuthService.authenticateWithSupabaseSession(supabaseAccessToken, expectedAddress);
         } catch (e) {
           if (e instanceof WalletLinkAmbiguousError) {
             log.warn("signInWithSupabaseSession:ambiguous-link");
