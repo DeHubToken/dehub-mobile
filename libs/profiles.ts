@@ -354,7 +354,7 @@ export async function mergeTokensIntoStoredProfile(
  * auth_supabase_uid makes the next refresh treat the new account as linked to
  * the old one, and the single-slot signing provider must be rebuilt regardless.
  */
-export async function stageIncomingIdentity(): Promise<void> {
+export async function stageIncomingIdentity(preserveSupabaseUserId?: string): Promise<void> {
   // Preserve, not just snapshot. A snapshot only refreshes a row that is
   // already in the registry, so an account that had never been through Add
   // profile was taken apart here leaving nothing to switch back to — the
@@ -376,7 +376,18 @@ export async function stageIncomingIdentity(): Promise<void> {
     }
     try {
       const keys = await AsyncStorage.getAllKeys();
-      const doomed = keys.filter((k) => SB_KEY_PATTERN.test(k));
+      const doomed: string[] = [];
+      for (const key of keys.filter((k) => SB_KEY_PATTERN.test(k))) {
+        // A verified exchange may correct the profile address while keeping
+        // the same Google identity. Preserve only that incoming session.
+        if (preserveSupabaseUserId) {
+          try {
+            const raw = await AsyncStorage.getItem(key);
+            if (raw && JSON.parse(raw)?.user?.id === preserveSupabaseUserId) continue;
+          } catch {}
+        }
+        doomed.push(key);
+      }
       if (doomed.length) await AsyncStorage.multiRemove(doomed);
     } catch {}
     // Per-account caches die with the displaced session — engagement overlays,
