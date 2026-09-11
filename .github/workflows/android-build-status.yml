@@ -1,0 +1,60 @@
+name: Android build status
+
+on:
+  workflow_dispatch:
+    inputs:
+      cancel_build_id:
+        description: Optional superseded build ID to cancel; must belong to this project's recent Android builds
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Inspect recent Android builds
+        env:
+          CANCEL_BUILD_ID: ${{ inputs.cancel_build_id }}
+        run: |
+          eas build:list --platform android --limit 5 --json --non-interactive > builds.json
+          node <<'NODE'
+          const fs = require('fs');
+          const {execFileSync} = require('child_process');
+          const builds = JSON.parse(fs.readFileSync('builds.json', 'utf8'));
+          const report = builds.map(b => ({
+            id: b.id, status: b.status, appVersion: b.appVersion,
+            appBuildVersion: b.appBuildVersion, gitCommitHash: b.gitCommitHash,
+            createdAt: b.createdAt, completedAt: b.completedAt,
+            error: b.error, queuePosition: b.queuePosition,
+            estimatedWaitTimeLeftSeconds: b.estimatedWaitTimeLeftSeconds,
+          }));
+          fs.writeFileSync('build-status.json', JSON.stringify(report, null, 2));
+          console.log(JSON.stringify(report, null, 2));
+          const id = process.env.CANCEL_BUILD_ID;
+          if (id) {
+            const build = builds.find(b => b.id === id && b.platform === 'ANDROID');
+            if (!build) throw new Error('Cancellation target is not a recent Android build in this project');
+            if (['NEW', 'IN_QUEUE', 'IN_PROGRESS', 'PENDING_CANCEL'].includes(build.status)) {
+              execFileSync('eas', ['build:cancel', id, '--non-interactive'], {stdio: 'inherit'});
+            } else {
+              console.log('Build already finished; no cancellation needed.');
+            }
+          }
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-build-status
+          path: build-status.json
