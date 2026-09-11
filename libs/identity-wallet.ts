@@ -25,6 +25,7 @@ import {
 } from "./wallet-core/store";
 import { encryptString, getPayloadKdf, type EncryptedPayload } from "./wallet-core/crypto";
 import { generateMnemonic12, deriveFromSecret } from "./wallet-core/derive";
+import { assertWalletAddress } from "./wallet-core/assert-wallet-address";
 import {
   enrollBiometricUnlock,
   forgetBiometricWrapKey,
@@ -318,6 +319,8 @@ export async function finishBiometricUnlock(
 ): Promise<{ address: string; privateKey: string }> {
   const secret = await unlockWithBiometrics(address, payload);
   const derived = deriveFromSecret(secret);
+  await assertWalletAddress(derived.ethAddress, address);
+  await finishWalletUnlock(supabaseUserId, address, derived.ethPrivateKey);
   await finishWalletUnlock(supabaseUserId, derived.ethAddress, derived.ethPrivateKey);
   return { address: derived.ethAddress, privateKey: derived.ethPrivateKey };
 }
