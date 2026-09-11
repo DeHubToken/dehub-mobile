@@ -1,5 +1,5 @@
 diff --git a/node_modules/expo-audio/android/src/main/java/expo/modules/audio/service/AudioControlsService.kt b/node_modules/expo-audio/android/src/main/java/expo/modules/audio/service/AudioControlsService.kt
-index 04486e21..ef86788b 100644
+index 04486e21..18481677 100644
 --- a/node_modules/expo-audio/android/src/main/java/expo/modules/audio/service/AudioControlsService.kt
 +++ b/node_modules/expo-audio/android/src/main/java/expo/modules/audio/service/AudioControlsService.kt
 @@ -53,6 +53,15 @@ class AudioControlsService : MediaSessionService() {
@@ -38,7 +38,29 @@ index 04486e21..ef86788b 100644
  
      return builder.build()
    }
-@@ -361,16 +372,18 @@ class AudioControlsService : MediaSessionService() {
+@@ -319,6 +330,21 @@ class AudioControlsService : MediaSessionService() {
+     notificationManager.cancel(notificationId)
+   }
+ 
++  override fun onTaskRemoved(rootIntent: Intent?) {
++    // Dismissing the task ends listening, even while the service owns playback.
++    withPlayerOnAppThread { player ->
++      player.pause()
++      player.stop()
++      player.clearMediaItems()
++    }
++    pendingPlayer = null
++    pendingMetadata = null
++    pendingOptions = null
++    hideNotification()
++    clearSessionInternal()
++    stopSelf()
++  }
++
+   override fun onDestroy() {
+     super.onDestroy()
+     instance = null
+@@ -361,16 +387,18 @@ class AudioControlsService : MediaSessionService() {
        if (service != null) {
          service.setActivePlayerInternal(player, metadata, options)
        } else {
@@ -61,7 +83,7 @@ index 04486e21..ef86788b 100644
        }
      }
  
-@@ -379,6 +392,9 @@ class AudioControlsService : MediaSessionService() {
+@@ -379,6 +407,9 @@ class AudioControlsService : MediaSessionService() {
      }
  
      fun clearSession() {
