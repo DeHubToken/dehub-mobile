@@ -7,12 +7,18 @@ const source = readFileSync(
 );
 
 describe("feed card badge layout", () => {
-  it("keeps the holder badge compact and raised beside the display name", () => {
-    expect(source).toContain("getBadgeOpticalStyle(badgeImage, 14, -1)");
-    expect(source).not.toContain("getBadgeOpticalStyle(badgeImage, 16)");
+  it("keeps the current holder badge size and raises only its artwork", () => {
+    expect(source).toContain(
+      "getBadgeOpticalStyle(badgeImage, HOLDER_BADGE_SIZE, -1, DISPLAY_NAME_LINE_HEIGHT)",
+    );
+    expect(source).toContain("const HOLDER_BADGE_SIZE = 16");
   });
 
-  it("keeps badge spacing outside the optical image box", () => {
-    expect(source).toContain('style={{ flexShrink: 0, marginLeft: 4 }}');
+  it("locks the identity row and both badge wrappers to the name line height", () => {
+    expect(source).toContain(
+      'alignItems: "center", minWidth: 0, height: DISPLAY_NAME_LINE_HEIGHT',
+    );
+    expect(source.match(/height: DISPLAY_NAME_LINE_HEIGHT/g)).toHaveLength(3);
+    expect(source.match(/justifyContent: "center"/g)).toHaveLength(2);
   });
 });
