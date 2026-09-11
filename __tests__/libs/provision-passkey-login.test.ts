@@ -32,31 +32,33 @@ beforeEach(() => {
   };
 });
 
-it('signs in a passkey-only identity with its wallet locked', async () => {
-  await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'signed-in' });
-  expect(deps.signInWithSupabaseSession).toHaveBeenCalledWith('token', 8453, address, 'uid', { allowLocked: true });
+
+it.each(['needs-unlock', 'needs-biometric-unlock', 'needs-web-passkey-sync', 'ready', 'wallet-lookup-failed'])(
+  'opens the linked profile without touching wallet state (%s)', async (status) => {
+    jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status, address } as any);
+    await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'signed-in' });
+    expect(deps.signInWithSupabaseSession).toHaveBeenCalledWith('token', 8453, undefined, 'uid', { allowLocked: true });
+    expect(resolveEvmWalletForIdentity).not.toHaveBeenCalled();
+    expect(fetchWalletReliably).not.toHaveBeenCalled();
+    expect(releaseWalletKeyForSignIn).not.toHaveBeenCalled();
+    expect(deps.completeLocalSignIn).not.toHaveBeenCalled();
+  },
+);
+it.each(['not-linked', 'failed'])('does not unlock or sign after a refused exchange (%s)', async (outcome) => {
+  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue(outcome as 'not-linked' | 'failed');
+  expect((await provisionAndSignIn('uid', deps)).kind).toBe('error');
   expect(releaseWalletKeyForSignIn).not.toHaveBeenCalled();
   expect(deps.completeLocalSignIn).not.toHaveBeenCalled();
 });
-it.each(['not-linked', 'failed'])('does not bypass a refused exchange (%s)', async (outcome) => {
-  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue(outcome as 'not-linked' | 'failed');
-  const result = await provisionAndSignIn('uid', deps);
-  expect(result.kind).toBe('wallet-setup');
-  expect(deps.completeLocalSignIn).not.toHaveBeenCalled();
+it('does not read a ready wallet key after an unlinked response', async () => {
+  jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status: 'ready', address });
+  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('not-linked');
+  expect((await provisionAndSignIn('uid', deps)).kind).toBe('error');
+  expect(releaseWalletKeyForSignIn).not.toHaveBeenCalled();
 });
-it('uses the same locked path after a transient lookup failure', async () => {
-  jest.mocked(resolveEvmWalletForIdentity).mockResolvedValueOnce({ status: 'wallet-lookup-failed' });
-  await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'signed-in' });
-  expect(deps.signInWithSupabaseSession).toHaveBeenCalledWith('token', 8453, address, 'uid', { allowLocked: true });
-});
-it('uses the same locked path when a cloud row appears on retry', async () => {
-  jest.mocked(resolveEvmWalletForIdentity).mockResolvedValueOnce({ status: 'needs-create-password' });
-  jest.mocked(fetchWalletReliably).mockResolvedValue({ wallet: { ethAddress: address, payload: null }, failed: false });
-  await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'signed-in' });
-  expect(deps.signInWithSupabaseSession).toHaveBeenCalledWith('token', 8453, address, 'uid', { allowLocked: true });
-});
-it('does not sign in without an identity token', async () => {
+it('does not authenticate or provision without an identity token', async () => {
   jest.mocked(deps.getSupabaseAccessToken).mockResolvedValue(null);
-  expect((await provisionAndSignIn('uid', deps)).kind).toBe('wallet-setup');
+  expect((await provisionAndSignIn('uid', deps)).kind).toBe('error');
   expect(deps.signInWithSupabaseSession).not.toHaveBeenCalled();
+  expect(resolveEvmWalletForIdentity).not.toHaveBeenCalled();
 });
