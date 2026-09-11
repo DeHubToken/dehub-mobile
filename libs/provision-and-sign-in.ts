@@ -236,13 +236,10 @@ async function provisionAndSignInInner(
   // branch used to show unconditionally.
   if (
     resolution.status === "needs-unlock" ||
-    resolution.status === "needs-biometric-unlock"
+    resolution.status === "needs-biometric-unlock" ||
+    resolution.status === "needs-web-passkey-sync"
   ) {
     return signInLockedOrRouteToUi(supabaseUserId, resolution, chainId, accessToken, deps);
-  }
-
-  if (resolution.status === "needs-web-passkey-sync") {
-    return routeToWalletUi(supabaseUserId, resolution, "not-linked", accessToken);
   }
 
   // Transient Supabase/RLS failures right after OAuth — one more resolve pass.
@@ -253,7 +250,8 @@ async function provisionAndSignInInner(
     console.error("[provision] wallet-resolution retry after lookup-failed", resolution.status);
     if (
       resolution.status === "needs-unlock" ||
-      resolution.status === "needs-biometric-unlock"
+      resolution.status === "needs-biometric-unlock" ||
+      resolution.status === "needs-web-passkey-sync"
     ) {
       return signInLockedOrRouteToUi(supabaseUserId, resolution, chainId, accessToken, deps);
     }
@@ -282,7 +280,8 @@ async function provisionAndSignInInner(
       });
       if (
         resolution.status === "needs-unlock" ||
-        resolution.status === "needs-biometric-unlock"
+        resolution.status === "needs-biometric-unlock" ||
+        resolution.status === "needs-web-passkey-sync"
       ) {
         return signInLockedOrRouteToUi(supabaseUserId, resolution, chainId, accessToken, deps);
       }
@@ -390,7 +389,7 @@ async function signInLockedOrRouteToUi(
   supabaseUserId: string,
   resolution: Extract<
     EvmWalletResolution,
-    { status: "needs-unlock" | "needs-biometric-unlock" }
+    { status: "needs-unlock" | "needs-biometric-unlock" | "needs-web-passkey-sync" }
   >,
   chainId: number,
   accessToken: string | null,
@@ -408,7 +407,7 @@ async function signInLockedOrRouteToUi(
     if (outcome === "linked") {
       log.warn("provision:session-exchange:ok-wallet-locked", {
         address: `${resolution.address.slice(0, 6)}...${resolution.address.slice(-4)}`,
-        protection: resolution.status === "needs-biometric-unlock" ? "biometric" : "password",
+        protection: resolution.status,
       });
       await markSupabaseIdentitySignedIn(supabaseUserId);
       return { kind: "signed-in" };
