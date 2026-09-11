@@ -2487,7 +2487,7 @@
     "intro": "앱 안에서 바로 실행되는 게임. 설치할 것도 살 것도 없습니다 — 오픈소스이며 DeHub에서 직접 제공합니다."
   },
   "usernames": {
-    "subtitle": "DHB로 가격이 매겨진 판매 중인 핸들",
+    "subtitle": "USD로 가격이 매겨진 판매 중인 핸들",
     "browse": "둘러보기",
     "sell": "판매",
     "searchPlaceholder": "핸들 검색...",

@@ -2475,7 +2475,7 @@
     "intro": "直接在应用里运行的游戏。无需安装，无需购买——开源，并由 DeHub 自己提供。"
   },
   "usernames": {
-    "subtitle": "出售中的用户名，以 DHB 计价",
+    "subtitle": "出售中的用户名，以 USD 计价",
     "browse": "浏览",
     "sell": "出售",
     "searchPlaceholder": "搜索用户名...",

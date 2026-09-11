@@ -2472,7 +2472,7 @@
     "intro": "Igre koje se pokreću ovdje u aplikaciji. Ništa za instalirati, ništa za kupiti — otvoreni kod i posluženo od samog DeHuba."
   },
   "usernames": {
-    "subtitle": "Imena na prodaju, cijena u DHB",
+    "subtitle": "Imena na prodaju, cijena u USD",
     "browse": "Pregledaj",
     "sell": "Prodaj",
     "searchPlaceholder": "Traži ime...",
