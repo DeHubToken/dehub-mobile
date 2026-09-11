@@ -2487,7 +2487,7 @@
     "intro": "앱 안에서 바로 실행되는 게임. 설치할 것도 살 것도 없습니다 — 오픈소스이며 DeHub에서 직접 제공합니다."
   },
   "usernames": {
-    "subtitle": "DHB로 가격이 매겨진 판매 중인 핸들",
+    "subtitle": "USD로 가격이 매겨진 판매 중인 핸들",
     "browse": "둘러보기",
     "sell": "판매",
     "searchPlaceholder": "핸들 검색...",
@@ -2547,7 +2547,13 @@
     "staleListing": "이 등록은 @{{listed}}에 대한 것이지만 지금은 @{{current}}입니다. 현재 핸들로 다시 등록해야 판매됩니다 — 위에서 업데이트하면 됩니다.",
     "history": "기록",
     "sold": "판매 완료",
-    "bought": "구매 완료"
+    "bought": "구매 완료",
+    "askingPriceUsd": "판매 가격 (USD)",
+    "dollarPriceRange": "1~1,000,000달러를 소수점 둘째 자리까지 입력하세요.",
+    "fixedDollarPrice": "달러 가격은 고정되며 토큰 수량은 갱신됩니다.",
+    "priceUpdated": "가격이 갱신되었습니다. 금액을 확인하고 구매를 다시 누르세요.",
+    "tokensPaidToSeller": "판매자에게 직접 지급",
+    "priceUsd": "가격 (USD)"
   },
   "accounts": {
     "subtitle": "계정 전체 판매, DHB로 가격 책정",

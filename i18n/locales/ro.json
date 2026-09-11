@@ -2486,7 +2486,7 @@
     "intro": "Jocuri care rulează chiar aici, în aplicație. Nimic de instalat, nimic de cumpărat — open source și servite chiar de DeHub."
   },
   "usernames": {
-    "subtitle": "Nume de utilizator de vânzare, cu preț în DHB",
+    "subtitle": "Nume de utilizator de vânzare, cu preț în USD",
     "browse": "Răsfoiește",
     "sell": "Vinde",
     "searchPlaceholder": "Caută un nume...",
