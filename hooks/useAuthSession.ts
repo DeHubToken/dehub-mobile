@@ -1,3 +1,4 @@
+import { profileSessionMatchesWallet } from '../libs/profile-session';
 import { useCallback, useRef } from "react";
 import { maxStacked } from "../libs/validators.util";
 import { setHasSeenAuth, toastError } from "../libs";
@@ -638,6 +639,11 @@ export function useAuthSession({
         if (!res.token || !address || !/^0x[0-9a-f]{40}$/i.test(address)) {
           log.warn("signInWithSupabaseSession:no-address-in-response");
           return "failed";
+        }
+
+        if (!await profileSessionMatchesWallet(address, expectedAddress, (res.user as any)?.loginLinkSource)) {
+          log.warn('signInWithSupabaseSession:profile-mismatch');
+          return 'failed';
         }
 
         // The verified server identity link selects the profile. Wallet keys
