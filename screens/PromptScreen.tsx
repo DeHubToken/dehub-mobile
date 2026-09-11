@@ -221,7 +221,7 @@ export default function PromptScreen() {
         <Pressable
           onPress={handleBack}
           accessibilityRole="button"
-          accessibilityLabel={t("common.back", "Back")}
+          accessibilityLabel={t("profile.back", "Back")}
           hitSlop={10}
           style={styles.backBtn}
         >
