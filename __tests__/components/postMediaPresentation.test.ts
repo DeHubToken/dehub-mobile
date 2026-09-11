@@ -39,6 +39,15 @@ describe('post media presentation', () => {
     expect(containedImage).toContain('style={{ width: "100%", height: "100%" }}');
   });
 
+  it('keeps post action controls evenly inset from every bento edge', () => {
+    const card = readSource('components', 'Home', 'FeedCard.tsx');
+
+    expect(card).toContain('paddingTop: 12,');
+    expect(card).toContain('paddingHorizontal: 12,');
+    expect(card).toContain('paddingBottom: 12,');
+    expect(card).not.toContain('paddingBottom: 24,');
+  });
+
   it('does not retain decoded feed bitmaps or hidden audio players', () => {
     const containedImage = readSource('components', 'Home', 'ContainedFeedImage.tsx');
     const imageGrid = readSource('components', 'Home', 'HomeImageGrid.tsx');
