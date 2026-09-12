@@ -1190,20 +1190,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             threshold first and cancels the gallery scroll mid-drag. Elsewhere
             (profile, search) the hook returns null and this renders bare. */}
         {scrollGuard ? <GestureDetector gesture={scrollGuard}>{gallery}</GestureDetector> : gallery}
-        {/* pointerEvents="none" on both overlays is load-bearing, not tidiness.
-            They are siblings drawn ABOVE the guarded scroller, and both paint a
-            background. RNGH's orchestrator walks children in reverse drawing
+        {/* pointerEvents="none" is load-bearing, not tidiness. This counter is
+            drawn above the guarded scroller. RNGH's orchestrator walks children in reverse drawing
             order and stops at the first subtree that claims the pointer
             (extractGestureHandlers -> shouldHandlerlessViewBecomeTouchTarget),
-            so a drag starting on the pill or a dot never reaches the
+            so a drag starting on the pill would never reach the
             ScrollView's native handler — while the pager's pan, being an
             ancestor, still gets recorded. The guard then has nothing to block
-            and the page turns. The dot row spans the full width at the bottom
-            of the image, i.e. exactly where a thumb swipes, which is why this
-            read as "swiping the pictures changes to video mode".
-            Off the pager (post detail, profile) the same theft just made the
-            drag do nothing. Neither overlay is interactive, so ignoring touches
-            costs nothing and lets taps fall through to open the viewer. */}
+            and the page turns. The counter is not interactive, so ignoring
+            touches costs nothing and lets taps fall through to the viewer. */}
         <View
           pointerEvents="none"
           className="absolute top-3 right-3 dark-surface bg-black/60 rounded-full px-2.5 py-1"
@@ -1211,19 +1206,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           <Text className="text-white text-xs font-medium">
             {activeImageIndex + 1}/{galleryImages.length}
           </Text>
-        </View>
-        <View
-          pointerEvents="none"
-          className="absolute bottom-3 left-0 right-0 flex-row justify-center items-center gap-1.5"
-        >
-          {galleryImages.map((_, index) => (
-            <View
-              key={index}
-              className={`rounded-full ${
-                index === activeImageIndex ? "bg-white w-2 h-2" : "bg-white/50 w-1.5 h-1.5"
-              }`}
-            />
-          ))}
         </View>
       </View>
     );
