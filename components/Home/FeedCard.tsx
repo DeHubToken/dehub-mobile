@@ -1173,9 +1173,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         horizontal
         nestedScrollEnabled
         directionalLockEnabled
-        // Preserve vertical feed scrolling when a drag starts on the gallery,
-        // including React Native Web's otherwise horizontal-only touch surface.
-        style={{ touchAction: "auto" }}
         // Let a flick carry its natural momentum across the whole strip instead
         // of forcing every gesture to stop after exactly one image.
         showsHorizontalScrollIndicator={false}
