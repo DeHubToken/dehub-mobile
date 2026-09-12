@@ -68,7 +68,10 @@ const GlassToast: React.FC<GlassToastProps> = ({
         )}
 
         <View className="flex-1 min-w-0">
-          <Text className="text-white text-base leading-5 font-bold">
+          <Text
+            className="text-white text-base leading-5 font-bold"
+            numberOfLines={type === "loading" ? 1 : undefined}
+          >
             {title}
           </Text>
 
