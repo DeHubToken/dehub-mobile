@@ -305,6 +305,7 @@ const getMonoIconConfig = (type: NotificationType | string): { name: string; col
  * short id or uuid, a post's token id.
  */
 const SUPABASE_ROUTED_TYPES = new Set([
+  'trench_price_alert',
   'feature_request_like',
   'feature_request_comment',
   'feature_request_reply',
@@ -1025,6 +1026,9 @@ const NotificationScreen = () => {
 
     // Navigate based on notification type
     switch (type as string) {
+      case 'trench_price_alert':
+        navigation.navigate(ScreenNames.ArcadeGame as never, {slug:'trenchstar',view:'focus',symbol:(notification as CustomNotificationItem).customReferenceTitle || 'BTC'} as never);
+        break;
       // The row stores job_number (what web's canonical /bounty/<n> URL is
       // keyed on); this screen's route wants the uuid, so it is resolved on tap
       // rather than duplicated into the notification.

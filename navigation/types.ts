@@ -173,7 +173,7 @@ export type AppStackParamList = {
   [ScreenNames.Guide]: undefined;
   [ScreenNames.Arcade]: undefined;
   /** `slug` keys into ARCADE_GAMES; an unknown one renders the "no such game" panel. */
-  [ScreenNames.ArcadeGame]: { slug: string };
+  [ScreenNames.ArcadeGame]: { slug: string; room?: string; symbol?: string; view?: string };
   [ScreenNames.Events]: undefined;
   [ScreenNames.Stages]: undefined;
   [ScreenNames.Careers]: undefined;

@@ -242,7 +242,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.CommunityDetail]: {
             path: DeepLinkPaths.COMMUNITY,
-            parse: { slug: (slug: string) => slug },
+            parse: { slug: (slug: string) => slug, room: (room: string) => room, symbol: (symbol: string) => symbol, view: (view: string) => view },
           },
 
           // `?listing=` rides through as a route param; StoreDetailScreen
