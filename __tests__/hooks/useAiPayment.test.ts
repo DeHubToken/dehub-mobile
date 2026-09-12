@@ -12,6 +12,9 @@
 
 import { renderHook, act } from '@testing-library/react-native';
 
+const mockVerifySession = jest.fn();
+jest.mock('../../libs/api.client', () => ({ apiClient: { fetch: (...args: unknown[]) => mockVerifySession(...args) } }));
+
 const mockWriteContractAA = jest.fn();
 const mockRecordAiPayment = jest.fn();
 const mockListUnspentAiPayments = jest.fn();
@@ -42,10 +45,19 @@ function setup() {
 describe('useJobPayment — a paid transfer is never lost', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockVerifySession.mockResolvedValue({});
     mockUseWeb3Provider.mockReturnValue({ account: ACCOUNT, chainId: ChainId.BASE_MAINNET });
     mockUseERC20Contract.mockReturnValue({ balanceOf: jest.fn().mockResolvedValue('0') });
     mockListUnspentAiPayments.mockResolvedValue([]);
     mockRecordAiPayment.mockResolvedValue({ txHash: HASH, remainingDhb: 24 });
+  });
+
+  it('does not transfer DHB when authentication fails', async () => {
+    mockVerifySession.mockRejectedValueOnce(new Error('Sign in again'));
+    const { result } = setup();
+    await act(async () => { await expect(result.current.payForJob(24)).rejects.toThrow('Sign in again'); });
+    expect(mockWriteContractAA).not.toHaveBeenCalled();
+    expect(mockListUnspentAiPayments).not.toHaveBeenCalled();
   });
 
   it('records a confirmed transfer with the server', async () => {
