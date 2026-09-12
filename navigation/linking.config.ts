@@ -242,7 +242,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.CommunityDetail]: {
             path: DeepLinkPaths.COMMUNITY,
-            parse: { slug: (slug: string) => slug, room: (room: string) => room, symbol: (symbol: string) => symbol, view: (view: string) => view },
+            parse: { slug: (slug: string) => slug },
           },
 
           // `?listing=` rides through as a route param; StoreDetailScreen
@@ -261,7 +261,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.ArcadeGame]: {
             path: DeepLinkPaths.ARCADE_GAME,
-            parse: { slug: (slug: string) => slug },
+            parse: { slug: (slug: string) => slug, room: (room: string) => room, symbol: (symbol: string) => symbol, view: (view: string) => view },
           },
 
           [ScreenNames.Arcade]: DeepLinkPaths.ARCADE,
