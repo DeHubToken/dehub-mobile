@@ -19,7 +19,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   fallbackWidth,
   priority,
 }) => {
-  const aspectRatio = useImageAspect(uri);
+  const { ratio: aspectRatio, onLoad } = useImageAspect(uri);
   const [measuredWidth, setMeasuredWidth] = useState(fallbackWidth);
   const availableWidth = width ?? measuredWidth;
   const dimensions = useMemo(
@@ -61,6 +61,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
           style={{ width: "100%", height: "100%" }}
           recyclingKey={uri}
           priority={priority}
+          onLoad={onLoad}
         />
       </View>
     </View>

@@ -21,6 +21,7 @@ type SmartImageProps = {
   style?: StyleProp<ImageStyle>;
   className?: string;
   onLoadStart?: () => void;
+  onLoad?: ImageProps["onLoad"];
   onLoadEnd?: () => void;
   /** Fires before onLoadEnd when the source fails, for callers that swap in a fallback. */
   onError?: () => void;
@@ -38,6 +39,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   style,
   className,
   onLoadStart,
+  onLoad,
   onLoadEnd,
   onError,
 }) => {
@@ -54,6 +56,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
       style={style}
       className={className as any}
       onLoadStart={onLoadStart}
+      onLoad={onLoad}
       onLoadEnd={onLoadEnd}
       onError={onError}
     />

@@ -1,0 +1,57 @@
+name: Android Play bundle
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-play-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - run: npx patch-package --error-on-fail
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Build signed Play bundle on EAS
+        run: eas build --platform android --profile production --non-interactive --wait --json > android-play-build.json
+      - name: Download and verify the bundle
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const result = JSON.parse(fs.readFileSync('android-play-build.json', 'utf8'));
+          const build = Array.isArray(result) ? result[0] : result;
+          if (build.status !== 'FINISHED' || build.platform !== 'ANDROID' || !build.artifacts?.buildUrl) {
+            throw new Error('EAS did not return a completed Android artifact');
+          }
+          fs.writeFileSync('aab-url.txt', build.artifacts.buildUrl);
+          NODE
+          curl --fail --location --retry 3 "$(cat aab-url.txt)" --output dehub.aab
+          unzip -t dehub.aab
+          unzip -l dehub.aab | grep 'base/manifest/AndroidManifest.xml'
+          jarsigner -verify dehub.aab
+          sha256sum dehub.aab
+      - uses: actions/upload-artifact@v4
+        with:
+          name: signed-play-bundle
+          path: dehub.aab
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: android-play-build-result
+          path: android-play-build.json
+          if-no-files-found: ignore
