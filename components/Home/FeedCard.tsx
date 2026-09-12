@@ -1144,6 +1144,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         horizontal
         nestedScrollEnabled
         directionalLockEnabled
+        // The gallery owns horizontal movement; vertical drags belong to the feed.
+        alwaysBounceVertical={false}
         // Let a flick carry its natural momentum across the whole strip instead
         // of forcing every gesture to stop after exactly one image.
         showsHorizontalScrollIndicator={false}
