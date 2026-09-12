@@ -862,6 +862,8 @@ export interface BountySignature {
   v: number;
   r: string;
   s: string;
+  signature?: string;
+  deadline?: number;
 }
 
 export interface ClaimBountyResponse {

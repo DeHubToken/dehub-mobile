@@ -1661,6 +1661,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
       {showBountyModal && isBounty && tokenId != null && (
         <BountyInfoSheet
+          chainId={(item as any).chainId || streamInfo?.addBountyChainId || 56}
           visible={showBountyModal}
           onClose={() => setShowBountyModal(false)}
           tokenId={tokenId}
