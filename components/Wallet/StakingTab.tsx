@@ -249,7 +249,7 @@ const StakingTab: React.FC = () => {
       if (outcome === 'confirmed') {
         if (!attempt.confirmed) {
           attempt = { ...attempt, confirmed: true };
-          setPendingStake(attempt);
+          setPendingStake(previous => previous?.hash === attempt.hash ? attempt : previous);
           try { await AsyncStorage.setItem(pendingStakeKey(attempt.wallet), JSON.stringify(attempt)); } catch {}
           toastSuccess(`${attempt.amount} DHB confirmed on Base.`);
         }
