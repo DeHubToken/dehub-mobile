@@ -284,6 +284,7 @@ export const ARCADE_GAMES: ArcadeGame[] = [
      * with no release.
      */
     url: `${WEBSITE_LINK}/trenchstar-game/index.html?q=phone`,
+    exitPlacement: 'center',
     // It draws its own boot readout — engine, markets, world, paint — with a
     // real percentage, so the modelled bar only has to cover the gap before
     // the WebView's first paint and retires at `onLoadEnd`. No readySource:
