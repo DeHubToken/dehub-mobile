@@ -1162,19 +1162,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     const gallery = (
       <ReanimatedScrollView
         horizontal
-        // Deliberately NOT pagingEnabled: that snaps to multiples of the scroll
-        // view's own width, while the items are sized to `itemWidth`. When the
-        // two disagree every page compounds the error. snapToInterval pages off
-        // the item width itself, so they cannot drift apart.
+        // Let a flick carry its natural momentum across the whole strip instead
+        // of forcing every gesture to stop after exactly one image.
         showsHorizontalScrollIndicator={false}
         onLayout={handleGalleryLayout}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
-        decelerationRate="fast"
-        snapToInterval={itemWidth}
-        // A hard fling should advance one image, not skip several.
-        disableIntervalMomentum
-        snapToAlignment="start"
+        decelerationRate="normal"
       >
         {galleryImages.map((uri, index) => (
           <Pressable key={index} onPress={() => handleImagePress(index)} style={{ width: itemWidth }}>
