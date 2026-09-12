@@ -1,3 +1,4 @@
+import SheetDismissHandle from "../../ui/SheetDismissHandle";
 /**
  * RestrictionSheet
  * ================
@@ -132,7 +133,7 @@ export function RestrictionSheet({
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         <Pressable style={styles.overlay} onPress={onClose}>
           <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
-            <View style={styles.header}>
+            <SheetDismissHandle onClose={onClose} style={styles.header}>
               <Icon name={isMute ? "VolumeX" : "Ban"} size={18} color={isMute ? "#D4D4D8" : "#F4F4F5"} />
               <Text style={styles.title} numberOfLines={1}>
                 {title}
@@ -145,7 +146,7 @@ export function RestrictionSheet({
               >
                 <Icon name="X" size={20} color="#808089" />
               </TouchableOpacity>
-            </View>
+            </SheetDismissHandle>
 
             {/* Scrolls so the sheet can be capped — see styles.sheet. */}
             <ScrollView

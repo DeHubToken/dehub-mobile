@@ -7,13 +7,14 @@
  *
  * Uses GlassModal for the blurred glass aesthetic.
  */
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   ActivityIndicator,
   Share,
+  Platform,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Ionicons } from "@expo/vector-icons";
@@ -245,12 +246,27 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
    * Send to DM, Translate image — may close on the way out.
    */
   const [sheetHidden, setSheetHidden] = useState(false);
+  const pendingSubModal = useRef<(() => void) | null>(null);
+  const subModalTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (subModalTimer.current) clearTimeout(subModalTimer.current);
+    pendingSubModal.current = null;
+  }, []);
+  const openPendingSubModal = useCallback(() => {
+    const open = pendingSubModal.current;
+    pendingSubModal.current = null;
+    open?.();
+  }, []);
 
   /** Hide the sheet, then open the sub-modal once its dismiss animation is done. */
   const openSubModal = useCallback((open: () => void) => {
+    pendingSubModal.current = open;
     setSheetHidden(true);
-    setTimeout(open, 220);
-  }, []);
+    // iOS cannot present another native modal until dismissal finishes.
+    if (Platform.OS !== "ios") {
+      subModalTimer.current = setTimeout(openPendingSubModal, 220);
+    }
+  }, [openPendingSubModal]);
 
   /** A sub-modal finished: unmount the menu for real. */
   const closeAll = useCallback(() => {
@@ -447,7 +463,9 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
       <GlassModal
         visible={visible && !sheetHidden}
         onClose={onClose}
+        onDismiss={openPendingSubModal}
         presentation="bottom"
+      scrollable
         maxHeight="70%"
         blurIntensity={50}
       >

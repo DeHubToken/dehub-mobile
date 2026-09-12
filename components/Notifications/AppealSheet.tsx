@@ -1,3 +1,5 @@
+import { ScrollView } from "react-native";
+import SheetDismissHandle from "../ui/SheetDismissHandle";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -93,13 +95,15 @@ const AppealSheet: React.FC<AppealSheetProps> = ({
         <View
           style={{
             backgroundColor: "#09090B",
+            maxHeight: "90%",
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
             padding: 20,
             gap: 12,
           }}
         >
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+          <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ gap: 12 }}>
+          <SheetDismissHandle onClose={onClose} style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
             <Icon name="Scale" size={20} color="#fff" />
             <Text style={{ color: "#fff", fontSize: 17, fontWeight: "600", flex: 1 }}>
               {t("moderation.appealTitle", "Appeal this decision")}
@@ -107,7 +111,7 @@ const AppealSheet: React.FC<AppealSheetProps> = ({
             <Pressable onPress={onClose} hitSlop={10} accessibilityLabel="Close">
               <Icon name="X" size={20} color="#a1a1aa" />
             </Pressable>
-          </View>
+          </SheetDismissHandle>
 
           <Text style={{ color: "#a1a1aa", fontSize: 13 }}>
             {subject
@@ -176,7 +180,8 @@ const AppealSheet: React.FC<AppealSheetProps> = ({
               "You get a reference number, and the answer comes back here. One appeal per decision.",
             )}
           </Text>
-        </View>
+        </ScrollView>
+</View>
       </KeyboardAvoidingView>
     </Modal>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Modal,
   TouchableOpacity,
@@ -8,6 +8,8 @@ import {
   Animated,
   Keyboard,
   KeyboardAvoidingView,
+  PanResponder,
+  ScrollView,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
@@ -15,6 +17,7 @@ import { BlurView } from "expo-blur";
 export interface GlassModalProps {
   visible: boolean;
   onClose: () => void;
+  onDismiss?: () => void;
   blurIntensity?: number; // 0-100
   blurTint?: "dark" | "light" | "default";
   children: React.ReactNode;
@@ -26,6 +29,8 @@ export interface GlassModalProps {
   wrapPanel?: boolean;
   // When false, disable closing via backdrop press and Android back button
   dismissible?: boolean;
+  /** For static sheet content. Lists keep their own scroll container. */
+  scrollable?: boolean;
 }
 
 /**
@@ -43,6 +48,7 @@ export interface GlassModalProps {
 const GlassModal: React.FC<GlassModalProps> = ({
   visible,
   onClose,
+  onDismiss,
   blurIntensity = 100,
   blurTint = "dark",
   children,
@@ -52,9 +58,42 @@ const GlassModal: React.FC<GlassModalProps> = ({
   panelHeight,
   wrapPanel = true,
   dismissible = true,
+  scrollable = false,
 }) => {
   const insets = useSafeAreaInsets();
   const isBottom = presentation === "bottom";
+  const translateY = useRef(new Animated.Value(0)).current;
+  const scrollY = useRef(0);
+  const startedAtTop = useRef(true);
+  useEffect(() => {
+    translateY.setValue(0);
+    scrollY.current = 0;
+  }, [visible, translateY]);
+  const makePanResponder = (fromHandle: boolean) => PanResponder.create({
+    onStartShouldSetPanResponderCapture: () => {
+      startedAtTop.current = scrollY.current <= 1;
+      return false;
+    },
+    onMoveShouldSetPanResponderCapture: (_, gesture) => {
+      return isBottom && dismissible && gesture.dy > 10 &&
+        gesture.dy > Math.abs(gesture.dx) * 1.5 &&
+        (fromHandle || (scrollable && startedAtTop.current && scrollY.current <= 1));
+    },
+    onPanResponderMove: (_, gesture) => translateY.setValue(Math.max(0, gesture.dy)),
+    onPanResponderRelease: (_, gesture) => {
+      if (gesture.dy > 80 || (gesture.dy > 20 && gesture.vy > 0.7)) {
+        onClose();
+      }
+      Animated.spring(translateY, { toValue: 0, useNativeDriver: true }).start();
+    },
+    onPanResponderTerminate: () => {
+      Animated.spring(translateY, { toValue: 0, useNativeDriver: true }).start();
+    },
+  });
+  const panResponder = useMemo(() => makePanResponder(false),
+    [dismissible, isBottom, onClose, scrollable, translateY]);
+  const handleResponder = useMemo(() => makePanResponder(true),
+    [dismissible, isBottom, onClose, scrollable, translateY]);
 
   // While the keyboard is up, KeyboardAvoidingView already lifts the panel
   // clear of it, and the bottom inset it would otherwise reserve is under the
@@ -80,6 +119,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
       animationType="fade"
       // Prevent Android back button from closing when not dismissible
       onRequestClose={dismissible ? onClose : () => {}}
+      onDismiss={onDismiss}
       hardwareAccelerated
       // Every other sheet in the app sets this; GlassModal was the one that
       // did not, so on Android its window stopped short of the system bars and
@@ -152,7 +192,8 @@ const GlassModal: React.FC<GlassModalProps> = ({
             ]}
           >
             {wrapPanel ? (
-              <View
+              <Animated.View
+                {...(isBottom ? panResponder.panHandlers : {})}
                 style={[
                   styles.panel,
                   isBottom ? styles.panelDrawer : styles.panelCard,
@@ -160,11 +201,29 @@ const GlassModal: React.FC<GlassModalProps> = ({
                     maxHeight: maxHeight as any,
                     height: panelHeight as any,
                     paddingBottom: isBottom && !keyboardUp ? insets.bottom : 0,
+                    transform: [{ translateY }],
                   },
                 ]}
               >
-                {children}
-              </View>
+                {scrollable ? (
+                  <ScrollView
+                    style={{ flexShrink: 1 }}
+                    keyboardShouldPersistTaps="handled"
+                    nestedScrollEnabled
+                    bounces={false}
+                    scrollEventThrottle={16}
+                    onScroll={(event) => { scrollY.current = event.nativeEvent.contentOffset.y; }}
+                  >
+                    {children}
+                  </ScrollView>
+                ) : children}
+                {isBottom && dismissible && (
+                  <View
+                    {...handleResponder.panHandlers}
+                    style={{ position: "absolute", top: 0, left: "35%", right: "35%", height: 28 }}
+                  />
+                )}
+              </Animated.View>
             ) : (
               children
             )}

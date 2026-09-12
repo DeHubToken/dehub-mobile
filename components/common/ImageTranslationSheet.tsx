@@ -1,3 +1,4 @@
+import SheetDismissHandle from "../ui/SheetDismissHandle";
 import React, { useState } from "react";
 import {
   View,
@@ -65,7 +66,7 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
             }}
           >
             {/* Header */}
-            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 16, borderBottomWidth: 1, borderBottomColor: "rgba(255,255,255,0.08)" }}>
+            <SheetDismissHandle onClose={onClose} style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 16, borderBottomWidth: 1, borderBottomColor: "rgba(255,255,255,0.08)" }}>
               <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
                 <Ionicons name="language-outline" size={20} color="#fff" />
                 <Text style={{ color: "#fff", fontSize: 16, fontWeight: "600" }}>Image Translation</Text>
@@ -73,7 +74,7 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
               <TouchableOpacity onPress={onClose} hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}>
                 <Ionicons name="close" size={22} color="#A6A9AC" />
               </TouchableOpacity>
-            </View>
+            </SheetDismissHandle>
 
             <ScrollView style={{ padding: 16 }} contentContainerStyle={{ gap: 12 }}>
               {/* Loading */}
