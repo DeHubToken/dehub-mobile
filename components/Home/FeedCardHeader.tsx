@@ -11,7 +11,7 @@ const DISPLAY_NAME_LINE_HEIGHT = 20;
 const HOLDER_BADGE_SIZE = 16;
 const HOLDER_BADGE_GAP = 2;
 const AI_ICON = require("../../assets/web-icons/ai-sparkle-icon.png");
-const BOOST_ICON = require("../../assets/web-icons/rocket.png");
+const BOOST_ICON = require("../../assets/web-icons/boost-3d.png");
 
 export interface FeedCardHeaderProps {
   avatarUrl?: string;
