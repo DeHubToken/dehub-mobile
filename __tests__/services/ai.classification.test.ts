@@ -1,3 +1,5 @@
+jest.mock('../../libs/token-refresh', () => ({ tokenRefreshManager: { ensureFreshToken: jest.fn().mockResolvedValue(undefined) } }));
+import { tokenRefreshManager } from '../../libs/token-refresh';
 /**
  * The assistant's request classification.
  *
@@ -240,5 +242,17 @@ describe('services/ai.service — request classification', () => {
       expect(isImageRequest('draw me a picture of a wallet')).toBe(true);
       expect(detectAiToolRequest('transcribe this support call', false)).toBe('speech-to-text');
     });
+  });
+});
+
+describe('generation session refresh', () => {
+  it('waits for refresh before reading the token sent to the generation endpoint', async () => {
+    await setAuthToken('old-token');
+    (tokenRefreshManager.ensureFreshToken as jest.Mock).mockImplementationOnce(async () => { await setAuthToken('fresh-token'); });
+    expect(await dehubAuthHeaders()).toEqual({ 'x-dehub-token': 'fresh-token' });
+  });
+  it('does not send a generation when session refresh fails', async () => {
+    (tokenRefreshManager.ensureFreshToken as jest.Mock).mockRejectedValueOnce(new Error('Session expired'));
+    await expect(dehubAuthHeaders()).rejects.toThrow('Session expired');
   });
 });

@@ -96,6 +96,7 @@ function AppNavigatorContent() {
       />
 
       <Stack.Group>
+        <Stack.Screen name={ScreenNames.Creator} getComponent={() => require('../screens/CreatorScreen').default} />
         <Stack.Screen
           name={ScreenNames.Leaderboard}
           getComponent={() => require("../screens/LeaderboardScreen").default}
