@@ -58,6 +58,7 @@ import {
 } from "../../libs/radio-browser";
 import { useDebouncedValue } from "../../hooks/useDebouncedValue";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
+import { getAvatarUrl } from "../../libs/misc";
 
 const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
 
@@ -628,6 +629,10 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({
   const title = nft.name || (nft as any).title || "Untitled";
   const creator =
     (nft as any).minterDisplayName || (nft as any).minterUsername || (nft as any).mintername || "";
+  const creatorAvatar = getAvatarUrl(
+    (nft as any).minterUser?.avatarImageUrl || (nft as any).minterAvatarUrl || "",
+    512,
+  );
 
   return (
     <View style={styles.audioCard}>
@@ -648,7 +653,7 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({
           isVisible={isVisible}
           title={title}
           artist={creator || undefined}
-          artworkUrl={(nft as any).imageUrl || (nft as any).thumbnailUrl || undefined}
+          artworkUrl={creatorAvatar === "default-avatar" ? undefined : creatorAvatar}
           compact
         />
       ) : (
