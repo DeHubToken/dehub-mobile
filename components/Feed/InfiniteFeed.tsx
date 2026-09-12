@@ -435,11 +435,10 @@ const InfiniteFeedBase: React.FC<
         scrollEventThrottle={16}
         nestedScrollEnabled
         onEndReached={endReached ? undefined : loadMore}
-        // Was 0.4 — the next page was only requested when the user was already
-        // within half a screen of the end, so they routinely hit the bottom and
-        // watched the skeleton footer appear. A full screen of runway means the
-        // page is usually appended before it is ever scrolled to.
-        onEndReachedThreshold={1.2}
+        // Keep multiple screens of runway. Fast flings can consume a single
+        // screen before the request and native cell mounting complete, leaving
+        // the gesture pinned at the old content boundary.
+        onEndReachedThreshold={2.5}
         viewabilityConfig={feedCardViewabilityConfig}
         onViewableItemsChanged={handleViewableItemsChanged}
         extraData={trackFeedCardVisibility ? visibilityExtraData : undefined}
