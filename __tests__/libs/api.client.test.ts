@@ -24,6 +24,17 @@ describe('libs/api.client', () => {
   });
 
   describe('GET requests', () => {
+    it('uses the relay once after a direct network failure, preserving query parameters', async () => {
+      mockFetch.mockRejectedValueOnce(new TypeError('Network request failed'));
+      mockFetch.mockResolvedValueOnce({ ok: true, status: 200, headers: { get: () => 'application/json' }, json: async () => ({ ok: true }) });
+      await expect(apiClient.get('/feed', { isAuthRequired: false, params: { page: 2 } })).resolves.toEqual({ ok: true });
+      expect(mockFetch.mock.calls.map(call => call[0])).toEqual(['https://api.dehub.io/api/feed?page=2', 'https://dehub.io/_api/api/feed?page=2']);
+    });
+    it('does not replay a mutation after a transport failure', async () => {
+      mockFetch.mockRejectedValue(new TypeError('Network request failed'));
+      await expect(apiClient.post('/purchase', { amount: 1 }, { isAuthRequired: false })).rejects.toThrow('Network request failed');
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+    });
     it('makes GET request with correct headers', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -37,7 +48,7 @@ describe('libs/api.client', () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
 
       const [url, opts] = mockFetch.mock.calls[0];
-      expect(url).toBe('https://dehub.io/_api/api/test');
+      expect(url).toBe('https://api.dehub.io/api/test');
       expect(opts.method).toBe('GET');
       expect(opts.headers['Accept']).toBe('application/json');
       expect(opts.headers['X-Client-Type']).toBe('mobile');
@@ -251,7 +262,7 @@ describe('libs/api.client', () => {
       // looks like: no response, no rejection, forever. Before the signal
       // existed this promise simply never resolved, so React Query's retry
       // never fired and the caller sat on a skeleton indefinitely.
-      mockFetch.mockImplementationOnce(
+      mockFetch.mockImplementation(
         (_url: string, init: any) =>
           new Promise((_resolve, reject) => {
             init.signal.addEventListener('abort', () => {
