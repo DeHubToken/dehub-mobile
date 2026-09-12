@@ -833,7 +833,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         // unmounts distant rows; only the native detach-in-place trick goes.
         // Omitting the prop is NOT off: RN defaults it to true on Android.
         removeClippedSubviews={false}
-        updateCellsBatchingPeriod={80}
+        updateCellsBatchingPeriod={50}
         contentContainerStyle={
           contentContainerStyle || {
             paddingHorizontal: 8,

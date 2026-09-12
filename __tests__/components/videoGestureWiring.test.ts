@@ -29,7 +29,7 @@ describe('video gesture wiring', () => {
     const player = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
 
     expect(player).toContain('const seekPanResponder = useMemo(');
-    expect(player).toContain('onPanResponderMove: (event) => handleSeek(event.nativeEvent.locationX)');
+    expect(player).toContain('PanResponder.create(feedSeekResponder(handleSeek, startHideTimer))');
     expect(player).toContain('{...seekPanResponder.panHandlers}');
     expect(player).toMatch(/progressTrack:\s*\{[\s\S]*?height: 32,/);
   });
