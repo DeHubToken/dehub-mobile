@@ -153,7 +153,7 @@ export default function SuperPowersScreen() {
             // straight to the sign-in action in the sheet.
             const unlocked = (isTeamUp || !!power.unlocked) && power.available;
             const allowance =
-              power.key === "signal_flare"
+              power.key === "signal_flare" || power.key === "harpoon"
                 ? (status?.signalsLeft ?? status?.boostsLeft)
                 : status?.boostsLeft;
             return (
@@ -306,13 +306,13 @@ export default function SuperPowersScreen() {
               </View>
             ) : (
               historyBookings.map(booking => {
-                const flare = booking.power === "signal_flare";
-                const result = flare
+                const notificationPower = booking.power === "signal_flare" || booking.power === "harpoon";
+                const result = notificationPower
                   ? booking.signalDeliveryStatus === "sent"
                     ? `${booking.signalRecipients ?? 0} notified`
                     : booking.signalDeliveryStatus === "failed"
                       ? "Delivery retrying"
-                      : "Notifying followers"
+                      : booking.power === "harpoon" ? "Notifying badge holders" : "Notifying followers"
                   : `${booking.served} seen`;
                 const subject = booking.tokenId != null
                   ? `Post #${booking.tokenId}`
@@ -334,13 +334,13 @@ export default function SuperPowersScreen() {
                     </View>
                     <View style={styles.historyResult}>
                       <Text style={styles.historyResultText}>{result}</Text>
-                      {!flare ? (
+                      {!notificationPower ? (
                         <Text style={styles.historyState}>
                           {booking.live ? "Live" : booking.status === "active" ? "Queued" : "Finished"}
                         </Text>
                       ) : null}
                     </View>
-                    {booking.status === "active" && !flare ? (
+                    {booking.status === "active" && !notificationPower ? (
                       <Pressable
                         onPress={() => handleCancel(booking.id)}
                         disabled={cancelBoost.isPending}

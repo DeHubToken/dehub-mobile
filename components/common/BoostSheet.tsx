@@ -144,13 +144,14 @@ export default function BoostSheet({
       },
       {
         onSuccess: booking => {
-          if (chosen === "signal_flare") {
+          if (chosen === "signal_flare" || chosen === "harpoon") {
+            const label = chosen === "harpoon" ? "Harpoon" : "Signal Flare";
             void toastPromise(waitForSignalFlareReceipt(booking.id), {
               loading: "Counting notifications...",
               success: recipients =>
                 recipients === null
-                  ? "Signal Flare sent. The final count will appear in Past usage."
-                  : `Signal Flare notified ${recipients} ${recipients === 1 ? "person" : "people"}`,
+                  ? `${label} sent. The final count will appear in Past usage.`
+                  : `${label} notified ${recipients} ${recipients === 1 ? "person" : "people"}`,
             });
           } else {
             toastSuccess(`${active?.label} running for ${booking.minutes} minutes`);
