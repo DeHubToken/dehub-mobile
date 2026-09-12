@@ -223,10 +223,15 @@ const ArcadeGameScreen = () => {
   const [suspended, setSuspended] = useState(false);
   useEffect(() => {
     const sub = AppState.addEventListener("change", (state) => {
+      // Lock device-local trading keys as soon as the app loses focus,
+      // including the iOS app switcher before the WebView is unmounted.
+      if (slug === 'trenchstar' && state !== 'active') {
+        webRef.current?.injectJavaScript("window.dispatchEvent(new Event('trenchstar:wallet-lock')); true;");
+      }
       setSuspended(state === "background");
     });
     return () => sub.remove();
-  }, []);
+  }, [slug]);
 
   // A deep link opens the player with nothing beneath it, so "back" has to mean
   // the grid rather than an empty stack the app cannot pop.
