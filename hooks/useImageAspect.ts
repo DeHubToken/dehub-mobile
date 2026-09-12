@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Image } from "react-native";
+import { useCallback, useRef, useState } from "react";
+import type { ImageLoadEventData } from "expo-image";
 import { FEED_IMAGE_FALLBACK_ASPECT } from "../libs/feed-image-layout";
 
 const aspectRatioCache = new Map<string, number>();
@@ -13,36 +13,26 @@ function cacheAspectRatio(uri: string, ratio: number) {
   aspectRatioCache.set(uri, ratio);
 }
 
-/** Returns an image's natural width/height ratio, cached for recycled feed rows. */
-export function useImageAspect(uri: string): number {
-  const [ratio, setRatio] = useState<number>(() =>
-    aspectRatioCache.get(uri) ?? FEED_IMAGE_FALLBACK_ASPECT,
-  );
+/** Reuse expo-image's load result instead of fetching each image again through Fresco. */
+export function useImageAspect(uri: string) {
+  const currentUri = useRef(uri);
+  currentUri.current = uri;
+  const [measurement, setMeasurement] = useState<{ uri: string; ratio: number }>();
+  const ratio = measurement?.uri === uri
+    ? measurement.ratio
+    : aspectRatioCache.get(uri) ?? FEED_IMAGE_FALLBACK_ASPECT;
 
-  useEffect(() => {
-    const cached = aspectRatioCache.get(uri);
-    if (cached !== undefined) {
-      setRatio(cached);
-      return;
-    }
-
-    setRatio(FEED_IMAGE_FALLBACK_ASPECT);
-    let cancelled = false;
-    Image.getSize(
-      uri,
-      (width, height) => {
-        if (cancelled || width <= 0 || height <= 0) return;
-        const measured = width / height;
-        cacheAspectRatio(uri, measured);
-        setRatio(measured);
-      },
-      () => {},
-    );
-
-    return () => {
-      cancelled = true;
-    };
+  const onLoad = useCallback((event: ImageLoadEventData) => {
+    const { width, height } = event.source;
+    if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) return;
+    const measured = width / height;
+    cacheAspectRatio(uri, measured);
+    // A recycled row may have moved on while the previous request completed.
+    if (currentUri.current !== uri) return;
+    setMeasurement((previous) => previous?.uri === uri && previous.ratio === measured
+      ? previous
+      : { uri, ratio: measured });
   }, [uri]);
 
-  return ratio;
+  return { ratio, onLoad };
 }
