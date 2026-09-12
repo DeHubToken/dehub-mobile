@@ -1,3 +1,4 @@
+import SheetDismissHandle from "../../ui/SheetDismissHandle";
 /**
  * CommunityManageSheet
  * ====================
@@ -156,7 +157,7 @@ export function CommunityManageSheet({
       onRequestClose={onClose}
     >
       <View className="flex-1 bg-theme-neutrals-900">
-        <View style={styles.header}>
+        <SheetDismissHandle onClose={onClose} style={styles.header}>
           <View className="flex-1 pr-3">
             <Text className="text-white text-base font-semibold" numberOfLines={1}>
               {community.name}
@@ -173,7 +174,7 @@ export function CommunityManageSheet({
           >
             <Icon name="X" size={20} color="#808089" />
           </TouchableOpacity>
-        </View>
+        </SheetDismissHandle>
 
         <View style={styles.stripWrap}>
           <ScrollView

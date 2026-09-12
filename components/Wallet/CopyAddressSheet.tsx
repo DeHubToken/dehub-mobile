@@ -64,7 +64,8 @@ const CopyAddressSheet: React.FC<CopyAddressSheetProps> = ({
   );
 
   return (
-    <GlassModal visible={visible} onClose={onClose} presentation="bottom">
+    <GlassModal visible={visible} onClose={onClose} presentation="bottom"
+      scrollable>
       <View className="px-5 pt-5 pb-2">
         <Text className="text-white text-base font-semibold">
           {t("wallet.copyAddress")}

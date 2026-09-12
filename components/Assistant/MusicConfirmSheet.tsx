@@ -1,3 +1,4 @@
+import SheetDismissHandle from "../ui/SheetDismissHandle";
 /**
  * Confirm a song before paying for it.
  * ====================================
@@ -192,9 +193,9 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
         <Animated.View style={[s.sheet, { paddingBottom: insets.bottom + 12 }, sheetStyle]}>
           <View style={[StyleSheet.absoluteFill, s.overlay]} />
 
-          <View style={s.handleWrap}>
+          <SheetDismissHandle onClose={closeSheet} style={s.handleWrap}>
             <View style={s.handle} />
-          </View>
+          </SheetDismissHandle>
 
           <View style={s.headerRow}>
             <View style={s.headerLeft}>

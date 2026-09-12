@@ -87,6 +87,7 @@ const LiveChatAttachSheet: React.FC<LiveChatAttachSheetProps> = ({
       visible={visible}
       onClose={onClose}
       presentation="bottom"
+      scrollable
       maxHeight="60%"
       blurIntensity={30}
     >

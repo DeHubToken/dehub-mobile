@@ -1,3 +1,4 @@
+import SheetDismissHandle from "../../ui/SheetDismissHandle";
 /**
  * MemberActionsSheet
  * ==================
@@ -229,7 +230,7 @@ export function MemberActionsSheet({
       <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
         <Pressable style={styles.overlay} onPress={onClose}>
           <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
-            <View style={styles.header}>
+            <SheetDismissHandle onClose={onClose} style={styles.header}>
               <View className="flex-1">
                 <Text className="text-white text-sm font-mono">{name}</Text>
                 <Text className="text-zinc-400 text-xs mt-0.5">
@@ -250,7 +251,7 @@ export function MemberActionsSheet({
               >
                 <Icon name="X" size={20} color="#808089" />
               </TouchableOpacity>
-            </View>
+            </SheetDismissHandle>
 
             {/* Scrolls so the sheet can be capped — see styles.sheet. */}
             <ScrollView bounces={false} showsVerticalScrollIndicator={false}>

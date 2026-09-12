@@ -1,3 +1,4 @@
+import SheetDismissHandle from "../ui/SheetDismissHandle";
 /**
  * DeHub Poster Studio.
  * ====================
@@ -422,9 +423,9 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
         <Animated.View style={[s.sheet, { paddingBottom: insets.bottom + 12 }, sheetStyle]}>
           <View style={[StyleSheet.absoluteFill, s.overlay]} />
 
-          <View style={s.handleWrap}>
+          <SheetDismissHandle onClose={closeSheet} style={s.handleWrap}>
             <View style={s.handle} />
-          </View>
+          </SheetDismissHandle>
           <View style={s.headerRow}>
             <View style={s.headerLeft}>
               <Icon name="Palette" size={20} color="#F9FBFF" />

@@ -1,3 +1,5 @@
+import { ScrollView } from "react-native";
+import SheetDismissHandle from "../ui/SheetDismissHandle";
 /**
  * Fix a line of auto-generated subtitles.
  *
@@ -77,12 +79,13 @@ const CaptionFixSheet: React.FC<CaptionFixSheetProps> = ({
         style={styles.wrap}
       >
         <View style={styles.sheet}>
-          <View style={styles.header}>
+          <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ gap: 10 }}>
+          <SheetDismissHandle onClose={onClose} style={styles.header}>
             <Text style={styles.title}>Fix this line</Text>
             <Pressable onPress={onClose} hitSlop={10} accessibilityLabel="Close">
               <Ionicons name="close" size={20} color="#a1a1aa" />
             </Pressable>
-          </View>
+          </SheetDismissHandle>
 
           <Text style={styles.hint}>
             {segmentIndex == null
@@ -120,7 +123,8 @@ const CaptionFixSheet: React.FC<CaptionFixSheetProps> = ({
               </Pressable>
             </>
           )}
-        </View>
+        </ScrollView>
+</View>
       </KeyboardAvoidingView>
     </Modal>
   );
@@ -130,6 +134,7 @@ const styles = StyleSheet.create({
   backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.6)" },
   wrap: { flex: 1, justifyContent: "flex-end" },
   sheet: {
+    maxHeight: "90%",
     backgroundColor: "#09090B",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
