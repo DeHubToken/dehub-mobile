@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { View, Text, TouchableOpacity, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Platform, View, Text, TouchableOpacity, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import UserProfileSkeleton from "./UserProfileSkeleton";
 import UserProfileHeader from "./UserProfileHeader";
@@ -182,20 +182,36 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     }
   }, [isOwnProfile, onRegisterMenuTrigger, handleOpenMenu]);
 
-  const handleBlockPress = useCallback(() => {
-    setShowProfileMenu(false);
-    setTimeout(() => setShowBlockConfirm(true), 200);
+  const pendingMenuAction = useRef<(() => void) | null>(null);
+  const menuActionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (menuActionTimer.current) clearTimeout(menuActionTimer.current);
+    pendingMenuAction.current = null;
   }, []);
+  const runPendingMenuAction = useCallback(() => {
+    const action = pendingMenuAction.current;
+    pendingMenuAction.current = null;
+    action?.();
+  }, []);
+  const closeMenuThen = useCallback((action: () => void) => {
+    pendingMenuAction.current = action;
+    setShowProfileMenu(false);
+    if (Platform.OS !== "ios") {
+      menuActionTimer.current = setTimeout(runPendingMenuAction, 200);
+    }
+  }, [runPendingMenuAction]);
+
+  const handleBlockPress = useCallback(() => {
+    closeMenuThen(() => setShowBlockConfirm(true));
+  }, [closeMenuThen]);
 
   const handleReportPress = useCallback(() => {
-    setShowProfileMenu(false);
-    setTimeout(() => setShowReportUser(true), 200);
-  }, []);
+    closeMenuThen(() => setShowReportUser(true));
+  }, [closeMenuThen]);
 
   const handleRemoveFollowerPress = useCallback(() => {
-    setShowProfileMenu(false);
-    setTimeout(() => setShowRemoveFollowerConfirm(true), 200);
-  }, []);
+    closeMenuThen(() => setShowRemoveFollowerConfirm(true));
+  }, [closeMenuThen]);
 
   const handleConfirmRemoveFollower = useCallback(() => {
     onRemoveFollower?.();
@@ -212,22 +228,19 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   }, [youBlocked, onBlock, onUnblock]);
 
   const handleMenuMessage = useCallback(() => {
-    setShowProfileMenu(false);
-    setTimeout(() => onMessage(), 200);
-  }, [onMessage]);
+    closeMenuThen(onMessage);
+  }, [closeMenuThen, onMessage]);
 
   const handleMenuTip = useCallback(() => {
     if (paymentsHidden) return;
-    setShowProfileMenu(false);
-    setTimeout(() => setShowTip(true), 200);
-  }, [paymentsHidden]);
+    closeMenuThen(() => setShowTip(true));
+  }, [closeMenuThen, paymentsHidden]);
 
   const handleMenuShare = useCallback(() => {
-    setShowProfileMenu(false);
     const url = `${WEBSITE_LINK}/${profileData?.username || profileData?.address}`;
     const message = `Check out ${profileData?.displayName || "this user"} on DeHub ${url}`;
-    shareProfile(url, message);
-  }, [profileData]);
+    closeMenuThen(() => { shareProfile(url, message); });
+  }, [closeMenuThen, profileData]);
 
   const handleMenuCopyUrl = useCallback(() => {
     const url = `${WEBSITE_LINK}/${profileData?.username || profileData?.address}`;
@@ -410,6 +423,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
       <GlassModal scrollable
         visible={showProfileMenu}
         onClose={() => setShowProfileMenu(false)}
+        onDismiss={runPendingMenuAction}
         presentation="bottom"
         maxHeight="80%"
         blurIntensity={50}
