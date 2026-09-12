@@ -1128,6 +1128,20 @@ export async function editPost(tokenId: number | string, input: EditPostInput): 
   }
 }
 
+export function getPostImageAllowance(tokenId: number | string) {
+  return apiClient.get<{ imageLimit: number }>(`/nft/${encodeURIComponent(String(tokenId))}/image-allowance`);
+}
+
+export async function addPostImages(tokenId: number | string, images: ReplaceVideoFile[]): Promise<string[]> {
+  const formData = new FormData();
+  images.forEach(image => formData.append('images', { uri: image.uri, name: image.name || 'image.jpg', type: image.type || 'image/jpeg' } as any));
+  const response = await xhrUploadFormData<{ result: boolean; data: { imageUrls: string[] } }>({
+    endpoint: `/nft/${encodeURIComponent(String(tokenId))}/images`, formData,
+  });
+  if (!response.result || !Array.isArray(response.data?.imageUrls)) throw new Error('Could not add those images');
+  return response.data.imageUrls;
+}
+
 export async function replacePostImage(tokenId: number | string, index: number, image: ReplaceVideoFile): Promise<string[]> {
   const formData = new FormData();
   formData.append('image', { uri: image.uri, name: image.name || 'replacement.jpg', type: image.type || 'image/jpeg' } as any);
