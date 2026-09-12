@@ -316,7 +316,12 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
    */
   const lockScreenId = `audio-post:${tokenId}`;
   const lockScreenTrack = useMemo(
-    () => ({ title: title || "Audio post", artist: artist || undefined, artworkUrl: artworkUrl || undefined }),
+    () => ({
+      title: title || "Audio post",
+      artist: artist || "DeHub creator",
+      albumTitle: "DeHub • Audio",
+      artworkUrl: artworkUrl || undefined,
+    }),
     [title, artist, artworkUrl],
   );
   const [isPlaying, setIsPlaying] = useState(false);
