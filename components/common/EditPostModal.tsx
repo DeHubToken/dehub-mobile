@@ -28,6 +28,7 @@ import { useShopLinkAllowance } from "../../hooks/useShopLinks";
 import { toastSuccess, toastError } from "../../libs";
 import { useKeyboard } from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
+import EditPostImages from './EditPostImages';
 
 interface EditPostModalProps {
   visible: boolean;
@@ -318,12 +319,12 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     <GlassModal
       visible={visible}
       onClose={() => {
-        if (!saving) onClose();
+        if (!saving && !replacing) onClose();
       }}
       presentation="center"
       maxHeight="85%"
       blurIntensity={40}
-      dismissible={!saving}
+      dismissible={!saving && !replacing}
     >
       <ScrollView
         className="p-5"
@@ -343,7 +344,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
           </View>
           <TouchableOpacity
             onPress={onClose}
-            disabled={saving}
+            disabled={saving || replacing}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             className="p-2 bg-white/5 rounded-xl"
             activeOpacity={0.8}
@@ -352,6 +353,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
           </TouchableOpacity>
         </View>
 
+        {visible && tokenId != null && <EditPostImages tokenId={tokenId} disabled={saving || replacing} onBusyChange={setReplacing} />}
         {/* Title — only shown if the post has a title */}
         {initialTitle ? (
           <>
@@ -586,7 +588,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         <View className="flex-row mt-2">
           <TouchableOpacity
             onPress={onClose}
-            disabled={saving}
+            disabled={saving || replacing}
             className="flex-1 mr-2 py-3 rounded-xl bg-white/5 border border-white/10 items-center"
             activeOpacity={0.8}
           >
@@ -598,7 +600,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             <AccentButtonGradient borderRadius={12}>
               <TouchableOpacity
                 onPress={handleSave}
-                disabled={saving || !hasChanges}
+                disabled={saving || replacing || !hasChanges}
                 className="py-3 items-center"
                 style={{ opacity: hasChanges ? 1 : 0.4 }}
                 activeOpacity={0.8}
