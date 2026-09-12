@@ -14,6 +14,7 @@ import {
   BackHandler,
   Alert,
   Platform,
+  Modal,
 } from "react-native";
 import { useNavigation, useRoute, CommonActions, useFocusEffect } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
@@ -256,6 +257,7 @@ export default function UploadScreen() {
   const [communityOpen, setCommunityOpen] = useState(false);
   const [userCommunities, setUserCommunities] = useState<Community[]>([]);
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
+  const [fullscreenImageUri, setFullscreenImageUri] = useState<string | null>(null);
   const [pickedVideo, setPickedVideo] = useState<PickedAsset | null>(null);
   const [pickedAudio, setPickedAudio] = useState<PickedAudio | null>(null);
   const [isAudioRecording, setIsAudioRecording] = useState(false);
@@ -2026,11 +2028,18 @@ export default function UploadScreen() {
                     className="w-1/2 p-1"
                   >
                     <View className="rounded-xl overflow-hidden border border-theme-neutrals-700">
-                      <Image
-                        source={{ uri: img.uri }}
-                        className="w-full h-40"
-                        resizeMode="cover"
-                      />
+                      <TouchableOpacity
+                        onPress={() => setFullscreenImageUri(img.uri)}
+                        activeOpacity={0.9}
+                        accessibilityRole="button"
+                        accessibilityLabel="View image fullscreen"
+                      >
+                        <Image
+                          source={{ uri: img.uri }}
+                          className="w-full h-40"
+                          resizeMode="cover"
+                        />
+                      </TouchableOpacity>
                       <TouchableOpacity
                         onPress={() => handleRemoveImage(idx)}
                         className="absolute top-2 right-2 w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
@@ -3049,6 +3058,32 @@ export default function UploadScreen() {
           setMonetization((current) => ({ ...current, subscribersEnabled: true }));
         }}
       />
+
+      <Modal
+        visible={fullscreenImageUri !== null}
+        transparent
+        animationType="fade"
+        statusBarTranslucent
+        onRequestClose={() => setFullscreenImageUri(null)}
+      >
+        <View className="flex-1 bg-black items-center justify-center">
+          {fullscreenImageUri && (
+            <Image
+              source={{ uri: fullscreenImageUri }}
+              className="w-full h-full"
+              resizeMode="contain"
+            />
+          )}
+          <TouchableOpacity
+            onPress={() => setFullscreenImageUri(null)}
+            className="absolute top-12 right-4 w-10 h-10 rounded-xl dark-surface bg-black/70 border border-white/20 items-center justify-center"
+            accessibilityRole="button"
+            accessibilityLabel="Close fullscreen image"
+          >
+            <Icon name="X" size={20} color="#fff" />
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 }
