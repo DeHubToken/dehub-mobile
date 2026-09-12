@@ -52,6 +52,8 @@ import { getUserReplies } from "../../services/user.service";
 import { supabase } from "../../services/supabase";
 import { getImageUrl, toastError, toastPromise, toastSuccess } from "../../libs";
 
+const BOOST_ICON = require("../../assets/superpowers/boost.png");
+
 interface SpendPowerSheetProps {
   /** The power being spent. Null keeps the sheet closed. */
   power: SuperPowerInfo | null;
@@ -263,7 +265,12 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
     <GlassModal visible={visible} onClose={onClose} presentation="bottom">
       <View className="px-5 pb-8 pt-4">
         <View className="mb-3 flex-row items-center justify-between gap-3">
-          <Text className="text-lg font-semibold text-white">{power?.label}</Text>
+          <View className="min-w-0 flex-1 flex-row items-center gap-2">
+            {power?.key === "boost" ? (
+              <Image source={BOOST_ICON} className="h-8 w-8" resizeMode="contain" />
+            ) : null}
+            <Text className="text-lg font-semibold text-white">{power?.label}</Text>
+          </View>
           <Pressable onPress={onClose} hitSlop={10} accessibilityLabel="Close">
             <Icon name="X" size={18} color="#A1A1AA" />
           </Pressable>
