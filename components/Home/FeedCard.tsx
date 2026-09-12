@@ -1384,6 +1384,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 title={title}
                 artist={displayName}
                 artworkUrl={galleryImages[0]}
+                beforeFullscreen={isBounty ? (
+                  <TouchableOpacity
+                    accessibilityLabel="Bounty Rewards"
+                    onPress={handleBountyBadgePress}
+                    className="flex-row items-center gap-1 rounded-xl bg-white/10 px-2 py-1"
+                  >
+                    <Icon name="Gift" size={12} color="#fff" />
+                    <Text className="text-white text-xs font-medium">{formatCompactNumber(bountyAmount)} {bountyTokenSymbol}</Text>
+                  </TouchableOpacity>
+                ) : undefined}
               />
             )}
           </>

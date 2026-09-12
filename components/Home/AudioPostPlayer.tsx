@@ -292,6 +292,7 @@ export interface AudioPostPlayerProps {
   title?: string;
   artist?: string;
   artworkUrl?: string;
+  beforeFullscreen?: React.ReactNode;
 }
 
 const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
@@ -305,6 +306,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   title,
   artist,
   artworkUrl,
+  beforeFullscreen,
 }) => {
   const playerRef = useRef<AudioPlayer | null>(null);
   /**
@@ -817,6 +819,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         </View>
       </View>
 
+      <View className="flex-row items-center gap-2 ml-auto">
+      {beforeFullscreen}
       <TouchableOpacity
         onPress={() => setIsFullscreen((v) => !v)}
         activeOpacity={0.7}
@@ -826,6 +830,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       >
         <Icon name={isFullscreen ? "Minimize2" : "Maximize2"} size={15} color="#fff" />
       </TouchableOpacity>
+      </View>
     </View>
   );
 
