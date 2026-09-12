@@ -563,8 +563,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                 onPress={handlePost}
                 style={styles.postButton}
               >
-                <Icon name="SquarePen" size={20} color="#050505" strokeWidth={2} />
-                <Text style={styles.postLabel}>{t("sidebar.post")}</Text>
+                <Icon name="SquarePen" size={20} color="#FFFFFF" strokeWidth={2} />
               </TouchableOpacity>
             </View>
           )}
@@ -650,13 +649,10 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   postButton: {
-    height: 44,
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    flexDirection: "row",
+    width: 48,
+    height: 48,
     alignItems: "center",
-    gap: 9,
-    backgroundColor: "#FFFFFF",
+    justifyContent: "center",
   },
   logoutButtonDisabled: {
     opacity: 0.5,
@@ -665,11 +661,6 @@ const styles = StyleSheet.create({
     color: "#A1A1AA",
     fontSize: 15,
     fontWeight: "500",
-  },
-  postLabel: {
-    color: "#050505",
-    fontSize: 15,
-    fontWeight: "700",
   },
   iconChip: {
     width: 40,
