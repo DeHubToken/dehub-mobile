@@ -224,13 +224,14 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
       },
       {
         onSuccess: (booking: any) => {
-          if (power.key === "signal_flare") {
+          if (power.key === "signal_flare" || power.key === "harpoon") {
+            const label = power.key === "harpoon" ? "Harpoon" : "Signal Flare";
             void toastPromise(waitForSignalFlareReceipt(booking.id), {
               loading: "Counting notifications...",
               success: recipients =>
                 recipients === null
-                  ? "Signal Flare sent. The final count will appear in Past usage."
-                  : `Signal Flare notified ${recipients} ${recipients === 1 ? "person" : "people"}`,
+                  ? `${label} sent. The final count will appear in Past usage.`
+                  : `${label} notified ${recipients} ${recipients === 1 ? "person" : "people"}`,
             });
           } else {
             toastSuccess(

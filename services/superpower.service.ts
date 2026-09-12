@@ -504,7 +504,7 @@ export function spendablePowers(
   // Signal Flare comes out of a second allowance the same size as the boost
   // one. Reading boostsLeft for it tells an Octopus who has spent both boosts
   // that they have no flares either.
-  const SIGNALS: readonly SuperPowerKey[] = ['signal_flare'];
+  const SIGNALS: readonly SuperPowerKey[] = ['signal_flare', 'harpoon'];
   const left = (key: SuperPowerKey) =>
     SIGNALS.includes(key) ? (status.signalsLeft ?? status.boostsLeft) : status.boostsLeft;
 
