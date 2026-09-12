@@ -14,6 +14,7 @@ import {
   StatusBar,
 } from "react-native";
 import * as ScreenOrientation from "expo-screen-orientation";
+import { createLiveViewerOrientation } from "../../libs/live-viewer-orientation";
 import VideoArea from "./VideoArea";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { useStreamAccessInfo } from "../../libs/validators.util";
@@ -1192,28 +1193,30 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const [immersive, setImmersive] = useState(false);
   const immersiveRef = useRef(false);
   const videoSizeRef = useRef<{ width: number; height: number } | null>(null);
+  const updateOrientation = useMemo(() => createLiveViewerOrientation({
+    portrait: () => ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP),
+    landscape: () => ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
+      .catch(() => ScreenOrientation.unlockAsync()),
+    unlocked: () => ScreenOrientation.unlockAsync(),
+  }), []);
   const handleVideoSize = useCallback((size: { width: number; height: number }) => {
     videoSizeRef.current = size;
     // Went immersive before the size was known: turn now.
-    if (immersiveRef.current && size.width > size.height) {
-      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE).catch(() => {});
-    }
-  }, []);
+    if (immersiveRef.current) updateOrientation(true, size);
+  }, [updateOrientation]);
   const enterImmersive = useCallback(() => {
     immersiveRef.current = true;
     setImmersive(true);
     StatusBar.setHidden(true);
-    const size = videoSizeRef.current;
-    if (size && size.width > size.height) {
-      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE).catch(() => {});
-    }
-  }, []);
+    updateOrientation(true, videoSizeRef.current);
+  }, [updateOrientation]);
   const exitImmersive = useCallback(() => {
     immersiveRef.current = false;
     setImmersive(false);
     StatusBar.setHidden(false);
-    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP).catch(() => {});
-  }, []);
+    updateOrientation(false);
+  }, [updateOrientation]);
+  useFocusEffect(useCallback(() => () => exitImmersive(), [exitImmersive]));
   // Hardware back steps out of immersive before it leaves the stream. Handled
   // here rather than via `beforeRemove` because the player pauses and mutes
   // itself on that event whether or not the removal is then prevented.
