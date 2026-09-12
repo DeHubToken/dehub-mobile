@@ -140,6 +140,9 @@ const GlassModal: React.FC<GlassModalProps> = ({
               covered. */}
           <KeyboardAvoidingView
             behavior="padding"
+            // This view starts below the foreground's safe-area padding;
+            // keyboard frames are measured from the top of the modal window.
+            keyboardVerticalOffset={insets.top}
             style={[
               styles.foregroundWrapper,
               {
