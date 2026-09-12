@@ -221,7 +221,8 @@ export default function SmsNotificationsSheet({
   const working = busy !== null;
 
   return (
-    <GlassModal visible={visible} onClose={onClose} presentation="bottom" dismissible={!working}>
+    <GlassModal visible={visible} onClose={onClose} presentation="bottom"
+      scrollable dismissible={!working}>
       <View className="px-5 pt-5 pb-2">
         <View className="flex-row items-center mb-1">
           <Icon name="MessageSquare" size={18} color="#fff" />

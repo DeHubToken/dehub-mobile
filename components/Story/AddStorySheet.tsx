@@ -1,3 +1,4 @@
+import SheetDismissHandle from "../ui/SheetDismissHandle";
 import React, { useCallback, useState } from "react";
 import {
   View,
@@ -88,7 +89,9 @@ const AddStorySheet: React.FC<AddStorySheetProps> = ({
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={uploading ? undefined : onClose}>
         <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
-          <View style={styles.handle} />
+          <SheetDismissHandle onClose={onClose} disabled={uploading} style={{ paddingVertical: 8 }}>
+            <View style={styles.handle} />
+          </SheetDismissHandle>
           <Text style={styles.title}>Add Story</Text>
           <Text style={styles.subtitle}>
             Pick a video up to {STORY_MAX_DURATION_SEC} seconds. It disappears after 24 hours.

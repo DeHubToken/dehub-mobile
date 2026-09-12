@@ -471,6 +471,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
       visible={visible}
       onClose={handleClose}
       presentation="bottom"
+      scrollable
       blurIntensity={60}
       dismissible={!isSubmitting}
     >

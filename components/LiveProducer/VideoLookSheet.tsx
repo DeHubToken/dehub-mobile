@@ -1,3 +1,4 @@
+import SheetDismissHandle from "../ui/SheetDismissHandle";
 import React from "react";
 import { Modal, View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -44,7 +45,7 @@ const VideoLookSheet: React.FC<VideoLookSheetProps> = ({
         accessibilityLabel={t("common.close")}
       />
       <View className="bg-zinc-950 border-t border-white/10 rounded-t-2xl px-4 pt-4 pb-8">
-        <View className="flex-row items-center justify-between mb-3">
+        <SheetDismissHandle onClose={onClose} className="flex-row items-center justify-between mb-3">
           <Text className="text-white text-base font-semibold">
             {t("videoLooks.title")}
           </Text>
@@ -58,7 +59,7 @@ const VideoLookSheet: React.FC<VideoLookSheetProps> = ({
               {t("common.done")}
             </Text>
           </TouchableOpacity>
-        </View>
+        </SheetDismissHandle>
 
         <ScrollView
           horizontal
