@@ -2790,5 +2790,36 @@
     "cancel": "ሰርዝ",
     "remove": "ኣወግድ",
     "thisUser": "እዚ ተጠቃሚ"
+  },
+  "reactionInfo": {
+    "title": "ግብረ መልሲ",
+    "privateTitle": "ግብረ መልሲ ብሕታዊ እዩ ።",
+    "privateDescription": "እቲ ደራሲ ጥራይ እዩ ነዚ ዝርዝር እዚ ክርኢ ዝኽእል ።",
+    "empty": "ክሳብ ሕጂ ዝኾነ ግብረ መልሲ የለን ።",
+    "emptyDescription": "መልሲ ናይዚ ጽሑፍ እዚ ኣብዚ ክርአ እዩ ።",
+    "anonymous": "{{count}} ካብ ስም ኣልቦ ባጅታት ይፈትዉ",
+    "labels": {
+      "like": "ከም",
+      "love": "ፍቕሪ",
+      "respect": "ኣኽብሮት",
+      "hot": "ሙቐት",
+      "hundred": "100",
+      "lol": "ሎል",
+      "sad": "ሓዘን",
+      "cry": "ክነብዕ",
+      "dislike": "ኣይፈትዎን"
+    },
+    "mediaSource": "ምንጪ መራኸቢ ብዙሓን ምረጽ",
+    "photoLibrary": "ናይ ስእሊ ቤተ-መጽሓፍቲ",
+    "videoFiles": "ቪድዮ ካብ ፋይላት",
+    "fileError": "ነዚ ቪድዮ እዚ ክኸፍቶ ኣይከኣልኩን ። ካልእ ፋይል ፈትኖ ።",
+    "reactedPost": "{{name}} ንፖስታኻ ምላሽ ሃበ",
+    "repostedPost": "{{name}} ነቲ ልኡኽኻ መሊሰዮ",
+    "quotedPost": "{{name}} ነቲ ጽሑፍካ ጠቒሱ",
+    "mentionedYou": "{{name}} ዝጠቐሰካ",
+    "followRequest": "{{name}} ክትስዕበኒ ሓቲተካ",
+    "followAccepted": "{{name}} ነቲ ዝስዕብ ሕቶኻ ተቐቢልካዮ",
+    "signalFlare": "{{name}} Signal Flare ልኢኽዎ",
+    "newMessage": "{{name}} መልእኽቲ ልኢኽካ"
   }
 }

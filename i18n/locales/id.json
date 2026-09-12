@@ -2864,5 +2864,37 @@
     "cancel": "Batal",
     "remove": "Hapus",
     "thisUser": "Pengguna ini"
+  },
+  "reactionInfo": {
+    "title": "Reaksi",
+    "privateTitle": "Reaksi bersifat pribadi",
+    "privateDescription": "Hanya penulis pos yang dapat melihat daftar ini.",
+    "empty": "Belum ada reaksi",
+    "emptyDescription": "Reaksi terhadap postingan ini akan muncul di sini.",
+    "anonymous": "{{count}} suka dari pemegang lencana anonim",
+    "labels": {
+      "like": "Suka",
+      "love": "Cinta",
+      "respect": "Hormat",
+      "hot": "Panas",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Sedih",
+      "cry": "Menangis",
+      "poo": "Poo",
+      "dislike": "Tidak suka"
+    },
+    "mediaSource": "Pilih sumber media",
+    "photoLibrary": "Pustaka foto",
+    "videoFiles": "Video dari File",
+    "fileError": "Tidak dapat membuka video ini. Silakan coba file lain.",
+    "reactedPost": "{{name}} bereaksi terhadap postingan Anda",
+    "repostedPost": "{{name}} memposting ulang postingan Anda",
+    "quotedPost": "{{name}} mengutip postingan Anda",
+    "mentionedYou": "{{name}} menyebut Anda",
+    "followRequest": "{{name}} meminta untuk mengikuti Anda",
+    "followAccepted": "{{name}} menyetujui permohonan mengikuti Anda",
+    "signalFlare": "{{name}} mengirim Sinyal Sinyal",
+    "newMessage": "{{name}} mengirimi Anda pesan"
   }
 }

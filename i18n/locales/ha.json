@@ -2805,5 +2805,37 @@
     "cancel": "Soke",
     "remove": "Cire",
     "thisUser": "Wannan mai amfani"
+  },
+  "reactionInfo": {
+    "title": "Ra'ayoyi",
+    "privateTitle": "Ra'ayoyi masu zaman kansu ne",
+    "privateDescription": "Kawai marubucin post zai iya duba wannan jerin.",
+    "empty": "Babu martani har yanzu",
+    "emptyDescription": "Martani ga wannan post zai bayyana a nan.",
+    "anonymous": "{{count}} yana son daga masu riƙe da alamar da ba a sani ba",
+    "labels": {
+      "like": "Kamar",
+      "love": "Soyayya",
+      "respect": "Girmamawa",
+      "hot": "Mai zafi",
+      "hundred": "100",
+      "lol": "Оооооооооооооооооооооооооооооооооооооооооооооооооооооооовввввввввввввввввввввввв",
+      "sad": "Sad",
+      "cry": "Kuka",
+      "poo": "Poo",
+      "dislike": "Rashin son"
+    },
+    "mediaSource": "Zabi kafofin watsa labarai source",
+    "photoLibrary": "Laburaren hoto",
+    "videoFiles": "Bidiyo daga Files",
+    "fileError": "Ba za a iya buɗe wannan bidiyon ba. Da fatan za a gwada wani fayil.",
+    "reactedPost": "{{name}} ya amsa post dinka",
+    "repostedPost": "{{name}} reposted ka post",
+    "quotedPost": "{{name}} ya nakalto post dinka",
+    "mentionedYou": "{{name}} ya ambace ku",
+    "followRequest": "{{name}} ya nemi ya bi ka",
+    "followAccepted": "{{name}} yarda da buƙatarku ta biyo baya",
+    "signalFlare": "{{name}} aika Siginar Flare",
+    "newMessage": "{{name}} ya aiko maka da sako"
   }
 }

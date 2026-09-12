@@ -2812,5 +2812,37 @@
     "removeFollowerHint": "长按关注者以移除他们。",
     "cancel": "取消",
     "remove": "移除"
+  },
+  "reactionInfo": {
+    "title": "反应",
+    "privateTitle": "反应是私人的",
+    "privateDescription": "只有帖子作者可以查看此列表。",
+    "empty": "还没有反应",
+    "emptyDescription": "对此帖子的反应将出现在这里。",
+    "anonymous": "{{count}} 来自匿名徽章持有者的赞",
+    "labels": {
+      "like": "赞",
+      "love": "爱",
+      "respect": "尊重",
+      "hot": "热",
+      "hundred": "100",
+      "lol": "哈哈",
+      "sad": "伤心",
+      "cry": "哭泣",
+      "poo": "便便",
+      "dislike": "不赞"
+    },
+    "mediaSource": "选择媒体源",
+    "photoLibrary": "照片库",
+    "videoFiles": "来自文件的视频",
+    "fileError": "无法打开此视频。请尝试另一个文件。",
+    "reactedPost": "{{name}} 对你的帖子做出了反应",
+    "repostedPost": "{{name}} 转发了你的帖子",
+    "quotedPost": "{{name}} 引用了你的帖子",
+    "mentionedYou": "{{name}} 提到了你",
+    "followRequest": "{{name}} 请求关注你",
+    "followAccepted": "{{name}} 接受了你的关注请求",
+    "signalFlare": "{{name}} 发送了一个信号闪光",
+    "newMessage": "{{name}} 给你发送了一条消息"
   }
 }

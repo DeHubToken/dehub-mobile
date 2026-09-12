@@ -3087,5 +3087,37 @@
     "cancel": "Annuleren",
     "remove": "Verwijderen",
     "thisUser": "Deze gebruiker:"
+  },
+  "reactionInfo": {
+    "title": "Reacties",
+    "privateTitle": "Reacties zijn privé",
+    "privateDescription": "Alleen de auteur van het bericht kan deze lijst bekijken.",
+    "empty": "Nog geen reacties",
+    "emptyDescription": "Reacties op dit bericht verschijnen hier.",
+    "anonymous": "{{count}} likes van anonieme badgehouders",
+    "labels": {
+      "like": "Vind ik leuk",
+      "love": "Liefde",
+      "respect": "Respect",
+      "hot": "Heet",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Verdrietig",
+      "cry": "Huilen",
+      "poo": "Poep",
+      "dislike": "Dislike"
+    },
+    "mediaSource": "Mediabron kiezen",
+    "photoLibrary": "Fotobibliotheek",
+    "videoFiles": "Video van bestanden",
+    "fileError": "Kon deze video niet openen. Probeer een ander bestand.",
+    "reactedPost": "{{name}} reageerde op je bericht",
+    "repostedPost": "{{name}} heeft je post opnieuw gepost",
+    "quotedPost": "{{name}} citeerde je bericht",
+    "mentionedYou": "{{name}} heeft u genoemd",
+    "followRequest": "{{name}} verzocht u te volgen",
+    "followAccepted": "{{name}} heeft je volgverzoek geaccepteerd",
+    "signalFlare": "{{name}} stuurde een signaalflare",
+    "newMessage": "{{name}} heeft je een bericht gestuurd"
   }
 }

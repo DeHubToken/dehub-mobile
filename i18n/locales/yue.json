@@ -2812,5 +2812,37 @@
     "cancel": "取消",
     "remove": "移除",
     "thisUser": "呢個用戶"
+  },
+  "reactionInfo": {
+    "title": "反應",
+    "privateTitle": "反應係私人嘅",
+    "privateDescription": "只有帖子作者先可以睇到呢個清單。",
+    "empty": "仲未有反應",
+    "emptyDescription": "呢個帖子嘅反應會喺呢度出現。",
+    "anonymous": "{{count}} 讚好來自匿名徽章持有者",
+    "labels": {
+      "like": "似",
+      "love": "愛",
+      "respect": "尊重",
+      "hot": "熱",
+      "hundred": "100",
+      "lol": "笑死",
+      "sad": "傷心",
+      "cry": "喊緊",
+      "poo": "屎",
+      "dislike": "唔鍾意"
+    },
+    "mediaSource": "揀媒體來源",
+    "photoLibrary": "相片庫",
+    "videoFiles": "檔案入面嘅影片",
+    "fileError": "無法打開呢個視頻。請試試另一個檔案。",
+    "reactedPost": "{{name}} 對你嘅帖子有反應",
+    "repostedPost": "{{name}} 轉貼咗你個 post",
+    "quotedPost": "{{name}} 引用咗你嘅帖子",
+    "mentionedYou": "{{name}} 提過你",
+    "followRequest": "{{name}} 要求跟你",
+    "followAccepted": "{{name}} 接受咗你嘅追蹤要求",
+    "signalFlare": "{{name}} 發送咗個信號耀斑",
+    "newMessage": "{{name}} 發咗個訊息畀你"
   }
 }

@@ -2868,5 +2868,37 @@
     "cancel": "Bekor qilish",
     "remove": "Olib tashlash",
     "thisUser": "Ushbu foydalanuvchi"
+  },
+  "reactionInfo": {
+    "title": "Reaksiyalar",
+    "privateTitle": "Reaksiyalar maxfiy",
+    "privateDescription": "Ushbu ro&#39;yxatni faqat post muallifi ko&#39;rishi mumkin.",
+    "empty": "Hali hech qanday reaksiya yo&#39;q",
+    "emptyDescription": "Ushbu postga bo&#39;lgan munosabat shu yerda ko&#39;rsatiladi.",
+    "anonymous": "Anonim nishon egalaridan {{count}} layklar",
+    "labels": {
+      "like": "Yoqdi",
+      "love": "Sevgi",
+      "respect": "Hurmat",
+      "hot": "Issiq",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Сод.",
+      "cry": "Yig&#39;layapti",
+      "poo": "Najas",
+      "dislike": "Yoqmadi"
+    },
+    "mediaSource": "Media manbasini tanlang",
+    "photoLibrary": "Foto kutubxona",
+    "videoFiles": "Fayllardan video",
+    "fileError": "Bu videoni ochib bo&#39;lmadi. Boshqa faylni sinab ko&#39;ring.",
+    "reactedPost": "{{name}} sizning postingizga munosabat bildirdi",
+    "repostedPost": "{{name}} sizning postingizni qayta joylashtirdi",
+    "quotedPost": "{{name}} sizning xabaringizni iqtibos qildi",
+    "mentionedYou": "{{name}} sizni tilga oldi",
+    "followRequest": "{{name}} sizni kuzatishni so&#39;radi",
+    "followAccepted": "{{name}} sizning kuzatuv so&#39;rovingizni qabul qildi",
+    "signalFlare": "{{name}} Signal Flare yubordi",
+    "newMessage": "{{name}} sizga xabar yubordi"
   }
 }

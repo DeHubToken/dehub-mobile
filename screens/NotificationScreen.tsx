@@ -42,6 +42,7 @@ import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { localizedNotificationContent } from "../libs/notification-content";
 import { formatNotificationDate } from "../libs/date.util";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { seedUserProfileCache } from "../hooks/useUserProfileData";
@@ -656,7 +657,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             }}
             numberOfLines={3}
           >
-            {item.content}
+            {localizedNotificationContent(item, t) ?? item.content}
           </Text>
 
           {/* Aggregation indicator */}

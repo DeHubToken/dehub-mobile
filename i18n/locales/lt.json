@@ -2813,5 +2813,37 @@
     "cancel": "Atšaukti",
     "remove": "Pašalinti",
     "thisUser": "Šis naudotojas"
+  },
+  "reactionInfo": {
+    "title": "Reakcijos",
+    "privateTitle": "Reakcijos yra privačios",
+    "privateDescription": "Tik pranešimo autorius gali peržiūrėti šį sąrašą.",
+    "empty": "Dar nėra jokių reakcijų",
+    "emptyDescription": "Šio pranešimo reakcijos pasirodys čia.",
+    "anonymous": "{{count}} patikimų iš anoniminio ženklo turėtojų",
+    "labels": {
+      "like": "Patinka",
+      "love": "Meilė",
+      "respect": "Pagarba",
+      "hot": "Karšta",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Liūdna",
+      "cry": "Verkimas",
+      "poo": "Kakavimas",
+      "dislike": "Nepatinka"
+    },
+    "mediaSource": "Pasirinkite medijos šaltinį",
+    "photoLibrary": "Nuotraukų biblioteka",
+    "videoFiles": "Vaizdo įrašas iš failų",
+    "fileError": "Nepavyko atidaryti šio vaizdo įrašo. Bandykite kitą failą.",
+    "reactedPost": "{{name}} sureagavo į jūsų įrašą",
+    "repostedPost": "{{name}} iš naujo paskelbė jūsų įrašą",
+    "quotedPost": "{{name}} citavo jūsų įrašą",
+    "mentionedYou": "{{name}} paminėjo jus",
+    "followRequest": "{{name}} paprašė jus sekti",
+    "followAccepted": "{{name}} priėmė jūsų sekimo užklausą",
+    "signalFlare": "{{name}} išsiuntė signalo blyksnį",
+    "newMessage": "{{name}} atsiuntė jums žinutę"
   }
 }

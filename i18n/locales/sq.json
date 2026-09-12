@@ -2814,5 +2814,37 @@
     "cancel": "Anulo",
     "remove": "Hiqe",
     "thisUser": "Ky përdorues"
+  },
+  "reactionInfo": {
+    "title": "Reagimet",
+    "privateTitle": "Reagimet janë private",
+    "privateDescription": "Këtë listë mund ta shikojë vetëm autori i postimit.",
+    "empty": "Ende nuk ka reagime",
+    "emptyDescription": "Reagimet ndaj këtij postimi do të shfaqen këtu.",
+    "anonymous": "{{count}} pëlqen nga mbajtësit anonimë të distinktivit",
+    "labels": {
+      "like": "Më pëlqen",
+      "love": "Dashuria",
+      "respect": "Respekt",
+      "hot": "Nxehtë",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "I trishtuar",
+      "cry": "Duke qarë",
+      "poo": "Poo",
+      "dislike": "Nuk më pëlqen"
+    },
+    "mediaSource": "Zgjidh burimin e medias",
+    "photoLibrary": "Bibliotekë fotografish",
+    "videoFiles": "Video nga skedarët",
+    "fileError": "Nuk mund ta hapja këtë video. Provo një skedar tjetër.",
+    "reactedPost": "{{name}} reagoi ndaj postimit tënd",
+    "repostedPost": "{{name}} ripostoi postimin tënd",
+    "quotedPost": "{{name}} citoi postimin tuaj",
+    "mentionedYou": "{{name}} të përmendi",
+    "followRequest": "{{name}} kërkoi të të ndiqte",
+    "followAccepted": "{{name}} e pranoi kërkesën tënde për ndjekje",
+    "signalFlare": "{{name}} dërgoi një ndezje të sinjalit",
+    "newMessage": "{{name}} të dërgoi një mesazh"
   }
 }

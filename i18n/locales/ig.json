@@ -2802,5 +2802,32 @@
     "cancel": "Kagbuo",
     "remove": "Wepu",
     "thisUser": "Ojieme a"
+  },
+  "reactionInfo": {
+    "title": "Mmetụta",
+    "privateTitle": "Mmeghachi omume bụ nkeonwe",
+    "privateDescription": "Naanị onye dere akwụkwọ ozi nwere ike ilele ndepụta a.",
+    "empty": "Enweghị mmeghachi omume ma",
+    "emptyDescription": "Mmeghachi omume a post ga-apụta ebe a.",
+    "anonymous": "{{count}} mmasị site na-amaghị aha baajị njide",
+    "labels": {
+      "like": "Dị ka",
+      "love": "Ịhụnanya",
+      "respect": "Nkwanye ùgwù",
+      "hot": "Hot",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Na",
+      "cry": "Ibe ákwá",
+      "poo": "Poo",
+      "dislike": "Enweghị mmasị"
+    },
+    "mediaSource": "Họrọ wọ́kspēèsì",
+    "photoLibrary": "Ọbá akwụkwọ foto",
+    "videoFiles": "Vidio site na faịlụ ndị ahụ",
+    "fileError": "Agaghị emenwu ihe onyonyo a. Biko nwaa faịlụ ọzọ.",
+    "followRequest": "{{name}} rịọrọ ka ị soro gị",
+    "followAccepted": "{{name}} nabatara arịrịọ na-eso gị",
+    "newMessage": "{{name}} zitere gị ozi"
   }
 }

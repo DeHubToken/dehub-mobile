@@ -2793,5 +2793,35 @@
     "cancel": "Kanali",
     "remove": "Ka bɔ",
     "thisUser": "Mɔgɔ min be baara kɛ"
+  },
+  "reactionInfo": {
+    "title": "O kama, a ka ɲi ka kɛ ni",
+    "privateTitle": "Mɔgɔ tɛ se ka min kɛ, o ye ka mɔgɔ ka koo jati",
+    "privateDescription": "O la, a ka ɲi ka tɛmɛ o fɛɛrɛw fɛ k'a yira ko a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+    "empty": "Mɔgɔ si ma sɔn ka kuma",
+    "emptyDescription": "O barokun ka jaabiliw be sɔrɔ yan.",
+    "anonymous": "{{count}} like by anonymous badge holders",
+    "labels": {
+      "like": "O cogo la,",
+      "love": "Kanuya",
+      "respect": "Ka bonya la a kan",
+      "hot": "A be funteni na.",
+      "hundred": "100",
+      "lol": "LOL ye ye ye",
+      "sad": "O ye dusukasiko ye dɛ",
+      "cry": "A kasira kosɔbɛ.",
+      "poo": "Ne ye n yɛrɛ kali ni sanbɛrɛ ye,",
+      "dislike": "A ma diya a ye"
+    },
+    "mediaSource": "Kalanfaw ka kan ka bɔ yɔrɔ min na",
+    "photoLibrary": "Fotow ka kalanso",
+    "videoFiles": "Sɛbɛw ka videwo",
+    "fileError": "N' tun tɛ se ka videwo nin yɛlɛ. N'i b'a fɛ ka koo wɛrɛ kɛ, a ɲini k'o kɛ.",
+    "reactedPost": "{{name}}réponse sur votre post",
+    "quotedPost": "{{name}}Add your post",
+    "followRequest": "{{name}} ka tugu i kɔ",
+    "followAccepted": "{{name}} Ka sɔn i ka fɔta ma",
+    "signalFlare": "{{name}} send a signal flare",
+    "newMessage": "{{name}} send you a message"
   }
 }

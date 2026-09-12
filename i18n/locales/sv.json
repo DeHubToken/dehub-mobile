@@ -2818,5 +2818,37 @@
     "cancel": "Avbryt",
     "remove": "Ta bort",
     "thisUser": "Denna Användare"
+  },
+  "reactionInfo": {
+    "title": "Reaktioner",
+    "privateTitle": "Reaktionerna är privata",
+    "privateDescription": "Endast inläggsförfattaren kan se den här listan.",
+    "empty": "Inga reaktioner ännu",
+    "emptyDescription": "Reaktioner på detta inlägg kommer att visas här.",
+    "anonymous": "{{count}} gillar från anonyma märkesinnehavare",
+    "labels": {
+      "like": "Gilla",
+      "love": "Kärlek",
+      "respect": "Respekt",
+      "hot": "Het",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Sad",
+      "cry": "Gråt",
+      "poo": "Bajs",
+      "dislike": "Ogilla"
+    },
+    "mediaSource": "Välj mediekälla",
+    "photoLibrary": "Fotobibliotek",
+    "videoFiles": "Video från filer",
+    "fileError": "Det gick inte att öppna den här videon. Försök med en annan fil.",
+    "reactedPost": "{{name}} reagerade på ditt inlägg",
+    "repostedPost": "{{name}} publicerade ditt inlägg igen",
+    "quotedPost": "{{name}} citerade ditt inlägg",
+    "mentionedYou": "{{name}} nämnde dig",
+    "followRequest": "{{name}} begärde att få följa dig",
+    "followAccepted": "{{name}} accepterade din följarförfrågan",
+    "signalFlare": "{{name}} skickade ett signalutbrott",
+    "newMessage": "{{name}} skickade ett meddelande till dig"
   }
 }

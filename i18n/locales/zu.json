@@ -2843,5 +2843,37 @@
     "cancel": "Khansela",
     "remove": "Susa",
     "thisUser": "Lo msebenzisi"
+  },
+  "reactionInfo": {
+    "title": "Ukusabela",
+    "privateTitle": "Ukusabela kuyimfihlo",
+    "privateDescription": "Umbhali wephosti kuphela ongabuka lolu hlu.",
+    "empty": "Akukho ukusabela okwamanje",
+    "emptyDescription": "Ukusabela kule phosti kuzovela lapha.",
+    "anonymous": "{{count}} likes kusuka kubanikazi bamabheji abangaziwa",
+    "labels": {
+      "like": "Thanda",
+      "love": "Uthando",
+      "respect": "Inhlonipho",
+      "hot": "Kuyashisa",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Kuyadabukisa",
+      "cry": "Ukukhala",
+      "poo": "I-Poo",
+      "dislike": "Ayithandi"
+    },
+    "mediaSource": "Khetha umthombo wemidiya",
+    "photoLibrary": "Umtapo wezithombe",
+    "videoFiles": "Ividiyo evela Kumafayela",
+    "fileError": "Ayikwazanga ukuvula le vidiyo. Sicela uzame elinye ifayela.",
+    "reactedPost": "{{name}} uphendule iphosti yakho",
+    "repostedPost": "{{name}} uphinde wathumela iphosti yakho",
+    "quotedPost": "{{name}} ucaphune iphosti yakho",
+    "mentionedYou": "{{name}} ukhulume ngawe",
+    "followRequest": "{{name}} ucele ukukulandela",
+    "followAccepted": "{{name}} wamukele isicelo sakho sokulandela",
+    "signalFlare": "{{name}} uthumele i-Signal Flare",
+    "newMessage": "{{name}} ukuthumele umlayezo"
   }
 }

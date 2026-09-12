@@ -2814,5 +2814,37 @@
     "cancel": "Cancel·lar",
     "remove": "Eliminar",
     "thisUser": "Aquest usuari"
+  },
+  "reactionInfo": {
+    "title": "Reaccions",
+    "privateTitle": "Les reaccions són privades",
+    "privateDescription": "Només l'autor de l'entrada pot veure aquesta llista.",
+    "empty": "Encara no hi ha cap reacció",
+    "emptyDescription": "Les reaccions a aquesta publicació apareixeran aquí.",
+    "anonymous": "{{count}} m'agrada dels titulars de distintius anònims",
+    "labels": {
+      "like": "M'agrada",
+      "love": "Amor",
+      "respect": "Respecte",
+      "hot": "Calenta",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Trist",
+      "cry": "Plorar",
+      "poo": "Caca",
+      "dislike": "No m'agrada"
+    },
+    "mediaSource": "Tria una font multimèdia",
+    "photoLibrary": "Biblioteca de fotos",
+    "videoFiles": "Vídeo des d'arxius",
+    "fileError": "No s'ha pogut obrir aquest vídeo. Prova amb un altre fitxer.",
+    "reactedPost": "{{name}}ha reaccionat a la teva publicació",
+    "repostedPost": "{{name}} ha tornat a publicar la teva publicació",
+    "quotedPost": "{{name}}ha citat la teva publicació",
+    "mentionedYou": "{{name}} t'ha esmentat",
+    "followRequest": "{{name}} ha sol·licitat seguir-te",
+    "followAccepted": "{{name}} ha acceptat la teva sol·licitud de seguiment",
+    "signalFlare": "{{name}}ha enviat una bengala de senyal",
+    "newMessage": "{{name}} t'ha enviat un missatge"
   }
 }

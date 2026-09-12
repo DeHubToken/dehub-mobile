@@ -2813,5 +2813,37 @@
     "cancel": "Atcelt",
     "remove": "Noņemt",
     "thisUser": "Šis lietotājs"
+  },
+  "reactionInfo": {
+    "title": "Reakcijas",
+    "privateTitle": "Atbildes ir privātas",
+    "privateDescription": "Šo sarakstu var skatīt tikai ziņas autors.",
+    "empty": "Pagaidām nav atbilžu",
+    "emptyDescription": "Reakcijas uz šo ziņu tiks parādītas šeit.",
+    "anonymous": "{{count}} patīk no anonīmiem nozīmīšu īpašniekiem",
+    "labels": {
+      "like": "Patīk",
+      "love": "Mīlestība",
+      "respect": "Cieņa",
+      "hot": "Karsts",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Skumji",
+      "cry": "Raudāšana",
+      "poo": "POO",
+      "dislike": "Nepatīk"
+    },
+    "mediaSource": "Izvēlieties multivides avotu",
+    "photoLibrary": "Bilžu bibliotēka",
+    "videoFiles": "Video no failiem",
+    "fileError": "Nevarēja atvērt šo videoklipu. Lūdzu, mēģiniet izmantot citu failu.",
+    "reactedPost": "{{name}} reaģēja uz jūsu ziņu",
+    "repostedPost": "{{name}} pārpublicēja jūsu ziņu",
+    "quotedPost": "{{name}} citēja jūsu ziņu",
+    "mentionedYou": "{{name}} jūs pieminēja",
+    "followRequest": "{{name}} pieprasīja jums sekot",
+    "followAccepted": "{{name}} pieņēma jūsu sekošanas pieprasījumu",
+    "signalFlare": "{{name}} nosūtīja signāla uzliesmojumu",
+    "newMessage": "{{name}} nosūtīja jums ziņojumu"
   }
 }
