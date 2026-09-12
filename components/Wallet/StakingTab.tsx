@@ -1,11 +1,12 @@
 import { DhbCoin } from "../common/DhbCoin";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
+  Linking,
 } from "react-native";
 import * as Clipboard from "expo-clipboard";
 import { Ionicons } from "@expo/vector-icons";
@@ -15,6 +16,11 @@ import { getSigningProvider } from "../../libs/provider.registry";
 import { supabase } from "../../services/supabase";
 import { toastError, toastInfo, toastSuccess } from "../../libs/toast";
 import { refreshStakingPosition } from "../../services/staking.service";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { confirmStake, readStakeReceipt, type StakeAttempt } from "../../libs/stake-confirmation";
+import { createLogger } from "../../libs/logger";
+const stakeLog = createLogger("Staking");
+const pendingStakeKey = (wallet: string) => `dehub:pending-stake:${wallet.toLowerCase()}`;
 import { FIELD_TEXT } from "../../theme/inputs";
 
 const DHB_BASE = "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c";
@@ -72,6 +78,11 @@ const StakingTab: React.FC = () => {
   const { chainId: activeChainId, provider: authProvider } = useProvider();
   const { switchChain } = useAuthActions();
 
+  const [pendingStake, setPendingStake] = useState<StakeAttempt | null>(null);
+  const [pendingLoaded, setPendingLoaded] = useState(false);
+  const checkingStake = useRef(false);
+  const receiptDiagnostics = useRef(new Set<string>());
+  const sendingStake = useRef(false);
   const [walletBal, setWalletBal] = useState<number | null>(null);
   const [protocolTotal, setProtocolTotal] = useState<number | null>(null);
   const [userStaked, setUserStaked] = useState<number>(0);
@@ -224,7 +235,63 @@ const StakingTab: React.FC = () => {
     setEarlyConfirmed(false);
   }, [amount, mode]);
 
+  const checkPendingStake = async (attempt: StakeAttempt) => {
+    if (checkingStake.current) return;
+    checkingStake.current = true;
+    try {
+      const outcome = await confirmStake(attempt, [BASE_RPC, 'https://base-rpc.publicnode.com'].map(url => () => readStakeReceipt(url, attempt.hash)), error => {
+        const diagnostic = `${attempt.hash}:${String(error)}`;
+        if (receiptDiagnostics.current.has(diagnostic)) return;
+        receiptDiagnostics.current.add(diagnostic);
+        stakeLog.error('Receipt lookup unavailable', { hash: attempt.hash, chainId: attempt.chainId }, String(error));
+      });
+      if (outcome === 'pending') return;
+      if (outcome === 'confirmed') {
+        if (!attempt.confirmed) {
+          attempt = { ...attempt, confirmed: true };
+          setPendingStake(attempt);
+          try { await AsyncStorage.setItem(pendingStakeKey(attempt.wallet), JSON.stringify(attempt)); } catch {}
+          toastSuccess(`${attempt.amount} DHB confirmed on Base.`);
+        }
+        try {
+          const { error } = await supabase.functions.invoke('sync-staking-deposits', { body: { wallet: attempt.wallet } });
+          if (error) throw error;
+          const record = await supabase.from('staking_records').select('tx_hash').eq('tx_hash', attempt.hash).maybeSingle();
+          if (record.error || !record.data) return;
+        } catch (error) { stakeLog.error('Confirmed stake record pending sync', { hash: attempt.hash }, String(error)); return; }
+        void refreshStakingPosition(attempt.wallet);
+        void fetchData();
+      } else {
+        toastError('The blockchain confirmed this transaction reverted.');
+      }
+      stakeLog.error('Stake outcome verified', { hash: attempt.hash, chainId: attempt.chainId, outcome });
+      try { await AsyncStorage.removeItem(pendingStakeKey(attempt.wallet)); } catch {}
+      setPendingStake(previous => previous?.hash === attempt.hash ? null : previous);
+    } finally { checkingStake.current = false; }
+  };
+
+  useEffect(() => {
+    let cancelled = false;
+    setPendingLoaded(false);
+    setPendingStake(null);
+    if (!walletAddress) { setPendingLoaded(true); return; }
+    AsyncStorage.getItem(pendingStakeKey(walletAddress)).then(raw => {
+      if (cancelled) return;
+      const saved = JSON.parse(raw || 'null');
+      if (saved?.wallet?.toLowerCase() === walletAddress.toLowerCase() && /^0x[0-9a-f]{64}$/i.test(saved.hash)) setPendingStake(saved);
+    }).catch(() => {}).finally(() => { if (!cancelled) setPendingLoaded(true); });
+    return () => { cancelled = true; };
+  }, [walletAddress]);
+
+  useEffect(() => {
+    if (!pendingStake || pendingStake.wallet.toLowerCase() !== walletAddress?.toLowerCase()) return;
+    void checkPendingStake(pendingStake);
+    const timer = setInterval(() => { void checkPendingStake(pendingStake); }, 15_000);
+    return () => clearInterval(timer);
+  }, [pendingStake, walletAddress]);
+
   const handleStake = async () => {
+    if (sendingStake.current || pendingStake || !pendingLoaded) return;
     const amt = parseFloat(amount);
     if (!amt || amt <= 0) {
       toastError("Enter a valid amount to stake.");
@@ -240,6 +307,7 @@ const StakingTab: React.FC = () => {
     }
 
     setIsBusy(true);
+    sendingStake.current = true;
     try {
       const targetChainId = parseInt(BASE_CHAIN_HEX, 16);
       let sendProvider = authProvider;
@@ -266,41 +334,26 @@ const StakingTab: React.FC = () => {
         params: [{ from: walletAddress, to: DHB_BASE, data }],
       });
 
-      // Wait for confirmation before recording so we never log a failed stake.
-      try {
-        const provider = new ethers.providers.JsonRpcProvider(BASE_RPC);
-        const receipt = await provider.waitForTransaction(txHash, 1, 90_000);
-        if (receipt && receipt.status === 0) {
-          toastError("Stake transaction reverted on-chain.");
-          return;
-        }
-      } catch {
-        // Confirmation timed out — still record optimistically with the hash.
-      }
-
-      try {
-        await supabase.from("staking_records").insert({
-          wallet_address: walletAddress.toLowerCase(),
-          amount: amt,
-          chain: "Base",
-          tx_hash: txHash || "",
-          action: "stake",
-        });
-      } catch (dbErr) {
-        console.warn("[StakingTab] failed to record stake:", dbErr);
-      }
-
-      toastSuccess(`Staked ${amount} DHB! TX: ${txHash.slice(0, 10)}…`);
-      setAmount("");
-      setTimeout(fetchData, 4000);
+      const attempt: StakeAttempt = {
+        hash: txHash, wallet: walletAddress, chainId: targetChainId, token: DHB_BASE,
+        pool: STAKING_ADDRESS, amount, amountHex: amountWei.toHexString(),
+      };
+      setPendingStake(attempt);
+      setAmount('');
+      try { await AsyncStorage.setItem(pendingStakeKey(walletAddress), JSON.stringify(attempt)); }
+      catch (error) { stakeLog.error('Pending stake storage unavailable', { hash: txHash }, String(error)); }
+      stakeLog.error('Stake submitted; awaiting receipt', { ...attempt });
+      toastInfo('Stake submitted. Checking confirmation — do not send it again.');
     } catch (err: any) {
-      const msg = String(err?.message || err || "Staking failed");
-      if (msg.includes("user rejected") || msg.includes("cancelled")) {
-        toastError("Transaction cancelled.");
+      stakeLog.error('Stake request unresolved', { wallet: walletAddress }, err);
+      const msg = String(err?.message || err).toLowerCase();
+      if (err?.code === 4001 || msg.includes('user rejected') || msg.includes('user denied')) {
+        toastInfo('Transaction cancelled in your wallet.');
       } else {
-        toastError(msg.slice(0, 100));
+        toastInfo('Could not confirm the stake request. Check your wallet activity before trying again.');
       }
     } finally {
+      sendingStake.current = false;
       setIsBusy(false);
     }
   };
@@ -428,6 +481,17 @@ const StakingTab: React.FC = () => {
 
   return (
     <View className="flex-1">
+      {pendingStake && pendingStake.wallet.toLowerCase() === walletAddress?.toLowerCase() && (
+        <View accessibilityRole="summary" className="mb-4 rounded-xl border border-white/20 p-3">
+          <Text className="text-white">{pendingStake.amount} DHB {pendingStake.confirmed ? 'confirmed. Updating your deposit history.' : 'submitted. Confirmation is still being checked.'} Do not send it again.</Text>
+          <TouchableOpacity onPress={() => { void Linking.openURL(`https://basescan.org/tx/${pendingStake.hash}`); }}>
+            <Text className="text-white underline mt-2">View transaction</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => { void checkPendingStake(pendingStake); }}>
+            <Text className="text-white underline mt-2">Check again</Text>
+          </TouchableOpacity>
+        </View>
+      )}
       {/* Stats row */}
       <View className="flex-row gap-3 mb-5">
         <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
@@ -555,7 +619,7 @@ const StakingTab: React.FC = () => {
 
         <TouchableOpacity
           onPress={submit}
-          disabled={isBusy || !amount}
+          disabled={isBusy || !amount || (mode === "stake" && (!!pendingStake || !pendingLoaded))}
           className={`h-12 rounded-xl items-center justify-center flex-row gap-2 ${
             isBusy || !amount ? "bg-white/10" : "bg-white/15 border border-white/20"
           }`}
