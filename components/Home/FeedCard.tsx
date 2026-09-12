@@ -1457,6 +1457,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             onUserPress={handleUserPress}
             onMenuPress={handleOpenOptions}
             onAiPress={handleAiPress}
+            onBoostPress={
+              DIGITAL_PURCHASES_ENABLED && isOwnerPost && isSignedIn && tokenId != null
+                ? () => setShowBoost(true)
+                : undefined
+            }
             isHidden={isHidden}
           />
         </View>

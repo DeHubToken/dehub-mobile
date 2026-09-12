@@ -21,6 +21,7 @@ export interface FeedCardHeaderProps {
   avatarSize?: number;
   onMenuPress?: () => void;
   onAiPress?: () => void;
+  onBoostPress?: () => void;
   isHidden?: boolean;
 }
 
@@ -34,6 +35,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
   avatarSize = 32,
   onMenuPress,
   onAiPress,
+  onBoostPress,
   isHidden,
 }) => {
   return (
@@ -115,6 +117,17 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             style={{ padding: 4 }}
           >
             <Icon name="Sparkles" size={16} color={ICON_MUTED} />
+          </Pressable>
+        )}
+        {onBoostPress && (
+          <Pressable
+            onPress={onBoostPress}
+            accessibilityRole="button"
+            accessibilityLabel="Boost post"
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            style={{ padding: 4 }}
+          >
+            <Icon name="Rocket" size={16} color={ICON_MUTED} />
           </Pressable>
         )}
         {onMenuPress && (
