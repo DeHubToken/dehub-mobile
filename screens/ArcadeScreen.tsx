@@ -17,6 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
+import { TrenchstarIcon } from "../components/trenchstar/TrenchstarIcon";
 import ScreenHeader from "../components/ScreenHeader";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { ARCADE_GAMES, type ArcadeGame } from "../config/arcade-games";
@@ -50,7 +51,7 @@ const GameCard = ({ game, onPress }: { game: ArcadeGame; onPress: (slug: string)
     <View style={styles.cardBody}>
       <Text style={styles.description}>{game.description}</Text>
       <View style={styles.playButton}>
-        <Icon name="Play" size={13} color={colors.accentForeground} />
+        {game.slug === "trenchstar" ? <TrenchstarIcon name="play" size={24} /> : <Icon name="Play" size={13} color={colors.accentForeground} />}
         <Text style={styles.playLabel}>{game.action}</Text>
       </View>
     </View>

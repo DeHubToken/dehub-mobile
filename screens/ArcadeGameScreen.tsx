@@ -41,6 +41,7 @@ import type { WebViewMessageEvent, WebViewNavigation } from "react-native-webvie
 import { useNavigation, useRoute } from "@react-navigation/native";
 import * as ScreenOrientation from "expo-screen-orientation";
 import Icon from "../components/ui/Icon";
+import { TrenchstarIcon } from "../components/trenchstar/TrenchstarIcon";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { getArcadeGame } from "../config/arcade-games";
 import { openInApp } from "../libs/links.utils";
@@ -465,13 +466,14 @@ const ArcadeGameScreen = () => {
         hitSlop={12}
         style={[styles.exit, game.exitPlacement === "center" ? styles.exitCenter : styles.exitLeft]}
       >
-        <Icon name="ChevronLeft" size={20} color="#FFFFFF" />
+        {game.slug === "trenchstar" ? <TrenchstarIcon name="exit" size={26} /> : <Icon name="ChevronLeft" size={20} color="#FFFFFF" />}
       </Pressable>
 
       {/* Boot readout. A percentage and a bar, nothing else: the only question
           somebody staring at a black screen has is "is this doing anything". */}
       {!failed && showBoot ? (
         <View style={styles.boot} pointerEvents="box-none">
+          {game.slug === "trenchstar" && <TrenchstarIcon name="focus" size={52} />}
           <Text style={styles.bootTitle}>{game.title}</Text>
           <View
             accessibilityRole="progressbar"
