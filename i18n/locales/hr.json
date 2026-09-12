@@ -2814,5 +2814,37 @@
     "cancel": "Odustani",
     "remove": "Ukloni",
     "thisUser": "Ovaj korisnik"
+  },
+  "reactionInfo": {
+    "title": "Reakcije",
+    "privateTitle": "Reakcije su privatne",
+    "privateDescription": "Samo autor objave može vidjeti ovaj popis.",
+    "empty": "Nema još reakcija",
+    "emptyDescription": "Reakcije na ovu objavu pojavit će se ovdje.",
+    "anonymous": "{{count}} sviđanja od anonimnih nositelja značke",
+    "labels": {
+      "like": "Sviđa mi se",
+      "love": "Volim",
+      "respect": "Poštovanje",
+      "hot": "Vruće",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Tužno",
+      "cry": "Plačem",
+      "poo": "Govno",
+      "dislike": "Nije mi do toga"
+    },
+    "mediaSource": "Odaberi izvor medija",
+    "photoLibrary": "Galerija fotografija",
+    "videoFiles": "Video iz Datoteke",
+    "fileError": "Nije moguće otvoriti ovaj video. Molimo pokušajte s drugom datotekom.",
+    "reactedPost": "{{name}} je reagirao/la na vašu objavu",
+    "repostedPost": "{{name}} ponovno objavljuje vašu objavu",
+    "quotedPost": "{{name}} citira tvoju objavu",
+    "mentionedYou": "{{name}} vas spominje",
+    "followRequest": "Korisnik{{name}} zatražio je da vas prati",
+    "followAccepted": "{{name}} prihvaća vaš zahtjev za praćenje",
+    "signalFlare": "{{name}} šalje signalnu baklju",
+    "newMessage": "{{name}} vam šalje poruku"
   }
 }

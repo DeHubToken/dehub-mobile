@@ -2818,5 +2818,37 @@
     "cancel": "Zrušit",
     "remove": "Odebrat",
     "thisUser": "Tento uživatel"
+  },
+  "reactionInfo": {
+    "title": "Reakce",
+    "privateTitle": "Reakce jsou soukromé",
+    "privateDescription": "Tento seznam může zobrazit pouze autor příspěvku.",
+    "empty": "Zatím žádné reakce",
+    "emptyDescription": "Reakce na tento příspěvek se objeví zde.",
+    "anonymous": "{{count}} lajky od anonymních držitelů odznaků",
+    "labels": {
+      "like": "Líbí se",
+      "love": "Láska",
+      "respect": "Respekt",
+      "hot": "Horké",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Smutný",
+      "cry": "Pláč",
+      "poo": "Poo",
+      "dislike": "Nelíbí se"
+    },
+    "mediaSource": "Vybrat zdroj médií",
+    "photoLibrary": "Knihovna fotografií",
+    "videoFiles": "Video ze souborů",
+    "fileError": "Toto video nelze otevřít. Zkuste jiný soubor.",
+    "reactedPost": "{{name}} reagoval/a na váš příspěvek",
+    "repostedPost": "{{name}} znovu zveřejnil/a váš příspěvek",
+    "quotedPost": "{{name}} citoval váš příspěvek",
+    "mentionedYou": "{{name}} vás zmínil/a",
+    "followRequest": "{{name}} tě chce sledovat",
+    "followAccepted": "{{name}} přijal/a vaši žádost o sledování",
+    "signalFlare": "{{name}} poslal/a signální světlici",
+    "newMessage": "{{name}} ti poslal/a zprávu"
   }
 }

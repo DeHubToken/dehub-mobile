@@ -2833,5 +2833,37 @@
     "cancel": "ሰርዝ",
     "remove": "አስወግድ",
     "thisUser": "ይህ ተጠቃሚ"
+  },
+  "reactionInfo": {
+    "title": "ምላሾች",
+    "privateTitle": "ምላሾች ግላዊ ናቸው",
+    "privateDescription": "የልጥፍ ደራሲ ብቻ ይህን ዝርዝር ማየት ይችላል።",
+    "empty": "ምንም ምላሽ ገና የለም",
+    "emptyDescription": "ለዚህ ልጥፍ ምላሾች እዚህ ይታያሉ።",
+    "anonymous": "{{count}} ከስውር ባッጅ ባለቤቶች ምትክ",
+    "labels": {
+      "like": "ወደ ውስጥ ይግቡ",
+      "love": "ፍቅር",
+      "respect": "ክብር",
+      "hot": "ሙቅ",
+      "hundred": "100",
+      "lol": "ሳቅ",
+      "sad": "ሀዘን",
+      "cry": "ማልቀስ",
+      "poo": "ሙቀት",
+      "dislike": "አለመስማማት"
+    },
+    "mediaSource": "የሚዲያ ምንጭ ይምረጡ",
+    "photoLibrary": "የፎቶ ቤተ-መጽሐፍት",
+    "videoFiles": "ከፋይሎች ቪዲዮ",
+    "fileError": "ይህ ቪዲዮ ሊከፈት አልቻለም። እባክዎ ሌላ ፋይል ይሞክሩ።",
+    "reactedPost": "{{name}} ወደ ልጥፍዎ ምላሽ ሰጠ",
+    "repostedPost": "{{name}} ልጥፍዎን እንደገና ያስተካክሉ",
+    "quotedPost": "{{name}} ልጥፍዎን ጠቅሷል",
+    "mentionedYou": "{{name}} ጠቅሶሃል",
+    "followRequest": "{{name}} እንዲከተላችሁ ተጠየቁ",
+    "followAccepted": "{{name}} የሚከተለውን ጥያቄዎን ተቀብሏል",
+    "signalFlare": "{{name}} የምልክት ፍሰት ላከ",
+    "newMessage": "{{name}} መልእክት ላከህ"
   }
 }

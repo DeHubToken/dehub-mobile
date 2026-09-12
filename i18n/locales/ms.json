@@ -3079,5 +3079,37 @@
     "cancel": "Batal",
     "remove": "Buang",
     "thisUser": "Pengguna ini"
+  },
+  "reactionInfo": {
+    "title": "Tindak balas",
+    "privateTitle": "Tindak balas adalah peribadi",
+    "privateDescription": "Hanya pengarang hantaran boleh melihat senarai ini.",
+    "empty": "Belum ada reaksi",
+    "emptyDescription": "Reaksi terhadap hantaran ini akan muncul di sini.",
+    "anonymous": "{{count}} suka daripada pemegang lencana tanpa nama",
+    "labels": {
+      "like": "Suka",
+      "love": "Cinta",
+      "respect": "Hormat",
+      "hot": "Panas",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Sedih",
+      "cry": "Menangis",
+      "poo": "Poo",
+      "dislike": "Tidak suka"
+    },
+    "mediaSource": "Pilih sumber media",
+    "photoLibrary": "Pustaka gambar",
+    "videoFiles": "Video daripada Fail",
+    "fileError": "Tidak dapat membuka video ini. Sila cuba fail lain.",
+    "reactedPost": "{{name}} memberi reaksi kepada hantaran anda",
+    "repostedPost": "{{name}} menyiarkan semula hantaran anda",
+    "quotedPost": "{{name}} memetik hantaran anda",
+    "mentionedYou": "{{name}} menyebut anda",
+    "followRequest": "{{name}} meminta untuk mengikuti anda",
+    "followAccepted": "{{name}} menerima permohonan ikut anda",
+    "signalFlare": "{{name}} menghantar Isyarat Suar",
+    "newMessage": "{{name}} menghantar mesej kepada anda"
   }
 }

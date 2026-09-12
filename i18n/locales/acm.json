@@ -2772,5 +2772,37 @@
     "cancel": "إلغاء",
     "remove": "إزالة",
     "thisUser": "هذا المستخدم"
+  },
+  "reactionInfo": {
+    "title": "ردود الفعل",
+    "privateTitle": "ردود الفعل خاصة",
+    "privateDescription": "بس الكاتب الپوست يقدر يشوف هالقايمة.",
+    "empty": "ما في ردود فعل لحد الحين",
+    "emptyDescription": "ردود الفعل على هالپوست بتظهر هنا.",
+    "anonymous": "{{count}} لايكات من حاملي الشارة المجهولين",
+    "labels": {
+      "like": "لايك",
+      "love": "حب",
+      "respect": "احترام",
+      "hot": "حار",
+      "hundred": "100",
+      "lol": "ضحك",
+      "sad": "حزين",
+      "cry": "بكاء",
+      "poo": "خرا",
+      "dislike": "ما يعجب"
+    },
+    "mediaSource": "اختار مصدر الوسايط",
+    "photoLibrary": "مكتبة الصور",
+    "videoFiles": "فيديو من الملفات",
+    "fileError": "ما قدرنا نفتح هالفيديو. حاول ملف ثاني.",
+    "reactedPost": "{{name}} رد على بوستك",
+    "repostedPost": "{{name}} شير بوستك",
+    "quotedPost": "{{name}} اقتبس بوستك",
+    "mentionedYou": "{{name}} ذكرك",
+    "followRequest": "{{name}} طلب يتابعك",
+    "followAccepted": "{{name}} قبل طلب المتابعة ديالك",
+    "signalFlare": "{{name}} بعتلك Signal Flare",
+    "newMessage": "{{name}} بعتلك رسالة"
   }
 }

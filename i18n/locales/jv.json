@@ -2773,5 +2773,37 @@
     "cancel": "Batal",
     "remove": "Mbusak",
     "thisUser": "Pangguna iki"
+  },
+  "reactionInfo": {
+    "title": "Reaksi",
+    "privateTitle": "Reaksi iku pribadi",
+    "privateDescription": "Mung penulis kiriman bisa ndeleng dhaftar iki.",
+    "empty": "Durung ana reaksi",
+    "emptyDescription": "Reaksi kanggo kiriman iki bakal katon ing kene.",
+    "anonymous": "{{count}} likes saka pemegang badge anonim",
+    "labels": {
+      "like": "Seneng",
+      "love": "Tresna",
+      "respect": "Hormati",
+      "hot": "Panas",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Sedhih",
+      "cry": "Nangis",
+      "poo": "Tai",
+      "dislike": "Ora seneng"
+    },
+    "mediaSource": "Pilih sumber media",
+    "photoLibrary": "Perpustakaan foto",
+    "videoFiles": "Video saka File",
+    "fileError": "Ora bisa mbukak video iki. Coba file liyane.",
+    "reactedPost": "{{name}} tumandang ing postinganmu",
+    "repostedPost": "{{name}} mbalèkaké postinganmu",
+    "quotedPost": "{{name}} ngutip postinganmu",
+    "mentionedYou": "{{name}} nyebutaké sampeyan",
+    "followRequest": "{{name}} njaluk kanggo ngetutaké sampeyan",
+    "followAccepted": "{{name}} nampa panjalukan ngetutaké sampeyan",
+    "signalFlare": "{{name}} ngirim Signal Flare",
+    "newMessage": "{{name}} ngirim pesen marang sampeyan"
   }
 }

@@ -3295,5 +3295,35 @@
     "cancel": "Скасувати",
     "remove": "Видалити",
     "thisUser": "Цей користувач"
+  },
+  "reactionInfo": {
+    "title": "Реакції",
+    "privateTitle": "Реакції є приватними",
+    "privateDescription": "Тільки автор допису може переглядати цей список.",
+    "empty": "Ще немає реакцій",
+    "emptyDescription": "Тут відображатимуться реакції на цей допис.",
+    "anonymous": "{{count}} вподобань від анонімних власників значків",
+    "labels": {
+      "like": "Подобається",
+      "love": "Любов",
+      "respect": "Повага",
+      "hot": "Гаряче",
+      "hundred": "100",
+      "sad": "Сумно",
+      "cry": "Плач",
+      "dislike": "Не подобається"
+    },
+    "mediaSource": "Виберіть джерело медіа",
+    "photoLibrary": "Бібліотека фотографій",
+    "videoFiles": "Відео з файлів",
+    "fileError": "Не вдалося відкрити це відео. Спробуйте інший файл.",
+    "reactedPost": "{{name}} реагував на ваш пост",
+    "repostedPost": "{{name}} поділився вашим постом",
+    "quotedPost": "{{name}} цитував ваш пост",
+    "mentionedYou": "{{name}} згадав вас",
+    "followRequest": "{{name}} запросив дозвіл на підписку",
+    "followAccepted": "{{name}} прийняв ваш запит на підписку",
+    "signalFlare": "{{name}} надіслав вам Signal Flare",
+    "newMessage": "{{name}} надіслав вам повідомлення"
   }
 }

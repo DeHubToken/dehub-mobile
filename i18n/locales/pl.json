@@ -2882,5 +2882,37 @@
     "cancel": "Anuluj",
     "remove": "Usuń",
     "thisUser": "Ten użytkownik"
+  },
+  "reactionInfo": {
+    "title": "Reakcje",
+    "privateTitle": "Reakcje są prywatne",
+    "privateDescription": "Tylko autor posta może wyświetlić tę listę.",
+    "empty": "Brak reakcji",
+    "emptyDescription": "Tutaj pojawią się reakcje na ten post.",
+    "anonymous": "{{count}} polubienia anonimowych posiadaczy odznak",
+    "labels": {
+      "like": "Polub",
+      "love": "Miłość",
+      "respect": "Szacunek",
+      "hot": "Gorąco",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Smutny",
+      "cry": "Płacz",
+      "poo": "Kupa",
+      "dislike": "Nie lubię"
+    },
+    "mediaSource": "Wybierz źródło mediów",
+    "photoLibrary": "Biblioteka zdjęć",
+    "videoFiles": "Wideo z plików",
+    "fileError": "Nie można otworzyć tego filmu. Spróbuj użyć innego pliku.",
+    "reactedPost": "{{name}} zareagował na Twój post",
+    "repostedPost": "{{name}} opublikował (a) Twój post ponownie",
+    "quotedPost": "{{name}} cytuje Twój post",
+    "mentionedYou": "{{name}} wspomniał o Tobie",
+    "followRequest": "{{name}} chce Cię obserwować",
+    "followAccepted": "{{name}} zaakceptował Twoją prośbę o obserwowanie",
+    "signalFlare": "{{name}} wysłał flarę sygnałową",
+    "newMessage": "{{name}} wysłał Ci wiadomość"
   }
 }

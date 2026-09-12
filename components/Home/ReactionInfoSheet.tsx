@@ -21,11 +21,12 @@
  * comments surface at all.
  */
 
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
   Modal,
+  Platform,
   Pressable,
   SectionList,
   ActivityIndicator,
@@ -43,10 +44,13 @@ import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-g
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
+import SmartImage from "../common/SmartImage";
+import { useTranslation } from "react-i18next";
+import { engagementWeight, formatEngagementWeight } from "../../libs/engagement-weight";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { getPostLikers, type LikerUser } from "../../services/nft.service";
 import { NEGATIVE_REACTIONS, REACTION_LIST, type PostReaction } from "../../libs/reactions";
-import { getAvatarUrl } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
@@ -71,6 +75,8 @@ interface ReactionSection {
 const PersonRow: React.FC<{ item: LikerUser; onPress: (address: string) => void }> = memo(
   ({ item, onPress }) => {
     const displayName = item.displayName || item.username || truncate(item.address, 12, "..");
+    const weight = engagementWeight(item.badgeBalance, undefined, item.username);
+    const badge = item.hideBadgeAndBalance ? null : getBadgeUrlFor(item);
     const handlePress = useCallback(() => onPress(item.address), [onPress, item.address]);
 
     return (
@@ -89,6 +95,12 @@ const PersonRow: React.FC<{ item: LikerUser; onPress: (address: string) => void 
             </Text>
           )}
         </View>
+        {weight > 1 && !item.hideBadgeAndBalance && (
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 4, marginRight: 8 }}>
+            {badge && <SmartImage source={badge} style={{ width: 18, height: 18 }} />}
+            <Text style={{ color: "#8B8D90", fontSize: 12 }}>{formatEngagementWeight(weight)}</Text>
+          </View>
+        )}
         <Icon name="ChevronRight" size={16} color="#6F7174" />
       </Pressable>
     );
@@ -100,6 +112,9 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
   onClose,
   tokenId,
 }) => {
+  const { t } = useTranslation();
+  const pendingProfile = useRef<string | null>(null);
+  const [sheetHidden, setSheetHidden] = useState(false);
   const insets = useSafeAreaInsets();
   const { showUserProfile } = useUserProfileSheet();
   const SHEET_HEIGHT = SCREEN_HEIGHT * SHEET_FRACTION;
@@ -110,6 +125,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
   const [people, setPeople] = useState<LikerUser[]>([]);
   const [counts, setCounts] = useState<Partial<Record<PostReaction, number>> | null>(null);
   const [anonymousCount, setAnonymousCount] = useState(0);
+  const [weightedTotal, setWeightedTotal] = useState<number | undefined>();
   const [canView, setCanView] = useState(true);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -124,6 +140,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
         const res = await getPostLikers({ tokenId, page: pageNum, limit: PAGE_LIMIT });
         setCanView(res.canViewLikers);
         setCounts(res.reactionCounts);
+        if (pageNum === 0) setWeightedTotal(res.weightedTotalCount);
         if (pageNum === 0) setAnonymousCount(res.anonymousBadgeHolderCount ?? 0);
         setPeople((prev) => (pageNum === 0 ? res.data : [...prev, ...res.data]));
         setPage(pageNum);
@@ -142,6 +159,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
 
   useEffect(() => {
     if (visible) {
+      setSheetHidden(false);
       setIsFullyClosed(false);
       fetchPage(0);
       translateY.value = withTiming(0, { duration: 300, easing: Easing.out(Easing.cubic) });
@@ -186,13 +204,25 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
   const sheetStyle = useAnimatedStyle(() => ({ transform: [{ translateY: translateY.value }] }));
   const backdropStyle = useAnimatedStyle(() => ({ opacity: backdropOpacity.value }));
 
-  const handlePersonPress = useCallback(
-    (address: string) => {
-      closeSheet();
-      showUserProfile(address);
-    },
-    [closeSheet, showUserProfile],
-  );
+  const openPendingProfile = useCallback(() => {
+    const address = pendingProfile.current;
+    pendingProfile.current = null;
+    if (!address) return;
+    onClose();
+    showUserProfile(address);
+  }, [onClose, showUserProfile]);
+
+  useEffect(() => {
+    if (!sheetHidden || Platform.OS === "ios") return;
+    const timer = setTimeout(openPendingProfile, 220);
+    return () => clearTimeout(timer);
+  }, [sheetHidden, openPendingProfile]);
+
+  const handlePersonPress = useCallback((address: string) => {
+    if (pendingProfile.current) return;
+    pendingProfile.current = address;
+    setSheetHidden(true);
+  }, []);
 
   /**
    * The server hands rows back already in taxonomy order, so sections only ever
@@ -222,14 +252,14 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
   }, [people, counts]);
 
   const totalReactions = useMemo(
-    () => sections.reduce((sum, section) => sum + section.total, 0),
-    [sections],
+    () => weightedTotal ?? sections.reduce((sum, section) => sum + section.total, 0),
+    [sections, weightedTotal],
   );
 
   if (!visible && isFullyClosed) return null;
 
   return (
-    <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={closeSheet}>
+    <Modal visible={visible && !sheetHidden} onDismiss={openPendingProfile} transparent animationType="none" statusBarTranslucent onRequestClose={closeSheet}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Animated.View style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.5)" }, backdropStyle]}>
           <Pressable style={{ flex: 1 }} onPress={closeSheet} />
@@ -244,7 +274,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
             <Animated.View className="items-center py-2.5">
               <View style={{ width: 36, height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.2)" }} />
               <Text style={{ color: "#F9FBFF", fontSize: 15, fontWeight: "600", marginTop: 8 }}>
-                Reactions
+                {t("reactionInfo.title")}
                 {totalReactions > 0 && <Text style={{ color: "#8B8D90", fontWeight: "400" }}> · {totalReactions}</Text>}
               </Text>
             </Animated.View>
@@ -257,12 +287,12 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
           ) : !canView ? (
             <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingHorizontal: 32 }}>
               <Text style={{ color: "#6F7174", fontSize: 14, textAlign: "center" }}>
-                Only the author can see who reacted to a post.
+                {t("reactionInfo.privateDescription")}
               </Text>
             </View>
           ) : sections.length === 0 && anonymousCount === 0 ? (
             <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-              <Text style={{ color: "#6F7174", fontSize: 14 }}>No reactions yet.</Text>
+              <Text style={{ color: "#6F7174", fontSize: 14 }}>{t("reactionInfo.empty")}</Text>
             </View>
           ) : (
             <SectionList
@@ -273,7 +303,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
                 <View style={glassStyles.sectionHeader}>
                   <Text style={{ fontSize: 15 }}>{section.emoji}</Text>
                   <Text style={{ color: "#F9FBFF", fontSize: 13, fontWeight: "600", marginLeft: 8 }}>
-                    {section.label}
+                    {t(`reactionInfo.labels.${section.key}`, section.label)}
                   </Text>
                   <Text style={{ color: "#8B8D90", fontSize: 13, marginLeft: 6 }}>{section.total}</Text>
                 </View>
@@ -282,7 +312,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
                 <View style={glassStyles.anonymousRow}>
                   <Icon name="EyeOff" size={16} color="#A1A1AA" />
                   <Text style={{ color: "#D4D4D8", fontSize: 13, marginLeft: 8 }}>
-                    {anonymousCount} {anonymousCount === 1 ? "like" : "likes"} from anonymous badge {anonymousCount === 1 ? "holder" : "holders"}
+                    {t("reactionInfo.anonymous", { count: anonymousCount })}
                   </Text>
                 </View>
               ) : null}

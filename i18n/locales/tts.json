@@ -2773,5 +2773,37 @@
     "cancel": "ยกเลิก",
     "remove": "ลบ",
     "thisUser": "ผู้นี้"
+  },
+  "reactionInfo": {
+    "title": "ปฏิกิริยา",
+    "privateTitle": "ปฏิกิริยาเป็นส่วนตัว",
+    "privateDescription": "เฉพาะผู้เขียนโพสต์เท่านั้นที่สามารถดูรายการนี้ได้",
+    "empty": "ยังไม่มีปฏิกิริยา",
+    "emptyDescription": "ปฏิกิริยาต่อโพสต์นี้จะปรากฏที่นี่",
+    "anonymous": "{{count}} ไลค์จากผู้ถือแบดจ์匿名",
+    "labels": {
+      "like": "ไลค์",
+      "love": "รัก",
+      "respect": "เคารพ",
+      "hot": "ร้อน",
+      "hundred": "100",
+      "lol": "หัวเราะ",
+      "sad": "เศร้า",
+      "cry": "ร้องไห้",
+      "poo": "อึ",
+      "dislike": "ไม่ชอบ"
+    },
+    "mediaSource": "เลือกแหล่งสื่อ",
+    "photoLibrary": "ไลบรารีรูปภาพ",
+    "videoFiles": "วิดีโอจากไฟล์",
+    "fileError": "ไม่สามารถเปิดวิดีโอนี้ได้ โปรดลองไฟล์อื่น",
+    "reactedPost": "{{name}} ตอบสนองต่อโพสต์ของคุณ",
+    "repostedPost": "{{name}} แชร์โพสต์ของคุณ",
+    "quotedPost": "{{name}} อ้างอิงโพสต์ของคุณ",
+    "mentionedYou": "{{name}} พูดถึงคุณ",
+    "followRequest": "{{name}} ขอติดตามคุณ",
+    "followAccepted": "{{name}} ยอมรับคำขอติดตามของคุณ",
+    "signalFlare": "{{name}} ส่ง Signal Flare ให้คุณ",
+    "newMessage": "{{name}} ส่งข้อความให้คุณ"
   }
 }

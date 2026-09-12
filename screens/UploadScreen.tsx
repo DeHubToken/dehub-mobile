@@ -15,6 +15,7 @@ import {
   Alert,
   Platform,
   Modal,
+  Keyboard,
 } from "react-native";
 import { useNavigation, useRoute, CommonActions, useFocusEffect } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
@@ -1378,7 +1379,7 @@ export default function UploadScreen() {
    * with its two separate inputs, so a mixed selection keeps the video and
    * says so rather than silently dropping half the pick.
    */
-  const handlePickMedia = useCallback(async () => {
+  const handlePickMediaLibrary = useCallback(async () => {
     if (mediaDisabled) return;
     // In live mode the file this button picks is the stream's preview image,
     // not a second post — the same job web gives its attachment control while
@@ -1432,6 +1433,38 @@ export default function UploadScreen() {
     adoptVideoAsset,
     adoptImageAssets,
   ]);
+
+  const handlePickVideoFile = useCallback(async () => {
+    if (mediaDisabled) return;
+    if (pickedImages.length > 0) {
+      toastError("A post can hold images or a video, not both. Remove the images first.");
+      return;
+    }
+    Keyboard.dismiss();
+    try {
+      const result = await DocumentPicker.getDocumentAsync({ type: "video/*", copyToCacheDirectory: true });
+      if (result.canceled || !result.assets?.[0]) return;
+      const file = result.assets[0];
+      if (file.size && file.size > mediaUploadLimitBytes) {
+        toastError(`Video exceeds your ${postQuota?.tier || "base"} tier limit of ${mediaUploadLimitLabel}.`);
+        return;
+      }
+      await adoptVideoAsset({ uri: file.uri, fileName: file.name, mimeType: file.mimeType, fileSize: file.size, type: "video", width: 0, height: 0 });
+    } catch (error) {
+      toastError(t("reactionInfo.fileError"));
+    }
+  }, [mediaDisabled, pickedImages.length, adoptVideoAsset, mediaUploadLimitBytes, mediaUploadLimitLabel, postQuota?.tier, t]);
+
+  const handlePickMedia = useCallback(() => {
+    if (mediaDisabled) return;
+    Keyboard.dismiss();
+    if (isLiveMode) { void handlePickLiveThumbnail(); return; }
+    Alert.alert(t("reactionInfo.mediaSource"), undefined, [
+      { text: t("reactionInfo.photoLibrary"), onPress: () => { void handlePickMediaLibrary(); } },
+      { text: t("reactionInfo.videoFiles"), onPress: () => { void handlePickVideoFile(); } },
+      { text: t("common.cancel"), style: "cancel" },
+    ]);
+  }, [mediaDisabled, isLiveMode, handlePickLiveThumbnail, handlePickMediaLibrary, handlePickVideoFile, t]);
 
   /**
    * Camera capture — mobile's stand-in for web's CameraCaptureModal.
@@ -1816,7 +1849,7 @@ export default function UploadScreen() {
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 16 }}
         showsVerticalScrollIndicator={false}
       >
-        <Pressable className="flex-1">
+        <Pressable className="flex-1" onPress={Keyboard.dismiss} accessible={false}>
         <View className="px-4 pt-4">
           {/* Match web's composer header exactly: identity on the left, then
               chain, schedule and drafts on the right. The editor starts below

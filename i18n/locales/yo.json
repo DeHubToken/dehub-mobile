@@ -2810,5 +2810,37 @@
     "cancel": "Fagilé",
     "remove": "Yọ̀ọ́",
     "thisUser": "Olumulo yii"
+  },
+  "reactionInfo": {
+    "title": "Ìdáhùn",
+    "privateTitle": "Ìdáhùn wà ní ìkọ̀kọ̀",
+    "privateDescription": "Òǹkọ̀wé ìfìwéránṣẹ́ nìkan ló lè wo àtòjọ yìí.",
+    "empty": "Ko si awọn esi sibẹsibẹ",
+    "emptyDescription": "Èsì sí iṣẹ́ yìí yóò farahàn níbí.",
+    "anonymous": "{{count}} fẹràn lati ọdọ awọn ti o ni ami ami ailorukọ",
+    "labels": {
+      "like": "Bíi",
+      "love": "Ìfẹ́",
+      "respect": "Bọwọ fun",
+      "hot": "Gbona",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Ibanujẹ",
+      "cry": "Kigbe",
+      "poo": "Poo",
+      "dislike": "Kò fẹ́ràn"
+    },
+    "mediaSource": "Yan orísun ìròyìn",
+    "photoLibrary": "Ilé-ìkówèésí àwòrán",
+    "videoFiles": "Fídíò láti inú fáìlì",
+    "fileError": "Mi ò lè ṣí fídíò yìí. Jọ̀wọ́ gbìyànjú fáìlì mìíràn.",
+    "reactedPost": "{{name}} fesi si ifiweranṣẹ rẹ",
+    "repostedPost": "{{name}} ṣe àtúnse ìfìwéránṣẹ́ rẹ",
+    "quotedPost": "{{name}} fa ọ̀rọ̀ rẹ yọ",
+    "mentionedYou": "{{name}} darukọ rẹ",
+    "followRequest": "{{name}} béèrè láti tẹ̀lé ọ",
+    "followAccepted": "{{name}} gba ìbéèrè rẹ tó tẹ̀lé",
+    "signalFlare": "{{name}} rán Signal Flare",
+    "newMessage": "{{name}} fi àtẹ̀jíṣẹ́ ránṣẹ́ sí ọ"
   }
 }

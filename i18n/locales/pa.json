@@ -2804,5 +2804,36 @@
     "cancel": "ਰੱਦ ਕਰੋ",
     "remove": "ਹਟਾਓ",
     "thisUser": "ਇਹ ਵਰਤੋਂਕਾਰ"
+  },
+  "reactionInfo": {
+    "title": "ਪ੍ਰਤੀਕਰਮ",
+    "privateTitle": "ਪ੍ਰਤੀਕਰਮ ਨਿੱਜੀ ਹਨ",
+    "privateDescription": "ਸਿਰਫ ਪੋਸਟ ਲੇਖਕ ਇਸ ਸੂਚੀ ਨੂੰ ਵੇਖ ਸਕਦਾ ਹੈ.",
+    "empty": "ਹਾਲੇ ਤੱਕ ਕੋਈ ਪ੍ਰਤੀਕਰਮ ਨਹੀਂ",
+    "emptyDescription": "ਇਸ ਪੋਸਟ 'ਤੇ ਪ੍ਰਤੀਕਰਮ ਇੱਥੇ ਦਿਖਾਈ ਦੇਣਗੇ.",
+    "anonymous": "{{count}} ਅਗਿਆਤ ਬੈਜ ਧਾਰਕਾਂ ਤੋਂ ਪਸੰਦ ਕਰਦਾ ਹੈ",
+    "labels": {
+      "like": "ਪਸੰਦ",
+      "love": "ਪਿਆਰ",
+      "respect": "ਸਤਿਕਾਰ",
+      "hot": "ਗਰਮ",
+      "hundred": "100",
+      "sad": "ਉਦਾਸ",
+      "cry": "ਰੋਣਾ",
+      "poo": "ਪੋ",
+      "dislike": "ਨਾਪਸੰਦ"
+    },
+    "mediaSource": "ਮੀਡਿਆ ਸਰੋਤ ਚੁਣੋ",
+    "photoLibrary": "ਫੋਟੋ ਲਾਇਬ੍ਰੇਰੀ",
+    "videoFiles": "ਫਾਇਲਾਂ ਤੋਂ ਵੀਡਿਓ",
+    "fileError": "ਇਹ ਵਿਡੀਓ ਖੋਲ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ । ਕੋਈ ਹੋਰ ਫਾਇਲ ਅਜ਼ਮਾਓ ਜੀ ।",
+    "reactedPost": "{{name}} ਤੁਹਾਡੀ ਪੋਸਟ 'ਤੇ ਪ੍ਰਤੀਕ੍ਰਿਆ",
+    "repostedPost": "{{name}} ਤੁਹਾਡੀ ਪੋਸਟ ਨੂੰ ਦੁਬਾਰਾ ਪੋਸਟ ਕੀਤਾ",
+    "quotedPost": "{{name}} ਨੇ ਤੁਹਾਡੀ ਪੋਸਟ ਦਾ ਹਵਾਲਾ ਦਿੱਤਾ",
+    "mentionedYou": "{{name}} ਤੁਹਾਡਾ ਜ਼ਿਕਰ ਕੀਤਾ",
+    "followRequest": "{{name}} ਤੁਹਾਨੂੰ ਫਾਲੋ ਕਰਨ ਦੀ ਬੇਨਤੀ ਕੀਤੀ",
+    "followAccepted": "{{name}} ਤੁਹਾਡੀ ਫਾਲੋ ਬੇਨਤੀ ਨੂੰ ਸਵੀਕਾਰ ਕੀਤਾ",
+    "signalFlare": "{{name}} ਇੱਕ ਸਿਗਨਲ ਫਲੇਅਰ ਭੇਜਿਆ",
+    "newMessage": "{{name}} ਤੁਹਾਨੂੰ ਇੱਕ ਸੁਨੇਹਾ ਭੇਜਿਆ"
   }
 }

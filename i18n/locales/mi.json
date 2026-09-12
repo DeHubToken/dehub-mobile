@@ -2803,5 +2803,37 @@
     "cancel": "Whakakore",
     "remove": "Tangohia",
     "thisUser": "Ko tenei kaiwhakamahi"
+  },
+  "reactionInfo": {
+    "title": "Ngā urupare",
+    "privateTitle": "He tūmataiti ngā urupare",
+    "privateDescription": "Ko te kaituhi anake e taea te kite i tenei rārangi.",
+    "empty": "Kaore ano kia puta he urupare",
+    "emptyDescription": "Ka puta nga urupare ki tenei pou i konei.",
+    "anonymous": "{{count}} Aroha mai i nga kaipupuri potae kore ingoa",
+    "labels": {
+      "like": "Ka rite ki te",
+      "love": "Aroha",
+      "respect": "Whakahonore",
+      "hot": "Hot",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Ngā mihi",
+      "cry": "Te tangi",
+      "poo": "Poo",
+      "dislike": "Kaore e pai ki a koe"
+    },
+    "mediaSource": "Kōwhiri pūtake pāpāho",
+    "photoLibrary": "Whare Pukapuka Whakaahua",
+    "videoFiles": "Video o ngā Kōnae",
+    "fileError": "Kaore e taea e au te whakatuwhera i tenei ataata. Whakamātauria tetahi atu kōnae.",
+    "reactedPost": "{{name}} Whakautu ki to pou",
+    "repostedPost": "{{name}} reposted koutou pou",
+    "quotedPost": "{{name}} whakahua i to pou",
+    "mentionedYou": "{{name}} korero ki a koe",
+    "followRequest": "{{name}} tono ki te whai i a koe",
+    "followAccepted": "{{name}} whakaae koutou tono whai ake",
+    "signalFlare": "{{name}} i tukuna he Tohu Tohu",
+    "newMessage": "{{name}} i tukuna mai he karere ki a koe"
   }
 }

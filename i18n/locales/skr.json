@@ -2758,5 +2758,37 @@
     "boostFailed": "ایہ خرچ نئیں کر سکیا",
     "spendFor": "{{power}} لئی {{minutes}} منٹ",
     "spentFor": "{{power}} {{minutes}} منٹ لئی چل رہیا اے"
+  },
+  "reactionInfo": {
+    "title": "ردعملیاں",
+    "privateTitle": "ردعملیاں نجی ہن",
+    "privateDescription": "صرف پوسٹ دے لکھاری ایہ فہرست ویکھ سکدے ن۔",
+    "empty": "ہنے تیک کوئی ردعمل نئیں",
+    "emptyDescription": "اس پوسٹ دی ردعملیاں ایتھے ظاہر ہوسن۔",
+    "anonymous": "{{count}} گمنام بیج دھاری دی طرفوں پسند",
+    "labels": {
+      "like": "پسند",
+      "love": "محبت",
+      "respect": "احترام",
+      "hot": "گرم",
+      "hundred": "100",
+      "lol": "ہنسی",
+      "sad": "اداسی",
+      "cry": "رونا",
+      "poo": "پو",
+      "dislike": "ناپسند"
+    },
+    "mediaSource": "میڈیا ذریعہ منتخب کریں",
+    "photoLibrary": "فوٹو لائبریری",
+    "videoFiles": "فائلاں توں ویڈیو",
+    "fileError": "ایہ ویڈیو کھول نئیں سکیا۔ براہ کرم کوئی ہور فائل کوشش کریں۔",
+    "reactedPost": "{{name}} تہاڈی پوسٹ تے ردعمل ظاہر کیا",
+    "repostedPost": "{{name}} تہاڈی پوسٹ دوبارہ شیئر کی",
+    "quotedPost": "{{name}} تہاڈی پوسٹ حوالہ دیا",
+    "mentionedYou": "{{name}} تہاڈا ذکر کیا",
+    "followRequest": "{{name}} تہاڈی پیروی کی درخواست کی",
+    "followAccepted": "{{name}} تہاڈی پیروی کی درخواست قبول کی",
+    "signalFlare": "{{name}} سگنل فلیئر بھیجیا",
+    "newMessage": "{{name}} تہاڈے نوں پیغام بھیجیا"
   }
 }

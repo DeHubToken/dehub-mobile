@@ -2800,5 +2800,36 @@
     "cancel": "Бекор кардан",
     "remove": "Нест кардан",
     "thisUser": "Ang gumagamit na it"
+  },
+  "reactionInfo": {
+    "title": "Вокунишҳо",
+    "privateTitle": "Mga tugon ay pribadong",
+    "privateDescription": "Танҳо муаллифи пост метавонад ин рӯйхатро бинад.",
+    "empty": "Ҳанӯз ягон вокуниш нест",
+    "emptyDescription": "Ang mga tugon sa post na ito ay lilitaw dito.",
+    "labels": {
+      "like": "Мисли",
+      "love": "Муҳаббат",
+      "respect": "Эҳтиром",
+      "hot": "Гарм",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Ғамгин",
+      "cry": "Гиря кардан",
+      "poo": "Poo",
+      "dislike": "Ғайрифаъол кардан"
+    },
+    "mediaSource": "Манбаъи медиаро интихоб кунед",
+    "photoLibrary": "Китобхонаи суратҳо",
+    "videoFiles": "Видео аз файлҳо",
+    "fileError": "Hindi maaaring buksan ang video na ito. Mangyaring subukan ang isa pang file.",
+    "reactedPost": "{{name}}info: whatsthis",
+    "repostedPost": "{{name}}info: whatsthis",
+    "quotedPost": "{{name}}info: whatsthis",
+    "mentionedYou": "{{name}}info: whatsthis",
+    "followRequest": "{{name}} request to follow you",
+    "followAccepted": "{{name}} tanggap ang iyong sumusunod na kahilingan",
+    "signalFlare": "{{name}}info: whatsthis",
+    "newMessage": "{{name}}info: whatsthis"
   }
 }
