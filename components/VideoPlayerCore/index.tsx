@@ -75,6 +75,8 @@ interface VideoPlayerCoreProps {
   liveMode?: boolean;
   /** Suppress the built-in top controls row when an external header already provides close/mute. */
   hideTopControls?: boolean;
+  /** Use the full parent surface for live viewing, including portrait video. */
+  fillContainer?: boolean;
   /**
    * Fires once the source reports its picture size. The live viewer uses it
    * to decide whether "fullscreen" should also turn the phone sideways.
@@ -100,6 +102,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   muted,
   liveMode = false,
   hideTopControls = false,
+  fillContainer = false,
   onVideoSize,
   tokenId,
   title,
@@ -706,7 +709,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
 
   return (
     <View
-      className={fullscreen ? '' : 'w-full aspect-video dark-surface bg-black overflow-hidden'}
+      className={fullscreen ? '' : fillContainer ? 'flex-1 dark-surface bg-black overflow-hidden' : 'w-full aspect-video dark-surface bg-black overflow-hidden'}
       style={fullscreenStyle}
     >
       {/* Video View — always mounted, never moves between trees */}
