@@ -153,6 +153,9 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
               duration={quotedPost.audioDuration || 0}
               tokenId={quotedPost.tokenId || quotedPost.id || quotedTokenId || 0}
               listens={quotedPost.listens}
+              title={quotedPost.name || quotedPost.title || "Audio post"}
+              artist={displayName || "DeHub creator"}
+              artworkUrl={avatarUrl || undefined}
               compact
             />
           </View>
