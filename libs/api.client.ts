@@ -8,10 +8,9 @@ import { getDeviceHeaders } from './device';
 const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
 const PLATFORM = Platform.OS; // 'ios' | 'android'
 
-// Ordinary JSON calls travel over the same apex hostname as the web app. A
-// small number of mobile routes can reach dehub.io while a connection to the
-// api.dehub.io hostname stalls before the backend sees it. Uploads keep using
-// the direct API origin so large bodies do not cross Worker limits.
+// Do not make the website hostname a mandatory dependency of the native app.
+// Read-only requests can try the apex relay after a direct transport failure;
+// mutations and uploads are never replayed across routes.
 const API_DIRECT_BASE_URL = env.API_URL || 'https://api.dehub.io/api';
 const API_RELAY_BASE_URL = `${(env.APP_ORIGIN || 'https://dehub.io').replace(/\/+$/, '')}/_api/api`;
 
@@ -99,9 +98,7 @@ export const apiClient = {
       )
     );
 
-    // Construct full URL, appending query params if provided. JSON traffic
-    // uses the reachable apex relay; multipart uploads remain direct.
-    let url = `${isFormData ? API_DIRECT_BASE_URL : API_RELAY_BASE_URL}${endpoint}`;
+    let url = `${API_DIRECT_BASE_URL}${endpoint}`;
     if (params) {
       const qs = Object.entries(params)
         .filter(([, v]) => v !== undefined && v !== null)
@@ -149,7 +146,7 @@ export const apiClient = {
      * token, and that retry needs its own clock rather than whatever was left
      * of the first one's.
      */
-    const withTimeout = async (init: RequestInit): Promise<Response> => {
+    const withTimeout = async (init: RequestInit, allowFallback = true): Promise<Response> => {
       const controller = new AbortController();
       let timedOut = false;
       const timer = setTimeout(() => {
@@ -159,6 +156,11 @@ export const apiClient = {
       try {
         return await fetch(url, { ...init, signal: controller.signal });
       } catch (err: any) {
+        if (allowFallback && method === 'GET' && !isFormData && API_DIRECT_BASE_URL === 'https://api.dehub.io/api' && url.startsWith(`${API_DIRECT_BASE_URL}/`)) {
+          clearTimeout(timer);
+          url = API_RELAY_BASE_URL + url.slice(API_DIRECT_BASE_URL.length);
+          return withTimeout(init, false);
+        }
         // An abort we caused reads as a plain AbortError, which is
         // indistinguishable from a caller cancelling. Re-throw as our own type
         // so the difference survives.
