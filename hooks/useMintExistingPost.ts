@@ -1,8 +1,9 @@
 import { useCallback, useState } from "react";
 import { getContractsForMint } from "../libs/contract.factory";
 import { createAuthAdapter } from "../services/auth/authAdapter";
-import { getMintFee, mintExistingPost } from "../services/nft.service";
-import { mintNftOnChainWithFee, isShortOfMintFee } from "../services/mint.service";
+import { getMintFee, mintExistingPost, getNFT } from "../services/nft.service";
+import { mintNftOnChainWithFee, mintWithBounty, isShortOfMintFee } from "../services/mint.service";
+import { supportedTokens } from "../config/constants";
 import { getAuthMethod } from "../libs/auth.utils";
 import { toastError, toastSuccess } from "../libs/toast";
 
@@ -21,9 +22,21 @@ export function useMintExistingPost() {
       if (isMinting) return false;
       setIsMinting(true);
       try {
+        const post = (await getNFT(tokenId)).result as any;
+        chainId = Number(post.chainId || chainId);
+        const info = post.streamInfo;
+        const hasBounty = !!info?.isAddBounty;
+        const amount = Number(info?.addBountyAmount);
+        const viewers = Number(info?.addBountyFirstXViewers ?? 0);
+        const commenters = Number(info?.addBountyFirstXComments ?? 0);
+        const bountyToken = supportedTokens.find(t => t.chainId === chainId && t.symbol === info?.addBountyTokenSymbol);
+        if (hasBounty && (!bountyToken || !(amount > 0) || !Number.isFinite(amount) ||
+          !Number.isInteger(viewers) || viewers < 0 || !Number.isInteger(commenters) || commenters < 0 || viewers + commenters === 0)) {
+          throw new Error("Invalid bounty terms. Funding cannot be skipped.");
+        }
         // Only sponsored sessions are charged, so only they price it.
         const { method } = await getAuthMethod().catch(() => ({ method: null as null }));
-        const fee = method === "local" ? await getMintFee(chainId) : null;
+        const fee = !hasBounty && method === "local" ? await getMintFee(chainId) : null;
 
         // Checked before the signature is issued, so being short of DHB is a
         // clear message rather than a reverted transaction.
@@ -43,10 +56,13 @@ export function useMintExistingPost() {
           throw new Error("Mint signature payload missing from server response");
         }
 
-        const { collectionContract } = await getContractsForMint(chainId);
+        const { collectionContract, controllerContract } = await getContractsForMint(chainId);
         const provider = await createAuthAdapter().getProvider();
 
-        const tx = await mintNftOnChainWithFee(
+        const tx = hasBounty ? await mintWithBounty(
+          controllerContract, Number((sig as any).createdTokenId ?? tokenId), timestamp, v, r, s,
+          bountyToken!, amount, viewers, commenters, (sig as any)?.uri,
+        ) : await mintNftOnChainWithFee(
           collectionContract,
           provider,
           Number((sig as any).createdTokenId ?? tokenId),
