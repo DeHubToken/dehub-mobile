@@ -262,7 +262,7 @@ export default function DaoScreen() {
         refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />}
       />
 
-      <GlassModal visible={sheetOpen} onClose={() => setSheetOpen(false)} presentation="bottom" maxHeight="80%">
+      <GlassModal scrollable visible={sheetOpen} onClose={() => setSheetOpen(false)} presentation="bottom" maxHeight="80%">
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
           <View style={styles.sheet}>
             <Text style={styles.sheetTitle}>{t("dao.contribute")}</Text>
