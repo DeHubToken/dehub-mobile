@@ -292,7 +292,7 @@ export interface AudioPostPlayerProps {
   title?: string;
   artist?: string;
   artworkUrl?: string;
-  beforeFullscreen?: React.ReactNode;
+  topLeftAction?: React.ReactNode;
 }
 
 const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
@@ -306,7 +306,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   title,
   artist,
   artworkUrl,
-  beforeFullscreen,
+  topLeftAction,
 }) => {
   const playerRef = useRef<AudioPlayer | null>(null);
   /**
@@ -787,49 +787,50 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     />
   );
 
-  /* Volume and fullscreen ride the top corners of the artwork, matching the
-     web card. Both are rendered by `renderBody`, so the fullscreen modal gets
+  /* Bounty stays at the top left; volume sits immediately before fullscreen
+     on the right, matching the web card.
+     Both are rendered by `renderBody`, so the fullscreen modal gets
      them from the same code and the same state — the sound never reloads, it
      is one `playerRef` either way. */
   const renderTopChrome = () => (
     <View className="flex-row items-center justify-between mb-2">
-      <View
-        className="flex-row items-center gap-1.5 rounded-xl bg-white/10 px-2"
-        style={{ height: CONTROL_SIZE, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
-      >
-        <TouchableOpacity
-          onPress={handleToggleMute}
-          activeOpacity={0.7}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 4 }}
-        >
-          <Icon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} size={14} color="rgba(255,255,255,0.85)" />
-        </TouchableOpacity>
-        <View style={{ width: 72, height: CONTROL_SIZE, justifyContent: "center" }}>
-          <Slider
-            style={{ width: "100%" }}
-            minimumValue={0}
-            maximumValue={1}
-            step={0.01}
-            value={isEffectivelyMuted ? 0 : volume}
-            onValueChange={handleVolumeChange}
-            minimumTrackTintColor="rgba(255,255,255,0.85)"
-            maximumTrackTintColor="rgba(255,255,255,0.25)"
-            thumbTintColor="#ffffff"
-          />
-        </View>
-      </View>
-
+      {topLeftAction}
       <View className="flex-row items-center gap-2 ml-auto">
-      {beforeFullscreen}
-      <TouchableOpacity
-        onPress={() => setIsFullscreen((v) => !v)}
-        activeOpacity={0.7}
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-        className="rounded-xl bg-white/10 items-center justify-center"
-        style={{ width: CONTROL_SIZE, height: CONTROL_SIZE, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
-      >
-        <Icon name={isFullscreen ? "Minimize2" : "Maximize2"} size={15} color="#fff" />
-      </TouchableOpacity>
+        <View
+          className="flex-row items-center gap-1.5 rounded-xl bg-white/10 px-2"
+          style={{ height: CONTROL_SIZE, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
+        >
+          <TouchableOpacity
+            onPress={handleToggleMute}
+            activeOpacity={0.7}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 4 }}
+          >
+            <Icon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} size={14} color="rgba(255,255,255,0.85)" />
+          </TouchableOpacity>
+          <View style={{ width: 72, height: CONTROL_SIZE, justifyContent: "center" }}>
+            <Slider
+              style={{ width: "100%" }}
+              minimumValue={0}
+              maximumValue={1}
+              step={0.01}
+              value={isEffectivelyMuted ? 0 : volume}
+              onValueChange={handleVolumeChange}
+              minimumTrackTintColor="rgba(255,255,255,0.85)"
+              maximumTrackTintColor="rgba(255,255,255,0.25)"
+              thumbTintColor="#ffffff"
+            />
+          </View>
+        </View>
+
+        <TouchableOpacity
+          onPress={() => setIsFullscreen((v) => !v)}
+          activeOpacity={0.7}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          className="rounded-xl bg-white/10 items-center justify-center"
+          style={{ width: CONTROL_SIZE, height: CONTROL_SIZE, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
+        >
+          <Icon name={isFullscreen ? "Minimize2" : "Maximize2"} size={15} color="#fff" />
+        </TouchableOpacity>
       </View>
     </View>
   );
