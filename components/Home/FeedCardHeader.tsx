@@ -110,6 +110,17 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
 
       <View className="flex-row items-center gap-1">
         {isHidden && <Icon name="EyeOff" size={14} color={ICON_MUTED} />}
+        {onBoostPress && (
+          <Pressable
+            onPress={onBoostPress}
+            accessibilityRole="button"
+            accessibilityLabel="Boost post"
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            style={{ padding: 4, marginRight: 1.6 }}
+          >
+            <Icon name="Rocket" size={16} color={ICON_MUTED} />
+          </Pressable>
+        )}
         {onAiPress && (
           <Pressable
             onPress={onAiPress}
@@ -117,17 +128,6 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             style={{ padding: 4 }}
           >
             <Icon name="Sparkles" size={16} color={ICON_MUTED} />
-          </Pressable>
-        )}
-        {onBoostPress && (
-          <Pressable
-            onPress={onBoostPress}
-            accessibilityRole="button"
-            accessibilityLabel="Boost post"
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            style={{ padding: 4 }}
-          >
-            <Icon name="Rocket" size={16} color={ICON_MUTED} />
           </Pressable>
         )}
         {onMenuPress && (

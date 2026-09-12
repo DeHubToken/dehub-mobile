@@ -100,18 +100,15 @@ export default function BoostSheet({
     [status, postInfo, isOwnPost],
   );
 
-  // Default to the first one they can actually spend, so the common case is
-  // one tap. Resets between openings.
+  // Clear the choice on close so every opening starts neutral and the user
+  // explicitly picks which power to spend.
   useEffect(() => {
     if (!visible) {
       setChosen(null);
       setTargetAccount("");
       setTargetTiers([]);
-      return;
     }
-    if (chosen) return;
-    setChosen(powers.find(p => p.enabled)?.key ?? powers[0]?.key ?? null);
-  }, [visible, powers, chosen]);
+  }, [visible]);
 
   const active = powers.find(p => p.key === chosen);
   const numericTokenId = Number(tokenId);
