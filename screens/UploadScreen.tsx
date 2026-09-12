@@ -140,8 +140,7 @@ async function measureUploadBytes(payload: {
 
 const SHOW_TITLE_PREF_KEY = "@dhb_post_show_title";
 const MAX_IMAGE_SIZE_BYTES = 20 * 1024 * 1024; // 20 MB per image
-const MAX_VIDEO_SIZE_BYTES = 200 * 1024 * 1024; // 200 MB
-const MAX_AUDIO_SIZE_BYTES = MAX_VIDEO_SIZE_BYTES; // Match video uploads
+const BASE_MEDIA_UPLOAD_SIZE_BYTES = 1024 * 1024 * 1024; // 1 GB
 const MAX_AUDIO_DURATION_MS = 60_000; // 60 seconds
 const AUDIO_MIME_TYPES = ["audio/mpeg", "audio/wav", "audio/aac", "audio/ogg", "audio/x-m4a", "audio/mp4", "audio/webm"];
 const CATEGORIES_MIN = 0;
@@ -432,6 +431,8 @@ export default function UploadScreen() {
    * told they still owe for a post they have already paid for.
    */
   const [postQuota, setPostQuota] = useState<PostQuotaStatus | null>(null);
+  const mediaUploadLimitBytes = postQuota?.mediaBytesPerDay ?? BASE_MEDIA_UPLOAD_SIZE_BYTES;
+  const mediaUploadLimitLabel = `${Number((mediaUploadLimitBytes / (1024 ** 3)).toFixed(1))} GB`;
   useEffect(() => {
     if (!authUser?.address) {
       setPostQuota(null);
@@ -1284,8 +1285,8 @@ export default function UploadScreen() {
           try {
             const info = await FileSystem.getInfoAsync(asset.uri);
             const size = (info as any)?.size as number | undefined;
-            if (size && size > MAX_VIDEO_SIZE_BYTES) {
-              toastError("Video exceeds 200 MB limit. Please choose a smaller file.");
+            if (size && size > mediaUploadLimitBytes) {
+              toastError(`Video exceeds your ${postQuota?.tier || "base"} tier limit of ${mediaUploadLimitLabel}.`);
               return;
             }
           } catch {}
@@ -1297,7 +1298,7 @@ export default function UploadScreen() {
     } catch (err) {
       console.error("[UploadScreen] video change error:", err);
     }
-  }, [generateThumbnail]);
+  }, [generateThumbnail, mediaUploadLimitBytes, mediaUploadLimitLabel, postQuota?.tier]);
 
   /**
    * When a video or audio clip lands on a draft whose title is still empty,
@@ -1317,8 +1318,8 @@ export default function UploadScreen() {
       try {
         const info = await FileSystem.getInfoAsync(asset.uri);
         const size = (info as any)?.size as number | undefined;
-        if (size && size > MAX_VIDEO_SIZE_BYTES) {
-          toastError("Video exceeds 200 MB limit. Please choose a smaller file.");
+        if (size && size > mediaUploadLimitBytes) {
+          toastError(`Video exceeds your ${postQuota?.tier || "base"} tier limit of ${mediaUploadLimitLabel}.`);
           return false;
         }
       } catch {}
@@ -1328,7 +1329,7 @@ export default function UploadScreen() {
       generateThumbnail(asset.uri);
       return true;
     },
-    [generateThumbnail, movePendingBodyToTitle],
+    [generateThumbnail, movePendingBodyToTitle, mediaUploadLimitBytes, mediaUploadLimitLabel, postQuota?.tier],
   );
 
   /** Size-filters image assets and appends them up to the creator's badge cap. */
@@ -1647,8 +1648,8 @@ export default function UploadScreen() {
       const asset = result.assets[0];
 
       // Check file size
-      if (asset.size && asset.size > MAX_AUDIO_SIZE_BYTES) {
-        toastError("Audio file exceeds 200 MB limit.");
+      if (asset.size && asset.size > mediaUploadLimitBytes) {
+        toastError(`Audio exceeds your ${postQuota?.tier || "base"} tier limit of ${mediaUploadLimitLabel}.`);
         return;
       }
 
@@ -1661,7 +1662,7 @@ export default function UploadScreen() {
     } catch (e) {
       console.error("[UploadScreen] audio pick error:", e);
     }
-  }, [movePendingBodyToTitle]);
+  }, [movePendingBodyToTitle, mediaUploadLimitBytes, mediaUploadLimitLabel, postQuota?.tier]);
 
   const handleToggleAudioPreview = useCallback(async () => {
     try {
