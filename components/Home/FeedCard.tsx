@@ -1360,7 +1360,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 title={title}
                 artist={displayName}
                 artworkUrl={galleryImages[0]}
-                beforeFullscreen={isBounty ? (
+                topLeftAction={isBounty ? (
                   <TouchableOpacity
                     accessibilityLabel="Bounty Rewards"
                     onPress={handleBountyBadgePress}
