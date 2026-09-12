@@ -16,6 +16,7 @@ import {
 import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
 import PictureInPictureButton from "../common/PictureInPictureButton";
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../../libs/audioSession";
+import { feedSeekResponder } from "../../libs/feed-seek-responder";
 import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from "../../libs/video-preferences";
 import SmartImage from "../common/SmartImage";
@@ -826,21 +827,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     [videoDuration]
   );
 
-  // Pressable only reports the release point, so the thin timeline used to be
-  // tappable but could not actually be scrubbed. Claim gestures that begin in
-  // its generous invisible hit area and seek continuously as the thumb moves.
-  // Refusing termination also keeps the surrounding profile/feed FlatList from
-  // stealing a deliberate horizontal scrub halfway through it on Android.
   const seekPanResponder = useMemo(
-    () => PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: () => true,
-      onPanResponderGrant: (event) => handleSeek(event.nativeEvent.locationX),
-      onPanResponderMove: (event) => handleSeek(event.nativeEvent.locationX),
-      onPanResponderTerminationRequest: () => false,
-      onPanResponderRelease: startHideTimer,
-      onPanResponderTerminate: startHideTimer,
-    }),
+    () => PanResponder.create(feedSeekResponder(handleSeek, startHideTimer)),
     [handleSeek, startHideTimer],
   );
 

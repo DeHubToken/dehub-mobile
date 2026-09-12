@@ -427,7 +427,7 @@ const InfiniteFeedBase: React.FC<
         // fling, which is what threw the viewport when a page landed mid-scroll.
         // Omitting the prop is NOT off: RN defaults it to true on Android.
         removeClippedSubviews={false}
-        updateCellsBatchingPeriod={80}
+        updateCellsBatchingPeriod={50}
         contentContainerStyle={
           contentContainerStyle || { paddingBottom: 80 }
         }
