@@ -43,6 +43,7 @@ export enum ScreenNames {
   LiveChatInfo = 'LiveChatInfo',
   FullscreenVideo = 'FullscreenVideo',
   AIChat = 'AIChat',
+  Creator = 'Creator',
   Explore = 'Explore',
   UploadQueue = 'UploadQueue',
   ActiveSessions = 'ActiveSessions',
