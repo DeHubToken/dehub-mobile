@@ -156,7 +156,7 @@ export default function BoostSheet({
     <GlassModal visible={visible} onClose={onClose} presentation="bottom">
       <View className="px-5 pb-8 pt-4">
         <View className="mb-4 flex-row items-center gap-2">
-          <SuperPowerIcon power="boost" style={{ width: 32, height: 32 }} />
+          <Icon name="Zap" size={20} color="#fff" />
           <Text className="text-lg font-semibold text-white">SuperPowers</Text>
         </View>
 
