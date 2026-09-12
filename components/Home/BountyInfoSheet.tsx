@@ -124,6 +124,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
         }));
         return;
       }
+      if (response.error) throw new Error(String(response.error));
       setClaimState({
         viewerSignature: response.result?.viewer,
         commentorSignature: response.result?.commentor,
@@ -137,6 +138,8 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
         ...prev,
         loading: false,
         error: e?.message || "Failed to check eligibility",
+        viewerSignature: undefined,
+        commentorSignature: undefined,
       }));
     }
   }, [tokenId, isSignedIn, isMinter, userAddress]);
@@ -231,6 +234,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
           throw new Error("Switch to the bounty network before claiming");
         }
         const fresh = await getClaimBountySignature(tokenId);
+        if (fresh.error) throw new Error(String(fresh.error));
         const freshSignature = fresh.result?.[type];
         if (!freshSignature || fresh.result?.[`${type}_claimed`]) throw new Error("Not eligible");
         const tokenIdNum = typeof tokenId === "string" ? parseInt(tokenId, 10) : tokenId;
