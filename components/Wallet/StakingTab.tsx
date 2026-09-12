@@ -19,6 +19,7 @@ import { refreshStakingPosition } from "../../services/staking.service";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { confirmStake, readStakeReceipt, type StakeAttempt } from "../../libs/stake-confirmation";
 import { createLogger } from "../../libs/logger";
+import { legacyWalletAddresses } from "../../libs/legacy-wallet-addresses";
 const stakeLog = createLogger("Staking");
 const pendingStakeKey = (wallet: string) => `dehub:pending-stake:${wallet.toLowerCase()}`;
 const recordStakeEvent = (message: string, attempt: StakeAttempt, outcome?: string) => {
@@ -136,7 +137,10 @@ const StakingTab: React.FC = () => {
         return ethers.BigNumber.from(0);
       };
 
-      const [userWalletBal, totalStakedBal, dbRecords, legacyInfo, legacyEarned] =
+      const legacyAddresses = walletAddress
+        ? await legacyWalletAddresses(walletAddress)
+        : [];
+      const [userWalletBal, totalStakedBal, dbRecords, legacyInfos, legacyEarned] =
         await Promise.all([
           walletAddress
             ? baseDhb.balanceOf(walletAddress).catch(() => ethers.BigNumber.from(0))
@@ -152,17 +156,18 @@ const StakingTab: React.FC = () => {
           // what can be withdrawn, and `unlockAt` is what decides whether
           // `unstake()` would revert if we let them press it.
           legacyStaking
-            ? legacyStaking
-                .userInfos(walletAddress)
-                .then((info: any) => ({
-                  amount: info.totalAmount as ethers.BigNumber,
-                  unlockAt: Number(info.unlockAt ?? 0),
-                }))
-                .catch((err: unknown) => {
-                  legacyZero("userInfos")(err);
-                  return { amount: ethers.BigNumber.from(0), unlockAt: 0 };
-                })
-            : Promise.resolve({ amount: ethers.BigNumber.from(0), unlockAt: 0 }),
+            ? Promise.all(legacyAddresses.map((address) =>
+                legacyStaking.userInfos(address)
+                  .then((info: any) => ({
+                    amount: info.totalAmount as ethers.BigNumber,
+                    unlockAt: Number(info.unlockAt ?? 0),
+                  }))
+                  .catch((err: unknown) => {
+                    legacyZero("userInfos")(err);
+                    return { amount: ethers.BigNumber.from(0), unlockAt: 0 };
+                  }),
+              ))
+            : Promise.resolve([]),
           legacyStaking
             ? legacyStaking
                 .pendingHarvest(walletAddress)
@@ -186,6 +191,13 @@ const StakingTab: React.FC = () => {
       }
       if (dbStaked < 0) dbStaked = 0;
 
+      // Old positions can be keyed by either the owner EOA or DeHub's
+      // deterministic Safe. Keep the non-zero position instead of assuming
+      // the address form stored on the current profile is the one that staked.
+      const legacyInfo = legacyInfos.reduce(
+        (best, info) => info.amount.gt(best.amount) ? info : best,
+        { amount: ethers.BigNumber.from(0), unlockAt: 0 },
+      );
       const legacyStakedNum = parseFloat(
         ethers.utils.formatUnits(legacyInfo.amount, 18),
       );
