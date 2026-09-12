@@ -17,6 +17,7 @@
  * quotes it, so the number a paywall shows is the number that gets charged.
  */
 
+import { apiClient } from '../libs/api.client';
 import { useCallback, useEffect, useState } from 'react';
 import * as ethersImport from 'ethers';
 import { useWeb3Provider, useERC20Contract } from './use-web3';
@@ -156,6 +157,7 @@ export function useJobPayment(enabled = true): JobPaymentState {
       if (!supported) throw new Error(unsupportedChain || 'Unsupported chain.');
       if (!tokenContract || !account) throw new Error('Connect your wallet to pay for a generation.');
       if (!Number.isFinite(priceDhb) || priceDhb <= 0) throw new Error('Nothing to pay.');
+      await apiClient.fetch('/auth/verify');
 
       // Money already sent for a job that never ran is spent before asking for
       // more. The server is the record — not this device — so a payment
