@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ActivityIndicator, DeviceEventEmitter } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { getNFT, replacePostImage } from '../../services/nft.service';
+import { getNFT, replacePostImage, addPostImages, getPostImageAllowance } from '../../services/nft.service';
 import { ensureMediaLibraryPermission } from '../../libs/permissions.util';
 import { buildFeedImageUrls, toastError, toastSuccess } from '../../libs';
 
@@ -9,6 +9,7 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
   tokenId: number | string; disabled: boolean; onBusyChange: (busy: boolean) => void;
 }) {
   const [images, setImages] = useState<string[]>([]);
+  const [imageLimit, setImageLimit] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
@@ -17,6 +18,10 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
     let active = true;
     setLoading(true);
     setFailed(false);
+    setImageLimit(null);
+    getPostImageAllowance(tokenId).then(({ imageLimit }) => {
+      if (active) setImageLimit(imageLimit);
+    }).catch(() => { /* Replacement remains available if allowance cannot load. */ });
     getNFT(tokenId).then(({ result }) => {
       if (active) setImages(result.postType === 'feed-images' && Array.isArray(result.imageUrls) ? result.imageUrls : []);
     }).catch(() => { if (active) setFailed(true); })
@@ -49,13 +54,48 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
     }
   };
 
+  const add = async () => {
+    if (disabled || busyIndex !== null || imageLimit === null || images.length >= imageLimit) return;
+    setBusyIndex(-1);
+    onBusyChange(true);
+    try {
+      const permission = await ensureMediaLibraryPermission();
+      if (!permission.granted) { toastError('Media library permission is required'); return; }
+      const picked = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images, quality: 1,
+        allowsMultipleSelection: true, selectionLimit: imageLimit - images.length,
+      });
+      if (picked.canceled || !picked.assets?.length) return;
+      if (images.length + picked.assets.length > imageLimit) { toastError(`Your badge tier allows up to ${imageLimit} images per post`); return; }
+      if (picked.assets.some(image => (image.fileSize ?? 0) > 20 * 1024 * 1024)) { toastError('Images must be 20 MB or smaller'); return; }
+      const updated = await addPostImages(tokenId, picked.assets.map(image => ({
+        uri: image.uri, name: image.fileName || 'image.jpg', type: image.mimeType || 'image/jpeg',
+      })));
+      setImages(updated);
+      DeviceEventEmitter.emit('post-images-replaced', { tokenId: String(tokenId), imageUrls: updated });
+      toastSuccess('Images added');
+    } catch (error: any) {
+      toastError(error?.message || 'Could not add those images');
+    } finally {
+      setBusyIndex(null);
+      onBusyChange(false);
+    }
+  };
+
   if (loading) return <Text className="text-zinc-400 text-sm mb-4">Loading post images…</Text>;
   if (failed) return <TouchableOpacity onPress={() => setAttempt(value => value + 1)}><Text className="text-zinc-300 mb-4">Could not load post images. Retry</Text></TouchableOpacity>;
   if (!images.length) return null;
   const previews = buildFeedImageUrls(images, 320);
   return <View className="mb-4">
     <Text className="text-zinc-300 text-sm mb-2">Images</Text>
-    <Text className="text-zinc-400 text-xs mb-3">Choosing a replacement saves that image immediately. Your post keeps its link, views and comments.</Text>
+    <Text className="text-zinc-400 text-xs mb-3">Adding or replacing images saves immediately. Your post keeps its link, views and comments.</Text>
+    {imageLimit === null ? <TouchableOpacity disabled={disabled || busyIndex !== null} onPress={() => setAttempt(value => value + 1)}><Text className="text-zinc-400 text-xs mb-3">Image allowance unavailable. Retry</Text></TouchableOpacity> :
+      <Text className="text-zinc-400 text-xs mb-3">{images.length} / {imageLimit} images · Based on your badge tier</Text>}
+    <TouchableOpacity accessibilityRole="button" disabled={disabled || busyIndex !== null || imageLimit === null || images.length >= imageLimit}
+      onPress={() => void add()} className="rounded-xl border border-white/10 bg-white/5 p-3 mb-3"
+      style={{ opacity: disabled || busyIndex !== null || imageLimit === null || images.length >= imageLimit ? 0.5 : 1 }}>
+      <Text className="text-white text-sm text-center">{busyIndex === -1 ? 'Adding images…' : imageLimit !== null && images.length >= imageLimit ? 'Badge image limit reached' : 'Add images'}</Text>
+    </TouchableOpacity>
     <View className="flex-row flex-wrap gap-3">
       {previews.map((uri, index) => <TouchableOpacity key={index} disabled={disabled || busyIndex !== null}
         accessibilityRole="button" accessibilityLabel={`Replace image ${index + 1}`}
