@@ -1,6 +1,9 @@
 import {
+  clearPushTokenCache,
   getDefaultNotificationPreferences,
   mergePreferences,
+  registerPushTokenWithBackend,
+  unregisterCurrentDeviceToken,
   type NotificationPreferenceKey,
 } from '../../services/push/push.service';
 
@@ -15,6 +18,12 @@ jest.mock('expo-device', () => ({ isDevice: true }));
 jest.mock('../../libs/api.client', () => ({
   apiClient: { get: jest.fn(), post: jest.fn(), delete: jest.fn() },
 }));
+jest.mock('../../libs/device', () => ({
+  getDeviceId: jest.fn(async () => 'persistent-device-id'),
+  getDeviceName: jest.fn(() => 'Galaxy S24'),
+}));
+
+import { apiClient } from '../../libs/api.client';
 
 const ALL_KEYS: NotificationPreferenceKey[] = [
   'likes',
@@ -98,5 +107,40 @@ describe('services/push.service notification preferences', () => {
       expect((merged.inApp as any).somethingNew).toBe(false);
       expect(merged.inApp.likes).toBe(true);
     });
+  });
+});
+
+describe('services/push.service device identity', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    clearPushTokenCache();
+  });
+
+  it('registers an Expo token against the persistent device id', async () => {
+    (apiClient.post as jest.Mock).mockResolvedValue({ success: true });
+
+    await expect(
+      registerPushTokenWithBackend('ExponentPushToken[stable-token]'),
+    ).resolves.toBe(true);
+
+    expect(apiClient.post).toHaveBeenCalledWith(
+      '/push/token',
+      expect.objectContaining({
+        deviceId: 'persistent-device-id',
+        deviceName: 'Galaxy S24',
+      }),
+      { isAuthRequired: true },
+    );
+  });
+
+  it('unregisters the same persistent device id', async () => {
+    (apiClient.delete as jest.Mock).mockResolvedValue({ success: true });
+
+    await expect(unregisterCurrentDeviceToken()).resolves.toBe(true);
+
+    expect(apiClient.delete).toHaveBeenCalledWith(
+      '/push/token/persistent-device-id',
+      { isAuthRequired: true },
+    );
   });
 });

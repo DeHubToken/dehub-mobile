@@ -3,6 +3,7 @@ import * as Device from 'expo-device';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { apiClient } from '../../libs/api.client';
+import { getDeviceId, getDeviceName } from '../../libs/device';
 import { createLogger } from '../../libs/logger';
 
 const logger = createLogger('PushService');
@@ -376,13 +377,16 @@ export async function registerPushTokenWithBackend(token: string): Promise<boole
   backendRegistrationInProgress = true;
 
   try {
-    const deviceId = Device.deviceName || `${Platform.OS}-${Date.now()}`;
+    // Use the same persisted native identifier as auth sessions and request
+    // headers. A display name is neither unique nor stable, and changing it
+    // while Expo keeps the same token creates two rows for one token.
+    const deviceId = await getDeviceId();
     
     const payload: PushTokenPayload = {
       token,
       platform: Platform.OS as 'ios' | 'android',
       deviceId,
-      deviceName: Device.modelName || undefined,
+      deviceName: getDeviceName(),
     };
 
     const response = await apiClient.post('/push/token', payload, { isAuthRequired: true });
@@ -431,7 +435,7 @@ export async function unregisterPushTokens(): Promise<boolean> {
  */
 export async function unregisterCurrentDeviceToken(): Promise<boolean> {
   try {
-    const deviceId = Device.deviceName || `${Platform.OS}-${Date.now()}`;
+    const deviceId = await getDeviceId();
     await apiClient.delete(`/push/token/${encodeURIComponent(deviceId)}`, { isAuthRequired: true });
     logger.info('Current device push token unregistered');
     return true;
