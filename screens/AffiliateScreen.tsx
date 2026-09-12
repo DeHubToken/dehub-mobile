@@ -616,7 +616,7 @@ const styles = StyleSheet.create({
   intro: { color: "#A1A1AA", fontSize: 13, lineHeight: 19, marginTop: 6, marginBottom: 16 },
 
   fieldLabel: { color: "#A1A1AA", fontSize: 12, fontWeight: "600", marginTop: 14, marginBottom: 6 },
-  input: { minHeight: 44, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)", borderRadius: 10, backgroundColor: "rgba(255,255,255,0.04)", color: "#FFFFFF", paddingHorizontal: 12, paddingVertical: 10, fontSize: 14 },
+  input: { minHeight: 44, borderWidth: 1, borderColor: "rgba(255,255,255,0.15)", borderRadius: 10, backgroundColor: "#18181B", color: "#FFFFFF", paddingHorizontal: 12, paddingVertical: 10, fontSize: 14 },
   messageInput: { minHeight: 104 },
   preview: { marginTop: 18, borderWidth: 1, borderColor: "rgba(255,255,255,0.10)", borderRadius: 16, backgroundColor: "#000000", padding: 20, alignItems: "center" },
   previewLabel: { color: "#71717A", fontSize: 10, letterSpacing: 2, textTransform: "uppercase" },
