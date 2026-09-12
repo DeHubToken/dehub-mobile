@@ -8,11 +8,6 @@ import {
   Pressable,
   type LayoutChangeEvent,
 } from "react-native";
-import Reanimated, {
-  useSharedValue,
-  useAnimatedScrollHandler,
-  runOnJS,
-} from "react-native-reanimated";
 import { ScrollView as RNScrollView } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
@@ -125,7 +120,6 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 // guess drifted 8px per page here before, which desynced paging from the dots.
 const IMAGE_WIDTH = SCREEN_WIDTH - 40;
 
-const ReanimatedScrollView = Reanimated.createAnimatedComponent(RNScrollView);
 
 type PostContentType = "image" | "video" | "audio" | "live" | "short";
 
@@ -505,9 +499,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     useImageTranslation();
   const [showImgTranslationSheet, setShowImgTranslationSheet] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-
-  const scrollX = useSharedValue(0);
 
   // --- Handlers ---
   const handleUserPress = useCallback(() => {
@@ -917,44 +908,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     setIsDeleted(true);
   }, []);
 
-  // Image carousel scroll handler
-  const updateIndex = useCallback((index: number) => {
-    // onScroll fires per frame; only cross the worklet→JS bridge when the page
-    // actually changes, instead of ~60 setState calls a second while dragging.
-    setActiveImageIndex((prev) => (prev === index ? prev : index));
-  }, []);
-
-  // Measured width of the gallery's own box. Both the item width and the index
-  // maths read this, so paging and the dots can never disagree — which is what
-  // broke when the item width was a hardcoded guess wider than the viewport.
+  // The gallery width is the maximum width available to each image. Portrait
+  // images hug their rendered bitmap width so the next image follows directly.
   const [itemWidth, setItemWidth] = useState(IMAGE_WIDTH);
-  const itemWidthSV = useSharedValue(IMAGE_WIDTH);
-  const galleryScrollRef = useRef<RNScrollView>(null);
 
   const handleGalleryLayout = useCallback(
     (e: LayoutChangeEvent) => {
       const w = e.nativeEvent.layout.width;
-      if (w > 0 && w !== itemWidthSV.value) {
-        itemWidthSV.value = w;
-        setItemWidth(w);
-      }
+      if (w > 0) setItemWidth((current) => current === w ? current : w);
     },
-    [itemWidthSV],
-  );
-
-  const scrollHandler = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      scrollX.value = event.contentOffset.x;
-      const width = itemWidthSV.value || IMAGE_WIDTH;
-      runOnJS(updateIndex)(Math.round(event.contentOffset.x / width));
-    },
-  });
-
-  const scrollToGalleryImage = useCallback(
-    (index: number) => {
-      galleryScrollRef.current?.scrollTo({ x: index * itemWidth, animated: true });
-    },
-    [itemWidth],
+    [],
   );
 
   // Non-null only when this card sits inside a horizontal pager (Home). Lets the
@@ -1168,8 +1131,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       );
     }
     const gallery = (
-      <ReanimatedScrollView
-        ref={galleryScrollRef}
+      <RNScrollView
         horizontal
         nestedScrollEnabled
         directionalLockEnabled
@@ -1177,21 +1139,24 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         // of forcing every gesture to stop after exactly one image.
         showsHorizontalScrollIndicator={false}
         onLayout={handleGalleryLayout}
-        onScroll={scrollHandler}
-        scrollEventThrottle={16}
         decelerationRate="normal"
       >
         {galleryImages.map((uri, index) => (
-          <Pressable key={index} onPress={() => handleImagePress(index)} style={{ width: itemWidth }}>
+          <Pressable
+            key={index}
+            onPress={() => handleImagePress(index)}
+            style={{ marginRight: index === galleryImages.length - 1 ? 0 : 8 }}
+          >
             <ContainedFeedImage
               uri={uri}
               width={itemWidth}
+              compact
               fallbackWidth={IMAGE_WIDTH}
               priority={prioritizeMedia && index === 0 ? "high" : "normal"}
             />
           </Pressable>
         ))}
-      </ReanimatedScrollView>
+      </RNScrollView>
     );
 
     return (
@@ -1201,45 +1166,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             threshold first and cancels the gallery scroll mid-drag. Elsewhere
             (profile, search) the hook returns null and this renders bare. */}
         {scrollGuard ? <GestureDetector gesture={scrollGuard}>{gallery}</GestureDetector> : gallery}
-        {/* Mobile galleries use fixed, full-width pages, so neighbouring
-            images never peek into view and controls are useful on every page. */}
-        {activeImageIndex > 0 && (
-          <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityLabel="Previous image"
-            onPress={() => scrollToGalleryImage(activeImageIndex - 1)}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl dark-surface bg-black/40 border border-white/10 items-center justify-center"
-          >
-            <Icon name="ChevronLeft" size={20} color="#fff" />
-          </TouchableOpacity>
-        )}
-        {activeImageIndex < galleryImages.length - 1 && (
-          <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityLabel="Next image"
-            onPress={() => scrollToGalleryImage(activeImageIndex + 1)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl dark-surface bg-black/40 border border-white/10 items-center justify-center"
-          >
-            <Icon name="ChevronRight" size={20} color="#fff" />
-          </TouchableOpacity>
-        )}
-        {/* pointerEvents="none" is load-bearing, not tidiness. This counter is
-            drawn above the guarded scroller. RNGH's orchestrator walks children in reverse drawing
-            order and stops at the first subtree that claims the pointer
-            (extractGestureHandlers -> shouldHandlerlessViewBecomeTouchTarget),
-            so a drag starting on the pill would never reach the
-            ScrollView's native handler — while the pager's pan, being an
-            ancestor, still gets recorded. The guard then has nothing to block
-            and the page turns. The counter is not interactive, so ignoring
-            touches costs nothing and lets taps fall through to the viewer. */}
-        <View
-          pointerEvents="none"
-          className="absolute top-3 right-3 dark-surface bg-black/60 rounded-full px-2.5 py-1"
-        >
-          <Text className="text-white text-xs font-medium">
-            {activeImageIndex + 1}/{galleryImages.length}
-          </Text>
-        </View>
       </View>
     );
   };

@@ -8,6 +8,8 @@ interface ContainedFeedImageProps {
   uri: string;
   /** Fixed carousel page width. Omit for a single image that fills its parent. */
   width?: number;
+  /** Hug the rendered bitmap width instead of reserving the full feed column. */
+  compact?: boolean;
   fallbackWidth: number;
   priority?: "low" | "normal" | "high";
 }
@@ -16,6 +18,7 @@ interface ContainedFeedImageProps {
 const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   uri,
   width,
+  compact = false,
   fallbackWidth,
   priority,
 }) => {
@@ -37,7 +40,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
     <View
       onLayout={handleLayout}
       style={{
-        width: width ?? "100%",
+        width: compact ? dimensions.width : (width ?? "100%"),
         height: dimensions.height,
         alignItems: "flex-start",
       }}
