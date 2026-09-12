@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
   View,
+  ActivityIndicator,
   FlatList,
   RefreshControl,
   ListRenderItem,
@@ -449,16 +450,16 @@ const InfiniteFeedBase: React.FC<
             tintColor={theme.colors.accent}
           />
         }
-        ListFooterComponent={
-          loadingMore ? (
-            <View className="px-2 pt-2">
-              <FeedCardSkeleton count={2} />
+          ListFooterComponent={
+            // Match Home's fixed footer: removing two skeleton cards when a
+            // page settles shrinks the list and clamps the reader's position.
+            <View style={{ height: 84 }} className="items-center justify-center">
+              {loadingMore ? (
+                <ActivityIndicator size="large" color={theme.colors.accent} />
+              ) : endReached && items.length > 0 ? (
+                <Text className="text-theme-neutrals-400 text-xs">No more posts</Text>
+              ) : null}
             </View>
-          ) : endReached && items.length > 0 ? (
-            <View className="px-4 py-6 items-center">
-              <Text className="text-theme-neutrals-400 text-xs">No more posts</Text>
-            </View>
-          ) : null
         }
       />
       {enableBackToTop && showBackToTop && (
