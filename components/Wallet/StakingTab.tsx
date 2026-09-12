@@ -21,6 +21,12 @@ import { confirmStake, readStakeReceipt, type StakeAttempt } from "../../libs/st
 import { createLogger } from "../../libs/logger";
 const stakeLog = createLogger("Staking");
 const pendingStakeKey = (wallet: string) => `dehub:pending-stake:${wallet.toLowerCase()}`;
+const recordStakeEvent = (message: string, attempt: StakeAttempt, outcome?: string) => {
+  void supabase.functions.invoke('client-logs', { body: {
+    level: 'info', component: 'Staking', message, user_address: attempt.wallet,
+    metadata: { ...attempt, outcome, client_time: new Date().toISOString() },
+  } }).catch(() => {});
+};
 import { FIELD_TEXT } from "../../theme/inputs";
 
 const DHB_BASE = "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c";
@@ -264,7 +270,7 @@ const StakingTab: React.FC = () => {
       } else {
         toastError('The blockchain confirmed this transaction reverted.');
       }
-      stakeLog.error('Stake outcome verified', { hash: attempt.hash, chainId: attempt.chainId, outcome });
+      recordStakeEvent('Stake outcome verified', attempt, outcome);
       try { await AsyncStorage.removeItem(pendingStakeKey(attempt.wallet)); } catch {}
       setPendingStake(previous => previous?.hash === attempt.hash ? null : previous);
     } finally { checkingStake.current = false; }
@@ -342,7 +348,7 @@ const StakingTab: React.FC = () => {
       setAmount('');
       try { await AsyncStorage.setItem(pendingStakeKey(walletAddress), JSON.stringify(attempt)); }
       catch (error) { stakeLog.error('Pending stake storage unavailable', { hash: txHash }, String(error)); }
-      stakeLog.error('Stake submitted; awaiting receipt', { ...attempt });
+      recordStakeEvent('Stake submitted; awaiting receipt', attempt);
       toastInfo('Stake submitted. Checking confirmation — do not send it again.');
     } catch (err: any) {
       stakeLog.error('Stake request unresolved', { wallet: walletAddress }, err);
