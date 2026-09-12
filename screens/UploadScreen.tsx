@@ -2926,7 +2926,7 @@ export default function UploadScreen() {
       />
 
       {/* Live options sheet — Go Live or Start Stage */}
-      <GlassModal
+      <GlassModal scrollable
         visible={showLiveOptions}
         onClose={() => setShowLiveOptions(false)}
         presentation="bottom"

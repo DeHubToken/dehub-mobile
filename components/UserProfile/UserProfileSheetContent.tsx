@@ -407,7 +407,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
       />
       {!isFullScreen && <View style={{ height: 40 }} />}
 
-      <GlassModal
+      <GlassModal scrollable
         visible={showProfileMenu}
         onClose={() => setShowProfileMenu(false)}
         presentation="bottom"

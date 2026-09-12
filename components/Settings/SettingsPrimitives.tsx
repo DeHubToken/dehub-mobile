@@ -188,7 +188,7 @@ export const SettingsOptionModal: React.FC<{
   onSelect: (value: string) => void;
   maxHeight?: string;
 }> = ({ visible, onClose, title, value, options, onSelect, maxHeight = '50%' }) => (
-  <GlassModal
+  <GlassModal scrollable
     visible={visible}
     onClose={onClose}
     presentation="bottom"
