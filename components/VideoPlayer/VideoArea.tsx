@@ -367,6 +367,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
         loop
         liveMode={!!isLive}
         hideTopControls={hideTopControls}
+        fillContainer={fullscreen}
         muted={muted}
         onVideoSize={onVideoSize}
         tokenId={isLive ? undefined : tokenId}
