@@ -842,7 +842,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           }
         }
         onEndReached={endReached ? undefined : loadMore}
-        onEndReachedThreshold={0.8}
+        onEndReachedThreshold={2.5}
         extraData={extraData}
         onScroll={scrollHandler ?? handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
