@@ -51,8 +51,6 @@ import { linkingConfig } from "./navigation/linking.config";
 import { loadMutedState } from "./libs/videoMutedState";
 import { warmVideoPreferences } from "./libs/video-preferences";
 import { loadHueState } from "./libs/audioHueState";
-import UpdateAppModal from "./components/UpdateAppModal";
-import { useAppUpdate } from "./hooks/useAppUpdate";
 import { useNavigationPersistence } from "./hooks/useNavigationPersistence";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { I18nextProvider } from "react-i18next";
@@ -246,8 +244,6 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const { colors, isLight } = useAppTheme();
   const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
   const user = useUser();
-  // Only run update checks in production builds
-  const { updateInfo, showModal, closeModal } = useAppUpdate();
   const isAuthenticated = isSignedIn && !needsUsername;
 
   useUploadProcessor();
@@ -397,16 +393,6 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
         </SafeAreaView>
       ) : null}
       <UploadProgressPill />
-      {!__DEV__ && (
-        <UpdateAppModal
-          visible={showModal}
-          onClose={closeModal}
-          isRequired={updateInfo.isRequired}
-          version={updateInfo.latestVersion}
-          releaseNotes={updateInfo.releaseNotes}
-          downloadUrl={updateInfo.downloadUrl}
-        />
-      )}
       {/* The preloader. Opaque, edge-to-edge, above everything; taps land on
           it until the fade starts, which is the point — there is nothing to
           interact with underneath until the reveal begins. */}
