@@ -30,7 +30,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { formatCompactNumber, toastError, toastSuccess } from "../../libs";
 import { getClaimBountySignature, type BountySignature } from "../../services/nft.service";
-import { useStreamControllerContract } from "../../hooks/use-web3";
+import { useStreamControllerContract, useWeb3Provider } from "../../hooks/use-web3";
+import { isV3Chain } from "../../config/constants";
+import { ethers } from "ethers";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { writeContractAA } from "../../libs/aa.write";
 
@@ -45,6 +47,7 @@ export interface BountyInfoSheetProps {
   visible: boolean;
   onClose: () => void;
   tokenId: number | string;
+  chainId?: number;
   minter?: string;
   bountyAmount: number;
   bountyTokenSymbol: string;
@@ -68,6 +71,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
   visible,
   onClose,
   tokenId,
+  chainId: bountyChainId,
   minter,
   bountyAmount,
   bountyTokenSymbol,
@@ -78,7 +82,8 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
   const insets = useSafeAreaInsets();
   const user = useUser();
   const { isSignedIn } = useAuthState();
-  const { requireAuth } = useAuthActions();
+  const { requireAuth, switchChain } = useAuthActions();
+  const { chainId: walletChainId } = useWeb3Provider();
   const streamController = useStreamControllerContract();
 
   const translateY = useSharedValue(SHEET_MAX_HEIGHT);
@@ -134,7 +139,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
         error: e?.message || "Failed to check eligibility",
       }));
     }
-  }, [tokenId, isSignedIn, isMinter]);
+  }, [tokenId, isSignedIn, isMinter, userAddress]);
 
   useEffect(() => {
     if (visible && isSignedIn) checkEligibility();
@@ -222,12 +227,23 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
       setTxPending(true);
 
       try {
+        if (!bountyChainId || walletChainId !== bountyChainId) {
+          throw new Error("Switch to the bounty network before claiming");
+        }
+        const fresh = await getClaimBountySignature(tokenId);
+        const freshSignature = fresh.result?.[type];
+        if (!freshSignature || fresh.result?.[`${type}_claimed`]) throw new Error("Not eligible");
         const tokenIdNum = typeof tokenId === "string" ? parseInt(tokenId, 10) : tokenId;
-
+        const v3 = isV3Chain(bountyChainId);
+        if (v3 && (!freshSignature.signature || !freshSignature.deadline)) throw new Error("Missing bounty claim signature");
+        const claimContract = v3 ? new ethers.Contract(streamController.address,
+          ["function claimBounty(uint256 tokenId, uint8 bountyType, uint256 deadline, bytes signature)"],
+          streamController.signer) : streamController;
         const tx = await writeContractAA(
-          streamController,
+          claimContract,
           "claimBounty",
-          [tokenIdNum, signature.r, signature.s, signature.v, bountyType],
+          v3 ? [tokenIdNum, bountyType, freshSignature.deadline, freshSignature.signature]
+            : [tokenIdNum, freshSignature.r, freshSignature.s, freshSignature.v, bountyType],
           { context: "claimBounty" },
         );
 
@@ -270,7 +286,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
         setTxPending(false);
       }
     });
-  }, [pendingClaimType, claimState, streamController, tokenId, requireAuth, onBountyClaimed]);
+  }, [pendingClaimType, claimState, streamController, tokenId, requireAuth, onBountyClaimed, bountyChainId, walletChainId]);
 
   const handleSuccessDone = useCallback(() => {
     setSheetView("info");
@@ -299,11 +315,17 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
     if (canClaim) {
       return (
         <TouchableOpacity
-          onPress={() => handleClaimPress(type)}
+          onPress={async () => {
+            if (bountyChainId && walletChainId !== bountyChainId) {
+              try { await switchChain(bountyChainId); } catch (error: any) { toastError(error?.message || "Unable to switch network"); }
+              return;
+            }
+            handleClaimPress(type);
+          }}
           style={styles.claimBtn}
           activeOpacity={0.7}
         >
-          <Text style={styles.claimBtnText}>Claim</Text>
+          <Text style={styles.claimBtnText}>{bountyChainId && walletChainId !== bountyChainId ? "Switch network" : "Claim"}</Text>
         </TouchableOpacity>
       );
     }
