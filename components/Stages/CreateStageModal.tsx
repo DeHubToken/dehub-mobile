@@ -168,7 +168,7 @@ const CreateStageModal: React.FC = () => {
   // post renders the same card.
   if (scheduledLink) {
     return (
-      <GlassModal visible onClose={() => { reset(); closeModal(); }} presentation="bottom">
+      <GlassModal scrollable visible onClose={() => { reset(); closeModal(); }} presentation="bottom">
         <View style={styles.container}>
           <View style={styles.successIcon}>
             <Icon name="Check" size={26} color="#FFFFFF" />

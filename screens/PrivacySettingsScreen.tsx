@@ -748,7 +748,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       </GlassModal>
 
       {/* Follower Visibility Picker */}
-      <GlassModal
+      <GlassModal scrollable
         visible={showFollowerVisModal}
         onClose={() => setShowFollowerVisModal(false)}
         presentation="bottom"
@@ -783,7 +783,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       </GlassModal>
 
       {/* Post Visibility Picker */}
-      <GlassModal
+      <GlassModal scrollable
         visible={showPostVisModal}
         onClose={() => setShowPostVisModal(false)}
         presentation="bottom"
