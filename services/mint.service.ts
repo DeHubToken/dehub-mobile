@@ -152,9 +152,12 @@ export async function mintNftOnChainWithFee(
   if (!collectable) {
     return mintNftOnChain(streamCollectionContract, createdTokenId, timestamp, v, r, s, uri);
   }
-  if (!streamCollectionContract) throw new Error("Collection contract unavailable");
+    if (!streamCollectionContract) throw new Error("Collection contract unavailable");
 
-  const amountBN = ethers.utils.parseUnits(fee!.amount.toFixed(fee!.decimals), fee!.decimals);
+    const { currentMintFeeRecipient } = await import('./mint-fee-recipient');
+    const { chainId } = await streamCollectionContract.provider.getNetwork();
+    fee = { ...fee!, recipient: await currentMintFeeRecipient(Number(chainId)) };
+    const amountBN = ethers.utils.parseUnits(fee!.amount.toFixed(fee!.decimals), fee!.decimals);
   const path = uri ?? `${createdTokenId}.json`;
   const mintData = streamCollectionContract.interface.encodeFunctionData("mint", [
     createdTokenId,
