@@ -2,6 +2,7 @@ import { isHoldGated } from "../../libs/content-gate";
 import React, { memo, useCallback, useRef, useState, useMemo, useEffect } from "react";
 import {
   View,
+  DeviceEventEmitter,
   Text,
   TouchableOpacity,
   Dimensions,
@@ -255,15 +256,22 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     userAddress && minterAddress && userAddress.toLowerCase() === minterAddress.toLowerCase()
   );
 
+  const [replacementImages, setReplacementImages] = useState<{ tokenId: string; imageUrls: string[] } | null>(null);
+  useEffect(() => {
+    const subscription = DeviceEventEmitter.addListener('post-images-replaced', (updated: { tokenId: string; imageUrls: string[] }) => {
+      if (updated.tokenId === String(tokenId)) setReplacementImages(updated);
+    });
+    return () => subscription.remove();
+  }, [tokenId]);
   // --- Gallery images (for image posts) ---
   const galleryImages = useMemo(() => {
-    const urls: string[] = Array.isArray(item.imageUrls) ? item.imageUrls : [];
+    const urls: string[] = replacementImages?.tokenId === String(tokenId) ? replacementImages.imageUrls : Array.isArray(item.imageUrls) ? item.imageUrls : [];
     // Through the image CDN with a resize, like the single-image path — the
     // API-origin URLs served full-resolution originals on every scroll.
     if (urls.length > 0) return buildFeedImageUrls(urls, 640);
     const single = getImageUrl(item.imageUrl || item.thumbnailUrl || "");
     return single ? [single] : [];
-  }, [item]);
+  }, [item, tokenId, replacementImages]);
   const hasImages = galleryImages.length > 0;
   const hasMultipleImages = galleryImages.length > 1;
 
