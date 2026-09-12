@@ -1171,6 +1171,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       <ReanimatedScrollView
         ref={galleryScrollRef}
         horizontal
+        nestedScrollEnabled
+        directionalLockEnabled
         // Let a flick carry its natural momentum across the whole strip instead
         // of forcing every gesture to stop after exactly one image.
         showsHorizontalScrollIndicator={false}
