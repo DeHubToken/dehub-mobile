@@ -1,3 +1,4 @@
+import SheetDismissHandle from "../../ui/SheetDismissHandle";
 /**
  * AdminRightsSheet
  * ================
@@ -177,7 +178,7 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         <Pressable style={styles.overlay} onPress={onClose}>
         <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
-          <View style={styles.header}>
+          <SheetDismissHandle onClose={onClose} style={styles.header}>
             <Icon name="Shield" size={20} color="#fff" />
             <View style={{ flex: 1 }}>
               <Text className="text-white text-sm font-mono" numberOfLines={1}>
@@ -197,7 +198,7 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
             >
               <Icon name="X" size={20} color="#808089" />
             </TouchableOpacity>
-          </View>
+          </SheetDismissHandle>
 
           <ScrollView
             style={styles.body}

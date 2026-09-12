@@ -86,6 +86,7 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
       visible={visible}
       onClose={onClose}
       presentation="bottom"
+      scrollable
       maxHeight="70%"
       blurIntensity={50}
     >

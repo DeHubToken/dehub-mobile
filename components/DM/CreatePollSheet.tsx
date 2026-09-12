@@ -1,3 +1,4 @@
+import SheetDismissHandle from "../ui/SheetDismissHandle";
 import React, { useState, useCallback } from "react";
 import {
   View,
@@ -110,7 +111,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
           style={{ paddingBottom: insets.bottom + 16 }}
         >
           {/* Header */}
-          <View className="flex-row items-center justify-between px-4 pt-4 pb-2 border-b border-theme-neutrals-700/50">
+          <SheetDismissHandle onClose={onClose} className="flex-row items-center justify-between px-4 pt-4 pb-2 border-b border-theme-neutrals-700/50">
             <TouchableOpacity
               onPress={onClose}
               className="p-1"
@@ -140,7 +141,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
                 </Text>
               )}
             </TouchableOpacity>
-          </View>
+          </SheetDismissHandle>
 
           <ScrollView
             className="px-4 pt-3"
