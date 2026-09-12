@@ -929,6 +929,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // broke when the item width was a hardcoded guess wider than the viewport.
   const [itemWidth, setItemWidth] = useState(IMAGE_WIDTH);
   const itemWidthSV = useSharedValue(IMAGE_WIDTH);
+  const galleryScrollRef = useRef<RNScrollView>(null);
 
   const handleGalleryLayout = useCallback(
     (e: LayoutChangeEvent) => {
@@ -948,6 +949,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       runOnJS(updateIndex)(Math.round(event.contentOffset.x / width));
     },
   });
+
+  const scrollToGalleryImage = useCallback(
+    (index: number) => {
+      galleryScrollRef.current?.scrollTo({ x: index * itemWidth, animated: true });
+    },
+    [itemWidth],
+  );
 
   // Non-null only when this card sits inside a horizontal pager (Home). Lets the
   // multi-image gallery below keep its own swipes — see renderImageContent.
@@ -1161,6 +1169,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
     const gallery = (
       <ReanimatedScrollView
+        ref={galleryScrollRef}
         horizontal
         // Let a flick carry its natural momentum across the whole strip instead
         // of forcing every gesture to stop after exactly one image.
@@ -1190,6 +1199,28 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             threshold first and cancels the gallery scroll mid-drag. Elsewhere
             (profile, search) the hook returns null and this renders bare. */}
         {scrollGuard ? <GestureDetector gesture={scrollGuard}>{gallery}</GestureDetector> : gallery}
+        {/* Mobile galleries use fixed, full-width pages, so neighbouring
+            images never peek into view and controls are useful on every page. */}
+        {activeImageIndex > 0 && (
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel="Previous image"
+            onPress={() => scrollToGalleryImage(activeImageIndex - 1)}
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl dark-surface bg-black/40 border border-white/10 items-center justify-center"
+          >
+            <Icon name="ChevronLeft" size={20} color="#fff" />
+          </TouchableOpacity>
+        )}
+        {activeImageIndex < galleryImages.length - 1 && (
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel="Next image"
+            onPress={() => scrollToGalleryImage(activeImageIndex + 1)}
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl dark-surface bg-black/40 border border-white/10 items-center justify-center"
+          >
+            <Icon name="ChevronRight" size={20} color="#fff" />
+          </TouchableOpacity>
+        )}
         {/* pointerEvents="none" is load-bearing, not tidiness. This counter is
             drawn above the guarded scroller. RNGH's orchestrator walks children in reverse drawing
             order and stops at the first subtree that claims the pointer
