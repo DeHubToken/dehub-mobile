@@ -2883,5 +2883,36 @@
     "cancel": "キャンセル",
     "remove": "削除",
     "thisUser": "このユーザー"
+  },
+  "reactionInfo": {
+    "title": "リアクション",
+    "privateTitle": "リアクションは非公開です",
+    "privateDescription": "投稿者のみがこのリストを閲覧できます。",
+    "empty": "リアクションはまだありません",
+    "emptyDescription": "この投稿に対するリアクションはここに表示されます。",
+    "anonymous": "匿名のバッジホルダーからの{{count}}のいいね",
+    "labels": {
+      "like": "いいね",
+      "love": "愛",
+      "respect": "リスペクト",
+      "hot": "ホット",
+      "hundred": "100",
+      "lol": "笑",
+      "sad": "悲しい",
+      "cry": "泣いている",
+      "dislike": "嫌い"
+    },
+    "mediaSource": "メディアソースを選択",
+    "photoLibrary": "フォトライブラリ",
+    "videoFiles": "ファイルからのビデオ",
+    "fileError": "この動画を開けませんでした。 別のファイルをお試しください。",
+    "reactedPost": "{{name}}さんがあなたの投稿に反応しました",
+    "repostedPost": "{{name}}さんがあなたの投稿を再投稿しました",
+    "quotedPost": "{{name}}さんがあなたの投稿を引用しました",
+    "mentionedYou": "{{name}}さんがあなたをメンションしました",
+    "followRequest": "{{name}}さんがあなたのフォローをリクエストしています",
+    "followAccepted": "{{name}}さんがあなたのフォローリクエストを承認しました",
+    "signalFlare": "{{name}}が信号フレアを送信しました",
+    "newMessage": "{{name}}さんからメッセージが届いています"
   }
 }

@@ -465,7 +465,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     if (isStarting && isPlaying && firstFrameRendered) endStarting();
   }, [isStarting, isPlaying, firstFrameRendered, endStarting]);
 
+  const playbackAllowedRef = useRef(false);
   const stopPlayback = useCallback(() => {
+    playbackAllowedRef.current = false;
+    pendingPlayRef.current = false;
+    if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; }
     try { playerRef.current?.pause(); } catch {}
     isPlayingRef.current = false;
     userStartedRef.current = false;
@@ -479,12 +483,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     if (!playerRef.current || !canPlay) return;
     try { stopActivePreview(); } catch {}
     requestFeedVideoFocus(stopPlayback);
+    if (!getCachedMuted()) requestAudioFocus(stopPlayback);
+    playbackAllowedRef.current = true;
     // The player is a native shared object that expo-video releases when the
     // card scrolls off-screen. A deferred call (autoplay timer) can land after
     // release and throw "Cannot use shared object that was already released".
     try {
       playerRef.current.play();
     } catch {
+      stopPlayback();
       return;
     }
     isPlayingRef.current = true;
@@ -526,6 +533,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     try {
       subs.push(
         player.addListener("playingChange", ({ isPlaying: playing }) => {
+          // Native readiness can arrive after another card claimed playback.
+          if (playing && !playbackAllowedRef.current) {
+            try { player.pause(); } catch {}
+            return;
+          }
           isPlayingRef.current = playing;
           setIsPlaying(playing);
         })

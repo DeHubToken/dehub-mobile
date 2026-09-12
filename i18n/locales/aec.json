@@ -2814,5 +2814,37 @@
     "cancel": "إلغاء",
     "remove": "إزالة",
     "thisUser": "الزول دا"
+  },
+  "reactionInfo": {
+    "title": "التفاعلات",
+    "privateTitle": "التفاعلات خاصة",
+    "privateDescription": "بس صاحب البوست اللي يقدر يشوف القايمة دي.",
+    "empty": "ما فيش تفاعلات لسه",
+    "emptyDescription": "التفاعلات على البوست ده هتظهر هنا.",
+    "anonymous": "{{count}} إعجابات من حاملي الشارة المجهولة",
+    "labels": {
+      "like": "إعجاب",
+      "love": "حب",
+      "respect": "احترام",
+      "hot": "ساخن",
+      "hundred": "100",
+      "lol": "ضحك",
+      "sad": "حزن",
+      "cry": "بكاء",
+      "poo": "براز",
+      "dislike": "عدم الإعجاب"
+    },
+    "mediaSource": "اختار مصدر الوسائط",
+    "photoLibrary": "مكتبة الصور",
+    "videoFiles": "فيديو من الملفات",
+    "fileError": "ما قدرت أفتح الفيديو ده. حاول ملف تاني.",
+    "reactedPost": "{{name}} عجبه البوست بتاعك",
+    "repostedPost": "{{name}} أعاد نشر البوست بتاعك",
+    "quotedPost": "{{name}} علق على البوست بتاعك",
+    "mentionedYou": "{{name}} ذكرك",
+    "followRequest": "{{name}} طلب يتابعك",
+    "followAccepted": "{{name}} قبل طلب المتابعة بتاعك",
+    "signalFlare": "{{name}} بعتلك Signal Flare",
+    "newMessage": "{{name}} بعتلك رسالة"
   }
 }

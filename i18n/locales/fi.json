@@ -2814,5 +2814,37 @@
     "cancel": "Peruuta",
     "remove": "Poista",
     "thisUser": "Tämä käyttäjä"
+  },
+  "reactionInfo": {
+    "title": "Reaktiot",
+    "privateTitle": "Reaktiot ovat yksityisiä",
+    "privateDescription": "Vain artikkelin kirjoittaja voi tarkastella tätä luetteloa.",
+    "empty": "Ei vielä reaktioita",
+    "emptyDescription": "Reaktiot tähän julkaisuun näkyvät täällä.",
+    "anonymous": "{{count}} tykkäystä nimettömiltä merkkien haltijoilta",
+    "labels": {
+      "like": "Tykkää",
+      "love": "Rakkaus",
+      "respect": "Kunnioitus",
+      "hot": "Kuuma",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Surullinen",
+      "cry": "Itku",
+      "poo": "Kakka",
+      "dislike": "En pidä"
+    },
+    "mediaSource": "Valitse medialähde",
+    "photoLibrary": "Valokuvakirjasto",
+    "videoFiles": "Video tiedostoista",
+    "fileError": "Tätä videota ei voitu avata. Yritä toista tiedostoa.",
+    "reactedPost": "{{name}} reagoi julkaisuusi",
+    "repostedPost": "{{name}} julkaisi julkaisusi uudelleen",
+    "quotedPost": "{{name}} siteerasi julkaisuasi",
+    "mentionedYou": "{{name}} mainitsi sinut",
+    "followRequest": "{{name}} pyysi seuraamaan sinua",
+    "followAccepted": "{{name}} hyväksyi seurantapyyntösi",
+    "signalFlare": "{{name}} lähetti signaalileimauksen",
+    "newMessage": "{{name}} lähetti sinulle viestin"
   }
 }

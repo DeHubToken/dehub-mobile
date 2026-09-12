@@ -1336,6 +1336,8 @@ export async function getUserReportStatus(userId: string): Promise<ReportStatusR
 
 // Who liked a post
 export interface LikerUser {
+  badgeBalance?: number | string;
+  hideBadgeAndBalance?: boolean;
   address: string;
   username?: string;
   displayName?: string;
@@ -1353,6 +1355,7 @@ export interface GetPostLikersInput {
 }
 
 export interface GetPostLikersResult {
+  weightedTotalCount?: number;
   /**
    * False for anyone but the post's owner/minter — and then `data` is empty
    * because the server withheld it, not because nobody reacted. Check this
@@ -1416,6 +1419,7 @@ export async function getPostLikers(input: GetPostLikersInput): Promise<GetPostL
     const res = await apiClient.get<GetPostLikersResult>(`/post-likers?${q.toString()}`);
     if (!res) return empty;
     return {
+      weightedTotalCount: res.weightedTotalCount,
       canViewLikers: !!res.canViewLikers,
       data: Array.isArray(res.data) ? res.data : [],
       reactionCounts: res.reactionCounts ?? null,

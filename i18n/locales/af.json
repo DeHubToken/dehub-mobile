@@ -2931,5 +2931,37 @@
     "cancel": "Kanselleer",
     "remove": "Verwyder",
     "thisUser": "Hierdie gebruiker"
+  },
+  "reactionInfo": {
+    "title": "Reaksies",
+    "privateTitle": "Reaksies is privaat",
+    "privateDescription": "Slegs die pos outeur kan hierdie lys sien.",
+    "empty": "Nog geen reaksie",
+    "emptyDescription": "Reaksies op hierdie artikel sal hier verskyn.",
+    "anonymous": "{{count}} hou van anonieme badgehouers",
+    "labels": {
+      "like": "Hou van",
+      "love": "Liefde",
+      "respect": "Respek",
+      "hot": "Warm",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Hartseer",
+      "cry": "Huil",
+      "poo": "Poo",
+      "dislike": "Hou Nie Van"
+    },
+    "mediaSource": "Kies media bron",
+    "photoLibrary": "Fotobiblioteek",
+    "videoFiles": "Video van lêers",
+    "fileError": "Kon nie hierdie video oopmaak nie. Probeer asseblief 'n ander lêer.",
+    "reactedPost": "{{name}} reageer op jou plasing",
+    "repostedPost": "{{name}} herpos jou plasing",
+    "quotedPost": "{{name}} aangehaal jou plasing",
+    "mentionedYou": "{{name}} het jou genoem",
+    "followRequest": "{{name}} gevra om jou te volg",
+    "followAccepted": "{{name}} aanvaar jou volgende versoek",
+    "signalFlare": "{{name}} stuur 'n sein flare",
+    "newMessage": "{{name}} stuur vir jou 'n boodskap"
   }
 }

@@ -2819,5 +2819,37 @@
     "cancel": "Annuller",
     "remove": "Fjern",
     "thisUser": "Denne bruger"
+  },
+  "reactionInfo": {
+    "title": "Reaktioner",
+    "privateTitle": "Reaktionerne er private",
+    "privateDescription": "Kun indlægsforfatteren kan se denne liste.",
+    "empty": "Ingen reaktioner endnu",
+    "emptyDescription": "Reaktioner på dette indlæg vises her.",
+    "anonymous": "{{count}} synes godt om fra anonyme badgeholdere",
+    "labels": {
+      "like": "Synes godt om",
+      "love": "Kærlighed",
+      "respect": "Respekt",
+      "hot": "Hot",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Trist",
+      "cry": "Gråd",
+      "poo": "Bæ",
+      "dislike": "Synes ikke godt om"
+    },
+    "mediaSource": "Vælg mediekilde",
+    "photoLibrary": "Fotobibliotek",
+    "videoFiles": "Video fra filer",
+    "fileError": "Kunne ikke åbne denne video. Prøv en anden fil.",
+    "reactedPost": "{{name}} reagerede på dit opslag",
+    "repostedPost": "{{name}} har slået dit opslag op igen",
+    "quotedPost": "{{name}} citerede dit opslag",
+    "mentionedYou": "{{name}} nævnte dig",
+    "followRequest": "{{name}} anmodes om at følge dig",
+    "followAccepted": "{{name}} accepterede din følgeanmodning",
+    "signalFlare": "{{name}} sendte et signaludbrud",
+    "newMessage": "{{name}} har sendt dig en besked"
   }
 }

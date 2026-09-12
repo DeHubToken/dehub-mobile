@@ -2888,5 +2888,37 @@
     "cancel": "Cancelar",
     "remove": "Remover",
     "thisUser": "Este utilizador"
+  },
+  "reactionInfo": {
+    "title": "Reacções",
+    "privateTitle": "As reacções são privadas",
+    "privateDescription": "Apenas o autor do post pode visualizar esta lista.",
+    "empty": "Ainda não há reacções",
+    "emptyDescription": "As reações a este post aparecerão aqui.",
+    "anonymous": "{{count}} gostos de detentores de emblemas anónimos",
+    "labels": {
+      "like": "Gosto",
+      "love": "Amor",
+      "respect": "Respeito",
+      "hot": "Quente",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Triste",
+      "cry": "Choro",
+      "poo": "Cocô",
+      "dislike": "Não gosto"
+    },
+    "mediaSource": "Escolha a fonte dos meios de comunicação",
+    "photoLibrary": "Biblioteca de fotos",
+    "videoFiles": "Vídeo de Ficheiros",
+    "fileError": "Não foi possível abrir este vídeo. Tente outro ficheiro.",
+    "reactedPost": "{{name}} reagiu ao seu post",
+    "repostedPost": "{{name}} repostou a sua publicação",
+    "quotedPost": "{{name}} citou a sua publicação",
+    "mentionedYou": "{{name}} mencionou você",
+    "followRequest": "{{name}} pediu para segui-lo",
+    "followAccepted": "{{name}} aceitou o seu pedido de seguimento",
+    "signalFlare": "{{name}} enviou um sinalizador",
+    "newMessage": "{{name}} enviou-lhe uma mensagem"
   }
 }

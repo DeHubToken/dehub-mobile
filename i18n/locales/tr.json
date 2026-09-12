@@ -2878,5 +2878,37 @@
     "cancel": "İptal",
     "remove": "Kaldır",
     "thisUser": "bu Kullanıcı"
+  },
+  "reactionInfo": {
+    "title": "Tepkiler",
+    "privateTitle": "Tepkiler gizlidir",
+    "privateDescription": "Bu listeyi yalnızca gönderinin sahibi görebilir.",
+    "empty": "Henüz tepki yok",
+    "emptyDescription": "Bu gönderiye verilen tepkiler burada görünecek.",
+    "anonymous": "Anonim rozet sahiplerinden {{count}} beğeni",
+    "labels": {
+      "like": "Beğen",
+      "love": "Sevgi",
+      "respect": "Saygı",
+      "hot": "Ateş",
+      "hundred": "100",
+      "lol": "Kahkaha",
+      "sad": "Üzgün",
+      "cry": "Ağlıyor",
+      "poo": "Kaka",
+      "dislike": "Beğenme"
+    },
+    "mediaSource": "Medya kaynağını seç",
+    "photoLibrary": "Fotoğraf arşivi",
+    "videoFiles": "Dosyalardan video",
+    "fileError": "Bu video açılamadı. Lütfen başka bir dosya deneyin.",
+    "reactedPost": "{{name}} gönderine tepki verdi",
+    "repostedPost": "{{name}} gönderini yeniden paylaştı",
+    "quotedPost": "{{name}} gönderini alıntıladı",
+    "mentionedYou": "{{name}} senden bahsetti",
+    "followRequest": "{{name}} seni takip etmek istiyor",
+    "followAccepted": "{{name}} takip isteğini kabul etti",
+    "signalFlare": "{{name}} bir Sinyal Fişeği gönderdi",
+    "newMessage": "{{name}} sana bir mesaj gönderdi"
   }
 }

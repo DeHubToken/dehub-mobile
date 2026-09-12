@@ -2864,5 +2864,36 @@
     "cancel": "បោះបង់",
     "remove": "លុប",
     "thisUser": "អ្នកប្រើនេះ"
+  },
+  "reactionInfo": {
+    "title": "ប្រតិកម្ម",
+    "privateTitle": "ប្រតិកម្មគឺឯកជន",
+    "privateDescription": "មានតែអ្នកនិពន្ធប្រកាសប៉ុណ្ណោះដែលអាចមើលបញ្ជីនេះបាន ។",
+    "empty": "គ្មាន ប្រតិកម្ម អ្វី ទេ",
+    "emptyDescription": "ការឆ្លើយតបទៅនឹងអត្ថបទនេះនឹងបង្ហាញនៅទីនេះ ។",
+    "anonymous": "{{count}} Likes ពីអ្នកកាន់ស្លាកសញ្ញាអនាមិក",
+    "labels": {
+      "like": "ចូលចិត្ត",
+      "love": "ស្នេហា",
+      "respect": "សេចក្តីគោរព",
+      "hot": "ក្តៅ",
+      "hundred": "100",
+      "lol": "គួរឱ្យអស់សំណើច",
+      "sad": "សោកសៅ",
+      "cry": "យំ",
+      "dislike": "មិនចូលចិត្ត"
+    },
+    "mediaSource": "ជ្រើសរើសប្រភពមេឌៀ",
+    "photoLibrary": "បណ្ណាល័យរូបថត",
+    "videoFiles": "វីដេអូពីឯកសារ",
+    "fileError": "មិនអាចបើកវីដេអូនេះបានទេ ។ សូមព្យាយាមឯកសារផ្សេងទៀត ។",
+    "reactedPost": "{{name}} បានឆ្លើយតប ទៅលើប្រកាសរបស់អ្នក",
+    "repostedPost": "{{name}} បានចែករំលែកប្រកាសរបស់អ្នក",
+    "quotedPost": "{{name}} បានដកស្រង់ប្រកាសរបស់អ្នក",
+    "mentionedYou": "{{name}} បានលើកឈ្មោះអ្នក",
+    "followRequest": "{{name}} បានស្នើសុំឱ្យតាមដានអ្នក",
+    "followAccepted": "{{name}} បានទទួលយករequestតាមដានរបស់អ្នក",
+    "signalFlare": "{{name}} បានផ្ញើ Signal Flare",
+    "newMessage": "{{name}} បានផ្ញើសារលេខឯកសារឱ្យអ្នក"
   }
 }

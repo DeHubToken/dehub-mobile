@@ -2871,5 +2871,37 @@
     "cancel": "取消",
     "remove": "移除",
     "thisUser": "以下用户"
+  },
+  "reactionInfo": {
+    "title": "反应",
+    "privateTitle": "反应是私密的",
+    "privateDescription": "只有帖子作者才能查看此列表。",
+    "empty": "尚无反应",
+    "emptyDescription": "对此帖子的反应将显示在此处。",
+    "anonymous": "{{count}}个匿名徽章持有人点赞",
+    "labels": {
+      "like": "喜欢",
+      "love": "爱",
+      "respect": "尊重",
+      "hot": "热",
+      "hundred": "100",
+      "lol": "哈哈",
+      "sad": "悲伤",
+      "cry": "哭泣",
+      "poo": "便便",
+      "dislike": "不喜欢"
+    },
+    "mediaSource": "选择媒体源",
+    "photoLibrary": "照片库",
+    "videoFiles": "来自文件的视频",
+    "fileError": "无法打开此视频。 请尝试其他文件。",
+    "reactedPost": "{{name}}回复了您的帖子",
+    "repostedPost": "{{name}}重新发布了您的帖子",
+    "quotedPost": "{{name}}引用了您的帖子",
+    "mentionedYou": "{{name}}提到了您",
+    "followRequest": "{{name}}请求关注您",
+    "followAccepted": "{{name}}接受了您的关注请求",
+    "signalFlare": "{{name}}发送了一个信号信号",
+    "newMessage": "{{name}}给您发了一条消息"
   }
 }

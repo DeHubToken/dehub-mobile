@@ -2811,5 +2811,36 @@
     "cancel": "રદ કરો",
     "remove": "દૂર કરો",
     "thisUser": "આ વપરાશકર્તા"
+  },
+  "reactionInfo": {
+    "title": "પ્રતિક્રિયાઓ",
+    "privateTitle": "પ્રતિક્રિયાઓ ખાનગી છે",
+    "privateDescription": "ફક્ત પોસ્ટ લેખક જ આ સૂચિ જોઈ શકે છે.",
+    "empty": "હજી સુધી કોઈ પ્રતિક્રિયાઓ નથી",
+    "emptyDescription": "આ પોસ્ટ પરની પ્રતિક્રિયાઓ અહીં દેખાશે.",
+    "anonymous": "{{count}} અનામી બેજ ધારકોની પસંદ",
+    "labels": {
+      "like": "પસંદ કરો",
+      "love": "પ્રેમ",
+      "respect": "આદર",
+      "hot": "ગરમ",
+      "hundred": "100",
+      "sad": "ઉદાસ",
+      "cry": "રડવું",
+      "poo": "પૂ",
+      "dislike": "નાપસંદ"
+    },
+    "mediaSource": "મીડિયા સ્રોત પસંદ કરો",
+    "photoLibrary": "ફોટો લાઇબ્રેરી",
+    "videoFiles": "ફાઇલોમાંથી વિડિઓ",
+    "fileError": "આ વિડિઓ ખોલી શકાઈ નથી. કૃપા કરીને બીજી ફાઇલ અજમાવી જુઓ.",
+    "reactedPost": "{{name}} એ તમારી પોસ્ટ પર પ્રતિક્રિયા આપી",
+    "repostedPost": "{{name}} તમારી પોસ્ટને ફરીથી પોસ્ટ કરી",
+    "quotedPost": "{{name}} તમારી પોસ્ટ ટાંકી",
+    "mentionedYou": "{{name}} એ તમારો ઉલ્લેખ કર્યો છે",
+    "followRequest": "{{name}} તમને અનુસરવા વિનંતી",
+    "followAccepted": "{{name}} એ તમારી અનુસરવાની વિનંતી સ્વીકારી",
+    "signalFlare": "{{name}} એ સિગ્નલ ફ્લેર મોકલ્યું",
+    "newMessage": "{{name}} એ તમને સંદેશ મોકલ્યો"
   }
 }

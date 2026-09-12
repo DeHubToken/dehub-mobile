@@ -2771,5 +2771,37 @@
     "cancel": "إلغاء",
     "remove": "إزالة",
     "thisUser": "الزول دا"
+  },
+  "reactionInfo": {
+    "title": "التفاعلات",
+    "privateTitle": "التفاعلات خاصة",
+    "privateDescription": "بتقدر الكاتب بتاع البوست بس يشوف القايمة دي.",
+    "empty": "ما في تفاعلات ليهسع",
+    "emptyDescription": "التفاعلات على البوست دا بتظهر هنا.",
+    "anonymous": "{{count}} لايكات من أصحاب الشارات المجهولين",
+    "labels": {
+      "like": "لايك",
+      "love": "حب",
+      "respect": "احترام",
+      "hot": "حار",
+      "hundred": "100",
+      "lol": "ضحك",
+      "sad": "حزن",
+      "cry": "بكاء",
+      "poo": "براز",
+      "dislike": "عدم الإعجاب"
+    },
+    "mediaSource": "اختار مصدر الوسايط",
+    "photoLibrary": "مكتبة الصور",
+    "videoFiles": "فيديو من الملفات",
+    "fileError": "ما قدرنا نفتح الفيديو دا. حاول ملف تاني.",
+    "reactedPost": "{{name}} رد على بوستك",
+    "repostedPost": "{{name}} أعاد نشر بوستك",
+    "quotedPost": "{{name}} اقتبس بوستك",
+    "mentionedYou": "{{name}} ذكرك",
+    "followRequest": "{{name}} طلب متابعتك",
+    "followAccepted": "{{name}} قبل طلب متابعتك",
+    "signalFlare": "{{name}} بعت ليك Signal Flare",
+    "newMessage": "{{name}} بعت ليك رسالة"
   }
 }

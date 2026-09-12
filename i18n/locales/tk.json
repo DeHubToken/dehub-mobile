@@ -2799,5 +2799,28 @@
     "cancel": "Ýatyrmak",
     "remove": "Aýyrmak",
     "thisUser": "Bu ulanýan"
+  },
+  "reactionInfo": {
+    "title": "Reaksiýalar",
+    "privateTitle": "Ähli reaksiýalar özgeçikdir",
+    "privateDescription": "Bu listany diňe postyň ýazgyçysy görýär.",
+    "empty": "Hiç hili reaksiýa ýok",
+    "emptyDescription": "Bu makala üçin jogaplar bu ýerde görkeziler.",
+    "labels": {
+      "like": "Hoşgeldin",
+      "love": "Söýgi",
+      "respect": "Hormat",
+      "hot": "Ýyly",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Sady",
+      "cry": "Aglamak",
+      "poo": "Poo",
+      "dislike": "Gowy görme"
+    },
+    "mediaSource": "Medianyň gözbaşyny saýla",
+    "photoLibrary": "Foto kitaphanasy",
+    "videoFiles": "Faýllaryň videolary",
+    "fileError": "Ol videony bilmeýärdi. Lütfen başga bir faýly synap görüň."
   }
 }

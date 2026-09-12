@@ -2853,5 +2853,35 @@
     "cancel": "ยกเลิก",
     "remove": "นำออก",
     "thisUser": "ผู้ใช้นี้"
+  },
+  "reactionInfo": {
+    "title": "ปฏิกิริยา",
+    "privateTitle": "การตอบสนองเป็นเรื่องส่วนตัว",
+    "privateDescription": "เฉพาะผู้เขียนโพสต์เท่านั้นที่สามารถดูรายการนี้ได้",
+    "empty": "ยังไม่มีปฏิกิริยา",
+    "emptyDescription": "การตอบกลับโพสต์นี้จะปรากฏที่นี่",
+    "anonymous": "{{count}} ไลค์จากผู้ถือแบดจ์ที่ไม่ระบุตัวตน",
+    "labels": {
+      "like": "ชอบ",
+      "love": "ความรัก",
+      "respect": "เคารพ",
+      "hot": "ร้อน",
+      "hundred": "100",
+      "sad": "เศร้า",
+      "cry": "ร้องไห้",
+      "dislike": "ไม่ชอบ"
+    },
+    "mediaSource": "เลือกแหล่งที่มาของสื่อ",
+    "photoLibrary": "ไลบรารีรูปภาพ",
+    "videoFiles": "วิดีโอจากไฟล์",
+    "fileError": "ไม่สามารถเปิดวิดีโอนี้ได้ โปรดลองไฟล์อื่น",
+    "reactedPost": "{{name}} ตอบกลับโพสต์ของคุณแล้ว",
+    "repostedPost": "{{name}} โพสต์โพสต์ของคุณอีกครั้ง",
+    "quotedPost": "{{name}} อ้างถึงโพสต์ของคุณ",
+    "mentionedYou": "{{name}} กล่าวถึงคุณ",
+    "followRequest": "{{name}} ขอติดตามคุณ",
+    "followAccepted": "{{name}} ยอมรับคำขอติดตามของคุณแล้ว",
+    "signalFlare": "{{name}} ส่งสัญญาณพลุ",
+    "newMessage": "{{name}} ส่งข้อความถึงคุณ"
   }
 }

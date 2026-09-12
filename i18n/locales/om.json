@@ -2879,5 +2879,37 @@
     "cancel": "Balleesi",
     "remove": "Kaasi",
     "thisUser": "Fayyadamaan kun"
+  },
+  "reactionInfo": {
+    "title": "deebii kennuu",
+    "privateTitle": "Deebiin kennamu kan dhuunfaa dha",
+    "privateDescription": "Tarree kana ilaaluu kan danda&#39;u barreessaa maxxansa qofa.",
+    "empty": "Ammatti deebii hin arganne",
+    "emptyDescription": "Deebiin barreeffama kanaaf kenname asitti ni mul&#39;ata.",
+    "anonymous": "{{count}} likes warra baajii maqaan isaanii hin beekamne irraa",
+    "labels": {
+      "like": "Akka",
+      "love": "Jaalala",
+      "respect": "Kabajuu",
+      "hot": "Ho&#39;aa",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Gaddisiisaa",
+      "cry": "Boo&#39;aa",
+      "poo": "Poo",
+      "dislike": "Dislike gochuu"
+    },
+    "mediaSource": "Madda miidiyaa filadhu",
+    "photoLibrary": "Mana kitaabaa suuraa",
+    "videoFiles": "Viidiyoo Faayiloota irraa",
+    "fileError": "Viidiyoo kana banuun hin dandeenye. Mee faayilii biraa yaali.",
+    "reactedPost": "{{name}} barreeffama keessaniif deebii kenneera",
+    "repostedPost": "{{name}} barreeffama keessan deebisee maxxanseera",
+    "quotedPost": "{{name}} barreeffama kee caqaseera",
+    "mentionedYou": "{{name}} si kaase",
+    "followRequest": "{{name}} si duuba buusuuf gaafatee jira",
+    "followAccepted": "{{name}} gaaffii hordoffii keessan fudhateera",
+    "signalFlare": "{{name}} Signal Flare jedhee erge",
+    "newMessage": "{{name}} ergaa si erge"
   }
 }

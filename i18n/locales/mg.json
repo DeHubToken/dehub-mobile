@@ -2897,5 +2897,36 @@
     "cancel": "Atsaharo",
     "remove": "Esory",
     "thisUser": "Ny mpampiasa no"
+  },
+  "reactionInfo": {
+    "title": "Fanehoan-kevitra",
+    "privateTitle": "Manokana ny fanehoan-kevitra",
+    "privateDescription": "Ireo mpanoratra ihany no afaka mahita an'io lisitra io.",
+    "empty": "Tsy mbola misy fanehoan-kevitra",
+    "emptyDescription": "Ny fandraisam-peo ny hafany dia ho hita ato.",
+    "anonymous": "{{count}} tiana avy amin'ny 'badge' tsy mitonona anarana",
+    "labels": {
+      "like": "Toy ny",
+      "love": "Fitiavana",
+      "respect": "MANAJA",
+      "hot": "HOT",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Malahelo",
+      "cry": "Mitomany",
+      "poo": "GVO akory aho taloha",
+      "dislike": "Dia rahoviana"
+    },
+    "mediaSource": "Misafidiana loharanom-baovao",
+    "photoLibrary": "Trano famakiam-boky",
+    "videoFiles": "Horonan-tsary avy amin'ny rakitra",
+    "fileError": "Azonao atao ny tsy misintona ity video ity. Manandrama rakitra hafa azafady.",
+    "reactedPost": "{{name}} namaly ny lahatsoratrao",
+    "repostedPost": "{{name}} reposted ny lahatsoratrao",
+    "quotedPost": "{{name}} Quoted ny lahatsoratrao",
+    "mentionedYou": "{{name}} voaozona anao",
+    "followRequest": "{{name}} niangavy ny hanaraka anao aho",
+    "followAccepted": "{{name}} manaiky ny fangatahanao manaraka",
+    "signalFlare": "{{name}} nandefa firohotana famantarana"
   }
 }

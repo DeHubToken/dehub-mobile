@@ -2804,5 +2804,37 @@
     "cancel": "Ləğv et",
     "remove": "Sil",
     "thisUser": "Bu istifadəçi"
+  },
+  "reactionInfo": {
+    "title": "Reaksiyalar",
+    "privateTitle": "Reaksiyalar məxfidir",
+    "privateDescription": "Bu siyahıya yalnız yazı müəllifi baxa bilər.",
+    "empty": "Hələ reaksiya yoxdur",
+    "emptyDescription": "Bu yazıya reaksiyalar burada görünəcək.",
+    "anonymous": "{{count}} anonim nişan sahiblərindən bəyənir",
+    "labels": {
+      "like": "Bəyən",
+      "love": "Sevgi",
+      "respect": "Hörmət",
+      "hot": "İsti",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Kədərli",
+      "cry": "Ağlayaraq",
+      "poo": "Poo",
+      "dislike": "Bəyənməmək"
+    },
+    "mediaSource": "Media mənbəyini seçin",
+    "photoLibrary": "Foto kitabxanası",
+    "videoFiles": "Fayllardan video",
+    "fileError": "Bu videonu açmaq mümkün olmadı. Başqa faylı sınayın.",
+    "reactedPost": "{{name}} postunuza reaksiya verdi",
+    "repostedPost": "{{name}} postunuzu reposted",
+    "quotedPost": "{{name}}postunuzu sitat gətirdi",
+    "mentionedYou": "{{name}} siz qeyd etdiniz",
+    "followRequest": "{{name}} sizə tabe olmaq üçün sorğu göndərdi",
+    "followAccepted": "{{name}} izləmə sorğunuzu qəbul etdi",
+    "signalFlare": "{{name}} Siqnal Parıltısı göndərdi",
+    "newMessage": "{{name}} sizə mesaj göndərdi"
   }
 }

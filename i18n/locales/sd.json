@@ -2798,5 +2798,37 @@
     "cancel": "منسوخ ڪريو",
     "remove": "هٽايو",
     "thisUser": "ھي استعمال ڪندڙ"
+  },
+  "reactionInfo": {
+    "title": "رد عمل",
+    "privateTitle": "رد عمل نجي آهن",
+    "privateDescription": "صرف پوسٽ جو ليکڪ هي فهرست ڏسي سگهي ٿو.",
+    "empty": "ابھي ڪوئي رد عمل نه آهي",
+    "emptyDescription": "هن پوسٽ تي رد عمل هتي ظاهر ٿيندا.",
+    "anonymous": "{{count}} گمنام بيج هولڊرز کان پسند",
+    "labels": {
+      "like": "پسند",
+      "love": "محبت",
+      "respect": "احترام",
+      "hot": "گرم",
+      "hundred": "100",
+      "lol": "ڪڪڪڪ",
+      "sad": "اداس",
+      "cry": "روئندو",
+      "poo": "پو",
+      "dislike": "ناپسند"
+    },
+    "mediaSource": "ميڊيا ذريعو منتخب ڪريو",
+    "photoLibrary": "فوٽو لائبريري",
+    "videoFiles": "فائلز مان ويڊيو",
+    "fileError": "هي ويڊيو کولي نه سگهيو. براہ مهرباني ٻي فائل ڪوشش ڪريو.",
+    "reactedPost": "{{name}} توهان جي پوسٽ تي رد عمل ظاهر ڪيو",
+    "repostedPost": "{{name}} توهان جي پوسٽ ٻيهر پوسٽ ڪئي",
+    "quotedPost": "{{name}} توهان جي پوسٽ جو حوالو ڏنو",
+    "mentionedYou": "{{name}} توهان جو ذڪر ڪيو",
+    "followRequest": "{{name}} توهان جي پيروي ڪرڻ جي درخواست ڪئي",
+    "followAccepted": "{{name}} توهان جي پيروي جي درخواست قبول ڪئي",
+    "signalFlare": "{{name}} هڪ سگنل فليئر موڪليو",
+    "newMessage": "{{name}} توهان کي هڪ پيغام موڪليو"
   }
 }

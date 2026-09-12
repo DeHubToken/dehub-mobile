@@ -2828,5 +2828,37 @@
     "cancel": "Anulează",
     "remove": "Elimină",
     "thisUser": "Acest utilizator"
+  },
+  "reactionInfo": {
+    "title": "Reacții",
+    "privateTitle": "Reacțiile sunt private",
+    "privateDescription": "Numai autorul postării poate vizualiza această listă.",
+    "empty": "Nicio reacție încă",
+    "emptyDescription": "Reacțiile la această postare vor apărea aici.",
+    "anonymous": "{{count}} aprecieri de la deținătorii anonimi de insigne",
+    "labels": {
+      "like": "Îmi place",
+      "love": "Dragoste",
+      "respect": "Respect",
+      "hot": "Fierbinte",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Trist",
+      "cry": "Plâns",
+      "poo": "Caca",
+      "dislike": "Nu îmi place"
+    },
+    "mediaSource": "Alegeți sursa media",
+    "photoLibrary": "Bibliotecă foto",
+    "videoFiles": "Videoclip din fișiere",
+    "fileError": "Nu s-a putut deschide acest videoclip. Vă rugăm să încercați un alt fișier.",
+    "reactedPost": "{{name}} a reacționat la postarea ta",
+    "repostedPost": "{{name}} a republicat postarea ta",
+    "quotedPost": "{{name}} a citat postarea ta",
+    "mentionedYou": "{{name}} v-a menționat",
+    "followRequest": "{{name}} a solicitat să te urmărească",
+    "followAccepted": "{{name}} a acceptat solicitarea ta de urmărire",
+    "signalFlare": "{{name}} a trimis un semnal luminos",
+    "newMessage": "{{name}} ți-a trimis un mesaj"
   }
 }

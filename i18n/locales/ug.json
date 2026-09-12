@@ -2808,5 +2808,37 @@
     "cancel": "ۋاز كېچىش",
     "remove": "ئۆچۈرۈش",
     "thisUser": "بۇ ئىشلەتكۈچى"
+  },
+  "reactionInfo": {
+    "title": "Reactions",
+    "privateTitle": "رېئاكسىيە خۇسۇسىي",
+    "privateDescription": "بۇ تىزىملىكنى پەقەت پوچتا يازغۇچىسىلا كۆرەلەيدۇ.",
+    "empty": "تېخى ئىنكاس قايتۇرۇلمىدى",
+    "emptyDescription": "بۇ يازمىغا بولغان ئىنكاسلار بۇ يەردە كۆرۈنىدۇ.",
+    "anonymous": "{{count}} نامەلۇم بەلگە تۇتقۇچىلارنى ياخشى كۆرىدۇ",
+    "labels": {
+      "like": "LIKE",
+      "love": "Love",
+      "respect": "ھۆرمەتلەش",
+      "hot": "Hot",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Sad",
+      "cry": "يىغلىماق",
+      "poo": "Poo",
+      "dislike": "ياقتۇرماسلىق"
+    },
+    "mediaSource": "ئاخبارات مەنبەسىنى تاللاش",
+    "photoLibrary": "سۈرەتلەر كۈتۈپخانىسى",
+    "videoFiles": "ھۆججەتلەردىكى فىلىم",
+    "fileError": "بۇ فىلىم ئېچىلمىدى. باشقا ھۆججەتنى سىناپ بېقىڭ.",
+    "reactedPost": "{{name}} يازمىڭىزغا ئىنكاس قايتۇردى",
+    "repostedPost": "{{name}} يازمىڭىزنى قايتا يوللىدى",
+    "quotedPost": "{{name}} يازمىڭىزنى تىلغا ئالدى",
+    "mentionedYou": "{{name}} سىزنى تىلغا ئالدى",
+    "followRequest": "{{name}} سىزگە ئەگىشىشنى تەلەپ قىلدى",
+    "followAccepted": "{{name}} كېيىنكى تەلىپىڭىزنى قوبۇل قىلدى",
+    "signalFlare": "{{name}} بىر سىگنالنى ئەۋەتتى",
+    "newMessage": "{{name}} سىزگە ئۇچۇر ئەۋەتتى"
   }
 }

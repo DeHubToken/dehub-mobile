@@ -2803,5 +2803,37 @@
     "cancel": "Abbräche",
     "remove": "Entferne",
     "thisUser": "Dä User"
+  },
+  "reactionInfo": {
+    "title": "Reaktione",
+    "privateTitle": "Reaktione sind privat",
+    "privateDescription": "Nur de Autor vom Poscht cha die Liste gse.",
+    "empty": "Nonig kei Reaktione",
+    "emptyDescription": "Reaktione zu dem Poscht erschine do.",
+    "anonymous": "{{count}} Likes vo anonyme Badge-Inhaber",
+    "labels": {
+      "like": "Like",
+      "love": "Love",
+      "respect": "Respect",
+      "hot": "Hot",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Sad",
+      "cry": "Crying",
+      "poo": "Poo",
+      "dislike": "Dislike"
+    },
+    "mediaSource": "Medienquelle wähle",
+    "photoLibrary": "Fotobibliothek",
+    "videoFiles": "Video us Dateie",
+    "fileError": "Konnte das Video nid öffne. Probier bitte e anderi Datei.",
+    "reactedPost": "{{name}} het uf dini Poscht reagiert",
+    "repostedPost": "{{name}} het dini Poscht geteilt",
+    "quotedPost": "{{name}} het dini Poscht zitiert",
+    "mentionedYou": "{{name}} het di erwähnt",
+    "followRequest": "{{name}} het um Folgschaft bäte",
+    "followAccepted": "{{name}} het dini Folgschaftsaaforderig akzeptiert",
+    "signalFlare": "{{name}} het dir e Signal Flare gschickt",
+    "newMessage": "{{name}} het dir e Nachricht gschickt"
   }
 }

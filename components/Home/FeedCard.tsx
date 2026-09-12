@@ -34,6 +34,7 @@ import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCa
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import SmartImage from "../common/SmartImage";
 import ContainedFeedImage from "./ContainedFeedImage";
+import PostTapSurface from "./PostTapSurface";
 import LiveFeedPreview from "../common/LiveFeedPreview";
 import { cdnImage } from "../../libs/cdnImage";
 import { FEED_BENTO_RADIUS } from "../../libs/feed-image-layout";
@@ -1125,17 +1126,17 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
     if (!hasMultipleImages) {
       return (
-        <Pressable
+        <PostTapSurface
           onPress={() => handleImagePress(0)}
-          className="mt-2"
-          style={{ alignSelf: "stretch" }}
+          onReaction={handleVideoTapReaction}
+          style={{ alignSelf: "stretch", marginTop: 8 }}
         >
           <ContainedFeedImage
             uri={galleryImages[0]}
             fallbackWidth={IMAGE_WIDTH}
             priority={prioritizeMedia ? "high" : "normal"}
           />
-        </Pressable>
+        </PostTapSurface>
       );
     }
     const gallery = (
@@ -1150,9 +1151,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         decelerationRate="normal"
       >
         {galleryImages.map((uri, index) => (
-          <Pressable
-            key={index}
+          <PostTapSurface
+            key={uri}
             onPress={() => handleImagePress(index)}
+            onReaction={handleVideoTapReaction}
             style={{ marginRight: index === galleryImages.length - 1 ? 0 : 8 }}
           >
             <ContainedFeedImage
@@ -1162,7 +1164,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               fallbackWidth={IMAGE_WIDTH}
               priority={prioritizeMedia && index === 0 ? "high" : "normal"}
             />
-          </Pressable>
+          </PostTapSurface>
         ))}
       </RNScrollView>
     );
@@ -1448,6 +1450,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         </View>
       )}
 
+      <PostTapSurface onReaction={handleVideoTapReaction}>
       <FeedCaption
         title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
         description={displayCaption || undefined}
@@ -1458,6 +1461,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         showCategories={fullContent}
         flagged={item.communityAlertStatus === "pending"}
       />
+      </PostTapSurface>
 
       {(item as any).isQuotePost && (
         <QuotedPostEmbed

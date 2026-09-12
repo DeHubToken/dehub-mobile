@@ -2814,5 +2814,37 @@
     "cancel": "Ghairi",
     "remove": "Ondoa",
     "thisUser": "Mtumiaji huyu"
+  },
+  "reactionInfo": {
+    "title": "Miitikio",
+    "privateTitle": "Miitikio ni ya faragha",
+    "privateDescription": "Mwandishi wa chapisho pekee ndiye anayeweza kuona orodha hii.",
+    "empty": "Hakuna majibu bado",
+    "emptyDescription": "Majibu kwenye chapisho hili yataonekana hapa.",
+    "anonymous": "{{count}} anapenda kutoka kwa wamiliki wa beji wasiojulikana",
+    "labels": {
+      "like": "Penda",
+      "love": "Upendo",
+      "respect": "Heshima",
+      "hot": "Moto",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Huzuni",
+      "cry": "Kulia",
+      "poo": "Poo",
+      "dislike": "Sipendi"
+    },
+    "mediaSource": "Chagua chanzo cha vyombo vya habari",
+    "photoLibrary": "Maktaba ya picha",
+    "videoFiles": "Video kutoka kwenye Faili",
+    "fileError": "Haikuweza kufungua video hii. Tafadhali jaribu faili nyingine.",
+    "reactedPost": "{{name}} amejibu chapisho lako",
+    "repostedPost": "{{name}} alichapisha tena chapisho lako",
+    "quotedPost": "{{name}} alinukuu chapisho lako",
+    "mentionedYou": "{{name}} amekutaja",
+    "followRequest": "{{name}} ameomba kukufuata",
+    "followAccepted": "{{name}} amekubali ombi lako la kufuatilia",
+    "signalFlare": "{{name}} alituma Flare ya Ishara",
+    "newMessage": "{{name}} alikutumia ujumbe"
   }
 }

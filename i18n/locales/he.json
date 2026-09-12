@@ -2814,5 +2814,37 @@
     "cancel": "ביטול",
     "remove": "הסר",
     "thisUser": "משתמש זה"
+  },
+  "reactionInfo": {
+    "title": "תגובות",
+    "privateTitle": "התגובות הן פרטיות",
+    "privateDescription": "רק מחבר הפוסט יכול לצפות ברשימה זו.",
+    "empty": "עדיין אין תגובות",
+    "emptyDescription": "התגובות לפוסט זה יופיעו כאן.",
+    "anonymous": "{{count}} סימוני 'אהבתי' ממחזיקי תג אנונימיים",
+    "labels": {
+      "like": "אהבתי",
+      "love": "אהבה",
+      "respect": "כבוד",
+      "hot": "חם",
+      "hundred": "100",
+      "lol": "חחח",
+      "sad": "עצוב",
+      "cry": "בכי",
+      "poo": "קקי",
+      "dislike": "לא אהבתי"
+    },
+    "mediaSource": "בחר מקור מדיה",
+    "photoLibrary": "ספריית תמונות",
+    "videoFiles": "סרטון מקבצים",
+    "fileError": "לא ניתן לפתוח סרטון זה. יש לנסות קובץ אחר.",
+    "reactedPost": "{{name}} הגיבו לפוסט שלך",
+    "repostedPost": "{{name}} פרסמת מחדש את הפוסט שלך",
+    "quotedPost": "{{name}}ציטטתם את הפוסט שלכם",
+    "mentionedYou": "{{name}} ציינו אתכם",
+    "followRequest": "{{name}} ביקשו לעקוב אחריך",
+    "followAccepted": "{{name}} אישר/ה את בקשת המעקב שלך",
+    "signalFlare": "{{name}} שלח/ה אות התלקחות",
+    "newMessage": "{{name}} שלחה לכם הודעה"
   }
 }
