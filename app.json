@@ -24,7 +24,7 @@
     },
     "runtimeVersion": "1.17.0",
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "jsEngine": "hermes",
       "bundleIdentifier": "io.dehub.mobile",
       "usesAppleSignIn": true,
