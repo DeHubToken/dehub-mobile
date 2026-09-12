@@ -5,6 +5,8 @@ import FeedCard from '../Home/FeedCard';
 import { getUnifiedFeed, type FeedPostType, type FeedRange, type FeedSortBy, type UnifiedFeedItem } from '../../services/feed.unified.service';
 import type { GetNFTsResponse, GetNFTsResult } from '../../services/nft.service';
 import { useAuthState } from '../../context/AuthContext';
+import { useUser } from '../../context/AuthContext';
+import { getMyPosts } from '../../services/user.service';
 import ProfileEmptyState from './ProfileEmptyState';
 
 interface FeedRouteProps {
@@ -49,10 +51,26 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
   isLocked,
 }) => {
   const { isSignedIn } = useAuthState();
+  const user = useUser() as any;
+  const ownAddress = user?.walletAddress || user?.address;
+  const isOwnProfile = !!(
+    address && ownAddress && address.toLowerCase() === ownAddress.toLowerCase()
+  );
 
   const fetchPage = useCallback(
     async (page: number, limit: number): Promise<GetNFTsResponse> => {
       if (!address) return { result: [] };
+      const isDefaultView =
+        (sortBy ?? 'createdAt') === 'createdAt' &&
+        (sortOrder ?? 'desc') === 'desc' &&
+        !search && !category && !range && !postType &&
+        !isPPV && !hasBounty && !isLocked;
+      // The public feed correctly withholds future posts. On the creator's
+      // own unfiltered profile use the authenticated list, which includes
+      // scheduled posts so a successful schedule never appears to vanish.
+      if (isOwnProfile && isDefaultView) {
+        return getMyPosts({ page, unit: limit });
+      }
       const res = await getUnifiedFeed({
         minter: address,
         sortBy: sortBy ?? 'createdAt',
@@ -75,7 +93,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
       });
       return { result: res.result as unknown as GetNFTsResult[] };
     },
-    [address, sortBy, sortOrder, search, category, range, postType, isPPV, hasBounty, isLocked],
+    [address, sortBy, sortOrder, search, category, range, postType, isPPV, hasBounty, isLocked, isOwnProfile],
   );
 
   // Stable identity: InfiniteFeed's own renderItem useCallback lists this in

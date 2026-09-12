@@ -15,7 +15,8 @@ import {
   getUnifiedFeed,
   type UnifiedFeedItem,
 } from "../../services/feed.unified.service";
-import { getUserReplies, type UserReplyItem } from "../../services/user.service";
+import { getMyPosts, getUserReplies, type UserReplyItem } from "../../services/user.service";
+import { useUser } from "../../context/AuthContext";
 import { theme } from "../../theme";
 import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
@@ -57,6 +58,11 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   onBeforeNavigate,
 }) => {
   const navigation = useNavigation<any>();
+  const user = useUser() as any;
+  const ownAddress = user?.walletAddress || user?.address;
+  const isOwnProfile = !!(
+    address && ownAddress && address.toLowerCase() === ownAddress.toLowerCase()
+  );
   const [posts, setPosts] = useState<UnifiedFeedItem[]>([]);
   const [replies, setReplies] = useState<UserReplyItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -85,6 +91,16 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
 
   const loadPostsPage = useCallback(
     async (profileAddress: string, page: number, append: boolean) => {
+      if (isOwnProfile) {
+        const response = await getMyPosts({ page, unit: PAGE_SIZE });
+        const batch = (response.result || []).filter(
+          (item: any) => item.postType === "feed-simple",
+        ) as unknown as UnifiedFeedItem[];
+        setPosts((previous) => (append ? [...previous, ...batch] : batch));
+        postPageRef.current = page;
+        postEndRef.current = response.hasMore === false || (response.result || []).length < PAGE_SIZE;
+        return;
+      }
       const response = await getUnifiedFeed({
         minter: profileAddress,
         postType: "feed-simple",
@@ -101,7 +117,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
       postPageRef.current = page;
       postEndRef.current = batch.length < PAGE_SIZE;
     },
-    [],
+    [isOwnProfile],
   );
 
   const loadAll = useCallback(
