@@ -46,6 +46,8 @@ import {
   type SuperPowerInfo,
 } from "../services/superpower.service";
 
+const BOOST_ICON = require("../assets/superpowers/boost.png");
+
 /** Total slot minutes a tier holds per cycle — the number worth comparing. */
 function formatMinutes(total: number): string {
   if (total < 60) return `${total}m`;
@@ -167,6 +169,9 @@ export default function SuperPowersScreen() {
                   style={({ pressed }) => [styles.powerBody, pressed && unlocked && styles.powerBodyPressed]}
                 >
                   <View style={styles.powerTop}>
+                    {power.key === "boost" ? (
+                      <Image source={BOOST_ICON} style={styles.powerIcon} resizeMode="contain" />
+                    ) : null}
                     {/* Numbered because this is a fixed, ordered power list. */}
                     <Text style={styles.rung}>{String(index + 1).padStart(2, "0")}</Text>
                     <Text style={[styles.powerName, !unlocked && styles.powerNameOff]}>
@@ -439,6 +444,7 @@ const styles = StyleSheet.create({
   powerBody: { padding: 14, paddingBottom: 12, gap: 5 },
   powerBodyPressed: { backgroundColor: "rgba(255,255,255,0.06)" },
   powerTop: { flexDirection: "row", alignItems: "center", gap: 8 },
+  powerIcon: { width: 32, height: 32 },
   rung: { color: "#52525B", fontSize: 11 },
   powerName: { color: "#fff", fontSize: 14, fontWeight: "500", flex: 1 },
   powerNameOff: { color: "#A1A1AA" },
