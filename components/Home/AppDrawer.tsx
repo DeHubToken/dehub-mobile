@@ -74,31 +74,31 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
   { icon: "ChartNoAxesCombined", labelKey: "nav.stats", screen: ScreenNames.Stats },
   { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary, requiresAuth: true },
-  { icon: "LayoutDashboard", labelKey: "nav.command", screen: ScreenNames.CommandCentre, requiresAuth: true },
+  { icon: "LayoutDashboard", labelKey: "nav.command", screen: ScreenNames.CommandCentre, requiresAuth: true, storefrontHidden: true },
   // Passes initialTab explicitly so returning here from the Staking entry
   // (same screen, different tab) resets to Buy instead of keeping Stake.
-  { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, params: { initialTab: "buy" }, requiresAuth: true },
+  { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, params: { initialTab: "buy" }, requiresAuth: true, storefrontHidden: true },
   { icon: "CalendarDays", labelKey: "nav.events", screen: ScreenNames.Events },
   { icon: "Mic", labelKey: "nav.stages", screen: ScreenNames.Stages },
   { icon: "Lightbulb", labelKey: "nav.featureRequests", screen: ScreenNames.FeatureRequests },
   // Staking lives as a tab inside the wallet (Dpay) screen rather than its own
   // route, so it deep-links there. Web has it as a separate sidebar entry.
-  { icon: "Vault", labelKey: "nav.staking", screen: ScreenNames.Dpay, params: { initialTab: "stake" }, requiresAuth: true },
+  { icon: "Vault", labelKey: "nav.staking", screen: ScreenNames.Dpay, params: { initialTab: "stake" }, requiresAuth: true, storefrontHidden: true },
   // Sits under Staking because it is what staking buys. No `requiresAuth`: the
   // ladder is worth reading before you hold a badge, which is the whole point
   // of the screen.
   { icon: "Rocket", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers, storefrontHidden: true },
-  { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
-  { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao },
-  { icon: "Briefcase", labelKey: "screens.work", screen: ScreenNames.Work },
-  { icon: "Users", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true },
+  { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance, storefrontHidden: true },
+  { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao, storefrontHidden: true },
+  { icon: "Briefcase", labelKey: "screens.work", screen: ScreenNames.Work, storefrontHidden: true },
+  { icon: "Users", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true, storefrontHidden: true },
   { icon: "Briefcase", labelKey: "nav.careers", screen: ScreenNames.Careers },
-  { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores },
+  { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores, storefrontHidden: true },
   { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads, requiresAuth: true, storefrontHidden: true },
   { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
   // Sits between Stores and Glossary, as on the web sidebar. Only the games
   // that work on a touchscreen are listed — see config/arcade-games.
-  { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade },
+  { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade, storefrontHidden: true },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },

@@ -32,9 +32,11 @@ export const IS_APP_STORE_BUILD = Platform.OS === "ios";
 export const MATURE_CONTENT_ENABLED = !IS_APP_STORE_BUILD;
 
 /**
- * Whether DHB can be spent inside the app on something that unlocks in-app
- * functionality — boosts, creator plans, AI generation, ad credit, the paid
- * posting allowance. Off on iOS. Wallet-to-wallet tips and on-chain trading
- * are transfers of a currency, not purchases of an unlock, and stay.
+ * Whether any crypto-backed commerce or reward action is available in the
+ * App Store build. Off on iOS: that includes boosts, creator plans, AI
+ * generation, ad credit, paid posting, PPV, bounties, tips, staking, token
+ * purchases and marketplace checkout. Previously acquired access may still
+ * be rendered by read-only content APIs, but iOS never offers a purchase,
+ * claim, earn or outbound web-buy action.
  */
 export const DIGITAL_PURCHASES_ENABLED = !IS_APP_STORE_BUILD;

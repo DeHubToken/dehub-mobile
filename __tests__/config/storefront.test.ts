@@ -9,7 +9,7 @@ describe('config/storefront', () => {
     return require('../../config/storefront') as typeof import('../../config/storefront');
   };
 
-  it('hides mature content and DHB unlocks on iOS', () => {
+  it('hides mature content and all crypto commerce on iOS', () => {
     const s = load('ios');
     expect(s.IS_APP_STORE_BUILD).toBe(true);
     expect(s.MATURE_CONTENT_ENABLED).toBe(false);
