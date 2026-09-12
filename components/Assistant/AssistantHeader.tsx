@@ -2,6 +2,9 @@ import React, { memo } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Icon from '../ui/Icon';
 import AppTopBar from '../AppTopBar';
+import { useNavigation } from '@react-navigation/native';
+import { ScreenNames } from '../../navigation/ScreenNames';
+import type { AppStackNavigationProp } from '../../navigation/types';
 
 const AI_SPARKLE_ICON = require('../../assets/web-icons/ai-sparkle-icon.png');
 
@@ -28,11 +31,13 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
   styleEmoji,
   hasMessages,
 }) => {
+  const navigation = useNavigation<AppStackNavigationProp<ScreenNames.Creator>>();
   return (
     <View className="bg-theme-neutrals-900">
     {/* The dehub mark bar is constant chrome on every screen, as on web. */}
     <AppTopBar />
-    <View className="flex-row items-center justify-between px-4 h-16 bg-theme-neutrals-900">
+    <View className="px-4 py-3 bg-theme-neutrals-900">
+    <View className="flex-row items-center justify-between mb-2">
       <TouchableOpacity
         onPress={onNewChat}
         className="flex-row items-center"
@@ -48,7 +53,11 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
         </Text>
       </TouchableOpacity>
 
-      <View className="flex-row items-center" style={{ gap: 6 }}>
+      <TouchableOpacity accessibilityRole="button" accessibilityLabel="Creator library and studio" onPress={() => navigation.navigate(ScreenNames.Creator)} className="w-10 h-10 rounded-lg items-center justify-center">
+        <Icon name="Clapperboard" size={18} color="#A6A9AC" />
+      </TouchableOpacity>
+    </View>
+      <View className="flex-row items-center justify-end" style={{ gap: 6 }}>
         {hasMessages && (
           <TouchableOpacity
             onPress={onNewChat}

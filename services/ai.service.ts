@@ -1,6 +1,7 @@
 import env from '../config/env';
 import { createLogger } from '../libs/logger';
 import { getAuthToken } from '../libs/auth.utils';
+import { tokenRefreshManager } from '../libs/token-refresh';
 import { requiresImageGeneration, requiresVideoGeneration } from './ai-intent';
 
 const log = createLogger('ai.service');
@@ -22,6 +23,7 @@ const EDGE_BASE = env.SUPABASE_EDGE_BASE_URL;
 export async function dehubAuthHeaders(
   walletAddress?: string | null,
 ): Promise<Record<string, string>> {
+  await tokenRefreshManager.ensureFreshToken();
   const token = await getAuthToken();
   if (!token) return {};
   const headers: Record<string, string> = { 'x-dehub-token': token };

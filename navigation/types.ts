@@ -34,6 +34,7 @@ export type AuthStackScreenProps<T extends keyof AuthStackParamList> = Composite
 >;
 
 export type AppStackParamList = {
+  [ScreenNames.Creator]: undefined;
   [ScreenNames.Root]: NavigatorScreenParams<BottomTabParamList> | undefined;
   [ScreenNames.Upload]: {
     tab?: 'feed' | undefined;
