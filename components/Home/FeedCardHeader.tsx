@@ -10,6 +10,8 @@ const DISPLAY_NAME_FONT_SIZE = 16;
 const DISPLAY_NAME_LINE_HEIGHT = 20;
 const HOLDER_BADGE_SIZE = 16;
 const HOLDER_BADGE_GAP = 2;
+const AI_ICON = require("../../assets/web-icons/ai-sparkle-icon.png");
+const BOOST_ICON = require("../../assets/web-icons/boost-3d.png");
 
 export interface FeedCardHeaderProps {
   avatarUrl?: string;
@@ -118,7 +120,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={{ padding: 4, marginRight: 1.6 }}
           >
-            <Icon name="Rocket" size={16} color={ICON_MUTED} />
+            <Image source={BOOST_ICON} style={{ width: 16, height: 16 }} resizeMode="contain" />
           </Pressable>
         )}
         {onAiPress && (
@@ -127,7 +129,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={{ padding: 4 }}
           >
-            <Icon name="Sparkles" size={16} color={ICON_MUTED} />
+            <Image source={AI_ICON} style={{ width: 16, height: 16 }} resizeMode="contain" />
           </Pressable>
         )}
         {onMenuPress && (
