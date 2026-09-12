@@ -192,6 +192,12 @@ const ArcadeGameScreen = () => {
   const route = useRoute<any>();
   const slug: string | undefined = route.params?.slug;
   const game = getArcadeGame(slug);
+  const gameUrl = React.useMemo(() => {
+    if (!game || slug !== 'trenchstar') return game?.url;
+    const query = ['room', 'symbol', 'view'].filter(key => typeof route.params?.[key] === 'string')
+      .map(key => `${key}=${encodeURIComponent(route.params[key])}`).join('&');
+    return `${game.url}${query ? '&' + query : ''}`;
+  }, [game, slug, route.params]);
   const webRef = useRef<WebView>(null);
   const { user } = useAuth();
 
@@ -269,7 +275,28 @@ const ArcadeGameScreen = () => {
       try {
         const d = JSON.parse(e.nativeEvent.data) as {
           source?: string; type?: string; text?: string; latitude?: number; longitude?: number;
+          key?: string; body?: Record<string, unknown>;
         };
+        if (slug === 'trenchstar' && d.source === 'trenchstar-connected' && d.type === 'request') {
+          // Only the trusted game document can invoke this account-bound relay.
+          const origin = new URL(e.nativeEvent.url);
+          if (origin.origin !== new URL(WEBSITE_LINK).origin || !origin.pathname.startsWith('/trenchstar-game/')) return;
+          if (typeof d.key !== 'string' || d.key.length > 80 || !d.body || JSON.stringify(d.body).length > 150000) return;
+          const reply = (payload: object) => webRef.current?.injectJavaScript(
+            `window.dispatchEvent(new MessageEvent('message',{data:${JSON.stringify({source:'trenchstar-host',key:d.key,...payload})},source:window,origin:location.origin})); true;`,
+          );
+          const token = await getAuthToken();
+          if (!token) { reply({error:'Sign in to DeHub to sync desks, join rooms and compete.'}); return; }
+          try {
+            const response = await fetch(`${env.SUPABASE_URL}/functions/v1/trenchstar`, {
+              method:'POST', headers:{'Content-Type':'application/json','x-dehub-token':token},
+              body:JSON.stringify(d.body), signal:AbortSignal.timeout(20000),
+            });
+            const data = await response.json();
+            reply(response.ok && !data.error ? {data} : {error:data.error || 'Could not connect. Please retry.'});
+          } catch { reply({error:'Connection interrupted. Please retry.'}); }
+          return;
+        }
         if (game?.socialPresence && d.source === 'gods-eye-view') {
           if (d.type === 'presence-location-error') toastError('Location permission was not granted.');
           if (d.type === 'presence-location') {
@@ -297,7 +324,7 @@ const ArcadeGameScreen = () => {
         // Not our JSON. A page is free to post whatever it likes at itself.
       }
     },
-    [game?.readySource, game?.socialPresence, user],
+    [game?.readySource, game?.socialPresence, user, slug],
   );
 
   /**
@@ -350,7 +377,7 @@ const ArcadeGameScreen = () => {
       ) : (
         <WebView
           ref={webRef}
-          source={{ uri: game.url }}
+          source={{ uri: gameUrl || game.url }}
           style={styles.web}
           // The game is the only thing on screen and it paints black before it
           // paints anything else; a white default flashes on every open.
