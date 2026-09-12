@@ -132,7 +132,26 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
 ];
 
 // DHB-unlock surfaces the App Store build leaves out — see config/storefront.
-const STOREFRONT_HIDDEN_SCREENS = new Set([ScreenNames.Ads, ScreenNames.SuperPowers]);
+const STOREFRONT_HIDDEN_SCREENS = new Set([
+  ScreenNames.Ads,
+  ScreenNames.SuperPowers,
+  ScreenNames.Dpay,
+  ScreenNames.CommandCentre,
+  ScreenNames.Arcade,
+  ScreenNames.ArcadeGame,
+  ScreenNames.Stores,
+  ScreenNames.StoreDetail,
+  ScreenNames.ListingDetail,
+  ScreenNames.Usernames,
+  ScreenNames.Accounts,
+  ScreenNames.Work,
+  ScreenNames.WorkJobDetail,
+  ScreenNames.WorkPost,
+  ScreenNames.Affiliate,
+  ScreenNames.Governance,
+  ScreenNames.Dao,
+  ScreenNames.Earnings,
+]);
 
 const AUTHED_ONLY_SCREENS = new Set([
   ScreenNames.Profile,

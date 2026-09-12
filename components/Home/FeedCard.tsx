@@ -1341,6 +1341,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const showActionBar = contentType !== "live";
 
+  // The App Store build does not advertise or transact crypto-funded digital
+  // content. Omitting these entries also removes price, reward and unlock
+  // affordances without sending the reviewer to an external checkout.
+  if (!DIGITAL_PURCHASES_ENABLED && (isPayPerView || isBounty || isActuallySubGated)) {
+    return null;
+  }
+
   return (
     <Pressable
       onPress={disablePress ? undefined : handleCardPress}
@@ -1542,7 +1549,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           reactionCounts={reactionCounts}
           onComment={handleCommentPress}
           onShare={handleOpenShare}
-          onTip={minterUser?.hideBadgeAndBalance ? undefined : handleTipPress}
+          onTip={DIGITAL_PURCHASES_ENABLED && !minterUser?.hideBadgeAndBalance ? handleTipPress : undefined}
           onSave={handleSavePress}
           onInfo={handleInfoPress}
           onShowReactionInfo={
@@ -1578,7 +1585,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
-      {showTipModal && minterAddress && !minterUser?.hideBadgeAndBalance ? (
+      {DIGITAL_PURCHASES_ENABLED && showTipModal && minterAddress && !minterUser?.hideBadgeAndBalance ? (
         <GlassTipSheet
           visible={showTipModal}
           onClose={() => setShowTipModal(false)}
@@ -1590,7 +1597,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       ) : null}
 
-      {showPPVModal && isPayPerView && tokenId != null && minterAddress ? (
+      {DIGITAL_PURCHASES_ENABLED && showPPVModal && isPayPerView && tokenId != null && minterAddress ? (
         <PPVSheet
           visible={showPPVModal}
           onClose={() => setShowPPVModal(false)}
@@ -1604,7 +1611,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       ) : null}
 
-      {showBountyModal && isBounty && tokenId != null && (
+      {DIGITAL_PURCHASES_ENABLED && showBountyModal && isBounty && tokenId != null && (
         <BountyInfoSheet
           chainId={(item as any).chainId || streamInfo?.addBountyChainId || 56}
           visible={showBountyModal}
