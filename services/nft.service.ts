@@ -1128,6 +1128,16 @@ export async function editPost(tokenId: number | string, input: EditPostInput): 
   }
 }
 
+export async function replacePostImage(tokenId: number | string, index: number, image: ReplaceVideoFile): Promise<string[]> {
+  const formData = new FormData();
+  formData.append('image', { uri: image.uri, name: image.name || 'replacement.jpg', type: image.type || 'image/jpeg' } as any);
+  const response = await xhrUploadFormData<{ result: boolean; data: { imageUrls: string[] } }>({
+    endpoint: `/nft/${encodeURIComponent(String(tokenId))}/images/${index}`, formData,
+  });
+  if (!response.result || !Array.isArray(response.data?.imageUrls)) throw new Error('Could not replace that image');
+  return response.data.imageUrls;
+}
+
 export interface ReplaceVideoFile {
   uri: string;
   name?: string;
