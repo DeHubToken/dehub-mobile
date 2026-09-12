@@ -6,7 +6,7 @@ import { localizedNotificationContent } from '../../libs/notification-content';
 describe('notification content', () => {
   const translate = (language: string) => {
     const instance = createInstance();
-    instance.init({ lng: language, fallbackLng: 'en', resources: { en: { translation: en }, tr: { translation: tr } }, initImmediate: false });
+    instance.init({ lng: language, fallbackLng: 'en', resources: { en: { translation: en }, tr: { translation: tr } } });
     return instance.t.bind(instance);
   };
   it('renders Turkish event wording without altering the actor name', () => {
@@ -32,3 +32,4 @@ describe('notification content', () => {
     expect(localizedNotificationContent({ type: 'system', content: 'Maintenance' }, translate('en'))).toBeNull();
   });
 });
+
