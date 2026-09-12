@@ -2659,5 +2659,37 @@
   },
   "follow": {
     "sortAlphabetical": "A-Z"
+  },
+  "reactionInfo": {
+    "title": "प्रतिक्रियाएं",
+    "privateTitle": "प्रतिक्रियाएं निजी हैं",
+    "privateDescription": "केवल पोस्ट लेखक यह सूची देख सकता है।",
+    "empty": "अभी कोई प्रतिक्रिया नहीं",
+    "emptyDescription": "इस पोस्ट की प्रतिक्रियाएं यहां दिखाई देंगी।",
+    "anonymous": "{{count}} गुमनाम बैज धारकों से पसंद",
+    "labels": {
+      "like": "पसंद",
+      "love": "प्रेम",
+      "respect": "सम्मान",
+      "hot": "गर्म",
+      "hundred": "100",
+      "lol": "हंसी",
+      "sad": "उदास",
+      "cry": "रो रहे हैं",
+      "poo": "पू",
+      "dislike": "नापसंद"
+    },
+    "mediaSource": "मीडिया स्रोत चुनें",
+    "photoLibrary": "फोटो लाइब्रेरी",
+    "videoFiles": "फाइलों से वीडियो",
+    "fileError": "यह वीडियो नहीं खोल सके। कृपया दूसरी फाइल आजमाएं।",
+    "reactedPost": "{{name}} ने आपकी पोस्ट पर प्रतिक्रिया दी",
+    "repostedPost": "{{name}} ने आपकी पोस्ट को दोबारा पोस्ट किया",
+    "quotedPost": "{{name}} ने आपकी पोस्ट को उद्धृत किया",
+    "mentionedYou": "{{name}} ने आपका उल्लेख किया",
+    "followRequest": "{{name}} ने आपको फॉलो करने का अनुरोध किया",
+    "followAccepted": "{{name}} ने आपके फॉलो अनुरोध को स्वीकार किया",
+    "signalFlare": "{{name}} ने एक सिग्नल फ्लेयर भेजा",
+    "newMessage": "{{name}} ने आपको एक संदेश भेजा"
   }
 }

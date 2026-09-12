@@ -2810,5 +2810,35 @@
     "cancel": "Avbryt",
     "remove": "Fjern",
     "thisUser": "denne brukeren"
+  },
+  "reactionInfo": {
+    "title": "Reaksjon",
+    "privateTitle": "Reaksjoner er private",
+    "privateDescription": "Bare forfatteren av innlegget kan se denne listen.",
+    "empty": "Ingen reaksjoner ennå",
+    "emptyDescription": "Reaksjoner på dette innlegget vil vises her.",
+    "anonymous": "{{count}} likerklikk fra anonyme merkeinnehavere",
+    "labels": {
+      "like": "Liker",
+      "love": "Kjærlighet",
+      "respect": "Respekt",
+      "hot": "Varmt",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Sørgmodighet",
+      "cry": "Gråt",
+      "poo": "Avføring",
+      "dislike": "Mislike"
+    },
+    "mediaSource": "Velg mediekilde",
+    "photoLibrary": "Bildebibliotek",
+    "videoFiles": "Video fra filer",
+    "fileError": "Kunne ikke åpne denne videoen. Prøv en annen fil.",
+    "reactedPost": "{{name}} reagerte på innlegget ditt",
+    "repostedPost": "{{name}} repostet innlegget ditt",
+    "quotedPost": "{{name}} siterte innlegget ditt",
+    "followRequest": "{{name}} ba om å følge deg",
+    "followAccepted": "{{name}} har akseptert forespørselen din om å følge",
+    "signalFlare": "{{name}} sendte et signalbluss"
   }
 }

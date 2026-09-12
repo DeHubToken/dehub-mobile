@@ -2883,5 +2883,37 @@
     "cancel": "Abbrechen",
     "remove": "Entfernen",
     "thisUser": "Dieser Benutzer"
+  },
+  "reactionInfo": {
+    "title": "Reaktionen",
+    "privateTitle": "Reaktionen sind privat",
+    "privateDescription": "Nur der Autor des Beitrags kann diese Liste anzeigen.",
+    "empty": "Noch keine Reaktionen",
+    "emptyDescription": "Die Reaktionen auf diesen Beitrag werden hier angezeigt.",
+    "anonymous": "{{count}} Likes von anonymen Badge-Inhabern",
+    "labels": {
+      "like": "Gefällt mir",
+      "love": "Liebe",
+      "respect": "Respekt",
+      "hot": "Heiß",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Traurig",
+      "cry": "Weinen",
+      "poo": "Poo",
+      "dislike": "Gefällt mir nicht"
+    },
+    "mediaSource": "Medienquelle auswählen",
+    "photoLibrary": "Fotobibliothek",
+    "videoFiles": "Video aus Dateien",
+    "fileError": "Dieses Video konnte nicht geöffnet werden. Bitte versuchen Sie es mit einer anderen Datei.",
+    "reactedPost": "{{name}} hat auf deinen Beitrag reagiert",
+    "repostedPost": "{{name}}hat deinen Beitrag erneut gepostet",
+    "quotedPost": "{{name}} hat deinen Beitrag zitiert",
+    "mentionedYou": "{{name}} hat dich erwähnt",
+    "followRequest": "{{name}} wurde gebeten, Ihnen zu folgen",
+    "followAccepted": "{{name}} hat deine Folgeanfrage angenommen",
+    "signalFlare": "{{name}} hat eine Signalfackel gesendet",
+    "newMessage": "{{name}} hat dir eine Nachricht geschickt"
   }
 }

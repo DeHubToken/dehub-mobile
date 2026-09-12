@@ -2883,5 +2883,36 @@
     "cancel": "취소",
     "remove": "삭제",
     "thisUser": "이 사용자"
+  },
+  "reactionInfo": {
+    "title": "반응",
+    "privateTitle": "반응은 비공개입니다",
+    "privateDescription": "글 작성자만 이 목록을 볼 수 있습니다.",
+    "empty": "아직 반응 없음",
+    "emptyDescription": "이 게시물에 대한 반응이 여기에 표시됩니다.",
+    "anonymous": "익명 배지 소지자의 좋아요 {{count}} 개",
+    "labels": {
+      "like": "좋아요",
+      "love": "사랑",
+      "respect": "존중",
+      "hot": "인기",
+      "hundred": "100",
+      "sad": "슬픈",
+      "cry": "울음",
+      "poo": "똥",
+      "dislike": "싫어요"
+    },
+    "mediaSource": "미디어 소스 선택",
+    "photoLibrary": "사진 라이브러리",
+    "videoFiles": "파일의 동영상",
+    "fileError": "이 동영상을 열 수 없습니다. 다른 파일을 시도하십시오.",
+    "reactedPost": "{{name}} 님이 회원님의 게시물에 반응했습니다",
+    "repostedPost": "{{name}} 님이 포스트를 다시 게시했습니다.",
+    "quotedPost": "{{name}} 님이 회원님의 게시물을 인용했습니다",
+    "mentionedYou": "{{name}} 님이 회원님을 멘션했습니다",
+    "followRequest": "{{name}} 님이 팔로우를 요청했습니다",
+    "followAccepted": "{{name}} 님이 팔로우 요청을 수락했습니다",
+    "signalFlare": "{{name}} 님이 신호탄을 보냈습니다",
+    "newMessage": "{{name}} 님이 메시지를 보냈습니다"
   }
 }

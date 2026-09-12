@@ -2771,5 +2771,37 @@
     "cancel": "إلغاء",
     "remove": "إزالة",
     "thisUser": "هذا المستخدم"
+  },
+  "reactionInfo": {
+    "title": "التفاعلات",
+    "privateTitle": "التفاعلات خاصة",
+    "privateDescription": "بس صاحب البوست يقدر يشوف هالقائمة.",
+    "empty": "ما في تفاعلات لسه",
+    "emptyDescription": "التفاعلات على هالبوست بتظهر هنا.",
+    "anonymous": "{{count}} إعجابات من حاملي الشارة المجهولين",
+    "labels": {
+      "like": "إعجاب",
+      "love": "حب",
+      "respect": "احترام",
+      "hot": "حار",
+      "hundred": "100",
+      "lol": "ضحك",
+      "sad": "حزن",
+      "cry": "بكاء",
+      "poo": "براز",
+      "dislike": "عدم الإعجاب"
+    },
+    "mediaSource": "اختر مصدر الوسائط",
+    "photoLibrary": "مكتبة الصور",
+    "videoFiles": "فيديو من الملفات",
+    "fileError": "ما قدرت أفتح هالفيديو. جرب ملف ثاني.",
+    "reactedPost": "{{name}} رد على بوستك",
+    "repostedPost": "{{name}} أعاد نشر بوستك",
+    "quotedPost": "{{name}} علق على بوستك",
+    "mentionedYou": "{{name}} ذكرك",
+    "followRequest": "{{name}} طلب متابعتك",
+    "followAccepted": "{{name}} قبل طلب متابعتك",
+    "signalFlare": "{{name}} أرسل لك إشارة",
+    "newMessage": "{{name}} أرسل لك رسالة"
   }
 }

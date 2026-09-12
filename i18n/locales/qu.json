@@ -2846,5 +2846,37 @@
     "cancel": "Utqaylla",
     "remove": "Pakuy",
     "thisUser": "Kay ruraq"
+  },
+  "reactionInfo": {
+    "title": "Reacciones nisqakuna",
+    "privateTitle": "Reacciones nisqakunaqa sapanpaqmi",
+    "privateDescription": "Kay listataqa qillqa qillqaqllam qawayta atin.",
+    "empty": "Manaraqmi ima reaccionespas kanchu",
+    "emptyDescription": "Kay qillqasqamanta reaccionkuna kaypi rikurimunqa.",
+    "anonymous": "{{count}} gustasqan mana sutiyuq insigniayuqkunamanta",
+    "labels": {
+      "like": "Ama hina kaychu",
+      "love": "Khuyay",
+      "respect": "Yupaychay",
+      "hot": "Quñi",
+      "hundred": "100",
+      "lol": "League of Legends",
+      "sad": "Llakikuy",
+      "cry": "Waqay",
+      "poo": "Poo",
+      "dislike": "Mana allinchu"
+    },
+    "mediaSource": "Willaypa pukyuta akllay",
+    "photoLibrary": "Fotokuna waqaychana wasi",
+    "videoFiles": "Archivokunamanta video",
+    "fileError": "Kay videotaqa manam kichayta atirqanichu. Ama hina kaspa, huk willañiqita ruray.",
+    "reactedPost": "{{name}} nisqa qillqasqaykimanta reaccionarqa",
+    "repostedPost": "{{name}} qillqasqaykita musuqmanta churarqa",
+    "quotedPost": "{{name}} qillqasqaykimanta citasqa",
+    "mentionedYou": "{{name}} rimarqanki",
+    "followRequest": "{{name}} qatipanaykipaq mañakurqa",
+    "followAccepted": "{{name}} qatipay mañakuyniykita chaskirqa",
+    "signalFlare": "{{name}} Signal Flare-ta apachiy",
+    "newMessage": "{{name}} huk willakuyta apachirqasunki"
   }
 }

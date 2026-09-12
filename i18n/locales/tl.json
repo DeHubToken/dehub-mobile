@@ -2998,5 +2998,37 @@
     "cancel": "Kanselahin",
     "remove": "Alisin",
     "thisUser": "Ang user na ito"
+  },
+  "reactionInfo": {
+    "title": "Mga Reaksyon",
+    "privateTitle": "Ang mga reaksyon ay pribado",
+    "privateDescription": "Tanging ang may - akda ng post ang maaaring tumingin sa listahang ito.",
+    "empty": "Wala pang reaksyon",
+    "emptyDescription": "Ang mga reaksyon sa post na ito ay lilitaw dito.",
+    "anonymous": "{{count}} (na) gusto mula sa mga hindi nakikilalang may hawak ng badge",
+    "labels": {
+      "like": "I - like",
+      "love": "Pag - ibig",
+      "respect": "Paggalang",
+      "hot": "Mainit",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Malungkot",
+      "cry": "Umiiyak",
+      "poo": "Poo",
+      "dislike": "Hindi Gusto"
+    },
+    "mediaSource": "Pumili ng pinagmulan ng media",
+    "photoLibrary": "Aklatan ng larawan",
+    "videoFiles": "Video mula sa mga File",
+    "fileError": "Hindi mabuksan ang video na ito. Pakisubukan ang isa pang file.",
+    "reactedPost": "{{name}} reacted sa iyong post",
+    "repostedPost": "Na - repost ni {{name}} ang iyong post",
+    "quotedPost": "Na - quote ni {{name}} ang iyong post",
+    "mentionedYou": "Binanggit ka ni {{name}}",
+    "followRequest": "Hiniling ni {{name}} na sundan ka",
+    "followAccepted": "Tinanggap ni {{name}} ang iyong follow request",
+    "signalFlare": "Nagpadala si {{name}} ng Signal Flare",
+    "newMessage": "Nagpadala sa iyo ng mensahe si {{name}}"
   }
 }

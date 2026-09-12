@@ -2818,5 +2818,37 @@
     "cancel": "Mégse",
     "remove": "Eltávolítás",
     "thisUser": "Ez a felhasználó"
+  },
+  "reactionInfo": {
+    "title": "Reakciók",
+    "privateTitle": "A reakciók privátak",
+    "privateDescription": "Ezt a listát csak a bejegyzés szerzője tekintheti meg.",
+    "empty": "Még nincsenek reakciók",
+    "emptyDescription": "A bejegyzésre adott reakciók itt jelennek meg.",
+    "anonymous": "{{count}} kedveli a névtelen jelvénytulajdonosokat",
+    "labels": {
+      "like": "Tetszik",
+      "love": "Szerelem",
+      "respect": "Tisztelet",
+      "hot": "Forró",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Szomorú",
+      "cry": "Sírás",
+      "poo": "Kaki",
+      "dislike": "Nem tetszik"
+    },
+    "mediaSource": "Médiaforrás kiválasztása",
+    "photoLibrary": "Fotótár",
+    "videoFiles": "Videó fájlokból",
+    "fileError": "Nem sikerült megnyitni ezt a videót. Próbálkozz másik fájllal.",
+    "reactedPost": "{{name}} reagált a bejegyzésedre",
+    "repostedPost": "{{name}} újra közzétette a bejegyzésedet",
+    "quotedPost": "{{name}} idézte a bejegyzésedet",
+    "mentionedYou": "{{name}} említett téged",
+    "followRequest": "{{name}} arra kért, hogy kövesselek",
+    "followAccepted": "{{name}} elfogadta a követési kérésedet",
+    "signalFlare": "{{name}} jelzőrakétát küldött",
+    "newMessage": "{{name}} üzenetet küldött neked"
   }
 }

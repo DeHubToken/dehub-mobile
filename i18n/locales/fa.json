@@ -2841,5 +2841,36 @@
     "cancel": "لغو",
     "remove": "حذف کردن",
     "thisUser": "این کاربر"
+  },
+  "reactionInfo": {
+    "title": "واکنش ها",
+    "privateTitle": "واکنش‌ها خصوصی هستند",
+    "privateDescription": "فقط نویسنده پست می‌تواند این لیست را مشاهده کند.",
+    "empty": "هیچ واکنشی هنوز",
+    "emptyDescription": "واکنش‌ها به این پست در اینجا نمایش داده خواهند شد.",
+    "anonymous": "{{count}} لایک از دارندگان نشان ناشناس",
+    "labels": {
+      "like": "پسندیدن",
+      "love": "عاشق",
+      "respect": "احترام",
+      "hot": "داغ",
+      "hundred": "100",
+      "lol": "وای",
+      "sad": "غمگین",
+      "cry": "گریان",
+      "poo": "پو",
+      "dislike": "نپسندیدم"
+    },
+    "mediaSource": "منبع رسانه را انتخاب کنید",
+    "photoLibrary": "کتابخانه عکس",
+    "videoFiles": "ویدیو از فایل‌ها",
+    "fileError": "این ویدیو باز نشد. لطفاً فایل دیگری را امتحان کنید.",
+    "reactedPost": "{{name}} به پست شما واکنش نشان داد",
+    "repostedPost": "{{name}} پست شما را دوباره پست کرد",
+    "quotedPost": "{{name}} پست شما را نقل قول کرد",
+    "mentionedYou": "{{name}} به شما اشاره کرد",
+    "followRequest": "{{name}} درخواست دنبال کردن شما را دارم",
+    "followAccepted": "{{name}} درخواست فالو شما پذیرفته شد",
+    "signalFlare": "{{name}} یک سیگنال فلر فرستاد"
   }
 }

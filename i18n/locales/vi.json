@@ -2902,5 +2902,37 @@
     "cancel": "Hủy",
     "remove": "Xóa",
     "thisUser": "Người dùng này"
+  },
+  "reactionInfo": {
+    "title": "Phản ứng",
+    "privateTitle": "Phản hồi là riêng tư",
+    "privateDescription": "Chỉ tác giả bài đăng mới có thể xem danh sách này.",
+    "empty": "Chưa có phản hồi nào",
+    "emptyDescription": "Phản hồi cho bài đăng này sẽ xuất hiện ở đây.",
+    "anonymous": "{{count}} lượt thích từ những người giữ huy hiệu ẩn danh",
+    "labels": {
+      "like": "Thích",
+      "love": "Yêu",
+      "respect": "Tôn trọng",
+      "hot": "Nóng",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Buồn",
+      "cry": "Khóc",
+      "poo": "Poo",
+      "dislike": "Không thích"
+    },
+    "mediaSource": "Chọn nguồn phương tiện",
+    "photoLibrary": "Thư viện ảnh",
+    "videoFiles": "Video từ tệp",
+    "fileError": "Không thể mở video này. Vui lòng thử một tệp khác.",
+    "reactedPost": "{{name}} đã phản hồi bài đăng của bạn",
+    "repostedPost": "{{name}} đã đăng lại bài đăng của bạn",
+    "quotedPost": "{{name}} trích dẫn bài đăng của bạn",
+    "mentionedYou": "{{name}} đã đề cập đến bạn",
+    "followRequest": "{{name}} đã yêu cầu theo dõi bạn",
+    "followAccepted": "{{name}} đã chấp nhận yêu cầu theo dõi của bạn",
+    "signalFlare": "{{name}} đã gửi tín hiệu bùng phát",
+    "newMessage": "{{name}} đã gửi tin nhắn cho bạn"
   }
 }

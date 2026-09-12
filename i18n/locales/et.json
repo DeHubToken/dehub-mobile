@@ -2813,5 +2813,37 @@
     "cancel": "Tühistama",
     "remove": "Eemaldama",
     "thisUser": "See kasutaja"
+  },
+  "reactionInfo": {
+    "title": "Reaktsioonid",
+    "privateTitle": "Reaktsioonid on privaatsed",
+    "privateDescription": "Seda loendit saab vaadata ainult postituse autor.",
+    "empty": "Reaktsioone veel ei ole",
+    "emptyDescription": "Reaktsioonid sellele postitusele kuvatakse siin.",
+    "anonymous": "{{count}} meeldib anonüümsetelt märgiomanikelt",
+    "labels": {
+      "like": "Meeldib",
+      "love": "Armastus",
+      "respect": "Lugupidamine",
+      "hot": "Kuum",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "SAD",
+      "cry": "Nutmine",
+      "poo": "Poo",
+      "dislike": "Ei meeldi"
+    },
+    "mediaSource": "Vali meediaallikas",
+    "photoLibrary": "Fototeek",
+    "videoFiles": "Video failidest",
+    "fileError": "Seda videot ei saanud avada. Proovi teist faili.",
+    "reactedPost": "{{name}} reageeris sinu postitusele",
+    "repostedPost": "{{name}} jagas sinu postitust edasi",
+    "quotedPost": "{{name}} tsiteeris sinu postitust",
+    "mentionedYou": "{{name}} mainis sind",
+    "followRequest": "{{name}} taotles sinu jälgimise õigust",
+    "followAccepted": "{{name}} aktsepteeris sinu jälgimise taotlust",
+    "signalFlare": "{{name}} saatis sulle signaalipaisu",
+    "newMessage": "{{name}} saatis sulle sõnumi"
   }
 }

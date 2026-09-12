@@ -2985,5 +2985,37 @@
     "cancel": "Zrušiť",
     "remove": "Odstrániť",
     "thisUser": "Tento používateľ"
+  },
+  "reactionInfo": {
+    "title": "Reakcie",
+    "privateTitle": "Reakcie sú súkromné",
+    "privateDescription": "Tento zoznam môže zobraziť iba autor príspevku.",
+    "empty": "Zatiaľ žiadne reakcie",
+    "emptyDescription": "Reakcie na tento príspevok sa zobrazia tu.",
+    "anonymous": "{{count}} lajky od anonymných držiteľov odznakov",
+    "labels": {
+      "like": "Páči sa mi to",
+      "love": "Láska",
+      "respect": "Rešpekt",
+      "hot": "Horúce",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "JCD",
+      "cry": "Plač",
+      "poo": "Poo",
+      "dislike": "Nepáči sa mi"
+    },
+    "mediaSource": "Vybrať zdroj médií",
+    "photoLibrary": "Knižnica fotografií",
+    "videoFiles": "Video zo súborov",
+    "fileError": "Toto video sa nepodarilo otvoriť. Skúste iný súbor.",
+    "reactedPost": "{{name}} reagoval na váš príspevok",
+    "repostedPost": "{{name}} znova uverejnil váš príspevok",
+    "quotedPost": "{{name}} citoval váš príspevok",
+    "mentionedYou": "{{name}} vás spomenul",
+    "followRequest": "{{name}} vás chce sledovať",
+    "followAccepted": "{{name}} prijal vašu žiadosť o sledovanie",
+    "signalFlare": "{{name}} odoslal signálny svetlicu",
+    "newMessage": "{{name}} vám poslal správu"
   }
 }

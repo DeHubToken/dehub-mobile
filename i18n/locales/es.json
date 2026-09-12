@@ -2884,5 +2884,37 @@
     "cancel": "Cancelar",
     "remove": "Eliminar",
     "thisUser": "este usuario"
+  },
+  "reactionInfo": {
+    "title": "Reacciones",
+    "privateTitle": "Las reacciones son privadas",
+    "privateDescription": "Solo el autor de la publicación puede ver esta lista.",
+    "empty": "Aún no hay reacciones",
+    "emptyDescription": "Las reacciones a esta publicación aparecerán aquí.",
+    "anonymous": "{{count}} me gusta de titulares de credenciales anónimos",
+    "labels": {
+      "like": "Me gusta",
+      "love": "Amor",
+      "respect": "Respeto",
+      "hot": "Caliente",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Triste",
+      "cry": "Llanto",
+      "poo": "Caca",
+      "dislike": "No me gusta"
+    },
+    "mediaSource": "Elegir fuente de medios",
+    "photoLibrary": "Fototeca",
+    "videoFiles": "Vídeo de archivos",
+    "fileError": "No se ha podido abrir este vídeo. Inténtalo con otro archivo.",
+    "reactedPost": "{{name}} reaccionó a tu publicación",
+    "repostedPost": "{{name}} volvió a publicar tu publicación",
+    "quotedPost": "{{name}} ha citado tu publicación",
+    "mentionedYou": "{{name}} te ha mencionado",
+    "followRequest": "{{name}} ha solicitado seguirte",
+    "followAccepted": "{{name}} aceptó tu solicitud de seguimiento",
+    "signalFlare": "{{name}} ha enviado una bengala de señal",
+    "newMessage": "{{name}} te ha enviado un mensaje"
   }
 }

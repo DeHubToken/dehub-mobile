@@ -2805,5 +2805,37 @@
     "cancel": "Cancel",
     "remove": "Ka saar",
     "thisUser": "Isticmaalahan"
+  },
+  "reactionInfo": {
+    "title": "Falcelinta",
+    "privateTitle": "Falcelinta waa mid gaar ah",
+    "privateDescription": "Kaliya qoraaga boostada ayaa arki kara liiskan.",
+    "empty": "Weli ma jiraan wax falcelin ah",
+    "emptyDescription": "Jawaabaha qoraalkan ayaa ka soo muuqan doona halkan.",
+    "anonymous": "{{count}} wuxuu jecel yahay milkiilayaasha calaamadaha aan la aqoon",
+    "labels": {
+      "like": "Sida",
+      "love": "Jacayl",
+      "respect": "Ixtiraam",
+      "hot": "HOT",
+      "hundred": "100",
+      "lol": "LOL",
+      "sad": "Murugo",
+      "cry": "Qaylo dhaan",
+      "poo": "Poo",
+      "dislike": "Neceb"
+    },
+    "mediaSource": "Xulo ilaha warbaahinta",
+    "photoLibrary": "Maktabadda Sawirka",
+    "videoFiles": "Fiidiyowga Faylasha",
+    "fileError": "Ma furi karo fiidiyowgan. Fadlan isku day fayl kale.",
+    "reactedPost": "{{name}} ayaa ka falceliyay qoraalkaaga",
+    "repostedPost": "{{name}} dib u soo celiyay qoraalkaaga",
+    "quotedPost": "{{name}} soo xigatay qoraalkaaga",
+    "mentionedYou": "{{name}} ku xusay",
+    "followRequest": "{{name}} codsaday in uu ku raaco",
+    "followAccepted": "{{name}} aqbalay codsigaaga soo socda",
+    "signalFlare": "{{name}} Send a Signal Flare",
+    "newMessage": "{{name}} ayaa fariin kuu soo diray"
   }
 }
