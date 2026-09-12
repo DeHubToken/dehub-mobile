@@ -2,6 +2,19 @@ name: Android Play bundle
 
 on:
   workflow_dispatch:
+    inputs:
+      existing_build_id:
+        description: Optional completed EAS bundle to verify without recompiling
+        required: false
+        type: string
+      submission_profile:
+        description: Optionally submit the verified bundle to an existing Play track
+        type: choice
+        default: none
+        options:
+          - none
+          - store-testing
+          - production
 
 permissions:
   contents: read
@@ -28,7 +41,13 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Build signed Play bundle on EAS
+        if: inputs.existing_build_id == ''
         run: eas build --platform android --profile production --non-interactive --wait --json > android-play-build.json
+      - name: Recover a completed EAS bundle
+        if: inputs.existing_build_id != ''
+        env:
+          BUILD_ID: ${{ inputs.existing_build_id }}
+        run: eas build:view "$BUILD_ID" --json > android-play-build.json
       - name: Download and verify the bundle
         run: |
           node <<'NODE'
@@ -38,6 +57,8 @@ jobs:
           if (build.status !== 'FINISHED' || build.platform !== 'ANDROID' || !build.artifacts?.buildUrl) {
             throw new Error('EAS did not return a completed Android artifact');
           }
+          if (!/^[0-9a-f-]{36}$/i.test(build.id)) throw new Error('Invalid EAS build ID');
+          fs.writeFileSync('build-id.txt', build.id);
           fs.writeFileSync('aab-url.txt', build.artifacts.buildUrl);
           NODE
           curl --fail --location --retry 3 "$(cat aab-url.txt)" --output dehub.aab
@@ -49,6 +70,11 @@ jobs:
         with:
           name: signed-play-bundle
           path: dehub.aab
+      - name: Submit the verified bundle to Google Play
+        if: inputs.submission_profile != 'none' && inputs.submission_profile != ''
+        env:
+          SUBMISSION_PROFILE: ${{ inputs.submission_profile }}
+        run: eas submit --platform android --profile "$SUBMISSION_PROFILE" --id "$(cat build-id.txt)" --non-interactive --wait
       - uses: actions/upload-artifact@v4
         if: always()
         with:
