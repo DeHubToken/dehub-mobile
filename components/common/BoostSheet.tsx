@@ -38,6 +38,7 @@ import {
   type SuperPowerKey,
 } from "../../services/superpower.service";
 import { toastError, toastPromise, toastSuccess } from "../../libs";
+import SuperPowerIcon from "./SuperPowerIcon";
 
 export interface BoostSheetProps {
   visible: boolean;
@@ -54,18 +55,6 @@ export interface BoostSheetProps {
    */
   isOwnPost?: boolean;
 }
-
-/** Lucide keys — the shared `Icon` component is lucide, not Ionicons. */
-const ICONS: Partial<Record<SuperPowerKey, string>> = {
-  boost: "Rocket",
-  second_wind: "History",
-  timeline_bomber: "Radio",
-  signal_flare: "Siren",
-  flak_jacket: "Shield",
-  precision_strike: "Crosshair",
-  harpoon: "Target",
-  deep_current: "Gift",
-};
 
 export default function BoostSheet({
   visible,
@@ -167,7 +156,7 @@ export default function BoostSheet({
     <GlassModal visible={visible} onClose={onClose} presentation="bottom">
       <View className="px-5 pb-8 pt-4">
         <View className="mb-4 flex-row items-center gap-2">
-          <Icon name="Rocket" size={20} color="#fff" />
+          <SuperPowerIcon power="boost" style={{ width: 32, height: 32 }} />
           <Text className="text-lg font-semibold text-white">SuperPowers</Text>
         </View>
 
@@ -247,7 +236,7 @@ export default function BoostSheet({
                       isChosen ? "border-white/30 bg-white/10" : "border-white/10 bg-white/[0.02]"
                     } ${power.enabled ? "" : "opacity-50"}`}
                   >
-                    <Icon name={(ICONS[power.key] ?? "Rocket") as any} size={16} color="#D4D4D8" />
+                    <SuperPowerIcon power={power.key} style={{ width: 32, height: 32, marginTop: -4 }} />
                     <View className="min-w-0 flex-1">
                       <View className="flex-row items-center gap-2">
                         <Text className="text-sm text-white">{power.label}</Text>

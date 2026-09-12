@@ -45,8 +45,7 @@ import GlassModal from "../components/ui/GlassModal";
 import {
   type SuperPowerInfo,
 } from "../services/superpower.service";
-
-const BOOST_ICON = require("../assets/superpowers/boost.png");
+import SuperPowerIcon from "../components/common/SuperPowerIcon";
 
 /** Total slot minutes a tier holds per cycle — the number worth comparing. */
 function formatMinutes(total: number): string {
@@ -169,9 +168,7 @@ export default function SuperPowersScreen() {
                   style={({ pressed }) => [styles.powerBody, pressed && unlocked && styles.powerBodyPressed]}
                 >
                   <View style={styles.powerTop}>
-                    {power.key === "boost" ? (
-                      <Image source={BOOST_ICON} style={styles.powerIcon} resizeMode="contain" />
-                    ) : null}
+                    <SuperPowerIcon power={power.key} style={styles.powerIcon} />
                     {/* Numbered because this is a fixed, ordered power list. */}
                     <Text style={styles.rung}>{String(index + 1).padStart(2, "0")}</Text>
                     <Text style={[styles.powerName, !unlocked && styles.powerNameOff]}>
@@ -290,7 +287,10 @@ export default function SuperPowersScreen() {
         <View style={styles.historySheet}>
           <View style={styles.historyHeader}>
             <View style={styles.historyHeaderText}>
-              <Text style={styles.historyTitle}>{historyPower?.label} usage</Text>
+              <View style={styles.historyTitleRow}>
+                {historyPower ? <SuperPowerIcon power={historyPower.key} style={styles.powerIcon} /> : null}
+                <Text style={styles.historyTitle}>{historyPower?.label} usage</Text>
+              </View>
               <Text style={styles.historySubtitle}>This cycle and anything still active.</Text>
             </View>
             <Pressable
@@ -480,6 +480,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   historyHeaderText: { flex: 1, minWidth: 0 },
+  historyTitleRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   historyTitle: { color: "#fff", fontSize: 18, fontWeight: "600" },
   historySubtitle: { color: "#71717A", fontSize: 12, marginTop: 3 },
   historyList: { maxHeight: 440 },

@@ -22,6 +22,7 @@ import { useAuthActions } from '../../context/AuthContext';
 import Avatar from './Avatar';
 import GlassModal from '../ui/GlassModal';
 import Icon from '../ui/Icon';
+import SuperPowerIcon from './SuperPowerIcon';
 
 const compact = new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 });
 
@@ -56,7 +57,10 @@ export default function TeamUpSheet({
       <View style={styles.sheet}>
         <View style={styles.header}>
           <View style={styles.headerText}>
-            <Text style={styles.title}>Team up</Text>
+            <View style={styles.titleRow}>
+              <SuperPowerIcon power="team_up" style={styles.powerIcon} />
+              <Text style={styles.title}>Team up</Text>
+            </View>
             <Text style={styles.subtitle}>
               Combine wallet power with up to seven others. Everyone wears the badge your total unlocks.
             </Text>
@@ -235,6 +239,8 @@ const styles = StyleSheet.create({
   sheet: { width: '100%', maxHeight: '82%', paddingHorizontal: 16, paddingBottom: 16 },
   header: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, paddingVertical: 14 },
   headerText: { flex: 1, minWidth: 0 },
+  titleRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  powerIcon: { width: 32, height: 32 },
   title: { color: '#FFFFFF', fontSize: 18, fontWeight: '700' },
   subtitle: { color: '#A1A1AA', fontSize: 12, lineHeight: 17, marginTop: 4 },
   scroll: { maxHeight: 560 },
