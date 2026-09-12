@@ -1498,6 +1498,36 @@ export default function UploadScreen() {
     });
   }, [clearSound]);
 
+  const handleChangeImage = useCallback(async (index: number) => {
+    try {
+      await runWithPermissions(["photos"], async () => {
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ["images"],
+          allowsMultipleSelection: false,
+          selectionLimit: 1,
+          quality: 0.8,
+        });
+        if (result.canceled || !result.assets?.[0]?.uri) return;
+
+        const asset = result.assets[0];
+        try {
+          const info = await FileSystem.getInfoAsync(asset.uri);
+          const size = (info as any)?.size as number | undefined;
+          if (size && size > MAX_IMAGE_SIZE_BYTES) {
+            toastError("Image exceeds 20 MB limit.");
+            return;
+          }
+        } catch {}
+
+        setPickedImages((prev) => prev.map((image, imageIndex) => (
+          imageIndex === index ? asset : image
+        )));
+      });
+    } catch (err) {
+      console.error("[UploadScreen] image change error:", err);
+    }
+  }, []);
+
   const handleRemoveVideo = useCallback(() => {
     setPickedVideo(null);
     setIsMuted(true);
@@ -2048,6 +2078,15 @@ export default function UploadScreen() {
                         accessibilityLabel="Remove image"
                       >
                         <Icon name="X" size={16} color="#fff" />
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => handleChangeImage(idx)}
+                        className="absolute top-2 right-11 w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
+                        hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                        accessibilityRole="button"
+                        accessibilityLabel={`Change image ${idx + 1}`}
+                      >
+                        <Icon name="Pencil" size={14} color="#fff" />
                       </TouchableOpacity>
                     </View>
                   </View>
