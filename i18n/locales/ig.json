@@ -1517,7 +1517,12 @@
     "or": "ma ọ bụ",
     "termsNotice": "Site n'ịga n'ihu, ị kwenyere na Usoro Ọrụ anyị na Amụma Nzuzo",
     "walletInfoDesktop": "Jikọọ wallet gị iji banye n'ụzọ nchekwa",
-    "walletInfoMobile": "MetaMask, Trust na Phantom ga-emeghe app ha ozugbo. Rabby ga-eji WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust na Phantom ga-emeghe app ha ozugbo. Rabby ga-eji WalletConnect.",
+    "signIn": "Banye",
+    "password": "Okwuntughe",
+    "sendCode": "Zipu koodu",
+    "usePasswordInstead": "Jiri okwuntughe kama",
+    "useCodeInstead": "Zitere m koodu na email kama"
   },
   "careers": {
     "title": "Ọrụ na DeHub",

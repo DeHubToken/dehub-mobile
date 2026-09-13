@@ -23,6 +23,7 @@ import { getPreferredChainId } from "../../libs/auth.utils";
 import {
   sendEmailOtp,
   verifyEmailOtp,
+  signInWithEmailPassword,
   sendPhoneOtp,
   verifyPhoneOtp,
   signInWithGoogle,
@@ -481,6 +482,29 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
     [pendingEmail, runProvisionAndSignIn]
   );
 
+  /**
+   * Password sign-in. Same destination as the code flow — only the proof of
+   * identity differs — so it hands off to runProvisionAndSignIn untouched.
+   */
+  const handleEmailPasswordSubmit = useCallback(
+    async (email: string, password: string) => {
+      setIsLocalLoading(true);
+      setCurrentProvider("email");
+      setInlineError(null);
+      try {
+        const supabaseUserId = await signInWithEmailPassword(email, password);
+        await runProvisionAndSignIn(supabaseUserId);
+      } catch (e: any) {
+        console.error("[SignInGatewayModal] Email password login error", e);
+        setInlineError(e?.message || "Invalid email or password.");
+      } finally {
+        setIsLocalLoading(false);
+        setCurrentProvider("");
+      }
+    },
+    [runProvisionAndSignIn]
+  );
+
   const handleResendEmailCode = useCallback(() => {
     handleEmailSubmit(pendingEmail);
   }, [pendingEmail, handleEmailSubmit]);
@@ -571,6 +595,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
               onGoogle={handleGoogleLogin}
               onApple={handleAppleLogin}
               onEmailSubmit={handleEmailSubmit}
+              onEmailPasswordSubmit={handleEmailPasswordSubmit}
               onPhoneSubmit={handlePhoneSubmit}
               onConnectWallet={handleWalletConnect}
               busyProvider={isLocalLoading ? currentProvider : isWalletLoading ? "wallet" : undefined}

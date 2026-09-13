@@ -1531,7 +1531,12 @@
     "or": "أو",
     "termsNotice": "بالمتابعة، فإنك توافق على شروط الخدمة وسياسة الخصوصية",
     "walletInfoDesktop": "اربط محفظتك لتسجيل الدخول بأمان",
-    "walletInfoMobile": "MetaMask وTrust وPhantom ستفتح تطبيقها مباشرة. Rabby سيستخدم WalletConnect."
+    "walletInfoMobile": "MetaMask وTrust وPhantom ستفتح تطبيقها مباشرة. Rabby سيستخدم WalletConnect.",
+    "signIn": "تسجيل الدخول",
+    "password": "كلمة المرور",
+    "sendCode": "إرسال الرمز",
+    "usePasswordInstead": "استخدم كلمة المرور بدلاً من ذلك",
+    "useCodeInstead": "أرسل لي رمزاً عبر البريد الإلكتروني"
   },
   "careers": {
     "title": "وظائف في DeHub",

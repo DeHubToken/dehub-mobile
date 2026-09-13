@@ -1999,7 +1999,12 @@
     "or": "of",
     "termsNotice": "Door verder te gaan, ga je akkoord met onze Servicevoorwaarden en Privacybeleid",
     "walletInfoDesktop": "Verbind je wallet om veilig in te loggen",
-    "walletInfoMobile": "MetaMask, Trust en Phantom openen hun app direct. Rabby gebruikt WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust en Phantom openen hun app direct. Rabby gebruikt WalletConnect.",
+    "signIn": "Inloggen",
+    "password": "Wachtwoord",
+    "sendCode": "Code versturen",
+    "usePasswordInstead": "Gebruik in plaats daarvan een wachtwoord",
+    "useCodeInstead": "Stuur me in plaats daarvan een code per e-mail"
   },
   "careers": {
     "title": "Vacatures bij DeHub",

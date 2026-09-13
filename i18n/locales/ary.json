@@ -1527,7 +1527,12 @@
     "or": "ولا",
     "termsNotice": "إيلا كمّلتي راك موافق على شروط الخدمة وسياسة الخصوصية",
     "walletInfoDesktop": "ربط المحفظة ديالك باش تدخل بالأمان",
-    "walletInfoMobile": "MetaMask وTrust وPhantom غادي يحلو التطبيق ديالهم مباشرة. Rabby غادي يستعمل WalletConnect."
+    "walletInfoMobile": "MetaMask وTrust وPhantom غادي يحلو التطبيق ديالهم مباشرة. Rabby غادي يستعمل WalletConnect.",
+    "signIn": "دخل",
+    "password": "كلمة السر",
+    "sendCode": "صيفط الكود",
+    "usePasswordInstead": "استعمل كلمة السر عوض هادشي",
+    "useCodeInstead": "صيفط ليا كود فالإيميل"
   },
   "careers": {
     "title": "الوظائف فـ DeHub",

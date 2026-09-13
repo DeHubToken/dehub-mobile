@@ -1514,7 +1514,12 @@
     "or": "эсвэл",
     "termsNotice": "Үргэлжлүүлснээр та Үйлчилгээний нөхцөл болон Нууцлалын бодлогыг зөвшөөрнө",
     "walletInfoDesktop": "Аюулгүй нэвтрэхийн тулд хэтэвчээ холбоно уу",
-    "walletInfoMobile": "MetaMask, Trust & Phantom аппаа шууд нээнэ. Rabby WalletConnect ашиглана."
+    "walletInfoMobile": "MetaMask, Trust & Phantom аппаа шууд нээнэ. Rabby WalletConnect ашиглана.",
+    "signIn": "Нэвтрэх",
+    "password": "Нууц үг",
+    "sendCode": "Код илгээх",
+    "usePasswordInstead": "Оронд нь нууц үг ашиглах",
+    "useCodeInstead": "Оронд нь надад имэйлээр код илгээнэ үү"
   },
   "careers": {
     "title": "DeHub-д ажиллах",

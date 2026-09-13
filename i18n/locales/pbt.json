@@ -1507,7 +1507,12 @@
     "or": "یا",
     "termsNotice": "د دوام سره تاسو زموږ د خدمت شرایطو او محرمیت پالیسي سره موافقه کوئ",
     "walletInfoDesktop": "خپل والټ وصل کړئ د خوندي ننوتلو لپاره",
-    "walletInfoMobile": "MetaMask، Trust او Phantom به خپل اپلیکیشن مستقیم خلاص کړي. Rabby به WalletConnect وکاروي."
+    "walletInfoMobile": "MetaMask، Trust او Phantom به خپل اپلیکیشن مستقیم خلاص کړي. Rabby به WalletConnect وکاروي.",
+    "signIn": "ننوتل",
+    "password": "پاسورډ",
+    "sendCode": "کوډ ولېږئ",
+    "usePasswordInstead": "د دې پرځای پټنوم وکاروئ",
+    "useCodeInstead": "د دې پرځای ماته په بریښنالیک کې کوډ ولېږئ"
   },
   "careers": {
     "title": "په DeHub کې دندې",

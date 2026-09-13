@@ -1486,7 +1486,12 @@
     "or": "或",
     "termsNotice": "继续即表示你同意我们的服务条款和隐私政策",
     "walletInfoDesktop": "连接你的钱包安全登录",
-    "walletInfoMobile": "MetaMask、Trust 和 Phantom 会直接打开应用。Rabby 会使用 WalletConnect。"
+    "walletInfoMobile": "MetaMask、Trust 和 Phantom 会直接打开应用。Rabby 会使用 WalletConnect。",
+    "signIn": "登录",
+    "password": "密码",
+    "sendCode": "发送验证码",
+    "usePasswordInstead": "改用密码",
+    "useCodeInstead": "改为给我发邮件验证码"
   },
   "careers": {
     "title": "DeHub招聘",

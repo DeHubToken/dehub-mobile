@@ -1585,7 +1585,12 @@
     "sendingCode": "Sending code...",
     "smsInfo": "We'll send you a verification code via SMS",
     "walletInfoDesktop": "Connect your wallet to sign in securely",
-    "walletInfoMobile": "MetaMask, Trust & Phantom will open their app directly. Rabby will use WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust & Phantom will open their app directly. Rabby will use WalletConnect.",
+    "signIn": "ចូល",
+    "password": "ពាក្យសម្ងាត់",
+    "sendCode": "ផ្ញើលេខកូដ",
+    "usePasswordInstead": "ប្រើពាក្យសម្ងាត់ជំនួសវិញ",
+    "useCodeInstead": "ផ្ញើលេខកូដមកខ្ញុំតាមអ៊ីមែលជំនួសវិញ"
   },
   "careers": {
     "title": "អាជីពនៅ DeHub",

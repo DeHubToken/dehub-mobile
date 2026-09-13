@@ -1488,7 +1488,12 @@
     "or": "oder",
     "termsNotice": "Wänn du wiitermachsch, stimmsch du üserne Nutzigsbedingige und Dateschutzrichtlinie zue",
     "walletInfoDesktop": "Verbind dis Wallet zum sicher aamälde",
-    "walletInfoMobile": "MetaMask, Trust & Phantom mached ihri App diräkt uf. Rabby bruucht WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust & Phantom mached ihri App diräkt uf. Rabby bruucht WalletConnect.",
+    "signIn": "Aamälde",
+    "password": "Passwort",
+    "sendCode": "Code schicke",
+    "usePasswordInstead": "Stattdesse es Passwort bruche",
+    "useCodeInstead": "Mir stattdesse en Code per E-Mail schicke"
   },
   "careers": {
     "title": "Stellene bi DeHub",

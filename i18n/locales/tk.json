@@ -1507,7 +1507,12 @@
     "or": "ýa-da",
     "termsNotice": "Dowam etmek bilen Hyzmat şertlerini we Gizlinlik syýasatyny kabul edýärsiňiz",
     "walletInfoDesktop": "Howpsuz girmek üçin gapjygyňyzy birikdiriň",
-    "walletInfoMobile": "MetaMask, Trust we Phantom programmasyny göni açar."
+    "walletInfoMobile": "MetaMask, Trust we Phantom programmasyny göni açar.",
+    "signIn": "Gir",
+    "password": "Parol",
+    "sendCode": "Kody iber",
+    "usePasswordInstead": "Munuň ýerine paroly ulan",
+    "useCodeInstead": "Munuň ýerine maňa e-poçta kod iber"
   },
   "careers": {
     "title": "DeHub-daky işler",

@@ -1361,7 +1361,12 @@
     "or": "বা",
     "termsNotice": "আগাইলে তুই সেবার শর্ত আর গোপনীয়তা নীতিতে রাজি",
     "walletInfoDesktop": "নিরাপদে লগইনের জইন্যে ওয়ালেট কানেক্ট গরো",
-    "walletInfoMobile": "MetaMask, Trust আর Phantom সরাসরি অ্যাপ খুলবো। Rabby WalletConnect ব্যবহার গরবো।"
+    "walletInfoMobile": "MetaMask, Trust আর Phantom সরাসরি অ্যাপ খুলবো। Rabby WalletConnect ব্যবহার গরবো।",
+    "signIn": "সাইন ইন",
+    "password": "পাসওয়ার্ড",
+    "sendCode": "কোড পাঠান",
+    "usePasswordInstead": "বদলে পাসওয়ার্ড ব্যবহার করুন",
+    "useCodeInstead": "বদলে আমারে ইমেইলে কোড পাঠান"
   },
   "sidebar": {
     "talkOfTheTown": "শহরর গপ",

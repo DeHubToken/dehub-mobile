@@ -1448,7 +1448,12 @@
     "or": "na",
     "termsNotice": "Amin'ny fitohizana dia ekenao ny Fepetra sy ny Politikam-piainana manokana",
     "walletInfoDesktop": "Ampifandraiso ny kitapom-bolanao mba hiditra amim-piarovana",
-    "walletInfoMobile": "MetaMask, Trust & Phantom dia hanokatra ny app mivantana. Rabby dia hampiasa WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust & Phantom dia hanokatra ny app mivantana. Rabby dia hampiasa WalletConnect.",
+    "signIn": "Hiditra",
+    "password": "Teny miafina",
+    "sendCode": "Alefaso ny kaody",
+    "usePasswordInstead": "Mampiasà tenimiafina fa tsy izany",
+    "useCodeInstead": "Alefaso mailaka ho ahy ny kaody"
   },
   "careers": {
     "title": "Asa ao amin'i DeHub",

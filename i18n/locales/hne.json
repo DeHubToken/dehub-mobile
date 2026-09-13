@@ -1509,7 +1509,12 @@
     "or": "या",
     "termsNotice": "आगू बढ़े से तैं सेवा शर्त अउ गोपनीयता नीति ले सहमत हस",
     "walletInfoDesktop": "सुरक्षित लॉग इन बर वॉलेट जोड़व",
-    "walletInfoMobile": "MetaMask, Trust अउ Phantom सीधा ऐप खोलही। Rabby WalletConnect उपयोग करही।"
+    "walletInfoMobile": "MetaMask, Trust अउ Phantom सीधा ऐप खोलही। Rabby WalletConnect उपयोग करही।",
+    "signIn": "साइन इन",
+    "password": "पासवर्ड",
+    "sendCode": "कोड भेजव",
+    "usePasswordInstead": "एखर बदला पासवर्ड ला उपयोग करव",
+    "useCodeInstead": "एखर बदला मोला ईमेल म कोड भेजव"
   },
   "careers": {
     "title": "DeHub मा नौकरी",

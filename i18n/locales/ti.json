@@ -1510,7 +1510,12 @@
     "or": "ወይ",
     "termsNotice": "ብምቕጻል ናይ ኣገልግሎት ውዕላትናን ናይ ውልቃውነት ፖሊሲናን ትቕበል",
     "walletInfoDesktop": "ብድሕንነት ንምብዓል ዋሌትካ ኣራኽብ",
-    "walletInfoMobile": "MetaMask, Trust & Phantom ብቐጥታ ኣፕ ክኸፍቱ እዮም። Rabby WalletConnect ክጥቀም እዩ።"
+    "walletInfoMobile": "MetaMask, Trust & Phantom ብቐጥታ ኣፕ ክኸፍቱ እዮም። Rabby WalletConnect ክጥቀም እዩ።",
+    "signIn": "እቶ",
+    "password": "መሕለፊ ቃል",
+    "sendCode": "ኮድ ስደድ",
+    "usePasswordInstead": "ኣብ ክንድኡ መሕለፊ ቃል ተጠቐም",
+    "useCodeInstead": "ኣብ ክንድኡ ብኢመይል ኮድ ስደደለይ"
   },
   "careers": {
     "title": "ስራሕ ኣብ DeHub",

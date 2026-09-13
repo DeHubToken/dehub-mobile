@@ -1520,7 +1520,12 @@
     "or": "ko",
     "termsNotice": "Idan ka ci gaba, ka yarda da Sharuɗɗanmu na Sabis da Manufar Sirri",
     "walletInfoDesktop": "Haɗa wallet ɗinka don shiga cikin aminci",
-    "walletInfoMobile": "MetaMask, Trust & Phantom za su buɗe app ɗinsu kai tsaye. Rabby zai yi amfani da WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust & Phantom za su buɗe app ɗinsu kai tsaye. Rabby zai yi amfani da WalletConnect.",
+    "signIn": "Shiga",
+    "password": "Kalmar sirri",
+    "sendCode": "Aika lambar",
+    "usePasswordInstead": "Yi amfani da kalmar sirri maimakon haka",
+    "useCodeInstead": "A aiko min da lamba ta imel"
   },
   "careers": {
     "title": "Ayyuka a DeHub",

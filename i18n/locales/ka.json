@@ -1522,7 +1522,12 @@
     "or": "ან",
     "termsNotice": "გაგრძელებით ეთანხმებით ჩვენს მომსახურების პირობებსა და კონფიდენციალურობის პოლიტიკას",
     "walletInfoDesktop": "დააკავშირეთ საფულე უსაფრთხო შესვლისთვის",
-    "walletInfoMobile": "MetaMask, Trust და Phantom პირდაპირ გახსნიან აპს. Rabby WalletConnect-ს გამოიყენებს."
+    "walletInfoMobile": "MetaMask, Trust და Phantom პირდაპირ გახსნიან აპს. Rabby WalletConnect-ს გამოიყენებს.",
+    "signIn": "შესვლა",
+    "password": "პაროლი",
+    "sendCode": "კოდის გაგზავნა",
+    "usePasswordInstead": "ნაცვლად გამოიყენეთ პაროლი",
+    "useCodeInstead": "ნაცვლად გამომიგზავნეთ კოდი ელფოსტით"
   },
   "careers": {
     "title": "კარიერა DeHub-ში",

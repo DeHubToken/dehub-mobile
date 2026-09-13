@@ -1528,7 +1528,12 @@
     "or": "noma",
     "termsNotice": "Ngokuqhubeka, uyavuma Imigomo Yethu Yokusebenza Nenqubomgomo Yobumfihlo",
     "walletInfoDesktop": "Xhuma isikhwama sakho ukuze ungene ngokuphephile",
-    "walletInfoMobile": "MetaMask, Trust ne-Phantom bazovula uhlelo lwabo ngqo. Rabby izosebenzisa i-WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust ne-Phantom bazovula uhlelo lwabo ngqo. Rabby izosebenzisa i-WalletConnect.",
+    "signIn": "Ngena",
+    "password": "Iphasiwedi",
+    "sendCode": "Thumela ikhodi",
+    "usePasswordInstead": "Sebenzisa iphasiwedi esikhundleni salokho",
+    "useCodeInstead": "Ngithumelele ikhodi nge-imeyili esikhundleni salokho"
   },
   "careers": {
     "title": "Imisebenzi ku-DeHub",

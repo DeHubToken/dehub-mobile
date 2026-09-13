@@ -1521,7 +1521,12 @@
     "or": "tai",
     "termsNotice": "Jatkamalla hyväksyt käyttöehtomme ja tietosuojakäytäntömme",
     "walletInfoDesktop": "Yhdistä lompakkosi kirjautuaksesi turvallisesti",
-    "walletInfoMobile": "MetaMask, Trust ja Phantom avaavat sovelluksensa suoraan. Rabby käyttää WalletConnectia."
+    "walletInfoMobile": "MetaMask, Trust ja Phantom avaavat sovelluksensa suoraan. Rabby käyttää WalletConnectia.",
+    "signIn": "Kirjaudu sisään",
+    "password": "Salasana",
+    "sendCode": "Lähetä koodi",
+    "usePasswordInstead": "Käytä sen sijaan salasanaa",
+    "useCodeInstead": "Lähetä koodi sähköpostiin"
   },
   "careers": {
     "title": "Urat DeHubissa",

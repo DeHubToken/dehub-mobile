@@ -1529,7 +1529,12 @@
     "or": "ili",
     "termsNotice": "Nastavkom se slažete s našim Uvjetima korištenja i Politikom privatnosti",
     "walletInfoDesktop": "Povežite novčanik za sigurnu prijavu",
-    "walletInfoMobile": "MetaMask, Trust i Phantom će otvoriti svoju aplikaciju izravno. Rabby će koristiti WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust i Phantom će otvoriti svoju aplikaciju izravno. Rabby će koristiti WalletConnect.",
+    "signIn": "Prijava",
+    "password": "Lozinka",
+    "sendCode": "Pošalji kod",
+    "usePasswordInstead": "Umjesto toga koristi lozinku",
+    "useCodeInstead": "Umjesto toga pošalji mi kod e-poštom"
   },
   "careers": {
     "title": "Karijere u DeHubu",

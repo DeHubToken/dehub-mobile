@@ -1512,7 +1512,12 @@
     "or": "କିମ୍ବା",
     "termsNotice": "ଜାରି ରଖି ଆପଣ ଆମର ସେବା ସର୍ତ୍ତ ଏବଂ ଗୋପନୀୟତା ନୀତି ସହ ସହମତ",
     "walletInfoDesktop": "ସୁରକ୍ଷିତ ଲଗ ଇନ ପାଇଁ ୱାଲେଟ ସଂଯୋଗ କରନ୍ତୁ",
-    "walletInfoMobile": "MetaMask, Trust ଏବଂ Phantom ସେମାନଙ୍କ ନିଜ ଆପରେ ଖୋଲେ। Rabby WalletConnect ବ୍ୟବହାର କରେ।"
+    "walletInfoMobile": "MetaMask, Trust ଏବଂ Phantom ସେମାନଙ୍କ ନିଜ ଆପରେ ଖୋଲେ। Rabby WalletConnect ବ୍ୟବହାର କରେ।",
+    "signIn": "ସାଇନ ଇନ",
+    "password": "ପାସୱାର୍ଡ",
+    "sendCode": "କୋଡ୍ ପଠାନ୍ତୁ",
+    "usePasswordInstead": "ଏହା ପରିବର୍ତ୍ତେ ପାସୱାର୍ଡ ବ୍ୟବହାର କରନ୍ତୁ",
+    "useCodeInstead": "ଏହା ପରିବର୍ତ୍ତେ ମୋତେ ଇମେଲରେ କୋଡ୍ ପଠାନ୍ତୁ"
   },
   "careers": {
     "title": "DeHub ରେ କ୍ୟାରିୟର",

@@ -1527,7 +1527,12 @@
     "or": "یا",
     "termsNotice": "با ادامه دادن، شما با شرایط خدمات و سیاست حفظ حریم خصوصی ما موافقت می‌کنید",
     "walletInfoDesktop": "کیف پول خود را متصل کنید تا با امنیت وارد شوید",
-    "walletInfoMobile": "MetaMask، Trust و Phantom اپلیکیشن خود را مستقیماً باز می‌کنند. Rabby از WalletConnect استفاده می‌کند."
+    "walletInfoMobile": "MetaMask، Trust و Phantom اپلیکیشن خود را مستقیماً باز می‌کنند. Rabby از WalletConnect استفاده می‌کند.",
+    "signIn": "ورود",
+    "password": "رمز عبور",
+    "sendCode": "ارسال کد",
+    "usePasswordInstead": "به جای آن از رمز عبور استفاده کنید",
+    "useCodeInstead": "به جای آن کد را ایمیل کنید"
   },
   "careers": {
     "title": "مشاغل در DeHub",

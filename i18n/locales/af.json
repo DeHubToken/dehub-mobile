@@ -1990,7 +1990,12 @@
     "or": "or",
     "termsNotice": "By continuing, you agree to our Terms of Service and Privacy Policy",
     "walletInfoDesktop": "Connect your wallet to sign in securely",
-    "walletInfoMobile": "MetaMask, Trust & Phantom will open their app directly. Rabby will use WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust & Phantom will open their app directly. Rabby will use WalletConnect.",
+    "signIn": "Meld aan",
+    "password": "Wagwoord",
+    "sendCode": "Stuur kode",
+    "usePasswordInstead": "Gebruik eerder ’n wagwoord",
+    "useCodeInstead": "E-pos eerder vir my ’n kode"
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",
