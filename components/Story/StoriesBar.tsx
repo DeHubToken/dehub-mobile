@@ -192,7 +192,9 @@ const StoriesBar: React.FC<StoriesBarProps> = ({ refreshKey = 0 }) => {
   );
 };
 
-export default StoriesBar;
+// Rendered inline in Home's header, which re-renders on every feed fetch
+// transition; without memo the whole rail re-sorted and rebuilt each time.
+export default React.memo(StoriesBar);
 
 const styles = StyleSheet.create({
   scroll: { paddingHorizontal: 12, paddingVertical: 10, gap: 10 },

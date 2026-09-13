@@ -54,7 +54,6 @@ import CashtagSheet from "./CashtagSheet";
 import Icon from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
 import SoundtrackBadge from "../Post/SoundtrackBadge";
-import { useSyncedAudio } from "../../hooks/useSyncedAudio";
 import { parseSoundtrack } from "../../libs/parseSoundtrack";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useImageTranslation } from "../../hooks/useImageTranslation";
@@ -223,14 +222,22 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     "Unknown";
   const username = minterUser?.username || item.minterUsername || item.minter || "";
   const minterAddress = minterUser?.address || item.minter || item.owner || "";
-  const avatar = getAvatarUrl(minterUser?.avatarImageUrl || item.minterAvatarUrl || "");
-  const badgeImg = minterUser?.hideBadgeAndBalance ? null : getBadgeUrlFor(minterUser || item);
+  // URL building and the "untitled" check are per-item, not per-render; a card
+  // re-renders many times over its life (engagement ticks, visibility).
+  const avatarSource = minterUser?.avatarImageUrl || item.minterAvatarUrl || "";
+  const avatar = useMemo(() => getAvatarUrl(avatarSource), [avatarSource]);
+  const hideBadge = !!minterUser?.hideBadgeAndBalance;
+  const badgeImg = useMemo(
+    () => (hideBadge ? null : getBadgeUrlFor(minterUser || item)),
+    [hideBadge, minterUser, item],
+  );
 
   const createdAt = item.createdAt || stream?.createdAt;
-  const title = (() => {
-    const raw = item.name || item.title || stream?.title || "";
-    return raw.toLowerCase() === "untitled" ? "" : raw;
-  })();
+  const rawTitle = item.name || item.title || stream?.title || "";
+  const title = useMemo(
+    () => (rawTitle.toLowerCase() === "untitled" ? "" : rawTitle),
+    [rawTitle],
+  );
   const description = item.description || stream?.description || "";
   const soundtrack = useMemo(() => parseSoundtrack(description), [description]);
   const hasSoundtrack = !!soundtrack;
@@ -258,12 +265,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   );
 
   const [replacementImages, setReplacementImages] = useState<{ tokenId: string; imageUrls: string[] } | null>(null);
+  // Only the owner can replace a post's images, so only the owner's own card
+  // needs to hear about it; one listener per mounted card was the alternative.
   useEffect(() => {
+    if (!isOwnerPost) return;
     const subscription = DeviceEventEmitter.addListener('post-images-replaced', (updated: { tokenId: string; imageUrls: string[] }) => {
       if (updated.tokenId === String(tokenId)) setReplacementImages(updated);
     });
     return () => subscription.remove();
-  }, [tokenId]);
+  }, [tokenId, isOwnerPost]);
   // --- Gallery images (for image posts) ---
   const galleryImages = useMemo(() => {
     const urls: string[] = replacementImages?.tokenId === String(tokenId) ? replacementImages.imageUrls : Array.isArray(item.imageUrls) ? item.imageUrls : [];
@@ -523,6 +533,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (!id) return;
     showUserProfile(id);
   }, [username, minterAddress, showUserProfile]);
+
+  // Stable handlers so the memo'd header, caption and action bar keep their
+  // bail-outs; an inline arrow here re-rendered all three on every card render.
+  const handleBoostPress = useCallback(() => setShowBoost(true), []);
+  const handleShowReactionInfo = useCallback(() => setShowReactionInfo(true), []);
+  // Relative time moves by the minute at most; recomputing it on every render
+  // parsed the date each time.
+  const timeAgo = useMemo(() => formatShortTimeAgo(createdAt), [createdAt]);
 
   const handleCardPress = useCallback(() => {
     if (disablePress) return;
@@ -1423,7 +1441,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             onAiPress={handleAiPress}
             onBoostPress={
               DIGITAL_PURCHASES_ENABLED && isOwnerPost && isSignedIn && tokenId != null
-                ? () => setShowBoost(true)
+                ? handleBoostPress
                 : undefined
             }
             isHidden={isHidden}
@@ -1464,7 +1482,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         description={displayCaption || undefined}
         categories={localCategories}
         onCategoryPress={onCategorySelect}
-        onCashtagPress={(sym) => setActiveCashtag(sym)}
+        onCashtagPress={setActiveCashtag}
         fullContent={fullContent}
         showCategories={fullContent}
         flagged={item.communityAlertStatus === "pending"}
@@ -1509,7 +1527,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
       <View className="flex-row items-center gap-2 pt-3">
         <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>
-          {formatShortTimeAgo(createdAt)}
+          {timeAgo}
         </Text>
         <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>·</Text>
         <View className="flex-row items-center gap-1">
@@ -1573,7 +1591,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onSave={handleSavePress}
           onInfo={handleInfoPress}
           onShowReactionInfo={
-            isOwnerPost && tokenId != null ? () => setShowReactionInfo(true) : undefined
+            isOwnerPost && tokenId != null ? handleShowReactionInfo : undefined
           }
         />
       )}

@@ -89,7 +89,11 @@ export function useTranslation(
     return stripEmojis(combined).length >= MIN_TRANSLATABLE_LENGTH;
   }, [texts]);
 
-  const combinedProse = Object.values(texts).join(' ').replace(/https?:\/\/\S+|[@#$]\S+/g, '').replace(/[^\p{L}]/gu, '');
+  // Two unicode regex passes over the caption; per caption, not per render.
+  const combinedProse = useMemo(
+    () => Object.values(texts).join(' ').replace(/https?:\/\/\S+|[@#$]\S+/g, '').replace(/[^\p{L}]/gu, ''),
+    [texts],
+  );
   const reliableBackendLang = combinedProse.length >= 60 && detectedLanguage !== 'und' ? detectedLanguage : null;
   const knownLang = resolvedLang || reliableBackendLang;
 

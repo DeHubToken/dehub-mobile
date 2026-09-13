@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from "react";
+import { runWhenSettled } from "../libs/run-when-settled";
 import {
   createPoll,
   getPolls,
@@ -193,12 +194,20 @@ export function usePoll(tokenId: number | null) {
       return;
     }
     setLoading(true);
-    fetchPollCached(tokenId).then((data) => {
-      if (mountedRef.current) {
+    // Every feed card asks. Waiting for the scroll to settle keeps the batch
+    // fetch and its state updates off a fling; cached answers above were sync.
+    let cancelled = false;
+    const cancel = runWhenSettled(() => {
+      fetchPollCached(tokenId).then((data) => {
+        if (cancelled || !mountedRef.current) return;
         setPoll(data);
         setLoading(false);
-      }
+      });
     });
+    return () => {
+      cancelled = true;
+      cancel();
+    };
   }, [tokenId]);
 
   const refetch = useCallback(async () => {

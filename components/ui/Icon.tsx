@@ -268,4 +268,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Icon;
+// A feed card holds ten or more of these; without memo every one re-rendered
+// with the card.
+export default React.memo(Icon);

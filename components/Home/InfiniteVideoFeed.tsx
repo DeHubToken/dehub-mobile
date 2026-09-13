@@ -51,6 +51,11 @@ import { feedEvents } from "../../libs/eventBus";
 import { capFeedByAuthorAllowance } from "../../libs/postQuota";
 import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
 import { flattenFeedPages } from "../../libs/feed-pages";
+import {
+  createFeedVisibilityStore,
+  useRowVisibility,
+  type FeedVisibilityStore,
+} from "../../libs/feedVisibility";
 import { mergeLiveCounts } from "../../libs/liveCounts";
 import { useWatchedVideoIds, filterWatched } from "../../hooks/useWatchedVideos";
 import { useLiveStreams } from "../../hooks/useLiveStreams";
@@ -130,6 +135,35 @@ const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
 // Animated wrapper so a worklet onScroll runs on the UI thread; cast keeps FlatList generics.
 const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
 
+// One row. Subscribes to its own visibility so a tick that moves another row
+// on or off screen never reaches this one.
+const VisibleFeedCard = memo(function VisibleFeedCard({
+  item,
+  store,
+  onCategorySelect,
+  live,
+}: {
+  item: UnifiedFeedItem & { __listKey: string };
+  store: FeedVisibilityStore;
+  onCategorySelect?: (category: string) => void;
+  /** False while this list is a hidden tab or the screen is unfocused. */
+  live: boolean;
+}) {
+  const { isVisible, isAutoplay } = useRowVisibility(store, item.__listKey);
+  return (
+    <FeedCard
+      item={item}
+      onCategorySelect={onCategorySelect}
+      // On screen, so it may hold a player and answer a tap. Autoplay is
+      // the separate, exclusive flag below — conflating the two meant the
+      // second video on screen could not be started at all.
+      isVisible={live && isVisible}
+      isAutoplayActive={live && isAutoplay}
+      enablePreview
+    />
+  );
+});
+
 export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   params,
   pageSize = 10,
@@ -154,10 +188,18 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     __listKey: string;
   }
   const [refreshing, setRefreshing] = useState(false);
-  const [visibleItemKeys, setVisibleItemKeys] = useState<Set<string>>(new Set());
-  const [activeVideoKey, setActiveVideoKey] = useState<string | null>(null);
+  // Row visibility lives outside React state so a viewability tick re-renders
+  // only the rows it changed, not every mounted cell. See libs/feedVisibility.
+  const visibilityStore = useMemo(() => createFeedVisibilityStore(), []);
+  const visibleKeysRef = useRef<Set<string>>(new Set());
   const listRef = useRef<FlatList<FeedItem>>(null);
   const prevYRef = useRef(0);
+  // Set for the life of a drag or fling. Everything that would rewrite the
+  // list mid-scroll — the live-count poll, the counts a fetched page carries,
+  // the appended page itself — waits on this and lands from settleScroll().
+  const scrollingRef = useRef(false);
+  // Counts carried by pages fetched while scrolling, merged once it settles.
+  const pendingFetchedRowsRef = useRef<any[]>([]);
 
   // Fixed-height top spacer.
   //
@@ -222,31 +264,39 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // Viewability config: item is "viewable" when 50% visible
   const viewabilityConfig = useRef({
     itemVisiblePercentThreshold: 50,
-    // Debounce viewability during flings so we don't setState (and re-render the
-    // list) on every frame; the view tracker still measures dwell time itself.
-    minimumViewTime: 150,
+    // Debounce viewability during flings so a row passing through the viewport
+    // mid-fling never counts; the view tracker still measures dwell time itself.
+    minimumViewTime: 250,
   }).current;
+
+  // A hidden pager page never scrolls, so its rows stay "viewable" forever and
+  // every cache patch re-ran this handler on a list nobody was looking at —
+  // minting view trackers and queueing views for posts nobody saw.
+  const activeRef = useRef(active);
+  activeRef.current = active;
+  // Ticks were skipped while hidden, so ask for one the moment the page is
+  // shown — otherwise nothing is "visible" until the user happens to scroll.
+  useEffect(() => {
+    if (active) listRef.current?.recordInteraction();
+  }, [active]);
 
   // Handle viewable items change for view tracking (feed posts only)
   const onViewableItemsChanged = useRef(({ viewableItems, changed }: {
     viewableItems: ViewToken[];
     changed: ViewToken[];
   }) => {
+    if (!activeRef.current) return;
+
     // Track visible items for audio preloading/pausing (works for all users)
-    setVisibleItemKeys(prev => {
-      let changed_membership = false;
-      const next = new Set(prev);
-      for (const entry of changed) {
-        const key = (entry.item as FeedItem | undefined)?.__listKey;
-        if (!key) continue;
-        if (entry.isViewable) {
-          if (!prev.has(key)) { next.add(key); changed_membership = true; }
-        } else {
-          if (prev.has(key)) { next.delete(key); changed_membership = true; }
-        }
-      }
-      return changed_membership ? next : prev;
-    });
+    const prev = visibleKeysRef.current;
+    const next = new Set(prev);
+    for (const entry of changed) {
+      const key = (entry.item as FeedItem | undefined)?.__listKey;
+      if (!key) continue;
+      if (entry.isViewable) next.add(key);
+      else next.delete(key);
+    }
+    visibleKeysRef.current = next;
 
     // Only the topmost visible row that can hold a player should autoplay.
     // Without the type filter a text or image post above the video took the
@@ -261,7 +311,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         !!(v.item as FeedItem | undefined)?.__listKey &&
         (isVideoItem(v.item as UnifiedFeedItem) || isLiveItem(v.item as UnifiedFeedItem)))
       .sort((a, b) => (a.index ?? 0) - (b.index ?? 0))[0];
-    setActiveVideoKey(topVideo ? (topVideo.item as FeedItem).__listKey : null);
+    visibilityStore.update(next, topVideo ? (topVideo.item as FeedItem).__listKey : null);
 
     // No auth gate: signed-out viewers count too, and the view service routes
     // their views to the anonymous view backend.
@@ -305,7 +355,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     queryKey,
     queryFn: async ({ pageParam }) => {
       const response = await getUnifiedFeed({ ...(params || {}), limit: pageSize, page: pageParam });
-      mergeLiveCounts(queryClient, response.result);
+      // Merging walks every cached feed page of every mounted list. The rows
+      // this page renders are fresh already; the other lists can wait until the
+      // finger is off the screen.
+      if (scrollingRef.current) pendingFetchedRowsRef.current.push(...(response.result || []));
+      else mergeLiveCounts(queryClient, response.result);
       return response;
     },
     initialPageParam: 1,
@@ -465,6 +519,36 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     ];
   }, [cappedItems, boostedTokenId, boostedPost, boostSlot?.bookingId]);
 
+  // The rows the list is showing. A page that lands mid-fling is held here
+  // until the scroll settles: applying it meant parse → flatten → cap → every
+  // mounted cell re-rendered → a scroll-position correction, all while the
+  // finger was off the screen and the list was supposed to be coasting. The
+  // network request still goes out at the threshold, so the rows are ready the
+  // moment the list stops. Only a pure append is held — a refresh, a deletion
+  // or a re-sort is applied at once so the list never shows stale rows.
+  const heldRef = useRef<FeedItem[] | null>(null);
+  const holdPendingRef = useRef(false);
+  const [holdRelease, setHoldRelease] = useState(0);
+  const listData = useMemo(() => {
+    const held = heldRef.current;
+    const isAppend =
+      held != null &&
+      held !== feedItems &&
+      feedItems.length > held.length &&
+      held.length > 0 &&
+      feedItems[0] === held[0] &&
+      feedItems[held.length - 1] === held[held.length - 1];
+    if (scrollingRef.current && isAppend) {
+      holdPendingRef.current = true;
+      return held;
+    }
+    holdPendingRef.current = false;
+    heldRef.current = feedItems;
+    return feedItems;
+    // holdRelease re-runs this once the scroll has settled.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [feedItems, holdRelease]);
+
   const endReached = hasNextPage === false;
   const error = queryError ? (queryError as Error).message || "Failed to load" : null;
 
@@ -621,9 +705,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     [liveStreams],
   );
 
-  // Set for the life of a drag or fling; the live-count poll defers its cache
-  // rewrite while this is true (see useNewPostsSignal).
-  const scrollingRef = useRef(false);
   const { newPostCount, atCap: newPostsAtCap, flushLiveCounts } = useNewPostsSignal({
     enabled: active && isFocused,
     scrolling: scrollingRef,
@@ -640,18 +721,28 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     void onRefresh();
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
   }, [onRefresh]);
+  // The finger is up and the list has stopped: apply everything that waited.
+  const settleScroll = useCallback(() => {
+    scrollingRef.current = false;
+    flushLiveCounts();
+    const fetched = pendingFetchedRowsRef.current;
+    if (fetched.length) {
+      pendingFetchedRowsRef.current = [];
+      mergeLiveCounts(queryClient, fetched);
+    }
+    if (holdPendingRef.current) setHoldRelease((v) => v + 1);
+  }, [flushLiveCounts, queryClient]);
+
   const handleScrollEndDrag = useCallback(() => {
     // A fling follows this with onMomentumScrollBegin, which re-arms the flag.
-    scrollingRef.current = false;
-    flushLiveCounts();
+    settleScroll();
     onScrollEnd?.();
-  }, [onScrollEnd, flushLiveCounts]);
+  }, [onScrollEnd, settleScroll]);
 
   const handleMomentumScrollEnd = useCallback(() => {
-    scrollingRef.current = false;
-    flushLiveCounts();
+    settleScroll();
     onScrollEnd?.();
-  }, [onScrollEnd, flushLiveCounts]);
+  }, [onScrollEnd, settleScroll]);
 
   useEffect(() => {
     if (!feedRef) return;
@@ -669,15 +760,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const renderItem = useCallback<ListRenderItem<FeedItem>>(
     ({ item, index }) => {
       const card = (
-        <FeedCard
+        <VisibleFeedCard
           item={item}
+          store={visibilityStore}
           onCategorySelect={onCategorySelect}
-          // On screen, so it may hold a player and answer a tap. Autoplay is
-          // the separate, exclusive flag below — conflating the two meant the
-          // second video on screen could not be started at all.
-          isVisible={active && isFocused && visibleItemKeys.has(item.__listKey)}
-          isAutoplayActive={active && isFocused && item.__listKey === activeVideoKey}
-          enablePreview
+          live={active && isFocused}
         />
       );
 
@@ -693,17 +780,10 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
       return <>{card}</>;
     },
-    [visibleItemKeys, activeVideoKey, isFocused, active, onCategorySelect],
+    [visibilityStore, isFocused, active, onCategorySelect],
   );
 
   const keyExtractor = useCallback((item: FeedItem) => item.__listKey, []);
-
-  // A fresh array literal here re-rendered every mounted cell on every list
-  // render; this only changes identity when the visibility state actually does.
-  const extraData = useMemo(
-    () => ({ visibleItemKeys, activeVideoKey }),
-    [visibleItemKeys, activeVideoKey],
-  );
 
   // Inline JSX here was a fresh element on every render — including the two
   // renders per viewability change — so VirtualizedList re-rendered the header
@@ -816,7 +896,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       )}
       <AnimatedFlatList
         ref={listRef}
-        data={feedItems}
+        data={listData}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         ListHeaderComponent={listHeader}
@@ -855,8 +935,10 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           }
         }
         onEndReached={endReached ? undefined : loadMore}
-        onEndReachedThreshold={2.5}
-        extraData={extraData}
+        // Was 2.5 viewports: that re-fired on every content-size change and
+        // pulled the next page almost as soon as the last one landed. The
+        // appended rows are held until the scroll settles anyway (listData).
+        onEndReachedThreshold={1.5}
         onScroll={scrollHandler ?? handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
         onScrollEndDrag={handleScrollEndDrag}

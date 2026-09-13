@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { Pressable, Text, View, type GestureResponderEvent, type StyleProp, type ViewStyle } from "react-native";
 import { TAP_GESTURE_WINDOW_MS, TAP_REACTION_RESOLUTION_MS } from "../../libs/tap-gesture";
 
 /** Keep image navigation pending until a second tap can claim the gesture. */
-export default function PostTapSurface({ children, onPress, onReaction, style }: {
+function PostTapSurface({ children, onPress, onReaction, style }: {
   children: React.ReactNode;
   onPress?: () => void;
   onReaction: (reaction: "like" | "love") => void;
@@ -75,3 +75,7 @@ export default function PostTapSurface({ children, onPress, onReaction, style }:
     </Pressable>
   );
 }
+
+// Callbacks are read through a ref, so a memo here is safe: a fresh arrow from
+// the parent never needs a re-render to take effect.
+export default memo(PostTapSurface);
