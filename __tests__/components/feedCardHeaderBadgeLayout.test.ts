@@ -13,7 +13,7 @@ const newMemberChipSource = readFileSync(
 describe("feed card badge layout", () => {
   it("keeps the current holder badge size and raises only its artwork", () => {
     expect(source).toContain(
-      "getBadgeOpticalStyle(badgeImage, HOLDER_BADGE_SIZE, -1, DISPLAY_NAME_LINE_HEIGHT)",
+      "getBadgeOpticalStyle(badgeImage, HOLDER_BADGE_SIZE, 0, DISPLAY_NAME_LINE_HEIGHT)",
     );
     expect(source).toContain("const HOLDER_BADGE_SIZE = 16");
   });
