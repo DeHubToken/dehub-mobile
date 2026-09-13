@@ -2,15 +2,15 @@
  * Badge delegation — lending your tier to another account
  * =======================================================
  * A badge is a claim about influence, and influence can be lent. Every tier
- * carries one delegation slot per rung climbed (Crab 1, up to Meglodon 13),
+ * carries one delegation slot per rung climbed (Crab 1, up to Megalodon 13),
  * and a slot hands your badge to another account — a second wallet, a backup,
  * or someone worth bringing up.
  *
  * Two things not obvious from the endpoints:
  *
  * **A delegation grants your own tier**, not a lesser copy of it — Crab lends
- * Crab, Meglodon lends Meglodon. Slots scale with tier, so one holder can put
- * `slots + 1` of their badge on the platform: fourteen Meglodons behind one
+ * Crab, Megalodon lends Megalodon. Slots scale with tier, so one holder can put
+ * `slots + 1` of their badge on the platform: fourteen Megalodons behind one
  * 50M stack. That is accepted rather than overlooked, because a tier claims
  * influence *commanded* rather than DHB held. If the top rung ever needs
  * protecting, the lever is the slot curve, not the granted tier.

@@ -3,7 +3,7 @@
  * staking badge tier.
  *
  * Mirror of web's `src/lib/profile-limits.ts`. Two with no badge, and one more
- * for every tier above it — 2 (no badge) -> 3 (Crab) -> ... -> 15 (Meglodon),
+ * for every tier above it — 2 (no badge) -> 3 (Crab) -> ... -> 15 (Megalodon),
  * in the same order as `BADGE_ORDER` in `libs/misc.ts`. Adding a tier there
  * adds a slot here automatically; do not hand-write the numbers. Same shape and
  * same rule as the daily feed allowance in `libs/postQuota.ts`.

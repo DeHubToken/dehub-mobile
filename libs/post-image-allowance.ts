@@ -2,7 +2,7 @@ import { BADGE_ORDER, getBadgeName, parseBadgeLock } from "./misc";
 
 /**
  * Feed-image allowance per post. The first four images are available to every
- * creator; higher badge tiers add room gradually, with Meglodon capped at 20.
+ * creator; higher badge tiers add room gradually, with Megalodon capped at 20.
  */
 const IMAGE_LIMITS_BY_BADGE_INDEX = [
   5, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 18, 20,

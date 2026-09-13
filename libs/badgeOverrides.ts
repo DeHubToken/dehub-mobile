@@ -33,9 +33,9 @@
  * to a tier nobody granted.
  */
 export const USERNAME_BADGE_OVERRIDES: ReadonlyMap<string, string> = new Map([
-  ["maldoteth", "Meglodon"],
-  ["mal", "Meglodon"],
-  ["aaron", "Meglodon"],
+  ["maldoteth", "Megalodon"],
+  ["mal", "Megalodon"],
+  ["aaron", "Megalodon"],
 ]);
 
 /** The tier this username is granted, or undefined when it is not listed. */

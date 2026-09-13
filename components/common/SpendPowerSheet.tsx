@@ -7,7 +7,7 @@
  *
  * The screen used to tick a power and then leave you to find the surface it is
  * spent from — a post's options sheet, a comment, a Stage. At Cobra that was
- * five ticks and one control; at Meglodon it is twelve ticks and two, which
+ * five ticks and one control; at Megalodon it is twelve ticks and two, which
  * reads as ten powers that do not work. They all work. What they need is a
  * target, and picking the target is the whole job of this sheet.
  *
@@ -174,7 +174,7 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
   const statusTier = (status?.tier ?? "").toLowerCase();
   const isMegalodon =
     statusTier.includes("megalodon") ||
-    statusTier.includes("meglodon");
+    statusTier.includes("megalodon");
 
   const selectedPost =
     home === "post" || home === "gift"

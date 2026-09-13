@@ -3,7 +3,7 @@
  * =================================================
  * A badge decides how much one person's attention counts. No badge counts
  * once, the entry tier twice, and every rung after that adds one: Crab 2,
- * Lobster 3, up to Meglodon 14.
+ * Lobster 3, up to Megalodon 14.
  *
  * It is a MULTIPLIER, never a second reaction. One person still holds one
  * reaction and still counts as one unique viewer — the badge only changes what
@@ -37,7 +37,7 @@ import { overrideTierNameFor } from "./badgeOverrides";
 /** What an account with no badge contributes. Everybody counts at least once. */
 export const NO_BADGE_ENGAGEMENT_WEIGHT = 1;
 
-/** Meglodon: thirteen rungs above a badgeless account's single count. */
+/** Megalodon: thirteen rungs above a badgeless account's single count. */
 export const MAX_ENGAGEMENT_WEIGHT =
   BADGE_ORDER.length + NO_BADGE_ENGAGEMENT_WEIGHT;
 
