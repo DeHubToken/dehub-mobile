@@ -98,7 +98,9 @@ const baseCachePersister = createSyncStoragePersister({
   // the whole cache several times a minute on the JS thread. 10s is frequent
   // enough to survive a cold start while keeping the write off the scroll
   // hot-path.
-  throttleTime: 10_000,
+  // 30s: at 10s the live-count poll (same period) dirtied the cache on every
+  // tick, so the serialisation ran as often as the poll did.
+  throttleTime: 30_000,
 });
 
 // Persists the query cache to disk so a cold start renders the last known feed

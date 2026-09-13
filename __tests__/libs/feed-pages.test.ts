@@ -46,6 +46,18 @@ describe("flattenFeedPages", () => {
     expect(flattenFeedPages<any>(pages, none)).toHaveLength(2);
   });
 
+  it("hands back the same wrapper for a raw row that has not changed", () => {
+    // The live-count poll rewrites a page with most rows kept by reference; a
+    // fresh wrapper per row would re-render every memo'd card for one count.
+    const kept = { tokenId: 1 };
+    const first = flattenFeedPages<any>([{ result: [kept, { tokenId: 2 }] }], none);
+    const second = flattenFeedPages<any>([{ result: [kept, { tokenId: 2, views: 9 }] }], none);
+
+    expect(second[0]).toBe(first[0]);
+    expect(second[1]).not.toBe(first[1]);
+    expect(second[1].views).toBe(9);
+  });
+
   it("survives a page with no result", () => {
     expect(flattenFeedPages<any>([{ result: null }, {}], none)).toEqual([]);
   });

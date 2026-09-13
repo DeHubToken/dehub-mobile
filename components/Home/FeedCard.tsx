@@ -1452,7 +1452,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         </View>
       )}
 
-      <PostTapSurface onReaction={handleVideoTapReaction}>
+      {/* Without onPress this surface still stops propagation, so a single
+          tap on the caption reached nobody: the card's own press never fired
+          and the post did not open. */}
+      <PostTapSurface
+        onReaction={handleVideoTapReaction}
+        onPress={disablePress ? undefined : handleCardPress}
+      >
       <FeedCaption
         title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
         description={displayCaption || undefined}
