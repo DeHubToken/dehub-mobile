@@ -1439,7 +1439,9 @@
     "failedPurchase": "ግዢን መጀመር አልተሳካም",
     "redirectingOnramp": "ወደ ኦንራምፕ እየዛወረ...",
     "onrampCreated": "የኦንራምፕ ክፍለ ጊዜ ተፈጥሯል",
-    "failedOnramp": "ኦንራምፕን መጀመር አልተሳካም"
+    "failedOnramp": "ኦንራምፕን መጀመር አልተሳካም",
+    "otherTokens": "ሌሎች ቶከኖች",
+    "otherTokensDesc": "በካርድዎ በBase ላይ ETH ወይም USDC ይግዙ"
   },
   "agents": {
     "title": "AI ወኪሎች",

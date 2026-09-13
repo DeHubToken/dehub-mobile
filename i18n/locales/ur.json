@@ -1353,7 +1353,9 @@
     "failedPurchase": "خریداری شروع کرنے میں ناکامی",
     "redirectingOnramp": "ری ڈائریکٹ ہو رہا ہے...",
     "onrampCreated": "سیشن بن گیا",
-    "failedOnramp": "شروع کرنے میں ناکامی"
+    "failedOnramp": "شروع کرنے میں ناکامی",
+    "otherTokens": "دیگر ٹوکن",
+    "otherTokensDesc": "اپنے کارڈ سے Base پر ETH یا USDC خریدیں"
   },
   "agents": {
     "title": "AI ایجنٹس",

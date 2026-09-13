@@ -1910,7 +1910,9 @@
     "failedPurchase": "Failed to start purchase",
     "redirectingOnramp": "Redirecting to onramp...",
     "onrampCreated": "Onramp session created",
-    "failedOnramp": "Failed to start onramp"
+    "failedOnramp": "Failed to start onramp",
+    "otherTokens": "Ander tokens",
+    "otherTokensDesc": "Koop ETH of USDC op Base met jou kaart"
   },
   "agents": {
     "title": "AI Agents",

@@ -1437,7 +1437,9 @@
     "failedPurchase": "Kunne ikke starte kjøp",
     "redirectingOnramp": "Omdirigerer til rampe...",
     "onrampCreated": "Rampe-økt opprettet",
-    "failedOnramp": "Kunne ikke starte rampe"
+    "failedOnramp": "Kunne ikke starte rampe",
+    "otherTokens": "Andre tokens",
+    "otherTokensDesc": "Kjøp ETH eller USDC på Base med kortet ditt"
   },
   "agents": {
     "title": "AI-agenter",

@@ -1450,7 +1450,9 @@
     "failedPurchase": "Gagal memulai pembelian",
     "redirectingOnramp": "Mengalihkan ke onramp...",
     "onrampCreated": "Sesi onramp dibuat",
-    "failedOnramp": "Gagal memulai onramp"
+    "failedOnramp": "Gagal memulai onramp",
+    "otherTokens": "Token lainnya",
+    "otherTokensDesc": "Beli ETH atau USDC di Base dengan kartu Anda"
   },
   "agents": {
     "title": "Agen AI",

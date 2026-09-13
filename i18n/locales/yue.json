@@ -1448,7 +1448,9 @@
     "failedPurchase": "建立購買失敗",
     "redirectingOnramp": "跳轉到入金緊...",
     "onrampCreated": "入金會話已建立",
-    "failedOnramp": "建立入金失敗"
+    "failedOnramp": "建立入金失敗",
+    "otherTokens": "其他代幣",
+    "otherTokensDesc": "用你張卡喺 Base 上面買 ETH 或者 USDC"
   },
   "agents": {
     "title": "AI代理",

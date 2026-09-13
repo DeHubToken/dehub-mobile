@@ -1429,7 +1429,9 @@
     "failedPurchase": "खरीदारी शुरू नइ होइस",
     "redirectingOnramp": "ऑनरैम्प बर रिडायरेक्ट होवत हे...",
     "onrampCreated": "ऑनरैम्प सत्र बने गे",
-    "failedOnramp": "ऑनरैम्प शुरू नइ होइस"
+    "failedOnramp": "ऑनरैम्प शुरू नइ होइस",
+    "otherTokens": "दूसर टोकन",
+    "otherTokensDesc": "अपन कार्ड ले Base म ETH या USDC बिसाहव"
   },
   "agents": {
     "title": "AI एजेंट",

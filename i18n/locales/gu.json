@@ -1448,7 +1448,9 @@
     "failedPurchase": "ખરીદી શરૂ કરી શકાઈ નહીં",
     "redirectingOnramp": "ઓનરેમ્પ પર રીડાયરેક્ટ થઈ રહ્યું છે...",
     "onrampCreated": "ઓનરેમ્પ સેશન બનાવ્યું",
-    "failedOnramp": "ઓનરેમ્પ શરૂ કરી શકાયું નહીં"
+    "failedOnramp": "ઓનરેમ્પ શરૂ કરી શકાયું નહીં",
+    "otherTokens": "અન્ય ટોકન",
+    "otherTokensDesc": "તમારા કાર્ડથી Base પર ETH અથવા USDC ખરીદો"
   },
   "agents": {
     "title": "AI એજન્ટ્સ",

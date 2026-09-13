@@ -1353,7 +1353,9 @@
     "failedPurchase": "فشل بدء الشراء",
     "redirectingOnramp": "جارٍ التحويل...",
     "onrampCreated": "تم إنشاء الجلسة",
-    "failedOnramp": "فشل البدء"
+    "failedOnramp": "فشل البدء",
+    "otherTokens": "عملات أخرى",
+    "otherTokensDesc": "اشترِ ETH أو USDC على Base ببطاقتك"
   },
   "agents": {
     "title": "وكلاء AI",

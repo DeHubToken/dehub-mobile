@@ -1437,7 +1437,9 @@
     "failedPurchase": "Enweghị ike ịmalite ịzụta",
     "redirectingOnramp": "Ọ na-ebugharị na onramp...",
     "onrampCreated": "Emepụtala oge onramp",
-    "failedOnramp": "Enweghị ike ịmalite onramp"
+    "failedOnramp": "Enweghị ike ịmalite onramp",
+    "otherTokens": "Token ndị ọzọ",
+    "otherTokensDesc": "Jiri kaadị gị zụta ETH ma ọ bụ USDC na Base"
   },
   "agents": {
     "title": "Ndị Ọrụ AI",

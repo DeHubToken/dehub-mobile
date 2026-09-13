@@ -1427,7 +1427,9 @@
     "failedPurchase": "اخیستنه نشي پیل کیدلی",
     "redirectingOnramp": "آنریمپ ته لیږدول کیږي...",
     "onrampCreated": "آنریمپ ناسته جوړه شوه",
-    "failedOnramp": "آنریمپ نشي پیل کیدلی"
+    "failedOnramp": "آنریمپ نشي پیل کیدلی",
+    "otherTokens": "نور ټوکنونه",
+    "otherTokensDesc": "په خپل کارت سره په Base کې ETH یا USDC واخلئ"
   },
   "agents": {
     "title": "AI ایجنټونه",

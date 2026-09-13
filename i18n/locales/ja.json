@@ -1462,7 +1462,9 @@
     "failedPurchase": "購入失敗",
     "redirectingOnramp": "リダイレクト中...",
     "onrampCreated": "入金セッション作成",
-    "failedOnramp": "入金失敗"
+    "failedOnramp": "入金失敗",
+    "otherTokens": "その他のトークン",
+    "otherTokensDesc": "カードで Base 上の ETH または USDC を購入"
   },
   "agents": {
     "title": "AIエージェント",

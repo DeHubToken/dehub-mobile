@@ -1448,7 +1448,9 @@
     "failedPurchase": "Pirkuma sākšana neizdevās",
     "redirectingOnramp": "Pāradresēšana uz rampu...",
     "onrampCreated": "Rampas sesija izveidota",
-    "failedOnramp": "Rampas sākšana neizdevās"
+    "failedOnramp": "Rampas sākšana neizdevās",
+    "otherTokens": "Citi tokeni",
+    "otherTokensDesc": "Pērciet ETH vai USDC tīklā Base ar savu karti"
   },
   "agents": {
     "title": "MI aģenti",

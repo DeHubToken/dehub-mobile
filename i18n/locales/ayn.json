@@ -1407,7 +1407,9 @@
     "failedPurchase": "فشل بدء الشراء",
     "redirectingOnramp": "يحولك للشراء...",
     "onrampCreated": "جلسة الشراء انشأت",
-    "failedOnramp": "فشل بدء الشراء"
+    "failedOnramp": "فشل بدء الشراء",
+    "otherTokens": "عملات ثانية",
+    "otherTokensDesc": "اشتري ETH أو USDC على Base بالبطاقة حقك"
   },
   "agents": {
     "title": "وكلاء الذكاء الاصطناعي",

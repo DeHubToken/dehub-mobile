@@ -1440,7 +1440,9 @@
     "failedPurchase": "Ba a iya fara siye ba",
     "redirectingOnramp": "Ana tura zuwa hanyar...",
     "onrampCreated": "An ƙirƙiri zaman hanyar",
-    "failedOnramp": "Ba a iya fara hanyar ba"
+    "failedOnramp": "Ba a iya fara hanyar ba",
+    "otherTokens": "Sauran tokens",
+    "otherTokensDesc": "Sayi ETH ko USDC a Base da katinka"
   },
   "agents": {
     "title": "Wakilan AI",

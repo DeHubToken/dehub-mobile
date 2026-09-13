@@ -1441,7 +1441,9 @@
     "failedPurchase": "Oston aloitus epäonnistui",
     "redirectingOnramp": "Ohjataan ramppiin...",
     "onrampCreated": "Ramppi-istunto luotu",
-    "failedOnramp": "Rampin aloitus epäonnistui"
+    "failedOnramp": "Rampin aloitus epäonnistui",
+    "otherTokens": "Muut tokenit",
+    "otherTokensDesc": "Osta ETH tai USDC Basessa kortillasi"
   },
   "agents": {
     "title": "Tekoälyagentit",

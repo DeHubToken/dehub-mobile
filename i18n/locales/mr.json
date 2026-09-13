@@ -1345,7 +1345,9 @@
     "failedPurchase": "खरेदी सुरू करण्यात अयशस्वी",
     "redirectingOnramp": "पुनर्निर्देशित होत आहे...",
     "onrampCreated": "सत्र तयार केले",
-    "failedOnramp": "सुरू करण्यात अयशस्वी"
+    "failedOnramp": "सुरू करण्यात अयशस्वी",
+    "otherTokens": "इतर टोकन",
+    "otherTokensDesc": "तुमच्या कार्डने Base वर ETH किंवा USDC खरेदी करा"
   },
   "agents": {
     "title": "AI एजंट्स",

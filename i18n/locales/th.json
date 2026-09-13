@@ -1686,7 +1686,9 @@
     "failedPurchase": "เริ่มการซื้อไม่สำเร็จ",
     "redirectingOnramp": "กำลังพาไประบบซื้อ...",
     "onrampCreated": "สร้างเซสชันการซื้อแล้ว",
-    "failedOnramp": "เริ่มระบบซื้อไม่สำเร็จ"
+    "failedOnramp": "เริ่มระบบซื้อไม่สำเร็จ",
+    "otherTokens": "โทเคนอื่น ๆ",
+    "otherTokensDesc": "ซื้อ ETH หรือ USDC บน Base ด้วยบัตรของคุณ"
   },
   "agents": {
     "title": "AI Agent",

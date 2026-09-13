@@ -1351,7 +1351,9 @@
     "failedPurchase": "కొనుగోలు ప్రారంభించడం విఫలమైంది",
     "redirectingOnramp": "రీడైరెక్ట్ అవుతోంది...",
     "onrampCreated": "సెషన్ సృష్టించబడింది",
-    "failedOnramp": "ప్రారంభించడం విఫలమైంది"
+    "failedOnramp": "ప్రారంభించడం విఫలమైంది",
+    "otherTokens": "ఇతర టోకెన్లు",
+    "otherTokensDesc": "మీ కార్డుతో Base పై ETH లేదా USDC కొనండి"
   },
   "agents": {
     "title": "AI ఏజెంట్లు",

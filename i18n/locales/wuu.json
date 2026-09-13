@@ -1406,7 +1406,9 @@
     "failedPurchase": "创建购买失败",
     "redirectingOnramp": "跳转到入金中...",
     "onrampCreated": "入金会话已创建",
-    "failedOnramp": "创建入金失败"
+    "failedOnramp": "创建入金失败",
+    "otherTokens": "其他代币",
+    "otherTokensDesc": "拿侬个卡勒 Base 上买 ETH 或者 USDC"
   },
   "agents": {
     "title": "AI代理",

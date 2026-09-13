@@ -1682,7 +1682,9 @@
     "failedPurchase": "Failed to start purchase",
     "redirectingOnramp": "Redirecting to onramp...",
     "onrampCreated": "Onramp session created",
-    "failedOnramp": "Failed to start onramp"
+    "failedOnramp": "Failed to start onramp",
+    "otherTokens": "अन्य टोकन",
+    "otherTokensDesc": "आफ्नो कार्डबाट Base मा ETH वा USDC किन्नुहोस्"
   },
   "agents": {
     "title": "AI एजेन्ट",

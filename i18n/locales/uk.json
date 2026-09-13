@@ -2128,7 +2128,9 @@
     "failedPurchase": "Failed to start purchase",
     "redirectingOnramp": "Redirecting to onramp...",
     "onrampCreated": "Onramp session created",
-    "failedOnramp": "Failed to start onramp"
+    "failedOnramp": "Failed to start onramp",
+    "otherTokens": "Інші токени",
+    "otherTokensDesc": "Купіть ETH або USDC у мережі Base своєю карткою"
   },
   "agents": {
     "title": "AI Agents",
