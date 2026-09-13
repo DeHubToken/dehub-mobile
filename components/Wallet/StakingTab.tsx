@@ -16,6 +16,8 @@ import { getSigningProvider } from "../../libs/provider.registry";
 import { supabase } from "../../services/supabase";
 import { toastError, toastInfo, toastSuccess } from "../../libs/toast";
 import { refreshStakingPosition } from "../../services/staking.service";
+import { getAccount } from "../../services/user.service";
+import { dhbStaked } from "../../libs/dhb-position";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { confirmStake, readStakeReceipt, type StakeAttempt } from "../../libs/stake-confirmation";
 import { createLogger } from "../../libs/logger";
@@ -80,6 +82,11 @@ function fmt(val: number): string {
 
 const StakingTab: React.FC = () => {
   const user = useUser() as any;
+  // Held in a ref so the fetch below can fall back to the session's own copy of
+  // the account without re-running every time anything else on the user (an
+  // unread count, a follow) changes.
+  const userRef = useRef(user);
+  userRef.current = user;
   const walletAddress: string | undefined =
     user?.walletAddress || user?.address;
   const { chainId: activeChainId, provider: authProvider } = useProvider();
@@ -140,7 +147,7 @@ const StakingTab: React.FC = () => {
       const legacyAddresses = walletAddress
         ? await legacyWalletAddresses(walletAddress)
         : [];
-      const [userWalletBal, totalStakedBal, dbRecords, legacyInfos, legacyEarned] =
+      const [userWalletBal, totalStakedBal, dbRecords, legacyInfos, legacyEarned, account] =
         await Promise.all([
           walletAddress
             ? baseDhb.balanceOf(walletAddress).catch(() => ethers.BigNumber.from(0))
@@ -173,12 +180,25 @@ const StakingTab: React.FC = () => {
                 .pendingHarvest(walletAddress)
                 .catch(legacyZero("pendingHarvest"))
             : Promise.resolve(ethers.BigNumber.from(0)),
+          // The staked figure itself. Read fresh rather than off the session
+          // user, which is only re-enriched on a throttle — someone who has
+          // just deposited would otherwise see the old number.
+          walletAddress
+            ? getAccount(walletAddress)
+                .then((res: any) => res?.data?.result || res?.result || null)
+                .catch((err: unknown) => {
+                  console.warn("[StakingTab] account_info read failed:", err);
+                  return null;
+                })
+            : Promise.resolve(null),
         ]);
 
       setWalletBal(parseFloat(ethers.utils.formatUnits(userWalletBal, 18)));
       setProtocolTotal(parseFloat(ethers.utils.formatUnits(totalStakedBal, 18)));
 
-      // Net staked + queued from the transfer-based staking ledger
+      // The withdrawal queue, and a last-resort staked figure. `staking_records`
+      // only ever held the deposits made through the apps, so it is a record of
+      // requests, not of the position — see the API read below.
       let dbStaked = 0;
       let queued = 0;
       const records = (dbRecords as any)?.data || [];
@@ -203,12 +223,28 @@ const StakingTab: React.FC = () => {
       );
       setLegacyStaked(legacyStakedNum);
       setLegacyUnlockAt(legacyInfo.unlockAt);
-      setUserStaked(dbStaked + legacyStakedNum);
+
+      // What is actually staked, as the API counts it: pool deposits on both
+      // chains plus the legacy contract. The API derives that from the DHB
+      // transfer log, which is the only complete record — a deposit sent
+      // straight to the staking address never reaches `staking_records`, and
+      // this card used to read 0 for anyone who made one while the Assets row
+      // directly above it, which does read the API, showed the whole position.
+      //
+      // The legacy contract is a live read and the API includes it, so the
+      // larger of the two is still the API's own number; it only matters if a
+      // chain row is missing from the account.
+      const serverStaked = dhbStaked(account) ?? dhbStaked(userRef.current);
+      const stakedTotal =
+        serverStaked === null
+          ? dbStaked + legacyStakedNum
+          : Math.max(serverStaked, legacyStakedNum);
+      setUserStaked(stakedTotal);
       setUnstakeQueued(queued);
       setEarned(parseFloat(ethers.utils.formatUnits(legacyEarned, 18)));
       // Returned as well as stored, so the refresh button can say what changed
       // without reading state it captured before the fetch.
-      return dbStaked + legacyStakedNum;
+      return stakedTotal;
     } catch (err) {
       console.warn("[StakingTab] fetchData error:", err);
       return null;
@@ -277,7 +313,10 @@ const StakingTab: React.FC = () => {
           const record = await supabase.from('staking_records').select('tx_hash').eq('tx_hash', attempt.hash).maybeSingle();
           if (record.error || !record.data) return;
         } catch (error) { stakeLog.error('Confirmed stake record pending sync', { hash: attempt.hash }, String(error)); return; }
-        void refreshStakingPosition(attempt.wallet);
+        // Awaited: the card now reads its staked figure from the API, so
+        // re-reading before the backend has credited the transfer would just
+        // show the old number again.
+        await refreshStakingPosition(attempt.wallet);
         void fetchData();
       } else {
         toastError('The blockchain confirmed this transaction reverted.');
