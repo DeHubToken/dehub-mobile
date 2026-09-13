@@ -129,6 +129,12 @@ const MIN_SCROLLABLE_ROWS = 6;
 // one capped author, or a failing endpoint, from walking every page on mount.
 const MAX_TOP_UP_FETCHES = 3;
 
+// How long after the finger lifts to wait for a fling before treating the
+// scroll as settled. onScrollEndDrag fires on every lift; a fling's
+// onMomentumScrollBegin lands a frame or two later. A lift with no momentum
+// event inside this window is a genuine stop.
+const SETTLE_AFTER_DRAG_MS = 120;
+
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
 const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
 
@@ -557,6 +563,16 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   }, [endReached, onEndReachedAll]);
 
   const loadMore = useCallback(() => {
+    // The next page is already here, held back while the list scrolls. The
+    // list is now within the threshold of the end of what it is showing, so a
+    // fling would run straight into the footer and stop dead — a hard wall at
+    // every page boundary. Landing the rows now costs one frame of work below
+    // the viewport instead; once they are in, the list re-measures and this
+    // fires again if the following page is really due.
+    if (holdPendingRef.current) {
+      setHoldRelease((v) => v + 1);
+      return;
+    }
     if (initialLoading || loadingMore || refreshing || !hasNextPage) return;
     fetchNextPage().catch(() => {});
   }, [initialLoading, loadingMore, refreshing, hasNextPage, fetchNextPage]);
@@ -733,16 +749,38 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     if (holdPendingRef.current) setHoldRelease((v) => v + 1);
   }, [flushLiveCounts, queryClient]);
 
+  // Settling straight from onScrollEndDrag was the fling stutter that only
+  // showed up once a second page had loaded. The finger lifts, that event
+  // fires, and the held page, the buffered counts and the poll's merge all
+  // landed in the very frame the fling was starting — the list rebuilt every
+  // cell under a scroll it was supposed to be coasting through. Before page
+  // two nothing was held, so the first screenful felt fine. Now a lift only
+  // schedules the settle; a fling's onMomentumScrollBegin cancels it and
+  // onMomentumScrollEnd settles for real. A lift with no fling behind it
+  // settles a few frames later, which nobody can see.
+  const settleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cancelPendingSettle = useCallback(() => {
+    if (settleTimerRef.current != null) {
+      clearTimeout(settleTimerRef.current);
+      settleTimerRef.current = null;
+    }
+  }, []);
+  useEffect(() => cancelPendingSettle, [cancelPendingSettle]);
+
   const handleScrollEndDrag = useCallback(() => {
-    // A fling follows this with onMomentumScrollBegin, which re-arms the flag.
-    settleScroll();
+    cancelPendingSettle();
+    settleTimerRef.current = setTimeout(() => {
+      settleTimerRef.current = null;
+      settleScroll();
+    }, SETTLE_AFTER_DRAG_MS);
     onScrollEnd?.();
-  }, [onScrollEnd, settleScroll]);
+  }, [onScrollEnd, settleScroll, cancelPendingSettle]);
 
   const handleMomentumScrollEnd = useCallback(() => {
+    cancelPendingSettle();
     settleScroll();
     onScrollEnd?.();
-  }, [onScrollEnd, settleScroll]);
+  }, [onScrollEnd, settleScroll, cancelPendingSettle]);
 
   useEffect(() => {
     if (!feedRef) return;
@@ -819,13 +857,16 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   // Handle scroll begin to close filter panel
   const handleScrollBeginDrag = useCallback(() => {
+    cancelPendingSettle();
     scrollingRef.current = true;
     onScrollBegin?.();
-  }, [onScrollBegin]);
+  }, [onScrollBegin, cancelPendingSettle]);
 
   const handleMomentumScrollBegin = useCallback(() => {
+    // The lift that preceded this scheduled a settle; the list is still moving.
+    cancelPendingSettle();
     scrollingRef.current = true;
-  }, []);
+  }, [cancelPendingSettle]);
 
   // Handle touch start to close filter panel immediately
   const handleTouchStart = useCallback(() => {
