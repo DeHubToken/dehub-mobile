@@ -18,7 +18,7 @@
  * Mirrors the web hook of the same name in dehubweb's use-unified-feed.
  */
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { AppState, type AppStateStatus } from "react-native";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getUnifiedFeed, type UnifiedFeedParams } from "../services/feed.unified.service";
@@ -66,6 +66,13 @@ interface UseNewPostsSignalOptions {
    * filter the list applies has to be applied here too.
    */
   isRenderable?: (row: any) => boolean;
+  /**
+   * True while the list is being dragged or flung. A poll that lands mid-fling
+   * rewrites cached pages and re-renders cards under the finger, which is a
+   * visible hitch; the merge waits and the list calls `flushLiveCounts` once
+   * the scroll settles.
+   */
+  scrolling?: RefObject<boolean>;
 }
 
 /** The identity a feed row is known by, across both queries. */
@@ -99,6 +106,7 @@ export function useNewPostsSignal({
   newestCreatedAt,
   knownIds,
   isRenderable,
+  scrolling,
 }: UseNewPostsSignalOptions) {
   const appIsActive = useAppIsActive();
   const queryClient = useQueryClient();
@@ -121,12 +129,26 @@ export function useNewPostsSignal({
   // the feed — the cards the reader is most likely looking at. Folding them in
   // is what makes views and likes move without a pull-to-refresh; the pill
   // below is the same request's other job. See libs/liveCounts.
+  const pendingRows = useRef<RawFeedRow[] | null>(null);
+  const flushLiveCounts = useCallback(() => {
+    const rows = pendingRows.current;
+    if (!rows) return;
+    pendingRows.current = null;
+    mergeLiveCounts(queryClient, rows);
+  }, [queryClient]);
+
   useEffect(() => {
     const rows = data?.result as unknown as RawFeedRow[] | undefined;
-    if (rows?.length) mergeLiveCounts(queryClient, rows);
-  }, [data, queryClient]);
+    if (!rows?.length) return;
+    if (scrolling?.current) {
+      pendingRows.current = rows;
+      return;
+    }
+    pendingRows.current = null;
+    mergeLiveCounts(queryClient, rows);
+  }, [data, queryClient, scrolling]);
 
-  return useMemo(() => {
+  const signal = useMemo(() => {
     const newest = chronological && newestCreatedAt ? Date.parse(newestCreatedAt) : NaN;
     if (!data || Number.isNaN(newest)) return { newPostCount: 0, atCap: false };
 
@@ -146,6 +168,8 @@ export function useNewPostsSignal({
       atCap: newer.length >= HEAD_SIZE,
     };
   }, [data, newestCreatedAt, chronological, knownIds, isRenderable]);
+
+  return useMemo(() => ({ ...signal, flushLiveCounts }), [signal, flushLiveCounts]);
 }
 
 export default useNewPostsSignal;

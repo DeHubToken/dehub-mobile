@@ -580,11 +580,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     [onScrollOffset]
   );
 
-  const handleScrollEndDrag = useCallback(() => {
-    onScrollEnd?.();
-  }, [onScrollEnd]);
-
-
   // "N new posts" — the chronological feed's only cue that the timeline moved
   // on. Only for the default createdAt sort: under the ranked sorts position
   // isn't time, so the pill would promise something the list can't honour.
@@ -626,8 +621,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     [liveStreams],
   );
 
-  const { newPostCount, atCap: newPostsAtCap } = useNewPostsSignal({
+  // Set for the life of a drag or fling; the live-count poll defers its cache
+  // rewrite while this is true (see useNewPostsSignal).
+  const scrollingRef = useRef(false);
+  const { newPostCount, atCap: newPostsAtCap, flushLiveCounts } = useNewPostsSignal({
     enabled: active && isFocused,
+    scrolling: scrollingRef,
     chronological: (params?.sortBy ?? "createdAt") === "createdAt",
     params,
     newestCreatedAt: newestRenderedCreatedAt,
@@ -641,9 +640,18 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     void onRefresh();
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
   }, [onRefresh]);
-  const handleMomentumScrollEnd = useCallback(() => {
+  const handleScrollEndDrag = useCallback(() => {
+    // A fling follows this with onMomentumScrollBegin, which re-arms the flag.
+    scrollingRef.current = false;
+    flushLiveCounts();
     onScrollEnd?.();
-  }, [onScrollEnd]);
+  }, [onScrollEnd, flushLiveCounts]);
+
+  const handleMomentumScrollEnd = useCallback(() => {
+    scrollingRef.current = false;
+    flushLiveCounts();
+    onScrollEnd?.();
+  }, [onScrollEnd, flushLiveCounts]);
 
   useEffect(() => {
     if (!feedRef) return;
@@ -731,8 +739,13 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   // Handle scroll begin to close filter panel
   const handleScrollBeginDrag = useCallback(() => {
+    scrollingRef.current = true;
     onScrollBegin?.();
   }, [onScrollBegin]);
+
+  const handleMomentumScrollBegin = useCallback(() => {
+    scrollingRef.current = true;
+  }, []);
 
   // Handle touch start to close filter panel immediately
   const handleTouchStart = useCallback(() => {
@@ -847,6 +860,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         onScroll={scrollHandler ?? handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
         onScrollEndDrag={handleScrollEndDrag}
+        onMomentumScrollBegin={handleMomentumScrollBegin}
         onMomentumScrollEnd={handleMomentumScrollEnd}
         scrollEventThrottle={16}
         // View tracking for feed posts (not videos)

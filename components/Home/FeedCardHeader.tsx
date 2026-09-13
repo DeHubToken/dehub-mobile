@@ -10,6 +10,10 @@ const DISPLAY_NAME_FONT_SIZE = 16;
 const DISPLAY_NAME_LINE_HEIGHT = 20;
 const HOLDER_BADGE_SIZE = 16;
 const HOLDER_BADGE_GAP = 2;
+// A bare Text onPress is the least forgiving target on Android: a thin line of
+// 14pt type with no slop, cancelled by a few pixels of finger travel. Name,
+// handle and avatar are real Pressables with room around them.
+const IDENTITY_HIT_SLOP = { top: 6, bottom: 6, left: 4, right: 8 };
 
 export interface FeedCardHeaderProps {
   avatarUrl?: string;
@@ -40,7 +44,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
 }) => {
   return (
     <View className="flex-row items-center pb-2">
-      <Pressable onPress={onUserPress} style={{ flexShrink: 0 }}>
+      <Pressable onPress={onUserPress} style={{ flexShrink: 0 }} hitSlop={IDENTITY_HIT_SLOP}>
         <Avatar
           uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
           size={avatarSize}
@@ -51,15 +55,16 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
 
       <View className="flex-1 min-w-0 mr-2">
         <View style={{ flexDirection: "row", alignItems: "center", minWidth: 0, height: DISPLAY_NAME_LINE_HEIGHT }}>
-          <Text
-            className="font-semibold"
-            style={{ color: "#F9FBFF", flexShrink: 1, fontSize: DISPLAY_NAME_FONT_SIZE, lineHeight: DISPLAY_NAME_LINE_HEIGHT }}
-            numberOfLines={1}
-            ellipsizeMode="tail"
-            onPress={onUserPress}
-          >
-            {displayName}
-          </Text>
+          <Pressable onPress={onUserPress} style={{ flexShrink: 1, minWidth: 0 }} hitSlop={IDENTITY_HIT_SLOP}>
+            <Text
+              className="font-semibold"
+              style={{ color: "#F9FBFF", fontSize: DISPLAY_NAME_FONT_SIZE, lineHeight: DISPLAY_NAME_LINE_HEIGHT }}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              {displayName}
+            </Text>
+          </Pressable>
           {badgeImage && (
             <Pressable
               onPress={onUserPress}
@@ -96,15 +101,16 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           )}
         </View>
         {username ? (
-          <Text
-            className="mt-0.5"
-            style={{ color: "#A6A9AC", fontSize: 14, lineHeight: 18 }}
-            numberOfLines={1}
-            ellipsizeMode="tail"
-            onPress={onUserPress}
-          >
-            @{username}
-          </Text>
+          <Pressable onPress={onUserPress} style={{ alignSelf: "flex-start", maxWidth: "100%" }} hitSlop={IDENTITY_HIT_SLOP}>
+            <Text
+              className="mt-0.5"
+              style={{ color: "#A6A9AC", fontSize: 14, lineHeight: 18 }}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              @{username}
+            </Text>
+          </Pressable>
         ) : null}
       </View>
 
