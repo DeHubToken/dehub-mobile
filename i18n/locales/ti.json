@@ -2873,5 +2873,16 @@
     "followAccepted": "{{name}} ነቲ ዝስዕብ ሕቶኻ ተቐቢልካዮ",
     "signalFlare": "{{name}} Signal Flare ልኢኽዎ",
     "newMessage": "{{name}} መልእኽቲ ልኢኽካ"
+  },
+  "audioPost": {
+    "popOut": "POP Out — ክትሓልፍ ከለኻ ስማዕ",
+    "closeCornerPlayer": "ናይ ኩርናዕ ተጻዋታይ ምዕጻው",
+    "cornerPlayer": "ናይ ድምጺ ፖስት ዳግም ምምላስ",
+    "stopAndClose": "ነቲ ተጻዋታይ ደው በሎ",
+    "untitled": "ናይ ድምጺ ልኡኽ",
+    "creator": "DeHub ፈጣሪ",
+    "play": "ተጻወት",
+    "pause": "ዕረፍቲ",
+    "listens_one": "{{count}} ስማዕ"
   }
 }

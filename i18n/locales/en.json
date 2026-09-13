@@ -2973,5 +2973,17 @@
     "followAccepted": "{{name}} accepted your follow request",
     "signalFlare": "{{name}} sent a Signal Flare",
     "newMessage": "{{name}} sent you a message"
+  },
+  "audioPost": {
+    "popOut": "Pop out — keep listening while you browse",
+    "closeCornerPlayer": "Close the corner player",
+    "cornerPlayer": "Audio post playback",
+    "stopAndClose": "Stop and close the player",
+    "untitled": "Audio post",
+    "creator": "DeHub creator",
+    "play": "Play",
+    "pause": "Pause",
+    "listens_one": "{{count}} listen",
+    "listens_other": "{{count}} listens"
   }
 }

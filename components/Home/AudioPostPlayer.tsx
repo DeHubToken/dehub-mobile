@@ -6,7 +6,7 @@ import {
   Pressable,
   ScrollView,
   Modal,
-  Dimensions,
+  StyleSheet,
   LayoutChangeEvent,
   PanResponder,
   GestureResponderEvent,
@@ -14,6 +14,8 @@ import {
   GestureResponderHandlers,
 } from "react-native";
 import Slider from "@react-native-community/slider";
+import { useTranslation } from "react-i18next";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getCachedHue, setHueState } from "../../libs/audioHueState";
 import Animated, {
   useSharedValue,
@@ -23,6 +25,7 @@ import Animated, {
   SharedValue,
 } from "react-native-reanimated";
 import { createAudioPlayer, type AudioPlayer, type AudioStatus } from "expo-audio";
+import type { EventSubscription } from "expo-modules-core";
 import { LinearGradient } from "expo-linear-gradient";
 import { useIsFocused } from "@react-navigation/native";
 import Icon from "../ui/Icon";
@@ -31,6 +34,14 @@ import { configureForBackgroundPlayback } from "../../libs/audioSession";
 import { claimLockScreen, releaseLockScreen } from "../../libs/lockScreen";
 import { stopActivePreview } from "../../libs/previewRegistry";
 import { recordListen } from "../../services/audio.service";
+import {
+  popOutAudioPost,
+  seekAudioPost,
+  setAudioPostVolume,
+  takeBackAudioPost,
+  toggleAudioPost,
+  useAudioPostPlayback,
+} from "../../libs/audio-post-playback";
 import {
   AudioVisualizer,
   StaticWaveform,
@@ -55,7 +66,15 @@ const LOCK_SCREEN_CONTROLS = { showSeekForward: true, showSeekBackward: true };
 /** One height for every control, so the row reads as a row. */
 const CONTROL_SIZE = 32;
 
-const fmtDuration = (seconds: number): string => {
+/**
+ * The media window's shape — the same 16:9 the web card gives an audio post.
+ * The visualizer fills it edge to edge and the controls sit on top of it. It
+ * used to be a 60px band wedged between rows of chrome, so an animated style
+ * played in a letterbox strip while the rest of the card sat black around it.
+ */
+const MEDIA_ASPECT = 16 / 9;
+
+export const fmtDuration = (seconds: number): string => {
   if (!Number.isFinite(seconds) || seconds <= 0) return "0:00";
   const m = Math.floor(seconds / 60);
   const s = Math.floor(seconds % 60);
@@ -85,7 +104,7 @@ interface SeekSurfaceArgs {
   enabled?: boolean;
 }
 
-const useSeekSurface = ({
+export const useSeekSurface = ({
   position,
   onScrubStart,
   onScrub,
@@ -145,7 +164,7 @@ interface SeekBarProps {
   panHandlers: Partial<GestureResponderHandlers>;
 }
 
-const SeekBar: React.FC<SeekBarProps> = memo(({ position, hue, onLayout, panHandlers }) => {
+export const SeekBar: React.FC<SeekBarProps> = memo(({ position, hue, onLayout, panHandlers }) => {
   const accent = hue === 0 ? "rgba(255,255,255,0.9)" : `hsla(${hue}, 85%, 65%, 0.95)`;
 
   const fillStyle = useAnimatedStyle(() => ({
@@ -308,21 +327,28 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   artworkUrl,
   topLeftAction,
 }) => {
+  const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const playerRef = useRef<AudioPlayer | null>(null);
+  /** The card's status subscription, so it can be dropped when the player moves. */
+  const statusSubRef = useRef<EventSubscription | null>(null);
+  const seed = String(tokenId);
   /**
    * This card's identity in the app-wide lock screen slot, which only one
    * player may own (see libs/lockScreen). Keyed by token so two cards for the
    * same track cannot both believe they hold it.
    */
   const lockScreenId = `audio-post:${tokenId}`;
+  const resolvedTitle = title || t("audioPost.untitled");
+  const resolvedArtist = artist || t("audioPost.creator");
   const lockScreenTrack = useMemo(
     () => ({
-      title: title || "Audio post",
-      artist: artist || "DeHub creator",
+      title: resolvedTitle,
+      artist: resolvedArtist,
       albumTitle: "DeHub • Audio",
       artworkUrl: artworkUrl || undefined,
     }),
-    [title, artist, artworkUrl],
+    [resolvedTitle, resolvedArtist, artworkUrl],
   );
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -335,6 +361,10 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const [volume, setVolume] = useState(1);
   const [selfMuted, setSelfMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  // The media window is measured, not fixed: the visualizer needs a height to
+  // draw into, and the inline card and the fullscreen modal have different ones.
+  const [inlineHeight, setInlineHeight] = useState(0);
+  const [fullHeight, setFullHeight] = useState(0);
   const listenRecordedRef = useRef(false);
   const positionIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const isSeekingRef = useRef(false);
@@ -348,13 +378,31 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   // scrubber on the UI thread without a React render per pixel.
   const position = useSharedValue(0);
   const isDraggingRef = useRef(false);
-  const totalDurationRef = useRef(duration);
-  totalDurationRef.current = totalDuration;
-  const progressRef = useRef(0);
-  progressRef.current = progress;
   // Read at player-creation time, so a level set before the track loaded is not
   // lost the moment it does.
   const volumeRef = useRef(1);
+
+  /* ─── The corner player ──────────────────────────────────────
+     While this post is popped out, the track lives in libs/audio-post-playback
+     and this card is a view onto it: every number below comes from there, and
+     play, seek and volume are forwarded rather than applied to a player of
+     its own. The card owns nothing until it takes the player back. */
+  const shared = useAudioPostPlayback();
+  const isPoppedOut = shared.tokenId === seed;
+  const isPoppedOutRef = useRef(isPoppedOut);
+  isPoppedOutRef.current = isPoppedOut;
+  const sharedProgressRef = useRef(0);
+  if (isPoppedOut) sharedProgressRef.current = shared.progress;
+
+  const shownPlaying = isPoppedOut ? shared.isPlaying : isPlaying;
+  const shownLoading = isPoppedOut ? shared.isLoading : isLoading;
+  const shownProgress = isPoppedOut ? shared.progress : progress;
+  const shownTime = isPoppedOut ? shared.currentTime : currentTime;
+  const shownDuration = isPoppedOut && shared.duration > 0 ? shared.duration : totalDuration;
+  const totalDurationRef = useRef(duration);
+  totalDurationRef.current = shownDuration;
+  const progressRef = useRef(0);
+  progressRef.current = shownProgress;
 
   const focusStopRef = useRef(() => {
     playerRef.current?.pause();
@@ -366,8 +414,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
 
   useEffect(() => {
     if (isDraggingRef.current) return;
-    position.value = withTiming(clamp01(progress), { duration: 100, easing: Easing.linear });
-  }, [progress, position]);
+    position.value = withTiming(clamp01(shownProgress), { duration: 100, easing: Easing.linear });
+  }, [shownProgress, position]);
 
   const startPositionTracking = useCallback(() => {
     if (positionIntervalRef.current) return;
@@ -418,8 +466,46 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     } catch {}
   }, []);
 
+  /**
+   * The one status listener, whichever path created the player. Kept as a
+   * subscription so it can be dropped when the player is handed to the corner
+   * player, and re-attached when it comes back.
+   */
+  const attachStatusListener = useCallback((player: AudioPlayer) => {
+    statusSubRef.current?.remove();
+    statusSubRef.current = player.addListener("playbackStatusUpdate", (status: AudioStatus) => {
+      if (!status.isLoaded) return;
+      if (status.duration > 0) {
+        setTotalDuration(status.duration);
+        void applyPendingSeek(player);
+      }
+      if (status.didJustFinish) {
+        setIsPlaying(false);
+        setProgress(1);
+        stopPositionTracking();
+        releaseLockScreen(lockScreenId);
+        releaseAudioFocus(focusStopRef.current);
+      }
+    });
+  }, [applyPendingSeek, stopPositionTracking, lockScreenId]);
+
+  const detachStatusListener = useCallback(() => {
+    statusSubRef.current?.remove();
+    statusSubRef.current = null;
+  }, []);
+
+  const recordListenOnce = useCallback(() => {
+    if (listenRecordedRef.current || !isSignedIn) return;
+    listenRecordedRef.current = true;
+    recordListen(String(tokenId))
+      .then((res) => { if (res.listens) setListenCount(res.listens); })
+      .catch(() => {});
+  }, [isSignedIn, tokenId]);
+
   useEffect(() => {
     if (!isVisible || !isFocused || preloadedRef.current) return;
+    // The corner player has this track; a silent second copy buys nothing.
+    if (isPoppedOut) return;
     let cancelled = false;
     // Same settle grace the video cards use: becoming 50% visible mid-fling
     // used to start a download (and reconfigure the global audio session) for
@@ -445,20 +531,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         player.volume = volumeRef.current;
         preloadedRef.current = true;
 
-        player.addListener("playbackStatusUpdate", (status: AudioStatus) => {
-          if (!status.isLoaded) return;
-          if (status.duration > 0) {
-            setTotalDuration(status.duration);
-            void applyPendingSeek(player);
-          }
-          if (status.didJustFinish) {
-            setIsPlaying(false);
-            setProgress(1);
-            stopPositionTracking();
-            releaseLockScreen(lockScreenId);
-            releaseAudioFocus(focusStopRef.current);
-          }
-        });
+        attachStatusListener(player);
 
         await applyPendingSeek(player);
       } catch (e) {
@@ -466,7 +539,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       }
     }, PRELOAD_SETTLE_MS);
     return () => { cancelled = true; clearTimeout(settleTimer); };
-  }, [isVisible, isFocused, audioUrl, stopPositionTracking, applyPendingSeek]);
+  }, [isVisible, isFocused, audioUrl, isPoppedOut, attachStatusListener, applyPendingSeek]);
 
   useEffect(() => {
     if (isVisible && isFocused) return;
@@ -483,6 +556,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
 
     const player = playerRef.current;
     if (player) {
+      detachStatusListener();
       try { player.pause(); } catch {}
       try { player.remove(); } catch {}
       playerRef.current = null;
@@ -490,7 +564,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     preloadedRef.current = false;
     setIsPlaying(false);
     setIsLoading(false);
-  }, [isVisible, isFocused, stopPositionTracking, lockScreenId]);
+  }, [isVisible, isFocused, stopPositionTracking, detachStatusListener, lockScreenId]);
 
   useEffect(() => {
     const stopFn = focusStopRef.current;
@@ -500,15 +574,40 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       // Ownership-checked, so a card scrolling out of the list after another
       // track has taken the lock screen leaves that one alone.
       releaseLockScreen(lockScreenId);
+      // A popped-out track has already left with its player: playerRef is
+      // null and the corner player carries on after this card is gone.
       const player = playerRef.current;
       if (player) {
+        detachStatusListener();
         player.remove();
         playerRef.current = null;
       }
     };
   }, [stopPositionTracking]);
 
+  // The corner player closed on this track — its X, or something else took
+  // the audio — while this card was on screen. Rest where it stopped rather
+  // than snapping back to the start. Docking back hands the player to this
+  // card before the state flips, so there is nothing to reconcile then.
+  const wasPoppedOutRef = useRef(isPoppedOut);
+  useEffect(() => {
+    const was = wasPoppedOutRef.current;
+    wasPoppedOutRef.current = isPoppedOut;
+    if (!was || isPoppedOut || playerRef.current) return;
+    const at = sharedProgressRef.current;
+    const resting = at > 0 && at < 0.999 ? at : 0;
+    setIsPlaying(false);
+    setIsLoading(false);
+    setProgress(resting);
+    setCurrentTime(resting * totalDurationRef.current);
+    pendingSeekRef.current = resting > 0 ? resting : null;
+  }, [isPoppedOut]);
+
   const handlePlayPause = useCallback(async () => {
+    if (isPoppedOutRef.current) {
+      toggleAudioPost();
+      return;
+    }
     try {
       if (isPlaying && playerRef.current) {
         playerRef.current.pause();
@@ -553,13 +652,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         claimLockScreen(lockScreenId, loaded, lockScreenTrack, LOCK_SCREEN_CONTROLS);
         setIsPlaying(true);
         startPositionTracking();
-
-        if (!listenRecordedRef.current && isSignedIn) {
-          listenRecordedRef.current = true;
-          recordListen(String(tokenId))
-            .then((res) => { if (res.listens) setListenCount(res.listens); })
-            .catch(() => {});
-        }
+        recordListenOnce();
         return;
       }
 
@@ -569,26 +662,14 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       // while this one was loading, release it rather than dropping the
       // reference on the floor — an unreferenced player is never freed.
       if (playerRef.current && playerRef.current !== player) {
+        detachStatusListener();
         playerRef.current.remove();
       }
       playerRef.current = player;
       player.volume = volumeRef.current;
       preloadedRef.current = true;
 
-      player.addListener("playbackStatusUpdate", (status: AudioStatus) => {
-        if (!status.isLoaded) return;
-        if (status.duration > 0) {
-          setTotalDuration(status.duration);
-          void applyPendingSeek(player);
-        }
-        if (status.didJustFinish) {
-          setIsPlaying(false);
-          setProgress(1);
-          stopPositionTracking();
-          releaseLockScreen(lockScreenId);
-          releaseAudioFocus(focusStopRef.current);
-        }
-      });
+      attachStatusListener(player);
 
       await applyPendingSeek(player);
       player.play();
@@ -597,19 +678,85 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       setIsPlaying(true);
       setIsLoading(false);
       startPositionTracking();
-
-      if (!listenRecordedRef.current && isSignedIn) {
-        listenRecordedRef.current = true;
-        recordListen(String(tokenId))
-          .then((res) => { if (res.listens) setListenCount(res.listens); })
-          .catch(() => {});
-      }
+      recordListenOnce();
     } catch (e) {
       console.error("[AudioPostPlayer] playback error", e);
       setIsLoading(false);
       releaseAudioFocus(focusStopRef.current);
     }
-  }, [isPlaying, audioUrl, tokenId, isSignedIn, startPositionTracking, stopPositionTracking, applyPendingSeek, lockScreenId, lockScreenTrack]);
+  }, [isPlaying, audioUrl, startPositionTracking, stopPositionTracking, applyPendingSeek, attachStatusListener, detachStatusListener, recordListenOnce, lockScreenId, lockScreenTrack]);
+
+  /**
+   * Take a player back from the corner player, still playing if it was. The
+   * card's own focus and lock screen claims replace the engine's.
+   */
+  const adoptPlayer = useCallback((player: AudioPlayer, playing: boolean) => {
+    playerRef.current = player;
+    preloadedRef.current = true;
+    player.volume = volumeRef.current;
+    attachStatusListener(player);
+    if (player.isLoaded && player.duration > 0) {
+      setTotalDuration(player.duration);
+      setCurrentTime(player.currentTime);
+      setProgress(clamp01(player.currentTime / player.duration));
+    }
+    setIsLoading(false);
+    if (playing) {
+      requestAudioFocus(focusStopRef.current);
+      claimLockScreen(lockScreenId, player, lockScreenTrack, LOCK_SCREEN_CONTROLS);
+      setIsPlaying(true);
+      startPositionTracking();
+    } else {
+      setIsPlaying(false);
+    }
+  }, [attachStatusListener, lockScreenId, lockScreenTrack, startPositionTracking]);
+
+  /**
+   * Pop out — or dock back. Popping out hands this card's player, loaded or
+   * loading, to the corner player as-is: no second download, no gap. It also
+   * starts the track if it was idle, which is the only reading of the control
+   * that makes sense from a card nobody has pressed play on. The fullscreen
+   * modal closes on the way: a corner player you cannot browse past is no
+   * corner player.
+   */
+  const handlePopOut = useCallback(() => {
+    if (isPoppedOut) {
+      const wasPlaying = shared.isPlaying;
+      const player = takeBackAudioPost(seed);
+      if (player) adoptPlayer(player, wasPlaying);
+      return;
+    }
+
+    setIsFullscreen(false);
+    stopPositionTracking();
+    detachStatusListener();
+    const player = playerRef.current;
+    playerRef.current = null;
+    preloadedRef.current = false;
+    // The card's claims go with the player; the engine takes both under its
+    // own name, and releasing first stops the focus hand-off from calling
+    // this card's stop function against a player it no longer holds.
+    releaseLockScreen(lockScreenId);
+    releaseAudioFocus(focusStopRef.current);
+    setIsPlaying(false);
+    setIsLoading(false);
+
+    const at = pendingSeekRef.current ?? progressRef.current;
+    pendingSeekRef.current = null;
+    popOutAudioPost({
+      track: {
+        tokenId: seed,
+        audioUrl,
+        title: resolvedTitle,
+        artist: resolvedArtist,
+        artworkUrl: artworkUrl || undefined,
+      },
+      player,
+      volume: volumeRef.current,
+      startAt: player?.isLoaded ? null : at > 0 && at < 0.999 ? at : null,
+    });
+    recordListenOnce();
+  }, [isPoppedOut, shared.isPlaying, seed, adoptPlayer, stopPositionTracking, detachStatusListener, lockScreenId, audioUrl, resolvedTitle, resolvedArtist, artworkUrl, recordListenOnce]);
 
   /* ─── Seeking ─────────────────────────────────────────────── */
 
@@ -633,6 +780,15 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       const clamped = clamp01(ratio);
       isSeekingRef.current = true;
       lastSeekTimeRef.current = Date.now();
+      if (isPoppedOutRef.current) {
+        // The corner player owns the track; it publishes the new position back.
+        seekAudioPost(clamped);
+        setTimeout(() => {
+          isSeekingRef.current = false;
+          isDraggingRef.current = false;
+        }, 100);
+        return;
+      }
       setProgress(clamped);
       setCurrentTime(clamped * totalDurationRef.current);
       const player = playerRef.current;
@@ -704,6 +860,10 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   volumeRef.current = isEffectivelyMuted ? 0 : volume;
 
   const applyVolume = useCallback((level: number) => {
+    if (isPoppedOutRef.current) {
+      setAudioPostVolume(level);
+      return;
+    }
     const player = playerRef.current;
     if (player) player.volume = clamp01(level);
   }, []);
@@ -727,16 +887,18 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     applyVolume(restored);
   }, [isEffectivelyMuted, volume, applyVolume]);
 
-  // The screen is 100% of the modal, and the controls under it need room.
-  const fullscreenWaveHeight = Math.round(Dimensions.get("window").height * 0.32);
-
   const handleHueChange = useCallback((h: number) => {
     setHue(h);
     setHueState(h);
   }, []);
   const handleStyleChange = useCallback((s: VisualizerStyle) => setVizStyle(s), []);
 
-  const seed = String(tokenId);
+  const onInlineLayout = useCallback((e: LayoutChangeEvent) => {
+    setInlineHeight(Math.round(e.nativeEvent.layout.height));
+  }, []);
+  const onFullLayout = useCallback((e: LayoutChangeEvent) => {
+    setFullHeight(Math.round(e.nativeEvent.layout.height));
+  }, []);
 
   if (compact) {
     return (
@@ -749,10 +911,10 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               className="w-8 h-8 rounded-xl bg-white/10 items-center justify-center"
             >
-              {isLoading ? (
+              {shownLoading ? (
                 <Icon name="Loader" size={14} color="#fff" />
               ) : (
-                <Icon name={isPlaying ? "Pause" : "Play"} size={14} color="#fff" />
+                <Icon name={shownPlaying ? "Pause" : "Play"} size={14} color="#fff" />
               )}
             </TouchableOpacity>
 
@@ -771,7 +933,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
               className="text-white/50 text-[10px]"
               style={{ fontVariant: ["tabular-nums"] }}
             >
-              {fmtDuration(isPlaying ? currentTime : totalDuration)}
+              {fmtDuration(shownPlaying ? shownTime : shownDuration)}
             </Text>
           </View>
         </View>
@@ -779,11 +941,11 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     );
   }
 
-  const renderVisualizer = (height?: number) => (
+  const renderVisualizer = (height: number) => (
     <AudioVisualizer
       style={vizStyle}
       seed={seed}
-      isPlaying={isPlaying}
+      isPlaying={shownPlaying}
       hue={hue}
       position={position}
       height={height}
@@ -792,15 +954,17 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     />
   );
 
-  /* Bounty stays at the top left; volume sits immediately before fullscreen
-     on the right, matching the web card.
-     Both are rendered by `renderBody`, so the fullscreen modal gets
-     them from the same code and the same state — the sound never reloads, it
-     is one `playerRef` either way. */
+  /* Bounty stays at the top left; volume, pop-out and fullscreen sit on the
+     right, matching the web card. Everything here floats over the visualizer,
+     and the wrappers are `box-none` so a touch that misses a control lands on
+     the artwork underneath — a sideways drag scrubs, a flick scrolls the feed.
+     Both the inline card and the fullscreen modal render this from the same
+     code and the same state: the sound never reloads, it is one `playerRef`
+     either way. */
   const renderTopChrome = () => (
-    <View className="flex-row items-center justify-between mb-2">
+    <View pointerEvents="box-none" style={styles.topChrome}>
       {topLeftAction}
-      <View className="flex-row items-center gap-2 ml-auto">
+      <View pointerEvents="box-none" className="flex-row items-center gap-2 ml-auto">
         <View
           className="flex-row items-center gap-1.5 rounded-xl bg-white/10 px-2"
           style={{ height: CONTROL_SIZE, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
@@ -809,6 +973,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
             onPress={handleToggleMute}
             activeOpacity={0.7}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 4 }}
+            accessibilityRole="button"
+            accessibilityLabel={isEffectivelyMuted ? t("common.unmute") : t("common.mute")}
           >
             <Icon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} size={14} color="rgba(255,255,255,0.85)" />
           </TouchableOpacity>
@@ -828,11 +994,26 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         </View>
 
         <TouchableOpacity
+          onPress={handlePopOut}
+          activeOpacity={0.7}
+          hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
+          className="rounded-xl items-center justify-center"
+          style={[styles.squareControl, isPoppedOut && styles.squareControlOn]}
+          accessibilityRole="button"
+          accessibilityState={{ selected: isPoppedOut }}
+          accessibilityLabel={isPoppedOut ? t("audioPost.closeCornerPlayer") : t("audioPost.popOut")}
+        >
+          <Icon name="PictureInPicture2" size={15} color="#fff" />
+        </TouchableOpacity>
+
+        <TouchableOpacity
           onPress={() => setIsFullscreen((v) => !v)}
           activeOpacity={0.7}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          className="rounded-xl bg-white/10 items-center justify-center"
-          style={{ width: CONTROL_SIZE, height: CONTROL_SIZE, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
+          hitSlop={{ top: 8, bottom: 8, left: 4, right: 8 }}
+          className="rounded-xl items-center justify-center"
+          style={styles.squareControl}
+          accessibilityRole="button"
+          accessibilityLabel={isFullscreen ? t("common.exitFullscreen") : t("common.fullscreen")}
         >
           <Icon name={isFullscreen ? "Minimize2" : "Maximize2"} size={15} color="#fff" />
         </TouchableOpacity>
@@ -840,18 +1021,15 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     </View>
   );
 
-  const renderBody = (visualizerHeight?: number) => (
-    <>
-      {renderTopChrome()}
-      {renderVisualizer(visualizerHeight)}
-
+  const renderBottomChrome = () => (
+    <View pointerEvents="box-none" style={styles.bottomChrome}>
       {/* Scrubber with elapsed / total, live in every style */}
-      <View className="flex-row items-center gap-2 mt-2">
+      <View pointerEvents="box-none" className="flex-row items-center gap-2">
         <Text
-          className="text-white/60 text-[11px]"
-          style={{ fontVariant: ["tabular-nums"] }}
+          className="text-white/70 text-[11px]"
+          style={styles.timeLabel}
         >
-          {fmtDuration(currentTime)}
+          {fmtDuration(shownTime)}
         </Text>
         <View className="flex-1">
           <SeekBar
@@ -862,10 +1040,10 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           />
         </View>
         <Text
-          className="text-white/40 text-[11px]"
-          style={{ fontVariant: ["tabular-nums"] }}
+          className="text-white/50 text-[11px]"
+          style={styles.timeLabel}
         >
-          {fmtDuration(totalDuration)}
+          {fmtDuration(shownDuration)}
         </Text>
       </View>
 
@@ -874,18 +1052,20 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           place along the bottom — and all three are CONTROL_SIZE tall, which
           they were not: 36 against 32 against 24 read as three sizes on a
           baseline. */}
-      <View className="flex-row items-center gap-2 mt-2">
+      <View pointerEvents="box-none" className="flex-row items-center gap-2">
         <TouchableOpacity
           onPress={handlePlayPause}
           activeOpacity={0.7}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          className="rounded-xl bg-white/10 items-center justify-center"
-          style={{ width: CONTROL_SIZE, height: CONTROL_SIZE, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
+          className="rounded-xl items-center justify-center"
+          style={styles.squareControl}
+          accessibilityRole="button"
+          accessibilityLabel={shownPlaying ? t("audioPost.pause") : t("audioPost.play")}
         >
-          {isLoading ? (
+          {shownLoading ? (
             <Icon name="Loader" size={16} color="#fff" />
           ) : (
-            <Icon name={isPlaying ? "Pause" : "Play"} size={16} color="#fff" />
+            <Icon name={shownPlaying ? "Pause" : "Play"} size={16} color="#fff" />
           )}
         </TouchableOpacity>
 
@@ -895,21 +1075,39 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           <StylePicker style={vizStyle} onStyleChange={handleStyleChange} />
         </View>
       </View>
+    </View>
+  );
 
-      <View className="flex-row items-center justify-end gap-1 mt-2">
-        <Icon name="Headphones" size={11} color="rgba(255,255,255,0.35)" />
-        <Text className="text-white/35 text-[10px]">
-          {listenCount} {listenCount === 1 ? "listen" : "listens"}
-        </Text>
+  /* The media window. The visualizer is the window — it fills it edge to edge
+     at the measured height — and the chrome floats on top. Inline it is 16:9;
+     in the fullscreen modal it is the whole screen. */
+  const renderWindow = (mode: "inline" | "fullscreen") => {
+    const height = mode === "inline" ? inlineHeight : fullHeight;
+    return (
+      <View
+        style={mode === "inline" ? styles.windowInline : styles.windowFull}
+        onLayout={mode === "inline" ? onInlineLayout : onFullLayout}
+      >
+        <View style={StyleSheet.absoluteFill}>{height > 0 && renderVisualizer(height)}</View>
+        {renderTopChrome()}
+        {renderBottomChrome()}
       </View>
-    </>
+    );
+  };
+
+  const renderListens = () => (
+    <View style={styles.listens}>
+      <Icon name="Headphones" size={11} color="rgba(255,255,255,0.35)" />
+      <Text className="text-white/35 text-[10px]">
+        {t("audioPost.listens", { count: listenCount })}
+      </Text>
+    </View>
   );
 
   return (
-    <View className="mt-3 rounded-xl overflow-hidden">
-      <View className="p-4" style={{ backgroundColor: "rgba(0,0,0,0.65)" }}>
-        {renderBody()}
-      </View>
+    <View style={styles.card}>
+      {renderWindow("inline")}
+      {renderListens()}
 
       {/* An RN <Modal>, mounted here rather than routed to: a
           `transparentModal` screen leaves what is behind it visible but not
@@ -922,13 +1120,91 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         onRequestClose={() => setIsFullscreen(false)}
         statusBarTranslucent
       >
-        <View style={{ flex: 1, backgroundColor: "#000", justifyContent: "center", paddingHorizontal: 16 }}>
-          {renderBody(fullscreenWaveHeight)}
+        <View
+          style={[
+            styles.fullscreenRoot,
+            {
+              paddingTop: insets.top,
+              paddingBottom: insets.bottom,
+              paddingLeft: insets.left,
+              paddingRight: insets.right,
+            },
+          ]}
+        >
+          {renderWindow("fullscreen")}
+          {renderListens()}
         </View>
       </Modal>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    marginTop: 12,
+    borderRadius: 12,
+    overflow: "hidden",
+    backgroundColor: "rgba(0,0,0,0.65)",
+  },
+  windowInline: {
+    width: "100%",
+    aspectRatio: MEDIA_ASPECT,
+    overflow: "hidden",
+  },
+  windowFull: {
+    flex: 1,
+    overflow: "hidden",
+  },
+  topChrome: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 12,
+    paddingTop: 12,
+  },
+  bottomChrome: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    paddingHorizontal: 12,
+    paddingBottom: 10,
+    gap: 6,
+  },
+  squareControl: {
+    width: CONTROL_SIZE,
+    height: CONTROL_SIZE,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.12)",
+    backgroundColor: "rgba(255,255,255,0.1)",
+  },
+  squareControlOn: {
+    backgroundColor: "rgba(255,255,255,0.28)",
+    borderColor: "rgba(255,255,255,0.35)",
+  },
+  timeLabel: {
+    fontVariant: ["tabular-nums"],
+    textShadowColor: "rgba(0,0,0,0.6)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
+  },
+  listens: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    gap: 4,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  },
+  fullscreenRoot: {
+    flex: 1,
+    backgroundColor: "#000",
+  },
+});
 
 const AudioPostPlayer = memo(AudioPostPlayerComponent);
 export default AudioPostPlayer;

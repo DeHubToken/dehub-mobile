@@ -2861,5 +2861,17 @@
     "followAccepted": "{{name}} قبل طلب المتابعة ديالك",
     "signalFlare": "{{name}} بعتلك Signal Flare",
     "newMessage": "{{name}} بعتلك رسالة"
+  },
+  "audioPost": {
+    "popOut": "طلع برا — استمع وانت تتصفح",
+    "closeCornerPlayer": "اسكر اللاعب الزاوية",
+    "cornerPlayer": "تشغيل الصوت",
+    "stopAndClose": "وقف واسكر اللاعب",
+    "untitled": "منشور صوتي",
+    "creator": "منشئ DeHub",
+    "play": "شغل",
+    "pause": "وقف",
+    "listens_one": "{{count}} استمع",
+    "listens_other": "{{count}} يستمع"
   }
 }

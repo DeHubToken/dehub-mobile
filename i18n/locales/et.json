@@ -2902,5 +2902,17 @@
     "followAccepted": "{{name}} aktsepteeris sinu jälgimise taotlust",
     "signalFlare": "{{name}} saatis sulle signaalipaisu",
     "newMessage": "{{name}} saatis sulle sõnumi"
+  },
+  "audioPost": {
+    "popOut": "Hüppa välja — jätka sirvimise ajal kuulamist",
+    "closeCornerPlayer": "Sulge nurgamängija",
+    "cornerPlayer": "Helipostituse taasesitus",
+    "stopAndClose": "Peatage ja sulgege mängija",
+    "untitled": "Audiopostitus",
+    "creator": "DeHubi looja",
+    "play": "Esita",
+    "pause": "Peata",
+    "listens_one": "{{count}} kuula",
+    "listens_other": "{{count}} kuulab"
   }
 }

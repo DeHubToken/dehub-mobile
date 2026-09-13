@@ -2957,5 +2957,15 @@
     "followAccepted": "{{name}} sizning kuzatuv so&#39;rovingizni qabul qildi",
     "signalFlare": "{{name}} Signal Flare yubordi",
     "newMessage": "{{name}} sizga xabar yubordi"
+  },
+  "audioPost": {
+    "popOut": "Pop out — ko&#39;rib chiqayotganingizda tinglashda davom eting",
+    "closeCornerPlayer": "Burchak o&#39;yinchisini yoping",
+    "cornerPlayer": "Audio ijrodan keyin",
+    "stopAndClose": "Pleyerni to&#39;xtating va yoping",
+    "creator": "DeHub yaratuvchisi",
+    "play": "Oʻynash",
+    "pause": "Pausekeyboard label",
+    "listens_other": "{{count}} tinglaydi"
   }
 }

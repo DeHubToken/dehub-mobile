@@ -2743,5 +2743,16 @@
       "cry": "ھاوارکردن، دەگری، پێویستی بەبایەخدانە، گریان، دەگرێی، گریاو، ھەراکردن",
       "dislike": "قینی لێ یەتی، قین، حەزلێ نەکردن، قین لێبوونەوە، قینیلێیەتی، ڕق، قین لێ بوونەوە، ڕق لێبوونەوە، خۆشنەویستن، حەزنەکردن، قێزبوونەوە، بێزبوونەوە، ھەڵاتن، دوورکەوتنەوە، قێز، بێز، ڕق لێبوون"
     }
+  },
+  "audioPost": {
+    "popOut": "Derkeve derve - dema ku hûn digerînin guhdarî bikin",
+    "closeCornerPlayer": "Lîstikvanê goşeyê bigire",
+    "cornerPlayer": "Lîstina dengî ya piştî lêdanê",
+    "stopAndClose": "Lîstikvanê rawestîne û bigire",
+    "untitled": "Posta dengî",
+    "creator": "Afirînerê DeHub",
+    "play": "Bilîze",
+    "pause": "Navber",
+    "listens_other": "{{count}} guhdarî dike"
   }
 }

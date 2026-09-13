@@ -2899,5 +2899,11 @@
     "followAccepted": "{{name}} gba ìbéèrè rẹ tó tẹ̀lé",
     "signalFlare": "{{name}} rán Signal Flare",
     "newMessage": "{{name}} fi àtẹ̀jíṣẹ́ ránṣẹ́ sí ọ"
+  },
+  "audioPost": {
+    "popOut": "Tú jáde — máa fetí sílẹ̀ nígbà tí o bá ń lọ kiri",
+    "closeCornerPlayer": "Pa agbábọ́ọ̀lù igun náà",
+    "creator": "Ẹlẹ́dàá DeHub",
+    "listens_other": "{{count}} tẹ́tí sí"
   }
 }

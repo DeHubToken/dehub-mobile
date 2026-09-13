@@ -2889,5 +2889,17 @@
     "followAccepted": "{{name}} আপনার অনুসরণ করার অনুরোধ গ্রহণ করেছেন",
     "signalFlare": "{{name}} একটি সিগন্যাল ফ্লেয়ার পাঠিয়েছেন",
     "newMessage": "{{name}} আপনাকে একটি মেসেজ পাঠিয়েছেন"
+  },
+  "audioPost": {
+    "popOut": "পপ আউট — আপনি ব্রাউজ করার সময় শুনতে থাকুন",
+    "closeCornerPlayer": "কোণার প্লেয়ারটি বন্ধ করুন",
+    "cornerPlayer": "অডিও পোস্ট প্লেব্যাক",
+    "stopAndClose": "খেলোয়াড়কে থামান এবং বন্ধ করুন",
+    "untitled": "অডিও পোস্ট",
+    "creator": "DeHub স্রষ্টা",
+    "play": "খেলুন",
+    "pause": "বিরতি",
+    "listens_one": "{{count}} শুনুন",
+    "listens_other": "{{count}} লিসেনস"
   }
 }

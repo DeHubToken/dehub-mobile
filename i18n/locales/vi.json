@@ -2991,5 +2991,17 @@
     "followAccepted": "{{name}} đã chấp nhận yêu cầu theo dõi của bạn",
     "signalFlare": "{{name}} đã gửi tín hiệu bùng phát",
     "newMessage": "{{name}} đã gửi tin nhắn cho bạn"
+  },
+  "audioPost": {
+    "popOut": "Bật ra — tiếp tục lắng nghe trong khi duyệt",
+    "closeCornerPlayer": "Đóng người chơi ở góc",
+    "cornerPlayer": "Phát lại bài đăng âm thanh",
+    "stopAndClose": "Dừng và đóng trình phát",
+    "untitled": "Bài đăng âm thanh",
+    "creator": "Người sáng tạo DeHub",
+    "play": "Phát",
+    "pause": "Tạm dừng",
+    "listens_one": "{{count}} lượt nghe",
+    "listens_other": "{{count}} lượt nghe"
   }
 }

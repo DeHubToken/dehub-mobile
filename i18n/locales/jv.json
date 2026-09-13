@@ -2862,5 +2862,16 @@
     "followAccepted": "{{name}} nampa panjalukan ngetutaké sampeyan",
     "signalFlare": "{{name}} ngirim Signal Flare",
     "newMessage": "{{name}} ngirim pesen marang sampeyan"
+  },
+  "audioPost": {
+    "popOut": "Metu — terus ngrungokake nalika sampeyan browsing",
+    "closeCornerPlayer": "Tutup pemain sudut",
+    "cornerPlayer": "Pemutaran posting audio",
+    "stopAndClose": "Mandeg lan tutup pemain",
+    "untitled": "Posting audio",
+    "creator": "Kreator DeHub",
+    "play": "Mainake",
+    "listens_one": "{{count}} ngrungokake",
+    "listens_other": "{{count}} ngrungokake"
   }
 }

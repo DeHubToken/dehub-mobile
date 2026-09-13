@@ -2917,5 +2917,17 @@
     "followAccepted": "{{name}} a acceptat solicitarea ta de urmărire",
     "signalFlare": "{{name}} a trimis un semnal luminos",
     "newMessage": "{{name}} ți-a trimis un mesaj"
+  },
+  "audioPost": {
+    "popOut": "Ieși în evidență — continuă să asculți în timp ce navighezi",
+    "closeCornerPlayer": "Închideți jucătorul din colț",
+    "cornerPlayer": "Post playback audio",
+    "stopAndClose": "Opriți și închideți playerul",
+    "untitled": "Postare audio",
+    "creator": "Creator DeHub",
+    "play": "Redare",
+    "pause": "Pauză",
+    "listens_one": "{{count}} ascultă",
+    "listens_other": "{{count}} ascultări"
   }
 }

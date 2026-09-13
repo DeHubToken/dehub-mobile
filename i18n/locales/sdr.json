@@ -2902,5 +2902,17 @@
     "followAccepted": "{{name}} आपके फॉलो अनुरोध को स्वीकार किया",
     "signalFlare": "{{name}} एक सिग्नल फ्लेयर भेजा",
     "newMessage": "{{name}} आपको एक संदेश भेजा"
+  },
+  "audioPost": {
+    "popOut": "पॉप आउट — ब्राउज करते समय सुनते रहो",
+    "closeCornerPlayer": "कोने वाले प्लेयर को बंद करो",
+    "cornerPlayer": "ऑडियो पोस्ट प्लेबैक",
+    "stopAndClose": "प्लेयर को रोको और बंद करो",
+    "untitled": "ऑडियो पोस्ट",
+    "creator": "डीहब क्रिएटर",
+    "play": "चलाओ",
+    "pause": "रोको",
+    "listens_one": "{{count}} सुनो",
+    "listens_other": "{{count}} सुनता है"
   }
 }

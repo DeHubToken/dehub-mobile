@@ -2883,5 +2883,15 @@
     "followAccepted": "{{name}} tanggap ang iyong sumusunod na kahilingan",
     "signalFlare": "{{name}}info: whatsthis",
     "newMessage": "{{name}}info: whatsthis"
+  },
+  "audioPost": {
+    "popOut": "Поп- берун — гӯширо нигоҳ доред, дар ҳоле ки шумо аз назар мегузаронед",
+    "closeCornerPlayer": "Плеери кунҷро пӯшед",
+    "cornerPlayer": "Пахши баъдии аудиоӣ",
+    "stopAndClose": "Бозингарро боздоред ва пӯшед",
+    "untitled": "Почтаи аудиоӣ",
+    "creator": "Офаринандаи DeHub",
+    "play": "Бозикунӣ",
+    "pause": "Таваққуф"
   }
 }

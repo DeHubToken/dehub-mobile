@@ -2712,5 +2712,17 @@
     "followAccepted": "{{name}} ने आपके फॉलो अनुरोध को स्वीकार किया",
     "signalFlare": "{{name}} ने एक सिग्नल फ्लेयर भेजा",
     "newMessage": "{{name}} ने आपको एक संदेश भेजा"
+  },
+  "audioPost": {
+    "popOut": "పాప్ అవుట్ — బ్రౌజ్ చేస్తూ వినడం కొనసాగించండి",
+    "closeCornerPlayer": "కార్నర్ ప్లేయర్‌ను మూసివేయండి",
+    "cornerPlayer": "ఆడియో పోస్ట్ ప్లేబ్యాక్",
+    "stopAndClose": "ప్లేయర్‌ను ఆపండి మరియు మూసివేయండి",
+    "untitled": "ఆడియో పోస్ట్",
+    "creator": "DeHub సృష్టికర్త",
+    "play": "ప్లే",
+    "pause": "పాజ్",
+    "listens_one": "{{count}} వినండి",
+    "listens_other": "{{count}} వింటుంది"
   }
 }
