@@ -17,7 +17,7 @@ import { useNavigation, useScrollToTop } from "@react-navigation/native";
 import Icon from "../ui/Icon";
 import { getUnifiedFeed } from "../../services/feed.unified.service";
 import type { UnifiedFeedItem, UnifiedFeedParams } from "../../services/feed.unified.service";
-import { getImageUrl, getImageUrlApiSimple } from "../../libs";
+import { buildFeedImageUrls, getImageUrl } from "../../libs";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { theme } from "../../theme";
@@ -78,7 +78,7 @@ const GridItem = memo<GridItemProps>(({ item, index, size, onPress }) => {
     // transformable remote source, so these stay as-is; only the CDN fallback
     // below can be sized. Tapping a tile opens the full-size original in the
     // drawer either way.
-    if (urls.length > 0) return getImageUrlApiSimple(urls[0]);
+    if (urls.length > 0) return buildFeedImageUrls([urls[0]], size)[0] || null;
     const single = getImageUrl(item.imageUrl || item.thumbnailUrl || "", size);
     return single || null;
   }, [item.imageUrls, item.imageUrl, item.thumbnailUrl, size]);
