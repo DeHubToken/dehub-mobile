@@ -1998,7 +1998,20 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "cancelUnstake": "Cancel withdrawal"
+    "cancelUnstake": "Cancel withdrawal",
+    "switchBaseFailed": "ຫຼັກສະນະການສະລັບໄປຫາເຄືອຂ່າຍ Base ລົ້ມເຫລວ.",
+    "switchBnbFailed": "ຫຼັກສະນະການສະລັບໄປຫາ BNB Chain ລົ້ມເຫລວ.",
+    "stakeSubmitted": "ການຝາກເງິນໄດ້ສົ່ງ. ກຳລັງກວດສອບການຢືນຢັນ — ຢ່າສົ່ງມັນອີກເທື່ອ.",
+    "txCancelledInWallet": "ການທຳລົວຍົກເລີກໃນກະເປົາເງິນຂອງທ່ານ.",
+    "txCancelled": "ການທຳລົວຍົກເລີກ.",
+    "stakeUnconfirmed": "ບໍ່ສາມາດຢືນຢັນການຝາກເງິນໄດ້. ກວດສອບກິດຈະກໍາກະເປົາເງິນຂອງທ່ານກ່ອນທີ່ຈະລອງໃໝ່.",
+    "onlyThisMuchStaked": "ທ່ານມີ {{amount}} DHB ຝາກໄວ້ເທົ່ານັ້ນ.",
+    "onlyLegacyWithdrawable": "ສາມາດຖອນ {{amount}} DHB ໄດ້ເທົ່ານັ້ນໃນຕອນນີ້ — ສ່ວນທີ່ເຫຼືອຢູ່ໃນ Base pool ເຊິ່ງບໍ່ມີສັນຍາການຖອນເງິນເທື່ອ.",
+    "poolHasNoWithdrawal": "DHB ຂອງທ່ານຢູ່ໃນ Base pool ເຊິ່ງບໍ່ມີສັນຍາການຖອນເງິນເທື່ອ. ຕິດຕໍ່ສະຫນັບສະຫນູນເພື່ອຖອນເງິນ.",
+    "lockedEarlyFee": "ລັອກໄວ້ຈົນກວ່າ {{date}}. ການຖອນເງິນໃນປັດຈຸບັນຈະໄດ້ຮັບ 88% — ອາກອນ 12%, ປະມານ {{fee}} DHB. ແຕະອີກເທື່ອເພື່ອຍອມຮັບ.",
+    "unstakeReverted": "ການຖອນເງິນຖືກຍົກເລີກໃນລະບົບ.",
+    "unstakeSent": "ຖອນ {{amount}} DHB! TX: {{hash}}…",
+    "unstakeFailed": "ການຖອນເງິນລົ້ມເຫລວ."
   },
   "communities": {
     "title": "Communities",

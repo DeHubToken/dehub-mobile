@@ -2071,7 +2071,20 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "cancelUnstake": "Cancel withdrawal"
+    "cancelUnstake": "Cancel withdrawal",
+    "switchBaseFailed": "Base ქსელზე გადასვლა ვერ მოხერხდა.",
+    "switchBnbFailed": "BNB Chain-ზე გადასვლა ვერ მოხერხდა.",
+    "stakeSubmitted": "დეპოზიტი გაიგზავნა. დადასტურების შემოწმება — ხელახლა არ გაიგზავნოთ.",
+    "txCancelledInWallet": "ტრანზაქცია გაუქმდა თქვენს საფულეში.",
+    "txCancelled": "ტრანზაქცია გაუქმდა.",
+    "stakeUnconfirmed": "დეპოზიტის დადასტურება ვერ მოხერხდა. ხელახლა ცდის წინ შეამოწმეთ თქვენი საფულის აქტივობა.",
+    "onlyThisMuchStaked": "თქვენ გაქვთ მხოლოდ {{amount}} DHB დეპოზიტი.",
+    "onlyLegacyWithdrawable": "ამ დროს შეიძლება მხოლოდ {{amount}} DHB გამოიტანოთ — დანარჩენი Base pool-ში არის, რომელსაც ჯერ არ აქვს გამოტანის კონტრაქტი.",
+    "poolHasNoWithdrawal": "თქვენი DHB Base pool-ში არის, რომელსაც ჯერ არ აქვს გამოტანის კონტრაქტი. დახმარებისთვის დაუკავშირდით ტექნიკურ მხარდამჭერს.",
+    "lockedEarlyFee": "დაბლოკირებული {{date}} -მდე. ახლა გამოტანა აბრუნებს 88% — 12% საკომისიო, დაახლოებით {{fee}} DHB. კიდევ ერთხელ დააჭირეთ მისაღებად.",
+    "unstakeReverted": "გამოტანა დაბრუნდა ჯაჭვში.",
+    "unstakeSent": "გამოტანილი {{amount}} DHB! TX: {{hash}}…",
+    "unstakeFailed": "გამოტანა ვერ მოხერხდა."
   },
   "communities": {
     "title": "Communities",
