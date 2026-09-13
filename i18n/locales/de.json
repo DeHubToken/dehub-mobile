@@ -1455,7 +1455,9 @@
     "failedPurchase": "Kauf fehlgeschlagen",
     "redirectingOnramp": "Weiterleitung zur Rampe...",
     "onrampCreated": "Rampe-Sitzung erstellt",
-    "failedOnramp": "Rampe fehlgeschlagen"
+    "failedOnramp": "Rampe fehlgeschlagen",
+    "otherTokens": "Andere Token",
+    "otherTokensDesc": "ETH oder USDC auf Base mit deiner Karte kaufen"
   },
   "agents": {
     "title": "KI-Agenten",

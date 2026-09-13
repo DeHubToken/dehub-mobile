@@ -1432,7 +1432,9 @@
     "failedPurchase": "Kɔrɔbɔ bɔ",
     "redirectingOnramp": "Bɔ kɛ...",
     "onrampCreated": "Kɔrɔbɔ",
-    "failedOnramp": "Kɔrɔbɔ bɔ"
+    "failedOnramp": "Kɔrɔbɔ bɔ",
+    "otherTokens": "Token wɛrɛw",
+    "otherTokensDesc": "I ka karti ye ETH walima USDC san Base kan"
   },
   "agents": {
     "title": "AI Kɔrɔbɔ",

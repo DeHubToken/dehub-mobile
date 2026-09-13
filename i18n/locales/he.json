@@ -1352,7 +1352,9 @@
     "failedPurchase": "יצירת הרכישה נכשלה",
     "redirectingOnramp": "מפנה...",
     "onrampCreated": "ההפעלה נוצרה",
-    "failedOnramp": "ההפעלה נכשלה"
+    "failedOnramp": "ההפעלה נכשלה",
+    "otherTokens": "טוקנים אחרים",
+    "otherTokensDesc": "קנה ETH או USDC ב-Base עם הכרטיס שלך"
   },
   "agents": {
     "title": "סוכני AI",

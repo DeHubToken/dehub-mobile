@@ -1437,7 +1437,9 @@
     "failedPurchase": "ক্রয় শুরু করতে ব্যর্থ",
     "redirectingOnramp": "অনর‍্যাম্পে রিডিরেক্ট হচ্ছে...",
     "onrampCreated": "অনর‍্যাম্প সেশন তৈরি হয়েছে",
-    "failedOnramp": "অনর‍্যাম্প শুরু করতে ব্যর্থ"
+    "failedOnramp": "অনর‍্যাম্প শুরু করতে ব্যর্থ",
+    "otherTokens": "অন্যান্য টোকেন",
+    "otherTokensDesc": "আপনার কার্ড দিয়ে Base-এ ETH বা USDC কিনুন"
   },
   "agents": {
     "title": "AI এজেন্ট",

@@ -1449,7 +1449,9 @@
     "failedPurchase": "Pokretanje kupnje nije uspjelo",
     "redirectingOnramp": "Preusmjeravanje na pristupnik...",
     "onrampCreated": "Sesija pristupnika stvorena",
-    "failedOnramp": "Pokretanje pristupnika nije uspjelo"
+    "failedOnramp": "Pokretanje pristupnika nije uspjelo",
+    "otherTokens": "Ostali tokeni",
+    "otherTokensDesc": "Kupite ETH ili USDC na Baseu svojom karticom"
   },
   "agents": {
     "title": "AI Agenti",

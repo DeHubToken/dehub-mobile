@@ -1427,7 +1427,9 @@
     "failedPurchase": "कीना शुरू नइ हो पावल",
     "redirectingOnramp": "ऑनरैम्प में रिडायरेक्ट हो रहल बा...",
     "onrampCreated": "ऑनरैम्प सेशन बन गेल",
-    "failedOnramp": "ऑनरैम्प शुरू नइ हो पावल"
+    "failedOnramp": "ऑनरैम्प शुरू नइ हो पावल",
+    "otherTokens": "दोसर टोकन",
+    "otherTokensDesc": "अपन कार्ड से Base पर ETH या USDC खरीदीं"
   },
   "agents": {
     "title": "AI एजेंट",

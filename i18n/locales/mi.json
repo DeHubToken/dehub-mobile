@@ -1439,7 +1439,9 @@
     "failedPurchase": "Kāore i taea te tīmata hoko",
     "redirectingOnramp": "Whakawhiti ana ki te rampa...",
     "onrampCreated": "Kua hangaia te hōtaka rampa",
-    "failedOnramp": "Kāore i taea te tīmata rampa"
+    "failedOnramp": "Kāore i taea te tīmata rampa",
+    "otherTokens": "Ētahi atu tohu",
+    "otherTokensDesc": "Hokona he ETH, he USDC rānei i Base ki tō kāri"
   },
   "agents": {
     "title": "Kaihautū MI",

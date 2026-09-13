@@ -1444,7 +1444,9 @@
     "failedPurchase": "ເລີ່ມຊື້ບໍ່ສຳເລັດ",
     "redirectingOnramp": "ກຳລັງປ່ຽນເສັ້ນທາງໄປອອນແຣມ...",
     "onrampCreated": "ສ້າງເຊສຊັນອອນແຣມແລ້ວ",
-    "failedOnramp": "ເລີ່ມອອນແຣມບໍ່ສຳເລັດ"
+    "failedOnramp": "ເລີ່ມອອນແຣມບໍ່ສຳເລັດ",
+    "otherTokens": "ໂທເຄນອື່ນ",
+    "otherTokensDesc": "ຊື້ ETH ຫຼື USDC ໃນ Base ດ້ວຍບັດຂອງທ່ານ"
   },
   "agents": {
     "title": "AI Agents",

@@ -1675,7 +1675,9 @@
     "failedPurchase": "Failed to start purchase",
     "redirectingOnramp": "Redirecting to onramp...",
     "onrampCreated": "Onramp session created",
-    "failedOnramp": "Failed to start onramp"
+    "failedOnramp": "Failed to start onramp",
+    "otherTokens": "အခြားတိုကင်များ",
+    "otherTokensDesc": "သင့်ကတ်ဖြင့် Base ပေါ်တွင် ETH သို့မဟုတ် USDC ဝယ်ပါ"
   },
   "agents": {
     "title": "AI အေးဂျင့်",

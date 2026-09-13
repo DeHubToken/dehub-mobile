@@ -1434,7 +1434,9 @@
     "failedPurchase": "Худалдан авалт эхлүүлэхэд алдаа гарлаа",
     "redirectingOnramp": "Онрамп руу чиглүүлж байна...",
     "onrampCreated": "Онрамп сессия үүсгэгдлээ",
-    "failedOnramp": "Онрамп эхлүүлэхэд алдаа гарлаа"
+    "failedOnramp": "Онрамп эхлүүлэхэд алдаа гарлаа",
+    "otherTokens": "Бусад токен",
+    "otherTokensDesc": "Картаараа Base дээр ETH эсвэл USDC худалдаж авах"
   },
   "agents": {
     "title": "AI агентууд",

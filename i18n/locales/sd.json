@@ -1435,7 +1435,9 @@
     "failedPurchase": "خريداري شروع نه ٿي سگهيو",
     "redirectingOnramp": "آنريمپ ڏانهن ريڊائريڪٽ ٿي رهيو آهي...",
     "onrampCreated": "آنريمپ سيشن ٺاهيو ويو",
-    "failedOnramp": "آنريمپ شروع نه ٿي سگهيو"
+    "failedOnramp": "آنريمپ شروع نه ٿي سگهيو",
+    "otherTokens": "ٻيا ٽوڪن",
+    "otherTokensDesc": "پنھنجي ڪارڊ سان Base تي ETH يا USDC خريد ڪريو"
   },
   "agents": {
     "title": "AI ايجنٽ",

@@ -1435,7 +1435,9 @@
     "failedPurchase": "سېتىۋالىشنى باشلاش مەغلۇب بولدى",
     "redirectingOnramp": "رامپىغا يۆتكىلىۋاتىدۇ...",
     "onrampCreated": "رامپا يىغىنى قۇرۇلدى",
-    "failedOnramp": "رامپىنى باشلاش مەغلۇب بولدى"
+    "failedOnramp": "رامپىنى باشلاش مەغلۇب بولدى",
+    "otherTokens": "باشقا توكەنلار",
+    "otherTokensDesc": "كارتىڭىز بىلەن Base دا ETH ياكى USDC سېتىۋېلىڭ"
   },
   "agents": {
     "title": "سۈنئىي ئەقىل ۋاكالەتچىلىرى",

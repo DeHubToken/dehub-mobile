@@ -1380,7 +1380,9 @@
     "failedPurchase": "Destpêkirina kirinê têkçû",
     "redirectingOnramp": "Ber bi onramp-ê ve tê veguheztin...",
     "onrampCreated": "Danişîna onramp hate çêkirin",
-    "failedOnramp": "Destpêkirina onramp têkçû"
+    "failedOnramp": "Destpêkirina onramp têkçû",
+    "otherTokens": "Tokenên din",
+    "otherTokensDesc": "Bi karta xwe li ser Base ETH an USDC bikire"
   },
   "agents": {
     "title": "Ajanên AI",

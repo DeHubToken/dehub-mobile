@@ -1342,7 +1342,9 @@
     "failedPurchase": "ਖ਼ਰੀਦ ਸ਼ੁਰੂ ਕਰਨ ਵਿੱਚ ਅਸਫ਼ਲ",
     "redirectingOnramp": "ਰੀਡਾਇਰੈਕਟ ਹੋ ਰਿਹਾ ਹੈ...",
     "onrampCreated": "ਸੈਸ਼ਨ ਬਣ ਗਿਆ",
-    "failedOnramp": "ਸ਼ੁਰੂ ਕਰਨ ਵਿੱਚ ਅਸਫ਼ਲ"
+    "failedOnramp": "ਸ਼ੁਰੂ ਕਰਨ ਵਿੱਚ ਅਸਫ਼ਲ",
+    "otherTokens": "ਹੋਰ ਟੋਕਨ",
+    "otherTokensDesc": "ਆਪਣੇ ਕਾਰਡ ਨਾਲ Base ਉੱਤੇ ETH ਜਾਂ USDC ਖਰੀਦੋ"
   },
   "agents": {
     "title": "AI ਏਜੰਟ",

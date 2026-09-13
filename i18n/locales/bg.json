@@ -1354,7 +1354,9 @@
     "failedPurchase": "Стартирането на покупката неуспешно",
     "redirectingOnramp": "Пренасочване...",
     "onrampCreated": "Сесията е създадена",
-    "failedOnramp": "Стартирането неуспешно"
+    "failedOnramp": "Стартирането неуспешно",
+    "otherTokens": "Други токени",
+    "otherTokensDesc": "Купете ETH или USDC в Base с вашата карта"
   },
   "agents": {
     "title": "AI агенти",

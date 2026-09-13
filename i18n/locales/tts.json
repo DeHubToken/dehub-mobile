@@ -1408,7 +1408,9 @@
     "failedPurchase": "เริ่มซื้อล้มเหลว",
     "redirectingOnramp": "กำลังเปลี่ยนเส้นทางไปออนแรมป์...",
     "onrampCreated": "สร้างเซสชันออนแรมป์แล้ว",
-    "failedOnramp": "เริ่มออนแรมป์ล้มเหลว"
+    "failedOnramp": "เริ่มออนแรมป์ล้มเหลว",
+    "otherTokens": "โทเคนอื่น",
+    "otherTokensDesc": "ซื้อ ETH หรือ USDC เทิง Base นำบัตรของเจ้า"
   },
   "agents": {
     "title": "AI Agent",

@@ -1787,7 +1787,9 @@
     "failedPurchase": "Failed to start purchase",
     "redirectingOnramp": "Redirecting to onramp...",
     "onrampCreated": "Onramp session created",
-    "failedOnramp": "Failed to start onramp"
+    "failedOnramp": "Failed to start onramp",
+    "otherTokens": "আর টোকেন",
+    "otherTokensDesc": "তোমার কার্ড দিয়া Base-ত ETH বা USDC কিনেন"
   },
   "agents": {
     "title": "AI এজেন্ট",

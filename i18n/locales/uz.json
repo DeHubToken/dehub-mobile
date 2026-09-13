@@ -1428,7 +1428,9 @@
     "failedPurchase": "Xaridni boshlash amalga oshmadi",
     "redirectingOnramp": "Onrampga yoʻnaltirilmoqda...",
     "onrampCreated": "Onramp seansi yaratildi",
-    "failedOnramp": "Onrampni boshlash amalga oshmadi"
+    "failedOnramp": "Onrampni boshlash amalga oshmadi",
+    "otherTokens": "Boshqa tokenlar",
+    "otherTokensDesc": "Kartangiz bilan Base tarmog'ida ETH yoki USDC sotib oling"
   },
   "agents": {
     "title": "AI Agent",

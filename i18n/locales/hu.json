@@ -1355,7 +1355,9 @@
     "failedPurchase": "Vásárlás indítása sikertelen",
     "redirectingOnramp": "Átirányítás...",
     "onrampCreated": "Munkamenet létrehozva",
-    "failedOnramp": "Indítás sikertelen"
+    "failedOnramp": "Indítás sikertelen",
+    "otherTokens": "Egyéb tokenek",
+    "otherTokensDesc": "Vásárolj ETH-t vagy USDC-t a Base hálózaton a kártyáddal"
   },
   "agents": {
     "title": "AI ügynökök",

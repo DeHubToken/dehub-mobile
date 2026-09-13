@@ -1408,7 +1408,9 @@
     "failedPurchase": "Chauf starte fehlgschlage",
     "redirectingOnramp": "Umleitig zum Onramp...",
     "onrampCreated": "Onramp-Sitzig erstellt",
-    "failedOnramp": "Onramp starte fehlgschlage"
+    "failedOnramp": "Onramp starte fehlgschlage",
+    "otherTokens": "Anderi Token",
+    "otherTokensDesc": "Chauf ETH oder USDC uf Base mit dinere Charte"
   },
   "agents": {
     "title": "KI-Agente",

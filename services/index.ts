@@ -5,6 +5,7 @@ export * from './mint.service';
 export * from './live.service';
 export * from './feed.service';
 export * from './dpay.service';
+export * from './moonpay.service';
 export * from './user.service';
 export * from './block.service';
 export * from './push';

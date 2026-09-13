@@ -1447,7 +1447,9 @@
     "failedPurchase": "فشل بدء الشراء",
     "redirectingOnramp": "بيحوّلك للأونرامب...",
     "onrampCreated": "جلسة الأونرامب اتعملت",
-    "failedOnramp": "فشل بدء الأونرامب"
+    "failedOnramp": "فشل بدء الأونرامب",
+    "otherTokens": "عملات تانية",
+    "otherTokensDesc": "اشتري ETH أو USDC على Base بالكارت بتاعك"
   },
   "agents": {
     "title": "إيجنتات AI",

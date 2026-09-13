@@ -1830,7 +1830,9 @@
     "failedPurchase": "Failed to start purchase",
     "redirectingOnramp": "Redirecting to onramp...",
     "onrampCreated": "Onramp session created",
-    "failedOnramp": "Failed to start onramp"
+    "failedOnramp": "Failed to start onramp",
+    "otherTokens": "Ibang token",
+    "otherTokensDesc": "Bumili ng ETH o USDC sa Base gamit ang iyong card"
   },
   "agents": {
     "title": "AI Agents",

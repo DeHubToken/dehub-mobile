@@ -1406,7 +1406,9 @@
     "failedPurchase": "E no fit start purchase",
     "redirectingOnramp": "E dey redirect to onramp...",
     "onrampCreated": "Onramp session don create",
-    "failedOnramp": "E no fit start onramp"
+    "failedOnramp": "E no fit start onramp",
+    "otherTokens": "Oda tokens",
+    "otherTokensDesc": "Use yor card buy ETH or USDC for Base"
   },
   "agents": {
     "title": "AI Agents",

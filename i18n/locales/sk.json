@@ -2051,7 +2051,9 @@
     "failedPurchase": "Failed to start purchase",
     "redirectingOnramp": "Redirecting to onramp...",
     "onrampCreated": "Onramp session created",
-    "failedOnramp": "Failed to start onramp"
+    "failedOnramp": "Failed to start onramp",
+    "otherTokens": "Ďalšie tokeny",
+    "otherTokensDesc": "Kúpte ETH alebo USDC v sieti Base svojou kartou"
   },
   "agents": {
     "title": "AI Agents",

@@ -1459,7 +1459,9 @@
     "failedPurchase": "ಖರೀದಿ ರಚಿಸಲು ವಿಫಲವಾಗಿದೆ",
     "redirectingOnramp": "ಆನ್‌ರ್ಯಾಂಪ್‌ಗೆ ಮರುನಿರ್ದೇಶಿಸುತ್ತಿದೆ...",
     "onrampCreated": "ಆನ್‌ರ್ಯಾಂಪ್ ಸೆಷನ್ ರಚಿಸಲಾಗಿದೆ",
-    "failedOnramp": "ಆನ್‌ರ್ಯಾಂಪ್ ರಚಿಸಲು ವಿಫಲವಾಗಿದೆ"
+    "failedOnramp": "ಆನ್‌ರ್ಯಾಂಪ್ ರಚಿಸಲು ವಿಫಲವಾಗಿದೆ",
+    "otherTokens": "ಇತರ ಟೋಕನ್‌ಗಳು",
+    "otherTokensDesc": "ನಿಮ್ಮ ಕಾರ್ಡ್‌ನಿಂದ Base ನಲ್ಲಿ ETH ಅಥವಾ USDC ಖರೀದಿಸಿ"
   },
   "agents": {
     "title": "AI ಏಜೆಂಟ್‌ಗಳು",

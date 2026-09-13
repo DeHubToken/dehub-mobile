@@ -1428,7 +1428,9 @@
     "failedPurchase": "Оғози харид ноком шуд",
     "redirectingOnramp": "Ба рампа равон мешавад...",
     "onrampCreated": "Ҷаласаи рампа эҷод шуд",
-    "failedOnramp": "Оғози рампа ноком шуд"
+    "failedOnramp": "Оғози рампа ноком шуд",
+    "otherTokens": "Токенҳои дигар",
+    "otherTokensDesc": "Бо корти худ дар Base ETH ё USDC харед"
   },
   "agents": {
     "title": "Агентҳои зеҳни сунъӣ",

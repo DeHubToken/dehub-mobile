@@ -1356,7 +1356,9 @@
     "failedPurchase": "Kunne ikke starte køb",
     "redirectingOnramp": "Omdirigerer...",
     "onrampCreated": "Session oprettet",
-    "failedOnramp": "Start mislykkedes"
+    "failedOnramp": "Start mislykkedes",
+    "otherTokens": "Andre tokens",
+    "otherTokensDesc": "Køb ETH eller USDC på Base med dit kort"
   },
   "agents": {
     "title": "AI-agenter",

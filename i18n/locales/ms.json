@@ -1911,7 +1911,9 @@
     "failedPurchase": "Failed to start purchase",
     "redirectingOnramp": "Redirecting to onramp...",
     "onrampCreated": "Onramp session created",
-    "failedOnramp": "Failed to start onramp"
+    "failedOnramp": "Failed to start onramp",
+    "otherTokens": "Token lain",
+    "otherTokensDesc": "Beli ETH atau USDC di Base dengan kad anda"
   },
   "agents": {
     "title": "AI Agents",

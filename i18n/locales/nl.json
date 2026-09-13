@@ -1919,7 +1919,9 @@
     "failedPurchase": "Aankoop starten mislukt",
     "redirectingOnramp": "Doorsturen naar onramp...",
     "onrampCreated": "Onramp-sessie aangemaakt",
-    "failedOnramp": "Onramp starten mislukt"
+    "failedOnramp": "Onramp starten mislukt",
+    "otherTokens": "Andere tokens",
+    "otherTokensDesc": "Koop ETH of USDC op Base met je kaart"
   },
   "agents": {
     "title": "AI Agenten",

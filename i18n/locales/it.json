@@ -1464,7 +1464,9 @@
     "failedPurchase": "Impossibile avviare l'acquisto",
     "redirectingOnramp": "Reindirizzamento alla rampa...",
     "onrampCreated": "Sessione rampa creata",
-    "failedOnramp": "Impossibile avviare la rampa"
+    "failedOnramp": "Impossibile avviare la rampa",
+    "otherTokens": "Altri token",
+    "otherTokensDesc": "Acquista ETH o USDC su Base con la tua carta"
   },
   "agents": {
     "title": "Agenti AI",

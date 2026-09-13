@@ -1366,7 +1366,9 @@
     "failedPurchase": "구매 실패",
     "redirectingOnramp": "리디렉션 중...",
     "onrampCreated": "입금 세션 생성됨",
-    "failedOnramp": "입금 실패"
+    "failedOnramp": "입금 실패",
+    "otherTokens": "기타 토큰",
+    "otherTokensDesc": "카드로 Base에서 ETH 또는 USDC 구매"
   },
   "agents": {
     "title": "AI 에이전트",

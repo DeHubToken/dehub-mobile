@@ -1447,7 +1447,9 @@
     "failedPurchase": "ما قدرش يبدأ الشراء",
     "redirectingOnramp": "كيتحول للأونرامب...",
     "onrampCreated": "جلسة الأونرامب تخلقت",
-    "failedOnramp": "ما قدرش يبدأ الأونرامب"
+    "failedOnramp": "ما قدرش يبدأ الأونرامب",
+    "otherTokens": "عملات أخرى",
+    "otherTokensDesc": "شري ETH ولا USDC على Base بالكارط ديالك"
   },
   "agents": {
     "title": "وكلاء AI",

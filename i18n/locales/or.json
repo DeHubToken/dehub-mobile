@@ -1432,7 +1432,9 @@
     "failedPurchase": "କିଣା ଆରମ୍ଭ ହୋଇପାରିଲା ନାହିଁ",
     "redirectingOnramp": "ଅନରାମ୍ପକୁ ରିଡାଇରେକ୍ଟ ହେଉଛି...",
     "onrampCreated": "ଅନରାମ୍ପ ସେସନ ତିଆରି ହେଲା",
-    "failedOnramp": "ଅନରାମ୍ପ ଆରମ୍ଭ ହୋଇପାରିଲା ନାହିଁ"
+    "failedOnramp": "ଅନରାମ୍ପ ଆରମ୍ଭ ହୋଇପାରିଲା ନାହିଁ",
+    "otherTokens": "ଅନ୍ୟ ଟୋକେନ",
+    "otherTokensDesc": "ଆପଣଙ୍କ କାର୍ଡରେ Base ରେ ETH କିମ୍ବା USDC କିଣନ୍ତୁ"
   },
   "agents": {
     "title": "AI ଏଜେଣ୍ଟ",
