@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import { View, TouchableOpacity, StyleSheet, Dimensions, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import Animated from "react-native-reanimated";
 import { Image } from "expo-image";
 import Icon from "../ui/Icon";
 import { getImageUrlApiSimple } from "../../libs";
@@ -27,7 +28,8 @@ interface ProfileImageGridProps {
   images: ImagePost[];
   onImagePress?: (index: number) => void;
   scrollEnabled?: boolean;
-  onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  /** Either a plain callback, or a Reanimated worklet scroll handler. */
+  onScroll?: ((e: NativeSyntheticEvent<NativeScrollEvent>) => void) | any;
   ListHeaderComponent?: React.ReactElement | null;
 }
 
@@ -150,7 +152,7 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePres
 
   if (images.length < 4) {
     return (
-      <FlatList
+      <Animated.FlatList
         data={[]}
         keyExtractor={() => "x"}
         renderItem={null as any}
@@ -177,7 +179,7 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePres
   }
 
   return (
-    <FlatList
+    <Animated.FlatList
       data={rows}
       keyExtractor={keyExtractor}
       renderItem={renderRow}
