@@ -60,7 +60,7 @@ const RepostUserRow: React.FC<RepostUserRowProps> = memo(({ item, onPress }) => 
           {!!badgeImage && (
             <Image
               source={badgeImage}
-              style={getBadgeOpticalStyle(badgeImage, 14, -1)}
+              style={getBadgeOpticalStyle(badgeImage, 14)}
               resizeMode="contain"
             />
           )}
