@@ -17,6 +17,11 @@ import {
   type NativeScrollEvent,
   type LayoutChangeEvent,
 } from "react-native";
+import Animated, {
+  runOnJS,
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from "react-native-reanimated";
 import Icon from "../ui/Icon";
 import {
   getUnifiedFeed,
@@ -164,12 +169,18 @@ const UserProfileBottomContentTabs: React.FC<
   // Track scroll offset for sticky bar + back-to-top
   const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Use ref for sticky to avoid stale closure in scroll handler
-  const stickyVisibleRef = useRef(false);
   const [stickyVisible, setStickyVisible] = useState(false);
 
-  // Height of the profile header (measured dynamically)
-  const headerHeightRef = useRef(0);
+  // Mirrors of the state above, read and written from the UI thread inside the
+  // worklet below. React state can't be read there, and a plain ref written
+  // from the UI thread wouldn't be visible to JS reliably.
+  const headerHeightShared = useSharedValue(0);
+  const stickyVisibleShared = useSharedValue(false);
+  const showBackToTopShared = useSharedValue(false);
+  const isFullScreenShared = useSharedValue(isFullScreen);
+  useEffect(() => {
+    isFullScreenShared.value = isFullScreen;
+  }, [isFullScreen, isFullScreenShared]);
 
   // Images tab state
   const [images, setImages] = useState<UnifiedFeedItem[]>([]);
@@ -237,11 +248,12 @@ const UserProfileBottomContentTabs: React.FC<
   // Reset sticky state when switching between fullscreen and collapsed
   useEffect(() => {
     if (!isFullScreen) {
-      stickyVisibleRef.current = false;
+      stickyVisibleShared.value = false;
+      showBackToTopShared.value = false;
       setStickyVisible(false);
       setShowBackToTop(false);
     }
-  }, [isFullScreen]);
+  }, [isFullScreen, stickyVisibleShared, showBackToTopShared]);
 
   // When collapsed, constrain height; fullscreen fills available space
   const listHeight = useMemo(() => {
@@ -285,47 +297,51 @@ const UserProfileBottomContentTabs: React.FC<
 
   // Measure profile header height to know when to show sticky bar
   const handleHeaderLayout = useCallback((e: LayoutChangeEvent) => {
-    headerHeightRef.current = e.nativeEvent.layout.height;
-  }, []);
+    headerHeightShared.value = e.nativeEvent.layout.height;
+  }, [headerHeightShared]);
 
-  // Combined scroll handler: drives the pan gesture hook + sticky/back-to-top
-  const handleScroll = useCallback(
-    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-      const y = event.nativeEvent.contentOffset.y;
+  // Sticky bar + back-to-top, entirely on the UI thread. This used to be a
+  // plain JS onScroll: every one of the profile's lists (Posts, Home, the
+  // subscribers list, the image grid) crossed the bridge on every scroll
+  // event, at any scroll speed, to run two threshold comparisons that only
+  // ever changed state a few times per scroll. `onScroll` (the prop from
+  // UserProfileBottomSheet) has always been a no-op stub — there is nothing
+  // real to forward here, so this drops the per-frame JS hop entirely rather
+  // than paying it to call a function that does nothing.
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      if (!isFullScreenShared.value) return;
 
-      if (isFullScreen) {
-        // Sticky tab bar: show when header + tab bar have scrolled out of view
-        const threshold = headerHeightRef.current;
-        if (threshold > 0) {
-          const shouldStick = y >= threshold;
-          if (shouldStick !== stickyVisibleRef.current) {
-            stickyVisibleRef.current = shouldStick;
-            setStickyVisible(shouldStick);
-          }
+      const y = event.contentOffset.y;
+
+      const threshold = headerHeightShared.value;
+      if (threshold > 0) {
+        const shouldStick = y >= threshold;
+        if (shouldStick !== stickyVisibleShared.value) {
+          stickyVisibleShared.value = shouldStick;
+          runOnJS(setStickyVisible)(shouldStick);
         }
-
-        // Back to top
-        if (y > 600 && !showBackToTop) setShowBackToTop(true);
-        else if (y <= 600 && showBackToTop) setShowBackToTop(false);
       }
 
-      // Forward to parent's scroll handler (for bottom sheet pan coordination)
-      onScroll(event);
+      const shouldShowBackToTop = y > 600;
+      if (shouldShowBackToTop !== showBackToTopShared.value) {
+        showBackToTopShared.value = shouldShowBackToTop;
+        runOnJS(setShowBackToTop)(shouldShowBackToTop);
+      }
     },
-    [onScroll, isFullScreen, showBackToTop],
-  );
+  });
 
   // Underline indicator for tabs
   // Tab change handler — scroll back to top and reset sticky state
   const handleTabChange = useCallback(
     (tab: ContentTab) => {
       if (tab === activeTab) return;
-      stickyVisibleRef.current = false;
+      stickyVisibleShared.value = false;
       setStickyVisible(false);
       setActiveTab(tab);
       listRef.current?.scrollToOffset({ offset: 0, animated: false });
     },
-    [activeTab],
+    [activeTab, stickyVisibleShared],
   );
 
   // Clean underline tab bar — horizontally scrollable so all content tabs fit.
@@ -463,7 +479,7 @@ const UserProfileBottomContentTabs: React.FC<
           <View style={{ flex: 1, marginTop: mt }}>
             <FeedRoute
               address={address}
-              onScroll={handleScroll}
+              onScroll={scrollHandler}
               scrollEnabled={scrollEnabled}
               listHeader={isFullScreen ? fullScreenListHeader : undefined}
               onBeforeNavigate={onClose}
@@ -477,7 +493,7 @@ const UserProfileBottomContentTabs: React.FC<
           <View style={{ flex: 1, marginTop: mt }}>
             <PostsRoute
               address={address}
-              onScroll={handleScroll}
+              onScroll={scrollHandler}
               scrollEnabled={scrollEnabled}
               listHeader={isFullScreen ? fullScreenListHeader : undefined}
               onBeforeNavigate={onClose}
@@ -499,7 +515,14 @@ const UserProfileBottomContentTabs: React.FC<
                 subtitle="Image posts will appear here"
               />
             ) : (
-              <ProfileImageGrid images={gridImages} scrollEnabled={scrollEnabled} onImagePress={handleImagePress} />
+              // onScroll was previously omitted here, so this tab alone never
+              // drove the sticky bar / back-to-top button.
+              <ProfileImageGrid
+                images={gridImages}
+                scrollEnabled={scrollEnabled}
+                onImagePress={handleImagePress}
+                onScroll={scrollHandler}
+              />
             )}
           </View>
         );
@@ -518,12 +541,13 @@ const UserProfileBottomContentTabs: React.FC<
                 subtitle="This creator hasn't set up any plans yet"
               />
             ) : (
-              <FlatList
+              <Animated.FlatList
                 data={plans}
-                keyExtractor={(item) => String(item._id || item.id || Math.random())}
-                renderItem={({ item }) => <View style={{ paddingHorizontal: CONTENT_PX, marginBottom: 8 }}><PlanCard plan={item} /></View>}
+                keyExtractor={(item: SubscriptionPlan) => String(item._id || item.id || Math.random())}
+                renderItem={({ item }: { item: SubscriptionPlan }) => <View style={{ paddingHorizontal: CONTENT_PX, marginBottom: 8 }}><PlanCard plan={item} /></View>}
                 scrollEnabled={scrollEnabled}
-                onScroll={handleScroll}
+                onScroll={scrollHandler}
+                scrollEventThrottle={16}
                 contentContainerStyle={isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED}
               />
             )}

@@ -1,13 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
-  ScrollView,
-  FlatList,
   ActivityIndicator,
   RefreshControl,
   type NativeSyntheticEvent,
   type NativeScrollEvent,
 } from "react-native";
+import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import FeedCard from "../Home/FeedCard";
 import UserReplyCard from "../UserProfile/UserReplyCard";
@@ -42,7 +41,8 @@ type ProfilePostRow =
 
 interface PostsRouteProps {
   address?: string;
-  onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  /** Either a plain callback, or a Reanimated worklet scroll handler. */
+  onScroll?: ((event: NativeSyntheticEvent<NativeScrollEvent>) => void) | any;
   listHeader?: React.ReactNode;
   scrollEnabled?: boolean;
   /** Called right before a card navigates away (e.g. to close an enclosing sheet). */
@@ -233,25 +233,25 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
 
   if (loading) {
     return (
-      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
         <View className="items-center justify-center py-10">
           <ActivityIndicator color={theme.colors.accent} />
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
     );
   }
 
   if (merged.length === 0) {
     return (
-      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
         <ProfileEmptyState
           kind="posts"
           title="No posts, comments, or replies yet"
           subtitle="They will appear here"
         />
-      </ScrollView>
+      </Animated.ScrollView>
     );
   }
 
@@ -259,7 +259,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
 
   return (
     <View className="flex-1">
-      <FlatList
+      <Animated.FlatList
         data={merged}
         keyExtractor={rowKeyExtractor}
         ListHeaderComponent={headerElement}
