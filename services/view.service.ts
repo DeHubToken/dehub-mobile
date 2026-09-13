@@ -115,6 +115,18 @@ async function saveCooldowns(): Promise<void> {
   }
 }
 
+// One write per flush, not one per token. A 20-token batch used to serialise
+// the whole cooldown map twenty times in a row on the JS thread, every five
+// seconds of scrolling.
+let saveTimer: ReturnType<typeof setTimeout> | null = null;
+function scheduleSaveCooldowns(): void {
+  if (saveTimer) return;
+  saveTimer = setTimeout(() => {
+    saveTimer = null;
+    void saveCooldowns();
+  }, 250);
+}
+
 function isOnCooldown(tokenId: TokenId): boolean {
   const key = keyFor(tokenId);
   const expiry = viewCooldowns[key];
@@ -125,8 +137,7 @@ function isOnCooldown(tokenId: TokenId): boolean {
 function setCooldown(tokenId: TokenId): void {
   const key = keyFor(tokenId);
   viewCooldowns[key] = Date.now() + VIEW_COOLDOWN_MS;
-  // Debounced save (don't await)
-  saveCooldowns();
+  scheduleSaveCooldowns();
 }
 
 /**

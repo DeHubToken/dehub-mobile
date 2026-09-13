@@ -57,12 +57,10 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
   const myAddress = ((user as any)?.walletAddress || (user as any)?.address || "").toLowerCase();
   const isOwner = !!(myAddress && pollOwnerAddress?.toLowerCase() === myAddress);
 
-  if (loading) {
-    return (
-      <View className="mx-2 my-1.5 rounded-xl bg-white/5 border border-white/10 p-3 h-[120px]" />
-    );
-  }
-  if (!poll) return null;
+  // No skeleton while loading. Most posts have no poll, and a 120px block that
+  // collapses to nothing once the lookup answers moved every card below it —
+  // one scroll correction per card, mid-fling. A real poll grows the card once.
+  if (loading || !poll) return null;
 
   const hasVoted = localVotedIndexes !== null || !!poll.userVote;
   const votedIndexes = localVotedIndexes ?? poll.userVote?.optionIndexes ?? [];
