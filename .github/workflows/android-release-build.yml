@@ -7,9 +7,13 @@ on:
         description: Optional completed EAS build to verify without compiling again
         required: false
         type: string
+      publish_release:
+        description: Publish the verified APK to the public download page
+        default: false
+        type: boolean
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: android-release-build
@@ -26,6 +30,17 @@ jobs:
         with:
           node-version: '22'
           cache: npm
+      - name: Check native and app versions before building
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const version = require('./app.json').expo.version;
+          const gradle = fs.readFileSync('android/app/build.gradle', 'utf8');
+          const native = gradle.match(/^\s*versionName\s+"([^"]+)"/m)?.[1];
+          if (native !== version) {
+            throw new Error(`Android version ${native} does not match app.json ${version}`);
+          }
+          NODE
       - run: npm ci --legacy-peer-deps
       # Native fixes must be present in the APK, not silently skipped by the
       # repository's best-effort postinstall hook.
@@ -43,6 +58,8 @@ jobs:
           BUILD_ID: ${{ inputs.existing_build_id }}
         run: eas build:view "$BUILD_ID" --json > android-build.json
       - name: Download and verify the signed APK
+        env:
+          PUBLISH_RELEASE: ${{ inputs.publish_release }}
         run: |
           node <<'NODE'
           const fs = require('fs');
@@ -50,6 +67,9 @@ jobs:
           const build = Array.isArray(result) ? result[0] : result;
           if (build.status !== 'FINISHED' || build.platform !== 'ANDROID' || !build.artifacts?.buildUrl) {
             throw new Error('EAS did not return a completed Android artifact');
+          }
+          if (process.env.PUBLISH_RELEASE === 'true' && build.gitCommitHash !== process.env.GITHUB_SHA) {
+            throw new Error('Refusing to publish an APK built from a different commit');
           }
           fs.writeFileSync('apk-url.txt', build.artifacts.buildUrl);
           NODE
@@ -81,6 +101,17 @@ jobs:
           path: |
             dehub.apk
             apk-badging.txt
+      - name: Publish verified APK
+        if: inputs.publish_release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="$(node -p 'require("./app.json").expo.version')"
+          # Creating a release fails if the version already exists: never
+          # overwrite an APK another release run has already published.
+          gh release create "v$VERSION" dehub.apk \
+            --target "$GITHUB_SHA" --title "Android $VERSION" \
+            --notes-file docs/android-release-notes.md --latest
       - uses: actions/upload-artifact@v4
         if: always()
         with:
