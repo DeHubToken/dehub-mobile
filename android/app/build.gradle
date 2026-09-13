@@ -115,7 +115,7 @@ android {
         versionCode 45
         // Synced to app.json (was 1.13.9). android/ is the source of truth in
         // this bare workflow — EAS does not prebuild from app.json (C2).
-        versionName "1.17.6"
+        versionName "1.17.7"
 
         buildConfigField "String", "REACT_NATIVE_RELEASE_LEVEL", "\"${findProperty('reactNativeReleaseLevel') ?: 'stable'}\""
     }
@@ -156,7 +156,10 @@ android {
             def enableShrinkResources = findProperty('android.enableShrinkResourcesInReleaseBuilds') ?: 'false'
             shrinkResources enableShrinkResources.toBoolean()
             minifyEnabled enableMinifyInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            // Expo's Kotlin record conversion (including SecureStoreOptions)
+            // fails under the optimizing rules in the 1.17.6 APK. Retain the
+            // shrinking/obfuscation used by 1.17.5 without code optimization.
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             def enablePngCrunchInRelease = findProperty('android.enablePngCrunchInReleaseBuilds') ?: 'true'
             crunchPngs enablePngCrunchInRelease.toBoolean()
         }
