@@ -24,7 +24,8 @@ interface FeedRouteProps {
   /** Profile header rendered as the scrollable list header (banner, info, tabs). */
   listHeader?: React.ReactNode;
   onBeforeNavigate?: () => void;
-  onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  /** Either a plain callback, or a Reanimated worklet scroll handler (InfiniteFeed accepts both). */
+  onScroll?: ((event: NativeSyntheticEvent<NativeScrollEvent>) => void) | any;
   scrollEnabled?: boolean;
 }
 

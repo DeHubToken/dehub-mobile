@@ -156,7 +156,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   // Plans drive the header Subscribe CTA. Reading them here (not inside the
   // tabs, which only fetch on the Subs tab being opened) is what lets the
   // button exist before anyone has gone looking for it.
-  const { hasPlans } = useCreatorPlans(
+  const { hasPlans, isLoading: plansLoading } = useCreatorPlans(
     !isOwnProfile && profileData?.address ? profileData.address : undefined,
   );
 
@@ -166,7 +166,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   const handleSubscribePress = useCallback(() => setPendingTab("subscribers"), []);
   const handlePendingTabConsumed = useCallback(() => setPendingTab(null), []);
 
-  const { mutuals } = useMutualFollowers({
+  const { mutuals, isLoading: mutualsLoading } = useMutualFollowers({
     profileAddress: profileData?.address,
     enabled: !isOwnProfile && !!profileData?.address,
   });
@@ -299,10 +299,12 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           FallbackBanner={defaultBanner}
           socials={data}
           mutuals={mutuals}
+          mutualsLoading={mutualsLoading}
           hasStories={hasProfileStories}
           hasUnwatchedStories={hasUnwatchedProfileStories}
           onStoryPress={handleStoryPress}
           hasPlans={hasPlans}
+          plansLoading={plansLoading}
           onSubscribe={handleSubscribePress}
         />
         {!!profileData.address && (
@@ -372,10 +374,12 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     isPrivate,
     canViewContent,
     mutuals,
+    mutualsLoading,
     hasProfileStories,
     hasUnwatchedProfileStories,
     handleStoryPress,
     hasPlans,
+    plansLoading,
     handleSubscribePress,
   ]);
 

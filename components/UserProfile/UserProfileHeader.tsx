@@ -86,11 +86,17 @@ export interface UserProfileHeaderProps {
   FallbackBanner: any;
   socials?: Partial<Record<string, string>>;
   mutuals?: FollowListItem[];
+  /** True while the mutual-followers request is still in flight — reserves
+   *  the row's height instead of popping it in once the list arrives. */
+  mutualsLoading?: boolean;
   hasStories?: boolean;
   hasUnwatchedStories?: boolean;
   onStoryPress?: () => void;
   /** The creator has published at least one subscription plan. */
   hasPlans?: boolean;
+  /** True while the creator's plans are still loading — reserves the
+   *  Subscribe button's height instead of popping it in once known. */
+  plansLoading?: boolean;
   onSubscribe?: () => void;
 }
 
@@ -128,10 +134,12 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   FallbackBanner,
   socials,
   mutuals,
+  mutualsLoading = false,
   hasStories = false,
   hasUnwatchedStories = false,
   onStoryPress,
   hasPlans = false,
+  plansLoading = false,
   onSubscribe,
 }) => {
   const { t } = useI18n();
@@ -454,32 +462,47 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           )}
         </View>
 
-        <MutualFollowers mutuals={mutuals || []} />
+        {/* Both rows below reserve their real height the moment their query
+            starts, rather than popping in once it resolves (mutuals and plans
+            are separate requests that land after the header has already
+            painted). A profile opened mid-scroll used to grow twice under the
+            reader as each one arrived; the placeholder keeps that height
+            stable and only actually collapses if the answer turns out empty,
+            which happens once, right after mount, not while reading. */}
+        {mutualsLoading && !mutuals?.length ? (
+          <View style={s.mutualsPlaceholder} />
+        ) : (
+          <MutualFollowers mutuals={mutuals || []} />
+        )}
 
         {/* Subscribe CTA — web parity. A creator who has published a plan sells
             to anyone, so this does not wait on following; it jumps the sheet to
             the Subs tab, where the plan cards do the selling. Full width rather
             than beside Follow: two glass pills plus the avatar overflow on a
             narrow phone. */}
-        {!isOwnProfile && !isBlocked && hasPlans && !!onSubscribe && (
-          <TouchableOpacity
-            onPress={onSubscribe}
-            activeOpacity={0.7}
-            style={[s.glassBtn, { marginTop: 12, paddingHorizontal: 0 }]}
-          >
-            {/* Android's real blur crashes when list views mutate mid-snapshot (see FeedNavBar); iOS-only. */}
-            {Platform.OS === "ios" ? (
-              <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-            ) : (
-              <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "rgba(20,20,22,0.55)" }]} />
-            )}
-            <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-            <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
-            <View style={s.glassBtnContent}>
-              <Icon name="Star" size={14} color="#fff" />
-              <Text style={s.glassBtnLabel}>Subscribe Now</Text>
-            </View>
-          </TouchableOpacity>
+        {!isOwnProfile && !isBlocked && plansLoading && !hasPlans ? (
+          <View style={[s.glassBtn, s.subscribePlaceholder]} />
+        ) : (
+          !isOwnProfile && !isBlocked && hasPlans && !!onSubscribe && (
+            <TouchableOpacity
+              onPress={onSubscribe}
+              activeOpacity={0.7}
+              style={[s.glassBtn, { marginTop: 12, paddingHorizontal: 0 }]}
+            >
+              {/* Android's real blur crashes when list views mutate mid-snapshot (see FeedNavBar); iOS-only. */}
+              {Platform.OS === "ios" ? (
+                <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
+              ) : (
+                <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "rgba(20,20,22,0.55)" }]} />
+              )}
+              <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
+              <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
+              <View style={s.glassBtnContent}>
+                <Icon name="Star" size={14} color="#fff" />
+                <Text style={s.glassBtnLabel}>Subscribe Now</Text>
+              </View>
+            </TouchableOpacity>
+          )
         )}
 
         {!hasUsername && (
@@ -500,6 +523,20 @@ const s = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: BTN_RADIUS,
     overflow: "hidden",
+  },
+  // Same box the real row/button occupies, so the mutuals-loading and
+  // plans-loading states don't change the header's height once real content
+  // (or nothing) replaces them.
+  mutualsPlaceholder: {
+    height: 20,
+    marginTop: 12,
+    borderRadius: 6,
+    backgroundColor: "rgba(255,255,255,0.06)",
+  },
+  subscribePlaceholder: {
+    marginTop: 12,
+    paddingHorizontal: 0,
+    backgroundColor: "rgba(255,255,255,0.06)",
   },
   iconBtn: {
     width: BTN_H,
