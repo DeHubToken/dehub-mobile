@@ -1165,6 +1165,7 @@
     "likedCommentPreview": "{{name}} ला तोर टिप्पणी पसंद आइस: \"{{preview}}\"",
     "andOthersLikedComment": "{{first}} अउ {{others}} ला तोर टिप्पणी पसंद आइस",
     "andOthersLikedCommentPreview": "{{first}} अउ {{others}} ला तोर टिप्पणी पसंद आइस: \"{{preview}}\"",
+    "badgeGenericTier": "बैज",
     "postRemoved": "तोर पोस्ट हटा दे गइस",
     "newNotification": "नवा सूचना",
     "oneOther": "1 अउ",

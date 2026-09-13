@@ -1168,6 +1168,7 @@
     "likedCommentPreview": "{{name}} ଆପଣଙ୍କ ମନ୍ତବ୍ୟ ଲାଇକ କଲେ: \"{{preview}}\"",
     "andOthersLikedComment": "{{first}} ଏବଂ {{others}} ଆପଣଙ୍କ ମନ୍ତବ୍ୟ ଲାଇକ କଲେ",
     "andOthersLikedCommentPreview": "{{first}} ଏବଂ {{others}} ଆପଣଙ୍କ ମନ୍ତବ୍ୟ ଲାଇକ କଲେ: \"{{preview}}\"",
+    "badgeGenericTier": "ବ୍ୟାଜ",
     "postRemoved": "ଆପଣଙ୍କ ପୋଷ୍ଟ ହଟାଗଲା",
     "newNotification": "ନୂଆ ସୂଚନା",
     "oneOther": "୧ ଅନ୍ୟ",

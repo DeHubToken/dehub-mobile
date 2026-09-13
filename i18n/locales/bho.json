@@ -1165,6 +1165,7 @@
     "likedCommentPreview": "{{name}} रउआ टिप्पणी लाइक कइलसु: \"{{preview}}\"",
     "andOthersLikedComment": "{{first}} आ {{others}} रउआ टिप्पणी लाइक कइलसु",
     "andOthersLikedCommentPreview": "{{first}} आ {{others}} रउआ टिप्पणी लाइक कइलसु: \"{{preview}}\"",
+    "badgeGenericTier": "बैंगन, बैंगन,",
     "postRemoved": "रउआ पोस्ट हटा दिहल गइल",
     "newNotification": "नया सूचना",
     "oneOther": "1 और",
