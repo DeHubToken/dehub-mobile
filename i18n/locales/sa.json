@@ -1428,7 +1428,9 @@
     "failedPurchase": "क्रयम् आरम्भयितुं विफलम्",
     "redirectingOnramp": "आनरैम्प्-प्रति पुनर्निर्दिश्यते...",
     "onrampCreated": "आनरैम्प्-सत्रं सृष्टम्",
-    "failedOnramp": "आनरैम्प्-आरम्भयितुं विफलम्"
+    "failedOnramp": "आनरैम्प्-आरम्भयितुं विफलम्",
+    "otherTokens": "अन्ये टोकनाः",
+    "otherTokensDesc": "भवतः कार्डेन Base इत्यत्र ETH अथवा USDC क्रीणातु"
   },
   "agents": {
     "title": "AI एजेण्ट्",

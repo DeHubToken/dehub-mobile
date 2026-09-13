@@ -1667,7 +1667,9 @@
     "failedPurchase": "Failed to start purchase",
     "redirectingOnramp": "Redirecting to onramp...",
     "onrampCreated": "Onramp session created",
-    "failedOnramp": "Failed to start onramp"
+    "failedOnramp": "Failed to start onramp",
+    "otherTokens": "වෙනත් ටෝකන",
+    "otherTokensDesc": "ඔබේ කාඩ්පතින් Base මත ETH හෝ USDC මිලදී ගන්න"
   },
   "agents": {
     "title": "AI නියෝජිත",

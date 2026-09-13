@@ -1440,7 +1440,9 @@
     "failedPurchase": "Bilaawidda iibsashadu wuu fashilmay",
     "redirectingOnramp": "Waxaa loo jiheynayaa onramp-ka...",
     "onrampCreated": "Marxaladda onramp-ka waa la sameeyay",
-    "failedOnramp": "Bilaawidda onramp-ku wuu fashilmay"
+    "failedOnramp": "Bilaawidda onramp-ku wuu fashilmay",
+    "otherTokens": "Tokenno kale",
+    "otherTokensDesc": "Kaarkaaga ku iibso ETH ama USDC Base"
   },
   "agents": {
     "title": "Wakiilada AI",

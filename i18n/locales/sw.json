@@ -1449,7 +1449,9 @@
     "failedPurchase": "Imeshindwa kuanza ununuzi",
     "redirectingOnramp": "Inaelekeza kwa njia...",
     "onrampCreated": "Kipindi cha njia kimeundwa",
-    "failedOnramp": "Imeshindwa kuanza njia"
+    "failedOnramp": "Imeshindwa kuanza njia",
+    "otherTokens": "Tokeni nyingine",
+    "otherTokensDesc": "Nunua ETH au USDC kwenye Base kwa kadi yako"
   },
   "agents": {
     "title": "Mawakala wa AI",

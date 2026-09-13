@@ -1401,7 +1401,9 @@
     "failedPurchase": "خریداری شروع کائنی ہوئی",
     "redirectingOnramp": "آن ریمپ تے بھیج ریہا ہے...",
     "onrampCreated": "آن ریمپ سیشن بݨ گیا",
-    "failedOnramp": "آن ریمپ شروع کائنی ہوئیا"
+    "failedOnramp": "آن ریمپ شروع کائنی ہوئیا",
+    "otherTokens": "ٻئے ٹوکن",
+    "otherTokensDesc": "اپݨے کارڈ نال Base تے ETH یا USDC خریدو"
   },
   "agents": {
     "title": "AI ایجنٹ",

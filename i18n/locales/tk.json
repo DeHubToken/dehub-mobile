@@ -1427,7 +1427,9 @@
     "failedPurchase": "Satyn alyşy başlamak başa barmady",
     "redirectingOnramp": "Rampa gönükdirilýär...",
     "onrampCreated": "Rampa sessiýasy döredildi",
-    "failedOnramp": "Rampany başlamak başa barmady"
+    "failedOnramp": "Rampany başlamak başa barmady",
+    "otherTokens": "Beýleki tokenler",
+    "otherTokensDesc": "Kartyňyz bilen Base-de ETH ýa-da USDC satyn alyň"
   },
   "agents": {
     "title": "Emeli aň agentleri",

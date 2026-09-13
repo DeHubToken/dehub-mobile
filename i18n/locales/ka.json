@@ -1442,7 +1442,9 @@
     "failedPurchase": "ყიდვის დაწყება ვერ მოხერხდა",
     "redirectingOnramp": "გადამისამართება ონრემპზე...",
     "onrampCreated": "ონრემპი სესია შექმნილია",
-    "failedOnramp": "ონრემპის დაწყება ვერ მოხერხდა"
+    "failedOnramp": "ონრემპის დაწყება ვერ მოხერხდა",
+    "otherTokens": "სხვა ტოკენები",
+    "otherTokensDesc": "იყიდეთ ETH ან USDC Base-ზე თქვენი ბარათით"
   },
   "agents": {
     "title": "AI აგენტი",

@@ -1437,7 +1437,9 @@
     "failedPurchase": "Сатып алууну баштоо ишке ашкан жок",
     "redirectingOnramp": "Рампага багытталууда...",
     "onrampCreated": "Рампа сессиясы түзүлдү",
-    "failedOnramp": "Рампаны баштоо ишке ашкан жок"
+    "failedOnramp": "Рампаны баштоо ишке ашкан жок",
+    "otherTokens": "Башка токендер",
+    "otherTokensDesc": "Картаңыз менен Base тармагында ETH же USDC сатып алыңыз"
   },
   "agents": {
     "title": "AI Агенттер",

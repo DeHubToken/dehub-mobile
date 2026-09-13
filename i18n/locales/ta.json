@@ -1347,7 +1347,9 @@
     "failedPurchase": "வாங்குதலைத் தொடங்க இயலவில்லை",
     "redirectingOnramp": "திருப்பி விடுகிறது...",
     "onrampCreated": "அமர்வு உருவாக்கப்பட்டது",
-    "failedOnramp": "தொடங்க இயலவில்லை"
+    "failedOnramp": "தொடங்க இயலவில்லை",
+    "otherTokens": "மற்ற டோக்கன்கள்",
+    "otherTokensDesc": "உங்கள் அட்டையால் Base-இல் ETH அல்லது USDC வாங்குங்கள்"
   },
   "agents": {
     "title": "AI முகவர்",

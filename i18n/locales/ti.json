@@ -1430,7 +1430,9 @@
     "failedPurchase": "ዕድጊ ምጅማር ኣይተዓወተን",
     "redirectingOnramp": "ናብ ኦንራምፕ ይቕየር ኣሎ...",
     "onrampCreated": "ክፍለ-ግዜ ኦንራምፕ ተፈጢሩ",
-    "failedOnramp": "ኦንራምፕ ምጅማር ኣይተዓወተን"
+    "failedOnramp": "ኦንራምፕ ምጅማር ኣይተዓወተን",
+    "otherTokens": "ካልኦት ቶከናት",
+    "otherTokensDesc": "ብካርድኻ ኣብ Base ETH ወይ USDC ግዛእ"
   },
   "agents": {
     "title": "AI ኤጀንት",

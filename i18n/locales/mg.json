@@ -1368,7 +1368,9 @@
     "failedPurchase": "Tsy nahomby ny fanombohana fividianana",
     "redirectingOnramp": "Mitodika any amin'ny onramp...",
     "onrampCreated": "Latabatra onramp voaforona",
-    "failedOnramp": "Tsy nahomby ny fanombohana onramp"
+    "failedOnramp": "Tsy nahomby ny fanombohana onramp",
+    "otherTokens": "Tokena hafa",
+    "otherTokensDesc": "Mividiana ETH na USDC ao amin'ny Base amin'ny karatrao"
   },
   "agents": {
     "title": "Agent AI",

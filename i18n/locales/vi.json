@@ -1734,7 +1734,9 @@
     "failedPurchase": "Không bắt đầu được giao dịch mua",
     "redirectingOnramp": "Đang chuyển tới cổng mua...",
     "onrampCreated": "Đã tạo phiên mua",
-    "failedOnramp": "Không khởi tạo được cổng mua"
+    "failedOnramp": "Không khởi tạo được cổng mua",
+    "otherTokens": "Token khác",
+    "otherTokensDesc": "Mua ETH hoặc USDC trên Base bằng thẻ của bạn"
   },
   "agents": {
     "title": "AI Agent",

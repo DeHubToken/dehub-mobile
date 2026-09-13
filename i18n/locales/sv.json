@@ -1355,7 +1355,9 @@
     "failedPurchase": "Kunde inte starta köp",
     "redirectingOnramp": "Omdirigerar...",
     "onrampCreated": "Session skapad",
-    "failedOnramp": "Kunde inte starta"
+    "failedOnramp": "Kunde inte starta",
+    "otherTokens": "Andra tokens",
+    "otherTokensDesc": "Köp ETH eller USDC på Base med ditt kort"
   },
   "agents": {
     "title": "AI-agenter",

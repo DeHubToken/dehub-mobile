@@ -1464,7 +1464,9 @@
     "failedPurchase": "Échec de l'achat",
     "redirectingOnramp": "Redirection vers la rampe...",
     "onrampCreated": "Session de rampe créée",
-    "failedOnramp": "Échec de la rampe"
+    "failedOnramp": "Échec de la rampe",
+    "otherTokens": "Autres jetons",
+    "otherTokensDesc": "Achetez de l'ETH ou de l'USDC sur Base avec votre carte"
   },
   "agents": {
     "title": "Agents IA",

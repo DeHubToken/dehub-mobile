@@ -1376,7 +1376,9 @@
     "failedPurchase": "خرید شروع نئیں ہوئی",
     "redirectingOnramp": "آنریمپ میں ری ڈائریکٹ ہو رئی ہے...",
     "onrampCreated": "آنریمپ سیشن بن گیا",
-    "failedOnramp": "آنریمپ شروع نئیں ہوا"
+    "failedOnramp": "آنریمپ شروع نئیں ہوا",
+    "otherTokens": "دوسرے ٹوکن",
+    "otherTokensDesc": "اپنے کارڈ سے Base پر ETH یا USDC خریدیں"
   },
   "agents": {
     "title": "AI ایجنٹ",

@@ -1535,7 +1535,9 @@
     "failedPurchase": "Satın alma başlatılamadı",
     "redirectingOnramp": "Rampa'ya yönlendiriliyor...",
     "onrampCreated": "Rampa oturumu oluşturuldu",
-    "failedOnramp": "Rampa başlatılamadı"
+    "failedOnramp": "Rampa başlatılamadı",
+    "otherTokens": "Diğer tokenlar",
+    "otherTokensDesc": "Kartınızla Base ağında ETH veya USDC satın alın"
   },
   "agents": {
     "title": "AI Ajanları",

@@ -1451,7 +1451,9 @@
     "failedPurchase": "Mana rantiy qallayta atirqanchu",
     "redirectingOnramp": "Yaykuna kaqman apachkan...",
     "onrampCreated": "Yaykuna sesión kamarisqa",
-    "failedOnramp": "Mana yaykuna qallayta atirqanchu"
+    "failedOnramp": "Mana yaykuna qallayta atirqanchu",
+    "otherTokens": "Huk tokenkuna",
+    "otherTokensDesc": "Base nisqapi ETH icha USDC rantiy tarjetaykiwan"
   },
   "agents": {
     "title": "AI Wakinkuna",

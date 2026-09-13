@@ -1436,7 +1436,9 @@
     "failedPurchase": "Сатып алуды бастау сәтсіз аяқталды",
     "redirectingOnramp": "Онрампқа бағытталуда...",
     "onrampCreated": "Онрамп сеансы жасалды",
-    "failedOnramp": "Онрампты бастау сәтсіз аяқталды"
+    "failedOnramp": "Онрампты бастау сәтсіз аяқталды",
+    "otherTokens": "Басқа токендер",
+    "otherTokensDesc": "Картаңызбен Base желісінде ETH немесе USDC сатып алыңыз"
   },
   "agents": {
     "title": "AI Агент",

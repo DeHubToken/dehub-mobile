@@ -1408,7 +1408,9 @@
     "failedPurchase": "Gagal gawe pembelian",
     "redirectingOnramp": "Ngarahake menyang onramp...",
     "onrampCreated": "Sesi onramp wis digawe",
-    "failedOnramp": "Gagal gawe onramp"
+    "failedOnramp": "Gagal gawe onramp",
+    "otherTokens": "Token liyane",
+    "otherTokensDesc": "Tuku ETH utawa USDC ing Base nganggo kartumu"
   },
   "agents": {
     "title": "Agen AI",

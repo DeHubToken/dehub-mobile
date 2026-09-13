@@ -1406,7 +1406,9 @@
     "failedPurchase": "فشل بدء الشراء",
     "redirectingOnramp": "بيحوّل للشراء...",
     "onrampCreated": "جلسة الشراء اتعملت",
-    "failedOnramp": "فشل بدء الشراء"
+    "failedOnramp": "فشل بدء الشراء",
+    "otherTokens": "عملات تانية",
+    "otherTokensDesc": "اشتري ETH أو USDC على Base بالكرت بتاعك"
   },
   "agents": {
     "title": "وكلاء AI",

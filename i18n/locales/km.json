@@ -1695,7 +1695,9 @@
     "failedPurchase": "Failed to start purchase",
     "redirectingOnramp": "Redirecting to onramp...",
     "onrampCreated": "Onramp session created",
-    "failedOnramp": "Failed to start onramp"
+    "failedOnramp": "Failed to start onramp",
+    "otherTokens": "តូខេនផ្សេងទៀត",
+    "otherTokensDesc": "ទិញ ETH ឬ USDC នៅលើ Base ដោយប្រើកាតរបស់អ្នក"
   },
   "agents": {
     "title": "AI ភ្នាក់ងារ",

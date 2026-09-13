@@ -1449,7 +1449,9 @@
     "failedPurchase": "Dështoi fillimi i blerjes",
     "redirectingOnramp": "Po ridrejtohet te onramp...",
     "onrampCreated": "Sesioni onramp u krijua",
-    "failedOnramp": "Dështoi fillimi i onramp"
+    "failedOnramp": "Dështoi fillimi i onramp",
+    "otherTokens": "Token të tjerë",
+    "otherTokensDesc": "Blej ETH ose USDC në Base me kartën tënde"
   },
   "agents": {
     "title": "Agjentët AI",

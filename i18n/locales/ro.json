@@ -1660,7 +1660,9 @@
     "failedPurchase": "Failed to start purchase",
     "redirectingOnramp": "Redirecting to onramp...",
     "onrampCreated": "Onramp session created",
-    "failedOnramp": "Failed to start onramp"
+    "failedOnramp": "Failed to start onramp",
+    "otherTokens": "Alte tokenuri",
+    "otherTokensDesc": "Cumpără ETH sau USDC pe Base cu cardul tău"
   },
   "agents": {
     "title": "AI Agents",

@@ -1714,7 +1714,9 @@
     "failedPurchase": "Nie udało się rozpocząć zakupu",
     "redirectingOnramp": "Przekierowywanie do rampy...",
     "onrampCreated": "Sesja rampy utworzona",
-    "failedOnramp": "Nie udało się uruchomić rampy"
+    "failedOnramp": "Nie udało się uruchomić rampy",
+    "otherTokens": "Inne tokeny",
+    "otherTokensDesc": "Kup ETH lub USDC w sieci Base swoją kartą"
   },
   "agents": {
     "title": "Agenci AI",

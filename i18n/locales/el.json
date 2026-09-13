@@ -1448,7 +1448,9 @@
     "failedPurchase": "Αποτυχία έναρξης αγοράς",
     "redirectingOnramp": "Ανακατεύθυνση στο onramp...",
     "onrampCreated": "Συνεδρία onramp δημιουργήθηκε",
-    "failedOnramp": "Αποτυχία έναρξης onramp"
+    "failedOnramp": "Αποτυχία έναρξης onramp",
+    "otherTokens": "Άλλα tokens",
+    "otherTokensDesc": "Αγόρασε ETH ή USDC στο Base με την κάρτα σου"
   },
   "agents": {
     "title": "AI Agents",

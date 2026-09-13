@@ -1709,7 +1709,9 @@
     "failedPurchase": "Failed to start purchase",
     "redirectingOnramp": "Redirecting to onramp...",
     "onrampCreated": "Onramp session created",
-    "failedOnramp": "Failed to start onramp"
+    "failedOnramp": "Failed to start onramp",
+    "otherTokens": "Tookeniiwwan biroo",
+    "otherTokensDesc": "Kaardii keetiin Base irratti ETH ykn USDC bitadhu"
   },
   "agents": {
     "title": "Eejentii AI",

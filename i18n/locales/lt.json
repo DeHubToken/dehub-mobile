@@ -1448,7 +1448,9 @@
     "failedPurchase": "Nepavyko pradėti pirkimo",
     "redirectingOnramp": "Nukreipiama į rampą...",
     "onrampCreated": "Rampos sesija sukurta",
-    "failedOnramp": "Nepavyko pradėti rampos"
+    "failedOnramp": "Nepavyko pradėti rampos",
+    "otherTokens": "Kiti tokenai",
+    "otherTokensDesc": "Pirkite ETH arba USDC „Base“ tinkle savo kortele"
   },
   "agents": {
     "title": "DI agentai",

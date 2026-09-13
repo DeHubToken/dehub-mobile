@@ -1452,7 +1452,9 @@
     "failedPurchase": "خریداری شروع نہیں ہوئی",
     "redirectingOnramp": "آن ریمپ پر بھیج رہے ہیں...",
     "onrampCreated": "آن ریمپ سیشن بن گیا",
-    "failedOnramp": "آن ریمپ شروع نہیں ہوا"
+    "failedOnramp": "آن ریمپ شروع نہیں ہوا",
+    "otherTokens": "تۆکنەگەلی تر",
+    "otherTokensDesc": "بە کارتەکەت لەسەر Base ئێتیهەچ یان USDC بکڕە"
   },
   "agents": {
     "title": "AI ایجنٹ",

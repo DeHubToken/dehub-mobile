@@ -1448,7 +1448,9 @@
     "failedPurchase": "Kuhlulekile ukuqala ukuthenga",
     "redirectingOnramp": "Iqondisa endleleni...",
     "onrampCreated": "Iseshini yendlela idalwe",
-    "failedOnramp": "Kuhlulekile ukuqala indlela"
+    "failedOnramp": "Kuhlulekile ukuqala indlela",
+    "otherTokens": "Amanye amathokheni",
+    "otherTokensDesc": "Thenga i-ETH noma i-USDC ku-Base ngekhadi lakho"
   },
   "agents": {
     "title": "Ejensi ye-AI",
