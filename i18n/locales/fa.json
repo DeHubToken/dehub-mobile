@@ -2916,5 +2916,17 @@
     "followRequest": "{{name}} درخواست دنبال کردن شما را دارم",
     "followAccepted": "{{name}} درخواست فالو شما پذیرفته شد",
     "signalFlare": "{{name}} یک سیگنال فلر فرستاد"
+  },
+  "audioPost": {
+    "popOut": "بیرون بپرید - هنگام مرور، به گوش دادن ادامه دهید",
+    "closeCornerPlayer": "بازیکن گوشه را ببند",
+    "cornerPlayer": "پخش پست صوتی",
+    "stopAndClose": "پخش کننده را متوقف و ببندید",
+    "untitled": "پست صوتی",
+    "creator": "خالق DeHub",
+    "play": "شروع",
+    "pause": "توقف",
+    "listens_one": "{{count}} گوش کن",
+    "listens_other": "{{count}} گوش می‌دهد"
   }
 }

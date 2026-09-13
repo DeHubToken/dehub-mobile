@@ -2901,5 +2901,17 @@
     "followAccepted": "{{name}}- ն ընդունեց ձեր հետագա հայտը",
     "signalFlare": "{{name}}-ն ազդանշան է ուղարկել",
     "newMessage": "{{name}}-ը ձեզ հաղորդագրություն է ուղարկել"
+  },
+  "audioPost": {
+    "popOut": "Շարունակեք լսել, մինչ դիտում եք",
+    "closeCornerPlayer": "Փակել անկյունային նվագարկիչը",
+    "cornerPlayer": "Աուդիո գրառման նվագարկում",
+    "stopAndClose": "Կանգնեցնել և փակել նվագարկիչը",
+    "untitled": "Ձայնային գրառում",
+    "creator": "DeHub - ի ստեղծող",
+    "play": "Նվագարկել",
+    "pause": "Դադարեցնել",
+    "listens_one": "{{count}} լսել",
+    "listens_other": "{{count}} լսում"
   }
 }

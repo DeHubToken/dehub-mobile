@@ -2960,5 +2960,17 @@
     "followAccepted": "{{name}} ने आपका फ़ॉलो अनुरोध मंज़ूर कर लिया है",
     "signalFlare": "{{name}} ने सिग्नल फ़्लेयर भेजा",
     "newMessage": "{{name}} ने आपको एक मैसेज भेजा है"
+  },
+  "audioPost": {
+    "popOut": "पॉप आउट — ब्राउज़ करते समय सुनते रहें",
+    "closeCornerPlayer": "कोने के खिलाड़ी को बंद करें",
+    "cornerPlayer": "ऑडियो पोस्ट प्लेबैक",
+    "stopAndClose": "खिलाड़ी को रोकें और बंद करें",
+    "untitled": "ऑडियो पोस्ट",
+    "creator": "DeHub क्रिएटर",
+    "play": "चलाएं",
+    "pause": "रोकें",
+    "listens_one": "{{count}} बार सुना गया",
+    "listens_other": "{{count}} बार सुना गया"
   }
 }

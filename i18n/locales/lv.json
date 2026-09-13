@@ -2902,5 +2902,17 @@
     "followAccepted": "{{name}} pieņēma jūsu sekošanas pieprasījumu",
     "signalFlare": "{{name}} nosūtīja signāla uzliesmojumu",
     "newMessage": "{{name}} nosūtīja jums ziņojumu"
+  },
+  "audioPost": {
+    "popOut": "Uznirstošā izvēlne — turpiniet klausīties, kamēr pārlūkojat",
+    "closeCornerPlayer": "Aizveriet stūra atskaņotāju",
+    "cornerPlayer": "Audio ziņas atskaņošana",
+    "stopAndClose": "Apturiet un aizveriet atskaņotāju",
+    "untitled": "Audio ieraksts",
+    "creator": "DeHub izveidotājs",
+    "play": "Atskaņot",
+    "pause": "Apturēt",
+    "listens_one": "{{count}} klausīties",
+    "listens_other": "{{count}} klausās"
   }
 }

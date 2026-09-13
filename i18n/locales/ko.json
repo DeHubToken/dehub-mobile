@@ -2971,5 +2971,17 @@
     "followAccepted": "{{name}} 님이 팔로우 요청을 수락했습니다",
     "signalFlare": "{{name}} 님이 신호탄을 보냈습니다",
     "newMessage": "{{name}} 님이 메시지를 보냈습니다"
+  },
+  "audioPost": {
+    "popOut": "팝아웃 — 브라우징하는 동안 계속 듣기",
+    "closeCornerPlayer": "코너 플레이어 닫기",
+    "cornerPlayer": "오디오 포스트 재생",
+    "stopAndClose": "플레이어 정지 및 종료",
+    "untitled": "오디오 포스트",
+    "creator": "DeHub 크리에이터",
+    "play": "재생",
+    "pause": "일시정지",
+    "listens_one": "{{count}}회 재생",
+    "listens_other": "{{count}}회 재생"
   }
 }

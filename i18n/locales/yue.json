@@ -2901,5 +2901,17 @@
     "followAccepted": "{{name}} 接受咗你嘅追蹤要求",
     "signalFlare": "{{name}} 發送咗個信號耀斑",
     "newMessage": "{{name}} 發咗個訊息畀你"
+  },
+  "audioPost": {
+    "popOut": "彈出嚟 — 喺你瀏覽嗰陣繼續聽",
+    "closeCornerPlayer": "閂個角落播放器",
+    "cornerPlayer": "音頻帖子播放",
+    "stopAndClose": "停低同埋閂個播放器",
+    "untitled": "音頻帖子",
+    "creator": "DeHub 創作者",
+    "play": "玩",
+    "pause": "暫停",
+    "listens_one": "{{count}} 聽",
+    "listens_other": "{{count}} 聽緊"
   }
 }

@@ -2972,5 +2972,17 @@
     "followAccepted": "{{name}} hat deine Folgeanfrage angenommen",
     "signalFlare": "{{name}} hat eine Signalfackel gesendet",
     "newMessage": "{{name}} hat dir eine Nachricht geschickt"
+  },
+  "audioPost": {
+    "popOut": "Herausspringen - hören Sie weiter zu, während Sie stöbern",
+    "closeCornerPlayer": "Schließen Sie den Eckspieler",
+    "cornerPlayer": "Audio-Post-Wiedergabe",
+    "stopAndClose": "Stoppen und schließen Sie den Player",
+    "untitled": "Audio-Beitrag",
+    "creator": "DeHub-Ersteller",
+    "play": "Abspielen",
+    "pause": "Pause",
+    "listens_one": "{{count}} Wiedergabe",
+    "listens_other": "{{count}} Wiedergaben"
   }
 }

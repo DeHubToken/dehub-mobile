@@ -2938,5 +2938,17 @@
     "followAccepted": "{{name}} तपाईंको फलो अनुरोध स्वीकार गरियो",
     "signalFlare": "{{name}} सिग्नल फ्लेयर पठाए",
     "newMessage": "{{name}}ले तपाईंलाई सन्देश पठायो"
+  },
+  "audioPost": {
+    "popOut": "पप आउट — ब्राउज गर्दा सुन्दै रहनुहोस्",
+    "closeCornerPlayer": "कुनाको खेलाडी बन्द गर्नुहोस्",
+    "cornerPlayer": "अडियो पोस्ट प्लेब्याक",
+    "stopAndClose": "खेलाडीलाई रोक्नुहोस् र बन्द गर्नुहोस्",
+    "untitled": "अडियो पोष्ट",
+    "creator": "DeHub सृष्टिकर्ता",
+    "play": "खेल्नुहोस्",
+    "pause": "पज गर्नुहोस्",
+    "listens_one": "{{count}} सुन्नुहोस्",
+    "listens_other": "{{count}} लिस्टेन्स"
   }
 }

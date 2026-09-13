@@ -2971,5 +2971,17 @@
     "followAccepted": "{{name}} zaakceptował Twoją prośbę o obserwowanie",
     "signalFlare": "{{name}} wysłał flarę sygnałową",
     "newMessage": "{{name}} wysłał Ci wiadomość"
+  },
+  "audioPost": {
+    "popOut": "Wyskakuj — słuchaj dalej podczas przeglądania",
+    "closeCornerPlayer": "Zamknij gracza narożnego",
+    "cornerPlayer": "Odtwarzanie postów audio",
+    "stopAndClose": "Zatrzymaj i zamknij odtwarzacz",
+    "untitled": "Wpis audio",
+    "creator": "Twórca DeHub",
+    "play": "Odtwórz",
+    "pause": "Wstrzymaj",
+    "listens_one": "{{count}} odsłuchanie",
+    "listens_other": "{{count}} odsłuchań"
   }
 }

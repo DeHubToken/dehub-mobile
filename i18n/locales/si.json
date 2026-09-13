@@ -2895,5 +2895,17 @@
     "followAccepted": "{{name}} ඔබගේ පසු විපරම් ඉල්ලීම පිළිගත්තේය",
     "signalFlare": "{{name}} සිග්නල් ෆ්ලේයර් එකක් එව්වා",
     "newMessage": "{{name}} ඔබට පණිවිඩයක් එවා ඇත"
+  },
+  "audioPost": {
+    "popOut": "POP OUT — ඔබ බ් ‍ රවුස් කරන අතරතුර සවන් දෙන්න",
+    "closeCornerPlayer": "කෙළවරේ ක් ‍ රීඩකයා වසා දමන්න",
+    "cornerPlayer": "ශ් ‍ රව් ‍ ය තැපැල් ප්ලේබැක්",
+    "stopAndClose": "ක් ‍ රීඩාව නවත්වන්න සහ වසා දමන්න",
+    "untitled": "ශ් ‍ රව් ‍ ය පශ්චාත්",
+    "creator": "DeHub නිර්මාතෘ",
+    "play": "වාදනය කරන්න",
+    "pause": "විරාමය",
+    "listens_one": "{{count}} ඇහුම්කන් දෙන්න",
+    "listens_other": "{{count}} ඇහුම්කන් දීම"
   }
 }

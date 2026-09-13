@@ -2903,5 +2903,17 @@
     "followAccepted": "{{name}} amekubali ombi lako la kufuatilia",
     "signalFlare": "{{name}} alituma Flare ya Ishara",
     "newMessage": "{{name}} alikutumia ujumbe"
+  },
+  "audioPost": {
+    "popOut": "Toa papo hapo - endelea kusikiliza unapovinjari",
+    "closeCornerPlayer": "Funga kichezeshi cha kona",
+    "cornerPlayer": "Uchezaji wa sauti baada ya sauti",
+    "stopAndClose": "Simamisha na mfunge mchezaji",
+    "untitled": "Chapisho la sauti",
+    "creator": "Muundaji wa DeHub",
+    "play": "Cheza",
+    "pause": "Sitisha",
+    "listens_one": "{{count}} sikiliza",
+    "listens_other": "{{count}} anasikiliza"
   }
 }

@@ -2878,5 +2878,16 @@
     "followAccepted": "{{name}} ଆପଣଙ୍କ ଅନୁସରଣ ଅନୁରୋଧ ଗ୍ରହଣ କରିଛେ",
     "signalFlare": "{{name}} ଏକ ସିଗନାଲ ଫ୍ଲେୟାର ପଠାଇଛେ",
     "newMessage": "{{name}} ଆପଣଙ୍କୁ ଏକ ବାର୍ତ୍ତା ପଠାଇଛେ"
+  },
+  "audioPost": {
+    "popOut": "ପପ ଆଉଟ — ବ୍ରାଉଜ କରିବା ସମୟରେ ଶୁଣନ୍ତୁ",
+    "closeCornerPlayer": "କୋଣ ଚାଳକକୁ ବନ୍ଦ କରନ୍ତୁ",
+    "cornerPlayer": "ଅଡିଓ ପୋଷ୍ଟ ପ୍ଲେବ୍ୟାକ",
+    "stopAndClose": "ଚାଳକକୁ ଅଟକାନ୍ତୁ ଏବଂ ବନ୍ଦ କରନ୍ତୁ",
+    "untitled": "ଧ୍ୱନି ପୋଷ୍ଟ",
+    "creator": "DeHub ସୃଷ୍ଟିକର୍ତ୍ତା",
+    "play": "ଚଲାନ୍ତୁ",
+    "pause": "ବିରତି",
+    "listens_one": "{{count}} ଶୁଣନ୍ତୁ"
   }
 }

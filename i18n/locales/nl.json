@@ -3176,5 +3176,17 @@
     "followAccepted": "{{name}} heeft je volgverzoek geaccepteerd",
     "signalFlare": "{{name}} stuurde een signaalflare",
     "newMessage": "{{name}} heeft je een bericht gestuurd"
+  },
+  "audioPost": {
+    "popOut": "Pop out — blijf luisteren terwijl je surft",
+    "closeCornerPlayer": "Sluit de hoekspeler",
+    "cornerPlayer": "Afspelen van audiopost",
+    "stopAndClose": "Stop en sluit de speler",
+    "untitled": "Audiopost",
+    "creator": "DeHub-maker",
+    "play": "Afspelen",
+    "pause": "Pauzeren",
+    "listens_one": "{{count}} keer beluisterd",
+    "listens_other": "{{count}} keer beluisterd"
   }
 }

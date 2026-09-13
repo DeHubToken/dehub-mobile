@@ -2977,5 +2977,17 @@
     "followAccepted": "{{name}} aceitou o seu pedido de seguimento",
     "signalFlare": "{{name}} enviou um sinalizador",
     "newMessage": "{{name}} enviou-lhe uma mensagem"
+  },
+  "audioPost": {
+    "popOut": "Pop out — continue a ouvir enquanto navega",
+    "closeCornerPlayer": "Fechar o jogador de canto",
+    "cornerPlayer": "Reprodução de postagem de áudio",
+    "stopAndClose": "Parar e fechar o leitor",
+    "untitled": "Post de áudio",
+    "creator": "Criador do DeHub",
+    "play": "Reproduzir",
+    "pause": "Pausar",
+    "listens_one": "{{count}} reprodução",
+    "listens_other": "{{count}} reproduções"
   }
 }

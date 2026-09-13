@@ -2894,5 +2894,16 @@
     "followAccepted": "{{name}} yarda da buƙatarku ta biyo baya",
     "signalFlare": "{{name}} aika Siginar Flare",
     "newMessage": "{{name}} ya aiko maka da sako"
+  },
+  "audioPost": {
+    "popOut": "Pop out — ci gaba da sauraron yayin da kake lilo",
+    "closeCornerPlayer": "Rufe dan wasan kusurwa",
+    "cornerPlayer": "Audio post sake kunnawa",
+    "stopAndClose": "Dakatar da rufe mai kunnawa",
+    "creator": "DeHub mahalicci",
+    "play": "Yi wasa",
+    "pause": "Dakatar da",
+    "listens_one": "{{count}} saurare",
+    "listens_other": "{{count}} sauraro"
   }
 }

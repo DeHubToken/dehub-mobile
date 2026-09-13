@@ -2984,5 +2984,16 @@
     "followRequest": "{{name}} niangavy ny hanaraka anao aho",
     "followAccepted": "{{name}} manaiky ny fangatahanao manaraka",
     "signalFlare": "{{name}} nandefa firohotana famantarana"
+  },
+  "audioPost": {
+    "popOut": "Pop avy — mihaino hatrany rehefa mijery ianao",
+    "closeCornerPlayer": "Hanidy ny zorony mpilalao",
+    "cornerPlayer": "Famakiana lahatsoratra audio",
+    "stopAndClose": "Ajanony sy manidy ilay mpilalao",
+    "untitled": "LAHATSARY POO",
+    "creator": "DeHub mpamorona",
+    "play": "Mamaky",
+    "pause": "Miato",
+    "listens_other": "{{count}} сонсens"
   }
 }

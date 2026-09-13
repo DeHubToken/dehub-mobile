@@ -2897,5 +2897,14 @@
     "followRequest": "{{name}} ba om å følge deg",
     "followAccepted": "{{name}} har akseptert forespørselen din om å følge",
     "signalFlare": "{{name}} sendte et signalbluss"
+  },
+  "audioPost": {
+    "popOut": "Sprett ut – fortsett å lytte mens du surfer",
+    "closeCornerPlayer": "Lukk hjørnespilleren",
+    "cornerPlayer": "Avspilling av lyd etter avspilling",
+    "stopAndClose": "Stopp og lukk spilleren",
+    "untitled": "Lydinnlegg",
+    "creator": "DeHub-skaperen",
+    "play": "Spill"
   }
 }

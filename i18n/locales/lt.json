@@ -2902,5 +2902,17 @@
     "followAccepted": "{{name}} priėmė jūsų sekimo užklausą",
     "signalFlare": "{{name}} išsiuntė signalo blyksnį",
     "newMessage": "{{name}} atsiuntė jums žinutę"
+  },
+  "audioPost": {
+    "popOut": "Iššokti — naršydami klausykitės toliau",
+    "closeCornerPlayer": "Uždarykite kampinį grotuvą",
+    "cornerPlayer": "Garso įrašo atkūrimas",
+    "stopAndClose": "Sustabdykite ir uždarykite grotuvą",
+    "untitled": "Garso įrašas",
+    "creator": "DeHub kūrėjas",
+    "play": "Paleisti",
+    "pause": "Pristabdyti",
+    "listens_one": "{{count}} klausytis",
+    "listens_other": "{{count}} klauso"
   }
 }

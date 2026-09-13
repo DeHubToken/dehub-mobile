@@ -2953,5 +2953,17 @@
     "followAccepted": "{{name}} menyetujui permohonan mengikuti Anda",
     "signalFlare": "{{name}} mengirim Sinyal Sinyal",
     "newMessage": "{{name}} mengirimi Anda pesan"
+  },
+  "audioPost": {
+    "popOut": "Keluar — terus dengarkan saat Anda menjelajah",
+    "closeCornerPlayer": "Tutup pemain pojok",
+    "cornerPlayer": "Pemutaran postingan audio",
+    "stopAndClose": "Hentikan dan tutup pemain",
+    "untitled": "Postingan audio",
+    "creator": "Kreator DeHub",
+    "play": "Putar",
+    "pause": "Jeda",
+    "listens_one": "{{count}} kali didengar",
+    "listens_other": "{{count}} kali didengar"
   }
 }
