@@ -1930,7 +1930,20 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "cancelUnstake": "Cancel withdrawal"
+    "cancelUnstake": "Cancel withdrawal",
+    "switchBaseFailed": "Base नेटवर्कवर स्विच करणे अयोग्य झाले.",
+    "switchBnbFailed": "BNB Chain वर स्विच करणे अयोग्य झाले.",
+    "stakeSubmitted": "जमा केले गेले. पुष्टीकरण तपासत आहे — पुन्हा पाठवू नका.",
+    "txCancelledInWallet": "आपल्या वॉलेटमध्ये व्यवहार रद्द केला गेला.",
+    "txCancelled": "व्यवहार रद्द केला गेला.",
+    "stakeUnconfirmed": "जमा पुष्टी करू शकत नाही. पुन्हा प्रयत्न करण्यापूर्वी आपल्या वॉलेट क्रियाकलाप तपासा.",
+    "onlyThisMuchStaked": "आपल्याकडे फक्त {{amount}} DHB जमा आहे.",
+    "onlyLegacyWithdrawable": "फक्त {{amount}} DHB आता मागे घेता येते — बाकी Base पूलमध्ये आहे, ज्याचा अद्याप कोणताही निकाल करार नाही.",
+    "poolHasNoWithdrawal": "आपला DHB Base पूलमध्ये आहे, ज्याचा अद्याप कोणताही निकाल करार नाही. मागे घेण्यासाठी समर्थनाशी संपर्क साधा.",
+    "lockedEarlyFee": "{{date}} पर्यंत लॉक केले. आता मागे घेतल्यास 88% परत मिळते — 12% शुल्क, सुमारे {{fee}} DHB. स्वीकारण्यासाठी पुन्हा टॅप करा.",
+    "unstakeReverted": "साखळीवर मागे घेतल्याचा व्यवहार परत केला गेला.",
+    "unstakeSent": "{{amount}} DHB मागे घेतले! TX: {{hash}}…",
+    "unstakeFailed": "मागे घेतल्याचा व्यवहार अयोग्य झाला."
   },
   "communities": {
     "title": "کمیونٹیز",

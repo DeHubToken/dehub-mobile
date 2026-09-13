@@ -2163,7 +2163,20 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "cancelUnstake": "Cancel withdrawal"
+    "cancelUnstake": "Cancel withdrawal",
+    "switchBaseFailed": "Base নেটওয়ার্কে সুইচ করতে ব্যর্থ।",
+    "switchBnbFailed": "BNB চেইনে সুইচ করতে ব্যর্থ।",
+    "stakeSubmitted": "ডিপোজিট জমা দেওয়া হয়েছে। নিশ্চিতকরণ পরীক্ষা করা হচ্ছে — এটি আবার পাঠাবেন না।",
+    "txCancelledInWallet": "আপনার ওয়ালেটে লেনদেন বাতিল করা হয়েছে।",
+    "txCancelled": "লেনদেন বাতিল করা হয়েছে।",
+    "stakeUnconfirmed": "ডিপোজিট নিশ্চিত করতে পারেনি। আবার চেষ্টা করার আগে আপনার ওয়ালেট কার্যকলাপ পরীক্ষা করুন।",
+    "onlyThisMuchStaked": "আপনার কাছে শুধুমাত্র {{amount}} DHB জমা আছে।",
+    "onlyLegacyWithdrawable": "এখন শুধুমাত্র {{amount}} DHB উত্তোলন করা যায় — বাকিটি Base পুলে আছে, যার এখনও কোনো উত্তোলন চুক্তি নেই।",
+    "poolHasNoWithdrawal": "আপনার DHB Base পুলে আছে, যার এখনও কোনো উত্তোলন চুক্তি নেই। উত্তোলনের জন্য সহায়তার সাথে যোগাযোগ করুন।",
+    "lockedEarlyFee": "{{date}} পর্যন্ত লক করা। এখনই উত্তোলন করলে 88% ফেরত পাবেন — 12% ফি, প্রায় {{fee}} DHB। গ্রহণ করতে আবার ট্যাপ করুন।",
+    "unstakeReverted": "অন-চেইনে উত্তোলন প্রত্যাহার করা হয়েছে।",
+    "unstakeSent": "{{amount}} DHB উত্তোলন করা হয়েছে! TX: {{hash}}…",
+    "unstakeFailed": "উত্তোলন ব্যর্থ।"
   },
   "communities": {
     "title": "কমিউনিটি",

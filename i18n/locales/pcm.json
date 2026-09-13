@@ -1960,7 +1960,21 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "cancelUnstake": "Cancel withdrawal"
+    "cancelUnstake": "Cancel withdrawal",
+    "walletBalance": "Wallet Balance",
+    "dhbOnBase": "DHB on Base",
+    "amountUnstaking": "{{amount}} withdrawing",
+    "pendingRewards": "Pending Rewards",
+    "availableToStake": "Available: {{amount}} DHB",
+    "lockedUntilWithFee": "locked until {{date}}, 12% fee before then",
+    "totalStakedProtocol": "Total deposited (protocol)",
+    "refreshBalances": "Refresh balances",
+    "addressCopied": "Deposit address copied!",
+    "viewTransaction": "View transaction",
+    "checkAgain": "Check again",
+    "txCancelled": "Transaction cancelled.",
+    "unstakeSent": "Withdrew {{amount}} DHB! TX: {{hash}}…",
+    "unstakeFailed": "Withdrawal failed."
   },
   "communities": {
     "title": "Communities",

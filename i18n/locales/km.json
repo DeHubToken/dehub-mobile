@@ -2054,7 +2054,20 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "cancelUnstake": "Cancel withdrawal"
+    "cancelUnstake": "Cancel withdrawal",
+    "switchBaseFailed": "មិនបានប្តូរទៅបណ្តាញ Base។",
+    "switchBnbFailed": "មិនបានប្តូរទៅ BNB Chain។",
+    "stakeSubmitted": "ដាក់ប្រាក់បានដាក់ស្នើ។ ពិនិត្យការបញ្ជាក់ — កុំផ្ញើវាម្តងទៀត។",
+    "txCancelledInWallet": "ប្រតិបត្តិការលុបចោលក្នុងកាបូបរបស់អ្នក។",
+    "txCancelled": "ប្រតិបត្តិការលុបចោល។",
+    "stakeUnconfirmed": "មិនអាចបញ្ជាក់ការដាក់ប្រាក់បានទេ។ ពិនិត្យសកម្មភាពកាបូបរបស់អ្នកមុនពេលព្យាយាមម្តងទៀត។",
+    "onlyThisMuchStaked": "អ្នកមាន {{amount}} DHB ដាក់ប្រាក់ប៉ុណ្ណោះ។",
+    "onlyLegacyWithdrawable": "មានតែ {{amount}} DHB ប៉ុណ្ណោះដែលអាចដកចេញបានឥឡូវនេះ — នៅសល់គឺស្ថិតក្នុងបណ្តាញ Base ដែលមិនមានកិច្ចសន្យាដកចេញឡើយ។",
+    "poolHasNoWithdrawal": "DHB របស់អ្នកស្ថិតក្នុងបណ្តាញ Base ដែលមិនមានកិច្ចសន្យាដកចេញឡើយ។ ទាក់ទងការគាំទពេលបង្ហាញដើម្បីដកចេញ។",
+    "lockedEarlyFee": "ចាក់សោលរហូតដល់ {{date}}។ ការដកចេញឥឡូវនេះផ្តល់ឱ្យ 88% — ថ្លៃដើម 12% ប្រហែល {{fee}} DHB។ ចុចម្តងទៀតដើម្បីទទួលយល់ព្រម។",
+    "unstakeReverted": "ការដកចេញបានឆ្លងក្រោយលើខ្សែ។",
+    "unstakeSent": "ដកចេញ {{amount}} DHB! TX: {{hash}}…",
+    "unstakeFailed": "ការដកចេញបរាជ័យ។"
   },
   "communities": {
     "title": "Communities",
