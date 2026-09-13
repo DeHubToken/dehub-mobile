@@ -494,18 +494,15 @@
     "searchPlaceholder": "Search settings",
     "noSearchResults": "No setting match",
     "badgeDelegation": "Badge delegation",
-    "badgeDelegationNote": "One slot dey lend your own badge to another account. Collect am back anytime you like — di slot go free one day later.",
     "badgeDelegationAccept": "Make other person lend me their badge",
     "badgeDelegationAcceptHint": "Turn this off for refuse lent badges. Any badge wey you wear now go return back.",
     "badgeDelegationAcceptOn": "You fit get lend badge again",
     "badgeDelegationAcceptOff": "You no go get lend badge",
     "badgeDelegationAcceptOffEnded": "Badge done return back. You no go get lend another one.",
     "badgeDelegationAcceptFailed": "No fit save that setting",
-    "badgeDelegationRaisesOnly": "Yu fit lend to person wey im badge low pass yu own badge.",
     "badgeDelegationNoBadge": "Delegation slots dey come with staking badge. Stake DHB make you get one.",
     "badgeDelegationSlots_one": "Your {{tier}} badge get {{count}} slot, {{free}} free.",
     "badgeDelegationSlots_other": "Your {{tier}} badge get {{count}} slots, {{free}} free.",
-    "badgeDelegationLends": "Each one dey lend another account your own {{tier}} badge — dem go wear wetin you wear.",
     "badgeDelegationEarn": "Stake DHB make you get badge, and e dey come with one slot for every tier wey you climb.",
     "badgeDelegationPlaceholder": "Username or wallet address",
     "badgeDelegationLend": "Lend",
@@ -527,7 +524,8 @@
     "resetAndSignOut": "Reset and sign out",
     "deviceLinkReset": "Device link don reset. Sign in again make you pick di correct account.",
     "deviceLinkResetFailed": "We no fit reset di device link.",
-    "emailNotificationsDescLinked": "Sent to {{email}}"
+    "emailNotificationsDescLinked": "Sent to {{email}}",
+    "badgeDelegationPickTier": "Badge to lend"
   },
   "common": {
     "mute": "Off di sound",
