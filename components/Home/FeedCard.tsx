@@ -120,6 +120,9 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 // feed list's padding (8/side) *and* the card's own (12/side) — a hardcoded
 // guess drifted 8px per page here before, which desynced paging from the dots.
 const IMAGE_WIDTH = SCREEN_WIDTH - 40;
+// Width, in points, of the thumbnail a locked post blurs. 20px of blur on a
+// 96px-wide image reads exactly like 20px of blur on the full one.
+const LOCKED_PREVIEW_WIDTH = 32;
 
 
 type PostContentType = "image" | "video" | "audio" | "live" | "short";
@@ -275,14 +278,36 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     return () => subscription.remove();
   }, [tokenId, isOwnerPost]);
   // --- Gallery images (for image posts) ---
+  // Measured on a Galaxy S24+ with Android's frame log: a third of frames
+  // janky on the home feed, every one of them a "slow bitmap upload". Two
+  // sizing mistakes fed it. The gallery asked for 640pt, which on a 3x screen
+  // snaps to a 2048px-wide image for a card a third of that; and the
+  // single-image path passed no width at all, which `cdnImage` treats as "no
+  // transform" — the original upload, tens of megapixels, decoded and pushed
+  // to the GPU in the middle of a fling. Both now ask for the card's width.
+  const rawImageUrls = useMemo<string[]>(
+    () =>
+      replacementImages?.tokenId === String(tokenId)
+        ? replacementImages.imageUrls
+        : Array.isArray(item.imageUrls)
+          ? item.imageUrls
+          : [],
+    [item, tokenId, replacementImages],
+  );
   const galleryImages = useMemo(() => {
-    const urls: string[] = replacementImages?.tokenId === String(tokenId) ? replacementImages.imageUrls : Array.isArray(item.imageUrls) ? item.imageUrls : [];
-    // Through the image CDN with a resize, like the single-image path — the
-    // API-origin URLs served full-resolution originals on every scroll.
-    if (urls.length > 0) return buildFeedImageUrls(urls, 640);
-    const single = getImageUrl(item.imageUrl || item.thumbnailUrl || "");
+    if (rawImageUrls.length > 0) return buildFeedImageUrls(rawImageUrls, IMAGE_WIDTH);
+    const single = getImageUrl(item.imageUrl || item.thumbnailUrl || "", IMAGE_WIDTH);
     return single ? [single] : [];
-  }, [item, tokenId, replacementImages]);
+  }, [item, rawImageUrls]);
+  // A locked post shows its picture blurred. Blurring a full-width image
+  // costs the same decode and upload as showing it; blurring a thumbnail
+  // looks identical under a 20px blur and is a fraction of the work. It also
+  // means the phone never holds the full-resolution picture of a paywalled
+  // post it has not paid for.
+  const lockedPreviewUri = useMemo(() => {
+    if (rawImageUrls.length > 0) return buildFeedImageUrls([rawImageUrls[0]], LOCKED_PREVIEW_WIDTH)[0];
+    return getImageUrl(item.imageUrl || item.thumbnailUrl || "", LOCKED_PREVIEW_WIDTH) || galleryImages[0];
+  }, [item, rawImageUrls, galleryImages]);
   const hasImages = galleryImages.length > 0;
   const hasMultipleImages = galleryImages.length > 1;
 
@@ -1009,9 +1034,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           style={{ height: IMAGE_WIDTH * 0.75 }}
         >
           <SmartImage
-            source={{ uri: galleryImages[0] }}
+            source={{ uri: lockedPreviewUri }}
             style={{ width: "100%", height: "100%" }}
-            recyclingKey={galleryImages[0]}
+            recyclingKey={lockedPreviewUri}
             priority={prioritizeMedia ? "high" : "normal"}
             blurRadius={20}
           />
@@ -1056,9 +1081,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           style={{ height: IMAGE_WIDTH * 0.75 }}
         >
           <SmartImage
-            source={{ uri: galleryImages[0] }}
+            source={{ uri: lockedPreviewUri }}
             style={{ width: "100%", height: "100%" }}
-            recyclingKey={galleryImages[0]}
+            recyclingKey={lockedPreviewUri}
             priority={prioritizeMedia ? "high" : "normal"}
             blurRadius={20}
           />
@@ -1091,9 +1116,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           style={{ height: IMAGE_WIDTH * 0.75 }}
         >
           <SmartImage
-            source={{ uri: galleryImages[0] }}
+            source={{ uri: lockedPreviewUri }}
             style={{ width: "100%", height: "100%" }}
-            recyclingKey={galleryImages[0]}
+            recyclingKey={lockedPreviewUri}
             priority={prioritizeMedia ? "high" : "normal"}
             blurRadius={20}
           />
@@ -1117,9 +1142,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           style={{ height: IMAGE_WIDTH * 0.75 }}
         >
           <SmartImage
-            source={{ uri: galleryImages[0] }}
+            source={{ uri: lockedPreviewUri }}
             style={{ width: "100%", height: "100%" }}
-            recyclingKey={galleryImages[0]}
+            recyclingKey={lockedPreviewUri}
             priority={prioritizeMedia ? "high" : "normal"}
             blurRadius={20}
           />
