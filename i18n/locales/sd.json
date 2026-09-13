@@ -1515,7 +1515,12 @@
     "or": "يا",
     "termsNotice": "جاري رکي توهان اسان جي سروس شرطن ۽ رازداري پاليسي سان متفق آهيو",
     "walletInfoDesktop": "محفوظ لاگ ان لاءِ والٽ ڳنڍيو",
-    "walletInfoMobile": "MetaMask، Trust ۽ Phantom پنهنجين اصل ايپن ۾ کلن ٿيون. Rabby WalletConnect استعمال ڪندو آهي."
+    "walletInfoMobile": "MetaMask، Trust ۽ Phantom پنهنجين اصل ايپن ۾ کلن ٿيون. Rabby WalletConnect استعمال ڪندو آهي.",
+    "signIn": "سائن ان",
+    "password": "پاسورڊ",
+    "sendCode": "ڪوڊ موڪليو",
+    "usePasswordInstead": "ان جي بدران پاسورڊ استعمال ڪريو",
+    "useCodeInstead": "ان جي بدران مون کي اي ميل تي ڪوڊ موڪليو"
   },
   "careers": {
     "title": "DeHub ۾ ڪيريئر",

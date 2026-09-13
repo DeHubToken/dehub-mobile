@@ -1530,7 +1530,12 @@
     "or": "או",
     "termsNotice": "בהמשך אתה מסכים לתנאי השירות ומדיניות הפרטיות",
     "walletInfoDesktop": "חבר את הארנק שלך להתחברות מאובטחת",
-    "walletInfoMobile": "MetaMask ו-Trust ו-Phantom נפתחים באפליקציה שלהם. Rabby משתמש ב-WalletConnect."
+    "walletInfoMobile": "MetaMask ו-Trust ו-Phantom נפתחים באפליקציה שלהם. Rabby משתמש ב-WalletConnect.",
+    "signIn": "התחברות",
+    "password": "סיסמה",
+    "sendCode": "שליחת קוד",
+    "usePasswordInstead": "להשתמש בסיסמה במקום",
+    "useCodeInstead": "לשלוח לי קוד במייל במקום"
   },
   "careers": {
     "title": "קריירה ב-DeHub",

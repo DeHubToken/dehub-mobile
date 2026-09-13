@@ -1533,7 +1533,12 @@
     "or": "nebo",
     "termsNotice": "Pokračováním souhlasíte s podmínkami služby a zásadami ochrany osobních údajů",
     "walletInfoDesktop": "Připojte peněženku pro bezpečné přihlášení",
-    "walletInfoMobile": "MetaMask a Trust a Phantom se otevírají ve svých aplikacích. Rabby používá WalletConnect."
+    "walletInfoMobile": "MetaMask a Trust a Phantom se otevírají ve svých aplikacích. Rabby používá WalletConnect.",
+    "signIn": "Přihlásit se",
+    "password": "Heslo",
+    "sendCode": "Odeslat kód",
+    "usePasswordInstead": "Použít místo toho heslo",
+    "useCodeInstead": "Poslat mi kód e-mailem"
   },
   "careers": {
     "title": "Kariéra v DeHub",

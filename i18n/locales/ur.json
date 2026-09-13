@@ -1531,7 +1531,12 @@
     "or": "یا",
     "termsNotice": "جاری رکھ کر آپ شرائط خدمت اور رازداری پالیسی سے اتفاق کرتے ہیں",
     "walletInfoDesktop": "محفوظ لاگ ان کے لیے اپنا والٹ جوڑیں",
-    "walletInfoMobile": "MetaMask اور Trust اور Phantom اپنی ایپ میں کھلیں گے۔ Rabby WalletConnect استعمال کرے گا۔"
+    "walletInfoMobile": "MetaMask اور Trust اور Phantom اپنی ایپ میں کھلیں گے۔ Rabby WalletConnect استعمال کرے گا۔",
+    "signIn": "سائن اِن کریں",
+    "password": "پاس ورڈ",
+    "sendCode": "کوڈ بھیجیں",
+    "usePasswordInstead": "اس کے بجائے پاس ورڈ استعمال کریں",
+    "useCodeInstead": "اس کے بجائے مجھے ای میل پر کوڈ بھیجیں"
   },
   "careers": {
     "title": "DeHub میں ملازمتیں",

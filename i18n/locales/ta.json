@@ -1525,7 +1525,12 @@
     "or": "அல்லது",
     "termsNotice": "தொடர்வதன் மூலம் சேவை விதிமுறைகள் மற்றும் தனியுரிமைக் கொள்கையை ஏற்கிறீர்கள்",
     "walletInfoDesktop": "பாதுகாப்பான உள்நுழைவுக்கு உங்கள் பணப்பையை இணைக்கவும்",
-    "walletInfoMobile": "MetaMask மற்றும் Trust மற்றும் Phantom அவற்றின் ஆப்பில் திறக்கும். Rabby WalletConnect ஐப் பயன்படுத்தும்."
+    "walletInfoMobile": "MetaMask மற்றும் Trust மற்றும் Phantom அவற்றின் ஆப்பில் திறக்கும். Rabby WalletConnect ஐப் பயன்படுத்தும்.",
+    "signIn": "உள்நுழை",
+    "password": "கடவுச்சொல்",
+    "sendCode": "குறியீட்டை அனுப்பு",
+    "usePasswordInstead": "அதற்குப் பதிலாக கடவுச்சொல்லைப் பயன்படுத்து",
+    "useCodeInstead": "அதற்குப் பதிலாக எனக்கு மின்னஞ்சலில் குறியீட்டை அனுப்பு"
   },
   "careers": {
     "title": "DeHub இல் வேலைவாய்ப்புகள்",

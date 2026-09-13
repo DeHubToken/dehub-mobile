@@ -22,6 +22,7 @@ interface SocialLoginIconsProps {
   onGoogle: () => void;
   onApple: () => void;
   onEmailSubmit: (email: string) => void;
+  onEmailPasswordSubmit?: (email: string, password: string) => void;
   onPhoneSubmit: (phone: string) => void;
   onConnectWallet?: () => void;
   busyProvider?: string; // 'google' | 'apple' | 'email' | 'phone' | 'wallet'
@@ -45,6 +46,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   onGoogle,
   onApple,
   onEmailSubmit,
+  onEmailPasswordSubmit,
   onPhoneSubmit,
   onConnectWallet,
   busyProvider,
@@ -57,6 +59,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
         onSubmit={(_provider, email) => {
           if (email) onEmailSubmit(email);
         }}
+        onPasswordSubmit={onEmailPasswordSubmit}
         loading={busyProvider === "email"}
         disabled={disabled}
         onExpand={onFieldExpand}

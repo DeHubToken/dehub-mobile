@@ -1460,7 +1460,12 @@
     "or": "an",
     "termsNotice": "Bi dewamkirinê, hûn bi Şert û Mercên Karûbarê me û Polîtîkaya Nepeniyê razî dibin",
     "walletInfoDesktop": "Berîka xwe girêbidin ku bi ewlehî têkevin",
-    "walletInfoMobile": "MetaMask, Trust û Phantom dê serlêdana xwe rasterast vekin. Rabby dê WalletConnect bikar bîne."
+    "walletInfoMobile": "MetaMask, Trust û Phantom dê serlêdana xwe rasterast vekin. Rabby dê WalletConnect bikar bîne.",
+    "signIn": "Têkeve",
+    "password": "Şîfre",
+    "sendCode": "Kodê bişîne",
+    "usePasswordInstead": "Li şûna wê şîfreyê bikar bîne",
+    "useCodeInstead": "Li şûna wê ji min re kodê bi e-nameyê bişîne"
   },
   "careers": {
     "title": "Karên li DeHub",

@@ -1460,7 +1460,12 @@
     "or": "или",
     "termsNotice": "Наставком прихватате услове коришћења и политику приватности",
     "walletInfoDesktop": "Повежите новчаник за безбедну пријаву",
-    "walletInfoMobile": "MetaMask, Trust и Phantom се отварају у својим апликацијама. Rabby користи WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust и Phantom се отварају у својим апликацијама. Rabby користи WalletConnect.",
+    "signIn": "Пријава",
+    "password": "Лозинка",
+    "sendCode": "Пошаљи код",
+    "usePasswordInstead": "Уместо тога користи лозинку",
+    "useCodeInstead": "Уместо тога пошаљи ми код имејлом"
   },
   "careers": {
     "title": "Каријера у DeHub-у",

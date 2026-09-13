@@ -1599,7 +1599,12 @@
     "sendingCode": "Sending code...",
     "smsInfo": "We'll send you a verification code via SMS",
     "walletInfoDesktop": "Connect your wallet to sign in securely",
-    "walletInfoMobile": "MetaMask, Trust & Phantom will open their app directly. Rabby will use WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust & Phantom will open their app directly. Rabby will use WalletConnect.",
+    "signIn": "Seeni",
+    "password": "Jecha icciitii",
+    "sendCode": "Koodii ergi",
+    "usePasswordInstead": "Kanaa mannaa jecha iccitii fayyadami",
+    "useCodeInstead": "Kanaa mannaa koodii imeeliidhaan naaf ergi"
   },
   "careers": {
     "title": "Hojii DeHub-tti",

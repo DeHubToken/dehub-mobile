@@ -1517,7 +1517,12 @@
     "or": "eller",
     "termsNotice": "Ved å fortsette godtar du våre tjenestevilkår og personvernpolicy",
     "walletInfoDesktop": "Koble til lommeboken din for sikker innlogging",
-    "walletInfoMobile": "MetaMask, Trust og Phantom åpner appen sin direkte. Rabby bruker WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust og Phantom åpner appen sin direkte. Rabby bruker WalletConnect.",
+    "signIn": "Logg inn",
+    "password": "Passord",
+    "sendCode": "Send kode",
+    "usePasswordInstead": "Bruk passord i stedet",
+    "useCodeInstead": "Send meg en kode på e-post i stedet"
   },
   "careers": {
     "title": "Karriere hos DeHub",

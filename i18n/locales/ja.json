@@ -1544,7 +1544,12 @@
     "or": "または",
     "termsNotice": "続行することで、利用規約とプライバシーポリシーに同意したことになります",
     "walletInfoDesktop": "ウォレットを接続して安全にサインイン",
-    "walletInfoMobile": "MetaMask、Trust、Phantom はアプリを直接開きます。Rabby は WalletConnect を使用します。"
+    "walletInfoMobile": "MetaMask、Trust、Phantom はアプリを直接開きます。Rabby は WalletConnect を使用します。",
+    "signIn": "ログイン",
+    "password": "パスワード",
+    "sendCode": "コードを送信",
+    "usePasswordInstead": "代わりにパスワードを使う",
+    "useCodeInstead": "代わりにコードをメールで送る"
   },
   "careers": {
     "title": "DeHub で働く",

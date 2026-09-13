@@ -33,6 +33,7 @@ import { createLogger } from "../../libs/logger";
 import {
   sendEmailOtp,
   verifyEmailOtp,
+  signInWithEmailPassword,
   sendPhoneOtp,
   verifyPhoneOtp,
   signInWithGoogle,
@@ -607,6 +608,32 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     [pendingEmail, runProvisionAndSignIn]
   );
 
+  /**
+   * Password sign-in. Same destination as the code flow — only the proof of
+   * identity differs — so it hands off to runProvisionAndSignIn untouched.
+   */
+  const handleEmailPasswordSubmit = useCallback(
+    async (email: string, password: string) => {
+      hasNavigatedRef.current = false;
+      setIsLocalLoading(true);
+      setCurrentProvider("email");
+      try {
+        const supabaseUserId = await signInWithEmailPassword(email, password);
+        await runProvisionAndSignIn(supabaseUserId);
+      } catch (e: any) {
+        log.error("Email password login error", e);
+        toastError(e, "Invalid email or password.");
+        hasNavigatedRef.current = false;
+      } finally {
+        if (isMountedRef.current) {
+          setIsLocalLoading(false);
+          setCurrentProvider("");
+        }
+      }
+    },
+    [runProvisionAndSignIn]
+  );
+
   const handleResendEmailCode = useCallback(() => {
     handleEmailSubmit(pendingEmail);
   }, [pendingEmail, handleEmailSubmit]);
@@ -706,6 +733,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
               onGoogle={handleGoogleLogin}
               onApple={handleAppleLogin}
               onEmailSubmit={handleEmailSubmit}
+              onEmailPasswordSubmit={handleEmailPasswordSubmit}
               onPhoneSubmit={handlePhoneSubmit}
               onConnectWallet={handleWalletConnect}
               busyProvider={isLocalLoading ? currentProvider : isWalletLoading ? "wallet" : undefined}

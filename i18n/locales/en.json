@@ -1649,7 +1649,12 @@
     "or": "or",
     "termsNotice": "By continuing, you agree to our Terms of Service and Privacy Policy",
     "walletInfoDesktop": "Connect your wallet to sign in securely",
-    "walletInfoMobile": "MetaMask, Trust & Phantom will open their app directly. Rabby will use WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust & Phantom will open their app directly. Rabby will use WalletConnect.",
+    "sendCode": "Send code",
+    "signIn": "Sign in",
+    "password": "Password",
+    "usePasswordInstead": "Use a password instead",
+    "useCodeInstead": "Email me a code instead"
   },
   "careers": {
     "title": "Careers at DeHub",

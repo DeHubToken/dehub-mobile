@@ -1539,7 +1539,12 @@
     "or": "ಅಥವಾ",
     "termsNotice": "ಮುಂದುವರಿಸುವ ಮೂಲಕ, ನೀವು ಸೇವಾ ನಿಯಮಗಳು ಮತ್ತು ಗೌಪ್ಯತಾ ನೀತಿಗೆ ಒಪ್ಪುತ್ತೀರಿ",
     "walletInfoDesktop": "ಸುರಕ್ಷಿತವಾಗಿ ಲಾಗಿನ್ ಮಾಡಲು ವಾಲೆಟ್ ಸಂಪರ್ಕಿಸಿ",
-    "walletInfoMobile": "MetaMask, Trust ಮತ್ತು Phantom ಅಪ್ಲಿಕೇಶನ್‌ಗಳನ್ನು ನೇರವಾಗಿ ತೆರೆಯುತ್ತದೆ. Rabby WalletConnect ಬಳಸುತ್ತದೆ."
+    "walletInfoMobile": "MetaMask, Trust ಮತ್ತು Phantom ಅಪ್ಲಿಕೇಶನ್‌ಗಳನ್ನು ನೇರವಾಗಿ ತೆರೆಯುತ್ತದೆ. Rabby WalletConnect ಬಳಸುತ್ತದೆ.",
+    "signIn": "ಸೈನ್ ಇನ್",
+    "password": "ಪಾಸ್‌ವರ್ಡ್",
+    "sendCode": "ಕೋಡ್ ಕಳುಹಿಸಿ",
+    "usePasswordInstead": "ಬದಲಿಗೆ ಪಾಸ್‌ವರ್ಡ್ ಬಳಸಿ",
+    "useCodeInstead": "ಬದಲಿಗೆ ನನಗೆ ಇಮೇಲ್‌ನಲ್ಲಿ ಕೋಡ್ ಕಳುಹಿಸಿ"
   },
   "careers": {
     "title": "DeHub ಗೆ ಸೇರಿ",

@@ -1532,7 +1532,12 @@
     "or": "یا",
     "termsNotice": "جاری رکھ کے تم خدمت شرائط اور رازداری پالیسی سے متفق ہو",
     "walletInfoDesktop": "محفوظ لاگ ان کے لیے والیٹ جوڑو",
-    "walletInfoMobile": "MetaMask, Trust اور Phantom اپنی ایپ کھولیں گے۔ Rabby WalletConnect استعمال کریگا۔"
+    "walletInfoMobile": "MetaMask, Trust اور Phantom اپنی ایپ کھولیں گے۔ Rabby WalletConnect استعمال کریگا۔",
+    "signIn": "سائن ان",
+    "password": "পাসওয়ার্ড",
+    "sendCode": "کۆد بنێرە",
+    "usePasswordInstead": "لە جیاتی ئەوە وشەی نهێنی بەکاربهێنە",
+    "useCodeInstead": "لە جیاتی ئەوە کۆدەکەم بۆ بنێرە بە ئیمەیڵ"
   },
   "careers": {
     "title": "DeHub میں نوکری",

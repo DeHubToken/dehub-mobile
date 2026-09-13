@@ -1525,7 +1525,12 @@
     "or": "tàbí",
     "termsNotice": "Nípa títẹ̀síwájú, o fara mọ́ Àwọn Òfin Iṣẹ́ àti Ìlànà Ìpamọ́ wa",
     "walletInfoDesktop": "So wallet rẹ láti wọlé lọ́nà ààbò",
-    "walletInfoMobile": "MetaMask, Trust àti Phantom yóò ṣí app wọn tààrà. Rabby yóò lo WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust àti Phantom yóò ṣí app wọn tààrà. Rabby yóò lo WalletConnect.",
+    "signIn": "Wọlé",
+    "password": "Ọ̀rọ̀ aṣínà",
+    "sendCode": "Fi koodu ranṣẹ",
+    "usePasswordInstead": "Lo ọrọ igbaniwọle dipo",
+    "useCodeInstead": "Fi koodu ranṣẹ si mi nipasẹ imeeli dipo"
   },
   "careers": {
     "title": "Iṣẹ́ ní DeHub",

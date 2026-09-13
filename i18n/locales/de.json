@@ -1535,7 +1535,12 @@
     "or": "oder",
     "termsNotice": "Durch Fortfahren stimmst du unseren Nutzungsbedingungen und Datenschutzrichtlinien zu",
     "walletInfoDesktop": "Verbinde dein Wallet, um dich sicher anzumelden",
-    "walletInfoMobile": "MetaMask, Trust & Phantom öffnen ihre App direkt. Rabby nutzt WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust & Phantom öffnen ihre App direkt. Rabby nutzt WalletConnect.",
+    "signIn": "Anmelden",
+    "password": "Passwort",
+    "sendCode": "Code senden",
+    "usePasswordInstead": "Stattdessen Passwort verwenden",
+    "useCodeInstead": "Stattdessen Code per E-Mail senden"
   },
   "careers": {
     "title": "Karriere bei DeHub",

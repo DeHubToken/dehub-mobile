@@ -1508,7 +1508,12 @@
     "or": "Yoki",
     "termsNotice": "Davom etish bilan xizmat shartlari va maxfiylik siyosatiga rozilik bildirasiz",
     "walletInfoDesktop": "Xavfsiz kirish uchun hamyonni ulang",
-    "walletInfoMobile": "MetaMask, Trust va Phantom toʻgʻridan-toʻgʻri ilovani ochadi. Rabby WalletConnect dan foydalanadi."
+    "walletInfoMobile": "MetaMask, Trust va Phantom toʻgʻridan-toʻgʻri ilovani ochadi. Rabby WalletConnect dan foydalanadi.",
+    "signIn": "Kirish",
+    "password": "Parol",
+    "sendCode": "Kod yuborish",
+    "usePasswordInstead": "Buning o‘rniga parol ishlatish",
+    "useCodeInstead": "Buning o‘rniga menga kodni pochtaga yuboring"
   },
   "careers": {
     "title": "DeHub da karyera",

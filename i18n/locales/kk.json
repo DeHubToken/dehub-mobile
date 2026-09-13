@@ -1516,7 +1516,12 @@
     "or": "Немесе",
     "termsNotice": "Жалғастыру арқылы қызмет шарттары мен құпиялылық саясатына келісесіз",
     "walletInfoDesktop": "Қауіпсіз кіру үшін әмиянды қосыңыз",
-    "walletInfoMobile": "MetaMask, Trust және Phantom тікелей қосымшаны ашады. Rabby WalletConnect пайдаланады."
+    "walletInfoMobile": "MetaMask, Trust және Phantom тікелей қосымшаны ашады. Rabby WalletConnect пайдаланады.",
+    "signIn": "Кіру",
+    "password": "Құпиясөз",
+    "sendCode": "Кодты жіберу",
+    "usePasswordInstead": "Оның орнына құпия сөзді пайдалану",
+    "useCodeInstead": "Оның орнына маған кодты поштаға жіберіңіз"
   },
   "careers": {
     "title": "DeHub-тағы мансап",

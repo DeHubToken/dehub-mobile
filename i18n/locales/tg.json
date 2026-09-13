@@ -1508,7 +1508,12 @@
     "or": "ё",
     "termsNotice": "Бо идома шумо Шартҳои хизматрасонӣ ва Сиёсати махфиятро қабул мекунед",
     "walletInfoDesktop": "Барои воридшавии бехатар ҳамёни худро пайваст кунед",
-    "walletInfoMobile": "MetaMask, Trust ва Phantom барномаи худро кушоянд."
+    "walletInfoMobile": "MetaMask, Trust ва Phantom барномаи худро кушоянд.",
+    "signIn": "Ворид шудан",
+    "password": "Парол",
+    "sendCode": "Рамзро фиристодан",
+    "usePasswordInstead": "Ба ҷои он рамзи убурро истифода баред",
+    "useCodeInstead": "Ба ҷои он ба ман рамзро ба почта фиристед"
   },
   "careers": {
     "title": "Корҳо дар DeHub",

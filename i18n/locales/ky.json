@@ -1517,7 +1517,12 @@
     "or": "же",
     "termsNotice": "Улантуу менен сиз биздин Кызмат Шарттарына жана Купуялык Саясатына макул болосуз",
     "walletInfoDesktop": "Коопсуз кирүү үчүн капчыгыңызды туташтырыңыз",
-    "walletInfoMobile": "MetaMask, Trust жана Phantom өз колдонмолорун түздөн-түз ачат. Rabby WalletConnect колдонот."
+    "walletInfoMobile": "MetaMask, Trust жана Phantom өз колдонмолорун түздөн-түз ачат. Rabby WalletConnect колдонот.",
+    "signIn": "Кирүү",
+    "password": "Сырсөз",
+    "sendCode": "Кодду жөнөтүү",
+    "usePasswordInstead": "Анын ордуна сырсөз колдонуу",
+    "useCodeInstead": "Анын ордуна мага кодду почтага жөнөтүңүз"
   },
   "careers": {
     "title": "DeHubда Карьера",
