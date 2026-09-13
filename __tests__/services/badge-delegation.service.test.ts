@@ -11,6 +11,7 @@ import {
   fetchMyDelegations,
   grantDelegation,
   revokeDelegation,
+  setDelegationAcceptance,
   fetchBadgePatron,
 } from '../../services/badge-delegation.service';
 import { apiClient } from '../../libs/api.client';
@@ -30,6 +31,7 @@ describe('services/badge-delegation.service', () => {
     await fetchMyDelegations();
     await grantDelegation('someone');
     await revokeDelegation('someone');
+    await setDelegationAcceptance(false);
     await fetchBadgePatron('someone');
 
     for (const call of mockFetch.mock.calls) {
@@ -79,6 +81,21 @@ describe('services/badge-delegation.service', () => {
     expect(mockFetch.mock.calls[0][0]).toBe('/badge/delegations/some%20one');
     expect(mockFetch.mock.calls[0][1]).toEqual(
       expect.objectContaining({ method: 'DELETE', isAuthRequired: true }),
+    );
+  });
+
+  it('setDelegationAcceptance sends a boolean, never a bare toggle', async () => {
+    mockFetch.mockResolvedValueOnce({ result: { accepts: false, endedWith: '0xabc' } });
+
+    await expect(setDelegationAcceptance(false)).resolves.toEqual({
+      accepts: false,
+      endedWith: '0xabc',
+    });
+    // The server refuses anything that is not a boolean: for a setting whose
+    // off position ends a live loan, a missing field must not read as "off".
+    expect(mockFetch).toHaveBeenCalledWith(
+      '/badge/delegations/acceptance',
+      expect.objectContaining({ method: 'PUT', body: { accepts: false }, isAuthRequired: true }),
     );
   });
 
