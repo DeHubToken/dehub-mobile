@@ -85,21 +85,46 @@ function authorKey(item: AuthorLike): string | null {
  * recency sort, top-ranked under the others, same as web. Rows with no
  * identifiable author pass through untouched rather than sharing one bucket.
  */
-export function capFeedByAuthorAllowance<T extends AuthorLike>(items: T[]): T[] {
-  const seen = new Map<string, number>();
+/**
+ * Per-row bucket and allowance, cached on the row object. The home list runs
+ * this cap over every accumulated row each time a page lands or a count is
+ * patched — mid-fling — and the Date parse + ISO string + badge lookup per row
+ * was the most expensive stage of that pipeline. Both inputs are immutable on
+ * a given row object, so the answer is too.
+ */
+const rowCap = new WeakMap<object, { bucket: string | null; allowance: number }>();
 
-  return items.filter((item) => {
-    const key = authorKey(item);
-    if (!key) return true;
+function capFor(item: AuthorLike): { bucket: string | null; allowance: number } {
+  const cacheable = item != null && typeof item === "object";
+  if (cacheable) {
+    const hit = rowCap.get(item as object);
+    if (hit) return hit;
+  }
 
+  const key = authorKey(item);
+  let result: { bucket: string | null; allowance: number };
+  if (!key) {
+    result = { bucket: null, allowance: Infinity };
+  } else {
     const allowance = getPostAllowanceForBadge(
       item?.author?.badgeBalance ?? item?.creatorBadgeBalance ?? item?.minterUser?.badgeBalance,
       item?.author?.handle ?? item?.creatorUsername ?? item?.minterUsername,
     ).postsPerDay;
-
     const created = new Date(item?.createdAt ?? "");
     const day = Number.isFinite(created.getTime()) ? created.toISOString().slice(0, 10) : "unknown";
-    const bucket = `${key}|${day}`;
+    result = { bucket: `${key}|${day}`, allowance };
+  }
+
+  if (cacheable) rowCap.set(item as object, result);
+  return result;
+}
+
+export function capFeedByAuthorAllowance<T extends AuthorLike>(items: T[]): T[] {
+  const seen = new Map<string, number>();
+
+  return items.filter((item) => {
+    const { bucket, allowance } = capFor(item);
+    if (!bucket) return true;
 
     const used = seen.get(bucket) ?? 0;
     if (used >= allowance) return false;

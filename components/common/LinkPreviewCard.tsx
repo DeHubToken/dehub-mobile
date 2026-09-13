@@ -12,8 +12,9 @@
  * caption or a busy chat thread is a lot of unwanted layout shift for very
  * little payoff.
  */
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, type StyleProp, type ViewStyle } from 'react-native';
+import { runWhenSettled } from '../../libs/run-when-settled';
 import { Image } from 'expo-image';
 import Icon from '../ui/Icon';
 import { openInApp } from '../../libs/links.utils';
@@ -48,7 +49,8 @@ interface LinkPreviewCardProps {
 }
 
 const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style }) => {
-  const url = firstExternalUrl(text);
+  // The URL regex is a wide unicode pattern; run it per caption, not per render.
+  const url = useMemo(() => firstExternalUrl(text), [text]);
   const [preview, setPreview] = useState<LinkPreviewData | null>(null);
   const [loading, setLoading] = useState(!!url);
   const fetchedFor = useRef<string | null>(null);
@@ -64,13 +66,18 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
     let cancelled = false;
     setLoading(true);
     setPreview(null);
-    fetchLinkPreview(url).then((data) => {
-      if (cancelled) return;
-      setPreview(data);
-      setLoading(false);
+    // Not while the feed is still moving: the fetch, its parse and the card
+    // swap can all wait for the scroll to settle.
+    const cancel = runWhenSettled(() => {
+      fetchLinkPreview(url).then((data) => {
+        if (cancelled) return;
+        setPreview(data);
+        setLoading(false);
+      });
     });
     return () => {
       cancelled = true;
+      cancel();
     };
   }, [url]);
 
