@@ -75,3 +75,23 @@ export function dhbPosition(
   if (summed > 0) return summed;
   return Number(liquidFallback) || 0;
 }
+
+/**
+ * The staked half of the position — pool deposits plus the legacy contract,
+ * both chains — or `null` when the server has told us nothing yet.
+ *
+ * Staking is a bare ERC-20 transfer into a wallet, so the only complete record
+ * of one is the backend's scan of the DHB transfer log. A client cannot
+ * rebuild that: Supabase `staking_records` holds only the deposits made
+ * through the apps, so DHB sent straight to the staking address — or deposited
+ * before that table existed — reads there as nothing staked at all.
+ */
+export function dhbStaked(
+  user: DhbPositionSource | null | undefined,
+): number | null {
+  const rows = (user?.balanceData || []).filter(
+    (entry) => DHB_POSITION_CHAINS[entry?.chainId] !== undefined,
+  );
+  if (rows.length === 0) return null;
+  return rows.reduce((acc, entry) => acc + (Number(entry.staked) || 0), 0);
+}
