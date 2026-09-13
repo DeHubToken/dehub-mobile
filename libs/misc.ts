@@ -573,16 +573,19 @@ export function getBadgeOpticalStyle(
   const optics = tier ? BADGE_OPTICS[tier] : undefined;
   const renderedSize = size * 1.15 * (optics?.scale ?? 1);
   const outerSize = renderedSize + BADGE_ARTWORK_GUTTER * 2;
-  // Native text uses a roughly 1.4x line box. Centre the image in that box,
-  // then move only its pixels to the glyph bottom. A flex baseline on the
-  // oversized image changes the name row's height and pushes the username.
-  const targetArtworkBottom = textLineHeight - size * 0.1;
-  const centredImageTop = (textLineHeight - outerSize) / 2;
-  const visibleArtworkBottom =
-    centredImageTop +
+  // Web sits the visible check on the text baseline. Native centres the
+  // font's ascent+descent block inside whatever line box the Text has, so the
+  // baseline lies a fixed fraction of the font size below the box's centre
+  // (Roboto and SF both land near 0.34em), independent of the line height.
+  // Centre the image in the row, then move only its pixels so the artwork's
+  // measured bottom edge finishes on that baseline. A flex baseline on the
+  // oversized image would change the name row's height and push the username.
+  const baselineBelowCentre = size * 0.34;
+  const artworkBottomBelowCentre =
+    -outerSize / 2 +
     BADGE_ARTWORK_GUTTER +
     renderedSize * (1 - (optics?.bottomInset ?? 0) / 128);
-  const translateY = targetArtworkBottom - visibleArtworkBottom;
+  const translateY = baselineBelowCentre - artworkBottomBelowCentre;
   const verticalMargin = Math.min(0, (textLineHeight - outerSize) / 2);
   return {
     width: outerSize,
