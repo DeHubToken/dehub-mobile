@@ -95,11 +95,12 @@ import { enhanceText } from "../services/ai.service";
 import type { EnhanceMode } from "../services/ai.service";
 import PlanFormSheet from "../components/Subscription/PlanFormSheet";
 import { useQueryClient } from "@tanstack/react-query";
+import { POST_TITLE_MAX, splitTitleFromText } from "../libs/post-title-split";
 
 /** Same key web writes to localStorage — see hooks/useAppPrefs.ts on naming. */
 const SHOULD_MINT_KEY = "post_should_mint";
 
-const TITLE_MAX = 140;
+const TITLE_MAX = POST_TITLE_MAX;
 const DESCRIPTION_MAX = 500;
 
 /**
@@ -847,8 +848,11 @@ export default function UploadScreen() {
       if (titleText.trim()) {
         name = titleText.trim();
       } else {
-        name = bodyText.trim().slice(0, TITLE_MAX);
-        desc = "";
+        // No title typed: the front of the text becomes the title and the rest
+        // carries on into the description rather than being dropped.
+        const borrowed = splitTitleFromText(bodyText, TITLE_MAX);
+        name = borrowed.title;
+        desc = borrowed.description;
       }
     } else if (showTitle && titleText.trim()) {
       name = titleText.trim();
@@ -1103,11 +1107,14 @@ export default function UploadScreen() {
     // The quote hook folds `bodyText` into the description for non-video
     // quotes, so pass the comment there; a video quote keeps name + description
     // split, with the same title fallback the regular payload uses.
+    const borrowed = pickedVideo && !titleText.trim()
+      ? splitTitleFromText(bodyText, TITLE_MAX)
+      : null;
     const ok = enqueueQuoteJob({
-      bodyText: pickedVideo
-        ? titleText.trim() || bodyText.trim().slice(0, TITLE_MAX)
-        : bodyText.trim(),
-      description: pickedVideo && !titleText.trim() ? "" : bodyText.trim(),
+      bodyText: borrowed
+        ? borrowed.title
+        : (pickedVideo ? titleText.trim() : bodyText.trim()),
+      description: borrowed ? borrowed.description : bodyText.trim(),
       categories,
       pickedVideo,
       pickedImages,
@@ -1310,8 +1317,9 @@ export default function UploadScreen() {
    */
   const movePendingBodyToTitle = useCallback(() => {
     if (bodyText.trim() && !titleText.trim()) {
-      setTitleText(bodyText.trim().slice(0, TITLE_MAX));
-      setBodyText("");
+      const { title, description } = splitTitleFromText(bodyText, TITLE_MAX);
+      setTitleText(title);
+      setBodyText(description);
     }
   }, [bodyText, titleText]);
 
