@@ -165,7 +165,7 @@ export default function BoostSheet({
             <ActivityIndicator color="#fff" />
           </View>
         ) : isError ? (
-          // A failed request is not the same as no badge. Telling a Meglodon to
+          // A failed request is not the same as no badge. Telling a Megalodon to
           // go and stake because the API blipped is worse than saying nothing.
           <View className="items-center gap-3 py-8">
             <Text className="text-center text-sm text-white">

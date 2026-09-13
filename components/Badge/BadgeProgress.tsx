@@ -128,7 +128,7 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
       </View>
 
       {/* The bar fills across the current tier, not across the whole ladder —
-          crawling 2% of the way to Meglodon is not progress anyone can feel. */}
+          crawling 2% of the way to Megalodon is not progress anyone can feel. */}
       <View className="mt-4 h-2.5 rounded-full bg-white/[0.06] border border-white/10 overflow-hidden">
         <Animated.View
           style={[

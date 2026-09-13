@@ -281,7 +281,7 @@ export function getAudioUrl(url: string): string {
 // The ladder is pegged in DOLLARS, not in DHB. The table below is what each
 // tier costs at `BADGE_PRICE_ANCHOR` ($0.001, which is also the price DHB is
 // currently pinned to); the DHB requirement at any other price is that
-// reference scaled by `anchor / price`. Meglodon stays about $50,000 of DHB
+// reference scaled by `anchor / price`. Megalodon stays about $50,000 of DHB
 // whatever the token is worth — flat amounts would have closed the top of the
 // ladder to everyone not already on it the moment DHB appreciated.
 //
@@ -312,13 +312,13 @@ const BADGE_LEVELS: BadgeDef[] = [
   { name: "Tortoise", min: 100_000 },
   { name: "Cobra", min: 250_000 },
   { name: "Octopus", min: 500_000 },
-  { name: "Crocodite", min: 1_000_000 },
+  { name: "Crocodile", min: 1_000_000 },
   { name: "Dolphin", min: 2_000_000 },
   { name: "Tiger Shark", min: 3_000_000 },
   { name: "Killer Whale", min: 5_000_000 },
   { name: "Great White Shark", min: 10_000_000 },
   { name: "Blue Whale", min: 25_000_000 },
-  { name: "Meglodon", min: 50_000_000 },
+  { name: "Megalodon", min: 50_000_000 },
 ];
 
 /**
@@ -329,13 +329,41 @@ const BADGE_LEVELS: BadgeDef[] = [
  */
 export const BADGE_ORDER: string[] = BADGE_LEVELS.map((b) => b.name);
 
+/**
+ * Tier names as they were spelled before 2026-09-13, mapped to the real ones.
+ *
+ * Both were misspellings, and the API stores them on rows that outlive the
+ * deploy that wrote them — a holder's `badgeLock.tier` most of all. Every
+ * match on this side fails CLOSED: `parseBadgeLock` returns undefined and the
+ * holder loses a grandfathered tier, `BADGE_IMAGES` returns nothing and the
+ * badge simply does not draw. A phone also updates on its own schedule, so
+ * this side has to keep reading the old spelling long after the API stops
+ * writing it.
+ *
+ * Mirrors `LEGACY_TIER_NAMES` in web's `src/lib/staking-badges.ts`.
+ */
+const LEGACY_TIER_NAMES: Record<string, string> = {
+  Crocodite: "Crocodile",
+  Meglodon: "Megalodon",
+};
+
+/** The current spelling of a tier name, whatever spelling it arrived in. */
+export function canonicalTierName(name: string): string;
+export function canonicalTierName(name: string | null | undefined): string | undefined;
+export function canonicalTierName(
+  name: string | null | undefined,
+): string | undefined {
+  if (typeof name !== "string") return undefined;
+  return LEGACY_TIER_NAMES[name] ?? name;
+}
+
 /** The DHB price, in USD, the reference ladder was written against. */
 export const BADGE_PRICE_ANCHOR = 0.001;
 
 /** Ceiling on the scale — the ladder is never harder than the reference. */
 export const MAX_BADGE_SCALE = 1;
 
-/** Floor on the scale, at a $1 token: Crab 10 DHB, Meglodon 50,000 DHB. */
+/** Floor on the scale, at a $1 token: Crab 10 DHB, Megalodon 50,000 DHB. */
 export const MIN_BADGE_SCALE = 0.001;
 
 /** Round to `digits` significant figures without the float drift of x/÷. */
@@ -438,13 +466,16 @@ export interface BadgeContext {
 export function parseBadgeLock(raw: unknown): BadgeLock | undefined {
   if (!raw || typeof raw !== "object") return undefined;
   const { tier, requirement } = raw as { tier?: unknown; requirement?: unknown };
-  if (typeof tier !== "string" || BADGE_ORDER.indexOf(tier) < 0) return undefined;
+  if (typeof tier !== "string") return undefined;
+  // Locks written before the spelling fix still say Crocodite/Meglodon.
+  const name = canonicalTierName(tier);
+  if (BADGE_ORDER.indexOf(name) < 0) return undefined;
   const amount =
     typeof requirement === "string" ? parseFloat(requirement) : requirement;
   if (typeof amount !== "number" || !Number.isFinite(amount) || amount <= 0) {
     return undefined;
   }
-  return { tier, requirement: amount };
+  return { tier: name, requirement: amount };
 }
 
 /** The tier a balance earns outright on the ladder at `scale`. */
@@ -500,13 +531,13 @@ const BADGE_IMAGES: Record<string, number> = {
   Lobster: require("../assets/badges/Lobster.png"),
   Octopus: require("../assets/badges/Octopus.png"),
   Cobra: require("../assets/badges/Cobra.png"),
-  Crocodite: require("../assets/badges/Crocodite.png"),
+  Crocodile: require("../assets/badges/Crocodile.png"),
   Dolphin: require("../assets/badges/Dolphin.png"),
   "Tiger Shark": require("../assets/badges/Tiger Shark.png"),
   "Great White Shark": require("../assets/badges/Great White Shark.png"),
   "Killer Whale": require("../assets/badges/Killer Whale.png"),
   "Blue Whale": require("../assets/badges/Blue Whale.png"),
-  Meglodon: require("../assets/badges/Meglodon.png"),
+  Megalodon: require("../assets/badges/Megalodon.png"),
 };
 
 const BADGE_OPTICS: Record<string, { scale: number; bottomInset: number }> = {
@@ -516,13 +547,13 @@ const BADGE_OPTICS: Record<string, { scale: number; bottomInset: number }> = {
   Tortoise: { scale: 1, bottomInset: 10 },
   Cobra: { scale: 1, bottomInset: 4 },
   Octopus: { scale: 1.02, bottomInset: 4 },
-  Crocodite: { scale: 1, bottomInset: 10 },
+  Crocodile: { scale: 1, bottomInset: 10 },
   Dolphin: { scale: 1.03, bottomInset: 4 },
   "Tiger Shark": { scale: 1.03, bottomInset: 5 },
   "Killer Whale": { scale: 1.04, bottomInset: 6 },
   "Great White Shark": { scale: 1.04, bottomInset: 4 },
   "Blue Whale": { scale: 1.1, bottomInset: 11 },
-  Meglodon: { scale: 1.08, bottomInset: 4 },
+  Megalodon: { scale: 1.08, bottomInset: 4 },
 };
 
 // At compact sizes the source artwork's narrowest transparent edge is less
@@ -603,7 +634,8 @@ export function getBadgeUrl(
 
 /** The badge art for a tier name, for surfaces that already know the tier. */
 export function badgeImage(tier: string | null | undefined): number | undefined {
-  return tier ? BADGE_IMAGES[tier] : undefined;
+  const name = canonicalTierName(tier);
+  return name ? BADGE_IMAGES[name] : undefined;
 }
 
 /**
@@ -670,7 +702,7 @@ export interface BadgeStanding {
  * Resolve a holder's full standing.
  *
  * `progress` runs from the current rung to the next, not from zero — crawling
- * 2% of the way to Meglodon is not progress anyone can feel. Below the entry
+ * 2% of the way to Megalodon is not progress anyone can feel. Below the entry
  * rung it runs from zero to Crab.
  */
 export function getBadgeStanding(
@@ -720,7 +752,10 @@ export function getBadgeStanding(
  * and no balance to resolve it from. Mirrors web's `badgeImage`.
  */
 export function badgeImageFor(tier: string | null | undefined): number | undefined {
-  return tier ? BADGE_IMAGES[tier] : undefined;
+  // The server names the granted tier, so this is the one lookup that reads a
+  // name straight off a payload — old spellings included.
+  const name = canonicalTierName(tier);
+  return name ? BADGE_IMAGES[name] : undefined;
 }
 
 /**

@@ -12,7 +12,7 @@
  * general home feed.
  *
  * Everyone gets one post a day on the feed; each badge tier above that adds one
- * more — 1 (no badge) -> 2 (Crab) -> ... -> 14 (Meglodon), in the same order as
+ * more — 1 (no badge) -> 2 (Crab) -> ... -> 14 (Megalodon), in the same order as
  * `BADGE_ORDER` in `libs/misc.ts`. Adding a tier there adds a post here
  * automatically; do not hand-write the numbers.
  */
