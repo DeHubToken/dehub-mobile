@@ -2903,5 +2903,17 @@
     "followAccepted": "{{name}} hyväksyi seurantapyyntösi",
     "signalFlare": "{{name}} lähetti signaalileimauksen",
     "newMessage": "{{name}} lähetti sinulle viestin"
+  },
+  "audioPost": {
+    "popOut": "Ponnahda ulos — jatka kuuntelemista selatessasi",
+    "closeCornerPlayer": "Sulje kulmasoitin",
+    "cornerPlayer": "Äänijulkaisun toisto",
+    "stopAndClose": "Pysäytä ja sulje soitin",
+    "untitled": "Äänijulkaisu",
+    "creator": "DeHub-tekijä",
+    "play": "Toista",
+    "pause": "Keskeytä",
+    "listens_one": "{{count}} kuuntele",
+    "listens_other": "{{count}} kuuntelee"
   }
 }

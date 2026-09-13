@@ -2907,5 +2907,17 @@
     "followAccepted": "{{name}} přijal/a vaši žádost o sledování",
     "signalFlare": "{{name}} poslal/a signální světlici",
     "newMessage": "{{name}} ti poslal/a zprávu"
+  },
+  "audioPost": {
+    "popOut": "Vyskočte ven - při procházení pokračujte v poslechu",
+    "closeCornerPlayer": "Zavřete rohového hráče",
+    "cornerPlayer": "Přehrávání audio příspěvků",
+    "stopAndClose": "Zastavte a zavřete přehrávač",
+    "untitled": "Audio příspěvek",
+    "creator": "Tvůrce DeHubu",
+    "play": "Hrát",
+    "pause": "Pozastavit",
+    "listens_one": "{{count}} naslouchat",
+    "listens_other": "{{count}} naslouchá"
   }
 }

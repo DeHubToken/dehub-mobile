@@ -2960,5 +2960,17 @@
     "followAccepted": "{{name}}接受了您的关注请求",
     "signalFlare": "{{name}}发送了一个信号信号",
     "newMessage": "{{name}}给您发了一条消息"
+  },
+  "audioPost": {
+    "popOut": "弹出—在浏览时继续收听",
+    "closeCornerPlayer": "关闭角落播放器",
+    "cornerPlayer": "音频帖子播放",
+    "stopAndClose": "停止并关闭播放器",
+    "untitled": "音频帖子",
+    "creator": "DeHub创作者",
+    "play": "播放",
+    "pause": "暂停",
+    "listens_one": "{{count}} 次收听",
+    "listens_other": "{{count}} 次收听"
   }
 }

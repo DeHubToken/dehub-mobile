@@ -2914,5 +2914,17 @@
     "followAccepted": "{{name}} သည် သင် ၏ နောက်လိုက်တောင်းဆိုမှုကို လက်ခံခဲ့သည်",
     "signalFlare": "{{name}} သည် Signal Flare ကိုပို့ခဲ့သည်",
     "newMessage": "{{name}} ကိုစာပို့သည်"
+  },
+  "audioPost": {
+    "popOut": "Pop Out — သင်ရှာဖွေနေစဉ်နားထောင်နေပါ",
+    "closeCornerPlayer": "ထောင့်ကစားသမားကိုပိတ်ပါ",
+    "cornerPlayer": "အသံပို့စ်ပြန်ဖွင့်ခြင်း",
+    "stopAndClose": "ရပ်တန့်ပြီးကစားသမားကိုပိတ်ပါ",
+    "untitled": "အသံပို့စ်",
+    "creator": "DeHub ဖန်တီးသူ",
+    "play": "ကစားပါ",
+    "pause": "ခေတ္တရပ်နားပါ",
+    "listens_one": "{{count}} နားထောင်ပါ",
+    "listens_other": "{{count}} နားထောင်သည်"
   }
 }

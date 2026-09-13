@@ -2922,5 +2922,17 @@
     "followAccepted": "{{name}} បានទទួលយករequestតាមដានរបស់អ្នក",
     "signalFlare": "{{name}} បានផ្ញើ Signal Flare",
     "newMessage": "{{name}} បានផ្ញើសារលេខឯកសារឱ្យអ្នក"
+  },
+  "audioPost": {
+    "popOut": "ផុសចេញ — បន្តស្តាប់ខណៈពេលដែលអ្នករុករក",
+    "closeCornerPlayer": "បិទកម្មវិធីចាក់ជ្រុង",
+    "cornerPlayer": "ការ ចាក់ សារ ថ្មី ក្រោយ អូឌីយ៉ូ",
+    "stopAndClose": "បញ្ឈប់ និង បិទ កម្មវិធី ចាក់",
+    "untitled": "ការបង្ហោះអូឌីយ៉ូ",
+    "creator": "កម្មវិធី បង្កើត DeHub",
+    "play": "ចាក់",
+    "pause": "ផ្អាក",
+    "listens_one": "{{count}} ស្តាប់",
+    "listens_other": "{{count}} ស្តាប់"
   }
 }

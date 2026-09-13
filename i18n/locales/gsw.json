@@ -2892,5 +2892,17 @@
     "followAccepted": "{{name}} het dini Folgschaftsaaforderig akzeptiert",
     "signalFlare": "{{name}} het dir e Signal Flare gschickt",
     "newMessage": "{{name}} het dir e Nachricht gschickt"
+  },
+  "audioPost": {
+    "popOut": "Pop uus — höre witer während du browscht",
+    "closeCornerPlayer": "Schliess de Eckespieler",
+    "cornerPlayer": "Audio-Biitraag Widergoob",
+    "stopAndClose": "Stopp und schliess de Spieler",
+    "untitled": "Audio-Biitraag",
+    "creator": "DeHub-Schaffende",
+    "play": "Spiele",
+    "pause": "Pausiere",
+    "listens_one": "{{count}} höre",
+    "listens_other": "{{count}} höört"
   }
 }

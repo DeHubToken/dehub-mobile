@@ -2893,5 +2893,16 @@
     "followAccepted": "{{name}} यांनी आपली फॉलो विनंती स्वीकारली",
     "signalFlare": "{{name}} ने सिग्नल फ्लेअर पाठवले",
     "newMessage": "{{name}} यांनी आपल्याला संदेश पाठविला"
+  },
+  "audioPost": {
+    "popOut": "पॉप आउट — आपण ब्राउझ करत असताना ऐकत रहा",
+    "closeCornerPlayer": "कॉर्नर प्लेअर बंद करा",
+    "cornerPlayer": "ऑडिओ पोस्ट प्लेबॅक",
+    "stopAndClose": "थांबा आणि प्लेअर बंद करा",
+    "untitled": "ऑडिओ पोस्ट",
+    "creator": "DeHub निर्मिक",
+    "play": "खेळ",
+    "pause": "विराम द्या",
+    "listens_one": "{{count}} ऐका"
   }
 }

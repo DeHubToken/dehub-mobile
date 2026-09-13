@@ -2894,5 +2894,17 @@
     "followAccepted": "{{name}} aqbalay codsigaaga soo socda",
     "signalFlare": "{{name}} Send a Signal Flare",
     "newMessage": "{{name}} ayaa fariin kuu soo diray"
+  },
+  "audioPost": {
+    "popOut": "Pop out — sii dhegeysiga inta aad daalacanayso",
+    "closeCornerPlayer": "Xidh ciyaaryahanka geeska",
+    "cornerPlayer": "Dib u noqoshada maqalka",
+    "stopAndClose": "Jooji oo xir ciyaaryahanka",
+    "untitled": "Boostada Maqalka",
+    "creator": "DeHub Abuukar",
+    "play": "Ciyaar",
+    "pause": "Jooji",
+    "listens_one": "{{count}} dhageyso",
+    "listens_other": "{{count}} dhagaystayaasha"
   }
 }

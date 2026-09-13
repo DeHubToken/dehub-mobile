@@ -2898,5 +2898,16 @@
     "followAccepted": "{{name}} એ તમારી અનુસરવાની વિનંતી સ્વીકારી",
     "signalFlare": "{{name}} એ સિગ્નલ ફ્લેર મોકલ્યું",
     "newMessage": "{{name}} એ તમને સંદેશ મોકલ્યો"
+  },
+  "audioPost": {
+    "popOut": "પૉપ આઉટ — બ્રાઉઝ કરતી વખતે સાંભળતા રહો",
+    "closeCornerPlayer": "ખૂણાના પ્લેયરને બંધ કરો",
+    "cornerPlayer": "ઑડિઓ પોસ્ટ પ્લેબેક",
+    "stopAndClose": "ખેલાડીને રોકો અને બંધ કરો",
+    "untitled": "ઑડિઓ પોસ્ટ",
+    "creator": "DeHub ક્રિએટર",
+    "play": "રમો",
+    "pause": "થોભો",
+    "listens_one": "{{count}} સાંભળો"
   }
 }

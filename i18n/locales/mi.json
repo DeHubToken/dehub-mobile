@@ -2891,5 +2891,15 @@
     "followAccepted": "{{name}} whakaae koutou tono whai ake",
     "signalFlare": "{{name}} i tukuna he Tohu Tohu",
     "newMessage": "{{name}} i tukuna mai he karere ki a koe"
+  },
+  "audioPost": {
+    "popOut": "Pānuitia atu - whakarongo tonu i a koe e tirotiro ana",
+    "closeCornerPlayer": "Whakatuwherahia te kaitakaro kokonga",
+    "cornerPlayer": "Audio Post Playback",
+    "stopAndClose": "Whakamutua me te kati i te kaitakaro",
+    "untitled": "Tuhinga oro",
+    "creator": "Te Kaihanga o DeHub",
+    "listens_one": "{{count}} whakarongo",
+    "listens_other": "{{count}} whakarongo"
   }
 }

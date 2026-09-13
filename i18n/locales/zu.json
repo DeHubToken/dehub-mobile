@@ -2932,5 +2932,17 @@
     "followAccepted": "{{name}} wamukele isicelo sakho sokulandela",
     "signalFlare": "{{name}} uthumele i-Signal Flare",
     "newMessage": "{{name}} ukuthumele umlayezo"
+  },
+  "audioPost": {
+    "popOut": "Phuma ngaphandle — qhubeka ulalele ngenkathi ubhrawuza",
+    "closeCornerPlayer": "Vala isidlali sekhoneni",
+    "cornerPlayer": "Ukudlalwa kwephosti yomsindo",
+    "stopAndClose": "Misa futhi uvale isidlali",
+    "untitled": "Iphosti yomsindo",
+    "creator": "Umsunguli we-DeHub",
+    "play": "Dlala",
+    "pause": "Misa okwesikhashana",
+    "listens_one": "{{count}} lalela",
+    "listens_other": "{{count}} uyalalela"
   }
 }

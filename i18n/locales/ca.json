@@ -2903,5 +2903,17 @@
     "followAccepted": "{{name}} ha acceptat la teva sol·licitud de seguiment",
     "signalFlare": "{{name}}ha enviat una bengala de senyal",
     "newMessage": "{{name}} t'ha enviat un missatge"
+  },
+  "audioPost": {
+    "popOut": "Pop out — segueix escoltant mentre navegues",
+    "closeCornerPlayer": "Tanca el jugador de cantonada",
+    "cornerPlayer": "Reproducció d'àudio posterior",
+    "stopAndClose": "Atura i tanca el reproductor",
+    "untitled": "Publicació d'àudio",
+    "creator": "Creador de DeHub",
+    "play": "Jugar",
+    "pause": "Pausa",
+    "listens_one": "{{count}} escolta",
+    "listens_other": "{{count}} escolta"
   }
 }

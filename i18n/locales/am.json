@@ -2909,5 +2909,17 @@
     "followAccepted": "{{name}} የሚከተለውን ጥያቄዎን ተቀብሏል",
     "signalFlare": "{{name}} የምልክት ፍሰት ላከ",
     "newMessage": "{{name}} መልእክት ላከህ"
+  },
+  "audioPost": {
+    "popOut": "ፖፕ ውጭ — እያሰሱ ሳሉ ማዳመጥዎን ይቀጥሉ",
+    "closeCornerPlayer": "የማዕዘን ማጫወቻ ይዝጉ",
+    "cornerPlayer": "የድምጽ ልጥፍ መልሶ ማጫወት",
+    "stopAndClose": "አቁም እና ተጫዋቹን ይዝጉ",
+    "untitled": "የኦዲዮ ልኡክ ጽሁፍ",
+    "creator": "DeHub ፈጣሪ",
+    "play": "አጫውት",
+    "pause": "እረፍት",
+    "listens_one": "{{count}} ያዳምጡ",
+    "listens_other": "{{count}} ያዳምጡ"
   }
 }

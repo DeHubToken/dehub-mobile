@@ -2968,5 +2968,16 @@
     "followAccepted": "{{name}} gaaffii hordoffii keessan fudhateera",
     "signalFlare": "{{name}} Signal Flare jedhee erge",
     "newMessage": "{{name}} ergaa si erge"
+  },
+  "audioPost": {
+    "popOut": "Pop out — yeroo daawwattu dhaggeeffachuu itti fufi",
+    "closeCornerPlayer": "Taphataan kornee cufi",
+    "cornerPlayer": "Sagalee post taphachuu",
+    "stopAndClose": "Dhaabbadhaa taphataa cufi",
+    "untitled": "Maxxansa sagalee",
+    "creator": "Uumaa DeHub",
+    "play": "taphachuu",
+    "pause": "Gidduutti dhaabuu",
+    "listens_other": "{{count}} dhaggeeffata"
   }
 }

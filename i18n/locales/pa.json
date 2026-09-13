@@ -2879,5 +2879,17 @@
     "followAccepted": "{{name}} ਤੁਹਾਡੀ ਫਾਲੋ ਬੇਨਤੀ ਨੂੰ ਸਵੀਕਾਰ ਕੀਤਾ",
     "signalFlare": "{{name}} ਇੱਕ ਸਿਗਨਲ ਫਲੇਅਰ ਭੇਜਿਆ",
     "newMessage": "{{name}} ਤੁਹਾਨੂੰ ਇੱਕ ਸੁਨੇਹਾ ਭੇਜਿਆ"
+  },
+  "audioPost": {
+    "popOut": "ਪੌਪ ਆਉਟ — ਸੁਣਦੇ ਰਹੋ ਜਦੋਂ ਤੁਸੀਂ ਬ੍ਰਾਉਜ਼ ਕਰਦੇ ਹੋ",
+    "closeCornerPlayer": "ਕੋਨਾ ਪਲੇਅਰ ਬੰਦ ਕਰੋ",
+    "cornerPlayer": "ਆਡੀਓ ਪੋਸਟ ਪਲੇਅਬੈਕ",
+    "stopAndClose": "ਖਿਡਾਰੀ ਨੂੰ ਰੋਕੋ ਅਤੇ ਬੰਦ ਕਰੋ",
+    "untitled": "ਆਡੀਓ ਪੋਸਟ",
+    "creator": "DeHub ਨਿਰਮਾਤਾ",
+    "play": "ਚਲਾਓ",
+    "pause": "ਵਿਰਾਮ",
+    "listens_one": "{{count}} ਸੁਣੋ",
+    "listens_other": "{{count}} ਸੁਣਦਾ ਹੈ"
   }
 }

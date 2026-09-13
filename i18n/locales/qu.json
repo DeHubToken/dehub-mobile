@@ -2935,5 +2935,17 @@
     "followAccepted": "{{name}} qatipay mañakuyniykita chaskirqa",
     "signalFlare": "{{name}} Signal Flare-ta apachiy",
     "newMessage": "{{name}} huk willakuyta apachirqasunki"
+  },
+  "audioPost": {
+    "popOut": "Pop out — uyarichkankichu maskachkaptiyki",
+    "closeCornerPlayer": "K’uchu pukllaqta wisq’ay",
+    "cornerPlayer": "Audio post nisqa pukllay",
+    "stopAndClose": "Pukllaqta sayay hinaspa wichqay",
+    "untitled": "Audio nisqa qillqasqa",
+    "creator": "DeHub kamaq",
+    "play": "Pukllay",
+    "pause": "keyboard label",
+    "listens_one": "{{count}} uyariychik",
+    "listens_other": "{{count}} uyarin"
   }
 }

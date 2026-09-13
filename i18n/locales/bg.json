@@ -2903,5 +2903,17 @@
     "followAccepted": "{{name}} прие заявката ви за следване",
     "signalFlare": "{{name}} изпрати сигнална ракета",
     "newMessage": "{{name}} ви изпрати съобщение"
+  },
+  "audioPost": {
+    "popOut": "Изскачайте — продължавайте да слушате, докато сърфирате",
+    "closeCornerPlayer": "Затваряне на ъгловия играч",
+    "cornerPlayer": "Възпроизвеждане на аудио публикация",
+    "stopAndClose": "Спрете и затворете плейъра",
+    "untitled": "Аудиопост",
+    "creator": "Създател на DeHub",
+    "play": "Възпроизвеждане",
+    "pause": "Пауза",
+    "listens_one": "{{count}} слушайте",
+    "listens_other": "{{count}} слуша"
   }
 }

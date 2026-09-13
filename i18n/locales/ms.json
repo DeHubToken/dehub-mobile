@@ -3168,5 +3168,17 @@
     "followAccepted": "{{name}} menerima permohonan ikut anda",
     "signalFlare": "{{name}} menghantar Isyarat Suar",
     "newMessage": "{{name}} menghantar mesej kepada anda"
+  },
+  "audioPost": {
+    "popOut": "Keluar — teruskan mendengar semasa anda melayari",
+    "closeCornerPlayer": "Tutup pemain sudut",
+    "cornerPlayer": "Main balik siaran audio",
+    "stopAndClose": "Berhenti dan tutup pemain",
+    "untitled": "Siaran audio",
+    "creator": "Pengkarya DeHub",
+    "play": "Main",
+    "pause": "Jeda",
+    "listens_one": "{{count}} dengar",
+    "listens_other": "{{count}} mendengar"
   }
 }

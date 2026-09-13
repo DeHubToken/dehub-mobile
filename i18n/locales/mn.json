@@ -2884,5 +2884,16 @@
     "followAccepted": "{{name}} таны дагах хүсэлтийг хүлээн авсан",
     "signalFlare": "{{name}} дохионы нүх илгээсэн",
     "newMessage": "{{name}} зурвас илгээх"
+  },
+  "audioPost": {
+    "popOut": "Гарч зогсох — Та үзэх явцдаа сонсоорой",
+    "closeCornerPlayer": "Булангийн тоглогчийг хаа",
+    "cornerPlayer": "Аудио бичлэгийг буцаах",
+    "stopAndClose": "Тоглогчийг зогсоох, хаах",
+    "untitled": "Аудио бичлэг",
+    "creator": "Дешубе Бүтээгч",
+    "play": "Тоглуулах",
+    "pause": "Түр зогсоох",
+    "listens_one": "{{count}} сонсох"
   }
 }
