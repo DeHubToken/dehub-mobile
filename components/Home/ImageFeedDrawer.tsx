@@ -1,5 +1,6 @@
 import React, {
   forwardRef,
+  memo,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -33,6 +34,26 @@ import Animated, {
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Icon from "../ui/Icon";
 import FeedCard from "./FeedCard";
+import {
+  createFeedVisibilityStore,
+  useRowVisibility,
+  type FeedVisibilityStore,
+} from "../../libs/feedVisibility";
+
+// One row's subscription to the store, so a swipe re-renders the card that
+// left the screen and the card that arrived, and nothing else.
+const VisibleImageCard = memo(function VisibleImageCard({
+  item,
+  rowKey,
+  store,
+}: {
+  item: UnifiedFeedItem;
+  rowKey: string;
+  store: FeedVisibilityStore;
+}) {
+  const { isVisible } = useRowVisibility(store, rowKey);
+  return <FeedCard item={item} isVisible={isVisible} enablePreview />;
+});
 import { colors } from "../../theme/colors";
 import { getUnifiedFeed } from "../../services/feed.unified.service";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
@@ -136,9 +157,15 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
   onClose,
 }, ref) => {
   const [items, setItems] = useState<UnifiedFeedItem[]>(initialItems);
+  // Which card is in view lives in a store, not React state: as `useState` it
+  // re-rendered this whole sheet — gesture, animation and list — on every
+  // viewability tick of a swipe, and the `renderItem` built from it changed
+  // identity each time, so VirtualizedList re-rendered every mounted card to
+  // tell one it was on screen. Each row now subscribes to its own key (the
+  // same arrangement as the home feed, see libs/feedVisibility).
   // The tapped post is rotated to the front (see orderedItems), so the card in
   // view on open is index 0 — not initialIndex.
-  const [activeIndex, setActiveIndex] = useState(0);
+  const visibilityStore = useMemo(() => createFeedVisibilityStore(), []);
   const [noMore, setNoMore] = useState(false);
 
   // Whatever the grid had already paged in is page 1..n; carry on from there
@@ -340,24 +367,34 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
     return start === 0 ? items : [...items.slice(start), ...items.slice(0, start)];
   }, [items, initialIndex]);
 
+  const keyExtractor = useCallback(
+    (item: UnifiedFeedItem, index: number) => String(item.tokenId ?? item.id ?? index),
+    [],
+  );
+
+  // The card at the front is on screen the moment the sheet opens, before the
+  // list has reported anything; the store starts empty, so seed it.
+  useLayoutEffect(() => {
+    const first = orderedItems[0];
+    if (!first) return;
+    const key = keyExtractor(first, 0);
+    visibilityStore.update(new Set([key]), key);
+  }, [orderedItems, keyExtractor, visibilityStore]);
+
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
-    if (viewableItems.length > 0 && viewableItems[0].index != null) {
-      setActiveIndex(viewableItems[0].index);
-    }
+    const top = viewableItems.find((v) => v.isViewable && v.index != null);
+    if (!top) return;
+    const key = keyExtractor(top.item as UnifiedFeedItem, top.index as number);
+    visibilityStore.update(new Set([key]), key);
   }).current;
 
   const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 60 }).current;
 
   const renderItem = useCallback(
     ({ item, index }: { item: UnifiedFeedItem; index: number }) => (
-      <FeedCard item={item} isVisible={index === activeIndex} enablePreview />
+      <VisibleImageCard item={item} rowKey={keyExtractor(item, index)} store={visibilityStore} />
     ),
-    [activeIndex],
-  );
-
-  const keyExtractor = useCallback(
-    (item: UnifiedFeedItem, index: number) => String(item.tokenId ?? item.id ?? index),
-    [],
+    [keyExtractor, visibilityStore],
   );
 
   const contentContainerStyle = useMemo(
