@@ -9,6 +9,7 @@ import {
   Linking,
 } from "react-native";
 import * as Clipboard from "expo-clipboard";
+import { useTranslation } from "react-i18next";
 import { Ionicons } from "@expo/vector-icons";
 import { ethers } from "ethers";
 import { useUser, useProvider, useAuthActions } from "../../context/AuthContext";
@@ -81,6 +82,7 @@ function fmt(val: number): string {
 }
 
 const StakingTab: React.FC = () => {
+  const { t } = useTranslation();
   const user = useUser() as any;
   // Held in a ref so the fetch below can fall back to the session's own copy of
   // the account without re-running every time anything else on the user (an
@@ -268,11 +270,11 @@ const StakingTab: React.FC = () => {
       await refreshStakingPosition(walletAddress);
       const after = await fetchData();
       if (after === null) {
-        toastError("Could not check for new stakes. Try again in a moment.");
+        toastError(t("staking.refreshFailed"));
       } else if (after > before + 0.000001) {
-        toastSuccess(`Found ${fmt(after - before)} DHB. Your stake is up to date.`);
+        toastSuccess(t("staking.foundNewStake", { amount: fmt(after - before) }));
       } else {
-        toastInfo("No new transfers found yet.");
+        toastInfo(t("staking.noNewTransfers"));
       }
     } finally {
       setIsRefreshing(false);
@@ -305,7 +307,7 @@ const StakingTab: React.FC = () => {
           attempt = { ...attempt, confirmed: true };
           setPendingStake(previous => previous?.hash === attempt.hash ? attempt : previous);
           try { await AsyncStorage.setItem(pendingStakeKey(attempt.wallet), JSON.stringify(attempt)); } catch {}
-          toastSuccess(`${attempt.amount} DHB confirmed on Base.`);
+          toastSuccess(t("staking.stakeConfirmedOnBase", { amount: attempt.amount }));
         }
         try {
           const { error } = await supabase.functions.invoke('sync-staking-deposits', { body: { wallet: attempt.wallet } });
@@ -319,7 +321,7 @@ const StakingTab: React.FC = () => {
         await refreshStakingPosition(attempt.wallet);
         void fetchData();
       } else {
-        toastError('The blockchain confirmed this transaction reverted.');
+        toastError(t("staking.stakeReverted"));
       }
       recordStakeEvent('Stake outcome verified', attempt, outcome);
       try { await AsyncStorage.removeItem(pendingStakeKey(attempt.wallet)); } catch {}
@@ -351,15 +353,15 @@ const StakingTab: React.FC = () => {
     if (sendingStake.current || pendingStake || !pendingLoaded) return;
     const amt = parseFloat(amount);
     if (!amt || amt <= 0) {
-      toastError("Enter a valid amount to stake.");
+      toastError(t("staking.enterValidStakeAmount"));
       return;
     }
     if (!walletAddress) {
-      toastError("Wallet not connected.");
+      toastError(t("staking.walletNotConnected"));
       return;
     }
     if (walletBal != null && amt > walletBal) {
-      toastError("Insufficient DHB balance on Base.");
+      toastError(t("staking.insufficientOnBase"));
       return;
     }
 
@@ -372,13 +374,13 @@ const StakingTab: React.FC = () => {
         try {
           await switchChain(targetChainId);
         } catch {
-          toastError("Failed to switch to Base network.");
+          toastError(t("staking.switchBaseFailed"));
           return;
         }
         sendProvider = getSigningProvider() || authProvider;
       }
       if (!sendProvider?.request) {
-        toastError("Wallet not ready. Please try again.");
+        toastError(t("staking.walletNotReady"));
         return;
       }
 
@@ -400,14 +402,14 @@ const StakingTab: React.FC = () => {
       try { await AsyncStorage.setItem(pendingStakeKey(walletAddress), JSON.stringify(attempt)); }
       catch (error) { stakeLog.error('Pending stake storage unavailable', { hash: txHash }, String(error)); }
       recordStakeEvent('Stake submitted; awaiting receipt', attempt);
-      toastInfo('Stake submitted. Checking confirmation — do not send it again.');
+      toastInfo(t("staking.stakeSubmitted"));
     } catch (err: any) {
       stakeLog.error('Stake request unresolved', { wallet: walletAddress }, err);
       const msg = String(err?.message || err).toLowerCase();
       if (err?.code === 4001 || msg.includes('user rejected') || msg.includes('user denied')) {
-        toastInfo('Transaction cancelled in your wallet.');
+        toastInfo(t("staking.txCancelledInWallet"));
       } else {
-        toastInfo('Could not confirm the stake request. Check your wallet activity before trying again.');
+        toastInfo(t("staking.stakeUnconfirmed"));
       }
     } finally {
       sendingStake.current = false;
@@ -418,15 +420,15 @@ const StakingTab: React.FC = () => {
   const handleUnstake = async () => {
     const amt = parseFloat(amount);
     if (!amt || amt <= 0) {
-      toastError("Enter a valid amount to unstake.");
+      toastError(t("staking.enterValidUnstakeAmount"));
       return;
     }
     if (!walletAddress) {
-      toastError("Wallet not connected.");
+      toastError(t("staking.walletNotConnected"));
       return;
     }
     if (amt > userStaked) {
-      toastError(`You only have ${fmt(userStaked)} DHB staked.`);
+      toastError(t("staking.onlyThisMuchStaked", { amount: fmt(userStaked) }));
       return;
     }
     // Only the legacy BNB position is withdrawable. The rest sits in the
@@ -437,8 +439,8 @@ const StakingTab: React.FC = () => {
     if (amt > legacyStaked) {
       toastError(
         legacyStaked > 0
-          ? `Only ${fmt(legacyStaked)} DHB can be unstaked right now — the rest is in the Base pool, which has no withdrawal contract yet.`
-          : "Your DHB is in the Base pool, which has no withdrawal contract yet. Contact support to withdraw.",
+          ? t("staking.onlyLegacyWithdrawable", { amount: fmt(legacyStaked) })
+          : t("staking.poolHasNoWithdrawal"),
       );
       return;
     }
@@ -451,7 +453,10 @@ const StakingTab: React.FC = () => {
     if (isLocked && !earlyConfirmed) {
       setEarlyConfirmed(true);
       toastError(
-        `Locked until ${new Date(legacyUnlockAt * 1000).toLocaleDateString()}. Unstaking now returns 88% — a 12% fee, about ${fmt(amt * 0.12)} DHB. Tap Unstake again to accept.`,
+        t("staking.lockedEarlyFee", {
+          date: new Date(legacyUnlockAt * 1000).toLocaleDateString(),
+          fee: fmt(amt * 0.12),
+        }),
       );
       return;
     }
@@ -464,13 +469,13 @@ const StakingTab: React.FC = () => {
         try {
           await switchChain(targetChainId);
         } catch {
-          toastError("Failed to switch to BNB Chain.");
+          toastError(t("staking.switchBnbFailed"));
           return;
         }
         sendProvider = getSigningProvider() || authProvider;
       }
       if (!sendProvider?.request) {
-        toastError("Wallet not ready. Please try again.");
+        toastError(t("staking.walletNotReady"));
         return;
       }
 
@@ -488,7 +493,7 @@ const StakingTab: React.FC = () => {
         const provider = new ethers.providers.JsonRpcProvider(BNB_RPC);
         const receipt = await provider.waitForTransaction(txHash, 1, 90_000);
         if (receipt && receipt.status === 0) {
-          toastError("Unstake reverted on-chain.");
+          toastError(t("staking.unstakeReverted"));
           return;
         }
       } catch {
@@ -510,16 +515,19 @@ const StakingTab: React.FC = () => {
         console.warn("[StakingTab] failed to record withdrawal:", dbErr);
       }
 
-      toastSuccess(`Unstaked ${amount} DHB! TX: ${txHash.slice(0, 10)}…`);
+      toastSuccess(t("staking.unstakeSent", { amount, hash: txHash.slice(0, 10) }));
       setAmount("");
       setMode("stake");
       setTimeout(fetchData, 4000);
     } catch (err: any) {
-      const msg = String(err?.message || err || "Unstake failed");
+      // The wallet's own message is passed through untranslated — it is the
+      // only description of what actually went wrong, and translating it would
+      // mean guessing at a string we did not write.
+      const msg = String(err?.message || err || "");
       if (msg.includes("user rejected") || msg.includes("cancelled")) {
-        toastError("Transaction cancelled.");
+        toastError(t("staking.txCancelled"));
       } else {
-        toastError(msg.slice(0, 100));
+        toastError(msg ? msg.slice(0, 100) : t("staking.unstakeFailed"));
       }
     } finally {
       setIsBusy(false);
@@ -528,7 +536,7 @@ const StakingTab: React.FC = () => {
 
   const handleCopyStakingAddress = async () => {
     await Clipboard.setStringAsync(STAKING_ADDRESS);
-    toastSuccess("Staking address copied!");
+    toastSuccess(t("staking.addressCopied"));
   };
 
   // MAX on the unstake side is the legacy position, not the whole stake —
@@ -540,12 +548,14 @@ const StakingTab: React.FC = () => {
     <View className="flex-1">
       {pendingStake && pendingStake.wallet.toLowerCase() === walletAddress?.toLowerCase() && (
         <View accessibilityRole="summary" className="mb-4 rounded-xl border border-white/20 p-3">
-          <Text className="text-white">{pendingStake.amount} DHB {pendingStake.confirmed ? 'confirmed. Updating your deposit history.' : 'submitted. Confirmation is still being checked.'} Do not send it again.</Text>
+          <Text className="text-white">{pendingStake.confirmed
+            ? t("staking.pendingConfirmed", { amount: pendingStake.amount })
+            : t("staking.pendingSubmitted", { amount: pendingStake.amount })}</Text>
           <TouchableOpacity onPress={() => { void Linking.openURL(`https://basescan.org/tx/${pendingStake.hash}`); }}>
-            <Text className="text-white underline mt-2">View transaction</Text>
+            <Text className="text-white underline mt-2">{t("staking.viewTransaction")}</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => { void checkPendingStake(pendingStake); }}>
-            <Text className="text-white underline mt-2">Check again</Text>
+            <Text className="text-white underline mt-2">{t("staking.checkAgain")}</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -554,7 +564,7 @@ const StakingTab: React.FC = () => {
         <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
           <View className="flex-row items-center justify-between mb-1">
             <Text className="text-white/50 text-xs uppercase tracking-wider">
-              Your Staked
+              {t("staking.yourStaked")}
             </Text>
             {/* Staking is a bare transfer, so a stake made outside the app —
                 or seconds ago — is invisible until the backend's scanner comes
@@ -563,7 +573,7 @@ const StakingTab: React.FC = () => {
               onPress={handleRefreshPosition}
               disabled={isRefreshing}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              accessibilityLabel="Check for a new stake"
+              accessibilityLabel={t("staking.checkForNewStake")}
             >
               {isRefreshing ? (
                 <ActivityIndicator size="small" color="#ffffff99" />
@@ -578,19 +588,21 @@ const StakingTab: React.FC = () => {
             <Text className="text-white text-lg font-bold">{fmt(userStaked)}</Text>
           )}
           <Text className="text-white/60 text-xs mt-0.5">
-            DHB{unstakeQueued > 0 ? ` · ${fmt(unstakeQueued)} unstaking` : ""}
+            DHB{unstakeQueued > 0
+              ? ` · ${t("staking.amountUnstaking", { amount: fmt(unstakeQueued) })}`
+              : ""}
           </Text>
         </View>
         <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
           <Text className="text-white/50 text-xs uppercase tracking-wider mb-1">
-            Wallet Balance
+            {t("staking.walletBalance")}
           </Text>
           {loading ? (
             <ActivityIndicator size="small" color="#fff" />
           ) : (
             <Text className="text-white text-lg font-bold">{fmt(walletBal ?? 0)}</Text>
           )}
-          <Text className="text-white/60 text-xs mt-0.5">DHB on Base</Text>
+          <Text className="text-white/60 text-xs mt-0.5">{t("staking.dhbOnBase")}</Text>
         </View>
       </View>
 
@@ -598,11 +610,11 @@ const StakingTab: React.FC = () => {
       {earned > 0 && (
         <View className="flex-row items-center justify-between bg-white/10 border border-white/20 rounded-xl p-4 mb-4">
           <View>
-            <Text className="text-white/80 font-semibold text-sm">Pending Rewards</Text>
+            <Text className="text-white/80 font-semibold text-sm">{t("staking.pendingRewards")}</Text>
             <Text className="text-white text-lg font-bold mt-0.5">{fmt(earned)} <DhbCoin size={16} /></Text>
           </View>
           <View className="bg-white/5 border border-white/10 rounded-xl px-3 py-2">
-            <Text className="text-white/50 text-[11px]">Claim on web app</Text>
+            <Text className="text-white/50 text-[11px]">{t("staking.claimOnWeb")}</Text>
           </View>
         </View>
       )}
@@ -627,7 +639,7 @@ const StakingTab: React.FC = () => {
                   mode === m ? "text-white" : "text-white/40"
                 }`}
               >
-                {m}
+                {m === "stake" ? t("staking.stake") : t("staking.unstake")}
               </Text>
             </TouchableOpacity>
           ))}
@@ -635,14 +647,14 @@ const StakingTab: React.FC = () => {
 
         <Text className="text-white/60 text-xs mb-4">
           {mode === "stake"
-            ? "Stake DHB on Base to earn protocol rewards."
-            : "Request an unstake. Tokens are released after a 12-day cooldown."}
+            ? t("staking.stakeOnBaseDesc")
+            : t("staking.unstakeFromBnbDesc")}
         </Text>
 
         <View className="flex-row items-center bg-white/[0.06] border border-white/10 rounded-xl px-3 mb-3 h-12">
           <TextInput
             className="flex-1 text-white text-sm"
-            placeholder="Amount"
+            placeholder={t("staking.amount")}
             placeholderTextColor="rgba(255,255,255,0.5)"
             keyboardType="decimal-pad"
             value={amount}
@@ -654,22 +666,24 @@ const StakingTab: React.FC = () => {
             className="px-2 py-3 -mr-1"
             hitSlop={{ top: 14, bottom: 14, left: 8, right: 8 }}
           >
-            <Text className="text-white/50 text-xs font-bold uppercase">MAX</Text>
+            <Text className="text-white/50 text-xs font-bold uppercase">{t("staking.max")}</Text>
           </TouchableOpacity>
         </View>
 
         <Text className="text-white/60 text-xs mb-3">
           {mode === "stake"
-            ? `Available: ${fmt(walletBal ?? 0)} DHB`
-            : `Withdrawable: ${fmt(legacyStaked)} DHB on BNB Chain${
+            ? t("staking.availableToStake", { amount: fmt(walletBal ?? 0) })
+            : `${t("staking.withdrawableOnBnb", { amount: fmt(legacyStaked) })}${
                 userStaked - legacyStaked > 0
-                  ? ` · ${fmt(userStaked - legacyStaked)} in the Base pool`
+                  ? ` · ${t("staking.restInBasePool", {
+                      amount: fmt(userStaked - legacyStaked),
+                    })}`
                   : ""
               }${
                 legacyStaked > 0 && legacyUnlockAt > Math.floor(Date.now() / 1000)
-                  ? ` · locked until ${new Date(
-                      legacyUnlockAt * 1000,
-                    ).toLocaleDateString()}, 12% fee before then`
+                  ? ` · ${t("staking.lockedUntilWithFee", {
+                      date: new Date(legacyUnlockAt * 1000).toLocaleDateString(),
+                    })}`
                   : ""
               }`}
         </Text>
@@ -693,18 +707,18 @@ const StakingTab: React.FC = () => {
           <Text className="text-white font-semibold text-sm">
             {isBusy
               ? mode === "stake"
-                ? "Staking…"
-                : "Requesting…"
+                ? t("staking.staking")
+                : t("staking.unstaking")
               : mode === "stake"
-              ? "Stake DHB"
-              : "Request Unstake"}
+              ? t("staking.stakeDhb")
+              : t("staking.unstake")}
           </Text>
         </TouchableOpacity>
       </View>
 
       {/* Protocol stats */}
       <View className="flex-row items-center justify-between bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4">
-        <Text className="text-white/50 text-xs">Total staked (protocol)</Text>
+        <Text className="text-white/50 text-xs">{t("staking.totalStakedProtocol")}</Text>
         <Text className="text-white font-semibold text-sm">
           {loading ? "…" : `${fmt(protocolTotal ?? 0)} DHB`}
         </Text>
@@ -713,7 +727,7 @@ const StakingTab: React.FC = () => {
       {/* Manual staking address */}
       <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
         <Text className="text-white/50 text-xs mb-2">
-          Or send DHB directly to the staking address on Base:
+          {t("staking.orSendDirectly")}
         </Text>
         <TouchableOpacity
           onPress={handleCopyStakingAddress}
@@ -731,7 +745,7 @@ const StakingTab: React.FC = () => {
         className="mt-4 items-center flex-row justify-center gap-2"
       >
         <Ionicons name="refresh-outline" size={14} color="rgba(255,255,255,0.6)" />
-        <Text className="text-white/60 text-xs">Refresh balances</Text>
+        <Text className="text-white/60 text-xs">{t("staking.refreshBalances")}</Text>
       </TouchableOpacity>
     </View>
   );
