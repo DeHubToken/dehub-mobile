@@ -1,0 +1,9 @@
+# Files that a macOS or Linux shell sources or executes must keep LF endings.
+# `eas build` uploads the working tree as-is, so a Windows checkout with
+# core.autocrlf=true was shipping ios/.xcode.env with CRLF. Xcode's build
+# phases source that file, bash reads the bare CR on its blank line as a
+# command, and "[Expo] Configure project" fails the archive.
+*.sh text eol=lf
+ios/.xcode.env text eol=lf
+ios/.xcode.env.local text eol=lf
+android/gradlew text eol=lf
