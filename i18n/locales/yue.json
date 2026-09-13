@@ -1528,7 +1528,12 @@
     "or": "或者",
     "termsNotice": "繼續即代表你同意服務條款同私隱政策",
     "walletInfoDesktop": "連接錢包嚟安全登入",
-    "walletInfoMobile": "直接開啟MetaMask、Trust同Phantom應用程式。Rabby使用WalletConnect。"
+    "walletInfoMobile": "直接開啟MetaMask、Trust同Phantom應用程式。Rabby使用WalletConnect。",
+    "signIn": "登入",
+    "password": "密碼",
+    "sendCode": "發送驗證碼",
+    "usePasswordInstead": "改用密碼",
+    "useCodeInstead": "改為電郵驗證碼畀我"
   },
   "careers": {
     "title": "加入DeHub",

@@ -1488,7 +1488,12 @@
     "or": "أو",
     "termsNotice": "بالمتابعة، توافق على شروط الخدمة وسياسة الخصوصية",
     "walletInfoDesktop": "وصّل محفظتك عشان تسجل دخول بأمان",
-    "walletInfoMobile": "ميتاماسك وترست وفانتوم بيفتحون تطبيقهم مباشرة. رابي بيستخدم WalletConnect."
+    "walletInfoMobile": "ميتاماسك وترست وفانتوم بيفتحون تطبيقهم مباشرة. رابي بيستخدم WalletConnect.",
+    "signIn": "سجّل دخول",
+    "password": "كلمة السر",
+    "sendCode": "إرسال الرمز",
+    "usePasswordInstead": "استخدم كلمة مرور بدالها",
+    "useCodeInstead": "دزلي رمز عالإيميل"
   },
   "careers": {
     "title": "وظائف في DeHub",

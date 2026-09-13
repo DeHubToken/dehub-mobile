@@ -1519,7 +1519,12 @@
     "or": "rānei",
     "termsNotice": "Mā te haere tonu ka whakaae koe ki ā mātou Ture Ratonga me te Kaupapahere Tūmataiti",
     "walletInfoDesktop": "Honoa pūkoro moni hei takiuru haumaru",
-    "walletInfoMobile": "Ka whakatuwhera a MetaMask, Trust me Phantom i ā rātou taupānga tika. Ka whakamahi a Rabby i te WalletConnect."
+    "walletInfoMobile": "Ka whakatuwhera a MetaMask, Trust me Phantom i ā rātou taupānga tika. Ka whakamahi a Rabby i te WalletConnect.",
+    "signIn": "Takiuru",
+    "password": "Kupuhipa",
+    "sendCode": "Tukuna te waehere",
+    "usePasswordInstead": "Whakamahia he kupuhipa kē",
+    "useCodeInstead": "Tukuna mai he waehere mā te īmēra"
   },
   "careers": {
     "title": "Mahi i DeHub",

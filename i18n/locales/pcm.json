@@ -1486,7 +1486,12 @@
     "or": "or",
     "termsNotice": "If you continue, you don agree to our Terms of Service and Privacy Policy",
     "walletInfoDesktop": "Connect your wallet to sign in securely",
-    "walletInfoMobile": "MetaMask, Trust & Phantom go open dia app direct. Rabby go use WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust & Phantom go open dia app direct. Rabby go use WalletConnect.",
+    "signIn": "Sign in",
+    "password": "Password",
+    "sendCode": "Send code",
+    "usePasswordInstead": "Use password instead",
+    "useCodeInstead": "Email me di code instead"
   },
   "careers": {
     "title": "Work for DeHub",

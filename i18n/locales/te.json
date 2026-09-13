@@ -1529,7 +1529,12 @@
     "or": "లేదా",
     "termsNotice": "కొనసాగించడం ద్వారా సేవా నిబంధనలు మరియు గోప్యతా విధానాన్ని అంగీకరిస్తారు",
     "walletInfoDesktop": "సురక్షిత లాగిన్ కోసం మీ వాలెట్‌ను కనెక్ట్ చేయండి",
-    "walletInfoMobile": "MetaMask మరియు Trust మరియు Phantom వాటి యాప్‌లో తెరుచుకుంటాయి. Rabby WalletConnect ను ఉపయోగిస్తుంది."
+    "walletInfoMobile": "MetaMask మరియు Trust మరియు Phantom వాటి యాప్‌లో తెరుచుకుంటాయి. Rabby WalletConnect ను ఉపయోగిస్తుంది.",
+    "signIn": "సైన్ ఇన్",
+    "password": "పాస్‌వర్డ్",
+    "sendCode": "కోడ్ పంపండి",
+    "usePasswordInstead": "బదులుగా పాస్‌వర్డ్ ఉపయోగించండి",
+    "useCodeInstead": "బదులుగా నాకు ఇమెయిల్‌లో కోడ్ పంపండి"
   },
   "careers": {
     "title": "DeHub లో కెరీర్లు",

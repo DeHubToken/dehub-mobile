@@ -1531,7 +1531,12 @@
     "or": "utaq",
     "termsNotice": "Qatispa, Kamachiy Simikunata Pakay Kamachiykunatawan chaskinkichis",
     "walletInfoDesktop": "Wallet-niykita t'inkiy allin yaykuypaq",
-    "walletInfoMobile": "MetaMask, Trust & Phantom app-ninkuta kichankum. Rabby WalletConnect-ta llamk'achin."
+    "walletInfoMobile": "MetaMask, Trust & Phantom app-ninkuta kichankum. Rabby WalletConnect-ta llamk'achin.",
+    "signIn": "Yaykuy",
+    "password": "Contraseña",
+    "sendCode": "Kodeta apachiy",
+    "usePasswordInstead": "Chaypa rantin password nisqata llamk’achiy",
+    "useCodeInstead": "Chaypa rantin kodeta email nisqapi apachiway"
   },
   "careers": {
     "title": "Llamkay DeHub-pi",

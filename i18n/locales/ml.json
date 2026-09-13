@@ -1519,7 +1519,12 @@
     "or": "അല്ലെങ്കിൽ",
     "termsNotice": "തുടരുന്നതിലൂടെ നിങ്ങൾ ഞങ്ങളുടെ സേവന നിബന്ധനകളും സ്വകാര്യതാ നയവും അംഗീകരിക്കുന്നു",
     "walletInfoDesktop": "സുരക്ഷിത ലോഗ് ഇന് വാലറ്റ് കണക്ട് ചെയ്യുക",
-    "walletInfoMobile": "MetaMask, Trust, Phantom എന്നിവ അവയുടെ നേറ്റീവ് ആപ്പുകളിൽ തുറക്കും. Rabby WalletConnect ഉപയോഗിക്കുന്നു."
+    "walletInfoMobile": "MetaMask, Trust, Phantom എന്നിവ അവയുടെ നേറ്റീവ് ആപ്പുകളിൽ തുറക്കും. Rabby WalletConnect ഉപയോഗിക്കുന്നു.",
+    "signIn": "സൈൻ ഇൻ",
+    "password": "പാസ്‌വേഡ്",
+    "sendCode": "കോഡ് അയയ്ക്കുക",
+    "usePasswordInstead": "പകരം പാസ്‌വേഡ് ഉപയോഗിക്കുക",
+    "useCodeInstead": "പകരം എനിക്ക് ഇമെയിലിൽ കോഡ് അയയ്ക്കുക"
   },
   "careers": {
     "title": "DeHub-ൽ ജോലികൾ",

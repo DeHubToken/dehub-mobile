@@ -1529,7 +1529,12 @@
     "or": "au",
     "termsNotice": "Kwa kuendelea, unakubali Masharti yetu ya Huduma na Sera ya Faragha",
     "walletInfoDesktop": "Unganisha pochi yako ili uingie kwa usalama",
-    "walletInfoMobile": "MetaMask, Trust na Phantom zitafungua programu yao moja kwa moja. Rabby itatumia WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust na Phantom zitafungua programu yao moja kwa moja. Rabby itatumia WalletConnect.",
+    "signIn": "Ingia",
+    "password": "Nenosiri",
+    "sendCode": "Tuma msimbo",
+    "usePasswordInstead": "Tumia nenosiri badala yake",
+    "useCodeInstead": "Nitumie msimbo kwa barua pepe badala yake"
   },
   "careers": {
     "title": "Kazi katika DeHub",

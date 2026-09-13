@@ -1529,7 +1529,12 @@
     "or": "o",
     "termsNotice": "En continuar, acceptes els nostres Termes de Servei i Política de Privacitat",
     "walletInfoDesktop": "Connecta la teva cartera per iniciar sessió de forma segura",
-    "walletInfoMobile": "MetaMask, Trust & Phantom obriran la seva app directament. Rabby utilitzarà WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust & Phantom obriran la seva app directament. Rabby utilitzarà WalletConnect.",
+    "signIn": "Inicia la sessió",
+    "password": "Contrasenya",
+    "sendCode": "Envia el codi",
+    "usePasswordInstead": "Utilitza una contrasenya",
+    "useCodeInstead": "Envia’m un codi per correu"
   },
   "careers": {
     "title": "Carreres a DeHub",

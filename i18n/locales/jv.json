@@ -1488,7 +1488,12 @@
     "or": "utawa",
     "termsNotice": "Kanthi nglanjutake, kowe setuju karo Ketentuan Layanan lan Kebijakan Privasi",
     "walletInfoDesktop": "Sambungake dompet kanggo mlebu kanthi aman",
-    "walletInfoMobile": "Langsung mbukak aplikasi MetaMask, Trust & Phantom. Rabby nggunakake WalletConnect."
+    "walletInfoMobile": "Langsung mbukak aplikasi MetaMask, Trust & Phantom. Rabby nggunakake WalletConnect.",
+    "signIn": "Mlebu",
+    "password": "Tembung sandi",
+    "sendCode": "Kirim kode",
+    "usePasswordInstead": "Gunakake sandhi wae",
+    "useCodeInstead": "Kirimi aku kode liwat email wae"
   },
   "careers": {
     "title": "Gabung DeHub",

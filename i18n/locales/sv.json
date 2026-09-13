@@ -1533,7 +1533,12 @@
     "or": "eller",
     "termsNotice": "Genom att fortsätta godkänner du användarvillkoren och integritetspolicyn",
     "walletInfoDesktop": "Anslut din plånbok för säker inloggning",
-    "walletInfoMobile": "MetaMask och Trust och Phantom öppnas i sina appar. Rabby använder WalletConnect."
+    "walletInfoMobile": "MetaMask och Trust och Phantom öppnas i sina appar. Rabby använder WalletConnect.",
+    "signIn": "Logga in",
+    "password": "Lösenord",
+    "sendCode": "Skicka kod",
+    "usePasswordInstead": "Använd lösenord i stället",
+    "useCodeInstead": "Mejla mig en kod i stället"
   },
   "careers": {
     "title": "Karriär på DeHub",

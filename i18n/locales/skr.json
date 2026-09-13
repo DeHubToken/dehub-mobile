@@ -1481,7 +1481,12 @@
     "or": "یا",
     "termsNotice": "اگے ودھ کے تسیں شرائط خدمت تے رازداری پالیسی نال متفق او",
     "walletInfoDesktop": "محفوظ لاگ ان کیتے والیٹ جوڑو",
-    "walletInfoMobile": "MetaMask, Trust تے Phantom اپݨی ایپ کھولسن۔ Rabby WalletConnect ورتسے۔"
+    "walletInfoMobile": "MetaMask, Trust تے Phantom اپݨی ایپ کھولسن۔ Rabby WalletConnect ورتسے۔",
+    "signIn": "سائن ان",
+    "password": "پاس ورڈ",
+    "sendCode": "کوڈ گھلو",
+    "usePasswordInstead": "ایندے بجائے پاس ورڈ ورتو",
+    "useCodeInstead": "ایندے بجائے میکوں ای میل تے کوڈ گھلو"
   },
   "careers": {
     "title": "DeHub وِچ نوکریاں",

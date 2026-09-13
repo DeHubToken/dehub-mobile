@@ -1519,7 +1519,12 @@
     "or": "ወይም",
     "termsNotice": "በመቀጠል፣ የአገልግሎት ውሎቻችንን እና የግላዊነት መመሪያችንን ተቀብለዋል",
     "walletInfoDesktop": "በደህንነት ለመግባት ዋሌትዎን ያገናኙ",
-    "walletInfoMobile": "MetaMask፣ Trust እና Phantom መተግበሪያቸውን በቀጥታ ይከፍታሉ። Rabby WalletConnect ይጠቀማል።"
+    "walletInfoMobile": "MetaMask፣ Trust እና Phantom መተግበሪያቸውን በቀጥታ ይከፍታሉ። Rabby WalletConnect ይጠቀማል።",
+    "signIn": "ግባ",
+    "password": "የይለፍ ቃል",
+    "sendCode": "ኮድ ላክ",
+    "usePasswordInstead": "በምትኩ የይለፍ ቃል ተጠቀም",
+    "useCodeInstead": "በምትኩ ኮድ በኢሜይል ላኩልኝ"
   },
   "careers": {
     "title": "በDeHub ሥራ",

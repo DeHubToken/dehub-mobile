@@ -1456,7 +1456,12 @@
     "or": "یا",
     "termsNotice": "جاری رکھنے سے تم ہماری خدمات شرائط اور پرائیویسی پالیسی سے متفق ہو",
     "walletInfoDesktop": "محفوظ سائن ان کے لئے اپنا والیٹ کنیکٹ کرو",
-    "walletInfoMobile": "MetaMask، Trust اور Phantom سیدھا ایپ کھولیں گے۔ Rabby WalletConnect استعمال کرے گا۔"
+    "walletInfoMobile": "MetaMask، Trust اور Phantom سیدھا ایپ کھولیں گے۔ Rabby WalletConnect استعمال کرے گا۔",
+    "signIn": "سائن ان",
+    "password": "پاس ورڈ",
+    "sendCode": "کوڈ بھیجیں",
+    "usePasswordInstead": "اس کے بجائے پاس ورڈ استعمال کریں",
+    "useCodeInstead": "اس کے بجائے مجھے ای میل پر کوڈ بھیجیں"
   },
   "careers": {
     "title": "DeHub میں کیریئر",

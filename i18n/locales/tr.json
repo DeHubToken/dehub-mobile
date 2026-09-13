@@ -1615,7 +1615,12 @@
     "or": "veya",
     "termsNotice": "Devam ederek Hizmet Şartlarımızı ve Gizlilik Politikamızı kabul etmiş olursunuz",
     "walletInfoDesktop": "Güvenli giriş için cüzdanınızı bağlayın",
-    "walletInfoMobile": "MetaMask, Trust ve Phantom uygulamalarını doğrudan açacaktır. Rabby WalletConnect kullanacaktır."
+    "walletInfoMobile": "MetaMask, Trust ve Phantom uygulamalarını doğrudan açacaktır. Rabby WalletConnect kullanacaktır.",
+    "signIn": "Giriş yap",
+    "password": "Şifre",
+    "sendCode": "Kod gönder",
+    "usePasswordInstead": "Bunun yerine parola kullan",
+    "useCodeInstead": "Bunun yerine bana e-postayla kod gönder"
   },
   "careers": {
     "title": "DeHub'da Kariyer",

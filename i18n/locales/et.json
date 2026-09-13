@@ -1528,7 +1528,12 @@
     "or": "või",
     "termsNotice": "Jätkates nõustud meie teenustingimuste ja privaatsuspoliitikaga",
     "walletInfoDesktop": "Ühenda rahakott turvaliseks sisselogimiseks",
-    "walletInfoMobile": "MetaMask, Trust ja Phantom avavad oma rakenduse otse. Rabby kasutab WalletConnect'i."
+    "walletInfoMobile": "MetaMask, Trust ja Phantom avavad oma rakenduse otse. Rabby kasutab WalletConnect'i.",
+    "signIn": "Logi sisse",
+    "password": "Parool",
+    "sendCode": "Saada kood",
+    "usePasswordInstead": "Kasuta hoopis parooli",
+    "useCodeInstead": "Saada mulle kood hoopis e-postiga"
   },
   "careers": {
     "title": "Karjäär DeHubis",

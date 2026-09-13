@@ -1256,7 +1256,12 @@
     "or": "alebo",
     "termsNotice": "Pokračovaním súhlasíte s podmienkami služby a zásadami ochrany súkromia",
     "walletInfoDesktop": "Pripojte peňaženku pre bezpečné prihlásenie",
-    "walletInfoMobile": "MetaMask, Trust a Phantom otvoria svoju aplikáciu. Rabby použije WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust a Phantom otvoria svoju aplikáciu. Rabby použije WalletConnect.",
+    "signIn": "Prihlásiť sa",
+    "password": "Heslo",
+    "sendCode": "Odoslať kód",
+    "usePasswordInstead": "Použiť namiesto toho heslo",
+    "useCodeInstead": "Poslať mi kód e-mailom"
   },
   "sidebar": {
     "talkOfTheTown": "Téma dňa",

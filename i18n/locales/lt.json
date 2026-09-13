@@ -1528,7 +1528,12 @@
     "or": "arba",
     "termsNotice": "Tęsdami sutinkate su mūsų Paslaugų sąlygomis ir Privatumo politika",
     "walletInfoDesktop": "Prijunkite piniginę, kad prisijungtumėte saugiai",
-    "walletInfoMobile": "MetaMask, Trust ir Phantom atidarys savo programėlę tiesiogiai. Rabby naudos WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust ir Phantom atidarys savo programėlę tiesiogiai. Rabby naudos WalletConnect.",
+    "signIn": "Prisijungti",
+    "password": "Slaptažodis",
+    "sendCode": "Siųsti kodą",
+    "usePasswordInstead": "Vietoj to naudoti slaptažodį",
+    "useCodeInstead": "Vietoj to atsiųsti kodą el. paštu"
   },
   "careers": {
     "title": "Karjera DeHub",

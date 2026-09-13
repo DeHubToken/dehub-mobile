@@ -1528,7 +1528,12 @@
     "or": "vai",
     "termsNotice": "Turpinot jūs piekrītat mūsu Pakalpojumu noteikumiem un Privātuma politikai",
     "walletInfoDesktop": "Pieslēdziet maku drošai pieteikšanai",
-    "walletInfoMobile": "MetaMask, Trust un Phantom atvērs savu lietotni tieši. Rabby izmantos WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust un Phantom atvērs savu lietotni tieši. Rabby izmantos WalletConnect.",
+    "signIn": "Pieteikties",
+    "password": "Parole",
+    "sendCode": "Nosūtīt kodu",
+    "usePasswordInstead": "Tā vietā izmantot paroli",
+    "useCodeInstead": "Tā vietā nosūtīt man kodu e-pastā"
   },
   "careers": {
     "title": "Karjera DeHub",

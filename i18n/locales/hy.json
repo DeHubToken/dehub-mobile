@@ -1520,7 +1520,12 @@
     "or": "kam",
     "termsNotice": "Sharunakelev douq hamadzaynoum eq mer Tsaroutyunn Paymanerov ev Gaghtniqoutyunn Qaghaqakanoutyunov",
     "walletInfoDesktop": "Kapaktsrek dzer drameritsne anvtang mouqtq gortselou hamar",
-    "walletInfoMobile": "MetaMask, Trust ev Phantom ouvaghitsoren kibatsen irents havelvaadse. Rabby-n kovgortsi WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust ev Phantom ouvaghitsoren kibatsen irents havelvaadse. Rabby-n kovgortsi WalletConnect.",
+    "signIn": "Մուտք գործել",
+    "password": "Գաղտնաբառ",
+    "sendCode": "Ուղարկել կոդը",
+    "usePasswordInstead": "Փոխարենը օգտագործել գաղտնաբառ",
+    "useCodeInstead": "Փոխարենը ուղարկել կոդն էլ. փոստով"
   },
   "careers": {
     "title": "Ashkhatanqner DeHub-oom",

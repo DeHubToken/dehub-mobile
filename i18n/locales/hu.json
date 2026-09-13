@@ -1533,7 +1533,12 @@
     "or": "vagy",
     "termsNotice": "A folytatással elfogadja a szolgáltatási feltételeket és az adatvédelmi szabályzatot",
     "walletInfoDesktop": "Csatlakoztassa pénztárcáját a biztonságos bejelentkezéshez",
-    "walletInfoMobile": "A MetaMask, Trust és Phantom saját alkalmazásukban nyílnak meg. A Rabby WalletConnect-et használ."
+    "walletInfoMobile": "A MetaMask, Trust és Phantom saját alkalmazásukban nyílnak meg. A Rabby WalletConnect-et használ.",
+    "signIn": "Bejelentkezés",
+    "password": "Jelszó",
+    "sendCode": "Kód küldése",
+    "usePasswordInstead": "Használjon inkább jelszót",
+    "useCodeInstead": "Inkább küldjön kódot e-mailben"
   },
   "careers": {
     "title": "Karrier a DeHub-nál",

@@ -1530,7 +1530,12 @@
     "or": "atau",
     "termsNotice": "Dengan melanjutkan, Anda menyetujui Ketentuan Layanan dan Kebijakan Privasi kami",
     "walletInfoDesktop": "Hubungkan dompet Anda untuk masuk dengan aman",
-    "walletInfoMobile": "MetaMask, Trust & Phantom akan membuka aplikasinya langsung. Rabby akan menggunakan WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust & Phantom akan membuka aplikasinya langsung. Rabby akan menggunakan WalletConnect.",
+    "signIn": "Masuk",
+    "password": "Kata sandi",
+    "sendCode": "Kirim kode",
+    "usePasswordInstead": "Gunakan kata sandi saja",
+    "useCodeInstead": "Kirimi saya kode lewat email"
   },
   "careers": {
     "title": "Karir di DeHub",

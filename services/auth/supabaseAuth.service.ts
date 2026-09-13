@@ -33,6 +33,31 @@ export async function sendEmailOtp(email: string): Promise<void> {
   }
 }
 
+/**
+ * Password sign-in for an email identity that has one set.
+ *
+ * Every other email path here is passwordless (a 6-digit code), which no
+ * reviewer or support agent can complete on someone else's behalf. Accounts
+ * created by OTP simply have no password, so this grant fails for them with
+ * "Invalid login credentials" and the caller falls back to the code flow.
+ */
+export async function signInWithEmailPassword(
+  email: string,
+  password: string,
+): Promise<string> {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: email.trim(),
+    password,
+  });
+  if (error) {
+    log.warn("signInWithEmailPassword:error", error.message);
+    throw new Error(error.message || "Invalid email or password");
+  }
+  const userId = data?.user?.id;
+  if (!userId) throw new Error("Sign-in failed. Please try again.");
+  return userId;
+}
+
 /** Verifies the emailed code and returns the Supabase user id. */
 export async function verifyEmailOtp(email: string, token: string): Promise<string> {
   const { data, error } = await supabase.auth.verifyOtp({

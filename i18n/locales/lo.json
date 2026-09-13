@@ -1524,7 +1524,12 @@
     "or": "ຫຼື",
     "termsNotice": "ໂດຍການສືບຕໍ່ ທ່ານຍອມຮັບເງື່ອນໄຂການໃຊ້ງານ ແລະ ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ",
     "walletInfoDesktop": "ເຊື່ອມຕໍ່ກະເປົາເພື່ອເຂົ້າສູ່ລະບົບຢ່າງປອດໄພ",
-    "walletInfoMobile": "MetaMask, Trust ແລະ Phantom ຈະເປີດແອັບໂດຍກົງ. Rabby ຈະໃຊ້ WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust ແລະ Phantom ຈະເປີດແອັບໂດຍກົງ. Rabby ຈະໃຊ້ WalletConnect.",
+    "signIn": "ເຂົ້າສູ່ລະບົບ",
+    "password": "ລະຫັດຜ່ານ",
+    "sendCode": "ສົ່ງລະຫັດ",
+    "usePasswordInstead": "ໃຊ້ລະຫັດຜ່ານແທນ",
+    "useCodeInstead": "ສົ່ງລະຫັດທາງອີເມວໃຫ້ຂ້ອຍແທນ"
   },
   "careers": {
     "title": "ອາຊີບທີ່ DeHub",

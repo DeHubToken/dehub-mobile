@@ -1520,7 +1520,12 @@
     "or": "ama",
     "termsNotice": "Adiga oo sii wadaya, waxaad ku heshiisaa Shuruudaha Adeegga iyo Xeerka Gaarsiinimada",
     "walletInfoDesktop": "Ku xir jeebkaaga si aad si ammaan ah u soo gasho",
-    "walletInfoMobile": "MetaMask, Trust iyo Phantom waxay si toos ah u furi doonaan app-kooda. Rabby wuxuu isticmaali doonaa WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust iyo Phantom waxay si toos ah u furi doonaan app-kooda. Rabby wuxuu isticmaali doonaa WalletConnect.",
+    "signIn": "Gal",
+    "password": "Erayga sirta ah",
+    "sendCode": "Dir koodhka",
+    "usePasswordInstead": "Halkii isticmaal furaha sirta ah",
+    "useCodeInstead": "Halkii ii soo dir koodhka iimaylka"
   },
   "careers": {
     "title": "Shaqooyinka DeHub",

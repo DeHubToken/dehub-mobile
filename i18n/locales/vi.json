@@ -1814,7 +1814,12 @@
     "or": "hoặc",
     "termsNotice": "Khi tiếp tục, bạn đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư của chúng tôi",
     "walletInfoDesktop": "Kết nối ví của bạn để đăng nhập an toàn",
-    "walletInfoMobile": "MetaMask, Trust và Phantom sẽ mở ứng dụng của chúng. Rabby sẽ dùng WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust và Phantom sẽ mở ứng dụng của chúng. Rabby sẽ dùng WalletConnect.",
+    "signIn": "Đăng nhập",
+    "password": "Mật khẩu",
+    "sendCode": "Gửi mã",
+    "usePasswordInstead": "Dùng mật khẩu thay thế",
+    "useCodeInstead": "Gửi mã cho tôi qua email"
   },
   "careers": {
     "title": "Cơ hội nghề nghiệp tại DeHub",

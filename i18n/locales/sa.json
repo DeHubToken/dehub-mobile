@@ -1508,7 +1508,12 @@
     "or": "अथवा",
     "termsNotice": "अनुवर्तनेन भवान् अस्माकं सेवाशर्तान् गोपनीयतानीतिं च स्वीकरोति",
     "walletInfoDesktop": "सुरक्षितप्रवेशार्थं स्वकोषं संयोजयतु",
-    "walletInfoMobile": "MetaMask, Trust तथा Phantom स्वानुप्रयोगं प्रत्यक्षम् उद्घाटयिष्यन्ति। Rabby WalletConnect उपयोक्ष्यते।"
+    "walletInfoMobile": "MetaMask, Trust तथा Phantom स्वानुप्रयोगं प्रत्यक्षम् उद्घाटयिष्यन्ति। Rabby WalletConnect उपयोक्ष्यते।",
+    "signIn": "प्रवेशं करोतु",
+    "password": "गुप्तशब्दः",
+    "sendCode": "सङ्केतं प्रेषय",
+    "usePasswordInstead": "तस्य स्थाने गुप्तशब्दं प्रयुङ्क्ष्व",
+    "useCodeInstead": "तस्य स्थाने मह्यं विपत्रे सङ्केतं प्रेषय"
   },
   "careers": {
     "title": "DeHub मध्ये वृत्तयः",

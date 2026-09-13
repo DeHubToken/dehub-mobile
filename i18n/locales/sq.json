@@ -1529,7 +1529,12 @@
     "or": "ose",
     "termsNotice": "Duke vazhduar, ju pranoni Kushtet e Shërbimit dhe Politikën e Privatësisë sonë",
     "walletInfoDesktop": "Lidhni portofolin tuaj për të hyrë në mënyrë të sigurt",
-    "walletInfoMobile": "MetaMask, Trust & Phantom do të hapin aplikacionin e tyre drejtpërdrejt. Rabby do të përdorë WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust & Phantom do të hapin aplikacionin e tyre drejtpërdrejt. Rabby do të përdorë WalletConnect.",
+    "signIn": "Hyr",
+    "password": "Fjalëkalimi",
+    "sendCode": "Dërgo kodin",
+    "usePasswordInstead": "Përdor një fjalëkalim",
+    "useCodeInstead": "Më dërgo një kod me email"
   },
   "careers": {
     "title": "Karriera në DeHub",

@@ -1507,7 +1507,12 @@
     "or": "या",
     "termsNotice": "जारी रखे से तू हमर सेवा शर्त आ प्राइवेसी नीति में राजी होला",
     "walletInfoDesktop": "सुरक्षित साइन इन करे खातिर अपना वॉलेट कनेक्ट करो",
-    "walletInfoMobile": "MetaMask, Trust आ Phantom सीधे ऐप खोली। Rabby WalletConnect इस्तेमाल करी।"
+    "walletInfoMobile": "MetaMask, Trust आ Phantom सीधे ऐप खोली। Rabby WalletConnect इस्तेमाल करी।",
+    "signIn": "साइन इन",
+    "password": "पासवर्ड",
+    "sendCode": "कोड भेजीं",
+    "usePasswordInstead": "एकरा बदले पासवर्ड के उपयोग करीं",
+    "useCodeInstead": "एकरा बदले हमरा ईमेल पर कोड भेजीं"
   },
   "careers": {
     "title": "DeHub में करियर",

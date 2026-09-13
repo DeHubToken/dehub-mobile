@@ -1512,7 +1512,12 @@
     "or": "Kɔrɔbɔ",
     "termsNotice": "Kɔrɔbɔ",
     "walletInfoDesktop": "Kɔrɔbɔ",
-    "walletInfoMobile": "Kɔrɔbɔ"
+    "walletInfoMobile": "Kɔrɔbɔ",
+    "signIn": "Don",
+    "password": "Tɔgɔla",
+    "sendCode": "Kode ci",
+    "usePasswordInstead": "A nɔ na, tɔgɔmasɛbɛn kɛ",
+    "useCodeInstead": "A nɔ na, kode ci n ma e-mail la"
   },
   "careers": {
     "title": "Kɔrɔbɔ",

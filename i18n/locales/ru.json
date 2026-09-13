@@ -1546,7 +1546,12 @@
     "or": "или",
     "termsNotice": "Продолжая, вы соглашаетесь с Условиями использования и Политикой конфиденциальности",
     "walletInfoDesktop": "Подключите кошелёк для безопасного входа",
-    "walletInfoMobile": "MetaMask, Trust и Phantom откроют приложение напрямую. Rabby использует WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust и Phantom откроют приложение напрямую. Rabby использует WalletConnect.",
+    "signIn": "Войти",
+    "password": "Пароль",
+    "sendCode": "Отправить код",
+    "usePasswordInstead": "Использовать пароль",
+    "useCodeInstead": "Прислать код на почту"
   },
   "careers": {
     "title": "Карьера в DeHub",

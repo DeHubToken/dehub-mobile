@@ -1515,7 +1515,12 @@
     "or": "ياكى",
     "termsNotice": "داۋاملاشتۇرسىڭىز خىزمەت شەرتلىرى ۋە شەخسىيەت سىياسىتىمىزنى قوبۇل قىلغان بولىسىز",
     "walletInfoDesktop": "بىخەتەر كىرىش ئۈچۈن ھەميانىڭىزنى ئۇلاڭ",
-    "walletInfoMobile": "MetaMask، Trust ۋە Phantom ئەپلىرىنى بىۋاسىتە ئاچىدۇ."
+    "walletInfoMobile": "MetaMask، Trust ۋە Phantom ئەپلىرىنى بىۋاسىتە ئاچىدۇ.",
+    "signIn": "كىرىش",
+    "password": "پارول",
+    "sendCode": "كود ئەۋەتىش",
+    "usePasswordInstead": "ئۇنىڭ ئورنىغا پارول ئىشلىتىش",
+    "useCodeInstead": "ئۇنىڭ ئورنىغا ماڭا ئېلخەتتە كود ئەۋەتىڭ"
   },
   "careers": {
     "title": "DeHub خىزمەتلىرى",

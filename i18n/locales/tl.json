@@ -1910,7 +1910,12 @@
     "or": "or",
     "termsNotice": "By continuing, you agree to our Terms of Service and Privacy Policy",
     "walletInfoDesktop": "Connect your wallet to sign in securely",
-    "walletInfoMobile": "MetaMask, Trust & Phantom will open their app directly. Rabby will use WalletConnect."
+    "walletInfoMobile": "MetaMask, Trust & Phantom will open their app directly. Rabby will use WalletConnect.",
+    "signIn": "Mag-sign in",
+    "password": "Password",
+    "sendCode": "Ipadala ang code",
+    "usePasswordInstead": "Gumamit na lang ng password",
+    "useCodeInstead": "Padalhan na lang ako ng code sa email"
   },
   "careers": {
     "title": "Careers at DeHub",
