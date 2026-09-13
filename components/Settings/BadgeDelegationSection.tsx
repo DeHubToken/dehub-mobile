@@ -8,15 +8,16 @@
  * badge:
  *
  * - You get **one slot per rung climbed**, not one flat.
- * - What you hand out is **your own tier** — the person you lend to wears the
- *   badge you wear.
+ * - What you hand out is **any tier you have unlocked**, up to your own — a
+ *   Megalodon can lend a Crab. Never one above your own. A smaller badge
+ *   still spends a whole slot, because slots count relationships.
  * - A returned slot is not free straight away.
  *
  * A lent badge draws identically to an earned one everywhere else in the app —
  * that is the point, it is the same influence. This panel and the patron chip
  * on a profile are the only two places that say otherwise.
  */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, Image, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import Icon from '../ui/Icon';
@@ -80,6 +81,20 @@ const BadgeDelegationSection: React.FC = () => {
   const revoke = useRevokeDelegation();
   const acceptance = useSetDelegationAcceptance();
   const [recipient, setRecipient] = useState('');
+  // Which unlocked badge to lend. Null until the summary arrives, and reset to
+  // the grantor's own tier whenever the ceiling moves (a chain read can
+  // re-tier them mid-session), so the picker never holds a tier they no
+  // longer have.
+  const [tier, setTier] = useState<string | null>(null);
+  const grantableTiers = data?.grantableTiers?.length
+    ? data.grantableTiers
+    : data?.grantableTier
+      ? [data.grantableTier]
+      : [];
+  const ceiling = data?.grantableTier ?? null;
+  useEffect(() => {
+    setTier(ceiling);
+  }, [ceiling]);
 
   if (isLoading || !data) return null;
 
@@ -89,7 +104,8 @@ const BadgeDelegationSection: React.FC = () => {
   const submit = () => {
     const to = recipient.trim();
     if (!to || grant.isPending) return;
-    grant.mutate(to, { onSuccess: () => setRecipient('') });
+    const chosen = tier && grantableTiers.includes(tier) ? tier : null;
+    grant.mutate({ to, tier: chosen }, { onSuccess: () => setRecipient('') });
   };
 
   return (
@@ -98,7 +114,7 @@ const BadgeDelegationSection: React.FC = () => {
       icon="Award"
       note={
         data.ownTier
-          ? t('settings.badgeDelegationNote')
+          ? t('settings.badgeDelegationNoteAny')
           : t('settings.badgeDelegationNoBadge')
       }
     >
@@ -123,8 +139,8 @@ const BadgeDelegationSection: React.FC = () => {
               tier: data.ownTier,
               free: slotsFree,
             })}{' '}
-            {t('settings.badgeDelegationLends', { tier: data.grantableTier ?? data.ownTier })}{' '}
-            {t('settings.badgeDelegationRaisesOnly')}
+            {t('settings.badgeDelegationLendsAny', { tier: data.grantableTier ?? data.ownTier })}{' '}
+            {t('settings.badgeDelegationRaisesOnlyTier')}
           </Text>
         ) : (
           <Text className="text-theme-neutrals-400 text-xs leading-5">
@@ -132,6 +148,42 @@ const BadgeDelegationSection: React.FC = () => {
           </Text>
         )}
       </View>
+
+      {data.grantableTier && grantableTiers.length > 1 ? (
+        <>
+          <Divider />
+          <View className="px-4 pt-3 pb-1">
+            <Text className="text-theme-neutrals-500 text-[10px] uppercase tracking-wide mb-2">
+              {t('settings.badgeDelegationPickTier')}
+            </Text>
+            <View className="flex-row flex-wrap" accessibilityRole="radiogroup">
+              {grantableTiers.map(name => {
+                const selected = name === tier;
+                const source = badgeImageFor(name);
+                return (
+                  <TouchableOpacity
+                    key={name}
+                    onPress={() => setTier(name)}
+                    disabled={!canGrant || grant.isPending}
+                    activeOpacity={0.7}
+                    accessibilityRole="radio"
+                    accessibilityState={{ selected, checked: selected }}
+                    accessibilityLabel={name}
+                    className={`flex-row items-center px-3 py-2 mr-2 mb-2 rounded-xl border ${
+                      selected ? 'bg-white border-white' : 'bg-theme-neutrals-700/50 border-theme-neutrals-700'
+                    } ${!canGrant ? 'opacity-40' : ''}`}
+                  >
+                    {source ? <Image source={source} className="w-4 h-4 mr-1.5" /> : null}
+                    <Text className={`text-xs ${selected ? 'text-[#09090B] font-medium' : 'text-white'}`}>
+                      {name}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </View>
+        </>
+      ) : null}
 
       {data.grantableTier ? (
         <>
