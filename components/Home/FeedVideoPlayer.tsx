@@ -41,6 +41,7 @@ import { useDataSaver } from "../../hooks/useDataSaver";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
 import { useMediaAspect } from "../../hooks/useMediaAspect";
+import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { SEGMENT_LABELS } from "../../services/video-segments.service";
 import { toastInfo } from "../../libs";
 import { movedBeyondMediaTapSlop } from "../../libs/media-gesture";
@@ -108,6 +109,8 @@ interface FeedVideoPlayerProps {
   hideControls?: boolean;
   /** Mounted by a tap on the poster that stood in for this card: start at once. */
   startOnMount?: boolean;
+  /** The poster already waited before allocating this native player. */
+  autoplaySettled?: boolean;
   /** The person tapped play here, so the wrapper must keep this card mounted. */
   onUserStarted?: () => void;
   onPictureInPictureChange?: (active: boolean) => void;
@@ -201,6 +204,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   creator,
   hideControls = false,
   startOnMount = false,
+  autoplaySettled = false,
   onUserStarted,
   onPictureInPictureChange,
 }) => {
@@ -310,7 +314,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // (and then released) a native player + network prepare for every video card
   // the viewport passed over — most of the cost of scrolling a video feed, and
   // it downloaded video for Data Saver users who autoplay would never serve.
-  const [sourceRequested, setSourceRequested] = useState(false);
+  // The wrapper has already established dwell or an explicit tap. Seed the
+  // source so mounting doesn't create an empty player and immediately replace
+  // it with a second native instance when playback is requested.
+  const [sourceRequested, setSourceRequested] = useState(startOnMount || autoplaySettled);
   // A play intent waiting for the deferred source to reach readyToPlay.
   const pendingPlayRef = useRef(false);
 
@@ -625,9 +632,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       // The source may already be attached and ready — sourceRequested never
       // went false — in which case nothing else will carry this intent.
       flushPendingPlay();
-    }, AUTOPLAY_DELAY);
+    }, autoplaySettled ? 0 : AUTOPLAY_DELAY);
     return () => { if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; } };
-  }, [canPlay, isVisible, isAutoplayActive, hasStartedAutoplay, liteMode, autoplayEnabled, flushPendingPlay, clearHideTimer, beginStarting, endStarting]);
+  }, [canPlay, isVisible, isAutoplayActive, hasStartedAutoplay, liteMode, autoplayEnabled, autoplaySettled, flushPendingPlay, clearHideTimer, beginStarting, endStarting]);
 
   // Autoplay is exclusive: when the scroll hands it to another card, a card
   // that started ITSELF gives up the screen and its native player. One the
@@ -1488,7 +1495,11 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   const needsChrome =
     isContentGated || transcodingStatus === "pending" || transcodingStatus === "on" || transcodingStatus === "failed";
   const autoplayHere = isVisible && isAutoplayActive && autoplayEnabled && !liteMode;
-  const mountPlayer = inPictureInPicture || (isVisible && (wanted || autoplayHere || needsChrome));
+  // Waiting inside the active component is too late: useVideoPlayer(null)
+  // still allocates an ExoPlayer. Keep passing cards as posters for the whole
+  // dwell window; taps and picture-in-picture bypass that wait.
+  const autoplaySettled = useSettledAutoplay(autoplayHere, videoUrl, AUTOPLAY_DELAY);
+  const mountPlayer = inPictureInPicture || (isVisible && (wanted || autoplaySettled || needsChrome));
 
   // Off screen, the tap is forgotten: coming back autoplays or shows the
   // poster, the same as any other card.
@@ -1512,7 +1523,8 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
       isVisible={isVisible || inPictureInPicture}
       isAutoplayActive={isAutoplayActive || inPictureInPicture}
       onPictureInPictureChange={setInPictureInPicture}
-      startOnMount={wanted && !autoplayHere}
+      startOnMount={wanted}
+      autoplaySettled={autoplaySettled}
       onUserStarted={markWanted}
     />
   ) : (
