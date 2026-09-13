@@ -11,6 +11,7 @@ import {
   fetchMyDelegations,
   grantDelegation,
   revokeDelegation,
+  setDelegationAcceptance,
   type BadgeDelegationSummary,
 } from '../services/badge-delegation.service';
 import { t } from 'i18next';
@@ -52,6 +53,35 @@ export function useGrantDelegation() {
     },
     onError: (error: Error) => {
       toastError(error?.message || t('settings.badgeDelegationGrantFailed'));
+    },
+  });
+}
+
+/**
+ * Accept lent badges, or stop accepting them.
+ *
+ * Invalidates the badge caches as well as the summary: switching it off ends
+ * the loan being worn, so the account's own badge has to be redrawn wherever
+ * the lent one was showing.
+ */
+export function useSetDelegationAcceptance() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (accepts: boolean) => setDelegationAcceptance(accepts),
+    onSuccess: (result) => {
+      toastSuccess(
+        result.accepts
+          ? t('settings.badgeDelegationAcceptOn')
+          : result.endedWith
+            ? t('settings.badgeDelegationAcceptOffEnded')
+            : t('settings.badgeDelegationAcceptOff'),
+      );
+      queryClient.invalidateQueries({ queryKey: BADGE_DELEGATIONS_KEY });
+      queryClient.invalidateQueries({ queryKey: ['badge-balance'] });
+    },
+    onError: (error: Error) => {
+      toastError(error?.message || t('settings.badgeDelegationAcceptFailed'));
     },
   });
 }

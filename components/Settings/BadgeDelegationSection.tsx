@@ -20,11 +20,12 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, Image, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import Icon from '../ui/Icon';
-import { SettingsSection, Divider } from './SettingsPrimitives';
+import { SettingsSection, Divider, SettingsToggleRow } from './SettingsPrimitives';
 import {
   useBadgeDelegations,
   useGrantDelegation,
   useRevokeDelegation,
+  useSetDelegationAcceptance,
 } from '../../hooks/useBadgeDelegations';
 import { badgeImageFor, truncateAddress } from '../../libs';
 import type { DelegationEntry } from '../../services/badge-delegation.service';
@@ -77,6 +78,7 @@ const BadgeDelegationSection: React.FC = () => {
   const { data, isLoading } = useBadgeDelegations();
   const grant = useGrantDelegation();
   const revoke = useRevokeDelegation();
+  const acceptance = useSetDelegationAcceptance();
   const [recipient, setRecipient] = useState('');
 
   if (isLoading || !data) return null;
@@ -100,6 +102,19 @@ const BadgeDelegationSection: React.FC = () => {
           : t('settings.badgeDelegationNoBadge')
       }
     >
+      {/* The standing no. First in the panel because it governs everything
+          below it, and because somebody arriving here from a notification
+          about a badge they did not ask for is looking for exactly this. */}
+      <SettingsToggleRow
+        icon="Award"
+        label={t('settings.badgeDelegationAccept')}
+        description={t('settings.badgeDelegationAcceptHint')}
+        value={data.acceptsDelegations}
+        onValueChange={next => acceptance.mutate(next)}
+        disabled={acceptance.isPending}
+      />
+      <Divider />
+
       <View className="px-4 py-3.5">
         {data.ownTier ? (
           <Text className="text-theme-neutrals-400 text-xs leading-5">
@@ -108,7 +123,8 @@ const BadgeDelegationSection: React.FC = () => {
               tier: data.ownTier,
               free: slotsFree,
             })}{' '}
-            {t('settings.badgeDelegationLends', { tier: data.grantableTier ?? data.ownTier })}
+            {t('settings.badgeDelegationLends', { tier: data.grantableTier ?? data.ownTier })}{' '}
+            {t('settings.badgeDelegationRaisesOnly')}
           </Text>
         ) : (
           <Text className="text-theme-neutrals-400 text-xs leading-5">
