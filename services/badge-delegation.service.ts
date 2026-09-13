@@ -47,8 +47,13 @@ export interface BadgeDelegationSummary {
   slots: number;
   /** Slots in use, counting ones still cooling down after a revoke. */
   slotsUsed: number;
-  /** Tier this account may hand out, or null if it may not. */
+  /** Highest tier this account may hand out, or null if it may not. */
   grantableTier: string | null;
+  /**
+   * Every tier this account may hand out, bottom first: its own and each rung
+   * beneath it. Empty when it may not lend. Older servers omit it.
+   */
+  grantableTiers?: string[];
   granted: DelegationEntry[];
   received: DelegationEntry | null;
   /**
@@ -86,10 +91,13 @@ export async function fetchMyDelegations(): Promise<BadgeDelegationSummary> {
  */
 export async function grantDelegation(
   to: string,
+  tier?: string | null,
 ): Promise<{ tier: string; slotsRemaining: number }> {
+  // `tier` picks which unlocked badge to lend. Left out, the server lends the
+  // grantor's own — so a client that never sends it behaves as before.
   const response = await apiClient.fetch<{ result: { tier: string; slotsRemaining: number } }>(
     '/badge/delegations',
-    { method: 'POST', body: { to }, isAuthRequired: true },
+    { method: 'POST', body: tier ? { to, tier } : { to }, isAuthRequired: true },
   );
   return response.result;
 }

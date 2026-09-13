@@ -74,6 +74,16 @@ describe('services/badge-delegation.service', () => {
     );
   });
 
+  it('grantDelegation sends the chosen tier when one is picked', async () => {
+    mockFetch.mockResolvedValueOnce({ result: { tier: 'Crab', slotsRemaining: 7 } });
+
+    await expect(grantDelegation('someone', 'Crab')).resolves.toEqual({ tier: 'Crab', slotsRemaining: 7 });
+    expect(mockFetch).toHaveBeenCalledWith(
+      '/badge/delegations',
+      expect.objectContaining({ method: 'POST', body: { to: 'someone', tier: 'Crab' } }),
+    );
+  });
+
   it('revokeDelegation encodes the counterparty into the path', async () => {
     mockFetch.mockResolvedValueOnce({ result: { ended: true } });
 
