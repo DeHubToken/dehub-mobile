@@ -6,7 +6,7 @@ describe('autoplay resource dwell', () => {
   afterEach(() => jest.useRealTimers());
 
   it('never allocates for candidates passed during a fling', () => {
-    const { result, rerender } = renderHook(
+    const { result, rerender } = renderHook<boolean, { eligible: boolean; key: string }>(
       ({ eligible, key }) => useSettledAutoplay(eligible, key, 400),
       { initialProps: { eligible: true, key: 'a' } },
     );
@@ -21,7 +21,7 @@ describe('autoplay resource dwell', () => {
   });
 
   it('allows a settled candidate and resets when it leaves or is replaced', () => {
-    const { result, rerender } = renderHook(
+    const { result, rerender } = renderHook<boolean, { eligible: boolean; key: string }>(
       ({ eligible, key }) => useSettledAutoplay(eligible, key, 400),
       { initialProps: { eligible: true, key: 'a' } },
     );
