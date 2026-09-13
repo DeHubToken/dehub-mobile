@@ -137,13 +137,13 @@ export const POVR_TIERS: PovrTierInfo[] = [
   { name: "Tortoise", min: 100_000, cpmUsd: 450 },
   { name: "Cobra", min: 250_000, cpmUsd: 800 },
   { name: "Octopus", min: 500_000, cpmUsd: 1_250 },
-  { name: "Crocodite", min: 1_000_000, cpmUsd: 2_000 },
+  { name: "Crocodile", min: 1_000_000, cpmUsd: 2_000 },
   { name: "Dolphin", min: 2_000_000, cpmUsd: 3_000 },
   { name: "Tiger Shark", min: 3_000_000, cpmUsd: 4_000 },
   { name: "Killer Whale", min: 5_000_000, cpmUsd: 5_500 },
   { name: "Great White Shark", min: 10_000_000, cpmUsd: 8_750 },
   { name: "Blue Whale", min: 25_000_000, cpmUsd: 16_000 },
-  { name: "Meglodon", min: 50_000_000, cpmUsd: 25_000 },
+  { name: "Megalodon", min: 50_000_000, cpmUsd: 25_000 },
 ];
 
 export const NO_BADGE_TIER = { name: "none", label: "No Badge", cpmUsd: 10 };

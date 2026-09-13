@@ -329,7 +329,7 @@ describe('libs/misc', () => {
     });
 
     it('returns highest matching badge', () => {
-      expect(getBadgeName(50_000_000)).toBe('Meglodon');
+      expect(getBadgeName(50_000_000)).toBe('Megalodon');
       expect(getBadgeName(5_000_000)).toBe('Killer Whale');
     });
 
@@ -345,12 +345,12 @@ describe('libs/misc', () => {
     // Web has always drawn a granted account's tier; mobile drew their
     // balance's tier, so the same person wore two different badges.
     it('draws the granted tier regardless of balance', () => {
-      expect(getBadgeName(0, { username: 'maldoteth' })).toBe('Meglodon');
-      expect(getBadgeName(10_000, { username: '@Maldoteth' })).toBe('Meglodon');
+      expect(getBadgeName(0, { username: 'maldoteth' })).toBe('Megalodon');
+      expect(getBadgeName(10_000, { username: '@Maldoteth' })).toBe('Megalodon');
     });
 
     it('draws the granted tier even with no readable balance', () => {
-      expect(getBadgeName('not-a-number', { username: 'maldoteth' })).toBe('Meglodon');
+      expect(getBadgeName('not-a-number', { username: 'maldoteth' })).toBe('Megalodon');
     });
 
     it('leaves an ungranted handle on the ladder', () => {
@@ -396,8 +396,8 @@ describe('libs/misc', () => {
 
     it.each([
       'Crab', 'Lobster', 'Piranha', 'Tortoise', 'Cobra', 'Octopus',
-      'Crocodite', 'Dolphin', 'Tiger Shark', 'Killer Whale',
-      'Great White Shark', 'Blue Whale', 'Meglodon',
+      'Crocodile', 'Dolphin', 'Tiger Shark', 'Killer Whale',
+      'Great White Shark', 'Blue Whale', 'Megalodon',
     ])('keeps the %s artwork raised inside an explicit text line height', (tier) => {
       const source = badgeImageFor(tier);
       expect(source).toBeDefined();

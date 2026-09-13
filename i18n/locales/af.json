@@ -96,13 +96,13 @@
       "tortoise": "Skilpad",
       "cobra": "Kobra",
       "octopus": "Seekat",
-      "crocodite": "Krokodil",
+      "crocodile": "Krokodil",
       "dolphin": "Dolfyn",
       "tigerShark": "Tierhaai",
       "killerWhale": "Moordwalvis",
       "greatWhiteShark": "Grootwithaai",
       "blueWhale": "Blouwalvis",
-      "meglodon": "Megalodon"
+      "megalodon": "Megalodon"
     }
   },
   "leaderboard": {

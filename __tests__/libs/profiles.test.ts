@@ -283,7 +283,7 @@ describe("device profile limit", () => {
 
   it("adds a slot per badge tier", () => {
     expect(getProfileAllowance([{ badgeBalance: 10_000 }]).maxProfiles).toBe(3); // Crab
-    expect(getProfileAllowance([{ badgeBalance: 50_000_000 }]).maxProfiles).toBe(15); // Meglodon
+    expect(getProfileAllowance([{ badgeBalance: 50_000_000 }]).maxProfiles).toBe(15); // Megalodon
   });
 
   it("prices the device off the BEST tier saved, not the newest", () => {
@@ -306,7 +306,7 @@ describe("device profile limit", () => {
 
   it("honours the username overrides web applies", () => {
     expect(getProfileAllowance([{ username: "maldoteth" }]).maxProfiles).toBe(15);
-    expect(getProfileAllowance([{ username: "@mal" }]).tierName).toBe("Meglodon");
+    expect(getProfileAllowance([{ username: "@mal" }]).tierName).toBe("Megalodon");
   });
 
   it("never exceeds the storage ceiling", () => {
