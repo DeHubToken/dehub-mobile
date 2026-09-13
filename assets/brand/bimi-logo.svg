@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny-ps"
+     width="512" height="512" viewBox="0 0 512 512">
+  <title>DeHub</title>
+  <desc>DeHub brand mark on a white square background</desc>
+  <rect width="512" height="512" fill="#ffffff"/>
+  <g fill="none" stroke="#090a0b" stroke-width="52" stroke-linecap="round">
+    <path d="M112 176v116c0 70 39 128 103 150"/>
+    <path d="M400 176v116c0 70-39 128-103 150"/>
+    <path d="M256 86v213"/>
+  </g>
+</svg>
+
