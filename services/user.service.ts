@@ -153,6 +153,16 @@ export interface NotificationItem {
     planId?: string;
     followId?: string;
     quoteTokenId?: number;
+    /** Badge lending: the tier that was lent, as it stood on the day. */
+    tier?: string;
+    /** Which end of that loan the reader was on. */
+    role?: 'grantor' | 'grantee';
+    /**
+     * Why a loan ended — 'grantor'/'grantee' for a decision, 'slots'/'unbadged'
+     * for one that lapsed when the grantor's balance fell. The copy differs:
+     * nobody chose a lapse, so nobody should be blamed for it.
+     */
+    reason?: string;
   };
 }
 

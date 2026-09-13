@@ -1119,6 +1119,7 @@
     "likedCommentPreview": "{{name}} şîroveya te hez kir: \"{{preview}}\"",
     "andOthersLikedComment": "{{first}} û {{others}} şîroveya te hez kirin",
     "andOthersLikedCommentPreview": "{{first}} û {{others}} şîroveya te hez kirin: \"{{preview}}\"",
+    "badgeGenericTier": "نیشانەیەکە دەدرێ لە بەرۆک - باج",
     "postRemoved": "Şandiya te hate rakirin",
     "newNotification": "Agahdariya nû",
     "oneOther": "1 yê din",

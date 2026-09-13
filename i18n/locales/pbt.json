@@ -1166,6 +1166,7 @@
     "likedCommentPreview": "{{name}} ستاسو نظر خوښ کړ: \"{{preview}}\"",
     "andOthersLikedComment": "{{first}} او {{others}} ستاسو نظر خوښ کړ",
     "andOthersLikedCommentPreview": "{{first}} او {{others}} ستاسو نظر خوښ کړ: \"{{preview}}\"",
+    "badgeGenericTier": "د ټیګونو ارشیف:",
     "postRemoved": "ستاسو پوسټ لرې شو",
     "newNotification": "نوې خبرتیا",
     "oneOther": "۱ بل",

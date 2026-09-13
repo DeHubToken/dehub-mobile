@@ -1166,6 +1166,7 @@
     "likedCommentPreview": "{{name}} तोहर टिप्पणी लाइक कइलक: \"{{preview}}\"",
     "andOthersLikedComment": "{{first}} आ {{others}} तोहर टिप्पणी लाइक कइलक",
     "andOthersLikedCommentPreview": "{{first}} आ {{others}} तोहर टिप्पणी लाइक कइलक: \"{{preview}}\"",
+    "badgeGenericTier": "हल्दी, हल्दी, बैग",
     "postRemoved": "तोहर पोस्ट हटावल गेल",
     "newNotification": "नया सूचना",
     "oneOther": "१ अउर",
