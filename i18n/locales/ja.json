@@ -2971,5 +2971,17 @@
     "followAccepted": "{{name}}さんがあなたのフォローリクエストを承認しました",
     "signalFlare": "{{name}}が信号フレアを送信しました",
     "newMessage": "{{name}}さんからメッセージが届いています"
+  },
+  "audioPost": {
+    "popOut": "ポップアウト—ブラウジング中も聴き続けましょう",
+    "closeCornerPlayer": "コーナープレーヤーを閉じます",
+    "cornerPlayer": "オーディオ投稿の再生",
+    "stopAndClose": "プレーヤーを停止して閉じます",
+    "untitled": "音声投稿",
+    "creator": "DeHubクリエイター",
+    "play": "再生",
+    "pause": "一時停止",
+    "listens_one": "{{count}}回再生",
+    "listens_other": "{{count}}回再生"
   }
 }

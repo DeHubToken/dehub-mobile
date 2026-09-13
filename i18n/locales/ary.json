@@ -2929,5 +2929,17 @@
     "followAccepted": "قبل {{name}} طلبك للمتابعة",
     "signalFlare": "أرسل {{name}} إشارة مضيئة",
     "newMessage": "أرسل لك {{name}} رسالة"
+  },
+  "audioPost": {
+    "popOut": "انبثق - استمر في الاستماع أثناء التصفح",
+    "closeCornerPlayer": "أغلق لاعب الزاوية",
+    "cornerPlayer": "تشغيل منشور الصوت",
+    "stopAndClose": "إيقاف اللاعب وإغلاقه",
+    "untitled": "منشور صوتي",
+    "creator": "منشئ DeHub",
+    "play": "تشغيل",
+    "pause": "إيقاف مؤقت",
+    "listens_one": "{{count}} استمع",
+    "listens_other": "{{count}} يستمع"
   }
 }

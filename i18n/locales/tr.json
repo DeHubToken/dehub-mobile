@@ -2967,5 +2967,17 @@
     "followAccepted": "{{name}} takip isteğini kabul etti",
     "signalFlare": "{{name}} bir Sinyal Fişeği gönderdi",
     "newMessage": "{{name}} sana bir mesaj gönderdi"
+  },
+  "audioPost": {
+    "popOut": "Açılır pencere — göz atarken dinlemeye devam edin",
+    "closeCornerPlayer": "Köşedeki oyuncuyu kapat",
+    "cornerPlayer": "Ses sonrası oynatma",
+    "stopAndClose": "Oynatıcıyı durdurun ve kapatın",
+    "untitled": "Sesli gönderi",
+    "creator": "DeHub yaratıcısı",
+    "play": "Oynat",
+    "pause": "Duraklat",
+    "listens_one": "{{count}} dinlenme",
+    "listens_other": "{{count}} dinlenme"
   }
 }

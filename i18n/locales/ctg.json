@@ -2996,5 +2996,17 @@
     "followAccepted": "{{name}} আপনার ফলো রিকোয়েস্ট গ্রহণ করেছে",
     "signalFlare": "{{name}} একটি সিগন্যাল ফ্লেয়ার পাঠিয়েছে",
     "newMessage": "{{name}} আপনাকে একটি বার্তা পাঠিয়েছে"
+  },
+  "audioPost": {
+    "popOut": "পপ আউট — ব্রাউজ করার সময় শুনতে থাকুন",
+    "closeCornerPlayer": "কোণার প্লেয়ার বন্ধ করুন",
+    "cornerPlayer": "অডিও পোস্ট প্লেব্যাক",
+    "stopAndClose": "প্লেয়ার বন্ধ করুন এবং থামান",
+    "untitled": "অডিও পোস্ট",
+    "creator": "ডিহাব ক্রিয়েটর",
+    "play": "চালান",
+    "pause": "থামান",
+    "listens_one": "{{count}} শুনুন",
+    "listens_other": "{{count}} শোনে"
   }
 }

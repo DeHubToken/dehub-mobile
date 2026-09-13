@@ -3085,5 +3085,16 @@
     "followAccepted": "Tinanggap ni {{name}} ang iyong follow request",
     "signalFlare": "Nagpadala si {{name}} ng Signal Flare",
     "newMessage": "Nagpadala sa iyo ng mensahe si {{name}}"
+  },
+  "audioPost": {
+    "popOut": "Mag - pop out — patuloy na makinig habang nagba - browse ka",
+    "closeCornerPlayer": "Isara ang player ng sulok",
+    "cornerPlayer": "Pag - playback ng audio post",
+    "stopAndClose": "Ihinto at isara ang player",
+    "untitled": "Email *",
+    "creator": "Tagapaglikha ng DeHub",
+    "play": "Maglaro",
+    "pause": "I - pause",
+    "listens_one": "{{count}} pakinggan"
   }
 }

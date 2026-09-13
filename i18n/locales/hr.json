@@ -2903,5 +2903,17 @@
     "followAccepted": "{{name}} prihvaća vaš zahtjev za praćenje",
     "signalFlare": "{{name}} šalje signalnu baklju",
     "newMessage": "{{name}} vam šalje poruku"
+  },
+  "audioPost": {
+    "popOut": "Iskočite — nastavite slušati dok pregledavate",
+    "closeCornerPlayer": "Zatvori igrača u kutu",
+    "cornerPlayer": "Reprodukcija audio objave",
+    "stopAndClose": "Zaustavite i zatvorite uređaj",
+    "untitled": "Audio objava",
+    "creator": "Kreator na DeHubu",
+    "play": "Pokreni",
+    "pause": "Pauziraj",
+    "listens_one": "{{count}} slušaj",
+    "listens_other": "{{count}} sluša"
   }
 }

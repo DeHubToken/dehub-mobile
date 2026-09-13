@@ -2902,5 +2902,17 @@
     "followAccepted": "{{name}} نے آپ کی فالو کی درخواست قبول کر لی ہے",
     "signalFlare": "{{name}} نے سگنل فلیئر بھیجا",
     "newMessage": "{{name}} نے آپ کو ایک پیغام بھیجا ہے"
+  },
+  "audioPost": {
+    "popOut": "پاپ آؤٹ — براؤز کرتے وقت سنتے رہیں",
+    "closeCornerPlayer": "کارنر پلیئر بند کریں",
+    "cornerPlayer": "آڈیو پوسٹ پلے بیک",
+    "stopAndClose": "کھلاڑی کو روکیں اور بند کریں",
+    "untitled": "آڈیو پوسٹ",
+    "creator": "ڈی ہب تخلیق کار",
+    "play": "کھیلیں",
+    "pause": "موقوف کریں",
+    "listens_one": "{{count}} سنیں",
+    "listens_other": "{{count}} فہرستیں"
   }
 }

@@ -2865,5 +2865,17 @@
     "followAccepted": "{{name}} ຮັບເອົາ ຄໍາ ຮ້ອງຂໍຕິດຕາມຂອງທ່ານ",
     "signalFlare": "{{name}} ສົ່ງສັນຍານ Flare",
     "newMessage": "{{name}} ສົ່ງຂໍ້ຄວາມຫາທ່ານ"
+  },
+  "audioPost": {
+    "popOut": "Pop ອອກ — ສືບຕໍ່ຟັງໃນຂະນະທີ່ທ່ານ browse",
+    "closeCornerPlayer": "ປິດເຄື່ອງຫຼີ້ນມຸມ",
+    "cornerPlayer": "ການປ້ອນໂພສສຽງ",
+    "stopAndClose": "ຢຸດແລະປິດເຄື່ອງຫຼີ້ນ",
+    "untitled": "ໂພສສຽງ",
+    "creator": "ຜູ້ສ້າງ DeHub",
+    "play": "ຫຼິ້ນ",
+    "pause": "ພັກຜ່ອນ",
+    "listens_one": "{{count}} ຮັບຟັງ",
+    "listens_other": "{{count}} ຟັງ"
   }
 }

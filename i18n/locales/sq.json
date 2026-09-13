@@ -2903,5 +2903,16 @@
     "followAccepted": "{{name}} e pranoi kërkesën tënde për ndjekje",
     "signalFlare": "{{name}} dërgoi një ndezje të sinjalit",
     "newMessage": "{{name}} të dërgoi një mesazh"
+  },
+  "audioPost": {
+    "popOut": "Dil jashtë - vazhdo të dëgjosh ndërsa shfleton",
+    "closeCornerPlayer": "Mbyll lojtarin e këndit",
+    "cornerPlayer": "Riprodhimi i postimeve audio",
+    "stopAndClose": "Ndalo dhe mbyll lojtarin",
+    "untitled": "Postim audio",
+    "creator": "Krijuesi i DeHub",
+    "play": "Luaj",
+    "pause": "Ndalo",
+    "listens_one": "{{count}} dëgjo"
   }
 }

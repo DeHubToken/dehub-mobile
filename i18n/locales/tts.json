@@ -2862,5 +2862,17 @@
     "followAccepted": "{{name}} ยอมรับคำขอติดตามของคุณ",
     "signalFlare": "{{name}} ส่ง Signal Flare ให้คุณ",
     "newMessage": "{{name}} ส่งข้อความให้คุณ"
+  },
+  "audioPost": {
+    "popOut": "ป๊อปเอาท์ — ฟังต่อไปขณะที่คุณเรียกดู",
+    "closeCornerPlayer": "ปิดผู้เล่นมุม",
+    "cornerPlayer": "การเล่นโพสต์เสียง",
+    "stopAndClose": "หยุดและปิดผู้เล่น",
+    "untitled": "โพสต์เสียง",
+    "creator": "ผู้สร้าง DeHub",
+    "play": "เล่น",
+    "pause": "หยุดชั่วคราว",
+    "listens_one": "{{count}} ฟัง",
+    "listens_other": "{{count}} ฟัง"
   }
 }

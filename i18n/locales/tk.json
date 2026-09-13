@@ -2874,5 +2874,16 @@
     "photoLibrary": "Foto kitaphanasy",
     "videoFiles": "Faýllaryň videolary",
     "fileError": "Ol videony bilmeýärdi. Lütfen başga bir faýly synap görüň."
+  },
+  "audioPost": {
+    "popOut": "Pop out — diňleýänçäňiz diňläň",
+    "closeCornerPlayer": "Kornel oýnaýjyny ýap",
+    "cornerPlayer": "Saýlanan posty gaýtaryp alyň",
+    "stopAndClose": "Durup, oýunçyny ýap",
+    "untitled": "Sesli post",
+    "creator": "DeHub Ýaradyjy",
+    "play": "Oynat",
+    "pause": "Galanlar",
+    "listens_one": "{{count}} gulak asyň"
   }
 }

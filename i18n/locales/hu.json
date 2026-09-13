@@ -2907,5 +2907,17 @@
     "followAccepted": "{{name}} elfogadta a követési kérésedet",
     "signalFlare": "{{name}} jelzőrakétát küldött",
     "newMessage": "{{name}} üzenetet küldött neked"
+  },
+  "audioPost": {
+    "popOut": "Pattanj ki — hallgasd tovább böngészés közben",
+    "closeCornerPlayer": "Zárja be a saroklejátszót",
+    "cornerPlayer": "Audio bejegyzés lejátszása",
+    "stopAndClose": "Állítsa le és zárja be a lejátszót",
+    "untitled": "Hangbejegyzés",
+    "creator": "DeHub alkotója",
+    "play": "Játék",
+    "pause": "Szüneteltetés",
+    "listens_one": "{{count}} figyelj",
+    "listens_other": "{{count}} figyel"
   }
 }

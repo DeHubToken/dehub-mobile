@@ -71,6 +71,7 @@ import StagesModalsHost from "./components/Stages/StagesModalsHost";
 import StageMiniPlayer from "./components/Stages/StageMiniPlayer";
 import StageRecordingMiniPlayer from "./components/Stages/StageRecordingMiniPlayer";
 import RadioMiniPlayer from "./components/Music/RadioMiniPlayer";
+import AudioPostMiniPlayer from "./components/Home/AudioPostMiniPlayer";
 import { AppKit } from "@reown/appkit-ethers5-react-native";
 import { isWalletConnectAvailable } from "./config/reown.config";
 import { markBootRevealed } from "./libs/bootReveal";
@@ -383,6 +384,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                         <StageMiniPlayer />
                         <StageRecordingMiniPlayer />
                         <RadioMiniPlayer />
+                        <AudioPostMiniPlayer />
                       </CallProvider>
                     </MessagingProvider>
                   </UserProfileSheetProvider>

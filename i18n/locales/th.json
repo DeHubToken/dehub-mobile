@@ -2940,5 +2940,17 @@
     "followAccepted": "{{name}} ยอมรับคำขอติดตามของคุณแล้ว",
     "signalFlare": "{{name}} ส่งสัญญาณพลุ",
     "newMessage": "{{name}} ส่งข้อความถึงคุณ"
+  },
+  "audioPost": {
+    "popOut": "โผล่ออกมา — ฟังต่อไปในขณะที่คุณท่องเว็บ",
+    "closeCornerPlayer": "ปิดตัวเล่นมุม",
+    "cornerPlayer": "การเล่นโพสต์เสียง",
+    "stopAndClose": "หยุดและปิดตัวเล่น",
+    "untitled": "โพสต์เสียง",
+    "creator": "ครีเอเตอร์ DeHub",
+    "play": "เล่น",
+    "pause": "หยุดชั่วคราว",
+    "listens_one": "{{count}} ฟัง",
+    "listens_other": "{{count}} ฟัง"
   }
 }

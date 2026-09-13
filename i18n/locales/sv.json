@@ -2907,5 +2907,17 @@
     "followAccepted": "{{name}} accepterade din följarförfrågan",
     "signalFlare": "{{name}} skickade ett signalutbrott",
     "newMessage": "{{name}} skickade ett meddelande till dig"
+  },
+  "audioPost": {
+    "popOut": "Kom ut — fortsätt lyssna medan du surfar",
+    "closeCornerPlayer": "Stäng hörnspelaren",
+    "cornerPlayer": "Uppspelning av ljudinlägg",
+    "stopAndClose": "Stoppa och stäng spelaren",
+    "untitled": "Ljudinlägg",
+    "creator": "DeHub-skapare",
+    "play": "Spela",
+    "pause": "Pausa",
+    "listens_one": "{{count}} lyssna",
+    "listens_other": "{{count}} lyssnar"
   }
 }

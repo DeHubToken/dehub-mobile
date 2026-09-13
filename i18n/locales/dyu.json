@@ -2857,5 +2857,11 @@
     "followAccepted": "{{name}} Ka sɔn i ka fɔta ma",
     "signalFlare": "{{name}} send a signal flare",
     "newMessage": "{{name}} send you a message"
+  },
+  "audioPost": {
+    "popOut": "Aw ye to ka mɛnni kɛ, aw ye to ka mɛnni kɛ",
+    "cornerPlayer": "# Dɔgɔtɔrɔ tɛ siginidenw ka kan ka min fɔ",
+    "stopAndClose": "I ka kan ka taga ni a ye yɔrɔ dɔ la min ka ɲi ka kɛ",
+    "untitled": "# Fɛɛn min be mɔgɔ lasun ka kuma"
   }
 }

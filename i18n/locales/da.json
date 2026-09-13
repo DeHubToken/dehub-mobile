@@ -2908,5 +2908,16 @@
     "followAccepted": "{{name}} accepterede din følgeanmodning",
     "signalFlare": "{{name}} sendte et signaludbrud",
     "newMessage": "{{name}} har sendt dig en besked"
+  },
+  "audioPost": {
+    "popOut": "Smut ud — bliv ved med at lytte, mens du surfer",
+    "closeCornerPlayer": "Luk hjørnespilleren",
+    "cornerPlayer": "Lydopslagsafspilning",
+    "stopAndClose": "Stop og luk afspilleren",
+    "untitled": "Lydindlæg",
+    "creator": "DeHub-kreatør",
+    "play": "Spil",
+    "pause": "Sæt på pause",
+    "listens_one": "{{count}} lyt"
   }
 }

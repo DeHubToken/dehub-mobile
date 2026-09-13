@@ -2887,5 +2887,17 @@
     "followAccepted": "{{name}} توهان جي پيروي جي درخواست قبول ڪئي",
     "signalFlare": "{{name}} هڪ سگنل فليئر موڪليو",
     "newMessage": "{{name}} توهان کي هڪ پيغام موڪليو"
+  },
+  "audioPost": {
+    "popOut": "پاپ آئوٽ — ٻڌڻ جاري رکو جڏهن ته توهان برائوز ڪريو",
+    "closeCornerPlayer": "ڪنڊ پليئر کي بند ڪريو",
+    "cornerPlayer": "آڊيو پوسٽ پلے بیک",
+    "stopAndClose": "پليئر کي روڪيو ۽ بند ڪريو",
+    "untitled": "آڊيو پوسٽ",
+    "creator": "DeHub خالق",
+    "play": "کيڏيو",
+    "pause": "پوئتي هٽايو",
+    "listens_one": "{{count}} ٻڌو",
+    "listens_other": "{{count}} سنين"
   }
 }

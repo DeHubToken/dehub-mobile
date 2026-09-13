@@ -2847,5 +2847,17 @@
     "followAccepted": "{{name}} تہاڈی پیروی کی درخواست قبول کی",
     "signalFlare": "{{name}} سگنل فلیئر بھیجیا",
     "newMessage": "{{name}} تہاڈے نوں پیغام بھیجیا"
+  },
+  "audioPost": {
+    "popOut": "پاپ آؤٹ — براؤز کردے ہویے سننا جاری رکھو",
+    "closeCornerPlayer": "کونے والے پلیئر نوں بند کرو",
+    "cornerPlayer": "آڈیو پوسٹ پلے بیک",
+    "stopAndClose": "پلیئر نوں رکو اور بند کرو",
+    "untitled": "آڈیو پوسٹ",
+    "creator": "ڈی ہب تخلیق کار",
+    "play": "چلاؤ",
+    "pause": "موقوف کرو",
+    "listens_one": "{{count}} سنو",
+    "listens_other": "{{count}} سنے"
   }
 }
