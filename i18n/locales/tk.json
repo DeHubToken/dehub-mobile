@@ -1232,6 +1232,8 @@
     "likedCommentPreview": "{{name}} teswiryňizi halady: \"{{preview}}\"",
     "andOthersLikedComment": "{{first}} we {{others}} teswiryňizi haladylar",
     "andOthersLikedCommentPreview": "{{first}} we {{others}} teswiryňizi haladylar: \"{{preview}}\"",
+    "badgeLoanDropped": "Siz indi {{tier}}badge-iňizi {{name}} üçin bermäge mümkinçiligiňiz ýok",
+    "badgeGenericTier": "unit-format",
     "postRemoved": "Ýazgyňyz pozuldy",
     "newNotification": "Täze bildiriş",
     "oneOther": "1 beýleki",

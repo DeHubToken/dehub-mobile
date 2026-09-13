@@ -426,6 +426,14 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           }
           break;
 
+        // Badge lending. The delegation panel is the only place a loan can be
+        // seen or ended, so a tap lands there rather than on the bell.
+        case NotificationType.BADGE_DELEGATED:
+        case NotificationType.BADGE_DELEGATION_ENDED:
+        case NotificationType.BADGE_DELEGATION_CHANGED:
+          navigation.navigate(ScreenNames.AccountSettings);
+          break;
+
         default:
           navigation.navigate(ScreenNames.Notifications);
           break;

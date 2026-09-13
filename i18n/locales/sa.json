@@ -1167,6 +1167,7 @@
     "likedCommentPreview": "{{name}} भवतः टिप्पणीं रोचयत्: \"{{preview}}\"",
     "andOthersLikedComment": "{{first}} तथा {{others}} भवतः टिप्पणीं रोचयन्",
     "andOthersLikedCommentPreview": "{{first}} तथा {{others}} भवतः टिप्पणीं रोचयन्: \"{{preview}}\"",
+    "badgeGenericTier": "व्याजम्",
     "postRemoved": "भवतः प्रकाशनम् अपसारितम्",
     "newNotification": "नवसूचना",
     "oneOther": "१ अन्यः",

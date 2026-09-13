@@ -28,6 +28,12 @@ export enum NotificationType {
   FRACTION_OFFER_ACCEPTED = 'fraction_offer_accepted',
   FRACTION_OFFER_REJECTED = 'fraction_offer_rejected',
   FRACTION_PURCHASED = 'fraction_purchased',
+  /** Someone lent you their badge tier */
+  BADGE_DELEGATED = 'badge_delegated',
+  /** A badge loan ended — handed back, taken back, or lapsed */
+  BADGE_DELEGATION_ENDED = 'badge_delegation_ended',
+  /** The badge you are wearing on loan moved to a different tier */
+  BADGE_DELEGATION_CHANGED = 'badge_delegation_changed',
 }
 
 export enum NotificationCategory {
@@ -69,6 +75,17 @@ export const LINK_TYPES = new Set([
 
 export const NON_CLICKABLE_TYPES = new Set([
   NotificationType.DISLIKE,
+]);
+
+/**
+ * Badge lending. Every one of these opens the delegation panel in settings —
+ * the only place a loan can be seen or ended — so they need neither a tokenId
+ * nor an actor to be tappable.
+ */
+export const BADGE_DELEGATION_TYPES = new Set<string>([
+  NotificationType.BADGE_DELEGATED,
+  NotificationType.BADGE_DELEGATION_ENDED,
+  NotificationType.BADGE_DELEGATION_CHANGED,
 ]);
 
 export const getNotificationIconConfig = (type: NotificationType | string): { 
@@ -118,6 +135,12 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
       return { name: 'TriangleAlert', color: '#D4D4D8' };
     case NotificationType.SYSTEM:
       return { name: 'Info', color: '#8B8D90' };
+    // A lent badge is still a badge — the same glyph whichever direction the
+    // loan moved.
+    case NotificationType.BADGE_DELEGATED:
+    case NotificationType.BADGE_DELEGATION_ENDED:
+    case NotificationType.BADGE_DELEGATION_CHANGED:
+      return { name: 'Award', color: '#F4F4F5' };
     case NotificationType.FIAT_PAYMENT_COMPLETED:
       return { name: 'CreditCard', color: '#F4F4F5' };
     case NotificationType.FRACTION_OFFER:

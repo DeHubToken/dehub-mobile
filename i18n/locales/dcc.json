@@ -1115,6 +1115,7 @@
     "likedCommentPreview": "{{name}} نے تمہارا تبصرہ لائک کیا: \"{{preview}}\"",
     "andOthersLikedComment": "{{first}} اور {{others}} نے تمہارا تبصرہ لائک کیا",
     "andOthersLikedCommentPreview": "{{first}} اور {{others}} نے تمہارا تبصرہ لائک کیا: \"{{preview}}\"",
+    "badgeGenericTier": "बैज",
     "postRemoved": "تمہاری پوسٹ ہٹا دی گئی",
     "newNotification": "نئی اطلاع",
     "oneOther": "۱ اور",

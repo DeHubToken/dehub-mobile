@@ -63,6 +63,7 @@ import {
   NotificationType,
   getNotificationIconConfig,
   NON_CLICKABLE_TYPES,
+  BADGE_DELEGATION_TYPES,
 } from "../services/enums/notification.enums";
 
 type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'communities' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
@@ -346,6 +347,10 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
 
   // Non-clickable types (dislike doesn't generate notifications but just in case)
   if (NON_CLICKABLE_TYPES.has(type)) return false;
+
+  // Badge lending rows open settings, so they carry neither a tokenId nor
+  // anything the default test below would pass them on.
+  if (BADGE_DELEGATION_TYPES.has(typeStr)) return true;
   
   // Follow request — handled via inline accept/reject buttons, not clickable to navigate
   if (type === NotificationType.FOLLOW_REQUEST) return false;
@@ -1147,6 +1152,14 @@ const NotificationScreen = () => {
 
       case NotificationType.FIAT_PAYMENT_COMPLETED:
         navigation.navigate(ScreenNames.Dpay as never);
+        break;
+
+      // The delegation panel is the only surface a loan can be seen or ended
+      // on, and it lives in settings on both clients.
+      case NotificationType.BADGE_DELEGATED:
+      case NotificationType.BADGE_DELEGATION_ENDED:
+      case NotificationType.BADGE_DELEGATION_CHANGED:
+        navigation.navigate(ScreenNames.AccountSettings as never);
         break;
 
       case 'video_removal':

@@ -1226,6 +1226,8 @@
     "likedCommentPreview": "{{name}} шарҳи шуморо писанд кард: \"{{preview}}\"",
     "andOthersLikedComment": "{{first}} ва {{others}} шарҳи шуморо писанд карданд",
     "andOthersLikedCommentPreview": "{{first}} ва {{others}} шарҳи шуморо писанд карданд: \"{{preview}}\"",
+    "badgeLoanDropped": "{{tier}} badge to {{name}}",
+    "badgeGenericTier": "нишона",
     "postRemoved": "Нашри шумо нест карда шуд",
     "newNotification": "Огоҳии нав",
     "oneOther": "1 дигар",

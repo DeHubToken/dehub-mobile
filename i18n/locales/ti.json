@@ -1166,6 +1166,8 @@
     "likedCommentPreview": "{{name}} ርእይቶኻ ፈትዩ: \"{{preview}}\"",
     "andOthersLikedComment": "{{first}}ን {{others}}ን ርእይቶኻ ፈትዮም",
     "andOthersLikedCommentPreview": "{{first}}ን {{others}}ን ርእይቶኻ ፈትዮም: \"{{preview}}\"",
+    "badgeLoanDropped": "ነቲ {{tier}} ባጅ ናብ {{name}}ክትበድሎ ኣይትኽእልን ኢኻ ።",
+    "badgeGenericTier": "ባጅ",
     "postRemoved": "ጽሑፍካ ተኣልዩ",
     "newNotification": "ሓድሽ ምልክታ",
     "oneOther": "1 ካልእ",

@@ -10,6 +10,18 @@ type NotificationContent = {
   currency?: string;
   aggregatedCount?: number;
   latestActorNames?: string[];
+  /**
+   * Badge lending rows carry the loan itself here: which tier was lent, which
+   * end of it the reader was on, and why it ended. The tier has to come off the
+   * row rather than off the account — the sentence has to keep saying what was
+   * lent long after the loan ended and the balance moved on.
+   */
+  metadata?: {
+    tier?: string;
+    role?: 'grantor' | 'grantee';
+    reason?: string;
+    [key: string]: unknown;
+  };
 };
 
 /** Translate event wording at render time; leave names and custom messages intact. */
@@ -49,6 +61,25 @@ export function localizedNotificationContent(
     follow_request_accepted: 'reactionInfo.followAccepted',
     signal_flare: 'reactionInfo.signalFlare',
   };
+  // Badge lending. Four sentences from three types, because one of them — a
+  // loan ending — is the same event read from opposite ends, and a loan that
+  // lapsed on a sell-down was nobody's decision to explain.
+  if (item.type.startsWith('badge_deleg')) {
+    const tier = item.metadata?.tier || t('notifications.badgeGenericTier');
+    if (item.type === 'badge_delegated') return t('notifications.badgeLent', { name: actor, tier });
+    if (item.type === 'badge_delegation_changed') {
+      return t('notifications.badgeLoanRetiered', { name: actor, tier });
+    }
+    const lapsed = item.metadata?.reason === 'slots' || item.metadata?.reason === 'unbadged';
+    if (item.metadata?.role === 'grantor') {
+      return lapsed
+        ? t('notifications.badgeLoanDropped', { name: actor, tier })
+        : t('notifications.badgeHandedBack', { name: actor, tier });
+    }
+    return lapsed
+      ? t('notifications.badgeLoanLapsed', { name: actor, tier })
+      : t('notifications.badgeTakenBack', { name: actor, tier });
+  }
   if (item.type === 'tip') {
     const amount = item.amount ? ` ${item.amount} ${item.currency || 'DHB'}` : '';
     return t('notifications.tippedYou', { name: actor }) + amount;

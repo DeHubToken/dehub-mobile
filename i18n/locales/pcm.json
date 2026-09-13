@@ -1204,6 +1204,7 @@
     "likedCommentPreview": "{{name}} like your comment: \"{{preview}}\"",
     "andOthersLikedComment": "{{first}} and {{others}} like your comment",
     "andOthersLikedCommentPreview": "{{first}} and {{others}} like your comment: \"{{preview}}\"",
+    "badgeGenericTier": "badge",
     "postRemoved": "Your post don remove",
     "newNotification": "New notification",
     "oneOther": "1 other",
