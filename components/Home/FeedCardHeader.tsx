@@ -74,7 +74,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
               <Image
                 source={badgeImage}
                 style={[
-                  getBadgeOpticalStyle(badgeImage, HOLDER_BADGE_SIZE, -1, DISPLAY_NAME_LINE_HEIGHT),
+                  getBadgeOpticalStyle(badgeImage, HOLDER_BADGE_SIZE, 0, DISPLAY_NAME_LINE_HEIGHT),
                   { marginLeft: 0 },
                 ]}
                 resizeMode="contain"

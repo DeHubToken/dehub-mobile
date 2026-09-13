@@ -188,7 +188,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
             {!!badgeImage && (
               <Image
                 source={badgeImage}
-                style={getBadgeOpticalStyle(badgeImage, 13, -1)}
+                style={getBadgeOpticalStyle(badgeImage, 13)}
                 resizeMode="contain"
               />
             )}
