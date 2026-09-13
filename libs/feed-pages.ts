@@ -18,6 +18,16 @@ export interface FeedPage {
   result?: unknown[] | null;
 }
 
+/**
+ * Row wrappers, keyed on the raw row they wrap. The list runs every row through
+ * here again whenever any cached page changes (the live-count poll patches a
+ * handful of rows every ten seconds), and a fresh `{ ...it }` per row handed
+ * every mounted card a new `item` — so all of them re-rendered, players and
+ * caption regexes included, for a count change on one. A raw row that has not
+ * changed keeps the wrapper it already had, and memo'd cards bail out.
+ */
+const wrappers = new WeakMap<object, { key: string; row: unknown }>();
+
 export function flattenFeedPages<T>(
   pages: FeedPage[],
   isDeleted: (id: string | number) => boolean,
@@ -47,7 +57,19 @@ export function flattenFeedPages<T>(
         it?.stream?.streamKey ||
         `auto`;
       const created = it?.createdAt || it?.stream?.createdAt || it?.created_at || `nocreated`;
-      out.push({ ...it, __listKey: `${base}-${created}-p${pageNum}-i${idx}` } as T);
+      const listKey = `${base}-${created}-p${pageNum}-i${idx}`;
+      if (it && typeof it === "object") {
+        const cached = wrappers.get(it);
+        if (cached && cached.key === listKey) {
+          out.push(cached.row as T);
+          return;
+        }
+        const row = { ...it, __listKey: listKey };
+        wrappers.set(it, { key: listKey, row });
+        out.push(row as T);
+        return;
+      }
+      out.push({ ...it, __listKey: listKey } as T);
     });
   });
 
