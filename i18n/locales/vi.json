@@ -1989,7 +1989,11 @@
     "minutesAgo": "{{count}} phút trước",
     "hoursAgo": "{{count}} giờ trước",
     "daysAgo": "{{count}} ngày trước",
-    "monthsAgo": "{{count}} tháng trước"
+    "monthsAgo": "{{count}} tháng trước",
+    "active": "Đang diễn ra",
+    "noActiveNow": "Hiện chưa có đề xuất nào đang diễn ra",
+    "subtitle": "Bỏ phiếu cho các đề xuất định hình nền tảng",
+    "loadFailed": "Không tải được đề xuất"
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",

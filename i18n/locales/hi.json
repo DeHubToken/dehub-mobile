@@ -1503,7 +1503,11 @@
     "minutesAgo": "{{count}}मि पहले",
     "hoursAgo": "{{count}}घं पहले",
     "daysAgo": "{{count}}दि पहले",
-    "monthsAgo": "{{count}}मा पहले"
+    "monthsAgo": "{{count}}मा पहले",
+    "active": "सक्रिय",
+    "noActiveNow": "अभी कोई सक्रिय प्रस्ताव नहीं",
+    "subtitle": "उन प्रस्तावों पर वोट करें जो प्लेटफ़ॉर्म को आकार देते हैं",
+    "loadFailed": "प्रस्ताव लोड नहीं हो सके"
   },
   "sidebar": {
     "talkOfTheTown": "चर्चा का विषय",

@@ -1914,7 +1914,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "Active",
+    "noActiveNow": "Momentan nu există propuneri active",
+    "subtitle": "Votează propunerile care modelează platforma",
+    "loadFailed": "Propunerile nu au putut fi încărcate"
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",

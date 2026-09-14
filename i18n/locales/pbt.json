@@ -1151,9 +1151,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "مبارک شه! اوس تاسو {{tier}} یاست 🎉",
-      "badgeTierDown": "پاملرنه: ستاسو نښان اوس {{tier}} دی",
-      "badgeTierLost": "پاملرنه: تاسو نور نښان نه لرئ",
+    "badgeTierUp": "مبارک شه! اوس تاسو {{tier}} یاست 🎉",
+    "badgeTierDown": "پاملرنه: ستاسو نښان اوس {{tier}} دی",
+    "badgeTierLost": "پاملرنه: تاسو نور نښان نه لرئ",
     "title": "خبرتیاوې",
     "loadFailed": "خبرتیاوې بار نه شوې",
     "markAllRead": "ټول لوستل شوي نښه کړئ",
@@ -1699,7 +1699,11 @@
     "minutesAgo": "{{count}} دقیقې مخکې",
     "hoursAgo": "{{count}} ساعتونه مخکې",
     "daysAgo": "{{count}} ورځې مخکې",
-    "monthsAgo": "{{count}} میاشتې مخکې"
+    "monthsAgo": "{{count}} میاشتې مخکې",
+    "active": "فعال",
+    "noActiveNow": "اوس مهال هیڅ فعال وړاندیز نشته",
+    "subtitle": "په هغو وړاندیزونو رایه ورکړئ چې پلیټ فارم جوړوي",
+    "loadFailed": "وړاندیزونه ونه لوډ شول"
   },
   "sidebar": {
     "talkOfTheTown": "د ښار خبرې",

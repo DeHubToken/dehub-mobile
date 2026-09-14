@@ -1721,7 +1721,11 @@
     "minutesAgo": "{{count}} मिनिटांपूर्वी",
     "hoursAgo": "{{count}} तासांपूर्वी",
     "daysAgo": "{{count}} दिवसांपूर्वी",
-    "monthsAgo": "{{count}} महिन्यांपूर्वी"
+    "monthsAgo": "{{count}} महिन्यांपूर्वी",
+    "active": "सक्रिय",
+    "noActiveNow": "सध्या कोणतेही सक्रिय प्रस्ताव नाहीत",
+    "subtitle": "प्लॅटफॉर्म घडवणाऱ्या प्रस्तावांवर मत द्या",
+    "loadFailed": "प्रस्ताव लोड करता आले नाहीत"
   },
   "sidebar": {
     "talkOfTheTown": "शहराची चर्चा",

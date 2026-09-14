@@ -1849,7 +1849,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "Active",
+    "noActiveNow": "No active proposals right now",
+    "subtitle": "Vote on proposals that shape the platform",
+    "loadFailed": "Couldn't load proposals"
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",

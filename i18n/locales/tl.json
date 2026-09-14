@@ -2084,7 +2084,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "Aktibo",
+    "noActiveNow": "Walang aktibong panukala ngayon",
+    "subtitle": "Bumoto sa mga panukalang humuhubog sa platform",
+    "loadFailed": "Hindi ma-load ang mga panukala"
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",

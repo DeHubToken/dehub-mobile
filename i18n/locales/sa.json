@@ -1153,9 +1153,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "अभिनन्दनम्! अधुना भवान् {{tier}} अस्ति 🎉",
-      "badgeTierDown": "ध्यानं ददातु: अधुना भवतः चिह्नं {{tier}} अस्ति",
-      "badgeTierLost": "ध्यानं ददातु: अधुना भवतः चिह्नं नास्ति",
+    "badgeTierUp": "अभिनन्दनम्! अधुना भवान् {{tier}} अस्ति 🎉",
+    "badgeTierDown": "ध्यानं ददातु: अधुना भवतः चिह्नं {{tier}} अस्ति",
+    "badgeTierLost": "ध्यानं ददातु: अधुना भवतः चिह्नं नास्ति",
     "title": "सूचनाः",
     "loadFailed": "सूचनाः आनेतुं न शक्यन्ते",
     "markAllRead": "सर्वाः पठिताः इति चिह्नयतु",
@@ -1701,7 +1701,11 @@
     "minutesAgo": "{{count}} निमेषपूर्वम्",
     "hoursAgo": "{{count}} होरापूर्वम्",
     "daysAgo": "{{count}} दिनपूर्वम्",
-    "monthsAgo": "{{count}} मासपूर्वम्"
+    "monthsAgo": "{{count}} मासपूर्वम्",
+    "active": "सक्रियाणि",
+    "noActiveNow": "सम्प्रति सक्रियप्रस्तावाः न सन्ति",
+    "subtitle": "मञ्चं निर्मापयन्तः प्रस्तावाः तेषु मतं ददातु",
+    "loadFailed": "प्रस्तावान् आरोपयितुं न शक्यते"
   },
   "sidebar": {
     "talkOfTheTown": "नगरस्य चर्चा",

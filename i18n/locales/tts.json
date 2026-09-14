@@ -1688,7 +1688,11 @@
     "minutesAgo": "{{count}} นาทีก่อน",
     "hoursAgo": "{{count}} ชั่วโมงก่อน",
     "daysAgo": "{{count}} วันก่อน",
-    "monthsAgo": "{{count}} เดือนก่อน"
+    "monthsAgo": "{{count}} เดือนก่อน",
+    "active": "กำลังดำเนินการ",
+    "noActiveNow": "ตอนนี้บ่มีข้อเสนอที่ดำเนินอยู่",
+    "subtitle": "โหวตข้อเสนอที่กำหนดทิศทางแพลตฟอร์ม",
+    "loadFailed": "โหลดข้อเสนอบ่สำเร็จ"
   },
   "sidebar": {
     "talkOfTheTown": "เรื่องฮ็อต",

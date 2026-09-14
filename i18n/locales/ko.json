@@ -1744,7 +1744,11 @@
     "minutesAgo": "{{count}}분 전",
     "hoursAgo": "{{count}}시간 전",
     "daysAgo": "{{count}}일 전",
-    "monthsAgo": "{{count}}개월 전"
+    "monthsAgo": "{{count}}개월 전",
+    "active": "진행 중",
+    "noActiveNow": "현재 진행 중인 제안이 없습니다",
+    "subtitle": "플랫폼을 만들어 가는 제안에 투표하세요",
+    "loadFailed": "제안을 불러오지 못했습니다"
   },
   "sidebar": {
     "talkOfTheTown": "화제의 중심",

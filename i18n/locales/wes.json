@@ -1671,7 +1671,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "Active",
+    "noActiveNow": "No active proposal dey now",
+    "subtitle": "Vote for proposals wey dey shape di platform",
+    "loadFailed": "We no fit load di proposals"
   },
   "sidebar": {
     "talkOfTheTown": "Talk of Di Town",

@@ -1681,7 +1681,11 @@
     "minutesAgo": "{{count}} منٹ پہلے",
     "hoursAgo": "{{count}} گھنٹے پہلے",
     "daysAgo": "{{count}} ݙینہہ پہلے",
-    "monthsAgo": "{{count}} مہینے پہلے"
+    "monthsAgo": "{{count}} مہینے پہلے",
+    "active": "فعال",
+    "noActiveNow": "ہݨ کوئی فعال تجویز کائنی",
+    "subtitle": "اونہاں تجویزاں تے ووٹ ݙیو جیہڑیاں پلیٹ فارم بݨیندیاں ہن",
+    "loadFailed": "تجویزاں لوڈ نہ تھی سڳیاں"
   },
   "sidebar": {
     "talkOfTheTown": "شہر دی گل",

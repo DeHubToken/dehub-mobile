@@ -1748,7 +1748,11 @@
     "minutesAgo": "há {{count}}m",
     "hoursAgo": "há {{count}}h",
     "daysAgo": "há {{count}}d",
-    "monthsAgo": "há {{count}}me"
+    "monthsAgo": "há {{count}}me",
+    "active": "Ativas",
+    "noActiveNow": "Sem propostas ativas no momento",
+    "subtitle": "Vote nas propostas que moldam a plataforma",
+    "loadFailed": "Não foi possível carregar as propostas"
   },
   "sidebar": {
     "talkOfTheTown": "Assunto do momento",

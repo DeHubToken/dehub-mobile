@@ -1154,9 +1154,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "Təbriklər! İndi siz {{tier}}-siniz 🎉",
-      "badgeTierDown": "Diqqət: nişanınız artıq {{tier}}",
-      "badgeTierLost": "Diqqət: artıq nişanınız yoxdur",
+    "badgeTierUp": "Təbriklər! İndi siz {{tier}}-siniz 🎉",
+    "badgeTierDown": "Diqqət: nişanınız artıq {{tier}}",
+    "badgeTierLost": "Diqqət: artıq nişanınız yoxdur",
     "title": "Bildirişlər",
     "loadFailed": "Bildirişlər yüklənə bilmədi",
     "markAllRead": "Hamısını oxunmuş et",
@@ -1717,7 +1717,11 @@
     "minutesAgo": "{{count}}d əvvəl",
     "hoursAgo": "{{count}}s əvvəl",
     "daysAgo": "{{count}}g əvvəl",
-    "monthsAgo": "{{count}}ay əvvəl"
+    "monthsAgo": "{{count}}ay əvvəl",
+    "active": "Aktiv",
+    "noActiveNow": "Hazırda aktiv təklif yoxdur",
+    "subtitle": "Platformanı formalaşdıran təkliflərə səs ver",
+    "loadFailed": "Təkliflər yüklənmədi"
   },
   "sidebar": {
     "talkOfTheTown": "Şəhərin Söhbəti",

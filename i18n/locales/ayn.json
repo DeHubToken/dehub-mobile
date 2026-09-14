@@ -1687,7 +1687,11 @@
     "minutesAgo": "قبل {{count}} دقيقة",
     "hoursAgo": "قبل {{count}} ساعة",
     "daysAgo": "قبل {{count}} يوم",
-    "monthsAgo": "قبل {{count}} شهر"
+    "monthsAgo": "قبل {{count}} شهر",
+    "active": "نشطة",
+    "noActiveNow": "ما فيه مقترحات نشطة الحين",
+    "subtitle": "صوّت على المقترحات اللي تشكل المنصة",
+    "loadFailed": "ما قدرنا نحمّل المقترحات"
   },
   "sidebar": {
     "talkOfTheTown": "حديث المدينة",

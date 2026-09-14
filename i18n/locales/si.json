@@ -1161,9 +1161,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "සුබ පැතුම්! දැන් ඔබ {{tier}} කෙනෙක් 🎉",
-      "badgeTierDown": "සැලකිල්ලට: දැන් ඔබේ ලාංඡනය {{tier}}",
-      "badgeTierLost": "සැලකිල්ලට: ඔබට තවදුරටත් ලාංඡනයක් නැත",
+    "badgeTierUp": "සුබ පැතුම්! දැන් ඔබ {{tier}} කෙනෙක් 🎉",
+    "badgeTierDown": "සැලකිල්ලට: දැන් ඔබේ ලාංඡනය {{tier}}",
+    "badgeTierLost": "සැලකිල්ලට: ඔබට තවදුරටත් ලාංඡනයක් නැත",
     "title": "දැනුම්දීම්",
     "loadFailed": "දැනුම්දීම් පූරණය කළ නොහැකි විය",
     "markAllRead": "සියල්ල කියවූ ලෙස සලකුණු කරන්න",
@@ -1521,7 +1521,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "සක්‍රීය",
+    "noActiveNow": "දැනට සක්‍රීය යෝජනා නැත",
+    "subtitle": "වේදිකාව හැඩගස්වන යෝජනා සඳහා ඡන්දය දෙන්න",
+    "loadFailed": "යෝජනා පූරණය කළ නොහැකි විය"
   },
   "spaces": {
     "title": "අවකාශ",

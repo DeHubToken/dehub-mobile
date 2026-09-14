@@ -1709,7 +1709,11 @@
     "minutesAgo": "hace {{count}}m",
     "hoursAgo": "hace {{count}}h",
     "daysAgo": "hace {{count}}d",
-    "monthsAgo": "hace {{count}}me"
+    "monthsAgo": "hace {{count}}me",
+    "active": "Activas",
+    "noActiveNow": "Ahora mismo no hay propuestas activas",
+    "subtitle": "Vota las propuestas que dan forma a la plataforma",
+    "loadFailed": "No se pudieron cargar las propuestas"
   },
   "sidebar": {
     "talkOfTheTown": "Lo más comentado",

@@ -617,9 +617,9 @@
     "badgeDelegationLendsAny": "প্রতিটি অন্য অ্যাকাউন্টে আপনার আনলক করা যেকোনো ব্যাজ ধার দেয়, আপনার নিজের {{tier}} পর্যন্ত। একটি ছোট ব্যাজ এখনও একটি সম্পূর্ণ স্লট ব্যবহার করে।"
   },
   "notifications": {
-      "badgeTierUp": "শুভেচ্ছা! এলা তুই {{tier}} 🎉",
-      "badgeTierDown": "খেয়াল করেন: এলা তোমার ব্যাজ {{tier}}",
-      "badgeTierLost": "খেয়াল করেন: তোমার আর ব্যাজ নাই",
+    "badgeTierUp": "শুভেচ্ছা! এলা তুই {{tier}} 🎉",
+    "badgeTierDown": "খেয়াল করেন: এলা তোমার ব্যাজ {{tier}}",
+    "badgeTierLost": "খেয়াল করেন: তোমার আর ব্যাজ নাই",
     "title": "খবর",
     "loadFailed": "নোটিফিকেশন লোড হইল না",
     "all": "সব",
@@ -968,7 +968,11 @@
     "minutesAgo": "{{count}} মিনিট আগে",
     "hoursAgo": "{{count}} ঘণ্টা আগে",
     "daysAgo": "{{count}} দিন আগে",
-    "monthsAgo": "{{count}} মাস আগে"
+    "monthsAgo": "{{count}} মাস আগে",
+    "active": "সক্রিয়",
+    "noActiveNow": "এখন কোনো সক্রিয় প্রস্তাব নাই",
+    "subtitle": "প্ল্যাটফর্ম গড়া প্রস্তাবত ভোট দেও",
+    "loadFailed": "প্রস্তাব লোড করা গেইল না"
   },
   "commandCentre": {
     "title": "কমান্ড সেন্টার",

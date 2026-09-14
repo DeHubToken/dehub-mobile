@@ -1721,7 +1721,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "აქტიური",
+    "noActiveNow": "ამჟამად აქტიური წინადადებები არ არის",
+    "subtitle": "მიეცით ხმა წინადადებებს, რომლებიც პლატფორმას აყალიბებს",
+    "loadFailed": "წინადადებების ჩატვირთვა ვერ მოხერხდა"
   },
   "spaces": {
     "title": "სივრცეები",

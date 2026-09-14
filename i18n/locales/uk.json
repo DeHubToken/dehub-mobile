@@ -2383,7 +2383,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "Активні",
+    "noActiveNow": "Наразі немає активних пропозицій",
+    "subtitle": "Голосуйте за пропозиції, які формують платформу",
+    "loadFailed": "Не вдалося завантажити пропозиції"
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",

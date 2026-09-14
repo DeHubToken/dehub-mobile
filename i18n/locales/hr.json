@@ -1729,7 +1729,11 @@
     "minutesAgo": "prije {{count}}m",
     "hoursAgo": "prije {{count}}h",
     "daysAgo": "prije {{count}}d",
-    "monthsAgo": "prije {{count}}mj"
+    "monthsAgo": "prije {{count}}mj",
+    "active": "Aktivni",
+    "noActiveNow": "Trenutačno nema aktivnih prijedloga",
+    "subtitle": "Glasaj o prijedlozima koji oblikuju platformu",
+    "loadFailed": "Prijedloge nije moguće učitati"
   },
   "sidebar": {
     "talkOfTheTown": "Priča grada",

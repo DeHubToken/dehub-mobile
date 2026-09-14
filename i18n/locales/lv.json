@@ -1728,7 +1728,11 @@
     "minutesAgo": "pirms {{count}} min.",
     "hoursAgo": "pirms {{count}} st.",
     "daysAgo": "pirms {{count}} d.",
-    "monthsAgo": "pirms {{count}} mēn."
+    "monthsAgo": "pirms {{count}} mēn.",
+    "active": "Aktīvie",
+    "noActiveNow": "Šobrīd nav aktīvu priekšlikumu",
+    "subtitle": "Balso par priekšlikumiem, kas veido platformu",
+    "loadFailed": "Neizdevās ielādēt priekšlikumus"
   },
   "sidebar": {
     "talkOfTheTown": "Pilsētas saruna",

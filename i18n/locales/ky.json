@@ -1688,7 +1688,11 @@
     "minutesAgo": "{{count}}м мурда",
     "hoursAgo": "{{count}}с мурда",
     "daysAgo": "{{count}}к мурда",
-    "monthsAgo": "{{count}}ай мурда"
+    "monthsAgo": "{{count}}ай мурда",
+    "active": "Активдүү",
+    "noActiveNow": "Учурда активдүү сунуштар жок",
+    "subtitle": "Платформаны калыптандырган сунуштарга добуш бериңиз",
+    "loadFailed": "Сунуштарды жүктөө мүмкүн болбоду"
   },
   "sidebar": {
     "talkOfTheTown": "Шаардын сөзү",

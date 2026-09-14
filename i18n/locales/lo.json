@@ -1724,7 +1724,11 @@
     "minutesAgo": "{{count}} ນາທີກ່ອນ",
     "hoursAgo": "{{count}} ຊົ່ວໂມງກ່ອນ",
     "daysAgo": "{{count}} ວັນກ່ອນ",
-    "monthsAgo": "{{count}} ເດືອນກ່ອນ"
+    "monthsAgo": "{{count}} ເດືອນກ່ອນ",
+    "active": "ກຳລັງດຳເນີນ",
+    "noActiveNow": "ຕອນນີ້ບໍ່ມີຂໍ້ສະເໜີທີ່ດຳເນີນຢູ່",
+    "subtitle": "ລົງຄະແນນໃຫ້ຂໍ້ສະເໜີທີ່ສ້າງແພລດຟອມ",
+    "loadFailed": "ບໍ່ສາມາດໂຫຼດຂໍ້ສະເໜີໄດ້"
   },
   "sidebar": {
     "talkOfTheTown": "ເລື່ອງທີ່ຄົນເວົ້າ",

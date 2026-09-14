@@ -994,7 +994,11 @@
     "minutesAgo": "{{count}} মিনিট আগে",
     "hoursAgo": "{{count}} ঘণ্টা আগে",
     "daysAgo": "{{count}} দিন আগে",
-    "monthsAgo": "{{count}} মাস আগে"
+    "monthsAgo": "{{count}} মাস আগে",
+    "active": "সক্রিয়",
+    "noActiveNow": "অখন কোনো সক্রিয় প্রস্তাব নাই",
+    "subtitle": "প্ল্যাটফর্ম গড়া প্রস্তাবো ভোট দেও",
+    "loadFailed": "প্রস্তাব লোড করা গেল না"
   },
   "commandCentre": {
     "title": "কমান্ড সেন্টার",

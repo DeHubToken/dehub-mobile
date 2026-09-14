@@ -1560,7 +1560,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "Hojiirra",
+    "noActiveNow": "Amma yaadni hojiirra jiru hin jiru",
+    "subtitle": "Yaadota waldorgommii bocan irratti sagalee kenni",
+    "loadFailed": "Yaadota fe'uun hin dandaʼamne"
   },
   "spaces": {
     "title": "Bakkeewwan",

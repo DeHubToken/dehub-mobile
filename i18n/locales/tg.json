@@ -1186,9 +1186,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "Табрик! Акнун шумо {{tier}} ҳастед 🎉",
-      "badgeTierDown": "Диққат: акнун нишони шумо {{tier}} аст",
-      "badgeTierLost": "Диққат: дигар нишон надоред",
+    "badgeTierUp": "Табрик! Акнун шумо {{tier}} ҳастед 🎉",
+    "badgeTierDown": "Диққат: акнун нишони шумо {{tier}} аст",
+    "badgeTierLost": "Диққат: дигар нишон надоред",
     "title": "Огоҳиҳо",
     "loadFailed": "Огоҳиҳо бор карда нашуданд",
     "markAllRead": "Ҳамаро хондашуда қайд кардан",
@@ -1676,7 +1676,11 @@
     "minutesAgo": "{{count}} дақ пеш",
     "hoursAgo": "{{count}} с пеш",
     "daysAgo": "{{count}} р пеш",
-    "monthsAgo": "{{count}} м пеш"
+    "monthsAgo": "{{count}} м пеш",
+    "active": "Фаъол",
+    "noActiveNow": "Ҳоло пешниҳодҳои фаъол нестанд",
+    "subtitle": "Ба пешниҳодҳое, ки платформаро ташаккул медиҳанд, овоз диҳед",
+    "loadFailed": "Пешниҳодҳо бор нашуданд"
   },
   "sidebar": {
     "talkOfTheTown": "Маъмултарин",

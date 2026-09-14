@@ -1065,9 +1065,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "مبارک ہو! اب تم {{tier}} ہو 🎉",
-      "badgeTierDown": "دھیان دو: اب تمہارا بیج {{tier}} ہے",
-      "badgeTierLost": "دھیان دو: اب تمہارے پاس بیج نہیں",
+    "badgeTierUp": "مبارک ہو! اب تم {{tier}} ہو 🎉",
+    "badgeTierDown": "دھیان دو: اب تمہارا بیج {{tier}} ہے",
+    "badgeTierLost": "دھیان دو: اب تمہارے پاس بیج نہیں",
     "title": "اطلاع",
     "loadFailed": "نوٹیفکیشن لوڈ نہیں ہو سکے",
     "markAllRead": "سب پڑھا نشان لگاؤ",
@@ -1613,7 +1613,11 @@
     "minutesAgo": "{{count}} منٹ پہلے",
     "hoursAgo": "{{count}} گھنٹے پہلے",
     "daysAgo": "{{count}} دن پہلے",
-    "monthsAgo": "{{count}} مہینے پہلے"
+    "monthsAgo": "{{count}} مہینے پہلے",
+    "active": "فعال",
+    "noActiveNow": "ابھی کوئی فعال تجویز نئیں",
+    "subtitle": "ان تجاویز پر ووٹ دو جو پلیٹ فارم بناتی ہیں",
+    "loadFailed": "تجاویز لوڈ نئیں ہو سکیں"
   },
   "sidebar": {
     "talkOfTheTown": "شہر کی بات",

@@ -1728,7 +1728,11 @@
     "minutesAgo": "{{count}}分鐘前",
     "hoursAgo": "{{count}}小時前",
     "daysAgo": "{{count}}日前",
-    "monthsAgo": "{{count}}個月前"
+    "monthsAgo": "{{count}}個月前",
+    "active": "進行中",
+    "noActiveNow": "目前冇進行中嘅提案",
+    "subtitle": "為塑造平台嘅提案投票",
+    "loadFailed": "無法載入提案"
   },
   "sidebar": {
     "talkOfTheTown": "城中熱話",

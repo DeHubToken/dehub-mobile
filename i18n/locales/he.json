@@ -1730,7 +1730,11 @@
     "minutesAgo": "לפני {{count}} דקות",
     "hoursAgo": "לפני {{count}} שעות",
     "daysAgo": "לפני {{count}} ימים",
-    "monthsAgo": "לפני {{count}} חודשים"
+    "monthsAgo": "לפני {{count}} חודשים",
+    "active": "פעילות",
+    "noActiveNow": "אין הצעות פעילות כרגע",
+    "subtitle": "הצבע על הצעות שמעצבות את הפלטפורמה",
+    "loadFailed": "טעינת ההצעות נכשלה"
   },
   "sidebar": {
     "talkOfTheTown": "שיחת העיר",

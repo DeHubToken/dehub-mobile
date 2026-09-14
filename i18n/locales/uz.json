@@ -1708,7 +1708,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "Faol",
+    "noActiveNow": "Hozircha faol takliflar yo‘q",
+    "subtitle": "Platformani shakllantiruvchi takliflarga ovoz bering",
+    "loadFailed": "Takliflarni yuklab bo‘lmadi"
   },
   "spaces": {
     "title": "Boʻlimlar",
