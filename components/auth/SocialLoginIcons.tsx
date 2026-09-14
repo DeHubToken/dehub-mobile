@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { SvgXml } from "react-native-svg";
+import { useTranslation } from "react-i18next";
 import EmailLoginFlow from "./EmailLoginFlow";
 import PhoneLoginFlow from "./PhoneLoginFlow";
 import { AuthButton } from "./AuthControls";
 import { isWalletConnectAvailable } from "../../config/reown.config";
+import { isTelegramLoginAvailable } from "../../services/auth/supabaseAuth.service";
 
 // Monochrome Google glyph — tinted at render time so it stays legible on both
 // the white-glass secondary fill and (if ever reused) the light primary fill.
@@ -18,9 +20,21 @@ const appleIcon = (color: string) => `<svg viewBox='0 0 24 24' fill='none' xmlns
   <path fill='${color}' d='M16.365 1.43c0 1.14-.462 2.15-1.217 2.905-.831.83-2.19 1.47-3.29 1.38-.135-1.09.42-2.24 1.16-2.98.83-.85 2.26-1.48 3.347-1.305ZM20.9 17.19c-.5 1.16-.74 1.68-1.39 2.7-.9 1.42-2.17 3.19-3.75 3.2-1.4.02-1.76-.92-3.66-.91-1.9.01-2.3.93-3.7.92-1.58-.02-2.78-1.62-3.68-3.03-2.53-3.96-2.8-8.6-1.24-11.07 1.11-1.76 2.86-2.79 4.51-2.79 1.68 0 2.73.94 4.12.94 1.35 0 2.16-.94 4.11-.94 1.47 0 3.03.8 4.14 2.18-3.64 2-3.05 7.21.55 8.8Z'/>
 </svg>`;
 
+// Telegram's mark as one path, so it takes the row's tint like the other two
+// rather than bringing its own blue into a monochrome sheet.
+const telegramIcon = (color: string) => `<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+  <path fill='${color}' d='M21.94 4.6 18.63 20.2c-.25 1.1-.9 1.38-1.83.86l-5.05-3.72-2.44 2.35c-.27.27-.5.5-1.02.5l.36-5.14 9.36-8.46c.4-.36-.09-.56-.63-.2L6.01 13.67l-4.98-1.56c-1.08-.34-1.1-1.08.23-1.6l19.47-7.5c.9-.33 1.69.2 1.4 1.6Z'/>
+</svg>`;
+
 interface SocialLoginIconsProps {
   onGoogle: () => void;
   onApple: () => void;
+  /**
+   * Telegram sign-in. The row renders only when this is supplied AND the
+   * telegram-auth edge function reports a bot — the token lives in that
+   * function's env, on its own deploy track, so an app build cannot know.
+   */
+  onTelegram?: () => void;
   onEmailSubmit: (email: string) => void;
   onEmailPasswordSubmit?: (email: string, password: string) => void;
   onPhoneSubmit: (phone: string) => void;
@@ -45,6 +59,7 @@ interface SocialLoginIconsProps {
 export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   onGoogle,
   onApple,
+  onTelegram,
   onEmailSubmit,
   onEmailPasswordSubmit,
   onPhoneSubmit,
@@ -53,6 +68,22 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   disabled,
   onFieldExpand,
 }) => {
+  const { t } = useTranslation();
+  const [telegramReady, setTelegramReady] = useState(false);
+
+  // Starts false and only ever turns on: a project with no bot configured
+  // shows no Telegram row at all, rather than one that fails when tapped.
+  useEffect(() => {
+    if (!onTelegram) return;
+    let cancelled = false;
+    void isTelegramLoginAvailable().then((available) => {
+      if (!cancelled && available) setTelegramReady(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [onTelegram]);
+
   return (
     <View style={{ width: "100%", gap: 12 }}>
       <EmailLoginFlow
@@ -66,7 +97,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
       />
 
       <AuthButton
-        label="Continue with Google"
+        label={t("loginModal.continueGoogle", "Continue with Google")}
         onPress={onGoogle}
         disabled={disabled}
         loading={busyProvider === "google"}
@@ -76,7 +107,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
       />
 
       <AuthButton
-        label="Continue with Apple"
+        label={t("loginModal.continueApple", "Continue with Apple")}
         onPress={onApple}
         disabled={disabled}
         loading={busyProvider === "apple"}
@@ -84,6 +115,18 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
           <SvgXml xml={appleIcon(color)} width={size} height={size} />
         )}
       />
+
+      {onTelegram && telegramReady && (
+        <AuthButton
+          label={t("loginModal.continueTelegram", "Continue with Telegram")}
+          onPress={onTelegram}
+          disabled={disabled}
+          loading={busyProvider === "telegram"}
+          renderIcon={(color, size) => (
+            <SvgXml xml={telegramIcon(color)} width={size} height={size} />
+          )}
+        />
+      )}
 
       <PhoneLoginFlow
         onSubmit={onPhoneSubmit}
@@ -101,7 +144,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
       {onConnectWallet && isWalletConnectAvailable && (
         <AuthButton
           icon="wallet"
-          label="Connect Wallet"
+          label={t("loginModal.connectWallet", "Connect Wallet")}
           onPress={onConnectWallet}
           disabled={disabled}
           loading={busyProvider === "wallet"}

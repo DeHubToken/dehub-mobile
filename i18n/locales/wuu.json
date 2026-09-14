@@ -1514,6 +1514,8 @@
     "continueEmail": "用邮箱继续",
     "continueSMS": "用短信继续",
     "continueGoogle": "用Google继续",
+    "continueApple": "用Apple继续",
+    "continueTelegram": "用Telegram继续",
     "continueX": "用X继续",
     "continueDiscord": "用Discord继续",
     "connectWallet": "连接钱包",

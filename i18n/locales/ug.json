@@ -1514,6 +1514,8 @@
     "continueEmail": "ئېلخەت بىلەن داۋاملاشتۇرۇش",
     "continueSMS": "SMS بىلەن داۋاملاشتۇرۇش",
     "continueGoogle": "Google بىلەن داۋاملاشتۇرۇش",
+    "continueApple": "Apple بىلەن داۋاملاشتۇرۇش",
+    "continueTelegram": "Telegram بىلەن داۋاملاشتۇرۇش",
     "continueX": "X بىلەن داۋاملاشتۇرۇش",
     "continueDiscord": "Discord بىلەن داۋاملاشتۇرۇش",
     "connectWallet": "ھەمياق ئۇلاش",

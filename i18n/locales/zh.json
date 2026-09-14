@@ -1560,6 +1560,8 @@
     "continueEmail": "使用邮箱继续",
     "continueSMS": "使用短信继续",
     "continueGoogle": "使用 Google 继续",
+    "continueApple": "使用 Apple 继续",
+    "continueTelegram": "使用 Telegram 继续",
     "continueX": "使用 X 继续",
     "continueDiscord": "使用 Discord 继续",
     "connectWallet": "连接钱包",
