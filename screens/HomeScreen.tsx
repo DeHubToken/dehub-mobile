@@ -785,7 +785,22 @@ export default function HomeScreen() {
               {TAB_ORDER.map((key, index) => (
                 <View
                   key={key}
-                  style={{ width: pageWidth }}
+                  // Off-screen is not free on Android. The renderer prepares
+                  // every bitmap in every drawn child before each frame, and a
+                  // page that sits a screen-width to the side is still drawn
+                  // into the row. Six mounted feeds put ~340 image textures in
+                  // the GPU cache — 112MB of a 121MB budget on a fresh launch,
+                  // measured on a Galaxy S24+ — and once a session tipped over
+                  // the budget every frame evicted and re-uploaded, which was
+                  // the "slow bitmap upload" jank on every tab and the taps
+                  // that would not land. `display: none` maps to INVISIBLE on
+                  // Android: skipped at draw, so its textures become
+                  // purgeable, while React state and the query cache stay put.
+                  // The neighbours stay drawn because a drag reveals them.
+                  style={{
+                    width: pageWidth,
+                    display: Math.abs(index - activeIndex) <= 1 ? "flex" : "none",
+                  }}
                   pointerEvents={index === activeIndex ? "auto" : "none"}
                 >
                   {renderPage(key, index)}
