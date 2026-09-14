@@ -951,8 +951,17 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         // scroll-to-top and pull-to-refresh still behave normally.
         maintainVisibleContentPosition={MAINTAIN_POSITION}
         initialNumToRender={3}
-        maxToRenderPerBatch={3}
-        windowSize={5}
+        // One card per batch, mounted farther ahead. A screen recording of an
+        // upward fling on a Galaxy S24+ showed the content freezing for one to
+        // three frames at a time and then jumping on; every one of those UI
+        // thread frames over 16ms (29 of 29 in the trace) contained a Fabric
+        // mount of a batch of cards. Three cards in one commit is more than a
+        // frame's worth of native view creation. One card fits, and a wider
+        // window means the rows a reversed fling needs are usually there
+        // already. The GPU budget this used to cost was freed by hiding the
+        // far pager pages.
+        maxToRenderPerBatch={1}
+        windowSize={7}
         // Deliberately NOT removeClippedSubviews. It and
         // maintainVisibleContentPosition cannot both be on: Android picks the
         // MVCP anchor by walking the content view's ATTACHED children
