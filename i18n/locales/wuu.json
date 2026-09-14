@@ -3095,5 +3095,25 @@
     "noUpcoming": "没有即将举行的活动",
     "interestedCount": "{{count}} 人感兴趣",
     "loadFailed": "无法加载活动"
+  },
+  "stats": {
+    "feedback": {
+      "title": "反馈",
+      "intro": "用过 DeHub 有一段时间了吗？告诉我们体验如何。好的、不好的或具体的——我们都会看。如果你愿意让我们引用你的意见，勾选该框，我们可能会在帖子、视频或网站上使用它。",
+      "placeholder": "用你自己的话…",
+      "timeUsingPlaceholder": "你在这里多久了？（可选）",
+      "consentPromo": "我授权 DeHub 在营销和宣传材料中引用此反馈。",
+      "consentName": "你可以在旁边显示我的用户名。不勾选此项可匿名引用。",
+      "submit": "发送反馈",
+      "sending": "发送中…",
+      "signedOut": "登录以留下反馈",
+      "thanks": "明白了——谢谢。任何你允许用于宣传的内容都会由一个人在发布前进行审查。",
+      "again": "留下更多反馈",
+      "toastSent": "谢谢——我们已收到你的反馈",
+      "toastFailed": "无法发送，请重试",
+      "wallTitle": "人们怎么说",
+      "wallNote": "已获得许可发布",
+      "anonymous": "DeHub 成员"
+    }
   }
 }

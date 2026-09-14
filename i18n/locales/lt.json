@@ -3143,5 +3143,25 @@
     "noUpcoming": "Artėjančių renginių nėra",
     "interestedCount": "{{count}} domisi",
     "loadFailed": "Nepavyko įkelti renginių"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Atsiliepimai",
+      "intro": "Naudojate DeHub jau kurį laiką? Pasakykite mums, kaip tai buvo. Gerai, blogai ar konkretūs dalykai — viską skaitome. Jei sutinkate, kad mus cituotume, pažymėkite langelį ir mes galime tai panaudoti įrašuose, vaizdo įrašuose arba svetainėje.",
+      "placeholder": "Savo žodžiais…",
+      "timeUsingPlaceholder": "Kiek laiko čia buvote? (neprivaloma)",
+      "consentPromo": "Aš autorizuoju DeHub cituoti šį atsiliepimu rinkodaros ir reklaminėje medžiagoje.",
+      "consentName": "Galite parodyti mano naudotojo vardą šalia jo. Palikite nepažymėtą, jei norite būti cituojami anoniminiu būdu.",
+      "submit": "Siųsti atsiliepimu",
+      "sending": "Siunčiama…",
+      "signedOut": "Prisijunkite, norėdami palikti atsiliepimu",
+      "thanks": "Supratome — ačiū. Bet kuri medžiaga, kurią patvirtinote naudoti reklaminiais tikslais, prieš pasirodymo bet kur peržiūrima žmogaus.",
+      "again": "Palikti daugiau atsiliepimų",
+      "toastSent": "Ačiū — jūsų atsiliepimai pas mus",
+      "toastFailed": "Nepavyko to išsiųsti, bandykite dar kartą",
+      "wallTitle": "Ką sako žmonės",
+      "wallNote": "paskelbta su leidimu",
+      "anonymous": "DeHub narys"
+    }
   }
 }

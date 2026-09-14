@@ -3148,5 +3148,25 @@
     "noUpcoming": "Žádné nadcházející akce",
     "interestedCount": "{{count}} má zájem",
     "loadFailed": "Akce se nepodařilo načíst"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Zpětná vazba",
+      "intro": "Používáte DeHub už nějakou dobu? Řekněte nám, jak se vám to líbí. Ať už dobré, špatné nebo konkrétní — všechno si přečteme. Pokud nám dovolíte vás citovat, zaškrtněte políčko a můžeme to použít v příspěvcích, videích nebo na webu.",
+      "placeholder": "Vlastními slovy…",
+      "timeUsingPlaceholder": "Jak dlouho jste tady? (volitelné)",
+      "consentPromo": "Autorizuji DeHub citovat tuto zpětnou vazbu v marketingových a propagačních materiálech.",
+      "consentName": "Můžete vedle ní zobrazit mé uživatelské jméno. Nechte toto políčko nezaškrtnuté, pokud chcete být citováni anonymně.",
+      "submit": "Odeslat zpětnou vazbu",
+      "sending": "Odesílání…",
+      "signedOut": "Přihlaste se, abyste mohli zanechat zpětnou vazbu",
+      "thanks": "Rozumíme — děkujeme. Veškerá zpětná vazba, kterou jste schválili pro propagační použití, je před zveřejněním zkontrolována člověkem.",
+      "again": "Zanechat další zpětnou vazbu",
+      "toastSent": "Děkujeme — vaše zpětná vazba je u nás",
+      "toastFailed": "Nepodařilo se to odeslat, zkuste to znovu",
+      "wallTitle": "Co si lidé myslí",
+      "wallNote": "zveřejněno se svolením",
+      "anonymous": "Člen DeHub"
+    }
   }
 }

@@ -3148,5 +3148,25 @@
     "noUpcoming": "Inga kommande evenemang",
     "interestedCount": "{{count}} intresserade",
     "loadFailed": "Det gick inte att läsa in evenemang"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Feedback",
+      "intro": "Har du använt DeHub ett tag? Berätta vad det har varit som. Bra, dåligt eller specifikt — allt läses. Om du är glad för att vi citerar dig, bocka i rutan och vi kan komma att använda det i inlägg, videor eller på webbplatsen.",
+      "placeholder": "Med dina egna ord…",
+      "timeUsingPlaceholder": "Hur länge har du varit här? (valfritt)",
+      "consentPromo": "Jag godkänner att DeHub citerar denna feedback i marknadsförings- och reklamaterial.",
+      "consentName": "Du kan visa mitt användarnamn tillsammans med det. Lämna detta omarkerat för att citeras anonymt.",
+      "submit": "Skicka feedback",
+      "sending": "Skickar…",
+      "signedOut": "Logga in för att lämna feedback",
+      "thanks": "Okej — tack. Allt du godkänt för reklambruk granskas av en person innan det visas någonstans.",
+      "again": "Lämna mer feedback",
+      "toastSent": "Tack — din feedback är hos oss",
+      "toastFailed": "Kunde inte skicka det, försök igen",
+      "wallTitle": "Vad folk säger",
+      "wallNote": "publicerad med tillstånd",
+      "anonymous": "En DeHub-medlem"
+    }
   }
 }

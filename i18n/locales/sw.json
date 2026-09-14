@@ -3144,5 +3144,25 @@
     "noUpcoming": "Hakuna matukio yajayo",
     "interestedCount": "{{count}} wana hamu",
     "loadFailed": "Imeshindwa kupakia matukio"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Maoni",
+      "intro": "Umekuwa ukitumia DeHub kwa muda? Tuambie jinsi gani inavyokuwa. Nzuri, mbaya au mahususi — yote yanasome. Ikiwa unafurahi kwa sisi kukuquote, tiki sanduku na tunaweza kuitumia katika machapisho, video au kwenye tovuti.",
+      "placeholder": "Kwa maneno yako mwenyewe…",
+      "timeUsingPlaceholder": "Umekuwa hapa kwa muda gani? (si lazima)",
+      "consentPromo": "Ninakuruhusu DeHub kwa kuquote maoni haya katika nyenzo za uuzaji na matangazo.",
+      "consentName": "Unaweza kuonyesha jina lako la mtumiaji pamoja nayo. Acha hii bila kutikilisha ili kuquote kwa siri.",
+      "submit": "Tuma maoni",
+      "sending": "Inatuma…",
+      "signedOut": "Ingia ili kuacha maoni",
+      "thanks": "Sawa — asante. Kitu chochote ulichoruhusu kwa matumizi ya matangazo kinakaguliwa na mtu kabla haijionekani mahali popote.",
+      "again": "Acha maoni zaidi",
+      "toastSent": "Asante — maoni yako iko nasi",
+      "toastFailed": "Haikuweza kutuma hiyo, jaribu tena",
+      "wallTitle": "Watu wanasema nini",
+      "wallNote": "kuchapishwa kwa ruhusa",
+      "anonymous": "Mwanachama wa DeHub"
+    }
   }
 }

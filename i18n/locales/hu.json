@@ -3148,5 +3148,25 @@
     "noUpcoming": "Nincsenek közelgő események",
     "interestedCount": "{{count}} érdeklődik",
     "loadFailed": "Az események betöltése sikertelen"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Visszajelzés",
+      "intro": "Már egy ideje használod a DeHubot? Mesélj nekünk, milyen volt. Jó, rossz vagy konkrét — mindent elolvasunk. Ha szívesen engedélyezed, hogy idézzünk, jelöld be a négyzetet, és felhasználhatjuk bejegyzésekben, videókban vagy az oldalon.",
+      "placeholder": "Saját szavaiddal…",
+      "timeUsingPlaceholder": "Medóta vagy itt? (opcionális)",
+      "consentPromo": "Engedélyezem a DeHubnak, hogy ezt a visszajelzést marketing- és promóciós anyagokban idézze.",
+      "consentName": "Megjelenítheted a felhasználónevemet mellette. Hagyja ezt bejelöletlenül, ha névtelenül szeretnél idézve lenni.",
+      "submit": "Visszajelzés küldése",
+      "sending": "Küldés folyamatban…",
+      "signedOut": "Jelentkezz be a visszajelzés hozzáadásához",
+      "thanks": "Rendben — köszönjük. Az összes promóciós felhasználásra engedélyezett visszajelzést egy személy átnézi, mielőtt bárhol megjelenne.",
+      "again": "További visszajelzés hozzáadása",
+      "toastSent": "Köszönjük — a visszajelzésed megérkezett hozzánk",
+      "toastFailed": "Nem sikerült elküldeni, próbáld újra",
+      "wallTitle": "Mit mondanak az emberek",
+      "wallNote": "engedéllyel közzétéve",
+      "anonymous": "Egy DeHub tag"
+    }
   }
 }

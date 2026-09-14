@@ -3176,5 +3176,25 @@
     "noUpcoming": "Mana hamuq ruwaykuna",
     "interestedCount": "{{count}} munanku",
     "loadFailed": "Ruwaykunata mana chaqnayta atikunchu"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Rimaykuna",
+      "intro": "¿Huk pachaña DeHub nisqawan llamk&#39;achkanki? Willawayku imayna kasqanmanta. Allin, mana allin utaq específico — llapanmi ñawinchasqa. Sichus kusisqa kanki ñuqaykumanta citasqaykumanta, chay cuadrota ñit&#39;iy chaymanta chayta llamk&#39;achiykuman qillqakunapi, videokunapi utaq sitiopi.",
+      "placeholder": "Kikin rimaynikichikpi...",
+      "timeUsingPlaceholder": "¿Hayka unayñataq kaypi kachkanki? (akllanapaq)",
+      "consentPromo": "DeHub kaqman autorizani kay yuyaykunata qhatuypi chaymanta promocional materialkunapi citananpaq.",
+      "consentName": "Chaypa waqtanpim username nisqa sutiyta qawachiwaq. Kayta mana marcasqa saqiy mana sutiyuq citasqa kananpaq.",
+      "submit": "Yuyaykunata apachiy",
+      "sending": "Kachaspa...",
+      "signedOut": "Yaykuy yuyaykunata saqinaykipaq",
+      "thanks": "Got it — gracias. Imapas promocional llamk&#39;anapaq ch&#39;uyanchasqaykiqa huk runa qhawan manaraq maypipas rikhurichkaptin.",
+      "again": "Astawan yuyaykunata saqiy",
+      "toastSent": "Gracias — yuyayniykiqa ñuqaykuwanmi kachkan",
+      "toastFailed": "Mana chayta apachiyta atirqanichu, hukmanta kallpachakuy",
+      "wallTitle": "Runakunapa ima nisqanku",
+      "wallNote": "permisowan lluqsichisqa",
+      "anonymous": "Huk DeHub nisqapi kaq"
+    }
   }
 }

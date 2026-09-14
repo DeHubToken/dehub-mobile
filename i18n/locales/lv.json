@@ -3143,5 +3143,25 @@
     "noUpcoming": "Nav gaidāmu pasākumu",
     "interestedCount": "{{count}} ieinteresēti",
     "loadFailed": "Neizdevās ielādēt pasākumus"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Atsauksmes",
+      "intro": "Jau kādu laiku izmantojat DeHub? Pastāstiet mums, kāda tā ir bijusi. Laba, slikta vai konkrēta — visu mēs lasām. Ja jūs piekrītat, ka mēs varam jūs citēt, atzīmējiet lodziņu, un mēs to varētu izmantot ierakstos, videoklipus vai vietnē.",
+      "placeholder": "Saviem vārdiem…",
+      "timeUsingPlaceholder": "Cik ilgi jūs šeit esat? (neobligāti)",
+      "consentPromo": "Es autorizēju DeHub citēt šīs atsauksmes mārketinga un reklāmas materiālos.",
+      "consentName": "Varat parādīt manu lietotājvārdu līdzās tam. Atstājiet šo neatzīmētu, lai tiktu citēts anonīmi.",
+      "submit": "Sūtīt atsauksmes",
+      "sending": "Sūta…",
+      "signedOut": "Pierakstieties, lai atstātu atsauksmes",
+      "thanks": "Saprasts — paldies. Viss, ko jūs atļāvāt izmantot reklāmas nolūkos, pirms tam tiek pārskatīts cilvēks.",
+      "again": "Atstāt vairāk atsauksmju",
+      "toastSent": "Paldies — jūsu atsauksmes ir pie mums",
+      "toastFailed": "Nevarēja sūtīt, mēģiniet vēlreiz",
+      "wallTitle": "Ko saka cilvēki",
+      "wallNote": "publicēts ar atļauju",
+      "anonymous": "DeHub biedrs"
+    }
   }
 }

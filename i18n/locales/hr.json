@@ -3144,5 +3144,25 @@
     "noUpcoming": "Nema nadolazećih događaja",
     "interestedCount": "{{count}} zainteresirano",
     "loadFailed": "Učitavanje događaja nije uspjelo"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Povratne informacije",
+      "intro": "Koristiš DeHub već neko vrijeme? Reci nam kako je to bilo. Dobro, loše ili specifično — sve se čita. Ako nam dozvoljavaš da te citiramo, označi polje i možda ćemo to koristiti u postovima, videima ili na web-mjestu.",
+      "placeholder": "Svojim riječima…",
+      "timeUsingPlaceholder": "Koliko dugo si ovdje? (opcionalno)",
+      "consentPromo": "Autoriziram DeHub da koristi ovu povratnu informaciju u marketinškim i promocijskim materijalima.",
+      "consentName": "Možete prikazati moje korisničko ime uz nju. Ostavite ovo neoznačeno ako želite biti citirani anonimno.",
+      "submit": "Pošalji povratnu informaciju",
+      "sending": "Slanje…",
+      "signedOut": "Prijavi se da ostaviš povratnu informaciju",
+      "thanks": "Razumijem — hvala. Sve što si odobrio za promocijsku upotrebu pregledava osoba prije nego što se pojavi negdje.",
+      "again": "Ostavi više povratnih informacija",
+      "toastSent": "Hvala — tvoja povratna informacija je kod nas",
+      "toastFailed": "Nije bilo moguće poslati to, pokušaj ponovno",
+      "wallTitle": "Što ljudi kažu",
+      "wallNote": "objavljeno sa dozvolom",
+      "anonymous": "Član DeHuba"
+    }
   }
 }

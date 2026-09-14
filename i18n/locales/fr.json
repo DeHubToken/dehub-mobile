@@ -3218,5 +3218,25 @@
     "noUpcoming": "Aucun événement à venir",
     "interestedCount": "{{count}} intéressés",
     "loadFailed": "Impossible de charger les événements"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Retours d'expérience",
+      "intro": "Vous utilisez DeHub depuis un moment ? Dites-nous comment ça se passe. Bon, mauvais ou spécifique — tout est lu. Si vous êtes heureux que nous vous citions, cochez la case et nous pourrions l'utiliser dans des publications, des vidéos ou sur le site.",
+      "placeholder": "En vos propres termes…",
+      "timeUsingPlaceholder": "Depuis combien de temps êtes-vous ici ? (facultatif)",
+      "consentPromo": "J'autorise DeHub à citer ce retour d'expérience dans les matériels de marketing et de promotion.",
+      "consentName": "Vous pouvez afficher mon nom d'utilisateur à côté. Laissez cette case décochée pour être cité anonymement.",
+      "submit": "Envoyer le retour d'expérience",
+      "sending": "Envoi en cours…",
+      "signedOut": "Connectez-vous pour laisser un retour d'expérience",
+      "thanks": "C'est noté — merci. Tout ce que vous avez autorisé pour un usage promotionnel est examiné par une personne avant d'apparaître où que ce soit.",
+      "again": "Laisser plus de retours d'expérience",
+      "toastSent": "Merci — votre retour d'expérience nous est parvenu",
+      "toastFailed": "Impossible d'envoyer cela, réessayez",
+      "wallTitle": "Ce que les gens disent",
+      "wallNote": "publié avec permission",
+      "anonymous": "Un membre de DeHub"
+    }
   }
 }

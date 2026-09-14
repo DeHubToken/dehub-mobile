@@ -3135,5 +3135,25 @@
     "noUpcoming": "Ingen kommende arrangementer",
     "interestedCount": "{{count}} interesserte",
     "loadFailed": "Kunne ikke laste arrangementer"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Tilbakemelding",
+      "intro": "Har du brukt DeHub en stund? Fortell oss hvordan det har vært. Bra, dårlig eller spesifikt — alt blir lest. Hvis du er glad for at vi siterer deg, huk av boksen og vi kan bruke det i innlegg, videoer eller på nettstedet.",
+      "placeholder": "Med dine egne ord…",
+      "timeUsingPlaceholder": "Hvor lenge har du vært her? (valgfritt)",
+      "consentPromo": "Jeg autoriserer DeHub til å sitere denne tilbakemeldingen i markedsførings- og promoteringsmateriale.",
+      "consentName": "Du kan vise brukernavnet mitt sammen med det. La denne være uhukket for å bli sitert anonymt.",
+      "submit": "Send tilbakemelding",
+      "sending": "Sender…",
+      "signedOut": "Logg inn for å gi tilbakemelding",
+      "thanks": "Skjønner — takk. Alt du har godkjent for promoteringsbruk blir gjennomgått av en person før det vises noe sted.",
+      "again": "Gi mer tilbakemelding",
+      "toastSent": "Takk — tilbakemeldingen din er hos oss",
+      "toastFailed": "Kunne ikke sende det, prøv igjen",
+      "wallTitle": "Hva folk sier",
+      "wallNote": "publisert med tillatelse",
+      "anonymous": "Et DeHub-medlem"
+    }
   }
 }

@@ -3135,5 +3135,25 @@
     "noUpcoming": "Ma jiraan munaasabado soo socda",
     "interestedCount": "{{count}} ayaa xiiseynaya",
     "loadFailed": "Lama soo rarin karin munaasabadaha"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Feedback",
+      "intro": "Ma jirta DeHub muddo dhow? Ogsow naga sheeg waxa ay ahayd. Wanaag, xumo ama gaar ah — waxaan oo dhan waxaan akhrinnaa. Haddii aad ku faraxsan tahay inaan ku sheegno, tick-ka buuxi oo waxaan ku isticmaali karno posts, videos ama site-ka.",
+      "placeholder": "Erayada kaa…",
+      "timeUsingPlaceholder": "Muddo yad jirtay halkan? (optional)",
+      "consentPromo": "Waxaan DeHub u ogolaadaa inay ku sheegto feedback-kan in marketing iyo promotional materials.",
+      "consentName": "Waxaa lagu muujin karaa username-ka. Haddii aad tani tirtid, waxaa lagu sheegi doonaa si anonymous ah.",
+      "submit": "Feedback dir",
+      "sending": "Diraya…",
+      "signedOut": "Sign in feedback-ka lagu dabaaldegay",
+      "thanks": "Waxaan gartay — mahadsanid. Wax kasta oo aad u ogolaatay promotional use waxaa dib u eegaya qof ka hor inta ay meesha ku soo baxdo.",
+      "again": "Feedback badan dir",
+      "toastSent": "Mahadsanid — feedback-kaagu waxaa nala jira",
+      "toastFailed": "Taasi dirinta kuma aqoon, isku day",
+      "wallTitle": "Waxaa dadku yidhaahda",
+      "wallNote": "published with permission",
+      "anonymous": "A DeHub member"
+    }
   }
 }
