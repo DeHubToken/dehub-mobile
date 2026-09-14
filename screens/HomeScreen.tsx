@@ -797,13 +797,23 @@ export default function HomeScreen() {
                   // Android: skipped at draw, so its textures become
                   // purgeable, while React state and the query cache stay put.
                   // The neighbours stay drawn because a drag reveals them.
-                  style={{
-                    width: pageWidth,
-                    display: Math.abs(index - activeIndex) <= 1 ? "flex" : "none",
-                  }}
+                  // The slot itself always keeps its width. Hiding the slot
+                  // took it out of the row's layout, every page after it slid
+                  // one slot left, and the pager's translate — index times
+                  // pageWidth — then landed on the wrong list: the Images tab
+                  // showed the video feed and the Video tab an empty slot. The
+                  // hide lives on the inner wrapper instead.
+                  style={{ width: pageWidth }}
                   pointerEvents={index === activeIndex ? "auto" : "none"}
                 >
-                  {renderPage(key, index)}
+                  <View
+                    style={{
+                      flex: 1,
+                      display: Math.abs(index - activeIndex) <= 1 ? "flex" : "none",
+                    }}
+                  >
+                    {renderPage(key, index)}
+                  </View>
                 </View>
               ))}
             </Animated.View>
