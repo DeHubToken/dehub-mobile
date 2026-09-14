@@ -1174,6 +1174,8 @@
     "andOthersLikedCommentPreview": "{{first}} و {{others}} عجبهم تعليقك: \"{{preview}}\"",
     "badgeLent": "{{name}} أقرضك شارتهم {{tier}}",
     "badgeTierUp": "مبروك! صرت دحين {{tier}} 🎉",
+    "badgeTierDown": "انتبه: شارتك دحين {{tier}}",
+    "badgeTierLost": "انتبه: ما عاد معك شارة",
     "badgeTakenBack": "{{name}} توقف عن إقراضك شارتهم {{tier}}",
     "badgeHandedBack": "{{name}} أرجع الشارة {{tier}} اللي أقرضتهم إياها",
     "badgeLoanLapsed": "{{name}} ما يقدر يقرضك شارتهم {{tier}} بعد الحين",

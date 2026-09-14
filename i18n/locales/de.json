@@ -1264,6 +1264,8 @@
     "andOthersLikedCommentPreview": "{{first}} und {{others}} haben deinen Kommentar geliked: \"{{preview}}\"",
     "badgeLent": "{{name}} hat dir das {{tier}} -Abzeichen ausgeliehen",
     "badgeTierUp": "Glückwunsch! Du bist jetzt ein {{tier}} 🎉",
+    "badgeTierDown": "Hinweis: Dein Abzeichen ist jetzt {{tier}}",
+    "badgeTierLost": "Hinweis: Du hast kein Abzeichen mehr",
     "badgeTakenBack": "{{name}} hat aufgehört, dir das {{tier}} -Abzeichen zu leihen",
     "badgeHandedBack": "{{name}} hat das {{tier}} -Abzeichen zurückgegeben, das du ihnen geliehen hast",
     "badgeLoanLapsed": "{{name}} kann dir sein {{tier}} -Abzeichen nicht mehr leihen",

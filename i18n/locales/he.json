@@ -1184,6 +1184,8 @@
     "andOthersLikedCommentPreview": "{{first}} ו-{{others}} אהבו את התגובה שלך: \"{{preview}}\"",
     "badgeLent": "{{name}} הלוו לכם את התג {{tier}}",
     "badgeTierUp": "מזל טוב! עכשיו אתה {{tier}} 🎉",
+    "badgeTierDown": "לתשומת לבך: התג שלך הוא כעת {{tier}}",
+    "badgeTierLost": "לתשומת לבך: אין לך יותר תג",
     "badgeTakenBack": "{{name}} הפסיקו להשאיל לכם את התג {{tier}}",
     "badgeHandedBack": "{{name}} החזיר את התג {{tier}} שהשאלת לו",
     "badgeLoanLapsed": "{{name}} כבר לא יכולים להשאיל לכם את התג {{tier}}",

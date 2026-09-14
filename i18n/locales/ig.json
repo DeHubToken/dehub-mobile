@@ -1223,6 +1223,8 @@
   },
   "notifications": {
       "badgeTierUp": "Ekele! Ugbu a ị bụ {{tier}} 🎉",
+      "badgeTierDown": "Riba ama: baajị gị ugbu a bụ {{tier}}",
+      "badgeTierLost": "Riba ama: i nweghizi baajị",
     "title": "Ọkwa",
     "loadFailed": "Enweghị ike ibunye ọkwa",
     "markAllRead": "Mee ka niile ka a gụrụ",

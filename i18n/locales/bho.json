@@ -1151,6 +1151,8 @@
   },
   "notifications": {
       "badgeTierUp": "बधाई होखे! अब रउरा {{tier}} बानी 🎉",
+      "badgeTierDown": "ध्यान दीं: अब रउरा बैज {{tier}} बा",
+      "badgeTierLost": "ध्यान दीं: अब रउरा लगे बैज नइखे",
     "title": "सूचना",
     "loadFailed": "सूचना लोड ना हो पावल",
     "markAllRead": "सभे पढ़ल गइल मानीं",

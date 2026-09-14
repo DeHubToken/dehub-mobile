@@ -1175,6 +1175,8 @@
     "andOthersLikedCommentPreview": "{{first}} lan {{others}} seneng karo komentarmu: \"{{preview}}\"",
     "badgeLent": "{{name}} nglilani sampeyan {{tier}} badge",
     "badgeTierUp": "Sugeng! Saiki sampeyan dadi {{tier}} 🎉",
+    "badgeTierDown": "Kawigatosaken: lencana sampeyan saiki {{tier}}",
+    "badgeTierLost": "Kawigatosaken: sampeyan wis ora duwe lencana",
     "badgeTakenBack": "{{name}} mandheg nglilani sampeyan {{tier}} badge",
     "badgeHandedBack": "{{name}} bali {{tier}} badge sing sampeyan lilani",
     "badgeLoanLapsed": "{{name}} ora bisa nglilani sampeyan {{tier}} badge maneh",

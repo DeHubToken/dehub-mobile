@@ -1173,6 +1173,8 @@
     "andOthersLikedCommentPreview": "{{first}} و {{others}} عجبهم تعليقك: \"{{preview}}\"",
     "badgeLent": "{{name}} أقرضك شارتهم {{tier}}",
     "badgeTierUp": "مبروك! بقيت دلوقت {{tier}} 🎉",
+    "badgeTierDown": "خد بالك: شارتك دلوقت {{tier}}",
+    "badgeTierLost": "خد بالك: مبقاش عندك شارة",
     "badgeTakenBack": "{{name}} وقف إقراضك شارتهم {{tier}}",
     "badgeHandedBack": "{{name}} رجع الشارة {{tier}} اللي أنت أقرضتهم إياها",
     "badgeLoanLapsed": "{{name}} ما يقدرش يقرضك شارتهم {{tier}} دلوقتي",

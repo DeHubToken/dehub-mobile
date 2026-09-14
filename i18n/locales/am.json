@@ -1267,6 +1267,8 @@
     "andOthersLikedCommentPreview": "{{first}} እና {{others}} አስተያየትህን ወደዱ: \"{{preview}}\"",
     "badgeLent": "{{name}} የእነሱ {{tier}} badge",
     "badgeTierUp": "እንኳን ደስ አለዎት! አሁን {{tier}} ነዎት 🎉",
+    "badgeTierDown": "ማሳሰቢያ፦ አሁን ባጅዎ {{tier}} ነው",
+    "badgeTierLost": "ማሳሰቢያ፦ ከእንግዲህ ባጅ የለዎትም",
     "badgeTakenBack": "{{name}} የእነሱን {{tier}} ባጅ ማበደር አቁሟል",
     "badgeHandedBack": "{{name}} መልሰው {{tier}} ባጅ አንተ አበድረሃቸዋል",
     "badgeLoanLapsed": "{{name}} ከእንግዲህ የእነሱን {{tier}} ባጅ ሊያበድርዎ አይችልም",

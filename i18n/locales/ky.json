@@ -1245,6 +1245,8 @@
     "andOthersLikedCommentPreview": "{{first}} жана {{others}} комментарийиңизди жактырды: \"{{preview}}\"",
     "badgeLent": "{{name}} карызга алардын {{tier}} badge",
     "badgeTierUp": "Куттуктайбыз! Эми сиз {{tier}} 🎉",
+    "badgeTierDown": "Көңүл буруңуз: белгиңиз эми {{tier}}",
+    "badgeTierLost": "Көңүл буруңуз: эми белгиңиз жок",
     "badgeTakenBack": "{{name}} Сизге насыя берүүнү токтотту {{tier}} badge",
     "badgeLoanLapsed": "{{name}} мындан ары алардын {{tier}}badge насыя бере албайт",
     "badgeLoanDropped": "Мындан ары {{tier}}badge {{name}} насыя бере албайсыз",

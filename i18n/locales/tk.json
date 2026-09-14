@@ -1193,6 +1193,8 @@
   },
   "notifications": {
       "badgeTierUp": "Gutlaýarys! Indi siz {{tier}} 🎉",
+      "badgeTierDown": "Üns beriň: nyşanyňyz indi {{tier}}",
+      "badgeTierLost": "Üns beriň: indi nyşanyňyz ýok",
     "title": "Bildirişler",
     "loadFailed": "Bildirişler ýüklenip bilinmedi",
     "markAllRead": "Ählisini okaldy diýip bellemek",

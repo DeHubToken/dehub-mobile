@@ -1296,6 +1296,8 @@
     "andOthersLikedCommentPreview": "{{first}} e {{others}} curtiram seu comentário: \"{{preview}}\"",
     "badgeLent": "{{name}} emprestou-lhe o seu {{tier}} emblema",
     "badgeTierUp": "Parabéns! Agora você é um {{tier}} 🎉",
+    "badgeTierDown": "Atenção: agora seu distintivo é {{tier}}",
+    "badgeTierLost": "Atenção: você não tem mais distintivo",
     "badgeTakenBack": "{{name}} parou de emprestar o crachá {{tier}}",
     "badgeHandedBack": "{{name}} devolveu o {{tier}} emblema que lhes emprestou",
     "badgeLoanLapsed": "{{name}} já não lhe pode emprestar o seu {{tier}} emblema",
