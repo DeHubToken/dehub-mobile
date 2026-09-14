@@ -3188,5 +3188,13 @@
     "logOutAllFailed": "Kon nie toestelle afmeld nie",
     "devicesLoggedOut_one": "{{count}} toestel afgemeld",
     "devicesLoggedOut_other": "{{count}} toestelle afgemeld"
+  },
+  "library": {
+    "myPosts": "My plasings",
+    "unlocked": "Ontsluit",
+    "clearHistoryTitle": "Vee kykgeskiedenis uit",
+    "clearHistoryBody": "Dit sal alle gekykte plasings uit jou geskiedenis verwyder.",
+    "clear": "Vee uit",
+    "clearFailed": "Kon nie geskiedenis uitvee nie. Probeer asseblief weer."
   }
 }

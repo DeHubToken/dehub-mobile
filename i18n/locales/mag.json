@@ -3024,5 +3024,13 @@
     "logOutAllFailed": "डिवाइस लॉग आउट नै भ सकल",
     "devicesLoggedOut_one": "{{count}} डिवाइस लॉग आउट भेल",
     "devicesLoggedOut_other": "{{count}} डिवाइस लॉग आउट भेल"
+  },
+  "library": {
+    "myPosts": "हमर पोस्ट",
+    "unlocked": "अनलॉक",
+    "clearHistoryTitle": "देखे के इतिहास मिटाउ",
+    "clearHistoryBody": "एहि सँ अहाँक इतिहास सँ सब देखल पोस्ट हटि जाएत।",
+    "clear": "मिटाउ",
+    "clearFailed": "इतिहास नै मिटल गेल। फेर कोशिश करू।"
   }
 }

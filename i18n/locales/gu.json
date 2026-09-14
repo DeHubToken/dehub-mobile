@@ -3063,5 +3063,13 @@
     "logOutAllFailed": "ઉપકરણો લૉગ આઉટ કરી શકાયાં નહીં",
     "devicesLoggedOut_one": "{{count}} ઉપકરણ લૉગ આઉટ થયું",
     "devicesLoggedOut_other": "{{count}} ઉપકરણો લૉગ આઉટ થયાં"
+  },
+  "library": {
+    "myPosts": "મારી પોસ્ટ",
+    "unlocked": "અનલૉક",
+    "clearHistoryTitle": "જોવાનો ઇતિહાસ સાફ કરો",
+    "clearHistoryBody": "આ તમારા ઇતિહાસમાંથી બધી જોયેલી પોસ્ટ કાઢી નાખશે.",
+    "clear": "સાફ કરો",
+    "clearFailed": "ઇતિહાસ સાફ થઈ શક્યો નહીં. ફરી પ્રયાસ કરો."
   }
 }

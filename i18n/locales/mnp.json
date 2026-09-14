@@ -3068,5 +3068,13 @@
     "logOutAllFailed": "无法登出这些设备",
     "devicesLoggedOut_one": "已登出 {{count}} 台设备",
     "devicesLoggedOut_other": "已登出 {{count}} 台设备"
+  },
+  "library": {
+    "myPosts": "我的帖子",
+    "unlocked": "已解锁",
+    "clearHistoryTitle": "清除观看历史",
+    "clearHistoryBody": "这会从你的历史记录中移除所有已观看的帖子。",
+    "clear": "清除",
+    "clearFailed": "无法清除历史记录，请重试。"
   }
 }

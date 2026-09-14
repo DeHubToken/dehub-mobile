@@ -3042,5 +3042,13 @@
     "logOutAllFailed": "ଡିଭାଇସଗୁଡ଼ିକ ଲଗ୍ ଆଉଟ୍ କରିହେଲା ନାହିଁ",
     "devicesLoggedOut_one": "{{count}} ଡିଭାଇସ୍ ଲଗ୍ ଆଉଟ୍ ହେଲା",
     "devicesLoggedOut_other": "{{count}} ଡିଭାଇସ୍ ଲଗ୍ ଆଉଟ୍ ହେଲା"
+  },
+  "library": {
+    "myPosts": "ମୋର ପୋଷ୍ଟ",
+    "unlocked": "ଅନଲକ୍",
+    "clearHistoryTitle": "ଦେଖିବା ଇତିହାସ ସଫା କରନ୍ତୁ",
+    "clearHistoryBody": "ଏହା ଆପଣଙ୍କ ଇତିହାସରୁ ଦେଖାଯାଇଥିବା ସମସ୍ତ ପୋଷ୍ଟ ହଟାଇବ।",
+    "clear": "ସଫା କରନ୍ତୁ",
+    "clearFailed": "ଇତିହାସ ସଫା କରିହେଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।"
   }
 }

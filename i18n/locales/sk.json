@@ -3242,5 +3242,13 @@
     "logOutAllFailed": "Zariadenia sa nepodarilo odhlásiť",
     "devicesLoggedOut_one": "Odhlásené {{count}} zariadenie",
     "devicesLoggedOut_other": "Odhlásených {{count}} zariadení"
+  },
+  "library": {
+    "myPosts": "Moje príspevky",
+    "unlocked": "Odomknuté",
+    "clearHistoryTitle": "Vymazať históriu sledovania",
+    "clearHistoryBody": "Týmto sa z histórie odstránia všetky zhliadnuté príspevky.",
+    "clear": "Vymazať",
+    "clearFailed": "Históriu sa nepodarilo vymazať. Skúste to znova."
   }
 }

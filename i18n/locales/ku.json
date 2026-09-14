@@ -2837,5 +2837,13 @@
     "logOutAllFailed": "Cîhaz nehatin derxistin",
     "devicesLoggedOut_one": "{{count}} cîhaz hat derxistin",
     "devicesLoggedOut_other": "{{count}} cîhaz hatin derxistin"
+  },
+  "library": {
+    "myPosts": "Postên min",
+    "unlocked": "Vekirî",
+    "clearHistoryTitle": "Dîroka temaşekirinê paqij bike",
+    "clearHistoryBody": "Ev dê hemû postên temaşekirî ji dîroka te derxe.",
+    "clear": "Paqij bike",
+    "clearFailed": "Dîrok nehat paqijkirin. Ji kerema xwe dîsa biceribîne."
   }
 }

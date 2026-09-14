@@ -3049,5 +3049,13 @@
     "logOutAllFailed": "Ọ daghị iwepụ ngwaọrụ",
     "devicesLoggedOut_one": "E wepụrụ ngwaọrụ {{count}}",
     "devicesLoggedOut_other": "E wepụrụ ngwaọrụ {{count}}"
+  },
+  "library": {
+    "myPosts": "Ozi m",
+    "unlocked": "E meghere",
+    "clearHistoryTitle": "Hichapụ akụkọ ntolite ikiri",
+    "clearHistoryBody": "Nke a ga-ewepụ ozi niile ị lere anya na akụkọ ntolite gị.",
+    "clear": "Hichapụ",
+    "clearFailed": "Ọ daghị ihichapụ akụkọ ntolite. Biko nwaa ọzọ."
   }
 }

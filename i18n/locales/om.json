@@ -3135,5 +3135,13 @@
     "logOutAllFailed": "Meeshaalee baasuun hin milkoofne",
     "devicesLoggedOut_one": "Meeshaan {{count}} ba'eera",
     "devicesLoggedOut_other": "Meeshaaleen {{count}} ba'aniiru"
+  },
+  "library": {
+    "myPosts": "Maxxansa koo",
+    "unlocked": "Banameera",
+    "clearHistoryTitle": "Seenaa ilaalchaa haqi",
+    "clearHistoryBody": "Kun maxxansaalee ilaalaman hunda seenaa kee irraa haqa.",
+    "clear": "Haqi",
+    "clearFailed": "Seenaa haquun hin milkoofne. Irra deebi'ii yaali."
   }
 }

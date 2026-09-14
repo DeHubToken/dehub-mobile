@@ -3029,5 +3029,13 @@
     "logOutAllFailed": "Gagal metokake piranti",
     "devicesLoggedOut_one": "{{count}} piranti wis metu",
     "devicesLoggedOut_other": "{{count}} piranti wis metu"
+  },
+  "library": {
+    "myPosts": "Kiriman kula",
+    "unlocked": "Kabukak",
+    "clearHistoryTitle": "Busak riwayat tontonan",
+    "clearHistoryBody": "Iki bakal mbusak kabeh kiriman sing wis ditonton saka riwayatmu.",
+    "clear": "Busak",
+    "clearFailed": "Gagal mbusak riwayat. Coba maneh."
   }
 }

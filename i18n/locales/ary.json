@@ -3097,5 +3097,13 @@
     "logOutAllFailed": "ما قدرناش نخرجو الأجهزة",
     "devicesLoggedOut_one": "تخرج {{count}} جهاز",
     "devicesLoggedOut_other": "تخرجو {{count}} أجهزة"
+  },
+  "library": {
+    "myPosts": "البوسطات ديالي",
+    "unlocked": "محلولة",
+    "clearHistoryTitle": "مسح تاريخ المشاهدة",
+    "clearHistoryBody": "هادشي غادي يمسح كل البوسطات لي شفتي من التاريخ ديالك.",
+    "clear": "مسح",
+    "clearFailed": "ما قدرناش نمسحو التاريخ. عاود حاول."
   }
 }

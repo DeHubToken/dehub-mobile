@@ -3336,5 +3336,13 @@
     "logOutAllFailed": "Gagal log keluar peranti",
     "devicesLoggedOut_one": "{{count}} peranti telah log keluar",
     "devicesLoggedOut_other": "{{count}} peranti telah log keluar"
+  },
+  "library": {
+    "myPosts": "Siaran saya",
+    "unlocked": "Dibuka",
+    "clearHistoryTitle": "Kosongkan sejarah tontonan",
+    "clearHistoryBody": "Ini akan membuang semua siaran yang ditonton daripada sejarah anda.",
+    "clear": "Kosongkan",
+    "clearFailed": "Gagal mengosongkan sejarah. Sila cuba lagi."
   }
 }

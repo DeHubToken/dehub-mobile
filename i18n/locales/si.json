@@ -3053,5 +3053,13 @@
     "logOutAllFailed": "උපාංග ඉවත් කළ නොහැකි විය",
     "devicesLoggedOut_one": "උපාංග {{count}}ක් ඉවත් විය",
     "devicesLoggedOut_other": "උපාංග {{count}}ක් ඉවත් විය"
+  },
+  "library": {
+    "myPosts": "මගේ පළ කිරීම්",
+    "unlocked": "අගුළු හරින ලද",
+    "clearHistoryTitle": "නැරඹූ ඉතිහාසය හිස් කරන්න",
+    "clearHistoryBody": "මෙය ඔබේ ඉතිහාසයෙන් නැරඹූ සියලු පළ කිරීම් ඉවත් කරයි.",
+    "clear": "හිස් කරන්න",
+    "clearFailed": "ඉතිහාසය හිස් කළ නොහැකි විය. නැවත උත්සාහ කරන්න."
   }
 }

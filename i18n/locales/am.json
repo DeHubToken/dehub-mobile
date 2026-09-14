@@ -3066,5 +3066,13 @@
     "logOutAllFailed": "መሳሪያዎቹን ማውጣት አልተሳካም",
     "devicesLoggedOut_one": "{{count}} መሳሪያ ወጥቷል",
     "devicesLoggedOut_other": "{{count}} መሳሪያዎች ወጥተዋል"
+  },
+  "library": {
+    "myPosts": "የእኔ ልጥፎች",
+    "unlocked": "የተከፈቱ",
+    "clearHistoryTitle": "የእይታ ታሪክን አጽዳ",
+    "clearHistoryBody": "ይህ የተመለከቷቸውን ሁሉንም ልጥፎች ከታሪክዎ ያስወግዳል።",
+    "clear": "አጽዳ",
+    "clearFailed": "ታሪኩን ማጽዳት አልተሳካም። እባክዎ እንደገና ይሞክሩ።"
   }
 }

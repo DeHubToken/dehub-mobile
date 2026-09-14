@@ -3140,5 +3140,13 @@
     "logOutAllFailed": "Не удалось вывести устройства",
     "devicesLoggedOut_one": "{{count}} устройство выведено",
     "devicesLoggedOut_other": "{{count}} устройств выведено"
+  },
+  "library": {
+    "myPosts": "Мои посты",
+    "unlocked": "Разблокировано",
+    "clearHistoryTitle": "Очистить историю просмотров",
+    "clearHistoryBody": "Это удалит все просмотренные посты из вашей истории.",
+    "clear": "Очистить",
+    "clearFailed": "Не удалось очистить историю. Попробуйте ещё раз."
   }
 }

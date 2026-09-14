@@ -3061,5 +3061,13 @@
     "logOutAllFailed": "ئۈسكۈنىلەرنى چېكىندۈرگىلى بولمىدى",
     "devicesLoggedOut_one": "{{count}} ئۈسكۈنە چېكىندۈرۈلدى",
     "devicesLoggedOut_other": "{{count}} ئۈسكۈنە چېكىندۈرۈلدى"
+  },
+  "library": {
+    "myPosts": "مېنىڭ يازمىلىرىم",
+    "unlocked": "ئېچىلغان",
+    "clearHistoryTitle": "كۆرۈش تارىخىنى تازىلاش",
+    "clearHistoryBody": "بۇ كۆرۈلگەن بارلىق يازمىلارنى تارىخىڭىزدىن ئۆچۈرىدۇ.",
+    "clear": "تازىلاش",
+    "clearFailed": "تارىخنى تازىلىغىلى بولمىدى. قايتا سىناڭ."
   }
 }

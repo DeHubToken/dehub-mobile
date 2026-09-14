@@ -3061,5 +3061,13 @@
     "logOutAllFailed": "An kasa fitar da na'urorin",
     "devicesLoggedOut_one": "An fitar da na'ura {{count}}",
     "devicesLoggedOut_other": "An fitar da na'urori {{count}}"
+  },
+  "library": {
+    "myPosts": "Saƙonnina",
+    "unlocked": "An buɗe",
+    "clearHistoryTitle": "Share tarihin kallo",
+    "clearHistoryBody": "Wannan zai cire duk saƙonnin da aka kalla daga tarihinka.",
+    "clear": "Share",
+    "clearFailed": "An kasa share tarihin. Da fatan za a sake gwadawa."
   }
 }

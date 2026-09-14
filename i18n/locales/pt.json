@@ -3145,5 +3145,13 @@
     "logOutAllFailed": "Não foi possível desconectar os dispositivos",
     "devicesLoggedOut_one": "{{count}} dispositivo desconectado",
     "devicesLoggedOut_other": "{{count}} dispositivos desconectados"
+  },
+  "library": {
+    "myPosts": "Meus posts",
+    "unlocked": "Desbloqueado",
+    "clearHistoryTitle": "Limpar histórico de exibição",
+    "clearHistoryBody": "Isso removerá do seu histórico todos os posts assistidos.",
+    "clear": "Limpar",
+    "clearFailed": "Não foi possível limpar o histórico. Tente de novo."
   }
 }

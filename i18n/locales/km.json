@@ -3090,5 +3090,13 @@
     "logOutAllFailed": "មិនអាចចាកចេញពីឧបករណ៍បានទេ",
     "devicesLoggedOut_one": "ឧបករណ៍ {{count}} បានចាកចេញ",
     "devicesLoggedOut_other": "ឧបករណ៍ {{count}} បានចាកចេញ"
+  },
+  "library": {
+    "myPosts": "ការបង្ហោះរបស់ខ្ញុំ",
+    "unlocked": "បានដោះសោ",
+    "clearHistoryTitle": "សម្អាតប្រវត្តិមើល",
+    "clearHistoryBody": "នេះនឹងលុបការបង្ហោះដែលបានមើលទាំងអស់ចេញពីប្រវត្តិរបស់អ្នក។",
+    "clear": "សម្អាត",
+    "clearFailed": "មិនអាចសម្អាតប្រវត្តិបានទេ។ សូមព្យាយាមម្តងទៀត។"
   }
 }

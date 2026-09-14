@@ -3061,5 +3061,13 @@
     "logOutAllFailed": "Kò lè jáde àwọn ẹ̀rọ náà",
     "devicesLoggedOut_one": "A ti jáde ẹ̀rọ {{count}}",
     "devicesLoggedOut_other": "A ti jáde àwọn ẹ̀rọ {{count}}"
+  },
+  "library": {
+    "myPosts": "Àwọn ìfiránṣẹ́ mi",
+    "unlocked": "Tí a ṣí",
+    "clearHistoryTitle": "Pa ìtàn ìwòran rẹ́",
+    "clearHistoryBody": "Èyí yóò yọ gbogbo ìfiránṣẹ́ tí o ti wò kúrò nínú ìtàn rẹ.",
+    "clear": "Pa rẹ́",
+    "clearFailed": "Kò lè pa ìtàn náà rẹ́. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan sí i."
   }
 }

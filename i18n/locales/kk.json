@@ -3127,5 +3127,13 @@
     "logOutAllFailed": "Құрылғыларды шығару мүмкін болмады",
     "devicesLoggedOut_one": "{{count}} құрылғы шығарылды",
     "devicesLoggedOut_other": "{{count}} құрылғы шығарылды"
+  },
+  "library": {
+    "myPosts": "Менің жазбаларым",
+    "unlocked": "Ашылған",
+    "clearHistoryTitle": "Қарау тарихын тазалау",
+    "clearHistoryBody": "Бұл қаралған барлық жазбаны тарихыңыздан жояды.",
+    "clear": "Тазалау",
+    "clearFailed": "Тарихты тазалау мүмкін болмады. Қайталап көріңіз."
   }
 }

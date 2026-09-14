@@ -3049,5 +3049,13 @@
     "logOutAllFailed": "Дастгоҳҳо бароварда нашуданд",
     "devicesLoggedOut_one": "{{count}} дастгоҳ бароварда шуд",
     "devicesLoggedOut_other": "{{count}} дастгоҳ бароварда шуд"
+  },
+  "library": {
+    "myPosts": "Постҳои ман",
+    "unlocked": "Кушодашуда",
+    "clearHistoryTitle": "Таърихи тамошоро тоза кунед",
+    "clearHistoryBody": "Ин ҳамаи постҳои тамошошударо аз таърихи шумо мебарорад.",
+    "clear": "Тоза кардан",
+    "clearFailed": "Таърих тоза нашуд. Лутфан дубора кӯшиш кунед."
   }
 }

@@ -3022,5 +3022,13 @@
     "logOutAllFailed": "डिवाइस लॉग आउट ना हो पावल",
     "devicesLoggedOut_one": "{{count}} डिवाइस लॉग आउट भइल",
     "devicesLoggedOut_other": "{{count}} डिवाइस लॉग आउट भइलें"
+  },
+  "library": {
+    "myPosts": "हमार पोस्ट",
+    "unlocked": "अनलॉक",
+    "clearHistoryTitle": "देखे के इतिहास मिटाईं",
+    "clearHistoryBody": "एह से रउआ इतिहास से सब देखल पोस्ट हट जाई।",
+    "clear": "मिटाईं",
+    "clearFailed": "इतिहास ना मिट पावल। फेर से कोसिस करीं।"
   }
 }

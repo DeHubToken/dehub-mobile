@@ -3022,5 +3022,13 @@
     "logOutAllFailed": "وسیلې ونه ایستل شوې",
     "devicesLoggedOut_one": "{{count}} وسیله ووتله",
     "devicesLoggedOut_other": "{{count}} وسیلې ووتلې"
+  },
+  "library": {
+    "myPosts": "زما پوسټونه",
+    "unlocked": "پرانیستل شوي",
+    "clearHistoryTitle": "د کتلو تاریخچه پاکه کړئ",
+    "clearHistoryBody": "دا به ټول کتل شوي پوسټونه ستاسو له تاریخچې لرې کړي.",
+    "clear": "پاک کړئ",
+    "clearFailed": "تاریخچه پاکه نشوه. مهرباني وکړئ بیا هڅه وکړئ."
   }
 }

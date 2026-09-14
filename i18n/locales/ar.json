@@ -3126,5 +3126,13 @@
     "logOutAllFailed": "تعذّر تسجيل خروج الأجهزة",
     "devicesLoggedOut_one": "تم تسجيل خروج {{count}} جهاز",
     "devicesLoggedOut_other": "تم تسجيل خروج {{count}} أجهزة"
+  },
+  "library": {
+    "myPosts": "منشوراتي",
+    "unlocked": "المفتوحة",
+    "clearHistoryTitle": "مسح سجل المشاهدة",
+    "clearHistoryBody": "سيؤدي هذا إلى إزالة كل المنشورات التي شاهدتها من سجلك.",
+    "clear": "مسح",
+    "clearFailed": "تعذّر مسح السجل. حاول مرة أخرى."
   }
 }
