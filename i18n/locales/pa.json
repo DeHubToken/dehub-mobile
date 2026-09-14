@@ -3077,5 +3077,26 @@
     "deleteFolderBody": "ਕੀ ਤੁਸੀਂ ਵਾਕਈ \"{{name}}\" ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਅੰਦਰਲੀਆਂ ਸੰਭਾਲੀਆਂ ਪੋਸਟਾਂ ਤੁਹਾਡੀ ਸੰਭਾਲੀ ਸੂਚੀ ਵਿੱਚੋਂ ਨਹੀਂ ਮਿਟਣਗੀਆਂ।",
     "folderDeleted": "ਫੋਲਡਰ ਮਿਟ ਗਿਆ",
     "deleteFolderFailed": "ਫੋਲਡਰ ਨਹੀਂ ਮਿਟ ਸਕਿਆ"
+  },
+  "setProfile": {
+    "title": "ਆਪਣੀ ਪ੍ਰੋਫਾਈਲ ਸੈੱਟ ਕਰੋ",
+    "subtitle": "ਚੁਣੋ ਕਿ DeHub 'ਤੇ ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਜਾਣਿਆ ਜਾਵੇ।\nਬਾਅਦ ਵਿੱਚ ਬਦਲ ਸਕਦੇ ਹੋ।",
+    "changePicture": "ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ ਬਦਲੋ",
+    "addPicture": "ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ ਜੋੜੋ",
+    "tapToChange": "ਬਦਲਣ ਲਈ ਟੈਪ ਕਰੋ",
+    "addPhotoOptional": "ਫੋਟੋ ਜੋੜੋ (ਵਿਕਲਪਿਕ)",
+    "usernamePlaceholder": "@ਯੂਜ਼ਰਨੇਮ",
+    "displayNamePlaceholder": "ਦਿਖਾਇਆ ਨਾਮ",
+    "checking": "ਜਾਂਚ ਹੋ ਰਹੀ ਹੈ…",
+    "available": "ਉਪਲਬਧ",
+    "usernameTaken": "ਯੂਜ਼ਰਨੇਮ ਪਹਿਲਾਂ ਹੀ ਲਿਆ ਗਿਆ ਹੈ",
+    "usernameHint": "3-30 ਅੱਖਰ: ਅੱਖਰ, ਅੰਕ, ਅੰਡਰਸਕੋਰ।",
+    "continueA11y": "ਪ੍ਰੋਫਾਈਲ ਸੈੱਟ ਕਰਨ ਲਈ ਅੱਗੇ ਵਧੋ",
+    "cancelSignOut": "ਰੱਦ ਕਰੋ ਅਤੇ ਸਾਈਨ ਆਉਟ",
+    "completeProfile": "ਅੱਗੇ ਵਧਣ ਲਈ ਆਪਣੀ ਪ੍ਰੋਫਾਈਲ ਪੂਰੀ ਕਰੋ",
+    "imageFailed": "ਉਹ ਤਸਵੀਰ ਵਰਤੀ ਨਹੀਂ ਜਾ ਸਕੀ",
+    "usernameReserved": "ਇਹ ਯੂਜ਼ਰਨੇਮ ਰਾਖਵਾਂ ਹੈ",
+    "profileSet": "ਪ੍ਰੋਫਾਈਲ ਸਫਲਤਾਪੂਰਵਕ ਸੈੱਟ ਹੋ ਗਈ!",
+    "profileFailed": "ਪ੍ਰੋਫਾਈਲ ਸੈੱਟ ਨਹੀਂ ਹੋ ਸਕੀ"
   }
 }

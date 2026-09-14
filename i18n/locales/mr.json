@@ -3089,5 +3089,26 @@
     "deleteFolderBody": "तुम्हाला खरोखर \"{{name}}\" हटवायचे आहे? आतील जतन केलेल्या पोस्ट तुमच्या जतन यादीतून हटणार नाहीत.",
     "folderDeleted": "फोल्डर हटवले",
     "deleteFolderFailed": "फोल्डर हटवता आले नाही"
+  },
+  "setProfile": {
+    "title": "तुमची प्रोफाइल सेट करा",
+    "subtitle": "DeHub वर तुम्हाला कसे ओळखले जावे ते निवडा.\nनंतर बदलू शकता.",
+    "changePicture": "प्रोफाइल फोटो बदला",
+    "addPicture": "प्रोफाइल फोटो जोडा",
+    "tapToChange": "बदलण्यासाठी टॅप करा",
+    "addPhotoOptional": "फोटो जोडा (पर्यायी)",
+    "usernamePlaceholder": "@वापरकर्तानाव",
+    "displayNamePlaceholder": "प्रदर्शित नाव",
+    "checking": "तपासत आहे…",
+    "available": "उपलब्ध",
+    "usernameTaken": "वापरकर्तानाव आधीच घेतले आहे",
+    "usernameHint": "3-30 अक्षरे: अक्षरे, अंक, अंडरस्कोर.",
+    "continueA11y": "प्रोफाइल सेट करण्यासाठी पुढे जा",
+    "cancelSignOut": "रद्द करा आणि साइन आउट",
+    "completeProfile": "पुढे जाण्यासाठी तुमची प्रोफाइल पूर्ण करा",
+    "imageFailed": "ती प्रतिमा वापरता आली नाही",
+    "usernameReserved": "हे वापरकर्तानाव राखीव आहे",
+    "profileSet": "प्रोफाइल यशस्वीरीत्या सेट झाली!",
+    "profileFailed": "प्रोफाइल सेट करता आली नाही"
   }
 }

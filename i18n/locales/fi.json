@@ -3101,5 +3101,26 @@
     "deleteFolderBody": "Haluatko varmasti poistaa kohteen \"{{name}}\"? Sen sisällä olevia tallennettuja julkaisuja ei poisteta Tallennetut-listaltasi.",
     "folderDeleted": "Kansio poistettu",
     "deleteFolderFailed": "Kansion poisto epäonnistui"
+  },
+  "setProfile": {
+    "title": "Määritä profiilisi",
+    "subtitle": "Valitse, miten sinut tunnetaan DeHubissa.\nVoit muuttaa niitä myöhemmin.",
+    "changePicture": "Vaihda profiilikuva",
+    "addPicture": "Lisää profiilikuva",
+    "tapToChange": "Vaihda napauttamalla",
+    "addPhotoOptional": "Lisää kuva (valinnainen)",
+    "usernamePlaceholder": "@käyttäjänimi",
+    "displayNamePlaceholder": "Näyttönimi",
+    "checking": "Tarkistetaan…",
+    "available": "Vapaana",
+    "usernameTaken": "Käyttäjänimi on varattu",
+    "usernameHint": "3-30 merkkiä: kirjaimia, numeroita, alaviiva.",
+    "continueA11y": "Jatka profiilin määritykseen",
+    "cancelSignOut": "Peruuta ja kirjaudu ulos",
+    "completeProfile": "Täydennä profiilisi jatkaaksesi",
+    "imageFailed": "Kuvaa ei voitu käyttää",
+    "usernameReserved": "Tämä käyttäjänimi on varattu",
+    "profileSet": "Profiili määritetty onnistuneesti!",
+    "profileFailed": "Profiilin määritys epäonnistui"
   }
 }

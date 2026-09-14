@@ -3092,5 +3092,26 @@
     "deleteFolderBody": "Er du sikker på at du vil slette \"{{name}}\"? De lagrede innleggene inni slettes ikke fra Lagret-listen din.",
     "folderDeleted": "Mappen er slettet",
     "deleteFolderFailed": "Kunne ikke slette mappen"
+  },
+  "setProfile": {
+    "title": "Sett opp profilen din",
+    "subtitle": "Velg hvordan du skal være kjent på DeHub.\nDu kan endre det senere.",
+    "changePicture": "Endre profilbilde",
+    "addPicture": "Legg til profilbilde",
+    "tapToChange": "Trykk for å endre",
+    "addPhotoOptional": "Legg til bilde (valgfritt)",
+    "usernamePlaceholder": "@brukernavn",
+    "displayNamePlaceholder": "Visningsnavn",
+    "checking": "Sjekker…",
+    "available": "Ledig",
+    "usernameTaken": "Brukernavnet er opptatt",
+    "usernameHint": "3-30 tegn: bokstaver, tall, understrek.",
+    "continueA11y": "Fortsett for å sette opp profil",
+    "cancelSignOut": "Avbryt og logg ut",
+    "completeProfile": "Fullfør profilen din for å fortsette",
+    "imageFailed": "Kunne ikke bruke det bildet",
+    "usernameReserved": "Dette brukernavnet er reservert",
+    "profileSet": "Profilen ble satt opp!",
+    "profileFailed": "Kunne ikke sette opp profilen"
   }
 }

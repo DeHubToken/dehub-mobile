@@ -3059,5 +3059,26 @@
     "deleteFolderBody": "Yakin arep mbusak \"{{name}}\"? Kiriman sing disimpen ing njerone ora bakal dibusak saka dhaptar Disimpen sampeyan.",
     "folderDeleted": "Folder wis dibusak",
     "deleteFolderFailed": "Gagal mbusak folder"
+  },
+  "setProfile": {
+    "title": "Atur profilmu",
+    "subtitle": "Pilih carane sampeyan dikenal ing DeHub.\nBisa diganti mengko.",
+    "changePicture": "Ganti foto profil",
+    "addPicture": "Tambah foto profil",
+    "tapToChange": "Tutul kanggo ngganti",
+    "addPhotoOptional": "Tambah foto (opsional)",
+    "usernamePlaceholder": "@jenengpangguna",
+    "displayNamePlaceholder": "Jeneng tampilan",
+    "checking": "Mriksa…",
+    "available": "Kasedhiya",
+    "usernameTaken": "Jeneng pangguna wis dienggo",
+    "usernameHint": "3-30 karakter: aksara, angka, garis ngisor.",
+    "continueA11y": "Terusake kanggo ngatur profil",
+    "cancelSignOut": "Batal lan metu",
+    "completeProfile": "Lengkapi profilmu kanggo nerusake",
+    "imageFailed": "Ora bisa nggunakake gambar kasebut",
+    "usernameReserved": "Jeneng pangguna iki dicadhangake",
+    "profileSet": "Profil kasil disetel!",
+    "profileFailed": "Gagal nyetel profil"
   }
 }

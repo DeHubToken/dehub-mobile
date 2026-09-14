@@ -3105,5 +3105,26 @@
     "deleteFolderBody": "Er du sikker på, at du vil slette \"{{name}}\"? De gemte opslag indeni bliver ikke slettet fra din Gemt-liste.",
     "folderDeleted": "Mappe slettet",
     "deleteFolderFailed": "Kunne ikke slette mappe"
+  },
+  "setProfile": {
+    "title": "Opret din profil",
+    "subtitle": "Vælg, hvordan du vil være kendt på DeHub.\nDu kan ændre det senere.",
+    "changePicture": "Skift profilbillede",
+    "addPicture": "Tilføj et profilbillede",
+    "tapToChange": "Tryk for at ændre",
+    "addPhotoOptional": "Tilføj et foto (valgfrit)",
+    "usernamePlaceholder": "@brugernavn",
+    "displayNamePlaceholder": "Vist navn",
+    "checking": "Kontrollerer…",
+    "available": "Ledigt",
+    "usernameTaken": "Brugernavnet er taget",
+    "usernameHint": "3-30 tegn: bogstaver, tal, understreg.",
+    "continueA11y": "Fortsæt for at oprette profil",
+    "cancelSignOut": "Annuller og log ud",
+    "completeProfile": "Færdiggør din profil for at fortsætte",
+    "imageFailed": "Kunne ikke bruge det billede",
+    "usernameReserved": "Dette brugernavn er reserveret",
+    "profileSet": "Profilen blev oprettet!",
+    "profileFailed": "Kunne ikke oprette profil"
   }
 }

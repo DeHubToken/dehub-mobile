@@ -3171,5 +3171,26 @@
     "deleteFolderBody": "Are you sure you want to delete \"{{name}}\"? The saved posts inside will not be deleted from your Saved list.",
     "folderDeleted": "Folder deleted",
     "deleteFolderFailed": "Failed to delete folder"
+  },
+  "setProfile": {
+    "title": "Set your profile",
+    "subtitle": "Choose how you'll be known on DeHub.\nYou can change them later.",
+    "changePicture": "Change profile picture",
+    "addPicture": "Add a profile picture",
+    "tapToChange": "Tap to change",
+    "addPhotoOptional": "Add a photo (optional)",
+    "usernamePlaceholder": "@username",
+    "displayNamePlaceholder": "Display name",
+    "checking": "Checking…",
+    "available": "Available",
+    "usernameTaken": "Username taken",
+    "usernameHint": "3-30 characters: letters, numbers, underscore.",
+    "continueA11y": "Continue to set profile",
+    "cancelSignOut": "Cancel and sign out",
+    "completeProfile": "Please complete your profile to continue",
+    "imageFailed": "Could not use that image",
+    "usernameReserved": "This username is reserved",
+    "profileSet": "Profile set successfully!",
+    "profileFailed": "Failed to set profile"
   }
 }

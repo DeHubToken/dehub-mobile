@@ -3170,5 +3170,26 @@
     "deleteFolderBody": "Möchtest du \"{{name}}\" wirklich löschen? Die gespeicherten Beiträge darin werden nicht aus deiner Gespeichert-Liste entfernt.",
     "folderDeleted": "Ordner gelöscht",
     "deleteFolderFailed": "Ordner konnte nicht gelöscht werden"
+  },
+  "setProfile": {
+    "title": "Richte dein Profil ein",
+    "subtitle": "Wähle, wie du auf DeHub bekannt sein wirst.\nDu kannst es später ändern.",
+    "changePicture": "Profilbild ändern",
+    "addPicture": "Profilbild hinzufügen",
+    "tapToChange": "Zum Ändern tippen",
+    "addPhotoOptional": "Foto hinzufügen (optional)",
+    "usernamePlaceholder": "@nutzername",
+    "displayNamePlaceholder": "Anzeigename",
+    "checking": "Wird geprüft…",
+    "available": "Verfügbar",
+    "usernameTaken": "Nutzername vergeben",
+    "usernameHint": "3-30 Zeichen: Buchstaben, Zahlen, Unterstrich.",
+    "continueA11y": "Weiter zur Profileinrichtung",
+    "cancelSignOut": "Abbrechen und abmelden",
+    "completeProfile": "Vervollständige dein Profil, um fortzufahren",
+    "imageFailed": "Dieses Bild konnte nicht verwendet werden",
+    "usernameReserved": "Dieser Nutzername ist reserviert",
+    "profileSet": "Profil erfolgreich eingerichtet!",
+    "profileFailed": "Profil konnte nicht eingerichtet werden"
   }
 }

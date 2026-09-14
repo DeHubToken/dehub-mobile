@@ -3102,5 +3102,26 @@
     "deleteFolderBody": "का तुमन सच म \"{{name}}\" मिटाय चाहथव? भीतर के सेव पोस्ट तुंहर सेव सूची ले नइ मिटही।",
     "folderDeleted": "फोल्डर मिटगे",
     "deleteFolderFailed": "फोल्डर नइ मिट सकिस"
+  },
+  "setProfile": {
+    "title": "अपन प्रोफाइल बनावव",
+    "subtitle": "चुनव कि DeHub म तुमन ल कइसे जाने जाही।\nबाद म बदल सकथव।",
+    "changePicture": "प्रोफाइल फोटो बदलव",
+    "addPicture": "प्रोफाइल फोटो जोड़व",
+    "tapToChange": "बदले बर टैप करव",
+    "addPhotoOptional": "फोटो जोड़व (वैकल्पिक)",
+    "usernamePlaceholder": "@यूजरनेम",
+    "displayNamePlaceholder": "देखाय के नाव",
+    "checking": "जांच होवत हे…",
+    "available": "उपलब्ध",
+    "usernameTaken": "यूजरनेम पहिली ले ले गे हे",
+    "usernameHint": "3-30 अक्षर: अक्षर, अंक, अंडरस्कोर।",
+    "continueA11y": "प्रोफाइल बनाय बर आगू बढ़व",
+    "cancelSignOut": "रद्द करव अउ साइन आउट",
+    "completeProfile": "आगू बढ़े बर अपन प्रोफाइल पूरा करव",
+    "imageFailed": "ओ छवि उपयोग नइ हो सकिस",
+    "usernameReserved": "ए यूजरनेम आरक्षित हे",
+    "profileSet": "प्रोफाइल सफलतापूर्वक बनगे!",
+    "profileFailed": "प्रोफाइल नइ बन सकिस"
   }
 }

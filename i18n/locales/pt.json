@@ -3175,5 +3175,26 @@
     "deleteFolderBody": "Tem certeza de que quer excluir \"{{name}}\"? Os posts salvos dentro não serão excluídos da sua lista de salvos.",
     "folderDeleted": "Pasta excluída",
     "deleteFolderFailed": "Não foi possível excluir a pasta"
+  },
+  "setProfile": {
+    "title": "Configure seu perfil",
+    "subtitle": "Escolha como você será conhecido no DeHub.\nVocê pode mudar depois.",
+    "changePicture": "Alterar foto do perfil",
+    "addPicture": "Adicionar foto de perfil",
+    "tapToChange": "Toque para alterar",
+    "addPhotoOptional": "Adicionar foto (opcional)",
+    "usernamePlaceholder": "@usuario",
+    "displayNamePlaceholder": "Nome de exibição",
+    "checking": "Verificando…",
+    "available": "Disponível",
+    "usernameTaken": "Nome de usuário em uso",
+    "usernameHint": "3 a 30 caracteres: letras, números, sublinhado.",
+    "continueA11y": "Continuar para configurar o perfil",
+    "cancelSignOut": "Cancelar e sair",
+    "completeProfile": "Complete seu perfil para continuar",
+    "imageFailed": "Não foi possível usar essa imagem",
+    "usernameReserved": "Este nome de usuário é reservado",
+    "profileSet": "Perfil configurado com sucesso!",
+    "profileFailed": "Não foi possível configurar o perfil"
   }
 }

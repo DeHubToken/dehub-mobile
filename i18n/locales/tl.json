@@ -3281,5 +3281,26 @@
     "deleteFolderBody": "Sigurado kang burahin ang \"{{name}}\"? Hindi mabubura ang mga naka-save na post sa loob mula sa iyong Saved list.",
     "folderDeleted": "Nabura ang folder",
     "deleteFolderFailed": "Hindi mabura ang folder"
+  },
+  "setProfile": {
+    "title": "I-set up ang profile mo",
+    "subtitle": "Piliin kung paano ka makikilala sa DeHub.\nMapapalitan mo ito mamaya.",
+    "changePicture": "Palitan ang profile picture",
+    "addPicture": "Magdagdag ng profile picture",
+    "tapToChange": "I-tap para palitan",
+    "addPhotoOptional": "Magdagdag ng larawan (opsyonal)",
+    "usernamePlaceholder": "@username",
+    "displayNamePlaceholder": "Display name",
+    "checking": "Sinusuri…",
+    "available": "Available",
+    "usernameTaken": "Nakuha na ang username",
+    "usernameHint": "3-30 character: letra, numero, underscore.",
+    "continueA11y": "Magpatuloy para i-set ang profile",
+    "cancelSignOut": "Kanselahin at mag-sign out",
+    "completeProfile": "Kumpletuhin ang profile mo para magpatuloy",
+    "imageFailed": "Hindi magamit ang larawang iyon",
+    "usernameReserved": "Nakalaan ang username na ito",
+    "profileSet": "Matagumpay na na-set ang profile!",
+    "profileFailed": "Hindi ma-set ang profile"
   }
 }

@@ -3101,5 +3101,26 @@
     "deleteFolderBody": "Una uhakika unataka kufuta \"{{name}}\"? Machapisho yaliyohifadhiwa ndani hayatafutwa kwenye orodha yako ya Yaliyohifadhiwa.",
     "folderDeleted": "Folda imefutwa",
     "deleteFolderFailed": "Imeshindwa kufuta folda"
+  },
+  "setProfile": {
+    "title": "Weka wasifu wako",
+    "subtitle": "Chagua jinsi utakavyojulikana kwenye DeHub.\nUnaweza kubadilisha baadaye.",
+    "changePicture": "Badilisha picha ya wasifu",
+    "addPicture": "Ongeza picha ya wasifu",
+    "tapToChange": "Gusa ili ubadilishe",
+    "addPhotoOptional": "Ongeza picha (si lazima)",
+    "usernamePlaceholder": "@jinalamtumiaji",
+    "displayNamePlaceholder": "Jina la kuonyesha",
+    "checking": "Inaangalia…",
+    "available": "Inapatikana",
+    "usernameTaken": "Jina la mtumiaji limechukuliwa",
+    "usernameHint": "Herufi 3-30: herufi, nambari, mstari chini.",
+    "continueA11y": "Endelea kuweka wasifu",
+    "cancelSignOut": "Ghairi na utoke",
+    "completeProfile": "Tafadhali kamilisha wasifu wako ili uendelee",
+    "imageFailed": "Haikuwezekana kutumia picha hiyo",
+    "usernameReserved": "Jina hili la mtumiaji limehifadhiwa",
+    "profileSet": "Wasifu umewekwa kwa mafanikio!",
+    "profileFailed": "Imeshindwa kuweka wasifu"
   }
 }

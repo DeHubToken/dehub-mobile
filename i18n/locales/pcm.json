@@ -2922,5 +2922,26 @@
     "deleteFolderBody": "You sure say you wan delete \"{{name}}\"? Di saved posts inside no go comot from your Saved list.",
     "folderDeleted": "Folder don delete",
     "deleteFolderFailed": "We no fit delete di folder"
+  },
+  "setProfile": {
+    "title": "Set your profile",
+    "subtitle": "Choose how people go know you for DeHub.\nYou fit change am later.",
+    "changePicture": "Change profile picture",
+    "addPicture": "Add profile picture",
+    "tapToChange": "Tap to change",
+    "addPhotoOptional": "Add photo (optional)",
+    "usernamePlaceholder": "@username",
+    "displayNamePlaceholder": "Display name",
+    "checking": "We dey check…",
+    "available": "E dey available",
+    "usernameTaken": "Dem don take dis username",
+    "usernameHint": "3-30 characters: letters, numbers, underscore.",
+    "continueA11y": "Continue to set profile",
+    "cancelSignOut": "Cancel and sign out",
+    "completeProfile": "Abeg complete your profile make you continue",
+    "imageFailed": "We no fit use dat image",
+    "usernameReserved": "Dem reserve dis username",
+    "profileSet": "Profile don set well well!",
+    "profileFailed": "We no fit set di profile"
   }
 }

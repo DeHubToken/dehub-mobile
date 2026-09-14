@@ -3071,5 +3071,26 @@
     "deleteFolderBody": "\"{{name}}\" pozulsynmy? Içindäki saklanan ýazgylar Saklananlar sanawyňyzdan pozulmaz.",
     "folderDeleted": "Bukja pozuldy",
     "deleteFolderFailed": "Bukja pozulyp bilmedi"
+  },
+  "setProfile": {
+    "title": "Profiliňizi düzüň",
+    "subtitle": "DeHub-da nähili tanaljakdygyňyzy saýlaň.\nSoňra üýtgedip bilersiňiz.",
+    "changePicture": "Profil suratyny üýtget",
+    "addPicture": "Profil suraty goş",
+    "tapToChange": "Üýtgetmek üçin basyň",
+    "addPhotoOptional": "Surat goş (islege bagly)",
+    "usernamePlaceholder": "@ulanyjyady",
+    "displayNamePlaceholder": "Görkezilýän at",
+    "checking": "Barlanýar…",
+    "available": "Elýeterli",
+    "usernameTaken": "Ulanyjy ady eýelenen",
+    "usernameHint": "3-30 nyşan: harplar, sanlar, aşaky çyzyk.",
+    "continueA11y": "Profili düzmek üçin dowam et",
+    "cancelSignOut": "Ýatyr we çyk",
+    "completeProfile": "Dowam etmek üçin profiliňizi dolduryň",
+    "imageFailed": "Şol suraty ulanyp bolmady",
+    "usernameReserved": "Bu ulanyjy ady bellenen",
+    "profileSet": "Profil üstünlikli düzüldi!",
+    "profileFailed": "Profil düzülip bilmedi"
   }
 }
