@@ -11,7 +11,7 @@ import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
 import { getAvatarUrl } from "../../libs";
-import { buildCdnPath } from "../../libs/misc";
+import { buildCdnPath, getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
 import { WEBSITE_LINK } from "../../config/links";
 import type { UserReplyItem } from "../../services/user.service";
 import { likeComment, type LikeCommentResult } from "../../services/nft.service";
@@ -101,6 +101,7 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
   const displayName = author?.displayName || author?.username || "Unknown";
   const handle = author?.username;
   const avatarUrl = getAvatarUrl(author?.avatarImageUrl);
+  const badgeImg = author?.hideBadgeAndBalance ? undefined : getBadgeUrlFor(author);
 
   // Post context — title, description, thumbnail (web-style quoted post)
   const post = item.post;
@@ -268,6 +269,13 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
               <Text className="text-sm font-semibold text-white" numberOfLines={1}>
                 {displayName}
               </Text>
+              {badgeImg ? (
+                <Image
+                  source={badgeImg}
+                  style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
+                  resizeMode="contain"
+                />
+              ) : null}
               {handle ? (
                 <Text className="text-xs text-zinc-500 ml-1.5" numberOfLines={1}>
                   @{handle}
