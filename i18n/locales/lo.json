@@ -38,7 +38,8 @@
     "prompt": "ພຣ້ອມ",
     "tv": "ໂທລະທັດສົດ",
     "arcade": "ອາເຄດ",
-    "stats": "ສະຖິຕິສົດ"
+    "stats": "ສະຖິຕິສົດ",
+    "converter": "ລະຫັດ QR"
   },
   "feed": {
     "home": "ໜ້າຫຼັກ",
@@ -2932,5 +2933,40 @@
     "sent": "ສົ່ງການໂອນແລ້ວ",
     "toSelf": "ທ່ານບໍ່ສາມາດສົ່ງໂທເຄັນໃຫ້ຕົນເອງໄດ້",
     "insufficientOnChain": "ຍອດເງິນເທິງເຊນບໍ່ພຽງພໍສຳລັບໂທເຄັນນີ້"
+  },
+  "converter": {
+    "title": "ນໍາເຂົ້າວິດີໂອ",
+    "paste": "ວາງ",
+    "import": "ນໍາເຂົ້າ",
+    "addToQueue": "ເພີ່ມເຂົ້າຄິວ",
+    "queueHeading": "ການນໍາເຂົ້າຂອງທ່ານ",
+    "queueRunning": "{{n}} ໃນຄິວ — ປອດໄພທີ່ຈະປິດແທັບນີ້, ພວກມັນສືບຕໍ່ໄປ.",
+    "queueIdle": "ບໍ່ມີຫຍັງແລ່ນ.",
+    "untitled": "ວິດີໂອ",
+    "thatSource": "ແພັດຟອມນັ້ນ",
+    "dismiss": "ປິດ",
+    "viewPost": "ເບິ່ງໂພສຕ໌",
+    "tryAgain": "ລອງໃໝ່",
+    "statusImported": "ນໍາເຂົ້າແລ້ວ",
+    "statusAlreadyHere": "ມີຢູ່ແລ້ວ",
+    "statusFailed": "ລົ້ມເຫລວ",
+    "statusRateLimited": "ຈໍາກັດອັດຕາ",
+    "statusProcessing": "ກຳລັງປະມວນຜົນ",
+    "statusPublishing": "ກຳລັງເຜີຍແພ່",
+    "statusDownloading": "ກຳລັງດາວໂຫລດ",
+    "statusDownloadingPercent": "ກຳລັງດາວໂຫລດ {{percent}}%",
+    "statusQueued": "ຕໍ່ຄິວ",
+    "detailFailed": "ບໍ່ສາມາດນໍາເຂົ້າວິດີໂອນັ້ນໄດ້.",
+    "detailRateLimited": "{{source}} ກຳລັງຈໍາກັດອັດຕາພວກເຮົາ. ນີ້ແລ່ນຕໍ່ໄປໂດຍອັດຕະໂນມັດ — ບໍ່ມີຫຍັງທີ່ຕ້ອງວາງໃໝ່.",
+    "detailDuplicate": "ວິດີໂອນັ້ນມີຢູ່ແລ້ວໃນໂປຣໄຟລ໌ຂອງທ່ານ.",
+    "detailWaiting": "ລໍຖ້າຄ່ຽວຂອງມັນ.",
+    "toastQueued": "ຕໍ່ຄິວ — ມັນເຜີຍແພ່ໃສ່ໂປຣໄຟລ໌ຂອງທ່ານເມື່ອມັນສຳເລັດ.",
+    "toastImported": "ນໍາ ເຂົ້າຈາກ {{source}}!",
+    "toastDuplicate": "ວິດີໂອນີ້ໄດ້ຖືກນໍາເຂົ້າແລ້ວ.",
+    "toastFailed": "ການນໍາເຂົ້ານັ້ນລົ້ມເຫຼວ.",
+    "errorUnsupported": "ພວກເຮົາບໍ່ສາມາດນໍາເຂົ້າຈາກລິ້ງນີ້ໄດ້. ພະ ຍາ ຍາມ ຫນຶ່ງ ໃນ: {{sources}}",
+    "errorNeedRights": "ກະລຸນາຢືນຢັນວ່າທ່ານມີສິດຕໍ່ເນື້ອຫານີ້",
+    "errorClipboard": "ບໍ່ສາມາດອ່ານຄລິບບອດໄດ້ - ຕິດດ້ວຍມືແທນ",
+    "errorQueueFailed": "ບໍ່ສາມາດລຽນແຖວການນໍາເຂົ້ານັ້ນໄດ້"
   }
 }

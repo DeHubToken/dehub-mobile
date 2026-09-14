@@ -38,7 +38,8 @@
     "prompt": "Prompt",
     "tv": "Canlı TV",
     "arcade": "Arkada",
-    "stats": "Canlı statistika"
+    "stats": "Canlı statistika",
+    "converter": "Konvertor"
   },
   "feed": {
     "home": "Ana səhifə",
@@ -2955,5 +2956,43 @@
     "sent": "Köçürmə göndərildi",
     "toSelf": "Özünə token göndərə bilməzsən",
     "insufficientOnChain": "Bu token üçün zəncirdə balans kifayət deyil"
+  },
+  "converter": {
+    "title": "Videonu idxal et",
+    "subtitle": "Artıq sahibi olduğunuz videonun keçidini yapışdırın və biz onu profilinizde post kimi dərc edəcəyik. İstədiyiniz qədər sıraya qoşun — onlar arxa planda bir-birinin ardınca işləyir.",
+    "placeholder": "Video keçidini yapışdırın",
+    "paste": "Yapışdır",
+    "ownership": "Bu məzmunu mən sahibiyəm və ya DeHub-da dərc etmək üçün hüquq sahibinin icazəsi var.",
+    "import": "İdxal et",
+    "addToQueue": "Sıraya əlavə et",
+    "queueHeading": "Sizin idxallarınız",
+    "queueRunning": "Sırada {{n}} — bu vərəqi bağlamaq təhlükəsizdir, onlar işləməyə davam edir.",
+    "queueIdle": "Heç bir şey işləmir.",
+    "untitled": "Video",
+    "thatSource": "o platforma",
+    "dismiss": "Rədd et",
+    "viewPost": "Postu bax",
+    "tryAgain": "Yenidən cəhd et",
+    "statusImported": "İdxal edildi",
+    "statusAlreadyHere": "Artıq burada",
+    "statusFailed": "Uğursuz oldu",
+    "statusRateLimited": "Sürət məhdudlaşdırılması",
+    "statusProcessing": "Emalda",
+    "statusPublishing": "Dərc edilir",
+    "statusDownloading": "Yüklənir",
+    "statusDownloadingPercent": "{{percent}}% yüklənir",
+    "statusQueued": "Sıraya qoyuldu",
+    "detailFailed": "Bu videonu idxal etmək mümkün olmadı.",
+    "detailRateLimited": "{{source}} bizi sürət məhdudlaşdırır. Bu öz-özünə yenidən işləyir — yenidən yapışdırmağa ehtiyac yoxdur.",
+    "detailDuplicate": "Bu video artıq profilinizde idi.",
+    "detailWaiting": "Sırasını gözləyir.",
+    "toastQueued": "Sıraya qoyuldu — bitdikdən sonra profilinizə dərc olunur.",
+    "toastRateLimited": "Sürət məhdudlaşdırılması, sizin yükləməniz sıraya qoyuldu və mümkün qədər tez emal ediləcəkdir, eyni keçidi yenidən cəhd etməyə ehtiyac yoxdur, lakin istəsəniz daha çoxunu sıraya qoya bilərsiniz",
+    "toastDuplicate": "Bu video artıq idxal edilib.",
+    "toastFailed": "Bu idxal uğursuz oldu.",
+    "errorUnsupported": "Bu linkdən idxal edə bilmərik. Bunlardan birini sınayın: {{sources}}",
+    "errorNeedRights": "Bu məzmunda hüquqlarınızın olduğunu təsdiq edin",
+    "errorClipboard": "Mübadilə buferini oxumaq mümkün olmadı — əvəzinə əllə yapışdırın",
+    "errorQueueFailed": "Bu idxalı növbə ilə dəyişmək mümkün olmadı"
   }
 }

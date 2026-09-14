@@ -157,6 +157,10 @@ export const DeepLinkPaths = {
   // Commerce — dehub.io/app/stores/:storeId (+ ?listing=<id> for one item)
   STORE: 'app/stores/:storeId',
 
+  // The converter — dehub.io/converter. /yt-dlp is the old name and web still
+  // redirects it, so a link from before the rename lands here too.
+  CONVERTER: 'converter',
+
   // Handle marketplace. Web canonicalises /app/usernames onto the bare path and
   // shares the bare form, so that is the one declared here. `?handle=` on a
   // shared listing link rides through as a route param and seeds the search
@@ -252,6 +256,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
             path: DeepLinkPaths.STORE,
             parse: { storeId: (storeId: string) => storeId },
           },
+
+          [ScreenNames.Converter]: DeepLinkPaths.CONVERTER,
 
           [ScreenNames.Usernames]: DeepLinkPaths.USERNAMES,
 

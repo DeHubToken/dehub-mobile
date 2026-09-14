@@ -38,7 +38,8 @@
     "prompt": "提示词",
     "tv": "直播电视",
     "arcade": "街机",
-    "stats": "实时统计"
+    "stats": "实时统计",
+    "converter": "Converter"
   },
   "feed": {
     "home": "主页",
@@ -2926,5 +2927,39 @@
     "sent": "转账已发送",
     "toSelf": "不能向自己发送代币",
     "insufficientOnChain": "此代币的链上余额不足"
+  },
+  "converter": {
+    "title": "导入一个视频",
+    "subtitle": "粘贴一个你已经拥有的视频链接，我们会把它作为一篇帖子发布到你的资料上。你可以排队尽可能多的视频——它们会在后台一个接一个地运行。",
+    "placeholder": "粘贴一个视频链接",
+    "ownership": "我拥有这个内容，或者有权利持有人的许可在 DeHub 上发布它。",
+    "addToQueue": "加到队列",
+    "queueHeading": "你的导入",
+    "queueRunning": "{{n}} 在队列里 — 安全关闭这个标签页，他们会继续。",
+    "queueIdle": "没有运行。",
+    "thatSource": "那个平台",
+    "dismiss": "解散",
+    "viewPost": "看帖子",
+    "tryAgain": "再试一次",
+    "statusImported": "进口的",
+    "statusAlreadyHere": "已经到了",
+    "statusFailed": "失败",
+    "statusPublishing": "出版",
+    "statusDownloading": "下载中",
+    "statusDownloadingPercent": "下载中 {{percent}}%",
+    "statusQueued": "排队中",
+    "detailFailed": "无法导入那个视频。",
+    "detailRateLimited": "{{source}} 正在对我们进行速率限制。这个会自己再运行一次——没有什么需要重新粘贴的。",
+    "detailDuplicate": "那个视频已经在你的资料里了。",
+    "detailWaiting": "等着轮到伊。",
+    "toastQueued": "排队中——完成后会发布到你的资料。",
+    "toastRateLimited": "速率限制，你的上传已排队，会尽快处理，你不需要再试同一个链接，但可以随意排队更多",
+    "toastImported": "从 {{source}} 导入！",
+    "toastDuplicate": "那个视频已经导入过了。",
+    "toastFailed": "那个导入失败了。",
+    "errorUnsupported": "我们无法从那个链接导入。试试这些之一：{{sources}}",
+    "errorNeedRights": "请确认你有这个内容的权利",
+    "errorClipboard": "无法读取剪贴板——改为手动粘贴",
+    "errorQueueFailed": "无法排队那个导入"
   }
 }
