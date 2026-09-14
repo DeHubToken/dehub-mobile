@@ -1278,6 +1278,7 @@
     "andOthersLikedComment": "{{first}} و {{others}} نظر شما را لایک کردند",
     "andOthersLikedCommentPreview": "{{first}} و {{others}} نظر شما را لایک کردند: \"{{preview}}\"",
     "badgeLent": "{{name}} نشان {{tier}} خود را به شما قرض داد",
+    "badgeTierUp": "تبریک! حالا شما یک {{tier}} هستید 🎉",
     "badgeTakenBack": "{{name}} دیگر نشان {{tier}} خود را به شما قرض نمی‌دهد",
     "badgeHandedBack": "{{name}} نشان {{tier}} که به او قرض داده بودید را پس داد",
     "badgeLoanLapsed": "{{name}} دیگر نمی‌تواند نشان {{tier}} خود را به شما قرض دهد",

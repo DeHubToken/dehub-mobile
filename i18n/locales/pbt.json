@@ -1151,6 +1151,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "مبارک شه! اوس تاسو {{tier}} یاست 🎉",
     "title": "خبرتیاوې",
     "loadFailed": "خبرتیاوې بار نه شوې",
     "markAllRead": "ټول لوستل شوي نښه کړئ",

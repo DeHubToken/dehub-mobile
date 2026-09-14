@@ -1214,6 +1214,7 @@
     "andOthersLikedComment": "{{first}} un {{others}} patika jūsu komentārs",
     "andOthersLikedCommentPreview": "{{first}} un {{others}} patika jūsu komentārs: \"{{preview}}\"",
     "badgeLent": "{{name}} aizdeva jums savu {{tier}} nozīmi",
+    "badgeTierUp": "Apsveicam! Tagad tu esi {{tier}} 🎉",
     "badgeTakenBack": "{{name}} pārtrauca jums aizdot savu {{tier}} nozīmi",
     "badgeHandedBack": "{{name}} atgrieza {{tier}} jūsu aizdoto nozīmīti",
     "badgeLoanLapsed": "{{name}} vairs nevar aizdot savu {{tier}} nozīmīti",

@@ -1193,6 +1193,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "قۇتلۇق بولسۇن! ھازىر سىز {{tier}} 🎉",
     "title": "ئۇقتۇرۇشلار",
     "loadFailed": "ئۇقتۇرۇشلارنى يۈكلىگىلى بولمىدى",
     "markAllRead": "ھەممىنى ئوقۇلدى دەپ بەلگىلەش",

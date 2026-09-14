@@ -1244,6 +1244,7 @@
     "andOthersLikedComment": "{{first}} and {{others}} liked your comment",
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} baajii isaanii {{tier}} siif liqeesse",
+    "badgeTierUp": "Baga gammadde! Amma ati {{tier}} dha 🎉",
     "badgeTakenBack": "{{name}} baajii isaanii {{tier}} siif liqeessuu dhiise",
     "badgeHandedBack": "{{name}} baajii {{tier}} isaan liqeessite deebisee",
     "badgeLoanLapsed": "{{name}} kana booda baajii isaanii {{tier}} siif liqeessuu hin danda&#39;u",

@@ -1184,6 +1184,7 @@
     "andOthersLikedComment": "{{first}} و {{others}} أعجبوا بتعليقك",
     "andOthersLikedCommentPreview": "{{first}} و {{others}} أعجبوا بتعليقك: \"{{preview}}\"",
     "badgeLent": "أقرضك {{name}} شارة {{tier}} الخاصة به",
+    "badgeTierUp": "تهانينا! أصبحت الآن {{tier}} 🎉",
     "badgeTakenBack": "توقف {{name}} عن إقراضك شارة {{tier}} الخاصة بهم",
     "badgeHandedBack": "أعاد {{name}} شارة {{tier}} التي أعرتها لهم",
     "badgeLoanLapsed": "لم يعد بإمكان {{name}} إقراضك شارة {{tier}} الخاصة بهم",

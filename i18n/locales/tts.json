@@ -1174,6 +1174,7 @@
     "andOthersLikedComment": "{{first}} และ {{others}} มักความเห็นของเจ้า",
     "andOthersLikedCommentPreview": "{{first}} และ {{others}} มักความเห็นของเจ้า: \"{{preview}}\"",
     "badgeLent": "{{name}} ยืมให้เจ้า {{tier}} badge",
+    "badgeTierUp": "ยินดีนำเด้อ! ตอนนี้เจ้าเป็น {{tier}} แล้ว 🎉",
     "badgeTakenBack": "{{name}} หยุดยืมให้เจ้า {{tier}} badge",
     "badgeHandedBack": "{{name}} คืน {{tier}} badge ที่เจ้ายืมให้เขา",
     "badgeLoanLapsed": "{{name}} ไม่สามารถยืมให้เจ้า {{tier}} badge ได้อีกแล้ว",

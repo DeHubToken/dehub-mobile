@@ -1729,6 +1729,7 @@
     "andOthersLikedComment": "{{first}} en {{others}} hebben je reactie geliket",
     "andOthersLikedCommentPreview": "{{first}} en {{others}} hebben je reactie geliket: \"{{preview}}\"",
     "badgeLent": "{{name}} leende je hun {{tier}} badge",
+    "badgeTierUp": "Gefeliciteerd! Je bent nu een {{tier}} 🎉",
     "badgeTakenBack": "{{name}} heeft je hun {{tier}} -badge niet meer uitgeleend",
     "badgeHandedBack": "{{name}} heeft de {{tier}} badge geretourneerd die je ze hebt geleend",
     "badgeLoanLapsed": "{{name}} kan je hun {{tier}} -badge niet langer lenen",

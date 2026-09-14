@@ -1222,6 +1222,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "Ekele! Ugbu a ị bụ {{tier}} 🎉",
     "title": "Ọkwa",
     "loadFailed": "Enweghị ike ibunye ọkwa",
     "markAllRead": "Mee ka niile ka a gụrụ",

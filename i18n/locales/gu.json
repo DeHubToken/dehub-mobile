@@ -1212,6 +1212,7 @@
     "andOthersLikedComment": "{{first}} અને {{others}} એ તમારી ટિપ્પણી લાઇક કરી",
     "andOthersLikedCommentPreview": "{{first}} અને {{others}} એ તમારી ટિપ્પણી લાઇક કરી: \"{{preview}}\"",
     "badgeLent": "{{name}} તમને તેમનો {{tier}} બેજ આપ્યો",
+    "badgeTierUp": "અભિનંદન! હવે તમે {{tier}} છો 🎉",
     "badgeTakenBack": "{{name}} એ તમને તેમનો {{tier}} બેજ આપવાનું બંધ કરી દીધું છે",
     "badgeHandedBack": "{{name}} એ {{tier}} બેજ પાછો આપ્યો જે તમે તેમને ઉધાર આપ્યો હતો",
     "badgeLoanLapsed": "{{name}} હવે તમને તેમનો {{tier}} બેજ ઉધાર આપી શકશે નહીં",

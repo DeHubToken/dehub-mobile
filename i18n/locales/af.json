@@ -201,6 +201,7 @@
     "andOthersLikedComment": "{{first}} and {{others}} liked your comment",
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} lent jou hulle {{tier}} badge",
+    "badgeTierUp": "Geluk! Jy is nou 'n {{tier}} 🎉",
     "badgeTakenBack": "{{name}} het opgehou om hulle {{tier}} badge te leen",
     "badgeHandedBack": "{{name}} het die {{tier}} badge teruggestuur wat jy aan hulle geleen het",
     "badgeLoanLapsed": "{{name}} kan jou nie meer hulle {{tier}} badge leen nie",

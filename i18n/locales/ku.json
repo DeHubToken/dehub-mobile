@@ -1069,6 +1069,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "Pîroz be! Tu niha {{tier}} î 🎉",
     "title": "Agahdarî",
     "loadFailed": "Agahdarî nehatin barkirin",
     "markAllRead": "Hemûyan wek xwendî nîşan bike",

@@ -1248,6 +1248,7 @@
     "andOthersLikedComment": "{{first}} ev {{others}} havanets in dzer meknabanoutyune",
     "andOthersLikedCommentPreview": "{{first}} ev {{others}} havanets in dzer meknabanoutyune: \"{{preview}}\"",
     "badgeLent": "{{name}}-ը ձեզ պարտք է {{tier}}- ի նշանակը",
+    "badgeTierUp": "Շնորհավորում ենք: Դուք այժմ {{tier}} եք 🎉",
     "badgeTakenBack": "{{name}}-ը դադարեցրել է ձեզ իր {{tier}} նշանակի տրամադրումը",
     "badgeHandedBack": "{{name}}-ը վերադարձրել է {{tier}}- ի նշանակը, որը դուք նրան պարտքով եք տվել",
     "badgeLoanLapsed": "{{name}}-ն այլևս չի կարող ձեզ պարտքով տալ {{tier}} նշանակը",

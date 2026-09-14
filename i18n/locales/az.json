@@ -1154,6 +1154,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "Təbriklər! İndi siz {{tier}}-siniz 🎉",
     "title": "Bildirişlər",
     "loadFailed": "Bildirişlər yüklənə bilmədi",
     "markAllRead": "Hamısını oxunmuş et",

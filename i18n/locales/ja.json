@@ -1292,6 +1292,7 @@
     "andOthersLikedComment": "{{first}}と{{others}}があなたのコメントにいいねしました",
     "andOthersLikedCommentPreview": "{{first}}と{{others}}があなたのコメントにいいねしました：\"{{preview}}\"",
     "badgeLent": "{{name}}さんが{{tier}}のバッジを貸してくれました",
+    "badgeTierUp": "おめでとうございます！これであなたは {{tier}} です 🎉",
     "badgeTakenBack": "{{name}}は{{tier}}バッジの貸し出しを停止しました",
     "badgeHandedBack": "{{name}}さんが、あなたが貸した{{tier}}バッジを返却しました",
     "badgeLoanLapsed": "{{name}}は{{tier}}のバッジを借りることができなくなりました",

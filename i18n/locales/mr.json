@@ -1176,6 +1176,7 @@
     "andOthersLikedComment": "{{first}} आणि {{others}} ने तुमची टिप्पणी लाइक केली",
     "andOthersLikedCommentPreview": "{{first}} आणि {{others}} ने तुमची टिप्पणी लाइक केली: \"{{preview}}\"",
     "badgeLent": "{{name}} यांनी तुम्हाला त्यांचे {{tier}} बॅज दिले",
+    "badgeTierUp": "अभिनंदन! आता तुम्ही {{tier}} आहात 🎉",
     "badgeTakenBack": "{{name}} तुम्हाला त्यांचे {{tier}} बॅज उधार देणे थांबवले",
     "badgeHandedBack": "{{name}} {{tier}} बॅज आपण त्यांना दिले",
     "badgeLoanLapsed": "{{name}} यापुढे आपल्याला त्यांचे {{tier}} बॅज कर्ज देऊ शकत नाही",

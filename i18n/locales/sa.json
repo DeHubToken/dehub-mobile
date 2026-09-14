@@ -1153,6 +1153,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "अभिनन्दनम्! अधुना भवान् {{tier}} अस्ति 🎉",
     "title": "सूचनाः",
     "loadFailed": "सूचनाः आनेतुं न शक्यन्ते",
     "markAllRead": "सर्वाः पठिताः इति चिह्नयतु",

@@ -1186,6 +1186,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "Табрик! Акнун шумо {{tier}} ҳастед 🎉",
     "title": "Огоҳиҳо",
     "loadFailed": "Огоҳиҳо бор карда нашуданд",
     "markAllRead": "Ҳамаро хондашуда қайд кардан",

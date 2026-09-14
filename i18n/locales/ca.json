@@ -1215,6 +1215,7 @@
     "andOthersLikedComment": "A {{first}} i {{others}} els ha agradat el teu comentari",
     "andOthersLikedCommentPreview": "A {{first}} i {{others}} els ha agradat el teu comentari: \"{{preview}}\"",
     "badgeLent": "{{name}} t'ha donat la seva insígnia {{tier}}",
+    "badgeTierUp": "Enhorabona! Ara ets un {{tier}} 🎉",
     "badgeTakenBack": "{{name}}ha deixat de prestar-te el seu distintiu {{tier}}",
     "badgeHandedBack": "{{name}}ha tornat la insígnia {{tier}} que els has prestat",
     "badgeLoanLapsed": "{{name}} ja no pot prestar-te la seva insígnia {{tier}}",

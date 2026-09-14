@@ -1152,6 +1152,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "እንኳዕ ሓጎሰካ! ሕጂ {{tier}} ኢኻ 🎉",
     "title": "ምልክታታት",
     "loadFailed": "መልእኽትታት ክጽዓን ኣይተኻእለን",
     "markAllRead": "ኩሉ ከም ዝተነበ ምልክት ግበር",

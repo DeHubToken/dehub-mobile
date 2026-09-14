@@ -1150,6 +1150,7 @@
     "textStartSaving": "केवल टेक्स्ट वाली पोस्ट सहेजें, वे यहाँ दिखेंगी।"
   },
   "notifications": {
+      "badgeTierUp": "बधाई होवय! अब तैं {{tier}} हस 🎉",
     "title": "सूचना",
     "loadFailed": "सूचना लोड नइ हो सकिस",
     "markAllRead": "सब पढ़े चिन्हित करव",

@@ -1192,6 +1192,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "Gutlaýarys! Indi siz {{tier}} 🎉",
     "title": "Bildirişler",
     "loadFailed": "Bildirişler ýüklenip bilinmedi",
     "markAllRead": "Ählisini okaldy diýip bellemek",

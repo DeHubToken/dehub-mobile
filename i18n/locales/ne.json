@@ -1225,6 +1225,7 @@
     "andOthersLikedComment": "{{first}} and {{others}} liked your comment",
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}}ले तपाईंलाई उनीहरूको {{tier}} ब्याज उधारो दिए",
+    "badgeTierUp": "बधाई छ! अब तपाईं {{tier}} हुनुहुन्छ 🎉",
     "badgeTakenBack": "{{name}} ले तपाईंलाई उनीहरूको {{tier}} ब्याज उधारो दिन बन्द गर्यो",
     "badgeHandedBack": "{{name}} तपाईंले उनीहरूलाई उधारो दिनुभएको {{tier}} ब्याज फिर्ता गर्नुभयो",
     "badgeLoanLapsed": "{{name}} अब तपाईंलाई उनीहरूको {{tier}} ब्याज उधारो दिन सक्दैनन्",

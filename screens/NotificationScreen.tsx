@@ -64,6 +64,7 @@ import {
   getNotificationIconConfig,
   NON_CLICKABLE_TYPES,
   BADGE_DELEGATION_TYPES,
+  BADGE_LADDER_TYPES,
 } from "../services/enums/notification.enums";
 
 type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'communities' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
@@ -351,6 +352,9 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
   // Badge lending rows open settings, so they carry neither a tokenId nor
   // anything the default test below would pass them on.
   if (BADGE_DELEGATION_TYPES.has(typeStr)) return true;
+
+  // Same shape, different page: a climb opens the ladder, not settings.
+  if (BADGE_LADDER_TYPES.has(typeStr)) return true;
   
   // Follow request — handled via inline accept/reject buttons, not clickable to navigate
   if (type === NotificationType.FOLLOW_REQUEST) return false;
@@ -1160,6 +1164,15 @@ const NotificationScreen = () => {
       case NotificationType.BADGE_DELEGATION_ENDED:
       case NotificationType.BADGE_DELEGATION_CHANGED:
         navigation.navigate(ScreenNames.AccountSettings as never);
+        break;
+
+      // The ladder lives on the staking tab, with the next rung and its price
+      // already on it — which settings, where the loans are, does not have.
+      case NotificationType.BADGE_TIER_UP:
+        navigation.navigate(
+          ScreenNames.Dpay as never,
+          { initialTab: "stake" } as never,
+        );
         break;
 
       case 'video_removal':

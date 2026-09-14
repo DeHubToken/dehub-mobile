@@ -1942,6 +1942,7 @@
     "andOthersLikedComment": "{{first}} and {{others}} liked your comment",
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} позичив (-ла) вам свій значок {{tier}}",
+    "badgeTierUp": "Вітаємо! Тепер ви {{tier}} 🎉",
     "badgeTakenBack": "{{name}} перестали позичати вам свій значок {{tier}}",
     "badgeHandedBack": "{{name}} повернув (-ла) значок {{tier}}, який ви їм позичили",
     "badgeLoanLapsed": "{{name}} більше не може позичати вам свій значок {{tier}}",

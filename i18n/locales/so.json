@@ -1206,6 +1206,7 @@
     "andOthersLikedComment": "{{first}} iyo {{others}} ayaa jeclaatay faalladaada",
     "andOthersLikedCommentPreview": "{{first}} iyo {{others}} ayaa jeclaatay faalladaada: \"{{preview}}\"",
     "badgeLent": "{{name}} lent you ay {{tier}} badge",
+    "badgeTierUp": "Hambalyo! Hadda waxaad tahay {{tier}} 🎉",
     "badgeTakenBack": "{{name}} joojiyay amaahda ay {{tier}} badge",
     "badgeHandedBack": "{{name}} soo celiyay {{tier}} badge aad amaahisay",
     "badgeLoanLapsed": "{{name}} mar dambe kuma deyn karo {{tier}} badge",

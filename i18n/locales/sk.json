@@ -708,6 +708,7 @@
     "andOthersLikedComment": "{{first}} and {{others}} liked your comment",
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} vám požičal odznak {{tier}}",
+    "badgeTierUp": "Gratulujeme! Teraz si {{tier}} 🎉",
     "badgeTakenBack": "{{name}} vám prestal požičiavať svoj odznak {{tier}}",
     "badgeHandedBack": "{{name}} vrátil odznak {{tier}}, ktorý ste mu požičali",
     "badgeLoanLapsed": "{{name}} vám už nemôže požičať svoj odznak {{tier}}",

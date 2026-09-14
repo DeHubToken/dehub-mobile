@@ -1134,6 +1134,7 @@
     "andOthersLikedComment": "{{first}} sy {{others}} tia ny fanehoan-kevitrao",
     "andOthersLikedCommentPreview": "{{first}} sy {{others}} tia ny fanehoan-kevitrao: \"{{preview}}\"",
     "badgeLent": "{{name}} lent anao ry {{tier}} badge",
+    "badgeTierUp": "Arahaba! Izao ianao dia {{tier}} 🎉",
     "badgeTakenBack": "{{name}} Nitsahatra tsy nanome tsiny anao ry {{tier}} badge",
     "badgeHandedBack": "{{name}} naverin'ny {{tier}} badge nampindraminao azy ireo ianao",
     "badgeLoanDropped": "Tsy afaka mampindrana ny {{tier}} badge anao intsony ianao {{name}}",

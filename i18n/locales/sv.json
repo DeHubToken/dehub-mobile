@@ -1186,6 +1186,7 @@
     "andOthersLikedComment": "{{first}} och {{others}} gillade din kommentar",
     "andOthersLikedCommentPreview": "{{first}} och {{others}} gillade din kommentar: \"{{preview}}\"",
     "badgeLent": "{{name}} lånade ut sitt {{tier}} -märke",
+    "badgeTierUp": "Grattis! Du är nu en {{tier}} 🎉",
     "badgeTakenBack": "{{name}} slutade låna ut sitt {{tier}} -märke till dig",
     "badgeHandedBack": "{{name}} returnerade märket {{tier}} som du lånade ut till dem",
     "badgeLoanLapsed": "{{name}} kan inte längre låna ut sitt {{tier}} -märke",

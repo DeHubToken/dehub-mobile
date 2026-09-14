@@ -1268,6 +1268,7 @@
     "andOthersLikedComment": "{{first}} da {{others}} sun so sharhinka",
     "andOthersLikedCommentPreview": "{{first}} da {{others}} sun so sharhinka: \"{{preview}}\"",
     "badgeLent": "{{name}} lent ka su {{tier}} badge",
+    "badgeTierUp": "Barka! Yanzu kai {{tier}} ne 🎉",
     "badgeTakenBack": "{{name}} daina ba ku bashi su {{tier}} badge",
     "badgeHandedBack": "{{name}} ya dawo da {{tier}} badge ka bashi su",
     "badgeLoanLapsed": "{{name}} ba zai iya sake ba ku bashi su {{tier}} badge",

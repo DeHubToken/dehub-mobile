@@ -1174,6 +1174,7 @@
     "andOthersLikedComment": "{{first}} و {{others}} عجبهم تعليقك",
     "andOthersLikedCommentPreview": "{{first}} و {{others}} عجبهم تعليقك: \"{{preview}}\"",
     "badgeLent": "{{name}} أعطاك شارة {{tier}} بالعارية",
+    "badgeTierUp": "مبروك! هسه صرت {{tier}} 🎉",
     "badgeTakenBack": "{{name}} توقف عن إعطاؤك شارة {{tier}} بالعارية",
     "badgeHandedBack": "{{name}} رجع الشارة {{tier}} اللي أنت أعطيتهم بالعارية",
     "badgeLoanLapsed": "{{name}} ما يقدر يعطيك شارة {{tier}} بالعارية",

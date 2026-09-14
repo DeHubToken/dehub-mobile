@@ -1524,6 +1524,7 @@
     "andOthersLikedComment": "{{first}} i {{others}} polubili Twój komentarz",
     "andOthersLikedCommentPreview": "{{first}} i {{others}} polubili Twój komentarz: \"{{preview}}\"",
     "badgeLent": "{{name}} pożyczył Ci swoją odznakę {{tier}}",
+    "badgeTierUp": "Gratulacje! Jesteś teraz {{tier}} 🎉",
     "badgeTakenBack": "{{name}} przestał Ci pożyczać swoją odznakę {{tier}}",
     "badgeHandedBack": "{{name}} zwrócił odznakę {{tier}}, którą im pożyczyłeś",
     "badgeLoanLapsed": "{{name}} nie może już pożyczyć Ci swojej plakietki {{tier}}",

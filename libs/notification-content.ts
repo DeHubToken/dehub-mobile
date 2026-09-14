@@ -18,6 +18,7 @@ type NotificationContent = {
    */
   metadata?: {
     tier?: string;
+    previousTier?: string;
     role?: 'grantor' | 'grantee';
     reason?: string;
     [key: string]: unknown;
@@ -29,6 +30,14 @@ export function localizedNotificationContent(
   item: NotificationContent,
   t: (key: string, options?: any) => string,
 ): string | null {
+  // Climbing a rung has no actor — nobody did it to the reader — so it is
+  // answered above the guard below, which exists to hand anything without a
+  // name back to the server's own English sentence.
+  if (item.type === 'badge_tier_up') {
+    return t('notifications.badgeTierUp', {
+      tier: item.metadata?.tier || t('notifications.badgeGenericTier'),
+    });
+  }
   const name = item.actor?.displayName || item.actorUsername || item.actor?.username || item.latestActorNames?.[0] || item.actorAddress;
   if (!name) return null;
   const count = item.aggregatedCount ?? 1;

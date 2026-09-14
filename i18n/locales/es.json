@@ -1264,6 +1264,7 @@
     "andOthersLikedComment": "{{first}} y {{others}} le dieron me gusta a tu comentario",
     "andOthersLikedCommentPreview": "{{first}} y {{others}} le dieron me gusta a tu comentario: \"{{preview}}\"",
     "badgeLent": "{{name}} te prestó su insignia {{tier}}",
+    "badgeTierUp": "¡Felicidades! Ahora eres un {{tier}} 🎉",
     "badgeTakenBack": "{{name}} dejó de prestarte su insignia {{tier}}",
     "badgeHandedBack": "{{name}} devolvió la insignia {{tier}} que les prestaste",
     "badgeLoanLapsed": "{{name}} ya no puede prestarte su insignia {{tier}}",

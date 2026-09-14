@@ -1185,6 +1185,7 @@
     "andOthersLikedComment": "{{first}} и {{others}} харесаха коментара ви",
     "andOthersLikedCommentPreview": "{{first}} и {{others}} харесаха коментара ви: \"{{preview}}\"",
     "badgeLent": "{{name}} ви зае тяхната значка {{tier}}",
+    "badgeTierUp": "Поздравления! Вече си {{tier}} 🎉",
     "badgeTakenBack": "{{name}} спря да ви заема значката {{tier}}",
     "badgeHandedBack": "{{name}} върна значката {{tier}}, която сте им заели",
     "badgeLoanLapsed": "{{name}} вече не може да ви заема значката {{tier}}",

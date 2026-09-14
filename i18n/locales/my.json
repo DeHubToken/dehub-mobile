@@ -1218,6 +1218,7 @@
     "andOthersLikedComment": "{{first}} and {{others}} liked your comment",
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} သင့်အား ၎ င်းတို့ ၏ {{tier}} badge",
+    "badgeTierUp": "ဂုဏ်ယူပါတယ်! ယခု သင်သည် {{tier}} ဖြစ်ပါပြီ 🎉",
     "badgeTakenBack": "{{name}} သင့်အား ၎ င်းတို့ ၏ {{tier}}badge ကို ချေးငွေပေးခြင်း ရပ်တန့်လိုက်သည်",
     "badgeHandedBack": "{{name}} {{tier}} badge ကို သင်သူတို့ကို ငှားပေးခဲ့သည်",
     "badgeLoanDropped": "သင် ၏ {{tier}}badge ကို {{name}} သို့ ချေးငှား ၍ မရပါ",
