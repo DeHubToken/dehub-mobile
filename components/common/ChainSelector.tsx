@@ -10,7 +10,6 @@ import {
   StyleSheet,
   Platform,
 } from "react-native";
-import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { ChainId, chainIcons } from "../../config/constants";
@@ -147,11 +146,8 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
             style={[styles.sheet, { paddingBottom: insets.bottom + 12 }]}
             onPress={() => {}}
           >
-            <BlurView
-              intensity={80}
-              tint="dark"
-              style={StyleSheet.absoluteFill}
-            />
+            {/* Solid, not glass: expo-blur does not blur on Android, so a tint
+                here let the sheet read through whatever it opened over. */}
             <View style={[StyleSheet.absoluteFill, styles.sheetOverlay]} />
 
             <Text style={styles.title}>{title}</Text>
@@ -261,9 +257,9 @@ const styles = StyleSheet.create({
     maxHeight: "88%",
   },
   sheetOverlay: {
-    backgroundColor: "rgba(20,20,20,0.55)",
+    backgroundColor: "#0C0C0E",
     borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(255,255,255,0.06)",
   },
   title: {
     color: "#F9FBFF",
