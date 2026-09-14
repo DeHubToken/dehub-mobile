@@ -1769,6 +1769,8 @@
     "continueEmail": "ดำเนินการต่อด้วยอีเมล",
     "continueSMS": "ดำเนินการต่อด้วย SMS",
     "continueGoogle": "ดำเนินการต่อด้วย Google",
+    "continueApple": "ดำเนินการต่อด้วย Apple",
+    "continueTelegram": "ดำเนินการต่อด้วย Telegram",
     "continueX": "ดำเนินการต่อด้วย X",
     "continueDiscord": "ดำเนินการต่อด้วย Discord",
     "connectWallet": "เชื่อมต่อกระเป๋าเงิน",

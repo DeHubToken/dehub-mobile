@@ -38,6 +38,7 @@ import {
   verifyPhoneOtp,
   signInWithGoogle,
   signInWithApple,
+  signInWithTelegram,
   getSupabaseAccessToken,
   getSupabaseAuthMeta,
 } from "../../services/auth/supabaseAuth.service";
@@ -572,6 +573,28 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     }
   }, [runProvisionAndSignIn]);
 
+  const handleTelegramLogin = useCallback(async () => {
+    hasNavigatedRef.current = false;
+    setIsLocalLoading(true);
+    setCurrentProvider("telegram");
+    try {
+      const supabaseUserId = await signInWithTelegram();
+      await runProvisionAndSignIn(supabaseUserId);
+    } catch (e: any) {
+      log.error("Telegram login error", e?.stack || e);
+      // Closing Telegram's consent screen is a choice, not a failure.
+      if (!/cancelled/i.test(e?.message || "")) {
+        toastError(e, "Login failed. Please retry.");
+      }
+      hasNavigatedRef.current = false;
+    } finally {
+      if (isMountedRef.current) {
+        setIsLocalLoading(false);
+        setCurrentProvider("");
+      }
+    }
+  }, [runProvisionAndSignIn]);
+
   const handleEmailSubmit = useCallback(async (email: string) => {
     setIsLocalLoading(true);
     setCurrentProvider("email");
@@ -732,6 +755,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             <SocialLoginIcons
               onGoogle={handleGoogleLogin}
               onApple={handleAppleLogin}
+              onTelegram={handleTelegramLogin}
               onEmailSubmit={handleEmailSubmit}
               onEmailPasswordSubmit={handleEmailPasswordSubmit}
               onPhoneSubmit={handlePhoneSubmit}

@@ -1522,6 +1522,8 @@
     "continueEmail": "Jatka sähköpostilla",
     "continueSMS": "Jatka tekstiviestillä",
     "continueGoogle": "Jatka Googlella",
+    "continueApple": "Jatka Applella",
+    "continueTelegram": "Jatka Telegramlla",
     "continueX": "Jatka X:llä",
     "continueDiscord": "Jatka Discordilla",
     "connectWallet": "Yhdistä lompakko",

@@ -206,6 +206,113 @@ export async function signInWithApple(): Promise<string> {
   return signInWithOAuthProvider("apple");
 }
 
+/* ── Telegram ─────────────────────────────────────────────────────────────
+ * Telegram is not a Supabase Auth provider — it has no OAuth 2 endpoint at
+ * all. What it has is oauth.telegram.org, which authenticates the person and
+ * hands back a blob of profile fields signed with the bot token. The
+ * telegram-auth edge function is the only thing holding that token, so it is
+ * the only thing that can verify the blob and turn it into a session.
+ *
+ * The awkward part is the return address. Telegram will only redirect to the
+ * domain registered against the bot with BotFather, which rules out sending it
+ * straight at `dehub://`. So it comes back to dehub.io/auth/telegram?app=1 —
+ * a page whose whole job is to bounce the payload at the app's scheme — and
+ * openAuthSessionAsync catches that. Both halves have to agree on the path and
+ * on the scheme below; the web page is dehubweb src/pages/TelegramAuth.tsx.
+ */
+
+/** Registered with BotFather. Not window.location.origin — there is none here. */
+const TELEGRAM_WEB_ORIGIN = "https://dehub.io";
+
+/**
+ * Hardcoded rather than Linking.createURL, because the bridge page has to name
+ * the same scheme and it cannot ask the app what it is. Matches app.json's
+ * "scheme": "dehub", so this is the redirect every release build resolves to.
+ */
+const TELEGRAM_REDIRECT_URI = "dehub://auth-callback";
+
+interface TelegramLoginConfig {
+  enabled: boolean;
+  botId: string | null;
+}
+
+async function fetchTelegramConfig(): Promise<TelegramLoginConfig> {
+  const { data, error } = await supabase.functions.invoke("telegram-auth", { method: "GET" });
+  if (error) {
+    log.warn("telegram:config:error", error.message);
+    return { enabled: false, botId: null };
+  }
+  if (!data?.enabled || !data?.botId) return { enabled: false, botId: null };
+  return { enabled: true, botId: String(data.botId) };
+}
+
+/** Whether to offer the Telegram row at all — false until a bot is configured. */
+export async function isTelegramLoginAvailable(): Promise<boolean> {
+  try {
+    return (await fetchTelegramConfig()).enabled;
+  } catch {
+    return false;
+  }
+}
+
+export async function signInWithTelegram(): Promise<string> {
+  const config = await fetchTelegramConfig();
+  if (!config.enabled || !config.botId) {
+    throw new Error("Telegram login is not available right now.");
+  }
+
+  const returnTo = `${TELEGRAM_WEB_ORIGIN}/auth/telegram?app=1`;
+  const authUrl =
+    "https://oauth.telegram.org/auth" +
+    `?bot_id=${encodeURIComponent(config.botId)}` +
+    `&origin=${encodeURIComponent(TELEGRAM_WEB_ORIGIN)}` +
+    `&return_to=${encodeURIComponent(returnTo)}` +
+    "&embed=0&request_access=write";
+
+  const result = await WebBrowser.openAuthSessionAsync(authUrl, TELEGRAM_REDIRECT_URI);
+  if (result.type !== "success" || !result.url) {
+    throw new Error("Telegram sign-in was cancelled");
+  }
+
+  // The bridge page puts the payload in the FRAGMENT, the way Telegram hands
+  // it over — it never belongs in a query string, where it would be written to
+  // every server log between here and there.
+  const fragment = result.url.split("#")[1] || "";
+  const tgAuthResult = new URLSearchParams(fragment).get("tgAuthResult");
+  if (!tgAuthResult) {
+    throw new Error("Telegram sign-in was cancelled");
+  }
+
+  const { data, error } = await supabase.functions.invoke("telegram-auth", {
+    body: { tgAuthResult },
+  });
+  if (error) {
+    log.warn("telegram:exchange:invoke:error", error.message);
+    throw new Error(error.message || "Telegram sign-in failed. Please try again.");
+  }
+  if (data?.error) {
+    log.warn("telegram:exchange:error", data.error);
+    throw new Error(data.error);
+  }
+
+  const session = data?.session;
+  if (!session?.access_token || !session?.refresh_token) {
+    log.warn("telegram:missing-session");
+    throw new Error("Telegram sign-in failed. Please try again.");
+  }
+
+  const { data: sessionData, error: sessionError } = await supabase.auth.setSession({
+    access_token: session.access_token,
+    refresh_token: session.refresh_token,
+  });
+  const userId = sessionData?.session?.user?.id;
+  if (sessionError || !userId) {
+    log.warn("telegram:setSession:error", sessionError?.message);
+    throw new Error(sessionError?.message || "Telegram sign-in failed. Please try again.");
+  }
+  return userId;
+}
+
 /** The current Supabase session's access token, or null if not signed in. */
 export async function getSupabaseAccessToken(): Promise<string | null> {
   try {
