@@ -38,3 +38,41 @@ export async function getEmailLinkStatus(): Promise<EmailLinkStatus | null> {
     return null;
   }
 }
+
+/**
+ * The same question, asked in a way that also repairs the answer.
+ *
+ * A Google or email signup proves an address to Supabase, and nothing ever
+ * copied it onto the DeHub account — which is the one place the notification
+ * mailer looks. So `notifyEmail` came back null for nearly everyone and this
+ * screen greyed the switch out, telling people to add the address they had
+ * just signed in with. Logins record it now, but that only reaches someone the
+ * next time they sign in; this is the same write, offered on demand.
+ *
+ * The Supabase session goes in the body. The server verifies it and writes the
+ * address only when the session belongs to the identity this account is
+ * already linked to — holding a session for somebody else attaches nothing.
+ *
+ * Falls back to the plain status read: the API deploys by hand and the app
+ * ships when it ships, so there is a window where this route answers 404, and
+ * a settings row must not go blank over it.
+ */
+export async function syncEmailLinkStatus(): Promise<EmailLinkStatus | null> {
+  let supabaseAccessToken: string | null = null;
+  try {
+    const { getSupabaseAccessToken } = await import('./auth/supabaseAuth.service');
+    supabaseAccessToken = await getSupabaseAccessToken();
+  } catch {
+    // No session to offer; the status read below still answers.
+  }
+
+  try {
+    return await apiClient.post<EmailLinkStatus>(
+      '/account/email-link/sync',
+      supabaseAccessToken ? { supabaseAccessToken } : {},
+      { isAuthRequired: true, quiet: true },
+    );
+  } catch {
+    return getEmailLinkStatus();
+  }
+}
