@@ -6,6 +6,12 @@ import Icon from "../ui/Icon";
 import { getBadgeOpticalStyle } from "../../libs/misc";
 
 const ICON_MUTED = "#6F7174";
+// Matches the web card's 23.5px header icons. The cluster is pulled up and
+// out by the same 4pt its buttons pad with, so the icons' top and right edges
+// land exactly on the card's 12pt inset — equal top and side, and hanging free
+// at the bottom rather than centred against a two-line identity block.
+const HEADER_ICON_SIZE = 22;
+const HEADER_ICON_PAD = 4;
 const DISPLAY_NAME_FONT_SIZE = 16;
 const DISPLAY_NAME_LINE_HEIGHT = 20;
 const HOLDER_BADGE_SIZE = 16;
@@ -114,35 +120,38 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
         ) : null}
       </View>
 
-      <View className="flex-row items-center gap-1">
-        {isHidden && <Icon name="EyeOff" size={14} color={ICON_MUTED} />}
+      <View
+        className="flex-row items-center gap-2"
+        style={{ alignSelf: "flex-start", marginTop: -HEADER_ICON_PAD, marginRight: -HEADER_ICON_PAD }}
+      >
+        {isHidden && <Icon name="EyeOff" size={16} color={ICON_MUTED} />}
         {onBoostPress && (
           <Pressable
             onPress={onBoostPress}
             accessibilityRole="button"
             accessibilityLabel="Boost post"
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            style={{ padding: 4, marginRight: 1.6 }}
+            style={{ padding: HEADER_ICON_PAD, marginRight: 1.6 }}
           >
-            <Icon name="Rocket" size={16} color={ICON_MUTED} />
+            <Icon name="Rocket" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
           </Pressable>
         )}
         {onAiPress && (
           <Pressable
             onPress={onAiPress}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            style={{ padding: 4 }}
+            style={{ padding: HEADER_ICON_PAD }}
           >
-            <Icon name="Sparkles" size={16} color={ICON_MUTED} />
+            <Icon name="Sparkles" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
           </Pressable>
         )}
         {onMenuPress && (
           <Pressable
             onPress={onMenuPress}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            style={{ padding: 4 }}
+            style={{ padding: HEADER_ICON_PAD }}
           >
-            <Icon name="EllipsisVertical" size={16} color={ICON_MUTED} />
+            <Icon name="EllipsisVertical" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
           </Pressable>
         )}
       </View>
