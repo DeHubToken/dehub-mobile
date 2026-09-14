@@ -1556,7 +1556,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "សកម្ម",
+    "noActiveNow": "មិនមានសំណើសកម្មនៅពេលនេះទេ",
+    "subtitle": "បោះឆ្នោតលើសំណើដែលរៀបចំវេទិកា",
+    "loadFailed": "មិនអាចផ្ទុកសំណើបានទេ"
   },
   "spaces": {
     "title": "ស្ពេស",

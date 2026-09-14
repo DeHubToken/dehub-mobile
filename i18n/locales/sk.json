@@ -1042,7 +1042,10 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "noActiveNow": "Momentálne žiadne aktívne návrhy",
+    "subtitle": "Hlasujte o návrhoch, ktoré formujú platformu",
+    "loadFailed": "Návrhy sa nepodarilo načítať"
   },
   "careers": {
     "title": "Kariéra",

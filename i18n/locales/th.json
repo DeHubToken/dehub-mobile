@@ -1941,7 +1941,11 @@
     "minutesAgo": "{{count}} นาทีที่แล้ว",
     "hoursAgo": "{{count}} ชม.ที่แล้ว",
     "daysAgo": "{{count}} วันที่แล้ว",
-    "monthsAgo": "{{count}} เดือนที่แล้ว"
+    "monthsAgo": "{{count}} เดือนที่แล้ว",
+    "active": "กำลังดำเนินการ",
+    "noActiveNow": "ขณะนี้ไม่มีข้อเสนอที่ดำเนินอยู่",
+    "subtitle": "โหวตข้อเสนอที่กำหนดทิศทางแพลตฟอร์ม",
+    "loadFailed": "โหลดข้อเสนอไม่สำเร็จ"
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",

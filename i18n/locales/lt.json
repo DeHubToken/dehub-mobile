@@ -1728,7 +1728,11 @@
     "minutesAgo": "prieš {{count}} min.",
     "hoursAgo": "prieš {{count}} val.",
     "daysAgo": "prieš {{count}} d.",
-    "monthsAgo": "prieš {{count}} mėn."
+    "monthsAgo": "prieš {{count}} mėn.",
+    "active": "Aktyvūs",
+    "noActiveNow": "Šiuo metu aktyvių pasiūlymų nėra",
+    "subtitle": "Balsuokite už pasiūlymus, formuojančius platformą",
+    "loadFailed": "Nepavyko įkelti pasiūlymų"
   },
   "sidebar": {
     "talkOfTheTown": "Miesto kalba",

@@ -1725,7 +1725,11 @@
     "minutesAgo": "{{count}} મિનિટ પહેલાં",
     "hoursAgo": "{{count}} કલાક પહેલાં",
     "daysAgo": "{{count}} દિવસ પહેલાં",
-    "monthsAgo": "{{count}} મહિના પહેલાં"
+    "monthsAgo": "{{count}} મહિના પહેલાં",
+    "active": "સક્રિય",
+    "noActiveNow": "અત્યારે કોઈ સક્રિય દરખાસ્ત નથી",
+    "subtitle": "પ્લેટફોર્મને ઘડતી દરખાસ્તો પર મત આપો",
+    "loadFailed": "દરખાસ્તો લોડ થઈ શકી નહીં"
   },
   "sidebar": {
     "talkOfTheTown": "શહેરની ચર્ચા",

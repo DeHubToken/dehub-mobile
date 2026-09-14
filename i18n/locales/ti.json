@@ -1152,9 +1152,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "እንኳዕ ሓጎሰካ! ሕጂ {{tier}} ኢኻ 🎉",
-      "badgeTierDown": "መዘኻኸሪ፦ ሕጂ ባጅካ {{tier}} እዩ",
-      "badgeTierLost": "መዘኻኸሪ፦ ደጊም ባጅ የብልካን",
+    "badgeTierUp": "እንኳዕ ሓጎሰካ! ሕጂ {{tier}} ኢኻ 🎉",
+    "badgeTierDown": "መዘኻኸሪ፦ ሕጂ ባጅካ {{tier}} እዩ",
+    "badgeTierLost": "መዘኻኸሪ፦ ደጊም ባጅ የብልካን",
     "title": "ምልክታታት",
     "loadFailed": "መልእኽትታት ክጽዓን ኣይተኻእለን",
     "markAllRead": "ኩሉ ከም ዝተነበ ምልክት ግበር",
@@ -1704,7 +1704,11 @@
     "minutesAgo": "{{count}} ደቒቕ ቅድም",
     "hoursAgo": "{{count}} ሰዓት ቅድም",
     "daysAgo": "{{count}} መዓልቲ ቅድም",
-    "monthsAgo": "{{count}} ወርሒ ቅድም"
+    "monthsAgo": "{{count}} ወርሒ ቅድም",
+    "active": "ንጡፍ",
+    "noActiveNow": "ሕጂ ንጡፍ እማመ የለን",
+    "subtitle": "ነቶም መድረኽ ዝቐርጹ እማመታት ድምጺ ሃብ",
+    "loadFailed": "እማመታት ክጽዓኑ ኣይከኣሉን"
   },
   "sidebar": {
     "talkOfTheTown": "ናይ ከተማ ዕላል",

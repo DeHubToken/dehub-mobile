@@ -1154,9 +1154,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "ଅଭିନନ୍ଦନ! ଏବେ ଆପଣ {{tier}} 🎉",
-      "badgeTierDown": "ଧ୍ୟାନ ଦିଅନ୍ତୁ: ଏବେ ଆପଣଙ୍କ ବ୍ୟାଜ୍ {{tier}}",
-      "badgeTierLost": "ଧ୍ୟାନ ଦିଅନ୍ତୁ: ଆପଣଙ୍କର ଆଉ ବ୍ୟାଜ୍ ନାହିଁ",
+    "badgeTierUp": "ଅଭିନନ୍ଦନ! ଏବେ ଆପଣ {{tier}} 🎉",
+    "badgeTierDown": "ଧ୍ୟାନ ଦିଅନ୍ତୁ: ଏବେ ଆପଣଙ୍କ ବ୍ୟାଜ୍ {{tier}}",
+    "badgeTierLost": "ଧ୍ୟାନ ଦିଅନ୍ତୁ: ଆପଣଙ୍କର ଆଉ ବ୍ୟାଜ୍ ନାହିଁ",
     "title": "ସୂଚନା",
     "loadFailed": "ବିଜ୍ଞପ୍ତି ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ",
     "markAllRead": "ସବୁ ପଢ଼ା ଭାବେ ଚିହ୍ନିତ କରନ୍ତୁ",
@@ -1705,7 +1705,11 @@
     "minutesAgo": "{{count}} ମିନିଟ ଆଗରୁ",
     "hoursAgo": "{{count}} ଘଣ୍ଟା ଆଗରୁ",
     "daysAgo": "{{count}} ଦିନ ଆଗରୁ",
-    "monthsAgo": "{{count}} ମାସ ଆଗରୁ"
+    "monthsAgo": "{{count}} ମାସ ଆଗରୁ",
+    "active": "ସକ୍ରିୟ",
+    "noActiveNow": "ବର୍ତ୍ତମାନ କୌଣସି ସକ୍ରିୟ ପ୍ରସ୍ତାବ ନାହିଁ",
+    "subtitle": "ପ୍ଲାଟଫର୍ମ ଗଢ଼ୁଥିବା ପ୍ରସ୍ତାବରେ ଭୋଟ୍ ଦିଅନ୍ତୁ",
+    "loadFailed": "ପ୍ରସ୍ତାବ ଲୋଡ୍ କରିହେଲା ନାହିଁ"
   },
   "sidebar": {
     "talkOfTheTown": "ସହରର ଚର୍ଚ୍ଚା",

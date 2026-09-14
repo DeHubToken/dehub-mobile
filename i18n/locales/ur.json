@@ -1730,7 +1730,11 @@
     "minutesAgo": "{{count}} منٹ پہلے",
     "hoursAgo": "{{count}} گھنٹے پہلے",
     "daysAgo": "{{count}} دن پہلے",
-    "monthsAgo": "{{count}} ماہ پہلے"
+    "monthsAgo": "{{count}} ماہ پہلے",
+    "active": "فعال",
+    "noActiveNow": "ابھی کوئی فعال تجویز نہیں",
+    "subtitle": "ان تجاویز پر ووٹ دیں جو پلیٹ فارم کو شکل دیتی ہیں",
+    "loadFailed": "تجاویز لوڈ نہیں ہو سکیں"
   },
   "sidebar": {
     "talkOfTheTown": "شہر کی چرچا",

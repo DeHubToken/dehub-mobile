@@ -926,7 +926,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "Aktief",
+    "noActiveNow": "Geen aktiewe voorstelle op die oomblik nie",
+    "subtitle": "Stem oor voorstelle wat die platform vorm",
+    "loadFailed": "Kon nie voorstelle laai nie"
   },
   "careers": {
     "title": "Loopbane",

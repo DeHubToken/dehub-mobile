@@ -1744,7 +1744,11 @@
     "minutesAgo": "{{count}}m fa",
     "hoursAgo": "{{count}}h fa",
     "daysAgo": "{{count}}g fa",
-    "monthsAgo": "{{count}}me fa"
+    "monthsAgo": "{{count}}me fa",
+    "active": "Attive",
+    "noActiveNow": "Nessuna proposta attiva al momento",
+    "subtitle": "Vota le proposte che danno forma alla piattaforma",
+    "loadFailed": "Impossibile caricare le proposte"
   },
   "sidebar": {
     "talkOfTheTown": "Di cosa si parla",

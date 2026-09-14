@@ -1732,7 +1732,11 @@
     "minutesAgo": "{{count}}分钟前",
     "hoursAgo": "{{count}}小时前",
     "daysAgo": "{{count}}天前",
-    "monthsAgo": "{{count}}个月前"
+    "monthsAgo": "{{count}}个月前",
+    "active": "进行中",
+    "noActiveNow": "当前没有进行中的提案",
+    "subtitle": "为塑造平台的提案投票",
+    "loadFailed": "无法加载提案"
   },
   "sidebar": {
     "talkOfTheTown": "热门话题",

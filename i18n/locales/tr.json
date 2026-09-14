@@ -1813,7 +1813,11 @@
     "minutesAgo": "{{count}}dk önce",
     "hoursAgo": "{{count}}sa önce",
     "daysAgo": "{{count}}g önce",
-    "monthsAgo": "{{count}}ay önce"
+    "monthsAgo": "{{count}}ay önce",
+    "active": "Etkin",
+    "noActiveNow": "Şu anda etkin öneri yok",
+    "subtitle": "Platformu şekillendiren önerilere oy ver",
+    "loadFailed": "Öneriler yüklenemedi"
   },
   "sidebar": {
     "talkOfTheTown": "Gündem",

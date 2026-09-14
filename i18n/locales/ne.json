@@ -1542,7 +1542,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "सक्रिय",
+    "noActiveNow": "अहिले कुनै सक्रिय प्रस्ताव छैन",
+    "subtitle": "प्लेटफर्म बनाउने प्रस्तावहरूमा मत दिनुहोस्",
+    "loadFailed": "प्रस्तावहरू लोड गर्न सकिएन"
   },
   "spaces": {
     "title": "स्पेसहरू",

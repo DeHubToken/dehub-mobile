@@ -1714,7 +1714,11 @@
     "minutesAgo": "{{count}} منٽ اڳ",
     "hoursAgo": "{{count}} ڪلاڪ اڳ",
     "daysAgo": "{{count}} ڏينهن اڳ",
-    "monthsAgo": "{{count}} مهينا اڳ"
+    "monthsAgo": "{{count}} مهينا اڳ",
+    "active": "فعال",
+    "noActiveNow": "هن وقت ڪا فعال تجويز ناهي",
+    "subtitle": "انهن تجويزن تي ووٽ ڏيو جيڪي پليٽ فارم ٺاهين ٿيون",
+    "loadFailed": "تجويزون لوڊ نه ٿي سگهيون"
   },
   "sidebar": {
     "talkOfTheTown": "شهر جي ڳالهه",

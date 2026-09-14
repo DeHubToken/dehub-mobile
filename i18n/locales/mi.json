@@ -1717,7 +1717,11 @@
     "minutesAgo": "{{count}} meneti ki muri",
     "hoursAgo": "{{count}} hāora ki muri",
     "daysAgo": "{{count}} rā ki muri",
-    "monthsAgo": "{{count}} marama ki muri"
+    "monthsAgo": "{{count}} marama ki muri",
+    "active": "Hohe",
+    "noActiveNow": "Kāore he marohi hohe i tēnei wā",
+    "subtitle": "Pōti i ngā marohi e hanga ana i te papatono",
+    "loadFailed": "Kāore i taea te uta i ngā marohi"
   },
   "sidebar": {
     "talkOfTheTown": "Kōrero o te tāone",

@@ -7,7 +7,8 @@
  * balance/badge + contract layer (deferred, matching the web3 bucket).
  */
 import React, { useCallback, useMemo, useState } from "react";
-import { View, Text, StyleSheet, Pressable, FlatList } from "react-native";
+import { useTranslation } from "react-i18next";
+import { View, Text, StyleSheet, Pressable, FlatList } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -20,10 +21,10 @@ import { getAvatarUrl } from "../libs/misc";
 import { formatCompactNumber } from "../libs";
 import { getProposals, type GovernanceProposal, type GovernanceTab } from "../services/governance.service";
 
-const TABS: { key: GovernanceTab; label: string }[] = [
-  { key: "active", label: "Active" },
-  { key: "passed", label: "Passed" },
-  { key: "rejected", label: "Rejected" },
+const TABS: { key: GovernanceTab; labelKey: string }[] = [
+  { key: "active", labelKey: "governance.active" },
+  { key: "passed", labelKey: "governance.passed" },
+  { key: "rejected", labelKey: "governance.rejected" },
 ];
 
 function timeAgo(iso: string): string {
@@ -89,6 +90,7 @@ const ProposalCard: React.FC<{ proposal: GovernanceProposal }> = ({ proposal }) 
 };
 
 export default function GovernanceScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [tab, setTab] = useState<GovernanceTab>("active");
 
@@ -104,16 +106,16 @@ export default function GovernanceScreen() {
   );
 
   const emptyLabel = useMemo(() => {
-    if (tab === "passed") return "No passed proposals yet";
-    if (tab === "rejected") return "No rejected proposals yet";
-    return "No active proposals right now";
-  }, [tab]);
+    if (tab === "passed") return t("governance.noPassedYet");
+    if (tab === "rejected") return t("governance.noRejectedYet");
+    return t("governance.noActiveNow");
+  }, [tab, t]);
 
   return (
     <View style={styles.root}>
       <ScreenHeader
-        title="Governance"
-        subtitle="Vote on proposals that shape the platform"
+        title={t("governance.title")}
+        subtitle={t("governance.subtitle")}
         rightContent={<Icon name="ShieldCheck" size={22} color={theme.colors.accent} />}
       />
 
@@ -122,7 +124,7 @@ export default function GovernanceScreen() {
           const active = tab === tb.key;
           return (
             <Pressable key={tb.key} onPress={() => setTab(tb.key)} style={[styles.filterChip, active && styles.filterChipActive]}>
-              <Text style={[styles.filterText, active && styles.filterTextActive]}>{tb.label}</Text>
+              <Text style={[styles.filterText, active && styles.filterTextActive]}>{t(tb.labelKey)}</Text>
             </Pressable>
           );
         })}
@@ -132,9 +134,9 @@ export default function GovernanceScreen() {
         <View style={styles.center}><DeHubLoader size={56} /></View>
       ) : isError ? (
         <View style={styles.center}>
-          <Text style={styles.emptyText}>Couldn't load proposals</Text>
+          <Text style={styles.emptyText}>{t("governance.loadFailed")}</Text>
           <Pressable onPress={() => refetch()} style={styles.retryBtn}>
-            <Text style={styles.retryText}>Retry</Text>
+            <Text style={styles.retryText}>{t("common.retry")}</Text>
           </Pressable>
         </View>
       ) : (

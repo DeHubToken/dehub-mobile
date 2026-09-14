@@ -2166,7 +2166,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "Aktif",
+    "noActiveNow": "Tiada cadangan aktif buat masa ini",
+    "subtitle": "Undi cadangan yang membentuk platform",
+    "loadFailed": "Tidak dapat memuatkan cadangan"
   },
   "sidebar": {
     "talkOfTheTown": "Talk of The Town",

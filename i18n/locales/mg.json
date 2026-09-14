@@ -1647,7 +1647,11 @@
     "minutesAgo": "{{count}}m lasa",
     "hoursAgo": "{{count}}o lasa",
     "daysAgo": "{{count}}a lasa",
-    "monthsAgo": "{{count}}v lasa"
+    "monthsAgo": "{{count}}v lasa",
+    "active": "Mavitrika",
+    "noActiveNow": "Tsy misy tolo-kevitra mavitrika amin'izao",
+    "subtitle": "Mifidiana tolo-kevitra izay mamolavola ny sehatra",
+    "loadFailed": "Tsy voaloatra ny tolo-kevitra"
   },
   "sidebar": {
     "talkOfTheTown": "Resak'olona",

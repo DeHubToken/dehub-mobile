@@ -1150,9 +1150,9 @@
     "textStartSaving": "केवल टेक्स्ट वाली पोस्ट सहेजें, वे यहाँ दिखेंगी।"
   },
   "notifications": {
-      "badgeTierUp": "बधाई होखे! अब रउरा {{tier}} बानी 🎉",
-      "badgeTierDown": "ध्यान दीं: अब रउरा बैज {{tier}} बा",
-      "badgeTierLost": "ध्यान दीं: अब रउरा लगे बैज नइखे",
+    "badgeTierUp": "बधाई होखे! अब रउरा {{tier}} बानी 🎉",
+    "badgeTierDown": "ध्यान दीं: अब रउरा बैज {{tier}} बा",
+    "badgeTierLost": "ध्यान दीं: अब रउरा लगे बैज नइखे",
     "title": "सूचना",
     "loadFailed": "सूचना लोड ना हो पावल",
     "markAllRead": "सभे पढ़ल गइल मानीं",
@@ -1698,7 +1698,11 @@
     "minutesAgo": "{{count}}मि पहिले",
     "hoursAgo": "{{count}}घं पहिले",
     "daysAgo": "{{count}}दि पहिले",
-    "monthsAgo": "{{count}}म पहिले"
+    "monthsAgo": "{{count}}म पहिले",
+    "active": "सक्रिय",
+    "noActiveNow": "अभी कवनो सक्रिय प्रस्ताव नइखे",
+    "subtitle": "ओह प्रस्ताव पर वोट दीं जे प्लेटफॉर्म के आकार देला",
+    "loadFailed": "प्रस्ताव लोड ना हो पावल"
   },
   "sidebar": {
     "talkOfTheTown": "गली के चर्चा",

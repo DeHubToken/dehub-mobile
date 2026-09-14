@@ -1730,7 +1730,11 @@
     "minutesAgo": "{{count}}m lalu",
     "hoursAgo": "{{count}}j lalu",
     "daysAgo": "{{count}}h lalu",
-    "monthsAgo": "{{count}}bl lalu"
+    "monthsAgo": "{{count}}bl lalu",
+    "active": "Aktif",
+    "noActiveNow": "Tidak ada proposal aktif saat ini",
+    "subtitle": "Beri suara untuk proposal yang membentuk platform",
+    "loadFailed": "Tidak dapat memuat proposal"
   },
   "sidebar": {
     "talkOfTheTown": "Yang Dibicarakan",

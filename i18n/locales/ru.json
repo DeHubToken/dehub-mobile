@@ -1746,7 +1746,11 @@
     "minutesAgo": "{{count}}м назад",
     "hoursAgo": "{{count}}ч назад",
     "daysAgo": "{{count}}д назад",
-    "monthsAgo": "{{count}}мес назад"
+    "monthsAgo": "{{count}}мес назад",
+    "active": "Активные",
+    "noActiveNow": "Сейчас нет активных предложений",
+    "subtitle": "Голосуйте за предложения, которые формируют платформу",
+    "loadFailed": "Не удалось загрузить предложения"
   },
   "sidebar": {
     "talkOfTheTown": "Обсуждаемое",

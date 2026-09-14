@@ -1728,7 +1728,11 @@
     "minutesAgo": "{{count}} min tagasi",
     "hoursAgo": "{{count}} t tagasi",
     "daysAgo": "{{count}} p tagasi",
-    "monthsAgo": "{{count}} k tagasi"
+    "monthsAgo": "{{count}} k tagasi",
+    "active": "Aktiivsed",
+    "noActiveNow": "Praegu pole aktiivseid ettepanekuid",
+    "subtitle": "Hääleta ettepanekute üle, mis kujundavad platvormi",
+    "loadFailed": "Ettepanekuid ei õnnestunud laadida"
   },
   "sidebar": {
     "talkOfTheTown": "Linna jutt",
