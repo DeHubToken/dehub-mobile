@@ -5,9 +5,10 @@ import {
   FlatList,
   Pressable,
   ActivityIndicator,
-  RefreshControl,
   Image,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
@@ -180,13 +181,14 @@ const RepostTabComponent: React.FC<RepostTabProps> = ({ tokenId }) => {
   if (loading) {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <ActivityIndicator size="large" color="#F9FBFF" />
+        <DeHubLoader size={56} />
       </View>
     );
   }
 
   return (
-    <FlatList
+    <View style={{ flex: 1 }}>
+      <FlatList
       data={users}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
@@ -194,7 +196,7 @@ const RepostTabComponent: React.FC<RepostTabProps> = ({ tokenId }) => {
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0.3}
       refreshControl={
-        <RefreshControl
+        <DeHubRefreshControl
           refreshing={refreshing}
           onRefresh={handleRefresh}
           tintColor="#F9FBFF"
@@ -209,7 +211,9 @@ const RepostTabComponent: React.FC<RepostTabProps> = ({ tokenId }) => {
       }
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ flexGrow: 1 }}
-    />
+      />
+      <DeHubRefreshMark refreshing={refreshing} />
+    </View>
   );
 };
 

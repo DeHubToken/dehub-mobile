@@ -7,7 +7,8 @@
  * balance/badge + contract layer (deferred, matching the web3 bucket).
  */
 import React, { useCallback, useMemo, useState } from "react";
-import { View, Text, StyleSheet, Pressable, FlatList, ActivityIndicator, RefreshControl } from "react-native";
+import { View, Text, StyleSheet, Pressable, FlatList, RefreshControl } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
 import Icon from "../components/ui/Icon";
@@ -127,7 +128,7 @@ export default function GovernanceScreen() {
       </View>
 
       {isLoading ? (
-        <View style={styles.center}><ActivityIndicator size="large" color="#FFFFFF" /></View>
+        <View style={styles.center}><DeHubLoader size={56} /></View>
       ) : isError ? (
         <View style={styles.center}>
           <Text style={styles.emptyText}>Couldn't load proposals</Text>

@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
+import { DeHubLoader } from '../components/DeHubLoader';
 import ScreenHeader from '../components/ScreenHeader';
 import {
   SettingsAnchor,
@@ -332,7 +333,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       <View className="flex-1 bg-theme-neutrals-900">
         {!embedded && <ScreenHeader title={t('settings.accountPrivacy')} canGoBack />}
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#F4F4F5" />
+          <DeHubLoader size={56} />
         </View>
       </View>
     );

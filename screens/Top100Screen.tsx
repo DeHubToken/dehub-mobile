@@ -20,6 +20,7 @@ import {
   RefreshControl,
   TextInput,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
@@ -173,7 +174,7 @@ export default function Top100Screen() {
 
       {isLoading && all.length === 0 ? (
         <View style={styles.center}>
-          <ActivityIndicator size="large" color="#FFFFFF" />
+          <DeHubLoader size={56} />
         </View>
       ) : (
         <FlatList

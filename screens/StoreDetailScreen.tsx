@@ -11,10 +11,10 @@ import {
   StyleSheet,
   Pressable,
   FlatList,
-  ActivityIndicator,
   RefreshControl,
   useWindowDimensions,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
@@ -133,7 +133,7 @@ export default function StoreDetailScreen() {
 
       {storeLoading && isLoading ? (
         <View style={styles.center}>
-          <ActivityIndicator size="large" color="#FFFFFF" />
+          <DeHubLoader size={56} />
         </View>
       ) : (
         <FlatList

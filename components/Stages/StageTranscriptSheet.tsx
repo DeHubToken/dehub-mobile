@@ -20,7 +20,7 @@ import GlassModal from "../ui/GlassModal";
 import StageRecordingPlayer from "./StageRecordingPlayer";
 import { seekStageRecordingToTime, useStagePlayback } from "../../libs/stage-playback";
 import type { AudioSpace, StageTranscript, Segment, Chapter, SpeakerMapEntry, SpeakerOverride } from "../../hooks/useStages";
-import { ButtonLoader } from "../DeHubLoader";
+import { ButtonLoader, DeHubLoader } from "../DeHubLoader";
 import { usePendingAction } from "../../hooks/usePendingAction";
 import { FIELD_TEXT } from "../../theme/inputs";
 
@@ -529,7 +529,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
         {/* Loading / Status overlay */}
         {isTranscriptLoading && !transcript ? (
           <View className="flex-1 items-center justify-center py-20 gap-3">
-            <ActivityIndicator size="large" color="#D4D4D8" />
+            <DeHubLoader size={56} />
             <Text className="text-theme-neutrals-400 text-sm">Loading transcript...</Text>
           </View>
         ) : !space?.recording_url ? (
@@ -539,7 +539,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
           </View>
         ) : status === "pending" || status === "processing" ? (
           <View className="flex-1 items-center justify-center py-20 gap-3">
-            <ActivityIndicator size="large" color="#D4D4D8" />
+            <DeHubLoader size={56} />
             <Text className="text-white font-semibold">Generating AI Transcript</Text>
             <Text className="text-theme-neutrals-400 text-xs text-center px-6">
               This process may take a minute depending on the length of the stage recording.

@@ -10,24 +10,22 @@
  * stale results underneath a translucent veil is what made the old behaviour
  * read as a frozen screen instead of a loading one.
  *
- * Mounted only while the transition is active, so the rotation costs nothing
- * the rest of the time.
+ * The mark is the shared DeHub preloader, the same art and the same wait the
+ * web app shows from its own FeedFilterLoader. This used to draw a hand-rolled
+ * rotating arc with a comment claiming it was "the same mark as the web
+ * loader" — it never was, and a filter switch was the most-seen wait in the
+ * app to be wearing a generic spinner.
+ *
+ * Mounted only while the transition is active, so it costs nothing the rest of
+ * the time.
  */
 
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
-import Animated, {
-  Easing,
-  cancelAnimation,
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withTiming,
-} from "react-native-reanimated";
+import { DeHubLoader } from "../DeHubLoader";
 
-const SPIN_MS = 900;
-const RING_SIZE = 32;
+const MARK_SIZE = 56;
 
 interface FeedFilterLoaderProps {
   /** Distance from the top of the viewport to clear the collapsible header. */
@@ -36,20 +34,6 @@ interface FeedFilterLoaderProps {
 
 const FeedFilterLoaderComponent: React.FC<FeedFilterLoaderProps> = ({ topInset = 0 }) => {
   const { t } = useTranslation();
-  const rotation = useSharedValue(0);
-
-  useEffect(() => {
-    rotation.value = withRepeat(
-      withTiming(360, { duration: SPIN_MS, easing: Easing.linear }),
-      -1,
-      false,
-    );
-    return () => cancelAnimation(rotation);
-  }, [rotation]);
-
-  const ringStyle = useAnimatedStyle(() => ({
-    transform: [{ rotate: `${rotation.value}deg` }],
-  }));
 
   return (
     <View
@@ -61,8 +45,7 @@ const FeedFilterLoaderComponent: React.FC<FeedFilterLoaderProps> = ({ topInset =
       pointerEvents="auto"
     >
       <View style={styles.centre}>
-        {/* One bright arc on a faint ring — the same mark as the web loader. */}
-        <Animated.View style={[styles.ring, ringStyle]} />
+        <DeHubLoader size={MARK_SIZE} />
         <Text style={styles.label}>
           {t("filters.updatingFeed", "Updating feed").toUpperCase()}
         </Text>
@@ -86,14 +69,6 @@ const styles = StyleSheet.create({
   centre: {
     alignItems: "center",
     gap: 14,
-  },
-  ring: {
-    width: RING_SIZE,
-    height: RING_SIZE,
-    borderRadius: RING_SIZE / 2,
-    borderWidth: 2,
-    borderColor: "rgba(255,255,255,0.12)",
-    borderTopColor: "rgba(255,255,255,0.7)",
   },
   label: {
     fontSize: 11,

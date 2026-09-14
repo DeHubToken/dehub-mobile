@@ -10,10 +10,10 @@ import {
   FlatList,
   ListRenderItemInfo,
   Pressable,
-  RefreshControl,
   View,
   Text,
 } from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import FeedCard from "../Home/FeedCard";
 import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
@@ -217,7 +217,8 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
   }, [loading, error, variant, emptyMessage, loadPage]);
 
   return (
-    <FlatList
+    <View className="flex-1">
+      <FlatList
       className="flex-1 bg-theme-neutrals-900"
       data={items}
       keyExtractor={keyExtractor}
@@ -234,7 +235,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
       onViewableItemsChanged={onViewableItemsChanged}
       extraData={visibilityExtraData}
       refreshControl={
-        <RefreshControl
+        <DeHubRefreshControl
           refreshing={refreshing}
           onRefresh={onRefresh}
           tintColor="#fff"
@@ -247,7 +248,9 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
         flexGrow: items.length === 0 && !loading ? 1 : undefined,
       }}
       ListEmptyComponent={ListEmpty}
-    />
+      />
+      <DeHubRefreshMark refreshing={refreshing} />
+    </View>
   );
 };
 

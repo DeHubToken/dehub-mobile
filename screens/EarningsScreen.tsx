@@ -5,10 +5,10 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
-  ActivityIndicator,
   RefreshControl,
   StyleSheet,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import Svg, { Path, G, Circle } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ScreenHeader from "../components/ScreenHeader";
@@ -234,7 +234,7 @@ const EarningsScreen: React.FC = () => {
 
       {loading ? (
         <View style={styles.center}>
-          <ActivityIndicator size="large" color="#D4D4D8" />
+          <DeHubLoader size={56} />
         </View>
       ) : (
         <ScrollView

@@ -5,9 +5,9 @@ import {
   Text,
   Modal,
   Pressable,
-  ActivityIndicator,
   StyleSheet,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
 import * as ImagePicker from "expo-image-picker";
 import Icon from "../ui/Icon";
 import { theme } from "../../theme";
@@ -99,7 +99,7 @@ const AddStorySheet: React.FC<AddStorySheetProps> = ({
 
           {uploading ? (
             <View style={styles.uploading}>
-              <ActivityIndicator color={theme.colors.accent} size="large" />
+              <DeHubLoader size={56} />
               <Text style={styles.progressText}>Uploading… {Math.round(progress)}%</Text>
             </View>
           ) : (

@@ -22,6 +22,7 @@ import {
   useWindowDimensions,
   KeyboardAvoidingView,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import { ethers } from "ethers";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -259,7 +260,7 @@ export default function ListingDetailScreen() {
   if (isLoading && !listing) {
     return (
       <View style={[styles.root, styles.center]}>
-        <ActivityIndicator size="large" color="#FFFFFF" />
+        <DeHubLoader size={56} />
       </View>
     );
   }

@@ -10,8 +10,6 @@ import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/n
 import {
   View,
   FlatList,
-  ActivityIndicator,
-  RefreshControl,
   ListRenderItem,
   Text,
   Pressable,
@@ -19,10 +17,12 @@ import {
   NativeScrollEvent,
   ViewToken,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
 import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
 import EmptyFeedState from "./EmptyFeedState";
 import FeedCard from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Icon from "../ui/Icon";
 import { useTranslation } from "react-i18next";
 import useNewPostsSignal, { feedRowId } from "../../hooks/useNewPostsSignal";
@@ -106,8 +106,8 @@ interface InfiniteVideoFeedProps {
 }
 
 // Reserved height for the footer so its three states are interchangeable
-// without resizing the list. Sized to the large ActivityIndicator plus the
-// padding the spinner block used to carry.
+// without resizing the list. Sized to the DeHub mark plus the padding the
+// spinner block used to carry.
 const FOOTER_SLOT = { height: 84 } as const;
 
 // Hoisted: a fresh object literal here would re-configure the native scroll
@@ -846,7 +846,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     () => (
       <View style={FOOTER_SLOT} className="items-center justify-center">
         {loadingMore ? (
-          <ActivityIndicator size="large" color="#fff" />
+          <DeHubLoader size={32} />
         ) : endReached && feedItems.length > 0 ? (
           <Text className="text-theme-neutrals-400 text-xs">No more content</Text>
         ) : null}
@@ -999,7 +999,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         viewabilityConfig={viewabilityConfig}
         onViewableItemsChanged={onViewableItemsChanged}
         refreshControl={
-          <RefreshControl
+          <DeHubRefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
             tintColor={theme.colors.accent}
@@ -1017,6 +1017,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           ) : null
         }
       />
+      <DeHubRefreshMark refreshing={refreshing} topInset={headerInset} />
     </View>
   );
 };

@@ -3,14 +3,14 @@ import {
   View,
   FlatList,
   TouchableOpacity,
-  ActivityIndicator,
-  RefreshControl,
   Dimensions,
   StyleSheet,
   Text,
   NativeSyntheticEvent,
   NativeScrollEvent,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { Image } from "expo-image";
 import { useNavigation, useScrollToTop } from "@react-navigation/native";
@@ -404,7 +404,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         onMomentumScrollEnd={onScrollEnd}
         scrollEventThrottle={16}
         refreshControl={
-          <RefreshControl
+          <DeHubRefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
             tintColor={theme.colors.accent}
@@ -414,7 +414,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         ListFooterComponent={
           loadingMore ? (
             <View className="items-center py-6">
-              <ActivityIndicator size="large" color="#fff" />
+              <DeHubLoader size={32} />
             </View>
           ) : endReached && items.length > 0 ? (
             <View className="py-6 items-center">
@@ -431,6 +431,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
           ) : null
         }
       />
+      <DeHubRefreshMark refreshing={refreshing} topInset={headerInset} />
     </View>
   );
 };

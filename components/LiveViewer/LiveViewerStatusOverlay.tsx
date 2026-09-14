@@ -7,7 +7,8 @@
  * appear nowhere else in the app.
  */
 import React, { memo, useMemo } from "react";
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -85,7 +86,7 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
   if (status === "loading") {
     return (
       <View style={[StyleSheet.absoluteFill, styles.centre, styles.loadingWash]}>
-        <ActivityIndicator size="large" color="#fff" />
+        <DeHubLoader size={56} />
         <Text style={styles.loadingText}>Loading stream...</Text>
       </View>
     );

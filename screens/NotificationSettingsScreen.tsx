@@ -9,6 +9,7 @@ import {
   Linking,
   Platform,
 } from 'react-native';
+import { DeHubLoader } from '../components/DeHubLoader';
 import ScreenHeader from '../components/ScreenHeader';
 import {
   SettingsAnchor,
@@ -335,7 +336,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
       <View className="flex-1 bg-theme-neutrals-900">
         {!embedded && <ScreenHeader title={t('settings.notifications')} canGoBack />}
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color={theme.colors.accent} />
+          <DeHubLoader size={56} />
         </View>
       </View>
     );

@@ -26,7 +26,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import {
   ActivityIndicator,
   FlatList,
-  RefreshControl,
   StyleSheet,
   Text,
   TextInput,
@@ -34,6 +33,7 @@ import {
   View,
   type ListRenderItemInfo,
 } from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -533,7 +533,8 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
   }, [tab, loadingStations, isSearchingRadio, musicVideos.isLoading]);
 
   return (
-    <AnimatedFlatList
+    <View style={{ flex: 1 }}>
+      <AnimatedFlatList
       ref={listRef as any}
       data={data}
       keyExtractor={keyExtractor as any}
@@ -558,14 +559,16 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
       onMomentumScrollEnd={onScrollEnd}
       scrollEventThrottle={16}
       refreshControl={
-        <RefreshControl
+        <DeHubRefreshControl
           refreshing={refreshing}
           onRefresh={handleRefresh}
           tintColor="#FFFFFF"
           progressViewOffset={headerInset}
         />
       }
-    />
+      />
+      <DeHubRefreshMark refreshing={refreshing} topInset={headerInset} />
+    </View>
   );
 };
 

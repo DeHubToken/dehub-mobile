@@ -2,9 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
   View,
-  ActivityIndicator,
   FlatList,
-  RefreshControl,
   ListRenderItem,
   Text,
   Pressable,
@@ -12,6 +10,8 @@ import {
   NativeScrollEvent,
   ViewToken,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
+import { DeHubRefreshControl, DeHubRefreshMark } from "./DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../../theme";
@@ -444,7 +444,7 @@ const InfiniteFeedBase: React.FC<
         onViewableItemsChanged={handleViewableItemsChanged}
         extraData={trackFeedCardVisibility ? visibilityExtraData : undefined}
         refreshControl={
-          <RefreshControl
+          <DeHubRefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
             tintColor={theme.colors.accent}
@@ -455,7 +455,7 @@ const InfiniteFeedBase: React.FC<
             // page settles shrinks the list and clamps the reader's position.
             <View style={{ height: 84 }} className="items-center justify-center">
               {loadingMore ? (
-                <ActivityIndicator size="large" color={theme.colors.accent} />
+                <DeHubLoader size={32} />
               ) : endReached && items.length > 0 ? (
                 <Text className="text-theme-neutrals-400 text-xs">No more posts</Text>
               ) : null}
@@ -476,6 +476,7 @@ const InfiniteFeedBase: React.FC<
           />
         </Pressable>
       )}
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 };

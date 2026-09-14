@@ -9,6 +9,7 @@ import {
   RefreshControl,
   Image,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
@@ -272,7 +273,7 @@ const LiveChatInfoScreen: React.FC = () => {
       <View className="flex-1 bg-theme-background">
         <ScreenHeader title={t("screens.chatInfo")} />
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="rgba(255,255,255,0.3)" />
+          <DeHubLoader size={56} />
         </View>
       </View>
     );

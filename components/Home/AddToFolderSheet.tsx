@@ -13,6 +13,7 @@ import {
   KeyboardAvoidingView,
   useWindowDimensions,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -358,7 +359,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
 
             {loading ? (
               <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#D4D4D8" />
+                <DeHubLoader size={56} />
                 <Text style={styles.loadingText}>Loading folders…</Text>
               </View>
             ) : (

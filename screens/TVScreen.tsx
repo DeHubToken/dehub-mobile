@@ -20,11 +20,11 @@ import {
   FlatList,
   ScrollView,
   TextInput,
-  ActivityIndicator,
   RefreshControl,
   Modal,
   useWindowDimensions,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer, type VideoPlayer } from "expo-video";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
@@ -321,7 +321,7 @@ export default function TVScreen() {
 
       {channels.isLoading ? (
         <View style={styles.center}>
-          <ActivityIndicator size="large" color="#FFFFFF" />
+          <DeHubLoader size={56} />
         </View>
       ) : channels.isError ? (
         <View style={styles.center}>

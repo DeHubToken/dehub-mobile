@@ -9,11 +9,11 @@ import {
   ActivityIndicator,
   FlatList,
   ListRenderItemInfo,
-  RefreshControl,
   View,
   type NativeSyntheticEvent,
   type NativeScrollEvent,
 } from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import CompactVideoCard from "./CompactVideoCard";
 import CompactVideoCardSkeleton from "./CompactVideoCardSkeleton";
 import { getUserVideos, getUserLiveVideos, getLikedNFTs } from "../../services/user.service";
@@ -176,7 +176,8 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
   }, [hasMore]);
 
   return (
-    <FlatList
+    <View className="flex-1">
+      <FlatList
       className="flex-1 bg-theme-background"
       data={items}
       keyExtractor={keyExtractor}
@@ -191,7 +192,7 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
       removeClippedSubviews={false}
       ListHeaderComponent={ListHeaderComponent || undefined}
       refreshControl={
-        <RefreshControl
+        <DeHubRefreshControl
           refreshing={refreshing}
           onRefresh={onRefresh}
           tintColor="#fff"
@@ -220,7 +221,9 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
           </View>
         )
       }
-    />
+      />
+      <DeHubRefreshMark refreshing={refreshing} />
+    </View>
   );
 };
 

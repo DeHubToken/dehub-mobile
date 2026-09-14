@@ -5,7 +5,8 @@
  * Supabase with Upcoming / Past / Mine filters and going/interested RSVP.
  */
 import React, { useCallback, useMemo, useState } from "react";
-import { View, Text, StyleSheet, Pressable, FlatList, ActivityIndicator, RefreshControl } from "react-native";
+import { View, Text, StyleSheet, Pressable, FlatList, RefreshControl } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -191,7 +192,7 @@ export default function EventsScreen() {
 
       {isLoading ? (
         <View style={styles.center}>
-          <ActivityIndicator size="large" color="#FFFFFF" />
+          <DeHubLoader size={56} />
         </View>
       ) : isError ? (
         <View style={styles.center}>

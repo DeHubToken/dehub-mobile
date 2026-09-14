@@ -3,10 +3,10 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ActivityIndicator,
   Linking,
   StyleSheet,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -213,7 +213,7 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
 
           {loading ? (
             <View style={styles.center}>
-              <ActivityIndicator size="large" color="#D4D4D8" />
+              <DeHubLoader size={56} />
               <Text style={styles.loadingText}>Fetching price data…</Text>
             </View>
           ) : error ? (

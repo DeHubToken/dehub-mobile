@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   RefreshControl,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
@@ -379,7 +380,7 @@ const RepostQuoteListScreen: React.FC = () => {
       {/* Content */}
       {isLoading ? (
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#F4F4F5" />
+          <DeHubLoader size={56} />
         </View>
       ) : activeTab === "reposts" ? (
         <FlatList

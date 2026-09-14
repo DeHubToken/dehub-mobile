@@ -8,9 +8,10 @@ import {
   ActivityIndicator,
   Keyboard,
   Platform,
-  RefreshControl,
   StyleSheet,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Icon from "../ui/Icon";
 import { COMPOSER, composerStyles } from "./composerLayout";
 import CommentItem from "./CommentItem";
@@ -1187,7 +1188,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
       {loading ? (
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#F4F4F5" />
+          <DeHubLoader size={56} />
         </View>
       ) : (
         <FlatList
@@ -1197,7 +1198,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: listBottomPadding }}
           keyboardShouldPersistTaps="handled"
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={refreshing}
               onRefresh={handleRefresh}
               tintColor="#F4F4F5"
@@ -1225,6 +1226,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           }
         />
       )}
+
+      <DeHubRefreshMark refreshing={refreshing} />
 
       <View
         style={{

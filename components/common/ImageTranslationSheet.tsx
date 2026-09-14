@@ -6,8 +6,8 @@ import {
   Modal,
   TouchableOpacity,
   ScrollView,
-  ActivityIndicator,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import type { ImageTranslateResponse } from "../../services/translation.service";
@@ -80,7 +80,7 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
               {/* Loading */}
               {isLoading && (
                 <View style={{ alignItems: "center", paddingVertical: 40, gap: 12 }}>
-                  <ActivityIndicator size="large" color="#F4F4F5" />
+                  <DeHubLoader size={56} />
                   <Text style={{ color: "#A6A9AC", fontSize: 14 }}>Extracting and translating text...</Text>
                 </View>
               )}

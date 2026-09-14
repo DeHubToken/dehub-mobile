@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, ActivityIndicator, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import { DeHubLoader } from './DeHubLoader';
 
 interface FullScreenLoaderProps {
   message?: string;
@@ -12,7 +13,7 @@ interface FullScreenLoaderProps {
 export const FullScreenLoader: React.FC<FullScreenLoaderProps> = ({ message }) => {
   return (
     <View className="absolute inset-0 z-20 items-center justify-center dark-surface bg-black/70">
-      <ActivityIndicator size="large" color="#fff" />
+      <DeHubLoader size={56} />
       {message ? <Text className="text-white mt-4">{message}</Text> : null}
     </View>
   );

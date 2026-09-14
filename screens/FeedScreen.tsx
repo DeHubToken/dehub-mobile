@@ -8,11 +8,12 @@ import {
   Platform,
   FlatList,
   Dimensions,
-  RefreshControl,
   ActivityIndicator,
   BackHandler,
   ListRenderItemInfo,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { Image } from "expo-image";
 import { BlurView } from "expo-blur";
@@ -658,14 +659,14 @@ const FeedScreen = () => {
             onScrollBeginDrag={handleScrollBegin}
             scrollEventThrottle={16}
             refreshControl={
-              <RefreshControl refreshing={feedRefreshing} onRefresh={handleRefresh} tintColor="#FFFFFF" />
+              <DeHubRefreshControl refreshing={feedRefreshing} onRefresh={handleRefresh} tintColor="#FFFFFF" />
             }
             onEndReached={handleEndReached}
             onEndReachedThreshold={0.8}
             ListFooterComponent={
               feedLoading && feedData.length > 0 ? (
                 <View className="items-center py-6">
-                  <ActivityIndicator size="large" color="#fff" />
+                  <DeHubLoader size={32} />
                 </View>
               ) : !feedHasMore && feedData.length > 0 ? (
                 <View className="px-4 py-6 items-center">
@@ -703,7 +704,7 @@ const FeedScreen = () => {
           windowSize={9}
           contentContainerStyle={{ paddingBottom: 80 }}
           refreshControl={
-            <RefreshControl refreshing={feedRefreshing} onRefresh={handleRefresh} tintColor="#FFFFFF" />
+            <DeHubRefreshControl refreshing={feedRefreshing} onRefresh={handleRefresh} tintColor="#FFFFFF" />
           }
           onScroll={headerHandleScroll}
           onScrollEndDrag={handleScrollEnd}
@@ -724,9 +725,11 @@ const FeedScreen = () => {
         />
       )}
 
+      <DeHubRefreshMark refreshing={feedRefreshing} />
+
       {transitionPending && (
         <View style={styles.transitionOverlay}>
-          <ActivityIndicator size="large" color="#fff" />
+          <DeHubLoader size={56} />
         </View>
       )}
 
