@@ -4,12 +4,12 @@ import {
   View,
   Text,
   FlatList,
-  RefreshControl,
   TouchableOpacity,
   Alert,
   ActivityIndicator,
   Platform,
-} from 'react-native';
+} from 'react-native';
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from '../components/DeHubLoader';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenHeader from '../components/ScreenHeader';
@@ -302,7 +302,7 @@ export default function ActiveSessionsScreen() {
             </View>
           }
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={refreshing}
               onRefresh={handleRefresh}
               tintColor="#F4F4F5"
@@ -310,6 +310,7 @@ export default function ActiveSessionsScreen() {
           }
         />
       )}
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 }

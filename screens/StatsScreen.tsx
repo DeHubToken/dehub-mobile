@@ -2,13 +2,13 @@ import React, { useMemo, useState } from "react";
 import {
   ActivityIndicator,
   Pressable,
-  RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
   View,
   useWindowDimensions,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import Svg, { Line, Polyline } from "react-native-svg";
 import { useQuery } from "@tanstack/react-query";
 import ScreenHeader from "../components/ScreenHeader";
@@ -126,7 +126,7 @@ export default function StatsScreen() {
       ) : (
         <ScrollView
           contentContainerStyle={styles.content}
-          refreshControl={<RefreshControl refreshing={query.isFetching} onRefresh={() => query.refetch()} tintColor="#F4F4F5" />}
+          refreshControl={<DeHubRefreshControl refreshing={query.isFetching} onRefresh={() => query.refetch()} tintColor="#F4F4F5" />}
         >
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filters}>
             {RANGE_OPTIONS.map((item) => (
@@ -159,6 +159,7 @@ export default function StatsScreen() {
           </View>
         </ScrollView>
       )}
+      <DeHubRefreshMark refreshing={query.isFetching} />
     </View>
   );
 }

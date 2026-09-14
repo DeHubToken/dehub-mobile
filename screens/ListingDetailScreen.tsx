@@ -18,10 +18,10 @@ import {
   ScrollView,
   TextInput,
   ActivityIndicator,
-  RefreshControl,
   useWindowDimensions,
   KeyboardAvoidingView,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import { ethers } from "ethers";
@@ -301,7 +301,7 @@ export default function ListingDetailScreen() {
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
         refreshControl={
-          <RefreshControl
+          <DeHubRefreshControl
             refreshing={isRefetching}
             onRefresh={refetch}
             tintColor={theme.colors.accent}
@@ -522,6 +522,7 @@ export default function ListingDetailScreen() {
         </View>
       </ScrollView>
       </KeyboardAvoidingView>
+      <DeHubRefreshMark refreshing={isRefetching} />
     </View>
   );
 }

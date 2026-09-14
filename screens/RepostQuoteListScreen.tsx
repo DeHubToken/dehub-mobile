@@ -6,8 +6,8 @@ import {
   FlatList,
   TouchableOpacity,
   ActivityIndicator,
-  RefreshControl,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
@@ -391,7 +391,7 @@ const RepostQuoteListScreen: React.FC = () => {
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.3}
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={repostRefreshing}
               onRefresh={handleRefresh}
               tintColor="#F4F4F5"
@@ -411,7 +411,7 @@ const RepostQuoteListScreen: React.FC = () => {
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.3}
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={quoteRefreshing}
               onRefresh={handleRefresh}
               tintColor="#F4F4F5"
@@ -424,6 +424,7 @@ const RepostQuoteListScreen: React.FC = () => {
           contentContainerStyle={{ flexGrow: 1, paddingTop: 8 }}
         />
       )}
+      <DeHubRefreshMark refreshing={repostRefreshing || quoteRefreshing} />
     </View>
   );
 };

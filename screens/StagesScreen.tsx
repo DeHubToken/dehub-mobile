@@ -31,13 +31,13 @@ import {
   Alert,
   FlatList,
   Pressable,
-  RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { useFocusEffect } from "@react-navigation/native";
 import { useQueryClient } from "@tanstack/react-query";
@@ -589,7 +589,7 @@ export default function StagesScreen() {
           windowSize={7}
           removeClippedSubviews={false}
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={refreshing}
               onRefresh={handleRefresh}
               tintColor={theme.colors.accent}
@@ -603,6 +603,7 @@ export default function StagesScreen() {
         visible={!!transcriptSpace}
         onClose={() => setTranscriptSpace(null)}
       />
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 }

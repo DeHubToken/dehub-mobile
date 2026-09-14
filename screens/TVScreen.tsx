@@ -20,10 +20,10 @@ import {
   FlatList,
   ScrollView,
   TextInput,
-  RefreshControl,
   Modal,
   useWindowDimensions,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer, type VideoPlayer } from "expo-video";
@@ -347,7 +347,7 @@ export default function TVScreen() {
           }}
           showsVerticalScrollIndicator={false}
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={channels.isRefetching}
               onRefresh={onRefresh}
               tintColor={theme.colors.accent}
@@ -365,6 +365,7 @@ export default function TVScreen() {
       )}
 
       <ChannelPlayer channel={playing} onClose={() => setPlaying(null)} />
+      <DeHubRefreshMark refreshing={channels.isRefetching} />
     </View>
   );
 }

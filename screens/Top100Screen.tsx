@@ -17,9 +17,9 @@ import {
   Pressable,
   FlatList,
   ActivityIndicator,
-  RefreshControl,
   TextInput,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
@@ -194,7 +194,7 @@ export default function Top100Screen() {
           }}
           showsVerticalScrollIndicator={false}
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
               tintColor={theme.colors.accent}
@@ -226,6 +226,7 @@ export default function Top100Screen() {
         symbol={sheetSymbol ?? ""}
         onClose={() => setSheetSymbol(null)}
       />
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 }

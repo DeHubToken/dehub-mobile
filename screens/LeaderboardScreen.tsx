@@ -2,9 +2,9 @@ import React, { useState, useEffect, useCallback, useMemo, useRef } from "react"
 import { useTranslation } from "react-i18next";
 import {
   View,
-  RefreshControl,
   ListRenderItem,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
@@ -202,7 +202,7 @@ const LeaderboardScreen = () => {
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
               tintColor="#fff"
@@ -226,6 +226,7 @@ const LeaderboardScreen = () => {
         <ScreenHeader title={t("nav.leaderboard")} />
         <View className="bg-theme-neutrals-900">{renderListHeader()}</View>
       </CollapsibleHeader>
+      <DeHubRefreshMark refreshing={refreshing} topInset={refreshOffset} />
     </View>
   );
 };

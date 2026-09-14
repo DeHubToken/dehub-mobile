@@ -6,9 +6,9 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
-  RefreshControl,
   Image,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -286,7 +286,7 @@ const LiveChatInfoScreen: React.FC = () => {
       <ScrollView
         className="flex-1"
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#FFFFFF" />
+          <DeHubRefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#FFFFFF" />
         }
       >
         <View className="items-center pt-6 pb-4 px-4">
@@ -462,6 +462,7 @@ const LiveChatInfoScreen: React.FC = () => {
         onConfirm={confirmModal.onConfirm}
         onCancel={dismissConfirm}
       />
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 };

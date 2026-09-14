@@ -4,9 +4,9 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  RefreshControl,
   ActivityIndicator,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
@@ -204,7 +204,7 @@ const CommunitiesScreen: React.FC = () => {
         removeClippedSubviews={false}
         ListHeaderComponent={ListHeader}
         refreshControl={
-          <RefreshControl
+          <DeHubRefreshControl
             refreshing={refreshing}
             onRefresh={() => {
               setRefreshing(true);
@@ -249,6 +249,7 @@ const CommunitiesScreen: React.FC = () => {
         onClose={() => setCreateOpen(false)}
         onCreated={(c) => openCommunity(c.slug)}
       />
+      <DeHubRefreshMark refreshing={refreshing} topInset={refreshOffset} />
     </View>
   );
 };

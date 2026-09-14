@@ -10,8 +10,8 @@ import {
   KeyboardAvoidingView,
   Platform,
   ActivityIndicator,
-  RefreshControl,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import Animated, {
   useAnimatedStyle,
@@ -628,7 +628,7 @@ const SearchScreen: React.FC = () => {
             scrollEventThrottle={16}
             scrollIndicatorInsets={{ top: headerHeight }}
             refreshControl={
-              <RefreshControl
+              <DeHubRefreshControl
                 refreshing={refreshing}
                 onRefresh={handleRefresh}
                 tintColor="#fff"
@@ -685,7 +685,7 @@ const SearchScreen: React.FC = () => {
           scrollEventThrottle={16}
           scrollIndicatorInsets={{ top: headerHeight }}
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={refreshing}
               onRefresh={handleRefresh}
               tintColor="#fff"
@@ -936,6 +936,7 @@ const SearchScreen: React.FC = () => {
           </View>
         </View>
       </Animated.View>
+      <DeHubRefreshMark refreshing={refreshing} topInset={headerHeight} />
     </View>
   );
 };

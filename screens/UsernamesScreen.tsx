@@ -19,8 +19,8 @@ import {
   FlatList,
   ScrollView,
   TextInput,
-  RefreshControl,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -340,7 +340,7 @@ export default function UsernamesScreen() {
               }}
               showsVerticalScrollIndicator={false}
               refreshControl={
-                <RefreshControl
+                <DeHubRefreshControl
                   refreshing={isRefetching}
                   onRefresh={refetch}
                   tintColor={theme.colors.accent}
@@ -374,6 +374,7 @@ export default function UsernamesScreen() {
           navigation.navigate(ScreenNames.SignIn);
         }}
       />
+      <DeHubRefreshMark refreshing={isRefetching} />
     </View>
   );
 }

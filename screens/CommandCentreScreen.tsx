@@ -21,8 +21,8 @@ import {
   Pressable,
   ScrollView,
   ActivityIndicator,
-  RefreshControl,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import Svg, { Circle, Polyline, Line as SvgLine, Text as SvgText } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
@@ -332,7 +332,7 @@ export default function CommandCentreScreen() {
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 28, gap: 12 }}
         showsVerticalScrollIndicator={false}
         refreshControl={
-          <RefreshControl
+          <DeHubRefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
             tintColor={theme.colors.accent}
@@ -495,6 +495,7 @@ export default function CommandCentreScreen() {
           </View>
         </Card>
       </ScrollView>
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 }

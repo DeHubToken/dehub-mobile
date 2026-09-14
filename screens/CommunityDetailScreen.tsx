@@ -5,10 +5,10 @@ import {
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
-  RefreshControl,
   StyleSheet,
   Share,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
@@ -389,7 +389,7 @@ const CommunityDetailScreen: React.FC = () => {
           contentContainerStyle={{ paddingBottom: 80 }}
           keyboardShouldPersistTaps="handled"
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={refreshing}
               onRefresh={async () => {
                 setRefreshing(true);
@@ -501,6 +501,7 @@ const CommunityDetailScreen: React.FC = () => {
           }}
         />
       )}
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 };

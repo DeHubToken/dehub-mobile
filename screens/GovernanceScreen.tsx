@@ -7,7 +7,8 @@
  * balance/badge + contract layer (deferred, matching the web3 bucket).
  */
 import React, { useCallback, useMemo, useState } from "react";
-import { View, Text, StyleSheet, Pressable, FlatList, RefreshControl } from "react-native";
+import { View, Text, StyleSheet, Pressable, FlatList } from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
@@ -143,7 +144,7 @@ export default function GovernanceScreen() {
           renderItem={renderItem}
           contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 24, paddingTop: 4, gap: 12 }}
           showsVerticalScrollIndicator={false}
-          refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />}
+          refreshControl={<DeHubRefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />}
           ListEmptyComponent={
             <View style={styles.center}>
               <Icon name="ShieldCheck" size={44} color="#3F3F46" />
@@ -152,6 +153,7 @@ export default function GovernanceScreen() {
           }
         />
       )}
+      <DeHubRefreshMark refreshing={isRefetching} />
     </View>
   );
 }

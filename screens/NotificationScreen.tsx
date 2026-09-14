@@ -7,10 +7,10 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
-  RefreshControl,
   Platform,
   UIManager,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import Animated, {
   Easing,
   runOnJS,
@@ -1689,7 +1689,7 @@ const NotificationScreen = () => {
           renderItem={renderItem}
           contentContainerStyle={{ paddingBottom: insets.bottom + 16 }}
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
               tintColor="#F4F4F5"
@@ -1711,6 +1711,7 @@ const NotificationScreen = () => {
           ListEmptyComponent={ListEmpty}
         />
       )}
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 };

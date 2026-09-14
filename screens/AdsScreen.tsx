@@ -24,11 +24,11 @@ import {
   ScrollView,
   TextInput,
   ActivityIndicator,
-  RefreshControl,
   Modal,
   KeyboardAvoidingView,
   Alert,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import Svg, { Polyline, Line as SvgLine } from "react-native-svg";
 import { ethers } from "ethers";
@@ -455,7 +455,7 @@ export default function AdsScreen() {
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 28, gap: 12 }}
         showsVerticalScrollIndicator={false}
         refreshControl={
-          <RefreshControl
+          <DeHubRefreshControl
             refreshing={account.isRefetching || campaigns.isRefetching}
             onRefresh={onRefresh}
             tintColor={theme.colors.accent}
@@ -637,6 +637,7 @@ export default function AdsScreen() {
       </ScrollView>
 
       <CampaignForm visible={formOpen} onClose={() => setFormOpen(false)} />
+      <DeHubRefreshMark refreshing={account.isRefetching || campaigns.isRefetching} />
     </View>
   );
 }
