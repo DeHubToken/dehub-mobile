@@ -3116,5 +3116,27 @@
     "noteTiktok": "Creator Rewards。1再生あたりの単価が低いことで知られ、規模そのものがモデルです。",
     "noteReels": "ボーナスプログラムは招待制で、これまで何度も縮小・終了しています。",
     "footnote": "競合の数値は公開されている業界レンジからの推計であり、実測の支払額ではありません。実際のRPMはジャンル、視聴者の国、視聴時間によって大きく変わるため、各レートを自分の実収入に合わせて編集してください。DeHubの数値はDHBのライブ価格で換算した実際のチップ収入で、サブスクリプション、PPV、ストア販売は含みません。再生数は直近100件の投稿を合計したものです。"
+  },
+  "sessions": {
+    "androidDevice": "Android端末",
+    "webBrowser": "ウェブブラウザ",
+    "thisDevice": "この端末",
+    "logOutDeviceTitle": "この端末をログアウトしますか？",
+    "logOut": "ログアウト",
+    "logOutAll": "すべてログアウト",
+    "logOutAllTitle": "他のすべての端末をログアウトしますか？",
+    "logOutDeviceBody": "「{{device}}」をログアウトします。再度ログインが必要になります。",
+    "logOutAllBody_one": "他の端末 {{count}} 台をログアウトします。この端末だけがログイン状態のまま残ります。",
+    "logOutAllBody_other": "他の端末 {{count}} 台をログアウトします。この端末だけがログイン状態のまま残ります。",
+    "explainer": "これらの端末が現在アカウントにログインしています。見覚えのないものがあれば、ログアウトして認証情報を変更してください。",
+    "activeSessions_one": "アクティブなセッション {{count}} 件",
+    "activeSessions_other": "アクティブなセッション {{count}} 件",
+    "logOutAllButton": "他のすべての端末をログアウト",
+    "loadFailed": "セッションを読み込めませんでした",
+    "loggedOut": "端末をログアウトしました",
+    "logOutFailed": "端末をログアウトできませんでした",
+    "logOutAllFailed": "端末をログアウトできませんでした",
+    "devicesLoggedOut_one": "{{count}} 台の端末をログアウトしました",
+    "devicesLoggedOut_other": "{{count}} 台の端末をログアウトしました"
   }
 }

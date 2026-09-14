@@ -3111,5 +3111,27 @@
     "noteTiktok": "Creator Rewards. İzlenme başına düşüklüğüyle bilinir; modelin tamamı ölçek üzerine kurulu.",
     "noteReels": "Bonus programları yalnızca davetle açılır ve defalarca kapatıldı.",
     "footnote": "Rakip rakamları yayımlanmış sektör aralıklarından türetilen tahminlerdir, ölçülmüş ödemeler değil — gerçek RPM nişe, izleyici ülkesine ve izlenme süresine göre çok değişir, bu yüzden her oranı gerçekte kazandığına göre düzenle. DeHub rakamı, canlı DHB fiyatıyla çevrilmiş gerçek bahşiş gelirindir ve abonelikleri, PPV'yi ve mağaza satışlarını içermez. İzlenmeler en son 100 gönderinden toplanır."
+  },
+  "sessions": {
+    "androidDevice": "Android cihazı",
+    "webBrowser": "Web tarayıcı",
+    "thisDevice": "Bu cihaz",
+    "logOutDeviceTitle": "Cihazın oturumu kapatılsın mı?",
+    "logOut": "Çıkış yap",
+    "logOutAll": "Tümünden çık",
+    "logOutAllTitle": "Diğer tüm cihazların oturumu kapatılsın mı?",
+    "logOutDeviceBody": "Bu, \"{{device}}\" cihazının oturumunu kapatır. Yeniden giriş yapmaları gerekir.",
+    "logOutAllBody_one": "Bu, {{count}} diğer cihazın oturumunu kapatır. Yalnızca bu cihaz oturumda kalır.",
+    "logOutAllBody_other": "Bu, {{count}} diğer cihazın oturumunu kapatır. Yalnızca bu cihaz oturumda kalır.",
+    "explainer": "Bu cihazlar şu anda hesabında oturum açmış durumda. Tanımadığın bir şey görürsen çıkış yaptır ve giriş bilgilerini değiştir.",
+    "activeSessions_one": "{{count}} etkin oturum",
+    "activeSessions_other": "{{count}} etkin oturum",
+    "logOutAllButton": "Diğer tüm cihazlardan çık",
+    "loadFailed": "Oturumlar yüklenemedi",
+    "loggedOut": "Cihazın oturumu kapatıldı",
+    "logOutFailed": "Cihazın oturumu kapatılamadı",
+    "logOutAllFailed": "Cihazların oturumu kapatılamadı",
+    "devicesLoggedOut_one": "{{count}} cihazın oturumu kapatıldı",
+    "devicesLoggedOut_other": "{{count}} cihazın oturumu kapatıldı"
   }
 }

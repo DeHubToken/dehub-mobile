@@ -3039,5 +3039,27 @@
     "noteTiktok": "Creator Rewards. An san shi da ƙarancin kuɗi kowane kallo; girman lamba shine dukan tsarin.",
     "noteReels": "Shirye-shiryen kari na gayyata ne kawai kuma an rufe su sau da yawa.",
     "footnote": "Lambobin masu fafatawa kiyasi ne daga kewayon masana'antu da aka buga, ba biyan da aka auna ba — RPM na gaskiya yana bambanta sosai bisa ga fanni, ƙasar masu sauraro da lokacin kallo, don haka ka gyara kowanne kudi ya dace da abin da kake samu da gaske. Lambar DeHub ita ce ainihin kuɗin tip ɗinka da aka juya kan farashin DHB kai tsaye, kuma ba ta haɗa da biyan kuɗi, PPV ko sayar da kaya ba. An tara kallo daga sabbin saƙonninka 100."
+  },
+  "sessions": {
+    "androidDevice": "Na'urar Android",
+    "webBrowser": "Burauzar yanar gizo",
+    "thisDevice": "Wannan na'urar",
+    "logOutDeviceTitle": "A fitar da na'urar?",
+    "logOut": "Fita",
+    "logOutAll": "Fitar da duka",
+    "logOutAllTitle": "A fitar da duk sauran na'urori?",
+    "logOutDeviceBody": "Wannan zai fitar da \"{{device}}\". Za su buƙaci sake shiga.",
+    "logOutAllBody_one": "Wannan zai fitar da wata na'ura {{count}}. Wannan na'urar kaɗai za ta ci gaba da shiga.",
+    "logOutAllBody_other": "Wannan zai fitar da wasu na'urori {{count}}. Wannan na'urar kaɗai za ta ci gaba da shiga.",
+    "explainer": "Waɗannan na'urori a halin yanzu suna cikin asusunka. Idan ka ga wani abu da ba ka sani ba, ka fitar da shi kuma ka canza bayanan shiga naka.",
+    "activeSessions_one": "zama mai aiki {{count}}",
+    "activeSessions_other": "zaman aiki {{count}}",
+    "logOutAllButton": "Fitar da duk sauran na'urori",
+    "loadFailed": "An kasa loda zaman",
+    "loggedOut": "An fitar da na'urar",
+    "logOutFailed": "An kasa fitar da na'urar",
+    "logOutAllFailed": "An kasa fitar da na'urorin",
+    "devicesLoggedOut_one": "An fitar da na'ura {{count}}",
+    "devicesLoggedOut_other": "An fitar da na'urori {{count}}"
   }
 }

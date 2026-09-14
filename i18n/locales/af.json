@@ -3166,5 +3166,27 @@
     "noteTiktok": "Creator Rewards. Berug laag per kyk; skaal is die hele model.",
     "noteReels": "Bonusprogramme is slegs op uitnodiging en is herhaaldelik afgeskaal.",
     "footnote": "Mededingersyfers is skattings uit gepubliseerde bedryfsreekse, nie gemete uitbetalings nie — werklike RPM wissel sterk volgens nis, gehoorland en kyktyd, wysig dus elke koers om by jou werklike verdienste te pas. Die DeHub-syfer is jou werklike fooitjie-inkomste teen die lewendige DHB-prys omgeskakel, en sluit intekeninge, PPV en winkelverkope uit. Kyke word uit jou 100 mees onlangse plasings opgetel."
+  },
+  "sessions": {
+    "androidDevice": "Android-toestel",
+    "webBrowser": "Webblaaier",
+    "thisDevice": "Hierdie toestel",
+    "logOutDeviceTitle": "Meld toestel af?",
+    "logOut": "Meld af",
+    "logOutAll": "Meld almal af",
+    "logOutAllTitle": "Meld alle ander toestelle af?",
+    "logOutDeviceBody": "Dit sal \"{{device}}\" afmeld. Hulle sal weer moet aanmeld.",
+    "logOutAllBody_one": "Dit sal {{count}} ander toestel afmeld. Slegs hierdie toestel bly aangemeld.",
+    "logOutAllBody_other": "Dit sal {{count}} ander toestelle afmeld. Slegs hierdie toestel bly aangemeld.",
+    "explainer": "Hierdie toestelle is tans by jou rekening aangemeld. As jy iets onbekends sien, meld dit af en verander jou aanmeldbesonderhede.",
+    "activeSessions_one": "{{count}} aktiewe sessie",
+    "activeSessions_other": "{{count}} aktiewe sessies",
+    "logOutAllButton": "Meld alle ander toestelle af",
+    "loadFailed": "Kon nie sessies laai nie",
+    "loggedOut": "Toestel afgemeld",
+    "logOutFailed": "Kon nie toestel afmeld nie",
+    "logOutAllFailed": "Kon nie toestelle afmeld nie",
+    "devicesLoggedOut_one": "{{count}} toestel afgemeld",
+    "devicesLoggedOut_other": "{{count}} toestelle afgemeld"
   }
 }

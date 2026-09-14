@@ -3101,5 +3101,27 @@
     "noteTiktok": "Creator Rewards. Har ko‘rish uchun pastligi bilan mashhur; butun model hajmga tayanadi.",
     "noteReels": "Bonus dasturlari faqat taklif bilan va bir necha bor yopilgan.",
     "footnote": "Raqobatchilarning raqamlari nashr etilgan soha oraliqlaridan olingan taxminlar bo‘lib, o‘lchangan to‘lovlar emas — haqiqiy RPM yo‘nalish, auditoriya mamlakati va tomosha vaqtiga qarab keskin farq qiladi, shuning uchun har bir stavkani haqiqiy daromadingizga moslab tahrirlang. DeHub raqami — DHB ning jonli narxida konvertatsiya qilingan haqiqiy choychaqa daromadingiz bo‘lib, obunalar, PPV va do‘kon savdosini o‘z ichiga olmaydi. Ko‘rishlar so‘nggi 100 ta postingizdan jamlangan."
+  },
+  "sessions": {
+    "androidDevice": "Android qurilmasi",
+    "webBrowser": "Veb brauzer",
+    "thisDevice": "Bu qurilma",
+    "logOutDeviceTitle": "Qurilmadan chiqilsinmi?",
+    "logOut": "Chiqish",
+    "logOutAll": "Barchasidan chiqish",
+    "logOutAllTitle": "Boshqa barcha qurilmalardan chiqilsinmi?",
+    "logOutDeviceBody": "Bu \"{{device}}\" ni chiqaradi. Qayta kirish kerak bo‘ladi.",
+    "logOutAllBody_one": "Bu {{count}} boshqa qurilmani chiqaradi. Faqat shu qurilma kirgan holda qoladi.",
+    "logOutAllBody_other": "Bu {{count}} boshqa qurilmani chiqaradi. Faqat shu qurilma kirgan holda qoladi.",
+    "explainer": "Bu qurilmalar hozir hisobingizga kirgan. Notanish narsa ko‘rsangiz, uni chiqaring va kirish ma’lumotlaringizni o‘zgartiring.",
+    "activeSessions_one": "{{count}} faol seans",
+    "activeSessions_other": "{{count}} faol seans",
+    "logOutAllButton": "Boshqa barcha qurilmalardan chiqish",
+    "loadFailed": "Seanslarni yuklab bo‘lmadi",
+    "loggedOut": "Qurilma chiqarildi",
+    "logOutFailed": "Qurilmani chiqarib bo‘lmadi",
+    "logOutAllFailed": "Qurilmalarni chiqarib bo‘lmadi",
+    "devicesLoggedOut_one": "{{count}} qurilma chiqarildi",
+    "devicesLoggedOut_other": "{{count}} qurilma chiqarildi"
   }
 }

@@ -3049,5 +3049,27 @@
     "noteTiktok": "Creator Rewards. Tunnetusti matala per katselu; koko malli perustuu volyymiin.",
     "noteReels": "Bonusohjelmat ovat vain kutsusta ja niitä on toistuvasti ajettu alas.",
     "footnote": "Kilpailijoiden luvut ovat arvioita julkaistuista toimialan vaihteluväleistä, eivät mitattuja maksuja — todellinen RPM vaihtelee paljon aiheen, yleisön maan ja katseluajan mukaan, joten muokkaa jokainen taso vastaamaan todellisia tulojasi. DeHubin luku on todellinen juomarahatulosi muunnettuna DHB:n reaaliaikaiseen hintaan, eikä se sisällä tilauksia, PPV:tä tai kauppamyyntiä. Katselut lasketaan yhteen 100 viimeisimmästä julkaisustasi."
+  },
+  "sessions": {
+    "androidDevice": "Android-laite",
+    "webBrowser": "Verkkoselain",
+    "thisDevice": "Tämä laite",
+    "logOutDeviceTitle": "Kirjataanko laite ulos?",
+    "logOut": "Kirjaudu ulos",
+    "logOutAll": "Kirjaa kaikki ulos",
+    "logOutAllTitle": "Kirjataanko kaikki muut laitteet ulos?",
+    "logOutDeviceBody": "Tämä kirjaa laitteen \"{{device}}\" ulos. Se pitää kirjautua uudelleen.",
+    "logOutAllBody_one": "Tämä kirjaa ulos {{count}} muun laitteen. Vain tämä laite pysyy kirjautuneena.",
+    "logOutAllBody_other": "Tämä kirjaa ulos {{count}} muuta laitetta. Vain tämä laite pysyy kirjautuneena.",
+    "explainer": "Nämä laitteet ovat nyt kirjautuneina tilillesi. Jos näet jotain tuntematonta, kirjaa se ulos ja vaihda kirjautumistietosi.",
+    "activeSessions_one": "{{count}} aktiivinen istunto",
+    "activeSessions_other": "{{count}} aktiivista istuntoa",
+    "logOutAllButton": "Kirjaa kaikki muut laitteet ulos",
+    "loadFailed": "Istuntojen lataus epäonnistui",
+    "loggedOut": "Laite kirjattiin ulos",
+    "logOutFailed": "Laitteen uloskirjaus epäonnistui",
+    "logOutAllFailed": "Laitteiden uloskirjaus epäonnistui",
+    "devicesLoggedOut_one": "{{count}} laite kirjattiin ulos",
+    "devicesLoggedOut_other": "{{count}} laitetta kirjattiin ulos"
   }
 }

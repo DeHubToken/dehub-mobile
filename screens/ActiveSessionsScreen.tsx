@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import {
   View,
   Text,
@@ -8,7 +9,7 @@ import {
   Alert,
   ActivityIndicator,
   Platform,
-} from 'react-native';
+} from 'react-native';
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from '../components/DeHubLoader';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -25,17 +26,17 @@ import {
   type Session,
 } from '../services/session.service';
 
-function formatRelativeTime(iso: string): string {
+function formatRelativeTime(iso: string, t: TFunction): string {
   const diff = Date.now() - new Date(iso).getTime();
   const mins = Math.floor(diff / 60_000);
-  if (mins < 1) return 'Just now';
-  if (mins < 60) return `${mins}m ago`;
+  if (mins < 1) return t('commandCentre.time.justNow');
+  if (mins < 60) return t('commandCentre.time.minutes', { count: mins });
   const hours = Math.floor(mins / 60);
-  if (hours < 24) return `${hours}h ago`;
+  if (hours < 24) return t('commandCentre.time.hours', { count: hours });
   const days = Math.floor(hours / 24);
-  if (days < 30) return `${days}d ago`;
+  if (days < 30) return t('commandCentre.time.days', { count: days });
   const months = Math.floor(days / 30);
-  return `${months}mo ago`;
+  return t('commandCentre.time.months', { count: months });
 }
 
 function getPlatformIcon(platform: Session['platform']): 'Smartphone' | 'Monitor' | 'Globe' {
@@ -43,11 +44,11 @@ function getPlatformIcon(platform: Session['platform']): 'Smartphone' | 'Monitor
   return 'Globe';
 }
 
-function getDeviceLabel(session: Session): string {
+function getDeviceLabel(session: Session, t: TFunction): string {
   if (session.deviceName) return session.deviceName;
   if (session.platform === 'ios') return 'iPhone';
-  if (session.platform === 'android') return 'Android Device';
-  return 'Web Browser';
+  if (session.platform === 'android') return t('sessions.androidDevice');
+  return t('sessions.webBrowser');
 }
 
 function getSubtitle(session: Session): string {
@@ -70,18 +71,18 @@ const SessionCard = React.memo<{
 
   const handleRevoke = useCallback(() => {
     Alert.alert(
-      'Log out device?',
-      `This will sign out "${getDeviceLabel(session)}". They'll need to log in again.`,
+      t('sessions.logOutDeviceTitle'),
+      t('sessions.logOutDeviceBody', { device: getDeviceLabel(session, t) }),
       [
-        { text: 'Cancel', style: 'cancel' },
+        { text: t('common.cancel'), style: 'cancel' },
         {
-          text: 'Log Out',
+          text: t('sessions.logOut'),
           style: 'destructive',
           onPress: () => onRevoke(session.deviceId),
         },
       ],
     );
-  }, [session, onRevoke]);
+  }, [session, onRevoke, t]);
 
   return (
     <View
@@ -96,11 +97,11 @@ const SessionCard = React.memo<{
           <View className="flex-1 mr-2">
             <View className="flex-row items-center">
               <Text className="text-white text-sm font-semibold" numberOfLines={1}>
-                {getDeviceLabel(session)}
+                {getDeviceLabel(session, t)}
               </Text>
               {session.current && (
                 <View className="ml-2 bg-white/10 px-2 py-0.5 rounded-full">
-                  <Text className="text-theme-neutrals-200 text-[11px] font-bold">This device</Text>
+                  <Text className="text-theme-neutrals-200 text-[11px] font-bold">{t('sessions.thisDevice')}</Text>
                 </View>
               )}
             </View>
@@ -133,7 +134,7 @@ const SessionCard = React.memo<{
         <View className="flex-row items-center mt-2.5 ml-[52px]">
           <Icon name="Clock" size={12} color="#6b7280" />
           <Text className="text-theme-neutrals-500 text-xs ml-1.5">
-            {formatRelativeTime(session.lastActiveAt)}
+            {formatRelativeTime(session.lastActiveAt, t)}
           </Text>
           {session.ip && (
             <>
@@ -164,7 +165,7 @@ export default function ActiveSessionsScreen() {
       const data = await fetchSessions();
       setSessions(data);
     } catch (e) {
-      toastError(e, 'Failed to load sessions');
+      toastError(e, t('sessions.loadFailed'));
     }
   }, []);
 
@@ -187,9 +188,9 @@ export default function ActiveSessionsScreen() {
     try {
       await revokeSession(deviceId);
       setSessions((prev) => prev.filter((s) => s.deviceId !== deviceId));
-      toastSuccess('Device logged out');
+      toastSuccess(t('sessions.loggedOut'));
     } catch (e) {
-      toastError(e, 'Failed to log out device');
+      toastError(e, t('sessions.logOutFailed'));
     } finally {
       setRevoking(null);
     }
@@ -200,21 +201,21 @@ export default function ActiveSessionsScreen() {
     if (otherCount === 0) return;
 
     Alert.alert(
-      'Log out all other devices?',
-      `This will sign out ${otherCount} other device${otherCount > 1 ? 's' : ''}. Only this device will remain signed in.`,
+      t('sessions.logOutAllTitle'),
+      t('sessions.logOutAllBody', { count: otherCount }),
       [
-        { text: 'Cancel', style: 'cancel' },
+        { text: t('common.cancel'), style: 'cancel' },
         {
-          text: 'Log Out All',
+          text: t('sessions.logOutAll'),
           style: 'destructive',
           onPress: async () => {
             setRevokingAll(true);
             try {
               const count = await revokeOtherSessions();
               setSessions((prev) => prev.filter((s) => s.current));
-              toastSuccess(`${count} device${count > 1 ? 's' : ''} logged out`);
+              toastSuccess(t('sessions.devicesLoggedOut', { count }));
             } catch (e) {
-              toastError(e, 'Failed to log out devices');
+              toastError(e, t('sessions.logOutAllFailed'));
             } finally {
               setRevokingAll(false);
             }
@@ -240,11 +241,11 @@ export default function ActiveSessionsScreen() {
       <View className="flex-row items-center mb-1">
         <Icon name="Shield" size={16} color="#6b7280" />
         <Text className="text-theme-neutrals-400 text-xs ml-1.5">
-          {sessions.length} active session{sessions.length !== 1 ? 's' : ''}
+          {t('sessions.activeSessions', { count: sessions.length })}
         </Text>
       </View>
       <Text className="text-theme-neutrals-500 text-xs leading-5">
-        These devices are currently signed in to your account. If you see something unfamiliar, log it out and change your credentials.
+        {t('sessions.explainer')}
       </Text>
     </View>
   ), [sessions.length]);
@@ -267,7 +268,7 @@ export default function ActiveSessionsScreen() {
             <>
               <Icon name="LogOut" size={16} color="#F4F4F5" />
               <Text className="text-white/80 font-semibold text-sm ml-2">
-                Log out all other devices
+                {t('sessions.logOutAllButton')}
               </Text>
             </>
           )}

@@ -3128,5 +3128,27 @@
     "noteTiktok": "Creator Rewards. Malaza amin'ny hakelin'ny vola isaky ny fijerena; ny habetsahana no modely manontolo.",
     "noteReels": "Ny fandaharana bonus dia amin'ny fanasana ihany ary nampitsaharina imbetsaka.",
     "footnote": "Tombana avy amin'ny fari-tsaha-pihariana navoaka ny isan'ny mpifaninana, fa tsy fandoavam-bola voarefy — miovaova be ny RPM tena izy arakaraka ny sehatra, ny firenen'ny mpanaraka ary ny fotoana fijerena, ka ovay ny tahan'ny tsirairay mba hifanaraka amin'izay tena azonao. Ny isan'ny DeHub dia ny tena vola azonao amin'ny tips novana amin'ny vidin'ny DHB mivantana, ary tsy tafiditra ao ny fisoratana anarana, ny PPV na ny varotra ao amin'ny fivarotana. Ny fijerena dia nampiana avy amin'ny lahatsoratra 100 farany nataonao."
+  },
+  "sessions": {
+    "androidDevice": "Fitaovana Android",
+    "webBrowser": "Mpitety tranonkala",
+    "thisDevice": "Ity fitaovana ity",
+    "logOutDeviceTitle": "Hamoaka ny fitaovana?",
+    "logOut": "Hivoaka",
+    "logOutAll": "Avoaka daholo",
+    "logOutAllTitle": "Hamoaka ny fitaovana hafa rehetra?",
+    "logOutDeviceBody": "Hamoaka ny \"{{device}}\" izany. Mila miditra indray izy.",
+    "logOutAllBody_one": "Hamoaka fitaovana hafa {{count}} izany. Ity fitaovana ity ihany no hijanona ho tafiditra.",
+    "logOutAllBody_other": "Hamoaka fitaovana hafa {{count}} izany. Ity fitaovana ity ihany no hijanona ho tafiditra.",
+    "explainer": "Tafiditra amin'ny kaontinao ireto fitaovana ireto amin'izao fotoana izao. Raha mahita zavatra tsy fantatra ianao, avoahy izy ary ovay ny mari-pamantaranao.",
+    "activeSessions_one": "{{count}} fivoriana mavitrika",
+    "activeSessions_other": "{{count}} fivoriana mavitrika",
+    "logOutAllButton": "Avoahy ny fitaovana hafa rehetra",
+    "loadFailed": "Tsy voaloatra ny fivoriana",
+    "loggedOut": "Navoaka ny fitaovana",
+    "logOutFailed": "Tsy voavoaka ny fitaovana",
+    "logOutAllFailed": "Tsy voavoaka ny fitaovana",
+    "devicesLoggedOut_one": "Navoaka ny fitaovana {{count}}",
+    "devicesLoggedOut_other": "Navoaka ny fitaovana {{count}}"
   }
 }

@@ -3019,5 +3019,27 @@
     "noteTiktok": "Creator Rewards. Her görkezilişe pesligi bilen meşhur; tutuş model göwrümde.",
     "noteReels": "Bonus maksatnamalary diňe çakylyk boýunça we birnäçe gezek ýapyldy.",
     "footnote": "Bäsdeşleriň sanlary neşir edilen pudak aralyklaryndan alnan çaklamalar bolup, ölçelen tölegler däldir — hakyky RPM mowzuga, tomaşaçylaryň ýurduna we tomaşa wagtyna görä örän üýtgeýär, şonuň üçin her nyrhy hakyky girdejiňize laýyk üýtgediň. DeHub sany DHB-nyň janly bahasyna öwrülen hakyky tip girdejiňizdir we abunalary, PPV-ni hem-de dükan satuwyny öz içine almaýar. Görkezilişler soňky 100 ýazgyňyzdan jemlenýär."
+  },
+  "sessions": {
+    "androidDevice": "Android enjamy",
+    "webBrowser": "Web brauzeri",
+    "thisDevice": "Bu enjam",
+    "logOutDeviceTitle": "Enjamdan çykylsynmy?",
+    "logOut": "Çyk",
+    "logOutAll": "Ählisini çykar",
+    "logOutAllTitle": "Ähli beýleki enjamlardan çykylsynmy?",
+    "logOutDeviceBody": "Bu \"{{device}}\" enjamyny çykarar. Täzeden girmeli bolar.",
+    "logOutAllBody_one": "Bu {{count}} başga enjamy çykarar. Diňe şu enjam giren bolup galar.",
+    "logOutAllBody_other": "Bu {{count}} başga enjamy çykarar. Diňe şu enjam giren bolup galar.",
+    "explainer": "Bu enjamlar häzir hasabyňyza giren. Nätanyş bir zat görseňiz, ony çykaryň we giriş maglumatlaryňyzy üýtgediň.",
+    "activeSessions_one": "{{count}} işjeň sessiýa",
+    "activeSessions_other": "{{count}} işjeň sessiýa",
+    "logOutAllButton": "Ähli beýleki enjamlardan çyk",
+    "loadFailed": "Sessiýalar ýüklenip bilmedi",
+    "loggedOut": "Enjam çykaryldy",
+    "logOutFailed": "Enjam çykarylyp bilmedi",
+    "logOutAllFailed": "Enjamlar çykarylyp bilmedi",
+    "devicesLoggedOut_one": "{{count}} enjam çykaryldy",
+    "devicesLoggedOut_other": "{{count}} enjam çykaryldy"
   }
 }

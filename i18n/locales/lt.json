@@ -3048,5 +3048,27 @@
     "noteTiktok": "Creator Rewards. Garsėja mažu užmokesčiu už peržiūrą; visas modelis remiasi mastu.",
     "noteReels": "Premijų programos tik su pakvietimu ir buvo ne kartą nutrauktos.",
     "footnote": "Konkurentų skaičiai yra įverčiai iš paskelbtų pramonės intervalų, o ne išmatuotos išmokos — tikrasis RPM labai skiriasi pagal nišą, auditorijos šalį ir žiūrėjimo laiką, todėl pakoreguokite kiekvieną įkainį pagal tai, kiek iš tikrųjų uždirbate. DeHub skaičius yra tikros jūsų arbatpinigių pajamos, perskaičiuotos tiesiogine DHB kaina, ir neapima prenumeratų, PPV ar parduotuvės pardavimų. Peržiūros sumuojamos iš 100 naujausių jūsų įrašų."
+  },
+  "sessions": {
+    "androidDevice": "Android įrenginys",
+    "webBrowser": "Interneto naršyklė",
+    "thisDevice": "Šis įrenginys",
+    "logOutDeviceTitle": "Atjungti įrenginį?",
+    "logOut": "Atsijungti",
+    "logOutAll": "Atjungti visus",
+    "logOutAllTitle": "Atjungti visus kitus įrenginius?",
+    "logOutDeviceBody": "Tai atjungs \"{{device}}\". Reikės prisijungti iš naujo.",
+    "logOutAllBody_one": "Tai atjungs {{count}} kitą įrenginį. Prisijungęs liks tik šis įrenginys.",
+    "logOutAllBody_other": "Tai atjungs {{count}} kitus įrenginius. Prisijungęs liks tik šis įrenginys.",
+    "explainer": "Šie įrenginiai šiuo metu prisijungę prie jūsų paskyros. Jei matote ką nors nepažįstamo, atjunkite jį ir pakeiskite prisijungimo duomenis.",
+    "activeSessions_one": "{{count}} aktyvus seansas",
+    "activeSessions_other": "{{count}} aktyvūs seansai",
+    "logOutAllButton": "Atjungti visus kitus įrenginius",
+    "loadFailed": "Nepavyko įkelti seansų",
+    "loggedOut": "Įrenginys atjungtas",
+    "logOutFailed": "Nepavyko atjungti įrenginio",
+    "logOutAllFailed": "Nepavyko atjungti įrenginių",
+    "devicesLoggedOut_one": "Atjungtas {{count}} įrenginys",
+    "devicesLoggedOut_other": "Atjungti {{count}} įrenginiai"
   }
 }

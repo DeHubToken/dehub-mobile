@@ -3047,5 +3047,27 @@
     "noteTiktok": "創作者獎勵。每次觀看嘅單價出咗名咁低，成個模式靠嘅係規模。",
     "noteReels": "獎金計劃只限受邀，而且已經被多次收縮關閉。",
     "footnote": "競爭對手嘅數字係根據公開行業區間嘅估算，並唔係實測收款。真實 RPM 因細分領域、觀眾國家同觀看時長差別好大，請將每個費率改成你實際賺到嘅水平。DeHub 嘅數字係你真實嘅打賞收入按 DHB 即時價格換算，唔包括訂閱、付費觀看同店舖銷售。觀看次數取自你最近嘅 100 個帖子。"
+  },
+  "sessions": {
+    "androidDevice": "Android 裝置",
+    "webBrowser": "網頁瀏覽器",
+    "thisDevice": "本裝置",
+    "logOutDeviceTitle": "登出該裝置？",
+    "logOut": "登出",
+    "logOutAll": "全部登出",
+    "logOutAllTitle": "登出所有其他裝置？",
+    "logOutDeviceBody": "呢個會登出 \"{{device}}\"。需要重新登入。",
+    "logOutAllBody_one": "呢個會登出 {{count}} 部其他裝置。只有本裝置保持登入。",
+    "logOutAllBody_other": "呢個會登出 {{count}} 部其他裝置。只有本裝置保持登入。",
+    "explainer": "呢啲裝置而家已登入你嘅帳戶。如果見到唔熟悉嘅，請將佢登出並更改登入資料。",
+    "activeSessions_one": "{{count}} 個活躍工作階段",
+    "activeSessions_other": "{{count}} 個活躍工作階段",
+    "logOutAllButton": "登出所有其他裝置",
+    "loadFailed": "無法載入工作階段",
+    "loggedOut": "裝置已登出",
+    "logOutFailed": "無法登出該裝置",
+    "logOutAllFailed": "無法登出呢啲裝置",
+    "devicesLoggedOut_one": "已登出 {{count}} 部裝置",
+    "devicesLoggedOut_other": "已登出 {{count}} 部裝置"
   }
 }

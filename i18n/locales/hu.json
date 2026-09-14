@@ -3053,5 +3053,27 @@
     "noteTiktok": "Creator Rewards. Hírhedten alacsony megtekintésenként; az egész modell a mennyiségre épül.",
     "noteReels": "A bónuszprogramok csak meghívásosak, és többször is leépítették őket.",
     "footnote": "A versenytársak számai közzétett iparági sávokból származó becslések, nem mért kifizetések — a valós RPM erősen ingadozik a téma, a közönség országa és a nézési idő szerint, ezért szerkeszd minden díjszabást úgy, hogy illeszkedjen a tényleges bevételedhez. A DeHub-szám a valódi borravaló-bevételed az élő DHB-árfolyamon átszámítva, és nem tartalmaz előfizetéseket, PPV-t vagy boltbeli eladásokat. A megtekintések a legutóbbi 100 bejegyzésedből adódnak össze."
+  },
+  "sessions": {
+    "androidDevice": "Android-eszköz",
+    "webBrowser": "Webböngésző",
+    "thisDevice": "Ez az eszköz",
+    "logOutDeviceTitle": "Kijelentkezteted az eszközt?",
+    "logOut": "Kijelentkezés",
+    "logOutAll": "Összes kijelentkeztetése",
+    "logOutAllTitle": "Kijelentkezteted az összes többi eszközt?",
+    "logOutDeviceBody": "Ezzel kijelentkezteted a következőt: \"{{device}}\". Újra be kell majd jelentkeznie.",
+    "logOutAllBody_one": "Ezzel {{count}} másik eszköz kijelentkezik. Csak ez az eszköz marad bejelentkezve.",
+    "logOutAllBody_other": "Ezzel {{count}} másik eszköz kijelentkezik. Csak ez az eszköz marad bejelentkezve.",
+    "explainer": "Ezek az eszközök jelenleg be vannak jelentkezve a fiókodba. Ha valami ismeretlent látsz, jelentkeztesd ki, és változtasd meg a belépési adataidat.",
+    "activeSessions_one": "{{count}} aktív munkamenet",
+    "activeSessions_other": "{{count}} aktív munkamenet",
+    "logOutAllButton": "Összes többi eszköz kijelentkeztetése",
+    "loadFailed": "A munkamenetek betöltése sikertelen",
+    "loggedOut": "Eszköz kijelentkeztetve",
+    "logOutFailed": "Az eszköz kijelentkeztetése sikertelen",
+    "logOutAllFailed": "Az eszközök kijelentkeztetése sikertelen",
+    "devicesLoggedOut_one": "{{count}} eszköz kijelentkeztetve",
+    "devicesLoggedOut_other": "{{count}} eszköz kijelentkeztetve"
   }
 }

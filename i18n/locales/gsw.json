@@ -3038,5 +3038,27 @@
     "noteTiktok": "Creator Rewards. Berüehmt tüüf pro View; s ganze Modell lebt vo de Menge.",
     "noteReels": "Bonusprogramm gits nur uf Iiladig und si sind mehrfach iigstellt worde.",
     "footnote": "D Zahle vo de Konkurränz sind Schätzige us veröffentlichte Branchespanne, kei gmessni Uszahlige. De echt RPM schwankt stark nach Nische, Land vom Publikum und Luegziit, drum passe jede Satz a das a, was du würklich verdienscht. D DeHub-Zahl isch dis echte Trinkgäld-Iikommen zum aktuelle DHB-Priis umgrächnet und ohni Abos, PPV und Shop-Verchäuf. D Views sind us dine letschte 100 Beiträg zämezellt."
+  },
+  "sessions": {
+    "androidDevice": "Android-Grät",
+    "webBrowser": "Webbrowser",
+    "thisDevice": "Das Grät",
+    "logOutDeviceTitle": "Grät abmälde?",
+    "logOut": "Abmälde",
+    "logOutAll": "Alli abmälde",
+    "logOutAllTitle": "Alli andere Grät abmälde?",
+    "logOutDeviceBody": "Das mäldet \"{{device}}\" ab. Si müend sich nomol aamälde.",
+    "logOutAllBody_one": "Das mäldet {{count}} anders Grät ab. Nur das Grät bliibt aagmäldet.",
+    "logOutAllBody_other": "Das mäldet {{count}} anderi Grät ab. Nur das Grät bliibt aagmäldet.",
+    "explainer": "Die Grät sind grad a dim Konto aagmäldet. Wänn du öppis Unbekannts gsehsch, mäld's ab und änder dini Zuegangsdate.",
+    "activeSessions_one": "{{count}} aktivi Sitzig",
+    "activeSessions_other": "{{count}} aktivi Sitzige",
+    "logOutAllButton": "Alli andere Grät abmälde",
+    "loadFailed": "Sitzige händ nid chönne glade wärde",
+    "loggedOut": "Grät abgmäldet",
+    "logOutFailed": "S Grät het nid chönne abgmäldet wärde",
+    "logOutAllFailed": "D Grät händ nid chönne abgmäldet wärde",
+    "devicesLoggedOut_one": "{{count}} Grät abgmäldet",
+    "devicesLoggedOut_other": "{{count}} Grät abgmäldet"
   }
 }

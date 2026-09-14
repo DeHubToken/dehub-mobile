@@ -3078,5 +3078,27 @@
     "noteTiktok": "I-Creator Rewards. Yaziwa ngokukhokha kancane ngokubukwa ngakunye; isilinganiso yiso sonke isimo.",
     "noteReels": "Izinhlelo zebhonasi zimemo kuphela futhi zivaliwe kaningi.",
     "footnote": "Izibalo zabancintisani ziyizilinganiso ezivela emikhakheni yemboni eshicilelwe, hhayi izinkokhelo ezikaliwe — i-RPM yangempela iyahluka kakhulu ngokwesihloko, izwe lababukeli nesikhathi sokubuka, ngakho hlela inani ngalinye ukuze lihambisane nalokho okuzuzayo ngempela. Inani le-DeHub yimali yakho yangempela yamathiphu eguqulwe ngentengo ye-DHB ebukhoma, futhi ayifaki okubhaliselwe, i-PPV noma ukuthengiswa kwesitolo. Ukubukwa kuhlanganiswe kokuthunyelwe kwakho okungu-100 kwakamuva."
+  },
+  "sessions": {
+    "androidDevice": "Idivayisi ye-Android",
+    "webBrowser": "Isiphequluli sewebhu",
+    "thisDevice": "Le divayisi",
+    "logOutDeviceTitle": "Phuma kudivayisi?",
+    "logOut": "Phuma",
+    "logOutAll": "Phuma kukho konke",
+    "logOutAllTitle": "Phuma kuwo wonke amanye amadivayisi?",
+    "logOutDeviceBody": "Lokhu kuzophumisa \"{{device}}\". Kuzodingeka bangene futhi.",
+    "logOutAllBody_one": "Lokhu kuzophumisa enye idivayisi engu-{{count}}. Yile divayisi kuphela ezohlala ingenile.",
+    "logOutAllBody_other": "Lokhu kuzophumisa amanye amadivayisi angu-{{count}}. Yile divayisi kuphela ezohlala ingenile.",
+    "explainer": "Lawa madivayisi okwamanje angenile ku-akhawunti yakho. Uma ubona okungajwayelekile, kuphumise bese ushintsha imininingwane yakho yokungena.",
+    "activeSessions_one": "iseshini eyodwa esebenzayo engu-{{count}}",
+    "activeSessions_other": "amaseshini asebenzayo angu-{{count}}",
+    "logOutAllButton": "Phuma kuwo wonke amanye amadivayisi",
+    "loadFailed": "Ayikwazanga ukulayisha amaseshini",
+    "loggedOut": "Idivayisi iphumile",
+    "logOutFailed": "Ayikwazanga ukuphumisa idivayisi",
+    "logOutAllFailed": "Ayikwazanga ukuphumisa amadivayisi",
+    "devicesLoggedOut_one": "Idivayisi engu-{{count}} iphumile",
+    "devicesLoggedOut_other": "Amadivayisi angu-{{count}} aphumile"
   }
 }

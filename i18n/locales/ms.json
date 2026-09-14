@@ -3314,5 +3314,27 @@
     "noteTiktok": "Creator Rewards. Terkenal rendah bagi setiap tontonan; skala ialah keseluruhan modelnya.",
     "noteReels": "Program bonus hanya melalui jemputan dan telah berulang kali ditamatkan.",
     "footnote": "Angka pesaing ialah anggaran daripada julat industri yang diterbitkan, bukan bayaran yang diukur — RPM sebenar berbeza-beza mengikut nic, negara penonton dan masa tontonan, jadi sunting setiap kadar supaya sepadan dengan pendapatan sebenar anda. Angka DeHub ialah pendapatan tip sebenar anda yang ditukar pada harga DHB langsung, dan tidak termasuk langganan, PPV atau jualan kedai. Tontonan dijumlahkan daripada 100 siaran terbaharu anda."
+  },
+  "sessions": {
+    "androidDevice": "Peranti Android",
+    "webBrowser": "Pelayar web",
+    "thisDevice": "Peranti ini",
+    "logOutDeviceTitle": "Log keluar peranti?",
+    "logOut": "Log keluar",
+    "logOutAll": "Log keluar semua",
+    "logOutAllTitle": "Log keluar semua peranti lain?",
+    "logOutDeviceBody": "Ini akan log keluar \"{{device}}\". Mereka perlu log masuk semula.",
+    "logOutAllBody_one": "Ini akan log keluar {{count}} peranti lain. Hanya peranti ini kekal log masuk.",
+    "logOutAllBody_other": "Ini akan log keluar {{count}} peranti lain. Hanya peranti ini kekal log masuk.",
+    "explainer": "Peranti ini sedang log masuk ke akaun anda. Jika anda nampak sesuatu yang asing, log keluarkannya dan tukar butiran log masuk anda.",
+    "activeSessions_one": "{{count}} sesi aktif",
+    "activeSessions_other": "{{count}} sesi aktif",
+    "logOutAllButton": "Log keluar semua peranti lain",
+    "loadFailed": "Gagal memuatkan sesi",
+    "loggedOut": "Peranti telah log keluar",
+    "logOutFailed": "Gagal log keluar peranti",
+    "logOutAllFailed": "Gagal log keluar peranti",
+    "devicesLoggedOut_one": "{{count}} peranti telah log keluar",
+    "devicesLoggedOut_other": "{{count}} peranti telah log keluar"
   }
 }

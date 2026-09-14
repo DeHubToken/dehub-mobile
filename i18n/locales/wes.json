@@ -2888,5 +2888,27 @@
     "noteTiktok": "Creator Rewards. E well known say e low per view; na di scale be di whole model.",
     "noteReels": "Bonus programmes na invite-only and dem don close am plenty times.",
     "footnote": "Competitor figures na estimates from industry ranges wey dem publish, no be payouts wey dem measure — real RPM dey change well-well by niche, audience country and watch time, so edit each rate make e match wetin you really dey earn. Di DeHub figure na your real tip income wey dem convert for live DHB price, and e no add subscriptions, PPV or store sales. Views na sum from your last 100 posts."
+  },
+  "sessions": {
+    "androidDevice": "Android Device",
+    "webBrowser": "Web Browser",
+    "thisDevice": "Dis device",
+    "logOutDeviceTitle": "Log out di device?",
+    "logOut": "Log Out",
+    "logOutAll": "Log Out All",
+    "logOutAllTitle": "Log out all di other devices?",
+    "logOutDeviceBody": "Dis go log out \"{{device}}\". Dem go need to log in again.",
+    "logOutAllBody_one": "Dis go log out {{count}} other device. Na only dis device go still dey logged in.",
+    "logOutAllBody_other": "Dis go log out {{count}} other devices. Na only dis device go still dey logged in.",
+    "explainer": "Dis devices dey logged in to your account now. If you see one wey you no sabi, log am out and change your login details.",
+    "activeSessions_one": "{{count}} active session",
+    "activeSessions_other": "{{count}} active sessions",
+    "logOutAllButton": "Log out all di other devices",
+    "loadFailed": "We no fit load di sessions",
+    "loggedOut": "Device don log out",
+    "logOutFailed": "We no fit log out di device",
+    "logOutAllFailed": "We no fit log out di devices",
+    "devicesLoggedOut_one": "{{count}} device don log out",
+    "devicesLoggedOut_other": "{{count}} devices don log out"
   }
 }

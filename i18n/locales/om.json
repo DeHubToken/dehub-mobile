@@ -3113,5 +3113,27 @@
     "noteTiktok": "Creator Rewards. Ilaalcha tokkoon gadi aanaa ta'uun beekama; bal'inni mataan isaa moodela guutuu dha.",
     "noteReels": "Sagantaan badhaasaa afeerraan qofa yoo ta'u, irra deddeebiin cufameera.",
     "footnote": "Lakkoofsi dorgomtootaa tilmaama hangii industirii maxxanfame irraa kan argame malee kaffaltii safarame miti — RPM dhugaan akkaataa dhimmaa, biyya ilaaltotaa fi yeroo ilaalchaatiin baayʼee garaagara, kanaafuu tokkoon tokkoon gatii akka galii kee dhugaatiin walsimuuf gulaali. Lakkoofsi DeHub galii tips kee dhugaa gatii DHB kallattiin jijjiirame yoo ta'u, galmee, PPV fi gurgurtaa suuqii hin dabalatu. Ilaalchi maxxansa kee 100 dhiheenyaa irraa walitti qabame."
+  },
+  "sessions": {
+    "androidDevice": "Meeshaa Android",
+    "webBrowser": "Barbaadaa weebii",
+    "thisDevice": "Meeshaa kana",
+    "logOutDeviceTitle": "Meeshaa baasuu?",
+    "logOut": "Ba'i",
+    "logOutAll": "Hunda baasi",
+    "logOutAllTitle": "Meeshaalee kaan hunda baasuu?",
+    "logOutDeviceBody": "Kun \"{{device}}\" ni baasa. Irra deebiʼanii seenuu qabu.",
+    "logOutAllBody_one": "Kun meeshaa biraa {{count}} ni baasa. Meeshaan kun qofti seenee hafa.",
+    "logOutAllBody_other": "Kun meeshaalee biroo {{count}} ni baasa. Meeshaan kun qofti seenee hafa.",
+    "explainer": "Meeshaaleen kun yeroo ammaa akkaawuntii kee keessa seenanii jiru. Waan hin beekne yoo argite, baasi fi odeeffannoo seensa kee jijjiiri.",
+    "activeSessions_one": "walgahii {{count}} hojiirra jiru",
+    "activeSessions_other": "walgahiiwwan {{count}} hojiirra jiran",
+    "logOutAllButton": "Meeshaalee kaan hunda baasi",
+    "loadFailed": "Walgahiiwwan fe'uun hin milkoofne",
+    "loggedOut": "Meeshaan ba'eera",
+    "logOutFailed": "Meeshaa baasuun hin milkoofne",
+    "logOutAllFailed": "Meeshaalee baasuun hin milkoofne",
+    "devicesLoggedOut_one": "Meeshaan {{count}} ba'eera",
+    "devicesLoggedOut_other": "Meeshaaleen {{count}} ba'aniiru"
   }
 }

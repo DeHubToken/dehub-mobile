@@ -3053,5 +3053,27 @@
     "noteTiktok": "Creator Rewards. Ökänt lågt per visning; hela modellen bygger på skala.",
     "noteReels": "Bonusprogram är endast på inbjudan och har lagts ned gång på gång.",
     "footnote": "Konkurrenternas siffror är uppskattningar från publicerade branschintervall, inte uppmätta utbetalningar — den verkliga RPM varierar kraftigt med nisch, publikens land och visningstid, så redigera varje taxa så att den matchar vad du faktiskt tjänar. DeHub-siffran är din verkliga dricksinkomst omräknad till DHB:s liveprisnivå och utesluter prenumerationer, PPV och butiksförsäljning. Visningar summeras från dina 100 senaste inlägg."
+  },
+  "sessions": {
+    "androidDevice": "Android-enhet",
+    "webBrowser": "Webbläsare",
+    "thisDevice": "Den här enheten",
+    "logOutDeviceTitle": "Logga ut enheten?",
+    "logOut": "Logga ut",
+    "logOutAll": "Logga ut alla",
+    "logOutAllTitle": "Logga ut alla andra enheter?",
+    "logOutDeviceBody": "Detta loggar ut \"{{device}}\". De måste logga in igen.",
+    "logOutAllBody_one": "Detta loggar ut {{count}} annan enhet. Bara den här enheten förblir inloggad.",
+    "logOutAllBody_other": "Detta loggar ut {{count}} andra enheter. Bara den här enheten förblir inloggad.",
+    "explainer": "Dessa enheter är just nu inloggade på ditt konto. Ser du något okänt, logga ut det och byt dina inloggningsuppgifter.",
+    "activeSessions_one": "{{count}} aktiv session",
+    "activeSessions_other": "{{count}} aktiva sessioner",
+    "logOutAllButton": "Logga ut alla andra enheter",
+    "loadFailed": "Det gick inte att läsa in sessionerna",
+    "loggedOut": "Enheten utloggad",
+    "logOutFailed": "Det gick inte att logga ut enheten",
+    "logOutAllFailed": "Det gick inte att logga ut enheterna",
+    "devicesLoggedOut_one": "{{count}} enhet utloggad",
+    "devicesLoggedOut_other": "{{count}} enheter utloggade"
   }
 }

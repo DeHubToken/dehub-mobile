@@ -3007,5 +3007,27 @@
     "noteTiktok": "Creator Rewards. Kondhang murah saben tontonan; kabeh modhele ana ing skala.",
     "noteReels": "Program bonus mung kanthi undangan lan wis bola-bali ditutup.",
     "footnote": "Angka pesaing minangka prakiraan saka rentang industri sing diterbitake, dudu pembayaran sing diukur — RPM nyata beda-beda banget miturut niche, negara pamirsa, lan wektu nonton, mula owahi saben tarif supaya cocog karo sing nyata sampeyan entuk. Angka DeHub yaiku penghasilan tip nyata sampeyan sing dikonversi ing rega DHB langsung, lan ora kalebu langganan, PPV, utawa dodolan toko. Tontonan dijumlah saka 100 kiriman paling anyar sampeyan."
+  },
+  "sessions": {
+    "androidDevice": "Piranti Android",
+    "webBrowser": "Panjelajah web",
+    "thisDevice": "Piranti iki",
+    "logOutDeviceTitle": "Metokake piranti?",
+    "logOut": "Metu",
+    "logOutAll": "Metokake kabeh",
+    "logOutAllTitle": "Metokake kabeh piranti liya?",
+    "logOutDeviceBody": "Iki bakal metokake \"{{device}}\". Kudu mlebu maneh.",
+    "logOutAllBody_one": "Iki bakal metokake {{count}} piranti liya. Mung piranti iki sing tetep mlebu.",
+    "logOutAllBody_other": "Iki bakal metokake {{count}} piranti liya. Mung piranti iki sing tetep mlebu.",
+    "explainer": "Piranti iki saiki mlebu ing akunmu. Yen sampeyan weruh sing ora dikenal, metokake lan ganti kredensialmu.",
+    "activeSessions_one": "{{count}} sesi aktif",
+    "activeSessions_other": "{{count}} sesi aktif",
+    "logOutAllButton": "Metokake kabeh piranti liya",
+    "loadFailed": "Gagal mbukak sesi",
+    "loggedOut": "Piranti wis metu",
+    "logOutFailed": "Gagal metokake piranti",
+    "logOutAllFailed": "Gagal metokake piranti",
+    "devicesLoggedOut_one": "{{count}} piranti wis metu",
+    "devicesLoggedOut_other": "{{count}} piranti wis metu"
   }
 }

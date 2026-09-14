@@ -3027,5 +3027,27 @@
     "noteTiktok": "Creator Rewards. A maara ya nke ọma maka ịdị ala kwa nlele; ogo ka ọ bụ usoro ahụ niile.",
     "noteReels": "Mmemme bonus bụ naanị site na ọkpụkpọ òkù ma mechie ugboro ugboro.",
     "footnote": "Ọnụọgụ ndị asọmpi bụ atụmatụ sitere na oke ụlọ ọrụ ebipụtara, ọ bụghị ụgwọ a tụrụ atụ — ezigbo RPM na-adịgasị iche nke ukwuu dabere na ụdị ọdịnaya, obodo ndị na-ege ntị na oge ikiri, ya mere dezie ọnụego ọ bụla ka ọ kwekọọ n'ihe ị na-enweta n'ezie. Ọnụọgụ DeHub bụ ezigbo ego tip gị a tụgharịrị na ọnụahịa DHB dị ndụ, ọ gụnyeghịkwa ndenye aha, PPV ma ọ bụ ire ahịa ụlọ ahịa. A na-achịkọta nlele site na posts 100 kachasị ọhụrụ gị."
+  },
+  "sessions": {
+    "androidDevice": "Ngwaọrụ Android",
+    "webBrowser": "Ihe nchọgharị weebụ",
+    "thisDevice": "Ngwaọrụ a",
+    "logOutDeviceTitle": "Wepụ ngwaọrụ?",
+    "logOut": "Pụọ",
+    "logOutAll": "Wepụ niile",
+    "logOutAllTitle": "Wepụ ngwaọrụ ndị ọzọ niile?",
+    "logOutDeviceBody": "Nke a ga-ewepụ \"{{device}}\". Ha ga-abanyerịrị ọzọ.",
+    "logOutAllBody_one": "Nke a ga-ewepụ ngwaọrụ ọzọ {{count}}. Naanị ngwaọrụ a ga-anọgide na-abanye.",
+    "logOutAllBody_other": "Nke a ga-ewepụ ngwaọrụ ndị ọzọ {{count}}. Naanị ngwaọrụ a ga-anọgide na-abanye.",
+    "explainer": "Ngwaọrụ ndị a banyere n'akaụntụ gị ugbu a. Ọ bụrụ na ị hụ ihe na-amaghị, wepụ ya ma gbanwee nkọwa nbanye gị.",
+    "activeSessions_one": "nnọkọ {{count}} na-arụ ọrụ",
+    "activeSessions_other": "nnọkọ {{count}} na-arụ ọrụ",
+    "logOutAllButton": "Wepụ ngwaọrụ ndị ọzọ niile",
+    "loadFailed": "Ọ daghị ibudata nnọkọ",
+    "loggedOut": "E wepụla ngwaọrụ",
+    "logOutFailed": "Ọ daghị iwepụ ngwaọrụ",
+    "logOutAllFailed": "Ọ daghị iwepụ ngwaọrụ",
+    "devicesLoggedOut_one": "E wepụrụ ngwaọrụ {{count}}",
+    "devicesLoggedOut_other": "E wepụrụ ngwaọrụ {{count}}"
   }
 }

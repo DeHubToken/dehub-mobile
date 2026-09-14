@@ -3062,5 +3062,27 @@
     "noteTiktok": "Creator Rewards. Renumit de mic per vizionare; întregul model se bazează pe volum.",
     "noteReels": "Programele de bonus sunt doar pe bază de invitație și au fost închise în repetate rânduri.",
     "footnote": "Cifrele concurenței sunt estimări din intervale publicate din industrie, nu plăți măsurate — RPM-ul real variază mult în funcție de nișă, țara publicului și timpul de vizionare, așa că editează fiecare tarif ca să se potrivească cu ce câștigi de fapt. Cifra DeHub este venitul tău real din bacșișuri convertit la prețul live al DHB și exclude abonamentele, PPV și vânzările din magazin. Vizionările sunt însumate din cele mai recente 100 de postări ale tale."
+  },
+  "sessions": {
+    "androidDevice": "Dispozitiv Android",
+    "webBrowser": "Browser web",
+    "thisDevice": "Acest dispozitiv",
+    "logOutDeviceTitle": "Deconectezi dispozitivul?",
+    "logOut": "Deconectare",
+    "logOutAll": "Deconectează tot",
+    "logOutAllTitle": "Deconectezi toate celelalte dispozitive?",
+    "logOutDeviceBody": "Aceasta va deconecta \"{{device}}\". Va trebui să se conecteze din nou.",
+    "logOutAllBody_one": "Aceasta va deconecta {{count}} alt dispozitiv. Doar acest dispozitiv va rămâne conectat.",
+    "logOutAllBody_other": "Aceasta va deconecta {{count}} alte dispozitive. Doar acest dispozitiv va rămâne conectat.",
+    "explainer": "Aceste dispozitive sunt conectate acum la contul tău. Dacă vezi ceva necunoscut, deconectează-l și schimbă-ți datele de autentificare.",
+    "activeSessions_one": "{{count}} sesiune activă",
+    "activeSessions_other": "{{count}} sesiuni active",
+    "logOutAllButton": "Deconectează toate celelalte dispozitive",
+    "loadFailed": "Sesiunile nu au putut fi încărcate",
+    "loggedOut": "Dispozitiv deconectat",
+    "logOutFailed": "Dispozitivul nu a putut fi deconectat",
+    "logOutAllFailed": "Dispozitivele nu au putut fi deconectate",
+    "devicesLoggedOut_one": "{{count}} dispozitiv deconectat",
+    "devicesLoggedOut_other": "{{count}} dispozitive deconectate"
   }
 }

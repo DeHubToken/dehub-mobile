@@ -2994,5 +2994,27 @@
     "noteTiktok": "Creator Rewards. A ka dɔgɔn kosɛbɛ filɛli kelen na; hakɛ caya de ye a bɛɛ ye.",
     "noteReels": "Bonus porogaramuw ye weleli dɔrɔn ye, ani u datugura siɲɛ caman.",
     "footnote": "Kɛlɛbagaw ka jatew ye jateminɛw ye ka bɔ baarakɛcogo hakɛw la minnu bɔra kɛnɛ kan, u tɛ sarali sɛgɛsɛgɛlenw ye. RPM yɛrɛ bɛ yɛlɛma kosɛbɛ ka kɛɲɛ ni siratigɛ, lamɛnnikɛlaw ka jamana ani filɛli waati ye, o la i ka sara kelen kelen bɛɛ yɛlɛma walisa a ka bɛn i ka sɔrɔ yɛrɛ ma. DeHub ka jate ye i ka tip sɔrɔ yɛrɛ ye min yɛlɛmana ni DHB sɔngɔ ye sisan, ani abonema, PPV ni butiki feereli tɛ a la. Filɛliw lajɛra i ka sɛbɛn kɔfɛ 100 la."
+  },
+  "sessions": {
+    "androidDevice": "Android minɛn",
+    "webBrowser": "Web navigatɛri",
+    "thisDevice": "Nin minɛn",
+    "logOutDeviceTitle": "Minɛn bɔ?",
+    "logOut": "Bɔ",
+    "logOutAll": "Bɛɛ bɔ",
+    "logOutAllTitle": "Minɛn tɔw bɛɛ bɔ?",
+    "logOutDeviceBody": "Nin bɛna \"{{device}}\" bɔ. U mako bɛ ka don kokura.",
+    "logOutAllBody_one": "Nin bɛna minɛn wɛrɛ {{count}} bɔ. Nin minɛn dɔrɔn de bɛna to donnen.",
+    "logOutAllBody_other": "Nin bɛna minɛn wɛrɛ {{count}} bɔ. Nin minɛn dɔrɔn de bɛna to donnen.",
+    "explainer": "Nin minɛnw donnen bɛ i ka kɔnti la sisan. N'i ye fɛn dɔ ye i m'a dɔn, a bɔ ani i ka donni kunnafoniw yɛlɛma.",
+    "activeSessions_one": "baara {{count}} bɛ senna",
+    "activeSessions_other": "baara {{count}} bɛ senna",
+    "logOutAllButton": "Minɛn tɔw bɛɛ bɔ",
+    "loadFailed": "Baaraw ma se ka lajɛ",
+    "loggedOut": "Minɛn bɔra",
+    "logOutFailed": "Minɛn ma se ka bɔ",
+    "logOutAllFailed": "Minɛnw ma se ka bɔ",
+    "devicesLoggedOut_one": "Minɛn {{count}} bɔra",
+    "devicesLoggedOut_other": "Minɛn {{count}} bɔra"
   }
 }

@@ -3119,5 +3119,27 @@
     "noteTiktok": "Creator Rewards. Famoso por pagar poquísimo por visualización; todo el modelo es la escala.",
     "noteReels": "Los programas de bonificación son solo por invitación y se han cerrado repetidamente.",
     "footnote": "Las cifras de la competencia son estimaciones de rangos publicados del sector, no pagos medidos: el RPM real varía mucho según el nicho, el país de la audiencia y el tiempo de visualización, así que edita cada tarifa para que coincida con lo que ganas de verdad. La cifra de DeHub es tu ingreso real por propinas convertido al precio de DHB en vivo, y excluye suscripciones, PPV y ventas de la tienda. Las visualizaciones se suman de tus 100 publicaciones más recientes."
+  },
+  "sessions": {
+    "androidDevice": "Dispositivo Android",
+    "webBrowser": "Navegador web",
+    "thisDevice": "Este dispositivo",
+    "logOutDeviceTitle": "¿Cerrar sesión en el dispositivo?",
+    "logOut": "Cerrar sesión",
+    "logOutAll": "Cerrar todas las sesiones",
+    "logOutAllTitle": "¿Cerrar sesión en todos los demás dispositivos?",
+    "logOutDeviceBody": "Esto cerrará la sesión de \"{{device}}\". Tendrán que iniciar sesión otra vez.",
+    "logOutAllBody_one": "Esto cerrará la sesión de {{count}} otro dispositivo. Solo este dispositivo seguirá con la sesión iniciada.",
+    "logOutAllBody_other": "Esto cerrará la sesión de {{count}} otros dispositivos. Solo este dispositivo seguirá con la sesión iniciada.",
+    "explainer": "Estos dispositivos tienen la sesión iniciada en tu cuenta. Si ves algo desconocido, ciérrale la sesión y cambia tus credenciales.",
+    "activeSessions_one": "{{count}} sesión activa",
+    "activeSessions_other": "{{count}} sesiones activas",
+    "logOutAllButton": "Cerrar sesión en todos los demás dispositivos",
+    "loadFailed": "No se pudieron cargar las sesiones",
+    "loggedOut": "Sesión del dispositivo cerrada",
+    "logOutFailed": "No se pudo cerrar la sesión del dispositivo",
+    "logOutAllFailed": "No se pudieron cerrar las sesiones de los dispositivos",
+    "devicesLoggedOut_one": "{{count}} dispositivo desconectado",
+    "devicesLoggedOut_other": "{{count}} dispositivos desconectados"
   }
 }

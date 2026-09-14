@@ -3220,5 +3220,27 @@
     "noteTiktok": "Creator Rewards. Známy nízkou sadzbou za zhliadnutie; celý model stojí na objeme.",
     "noteReels": "Bonusové programy sú len na pozvánku a opakovane sa rušili.",
     "footnote": "Čísla konkurencie sú odhady z publikovaných odvetvových rozpätí, nie namerané výplaty — skutočný RPM sa veľmi líši podľa niky, krajiny publika a času sledovania, takže si každú sadzbu uprav podľa toho, koľko reálne zarábaš. Číslo DeHub je tvoj skutočný príjem z prepitného prepočítaný živou cenou DHB a nezahŕňa predplatné, PPV ani predaje v obchode. Zhliadnutia sa sčítavajú z tvojich posledných 100 príspevkov."
+  },
+  "sessions": {
+    "androidDevice": "Zariadenie Android",
+    "webBrowser": "Webový prehliadač",
+    "thisDevice": "Toto zariadenie",
+    "logOutDeviceTitle": "Odhlásiť zariadenie?",
+    "logOut": "Odhlásiť",
+    "logOutAll": "Odhlásiť všetko",
+    "logOutAllTitle": "Odhlásiť všetky ostatné zariadenia?",
+    "logOutDeviceBody": "Týmto sa odhlási \"{{device}}\". Bude sa treba znova prihlásiť.",
+    "logOutAllBody_one": "Týmto sa odhlási {{count}} ďalšie zariadenie. Prihlásené zostane iba toto zariadenie.",
+    "logOutAllBody_other": "Týmto sa odhlási {{count}} ďalších zariadení. Prihlásené zostane iba toto zariadenie.",
+    "explainer": "Tieto zariadenia sú momentálne prihlásené k vášmu účtu. Ak vidíte niečo neznáme, odhláste to a zmeňte si prihlasovacie údaje.",
+    "activeSessions_one": "{{count}} aktívna relácia",
+    "activeSessions_other": "{{count}} aktívnych relácií",
+    "logOutAllButton": "Odhlásiť všetky ostatné zariadenia",
+    "loadFailed": "Relácie sa nepodarilo načítať",
+    "loggedOut": "Zariadenie odhlásené",
+    "logOutFailed": "Zariadenie sa nepodarilo odhlásiť",
+    "logOutAllFailed": "Zariadenia sa nepodarilo odhlásiť",
+    "devicesLoggedOut_one": "Odhlásené {{count}} zariadenie",
+    "devicesLoggedOut_other": "Odhlásených {{count}} zariadení"
   }
 }

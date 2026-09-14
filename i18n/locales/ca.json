@@ -3049,5 +3049,27 @@
     "noteTiktok": "Creator Rewards. Famós pel poc que paga per visualització; tot el model és escala.",
     "noteReels": "Els programes de bonificació són només per invitació i s'han tancat diverses vegades.",
     "footnote": "Les xifres de la competència són estimacions de rangs publicats del sector, no pagaments mesurats: el RPM real varia molt segons el nínxol, el país de l'audiència i el temps de visualització, així que edita cada tarifa perquè s'ajusti al que guanyes de debò. La xifra de DeHub és el teu ingrés real de propines convertit al preu de DHB en directe, i exclou subscripcions, PPV i vendes de la botiga. Les visualitzacions se sumen de les teves 100 publicacions més recents."
+  },
+  "sessions": {
+    "androidDevice": "Dispositiu Android",
+    "webBrowser": "Navegador web",
+    "thisDevice": "Aquest dispositiu",
+    "logOutDeviceTitle": "Vols tancar la sessió del dispositiu?",
+    "logOut": "Tanca la sessió",
+    "logOutAll": "Tanca totes les sessions",
+    "logOutAllTitle": "Vols tancar la sessió de tots els altres dispositius?",
+    "logOutDeviceBody": "Això tancarà la sessió de \"{{device}}\". Hauran de tornar a iniciar sessió.",
+    "logOutAllBody_one": "Això tancarà la sessió de {{count}} altre dispositiu. Només aquest dispositiu hi romandrà.",
+    "logOutAllBody_other": "Això tancarà la sessió de {{count}} altres dispositius. Només aquest dispositiu hi romandrà.",
+    "explainer": "Aquests dispositius tenen la sessió oberta al teu compte. Si veus alguna cosa desconeguda, tanca-hi la sessió i canvia les teves credencials.",
+    "activeSessions_one": "{{count}} sessió activa",
+    "activeSessions_other": "{{count}} sessions actives",
+    "logOutAllButton": "Tanca la sessió de tots els altres dispositius",
+    "loadFailed": "No s'han pogut carregar les sessions",
+    "loggedOut": "Sessió del dispositiu tancada",
+    "logOutFailed": "No s'ha pogut tancar la sessió del dispositiu",
+    "logOutAllFailed": "No s'han pogut tancar les sessions dels dispositius",
+    "devicesLoggedOut_one": "{{count}} dispositiu desconnectat",
+    "devicesLoggedOut_other": "{{count}} dispositius desconnectats"
   }
 }

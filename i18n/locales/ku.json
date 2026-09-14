@@ -2815,5 +2815,27 @@
     "noteTiktok": "Creator Rewards. Bi kêmbûna xwe ya ji bo her dîtinê navdar e; tevahiya modelê pîvan e.",
     "noteReels": "Bernameyên bonusê tenê bi vexwendinê ne û gelek caran hatine girtin.",
     "footnote": "Hejmarên hevrikan texmînên ji rêzikên pîşesaziyê yên weşandî ne, ne dayînên pîvandî — RPM ya rastîn li gorî mijar, welatê temaşevanan û dema temaşekirinê pir diguhere, ji ber vê yekê her rêjeyê biguherîne da ku bi ya ku tu bi rastî qezenc dikî re li hev bike. Hejmara DeHub dahata te ya rastîn a bexşîşan e ku bi bihayê zindî yê DHB hatiye guhertin û abonetî, PPV û firotina dikanê nagire. Dîtin ji 100 postên te yên herî dawî hatine berhevkirin."
+  },
+  "sessions": {
+    "androidDevice": "Cîhaza Android",
+    "webBrowser": "Geroka webê",
+    "thisDevice": "Ev cîhaz",
+    "logOutDeviceTitle": "Cîhaz derkeve?",
+    "logOut": "Derkeve",
+    "logOutAll": "Hemûyan derxe",
+    "logOutAllTitle": "Hemû cîhazên din derkevin?",
+    "logOutDeviceBody": "Ev dê \"{{device}}\" derxe. Divê ew ji nû ve têkevin.",
+    "logOutAllBody_one": "Ev dê {{count}} cîhaza din derxe. Tenê ev cîhaz dê têketî bimîne.",
+    "logOutAllBody_other": "Ev dê {{count}} cîhazên din derxe. Tenê ev cîhaz dê têketî bimîne.",
+    "explainer": "Ev cîhaz niha di hesabê te de têketî ne. Heke tiştekî nenas bibînî, wê derxe û agahiyên xwe yên têketinê biguherîne.",
+    "activeSessions_one": "{{count}} danişîna çalak",
+    "activeSessions_other": "{{count}} danişînên çalak",
+    "logOutAllButton": "Hemû cîhazên din derxe",
+    "loadFailed": "Danişîn nehatin barkirin",
+    "loggedOut": "Cîhaz hat derxistin",
+    "logOutFailed": "Cîhaz nehat derxistin",
+    "logOutAllFailed": "Cîhaz nehatin derxistin",
+    "devicesLoggedOut_one": "{{count}} cîhaz hat derxistin",
+    "devicesLoggedOut_other": "{{count}} cîhaz hatin derxistin"
   }
 }
