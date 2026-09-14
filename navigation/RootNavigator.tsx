@@ -48,7 +48,7 @@ export default function RootNavigator() {
       initialRouteName={initialRouteRef.current as keyof RootStackParamList}
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: '#000' },
+        contentStyle: { backgroundColor: 'transparent' },
         // Both stacks stay mounted by design (see below), so the one you are
         // not in would otherwise keep rendering for the whole session.
         freezeOnBlur: true,

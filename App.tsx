@@ -174,7 +174,7 @@ export default function App() {
           onSuccess={markRestoredCacheStale}
         >
         <GestureHandlerRootView className="flex-1 bg-theme-background">
-          <SafeAreaProvider className="flex-1 select-none bg-theme-background">
+          <SafeAreaProvider className="flex-1 select-none">
             <AuthProvider>
               <WebSocketProvider>
                 <DMProvider>
@@ -346,7 +346,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   return (
     <>
       {settled ? (
-        <SafeAreaView className="flex-1 bg-theme-background">
+        <SafeAreaView className="flex-1">
           <StatusBar
             barStyle={isLight ? "dark-content" : "light-content"}
             backgroundColor={colors.background}
@@ -366,7 +366,10 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                 ...(isLight ? RNLightTheme : RNDarkTheme),
                 colors: {
                   ...(isLight ? RNLightTheme.colors : RNDarkTheme.colors),
-                  background: colors.background,
+                  // Transparent on purpose: the root view already paints this colour, and
+                  // every opaque full-screen layer above it is drawn again on every frame.
+                  // An overdraw capture on a Galaxy S24+ showed the feed painted 4+ times.
+                  background: "transparent",
                   card: colors.card,
                   border: colors.border,
                   text: colors.foreground,
