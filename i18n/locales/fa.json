@@ -3092,5 +3092,27 @@
     "clearHistoryBody": "این کار همه پست‌های دیده‌شده را از تاریخچه شما حذف می‌کند.",
     "clear": "پاک کردن",
     "clearFailed": "پاک کردن تاریخچه ناموفق بود. دوباره تلاش کنید."
+  },
+  "savedPosts": {
+    "allSaved": "همه ذخیره‌شده‌ها",
+    "collections": "مجموعه‌ها",
+    "newCollection": "مجموعه جدید",
+    "editCollection": "ویرایش مجموعه",
+    "editCollectionDetails": "ویرایش جزئیات مجموعه",
+    "deleteCollection": "حذف مجموعه",
+    "collectionSubtitle": "مجموعه نشانک‌ها",
+    "collectionOptions": "گزینه‌های مجموعه",
+    "namePlaceholder": "نام",
+    "descriptionPlaceholder": "توضیح (اختیاری)",
+    "collectionNamePlaceholder": "نام مجموعه",
+    "fetchFoldersFailed": "دریافت پوشه‌ها ناموفق بود",
+    "folderCreated": "پوشه \"{{name}}\" ساخته شد",
+    "createFolderFailed": "ساخت پوشه ناموفق بود",
+    "folderUpdated": "پوشه به‌روزرسانی شد",
+    "updateFolderFailed": "به‌روزرسانی پوشه ناموفق بود",
+    "deleteFolderTitle": "حذف پوشه",
+    "deleteFolderBody": "مطمئنید می‌خواهید \"{{name}}\" را حذف کنید؟ پست‌های ذخیره‌شده داخل آن از فهرست ذخیره‌شده‌های شما حذف نمی‌شوند.",
+    "folderDeleted": "پوشه حذف شد",
+    "deleteFolderFailed": "حذف پوشه ناموفق بود"
   }
 }

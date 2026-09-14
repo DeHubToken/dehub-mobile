@@ -3083,5 +3083,27 @@
     "clearHistoryBody": "Tím se z historie odstraní všechny zhlédnuté příspěvky.",
     "clear": "Vymazat",
     "clearFailed": "Historii se nepodařilo vymazat. Zkuste to znovu."
+  },
+  "savedPosts": {
+    "allSaved": "Vše uložené",
+    "collections": "Sbírky",
+    "newCollection": "Nová sbírka",
+    "editCollection": "Upravit sbírku",
+    "editCollectionDetails": "Upravit údaje sbírky",
+    "deleteCollection": "Smazat sbírku",
+    "collectionSubtitle": "Sbírka záložek",
+    "collectionOptions": "Možnosti sbírky",
+    "namePlaceholder": "Název",
+    "descriptionPlaceholder": "Popis (volitelné)",
+    "collectionNamePlaceholder": "Název sbírky",
+    "fetchFoldersFailed": "Složky se nepodařilo načíst",
+    "folderCreated": "Složka \"{{name}}\" byla vytvořena",
+    "createFolderFailed": "Složku se nepodařilo vytvořit",
+    "folderUpdated": "Složka aktualizována",
+    "updateFolderFailed": "Složku se nepodařilo aktualizovat",
+    "deleteFolderTitle": "Smazat složku",
+    "deleteFolderBody": "Opravdu chcete smazat \"{{name}}\"? Uložené příspěvky uvnitř se z vašeho seznamu uložených nesmažou.",
+    "folderDeleted": "Složka smazána",
+    "deleteFolderFailed": "Složku se nepodařilo smazat"
   }
 }

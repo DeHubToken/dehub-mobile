@@ -3083,5 +3083,27 @@
     "clearHistoryBody": "Ezzel az összes megtekintett bejegyzés törlődik az előzményeidből.",
     "clear": "Törlés",
     "clearFailed": "Az előzmények törlése sikertelen. Próbáld újra."
+  },
+  "savedPosts": {
+    "allSaved": "Összes mentett",
+    "collections": "Gyűjtemények",
+    "newCollection": "Új gyűjtemény",
+    "editCollection": "Gyűjtemény szerkesztése",
+    "editCollectionDetails": "Gyűjtemény adatainak szerkesztése",
+    "deleteCollection": "Gyűjtemény törlése",
+    "collectionSubtitle": "Könyvjelző-gyűjtemény",
+    "collectionOptions": "Gyűjtemény beállításai",
+    "namePlaceholder": "Név",
+    "descriptionPlaceholder": "Leírás (nem kötelező)",
+    "collectionNamePlaceholder": "Gyűjtemény neve",
+    "fetchFoldersFailed": "A mappák lekérése sikertelen",
+    "folderCreated": "A(z) \"{{name}}\" mappa létrejött",
+    "createFolderFailed": "A mappa létrehozása sikertelen",
+    "folderUpdated": "Mappa frissítve",
+    "updateFolderFailed": "A mappa frissítése sikertelen",
+    "deleteFolderTitle": "Mappa törlése",
+    "deleteFolderBody": "Biztosan törlöd a(z) \"{{name}}\" mappát? A benne mentett bejegyzések nem törlődnek a Mentettek listádról.",
+    "folderDeleted": "Mappa törölve",
+    "deleteFolderFailed": "A mappa törlése sikertelen"
   }
 }

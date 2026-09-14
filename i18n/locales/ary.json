@@ -3105,5 +3105,27 @@
     "clearHistoryBody": "هادشي غادي يمسح كل البوسطات لي شفتي من التاريخ ديالك.",
     "clear": "مسح",
     "clearFailed": "ما قدرناش نمسحو التاريخ. عاود حاول."
+  },
+  "savedPosts": {
+    "allSaved": "كلشي محفوظ",
+    "collections": "المجموعات",
+    "newCollection": "مجموعة جديدة",
+    "editCollection": "تعديل المجموعة",
+    "editCollectionDetails": "تعديل تفاصيل المجموعة",
+    "deleteCollection": "حذف المجموعة",
+    "collectionSubtitle": "مجموعة ديال الإشارات",
+    "collectionOptions": "خيارات المجموعة",
+    "namePlaceholder": "السمية",
+    "descriptionPlaceholder": "الوصف (اختياري)",
+    "collectionNamePlaceholder": "سمية المجموعة",
+    "fetchFoldersFailed": "ما قدرناش نجيبو المجلدات",
+    "folderCreated": "تصاوب المجلد \"{{name}}\"",
+    "createFolderFailed": "ما قدرناش نصاوبو المجلد",
+    "folderUpdated": "تحدث المجلد",
+    "updateFolderFailed": "ما قدرناش نحدثو المجلد",
+    "deleteFolderTitle": "حذف المجلد",
+    "deleteFolderBody": "متأكد بغيتي تحذف \"{{name}}\"؟ البوسطات المحفوظة داخلو ما غاديش يتحذفو من لائحة المحفوظات ديالك.",
+    "folderDeleted": "تحذف المجلد",
+    "deleteFolderFailed": "ما قدرناش نحذفو المجلد"
   }
 }

@@ -3153,5 +3153,27 @@
     "clearHistoryBody": "Isso removerá do seu histórico todos os posts assistidos.",
     "clear": "Limpar",
     "clearFailed": "Não foi possível limpar o histórico. Tente de novo."
+  },
+  "savedPosts": {
+    "allSaved": "Tudo salvo",
+    "collections": "Coleções",
+    "newCollection": "Nova coleção",
+    "editCollection": "Editar coleção",
+    "editCollectionDetails": "Editar detalhes da coleção",
+    "deleteCollection": "Excluir coleção",
+    "collectionSubtitle": "Coleção de favoritos",
+    "collectionOptions": "Opções da coleção",
+    "namePlaceholder": "Nome",
+    "descriptionPlaceholder": "Descrição (opcional)",
+    "collectionNamePlaceholder": "Nome da coleção",
+    "fetchFoldersFailed": "Não foi possível buscar as pastas",
+    "folderCreated": "Pasta \"{{name}}\" criada",
+    "createFolderFailed": "Não foi possível criar a pasta",
+    "folderUpdated": "Pasta atualizada",
+    "updateFolderFailed": "Não foi possível atualizar a pasta",
+    "deleteFolderTitle": "Excluir pasta",
+    "deleteFolderBody": "Tem certeza de que quer excluir \"{{name}}\"? Os posts salvos dentro não serão excluídos da sua lista de salvos.",
+    "folderDeleted": "Pasta excluída",
+    "deleteFolderFailed": "Não foi possível excluir a pasta"
   }
 }

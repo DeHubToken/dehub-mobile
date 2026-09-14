@@ -3078,5 +3078,27 @@
     "clearHistoryBody": "এইটা তোমার ইতিহাস থাকি দেখা সব পোস্ট সরাই দিবে।",
     "clear": "মুছো",
     "clearFailed": "ইতিহাস মোছা গেল না। আবার চেষ্টা করো।"
+  },
+  "savedPosts": {
+    "allSaved": "সব সেভ করা",
+    "collections": "সংগ্রহ",
+    "newCollection": "নতুন সংগ্রহ",
+    "editCollection": "সংগ্রহ সম্পাদনা",
+    "editCollectionDetails": "সংগ্রহের বিবরণ সম্পাদনা",
+    "deleteCollection": "সংগ্রহ মুছো",
+    "collectionSubtitle": "বুকমার্ক সংগ্রহ",
+    "collectionOptions": "সংগ্রহের বিকল্প",
+    "namePlaceholder": "নাম",
+    "descriptionPlaceholder": "বিবরণ (ঐচ্ছিক)",
+    "collectionNamePlaceholder": "সংগ্রহের নাম",
+    "fetchFoldersFailed": "ফোল্ডার আনা গেল না",
+    "folderCreated": "\"{{name}}\" ফোল্ডার বানানো হইছে",
+    "createFolderFailed": "ফোল্ডার বানানো গেল না",
+    "folderUpdated": "ফোল্ডার আপডেট হইছে",
+    "updateFolderFailed": "ফোল্ডার আপডেট করা গেল না",
+    "deleteFolderTitle": "ফোল্ডার মুছো",
+    "deleteFolderBody": "তুমি কি সত্যিই \"{{name}}\" মুছিবা চাও? ভিতরের সেভ করা পোস্টগুলা তোমার সেভ তালিকা থাকি মুছিবে না।",
+    "folderDeleted": "ফোল্ডার মোছা হইছে",
+    "deleteFolderFailed": "ফোল্ডার মোছা গেল না"
   }
 }

@@ -3148,5 +3148,27 @@
     "clearHistoryBody": "Dadurch werden alle angesehenen Beiträge aus deinem Verlauf entfernt.",
     "clear": "Löschen",
     "clearFailed": "Verlauf konnte nicht gelöscht werden. Bitte versuche es erneut."
+  },
+  "savedPosts": {
+    "allSaved": "Alle gespeicherten",
+    "collections": "Sammlungen",
+    "newCollection": "Neue Sammlung",
+    "editCollection": "Sammlung bearbeiten",
+    "editCollectionDetails": "Sammlungsdetails bearbeiten",
+    "deleteCollection": "Sammlung löschen",
+    "collectionSubtitle": "Lesezeichen-Sammlung",
+    "collectionOptions": "Sammlungsoptionen",
+    "namePlaceholder": "Name",
+    "descriptionPlaceholder": "Beschreibung (optional)",
+    "collectionNamePlaceholder": "Name der Sammlung",
+    "fetchFoldersFailed": "Ordner konnten nicht geladen werden",
+    "folderCreated": "Ordner \"{{name}}\" erstellt",
+    "createFolderFailed": "Ordner konnte nicht erstellt werden",
+    "folderUpdated": "Ordner aktualisiert",
+    "updateFolderFailed": "Ordner konnte nicht aktualisiert werden",
+    "deleteFolderTitle": "Ordner löschen",
+    "deleteFolderBody": "Möchtest du \"{{name}}\" wirklich löschen? Die gespeicherten Beiträge darin werden nicht aus deiner Gespeichert-Liste entfernt.",
+    "folderDeleted": "Ordner gelöscht",
+    "deleteFolderFailed": "Ordner konnte nicht gelöscht werden"
   }
 }

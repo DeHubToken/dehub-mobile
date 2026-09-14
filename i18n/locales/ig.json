@@ -3057,5 +3057,27 @@
     "clearHistoryBody": "Nke a ga-ewepụ ozi niile ị lere anya na akụkọ ntolite gị.",
     "clear": "Hichapụ",
     "clearFailed": "Ọ daghị ihichapụ akụkọ ntolite. Biko nwaa ọzọ."
+  },
+  "savedPosts": {
+    "allSaved": "Ihe niile echekwara",
+    "collections": "Nchịkọta",
+    "newCollection": "Nchịkọta ọhụrụ",
+    "editCollection": "Dezie nchịkọta",
+    "editCollectionDetails": "Dezie nkọwa nchịkọta",
+    "deleteCollection": "Hichapụ nchịkọta",
+    "collectionSubtitle": "Nchịkọta akara ebe",
+    "collectionOptions": "Nhọrọ nchịkọta",
+    "namePlaceholder": "Aha",
+    "descriptionPlaceholder": "Nkọwa (nhọrọ)",
+    "collectionNamePlaceholder": "Aha nchịkọta",
+    "fetchFoldersFailed": "Ọ daghị iweta folda",
+    "folderCreated": "E mepụtara folda \"{{name}}\"",
+    "createFolderFailed": "Ọ daghị imepụta folda",
+    "folderUpdated": "E melitere folda",
+    "updateFolderFailed": "Ọ daghị imelite folda",
+    "deleteFolderTitle": "Hichapụ folda",
+    "deleteFolderBody": "Ị ji n'aka na ịchọrọ ihichapụ \"{{name}}\"? A gaghị ehichapụ ozi echekwara dị n'ime ya na ndepụta Echekwara gị.",
+    "folderDeleted": "E hichapụrụ folda",
+    "deleteFolderFailed": "Ọ daghị ihichapụ folda"
   }
 }

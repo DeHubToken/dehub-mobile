@@ -3030,5 +3030,27 @@
     "clearHistoryBody": "دا به ټول کتل شوي پوسټونه ستاسو له تاریخچې لرې کړي.",
     "clear": "پاک کړئ",
     "clearFailed": "تاریخچه پاکه نشوه. مهرباني وکړئ بیا هڅه وکړئ."
+  },
+  "savedPosts": {
+    "allSaved": "ټول خوندي شوي",
+    "collections": "ټولګې",
+    "newCollection": "نوې ټولګه",
+    "editCollection": "ټولګه سمه کړئ",
+    "editCollectionDetails": "د ټولګې تفصیلات سم کړئ",
+    "deleteCollection": "ټولګه ړنګه کړئ",
+    "collectionSubtitle": "د بوک مارک ټولګه",
+    "collectionOptions": "د ټولګې اختیارونه",
+    "namePlaceholder": "نوم",
+    "descriptionPlaceholder": "تشریح (اختیاري)",
+    "collectionNamePlaceholder": "د ټولګې نوم",
+    "fetchFoldersFailed": "فولډرونه ترلاسه نشول",
+    "folderCreated": "د \"{{name}}\" فولډر جوړ شو",
+    "createFolderFailed": "فولډر جوړ نشو",
+    "folderUpdated": "فولډر تازه شو",
+    "updateFolderFailed": "فولډر تازه نشو",
+    "deleteFolderTitle": "فولډر ړنګ کړئ",
+    "deleteFolderBody": "ایا تاسو ډاډه یاست چې \"{{name}}\" ړنګ کړئ؟ دننه خوندي شوي پوسټونه به ستاسو د خوندي شوو لړلیک څخه ونه ړنګیږي.",
+    "folderDeleted": "فولډر ړنګ شو",
+    "deleteFolderFailed": "فولډر ړنګ نشو"
   }
 }

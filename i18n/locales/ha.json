@@ -3069,5 +3069,27 @@
     "clearHistoryBody": "Wannan zai cire duk saƙonnin da aka kalla daga tarihinka.",
     "clear": "Share",
     "clearFailed": "An kasa share tarihin. Da fatan za a sake gwadawa."
+  },
+  "savedPosts": {
+    "allSaved": "Duk abin da aka ajiye",
+    "collections": "Tarin",
+    "newCollection": "Sabon tari",
+    "editCollection": "Gyara tari",
+    "editCollectionDetails": "Gyara bayanan tari",
+    "deleteCollection": "Share tari",
+    "collectionSubtitle": "Tarin alamomi",
+    "collectionOptions": "Zaɓuɓɓukan tari",
+    "namePlaceholder": "Suna",
+    "descriptionPlaceholder": "Bayani (na zaɓi)",
+    "collectionNamePlaceholder": "Sunan tari",
+    "fetchFoldersFailed": "An kasa ɗauko manyan fayiloli",
+    "folderCreated": "An ƙirƙiri babban fayil \"{{name}}\"",
+    "createFolderFailed": "An kasa ƙirƙirar babban fayil",
+    "folderUpdated": "An sabunta babban fayil",
+    "updateFolderFailed": "An kasa sabunta babban fayil",
+    "deleteFolderTitle": "Share babban fayil",
+    "deleteFolderBody": "Ka tabbata kana son share \"{{name}}\"? Saƙonnin da aka ajiye a ciki ba za a share su daga jerin abubuwan da ka ajiye ba.",
+    "folderDeleted": "An share babban fayil",
+    "deleteFolderFailed": "An kasa share babban fayil"
   }
 }

@@ -3079,5 +3079,27 @@
     "clearHistoryBody": "Això eliminarà totes les publicacions vistes del teu historial.",
     "clear": "Esborra",
     "clearFailed": "No s'ha pogut esborrar l'historial. Torna-ho a provar."
+  },
+  "savedPosts": {
+    "allSaved": "Tot el desat",
+    "collections": "Col·leccions",
+    "newCollection": "Col·lecció nova",
+    "editCollection": "Edita la col·lecció",
+    "editCollectionDetails": "Edita els detalls de la col·lecció",
+    "deleteCollection": "Elimina la col·lecció",
+    "collectionSubtitle": "Col·lecció de marcadors",
+    "collectionOptions": "Opcions de la col·lecció",
+    "namePlaceholder": "Nom",
+    "descriptionPlaceholder": "Descripció (opcional)",
+    "collectionNamePlaceholder": "Nom de la col·lecció",
+    "fetchFoldersFailed": "No s'han pogut obtenir les carpetes",
+    "folderCreated": "S'ha creat la carpeta \"{{name}}\"",
+    "createFolderFailed": "No s'ha pogut crear la carpeta",
+    "folderUpdated": "Carpeta actualitzada",
+    "updateFolderFailed": "No s'ha pogut actualitzar la carpeta",
+    "deleteFolderTitle": "Elimina la carpeta",
+    "deleteFolderBody": "Segur que vols eliminar \"{{name}}\"? Les publicacions desades a dins no s'eliminaran de la teva llista de desats.",
+    "folderDeleted": "Carpeta eliminada",
+    "deleteFolderFailed": "No s'ha pogut eliminar la carpeta"
   }
 }

@@ -3024,5 +3024,27 @@
     "clearHistoryBody": "Nin bɛna sɛbɛn filɛlenw bɛɛ bɔ i ka tariku la.",
     "clear": "Jɔsi",
     "clearFailed": "Tariku ma se ka jɔsi. A kɛ kokura."
+  },
+  "savedPosts": {
+    "allSaved": "Maralenw bɛɛ",
+    "collections": "Lajɛlenw",
+    "newCollection": "Lajɛlen kura",
+    "editCollection": "Lajɛlen labɛn",
+    "editCollectionDetails": "Lajɛlen kunnafoniw labɛn",
+    "deleteCollection": "Lajɛlen jɔsi",
+    "collectionSubtitle": "Buukumaraki lajɛlen",
+    "collectionOptions": "Lajɛlen sugandiliw",
+    "namePlaceholder": "Tɔgɔ",
+    "descriptionPlaceholder": "Ɲɛfɔli (a ma waajibiya)",
+    "collectionNamePlaceholder": "Lajɛlen tɔgɔ",
+    "fetchFoldersFailed": "Dosiyew ma se ka ta",
+    "folderCreated": "Dosiye \"{{name}}\" dilalen",
+    "createFolderFailed": "Dosiye ma se ka dilan",
+    "folderUpdated": "Dosiye kuraya",
+    "updateFolderFailed": "Dosiye ma se ka kuraya",
+    "deleteFolderTitle": "Dosiye jɔsi",
+    "deleteFolderBody": "I b'a fɛ ka \"{{name}}\" jɔsi wa? Sɛbɛn maralenw min bɛ a kɔnɔ, olu tɛna bɔ i ka maralenw lisi la.",
+    "folderDeleted": "Dosiye jɔsira",
+    "deleteFolderFailed": "Dosiye ma se ka jɔsi"
   }
 }

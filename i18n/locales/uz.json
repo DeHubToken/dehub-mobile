@@ -3131,5 +3131,27 @@
     "clearHistoryBody": "Bu ko‘rilgan barcha postlarni tarixingizdan o‘chiradi.",
     "clear": "Tozalash",
     "clearFailed": "Tarixni tozalab bo‘lmadi. Qayta urinib ko‘ring."
+  },
+  "savedPosts": {
+    "allSaved": "Barcha saqlanganlar",
+    "collections": "To‘plamlar",
+    "newCollection": "Yangi to‘plam",
+    "editCollection": "To‘plamni tahrirlash",
+    "editCollectionDetails": "To‘plam tafsilotlarini tahrirlash",
+    "deleteCollection": "To‘plamni o‘chirish",
+    "collectionSubtitle": "Xatcho‘p to‘plami",
+    "collectionOptions": "To‘plam variantlari",
+    "namePlaceholder": "Nomi",
+    "descriptionPlaceholder": "Tavsif (ixtiyoriy)",
+    "collectionNamePlaceholder": "To‘plam nomi",
+    "fetchFoldersFailed": "Jildlarni olib bo‘lmadi",
+    "folderCreated": "\"{{name}}\" jildi yaratildi",
+    "createFolderFailed": "Jild yaratib bo‘lmadi",
+    "folderUpdated": "Jild yangilandi",
+    "updateFolderFailed": "Jildni yangilab bo‘lmadi",
+    "deleteFolderTitle": "Jildni o‘chirish",
+    "deleteFolderBody": "\"{{name}}\" o‘chirilsinmi? Ichidagi saqlangan postlar Saqlanganlar ro‘yxatingizdan o‘chmaydi.",
+    "folderDeleted": "Jild o‘chirildi",
+    "deleteFolderFailed": "Jildni o‘chirib bo‘lmadi"
   }
 }

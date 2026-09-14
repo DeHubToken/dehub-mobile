@@ -3075,5 +3075,27 @@
     "clearHistoryBody": "ده هيشيل كل البوستات اللي اتشافت من سجلك.",
     "clear": "امسح",
     "clearFailed": "مقدرناش نمسح السجل. حاول تاني."
+  },
+  "savedPosts": {
+    "allSaved": "كل المحفوظ",
+    "collections": "المجموعات",
+    "newCollection": "مجموعة جديدة",
+    "editCollection": "تعديل المجموعة",
+    "editCollectionDetails": "تعديل تفاصيل المجموعة",
+    "deleteCollection": "حذف المجموعة",
+    "collectionSubtitle": "مجموعة علامات مرجعية",
+    "collectionOptions": "خيارات المجموعة",
+    "namePlaceholder": "الاسم",
+    "descriptionPlaceholder": "الوصف (اختياري)",
+    "collectionNamePlaceholder": "اسم المجموعة",
+    "fetchFoldersFailed": "مقدرناش نجيب المجلدات",
+    "folderCreated": "اتعمل المجلد \"{{name}}\"",
+    "createFolderFailed": "مقدرناش نعمل المجلد",
+    "folderUpdated": "اتحدّث المجلد",
+    "updateFolderFailed": "مقدرناش نحدّث المجلد",
+    "deleteFolderTitle": "حذف المجلد",
+    "deleteFolderBody": "متأكد عايز تحذف \"{{name}}\"؟ البوستات المحفوظة جواه مش هتتحذف من قائمة المحفوظات بتاعتك.",
+    "folderDeleted": "اتحذف المجلد",
+    "deleteFolderFailed": "مقدرناش نحذف المجلد"
   }
 }

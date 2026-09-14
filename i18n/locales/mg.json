@@ -3158,5 +3158,27 @@
     "clearHistoryBody": "Hanesotra ny lahatsoratra rehetra nojerena amin'ny tantaranao izany.",
     "clear": "Fafao",
     "clearFailed": "Tsy voafafa ny tantara. Andramo indray."
+  },
+  "savedPosts": {
+    "allSaved": "Ny voatahiry rehetra",
+    "collections": "Fanangonana",
+    "newCollection": "Fanangonana vaovao",
+    "editCollection": "Hanova ny fanangonana",
+    "editCollectionDetails": "Hanova ny antsipirian'ny fanangonana",
+    "deleteCollection": "Fafao ny fanangonana",
+    "collectionSubtitle": "Fanangonana marika",
+    "collectionOptions": "Safidy fanangonana",
+    "namePlaceholder": "Anarana",
+    "descriptionPlaceholder": "Famaritana (tsy voatery)",
+    "collectionNamePlaceholder": "Anaran'ny fanangonana",
+    "fetchFoldersFailed": "Tsy voaray ny lahatahiry",
+    "folderCreated": "Noforonina ny lahatahiry \"{{name}}\"",
+    "createFolderFailed": "Tsy voaforona ny lahatahiry",
+    "folderUpdated": "Nohavaozina ny lahatahiry",
+    "updateFolderFailed": "Tsy voahavaozina ny lahatahiry",
+    "deleteFolderTitle": "Fafao ny lahatahiry",
+    "deleteFolderBody": "Tena tianao hofafana ve \"{{name}}\"? Ny lahatsoratra voatahiry ao anatiny dia tsy hofafana amin'ny lisitry ny voatahirinao.",
+    "folderDeleted": "Voafafa ny lahatahiry",
+    "deleteFolderFailed": "Tsy voafafa ny lahatahiry"
   }
 }

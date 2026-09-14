@@ -3148,5 +3148,27 @@
     "clearHistoryBody": "Это удалит все просмотренные посты из вашей истории.",
     "clear": "Очистить",
     "clearFailed": "Не удалось очистить историю. Попробуйте ещё раз."
+  },
+  "savedPosts": {
+    "allSaved": "Все сохранённые",
+    "collections": "Коллекции",
+    "newCollection": "Новая коллекция",
+    "editCollection": "Изменить коллекцию",
+    "editCollectionDetails": "Изменить данные коллекции",
+    "deleteCollection": "Удалить коллекцию",
+    "collectionSubtitle": "Коллекция закладок",
+    "collectionOptions": "Параметры коллекции",
+    "namePlaceholder": "Название",
+    "descriptionPlaceholder": "Описание (необязательно)",
+    "collectionNamePlaceholder": "Название коллекции",
+    "fetchFoldersFailed": "Не удалось загрузить папки",
+    "folderCreated": "Папка \"{{name}}\" создана",
+    "createFolderFailed": "Не удалось создать папку",
+    "folderUpdated": "Папка обновлена",
+    "updateFolderFailed": "Не удалось обновить папку",
+    "deleteFolderTitle": "Удалить папку",
+    "deleteFolderBody": "Точно удалить \"{{name}}\"? Сохранённые посты внутри не будут удалены из вашего списка сохранённых.",
+    "folderDeleted": "Папка удалена",
+    "deleteFolderFailed": "Не удалось удалить папку"
   }
 }

@@ -3037,5 +3037,27 @@
     "clearHistoryBody": "ນີ້ຈະລຶບໂພສທີ່ເບິ່ງແລ້ວທັງໝົດອອກຈາກປະຫວັດຂອງທ່ານ.",
     "clear": "ລຶບ",
     "clearFailed": "ບໍ່ສາມາດລຶບປະຫວັດໄດ້. ກະລຸນາລອງໃໝ່."
+  },
+  "savedPosts": {
+    "allSaved": "ທັງໝົດທີ່ບັນທຶກ",
+    "collections": "ຄໍເລັກຊັນ",
+    "newCollection": "ຄໍເລັກຊັນໃໝ່",
+    "editCollection": "ແກ້ໄຂຄໍເລັກຊັນ",
+    "editCollectionDetails": "ແກ້ໄຂລາຍລະອຽດຄໍເລັກຊັນ",
+    "deleteCollection": "ລຶບຄໍເລັກຊັນ",
+    "collectionSubtitle": "ຄໍເລັກຊັນບຸກມາກ",
+    "collectionOptions": "ຕົວເລືອກຄໍເລັກຊັນ",
+    "namePlaceholder": "ຊື່",
+    "descriptionPlaceholder": "ຄຳອະທິບາຍ (ບໍ່ບັງຄັບ)",
+    "collectionNamePlaceholder": "ຊື່ຄໍເລັກຊັນ",
+    "fetchFoldersFailed": "ບໍ່ສາມາດດຶງໂຟນເດີໄດ້",
+    "folderCreated": "ສ້າງໂຟນເດີ \"{{name}}\" ແລ້ວ",
+    "createFolderFailed": "ບໍ່ສາມາດສ້າງໂຟນເດີໄດ້",
+    "folderUpdated": "ອັບເດດໂຟນເດີແລ້ວ",
+    "updateFolderFailed": "ບໍ່ສາມາດອັບເດດໂຟນເດີໄດ້",
+    "deleteFolderTitle": "ລຶບໂຟນເດີ",
+    "deleteFolderBody": "ທ່ານແນ່ໃຈບໍວ່າຕ້ອງການລຶບ \"{{name}}\"? ໂພສທີ່ບັນທຶກຢູ່ຂ້າງໃນຈະບໍ່ຖືກລຶບອອກຈາກລາຍການບັນທຶກຂອງທ່ານ.",
+    "folderDeleted": "ລຶບໂຟນເດີແລ້ວ",
+    "deleteFolderFailed": "ບໍ່ສາມາດລຶບໂຟນເດີໄດ້"
   }
 }

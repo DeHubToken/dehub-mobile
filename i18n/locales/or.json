@@ -3050,5 +3050,27 @@
     "clearHistoryBody": "ଏହା ଆପଣଙ୍କ ଇତିହାସରୁ ଦେଖାଯାଇଥିବା ସମସ୍ତ ପୋଷ୍ଟ ହଟାଇବ।",
     "clear": "ସଫା କରନ୍ତୁ",
     "clearFailed": "ଇତିହାସ ସଫା କରିହେଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।"
+  },
+  "savedPosts": {
+    "allSaved": "ସମସ୍ତ ସେଭ୍ କରାଯାଇଥିବା",
+    "collections": "ସଂଗ୍ରହ",
+    "newCollection": "ନୂଆ ସଂଗ୍ରହ",
+    "editCollection": "ସଂଗ୍ରହ ସମ୍ପାଦନା",
+    "editCollectionDetails": "ସଂଗ୍ରହ ବିବରଣୀ ସମ୍ପାଦନା",
+    "deleteCollection": "ସଂଗ୍ରହ ବିଲୋପ କରନ୍ତୁ",
+    "collectionSubtitle": "ବୁକମାର୍କ ସଂଗ୍ରହ",
+    "collectionOptions": "ସଂଗ୍ରହ ବିକଳ୍ପ",
+    "namePlaceholder": "ନାମ",
+    "descriptionPlaceholder": "ବର୍ଣ୍ଣନା (ଐଚ୍ଛିକ)",
+    "collectionNamePlaceholder": "ସଂଗ୍ରହର ନାମ",
+    "fetchFoldersFailed": "ଫୋଲ୍ଡର ଅଣାଯାଇପାରିଲା ନାହିଁ",
+    "folderCreated": "\"{{name}}\" ଫୋଲ୍ଡର ତିଆରି ହେଲା",
+    "createFolderFailed": "ଫୋଲ୍ଡର ତିଆରି କରିହେଲା ନାହିଁ",
+    "folderUpdated": "ଫୋଲ୍ଡର ଅପଡେଟ୍ ହେଲା",
+    "updateFolderFailed": "ଫୋଲ୍ଡର ଅପଡେଟ୍ କରିହେଲା ନାହିଁ",
+    "deleteFolderTitle": "ଫୋଲ୍ଡର ବିଲୋପ କରନ୍ତୁ",
+    "deleteFolderBody": "ଆପଣ ନିଶ୍ଚିତ \"{{name}}\" ବିଲୋପ କରିବେ? ଭିତରର ସେଭ୍ ପୋଷ୍ଟଗୁଡ଼ିକ ଆପଣଙ୍କ ସେଭ୍ ତାଲିକାରୁ ବିଲୋପ ହେବ ନାହିଁ।",
+    "folderDeleted": "ଫୋଲ୍ଡର ବିଲୋପ ହେଲା",
+    "deleteFolderFailed": "ଫୋଲ୍ଡର ବିଲୋପ କରିହେଲା ନାହିଁ"
   }
 }

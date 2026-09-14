@@ -3078,5 +3078,27 @@
     "clearHistoryBody": "See eemaldab kõik vaadatud postitused sinu ajaloost.",
     "clear": "Tühjenda",
     "clearFailed": "Ajaloo tühjendamine ebaõnnestus. Proovi uuesti."
+  },
+  "savedPosts": {
+    "allSaved": "Kõik salvestatud",
+    "collections": "Kogud",
+    "newCollection": "Uus kogu",
+    "editCollection": "Muuda kogu",
+    "editCollectionDetails": "Muuda kogu andmeid",
+    "deleteCollection": "Kustuta kogu",
+    "collectionSubtitle": "Järjehoidjate kogu",
+    "collectionOptions": "Kogu valikud",
+    "namePlaceholder": "Nimi",
+    "descriptionPlaceholder": "Kirjeldus (valikuline)",
+    "collectionNamePlaceholder": "Kogu nimi",
+    "fetchFoldersFailed": "Kaustade toomine ebaõnnestus",
+    "folderCreated": "Kaust \"{{name}}\" loodud",
+    "createFolderFailed": "Kausta loomine ebaõnnestus",
+    "folderUpdated": "Kaust uuendatud",
+    "updateFolderFailed": "Kausta uuendamine ebaõnnestus",
+    "deleteFolderTitle": "Kustuta kaust",
+    "deleteFolderBody": "Kas soovid kindlasti kustutada \"{{name}}\"? Selle sees olevaid salvestatud postitusi sinu salvestatute loendist ei kustutata.",
+    "folderDeleted": "Kaust kustutatud",
+    "deleteFolderFailed": "Kausta kustutamine ebaõnnestus"
   }
 }

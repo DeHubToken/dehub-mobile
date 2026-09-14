@@ -3112,5 +3112,27 @@
     "clearHistoryBody": "यसले तपाईंको इतिहासबाट हेरिएका सबै पोस्ट हटाउनेछ।",
     "clear": "मेट्नुहोस्",
     "clearFailed": "इतिहास मेट्न सकिएन। फेरि प्रयास गर्नुहोस्।"
+  },
+  "savedPosts": {
+    "allSaved": "सबै सुरक्षित",
+    "collections": "संग्रहहरू",
+    "newCollection": "नयाँ संग्रह",
+    "editCollection": "संग्रह सम्पादन",
+    "editCollectionDetails": "संग्रह विवरण सम्पादन",
+    "deleteCollection": "संग्रह मेट्नुहोस्",
+    "collectionSubtitle": "बुकमार्क संग्रह",
+    "collectionOptions": "संग्रह विकल्पहरू",
+    "namePlaceholder": "नाम",
+    "descriptionPlaceholder": "विवरण (वैकल्पिक)",
+    "collectionNamePlaceholder": "संग्रहको नाम",
+    "fetchFoldersFailed": "फोल्डर ल्याउन सकिएन",
+    "folderCreated": "\"{{name}}\" फोल्डर बनाइयो",
+    "createFolderFailed": "फोल्डर बनाउन सकिएन",
+    "folderUpdated": "फोल्डर अद्यावधिक भयो",
+    "updateFolderFailed": "फोल्डर अद्यावधिक गर्न सकिएन",
+    "deleteFolderTitle": "फोल्डर मेट्नुहोस्",
+    "deleteFolderBody": "के तपाईं \"{{name}}\" मेट्न चाहनुहुन्छ? भित्रका सुरक्षित पोस्टहरू तपाईंको सुरक्षित सूचीबाट मेटिने छैनन्।",
+    "folderDeleted": "फोल्डर मेटियो",
+    "deleteFolderFailed": "फोल्डर मेट्न सकिएन"
   }
 }
