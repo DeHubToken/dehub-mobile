@@ -3404,5 +3404,21 @@
     "pause": "Пауза",
     "listens_one": "{{count}} прослуховування",
     "listens_other": "{{count}} прослуховувань"
+  },
+  "transfer": {
+    "title": "Переказати токени",
+    "recipient": "Отримувач: {{address}}",
+    "enterAmount": "Введіть суму",
+    "balance": "Баланс: {{balance}}",
+    "insufficient": "Недостатньо коштів",
+    "toSelfHint": "Не можна переказати самому собі",
+    "searchUser": "Знайти користувача",
+    "searchPlaceholder": "Введіть ім'я користувача або вставте адресу",
+    "clearRecipient": "Очистити отримувача",
+    "transferringTo": "Переказ на",
+    "transferring": "Переказ...",
+    "sent": "Переказ надіслано",
+    "toSelf": "Не можна надіслати токени самому собі",
+    "insufficientOnChain": "Недостатньо коштів у мережі для цього токена"
   }
 }

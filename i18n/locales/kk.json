@@ -2982,5 +2982,21 @@
     "play": "Ойнату",
     "pause": "Пауза",
     "listens_one": "{{count}} тыңдаңыз"
+  },
+  "transfer": {
+    "title": "Токендерді аудару",
+    "recipient": "Алушы: {{address}}",
+    "enterAmount": "Соманы енгізіңіз:",
+    "balance": "Баланс: {{balance}}",
+    "insufficient": "Баланс жеткіліксіз",
+    "toSelfHint": "Өзіңізге аудара алмайсыз",
+    "searchUser": "Пайдаланушыны іздеу",
+    "searchPlaceholder": "Пайдаланушы атын енгізіңіз немесе мекенжайды қойыңыз",
+    "clearRecipient": "Алушыны тазалау",
+    "transferringTo": "Аудару:",
+    "transferring": "Аударылуда...",
+    "sent": "Аударым жіберілді",
+    "toSelf": "Өзіңізге токен жібере алмайсыз",
+    "insufficientOnChain": "Бұл токен үшін тізбектегі баланс жеткіліксіз"
   }
 }

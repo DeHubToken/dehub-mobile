@@ -2929,5 +2929,21 @@
     "play": "Spil",
     "pause": "Sæt på pause",
     "listens_one": "{{count}} lyt"
+  },
+  "transfer": {
+    "title": "Overfør tokens",
+    "recipient": "Modtager: {{address}}",
+    "enterAmount": "Indtast beløb i",
+    "balance": "Saldo: {{balance}}",
+    "insufficient": "Utilstrækkelig saldo",
+    "toSelfHint": "Du kan ikke overføre til dig selv",
+    "searchUser": "Søg efter en bruger",
+    "searchPlaceholder": "Indtast brugernavn eller indsæt adresse",
+    "clearRecipient": "Ryd modtager",
+    "transferringTo": "Overfører til",
+    "transferring": "Overfører...",
+    "sent": "Overførsel sendt",
+    "toSelf": "Du kan ikke sende tokens til dig selv",
+    "insufficientOnChain": "Utilstrækkelig on-chain saldo for denne token"
   }
 }

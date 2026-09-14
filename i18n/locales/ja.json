@@ -2993,5 +2993,21 @@
     "pause": "一時停止",
     "listens_one": "{{count}}回再生",
     "listens_other": "{{count}}回再生"
+  },
+  "transfer": {
+    "title": "トークンを送金",
+    "recipient": "受取先：{{address}}",
+    "enterAmount": "金額を入力：",
+    "balance": "残高：{{balance}}",
+    "insufficient": "残高不足",
+    "toSelfHint": "自分自身には送金できません",
+    "searchUser": "ユーザーを検索",
+    "searchPlaceholder": "ユーザー名を入力するかアドレスを貼り付け",
+    "clearRecipient": "受取先をクリア",
+    "transferringTo": "送金先",
+    "transferring": "送金中...",
+    "sent": "送金しました",
+    "toSelf": "自分自身にトークンを送ることはできません",
+    "insufficientOnChain": "このトークンのオンチェーン残高が不足しています"
   }
 }

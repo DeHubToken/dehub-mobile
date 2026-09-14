@@ -2925,5 +2925,21 @@
     "pause": "Пауза",
     "listens_one": "{{count}} слушайте",
     "listens_other": "{{count}} слуша"
+  },
+  "transfer": {
+    "title": "Прехвърляне на токени",
+    "recipient": "Получател: {{address}}",
+    "enterAmount": "Въведи сума в",
+    "balance": "Баланс: {{balance}}",
+    "insufficient": "Недостатъчен баланс",
+    "toSelfHint": "Не можеш да прехвърляш на себе си",
+    "searchUser": "Търси потребител",
+    "searchPlaceholder": "Въведи потребителско име или постави адрес",
+    "clearRecipient": "Изчисти получателя",
+    "transferringTo": "Прехвърляне към",
+    "transferring": "Прехвърляне...",
+    "sent": "Прехвърлянето е изпратено",
+    "toSelf": "Не можеш да изпращаш токени на себе си",
+    "insufficientOnChain": "Недостатъчен баланс във веригата за този токен"
   }
 }

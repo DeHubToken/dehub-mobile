@@ -2901,5 +2901,21 @@
     "pause": "ਵਿਰਾਮ",
     "listens_one": "{{count}} ਸੁਣੋ",
     "listens_other": "{{count}} ਸੁਣਦਾ ਹੈ"
+  },
+  "transfer": {
+    "title": "ਟੋਕਨ ਭੇਜੋ",
+    "recipient": "ਪ੍ਰਾਪਤਕਰਤਾ: {{address}}",
+    "enterAmount": "ਰਕਮ ਦਰਜ ਕਰੋ:",
+    "balance": "ਬੈਲੇਂਸ: {{balance}}",
+    "insufficient": "ਬੈਲੇਂਸ ਕਾਫ਼ੀ ਨਹੀਂ",
+    "toSelfHint": "ਤੁਸੀਂ ਆਪਣੇ ਆਪ ਨੂੰ ਨਹੀਂ ਭੇਜ ਸਕਦੇ",
+    "searchUser": "ਯੂਜ਼ਰ ਖੋਜੋ",
+    "searchPlaceholder": "ਯੂਜ਼ਰਨੇਮ ਦਰਜ ਕਰੋ ਜਾਂ ਪਤਾ ਪੇਸਟ ਕਰੋ",
+    "clearRecipient": "ਪ੍ਰਾਪਤਕਰਤਾ ਹਟਾਓ",
+    "transferringTo": "ਨੂੰ ਭੇਜ ਰਿਹਾ ਹੈ",
+    "transferring": "ਭੇਜ ਰਿਹਾ ਹੈ...",
+    "sent": "ਟ੍ਰਾਂਸਫਰ ਭੇਜ ਦਿੱਤਾ",
+    "toSelf": "ਤੁਸੀਂ ਆਪਣੇ ਆਪ ਨੂੰ ਟੋਕਨ ਨਹੀਂ ਭੇਜ ਸਕਦੇ",
+    "insufficientOnChain": "ਇਸ ਟੋਕਨ ਲਈ ਚੇਨ 'ਤੇ ਬੈਲੇਂਸ ਕਾਫ਼ੀ ਨਹੀਂ"
   }
 }

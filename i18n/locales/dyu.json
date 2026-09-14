@@ -2872,5 +2872,21 @@
     "cornerPlayer": "# Dɔgɔtɔrɔ tɛ siginidenw ka kan ka min fɔ",
     "stopAndClose": "I ka kan ka taga ni a ye yɔrɔ dɔ la min ka ɲi ka kɛ",
     "untitled": "# Fɛɛn min be mɔgɔ lasun ka kuma"
+  },
+  "transfer": {
+    "title": "Tokenw ci",
+    "recipient": "Sɔrɔbaga: {{address}}",
+    "enterAmount": "Hakɛ sɛbɛn",
+    "balance": "Balansi: {{balance}}",
+    "insufficient": "Balansi man ca",
+    "toSelfHint": "I tɛ se ka ci i yɛrɛ ma",
+    "searchUser": "Mɔgɔ ɲini",
+    "searchPlaceholder": "Tɔgɔ sɛbɛn walima adrɛsi don",
+    "clearRecipient": "Sɔrɔbaga bɔ",
+    "transferringTo": "Ci ka taa",
+    "transferring": "Ci bɛ kɛ...",
+    "sent": "Ci cira",
+    "toSelf": "I tɛ se ka tokenw ci i yɛrɛ ma",
+    "insufficientOnChain": "Nin token ka balansi man ca chain kan"
   }
 }

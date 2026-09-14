@@ -2938,5 +2938,21 @@
     "pause": "توقف",
     "listens_one": "{{count}} گوش کن",
     "listens_other": "{{count}} گوش می‌دهد"
+  },
+  "transfer": {
+    "title": "انتقال توکن‌ها",
+    "recipient": "گیرنده: {{address}}",
+    "enterAmount": "مبلغ را وارد کنید:",
+    "balance": "موجودی: {{balance}}",
+    "insufficient": "موجودی کافی نیست",
+    "toSelfHint": "نمی‌توانید به خودتان انتقال دهید",
+    "searchUser": "جستجوی کاربر",
+    "searchPlaceholder": "نام کاربری وارد کنید یا آدرس را جای‌گذاری کنید",
+    "clearRecipient": "پاک کردن گیرنده",
+    "transferringTo": "انتقال به",
+    "transferring": "در حال انتقال...",
+    "sent": "انتقال ارسال شد",
+    "toSelf": "نمی‌توانید به خودتان توکن بفرستید",
+    "insufficientOnChain": "موجودی روی زنجیره برای این توکن کافی نیست"
   }
 }
