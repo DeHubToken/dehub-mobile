@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   Modal,
-  Platform,
   Pressable,
   Text,
   TouchableOpacity,
@@ -10,7 +9,6 @@ import {
   findNodeHandle,
   UIManager,
 } from "react-native";
-import { BlurView } from "expo-blur";
 import Icon from "../ui/Icon";
 
 let _activeClose: (() => void) | null = null;
@@ -107,11 +105,9 @@ const RepostPopover: React.FC<RepostPopoverProps> = ({
             }}
           >
             <Pressable onPress={(e) => e.stopPropagation()}>
-              <BlurView
-                intensity={Platform.OS === "ios" ? 60 : 40}
-                tint="dark"
-                style={styles.blurContainer}
-              >
+              {/* Solid, not glass: expo-blur does not blur on Android, so the old
+                  45% fill let the feed card read through the menu labels. */}
+              <View style={styles.menuContainer}>
                 <View style={styles.overlay}>
                   <TouchableOpacity
                     onPress={handleRepost}
@@ -135,7 +131,7 @@ const RepostPopover: React.FC<RepostPopoverProps> = ({
                     <Text className="text-white text-[15px] font-medium">Quote</Text>
                   </TouchableOpacity>
                 </View>
-              </BlurView>
+              </View>
             </Pressable>
           </View>
         )}
@@ -145,14 +141,14 @@ const RepostPopover: React.FC<RepostPopoverProps> = ({
 };
 
 const styles = StyleSheet.create({
-  blurContainer: {
+  menuContainer: {
     borderRadius: 12,
     overflow: "hidden",
     borderWidth: 0.5,
     borderColor: "rgba(255,255,255,0.15)",
   },
   overlay: {
-    backgroundColor: "rgba(30,30,30,0.45)",
+    backgroundColor: "#1D1F21",
   },
   divider: {
     height: StyleSheet.hairlineWidth,

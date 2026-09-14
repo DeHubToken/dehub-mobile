@@ -4,7 +4,6 @@ import GlassModal from '../ui/GlassModal';
 import { LiveStreamEntity } from '../../services/live.service';
 import { truncate } from '../../libs/strings.util';
 import { X, Copy } from 'lucide-react-native';
-import { BlurView } from 'expo-blur';
 import { LIVEPEER_RTMP_SERVER } from '../../config/constants';
 import { copyToClipboard } from '../../libs/clipboard.utils';
 
@@ -64,8 +63,9 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
         }}
       >
         <View className="rounded-xl overflow-hidden border border-white/10" onTouchStart={onInteract}>
-          <BlurView intensity={80} tint="dark" style={{ position: 'absolute', inset: 0 }} />
-            <View className="absolute inset-0 dark-surface bg-black/30" />
+            {/* Solid, not glass: expo-blur does not blur on Android, so the old
+                30% fill let the camera preview read through this copy. */}
+            <View className="absolute inset-0 dark-surface bg-zinc-900" />
             <View className="p-4 pb-5">
               <TouchableOpacity
                 onPress={onClose}
@@ -147,8 +147,7 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
             transform: [{ rotate: '45deg' }],
           }}
         >
-          <BlurView intensity={80} tint="dark" style={{ position: 'absolute', inset: 0, borderRadius: 4 }} />
-          <View className="absolute inset-0 dark-surface bg-black/30 rounded" />
+          <View className="absolute inset-0 dark-surface bg-zinc-900 rounded" />
           <View className="absolute inset-0 rounded border border-white/10" />
         </View>
       </View>

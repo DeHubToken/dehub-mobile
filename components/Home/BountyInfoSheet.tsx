@@ -26,7 +26,6 @@ import {
   GestureDetector,
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
-import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { formatCompactNumber, toastError, toastSuccess } from "../../libs";
@@ -503,11 +502,8 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
         <Animated.View
           style={[styles.sheet, { maxHeight: SHEET_MAX_HEIGHT, paddingBottom: insets.bottom }, sheetStyle]}
         >
-          <BlurView
-            intensity={80}
-            tint="dark"
-            style={StyleSheet.absoluteFill}
-          />
+          {/* Solid, not glass: expo-blur does not blur on Android, so a tint
+              here let the sheet read through whatever it opened over. */}
           <View style={[StyleSheet.absoluteFill, styles.overlay]} />
 
           <GestureDetector gesture={panGesture}>
@@ -537,9 +533,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "rgba(20,20,20,0.55)",
+    backgroundColor: "#0C0C0E",
     borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(255,255,255,0.06)",
   },
   handleWrap: {
     alignItems: "center",
