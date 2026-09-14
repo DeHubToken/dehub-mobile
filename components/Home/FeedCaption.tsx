@@ -258,10 +258,12 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
       )}
 
       {/* Description with "see more" */}
+      {/* No wrapper around description + "see more": the column already
+          stacks them, and the top margin sits on the text itself. */}
       {hasDescription && (
-        <View className="mt-1">
+        <>
           <Text
-            className="text-theme-neutrals-300"
+            className="text-theme-neutrals-300 mt-1"
             style={{ fontSize: 15.75, lineHeight: 23.1 }}
             numberOfLines={fullContent || expanded ? undefined : maxLines}
             ellipsizeMode="tail"
@@ -276,7 +278,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
               </Text>
             </TouchableOpacity>
           )}
-        </View>
+        </>
       )}
 
       {/* Category hashtags */}
