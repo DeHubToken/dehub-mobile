@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Platform, View, Text, TouchableOpacity, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import UserProfileSkeleton from "./UserProfileSkeleton";
 import UserProfileHeader from "./UserProfileHeader";
 import PinnedCommunities from "../Communities/PinnedCommunities";
@@ -9,6 +10,7 @@ import GlassModal from "../ui/GlassModal";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import ConfirmBlockModal from "../common/ConfirmBlockModal";
 import ReportModal from "../common/ReportModal";
+import LendBadgeSheet from "./LendBadgeSheet";
 import Icon from "../ui/Icon";
 import { copyToClipboard } from "../../libs";
 import { shareProfile } from "../../libs/misc";
@@ -96,7 +98,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   onRemoveFollower,
   onRegisterMenuTrigger,
 }) => {
+  const { t } = useTranslation();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [showLendBadge, setShowLendBadge] = useState(false);
   const [showBlockConfirm, setShowBlockConfirm] = useState(false);
   const [showReportUser, setShowReportUser] = useState(false);
   const [showRemoveFollowerConfirm, setShowRemoveFollowerConfirm] = useState(false);
@@ -235,6 +239,10 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     if (paymentsHidden) return;
     closeMenuThen(() => setShowTip(true));
   }, [closeMenuThen, paymentsHidden]);
+
+  const handleMenuLendBadge = useCallback(() => {
+    closeMenuThen(() => setShowLendBadge(true));
+  }, [closeMenuThen]);
 
   const handleMenuShare = useCallback(() => {
     const url = `${WEBSITE_LINK}/${profileData?.username || profileData?.address}`;
@@ -471,6 +479,24 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           <View className="mx-5 my-1 h-px bg-white/10" />
 
           <TouchableOpacity
+            onPress={handleMenuLendBadge}
+            activeOpacity={0.7}
+            className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
+          >
+            <View className="w-5 h-5 items-center justify-center mr-3">
+              <Icon name="Award" size={18} color="#fff" />
+            </View>
+            <View className="flex-1">
+              <Text className="text-white text-[15px] font-medium">{t("settings.badgeDelegation")}</Text>
+              <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                {t("settings.badgeDelegationNoteAny")}
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          <View className="mx-5 my-1 h-px bg-white/10" />
+
+          <TouchableOpacity
             onPress={handleMenuShare}
             activeOpacity={0.7}
             className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
@@ -648,6 +674,13 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         type="user"
         userId={profileData?.address}
         userName={profileData?.displayName}
+      />
+
+      <LendBadgeSheet
+        visible={showLendBadge}
+        onClose={() => setShowLendBadge(false)}
+        address={profileData?.address}
+        displayName={profileData?.displayName || profileData?.username}
       />
 
       <GlassTipSheet
