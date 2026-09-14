@@ -2034,7 +2034,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "تصویر خیلی بزرگ است — ردیف {{tier}} شما تصاویر را تا سقف {{limit}} مگابایت ذخیره می‌کند.",
-    "image_too_large_untiered": "تصویر خیلی بزرگ است — تصاویر تا حجم {{limit}} مگابایت ذخیره می‌شوند"
+    "image_too_large_untiered": "تصویر خیلی بزرگ است — تصاویر تا حجم {{limit}} مگابایت ذخیره می‌شوند",
+    "rate_limited": "محدودیت نرخ، آهسته‌تر"
   },
   "staking": {
     "title": "Staking",

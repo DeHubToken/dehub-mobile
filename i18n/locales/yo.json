@@ -2002,7 +2002,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Àwòrán tóbi jù — rẹ {{tier}}tier máa ń fi àwòrán pamọ́ sí {{limit}} MB",
-    "image_too_large_untiered": "Àwòrán tóbi jù — a máa ń fi àwòrán pamọ́ sí {{limit}} MB"
+    "image_too_large_untiered": "Àwòrán tóbi jù — a máa ń fi àwòrán pamọ́ sí {{limit}} MB",
+    "rate_limited": "Ìdínwọ̀n ìbéèrè, rọra"
   },
   "staking": {
     "title": "Staking",

@@ -1991,7 +1991,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "تصوير تمام وڏي آهي — توهان جو {{tier}} ٽائر تصويرون اسٽور ڪري ٿو {{limit}} ايم بي تائين",
-    "image_too_large_untiered": "تصوير تمام وڏي آهي — تصويرون {{limit}} MB تائين ذخيرو ٿيل آهن"
+    "image_too_large_untiered": "تصوير تمام وڏي آهي — تصويرون {{limit}} MB تائين ذخيرو ٿيل آهن",
+    "rate_limited": "ريٽ لمٽ ٿي وئي، آهستي ڪريو"
   },
   "staking": {
     "title": "Staking",

@@ -2004,7 +2004,8 @@
     "waiting_for_confirmation": "في انتظار التأكيد...",
     "error": "خطأ",
     "image_too_large_tier": "الصورة كبيرة جدًا — يخزن المستوى {{tier}} صورًا تصل إلى {{limit}} ميجابايت",
-    "image_too_large_untiered": "الصورة كبيرة جدًا — يتم تخزين الصور حتى {{limit}} ميجابايت"
+    "image_too_large_untiered": "الصورة كبيرة جدًا — يتم تخزين الصور حتى {{limit}} ميجابايت",
+    "rate_limited": "فيه تقييد للمعدل، بالراحة"
   },
   "staking": {
     "title": "الإيداع",

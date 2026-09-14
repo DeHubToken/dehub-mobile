@@ -2028,7 +2028,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "तस्वीर बहुत बड़ी है — तुम्हारे {{tier}} स्तर की दुकानें {{limit}} MB तक की तस्वीरें रखती हैं",
-    "image_too_large_untiered": "तस्वीर बहुत बड़ी है — तस्वीरें {{limit}} MB तक संग्रहीत की जाती हैं"
+    "image_too_large_untiered": "तस्वीर बहुत बड़ी है — तस्वीरें {{limit}} MB तक संग्रहीत की जाती हैं",
+    "rate_limited": "سنووری داواکاری، هێواشتر"
   },
   "staking": {
     "title": "Staking",

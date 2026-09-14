@@ -1366,7 +1366,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Beeld is te groot — jou {{tier}} vlak stoor beelde tot {{limit}} MB",
-    "image_too_large_untiered": "Beeld is te groot — beelde word gestoor tot {{limit}} MB"
+    "image_too_large_untiered": "Beeld is te groot — beelde word gestoor tot {{limit}} MB",
+    "rate_limited": "Tempo beperk, gaan stadiger"
   },
   "feed": {
     "home": "Home",

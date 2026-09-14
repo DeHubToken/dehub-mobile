@@ -2006,7 +2006,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Slika je prevelika — razina {{tier}} pohranjuje slike do {{limit}} MB",
-    "image_too_large_untiered": "Slika je prevelika — slike se pohranjuju do {{limit}} MB"
+    "image_too_large_untiered": "Slika je prevelika — slike se pohranjuju do {{limit}} MB",
+    "rate_limited": "Ograničenje zahtjeva, uspori"
   },
   "staking": {
     "title": "Staking",

@@ -2034,7 +2034,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "ပုံသည်အလွန်ကြီးမားသည် — သင် ၏ {{tier}} tier သည် {{limit}} MB အထိပုံရိပ်များကိုသိမ်းဆည်းသည်",
-    "image_too_large_untiered": "ပုံသည်အရမ်းကြီးလွန်းသည် — ပုံများကို {{limit}} MB အထိသိမ်းဆည်းထားသည်"
+    "image_too_large_untiered": "ပုံသည်အရမ်းကြီးလွန်းသည် — ပုံများကို {{limit}} MB အထိသိမ်းဆည်းထားသည်",
+    "rate_limited": "နှုန်းကန့်သတ်ထားသည်၊ ဖြည်းဖြည်းလုပ်ပါ"
   },
   "staking": {
     "title": "Staking",

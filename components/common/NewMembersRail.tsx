@@ -10,17 +10,24 @@
  * state is fetched when the rail appears so existing follows and private
  * account requests never look actionable again.
  */
-import React, { FC, useCallback, useEffect, useRef, useState } from "react";
-import { ActivityIndicator, Alert, View, Text, ScrollView, TouchableOpacity } from "react-native";
+import React, { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ActivityIndicator, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import Avatar from "./Avatar";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useAuth, useUser } from "../../context/AuthContext";
 import { followUser, isFollowing } from "../../services/user.service";
+import { reportActionError } from "../../libs/error-feedback";
 import {
   joinedAgoLabel,
   useNewMembers,
   type NewMember,
 } from "../../hooks/useNewMembers";
+
+/** How much of the roster to hold, so followed members can leave the rail. */
+const ROSTER_SIZE = 40;
+
+/** Keep at least this many cards on screen once follows start removing them. */
+const VISIBLE_LIMIT = 20;
 
 type FollowState = {
   isFollowing: boolean;
@@ -33,7 +40,9 @@ const NewMembersRail: FC = () => {
   const { requireAuth } = useAuth();
   const authUser = useUser() as { address?: string; walletAddress?: string } | null;
   const viewerAddress = authUser?.address ?? authUser?.walletAddress;
-  const { data: members = [] } = useNewMembers(20);
+  // Deep enough that following a run of members never empties the rail: the
+  // ones you follow leave it, and the next names slide in behind them.
+  const { data: members = [] } = useNewMembers(ROSTER_SIZE);
   const viewerAddressRef = useRef(viewerAddress);
   const [followStates, setFollowStates] = useState<Record<string, FollowState>>({});
 
@@ -111,12 +120,12 @@ const NewMembersRail: FC = () => {
           isPending: response.status === "pending",
         },
       }));
-    } catch {
+    } catch (err) {
       setFollowStates((current) => ({
         ...current,
         [address]: { ...(current[address] ?? { isFollowing: false, isPending: false }), isLoading: false },
       }));
-      Alert.alert("Couldn't follow this member", "Please check your connection and try again.");
+      reportActionError(err, "Couldn't follow this member");
     }
   }, []);
 
@@ -132,7 +141,19 @@ const NewMembersRail: FC = () => {
     [followMember, followStates, requireAuth],
   );
 
-  if (members.length === 0) return null;
+  // A member you already follow — or just followed — leaves the rail, the way
+  // the home suggestions row behaves. The roster is fetched deep enough that
+  // the next names take their place instead of the row thinning out.
+  const visibleMembers = useMemo(() => {
+    const shown = members.filter((member) => {
+      const state = followStates[member.address.toLowerCase()];
+      if (!state) return true;
+      return !state.isFollowing && !state.isPending;
+    });
+    return shown.slice(0, VISIBLE_LIMIT);
+  }, [members, followStates]);
+
+  if (visibleMembers.length === 0) return null;
 
   return (
     <View className="mb-2">
@@ -145,7 +166,7 @@ const NewMembersRail: FC = () => {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 16, gap: 12 }}
       >
-        {members.map((member) => {
+        {visibleMembers.map((member) => {
           const state = followStates[member.address.toLowerCase()];
           const isFollowed = state?.isFollowing ?? false;
           const isPending = state?.isPending ?? false;

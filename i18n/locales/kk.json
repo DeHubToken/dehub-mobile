@@ -2028,7 +2028,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Кескін тым үлкен — {{tier}} tier кескіндерді {{limit}} MB дейін сақтайды",
-    "image_too_large_untiered": "Кескін тым үлкен — кескіндер {{limit}} MB дейін сақталады"
+    "image_too_large_untiered": "Кескін тым үлкен — кескіндер {{limit}} MB дейін сақталады",
+    "rate_limited": "Сұраныс шегі, баяулатыңыз"
   },
   "bookmarks": {
     "title": "Your Bookmarks",

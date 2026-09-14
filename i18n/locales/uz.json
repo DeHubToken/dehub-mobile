@@ -2022,7 +2022,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Rasm juda katta — sizning {{tier}} darajangiz {{limit}} MB gacha bo&#39;lgan rasmlarni saqlaydi",
-    "image_too_large_untiered": "Rasm juda katta — rasmlar {{limit}} MB gacha saqlanadi"
+    "image_too_large_untiered": "Rasm juda katta — rasmlar {{limit}} MB gacha saqlanadi",
+    "rate_limited": "So'rov chegarasi, sekinroq"
   },
   "bookmarks": {
     "title": "Your Bookmarks",

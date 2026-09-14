@@ -767,7 +767,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Зображення завелике — на вашому рівні {{tier}} зберігаються зображення розміром до {{limit}} МБ",
-    "image_too_large_untiered": "Зображення завелике — зображення зберігаються до {{limit}} МБ"
+    "image_too_large_untiered": "Зображення завелике — зображення зберігаються до {{limit}} МБ",
+    "rate_limited": "Забагато запитів, повільніше"
   },
   "feed": {
     "home": "Home",

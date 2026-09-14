@@ -844,20 +844,48 @@ export interface GetSuggestedAccountsResponse {
   };
 }
 
+export interface SuggestedAccountsPage {
+  items: SuggestedAccount[];
+  hasMore: boolean;
+}
+
 /**
- * Fetch personalised suggested accounts to follow.
- * Endpoint: GET /suggested-accounts
- * Auth required — returns up to 10 items in random order.
+ * Fetch one page of suggested accounts.
+ *
+ * Endpoint: GET /suggested-accounts?limit=<n>&page=<n>, auth required. It pages
+ * the same way the web carousel drives it. Older callers took the first page
+ * only and treated the rail as a fixed set, which is why following everyone on
+ * it left a dead row until the whole batch was replaced.
+ *
+ * `hasMore` prefers the server's pagination block and falls back to "the page
+ * came back full", which is the same inference web makes.
  */
-export async function getSuggestedAccounts(): Promise<SuggestedAccount[]> {
+export async function getSuggestedAccounts(
+  limit: number = 10,
+  page: number = 1,
+): Promise<SuggestedAccountsPage> {
   try {
-    const res = await apiClient.get<any>("/suggested-accounts", { isAuthRequired: true });
+    const url = `/suggested-accounts?limit=${limit}&page=${page}`;
+    const res = await apiClient.get<any>(url, { isAuthRequired: true });
     const wrapper = res?.data ?? res;
-    const items: SuggestedAccount[] = wrapper?.result?.items ?? wrapper?.items ?? [];
-    return items;
+    const result = wrapper?.result ?? wrapper;
+    const items: SuggestedAccount[] = result?.items ?? wrapper?.items ?? [];
+    const pagination = result?.pagination ?? wrapper?.pagination;
+    let hasMore = items.length >= limit;
+    if (pagination) {
+      const current = Number(pagination.page ?? page);
+      const totalPages = Number(pagination.totalPages ?? 0);
+      hasMore =
+        typeof pagination.hasMore === "boolean"
+          ? pagination.hasMore
+          : totalPages > 0
+            ? current < totalPages
+            : hasMore;
+    }
+    return { items, hasMore };
   } catch (e) {
     console.warn("[user.service] getSuggestedAccounts error", e);
-    return [];
+    return { items: [], hasMore: false };
   }
 }
 

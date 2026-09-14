@@ -546,7 +546,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Imej terlalu besar — peringkat {{tier}} anda menyimpan imej sehingga {{limit}} MB",
-    "image_too_large_untiered": "Imej terlalu besar — imej disimpan sehingga {{limit}} MB"
+    "image_too_large_untiered": "Imej terlalu besar — imej disimpan sehingga {{limit}} MB",
+    "rate_limited": "Terlalu kerap, perlahan sikit"
   },
   "feed": {
     "home": "Home",

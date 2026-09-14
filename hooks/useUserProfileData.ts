@@ -13,6 +13,7 @@ import {
 import { truncateAddress } from "../libs/strings.util";
 import { formatJoinedDate } from "../libs/date.util";
 import { toastError, toastInfo } from "../libs";
+import { reportActionError } from "../libs/error-feedback";
 import { useUser, useAuthActions } from "../context/AuthContext";
 import { useDM } from "./useDM";
 import { useNavigation } from "@react-navigation/native";
@@ -359,7 +360,7 @@ export const useUserProfileData = (
             return { followings: Math.max(0, currentCount - 1) };
           });
         }
-        toastError("Failed to follow user");
+        reportActionError(e, "Failed to follow user");
       }
     });
   }, [

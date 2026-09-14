@@ -1991,7 +1991,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Foto buru oke ibu — gị {{tier}} tier na-echekwa onyonyo ruo {{limit}} MB",
-    "image_too_large_untiered": "Inyogo buru ibu — a na-echekwa inyogo ruo {{limit}} MB"
+    "image_too_large_untiered": "Inyogo buru ibu — a na-echekwa inyogo ruo {{limit}} MB",
+    "rate_limited": "Enwere oke ọsọ, jiri nwayọọ"
   },
   "staking": {
     "title": "Staking",

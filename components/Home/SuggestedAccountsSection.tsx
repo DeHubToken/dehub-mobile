@@ -4,6 +4,13 @@
  * Fetches GET /suggested-accounts on mount, then renders only once data
  * arrives — no loading skeleton, no flash. Big-app pattern: invisible until ready.
  *
+ * Follows behave the way they do on web: the card leaves the row the instant
+ * the follow lands, and the rail pulls the next page in behind it — while
+ * scrolling near the end, and whenever the remaining count drops low. The
+ * previous version kept followed cards in place until every one of them was
+ * followed and only then swapped the whole batch, so the row read as frozen
+ * for most of the interaction.
+ *
  * Placed as a ListHeaderComponent inside InfiniteVideoFeed on the HomeScreen.
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -17,62 +24,109 @@ import { useUser } from "../../context/AuthContext";
 import SuggestedAccountCard from "./SuggestedAccountCard";
 import type { FollowState } from "../Search/SearchAccountChip";
 
+/** Page size. Matches the web carousel so both rails page identically. */
+const BATCH_SIZE = 10;
+
+/** Stop after this many pages — the suggestion pool is not infinite. */
+const MAX_PAGES = 10;
+
+/** Pull the next page once the row is down to this many cards. */
+const LOW_WATER_MARK = 3;
 
 const SuggestedAccountsSection: React.FC = () => {
   const user = useUser() as { address?: string } | null;
   const { t } = useTranslation();
   const [accounts, setAccounts] = useState<SuggestedAccount[]>([]);
-  const [followedAddresses, setFollowedAddresses] = useState<Set<string>>(new Set());
+  /** Addresses followed or dismissed this session — never shown again. */
+  const [hiddenAddresses, setHiddenAddresses] = useState<Set<string>>(new Set());
   const [dismissed, setDismissed] = useState(false);
-  const fetchedRef = useRef(false);
+  const [hasMore, setHasMore] = useState(true);
+  const pageRef = useRef(0);
+  const loadingRef = useRef(false);
+  const mountedRef = useRef(true);
   const [loadingMore, setLoadingMore] = useState(false);
 
-  // Fetch once on mount (only when authenticated)
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  const loadNextPage = useCallback(async () => {
+    if (loadingRef.current || !hasMore || pageRef.current >= MAX_PAGES) return;
+    loadingRef.current = true;
+    setLoadingMore(true);
+    try {
+      const nextPage = pageRef.current + 1;
+      const { items, hasMore: more } = await getSuggestedAccounts(BATCH_SIZE, nextPage);
+      if (!mountedRef.current) return;
+      pageRef.current = nextPage;
+      setHasMore(more && nextPage < MAX_PAGES);
+      if (items.length > 0) {
+        // The endpoint randomises, so the same account can arrive twice.
+        setAccounts((prev) => {
+          const seen = new Set(prev.map((a) => a.address?.toLowerCase()));
+          const fresh = items.filter(
+            (a) => a.address && !seen.has(a.address.toLowerCase()),
+          );
+          return fresh.length > 0 ? [...prev, ...fresh] : prev;
+        });
+      }
+    } finally {
+      loadingRef.current = false;
+      if (mountedRef.current) setLoadingMore(false);
+    }
+  }, [hasMore]);
+
+  // First page, once authenticated.
+  const fetchedRef = useRef(false);
   useEffect(() => {
     if (!user?.address || fetchedRef.current) return;
     fetchedRef.current = true;
+    void loadNextPage();
+  }, [user?.address, loadNextPage]);
 
-    let mounted = true;
-    (async () => {
-      const items = await getSuggestedAccounts();
-      if (mounted && items.length > 0) {
-        setAccounts(items);
-      }
-    })();
+  const visibleAccounts = useMemo(
+    () =>
+      accounts.filter(
+        (a) => a.address && !hiddenAddresses.has(a.address.toLowerCase()),
+      ),
+    [accounts, hiddenAddresses],
+  );
 
-    return () => {
-      mounted = false;
-    };
-  }, [user?.address]);
-
-  // Load more when all visible accounts have been followed
+  // Top the row back up as it empties, so a run of quick follows never leaves
+  // it short — the same low-water refill the web carousel runs.
   useEffect(() => {
-    const visible = accounts.filter((a) => a.address);
-    if (visible.length > 0 && visible.every((a) => followedAddresses.has(a.address)) && !loadingMore) {
-      let mounted = true;
-      (async () => {
-        setLoadingMore(true);
-        const newItems = await getSuggestedAccounts();
-        if (mounted) {
-          // Replace with new batch and reset followed set
-          if (newItems.length > 0) {
-            setAccounts(newItems);
-            setFollowedAddresses(new Set());
-          } else {
-            setDismissed(true);
-          }
-          setLoadingMore(false);
-        }
-      })();
-      return () => {
-        mounted = false;
-      };
+    if (!user?.address) return;
+    if (visibleAccounts.length < LOW_WATER_MARK && hasMore && !loadingRef.current) {
+      void loadNextPage();
     }
-  }, [accounts, followedAddresses, loadingMore]);
+  }, [visibleAccounts.length, hasMore, loadNextPage, user?.address]);
 
-  const handleDismissCard = useCallback((address: string) => {
-    setAccounts((prev) => prev.filter((a) => a.address !== address));
+  const hide = useCallback((address: string) => {
+    setHiddenAddresses((prev) => {
+      const next = new Set(prev);
+      next.add(address.toLowerCase());
+      return next;
+    });
   }, []);
+
+  const unhide = useCallback((address: string) => {
+    setHiddenAddresses((prev) => {
+      if (!prev.has(address.toLowerCase())) return prev;
+      const next = new Set(prev);
+      next.delete(address.toLowerCase());
+      return next;
+    });
+  }, []);
+
+  const handleDismissCard = useCallback(
+    (address: string) => {
+      hide(address);
+    },
+    [hide],
+  );
 
   const handleDismissAll = useCallback(() => {
     setDismissed(true);
@@ -80,22 +134,15 @@ const SuggestedAccountsSection: React.FC = () => {
 
   const handleFollowChange = useCallback(
     (address: string, newState: FollowState) => {
-      setFollowedAddresses((prev) => {
-        const next = new Set(prev);
-        if (newState.isFollowing || newState.isFollowRequestPending) {
-          next.add(address);
-        } else {
-          next.delete(address);
-        }
-        return next;
-      });
+      // A landed follow (or a sent request on a private account) retires the
+      // suggestion immediately; a failure puts it back.
+      if (newState.isFollowing || newState.isFollowRequestPending) {
+        hide(address);
+      } else {
+        unhide(address);
+      }
     },
-    [],
-  );
-
-  const visibleAccounts = useMemo(
-    () => accounts.filter((a) => a.address),
-    [accounts],
+    [hide, unhide],
   );
 
   // While this carousel is scrolling it blocks Home's page-turn gesture, so a
@@ -103,17 +150,25 @@ const SuggestedAccountsSection: React.FC = () => {
   // Must stay above the early return below so hook order is stable.
   const scrollGuard = useHorizontalScrollGuard();
 
-  if (dismissed || visibleAccounts.length === 0) return null;
-
-  const renderItem: ListRenderItem<SuggestedAccount> = ({ item }) => (
-    <SuggestedAccountCard
-      account={item}
-      onFollowChange={handleFollowChange}
-      onDismiss={handleDismissCard}
-    />
+  const renderItem: ListRenderItem<SuggestedAccount> = useCallback(
+    ({ item }) => (
+      <SuggestedAccountCard
+        account={item}
+        onFollowChange={handleFollowChange}
+        onDismiss={handleDismissCard}
+      />
+    ),
+    [handleFollowChange, handleDismissCard],
   );
 
-  const keyExtractor = (item: SuggestedAccount) => item.address;
+  const keyExtractor = useCallback((item: SuggestedAccount) => item.address, []);
+
+  const handleEndReached = useCallback(() => {
+    void loadNextPage();
+  }, [loadNextPage]);
+
+  if (dismissed) return null;
+  if (visibleAccounts.length === 0) return null;
 
   const list = (
     <FlatList
@@ -123,6 +178,8 @@ const SuggestedAccountsSection: React.FC = () => {
       horizontal
       showsHorizontalScrollIndicator={false}
       nestedScrollEnabled
+      onEndReached={handleEndReached}
+      onEndReachedThreshold={0.6}
       contentContainerStyle={{ paddingHorizontal: 8 }}
     />
   );

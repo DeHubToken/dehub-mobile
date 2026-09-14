@@ -2010,7 +2010,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Obrázek je příliš velký — vaše úroveň {{tier}} ukládá obrázky do {{limit}} MB",
-    "image_too_large_untiered": "Obrázek je příliš velký — obrázky jsou uloženy do {{limit}} MB"
+    "image_too_large_untiered": "Obrázek je příliš velký — obrázky jsou uloženy do {{limit}} MB",
+    "rate_limited": "Limit požadavků, zpomalte"
   },
   "staking": {
     "title": "Staking",
