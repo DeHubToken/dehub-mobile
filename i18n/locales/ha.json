@@ -1720,7 +1720,11 @@
     "minutesAgo": "{{count}}m da suka wuce",
     "hoursAgo": "{{count}}sa da suka wuce",
     "daysAgo": "{{count}}kw da suka wuce",
-    "monthsAgo": "{{count}}wa da suka wuce"
+    "monthsAgo": "{{count}}wa da suka wuce",
+    "active": "Masu aiki",
+    "noActiveNow": "Babu shawarwari masu aiki a yanzu",
+    "subtitle": "Ka kada kuri'a kan shawarwarin da ke tsara dandamalin",
+    "loadFailed": "An kasa loda shawarwari"
   },
   "sidebar": {
     "talkOfTheTown": "Labarin gari",

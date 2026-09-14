@@ -1720,7 +1720,11 @@
     "minutesAgo": "{{count}}d ka hor",
     "hoursAgo": "{{count}}s ka hor",
     "daysAgo": "{{count}}m ka hor",
-    "monthsAgo": "{{count}}b ka hor"
+    "monthsAgo": "{{count}}b ka hor",
+    "active": "Firfircoon",
+    "noActiveNow": "Hadda ma jiraan soo jeedin firfircoon",
+    "subtitle": "U codee soo jeedinta qaabaynaysa goobta",
+    "loadFailed": "Lama soo rari karin soo jeedinta"
   },
   "sidebar": {
     "talkOfTheTown": "Sheekada Magaalada",

@@ -1193,9 +1193,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "قۇتلۇق بولسۇن! ھازىر سىز {{tier}} 🎉",
-      "badgeTierDown": "دىققەت: بەلگىڭىز ھازىر {{tier}}",
-      "badgeTierLost": "دىققەت: ئەمدى بەلگىڭىز يوق",
+    "badgeTierUp": "قۇتلۇق بولسۇن! ھازىر سىز {{tier}} 🎉",
+    "badgeTierDown": "دىققەت: بەلگىڭىز ھازىر {{tier}}",
+    "badgeTierLost": "دىققەت: ئەمدى بەلگىڭىز يوق",
     "title": "ئۇقتۇرۇشلار",
     "loadFailed": "ئۇقتۇرۇشلارنى يۈكلىگىلى بولمىدى",
     "markAllRead": "ھەممىنى ئوقۇلدى دەپ بەلگىلەش",
@@ -1686,7 +1686,11 @@
     "minutesAgo": "{{count}} مىنۇت بۇرۇن",
     "hoursAgo": "{{count}} سائەت بۇرۇن",
     "daysAgo": "{{count}} كۈن بۇرۇن",
-    "monthsAgo": "{{count}} ئاي بۇرۇن"
+    "monthsAgo": "{{count}} ئاي بۇرۇن",
+    "active": "ئاكتىپ",
+    "noActiveNow": "ھازىر ئاكتىپ تەكلىپ يوق",
+    "subtitle": "سۇپىنى شەكىللەندۈرىدىغان تەكلىپلەرگە ئاۋاز بېرىڭ",
+    "loadFailed": "تەكلىپلەرنى يۈكلىگىلى بولمىدى"
   },
   "sidebar": {
     "talkOfTheTown": "كۆپ سۆزلەنگەن",

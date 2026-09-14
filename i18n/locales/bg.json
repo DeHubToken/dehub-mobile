@@ -1732,7 +1732,11 @@
     "minutesAgo": "преди {{count}} минути",
     "hoursAgo": "преди {{count}} часа",
     "daysAgo": "преди {{count}} дни",
-    "monthsAgo": "преди {{count}} месеца"
+    "monthsAgo": "преди {{count}} месеца",
+    "active": "Активни",
+    "noActiveNow": "В момента няма активни предложения",
+    "subtitle": "Гласувай за предложенията, които оформят платформата",
+    "loadFailed": "Предложенията не се заредиха"
   },
   "sidebar": {
     "talkOfTheTown": "Градски разговори",

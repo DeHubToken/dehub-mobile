@@ -1729,7 +1729,11 @@
     "minutesAgo": "fa {{count}}m",
     "hoursAgo": "fa {{count}}h",
     "daysAgo": "fa {{count}}d",
-    "monthsAgo": "fa {{count}} mesos"
+    "monthsAgo": "fa {{count}} mesos",
+    "active": "Actives",
+    "noActiveNow": "Ara mateix no hi ha propostes actives",
+    "subtitle": "Vota les propostes que donen forma a la plataforma",
+    "loadFailed": "No s'han pogut carregar les propostes"
   },
   "sidebar": {
     "talkOfTheTown": "El tema del moment",

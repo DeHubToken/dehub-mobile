@@ -1733,7 +1733,11 @@
     "minutesAgo": "{{count}} minuter sedan",
     "hoursAgo": "{{count}} timmar sedan",
     "daysAgo": "{{count}} dagar sedan",
-    "monthsAgo": "{{count}} månader sedan"
+    "monthsAgo": "{{count}} månader sedan",
+    "active": "Aktiva",
+    "noActiveNow": "Inga aktiva förslag just nu",
+    "subtitle": "Rösta om förslag som formar plattformen",
+    "loadFailed": "Det gick inte att läsa in förslagen"
   },
   "sidebar": {
     "talkOfTheTown": "Stadens snackis",

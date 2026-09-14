@@ -1720,7 +1720,11 @@
     "minutesAgo": "{{count}} ਮਿੰਟ ਪਹਿਲਾਂ",
     "hoursAgo": "{{count}} ਘੰਟੇ ਪਹਿਲਾਂ",
     "daysAgo": "{{count}} ਦਿਨ ਪਹਿਲਾਂ",
-    "monthsAgo": "{{count}} ਮਹੀਨੇ ਪਹਿਲਾਂ"
+    "monthsAgo": "{{count}} ਮਹੀਨੇ ਪਹਿਲਾਂ",
+    "active": "ਸਰਗਰਮ",
+    "noActiveNow": "ਹੁਣ ਕੋਈ ਸਰਗਰਮ ਪ੍ਰਸਤਾਵ ਨਹੀਂ",
+    "subtitle": "ਉਹਨਾਂ ਪ੍ਰਸਤਾਵਾਂ 'ਤੇ ਵੋਟ ਕਰੋ ਜੋ ਪਲੇਟਫਾਰਮ ਨੂੰ ਘੜਦੇ ਹਨ",
+    "loadFailed": "ਪ੍ਰਸਤਾਵ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੇ"
   },
   "sidebar": {
     "talkOfTheTown": "ਸ਼ਹਿਰ ਦੀ ਚਰਚਾ",

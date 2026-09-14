@@ -1036,9 +1036,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "Честитамо! Сада си {{tier}} 🎉",
-      "badgeTierDown": "Напомена: твоја значка је сада {{tier}}",
-      "badgeTierLost": "Напомена: више немаш значку",
+    "badgeTierUp": "Честитамо! Сада си {{tier}} 🎉",
+    "badgeTierDown": "Напомена: твоја значка је сада {{tier}}",
+    "badgeTierLost": "Напомена: више немаш значку",
     "title": "Обавештења",
     "loadFailed": "Обавештења није могуће учитати",
     "markAllRead": "Означи све као прочитано",
@@ -1616,7 +1616,11 @@
     "minutesAgo": "пре {{count}} минута",
     "hoursAgo": "пре {{count}} сати",
     "daysAgo": "пре {{count}} дана",
-    "monthsAgo": "пре {{count}} месеци"
+    "monthsAgo": "пре {{count}} месеци",
+    "active": "Активни",
+    "noActiveNow": "Тренутно нема активних предлога",
+    "subtitle": "Гласај о предлозима који обликују платформу",
+    "loadFailed": "Учитавање предлога није успело"
   },
   "sidebar": {
     "talkOfTheTown": "Прича града",

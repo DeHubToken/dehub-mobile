@@ -1733,7 +1733,11 @@
     "minutesAgo": "před {{count}} minutami",
     "hoursAgo": "před {{count}} hodinami",
     "daysAgo": "před {{count}} dny",
-    "monthsAgo": "před {{count}} měsíci"
+    "monthsAgo": "před {{count}} měsíci",
+    "active": "Aktivní",
+    "noActiveNow": "Momentálně žádné aktivní návrhy",
+    "subtitle": "Hlasujte o návrzích, které utvářejí platformu",
+    "loadFailed": "Návrhy se nepodařilo načíst"
   },
   "sidebar": {
     "talkOfTheTown": "O čem se mluví",

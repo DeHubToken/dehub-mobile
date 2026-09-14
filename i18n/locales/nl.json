@@ -2174,7 +2174,11 @@
     "minutesAgo": "{{count}}m geleden",
     "hoursAgo": "{{count}}u geleden",
     "daysAgo": "{{count}}d geleden",
-    "monthsAgo": "{{count}}ma geleden"
+    "monthsAgo": "{{count}}ma geleden",
+    "active": "Actief",
+    "noActiveNow": "Momenteel geen actieve voorstellen",
+    "subtitle": "Stem op voorstellen die het platform vormgeven",
+    "loadFailed": "Kon voorstellen niet laden"
   },
   "sidebar": {
     "talkOfTheTown": "Onderwerp van de dag",

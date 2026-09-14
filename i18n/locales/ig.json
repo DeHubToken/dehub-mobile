@@ -1222,9 +1222,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "Ekele! Ugbu a ị bụ {{tier}} 🎉",
-      "badgeTierDown": "Riba ama: baajị gị ugbu a bụ {{tier}}",
-      "badgeTierLost": "Riba ama: i nweghizi baajị",
+    "badgeTierUp": "Ekele! Ugbu a ị bụ {{tier}} 🎉",
+    "badgeTierDown": "Riba ama: baajị gị ugbu a bụ {{tier}}",
+    "badgeTierLost": "Riba ama: i nweghizi baajị",
     "title": "Ọkwa",
     "loadFailed": "Enweghị ike ibunye ọkwa",
     "markAllRead": "Mee ka niile ka a gụrụ",
@@ -1714,7 +1714,11 @@
     "minutesAgo": "{{count}}nk gara aga",
     "hoursAgo": "{{count}}aw gara aga",
     "daysAgo": "{{count}}ụb gara aga",
-    "monthsAgo": "{{count}}ọn gara aga"
+    "monthsAgo": "{{count}}ọn gara aga",
+    "active": "Na-arụ ọrụ",
+    "noActiveNow": "Enweghị atụmatụ na-arụ ọrụ ugbu a",
+    "subtitle": "Tụọ vootu na atụmatụ na-akpụzi ikpo okwu ahụ",
+    "loadFailed": "Enweghị ike ibudata atụmatụ"
   },
   "sidebar": {
     "talkOfTheTown": "Okwu obodo",

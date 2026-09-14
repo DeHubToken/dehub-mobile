@@ -1708,7 +1708,11 @@
     "minutesAgo": "vor {{count}}m",
     "hoursAgo": "vor {{count}}h",
     "daysAgo": "vor {{count}}T",
-    "monthsAgo": "vor {{count}}Mo"
+    "monthsAgo": "vor {{count}}Mo",
+    "active": "Aktiv",
+    "noActiveNow": "Derzeit keine aktiven Vorschläge",
+    "subtitle": "Stimme über Vorschläge ab, die die Plattform prägen",
+    "loadFailed": "Vorschläge konnten nicht geladen werden"
   },
   "tip": {
     "title": "Trinkgeld senden",

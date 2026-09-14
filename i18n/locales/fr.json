@@ -1748,7 +1748,11 @@
     "minutesAgo": "il y a {{count}}m",
     "hoursAgo": "il y a {{count}}h",
     "daysAgo": "il y a {{count}}j",
-    "monthsAgo": "il y a {{count}}mo"
+    "monthsAgo": "il y a {{count}}mo",
+    "active": "Actives",
+    "noActiveNow": "Aucune proposition active pour le moment",
+    "subtitle": "Votez sur les propositions qui façonnent la plateforme",
+    "loadFailed": "Impossible de charger les propositions"
   },
   "sidebar": {
     "talkOfTheTown": "Tendances",

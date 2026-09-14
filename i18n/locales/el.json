@@ -1758,7 +1758,11 @@
     "rejectedAppearHere": "Rejected proposals will appear here",
     "yourVoteWeight": "Your vote weight:",
     "holdTokensToVote": "Hold DHB tokens to vote",
-    "mustHoldTokens": "You must hold DHB tokens to vote on governance proposals."
+    "mustHoldTokens": "You must hold DHB tokens to vote on governance proposals.",
+    "active": "Ενεργές",
+    "noActiveNow": "Δεν υπάρχουν ενεργές προτάσεις αυτή τη στιγμή",
+    "subtitle": "Ψήφισε προτάσεις που διαμορφώνουν την πλατφόρμα",
+    "loadFailed": "Δεν ήταν δυνατή η φόρτωση των προτάσεων"
   },
   "sidebar": {
     "talkOfTheTown": "Τα λένε όλοι",

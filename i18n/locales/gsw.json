@@ -1718,7 +1718,11 @@
     "rejectedAppearHere": "Rejected proposals will appear here",
     "yourVoteWeight": "Your vote weight:",
     "holdTokensToVote": "Hold DHB tokens to vote",
-    "mustHoldTokens": "You must hold DHB tokens to vote on governance proposals."
+    "mustHoldTokens": "You must hold DHB tokens to vote on governance proposals.",
+    "active": "Aktiv",
+    "noActiveNow": "Momentan kei aktivi Vorschläg",
+    "subtitle": "Stimm über Vorschläg ab, wo d Plattform präged",
+    "loadFailed": "D Vorschläg händ nid chönne glade wärde"
   },
   "sidebar": {
     "talkOfTheTown": "Stadtgspröch",

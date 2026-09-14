@@ -1729,7 +1729,11 @@
     "minutesAgo": "{{count}}m më parë",
     "hoursAgo": "{{count}}o më parë",
     "daysAgo": "{{count}}d më parë",
-    "monthsAgo": "{{count}}mj më parë"
+    "monthsAgo": "{{count}}mj më parë",
+    "active": "Aktive",
+    "noActiveNow": "Aktualisht nuk ka propozime aktive",
+    "subtitle": "Voto propozimet që formësojnë platformën",
+    "loadFailed": "Propozimet nuk u ngarkuan dot"
   },
   "sidebar": {
     "talkOfTheTown": "Biseda e Qytetit",

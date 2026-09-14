@@ -1757,7 +1757,11 @@
     "rejectedAppearHere": "Rejected proposals will appear here",
     "yourVoteWeight": "Your vote weight:",
     "holdTokensToVote": "Hold DHB tokens to vote",
-    "mustHoldTokens": "You must hold DHB tokens to vote on governance proposals."
+    "mustHoldTokens": "You must hold DHB tokens to vote on governance proposals.",
+    "active": "نشيطة",
+    "noActiveNow": "ما كايناش مقترحات نشيطة دابا",
+    "subtitle": "صوت على المقترحات لي كتشكل المنصة",
+    "loadFailed": "ما قدرناش نحملو المقترحات"
   },
   "sidebar": {
     "talkOfTheTown": "هضرة الناس",

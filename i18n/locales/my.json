@@ -1533,7 +1533,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "လက်ရှိ",
+    "noActiveNow": "လောလောဆယ် အသက်ဝင်နေသော အဆိုပြုချက် မရှိပါ",
+    "subtitle": "ပလက်ဖောင်းကို ပုံဖော်သည့် အဆိုပြုချက်များကို မဲပေးပါ",
+    "loadFailed": "အဆိုပြုချက်များ ဖွင့်၍မရပါ"
   },
   "spaces": {
     "title": "အခန်းများ",

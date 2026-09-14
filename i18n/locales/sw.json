@@ -1729,7 +1729,11 @@
     "minutesAgo": "dakika {{count}} zilizopita",
     "hoursAgo": "saa {{count}} zilizopita",
     "daysAgo": "siku {{count}} zilizopita",
-    "monthsAgo": "miezi {{count}} iliyopita"
+    "monthsAgo": "miezi {{count}} iliyopita",
+    "active": "Zinazoendelea",
+    "noActiveNow": "Hakuna mapendekezo yanayoendelea sasa",
+    "subtitle": "Piga kura kwa mapendekezo yanayounda jukwaa",
+    "loadFailed": "Imeshindwa kupakia mapendekezo"
   },
   "sidebar": {
     "talkOfTheTown": "Mazungumzo ya Mji",

@@ -1688,7 +1688,11 @@
     "minutesAgo": "{{count}}m kepungkur",
     "hoursAgo": "{{count}}j kepungkur",
     "daysAgo": "{{count}}d kepungkur",
-    "monthsAgo": "{{count}}b kepungkur"
+    "monthsAgo": "{{count}}b kepungkur",
+    "active": "Aktif",
+    "noActiveNow": "Ora ana usulan aktif saiki",
+    "subtitle": "Menehi swara kanggo usulan sing mbentuk platform",
+    "loadFailed": "Ora bisa mbukak usulan"
   },
   "sidebar": {
     "talkOfTheTown": "Omongan Kutha",

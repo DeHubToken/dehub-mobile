@@ -1151,9 +1151,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "I ni ce! Sisan i ye {{tier}} ye 🎉",
-      "badgeTierDown": "Kɔlɔsili: i ka taamasyɛn ye {{tier}} ye sisan",
-      "badgeTierLost": "Kɔlɔsili: i tɛ taamasyɛn sɔrɔ tugun",
+    "badgeTierUp": "I ni ce! Sisan i ye {{tier}} ye 🎉",
+    "badgeTierDown": "Kɔlɔsili: i ka taamasyɛn ye {{tier}} ye sisan",
+    "badgeTierLost": "Kɔlɔsili: i tɛ taamasyɛn sɔrɔ tugun",
     "title": "Kɔrɔbɔ",
     "loadFailed": "Kunnafoniw ma se ka ta",
     "markAllRead": "Kɔrɔbɔ",
@@ -1707,7 +1707,11 @@
     "minutesAgo": "{{count}} kɔrɔbɔ",
     "hoursAgo": "{{count}} kɔrɔbɔ",
     "daysAgo": "{{count}} kɔrɔbɔ",
-    "monthsAgo": "{{count}} kɔrɔbɔ"
+    "monthsAgo": "{{count}} kɔrɔbɔ",
+    "active": "Baara la",
+    "noActiveNow": "Laɲini baarala si tɛ yen sisan",
+    "subtitle": "Kalata laɲiniw kan minnu bɛ plateforme labɛn",
+    "loadFailed": "Laɲiniw ma se ka lajɛ"
   },
   "sidebar": {
     "talkOfTheTown": "Kɔrɔbɔ",

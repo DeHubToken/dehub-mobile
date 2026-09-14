@@ -1687,7 +1687,11 @@
     "minutesAgo": "قبل {{count}}د",
     "hoursAgo": "قبل {{count}}س",
     "daysAgo": "قبل {{count}}ي",
-    "monthsAgo": "قبل {{count}}ش"
+    "monthsAgo": "قبل {{count}}ش",
+    "active": "نشطة",
+    "noActiveNow": "مافي مقترحات نشطة هسي",
+    "subtitle": "صوّت على المقترحات البتشكل المنصة",
+    "loadFailed": "ما قدرنا نحمّل المقترحات"
   },
   "sidebar": {
     "talkOfTheTown": "حديث الناس",

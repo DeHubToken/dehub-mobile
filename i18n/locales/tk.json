@@ -1192,9 +1192,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "Gutlaýarys! Indi siz {{tier}} 🎉",
-      "badgeTierDown": "Üns beriň: nyşanyňyz indi {{tier}}",
-      "badgeTierLost": "Üns beriň: indi nyşanyňyz ýok",
+    "badgeTierUp": "Gutlaýarys! Indi siz {{tier}} 🎉",
+    "badgeTierDown": "Üns beriň: nyşanyňyz indi {{tier}}",
+    "badgeTierLost": "Üns beriň: indi nyşanyňyz ýok",
     "title": "Bildirişler",
     "loadFailed": "Bildirişler ýüklenip bilinmedi",
     "markAllRead": "Ählisini okaldy diýip bellemek",
@@ -1675,7 +1675,11 @@
     "minutesAgo": "{{count}} min öň",
     "hoursAgo": "{{count}} sag öň",
     "daysAgo": "{{count}} gün öň",
-    "monthsAgo": "{{count}} aý öň"
+    "monthsAgo": "{{count}} aý öň",
+    "active": "Işjeň",
+    "noActiveNow": "Häzir işjeň teklip ýok",
+    "subtitle": "Platformany emele getirýän tekliplere ses beriň",
+    "loadFailed": "Teklipler ýüklenip bilmedi"
   },
   "sidebar": {
     "talkOfTheTown": "Iň köp gürrüňi edilýän",

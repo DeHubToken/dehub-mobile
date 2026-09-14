@@ -1177,9 +1177,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "Congrats! You be {{tier}} now 🎉",
-      "badgeTierDown": "Take note: your badge don turn {{tier}}",
-      "badgeTierLost": "Take note: you no get badge again",
+    "badgeTierUp": "Congrats! You be {{tier}} now 🎉",
+    "badgeTierDown": "Take note: your badge don turn {{tier}}",
+    "badgeTierLost": "Take note: you no get badge again",
     "title": "Notifications",
     "loadFailed": "We no fit load notifications",
     "markAllRead": "Mark all as read",
@@ -1666,7 +1666,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "Active",
+    "noActiveNow": "No active proposal dey now",
+    "subtitle": "Vote for proposals wey dey shape di platform",
+    "loadFailed": "We no fit load di proposals"
   },
   "sidebar": {
     "talkOfTheTown": "Wetin Dey Happen",

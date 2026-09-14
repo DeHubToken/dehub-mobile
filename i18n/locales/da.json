@@ -1734,7 +1734,11 @@
     "minutesAgo": "for {{count}} minutter siden",
     "hoursAgo": "for {{count}} timer siden",
     "daysAgo": "for {{count}} dage siden",
-    "monthsAgo": "for {{count}} måneder siden"
+    "monthsAgo": "for {{count}} måneder siden",
+    "active": "Aktive",
+    "noActiveNow": "Ingen aktive forslag lige nu",
+    "subtitle": "Stem om forslag, der former platformen",
+    "loadFailed": "Kunne ikke indlæse forslag"
   },
   "sidebar": {
     "talkOfTheTown": "Byens snak",

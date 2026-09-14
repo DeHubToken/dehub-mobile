@@ -1151,9 +1151,9 @@
     "solanaAddressCopied": "Солана мекенжайы көшірілді"
   },
   "notifications": {
-      "badgeTierUp": "Құттықтаймыз! Енді сіз {{tier}} 🎉",
-      "badgeTierDown": "Назар аударыңыз: белгіңіз енді {{tier}}",
-      "badgeTierLost": "Назар аударыңыз: сізде енді белгі жоқ",
+    "badgeTierUp": "Құттықтаймыз! Енді сіз {{tier}} 🎉",
+    "badgeTierDown": "Назар аударыңыз: белгіңіз енді {{tier}}",
+    "badgeTierLost": "Назар аударыңыз: сізде енді белгі жоқ",
     "title": "Хабарландырулар",
     "loadFailed": "Хабарландыруларды жүктеу мүмкін болмады",
     "markAllRead": "Барлығын оқылды деп белгілеу",
@@ -1714,7 +1714,11 @@
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago"
+    "monthsAgo": "{{count}}mo ago",
+    "active": "Белсенді",
+    "noActiveNow": "Қазір белсенді ұсыныстар жоқ",
+    "subtitle": "Платформаны қалыптастыратын ұсыныстарға дауыс беріңіз",
+    "loadFailed": "Ұсыныстарды жүктеу мүмкін болмады"
   },
   "spaces": {
     "title": "Кеңістіктер",

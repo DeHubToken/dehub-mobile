@@ -1069,9 +1069,9 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
-      "badgeTierUp": "Pîroz be! Tu niha {{tier}} î 🎉",
-      "badgeTierDown": "Bal bikişîne: nîşana te niha {{tier}} e",
-      "badgeTierLost": "Bal bikişîne: êdî nîşana te tune",
+    "badgeTierUp": "Pîroz be! Tu niha {{tier}} î 🎉",
+    "badgeTierDown": "Bal bikişîne: nîşana te niha {{tier}} e",
+    "badgeTierLost": "Bal bikişîne: êdî nîşana te tune",
     "title": "Agahdarî",
     "loadFailed": "Agahdarî nehatin barkirin",
     "markAllRead": "Hemûyan wek xwendî nîşan bike",
@@ -1617,7 +1617,11 @@
     "minutesAgo": "{{count}}d berê",
     "hoursAgo": "{{count}}s berê",
     "daysAgo": "{{count}}r berê",
-    "monthsAgo": "{{count}}m berê"
+    "monthsAgo": "{{count}}m berê",
+    "active": "Çalak",
+    "noActiveNow": "Niha pêşniyarên çalak tune",
+    "subtitle": "Li ser pêşniyarên ku platformê şekil didin deng bide",
+    "loadFailed": "Pêşniyar nehatin barkirin"
   },
   "sidebar": {
     "talkOfTheTown": "Gotina Bajêr",

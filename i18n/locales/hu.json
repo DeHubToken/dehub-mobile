@@ -1733,7 +1733,11 @@
     "minutesAgo": "{{count}} perce",
     "hoursAgo": "{{count}} órája",
     "daysAgo": "{{count}} napja",
-    "monthsAgo": "{{count}} hónapja"
+    "monthsAgo": "{{count}} hónapja",
+    "active": "Aktív",
+    "noActiveNow": "Jelenleg nincs aktív javaslat",
+    "subtitle": "Szavazz a platformot alakító javaslatokra",
+    "loadFailed": "A javaslatok betöltése sikertelen"
   },
   "sidebar": {
     "talkOfTheTown": "A város beszéde",

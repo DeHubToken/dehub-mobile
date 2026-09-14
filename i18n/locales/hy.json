@@ -1693,7 +1693,11 @@
     "minutesAgo": "{{count}} rope aratch",
     "hoursAgo": "{{count}} zham aratch",
     "daysAgo": "{{count}} or aratch",
-    "monthsAgo": "{{count}} amis aratch"
+    "monthsAgo": "{{count}} amis aratch",
+    "active": "Ակտիվ",
+    "noActiveNow": "Այս պահին ակտիվ առաջարկներ չկան",
+    "subtitle": "Քվեարկեք հարթակը ձևավորող առաջարկների համար",
+    "loadFailed": "Չհաջողվեց բեռնել առաջարկները"
   },
   "sidebar": {
     "talkOfTheTown": "Kaghaqin khoske",

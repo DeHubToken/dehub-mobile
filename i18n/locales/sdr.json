@@ -1732,7 +1732,11 @@
     "minutesAgo": "{{count}} منٹ پہلے",
     "hoursAgo": "{{count}} گھنٹے پہلے",
     "daysAgo": "{{count}} دن پہلے",
-    "monthsAgo": "{{count}} مہینے پہلے"
+    "monthsAgo": "{{count}} مہینے پہلے",
+    "active": "সক্রিয়",
+    "noActiveNow": "এখন কোনো সক্রিয় প্রস্তাব নাই",
+    "subtitle": "প্ল্যাটফর্ম গড়া প্রস্তাবত ভোট দেও",
+    "loadFailed": "প্রস্তাব লোড করা গেল না"
   },
   "sidebar": {
     "talkOfTheTown": "شہر کی چرچا",

@@ -1690,7 +1690,11 @@
     "minutesAgo": "{{count}}m siden",
     "hoursAgo": "{{count}}t siden",
     "daysAgo": "{{count}}d siden",
-    "monthsAgo": "{{count}}mnd siden"
+    "monthsAgo": "{{count}}mnd siden",
+    "active": "Aktive",
+    "noActiveNow": "Ingen aktive forslag akkurat nå",
+    "subtitle": "Stem på forslag som former plattformen",
+    "loadFailed": "Kunne ikke laste forslag"
   },
   "sidebar": {
     "talkOfTheTown": "Snakkisen i byen",

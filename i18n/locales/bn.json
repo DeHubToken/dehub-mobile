@@ -1715,7 +1715,11 @@
     "minutesAgo": "{{count}}মি আগে",
     "hoursAgo": "{{count}}ঘ আগে",
     "daysAgo": "{{count}}দি আগে",
-    "monthsAgo": "{{count}}মা আগে"
+    "monthsAgo": "{{count}}মা আগে",
+    "active": "সক্রিয়",
+    "noActiveNow": "এখন কোনো সক্রিয় প্রস্তাব নেই",
+    "subtitle": "প্ল্যাটফর্ম গড়ে তোলা প্রস্তাবগুলোতে ভোট দিন",
+    "loadFailed": "প্রস্তাব লোড করা যায়নি"
   },
   "sidebar": {
     "talkOfTheTown": "শহরের আলোচনা",

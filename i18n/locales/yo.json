@@ -1725,7 +1725,11 @@
     "minutesAgo": "{{count}}ìṣ sẹ́yìn",
     "hoursAgo": "{{count}}wkt sẹ́yìn",
     "daysAgo": "{{count}}ọj sẹ́yìn",
-    "monthsAgo": "{{count}}oṣ sẹ́yìn"
+    "monthsAgo": "{{count}}oṣ sẹ́yìn",
+    "active": "Ń lọ lọ́wọ́",
+    "noActiveNow": "Kò sí àbá tí ń lọ lọ́wọ́ báyìí",
+    "subtitle": "Dìbò lórí àwọn àbá tí ń ṣe pẹpẹ náà",
+    "loadFailed": "Kò lè gbé àwọn àbá wọlé"
   },
   "sidebar": {
     "talkOfTheTown": "Ọ̀rọ̀ Ìlú",

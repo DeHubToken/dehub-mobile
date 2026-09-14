@@ -1713,7 +1713,11 @@
     "minutesAgo": "{{count}}м өмнө",
     "hoursAgo": "{{count}}ц өмнө",
     "daysAgo": "{{count}}ө өмнө",
-    "monthsAgo": "{{count}}с өмнө"
+    "monthsAgo": "{{count}}с өмнө",
+    "active": "Идэвхтэй",
+    "noActiveNow": "Одоогоор идэвхтэй санал байхгүй",
+    "subtitle": "Платформыг төлөвшүүлэх саналуудад санал өгнө үү",
+    "loadFailed": "Саналуудыг ачаалж чадсангүй"
   },
   "sidebar": {
     "talkOfTheTown": "Хотын яриа",

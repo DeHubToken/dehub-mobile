@@ -1694,7 +1694,11 @@
     "minutesAgo": "{{count}} min sitten",
     "hoursAgo": "{{count}} t sitten",
     "daysAgo": "{{count}} pv sitten",
-    "monthsAgo": "{{count}} kk sitten"
+    "monthsAgo": "{{count}} kk sitten",
+    "active": "Aktiiviset",
+    "noActiveNow": "Ei aktiivisia ehdotuksia juuri nyt",
+    "subtitle": "Äänestä ehdotuksista, jotka muovaavat alustaa",
+    "loadFailed": "Ehdotuksia ei voitu ladata"
   },
   "sidebar": {
     "talkOfTheTown": "Puheenaiheena",
