@@ -59,28 +59,33 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
         />
       </Pressable>
 
-      <View className="flex-1 min-w-0 mr-2">
+      {/* One pressable for the whole identity block (name, badge, handle)
+          instead of three nested ones: same tap targets, the same hit slop,
+          three native views fewer per card. It is content-width and shrinks
+          so the name still truncates; the icon group below pushes itself to
+          the right edge with marginLeft: auto. */}
+      <Pressable
+        onPress={onUserPress}
+        hitSlop={IDENTITY_HIT_SLOP}
+        style={{ flexShrink: 1, minWidth: 0, marginRight: 8 }}
+      >
         <View style={{ flexDirection: "row", alignItems: "center", minWidth: 0, height: DISPLAY_NAME_LINE_HEIGHT }}>
-          <Pressable onPress={onUserPress} style={{ flexShrink: 1, minWidth: 0 }} hitSlop={IDENTITY_HIT_SLOP}>
-            <Text
-              className="font-semibold"
-              style={{ color: "#F9FBFF", fontSize: DISPLAY_NAME_FONT_SIZE, lineHeight: DISPLAY_NAME_LINE_HEIGHT }}
-              numberOfLines={1}
-              ellipsizeMode="tail"
-            >
-              {displayName}
-            </Text>
-          </Pressable>
+          <Text
+            className="font-semibold"
+            style={{ flexShrink: 1, minWidth: 0, color: "#F9FBFF", fontSize: DISPLAY_NAME_FONT_SIZE, lineHeight: DISPLAY_NAME_LINE_HEIGHT }}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
+            {displayName}
+          </Text>
           {badgeImage && (
-            <Pressable
-              onPress={onUserPress}
+            <View
               style={{
                 flexShrink: 0,
                 height: DISPLAY_NAME_LINE_HEIGHT,
                 marginLeft: HOLDER_BADGE_GAP,
                 justifyContent: "center",
               }}
-              hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
             >
               <Image
                 source={badgeImage}
@@ -90,7 +95,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
                 ]}
                 resizeMode="contain"
               />
-            </Pressable>
+            </View>
           )}
           {address && (
             <View
@@ -107,22 +112,20 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           )}
         </View>
         {username ? (
-          <Pressable onPress={onUserPress} style={{ alignSelf: "flex-start", maxWidth: "100%" }} hitSlop={IDENTITY_HIT_SLOP}>
-            <Text
-              className="mt-0.5"
-              style={{ color: "#A6A9AC", fontSize: 14, lineHeight: 18 }}
-              numberOfLines={1}
-              ellipsizeMode="tail"
-            >
-              @{username}
-            </Text>
-          </Pressable>
+          <Text
+            className="mt-0.5"
+            style={{ alignSelf: "flex-start", maxWidth: "100%", color: "#A6A9AC", fontSize: 14, lineHeight: 18 }}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
+            @{username}
+          </Text>
         ) : null}
-      </View>
+      </Pressable>
 
       <View
         className="flex-row items-center gap-2"
-        style={{ alignSelf: "flex-start", marginTop: -HEADER_ICON_PAD, marginRight: -HEADER_ICON_PAD }}
+        style={{ alignSelf: "flex-start", marginLeft: "auto", marginTop: -HEADER_ICON_PAD, marginRight: -HEADER_ICON_PAD }}
       >
         {isHidden && <Icon name="EyeOff" size={16} color={ICON_MUTED} />}
         {onBoostPress && (
