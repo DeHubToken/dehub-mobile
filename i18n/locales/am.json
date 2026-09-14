@@ -38,7 +38,8 @@
     "prompt": "ጥያቄ",
     "tv": "ቀጥታ ቲቪ",
     "arcade": "አርኬድ",
-    "stats": "ቀጥታ ስታቲስቲክስ"
+    "stats": "ቀጥታ ስታቲስቲክስ",
+    "converter": "Converter"
   },
   "feed": {
     "home": "መነሻ",
@@ -2975,5 +2976,34 @@
     "sent": "ማስተላለፍ ተልኳል",
     "toSelf": "ለራስዎ ቶከን መላክ አይችሉም",
     "insufficientOnChain": "ለዚህ ቶከን በቂ የቼይን ቀሪ ሂሳብ የለም"
+  },
+  "converter": {
+    "ownership": "ይህን ይዘት ይዤዋለሁ፣ ወይም በDeHub ላይ ለመታተም የመብት ባለቤቱ ፈቃድ አለብኝ።",
+    "addToQueue": "ወደ ወረፋ ያክሉ",
+    "queueIdle": "ምንም ሳይሰራ።",
+    "untitled": "ቪዲዮ",
+    "thatSource": "ያ መድረክ",
+    "dismiss": "ሰርዝ",
+    "viewPost": "ልጥፍ ይመልከቱ",
+    "tryAgain": "እንደገና ሞክሩ",
+    "statusAlreadyHere": "ቀድሞ እዚህ ነው",
+    "statusFailed": "ወድቋል",
+    "statusRateLimited": "ደረጃ ውስን",
+    "statusProcessing": "ሂደት ላይ",
+    "statusPublishing": "ታተም ላይ",
+    "statusDownloading": "ማውረድ ላይ",
+    "statusDownloadingPercent": "ማውረድ {{percent}}%",
+    "statusQueued": "ወረፋ ውስጥ",
+    "detailDuplicate": "ያ ቪዲዮ ቀድሞ በእርስዎ ፕሮፋይል ላይ ነበር።",
+    "detailWaiting": "ወረፋውን ጠብቆ ነው።",
+    "toastQueued": "ወረፋ ውስጥ — ሲጨርስ በእርስዎ ፕሮፋይል ላይ ታተማል።",
+    "toastRateLimited": "ደረጃ ውስን፣ የእርስዎ ሰቅ ወረፋ ውስጥ ነው እና በቅርቡ ይሰራል፣ ተመሳሳይ ሊንክ እንደገና ሞክር አያስፈልግህም ነገር ግን ተጨማሪ ወረፋ ለመስጠት ነፃ ነው።",
+    "toastImported": "ከ አስመጣ {{source}}!",
+    "toastDuplicate": "ያ ቪዲዮ ቀድሞውኑ ከውጭ ገብቷል ።",
+    "toastFailed": "ያ ማስመጣት አልተሳካም ።",
+    "errorUnsupported": "ከዚያ አገናኝ ማስመጣት አንችልም ። አንዱን ይሞክሩ: {{sources}}",
+    "errorNeedRights": "እባክዎን የዚህ ይዘት መብቶች እንዳለዎት ያረጋግጡ",
+    "errorClipboard": "ክሊፖቹን ማንበብ አልተቻለም — በምትኩ በእጅ ይለጥፉ",
+    "errorQueueFailed": "ያንን ማስመጣት መዘርጋት አልተቻለም"
   }
 }

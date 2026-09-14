@@ -38,7 +38,8 @@
     "prompt": "Prompt",
     "tv": "TV Yɛlɛmani",
     "arcade": "Arcade",
-    "stats": "Kunnafoni JƆNA"
+    "stats": "Kunnafoni JƆNA",
+    "converter": "Ka yɛlɛma"
   },
   "feed": {
     "home": "Kɛnɛ",
@@ -2917,5 +2918,42 @@
     "sent": "Ci cira",
     "toSelf": "I tɛ se ka tokenw ci i yɛrɛ ma",
     "insufficientOnChain": "Nin token ka balansi man ca chain kan"
+  },
+  "converter": {
+    "title": "Ka videwo nin bila sen kan",
+    "subtitle": "I ye videwo min sɔrɔ ka ban, i ka tɛmɛ o kan ka tɛmɛ o kan. I b'a fɛ ka min kɛ, o kɛ. U be boli ka taga ɲɔgɔn fɛ.",
+    "placeholder": "Aw ye videwo dɔ bila a kan",
+    "paste": "Paste ka koo",
+    "ownership": "N' ye nin gafe nin tigi ye, walima n' ye sira di a tigi ma k'a bila a ka site web kan.",
+    "import": "Fɛɛn minw be se ka kɛ jamana",
+    "addToQueue": "I ka kan ka to ka to ka kuma",
+    "queueHeading": "Fɛɛn minw be se ka kɛ jamana kɔnɔ",
+    "queueRunning": "{{n}} in the queue — a ka nɔgɔ ka tab nin datugu, u be to ka taga.",
+    "queueIdle": "Fɛɛn si tɛ se ka boli.",
+    "untitled": "O video ye min ye",
+    "thatSource": "o ye fɛɛrɛ ye",
+    "dismiss": "Fanga be mɔgɔ minw na, olu ka kan ka sɔn",
+    "viewPost": "A filɛ, a ye min fɔ",
+    "tryAgain": "Try tun tun tun",
+    "statusImported": "Fɛɛn minw be se ka kɛ jamana wɛrɛw la",
+    "statusAlreadyHere": "A be yan",
+    "statusFailed": "Fanga tɛ min na",
+    "statusRateLimited": "Fanga min be mɔgɔ la, o daan tɛ yen",
+    "statusProcessing": "Fɛɛrɛ dɔw",
+    "statusPublishing": "A ka gafew",
+    "statusDownloading": "Kalanbagaw ka kan ka min kɛ",
+    "statusQueued": "Ka to ka kuma",
+    "detailFailed": "A tun tɛ video lɔn.",
+    "detailRateLimited": "{{source}}is ratelimiting us. O ye n ka miiriya ye. O la, a tun be se ka kɛ ko a tun ye mɔgɔ min ye, a tun b'o tigi le ye.",
+    "detailDuplicate": "O videwo be sɔrɔ a ka ɔriganisasiyɔn ka ɔriganisasiyɔn ka ɔriganisas",
+    "detailWaiting": "A be miiri a ka waati la.",
+    "toastQueued": "Queed — a be bila i ka kunnafoniw kan tuma min na a be ban.",
+    "toastRateLimited": "O la, i tɛna se ka tɛmɛ o kan tugun. I tɛna se ka tɛmɛ o kan tugun.",
+    "toastImported": "A bɔra {{source}}!",
+    "toastDuplicate": "O videwo tun donna ka ban.",
+    "toastFailed": "O kɔrɔ ko, a tun be se ka kɛ ko a tun ye",
+    "errorNeedRights": "N'i b'a fɛ ka koo dɔ kɛ min be se k'i bali ka koo dɔ kɛ min be se k'i bali ka koo dɔ",
+    "errorClipboard": "Ne tɛ se ka n ka gafew kalan - n' tɛ se ka n ka gafew kalan",
+    "errorQueueFailed": "Ne tɛ se ka o fɔ"
   }
 }

@@ -170,6 +170,7 @@ export type AppStackParamList = {
   [ScreenNames.Stats]: undefined;
   [ScreenNames.CommunityDetail]: { slug: string };
   [ScreenNames.CommunityInvite]: { code: string };
+  [ScreenNames.Converter]: undefined;
   [ScreenNames.Glossary]: undefined;
   [ScreenNames.Guide]: undefined;
   [ScreenNames.Arcade]: undefined;

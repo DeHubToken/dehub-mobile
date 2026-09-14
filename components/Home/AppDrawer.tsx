@@ -97,6 +97,7 @@ const NAV_ITEMS: DrawerItem[] = [
   // Sits between Stores and Glossary, as on the web sidebar. Only the games
   // that work on a touchscreen are listed — see config/arcade-games.
   { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade, storefrontHidden: true },
+  { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter, requiresAuth: true },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },

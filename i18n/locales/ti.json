@@ -38,7 +38,8 @@
     "prompt": "ሕቶ",
     "tv": "ቀጥታ ቲቪ",
     "arcade": "ኣርኬድ",
-    "stats": "ቀጥታ ስታትስቲክስ"
+    "stats": "ቀጥታ ስታትስቲክስ",
+    "converter": "ለዋጢ"
   },
   "feed": {
     "home": "ገዛ",
@@ -2938,5 +2939,41 @@
     "sent": "ምምሕልላፍ ተላኢኹ",
     "toSelf": "ናብ ነብስኻ ቶከናት ክትሰድድ ኣይትኽእልን",
     "insufficientOnChain": "ነዚ ቶከን ኣብ ቸይን ዘይኣኽል ተረፍ"
+  },
+  "converter": {
+    "title": "ቪድዮ ኣምጽእ",
+    "subtitle": "ነቲ ኣቐዲምካ ዘሎካ ቪድዮ ብምትእስሳር ፡ ከም ጽሑፍ ኣብ መገለጺኻ ክንሕተም ኢና ። ንስኻትኩምሲ ብሚልዮናት ዚቝጸሩ ሓዊ ኸም እትቃጸሉ",
+    "placeholder": "ናይ ቪድዮ ሊንክ ጠውቑ",
+    "ownership": "ነዚ ትሕዝቶ እዚ ኣለኒ ፣ ወይ ድማ ነቲ መሰል ዘለዎ ሰብ ኣብ DeHub ክሕተም ፍቓድ ኣለኒ ።",
+    "import": "ኣምጽእ",
+    "addToQueue": "ናብ ጽርግያ ኣክሊልካ",
+    "queueHeading": "ኣምጽኦታትካ",
+    "queueRunning": "{{n}} ኣብ መስመር — ነዚ ታብ ንምዕጻው ውሑስ እዩ ፣ ይቕጽል ኣሎ ።",
+    "queueIdle": "ክሃድም ዝኽእል ነገር የለን ።",
+    "untitled": "ቪድዮ",
+    "thatSource": "እቲ መድረኽ",
+    "dismiss": "ምጥፋእ",
+    "viewPost": "ልኡኽ ርአ",
+    "tryAgain": "ደጊምኩም ፈትኑ",
+    "statusAlreadyHere": "ኣብዚ ሕጂ እዋን",
+    "statusFailed": "ኣይተዓወተን",
+    "statusRateLimited": "ውሱን መጠን",
+    "statusProcessing": "ኣብ መስርሕ",
+    "statusPublishing": "ሕትመት",
+    "statusDownloading": "ኣብ ምውራድ...",
+    "statusQueued": "ኩዌድ",
+    "detailFailed": "ነዚ ቪድዮ እዚ ክፈልጦም ኣይከኣልኩን ።",
+    "detailRateLimited": "{{source}} ዋጋ ይገድፈና እዩ ። እዚ ንበይኑ እዩ ዚኸይድ — እንደገና ኺሕባእ ዚኽእል ነገር የልቦን ።",
+    "detailDuplicate": "እዚ ቪድዮ እዚ ኣብ መገለጺኻ እዩ ነይሩ ።",
+    "detailWaiting": "ኣብ ዙርያኡ ድማ ተጸበዩ ።",
+    "toastQueued": "Queued — ምስ ተዛዘመ ናብ መገለጺኻ ይሓትት ።",
+    "toastRateLimited": "መጠን ውሑድ ፡ ሰቀላኻ ተኸቢሩ ፡ ASAP ክስርሓሉ እዩ ፡ ሓደ ዓይነት ሊንክ ክትፍትን ኣየድልየካን እዩ ፡ ግን ከምቲ እትደልዮ ክትስሕብ ትኽእል ኢኻ ።",
+    "toastImported": "ካብ {{source}}!",
+    "toastDuplicate": "እዚ ቪድዮ እዚ ድሮ ኣትዩ እዩ ።",
+    "toastFailed": "እዚ ኣምጽኦ እዚ ኣይተዓወተን ።",
+    "errorUnsupported": "ካብዚ ርክባት እዚ ክንኣቱ ኣይንኽእልን ኢና ። ሓደ ፈትኖ ፦ {{sources}}",
+    "errorNeedRights": "ነዚ ትሕዝቶ እዚ መሰል ከም ዘሎካ ኣረጋግጽ",
+    "errorClipboard": "ነቲ ክሊፕቦርድ ክነንብቦ ኣይከኣልኩን — ብኢድ ኣብ ክንዲ",
+    "errorQueueFailed": "ነዚ ኣምጽኦ እዚ ክኣክል ክኣክል ኣይከኣልኩን ።"
   }
 }

@@ -61,7 +61,8 @@ const destinations = [
   ['nav.staking', 'Dpay', false, { initialTab: 'stake' }], ['nav.superpowers', 'SuperPowers'],
   ['nav.governance', 'Governance'], ['nav.dao', 'Dao'], ['screens.work', 'Work'],
   ['nav.affiliate', 'Affiliate'], ['nav.careers', 'Careers'], ['screens.stores', 'Stores'],
-  ['nav.ads', 'Ads'], ['nav.tv', 'TV'], ['nav.arcade', 'Arcade'], ['nav.glossary', 'Glossary'], ['nav.guide', 'Guide'],
+  ['nav.ads', 'Ads'], ['nav.tv', 'TV'], ['nav.arcade', 'Arcade'],
+  ['nav.converter', 'Converter'], ['nav.glossary', 'Glossary'], ['nav.guide', 'Guide'],
 ] as const;
 
 beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; });
