@@ -541,19 +541,19 @@ const BADGE_IMAGES: Record<string, number> = {
 };
 
 const BADGE_OPTICS: Record<string, { scale: number; bottomInset: number }> = {
-  Crab: { scale: 1, bottomInset: 5 },
-  Lobster: { scale: 1.04, bottomInset: 4 },
-  Piranha: { scale: 1, bottomInset: 7 },
-  Tortoise: { scale: 1, bottomInset: 10 },
-  Cobra: { scale: 1, bottomInset: 4 },
-  Octopus: { scale: 1.02, bottomInset: 4 },
-  Crocodile: { scale: 1, bottomInset: 10 },
-  Dolphin: { scale: 1.03, bottomInset: 4 },
-  "Tiger Shark": { scale: 1.03, bottomInset: 5 },
+  Crab: { scale: 1, bottomInset: 8 },
+  Lobster: { scale: 1.04, bottomInset: 7 },
+  Piranha: { scale: 1, bottomInset: 8 },
+  Tortoise: { scale: 1, bottomInset: 11 },
+  Cobra: { scale: 1, bottomInset: 6 },
+  Octopus: { scale: 1.02, bottomInset: 7 },
+  Crocodile: { scale: 1, bottomInset: 11 },
+  Dolphin: { scale: 1.03, bottomInset: 7 },
+  "Tiger Shark": { scale: 1.03, bottomInset: 6 },
   "Killer Whale": { scale: 1.04, bottomInset: 6 },
-  "Great White Shark": { scale: 1.04, bottomInset: 4 },
-  "Blue Whale": { scale: 1.1, bottomInset: 11 },
-  Megalodon: { scale: 1.08, bottomInset: 4 },
+  "Great White Shark": { scale: 1.04, bottomInset: 8 },
+  "Blue Whale": { scale: 1.1, bottomInset: 6 },
+  Megalodon: { scale: 1.08, bottomInset: 10 },
 };
 
 // At compact sizes the source artwork's narrowest transparent edge is less
@@ -571,7 +571,7 @@ export function getBadgeOpticalStyle(
 ) {
   const tier = Object.keys(BADGE_IMAGES).find((name) => BADGE_IMAGES[name] === source);
   const optics = tier ? BADGE_OPTICS[tier] : undefined;
-  const renderedSize = size * 1.15 * (optics?.scale ?? 1);
+  const renderedSize = size * 1.2 * (optics?.scale ?? 1);
   const outerSize = renderedSize + BADGE_ARTWORK_GUTTER * 2;
   // Web sits the visible check on the text baseline. Native centres the
   // font's ascent+descent block inside whatever line box the Text has, so the
