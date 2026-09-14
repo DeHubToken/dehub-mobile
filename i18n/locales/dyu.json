@@ -2974,5 +2974,25 @@
     "ppvUnlock": "PPV dayɛlɛli",
     "noEarningsYet": "Sɔrɔ tɛ fɔlɔ",
     "noEarningsDesc": "Tipw ni PPV feereli bɛna bɔ yan"
+  },
+  "earningsVs": {
+    "title": "Ka suma ni plateforme wɛrɛw ye",
+    "subtitle": "I ka DeHub sɔrɔ yɛrɛ ni filɛli kelenw tun bɛna sara yɔrɔ wɛrɛ la.",
+    "earnedOnDehub": "DeHub la sɔrɔlen",
+    "priceUnavailable": "USD sɔngɔ tɛ sɔrɔ",
+    "totalViews": "Filɛli bɛɛ lajɛlen",
+    "acrossPosts": "sɛbɛn {{count}} kɔnɔ",
+    "yourRpm": "I ka DeHub RPM",
+    "per1000": "filɛli 1 000 kelen kelen na",
+    "typicalRange": "tuma caman na {{range}} 1 000 na",
+    "onDehub": "{{amount}} DeHub la",
+    "rpmA11y": "{{platform}} ka RPM dolar la filɛli 1 000 na",
+    "estimatorLabel": "I ka jate tɛ? Filɛli hakɛ o hakɛ lajɛ",
+    "estimatorPlaceholder": "i n'a fɔ 250000",
+    "noteYoutube": "YouTube ye 45% ta jagofɛn sɔrɔ la kɔfɛ. A bɛ yɛlɛma kosɛbɛ ka kɛɲɛ ni siratigɛ ni filɛlikɛla ka jamana ye.",
+    "noteTwitch": "Jagofɛn sɔrɔ dɔrɔn — subs ni bits tɛ a la, o de ka ca kosɛbɛ tuma caman na.",
+    "noteTiktok": "Creator Rewards. A ka dɔgɔn kosɛbɛ filɛli kelen na; hakɛ caya de ye a bɛɛ ye.",
+    "noteReels": "Bonus porogaramuw ye weleli dɔrɔn ye, ani u datugura siɲɛ caman.",
+    "footnote": "Kɛlɛbagaw ka jatew ye jateminɛw ye ka bɔ baarakɛcogo hakɛw la minnu bɔra kɛnɛ kan, u tɛ sarali sɛgɛsɛgɛlenw ye. RPM yɛrɛ bɛ yɛlɛma kosɛbɛ ka kɛɲɛ ni siratigɛ, lamɛnnikɛlaw ka jamana ani filɛli waati ye, o la i ka sara kelen kelen bɛɛ yɛlɛma walisa a ka bɛn i ka sɔrɔ yɛrɛ ma. DeHub ka jate ye i ka tip sɔrɔ yɛrɛ ye min yɛlɛmana ni DHB sɔngɔ ye sisan, ani abonema, PPV ni butiki feereli tɛ a la. Filɛliw lajɛra i ka sɛbɛn kɔfɛ 100 la."
   }
 }

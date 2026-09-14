@@ -3103,5 +3103,25 @@
     "ppvUnlock": "Desbloqueio PPV",
     "noEarningsYet": "Ainda sem ganhos",
     "noEarningsDesc": "Gorjetas e vendas PPV aparecerão aqui"
+  },
+  "earningsVs": {
+    "title": "Comparado a outras plataformas",
+    "subtitle": "Seus ganhos reais no DeHub contra o que as mesmas visualizações teriam pago em outro lugar.",
+    "earnedOnDehub": "Ganho no DeHub",
+    "priceUnavailable": "Preço em USD indisponível",
+    "totalViews": "Visualizações totais",
+    "acrossPosts": "em {{count}} posts",
+    "yourRpm": "Seu RPM no DeHub",
+    "per1000": "por 1.000 visualizações",
+    "typicalRange": "normalmente {{range}} por 1.000",
+    "onDehub": "{{amount}} no DeHub",
+    "rpmA11y": "RPM do {{platform}} em dólares por 1.000 visualizações",
+    "estimatorLabel": "Não são seus números? Teste qualquer contagem de visualizações",
+    "estimatorPlaceholder": "ex. 250000",
+    "noteYoutube": "Depois do corte de 45% do YouTube sobre a receita de anúncios. Varia mais conforme o nicho e o país do espectador.",
+    "noteTwitch": "Apenas receita de anúncios — sem subs e bits, que costumam ser a parte maior.",
+    "noteTiktok": "Creator Rewards. Famoso por pagar pouquíssimo por visualização; o modelo inteiro é escala.",
+    "noteReels": "Os programas de bônus são apenas por convite e foram encerrados repetidas vezes.",
+    "footnote": "Os números dos concorrentes são estimativas a partir de faixas publicadas do setor, não pagamentos medidos: o RPM real varia muito conforme o nicho, o país do público e o tempo de exibição, então edite cada taxa para refletir o que você realmente ganha. O número do DeHub é sua renda real de gorjetas convertida pelo preço ao vivo do DHB e não inclui assinaturas, PPV nem vendas da loja. As visualizações são somadas dos seus 100 posts mais recentes."
   }
 }

@@ -3029,5 +3029,25 @@
     "ppvUnlock": "PPV-avaus",
     "noEarningsYet": "Ei vielä tuloja",
     "noEarningsDesc": "Tipit ja PPV-myynti näkyvät täällä"
+  },
+  "earningsVs": {
+    "title": "Verrattuna muihin alustoihin",
+    "subtitle": "Todelliset DeHub-tulosi verrattuna siihen, mitä samat katselut olisivat maksaneet muualla.",
+    "earnedOnDehub": "Ansaittu DeHubissa",
+    "priceUnavailable": "USD-hinta ei saatavilla",
+    "totalViews": "Katseluja yhteensä",
+    "acrossPosts": "{{count}} julkaisussa",
+    "yourRpm": "DeHub-RPM:si",
+    "per1000": "per 1 000 katselua",
+    "typicalRange": "tyypillisesti {{range}} per 1 000",
+    "onDehub": "{{amount}} DeHubissa",
+    "rpmA11y": "{{platform}}-RPM dollareina per 1 000 katselua",
+    "estimatorLabel": "Eivät sinun lukusi? Kokeile mitä tahansa katselumäärää",
+    "estimatorPlaceholder": "esim. 250000",
+    "noteYoutube": "YouTuben 45 %:n mainostulo-osuuden jälkeen. Vaihtelee eniten aiheen ja katsojan maan mukaan.",
+    "noteTwitch": "Vain mainostulot — ei sisällä tilauksia eikä bittejä, jotka ovat yleensä suurempi osa.",
+    "noteTiktok": "Creator Rewards. Tunnetusti matala per katselu; koko malli perustuu volyymiin.",
+    "noteReels": "Bonusohjelmat ovat vain kutsusta ja niitä on toistuvasti ajettu alas.",
+    "footnote": "Kilpailijoiden luvut ovat arvioita julkaistuista toimialan vaihteluväleistä, eivät mitattuja maksuja — todellinen RPM vaihtelee paljon aiheen, yleisön maan ja katseluajan mukaan, joten muokkaa jokainen taso vastaamaan todellisia tulojasi. DeHubin luku on todellinen juomarahatulosi muunnettuna DHB:n reaaliaikaiseen hintaan, eikä se sisällä tilauksia, PPV:tä tai kauppamyyntiä. Katselut lasketaan yhteen 100 viimeisimmästä julkaisustasi."
   }
 }

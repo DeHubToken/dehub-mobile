@@ -2850,5 +2850,25 @@
     "ppvUnlock": "PPV unlock",
     "noEarningsYet": "No earnings yet",
     "noEarningsDesc": "Tips and PPV sales go show here"
+  },
+  "earningsVs": {
+    "title": "Compared to other platforms",
+    "subtitle": "Your real DeHub earnings against wetin di same views for don pay for another place.",
+    "earnedOnDehub": "Wetin you earn for DeHub",
+    "priceUnavailable": "USD price no dey",
+    "totalViews": "Total views",
+    "acrossPosts": "from {{count}} posts",
+    "yourRpm": "Your DeHub RPM",
+    "per1000": "for every 1,000 views",
+    "typicalRange": "normally {{range}} for every 1,000",
+    "onDehub": "{{amount}} for DeHub",
+    "rpmA11y": "{{platform}} RPM for dollars for every 1,000 views",
+    "estimatorLabel": "Na no your numbers? Try any view count",
+    "estimatorPlaceholder": "e.g. 250000",
+    "noteYoutube": "After YouTube take im 45% ad cut. E dey change pass by niche and di country wey di viewer dey.",
+    "noteTwitch": "Na only ad money — e no add subs and bits, wey usually be di bigger share.",
+    "noteTiktok": "Creator Rewards. E well known say e low per view; na di scale be di whole model.",
+    "noteReels": "Bonus programmes na invite-only and dem don close am plenty times.",
+    "footnote": "Competitor figures na estimates from industry ranges wey dem publish, no be payouts wey dem measure — real RPM dey change well-well by niche, audience country and watch time, so edit each rate make e match wetin you really dey earn. Di DeHub figure na your real tip income wey dem convert for live DHB price, and e no add subscriptions, PPV or store sales. Views na sum from your last 100 posts."
   }
 }

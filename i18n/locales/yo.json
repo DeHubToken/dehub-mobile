@@ -3019,5 +3019,25 @@
     "ppvUnlock": "Ìṣí PPV",
     "noEarningsYet": "Kò tíì sí owó tó wọlé",
     "noEarningsDesc": "Àwọn ẹ̀bùn àti títà PPV yóò hàn níbí"
+  },
+  "earningsVs": {
+    "title": "Ní ìfiwéra pẹ̀lú àwọn pẹpẹ mìíràn",
+    "subtitle": "Owó gidi tí o rí lórí DeHub ní ìfiwéra pẹ̀lú ohun tí ìwòye kan náà ì bá san níbòmíràn.",
+    "earnedOnDehub": "Tí a rí lórí DeHub",
+    "priceUnavailable": "Iye USD kò sí",
+    "totalViews": "Àpapọ̀ ìwòye",
+    "acrossPosts": "ní àwọn ìfiránṣẹ́ {{count}}",
+    "yourRpm": "RPM DeHub rẹ",
+    "per1000": "fún gbogbo ìwòye 1,000",
+    "typicalRange": "lọ́pọ̀ ìgbà {{range}} fún 1,000",
+    "onDehub": "{{amount}} lórí DeHub",
+    "rpmA11y": "RPM {{platform}} ní dọ́là fún ìwòye 1,000",
+    "estimatorLabel": "Kì í ṣe àwọn nọ́mbà rẹ? Gbìyànjú iye ìwòye èyíkéyìí",
+    "estimatorPlaceholder": "àpẹẹrẹ 250000",
+    "noteYoutube": "Lẹ́yìn ìdá 45% tí YouTube gbà lára owó ìpolówó. Ó ń yí padà jù nípa ẹ̀ka àti orílẹ̀-èdè olùwòran.",
+    "noteTwitch": "Owó ìpolówó nìkan — kò ní àwọn sub àti bits nínú, tí wọ́n sábà máa ń jẹ́ ìpín tó tóbi jù.",
+    "noteTiktok": "Creator Rewards. Ó gbajúmọ̀ fún kíkéré rẹ̀ lórí ìwòye kọ̀ọ̀kan; ìwọ̀n ni gbogbo àwòṣe náà.",
+    "noteReels": "Àwọn ètò ẹ̀bùn jẹ́ fún àwọn tí a pè nìkan, a sì ti tì wọ́n pa léraléra.",
+    "footnote": "Àwọn nọ́mbà àwọn olùdíje jẹ́ ìfojúsùn láti inú ìwọ̀n ilé-iṣẹ́ tí a tẹ̀jáde, kì í ṣe owó tí a wọn. RPM gidi yàtọ̀ gidigidi nípa ẹ̀ka, orílẹ̀-èdè àwọn olùwòran àti àkókò wíwò, nítorí náà ṣàtúnṣe iye kọ̀ọ̀kan kí ó bá ohun tí o ń rí gan-an mu. Nọ́mbà DeHub ni owó ẹ̀bùn gidi rẹ tí a yí padà ní iye DHB tààrà, kò sì ní ìforúkọsílẹ̀, PPV tàbí títa ilé-ìtajà nínú. A ṣàkójọ ìwòye láti inú àwọn ìfiránṣẹ́ 100 tí ó ṣẹ̀ṣẹ̀ kọjá."
   }
 }

@@ -3146,5 +3146,25 @@
     "ppvUnlock": "PPV-ontsluiting",
     "noEarningsYet": "Nog geen verdienste nie",
     "noEarningsDesc": "Fooitjies en PPV-verkope sal hier verskyn"
+  },
+  "earningsVs": {
+    "title": "Teenoor ander platforms",
+    "subtitle": "Jou werklike DeHub-verdienste teenoor wat dieselfde kyke elders sou betaal het.",
+    "earnedOnDehub": "Op DeHub verdien",
+    "priceUnavailable": "USD-prys nie beskikbaar nie",
+    "totalViews": "Totale kyke",
+    "acrossPosts": "oor {{count}} plasings",
+    "yourRpm": "Jou DeHub-RPM",
+    "per1000": "per 1 000 kyke",
+    "typicalRange": "tipies {{range}} per 1 000",
+    "onDehub": "{{amount}} op DeHub",
+    "rpmA11y": "{{platform}} se RPM in dollars per 1 000 kyke",
+    "estimatorLabel": "Nie jou syfers nie? Probeer enige aantal kyke",
+    "estimatorPlaceholder": "bv. 250000",
+    "noteYoutube": "Ná YouTube se 45%-snit van advertensie-inkomste. Wissel die meeste volgens nis en kykerland.",
+    "noteTwitch": "Slegs advertensie-inkomste — sluit subs en bits uit, wat gewoonlik die groter deel is.",
+    "noteTiktok": "Creator Rewards. Berug laag per kyk; skaal is die hele model.",
+    "noteReels": "Bonusprogramme is slegs op uitnodiging en is herhaaldelik afgeskaal.",
+    "footnote": "Mededingersyfers is skattings uit gepubliseerde bedryfsreekse, nie gemete uitbetalings nie — werklike RPM wissel sterk volgens nis, gehoorland en kyktyd, wysig dus elke koers om by jou werklike verdienste te pas. Die DeHub-syfer is jou werklike fooitjie-inkomste teen die lewendige DHB-prys omgeskakel, en sluit intekeninge, PPV en winkelverkope uit. Kyke word uit jou 100 mees onlangse plasings opgetel."
   }
 }

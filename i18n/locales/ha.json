@@ -3019,5 +3019,25 @@
     "ppvUnlock": "Buɗewar PPV",
     "noEarningsYet": "Babu riba tukuna",
     "noEarningsDesc": "Tips da sayar da PPV za su bayyana a nan"
+  },
+  "earningsVs": {
+    "title": "Idan aka kwatanta da sauran dandamali",
+    "subtitle": "Ainihin ribar ka a DeHub idan aka kwatanta da abin da wannan kallon zai biya a wani wuri.",
+    "earnedOnDehub": "An samu a DeHub",
+    "priceUnavailable": "Farashin USD babu",
+    "totalViews": "Jimlar kallo",
+    "acrossPosts": "a cikin saƙonni {{count}}",
+    "yourRpm": "RPM ɗinka na DeHub",
+    "per1000": "kowane kallo 1,000",
+    "typicalRange": "yawanci {{range}} kowane 1,000",
+    "onDehub": "{{amount}} a DeHub",
+    "rpmA11y": "RPM na {{platform}} da dala kowane kallo 1,000",
+    "estimatorLabel": "Ba lambobinka ba? Gwada duk adadin kallo",
+    "estimatorPlaceholder": "misali 250000",
+    "noteYoutube": "Bayan YouTube ya ɗauki kashi 45% na kuɗin talla. Yana canzawa sosai bisa ga fanni da ƙasar mai kallo.",
+    "noteTwitch": "Kuɗin talla kawai — ban da subs da bits, waɗanda yawanci sune babban rabo.",
+    "noteTiktok": "Creator Rewards. An san shi da ƙarancin kuɗi kowane kallo; girman lamba shine dukan tsarin.",
+    "noteReels": "Shirye-shiryen kari na gayyata ne kawai kuma an rufe su sau da yawa.",
+    "footnote": "Lambobin masu fafatawa kiyasi ne daga kewayon masana'antu da aka buga, ba biyan da aka auna ba — RPM na gaskiya yana bambanta sosai bisa ga fanni, ƙasar masu sauraro da lokacin kallo, don haka ka gyara kowanne kudi ya dace da abin da kake samu da gaske. Lambar DeHub ita ce ainihin kuɗin tip ɗinka da aka juya kan farashin DHB kai tsaye, kuma ba ta haɗa da biyan kuɗi, PPV ko sayar da kaya ba. An tara kallo daga sabbin saƙonninka 100."
   }
 }

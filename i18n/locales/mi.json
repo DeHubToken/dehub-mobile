@@ -3014,5 +3014,25 @@
     "ppvUnlock": "Wetenga PPV",
     "noEarningsYet": "Kāore anō he moni whiwhi",
     "noEarningsDesc": "Ka puta ngā tips me ngā hokonga PPV ki konei"
+  },
+  "earningsVs": {
+    "title": "Whakataurite ki ētahi atu papatono",
+    "subtitle": "Ō moni pono i DeHub ki te whakataurite ki ngā utu o aua mātakitaki i wāhi kē.",
+    "earnedOnDehub": "I riro mai i DeHub",
+    "priceUnavailable": "Kāore he utu USD",
+    "totalViews": "Tapeke mātakitaki",
+    "acrossPosts": "puta noa i ngā pānui {{count}}",
+    "yourRpm": "Tō RPM DeHub",
+    "per1000": "mō ia 1,000 mātakitaki",
+    "typicalRange": "te nuinga {{range}} mō ia 1,000",
+    "onDehub": "{{amount}} i DeHub",
+    "rpmA11y": "RPM {{platform}} ki te tāra mō ia 1,000 mātakitaki",
+    "estimatorLabel": "Ehara i ō tau? Whakamātauria tētahi tatauranga mātakitaki",
+    "estimatorPlaceholder": "hei tauira 250000",
+    "noteYoutube": "Whai muri i te 45% o te moni pānui ka tangohia e YouTube. Ko tēnei te mea rerekē rawa i runga i te momo me te whenua o te kaimātaki.",
+    "noteTwitch": "Ko te moni pānui anake — kāore ngā subs me ngā bits, ko ērā te wāhanga nui ake i te nuinga o te wā.",
+    "noteTiktok": "Creator Rewards. Rongonui mō te iti o te utu mō ia mātakitaki; ko te rahi te tauira katoa.",
+    "noteReels": "He mea pōwhiri anake ngā kaupapa bonus, ā, kua whakakorea i ngā wā maha.",
+    "footnote": "He whakatau ngā tatauranga a ngā hoariri mai i ngā awhe ahumahi kua whakaputaina, ehara i te utu i inea — he tino rerekē te RPM pono i runga i te momo kaupapa, te whenua o te hunga mātakitaki me te roanga o te mātakitaki, nō reira whakatikaina ia utu kia rite ki tāu e whiwhi pono ana. Ko te tatauranga DeHub ko tō moni tip pono kua hurihia ki te utu DHB ora, ā, kāore e uru ngā ohaurunga, PPV, hokonga toa rānei. Ka tāpiritia ngā mātakitaki mai i ō pānui 100 hou rawa."
   }
 }
