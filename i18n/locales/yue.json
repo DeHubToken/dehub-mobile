@@ -3077,5 +3077,27 @@
     "clearHistoryBody": "呢個會由你嘅記錄中移除所有已觀看嘅帖子。",
     "clear": "清除",
     "clearFailed": "無法清除記錄，請再試。"
+  },
+  "savedPosts": {
+    "allSaved": "全部收藏",
+    "collections": "收藏夾",
+    "newCollection": "新建收藏夾",
+    "editCollection": "編輯收藏夾",
+    "editCollectionDetails": "編輯收藏夾資料",
+    "deleteCollection": "刪除收藏夾",
+    "collectionSubtitle": "書籤收藏夾",
+    "collectionOptions": "收藏夾選項",
+    "namePlaceholder": "名稱",
+    "descriptionPlaceholder": "描述（可選）",
+    "collectionNamePlaceholder": "收藏夾名稱",
+    "fetchFoldersFailed": "無法取得資料夾",
+    "folderCreated": "已建立資料夾 \"{{name}}\"",
+    "createFolderFailed": "無法建立資料夾",
+    "folderUpdated": "資料夾已更新",
+    "updateFolderFailed": "無法更新資料夾",
+    "deleteFolderTitle": "刪除資料夾",
+    "deleteFolderBody": "確定要刪除 \"{{name}}\" 嗎？入面已儲存嘅帖子唔會喺你嘅收藏清單中刪除。",
+    "folderDeleted": "資料夾已刪除",
+    "deleteFolderFailed": "無法刪除資料夾"
   }
 }

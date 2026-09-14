@@ -3073,5 +3073,27 @@
     "clearHistoryBody": "ఇది చూసిన అన్ని పోస్టులను మీ చరిత్ర నుండి తొలగిస్తుంది.",
     "clear": "తొలగించు",
     "clearFailed": "చరిత్రను తొలగించలేకపోయాము. మళ్లీ ప్రయత్నించండి."
+  },
+  "savedPosts": {
+    "allSaved": "సేవ్ చేసినవన్నీ",
+    "collections": "సేకరణలు",
+    "newCollection": "కొత్త సేకరణ",
+    "editCollection": "సేకరణను సవరించండి",
+    "editCollectionDetails": "సేకరణ వివరాలను సవరించండి",
+    "deleteCollection": "సేకరణను తొలగించండి",
+    "collectionSubtitle": "బుక్‌మార్క్ సేకరణ",
+    "collectionOptions": "సేకరణ ఎంపికలు",
+    "namePlaceholder": "పేరు",
+    "descriptionPlaceholder": "వివరణ (ఐచ్ఛికం)",
+    "collectionNamePlaceholder": "సేకరణ పేరు",
+    "fetchFoldersFailed": "ఫోల్డర్‌లను పొందలేకపోయాము",
+    "folderCreated": "\"{{name}}\" ఫోల్డర్ సృష్టించబడింది",
+    "createFolderFailed": "ఫోల్డర్ సృష్టించలేకపోయాము",
+    "folderUpdated": "ఫోల్డర్ నవీకరించబడింది",
+    "updateFolderFailed": "ఫోల్డర్ నవీకరించలేకపోయాము",
+    "deleteFolderTitle": "ఫోల్డర్‌ను తొలగించండి",
+    "deleteFolderBody": "\"{{name}}\" ను తొలగించాలనుకుంటున్నారా? లోపల సేవ్ చేసిన పోస్టులు మీ సేవ్ జాబితా నుండి తొలగించబడవు.",
+    "folderDeleted": "ఫోల్డర్ తొలగించబడింది",
+    "deleteFolderFailed": "ఫోల్డర్ తొలగించలేకపోయాము"
   }
 }

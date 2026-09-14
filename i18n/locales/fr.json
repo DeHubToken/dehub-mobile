@@ -3153,5 +3153,27 @@
     "clearHistoryBody": "Cela supprimera toutes les publications vues de votre historique.",
     "clear": "Effacer",
     "clearFailed": "Impossible d'effacer l'historique. Réessayez."
+  },
+  "savedPosts": {
+    "allSaved": "Tout l'enregistré",
+    "collections": "Collections",
+    "newCollection": "Nouvelle collection",
+    "editCollection": "Modifier la collection",
+    "editCollectionDetails": "Modifier les détails de la collection",
+    "deleteCollection": "Supprimer la collection",
+    "collectionSubtitle": "Collection de favoris",
+    "collectionOptions": "Options de la collection",
+    "namePlaceholder": "Nom",
+    "descriptionPlaceholder": "Description (facultatif)",
+    "collectionNamePlaceholder": "Nom de la collection",
+    "fetchFoldersFailed": "Impossible de récupérer les dossiers",
+    "folderCreated": "Dossier « {{name}} » créé",
+    "createFolderFailed": "Impossible de créer le dossier",
+    "folderUpdated": "Dossier mis à jour",
+    "updateFolderFailed": "Impossible de mettre à jour le dossier",
+    "deleteFolderTitle": "Supprimer le dossier",
+    "deleteFolderBody": "Voulez-vous vraiment supprimer « {{name}} » ? Les publications enregistrées à l'intérieur ne seront pas supprimées de votre liste d'enregistrements.",
+    "folderDeleted": "Dossier supprimé",
+    "deleteFolderFailed": "Impossible de supprimer le dossier"
   }
 }

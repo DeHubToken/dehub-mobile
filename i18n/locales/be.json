@@ -3112,5 +3112,27 @@
     "clearHistoryBody": "Гэта выдаліць усе прагледжаныя пасты з вашай гісторыі.",
     "clear": "Ачысціць",
     "clearFailed": "Не ўдалося ачысціць гісторыю. Паспрабуйце яшчэ раз."
+  },
+  "savedPosts": {
+    "allSaved": "Усе захаваныя",
+    "collections": "Калекцыі",
+    "newCollection": "Новая калекцыя",
+    "editCollection": "Рэдагаваць калекцыю",
+    "editCollectionDetails": "Рэдагаваць звесткі калекцыі",
+    "deleteCollection": "Выдаліць калекцыю",
+    "collectionSubtitle": "Калекцыя закладак",
+    "collectionOptions": "Параметры калекцыі",
+    "namePlaceholder": "Назва",
+    "descriptionPlaceholder": "Апісанне (неабавязкова)",
+    "collectionNamePlaceholder": "Назва калекцыі",
+    "fetchFoldersFailed": "Не ўдалося атрымаць папкі",
+    "folderCreated": "Папка \"{{name}}\" створана",
+    "createFolderFailed": "Не ўдалося стварыць папку",
+    "folderUpdated": "Папка абноўлена",
+    "updateFolderFailed": "Не ўдалося абнавіць папку",
+    "deleteFolderTitle": "Выдаліць папку",
+    "deleteFolderBody": "Сапраўды выдаліць \"{{name}}\"? Захаваныя пасты ўнутры не будуць выдалены са спіса захаваных.",
+    "folderDeleted": "Папка выдалена",
+    "deleteFolderFailed": "Не ўдалося выдаліць папку"
   }
 }

@@ -3149,5 +3149,27 @@
     "clearHistoryBody": "Questo rimuoverà tutti i post visti dalla tua cronologia.",
     "clear": "Cancella",
     "clearFailed": "Impossibile cancellare la cronologia. Riprova."
+  },
+  "savedPosts": {
+    "allSaved": "Tutti i salvati",
+    "collections": "Raccolte",
+    "newCollection": "Nuova raccolta",
+    "editCollection": "Modifica raccolta",
+    "editCollectionDetails": "Modifica dettagli raccolta",
+    "deleteCollection": "Elimina raccolta",
+    "collectionSubtitle": "Raccolta di segnalibri",
+    "collectionOptions": "Opzioni raccolta",
+    "namePlaceholder": "Nome",
+    "descriptionPlaceholder": "Descrizione (facoltativa)",
+    "collectionNamePlaceholder": "Nome della raccolta",
+    "fetchFoldersFailed": "Impossibile recuperare le cartelle",
+    "folderCreated": "Cartella \"{{name}}\" creata",
+    "createFolderFailed": "Impossibile creare la cartella",
+    "folderUpdated": "Cartella aggiornata",
+    "updateFolderFailed": "Impossibile aggiornare la cartella",
+    "deleteFolderTitle": "Elimina cartella",
+    "deleteFolderBody": "Vuoi davvero eliminare \"{{name}}\"? I post salvati al suo interno non verranno eliminati dal tuo elenco dei salvati.",
+    "folderDeleted": "Cartella eliminata",
+    "deleteFolderFailed": "Impossibile eliminare la cartella"
   }
 }

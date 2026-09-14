@@ -3079,5 +3079,27 @@
     "clearHistoryBody": "Hii itaondoa machapisho yote yaliyotazamwa kutoka historia yako.",
     "clear": "Futa",
     "clearFailed": "Imeshindwa kufuta historia. Tafadhali jaribu tena."
+  },
+  "savedPosts": {
+    "allSaved": "Zote zilizohifadhiwa",
+    "collections": "Makusanyo",
+    "newCollection": "Mkusanyo mpya",
+    "editCollection": "Hariri mkusanyo",
+    "editCollectionDetails": "Hariri maelezo ya mkusanyo",
+    "deleteCollection": "Futa mkusanyo",
+    "collectionSubtitle": "Mkusanyo wa alamisho",
+    "collectionOptions": "Chaguo za mkusanyo",
+    "namePlaceholder": "Jina",
+    "descriptionPlaceholder": "Maelezo (si lazima)",
+    "collectionNamePlaceholder": "Jina la mkusanyo",
+    "fetchFoldersFailed": "Imeshindwa kupata folda",
+    "folderCreated": "Folda \"{{name}}\" imeundwa",
+    "createFolderFailed": "Imeshindwa kuunda folda",
+    "folderUpdated": "Folda imesasishwa",
+    "updateFolderFailed": "Imeshindwa kusasisha folda",
+    "deleteFolderTitle": "Futa folda",
+    "deleteFolderBody": "Una uhakika unataka kufuta \"{{name}}\"? Machapisho yaliyohifadhiwa ndani hayatafutwa kwenye orodha yako ya Yaliyohifadhiwa.",
+    "folderDeleted": "Folda imefutwa",
+    "deleteFolderFailed": "Imeshindwa kufuta folda"
   }
 }

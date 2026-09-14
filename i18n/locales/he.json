@@ -3066,5 +3066,27 @@
     "clearHistoryBody": "פעולה זו תסיר את כל הפוסטים שנצפו מההיסטוריה שלך.",
     "clear": "נקה",
     "clearFailed": "ניקוי ההיסטוריה נכשל. נסה שוב."
+  },
+  "savedPosts": {
+    "allSaved": "כל השמורים",
+    "collections": "אוספים",
+    "newCollection": "אוסף חדש",
+    "editCollection": "ערוך אוסף",
+    "editCollectionDetails": "ערוך פרטי אוסף",
+    "deleteCollection": "מחק אוסף",
+    "collectionSubtitle": "אוסף סימניות",
+    "collectionOptions": "אפשרויות אוסף",
+    "namePlaceholder": "שם",
+    "descriptionPlaceholder": "תיאור (אופציונלי)",
+    "collectionNamePlaceholder": "שם האוסף",
+    "fetchFoldersFailed": "טעינת התיקיות נכשלה",
+    "folderCreated": "התיקייה \"{{name}}\" נוצרה",
+    "createFolderFailed": "יצירת התיקייה נכשלה",
+    "folderUpdated": "התיקייה עודכנה",
+    "updateFolderFailed": "עדכון התיקייה נכשל",
+    "deleteFolderTitle": "מחק תיקייה",
+    "deleteFolderBody": "בטוח שברצונך למחוק את \"{{name}}\"? הפוסטים השמורים בתוכה לא יימחקו מרשימת השמורים שלך.",
+    "folderDeleted": "התיקייה נמחקה",
+    "deleteFolderFailed": "מחיקת התיקייה נכשלה"
   }
 }

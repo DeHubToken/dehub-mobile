@@ -3062,5 +3062,27 @@
     "clearHistoryBody": "هي توهان جي تاريخ مان سڀ ڏٺل پوسٽون هٽائيندو.",
     "clear": "صاف ڪريو",
     "clearFailed": "تاريخ صاف نه ٿي سگهي. ٻيهر ڪوشش ڪريو."
+  },
+  "savedPosts": {
+    "allSaved": "سڀ محفوظ",
+    "collections": "مجموعائون",
+    "newCollection": "نئين مجموعا",
+    "editCollection": "مجموعا ايڊٽ ڪريو",
+    "editCollectionDetails": "مجموعا جون تفصيلون ايڊٽ ڪريو",
+    "deleteCollection": "مجموعا ڊاهيو",
+    "collectionSubtitle": "بڪ مارڪ مجموعا",
+    "collectionOptions": "مجموعا جا آپشن",
+    "namePlaceholder": "نالو",
+    "descriptionPlaceholder": "تفصيل (اختياري)",
+    "collectionNamePlaceholder": "مجموعا جو نالو",
+    "fetchFoldersFailed": "فولڊر حاصل نه ٿي سگهيا",
+    "folderCreated": "فولڊر \"{{name}}\" ٺهي ويو",
+    "createFolderFailed": "فولڊر ٺاهي نه سگهيو",
+    "folderUpdated": "فولڊر اپڊيٽ ٿيو",
+    "updateFolderFailed": "فولڊر اپڊيٽ نه ٿي سگهيو",
+    "deleteFolderTitle": "فولڊر ڊاهيو",
+    "deleteFolderBody": "ڇا توهان پڪ سان \"{{name}}\" ڊاهڻ چاهيو ٿا؟ اندر محفوظ پوسٽون توهان جي محفوظ فهرست مان نه ڊهنديون.",
+    "folderDeleted": "فولڊر ڊهي ويو",
+    "deleteFolderFailed": "فولڊر ڊاهي نه سگهيو"
   }
 }

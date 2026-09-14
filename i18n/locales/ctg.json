@@ -3172,5 +3172,27 @@
     "clearHistoryBody": "ইতা অনর ইতিহাসর তুন দেখা সব পোস্ট সরাই দিব।",
     "clear": "মুছন",
     "clearFailed": "ইতিহাস মুছা ন যায়। আবার চেষ্টা গরন।"
+  },
+  "savedPosts": {
+    "allSaved": "সব সেভ করা",
+    "collections": "সংগ্রহ",
+    "newCollection": "নতুন সংগ্রহ",
+    "editCollection": "সংগ্রহ সম্পাদনা",
+    "editCollectionDetails": "সংগ্রহর বিবরণ সম্পাদনা",
+    "deleteCollection": "সংগ্রহ মুছন",
+    "collectionSubtitle": "বুকমার্ক সংগ্রহ",
+    "collectionOptions": "সংগ্রহর অপশন",
+    "namePlaceholder": "নাম",
+    "descriptionPlaceholder": "বিবরণ (ঐচ্ছিক)",
+    "collectionNamePlaceholder": "সংগ্রহর নাম",
+    "fetchFoldersFailed": "ফোল্ডার আনা ন যায়",
+    "folderCreated": "\"{{name}}\" ফোল্ডার বানানো অইছে",
+    "createFolderFailed": "ফোল্ডার বানানো ন যায়",
+    "folderUpdated": "ফোল্ডার আপডেট অইছে",
+    "updateFolderFailed": "ফোল্ডার আপডেট গরা ন যায়",
+    "deleteFolderTitle": "ফোল্ডার মুছন",
+    "deleteFolderBody": "অনে কি \"{{name}}\" মুছিতে চান? ভিতরর সেভ করা পোস্টগুন অনর সেভ তালিকার তুন মুছিব ন।",
+    "folderDeleted": "ফোল্ডার মুছা অইছে",
+    "deleteFolderFailed": "ফোল্ডার মুছা ন যায়"
   }
 }

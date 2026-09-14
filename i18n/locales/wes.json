@@ -2918,5 +2918,27 @@
     "clearHistoryBody": "Dis go remove all di posts wey you don watch from your history.",
     "clear": "Clear",
     "clearFailed": "We no fit clear di history. Abeg try again."
+  },
+  "savedPosts": {
+    "allSaved": "All Saved",
+    "collections": "Collections",
+    "newCollection": "New Collection",
+    "editCollection": "Edit Collection",
+    "editCollectionDetails": "Edit Collection Details",
+    "deleteCollection": "Delete Collection",
+    "collectionSubtitle": "Bookmark collection",
+    "collectionOptions": "Collection options",
+    "namePlaceholder": "Name",
+    "descriptionPlaceholder": "Description (Optional)",
+    "collectionNamePlaceholder": "Collection Name",
+    "fetchFoldersFailed": "We no fit fetch di folders",
+    "folderCreated": "Folder \"{{name}}\" don create",
+    "createFolderFailed": "We no fit create di folder",
+    "folderUpdated": "Folder don update",
+    "updateFolderFailed": "We no fit update di folder",
+    "deleteFolderTitle": "Delete Folder",
+    "deleteFolderBody": "You sure say you wan delete \"{{name}}\"? Di saved posts inside no go comot from your Saved list.",
+    "folderDeleted": "Folder don delete",
+    "deleteFolderFailed": "We no fit delete di folder"
   }
 }

@@ -3079,5 +3079,27 @@
     "clearHistoryBody": "Ovo će ukloniti sve pogledane objave iz tvoje povijesti.",
     "clear": "Izbriši",
     "clearFailed": "Brisanje povijesti nije uspjelo. Pokušaj ponovno."
+  },
+  "savedPosts": {
+    "allSaved": "Sve spremljeno",
+    "collections": "Zbirke",
+    "newCollection": "Nova zbirka",
+    "editCollection": "Uredi zbirku",
+    "editCollectionDetails": "Uredi pojedinosti zbirke",
+    "deleteCollection": "Izbriši zbirku",
+    "collectionSubtitle": "Zbirka oznaka",
+    "collectionOptions": "Opcije zbirke",
+    "namePlaceholder": "Naziv",
+    "descriptionPlaceholder": "Opis (nije obavezno)",
+    "collectionNamePlaceholder": "Naziv zbirke",
+    "fetchFoldersFailed": "Dohvaćanje mapa nije uspjelo",
+    "folderCreated": "Mapa \"{{name}}\" je stvorena",
+    "createFolderFailed": "Stvaranje mape nije uspjelo",
+    "folderUpdated": "Mapa ažurirana",
+    "updateFolderFailed": "Ažuriranje mape nije uspjelo",
+    "deleteFolderTitle": "Izbriši mapu",
+    "deleteFolderBody": "Sigurno želiš izbrisati \"{{name}}\"? Spremljene objave unutra neće biti izbrisane s tvog popisa spremljenih.",
+    "folderDeleted": "Mapa izbrisana",
+    "deleteFolderFailed": "Brisanje mape nije uspjelo"
   }
 }

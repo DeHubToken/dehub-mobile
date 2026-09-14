@@ -3036,5 +3036,27 @@
     "clearHistoryBody": "ذا بيشيل كل المنشورات اللي شفتها من سجلك.",
     "clear": "امسح",
     "clearFailed": "ما قدرنا نمسح السجل. حاول مرة ثانية."
+  },
+  "savedPosts": {
+    "allSaved": "كل المحفوظ",
+    "collections": "المجموعات",
+    "newCollection": "مجموعة جديدة",
+    "editCollection": "تعديل المجموعة",
+    "editCollectionDetails": "تعديل تفاصيل المجموعة",
+    "deleteCollection": "حذف المجموعة",
+    "collectionSubtitle": "مجموعة إشارات مرجعية",
+    "collectionOptions": "خيارات المجموعة",
+    "namePlaceholder": "الاسم",
+    "descriptionPlaceholder": "الوصف (اختياري)",
+    "collectionNamePlaceholder": "اسم المجموعة",
+    "fetchFoldersFailed": "ما قدرنا نجيب المجلدات",
+    "folderCreated": "انسوى المجلد \"{{name}}\"",
+    "createFolderFailed": "ما قدرنا نسوي المجلد",
+    "folderUpdated": "انحدّث المجلد",
+    "updateFolderFailed": "ما قدرنا نحدّث المجلد",
+    "deleteFolderTitle": "حذف المجلد",
+    "deleteFolderBody": "متأكد تبي تحذف \"{{name}}\"؟ المنشورات المحفوظة داخله ما راح تنحذف من قائمة محفوظاتك.",
+    "folderDeleted": "انحذف المجلد",
+    "deleteFolderFailed": "ما قدرنا نحذف المجلد"
   }
 }

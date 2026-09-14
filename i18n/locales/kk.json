@@ -3135,5 +3135,27 @@
     "clearHistoryBody": "Бұл қаралған барлық жазбаны тарихыңыздан жояды.",
     "clear": "Тазалау",
     "clearFailed": "Тарихты тазалау мүмкін болмады. Қайталап көріңіз."
+  },
+  "savedPosts": {
+    "allSaved": "Барлық сақталғандар",
+    "collections": "Жинақтар",
+    "newCollection": "Жаңа жинақ",
+    "editCollection": "Жинақты өңдеу",
+    "editCollectionDetails": "Жинақ мәліметтерін өңдеу",
+    "deleteCollection": "Жинақты жою",
+    "collectionSubtitle": "Бетбелгілер жинағы",
+    "collectionOptions": "Жинақ опциялары",
+    "namePlaceholder": "Атауы",
+    "descriptionPlaceholder": "Сипаттама (міндетті емес)",
+    "collectionNamePlaceholder": "Жинақ атауы",
+    "fetchFoldersFailed": "Қалталарды алу мүмкін болмады",
+    "folderCreated": "\"{{name}}\" қалтасы жасалды",
+    "createFolderFailed": "Қалтаны жасау мүмкін болмады",
+    "folderUpdated": "Қалта жаңартылды",
+    "updateFolderFailed": "Қалтаны жаңарту мүмкін болмады",
+    "deleteFolderTitle": "Қалтаны жою",
+    "deleteFolderBody": "\"{{name}}\" жойылсын ба? Ішіндегі сақталған жазбалар Сақталғандар тізімінен жойылмайды.",
+    "folderDeleted": "Қалта жойылды",
+    "deleteFolderFailed": "Қалтаны жою мүмкін болмады"
   }
 }

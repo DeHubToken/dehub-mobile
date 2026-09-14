@@ -3558,5 +3558,27 @@
     "clearHistoryBody": "Це видалить усі переглянуті дописи з вашої історії.",
     "clear": "Очистити",
     "clearFailed": "Не вдалося очистити історію. Спробуйте ще раз."
+  },
+  "savedPosts": {
+    "allSaved": "Усі збережені",
+    "collections": "Колекції",
+    "newCollection": "Нова колекція",
+    "editCollection": "Редагувати колекцію",
+    "editCollectionDetails": "Редагувати дані колекції",
+    "deleteCollection": "Видалити колекцію",
+    "collectionSubtitle": "Колекція закладок",
+    "collectionOptions": "Параметри колекції",
+    "namePlaceholder": "Назва",
+    "descriptionPlaceholder": "Опис (необов'язково)",
+    "collectionNamePlaceholder": "Назва колекції",
+    "fetchFoldersFailed": "Не вдалося отримати теки",
+    "folderCreated": "Теку \"{{name}}\" створено",
+    "createFolderFailed": "Не вдалося створити теку",
+    "folderUpdated": "Теку оновлено",
+    "updateFolderFailed": "Не вдалося оновити теку",
+    "deleteFolderTitle": "Видалити теку",
+    "deleteFolderBody": "Точно видалити \"{{name}}\"? Збережені дописи всередині не буде видалено з вашого списку збережених.",
+    "folderDeleted": "Теку видалено",
+    "deleteFolderFailed": "Не вдалося видалити теку"
   }
 }

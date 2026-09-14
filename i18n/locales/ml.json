@@ -3061,5 +3061,27 @@
     "clearHistoryBody": "ഇത് കണ്ട എല്ലാ പോസ്റ്റുകളും നിങ്ങളുടെ ചരിത്രത്തിൽ നിന്ന് നീക്കം ചെയ്യും.",
     "clear": "മായ്ക്കുക",
     "clearFailed": "ചരിത്രം മായ്ക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക."
+  },
+  "savedPosts": {
+    "allSaved": "സേവ് ചെയ്ത എല്ലാം",
+    "collections": "ശേഖരങ്ങൾ",
+    "newCollection": "പുതിയ ശേഖരം",
+    "editCollection": "ശേഖരം എഡിറ്റ് ചെയ്യുക",
+    "editCollectionDetails": "ശേഖര വിശദാംശങ്ങൾ എഡിറ്റ് ചെയ്യുക",
+    "deleteCollection": "ശേഖരം ഇല്ലാതാക്കുക",
+    "collectionSubtitle": "ബുക്ക്മാർക്ക് ശേഖരം",
+    "collectionOptions": "ശേഖര ഓപ്ഷനുകൾ",
+    "namePlaceholder": "പേര്",
+    "descriptionPlaceholder": "വിവരണം (ഐച്ഛികം)",
+    "collectionNamePlaceholder": "ശേഖരത്തിന്റെ പേര്",
+    "fetchFoldersFailed": "ഫോൾഡറുകൾ ലഭ്യമാക്കാനായില്ല",
+    "folderCreated": "\"{{name}}\" ഫോൾഡർ സൃഷ്ടിച്ചു",
+    "createFolderFailed": "ഫോൾഡർ സൃഷ്ടിക്കാനായില്ല",
+    "folderUpdated": "ഫോൾഡർ അപ്ഡേറ്റ് ചെയ്തു",
+    "updateFolderFailed": "ഫോൾഡർ അപ്ഡേറ്റ് ചെയ്യാനായില്ല",
+    "deleteFolderTitle": "ഫോൾഡർ ഇല്ലാതാക്കുക",
+    "deleteFolderBody": "\"{{name}}\" ഇല്ലാതാക്കണോ? അതിനുള്ളിലെ സേവ് ചെയ്ത പോസ്റ്റുകൾ നിങ്ങളുടെ സേവ് ചെയ്ത ലിസ്റ്റിൽ നിന്ന് ഇല്ലാതാകില്ല.",
+    "folderDeleted": "ഫോൾഡർ ഇല്ലാതാക്കി",
+    "deleteFolderFailed": "ഫോൾഡർ ഇല്ലാതാക്കാനായില്ല"
   }
 }

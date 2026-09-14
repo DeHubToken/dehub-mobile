@@ -3344,5 +3344,27 @@
     "clearHistoryBody": "Ini akan membuang semua siaran yang ditonton daripada sejarah anda.",
     "clear": "Kosongkan",
     "clearFailed": "Gagal mengosongkan sejarah. Sila cuba lagi."
+  },
+  "savedPosts": {
+    "allSaved": "Semua yang disimpan",
+    "collections": "Koleksi",
+    "newCollection": "Koleksi baharu",
+    "editCollection": "Edit koleksi",
+    "editCollectionDetails": "Edit butiran koleksi",
+    "deleteCollection": "Padam koleksi",
+    "collectionSubtitle": "Koleksi penanda halaman",
+    "collectionOptions": "Pilihan koleksi",
+    "namePlaceholder": "Nama",
+    "descriptionPlaceholder": "Penerangan (pilihan)",
+    "collectionNamePlaceholder": "Nama koleksi",
+    "fetchFoldersFailed": "Gagal mendapatkan folder",
+    "folderCreated": "Folder \"{{name}}\" dicipta",
+    "createFolderFailed": "Gagal mencipta folder",
+    "folderUpdated": "Folder dikemas kini",
+    "updateFolderFailed": "Gagal mengemas kini folder",
+    "deleteFolderTitle": "Padam folder",
+    "deleteFolderBody": "Anda pasti mahu memadam \"{{name}}\"? Siaran yang disimpan di dalamnya tidak akan dipadam daripada senarai Disimpan anda.",
+    "folderDeleted": "Folder dipadam",
+    "deleteFolderFailed": "Gagal memadam folder"
   }
 }

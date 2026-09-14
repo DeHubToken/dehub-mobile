@@ -3076,5 +3076,27 @@
     "clearHistoryBody": "这会从你的历史记录中移除所有已观看的帖子。",
     "clear": "清除",
     "clearFailed": "无法清除历史记录，请重试。"
+  },
+  "savedPosts": {
+    "allSaved": "全部收藏",
+    "collections": "收藏夹",
+    "newCollection": "新建收藏夹",
+    "editCollection": "编辑收藏夹",
+    "editCollectionDetails": "编辑收藏夹信息",
+    "deleteCollection": "删除收藏夹",
+    "collectionSubtitle": "书签收藏夹",
+    "collectionOptions": "收藏夹选项",
+    "namePlaceholder": "名称",
+    "descriptionPlaceholder": "描述（可选）",
+    "collectionNamePlaceholder": "收藏夹名称",
+    "fetchFoldersFailed": "无法获取文件夹",
+    "folderCreated": "已创建文件夹 \"{{name}}\"",
+    "createFolderFailed": "无法创建文件夹",
+    "folderUpdated": "文件夹已更新",
+    "updateFolderFailed": "无法更新文件夹",
+    "deleteFolderTitle": "删除文件夹",
+    "deleteFolderBody": "确定要删除 \"{{name}}\" 吗？里面已保存的帖子不会从你的收藏列表中删除。",
+    "folderDeleted": "文件夹已删除",
+    "deleteFolderFailed": "无法删除文件夹"
   }
 }

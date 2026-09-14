@@ -3143,5 +3143,27 @@
     "clearHistoryBody": "Kun maxxansaalee ilaalaman hunda seenaa kee irraa haqa.",
     "clear": "Haqi",
     "clearFailed": "Seenaa haquun hin milkoofne. Irra deebi'ii yaali."
+  },
+  "savedPosts": {
+    "allSaved": "Hunda kuufame",
+    "collections": "Walitti qabaa",
+    "newCollection": "Walitti qabaa haaraa",
+    "editCollection": "Walitti qabaa gulaali",
+    "editCollectionDetails": "Bal'ina walitti qabaa gulaali",
+    "deleteCollection": "Walitti qabaa haqi",
+    "collectionSubtitle": "Walitti qabaa mallattoo",
+    "collectionOptions": "Filannoo walitti qabaa",
+    "namePlaceholder": "Maqaa",
+    "descriptionPlaceholder": "Ibsa (filannoo)",
+    "collectionNamePlaceholder": "Maqaa walitti qabaa",
+    "fetchFoldersFailed": "Faayilii fiduun hin milkoofne",
+    "folderCreated": "Faayiliin \"{{name}}\" uumameera",
+    "createFolderFailed": "Faayilii uumuun hin milkoofne",
+    "folderUpdated": "Faayiliin haaromfameera",
+    "updateFolderFailed": "Faayilii haaromsuun hin milkoofne",
+    "deleteFolderTitle": "Faayilii haqi",
+    "deleteFolderBody": "Dhugumatti \"{{name}}\" haquu barbaaddaa? Maxxansaaleen keessa kuufaman tarree Kuufame kee irraa hin haqaman.",
+    "folderDeleted": "Faayiliin haqameera",
+    "deleteFolderFailed": "Faayilii haquun hin milkoofne"
   }
 }

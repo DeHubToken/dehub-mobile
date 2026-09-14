@@ -3055,5 +3055,27 @@
     "clearHistoryBody": "ਇਸ ਨਾਲ ਤੁਹਾਡੇ ਇਤਿਹਾਸ ਵਿੱਚੋਂ ਸਾਰੀਆਂ ਵੇਖੀਆਂ ਪੋਸਟਾਂ ਹਟ ਜਾਣਗੀਆਂ।",
     "clear": "ਸਾਫ਼ ਕਰੋ",
     "clearFailed": "ਇਤਿਹਾਸ ਸਾਫ਼ ਨਹੀਂ ਹੋ ਸਕਿਆ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+  },
+  "savedPosts": {
+    "allSaved": "ਸਾਰੇ ਸੰਭਾਲੇ",
+    "collections": "ਸੰਗ੍ਰਹਿ",
+    "newCollection": "ਨਵਾਂ ਸੰਗ੍ਰਹਿ",
+    "editCollection": "ਸੰਗ੍ਰਹਿ ਸੋਧੋ",
+    "editCollectionDetails": "ਸੰਗ੍ਰਹਿ ਵੇਰਵੇ ਸੋਧੋ",
+    "deleteCollection": "ਸੰਗ੍ਰਹਿ ਮਿਟਾਓ",
+    "collectionSubtitle": "ਬੁੱਕਮਾਰਕ ਸੰਗ੍ਰਹਿ",
+    "collectionOptions": "ਸੰਗ੍ਰਹਿ ਵਿਕਲਪ",
+    "namePlaceholder": "ਨਾਮ",
+    "descriptionPlaceholder": "ਵੇਰਵਾ (ਵਿਕਲਪਿਕ)",
+    "collectionNamePlaceholder": "ਸੰਗ੍ਰਹਿ ਦਾ ਨਾਮ",
+    "fetchFoldersFailed": "ਫੋਲਡਰ ਨਹੀਂ ਮਿਲ ਸਕੇ",
+    "folderCreated": "ਫੋਲਡਰ \"{{name}}\" ਬਣ ਗਿਆ",
+    "createFolderFailed": "ਫੋਲਡਰ ਨਹੀਂ ਬਣ ਸਕਿਆ",
+    "folderUpdated": "ਫੋਲਡਰ ਅੱਪਡੇਟ ਹੋਇਆ",
+    "updateFolderFailed": "ਫੋਲਡਰ ਅੱਪਡੇਟ ਨਹੀਂ ਹੋ ਸਕਿਆ",
+    "deleteFolderTitle": "ਫੋਲਡਰ ਮਿਟਾਓ",
+    "deleteFolderBody": "ਕੀ ਤੁਸੀਂ ਵਾਕਈ \"{{name}}\" ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਅੰਦਰਲੀਆਂ ਸੰਭਾਲੀਆਂ ਪੋਸਟਾਂ ਤੁਹਾਡੀ ਸੰਭਾਲੀ ਸੂਚੀ ਵਿੱਚੋਂ ਨਹੀਂ ਮਿਟਣਗੀਆਂ।",
+    "folderDeleted": "ਫੋਲਡਰ ਮਿਟ ਗਿਆ",
+    "deleteFolderFailed": "ਫੋਲਡਰ ਨਹੀਂ ਮਿਟ ਸਕਿਆ"
   }
 }

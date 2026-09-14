@@ -3070,5 +3070,27 @@
     "clearHistoryBody": "Dette fjerner alle sette innlegg fra historikken din.",
     "clear": "Tøm",
     "clearFailed": "Kunne ikke tømme historikken. Prøv igjen."
+  },
+  "savedPosts": {
+    "allSaved": "Alt lagret",
+    "collections": "Samlinger",
+    "newCollection": "Ny samling",
+    "editCollection": "Rediger samling",
+    "editCollectionDetails": "Rediger samlingsdetaljer",
+    "deleteCollection": "Slett samling",
+    "collectionSubtitle": "Bokmerkesamling",
+    "collectionOptions": "Samlingsalternativer",
+    "namePlaceholder": "Navn",
+    "descriptionPlaceholder": "Beskrivelse (valgfritt)",
+    "collectionNamePlaceholder": "Samlingens navn",
+    "fetchFoldersFailed": "Kunne ikke hente mapper",
+    "folderCreated": "Mappen \"{{name}}\" er opprettet",
+    "createFolderFailed": "Kunne ikke opprette mappe",
+    "folderUpdated": "Mappen er oppdatert",
+    "updateFolderFailed": "Kunne ikke oppdatere mappen",
+    "deleteFolderTitle": "Slett mappe",
+    "deleteFolderBody": "Er du sikker på at du vil slette \"{{name}}\"? De lagrede innleggene inni slettes ikke fra Lagret-listen din.",
+    "folderDeleted": "Mappen er slettet",
+    "deleteFolderFailed": "Kunne ikke slette mappen"
   }
 }

@@ -3068,5 +3068,27 @@
     "clearHistoryBody": "Das entfernt alli agluegte Beiträg us dim Verlauf.",
     "clear": "Lösche",
     "clearFailed": "De Verlauf het nid chönne glöscht wärde. Probier's nomol."
+  },
+  "savedPosts": {
+    "allSaved": "Alles Gspeicherte",
+    "collections": "Sammlige",
+    "newCollection": "Neui Sammlig",
+    "editCollection": "Sammlig bearbeite",
+    "editCollectionDetails": "Sammligsdetails bearbeite",
+    "deleteCollection": "Sammlig lösche",
+    "collectionSubtitle": "Läsezeiche-Sammlig",
+    "collectionOptions": "Sammligsoptione",
+    "namePlaceholder": "Name",
+    "descriptionPlaceholder": "Beschriibig (optional)",
+    "collectionNamePlaceholder": "Name vo de Sammlig",
+    "fetchFoldersFailed": "D Ordner händ nid chönne gholt wärde",
+    "folderCreated": "Ordner \"{{name}}\" erstellt",
+    "createFolderFailed": "De Ordner het nid chönne erstellt wärde",
+    "folderUpdated": "Ordner aktualisiert",
+    "updateFolderFailed": "De Ordner het nid chönne aktualisiert wärde",
+    "deleteFolderTitle": "Ordner lösche",
+    "deleteFolderBody": "Wotsch \"{{name}}\" würklich lösche? D gspeicherete Beiträg dinne wärded nid us dinere Gspeicheret-Lischte glöscht.",
+    "folderDeleted": "Ordner glöscht",
+    "deleteFolderFailed": "De Ordner het nid chönne glöscht wärde"
   }
 }

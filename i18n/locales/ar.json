@@ -3134,5 +3134,27 @@
     "clearHistoryBody": "سيؤدي هذا إلى إزالة كل المنشورات التي شاهدتها من سجلك.",
     "clear": "مسح",
     "clearFailed": "تعذّر مسح السجل. حاول مرة أخرى."
+  },
+  "savedPosts": {
+    "allSaved": "كل المحفوظات",
+    "collections": "المجموعات",
+    "newCollection": "مجموعة جديدة",
+    "editCollection": "تعديل المجموعة",
+    "editCollectionDetails": "تعديل تفاصيل المجموعة",
+    "deleteCollection": "حذف المجموعة",
+    "collectionSubtitle": "مجموعة إشارات مرجعية",
+    "collectionOptions": "خيارات المجموعة",
+    "namePlaceholder": "الاسم",
+    "descriptionPlaceholder": "الوصف (اختياري)",
+    "collectionNamePlaceholder": "اسم المجموعة",
+    "fetchFoldersFailed": "تعذّر جلب المجلدات",
+    "folderCreated": "تم إنشاء المجلد \"{{name}}\"",
+    "createFolderFailed": "تعذّر إنشاء المجلد",
+    "folderUpdated": "تم تحديث المجلد",
+    "updateFolderFailed": "تعذّر تحديث المجلد",
+    "deleteFolderTitle": "حذف المجلد",
+    "deleteFolderBody": "هل تريد حذف \"{{name}}\"؟ لن تُحذف المنشورات المحفوظة بداخله من قائمة محفوظاتك.",
+    "folderDeleted": "تم حذف المجلد",
+    "deleteFolderFailed": "تعذّر حذف المجلد"
   }
 }

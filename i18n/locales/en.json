@@ -3149,5 +3149,27 @@
     "clearHistoryBody": "This will remove all watched posts from your history.",
     "clear": "Clear",
     "clearFailed": "Failed to clear history. Please try again."
+  },
+  "savedPosts": {
+    "allSaved": "All Saved",
+    "collections": "Collections",
+    "newCollection": "New Collection",
+    "editCollection": "Edit Collection",
+    "editCollectionDetails": "Edit Collection Details",
+    "deleteCollection": "Delete Collection",
+    "collectionSubtitle": "Bookmark collection",
+    "collectionOptions": "Collection options",
+    "namePlaceholder": "Name",
+    "descriptionPlaceholder": "Description (Optional)",
+    "collectionNamePlaceholder": "Collection Name",
+    "fetchFoldersFailed": "Failed to fetch folders",
+    "folderCreated": "Folder \"{{name}}\" created",
+    "createFolderFailed": "Failed to create folder",
+    "folderUpdated": "Folder updated",
+    "updateFolderFailed": "Failed to update folder",
+    "deleteFolderTitle": "Delete Folder",
+    "deleteFolderBody": "Are you sure you want to delete \"{{name}}\"? The saved posts inside will not be deleted from your Saved list.",
+    "folderDeleted": "Folder deleted",
+    "deleteFolderFailed": "Failed to delete folder"
   }
 }

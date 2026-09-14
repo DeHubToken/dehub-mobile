@@ -3167,5 +3167,27 @@
     "clearHistoryBody": "Thao tác này sẽ xóa mọi bài đã xem khỏi lịch sử của bạn.",
     "clear": "Xóa",
     "clearFailed": "Không xóa được lịch sử. Vui lòng thử lại."
+  },
+  "savedPosts": {
+    "allSaved": "Tất cả đã lưu",
+    "collections": "Bộ sưu tập",
+    "newCollection": "Bộ sưu tập mới",
+    "editCollection": "Sửa bộ sưu tập",
+    "editCollectionDetails": "Sửa chi tiết bộ sưu tập",
+    "deleteCollection": "Xóa bộ sưu tập",
+    "collectionSubtitle": "Bộ sưu tập dấu trang",
+    "collectionOptions": "Tùy chọn bộ sưu tập",
+    "namePlaceholder": "Tên",
+    "descriptionPlaceholder": "Mô tả (không bắt buộc)",
+    "collectionNamePlaceholder": "Tên bộ sưu tập",
+    "fetchFoldersFailed": "Không lấy được thư mục",
+    "folderCreated": "Đã tạo thư mục \"{{name}}\"",
+    "createFolderFailed": "Không tạo được thư mục",
+    "folderUpdated": "Đã cập nhật thư mục",
+    "updateFolderFailed": "Không cập nhật được thư mục",
+    "deleteFolderTitle": "Xóa thư mục",
+    "deleteFolderBody": "Bạn chắc muốn xóa \"{{name}}\"? Các bài đã lưu bên trong sẽ không bị xóa khỏi danh sách Đã lưu của bạn.",
+    "folderDeleted": "Đã xóa thư mục",
+    "deleteFolderFailed": "Không xóa được thư mục"
   }
 }

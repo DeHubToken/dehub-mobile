@@ -3063,5 +3063,27 @@
     "clearHistoryBody": "Bu, baxdığın bütün paylaşımları tarixçəndən siləcək.",
     "clear": "Təmizlə",
     "clearFailed": "Tarixçə təmizlənmədi. Zəhmət olmasa yenidən cəhd et."
+  },
+  "savedPosts": {
+    "allSaved": "Bütün saxlananlar",
+    "collections": "Kolleksiyalar",
+    "newCollection": "Yeni kolleksiya",
+    "editCollection": "Kolleksiyanı redaktə et",
+    "editCollectionDetails": "Kolleksiya məlumatlarını redaktə et",
+    "deleteCollection": "Kolleksiyanı sil",
+    "collectionSubtitle": "Əlfəcin kolleksiyası",
+    "collectionOptions": "Kolleksiya seçimləri",
+    "namePlaceholder": "Ad",
+    "descriptionPlaceholder": "Təsvir (istəyə bağlı)",
+    "collectionNamePlaceholder": "Kolleksiya adı",
+    "fetchFoldersFailed": "Qovluqlar gətirilə bilmədi",
+    "folderCreated": "\"{{name}}\" qovluğu yaradıldı",
+    "createFolderFailed": "Qovluq yaradıla bilmədi",
+    "folderUpdated": "Qovluq yeniləndi",
+    "updateFolderFailed": "Qovluq yenilənə bilmədi",
+    "deleteFolderTitle": "Qovluğu sil",
+    "deleteFolderBody": "\"{{name}}\" silinsin? İçindəki saxlanmış paylaşımlar Saxlananlar siyahından silinməyəcək.",
+    "folderDeleted": "Qovluq silindi",
+    "deleteFolderFailed": "Qovluq silinə bilmədi"
   }
 }

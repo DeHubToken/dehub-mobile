@@ -3083,5 +3083,27 @@
     "clearHistoryBody": "Detta tar bort alla sedda inlägg från din historik.",
     "clear": "Rensa",
     "clearFailed": "Det gick inte att rensa historiken. Försök igen."
+  },
+  "savedPosts": {
+    "allSaved": "Allt sparat",
+    "collections": "Samlingar",
+    "newCollection": "Ny samling",
+    "editCollection": "Redigera samling",
+    "editCollectionDetails": "Redigera samlingsinformation",
+    "deleteCollection": "Radera samling",
+    "collectionSubtitle": "Bokmärkessamling",
+    "collectionOptions": "Samlingsalternativ",
+    "namePlaceholder": "Namn",
+    "descriptionPlaceholder": "Beskrivning (valfritt)",
+    "collectionNamePlaceholder": "Samlingens namn",
+    "fetchFoldersFailed": "Det gick inte att hämta mapparna",
+    "folderCreated": "Mappen \"{{name}}\" har skapats",
+    "createFolderFailed": "Det gick inte att skapa mappen",
+    "folderUpdated": "Mappen har uppdaterats",
+    "updateFolderFailed": "Det gick inte att uppdatera mappen",
+    "deleteFolderTitle": "Radera mapp",
+    "deleteFolderBody": "Är du säker på att du vill radera \"{{name}}\"? De sparade inläggen inuti raderas inte från din Sparat-lista.",
+    "folderDeleted": "Mappen har raderats",
+    "deleteFolderFailed": "Det gick inte att radera mappen"
   }
 }

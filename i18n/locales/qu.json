@@ -3111,5 +3111,27 @@
     "clearHistoryBody": "Kayqa llapan qhawasqa publicacionkunata historialniykimanta hurqunqa.",
     "clear": "Pichay",
     "clearFailed": "Historialta mana pichayta atikunchu. Yapamanta yanay."
+  },
+  "savedPosts": {
+    "allSaved": "Llapan waqaychasqa",
+    "collections": "Huñusqakuna",
+    "newCollection": "Musuq huñusqa",
+    "editCollection": "Huñusqata allichay",
+    "editCollectionDetails": "Huñusqa willakuykunata allichay",
+    "deleteCollection": "Huñusqata pichay",
+    "collectionSubtitle": "Marcador huñusqa",
+    "collectionOptions": "Huñusqa akllaykuna",
+    "namePlaceholder": "Suti",
+    "descriptionPlaceholder": "Willakuy (munaspa)",
+    "collectionNamePlaceholder": "Huñusqap sutin",
+    "fetchFoldersFailed": "Carpetakunata mana hap'iyta atikunchu",
+    "folderCreated": "\"{{name}}\" carpeta ruwasqa",
+    "createFolderFailed": "Carpetata mana ruwayta atikunchu",
+    "folderUpdated": "Carpeta musuqchasqa",
+    "updateFolderFailed": "Carpetata mana musuqchayta atikunchu",
+    "deleteFolderTitle": "Carpetata pichay",
+    "deleteFolderBody": "\"{{name}}\" pichanaykita munankichu? Ukhupi waqaychasqa publicacionkunaqa Waqaychasqa listaykimanta mana pichakunchu.",
+    "folderDeleted": "Carpeta pichasqa",
+    "deleteFolderFailed": "Carpetata mana pichayta atikunchu"
   }
 }
