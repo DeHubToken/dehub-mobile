@@ -51,6 +51,7 @@ import { feedEvents } from "../../libs/eventBus";
 import { capFeedByAuthorAllowance } from "../../libs/postQuota";
 import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
 import { flattenFeedPages } from "../../libs/feed-pages";
+import { setFeedScrolling } from "../../libs/scrollActivity";
 import {
   createFeedVisibilityStore,
   useRowVisibility,
@@ -740,6 +741,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // The finger is up and the list has stopped: apply everything that waited.
   const settleScroll = useCallback(() => {
     scrollingRef.current = false;
+    setFeedScrolling(false);
     flushLiveCounts();
     const fetched = pendingFetchedRowsRef.current;
     if (fetched.length) {
@@ -859,6 +861,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const handleScrollBeginDrag = useCallback(() => {
     cancelPendingSettle();
     scrollingRef.current = true;
+    setFeedScrolling(true);
     onScrollBegin?.();
   }, [onScrollBegin, cancelPendingSettle]);
 
@@ -866,6 +869,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     // The lift that preceded this scheduled a settle; the list is still moving.
     cancelPendingSettle();
     scrollingRef.current = true;
+    setFeedScrolling(true);
   }, [cancelPendingSettle]);
 
   // Handle touch start to close filter panel immediately
