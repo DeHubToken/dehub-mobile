@@ -27,6 +27,7 @@ import { getSupabaseUserId } from "../services/auth/supabaseAuth.service";
 import { fetchWalletReliably } from "../libs/wallet-core/store";
 import { predictSafeAddress } from "../libs/wallet-core/predict-safe-address";
 import {
+  recordWalletDrift,
   takeWalletDrift,
   clearWalletDrift,
   isIdentitysOwnWallet,
@@ -642,6 +643,21 @@ export function useAuthSession({
         }
 
         if (!await profileSessionMatchesWallet(address, expectedAddress, (res.user as any)?.loginLinkSource)) {
+          // This is the drift itself, and the only place it is ever visible:
+          // the exchange has just named the address the backend holds this
+          // identity's account at, and this device cannot sign for it. Handing
+          // it to the signature login that follows is the whole point of the
+          // rescue in `moveDriftedAccountToThisWallet` — without this call
+          // `takeWalletDrift()` there always answers null, the fallback
+          // signature reads as a brand-new signup, and the account stays on an
+          // address nobody can reach. Nothing else in the app records one.
+          if (expectedAddress && walletUid) {
+            recordWalletDrift({
+              linked: address,
+              ownerEoa: expectedAddress,
+              supabaseUserId: walletUid,
+            });
+          }
           log.warn('signInWithSupabaseSession:profile-mismatch');
           return 'failed';
         }
