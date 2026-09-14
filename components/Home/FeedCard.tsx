@@ -120,6 +120,14 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 // feed list's padding (8/side) *and* the card's own (12/side) — a hardcoded
 // guess drifted 8px per page here before, which desynced paging from the dots.
 const IMAGE_WIDTH = SCREEN_WIDTH - 40;
+// The single image gets its real width up front: screen minus the list's
+// padding (8/side), the card's padding (12/side) and its 1px border. Left to
+// measure itself, every card mounted at IMAGE_WIDTH and then shrank by 2px
+// once layout reported the truth — a second layout, a scroll correction, and
+// expo-image re-decoding the picture for the new size (traced: 143 image
+// views created on a fling, 149 resize re-renders). At 120Hz that was a
+// frame per card.
+const SINGLE_IMAGE_WIDTH = SCREEN_WIDTH - 42;
 // Width, in points, of the thumbnail a locked post blurs. 20px of blur on a
 // 96px-wide image reads exactly like 20px of blur on the full one.
 const LOCKED_PREVIEW_WIDTH = 32;
@@ -1176,7 +1184,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         >
           <ContainedFeedImage
             uri={galleryImages[0]}
-            fallbackWidth={IMAGE_WIDTH}
+            width={SINGLE_IMAGE_WIDTH}
+            fallbackWidth={SINGLE_IMAGE_WIDTH}
             priority={prioritizeMedia ? "high" : "normal"}
           />
         </PostTapSurface>

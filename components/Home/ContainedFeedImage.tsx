@@ -33,7 +33,9 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   const handleLayout = useCallback((event: LayoutChangeEvent) => {
     if (width !== undefined) return;
     const nextWidth = event.nativeEvent.layout.width;
-    if (nextWidth > 0) setMeasuredWidth(nextWidth);
+    // A pixel or two of difference from the guess is not worth a second
+    // layout and an image re-decode; the clip hides the overhang.
+    if (nextWidth > 0) setMeasuredWidth((prev) => (Math.abs(prev - nextWidth) < 3 ? prev : nextWidth));
   }, [width]);
 
   return (
