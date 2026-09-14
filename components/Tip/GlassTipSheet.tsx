@@ -1,8 +1,16 @@
 /**
- * GlassTipSheet — Glass-morphism bottom sheet for sending on-chain DHB tips.
+ * GlassTipSheet — bottom sheet for sending on-chain DHB tips.
  *
  * Visual design matches the web "Send Tip" modal (quick-amount grid + custom
  * input), while the on-chain flow mirrors TipModal (approve → sendTip).
+ *
+ * The surface is a SOLID panel, not a blur. Web can lean on backdrop-filter
+ * because the browser genuinely samples what sits behind the dialog; expo-blur
+ * on Android only approximates it, so a translucent tint over a bright feed
+ * photo or a playing video left the amount field, the balance line and the
+ * validation errors reading through the post underneath. Every other sheet in
+ * the app — TipAmountSheet, AddToFolderSheet — paints #0C0C0E flat, so match
+ * that. Do not reintroduce the BlurView.
  */
 import React, {
   memo,
@@ -44,7 +52,6 @@ import {
   GestureDetector,
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
-import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
@@ -549,12 +556,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
               sheetStyle,
             ]}
           >
-            {/* Glass blur */}
-            <BlurView
-              intensity={80}
-              tint="dark"
-              style={StyleSheet.absoluteFill}
-            />
+            {/* Solid panel — see the note at the top of this file. */}
             <View style={[StyleSheet.absoluteFill, styles.overlay]} />
 
             {/* Drag handle */}
@@ -791,9 +793,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "rgba(20,20,20,0.55)",
+    backgroundColor: "#0C0C0E",
     borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(255,255,255,0.06)",
   },
   handleWrap: {
     alignItems: "center",
