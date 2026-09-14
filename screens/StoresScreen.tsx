@@ -13,10 +13,10 @@ import {
   FlatList,
   ScrollView,
   TextInput,
-  ActivityIndicator,
   RefreshControl,
   useWindowDimensions,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
@@ -207,7 +207,7 @@ export default function StoresScreen() {
 
           {isLoading ? (
             <View style={styles.center}>
-              <ActivityIndicator size="large" color="#FFFFFF" />
+              <DeHubLoader size={56} />
             </View>
           ) : isError ? (
             <View style={styles.center}>

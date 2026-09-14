@@ -5,10 +5,10 @@ import {
   ScrollView,
   FlatList,
   TouchableOpacity,
-  ActivityIndicator,
-  RefreshControl,
   StyleSheet,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../ui/Icon";
 import ProfileEmptyState from "./ProfileEmptyState";
@@ -147,7 +147,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
       <ScrollView>
         {listHeader}
         <View style={styles.center}>
-          <ActivityIndicator size="large" color="#FFFFFF" />
+          <DeHubLoader size={56} />
         </View>
       </ScrollView>
     );
@@ -186,7 +186,8 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
   }
 
   return (
-    <FlatList
+    <View style={{ flex: 1 }}>
+      <FlatList
       data={holdings}
       keyExtractor={(h) => h.token_id}
       renderItem={renderItem}
@@ -202,9 +203,11 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
         </>
       }
       refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#fff" />
+        <DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#fff" />
       }
-    />
+      />
+      <DeHubRefreshMark refreshing={refreshing} />
+    </View>
   );
 };
 

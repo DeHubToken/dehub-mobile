@@ -4,8 +4,8 @@ import {
   View,
   RefreshControl,
   ListRenderItem,
-  ActivityIndicator,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
@@ -193,7 +193,7 @@ const LeaderboardScreen = () => {
         </View>
       ) : switching ? (
         <View className="flex-1 items-center justify-center" style={{ paddingTop: headerHeight }}>
-          <ActivityIndicator size="large" color="#fff" />
+          <DeHubLoader size={56} />
         </View>
       ) : (
         <Animated.FlatList

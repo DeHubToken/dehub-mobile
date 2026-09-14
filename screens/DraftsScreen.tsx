@@ -5,8 +5,8 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-  ActivityIndicator,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
@@ -161,7 +161,7 @@ const DraftsScreen: React.FC = () => {
       <ScreenHeader title={t("screens.drafts")} />
       {loading ? (
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#fff" />
+          <DeHubLoader size={56} />
         </View>
       ) : (
         <FlatList

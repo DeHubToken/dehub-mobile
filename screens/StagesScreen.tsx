@@ -28,7 +28,6 @@
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
-  ActivityIndicator,
   Alert,
   FlatList,
   Pressable,
@@ -39,6 +38,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { useFocusEffect } from "@react-navigation/native";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -566,7 +566,7 @@ export default function StagesScreen() {
 
       {showFirstLoad ? (
         <View style={styles.center}>
-          <ActivityIndicator size="large" color="#FFFFFF" />
+          <DeHubLoader size={56} />
         </View>
       ) : (
         <FlatList

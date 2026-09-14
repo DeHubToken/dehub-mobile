@@ -13,9 +13,9 @@ import {
   FlatList,
   ScrollView,
   TextInput,
-  ActivityIndicator,
   RefreshControl,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
@@ -271,7 +271,7 @@ export default function WorkScreen() {
 
       {isLoading ? (
         <View style={styles.center}>
-          <ActivityIndicator size="large" color="#FFFFFF" />
+          <DeHubLoader size={56} />
         </View>
       ) : (
         <FlatList

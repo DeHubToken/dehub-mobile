@@ -29,6 +29,7 @@ import {
   KeyboardAvoidingView,
   Alert,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import Svg, { Polyline, Line as SvgLine } from "react-native-svg";
 import { ethers } from "ethers";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -462,7 +463,7 @@ export default function AdsScreen() {
         }
       >
         {account.isLoading ? (
-          <ActivityIndicator size="large" color="#FFFFFF" style={{ marginTop: 40 }} />
+          <DeHubLoader size={56} style={{ marginTop: 40 }} />
         ) : !hasAccount ? (
           <View style={styles.card}>
             <Icon name="Megaphone" size={34} color="#3F3F46" />

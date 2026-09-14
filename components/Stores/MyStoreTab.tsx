@@ -23,6 +23,7 @@ import {
   Switch,
   Alert,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -576,7 +577,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
   if (loadingStores) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator size="large" color="#FFFFFF" />
+        <DeHubLoader size={56} />
       </View>
     );
   }

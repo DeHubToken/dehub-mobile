@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   Platform,
 } from 'react-native';
+import { DeHubLoader } from '../components/DeHubLoader';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenHeader from '../components/ScreenHeader';
 import Icon from '../components/ui/Icon';
@@ -280,7 +281,7 @@ export default function ActiveSessionsScreen() {
       <ScreenHeader title={t("settings.activeSessions")} canGoBack />
       {loading ? (
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#F4F4F5" />
+          <DeHubLoader size={56} />
         </View>
       ) : (
         <FlatList

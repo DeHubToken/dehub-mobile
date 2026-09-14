@@ -12,6 +12,7 @@ import {
   ActivityIndicator,
   RefreshControl,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -586,7 +587,7 @@ const SearchScreen: React.FC = () => {
     if (loading) {
       return (
         <View className="flex-1 items-center justify-center" style={{ paddingTop: headerHeight }}>
-          <ActivityIndicator size="large" color="#fff" />
+          <DeHubLoader size={56} />
         </View>
       );
     }

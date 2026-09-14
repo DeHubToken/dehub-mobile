@@ -17,13 +17,13 @@ import {
   Pressable,
   ScrollView,
   TextInput,
-  ActivityIndicator,
   RefreshControl,
   Modal,
   KeyboardAvoidingView,
   Platform,
   Alert,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
@@ -204,7 +204,7 @@ export default function WorkJobDetailScreen() {
   if (isLoading && !job) {
     return (
       <View style={[styles.root, styles.center]}>
-        <ActivityIndicator size="large" color="#FFFFFF" />
+        <DeHubLoader size={56} />
       </View>
     );
   }

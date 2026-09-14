@@ -9,6 +9,7 @@ import {
   RefreshControl,
   Keyboard,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 import { useRoute, RouteProp } from "@react-navigation/native";
@@ -981,7 +982,7 @@ const FollowListScreen: React.FC = () => {
         /* Requests Tab Content */
         requestsLoading ? (
           <View className="flex-1 items-center justify-center">
-            <ActivityIndicator size="large" color="#fff" />
+            <DeHubLoader size={56} />
           </View>
         ) : (
           <FlatList
@@ -1149,7 +1150,7 @@ const FollowListScreen: React.FC = () => {
           {/* List */}
           {loading ? (
             <View className="flex-1 items-center justify-center">
-              <ActivityIndicator size="large" color="#fff" />
+              <DeHubLoader size={56} />
             </View>
           ) : (
             <FlatList

@@ -30,6 +30,7 @@ import {
   ActivityIndicator,
   KeyboardAvoidingView,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
@@ -87,7 +88,7 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
   if (isLoading) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator size="large" color="#FFFFFF" />
+        <DeHubLoader size={56} />
       </View>
     );
   }

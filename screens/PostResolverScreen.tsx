@@ -7,7 +7,8 @@
  * replaces itself in the stack with the correct destination screen.
  */
 import React, { useEffect, useCallback } from "react";
-import { View, ActivityIndicator } from "react-native";
+import { View } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { resolveNewPost } from "../services/nft.service";
@@ -72,7 +73,7 @@ const PostResolverScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-background items-center justify-center">
-      <ActivityIndicator size="large" color="#F4F4F5" />
+      <DeHubLoader size={56} />
     </View>
   );
 };
