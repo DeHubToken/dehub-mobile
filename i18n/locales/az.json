@@ -1155,6 +1155,8 @@
   },
   "notifications": {
       "badgeTierUp": "Təbriklər! İndi siz {{tier}}-siniz 🎉",
+      "badgeTierDown": "Diqqət: nişanınız artıq {{tier}}",
+      "badgeTierLost": "Diqqət: artıq nişanınız yoxdur",
     "title": "Bildirişlər",
     "loadFailed": "Bildirişlər yüklənə bilmədi",
     "markAllRead": "Hamısını oxunmuş et",

@@ -1215,6 +1215,8 @@
     "andOthersLikedCommentPreview": "{{first}} ir {{others}} patiko jūsų komentaras: \"{{preview}}\"",
     "badgeLent": "{{name}} paskolino jums savo {{tier}} ženklelį",
     "badgeTierUp": "Sveikiname! Dabar tu esi {{tier}} 🎉",
+    "badgeTierDown": "Dėmesio: tavo ženklelis dabar yra {{tier}}",
+    "badgeTierLost": "Dėmesio: ženklelio nebeturi",
     "badgeTakenBack": "{{name}} nustojo jums skolinti savo {{tier}} ženklelį",
     "badgeHandedBack": "{{name}} grąžino {{tier}} jūsų paskolintą ženklelį",
     "badgeLoanLapsed": "{{name}} nebegali skolinti jums savo {{tier}} ženklelio",

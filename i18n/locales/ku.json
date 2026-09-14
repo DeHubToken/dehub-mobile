@@ -1070,6 +1070,8 @@
   },
   "notifications": {
       "badgeTierUp": "Pîroz be! Tu niha {{tier}} î 🎉",
+      "badgeTierDown": "Bal bikişîne: nîşana te niha {{tier}} e",
+      "badgeTierLost": "Bal bikişîne: êdî nîşana te tune",
     "title": "Agahdarî",
     "loadFailed": "Agahdarî nehatin barkirin",
     "markAllRead": "Hemûyan wek xwendî nîşan bike",

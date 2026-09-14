@@ -1201,6 +1201,8 @@
     "andOthersLikedCommentPreview": "{{first}} ба {{others}} таны сэтгэгдэлд таалагдлаа: \"{{preview}}\"",
     "badgeLent": "{{name}} lent та тэдний {{tier}} badge",
     "badgeTierUp": "Баяр хүргэе! Та одоо {{tier}} боллоо 🎉",
+    "badgeTierDown": "Анхаар: таны тэмдэг одоо {{tier}} боллоо",
+    "badgeTierLost": "Анхаар: танд тэмдэг байхгүй боллоо",
     "badgeTakenBack": "{{name}} STEK ТАНЫ ЭРХЭМЛЭХГҮЙ {{tier}} GARGE",
     "badgeHandedBack": "{{name}} Буцаж{{tier}} badge -ийг авлаа",
     "badgeLoanLapsed": "{{name}} {{tier}} badge таныг дахиж зээлж чадахгүй",

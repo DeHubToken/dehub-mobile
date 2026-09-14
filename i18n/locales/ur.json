@@ -1184,6 +1184,8 @@
     "andOthersLikedCommentPreview": "{{first}} اور {{others}} نے آپ کا تبصرہ پسند کیا: \"{{preview}}\"",
     "badgeLent": "{{name}} نے آپ کو ان کا {{tier}} بیج قرض دیا",
     "badgeTierUp": "مبارک ہو! اب آپ {{tier}} ہیں 🎉",
+    "badgeTierDown": "دھیان دیں: اب آپ کا بیج {{tier}} ہے",
+    "badgeTierLost": "دھیان دیں: اب آپ کے پاس بیج نہیں ہے",
     "badgeTakenBack": "{{name}} نے آپ کو ان کا {{tier}} بیج قرض دینا بند کر دیا",
     "badgeHandedBack": "{{name}} نے وہ {{tier}} بیج واپس کر دیا جو آپ نے انہیں ادھار دیا تھا",
     "badgeLoanLapsed": "{{name}} اب آپ کو ان کا {{tier}} بیج ادھار نہیں دے سکتے",

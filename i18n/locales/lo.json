@@ -1211,6 +1211,8 @@
     "andOthersLikedCommentPreview": "{{first}} ແລະ {{others}} ມັກຄຳເຫັນຂອງທ່ານ: \"{{preview}}\"",
     "badgeLent": "{{name}} lent ທ່ານຂອງເຂົາເຈົ້າ {{tier}} badge",
     "badgeTierUp": "ຂໍສະແດງຄວາມຍິນດີ! ຕອນນີ້ເຈົ້າເປັນ {{tier}} ແລ້ວ 🎉",
+    "badgeTierDown": "ຫມາຍເຫດ: ຕອນນີ້ປ້າຍຂອງເຈົ້າແມ່ນ {{tier}}",
+    "badgeTierLost": "ຫມາຍເຫດ: ເຈົ້າບໍ່ມີປ້າຍອີກຕໍ່ໄປ",
     "badgeTakenBack": "{{name}} ຢຸດເຊົາການໃຫ້ເງິນກູ້ຢືມຂອງທ່ານ {{tier}} badge ຂອງພວກເຂົາ",
     "badgeHandedBack": "{{name}} ສົ່ງຄືນ {{tier}} badge ທ່ານໃຫ້ກູ້ຢືມພວກເຂົາ",
     "badgeLoanLapsed": "{{name}} ບໍ່ສາມາດໃຫ້ເງິນກູ້ຢືມທ່ານອີກຕໍ່ໄປ {{tier}} badge ຂອງພວກເຂົາ",

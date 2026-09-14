@@ -1187,6 +1187,8 @@
     "andOthersLikedCommentPreview": "{{first}} és {{others}} kedvelték hozzászólását: \"{{preview}}\"",
     "badgeLent": "{{name}} kölcsönadta a jelvényét {{tier}}",
     "badgeTierUp": "Gratulálunk! Mostantól {{tier}} vagy 🎉",
+    "badgeTierDown": "Figyelem: a jelvényed mostantól {{tier}}",
+    "badgeTierLost": "Figyelem: már nincs jelvényed",
     "badgeTakenBack": "{{name}} már nem adja kölcsön a {{tier}} jelvényét",
     "badgeHandedBack": "{{name}} visszaküldte az általad kölcsönadott {{tier}} jelvényt",
     "badgeLoanLapsed": "{{name}} már nem adhatja kölcsön a {{tier}} jelvényét",

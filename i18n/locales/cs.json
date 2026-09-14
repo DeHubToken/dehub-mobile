@@ -1187,6 +1187,8 @@
     "andOthersLikedCommentPreview": "{{first}} a {{others}} se líbí váš komentář: \"{{preview}}\"",
     "badgeLent": "{{name}} ti půjčil/a odznak {{tier}}",
     "badgeTierUp": "Gratulujeme! Teď jsi {{tier}} 🎉",
+    "badgeTierDown": "Upozornění: tvůj odznak je teď {{tier}}",
+    "badgeTierLost": "Upozornění: už nemáš odznak",
     "badgeTakenBack": "{{name}} ti přestal půjčovat odznak {{tier}}",
     "badgeHandedBack": "{{name}} vrátil/a odznak {{tier}}, který jsi mu/jí půjčil/a",
     "badgeLoanLapsed": "{{name}} ti už nemůže půjčit svůj odznak {{tier}}",

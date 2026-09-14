@@ -682,6 +682,8 @@
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} আপনাকে তাদের {{tier}} ব্যাজ ধার দিয়েছে",
     "badgeTierUp": "মোবারকবাদ! অখন তুমি {{tier}} 🎉",
+    "badgeTierDown": "খিয়াল করউকা: অখন আফনার ব্যাজ {{tier}}",
+    "badgeTierLost": "খিয়াল করউকা: আফনার আর ব্যাজ নাই",
     "badgeTakenBack": "{{name}} আপনাকে তাদের {{tier}} ব্যাজ ধার দেওয়া বন্ধ করেছে",
     "badgeHandedBack": "{{name}} আপনি তাদের ধার দিয়েছিলেন এমন {{tier}} ব্যাজ ফেরত দিয়েছে",
     "badgeLoanLapsed": "{{name}} আর আপনাকে তাদের {{tier}} ব্যাজ ধার দিতে পারে না",

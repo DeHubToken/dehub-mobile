@@ -1276,6 +1276,8 @@
     "andOthersLikedCommentPreview": "{{first}} و{{others}} داروا لايك على التعليق ديالك: \"{{preview}}\"",
     "badgeLent": "أقرضك {{name}} شارة {{tier}} الخاصة به",
     "badgeTierUp": "مبروك! ولّيتي دابا {{tier}} 🎉",
+    "badgeTierDown": "رد بالك: الشارة ديالك دابا {{tier}}",
+    "badgeTierLost": "رد بالك: ما بقاتش عندك شارة",
     "badgeTakenBack": "توقف {{name}} عن إقراضك شارة {{tier}} الخاصة بهم",
     "badgeHandedBack": "أعاد {{name}} شارة {{tier}} التي أعرتها لهم",
     "badgeLoanLapsed": "لم يعد بإمكان {{name}} إقراضك شارة {{tier}} الخاصة بهم",

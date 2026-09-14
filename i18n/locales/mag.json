@@ -1153,6 +1153,8 @@
   },
   "notifications": {
       "badgeTierUp": "बधाई हो! अब अपने {{tier}} हथिन 🎉",
+      "badgeTierDown": "ध्यान देईं: अब अपने के बैज {{tier}} हइ",
+      "badgeTierLost": "ध्यान देईं: अब अपने के बैज नञ् हइ",
     "title": "सूचना",
     "loadFailed": "सूचना लोड ना हो सकलई",
     "markAllRead": "सब पढ़ल चिह्नित करो",

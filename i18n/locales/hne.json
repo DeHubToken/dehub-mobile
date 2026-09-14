@@ -1151,6 +1151,8 @@
   },
   "notifications": {
       "badgeTierUp": "बधाई होवय! अब तैं {{tier}} हस 🎉",
+      "badgeTierDown": "धियान देबे: अब तोर बैज {{tier}} हे",
+      "badgeTierLost": "धियान देबे: अब तोर करा बैज नइ हे",
     "title": "सूचना",
     "loadFailed": "सूचना लोड नइ हो सकिस",
     "markAllRead": "सब पढ़े चिन्हित करव",

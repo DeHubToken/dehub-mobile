@@ -1188,6 +1188,8 @@
     "andOthersLikedCommentPreview": "{{first}} og {{others}} likede din kommentar: \"{{preview}}\"",
     "badgeLent": "{{name}} lånte dig deres {{tier}} badge",
     "badgeTierUp": "Tillykke! Du er nu en {{tier}} 🎉",
+    "badgeTierDown": "Bemærk: dit badge er nu {{tier}}",
+    "badgeTierLost": "Bemærk: du har ikke længere et badge",
     "badgeTakenBack": "{{name}} stoppede med at låne dig deres {{tier}} badge",
     "badgeHandedBack": "{{name}} returnerede det {{tier}}-badge, du lånte dem",
     "badgeLoanLapsed": "{{name}} kan ikke længere låne dig deres {{tier}}-badge",

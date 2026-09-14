@@ -1216,6 +1216,8 @@
     "andOthersLikedCommentPreview": "{{first}} dhe {{others}} pëlqyen komentin tuaj: \"{{preview}}\"",
     "badgeLent": "{{name}} ju huazoi distinktivin e tyre {{tier}}",
     "badgeTierUp": "Urime! Tani je një {{tier}} 🎉",
+    "badgeTierDown": "Kujdes: stema jote tani është {{tier}}",
+    "badgeTierLost": "Kujdes: nuk ke më stemë",
     "badgeTakenBack": "{{name}} ndaloi së dhëni hua distinktivin e tyre {{tier}}",
     "badgeHandedBack": "{{name}} ktheu distinktivin {{tier}} që i huazove",
     "badgeLoanLapsed": "{{name}} nuk mund të të huazojë më distinktivin {{tier}}",

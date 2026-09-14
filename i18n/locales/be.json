@@ -1227,6 +1227,8 @@
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} пазычыў вам свой значок {{tier}}",
     "badgeTierUp": "Віншуем! Цяпер вы {{tier}} 🎉",
+    "badgeTierDown": "Увага: цяпер ваш значок — {{tier}}",
+    "badgeTierLost": "Увага: у вас больш няма значка",
     "badgeTakenBack": "{{name}} перастала пазычаць вам свой значок {{tier}}",
     "badgeHandedBack": "{{name}} вярнуў {{tier}} значок, які вы пазычылі ім",
     "badgeLoanLapsed": "{{name}} больш не можа пазычаць вам свой значок {{tier}}",
