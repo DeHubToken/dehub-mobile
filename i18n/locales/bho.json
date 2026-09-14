@@ -2879,5 +2879,21 @@
     "creator": "डेकोरेटर, डिजाइनर, डेकोरेटर",
     "play": "खेला करेनीं",
     "pause": "ब्रेक लें"
+  },
+  "transfer": {
+    "title": "टोकन भेजीं",
+    "recipient": "पावे वाला: {{address}}",
+    "enterAmount": "रकम डालीं",
+    "balance": "बैलेंस: {{balance}}",
+    "insufficient": "बैलेंस कम बा",
+    "toSelfHint": "रउआ खुद के ना भेज सकीलें",
+    "searchUser": "यूजर खोजीं",
+    "searchPlaceholder": "यूजरनेम डालीं भा पता पेस्ट करीं",
+    "clearRecipient": "पावे वाला हटाईं",
+    "transferringTo": "भेजल जा रहल बा",
+    "transferring": "भेजल जा रहल बा...",
+    "sent": "ट्रांसफर भेज दिहल गइल",
+    "toSelf": "रउआ खुद के टोकन ना भेज सकीलें",
+    "insufficientOnChain": "एह टोकन खातिर चेन पर बैलेंस कम बा"
   }
 }

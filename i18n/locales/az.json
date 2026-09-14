@@ -2910,5 +2910,21 @@
     "pause": "Fasilə ver",
     "listens_one": "{{count}} dinlə",
     "listens_other": "{{count}} dinləyir"
+  },
+  "transfer": {
+    "title": "Tokenləri köçür",
+    "recipient": "Alıcı: {{address}}",
+    "enterAmount": "Məbləği daxil et:",
+    "balance": "Balans: {{balance}}",
+    "insufficient": "Balans kifayət deyil",
+    "toSelfHint": "Özünə köçürə bilməzsən",
+    "searchUser": "İstifadəçi axtar",
+    "searchPlaceholder": "İstifadəçi adı daxil et və ya ünvanı yapışdır",
+    "clearRecipient": "Alıcını təmizlə",
+    "transferringTo": "Köçürülür:",
+    "transferring": "Köçürülür...",
+    "sent": "Köçürmə göndərildi",
+    "toSelf": "Özünə token göndərə bilməzsən",
+    "insufficientOnChain": "Bu token üçün zəncirdə balans kifayət deyil"
   }
 }

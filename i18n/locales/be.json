@@ -2958,5 +2958,21 @@
     "play": "Прайграць",
     "pause": "Паўза",
     "listens_one": "{{count}} слухаць"
+  },
+  "transfer": {
+    "title": "Перадаць токены",
+    "recipient": "Атрымальнік: {{address}}",
+    "enterAmount": "Увядзіце суму",
+    "balance": "Баланс: {{balance}}",
+    "insufficient": "Недастаткова сродкаў",
+    "toSelfHint": "Нельга перадаць самому сабе",
+    "searchUser": "Знайсці карыстальніка",
+    "searchPlaceholder": "Увядзіце імя карыстальніка або ўстаўце адрас",
+    "clearRecipient": "Ачысціць атрымальніка",
+    "transferringTo": "Перадача да",
+    "transferring": "Перадача...",
+    "sent": "Перадача адпраўлена",
+    "toSelf": "Нельга адправіць токены самому сабе",
+    "insufficientOnChain": "Недастаткова сродкаў у сетцы для гэтага токена"
   }
 }

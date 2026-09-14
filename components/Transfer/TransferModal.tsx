@@ -17,6 +17,7 @@ import {
 } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import { useUser, useAuthActions, useProvider, User } from "../../context/AuthContext";
 import { supportedTokens } from "../../config/constants";
 import { useDebounceCallback } from "../../hooks/useDebounceCallback";
@@ -40,6 +41,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
   open,
   onOpenChange,
 }) => {
+  const { t } = useTranslation();
   const user = useUser();
   const { requireAuth, patchUser } = useAuthActions();
   const { provider } = useProvider();
@@ -146,7 +148,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
     requireAuth(async () => {
       if (sending || !canSend) return;
       if (account?.toLowerCase() === recipient?.walletAddress?.toLowerCase()) {
-        setError("You cannot send tokens to yourself");
+        setError(t("transfer.toSelf"));
         return;
       }
       setError(null);
@@ -179,7 +181,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
             decimals: dec,
           });
           if (onchainBal && onchainBal.lt(amountBN)) {
-            setError("Insufficient on-chain balance for this token");
+            setError(t("transfer.insufficientOnChain"));
             setSending(false);
             return;
           }
@@ -192,7 +194,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
           context: "send",
         });
         close();
-        toastSuccess("Transfer sent");
+        toastSuccess(t("transfer.sent"));
         try {
           await patchUser(
             (prev) =>
@@ -218,6 +220,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
     });
   }, [
     requireAuth,
+    t,
     sending,
     canSend,
     tokenContract,
@@ -285,21 +288,22 @@ const TransferModal: React.FC<TransferModalProps> = ({
       <View className="p-6 gap-5 relative">
         <View className="gap-2">
           <Text className="text-white font-bold text-2xl tracking-wider">
-            Transfer tokens
+            {t("transfer.title")}
           </Text>
           {!!recipient && (
             <Text className="text-white/70 text-xs">
-              Recipient:{" "}
-              {truncateAddress(
-                (recipient.walletAddress ||
-                  (recipient as any).address) as string
-              )}
+              {t("transfer.recipient", {
+                address: truncateAddress(
+                  (recipient.walletAddress ||
+                    (recipient as any).address) as string
+                ),
+              })}
             </Text>
           )}
         </View>
         <View>
           <Text className="text-base text-white mb-2">
-            Enter amount of{" "}
+            {t("transfer.enterAmount")}{" "}
             <Text className="text-theme-accent font-semibold">$DHB:</Text>
           </Text>
           <TextInput
@@ -312,12 +316,12 @@ const TransferModal: React.FC<TransferModalProps> = ({
           />
           <View className="flex-row justify-between mt-2">
             <Text className="text-[11px] text-white/60">
-              Balance: {balance} <DhbCoin />
+              {t("transfer.balance", { balance })} <DhbCoin />
             </Text>
           </View>
           {insufficient && (
             <Text className="text-xs text-white/80 mt-1">
-              Insufficient balance
+              {t("transfer.insufficient")}
             </Text>
           )}
           {!!recipient &&
@@ -325,7 +329,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
               (recipient.walletAddress || (recipient as any).address) as string
             ).toLowerCase() === String(account).toLowerCase() && (
               <Text className="text-xs text-white/80 mt-1">
-                You can't transfer to yourself
+                {t("transfer.toSelfHint")}
               </Text>
             )}
           {!!error && (
@@ -335,11 +339,11 @@ const TransferModal: React.FC<TransferModalProps> = ({
         <View className="relative z-10">
           <View>
             <Text className="text-white text-base font-semibold mb-2">
-              Search for a user
+              {t("transfer.searchUser")}
             </Text>
             <View className="relative">
               <TextInput
-                placeholder="Enter username or paste address"
+                placeholder={t("transfer.searchPlaceholder")}
                 placeholderTextColor="#8B8D90"
                 value={query}
                 onChangeText={(t) => {
@@ -397,7 +401,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
                   className="absolute right-2 top-2 h-8 w-8 items-center justify-center"
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
-                  accessibilityLabel="Clear recipient"
+                  accessibilityLabel={t("transfer.clearRecipient")}
                 >
                   <Ionicons name="close-circle" size={20} color="#E4E4E7" />
                 </TouchableOpacity>
@@ -413,7 +417,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
                   />
                   <View className="ml-2 flex-1">
                     <Text className="text-white text-sm" numberOfLines={1}>
-                      {recipientFromAddress ? "Transferring to" : selectedLabel}
+                      {recipientFromAddress ? t("transfer.transferringTo") : selectedLabel}
                     </Text>
                     <Text
                       className="text-theme-neutrals-400 text-[11px]"
@@ -462,7 +466,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
                 <Ionicons name="swap-horizontal" size={18} color="#fff" />
               )}
               <Text className="text-white font-semibold">
-                {sending ? "Transferring..." : "Transfer"}
+                {sending ? t("transfer.transferring") : t("commandCentre.transfer")}
               </Text>
             </TouchableOpacity>
           </AccentButtonGradient>
@@ -473,7 +477,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
               sending ? "opacity-60" : ""
             }`}
           >
-            <Text className="text-white font-semibold">Cancel</Text>
+            <Text className="text-white font-semibold">{t("common.cancel")}</Text>
           </TouchableOpacity>
         </View>
       </View>

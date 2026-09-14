@@ -2994,5 +2994,21 @@
     "pause": "Пауза",
     "listens_one": "{{count}} прослушивание",
     "listens_other": "{{count}} прослушиваний"
+  },
+  "transfer": {
+    "title": "Перевести токены",
+    "recipient": "Получатель: {{address}}",
+    "enterAmount": "Введите сумму",
+    "balance": "Баланс: {{balance}}",
+    "insufficient": "Недостаточно средств",
+    "toSelfHint": "Нельзя перевести самому себе",
+    "searchUser": "Найти пользователя",
+    "searchPlaceholder": "Введите имя пользователя или вставьте адрес",
+    "clearRecipient": "Очистить получателя",
+    "transferringTo": "Перевод на",
+    "transferring": "Перевод...",
+    "sent": "Перевод отправлен",
+    "toSelf": "Нельзя отправить токены самому себе",
+    "insufficientOnChain": "Недостаточно средств в сети для этого токена"
   }
 }

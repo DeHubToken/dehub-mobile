@@ -2924,5 +2924,21 @@
     "pause": "موقوف کریں",
     "listens_one": "{{count}} سنیں",
     "listens_other": "{{count}} فہرستیں"
+  },
+  "transfer": {
+    "title": "ٹوکن منتقل کریں",
+    "recipient": "وصول کنندہ: {{address}}",
+    "enterAmount": "رقم درج کریں:",
+    "balance": "بیلنس: {{balance}}",
+    "insufficient": "بیلنس ناکافی ہے",
+    "toSelfHint": "آپ خود کو منتقل نہیں کر سکتے",
+    "searchUser": "صارف تلاش کریں",
+    "searchPlaceholder": "یوزرنیم درج کریں یا ایڈریس پیسٹ کریں",
+    "clearRecipient": "وصول کنندہ ہٹائیں",
+    "transferringTo": "کو منتقل",
+    "transferring": "منتقل ہو رہا ہے...",
+    "sent": "ٹرانسفر بھیج دیا گیا",
+    "toSelf": "آپ خود کو ٹوکن نہیں بھیج سکتے",
+    "insufficientOnChain": "اس ٹوکن کے لیے آن چین بیلنس ناکافی ہے"
   }
 }

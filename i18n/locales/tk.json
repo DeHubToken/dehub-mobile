@@ -2895,5 +2895,21 @@
     "play": "Oynat",
     "pause": "Galanlar",
     "listens_one": "{{count}} gulak asyň"
+  },
+  "transfer": {
+    "title": "Tokenleri geçir",
+    "recipient": "Alyjy: {{address}}",
+    "enterAmount": "Mukdary giriziň:",
+    "balance": "Balans: {{balance}}",
+    "insufficient": "Balans ýeterlik däl",
+    "toSelfHint": "Özüňize geçirip bilmersiňiz",
+    "searchUser": "Ulanyjy gözle",
+    "searchPlaceholder": "Ulanyjy adyny giriziň ýa-da salgyny goýuň",
+    "clearRecipient": "Alyjyny arassala",
+    "transferringTo": "Geçirilýär:",
+    "transferring": "Geçirilýär...",
+    "sent": "Geçirim iberildi",
+    "toSelf": "Özüňize token iberip bilmersiňiz",
+    "insufficientOnChain": "Bu token üçin zynjyrdaky balans ýeterlik däl"
   }
 }

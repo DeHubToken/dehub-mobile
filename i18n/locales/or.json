@@ -2897,5 +2897,21 @@
     "play": "ଚଲାନ୍ତୁ",
     "pause": "ବିରତି",
     "listens_one": "{{count}} ଶୁଣନ୍ତୁ"
+  },
+  "transfer": {
+    "title": "ଟୋକେନ୍ ପଠାନ୍ତୁ",
+    "recipient": "ପ୍ରାପ୍ତକର୍ତ୍ତା: {{address}}",
+    "enterAmount": "ପରିମାଣ ଲେଖନ୍ତୁ:",
+    "balance": "ବାଲାନ୍ସ: {{balance}}",
+    "insufficient": "ଅପର୍ଯ୍ୟାପ୍ତ ବାଲାନ୍ସ",
+    "toSelfHint": "ଆପଣ ନିଜକୁ ପଠାଇପାରିବେ ନାହିଁ",
+    "searchUser": "ଉପଯୋଗକର୍ତ୍ତା ଖୋଜନ୍ତୁ",
+    "searchPlaceholder": "ଉପଯୋଗକର୍ତ୍ତା ନାମ ଲେଖନ୍ତୁ କିମ୍ବା ଠିକଣା ପେଷ୍ଟ କରନ୍ତୁ",
+    "clearRecipient": "ପ୍ରାପ୍ତକର୍ତ୍ତା ହଟାନ୍ତୁ",
+    "transferringTo": "କୁ ପଠାଉଛି",
+    "transferring": "ପଠାଉଛି...",
+    "sent": "ଟ୍ରାନ୍ସଫର ପଠାଗଲା",
+    "toSelf": "ଆପଣ ନିଜକୁ ଟୋକେନ୍ ପଠାଇପାରିବେ ନାହିଁ",
+    "insufficientOnChain": "ଏହି ଟୋକେନ୍ ପାଇଁ ଚେନ୍‌ରେ ଅପର୍ଯ୍ୟାପ୍ତ ବାଲାନ୍ସ"
   }
 }

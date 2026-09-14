@@ -3042,5 +3042,21 @@
     "pause": "Pouseer",
     "listens_one": "{{count}} luister",
     "listens_other": "{{count}} luisteraars"
+  },
+  "transfer": {
+    "title": "Dra tokens oor",
+    "recipient": "Ontvanger: {{address}}",
+    "enterAmount": "Voer bedrag in van",
+    "balance": "Balans: {{balance}}",
+    "insufficient": "Onvoldoende balans",
+    "toSelfHint": "Jy kan nie na jouself oordra nie",
+    "searchUser": "Soek 'n gebruiker",
+    "searchPlaceholder": "Voer gebruikersnaam in of plak adres",
+    "clearRecipient": "Verwyder ontvanger",
+    "transferringTo": "Oordrag na",
+    "transferring": "Dra oor...",
+    "sent": "Oordrag gestuur",
+    "toSelf": "Jy kan nie tokens na jouself stuur nie",
+    "insufficientOnChain": "Onvoldoende on-chain balans vir hierdie token"
   }
 }

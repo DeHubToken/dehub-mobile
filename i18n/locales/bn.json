@@ -2911,5 +2911,21 @@
     "pause": "বিরতি",
     "listens_one": "{{count}} শুনুন",
     "listens_other": "{{count}} লিসেনস"
+  },
+  "transfer": {
+    "title": "টোকেন স্থানান্তর",
+    "recipient": "প্রাপক: {{address}}",
+    "enterAmount": "পরিমাণ লিখুন",
+    "balance": "ব্যালেন্স: {{balance}}",
+    "insufficient": "অপর্যাপ্ত ব্যালেন্স",
+    "toSelfHint": "নিজেকে স্থানান্তর করা যায় না",
+    "searchUser": "ব্যবহারকারী খুঁজুন",
+    "searchPlaceholder": "ইউজারনেম লিখুন বা ঠিকানা পেস্ট করুন",
+    "clearRecipient": "প্রাপক মুছুন",
+    "transferringTo": "যাকে পাঠানো হচ্ছে",
+    "transferring": "স্থানান্তর হচ্ছে...",
+    "sent": "স্থানান্তর পাঠানো হয়েছে",
+    "toSelf": "নিজেকে টোকেন পাঠানো যায় না",
+    "insufficientOnChain": "এই টোকেনের জন্য চেইনে অপর্যাপ্ত ব্যালেন্স"
   }
 }

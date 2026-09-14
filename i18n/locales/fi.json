@@ -2925,5 +2925,21 @@
     "pause": "Keskeytä",
     "listens_one": "{{count}} kuuntele",
     "listens_other": "{{count}} kuuntelee"
+  },
+  "transfer": {
+    "title": "Siirrä tokeneita",
+    "recipient": "Vastaanottaja: {{address}}",
+    "enterAmount": "Syötä määrä:",
+    "balance": "Saldo: {{balance}}",
+    "insufficient": "Saldo ei riitä",
+    "toSelfHint": "Et voi siirtää itsellesi",
+    "searchUser": "Etsi käyttäjää",
+    "searchPlaceholder": "Syötä käyttäjänimi tai liitä osoite",
+    "clearRecipient": "Tyhjennä vastaanottaja",
+    "transferringTo": "Siirretään osoitteeseen",
+    "transferring": "Siirretään...",
+    "sent": "Siirto lähetetty",
+    "toSelf": "Et voi lähettää tokeneita itsellesi",
+    "insufficientOnChain": "Riittämätön saldo ketjussa tälle tokenille"
   }
 }

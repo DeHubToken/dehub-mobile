@@ -2999,5 +2999,21 @@
     "pause": "Pausar",
     "listens_one": "{{count}} reprodução",
     "listens_other": "{{count}} reproduções"
+  },
+  "transfer": {
+    "title": "Transferir tokens",
+    "recipient": "Destinatário: {{address}}",
+    "enterAmount": "Digite a quantidade de",
+    "balance": "Saldo: {{balance}}",
+    "insufficient": "Saldo insuficiente",
+    "toSelfHint": "Você não pode transferir para si mesmo",
+    "searchUser": "Buscar um usuário",
+    "searchPlaceholder": "Digite o usuário ou cole o endereço",
+    "clearRecipient": "Limpar destinatário",
+    "transferringTo": "Transferindo para",
+    "transferring": "Transferindo...",
+    "sent": "Transferência enviada",
+    "toSelf": "Você não pode enviar tokens para si mesmo",
+    "insufficientOnChain": "Saldo on-chain insuficiente para este token"
   }
 }
