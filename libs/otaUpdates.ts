@@ -35,8 +35,13 @@ export async function checkForOtaUpdate(now = Date.now()): Promise<void> {
   try {
     const check = await Updates.checkForUpdateAsync();
     if (!check.isAvailable) return;
-    const fetched = await Updates.fetchUpdateAsync();
-    if (fetched.isNew) updateReady = true;
+    // The launch-time check may already have downloaded this update, in which
+    // case fetchUpdateAsync reports isNew: false — but the bundle is on disk
+    // either way, and the check said it is newer than what is running. Keying
+    // "ready" on isNew left a downloaded update waiting for a cold launch that
+    // never came, which is exactly the situation this file exists to fix.
+    await Updates.fetchUpdateAsync();
+    updateReady = true;
   } catch {
     // Offline, a captive portal, the update server down: try again next time.
   } finally {

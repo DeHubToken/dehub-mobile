@@ -36,6 +36,12 @@ describe("over-the-air updates on foreground", () => {
     expect(isUpdateReady()).toBe(true);
   });
 
+  it("treats an update the launch check already downloaded as ready", async () => {
+    mocked.fetchUpdateAsync.mockResolvedValue({ isNew: false });
+    await checkForOtaUpdate(1_000_000);
+    expect(isUpdateReady()).toBe(true);
+  });
+
   it("does not hit the update server more than once per interval", async () => {
     mocked.checkForUpdateAsync.mockResolvedValue({ isAvailable: false });
     await checkForOtaUpdate(1_000_000);
