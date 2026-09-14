@@ -745,7 +745,7 @@ export default function HomeScreen() {
   };
 
   return (
-    <View className="flex-1 bg-theme-neutrals-900">
+    <View className="flex-1">
       <Animated.View style={[styles.headerClip, headerAnimatedStyle]} onLayout={onHeaderLayout}>
         <HomeHeader
           onLogoPress={handleLogoPress}
