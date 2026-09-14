@@ -20,9 +20,9 @@ import {
   Pressable,
   ScrollView,
   ActivityIndicator,
-  RefreshControl,
   TextInput,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
@@ -276,7 +276,7 @@ export default function AffiliateScreen() {
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 32, paddingTop: 4 }}
         showsVerticalScrollIndicator={false}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />
+          <DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />
         }
       >
         {/* Per-user share image — the exact card people see when the link unfurls */}
@@ -588,6 +588,7 @@ export default function AffiliateScreen() {
           </Text>
         ) : null}
       </ScrollView>
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 }

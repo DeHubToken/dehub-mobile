@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   TextInput,
   ActivityIndicator,
-  RefreshControl,
   Keyboard,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
@@ -997,7 +997,7 @@ const FollowListScreen: React.FC = () => {
             onEndReached={handleLoadMore}
             onEndReachedThreshold={0.3}
             refreshControl={
-              <RefreshControl
+              <DeHubRefreshControl
                 refreshing={requestsRefreshing}
                 onRefresh={handleRefresh}
                 tintColor="#fff"
@@ -1165,7 +1165,7 @@ const FollowListScreen: React.FC = () => {
               onEndReached={handleLoadMore}
               onEndReachedThreshold={0.3}
               refreshControl={
-                <RefreshControl
+                <DeHubRefreshControl
                   refreshing={refreshing}
                   onRefresh={handleRefresh}
                   tintColor="#fff"
@@ -1220,6 +1220,7 @@ const FollowListScreen: React.FC = () => {
           </View>
         </View>
       </GlassModal>
+      <DeHubRefreshMark refreshing={refreshing || requestsRefreshing} />
     </View>
   );
 };

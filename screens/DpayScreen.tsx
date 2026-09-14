@@ -9,9 +9,9 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
-  RefreshControl,
   TouchableOpacity,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import DpayLoader from "../components/Dpay/DpayLoader";
 import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
@@ -186,7 +186,7 @@ const DpayScreen: React.FC = () => {
       <ScrollView
         className="flex-1 px-0"
         contentContainerStyle={{ paddingBottom: 40 }}
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
+        refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
       >
         <DpayHeader />
 
@@ -239,6 +239,7 @@ const DpayScreen: React.FC = () => {
           {activeTab === "solana" && <SolanaTab />}
         </View>
       </ScrollView>
+      <DeHubRefreshMark refreshing={refreshing} />
     </KeyboardAvoidingView>
   );
 };

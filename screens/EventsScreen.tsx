@@ -5,7 +5,8 @@
  * Supabase with Upcoming / Past / Mine filters and going/interested RSVP.
  */
 import React, { useCallback, useMemo, useState } from "react";
-import { View, Text, StyleSheet, Pressable, FlatList, RefreshControl } from "react-native";
+import { View, Text, StyleSheet, Pressable, FlatList } from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -209,7 +210,7 @@ export default function EventsScreen() {
           contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 24, paddingTop: 4, gap: 12 }}
           showsVerticalScrollIndicator={false}
           refreshControl={
-            <RefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />
+            <DeHubRefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />
           }
           ListEmptyComponent={
             <View style={styles.center}>
@@ -219,6 +220,7 @@ export default function EventsScreen() {
           }
         />
       )}
+      <DeHubRefreshMark refreshing={isRefetching} />
     </View>
   );
 }

@@ -17,12 +17,12 @@ import {
   Pressable,
   ScrollView,
   TextInput,
-  RefreshControl,
   Modal,
   KeyboardAvoidingView,
   Platform,
   Alert,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
@@ -245,7 +245,7 @@ export default function WorkJobDetailScreen() {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={isRefetching}
               onRefresh={refetch}
               tintColor={theme.colors.accent}
@@ -772,6 +772,7 @@ export default function WorkJobDetailScreen() {
           </View>
         </KeyboardAvoidingView>
       </Modal>
+      <DeHubRefreshMark refreshing={isRefetching} />
     </View>
   );
 }
