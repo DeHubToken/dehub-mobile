@@ -3020,5 +3020,25 @@
     "ppvUnlock": "Furitaanka PPV",
     "noEarningsYet": "Weli dakhli ma jiro",
     "noEarningsDesc": "Tips iyo iibka PPV halkan ayay ka muuqan doonaan"
+  },
+  "earningsVs": {
+    "title": "Marka la barbardhigo goobo kale",
+    "subtitle": "Dakhligaaga dhabta ah ee DeHub marka loo eego waxa ay isla daawashooyinkaas meel kale ku bixin lahaayeen.",
+    "earnedOnDehub": "Lagu kasbaday DeHub",
+    "priceUnavailable": "Qiimaha USD lama helin",
+    "totalViews": "Wadarta daawashooyinka",
+    "acrossPosts": "{{count}} boosto",
+    "yourRpm": "RPM-kaaga DeHub",
+    "per1000": "1,000 daawasho kasta",
+    "typicalRange": "caadi ahaan {{range}} 1,000 kasta",
+    "onDehub": "{{amount}} DeHub",
+    "rpmA11y": "RPM-ka {{platform}} oo doolar ah 1,000 daawasho kasta",
+    "estimatorLabel": "Ma aha tirooyinkaaga? Isku day tiro daawasho kasta",
+    "estimatorPlaceholder": "tusaale 250000",
+    "noteYoutube": "Ka dib markii YouTube qaato 45% dakhliga xayeysiinta. Waxay ugu badan isbeddeshaa iyadoo ku xiran nooca iyo dalka daawadaha.",
+    "noteTwitch": "Kaliya dakhliga xayeysiinta — ma ku jiraan subs iyo bits, oo badanaa ah qaybta weyn.",
+    "noteTiktok": "Creator Rewards. Waxaa lagu yaqaan hoos u dhaca daawasho kasta; baaxadda ayaa ah moodelka oo dhan.",
+    "noteReels": "Barnaamijyada bonuska waa martiqaad kaliya waana la joojiyay marar badan.",
+    "footnote": "Tirooyinka tartamayaasha waa qiyaaso ka yimid xadadka warshadaha ee la daabacay, ma aha lacag-bixin la cabbiray — RPM-ka dhabta ah aad buu u kala duwan yahay iyadoo ku xiran nooca, dalka dhagaystayaasha iyo waqtiga daawashada, sidaas darteed wax ka beddel qiime kasta si uu ugu dhigmo waxaad dhab ahaan ku kasbato. Tirada DeHub waa dakhligaaga tips-ka dhabta ah oo lagu beddelay qiimaha DHB ee tooska ah, mana ay ku jiraan diiwaangelin, PPV ama iibka dukaanka. Daawashooyinka waxaa laga soo ururiyay 100-kii boostooyin ee ugu dambeeyay."
   }
 }

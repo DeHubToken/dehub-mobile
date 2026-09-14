@@ -3099,5 +3099,25 @@
     "ppvUnlock": "PPV unlock",
     "noEarningsYet": "No earnings yet",
     "noEarningsDesc": "Tips and PPV sales will appear here"
+  },
+  "earningsVs": {
+    "title": "Vs Other Platforms",
+    "subtitle": "Your real DeHub earnings against what the same views would have paid elsewhere.",
+    "earnedOnDehub": "Earned on DeHub",
+    "priceUnavailable": "USD price unavailable",
+    "totalViews": "Total views",
+    "acrossPosts": "across {{count}} posts",
+    "yourRpm": "Your DeHub RPM",
+    "per1000": "per 1,000 views",
+    "typicalRange": "typical {{range}} per 1,000",
+    "onDehub": "{{amount}} on DeHub",
+    "rpmA11y": "{{platform}} RPM in dollars per 1,000 views",
+    "estimatorLabel": "Not your numbers? Try any view count",
+    "estimatorPlaceholder": "e.g. 250000",
+    "noteYoutube": "After YouTube’s 45% ad-revenue cut. Swings hardest by niche and viewer country.",
+    "noteTwitch": "Ad revenue only — excludes subs and bits, which are usually the larger share.",
+    "noteTiktok": "Creator Rewards. Famously low per view; scale is the entire model.",
+    "noteReels": "Bonus programmes are invite-only and have been repeatedly wound down.",
+    "footnote": "Competitor figures are estimates from published industry ranges, not measured payouts — real RPM varies widely by niche, audience country and watch time, so edit each rate to match what you actually earn. The DeHub figure is your real tip income converted at the live DHB price, and excludes subscriptions, PPV and store sales. Views are summed from your most recent 100 posts."
   }
 }

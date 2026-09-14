@@ -2987,5 +2987,25 @@
     "ppvUnlock": "Bukak PPV",
     "noEarningsYet": "Durung ana penghasilan",
     "noEarningsDesc": "Tip lan dodolan PPV bakal katon ing kene"
+  },
+  "earningsVs": {
+    "title": "Dibandhingake platform liya",
+    "subtitle": "Penghasilan nyata sampeyan ing DeHub dibandhingake karo sing bakal dibayar tontonan sing padha ing papan liya.",
+    "earnedOnDehub": "Entuk ing DeHub",
+    "priceUnavailable": "Rega USD ora kasedhiya",
+    "totalViews": "Total tontonan",
+    "acrossPosts": "ing {{count}} kiriman",
+    "yourRpm": "RPM DeHub sampeyan",
+    "per1000": "saben 1.000 tontonan",
+    "typicalRange": "biasane {{range}} saben 1.000",
+    "onDehub": "{{amount}} ing DeHub",
+    "rpmA11y": "RPM {{platform}} ing dolar saben 1.000 tontonan",
+    "estimatorLabel": "Dudu angkamu? Coba jumlah tontonan apa wae",
+    "estimatorPlaceholder": "cth. 250000",
+    "noteYoutube": "Sawise potongan 45% pendapatan iklan YouTube. Paling owah miturut niche lan negara penonton.",
+    "noteTwitch": "Mung penghasilan iklan — ora kalebu sub lan bits, sing biasane bagean luwih gedhe.",
+    "noteTiktok": "Creator Rewards. Kondhang murah saben tontonan; kabeh modhele ana ing skala.",
+    "noteReels": "Program bonus mung kanthi undangan lan wis bola-bali ditutup.",
+    "footnote": "Angka pesaing minangka prakiraan saka rentang industri sing diterbitake, dudu pembayaran sing diukur — RPM nyata beda-beda banget miturut niche, negara pamirsa, lan wektu nonton, mula owahi saben tarif supaya cocog karo sing nyata sampeyan entuk. Angka DeHub yaiku penghasilan tip nyata sampeyan sing dikonversi ing rega DHB langsung, lan ora kalebu langganan, PPV, utawa dodolan toko. Tontonan dijumlah saka 100 kiriman paling anyar sampeyan."
   }
 }

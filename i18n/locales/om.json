@@ -3093,5 +3093,25 @@
     "ppvUnlock": "Banuu PPV",
     "noEarningsYet": "Ammatti galiin hin jiru",
     "noEarningsDesc": "Tips fi gurgurtaan PPV asitti mul'atu"
+  },
+  "earningsVs": {
+    "title": "Waldorgommii biroo wajjin",
+    "subtitle": "Galiin kee dhugaa DeHub irraa, ilaalchi walfakkaatu bakka biraatti maal kaffaluu akka danda'u wajjin.",
+    "earnedOnDehub": "DeHub irratti argame",
+    "priceUnavailable": "Gatiin USD hin jiru",
+    "totalViews": "Ilaalcha walii galaa",
+    "acrossPosts": "maxxansa {{count}} keessatti",
+    "yourRpm": "RPM DeHub kee",
+    "per1000": "ilaalcha 1,000 tokkoon",
+    "typicalRange": "yeroo baayʼee {{range}} 1,000 tokkoon",
+    "onDehub": "{{amount}} DeHub irratti",
+    "rpmA11y": "RPM {{platform}} doolaraan ilaalcha 1,000 tokkoon",
+    "estimatorLabel": "Lakkoofsa kee miti? Baayina ilaalchaa kamiyyuu yaali",
+    "estimatorPlaceholder": "fkn 250000",
+    "noteYoutube": "Erga YouTube dhibbentaa 45 galii beeksisaa fudhatee booda. Akkaataa dhimmaa fi biyya ilaaltuutiin baayʼee jijjiirama.",
+    "noteTwitch": "Galii beeksisaa qofa — subs fi bits hin dabalatu, kunneen yeroo baayʼee qooda guddaa dha.",
+    "noteTiktok": "Creator Rewards. Ilaalcha tokkoon gadi aanaa ta'uun beekama; bal'inni mataan isaa moodela guutuu dha.",
+    "noteReels": "Sagantaan badhaasaa afeerraan qofa yoo ta'u, irra deddeebiin cufameera.",
+    "footnote": "Lakkoofsi dorgomtootaa tilmaama hangii industirii maxxanfame irraa kan argame malee kaffaltii safarame miti — RPM dhugaan akkaataa dhimmaa, biyya ilaaltotaa fi yeroo ilaalchaatiin baayʼee garaagara, kanaafuu tokkoon tokkoon gatii akka galii kee dhugaatiin walsimuuf gulaali. Lakkoofsi DeHub galii tips kee dhugaa gatii DHB kallattiin jijjiirame yoo ta'u, galmee, PPV fi gurgurtaa suuqii hin dabalatu. Ilaalchi maxxansa kee 100 dhiheenyaa irraa walitti qabame."
   }
 }

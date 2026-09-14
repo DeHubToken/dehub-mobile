@@ -3033,5 +3033,25 @@
     "ppvUnlock": "PPV feloldás",
     "noEarningsYet": "Még nincs bevétel",
     "noEarningsDesc": "A borravalók és PPV eladások itt jelennek meg"
+  },
+  "earningsVs": {
+    "title": "Más platformokhoz képest",
+    "subtitle": "A valódi DeHub-bevételed szemben azzal, amit ugyanazok a megtekintések máshol fizettek volna.",
+    "earnedOnDehub": "DeHubon keresve",
+    "priceUnavailable": "USD-ár nem érhető el",
+    "totalViews": "Összes megtekintés",
+    "acrossPosts": "{{count}} bejegyzésből",
+    "yourRpm": "A DeHub RPM-ed",
+    "per1000": "1000 megtekintésenként",
+    "typicalRange": "jellemzően {{range}} 1000-enként",
+    "onDehub": "{{amount}} a DeHubon",
+    "rpmA11y": "{{platform}} RPM dollárban 1000 megtekintésenként",
+    "estimatorLabel": "Nem a te számaid? Próbálj ki bármilyen megtekintésszámot",
+    "estimatorPlaceholder": "pl. 250000",
+    "noteYoutube": "A YouTube 45%-os hirdetési részesedése után. A legjobban a téma és a néző országa szerint ingadozik.",
+    "noteTwitch": "Csak hirdetési bevétel — feliratkozások és bitek nélkül, amelyek általában a nagyobb részt teszik ki.",
+    "noteTiktok": "Creator Rewards. Hírhedten alacsony megtekintésenként; az egész modell a mennyiségre épül.",
+    "noteReels": "A bónuszprogramok csak meghívásosak, és többször is leépítették őket.",
+    "footnote": "A versenytársak számai közzétett iparági sávokból származó becslések, nem mért kifizetések — a valós RPM erősen ingadozik a téma, a közönség országa és a nézési idő szerint, ezért szerkeszd minden díjszabást úgy, hogy illeszkedjen a tényleges bevételedhez. A DeHub-szám a valódi borravaló-bevételed az élő DHB-árfolyamon átszámítva, és nem tartalmaz előfizetéseket, PPV-t vagy boltbeli eladásokat. A megtekintések a legutóbbi 100 bejegyzésedből adódnak össze."
   }
 }

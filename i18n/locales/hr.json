@@ -3029,5 +3029,25 @@
     "ppvUnlock": "PPV otključavanje",
     "noEarningsYet": "Još nema zarade",
     "noEarningsDesc": "Napojnice i PPV prodaja pojavit će se ovdje"
+  },
+  "earningsVs": {
+    "title": "U usporedbi s drugim platformama",
+    "subtitle": "Tvoja stvarna zarada na DeHubu naspram onoga što bi isti pregledi platili drugdje.",
+    "earnedOnDehub": "Zarađeno na DeHubu",
+    "priceUnavailable": "Cijena u USD nije dostupna",
+    "totalViews": "Ukupno pregleda",
+    "acrossPosts": "kroz {{count}} objava",
+    "yourRpm": "Tvoj DeHub RPM",
+    "per1000": "po 1.000 pregleda",
+    "typicalRange": "obično {{range}} po 1.000",
+    "onDehub": "{{amount}} na DeHubu",
+    "rpmA11y": "RPM za {{platform}} u dolarima po 1.000 pregleda",
+    "estimatorLabel": "Nisu tvoje brojke? Probaj bilo koji broj pregleda",
+    "estimatorPlaceholder": "npr. 250000",
+    "noteYoutube": "Nakon 45 % koje YouTube uzima od prihoda od oglasa. Najviše varira po niši i zemlji gledatelja.",
+    "noteTwitch": "Samo prihod od oglasa — bez pretplata i bitsa, koji su obično veći dio.",
+    "noteTiktok": "Creator Rewards. Poznato nisko po pregledu; cijeli model počiva na obujmu.",
+    "noteReels": "Bonus programi su samo uz pozivnicu i više puta su gašeni.",
+    "footnote": "Brojke konkurencije su procjene iz objavljenih industrijskih raspona, a ne izmjerene isplate — stvarni RPM jako varira po niši, zemlji publike i vremenu gledanja, pa uredi svaku stopu da odgovara onome što stvarno zarađuješ. Brojka DeHuba je tvoj stvarni prihod od napojnica preračunat po trenutnoj cijeni DHB-a i ne uključuje pretplate, PPV ni prodaju u trgovini. Pregledi se zbrajaju iz tvojih 100 najnovijih objava."
   }
 }

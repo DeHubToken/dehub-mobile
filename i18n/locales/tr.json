@@ -3091,5 +3091,25 @@
     "ppvUnlock": "PPV açılışı",
     "noEarningsYet": "Henüz kazanç yok",
     "noEarningsDesc": "Bahşişler ve PPV satışları burada görünecek"
+  },
+  "earningsVs": {
+    "title": "Diğer platformlarla karşılaştırma",
+    "subtitle": "DeHub'daki gerçek kazancın, aynı izlenmelerin başka yerde ödeyeceği tutara karşı.",
+    "earnedOnDehub": "DeHub'da kazanılan",
+    "priceUnavailable": "USD fiyatı yok",
+    "totalViews": "Toplam izlenme",
+    "acrossPosts": "{{count}} gönderide",
+    "yourRpm": "DeHub RPM'in",
+    "per1000": "1.000 izlenme başına",
+    "typicalRange": "genelde 1.000 başına {{range}}",
+    "onDehub": "DeHub'da {{amount}}",
+    "rpmA11y": "{{platform}} için 1.000 izlenme başına dolar RPM",
+    "estimatorLabel": "Senin rakamların değil mi? Herhangi bir izlenme sayısını dene",
+    "estimatorPlaceholder": "örn. 250000",
+    "noteYoutube": "YouTube reklam gelirinden %45 aldıktan sonra. En çok nişe ve izleyicinin ülkesine göre değişir.",
+    "noteTwitch": "Yalnızca reklam geliri — genelde daha büyük payı oluşturan abonelikler ve bits hariç.",
+    "noteTiktok": "Creator Rewards. İzlenme başına düşüklüğüyle bilinir; modelin tamamı ölçek üzerine kurulu.",
+    "noteReels": "Bonus programları yalnızca davetle açılır ve defalarca kapatıldı.",
+    "footnote": "Rakip rakamları yayımlanmış sektör aralıklarından türetilen tahminlerdir, ölçülmüş ödemeler değil — gerçek RPM nişe, izleyici ülkesine ve izlenme süresine göre çok değişir, bu yüzden her oranı gerçekte kazandığına göre düzenle. DeHub rakamı, canlı DHB fiyatıyla çevrilmiş gerçek bahşiş gelirindir ve abonelikleri, PPV'yi ve mağaza satışlarını içermez. İzlenmeler en son 100 gönderinden toplanır."
   }
 }

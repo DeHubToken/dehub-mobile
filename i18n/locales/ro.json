@@ -3042,5 +3042,25 @@
     "ppvUnlock": "Deblocare PPV",
     "noEarningsYet": "Încă niciun câștig",
     "noEarningsDesc": "Bacșișurile și vânzările PPV vor apărea aici"
+  },
+  "earningsVs": {
+    "title": "Comparativ cu alte platforme",
+    "subtitle": "Câștigurile tale reale pe DeHub față de cât ar fi plătit aceleași vizionări în altă parte.",
+    "earnedOnDehub": "Câștigat pe DeHub",
+    "priceUnavailable": "Prețul în USD indisponibil",
+    "totalViews": "Vizionări totale",
+    "acrossPosts": "în {{count}} postări",
+    "yourRpm": "RPM-ul tău pe DeHub",
+    "per1000": "la 1.000 de vizionări",
+    "typicalRange": "de obicei {{range}} la 1.000",
+    "onDehub": "{{amount}} pe DeHub",
+    "rpmA11y": "RPM-ul {{platform}} în dolari la 1.000 de vizionări",
+    "estimatorLabel": "Nu sunt cifrele tale? Încearcă orice număr de vizionări",
+    "estimatorPlaceholder": "ex. 250000",
+    "noteYoutube": "După cota de 45% pe care YouTube o reține din venitul publicitar. Variază cel mai mult în funcție de nișă și țara privitorului.",
+    "noteTwitch": "Doar venitul din reclame — fără abonamente și bits, care sunt de obicei partea mai mare.",
+    "noteTiktok": "Creator Rewards. Renumit de mic per vizionare; întregul model se bazează pe volum.",
+    "noteReels": "Programele de bonus sunt doar pe bază de invitație și au fost închise în repetate rânduri.",
+    "footnote": "Cifrele concurenței sunt estimări din intervale publicate din industrie, nu plăți măsurate — RPM-ul real variază mult în funcție de nișă, țara publicului și timpul de vizionare, așa că editează fiecare tarif ca să se potrivească cu ce câștigi de fapt. Cifra DeHub este venitul tău real din bacșișuri convertit la prețul live al DHB și exclude abonamentele, PPV și vânzările din magazin. Vizionările sunt însumate din cele mai recente 100 de postări ale tale."
   }
 }

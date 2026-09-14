@@ -2999,5 +2999,25 @@
     "ppvUnlock": "PPV açylyşy",
     "noEarningsYet": "Häzirlikçe girdeji ýok",
     "noEarningsDesc": "Tipler we PPV satuwy şu ýerde görkeziler"
+  },
+  "earningsVs": {
+    "title": "Beýleki platformalar bilen deňeşdirilende",
+    "subtitle": "DeHub-daky hakyky girdejiňiz, şol bir görkezilişleriň başga ýerde tölejek mukdary bilen deňeşdirilende.",
+    "earnedOnDehub": "DeHub-da gazanylan",
+    "priceUnavailable": "USD bahasy elýeterli däl",
+    "totalViews": "Jemi görkezilişler",
+    "acrossPosts": "{{count}} ýazgyda",
+    "yourRpm": "Siziň DeHub RPM",
+    "per1000": "her 1 000 görkezilişe",
+    "typicalRange": "adatça {{range}} her 1 000-e",
+    "onDehub": "DeHub-da {{amount}}",
+    "rpmA11y": "{{platform}} RPM dollarda her 1 000 görkezilişe",
+    "estimatorLabel": "Siziň sanlaryňyz däl? Islendik görkeziliş sanyny synap görüň",
+    "estimatorPlaceholder": "meselem 250000",
+    "noteYoutube": "YouTube mahabat girdejisiniň 45%-ni alanyndan soň. Mowzuga we tomaşaçynyň ýurduna görä iň köp üýtgeýär.",
+    "noteTwitch": "Diňe mahabat girdejisi — abunalar we bits girenok, olar adatça has uly paýdyr.",
+    "noteTiktok": "Creator Rewards. Her görkezilişe pesligi bilen meşhur; tutuş model göwrümde.",
+    "noteReels": "Bonus maksatnamalary diňe çakylyk boýunça we birnäçe gezek ýapyldy.",
+    "footnote": "Bäsdeşleriň sanlary neşir edilen pudak aralyklaryndan alnan çaklamalar bolup, ölçelen tölegler däldir — hakyky RPM mowzuga, tomaşaçylaryň ýurduna we tomaşa wagtyna görä örän üýtgeýär, şonuň üçin her nyrhy hakyky girdejiňize laýyk üýtgediň. DeHub sany DHB-nyň janly bahasyna öwrülen hakyky tip girdejiňizdir we abunalary, PPV-ni hem-de dükan satuwyny öz içine almaýar. Görkezilişler soňky 100 ýazgyňyzdan jemlenýär."
   }
 }

@@ -3103,5 +3103,25 @@
     "ppvUnlock": "Déblocage PPV",
     "noEarningsYet": "Pas encore de gains",
     "noEarningsDesc": "Les pourboires et ventes PPV apparaîtront ici"
+  },
+  "earningsVs": {
+    "title": "Comparé aux autres plateformes",
+    "subtitle": "Vos gains réels sur DeHub face à ce que les mêmes vues auraient rapporté ailleurs.",
+    "earnedOnDehub": "Gagné sur DeHub",
+    "priceUnavailable": "Prix en USD indisponible",
+    "totalViews": "Vues totales",
+    "acrossPosts": "sur {{count}} publications",
+    "yourRpm": "Votre RPM DeHub",
+    "per1000": "pour 1 000 vues",
+    "typicalRange": "en général {{range}} pour 1 000",
+    "onDehub": "{{amount}} sur DeHub",
+    "rpmA11y": "RPM de {{platform}} en dollars pour 1 000 vues",
+    "estimatorLabel": "Pas vos chiffres ? Essayez n'importe quel nombre de vues",
+    "estimatorPlaceholder": "ex. 250000",
+    "noteYoutube": "Après les 45 % que YouTube prélève sur les revenus publicitaires. Varie surtout selon la niche et le pays du spectateur.",
+    "noteTwitch": "Revenus publicitaires uniquement — hors abonnements et bits, qui pèsent généralement plus lourd.",
+    "noteTiktok": "Creator Rewards. Réputé très faible par vue ; tout le modèle repose sur le volume.",
+    "noteReels": "Les programmes de bonus sont sur invitation seulement et ont été supprimés à plusieurs reprises.",
+    "footnote": "Les chiffres des concurrents sont des estimations issues de fourchettes publiées du secteur, pas des versements mesurés : le RPM réel varie fortement selon la niche, le pays de l'audience et la durée de visionnage, alors ajustez chaque taux à ce que vous gagnez vraiment. Le chiffre DeHub correspond à vos revenus réels de pourboires convertis au cours DHB en direct, et exclut les abonnements, le PPV et les ventes en boutique. Les vues sont additionnées sur vos 100 publications les plus récentes."
   }
 }

@@ -3117,5 +3117,25 @@
     "ppvUnlock": "Mở khóa PPV",
     "noEarningsYet": "Chưa có thu nhập",
     "noEarningsDesc": "Tiền tip và doanh thu PPV sẽ hiển thị ở đây"
+  },
+  "earningsVs": {
+    "title": "So với nền tảng khác",
+    "subtitle": "Thu nhập thực tế của bạn trên DeHub so với số tiền cùng lượt xem đó sẽ trả ở nơi khác.",
+    "earnedOnDehub": "Kiếm được trên DeHub",
+    "priceUnavailable": "Không có giá USD",
+    "totalViews": "Tổng lượt xem",
+    "acrossPosts": "trên {{count}} bài",
+    "yourRpm": "RPM DeHub của bạn",
+    "per1000": "mỗi 1.000 lượt xem",
+    "typicalRange": "thường {{range}} mỗi 1.000",
+    "onDehub": "{{amount}} trên DeHub",
+    "rpmA11y": "RPM của {{platform}} tính bằng đô la mỗi 1.000 lượt xem",
+    "estimatorLabel": "Không phải số của bạn? Thử bất kỳ lượt xem nào",
+    "estimatorPlaceholder": "ví dụ 250000",
+    "noteYoutube": "Sau khi YouTube cắt 45% doanh thu quảng cáo. Dao động mạnh nhất theo lĩnh vực và quốc gia người xem.",
+    "noteTwitch": "Chỉ doanh thu quảng cáo — không gồm sub và bits, thường là phần lớn hơn.",
+    "noteTiktok": "Creator Rewards. Nổi tiếng thấp trên mỗi lượt xem; cả mô hình nằm ở quy mô.",
+    "noteReels": "Chương trình thưởng chỉ dành cho người được mời và đã nhiều lần bị đóng.",
+    "footnote": "Số liệu của đối thủ là ước tính từ các khoảng đã công bố trong ngành, không phải khoản chi trả đo được — RPM thực tế thay đổi rất nhiều theo lĩnh vực, quốc gia khán giả và thời lượng xem, nên hãy sửa từng mức cho khớp với thu nhập thật của bạn. Con số DeHub là thu nhập tiền tip thực của bạn quy đổi theo giá DHB thời gian thực, và không gồm đăng ký, PPV hay doanh thu cửa hàng. Lượt xem được cộng từ 100 bài đăng gần nhất của bạn."
   }
 }

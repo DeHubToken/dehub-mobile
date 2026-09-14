@@ -3298,5 +3298,25 @@
     "ppvUnlock": "PPV-ontgrendeling",
     "noEarningsYet": "Nog geen inkomsten",
     "noEarningsDesc": "Fooien en PPV-verkopen verschijnen hier"
+  },
+  "earningsVs": {
+    "title": "Vergeleken met andere platforms",
+    "subtitle": "Je echte DeHub-inkomsten tegenover wat dezelfde weergaven elders hadden opgeleverd.",
+    "earnedOnDehub": "Verdiend op DeHub",
+    "priceUnavailable": "USD-prijs niet beschikbaar",
+    "totalViews": "Totaal weergaven",
+    "acrossPosts": "over {{count}} berichten",
+    "yourRpm": "Je DeHub-RPM",
+    "per1000": "per 1.000 weergaven",
+    "typicalRange": "meestal {{range}} per 1.000",
+    "onDehub": "{{amount}} op DeHub",
+    "rpmA11y": "RPM van {{platform}} in dollars per 1.000 weergaven",
+    "estimatorLabel": "Niet jouw cijfers? Probeer een willekeurig aantal weergaven",
+    "estimatorPlaceholder": "bijv. 250000",
+    "noteYoutube": "Na de 45% die YouTube van de advertentie-inkomsten inhoudt. Schommelt het sterkst per niche en land van de kijker.",
+    "noteTwitch": "Alleen advertentie-inkomsten — zonder subs en bits, die meestal het grotere deel vormen.",
+    "noteTiktok": "Creator Rewards. Berucht laag per weergave; het hele model draait om schaal.",
+    "noteReels": "Bonusprogramma's zijn alleen op uitnodiging en zijn herhaaldelijk afgebouwd.",
+    "footnote": "Cijfers van concurrenten zijn schattingen uit gepubliceerde branchemarges, geen gemeten uitbetalingen — de echte RPM verschilt sterk per niche, land van het publiek en kijktijd, dus pas elk tarief aan op wat je werkelijk verdient. Het DeHub-cijfer is je echte fooi-inkomen omgerekend tegen de actuele DHB-koers en bevat geen abonnementen, PPV of winkelverkopen. Weergaven worden opgeteld uit je 100 meest recente berichten."
   }
 }

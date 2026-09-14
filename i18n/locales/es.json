@@ -3099,5 +3099,25 @@
     "ppvUnlock": "Desbloqueo PPV",
     "noEarningsYet": "Aún no hay ganancias",
     "noEarningsDesc": "Las propinas y ventas PPV aparecerán aquí"
+  },
+  "earningsVs": {
+    "title": "Frente a otras plataformas",
+    "subtitle": "Tus ganancias reales en DeHub frente a lo que las mismas visualizaciones habrían pagado en otro sitio.",
+    "earnedOnDehub": "Ganado en DeHub",
+    "priceUnavailable": "Precio en USD no disponible",
+    "totalViews": "Visualizaciones totales",
+    "acrossPosts": "en {{count}} publicaciones",
+    "yourRpm": "Tu RPM en DeHub",
+    "per1000": "por cada 1.000 visualizaciones",
+    "typicalRange": "normalmente {{range}} por cada 1.000",
+    "onDehub": "{{amount}} en DeHub",
+    "rpmA11y": "RPM de {{platform}} en dólares por cada 1.000 visualizaciones",
+    "estimatorLabel": "¿No son tus cifras? Prueba cualquier número de visualizaciones",
+    "estimatorPlaceholder": "p. ej. 250000",
+    "noteYoutube": "Tras el 45% que se queda YouTube de los ingresos publicitarios. Varía muchísimo según el nicho y el país del espectador.",
+    "noteTwitch": "Solo ingresos por publicidad: no incluye subs ni bits, que suelen ser la parte mayor.",
+    "noteTiktok": "Creator Rewards. Famoso por pagar poquísimo por visualización; todo el modelo es la escala.",
+    "noteReels": "Los programas de bonificación son solo por invitación y se han cerrado repetidamente.",
+    "footnote": "Las cifras de la competencia son estimaciones de rangos publicados del sector, no pagos medidos: el RPM real varía mucho según el nicho, el país de la audiencia y el tiempo de visualización, así que edita cada tarifa para que coincida con lo que ganas de verdad. La cifra de DeHub es tu ingreso real por propinas convertido al precio de DHB en vivo, y excluye suscripciones, PPV y ventas de la tienda. Las visualizaciones se suman de tus 100 publicaciones más recientes."
   }
 }

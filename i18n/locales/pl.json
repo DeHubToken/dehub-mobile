@@ -3097,5 +3097,25 @@
     "ppvUnlock": "Odblokowanie PPV",
     "noEarningsYet": "Brak zarobków",
     "noEarningsDesc": "Napiwki i sprzedaż PPV pojawią się tutaj"
+  },
+  "earningsVs": {
+    "title": "W porównaniu z innymi platformami",
+    "subtitle": "Twoje rzeczywiste zarobki na DeHub kontra to, ile te same wyświetlenia dałyby gdzie indziej.",
+    "earnedOnDehub": "Zarobione na DeHub",
+    "priceUnavailable": "Cena w USD niedostępna",
+    "totalViews": "Łącznie wyświetleń",
+    "acrossPosts": "w {{count}} postach",
+    "yourRpm": "Twój RPM na DeHub",
+    "per1000": "na 1000 wyświetleń",
+    "typicalRange": "zwykle {{range}} na 1000",
+    "onDehub": "{{amount}} na DeHub",
+    "rpmA11y": "RPM {{platform}} w dolarach na 1000 wyświetleń",
+    "estimatorLabel": "To nie twoje liczby? Wypróbuj dowolną liczbę wyświetleń",
+    "estimatorPlaceholder": "np. 250000",
+    "noteYoutube": "Po 45% prowizji YouTube od przychodów z reklam. Najbardziej waha się zależnie od niszy i kraju widza.",
+    "noteTwitch": "Tylko przychody z reklam — bez subskrypcji i bitów, które zwykle stanowią większą część.",
+    "noteTiktok": "Creator Rewards. Słynie z niskiej stawki za wyświetlenie; cały model opiera się na skali.",
+    "noteReels": "Programy bonusowe są tylko na zaproszenie i były wielokrotnie wygaszane.",
+    "footnote": "Dane konkurencji to szacunki z opublikowanych widełek branżowych, a nie zmierzone wypłaty — rzeczywisty RPM bardzo się różni zależnie od niszy, kraju odbiorców i czasu oglądania, więc dostosuj każdą stawkę do tego, ile faktycznie zarabiasz. Liczba DeHub to twój rzeczywisty przychód z napiwków przeliczony po bieżącej cenie DHB i nie obejmuje subskrypcji, PPV ani sprzedaży w sklepie. Wyświetlenia sumowane są z twoich 100 najnowszych postów."
   }
 }

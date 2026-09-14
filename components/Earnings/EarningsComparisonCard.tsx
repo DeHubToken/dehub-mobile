@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { resolveViewCount } from "../../libs/numbers.util";
 import {
   View,
@@ -33,7 +34,7 @@ interface Platform {
   label: string;
   defaultRpm: number;
   range: string;
-  note: string;
+  noteKey: string;
 }
 
 // Per-1000-view creator payout in USD, before tax. Mid-points of commonly
@@ -45,28 +46,28 @@ const PLATFORMS: Platform[] = [
     label: "YouTube",
     defaultRpm: 2.0,
     range: "$0.50 – $6.00",
-    note: "After YouTube’s 45% ad-revenue cut. Swings hardest by niche and viewer country.",
+    noteKey: "earningsVs.noteYoutube",
   },
   {
     key: "twitch",
     label: "Twitch",
     defaultRpm: 3.0,
     range: "$2.00 – $4.00",
-    note: "Ad revenue only — excludes subs and bits, which are usually the larger share.",
+    noteKey: "earningsVs.noteTwitch",
   },
   {
     key: "tiktok",
     label: "TikTok",
     defaultRpm: 0.03,
     range: "$0.02 – $0.04",
-    note: "Creator Rewards. Famously low per view; scale is the entire model.",
+    noteKey: "earningsVs.noteTiktok",
   },
   {
     key: "reels",
     label: "Instagram Reels",
     defaultRpm: 0.02,
     range: "$0.01 – $0.05",
-    note: "Bonus programmes are invite-only and have been repeatedly wound down.",
+    noteKey: "earningsVs.noteReels",
   },
 ];
 
@@ -82,6 +83,7 @@ function compact(n: number): string {
 }
 
 const EarningsComparisonCard: React.FC = () => {
+  const { t } = useTranslation();
   const user = useUser() as any;
 
   const [loading, setLoading] = useState(true);
@@ -157,11 +159,8 @@ const EarningsComparisonCard: React.FC = () => {
 
   return (
     <View style={styles.card}>
-      <Text style={styles.cardTitle}>Vs Other Platforms</Text>
-      <Text style={styles.cardSubtitle}>
-        Your real DeHub earnings against what the same views would have paid
-        elsewhere.
-      </Text>
+      <Text style={styles.cardTitle}>{t("earningsVs.title")}</Text>
+      <Text style={styles.cardSubtitle}>{t("earningsVs.subtitle")}</Text>
 
       {loading ? (
         <View style={styles.loadingBox}>
@@ -172,29 +171,29 @@ const EarningsComparisonCard: React.FC = () => {
           {/* Your actual numbers */}
           <View style={styles.tilesRow}>
             <View style={styles.tile}>
-              <Text style={styles.tileLabel}>Earned on DeHub</Text>
+              <Text style={styles.tileLabel}>{t("earningsVs.earnedOnDehub")}</Text>
               <Text style={styles.tileValue}>
                 {priceKnown ? usd(dehubUsd) : `${compact(tipsEarnedDhb)} DHB`}
               </Text>
               <Text style={styles.tileSub}>
                 {priceKnown
                   ? `${compact(tipsEarnedDhb)} DHB`
-                  : "USD price unavailable"}
+                  : t("earningsVs.priceUnavailable")}
               </Text>
             </View>
             <View style={styles.tile}>
-              <Text style={styles.tileLabel}>Total views</Text>
+              <Text style={styles.tileLabel}>{t("earningsVs.totalViews")}</Text>
               <Text style={styles.tileValue}>{compact(totalViews)}</Text>
-              <Text style={styles.tileSub}>across {postCount} posts</Text>
+              <Text style={styles.tileSub}>{t("earningsVs.acrossPosts", { count: postCount })}</Text>
             </View>
             <View style={styles.tile}>
-              <Text style={styles.tileLabel}>Your DeHub RPM</Text>
+              <Text style={styles.tileLabel}>{t("earningsVs.yourRpm")}</Text>
               <Text style={styles.tileValue}>
                 {totalViews > 0 && priceKnown
                   ? usd((dehubUsd / totalViews) * 1000)
                   : "—"}
               </Text>
-              <Text style={styles.tileSub}>per 1,000 views</Text>
+              <Text style={styles.tileSub}>{t("earningsVs.per1000")}</Text>
             </View>
           </View>
 
@@ -206,7 +205,7 @@ const EarningsComparisonCard: React.FC = () => {
                   <View style={{ flex: 1, minWidth: 0 }}>
                     <Text style={styles.platformName}>{r.label}</Text>
                     <Text style={styles.platformRange}>
-                      typical {r.range} per 1,000
+                      {t("earningsVs.typicalRange", { range: r.range })}
                     </Text>
                   </View>
                   <View style={styles.rpmBox}>
@@ -218,7 +217,7 @@ const EarningsComparisonCard: React.FC = () => {
                       }
                       keyboardType="decimal-pad"
                       style={styles.rpmInput}
-                      accessibilityLabel={`${r.label} RPM in dollars per 1,000 views`}
+                      accessibilityLabel={t("earningsVs.rpmA11y", { platform: r.label })}
                     />
                   </View>
                   <View style={styles.earnBox}>
@@ -231,28 +230,26 @@ const EarningsComparisonCard: React.FC = () => {
                         ]}
                       >
                         {r.delta >= 0 ? "+" : "−"}
-                        {usd(Math.abs(r.delta))} on DeHub
+                        {t("earningsVs.onDehub", { amount: usd(Math.abs(r.delta)) })}
                       </Text>
                     ) : (
                       <Text style={styles.earnDeltaMuted}>—</Text>
                     )}
                   </View>
                 </View>
-                <Text style={styles.platformNote}>{r.note}</Text>
+                <Text style={styles.platformNote}>{t(r.noteKey)}</Text>
               </View>
             ))}
           </View>
 
           {/* Estimator — for anyone whose views live elsewhere */}
           <View style={styles.estimatorBox}>
-            <Text style={styles.estimatorLabel}>
-              Not your numbers? Try any view count
-            </Text>
+            <Text style={styles.estimatorLabel}>{t("earningsVs.estimatorLabel")}</Text>
             <TextInput
               value={estimatorViews}
               onChangeText={setEstimatorViews}
               keyboardType="number-pad"
-              placeholder="e.g. 250000"
+              placeholder={t("earningsVs.estimatorPlaceholder")}
               placeholderTextColor="#6F7174"
               style={styles.estimatorInput}
             />
@@ -270,14 +267,7 @@ const EarningsComparisonCard: React.FC = () => {
 
           <View style={styles.footnote}>
             <Icon name="Info" size={13} color="#6F7174" />
-            <Text style={styles.footnoteText}>
-              Competitor figures are estimates from published industry ranges,
-              not measured payouts — real RPM varies widely by niche, audience
-              country and watch time, so edit each rate to match what you
-              actually earn. The DeHub figure is your real tip income converted
-              at the live DHB price, and excludes subscriptions, PPV and store
-              sales. Views are summed from your most recent 100 posts.
-            </Text>
+            <Text style={styles.footnoteText}>{t("earningsVs.footnote")}</Text>
           </View>
         </>
       )}

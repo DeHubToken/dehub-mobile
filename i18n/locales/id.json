@@ -3079,5 +3079,25 @@
     "ppvUnlock": "Buka kunci PPV",
     "noEarningsYet": "Belum ada penghasilan",
     "noEarningsDesc": "Tip dan penjualan PPV akan muncul di sini"
+  },
+  "earningsVs": {
+    "title": "Dibanding platform lain",
+    "subtitle": "Penghasilan asli Anda di DeHub dibanding yang akan dibayar tayangan yang sama di tempat lain.",
+    "earnedOnDehub": "Diperoleh di DeHub",
+    "priceUnavailable": "Harga USD tidak tersedia",
+    "totalViews": "Total tayangan",
+    "acrossPosts": "di {{count}} kiriman",
+    "yourRpm": "RPM DeHub Anda",
+    "per1000": "per 1.000 tayangan",
+    "typicalRange": "biasanya {{range}} per 1.000",
+    "onDehub": "{{amount}} di DeHub",
+    "rpmA11y": "RPM {{platform}} dalam dolar per 1.000 tayangan",
+    "estimatorLabel": "Bukan angkamu? Coba jumlah tayangan berapa pun",
+    "estimatorPlaceholder": "mis. 250000",
+    "noteYoutube": "Setelah potongan 45% pendapatan iklan YouTube. Paling bervariasi menurut niche dan negara penonton.",
+    "noteTwitch": "Hanya pendapatan iklan — tidak termasuk sub dan bits, yang biasanya porsi lebih besar.",
+    "noteTiktok": "Creator Rewards. Terkenal rendah per tayangan; skalalah seluruh modelnya.",
+    "noteReels": "Program bonus hanya lewat undangan dan berulang kali dihentikan.",
+    "footnote": "Angka pesaing adalah perkiraan dari rentang industri yang dipublikasikan, bukan pembayaran terukur — RPM sebenarnya sangat bervariasi menurut niche, negara audiens, dan durasi tonton, jadi ubah setiap tarif agar sesuai dengan yang benar-benar Anda peroleh. Angka DeHub adalah pendapatan tip Anda yang sebenarnya, dikonversi pada harga DHB langsung, dan tidak mencakup langganan, PPV, atau penjualan toko. Tayangan dijumlahkan dari 100 kiriman terbaru Anda."
   }
 }

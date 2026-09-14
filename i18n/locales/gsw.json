@@ -3018,5 +3018,25 @@
     "ppvUnlock": "PPV-Freischaltig",
     "noEarningsYet": "No kei Iinahme",
     "noEarningsDesc": "Trinkgälder und PPV-Verchäuf erschiined da"
+  },
+  "earningsVs": {
+    "title": "Im Verglich zu andere Plattforme",
+    "subtitle": "Dini echte DeHub-Iinahme im Verglich zu dem, was die gliiche Views anderswo zahlt hätted.",
+    "earnedOnDehub": "Uf DeHub verdient",
+    "priceUnavailable": "USD-Priis nid verfüegbar",
+    "totalViews": "Views total",
+    "acrossPosts": "über {{count}} Beiträg",
+    "yourRpm": "Dis DeHub-RPM",
+    "per1000": "pro 1'000 Views",
+    "typicalRange": "typisch {{range}} pro 1'000",
+    "onDehub": "{{amount}} uf DeHub",
+    "rpmA11y": "{{platform}}-RPM i Dollar pro 1'000 Views",
+    "estimatorLabel": "Nid dini Zahle? Probier irgend e Viewzahl",
+    "estimatorPlaceholder": "z. B. 250000",
+    "noteYoutube": "Nach em 45%-Aateil vo YouTube a de Werbiiinahme. Schwankt am meischte nach Nische und Zueschauerland.",
+    "noteTwitch": "Nur Werbiiinahme — ohni Subs und Bits, wo meischtens de gröscher Teil sind.",
+    "noteTiktok": "Creator Rewards. Berüehmt tüüf pro View; s ganze Modell lebt vo de Menge.",
+    "noteReels": "Bonusprogramm gits nur uf Iiladig und si sind mehrfach iigstellt worde.",
+    "footnote": "D Zahle vo de Konkurränz sind Schätzige us veröffentlichte Branchespanne, kei gmessni Uszahlige. De echt RPM schwankt stark nach Nische, Land vom Publikum und Luegziit, drum passe jede Satz a das a, was du würklich verdienscht. D DeHub-Zahl isch dis echte Trinkgäld-Iikommen zum aktuelle DHB-Priis umgrächnet und ohni Abos, PPV und Shop-Verchäuf. D Views sind us dine letschte 100 Beiträg zämezellt."
   }
 }

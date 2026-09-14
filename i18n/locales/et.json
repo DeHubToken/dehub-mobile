@@ -3028,5 +3028,25 @@
     "ppvUnlock": "PPV avamine",
     "noEarningsYet": "Veel pole teenistust",
     "noEarningsDesc": "Jootrahad ja PPV müük ilmuvad siia"
+  },
+  "earningsVs": {
+    "title": "Võrdlus teiste platvormidega",
+    "subtitle": "Sinu tegelik DeHubi teenistus võrreldes sellega, mida samad vaatamised oleksid mujal maksnud.",
+    "earnedOnDehub": "Teenitud DeHubis",
+    "priceUnavailable": "USD hind pole saadaval",
+    "totalViews": "Vaatamisi kokku",
+    "acrossPosts": "{{count}} postituse peale",
+    "yourRpm": "Sinu DeHubi RPM",
+    "per1000": "1000 vaatamise kohta",
+    "typicalRange": "tavaliselt {{range}} 1000 kohta",
+    "onDehub": "{{amount}} DeHubis",
+    "rpmA11y": "{{platform}} RPM dollarites 1000 vaatamise kohta",
+    "estimatorLabel": "Pole sinu numbrid? Proovi mis tahes vaatamiste arvu",
+    "estimatorPlaceholder": "nt 250000",
+    "noteYoutube": "Pärast YouTube'i 45% osa reklaamitulust. Kõige rohkem sõltub nišist ja vaataja riigist.",
+    "noteTwitch": "Ainult reklaamitulu — ei sisalda tellimusi ega bitte, mis on tavaliselt suurem osa.",
+    "noteTiktok": "Creator Rewards. Kurikuulsalt madal vaatamise kohta; kogu mudel põhineb mahul.",
+    "noteReels": "Boonusprogrammid on ainult kutsega ja neid on korduvalt lõpetatud.",
+    "footnote": "Konkurentide arvud on hinnangud avaldatud tööstusharu vahemikest, mitte mõõdetud väljamaksed — tegelik RPM kõigub tugevalt niši, publiku riigi ja vaatamisaja järgi, seega muuda iga määra nii, et see vastaks sinu tegelikule teenistusele. DeHubi arv on sinu tegelik jootrahatulu, mis on teisendatud DHB hetkehinnaga, ja see ei sisalda tellimusi, PPV-d ega poemüüki. Vaatamised on liidetud sinu 100 viimasest postitusest."
   }
 }

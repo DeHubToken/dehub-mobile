@@ -3028,5 +3028,25 @@
     "ppvUnlock": "PPV atbloķēšana",
     "noEarningsYet": "Vēl nav ienākumu",
     "noEarningsDesc": "Dzeramnauda un PPV pārdošana parādīsies šeit"
+  },
+  "earningsVs": {
+    "title": "Salīdzinājumā ar citām platformām",
+    "subtitle": "Tavi reālie DeHub ieņēmumi pret to, ko tie paši skatījumi būtu maksājuši citur.",
+    "earnedOnDehub": "Nopelnīts DeHub",
+    "priceUnavailable": "USD cena nav pieejama",
+    "totalViews": "Kopā skatījumu",
+    "acrossPosts": "{{count}} ierakstos",
+    "yourRpm": "Tavs DeHub RPM",
+    "per1000": "uz 1000 skatījumiem",
+    "typicalRange": "parasti {{range}} uz 1000",
+    "onDehub": "{{amount}} DeHub",
+    "rpmA11y": "{{platform}} RPM dolāros uz 1000 skatījumiem",
+    "estimatorLabel": "Nav tavi skaitļi? Izmēģini jebkuru skatījumu skaitu",
+    "estimatorPlaceholder": "piem. 250000",
+    "noteYoutube": "Pēc YouTube 45 % reklāmas ieņēmumu daļas. Visvairāk svārstās atkarībā no nišas un skatītāja valsts.",
+    "noteTwitch": "Tikai reklāmas ieņēmumi — bez abonementiem un bits, kas parasti ir lielākā daļa.",
+    "noteTiktok": "Creator Rewards. Slavens ar zemu samaksu par skatījumu; viss modelis balstās uz apjomu.",
+    "noteReels": "Bonusa programmas ir tikai ar ielūgumu un tās vairākkārt slēgtas.",
+    "footnote": "Konkurentu skaitļi ir aplēses no publicētiem nozares diapazoniem, nevis izmērīti maksājumi — reālais RPM ļoti atšķiras atkarībā no nišas, auditorijas valsts un skatīšanās laika, tāpēc rediģē katru likmi, lai tā atbilstu tam, ko patiesi nopelni. DeHub skaitlis ir tavi reālie dzeramnaudas ieņēmumi, pārrēķināti pēc pašreizējās DHB cenas, un tajā nav iekļauti abonementi, PPV vai veikala pārdošana. Skatījumi tiek summēti no taviem 100 jaunākajiem ierakstiem."
   }
 }

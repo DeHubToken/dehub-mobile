@@ -3029,5 +3029,25 @@
     "ppvUnlock": "Ufunguzi wa PPV",
     "noEarningsYet": "Bado hakuna mapato",
     "noEarningsDesc": "Tipu na mauzo ya PPV yataonekana hapa"
+  },
+  "earningsVs": {
+    "title": "Ikilinganishwa na majukwaa mengine",
+    "subtitle": "Mapato yako halisi kwenye DeHub dhidi ya kile ambacho mionekano hiyo hiyo ingelipa kwingine.",
+    "earnedOnDehub": "Umepata kwenye DeHub",
+    "priceUnavailable": "Bei ya USD haipatikani",
+    "totalViews": "Jumla ya mionekano",
+    "acrossPosts": "katika machapisho {{count}}",
+    "yourRpm": "RPM yako ya DeHub",
+    "per1000": "kwa kila mionekano 1,000",
+    "typicalRange": "kawaida {{range}} kwa 1,000",
+    "onDehub": "{{amount}} kwenye DeHub",
+    "rpmA11y": "RPM ya {{platform}} kwa dola kwa kila mionekano 1,000",
+    "estimatorLabel": "Si nambari zako? Jaribu idadi yoyote ya mionekano",
+    "estimatorPlaceholder": "mfano 250000",
+    "noteYoutube": "Baada ya YouTube kuchukua asilimia 45 ya mapato ya matangazo. Hubadilika zaidi kulingana na eneo la maudhui na nchi ya mtazamaji.",
+    "noteTwitch": "Mapato ya matangazo pekee — hayajumuishi subs na bits, ambazo kwa kawaida ni sehemu kubwa zaidi.",
+    "noteTiktok": "Creator Rewards. Inajulikana kwa kulipa kidogo kwa kila mwonekano; kiwango chenyewe ndicho mtindo mzima.",
+    "noteReels": "Programu za bonasi ni kwa mwaliko pekee na zimefungwa mara kwa mara.",
+    "footnote": "Takwimu za washindani ni makadirio kutoka viwango vya sekta vilivyochapishwa, si malipo yaliyopimwa — RPM halisi hutofautiana sana kulingana na eneo la maudhui, nchi ya hadhira na muda wa kutazama, hivyo hariri kila kiwango kilingane na unachopata kweli. Takwimu ya DeHub ni mapato yako halisi ya tipu yaliyobadilishwa kwa bei ya DHB ya moja kwa moja, na haijumuishi usajili, PPV wala mauzo ya duka. Mionekano imejumlishwa kutoka machapisho yako 100 ya hivi karibuni."
   }
 }

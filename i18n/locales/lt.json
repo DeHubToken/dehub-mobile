@@ -3028,5 +3028,25 @@
     "ppvUnlock": "PPV atrakinimas",
     "noEarningsYet": "Pajamų dar nėra",
     "noEarningsDesc": "Arbatpinigiai ir PPV pardavimai bus rodomi čia"
+  },
+  "earningsVs": {
+    "title": "Palyginti su kitomis platformomis",
+    "subtitle": "Jūsų tikros DeHub pajamos prieš tai, kiek tie patys peržiūrėjimai būtų davę kitur.",
+    "earnedOnDehub": "Uždirbta DeHub",
+    "priceUnavailable": "USD kaina nepasiekiama",
+    "totalViews": "Iš viso peržiūrų",
+    "acrossPosts": "{{count}} įrašuose",
+    "yourRpm": "Jūsų DeHub RPM",
+    "per1000": "už 1 000 peržiūrų",
+    "typicalRange": "paprastai {{range}} už 1 000",
+    "onDehub": "{{amount}} DeHub",
+    "rpmA11y": "{{platform}} RPM doleriais už 1 000 peržiūrų",
+    "estimatorLabel": "Ne jūsų skaičiai? Išbandykite bet kokį peržiūrų skaičių",
+    "estimatorPlaceholder": "pvz. 250000",
+    "noteYoutube": "Atskaičius 45 % reklamos pajamų, kuriuos pasiima „YouTube“. Labiausiai svyruoja pagal nišą ir žiūrovo šalį.",
+    "noteTwitch": "Tik reklamos pajamos — be prenumeratų ir bitų, kurie paprastai sudaro didesnę dalį.",
+    "noteTiktok": "Creator Rewards. Garsėja mažu užmokesčiu už peržiūrą; visas modelis remiasi mastu.",
+    "noteReels": "Premijų programos tik su pakvietimu ir buvo ne kartą nutrauktos.",
+    "footnote": "Konkurentų skaičiai yra įverčiai iš paskelbtų pramonės intervalų, o ne išmatuotos išmokos — tikrasis RPM labai skiriasi pagal nišą, auditorijos šalį ir žiūrėjimo laiką, todėl pakoreguokite kiekvieną įkainį pagal tai, kiek iš tikrųjų uždirbate. DeHub skaičius yra tikros jūsų arbatpinigių pajamos, perskaičiuotos tiesiogine DHB kaina, ir neapima prenumeratų, PPV ar parduotuvės pardavimų. Peržiūros sumuojamos iš 100 naujausių jūsų įrašų."
   }
 }

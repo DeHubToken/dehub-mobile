@@ -3020,5 +3020,25 @@
     "ppvUnlock": "PPV-opplåsing",
     "noEarningsYet": "Ingen inntekter ennå",
     "noEarningsDesc": "Tips og PPV-salg vises her"
+  },
+  "earningsVs": {
+    "title": "Sammenlignet med andre plattformer",
+    "subtitle": "Din reelle DeHub-inntekt mot hva de samme visningene ville ha betalt andre steder.",
+    "earnedOnDehub": "Tjent på DeHub",
+    "priceUnavailable": "USD-pris utilgjengelig",
+    "totalViews": "Totale visninger",
+    "acrossPosts": "på tvers av {{count}} innlegg",
+    "yourRpm": "Din DeHub-RPM",
+    "per1000": "per 1 000 visninger",
+    "typicalRange": "vanligvis {{range}} per 1 000",
+    "onDehub": "{{amount}} på DeHub",
+    "rpmA11y": "{{platform}}-RPM i dollar per 1 000 visninger",
+    "estimatorLabel": "Ikke dine tall? Prøv et hvilket som helst visningstall",
+    "estimatorPlaceholder": "f.eks. 250000",
+    "noteYoutube": "Etter YouTubes 45 % av annonseinntektene. Svinger mest etter nisje og seerland.",
+    "noteTwitch": "Bare annonseinntekter — uten subs og bits, som vanligvis er den største andelen.",
+    "noteTiktok": "Creator Rewards. Beryktet lavt per visning; hele modellen handler om skala.",
+    "noteReels": "Bonusprogrammer er kun etter invitasjon og har gjentatte ganger blitt avviklet.",
+    "footnote": "Konkurrentenes tall er anslag fra publiserte bransjeintervaller, ikke målte utbetalinger — reell RPM varierer mye etter nisje, publikums land og seertid, så rediger hver sats så den passer det du faktisk tjener. DeHub-tallet er din reelle inntekt fra tips omregnet til sanntidsprisen på DHB, og utelater abonnementer, PPV og butikksalg. Visninger summeres fra dine 100 nyeste innlegg."
   }
 }

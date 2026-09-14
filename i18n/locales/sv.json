@@ -3033,5 +3033,25 @@
     "ppvUnlock": "PPV-upplåsning",
     "noEarningsYet": "Inga intäkter än",
     "noEarningsDesc": "Dricks och PPV-försäljning visas här"
+  },
+  "earningsVs": {
+    "title": "Jämfört med andra plattformar",
+    "subtitle": "Dina verkliga DeHub-intäkter mot vad samma visningar hade betalat någon annanstans.",
+    "earnedOnDehub": "Tjänat på DeHub",
+    "priceUnavailable": "USD-pris inte tillgängligt",
+    "totalViews": "Totalt antal visningar",
+    "acrossPosts": "över {{count}} inlägg",
+    "yourRpm": "Din DeHub-RPM",
+    "per1000": "per 1 000 visningar",
+    "typicalRange": "vanligtvis {{range}} per 1 000",
+    "onDehub": "{{amount}} på DeHub",
+    "rpmA11y": "{{platform}}-RPM i dollar per 1 000 visningar",
+    "estimatorLabel": "Inte dina siffror? Prova valfritt visningsantal",
+    "estimatorPlaceholder": "t.ex. 250000",
+    "noteYoutube": "Efter YouTubes 45 % av annonsintäkterna. Svänger mest beroende på nisch och tittarens land.",
+    "noteTwitch": "Endast annonsintäkter — utan subs och bits, som brukar vara den större delen.",
+    "noteTiktok": "Creator Rewards. Ökänt lågt per visning; hela modellen bygger på skala.",
+    "noteReels": "Bonusprogram är endast på inbjudan och har lagts ned gång på gång.",
+    "footnote": "Konkurrenternas siffror är uppskattningar från publicerade branschintervall, inte uppmätta utbetalningar — den verkliga RPM varierar kraftigt med nisch, publikens land och visningstid, så redigera varje taxa så att den matchar vad du faktiskt tjänar. DeHub-siffran är din verkliga dricksinkomst omräknad till DHB:s liveprisnivå och utesluter prenumerationer, PPV och butiksförsäljning. Visningar summeras från dina 100 senaste inlägg."
   }
 }

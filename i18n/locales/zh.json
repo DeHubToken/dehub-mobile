@@ -3086,5 +3086,25 @@
     "ppvUnlock": "付费观看解锁",
     "noEarningsYet": "暂无收益",
     "noEarningsDesc": "打赏和付费观看销售将显示在这里"
+  },
+  "earningsVs": {
+    "title": "对比其他平台",
+    "subtitle": "你在 DeHub 的真实收益，对比同样的播放量在别处能赚多少。",
+    "earnedOnDehub": "DeHub 收益",
+    "priceUnavailable": "美元价格不可用",
+    "totalViews": "总播放量",
+    "acrossPosts": "来自 {{count}} 条帖子",
+    "yourRpm": "你的 DeHub RPM",
+    "per1000": "每千次播放",
+    "typicalRange": "通常每千次 {{range}}",
+    "onDehub": "DeHub 上 {{amount}}",
+    "rpmA11y": "{{platform}} 每千次播放的美元 RPM",
+    "estimatorLabel": "不是你的数据？试试任意播放量",
+    "estimatorPlaceholder": "例如 250000",
+    "noteYoutube": "扣除 YouTube 45% 的广告分成后。受细分领域和观众国家影响最大。",
+    "noteTwitch": "仅广告收入，不含订阅和 bits，而后两者通常才是大头。",
+    "noteTiktok": "创作者奖励。每次播放的单价出了名的低，整个模式靠的是规模。",
+    "noteReels": "奖金计划仅限受邀，而且已被多次收缩关闭。",
+    "footnote": "竞品数字是依据公开行业区间的估算，并非实测收款。真实 RPM 因细分领域、观众国家和观看时长差别很大，请把每个费率改成你实际赚到的水平。DeHub 的数字是你真实的打赏收入按 DHB 实时价格换算，不含订阅、付费观看和店铺销售。播放量取自你最近的 100 条帖子。"
   }
 }
