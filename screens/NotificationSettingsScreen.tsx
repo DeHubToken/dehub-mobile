@@ -18,7 +18,7 @@ import {
 import Icon, { type IconName } from '../components/ui/Icon';
 import CustomSwitch from '../components/ui/CustomSwitch';
 import { useUser, useAuthState, useAuthActions } from '../context/AuthContext';
-import { getEmailLinkStatus } from '../services/email-link.service';
+import { syncEmailLinkStatus } from '../services/email-link.service';
 import {
   smsNotificationsService,
   type SmsNotificationStatus,
@@ -219,7 +219,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
       }
     };
     loadPrefs();
-    getEmailLinkStatus().then(status => {
+    syncEmailLinkStatus().then(status => {
       setNotifyEmail(status?.notifyEmail ?? null);
     });
     smsNotificationsService.status().then(setSmsStatus);
