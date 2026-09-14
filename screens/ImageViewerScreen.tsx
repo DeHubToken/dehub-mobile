@@ -23,6 +23,7 @@ import * as FileSystem from "expo-file-system/legacy";
 import * as MediaLibrary from "expo-media-library";
 import Icon from "../components/ui/Icon";
 import { toastError } from "../libs";
+import { cdnImageSource } from "../libs/cdnImage";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -44,10 +45,27 @@ const normalizeImageUri = (item: any): string => {
   return "";
 };
 
-/** Zoomable image — double-tap to zoom, pinch-to-zoom, pan when zoomed. */
+/**
+ * Zoomable image — double-tap to zoom, pinch-to-zoom, pan when zoomed.
+ *
+ * `uri` is the picture as it was uploaded and `preview` the sized copy the
+ * feed already has decoded. The preview is shown underneath until the original
+ * has loaded, so the viewer opens on something instantly rather than on a
+ * black screen while several megabytes arrive — and what you pinch into is the
+ * original, not a card-width re-encode of it.
+ */
 const ZoomableImage = memo(
-  ({ uri, onZoomChange }: { uri: string; onZoomChange?: (zoomed: boolean) => void }) => {
+  ({
+    uri,
+    preview,
+    onZoomChange,
+  }: {
+    uri: string;
+    preview?: string;
+    onZoomChange?: (zoomed: boolean) => void;
+  }) => {
     const [loaded, setLoaded] = useState(false);
+    const showPreview = !loaded && !!preview && preview !== uri;
     const scale = useSharedValue(1);
     const savedScale = useSharedValue(1);
     const offsetX = useSharedValue(0);
@@ -206,15 +224,24 @@ const ZoomableImage = memo(
               animStyle,
             ]}
           >
+            {showPreview && (
+              <Image
+                source={{ uri: preview }}
+                style={{ position: "absolute", width: SCREEN_W, height: SCREEN_H }}
+                resizeMode="contain"
+              />
+            )}
             <Image
               source={{ uri }}
-              style={{ width: SCREEN_W, height: SCREEN_H }}
+              // Both are `contain` in the same box, so the swap lands the
+              // original exactly where the preview was — no jump, no reflow.
+              style={{ width: SCREEN_W, height: SCREEN_H, opacity: showPreview ? 0 : 1 }}
               resizeMode="contain"
               onLoad={() => setLoaded(true)}
             />
           </Animated.View>
         </GestureDetector>
-        {!loaded && (
+        {!loaded && !showPreview && (
           <View
             style={[
               StyleSheet.absoluteFill,
@@ -246,10 +273,26 @@ const ImageViewerScreen = () => {
 
   const startIndex = paramInitialIndex ?? paramIndex ?? 0;
 
-  const images: string[] = React.useMemo(() => {
+  /**
+   * What the caller handed over: sized CDN URLs, because every feed surface
+   * builds its image URLs once at the width its own card renders at. They are
+   * already decoded on the device, which is what makes them worth keeping as
+   * the thing to show first.
+   */
+  const previews: string[] = React.useMemo(() => {
     const src = rawImages?.length ? rawImages : imageUrl ? [imageUrl] : [];
     return src.map(normalizeImageUri).filter(Boolean);
   }, [rawImages, imageUrl]);
+
+  /**
+   * And what this screen actually shows: the originals behind them. Fullscreen
+   * is the one surface that zooms, so it is the one that has to stop inheriting
+   * the feed's resize — anything not on our CDN comes back unchanged.
+   */
+  const images: string[] = React.useMemo(
+    () => previews.map((uri) => cdnImageSource(uri)),
+    [previews],
+  );
 
   const safeStartIndex = Math.max(0, Math.min(startIndex, images.length - 1));
   const [currentIndex, setCurrentIndex] = useState(safeStartIndex);
@@ -383,10 +426,14 @@ const ImageViewerScreen = () => {
   }, []);
 
   const renderItem = useCallback(
-    ({ item }: { item: string }) => (
-      <ZoomableImage uri={item} onZoomChange={handleZoomChange} />
+    ({ item, index }: { item: string; index: number }) => (
+      <ZoomableImage
+        uri={item}
+        preview={previews[index]}
+        onZoomChange={handleZoomChange}
+      />
     ),
-    [handleZoomChange],
+    [handleZoomChange, previews],
   );
 
   const keyExtractor = useCallback((_: string, i: number) => `img-${i}`, []);

@@ -1,5 +1,6 @@
 import {
   cdnImage,
+  cdnImageSource,
   toDevicePx,
   isHighQualityImages,
   setHighQualityImages,
@@ -140,6 +141,24 @@ describe('libs/cdnImage', () => {
 
       unsubBad();
       unsubGood();
+    });
+  });
+
+  // The fullscreen viewer's half of the deal: everything upstream hands it a
+  // URL sized for a feed card, and it has to get back to the upload to zoom.
+  describe('cdnImageSource', () => {
+    it('unwraps a transform back to the file that was uploaded', () => {
+      expect(cdnImageSource(cdnImage(CDN, { width: 180 }))).toBe(CDN);
+      expect(cdnImageSource(cdnImage(CDN, { width: 360, quality: 70, fit: 'cover' }))).toBe(CDN);
+    });
+
+    it('leaves anything that is not one of our transforms alone', () => {
+      expect(cdnImageSource(CDN)).toBe(CDN);
+      expect(cdnImageSource('https://api.test.dehub.io/statics/1.jpg')).toBe(
+        'https://api.test.dehub.io/statics/1.jpg',
+      );
+      expect(cdnImageSource('file:///data/user/0/preview.jpg')).toBe('file:///data/user/0/preview.jpg');
+      expect(cdnImageSource(undefined)).toBeUndefined();
     });
   });
 });
