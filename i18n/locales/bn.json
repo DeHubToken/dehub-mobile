@@ -1992,7 +1992,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "ছবি খুব বড় — আপনার {{tier}} টায়ার ছবিগুলি {{limit}} মেগাবাইট পর্যন্ত সঞ্চয় করে",
-    "image_too_large_untiered": "ছবি খুব বড় — ছবিগুলি {{limit}} MB পর্যন্ত সংরক্ষণ করা হয়"
+    "image_too_large_untiered": "ছবি খুব বড় — ছবিগুলি {{limit}} MB পর্যন্ত সংরক্ষণ করা হয়",
+    "rate_limited": "রেট লিমিট হয়েছে, একটু ধীরে"
   },
   "staking": {
     "title": "Staking",

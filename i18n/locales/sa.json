@@ -1978,7 +1978,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "चित्रम् अति विशालम् अस्ति — भवतः {{tier}} Tier इमेजम् {{limit}} MB पर्यन्तं संचययति ।",
-    "image_too_large_untiered": "चित्रम् अति विशालम् अस्ति — चित्रम् {{limit}} MB इत्येतत् संचयितम् अस्ति ।"
+    "image_too_large_untiered": "चित्रम् अति विशालम् अस्ति — चित्रम् {{limit}} MB इत्येतत् संचयितम् अस्ति ।",
+    "rate_limited": "वेगसीमा प्राप्ता, मन्दं कुरु"
   },
   "staking": {
     "title": "Staking",

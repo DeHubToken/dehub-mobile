@@ -2009,7 +2009,8 @@
     "waiting_for_confirmation": "等待确认中...",
     "error": "错误",
     "image_too_large_tier": "图片太大，您的{{tier}}会员等级存储的图片不超过{{limit}} MB",
-    "image_too_large_untiered": "图像太大—图像存储大小不超过{{limit}} MB"
+    "image_too_large_untiered": "图像太大—图像存储大小不超过{{limit}} MB",
+    "rate_limited": "请求过于频繁，慢一点"
   },
   "staking": {
     "title": "质押",

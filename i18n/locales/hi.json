@@ -1780,7 +1780,8 @@
     "waiting_for_confirmation": "पुष्टि की प्रतीक्षा हो रही है...",
     "error": "त्रुटि",
     "image_too_large_tier": "इमेज बहुत बड़ी है — आपका {{tier}} टियर {{limit}} MB तक इमेज स्टोर करता है",
-    "image_too_large_untiered": "इमेज बहुत बड़ी है — इमेज {{limit}} MB तक स्टोर की जाती हैं"
+    "image_too_large_untiered": "इमेज बहुत बड़ी है — इमेज {{limit}} MB तक स्टोर की जाती हैं",
+    "rate_limited": "रेट लिमिट लगी है, धीरे करें"
   },
   "postOptions": {
     "options": "विकल्प",

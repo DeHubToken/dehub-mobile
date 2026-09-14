@@ -2010,7 +2010,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Bilden är för stor — din {{tier}} -nivå lagrar bilder upp till {{limit}} MB",
-    "image_too_large_untiered": "Bilden är för stor — bilder lagras upp till {{limit}} MB"
+    "image_too_large_untiered": "Bilden är för stor — bilder lagras upp till {{limit}} MB",
+    "rate_limited": "För många förfrågningar, ta det lugnt"
   },
   "staking": {
     "title": "Staking",

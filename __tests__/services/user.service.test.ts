@@ -348,13 +348,35 @@ describe('services/user.service', () => {
         result: { items: [{ address: '0x1', reason: 'follows_you' }] },
       });
       const res = await getSuggestedAccounts();
-      expect(res).toHaveLength(1);
+      expect(res.items).toHaveLength(1);
     });
 
-    it('returns empty array on error', async () => {
+    it('requests the asked-for page', async () => {
+      mockGet.mockResolvedValueOnce({ result: { items: [] } });
+      await getSuggestedAccounts(10, 3);
+      expect(mockGet.mock.calls[0][0]).toContain('page=3');
+      expect(mockGet.mock.calls[0][0]).toContain('limit=10');
+    });
+
+    it('reports hasMore from a full page', async () => {
+      const items = Array.from({ length: 2 }, (_, i) => ({ address: `0x${i}` }));
+      mockGet.mockResolvedValueOnce({ result: { items } });
+      const res = await getSuggestedAccounts(2, 1);
+      expect(res.hasMore).toBe(true);
+    });
+
+    it('prefers the server pagination block', async () => {
+      mockGet.mockResolvedValueOnce({
+        result: { items: [{ address: '0x1' }], pagination: { page: 2, totalPages: 2 } },
+      });
+      const res = await getSuggestedAccounts(1, 2);
+      expect(res.hasMore).toBe(false);
+    });
+
+    it('returns an empty page on error', async () => {
       mockGet.mockRejectedValueOnce(new Error('fail'));
       const res = await getSuggestedAccounts();
-      expect(res).toEqual([]);
+      expect(res).toEqual({ items: [], hasMore: false });
     });
   });
 

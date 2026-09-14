@@ -15,7 +15,7 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   moduleNameMapper: {
     '^@env$': '<rootDir>/__mocks__/@env.ts',
-    '\\.(png|jpg|jpeg|gif|svg)$': '<rootDir>/__mocks__/fileMock.js',
+    '\\.(png|jpg|jpeg|gif|svg|wav|mp3|m4a)$': '<rootDir>/__mocks__/fileMock.js',
     '\\.css$': '<rootDir>/__mocks__/styleMock.js',
   },
   setupFiles: ['<rootDir>/__mocks__/setup.ts'],

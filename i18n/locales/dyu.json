@@ -1984,7 +1984,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Image is too big — your {{tier}} tier stores images up to {{limit}} MB",
-    "image_too_large_untiered": "Jaa ka bon kojugu — jaa ka kan ka mara fɔɔ ka taga se {{limit}} MB"
+    "image_too_large_untiered": "Jaa ka bon kojugu — jaa ka kan ka mara fɔɔ ka taga se {{limit}} MB",
+    "rate_limited": "A ka teli kojugu, i sabali"
   },
   "staking": {
     "title": "Staking",

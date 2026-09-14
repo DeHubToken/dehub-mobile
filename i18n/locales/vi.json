@@ -368,7 +368,8 @@
     "waiting_for_confirmation": "Đang chờ xác nhận...",
     "error": "Lỗi",
     "image_too_large_tier": "Hình ảnh quá lớn — cấp độ {{tier}} của bạn lưu trữ hình ảnh lên đến {{limit}} MB",
-    "image_too_large_untiered": "Hình ảnh quá lớn — hình ảnh được lưu trữ lên đến {{limit}} MB"
+    "image_too_large_untiered": "Hình ảnh quá lớn — hình ảnh được lưu trữ lên đến {{limit}} MB",
+    "rate_limited": "Bị giới hạn, chậm lại nhé"
   },
   "feed": {
     "home": "Home",

@@ -2043,7 +2043,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "छवि धेरै ठूलो छ — तपाईंको {{tier}} टियरले {{limit}} MB सम्म छविहरू भण्डारण गर्दछ",
-    "image_too_large_untiered": "छवि धेरै ठूलो छ — छविहरू {{limit}} MB सम्म भण्डार गरिएको छ"
+    "image_too_large_untiered": "छवि धेरै ठूलो छ — छविहरू {{limit}} MB सम्म भण्डार गरिएको छ",
+    "rate_limited": "रेट लिमिट, बिस्तारै गर्नुहोस्"
   },
   "staking": {
     "title": "Staking",

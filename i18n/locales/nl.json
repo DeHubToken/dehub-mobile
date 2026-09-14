@@ -1085,7 +1085,8 @@
     "waiting_for_confirmation": "Wachten op bevestiging...",
     "error": "Fout",
     "image_too_large_tier": "Afbeelding is te groot — uw {{tier}} -laag slaat afbeeldingen op tot {{limit}} MB",
-    "image_too_large_untiered": "Afbeelding is te groot — afbeeldingen worden opgeslagen tot {{limit}} MB"
+    "image_too_large_untiered": "Afbeelding is te groot — afbeeldingen worden opgeslagen tot {{limit}} MB",
+    "rate_limited": "Te veel verzoeken, doe rustiger aan"
   },
   "postOptions": {
     "options": "Opties",

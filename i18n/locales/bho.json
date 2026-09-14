@@ -1973,7 +1973,8 @@
     "staking_on_chain_first": "पहले {{chain}} पर जमा हो रहा है। बाद में दूसरी के लिए लौटें।",
     "dhb_staked_on_chain": "{{chain}} पर {{amount}} DHB जमा किए गए।",
     "waiting_for_confirmation": "पुष्टि की प्रतीक्षा हो रही है...",
-    "error": "त्रुटि"
+    "error": "त्रुटि",
+    "rate_limited": "रेट लिमिट लाग गइल, धीरे करीं"
   },
   "staking": {
     "title": "स्टेकिंग",

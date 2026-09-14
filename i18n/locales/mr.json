@@ -1998,7 +1998,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "इमेज खूप मोठी आहे — तुमचे {{tier}} स्तर {{limit}} एमबी पर्यंत इमेजेस स्टोअर करते",
-    "image_too_large_untiered": "प्रतिमा खूप मोठी आहे — प्रतिमा {{limit}} MB पर्यंत संचयित केल्या आहेत"
+    "image_too_large_untiered": "प्रतिमा खूप मोठी आहे — प्रतिमा {{limit}} MB पर्यंत संचयित केल्या आहेत",
+    "rate_limited": "रेट लिमिट, थोडं सावकाश"
   },
   "staking": {
     "title": "Staking",

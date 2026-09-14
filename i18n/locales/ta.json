@@ -1998,7 +1998,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "படம் மிகப் பெரியது — உங்கள் {{tier}} அடுக்கு {{limit}} MB வரையிலான படங்களை சேமிக்கிறது",
-    "image_too_large_untiered": "படம் மிகப் பெரியது — படங்கள் {{limit}} MB வரை சேமிக்கப்படும்"
+    "image_too_large_untiered": "படம் மிகப் பெரியது — படங்கள் {{limit}} MB வரை சேமிக்கப்படும்",
+    "rate_limited": "வரம்பு எட்டியது, மெதுவாக"
   },
   "staking": {
     "title": "Staking",

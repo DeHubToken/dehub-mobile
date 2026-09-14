@@ -1990,7 +1990,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Зураг хэтэрхий том байна — таны {{tier}} tier дэлгүүрүүд {{limit}} MB хүртэлх зурагнууд",
-    "image_too_large_untiered": "Зураг хэт том байна — зурагнууд нь {{limit}} MB хүртэл хадгалагдсан байна"
+    "image_too_large_untiered": "Зураг хэт том байна — зурагнууд нь {{limit}} MB хүртэл хадгалагдсан байна",
+    "rate_limited": "Хүсэлтийн хязгаар, удаашруулна уу"
   },
   "staking": {
     "title": "Staking",

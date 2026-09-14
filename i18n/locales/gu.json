@@ -2002,7 +2002,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "છબી ખૂબ મોટી છે — તમારી {{tier}} ટાયર {{limit}} MB સુધીની છબીઓ સ્ટોર કરે છે",
-    "image_too_large_untiered": "છબી ખૂબ મોટી છે — છબીઓ {{limit}} MB સુધી સંગ્રહિત છે"
+    "image_too_large_untiered": "છબી ખૂબ મોટી છે — છબીઓ {{limit}} MB સુધી સંગ્રહિત છે",
+    "rate_limited": "રેટ લિમિટ, ધીમે કરો"
   },
   "staking": {
     "title": "Staking",

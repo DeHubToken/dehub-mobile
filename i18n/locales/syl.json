@@ -2189,7 +2189,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "ইমেজ অহোম বড় — তোমার {{tier}} টায়ার ইমেজ {{limit}} MB পর্যন্ত সংরক্ষণ করে",
-    "image_too_large_untiered": "ছবি অনেক বড় — ছবি সংরক্ষণ করা হয় {{limit}} MB পর্যন্ত"
+    "image_too_large_untiered": "ছবি অনেক বড় — ছবি সংরক্ষণ করা হয় {{limit}} MB পর্যন্ত",
+    "rate_limited": "রেট লিমিট, আস্তে করউক্কা"
   },
   "staking": {
     "title": "Staking",

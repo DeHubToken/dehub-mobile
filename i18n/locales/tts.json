@@ -1965,7 +1965,8 @@
     "waiting_for_confirmation": "กำลังรอการยืนยัน...",
     "error": "ข้อผิดพลาด",
     "image_too_large_tier": "รูปภาพใหญ่เกินไป — {{tier}} ระดับของคุณเก็บรูปภาพได้ถึง {{limit}} MB",
-    "image_too_large_untiered": "รูปภาพใหญ่เกินไป — รูปภาพจะเก็บได้สูงสุด {{limit}} MB"
+    "image_too_large_untiered": "รูปภาพใหญ่เกินไป — รูปภาพจะเก็บได้สูงสุด {{limit}} MB",
+    "rate_limited": "ถูกจำกัดอัตรา ซ้าลงแหน่"
   },
   "staking": {
     "title": "การสเตก",

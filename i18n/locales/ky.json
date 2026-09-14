@@ -1965,7 +1965,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Сүрөт өтө чоң — {{tier}} tier {{limit}} MB чейинки сүрөттөрдү сактайт",
-    "image_too_large_untiered": "Сүрөт өтө чоң — сүрөттөр {{limit}} MB чейин сакталат"
+    "image_too_large_untiered": "Сүрөт өтө чоң — сүрөттөр {{limit}} MB чейин сакталат",
+    "rate_limited": "Сурам чеги, жайыраак"
   },
   "tip": {
     "title": "Send Tip",

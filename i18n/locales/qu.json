@@ -2038,7 +2038,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Siqiqa ancha hatunmi — {{tier}} pataykiqa siq&#39;ikunata {{limit}} MB nisqakama waqaychan",
-    "image_too_large_untiered": "Siqiqa ancha hatunmi — siq&#39;ikunaqa {{limit}} MB nisqakamam waqaychasqa kachkan"
+    "image_too_large_untiered": "Siqiqa ancha hatunmi — siq&#39;ikunaqa {{limit}} MB nisqakamam waqaychasqa kachkan",
+    "rate_limited": "Mañakuy sayay, allillamanta"
   },
   "staking": {
     "title": "Staking",

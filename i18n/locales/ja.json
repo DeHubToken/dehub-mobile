@@ -2020,7 +2020,8 @@
     "waiting_for_confirmation": "承認を待っています...",
     "error": "エラー",
     "image_too_large_tier": "画像が大きすぎます—あなたの{{tier}}ティアは最大{{limit}} MBまでの画像を保存します",
-    "image_too_large_untiered": "画像が大きすぎます—画像は最大{{limit}} MBまで保存されます"
+    "image_too_large_untiered": "画像が大きすぎます—画像は最大{{limit}} MBまで保存されます",
+    "rate_limited": "リクエスト制限中です。少しゆっくり"
   },
   "staking": {
     "title": "ステーキング",

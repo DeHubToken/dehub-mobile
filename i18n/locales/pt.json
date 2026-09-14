@@ -2025,7 +2025,8 @@
     "waiting_for_confirmation": "Aguardando confirmação...",
     "error": "Erro",
     "image_too_large_tier": "A imagem é muito grande — a sua modalidade {{tier}} armazena imagens de até {{limit}} MB",
-    "image_too_large_untiered": "A imagem é muito grande — as imagens são armazenadas até {{limit}} MB"
+    "image_too_large_untiered": "A imagem é muito grande — as imagens são armazenadas até {{limit}} MB",
+    "rate_limited": "Limite atingido, vá com calma"
   },
   "staking": {
     "title": "Staking",

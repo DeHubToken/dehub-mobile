@@ -1994,7 +1994,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "He nui rawa te whakaahua — to {{tier}} tier toa whakaahua tae atu ki {{limit}} MB",
-    "image_too_large_untiered": "He nui rawa te whakaahua — kei te rokiroki nga whakaahua ki te {{limit}} MB"
+    "image_too_large_untiered": "He nui rawa te whakaahua — kei te rokiroki nga whakaahua ki te {{limit}} MB",
+    "rate_limited": "Kua tae ki te tepe, āta haere"
   },
   "staking": {
     "title": "Staking",

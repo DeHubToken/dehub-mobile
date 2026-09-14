@@ -1967,7 +1967,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Bildet er for stort – {{tier}}-nivået ditt lagrer bilder opptil {{limit}} MB",
-    "image_too_large_untiered": "Bildet er for stort – bildene er lagret opptil {{limit}} MB"
+    "image_too_large_untiered": "Bildet er for stort – bildene er lagret opptil {{limit}} MB",
+    "rate_limited": "For mange forespørsler, ro ned"
   },
   "tip": {
     "title": "Send Tip",

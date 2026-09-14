@@ -2134,7 +2134,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "ছবিটা বেশি বড় — তোমার {{tier}} টায়ার {{limit}} এমবি পর্যন্ত ছবি রাখতে পারে",
-    "image_too_large_untiered": "ছবিটা অহোক বড় — ছবিগুলো {{limit}} MB পর্যন্ত রাখা হয়"
+    "image_too_large_untiered": "ছবিটা অহোক বড় — ছবিগুলো {{limit}} MB পর্যন্ত রাখা হয়",
+    "rate_limited": "রেট লিমিট অইছে, আস্তে করন"
   },
   "staking": {
     "title": "Staking",
