@@ -3005,5 +3005,24 @@
     "errorNeedRights": "እባክዎን የዚህ ይዘት መብቶች እንዳለዎት ያረጋግጡ",
     "errorClipboard": "ክሊፖቹን ማንበብ አልተቻለም — በምትኩ በእጅ ይለጥፉ",
     "errorQueueFailed": "ያንን ማስመጣት መዘርጋት አልተቻለም"
+  },
+  "earnings": {
+    "filter24h": "24ሰ",
+    "filter7d": "7ቀ",
+    "filter30d": "30ቀ",
+    "filterAll": "ሁሉም",
+    "noData": "ውሂብ የለም",
+    "tips": "ጉርሻዎች",
+    "ppv": "PPV",
+    "incomeBreakdown": "የገቢ ዝርዝር",
+    "ppvSales": "የPPV ሽያጮች",
+    "total": "ጠቅላላ",
+    "tipsReceived": "የተቀበሉ ጉርሻዎች",
+    "ppvUnlocks": "የPPV መክፈቻዎች",
+    "recentTransactions": "የቅርብ ጊዜ ግብይቶች",
+    "tipReceived": "ጉርሻ ተቀብለዋል",
+    "ppvUnlock": "የPPV መክፈቻ",
+    "noEarningsYet": "እስካሁን ገቢ የለም",
+    "noEarningsDesc": "ጉርሻዎች እና የPPV ሽያጮች እዚህ ይታያሉ"
   }
 }

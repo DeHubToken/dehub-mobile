@@ -2966,5 +2966,24 @@
     "errorNeedRights": "कृपया एतत् पृष्ठं सम्पाद्यताम् = कृपया एतत् पृष्ठं सम्पाद्यताम् ।",
     "errorClipboard": "पठनं न शक्यमस्ति_पठनं न शक्यमस्ति_",
     "errorQueueFailed": "इतस्ततः आयातं कर्तुं न शक्नोमि"
+  },
+  "earnings": {
+    "filter24h": "24घ",
+    "filter7d": "7दि",
+    "filter30d": "30दि",
+    "filterAll": "सर्वम्",
+    "noData": "दत्तांशः नास्ति",
+    "tips": "पारितोषिकाणि",
+    "ppv": "PPV",
+    "incomeBreakdown": "आय-विभाजनम्",
+    "ppvSales": "PPV विक्रयाः",
+    "total": "योगः",
+    "tipsReceived": "प्राप्तपारितोषिकाणि",
+    "ppvUnlocks": "PPV उद्घाटनानि",
+    "recentTransactions": "सद्यःकालीनव्यवहाराः",
+    "tipReceived": "पारितोषिकं प्राप्तम्",
+    "ppvUnlock": "PPV उद्घाटनम्",
+    "noEarningsYet": "अद्यापि आयः नास्ति",
+    "noEarningsDesc": "पारितोषिकाणि PPV विक्रयाश्च अत्र दृश्यन्ते"
   }
 }

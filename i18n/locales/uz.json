@@ -3062,5 +3062,24 @@
     "errorNeedRights": "Iltimos, ushbu kontentga bo&#39;lgan huquqlaringiz borligini tasdiqlang",
     "errorClipboard": "Buferni o&#39;qib bo&#39;lmadi — qo&#39;lda joylashtiring",
     "errorQueueFailed": "Importni navbatga qo&#39;yib bo&#39;lmadi"
+  },
+  "earnings": {
+    "filter24h": "24s",
+    "filter7d": "7k",
+    "filter30d": "30k",
+    "filterAll": "Barchasi",
+    "noData": "Ma’lumot yo‘q",
+    "tips": "Choychaqalar",
+    "ppv": "PPV",
+    "incomeBreakdown": "Daromad tarkibi",
+    "ppvSales": "PPV savdosi",
+    "total": "Jami",
+    "tipsReceived": "Olingan choychaqalar",
+    "ppvUnlocks": "PPV ochishlar",
+    "recentTransactions": "So‘nggi tranzaksiyalar",
+    "tipReceived": "Choychaqa olindi",
+    "ppvUnlock": "PPV ochish",
+    "noEarningsYet": "Hali daromad yo‘q",
+    "noEarningsDesc": "Choychaqalar va PPV savdosi shu yerda ko‘rinadi"
   }
 }

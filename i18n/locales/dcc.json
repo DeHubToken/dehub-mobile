@@ -2741,5 +2741,24 @@
     "sent": "ٹرانسفر بھیج دیا",
     "toSelf": "خود کو ٹوکن نئیں بھیج سکتے",
     "insufficientOnChain": "اس ٹوکن کے لیے چین پر بیلنس کم ہے"
+  },
+  "earnings": {
+    "filter24h": "24گھنٹے",
+    "filter7d": "7دن",
+    "filter30d": "30دن",
+    "filterAll": "سب",
+    "noData": "کوئی ڈیٹا نئیں",
+    "tips": "ٹپس",
+    "ppv": "PPV",
+    "incomeBreakdown": "آمدنی کی تفصیل",
+    "ppvSales": "PPV فروخت",
+    "total": "کل",
+    "tipsReceived": "ملی ٹپس",
+    "ppvUnlocks": "PPV ان لاک",
+    "recentTransactions": "حالیہ لین دین",
+    "tipReceived": "ٹپ ملی",
+    "ppvUnlock": "PPV ان لاک",
+    "noEarningsYet": "ابھی کوئی کمائی نئیں",
+    "noEarningsDesc": "ٹپس اور PPV فروخت یہاں نظر آئیں گی"
   }
 }

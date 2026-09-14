@@ -3023,5 +3023,24 @@
     "errorNeedRights": "لطفاً تأیید کنید که حق استفاده از این محتوا را دارید",
     "errorClipboard": "نتوانستم کلیپ‌بورد را بخوانم — به جای آن به صورت دستی پیست کنید",
     "errorQueueFailed": "نتوانستیم آن واردات را در صف قرار دهیم"
+  },
+  "earnings": {
+    "filter24h": "۲۴س",
+    "filter7d": "۷ر",
+    "filter30d": "۳۰ر",
+    "filterAll": "همه",
+    "noData": "داده‌ای نیست",
+    "tips": "انعام‌ها",
+    "ppv": "PPV",
+    "incomeBreakdown": "جزئیات درآمد",
+    "ppvSales": "فروش PPV",
+    "total": "مجموع",
+    "tipsReceived": "انعام‌های دریافتی",
+    "ppvUnlocks": "بازکردن‌های PPV",
+    "recentTransactions": "تراکنش‌های اخیر",
+    "tipReceived": "انعام دریافت شد",
+    "ppvUnlock": "بازکردن PPV",
+    "noEarningsYet": "هنوز درآمدی نیست",
+    "noEarningsDesc": "انعام‌ها و فروش PPV اینجا نمایش داده می‌شوند"
   }
 }

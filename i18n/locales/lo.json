@@ -2968,5 +2968,24 @@
     "errorNeedRights": "ກະລຸນາຢືນຢັນວ່າທ່ານມີສິດຕໍ່ເນື້ອຫານີ້",
     "errorClipboard": "ບໍ່ສາມາດອ່ານຄລິບບອດໄດ້ - ຕິດດ້ວຍມືແທນ",
     "errorQueueFailed": "ບໍ່ສາມາດລຽນແຖວການນໍາເຂົ້ານັ້ນໄດ້"
+  },
+  "earnings": {
+    "filter24h": "24ຊມ",
+    "filter7d": "7ມ",
+    "filter30d": "30ມ",
+    "filterAll": "ທັງໝົດ",
+    "noData": "ບໍ່ມີຂໍ້ມູນ",
+    "tips": "ທິບ",
+    "ppv": "PPV",
+    "incomeBreakdown": "ລາຍລະອຽດລາຍຮັບ",
+    "ppvSales": "ການຂາຍ PPV",
+    "total": "ລວມ",
+    "tipsReceived": "ທິບທີ່ໄດ້ຮັບ",
+    "ppvUnlocks": "ການປົດລັອກ PPV",
+    "recentTransactions": "ທຸລະກຳລ່າສຸດ",
+    "tipReceived": "ໄດ້ຮັບທິບ",
+    "ppvUnlock": "ການປົດລັອກ PPV",
+    "noEarningsYet": "ຍັງບໍ່ມີລາຍຮັບ",
+    "noEarningsDesc": "ທິບ ແລະ ການຂາຍ PPV ຈະສະແດງຢູ່ນີ້"
   }
 }

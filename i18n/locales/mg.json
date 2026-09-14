@@ -3089,5 +3089,24 @@
     "errorNeedRights": "Azafady manamafy fa manana ny zonao amin'ity votoatiny ity ianao.",
     "errorClipboard": "Tsy afaka namaky ny fanindri-taratasy — mametaka tanana fa tsy",
     "errorQueueFailed": "Tsy afaka namaritra ilay fanafarana"
+  },
+  "earnings": {
+    "filter24h": "24o",
+    "filter7d": "7a",
+    "filter30d": "30a",
+    "filterAll": "Rehetra",
+    "noData": "Tsy misy angona",
+    "tips": "Tips",
+    "ppv": "PPV",
+    "incomeBreakdown": "Fizarana ny fidiram-bola",
+    "ppvSales": "Varotra PPV",
+    "total": "Totaly",
+    "tipsReceived": "Tips voaray",
+    "ppvUnlocks": "Fanokafana PPV",
+    "recentTransactions": "Fifampiraharahana farany",
+    "tipReceived": "Tip voaray",
+    "ppvUnlock": "Fanokafana PPV",
+    "noEarningsYet": "Mbola tsy misy fidiram-bola",
+    "noEarningsDesc": "Hiseho eto ny tips sy ny varotra PPV"
   }
 }

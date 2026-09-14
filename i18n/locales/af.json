@@ -3127,5 +3127,24 @@
     "errorNeedRights": "Bevestig asseblief dat u die regte op hierdie inhoud het",
     "errorClipboard": "Kon nie die knipbord lees nie — plak eerder handmatig",
     "errorQueueFailed": "Kon nie daardie invoer wagtou nie"
+  },
+  "earnings": {
+    "filter24h": "24u",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Alles",
+    "noData": "Geen data",
+    "tips": "Fooitjies",
+    "ppv": "PPV",
+    "incomeBreakdown": "Inkomste-uiteensetting",
+    "ppvSales": "PPV-verkope",
+    "total": "Totaal",
+    "tipsReceived": "Fooitjies ontvang",
+    "ppvUnlocks": "PPV-ontsluitings",
+    "recentTransactions": "Onlangse transaksies",
+    "tipReceived": "Fooitjie ontvang",
+    "ppvUnlock": "PPV-ontsluiting",
+    "noEarningsYet": "Nog geen verdienste nie",
+    "noEarningsDesc": "Fooitjies en PPV-verkope sal hier verskyn"
   }
 }

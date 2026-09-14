@@ -3009,5 +3009,24 @@
     "errorNeedRights": "Kinnita, et sul on sellele sisule õigused",
     "errorClipboard": "Lõikepuhvrit ei saanud lugeda — kleepige selle asemel käsitsi",
     "errorQueueFailed": "Seda importi ei saanud järjekorda panna"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7p",
+    "filter30d": "30p",
+    "filterAll": "Kõik",
+    "noData": "Andmed puuduvad",
+    "tips": "Jootrahad",
+    "ppv": "PPV",
+    "incomeBreakdown": "Tulude jaotus",
+    "ppvSales": "PPV müük",
+    "total": "Kokku",
+    "tipsReceived": "Saadud jootrahad",
+    "ppvUnlocks": "PPV avamised",
+    "recentTransactions": "Hiljutised tehingud",
+    "tipReceived": "Jootraha saadud",
+    "ppvUnlock": "PPV avamine",
+    "noEarningsYet": "Veel pole teenistust",
+    "noEarningsDesc": "Jootrahad ja PPV müük ilmuvad siia"
   }
 }

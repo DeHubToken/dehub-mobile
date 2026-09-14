@@ -3008,5 +3008,24 @@
     "errorNeedRights": "براہ کرم تصدیق کریں کہ آپ کے پاس اس مواد کے حقوق ہیں",
     "errorClipboard": "کلپ بورڈ نہیں پڑھ سکا — اس کے بجائے دستی طور پر پیسٹ کریں",
     "errorQueueFailed": "اس درآمد کی قطار نہیں لگائی جا سکی"
+  },
+  "earnings": {
+    "filter24h": "24گھنٹے",
+    "filter7d": "7دن",
+    "filter30d": "30دن",
+    "filterAll": "سب",
+    "noData": "کوئی ڈیٹا نہیں",
+    "tips": "ٹپس",
+    "ppv": "PPV",
+    "incomeBreakdown": "آمدنی کی تفصیل",
+    "ppvSales": "PPV فروخت",
+    "total": "کل",
+    "tipsReceived": "موصول ٹپس",
+    "ppvUnlocks": "PPV ان لاک",
+    "recentTransactions": "حالیہ لین دین",
+    "tipReceived": "ٹپ موصول",
+    "ppvUnlock": "PPV ان لاک",
+    "noEarningsYet": "ابھی کوئی کمائی نہیں",
+    "noEarningsDesc": "ٹپس اور PPV فروخت یہاں نظر آئیں گی"
   }
 }

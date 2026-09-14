@@ -3279,5 +3279,24 @@
     "errorNeedRights": "Bevestig dat je de rechten hebt op deze inhoud",
     "errorClipboard": "Kon het klembord niet lezen — plak in plaats daarvan handmatig",
     "errorQueueFailed": "Kon die import niet in de wachtrij plaatsen"
+  },
+  "earnings": {
+    "filter24h": "24u",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Alles",
+    "noData": "Geen gegevens",
+    "tips": "Fooien",
+    "ppv": "PPV",
+    "incomeBreakdown": "Inkomstenoverzicht",
+    "ppvSales": "PPV-verkopen",
+    "total": "Totaal",
+    "tipsReceived": "Ontvangen fooien",
+    "ppvUnlocks": "PPV-ontgrendelingen",
+    "recentTransactions": "Recente transacties",
+    "tipReceived": "Fooi ontvangen",
+    "ppvUnlock": "PPV-ontgrendeling",
+    "noEarningsYet": "Nog geen inkomsten",
+    "noEarningsDesc": "Fooien en PPV-verkopen verschijnen hier"
   }
 }

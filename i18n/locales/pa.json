@@ -2986,5 +2986,24 @@
     "errorNeedRights": "ਕਿਰਪਾ ਕਰਕੇ ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਸਮੱਗਰੀ ਦੇ ਅਧਿਕਾਰ ਹਨ",
     "errorClipboard": "ਕਲਿੱਪਬੋਰਡ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ — ਇਸ ਦੀ ਬਜਾਏ ਖੁਦ ਪੇਸਟ ਕਰੋ",
     "errorQueueFailed": "ਇੰਪੋਰਟ ਕਰਨ ਲਈ ਕਤਾਰ ਨਹੀਂ ਬਣਾਈ ਜਾ ਸਕੀ"
+  },
+  "earnings": {
+    "filter24h": "24ਘੰ",
+    "filter7d": "7ਦਿ",
+    "filter30d": "30ਦਿ",
+    "filterAll": "ਸਾਰੇ",
+    "noData": "ਕੋਈ ਡਾਟਾ ਨਹੀਂ",
+    "tips": "ਟਿਪਸ",
+    "ppv": "PPV",
+    "incomeBreakdown": "ਆਮਦਨ ਦਾ ਵੇਰਵਾ",
+    "ppvSales": "PPV ਵਿਕਰੀ",
+    "total": "ਕੁੱਲ",
+    "tipsReceived": "ਮਿਲੀਆਂ ਟਿਪਸ",
+    "ppvUnlocks": "PPV ਅਨਲੌਕ",
+    "recentTransactions": "ਹਾਲੀਆ ਲੈਣ-ਦੇਣ",
+    "tipReceived": "ਟਿਪ ਮਿਲੀ",
+    "ppvUnlock": "PPV ਅਨਲੌਕ",
+    "noEarningsYet": "ਅਜੇ ਕੋਈ ਕਮਾਈ ਨਹੀਂ",
+    "noEarningsDesc": "ਟਿਪਸ ਅਤੇ PPV ਵਿਕਰੀ ਇੱਥੇ ਦਿਖਣਗੀਆਂ"
   }
 }

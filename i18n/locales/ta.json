@@ -2998,5 +2998,24 @@
     "errorNeedRights": "இந்த உள்ளடக்கத்திற்கான உரிமைகள் உங்களுக்கு உள்ளன என்பதை உறுதிப்படுத்தவும்",
     "errorClipboard": "கிளிப்போர்டைப் படிக்க முடியவில்லை — அதற்கு பதிலாக கைமுறையாக ஒட்டவும்",
     "errorQueueFailed": "அந்த இறக்குமதிக்கு வரிசையில் நிற்க முடியவில்லை"
+  },
+  "earnings": {
+    "filter24h": "24ம",
+    "filter7d": "7நா",
+    "filter30d": "30நா",
+    "filterAll": "அனைத்தும்",
+    "noData": "தரவு இல்லை",
+    "tips": "டிப்ஸ்",
+    "ppv": "PPV",
+    "incomeBreakdown": "வருமான பகுப்பு",
+    "ppvSales": "PPV விற்பனை",
+    "total": "மொத்தம்",
+    "tipsReceived": "பெற்ற டிப்ஸ்",
+    "ppvUnlocks": "PPV திறப்புகள்",
+    "recentTransactions": "சமீபத்திய பரிவர்த்தனைகள்",
+    "tipReceived": "டிப் பெறப்பட்டது",
+    "ppvUnlock": "PPV திறப்பு",
+    "noEarningsYet": "இன்னும் வருமானம் இல்லை",
+    "noEarningsDesc": "டிப்ஸ் மற்றும் PPV விற்பனை இங்கே தோன்றும்"
   }
 }

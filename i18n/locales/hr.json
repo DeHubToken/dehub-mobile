@@ -3010,5 +3010,24 @@
     "errorNeedRights": "Potvrdite da imate prava na ovaj sadržaj",
     "errorClipboard": "Nije moguće pročitati međuspremnik — umjesto toga ručno zalijepite",
     "errorQueueFailed": "Nije bilo moguće staviti taj uvoz u red čekanja"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Sve",
+    "noData": "Nema podataka",
+    "tips": "Napojnice",
+    "ppv": "PPV",
+    "incomeBreakdown": "Raščlamba prihoda",
+    "ppvSales": "PPV prodaja",
+    "total": "Ukupno",
+    "tipsReceived": "Primljene napojnice",
+    "ppvUnlocks": "PPV otključavanja",
+    "recentTransactions": "Nedavne transakcije",
+    "tipReceived": "Primljena napojnica",
+    "ppvUnlock": "PPV otključavanje",
+    "noEarningsYet": "Još nema zarade",
+    "noEarningsDesc": "Napojnice i PPV prodaja pojavit će se ovdje"
   }
 }

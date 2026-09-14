@@ -3003,5 +3003,24 @@
     "errorNeedRights": "Бул мазмунга укугуңуз бар экендигин ырастаңыз",
     "errorClipboard": "Алмашуу буферин окууга болбоду — анын ордуна кол менен чаптоо",
     "errorQueueFailed": "Импорттоого кезек келбеди"
+  },
+  "earnings": {
+    "filter24h": "24с",
+    "filter7d": "7к",
+    "filter30d": "30к",
+    "filterAll": "Баары",
+    "noData": "Маалымат жок",
+    "tips": "Чай пул",
+    "ppv": "PPV",
+    "incomeBreakdown": "Кирешенин бөлүнүшү",
+    "ppvSales": "PPV сатуулары",
+    "total": "Жалпы",
+    "tipsReceived": "Алынган чай пул",
+    "ppvUnlocks": "PPV ачуулар",
+    "recentTransactions": "Акыркы транзакциялар",
+    "tipReceived": "Чай пул алынды",
+    "ppvUnlock": "PPV ачуу",
+    "noEarningsYet": "Азырынча киреше жок",
+    "noEarningsDesc": "Чай пул жана PPV сатуулары бул жерде көрүнөт"
   }
 }

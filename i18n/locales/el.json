@@ -3033,5 +3033,24 @@
     "errorNeedRights": "Επιβεβαιώστε ότι έχετε τα δικαιώματα για αυτό το περιεχόμενο",
     "errorClipboard": "Δεν ήταν δυνατή η ανάγνωση του προχείρου — επικολλήστε με μη αυτόματο τρόπο",
     "errorQueueFailed": "Δεν ήταν δυνατή η ουρά για την εισαγωγή"
+  },
+  "earnings": {
+    "filter24h": "24ω",
+    "filter7d": "7η",
+    "filter30d": "30η",
+    "filterAll": "Όλα",
+    "noData": "Χωρίς δεδομένα",
+    "tips": "Φιλοδωρήματα",
+    "ppv": "PPV",
+    "incomeBreakdown": "Ανάλυση εσόδων",
+    "ppvSales": "Πωλήσεις PPV",
+    "total": "Σύνολο",
+    "tipsReceived": "Φιλοδωρήματα που λάβατε",
+    "ppvUnlocks": "Ξεκλειδώματα PPV",
+    "recentTransactions": "Πρόσφατες συναλλαγές",
+    "tipReceived": "Λήψη φιλοδωρήματος",
+    "ppvUnlock": "Ξεκλείδωμα PPV",
+    "noEarningsYet": "Δεν υπάρχουν κέρδη ακόμη",
+    "noEarningsDesc": "Φιλοδωρήματα και πωλήσεις PPV θα εμφανίζονται εδώ"
   }
 }

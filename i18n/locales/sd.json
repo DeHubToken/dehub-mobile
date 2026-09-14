@@ -2993,5 +2993,24 @@
     "errorNeedRights": "مهرباني ڪري تصديق ڪريو ته توهان وٽ هن مواد جا حق آهن",
     "errorClipboard": "ڪلپ بورڊ نه پڙھي سگھيو — ان جي بدران دستي طور پيسٽ ڪريو",
     "errorQueueFailed": "ان درآمد کي قطار ۾ رکي نه سگھيو"
+  },
+  "earnings": {
+    "filter24h": "24ڪ",
+    "filter7d": "7ڏ",
+    "filter30d": "30ڏ",
+    "filterAll": "سڀ",
+    "noData": "ڪا ڊيٽا ناهي",
+    "tips": "ٽپس",
+    "ppv": "PPV",
+    "incomeBreakdown": "آمدني جو تفصيل",
+    "ppvSales": "PPV وڪرو",
+    "total": "ڪل",
+    "tipsReceived": "مليل ٽپس",
+    "ppvUnlocks": "PPV ان لاڪ",
+    "recentTransactions": "تازو ٽرانزيڪشن",
+    "tipReceived": "ٽپ ملي",
+    "ppvUnlock": "PPV ان لاڪ",
+    "noEarningsYet": "اڃا ڪا ڪمائي ناهي",
+    "noEarningsDesc": "ٽپس ۽ PPV وڪرو هتي نظر ايندا"
   }
 }

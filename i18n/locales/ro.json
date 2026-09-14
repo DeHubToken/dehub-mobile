@@ -3023,5 +3023,24 @@
     "errorNeedRights": "Vă rugăm să confirmați că aveți drepturi asupra acestui conținut",
     "errorClipboard": "Clipboard-ul nu a putut fi citit — lipiți manual în schimb",
     "errorQueueFailed": "Imposibil de pus în coadă acel import"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7z",
+    "filter30d": "30z",
+    "filterAll": "Tot",
+    "noData": "Fără date",
+    "tips": "Bacșișuri",
+    "ppv": "PPV",
+    "incomeBreakdown": "Defalcarea veniturilor",
+    "ppvSales": "Vânzări PPV",
+    "total": "Total",
+    "tipsReceived": "Bacșișuri primite",
+    "ppvUnlocks": "Deblocări PPV",
+    "recentTransactions": "Tranzacții recente",
+    "tipReceived": "Bacșiș primit",
+    "ppvUnlock": "Deblocare PPV",
+    "noEarningsYet": "Încă niciun câștig",
+    "noEarningsDesc": "Bacșișurile și vânzările PPV vor apărea aici"
   }
 }

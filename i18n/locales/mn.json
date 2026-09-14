@@ -2989,5 +2989,24 @@
     "errorNeedRights": "Та энэ агуулгын эрхтэй болохыг баталгаажуулна уу",
     "errorClipboard": "Түр санах ойг уншиж чадахгүй байна — оронд нь гараар буулгана",
     "errorQueueFailed": "Импортлохын тулд дараалал хийж чадсангүй"
+  },
+  "earnings": {
+    "filter24h": "24ц",
+    "filter7d": "7ө",
+    "filter30d": "30ө",
+    "filterAll": "Бүгд",
+    "noData": "Өгөгдөл алга",
+    "tips": "Цайны мөнгө",
+    "ppv": "PPV",
+    "incomeBreakdown": "Орлогын задаргаа",
+    "ppvSales": "PPV борлуулалт",
+    "total": "Нийт",
+    "tipsReceived": "Хүлээн авсан цайны мөнгө",
+    "ppvUnlocks": "PPV нээлтүүд",
+    "recentTransactions": "Сүүлийн гүйлгээнүүд",
+    "tipReceived": "Цайны мөнгө хүлээн авав",
+    "ppvUnlock": "PPV нээлт",
+    "noEarningsYet": "Одоогоор орлого алга",
+    "noEarningsDesc": "Цайны мөнгө ба PPV борлуулалт энд харагдана"
   }
 }
