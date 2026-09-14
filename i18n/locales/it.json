@@ -3199,5 +3199,19 @@
     "usernameReserved": "Questo nome utente è riservato",
     "profileSet": "Profilo impostato con successo!",
     "profileFailed": "Impossibile impostare il profilo"
+  },
+  "events": {
+    "mine": "I miei",
+    "subtitle": "Scopri gli eventi della community e conferma la presenza",
+    "going": "Parteciperò",
+    "interested": "Mi interessa",
+    "goingCount": "{{count}} parteciperanno",
+    "rsvpFailed": "Impossibile aggiornare la conferma",
+    "signInToRsvp": "Accedi per confermare la presenza agli eventi",
+    "noneCreated": "Non hai ancora creato eventi",
+    "noPast": "Nessun evento passato",
+    "noUpcoming": "Nessun evento in programma",
+    "interestedCount": "{{count}} interessati",
+    "loadFailed": "Impossibile caricare gli eventi"
   }
 }

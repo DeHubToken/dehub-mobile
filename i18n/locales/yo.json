@@ -3119,5 +3119,19 @@
     "usernameReserved": "A ti pa orúkọ olùmúlò yìí mọ́",
     "profileSet": "A ti ṣètò profáìlì ní àṣeyọrí!",
     "profileFailed": "Kò lè ṣètò profáìlì"
+  },
+  "events": {
+    "mine": "Tèmi",
+    "subtitle": "Ṣàwárí àwọn ìṣẹ̀lẹ̀ àgbègbè kí o sì jẹ́rìí wíwá rẹ",
+    "going": "Máa lọ",
+    "interested": "Ó wù mí",
+    "goingCount": "{{count}} máa lọ",
+    "rsvpFailed": "Kò lè ṣàtúnṣe ìdáhùn wíwá",
+    "signInToRsvp": "Wọlé láti jẹ́rìí wíwá sí àwọn ìṣẹ̀lẹ̀",
+    "noneCreated": "O kò tíì dá ìṣẹ̀lẹ̀ kankan",
+    "noPast": "Kò sí ìṣẹ̀lẹ̀ tí ó ti kọjá",
+    "noUpcoming": "Kò sí ìṣẹ̀lẹ̀ tó ń bọ̀",
+    "interestedCount": "{{count}} nífẹ̀ẹ́ sí",
+    "loadFailed": "Kò lè gbé àwọn ìṣẹ̀lẹ̀ wọlé"
   }
 }

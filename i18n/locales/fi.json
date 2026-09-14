@@ -3129,5 +3129,19 @@
     "usernameReserved": "Tämä käyttäjänimi on varattu",
     "profileSet": "Profiili määritetty onnistuneesti!",
     "profileFailed": "Profiilin määritys epäonnistui"
+  },
+  "events": {
+    "mine": "Omat",
+    "subtitle": "Löydä yhteisön tapahtumia ja ilmoita osallistumisesi",
+    "going": "Osallistun",
+    "interested": "Kiinnostunut",
+    "goingCount": "{{count}} osallistuu",
+    "rsvpFailed": "Osallistumisvastausta ei voitu päivittää",
+    "signInToRsvp": "Kirjaudu sisään ilmoittautuaksesi tapahtumiin",
+    "noneCreated": "Et ole vielä luonut tapahtumia",
+    "noPast": "Ei menneitä tapahtumia",
+    "noUpcoming": "Ei tulevia tapahtumia",
+    "interestedCount": "{{count}} kiinnostunutta",
+    "loadFailed": "Tapahtumia ei voitu ladata"
   }
 }

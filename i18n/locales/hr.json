@@ -3129,5 +3129,19 @@
     "usernameReserved": "Ovo korisničko ime je rezervirano",
     "profileSet": "Profil je uspješno postavljen!",
     "profileFailed": "Postavljanje profila nije uspjelo"
+  },
+  "events": {
+    "mine": "Moji",
+    "subtitle": "Otkrij događaje zajednice i potvrdi dolazak",
+    "going": "Idem",
+    "interested": "Zanima me",
+    "goingCount": "{{count}} ide",
+    "rsvpFailed": "Ažuriranje dolaska nije uspjelo",
+    "signInToRsvp": "Prijavi se da potvrdiš dolazak na događaje",
+    "noneCreated": "Još nisi stvorio nijedan događaj",
+    "noPast": "Nema prošlih događaja",
+    "noUpcoming": "Nema nadolazećih događaja",
+    "interestedCount": "{{count}} zainteresirano",
+    "loadFailed": "Učitavanje događaja nije uspjelo"
   }
 }

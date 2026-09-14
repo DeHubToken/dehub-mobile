@@ -3107,5 +3107,19 @@
     "usernameReserved": "Edobere aha njirimara a",
     "profileSet": "Ahazila profaịlụ nke ọma!",
     "profileFailed": "Ọ daghị ịhazi profaịlụ"
+  },
+  "events": {
+    "mine": "Nke m",
+    "subtitle": "Chọpụta mmemme obodo ma kwenye ịbịa",
+    "going": "Aga m aga",
+    "interested": "Enwere m mmasị",
+    "goingCount": "{{count}} na-aga",
+    "rsvpFailed": "Enweghị ike imelite nzaghachi nbịa",
+    "signInToRsvp": "Banye iji kwenye ịbịa mmemme",
+    "noneCreated": "Ị kaghị emepụta mmemme ọ bụla",
+    "noPast": "Enweghị mmemme gara aga",
+    "noUpcoming": "Enweghị mmemme na-abịa",
+    "interestedCount": "{{count}} nwere mmasị",
+    "loadFailed": "Enweghị ike ibubata mmemme"
   }
 }

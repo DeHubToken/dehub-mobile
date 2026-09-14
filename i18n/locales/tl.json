@@ -3309,5 +3309,19 @@
     "usernameReserved": "Nakalaan ang username na ito",
     "profileSet": "Matagumpay na na-set ang profile!",
     "profileFailed": "Hindi ma-set ang profile"
+  },
+  "events": {
+    "mine": "Akin",
+    "subtitle": "Tuklasin ang mga community event at mag-RSVP",
+    "going": "Pupunta",
+    "interested": "Interesado",
+    "goingCount": "{{count}} ang pupunta",
+    "rsvpFailed": "Hindi ma-update ang RSVP",
+    "signInToRsvp": "Mag-sign in para mag-RSVP sa mga event",
+    "noneCreated": "Wala ka pang nagagawang event",
+    "noPast": "Walang nakaraang event",
+    "noUpcoming": "Walang paparating na event",
+    "interestedCount": "{{count}} ang interesado",
+    "loadFailed": "Hindi ma-load ang mga event"
   }
 }

@@ -3128,5 +3128,19 @@
     "usernameReserved": "Šis lietotājvārds ir rezervēts",
     "profileSet": "Profils veiksmīgi iestatīts!",
     "profileFailed": "Neizdevās iestatīt profilu"
+  },
+  "events": {
+    "mine": "Mani",
+    "subtitle": "Atklāj kopienas pasākumus un apstiprini dalību",
+    "going": "Iešu",
+    "interested": "Interesē",
+    "goingCount": "{{count}} iet",
+    "rsvpFailed": "Neizdevās atjaunināt dalības atbildi",
+    "signInToRsvp": "Pieraksties, lai apstiprinātu dalību pasākumos",
+    "noneCreated": "Tu vēl neesi izveidojis nevienu pasākumu",
+    "noPast": "Nav pagājušu pasākumu",
+    "noUpcoming": "Nav gaidāmu pasākumu",
+    "interestedCount": "{{count}} ieinteresēti",
+    "loadFailed": "Neizdevās ielādēt pasākumus"
   }
 }

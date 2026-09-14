@@ -3161,5 +3161,19 @@
     "usernameReserved": "Kay sutiqa waqaychasqa",
     "profileSet": "Perfil allinta churasqa!",
     "profileFailed": "Perfilta mana churayta atikunchu"
+  },
+  "events": {
+    "mine": "Ñuqap",
+    "subtitle": "Ayllu ruwaykunata tariy hinaspa risqaykita willay",
+    "going": "Risaq",
+    "interested": "Munani",
+    "goingCount": "{{count}} rinqaku",
+    "rsvpFailed": "Risqayki willayta mana musuqchayta atikunchu",
+    "signInToRsvp": "Ruwaykunaman risqaykita willanaykipaq yaykuy",
+    "noneCreated": "Manaraq ima ruwaytapas kamarqankichu",
+    "noPast": "Mana ñawpa ruwaykuna",
+    "noUpcoming": "Mana hamuq ruwaykuna",
+    "interestedCount": "{{count}} munanku",
+    "loadFailed": "Ruwaykunata mana chaqnayta atikunchu"
   }
 }

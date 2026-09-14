@@ -3155,5 +3155,19 @@
     "usernameReserved": "هاد السمية محجوزة",
     "profileSet": "تدار البروفايل بنجاح!",
     "profileFailed": "ما قدرناش ندير البروفايل"
+  },
+  "events": {
+    "mine": "ديالي",
+    "subtitle": "اكتشف أنشطة المجتمع وأكد الحضور ديالك",
+    "going": "غادي",
+    "interested": "مهتم",
+    "goingCount": "{{count}} غاديين",
+    "rsvpFailed": "ما قدرناش نحدثو تأكيد الحضور",
+    "signInToRsvp": "دخل باش تأكد الحضور ديالك فالأنشطة",
+    "noneCreated": "ما دريتي حتى نشاط حتى دابا",
+    "noPast": "ما كايناش أنشطة فايتة",
+    "noUpcoming": "ما كايناش أنشطة جاية",
+    "interestedCount": "{{count}} مهتمين",
+    "loadFailed": "ما قدرناش نحملو الأنشطة"
   }
 }

@@ -3127,5 +3127,19 @@
     "usernameReserved": "呢個用戶名已被保留",
     "profileSet": "個人檔案設定成功！",
     "profileFailed": "無法設定個人檔案"
+  },
+  "events": {
+    "mine": "我嘅",
+    "subtitle": "發現社群活動並回覆出席",
+    "going": "參加",
+    "interested": "感興趣",
+    "goingCount": "{{count}} 人參加",
+    "rsvpFailed": "無法更新出席回覆",
+    "signInToRsvp": "登入後可回覆活動出席",
+    "noneCreated": "你未創建過活動",
+    "noPast": "冇往期活動",
+    "noUpcoming": "冇即將舉行嘅活動",
+    "interestedCount": "{{count}} 人感興趣",
+    "loadFailed": "無法載入活動"
   }
 }

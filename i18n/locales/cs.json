@@ -3133,5 +3133,19 @@
     "usernameReserved": "Toto uživatelské jméno je vyhrazené",
     "profileSet": "Profil byl úspěšně nastaven!",
     "profileFailed": "Profil se nepodařilo nastavit"
+  },
+  "events": {
+    "mine": "Moje",
+    "subtitle": "Objevujte komunitní akce a potvrďte účast",
+    "going": "Zúčastním se",
+    "interested": "Mám zájem",
+    "goingCount": "{{count}} se zúčastní",
+    "rsvpFailed": "Odpověď o účasti se nepodařilo aktualizovat",
+    "signInToRsvp": "Přihlaste se, abyste potvrdili účast na akcích",
+    "noneCreated": "Zatím jste nevytvořili žádnou akci",
+    "noPast": "Žádné minulé akce",
+    "noUpcoming": "Žádné nadcházející akce",
+    "interestedCount": "{{count}} má zájem",
+    "loadFailed": "Akce se nepodařilo načíst"
   }
 }

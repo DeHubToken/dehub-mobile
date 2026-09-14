@@ -3129,5 +3129,19 @@
     "usernameReserved": "الاسم ده محجوز",
     "profileSet": "اتظبط البروفايل بنجاح!",
     "profileFailed": "ما قدرناش نظبط البروفايل"
+  },
+  "events": {
+    "mine": "بتاعي",
+    "subtitle": "اكتشف فعاليات المجتمع وأكّد حضورك",
+    "going": "رايح",
+    "interested": "مهتم",
+    "goingCount": "{{count}} رايح",
+    "rsvpFailed": "ما قدرناش نحدّث تأكيد الحضور",
+    "signInToRsvp": "سجّل دخول عشان تأكد حضورك للفعاليات",
+    "noneCreated": "ما عملتش أي فعالية لسه",
+    "noPast": "مفيش فعاليات فاتت",
+    "noUpcoming": "مفيش فعاليات جاية",
+    "interestedCount": "{{count}} مهتم",
+    "loadFailed": "ما قدرناش نحمّل الفعاليات"
   }
 }

@@ -3398,5 +3398,19 @@
     "usernameReserved": "Deze gebruikersnaam is gereserveerd",
     "profileSet": "Profiel succesvol ingesteld!",
     "profileFailed": "Kon profiel niet instellen"
+  },
+  "events": {
+    "mine": "Mijne",
+    "subtitle": "Ontdek community-evenementen en meld je aan",
+    "going": "Ik ga",
+    "interested": "Geïnteresseerd",
+    "goingCount": "{{count}} gaan",
+    "rsvpFailed": "Kon aanmelding niet bijwerken",
+    "signInToRsvp": "Log in om je aan te melden voor evenementen",
+    "noneCreated": "Je hebt nog geen evenementen gemaakt",
+    "noPast": "Geen eerdere evenementen",
+    "noUpcoming": "Geen komende evenementen",
+    "interestedCount": "{{count}} geïnteresseerd",
+    "loadFailed": "Kon evenementen niet laden"
   }
 }
