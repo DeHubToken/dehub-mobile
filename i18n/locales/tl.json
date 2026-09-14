@@ -3229,5 +3229,27 @@
     "noteTiktok": "Creator Rewards. Kilalang mababa kada view; ang laki ng bilang ang buong modelo.",
     "noteReels": "Imbitasyon lang ang bonus programs at paulit-ulit na itong isinara.",
     "footnote": "Ang mga bilang ng kakumpitensya ay tantiya mula sa nailathalang saklaw ng industriya, hindi sinukat na bayad — malaki ang pagkakaiba ng totoong RPM ayon sa niche, bansa ng manonood at oras ng panonood, kaya i-edit ang bawat rate para tumugma sa totoo mong kita. Ang bilang ng DeHub ay ang totoo mong kita mula sa tips na ikinonberte sa live na presyo ng DHB, at hindi kasama ang subscription, PPV at benta sa store. Ang views ay tinotal mula sa iyong pinakahuling 100 post."
+  },
+  "sessions": {
+    "androidDevice": "Android Device",
+    "webBrowser": "Web Browser",
+    "thisDevice": "Ang device na ito",
+    "logOutDeviceTitle": "Ilo-log out ang device?",
+    "logOut": "Mag-log out",
+    "logOutAll": "Mag-log out ng lahat",
+    "logOutAllTitle": "Ilo-log out ang lahat ng ibang device?",
+    "logOutDeviceBody": "Ilo-log out nito ang \"{{device}}\". Kailangan nilang mag-log in ulit.",
+    "logOutAllBody_one": "Ilo-log out nito ang {{count}} ibang device. Ang device na ito lang ang mananatiling naka-log in.",
+    "logOutAllBody_other": "Ilo-log out nito ang {{count}} ibang device. Ang device na ito lang ang mananatiling naka-log in.",
+    "explainer": "Naka-log in ang mga device na ito sa account mo ngayon. Kung may hindi pamilyar, i-log out ito at palitan ang iyong mga kredensyal.",
+    "activeSessions_one": "{{count}} aktibong session",
+    "activeSessions_other": "{{count}} aktibong session",
+    "logOutAllButton": "Mag-log out sa lahat ng ibang device",
+    "loadFailed": "Hindi ma-load ang mga session",
+    "loggedOut": "Na-log out ang device",
+    "logOutFailed": "Hindi ma-log out ang device",
+    "logOutAllFailed": "Hindi ma-log out ang mga device",
+    "devicesLoggedOut_one": "{{count}} device ang na-log out",
+    "devicesLoggedOut_other": "{{count}} device ang na-log out"
   }
 }

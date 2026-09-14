@@ -3123,5 +3123,27 @@
     "noteTiktok": "Creator Rewards. Réputé très faible par vue ; tout le modèle repose sur le volume.",
     "noteReels": "Les programmes de bonus sont sur invitation seulement et ont été supprimés à plusieurs reprises.",
     "footnote": "Les chiffres des concurrents sont des estimations issues de fourchettes publiées du secteur, pas des versements mesurés : le RPM réel varie fortement selon la niche, le pays de l'audience et la durée de visionnage, alors ajustez chaque taux à ce que vous gagnez vraiment. Le chiffre DeHub correspond à vos revenus réels de pourboires convertis au cours DHB en direct, et exclut les abonnements, le PPV et les ventes en boutique. Les vues sont additionnées sur vos 100 publications les plus récentes."
+  },
+  "sessions": {
+    "androidDevice": "Appareil Android",
+    "webBrowser": "Navigateur web",
+    "thisDevice": "Cet appareil",
+    "logOutDeviceTitle": "Déconnecter l'appareil ?",
+    "logOut": "Déconnexion",
+    "logOutAll": "Tout déconnecter",
+    "logOutAllTitle": "Déconnecter tous les autres appareils ?",
+    "logOutDeviceBody": "Cela déconnectera \"{{device}}\". Il faudra se reconnecter.",
+    "logOutAllBody_one": "Cela déconnectera {{count}} autre appareil. Seul cet appareil restera connecté.",
+    "logOutAllBody_other": "Cela déconnectera {{count}} autres appareils. Seul cet appareil restera connecté.",
+    "explainer": "Ces appareils sont actuellement connectés à votre compte. Si vous voyez quelque chose d'inconnu, déconnectez-le et changez vos identifiants.",
+    "activeSessions_one": "{{count}} session active",
+    "activeSessions_other": "{{count}} sessions actives",
+    "logOutAllButton": "Déconnecter tous les autres appareils",
+    "loadFailed": "Impossible de charger les sessions",
+    "loggedOut": "Appareil déconnecté",
+    "logOutFailed": "Impossible de déconnecter l'appareil",
+    "logOutAllFailed": "Impossible de déconnecter les appareils",
+    "devicesLoggedOut_one": "{{count}} appareil déconnecté",
+    "devicesLoggedOut_other": "{{count}} appareils déconnectés"
   }
 }

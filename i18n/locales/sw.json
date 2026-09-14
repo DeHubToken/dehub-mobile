@@ -3049,5 +3049,27 @@
     "noteTiktok": "Creator Rewards. Inajulikana kwa kulipa kidogo kwa kila mwonekano; kiwango chenyewe ndicho mtindo mzima.",
     "noteReels": "Programu za bonasi ni kwa mwaliko pekee na zimefungwa mara kwa mara.",
     "footnote": "Takwimu za washindani ni makadirio kutoka viwango vya sekta vilivyochapishwa, si malipo yaliyopimwa — RPM halisi hutofautiana sana kulingana na eneo la maudhui, nchi ya hadhira na muda wa kutazama, hivyo hariri kila kiwango kilingane na unachopata kweli. Takwimu ya DeHub ni mapato yako halisi ya tipu yaliyobadilishwa kwa bei ya DHB ya moja kwa moja, na haijumuishi usajili, PPV wala mauzo ya duka. Mionekano imejumlishwa kutoka machapisho yako 100 ya hivi karibuni."
+  },
+  "sessions": {
+    "androidDevice": "Kifaa cha Android",
+    "webBrowser": "Kivinjari cha wavuti",
+    "thisDevice": "Kifaa hiki",
+    "logOutDeviceTitle": "Toa kifaa?",
+    "logOut": "Toka",
+    "logOutAll": "Toa zote",
+    "logOutAllTitle": "Toa vifaa vingine vyote?",
+    "logOutDeviceBody": "Hii itatoa \"{{device}}\". Watahitaji kuingia tena.",
+    "logOutAllBody_one": "Hii itatoa kifaa kingine {{count}}. Ni kifaa hiki pekee kitakachobaki kimeingia.",
+    "logOutAllBody_other": "Hii itatoa vifaa vingine {{count}}. Ni kifaa hiki pekee kitakachobaki kimeingia.",
+    "explainer": "Vifaa hivi kwa sasa vimeingia kwenye akaunti yako. Ukiona kitu usichokijua, kitoe na ubadilishe taarifa zako za kuingia.",
+    "activeSessions_one": "kipindi {{count}} kinachoendelea",
+    "activeSessions_other": "vipindi {{count}} vinavyoendelea",
+    "logOutAllButton": "Toa vifaa vingine vyote",
+    "loadFailed": "Imeshindwa kupakia vipindi",
+    "loggedOut": "Kifaa kimetolewa",
+    "logOutFailed": "Imeshindwa kutoa kifaa",
+    "logOutAllFailed": "Imeshindwa kutoa vifaa",
+    "devicesLoggedOut_one": "Kifaa {{count}} kimetolewa",
+    "devicesLoggedOut_other": "Vifaa {{count}} vimetolewa"
   }
 }

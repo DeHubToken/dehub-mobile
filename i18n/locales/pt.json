@@ -3123,5 +3123,27 @@
     "noteTiktok": "Creator Rewards. Famoso por pagar pouquíssimo por visualização; o modelo inteiro é escala.",
     "noteReels": "Os programas de bônus são apenas por convite e foram encerrados repetidas vezes.",
     "footnote": "Os números dos concorrentes são estimativas a partir de faixas publicadas do setor, não pagamentos medidos: o RPM real varia muito conforme o nicho, o país do público e o tempo de exibição, então edite cada taxa para refletir o que você realmente ganha. O número do DeHub é sua renda real de gorjetas convertida pelo preço ao vivo do DHB e não inclui assinaturas, PPV nem vendas da loja. As visualizações são somadas dos seus 100 posts mais recentes."
+  },
+  "sessions": {
+    "androidDevice": "Dispositivo Android",
+    "webBrowser": "Navegador web",
+    "thisDevice": "Este dispositivo",
+    "logOutDeviceTitle": "Sair no dispositivo?",
+    "logOut": "Sair",
+    "logOutAll": "Sair de todos",
+    "logOutAllTitle": "Sair em todos os outros dispositivos?",
+    "logOutDeviceBody": "Isso vai desconectar \"{{device}}\". Será preciso entrar de novo.",
+    "logOutAllBody_one": "Isso vai desconectar {{count}} outro dispositivo. Só este dispositivo continuará conectado.",
+    "logOutAllBody_other": "Isso vai desconectar {{count}} outros dispositivos. Só este dispositivo continuará conectado.",
+    "explainer": "Estes dispositivos estão conectados à sua conta agora. Se vir algo desconhecido, desconecte e troque suas credenciais.",
+    "activeSessions_one": "{{count}} sessão ativa",
+    "activeSessions_other": "{{count}} sessões ativas",
+    "logOutAllButton": "Sair em todos os outros dispositivos",
+    "loadFailed": "Não foi possível carregar as sessões",
+    "loggedOut": "Dispositivo desconectado",
+    "logOutFailed": "Não foi possível desconectar o dispositivo",
+    "logOutAllFailed": "Não foi possível desconectar os dispositivos",
+    "devicesLoggedOut_one": "{{count}} dispositivo desconectado",
+    "devicesLoggedOut_other": "{{count}} dispositivos desconectados"
   }
 }

@@ -3039,5 +3039,27 @@
     "noteTiktok": "Creator Rewards. Ó gbajúmọ̀ fún kíkéré rẹ̀ lórí ìwòye kọ̀ọ̀kan; ìwọ̀n ni gbogbo àwòṣe náà.",
     "noteReels": "Àwọn ètò ẹ̀bùn jẹ́ fún àwọn tí a pè nìkan, a sì ti tì wọ́n pa léraléra.",
     "footnote": "Àwọn nọ́mbà àwọn olùdíje jẹ́ ìfojúsùn láti inú ìwọ̀n ilé-iṣẹ́ tí a tẹ̀jáde, kì í ṣe owó tí a wọn. RPM gidi yàtọ̀ gidigidi nípa ẹ̀ka, orílẹ̀-èdè àwọn olùwòran àti àkókò wíwò, nítorí náà ṣàtúnṣe iye kọ̀ọ̀kan kí ó bá ohun tí o ń rí gan-an mu. Nọ́mbà DeHub ni owó ẹ̀bùn gidi rẹ tí a yí padà ní iye DHB tààrà, kò sì ní ìforúkọsílẹ̀, PPV tàbí títa ilé-ìtajà nínú. A ṣàkójọ ìwòye láti inú àwọn ìfiránṣẹ́ 100 tí ó ṣẹ̀ṣẹ̀ kọjá."
+  },
+  "sessions": {
+    "androidDevice": "Ẹ̀rọ Android",
+    "webBrowser": "Ẹ̀rọ aṣàwákiri wẹ́ẹ̀bù",
+    "thisDevice": "Ẹ̀rọ yìí",
+    "logOutDeviceTitle": "Jáde nínú ẹ̀rọ náà?",
+    "logOut": "Jáde",
+    "logOutAll": "Jáde nínú gbogbo rẹ̀",
+    "logOutAllTitle": "Jáde nínú gbogbo ẹ̀rọ mìíràn?",
+    "logOutDeviceBody": "Èyí yóò jáde \"{{device}}\". Wọn yóò nílò láti tún wọlé.",
+    "logOutAllBody_one": "Èyí yóò jáde ẹ̀rọ mìíràn {{count}}. Ẹ̀rọ yìí nìkan ni yóò wà nínú ìwọlé.",
+    "logOutAllBody_other": "Èyí yóò jáde àwọn ẹ̀rọ mìíràn {{count}}. Ẹ̀rọ yìí nìkan ni yóò wà nínú ìwọlé.",
+    "explainer": "Àwọn ẹ̀rọ wọ̀nyí ti wọlé sí àkọọ́lẹ̀ rẹ lọ́wọ́lọ́wọ́. Tí o bá rí ohun tí o kò mọ̀, jáde rẹ̀ kí o sì yí àwọn àlàyé ìwọlé rẹ padà.",
+    "activeSessions_one": "{{count}} ìpàdé tí ń ṣiṣẹ́",
+    "activeSessions_other": "{{count}} àwọn ìpàdé tí ń ṣiṣẹ́",
+    "logOutAllButton": "Jáde nínú gbogbo ẹ̀rọ mìíràn",
+    "loadFailed": "Kò lè gbé àwọn ìpàdé wọlé",
+    "loggedOut": "A ti jáde ẹ̀rọ náà",
+    "logOutFailed": "Kò lè jáde ẹ̀rọ náà",
+    "logOutAllFailed": "Kò lè jáde àwọn ẹ̀rọ náà",
+    "devicesLoggedOut_one": "A ti jáde ẹ̀rọ {{count}}",
+    "devicesLoggedOut_other": "A ti jáde àwọn ẹ̀rọ {{count}}"
   }
 }

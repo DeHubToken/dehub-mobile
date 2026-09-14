@@ -3118,5 +3118,27 @@
     "noteTiktok": "Creator Rewards. Berüchtigt niedrig pro Aufruf; das ganze Modell lebt von der Reichweite.",
     "noteReels": "Bonusprogramme gibt es nur auf Einladung und sie wurden wiederholt eingestellt.",
     "footnote": "Zahlen der Wettbewerber sind Schätzungen aus veröffentlichten Branchenspannen, keine gemessenen Auszahlungen — der echte RPM schwankt stark nach Nische, Land des Publikums und Wiedergabezeit, also passe jede Rate an das an, was du wirklich verdienst. Die DeHub-Zahl ist dein echtes Trinkgeld-Einkommen zum aktuellen DHB-Kurs umgerechnet und enthält keine Abos, PPV oder Shop-Verkäufe. Die Aufrufe werden aus deinen letzten 100 Beiträgen summiert."
+  },
+  "sessions": {
+    "androidDevice": "Android-Gerät",
+    "webBrowser": "Webbrowser",
+    "thisDevice": "Dieses Gerät",
+    "logOutDeviceTitle": "Gerät abmelden?",
+    "logOut": "Abmelden",
+    "logOutAll": "Alle abmelden",
+    "logOutAllTitle": "Alle anderen Geräte abmelden?",
+    "logOutDeviceBody": "Dadurch wird \"{{device}}\" abgemeldet. Es muss sich erneut anmelden.",
+    "logOutAllBody_one": "Dadurch wird {{count}} anderes Gerät abgemeldet. Nur dieses Gerät bleibt angemeldet.",
+    "logOutAllBody_other": "Dadurch werden {{count}} andere Geräte abgemeldet. Nur dieses Gerät bleibt angemeldet.",
+    "explainer": "Diese Geräte sind derzeit in deinem Konto angemeldet. Wenn du etwas Unbekanntes siehst, melde es ab und ändere deine Zugangsdaten.",
+    "activeSessions_one": "{{count}} aktive Sitzung",
+    "activeSessions_other": "{{count}} aktive Sitzungen",
+    "logOutAllButton": "Alle anderen Geräte abmelden",
+    "loadFailed": "Sitzungen konnten nicht geladen werden",
+    "loggedOut": "Gerät abgemeldet",
+    "logOutFailed": "Gerät konnte nicht abgemeldet werden",
+    "logOutAllFailed": "Geräte konnten nicht abgemeldet werden",
+    "devicesLoggedOut_one": "{{count}} Gerät abgemeldet",
+    "devicesLoggedOut_other": "{{count}} Geräte abgemeldet"
   }
 }

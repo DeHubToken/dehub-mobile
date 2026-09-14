@@ -3048,5 +3048,27 @@
     "noteTiktok": "Creator Rewards. Kurikuulsalt madal vaatamise kohta; kogu mudel põhineb mahul.",
     "noteReels": "Boonusprogrammid on ainult kutsega ja neid on korduvalt lõpetatud.",
     "footnote": "Konkurentide arvud on hinnangud avaldatud tööstusharu vahemikest, mitte mõõdetud väljamaksed — tegelik RPM kõigub tugevalt niši, publiku riigi ja vaatamisaja järgi, seega muuda iga määra nii, et see vastaks sinu tegelikule teenistusele. DeHubi arv on sinu tegelik jootrahatulu, mis on teisendatud DHB hetkehinnaga, ja see ei sisalda tellimusi, PPV-d ega poemüüki. Vaatamised on liidetud sinu 100 viimasest postitusest."
+  },
+  "sessions": {
+    "androidDevice": "Androidi seade",
+    "webBrowser": "Veebibrauser",
+    "thisDevice": "See seade",
+    "logOutDeviceTitle": "Kas logida seade välja?",
+    "logOut": "Logi välja",
+    "logOutAll": "Logi kõik välja",
+    "logOutAllTitle": "Kas logida kõik teised seadmed välja?",
+    "logOutDeviceBody": "See logib välja seadme \"{{device}}\". Tuleb uuesti sisse logida.",
+    "logOutAllBody_one": "See logib välja {{count}} teise seadme. Sisse jääb ainult see seade.",
+    "logOutAllBody_other": "See logib välja {{count}} muud seadet. Sisse jääb ainult see seade.",
+    "explainer": "Need seadmed on praegu sinu kontosse sisse logitud. Kui näed midagi tundmatut, logi see välja ja muuda oma sisselogimisandmeid.",
+    "activeSessions_one": "{{count}} aktiivne seanss",
+    "activeSessions_other": "{{count}} aktiivset seanssi",
+    "logOutAllButton": "Logi kõik teised seadmed välja",
+    "loadFailed": "Seansside laadimine ebaõnnestus",
+    "loggedOut": "Seade logiti välja",
+    "logOutFailed": "Seadme väljalogimine ebaõnnestus",
+    "logOutAllFailed": "Seadmete väljalogimine ebaõnnestus",
+    "devicesLoggedOut_one": "{{count}} seade logiti välja",
+    "devicesLoggedOut_other": "{{count}} seadet logiti välja"
   }
 }

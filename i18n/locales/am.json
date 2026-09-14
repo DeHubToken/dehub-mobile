@@ -3044,5 +3044,27 @@
     "noteTiktok": "Creator Rewards። በእይታ ዝቅተኛ በመሆኑ ይታወቃል፤ መጠኑ ራሱ ሞዴሉ ነው።",
     "noteReels": "የጉርሻ ፕሮግራሞች በግብዣ ብቻ ናቸው፤ ደጋግመውም ተዘግተዋል።",
     "footnote": "የተፎካካሪዎች ቁጥሮች ከታተሙ የኢንዱስትሪ ክልሎች የተገመቱ ናቸው፣ የተለኩ ክፍያዎች አይደሉም። እውነተኛ RPM በዘርፍ፣ በተመልካች አገር እና በመመልከቻ ጊዜ በጣም ይለያያል፣ ስለዚህ እያንዳንዱን ተመን ከሚያገኙት ጋር እንዲመሳሰል ያስተካክሉ። የDeHub ቁጥር በቀጥታ የDHB ዋጋ የተቀየረ እውነተኛ የጉርሻ ገቢዎ ሲሆን፣ ምዝገባዎችን፣ PPV እና የሱቅ ሽያጮችን አያካትትም። እይታዎች ከቅርብ 100 ልጥፎችዎ ተደምረዋል።"
+  },
+  "sessions": {
+    "androidDevice": "የAndroid መሳሪያ",
+    "webBrowser": "የድር አሳሽ",
+    "thisDevice": "ይህ መሳሪያ",
+    "logOutDeviceTitle": "መሳሪያውን ያውጡ?",
+    "logOut": "ውጣ",
+    "logOutAll": "ሁሉንም አውጣ",
+    "logOutAllTitle": "ሌሎቹን መሳሪያዎች በሙሉ ያውጡ?",
+    "logOutDeviceBody": "ይህ \"{{device}}\"ን ያወጣል። እንደገና መግባት ያስፈልጋቸዋል።",
+    "logOutAllBody_one": "ይህ {{count}} ሌላ መሳሪያ ያወጣል። ይህ መሳሪያ ብቻ ገብቶ ይቆያል።",
+    "logOutAllBody_other": "ይህ {{count}} ሌሎች መሳሪያዎችን ያወጣል። ይህ መሳሪያ ብቻ ገብቶ ይቆያል።",
+    "explainer": "እነዚህ መሳሪያዎች አሁን ወደ መለያዎ ገብተዋል። የማያውቁት ነገር ካዩ አውጡት እና መግቢያ መረጃዎን ይለውጡ።",
+    "activeSessions_one": "{{count}} ንቁ ክፍለ ጊዜ",
+    "activeSessions_other": "{{count}} ንቁ ክፍለ ጊዜዎች",
+    "logOutAllButton": "ሌሎቹን መሳሪያዎች በሙሉ አውጣ",
+    "loadFailed": "ክፍለ ጊዜዎችን መጫን አልተሳካም",
+    "loggedOut": "መሳሪያው ወጥቷል",
+    "logOutFailed": "መሳሪያውን ማውጣት አልተሳካም",
+    "logOutAllFailed": "መሳሪያዎቹን ማውጣት አልተሳካም",
+    "devicesLoggedOut_one": "{{count}} መሳሪያ ወጥቷል",
+    "devicesLoggedOut_other": "{{count}} መሳሪያዎች ወጥተዋል"
   }
 }

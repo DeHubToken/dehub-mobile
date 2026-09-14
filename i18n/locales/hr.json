@@ -3049,5 +3049,27 @@
     "noteTiktok": "Creator Rewards. Poznato nisko po pregledu; cijeli model počiva na obujmu.",
     "noteReels": "Bonus programi su samo uz pozivnicu i više puta su gašeni.",
     "footnote": "Brojke konkurencije su procjene iz objavljenih industrijskih raspona, a ne izmjerene isplate — stvarni RPM jako varira po niši, zemlji publike i vremenu gledanja, pa uredi svaku stopu da odgovara onome što stvarno zarađuješ. Brojka DeHuba je tvoj stvarni prihod od napojnica preračunat po trenutnoj cijeni DHB-a i ne uključuje pretplate, PPV ni prodaju u trgovini. Pregledi se zbrajaju iz tvojih 100 najnovijih objava."
+  },
+  "sessions": {
+    "androidDevice": "Android uređaj",
+    "webBrowser": "Web preglednik",
+    "thisDevice": "Ovaj uređaj",
+    "logOutDeviceTitle": "Odjaviti uređaj?",
+    "logOut": "Odjava",
+    "logOutAll": "Odjavi sve",
+    "logOutAllTitle": "Odjaviti sve druge uređaje?",
+    "logOutDeviceBody": "Ovo će odjaviti \"{{device}}\". Trebat će se ponovno prijaviti.",
+    "logOutAllBody_one": "Ovo će odjaviti {{count}} drugi uređaj. Prijavljen će ostati samo ovaj uređaj.",
+    "logOutAllBody_other": "Ovo će odjaviti {{count}} druga uređaja. Prijavljen će ostati samo ovaj uređaj.",
+    "explainer": "Ovi su uređaji trenutačno prijavljeni na tvoj račun. Ako vidiš nešto nepoznato, odjavi ga i promijeni svoje podatke za prijavu.",
+    "activeSessions_one": "{{count}} aktivna sesija",
+    "activeSessions_other": "{{count}} aktivnih sesija",
+    "logOutAllButton": "Odjavi sve druge uređaje",
+    "loadFailed": "Učitavanje sesija nije uspjelo",
+    "loggedOut": "Uređaj odjavljen",
+    "logOutFailed": "Odjava uređaja nije uspjela",
+    "logOutAllFailed": "Odjava uređaja nije uspjela",
+    "devicesLoggedOut_one": "Odjavljen {{count}} uređaj",
+    "devicesLoggedOut_other": "Odjavljeno {{count}} uređaja"
   }
 }

@@ -3117,5 +3117,27 @@
     "noteTiktok": "Creator Rewards. Słynie z niskiej stawki za wyświetlenie; cały model opiera się na skali.",
     "noteReels": "Programy bonusowe są tylko na zaproszenie i były wielokrotnie wygaszane.",
     "footnote": "Dane konkurencji to szacunki z opublikowanych widełek branżowych, a nie zmierzone wypłaty — rzeczywisty RPM bardzo się różni zależnie od niszy, kraju odbiorców i czasu oglądania, więc dostosuj każdą stawkę do tego, ile faktycznie zarabiasz. Liczba DeHub to twój rzeczywisty przychód z napiwków przeliczony po bieżącej cenie DHB i nie obejmuje subskrypcji, PPV ani sprzedaży w sklepie. Wyświetlenia sumowane są z twoich 100 najnowszych postów."
+  },
+  "sessions": {
+    "androidDevice": "Urządzenie Android",
+    "webBrowser": "Przeglądarka internetowa",
+    "thisDevice": "To urządzenie",
+    "logOutDeviceTitle": "Wylogować urządzenie?",
+    "logOut": "Wyloguj",
+    "logOutAll": "Wyloguj wszystkie",
+    "logOutAllTitle": "Wylogować wszystkie inne urządzenia?",
+    "logOutDeviceBody": "To wyloguje \"{{device}}\". Trzeba będzie zalogować się ponownie.",
+    "logOutAllBody_one": "To wyloguje {{count}} inne urządzenie. Zalogowane zostanie tylko to urządzenie.",
+    "logOutAllBody_other": "To wyloguje {{count}} innych urządzeń. Zalogowane zostanie tylko to urządzenie.",
+    "explainer": "Te urządzenia są obecnie zalogowane na twoje konto. Jeśli widzisz coś nieznanego, wyloguj je i zmień dane logowania.",
+    "activeSessions_one": "{{count}} aktywna sesja",
+    "activeSessions_other": "{{count}} aktywnych sesji",
+    "logOutAllButton": "Wyloguj wszystkie inne urządzenia",
+    "loadFailed": "Nie udało się wczytać sesji",
+    "loggedOut": "Urządzenie wylogowane",
+    "logOutFailed": "Nie udało się wylogować urządzenia",
+    "logOutAllFailed": "Nie udało się wylogować urządzeń",
+    "devicesLoggedOut_one": "Wylogowano {{count}} urządzenie",
+    "devicesLoggedOut_other": "Wylogowano {{count}} urządzeń"
   }
 }

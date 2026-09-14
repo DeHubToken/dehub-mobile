@@ -3014,5 +3014,27 @@
     "noteTiktok": "Creator Rewards። ኣብ ነፍሲ ወከፍ ምርኣይ ትሑት ብምዃኑ ይፍለጥ፤ ብዝሒ ባዕሉ እቲ ሙሉእ ሞዴል እዩ።",
     "noteReels": "መደባት ተወሳኺ ብዕድመ ጥራይ ኮይኖም ደጋጊሞም ተዓጽዮም።",
     "footnote": "ቁጽርታት ተወዳደርቲ ካብ ዝተሓትሙ ናይ ኢንዱስትሪ ደረታት ዝተገመቱ እዮም፣ ዝተዓቐኑ ክፍሊታት ኣይኮኑን። ናይ ብሓቂ RPM ብመሰረት ዓይነት ትሕዝቶ፣ ሃገር ተዓዘብትን ግዜ ምርኣይን ኣዝዩ ይፈላለ፣ ስለዚ ንነፍሲ ወከፍ ዋጋ ምስ ናይ ብሓቂ ኣታዊኻ ከም ዝሰማማዕ ኣረምዮ። ቁጽሪ DeHub ብቐጥታ ዋጋ DHB ዝተቐየረ ናይ ብሓቂ ኣታዊ ጉርሻኻ ኮይኑ፣ ምዝገባታት፣ PPV ን መሸጣ ድኳንን ኣይሓውስን። ምርኣያት ካብ ናይ ቀረባ 100 ጽሑፋትካ ዝተደመሩ እዮም።"
+  },
+  "sessions": {
+    "androidDevice": "መሳርሒ Android",
+    "webBrowser": "ወብ ብራውዘር",
+    "thisDevice": "እዚ መሳርሒ",
+    "logOutDeviceTitle": "መሳርሒ ይውጻእ?",
+    "logOut": "ውጻእ",
+    "logOutAll": "ኩሉ ኣውጽእ",
+    "logOutAllTitle": "ኩሎም ካልኦት መሳርሒታት ይውጽኡ?",
+    "logOutDeviceBody": "እዚ ን'{{device}}' ከውጽኦ እዩ። ደጊሞም ክኣትዉ ኣለዎም።",
+    "logOutAllBody_one": "እዚ {{count}} ካልእ መሳርሒ ከውጽእ እዩ። እዚ መሳርሒ ጥራይ ኣትዩ ክጸንሕ እዩ።",
+    "logOutAllBody_other": "እዚ {{count}} ካልኦት መሳርሒታት ከውጽእ እዩ። እዚ መሳርሒ ጥራይ ኣትዩ ክጸንሕ እዩ።",
+    "explainer": "እዞም መሳርሒታት ሕጂ ናብ ሕሳብካ ኣትዮም ኣለዉ። ዘይትፈልጦ ነገር እንተ ርኢኻ፡ ኣውጽኦ እሞ ናይ መእተዊ ሓበሬታኻ ቀይር።",
+    "activeSessions_one": "{{count}} ንጡፍ ክፍለ ግዜ",
+    "activeSessions_other": "{{count}} ንጡፋት ክፍለ ግዜታት",
+    "logOutAllButton": "ኩሎም ካልኦት መሳርሒታት ኣውጽእ",
+    "loadFailed": "ክፍለ ግዜታት ክጽዓኑ ኣይከኣሉን",
+    "loggedOut": "መሳርሒ ወጺኡ",
+    "logOutFailed": "መሳርሒ ክወጽእ ኣይከኣለን",
+    "logOutAllFailed": "መሳርሒታት ክወጽኡ ኣይከኣሉን",
+    "devicesLoggedOut_one": "{{count}} መሳርሒ ወጺኡ",
+    "devicesLoggedOut_other": "{{count}} መሳርሒታት ወጺኦም"
   }
 }

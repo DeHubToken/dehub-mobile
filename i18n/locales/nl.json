@@ -3318,5 +3318,27 @@
     "noteTiktok": "Creator Rewards. Berucht laag per weergave; het hele model draait om schaal.",
     "noteReels": "Bonusprogramma's zijn alleen op uitnodiging en zijn herhaaldelijk afgebouwd.",
     "footnote": "Cijfers van concurrenten zijn schattingen uit gepubliceerde branchemarges, geen gemeten uitbetalingen — de echte RPM verschilt sterk per niche, land van het publiek en kijktijd, dus pas elk tarief aan op wat je werkelijk verdient. Het DeHub-cijfer is je echte fooi-inkomen omgerekend tegen de actuele DHB-koers en bevat geen abonnementen, PPV of winkelverkopen. Weergaven worden opgeteld uit je 100 meest recente berichten."
+  },
+  "sessions": {
+    "androidDevice": "Android-apparaat",
+    "webBrowser": "Webbrowser",
+    "thisDevice": "Dit apparaat",
+    "logOutDeviceTitle": "Apparaat uitloggen?",
+    "logOut": "Uitloggen",
+    "logOutAll": "Alles uitloggen",
+    "logOutAllTitle": "Alle andere apparaten uitloggen?",
+    "logOutDeviceBody": "Hiermee wordt \"{{device}}\" uitgelogd. Er moet opnieuw worden ingelogd.",
+    "logOutAllBody_one": "Hiermee wordt {{count}} ander apparaat uitgelogd. Alleen dit apparaat blijft ingelogd.",
+    "logOutAllBody_other": "Hiermee worden {{count}} andere apparaten uitgelogd. Alleen dit apparaat blijft ingelogd.",
+    "explainer": "Deze apparaten zijn momenteel ingelogd op je account. Zie je iets onbekends, log het dan uit en wijzig je inloggegevens.",
+    "activeSessions_one": "{{count}} actieve sessie",
+    "activeSessions_other": "{{count}} actieve sessies",
+    "logOutAllButton": "Alle andere apparaten uitloggen",
+    "loadFailed": "Kon sessies niet laden",
+    "loggedOut": "Apparaat uitgelogd",
+    "logOutFailed": "Kon apparaat niet uitloggen",
+    "logOutAllFailed": "Kon apparaten niet uitloggen",
+    "devicesLoggedOut_one": "{{count}} apparaat uitgelogd",
+    "devicesLoggedOut_other": "{{count}} apparaten uitgelogd"
   }
 }
