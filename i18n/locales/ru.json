@@ -3079,5 +3079,24 @@
     "errorNeedRights": "Подтвердите, что у вас есть права на этот контент",
     "errorClipboard": "Не удалось прочитать буфер обмена — вместо этого вставьте вручную",
     "errorQueueFailed": "Не удалось поставить этот импорт в очередь"
+  },
+  "earnings": {
+    "filter24h": "24ч",
+    "filter7d": "7д",
+    "filter30d": "30д",
+    "filterAll": "Все",
+    "noData": "Нет данных",
+    "tips": "Чаевые",
+    "ppv": "PPV",
+    "incomeBreakdown": "Структура дохода",
+    "ppvSales": "Продажи PPV",
+    "total": "Итого",
+    "tipsReceived": "Полученные чаевые",
+    "ppvUnlocks": "Разблокировки PPV",
+    "recentTransactions": "Последние транзакции",
+    "tipReceived": "Получены чаевые",
+    "ppvUnlock": "Разблокировка PPV",
+    "noEarningsYet": "Пока нет доходов",
+    "noEarningsDesc": "Чаевые и продажи PPV появятся здесь"
   }
 }

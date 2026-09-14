@@ -3039,5 +3039,24 @@
     "errorNeedRights": "Sicela uqinisekise ukuthi unamalungelo alokhu okuqukethwe",
     "errorClipboard": "Ayikwazanga ukufunda i-clipboard - namathisela mathupha esikhundleni salokho",
     "errorQueueFailed": "Ayikwazanga ukulandelela lokho kufaka"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7z",
+    "filter30d": "30z",
+    "filterAll": "Konke",
+    "noData": "Ayikho idatha",
+    "tips": "Amathiphu",
+    "ppv": "PPV",
+    "incomeBreakdown": "Ukuhlukaniswa kwemali engenayo",
+    "ppvSales": "Ukuthengiswa kwe-PPV",
+    "total": "Isamba",
+    "tipsReceived": "Amathiphu atholiwe",
+    "ppvUnlocks": "Ukuvulwa kwe-PPV",
+    "recentTransactions": "Ukuthengiselana kwakamuva",
+    "tipReceived": "Ithiphu itholiwe",
+    "ppvUnlock": "Ukuvulwa kwe-PPV",
+    "noEarningsYet": "Ayikho imali engenayo okwamanje",
+    "noEarningsDesc": "Amathiphu nokuthengiswa kwe-PPV kuzovela lapha"
   }
 }

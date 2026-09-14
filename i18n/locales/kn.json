@@ -3015,5 +3015,24 @@
     "errorNeedRights": "ಈ ವಿಷಯದ ಹಕ್ಕುಗಳನ್ನು ನೀವು ಹೊಂದಿರುವಿರಿ ಎಂದು ದಯವಿಟ್ಟು ದೃಢೀಕರಿಸಿ",
     "errorClipboard": "ಕ್ಲಿಪ್‌ಬೋರ್ಡ್ ಅನ್ನು ಓದಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ — ಬದಲಿಗೆ ಹಸ್ತಚಾಲಿತವಾಗಿ ಅಂಟಿಸಿ",
     "errorQueueFailed": "ಆ ಆಮದು ಸರತಿ ಸಾಲಿನಲ್ಲಿ ನಿಲ್ಲಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"
+  },
+  "earnings": {
+    "filter24h": "24ಗಂ",
+    "filter7d": "7ದಿ",
+    "filter30d": "30ದಿ",
+    "filterAll": "ಎಲ್ಲಾ",
+    "noData": "ಡೇಟಾ ಇಲ್ಲ",
+    "tips": "ಟಿಪ್ಸ್",
+    "ppv": "PPV",
+    "incomeBreakdown": "ಆದಾಯ ವಿಭಜನೆ",
+    "ppvSales": "PPV ಮಾರಾಟ",
+    "total": "ಒಟ್ಟು",
+    "tipsReceived": "ಪಡೆದ ಟಿಪ್ಸ್",
+    "ppvUnlocks": "PPV ಅನ್‌ಲಾಕ್",
+    "recentTransactions": "ಇತ್ತೀಚಿನ ವಹಿವಾಟುಗಳು",
+    "tipReceived": "ಟಿಪ್ ಸ್ವೀಕರಿಸಲಾಗಿದೆ",
+    "ppvUnlock": "PPV ಅನ್‌ಲಾಕ್",
+    "noEarningsYet": "ಇನ್ನೂ ಗಳಿಕೆ ಇಲ್ಲ",
+    "noEarningsDesc": "ಟಿಪ್ಸ್ ಮತ್ತು PPV ಮಾರಾಟ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ"
   }
 }

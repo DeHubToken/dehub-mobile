@@ -2776,5 +2776,24 @@
     "tryAgain": "هەوڵێ دوبارە",
     "statusImported": "ھێنراو (لە دەرەوە)، ھاووردە، ھاوردراو، ھێنراو، ھاوردە، بیانی یە",
     "statusFailed": "سه‌رنه‌که‌وتوو"
+  },
+  "earnings": {
+    "filter24h": "24s",
+    "filter7d": "7r",
+    "filter30d": "30r",
+    "filterAll": "Hemû",
+    "noData": "Dane tune",
+    "tips": "Bexşîş",
+    "ppv": "PPV",
+    "incomeBreakdown": "Dabeşkirina dahatê",
+    "ppvSales": "Firotina PPV",
+    "total": "Giştî",
+    "tipsReceived": "Bexşîşên wergirtî",
+    "ppvUnlocks": "Vekirinên PPV",
+    "recentTransactions": "Danûstandinên dawî",
+    "tipReceived": "Bexşîş hat wergirtin",
+    "ppvUnlock": "Vekirina PPV",
+    "noEarningsYet": "Hîn dahat tune",
+    "noEarningsDesc": "Bexşîş û firotina PPV dê li vir xuya bibin"
   }
 }

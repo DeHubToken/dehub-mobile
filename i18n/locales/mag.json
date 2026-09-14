@@ -2963,5 +2963,24 @@
     "errorNeedRights": "कृपया सुनिश्चित करें कि आपके पास \"यूएसबी डिबग मोड\" \"क्वोट; ऑफ\"",
     "errorClipboard": "उच्चारण रेकार्ड करे cunt cunt [en — other] क्या आप जानते हैं कैसे उच्चारण cunt करें?",
     "errorQueueFailed": "नइ निकलि सकलइ"
+  },
+  "earnings": {
+    "filter24h": "24घं",
+    "filter7d": "7दि",
+    "filter30d": "30दि",
+    "filterAll": "सब",
+    "noData": "डेटा नै",
+    "tips": "टिप",
+    "ppv": "PPV",
+    "incomeBreakdown": "आमदनी के ब्योरा",
+    "ppvSales": "PPV बिक्री",
+    "total": "कुल",
+    "tipsReceived": "भेटल टिप",
+    "ppvUnlocks": "PPV अनलॉक",
+    "recentTransactions": "हाल के लेनदेन",
+    "tipReceived": "टिप भेटल",
+    "ppvUnlock": "PPV अनलॉक",
+    "noEarningsYet": "अखन कोनो कमाई नै",
+    "noEarningsDesc": "टिप आ PPV बिक्री एतय देखाएत"
   }
 }

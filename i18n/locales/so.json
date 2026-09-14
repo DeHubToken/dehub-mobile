@@ -3001,5 +3001,24 @@
     "errorNeedRights": "Fadlan xaqiiji inaad xaq u leedahay nuxurkan",
     "errorClipboard": "Ma aqrin karo clipboard — ku dheji gacanta halkii",
     "errorQueueFailed": "Ma safan karo soo dejinta"
+  },
+  "earnings": {
+    "filter24h": "24s",
+    "filter7d": "7m",
+    "filter30d": "30m",
+    "filterAll": "Dhammaan",
+    "noData": "Xog ma jirto",
+    "tips": "Tips",
+    "ppv": "PPV",
+    "incomeBreakdown": "Faahfaahinta dakhliga",
+    "ppvSales": "Iibka PPV",
+    "total": "Wadarta",
+    "tipsReceived": "Tips la helay",
+    "ppvUnlocks": "Furitaanka PPV",
+    "recentTransactions": "Macaamilada dhawaan",
+    "tipReceived": "Tip la helay",
+    "ppvUnlock": "Furitaanka PPV",
+    "noEarningsYet": "Weli dakhli ma jiro",
+    "noEarningsDesc": "Tips iyo iibka PPV halkan ayay ka muuqan doonaan"
   }
 }

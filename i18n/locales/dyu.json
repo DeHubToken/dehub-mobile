@@ -2955,5 +2955,24 @@
     "errorNeedRights": "N'i b'a fɛ ka koo dɔ kɛ min be se k'i bali ka koo dɔ kɛ min be se k'i bali ka koo dɔ",
     "errorClipboard": "Ne tɛ se ka n ka gafew kalan - n' tɛ se ka n ka gafew kalan",
     "errorQueueFailed": "Ne tɛ se ka o fɔ"
+  },
+  "earnings": {
+    "filter24h": "24l",
+    "filter7d": "7t",
+    "filter30d": "30t",
+    "filterAll": "Bɛɛ",
+    "noData": "Kunnafoni tɛ",
+    "tips": "Tipw",
+    "ppv": "PPV",
+    "incomeBreakdown": "Sɔrɔ tilali",
+    "ppvSales": "PPV feereli",
+    "total": "Bɛɛ lajɛlen",
+    "tipsReceived": "Tipw sɔrɔlen",
+    "ppvUnlocks": "PPV dayɛlɛli",
+    "recentTransactions": "Jago kuraw",
+    "tipReceived": "Tip sɔrɔlen",
+    "ppvUnlock": "PPV dayɛlɛli",
+    "noEarningsYet": "Sɔrɔ tɛ fɔlɔ",
+    "noEarningsDesc": "Tipw ni PPV feereli bɛna bɔ yan"
   }
 }

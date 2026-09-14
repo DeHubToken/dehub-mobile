@@ -3000,5 +3000,24 @@
     "errorNeedRights": "Jọwọ jẹrisi pe o ni awọn ẹtọ si akoonu yii.",
     "errorClipboard": "Mi ò lè ka àtẹ̀jíṣẹ́ náà — fi ọwọ́ tẹ dípò",
     "errorQueueFailed": "Kò lè ṣe àlàfo àmúwọlé yẹn."
+  },
+  "earnings": {
+    "filter24h": "24w",
+    "filter7d": "7ọ",
+    "filter30d": "30ọ",
+    "filterAll": "Gbogbo",
+    "noData": "Kò sí dátà",
+    "tips": "Àwọn ẹ̀bùn",
+    "ppv": "PPV",
+    "incomeBreakdown": "Ìpín owó tó ń wọlé",
+    "ppvSales": "Títà PPV",
+    "total": "Àpapọ̀",
+    "tipsReceived": "Àwọn ẹ̀bùn tí a gbà",
+    "ppvUnlocks": "Ìṣí PPV",
+    "recentTransactions": "Àwọn ìdúnàádúrà tuntun",
+    "tipReceived": "A gba ẹ̀bùn",
+    "ppvUnlock": "Ìṣí PPV",
+    "noEarningsYet": "Kò tíì sí owó tó wọlé",
+    "noEarningsDesc": "Àwọn ẹ̀bùn àti títà PPV yóò hàn níbí"
   }
 }

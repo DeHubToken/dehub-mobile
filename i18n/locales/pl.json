@@ -3078,5 +3078,24 @@
     "errorNeedRights": "Potwierdź, że masz prawa do tej treści",
     "errorClipboard": "Nie można odczytać schowka — wklej ręcznie",
     "errorQueueFailed": "Nie można utworzyć kolejki do importu"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Wszystko",
+    "noData": "Brak danych",
+    "tips": "Napiwki",
+    "ppv": "PPV",
+    "incomeBreakdown": "Podział dochodu",
+    "ppvSales": "Sprzedaż PPV",
+    "total": "Razem",
+    "tipsReceived": "Otrzymane napiwki",
+    "ppvUnlocks": "Odblokowania PPV",
+    "recentTransactions": "Ostatnie transakcje",
+    "tipReceived": "Otrzymano napiwek",
+    "ppvUnlock": "Odblokowanie PPV",
+    "noEarningsYet": "Brak zarobków",
+    "noEarningsDesc": "Napiwki i sprzedaż PPV pojawią się tutaj"
   }
 }

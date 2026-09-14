@@ -2992,5 +2992,24 @@
     "errorNeedRights": "ഈ ഉള്ളടക്കത്തിന് നിങ്ങൾക്ക് അവകാശമുണ്ടെന്ന് ദയവായി സ്ഥിരീകരിക്കുക",
     "errorClipboard": "ക്ലിപ്പ്‌ബോർഡ് വായിക്കാൻ കഴിഞ്ഞില്ല — പകരം സ്വമേധയാ ഒട്ടിക്കുക",
     "errorQueueFailed": "ആ ഇറക്കുമതി ക്യൂവിൽ നിൽക്കാൻ കഴിഞ്ഞില്ല"
+  },
+  "earnings": {
+    "filter24h": "24മ",
+    "filter7d": "7ദി",
+    "filter30d": "30ദി",
+    "filterAll": "എല്ലാം",
+    "noData": "ഡാറ്റയില്ല",
+    "tips": "ടിപ്പുകൾ",
+    "ppv": "PPV",
+    "incomeBreakdown": "വരുമാന വിവരണം",
+    "ppvSales": "PPV വിൽപ്പന",
+    "total": "ആകെ",
+    "tipsReceived": "ലഭിച്ച ടിപ്പുകൾ",
+    "ppvUnlocks": "PPV അൺലോക്കുകൾ",
+    "recentTransactions": "സമീപകാല ഇടപാടുകൾ",
+    "tipReceived": "ടിപ്പ് ലഭിച്ചു",
+    "ppvUnlock": "PPV അൺലോക്ക്",
+    "noEarningsYet": "ഇതുവരെ വരുമാനമില്ല",
+    "noEarningsDesc": "ടിപ്പുകളും PPV വിൽപ്പനയും ഇവിടെ കാണാം"
   }
 }

@@ -2994,5 +2994,24 @@
     "errorNeedRights": "Bu məzmunda hüquqlarınızın olduğunu təsdiq edin",
     "errorClipboard": "Mübadilə buferini oxumaq mümkün olmadı — əvəzinə əllə yapışdırın",
     "errorQueueFailed": "Bu idxalı növbə ilə dəyişmək mümkün olmadı"
+  },
+  "earnings": {
+    "filter24h": "24s",
+    "filter7d": "7g",
+    "filter30d": "30g",
+    "filterAll": "Hamısı",
+    "noData": "Məlumat yoxdur",
+    "tips": "Bəxşişlər",
+    "ppv": "PPV",
+    "incomeBreakdown": "Gəlir bölgüsü",
+    "ppvSales": "PPV satışları",
+    "total": "Cəmi",
+    "tipsReceived": "Alınan bəxşişlər",
+    "ppvUnlocks": "PPV açılışları",
+    "recentTransactions": "Son əməliyyatlar",
+    "tipReceived": "Bəxşiş alındı",
+    "ppvUnlock": "PPV açılışı",
+    "noEarningsYet": "Hələ qazanc yoxdur",
+    "noEarningsDesc": "Bəxşişlər və PPV satışları burada görünəcək"
   }
 }

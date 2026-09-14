@@ -3010,5 +3010,24 @@
     "errorNeedRights": "Confirma que tens els drets sobre aquest contingut",
     "errorClipboard": "No s'ha pogut llegir el porta-retalls: enganxa-ho manualment",
     "errorQueueFailed": "No s'ha pogut posar en cua aquesta importació"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Tot",
+    "noData": "Sense dades",
+    "tips": "Propines",
+    "ppv": "PPV",
+    "incomeBreakdown": "Desglossament d'ingressos",
+    "ppvSales": "Vendes PPV",
+    "total": "Total",
+    "tipsReceived": "Propines rebudes",
+    "ppvUnlocks": "Desbloquejos PPV",
+    "recentTransactions": "Transaccions recents",
+    "tipReceived": "Propina rebuda",
+    "ppvUnlock": "Desbloqueig PPV",
+    "noEarningsYet": "Encara no hi ha guanys",
+    "noEarningsDesc": "Les propines i vendes PPV apareixeran aquí"
   }
 }

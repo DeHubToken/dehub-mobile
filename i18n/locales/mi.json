@@ -2995,5 +2995,24 @@
     "errorNeedRights": "Tena koa whakapumautanga kei a koe nga tika ki tenei ihirangi",
     "errorClipboard": "E kore e taea e koe te pānui i te papapātuhi — whakapiri i te ringa i te wahi",
     "errorQueueFailed": "Kaore e taea e au te whakakore i taua kawemai"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7r",
+    "filter30d": "30r",
+    "filterAll": "Katoa",
+    "noData": "Kāore he raraunga",
+    "tips": "Tips",
+    "ppv": "PPV",
+    "incomeBreakdown": "Wāwāhanga moni whiwhi",
+    "ppvSales": "Hokonga PPV",
+    "total": "Tapeke",
+    "tipsReceived": "Tips i whiwhi",
+    "ppvUnlocks": "Wetenga PPV",
+    "recentTransactions": "Ngā whakawhitinga tata",
+    "tipReceived": "Tip i whiwhi",
+    "ppvUnlock": "Wetenga PPV",
+    "noEarningsYet": "Kāore anō he moni whiwhi",
+    "noEarningsDesc": "Ka puta ngā tips me ngā hokonga PPV ki konei"
   }
 }

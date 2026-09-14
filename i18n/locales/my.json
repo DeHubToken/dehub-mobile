@@ -2990,5 +2990,24 @@
     "errorNeedRights": "သင့်တွင် ဤအကြောင်းအရာအတွက် အခွင့်အရေးများရှိကြောင်း အတည်ပြုပေးပါ",
     "errorClipboard": "ကလစ်ဘုတ်ကို ဖတ်မရနိုင်ပါ - ၎ င်းအစား ကိုယ်တိုင် ကပ်ပါ",
     "errorQueueFailed": "ထိုထည့်သွင်းမှုကို တန်းစီ ၍ မရပါ"
+  },
+  "earnings": {
+    "filter24h": "24နာရီ",
+    "filter7d": "7ရက်",
+    "filter30d": "30ရက်",
+    "filterAll": "အားလုံး",
+    "noData": "ဒေတာမရှိပါ",
+    "tips": "တစ်ပ်များ",
+    "ppv": "PPV",
+    "incomeBreakdown": "ဝင်ငွေ အသေးစိတ်",
+    "ppvSales": "PPV ရောင်းအား",
+    "total": "စုစုပေါင်း",
+    "tipsReceived": "လက်ခံရရှိသော တစ်ပ်များ",
+    "ppvUnlocks": "PPV ဖွင့်မှုများ",
+    "recentTransactions": "လတ်တလော ငွေလွှဲမှုများ",
+    "tipReceived": "တစ်ပ် ရရှိသည်",
+    "ppvUnlock": "PPV ဖွင့်မှု",
+    "noEarningsYet": "ဝင်ငွေ မရှိသေးပါ",
+    "noEarningsDesc": "တစ်ပ်များနှင့် PPV ရောင်းအား ဤနေရာတွင် ပေါ်လာမည်"
   }
 }

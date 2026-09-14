@@ -2961,5 +2961,24 @@
     "errorNeedRights": "请确认你有这个内容的权利",
     "errorClipboard": "无法读取剪贴板——改为手动粘贴",
     "errorQueueFailed": "无法排队那个导入"
+  },
+  "earnings": {
+    "filter24h": "24小时",
+    "filter7d": "7天",
+    "filter30d": "30天",
+    "filterAll": "全部",
+    "noData": "暂无数据",
+    "tips": "打赏",
+    "ppv": "付费观看",
+    "incomeBreakdown": "收入明细",
+    "ppvSales": "付费观看销售",
+    "total": "总计",
+    "tipsReceived": "收到的打赏",
+    "ppvUnlocks": "付费观看解锁",
+    "recentTransactions": "最近交易",
+    "tipReceived": "收到打赏",
+    "ppvUnlock": "付费观看解锁",
+    "noEarningsYet": "暂无收益",
+    "noEarningsDesc": "打赏和付费观看销售将显示在这里"
   }
 }

@@ -3008,5 +3008,24 @@
     "errorNeedRights": "請確認你擁有呢個內容嘅權利",
     "errorClipboard": "讀唔到剪貼簿 — 改為手動貼上",
     "errorQueueFailed": "排隊唔到嗰個匯入"
+  },
+  "earnings": {
+    "filter24h": "24小時",
+    "filter7d": "7日",
+    "filter30d": "30日",
+    "filterAll": "全部",
+    "noData": "暫無資料",
+    "tips": "打賞",
+    "ppv": "付費觀看",
+    "incomeBreakdown": "收入明細",
+    "ppvSales": "付費觀看銷售",
+    "total": "總計",
+    "tipsReceived": "收到嘅打賞",
+    "ppvUnlocks": "付費觀看解鎖",
+    "recentTransactions": "最近交易",
+    "tipReceived": "收到打賞",
+    "ppvUnlock": "付費觀看解鎖",
+    "noEarningsYet": "暫無收益",
+    "noEarningsDesc": "打賞同付費觀看銷售會顯示喺呢度"
   }
 }

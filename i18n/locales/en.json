@@ -3080,5 +3080,24 @@
     "errorNeedRights": "Please confirm you have the rights to this content",
     "errorClipboard": "Could not read the clipboard — paste manually instead",
     "errorQueueFailed": "Could not queue that import"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "All",
+    "noData": "No data",
+    "tips": "Tips",
+    "ppv": "PPV",
+    "incomeBreakdown": "Income Breakdown",
+    "ppvSales": "PPV Sales",
+    "total": "Total",
+    "tipsReceived": "Tips received",
+    "ppvUnlocks": "PPV unlocks",
+    "recentTransactions": "Recent Transactions",
+    "tipReceived": "Tip received",
+    "ppvUnlock": "PPV unlock",
+    "noEarningsYet": "No earnings yet",
+    "noEarningsDesc": "Tips and PPV sales will appear here"
   }
 }

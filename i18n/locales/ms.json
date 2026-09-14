@@ -3275,5 +3275,24 @@
     "errorNeedRights": "Sila sahkan bahawa anda mempunyai hak ke atas kandungan ini",
     "errorClipboard": "Tidak dapat membaca papan klip — tampal secara manual",
     "errorQueueFailed": "Tidak dapat membaris gilir import tersebut"
+  },
+  "earnings": {
+    "filter24h": "24j",
+    "filter7d": "7h",
+    "filter30d": "30h",
+    "filterAll": "Semua",
+    "noData": "Tiada data",
+    "tips": "Tip",
+    "ppv": "PPV",
+    "incomeBreakdown": "Pecahan Pendapatan",
+    "ppvSales": "Jualan PPV",
+    "total": "Jumlah",
+    "tipsReceived": "Tip diterima",
+    "ppvUnlocks": "Buka kunci PPV",
+    "recentTransactions": "Transaksi Terkini",
+    "tipReceived": "Tip diterima",
+    "ppvUnlock": "Buka kunci PPV",
+    "noEarningsYet": "Belum ada pendapatan",
+    "noEarningsDesc": "Tip dan jualan PPV akan muncul di sini"
   }
 }

@@ -3010,5 +3010,24 @@
     "errorNeedRights": "من فضلك تأكد إنك عندك الحقوق للمحتوى ده",
     "errorClipboard": "ما قدرتش أقرا من الحافظة — الصق يدوي بدل كده",
     "errorQueueFailed": "ما قدرتش أضيف الاستيراد للطابور"
+  },
+  "earnings": {
+    "filter24h": "24س",
+    "filter7d": "7ي",
+    "filter30d": "30ي",
+    "filterAll": "الكل",
+    "noData": "مفيش بيانات",
+    "tips": "إكراميات",
+    "ppv": "PPV",
+    "incomeBreakdown": "تفصيل الدخل",
+    "ppvSales": "مبيعات PPV",
+    "total": "الإجمالي",
+    "tipsReceived": "إكراميات واصلة",
+    "ppvUnlocks": "فتحات PPV",
+    "recentTransactions": "آخر المعاملات",
+    "tipReceived": "إكرامية واصلة",
+    "ppvUnlock": "فتح PPV",
+    "noEarningsYet": "مفيش أرباح لسه",
+    "noEarningsDesc": "الإكراميات ومبيعات PPV هتظهر هنا"
   }
 }

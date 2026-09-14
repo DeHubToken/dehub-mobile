@@ -3079,5 +3079,24 @@
     "errorNeedRights": "Bitte bestätigen Sie, dass Sie die Rechte an diesem Inhalt haben",
     "errorClipboard": "Zwischenablage konnte nicht gelesen werden — stattdessen manuell einfügen",
     "errorQueueFailed": "Dieser Import konnte nicht in die Warteschlange gestellt werden"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7T",
+    "filter30d": "30T",
+    "filterAll": "Alle",
+    "noData": "Keine Daten",
+    "tips": "Trinkgelder",
+    "ppv": "PPV",
+    "incomeBreakdown": "Einnahmenaufschlüsselung",
+    "ppvSales": "PPV-Verkäufe",
+    "total": "Gesamt",
+    "tipsReceived": "Erhaltene Trinkgelder",
+    "ppvUnlocks": "PPV-Freischaltungen",
+    "recentTransactions": "Letzte Transaktionen",
+    "tipReceived": "Trinkgeld erhalten",
+    "ppvUnlock": "PPV-Freischaltung",
+    "noEarningsYet": "Noch keine Einnahmen",
+    "noEarningsDesc": "Trinkgelder und PPV-Verkäufe erscheinen hier"
   }
 }

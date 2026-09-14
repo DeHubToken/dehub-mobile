@@ -3036,5 +3036,24 @@
     "errorNeedRights": "يرجى تأكيد أن لديك حقوق هذا المحتوى",
     "errorClipboard": "تعذر قراءة الحافظة — الصقها يدويًا بدلاً من ذلك",
     "errorQueueFailed": "تعذر وضع هذا الاستيراد في قائمة الانتظار"
+  },
+  "earnings": {
+    "filter24h": "24س",
+    "filter7d": "7ي",
+    "filter30d": "30ي",
+    "filterAll": "الكل",
+    "noData": "ما كاينش معطيات",
+    "tips": "إكراميات",
+    "ppv": "PPV",
+    "incomeBreakdown": "تفصيل الدخل",
+    "ppvSales": "مبيعات PPV",
+    "total": "المجموع",
+    "tipsReceived": "إكراميات وصلات",
+    "ppvUnlocks": "فتحات PPV",
+    "recentTransactions": "آخر المعاملات",
+    "tipReceived": "إكرامية وصلات",
+    "ppvUnlock": "فتح PPV",
+    "noEarningsYet": "ما كاينش أرباح دابا",
+    "noEarningsDesc": "الإكراميات ومبيعات PPV غادي يبانو هنا"
   }
 }

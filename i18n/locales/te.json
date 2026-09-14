@@ -3004,5 +3004,24 @@
     "errorNeedRights": "దయచేసి ఈ కంటెంట్ ‌ కు మీకు హక్కులు ఉన్నాయని నిర్ధారించండి",
     "errorClipboard": "క్లిప్ ‌ బోర్డ్ చదవలేకపోయాము — బదులుగా మాన్యువల్ ‌ గా అతికించండి",
     "errorQueueFailed": "ఆ దిగుమతి క్యూలో నిలబడలేకపోయింది"
+  },
+  "earnings": {
+    "filter24h": "24గం",
+    "filter7d": "7రో",
+    "filter30d": "30రో",
+    "filterAll": "అన్నీ",
+    "noData": "డేటా లేదు",
+    "tips": "టిప్స్",
+    "ppv": "PPV",
+    "incomeBreakdown": "ఆదాయ విభజన",
+    "ppvSales": "PPV అమ్మకాలు",
+    "total": "మొత్తం",
+    "tipsReceived": "అందుకున్న టిప్స్",
+    "ppvUnlocks": "PPV అన్‌లాక్‌లు",
+    "recentTransactions": "ఇటీవలి లావాదేవీలు",
+    "tipReceived": "టిప్ అందింది",
+    "ppvUnlock": "PPV అన్‌లాక్",
+    "noEarningsYet": "ఇంకా ఆదాయం లేదు",
+    "noEarningsDesc": "టిప్స్ మరియు PPV అమ్మకాలు ఇక్కడ కనిపిస్తాయి"
   }
 }

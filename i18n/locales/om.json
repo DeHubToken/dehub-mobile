@@ -3074,5 +3074,24 @@
     "errorNeedRights": "Qabiyyee kanaaf mirga qabaachuu keessan mirkaneessaa",
     "errorClipboard": "Gabatee muraa dubbisuu hin dandeenye — bakka isaa harkaan maxxansi",
     "errorQueueFailed": "Galchuu sana tarree galchuu hin dandeenye"
+  },
+  "earnings": {
+    "filter24h": "24s",
+    "filter7d": "7g",
+    "filter30d": "30g",
+    "filterAll": "Hunda",
+    "noData": "Daataan hin jiru",
+    "tips": "Tips",
+    "ppv": "PPV",
+    "incomeBreakdown": "Qoodinsa galii",
+    "ppvSales": "Gurgurtaa PPV",
+    "total": "Walii galaa",
+    "tipsReceived": "Tips argame",
+    "ppvUnlocks": "Banuu PPV",
+    "recentTransactions": "Daldala dhiheenyaa",
+    "tipReceived": "Tip argame",
+    "ppvUnlock": "Banuu PPV",
+    "noEarningsYet": "Ammatti galiin hin jiru",
+    "noEarningsDesc": "Tips fi gurgurtaan PPV asitti mul'atu"
   }
 }

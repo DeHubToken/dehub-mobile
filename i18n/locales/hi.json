@@ -3066,5 +3066,24 @@
     "errorNeedRights": "कृपया पुष्टि करें कि आपके पास इस सामग्री के अधिकार हैं",
     "errorClipboard": "क्लिपबोर्ड को पढ़ा नहीं जा सका — इसके बजाय मैन्युअल रूप से पेस्ट करें",
     "errorQueueFailed": "उस इम्पोर्ट की कतार नहीं लगाई जा सकी"
+  },
+  "earnings": {
+    "filter24h": "24घं",
+    "filter7d": "7दि",
+    "filter30d": "30दि",
+    "filterAll": "सभी",
+    "noData": "कोई डेटा नहीं",
+    "tips": "टिप्स",
+    "ppv": "PPV",
+    "incomeBreakdown": "आय का विवरण",
+    "ppvSales": "PPV बिक्री",
+    "total": "कुल",
+    "tipsReceived": "प्राप्त टिप्स",
+    "ppvUnlocks": "PPV अनलॉक",
+    "recentTransactions": "हाल के लेनदेन",
+    "tipReceived": "टिप प्राप्त",
+    "ppvUnlock": "PPV अनलॉक",
+    "noEarningsYet": "अभी कोई कमाई नहीं",
+    "noEarningsDesc": "टिप्स और PPV बिक्री यहाँ दिखेंगी"
   }
 }

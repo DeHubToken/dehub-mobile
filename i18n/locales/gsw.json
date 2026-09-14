@@ -2999,5 +2999,24 @@
     "errorNeedRights": "Bitte bestätig, dass du d'Rächt für dä Inhalt häsch",
     "errorClipboard": "Chönd d'Zwüschablage nid läse — füeg manuell ii statt",
     "errorQueueFailed": "Chönd dä Import nid i d'Warteschlange iireihe"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7T",
+    "filter30d": "30T",
+    "filterAll": "Alli",
+    "noData": "Kei Date",
+    "tips": "Trinkgälder",
+    "ppv": "PPV",
+    "incomeBreakdown": "Iinahme-Ufschlüsselig",
+    "ppvSales": "PPV-Verchäuf",
+    "total": "Total",
+    "tipsReceived": "Erhalteni Trinkgälder",
+    "ppvUnlocks": "PPV-Freischaltige",
+    "recentTransactions": "Letschti Transaktione",
+    "tipReceived": "Trinkgäld erhalte",
+    "ppvUnlock": "PPV-Freischaltig",
+    "noEarningsYet": "No kei Iinahme",
+    "noEarningsDesc": "Trinkgälder und PPV-Verchäuf erschiined da"
   }
 }

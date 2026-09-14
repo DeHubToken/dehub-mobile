@@ -3080,5 +3080,24 @@
     "errorNeedRights": "Confirma que tienes los derechos de este contenido",
     "errorClipboard": "No se ha podido leer el portapapeles — pegar manualmente en su lugar",
     "errorQueueFailed": "No se ha podido poner en cola esa importación"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Todo",
+    "noData": "Sin datos",
+    "tips": "Propinas",
+    "ppv": "PPV",
+    "incomeBreakdown": "Desglose de ingresos",
+    "ppvSales": "Ventas PPV",
+    "total": "Total",
+    "tipsReceived": "Propinas recibidas",
+    "ppvUnlocks": "Desbloqueos PPV",
+    "recentTransactions": "Transacciones recientes",
+    "tipReceived": "Propina recibida",
+    "ppvUnlock": "Desbloqueo PPV",
+    "noEarningsYet": "Aún no hay ganancias",
+    "noEarningsDesc": "Las propinas y ventas PPV aparecerán aquí"
   }
 }

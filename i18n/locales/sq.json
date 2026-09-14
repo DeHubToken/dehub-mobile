@@ -3009,5 +3009,24 @@
     "errorNeedRights": "Konfirmo që ke të drejtat për këtë përmbajtje",
     "errorClipboard": "Nuk mund të lexohet kujtesa e përkohshme — ngjiteni manualisht më mirë",
     "errorQueueFailed": "Importimi nuk mund të vihej në radhë"
+  },
+  "earnings": {
+    "filter24h": "24o",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Të gjitha",
+    "noData": "Pa të dhëna",
+    "tips": "Bakshishe",
+    "ppv": "PPV",
+    "incomeBreakdown": "Ndarja e të ardhurave",
+    "ppvSales": "Shitje PPV",
+    "total": "Gjithsej",
+    "tipsReceived": "Bakshishe të marra",
+    "ppvUnlocks": "Zhbllokime PPV",
+    "recentTransactions": "Transaksionet e fundit",
+    "tipReceived": "Bakshish i marrë",
+    "ppvUnlock": "Zhbllokim PPV",
+    "noEarningsYet": "Ende pa fitime",
+    "noEarningsDesc": "Bakshishet dhe shitjet PPV do të shfaqen këtu"
   }
 }

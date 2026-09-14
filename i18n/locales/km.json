@@ -3029,5 +3029,24 @@
     "errorNeedRights": "សូមបញ្ជាក់ថាលោកអ្នកមានសិទ្ធិក្នុងមាតិកានេះ",
     "errorClipboard": "មិន អាច អាន ក្ដារ តម្បៀត ខ្ទាស់ បាន ទេ — បិទភ្ជាប់ ដោយ ដៃ ជំនួស វិញ",
     "errorQueueFailed": "មិន អាច ដាក់ ជួរ នាំចូល នោះ បាន ទេ"
+  },
+  "earnings": {
+    "filter24h": "24ម",
+    "filter7d": "7ថ",
+    "filter30d": "30ថ",
+    "filterAll": "ទាំងអស់",
+    "noData": "គ្មានទិន្នន័យ",
+    "tips": "ទឹកតែ",
+    "ppv": "PPV",
+    "incomeBreakdown": "ការបែងចែកចំណូល",
+    "ppvSales": "ការលក់ PPV",
+    "total": "សរុប",
+    "tipsReceived": "ទឹកតែដែលទទួលបាន",
+    "ppvUnlocks": "ការដោះសោ PPV",
+    "recentTransactions": "ប្រតិបត្តិការថ្មីៗ",
+    "tipReceived": "បានទទួលទឹកតែ",
+    "ppvUnlock": "ការដោះសោ PPV",
+    "noEarningsYet": "មិនទាន់មានចំណូលនៅឡើយ",
+    "noEarningsDesc": "ទឹកតែ និងការលក់ PPV នឹងបង្ហាញនៅទីនេះ"
   }
 }

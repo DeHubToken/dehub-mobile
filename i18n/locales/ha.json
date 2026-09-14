@@ -3000,5 +3000,24 @@
     "errorNeedRights": "Da fatan za a tabbatar kana da haƙƙoƙin wannan abun ciki",
     "errorClipboard": "Ba za a iya karanta clipboard ba — manna hannu maimakon",
     "errorQueueFailed": "Ba zai iya jere cewa shigo da"
+  },
+  "earnings": {
+    "filter24h": "24a",
+    "filter7d": "7k",
+    "filter30d": "30k",
+    "filterAll": "Duka",
+    "noData": "Babu bayanai",
+    "tips": "Tips",
+    "ppv": "PPV",
+    "incomeBreakdown": "Rarrabuwar kuɗin shiga",
+    "ppvSales": "Sayar da PPV",
+    "total": "Jimla",
+    "tipsReceived": "Tips da aka karɓa",
+    "ppvUnlocks": "Buɗewar PPV",
+    "recentTransactions": "Ma'amaloli na kwanan nan",
+    "tipReceived": "An karɓi tip",
+    "ppvUnlock": "Buɗewar PPV",
+    "noEarningsYet": "Babu riba tukuna",
+    "noEarningsDesc": "Tips da sayar da PPV za su bayyana a nan"
   }
 }

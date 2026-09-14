@@ -3077,5 +3077,24 @@
     "errorNeedRights": "このコンテンツの権利を持っていることを確認してください",
     "errorClipboard": "クリップボードを読み取れませんでした—代わりに手動で貼り付けてください",
     "errorQueueFailed": "インポートをキューに入れることができませんでした"
+  },
+  "earnings": {
+    "filter24h": "24時間",
+    "filter7d": "7日",
+    "filter30d": "30日",
+    "filterAll": "全期間",
+    "noData": "データなし",
+    "tips": "チップ",
+    "ppv": "PPV",
+    "incomeBreakdown": "収入の内訳",
+    "ppvSales": "PPV売上",
+    "total": "合計",
+    "tipsReceived": "受け取ったチップ",
+    "ppvUnlocks": "PPVアンロック",
+    "recentTransactions": "最近の取引",
+    "tipReceived": "チップ受取",
+    "ppvUnlock": "PPVアンロック",
+    "noEarningsYet": "まだ収益はありません",
+    "noEarningsDesc": "チップとPPV売上がここに表示されます"
   }
 }

@@ -3042,5 +3042,24 @@
     "errorNeedRights": "Ama hina kaspa, kay willakuypa derechonkunayuq kasqaykita takyachiy",
     "errorClipboard": "Manam atirqanchu qillqana mayt&#39;uta ñawiriyta — makiwan k&#39;askachiy chaypa rantinpi",
     "errorQueueFailed": "Chay apamuyta mana filapi churayta atirqanchu"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7p",
+    "filter30d": "30p",
+    "filterAll": "Tukuy",
+    "noData": "Mana datokuna",
+    "tips": "Propinakuna",
+    "ppv": "PPV",
+    "incomeBreakdown": "Qullqi chaskiy t'aqay",
+    "ppvSales": "PPV rantikuy",
+    "total": "Llapan",
+    "tipsReceived": "Chaskisqa propinakuna",
+    "ppvUnlocks": "PPV kichaykuna",
+    "recentTransactions": "Qhipa ruwaykuna",
+    "tipReceived": "Propina chaskisqa",
+    "ppvUnlock": "PPV kichay",
+    "noEarningsYet": "Manaraq qullqi chaskiy",
+    "noEarningsDesc": "Propinakuna hinaspa PPV rantikuykuna kaypi rikhurinqa"
   }
 }

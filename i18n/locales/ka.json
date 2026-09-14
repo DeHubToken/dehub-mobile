@@ -3045,5 +3045,24 @@
     "errorNeedRights": "Გთხოვთ, დაადასტუროთ, რომ გაქვთ ამ კონტენტზე უფლებები",
     "errorClipboard": "Ბუფერის წაკითხვის შეცდომა — ხელით ჩასმა",
     "errorQueueFailed": "Ამ იმპორტის რიგში მდგომი ვერ მოხერხდა"
+  },
+  "earnings": {
+    "filter24h": "24სთ",
+    "filter7d": "7დ",
+    "filter30d": "30დ",
+    "filterAll": "ყველა",
+    "noData": "მონაცემები არ არის",
+    "tips": "ჩაის ფული",
+    "ppv": "PPV",
+    "incomeBreakdown": "შემოსავლის განაწილება",
+    "ppvSales": "PPV გაყიდვები",
+    "total": "სულ",
+    "tipsReceived": "მიღებული ჩაის ფული",
+    "ppvUnlocks": "PPV განბლოკვები",
+    "recentTransactions": "ბოლო ტრანზაქციები",
+    "tipReceived": "ჩაის ფული მიღებულია",
+    "ppvUnlock": "PPV განბლოკვა",
+    "noEarningsYet": "შემოსავალი ჯერ არ არის",
+    "noEarningsDesc": "ჩაის ფული და PPV გაყიდვები აქ გამოჩნდება"
   }
 }

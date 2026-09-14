@@ -2961,5 +2961,24 @@
     "errorNeedRights": "مهرباني وکړئ تایید کړئ چې تاسو د دې مینځپانګې حقونه لرئ",
     "errorClipboard": "لوستونکی نه شي کولای، چې پر ځای یې لیکنه وکړي — ياران .کام",
     "errorQueueFailed": "د دې وارداتو مخه نشي نیول کیدی"
+  },
+  "earnings": {
+    "filter24h": "24س",
+    "filter7d": "7و",
+    "filter30d": "30و",
+    "filterAll": "ټول",
+    "noData": "ډاټا نشته",
+    "tips": "ټیپونه",
+    "ppv": "PPV",
+    "incomeBreakdown": "د عاید تفصیل",
+    "ppvSales": "د PPV پلور",
+    "total": "ټول",
+    "tipsReceived": "ترلاسه شوي ټیپونه",
+    "ppvUnlocks": "د PPV پرانیستل",
+    "recentTransactions": "وروستي راکړې ورکړې",
+    "tipReceived": "ټیپ ترلاسه شو",
+    "ppvUnlock": "د PPV پرانیستل",
+    "noEarningsYet": "تر اوسه عاید نشته",
+    "noEarningsDesc": "ټیپونه او د PPV پلور دلته ښکاره کیږي"
   }
 }

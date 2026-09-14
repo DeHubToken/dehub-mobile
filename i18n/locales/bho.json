@@ -2961,5 +2961,24 @@
     "errorNeedRights": "महोदय कृपया ई बतावल जाए कि कैसे एह नेटवर्क से जुडल जाला ।",
     "errorClipboard": "क्लिपबोर्ड पढ़ने में सक्षम नहीं - मैन्युअल रूप से पेस्ट करें",
     "errorQueueFailed": "इ आयात के रोकल ना जा सकल"
+  },
+  "earnings": {
+    "filter24h": "24घं",
+    "filter7d": "7दि",
+    "filter30d": "30दि",
+    "filterAll": "सब",
+    "noData": "डेटा नइखे",
+    "tips": "टिप",
+    "ppv": "PPV",
+    "incomeBreakdown": "आमदनी के ब्योरा",
+    "ppvSales": "PPV बिक्री",
+    "total": "कुल",
+    "tipsReceived": "मिलल टिप",
+    "ppvUnlocks": "PPV अनलॉक",
+    "recentTransactions": "हाल के लेनदेन",
+    "tipReceived": "टिप मिलल",
+    "ppvUnlock": "PPV अनलॉक",
+    "noEarningsYet": "अभी कवनो कमाई नइखे",
+    "noEarningsDesc": "टिप आ PPV बिक्री इहाँ देखाई"
   }
 }

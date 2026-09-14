@@ -3084,5 +3084,24 @@
     "errorNeedRights": "Confirme que tem os direitos sobre este conteúdo",
     "errorClipboard": "Não foi possível ler a área de transferência — em vez disso, cole manualmente",
     "errorQueueFailed": "Não foi possível enfileirar essa importação"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Tudo",
+    "noData": "Sem dados",
+    "tips": "Gorjetas",
+    "ppv": "PPV",
+    "incomeBreakdown": "Detalhamento de renda",
+    "ppvSales": "Vendas PPV",
+    "total": "Total",
+    "tipsReceived": "Gorjetas recebidas",
+    "ppvUnlocks": "Desbloqueios PPV",
+    "recentTransactions": "Transações recentes",
+    "tipReceived": "Gorjeta recebida",
+    "ppvUnlock": "Desbloqueio PPV",
+    "noEarningsYet": "Ainda sem ganhos",
+    "noEarningsDesc": "Gorjetas e vendas PPV aparecerão aqui"
   }
 }

@@ -3009,5 +3009,24 @@
     "errorNeedRights": "कृपया पुष्टि करें कि आपके पास इस सामग्री के अधिकार हैं",
     "errorClipboard": "क्लिपबोर्ड को नहीं पढ़ सके — इसके बजाय मैन्युअल रूप से पेस्ट करें",
     "errorQueueFailed": "उस आयात को कतार में नहीं रख सके"
+  },
+  "earnings": {
+    "filter24h": "২৪ঘ",
+    "filter7d": "৭দি",
+    "filter30d": "৩০দি",
+    "filterAll": "সব",
+    "noData": "ডেটা নাই",
+    "tips": "টিপস",
+    "ppv": "PPV",
+    "incomeBreakdown": "আয়ের বিবরণ",
+    "ppvSales": "PPV বিক্রি",
+    "total": "মোট",
+    "tipsReceived": "পাওয়া টিপস",
+    "ppvUnlocks": "PPV আনলক",
+    "recentTransactions": "সাম্প্রতিক লেনদেন",
+    "tipReceived": "টিপ পাইছেন",
+    "ppvUnlock": "PPV আনলক",
+    "noEarningsYet": "এখনো কোনো আয় নাই",
+    "noEarningsDesc": "টিপস আর PPV বিক্রি এটে দেখাবে"
   }
 }

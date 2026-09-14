@@ -3010,5 +3010,24 @@
     "errorNeedRights": "Tafadhali thibitisha kuwa una haki za maudhui haya",
     "errorClipboard": "Haikuweza kusoma ubao wa kunakili — bandika mwenyewe badala yake",
     "errorQueueFailed": "Imeshindwa kupanga foleni ya uingizaji huo"
+  },
+  "earnings": {
+    "filter24h": "24s",
+    "filter7d": "7s",
+    "filter30d": "30s",
+    "filterAll": "Zote",
+    "noData": "Hakuna data",
+    "tips": "Tipu",
+    "ppv": "PPV",
+    "incomeBreakdown": "Mchanganuo wa mapato",
+    "ppvSales": "Mauzo ya PPV",
+    "total": "Jumla",
+    "tipsReceived": "Tipu zilizopokelewa",
+    "ppvUnlocks": "Ufunguzi wa PPV",
+    "recentTransactions": "Miamala ya hivi karibuni",
+    "tipReceived": "Tipu imepokelewa",
+    "ppvUnlock": "Ufunguzi wa PPV",
+    "noEarningsYet": "Bado hakuna mapato",
+    "noEarningsDesc": "Tipu na mauzo ya PPV yataonekana hapa"
   }
 }

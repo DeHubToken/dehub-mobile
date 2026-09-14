@@ -3080,5 +3080,24 @@
     "errorNeedRights": "Conferma di avere i diritti per questo contenuto",
     "errorClipboard": "Impossibile leggere gli appunti: incolla manualmente",
     "errorQueueFailed": "Impossibile accodare l'importazione"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7g",
+    "filter30d": "30g",
+    "filterAll": "Tutto",
+    "noData": "Nessun dato",
+    "tips": "Mance",
+    "ppv": "PPV",
+    "incomeBreakdown": "Ripartizione dei ricavi",
+    "ppvSales": "Vendite PPV",
+    "total": "Totale",
+    "tipsReceived": "Mance ricevute",
+    "ppvUnlocks": "Sblocchi PPV",
+    "recentTransactions": "Transazioni recenti",
+    "tipReceived": "Mancia ricevuta",
+    "ppvUnlock": "Sblocco PPV",
+    "noEarningsYet": "Ancora nessun guadagno",
+    "noEarningsDesc": "Mance e vendite PPV appariranno qui"
   }
 }

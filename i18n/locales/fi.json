@@ -3010,5 +3010,24 @@
     "errorNeedRights": "Vahvista, että sinulla on oikeudet tähän sisältöön",
     "errorClipboard": "Leikepöytää ei voitu lukea — liitä sen sijaan manuaalisesti",
     "errorQueueFailed": "Tuontia ei voitu jonottaa"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7pv",
+    "filter30d": "30pv",
+    "filterAll": "Kaikki",
+    "noData": "Ei tietoja",
+    "tips": "Tipit",
+    "ppv": "PPV",
+    "incomeBreakdown": "Tulojen erittely",
+    "ppvSales": "PPV-myynti",
+    "total": "Yhteensä",
+    "tipsReceived": "Saadut tipit",
+    "ppvUnlocks": "PPV-avaukset",
+    "recentTransactions": "Viimeisimmät tapahtumat",
+    "tipReceived": "Tippi saatu",
+    "ppvUnlock": "PPV-avaus",
+    "noEarningsYet": "Ei vielä tuloja",
+    "noEarningsDesc": "Tipit ja PPV-myynti näkyvät täällä"
   }
 }

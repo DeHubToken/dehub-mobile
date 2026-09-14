@@ -2778,5 +2778,24 @@
     "sent": "Пренос послат",
     "toSelf": "Не можеш слати токене самом себи",
     "insufficientOnChain": "Недовољно стање на ланцу за овај токен"
+  },
+  "earnings": {
+    "filter24h": "24ч",
+    "filter7d": "7д",
+    "filter30d": "30д",
+    "filterAll": "Све",
+    "noData": "Нема података",
+    "tips": "Бакшиши",
+    "ppv": "PPV",
+    "incomeBreakdown": "Рашчлањивање прихода",
+    "ppvSales": "PPV продаја",
+    "total": "Укупно",
+    "tipsReceived": "Примљени бакшиши",
+    "ppvUnlocks": "PPV откључавања",
+    "recentTransactions": "Недавне трансакције",
+    "tipReceived": "Примљен бакшиш",
+    "ppvUnlock": "PPV откључавање",
+    "noEarningsYet": "Још нема зараде",
+    "noEarningsDesc": "Бакшиши и PPV продаја појавиће се овде"
   }
 }

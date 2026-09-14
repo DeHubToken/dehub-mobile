@@ -3001,5 +3001,24 @@
     "errorNeedRights": "Vennligst bekreft at du har rettighetene til dette innholdet",
     "errorClipboard": "Kunne ikke lese utklippstavlen – lim inn manuelt i stedet",
     "errorQueueFailed": "Kunne ikke sette den importen i kø"
+  },
+  "earnings": {
+    "filter24h": "24t",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Alle",
+    "noData": "Ingen data",
+    "tips": "Tips",
+    "ppv": "PPV",
+    "incomeBreakdown": "Inntektsfordeling",
+    "ppvSales": "PPV-salg",
+    "total": "Totalt",
+    "tipsReceived": "Mottatte tips",
+    "ppvUnlocks": "PPV-opplåsinger",
+    "recentTransactions": "Nylige transaksjoner",
+    "tipReceived": "Tips mottatt",
+    "ppvUnlock": "PPV-opplåsing",
+    "noEarningsYet": "Ingen inntekter ennå",
+    "noEarningsDesc": "Tips og PPV-salg vises her"
   }
 }
