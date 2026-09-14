@@ -1278,6 +1278,8 @@
     "andOthersLikedCommentPreview": "{{first}} na {{others}} wamependa maoni yako: \"{{preview}}\"",
     "badgeLent": "{{name}} alikukopesha beji yake ya {{tier}}",
     "badgeTierUp": "Hongera! Sasa wewe ni {{tier}} 🎉",
+    "badgeTierDown": "Kumbuka: beji yako sasa ni {{tier}}",
+    "badgeTierLost": "Kumbuka: huna tena beji",
     "badgeTakenBack": "{{name}} aliacha kukukopesha beji yake ya {{tier}}",
     "badgeHandedBack": "{{name}} alirudisha beji ya {{tier}} uliyomkopesha",
     "badgeLoanLapsed": "{{name}} hawezi tena kukukopesha beji yake ya {{tier}}",

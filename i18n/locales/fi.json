@@ -1250,6 +1250,8 @@
     "andOthersLikedCommentPreview": "{{first}} ja {{others}} tykkäsivät kommentistasi: \"{{preview}}\"",
     "badgeLent": "{{name}} lainasi sinulle merkkinsä {{tier}}",
     "badgeTierUp": "Onnittelut! Olet nyt {{tier}} 🎉",
+    "badgeTierDown": "Huomio: merkkisi on nyt {{tier}}",
+    "badgeTierLost": "Huomio: sinulla ei ole enää merkkiä",
     "badgeTakenBack": "{{name}} lakkasi lainaamasta sinulle merkkiä {{tier}}",
     "badgeHandedBack": "{{name}} palautti hänelle lainaamasi {{tier}} -merkin",
     "badgeLoanLapsed": "{{name}} ei voi enää lainata sinulle merkkiä {{tier}}",

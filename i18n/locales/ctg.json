@@ -683,6 +683,8 @@
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} তোমাকে তাদের {{tier}} ব্যাজ ধার দিছে",
     "badgeTierUp": "মোবারক! অন তুঁই এগগুয়া {{tier}} 🎉",
+    "badgeTierDown": "খেয়াল গইরবেন: অন তুঁয়ার ব্যাজ {{tier}}",
+    "badgeTierLost": "খেয়াল গইরবেন: তুঁয়ার আর ব্যাজ নাই",
     "badgeTakenBack": "{{name}} তোমাকে তাদের {{tier}} ব্যাজ ধার দেওয়া বন্ধ করছে",
     "badgeHandedBack": "{{name}} তোমাকে ধার দেওয়া {{tier}} ব্যাজ ফেরত দিছে",
     "badgeLoanLapsed": "{{name}} আর তোমাকে তাদের {{tier}} ব্যাজ ধার দিতে পারবে না",

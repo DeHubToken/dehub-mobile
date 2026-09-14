@@ -1470,6 +1470,8 @@
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} ți-a împrumutat insigna {{tier}}",
     "badgeTierUp": "Felicitări! Acum ești un {{tier}} 🎉",
+    "badgeTierDown": "Atenție: insigna ta este acum {{tier}}",
+    "badgeTierLost": "Atenție: nu mai ai insignă",
     "badgeTakenBack": "{{name}} nu ți-a mai împrumutat insigna {{tier}}",
     "badgeHandedBack": "{{name}} a returnat insigna {{tier}} pe care i-ai împrumutat-o",
     "badgeLoanLapsed": "{{name}} nu îți mai poate împrumuta insigna {{tier}}",

@@ -1269,6 +1269,8 @@
     "andOthersLikedCommentPreview": "{{first}} da {{others}} sun so sharhinka: \"{{preview}}\"",
     "badgeLent": "{{name}} lent ka su {{tier}} badge",
     "badgeTierUp": "Barka! Yanzu kai {{tier}} ne 🎉",
+    "badgeTierDown": "Lura: lambar ka yanzu ita ce {{tier}}",
+    "badgeTierLost": "Lura: ba ka da lamba yanzu",
     "badgeTakenBack": "{{name}} daina ba ku bashi su {{tier}} badge",
     "badgeHandedBack": "{{name}} ya dawo da {{tier}} badge ka bashi su",
     "badgeLoanLapsed": "{{name}} ba zai iya sake ba ku bashi su {{tier}} badge",

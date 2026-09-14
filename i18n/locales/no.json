@@ -1246,6 +1246,8 @@
     "andOthersLikedCommentPreview": "{{first}} og {{others}} likte kommentaren din: \"{{preview}}\"",
     "badgeLent": "{{name}} lånte deg {{tier}}-merket sitt",
     "badgeTierUp": "Gratulerer! Du er nå en {{tier}} 🎉",
+    "badgeTierDown": "Merk: merket ditt er nå {{tier}}",
+    "badgeTierLost": "Merk: du har ikke lenger et merke",
     "badgeTakenBack": "{{name}} sluttet å låne deg {{tier}}-merket sitt",
     "badgeHandedBack": "{{name}} returnerte {{tier}}-merket du lånte dem",
     "badgeLoanLapsed": "{{name}} kan ikke lenger låne deg {{tier}}-merket sitt",

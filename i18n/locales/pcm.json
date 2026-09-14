@@ -1178,6 +1178,8 @@
   },
   "notifications": {
       "badgeTierUp": "Congrats! You be {{tier}} now 🎉",
+      "badgeTierDown": "Take note: your badge don turn {{tier}}",
+      "badgeTierLost": "Take note: you no get badge again",
     "title": "Notifications",
     "loadFailed": "We no fit load notifications",
     "markAllRead": "Mark all as read",

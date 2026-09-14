@@ -1215,6 +1215,8 @@
     "andOthersLikedCommentPreview": "{{first}} ja {{others}}-le meeldis sinu kommentaar: \"{{preview}}\"",
     "badgeLent": "{{name}} laenas sulle oma {{tier}} märgi",
     "badgeTierUp": "Palju õnne! Oled nüüd {{tier}} 🎉",
+    "badgeTierDown": "Tähelepanu: sinu märk on nüüd {{tier}}",
+    "badgeTierLost": "Tähelepanu: sul pole enam märki",
     "badgeTakenBack": "{{name}} lõpetas sulle oma märgi {{tier}} laenamise",
     "badgeHandedBack": "{{name}} tagastas {{tier}} märgi, mille neile laenasid",
     "badgeLoanLapsed": "{{name}} ei saa sulle enam oma märki {{tier}} laenata",

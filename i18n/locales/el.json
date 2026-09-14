@@ -1215,6 +1215,8 @@
     "andOthersLikedCommentPreview": "Ο/Η {{first}} και {{others}} έκαναν like στο σχόλιό σας: \"{{preview}}\"",
     "badgeLent": "{{name}} σας δάνεισαν το σήμα τους {{tier}}",
     "badgeTierUp": "Συγχαρητήρια! Τώρα είσαι {{tier}} 🎉",
+    "badgeTierDown": "Προσοχή: το σήμα σου είναι τώρα {{tier}}",
+    "badgeTierLost": "Προσοχή: δεν έχεις πια σήμα",
     "badgeTakenBack": "{{name}} σταμάτησαν να σας δανείζουν το σήμα τους {{tier}}",
     "badgeHandedBack": "Ο/Η {{name}} επέστρεψε το σήμα {{tier}} που του/της δανείσατε",
     "badgeLoanLapsed": "Η{{name}} δεν μπορεί πλέον να σας δανείσει το σήμα της {{tier}}",

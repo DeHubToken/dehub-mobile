@@ -1282,6 +1282,8 @@
     "andOthersLikedCommentPreview": "{{first}} dan {{others}} menyukai komentar Anda: \"{{preview}}\"",
     "badgeLent": "{{name}} meminjamkan lencana {{tier}} kepada Anda",
     "badgeTierUp": "Selamat! Sekarang kamu seorang {{tier}} 🎉",
+    "badgeTierDown": "Perhatian: lencana kamu sekarang {{tier}}",
+    "badgeTierLost": "Perhatian: kamu tidak punya lencana lagi",
     "badgeTakenBack": "{{name}} berhenti meminjamkan lencana {{tier}} kepada Anda",
     "badgeHandedBack": "{{name}} mengembalikan lencana {{tier}} yang Anda pinjamkan kepada mereka",
     "badgeLoanLapsed": "{{name}} tidak bisa lagi meminjamkan lencana {{tier}} kepada Anda",

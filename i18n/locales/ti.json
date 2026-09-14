@@ -1153,6 +1153,8 @@
   },
   "notifications": {
       "badgeTierUp": "እንኳዕ ሓጎሰካ! ሕጂ {{tier}} ኢኻ 🎉",
+      "badgeTierDown": "መዘኻኸሪ፦ ሕጂ ባጅካ {{tier}} እዩ",
+      "badgeTierLost": "መዘኻኸሪ፦ ደጊም ባጅ የብልካን",
     "title": "ምልክታታት",
     "loadFailed": "መልእኽትታት ክጽዓን ኣይተኻእለን",
     "markAllRead": "ኩሉ ከም ዝተነበ ምልክት ግበር",

@@ -38,6 +38,14 @@ export function localizedNotificationContent(
       tier: item.metadata?.tier || t('notifications.badgeGenericTier'),
     });
   }
+  // Losing the last rung is a different sentence, not the same one with an
+  // empty tier in it — so the row carries no tier at all in that case, and
+  // the absence is what picks the wording.
+  if (item.type === 'badge_tier_down') {
+    return item.metadata?.tier
+      ? t('notifications.badgeTierDown', { tier: item.metadata.tier })
+      : t('notifications.badgeTierLost');
+  }
   const name = item.actor?.displayName || item.actorUsername || item.actor?.username || item.latestActorNames?.[0] || item.actorAddress;
   if (!name) return null;
   const count = item.aggregatedCount ?? 1;

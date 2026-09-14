@@ -1169,6 +1169,7 @@ const NotificationScreen = () => {
       // The ladder lives on the staking tab, with the next rung and its price
       // already on it — which settings, where the loans are, does not have.
       case NotificationType.BADGE_TIER_UP:
+      case NotificationType.BADGE_TIER_DOWN:
         navigation.navigate(
           ScreenNames.Dpay as never,
           { initialTab: "stake" } as never,

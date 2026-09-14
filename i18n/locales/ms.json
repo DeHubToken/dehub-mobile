@@ -1722,6 +1722,8 @@
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} meminjamkan lencana {{tier}} kepada anda",
     "badgeTierUp": "Tahniah! Sekarang anda seorang {{tier}} 🎉",
+    "badgeTierDown": "Perhatian: lencana anda kini {{tier}}",
+    "badgeTierLost": "Perhatian: anda tiada lencana lagi",
     "badgeTakenBack": "{{name}} berhenti meminjamkan lencana {{tier}} kepada anda",
     "badgeHandedBack": "{{name}} mengembalikan lencana {{tier}} yang anda pinjamkan kepada mereka",
     "badgeLoanLapsed": "{{name}} tidak lagi boleh meminjamkan lencana {{tier}} mereka kepada anda",

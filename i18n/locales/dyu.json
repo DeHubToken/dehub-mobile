@@ -1152,6 +1152,8 @@
   },
   "notifications": {
       "badgeTierUp": "I ni ce! Sisan i ye {{tier}} ye 🎉",
+      "badgeTierDown": "Kɔlɔsili: i ka taamasyɛn ye {{tier}} ye sisan",
+      "badgeTierLost": "Kɔlɔsili: i tɛ taamasyɛn sɔrɔ tugun",
     "title": "Kɔrɔbɔ",
     "loadFailed": "Kunnafoniw ma se ka ta",
     "markAllRead": "Kɔrɔbɔ",

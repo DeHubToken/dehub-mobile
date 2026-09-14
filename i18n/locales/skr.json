@@ -1168,6 +1168,8 @@
     "andOthersLikedCommentPreview": "{{first}} تے {{others}} کوں تہاڈا تبصرہ پسند آیا: \"{{preview}}\"",
     "badgeLent": "{{name}} تہاڈے کو اپنا {{tier}} بيج دے ڈيا",
     "badgeTierUp": "مبارک ہووے! ہُݨ تُساں {{tier}} ہو 🎉",
+    "badgeTierDown": "دھیان رکھو: ہُݨ تہاݙا بیج {{tier}} ہے",
+    "badgeTierLost": "دھیان رکھو: ہُݨ تہاݙے کول بیج کائنی",
     "badgeTakenBack": "{{name}} تہاڈے کو اپنا {{tier}} بيج دينا بند کر ڈيا",
     "badgeHandedBack": "{{name}} تہاڈے کو دتا ہويا {{tier}} بيج واپس کر ڈيا",
     "badgeLoanLapsed": "{{name}} اب تہاڈے کو اپنا {{tier}} بيج نئيں دے سڳدا",

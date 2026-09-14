@@ -1280,6 +1280,8 @@
     "andOthersLikedCommentPreview": "{{first}}和{{others}}点赞了你的评论：\"{{preview}}\"",
     "badgeLent": "{{name}}借给您他们的{{tier}}徽章",
     "badgeTierUp": "恭喜！你现在是 {{tier}} 了 🎉",
+    "badgeTierDown": "提醒：你的徽章现在是 {{tier}}",
+    "badgeTierLost": "提醒：你已经没有徽章了",
     "badgeTakenBack": "{{name}}已停止借给您他们的{{tier}}徽章",
     "badgeHandedBack": "{{name}}退还了您借给他们的{{tier}}徽章",
     "badgeLoanLapsed": "{{name}}不能再借给您他们的{{tier}}徽章",

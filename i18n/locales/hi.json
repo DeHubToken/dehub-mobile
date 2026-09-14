@@ -1055,6 +1055,8 @@
     "andOthersLikedCommentPreview": "{{first}} और {{others}} ने आपकी टिप्पणी पसंद की: \"{{preview}}\"",
     "badgeLent": "{{name}} ने आपको उनका {{tier}} बैज उधार दिया है",
     "badgeTierUp": "बधाई हो! अब आप {{tier}} हैं 🎉",
+    "badgeTierDown": "ध्यान दें: अब आपका बैज {{tier}} है",
+    "badgeTierLost": "ध्यान दें: अब आपके पास बैज नहीं है",
     "badgeTakenBack": "{{name}} ने आपको उनका {{tier}} बैज उधार देना बंद कर दिया",
     "badgeHandedBack": "{{name}} ने आपके द्वारा उधार दिया गया {{tier}} बैज लौटा दिया",
     "badgeLoanLapsed": "{{name}} अब आपको उनका {{tier}} बैज उधार नहीं दे सकते",

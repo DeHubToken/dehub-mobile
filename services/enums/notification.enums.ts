@@ -36,6 +36,8 @@ export enum NotificationType {
   BADGE_DELEGATION_CHANGED = 'badge_delegation_changed',
   /** You climbed a rung of the badge ladder on your own balance */
   BADGE_TIER_UP = 'badge_tier_up',
+  /** Your balance fell far enough that the badge you wear changed */
+  BADGE_TIER_DOWN = 'badge_tier_down',
 }
 
 export enum NotificationCategory {
@@ -97,6 +99,7 @@ export const BADGE_DELEGATION_TYPES = new Set<string>([
  */
 export const BADGE_LADDER_TYPES = new Set<string>([
   NotificationType.BADGE_TIER_UP,
+  NotificationType.BADGE_TIER_DOWN,
 ]);
 
 export const getNotificationIconConfig = (type: NotificationType | string): { 
@@ -156,6 +159,10 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
     // view milestones already use says that where a second Award would not.
     case NotificationType.BADGE_TIER_UP:
       return { name: 'Trophy', color: '#F4F4F5' };
+    // Dimmed rather than alarmed: a rung lost is news, not a warning, and
+    // the ladder it points at is the same one.
+    case NotificationType.BADGE_TIER_DOWN:
+      return { name: 'Trophy', color: '#8B8D90' };
     case NotificationType.FIAT_PAYMENT_COMPLETED:
       return { name: 'CreditCard', color: '#F4F4F5' };
     case NotificationType.FRACTION_OFFER:

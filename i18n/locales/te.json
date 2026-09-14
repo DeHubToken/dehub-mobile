@@ -1182,6 +1182,8 @@
     "andOthersLikedCommentPreview": "{{first}} మరియు {{others}} మీ వ్యాఖ్యను ఇష్టపడ్డారు: \"{{preview}}\"",
     "badgeLent": "{{name}} మీకు వారి {{tier}} బ్యాడ్జ్ ఇచ్చారు",
     "badgeTierUp": "అభినందనలు! ఇప్పుడు మీరు {{tier}} 🎉",
+    "badgeTierDown": "గమనించండి: ఇప్పుడు మీ బ్యాడ్జ్ {{tier}}",
+    "badgeTierLost": "గమనించండి: ఇప్పుడు మీకు బ్యాడ్జ్ లేదు",
     "badgeHandedBack": "{{name}} {{tier}} బ్యాడ్జ్ ‌ ను మీరు వారికి ఇచ్చారు",
     "badgeLoanLapsed": "{{name}} ఇకపై మీకు {{tier}} బ్యాడ్జ్ ఇవ్వలేరు",
     "badgeLoanDropped": "మీరు ఇకపై మీ {{tier}} బ్యాడ్జ్ ‌ ను {{name}} కు అప్పుగా ఇవ్వలేరు",

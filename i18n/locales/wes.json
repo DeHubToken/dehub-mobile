@@ -1158,6 +1158,8 @@
     "andOthersLikedCommentPreview": "{{first}} and {{others}} like your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} don lend you their {{tier}} badge",
     "badgeTierUp": "Congrats! Yu don be {{tier}} now 🎉",
+    "badgeTierDown": "Take note: yu badge don be {{tier}} now",
+    "badgeTierLost": "Take note: yu no get badge again",
     "badgeTakenBack": "{{name}} don stop lend you their {{tier}} badge",
     "badgeHandedBack": "{{name}} don return the {{tier}} badge wey you don lend them",
     "badgeLoanLapsed": "{{name}} no fit lend you their {{tier}} badge again",

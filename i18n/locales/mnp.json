@@ -1171,6 +1171,8 @@
     "andOthersLikedCommentPreview": "{{first}} 和 {{others}} 赞了你其评论：\"{{preview}}\"",
     "badgeLent": "{{name}} 借给你他们的 {{tier}} 徽章",
     "badgeTierUp": "恭喜！汝这下是 {{tier}} 了 🎉",
+    "badgeTierDown": "提醒汝：汝其徽章这下是 {{tier}}",
+    "badgeTierLost": "提醒汝：汝已经无徽章了",
     "badgeTakenBack": "{{name}} 停止借给你他们的 {{tier}} 徽章",
     "badgeHandedBack": "{{name}} 归还了你借给他们的 {{tier}} 徽章",
     "badgeLoanLapsed": "{{name}} 不能再借给你他们的 {{tier}} 徽章",

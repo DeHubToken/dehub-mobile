@@ -1233,6 +1233,8 @@
     "andOthersLikedCommentPreview": "{{first}} ve {{others}} yorumunuzu beğendi: \"{{preview}}\"",
     "badgeLent": "{{name}} size {{tier}} rozetini verdi",
     "badgeTierUp": "Tebrikler! Artık bir {{tier}}'sın 🎉",
+    "badgeTierDown": "Dikkat: rozetin artık {{tier}}",
+    "badgeTierLost": "Dikkat: artık rozetin yok",
     "badgeTakenBack": "{{name}} size {{tier}} rozetini vermeyi bıraktı",
     "badgeHandedBack": "{{name}} kendisine ödünç verdiğiniz {{tier}} rozetini iade etti",
     "badgeLoanLapsed": "{{name}} artık size {{tier}} rozetini veremez",

@@ -1240,6 +1240,8 @@
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} lent អ្នករបស់ពួកគេ {{tier}} badge",
     "badgeTierUp": "សូមអបអរសាទរ! ឥឡូវនេះអ្នកជា {{tier}} 🎉",
+    "badgeTierDown": "សូមកត់សម្គាល់៖ ឥឡូវផ្លាកសញ្ញារបស់អ្នកគឺ {{tier}}",
+    "badgeTierLost": "សូមកត់សម្គាល់៖ អ្នកលែងមានផ្លាកសញ្ញាទៀតហើយ",
     "badgeTakenBack": "{{name}} បញ្ឈប់ការផ្តល់ប្រាក់កម្ចីដល់អ្នករបស់ពួកគេ {{tier}} badge",
     "badgeHandedBack": "{{name}} បានត្រឡប់មកវិញ {{tier}} ផ្លាកសញ្ញាដែលអ្នកបានផ្តល់ប្រាក់កម្ចីឱ្យពួកគេ",
     "badgeLoanLapsed": "{{name}} មិនអាចផ្តល់ប្រាក់កម្ចីដល់អ្នកបានទៀតទេ {{tier}} badge របស់ពួកគេ",

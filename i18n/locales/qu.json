@@ -1280,6 +1280,8 @@
     "andOthersLikedCommentPreview": "{{first}} {{others}} kaqwan rimayniykita gustakurqaku: \"{{preview}}\"",
     "badgeLent": "{{name}} prestarqasunki {{tier}} insigniankuta",
     "badgeTierUp": "¡Kusikuy! Kunanqa {{tier}} kanki 🎉",
+    "badgeTierDown": "Yachay: kunanqa {{tier}} chaymi insigniayki",
+    "badgeTierLost": "Yachay: manaña insigniayki kanchu",
     "badgeTakenBack": "{{name}} manaña {{tier}} insignianku prestasunkichu",
     "badgeHandedBack": "{{name}} kutichirqa {{tier}} insignia paykunaman prestasqayki",
     "badgeLoanLapsed": "{{name}} manaña {{tier}} insigniankuta prestasunkimanchu",

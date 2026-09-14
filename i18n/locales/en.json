@@ -1266,6 +1266,8 @@
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} lent you their {{tier}} badge",
     "badgeTierUp": "Congrats! You're now a {{tier}} 🎉",
+    "badgeTierDown": "Heads up — your badge is now {{tier}}",
+    "badgeTierLost": "Heads up — you no longer have a badge",
     "badgeTakenBack": "{{name}} stopped lending you their {{tier}} badge",
     "badgeHandedBack": "{{name}} returned the {{tier}} badge you lent them",
     "badgeLoanLapsed": "{{name}} can no longer lend you their {{tier}} badge",

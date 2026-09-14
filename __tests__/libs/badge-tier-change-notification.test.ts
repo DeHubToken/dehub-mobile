@@ -11,7 +11,7 @@ import { localizedNotificationContent } from '../../libs/notification-content';
  * actor — which is exactly the shape of this one. So the case has to be
  * answered above that guard, and this is what pins it there.
  */
-describe('badge tier-up notification', () => {
+describe('badge tier change notifications', () => {
   const instance = createInstance();
   instance.init({ lng: 'en', fallbackLng: 'en', resources: { en: { translation: en } } });
   const t = instance.t.bind(instance);
@@ -33,6 +33,23 @@ describe('badge tier-up notification', () => {
     expect(value).not.toContain('undefined');
   });
 
+  it('says something different when the badge steps down, and again when it goes', () => {
+    const stepped = localizedNotificationContent(
+      { type: 'badge_tier_down', metadata: { tier: 'Cobra', previousTier: 'Dolphin' } },
+      t,
+    );
+    const gone = localizedNotificationContent(
+      { type: 'badge_tier_down', metadata: { previousTier: 'Crab' } },
+      t,
+    );
+    expect(stepped).toContain('Cobra');
+    // Not the same sentence with a hole in it: losing the last rung reads as
+    // its own thing, and names no tier because there is none to name.
+    expect(gone).not.toEqual(stepped);
+    expect(gone).not.toContain('undefined');
+    expect(gone).toBeTruthy();
+  });
+
   it('is translated in every locale, not only the ones that render English', () => {
     const dir = path.resolve(__dirname, '../../i18n/locales');
     const missing = fs
@@ -40,7 +57,8 @@ describe('badge tier-up notification', () => {
       .filter(file => file.endsWith('.json'))
       .filter(file => {
         const json = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
-        return !json?.notifications?.badgeTierUp;
+        const n = json?.notifications;
+        return !n?.badgeTierUp || !n?.badgeTierDown || !n?.badgeTierLost;
       });
     expect(missing).toEqual([]);
   });
@@ -52,7 +70,12 @@ describe('badge tier-up notification', () => {
       .filter(file => file.endsWith('.json'))
       .filter(file => {
         const json = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
-        return !String(json.notifications.badgeTierUp).includes('{{tier}}');
+        const n = json.notifications;
+        return (
+          !String(n.badgeTierUp).includes('{{tier}}') ||
+          !String(n.badgeTierDown).includes('{{tier}}') ||
+          String(n.badgeTierLost).includes('{{tier}}')
+        );
       });
     expect(broken).toEqual([]);
   });

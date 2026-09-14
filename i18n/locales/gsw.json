@@ -1175,6 +1175,8 @@
     "andOthersLikedCommentPreview": "{{first}} und {{others}} hend din Kommentar gliket: \"{{preview}}\"",
     "badgeLent": "{{name}} het dir ihres {{tier}} Badge gliehen",
     "badgeTierUp": "Gratuliere! Du bisch jetz en {{tier}} 🎉",
+    "badgeTierDown": "Achtung: dis Abzeiche isch jetz {{tier}}",
+    "badgeTierLost": "Achtung: du hesch kei Abzeiche meh",
     "badgeTakenBack": "{{name}} het uufghört dir ihres {{tier}} Badge z'lihen",
     "badgeHandedBack": "{{name}} het das {{tier}} Badge, wo du ihne gliehen hesch, zruggegä",
     "badgeLoanLapsed": "{{name}} cha dir ihres {{tier}} Badge nüme lihen",

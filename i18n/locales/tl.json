@@ -1671,6 +1671,8 @@
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "Pinahiram ka ni {{name}} ng kanilang {{tier}} badge",
     "badgeTierUp": "Binabati kita! {{tier}} ka na ngayon 🎉",
+    "badgeTierDown": "Paalala: {{tier}} na ang badge mo ngayon",
+    "badgeTierLost": "Paalala: wala ka nang badge",
     "badgeTakenBack": "Huminto si {{name}} sa pagpapahiram sa iyo ng kanyang {{tier}} badge",
     "badgeHandedBack": "Ibinalik ni {{name}} ang {{tier}} badge na ipinahiram mo sa kanila",
     "badgeLoanDropped": "Hindi mo na mapapahiram ang iyong {{tier}} badge sa {{name}}",
