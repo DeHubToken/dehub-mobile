@@ -2929,5 +2929,21 @@
     "pause": "Pausa",
     "listens_one": "{{count}} lyssna",
     "listens_other": "{{count}} lyssnar"
+  },
+  "transfer": {
+    "title": "Överför tokens",
+    "recipient": "Mottagare: {{address}}",
+    "enterAmount": "Ange belopp i",
+    "balance": "Saldo: {{balance}}",
+    "insufficient": "Otillräckligt saldo",
+    "toSelfHint": "Du kan inte överföra till dig själv",
+    "searchUser": "Sök efter en användare",
+    "searchPlaceholder": "Ange användarnamn eller klistra in adress",
+    "clearRecipient": "Rensa mottagare",
+    "transferringTo": "Överför till",
+    "transferring": "Överför...",
+    "sent": "Överföring skickad",
+    "toSelf": "Du kan inte skicka tokens till dig själv",
+    "insufficientOnChain": "Otillräckligt on-chain-saldo för den här tokenen"
   }
 }

@@ -3096,5 +3096,21 @@
     "pause": "Pozastaviť",
     "listens_one": "{{count}} počúvajte",
     "listens_other": "{{count}} počúva"
+  },
+  "transfer": {
+    "title": "Previesť tokeny",
+    "recipient": "Príjemca: {{address}}",
+    "enterAmount": "Zadajte sumu v",
+    "balance": "Zostatok: {{balance}}",
+    "insufficient": "Nedostatočný zostatok",
+    "toSelfHint": "Nemôžete previesť sami sebe",
+    "searchUser": "Vyhľadať používateľa",
+    "searchPlaceholder": "Zadajte používateľské meno alebo vložte adresu",
+    "clearRecipient": "Vymazať príjemcu",
+    "transferringTo": "Prevod na",
+    "transferring": "Prevádza sa...",
+    "sent": "Prevod odoslaný",
+    "toSelf": "Nemôžete poslať tokeny sami sebe",
+    "insufficientOnChain": "Nedostatočný on-chain zostatok pre tento token"
   }
 }

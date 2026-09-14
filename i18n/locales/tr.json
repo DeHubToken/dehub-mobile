@@ -2989,5 +2989,21 @@
     "pause": "Duraklat",
     "listens_one": "{{count}} dinlenme",
     "listens_other": "{{count}} dinlenme"
+  },
+  "transfer": {
+    "title": "Token aktar",
+    "recipient": "Alıcı: {{address}}",
+    "enterAmount": "Tutarı gir:",
+    "balance": "Bakiye: {{balance}}",
+    "insufficient": "Yetersiz bakiye",
+    "toSelfHint": "Kendine aktaramazsın",
+    "searchUser": "Kullanıcı ara",
+    "searchPlaceholder": "Kullanıcı adı gir veya adres yapıştır",
+    "clearRecipient": "Alıcıyı temizle",
+    "transferringTo": "Şuraya aktarılıyor:",
+    "transferring": "Aktarılıyor...",
+    "sent": "Aktarım gönderildi",
+    "toSelf": "Kendine token gönderemezsin",
+    "insufficientOnChain": "Bu token için zincir üstü bakiye yetersiz"
   }
 }

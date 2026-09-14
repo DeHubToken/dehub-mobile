@@ -2999,5 +2999,21 @@
     "pause": "Pause",
     "listens_one": "{{count}} écoute",
     "listens_other": "{{count}} écoutes"
+  },
+  "transfer": {
+    "title": "Transférer des jetons",
+    "recipient": "Destinataire : {{address}}",
+    "enterAmount": "Saisissez le montant en",
+    "balance": "Solde : {{balance}}",
+    "insufficient": "Solde insuffisant",
+    "toSelfHint": "Vous ne pouvez pas transférer à vous-même",
+    "searchUser": "Rechercher un utilisateur",
+    "searchPlaceholder": "Saisissez un nom d'utilisateur ou collez une adresse",
+    "clearRecipient": "Effacer le destinataire",
+    "transferringTo": "Transfert vers",
+    "transferring": "Transfert...",
+    "sent": "Transfert envoyé",
+    "toSelf": "Vous ne pouvez pas vous envoyer des jetons",
+    "insufficientOnChain": "Solde on-chain insuffisant pour ce jeton"
   }
 }

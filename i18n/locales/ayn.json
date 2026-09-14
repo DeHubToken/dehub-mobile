@@ -2882,5 +2882,21 @@
     "pause": "إيقاف مؤقت",
     "listens_one": "{{count}} استمع",
     "listens_other": "{{count}} يستمع"
+  },
+  "transfer": {
+    "title": "تحويل التوكنات",
+    "recipient": "المستلم: {{address}}",
+    "enterAmount": "أدخل مبلغ",
+    "balance": "الرصيد: {{balance}}",
+    "insufficient": "الرصيد ما يكفي",
+    "toSelfHint": "ما تقدر تحول لنفسك",
+    "searchUser": "دوّر على مستخدم",
+    "searchPlaceholder": "أدخل اسم المستخدم أو الصق العنوان",
+    "clearRecipient": "امسح المستلم",
+    "transferringTo": "تحويل لـ",
+    "transferring": "يحوّل...",
+    "sent": "انرسل التحويل",
+    "toSelf": "ما تقدر ترسل توكنات لنفسك",
+    "insufficientOnChain": "الرصيد على الشبكة ما يكفي لذا التوكن"
   }
 }

@@ -2944,5 +2944,21 @@
     "pause": "ផ្អាក",
     "listens_one": "{{count}} ស្តាប់",
     "listens_other": "{{count}} ស្តាប់"
+  },
+  "transfer": {
+    "title": "ផ្ទេរថូខឹន",
+    "recipient": "អ្នកទទួល៖ {{address}}",
+    "enterAmount": "បញ្ចូលចំនួន",
+    "balance": "សមតុល្យ៖ {{balance}}",
+    "insufficient": "សមតុល្យមិនគ្រប់គ្រាន់",
+    "toSelfHint": "អ្នកមិនអាចផ្ទេរទៅខ្លួនឯងបានទេ",
+    "searchUser": "ស្វែងរកអ្នកប្រើ",
+    "searchPlaceholder": "បញ្ចូលឈ្មោះអ្នកប្រើ ឬបិទភ្ជាប់អាសយដ្ឋាន",
+    "clearRecipient": "សម្អាតអ្នកទទួល",
+    "transferringTo": "កំពុងផ្ទេរទៅ",
+    "transferring": "កំពុងផ្ទេរ...",
+    "sent": "បានផ្ញើការផ្ទេរ",
+    "toSelf": "អ្នកមិនអាចផ្ញើថូខឹនទៅខ្លួនឯងបានទេ",
+    "insufficientOnChain": "សមតុល្យលើខ្សែសង្វាក់មិនគ្រប់គ្រាន់សម្រាប់ថូខឹននេះ"
   }
 }

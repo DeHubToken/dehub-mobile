@@ -2903,5 +2903,21 @@
     "pause": "Kwụsị",
     "listens_one": "{{count}} gee ntị",
     "listens_other": "{{count}} na-ege ntị"
+  },
+  "transfer": {
+    "title": "Nyefee tokens",
+    "recipient": "Onye nnata: {{address}}",
+    "enterAmount": "Tinye ego nke",
+    "balance": "Ego fọdụrụ: {{balance}}",
+    "insufficient": "Ego ezughị",
+    "toSelfHint": "Ị nweghị ike inyefe onwe gị",
+    "searchUser": "Chọọ onye ọrụ",
+    "searchPlaceholder": "Tinye aha njirimara ma ọ bụ mado adreesị",
+    "clearRecipient": "Kpochapụ onye nnata",
+    "transferringTo": "Na-enyefe na",
+    "transferring": "Na-enyefe...",
+    "sent": "Ezigala nnyefe",
+    "toSelf": "Ị nweghị ike izigara onwe gị tokens",
+    "insufficientOnChain": "Ego dị na chain ezughị maka token a"
   }
 }
