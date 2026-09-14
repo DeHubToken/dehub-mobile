@@ -3119,5 +3119,27 @@
     "noteTiktok": "Creator Rewards. Famously low per view; scale is the entire model.",
     "noteReels": "Bonus programmes are invite-only and have been repeatedly wound down.",
     "footnote": "Competitor figures are estimates from published industry ranges, not measured payouts — real RPM varies widely by niche, audience country and watch time, so edit each rate to match what you actually earn. The DeHub figure is your real tip income converted at the live DHB price, and excludes subscriptions, PPV and store sales. Views are summed from your most recent 100 posts."
+  },
+  "sessions": {
+    "androidDevice": "Android Device",
+    "webBrowser": "Web Browser",
+    "thisDevice": "This device",
+    "logOutDeviceTitle": "Log out device?",
+    "logOut": "Log Out",
+    "logOutAll": "Log Out All",
+    "logOutAllTitle": "Log out all other devices?",
+    "logOutDeviceBody": "This will sign out \"{{device}}\". They'll need to log in again.",
+    "logOutAllBody_one": "This will sign out {{count}} other device. Only this device will remain signed in.",
+    "logOutAllBody_other": "This will sign out {{count}} other devices. Only this device will remain signed in.",
+    "explainer": "These devices are currently signed in to your account. If you see something unfamiliar, log it out and change your credentials.",
+    "activeSessions_one": "{{count}} active session",
+    "activeSessions_other": "{{count}} active sessions",
+    "logOutAllButton": "Log out all other devices",
+    "loadFailed": "Failed to load sessions",
+    "loggedOut": "Device logged out",
+    "logOutFailed": "Failed to log out device",
+    "logOutAllFailed": "Failed to log out devices",
+    "devicesLoggedOut_one": "{{count}} device logged out",
+    "devicesLoggedOut_other": "{{count}} devices logged out"
   }
 }

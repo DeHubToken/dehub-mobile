@@ -3048,5 +3048,27 @@
     "noteTiktok": "Creator Rewards. I njohur për pagesën e ulët për shikim; i gjithë modeli është shkalla.",
     "noteReels": "Programet e bonusit janë vetëm me ftesë dhe janë mbyllur vazhdimisht.",
     "footnote": "Shifrat e konkurrentëve janë vlerësime nga intervale të publikuara të industrisë, jo pagesa të matura — RPM-ja reale ndryshon shumë sipas nishit, vendit të audiencës dhe kohës së shikimit, prandaj redakto çdo tarifë që të përputhet me atë që fiton vërtet. Shifra e DeHub është të ardhurat e tua reale nga bakshishet, të konvertuara me çmimin e drejtpërdrejtë të DHB, dhe përjashton abonimet, PPV dhe shitjet e dyqanit. Shikimet mblidhen nga 100 postimet e tua më të fundit."
+  },
+  "sessions": {
+    "androidDevice": "Pajisje Android",
+    "webBrowser": "Shfletues uebi",
+    "thisDevice": "Kjo pajisje",
+    "logOutDeviceTitle": "Të dilet nga pajisja?",
+    "logOut": "Dil",
+    "logOutAll": "Dil nga të gjitha",
+    "logOutAllTitle": "Të dilet nga të gjitha pajisjet e tjera?",
+    "logOutDeviceBody": "Kjo do të nxjerrë \"{{device}}\". Do të duhet të hyjnë përsëri.",
+    "logOutAllBody_one": "Kjo do të nxjerrë {{count}} pajisje tjetër. Vetëm kjo pajisje do të mbetet e kyçur.",
+    "logOutAllBody_other": "Kjo do të nxjerrë {{count}} pajisje të tjera. Vetëm kjo pajisje do të mbetet e kyçur.",
+    "explainer": "Këto pajisje janë aktualisht të kyçura në llogarinë tënde. Nëse sheh diçka të panjohur, nxirre dhe ndrysho kredencialet e tua.",
+    "activeSessions_one": "{{count}} sesion aktiv",
+    "activeSessions_other": "{{count}} sesione aktive",
+    "logOutAllButton": "Dil nga të gjitha pajisjet e tjera",
+    "loadFailed": "Sesionet nuk u ngarkuan dot",
+    "loggedOut": "Pajisja doli",
+    "logOutFailed": "Pajisja nuk doli dot",
+    "logOutAllFailed": "Pajisjet nuk dolën dot",
+    "devicesLoggedOut_one": "{{count}} pajisje doli",
+    "devicesLoggedOut_other": "{{count}} pajisje dolën"
   }
 }

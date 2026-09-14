@@ -3033,5 +3033,27 @@
     "noteTiktok": "Creator Rewards. Baxış başına aşağı olması ilə məşhurdur; bütün model miqyas üzərində qurulub.",
     "noteReels": "Bonus proqramları yalnız dəvətlədir və dəfələrlə bağlanıb.",
     "footnote": "Rəqib rəqəmləri dərc olunmuş sənaye aralıqlarından götürülmüş təxminlərdir, ölçülmüş ödənişlər deyil — real RPM nişə, auditoriya ölkəsinə və baxış müddətinə görə çox dəyişir, ona görə hər dərəcəni öz real qazancına uyğun redaktə et. DeHub rəqəmi canlı DHB qiymətilə çevrilmiş real bəxşiş gəlirindir və abunələri, PPV-ni və mağaza satışlarını əhatə etmir. Baxışlar son 100 paylaşımından toplanır."
+  },
+  "sessions": {
+    "androidDevice": "Android cihazı",
+    "webBrowser": "Veb brauzer",
+    "thisDevice": "Bu cihaz",
+    "logOutDeviceTitle": "Cihaz çıxarılsın?",
+    "logOut": "Çıx",
+    "logOutAll": "Hamısını çıxart",
+    "logOutAllTitle": "Bütün digər cihazlar çıxarılsın?",
+    "logOutDeviceBody": "Bu, \"{{device}}\" cihazını çıxaracaq. Yenidən daxil olmalı olacaqlar.",
+    "logOutAllBody_one": "Bu, {{count}} digər cihazı çıxaracaq. Yalnız bu cihaz daxil qalacaq.",
+    "logOutAllBody_other": "Bu, {{count}} digər cihazı çıxaracaq. Yalnız bu cihaz daxil qalacaq.",
+    "explainer": "Bu cihazlar hazırda hesabına daxil olub. Tanımadığın bir şey görsən, onu çıxart və giriş məlumatlarını dəyiş.",
+    "activeSessions_one": "{{count}} aktiv sessiya",
+    "activeSessions_other": "{{count}} aktiv sessiya",
+    "logOutAllButton": "Bütün digər cihazları çıxart",
+    "loadFailed": "Sessiyalar yüklənmədi",
+    "loggedOut": "Cihaz çıxarıldı",
+    "logOutFailed": "Cihaz çıxarıla bilmədi",
+    "logOutAllFailed": "Cihazlar çıxarıla bilmədi",
+    "devicesLoggedOut_one": "{{count}} cihaz çıxarıldı",
+    "devicesLoggedOut_other": "{{count}} cihaz çıxarıldı"
   }
 }

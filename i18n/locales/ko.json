@@ -3117,5 +3117,27 @@
     "noteTiktok": "크리에이터 리워드. 조회당 단가가 낮기로 유명하며, 규모 자체가 이 모델의 전부입니다.",
     "noteReels": "보너스 프로그램은 초대제이며 여러 차례 축소·종료됐습니다.",
     "footnote": "경쟁사 수치는 공개된 업계 범위를 바탕으로 한 추정치이며 실측 지급액이 아닙니다. 실제 RPM은 분야, 시청자 국가, 시청 시간에 따라 크게 달라지므로 각 단가를 실제 수익에 맞게 수정하세요. DeHub 수치는 실시간 DHB 가격으로 환산한 실제 팁 수입이며 구독, PPV, 스토어 판매는 제외됩니다. 조회수는 최근 게시물 100개를 합산한 값입니다."
+  },
+  "sessions": {
+    "androidDevice": "Android 기기",
+    "webBrowser": "웹 브라우저",
+    "thisDevice": "이 기기",
+    "logOutDeviceTitle": "기기를 로그아웃할까요?",
+    "logOut": "로그아웃",
+    "logOutAll": "모두 로그아웃",
+    "logOutAllTitle": "다른 모든 기기를 로그아웃할까요?",
+    "logOutDeviceBody": "\"{{device}}\"을(를) 로그아웃합니다. 다시 로그인해야 합니다.",
+    "logOutAllBody_one": "다른 기기 {{count}}대를 로그아웃합니다. 이 기기만 로그인 상태로 남습니다.",
+    "logOutAllBody_other": "다른 기기 {{count}}대를 로그아웃합니다. 이 기기만 로그인 상태로 남습니다.",
+    "explainer": "이 기기들이 현재 계정에 로그인되어 있습니다. 모르는 기기가 보이면 로그아웃하고 로그인 정보를 변경하세요.",
+    "activeSessions_one": "활성 세션 {{count}}개",
+    "activeSessions_other": "활성 세션 {{count}}개",
+    "logOutAllButton": "다른 모든 기기 로그아웃",
+    "loadFailed": "세션을 불러오지 못했습니다",
+    "loggedOut": "기기를 로그아웃했습니다",
+    "logOutFailed": "기기를 로그아웃하지 못했습니다",
+    "logOutAllFailed": "기기를 로그아웃하지 못했습니다",
+    "devicesLoggedOut_one": "기기 {{count}}대를 로그아웃했습니다",
+    "devicesLoggedOut_other": "기기 {{count}}대를 로그아웃했습니다"
   }
 }

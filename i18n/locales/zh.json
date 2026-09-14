@@ -3106,5 +3106,27 @@
     "noteTiktok": "创作者奖励。每次播放的单价出了名的低，整个模式靠的是规模。",
     "noteReels": "奖金计划仅限受邀，而且已被多次收缩关闭。",
     "footnote": "竞品数字是依据公开行业区间的估算，并非实测收款。真实 RPM 因细分领域、观众国家和观看时长差别很大，请把每个费率改成你实际赚到的水平。DeHub 的数字是你真实的打赏收入按 DHB 实时价格换算，不含订阅、付费观看和店铺销售。播放量取自你最近的 100 条帖子。"
+  },
+  "sessions": {
+    "androidDevice": "安卓设备",
+    "webBrowser": "网页浏览器",
+    "thisDevice": "本设备",
+    "logOutDeviceTitle": "登出该设备？",
+    "logOut": "登出",
+    "logOutAll": "全部登出",
+    "logOutAllTitle": "登出所有其他设备？",
+    "logOutDeviceBody": "这会登出 \"{{device}}\"。需要重新登录。",
+    "logOutAllBody_one": "这会登出 {{count}} 台其他设备。只有本设备保持登录。",
+    "logOutAllBody_other": "这会登出 {{count}} 台其他设备。只有本设备保持登录。",
+    "explainer": "这些设备当前已登录你的账户。如果看到不熟悉的，请将其登出并修改登录凭据。",
+    "activeSessions_one": "{{count}} 个活跃会话",
+    "activeSessions_other": "{{count}} 个活跃会话",
+    "logOutAllButton": "登出所有其他设备",
+    "loadFailed": "无法加载会话",
+    "loggedOut": "设备已登出",
+    "logOutFailed": "无法登出该设备",
+    "logOutAllFailed": "无法登出这些设备",
+    "devicesLoggedOut_one": "已登出 {{count}} 台设备",
+    "devicesLoggedOut_other": "已登出 {{count}} 台设备"
   }
 }

@@ -3119,5 +3119,27 @@
     "noteTiktok": "Creator Rewards. Notoriamente basso per visualizzazione; tutto il modello è la scala.",
     "noteReels": "I programmi bonus sono solo su invito e sono stati chiusi più volte.",
     "footnote": "Le cifre dei concorrenti sono stime tratte da intervalli di settore pubblicati, non pagamenti misurati: l'RPM reale varia moltissimo per nicchia, paese del pubblico e tempo di visione, quindi modifica ogni tariffa perché rispecchi quello che guadagni davvero. La cifra DeHub è il tuo reale reddito da mance convertito al prezzo DHB in tempo reale ed esclude abbonamenti, PPV e vendite del negozio. Le visualizzazioni sono sommate dai tuoi 100 post più recenti."
+  },
+  "sessions": {
+    "androidDevice": "Dispositivo Android",
+    "webBrowser": "Browser web",
+    "thisDevice": "Questo dispositivo",
+    "logOutDeviceTitle": "Disconnettere il dispositivo?",
+    "logOut": "Esci",
+    "logOutAll": "Disconnetti tutti",
+    "logOutAllTitle": "Disconnettere tutti gli altri dispositivi?",
+    "logOutDeviceBody": "Questo disconnetterà \"{{device}}\". Dovrà accedere di nuovo.",
+    "logOutAllBody_one": "Questo disconnetterà {{count}} altro dispositivo. Resterà connesso solo questo dispositivo.",
+    "logOutAllBody_other": "Questo disconnetterà {{count}} altri dispositivi. Resterà connesso solo questo dispositivo.",
+    "explainer": "Questi dispositivi hanno attualmente l'accesso al tuo account. Se vedi qualcosa di sconosciuto, disconnettilo e cambia le tue credenziali.",
+    "activeSessions_one": "{{count}} sessione attiva",
+    "activeSessions_other": "{{count}} sessioni attive",
+    "logOutAllButton": "Disconnetti tutti gli altri dispositivi",
+    "loadFailed": "Impossibile caricare le sessioni",
+    "loggedOut": "Dispositivo disconnesso",
+    "logOutFailed": "Impossibile disconnettere il dispositivo",
+    "logOutAllFailed": "Impossibile disconnettere i dispositivi",
+    "devicesLoggedOut_one": "{{count}} dispositivo disconnesso",
+    "devicesLoggedOut_other": "{{count}} dispositivi disconnessi"
   }
 }

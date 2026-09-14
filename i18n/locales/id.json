@@ -3099,5 +3099,27 @@
     "noteTiktok": "Creator Rewards. Terkenal rendah per tayangan; skalalah seluruh modelnya.",
     "noteReels": "Program bonus hanya lewat undangan dan berulang kali dihentikan.",
     "footnote": "Angka pesaing adalah perkiraan dari rentang industri yang dipublikasikan, bukan pembayaran terukur — RPM sebenarnya sangat bervariasi menurut niche, negara audiens, dan durasi tonton, jadi ubah setiap tarif agar sesuai dengan yang benar-benar Anda peroleh. Angka DeHub adalah pendapatan tip Anda yang sebenarnya, dikonversi pada harga DHB langsung, dan tidak mencakup langganan, PPV, atau penjualan toko. Tayangan dijumlahkan dari 100 kiriman terbaru Anda."
+  },
+  "sessions": {
+    "androidDevice": "Perangkat Android",
+    "webBrowser": "Peramban web",
+    "thisDevice": "Perangkat ini",
+    "logOutDeviceTitle": "Keluarkan perangkat?",
+    "logOut": "Keluar",
+    "logOutAll": "Keluarkan semua",
+    "logOutAllTitle": "Keluarkan semua perangkat lain?",
+    "logOutDeviceBody": "Ini akan mengeluarkan \"{{device}}\". Mereka perlu masuk lagi.",
+    "logOutAllBody_one": "Ini akan mengeluarkan {{count}} perangkat lain. Hanya perangkat ini yang tetap masuk.",
+    "logOutAllBody_other": "Ini akan mengeluarkan {{count}} perangkat lain. Hanya perangkat ini yang tetap masuk.",
+    "explainer": "Perangkat ini sedang masuk ke akun Anda. Jika ada yang tidak dikenal, keluarkan dan ubah kredensial Anda.",
+    "activeSessions_one": "{{count}} sesi aktif",
+    "activeSessions_other": "{{count}} sesi aktif",
+    "logOutAllButton": "Keluarkan semua perangkat lain",
+    "loadFailed": "Gagal memuat sesi",
+    "loggedOut": "Perangkat dikeluarkan",
+    "logOutFailed": "Gagal mengeluarkan perangkat",
+    "logOutAllFailed": "Gagal mengeluarkan perangkat",
+    "devicesLoggedOut_one": "{{count}} perangkat dikeluarkan",
+    "devicesLoggedOut_other": "{{count}} perangkat dikeluarkan"
   }
 }

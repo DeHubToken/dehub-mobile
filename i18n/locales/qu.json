@@ -3081,5 +3081,27 @@
     "noteTiktok": "Creator Rewards. Sapa qhawaypi pisilla qusqanmanta riqsisqa; tukuy modeloqa hatunchay.",
     "noteReels": "Bonus programakunaqa invitacionllawan, hinaspa achka kuti wichq'asqa karqan.",
     "footnote": "Competidorkunapa yupayninkunaqa publicasqa industria rangokunamanta tupuykunam, mana tupusqa qullqi qusqachu — cheqaq RPM nicho, qhawaqkunapa suyun hinaspa qhaway pacha hina ancha tikran, chayrayku sapa tasata allichay cheqaqta chaskisqaykiman hina. DeHub yupayqa DHB kawsaq chaninwan tikrachisqa cheqaq propina qullqiykim, hinaspa suscripcionkunata, PPV-ta, tienda rantikuytapas mana yupanchu. Qhawaykunaqa qhipa 100 publicacionniykimanta yapasqam."
+  },
+  "sessions": {
+    "androidDevice": "Android dispositivo",
+    "webBrowser": "Web maskana",
+    "thisDevice": "Kay dispositivo",
+    "logOutDeviceTitle": "Dispositivomanta lluqsiy?",
+    "logOut": "Lluqsiy",
+    "logOutAll": "Tukuymanta lluqsiy",
+    "logOutAllTitle": "Llapan huk dispositivokunamanta lluqsiy?",
+    "logOutDeviceBody": "Kayqa \"{{device}}\"-ta lluqsichinqa. Yapamanta yaykunanku kanqa.",
+    "logOutAllBody_one": "Kayqa {{count}} huk dispositivota lluqsichinqa. Kay dispositivolla yaykusqa qhipanqa.",
+    "logOutAllBody_other": "Kayqa {{count}} huk dispositivokunata lluqsichinqa. Kay dispositivolla yaykusqa qhipanqa.",
+    "explainer": "Kay dispositivokunaqa kunan cuentaykiman yaykusqa kachkanku. Mana riqsisqa imatapas rikuspaqa, chayta lluqsichiy hinaspa yaykuna willakuyniykita tikray.",
+    "activeSessions_one": "{{count}} kawsaq sesión",
+    "activeSessions_other": "{{count}} kawsaq sesionkuna",
+    "logOutAllButton": "Llapan huk dispositivokunamanta lluqsiy",
+    "loadFailed": "Sesionkuna mana chayamurqanchu",
+    "loggedOut": "Dispositivo lluqsichisqa",
+    "logOutFailed": "Dispositivota mana lluqsichiyta atikunchu",
+    "logOutAllFailed": "Dispositivokunata mana lluqsichiyta atikunchu",
+    "devicesLoggedOut_one": "{{count}} dispositivo lluqsichisqa",
+    "devicesLoggedOut_other": "{{count}} dispositivokuna lluqsichisqa"
   }
 }

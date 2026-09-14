@@ -3048,5 +3048,27 @@
     "noteTiktok": "Creator Rewards. Slavens ar zemu samaksu par skatījumu; viss modelis balstās uz apjomu.",
     "noteReels": "Bonusa programmas ir tikai ar ielūgumu un tās vairākkārt slēgtas.",
     "footnote": "Konkurentu skaitļi ir aplēses no publicētiem nozares diapazoniem, nevis izmērīti maksājumi — reālais RPM ļoti atšķiras atkarībā no nišas, auditorijas valsts un skatīšanās laika, tāpēc rediģē katru likmi, lai tā atbilstu tam, ko patiesi nopelni. DeHub skaitlis ir tavi reālie dzeramnaudas ieņēmumi, pārrēķināti pēc pašreizējās DHB cenas, un tajā nav iekļauti abonementi, PPV vai veikala pārdošana. Skatījumi tiek summēti no taviem 100 jaunākajiem ierakstiem."
+  },
+  "sessions": {
+    "androidDevice": "Android ierīce",
+    "webBrowser": "Tīmekļa pārlūks",
+    "thisDevice": "Šī ierīce",
+    "logOutDeviceTitle": "Izrakstīt ierīci?",
+    "logOut": "Izrakstīties",
+    "logOutAll": "Izrakstīt visus",
+    "logOutAllTitle": "Izrakstīt visas pārējās ierīces?",
+    "logOutDeviceBody": "Tas izrakstīs \"{{device}}\". Būs jāpiesakās vēlreiz.",
+    "logOutAllBody_one": "Tas izrakstīs {{count}} citu ierīci. Pieteikusies paliks tikai šī ierīce.",
+    "logOutAllBody_other": "Tas izrakstīs {{count}} citas ierīces. Pieteikusies paliks tikai šī ierīce.",
+    "explainer": "Šīs ierīces pašlaik ir pieteikušās tavā kontā. Ja redzi kaut ko nepazīstamu, izraksti to un nomaini savus pieteikšanās datus.",
+    "activeSessions_one": "{{count}} aktīva sesija",
+    "activeSessions_other": "{{count}} aktīvas sesijas",
+    "logOutAllButton": "Izrakstīt visas pārējās ierīces",
+    "loadFailed": "Neizdevās ielādēt sesijas",
+    "loggedOut": "Ierīce izrakstīta",
+    "logOutFailed": "Neizdevās izrakstīt ierīci",
+    "logOutAllFailed": "Neizdevās izrakstīt ierīces",
+    "devicesLoggedOut_one": "{{count}} ierīce izrakstīta",
+    "devicesLoggedOut_other": "{{count}} ierīces izrakstītas"
   }
 }

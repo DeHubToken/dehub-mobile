@@ -3137,5 +3137,27 @@
     "noteTiktok": "Creator Rewards. Nổi tiếng thấp trên mỗi lượt xem; cả mô hình nằm ở quy mô.",
     "noteReels": "Chương trình thưởng chỉ dành cho người được mời và đã nhiều lần bị đóng.",
     "footnote": "Số liệu của đối thủ là ước tính từ các khoảng đã công bố trong ngành, không phải khoản chi trả đo được — RPM thực tế thay đổi rất nhiều theo lĩnh vực, quốc gia khán giả và thời lượng xem, nên hãy sửa từng mức cho khớp với thu nhập thật của bạn. Con số DeHub là thu nhập tiền tip thực của bạn quy đổi theo giá DHB thời gian thực, và không gồm đăng ký, PPV hay doanh thu cửa hàng. Lượt xem được cộng từ 100 bài đăng gần nhất của bạn."
+  },
+  "sessions": {
+    "androidDevice": "Thiết bị Android",
+    "webBrowser": "Trình duyệt web",
+    "thisDevice": "Thiết bị này",
+    "logOutDeviceTitle": "Đăng xuất thiết bị?",
+    "logOut": "Đăng xuất",
+    "logOutAll": "Đăng xuất tất cả",
+    "logOutAllTitle": "Đăng xuất tất cả thiết bị khác?",
+    "logOutDeviceBody": "Thao tác này sẽ đăng xuất \"{{device}}\". Sẽ phải đăng nhập lại.",
+    "logOutAllBody_one": "Thao tác này sẽ đăng xuất {{count}} thiết bị khác. Chỉ thiết bị này còn đăng nhập.",
+    "logOutAllBody_other": "Thao tác này sẽ đăng xuất {{count}} thiết bị khác. Chỉ thiết bị này còn đăng nhập.",
+    "explainer": "Các thiết bị này hiện đang đăng nhập vào tài khoản của bạn. Nếu thấy thiết bị lạ, hãy đăng xuất nó và đổi thông tin đăng nhập.",
+    "activeSessions_one": "{{count}} phiên đang hoạt động",
+    "activeSessions_other": "{{count}} phiên đang hoạt động",
+    "logOutAllButton": "Đăng xuất tất cả thiết bị khác",
+    "loadFailed": "Không tải được các phiên",
+    "loggedOut": "Đã đăng xuất thiết bị",
+    "logOutFailed": "Không đăng xuất được thiết bị",
+    "logOutAllFailed": "Không đăng xuất được các thiết bị",
+    "devicesLoggedOut_one": "Đã đăng xuất {{count}} thiết bị",
+    "devicesLoggedOut_other": "Đã đăng xuất {{count}} thiết bị"
   }
 }

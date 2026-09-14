@@ -3040,5 +3040,27 @@
     "noteTiktok": "Creator Rewards. Beryktet lavt per visning; hele modellen handler om skala.",
     "noteReels": "Bonusprogrammer er kun etter invitasjon og har gjentatte ganger blitt avviklet.",
     "footnote": "Konkurrentenes tall er anslag fra publiserte bransjeintervaller, ikke målte utbetalinger — reell RPM varierer mye etter nisje, publikums land og seertid, så rediger hver sats så den passer det du faktisk tjener. DeHub-tallet er din reelle inntekt fra tips omregnet til sanntidsprisen på DHB, og utelater abonnementer, PPV og butikksalg. Visninger summeres fra dine 100 nyeste innlegg."
+  },
+  "sessions": {
+    "androidDevice": "Android-enhet",
+    "webBrowser": "Nettleser",
+    "thisDevice": "Denne enheten",
+    "logOutDeviceTitle": "Logge ut enheten?",
+    "logOut": "Logg ut",
+    "logOutAll": "Logg ut alle",
+    "logOutAllTitle": "Logge ut alle andre enheter?",
+    "logOutDeviceBody": "Dette logger ut \"{{device}}\". De må logge inn igjen.",
+    "logOutAllBody_one": "Dette logger ut {{count}} annen enhet. Bare denne enheten forblir innlogget.",
+    "logOutAllBody_other": "Dette logger ut {{count}} andre enheter. Bare denne enheten forblir innlogget.",
+    "explainer": "Disse enhetene er nå logget inn på kontoen din. Ser du noe ukjent, logg det ut og endre påloggingsinformasjonen din.",
+    "activeSessions_one": "{{count}} aktiv økt",
+    "activeSessions_other": "{{count}} aktive økter",
+    "logOutAllButton": "Logg ut alle andre enheter",
+    "loadFailed": "Kunne ikke laste økter",
+    "loggedOut": "Enheten er logget ut",
+    "logOutFailed": "Kunne ikke logge ut enheten",
+    "logOutAllFailed": "Kunne ikke logge ut enhetene",
+    "devicesLoggedOut_one": "{{count}} enhet logget ut",
+    "devicesLoggedOut_other": "{{count}} enheter logget ut"
   }
 }

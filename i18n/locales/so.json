@@ -3040,5 +3040,27 @@
     "noteTiktok": "Creator Rewards. Waxaa lagu yaqaan hoos u dhaca daawasho kasta; baaxadda ayaa ah moodelka oo dhan.",
     "noteReels": "Barnaamijyada bonuska waa martiqaad kaliya waana la joojiyay marar badan.",
     "footnote": "Tirooyinka tartamayaasha waa qiyaaso ka yimid xadadka warshadaha ee la daabacay, ma aha lacag-bixin la cabbiray — RPM-ka dhabta ah aad buu u kala duwan yahay iyadoo ku xiran nooca, dalka dhagaystayaasha iyo waqtiga daawashada, sidaas darteed wax ka beddel qiime kasta si uu ugu dhigmo waxaad dhab ahaan ku kasbato. Tirada DeHub waa dakhligaaga tips-ka dhabta ah oo lagu beddelay qiimaha DHB ee tooska ah, mana ay ku jiraan diiwaangelin, PPV ama iibka dukaanka. Daawashooyinka waxaa laga soo ururiyay 100-kii boostooyin ee ugu dambeeyay."
+  },
+  "sessions": {
+    "androidDevice": "Qalabka Android",
+    "webBrowser": "Browser-ka webka",
+    "thisDevice": "Qalabkan",
+    "logOutDeviceTitle": "Ka bixi qalabka?",
+    "logOut": "Ka bax",
+    "logOutAll": "Dhammaan ka saar",
+    "logOutAllTitle": "Ka saar dhammaan qalabka kale?",
+    "logOutDeviceBody": "Tani waxay ka saari doontaa \"{{device}}\". Waa inay mar kale galaan.",
+    "logOutAllBody_one": "Tani waxay ka saari doontaa {{count}} qalab kale. Kaliya qalabkan ayaa ku sii jiri doona.",
+    "logOutAllBody_other": "Tani waxay ka saari doontaa {{count}} qalab kale. Kaliya qalabkan ayaa ku sii jiri doona.",
+    "explainer": "Qalabkan hadda waa ku galay akoonkaaga. Haddii aad aragto wax aanad aqoonin, ka saar oo beddel xogtaada gelitaanka.",
+    "activeSessions_one": "{{count}} kalfadhi firfircoon",
+    "activeSessions_other": "{{count}} kalfadhiyo firfircoon",
+    "logOutAllButton": "Ka saar dhammaan qalabka kale",
+    "loadFailed": "Lama soo rari karin kalfadhiyada",
+    "loggedOut": "Qalabka waa laga saaray",
+    "logOutFailed": "Lama saari karin qalabka",
+    "logOutAllFailed": "Lama saari karin qalabka",
+    "devicesLoggedOut_one": "{{count}} qalab ayaa laga saaray",
+    "devicesLoggedOut_other": "{{count}} qalab ayaa laga saaray"
   }
 }
