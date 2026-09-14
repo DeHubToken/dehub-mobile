@@ -3046,5 +3046,26 @@
     "deleteFolderBody": "I b'a fɛ ka \"{{name}}\" jɔsi wa? Sɛbɛn maralenw min bɛ a kɔnɔ, olu tɛna bɔ i ka maralenw lisi la.",
     "folderDeleted": "Dosiye jɔsira",
     "deleteFolderFailed": "Dosiye ma se ka jɔsi"
+  },
+  "setProfile": {
+    "title": "I ka profili labɛn",
+    "subtitle": "Sugandi i bɛna dɔn cogo min na DeHub kan.\nI bɛ se k'a yɛlɛma kɔfɛ.",
+    "changePicture": "Profili ja yɛlɛma",
+    "addPicture": "Profili ja fara a kan",
+    "tapToChange": "Digi walasa k'a yɛlɛma",
+    "addPhotoOptional": "Ja fara a kan (a ma waajibiya)",
+    "usernamePlaceholder": "@tɔgɔ",
+    "displayNamePlaceholder": "Tɔgɔ jirata",
+    "checking": "Sɛgɛsɛgɛli bɛ kɛ…",
+    "available": "A bɛ sɔrɔ",
+    "usernameTaken": "Tɔgɔ tara ka ban",
+    "usernameHint": "Sɛbɛnden 3-30: sɛbɛndenw, jatew, jukɔrɔla.",
+    "continueA11y": "Taa ɲɛ ka profili labɛn",
+    "cancelSignOut": "A dabila ani ka bɔ",
+    "completeProfile": "I ka profili dafa walasa ka taa ɲɛ",
+    "imageFailed": "O ja ma se ka kɛ",
+    "usernameReserved": "Nin tɔgɔ marala",
+    "profileSet": "Profili labɛnna ka ɲɛ!",
+    "profileFailed": "Profili ma se ka labɛn"
   }
 }

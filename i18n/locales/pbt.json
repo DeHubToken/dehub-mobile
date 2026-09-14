@@ -3052,5 +3052,26 @@
     "deleteFolderBody": "ایا تاسو ډاډه یاست چې \"{{name}}\" ړنګ کړئ؟ دننه خوندي شوي پوسټونه به ستاسو د خوندي شوو لړلیک څخه ونه ړنګیږي.",
     "folderDeleted": "فولډر ړنګ شو",
     "deleteFolderFailed": "فولډر ړنګ نشو"
+  },
+  "setProfile": {
+    "title": "خپل پروفایل جوړ کړئ",
+    "subtitle": "غوره کړئ چې په DeHub کې به تاسو څنګه پیژندل کیږئ.\nوروسته یې بدلولی شئ.",
+    "changePicture": "د پروفایل انځور بدل کړئ",
+    "addPicture": "د پروفایل انځور اضافه کړئ",
+    "tapToChange": "د بدلولو لپاره ټک وکړئ",
+    "addPhotoOptional": "انځور اضافه کړئ (اختیاري)",
+    "usernamePlaceholder": "@کارننوم",
+    "displayNamePlaceholder": "ښکاره نوم",
+    "checking": "چک کیږي…",
+    "available": "شتون لري",
+    "usernameTaken": "کارن نوم نیول شوی دی",
+    "usernameHint": "3-30 توري: توري، شمېرې، لاندې کرښه.",
+    "continueA11y": "د پروفایل جوړولو لپاره دوام ورکړئ",
+    "cancelSignOut": "لغوه کړئ او ووځئ",
+    "completeProfile": "د دوام لپاره خپل پروفایل بشپړ کړئ",
+    "imageFailed": "هغه انځور نشو کارول کېدلی",
+    "usernameReserved": "دا کارن نوم خوندي شوی دی",
+    "profileSet": "پروفایل په بریالیتوب سره جوړ شو!",
+    "profileFailed": "پروفایل جوړ نشو"
   }
 }

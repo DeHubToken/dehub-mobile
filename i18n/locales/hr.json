@@ -3101,5 +3101,26 @@
     "deleteFolderBody": "Sigurno želiš izbrisati \"{{name}}\"? Spremljene objave unutra neće biti izbrisane s tvog popisa spremljenih.",
     "folderDeleted": "Mapa izbrisana",
     "deleteFolderFailed": "Brisanje mape nije uspjelo"
+  },
+  "setProfile": {
+    "title": "Postavi svoj profil",
+    "subtitle": "Odaberi kako će te znati na DeHubu.\nMožeš to promijeniti kasnije.",
+    "changePicture": "Promijeni profilnu sliku",
+    "addPicture": "Dodaj profilnu sliku",
+    "tapToChange": "Dodirni za promjenu",
+    "addPhotoOptional": "Dodaj fotografiju (nije obavezno)",
+    "usernamePlaceholder": "@korisničko_ime",
+    "displayNamePlaceholder": "Prikazano ime",
+    "checking": "Provjeravam…",
+    "available": "Dostupno",
+    "usernameTaken": "Korisničko ime je zauzeto",
+    "usernameHint": "3-30 znakova: slova, brojevi, podvlaka.",
+    "continueA11y": "Nastavi na postavljanje profila",
+    "cancelSignOut": "Odustani i odjavi se",
+    "completeProfile": "Dovrši svoj profil za nastavak",
+    "imageFailed": "Tu sliku nije moguće upotrijebiti",
+    "usernameReserved": "Ovo korisničko ime je rezervirano",
+    "profileSet": "Profil je uspješno postavljen!",
+    "profileFailed": "Postavljanje profila nije uspjelo"
   }
 }

@@ -3175,5 +3175,26 @@
     "deleteFolderBody": "Voulez-vous vraiment supprimer « {{name}} » ? Les publications enregistrées à l'intérieur ne seront pas supprimées de votre liste d'enregistrements.",
     "folderDeleted": "Dossier supprimé",
     "deleteFolderFailed": "Impossible de supprimer le dossier"
+  },
+  "setProfile": {
+    "title": "Configurez votre profil",
+    "subtitle": "Choisissez comment on vous connaîtra sur DeHub.\nVous pourrez les changer plus tard.",
+    "changePicture": "Changer la photo de profil",
+    "addPicture": "Ajouter une photo de profil",
+    "tapToChange": "Touchez pour changer",
+    "addPhotoOptional": "Ajouter une photo (facultatif)",
+    "usernamePlaceholder": "@nomdutilisateur",
+    "displayNamePlaceholder": "Nom affiché",
+    "checking": "Vérification…",
+    "available": "Disponible",
+    "usernameTaken": "Nom d'utilisateur déjà pris",
+    "usernameHint": "3 à 30 caractères : lettres, chiffres, tiret bas.",
+    "continueA11y": "Continuer pour configurer le profil",
+    "cancelSignOut": "Annuler et se déconnecter",
+    "completeProfile": "Complétez votre profil pour continuer",
+    "imageFailed": "Impossible d'utiliser cette image",
+    "usernameReserved": "Ce nom d'utilisateur est réservé",
+    "profileSet": "Profil configuré avec succès !",
+    "profileFailed": "Impossible de configurer le profil"
   }
 }

@@ -3168,5 +3168,26 @@
     "deleteFolderBody": "「{{name}}」を削除しますか？中に保存された投稿は保存リストからは削除されません。",
     "folderDeleted": "フォルダを削除しました",
     "deleteFolderFailed": "フォルダを削除できませんでした"
+  },
+  "setProfile": {
+    "title": "プロフィールを設定",
+    "subtitle": "DeHubでの呼ばれ方を選んでください。\n後から変更できます。",
+    "changePicture": "プロフィール写真を変更",
+    "addPicture": "プロフィール写真を追加",
+    "tapToChange": "タップして変更",
+    "addPhotoOptional": "写真を追加（任意）",
+    "usernamePlaceholder": "@ユーザー名",
+    "displayNamePlaceholder": "表示名",
+    "checking": "確認中…",
+    "available": "利用可能",
+    "usernameTaken": "このユーザー名は使用済みです",
+    "usernameHint": "3〜30文字：英数字とアンダースコア。",
+    "continueA11y": "続けてプロフィールを設定",
+    "cancelSignOut": "キャンセルしてサインアウト",
+    "completeProfile": "続けるにはプロフィールを完成させてください",
+    "imageFailed": "その画像は使用できませんでした",
+    "usernameReserved": "このユーザー名は予約されています",
+    "profileSet": "プロフィールを設定しました！",
+    "profileFailed": "プロフィールを設定できませんでした"
   }
 }

@@ -3105,5 +3105,26 @@
     "deleteFolderBody": "Är du säker på att du vill radera \"{{name}}\"? De sparade inläggen inuti raderas inte från din Sparat-lista.",
     "folderDeleted": "Mappen har raderats",
     "deleteFolderFailed": "Det gick inte att radera mappen"
+  },
+  "setProfile": {
+    "title": "Ställ in din profil",
+    "subtitle": "Välj hur du ska vara känd på DeHub.\nDu kan ändra det senare.",
+    "changePicture": "Byt profilbild",
+    "addPicture": "Lägg till en profilbild",
+    "tapToChange": "Tryck för att ändra",
+    "addPhotoOptional": "Lägg till ett foto (valfritt)",
+    "usernamePlaceholder": "@användarnamn",
+    "displayNamePlaceholder": "Visningsnamn",
+    "checking": "Kontrollerar…",
+    "available": "Ledigt",
+    "usernameTaken": "Användarnamnet är upptaget",
+    "usernameHint": "3-30 tecken: bokstäver, siffror, understreck.",
+    "continueA11y": "Fortsätt för att ställa in profilen",
+    "cancelSignOut": "Avbryt och logga ut",
+    "completeProfile": "Slutför din profil för att fortsätta",
+    "imageFailed": "Det gick inte att använda den bilden",
+    "usernameReserved": "Det här användarnamnet är reserverat",
+    "profileSet": "Profilen har ställts in!",
+    "profileFailed": "Det gick inte att ställa in profilen"
   }
 }

@@ -3127,5 +3127,26 @@
     "deleteFolderBody": "متأكد بغيتي تحذف \"{{name}}\"؟ البوسطات المحفوظة داخلو ما غاديش يتحذفو من لائحة المحفوظات ديالك.",
     "folderDeleted": "تحذف المجلد",
     "deleteFolderFailed": "ما قدرناش نحذفو المجلد"
+  },
+  "setProfile": {
+    "title": "دير البروفايل ديالك",
+    "subtitle": "ختار كيفاش غادي يعرفوك فـ DeHub.\nتقدر تبدلها من بعد.",
+    "changePicture": "بدل تصويرة البروفايل",
+    "addPicture": "زيد تصويرة للبروفايل",
+    "tapToChange": "كليكي باش تبدل",
+    "addPhotoOptional": "زيد تصويرة (اختياري)",
+    "usernamePlaceholder": "@سمية_المستخدم",
+    "displayNamePlaceholder": "السمية لي كتبان",
+    "checking": "كنتحققو…",
+    "available": "متوفر",
+    "usernameTaken": "السمية مخدوة",
+    "usernameHint": "3-30 حرف: حروف، أرقام، شرطة تحتية.",
+    "continueA11y": "كمل باش تدير البروفايل",
+    "cancelSignOut": "إلغاء وخروج",
+    "completeProfile": "كمل البروفايل ديالك باش تكمل",
+    "imageFailed": "ما قدرناش نستعملو هاد التصويرة",
+    "usernameReserved": "هاد السمية محجوزة",
+    "profileSet": "تدار البروفايل بنجاح!",
+    "profileFailed": "ما قدرناش ندير البروفايل"
   }
 }

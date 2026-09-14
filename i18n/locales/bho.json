@@ -3052,5 +3052,26 @@
     "deleteFolderBody": "का रउआ \"{{name}}\" मिटावे के चाहत बानी? भीतर के सेव कइल पोस्ट रउआ सेव लिस्ट से ना मिटी।",
     "folderDeleted": "फोल्डर मिट गइल",
     "deleteFolderFailed": "फोल्डर ना मिट पावल"
+  },
+  "setProfile": {
+    "title": "आपन प्रोफाइल बनाईं",
+    "subtitle": "चुनीं कि DeHub पर रउआ के कइसे जानल जाई.\nबाद में बदल सकीलें।",
+    "changePicture": "प्रोफाइल फोटो बदलीं",
+    "addPicture": "प्रोफाइल फोटो जोड़ीं",
+    "tapToChange": "बदले खातिर टैप करीं",
+    "addPhotoOptional": "फोटो जोड़ीं (वैकल्पिक)",
+    "usernamePlaceholder": "@यूजरनेम",
+    "displayNamePlaceholder": "देखे वाला नाम",
+    "checking": "जाँच हो रहल बा…",
+    "available": "उपलब्ध",
+    "usernameTaken": "यूजरनेम ले लिहल गइल बा",
+    "usernameHint": "3-30 अक्षर: अक्षर, अंक, अंडरस्कोर।",
+    "continueA11y": "प्रोफाइल बनावे खातिर आगे बढ़ीं",
+    "cancelSignOut": "रद्द करीं आ लॉग आउट",
+    "completeProfile": "आगे बढ़े खातिर आपन प्रोफाइल पूरा करीं",
+    "imageFailed": "ऊ छवि इस्तेमाल ना हो पावल",
+    "usernameReserved": "ई यूजरनेम आरक्षित बा",
+    "profileSet": "प्रोफाइल सफलतापूर्वक बन गइल!",
+    "profileFailed": "प्रोफाइल ना बन पावल"
   }
 }

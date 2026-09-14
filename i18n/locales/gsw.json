@@ -3090,5 +3090,26 @@
     "deleteFolderBody": "Wotsch \"{{name}}\" würklich lösche? D gspeicherete Beiträg dinne wärded nid us dinere Gspeicheret-Lischte glöscht.",
     "folderDeleted": "Ordner glöscht",
     "deleteFolderFailed": "De Ordner het nid chönne glöscht wärde"
+  },
+  "setProfile": {
+    "title": "Richt dis Profil ii",
+    "subtitle": "Wähl, wie du uf DeHub bekannt bisch.\nDu chasch's spöter ändere.",
+    "changePicture": "Profilbild ändere",
+    "addPicture": "Profilbild hinzuefüege",
+    "tapToChange": "Tippe zum Ändere",
+    "addPhotoOptional": "Foto hinzuefüege (optional)",
+    "usernamePlaceholder": "@benutzername",
+    "displayNamePlaceholder": "Aazeigname",
+    "checking": "Am prüefe…",
+    "available": "Verfüegbar",
+    "usernameTaken": "Benutzername scho vergä",
+    "usernameHint": "3-30 Zeiche: Buechstabe, Zahle, Underschtrich.",
+    "continueA11y": "Wiiter zum Profil iirichte",
+    "cancelSignOut": "Abbräche und abmälde",
+    "completeProfile": "Vervollständig dis Profil zum wiiterfahre",
+    "imageFailed": "Das Bild het nid chönne bruucht wärde",
+    "usernameReserved": "Dä Benutzername isch reserviert",
+    "profileSet": "Profil erfolgriich iigrichtet!",
+    "profileFailed": "S Profil het nid chönne iigrichtet wärde"
   }
 }

@@ -3088,5 +3088,26 @@
     "deleteFolderBody": "בטוח שברצונך למחוק את \"{{name}}\"? הפוסטים השמורים בתוכה לא יימחקו מרשימת השמורים שלך.",
     "folderDeleted": "התיקייה נמחקה",
     "deleteFolderFailed": "מחיקת התיקייה נכשלה"
+  },
+  "setProfile": {
+    "title": "הגדר את הפרופיל שלך",
+    "subtitle": "בחר איך יכירו אותך ב-DeHub.\nתוכל לשנות זאת מאוחר יותר.",
+    "changePicture": "שנה תמונת פרופיל",
+    "addPicture": "הוסף תמונת פרופיל",
+    "tapToChange": "הקש כדי לשנות",
+    "addPhotoOptional": "הוסף תמונה (אופציונלי)",
+    "usernamePlaceholder": "@שם_משתמש",
+    "displayNamePlaceholder": "שם תצוגה",
+    "checking": "בודק…",
+    "available": "פנוי",
+    "usernameTaken": "שם המשתמש תפוס",
+    "usernameHint": "3-30 תווים: אותיות, ספרות, קו תחתון.",
+    "continueA11y": "המשך להגדרת הפרופיל",
+    "cancelSignOut": "בטל והתנתק",
+    "completeProfile": "השלם את הפרופיל שלך כדי להמשיך",
+    "imageFailed": "לא ניתן היה להשתמש בתמונה זו",
+    "usernameReserved": "שם משתמש זה שמור",
+    "profileSet": "הפרופיל הוגדר בהצלחה!",
+    "profileFailed": "הגדרת הפרופיל נכשלה"
   }
 }

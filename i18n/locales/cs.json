@@ -3105,5 +3105,26 @@
     "deleteFolderBody": "Opravdu chcete smazat \"{{name}}\"? Uložené příspěvky uvnitř se z vašeho seznamu uložených nesmažou.",
     "folderDeleted": "Složka smazána",
     "deleteFolderFailed": "Složku se nepodařilo smazat"
+  },
+  "setProfile": {
+    "title": "Nastavte si profil",
+    "subtitle": "Vyberte, jak vás budou na DeHub znát.\nPozději to můžete změnit.",
+    "changePicture": "Změnit profilový obrázek",
+    "addPicture": "Přidat profilový obrázek",
+    "tapToChange": "Klepnutím změníte",
+    "addPhotoOptional": "Přidat fotku (volitelné)",
+    "usernamePlaceholder": "@uživatelské_jméno",
+    "displayNamePlaceholder": "Zobrazované jméno",
+    "checking": "Kontroluji…",
+    "available": "K dispozici",
+    "usernameTaken": "Uživatelské jméno je obsazené",
+    "usernameHint": "3-30 znaků: písmena, číslice, podtržítko.",
+    "continueA11y": "Pokračovat k nastavení profilu",
+    "cancelSignOut": "Zrušit a odhlásit",
+    "completeProfile": "Pro pokračování dokončete svůj profil",
+    "imageFailed": "Tento obrázek nelze použít",
+    "usernameReserved": "Toto uživatelské jméno je vyhrazené",
+    "profileSet": "Profil byl úspěšně nastaven!",
+    "profileFailed": "Profil se nepodařilo nastavit"
   }
 }

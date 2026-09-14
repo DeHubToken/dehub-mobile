@@ -3091,5 +3091,26 @@
     "deleteFolderBody": "Ka tabbata kana son share \"{{name}}\"? Saƙonnin da aka ajiye a ciki ba za a share su daga jerin abubuwan da ka ajiye ba.",
     "folderDeleted": "An share babban fayil",
     "deleteFolderFailed": "An kasa share babban fayil"
+  },
+  "setProfile": {
+    "title": "Saita bayanan martabarka",
+    "subtitle": "Zaɓi yadda za a san ka a DeHub.\nZa ka iya canza su daga baya.",
+    "changePicture": "Canza hoton bayanin martaba",
+    "addPicture": "Ƙara hoton bayanin martaba",
+    "tapToChange": "Taɓa don canzawa",
+    "addPhotoOptional": "Ƙara hoto (na zaɓi)",
+    "usernamePlaceholder": "@sunanmaiamfani",
+    "displayNamePlaceholder": "Sunan nunawa",
+    "checking": "Ana bincike…",
+    "available": "Akwai",
+    "usernameTaken": "An riga an ɗauki sunan",
+    "usernameHint": "Haruffa 3-30: haruffa, lambobi, layin ƙasa.",
+    "continueA11y": "Ci gaba don saita bayanan martaba",
+    "cancelSignOut": "Soke kuma fita",
+    "completeProfile": "Ka cika bayanan martabarka don ci gaba",
+    "imageFailed": "Ba a iya amfani da hoton ba",
+    "usernameReserved": "An ajiye wannan sunan",
+    "profileSet": "An saita bayanan martaba cikin nasara!",
+    "profileFailed": "An kasa saita bayanan martaba"
   }
 }

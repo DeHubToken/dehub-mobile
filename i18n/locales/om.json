@@ -3165,5 +3165,26 @@
     "deleteFolderBody": "Dhugumatti \"{{name}}\" haquu barbaaddaa? Maxxansaaleen keessa kuufaman tarree Kuufame kee irraa hin haqaman.",
     "folderDeleted": "Faayiliin haqameera",
     "deleteFolderFailed": "Faayilii haquun hin milkoofne"
+  },
+  "setProfile": {
+    "title": "Piroofaayilii kee qopheessi",
+    "subtitle": "DeHub irratti akkamitti akka beekamtu filadhu.\nBooda jijjiiruu dandeessa.",
+    "changePicture": "Suuraa piroofaayilii jijjiiri",
+    "addPicture": "Suuraa piroofaayilii dabali",
+    "tapToChange": "Jijjiiruuf tuqi",
+    "addPhotoOptional": "Suuraa dabali (filannoo)",
+    "usernamePlaceholder": "@maqaafayyadamaa",
+    "displayNamePlaceholder": "Maqaa mul'atu",
+    "checking": "Mirkaneessaa jira…",
+    "available": "Ni jira",
+    "usernameTaken": "Maqaan fayyadamaa fudhatameera",
+    "usernameHint": "Qubee 3-30: qubee, lakkoofsa, sarara jala.",
+    "continueA11y": "Piroofaayilii qopheessuuf itti fufi",
+    "cancelSignOut": "Haqi fi ba'i",
+    "completeProfile": "Itti fufuuf piroofaayilii kee guuti",
+    "imageFailed": "Fakkii sana fayyadamuun hin dandaʼamne",
+    "usernameReserved": "Maqaan fayyadamaa kun qabameera",
+    "profileSet": "Piroofaayiliin milkaa'inaan qophaa'eera!",
+    "profileFailed": "Piroofaayilii qopheessuun hin milkoofne"
   }
 }

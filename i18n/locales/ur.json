@@ -3099,5 +3099,26 @@
     "deleteFolderBody": "کیا آپ واقعی \"{{name}}\" ڈیلیٹ کرنا چاہتے ہیں؟ اندر کی محفوظ پوسٹس آپ کی محفوظ فہرست سے نہیں ہٹیں گی۔",
     "folderDeleted": "فولڈر ڈیلیٹ ہو گیا",
     "deleteFolderFailed": "فولڈر ڈیلیٹ نہیں ہو سکا"
+  },
+  "setProfile": {
+    "title": "اپنی پروفائل سیٹ کریں",
+    "subtitle": "منتخب کریں کہ DeHub پر آپ کو کیسے جانا جائے۔\nبعد میں بدل سکتے ہیں۔",
+    "changePicture": "پروفائل تصویر بدلیں",
+    "addPicture": "پروفائل تصویر شامل کریں",
+    "tapToChange": "بدلنے کے لیے ٹیپ کریں",
+    "addPhotoOptional": "تصویر شامل کریں (اختیاری)",
+    "usernamePlaceholder": "@یوزرنیم",
+    "displayNamePlaceholder": "ظاہری نام",
+    "checking": "چیک ہو رہا ہے…",
+    "available": "دستیاب",
+    "usernameTaken": "یوزرنیم لیا جا چکا ہے",
+    "usernameHint": "3-30 حروف: حروف، ہندسے، انڈر اسکور۔",
+    "continueA11y": "پروفائل سیٹ کرنے کے لیے جاری رکھیں",
+    "cancelSignOut": "منسوخ کریں اور سائن آؤٹ",
+    "completeProfile": "جاری رکھنے کے لیے اپنی پروفائل مکمل کریں",
+    "imageFailed": "وہ تصویر استعمال نہیں ہو سکی",
+    "usernameReserved": "یہ یوزرنیم محفوظ ہے",
+    "profileSet": "پروفائل کامیابی سے سیٹ ہو گئی!",
+    "profileFailed": "پروفائل سیٹ نہیں ہو سکی"
   }
 }

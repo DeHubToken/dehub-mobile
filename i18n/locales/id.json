@@ -3151,5 +3151,26 @@
     "deleteFolderBody": "Yakin ingin menghapus \"{{name}}\"? Kiriman tersimpan di dalamnya tidak akan dihapus dari daftar Tersimpan Anda.",
     "folderDeleted": "Folder dihapus",
     "deleteFolderFailed": "Gagal menghapus folder"
+  },
+  "setProfile": {
+    "title": "Atur profil Anda",
+    "subtitle": "Pilih bagaimana Anda dikenal di DeHub.\nBisa diubah nanti.",
+    "changePicture": "Ubah foto profil",
+    "addPicture": "Tambahkan foto profil",
+    "tapToChange": "Ketuk untuk mengubah",
+    "addPhotoOptional": "Tambahkan foto (opsional)",
+    "usernamePlaceholder": "@namapengguna",
+    "displayNamePlaceholder": "Nama tampilan",
+    "checking": "Memeriksa…",
+    "available": "Tersedia",
+    "usernameTaken": "Nama pengguna sudah dipakai",
+    "usernameHint": "3-30 karakter: huruf, angka, garis bawah.",
+    "continueA11y": "Lanjutkan untuk mengatur profil",
+    "cancelSignOut": "Batal dan keluar",
+    "completeProfile": "Lengkapi profil Anda untuk melanjutkan",
+    "imageFailed": "Tidak dapat menggunakan gambar itu",
+    "usernameReserved": "Nama pengguna ini dicadangkan",
+    "profileSet": "Profil berhasil diatur!",
+    "profileFailed": "Gagal mengatur profil"
   }
 }

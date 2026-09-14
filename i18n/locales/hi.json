@@ -3157,5 +3157,26 @@
     "deleteFolderBody": "क्या आप वाकई \"{{name}}\" मिटाना चाहते हैं? इसके अंदर सहेजी गई पोस्ट आपकी सहेजी सूची से नहीं मिटेंगी।",
     "folderDeleted": "फ़ोल्डर मिट गया",
     "deleteFolderFailed": "फ़ोल्डर नहीं मिटाया जा सका"
+  },
+  "setProfile": {
+    "title": "अपनी प्रोफ़ाइल सेट करें",
+    "subtitle": "चुनें कि DeHub पर आपको कैसे जाना जाएगा।\nबाद में बदल सकते हैं।",
+    "changePicture": "प्रोफ़ाइल फ़ोटो बदलें",
+    "addPicture": "प्रोफ़ाइल फ़ोटो जोड़ें",
+    "tapToChange": "बदलने के लिए टैप करें",
+    "addPhotoOptional": "फ़ोटो जोड़ें (वैकल्पिक)",
+    "usernamePlaceholder": "@यूज़रनेम",
+    "displayNamePlaceholder": "प्रदर्शित नाम",
+    "checking": "जाँच हो रही है…",
+    "available": "उपलब्ध",
+    "usernameTaken": "यूज़रनेम पहले से लिया गया है",
+    "usernameHint": "3-30 अक्षर: अक्षर, अंक, अंडरस्कोर।",
+    "continueA11y": "प्रोफ़ाइल सेट करने के लिए आगे बढ़ें",
+    "cancelSignOut": "रद्द करें और साइन आउट करें",
+    "completeProfile": "जारी रखने के लिए अपनी प्रोफ़ाइल पूरी करें",
+    "imageFailed": "वह छवि उपयोग नहीं हो सकी",
+    "usernameReserved": "यह यूज़रनेम आरक्षित है",
+    "profileSet": "प्रोफ़ाइल सफलतापूर्वक सेट हुई!",
+    "profileFailed": "प्रोफ़ाइल सेट नहीं हो सकी"
   }
 }

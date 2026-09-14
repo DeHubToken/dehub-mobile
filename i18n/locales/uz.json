@@ -3153,5 +3153,26 @@
     "deleteFolderBody": "\"{{name}}\" o‘chirilsinmi? Ichidagi saqlangan postlar Saqlanganlar ro‘yxatingizdan o‘chmaydi.",
     "folderDeleted": "Jild o‘chirildi",
     "deleteFolderFailed": "Jildni o‘chirib bo‘lmadi"
+  },
+  "setProfile": {
+    "title": "Profilingizni sozlang",
+    "subtitle": "DeHub'da qanday tanilishingizni tanlang.\nKeyinroq o‘zgartirishingiz mumkin.",
+    "changePicture": "Profil rasmini o‘zgartirish",
+    "addPicture": "Profil rasmini qo‘shish",
+    "tapToChange": "O‘zgartirish uchun bosing",
+    "addPhotoOptional": "Rasm qo‘shish (ixtiyoriy)",
+    "usernamePlaceholder": "@foydalanuvchinomi",
+    "displayNamePlaceholder": "Ko‘rsatiladigan nom",
+    "checking": "Tekshirilmoqda…",
+    "available": "Mavjud",
+    "usernameTaken": "Bu foydalanuvchi nomi band",
+    "usernameHint": "3-30 belgi: harflar, raqamlar, pastki chiziq.",
+    "continueA11y": "Profilni sozlashni davom ettirish",
+    "cancelSignOut": "Bekor qilib chiqish",
+    "completeProfile": "Davom etish uchun profilingizni to‘ldiring",
+    "imageFailed": "Bu rasmni ishlatib bo‘lmadi",
+    "usernameReserved": "Bu foydalanuvchi nomi band qilingan",
+    "profileSet": "Profil muvaffaqiyatli sozlandi!",
+    "profileFailed": "Profilni sozlab bo‘lmadi"
   }
 }

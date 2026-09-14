@@ -3100,5 +3100,26 @@
     "deleteFolderBody": "Tikrai norite ištrinti \"{{name}}\"? Viduje išsaugoti įrašai nebus ištrinti iš jūsų išsaugotų sąrašo.",
     "folderDeleted": "Aplankas ištrintas",
     "deleteFolderFailed": "Nepavyko ištrinti aplanko"
+  },
+  "setProfile": {
+    "title": "Nustatykite savo profilį",
+    "subtitle": "Pasirinkite, kaip būsite žinomas DeHub.\nVėliau galėsite pakeisti.",
+    "changePicture": "Keisti profilio nuotrauką",
+    "addPicture": "Pridėti profilio nuotrauką",
+    "tapToChange": "Palieskite, kad pakeistumėte",
+    "addPhotoOptional": "Pridėti nuotrauką (neprivaloma)",
+    "usernamePlaceholder": "@naudotojovardas",
+    "displayNamePlaceholder": "Rodomas vardas",
+    "checking": "Tikrinama…",
+    "available": "Laisvas",
+    "usernameTaken": "Naudotojo vardas užimtas",
+    "usernameHint": "3-30 simbolių: raidės, skaičiai, pabraukimas.",
+    "continueA11y": "Tęsti profilio nustatymą",
+    "cancelSignOut": "Atšaukti ir atsijungti",
+    "completeProfile": "Norėdami tęsti, užpildykite profilį",
+    "imageFailed": "Nepavyko panaudoti šio vaizdo",
+    "usernameReserved": "Šis naudotojo vardas rezervuotas",
+    "profileSet": "Profilis sėkmingai nustatytas!",
+    "profileFailed": "Nepavyko nustatyti profilio"
   }
 }

@@ -3218,5 +3218,26 @@
     "deleteFolderBody": "Is jy seker jy wil \"{{name}}\" skrap? Die gestoorde plasings binne word nie uit jou Gestoor-lys verwyder nie.",
     "folderDeleted": "Vouer geskrap",
     "deleteFolderFailed": "Kon nie vouer skrap nie"
+  },
+  "setProfile": {
+    "title": "Stel jou profiel op",
+    "subtitle": "Kies hoe jy op DeHub bekend sal staan.\nJy kan dit later verander.",
+    "changePicture": "Verander profielfoto",
+    "addPicture": "Voeg 'n profielfoto by",
+    "tapToChange": "Tik om te verander",
+    "addPhotoOptional": "Voeg 'n foto by (opsioneel)",
+    "usernamePlaceholder": "@gebruikersnaam",
+    "displayNamePlaceholder": "Vertoonnaam",
+    "checking": "Kontroleer tans…",
+    "available": "Beskikbaar",
+    "usernameTaken": "Gebruikersnaam is geneem",
+    "usernameHint": "3-30 karakters: letters, syfers, onderstreep.",
+    "continueA11y": "Gaan voort om profiel op te stel",
+    "cancelSignOut": "Kanselleer en meld af",
+    "completeProfile": "Voltooi asseblief jou profiel om voort te gaan",
+    "imageFailed": "Kon nie daardie prent gebruik nie",
+    "usernameReserved": "Hierdie gebruikersnaam is gereserveer",
+    "profileSet": "Profiel suksesvol opgestel!",
+    "profileFailed": "Kon nie profiel opstel nie"
   }
 }

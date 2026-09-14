@@ -3045,5 +3045,26 @@
     "deleteFolderBody": "کیا تساں سچ مچ \"{{name}}\" ڈیلیٹ کرݨ چاہندے ہو؟ اندر دیاں محفوظ پوسٹاں تہاڈی محفوظ فہرست توں نہ مِٹسن۔",
     "folderDeleted": "فولڈر ڈیلیٹ تھی ڳیا",
     "deleteFolderFailed": "فولڈر ڈیلیٹ نہ تھی سڳیا"
+  },
+  "setProfile": {
+    "title": "آپݨا پروفائل بݨاؤ",
+    "subtitle": "چݨو جو DeHub تے تہاکوں کین٘ویں ڄاݨیا ویسی۔\nبعد وچ بدل سڳدے ہو۔",
+    "changePicture": "پروفائل تصویر بدلو",
+    "addPicture": "پروفائل تصویر شامل کرو",
+    "tapToChange": "بدلݨ کیتے ٹیپ کرو",
+    "addPhotoOptional": "تصویر شامل کرو (اختیاری)",
+    "usernamePlaceholder": "@یوزرنیم",
+    "displayNamePlaceholder": "ݙسݨ آلا ناں",
+    "checking": "چیک تھیندا پیا ہے…",
+    "available": "دستیاب",
+    "usernameTaken": "یوزرنیم گھدا ونڄ چکا ہے",
+    "usernameHint": "3-30 حرف: حرف، ہندسے، انڈر اسکور۔",
+    "continueA11y": "پروفائل بݨاوݨ کیتے اڳوں ونڄو",
+    "cancelSignOut": "منسوخ کرو تے سائن آؤٹ",
+    "completeProfile": "جاری رکھݨ کیتے آپݨا پروفائل مکمل کرو",
+    "imageFailed": "او تصویر ورتی نہ ونڄ سڳی",
+    "usernameReserved": "ایہ یوزرنیم محفوظ ہے",
+    "profileSet": "پروفائل کامیابی نال بݨ ڳیا!",
+    "profileFailed": "پروفائل نہ بݨ سڳیا"
   }
 }

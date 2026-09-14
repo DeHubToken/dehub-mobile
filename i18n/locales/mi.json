@@ -3086,5 +3086,26 @@
     "deleteFolderBody": "Kei te tino hiahia koe ki te muku i \"{{name}}\"? Ko ngā pānui kua tiakina ki roto kāore e mukua i tō rārangi Tiaki.",
     "folderDeleted": "Kua mukua te kōpaki",
     "deleteFolderFailed": "Kāore i taea te muku i te kōpaki"
+  },
+  "setProfile": {
+    "title": "Whakaritea tō kōtaha",
+    "subtitle": "Kōwhiria te āhua o tō mōhiotanga i DeHub.\nKa taea e koe te whakarerekē ā muri ake.",
+    "changePicture": "Panoni te whakaahua kōtaha",
+    "addPicture": "Tāpiritia he whakaahua kōtaha",
+    "tapToChange": "Pāwhiri hei panoni",
+    "addPhotoOptional": "Tāpiritia he whakaahua (kōwhiringa)",
+    "usernamePlaceholder": "@ingoakaiwhakamahi",
+    "displayNamePlaceholder": "Ingoa whakaatu",
+    "checking": "E tirotiro ana…",
+    "available": "Wātea",
+    "usernameTaken": "Kua riro te ingoa kaiwhakamahi",
+    "usernameHint": "3-30 pūāhua: reta, tau, tohu-ā-raro.",
+    "continueA11y": "Haere tonu ki te whakarite kōtaha",
+    "cancelSignOut": "Whakakore, takiputa",
+    "completeProfile": "Whakaotia tō kōtaha kia haere tonu ai",
+    "imageFailed": "Kāore i taea te whakamahi i taua whakaahua",
+    "usernameReserved": "Kua rāhuitia tēnei ingoa kaiwhakamahi",
+    "profileSet": "Kua oti te whakarite kōtaha!",
+    "profileFailed": "Kāore i taea te whakarite kōtaha"
   }
 }

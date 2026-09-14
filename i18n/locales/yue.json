@@ -3099,5 +3099,26 @@
     "deleteFolderBody": "確定要刪除 \"{{name}}\" 嗎？入面已儲存嘅帖子唔會喺你嘅收藏清單中刪除。",
     "folderDeleted": "資料夾已刪除",
     "deleteFolderFailed": "無法刪除資料夾"
+  },
+  "setProfile": {
+    "title": "設定你嘅個人檔案",
+    "subtitle": "揀你喺 DeHub 上點樣被認識。\n之後可以更改。",
+    "changePicture": "更換頭像",
+    "addPicture": "新增頭像",
+    "tapToChange": "點按更換",
+    "addPhotoOptional": "新增相片（可選）",
+    "usernamePlaceholder": "@用戶名",
+    "displayNamePlaceholder": "顯示名稱",
+    "checking": "檢查中…",
+    "available": "可用",
+    "usernameTaken": "用戶名已被使用",
+    "usernameHint": "3-30 個字元：字母、數字、底線。",
+    "continueA11y": "繼續設定個人檔案",
+    "cancelSignOut": "取消並登出",
+    "completeProfile": "請先完成個人檔案再繼續",
+    "imageFailed": "無法使用該圖片",
+    "usernameReserved": "呢個用戶名已被保留",
+    "profileSet": "個人檔案設定成功！",
+    "profileFailed": "無法設定個人檔案"
   }
 }

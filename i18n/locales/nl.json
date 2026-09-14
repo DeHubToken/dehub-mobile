@@ -3370,5 +3370,26 @@
     "deleteFolderBody": "Weet je zeker dat je \"{{name}}\" wilt verwijderen? De opgeslagen berichten erin worden niet uit je Opgeslagen-lijst verwijderd.",
     "folderDeleted": "Map verwijderd",
     "deleteFolderFailed": "Kon map niet verwijderen"
+  },
+  "setProfile": {
+    "title": "Stel je profiel in",
+    "subtitle": "Kies hoe je bekend staat op DeHub.\nJe kunt dit later wijzigen.",
+    "changePicture": "Profielfoto wijzigen",
+    "addPicture": "Profielfoto toevoegen",
+    "tapToChange": "Tik om te wijzigen",
+    "addPhotoOptional": "Foto toevoegen (optioneel)",
+    "usernamePlaceholder": "@gebruikersnaam",
+    "displayNamePlaceholder": "Weergavenaam",
+    "checking": "Controleren…",
+    "available": "Beschikbaar",
+    "usernameTaken": "Gebruikersnaam is bezet",
+    "usernameHint": "3-30 tekens: letters, cijfers, liggend streepje.",
+    "continueA11y": "Doorgaan om profiel in te stellen",
+    "cancelSignOut": "Annuleren en uitloggen",
+    "completeProfile": "Vul je profiel in om door te gaan",
+    "imageFailed": "Kon die afbeelding niet gebruiken",
+    "usernameReserved": "Deze gebruikersnaam is gereserveerd",
+    "profileSet": "Profiel succesvol ingesteld!",
+    "profileFailed": "Kon profiel niet instellen"
   }
 }

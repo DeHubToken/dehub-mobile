@@ -3189,5 +3189,26 @@
     "deleteFolderBody": "Bạn chắc muốn xóa \"{{name}}\"? Các bài đã lưu bên trong sẽ không bị xóa khỏi danh sách Đã lưu của bạn.",
     "folderDeleted": "Đã xóa thư mục",
     "deleteFolderFailed": "Không xóa được thư mục"
+  },
+  "setProfile": {
+    "title": "Thiết lập hồ sơ của bạn",
+    "subtitle": "Chọn cách bạn được biết đến trên DeHub.\nBạn có thể đổi sau.",
+    "changePicture": "Đổi ảnh đại diện",
+    "addPicture": "Thêm ảnh đại diện",
+    "tapToChange": "Chạm để đổi",
+    "addPhotoOptional": "Thêm ảnh (không bắt buộc)",
+    "usernamePlaceholder": "@tennguoidung",
+    "displayNamePlaceholder": "Tên hiển thị",
+    "checking": "Đang kiểm tra…",
+    "available": "Khả dụng",
+    "usernameTaken": "Tên người dùng đã có người dùng",
+    "usernameHint": "3-30 ký tự: chữ cái, số, gạch dưới.",
+    "continueA11y": "Tiếp tục để thiết lập hồ sơ",
+    "cancelSignOut": "Hủy và đăng xuất",
+    "completeProfile": "Hãy hoàn tất hồ sơ để tiếp tục",
+    "imageFailed": "Không dùng được ảnh đó",
+    "usernameReserved": "Tên người dùng này được dành riêng",
+    "profileSet": "Đã thiết lập hồ sơ thành công!",
+    "profileFailed": "Không thiết lập được hồ sơ"
   }
 }

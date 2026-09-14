@@ -3133,5 +3133,26 @@
     "deleteFolderBody": "\"{{name}}\" pichanaykita munankichu? Ukhupi waqaychasqa publicacionkunaqa Waqaychasqa listaykimanta mana pichakunchu.",
     "folderDeleted": "Carpeta pichasqa",
     "deleteFolderFailed": "Carpetata mana pichayta atikunchu"
+  },
+  "setProfile": {
+    "title": "Perfilniykita churay",
+    "subtitle": "Akllay imayna DeHub-pi riqsisqa kanaykipaq.\nQhipaman tikrayta atinki.",
+    "changePicture": "Perfil siq'ita tikray",
+    "addPicture": "Perfil siq'ita yapay",
+    "tapToChange": "Tikranaykipaq ñit'iy",
+    "addPhotoOptional": "Siq'ita yapay (munaspa)",
+    "usernamePlaceholder": "@sutiyki",
+    "displayNamePlaceholder": "Rikuchina suti",
+    "checking": "Qhawachkan…",
+    "available": "Kachkan",
+    "usernameTaken": "Kay suti hap'isqaña",
+    "usernameHint": "3-30 sanampa: sanampakuna, yupaykuna, uray raya.",
+    "continueA11y": "Perfilta churanapaq qatiy",
+    "cancelSignOut": "Saqiy hinaspa lluqsiy",
+    "completeProfile": "Qatinaykipaq perfilniykita hunt'achiy",
+    "imageFailed": "Chay siq'ita mana llamk'achiyta atikunchu",
+    "usernameReserved": "Kay sutiqa waqaychasqa",
+    "profileSet": "Perfil allinta churasqa!",
+    "profileFailed": "Perfilta mana churayta atikunchu"
   }
 }

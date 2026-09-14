@@ -3272,5 +3272,26 @@
     "deleteFolderBody": "Naozaj chcete zmazať \"{{name}}\"? Uložené príspevky vnútri sa z vášho zoznamu uložených nevymažú.",
     "folderDeleted": "Priečinok zmazaný",
     "deleteFolderFailed": "Priečinok sa nepodarilo zmazať"
+  },
+  "setProfile": {
+    "title": "Nastavte si profil",
+    "subtitle": "Vyberte, ako vás budú poznať na DeHub.\nNeskôr to môžete zmeniť.",
+    "changePicture": "Zmeniť profilový obrázok",
+    "addPicture": "Pridať profilový obrázok",
+    "tapToChange": "Ťuknutím zmeníte",
+    "addPhotoOptional": "Pridať fotku (voliteľné)",
+    "usernamePlaceholder": "@používateľské_meno",
+    "displayNamePlaceholder": "Zobrazované meno",
+    "checking": "Kontrolujem…",
+    "available": "K dispozícii",
+    "usernameTaken": "Používateľské meno je obsadené",
+    "usernameHint": "3-30 znakov: písmená, číslice, podčiarknutie.",
+    "continueA11y": "Pokračovať na nastavenie profilu",
+    "cancelSignOut": "Zrušiť a odhlásiť",
+    "completeProfile": "Na pokračovanie dokončite svoj profil",
+    "imageFailed": "Tento obrázok sa nepodarilo použiť",
+    "usernameReserved": "Toto používateľské meno je vyhradené",
+    "profileSet": "Profil bol úspešne nastavený!",
+    "profileFailed": "Profil sa nepodarilo nastaviť"
   }
 }

@@ -3096,5 +3096,26 @@
     "deleteFolderBody": "\"{{name}}\"ን መሰረዝ ይፈልጋሉ? ውስጡ ያሉት የተቀመጡ ልጥፎች ከተቀመጡ ዝርዝርዎ አይሰረዙም።",
     "folderDeleted": "አቃፊው ተሰርዟል",
     "deleteFolderFailed": "አቃፊውን መሰረዝ አልተሳካም"
+  },
+  "setProfile": {
+    "title": "መገለጫዎን ያዘጋጁ",
+    "subtitle": "በDeHub ላይ እንዴት እንደሚታወቁ ይምረጡ።\nበኋላ መቀየር ይችላሉ።",
+    "changePicture": "የመገለጫ ፎቶ ቀይር",
+    "addPicture": "የመገለጫ ፎቶ ያክሉ",
+    "tapToChange": "ለመቀየር መታ ያድርጉ",
+    "addPhotoOptional": "ፎቶ ያክሉ (አማራጭ)",
+    "usernamePlaceholder": "@የተጠቃሚ_ስም",
+    "displayNamePlaceholder": "የሚታይ ስም",
+    "checking": "በማረጋገጥ ላይ…",
+    "available": "ይገኛል",
+    "usernameTaken": "የተጠቃሚ ስሙ ተይዟል",
+    "usernameHint": "3-30 ቁምፊ፦ ፊደላት፣ ቁጥሮች፣ ከስር ሰረዝ።",
+    "continueA11y": "መገለጫ ለማዘጋጀት ይቀጥሉ",
+    "cancelSignOut": "ሰርዝ እና ውጣ",
+    "completeProfile": "ለመቀጠል እባክዎ መገለጫዎን ያጠናቅቁ",
+    "imageFailed": "ያንን ምስል መጠቀም አልተቻለም",
+    "usernameReserved": "ይህ የተጠቃሚ ስም የተያዘ ነው",
+    "profileSet": "መገለጫው በተሳካ ሁኔታ ተዘጋጅቷል!",
+    "profileFailed": "መገለጫውን ማዘጋጀት አልተሳካም"
   }
 }

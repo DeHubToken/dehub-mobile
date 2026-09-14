@@ -3091,5 +3091,26 @@
     "deleteFolderBody": "Ṣé ó dájú pé o fẹ́ pa \"{{name}}\" rẹ́? Àwọn ìfiránṣẹ́ tí a fi pamọ́ nínú rẹ̀ kò ní kúrò nínú àkọsílẹ̀ Ìfipamọ́ rẹ.",
     "folderDeleted": "A ti pa fóldà rẹ́",
     "deleteFolderFailed": "Kò lè pa fóldà rẹ́"
+  },
+  "setProfile": {
+    "title": "Ṣètò profáìlì rẹ",
+    "subtitle": "Yan bí a ṣe máa mọ̀ ọ́ lórí DeHub.\nO lè yí wọn padà nígbà mìíràn.",
+    "changePicture": "Yí àwòrán profáìlì padà",
+    "addPicture": "Fi àwòrán profáìlì kún",
+    "tapToChange": "Tẹ̀ láti yípadà",
+    "addPhotoOptional": "Fi àwòrán kún (àyàn)",
+    "usernamePlaceholder": "@orukoolumulo",
+    "displayNamePlaceholder": "Orúkọ àfihàn",
+    "checking": "Ń ṣàyẹ̀wò…",
+    "available": "Wà",
+    "usernameTaken": "A ti gba orúkọ olùmúlò yìí",
+    "usernameHint": "Àmì 3-30: lẹ́tà, nọ́mbà, ìlà ìsàlẹ̀.",
+    "continueA11y": "Tẹ̀síwájú láti ṣètò profáìlì",
+    "cancelSignOut": "Fagilé kí o sì jáde",
+    "completeProfile": "Jọ̀wọ́ parí profáìlì rẹ láti tẹ̀síwájú",
+    "imageFailed": "Kò lè lo àwòrán yẹn",
+    "usernameReserved": "A ti pa orúkọ olùmúlò yìí mọ́",
+    "profileSet": "A ti ṣètò profáìlì ní àṣeyọrí!",
+    "profileFailed": "Kò lè ṣètò profáìlì"
   }
 }

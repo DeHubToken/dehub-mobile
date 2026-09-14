@@ -3171,5 +3171,26 @@
     "deleteFolderBody": "Vuoi davvero eliminare \"{{name}}\"? I post salvati al suo interno non verranno eliminati dal tuo elenco dei salvati.",
     "folderDeleted": "Cartella eliminata",
     "deleteFolderFailed": "Impossibile eliminare la cartella"
+  },
+  "setProfile": {
+    "title": "Imposta il tuo profilo",
+    "subtitle": "Scegli come sarai conosciuto su DeHub.\nPuoi cambiarli in seguito.",
+    "changePicture": "Cambia foto profilo",
+    "addPicture": "Aggiungi una foto profilo",
+    "tapToChange": "Tocca per cambiare",
+    "addPhotoOptional": "Aggiungi una foto (facoltativo)",
+    "usernamePlaceholder": "@nomeutente",
+    "displayNamePlaceholder": "Nome visualizzato",
+    "checking": "Verifica in corso…",
+    "available": "Disponibile",
+    "usernameTaken": "Nome utente già in uso",
+    "usernameHint": "3-30 caratteri: lettere, numeri, trattino basso.",
+    "continueA11y": "Continua per impostare il profilo",
+    "cancelSignOut": "Annulla ed esci",
+    "completeProfile": "Completa il tuo profilo per continuare",
+    "imageFailed": "Impossibile usare quell'immagine",
+    "usernameReserved": "Questo nome utente è riservato",
+    "profileSet": "Profilo impostato con successo!",
+    "profileFailed": "Impossibile impostare il profilo"
   }
 }

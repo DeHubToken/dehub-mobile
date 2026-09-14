@@ -3083,5 +3083,26 @@
     "deleteFolderBody": "\"{{name}}\" මැකීමට විශ්වාසද? ඇතුළත සුරකින ලද පළ කිරීම් ඔබේ සුරැකි ලැයිස්තුවෙන් මැකෙන්නේ නැත.",
     "folderDeleted": "ෆෝල්ඩරය මකා දමන ලදී",
     "deleteFolderFailed": "ෆෝල්ඩරය මැකිය නොහැකි විය"
+  },
+  "setProfile": {
+    "title": "ඔබේ පැතිකඩ සකසන්න",
+    "subtitle": "DeHub හි ඔබ හඳුනාගන්නා ආකාරය තෝරන්න.\nපසුව වෙනස් කළ හැක.",
+    "changePicture": "පැතිකඩ පින්තූරය වෙනස් කරන්න",
+    "addPicture": "පැතිකඩ පින්තූරයක් එක් කරන්න",
+    "tapToChange": "වෙනස් කිරීමට තට්ටු කරන්න",
+    "addPhotoOptional": "ඡායාරූපයක් එක් කරන්න (විකල්ප)",
+    "usernamePlaceholder": "@පරිශීලකනාමය",
+    "displayNamePlaceholder": "පෙන්වන නම",
+    "checking": "පරීක්ෂා කරමින්…",
+    "available": "ලබා ගත හැක",
+    "usernameTaken": "පරිශීලක නාමය ගෙන ඇත",
+    "usernameHint": "අක්ෂර 3-30: අකුරු, ඉලක්කම්, යටිඉරි.",
+    "continueA11y": "පැතිකඩ සැකසීමට ඉදිරියට යන්න",
+    "cancelSignOut": "අවලංගු කර ඉවත් වන්න",
+    "completeProfile": "ඉදිරියට යාමට ඔබේ පැතිකඩ සම්පූර්ණ කරන්න",
+    "imageFailed": "එම රූපය භාවිතා කළ නොහැකි විය",
+    "usernameReserved": "මෙම පරිශීලක නාමය වෙන් කර ඇත",
+    "profileSet": "පැතිකඩ සාර්ථකව සකසන ලදී!",
+    "profileFailed": "පැතිකඩ සැකසිය නොහැකි විය"
   }
 }

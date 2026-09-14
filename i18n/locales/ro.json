@@ -3114,5 +3114,26 @@
     "deleteFolderBody": "Sigur vrei să ștergi \"{{name}}\"? Postările salvate dinăuntru nu vor fi șterse din lista ta de salvate.",
     "folderDeleted": "Dosar șters",
     "deleteFolderFailed": "Dosarul nu a putut fi șters"
+  },
+  "setProfile": {
+    "title": "Configurează-ți profilul",
+    "subtitle": "Alege cum vei fi cunoscut pe DeHub.\nLe poți schimba mai târziu.",
+    "changePicture": "Schimbă poza de profil",
+    "addPicture": "Adaugă o poză de profil",
+    "tapToChange": "Atinge pentru a schimba",
+    "addPhotoOptional": "Adaugă o fotografie (opțional)",
+    "usernamePlaceholder": "@numeutilizator",
+    "displayNamePlaceholder": "Nume afișat",
+    "checking": "Se verifică…",
+    "available": "Disponibil",
+    "usernameTaken": "Numele de utilizator este ocupat",
+    "usernameHint": "3-30 de caractere: litere, cifre, liniuță jos.",
+    "continueA11y": "Continuă pentru a configura profilul",
+    "cancelSignOut": "Anulează și deconectează-te",
+    "completeProfile": "Completează-ți profilul pentru a continua",
+    "imageFailed": "Imaginea nu a putut fi folosită",
+    "usernameReserved": "Acest nume de utilizator este rezervat",
+    "profileSet": "Profil configurat cu succes!",
+    "profileFailed": "Profilul nu a putut fi configurat"
   }
 }
