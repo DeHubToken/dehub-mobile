@@ -3203,5 +3203,19 @@
     "usernameReserved": "Ce nom d'utilisateur est réservé",
     "profileSet": "Profil configuré avec succès !",
     "profileFailed": "Impossible de configurer le profil"
+  },
+  "events": {
+    "mine": "Les miens",
+    "subtitle": "Découvrez les événements de la communauté et confirmez votre présence",
+    "going": "J'y vais",
+    "interested": "Intéressé",
+    "goingCount": "{{count}} y vont",
+    "rsvpFailed": "Impossible de mettre à jour la réponse",
+    "signInToRsvp": "Connectez-vous pour répondre aux événements",
+    "noneCreated": "Vous n'avez pas encore créé d'événement",
+    "noPast": "Aucun événement passé",
+    "noUpcoming": "Aucun événement à venir",
+    "interestedCount": "{{count}} intéressés",
+    "loadFailed": "Impossible de charger les événements"
   }
 }

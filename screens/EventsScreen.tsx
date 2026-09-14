@@ -5,17 +5,19 @@
  * Supabase with Upcoming / Past / Mine filters and going/interested RSVP.
  */
 import React, { useCallback, useMemo, useState } from "react";
-import { View, Text, StyleSheet, Pressable, FlatList } from "react-native";
+import { View, Text, StyleSheet, Pressable, FlatList } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { theme } from "../theme";
-import { toastInfo, toastError, formatCompactNumber } from "../libs";
+import { toastInfo, toastError } from "../libs";
 import {
   getEvents,
   getMyRsvps,
@@ -25,24 +27,21 @@ import {
   type EventsFilter,
 } from "../services/events.service";
 
-const FILTERS: { key: EventsFilter; label: string }[] = [
-  { key: "upcoming", label: "Upcoming" },
-  { key: "past", label: "Past" },
-  { key: "my", label: "Mine" },
+const FILTERS: { key: EventsFilter; labelKey: string }[] = [
+  { key: "upcoming", labelKey: "stages.tabUpcoming" },
+  { key: "past", labelKey: "stages.past" },
+  { key: "my", labelKey: "events.mine" },
 ];
 
-const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
+// Intl handles the weekday/month names, the date order and 12- vs 24-hour
+// clocks per locale, so there is nothing here to translate by hand.
 function formatEventDate(iso: string): string {
   const d = new Date(iso);
   if (isNaN(d.getTime())) return "";
-  let h = d.getHours();
-  const m = d.getMinutes();
-  const ampm = h >= 12 ? "PM" : "AM";
-  h = h % 12 || 12;
-  const mm = m.toString().padStart(2, "0");
-  return `${DAYS[d.getDay()]}, ${MONTHS[d.getMonth()]} ${d.getDate()} · ${h}:${mm} ${ampm}`;
+  const lang = i18n.language || undefined;
+  const day = d.toLocaleDateString(lang, { weekday: "short", month: "short", day: "numeric" });
+  const time = d.toLocaleTimeString(lang, { hour: "numeric", minute: "2-digit" });
+  return `${day} · ${time}`;
 }
 
 interface EventCardProps {
@@ -52,6 +51,7 @@ interface EventCardProps {
 }
 
 const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
+  const { t } = useTranslation();
   const going = rsvp === "going";
   const interested = rsvp === "interested";
   return (
@@ -76,9 +76,9 @@ const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
         )}
 
         <View style={styles.metaRow}>
-          <Text style={styles.metaText}>{formatCompactNumber(event.going_count || 0)} going</Text>
+          <Text style={styles.metaText}>{t("events.goingCount", { count: event.going_count || 0 })}</Text>
           <Text style={styles.metaDot}>·</Text>
-          <Text style={styles.metaText}>{formatCompactNumber(event.interested_count || 0)} interested</Text>
+          <Text style={styles.metaText}>{t("events.interestedCount", { count: event.interested_count || 0 })}</Text>
           {(event.gate_fee ?? 0) > 0 && (
             <>
               <Text style={styles.metaDot}>·</Text>
@@ -95,7 +95,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
             accessibilityState={{ selected: going }}
           >
             <Icon name="Check" size={14} color={going ? "#000000" : "#FFFFFF"} />
-            <Text style={[styles.rsvpText, going && styles.rsvpTextActive]}>Going</Text>
+            <Text style={[styles.rsvpText, going && styles.rsvpTextActive]}>{t("events.going")}</Text>
           </Pressable>
           <Pressable
             style={[styles.rsvpBtn, interested && styles.rsvpBtnActive]}
@@ -104,7 +104,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
             accessibilityState={{ selected: interested }}
           >
             <Icon name="Star" size={14} color={interested ? "#000000" : "#FFFFFF"} />
-            <Text style={[styles.rsvpText, interested && styles.rsvpTextActive]}>Interested</Text>
+            <Text style={[styles.rsvpText, interested && styles.rsvpTextActive]}>{t("events.interested")}</Text>
           </Pressable>
         </View>
       </View>
@@ -113,6 +113,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
 };
 
 export default function EventsScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const user = useUser() as { walletAddress?: string; address?: string } | null;
   const { isSignedIn } = useAuthState();
@@ -139,13 +140,13 @@ export default function EventsScreen() {
       queryClient.invalidateQueries({ queryKey: ["my-rsvps", wallet] });
       queryClient.invalidateQueries({ queryKey: ["events"] });
     },
-    onError: () => toastError("Could not update RSVP"),
+    onError: () => toastError(t("events.rsvpFailed")),
   });
 
   const handleRsvp = useCallback(
     (event: CommunityEvent, status: "going" | "interested") => {
       if (!isSignedIn || !wallet) {
-        toastInfo("Sign in to RSVP to events");
+        toastInfo(t("events.signInToRsvp"));
         return;
       }
       const current = myRsvps[event.id];
@@ -153,7 +154,7 @@ export default function EventsScreen() {
       const next = current === status ? "remove" : status;
       rsvpMutation.mutate({ eventId: event.id, status: next });
     },
-    [isSignedIn, wallet, myRsvps, rsvpMutation],
+    [isSignedIn, wallet, myRsvps, rsvpMutation, t],
   );
 
   const keyExtractor = useCallback((e: CommunityEvent) => e.id, []);
@@ -165,14 +166,14 @@ export default function EventsScreen() {
   );
 
   const emptyLabel = useMemo(() => {
-    if (filter === "my") return "You haven't created any events yet";
-    if (filter === "past") return "No past events";
-    return "No upcoming events";
-  }, [filter]);
+    if (filter === "my") return t("events.noneCreated");
+    if (filter === "past") return t("events.noPast");
+    return t("events.noUpcoming");
+  }, [filter, t]);
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title="Events" subtitle="Discover and RSVP to community events" />
+      <ScreenHeader title={t("nav.events")} subtitle={t("events.subtitle")} />
 
       {/* Filter tabs */}
       <View style={styles.filterRow}>
@@ -185,7 +186,7 @@ export default function EventsScreen() {
               hitSlop={{ top: 8, bottom: 8 }}
               style={[styles.filterChip, active && styles.filterChipActive]}
             >
-              <Text style={[styles.filterText, active && styles.filterTextActive]}>{f.label}</Text>
+              <Text style={[styles.filterText, active && styles.filterTextActive]}>{t(f.labelKey)}</Text>
             </Pressable>
           );
         })}
@@ -197,9 +198,9 @@ export default function EventsScreen() {
         </View>
       ) : isError ? (
         <View style={styles.center}>
-          <Text style={styles.emptyText}>Couldn't load events</Text>
+          <Text style={styles.emptyText}>{t("events.loadFailed")}</Text>
           <Pressable onPress={() => refetch()} style={styles.retryBtn}>
-            <Text style={styles.retryText}>Retry</Text>
+            <Text style={styles.retryText}>{t("common.retry")}</Text>
           </Pressable>
         </View>
       ) : (

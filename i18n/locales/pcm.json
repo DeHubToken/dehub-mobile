@@ -2950,5 +2950,19 @@
     "usernameReserved": "Dem reserve dis username",
     "profileSet": "Profile don set well well!",
     "profileFailed": "We no fit set di profile"
+  },
+  "events": {
+    "mine": "Mine",
+    "subtitle": "Find community events and RSVP",
+    "going": "I dey go",
+    "interested": "I dey interested",
+    "goingCount": "{{count}} dey go",
+    "rsvpFailed": "We no fit update di RSVP",
+    "signInToRsvp": "Sign in make you RSVP for events",
+    "noneCreated": "You never create any event yet",
+    "noPast": "No past events",
+    "noUpcoming": "No upcoming events",
+    "interestedCount": "{{count}} dey interested",
+    "loadFailed": "We no fit load di events"
   }
 }

@@ -2895,5 +2895,19 @@
     "usernameReserved": "Ev navê bikarhêner veqetandî ye",
     "profileSet": "Profîl bi serkeftî hat sazkirin!",
     "profileFailed": "Profîl nehat sazkirin"
+  },
+  "events": {
+    "mine": "Yên min",
+    "subtitle": "Bûyerên civakê keşf bike û beşdariya xwe piştrast bike",
+    "going": "Diçim",
+    "interested": "Eleqedar im",
+    "goingCount": "{{count}} diçin",
+    "rsvpFailed": "Bersiva beşdariyê nehat nûkirin",
+    "signInToRsvp": "Ji bo beşdarî li bûyeran têkeve",
+    "noneCreated": "Te hîn tu bûyer çênekiriye",
+    "noPast": "Bûyerên borî tune",
+    "noUpcoming": "Bûyerên pêş tune",
+    "interestedCount": "{{count}} eleqedar in",
+    "loadFailed": "Bûyer nehatin barkirin"
   }
 }

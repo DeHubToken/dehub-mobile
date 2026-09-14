@@ -3120,5 +3120,19 @@
     "usernameReserved": "Dette brukernavnet er reservert",
     "profileSet": "Profilen ble satt opp!",
     "profileFailed": "Kunne ikke sette opp profilen"
+  },
+  "events": {
+    "mine": "Mine",
+    "subtitle": "Oppdag fellesskapsarrangementer og meld deg på",
+    "going": "Deltar",
+    "interested": "Interessert",
+    "goingCount": "{{count}} deltar",
+    "rsvpFailed": "Kunne ikke oppdatere påmeldingen",
+    "signInToRsvp": "Logg inn for å melde deg på arrangementer",
+    "noneCreated": "Du har ikke opprettet noen arrangementer ennå",
+    "noPast": "Ingen tidligere arrangementer",
+    "noUpcoming": "Ingen kommende arrangementer",
+    "interestedCount": "{{count}} interesserte",
+    "loadFailed": "Kunne ikke laste arrangementer"
   }
 }

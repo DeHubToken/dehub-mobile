@@ -3126,5 +3126,19 @@
     "usernameReserved": "该用户名为保留名",
     "profileSet": "资料设置成功！",
     "profileFailed": "无法设置资料"
+  },
+  "events": {
+    "mine": "我的",
+    "subtitle": "发现社区活动并回复出席",
+    "going": "参加",
+    "interested": "感兴趣",
+    "goingCount": "{{count}} 人参加",
+    "rsvpFailed": "无法更新出席回复",
+    "signInToRsvp": "登录后可回复活动出席",
+    "noneCreated": "你还没有创建活动",
+    "noPast": "没有往期活动",
+    "noUpcoming": "没有即将举行的活动",
+    "interestedCount": "{{count}} 人感兴趣",
+    "loadFailed": "无法加载活动"
   }
 }

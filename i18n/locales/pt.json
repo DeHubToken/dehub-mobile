@@ -3203,5 +3203,19 @@
     "usernameReserved": "Este nome de usuário é reservado",
     "profileSet": "Perfil configurado com sucesso!",
     "profileFailed": "Não foi possível configurar o perfil"
+  },
+  "events": {
+    "mine": "Meus",
+    "subtitle": "Descubra eventos da comunidade e confirme presença",
+    "going": "Vou",
+    "interested": "Tenho interesse",
+    "goingCount": "{{count}} vão",
+    "rsvpFailed": "Não foi possível atualizar a presença",
+    "signInToRsvp": "Entre para confirmar presença em eventos",
+    "noneCreated": "Você ainda não criou nenhum evento",
+    "noPast": "Nenhum evento passado",
+    "noUpcoming": "Nenhum evento futuro",
+    "interestedCount": "{{count}} interessados",
+    "loadFailed": "Não foi possível carregar os eventos"
   }
 }

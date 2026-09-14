@@ -3191,5 +3191,19 @@
     "usernameReserved": "Bu kullanıcı adı ayrılmış",
     "profileSet": "Profil başarıyla oluşturuldu!",
     "profileFailed": "Profil oluşturulamadı"
+  },
+  "events": {
+    "mine": "Benimkiler",
+    "subtitle": "Topluluk etkinliklerini keşfet ve katılımını bildir",
+    "going": "Katılıyorum",
+    "interested": "İlgileniyorum",
+    "goingCount": "{{count}} kişi katılıyor",
+    "rsvpFailed": "Katılım yanıtı güncellenemedi",
+    "signInToRsvp": "Etkinliklere katılım bildirmek için oturum aç",
+    "noneCreated": "Henüz hiç etkinlik oluşturmadın",
+    "noPast": "Geçmiş etkinlik yok",
+    "noUpcoming": "Yaklaşan etkinlik yok",
+    "interestedCount": "{{count}} kişi ilgileniyor",
+    "loadFailed": "Etkinlikler yüklenemedi"
   }
 }

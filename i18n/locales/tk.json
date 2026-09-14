@@ -3099,5 +3099,19 @@
     "usernameReserved": "Bu ulanyjy ady bellenen",
     "profileSet": "Profil üstünlikli düzüldi!",
     "profileFailed": "Profil düzülip bilmedi"
+  },
+  "events": {
+    "mine": "Meniňkiler",
+    "subtitle": "Jemgyýet çärelerini tapyň we gatnaşygyňyzy tassyklaň",
+    "going": "Barýaryn",
+    "interested": "Gyzyklanýaryn",
+    "goingCount": "{{count}} barýar",
+    "rsvpFailed": "Gatnaşyk jogaby täzelenip bilmedi",
+    "signInToRsvp": "Çärelere gatnaşmak üçin giriň",
+    "noneCreated": "Siz entek hiç çäre döretmediňiz",
+    "noPast": "Geçmiş çäreler ýok",
+    "noUpcoming": "Geljek çäreler ýok",
+    "interestedCount": "{{count}} gyzyklanýar",
+    "loadFailed": "Çäreler ýüklenip bilmedi"
   }
 }

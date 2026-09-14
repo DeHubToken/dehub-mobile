@@ -3074,5 +3074,19 @@
     "usernameReserved": "Nin tɔgɔ marala",
     "profileSet": "Profili labɛnna ka ɲɛ!",
     "profileFailed": "Profili ma se ka labɛn"
+  },
+  "events": {
+    "mine": "N ta",
+    "subtitle": "Jamana ka kow ɲini ani i taali fɔ",
+    "going": "N bɛ taa",
+    "interested": "A ka di n ye",
+    "goingCount": "{{count}} bɛ taa",
+    "rsvpFailed": "Taali jaabi ma se ka kuraya",
+    "signInToRsvp": "Don walasa ka i taali fɔ kow la",
+    "noneCreated": "I ma ko si dilan fɔlɔ",
+    "noPast": "Ko tɛmɛnenw si tɛ yen",
+    "noUpcoming": "Ko nataw si tɛ yen",
+    "interestedCount": "{{count}} b'a fɛ",
+    "loadFailed": "Kow ma se ka doni"
   }
 }

@@ -3094,5 +3094,19 @@
     "usernameReserved": "እዚ ስም ተጠቃሚ ተሓዚኡ እዩ",
     "profileSet": "መለለዪ ብዓወት ተቐሚጡ!",
     "profileFailed": "መለለዪ ክቕመጥ ኣይከኣለን"
+  },
+  "events": {
+    "mine": "ናተይ",
+    "subtitle": "ንዝግጅታት ማሕበረሰብ ርኸብን ተሳትፎኻ ኣረጋግጽን",
+    "going": "ክኸይድ እየ",
+    "interested": "ተገዳስነት ኣለኒ",
+    "goingCount": "{{count}} ክኸዱ እዮም",
+    "rsvpFailed": "መልሲ ተሳትፎ ክሕደስ ኣይከኣለን",
+    "signInToRsvp": "ኣብ ዝግጅታት ንምስታፍ እቶ",
+    "noneCreated": "ገና ዝኾነ ዝግጅት ኣይፈጠርካን",
+    "noPast": "ዝሓለፉ ዝግጅታት የለዉን",
+    "noUpcoming": "ዝመጽኡ ዝግጅታት የለዉን",
+    "interestedCount": "{{count}} ተገዳስነት ኣለዎም",
+    "loadFailed": "ዝግጅታት ክጽዓኑ ኣይከኣሉን"
   }
 }

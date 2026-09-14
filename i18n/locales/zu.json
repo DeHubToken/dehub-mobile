@@ -3158,5 +3158,19 @@
     "usernameReserved": "Leli gama lomsebenzisi ligodliwe",
     "profileSet": "Iphrofayela isethwe ngempumelelo!",
     "profileFailed": "Ayikwazanga ukusetha iphrofayela"
+  },
+  "events": {
+    "mine": "Okwami",
+    "subtitle": "Thola imicimbi yomphakathi bese uqinisekisa ukuza",
+    "going": "Ngiyaya",
+    "interested": "Ngiyathakazelisa",
+    "goingCount": "{{count}} bayaya",
+    "rsvpFailed": "Ayikwazanga ukubuyekeza i-RSVP",
+    "signInToRsvp": "Ngena ukuze uqinisekise ukuza kwimicimbi",
+    "noneCreated": "Awukakadali noma yimuphi umcimbi",
+    "noPast": "Ayikho imicimbi edlule",
+    "noUpcoming": "Ayikho imicimbi ezayo",
+    "interestedCount": "{{count}} bayathakazelisa",
+    "loadFailed": "Ayikwazanga ukulayisha imicimbi"
   }
 }

@@ -3118,5 +3118,19 @@
     "usernameReserved": "Dä Benutzername isch reserviert",
     "profileSet": "Profil erfolgriich iigrichtet!",
     "profileFailed": "S Profil het nid chönne iigrichtet wärde"
+  },
+  "events": {
+    "mine": "Mini",
+    "subtitle": "Entdeck Community-Events und sag zue",
+    "going": "Nimm teil",
+    "interested": "Interessiert",
+    "goingCount": "{{count}} nämed teil",
+    "rsvpFailed": "D Zuesag het nid chönne aktualisiert wärde",
+    "signInToRsvp": "Mäld dich aa, zum bi Events zuezsäge",
+    "noneCreated": "Du häsch no kei Events erstellt",
+    "noPast": "Kei vergangeni Events",
+    "noUpcoming": "Kei kommendi Events",
+    "interestedCount": "{{count}} interessiert",
+    "loadFailed": "D Events hend nid chönne glade werde"
   }
 }
