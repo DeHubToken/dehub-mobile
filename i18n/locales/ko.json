@@ -1982,7 +1982,9 @@
     "staking_on_chain_first": "먼저 {{chain}}에 예치합니다. 이후 다른 체인도 진행하세요.",
     "dhb_staked_on_chain": "{{chain}}에 {{amount}} DHB를 예치했습니다.",
     "waiting_for_confirmation": "승인을 기다리는 중...",
-    "error": "오류"
+    "error": "오류",
+    "image_too_large_tier": "이미지가 너무 큽니다. {{tier}} 등급은 최대 {{limit}} MB의 이미지를 저장합니다.",
+    "image_too_large_untiered": "이미지가 너무 큽니다 — 이미지는 {{limit}} MB까지 저장됩니다"
   },
   "staking": {
     "title": "스테이킹",

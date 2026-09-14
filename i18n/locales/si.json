@@ -1989,7 +1989,8 @@
     "staking_on_chain_first": "Staking on {{chain}} first. Come back after to stake the other.",
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
-    "error": "Error"
+    "error": "Error",
+    "image_too_large_untiered": "පිංතූරය විශාල වැඩියි — පිංතූර {{limit}} MB දක්වා ගබඩා කර ඇත"
   },
   "staking": {
     "title": "Staking",

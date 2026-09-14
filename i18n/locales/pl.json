@@ -877,7 +877,9 @@
     "staking_on_chain_first": "Najpierw wpłata na {{chain}}. Wróć potem po drugą.",
     "dhb_staked_on_chain": "Wpłacono {{amount}} DHB na {{chain}}.",
     "waiting_for_confirmation": "Oczekiwanie na potwierdzenie...",
-    "error": "Błąd"
+    "error": "Błąd",
+    "image_too_large_tier": "Obraz jest zbyt duży — Twój {{tier}} poziom przechowuje obrazy do {{limit}} MB",
+    "image_too_large_untiered": "Obraz jest zbyt duży — obrazy są przechowywane do {{limit}} MB"
   },
   "postOptions": {
     "options": "Opcje",

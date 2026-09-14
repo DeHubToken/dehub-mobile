@@ -55,7 +55,7 @@ import { getSolanaAddress, getSolanaMintStatus } from "../services/solana.servic
 import { useKeyboardLift } from "../hooks/useKeyboardLayout";
 import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
-import { getPostImageLimitForBadge } from "../libs/post-image-allowance";
+import { getPostImageBytesForBadge, getPostImageLimitForBadge } from "../libs/post-image-allowance";
 import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import AssetSuggestions from "../components/common/AssetSuggestions";
@@ -142,7 +142,6 @@ async function measureUploadBytes(payload: {
 }
 
 const SHOW_TITLE_PREF_KEY = "@dhb_post_show_title";
-const MAX_IMAGE_SIZE_BYTES = 20 * 1024 * 1024; // 20 MB per image
 const BASE_MEDIA_UPLOAD_SIZE_BYTES = 1024 * 1024 * 1024; // 1 GB
 const MAX_AUDIO_DURATION_MS = 60_000; // 60 seconds
 const AUDIO_MIME_TYPES = ["audio/mpeg", "audio/wav", "audio/aac", "audio/ogg", "audio/x-m4a", "audio/mp4", "audio/webm"];
@@ -436,6 +435,13 @@ export default function UploadScreen() {
    */
   const [postQuota, setPostQuota] = useState<PostQuotaStatus | null>(null);
   const mediaUploadLimitBytes = postQuota?.mediaBytesPerDay ?? BASE_MEDIA_UPLOAD_SIZE_BYTES;
+  // How much of a picture survives upload is the creator's badge tier — this
+  // is the size the API will STORE, so a file over it is refused here rather
+  // than sent to be crushed. The API is the authority; the local ladder covers
+  // the moment before the quota lands.
+  const imageLimitBytes = postQuota?.imageBytes
+    ?? getPostImageBytesForBadge(authUser?.badgeBalance, authUser?.username, authUser?.badgeLock);
+  const imageLimitMb = Math.round(imageLimitBytes / (1024 * 1024));
   const mediaUploadLimitLabel = `${Number((mediaUploadLimitBytes / (1024 ** 3)).toFixed(1))} GB`;
   useEffect(() => {
     if (!authUser?.address) {
@@ -1350,8 +1356,10 @@ export default function UploadScreen() {
       try {
         const info = await FileSystem.getInfoAsync(asset.uri);
         const size = (info as any)?.size as number | undefined;
-        if (size && size > MAX_IMAGE_SIZE_BYTES) {
-          toastError("Image exceeds 20 MB limit and was skipped.");
+        if (size && size > imageLimitBytes) {
+          toastError(postQuota?.tier
+            ? t("toasts.image_too_large_tier", { tier: postQuota.tier, limit: imageLimitMb })
+            : t("toasts.image_too_large_untiered", { limit: imageLimitMb }));
           continue;
         }
       } catch {}
@@ -1360,7 +1368,7 @@ export default function UploadScreen() {
     if (validAssets.length > 0) {
       setPickedImages((prev) => [...prev, ...validAssets].slice(0, imageLimit));
     }
-  }, [imageLimit]);
+  }, [imageLimit, imageLimitBytes, imageLimitMb, postQuota?.tier, t]);
 
   /** "Add more" tile on the image grid — already in image mode, so images only. */
   const handlePickMoreImages = useCallback(async () => {
@@ -1371,7 +1379,7 @@ export default function UploadScreen() {
           mediaTypes: ["images"],
           allowsMultipleSelection: true,
           selectionLimit: imageLimit - pickedImages.length,
-          quality: 0.8,
+          quality: 1,
         });
         if (result.canceled || !result.assets?.length) return;
         await adoptImageAssets(result.assets);
@@ -1406,7 +1414,7 @@ export default function UploadScreen() {
           mediaTypes: pickedVideo ? ["videos"] : ["images", "videos"],
           allowsMultipleSelection: !pickedVideo,
           selectionLimit: pickedVideo ? 1 : remaining,
-          quality: 0.8,
+          quality: 1,
         });
 
         if (result.canceled || !result.assets?.length) return;
@@ -1510,7 +1518,7 @@ export default function UploadScreen() {
       await runWithPermissions(["camera", "microphone"], async () => {
         const result = await ImagePicker.launchCameraAsync({
           mediaTypes,
-          quality: 0.8,
+          quality: 1,
         });
 
         if (result.canceled || !result.assets?.[0]) return;
@@ -1546,7 +1554,7 @@ export default function UploadScreen() {
           mediaTypes: ["images"],
           allowsMultipleSelection: false,
           selectionLimit: 1,
-          quality: 0.8,
+          quality: 1,
         });
         if (result.canceled || !result.assets?.[0]?.uri) return;
 
@@ -1554,8 +1562,10 @@ export default function UploadScreen() {
         try {
           const info = await FileSystem.getInfoAsync(asset.uri);
           const size = (info as any)?.size as number | undefined;
-          if (size && size > MAX_IMAGE_SIZE_BYTES) {
-            toastError("Image exceeds 20 MB limit.");
+          if (size && size > imageLimitBytes) {
+            toastError(postQuota?.tier
+              ? t("toasts.image_too_large_tier", { tier: postQuota.tier, limit: imageLimitMb })
+              : t("toasts.image_too_large_untiered", { limit: imageLimitMb }));
             return;
           }
         } catch {}

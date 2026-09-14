@@ -1984,7 +1984,9 @@
     "staking_on_chain_first": "पहले {{chain}} पर जमा हो रहा है। बाद में दूसरी के लिए लौटें।",
     "dhb_staked_on_chain": "{{chain}} पर {{amount}} DHB जमा किए गए।",
     "waiting_for_confirmation": "पुष्टि की प्रतीक्षा हो रही है...",
-    "error": "त्रुटि"
+    "error": "त्रुटि",
+    "image_too_large_tier": "फोटो बहुत बड़ा हे — your {{tier}} tier Stores images up to {{limit}} MB",
+    "image_too_large_untiered": "फोटो बहुत बडखा हवय — फोटो ल {{limit}} MB तक संग्रहीत करे जात हवय"
   },
   "staking": {
     "title": "स्टेकिंग",

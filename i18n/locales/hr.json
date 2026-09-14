@@ -1967,7 +1967,9 @@
     "staking_on_chain_first": "Staking on {{chain}} first. Come back after to stake the other.",
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
-    "error": "Error"
+    "error": "Error",
+    "image_too_large_tier": "Slika je prevelika — razina {{tier}} pohranjuje slike do {{limit}} MB",
+    "image_too_large_untiered": "Slika je prevelika — slike se pohranjuju do {{limit}} MB"
   },
   "staking": {
     "title": "Staking",

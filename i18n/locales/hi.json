@@ -1768,7 +1768,9 @@
     "staking_on_chain_first": "पहले {{chain}} पर जमा हो रहा है। बाद में दूसरी के लिए लौटें।",
     "dhb_staked_on_chain": "{{chain}} पर {{amount}} DHB जमा किए गए।",
     "waiting_for_confirmation": "पुष्टि की प्रतीक्षा हो रही है...",
-    "error": "त्रुटि"
+    "error": "त्रुटि",
+    "image_too_large_tier": "इमेज बहुत बड़ी है — आपका {{tier}} टियर {{limit}} MB तक इमेज स्टोर करता है",
+    "image_too_large_untiered": "इमेज बहुत बड़ी है — इमेज {{limit}} MB तक स्टोर की जाती हैं"
   },
   "postOptions": {
     "options": "विकल्प",

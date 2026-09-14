@@ -2053,7 +2053,9 @@
     "staking_on_chain_first": "{{chain}} üzerinde yatırılıyor. Diğeri için sonra gelin.",
     "dhb_staked_on_chain": "{{amount}} DHB {{chain}} üzerinde yatırıldı.",
     "waiting_for_confirmation": "Onay bekleniyor...",
-    "error": "Hata"
+    "error": "Hata",
+    "image_too_large_tier": "Görsel çok büyük; {{tier}} seviyende {{limit}} MB'a kadar görsel depolanabilir",
+    "image_too_large_untiered": "Görüntü çok büyük — görüntüler {{limit}} MB'a kadar saklanır"
   },
   "staking": {
     "title": "Staking",

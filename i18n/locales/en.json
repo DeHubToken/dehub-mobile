@@ -2087,7 +2087,9 @@
     "staking_on_chain_first": "Staking on {{chain}} first. Come back after to stake the other.",
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
-    "error": "Error"
+    "error": "Error",
+    "image_too_large_tier": "Image is too large — your {{tier}} tier stores images up to {{limit}} MB",
+    "image_too_large_untiered": "Image is too large — images are stored up to {{limit}} MB"
   },
   "staking": {
     "title": "Staking",

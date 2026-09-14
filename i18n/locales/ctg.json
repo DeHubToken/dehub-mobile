@@ -2095,7 +2095,9 @@
     "staking_on_chain_first": "Staking on {{chain}} first. Come back after to stake the other.",
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
-    "error": "Error"
+    "error": "Error",
+    "image_too_large_tier": "ছবিটা বেশি বড় — তোমার {{tier}} টায়ার {{limit}} এমবি পর্যন্ত ছবি রাখতে পারে",
+    "image_too_large_untiered": "ছবিটা অহোক বড় — ছবিগুলো {{limit}} MB পর্যন্ত রাখা হয়"
   },
   "staking": {
     "title": "Staking",

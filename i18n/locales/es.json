@@ -1974,7 +1974,9 @@
     "failed_to_save_settings": "No se pudieron guardar los ajustes",
     "password_updated": "¡Contraseña actualizada!",
     "failed_to_update_password": "No se pudo actualizar la contraseña",
-    "failed_to_connect_wallet": "No se pudo conectar la billetera"
+    "failed_to_connect_wallet": "No se pudo conectar la billetera",
+    "image_too_large_tier": "La imagen es demasiado grande: tu nivel {{tier}} almacena imágenes de hasta {{limit}} MB",
+    "image_too_large_untiered": "La imagen es demasiado grande: las imágenes se almacenan hasta {{limit}} MB"
   },
   "staking": {
     "title": "Staking",

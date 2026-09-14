@@ -1968,7 +1968,9 @@
     "staking_on_chain_first": "Deposit di {{chain}} dulu. Kembali lagi untuk yang satunya.",
     "dhb_staked_on_chain": "{{amount}} DHB didepositkan di {{chain}}.",
     "waiting_for_confirmation": "Menunggu konfirmasi...",
-    "error": "Kesalahan"
+    "error": "Kesalahan",
+    "image_too_large_tier": "Gambar terlalu besar — tingkatan {{tier}} Anda menyimpan gambar hingga {{limit}} MB",
+    "image_too_large_untiered": "Gambar terlalu besar — gambar disimpan hingga {{limit}} MB"
   },
   "staking": {
     "title": "Staking",

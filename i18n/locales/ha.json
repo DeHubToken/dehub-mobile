@@ -1958,7 +1958,9 @@
     "staking_on_chain_first": "Staking on {{chain}} first. Come back after to stake the other.",
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
-    "error": "Error"
+    "error": "Error",
+    "image_too_large_tier": "Hoto yana da girma sosai — your {{tier}}tier yana adana hotuna har zuwa {{limit}} MB",
+    "image_too_large_untiered": "Hoto yana da girma sosai — ana adana hotuna har zuwa {{limit}} MB"
   },
   "staking": {
     "title": "Staking",

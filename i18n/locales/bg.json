@@ -1970,7 +1970,9 @@
     "staking_on_chain_first": "Staking on {{chain}} first. Come back after to stake the other.",
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
-    "error": "Error"
+    "error": "Error",
+    "image_too_large_tier": "Изображението е твърде голямо — вашето ниво {{tier}} съхранява изображения до {{limit}} MB",
+    "image_too_large_untiered": "Изображението е твърде голямо — изображенията се съхраняват до {{limit}} MB"
   },
   "staking": {
     "title": "Staking",
