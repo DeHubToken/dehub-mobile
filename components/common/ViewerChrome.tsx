@@ -12,8 +12,7 @@
  * value needs to change, it changes here and both surfaces move together.
  */
 import React from "react";
-import { View, StyleSheet, Platform } from "react-native";
-import { BlurView } from "expo-blur";
+import { View, StyleSheet } from "react-native";
 
 export const ICON_COLOR = "#fff";
 /** Web's `text-white/70` on every count under an action row. */
@@ -26,8 +25,11 @@ export const CHROME_GAP = 12;
 /** Web `w-10 h-10` / `rounded-xl` on every chrome button. */
 export const CHROME_SIZE = 40;
 export const CHROME_RADIUS = 12;
-/** Web `bg-zinc-900/60 backdrop-blur-sm`, and nothing else — no hairline. */
-export const CHROME_FILL = "rgba(24,24,27,0.6)";
+/**
+ * Web is `bg-zinc-900/60 backdrop-blur-sm`; this is the same zinc-900 at full
+ * opacity, because there is no blur here to carry the contrast. No hairline.
+ */
+export const CHROME_FILL = "#18181B";
 /**
  * Takes the 40pt buttons past the 44pt tap minimum. The horizontal half is
  * exactly CHROME_GAP / 2, so neighbours in a group meet at the midpoint of the
@@ -56,11 +58,12 @@ export const TEXT_SHADOW = {
  * than a wrapper, so `pointerEvents="none"` lets taps on the button's own
  * padding still reach the video underneath.
  *
- * The Android backdrop blur is deliberately absent. `dimezisBlurView`
+ * The fill is opaque, and there is no blur on either platform. Android never
+ * had one — expo-blur paints a flat tint there rather than sampling anything —
+ * so these icons sat on a bare 60% fill and the video read through them. And
+ * turning on the real Android blur is not an option: `dimezisBlurView`
  * re-snapshots the root view every frame and throws when a list mutates its
- * children mid-draw, so it is only safe on surfaces that mount and unmount
- * (see components/ui/LiquidGlass.tsx) — never on chrome pinned over a video
- * feed that is recycling cells. The 60% fill carries the contrast on its own.
+ * children mid-draw, which is fatal on chrome pinned over a recycling feed.
  */
 export const ChromeFill: React.FC<{ radius?: number }> = ({ radius }) => (
   <View
@@ -71,9 +74,6 @@ export const ChromeFill: React.FC<{ radius?: number }> = ({ radius }) => (
       radius === undefined ? null : { borderRadius: radius },
     ]}
   >
-    {Platform.OS === "ios" && (
-      <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
-    )}
     <View style={[StyleSheet.absoluteFill, { backgroundColor: CHROME_FILL }]} />
   </View>
 );

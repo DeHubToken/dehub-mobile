@@ -4,12 +4,10 @@ import {
   Pressable,
   Text,
   StyleSheet,
-  Platform,
   Modal,
   Dimensions,
   findNodeHandle,
 } from "react-native";
-import { BlurView } from "expo-blur";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "expo-linear-gradient";
 import { icons } from "lucide-react-native";
@@ -150,11 +148,6 @@ const Icon: React.FC<IconProps> = ({
           pointerEvents="none"
         >
           <View style={styles.tooltipBubble}>
-            <BlurView
-              intensity={Platform.OS === "ios" ? 60 : 40}
-              tint="dark"
-              style={StyleSheet.absoluteFill}
-            />
             <View style={styles.tooltipGlassOverlay}>
               <Text style={styles.tooltipText}>{tooltip}</Text>
             </View>
@@ -246,7 +239,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.15)",
   },
   tooltipGlassOverlay: {
-    backgroundColor: "rgba(30, 30, 30, 0.45)",
+    backgroundColor: "#1D1F21",
   },
   tooltipText: {
     color: "#F3F4F6",

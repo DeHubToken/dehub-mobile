@@ -18,7 +18,6 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import { BlurView } from "expo-blur";
 import * as FileSystem from "expo-file-system/legacy";
 import * as MediaLibrary from "expo-media-library";
 import Icon from "../components/ui/Icon";
@@ -483,11 +482,6 @@ const ImageViewerScreen = () => {
           accessibilityRole="button"
           accessibilityLabel="Close"
         >
-          <BlurView
-            intensity={Platform.OS === "ios" ? 60 : 40}
-            tint="dark"
-            style={StyleSheet.absoluteFill}
-          />
           <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
           <Icon name="X" size={20} color="#fff" />
         </TouchableOpacity>
@@ -496,11 +490,6 @@ const ImageViewerScreen = () => {
         {images.length > 1 && (
           <View style={styles.counterWrap} pointerEvents="none">
             <View style={styles.counterPill}>
-              <BlurView
-                intensity={Platform.OS === "ios" ? 60 : 40}
-                tint="dark"
-                style={StyleSheet.absoluteFill}
-              />
               <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
               <Text style={styles.counterText}>
                 {currentIndex + 1} / {images.length}
@@ -521,11 +510,6 @@ const ImageViewerScreen = () => {
               accessibilityRole="button"
               accessibilityLabel="Download image"
             >
-              <BlurView
-                intensity={Platform.OS === "ios" ? 60 : 40}
-                tint="dark"
-                style={StyleSheet.absoluteFill}
-              />
               <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
               {isSaving ? (
                 <ActivityIndicator size="small" color="#fff" />
@@ -617,7 +601,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   glassOverlay: {
-    backgroundColor: "rgba(0,0,0,0.45)",
+    backgroundColor: "#1D1F21",
   },
   dotsRow: {
     position: "absolute",

@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo } from "react";
-import { View, Text, Image, ImageBackground, TouchableOpacity, ActivityIndicator, StyleSheet, Platform } from "react-native";
-import { BlurView } from "expo-blur";
+import { View, Text, Image, ImageBackground, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { SvgXml } from "react-native-svg";
 import Avatar from "../common/Avatar";
@@ -198,12 +197,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           activeOpacity={0.7}
           style={s.glassBtn}
         >
-          {/* Android's real blur crashes when list views mutate mid-snapshot (see FeedNavBar); iOS-only. */}
-          {Platform.OS === "ios" ? (
-            <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-          ) : (
-            <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "rgba(20,20,22,0.55)" }]} />
-          )}
+          <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
           <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
           <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
           <View style={s.glassBtnContent}>
@@ -217,12 +211,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
     if (followLoading) {
       return (
         <View style={[s.glassBtn, { opacity: 0.6 }]}>
-          {/* Android's real blur crashes when list views mutate mid-snapshot (see FeedNavBar); iOS-only. */}
-          {Platform.OS === "ios" ? (
-            <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-          ) : (
-            <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "rgba(20,20,22,0.55)" }]} />
-          )}
+          <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
           <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
           <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
           <View style={s.glassBtnContent}>
@@ -240,12 +229,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           activeOpacity={0.7}
           style={[s.glassBtn, disableActions && { opacity: 0.4 }]}
         >
-          {/* Android's real blur crashes when list views mutate mid-snapshot (see FeedNavBar); iOS-only. */}
-          {Platform.OS === "ios" ? (
-            <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-          ) : (
-            <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "rgba(20,20,22,0.55)" }]} />
-          )}
+          <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
           <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
           <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
           <View style={s.glassBtnContent}>
@@ -264,12 +248,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           activeOpacity={0.7}
           style={[s.glassBtn, disableActions && { opacity: 0.4 }]}
         >
-          {/* Android's real blur crashes when list views mutate mid-snapshot (see FeedNavBar); iOS-only. */}
-          {Platform.OS === "ios" ? (
-            <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-          ) : (
-            <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "rgba(20,20,22,0.55)" }]} />
-          )}
+          <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
           <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
           <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
           <View style={s.glassBtnContent}>
@@ -287,12 +266,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         activeOpacity={0.7}
         style={[s.glassBtn, disableActions && { opacity: 0.4 }]}
       >
-        {/* Android's real blur crashes when list views mutate mid-snapshot (see FeedNavBar); iOS-only. */}
-        {Platform.OS === "ios" ? (
-          <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-        ) : (
-          <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "rgba(20,20,22,0.55)" }]} />
-        )}
+        <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
         <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
         <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
         <View style={s.glassBtnContent}>
@@ -340,12 +314,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   accessibilityLabel="Message user"
                   style={[s.glassBtn, s.iconBtn]}
                 >
-                  {/* Android's real blur crashes when list views mutate mid-snapshot (see FeedNavBar); iOS-only. */}
-                  {Platform.OS === "ios" ? (
-                    <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-                  ) : (
-                    <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "rgba(20,20,22,0.55)" }]} />
-                  )}
+                  <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
                   <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
                   <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
                   <View style={s.glassBtnContent}>
@@ -489,12 +458,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
               activeOpacity={0.7}
               style={[s.glassBtn, { marginTop: 12, paddingHorizontal: 0 }]}
             >
-              {/* Android's real blur crashes when list views mutate mid-snapshot (see FeedNavBar); iOS-only. */}
-              {Platform.OS === "ios" ? (
-                <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
-              ) : (
-                <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "rgba(20,20,22,0.55)" }]} />
-              )}
+              <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
               <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
               <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
               <View style={s.glassBtnContent}>

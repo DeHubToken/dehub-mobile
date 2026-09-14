@@ -15,7 +15,6 @@ import {
   Platform,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
 import Avatar from "../common/Avatar";
 import { useAudioPlayer } from "expo-audio";
@@ -304,9 +303,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
       >
-      <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose}>
-        <BlurView intensity={30} tint="dark" style={StyleSheet.absoluteFill} />
-      </TouchableOpacity>
+      <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose} />
       <Animated.View
         style={[styles.sheet, { height: sheetHeight }]}
         {...responder.panHandlers}
@@ -374,12 +371,14 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
 };
 
 const styles = StyleSheet.create({
-  backdrop: { flex: 1 },
+  // The dim used to come from a BlurView, which on Android was only ever a
+  // flat tint anyway. Same 50% scrim every other sheet in the app uses.
+  backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.5)" },
   sheet: {
     marginTop: "auto",
     width: "100%",
     maxHeight: "100%",
-    backgroundColor: "rgba(12,12,14,0.96)",
+    backgroundColor: "#0C0C0E",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.1)",
     borderTopLeftRadius: 20,

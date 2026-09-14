@@ -38,7 +38,6 @@ jest.mock('react-native-reanimated', () => ({
   withTiming: (value: unknown) => value, runOnJS: (fn: unknown) => fn,
   Easing: { bezier: jest.fn() }, interpolate: jest.fn(),
 }));
-jest.mock('expo-blur', () => ({ BlurView: 'View' }));
 jest.mock('../../components/common/Avatar', () => 'Avatar');
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../config/storefront', () => ({ DIGITAL_PURCHASES_ENABLED: true }));

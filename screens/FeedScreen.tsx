@@ -5,7 +5,6 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Platform,
   FlatList,
   Dimensions,
   ActivityIndicator,
@@ -16,7 +15,6 @@ import { DeHubLoader } from "../components/DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { Image } from "expo-image";
-import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -736,22 +734,10 @@ const FeedScreen = () => {
       {!isGridView && !transitionPending && (
         <View style={[styles.floatingButtonContainer, { bottom: insets.bottom }]}>
           <TouchableOpacity activeOpacity={0.8} onPress={toggleViewMode} style={styles.floatingButton}>
-            {/* Android's experimental blur (dimezisBlurView) redraws the whole
-                root view every frame and crashes with IndexOutOfBoundsException
-                when the feed list mutates during its pre-draw snapshot — real
-                blur is iOS-only, Android gets a translucent glass fallback
-                (same constraint as FeedNavBar). */}
-            {Platform.OS === "ios" ? (
-              <BlurView intensity={80} tint="dark" style={styles.blurContainer}>
-                <View style={styles.glassOverlay} />
-                <MaterialIcons name="grid-on" size={18} color="#FFFFFF" />
-              </BlurView>
-            ) : (
-              <View style={[styles.blurContainer, styles.androidBlurFallback]}>
-                <View style={styles.glassOverlay} />
-                <MaterialIcons name="grid-on" size={18} color="#FFFFFF" />
-              </View>
-            )}
+            <View style={[styles.floatingButtonFill, styles.floatingButtonSurface]}>
+              <View style={styles.glassOverlay} />
+              <MaterialIcons name="grid-on" size={18} color="#FFFFFF" />
+            </View>
           </TouchableOpacity>
         </View>
       )}
@@ -792,15 +778,15 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 8,
   },
-  blurContainer: {
+  floatingButtonFill: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 12,
     overflow: "hidden",
   },
-  androidBlurFallback: {
-    backgroundColor: "rgba(16, 16, 20, 0.65)",
+  floatingButtonSurface: {
+    backgroundColor: "#101014",
   },
   glassOverlay: {
     ...StyleSheet.absoluteFillObject,

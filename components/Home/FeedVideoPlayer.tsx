@@ -21,7 +21,6 @@ import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from "../../libs/video-preferences";
 import SmartImage from "../common/SmartImage";
 import Spinner from "../common/Spinner";
-import { BlurView } from "expo-blur";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
@@ -875,7 +874,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         <View style={icons.length > 1 ? styles.gatedIconRow : undefined}>
           {icons.map((ic, i) => (
             <View key={i} style={icons.length > 1 ? styles.gatedIconBox : styles.gatedIconBoxLarge}>
-              <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
               <View style={styles.gatedIconOverlay} />
               <Icon name={ic.name as any} size={icons.length > 1 ? 24 : 28} color="#fff" />
             </View>
@@ -995,7 +993,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       {!hideControls && !isContentGated && !isPlaying && !isProcessing && !isFailed && (
         <Pressable {...mediaTap} style={styles.playOverlay}>
           <View style={styles.glassPlayButton}>
-            <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
             <View style={styles.glassOverlay} />
             {isStarting ? (
               // The glyph is replaced in place rather than the button being
@@ -1021,26 +1018,22 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
             <View style={styles.controlsContainer} pointerEvents="box-none">
             <View style={styles.topControls}>
               <Pressable onPress={handleToggleSpeed} style={styles.glassButton}>
-                <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
                 <View style={styles.glassOverlay} />
                 <Text style={{ color: "#fff", fontSize: 11, fontWeight: "bold" }}>{playbackRate}x</Text>
               </Pressable>
               
               <Pressable onPress={handleToggleLoop} style={styles.glassButton}>
-                <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
                 <View style={styles.glassOverlay} />
                 <Icon name={isLooping ? "Repeat" : "ArrowRight"} size={14} color={isLooping ? "#fff" : "#9CA3AF"} />
               </Pressable>
 
               <Pressable onPress={handleToggleMute} style={styles.glassButton}>
-                <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
                 <View style={styles.glassOverlay} />
                 <Icon name={isMuted ? "VolumeX" : "Volume2"} size={16} color="#fff" />
               </Pressable>
               
               <PictureInPictureButton videoRef={videoViewRef} />
               <Pressable onPress={handleFullscreen} style={styles.glassButton}>
-                <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
                 <View style={styles.glassOverlay} />
                 <Icon name="Maximize" size={16} color="#fff" />
               </Pressable>
@@ -1182,6 +1175,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   );
 };
 
+// Player chips sit on top of the video: opaque, or the frame behind them
+// reads through the icons. expo-blur does not blur on Android at all.
+const CONTROL_FILL = "#1D1F21";
+
 const styles = StyleSheet.create({
   container: {
     width: "100%",
@@ -1248,7 +1245,7 @@ const styles = StyleSheet.create({
   },
   glassOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.4)",
+    backgroundColor: CONTROL_FILL,
   },
   controlsContainer: {
     ...StyleSheet.absoluteFillObject,
@@ -1373,7 +1370,7 @@ const styles = StyleSheet.create({
   },
   gatedIconOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.4)",
+    backgroundColor: CONTROL_FILL,
   },
   gatedTitle: {
     color: "#fff",
@@ -1456,7 +1453,6 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "thumbnail" | "durati
         {!hideControls && (
           <Pressable {...mediaTap} style={styles.playOverlay}>
             <View style={styles.glassPlayButton}>
-              <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
               <View style={styles.glassOverlay} />
               <View style={{ marginLeft: 2 }}>
                 <Icon name="Play" size={24} color="#fff" />

@@ -8,11 +8,9 @@ import {
   ScrollView,
   StyleSheet,
   Dimensions,
-  Platform,
   BackHandler,
   Keyboard,
 } from "react-native";
-import { BlurView } from "expo-blur";
 import { CommonActions, useNavigation, useNavigationState } from "@react-navigation/native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
@@ -368,23 +366,12 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         <Animated.View
           style={[styles.drawer, drawerStyle, { width: DRAWER_WIDTH }]}
         >
-          {/* Web sidebar parity: dark-surface bg-black/60 + backdrop-blur(24px) +
-              border-white/10. The blur samples what's behind the drawer;
-              glassOverlay supplies the black/60 wash on top. */}
-          {Platform.OS === "ios" ? (
-            <BlurView
-              pointerEvents="none"
-              intensity={70}
-              tint="dark"
-              style={StyleSheet.absoluteFill}
-            />
-          ) : (
-            // A tint, not a blur, on Android: dimezisBlurView re-snapshots the
-            // whole root every frame and crashes the process when the feed
-            // underneath mutates mid-draw (Dimezis/BlurView #191).
-            <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(9, 9, 11, 0.94)" }]} />
-          )}
-          <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
+          {/* Web gets border-white/10 over a real backdrop-blur(24px). Android
+              cannot: expo-blur paints a flat tint instead of blurring, and the
+              one method that does blur re-snapshots the root view every frame
+              and crashes when the feed underneath mutates mid-draw. So the
+              panel is simply opaque. */}
+          <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#09090B" }]} />
 
           {/* The profile block and the search field are pinned; only the item
               list scrolls under them. The field has to sit outside the
@@ -585,11 +572,6 @@ const styles = StyleSheet.create({
     // Web: border border-white/10 — hairline on the exposed edge.
     borderRightWidth: 1,
     borderRightColor: "rgba(255, 255, 255, 0.10)",
-  },
-  // Web: dark-surface bg-black/60 over the backdrop blur, but lighter here so the blur
-  // reads through more — the dark BlurView tint already darkens on top.
-  glassOverlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.0)",
   },
   // Transparent border on every row keeps height stable when the active border appears.
   itemBase: {

@@ -7,7 +7,6 @@ import {
   StatusBar,
   BackHandler,
   StyleSheet,
-  Platform,
   ActivityIndicator,
 } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -18,7 +17,6 @@ import {
   configureForBackgroundPlayback,
   releaseBackgroundPlayback,
 } from "../libs/audioSession";
-import { BlurView } from "expo-blur";
 import * as ScreenOrientation from "expo-screen-orientation";
 import Animated, {
   useSharedValue,
@@ -365,11 +363,6 @@ const FullscreenVideoScreen = () => {
               accessibilityRole="button"
               accessibilityLabel="Close video"
             >
-              <BlurView
-                intensity={Platform.OS === "ios" ? 60 : 40}
-                tint="dark"
-                style={StyleSheet.absoluteFill}
-              />
               <View style={styles.glassOverlay} />
               <Icon name="X" size={20} color="#fff" />
             </Pressable>
@@ -385,11 +378,6 @@ const FullscreenVideoScreen = () => {
                 accessibilityRole="button"
                 accessibilityLabel={isMuted ? "Unmute" : "Mute"}
               >
-                <BlurView
-                  intensity={Platform.OS === "ios" ? 60 : 40}
-                  tint="dark"
-                  style={StyleSheet.absoluteFill}
-                />
                 <View style={styles.glassOverlay} />
                 <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
               </Pressable>
@@ -400,11 +388,6 @@ const FullscreenVideoScreen = () => {
                 accessibilityRole="button"
                 accessibilityLabel="Rotate orientation"
               >
-                <BlurView
-                  intensity={Platform.OS === "ios" ? 60 : 40}
-                  tint="dark"
-                  style={StyleSheet.absoluteFill}
-                />
                 <View style={styles.glassOverlay} />
                 <Icon name={isLandscape ? "Minimize2" : "RotateCcw"} size={20} color="#fff" />
               </Pressable>
@@ -418,11 +401,6 @@ const FullscreenVideoScreen = () => {
               accessibilityRole="button"
               accessibilityLabel={isPlaying ? "Pause" : "Play"}
             >
-              <BlurView
-                intensity={Platform.OS === "ios" ? 60 : 40}
-                tint="dark"
-                style={StyleSheet.absoluteFill}
-              />
               <View style={styles.glassOverlay} />
               <Icon name={isPlaying ? "Pause" : "Play"} size={32} color="#fff" />
             </Pressable>
@@ -507,7 +485,7 @@ const styles = StyleSheet.create({
   },
   glassOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.45)",
+    backgroundColor: "#1D1F21",
   },
   centerControls: {
     alignItems: "center",
