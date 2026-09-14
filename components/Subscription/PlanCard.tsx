@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
-import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
 import GlassModal from "../ui/GlassModal";
@@ -158,7 +157,6 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
   return (
     <>
       <View style={s.card}>
-        <BlurView intensity={30} tint="dark" style={StyleSheet.absoluteFill} />
         <LinearGradient
           colors={GLASS_GRADIENT}
           start={{ x: 0, y: 0 }}
@@ -328,7 +326,7 @@ const s = StyleSheet.create({
   card: {
     borderRadius: 12,
     overflow: "hidden",
-    backgroundColor: "rgba(255,255,255,0.05)",
+    backgroundColor: "#18181B",
     marginBottom: 12,
   },
   cardBorder: {

@@ -6,7 +6,6 @@ import {
   ActivityIndicator,
   StyleSheet,
 } from "react-native";
-import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
 import GlassTipSheet from "../Tip/GlassTipSheet";
@@ -41,7 +40,6 @@ const UserProfileActions: React.FC<UserProfileActionsProps> = ({
     if (followLoading) {
       return (
         <View style={[glassBtn.wrapper, { opacity: 0.6 }]}>
-          <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: RADIUS }]} />
           <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: RADIUS }]} />
           <View style={[StyleSheet.absoluteFill, glassBtn.overlay]} />
           <View style={glassBtn.topHighlight} />
@@ -60,7 +58,6 @@ const UserProfileActions: React.FC<UserProfileActionsProps> = ({
           activeOpacity={0.7}
           style={[glassBtn.wrapper, disableActions && { opacity: 0.4 }]}
         >
-          <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: RADIUS }]} />
           <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: RADIUS }]} />
           <View style={[StyleSheet.absoluteFill, glassBtn.overlay]} />
           <View style={glassBtn.topHighlight} />
@@ -80,7 +77,6 @@ const UserProfileActions: React.FC<UserProfileActionsProps> = ({
           activeOpacity={0.7}
           style={[glassBtn.wrapper, disableActions && { opacity: 0.4 }]}
         >
-          <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: RADIUS }]} />
           <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: RADIUS }]} />
           <View style={[StyleSheet.absoluteFill, glassBtn.overlay]} />
           <View style={glassBtn.topHighlight} />
@@ -99,7 +95,6 @@ const UserProfileActions: React.FC<UserProfileActionsProps> = ({
         activeOpacity={0.7}
         style={[glassBtn.wrapper, disableActions && { opacity: 0.4 }]}
       >
-        <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: RADIUS }]} />
         <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: RADIUS }]} />
         <View style={[StyleSheet.absoluteFill, glassBtn.overlay]} />
         <View style={glassBtn.topHighlight} />
@@ -125,7 +120,6 @@ const UserProfileActions: React.FC<UserProfileActionsProps> = ({
           activeOpacity={0.7}
           style={[glassBtn.wrapper, !address && { opacity: 0.5 }]}
         >
-          <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: RADIUS }]} />
           <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: RADIUS }]} />
           <View style={[StyleSheet.absoluteFill, glassBtn.overlay]} />
           <View style={glassBtn.topHighlight} />
@@ -162,6 +156,10 @@ const glassBtn = StyleSheet.create({
     height: BUTTON_H,
     borderRadius: RADIUS,
     overflow: "hidden",
+    // Opaque base under the gradient and the overlay: these buttons sit on the
+    // profile banner, and expo-blur does not blur on Android, so the "glass"
+    // above this was a tint the banner read straight through.
+    backgroundColor: "#18181B",
   },
   overlay: {
     backgroundColor: "rgba(24,24,27,0.3)",
