@@ -1462,26 +1462,24 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           </TouchableOpacity>
         </View>
       )}
-      <View className="flex-row items-start">
-        <View className="flex-1">
-          <FeedCardHeader
-            avatarUrl={avatar}
-            displayName={displayName}
-            username={username}
-            address={minterAddress}
-            badgeImage={badgeImg}
-            onUserPress={handleUserPress}
-            onMenuPress={handleOpenOptions}
-            onAiPress={handleAiPress}
-            onBoostPress={
-              DIGITAL_PURCHASES_ENABLED && isOwnerPost && isSignedIn && tokenId != null
-                ? handleBoostPress
-                : undefined
-            }
-            isHidden={isHidden}
-          />
-        </View>
-      </View>
+      {/* No wrapper row: the header is a full-width row of its own, and a
+          card is ~100 native views, each one paid for at mount mid-fling. */}
+      <FeedCardHeader
+        avatarUrl={avatar}
+        displayName={displayName}
+        username={username}
+        address={minterAddress}
+        badgeImage={badgeImg}
+        onUserPress={handleUserPress}
+        onMenuPress={handleOpenOptions}
+        onAiPress={handleAiPress}
+        onBoostPress={
+          DIGITAL_PURCHASES_ENABLED && isOwnerPost && isSignedIn && tokenId != null
+            ? handleBoostPress
+            : undefined
+        }
+        isHidden={isHidden}
+      />
 
       {/* Everything the post actually says — media, caption, embeds — sits
           behind the warning together. A text post's body is its content, so
@@ -1560,25 +1558,26 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       )}
 
       <View className="flex-row items-center gap-2 pt-3">
+        {/* Time and dot are one native text with two spans, and the view
+            count sits directly in the row (the -4 keeps its 4px gap to the
+            icon under the row's 8px gap). Two views fewer per card. */}
         <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>
           {timeAgo}
+          <Text style={{ color: "#6F7174" }}>{"  ·"}</Text>
         </Text>
-        <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>·</Text>
-        <View className="flex-row items-center gap-1">
-          <Icon
-            name={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"}
-            size={13}
-            color="#6F7174"
-          />
-          {/* One number for every post type, same as web: the icon says what
-              kind of post it is, the count is always the post's own views. An
-              audio post's listen tally lives inside the player, where it is
-              labelled; printed here it read as the view count and undercounted
-              by an order of magnitude. */}
-          <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>
-            {formatCompactNumber(views)}
-          </Text>
-        </View>
+        <Icon
+          name={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"}
+          size={13}
+          color="#6F7174"
+        />
+        {/* One number for every post type, same as web: the icon says what
+            kind of post it is, the count is always the post's own views. An
+            audio post's listen tally lives inside the player, where it is
+            labelled; printed here it read as the view count and undercounted
+            by an order of magnitude. */}
+        <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90", marginLeft: -4 }}>
+          {formatCompactNumber(views)}
+        </Text>
         {isLive && peakAudience > 0 && (
           <>
             <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>·</Text>
