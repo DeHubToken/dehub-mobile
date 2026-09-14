@@ -884,12 +884,30 @@ export default function FeatureRequestsScreen() {
   const { data: focusedRequest } = useFeatureRequest(focusedRequestId);
 
   const requestItems = useMemo(() => data?.pages.flat() ?? [], [data]);
-  const rawItems =
-    tab === "shipped"
-      ? shipped.data ?? []
-      : tab === "shipping"
-        ? inProgress.data ?? []
-        : requestItems;
+  // Shipped and Shipping arrive as whole arrays rather than a paged query, so
+  // the search box and category chips filter them here. The term only ever
+  // reached useFeatureRequests, so typing on either tab did nothing -- the
+  // same bug web fixed in dehubweb#1427. Plain equality on category matches
+  // what this screen's own list query does.
+  const matchesFilters = useCallback(
+    (row: FeatureRequest) => {
+      if (category !== "all" && row.category !== category) return false;
+      const q = debouncedSearch.trim().toLowerCase();
+      if (!q) return true;
+      return row.title.toLowerCase().includes(q) || row.description.toLowerCase().includes(q);
+    },
+    [category, debouncedSearch],
+  );
+  const isFiltering = debouncedSearch.trim().length > 0 || category !== "all";
+  const rawItems = useMemo(
+    () =>
+      tab === "shipped"
+        ? (shipped.data ?? []).filter(matchesFilters)
+        : tab === "shipping"
+          ? (inProgress.data ?? []).filter(matchesFilters)
+          : requestItems,
+    [tab, shipped.data, inProgress.data, requestItems, matchesFilters],
+  );
   const items = useMemo(
     () => (focusedRequest ? rawItems.filter((f) => f.id !== focusedRequest.id) : rawItems),
     [rawItems, focusedRequest],
@@ -958,14 +976,23 @@ export default function FeatureRequestsScreen() {
     { key: "shipped", label: t("features.shipped"), icon: "CircleCheck", count: shippedCount },
   ];
 
+  // A search or chip that matches nothing must not read as the board having
+  // lost rows, so the filtered tabs get "no matches" rather than "nothing yet".
+  const noMatchCopy = debouncedSearch.trim()
+    ? { title: t("features.noSearchResults"), body: "" }
+    : { title: t("filters.noMatches"), body: "" };
   const emptyCopy =
     tab === "shipped"
-      ? { title: t("features.noShippedYet"), body: t("features.shippedAppearHere") }
+      ? isFiltering
+        ? noMatchCopy
+        : { title: t("features.noShippedYet"), body: t("features.shippedAppearHere") }
       : tab === "shipping"
-        ? {
-            title: t("features.noShippingYet", "Nothing in progress"),
-            body: t("features.shippingAppearHere", "Requests being built will appear here."),
-          }
+        ? isFiltering
+          ? noMatchCopy
+          : {
+              title: t("features.noShippingYet", "Nothing in progress"),
+              body: t("features.shippingAppearHere", "Requests being built will appear here."),
+            }
         : debouncedSearch
           ? { title: t("features.noSearchResults"), body: "" }
           : { title: t("features.noRequestsYet"), body: t("features.beFirstIdea") };
@@ -1072,37 +1099,40 @@ export default function FeatureRequestsScreen() {
           })}
         </View>
 
+        {/* Category chips filter every tab: Shipped holds most of the board
+            and had no way to narrow it. Sort stays Requests-only -- the other
+            two are ordered by ship date. Mirrors web (dehubweb#1427). */}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          // flexGrow: 0 — without it the strip expands to fill the column
+          // and squashes the list underneath it.
+          style={styles.strip}
+          contentContainerStyle={styles.stripContent}
+        >
+          <Pressable
+            onPress={() => setCategory("all")}
+            style={[styles.chip, category === "all" && styles.chipActive]}
+          >
+            <Text style={[styles.chipText, category === "all" && styles.chipTextActive]}>
+              {t("features.all")}
+            </Text>
+          </Pressable>
+          {CATEGORY_KEYS.map((key) => (
+            <Pressable
+              key={key}
+              onPress={() => setCategory(key)}
+              style={[styles.chip, category === key && styles.chipActive]}
+            >
+              <Text style={[styles.chipText, category === key && styles.chipTextActive]}>
+                {t(CATEGORY_I18N[key])}
+              </Text>
+            </Pressable>
+          ))}
+        </ScrollView>
+
         {tab === "requests" && (
           <>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              // flexGrow: 0 — without it the strip expands to fill the column
-              // and squashes the list underneath it.
-              style={styles.strip}
-              contentContainerStyle={styles.stripContent}
-            >
-              <Pressable
-                onPress={() => setCategory("all")}
-                style={[styles.chip, category === "all" && styles.chipActive]}
-              >
-                <Text style={[styles.chipText, category === "all" && styles.chipTextActive]}>
-                  {t("features.all")}
-                </Text>
-              </Pressable>
-              {CATEGORY_KEYS.map((key) => (
-                <Pressable
-                  key={key}
-                  onPress={() => setCategory(key)}
-                  style={[styles.chip, category === key && styles.chipActive]}
-                >
-                  <Text style={[styles.chipText, category === key && styles.chipTextActive]}>
-                    {t(CATEGORY_I18N[key])}
-                  </Text>
-                </Pressable>
-              ))}
-            </ScrollView>
-
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
