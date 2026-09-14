@@ -365,7 +365,9 @@
     "staking_on_chain_first": "Gửi trên {{chain}} trước. Quay lại sau cho chuỗi còn lại.",
     "dhb_staked_on_chain": "Đã gửi {{amount}} DHB trên {{chain}}.",
     "waiting_for_confirmation": "Đang chờ xác nhận...",
-    "error": "Lỗi"
+    "error": "Lỗi",
+    "image_too_large_tier": "Hình ảnh quá lớn — cấp độ {{tier}} của bạn lưu trữ hình ảnh lên đến {{limit}} MB",
+    "image_too_large_untiered": "Hình ảnh quá lớn — hình ảnh được lưu trữ lên đến {{limit}} MB"
   },
   "feed": {
     "home": "Home",

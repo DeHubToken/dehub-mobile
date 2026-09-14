@@ -1966,7 +1966,9 @@
     "staking_on_chain_first": "Staking on {{chain}} first. Come back after to stake the other.",
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
-    "error": "Error"
+    "error": "Error",
+    "image_too_large_tier": "చిత్రం చాలా పెద్దది — మీ {{tier}} టైర్ {{limit}} MB వరకు చిత్రాలను స్టోర్ చేస్తుంది",
+    "image_too_large_untiered": "చిత్రం చాలా పెద్దది — చిత్రాలు {{limit}} MB వరకు నిల్వ చేయబడతాయి"
   },
   "staking": {
     "title": "Staking",

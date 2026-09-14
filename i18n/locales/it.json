@@ -1982,7 +1982,9 @@
     "staking_on_chain_first": "Prima il deposito su {{chain}}. Torna poi per l'altra.",
     "dhb_staked_on_chain": "{{amount}} DHB depositati su {{chain}}.",
     "waiting_for_confirmation": "In attesa di conferma...",
-    "error": "Errore"
+    "error": "Errore",
+    "image_too_large_tier": "L'immagine è troppo grande: il tuo livello {{tier}} memorizza immagini fino a {{limit}} MB",
+    "image_too_large_untiered": "L'immagine è troppo grande: le immagini sono memorizzate fino a {{limit}} MB"
   },
   "staking": {
     "title": "Staking",

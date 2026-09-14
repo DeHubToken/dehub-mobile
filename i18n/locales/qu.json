@@ -1999,7 +1999,9 @@
     "staking_on_chain_first": "Staking on {{chain}} first. Come back after to stake the other.",
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
-    "error": "Error"
+    "error": "Error",
+    "image_too_large_tier": "Siqiqa ancha hatunmi — {{tier}} pataykiqa siq&#39;ikunata {{limit}} MB nisqakama waqaychan",
+    "image_too_large_untiered": "Siqiqa ancha hatunmi — siq&#39;ikunaqa {{limit}} MB nisqakamam waqaychasqa kachkan"
   },
   "staking": {
     "title": "Staking",

@@ -1971,7 +1971,9 @@
     "staking_on_chain_first": "Staking on {{chain}} first. Come back after to stake the other.",
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
-    "error": "Error"
+    "error": "Error",
+    "image_too_large_tier": "Bilden är för stor — din {{tier}} -nivå lagrar bilder upp till {{limit}} MB",
+    "image_too_large_untiered": "Bilden är för stor — bilder lagras upp till {{limit}} MB"
   },
   "staking": {
     "title": "Staking",

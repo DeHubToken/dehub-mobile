@@ -1984,7 +1984,9 @@
     "staking_on_chain_first": "Сначала вносим в сети {{chain}}. Вернитесь потом для второй.",
     "dhb_staked_on_chain": "{{amount}} DHB внесено в сети {{chain}}.",
     "waiting_for_confirmation": "Ожидание подтверждения...",
-    "error": "Ошибка"
+    "error": "Ошибка",
+    "image_too_large_tier": "Изображение слишком большое. Уровень {{tier}} хранит изображения размером до {{limit}} МБ",
+    "image_too_large_untiered": "Изображение слишком большое — изображения хранятся до {{limit}} МБ"
   },
   "staking": {
     "title": "Стейкинг",

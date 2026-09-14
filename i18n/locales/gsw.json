@@ -1956,7 +1956,9 @@
     "staking_on_chain_first": "Zuerst auf {{chain}}. Komm danach für die andere zurück.",
     "dhb_staked_on_chain": "{{amount}} DHB auf {{chain}} eingezahlt.",
     "waiting_for_confirmation": "Warte auf Bestätigung...",
-    "error": "Fehler"
+    "error": "Fehler",
+    "image_too_large_tier": "Bild isch z'gross — dini {{tier}} Tier speicheret Bilder bis {{limit}} MB",
+    "image_too_large_untiered": "Bild isch z'gross — Bilder wärde bis {{limit}} MB gspeicheret"
   },
   "staking": {
     "title": "Staking",

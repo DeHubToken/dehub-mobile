@@ -1926,7 +1926,9 @@
     "staking_on_chain_first": "ฝากบน {{chain}} ก่อน แล้วค่อยกลับมาทำอีกเชน",
     "dhb_staked_on_chain": "ฝาก {{amount}} DHB บน {{chain}} แล้ว",
     "waiting_for_confirmation": "กำลังรอการยืนยัน...",
-    "error": "ข้อผิดพลาด"
+    "error": "ข้อผิดพลาด",
+    "image_too_large_tier": "รูปภาพใหญ่เกินไป — {{tier}} ระดับของคุณเก็บรูปภาพได้ถึง {{limit}} MB",
+    "image_too_large_untiered": "รูปภาพใหญ่เกินไป — รูปภาพจะเก็บได้สูงสุด {{limit}} MB"
   },
   "staking": {
     "title": "การสเตก",

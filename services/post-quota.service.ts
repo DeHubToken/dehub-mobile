@@ -22,6 +22,11 @@ export interface PostQuotaStatus {
   textPostsPerDay: number;
   mediaBytesUsed: number;
   mediaBytesPerDay: number;
+  /**
+   * Ceiling on a single picture, in bytes — the size the API will STORE, not
+   * just the size it accepts. Optional: an older API does not send it.
+   */
+  imageBytes?: number;
   dhbPerTextPost: number;
   dhbPerGb: number;
   discountRate: number;

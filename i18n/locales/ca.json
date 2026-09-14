@@ -1967,7 +1967,9 @@
     "staking_on_chain_first": "Staking on {{chain}} first. Come back after to stake the other.",
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
-    "error": "Error"
+    "error": "Error",
+    "image_too_large_tier": "La imatge és massa gran: el teu nivell {{tier}} emmagatzema imatges de fins a {{limit}} MB",
+    "image_too_large_untiered": "La imatge és massa gran: les imatges s'emmagatzemen fins a {{limit}} MB"
   },
   "staking": {
     "title": "Staking",
