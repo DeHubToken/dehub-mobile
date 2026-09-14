@@ -1174,6 +1174,7 @@
     "andOthersLikedComment": "{{first}} ਅਤੇ {{others}} ਨੇ ਤੁਹਾਡੀ ਟਿੱਪਣੀ ਪਸੰਦ ਕੀਤੀ",
     "andOthersLikedCommentPreview": "{{first}} ਅਤੇ {{others}} ਨੇ ਤੁਹਾਡੀ ਟਿੱਪਣੀ ਪਸੰਦ ਕੀਤੀ: \"{{preview}}\"",
     "badgeLent": "{{name}} ਤੁਹਾਨੂੰ ਉਨ੍ਹਾਂ ਦੇ {{tier}} ਬੈਜ",
+    "badgeTierUp": "ਵਧਾਈਆਂ! ਹੁਣ ਤੁਸੀਂ {{tier}} ਹੋ 🎉",
     "badgeTakenBack": "{{name}} ਤੁਹਾਨੂੰ ਉਨ੍ਹਾਂ ਦਾ ਉਧਾਰ ਦੇਣਾ ਬੰਦ ਕਰ ਦਿੱਤਾ {{tier}} ਬੈਜ",
     "badgeHandedBack": "{{name}}{{tier}} ਬੈਜ ਨੂੰ ਵਾਪਸ ਕਰ ਦਿੱਤਾ ਤੁਸੀਂ ਉਨ੍ਹਾਂ ਨੂੰ ਉਧਾਰ ਦਿੱਤਾ",
     "badgeLoanLapsed": "{{name}} ਹੁਣ ਤੁਹਾਨੂੰ ਉਨ੍ਹਾਂ ਦਾ {{tier}} ਬੈਜ ਉਧਾਰ ਨਹੀਂ ਦੇ ਸਕਦਾ",

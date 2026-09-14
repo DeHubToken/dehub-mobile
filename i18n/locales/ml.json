@@ -1202,6 +1202,7 @@
     "andOthersLikedComment": "{{first}}-ഉം {{others}}-ഉം നിങ്ങളുടെ കമന്റ് ലൈക്ക് ചെയ്തു",
     "andOthersLikedCommentPreview": "{{first}}-ഉം {{others}}-ഉം നിങ്ങളുടെ കമന്റ് ലൈക്ക് ചെയ്തു: \"{{preview}}\"",
     "badgeLent": "{{name}} നിങ്ങൾക്ക് അവരുടെ {{tier}} ബാഡ്ജ് നൽകി",
+    "badgeTierUp": "അഭിനന്ദനങ്ങൾ! ഇപ്പോൾ നിങ്ങൾ ഒരു {{tier}} ആണ് 🎉",
     "badgeTakenBack": "{{name}} ബാഡ്ജ് നിങ്ങൾക്ക് വായ്പ നൽകുന്നത് നിർത്തിവച്ചു {{tier}} ബാഡ്ജ്",
     "badgeHandedBack": "{{name}}{{tier}} ബാഡ്ജ് നിങ്ങൾ അവർക്ക് വായ്പ നൽകി",
     "badgeLoanLapsed": "{{name}} ഇനിമേൽ നിങ്ങൾക്ക് അവരുടെ {{tier}} ബാഡ്ജ് നൽകാനാവില്ല",

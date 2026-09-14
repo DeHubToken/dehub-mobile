@@ -1469,6 +1469,7 @@
     "andOthersLikedComment": "{{first}} and {{others}} liked your comment",
     "andOthersLikedCommentPreview": "{{first}} and {{others}} liked your comment: \"{{preview}}\"",
     "badgeLent": "{{name}} ți-a împrumutat insigna {{tier}}",
+    "badgeTierUp": "Felicitări! Acum ești un {{tier}} 🎉",
     "badgeTakenBack": "{{name}} nu ți-a mai împrumutat insigna {{tier}}",
     "badgeHandedBack": "{{name}} a returnat insigna {{tier}} pe care i-ai împrumutat-o",
     "badgeLoanLapsed": "{{name}} nu îți mai poate împrumuta insigna {{tier}}",

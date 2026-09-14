@@ -1036,6 +1036,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "Честитамо! Сада си {{tier}} 🎉",
     "title": "Обавештења",
     "loadFailed": "Обавештења није могуће учитати",
     "markAllRead": "Означи све као прочитано",

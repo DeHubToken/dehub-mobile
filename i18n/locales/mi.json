@@ -1206,6 +1206,7 @@
     "andOthersLikedComment": "I pai a {{first}} me {{others}} ki tō tākupu",
     "andOthersLikedCommentPreview": "I pai a {{first}} me {{others}} ki tō tākupu: \"{{preview}}\"",
     "badgeLent": "{{name}} lent koutou ratou {{tier}} badge",
+    "badgeTierUp": "Ka mau te wehi! He {{tier}} koe ināianei 🎉",
     "badgeTakenBack": "{{name}} mutu te nama ki a koe {{tier}} badge",
     "badgeHandedBack": "{{name}} whakahokia mai te {{tier}} badge i hoatu e koe ki a ratou",
     "badgeLoanLapsed": "{{name}} e kore e taea e koe te tuku i to ratou {{tier}} badge",

@@ -1197,6 +1197,7 @@
     "andOthersLikedComment": "{{first}}과(와) {{others}}이(가) 댓글에 좋아요",
     "andOthersLikedCommentPreview": "{{first}}과(와) {{others}}이(가) 댓글에 좋아요: \"{{preview}}\"",
     "badgeLent": "{{name}} 님이 {{tier}} 배지를 대여했습니다",
+    "badgeTierUp": "축하합니다! 이제 {{tier}}이(가) 되었습니다 🎉",
     "badgeTakenBack": "{{name}} 님이 {{tier}} 배지를 빌려주지 않았습니다",
     "badgeHandedBack": "{{name}} 님이 회원님이 대여한 {{tier}} 배지를 반환했습니다.",
     "badgeLoanLapsed": "{{name}} 님이 더 이상 {{tier}} 배지를 대여할 수 없습니다",

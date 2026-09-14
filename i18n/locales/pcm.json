@@ -1177,6 +1177,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "Congrats! You be {{tier}} now 🎉",
     "title": "Notifications",
     "loadFailed": "We no fit load notifications",
     "markAllRead": "Mark all as read",

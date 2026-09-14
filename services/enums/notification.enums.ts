@@ -34,6 +34,8 @@ export enum NotificationType {
   BADGE_DELEGATION_ENDED = 'badge_delegation_ended',
   /** The badge you are wearing on loan moved to a different tier */
   BADGE_DELEGATION_CHANGED = 'badge_delegation_changed',
+  /** You climbed a rung of the badge ladder on your own balance */
+  BADGE_TIER_UP = 'badge_tier_up',
 }
 
 export enum NotificationCategory {
@@ -86,6 +88,15 @@ export const BADGE_DELEGATION_TYPES = new Set<string>([
   NotificationType.BADGE_DELEGATED,
   NotificationType.BADGE_DELEGATION_ENDED,
   NotificationType.BADGE_DELEGATION_CHANGED,
+]);
+
+/**
+ * A rung climbed. Same problem as a loan — no tokenId, no actor, nothing the
+ * default clickability test would pass it on — and a different destination:
+ * the ladder itself, on the staking tab, where the rung above is drawn.
+ */
+export const BADGE_LADDER_TYPES = new Set<string>([
+  NotificationType.BADGE_TIER_UP,
 ]);
 
 export const getNotificationIconConfig = (type: NotificationType | string): { 
@@ -141,6 +152,10 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
     case NotificationType.BADGE_DELEGATION_ENDED:
     case NotificationType.BADGE_DELEGATION_CHANGED:
       return { name: 'Award', color: '#F4F4F5' };
+    // Earned rather than lent, and the ladder is a climb — the trophy the
+    // view milestones already use says that where a second Award would not.
+    case NotificationType.BADGE_TIER_UP:
+      return { name: 'Trophy', color: '#F4F4F5' };
     case NotificationType.FIAT_PAYMENT_COMPLETED:
       return { name: 'CreditCard', color: '#F4F4F5' };
     case NotificationType.FRACTION_OFFER:

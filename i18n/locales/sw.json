@@ -1277,6 +1277,7 @@
     "andOthersLikedComment": "{{first}} na {{others}} wamependa maoni yako",
     "andOthersLikedCommentPreview": "{{first}} na {{others}} wamependa maoni yako: \"{{preview}}\"",
     "badgeLent": "{{name}} alikukopesha beji yake ya {{tier}}",
+    "badgeTierUp": "Hongera! Sasa wewe ni {{tier}} 🎉",
     "badgeTakenBack": "{{name}} aliacha kukukopesha beji yake ya {{tier}}",
     "badgeHandedBack": "{{name}} alirudisha beji ya {{tier}} uliyomkopesha",
     "badgeLoanLapsed": "{{name}} hawezi tena kukukopesha beji yake ya {{tier}}",

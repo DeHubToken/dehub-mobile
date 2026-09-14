@@ -1172,6 +1172,7 @@
     "andOthersLikedComment": "{{first}} و {{others}} عجبهم تعليقك",
     "andOthersLikedCommentPreview": "{{first}} و {{others}} عجبهم تعليقك: \"{{preview}}\"",
     "badgeLent": "{{name}} أقرضك شارتهم {{tier}}",
+    "badgeTierUp": "مبروك! صرت هلأ {{tier}} 🎉",
     "badgeTakenBack": "{{name}} توقف عن إقراضك شارتهم {{tier}}",
     "badgeHandedBack": "{{name}} أرجع الشارة {{tier}} اللي أقرضتهم إياها",
     "badgeLoanLapsed": "{{name}} ما فيهم يقرضوك شارتهم {{tier}} بعد هسع",

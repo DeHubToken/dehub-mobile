@@ -1215,6 +1215,7 @@
     "andOthersLikedComment": "{{first}} i {{others}} su označili vaš komentar sa sviđa mi se",
     "andOthersLikedCommentPreview": "{{first}} i {{others}} su označili vaš komentar: \"{{preview}}\"",
     "badgeLent": "{{name}} vam je posudio svoju značku {{tier}}",
+    "badgeTierUp": "Čestitamo! Sada si {{tier}} 🎉",
     "badgeTakenBack": "{{name}} vam više ne posuđuje značku {{tier}}",
     "badgeHandedBack": "{{name}} vraća značku {{tier}} koju ste mu/joj posudili",
     "badgeLoanLapsed": "{{name}} vam više ne može posuditi svoju značku {{tier}}",

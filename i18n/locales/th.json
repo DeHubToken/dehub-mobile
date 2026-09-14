@@ -1496,6 +1496,7 @@
     "andOthersLikedComment": "{{first}} และ {{others}} ถูกใจความคิดเห็นของคุณ",
     "andOthersLikedCommentPreview": "{{first}} และ {{others}} ถูกใจความคิดเห็นของคุณ: \"{{preview}}\"",
     "badgeLent": "{{name}} ให้คุณยืมแบดจ์ {{tier}} ของพวกเขา",
+    "badgeTierUp": "ยินดีด้วย! ตอนนี้คุณเป็น {{tier}} แล้ว 🎉",
     "badgeTakenBack": "{{name}} หยุดให้คุณยืมแบดจ์ {{tier}} ของพวกเขา",
     "badgeHandedBack": "{{name}} ส่งคืนตรา {{tier}} ที่คุณให้ยืม",
     "badgeLoanLapsed": "{{name}} ไม่สามารถให้คุณยืมแบดจ์ {{tier}} ของพวกเขาได้อีกต่อไป",

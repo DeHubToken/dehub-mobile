@@ -1214,6 +1214,7 @@
     "andOthersLikedComment": "{{first}} 同 {{others}} 讚好咗你嘅留言",
     "andOthersLikedCommentPreview": "{{first}} 同 {{others}} 讚好咗你嘅留言：「{{preview}}」",
     "badgeLent": "{{name}} 借咗佢哋個 {{tier}} 徽章畀你",
+    "badgeTierUp": "恭喜！你而家係 {{tier}} 喇 🎉",
     "badgeTakenBack": "{{name}} 唔再借佢哋個 {{tier}} 徽章畀你",
     "badgeHandedBack": "{{name}} 退返你借畀佢哋嘅 {{tier}} 徽章",
     "badgeLoanLapsed": "{{name}} 唔可以再借佢哋個 {{tier}} 徽章畀你",

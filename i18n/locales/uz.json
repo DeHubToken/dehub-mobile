@@ -1194,6 +1194,7 @@
     "andOthersLikedComment": "{{first}} va {{others}} izohingizni yoqtirdi",
     "andOthersLikedCommentPreview": "{{first}} va {{others}} izohingizni yoqtirdi: \"{{preview}}\"",
     "badgeLent": "{{name}} sizga o&#39;zlarining {{tier}} nishonini berishdi",
+    "badgeTierUp": "Tabriklaymiz! Endi siz {{tier}} bo'ldingiz 🎉",
     "badgeTakenBack": "{{name}} sizga o&#39;zlarining {{tier}} nishonlarini berishni to&#39;xtatdi",
     "badgeHandedBack": "{{name}} siz ularga qarz bergan {{tier}} nishonini qaytarib berdi",
     "badgeLoanLapsed": "{{name}} endi sizga o&#39;zlarining {{tier}} nishonini bera olmaydi",

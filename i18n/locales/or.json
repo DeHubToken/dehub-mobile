@@ -1154,6 +1154,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "ଅଭିନନ୍ଦନ! ଏବେ ଆପଣ {{tier}} 🎉",
     "title": "ସୂଚନା",
     "loadFailed": "ବିଜ୍ଞପ୍ତି ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ",
     "markAllRead": "ସବୁ ପଢ଼ା ଭାବେ ଚିହ୍ନିତ କରନ୍ତୁ",

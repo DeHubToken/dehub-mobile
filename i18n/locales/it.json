@@ -1295,6 +1295,7 @@
     "andOthersLikedComment": "{{first}} e {{others}} hanno messo mi piace al tuo commento",
     "andOthersLikedCommentPreview": "{{first}} e {{others}} hanno messo mi piace al tuo commento: \"{{preview}}\"",
     "badgeLent": "{{name}} ti ha prestato il suo badge {{tier}}",
+    "badgeTierUp": "Congratulazioni! Ora sei un {{tier}} 🎉",
     "badgeTakenBack": "{{name}} ha smesso di prestarti il suo badge {{tier}}",
     "badgeHandedBack": "{{name}} ha restituito il badge {{tier}} che gli hai prestato",
     "badgeLoanLapsed": "{{name}} non può più prestarti il suo badge {{tier}}",
