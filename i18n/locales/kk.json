@@ -3066,5 +3066,24 @@
     "errorNeedRights": "Осы мазмұнға құқығыңыз бар екенін растаңыз",
     "errorClipboard": "Алмасу буферін оқу мүмкін болмады — оның орнына қолмен қойыңыз",
     "errorQueueFailed": "Импорттау кезегі табылмады"
+  },
+  "earnings": {
+    "filter24h": "24с",
+    "filter7d": "7к",
+    "filter30d": "30к",
+    "filterAll": "Барлығы",
+    "noData": "Деректер жоқ",
+    "tips": "Сыйақылар",
+    "ppv": "PPV",
+    "incomeBreakdown": "Табыс құрылымы",
+    "ppvSales": "PPV сатылымы",
+    "total": "Барлығы",
+    "tipsReceived": "Алынған сыйақылар",
+    "ppvUnlocks": "PPV ашулары",
+    "recentTransactions": "Соңғы транзакциялар",
+    "tipReceived": "Сыйақы алынды",
+    "ppvUnlock": "PPV ашу",
+    "noEarningsYet": "Әзірге табыс жоқ",
+    "noEarningsDesc": "Сыйақылар мен PPV сатылымы осында көрсетіледі"
   }
 }

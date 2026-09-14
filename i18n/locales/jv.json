@@ -2968,5 +2968,24 @@
     "errorNeedRights": "Mangga konfirmasi yen sampeyan duwe hak kanggo konten iki",
     "errorClipboard": "Ora bisa maca clipboard — tempel kanthi manual",
     "errorQueueFailed": "Ora bisa ngantri impor kasebut"
+  },
+  "earnings": {
+    "filter24h": "24j",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Kabeh",
+    "noData": "Ora ana data",
+    "tips": "Tip",
+    "ppv": "PPV",
+    "incomeBreakdown": "Rincian Penghasilan",
+    "ppvSales": "Dodolan PPV",
+    "total": "Total",
+    "tipsReceived": "Tip ditampa",
+    "ppvUnlocks": "Bukak PPV",
+    "recentTransactions": "Transaksi Anyar",
+    "tipReceived": "Tip ditampa",
+    "ppvUnlock": "Bukak PPV",
+    "noEarningsYet": "Durung ana penghasilan",
+    "noEarningsDesc": "Tip lan dodolan PPV bakal katon ing kene"
   }
 }

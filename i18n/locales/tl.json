@@ -3190,5 +3190,24 @@
     "errorNeedRights": "Mangyaring kumpirmahing mayroon kang mga karapatan sa nilalamang ito",
     "errorClipboard": "Hindi mabasa ang clipboard — i — paste nang manu — mano sa halip",
     "errorQueueFailed": "Hindi ma - queue ang import na iyon"
+  },
+  "earnings": {
+    "filter24h": "24o",
+    "filter7d": "7a",
+    "filter30d": "30a",
+    "filterAll": "Lahat",
+    "noData": "Walang data",
+    "tips": "Tips",
+    "ppv": "PPV",
+    "incomeBreakdown": "Detalye ng Kita",
+    "ppvSales": "Benta ng PPV",
+    "total": "Kabuuan",
+    "tipsReceived": "Natanggap na tips",
+    "ppvUnlocks": "PPV unlock",
+    "recentTransactions": "Kamakailang Transaksyon",
+    "tipReceived": "Natanggap na tip",
+    "ppvUnlock": "PPV unlock",
+    "noEarningsYet": "Wala pang kita",
+    "noEarningsDesc": "Lalabas dito ang tips at benta ng PPV"
   }
 }

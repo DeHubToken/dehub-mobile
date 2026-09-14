@@ -3489,5 +3489,24 @@
     "errorNeedRights": "Підтвердьте, що у вас є права на цей вміст",
     "errorClipboard": "Не вдалося прочитати буфер обміну — замість цього вставте вручну",
     "errorQueueFailed": "Не вдалося поставити імпорт у чергу"
+  },
+  "earnings": {
+    "filter24h": "24г",
+    "filter7d": "7д",
+    "filter30d": "30д",
+    "filterAll": "Усі",
+    "noData": "Немає даних",
+    "tips": "Чайові",
+    "ppv": "PPV",
+    "incomeBreakdown": "Структура доходу",
+    "ppvSales": "Продажі PPV",
+    "total": "Разом",
+    "tipsReceived": "Отримані чайові",
+    "ppvUnlocks": "Розблокування PPV",
+    "recentTransactions": "Останні транзакції",
+    "tipReceived": "Отримано чайові",
+    "ppvUnlock": "Розблокування PPV",
+    "noEarningsYet": "Поки немає доходів",
+    "noEarningsDesc": "Чайові та продажі PPV з'являться тут"
   }
 }

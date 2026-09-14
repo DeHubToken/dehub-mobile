@@ -2968,5 +2968,24 @@
     "errorNeedRights": "تأكد انك عندك الحقوق لهالمحتوى",
     "errorClipboard": "ما قدرنا نقرا من الحافظة — لصق يدوي بدل",
     "errorQueueFailed": "ما قدرنا نرتب الاستيراد"
+  },
+  "earnings": {
+    "filter24h": "24س",
+    "filter7d": "7ي",
+    "filter30d": "30ي",
+    "filterAll": "الكل",
+    "noData": "ماكو بيانات",
+    "tips": "إكراميات",
+    "ppv": "PPV",
+    "incomeBreakdown": "تفصيل الدخل",
+    "ppvSales": "مبيعات PPV",
+    "total": "المجموع",
+    "tipsReceived": "إكراميات واصلة",
+    "ppvUnlocks": "فتحات PPV",
+    "recentTransactions": "آخر المعاملات",
+    "tipReceived": "إكرامية واصلة",
+    "ppvUnlock": "فتح PPV",
+    "noEarningsYet": "ماكو أرباح لهسه",
+    "noEarningsDesc": "الإكراميات ومبيعات PPV راح تظهر هنا"
   }
 }

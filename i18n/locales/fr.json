@@ -3084,5 +3084,24 @@
     "errorNeedRights": "Veuillez confirmer que vous avez les droits sur ce contenu",
     "errorClipboard": "Impossible de lire le presse-papiers — coller manuellement à la place",
     "errorQueueFailed": "Impossible de mettre en file d'attente cette importation"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7j",
+    "filter30d": "30j",
+    "filterAll": "Tout",
+    "noData": "Aucune donnée",
+    "tips": "Pourboires",
+    "ppv": "PPV",
+    "incomeBreakdown": "Répartition des revenus",
+    "ppvSales": "Ventes PPV",
+    "total": "Total",
+    "tipsReceived": "Pourboires reçus",
+    "ppvUnlocks": "Déblocages PPV",
+    "recentTransactions": "Transactions récentes",
+    "tipReceived": "Pourboire reçu",
+    "ppvUnlock": "Déblocage PPV",
+    "noEarningsYet": "Pas encore de gains",
+    "noEarningsDesc": "Les pourboires et ventes PPV apparaîtront ici"
   }
 }

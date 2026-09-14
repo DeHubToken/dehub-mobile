@@ -3072,5 +3072,24 @@
     "errorNeedRights": "Lütfen bu içeriğin haklarına sahip olduğunuzu onaylayın",
     "errorClipboard": "Pano okunamadı — bunun yerine manuel olarak yapıştırın",
     "errorQueueFailed": "Bu içe aktarma kuyruğa alınamadı"
+  },
+  "earnings": {
+    "filter24h": "24s",
+    "filter7d": "7g",
+    "filter30d": "30g",
+    "filterAll": "Tümü",
+    "noData": "Veri yok",
+    "tips": "Bahşişler",
+    "ppv": "PPV",
+    "incomeBreakdown": "Gelir Dağılımı",
+    "ppvSales": "PPV Satışları",
+    "total": "Toplam",
+    "tipsReceived": "Alınan bahşişler",
+    "ppvUnlocks": "PPV açılışları",
+    "recentTransactions": "Son İşlemler",
+    "tipReceived": "Bahşiş alındı",
+    "ppvUnlock": "PPV açılışı",
+    "noEarningsYet": "Henüz kazanç yok",
+    "noEarningsDesc": "Bahşişler ve PPV satışları burada görünecek"
   }
 }

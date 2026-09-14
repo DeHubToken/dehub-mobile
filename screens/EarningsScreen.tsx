@@ -6,7 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
-} from "react-native";
+} from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import Svg, { Path, G, Circle } from "react-native-svg";
@@ -36,11 +36,11 @@ interface PpvRecord {
 
 type TimeFilter = "1d" | "1w" | "1m" | "all";
 
-const TIME_FILTERS: { key: TimeFilter; label: string }[] = [
-  { key: "1d", label: "24h" },
-  { key: "1w", label: "7d" },
-  { key: "1m", label: "30d" },
-  { key: "all", label: "All" },
+const TIME_FILTERS: { key: TimeFilter; labelKey: string }[] = [
+  { key: "1d", labelKey: "earnings.filter24h" },
+  { key: "1w", labelKey: "earnings.filter7d" },
+  { key: "1m", labelKey: "earnings.filter30d" },
+  { key: "all", labelKey: "earnings.filterAll" },
 ];
 
 const SOURCE_COLORS = {
@@ -70,6 +70,7 @@ function fmtDate(iso: string): string {
 
 // ─── Pie chart (SVG) ─────────────────────────────────────────────────────────
 function PieChart({ tips, ppv }: { tips: number; ppv: number }) {
+  const { t } = useTranslation();
   const total = tips + ppv;
   const R = 60, CX = 70, CY = 70;
 
@@ -81,7 +82,7 @@ function PieChart({ tips, ppv }: { tips: number; ppv: number }) {
         </Svg>
         <View style={StyleSheet.absoluteFill as any}>
           <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Text style={{ color: "#6F7174", fontSize: 11 }}>No data</Text>
+            <Text style={{ color: "#6F7174", fontSize: 11 }}>{t("earnings.noData")}</Text>
           </View>
         </View>
       </View>
@@ -254,7 +255,7 @@ const EarningsScreen: React.FC = () => {
                 activeOpacity={0.8}
               >
                 <Text style={[styles.filterText, timeFilter === f.key && styles.filterTextActive]}>
-                  {f.label}
+                  {t(f.labelKey)}
                 </Text>
               </TouchableOpacity>
             ))}
@@ -262,26 +263,26 @@ const EarningsScreen: React.FC = () => {
 
           {/* Chart + summary */}
           <View style={styles.card}>
-            <Text style={styles.cardTitle}>Income Breakdown</Text>
+            <Text style={styles.cardTitle}>{t("earnings.incomeBreakdown")}</Text>
             <View style={styles.chartRow}>
               <PieChart tips={tipsTotal} ppv={ppvTotal} />
               <View style={{ flex: 1, gap: 12 }}>
                 <View style={styles.legend}>
                   <View style={[styles.dot, { backgroundColor: SOURCE_COLORS.tips }]} />
                   <View>
-                    <Text style={styles.legendLabel}>Tips</Text>
+                    <Text style={styles.legendLabel}>{t("earnings.tips")}</Text>
                     <Text style={styles.legendValue}>{fmtAmount(tipsTotal)} DHB</Text>
                   </View>
                 </View>
                 <View style={styles.legend}>
                   <View style={[styles.dot, { backgroundColor: SOURCE_COLORS.ppv }]} />
                   <View>
-                    <Text style={styles.legendLabel}>PPV Sales</Text>
+                    <Text style={styles.legendLabel}>{t("earnings.ppvSales")}</Text>
                     <Text style={styles.legendValue}>{fmtAmount(ppvTotal)} DHB</Text>
                   </View>
                 </View>
                 <View style={styles.totalBox}>
-                  <Text style={styles.totalLabel}>Total</Text>
+                  <Text style={styles.totalLabel}>{t("earnings.total")}</Text>
                   <Text style={styles.totalValue}>{fmtAmount(totalEarned)} DHB</Text>
                 </View>
               </View>
@@ -293,12 +294,12 @@ const EarningsScreen: React.FC = () => {
             <View style={styles.statBox}>
               <Icon name="Gem" size={18} color="#F4F4F5" />
               <Text style={styles.statNum}>{filteredTips.length}</Text>
-              <Text style={styles.statLabel}>Tips received</Text>
+              <Text style={styles.statLabel}>{t("earnings.tipsReceived")}</Text>
             </View>
             <View style={styles.statBox}>
               <Icon name="Ticket" size={18} color="#D4D4D8" />
               <Text style={styles.statNum}>{filteredPpv.length}</Text>
-              <Text style={styles.statLabel}>PPV unlocks</Text>
+              <Text style={styles.statLabel}>{t("earnings.ppvUnlocks")}</Text>
             </View>
           </View>
 
@@ -308,7 +309,7 @@ const EarningsScreen: React.FC = () => {
           {/* Recent transactions */}
           {recentTx.length > 0 && (
             <View style={styles.card}>
-              <Text style={styles.cardTitle}>Recent Transactions</Text>
+              <Text style={styles.cardTitle}>{t("earnings.recentTransactions")}</Text>
               {recentTx.map((tx, i) => (
                 <View key={i} style={[styles.txRow, i > 0 && styles.txBorder]}>
                   <View
@@ -324,7 +325,7 @@ const EarningsScreen: React.FC = () => {
                     />
                   </View>
                   <View style={{ flex: 1 }}>
-                    <Text style={styles.txType}>{tx.type === "tip" ? "Tip received" : "PPV unlock"}</Text>
+                    <Text style={styles.txType}>{tx.type === "tip" ? t("earnings.tipReceived") : t("earnings.ppvUnlock")}</Text>
                     <Text style={styles.txFrom} numberOfLines={1}>
                       {tx.from.slice(0, 6)}…{tx.from.slice(-4)}
                     </Text>
@@ -343,9 +344,9 @@ const EarningsScreen: React.FC = () => {
           {recentTx.length === 0 && !loading && (
             <View style={styles.center}>
               <Icon name="TrendingUp" size={48} color="#3F3F46" />
-              <Text style={styles.emptyTitle}>No earnings yet</Text>
+              <Text style={styles.emptyTitle}>{t("earnings.noEarningsYet")}</Text>
               <Text style={styles.emptySubtitle}>
-                Tips and PPV sales will appear here
+                {t("earnings.noEarningsDesc")}
               </Text>
             </View>
           )}

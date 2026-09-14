@@ -2831,5 +2831,24 @@
     "statusDownloadingPercent": "Downloading {{percent}}%",
     "statusQueued": "Queued",
     "detailWaiting": "Waiting its turn."
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "All",
+    "noData": "No data",
+    "tips": "Tips",
+    "ppv": "PPV",
+    "incomeBreakdown": "Income Breakdown",
+    "ppvSales": "PPV Sales",
+    "total": "Total",
+    "tipsReceived": "Tips wey you receive",
+    "ppvUnlocks": "PPV unlocks",
+    "recentTransactions": "Recent Transactions",
+    "tipReceived": "Tip received",
+    "ppvUnlock": "PPV unlock",
+    "noEarningsYet": "No earnings yet",
+    "noEarningsDesc": "Tips and PPV sales go show here"
   }
 }

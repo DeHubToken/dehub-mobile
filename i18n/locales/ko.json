@@ -3078,5 +3078,24 @@
     "errorNeedRights": "이 콘텐츠에 대한 권리가 있는지 확인하십시오.",
     "errorClipboard": "클립보드를 읽을 수 없음 — 수동으로 붙여넣기",
     "errorQueueFailed": "가져오기를 대기열에 넣을 수 없습니다"
+  },
+  "earnings": {
+    "filter24h": "24시간",
+    "filter7d": "7일",
+    "filter30d": "30일",
+    "filterAll": "전체",
+    "noData": "데이터 없음",
+    "tips": "팁",
+    "ppv": "PPV",
+    "incomeBreakdown": "수입 내역",
+    "ppvSales": "PPV 판매",
+    "total": "합계",
+    "tipsReceived": "받은 팁",
+    "ppvUnlocks": "PPV 잠금 해제",
+    "recentTransactions": "최근 거래",
+    "tipReceived": "팁 받음",
+    "ppvUnlock": "PPV 잠금 해제",
+    "noEarningsYet": "아직 수익이 없습니다",
+    "noEarningsDesc": "팁과 PPV 판매가 여기에 표시됩니다"
   }
 }

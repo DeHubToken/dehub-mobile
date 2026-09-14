@@ -2954,5 +2954,24 @@
     "errorNeedRights": "براہ کرم تصدیق کریں کہ تہانوں اس مواد دے حقوق حاصل نیں",
     "errorClipboard": "کلپ بورڈ پڑھ نئیں سکیا — بجائے اس دے دستی طور تے پیسٹ کریں",
     "errorQueueFailed": "اوہ درآمد قطار وچ نئیں لگایا جا سکیا"
+  },
+  "earnings": {
+    "filter24h": "24گھ",
+    "filter7d": "7ݙ",
+    "filter30d": "30ݙ",
+    "filterAll": "سارے",
+    "noData": "کوئی ڈیٹا کائنی",
+    "tips": "ٹپس",
+    "ppv": "PPV",
+    "incomeBreakdown": "آمدنی دی تفصیل",
+    "ppvSales": "PPV وکری",
+    "total": "کل",
+    "tipsReceived": "ملے ٹپس",
+    "ppvUnlocks": "PPV ان لاک",
+    "recentTransactions": "تازہ لین دین",
+    "tipReceived": "ٹپ ملی",
+    "ppvUnlock": "PPV ان لاک",
+    "noEarningsYet": "ہݨ تائیں کوئی کمائی کائنی",
+    "noEarningsDesc": "ٹپس تے PPV وکری ایتھاں ݙسسی"
   }
 }

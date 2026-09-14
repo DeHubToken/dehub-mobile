@@ -3043,5 +3043,24 @@
     "errorNeedRights": "Калі ласка, пацвердзіце, што ў вас ёсць правы на гэты кантэнт",
     "errorClipboard": "Немагчыма прачытаць буфер абмену — замест гэтага ўставіць уручную",
     "errorQueueFailed": "Немагчыма чаргаваць імпарт"
+  },
+  "earnings": {
+    "filter24h": "24г",
+    "filter7d": "7д",
+    "filter30d": "30д",
+    "filterAll": "Усе",
+    "noData": "Няма даных",
+    "tips": "Чаявыя",
+    "ppv": "PPV",
+    "incomeBreakdown": "Разбіўка даходу",
+    "ppvSales": "Продажы PPV",
+    "total": "Усяго",
+    "tipsReceived": "Атрыманыя чаявыя",
+    "ppvUnlocks": "Разблакіроўкі PPV",
+    "recentTransactions": "Апошнія транзакцыі",
+    "tipReceived": "Атрыманы чаявыя",
+    "ppvUnlock": "Разблакіроўка PPV",
+    "noEarningsYet": "Пакуль няма заробку",
+    "noEarningsDesc": "Тут з'явяцца чаявыя і продажы PPV"
   }
 }

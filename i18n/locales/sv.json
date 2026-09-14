@@ -3014,5 +3014,24 @@
     "errorNeedRights": "Bekräfta att du har rättigheterna till detta innehåll",
     "errorClipboard": "Kunde inte läsa urklipp — klistra in manuellt istället",
     "errorQueueFailed": "Det gick inte att köa den importen"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Alla",
+    "noData": "Inga data",
+    "tips": "Dricks",
+    "ppv": "PPV",
+    "incomeBreakdown": "Inkomstfördelning",
+    "ppvSales": "PPV-försäljning",
+    "total": "Totalt",
+    "tipsReceived": "Mottagen dricks",
+    "ppvUnlocks": "PPV-upplåsningar",
+    "recentTransactions": "Senaste transaktioner",
+    "tipReceived": "Dricks mottagen",
+    "ppvUnlock": "PPV-upplåsning",
+    "noEarningsYet": "Inga intäkter än",
+    "noEarningsDesc": "Dricks och PPV-försäljning visas här"
   }
 }

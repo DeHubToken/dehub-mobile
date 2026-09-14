@@ -3000,5 +3000,24 @@
     "errorNeedRights": "بۇ مەزمۇنغا ھوقۇقىڭىز بارلىقىنى ئىسپاتلاڭ",
     "errorClipboard": "ئالماشتۇرۇش تاختىسىنى ئوقۇغىلى بولمىدى - ئۇنىڭ ئورنىغا قول بىلەن چاپلاش",
     "errorQueueFailed": "بۇ ئىمپورتنى ئالماشتۇرغىلى بولمىدى"
+  },
+  "earnings": {
+    "filter24h": "24س",
+    "filter7d": "7ك",
+    "filter30d": "30ك",
+    "filterAll": "ھەممىسى",
+    "noData": "سانلىق مەلۇمات يوق",
+    "tips": "چاي پۇلى",
+    "ppv": "PPV",
+    "incomeBreakdown": "كىرىم تەپسىلاتى",
+    "ppvSales": "PPV سېتىش",
+    "total": "جەمئىي",
+    "tipsReceived": "تاپشۇرۇۋالغان چاي پۇلى",
+    "ppvUnlocks": "PPV ئېچىش",
+    "recentTransactions": "يېقىنقى سودىلار",
+    "tipReceived": "چاي پۇلى تاپشۇرۇۋالدى",
+    "ppvUnlock": "PPV ئېچىش",
+    "noEarningsYet": "تېخى كىرىم يوق",
+    "noEarningsDesc": "چاي پۇلى ۋە PPV سېتىش بۇ يەردە كۆرۈنىدۇ"
   }
 }

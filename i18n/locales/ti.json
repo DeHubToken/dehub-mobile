@@ -2975,5 +2975,24 @@
     "errorNeedRights": "ነዚ ትሕዝቶ እዚ መሰል ከም ዘሎካ ኣረጋግጽ",
     "errorClipboard": "ነቲ ክሊፕቦርድ ክነንብቦ ኣይከኣልኩን — ብኢድ ኣብ ክንዲ",
     "errorQueueFailed": "ነዚ ኣምጽኦ እዚ ክኣክል ክኣክል ኣይከኣልኩን ።"
+  },
+  "earnings": {
+    "filter24h": "24ሰ",
+    "filter7d": "7መ",
+    "filter30d": "30መ",
+    "filterAll": "ኩሉ",
+    "noData": "ዳታ የለን",
+    "tips": "ጉርሻ",
+    "ppv": "PPV",
+    "incomeBreakdown": "ዝርዝር ኣታዊ",
+    "ppvSales": "መሸጣ PPV",
+    "total": "ጠቕላላ",
+    "tipsReceived": "ዝተቐበልካዮ ጉርሻ",
+    "ppvUnlocks": "ምኽፋት PPV",
+    "recentTransactions": "ናይ ቀረባ ግዜ ንግዳት",
+    "tipReceived": "ጉርሻ ተቐቢልካ",
+    "ppvUnlock": "ምኽፋት PPV",
+    "noEarningsYet": "ገና ኣታዊ የለን",
+    "noEarningsDesc": "ጉርሻን መሸጣ PPVን ኣብዚ ክርአዩ እዮም"
   }
 }

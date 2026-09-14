@@ -2988,5 +2988,24 @@
     "errorNeedRights": "Biko kwado na ị nwere ikike inweta ọdịnaya a",
     "errorClipboard": "Enwenwughị ike ịgụ wọ́kspéèsì — kechie n 'aka kama",
     "errorQueueFailed": "Agaghị enwenwu ahịrị mbubata ahụ"
+  },
+  "earnings": {
+    "filter24h": "24a",
+    "filter7d": "7ụ",
+    "filter30d": "30ụ",
+    "filterAll": "Niile",
+    "noData": "Enweghị data",
+    "tips": "Tips",
+    "ppv": "PPV",
+    "incomeBreakdown": "Nkọwa ego mbata",
+    "ppvSales": "Ahịa PPV",
+    "total": "Ngụkọta",
+    "tipsReceived": "Tips enwetara",
+    "ppvUnlocks": "Mkpọghe PPV",
+    "recentTransactions": "Azụmahịa ndị na-adịbeghị anya",
+    "tipReceived": "Tip enwetara",
+    "ppvUnlock": "Mkpọghe PPV",
+    "noEarningsYet": "Enwebeghị ego mbata",
+    "noEarningsDesc": "Tips na ahịa PPV ga-apụta ebe a"
   }
 }

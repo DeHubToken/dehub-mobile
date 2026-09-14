@@ -3009,5 +3009,24 @@
     "errorNeedRights": "Patvirtinkite, kad turite teises į šį turinį",
     "errorClipboard": "Nepavyko nuskaityti iškarpinės — įklijuokite rankiniu būdu",
     "errorQueueFailed": "Nepavyko įtraukti importavimo į eilę"
+  },
+  "earnings": {
+    "filter24h": "24val",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Visi",
+    "noData": "Nėra duomenų",
+    "tips": "Arbatpinigiai",
+    "ppv": "PPV",
+    "incomeBreakdown": "Pajamų suskirstymas",
+    "ppvSales": "PPV pardavimai",
+    "total": "Iš viso",
+    "tipsReceived": "Gauti arbatpinigiai",
+    "ppvUnlocks": "PPV atrakinimai",
+    "recentTransactions": "Naujausios operacijos",
+    "tipReceived": "Gauti arbatpinigiai",
+    "ppvUnlock": "PPV atrakinimas",
+    "noEarningsYet": "Pajamų dar nėra",
+    "noEarningsDesc": "Arbatpinigiai ir PPV pardavimai bus rodomi čia"
   }
 }

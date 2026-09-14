@@ -2997,5 +2997,24 @@
     "errorNeedRights": "אנא אשר שיש לך את הזכויות לתוכן זה",
     "errorClipboard": "לא ניתן היה לקרוא את לוח העריכה — הדבק ידנית במקום זאת",
     "errorQueueFailed": "לא ניתן היה לתור את הייבוא"
+  },
+  "earnings": {
+    "filter24h": "24ש",
+    "filter7d": "7י",
+    "filter30d": "30י",
+    "filterAll": "הכל",
+    "noData": "אין נתונים",
+    "tips": "טיפים",
+    "ppv": "PPV",
+    "incomeBreakdown": "פירוט הכנסות",
+    "ppvSales": "מכירות PPV",
+    "total": "סה\"כ",
+    "tipsReceived": "טיפים שהתקבלו",
+    "ppvUnlocks": "פתיחות PPV",
+    "recentTransactions": "עסקאות אחרונות",
+    "tipReceived": "טיפ התקבל",
+    "ppvUnlock": "פתיחת PPV",
+    "noEarningsYet": "עדיין אין רווחים",
+    "noEarningsDesc": "טיפים ומכירות PPV יופיעו כאן"
   }
 }

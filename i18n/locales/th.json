@@ -3047,5 +3047,24 @@
     "errorNeedRights": "โปรดยืนยันว่าคุณมีสิทธิ์ในเนื้อหานี้",
     "errorClipboard": "ไม่สามารถอ่านคลิปบอร์ดได้ — วางด้วยตนเองแทน",
     "errorQueueFailed": "ไม่สามารถจัดคิวการนำเข้านั้นได้"
+  },
+  "earnings": {
+    "filter24h": "24ชม.",
+    "filter7d": "7วัน",
+    "filter30d": "30วัน",
+    "filterAll": "ทั้งหมด",
+    "noData": "ไม่มีข้อมูล",
+    "tips": "ทิป",
+    "ppv": "PPV",
+    "incomeBreakdown": "รายละเอียดรายได้",
+    "ppvSales": "ยอดขาย PPV",
+    "total": "รวม",
+    "tipsReceived": "ทิปที่ได้รับ",
+    "ppvUnlocks": "ปลดล็อก PPV",
+    "recentTransactions": "ธุรกรรมล่าสุด",
+    "tipReceived": "ได้รับทิป",
+    "ppvUnlock": "ปลดล็อก PPV",
+    "noEarningsYet": "ยังไม่มีรายได้",
+    "noEarningsDesc": "ทิปและยอดขาย PPV จะแสดงที่นี่"
   }
 }

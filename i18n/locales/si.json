@@ -2992,5 +2992,24 @@
     "errorNeedRights": "මෙම අන්තර්ගතයට ඔබට හිමිකම් ඇති බව තහවුරු කරන්න",
     "errorClipboard": "ක්ලිප් පුවරුව කියවිය නොහැකි විය — ඒ වෙනුවට අතින් අලවන්න",
     "errorQueueFailed": "එම ආයාතය පෝලිමේ තැබිය නොහැකි විය"
+  },
+  "earnings": {
+    "filter24h": "24පැ",
+    "filter7d": "7දි",
+    "filter30d": "30දි",
+    "filterAll": "සියල්ල",
+    "noData": "දත්ත නැත",
+    "tips": "ටිප්ස්",
+    "ppv": "PPV",
+    "incomeBreakdown": "ආදායම් බෙදීම",
+    "ppvSales": "PPV විකුණුම්",
+    "total": "එකතුව",
+    "tipsReceived": "ලැබුණු ටිප්ස්",
+    "ppvUnlocks": "PPV විවෘත කිරීම්",
+    "recentTransactions": "මෑත ගනුදෙනු",
+    "tipReceived": "ටිප් ලැබුණි",
+    "ppvUnlock": "PPV විවෘත කිරීම",
+    "noEarningsYet": "තවම ආදායමක් නැත",
+    "noEarningsDesc": "ටිප්ස් සහ PPV විකුණුම් මෙහි පෙන්වනු ඇත"
   }
 }

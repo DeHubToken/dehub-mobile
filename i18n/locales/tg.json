@@ -2988,5 +2988,24 @@
     "errorNeedRights": "Pakitiyak na mayroon kang mga kanan sa nilalaman na ito",
     "errorClipboard": "Натавонистам силули мухобиротиро хонам — ба ҷои он дастӣ часпонед",
     "errorQueueFailed": "Hindi mababa ang pag-import na ito"
+  },
+  "earnings": {
+    "filter24h": "24с",
+    "filter7d": "7р",
+    "filter30d": "30р",
+    "filterAll": "Ҳама",
+    "noData": "Маълумот нест",
+    "tips": "Инъомҳо",
+    "ppv": "PPV",
+    "incomeBreakdown": "Тақсимоти даромад",
+    "ppvSales": "Фурӯши PPV",
+    "total": "Ҳамагӣ",
+    "tipsReceived": "Инъомҳои гирифташуда",
+    "ppvUnlocks": "Кушоишҳои PPV",
+    "recentTransactions": "Муомилоти охирин",
+    "tipReceived": "Инъом гирифта шуд",
+    "ppvUnlock": "Кушоиши PPV",
+    "noEarningsYet": "Ҳоло даромад нест",
+    "noEarningsDesc": "Инъомҳо ва фурӯши PPV дар ин ҷо нишон дода мешаванд"
   }
 }

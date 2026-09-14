@@ -3098,5 +3098,24 @@
     "errorNeedRights": "Vui lòng xác nhận bạn có quyền đối với nội dung này",
     "errorClipboard": "Không thể đọc khay nhớ tạm — thay vào đó hãy dán thủ công",
     "errorQueueFailed": "Không thể xếp hàng nhập"
+  },
+  "earnings": {
+    "filter24h": "24g",
+    "filter7d": "7ng",
+    "filter30d": "30ng",
+    "filterAll": "Tất cả",
+    "noData": "Không có dữ liệu",
+    "tips": "Tiền tip",
+    "ppv": "PPV",
+    "incomeBreakdown": "Chi tiết thu nhập",
+    "ppvSales": "Doanh thu PPV",
+    "total": "Tổng",
+    "tipsReceived": "Tiền tip đã nhận",
+    "ppvUnlocks": "Mở khóa PPV",
+    "recentTransactions": "Giao dịch gần đây",
+    "tipReceived": "Đã nhận tip",
+    "ppvUnlock": "Mở khóa PPV",
+    "noEarningsYet": "Chưa có thu nhập",
+    "noEarningsDesc": "Tiền tip và doanh thu PPV sẽ hiển thị ở đây"
   }
 }

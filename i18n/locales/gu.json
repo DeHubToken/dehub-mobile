@@ -3002,5 +3002,24 @@
     "errorNeedRights": "કૃપા કરીને ખાતરી કરો કે તમારી પાસે આ સામગ્રીના અધિકારો છે",
     "errorClipboard": "ક્લિપબોર્ડ વાંચી શકાતું નથી — તેના બદલે મેન્યુઅલી પેસ્ટ કરો",
     "errorQueueFailed": "તે આયાત માટે કતાર લગાવી શકાતી નથી"
+  },
+  "earnings": {
+    "filter24h": "24ક",
+    "filter7d": "7દિ",
+    "filter30d": "30દિ",
+    "filterAll": "બધા",
+    "noData": "કોઈ ડેટા નથી",
+    "tips": "ટિપ્સ",
+    "ppv": "PPV",
+    "incomeBreakdown": "આવકનું વિભાજન",
+    "ppvSales": "PPV વેચાણ",
+    "total": "કુલ",
+    "tipsReceived": "મળેલી ટિપ્સ",
+    "ppvUnlocks": "PPV અનલૉક",
+    "recentTransactions": "તાજેતરના વ્યવહારો",
+    "tipReceived": "ટિપ મળી",
+    "ppvUnlock": "PPV અનલૉક",
+    "noEarningsYet": "હજી કોઈ કમાણી નથી",
+    "noEarningsDesc": "ટિપ્સ અને PPV વેચાણ અહીં દેખાશે"
   }
 }

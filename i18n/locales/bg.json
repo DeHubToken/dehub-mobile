@@ -3010,5 +3010,24 @@
     "errorNeedRights": "Потвърдете, че имате правата върху това съдържание",
     "errorClipboard": "Не може да се прочете клипборда — вместо това поставете ръчно",
     "errorQueueFailed": "Неуспешно изчакване при импортиране"
+  },
+  "earnings": {
+    "filter24h": "24ч",
+    "filter7d": "7д",
+    "filter30d": "30д",
+    "filterAll": "Всички",
+    "noData": "Няма данни",
+    "tips": "Бакшиши",
+    "ppv": "PPV",
+    "incomeBreakdown": "Разбивка на приходите",
+    "ppvSales": "PPV продажби",
+    "total": "Общо",
+    "tipsReceived": "Получени бакшиши",
+    "ppvUnlocks": "PPV отключвания",
+    "recentTransactions": "Последни транзакции",
+    "tipReceived": "Получен бакшиш",
+    "ppvUnlock": "PPV отключване",
+    "noEarningsYet": "Още няма приходи",
+    "noEarningsDesc": "Бакшишите и PPV продажбите ще се показват тук"
   }
 }

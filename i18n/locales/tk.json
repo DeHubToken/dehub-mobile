@@ -2980,5 +2980,24 @@
     "errorNeedRights": "Siz bu maglumatlara haklydygyňyzy tassyklaň",
     "errorClipboard": "Klipbordy okamady - onuň ýerine el bilen ýapyş",
     "errorQueueFailed": "Bu äpişgede seretmek mümkin däl"
+  },
+  "earnings": {
+    "filter24h": "24s",
+    "filter7d": "7g",
+    "filter30d": "30g",
+    "filterAll": "Ählisi",
+    "noData": "Maglumat ýok",
+    "tips": "Tipler",
+    "ppv": "PPV",
+    "incomeBreakdown": "Girdeji bölünişi",
+    "ppvSales": "PPV satuwy",
+    "total": "Jemi",
+    "tipsReceived": "Alnan tipler",
+    "ppvUnlocks": "PPV açylyşlary",
+    "recentTransactions": "Soňky amallar",
+    "tipReceived": "Tip alyndy",
+    "ppvUnlock": "PPV açylyşy",
+    "noEarningsYet": "Häzirlikçe girdeji ýok",
+    "noEarningsDesc": "Tipler we PPV satuwy şu ýerde görkeziler"
   }
 }

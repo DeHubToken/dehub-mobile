@@ -3181,5 +3181,24 @@
     "errorNeedRights": "Potvrďte, že máte práva na tento obsah",
     "errorClipboard": "Nepodarilo sa prečítať schránku — namiesto toho vložte manuálne",
     "errorQueueFailed": "Tento import sa nepodarilo zaradiť do fronty"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Všetko",
+    "noData": "Žiadne údaje",
+    "tips": "Prepitné",
+    "ppv": "PPV",
+    "incomeBreakdown": "Rozpis príjmov",
+    "ppvSales": "Predaje PPV",
+    "total": "Celkom",
+    "tipsReceived": "Prijaté prepitné",
+    "ppvUnlocks": "Odomknutia PPV",
+    "recentTransactions": "Nedávne transakcie",
+    "tipReceived": "Prijaté prepitné",
+    "ppvUnlock": "Odomknutie PPV",
+    "noEarningsYet": "Zatiaľ žiadne zárobky",
+    "noEarningsDesc": "Prepitné a predaje PPV sa zobrazia tu"
   }
 }

@@ -3009,5 +3009,24 @@
     "errorNeedRights": "Lūdzu, apstipriniet, ka jums ir tiesības uz šo saturu",
     "errorClipboard": "Nevarēja nolasīt starpliktuvi — tā vietā ielīmējiet manuāli",
     "errorQueueFailed": "Nevarēja ierindot importēto"
+  },
+  "earnings": {
+    "filter24h": "24h",
+    "filter7d": "7d",
+    "filter30d": "30d",
+    "filterAll": "Visi",
+    "noData": "Nav datu",
+    "tips": "Dzeramnauda",
+    "ppv": "PPV",
+    "incomeBreakdown": "Ienākumu sadalījums",
+    "ppvSales": "PPV pārdošana",
+    "total": "Kopā",
+    "tipsReceived": "Saņemtā dzeramnauda",
+    "ppvUnlocks": "PPV atbloķēšanas",
+    "recentTransactions": "Pēdējie darījumi",
+    "tipReceived": "Saņemta dzeramnauda",
+    "ppvUnlock": "PPV atbloķēšana",
+    "noEarningsYet": "Vēl nav ienākumu",
+    "noEarningsDesc": "Dzeramnauda un PPV pārdošana parādīsies šeit"
   }
 }

@@ -3003,5 +3003,24 @@
     "errorNeedRights": "Խնդրում ենք հաստատել, որ ունեք այս բովանդակության նկատմամբ իրավունքները",
     "errorClipboard": "Չհաջողվեց կարդալ աքսեսուարը. փոխարենը տեղադրեք ձեռքով",
     "errorQueueFailed": "Չհաջողվեց հերթագրել այդ ներմուծմանը"
+  },
+  "earnings": {
+    "filter24h": "24ժ",
+    "filter7d": "7օ",
+    "filter30d": "30օ",
+    "filterAll": "Բոլորը",
+    "noData": "Տվյալներ չկան",
+    "tips": "Թեյավճարներ",
+    "ppv": "PPV",
+    "incomeBreakdown": "Եկամտի բաշխում",
+    "ppvSales": "PPV վաճառք",
+    "total": "Ընդամենը",
+    "tipsReceived": "Ստացված թեյավճարներ",
+    "ppvUnlocks": "PPV բացումներ",
+    "recentTransactions": "Վերջին գործարքներ",
+    "tipReceived": "Թեյավճար ստացվեց",
+    "ppvUnlock": "PPV բացում",
+    "noEarningsYet": "Դեռ եկամուտ չկա",
+    "noEarningsDesc": "Թեյավճարներն ու PPV վաճառքն այստեղ կհայտնվեն"
   }
 }
