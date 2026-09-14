@@ -348,12 +348,20 @@ export async function getSupabaseAuthMeta(): Promise<Record<string, any> | undef
     const u = data?.user;
     if (!u) return undefined;
     const md = (u.user_metadata ?? {}) as Record<string, unknown>;
-    // Phone-login accounts get a synthetic @phone.dehub.internal email so they
-    // can sign in via password (see cosmic-echo-hero's verify-phone-otp) — never
-    // a real address, so it must never surface as "the user's email".
-    const realEmail = u.email?.endsWith("@phone.dehub.internal") ? undefined : u.email;
+    // Phone and Telegram accounts get a synthetic *.dehub.internal email so
+    // they can sign in via password (verify-phone-otp, telegram-auth) — never
+    // a real address, so it must never surface as "the user's email". Matched
+    // on the suffix, not the one hostname, same as dehubweb.
+    const realEmail = u.email?.endsWith(".dehub.internal") ? undefined : u.email;
+    // Both sign in through the password grant, so app_metadata says "email"
+    // for them; the metadata the edge function stamped is the truth.
+    const typeOfLogin =
+      (md.provider as string | undefined) ??
+      (u.email?.endsWith("@phone.dehub.internal") ? "phone" : undefined) ??
+      (u.app_metadata?.provider as string) ??
+      "email";
     return {
-      typeOfLogin: (u.app_metadata?.provider as string) || "email",
+      typeOfLogin,
       verifier: "dehub-supabase",
       verifierId: u.id,
       email: realEmail ?? (md.email as string | undefined),
