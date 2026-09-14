@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Modal,
   Dimensions,
+  Platform,
   findNodeHandle,
 } from "react-native";
 import MaskedView from "@react-native-masked-view/masked-view";
