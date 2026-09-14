@@ -1207,6 +1207,7 @@
     "andOthersLikedComment": "{{first}} და {{others}} მოიწონეს თქვენი კომენტარი",
     "andOthersLikedCommentPreview": "{{first}} და {{others}} მოიწონეს თქვენი კომენტარი: \"{{preview}}\"",
     "badgeLent": "{{name}} დაგესხათ {{tier}} ნიშანს",
+    "badgeTierUp": "გილოცავთ! ახლა თქვენ {{tier}} ხართ 🎉",
     "badgeTakenBack": "{{name}} აღარ გასესხებთ {{tier}} ნიშანს",
     "badgeHandedBack": "{{name}} დააბრუნეს {{tier}} ნიშანი, რომელიც მათ მიავლინეთ",
     "badgeLoanLapsed": "{{name}} ვეღარ გასესხებთ {{tier}} ნიშანს",

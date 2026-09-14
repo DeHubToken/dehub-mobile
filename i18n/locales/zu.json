@@ -1276,6 +1276,7 @@
     "andOthersLikedComment": "{{first}} no-{{others}} bathandile amazwana akho",
     "andOthersLikedCommentPreview": "{{first}} no-{{others}} bathandile amazwana akho: \"{{preview}}\"",
     "badgeLent": "{{name}} uboleke ibheji labo le- {{tier}}",
+    "badgeTierUp": "Halala! Manje ususe-{{tier}} 🎉",
     "badgeTakenBack": "{{name}} uyeke ukukuboleka ibheji lakhe le- {{tier}}",
     "badgeHandedBack": "{{name}} ubuyisele {{tier}} ibheji oliboleke lona",
     "badgeLoanLapsed": "{{name}} angabe esakwazi ukukuboleka ibheji lakhe elithi {{tier}}",

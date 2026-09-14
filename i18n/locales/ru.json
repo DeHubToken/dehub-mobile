@@ -1199,6 +1199,7 @@
     "andOthersLikedComment": "{{first}} и {{others}} лайкнули ваш комментарий",
     "andOthersLikedCommentPreview": "{{first}} и {{others}} лайкнули ваш комментарий: \"{{preview}}\"",
     "badgeLent": "{{name}} одолжил (а) вам свой значок {{tier}}",
+    "badgeTierUp": "Поздравляем! Теперь вы {{tier}} 🎉",
     "badgeTakenBack": "{{name}} перестали одалживать вам свой значок {{tier}}",
     "badgeHandedBack": "{{name}} вернули одолженный значок {{tier}}",
     "badgeLoanLapsed": "{{name}} больше не может одолжить вам свой значок {{tier}}",

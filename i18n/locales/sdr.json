@@ -1166,6 +1166,7 @@
     "andOthersLikedComment": "{{first}} اور {{others}} کو تمہارا تبصرہ پسند آیا",
     "andOthersLikedCommentPreview": "{{first}} اور {{others}} کو تمہارا تبصرہ پسند آیا: \"{{preview}}\"",
     "badgeLent": "{{name}} आपको उनका {{tier}} बैज दिया",
+    "badgeTierUp": "پیرۆزبێت! ئێستا تۆ {{tier}} ی 🎉",
     "badgeTakenBack": "{{name}} आपको उनका {{tier}} बैज देना बंद कर दिया",
     "badgeHandedBack": "{{name}} आपको दिया गया {{tier}} बैज वापस कर दिया",
     "badgeLoanLapsed": "{{name}} अब आपको उनका {{tier}} बैज नहीं दे सकता",

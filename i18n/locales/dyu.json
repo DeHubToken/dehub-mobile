@@ -1151,6 +1151,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "I ni ce! Sisan i ye {{tier}} ye 🎉",
     "title": "Kɔrɔbɔ",
     "loadFailed": "Kunnafoniw ma se ka ta",
     "markAllRead": "Kɔrɔbɔ",

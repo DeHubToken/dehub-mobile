@@ -1544,6 +1544,7 @@
     "andOthersLikedComment": "{{first}} và {{others}} đã thích bình luận của bạn",
     "andOthersLikedCommentPreview": "{{first}} và {{others}} đã thích bình luận của bạn: \"{{preview}}\"",
     "badgeLent": "{{name}} cho bạn mượn huy hiệu {{tier}} của họ",
+    "badgeTierUp": "Chúc mừng! Giờ bạn là {{tier}} 🎉",
     "badgeTakenBack": "{{name}} đã ngừng cho bạn mượn huy hiệu {{tier}} của họ",
     "badgeHandedBack": "{{name}} đã trả lại huy hiệu {{tier}} mà bạn đã cho họ mượn",
     "badgeLoanLapsed": "{{name}} không thể cho bạn mượn huy hiệu {{tier}} của họ nữa",

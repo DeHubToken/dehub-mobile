@@ -1161,6 +1161,7 @@
     "textStartSaving": "Bookmark text-only posts and they'll appear here."
   },
   "notifications": {
+      "badgeTierUp": "සුබ පැතුම්! දැන් ඔබ {{tier}} කෙනෙක් 🎉",
     "title": "දැනුම්දීම්",
     "loadFailed": "දැනුම්දීම් පූරණය කළ නොහැකි විය",
     "markAllRead": "සියල්ල කියවූ ලෙස සලකුණු කරන්න",

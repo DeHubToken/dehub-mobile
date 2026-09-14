@@ -1273,6 +1273,7 @@
     "andOthersLikedComment": "{{first}} àti {{others}} fẹ́ràn àsọyé rẹ",
     "andOthersLikedCommentPreview": "{{first}} àti {{others}} fẹ́ràn àsọyé rẹ: \"{{preview}}\"",
     "badgeLent": "{{name}} yá ọ ní {{tier}} badge",
+    "badgeTierUp": "Ẹ kú oríire! Ní báyìí o jẹ́ {{tier}} 🎉",
     "badgeTakenBack": "{{name}} dáwọ́ fífún ẹ ní {{tier}}badge wọn",
     "badgeHandedBack": "{{name}} pada {{tier}} badge o yá wọn",
     "badgeLoanLapsed": "{{name}} kò lè yá ọ ní {{tier}} badge wọn mọ́",
