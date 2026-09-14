@@ -38,6 +38,7 @@ import {
   Exo_700Bold,
 } from "@expo-google-fonts/exo";
 import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
+import { recordScreenView, setScreenViewAddress } from "./services/pageView.service";
 import WalletUnlockHost from "./components/auth/WalletUnlockHost";
 import { WebSocketProvider } from "./context/WebSocketContext";
 import { DMProvider } from "./context/DMContext";
@@ -259,8 +260,10 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   useEffect(() => {
     if (isAuthenticated && user?.walletAddress) {
       setUploadCacheKey(user.walletAddress);
+      setScreenViewAddress(user.walletAddress);
       hydrateUploadStore();
     } else {
+      setScreenViewAddress(null);
       clearUploadStore();
     }
   }, [isAuthenticated, user?.walletAddress]);
@@ -274,6 +277,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     (state: NavigationState | undefined) => {
       try {
         onStateChange(state);
+        recordScreenView(navigationRef.getCurrentRoute()?.name);
       } catch (error) {
         logger.error("Navigation state change error", error);
       }
