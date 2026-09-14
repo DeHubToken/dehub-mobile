@@ -3067,5 +3067,27 @@
     "clearHistoryBody": "यामुळे तुमच्या इतिहासातून पाहिलेल्या सर्व पोस्ट काढल्या जातील.",
     "clear": "साफ करा",
     "clearFailed": "इतिहास साफ करता आला नाही. पुन्हा प्रयत्न करा."
+  },
+  "savedPosts": {
+    "allSaved": "सर्व जतन केलेले",
+    "collections": "संग्रह",
+    "newCollection": "नवीन संग्रह",
+    "editCollection": "संग्रह संपादित करा",
+    "editCollectionDetails": "संग्रह तपशील संपादित करा",
+    "deleteCollection": "संग्रह हटवा",
+    "collectionSubtitle": "बुकमार्क संग्रह",
+    "collectionOptions": "संग्रह पर्याय",
+    "namePlaceholder": "नाव",
+    "descriptionPlaceholder": "वर्णन (पर्यायी)",
+    "collectionNamePlaceholder": "संग्रहाचे नाव",
+    "fetchFoldersFailed": "फोल्डर मिळवता आली नाहीत",
+    "folderCreated": "\"{{name}}\" फोल्डर तयार झाले",
+    "createFolderFailed": "फोल्डर तयार करता आले नाही",
+    "folderUpdated": "फोल्डर अद्ययावत झाले",
+    "updateFolderFailed": "फोल्डर अद्ययावत करता आले नाही",
+    "deleteFolderTitle": "फोल्डर हटवा",
+    "deleteFolderBody": "तुम्हाला खरोखर \"{{name}}\" हटवायचे आहे? आतील जतन केलेल्या पोस्ट तुमच्या जतन यादीतून हटणार नाहीत.",
+    "folderDeleted": "फोल्डर हटवले",
+    "deleteFolderFailed": "फोल्डर हटवता आले नाही"
   }
 }

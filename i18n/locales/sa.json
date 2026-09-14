@@ -3035,5 +3035,27 @@
     "clearHistoryBody": "एतेन भवतः इतिहासात् सर्वाणि दृष्टानि प्रकाशनानि निष्कासितानि भविष्यन्ति।",
     "clear": "निष्कासयतु",
     "clearFailed": "इतिहासं निष्कासयितुं न शक्यते। पुनः प्रयततां।"
+  },
+  "savedPosts": {
+    "allSaved": "सर्वं रक्षितम्",
+    "collections": "सङ्ग्रहाः",
+    "newCollection": "नवीनः सङ्ग्रहः",
+    "editCollection": "सङ्ग्रहं सम्पादयतु",
+    "editCollectionDetails": "सङ्ग्रह-विवरणानि सम्पादयतु",
+    "deleteCollection": "सङ्ग्रहं लोपयतु",
+    "collectionSubtitle": "पुस्तकचिह्न-सङ्ग्रहः",
+    "collectionOptions": "सङ्ग्रह-विकल्पाः",
+    "namePlaceholder": "नाम",
+    "descriptionPlaceholder": "वर्णनम् (वैकल्पिकम्)",
+    "collectionNamePlaceholder": "सङ्ग्रहस्य नाम",
+    "fetchFoldersFailed": "सञ्चयान् आनेतुं न शक्यते",
+    "folderCreated": "\"{{name}}\" सञ्चयः निर्मितः",
+    "createFolderFailed": "सञ्चयं निर्मातुं न शक्यते",
+    "folderUpdated": "सञ्चयः नवीकृतः",
+    "updateFolderFailed": "सञ्चयं नवीकर्तुं न शक्यते",
+    "deleteFolderTitle": "सञ्चयं लोपयतु",
+    "deleteFolderBody": "किं भवान् \"{{name}}\" लोपयितुम् इच्छति? अन्तः रक्षितानि प्रकाशनानि भवतः रक्षितसूचीतः न लोपिष्यन्ते।",
+    "folderDeleted": "सञ्चयः लोपितः",
+    "deleteFolderFailed": "सञ्चयं लोपयितुं न शक्यते"
   }
 }

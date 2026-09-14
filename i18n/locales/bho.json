@@ -3030,5 +3030,27 @@
     "clearHistoryBody": "एह से रउआ इतिहास से सब देखल पोस्ट हट जाई।",
     "clear": "मिटाईं",
     "clearFailed": "इतिहास ना मिट पावल। फेर से कोसिस करीं।"
+  },
+  "savedPosts": {
+    "allSaved": "सब सेव कइल",
+    "collections": "संग्रह",
+    "newCollection": "नया संग्रह",
+    "editCollection": "संग्रह संपादित करीं",
+    "editCollectionDetails": "संग्रह के विवरण संपादित करीं",
+    "deleteCollection": "संग्रह मिटाईं",
+    "collectionSubtitle": "बुकमार्क संग्रह",
+    "collectionOptions": "संग्रह विकल्प",
+    "namePlaceholder": "नाम",
+    "descriptionPlaceholder": "विवरण (वैकल्पिक)",
+    "collectionNamePlaceholder": "संग्रह के नाम",
+    "fetchFoldersFailed": "फोल्डर ना आ पावल",
+    "folderCreated": "फोल्डर \"{{name}}\" बन गइल",
+    "createFolderFailed": "फोल्डर ना बन पावल",
+    "folderUpdated": "फोल्डर अपडेट भइल",
+    "updateFolderFailed": "फोल्डर अपडेट ना हो पावल",
+    "deleteFolderTitle": "फोल्डर मिटाईं",
+    "deleteFolderBody": "का रउआ \"{{name}}\" मिटावे के चाहत बानी? भीतर के सेव कइल पोस्ट रउआ सेव लिस्ट से ना मिटी।",
+    "folderDeleted": "फोल्डर मिट गइल",
+    "deleteFolderFailed": "फोल्डर ना मिट पावल"
   }
 }

@@ -3092,5 +3092,27 @@
     "clearHistoryBody": "Aceasta va elimina din istoric toate postările vizionate.",
     "clear": "Șterge",
     "clearFailed": "Istoricul nu a putut fi șters. Încearcă din nou."
+  },
+  "savedPosts": {
+    "allSaved": "Toate salvate",
+    "collections": "Colecții",
+    "newCollection": "Colecție nouă",
+    "editCollection": "Editează colecția",
+    "editCollectionDetails": "Editează detaliile colecției",
+    "deleteCollection": "Șterge colecția",
+    "collectionSubtitle": "Colecție de marcaje",
+    "collectionOptions": "Opțiuni colecție",
+    "namePlaceholder": "Nume",
+    "descriptionPlaceholder": "Descriere (opțional)",
+    "collectionNamePlaceholder": "Numele colecției",
+    "fetchFoldersFailed": "Dosarele nu au putut fi preluate",
+    "folderCreated": "Dosarul \"{{name}}\" a fost creat",
+    "createFolderFailed": "Dosarul nu a putut fi creat",
+    "folderUpdated": "Dosar actualizat",
+    "updateFolderFailed": "Dosarul nu a putut fi actualizat",
+    "deleteFolderTitle": "Șterge dosarul",
+    "deleteFolderBody": "Sigur vrei să ștergi \"{{name}}\"? Postările salvate dinăuntru nu vor fi șterse din lista ta de salvate.",
+    "folderDeleted": "Dosar șters",
+    "deleteFolderFailed": "Dosarul nu a putut fi șters"
   }
 }

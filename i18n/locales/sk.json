@@ -3250,5 +3250,27 @@
     "clearHistoryBody": "Týmto sa z histórie odstránia všetky zhliadnuté príspevky.",
     "clear": "Vymazať",
     "clearFailed": "Históriu sa nepodarilo vymazať. Skúste to znova."
+  },
+  "savedPosts": {
+    "allSaved": "Všetko uložené",
+    "collections": "Zbierky",
+    "newCollection": "Nová zbierka",
+    "editCollection": "Upraviť zbierku",
+    "editCollectionDetails": "Upraviť podrobnosti zbierky",
+    "deleteCollection": "Zmazať zbierku",
+    "collectionSubtitle": "Zbierka záložiek",
+    "collectionOptions": "Možnosti zbierky",
+    "namePlaceholder": "Názov",
+    "descriptionPlaceholder": "Popis (voliteľné)",
+    "collectionNamePlaceholder": "Názov zbierky",
+    "fetchFoldersFailed": "Priečinky sa nepodarilo načítať",
+    "folderCreated": "Priečinok \"{{name}}\" bol vytvorený",
+    "createFolderFailed": "Priečinok sa nepodarilo vytvoriť",
+    "folderUpdated": "Priečinok aktualizovaný",
+    "updateFolderFailed": "Priečinok sa nepodarilo aktualizovať",
+    "deleteFolderTitle": "Zmazať priečinok",
+    "deleteFolderBody": "Naozaj chcete zmazať \"{{name}}\"? Uložené príspevky vnútri sa z vášho zoznamu uložených nevymažú.",
+    "folderDeleted": "Priečinok zmazaný",
+    "deleteFolderFailed": "Priečinok sa nepodarilo zmazať"
   }
 }

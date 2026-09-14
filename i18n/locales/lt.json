@@ -3078,5 +3078,27 @@
     "clearHistoryBody": "Tai pašalins visus žiūrėtus įrašus iš jūsų istorijos.",
     "clear": "Išvalyti",
     "clearFailed": "Nepavyko išvalyti istorijos. Bandykite dar kartą."
+  },
+  "savedPosts": {
+    "allSaved": "Visi išsaugoti",
+    "collections": "Rinkiniai",
+    "newCollection": "Naujas rinkinys",
+    "editCollection": "Redaguoti rinkinį",
+    "editCollectionDetails": "Redaguoti rinkinio informaciją",
+    "deleteCollection": "Ištrinti rinkinį",
+    "collectionSubtitle": "Žymių rinkinys",
+    "collectionOptions": "Rinkinio parinktys",
+    "namePlaceholder": "Pavadinimas",
+    "descriptionPlaceholder": "Aprašymas (neprivaloma)",
+    "collectionNamePlaceholder": "Rinkinio pavadinimas",
+    "fetchFoldersFailed": "Nepavyko gauti aplankų",
+    "folderCreated": "Sukurtas aplankas \"{{name}}\"",
+    "createFolderFailed": "Nepavyko sukurti aplanko",
+    "folderUpdated": "Aplankas atnaujintas",
+    "updateFolderFailed": "Nepavyko atnaujinti aplanko",
+    "deleteFolderTitle": "Ištrinti aplanką",
+    "deleteFolderBody": "Tikrai norite ištrinti \"{{name}}\"? Viduje išsaugoti įrašai nebus ištrinti iš jūsų išsaugotų sąrašo.",
+    "folderDeleted": "Aplankas ištrintas",
+    "deleteFolderFailed": "Nepavyko ištrinti aplanko"
   }
 }

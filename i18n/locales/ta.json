@@ -3067,5 +3067,27 @@
     "clearHistoryBody": "இது பார்த்த எல்லா பதிவுகளையும் உங்கள் வரலாற்றிலிருந்து நீக்கும்.",
     "clear": "அழி",
     "clearFailed": "வரலாற்றை அழிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்."
+  },
+  "savedPosts": {
+    "allSaved": "சேமித்த அனைத்தும்",
+    "collections": "தொகுப்புகள்",
+    "newCollection": "புதிய தொகுப்பு",
+    "editCollection": "தொகுப்பைத் திருத்து",
+    "editCollectionDetails": "தொகுப்பு விவரங்களைத் திருத்து",
+    "deleteCollection": "தொகுப்பை நீக்கு",
+    "collectionSubtitle": "புக்மார்க் தொகுப்பு",
+    "collectionOptions": "தொகுப்பு விருப்பங்கள்",
+    "namePlaceholder": "பெயர்",
+    "descriptionPlaceholder": "விளக்கம் (விருப்பத்தேர்வு)",
+    "collectionNamePlaceholder": "தொகுப்பின் பெயர்",
+    "fetchFoldersFailed": "கோப்புறைகளைப் பெற முடியவில்லை",
+    "folderCreated": "\"{{name}}\" கோப்புறை உருவாக்கப்பட்டது",
+    "createFolderFailed": "கோப்புறையை உருவாக்க முடியவில்லை",
+    "folderUpdated": "கோப்புறை புதுப்பிக்கப்பட்டது",
+    "updateFolderFailed": "கோப்புறையைப் புதுப்பிக்க முடியவில்லை",
+    "deleteFolderTitle": "கோப்புறையை நீக்கு",
+    "deleteFolderBody": "\"{{name}}\" ஐ நீக்க விரும்புகிறீர்களா? உள்ளே சேமித்த பதிவுகள் உங்கள் சேமித்த பட்டியலிலிருந்து நீக்கப்படாது.",
+    "folderDeleted": "கோப்புறை நீக்கப்பட்டது",
+    "deleteFolderFailed": "கோப்புறையை நீக்க முடியவில்லை"
   }
 }

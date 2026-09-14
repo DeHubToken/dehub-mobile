@@ -3129,5 +3129,27 @@
     "clearHistoryBody": "Ini akan menghapus semua kiriman yang ditonton dari riwayat Anda.",
     "clear": "Hapus",
     "clearFailed": "Gagal menghapus riwayat. Coba lagi."
+  },
+  "savedPosts": {
+    "allSaved": "Semua tersimpan",
+    "collections": "Koleksi",
+    "newCollection": "Koleksi baru",
+    "editCollection": "Edit koleksi",
+    "editCollectionDetails": "Edit detail koleksi",
+    "deleteCollection": "Hapus koleksi",
+    "collectionSubtitle": "Koleksi markah",
+    "collectionOptions": "Opsi koleksi",
+    "namePlaceholder": "Nama",
+    "descriptionPlaceholder": "Deskripsi (opsional)",
+    "collectionNamePlaceholder": "Nama koleksi",
+    "fetchFoldersFailed": "Gagal mengambil folder",
+    "folderCreated": "Folder \"{{name}}\" dibuat",
+    "createFolderFailed": "Gagal membuat folder",
+    "folderUpdated": "Folder diperbarui",
+    "updateFolderFailed": "Gagal memperbarui folder",
+    "deleteFolderTitle": "Hapus folder",
+    "deleteFolderBody": "Yakin ingin menghapus \"{{name}}\"? Kiriman tersimpan di dalamnya tidak akan dihapus dari daftar Tersimpan Anda.",
+    "folderDeleted": "Folder dihapus",
+    "deleteFolderFailed": "Gagal menghapus folder"
   }
 }

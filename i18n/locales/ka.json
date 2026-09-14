@@ -3114,5 +3114,27 @@
     "clearHistoryBody": "ეს წაშლის ყველა ნანახ პოსტს თქვენი ისტორიიდან.",
     "clear": "გასუფთავება",
     "clearFailed": "ისტორიის გასუფთავება ვერ მოხერხდა. სცადეთ ხელახლა."
+  },
+  "savedPosts": {
+    "allSaved": "ყველა შენახული",
+    "collections": "კოლექციები",
+    "newCollection": "ახალი კოლექცია",
+    "editCollection": "კოლექციის რედაქტირება",
+    "editCollectionDetails": "კოლექციის დეტალების რედაქტირება",
+    "deleteCollection": "კოლექციის წაშლა",
+    "collectionSubtitle": "სანიშნეების კოლექცია",
+    "collectionOptions": "კოლექციის პარამეტრები",
+    "namePlaceholder": "სახელი",
+    "descriptionPlaceholder": "აღწერა (არასავალდებულო)",
+    "collectionNamePlaceholder": "კოლექციის სახელი",
+    "fetchFoldersFailed": "საქაღალდეების მიღება ვერ მოხერხდა",
+    "folderCreated": "საქაღალდე \"{{name}}\" შეიქმნა",
+    "createFolderFailed": "საქაღალდის შექმნა ვერ მოხერხდა",
+    "folderUpdated": "საქაღალდე განახლდა",
+    "updateFolderFailed": "საქაღალდის განახლება ვერ მოხერხდა",
+    "deleteFolderTitle": "საქაღალდის წაშლა",
+    "deleteFolderBody": "დარწმუნებული ხართ, რომ გსურთ \"{{name}}\"-ის წაშლა? შიგნით შენახული პოსტები თქვენი შენახულების სიიდან არ წაიშლება.",
+    "folderDeleted": "საქაღალდე წაიშალა",
+    "deleteFolderFailed": "საქაღალდის წაშლა ვერ მოხერხდა"
   }
 }

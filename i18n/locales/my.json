@@ -3059,5 +3059,27 @@
     "clearHistoryBody": "ဤသည် ကြည့်ပြီးသော ပို့စ်အားလုံးကို သင့်မှတ်တမ်းမှ ဖယ်ရှားမည်။",
     "clear": "ရှင်းရန်",
     "clearFailed": "မှတ်တမ်းကို ရှင်း၍မရပါ။ ထပ်စမ်းပါ။"
+  },
+  "savedPosts": {
+    "allSaved": "သိမ်းထားသည့် အားလုံး",
+    "collections": "စုစည်းမှုများ",
+    "newCollection": "စုစည်းမှုအသစ်",
+    "editCollection": "စုစည်းမှု တည်းဖြတ်ရန်",
+    "editCollectionDetails": "စုစည်းမှု အသေးစိတ် တည်းဖြတ်ရန်",
+    "deleteCollection": "စုစည်းမှု ဖျက်ရန်",
+    "collectionSubtitle": "စာညှပ် စုစည်းမှု",
+    "collectionOptions": "စုစည်းမှု ရွေးချယ်စရာများ",
+    "namePlaceholder": "အမည်",
+    "descriptionPlaceholder": "ဖော်ပြချက် (ရွေးချယ်နိုင်)",
+    "collectionNamePlaceholder": "စုစည်းမှု အမည်",
+    "fetchFoldersFailed": "ဖိုင်တွဲများ ရယူ၍မရပါ",
+    "folderCreated": "\"{{name}}\" ဖိုင်တွဲ ဖန်တီးပြီးပါပြီ",
+    "createFolderFailed": "ဖိုင်တွဲ ဖန်တီး၍မရပါ",
+    "folderUpdated": "ဖိုင်တွဲ မွမ်းမံပြီးပါပြီ",
+    "updateFolderFailed": "ဖိုင်တွဲ မွမ်းမံ၍မရပါ",
+    "deleteFolderTitle": "ဖိုင်တွဲ ဖျက်ရန်",
+    "deleteFolderBody": "\"{{name}}\" ကို ဖျက်မှာ သေချာပါသလား? အထဲရှိ သိမ်းထားသော ပို့စ်များသည် သင့်သိမ်းဆည်းစာရင်းမှ ပျက်မည်မဟုတ်ပါ။",
+    "folderDeleted": "ဖိုင်တွဲ ဖျက်ပြီးပါပြီ",
+    "deleteFolderFailed": "ဖိုင်တွဲ ဖျက်၍မရပါ"
   }
 }

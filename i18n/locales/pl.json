@@ -3147,5 +3147,27 @@
     "clearHistoryBody": "To usunie wszystkie obejrzane posty z twojej historii.",
     "clear": "Wyczyść",
     "clearFailed": "Nie udało się wyczyścić historii. Spróbuj ponownie."
+  },
+  "savedPosts": {
+    "allSaved": "Wszystkie zapisane",
+    "collections": "Kolekcje",
+    "newCollection": "Nowa kolekcja",
+    "editCollection": "Edytuj kolekcję",
+    "editCollectionDetails": "Edytuj szczegóły kolekcji",
+    "deleteCollection": "Usuń kolekcję",
+    "collectionSubtitle": "Kolekcja zakładek",
+    "collectionOptions": "Opcje kolekcji",
+    "namePlaceholder": "Nazwa",
+    "descriptionPlaceholder": "Opis (opcjonalnie)",
+    "collectionNamePlaceholder": "Nazwa kolekcji",
+    "fetchFoldersFailed": "Nie udało się pobrać folderów",
+    "folderCreated": "Utworzono folder \"{{name}}\"",
+    "createFolderFailed": "Nie udało się utworzyć folderu",
+    "folderUpdated": "Folder zaktualizowany",
+    "updateFolderFailed": "Nie udało się zaktualizować folderu",
+    "deleteFolderTitle": "Usuń folder",
+    "deleteFolderBody": "Na pewno chcesz usunąć \"{{name}}\"? Zapisane posty w środku nie zostaną usunięte z twojej listy zapisanych.",
+    "folderDeleted": "Folder usunięty",
+    "deleteFolderFailed": "Nie udało się usunąć folderu"
   }
 }

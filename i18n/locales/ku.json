@@ -2845,5 +2845,27 @@
     "clearHistoryBody": "Ev dê hemû postên temaşekirî ji dîroka te derxe.",
     "clear": "Paqij bike",
     "clearFailed": "Dîrok nehat paqijkirin. Ji kerema xwe dîsa biceribîne."
+  },
+  "savedPosts": {
+    "allSaved": "Hemû tomarkirî",
+    "collections": "Berhevok",
+    "newCollection": "Berhevoka nû",
+    "editCollection": "Berhevokê biguherîne",
+    "editCollectionDetails": "Hûrgiliyên berhevokê biguherîne",
+    "deleteCollection": "Berhevokê jê bibe",
+    "collectionSubtitle": "Berhevoka nîşankirinan",
+    "collectionOptions": "Vebijarkên berhevokê",
+    "namePlaceholder": "Nav",
+    "descriptionPlaceholder": "Danasîn (bijarî)",
+    "collectionNamePlaceholder": "Navê berhevokê",
+    "fetchFoldersFailed": "Peldank nehatin anîn",
+    "folderCreated": "Peldanka \"{{name}}\" hat çêkirin",
+    "createFolderFailed": "Peldank nehat çêkirin",
+    "folderUpdated": "Peldank hat nûkirin",
+    "updateFolderFailed": "Peldank nehat nûkirin",
+    "deleteFolderTitle": "Peldankê jê bibe",
+    "deleteFolderBody": "Tu piştrast î ku dixwazî \"{{name}}\" jê bibî? Postên tomarkirî yên hundir dê ji lîsteya te ya Tomarkirî neyên jêbirin.",
+    "folderDeleted": "Peldank hat jêbirin",
+    "deleteFolderFailed": "Peldank nehat jêbirin"
   }
 }

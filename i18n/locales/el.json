@@ -3102,5 +3102,27 @@
     "clearHistoryBody": "Αυτό θα αφαιρέσει όλες τις αναρτήσεις που είδες από το ιστορικό σου.",
     "clear": "Εκκαθάριση",
     "clearFailed": "Αποτυχία εκκαθάρισης ιστορικού. Δοκίμασε ξανά."
+  },
+  "savedPosts": {
+    "allSaved": "Όλα τα αποθηκευμένα",
+    "collections": "Συλλογές",
+    "newCollection": "Νέα συλλογή",
+    "editCollection": "Επεξεργασία συλλογής",
+    "editCollectionDetails": "Επεξεργασία στοιχείων συλλογής",
+    "deleteCollection": "Διαγραφή συλλογής",
+    "collectionSubtitle": "Συλλογή σελιδοδεικτών",
+    "collectionOptions": "Επιλογές συλλογής",
+    "namePlaceholder": "Όνομα",
+    "descriptionPlaceholder": "Περιγραφή (προαιρετικά)",
+    "collectionNamePlaceholder": "Όνομα συλλογής",
+    "fetchFoldersFailed": "Αποτυχία λήψης φακέλων",
+    "folderCreated": "Ο φάκελος \"{{name}}\" δημιουργήθηκε",
+    "createFolderFailed": "Αποτυχία δημιουργίας φακέλου",
+    "folderUpdated": "Ο φάκελος ενημερώθηκε",
+    "updateFolderFailed": "Αποτυχία ενημέρωσης φακέλου",
+    "deleteFolderTitle": "Διαγραφή φακέλου",
+    "deleteFolderBody": "Θέλεις σίγουρα να διαγράψεις το \"{{name}}\"; Οι αποθηκευμένες αναρτήσεις μέσα δεν θα διαγραφούν από τη λίστα αποθηκευμένων.",
+    "folderDeleted": "Ο φάκελος διαγράφηκε",
+    "deleteFolderFailed": "Αποτυχία διαγραφής φακέλου"
   }
 }

@@ -3146,5 +3146,27 @@
     "clearHistoryBody": "視聴済みの投稿をすべて履歴から削除します。",
     "clear": "消去",
     "clearFailed": "履歴を消去できませんでした。もう一度お試しください。"
+  },
+  "savedPosts": {
+    "allSaved": "保存済みすべて",
+    "collections": "コレクション",
+    "newCollection": "新しいコレクション",
+    "editCollection": "コレクションを編集",
+    "editCollectionDetails": "コレクションの詳細を編集",
+    "deleteCollection": "コレクションを削除",
+    "collectionSubtitle": "ブックマークコレクション",
+    "collectionOptions": "コレクションのオプション",
+    "namePlaceholder": "名前",
+    "descriptionPlaceholder": "説明（任意）",
+    "collectionNamePlaceholder": "コレクション名",
+    "fetchFoldersFailed": "フォルダを取得できませんでした",
+    "folderCreated": "フォルダ「{{name}}」を作成しました",
+    "createFolderFailed": "フォルダを作成できませんでした",
+    "folderUpdated": "フォルダを更新しました",
+    "updateFolderFailed": "フォルダを更新できませんでした",
+    "deleteFolderTitle": "フォルダを削除",
+    "deleteFolderBody": "「{{name}}」を削除しますか？中に保存された投稿は保存リストからは削除されません。",
+    "folderDeleted": "フォルダを削除しました",
+    "deleteFolderFailed": "フォルダを削除できませんでした"
   }
 }

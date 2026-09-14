@@ -3069,5 +3069,27 @@
     "clearHistoryBody": "Èyí yóò yọ gbogbo ìfiránṣẹ́ tí o ti wò kúrò nínú ìtàn rẹ.",
     "clear": "Pa rẹ́",
     "clearFailed": "Kò lè pa ìtàn náà rẹ́. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan sí i."
+  },
+  "savedPosts": {
+    "allSaved": "Gbogbo tí a fi pamọ́",
+    "collections": "Àwọn àkójọpọ̀",
+    "newCollection": "Àkójọpọ̀ tuntun",
+    "editCollection": "Ṣàtúnṣe àkójọpọ̀",
+    "editCollectionDetails": "Ṣàtúnṣe àlàyé àkójọpọ̀",
+    "deleteCollection": "Pa àkójọpọ̀ rẹ́",
+    "collectionSubtitle": "Àkójọpọ̀ àmì ìwé",
+    "collectionOptions": "Àwọn àṣàyàn àkójọpọ̀",
+    "namePlaceholder": "Orúkọ",
+    "descriptionPlaceholder": "Àpèjúwe (àyàn)",
+    "collectionNamePlaceholder": "Orúkọ àkójọpọ̀",
+    "fetchFoldersFailed": "Kò lè gba àwọn fóldà",
+    "folderCreated": "A ti ṣẹ̀dá fóldà \"{{name}}\"",
+    "createFolderFailed": "Kò lè ṣẹ̀dá fóldà",
+    "folderUpdated": "A ti ṣe àtúnṣe fóldà",
+    "updateFolderFailed": "Kò lè ṣàtúnṣe fóldà",
+    "deleteFolderTitle": "Pa fóldà rẹ́",
+    "deleteFolderBody": "Ṣé ó dájú pé o fẹ́ pa \"{{name}}\" rẹ́? Àwọn ìfiránṣẹ́ tí a fi pamọ́ nínú rẹ̀ kò ní kúrò nínú àkọsílẹ̀ Ìfipamọ́ rẹ.",
+    "folderDeleted": "A ti pa fóldà rẹ́",
+    "deleteFolderFailed": "Kò lè pa fóldà rẹ́"
   }
 }

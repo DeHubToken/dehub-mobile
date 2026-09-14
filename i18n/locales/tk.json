@@ -3049,5 +3049,27 @@
     "clearHistoryBody": "Bu görlen ähli ýazgylary taryhyňyzdan aýrar.",
     "clear": "Arassala",
     "clearFailed": "Taryh arassalanyp bilmedi. Täzeden synanyşyň."
+  },
+  "savedPosts": {
+    "allSaved": "Ähli saklananlar",
+    "collections": "Ýygyndylar",
+    "newCollection": "Täze ýygyndy",
+    "editCollection": "Ýygyndyny üýtget",
+    "editCollectionDetails": "Ýygyndy maglumatlaryny üýtget",
+    "deleteCollection": "Ýygyndyny poz",
+    "collectionSubtitle": "Bellik ýygyndysy",
+    "collectionOptions": "Ýygyndy saýlawlary",
+    "namePlaceholder": "At",
+    "descriptionPlaceholder": "Beýany (islege bagly)",
+    "collectionNamePlaceholder": "Ýygyndynyň ady",
+    "fetchFoldersFailed": "Bukjalar alnyp bilmedi",
+    "folderCreated": "\"{{name}}\" bukjasy döredildi",
+    "createFolderFailed": "Bukja döredilip bilmedi",
+    "folderUpdated": "Bukja täzelendi",
+    "updateFolderFailed": "Bukja täzelenip bilmedi",
+    "deleteFolderTitle": "Bukjany poz",
+    "deleteFolderBody": "\"{{name}}\" pozulsynmy? Içindäki saklanan ýazgylar Saklananlar sanawyňyzdan pozulmaz.",
+    "folderDeleted": "Bukja pozuldy",
+    "deleteFolderFailed": "Bukja pozulyp bilmedi"
   }
 }

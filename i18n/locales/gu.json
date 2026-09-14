@@ -3071,5 +3071,27 @@
     "clearHistoryBody": "આ તમારા ઇતિહાસમાંથી બધી જોયેલી પોસ્ટ કાઢી નાખશે.",
     "clear": "સાફ કરો",
     "clearFailed": "ઇતિહાસ સાફ થઈ શક્યો નહીં. ફરી પ્રયાસ કરો."
+  },
+  "savedPosts": {
+    "allSaved": "બધું સાચવેલું",
+    "collections": "સંગ્રહો",
+    "newCollection": "નવો સંગ્રહ",
+    "editCollection": "સંગ્રહ સંપાદિત કરો",
+    "editCollectionDetails": "સંગ્રહની વિગતો સંપાદિત કરો",
+    "deleteCollection": "સંગ્રહ કાઢી નાખો",
+    "collectionSubtitle": "બુકમાર્ક સંગ્રહ",
+    "collectionOptions": "સંગ્રહ વિકલ્પો",
+    "namePlaceholder": "નામ",
+    "descriptionPlaceholder": "વર્ણન (વૈકલ્પિક)",
+    "collectionNamePlaceholder": "સંગ્રહનું નામ",
+    "fetchFoldersFailed": "ફોલ્ડર મેળવી શકાયાં નહીં",
+    "folderCreated": "ફોલ્ડર \"{{name}}\" બન્યું",
+    "createFolderFailed": "ફોલ્ડર બનાવી શકાયું નહીં",
+    "folderUpdated": "ફોલ્ડર અપડેટ થયું",
+    "updateFolderFailed": "ફોલ્ડર અપડેટ થઈ શક્યું નહીં",
+    "deleteFolderTitle": "ફોલ્ડર કાઢી નાખો",
+    "deleteFolderBody": "શું તમે ખરેખર \"{{name}}\" કાઢી નાખવા માંગો છો? અંદરની સાચવેલી પોસ્ટ તમારી સાચવેલી યાદીમાંથી કાઢી નહીં નાખવામાં આવે.",
+    "folderDeleted": "ફોલ્ડર કાઢી નાખ્યું",
+    "deleteFolderFailed": "ફોલ્ડર કાઢી શકાયું નહીં"
   }
 }

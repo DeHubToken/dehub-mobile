@@ -3135,5 +3135,27 @@
     "clearHistoryBody": "इससे आपके इतिहास से सभी देखी गई पोस्ट हट जाएँगी।",
     "clear": "मिटाएँ",
     "clearFailed": "इतिहास नहीं मिटाया जा सका। फिर से कोशिश करें।"
+  },
+  "savedPosts": {
+    "allSaved": "सभी सहेजे गए",
+    "collections": "संग्रह",
+    "newCollection": "नया संग्रह",
+    "editCollection": "संग्रह संपादित करें",
+    "editCollectionDetails": "संग्रह का विवरण संपादित करें",
+    "deleteCollection": "संग्रह मिटाएँ",
+    "collectionSubtitle": "बुकमार्क संग्रह",
+    "collectionOptions": "संग्रह विकल्प",
+    "namePlaceholder": "नाम",
+    "descriptionPlaceholder": "विवरण (वैकल्पिक)",
+    "collectionNamePlaceholder": "संग्रह का नाम",
+    "fetchFoldersFailed": "फ़ोल्डर नहीं मिल सके",
+    "folderCreated": "फ़ोल्डर \"{{name}}\" बन गया",
+    "createFolderFailed": "फ़ोल्डर नहीं बन सका",
+    "folderUpdated": "फ़ोल्डर अपडेट हुआ",
+    "updateFolderFailed": "फ़ोल्डर अपडेट नहीं हो सका",
+    "deleteFolderTitle": "फ़ोल्डर मिटाएँ",
+    "deleteFolderBody": "क्या आप वाकई \"{{name}}\" मिटाना चाहते हैं? इसके अंदर सहेजी गई पोस्ट आपकी सहेजी सूची से नहीं मिटेंगी।",
+    "folderDeleted": "फ़ोल्डर मिट गया",
+    "deleteFolderFailed": "फ़ोल्डर नहीं मिटाया जा सका"
   }
 }

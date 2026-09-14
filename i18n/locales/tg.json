@@ -3057,5 +3057,27 @@
     "clearHistoryBody": "Ин ҳамаи постҳои тамошошударо аз таърихи шумо мебарорад.",
     "clear": "Тоза кардан",
     "clearFailed": "Таърих тоза нашуд. Лутфан дубора кӯшиш кунед."
+  },
+  "savedPosts": {
+    "allSaved": "Ҳамаи захирашуда",
+    "collections": "Маҷмӯаҳо",
+    "newCollection": "Маҷмӯаи нав",
+    "editCollection": "Таҳрири маҷмӯа",
+    "editCollectionDetails": "Таҳрири тафсилоти маҷмӯа",
+    "deleteCollection": "Нест кардани маҷмӯа",
+    "collectionSubtitle": "Маҷмӯаи хатчӯбҳо",
+    "collectionOptions": "Имконоти маҷмӯа",
+    "namePlaceholder": "Ном",
+    "descriptionPlaceholder": "Тавсиф (ихтиёрӣ)",
+    "collectionNamePlaceholder": "Номи маҷмӯа",
+    "fetchFoldersFailed": "Ҷузвдонҳо гирифта нашуданд",
+    "folderCreated": "Ҷузвдони \"{{name}}\" сохта шуд",
+    "createFolderFailed": "Ҷузвдон сохта нашуд",
+    "folderUpdated": "Ҷузвдон навсозӣ шуд",
+    "updateFolderFailed": "Ҷузвдон навсозӣ нашуд",
+    "deleteFolderTitle": "Нест кардани ҷузвдон",
+    "deleteFolderBody": "Мутмаин ҳастед, ки \"{{name}}\"-ро нест кунед? Постҳои захирашудаи дарунӣ аз рӯйхати захирашудаи шумо нест намешаванд.",
+    "folderDeleted": "Ҷузвдон нест карда шуд",
+    "deleteFolderFailed": "Ҷузвдон нест карда нашуд"
   }
 }

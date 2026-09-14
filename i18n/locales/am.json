@@ -3074,5 +3074,27 @@
     "clearHistoryBody": "ይህ የተመለከቷቸውን ሁሉንም ልጥፎች ከታሪክዎ ያስወግዳል።",
     "clear": "አጽዳ",
     "clearFailed": "ታሪኩን ማጽዳት አልተሳካም። እባክዎ እንደገና ይሞክሩ።"
+  },
+  "savedPosts": {
+    "allSaved": "ሁሉም የተቀመጡ",
+    "collections": "ስብስቦች",
+    "newCollection": "አዲስ ስብስብ",
+    "editCollection": "ስብስብ አርትዕ",
+    "editCollectionDetails": "የስብስብ ዝርዝሮችን አርትዕ",
+    "deleteCollection": "ስብስብ ሰርዝ",
+    "collectionSubtitle": "የዕልባት ስብስብ",
+    "collectionOptions": "የስብስብ አማራጮች",
+    "namePlaceholder": "ስም",
+    "descriptionPlaceholder": "መግለጫ (አማራጭ)",
+    "collectionNamePlaceholder": "የስብስብ ስም",
+    "fetchFoldersFailed": "አቃፊዎችን ማምጣት አልተሳካም",
+    "folderCreated": "አቃፊ \"{{name}}\" ተፈጥሯል",
+    "createFolderFailed": "አቃፊ መፍጠር አልተሳካም",
+    "folderUpdated": "አቃፊው ተዘምኗል",
+    "updateFolderFailed": "አቃፊውን ማዘመን አልተሳካም",
+    "deleteFolderTitle": "አቃፊ ሰርዝ",
+    "deleteFolderBody": "\"{{name}}\"ን መሰረዝ ይፈልጋሉ? ውስጡ ያሉት የተቀመጡ ልጥፎች ከተቀመጡ ዝርዝርዎ አይሰረዙም።",
+    "folderDeleted": "አቃፊው ተሰርዟል",
+    "deleteFolderFailed": "አቃፊውን መሰረዝ አልተሳካም"
   }
 }

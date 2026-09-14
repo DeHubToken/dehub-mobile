@@ -3072,5 +3072,27 @@
     "clearHistoryBody": "Бул көрүлгөн бардык постторду тарыхыңыздан өчүрөт.",
     "clear": "Тазалоо",
     "clearFailed": "Тарыхты тазалоо мүмкүн болбоду. Кайра аракет кылыңыз."
+  },
+  "savedPosts": {
+    "allSaved": "Бардык сакталгандар",
+    "collections": "Жыйнактар",
+    "newCollection": "Жаңы жыйнак",
+    "editCollection": "Жыйнакты түзөтүү",
+    "editCollectionDetails": "Жыйнак маалыматын түзөтүү",
+    "deleteCollection": "Жыйнакты өчүрүү",
+    "collectionSubtitle": "Кыстармалар жыйнагы",
+    "collectionOptions": "Жыйнак параметрлери",
+    "namePlaceholder": "Аты",
+    "descriptionPlaceholder": "Сүрөттөмө (милдеттүү эмес)",
+    "collectionNamePlaceholder": "Жыйнактын аты",
+    "fetchFoldersFailed": "Папкаларды алуу мүмкүн болбоду",
+    "folderCreated": "\"{{name}}\" папкасы түзүлдү",
+    "createFolderFailed": "Папка түзүү мүмкүн болбоду",
+    "folderUpdated": "Папка жаңыртылды",
+    "updateFolderFailed": "Папканы жаңыртуу мүмкүн болбоду",
+    "deleteFolderTitle": "Папканы өчүрүү",
+    "deleteFolderBody": "\"{{name}}\" өчүрүлсүнбү? Ичиндеги сакталган посттор Сакталгандар тизмесинен өчпөйт.",
+    "folderDeleted": "Папка өчүрүлдү",
+    "deleteFolderFailed": "Папканы өчүрүү мүмкүн болбоду"
   }
 }

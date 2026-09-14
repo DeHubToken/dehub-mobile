@@ -3080,5 +3080,27 @@
     "clearHistoryBody": "एकर ले तुंहर इतिहास ले सब देखे पोस्ट हट जाही।",
     "clear": "मिटावव",
     "clearFailed": "इतिहास नइ मिट सकिस। फेर कोसिस करव।"
+  },
+  "savedPosts": {
+    "allSaved": "सब सेव करे",
+    "collections": "संग्रह",
+    "newCollection": "नवा संग्रह",
+    "editCollection": "संग्रह संपादित करव",
+    "editCollectionDetails": "संग्रह के विवरण संपादित करव",
+    "deleteCollection": "संग्रह मिटावव",
+    "collectionSubtitle": "बुकमार्क संग्रह",
+    "collectionOptions": "संग्रह विकल्प",
+    "namePlaceholder": "नाव",
+    "descriptionPlaceholder": "विवरण (वैकल्पिक)",
+    "collectionNamePlaceholder": "संग्रह के नाव",
+    "fetchFoldersFailed": "फोल्डर नइ आ सकिन",
+    "folderCreated": "फोल्डर \"{{name}}\" बनगे",
+    "createFolderFailed": "फोल्डर नइ बन सकिस",
+    "folderUpdated": "फोल्डर अपडेट होइस",
+    "updateFolderFailed": "फोल्डर अपडेट नइ हो सकिस",
+    "deleteFolderTitle": "फोल्डर मिटावव",
+    "deleteFolderBody": "का तुमन सच म \"{{name}}\" मिटाय चाहथव? भीतर के सेव पोस्ट तुंहर सेव सूची ले नइ मिटही।",
+    "folderDeleted": "फोल्डर मिटगे",
+    "deleteFolderFailed": "फोल्डर नइ मिट सकिस"
   }
 }

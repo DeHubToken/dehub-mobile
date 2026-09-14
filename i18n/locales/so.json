@@ -3070,5 +3070,27 @@
     "clearHistoryBody": "Tani waxay ka saari doontaa dhammaan boostooyinka la daawaday taariikhdaada.",
     "clear": "Tirtir",
     "clearFailed": "Lama tirtiri karin taariikhda. Fadlan isku day mar kale."
+  },
+  "savedPosts": {
+    "allSaved": "Dhammaan la kaydiyay",
+    "collections": "Ururinno",
+    "newCollection": "Ururin cusub",
+    "editCollection": "Wax ka beddel ururinta",
+    "editCollectionDetails": "Wax ka beddel faahfaahinta ururinta",
+    "deleteCollection": "Tirtir ururinta",
+    "collectionSubtitle": "Ururin calaamado",
+    "collectionOptions": "Doorashooyinka ururinta",
+    "namePlaceholder": "Magac",
+    "descriptionPlaceholder": "Sharaxaad (ikhtiyaari)",
+    "collectionNamePlaceholder": "Magaca ururinta",
+    "fetchFoldersFailed": "Lama soo qaadi karin galalka",
+    "folderCreated": "Galka \"{{name}}\" waa la abuuray",
+    "createFolderFailed": "Lama abuuri karin galka",
+    "folderUpdated": "Galka waa la cusbooneysiiyay",
+    "updateFolderFailed": "Lama cusbooneysiin karin galka",
+    "deleteFolderTitle": "Tirtir galka",
+    "deleteFolderBody": "Ma hubtaa inaad tirtirto \"{{name}}\"? Boostooyinka la kaydiyay ee gudaha lagama tirtiri doono liiskaaga la kaydiyay.",
+    "folderDeleted": "Galka waa la tirtiray",
+    "deleteFolderFailed": "Lama tirtiri karin galka"
   }
 }

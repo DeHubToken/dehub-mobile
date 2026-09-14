@@ -3259,5 +3259,27 @@
     "clearHistoryBody": "Aalisin nito sa iyong history ang lahat ng napanood na post.",
     "clear": "I-clear",
     "clearFailed": "Hindi ma-clear ang history. Pakisubukang muli."
+  },
+  "savedPosts": {
+    "allSaved": "Lahat ng naka-save",
+    "collections": "Mga koleksyon",
+    "newCollection": "Bagong koleksyon",
+    "editCollection": "I-edit ang koleksyon",
+    "editCollectionDetails": "I-edit ang detalye ng koleksyon",
+    "deleteCollection": "Burahin ang koleksyon",
+    "collectionSubtitle": "Koleksyon ng bookmark",
+    "collectionOptions": "Mga opsyon ng koleksyon",
+    "namePlaceholder": "Pangalan",
+    "descriptionPlaceholder": "Paglalarawan (opsyonal)",
+    "collectionNamePlaceholder": "Pangalan ng koleksyon",
+    "fetchFoldersFailed": "Hindi makuha ang mga folder",
+    "folderCreated": "Nagawa ang folder na \"{{name}}\"",
+    "createFolderFailed": "Hindi makagawa ng folder",
+    "folderUpdated": "Na-update ang folder",
+    "updateFolderFailed": "Hindi ma-update ang folder",
+    "deleteFolderTitle": "Burahin ang folder",
+    "deleteFolderBody": "Sigurado kang burahin ang \"{{name}}\"? Hindi mabubura ang mga naka-save na post sa loob mula sa iyong Saved list.",
+    "folderDeleted": "Nabura ang folder",
+    "deleteFolderFailed": "Hindi mabura ang folder"
   }
 }

@@ -3037,5 +3037,27 @@
     "clearHistoryBody": "Iki bakal mbusak kabeh kiriman sing wis ditonton saka riwayatmu.",
     "clear": "Busak",
     "clearFailed": "Gagal mbusak riwayat. Coba maneh."
+  },
+  "savedPosts": {
+    "allSaved": "Kabeh sing disimpen",
+    "collections": "Koleksi",
+    "newCollection": "Koleksi anyar",
+    "editCollection": "Sunting koleksi",
+    "editCollectionDetails": "Sunting rincian koleksi",
+    "deleteCollection": "Busak koleksi",
+    "collectionSubtitle": "Koleksi bookmark",
+    "collectionOptions": "Opsi koleksi",
+    "namePlaceholder": "Jeneng",
+    "descriptionPlaceholder": "Katrangan (opsional)",
+    "collectionNamePlaceholder": "Jeneng koleksi",
+    "fetchFoldersFailed": "Gagal njupuk folder",
+    "folderCreated": "Folder \"{{name}}\" wis digawe",
+    "createFolderFailed": "Gagal nggawe folder",
+    "folderUpdated": "Folder wis dianyari",
+    "updateFolderFailed": "Gagal nganyari folder",
+    "deleteFolderTitle": "Busak folder",
+    "deleteFolderBody": "Yakin arep mbusak \"{{name}}\"? Kiriman sing disimpen ing njerone ora bakal dibusak saka dhaptar Disimpen sampeyan.",
+    "folderDeleted": "Folder wis dibusak",
+    "deleteFolderFailed": "Gagal mbusak folder"
   }
 }

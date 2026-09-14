@@ -3196,5 +3196,27 @@
     "clearHistoryBody": "Dit sal alle gekykte plasings uit jou geskiedenis verwyder.",
     "clear": "Vee uit",
     "clearFailed": "Kon nie geskiedenis uitvee nie. Probeer asseblief weer."
+  },
+  "savedPosts": {
+    "allSaved": "Alles gestoor",
+    "collections": "Versamelings",
+    "newCollection": "Nuwe versameling",
+    "editCollection": "Wysig versameling",
+    "editCollectionDetails": "Wysig versamelingbesonderhede",
+    "deleteCollection": "Skrap versameling",
+    "collectionSubtitle": "Boekmerkversameling",
+    "collectionOptions": "Versamelingopsies",
+    "namePlaceholder": "Naam",
+    "descriptionPlaceholder": "Beskrywing (opsioneel)",
+    "collectionNamePlaceholder": "Versamelingnaam",
+    "fetchFoldersFailed": "Kon nie vouers haal nie",
+    "folderCreated": "Vouer \"{{name}}\" geskep",
+    "createFolderFailed": "Kon nie vouer skep nie",
+    "folderUpdated": "Vouer opgedateer",
+    "updateFolderFailed": "Kon nie vouer opdateer nie",
+    "deleteFolderTitle": "Skrap vouer",
+    "deleteFolderBody": "Is jy seker jy wil \"{{name}}\" skrap? Die gestoorde plasings binne word nie uit jou Gestoor-lys verwyder nie.",
+    "folderDeleted": "Vouer geskrap",
+    "deleteFolderFailed": "Kon nie vouer skrap nie"
   }
 }

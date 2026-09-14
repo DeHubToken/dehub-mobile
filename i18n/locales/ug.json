@@ -3069,5 +3069,27 @@
     "clearHistoryBody": "بۇ كۆرۈلگەن بارلىق يازمىلارنى تارىخىڭىزدىن ئۆچۈرىدۇ.",
     "clear": "تازىلاش",
     "clearFailed": "تارىخنى تازىلىغىلى بولمىدى. قايتا سىناڭ."
+  },
+  "savedPosts": {
+    "allSaved": "بارلىق ساقلانغانلار",
+    "collections": "توپلاملار",
+    "newCollection": "يېڭى توپلام",
+    "editCollection": "توپلامنى تەھرىرلەش",
+    "editCollectionDetails": "توپلام تەپسىلاتىنى تەھرىرلەش",
+    "deleteCollection": "توپلامنى ئۆچۈرۈش",
+    "collectionSubtitle": "خەتكۈچ توپلىمى",
+    "collectionOptions": "توپلام تاللانمىلىرى",
+    "namePlaceholder": "ئىسمى",
+    "descriptionPlaceholder": "چۈشەندۈرۈش (ئىختىيارىي)",
+    "collectionNamePlaceholder": "توپلام ئىسمى",
+    "fetchFoldersFailed": "قىسقۇچلارنى ئالغىلى بولمىدى",
+    "folderCreated": "\"{{name}}\" قىسقۇچ قۇرۇلدى",
+    "createFolderFailed": "قىسقۇچ قۇرغىلى بولمىدى",
+    "folderUpdated": "قىسقۇچ يېڭىلاندى",
+    "updateFolderFailed": "قىسقۇچنى يېڭىلىغىلى بولمىدى",
+    "deleteFolderTitle": "قىسقۇچنى ئۆچۈرۈش",
+    "deleteFolderBody": "\"{{name}}\" نى ئۆچۈرەمسىز؟ ئىچىدىكى ساقلانغان يازمىلار ساقلانغانلار تىزىملىكىڭىزدىن ئۆچۈرۈلمەيدۇ.",
+    "folderDeleted": "قىسقۇچ ئۆچۈرۈلدى",
+    "deleteFolderFailed": "قىسقۇچنى ئۆچۈرگىلى بولمىدى"
   }
 }

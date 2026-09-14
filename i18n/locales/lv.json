@@ -3078,5 +3078,27 @@
     "clearHistoryBody": "Tas noņems visas skatītās ziņas no tavas vēstures.",
     "clear": "Notīrīt",
     "clearFailed": "Neizdevās notīrīt vēsturi. Mēģini vēlreiz."
+  },
+  "savedPosts": {
+    "allSaved": "Visi saglabātie",
+    "collections": "Kolekcijas",
+    "newCollection": "Jauna kolekcija",
+    "editCollection": "Rediģēt kolekciju",
+    "editCollectionDetails": "Rediģēt kolekcijas informāciju",
+    "deleteCollection": "Dzēst kolekciju",
+    "collectionSubtitle": "Grāmatzīmju kolekcija",
+    "collectionOptions": "Kolekcijas opcijas",
+    "namePlaceholder": "Nosaukums",
+    "descriptionPlaceholder": "Apraksts (neobligāti)",
+    "collectionNamePlaceholder": "Kolekcijas nosaukums",
+    "fetchFoldersFailed": "Neizdevās iegūt mapes",
+    "folderCreated": "Mape \"{{name}}\" izveidota",
+    "createFolderFailed": "Neizdevās izveidot mapi",
+    "folderUpdated": "Mape atjaunināta",
+    "updateFolderFailed": "Neizdevās atjaunināt mapi",
+    "deleteFolderTitle": "Dzēst mapi",
+    "deleteFolderBody": "Vai tiešām vēlies dzēst \"{{name}}\"? Iekšā saglabātās ziņas netiks dzēstas no tava saglabāto saraksta.",
+    "folderDeleted": "Mape dzēsta",
+    "deleteFolderFailed": "Neizdevās dzēst mapi"
   }
 }

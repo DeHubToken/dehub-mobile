@@ -3108,5 +3108,27 @@
     "clearHistoryBody": "Lokhu kuzosusa konke okuthunyelwe okubukiwe emlandweni wakho.",
     "clear": "Sula",
     "clearFailed": "Ayikwazanga ukusula umlando. Sicela uzame futhi."
+  },
+  "savedPosts": {
+    "allSaved": "Konke okulondoloziwe",
+    "collections": "Amaqoqo",
+    "newCollection": "Iqoqo elisha",
+    "editCollection": "Hlela iqoqo",
+    "editCollectionDetails": "Hlela imininingwane yeqoqo",
+    "deleteCollection": "Susa iqoqo",
+    "collectionSubtitle": "Iqoqo lamabhukumaka",
+    "collectionOptions": "Izinketho zeqoqo",
+    "namePlaceholder": "Igama",
+    "descriptionPlaceholder": "Incazelo (ongakhetha)",
+    "collectionNamePlaceholder": "Igama leqoqo",
+    "fetchFoldersFailed": "Ayikwazanga ukulanda amafolda",
+    "folderCreated": "Ifolda \"{{name}}\" idalwe",
+    "createFolderFailed": "Ayikwazanga ukwakha ifolda",
+    "folderUpdated": "Ifolda ibuyekeziwe",
+    "updateFolderFailed": "Ayikwazanga ukubuyekeza ifolda",
+    "deleteFolderTitle": "Susa ifolda",
+    "deleteFolderBody": "Uqinisekile ufuna ukususa \"{{name}}\"? Okuthunyelwe okulondoloziwe ngaphakathi ngeke kususwe ohlwini lwakho lokuLondoloziwe.",
+    "folderDeleted": "Ifolda isusiwe",
+    "deleteFolderFailed": "Ayikwazanga ukususa ifolda"
   }
 }

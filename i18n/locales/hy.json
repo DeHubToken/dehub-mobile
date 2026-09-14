@@ -3072,5 +3072,27 @@
     "clearHistoryBody": "Սա կհեռացնի բոլոր դիտված գրառումները ձեր պատմությունից։",
     "clear": "Մաքրել",
     "clearFailed": "Չհաջողվեց մաքրել պատմությունը։ Փորձեք կրկին։"
+  },
+  "savedPosts": {
+    "allSaved": "Բոլոր պահվածները",
+    "collections": "Հավաքածուներ",
+    "newCollection": "Նոր հավաքածու",
+    "editCollection": "Խմբագրել հավաքածուն",
+    "editCollectionDetails": "Խմբագրել հավաքածուի տվյալները",
+    "deleteCollection": "Ջնջել հավաքածուն",
+    "collectionSubtitle": "Էջանիշների հավաքածու",
+    "collectionOptions": "Հավաքածուի ընտրանքներ",
+    "namePlaceholder": "Անուն",
+    "descriptionPlaceholder": "Նկարագրություն (ըստ ցանկության)",
+    "collectionNamePlaceholder": "Հավաքածուի անուն",
+    "fetchFoldersFailed": "Չհաջողվեց բերել պանակները",
+    "folderCreated": "\"{{name}}\" պանակը ստեղծվեց",
+    "createFolderFailed": "Չհաջողվեց ստեղծել պանակը",
+    "folderUpdated": "Պանակը թարմացվեց",
+    "updateFolderFailed": "Չհաջողվեց թարմացնել պանակը",
+    "deleteFolderTitle": "Ջնջել պանակը",
+    "deleteFolderBody": "Վստա՞հ եք, որ ուզում եք ջնջել \"{{name}}\"-ը։ Ներսի պահված գրառումները ձեր պահվածների ցանկից չեն ջնջվի։",
+    "folderDeleted": "Պանակը ջնջվեց",
+    "deleteFolderFailed": "Չհաջողվեց ջնջել պանակը"
   }
 }

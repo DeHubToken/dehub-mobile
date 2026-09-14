@@ -3084,5 +3084,27 @@
     "clearHistoryBody": "ಇದು ನಿಮ್ಮ ಇತಿಹಾಸದಿಂದ ವೀಕ್ಷಿಸಿದ ಎಲ್ಲಾ ಪೋಸ್ಟ್‌ಗಳನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ.",
     "clear": "ತೆರವುಗೊಳಿಸಿ",
     "clearFailed": "ಇತಿಹಾಸ ತೆರವುಗೊಳಿಸಲಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+  },
+  "savedPosts": {
+    "allSaved": "ಎಲ್ಲಾ ಉಳಿಸಿದವು",
+    "collections": "ಸಂಗ್ರಹಗಳು",
+    "newCollection": "ಹೊಸ ಸಂಗ್ರಹ",
+    "editCollection": "ಸಂಗ್ರಹ ಸಂಪಾದಿಸಿ",
+    "editCollectionDetails": "ಸಂಗ್ರಹ ವಿವರಗಳನ್ನು ಸಂಪಾದಿಸಿ",
+    "deleteCollection": "ಸಂಗ್ರಹ ಅಳಿಸಿ",
+    "collectionSubtitle": "ಬುಕ್‌ಮಾರ್ಕ್ ಸಂಗ್ರಹ",
+    "collectionOptions": "ಸಂಗ್ರಹ ಆಯ್ಕೆಗಳು",
+    "namePlaceholder": "ಹೆಸರು",
+    "descriptionPlaceholder": "ವಿವರಣೆ (ಐಚ್ಛಿಕ)",
+    "collectionNamePlaceholder": "ಸಂಗ್ರಹದ ಹೆಸರು",
+    "fetchFoldersFailed": "ಫೋಲ್ಡರ್‌ಗಳನ್ನು ಪಡೆಯಲಾಗಲಿಲ್ಲ",
+    "folderCreated": "\"{{name}}\" ಫೋಲ್ಡರ್ ರಚಿಸಲಾಗಿದೆ",
+    "createFolderFailed": "ಫೋಲ್ಡರ್ ರಚಿಸಲಾಗಲಿಲ್ಲ",
+    "folderUpdated": "ಫೋಲ್ಡರ್ ನವೀಕರಿಸಲಾಗಿದೆ",
+    "updateFolderFailed": "ಫೋಲ್ಡರ್ ನವೀಕರಿಸಲಾಗಲಿಲ್ಲ",
+    "deleteFolderTitle": "ಫೋಲ್ಡರ್ ಅಳಿಸಿ",
+    "deleteFolderBody": "\"{{name}}\" ಅನ್ನು ಅಳಿಸಬೇಕೆಂದು ಖಚಿತವೇ? ಒಳಗಿನ ಉಳಿಸಿದ ಪೋಸ್ಟ್‌ಗಳು ನಿಮ್ಮ ಉಳಿಸಿದ ಪಟ್ಟಿಯಿಂದ ಅಳಿಸಲಾಗುವುದಿಲ್ಲ.",
+    "folderDeleted": "ಫೋಲ್ಡರ್ ಅಳಿಸಲಾಗಿದೆ",
+    "deleteFolderFailed": "ಫೋಲ್ಡರ್ ಅಳಿಸಲಾಗಲಿಲ್ಲ"
   }
 }

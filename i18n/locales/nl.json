@@ -3348,5 +3348,27 @@
     "clearHistoryBody": "Hiermee worden alle bekeken berichten uit je geschiedenis verwijderd.",
     "clear": "Wissen",
     "clearFailed": "Kon geschiedenis niet wissen. Probeer het opnieuw."
+  },
+  "savedPosts": {
+    "allSaved": "Alles opgeslagen",
+    "collections": "Collecties",
+    "newCollection": "Nieuwe collectie",
+    "editCollection": "Collectie bewerken",
+    "editCollectionDetails": "Collectiegegevens bewerken",
+    "deleteCollection": "Collectie verwijderen",
+    "collectionSubtitle": "Bladwijzercollectie",
+    "collectionOptions": "Collectie-opties",
+    "namePlaceholder": "Naam",
+    "descriptionPlaceholder": "Beschrijving (optioneel)",
+    "collectionNamePlaceholder": "Naam van collectie",
+    "fetchFoldersFailed": "Kon mappen niet ophalen",
+    "folderCreated": "Map \"{{name}}\" aangemaakt",
+    "createFolderFailed": "Kon map niet aanmaken",
+    "folderUpdated": "Map bijgewerkt",
+    "updateFolderFailed": "Kon map niet bijwerken",
+    "deleteFolderTitle": "Map verwijderen",
+    "deleteFolderBody": "Weet je zeker dat je \"{{name}}\" wilt verwijderen? De opgeslagen berichten erin worden niet uit je Opgeslagen-lijst verwijderd.",
+    "folderDeleted": "Map verwijderd",
+    "deleteFolderFailed": "Kon map niet verwijderen"
   }
 }

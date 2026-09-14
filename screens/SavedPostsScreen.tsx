@@ -65,7 +65,7 @@ const SavedPostsScreen: React.FC = () => {
       setFolders(res.result || []);
     } catch (err) {
       console.warn("[SavedPostsScreen] Error fetching folders:", err);
-      toastError("Failed to fetch folders");
+      toastError(t("savedPosts.fetchFoldersFailed"));
     } finally {
       if (!silent) setLoadingFolders(false);
     }
@@ -83,7 +83,7 @@ const SavedPostsScreen: React.FC = () => {
     try {
       const res = await createFolder(folderName, folderDesc);
       if (res.status) {
-        toastSuccess(`Folder "${res.result.name}" created`);
+        toastSuccess(t("savedPosts.folderCreated", { name: res.result.name }));
         setFolderName("");
         setFolderDesc("");
         setShowCreateModal(false);
@@ -91,7 +91,7 @@ const SavedPostsScreen: React.FC = () => {
       }
     } catch (err: any) {
       console.warn("[SavedPostsScreen] Error creating folder:", err);
-      toastError(err?.message || "Failed to create folder");
+      toastError(err?.message || t("savedPosts.createFolderFailed"));
     } finally {
       setSubmitting(false);
     }
@@ -106,7 +106,7 @@ const SavedPostsScreen: React.FC = () => {
         description: folderDesc,
       });
       if (res.status) {
-        toastSuccess("Folder updated");
+        toastSuccess(t("savedPosts.folderUpdated"));
         setFolderToEdit(null);
         setFolderName("");
         setFolderDesc("");
@@ -115,7 +115,7 @@ const SavedPostsScreen: React.FC = () => {
       }
     } catch (err: any) {
       console.warn("[SavedPostsScreen] Error updating folder:", err);
-      toastError(err?.message || "Failed to update folder");
+      toastError(err?.message || t("savedPosts.updateFolderFailed"));
     } finally {
       setSubmitting(false);
     }
@@ -123,23 +123,23 @@ const SavedPostsScreen: React.FC = () => {
 
   const handleDeleteFolder = (folder: BookmarkFolder) => {
     Alert.alert(
-      "Delete Folder",
-      `Are you sure you want to delete "${folder.name}"? The saved posts inside will not be deleted from your Saved list.`,
+      t("savedPosts.deleteFolderTitle"),
+      t("savedPosts.deleteFolderBody", { name: folder.name }),
       [
-        { text: "Cancel", style: "cancel" },
+        { text: t("common.cancel"), style: "cancel" },
         {
-          text: "Delete",
+          text: t("common.delete"),
           style: "destructive",
           onPress: async () => {
             try {
               const res = await deleteFolder(folder._id);
               if (res.status) {
-                toastSuccess("Folder deleted");
+                toastSuccess(t("savedPosts.folderDeleted"));
                 fetchFoldersList(true);
               }
             } catch (err) {
               console.warn("[SavedPostsScreen] Error deleting folder:", err);
-              toastError("Failed to delete folder");
+              toastError(t("savedPosts.deleteFolderFailed"));
             }
           },
         },
@@ -198,7 +198,7 @@ const SavedPostsScreen: React.FC = () => {
       <View className="flex-1 bg-theme-neutrals-900">
         <ScreenHeader
           title={selectedFolder.name}
-          subtitle={selectedFolder.description || "Bookmark collection"}
+          subtitle={selectedFolder.description || t("savedPosts.collectionSubtitle")}
           canGoBack
           onBackPress={() => {
             setSelectedFolder(null);
@@ -211,7 +211,7 @@ const SavedPostsScreen: React.FC = () => {
                 setShowMenuModal(true);
               }}
               accessibilityRole="button"
-              accessibilityLabel="Collection options"
+              accessibilityLabel={t("savedPosts.collectionOptions")}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               className="w-10 h-10 items-center justify-center active:opacity-70"
             >
@@ -255,7 +255,7 @@ const SavedPostsScreen: React.FC = () => {
                 style={styles.menuItem}
               >
                 <Icon name="SquarePen" size={18} color="#F9FBFF" />
-                <Text style={styles.menuItemText}>Edit Collection Details</Text>
+                <Text style={styles.menuItemText}>{t("savedPosts.editCollectionDetails")}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -270,14 +270,14 @@ const SavedPostsScreen: React.FC = () => {
                 style={[styles.menuItem, { borderBottomWidth: 0 }]}
               >
                 <Icon name="Trash2" size={18} color="#F4F4F5" />
-                <Text style={[styles.menuItemText, { color: "#F4F4F5" }]}>Delete Collection</Text>
+                <Text style={[styles.menuItemText, { color: "#F4F4F5" }]}>{t("savedPosts.deleteCollection")}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 onPress={() => setShowMenuModal(false)}
                 style={styles.menuCancelBtn}
               >
-                <Text style={styles.menuCancelBtnText}>Cancel</Text>
+                <Text style={styles.menuCancelBtnText}>{t("common.cancel")}</Text>
               </TouchableOpacity>
             </View>
           </Pressable>
@@ -296,9 +296,9 @@ const SavedPostsScreen: React.FC = () => {
         >
           <View style={styles.modalBackdrop}>
             <View style={styles.modalCard}>
-              <Text style={styles.modalTitle}>Edit Collection</Text>
+              <Text style={styles.modalTitle}>{t("savedPosts.editCollection")}</Text>
               <TextInput
-                placeholder="Name"
+                placeholder={t("savedPosts.namePlaceholder")}
                 placeholderTextColor="#A1A1AA"
                 value={folderName}
                 onChangeText={setFolderName}
@@ -306,7 +306,7 @@ const SavedPostsScreen: React.FC = () => {
                 maxLength={50}
               />
               <TextInput
-                placeholder="Description (Optional)"
+                placeholder={t("savedPosts.descriptionPlaceholder")}
                 placeholderTextColor="#A1A1AA"
                 value={folderDesc}
                 onChangeText={setFolderDesc}
@@ -323,7 +323,7 @@ const SavedPostsScreen: React.FC = () => {
                   }}
                   style={styles.modalCancel}
                 >
-                  <Text style={styles.modalCancelText}>Cancel</Text>
+                  <Text style={styles.modalCancelText}>{t("common.cancel")}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={handleEditFolder}
@@ -356,7 +356,7 @@ const SavedPostsScreen: React.FC = () => {
           activeOpacity={0.8}
         >
           <Text style={[styles.tabText, activeTab === "all" && styles.tabTextActive]}>
-            All Saved
+            {t("savedPosts.allSaved")}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -365,7 +365,7 @@ const SavedPostsScreen: React.FC = () => {
           activeOpacity={0.8}
         >
           <Text style={[styles.tabText, activeTab === "folders" && styles.tabTextActive]}>
-            Collections
+            {t("savedPosts.collections")}
           </Text>
         </TouchableOpacity>
       </View>
@@ -397,7 +397,7 @@ const SavedPostsScreen: React.FC = () => {
                   activeOpacity={0.8}
                 >
                   <Icon name="FolderPlus" size={24} color="#D4D4D8" />
-                  <Text style={styles.createCardText}>New Collection</Text>
+                  <Text style={styles.createCardText}>{t("savedPosts.newCollection")}</Text>
                 </TouchableOpacity>
               }
               ListEmptyComponent={
@@ -439,7 +439,7 @@ const SavedPostsScreen: React.FC = () => {
               style={styles.menuItem}
             >
               <Icon name="SquarePen" size={18} color="#F9FBFF" />
-              <Text style={styles.menuItemText}>Edit Collection Details</Text>
+              <Text style={styles.menuItemText}>{t("savedPosts.editCollectionDetails")}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -450,14 +450,14 @@ const SavedPostsScreen: React.FC = () => {
               style={[styles.menuItem, { borderBottomWidth: 0 }]}
             >
               <Icon name="Trash2" size={18} color="#F4F4F5" />
-              <Text style={[styles.menuItemText, { color: "#F4F4F5" }]}>Delete Collection</Text>
+              <Text style={[styles.menuItemText, { color: "#F4F4F5" }]}>{t("savedPosts.deleteCollection")}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               onPress={() => setShowMenuModal(false)}
               style={styles.menuCancelBtn}
             >
-              <Text style={styles.menuCancelBtnText}>Cancel</Text>
+              <Text style={styles.menuCancelBtnText}>{t("common.cancel")}</Text>
             </TouchableOpacity>
           </View>
         </Pressable>
@@ -481,7 +481,7 @@ const SavedPostsScreen: React.FC = () => {
           <View style={styles.modalCard}>
             <Text style={styles.modalTitle}>Create Collection</Text>
             <TextInput
-              placeholder="Collection Name"
+              placeholder={t("savedPosts.collectionNamePlaceholder")}
               placeholderTextColor="#A1A1AA"
               value={folderName}
               onChangeText={setFolderName}
@@ -490,7 +490,7 @@ const SavedPostsScreen: React.FC = () => {
               autoFocus
             />
             <TextInput
-              placeholder="Description (Optional)"
+              placeholder={t("savedPosts.descriptionPlaceholder")}
               placeholderTextColor="#A1A1AA"
               value={folderDesc}
               onChangeText={setFolderDesc}
@@ -507,7 +507,7 @@ const SavedPostsScreen: React.FC = () => {
                 }}
                 style={styles.modalCancel}
               >
-                <Text style={styles.modalCancelText}>Cancel</Text>
+                <Text style={styles.modalCancelText}>{t("common.cancel")}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={handleCreateFolder}
@@ -517,7 +517,7 @@ const SavedPostsScreen: React.FC = () => {
                 {submitting ? (
                   <ActivityIndicator size="small" color="#1E1E1E" />
                 ) : (
-                  <Text style={styles.modalSubmitText}>Create</Text>
+                  <Text style={styles.modalSubmitText}>{t("communities.create")}</Text>
                 )}
               </TouchableOpacity>
             </View>
@@ -543,7 +543,7 @@ const SavedPostsScreen: React.FC = () => {
           <View style={styles.modalCard}>
             <Text style={styles.modalTitle}>Edit Collection</Text>
             <TextInput
-              placeholder="Name"
+              placeholder={t("savedPosts.namePlaceholder")}
               placeholderTextColor="#A1A1AA"
               value={folderName}
               onChangeText={setFolderName}
@@ -551,7 +551,7 @@ const SavedPostsScreen: React.FC = () => {
               maxLength={50}
             />
             <TextInput
-              placeholder="Description (Optional)"
+              placeholder={t("savedPosts.descriptionPlaceholder")}
               placeholderTextColor="#A1A1AA"
               value={folderDesc}
               onChangeText={setFolderDesc}
@@ -568,7 +568,7 @@ const SavedPostsScreen: React.FC = () => {
                 }}
                 style={styles.modalCancel}
               >
-                <Text style={styles.modalCancelText}>Cancel</Text>
+                <Text style={styles.modalCancelText}>{t("common.cancel")}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={handleEditFolder}

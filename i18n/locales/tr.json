@@ -3141,5 +3141,27 @@
     "clearHistoryBody": "Bu, izlenen tüm gönderileri geçmişinden kaldırır.",
     "clear": "Temizle",
     "clearFailed": "Geçmiş temizlenemedi. Lütfen tekrar dene."
+  },
+  "savedPosts": {
+    "allSaved": "Kaydedilenlerin tümü",
+    "collections": "Koleksiyonlar",
+    "newCollection": "Yeni koleksiyon",
+    "editCollection": "Koleksiyonu düzenle",
+    "editCollectionDetails": "Koleksiyon ayrıntılarını düzenle",
+    "deleteCollection": "Koleksiyonu sil",
+    "collectionSubtitle": "Yer imi koleksiyonu",
+    "collectionOptions": "Koleksiyon seçenekleri",
+    "namePlaceholder": "Ad",
+    "descriptionPlaceholder": "Açıklama (isteğe bağlı)",
+    "collectionNamePlaceholder": "Koleksiyon adı",
+    "fetchFoldersFailed": "Klasörler alınamadı",
+    "folderCreated": "\"{{name}}\" klasörü oluşturuldu",
+    "createFolderFailed": "Klasör oluşturulamadı",
+    "folderUpdated": "Klasör güncellendi",
+    "updateFolderFailed": "Klasör güncellenemedi",
+    "deleteFolderTitle": "Klasörü sil",
+    "deleteFolderBody": "\"{{name}}\" silinsin mi? İçindeki kaydedilmiş gönderiler Kaydedilenler listenden silinmez.",
+    "folderDeleted": "Klasör silindi",
+    "deleteFolderFailed": "Klasör silinemedi"
   }
 }

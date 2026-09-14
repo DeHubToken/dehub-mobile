@@ -3079,5 +3079,27 @@
     "clearHistoryBody": "Tämä poistaa kaikki katsotut julkaisut historiastasi.",
     "clear": "Tyhjennä",
     "clearFailed": "Historian tyhjennys epäonnistui. Yritä uudelleen."
+  },
+  "savedPosts": {
+    "allSaved": "Kaikki tallennetut",
+    "collections": "Kokoelmat",
+    "newCollection": "Uusi kokoelma",
+    "editCollection": "Muokkaa kokoelmaa",
+    "editCollectionDetails": "Muokkaa kokoelman tietoja",
+    "deleteCollection": "Poista kokoelma",
+    "collectionSubtitle": "Kirjanmerkkikokoelma",
+    "collectionOptions": "Kokoelman asetukset",
+    "namePlaceholder": "Nimi",
+    "descriptionPlaceholder": "Kuvaus (valinnainen)",
+    "collectionNamePlaceholder": "Kokoelman nimi",
+    "fetchFoldersFailed": "Kansioiden haku epäonnistui",
+    "folderCreated": "Kansio \"{{name}}\" luotu",
+    "createFolderFailed": "Kansion luonti epäonnistui",
+    "folderUpdated": "Kansio päivitetty",
+    "updateFolderFailed": "Kansion päivitys epäonnistui",
+    "deleteFolderTitle": "Poista kansio",
+    "deleteFolderBody": "Haluatko varmasti poistaa kohteen \"{{name}}\"? Sen sisällä olevia tallennettuja julkaisuja ei poisteta Tallennetut-listaltasi.",
+    "folderDeleted": "Kansio poistettu",
+    "deleteFolderFailed": "Kansion poisto epäonnistui"
   }
 }

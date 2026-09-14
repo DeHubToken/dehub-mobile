@@ -2847,5 +2847,27 @@
     "clearHistoryBody": "Ово ће уклонити све погледане објаве из твоје историје.",
     "clear": "Обриши",
     "clearFailed": "Брисање историје није успело. Покушај поново."
+  },
+  "savedPosts": {
+    "allSaved": "Све сачувано",
+    "collections": "Колекције",
+    "newCollection": "Нова колекција",
+    "editCollection": "Уреди колекцију",
+    "editCollectionDetails": "Уреди детаље колекције",
+    "deleteCollection": "Обриши колекцију",
+    "collectionSubtitle": "Колекција обележивача",
+    "collectionOptions": "Опције колекције",
+    "namePlaceholder": "Назив",
+    "descriptionPlaceholder": "Опис (опционо)",
+    "collectionNamePlaceholder": "Назив колекције",
+    "fetchFoldersFailed": "Преузимање фасцикли није успело",
+    "folderCreated": "Фасцикла \"{{name}}\" је направљена",
+    "createFolderFailed": "Прављење фасцикле није успело",
+    "folderUpdated": "Фасцикла ажурирана",
+    "updateFolderFailed": "Ажурирање фасцикле није успело",
+    "deleteFolderTitle": "Обриши фасциклу",
+    "deleteFolderBody": "Сигурно желиш да обришеш \"{{name}}\"? Сачуване објаве унутра неће бити обрисане са твог списка сачуваних.",
+    "folderDeleted": "Фасцикла обрисана",
+    "deleteFolderFailed": "Брисање фасцикле није успело"
   }
 }

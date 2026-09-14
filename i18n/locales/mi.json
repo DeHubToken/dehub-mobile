@@ -3064,5 +3064,27 @@
     "clearHistoryBody": "Ka tangohia e tēnei ngā pānui katoa i mātakitakihia mai i tō hītori.",
     "clear": "Ūkui",
     "clearFailed": "Kāore i taea te ūkui i te hītori. Ngana anō."
+  },
+  "savedPosts": {
+    "allSaved": "Ngā mea kua tiakina katoa",
+    "collections": "Ngā kohinga",
+    "newCollection": "Kohinga hou",
+    "editCollection": "Whakatika kohinga",
+    "editCollectionDetails": "Whakatika taipitopito kohinga",
+    "deleteCollection": "Muku kohinga",
+    "collectionSubtitle": "Kohinga tohu",
+    "collectionOptions": "Ngā kōwhiringa kohinga",
+    "namePlaceholder": "Ingoa",
+    "descriptionPlaceholder": "Whakaahuatanga (kōwhiringa)",
+    "collectionNamePlaceholder": "Ingoa kohinga",
+    "fetchFoldersFailed": "Kāore i taea te tiki kōpaki",
+    "folderCreated": "Kua hangaia te kōpaki \"{{name}}\"",
+    "createFolderFailed": "Kāore i taea te hanga kōpaki",
+    "folderUpdated": "Kua whakahoutia te kōpaki",
+    "updateFolderFailed": "Kāore i taea te whakahou i te kōpaki",
+    "deleteFolderTitle": "Muku kōpaki",
+    "deleteFolderBody": "Kei te tino hiahia koe ki te muku i \"{{name}}\"? Ko ngā pānui kua tiakina ki roto kāore e mukua i tō rārangi Tiaki.",
+    "folderDeleted": "Kua mukua te kōpaki",
+    "deleteFolderFailed": "Kāore i taea te muku i te kōpaki"
   }
 }

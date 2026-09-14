@@ -3079,5 +3079,27 @@
     "clearHistoryBody": "Това ще премахне всички гледани публикации от историята ти.",
     "clear": "Изчисти",
     "clearFailed": "Историята не бе изчистена. Опитай пак."
+  },
+  "savedPosts": {
+    "allSaved": "Всички запазени",
+    "collections": "Колекции",
+    "newCollection": "Нова колекция",
+    "editCollection": "Редактирай колекцията",
+    "editCollectionDetails": "Редактирай данните на колекцията",
+    "deleteCollection": "Изтрий колекцията",
+    "collectionSubtitle": "Колекция с отметки",
+    "collectionOptions": "Опции за колекцията",
+    "namePlaceholder": "Име",
+    "descriptionPlaceholder": "Описание (по избор)",
+    "collectionNamePlaceholder": "Име на колекцията",
+    "fetchFoldersFailed": "Папките не бяха заредени",
+    "folderCreated": "Папката \"{{name}}\" е създадена",
+    "createFolderFailed": "Папката не бе създадена",
+    "folderUpdated": "Папката е обновена",
+    "updateFolderFailed": "Папката не бе обновена",
+    "deleteFolderTitle": "Изтрий папката",
+    "deleteFolderBody": "Сигурен ли си, че искаш да изтриеш \"{{name}}\"? Запазените публикации вътре няма да бъдат изтрити от списъка ти със запазени.",
+    "folderDeleted": "Папката е изтрита",
+    "deleteFolderFailed": "Папката не бе изтрита"
   }
 }

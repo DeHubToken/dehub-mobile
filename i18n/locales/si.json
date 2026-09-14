@@ -3061,5 +3061,27 @@
     "clearHistoryBody": "මෙය ඔබේ ඉතිහාසයෙන් නැරඹූ සියලු පළ කිරීම් ඉවත් කරයි.",
     "clear": "හිස් කරන්න",
     "clearFailed": "ඉතිහාසය හිස් කළ නොහැකි විය. නැවත උත්සාහ කරන්න."
+  },
+  "savedPosts": {
+    "allSaved": "සුරකින ලද සියල්ල",
+    "collections": "එකතු",
+    "newCollection": "නව එකතුව",
+    "editCollection": "එකතුව සංස්කරණය",
+    "editCollectionDetails": "එකතුවේ විස්තර සංස්කරණය",
+    "deleteCollection": "එකතුව මකන්න",
+    "collectionSubtitle": "පිටු සලකුණු එකතුව",
+    "collectionOptions": "එකතු විකල්ප",
+    "namePlaceholder": "නම",
+    "descriptionPlaceholder": "විස්තරය (විකල්ප)",
+    "collectionNamePlaceholder": "එකතුවේ නම",
+    "fetchFoldersFailed": "ෆෝල්ඩර ලබා ගත නොහැකි විය",
+    "folderCreated": "\"{{name}}\" ෆෝල්ඩරය සාදන ලදී",
+    "createFolderFailed": "ෆෝල්ඩරය සෑදිය නොහැකි විය",
+    "folderUpdated": "ෆෝල්ඩරය යාවත්කාලීන විය",
+    "updateFolderFailed": "ෆෝල්ඩරය යාවත්කාලීන කළ නොහැකි විය",
+    "deleteFolderTitle": "ෆෝල්ඩරය මකන්න",
+    "deleteFolderBody": "\"{{name}}\" මැකීමට විශ්වාසද? ඇතුළත සුරකින ලද පළ කිරීම් ඔබේ සුරැකි ලැයිස්තුවෙන් මැකෙන්නේ නැත.",
+    "folderDeleted": "ෆෝල්ඩරය මකා දමන ලදී",
+    "deleteFolderFailed": "ෆෝල්ඩරය මැකිය නොහැකි විය"
   }
 }

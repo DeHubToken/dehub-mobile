@@ -3098,5 +3098,27 @@
     "clearHistoryBody": "នេះនឹងលុបការបង្ហោះដែលបានមើលទាំងអស់ចេញពីប្រវត្តិរបស់អ្នក។",
     "clear": "សម្អាត",
     "clearFailed": "មិនអាចសម្អាតប្រវត្តិបានទេ។ សូមព្យាយាមម្តងទៀត។"
+  },
+  "savedPosts": {
+    "allSaved": "អ្វីៗដែលបានរក្សាទុកទាំងអស់",
+    "collections": "បណ្ដុំ",
+    "newCollection": "បណ្ដុំថ្មី",
+    "editCollection": "កែសម្រួលបណ្ដុំ",
+    "editCollectionDetails": "កែសម្រួលព័ត៌មានលម្អិតបណ្ដុំ",
+    "deleteCollection": "លុបបណ្ដុំ",
+    "collectionSubtitle": "បណ្ដុំចំណាំ",
+    "collectionOptions": "ជម្រើសបណ្ដុំ",
+    "namePlaceholder": "ឈ្មោះ",
+    "descriptionPlaceholder": "ការពិពណ៌នា (ជាជម្រើស)",
+    "collectionNamePlaceholder": "ឈ្មោះបណ្ដុំ",
+    "fetchFoldersFailed": "មិនអាចទាញយកថតបានទេ",
+    "folderCreated": "បានបង្កើតថត \"{{name}}\"",
+    "createFolderFailed": "មិនអាចបង្កើតថតបានទេ",
+    "folderUpdated": "បានធ្វើបច្ចុប្បន្នភាពថត",
+    "updateFolderFailed": "មិនអាចធ្វើបច្ចុប្បន្នភាពថតបានទេ",
+    "deleteFolderTitle": "លុបថត",
+    "deleteFolderBody": "តើអ្នកប្រាកដថាចង់លុប \"{{name}}\" ឬ? ការបង្ហោះដែលបានរក្សាទុកខាងក្នុងនឹងមិនត្រូវបានលុបចេញពីបញ្ជីរក្សាទុករបស់អ្នកទេ។",
+    "folderDeleted": "បានលុបថត",
+    "deleteFolderFailed": "មិនអាចលុបថតបានទេ"
   }
 }

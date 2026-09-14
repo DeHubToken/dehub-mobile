@@ -3078,5 +3078,27 @@
     "clearHistoryBody": "Kjo do të heqë nga historiku yt të gjitha postimet e para.",
     "clear": "Pastro",
     "clearFailed": "Historiku nuk u pastrua dot. Provo përsëri."
+  },
+  "savedPosts": {
+    "allSaved": "Të gjitha të ruajturat",
+    "collections": "Koleksione",
+    "newCollection": "Koleksion i ri",
+    "editCollection": "Redakto koleksionin",
+    "editCollectionDetails": "Redakto detajet e koleksionit",
+    "deleteCollection": "Fshi koleksionin",
+    "collectionSubtitle": "Koleksion faqeshënuesish",
+    "collectionOptions": "Opsionet e koleksionit",
+    "namePlaceholder": "Emri",
+    "descriptionPlaceholder": "Përshkrimi (opsional)",
+    "collectionNamePlaceholder": "Emri i koleksionit",
+    "fetchFoldersFailed": "Dosjet nuk u morën dot",
+    "folderCreated": "Dosja \"{{name}}\" u krijua",
+    "createFolderFailed": "Dosja nuk u krijua dot",
+    "folderUpdated": "Dosja u përditësua",
+    "updateFolderFailed": "Dosja nuk u përditësua dot",
+    "deleteFolderTitle": "Fshi dosjen",
+    "deleteFolderBody": "Je i sigurt që do të fshish \"{{name}}\"? Postimet e ruajtura brenda nuk do të fshihen nga lista jote e të ruajturave.",
+    "folderDeleted": "Dosja u fshi",
+    "deleteFolderFailed": "Dosja nuk u fshi dot"
   }
 }

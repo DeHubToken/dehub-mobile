@@ -3023,5 +3023,27 @@
     "clearHistoryBody": "ایں نال تہاڈی تاریخ توں سارے ݙٹھے پوسٹ ہٹ ویسن۔",
     "clear": "صاف کرو",
     "clearFailed": "تاریخ صاف نہ تھی سڳی۔ ولدا کوشش کرو۔"
+  },
+  "savedPosts": {
+    "allSaved": "سارے محفوظ",
+    "collections": "مجموعے",
+    "newCollection": "نواں مجموعہ",
+    "editCollection": "مجموعہ ایڈٹ کرو",
+    "editCollectionDetails": "مجموعے دیاں تفصیلاں ایڈٹ کرو",
+    "deleteCollection": "مجموعہ ڈیلیٹ کرو",
+    "collectionSubtitle": "بک مارک مجموعہ",
+    "collectionOptions": "مجموعے دے آپشن",
+    "namePlaceholder": "ناں",
+    "descriptionPlaceholder": "تفصیل (اختیاری)",
+    "collectionNamePlaceholder": "مجموعے دا ناں",
+    "fetchFoldersFailed": "فولڈر نہ مل سڳے",
+    "folderCreated": "فولڈر \"{{name}}\" بݨ ڳیا",
+    "createFolderFailed": "فولڈر نہ بݨ سڳیا",
+    "folderUpdated": "فولڈر اپ ڈیٹ تھی ڳیا",
+    "updateFolderFailed": "فولڈر اپ ڈیٹ نہ تھی سڳیا",
+    "deleteFolderTitle": "فولڈر ڈیلیٹ کرو",
+    "deleteFolderBody": "کیا تساں سچ مچ \"{{name}}\" ڈیلیٹ کرݨ چاہندے ہو؟ اندر دیاں محفوظ پوسٹاں تہاڈی محفوظ فہرست توں نہ مِٹسن۔",
+    "folderDeleted": "فولڈر ڈیلیٹ تھی ڳیا",
+    "deleteFolderFailed": "فولڈر ڈیلیٹ نہ تھی سڳیا"
   }
 }

@@ -3058,5 +3058,27 @@
     "clearHistoryBody": "Энэ нь үзсэн бүх нийтлэлийг таны түүхээс устгана.",
     "clear": "Арилгах",
     "clearFailed": "Түүхийг арилгаж чадсангүй. Дахин оролдоно уу."
+  },
+  "savedPosts": {
+    "allSaved": "Бүх хадгалсан",
+    "collections": "Цуглуулгууд",
+    "newCollection": "Шинэ цуглуулга",
+    "editCollection": "Цуглуулгыг засах",
+    "editCollectionDetails": "Цуглуулгын мэдээллийг засах",
+    "deleteCollection": "Цуглуулгыг устгах",
+    "collectionSubtitle": "Хавчуургын цуглуулга",
+    "collectionOptions": "Цуглуулгын сонголтууд",
+    "namePlaceholder": "Нэр",
+    "descriptionPlaceholder": "Тайлбар (заавал биш)",
+    "collectionNamePlaceholder": "Цуглуулгын нэр",
+    "fetchFoldersFailed": "Хавтаснуудыг авч чадсангүй",
+    "folderCreated": "\"{{name}}\" хавтас үүслээ",
+    "createFolderFailed": "Хавтас үүсгэж чадсангүй",
+    "folderUpdated": "Хавтас шинэчлэгдлээ",
+    "updateFolderFailed": "Хавтасыг шинэчилж чадсангүй",
+    "deleteFolderTitle": "Хавтас устгах",
+    "deleteFolderBody": "\"{{name}}\"-ийг устгах уу? Дотор нь хадгалсан нийтлэлүүд Хадгалсан жагсаалтаас устахгүй.",
+    "folderDeleted": "Хавтас устлаа",
+    "deleteFolderFailed": "Хавтасыг устгаж чадсангүй"
   }
 }

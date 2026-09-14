@@ -3044,5 +3044,27 @@
     "clearHistoryBody": "እዚ ኩሎም ዝተራእዩ ጽሑፋት ካብ ታሪኽካ ከወግድ እዩ።",
     "clear": "ኣጽሪ",
     "clearFailed": "ታሪኽ ክጸሪ ኣይከኣለን። በጃኻ ደጊምካ ፈትን።"
+  },
+  "savedPosts": {
+    "allSaved": "ኩሉ ዝተዓቀበ",
+    "collections": "ኣከፋፍላታት",
+    "newCollection": "ሓድሽ ኣከፋፍላ",
+    "editCollection": "ኣከፋፍላ ኣርትዕ",
+    "editCollectionDetails": "ዝርዝራት ኣከፋፍላ ኣርትዕ",
+    "deleteCollection": "ኣከፋፍላ ሰርዝ",
+    "collectionSubtitle": "ኣከፋፍላ ምልክት",
+    "collectionOptions": "ኣማራጺታት ኣከፋፍላ",
+    "namePlaceholder": "ስም",
+    "descriptionPlaceholder": "መግለጺ (ኣማራጺ)",
+    "collectionNamePlaceholder": "ስም ኣከፋፍላ",
+    "fetchFoldersFailed": "ፎልደራት ክምጽኡ ኣይከኣሉን",
+    "folderCreated": "ፎልደር \"{{name}}\" ተፈጢሩ",
+    "createFolderFailed": "ፎልደር ክፍጠር ኣይከኣለን",
+    "folderUpdated": "ፎልደር ተሓዲሱ",
+    "updateFolderFailed": "ፎልደር ክሕደስ ኣይከኣለን",
+    "deleteFolderTitle": "ፎልደር ሰርዝ",
+    "deleteFolderBody": "ብርግጽ ን\"{{name}}\" ክትሰርዞ ትደሊ? እቶም ኣብ ውሽጡ ዝተዓቀቡ ጽሑፋት ካብ ዝርዝር ዝተዓቀቡ ኣይክስረዙን።",
+    "folderDeleted": "ፎልደር ተሰሪዙ",
+    "deleteFolderFailed": "ፎልደር ክስረዝ ኣይከኣለን"
   }
 }

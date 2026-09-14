@@ -3038,5 +3038,27 @@
     "clearHistoryBody": "การเฮ็ดแบบนี้สิลบโพสต์ที่เบิ่งแล้วทั้งหมดออกจากประวัติของเจ้า",
     "clear": "ล้าง",
     "clearFailed": "ล้างประวัติบ่สำเร็จ โปรดลองอีกเทื่อ"
+  },
+  "savedPosts": {
+    "allSaved": "ที่บันทึกทั้งหมด",
+    "collections": "คอลเลกชัน",
+    "newCollection": "คอลเลกชันใหม่",
+    "editCollection": "แก้ไขคอลเลกชัน",
+    "editCollectionDetails": "แก้ไขรายละเอียดคอลเลกชัน",
+    "deleteCollection": "ลบคอลเลกชัน",
+    "collectionSubtitle": "คอลเลกชันบุ๊กมาร์ก",
+    "collectionOptions": "ตัวเลือกคอลเลกชัน",
+    "namePlaceholder": "ชื่อ",
+    "descriptionPlaceholder": "คำอธิบาย (บ่บังคับ)",
+    "collectionNamePlaceholder": "ชื่อคอลเลกชัน",
+    "fetchFoldersFailed": "ดึงโฟลเดอร์บ่สำเร็จ",
+    "folderCreated": "สร้างโฟลเดอร์ \"{{name}}\" แล้ว",
+    "createFolderFailed": "สร้างโฟลเดอร์บ่สำเร็จ",
+    "folderUpdated": "อัปเดตโฟลเดอร์แล้ว",
+    "updateFolderFailed": "อัปเดตโฟลเดอร์บ่สำเร็จ",
+    "deleteFolderTitle": "ลบโฟลเดอร์",
+    "deleteFolderBody": "แน่ใจบ่ว่าต้องการลบ \"{{name}}\" โพสต์ที่บันทึกไว้ข้างในสิบ่ถูกลบออกจากรายการที่บันทึกของเจ้า",
+    "folderDeleted": "ลบโฟลเดอร์แล้ว",
+    "deleteFolderFailed": "ลบโฟลเดอร์บ่สำเร็จ"
   }
 }

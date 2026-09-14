@@ -3032,5 +3032,27 @@
     "clearHistoryBody": "एहि सँ अहाँक इतिहास सँ सब देखल पोस्ट हटि जाएत।",
     "clear": "मिटाउ",
     "clearFailed": "इतिहास नै मिटल गेल। फेर कोशिश करू।"
+  },
+  "savedPosts": {
+    "allSaved": "सब सेव कएल",
+    "collections": "संग्रह",
+    "newCollection": "नया संग्रह",
+    "editCollection": "संग्रह संपादित करू",
+    "editCollectionDetails": "संग्रह के विवरण संपादित करू",
+    "deleteCollection": "संग्रह मिटाउ",
+    "collectionSubtitle": "बुकमार्क संग्रह",
+    "collectionOptions": "संग्रह विकल्प",
+    "namePlaceholder": "नाम",
+    "descriptionPlaceholder": "विवरण (वैकल्पिक)",
+    "collectionNamePlaceholder": "संग्रह के नाम",
+    "fetchFoldersFailed": "फोल्डर नै भेटल",
+    "folderCreated": "फोल्डर \"{{name}}\" बनि गेल",
+    "createFolderFailed": "फोल्डर नै बनि सकल",
+    "folderUpdated": "फोल्डर अपडेट भेल",
+    "updateFolderFailed": "फोल्डर अपडेट नै भ सकल",
+    "deleteFolderTitle": "फोल्डर मिटाउ",
+    "deleteFolderBody": "की अहाँ सचमुच \"{{name}}\" मिटाबय चाहैत छी? भीतर सेव कएल पोस्ट अहाँक सेव सूची सँ नै मिटत।",
+    "folderDeleted": "फोल्डर मिटि गेल",
+    "deleteFolderFailed": "फोल्डर नै मिटल गेल"
   }
 }

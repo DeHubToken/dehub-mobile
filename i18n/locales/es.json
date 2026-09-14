@@ -3149,5 +3149,27 @@
     "clearHistoryBody": "Esto eliminará de tu historial todas las publicaciones vistas.",
     "clear": "Borrar",
     "clearFailed": "No se pudo borrar el historial. Inténtalo de nuevo."
+  },
+  "savedPosts": {
+    "allSaved": "Todo lo guardado",
+    "collections": "Colecciones",
+    "newCollection": "Colección nueva",
+    "editCollection": "Editar colección",
+    "editCollectionDetails": "Editar detalles de la colección",
+    "deleteCollection": "Eliminar colección",
+    "collectionSubtitle": "Colección de marcadores",
+    "collectionOptions": "Opciones de la colección",
+    "namePlaceholder": "Nombre",
+    "descriptionPlaceholder": "Descripción (opcional)",
+    "collectionNamePlaceholder": "Nombre de la colección",
+    "fetchFoldersFailed": "No se pudieron obtener las carpetas",
+    "folderCreated": "Carpeta \"{{name}}\" creada",
+    "createFolderFailed": "No se pudo crear la carpeta",
+    "folderUpdated": "Carpeta actualizada",
+    "updateFolderFailed": "No se pudo actualizar la carpeta",
+    "deleteFolderTitle": "Eliminar carpeta",
+    "deleteFolderBody": "¿Seguro que quieres eliminar \"{{name}}\"? Las publicaciones guardadas dentro no se eliminarán de tu lista de guardados.",
+    "folderDeleted": "Carpeta eliminada",
+    "deleteFolderFailed": "No se pudo eliminar la carpeta"
   }
 }

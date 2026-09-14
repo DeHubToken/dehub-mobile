@@ -2810,5 +2810,27 @@
     "clearHistoryBody": "اس سے تمہاری تاریخ سے سب دیکھی گئی پوسٹس ہٹ جائیں گی۔",
     "clear": "صاف کرو",
     "clearFailed": "تاریخ صاف نئیں ہو سکی۔ دوبارہ کوشش کرو۔"
+  },
+  "savedPosts": {
+    "allSaved": "سب محفوظ",
+    "collections": "مجموعے",
+    "newCollection": "نیا مجموعہ",
+    "editCollection": "مجموعہ ایڈٹ کرو",
+    "editCollectionDetails": "مجموعہ کی تفصیلات ایڈٹ کرو",
+    "deleteCollection": "مجموعہ ڈیلیٹ کرو",
+    "collectionSubtitle": "بک مارک مجموعہ",
+    "collectionOptions": "مجموعہ آپشنز",
+    "namePlaceholder": "نام",
+    "descriptionPlaceholder": "تفصیل (اختیاری)",
+    "collectionNamePlaceholder": "مجموعہ کا نام",
+    "fetchFoldersFailed": "فولڈرز نئیں لا سکے",
+    "folderCreated": "فولڈر \"{{name}}\" بن گیا",
+    "createFolderFailed": "فولڈر نئیں بن سکا",
+    "folderUpdated": "فولڈر اپ ڈیٹ ہو گیا",
+    "updateFolderFailed": "فولڈر اپ ڈیٹ نئیں ہو سکا",
+    "deleteFolderTitle": "فولڈر ڈیلیٹ کرو",
+    "deleteFolderBody": "کیا تم واقعی \"{{name}}\" ڈیلیٹ کرنا چاہتے ہو؟ اندر کی محفوظ پوسٹس تمہاری محفوظ فہرست سے نئیں ہٹیں گی۔",
+    "folderDeleted": "فولڈر ڈیلیٹ ہو گیا",
+    "deleteFolderFailed": "فولڈر ڈیلیٹ نئیں ہو سکا"
   }
 }

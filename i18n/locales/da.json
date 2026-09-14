@@ -3083,5 +3083,27 @@
     "clearHistoryBody": "Dette fjerner alle sete opslag fra din historik.",
     "clear": "Ryd",
     "clearFailed": "Kunne ikke rydde historikken. Prøv igen."
+  },
+  "savedPosts": {
+    "allSaved": "Alt gemt",
+    "collections": "Samlinger",
+    "newCollection": "Ny samling",
+    "editCollection": "Rediger samling",
+    "editCollectionDetails": "Rediger samlingsoplysninger",
+    "deleteCollection": "Slet samling",
+    "collectionSubtitle": "Bogmærkesamling",
+    "collectionOptions": "Samlingsindstillinger",
+    "namePlaceholder": "Navn",
+    "descriptionPlaceholder": "Beskrivelse (valgfri)",
+    "collectionNamePlaceholder": "Samlingens navn",
+    "fetchFoldersFailed": "Kunne ikke hente mapper",
+    "folderCreated": "Mappen \"{{name}}\" er oprettet",
+    "createFolderFailed": "Kunne ikke oprette mappe",
+    "folderUpdated": "Mappe opdateret",
+    "updateFolderFailed": "Kunne ikke opdatere mappe",
+    "deleteFolderTitle": "Slet mappe",
+    "deleteFolderBody": "Er du sikker på, at du vil slette \"{{name}}\"? De gemte opslag indeni bliver ikke slettet fra din Gemt-liste.",
+    "folderDeleted": "Mappe slettet",
+    "deleteFolderFailed": "Kunne ikke slette mappe"
   }
 }
