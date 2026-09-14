@@ -3,10 +3,10 @@ import {
   View,
   Text,
   FlatList,
-  RefreshControl,
   TouchableOpacity,
   ActivityIndicator,
-} from 'react-native';
+} from 'react-native';
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenHeader from '../components/ScreenHeader';
 import Icon from '../components/ui/Icon';
@@ -129,7 +129,7 @@ export default function TvRequestsScreen() {
           flexGrow: 1,
         }}
         refreshControl={
-          <RefreshControl
+          <DeHubRefreshControl
             refreshing={refreshing}
             onRefresh={async () => {
               setRefreshing(true);
@@ -184,6 +184,8 @@ export default function TvRequestsScreen() {
           onSuccess={(amount, txHash) => void onSigned(active, amount, txHash)}
         />
       )}
+
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 }

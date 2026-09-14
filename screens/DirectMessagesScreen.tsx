@@ -2,14 +2,14 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FlatList,
-  RefreshControl,
   Text,
   TouchableOpacity,
   View,
   KeyboardAvoidingView,
   Platform,
   TextInput,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
 import Icon from "../components/ui/Icon";
 import GlassIndicator, { GLASS_SHADOW } from "../components/ui/GlassIndicator";
@@ -387,7 +387,7 @@ const DirectMessagesInner: React.FC = () => {
           className="flex-1"
           ListHeaderComponent={publicChatItem}
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={!!contactsLoading}
               onRefresh={refreshContacts}
               tintColor="#F4F4F5"
@@ -440,6 +440,7 @@ const DirectMessagesInner: React.FC = () => {
           isCreator={!!(myDmStatus?.perMessageFee && myDmStatus.perMessageFee > 0)}
         />
       </View>
+      <DeHubRefreshMark refreshing={!!contactsLoading} />
     </KeyboardAvoidingView>
   );
 };

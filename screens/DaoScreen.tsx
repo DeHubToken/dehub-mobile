@@ -14,12 +14,12 @@ import {
   Pressable,
   FlatList,
   ActivityIndicator,
-  RefreshControl,
   TextInput,
   Linking,
   KeyboardAvoidingView,
   Platform,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -259,7 +259,7 @@ export default function DaoScreen() {
         }
         contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 24, gap: 8 }}
         showsVerticalScrollIndicator={false}
-        refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />}
+        refreshControl={<DeHubRefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />}
       />
 
       <GlassModal scrollable visible={sheetOpen} onClose={() => setSheetOpen(false)} presentation="bottom" maxHeight="80%">
@@ -314,6 +314,7 @@ export default function DaoScreen() {
           </View>
         </KeyboardAvoidingView>
       </GlassModal>
+      <DeHubRefreshMark refreshing={isRefetching} />
     </View>
   );
 }

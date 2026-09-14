@@ -5,9 +5,9 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
-  RefreshControl,
   StyleSheet,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import Svg, { Path, G, Circle } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -239,7 +239,7 @@ const EarningsScreen: React.FC = () => {
       ) : (
         <ScrollView
           contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80 }}
-          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#fff" />}
+          refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#fff" />}
         >
           {/* Invite & earn */}
           <InviteFriendsCard address={address} shareName={user?.username} />
@@ -351,6 +351,7 @@ const EarningsScreen: React.FC = () => {
           )}
         </ScrollView>
       )}
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 };

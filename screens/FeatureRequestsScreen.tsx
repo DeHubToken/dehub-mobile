@@ -33,13 +33,13 @@ import {
   ScrollView,
   TextInput,
   ActivityIndicator,
-  RefreshControl,
   Modal,
   KeyboardAvoidingView,
   Alert,
   Share,
   useWindowDimensions,
-} from "react-native";
+} from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
@@ -1162,7 +1162,7 @@ export default function FeatureRequestsScreen() {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           refreshControl={
-            <RefreshControl
+            <DeHubRefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
               tintColor={theme.colors.accent}
@@ -1202,6 +1202,7 @@ export default function FeatureRequestsScreen() {
           submitMutation.mutate(v, { onSuccess: () => setSheetOpen(false) });
         }}
       />
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 }
