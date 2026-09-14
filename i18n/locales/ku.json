@@ -38,7 +38,8 @@
     "prompt": "Prompt",
     "tv": "TV Zindî",
     "arcade": "Arcade",
-    "stats": "Statîstîkên Zindî"
+    "stats": "Statîstîkên Zindî",
+    "converter": "Converter"
   },
   "feed": {
     "home": "Mal",
@@ -2770,5 +2771,10 @@
     "sent": "Veguhastin hat şandin",
     "toSelf": "Tu nikarî tokenan ji xwe re bişînî",
     "insufficientOnChain": "Ji bo vê tokenê hevsenga li ser zincîrê têrê nake"
+  },
+  "converter": {
+    "tryAgain": "هەوڵێ دوبارە",
+    "statusImported": "ھێنراو (لە دەرەوە)، ھاووردە، ھاوردراو، ھێنراو، ھاوردە، بیانی یە",
+    "statusFailed": "سه‌رنه‌که‌وتوو"
   }
 }

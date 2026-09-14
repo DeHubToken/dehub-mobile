@@ -38,7 +38,8 @@
     "prompt": "Prompt",
     "tv": "TV Mivantana",
     "arcade": "Arcade",
-    "stats": "Antontan'isa mivantana"
+    "stats": "Antontan'isa mivantana",
+    "converter": "Converter"
   },
   "feed": {
     "home": "Fandraisana",
@@ -3050,5 +3051,43 @@
     "sent": "Nalefa ny famindrana",
     "toSelf": "Tsy afaka mandefa tokens ho an'ny tenanao ianao",
     "insufficientOnChain": "Tsy ampy ny ambiny eo amin'ny rojo ho an'ity token ity"
+  },
+  "converter": {
+    "title": "Mamitaka video",
+    "subtitle": "Lipitina ny rohy amin'ny video izay efa fanananao ary hamoaka azy ho post amin'ny iyong profily izahay. Ampitaina ireo maro araka ny tiako — miparitaka izy ireo iray aorian'ny iray amin'ny background.",
+    "placeholder": "Lipitina ny rohy video",
+    "paste": "Lipitina",
+    "ownership": "Izaho no tompona ity votoatiny ity, na manana ny fahazoan-dàlana avy amin'ny tompon'ny zon'ny famoahana azy amin'ny DeHub.",
+    "import": "Mamitaka",
+    "addToQueue": "Ampitaina amin'ny filaharana",
+    "queueHeading": "Ny iyong mamitaka",
+    "queueRunning": "{{n}} amin'ny filaharana — azo atao ny manidy ity tab ity, mitohy ihany izy ireo.",
+    "queueIdle": "Tsy misy miparitaka.",
+    "untitled": "Video",
+    "thatSource": "io platform io",
+    "dismiss": "Esorina",
+    "viewPost": "Hijery ny post",
+    "tryAgain": "Andao indray",
+    "statusImported": "Namitaka",
+    "statusAlreadyHere": "Efa nandito",
+    "statusFailed": "Tsy nahomby",
+    "statusRateLimited": "Rate limited",
+    "statusProcessing": "Miparitaka",
+    "statusPublishing": "Mamoaka",
+    "statusDownloading": "Midininika",
+    "statusDownloadingPercent": "Midininika {{percent}}%",
+    "statusQueued": "Ampitaina amin'ny filaharana",
+    "detailFailed": "Tsy afaka mamitaka io video io.",
+    "detailRateLimited": "Ny {{source}} dia manodina antsika. Miparitaka ity indray mandeha — tsy misy hipetraka indray.",
+    "detailDuplicate": "Efa nandito amin'ny iyong profily io video io.",
+    "detailWaiting": "Miandry ny filaharan'ny azy.",
+    "toastQueued": "Ampitaina amin'ny filaharana — hamoaka amin'ny iyong profily rehefa vita.",
+    "toastRateLimited": "Rate limited, ny iyong upload dia ampitaina amin'ny filaharana ary hiparitaka araka ny haingana, tsy mila mipetraka ny rohy mitovy indray fa azo atao ny ampitaina hafa araka ny tiako",
+    "toastDuplicate": "Efa nofafana ireo lahatsary ireo.",
+    "toastFailed": "Tsy nahomby ny fanafarana.",
+    "errorUnsupported": "Tsy azontsika afindra avy amin'io rohy io izany. Andramo iray ny: {{sources}}",
+    "errorNeedRights": "Azafady manamafy fa manana ny zonao amin'ity votoatiny ity ianao.",
+    "errorClipboard": "Tsy afaka namaky ny fanindri-taratasy — mametaka tanana fa tsy",
+    "errorQueueFailed": "Tsy afaka namaritra ilay fanafarana"
   }
 }

@@ -38,7 +38,8 @@
     "prompt": "Prompt",
     "tv": "Live TV",
     "arcade": "Arcade",
-    "stats": "Live stats"
+    "stats": "Live stats",
+    "converter": "Converter"
   },
   "feed": {
     "home": "Home",
@@ -2818,5 +2819,35 @@
     "sent": "Transfer don send",
     "toSelf": "You no fit send tokens to yourself",
     "insufficientOnChain": "On-chain balance no reach for dis token"
+  },
+  "converter": {
+    "title": "Import a video",
+    "paste": "Paste",
+    "import": "Import",
+    "addToQueue": "Add to queue",
+    "queueHeading": "Your imports",
+    "queueIdle": "Nothing running.",
+    "untitled": "Video",
+    "thatSource": "that platform",
+    "dismiss": "Dismiss",
+    "viewPost": "View post",
+    "tryAgain": "Try again",
+    "statusImported": "Imported",
+    "statusAlreadyHere": "Already here",
+    "statusFailed": "Failed",
+    "statusRateLimited": "Rate limited",
+    "statusProcessing": "Processing",
+    "statusPublishing": "Publishing",
+    "statusDownloading": "Downloading",
+    "statusDownloadingPercent": "Downloading {{percent}}%",
+    "statusQueued": "Queued",
+    "detailWaiting": "Waiting its turn.",
+    "toastImported": "Dem bring am from {{source}}!",
+    "toastDuplicate": "Dat video don come in already.",
+    "toastFailed": "Dat bring-in fail.",
+    "errorUnsupported": "We no fit bring am from dat link. Try one of: {{sources}}",
+    "errorNeedRights": "Make you confirm say you get right for dis content",
+    "errorClipboard": "No fit read di clipboard — paste am by hand instead",
+    "errorQueueFailed": "No fit put dat bring-in for queue"
   }
 }
