@@ -1960,7 +1960,9 @@
     "staking_on_chain_first": "Staking on {{chain}} first. Come back after to stake the other.",
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
-    "error": "Error"
+    "error": "Error",
+    "image_too_large_tier": "इमेज खूप मोठी आहे — तुमचे {{tier}} स्तर {{limit}} एमबी पर्यंत इमेजेस स्टोअर करते",
+    "image_too_large_untiered": "प्रतिमा खूप मोठी आहे — प्रतिमा {{limit}} MB पर्यंत संचयित केल्या आहेत"
   },
   "staking": {
     "title": "Staking",

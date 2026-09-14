@@ -2004,7 +2004,9 @@
     "staking_on_chain_first": "Staking on {{chain}} first. Come back after to stake the other.",
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
-    "error": "Error"
+    "error": "Error",
+    "image_too_large_tier": "Малюнак занадта вялікі — ваш {{tier}} nivel захоўвае выявы да {{limit}} MB",
+    "image_too_large_untiered": "Малюнак занадта вялікі — малюнкі захоўваюцца да {{limit}} MB"
   },
   "staking": {
     "title": "Staking",

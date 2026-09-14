@@ -1967,7 +1967,9 @@
     "staking_on_chain_first": "先在 {{chain}} 存入，之后再回来处理另一条链。",
     "dhb_staked_on_chain": "已在 {{chain}} 存入 {{amount}} DHB。",
     "waiting_for_confirmation": "等待确认中...",
-    "error": "错误"
+    "error": "错误",
+    "image_too_large_tier": "圖像太大——你的 {{tier}} 層級商店最多可以存儲 {{limit}} MB 的圖像",
+    "image_too_large_untiered": "圖像過大——圖像存儲最多 {{limit}} MB"
   },
   "staking": {
     "title": "质押",

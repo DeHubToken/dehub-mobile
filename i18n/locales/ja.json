@@ -1982,7 +1982,9 @@
     "staking_on_chain_first": "まず {{chain}} で預け入れます。あとでもう一方も行ってください。",
     "dhb_staked_on_chain": "{{chain}} に {{amount}} DHB を預け入れました。",
     "waiting_for_confirmation": "承認を待っています...",
-    "error": "エラー"
+    "error": "エラー",
+    "image_too_large_tier": "画像が大きすぎます—あなたの{{tier}}ティアは最大{{limit}} MBまでの画像を保存します",
+    "image_too_large_untiered": "画像が大きすぎます—画像は最大{{limit}} MBまで保存されます"
   },
   "staking": {
     "title": "ステーキング",

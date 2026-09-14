@@ -1968,7 +1968,9 @@
     "staking_on_chain_first": "الإيداع على {{chain}} أولاً. عد لاحقًا للسلسلة الأخرى.",
     "dhb_staked_on_chain": "تم إيداع {{amount}} DHB على {{chain}}.",
     "waiting_for_confirmation": "في انتظار التأكيد...",
-    "error": "خطأ"
+    "error": "خطأ",
+    "image_too_large_tier": "الصورة كبيرة أوي — متاجرك {{tier}} بتاعتك بتقبل صور لحد {{limit}} ميجابايت",
+    "image_too_large_untiered": "الصورة كبيرة أوي — الصور بتتخزن لحد {{limit}} ميجابايت"
   },
   "staking": {
     "title": "الإيداع",

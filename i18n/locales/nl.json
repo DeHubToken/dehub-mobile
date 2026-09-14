@@ -1082,7 +1082,9 @@
     "staking_on_chain_first": "Eerst storten op {{chain}}. Kom daarna terug voor de andere.",
     "dhb_staked_on_chain": "{{amount}} DHB gestort op {{chain}}.",
     "waiting_for_confirmation": "Wachten op bevestiging...",
-    "error": "Fout"
+    "error": "Fout",
+    "image_too_large_tier": "Afbeelding is te groot — uw {{tier}} -laag slaat afbeeldingen op tot {{limit}} MB",
+    "image_too_large_untiered": "Afbeelding is te groot — afbeeldingen worden opgeslagen tot {{limit}} MB"
   },
   "postOptions": {
     "options": "Opties",

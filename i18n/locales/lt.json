@@ -1966,7 +1966,9 @@
     "staking_on_chain_first": "Staking on {{chain}} first. Come back after to stake the other.",
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
-    "error": "Error"
+    "error": "Error",
+    "image_too_large_tier": "Vaizdas per didelis — jūsų {{tier}} lygyje saugomi vaizdai iki {{limit}} MB",
+    "image_too_large_untiered": "Vaizdas per didelis — vaizdai saugomi iki {{limit}} MB"
   },
   "staking": {
     "title": "Staking",
