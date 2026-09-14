@@ -3036,5 +3036,13 @@
     "logOutAllFailed": "መሳርሒታት ክወጽኡ ኣይከኣሉን",
     "devicesLoggedOut_one": "{{count}} መሳርሒ ወጺኡ",
     "devicesLoggedOut_other": "{{count}} መሳርሒታት ወጺኦም"
+  },
+  "library": {
+    "myPosts": "ጽሑፋተይ",
+    "unlocked": "ዝተኸፍተ",
+    "clearHistoryTitle": "ታሪኽ ምርኣይ ኣጽሪ",
+    "clearHistoryBody": "እዚ ኩሎም ዝተራእዩ ጽሑፋት ካብ ታሪኽካ ከወግድ እዩ።",
+    "clear": "ኣጽሪ",
+    "clearFailed": "ታሪኽ ክጸሪ ኣይከኣለን። በጃኻ ደጊምካ ፈትን።"
   }
 }

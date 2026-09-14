@@ -3050,5 +3050,13 @@
     "logOutAllFailed": "Төхөөрөмжүүдийг гаргаж чадсангүй",
     "devicesLoggedOut_one": "{{count}} төхөөрөмж гарлаа",
     "devicesLoggedOut_other": "{{count}} төхөөрөмж гарлаа"
+  },
+  "library": {
+    "myPosts": "Миний нийтлэлүүд",
+    "unlocked": "Нээгдсэн",
+    "clearHistoryTitle": "Үзсэн түүхийг арилгах",
+    "clearHistoryBody": "Энэ нь үзсэн бүх нийтлэлийг таны түүхээс устгана.",
+    "clear": "Арилгах",
+    "clearFailed": "Түүхийг арилгаж чадсангүй. Дахин оролдоно уу."
   }
 }

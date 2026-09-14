@@ -3064,5 +3064,13 @@
     "logOutAllFailed": "Չհաջողվեց դուրս բերել սարքերը",
     "devicesLoggedOut_one": "{{count}} սարք դուրս բերվեց",
     "devicesLoggedOut_other": "{{count}} սարք դուրս բերվեց"
+  },
+  "library": {
+    "myPosts": "Իմ գրառումները",
+    "unlocked": "Բացված",
+    "clearHistoryTitle": "Մաքրել դիտման պատմությունը",
+    "clearHistoryBody": "Սա կհեռացնի բոլոր դիտված գրառումները ձեր պատմությունից։",
+    "clear": "Մաքրել",
+    "clearFailed": "Չհաջողվեց մաքրել պատմությունը։ Փորձեք կրկին։"
   }
 }

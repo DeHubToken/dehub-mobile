@@ -3084,5 +3084,13 @@
     "logOutAllFailed": "خروج دستگاه‌ها ناموفق بود",
     "devicesLoggedOut_one": "{{count}} دستگاه خارج شد",
     "devicesLoggedOut_other": "{{count}} دستگاه خارج شدند"
+  },
+  "library": {
+    "myPosts": "پست‌های من",
+    "unlocked": "بازشده",
+    "clearHistoryTitle": "پاک کردن تاریخچه تماشا",
+    "clearHistoryBody": "این کار همه پست‌های دیده‌شده را از تاریخچه شما حذف می‌کند.",
+    "clear": "پاک کردن",
+    "clearFailed": "پاک کردن تاریخچه ناموفق بود. دوباره تلاش کنید."
   }
 }

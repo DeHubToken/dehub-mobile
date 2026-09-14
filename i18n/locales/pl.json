@@ -3139,5 +3139,13 @@
     "logOutAllFailed": "Nie udało się wylogować urządzeń",
     "devicesLoggedOut_one": "Wylogowano {{count}} urządzenie",
     "devicesLoggedOut_other": "Wylogowano {{count}} urządzeń"
+  },
+  "library": {
+    "myPosts": "Moje posty",
+    "unlocked": "Odblokowane",
+    "clearHistoryTitle": "Wyczyść historię oglądania",
+    "clearHistoryBody": "To usunie wszystkie obejrzane posty z twojej historii.",
+    "clear": "Wyczyść",
+    "clearFailed": "Nie udało się wyczyścić historii. Spróbuj ponownie."
   }
 }

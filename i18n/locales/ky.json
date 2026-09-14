@@ -3064,5 +3064,13 @@
     "logOutAllFailed": "Түзмөктөрдү чыгаруу мүмкүн болбоду",
     "devicesLoggedOut_one": "{{count}} түзмөк чыгарылды",
     "devicesLoggedOut_other": "{{count}} түзмөк чыгарылды"
+  },
+  "library": {
+    "myPosts": "Менин посттарым",
+    "unlocked": "Ачылган",
+    "clearHistoryTitle": "Көрүү тарыхын тазалоо",
+    "clearHistoryBody": "Бул көрүлгөн бардык постторду тарыхыңыздан өчүрөт.",
+    "clear": "Тазалоо",
+    "clearFailed": "Тарыхты тазалоо мүмкүн болбоду. Кайра аракет кылыңыз."
   }
 }

@@ -3251,5 +3251,13 @@
     "logOutAllFailed": "Hindi ma-log out ang mga device",
     "devicesLoggedOut_one": "{{count}} device ang na-log out",
     "devicesLoggedOut_other": "{{count}} device ang na-log out"
+  },
+  "library": {
+    "myPosts": "Mga post ko",
+    "unlocked": "Na-unlock",
+    "clearHistoryTitle": "I-clear ang watch history",
+    "clearHistoryBody": "Aalisin nito sa iyong history ang lahat ng napanood na post.",
+    "clear": "I-clear",
+    "clearFailed": "Hindi ma-clear ang history. Pakisubukang muli."
   }
 }

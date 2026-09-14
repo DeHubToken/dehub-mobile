@@ -3047,5 +3047,13 @@
     "logOutAllFailed": "ਡਿਵਾਈਸ ਲੌਗ ਆਉਟ ਨਹੀਂ ਹੋ ਸਕੇ",
     "devicesLoggedOut_one": "{{count}} ਡਿਵਾਈਸ ਲੌਗ ਆਉਟ ਹੋਇਆ",
     "devicesLoggedOut_other": "{{count}} ਡਿਵਾਈਸ ਲੌਗ ਆਉਟ ਹੋਏ"
+  },
+  "library": {
+    "myPosts": "ਮੇਰੀਆਂ ਪੋਸਟਾਂ",
+    "unlocked": "ਅਨਲੌਕ",
+    "clearHistoryTitle": "ਵੇਖਣ ਦਾ ਇਤਿਹਾਸ ਸਾਫ਼ ਕਰੋ",
+    "clearHistoryBody": "ਇਸ ਨਾਲ ਤੁਹਾਡੇ ਇਤਿਹਾਸ ਵਿੱਚੋਂ ਸਾਰੀਆਂ ਵੇਖੀਆਂ ਪੋਸਟਾਂ ਹਟ ਜਾਣਗੀਆਂ।",
+    "clear": "ਸਾਫ਼ ਕਰੋ",
+    "clearFailed": "ਇਤਿਹਾਸ ਸਾਫ਼ ਨਹੀਂ ਹੋ ਸਕਿਆ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
   }
 }

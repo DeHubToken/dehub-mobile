@@ -3104,5 +3104,13 @@
     "logOutAllFailed": "Не ўдалося вывесці прылады",
     "devicesLoggedOut_one": "{{count}} прылада выведзена",
     "devicesLoggedOut_other": "{{count}} прылад выведзена"
+  },
+  "library": {
+    "myPosts": "Мае пасты",
+    "unlocked": "Разблакаваныя",
+    "clearHistoryTitle": "Ачысціць гісторыю прагляду",
+    "clearHistoryBody": "Гэта выдаліць усе прагледжаныя пасты з вашай гісторыі.",
+    "clear": "Ачысціць",
+    "clearFailed": "Не ўдалося ачысціць гісторыю. Паспрабуйце яшчэ раз."
   }
 }

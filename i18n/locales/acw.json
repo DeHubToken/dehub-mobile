@@ -3028,5 +3028,13 @@
     "logOutAllFailed": "ما قدرنا نطلّع الأجهزة",
     "devicesLoggedOut_one": "انطلّع {{count}} جهاز",
     "devicesLoggedOut_other": "انطلّعت {{count}} أجهزة"
+  },
+  "library": {
+    "myPosts": "منشوراتي",
+    "unlocked": "مفتوحة",
+    "clearHistoryTitle": "مسح سجل المشاهدة",
+    "clearHistoryBody": "هيدا رح يشيل كل المنشورات يلي شفتها من سجلك.",
+    "clear": "امسح",
+    "clearFailed": "ما قدرنا نمسح السجل. جرب مرة تانية."
   }
 }

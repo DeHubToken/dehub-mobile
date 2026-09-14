@@ -20,16 +20,16 @@ type LibraryTab = "myPosts" | "liked" | "saved" | "unlocked" | "watched";
 
 interface TabDef {
   key: LibraryTab;
-  label: string;
+  labelKey: string;
   icon: IconName;
 }
 
 const TABS: TabDef[] = [
-  { key: "myPosts", label: "My Posts", icon: "LayoutGrid" },
-  { key: "liked", label: "Liked", icon: "Heart" },
-  { key: "saved", label: "Bookmarks", icon: "Bookmark" },
-  { key: "unlocked", label: "Unlocked", icon: "LockOpen" },
-  { key: "watched", label: "History", icon: "History" },
+  { key: "myPosts", labelKey: "library.myPosts", icon: "LayoutGrid" },
+  { key: "liked", labelKey: "bookmarks.liked", icon: "Heart" },
+  { key: "saved", labelKey: "nav.bookmarks", icon: "Bookmark" },
+  { key: "unlocked", labelKey: "library.unlocked", icon: "LockOpen" },
+  { key: "watched", labelKey: "bookmarks.history", icon: "History" },
 ];
 
 const TAB_H = 36;
@@ -47,25 +47,25 @@ const MyLibraryScreen: React.FC = () => {
 
   const handleClearHistory = useCallback(() => {
     Alert.alert(
-      "Clear Watch History",
-      "This will remove all watched posts from your history.",
+      t("library.clearHistoryTitle"),
+      t("library.clearHistoryBody"),
       [
-        { text: "Cancel", style: "cancel" },
+        { text: t("common.cancel"), style: "cancel" },
         {
-          text: "Clear",
+          text: t("library.clear"),
           style: "destructive",
           onPress: async () => {
             try {
               await clearWatchHistory();
               setHistoryKey((k) => k + 1);
             } catch {
-              Alert.alert("Error", "Failed to clear history. Please try again.");
+              Alert.alert(t("toasts.error"), t("library.clearFailed"));
             }
           },
         },
       ],
     );
-  }, []);
+  }, [t]);
 
   const indicatorX = useSharedValue(0);
   const indicatorW = useSharedValue(0);
@@ -158,7 +158,7 @@ const MyLibraryScreen: React.FC = () => {
                     isActive && styles.tabLabelActive,
                   ]}
                 >
-                  {tab.label}
+                  {t(tab.labelKey)}
                 </Text>
               </Pressable>
             );

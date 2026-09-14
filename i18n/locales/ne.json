@@ -3104,5 +3104,13 @@
     "logOutAllFailed": "यन्त्रहरू लग आउट गर्न सकिएन",
     "devicesLoggedOut_one": "{{count}} यन्त्र लग आउट भयो",
     "devicesLoggedOut_other": "{{count}} यन्त्र लग आउट भए"
+  },
+  "library": {
+    "myPosts": "मेरा पोस्ट",
+    "unlocked": "अनलक",
+    "clearHistoryTitle": "हेरेको इतिहास मेट्नुहोस्",
+    "clearHistoryBody": "यसले तपाईंको इतिहासबाट हेरिएका सबै पोस्ट हटाउनेछ।",
+    "clear": "मेट्नुहोस्",
+    "clearFailed": "इतिहास मेट्न सकिएन। फेरि प्रयास गर्नुहोस्।"
   }
 }

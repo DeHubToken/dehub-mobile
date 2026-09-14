@@ -3071,5 +3071,13 @@
     "logOutAllFailed": "ما قدرناش نطلّع الأجهزة",
     "devicesLoggedOut_one": "اتطلّع {{count}} جهاز",
     "devicesLoggedOut_other": "اتطلّعت {{count}} أجهزة"
+  },
+  "library": {
+    "myPosts": "بوستاتي",
+    "unlocked": "مفتوحة",
+    "clearHistoryTitle": "مسح سجل المشاهدة",
+    "clearHistoryBody": "ده هيشيل كل البوستات اللي اتشافت من سجلك.",
+    "clear": "امسح",
+    "clearFailed": "ما قدرناش نمسح السجل. حاول تاني."
   }
 }

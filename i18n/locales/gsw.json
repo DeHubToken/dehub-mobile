@@ -3060,5 +3060,13 @@
     "logOutAllFailed": "D Grät händ nid chönne abgmäldet wärde",
     "devicesLoggedOut_one": "{{count}} Grät abgmäldet",
     "devicesLoggedOut_other": "{{count}} Grät abgmäldet"
+  },
+  "library": {
+    "myPosts": "Mini Beiträg",
+    "unlocked": "Freigschaltet",
+    "clearHistoryTitle": "Wiedergabeverlauf lösche",
+    "clearHistoryBody": "Das entfernt alli agluegte Beiträg us dim Verlauf.",
+    "clear": "Lösche",
+    "clearFailed": "De Verlauf het nid chönne glöscht wärde. Probier's nomol."
   }
 }

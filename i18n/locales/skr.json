@@ -3015,5 +3015,13 @@
     "logOutAllFailed": "ڈیوائساں لاگ آؤٹ نہ تھی سڳیاں",
     "devicesLoggedOut_one": "{{count}} ڈیوائس لاگ آؤٹ تھی ڳئی",
     "devicesLoggedOut_other": "{{count}} ڈیوائساں لاگ آؤٹ تھی ڳئیاں"
+  },
+  "library": {
+    "myPosts": "میݙیاں پوسٹاں",
+    "unlocked": "ان لاک",
+    "clearHistoryTitle": "ݙیکھݨ دی تاریخ صاف کرو",
+    "clearHistoryBody": "ایں نال تہاڈی تاریخ توں سارے ݙٹھے پوسٹ ہٹ ویسن۔",
+    "clear": "صاف کرو",
+    "clearFailed": "تاریخ صاف نہ تھی سڳی۔ ولدا کوشش کرو۔"
   }
 }

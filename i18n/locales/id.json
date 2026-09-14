@@ -3121,5 +3121,13 @@
     "logOutAllFailed": "Gagal mengeluarkan perangkat",
     "devicesLoggedOut_one": "{{count}} perangkat dikeluarkan",
     "devicesLoggedOut_other": "{{count}} perangkat dikeluarkan"
+  },
+  "library": {
+    "myPosts": "Kiriman saya",
+    "unlocked": "Terbuka",
+    "clearHistoryTitle": "Hapus riwayat tontonan",
+    "clearHistoryBody": "Ini akan menghapus semua kiriman yang ditonton dari riwayat Anda.",
+    "clear": "Hapus",
+    "clearFailed": "Gagal menghapus riwayat. Coba lagi."
   }
 }

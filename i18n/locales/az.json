@@ -3055,5 +3055,13 @@
     "logOutAllFailed": "Cihazlar çıxarıla bilmədi",
     "devicesLoggedOut_one": "{{count}} cihaz çıxarıldı",
     "devicesLoggedOut_other": "{{count}} cihaz çıxarıldı"
+  },
+  "library": {
+    "myPosts": "Paylaşımlarım",
+    "unlocked": "Açılmış",
+    "clearHistoryTitle": "Baxış tarixçəsini təmizlə",
+    "clearHistoryBody": "Bu, baxdığın bütün paylaşımları tarixçəndən siləcək.",
+    "clear": "Təmizlə",
+    "clearFailed": "Tarixçə təmizlənmədi. Zəhmət olmasa yenidən cəhd et."
   }
 }
