@@ -3098,5 +3098,25 @@
     "ppvUnlock": "PPV-Freischaltung",
     "noEarningsYet": "Noch keine Einnahmen",
     "noEarningsDesc": "Trinkgelder und PPV-Verkäufe erscheinen hier"
+  },
+  "earningsVs": {
+    "title": "Im Vergleich zu anderen Plattformen",
+    "subtitle": "Deine echten DeHub-Einnahmen im Vergleich zu dem, was dieselben Aufrufe anderswo gebracht hätten.",
+    "earnedOnDehub": "Auf DeHub verdient",
+    "priceUnavailable": "USD-Preis nicht verfügbar",
+    "totalViews": "Aufrufe gesamt",
+    "acrossPosts": "über {{count}} Beiträge",
+    "yourRpm": "Dein DeHub-RPM",
+    "per1000": "pro 1.000 Aufrufe",
+    "typicalRange": "typisch {{range}} pro 1.000",
+    "onDehub": "{{amount}} auf DeHub",
+    "rpmA11y": "{{platform}}-RPM in Dollar pro 1.000 Aufrufe",
+    "estimatorLabel": "Nicht deine Zahlen? Probiere eine beliebige Aufrufzahl",
+    "estimatorPlaceholder": "z. B. 250000",
+    "noteYoutube": "Nach dem 45%-Anteil von YouTube an den Werbeeinnahmen. Schwankt am stärksten nach Nische und Zuschauerland.",
+    "noteTwitch": "Nur Werbeeinnahmen — ohne Subs und Bits, die meist den größeren Teil ausmachen.",
+    "noteTiktok": "Creator Rewards. Berüchtigt niedrig pro Aufruf; das ganze Modell lebt von der Reichweite.",
+    "noteReels": "Bonusprogramme gibt es nur auf Einladung und sie wurden wiederholt eingestellt.",
+    "footnote": "Zahlen der Wettbewerber sind Schätzungen aus veröffentlichten Branchenspannen, keine gemessenen Auszahlungen — der echte RPM schwankt stark nach Nische, Land des Publikums und Wiedergabezeit, also passe jede Rate an das an, was du wirklich verdienst. Die DeHub-Zahl ist dein echtes Trinkgeld-Einkommen zum aktuellen DHB-Kurs umgerechnet und enthält keine Abos, PPV oder Shop-Verkäufe. Die Aufrufe werden aus deinen letzten 100 Beiträgen summiert."
   }
 }

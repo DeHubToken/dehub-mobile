@@ -3007,5 +3007,25 @@
     "ppvUnlock": "Mkpọghe PPV",
     "noEarningsYet": "Enwebeghị ego mbata",
     "noEarningsDesc": "Tips na ahịa PPV ga-apụta ebe a"
+  },
+  "earningsVs": {
+    "title": "Tụnyere ikpo okwu ndị ọzọ",
+    "subtitle": "Ego gị n'ezie na DeHub megide ihe otu ọnụọgụ nlele ahụ gaara akwụ n'ebe ọzọ.",
+    "earnedOnDehub": "Enwetara na DeHub",
+    "priceUnavailable": "Ọnụahịa USD adịghị",
+    "totalViews": "Ngụkọta nlele",
+    "acrossPosts": "n'ofe posts {{count}}",
+    "yourRpm": "RPM DeHub gị",
+    "per1000": "kwa nlele 1,000",
+    "typicalRange": "nke ọma {{range}} kwa 1,000",
+    "onDehub": "{{amount}} na DeHub",
+    "rpmA11y": "RPM {{platform}} na dollar kwa nlele 1,000",
+    "estimatorLabel": "Ọ bụghị ọnụọgụ gị? Nwalee ọnụọgụ nlele ọ bụla",
+    "estimatorPlaceholder": "d.ọ 250000",
+    "noteYoutube": "Mgbe YouTube wepụrụ pasent 45 nke ego mgbasa ozi. Ọ na-agbanwe nke ukwuu dabere na ụdị ọdịnaya na obodo onye na-ekiri.",
+    "noteTwitch": "Naanị ego mgbasa ozi — agụnyeghị subs na bits, nke na-abụkarị oke buru ibu.",
+    "noteTiktok": "Creator Rewards. A maara ya nke ọma maka ịdị ala kwa nlele; ogo ka ọ bụ usoro ahụ niile.",
+    "noteReels": "Mmemme bonus bụ naanị site na ọkpụkpọ òkù ma mechie ugboro ugboro.",
+    "footnote": "Ọnụọgụ ndị asọmpi bụ atụmatụ sitere na oke ụlọ ọrụ ebipụtara, ọ bụghị ụgwọ a tụrụ atụ — ezigbo RPM na-adịgasị iche nke ukwuu dabere na ụdị ọdịnaya, obodo ndị na-ege ntị na oge ikiri, ya mere dezie ọnụego ọ bụla ka ọ kwekọọ n'ihe ị na-enweta n'ezie. Ọnụọgụ DeHub bụ ezigbo ego tip gị a tụgharịrị na ọnụahịa DHB dị ndụ, ọ gụnyeghịkwa ndenye aha, PPV ma ọ bụ ire ahịa ụlọ ahịa. A na-achịkọta nlele site na posts 100 kachasị ọhụrụ gị."
   }
 }

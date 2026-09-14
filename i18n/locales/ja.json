@@ -3096,5 +3096,25 @@
     "ppvUnlock": "PPVアンロック",
     "noEarningsYet": "まだ収益はありません",
     "noEarningsDesc": "チップとPPV売上がここに表示されます"
+  },
+  "earningsVs": {
+    "title": "他プラットフォームとの比較",
+    "subtitle": "DeHubでの実際の収益と、同じ再生数が他所で得られたはずの金額の比較です。",
+    "earnedOnDehub": "DeHubでの収益",
+    "priceUnavailable": "USD価格は取得できません",
+    "totalViews": "総再生数",
+    "acrossPosts": "{{count}}件の投稿から",
+    "yourRpm": "あなたのDeHub RPM",
+    "per1000": "1,000再生あたり",
+    "typicalRange": "通常1,000あたり{{range}}",
+    "onDehub": "DeHubで{{amount}}",
+    "rpmA11y": "{{platform}}の1,000再生あたりのドルRPM",
+    "estimatorLabel": "自分の数字と違いますか？任意の再生数を試せます",
+    "estimatorPlaceholder": "例：250000",
+    "noteYoutube": "YouTubeが広告収益の45%を差し引いた後の数字です。ジャンルと視聴者の国による変動が最も大きい項目です。",
+    "noteTwitch": "広告収益のみで、通常はより大きな割合を占めるサブスクとビッツは含みません。",
+    "noteTiktok": "Creator Rewards。1再生あたりの単価が低いことで知られ、規模そのものがモデルです。",
+    "noteReels": "ボーナスプログラムは招待制で、これまで何度も縮小・終了しています。",
+    "footnote": "競合の数値は公開されている業界レンジからの推計であり、実測の支払額ではありません。実際のRPMはジャンル、視聴者の国、視聴時間によって大きく変わるため、各レートを自分の実収入に合わせて編集してください。DeHubの数値はDHBのライブ価格で換算した実際のチップ収入で、サブスクリプション、PPV、ストア販売は含みません。再生数は直近100件の投稿を合計したものです。"
   }
 }

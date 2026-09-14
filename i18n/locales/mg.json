@@ -3108,5 +3108,25 @@
     "ppvUnlock": "Fanokafana PPV",
     "noEarningsYet": "Mbola tsy misy fidiram-bola",
     "noEarningsDesc": "Hiseho eto ny tips sy ny varotra PPV"
+  },
+  "earningsVs": {
+    "title": "Raha oharina amin'ny sehatra hafa",
+    "subtitle": "Ny tena vola azonao amin'ny DeHub mifanohitra amin'izay ho naloan'ireo fijerena ireo any an-kafa.",
+    "earnedOnDehub": "Azo tao amin'ny DeHub",
+    "priceUnavailable": "Tsy misy vidiny USD",
+    "totalViews": "Fijerena totaly",
+    "acrossPosts": "amin'ny lahatsoratra {{count}}",
+    "yourRpm": "Ny RPM DeHub anao",
+    "per1000": "isaky ny fijerena 1 000",
+    "typicalRange": "matetika {{range}} isaky ny 1 000",
+    "onDehub": "{{amount}} amin'ny DeHub",
+    "rpmA11y": "RPM an'ny {{platform}} amin'ny dolara isaky ny fijerena 1 000",
+    "estimatorLabel": "Tsy ny isanao? Andramo isa fijerena na inona na inona",
+    "estimatorPlaceholder": "ohatra 250000",
+    "noteYoutube": "Aorian'ny 45% alain'ny YouTube amin'ny vola azo amin'ny dokambarotra. Miovaova indrindra arakaraka ny sehatra sy ny firenen'ny mpijery.",
+    "noteTwitch": "Vola azo amin'ny dokambarotra ihany — tsy tafiditra ny subs sy bits, izay matetika no ampahany lehibe kokoa.",
+    "noteTiktok": "Creator Rewards. Malaza amin'ny hakelin'ny vola isaky ny fijerena; ny habetsahana no modely manontolo.",
+    "noteReels": "Ny fandaharana bonus dia amin'ny fanasana ihany ary nampitsaharina imbetsaka.",
+    "footnote": "Tombana avy amin'ny fari-tsaha-pihariana navoaka ny isan'ny mpifaninana, fa tsy fandoavam-bola voarefy — miovaova be ny RPM tena izy arakaraka ny sehatra, ny firenen'ny mpanaraka ary ny fotoana fijerena, ka ovay ny tahan'ny tsirairay mba hifanaraka amin'izay tena azonao. Ny isan'ny DeHub dia ny tena vola azonao amin'ny tips novana amin'ny vidin'ny DHB mivantana, ary tsy tafiditra ao ny fisoratana anarana, ny PPV na ny varotra ao amin'ny fivarotana. Ny fijerena dia nampiana avy amin'ny lahatsoratra 100 farany nataonao."
   }
 }

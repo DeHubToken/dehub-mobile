@@ -3058,5 +3058,25 @@
     "ppvUnlock": "Ukuvulwa kwe-PPV",
     "noEarningsYet": "Ayikho imali engenayo okwamanje",
     "noEarningsDesc": "Amathiphu nokuthengiswa kwe-PPV kuzovela lapha"
+  },
+  "earningsVs": {
+    "title": "Uma kuqhathaniswa namanye amapulatifomu",
+    "subtitle": "Imali yakho yangempela ye-DeHub uma iqhathaniswa nalokho okubukwa okufanayo obekuzokukhokha kwenye indawo.",
+    "earnedOnDehub": "Kutholwe ku-DeHub",
+    "priceUnavailable": "Intengo ye-USD ayitholakali",
+    "totalViews": "Ukubukwa okuphelele",
+    "acrossPosts": "kokuthunyelwe okungu-{{count}}",
+    "yourRpm": "I-RPM yakho ye-DeHub",
+    "per1000": "ngokubukwa okungu-1,000",
+    "typicalRange": "ngokujwayelekile {{range}} ku-1,000",
+    "onDehub": "{{amount}} ku-DeHub",
+    "rpmA11y": "I-RPM ye-{{platform}} ngamadola ngokubukwa okungu-1,000",
+    "estimatorLabel": "Akuzona izinombolo zakho? Zama inani lokubukwa noma yiliphi",
+    "estimatorPlaceholder": "isb. 250000",
+    "noteYoutube": "Ngemva kwengxenye engu-45% ye-YouTube yemali yezikhangiso. Iyaguquguquka kakhulu ngokwesihloko nezwe lombukeli.",
+    "noteTwitch": "Imali yezikhangiso kuphela — ayifaki ama-subs nama-bits, okuvamise ukuba yingxenye enkulu.",
+    "noteTiktok": "I-Creator Rewards. Yaziwa ngokukhokha kancane ngokubukwa ngakunye; isilinganiso yiso sonke isimo.",
+    "noteReels": "Izinhlelo zebhonasi zimemo kuphela futhi zivaliwe kaningi.",
+    "footnote": "Izibalo zabancintisani ziyizilinganiso ezivela emikhakheni yemboni eshicilelwe, hhayi izinkokhelo ezikaliwe — i-RPM yangempela iyahluka kakhulu ngokwesihloko, izwe lababukeli nesikhathi sokubuka, ngakho hlela inani ngalinye ukuze lihambisane nalokho okuzuzayo ngempela. Inani le-DeHub yimali yakho yangempela yamathiphu eguqulwe ngentengo ye-DHB ebukhoma, futhi ayifaki okubhaliselwe, i-PPV noma ukuthengiswa kwesitolo. Ukubukwa kuhlanganiswe kokuthunyelwe kwakho okungu-100 kwakamuva."
   }
 }

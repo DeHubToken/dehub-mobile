@@ -3061,5 +3061,25 @@
     "ppvUnlock": "PPV kichay",
     "noEarningsYet": "Manaraq qullqi chaskiy",
     "noEarningsDesc": "Propinakuna hinaspa PPV rantikuykuna kaypi rikhurinqa"
+  },
+  "earningsVs": {
+    "title": "Huk plataformakunawan tupachispa",
+    "subtitle": "DeHub-pi cheqaq qullqi chaskisqayki, chay kikin qhawaykuna huk law hayk'a qusqanwan tupachispa.",
+    "earnedOnDehub": "DeHub-pi chaskisqa",
+    "priceUnavailable": "USD chanin mana kanchu",
+    "totalViews": "Llapan qhawaykuna",
+    "acrossPosts": "{{count}} publicacionpi",
+    "yourRpm": "DeHub RPM-niyki",
+    "per1000": "sapa 1,000 qhawaypi",
+    "typicalRange": "yaqapas {{range}} sapa 1,000",
+    "onDehub": "DeHub-pi {{amount}}",
+    "rpmA11y": "{{platform}} RPM dolarpi sapa 1,000 qhawaypi",
+    "estimatorLabel": "Manachu yupayniykikuna? Ima qhaway yupaytapas yanapay",
+    "estimatorPlaceholder": "ñawpaqmanta 250000",
+    "noteYoutube": "YouTube publicidad qullqimanta 45% hurqusqan qhipata. Nicho hinaspa qhawaqpa suyunman hina aswan tikran.",
+    "noteTwitch": "Publicidad qullqilla — subs hinaspa bits mana yupasqachu, chaykunam sapa kuti aswan hatun raki.",
+    "noteTiktok": "Creator Rewards. Sapa qhawaypi pisilla qusqanmanta riqsisqa; tukuy modeloqa hatunchay.",
+    "noteReels": "Bonus programakunaqa invitacionllawan, hinaspa achka kuti wichq'asqa karqan.",
+    "footnote": "Competidorkunapa yupayninkunaqa publicasqa industria rangokunamanta tupuykunam, mana tupusqa qullqi qusqachu — cheqaq RPM nicho, qhawaqkunapa suyun hinaspa qhaway pacha hina ancha tikran, chayrayku sapa tasata allichay cheqaqta chaskisqaykiman hina. DeHub yupayqa DHB kawsaq chaninwan tikrachisqa cheqaq propina qullqiykim, hinaspa suscripcionkunata, PPV-ta, tienda rantikuytapas mana yupanchu. Qhawaykunaqa qhipa 100 publicacionniykimanta yapasqam."
   }
 }

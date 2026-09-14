@@ -3099,5 +3099,25 @@
     "ppvUnlock": "Sblocco PPV",
     "noEarningsYet": "Ancora nessun guadagno",
     "noEarningsDesc": "Mance e vendite PPV appariranno qui"
+  },
+  "earningsVs": {
+    "title": "Rispetto ad altre piattaforme",
+    "subtitle": "I tuoi guadagni reali su DeHub rispetto a quanto avrebbero pagato le stesse visualizzazioni altrove.",
+    "earnedOnDehub": "Guadagnato su DeHub",
+    "priceUnavailable": "Prezzo in USD non disponibile",
+    "totalViews": "Visualizzazioni totali",
+    "acrossPosts": "su {{count}} post",
+    "yourRpm": "Il tuo RPM su DeHub",
+    "per1000": "per 1.000 visualizzazioni",
+    "typicalRange": "di solito {{range}} per 1.000",
+    "onDehub": "{{amount}} su DeHub",
+    "rpmA11y": "RPM di {{platform}} in dollari per 1.000 visualizzazioni",
+    "estimatorLabel": "Non sono i tuoi numeri? Prova un numero di visualizzazioni qualsiasi",
+    "estimatorPlaceholder": "es. 250000",
+    "noteYoutube": "Al netto del 45% che YouTube trattiene sui ricavi pubblicitari. Varia moltissimo per nicchia e paese dello spettatore.",
+    "noteTwitch": "Solo ricavi pubblicitari — esclusi abbonamenti e bits, che di solito pesano di più.",
+    "noteTiktok": "Creator Rewards. Notoriamente basso per visualizzazione; tutto il modello è la scala.",
+    "noteReels": "I programmi bonus sono solo su invito e sono stati chiusi più volte.",
+    "footnote": "Le cifre dei concorrenti sono stime tratte da intervalli di settore pubblicati, non pagamenti misurati: l'RPM reale varia moltissimo per nicchia, paese del pubblico e tempo di visione, quindi modifica ogni tariffa perché rispecchi quello che guadagni davvero. La cifra DeHub è il tuo reale reddito da mance convertito al prezzo DHB in tempo reale ed esclude abbonamenti, PPV e vendite del negozio. Le visualizzazioni sono sommate dai tuoi 100 post più recenti."
   }
 }

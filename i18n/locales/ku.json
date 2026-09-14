@@ -2795,5 +2795,25 @@
     "ppvUnlock": "Vekirina PPV",
     "noEarningsYet": "Hîn dahat tune",
     "noEarningsDesc": "Bexşîş û firotina PPV dê li vir xuya bibin"
+  },
+  "earningsVs": {
+    "title": "Berhevdana bi platformên din",
+    "subtitle": "Dahata te ya rastîn a DeHub li hember ya ku heman dîtin dê li cîhekî din bidana.",
+    "earnedOnDehub": "Li DeHub hatiye qezenckirin",
+    "priceUnavailable": "Bihaya USD tune",
+    "totalViews": "Tevahiya dîtinan",
+    "acrossPosts": "di {{count}} postan de",
+    "yourRpm": "RPM-a te ya DeHub",
+    "per1000": "ji bo her 1.000 dîtinan",
+    "typicalRange": "bi gelemperî {{range}} ji bo 1.000",
+    "onDehub": "{{amount}} li DeHub",
+    "rpmA11y": "RPM ya {{platform}} bi dolar ji bo 1.000 dîtinan",
+    "estimatorLabel": "Ne hejmarên te ne? Her hejmara dîtinan biceribîne",
+    "estimatorPlaceholder": "mînak 250000",
+    "noteYoutube": "Piştî ku YouTube 45% ji dahata reklamê digire. Herî zêde li gorî mijar û welatê temaşevan diguhere.",
+    "noteTwitch": "Tenê dahata reklamê — subs û bits tê de nînin, ku bi gelemperî para mezintir in.",
+    "noteTiktok": "Creator Rewards. Bi kêmbûna xwe ya ji bo her dîtinê navdar e; tevahiya modelê pîvan e.",
+    "noteReels": "Bernameyên bonusê tenê bi vexwendinê ne û gelek caran hatine girtin.",
+    "footnote": "Hejmarên hevrikan texmînên ji rêzikên pîşesaziyê yên weşandî ne, ne dayînên pîvandî — RPM ya rastîn li gorî mijar, welatê temaşevanan û dema temaşekirinê pir diguhere, ji ber vê yekê her rêjeyê biguherîne da ku bi ya ku tu bi rastî qezenc dikî re li hev bike. Hejmara DeHub dahata te ya rastîn a bexşîşan e ku bi bihayê zindî yê DHB hatiye guhertin û abonetî, PPV û firotina dikanê nagire. Dîtin ji 100 postên te yên herî dawî hatine berhevkirin."
   }
 }

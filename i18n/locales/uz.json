@@ -3081,5 +3081,25 @@
     "ppvUnlock": "PPV ochish",
     "noEarningsYet": "Hali daromad yo‘q",
     "noEarningsDesc": "Choychaqalar va PPV savdosi shu yerda ko‘rinadi"
+  },
+  "earningsVs": {
+    "title": "Boshqa platformalar bilan taqqoslaganda",
+    "subtitle": "DeHub'dagi haqiqiy daromadingiz, xuddi shu ko‘rishlar boshqa joyda qancha to‘lashi bilan solishtirganda.",
+    "earnedOnDehub": "DeHub'da topilgan",
+    "priceUnavailable": "USD narxi mavjud emas",
+    "totalViews": "Jami ko‘rishlar",
+    "acrossPosts": "{{count}} ta postda",
+    "yourRpm": "Sizning DeHub RPM",
+    "per1000": "har 1 000 ko‘rishga",
+    "typicalRange": "odatda har 1 000 ga {{range}}",
+    "onDehub": "DeHub'da {{amount}}",
+    "rpmA11y": "{{platform}} RPM dollarda har 1 000 ko‘rishga",
+    "estimatorLabel": "Sizning raqamlaringiz emasmi? Istalgan ko‘rish sonini sinab ko‘ring",
+    "estimatorPlaceholder": "mas. 250000",
+    "noteYoutube": "YouTube reklama daromadining 45% ini olgandan keyin. Yo‘nalish va tomoshabin mamlakatiga qarab eng ko‘p o‘zgaradi.",
+    "noteTwitch": "Faqat reklama daromadi — obunalar va bits kirmaydi, ular odatda kattaroq ulush.",
+    "noteTiktok": "Creator Rewards. Har ko‘rish uchun pastligi bilan mashhur; butun model hajmga tayanadi.",
+    "noteReels": "Bonus dasturlari faqat taklif bilan va bir necha bor yopilgan.",
+    "footnote": "Raqobatchilarning raqamlari nashr etilgan soha oraliqlaridan olingan taxminlar bo‘lib, o‘lchangan to‘lovlar emas — haqiqiy RPM yo‘nalish, auditoriya mamlakati va tomosha vaqtiga qarab keskin farq qiladi, shuning uchun har bir stavkani haqiqiy daromadingizga moslab tahrirlang. DeHub raqami — DHB ning jonli narxida konvertatsiya qilingan haqiqiy choychaqa daromadingiz bo‘lib, obunalar, PPV va do‘kon savdosini o‘z ichiga olmaydi. Ko‘rishlar so‘nggi 100 ta postingizdan jamlangan."
   }
 }

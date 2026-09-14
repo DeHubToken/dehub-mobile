@@ -3097,5 +3097,25 @@
     "ppvUnlock": "PPV 잠금 해제",
     "noEarningsYet": "아직 수익이 없습니다",
     "noEarningsDesc": "팁과 PPV 판매가 여기에 표시됩니다"
+  },
+  "earningsVs": {
+    "title": "다른 플랫폼과 비교",
+    "subtitle": "DeHub에서의 실제 수익과 같은 조회수가 다른 곳에서 벌었을 금액의 비교입니다.",
+    "earnedOnDehub": "DeHub 수익",
+    "priceUnavailable": "USD 가격 없음",
+    "totalViews": "총 조회수",
+    "acrossPosts": "게시물 {{count}}개 기준",
+    "yourRpm": "내 DeHub RPM",
+    "per1000": "조회수 1,000회당",
+    "typicalRange": "보통 1,000당 {{range}}",
+    "onDehub": "DeHub에서 {{amount}}",
+    "rpmA11y": "{{platform}}의 조회수 1,000회당 달러 RPM",
+    "estimatorLabel": "내 수치가 아닌가요? 아무 조회수나 넣어 보세요",
+    "estimatorPlaceholder": "예: 250000",
+    "noteYoutube": "유튜브가 광고 수익의 45%를 떼간 뒤의 수치입니다. 분야와 시청자 국가에 따라 가장 크게 흔들립니다.",
+    "noteTwitch": "광고 수익만 포함하며, 보통 더 큰 비중인 구독과 비츠는 빠져 있습니다.",
+    "noteTiktok": "크리에이터 리워드. 조회당 단가가 낮기로 유명하며, 규모 자체가 이 모델의 전부입니다.",
+    "noteReels": "보너스 프로그램은 초대제이며 여러 차례 축소·종료됐습니다.",
+    "footnote": "경쟁사 수치는 공개된 업계 범위를 바탕으로 한 추정치이며 실측 지급액이 아닙니다. 실제 RPM은 분야, 시청자 국가, 시청 시간에 따라 크게 달라지므로 각 단가를 실제 수익에 맞게 수정하세요. DeHub 수치는 실시간 DHB 가격으로 환산한 실제 팁 수입이며 구독, PPV, 스토어 판매는 제외됩니다. 조회수는 최근 게시물 100개를 합산한 값입니다."
   }
 }

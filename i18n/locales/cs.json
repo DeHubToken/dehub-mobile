@@ -3033,5 +3033,25 @@
     "ppvUnlock": "Odemknutí PPV",
     "noEarningsYet": "Zatím žádné výdělky",
     "noEarningsDesc": "Spropitné a prodeje PPV se zobrazí zde"
+  },
+  "earningsVs": {
+    "title": "Ve srovnání s jinými platformami",
+    "subtitle": "Vaše skutečné výdělky na DeHub proti tomu, co by stejná zhlédnutí vydělala jinde.",
+    "earnedOnDehub": "Vyděláno na DeHub",
+    "priceUnavailable": "Cena v USD není dostupná",
+    "totalViews": "Celkem zhlédnutí",
+    "acrossPosts": "napříč {{count}} příspěvky",
+    "yourRpm": "Váš RPM na DeHub",
+    "per1000": "za 1 000 zhlédnutí",
+    "typicalRange": "obvykle {{range}} za 1 000",
+    "onDehub": "{{amount}} na DeHub",
+    "rpmA11y": "RPM {{platform}} v dolarech za 1 000 zhlédnutí",
+    "estimatorLabel": "Nejsou to vaše čísla? Zkuste libovolný počet zhlédnutí",
+    "estimatorPlaceholder": "např. 250000",
+    "noteYoutube": "Po 45% podílu YouTube z příjmů z reklamy. Nejvíc kolísá podle niky a země diváka.",
+    "noteTwitch": "Pouze příjmy z reklamy — bez odběrů a bits, které bývají větší částí.",
+    "noteTiktok": "Creator Rewards. Proslule nízké na zhlédnutí; celý model stojí na objemu.",
+    "noteReels": "Bonusové programy jsou jen na pozvánku a opakovaně se rušily.",
+    "footnote": "Čísla konkurence jsou odhady z publikovaných oborových rozpětí, ne naměřené výplaty — skutečný RPM se hodně liší podle niky, země publika a doby sledování, takže si každou sazbu uprav podle toho, co reálně vyděláváš. Číslo DeHub je tvůj skutečný příjem ze spropitného přepočtený živou cenou DHB a nezahrnuje předplatné, PPV ani prodeje v obchodě. Zhlédnutí se sčítají z tvých posledních 100 příspěvků."
   }
 }

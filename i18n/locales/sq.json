@@ -3028,5 +3028,25 @@
     "ppvUnlock": "Zhbllokim PPV",
     "noEarningsYet": "Ende pa fitime",
     "noEarningsDesc": "Bakshishet dhe shitjet PPV do të shfaqen këtu"
+  },
+  "earningsVs": {
+    "title": "Krahasuar me platforma të tjera",
+    "subtitle": "Fitimet e tua reale në DeHub përballë asaj që të njëjtat shikime do të kishin paguar gjetkë.",
+    "earnedOnDehub": "Fituar në DeHub",
+    "priceUnavailable": "Çmimi në USD i padisponueshëm",
+    "totalViews": "Shikime gjithsej",
+    "acrossPosts": "në {{count}} postime",
+    "yourRpm": "RPM-ja jote në DeHub",
+    "per1000": "për 1.000 shikime",
+    "typicalRange": "zakonisht {{range}} për 1.000",
+    "onDehub": "{{amount}} në DeHub",
+    "rpmA11y": "RPM i {{platform}} në dollarë për 1.000 shikime",
+    "estimatorLabel": "Nuk janë numrat e tu? Provo çdo numër shikimesh",
+    "estimatorPlaceholder": "p.sh. 250000",
+    "noteYoutube": "Pas 45% që YouTube mban nga të ardhurat e reklamave. Luhatet më së shumti sipas nishit dhe vendit të shikuesit.",
+    "noteTwitch": "Vetëm të ardhurat nga reklamat — pa abonimet dhe bits, që zakonisht janë pjesa më e madhe.",
+    "noteTiktok": "Creator Rewards. I njohur për pagesën e ulët për shikim; i gjithë modeli është shkalla.",
+    "noteReels": "Programet e bonusit janë vetëm me ftesë dhe janë mbyllur vazhdimisht.",
+    "footnote": "Shifrat e konkurrentëve janë vlerësime nga intervale të publikuara të industrisë, jo pagesa të matura — RPM-ja reale ndryshon shumë sipas nishit, vendit të audiencës dhe kohës së shikimit, prandaj redakto çdo tarifë që të përputhet me atë që fiton vërtet. Shifra e DeHub është të ardhurat e tua reale nga bakshishet, të konvertuara me çmimin e drejtpërdrejtë të DHB, dhe përjashton abonimet, PPV dhe shitjet e dyqanit. Shikimet mblidhen nga 100 postimet e tua më të fundit."
   }
 }

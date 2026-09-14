@@ -3209,5 +3209,25 @@
     "ppvUnlock": "PPV unlock",
     "noEarningsYet": "Wala pang kita",
     "noEarningsDesc": "Lalabas dito ang tips at benta ng PPV"
+  },
+  "earningsVs": {
+    "title": "Kumpara sa ibang platform",
+    "subtitle": "Ang totoo mong kita sa DeHub laban sa kung magkano ang babayaran ng parehong views sa ibang lugar.",
+    "earnedOnDehub": "Kinita sa DeHub",
+    "priceUnavailable": "Walang presyo sa USD",
+    "totalViews": "Kabuuang views",
+    "acrossPosts": "sa {{count}} post",
+    "yourRpm": "Ang DeHub RPM mo",
+    "per1000": "kada 1,000 views",
+    "typicalRange": "karaniwang {{range}} kada 1,000",
+    "onDehub": "{{amount}} sa DeHub",
+    "rpmA11y": "RPM ng {{platform}} sa dolyar kada 1,000 views",
+    "estimatorLabel": "Hindi ito ang numero mo? Subukan ang kahit anong bilang ng views",
+    "estimatorPlaceholder": "hal. 250000",
+    "noteYoutube": "Matapos ang 45% na kinukuha ng YouTube sa kita sa ad. Pinakamalaki ang pagbabago ayon sa niche at bansa ng manonood.",
+    "noteTwitch": "Kita sa ad lamang — hindi kasama ang subs at bits, na kadalasang mas malaking bahagi.",
+    "noteTiktok": "Creator Rewards. Kilalang mababa kada view; ang laki ng bilang ang buong modelo.",
+    "noteReels": "Imbitasyon lang ang bonus programs at paulit-ulit na itong isinara.",
+    "footnote": "Ang mga bilang ng kakumpitensya ay tantiya mula sa nailathalang saklaw ng industriya, hindi sinukat na bayad — malaki ang pagkakaiba ng totoong RPM ayon sa niche, bansa ng manonood at oras ng panonood, kaya i-edit ang bawat rate para tumugma sa totoo mong kita. Ang bilang ng DeHub ay ang totoo mong kita mula sa tips na ikinonberte sa live na presyo ng DHB, at hindi kasama ang subscription, PPV at benta sa store. Ang views ay tinotal mula sa iyong pinakahuling 100 post."
   }
 }

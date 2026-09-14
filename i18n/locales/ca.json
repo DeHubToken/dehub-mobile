@@ -3029,5 +3029,25 @@
     "ppvUnlock": "Desbloqueig PPV",
     "noEarningsYet": "Encara no hi ha guanys",
     "noEarningsDesc": "Les propines i vendes PPV apareixeran aquí"
+  },
+  "earningsVs": {
+    "title": "Comparat amb altres plataformes",
+    "subtitle": "Els teus guanys reals a DeHub comparats amb el que les mateixes visualitzacions haurien pagat en altres llocs.",
+    "earnedOnDehub": "Guanyat a DeHub",
+    "priceUnavailable": "Preu en USD no disponible",
+    "totalViews": "Visualitzacions totals",
+    "acrossPosts": "en {{count}} publicacions",
+    "yourRpm": "El teu RPM a DeHub",
+    "per1000": "per cada 1.000 visualitzacions",
+    "typicalRange": "normalment {{range}} per 1.000",
+    "onDehub": "{{amount}} a DeHub",
+    "rpmA11y": "RPM de {{platform}} en dòlars per 1.000 visualitzacions",
+    "estimatorLabel": "No són les teves xifres? Prova qualsevol nombre de visualitzacions",
+    "estimatorPlaceholder": "p. ex. 250000",
+    "noteYoutube": "Després del 45% que es queda YouTube dels ingressos publicitaris. Varia molt segons el nínxol i el país de l'espectador.",
+    "noteTwitch": "Només ingressos publicitaris: no inclou subs ni bits, que solen ser la part més gran.",
+    "noteTiktok": "Creator Rewards. Famós pel poc que paga per visualització; tot el model és escala.",
+    "noteReels": "Els programes de bonificació són només per invitació i s'han tancat diverses vegades.",
+    "footnote": "Les xifres de la competència són estimacions de rangs publicats del sector, no pagaments mesurats: el RPM real varia molt segons el nínxol, el país de l'audiència i el temps de visualització, així que edita cada tarifa perquè s'ajusti al que guanyes de debò. La xifra de DeHub és el teu ingrés real de propines convertit al preu de DHB en directe, i exclou subscripcions, PPV i vendes de la botiga. Les visualitzacions se sumen de les teves 100 publicacions més recents."
   }
 }
