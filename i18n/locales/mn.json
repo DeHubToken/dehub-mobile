@@ -1541,6 +1541,8 @@
     "continueEmail": "Имэйлээр үргэлжлүүлэх",
     "continueSMS": "SMS-ээр үргэлжлүүлэх",
     "continueGoogle": "Google-ээр үргэлжлүүлэх",
+    "continueApple": "Apple-ээр үргэлжлүүлэх",
+    "continueTelegram": "Telegram-ээр үргэлжлүүлэх",
     "continueX": "X-ээр үргэлжлүүлэх",
     "continueDiscord": "Discord-оор үргэлжлүүлэх",
     "connectWallet": "Хэтэвч холбох",

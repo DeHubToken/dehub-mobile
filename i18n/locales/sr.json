@@ -1444,6 +1444,8 @@
     "continueEmail": "Настави са е-маилом",
     "continueSMS": "Настави преко SMS-а",
     "continueGoogle": "Настави преко Google-а",
+    "continueApple": "Настави преко Apple-а",
+    "continueTelegram": "Настави преко Telegram-а",
     "continueX": "Настави преко X-а",
     "continueDiscord": "Настави преко Discord-а",
     "connectWallet": "Повежи новчаник",

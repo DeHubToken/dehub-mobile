@@ -1572,6 +1572,8 @@
     "continueEmail": "이메일로 계속",
     "continueSMS": "SMS로 계속",
     "continueGoogle": "Google로 계속",
+    "continueApple": "Apple로 계속",
+    "continueTelegram": "Telegram로 계속",
     "continueX": "X로 계속",
     "continueDiscord": "Discord로 계속",
     "connectWallet": "지갑 연결",

@@ -1499,6 +1499,8 @@
     "continueEmail": "Continue with Email",
     "continueSMS": "Continue with SMS",
     "continueGoogle": "Continue with Google",
+    "continueApple": "Continue with Apple",
+    "continueTelegram": "Continue with Telegram",
     "continueX": "Continue with X",
     "continueDiscord": "Continue with Discord",
     "connectWallet": "Connect Wallet",
