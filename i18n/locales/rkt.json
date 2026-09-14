@@ -2157,7 +2157,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "ছবি অনেক বড় — আপনার {{tier}} স্তরের দোকান {{limit}} MB পর্যন্ত ছবি সংরক্ষণ করে",
-    "image_too_large_untiered": "ছবি অনেক বড় — ছবি {{limit}} MB পর্যন্ত সংরক্ষণ করা হয়"
+    "image_too_large_untiered": "ছবি অনেক বড় — ছবি {{limit}} MB পর্যন্ত সংরক্ষণ করা হয়",
+    "rate_limited": "রেট লিমিট, আস্তে করেন"
   },
   "staking": {
     "title": "Staking",

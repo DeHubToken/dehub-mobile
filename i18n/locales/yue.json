@@ -2005,7 +2005,8 @@
     "waiting_for_confirmation": "等待确认中...",
     "error": "错误",
     "image_too_large_tier": "圖片太大 — 你嘅 {{tier}} 層儲存最多 {{limit}} MB 嘅圖片",
-    "image_too_large_untiered": "圖片太大 — 圖片最多會儲存到 {{limit}} MB"
+    "image_too_large_untiered": "圖片太大 — 圖片最多會儲存到 {{limit}} MB",
+    "rate_limited": "太頻密喇，慢啲"
   },
   "staking": {
     "title": "质押",

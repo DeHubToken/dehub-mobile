@@ -2090,7 +2090,8 @@
     "waiting_for_confirmation": "Onay bekleniyor...",
     "error": "Hata",
     "image_too_large_tier": "Görsel çok büyük; {{tier}} seviyende {{limit}} MB'a kadar görsel depolanabilir",
-    "image_too_large_untiered": "Görüntü çok büyük — görüntüler {{limit}} MB'a kadar saklanır"
+    "image_too_large_untiered": "Görüntü çok büyük — görüntüler {{limit}} MB'a kadar saklanır",
+    "rate_limited": "İstek sınırı, biraz yavaşla"
   },
   "staking": {
     "title": "Staking",

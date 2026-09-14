@@ -1981,7 +1981,8 @@
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
-    "image_too_large_untiered": "ପ୍ରତିଛବିଟି ବହୁତ ବଡ଼ — ପ୍ରତିଛବିଗୁଡ଼ିକୁ {{limit}} MB ପର୍ଯ୍ୟନ୍ତ ସଂରକ୍ଷଣ କରାଯାଇଥାଏ"
+    "image_too_large_untiered": "ପ୍ରତିଛବିଟି ବହୁତ ବଡ଼ — ପ୍ରତିଛବିଗୁଡ଼ିକୁ {{limit}} MB ପର୍ଯ୍ୟନ୍ତ ସଂରକ୍ଷଣ କରାଯାଇଥାଏ",
+    "rate_limited": "ରେଟ୍ ଲିମିଟ୍, ଧୀରେ କରନ୍ତୁ"
   },
   "staking": {
     "title": "Staking",

@@ -2001,7 +2001,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "ຮູບພາບແມ່ນໃຫຍ່ເກີນໄປ — ຂອງທ່ານ {{tier}} tier ເກັບຮັກສາຮູບພາບສູງເຖິງ {{limit}} MB",
-    "image_too_large_untiered": "ຮູບພາບໃຫຍ່ເກີນໄປ — ຮູບພາບຖືກເກັບໄວ້ເຖິງ {{limit}} MB"
+    "image_too_large_untiered": "ຮູບພາບໃຫຍ່ເກີນໄປ — ຮູບພາບຖືກເກັບໄວ້ເຖິງ {{limit}} MB",
+    "rate_limited": "ຈຳກັດອັດຕາ, ຊ້າລົງແດ່"
   },
   "staking": {
     "title": "Staking",

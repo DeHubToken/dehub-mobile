@@ -1706,7 +1706,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Obrázok je príliš veľký — vaša úroveň {{tier}} ukladá obrázky do veľkosti {{limit}} MB",
-    "image_too_large_untiered": "Obrázok je príliš veľký — obrázky sú uložené do {{limit}} MB"
+    "image_too_large_untiered": "Obrázok je príliš veľký — obrázky sú uložené do {{limit}} MB",
+    "rate_limited": "Limit požiadaviek, spomaľte"
   },
   "postOptions": {
     "options": "Options",

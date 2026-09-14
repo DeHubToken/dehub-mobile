@@ -2010,7 +2010,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "A kép túl nagy — a {{tier}} szinted legfeljebb {{limit}} MB méretű képeket tárol",
-    "image_too_large_untiered": "A kép túl nagy — a képek legfeljebb {{limit}} MB-ig vannak tárolva"
+    "image_too_large_untiered": "A kép túl nagy — a képek legfeljebb {{limit}} MB-ig vannak tárolva",
+    "rate_limited": "Kérési korlát, lassíts"
   },
   "staking": {
     "title": "Staking",

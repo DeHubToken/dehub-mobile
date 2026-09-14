@@ -2126,7 +2126,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Image is too large — your {{tier}} tier stores images up to {{limit}} MB",
-    "image_too_large_untiered": "Image is too large — images are stored up to {{limit}} MB"
+    "image_too_large_untiered": "Image is too large — images are stored up to {{limit}} MB",
+    "rate_limited": "Rate limited, slow down"
   },
   "staking": {
     "title": "Staking",

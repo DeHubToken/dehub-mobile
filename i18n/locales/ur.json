@@ -2007,7 +2007,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "تصویر بہت بڑی ہے — آپ کی {{tier}} درجے کی تصاویر {{limit}} MB تک اسٹور کرتی ہیں",
-    "image_too_large_untiered": "تصویر بہت بڑی ہے — تصاویر {{limit}} MB تک محفوظ ہیں"
+    "image_too_large_untiered": "تصویر بہت بڑی ہے — تصاویر {{limit}} MB تک محفوظ ہیں",
+    "rate_limited": "ریٹ لمٹ ہو گئی، آہستہ کریں"
   },
   "staking": {
     "title": "Staking",

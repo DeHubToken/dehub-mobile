@@ -2009,7 +2009,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Изображението е твърде голямо — вашето ниво {{tier}} съхранява изображения до {{limit}} MB",
-    "image_too_large_untiered": "Изображението е твърде голямо — изображенията се съхраняват до {{limit}} MB"
+    "image_too_large_untiered": "Изображението е твърде голямо — изображенията се съхраняват до {{limit}} MB",
+    "rate_limited": "Ограничена честота, забавете"
   },
   "staking": {
     "title": "Staking",

@@ -18,6 +18,7 @@ import {
   unfollowUser,
   type SuggestedAccount,
 } from "../../services/user.service";
+import { reportActionError } from "../../libs/error-feedback";
 import Avatar from "../common/Avatar";
 import GlassFollowButton from "../ui/GlassFollowButton";
 import type { FollowState } from "../Search/SearchAccountChip";
@@ -120,6 +121,14 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
       }
     } catch (e) {
       console.error("[SuggestedAccountCard] follow error", e);
+      // The row hides a card the moment its follow lands, so a rejected tap
+      // has to put it back — and a rejection from the rate limiter says so out
+      // loud, because the reader is usually mid-burst and not watching.
+      onFollowChange?.(account.address, {
+        isFollowing: false,
+        isFollowRequestPending: false,
+      });
+      reportActionError(e, "Couldn't follow this account");
     } finally {
       setFollowLoading(false);
     }

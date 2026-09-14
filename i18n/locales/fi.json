@@ -1971,7 +1971,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Kuva on liian suuri — {{tier}}-tasosi tallentaa enintään {{limit}} Mt: n kuvia",
-    "image_too_large_untiered": "Kuva on liian suuri — kuvia tallennetaan enintään {{limit}} Mt"
+    "image_too_large_untiered": "Kuva on liian suuri — kuvia tallennetaan enintään {{limit}} Mt",
+    "rate_limited": "Pyyntöraja täynnä, hidasta"
   },
   "tip": {
     "title": "Send Tip",

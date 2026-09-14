@@ -1997,7 +1997,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "ਚਿੱਤਰ ਬਹੁਤ ਵੱਡਾ ਹੈ — ਤੁਹਾਡਾ {{tier}} ਟੀਅਰ ਚਿੱਤਰਾਂ ਨੂੰ {{limit}} ਐਮ ਬੀ ਤੱਕ ਸਟੋਰ ਕਰਦਾ ਹੈ",
-    "image_too_large_untiered": "ਚਿੱਤਰ ਬਹੁਤ ਵੱਡਾ ਹੈ — ਚਿੱਤਰ {{limit}} MB ਤੱਕ ਸਟੋਰ ਕੀਤੇ ਗਏ ਹਨ"
+    "image_too_large_untiered": "ਚਿੱਤਰ ਬਹੁਤ ਵੱਡਾ ਹੈ — ਚਿੱਤਰ {{limit}} MB ਤੱਕ ਸਟੋਰ ਕੀਤੇ ਗਏ ਹਨ",
+    "rate_limited": "ਰੇਟ ਲਿਮਿਟ, ਹੌਲੀ ਕਰੋ"
   },
   "staking": {
     "title": "Staking",

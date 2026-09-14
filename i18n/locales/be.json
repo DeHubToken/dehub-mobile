@@ -2043,7 +2043,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Малюнак занадта вялікі — ваш {{tier}} nivel захоўвае выявы да {{limit}} MB",
-    "image_too_large_untiered": "Малюнак занадта вялікі — малюнкі захоўваюцца да {{limit}} MB"
+    "image_too_large_untiered": "Малюнак занадта вялікі — малюнкі захоўваюцца да {{limit}} MB",
+    "rate_limited": "Ліміт запытаў, збаўце тэмп"
   },
   "staking": {
     "title": "Staking",

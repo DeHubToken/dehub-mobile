@@ -880,7 +880,8 @@
     "waiting_for_confirmation": "Oczekiwanie na potwierdzenie...",
     "error": "Błąd",
     "image_too_large_tier": "Obraz jest zbyt duży — Twój {{tier}} poziom przechowuje obrazy do {{limit}} MB",
-    "image_too_large_untiered": "Obraz jest zbyt duży — obrazy są przechowywane do {{limit}} MB"
+    "image_too_large_untiered": "Obraz jest zbyt duży — obrazy są przechowywane do {{limit}} MB",
+    "rate_limited": "Limit żądań, zwolnij"
   },
   "postOptions": {
     "options": "Opcje",

@@ -1994,7 +1994,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Təsvir çox böyükdür — {{tier}} Səviyyəli mağaza şəkilləriniz {{limit}} MB-a qədər",
-    "image_too_large_untiered": "Təsvir çox böyükdür — təsvirlər {{limit}} MB-a qədər saxlanılır"
+    "image_too_large_untiered": "Təsvir çox böyükdür — təsvirlər {{limit}} MB-a qədər saxlanılır",
+    "rate_limited": "Sürət məhdudlaşdırıldı, yavaşlayın"
   },
   "staking": {
     "title": "Staking",

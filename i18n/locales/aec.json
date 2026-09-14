@@ -2007,7 +2007,8 @@
     "waiting_for_confirmation": "في انتظار التأكيد...",
     "error": "خطأ",
     "image_too_large_tier": "الصورة كبيرة أوي — متاجرك {{tier}} بتاعتك بتقبل صور لحد {{limit}} ميجابايت",
-    "image_too_large_untiered": "الصورة كبيرة أوي — الصور بتتخزن لحد {{limit}} ميجابايت"
+    "image_too_large_untiered": "الصورة كبيرة أوي — الصور بتتخزن لحد {{limit}} ميجابايت",
+    "rate_limited": "محدود بالمعدل، هوّن عليك"
   },
   "staking": {
     "title": "الإيداع",

@@ -2021,7 +2021,8 @@
     "waiting_for_confirmation": "승인을 기다리는 중...",
     "error": "오류",
     "image_too_large_tier": "이미지가 너무 큽니다. {{tier}} 등급은 최대 {{limit}} MB의 이미지를 저장합니다.",
-    "image_too_large_untiered": "이미지가 너무 큽니다 — 이미지는 {{limit}} MB까지 저장됩니다"
+    "image_too_large_untiered": "이미지가 너무 큽니다 — 이미지는 {{limit}} MB까지 저장됩니다",
+    "rate_limited": "요청 제한에 걸렸어요. 천천히 해주세요"
   },
   "staking": {
     "title": "스테이킹",

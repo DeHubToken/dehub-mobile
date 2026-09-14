@@ -2035,7 +2035,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Η εικόνα είναι πολύ μεγάλη — το {{tier}} επίπεδό σας αποθηκεύει εικόνες έως και {{limit}} MB",
-    "image_too_large_untiered": "Η εικόνα είναι πολύ μεγάλη — οι εικόνες αποθηκεύονται έως και {{limit}} MB"
+    "image_too_large_untiered": "Η εικόνα είναι πολύ μεγάλη — οι εικόνες αποθηκεύονται έως και {{limit}} MB",
+    "rate_limited": "Όριο αιτημάτων, πιο αργά"
   },
   "staking": {
     "title": "Staking",

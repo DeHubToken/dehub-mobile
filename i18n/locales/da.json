@@ -2011,7 +2011,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Billedet er for stort — dit {{tier}}-niveau gemmer billeder på op til {{limit}}MB",
-    "image_too_large_untiered": "Billedet er for stort — billeder gemmes op til {{limit}}MB"
+    "image_too_large_untiered": "Billedet er for stort — billeder gemmes op til {{limit}}MB",
+    "rate_limited": "Hastighedsgrænse nået, tag det roligt"
   },
   "staking": {
     "title": "Staking",
