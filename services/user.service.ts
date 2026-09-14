@@ -704,6 +704,10 @@ export interface UserReplyAuthor {
   username?: string;
   displayName?: string;
   avatarImageUrl?: string;
+  /** Staked DHB and grandfathered tier — the badge beside the name. */
+  badgeBalance?: number;
+  badgeLock?: { tier: string; requirement: number } | null;
+  hideBadgeAndBalance?: boolean;
 }
 
 /** Lightweight post context attached to each comment. */

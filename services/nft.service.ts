@@ -655,6 +655,10 @@ export interface CommentLiker {
   username?: string | null;
   displayName?: string | null;
   avatarImageUrl?: string | null;
+  /** Staked DHB and grandfathered tier — the badge beside the name. */
+  badgeBalance?: number;
+  badgeLock?: { tier: string; requirement: number } | null;
+  hideBadgeAndBalance?: boolean;
 }
 
 export interface CommentLikersResponse {

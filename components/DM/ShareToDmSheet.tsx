@@ -6,12 +6,14 @@ import {
   TouchableOpacity,
   TextInput,
   ActivityIndicator,
+  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import Avatar from "../common/Avatar";
 import GlassModal from "../ui/GlassModal";
 import { getAvatarUrl, toastSuccess } from "../../libs";
+import { getBadgeUrlFor } from "../../libs/misc";
 import { useDmContacts } from "../../store/dm.store";
 import { getOtherParticipant } from "../../services/dm/dm.types";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -73,6 +75,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
       const other = getOtherParticipant(item, myUserId, myAddress);
       const name = other?.displayName || other?.username || "Unknown";
       const avatar = getAvatarUrl(other?.avatarImageUrl);
+      const badgeImg = getBadgeUrlFor(other as any);
       return (
         <TouchableOpacity
           onPress={() => handleSelect(item)}
@@ -84,12 +87,20 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
             size={40}
             name={name}
           />
-          <Text
-            className="flex-1 text-[15px] text-white font-medium"
-            numberOfLines={1}
-          >
-            {name}
-          </Text>
+          {/* Name and badge share a row of their own — the outer row's 12px gap
+              is meant for the icon at the end, not for the badge. */}
+          <View className="flex-1 flex-row items-center" style={{ gap: 4, minWidth: 0 }}>
+            <Text
+              className="text-[15px] text-white font-medium"
+              numberOfLines={1}
+              style={{ flexShrink: 1 }}
+            >
+              {name}
+            </Text>
+            {badgeImg ? (
+              <Image source={badgeImg} style={{ width: 15, height: 15 }} resizeMode="contain" />
+            ) : null}
+          </View>
           <Ionicons name="send-outline" size={18} color="#D4D4D8" />
         </TouchableOpacity>
       );
