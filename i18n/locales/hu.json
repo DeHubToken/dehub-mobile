@@ -2929,5 +2929,21 @@
     "pause": "Szüneteltetés",
     "listens_one": "{{count}} figyelj",
     "listens_other": "{{count}} figyel"
+  },
+  "transfer": {
+    "title": "Tokenek átutalása",
+    "recipient": "Címzett: {{address}}",
+    "enterAmount": "Add meg az összeget:",
+    "balance": "Egyenleg: {{balance}}",
+    "insufficient": "Nincs elég egyenleg",
+    "toSelfHint": "Nem utalhatsz saját magadnak",
+    "searchUser": "Felhasználó keresése",
+    "searchPlaceholder": "Add meg a felhasználónevet vagy illeszd be a címet",
+    "clearRecipient": "Címzett törlése",
+    "transferringTo": "Átutalás ide:",
+    "transferring": "Átutalás...",
+    "sent": "Átutalás elküldve",
+    "toSelf": "Nem küldhetsz tokeneket saját magadnak",
+    "insufficientOnChain": "Nincs elég láncon lévő egyenleg ehhez a tokenhez"
   }
 }

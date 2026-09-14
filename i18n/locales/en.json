@@ -2995,5 +2995,21 @@
     "pause": "Pause",
     "listens_one": "{{count}} listen",
     "listens_other": "{{count}} listens"
+  },
+  "transfer": {
+    "title": "Transfer tokens",
+    "recipient": "Recipient: {{address}}",
+    "enterAmount": "Enter amount of",
+    "balance": "Balance: {{balance}}",
+    "insufficient": "Insufficient balance",
+    "toSelfHint": "You can't transfer to yourself",
+    "searchUser": "Search for a user",
+    "searchPlaceholder": "Enter username or paste address",
+    "clearRecipient": "Clear recipient",
+    "transferringTo": "Transferring to",
+    "transferring": "Transferring...",
+    "sent": "Transfer sent",
+    "toSelf": "You cannot send tokens to yourself",
+    "insufficientOnChain": "Insufficient on-chain balance for this token"
   }
 }

@@ -2759,5 +2759,21 @@
     "followAccepted": "{{name}} је прихватио твој захтев за праћење",
     "signalFlare": "{{name}} је послао Светлосни сигнал",
     "newMessage": "{{name}} ти је послао поруку"
+  },
+  "transfer": {
+    "title": "Пренос токена",
+    "recipient": "Прималац: {{address}}",
+    "enterAmount": "Унеси износ у",
+    "balance": "Стање: {{balance}}",
+    "insufficient": "Недовољно стање",
+    "toSelfHint": "Не можеш пренети сам себи",
+    "searchUser": "Претражи корисника",
+    "searchPlaceholder": "Унеси корисничко име или налепи адресу",
+    "clearRecipient": "Уклони примаоца",
+    "transferringTo": "Пренос на",
+    "transferring": "Пренос...",
+    "sent": "Пренос послат",
+    "toSelf": "Не можеш слати токене самом себи",
+    "insufficientOnChain": "Недовољно стање на ланцу за овај токен"
   }
 }

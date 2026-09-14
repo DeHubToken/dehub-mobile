@@ -2752,5 +2752,21 @@
     "play": "Bilîze",
     "pause": "Navber",
     "listens_other": "{{count}} guhdarî dike"
+  },
+  "transfer": {
+    "title": "Tokenan veguhezîne",
+    "recipient": "Wergir: {{address}}",
+    "enterAmount": "Mîqdarê binivîse:",
+    "balance": "Hevseng: {{balance}}",
+    "insufficient": "Hevseng têrê nake",
+    "toSelfHint": "Tu nikarî bo xwe veguhezînî",
+    "searchUser": "Li bikarhênerekî bigere",
+    "searchPlaceholder": "Navê bikarhêner binivîse an navnîşanê bixe",
+    "clearRecipient": "Wergir paqij bike",
+    "transferringTo": "Veguhastin bo",
+    "transferring": "Tê veguhastin...",
+    "sent": "Veguhastin hat şandin",
+    "toSelf": "Tu nikarî tokenan ji xwe re bişînî",
+    "insufficientOnChain": "Ji bo vê tokenê hevsenga li ser zincîrê têrê nake"
   }
 }

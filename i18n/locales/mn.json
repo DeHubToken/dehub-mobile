@@ -2905,5 +2905,21 @@
     "play": "Тоглуулах",
     "pause": "Түр зогсоох",
     "listens_one": "{{count}} сонсох"
+  },
+  "transfer": {
+    "title": "Токен шилжүүлэх",
+    "recipient": "Хүлээн авагч: {{address}}",
+    "enterAmount": "Дүнг оруулна уу:",
+    "balance": "Үлдэгдэл: {{balance}}",
+    "insufficient": "Үлдэгдэл хүрэлцэхгүй",
+    "toSelfHint": "Өөртөө шилжүүлэх боломжгүй",
+    "searchUser": "Хэрэглэгч хайх",
+    "searchPlaceholder": "Хэрэглэгчийн нэр оруулах эсвэл хаяг буулгах",
+    "clearRecipient": "Хүлээн авагчийг арилгах",
+    "transferringTo": "Шилжүүлж байна:",
+    "transferring": "Шилжүүлж байна...",
+    "sent": "Шилжүүлэг илгээгдлээ",
+    "toSelf": "Өөртөө токен илгээх боломжгүй",
+    "insufficientOnChain": "Энэ токены он-чэйн үлдэгдэл хүрэлцэхгүй"
   }
 }

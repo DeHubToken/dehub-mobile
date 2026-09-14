@@ -2869,5 +2869,21 @@
     "pause": "موقوف کرو",
     "listens_one": "{{count}} سنو",
     "listens_other": "{{count}} سنے"
+  },
+  "transfer": {
+    "title": "ٹوکن بھیجو",
+    "recipient": "وصول کرݨ آلا: {{address}}",
+    "enterAmount": "رقم درج کرو:",
+    "balance": "بیلنس: {{balance}}",
+    "insufficient": "بیلنس گھٹ ہے",
+    "toSelfHint": "تساں آپݨے آپ کوں نہ بھیج سڳدے",
+    "searchUser": "یوزر ڳولو",
+    "searchPlaceholder": "یوزرنیم لکھو یا پتہ پیسٹ کرو",
+    "clearRecipient": "وصول کرݨ آلا ہٹاؤ",
+    "transferringTo": "کوں بھیجدا پیا ہے",
+    "transferring": "بھیجدا پیا ہے...",
+    "sent": "ٹرانسفر بھیج ݙتا",
+    "toSelf": "تساں آپݨے آپ کوں ٹوکن نہ بھیج سڳدے",
+    "insufficientOnChain": "ایں ٹوکن کیتے چین تے بیلنس گھٹ ہے"
   }
 }

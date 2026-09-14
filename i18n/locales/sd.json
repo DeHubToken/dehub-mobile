@@ -2909,5 +2909,21 @@
     "pause": "پوئتي هٽايو",
     "listens_one": "{{count}} ٻڌو",
     "listens_other": "{{count}} سنين"
+  },
+  "transfer": {
+    "title": "ٽوڪن موڪليو",
+    "recipient": "وصول ڪندڙ: {{address}}",
+    "enterAmount": "رقم داخل ڪريو:",
+    "balance": "بيلنس: {{balance}}",
+    "insufficient": "ناڪافي بيلنس",
+    "toSelfHint": "توهان پاڻ کي موڪلي نٿا سگهو",
+    "searchUser": "يوزر ڳوليو",
+    "searchPlaceholder": "يوزرنيم لکو يا ايڊريس پيسٽ ڪريو",
+    "clearRecipient": "وصول ڪندڙ هٽايو",
+    "transferringTo": "ڏانهن موڪلي رهيو آهي",
+    "transferring": "موڪلي رهيو آهي...",
+    "sent": "ٽرانسفر موڪليو ويو",
+    "toSelf": "توهان پاڻ کي ٽوڪن نٿا موڪلي سگهو",
+    "insufficientOnChain": "هن ٽوڪن لاءِ چين تي ناڪافي بيلنس"
   }
 }

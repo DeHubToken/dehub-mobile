@@ -2931,5 +2931,21 @@
     "pause": "እረፍት",
     "listens_one": "{{count}} ያዳምጡ",
     "listens_other": "{{count}} ያዳምጡ"
+  },
+  "transfer": {
+    "title": "ቶከኖችን ያስተላልፉ",
+    "recipient": "ተቀባይ፦ {{address}}",
+    "enterAmount": "የሚከተለውን መጠን ያስገቡ፦",
+    "balance": "ቀሪ ሂሳብ፦ {{balance}}",
+    "insufficient": "በቂ ቀሪ ሂሳብ የለም",
+    "toSelfHint": "ለራስዎ ማስተላለፍ አይችሉም",
+    "searchUser": "ተጠቃሚ ይፈልጉ",
+    "searchPlaceholder": "የተጠቃሚ ስም ያስገቡ ወይም አድራሻ ይለጥፉ",
+    "clearRecipient": "ተቀባይን አጽዳ",
+    "transferringTo": "ወደ በማስተላለፍ ላይ",
+    "transferring": "በማስተላለፍ ላይ...",
+    "sent": "ማስተላለፍ ተልኳል",
+    "toSelf": "ለራስዎ ቶከን መላክ አይችሉም",
+    "insufficientOnChain": "ለዚህ ቶከን በቂ የቼይን ቀሪ ሂሳብ የለም"
   }
 }

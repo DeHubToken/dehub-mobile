@@ -2948,5 +2948,21 @@
     "pause": "Παύση",
     "listens_one": "{{count}} άκου",
     "listens_other": "{{count}} ακούει"
+  },
+  "transfer": {
+    "title": "Μεταφορά token",
+    "recipient": "Παραλήπτης: {{address}}",
+    "enterAmount": "Εισάγετε ποσό σε",
+    "balance": "Υπόλοιπο: {{balance}}",
+    "insufficient": "Ανεπαρκές υπόλοιπο",
+    "toSelfHint": "Δεν μπορείς να μεταφέρεις στον εαυτό σου",
+    "searchUser": "Αναζήτηση χρήστη",
+    "searchPlaceholder": "Εισάγετε όνομα χρήστη ή επικολλήστε διεύθυνση",
+    "clearRecipient": "Καθαρισμός παραλήπτη",
+    "transferringTo": "Μεταφορά σε",
+    "transferring": "Μεταφορά...",
+    "sent": "Η μεταφορά στάλθηκε",
+    "toSelf": "Δεν μπορείς να στείλεις token στον εαυτό σου",
+    "insufficientOnChain": "Ανεπαρκές υπόλοιπο on-chain για αυτό το token"
   }
 }

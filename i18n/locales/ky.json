@@ -2918,5 +2918,21 @@
     "play": "Ойнотуу",
     "pause": "Пауза",
     "listens_one": "{{count}} угуу"
+  },
+  "transfer": {
+    "title": "Токендерди которуу",
+    "recipient": "Алуучу: {{address}}",
+    "enterAmount": "Сумманы киргизиңиз:",
+    "balance": "Баланс: {{balance}}",
+    "insufficient": "Баланс жетишсиз",
+    "toSelfHint": "Өзүңүзгө которо албайсыз",
+    "searchUser": "Колдонуучу издөө",
+    "searchPlaceholder": "Колдонуучу атын киргизиңиз же даректи чаптаңыз",
+    "clearRecipient": "Алуучуну тазалоо",
+    "transferringTo": "Которуу:",
+    "transferring": "Которулууда...",
+    "sent": "Которуу жөнөтүлдү",
+    "toSelf": "Өзүңүзгө токен жөнөтө албайсыз",
+    "insufficientOnChain": "Бул токен үчүн чейиндеги баланс жетишсиз"
   }
 }

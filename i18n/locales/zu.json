@@ -2954,5 +2954,21 @@
     "pause": "Misa okwesikhashana",
     "listens_one": "{{count}} lalela",
     "listens_other": "{{count}} uyalalela"
+  },
+  "transfer": {
+    "title": "Dlulisela amathokheni",
+    "recipient": "Umamukeli: {{address}}",
+    "enterAmount": "Faka inani le-",
+    "balance": "Ibhalansi: {{balance}}",
+    "insufficient": "Ibhalansi ayanele",
+    "toSelfHint": "Awukwazi ukudlulisela kuwe",
+    "searchUser": "Sesha umsebenzisi",
+    "searchPlaceholder": "Faka igama lomsebenzisi noma unamathisele ikheli",
+    "clearRecipient": "Sula umamukeli",
+    "transferringTo": "Idluliselwa ku-",
+    "transferring": "Iyadlulisela...",
+    "sent": "Ukudlulisela kuthunyelwe",
+    "toSelf": "Awukwazi ukuthumela amathokheni kuwe",
+    "insufficientOnChain": "Ibhalansi ku-chain ayanele kuleli thokheni"
   }
 }

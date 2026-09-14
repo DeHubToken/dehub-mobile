@@ -2993,5 +2993,21 @@
     "pause": "일시정지",
     "listens_one": "{{count}}회 재생",
     "listens_other": "{{count}}회 재생"
+  },
+  "transfer": {
+    "title": "토큰 전송",
+    "recipient": "받는 사람: {{address}}",
+    "enterAmount": "금액 입력:",
+    "balance": "잔액: {{balance}}",
+    "insufficient": "잔액 부족",
+    "toSelfHint": "자신에게는 전송할 수 없습니다",
+    "searchUser": "사용자 검색",
+    "searchPlaceholder": "사용자 이름 입력 또는 주소 붙여넣기",
+    "clearRecipient": "받는 사람 지우기",
+    "transferringTo": "전송 대상",
+    "transferring": "전송 중...",
+    "sent": "전송 완료",
+    "toSelf": "자신에게는 토큰을 보낼 수 없습니다",
+    "insufficientOnChain": "이 토큰의 온체인 잔액이 부족합니다"
   }
 }

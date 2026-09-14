@@ -2925,5 +2925,21 @@
     "pause": "Pauziraj",
     "listens_one": "{{count}} slušaj",
     "listens_other": "{{count}} sluša"
+  },
+  "transfer": {
+    "title": "Prijenos tokena",
+    "recipient": "Primatelj: {{address}}",
+    "enterAmount": "Unesi iznos u",
+    "balance": "Stanje: {{balance}}",
+    "insufficient": "Nedovoljno stanje",
+    "toSelfHint": "Ne možeš prenijeti sam sebi",
+    "searchUser": "Pretraži korisnika",
+    "searchPlaceholder": "Unesi korisničko ime ili zalijepi adresu",
+    "clearRecipient": "Ukloni primatelja",
+    "transferringTo": "Prijenos na",
+    "transferring": "Prijenos...",
+    "sent": "Prijenos poslan",
+    "toSelf": "Ne možeš slati tokene samom sebi",
+    "insufficientOnChain": "Nedovoljno stanje na lancu za ovaj token"
   }
 }

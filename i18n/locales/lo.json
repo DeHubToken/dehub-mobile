@@ -2887,5 +2887,21 @@
     "pause": "ພັກຜ່ອນ",
     "listens_one": "{{count}} ຮັບຟັງ",
     "listens_other": "{{count}} ຟັງ"
+  },
+  "transfer": {
+    "title": "ໂອນໂທເຄັນ",
+    "recipient": "ຜູ້ຮັບ: {{address}}",
+    "enterAmount": "ປ້ອນຈຳນວນ",
+    "balance": "ຍອດເງິນ: {{balance}}",
+    "insufficient": "ຍອດເງິນບໍ່ພຽງພໍ",
+    "toSelfHint": "ທ່ານບໍ່ສາມາດໂອນໃຫ້ຕົນເອງໄດ້",
+    "searchUser": "ຄົ້ນຫາຜູ້ໃຊ້",
+    "searchPlaceholder": "ປ້ອນຊື່ຜູ້ໃຊ້ ຫຼື ວາງທີ່ຢູ່",
+    "clearRecipient": "ລຶບຜູ້ຮັບ",
+    "transferringTo": "ໂອນໄປຫາ",
+    "transferring": "ກຳລັງໂອນ...",
+    "sent": "ສົ່ງການໂອນແລ້ວ",
+    "toSelf": "ທ່ານບໍ່ສາມາດສົ່ງໂທເຄັນໃຫ້ຕົນເອງໄດ້",
+    "insufficientOnChain": "ຍອດເງິນເທິງເຊນບໍ່ພຽງພໍສຳລັບໂທເຄັນນີ້"
   }
 }

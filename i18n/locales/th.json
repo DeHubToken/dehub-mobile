@@ -2962,5 +2962,21 @@
     "pause": "หยุดชั่วคราว",
     "listens_one": "{{count}} ฟัง",
     "listens_other": "{{count}} ฟัง"
+  },
+  "transfer": {
+    "title": "โอนโทเค็น",
+    "recipient": "ผู้รับ: {{address}}",
+    "enterAmount": "ใส่จำนวน",
+    "balance": "ยอดคงเหลือ: {{balance}}",
+    "insufficient": "ยอดคงเหลือไม่เพียงพอ",
+    "toSelfHint": "โอนให้ตัวเองไม่ได้",
+    "searchUser": "ค้นหาผู้ใช้",
+    "searchPlaceholder": "ใส่ชื่อผู้ใช้หรือวางที่อยู่",
+    "clearRecipient": "ล้างผู้รับ",
+    "transferringTo": "โอนไปยัง",
+    "transferring": "กำลังโอน...",
+    "sent": "ส่งการโอนแล้ว",
+    "toSelf": "ส่งโทเค็นให้ตัวเองไม่ได้",
+    "insufficientOnChain": "ยอดคงเหลือบนเชนไม่เพียงพอสำหรับโทเค็นนี้"
   }
 }

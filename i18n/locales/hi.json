@@ -2982,5 +2982,21 @@
     "pause": "रोकें",
     "listens_one": "{{count}} बार सुना गया",
     "listens_other": "{{count}} बार सुना गया"
+  },
+  "transfer": {
+    "title": "टोकन ट्रांसफ़र करें",
+    "recipient": "प्राप्तकर्ता: {{address}}",
+    "enterAmount": "राशि दर्ज करें",
+    "balance": "बैलेंस: {{balance}}",
+    "insufficient": "बैलेंस अपर्याप्त है",
+    "toSelfHint": "आप खुद को ट्रांसफ़र नहीं कर सकते",
+    "searchUser": "उपयोगकर्ता खोजें",
+    "searchPlaceholder": "यूज़रनेम दर्ज करें या पता पेस्ट करें",
+    "clearRecipient": "प्राप्तकर्ता हटाएँ",
+    "transferringTo": "को ट्रांसफ़र",
+    "transferring": "ट्रांसफ़र हो रहा है...",
+    "sent": "ट्रांसफ़र भेज दिया गया",
+    "toSelf": "आप खुद को टोकन नहीं भेज सकते",
+    "insufficientOnChain": "इस टोकन के लिए ऑन-चेन बैलेंस अपर्याप्त है"
   }
 }
