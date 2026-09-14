@@ -3179,5 +3179,19 @@
     "usernameReserved": "Nama pengguna ini dicadangkan",
     "profileSet": "Profil berhasil diatur!",
     "profileFailed": "Gagal mengatur profil"
+  },
+  "events": {
+    "mine": "Milik saya",
+    "subtitle": "Temukan acara komunitas dan konfirmasi kehadiran",
+    "going": "Hadir",
+    "interested": "Tertarik",
+    "goingCount": "{{count}} hadir",
+    "rsvpFailed": "Tidak dapat memperbarui RSVP",
+    "signInToRsvp": "Masuk untuk RSVP ke acara",
+    "noneCreated": "Kamu belum membuat acara apa pun",
+    "noPast": "Tidak ada acara lampau",
+    "noUpcoming": "Tidak ada acara mendatang",
+    "interestedCount": "{{count}} tertarik",
+    "loadFailed": "Tidak dapat memuat acara"
   }
 }

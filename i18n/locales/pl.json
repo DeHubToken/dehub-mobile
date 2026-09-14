@@ -3197,5 +3197,19 @@
     "usernameReserved": "Ta nazwa użytkownika jest zarezerwowana",
     "profileSet": "Profil ustawiony pomyślnie!",
     "profileFailed": "Nie udało się ustawić profilu"
+  },
+  "events": {
+    "mine": "Moje",
+    "subtitle": "Odkrywaj wydarzenia społeczności i potwierdzaj obecność",
+    "going": "Idę",
+    "interested": "Zainteresowany",
+    "goingCount": "{{count}} idzie",
+    "rsvpFailed": "Nie udało się zaktualizować potwierdzenia",
+    "signInToRsvp": "Zaloguj się, aby potwierdzać obecność na wydarzeniach",
+    "noneCreated": "Nie utworzyłeś jeszcze żadnych wydarzeń",
+    "noPast": "Brak minionych wydarzeń",
+    "noUpcoming": "Brak nadchodzących wydarzeń",
+    "interestedCount": "{{count}} zainteresowanych",
+    "loadFailed": "Nie udało się wczytać wydarzeń"
   }
 }

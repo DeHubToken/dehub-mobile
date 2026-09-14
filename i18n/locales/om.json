@@ -3193,5 +3193,19 @@
     "usernameReserved": "Maqaan fayyadamaa kun qabameera",
     "profileSet": "Piroofaayiliin milkaa'inaan qophaa'eera!",
     "profileFailed": "Piroofaayilii qopheessuun hin milkoofne"
+  },
+  "events": {
+    "mine": "Kan koo",
+    "subtitle": "Taateewwan hawaasaa argadhuutii hirmaannaa kee mirkaneessi",
+    "going": "Nan deema",
+    "interested": "Fedhii qaba",
+    "goingCount": "{{count}} deemu",
+    "rsvpFailed": "Deebii hirmaannaa haaromsuun hin dandaʼamne",
+    "signInToRsvp": "Taateewwaniif hirmaannaa mirkaneessuuf seeni",
+    "noneCreated": "Amma taatee tokkollee hin uumne",
+    "noPast": "Taateewwan darban hin jiran",
+    "noUpcoming": "Taateewwan dhufan hin jiran",
+    "interestedCount": "{{count}} fedhii qabu",
+    "loadFailed": "Taateewwan fe'uun hin dandaʼamne"
   }
 }

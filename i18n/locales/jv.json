@@ -3087,5 +3087,19 @@
     "usernameReserved": "Jeneng pangguna iki dicadhangake",
     "profileSet": "Profil kasil disetel!",
     "profileFailed": "Gagal nyetel profil"
+  },
+  "events": {
+    "mine": "Duwekku",
+    "subtitle": "Temokake acara komunitas lan konfirmasi rawuh",
+    "going": "Melu",
+    "interested": "Kepéngin",
+    "goingCount": "{{count}} melu",
+    "rsvpFailed": "Ora bisa nganyari konfirmasi rawuh",
+    "signInToRsvp": "Mlebu kanggo konfirmasi rawuh ing acara",
+    "noneCreated": "Sampeyan durung nggawe acara apa wae",
+    "noPast": "Ora ana acara kepungkur",
+    "noUpcoming": "Ora ana acara sabanjure",
+    "interestedCount": "{{count}} kepéngin",
+    "loadFailed": "Ora bisa ngemot acara"
   }
 }

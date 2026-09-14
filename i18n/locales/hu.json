@@ -3133,5 +3133,19 @@
     "usernameReserved": "Ez a felhasználónév foglalt",
     "profileSet": "Profil sikeresen beállítva!",
     "profileFailed": "A profil beállítása sikertelen"
+  },
+  "events": {
+    "mine": "Sajátjaim",
+    "subtitle": "Fedezd fel a közösségi eseményeket, és jelezd a részvételt",
+    "going": "Ott leszek",
+    "interested": "Érdekel",
+    "goingCount": "{{count}} ott lesz",
+    "rsvpFailed": "A részvételi válasz frissítése sikertelen",
+    "signInToRsvp": "Jelentkezz be, hogy eseményekre jelezhess részvételt",
+    "noneCreated": "Még nem hoztál létre eseményt",
+    "noPast": "Nincsenek korábbi események",
+    "noUpcoming": "Nincsenek közelgő események",
+    "interestedCount": "{{count}} érdeklődik",
+    "loadFailed": "Az események betöltése sikertelen"
   }
 }

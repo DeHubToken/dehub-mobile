@@ -3222,5 +3222,19 @@
     "usernameReserved": "এই ইউজারনেম সংরক্ষিত",
     "profileSet": "প্রোফাইল সফলভাবে সেট অইছে!",
     "profileFailed": "প্রোফাইল সেট গরা ন যায়"
+  },
+  "events": {
+    "mine": "আঁর",
+    "subtitle": "কমিউনিটি ইভেন্ট তোয়ান আর উপস্থিতি জানান",
+    "going": "যাইয়ুম",
+    "interested": "আগ্রহী",
+    "goingCount": "{{count}} জন যাইব",
+    "rsvpFailed": "উপস্থিতির উত্তর আপডেট গরা ন যায়",
+    "signInToRsvp": "ইভেন্টত অংশ নিতে সাইন ইন গরন",
+    "noneCreated": "অনে এহনও কোনো ইভেন্ট বানান ন",
+    "noPast": "কোনো আগর ইভেন্ট নাই",
+    "noUpcoming": "কোনো আগামী ইভেন্ট নাই",
+    "interestedCount": "{{count}} জন আগ্রহী",
+    "loadFailed": "ইভেন্ট লোড গরা ন যায়"
   }
 }

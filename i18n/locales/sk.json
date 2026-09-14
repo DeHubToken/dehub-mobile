@@ -3299,5 +3299,19 @@
     "usernameReserved": "Toto používateľské meno je vyhradené",
     "profileSet": "Profil bol úspešne nastavený!",
     "profileFailed": "Profil sa nepodarilo nastaviť"
+  },
+  "events": {
+    "mine": "Moje",
+    "subtitle": "Objavujte komunitné podujatia a potvrďte účasť",
+    "going": "Zúčastním sa",
+    "interested": "Mám záujem",
+    "goingCount": "{{count}} sa zúčastní",
+    "rsvpFailed": "Odpoveď o účasti sa nepodarilo aktualizovať",
+    "signInToRsvp": "Prihláste sa, aby ste potvrdili účasť na podujatiach",
+    "noneCreated": "Zatiaľ ste nevytvorili žiadne podujatie",
+    "noPast": "Žiadne minulé podujatia",
+    "noUpcoming": "Žiadne nadchádzajúce podujatia",
+    "interestedCount": "{{count}} má záujem",
+    "loadFailed": "Podujatia sa nepodarilo načítať"
   }
 }

@@ -3087,5 +3087,19 @@
     "usernameReserved": "هذا الاسم محجوز",
     "profileSet": "انضبط الملف الشخصي بنجاح!",
     "profileFailed": "ما گدرنا نضبط الملف الشخصي"
+  },
+  "events": {
+    "mine": "مالتي",
+    "subtitle": "اكتشف فعاليات المجتمع وأكّد حضورك",
+    "going": "رايح",
+    "interested": "مهتم",
+    "goingCount": "{{count}} رايح",
+    "rsvpFailed": "ما گدرنا نحدّث تأكيد الحضور",
+    "signInToRsvp": "سجّل دخول حتى تأكد حضورك للفعاليات",
+    "noneCreated": "ما سويت أي فعالية لهسه",
+    "noPast": "ماكو فعاليات سابقة",
+    "noUpcoming": "ماكو فعاليات جاية",
+    "interestedCount": "{{count}} مهتم",
+    "loadFailed": "ما گدرنا نحمّل الفعاليات"
   }
 }

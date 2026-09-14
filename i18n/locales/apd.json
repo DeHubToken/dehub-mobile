@@ -3086,5 +3086,19 @@
     "usernameReserved": "الاسم دا محجوز",
     "profileSet": "اتظبط البروفايل بنجاح!",
     "profileFailed": "ما قدرنا نظبط البروفايل"
+  },
+  "events": {
+    "mine": "بتاعي",
+    "subtitle": "اكتشف فعاليات المجتمع وأكّد حضورك",
+    "going": "ماشي",
+    "interested": "مهتم",
+    "goingCount": "{{count}} ماشي",
+    "rsvpFailed": "ما قدرنا نحدّث تأكيد الحضور",
+    "signInToRsvp": "سجّل دخول عشان تأكد حضورك للفعاليات",
+    "noneCreated": "ما عملت أي فعالية لسه",
+    "noPast": "مافي فعاليات سابقة",
+    "noUpcoming": "مافي فعاليات جاية",
+    "interestedCount": "{{count}} مهتم",
+    "loadFailed": "ما قدرنا نحمّل الفعاليات"
   }
 }

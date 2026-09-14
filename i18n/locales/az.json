@@ -3113,5 +3113,19 @@
     "usernameReserved": "Bu istifadəçi adı ehtiyatda saxlanılıb",
     "profileSet": "Profil uğurla quruldu!",
     "profileFailed": "Profil qurula bilmədi"
+  },
+  "events": {
+    "mine": "Mənimkilər",
+    "subtitle": "İcma tədbirlərini kəşf et və iştirakını bildir",
+    "going": "Gedirəm",
+    "interested": "Maraqlıyam",
+    "goingCount": "{{count}} gedir",
+    "rsvpFailed": "İştirak cavabı yenilənmədi",
+    "signInToRsvp": "Tədbirlərə qatılmaq üçün daxil ol",
+    "noneCreated": "Hələ heç bir tədbir yaratmamısan",
+    "noPast": "Keçmiş tədbir yoxdur",
+    "noUpcoming": "Yaxınlaşan tədbir yoxdur",
+    "interestedCount": "{{count}} maraqlanır",
+    "loadFailed": "Tədbirlər yüklənmədi"
   }
 }

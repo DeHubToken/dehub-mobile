@@ -3246,5 +3246,19 @@
     "usernameReserved": "Hierdie gebruikersnaam is gereserveer",
     "profileSet": "Profiel suksesvol opgestel!",
     "profileFailed": "Kon nie profiel opstel nie"
+  },
+  "events": {
+    "mine": "Myne",
+    "subtitle": "Ontdek gemeenskapsgeleenthede en bevestig bywoning",
+    "going": "Gaan",
+    "interested": "Belangstellend",
+    "goingCount": "{{count}} gaan",
+    "rsvpFailed": "Kon nie bywoning bywerk nie",
+    "signInToRsvp": "Meld aan om by geleenthede te bevestig",
+    "noneCreated": "Jy het nog geen geleenthede geskep nie",
+    "noPast": "Geen vorige geleenthede nie",
+    "noUpcoming": "Geen komende geleenthede nie",
+    "interestedCount": "{{count}} belangstellend",
+    "loadFailed": "Kon nie geleenthede laai nie"
   }
 }

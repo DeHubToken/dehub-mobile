@@ -3181,5 +3181,19 @@
     "usernameReserved": "Bu foydalanuvchi nomi band qilingan",
     "profileSet": "Profil muvaffaqiyatli sozlandi!",
     "profileFailed": "Profilni sozlab bo‘lmadi"
+  },
+  "events": {
+    "mine": "Meniki",
+    "subtitle": "Hamjamiyat tadbirlarini toping va ishtirokingizni tasdiqlang",
+    "going": "Boraman",
+    "interested": "Qiziqaman",
+    "goingCount": "{{count}} kishi boradi",
+    "rsvpFailed": "Ishtirok javobini yangilab bo‘lmadi",
+    "signInToRsvp": "Tadbirlarda ishtirok etish uchun kiring",
+    "noneCreated": "Siz hali hech qanday tadbir yaratmagansiz",
+    "noPast": "O‘tgan tadbirlar yo‘q",
+    "noUpcoming": "Kelgusi tadbirlar yo‘q",
+    "interestedCount": "{{count}} kishi qiziqadi",
+    "loadFailed": "Tadbirlarni yuklab bo‘lmadi"
   }
 }

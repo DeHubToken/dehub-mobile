@@ -3129,5 +3129,19 @@
     "usernameReserved": "Aquest nom d'usuari està reservat",
     "profileSet": "Perfil configurat correctament!",
     "profileFailed": "No s'ha pogut configurar el perfil"
+  },
+  "events": {
+    "mine": "Meus",
+    "subtitle": "Descobreix esdeveniments de la comunitat i confirma assistència",
+    "going": "Hi vaig",
+    "interested": "M'interessa",
+    "goingCount": "{{count}} hi van",
+    "rsvpFailed": "No s'ha pogut actualitzar l'assistència",
+    "signInToRsvp": "Inicia sessió per confirmar assistència als esdeveniments",
+    "noneCreated": "Encara no has creat cap esdeveniment",
+    "noPast": "Cap esdeveniment passat",
+    "noUpcoming": "Cap esdeveniment pròxim",
+    "interestedCount": "{{count}} interessats",
+    "loadFailed": "No s'han pogut carregar els esdeveniments"
   }
 }

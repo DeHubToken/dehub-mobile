@@ -3124,5 +3124,19 @@
     "usernameReserved": "ይህ የተጠቃሚ ስም የተያዘ ነው",
     "profileSet": "መገለጫው በተሳካ ሁኔታ ተዘጋጅቷል!",
     "profileFailed": "መገለጫውን ማዘጋጀት አልተሳካም"
+  },
+  "events": {
+    "mine": "የእኔ",
+    "subtitle": "የማህበረሰብ ዝግጅቶችን ያግኙና መገኘትዎን ያረጋግጡ",
+    "going": "እሄዳለሁ",
+    "interested": "ፍላጎት አለኝ",
+    "goingCount": "{{count}} ይሄዳሉ",
+    "rsvpFailed": "የተሳትፎ ምላሽ ማዘመን አልተቻለም",
+    "signInToRsvp": "ለዝግጅቶች ለመመዝገብ ይግቡ",
+    "noneCreated": "እስካሁን ምንም ዝግጅት አልፈጠሩም",
+    "noPast": "ያለፉ ዝግጅቶች የሉም",
+    "noUpcoming": "ቀጣይ ዝግጅቶች የሉም",
+    "interestedCount": "{{count}} ፍላጎት አላቸው",
+    "loadFailed": "ዝግጅቶችን መጫን አልተቻለም"
   }
 }

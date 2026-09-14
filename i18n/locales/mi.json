@@ -3114,5 +3114,19 @@
     "usernameReserved": "Kua rāhuitia tēnei ingoa kaiwhakamahi",
     "profileSet": "Kua oti te whakarite kōtaha!",
     "profileFailed": "Kāore i taea te whakarite kōtaha"
+  },
+  "events": {
+    "mine": "Āku",
+    "subtitle": "Kimihia ngā huihuinga hapori, whakaū tō haere",
+    "going": "Ka haere",
+    "interested": "E hiahia ana",
+    "goingCount": "{{count}} ka haere",
+    "rsvpFailed": "Kāore i taea te whakahou i te whakautu haere",
+    "signInToRsvp": "Takiuru kia whakaū tō haere ki ngā huihuinga",
+    "noneCreated": "Kāore anō koe kia hanga huihuinga",
+    "noPast": "Kāore he huihuinga o mua",
+    "noUpcoming": "Kāore he huihuinga kei te heke mai",
+    "interestedCount": "{{count}} e hiahia ana",
+    "loadFailed": "Kāore i taea te uta i ngā huihuinga"
   }
 }
