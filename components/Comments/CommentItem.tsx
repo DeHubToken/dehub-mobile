@@ -14,7 +14,7 @@ import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import VoiceNotePlayer from "./VoiceNotePlayer";
 import { getAvatarUrl } from "../../libs";
-import { buildCdnPath } from "../../libs/misc";
+import { buildCdnPath, getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { isAssistantAddress } from "../../libs/assistant";
 import { checkImpersonation } from "../../libs/impersonation";
@@ -187,6 +187,13 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const displayName = user?.displayName || user?.username || "Unknown";
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl || "");
   const userId = user?.username || user?.address || comment.address || "";
+  // The badge rides the comment's account row, same as a feed card reads it off
+  // the minter's — balance and grandfathered lock together, and nothing at all
+  // when the holder has opted out of showing it.
+  const badgeImg = useMemo(
+    () => (user?.hideBadgeAndBalance ? undefined : getBadgeUrlFor(user)),
+    [user],
+  );
   const isOwnComment = currentUser?.address === user?.address ||
                        currentUser?.walletAddress === user?.address ||
                        currentUser?.username === user?.username;
@@ -440,13 +447,31 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
 
         <View style={{ flex: 1, marginLeft: 10 }}>
           <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
-            <Text
-              style={{ fontSize: 16, lineHeight: 20, fontWeight: "600", color: ICON_ACTIVE }}
-              onPress={handleUserPress}
-              numberOfLines={1}
-            >
-              {displayName}
-            </Text>
+            {/* Name and badge sit in their own row so the badge keeps the 2px
+                it has on a feed card rather than the 6px this row puts between
+                the chips that follow. */}
+            <View style={{ flexDirection: "row", alignItems: "center", flexShrink: 1, minWidth: 0 }}>
+              <Text
+                style={{ fontSize: 16, lineHeight: 20, fontWeight: "600", color: ICON_ACTIVE }}
+                onPress={handleUserPress}
+                numberOfLines={1}
+              >
+                {displayName}
+              </Text>
+              {badgeImg && (
+                <Pressable
+                  onPress={handleUserPress}
+                  style={{ flexShrink: 0, height: 20, marginLeft: 2, justifyContent: "center" }}
+                  hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                >
+                  <Image
+                    source={badgeImg}
+                    style={[getBadgeOpticalStyle(badgeImg, 16, 0, 20), { marginLeft: 0 }]}
+                    resizeMode="contain"
+                  />
+                </Pressable>
+              )}
+            </View>
             {/* Creator on one side, name-wearer on the other. Both answer the
                 same question a reader is asking — is this really them — so
                 they sit next to the name rather than anywhere cleverer. */}
