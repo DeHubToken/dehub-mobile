@@ -422,6 +422,12 @@ export interface CommentUser {
   sentTips?: number;
   receivedTips?: number;
   createdAt?: string;
+  /** Staked DHB, for the badge beside the name. */
+  badgeBalance?: number;
+  /** The tier this holder grandfathered, when the account row carries one. */
+  badgeLock?: { tier: string; requirement: number } | null;
+  /** They asked for their badge and balance not to be shown. */
+  hideBadgeAndBalance?: boolean;
 }
 
 export interface Comment {
