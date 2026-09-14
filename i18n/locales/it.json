@@ -3214,5 +3214,25 @@
     "noUpcoming": "Nessun evento in programma",
     "interestedCount": "{{count}} interessati",
     "loadFailed": "Impossibile caricare gli eventi"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Feedback",
+      "intro": "Stai usando DeHub da un po'? Raccontaci come è stato. Positivo, negativo o specifico — leggiamo tutto. Se sei felice che ti citiamo, spunta la casella e potremmo usarlo nei post, nei video o sul sito.",
+      "placeholder": "Con tue parole…",
+      "timeUsingPlaceholder": "Da quanto tempo sei qui? (facoltativo)",
+      "consentPromo": "Autorizzo DeHub a citare questo feedback nei materiali di marketing e promozionali.",
+      "consentName": "Puoi mostrare il mio nome utente insieme ad esso. Lascia questa casella non spuntata per essere citato anonimamente.",
+      "submit": "Invia feedback",
+      "sending": "Invio in corso…",
+      "signedOut": "Accedi per lasciare un feedback",
+      "thanks": "Perfetto — grazie. Tutto ciò che hai autorizzato per uso promozionale viene revisionato da una persona prima di apparire ovunque.",
+      "again": "Lascia altri feedback",
+      "toastSent": "Grazie — il tuo feedback è con noi",
+      "toastFailed": "Non è stato possibile inviare, riprova",
+      "wallTitle": "Quello che dicono le persone",
+      "wallNote": "pubblicato con permesso",
+      "anonymous": "Un membro di DeHub"
+    }
   }
 }

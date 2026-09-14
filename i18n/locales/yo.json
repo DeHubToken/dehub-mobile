@@ -3134,5 +3134,25 @@
     "noUpcoming": "Kò sí ìṣẹ̀lẹ̀ tó ń bọ̀",
     "interestedCount": "{{count}} nífẹ̀ẹ́ sí",
     "loadFailed": "Kò lè gbé àwọn ìṣẹ̀lẹ̀ wọlé"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Ibalopẹ",
+      "intro": "Ṣe o ti lo DeHub fun igba kan? Sọ fun wa ohun ti o ti jẹ. Dara, buruku tabi ohun kan pàtó — a ka gbogbo rẹ. Ti o ba dun fun wa lati gbolohun ọ, tẹ apẹrẹ naa ki a le lo ni awọn iwe, awọn fidio tabi lori aaye naa.",
+      "placeholder": "Ni ọrọ rẹ ara...",
+      "timeUsingPlaceholder": "Logun lo ti wa nibi? (iyalẹnu)",
+      "consentPromo": "Mo gba DeHub laaye lati gbolohun ibalopẹ yii ni awọn ohun elo ipolowo ati awọn ohun elo ifipamọ.",
+      "consentName": "O le fi orukọ olumulo mi hankali pẹlu rẹ. Fi apẹrẹ yii silẹ lati gbolohun ni ainidanisilẹ.",
+      "submit": "Firanṣẹ ibalopẹ",
+      "sending": "Nfiranṣẹ...",
+      "signedOut": "Wọle lati fi ibalopẹ silẹ",
+      "thanks": "O ti ye — o ṣeun. Ohunkohun ti o ṣe itọju fun lilo ipolowo ni a ṣayẹwo nipasẹ eniyan kan ṣaaju ki o han nibikita.",
+      "again": "Fi ibalopẹ diẹ sii silẹ",
+      "toastSent": "O ṣeun — ibalopẹ rẹ wa pẹlu wa",
+      "toastFailed": "Ko le firanṣẹ iyẹn, gbiyanju lẹẹkansi",
+      "wallTitle": "Ohun ti awọn eniyan sọ",
+      "wallNote": "ti fi iwe ẹkọ silẹ pẹlu iwe ẹkọ",
+      "anonymous": "Ọmọ DeHub kan"
+    }
   }
 }

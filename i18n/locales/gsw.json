@@ -3133,5 +3133,25 @@
     "noUpcoming": "Kei kommendi Events",
     "interestedCount": "{{count}} interessiert",
     "loadFailed": "D Events hend nid chönne glade werde"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Feedback",
+      "intro": "Häsch DeHub scho e Wiile brucht? Säg üs, wie's gsi isch. Guet, schlecht oder spezifisch — alles wird gläse. Wenn du glücklich bisch, dass mir dich zitiere, mach e Häkche und mir chönnted's villicht i Posts, Videos oder uf dr Website bruuche.",
+      "placeholder": "In dine eigene Wort…",
+      "timeUsingPlaceholder": "Wie lang bisch du scho da? (optional)",
+      "consentPromo": "Ich erlaube DeHub, dieses Feedback i Marketing- und Promotionsmaterial z'zitiere.",
+      "consentName": "Du chasch din Username drzue zeige. Lass das unmarkiert, wenn du anonym zitiert wärsch.",
+      "submit": "Feedback schicke",
+      "sending": "Am schicke…",
+      "signedOut": "Meld dich a, um Feedback z'gä",
+      "thanks": "Klar — danke. Alles, wo du für Promotionszwecke freigäbsch, wird vor dr Veröffentlichig vo eme Mönsch überprüeft.",
+      "again": "Meh Feedback gä",
+      "toastSent": "Danke — diin Feedback isch bi üs",
+      "toastFailed": "Das het nid funktioniert, versuchs nomol",
+      "wallTitle": "Was Lüt säge",
+      "wallNote": "veröffentlicht mit Erlaubnis",
+      "anonymous": "E DeHub-Mitglid"
+    }
   }
 }

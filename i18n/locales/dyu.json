@@ -3089,5 +3089,25 @@
     "noUpcoming": "Ko nataw si tɛ yen",
     "interestedCount": "{{count}} b'a fɛ",
     "loadFailed": "Kow ma se ka doni"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Feedback",
+      "intro": "DeHub la a kɔrɔ kɔ? I ka kɔ kɔnɔ kɔ. Ɲɛ, ɲɛ-ɲɛ walima kɔ-kɔrɔ — kɔ kɔ dɔ a ka kɔ. A ye nafa kɔ n'a ka kɔ, kɔ jɔ kɔ, a ka kɔ kɔ, video walima site la.",
+      "placeholder": "I ka kɔ kɔnɔ…",
+      "timeUsingPlaceholder": "I kɔ kɔ kɔ? (kɔ-kɔrɔ)",
+      "consentPromo": "N'a ye DeHub ka kɔ kɔ kɔ walima kɔ kɔ la.",
+      "consentName": "A ka kɔ kɔ kɔ kɔ. Kɔ kɔ kɔ kɔ kɔ.",
+      "submit": "Kɔ kɔ",
+      "sending": "Kɔ kɔ…",
+      "signedOut": "Kɔ kɔ kɔ kɔ",
+      "thanks": "Kɔ kɔ — a ni i ni. Kɔ kɔ kɔ kɔ kɔ kɔ kɔ kɔ kɔ kɔ.",
+      "again": "Kɔ kɔ kɔ",
+      "toastSent": "A ni i ni — kɔ kɔ kɔ kɔ",
+      "toastFailed": "Kɔ kɔ kɔ, kɔ kɔ",
+      "wallTitle": "Kɔ kɔ kɔ",
+      "wallNote": "kɔ kɔ kɔ",
+      "anonymous": "DeHub kɔ"
+    }
   }
 }

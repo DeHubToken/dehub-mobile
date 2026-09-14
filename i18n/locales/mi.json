@@ -3129,5 +3129,25 @@
     "noUpcoming": "Kāore he huihuinga kei te heke mai",
     "interestedCount": "{{count}} e hiahia ana",
     "loadFailed": "Kāore i taea te uta i ngā huihuinga"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Urupare",
+      "intro": "Kua whakamahi koe i a DeHub mo te whakatupuranga? Kōrerotia mai ki a mātou he aha te ahuatanga. He pai, he kino, he mea motuhake rānei — ka pānuitia e mātou te katoa. Mēnā kua pai ki a koe kia whakatupuranga mātou i ō kupu, tīkina te pouaka a mātou ka whakamahia pea i roto i ngā pōst, ngā ataata, i te paetukutuku rānei.",
+      "placeholder": "I ō kupu ake…",
+      "timeUsingPlaceholder": "E hia nei te wā koe i konei? (he mea waatea)",
+      "consentPromo": "Ka whakaaetia e au a DeHub kia whakatupuranga i tēnei urupare i roto i ngā rauemi whakamarketinga me te whakapāho.",
+      "consentName": "Ka taea e koe te whakaatu i tōku ingoa-kaiwhakamahi tahi ki a ia. Waiho i te tīkina kia whakatupurangahia koe i te anonimiti.",
+      "submit": "Tukuna te urupare",
+      "sending": "E tukuna ana…",
+      "signedOut": "Takiuru kia waiho urupare",
+      "thanks": "Kua tae mai — ngā mihi. Ko ngā mea i whakaae koe mo te whakamahi whakapāho ka arotakea e te tangata i mua i te puta ki te wāhi.",
+      "again": "Waiho i etahi atu urupare",
+      "toastSent": "Ngā mihi — kei a mātou tō urupare",
+      "toastFailed": "Kaore i taea te tuku i tērā, ngana anō",
+      "wallTitle": "He aha te kōrero a te hunga",
+      "wallNote": "i whakaputa i te whakaaetanga",
+      "anonymous": "He mema DeHub"
+    }
   }
 }

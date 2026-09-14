@@ -3142,5 +3142,25 @@
     "noUpcoming": "冇即將舉行嘅活動",
     "interestedCount": "{{count}} 人感興趣",
     "loadFailed": "無法載入活動"
+  },
+  "stats": {
+    "feedback": {
+      "title": "反應",
+      "intro": "用咗 DeHub 一段時間？話畀我哋知佢係點樣嘅。好、壞或者具體 — 全部都係讀完。如果你好開心我哋引用你嘅說話，勾選方塊，我哋可能會喺帖子、影片或者網站上面用佢。",
+      "placeholder": "用你自己嘅說話 ...",
+      "timeUsingPlaceholder": "你喺度幾耐？ （可選嘅）",
+      "consentPromo": "我授權 DeHub 喺市場推廣同宣傳材料入面引用呢啲意見。",
+      "consentName": "你可以喺佢旁邊顯示我嘅用戶名。留低呢個，等佢匿名引用。",
+      "submit": "傳送意見",
+      "sending": "發送緊 …",
+      "signedOut": "登入嚟留低意見",
+      "thanks": "明白喇 — 多謝你。你清除咗嚟宣傳用途嘅任何內容都會喺任何地方出現之前由一個人審查。",
+      "again": "留多啲意見",
+      "toastSent": "多謝 — 你嘅意見同我哋一齊",
+      "toastFailed": "寄唔到嗰個，試多一次",
+      "wallTitle": "人哋講乜",
+      "wallNote": "喺得到許可嘅情況下發佈",
+      "anonymous": "一個 DeHub 成員"
+    }
   }
 }

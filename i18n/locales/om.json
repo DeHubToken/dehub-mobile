@@ -3208,5 +3208,25 @@
     "noUpcoming": "Taateewwan dhufan hin jiran",
     "interestedCount": "{{count}} fedhii qabu",
     "loadFailed": "Taateewwan fe'uun hin dandaʼamne"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Feeddhaakii",
+      "intro": "DeHub fayyadamaa jirtaa? Akkaataa isaa nuuf gaafii. Gaarii, hamaa ykn addaa — hunduu dubbifama. Yoo nu waamicha keenya kennuuf fedhii qabaatte, sanduuqa cuqaasi; haala kanaan poostii, viidiyoo ykn saayitii keenyatti fayyadamuu ni danda'amu.",
+      "placeholder": "Jecha kee keessatti…",
+      "timeUsingPlaceholder": "Asii yeroo meeqa jirtaa? (dirqama malee)",
+      "consentPromo": "DeHub akka feeddhaakii kana marketing fi promotional materials keessatti gaafatuu na eeyyama.",
+      "consentName": "Maqaa koo username wajjin agarsiisuu ni danda'ama. Kana cuqaasuu hin qabne yoo fedhii qabaatte, anoonimiisee gaafatamuu ni danda'ama.",
+      "submit": "Feeddhaakii ergi",
+      "sending": "Erguun jira…",
+      "signedOut": "Feeddhaakii kennuuf seenuuf galchaa",
+      "thanks": "Murtaa'a — galateeffadha. Waan promotional use keessaf qophaa'e hunduu nama tokko duraan ilaalama.",
+      "again": "Feeddhaakii dabalataa kennaa",
+      "toastSent": "Galateeffadha — feeddhaakii kee nu wajjin jira",
+      "toastFailed": "Kana erguun hin dandeenye, irra deebi'ii yaali",
+      "wallTitle": "Namoonni maaliif jedhu",
+      "wallNote": "eeyyama wajjin gabaasame",
+      "anonymous": "DeHub miseensa tokko"
+    }
   }
 }

@@ -3214,5 +3214,25 @@
     "noUpcoming": "No upcoming events",
     "interestedCount": "{{count}} interested",
     "loadFailed": "Couldn't load events"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Feedback",
+      "intro": "Been using DeHub for a while? Tell us what it has been like. Good, bad or specific — all of it is read. If you are happy for us to quote you, tick the box and we may use it in posts, videos or on the site.",
+      "placeholder": "In your own words…",
+      "timeUsingPlaceholder": "How long have you been here? (optional)",
+      "consentPromo": "I authorise DeHub to quote this feedback in marketing and promotional materials.",
+      "consentName": "You can show my username alongside it. Leave this unticked to be quoted anonymously.",
+      "submit": "Send feedback",
+      "sending": "Sending…",
+      "signedOut": "Sign in to leave feedback",
+      "thanks": "Got it — thank you. Anything you cleared for promotional use is reviewed by a person before it appears anywhere.",
+      "again": "Leave more feedback",
+      "toastSent": "Thanks — your feedback is with us",
+      "toastFailed": "Could not send that, try again",
+      "wallTitle": "What people say",
+      "wallNote": "published with permission",
+      "anonymous": "A DeHub member"
+    }
   }
 }

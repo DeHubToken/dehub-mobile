@@ -3212,5 +3212,25 @@
     "noUpcoming": "Brak nadchodzących wydarzeń",
     "interestedCount": "{{count}} zainteresowanych",
     "loadFailed": "Nie udało się wczytać wydarzeń"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Opinia",
+      "intro": "Używasz DeHub od jakiegoś czasu? Powiedz nam, jak się to sprawdza. Dobrze, źle czy konkretnie — wszystko czytamy. Jeśli zgadzasz się na cytowanie, zaznacz pole i możemy użyć tego w postach, filmach lub na stronie.",
+      "placeholder": "Własnymi słowami…",
+      "timeUsingPlaceholder": "Jak długo tu jesteś? (opcjonalnie)",
+      "consentPromo": "Udzielam DeHub zgody na cytowanie tej opinii w materiałach marketingowych i promocyjnych.",
+      "consentName": "Możesz pokazać moją nazwę użytkownika obok niej. Pozostaw to niezaznaczone, aby być cytowanym anonimowo.",
+      "submit": "Wyślij opinię",
+      "sending": "Wysyłanie…",
+      "signedOut": "Zaloguj się, aby zostawić opinię",
+      "thanks": "Rozumiem — dziękuję. Wszystko, co wyczyściłeś do użytku promocyjnego, jest sprawdzane przez osobę, zanim pojawi się gdziekolwiek.",
+      "again": "Zostaw więcej opinii",
+      "toastSent": "Dziękuję — Twoja opinia do nas dotarła",
+      "toastFailed": "Nie można tego wysłać, spróbuj ponownie",
+      "wallTitle": "Co mówią ludzie",
+      "wallNote": "opublikowane za zgodą",
+      "anonymous": "Członek DeHub"
+    }
   }
 }

@@ -3232,5 +3232,25 @@
     "noUpcoming": "Không có sự kiện sắp tới",
     "interestedCount": "{{count}} quan tâm",
     "loadFailed": "Không tải được sự kiện"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Phản hồi",
+      "intro": "Bạn đã sử dụng DeHub trong một thời gian? Hãy cho chúng tôi biết nó như thế nào. Tốt, xấu hay cụ thể — tất cả đều được đọc. Nếu bạn vui lòng cho phép chúng tôi trích dẫn bạn, hãy đánh dấu vào ô và chúng tôi có thể sử dụng nó trong các bài viết, video hoặc trên trang web.",
+      "placeholder": "Bằng lời của riêng bạn…",
+      "timeUsingPlaceholder": "Bạn đã ở đây bao lâu? (tùy chọn)",
+      "consentPromo": "Tôi cho phép DeHub trích dẫn phản hồi này trong các tài liệu tiếp thị và quảng cáo.",
+      "consentName": "Bạn có thể hiển thị tên người dùng của tôi cùng với nó. Để không được đánh dấu để được trích dẫn ẩn danh.",
+      "submit": "Gửi phản hồi",
+      "sending": "Đang gửi…",
+      "signedOut": "Đăng nhập để để lại phản hồi",
+      "thanks": "Được rồi — cảm ơn bạn. Bất cứ điều gì bạn cho phép sử dụng quảng cáo được xem xét bởi một người trước khi nó xuất hiện ở bất kỳ đâu.",
+      "again": "Để lại thêm phản hồi",
+      "toastSent": "Cảm ơn — phản hồi của bạn đã được gửi cho chúng tôi",
+      "toastFailed": "Không thể gửi được, hãy thử lại",
+      "wallTitle": "Mọi người nói gì",
+      "wallNote": "được công bố với sự cho phép",
+      "anonymous": "Một thành viên DeHub"
+    }
   }
 }

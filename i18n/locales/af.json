@@ -3261,5 +3261,25 @@
     "noUpcoming": "Geen komende geleenthede nie",
     "interestedCount": "{{count}} belangstellend",
     "loadFailed": "Kon nie geleenthede laai nie"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Terugvoer",
+      "intro": "Gebruik jy DeHub al 'n tyd? Vertel ons hoe dit vir jou was. Goed, sleg of spesifiek — ons lees alles. As jy gelukkig is dat ons jou kan aanhaal, merk die blokkie en ons mag dit dalk in plasings, video's of op die webwerf gebruik.",
+      "placeholder": "In jou eie woorde…",
+      "timeUsingPlaceholder": "Hoe lank is jy al hier? (opsioneel)",
+      "consentPromo": "Ek magtig DeHub om hierdie terugvoer in bemarking- en promosionele materiale aan te haal.",
+      "consentName": "Jy kan my gebruikersnaam daarby wys. Laat dit ongemerk om anoniem aangehaal te word.",
+      "submit": "Stuur terugvoer",
+      "sending": "Stuur tans…",
+      "signedOut": "Teken in om terugvoer te lewer",
+      "thanks": "Goed — dankie. Enige iets wat jy vir promosionele gebruik goedgekeur het, word deur 'n persoon nagegaan voordat dit enige plek verskyn.",
+      "again": "Lewer meer terugvoer",
+      "toastSent": "Dankie — jou terugvoer is by ons",
+      "toastFailed": "Kon dit nie stuur nie, probeer weer",
+      "wallTitle": "Wat mense sê",
+      "wallNote": "gepubliseer met toestemming",
+      "anonymous": "'n DeHub-lid"
+    }
   }
 }

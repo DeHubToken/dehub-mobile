@@ -3413,5 +3413,25 @@
     "noUpcoming": "Geen komende evenementen",
     "interestedCount": "{{count}} geïnteresseerd",
     "loadFailed": "Kon evenementen niet laden"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Feedback",
+      "intro": "Gebruikt u DeHub al een tijdje? Vertel ons hoe het is geweest. Goed, slecht of specifiek — alles wordt gelezen. Als u het goed vindt dat we u citeren, vink het vakje aan en we kunnen het mogelijk gebruiken in berichten, video's of op de site.",
+      "placeholder": "In uw eigen woorden…",
+      "timeUsingPlaceholder": "Hoe lang bent u hier al? (optioneel)",
+      "consentPromo": "Ik autoriseer DeHub om deze feedback in marketing- en promotiemateriaal te citeren.",
+      "consentName": "U kunt uw gebruikersnaam ernaast weergeven. Laat dit vakje ongevinkt om anoniem te worden geciteerd.",
+      "submit": "Feedback verzenden",
+      "sending": "Verzenden…",
+      "signedOut": "Meld u aan om feedback achter te laten",
+      "thanks": "Begrepen — dank u. Alles wat u voor promotioneel gebruik heeft vrijgegeven, wordt door een persoon beoordeeld voordat het ergens verschijnt.",
+      "again": "Meer feedback achterlaten",
+      "toastSent": "Dank u — uw feedback is bij ons",
+      "toastFailed": "Dat kon niet worden verzonden, probeer het opnieuw",
+      "wallTitle": "Wat mensen zeggen",
+      "wallNote": "gepubliceerd met toestemming",
+      "anonymous": "Een DeHub-lid"
+    }
   }
 }

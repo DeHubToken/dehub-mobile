@@ -3144,5 +3144,25 @@
     "noUpcoming": "Cap esdeveniment pròxim",
     "interestedCount": "{{count}} interessats",
     "loadFailed": "No s'han pogut carregar els esdeveniments"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Comentaris",
+      "intro": "Has estat utilitzant DeHub durant una estona? Explica'ns com ha estat. Bé, malament o específic — tot es llegeix. Si ets content que et citem, marca la casella i és possible que l'utilitzem en publicacions, vídeos o al lloc web.",
+      "placeholder": "Amb les teves pròpies paraules…",
+      "timeUsingPlaceholder": "Quant de temps fa que ets aquí? (opcional)",
+      "consentPromo": "Autorizo DeHub a citar aquest comentari en materials de màrqueting i promocionals.",
+      "consentName": "Pots mostrar el meu nom d'usuari juntament amb això. Deixa aquesta casella desmarcada per ser citat de forma anònima.",
+      "submit": "Enviar comentari",
+      "sending": "Enviant…",
+      "signedOut": "Inicia sessió per deixar comentaris",
+      "thanks": "D'acord — gràcies. Qualsevol cosa que hagin autoritzat per a ús promocional es revisa per una persona abans que aparegui en qualsevol lloc.",
+      "again": "Deixar més comentaris",
+      "toastSent": "Gràcies — els teus comentaris estan amb nosaltres",
+      "toastFailed": "No s'ha pogut enviar, torna-ho a intentar",
+      "wallTitle": "Què diuen les persones",
+      "wallNote": "publicat amb permís",
+      "anonymous": "Un membre de DeHub"
+    }
   }
 }

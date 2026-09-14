@@ -3144,5 +3144,25 @@
     "noUpcoming": "Ei tulevia tapahtumia",
     "interestedCount": "{{count}} kiinnostunutta",
     "loadFailed": "Tapahtumia ei voitu ladata"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Palaute",
+      "intro": "Oletko käyttänyt DeHubia jonkin aikaa? Kerro meille, millaista se on ollut. Hyvää, huonoa tai spesifiä — kaikki luetaan. Jos olet tyytyväinen siihen, että siteeraamme sinua, rastita ruutu ja saatamme käyttää sitä posteissa, videoissa tai sivustolla.",
+      "placeholder": "Omin sanoin…",
+      "timeUsingPlaceholder": "Kuinka kauan olet ollut täällä? (valinnainen)",
+      "consentPromo": "Valtuutan DeHubin siteeraamaan tätä palautetta markkinointi- ja promootioaineistoissa.",
+      "consentName": "Voit näyttää käyttäjänimeni sen rinnalla. Jätä tämä rastittamatta, jos haluat tulla siteeratuksi nimettömästi.",
+      "submit": "Lähetä palaute",
+      "sending": "Lähetetään…",
+      "signedOut": "Kirjaudu sisään jättääksesi palautetta",
+      "thanks": "Selvä — kiitos. Kaikki promootioaineistoksi hyväksymäsi palaute tarkistetaan henkilökohtaisesti ennen kuin se ilmestyy mihinkään.",
+      "again": "Jätä lisää palautetta",
+      "toastSent": "Kiitos — palautteesi on meillä",
+      "toastFailed": "Sitä ei voitu lähettää, yritä uudelleen",
+      "wallTitle": "Mitä ihmiset sanovat",
+      "wallNote": "julkaistu luvalla",
+      "anonymous": "DeHubin jäsen"
+    }
   }
 }

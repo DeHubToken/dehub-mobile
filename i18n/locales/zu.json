@@ -3173,5 +3173,25 @@
     "noUpcoming": "Ayikho imicimbi ezayo",
     "interestedCount": "{{count}} bayathakazelisa",
     "loadFailed": "Ayikwazanga ukulayisha imicimbi"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Umuntu Onethembeka",
+      "intro": "Nabe kusetshenziswa iDeHub isikhathi eside? Sitshele ukuthi kwakunjani. Okuhle, okubi noma okuthile okucacile — konke kufundwa. Uma usiyavumelela ukuthi sikuquote, bheka ibhokisi futhi singase sikusetshenzise ezipositini, emavidiyo noma kusite.",
+      "placeholder": "Ngamazwi akho…",
+      "timeUsingPlaceholder": "Ubade ngikhona kangakanani? (okukhethwa)",
+      "consentPromo": "Ngivumela iDeHub ukuthi iquote le feedback ku-marketing kanye ne-promotional materials.",
+      "consentName": "Ungakwazi ukubonisa i-username yami nayo. Shiya lokhu ungabhekile ukuze kuquotwe ngo-anonymous.",
+      "submit": "Thumela feedback",
+      "sending": "Kuthumelwa…",
+      "signedOut": "Ngena ukuze ushiye feedback",
+      "thanks": "Siyakuqonda — ngiyabonga. Noma yini oyivumelele ye-promotional use iyahlolwa umuntu ngaphambi kokuba ivele kunoma kuphi.",
+      "again": "Shiya feedback eningi",
+      "toastSent": "Ngiyabonga — feedback yakho isikho",
+      "toastFailed": "Ayikwazanga ukuthumela lokho, zama futhi",
+      "wallTitle": "Abantu bani abathini",
+      "wallNote": "kushicilelwe ngemvume",
+      "anonymous": "Ilungu le-DeHub"
+    }
   }
 }

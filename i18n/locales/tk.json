@@ -3114,5 +3114,25 @@
     "noUpcoming": "Geljek çäreler ýok",
     "interestedCount": "{{count}} gyzyklanýar",
     "loadFailed": "Çäreler ýüklenip bilmedi"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Jikme-jik",
+      "intro": "Birnäçe wagtdan bäri DeHub ulanýarmyň? Diýmek, bize muny nädip edip biljekdigimizi aýt! Ýagşy, erbet ýa-da belli - bularyň bary okalýar. Eger siz biziň size aýtmagymyza begenýän bolsaňyz, onda gapyny basyň we biz ony ýerlerde, videolarda ýa-da web-saytda ulanyp bileris.",
+      "placeholder": "Sözleriň manysy...",
+      "timeUsingPlaceholder": "Sen näçe wagtdan bäri bu ýerde?",
+      "consentPromo": "Men DeHub-a bu pikirleri marketing we reklama materiallarynda aýtmaga rugsat berýärin.",
+      "consentName": "Siz onuň ýanynda meniň ulanýan adymy görkezip bilersiňiz. Bu sözüň manysyna görä, bu sözüň manysy belli däl.",
+      "submit": "Komentary iber",
+      "sending": "Ýolbaşçylyk maslahaty...",
+      "signedOut": "Öz pikirleriňizi goýuň",
+      "thanks": "Sag boluň Eger siz reklama üçin arassalaýan zadyňyzy hiç ýere görünmezden öň, bir adam barlap barýar.",
+      "again": "Gowy pikirler goýuň",
+      "toastSent": "Biz bilen bolan pikirleriňiz üçin minnetdar.",
+      "toastFailed": "Men ony tapyp bilmedim, ýene synanyň",
+      "wallTitle": "Adamlar näme diýýärler",
+      "wallNote": "6. rugsat bilen çap edilýär",
+      "anonymous": "DeHub üýşümi"
+    }
   }
 }

@@ -3102,5 +3102,25 @@
     "noUpcoming": "ບໍ່ມີກິດຈະກຳທີ່ຈະມາເຖິງ",
     "interestedCount": "{{count}} ສົນໃຈ",
     "loadFailed": "ບໍ່ສາມາດໂຫຼດກິດຈະກຳໄດ້"
+  },
+  "stats": {
+    "feedback": {
+      "title": "ຄຳຄິດເຫັນ",
+      "intro": "Been using DeHub for a while? Tell us what it has been like. Good, bad or specific — all of it is read. If you are happy for us to quote you, tick the box and we may use it in posts, videos or on the site.",
+      "placeholder": "ໃນຄຳເວົ້າຂອງທ່ານ…",
+      "timeUsingPlaceholder": "ທ່ານຢູ່ທີ່ນີ້ມາດົນປານໃດ? (ບໍ່ຕ້ອງກໍ່ໄດ້)",
+      "consentPromo": "ຂ້ອຍອະນຸມັດໃຫ້ DeHub ອ້າງອີງຄຳຄິດເຫັນນີ້ໃນວັດສະດຸການຕະຫຼາດ ແລະ ການສົ່ງເສີມ.",
+      "consentName": "ທ່ານສາມາດສະແດງຊື່ຜູ້ໃຊ້ຂອງຂ້ອຍພ້ອມກັບມັນ. ບໍ່ໃສ່ເຄື່ອງໝາຍນີ້ເພື່ອໃຫ້ອ້າງອີງໂດຍບໍ່ລະບຸຊື່.",
+      "submit": "ສົ່ງຄຳຄິດເຫັນ",
+      "sending": "ກຳລັງສົ່ງ…",
+      "signedOut": "ລົງຊື່ເຂົ້າໃຊ້ເພື່ອປະກອບຄຳຄິດເຫັນ",
+      "thanks": "ເຂົ້າໃຈແລ້ວ — ຂອບໃຈ. ສິ່ງໃດກໍ່ຕາມທີ່ທ່ານອະນຸມັດສໍາລັບການນໍາໃຊ້ດ້ານການຕະຫຼາດຈະໄດ້ຮັບການທົບທວນໂດຍບຸກຄົນກ່ອນທີ່ມັນຈະປາກົດຢູ່ບ່ອນໃດກໍ່ຕາມ.",
+      "again": "ປະກອບຄຳຄິດເຫັນເພີ່ມເຕີມ",
+      "toastSent": "ຂອບໃຈ — ຄຳຄິດເຫັນຂອງທ່ານຢູ່ກັບພວກເຮົາ",
+      "toastFailed": "ບໍ່ສາມາດສົ່ງໄດ້, ລອງໃໝ່",
+      "wallTitle": "ປະຊາຊົນເວົ້າວ່າ",
+      "wallNote": "ເຜີຍແພ່ໂດຍໄດ້ຮັບອະນຸມັດ",
+      "anonymous": "ສະມາຊິກ DeHub"
+    }
   }
 }

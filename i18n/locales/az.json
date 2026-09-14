@@ -3128,5 +3128,25 @@
     "noUpcoming": "Yaxınlaşan tədbir yoxdur",
     "interestedCount": "{{count}} maraqlanır",
     "loadFailed": "Tədbirlər yüklənmədi"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Rəy-Təklif",
+      "intro": "DeHub-dan bir müddətdir istifadə edirsiniz? Bunun necə olduğunu bizə deyin. Yaxşı, pis və ya spesifik — hamısı oxunur. Əgər bizi sizi sitat gətirməyə icazə verirsiniz, qutuyu işarələyin və biz bunu yazılarda, videolarda və ya saytda istifadə edə bilərik.",
+      "placeholder": "Öz sözlərinizlə…",
+      "timeUsingPlaceholder": "Burada nə qədər vaqdır? (ixtiyari)",
+      "consentPromo": "DeHub-a bu rəyi marketinq və promosyon materiallarında sitat gətirməyə icazə verirəm.",
+      "consentName": "Bunu yanında istifadə edə bilərsən. Anonim sitat gətirmək üçün bunu işarələməyin.",
+      "submit": "Rəy göndər",
+      "sending": "Göndərilir…",
+      "signedOut": "Rəy qoymaq üçün daxil olun",
+      "thanks": "Başa düşdük — təşəkkür edirik. Promosyon istifadəsi üçün təsdiq etdiyiniz hər şey göstərilməzdən əvvəl bir şəxs tərəfindən nəzərdən keçirilir.",
+      "again": "Daha çox rəy qoy",
+      "toastSent": "Təşəkkür edirik — sizin rəyiniz bizdədir",
+      "toastFailed": "Bunu göndərə bilmədi, yenidən cəhd edin",
+      "wallTitle": "İnsanlar nə deyir",
+      "wallNote": "icazə ilə dərc edilmişdir",
+      "anonymous": "DeHub üzvü"
+    }
   }
 }

@@ -3143,5 +3143,25 @@
     "noUpcoming": "Asnjë ngjarje e ardhshme",
     "interestedCount": "{{count}} të interesuar",
     "loadFailed": "Ngjarjet nuk u ngarkuan dot"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Përshtypje",
+      "intro": "Jeni duke përdorur DeHub për një kohë? Tregoni na se si ka qenë. Mirë, keq ose specifik — të gjitha lexohen. Nëse jeni të lumtur që ne të ju citojmë, shënoni kutinë dhe mund ta përdorim në postime, video ose në faqe.",
+      "placeholder": "Me fjalët tuaja…",
+      "timeUsingPlaceholder": "Sa kohë jeni këtu? (opsional)",
+      "consentPromo": "Unë autorizoj DeHub-in të citojë këtë përshtypje në materiale marketingu dhe promovimi.",
+      "consentName": "Mund ta shfaqni emrin tim të përdoruesit përkatësisht. Lini këtë të pashënuar për të qenë i cituar në mënyrë anonime.",
+      "submit": "Dërgoni përshtypje",
+      "sending": "Duke dërguar…",
+      "signedOut": "Hyrni për të lënë përshtypje",
+      "thanks": "E kuptova — faleminderit. Çdo gjë që keni autorizuar për përdorim promovimi rishikohet nga një person përpara se të shfaqet kudo.",
+      "again": "Lini më shumë përshtypje",
+      "toastSent": "Faleminderit — përshtypja juaj është me ne",
+      "toastFailed": "Nuk mund ta dërgoja atë, provoni përsëri",
+      "wallTitle": "Çfarë thonë njerëzit",
+      "wallNote": "botuar me leje",
+      "anonymous": "Një anëtar i DeHub-it"
+    }
   }
 }

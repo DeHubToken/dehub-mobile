@@ -3157,5 +3157,25 @@
     "noUpcoming": "Niciun eveniment viitor",
     "interestedCount": "{{count}} interesați",
     "loadFailed": "Evenimentele nu au putut fi încărcate"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Feedback",
+      "intro": "Ai folosit DeHub de ceva timp? Spune-ne cum a fost. Bun, rău sau specific — totul este citit. Dacă ești fericit să ne cităm, bifează caseta și este posibil să o folosim în postări, videoclipuri sau pe site.",
+      "placeholder": "Cu propriile tale cuvinte…",
+      "timeUsingPlaceholder": "De cât timp ești aici? (opțional)",
+      "consentPromo": "Autorizez DeHub să citeze acest feedback în materiale de marketing și promovare.",
+      "consentName": "Poți arăta numele meu de utilizator alături de acesta. Lasă aceasta nebifată pentru a fi citat anonim.",
+      "submit": "Trimite feedback",
+      "sending": "Se trimite…",
+      "signedOut": "Conectează-te pentru a lăsa feedback",
+      "thanks": "Gata — mulțumesc. Orice ai aprobat pentru uz promovațional este revizuit de o persoană înainte de a apărea oriunde.",
+      "again": "Lasă mai mult feedback",
+      "toastSent": "Mulțumesc — feedback-ul tău este la noi",
+      "toastFailed": "Nu s-a putut trimite asta, încearcă din nou",
+      "wallTitle": "Ce spun oamenii",
+      "wallNote": "publicat cu permisiune",
+      "anonymous": "Un membru DeHub"
+    }
   }
 }

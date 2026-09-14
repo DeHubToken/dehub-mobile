@@ -3122,5 +3122,25 @@
     "noUpcoming": "Enweghị mmemme na-abịa",
     "interestedCount": "{{count}} nwere mmasị",
     "loadFailed": "Enweghị ike ibubata mmemme"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Mmekorita",
+      "intro": "Ị na-eji DeHub ogologo oge? Gwa anyị ihe ọ dị ka. Mma, njọ ma ọ bụ ihe kpọmkwem — a na-agụ ihe niile. Ọ bụrụ na obi dị gị ụtọ ka anyị na-akpọ gị, tịa igbe ahụ na anyị nwere ike iji ya n'ọrụ, vidio ma ọ bụ n'ọrụ.",
+      "placeholder": "N'okwu gị nwayọọ…",
+      "timeUsingPlaceholder": "Ogologo oge ị nọ ebe a? (na-agaghị adị)",
+      "consentPromo": "Enyere m DeHub ikike iji mmekorita a n'ọrụ mgbasa ozi na ihe nkwalite.",
+      "consentName": "Ị nwere ike igosi aha m n'akụkụ ya. Hapụ nke a na-atịghị iji ka a kpọ gị n'ụzọ nzuzo.",
+      "submit": "Ziga mmekorita",
+      "sending": "Na-eziga…",
+      "signedOut": "Banye iji hapụ mmekorita",
+      "thanks": "Ọ dị mma — daalụ. Ihe ọ bụla ị kwadoro maka iji ọrụ mgbasa ozi a na-enyocha ya site n'otu mmadụ tupu ọ pụta ebe ọ bụla.",
+      "again": "Hapụ mmekorita ọzọ",
+      "toastSent": "Daalụ — mmekorita gị nọ na anyị",
+      "toastFailed": "Ọ nweghị ike iziga nke ahụ, gbalịa ọzọ",
+      "wallTitle": "Ihe ndị mmadụ na-asị",
+      "wallNote": "bipụtara n'ikike",
+      "anonymous": "Onye otu DeHub"
+    }
   }
 }

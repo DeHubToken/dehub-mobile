@@ -3409,5 +3409,25 @@
     "noUpcoming": "Tiada acara akan datang",
     "interestedCount": "{{count}} berminat",
     "loadFailed": "Tidak dapat memuatkan acara"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Maklum Balas",
+      "intro": "Sudah lama menggunakan DeHub? Beritahu kami bagaimana pengalamannya. Baik, buruk atau spesifik — semuanya kami baca. Jika anda bersetuju untuk kami petik kata-kata anda, tandakan kotak dan kami mungkin menggunakannya dalam siaran, video atau di laman web.",
+      "placeholder": "Dengan kata-kata anda sendiri…",
+      "timeUsingPlaceholder": "Berapa lama anda berada di sini? (pilihan)",
+      "consentPromo": "Saya memberi kuasa kepada DeHub untuk menggunakan maklum balas ini dalam bahan pemasaran dan promosi.",
+      "consentName": "Anda boleh menunjukkan nama pengguna saya bersama dengannya. Biarkan ini tidak ditandakan untuk dipetik secara tanpa nama.",
+      "submit": "Hantar maklum balas",
+      "sending": "Menghantar…",
+      "signedOut": "Daftar masuk untuk meninggalkan maklum balas",
+      "thanks": "Faham — terima kasih. Apa-apa yang anda benarkan untuk kegunaan promosi akan disemak oleh seseorang sebelum ia muncul di mana-mana.",
+      "again": "Tinggalkan lebih banyak maklum balas",
+      "toastSent": "Terima kasih — maklum balas anda sudah bersama kami",
+      "toastFailed": "Tidak dapat menghantar itu, cuba lagi",
+      "wallTitle": "Apa yang orang katakan",
+      "wallNote": "diterbitkan dengan kebenaran",
+      "anonymous": "Seorang ahli DeHub"
+    }
   }
 }

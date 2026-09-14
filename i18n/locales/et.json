@@ -3143,5 +3143,25 @@
     "noUpcoming": "Tulevasi üritusi pole",
     "interestedCount": "{{count}} huvitatud",
     "loadFailed": "Üritusi ei õnnestunud laadida"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Tagasiside",
+      "intro": "Oled DeHubi kasutanud juba mõnda aega? Räägi meile, kuidas see on olnud. Hea, halb või konkreetne — kõike loetakse. Kui oled nõus, et meid tsiteeritakse, märgi kast ja me võime seda kasutada postitustes, videotes või veebisaidel.",
+      "placeholder": "Omaenda sõnadega…",
+      "timeUsingPlaceholder": "Kui kaua oled siin olnud? (valikuline)",
+      "consentPromo": "Annan DeHubile loa tsiteerida seda tagasisidet turundus- ja reklaamimaterjalides.",
+      "consentName": "Saad näidata minu kasutajanime kõrvuti. Jäta see märkimata, et olla tsiteeritud anonüümselt.",
+      "submit": "Saada tagasiside",
+      "sending": "Saatmine…",
+      "signedOut": "Logi sisse tagasiside jätmiseks",
+      "thanks": "Saime aru — aitäh. Kõik, mille oled reklaamikasutamiseks heaks kiitnud, vaatab üle inimene enne, kui see kuhugi ilmub.",
+      "again": "Jäta veel tagasisidet",
+      "toastSent": "Aitäh — sinu tagasiside on meil käes",
+      "toastFailed": "Seda ei saanud saata, proovi uuesti",
+      "wallTitle": "Mida inimesed ütlevad",
+      "wallNote": "avaldatud loal",
+      "anonymous": "DeHubi liige"
+    }
   }
 }

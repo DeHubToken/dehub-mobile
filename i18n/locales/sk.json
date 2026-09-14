@@ -3314,5 +3314,25 @@
     "noUpcoming": "Žiadne nadchádzajúce podujatia",
     "interestedCount": "{{count}} má záujem",
     "loadFailed": "Podujatia sa nepodarilo načítať"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Spätná väzba",
+      "intro": "Používate DeHub už nejaký čas? Povedzte nám, ako sa vám to páči. Dobré, zlé alebo špecifické — všetko čítame. Ak nám dovolíte vás citovať, zaškrtnite políčko a môžeme to použiť v príspevkoch, videách alebo na webe.",
+      "placeholder": "Vlastnými slovami…",
+      "timeUsingPlaceholder": "Ako dlho ste tu? (voliteľné)",
+      "consentPromo": "Autorizujem DeHub citovať túto spätnú väzbu v marketingových a propagačných materiáloch.",
+      "consentName": "Môžete zobraziť moje používateľské meno vedľa neho. Nechajte toto políčko nezaškrtnuté, aby ste boli citovaní anonymne.",
+      "submit": "Poslať spätnú väzbu",
+      "sending": "Posielam…",
+      "signedOut": "Prihláste sa, aby ste mohli zanechať spätnú väzbu",
+      "thanks": "Rozumiem — ďakujeme. Všetko, čo ste schválili na propagačné použitie, skúma osoba predtým, ako sa objaví kdekoľvek.",
+      "again": "Zanechať ďalšiu spätnú väzbu",
+      "toastSent": "Ďakujeme — vaša spätná väzba je u nás",
+      "toastFailed": "Nepodarilo sa to poslať, skúste znova",
+      "wallTitle": "Čo hovoria ľudia",
+      "wallNote": "zverejnené so súhlasom",
+      "anonymous": "Člen DeHub"
+    }
   }
 }

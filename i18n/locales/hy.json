@@ -3137,5 +3137,25 @@
     "noUpcoming": "Առաջիկա միջոցառումներ չկան",
     "interestedCount": "{{count}}-ը հետաքրքրված է",
     "loadFailed": "Չհաջողվեց բեռնել միջոցառումները"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Հետադարձ կապ",
+      "intro": "Been using DeHub for a while? Tell us what it has been like. Good, bad or specific — all of it is read. If you are happy for us to quote you, tick the box and we may use it in posts, videos or on the site.",
+      "placeholder": "Ձեր սեփական բառերով…",
+      "timeUsingPlaceholder": "Որքա՞ն ժամանակ եք այստեղ: (ընտրովի)",
+      "consentPromo": "Ես վերապահում եմ DeHub-ին իմ հետադարձ կապը մեջբերել շարքավարման և գովազդային նյութերում:",
+      "consentName": "Դուք կարող եք ցույց տալ իմ օգտանունը դրա հետ: Թողեք այս վանդակը չնշված, որպեսզի մեջբերվեք անանուն:",
+      "submit": "Ուղարկել հետադարձ կապ",
+      "sending": "Ուղարկում…",
+      "signedOut": "Մուտք գործեք հետադարձ կապ թողնելու համար",
+      "thanks": "Հասկացա — շնորհակալ: Ցանկացած բան, որը դուք թույլատրել եք գովազդային օգտագործման համար, վերանայվում է մարդու կողմից, նախքան այն որևէ տեղ հայտնվի:",
+      "again": "Թողեք ավելի շատ հետադարձ կապ",
+      "toastSent": "Շնորհակալ — ձեր հետադարձ կապը մեզ հետ է",
+      "toastFailed": "Չկարողացա ուղարկել դա, կրկին փորձեք",
+      "wallTitle": "Ինչ են ասում մարդիկ",
+      "wallNote": "հրապարակվել թույլատրությամբ",
+      "anonymous": "DeHub անդամ"
+    }
   }
 }
