@@ -198,3 +198,25 @@ export function cdnImage(
 
   return `${TRANSFORM_ORIGIN}/cdn-cgi/image/${params.join(",")}/${url}`;
 }
+
+/**
+ * The source URL behind a cdnImage() wrapper — the file as it was uploaded,
+ * before any width or quality transform. Anything that is not one of our own
+ * transform URLs (a raw CDN URL, an api.dehub.io URL, a local file://
+ * preview) comes back untouched, so a caller can pass whatever it holds.
+ *
+ * The fullscreen viewer is why this exists. A feed image URL is built once, at
+ * the card's own width, and handed straight on to the viewer — so pinching
+ * into a photo was pinching into a card-width, quality-80 re-encode rather
+ * than into the picture that was uploaded.
+ */
+export function cdnImageSource(url: string): string;
+export function cdnImageSource(url: string | undefined): string | undefined;
+export function cdnImageSource(url: string | undefined): string | undefined {
+  if (!url) return url;
+  const prefix = TRANSFORM_ORIGIN + "/cdn-cgi/image/";
+  if (!url.startsWith(prefix)) return url;
+  const rest = url.slice(prefix.length);
+  const slash = rest.indexOf("/");
+  return slash === -1 ? url : rest.slice(slash + 1);
+}
