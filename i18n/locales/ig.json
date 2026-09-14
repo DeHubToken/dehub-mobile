@@ -3079,5 +3079,26 @@
     "deleteFolderBody": "Ị ji n'aka na ịchọrọ ihichapụ \"{{name}}\"? A gaghị ehichapụ ozi echekwara dị n'ime ya na ndepụta Echekwara gị.",
     "folderDeleted": "E hichapụrụ folda",
     "deleteFolderFailed": "Ọ daghị ihichapụ folda"
+  },
+  "setProfile": {
+    "title": "Hazie profaịlụ gị",
+    "subtitle": "Họrọ otu a ga-esi mara gị na DeHub.\nỊ nwere ike ịgbanwe ha ma emesịa.",
+    "changePicture": "Gbanwee foto profaịlụ",
+    "addPicture": "Tinye foto profaịlụ",
+    "tapToChange": "Pịa iji gbanwee",
+    "addPhotoOptional": "Tinye foto (nhọrọ)",
+    "usernamePlaceholder": "@ahanjirimara",
+    "displayNamePlaceholder": "Aha ngosi",
+    "checking": "Na-enyocha…",
+    "available": "Ọ dị",
+    "usernameTaken": "E werela aha njirimara a",
+    "usernameHint": "Mkpụrụedemede 3-30: mkpụrụedemede, ọnụọgụ, ahịrị n'okpuru.",
+    "continueA11y": "Gaa n'ihu ịhazi profaịlụ",
+    "cancelSignOut": "Kagbuo ma pụọ",
+    "completeProfile": "Biko dezue profaịlụ gị iji gaa n'ihu",
+    "imageFailed": "Enweghị ike iji onyonyo ahụ",
+    "usernameReserved": "Edobere aha njirimara a",
+    "profileSet": "Ahazila profaịlụ nke ọma!",
+    "profileFailed": "Ọ daghị ịhazi profaịlụ"
   }
 }

@@ -3130,5 +3130,26 @@
     "deleteFolderBody": "Uqinisekile ufuna ukususa \"{{name}}\"? Okuthunyelwe okulondoloziwe ngaphakathi ngeke kususwe ohlwini lwakho lokuLondoloziwe.",
     "folderDeleted": "Ifolda isusiwe",
     "deleteFolderFailed": "Ayikwazanga ukususa ifolda"
+  },
+  "setProfile": {
+    "title": "Setha iphrofayela yakho",
+    "subtitle": "Khetha ukuthi uzokwaziwa kanjani ku-DeHub.\nUngakushintsha kamuva.",
+    "changePicture": "Shintsha isithombe sephrofayela",
+    "addPicture": "Engeza isithombe sephrofayela",
+    "tapToChange": "Thepha ukushintsha",
+    "addPhotoOptional": "Engeza isithombe (ongakhetha)",
+    "usernamePlaceholder": "@igamalomsebenzisi",
+    "displayNamePlaceholder": "Igama elibonisiwe",
+    "checking": "Iyahlola…",
+    "available": "Kuyatholakala",
+    "usernameTaken": "Igama lomsebenzisi selithathiwe",
+    "usernameHint": "Izinhlamvu ezingu-3-30: izinhlamvu, izinombolo, umugqa ongezansi.",
+    "continueA11y": "Qhubeka ukusetha iphrofayela",
+    "cancelSignOut": "Khansela bese uphuma",
+    "completeProfile": "Sicela uqedele iphrofayela yakho ukuze uqhubeke",
+    "imageFailed": "Ayikwazanga ukusebenzisa leso sithombe",
+    "usernameReserved": "Leli gama lomsebenzisi ligodliwe",
+    "profileSet": "Iphrofayela isethwe ngempumelelo!",
+    "profileFailed": "Ayikwazanga ukusetha iphrofayela"
   }
 }

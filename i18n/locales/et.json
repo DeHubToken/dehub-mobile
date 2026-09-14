@@ -3100,5 +3100,26 @@
     "deleteFolderBody": "Kas soovid kindlasti kustutada \"{{name}}\"? Selle sees olevaid salvestatud postitusi sinu salvestatute loendist ei kustutata.",
     "folderDeleted": "Kaust kustutatud",
     "deleteFolderFailed": "Kausta kustutamine ebaõnnestus"
+  },
+  "setProfile": {
+    "title": "Seadista oma profiil",
+    "subtitle": "Vali, kuidas sind DeHubis tuntakse.\nSaad seda hiljem muuta.",
+    "changePicture": "Muuda profiilipilti",
+    "addPicture": "Lisa profiilipilt",
+    "tapToChange": "Puuduta muutmiseks",
+    "addPhotoOptional": "Lisa foto (valikuline)",
+    "usernamePlaceholder": "@kasutajanimi",
+    "displayNamePlaceholder": "Kuvatav nimi",
+    "checking": "Kontrollin…",
+    "available": "Saadaval",
+    "usernameTaken": "Kasutajanimi on võetud",
+    "usernameHint": "3-30 märki: tähed, numbrid, alakriips.",
+    "continueA11y": "Jätka profiili seadistamisega",
+    "cancelSignOut": "Tühista ja logi välja",
+    "completeProfile": "Jätkamiseks täida oma profiil",
+    "imageFailed": "Seda pilti ei õnnestunud kasutada",
+    "usernameReserved": "See kasutajanimi on reserveeritud",
+    "profileSet": "Profiil edukalt seadistatud!",
+    "profileFailed": "Profiili seadistamine ebaõnnestus"
   }
 }

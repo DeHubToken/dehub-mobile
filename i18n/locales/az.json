@@ -3085,5 +3085,26 @@
     "deleteFolderBody": "\"{{name}}\" silinsin? İçindəki saxlanmış paylaşımlar Saxlananlar siyahından silinməyəcək.",
     "folderDeleted": "Qovluq silindi",
     "deleteFolderFailed": "Qovluq silinə bilmədi"
+  },
+  "setProfile": {
+    "title": "Profilini qur",
+    "subtitle": "DeHub-da necə tanınacağını seç.\nSonra dəyişə bilərsən.",
+    "changePicture": "Profil şəklini dəyiş",
+    "addPicture": "Profil şəkli əlavə et",
+    "tapToChange": "Dəyişmək üçün toxun",
+    "addPhotoOptional": "Şəkil əlavə et (istəyə bağlı)",
+    "usernamePlaceholder": "@istifadəçi_adı",
+    "displayNamePlaceholder": "Görünən ad",
+    "checking": "Yoxlanılır…",
+    "available": "Mövcuddur",
+    "usernameTaken": "Bu ad tutulub",
+    "usernameHint": "3-30 simvol: hərflər, rəqəmlər, alt xətt.",
+    "continueA11y": "Profili qurmağa davam et",
+    "cancelSignOut": "Ləğv et və çıx",
+    "completeProfile": "Davam etmək üçün profilini tamamla",
+    "imageFailed": "Bu şəkil istifadə edilə bilmədi",
+    "usernameReserved": "Bu istifadəçi adı ehtiyatda saxlanılıb",
+    "profileSet": "Profil uğurla quruldu!",
+    "profileFailed": "Profil qurula bilmədi"
   }
 }

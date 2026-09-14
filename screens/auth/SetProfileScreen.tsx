@@ -105,7 +105,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
     useCallback(() => {
       const onBackPress = () => {
         if (needsUsername) {
-          toastInfo("Please complete your profile to continue");
+          toastInfo(t("setProfile.completeProfile"));
           return true; // Block back navigation
         }
         return false;
@@ -206,7 +206,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
       });
     } catch (e) {
       log.warn("Avatar pick failed", e);
-      toastError(e, "Could not use that image");
+      toastError(e, t("setProfile.imageFailed"));
     } finally {
       if (isMountedRef.current) setProcessingAvatar(false);
     }
@@ -223,7 +223,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
   const handleSubmit = async () => {
     if (disabled) return;
     if (isReservedUsername(username)) {
-      toastError(null, "This username is reserved");
+      toastError(null, t("setProfile.usernameReserved"));
       return;
     }
     setSubmitting(true);
@@ -247,13 +247,13 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
         ...(localAvatar ? { avatarImageUrl: localAvatar } : {}),
       };
       await setAuthUser(finalUser);
-      toastSuccess("Profile set successfully!");
+      toastSuccess(t("setProfile.profileSet"));
       
       // completeUsername will set needsUsername to false,
       // which triggers navigation via the useEffect above
       completeUsername(finalUser);
     } catch (e: any) {
-      toastError(e, "Failed to set profile");
+      toastError(e, t("setProfile.profileFailed"));
     } finally {
       setSubmitting(false);
     }
@@ -273,9 +273,9 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
         >
           {/* Header */}
           <View style={{ alignItems: "center", marginTop: 32, marginBottom: 24 }}>
-            <Text style={[authText.title, { marginBottom: 8 }]}>Set your profile</Text>
+            <Text style={[authText.title, { marginBottom: 8 }]}>{t("setProfile.title")}</Text>
             <Text style={[authText.body, { textAlign: "center" }]}>
-              Choose how you'll be known on DeHub.{"\n"}You can change them later.
+              {t("setProfile.subtitle")}
             </Text>
           </View>
 
@@ -290,7 +290,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
               activeOpacity={0.8}
               accessibilityRole="button"
               accessibilityLabel={
-                localAvatar ? "Change profile picture" : "Add a profile picture"
+                localAvatar ? t("setProfile.changePicture") : t("setProfile.addPicture")
               }
               style={styles.avatarTarget}
             >
@@ -314,55 +314,55 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
               </View>
             </TouchableOpacity>
             <Text style={[authText.caption, { marginTop: 10 }]}>
-              {localAvatar ? "Tap to change" : "Add a photo (optional)"}
+              {localAvatar ? t("setProfile.tapToChange") : t("setProfile.addPhotoOptional")}
             </Text>
           </View>
 
           {/* Username Input */}
           <AuthField
-            label="Username"
+            label={t("settings.username")}
             value={username}
             onChangeText={handleUsernameChange}
             autoCapitalize="none"
             autoCorrect={false}
-            placeholder="@username"
+            placeholder={t("setProfile.usernamePlaceholder")}
           />
           <View style={{ marginTop: 8, marginBottom: 16, minHeight: 20 }}>
             {checking && (
               <View style={statusRow}>
                 <ActivityIndicator size="small" color={authColors.subtle} />
-                <Text style={authText.caption}>Checking…</Text>
+                <Text style={authText.caption}>{t("setProfile.checking")}</Text>
               </View>
             )}
             {!checking && available === true && username.length >= 3 && (
               <View style={statusRow}>
                 <Ionicons name="checkmark-circle" size={14} color={authColors.label} />
-                <Text style={[authText.caption, { color: authColors.label }]}>Available</Text>
+                <Text style={[authText.caption, { color: authColors.label }]}>{t("setProfile.available")}</Text>
               </View>
             )}
             {!checking && available === false && username.length >= 3 && (
               <View style={statusRow}>
                 <Ionicons name="close-circle" size={14} color={authColors.danger} />
                 <Text style={[authText.caption, { color: authColors.danger }]}>
-                  Username taken
+                  {t("setProfile.usernameTaken")}
                 </Text>
               </View>
             )}
             {!checking && available === null && (
               <Text style={authText.caption}>
-                3-30 characters: letters, numbers, underscore.
+                {t("setProfile.usernameHint")}
               </Text>
             )}
           </View>
 
           {/* Display Name Input */}
           <AuthField
-            label="Display Name"
+            label={t("settings.displayName")}
             value={displayName}
             onChangeText={handleDisplayNameChange}
             autoCapitalize="words"
             autoCorrect={false}
-            placeholder="Display name"
+            placeholder={t("setProfile.displayNamePlaceholder")}
           />
           <View style={{ marginTop: 8, marginBottom: 24, minHeight: 20 }}>
             <Text style={authText.caption}>Your public name shown on your profile.</Text>
@@ -394,16 +394,16 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
           {/* Continue Button */}
           <AuthButton
             variant="primary"
-            label="Continue"
+            label={t("loginModal.continue")}
             onPress={handleSubmit}
             disabled={disabled}
             loading={submitting}
-            accessibilityLabel="Continue to set profile"
+            accessibilityLabel={t("setProfile.continueA11y")}
           />
 
           {/* Cancel / Sign Out option */}
           <AuthTextButton
-            label="Cancel and sign out"
+            label={t("setProfile.cancelSignOut")}
             onPress={async () => {
               try {
                 log.info("User cancelled, signing out");

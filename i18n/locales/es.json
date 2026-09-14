@@ -3171,5 +3171,26 @@
     "deleteFolderBody": "¿Seguro que quieres eliminar \"{{name}}\"? Las publicaciones guardadas dentro no se eliminarán de tu lista de guardados.",
     "folderDeleted": "Carpeta eliminada",
     "deleteFolderFailed": "No se pudo eliminar la carpeta"
+  },
+  "setProfile": {
+    "title": "Configura tu perfil",
+    "subtitle": "Elige cómo te conocerán en DeHub.\nPuedes cambiarlo más adelante.",
+    "changePicture": "Cambiar foto de perfil",
+    "addPicture": "Añade una foto de perfil",
+    "tapToChange": "Toca para cambiar",
+    "addPhotoOptional": "Añade una foto (opcional)",
+    "usernamePlaceholder": "@usuario",
+    "displayNamePlaceholder": "Nombre visible",
+    "checking": "Comprobando…",
+    "available": "Disponible",
+    "usernameTaken": "Nombre de usuario ocupado",
+    "usernameHint": "3-30 caracteres: letras, números, guion bajo.",
+    "continueA11y": "Continuar para configurar el perfil",
+    "cancelSignOut": "Cancelar y cerrar sesión",
+    "completeProfile": "Completa tu perfil para continuar",
+    "imageFailed": "No se pudo usar esa imagen",
+    "usernameReserved": "Este nombre de usuario está reservado",
+    "profileSet": "¡Perfil configurado correctamente!",
+    "profileFailed": "No se pudo configurar el perfil"
   }
 }

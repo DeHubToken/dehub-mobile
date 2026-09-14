@@ -3366,5 +3366,26 @@
     "deleteFolderBody": "Anda pasti mahu memadam \"{{name}}\"? Siaran yang disimpan di dalamnya tidak akan dipadam daripada senarai Disimpan anda.",
     "folderDeleted": "Folder dipadam",
     "deleteFolderFailed": "Gagal memadam folder"
+  },
+  "setProfile": {
+    "title": "Tetapkan profil anda",
+    "subtitle": "Pilih cara anda dikenali di DeHub.\nAnda boleh mengubahnya kemudian.",
+    "changePicture": "Tukar gambar profil",
+    "addPicture": "Tambah gambar profil",
+    "tapToChange": "Ketik untuk menukar",
+    "addPhotoOptional": "Tambah foto (pilihan)",
+    "usernamePlaceholder": "@namapengguna",
+    "displayNamePlaceholder": "Nama paparan",
+    "checking": "Menyemak…",
+    "available": "Tersedia",
+    "usernameTaken": "Nama pengguna telah diambil",
+    "usernameHint": "3-30 aksara: huruf, nombor, garis bawah.",
+    "continueA11y": "Teruskan untuk menetapkan profil",
+    "cancelSignOut": "Batal dan log keluar",
+    "completeProfile": "Sila lengkapkan profil anda untuk meneruskan",
+    "imageFailed": "Tidak dapat menggunakan imej itu",
+    "usernameReserved": "Nama pengguna ini dikhaskan",
+    "profileSet": "Profil berjaya ditetapkan!",
+    "profileFailed": "Gagal menetapkan profil"
   }
 }

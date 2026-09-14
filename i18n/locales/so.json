@@ -3092,5 +3092,26 @@
     "deleteFolderBody": "Ma hubtaa inaad tirtirto \"{{name}}\"? Boostooyinka la kaydiyay ee gudaha lagama tirtiri doono liiskaaga la kaydiyay.",
     "folderDeleted": "Galka waa la tirtiray",
     "deleteFolderFailed": "Lama tirtiri karin galka"
+  },
+  "setProfile": {
+    "title": "Deji astaantaada",
+    "subtitle": "Dooro sida lagugu aqoonsan doono DeHub.\nMar dambe waad beddeli kartaa.",
+    "changePicture": "Beddel sawirka astaanta",
+    "addPicture": "Ku dar sawirka astaanta",
+    "tapToChange": "Taabo si aad u beddesho",
+    "addPhotoOptional": "Ku dar sawir (ikhtiyaari)",
+    "usernamePlaceholder": "@magacaisticmaalaha",
+    "displayNamePlaceholder": "Magaca la muujiyo",
+    "checking": "Waa la hubinayaa…",
+    "available": "Waa la heli karaa",
+    "usernameTaken": "Magaca isticmaalaha waa la qaatay",
+    "usernameHint": "3-30 xaraf: xarfo, tirooyin, hoos-xariiq.",
+    "continueA11y": "Sii wad si aad u dejiso astaanta",
+    "cancelSignOut": "Jooji oo ka bax",
+    "completeProfile": "Fadlan dhammaystir astaantaada si aad u sii wadato",
+    "imageFailed": "Sawirkaas lama isticmaali karin",
+    "usernameReserved": "Magacan isticmaale waa la kaydiyay",
+    "profileSet": "Astaanta si guul leh ayaa loo dejiyay!",
+    "profileFailed": "Lama dejin karin astaanta"
   }
 }

@@ -2867,5 +2867,26 @@
     "deleteFolderBody": "Tu piştrast î ku dixwazî \"{{name}}\" jê bibî? Postên tomarkirî yên hundir dê ji lîsteya te ya Tomarkirî neyên jêbirin.",
     "folderDeleted": "Peldank hat jêbirin",
     "deleteFolderFailed": "Peldank nehat jêbirin"
+  },
+  "setProfile": {
+    "title": "Profîla xwe saz bike",
+    "subtitle": "Hilbijêre ka tê li DeHub çawa were nasîn.\nTu dikarî paşê biguherînî.",
+    "changePicture": "Wêneyê profîlê biguherîne",
+    "addPicture": "Wêneyê profîlê zêde bike",
+    "tapToChange": "Ji bo guhertinê bitikîne",
+    "addPhotoOptional": "Wêne zêde bike (bijarî)",
+    "usernamePlaceholder": "@navêbikarhêner",
+    "displayNamePlaceholder": "Navê xuyabar",
+    "checking": "Tê kontrolkirin…",
+    "available": "Berdest e",
+    "usernameTaken": "Navê bikarhêner hatiye girtin",
+    "usernameHint": "3-30 tîp: tîp, hejmar, xeta jêrîn.",
+    "continueA11y": "Ji bo sazkirina profîlê bidomîne",
+    "cancelSignOut": "Betal bike û derkeve",
+    "completeProfile": "Ji bo berdewamiyê profîla xwe temam bike",
+    "imageFailed": "Ew wêne nehat bikaranîn",
+    "usernameReserved": "Ev navê bikarhêner veqetandî ye",
+    "profileSet": "Profîl bi serkeftî hat sazkirin!",
+    "profileFailed": "Profîl nehat sazkirin"
   }
 }

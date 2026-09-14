@@ -3169,5 +3169,26 @@
     "deleteFolderBody": "Na pewno chcesz usunąć \"{{name}}\"? Zapisane posty w środku nie zostaną usunięte z twojej listy zapisanych.",
     "folderDeleted": "Folder usunięty",
     "deleteFolderFailed": "Nie udało się usunąć folderu"
+  },
+  "setProfile": {
+    "title": "Skonfiguruj swój profil",
+    "subtitle": "Wybierz, jak będziesz znany na DeHub.\nMożesz to zmienić później.",
+    "changePicture": "Zmień zdjęcie profilowe",
+    "addPicture": "Dodaj zdjęcie profilowe",
+    "tapToChange": "Dotknij, aby zmienić",
+    "addPhotoOptional": "Dodaj zdjęcie (opcjonalnie)",
+    "usernamePlaceholder": "@nazwaużytkownika",
+    "displayNamePlaceholder": "Nazwa wyświetlana",
+    "checking": "Sprawdzanie…",
+    "available": "Dostępne",
+    "usernameTaken": "Nazwa użytkownika zajęta",
+    "usernameHint": "3-30 znaków: litery, cyfry, podkreślenie.",
+    "continueA11y": "Kontynuuj, aby ustawić profil",
+    "cancelSignOut": "Anuluj i wyloguj",
+    "completeProfile": "Uzupełnij profil, aby kontynuować",
+    "imageFailed": "Nie udało się użyć tego obrazu",
+    "usernameReserved": "Ta nazwa użytkownika jest zarezerwowana",
+    "profileSet": "Profil ustawiony pomyślnie!",
+    "profileFailed": "Nie udało się ustawić profilu"
   }
 }

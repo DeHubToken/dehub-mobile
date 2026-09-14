@@ -3097,5 +3097,26 @@
     "deleteFolderBody": "متأكد عايز تحذف \"{{name}}\"؟ البوستات المحفوظة جواه مش هتتحذف من قائمة المحفوظات بتاعتك.",
     "folderDeleted": "اتحذف المجلد",
     "deleteFolderFailed": "مقدرناش نحذف المجلد"
+  },
+  "setProfile": {
+    "title": "اعمل بروفايلك",
+    "subtitle": "اختار هيعرفوك إزاي على DeHub.\nتقدر تغيرها بعدين.",
+    "changePicture": "غيّر صورة البروفايل",
+    "addPicture": "ضيف صورة للبروفايل",
+    "tapToChange": "دوس عشان تغير",
+    "addPhotoOptional": "ضيف صورة (اختياري)",
+    "usernamePlaceholder": "@اسم_المستخدم",
+    "displayNamePlaceholder": "الاسم المعروض",
+    "checking": "بنتأكد…",
+    "available": "متاح",
+    "usernameTaken": "الاسم متاخد",
+    "usernameHint": "3-30 حرف: حروف، أرقام، شرطة سفلية.",
+    "continueA11y": "كمّل عشان تظبط البروفايل",
+    "cancelSignOut": "إلغاء وتسجيل خروج",
+    "completeProfile": "كمّل بروفايلك عشان تكمل",
+    "imageFailed": "مقدرناش نستخدم الصورة دي",
+    "usernameReserved": "الاسم ده محجوز",
+    "profileSet": "اتظبط البروفايل بنجاح!",
+    "profileFailed": "مقدرناش نظبط البروفايل"
   }
 }

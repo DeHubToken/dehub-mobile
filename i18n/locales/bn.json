@@ -3085,5 +3085,26 @@
     "deleteFolderBody": "আপনি কি \"{{name}}\" মুছতে চান? ভেতরের সংরক্ষিত পোস্টগুলো আপনার সংরক্ষিত তালিকা থেকে মুছবে না।",
     "folderDeleted": "ফোল্ডার মোছা হয়েছে",
     "deleteFolderFailed": "ফোল্ডার মোছা যায়নি"
+  },
+  "setProfile": {
+    "title": "আপনার প্রোফাইল সেট করুন",
+    "subtitle": "DeHub-এ আপনাকে কীভাবে চেনা হবে বেছে নিন।\nপরে বদলাতে পারবেন।",
+    "changePicture": "প্রোফাইল ছবি বদলান",
+    "addPicture": "প্রোফাইল ছবি যোগ করুন",
+    "tapToChange": "বদলাতে ট্যাপ করুন",
+    "addPhotoOptional": "ছবি যোগ করুন (ঐচ্ছিক)",
+    "usernamePlaceholder": "@ইউজারনেম",
+    "displayNamePlaceholder": "প্রদর্শিত নাম",
+    "checking": "যাচাই করা হচ্ছে…",
+    "available": "উপলব্ধ",
+    "usernameTaken": "ইউজারনেম নেওয়া হয়ে গেছে",
+    "usernameHint": "৩-৩০ অক্ষর: বর্ণ, সংখ্যা, আন্ডারস্কোর।",
+    "continueA11y": "প্রোফাইল সেট করতে এগিয়ে যান",
+    "cancelSignOut": "বাতিল করে সাইন আউট",
+    "completeProfile": "চালিয়ে যেতে আপনার প্রোফাইল সম্পূর্ণ করুন",
+    "imageFailed": "সেই ছবিটি ব্যবহার করা যায়নি",
+    "usernameReserved": "এই ইউজারনেম সংরক্ষিত",
+    "profileSet": "প্রোফাইল সফলভাবে সেট হয়েছে!",
+    "profileFailed": "প্রোফাইল সেট করা যায়নি"
   }
 }

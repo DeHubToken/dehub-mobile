@@ -3093,5 +3093,26 @@
     "deleteFolderBody": "શું તમે ખરેખર \"{{name}}\" કાઢી નાખવા માંગો છો? અંદરની સાચવેલી પોસ્ટ તમારી સાચવેલી યાદીમાંથી કાઢી નહીં નાખવામાં આવે.",
     "folderDeleted": "ફોલ્ડર કાઢી નાખ્યું",
     "deleteFolderFailed": "ફોલ્ડર કાઢી શકાયું નહીં"
+  },
+  "setProfile": {
+    "title": "તમારી પ્રોફાઇલ સેટ કરો",
+    "subtitle": "DeHub પર તમને કેવી રીતે ઓળખવામાં આવે તે પસંદ કરો.\nપછીથી બદલી શકો છો.",
+    "changePicture": "પ્રોફાઇલ ફોટો બદલો",
+    "addPicture": "પ્રોફાઇલ ફોટો ઉમેરો",
+    "tapToChange": "બદલવા ટૅપ કરો",
+    "addPhotoOptional": "ફોટો ઉમેરો (વૈકલ્પિક)",
+    "usernamePlaceholder": "@વપરાશકર્તાનામ",
+    "displayNamePlaceholder": "દેખાતું નામ",
+    "checking": "તપાસ થઈ રહી છે…",
+    "available": "ઉપલબ્ધ",
+    "usernameTaken": "વપરાશકર્તા નામ લેવાઈ ગયું",
+    "usernameHint": "3-30 અક્ષર: અક્ષરો, અંકો, અંડરસ્કોર.",
+    "continueA11y": "પ્રોફાઇલ સેટ કરવા ચાલુ રાખો",
+    "cancelSignOut": "રદ કરો અને સાઇન આઉટ",
+    "completeProfile": "ચાલુ રાખવા તમારી પ્રોફાઇલ પૂર્ણ કરો",
+    "imageFailed": "તે છબી વાપરી શકાઈ નહીં",
+    "usernameReserved": "આ વપરાશકર્તા નામ અનામત છે",
+    "profileSet": "પ્રોફાઇલ સફળતાપૂર્વક સેટ થઈ!",
+    "profileFailed": "પ્રોફાઇલ સેટ થઈ શકી નહીં"
   }
 }

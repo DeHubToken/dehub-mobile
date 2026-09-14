@@ -3163,5 +3163,26 @@
     "deleteFolderBody": "\"{{name}}\" silinsin mi? İçindeki kaydedilmiş gönderiler Kaydedilenler listenden silinmez.",
     "folderDeleted": "Klasör silindi",
     "deleteFolderFailed": "Klasör silinemedi"
+  },
+  "setProfile": {
+    "title": "Profilini oluştur",
+    "subtitle": "DeHub'da nasıl tanınacağını seç.\nSonra değiştirebilirsin.",
+    "changePicture": "Profil fotoğrafını değiştir",
+    "addPicture": "Profil fotoğrafı ekle",
+    "tapToChange": "Değiştirmek için dokun",
+    "addPhotoOptional": "Fotoğraf ekle (isteğe bağlı)",
+    "usernamePlaceholder": "@kullaniciadi",
+    "displayNamePlaceholder": "Görünen ad",
+    "checking": "Kontrol ediliyor…",
+    "available": "Uygun",
+    "usernameTaken": "Kullanıcı adı alınmış",
+    "usernameHint": "3-30 karakter: harf, rakam, alt çizgi.",
+    "continueA11y": "Profili oluşturmaya devam et",
+    "cancelSignOut": "İptal et ve çıkış yap",
+    "completeProfile": "Devam etmek için profilini tamamla",
+    "imageFailed": "Bu görsel kullanılamadı",
+    "usernameReserved": "Bu kullanıcı adı ayrılmış",
+    "profileSet": "Profil başarıyla oluşturuldu!",
+    "profileFailed": "Profil oluşturulamadı"
   }
 }

@@ -3066,5 +3066,26 @@
     "deleteFolderBody": "ብርግጽ ን\"{{name}}\" ክትሰርዞ ትደሊ? እቶም ኣብ ውሽጡ ዝተዓቀቡ ጽሑፋት ካብ ዝርዝር ዝተዓቀቡ ኣይክስረዙን።",
     "folderDeleted": "ፎልደር ተሰሪዙ",
     "deleteFolderFailed": "ፎልደር ክስረዝ ኣይከኣለን"
+  },
+  "setProfile": {
+    "title": "መለለዪኻ ኣቐምጥ",
+    "subtitle": "ኣብ DeHub ከመይ ከም እትፍለጥ ምረጽ።\nጸኒሕካ ክትቅይሮ ትኽእል።",
+    "changePicture": "ስእሊ መለለዪ ቀይር",
+    "addPicture": "ስእሊ መለለዪ ወስኽ",
+    "tapToChange": "ንምቕያር ጠውቕ",
+    "addPhotoOptional": "ስእሊ ወስኽ (ኣማራጺ)",
+    "usernamePlaceholder": "@ስምተጠቃሚ",
+    "displayNamePlaceholder": "ዝረአ ስም",
+    "checking": "ይምርመር ኣሎ…",
+    "available": "ይርከብ",
+    "usernameTaken": "ስም ተጠቃሚ ተታሒዙ",
+    "usernameHint": "3-30 ፊደላት፡ ፊደላት፣ ቁጽርታት፣ ትሕቲ መስመር።",
+    "continueA11y": "መለለዪ ንምቕማጥ ቀጽል",
+    "cancelSignOut": "ሰርዝን ውጻእን",
+    "completeProfile": "ንምቕጻል መለለዪኻ ኣማልእ",
+    "imageFailed": "እቲ ስእሊ ክንጥቀመሉ ኣይከኣልናን",
+    "usernameReserved": "እዚ ስም ተጠቃሚ ተሓዚኡ እዩ",
+    "profileSet": "መለለዪ ብዓወት ተቐሚጡ!",
+    "profileFailed": "መለለዪ ክቕመጥ ኣይከኣለን"
   }
 }

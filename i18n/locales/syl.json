@@ -3248,5 +3248,26 @@
     "deleteFolderBody": "তুমি কিতা সত্যিই \"{{name}}\" মুছতে চাও? ভিতরর সেভ করা পোস্টগুলা তোমার সেভ তালিকা থাকি মুছতো না।",
     "folderDeleted": "ফোল্ডার মুছা অইছে",
     "deleteFolderFailed": "ফোল্ডার মুছা গেল না"
+  },
+  "setProfile": {
+    "title": "তোমার প্রোফাইল সেট করো",
+    "subtitle": "DeHub-ও তোমারে কিলা চিনবো বাছো।\nপরে বদলাইতে পারবায়।",
+    "changePicture": "প্রোফাইল ছবি বদলাও",
+    "addPicture": "প্রোফাইল ছবি যোগ করো",
+    "tapToChange": "বদলাইতে ট্যাপ করো",
+    "addPhotoOptional": "ছবি যোগ করো (ঐচ্ছিক)",
+    "usernamePlaceholder": "@ইউজারনেম",
+    "displayNamePlaceholder": "দেখার নাম",
+    "checking": "যাচাই অর…",
+    "available": "পাওয়া যায়",
+    "usernameTaken": "ইউজারনেম লওয়া অইগেছে",
+    "usernameHint": "৩-৩০ অক্ষর: অক্ষর, সংখ্যা, আন্ডারস্কোর।",
+    "continueA11y": "প্রোফাইল সেট করতে আগে বাড়ো",
+    "cancelSignOut": "বাতিল করি সাইন আউট",
+    "completeProfile": "আগে বাড়তে তোমার প্রোফাইল পূর্ণ করো",
+    "imageFailed": "ঐ ছবি ব্যবহার করা গেল না",
+    "usernameReserved": "এই ইউজারনেম সংরক্ষিত",
+    "profileSet": "প্রোফাইল সফলভাবে সেট অইছে!",
+    "profileFailed": "প্রোফাইল সেট করা গেল না"
   }
 }

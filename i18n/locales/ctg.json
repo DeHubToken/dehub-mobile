@@ -3194,5 +3194,26 @@
     "deleteFolderBody": "অনে কি \"{{name}}\" মুছিতে চান? ভিতরর সেভ করা পোস্টগুন অনর সেভ তালিকার তুন মুছিব ন।",
     "folderDeleted": "ফোল্ডার মুছা অইছে",
     "deleteFolderFailed": "ফোল্ডার মুছা ন যায়"
+  },
+  "setProfile": {
+    "title": "অনর প্রোফাইল সেট গরন",
+    "subtitle": "DeHub-ত অনরে কেনে চিনিব বাছন।\nপরে বদলাইত পারিবেন।",
+    "changePicture": "প্রোফাইল ছবি বদলন",
+    "addPicture": "প্রোফাইল ছবি যোগ গরন",
+    "tapToChange": "বদলাইতে ট্যাপ গরন",
+    "addPhotoOptional": "ছবি যোগ গরন (ঐচ্ছিক)",
+    "usernamePlaceholder": "@ইউজারনেম",
+    "displayNamePlaceholder": "দেখার নাম",
+    "checking": "যাচাই অর…",
+    "available": "পাওয়া যায়",
+    "usernameTaken": "ইউজারনেম লওয়া অইগেছে",
+    "usernameHint": "৩-৩০ অক্ষর: অক্ষর, সংখ্যা, আন্ডারস্কোর।",
+    "continueA11y": "প্রোফাইল সেট গরিতে আগাই যন",
+    "cancelSignOut": "বাতিল গরি সাইন আউট",
+    "completeProfile": "আগাইতে অনর প্রোফাইল পূর্ণ গরন",
+    "imageFailed": "ঐ ছবি ব্যবহার গরা ন যায়",
+    "usernameReserved": "এই ইউজারনেম সংরক্ষিত",
+    "profileSet": "প্রোফাইল সফলভাবে সেট অইছে!",
+    "profileFailed": "প্রোফাইল সেট গরা ন যায়"
   }
 }

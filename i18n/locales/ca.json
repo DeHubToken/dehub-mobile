@@ -3101,5 +3101,26 @@
     "deleteFolderBody": "Segur que vols eliminar \"{{name}}\"? Les publicacions desades a dins no s'eliminaran de la teva llista de desats.",
     "folderDeleted": "Carpeta eliminada",
     "deleteFolderFailed": "No s'ha pogut eliminar la carpeta"
+  },
+  "setProfile": {
+    "title": "Configura el teu perfil",
+    "subtitle": "Tria com se't coneixerà a DeHub.\nHo pots canviar més tard.",
+    "changePicture": "Canvia la foto de perfil",
+    "addPicture": "Afegeix una foto de perfil",
+    "tapToChange": "Toca per canviar",
+    "addPhotoOptional": "Afegeix una foto (opcional)",
+    "usernamePlaceholder": "@nomusuari",
+    "displayNamePlaceholder": "Nom visible",
+    "checking": "Comprovant…",
+    "available": "Disponible",
+    "usernameTaken": "Nom d'usuari ocupat",
+    "usernameHint": "3-30 caràcters: lletres, números, guió baix.",
+    "continueA11y": "Continua per configurar el perfil",
+    "cancelSignOut": "Cancel·la i tanca la sessió",
+    "completeProfile": "Completa el teu perfil per continuar",
+    "imageFailed": "No s'ha pogut utilitzar aquesta imatge",
+    "usernameReserved": "Aquest nom d'usuari està reservat",
+    "profileSet": "Perfil configurat correctament!",
+    "profileFailed": "No s'ha pogut configurar el perfil"
   }
 }

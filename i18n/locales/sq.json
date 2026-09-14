@@ -3100,5 +3100,26 @@
     "deleteFolderBody": "Je i sigurt që do të fshish \"{{name}}\"? Postimet e ruajtura brenda nuk do të fshihen nga lista jote e të ruajturave.",
     "folderDeleted": "Dosja u fshi",
     "deleteFolderFailed": "Dosja nuk u fshi dot"
+  },
+  "setProfile": {
+    "title": "Vendos profilin tënd",
+    "subtitle": "Zgjidh si do të njihesh në DeHub.\nMund t'i ndryshosh më vonë.",
+    "changePicture": "Ndrysho foton e profilit",
+    "addPicture": "Shto një foto profili",
+    "tapToChange": "Prek për të ndryshuar",
+    "addPhotoOptional": "Shto një foto (opsionale)",
+    "usernamePlaceholder": "@emripërdoruesit",
+    "displayNamePlaceholder": "Emri i shfaqur",
+    "checking": "Po kontrollohet…",
+    "available": "I disponueshëm",
+    "usernameTaken": "Emri i përdoruesit është i zënë",
+    "usernameHint": "3-30 karaktere: shkronja, numra, nënvijë.",
+    "continueA11y": "Vazhdo për të vendosur profilin",
+    "cancelSignOut": "Anulo dhe dil",
+    "completeProfile": "Plotëso profilin tënd për të vazhduar",
+    "imageFailed": "Ajo imazh nuk u përdor dot",
+    "usernameReserved": "Ky emër përdoruesi është i rezervuar",
+    "profileSet": "Profili u vendos me sukses!",
+    "profileFailed": "Profili nuk u vendos dot"
   }
 }

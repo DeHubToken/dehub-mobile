@@ -3100,5 +3100,26 @@
     "deleteFolderBody": "Vai tiešām vēlies dzēst \"{{name}}\"? Iekšā saglabātās ziņas netiks dzēstas no tava saglabāto saraksta.",
     "folderDeleted": "Mape dzēsta",
     "deleteFolderFailed": "Neizdevās dzēst mapi"
+  },
+  "setProfile": {
+    "title": "Iestati savu profilu",
+    "subtitle": "Izvēlies, kā tevi pazīs DeHub.\nVēlāk to var mainīt.",
+    "changePicture": "Mainīt profila attēlu",
+    "addPicture": "Pievienot profila attēlu",
+    "tapToChange": "Pieskaries, lai mainītu",
+    "addPhotoOptional": "Pievienot fotoattēlu (neobligāti)",
+    "usernamePlaceholder": "@lietotājvārds",
+    "displayNamePlaceholder": "Attēlojamais vārds",
+    "checking": "Pārbauda…",
+    "available": "Pieejams",
+    "usernameTaken": "Lietotājvārds ir aizņemts",
+    "usernameHint": "3-30 rakstzīmes: burti, cipari, pasvītrojums.",
+    "continueA11y": "Turpināt profila iestatīšanu",
+    "cancelSignOut": "Atcelt un izrakstīties",
+    "completeProfile": "Lai turpinātu, pabeidz savu profilu",
+    "imageFailed": "Neizdevās izmantot šo attēlu",
+    "usernameReserved": "Šis lietotājvārds ir rezervēts",
+    "profileSet": "Profils veiksmīgi iestatīts!",
+    "profileFailed": "Neizdevās iestatīt profilu"
   }
 }

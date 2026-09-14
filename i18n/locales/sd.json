@@ -3084,5 +3084,26 @@
     "deleteFolderBody": "ڇا توهان پڪ سان \"{{name}}\" ڊاهڻ چاهيو ٿا؟ اندر محفوظ پوسٽون توهان جي محفوظ فهرست مان نه ڊهنديون.",
     "folderDeleted": "فولڊر ڊهي ويو",
     "deleteFolderFailed": "فولڊر ڊاهي نه سگهيو"
+  },
+  "setProfile": {
+    "title": "پنهنجو پروفائل مقرر ڪريو",
+    "subtitle": "چونڊيو ته DeHub تي توهان کي ڪيئن سڃاتو ويندو.\nپوءِ تبديل ڪري سگهو ٿا.",
+    "changePicture": "پروفائل تصوير بدلايو",
+    "addPicture": "پروفائل تصوير شامل ڪريو",
+    "tapToChange": "بدلائڻ لاءِ ٽيپ ڪريو",
+    "addPhotoOptional": "تصوير شامل ڪريو (اختياري)",
+    "usernamePlaceholder": "@يوزرنيم",
+    "displayNamePlaceholder": "ڏيکاريل نالو",
+    "checking": "چيڪ ٿي رهيو آهي…",
+    "available": "دستياب",
+    "usernameTaken": "يوزرنيم ورتو ويو آهي",
+    "usernameHint": "3-30 اکر: اکر، انگ، انڊر اسڪور.",
+    "continueA11y": "پروفائل مقرر ڪرڻ لاءِ جاري رکو",
+    "cancelSignOut": "منسوخ ڪريو ۽ سائن آئوٽ",
+    "completeProfile": "جاري رکڻ لاءِ پنهنجو پروفائل مڪمل ڪريو",
+    "imageFailed": "اها تصوير استعمال نه ٿي سگهي",
+    "usernameReserved": "هي يوزرنيم محفوظ آهي",
+    "profileSet": "پروفائل ڪاميابيءَ سان مقرر ٿيو!",
+    "profileFailed": "پروفائل مقرر نه ٿي سگهيو"
   }
 }

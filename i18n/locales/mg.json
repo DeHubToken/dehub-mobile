@@ -3180,5 +3180,26 @@
     "deleteFolderBody": "Tena tianao hofafana ve \"{{name}}\"? Ny lahatsoratra voatahiry ao anatiny dia tsy hofafana amin'ny lisitry ny voatahirinao.",
     "folderDeleted": "Voafafa ny lahatahiry",
     "deleteFolderFailed": "Tsy voafafa ny lahatahiry"
+  },
+  "setProfile": {
+    "title": "Amboary ny mombamomba anao",
+    "subtitle": "Fidio ny fomba hahafantarana anao ao amin'ny DeHub.\nAzonao ovaina any aoriana.",
+    "changePicture": "Ovay ny sarin'ny mombamomba",
+    "addPicture": "Manampia sarin'ny mombamomba",
+    "tapToChange": "Tsindrio hanovana",
+    "addPhotoOptional": "Manampia sary (tsy voatery)",
+    "usernamePlaceholder": "@anaranampiasa",
+    "displayNamePlaceholder": "Anarana aseho",
+    "checking": "Manamarina…",
+    "available": "Misy",
+    "usernameTaken": "Efa misy mampiasa io anarana io",
+    "usernameHint": "Tarehintsoratra 3-30: litera, isa, tsipika ambany.",
+    "continueA11y": "Tohizo mba hametraka ny mombamomba",
+    "cancelSignOut": "Foano ary mivoaha",
+    "completeProfile": "Fenoy ny mombamomba anao mba hanohizana",
+    "imageFailed": "Tsy azo nampiasaina io sary io",
+    "usernameReserved": "Voatokana io anaran'ny mpampiasa io",
+    "profileSet": "Voapetraka soa aman-tsara ny mombamomba!",
+    "profileFailed": "Tsy voapetraka ny mombamomba"
   }
 }

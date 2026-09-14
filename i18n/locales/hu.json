@@ -3105,5 +3105,26 @@
     "deleteFolderBody": "Biztosan törlöd a(z) \"{{name}}\" mappát? A benne mentett bejegyzések nem törlődnek a Mentettek listádról.",
     "folderDeleted": "Mappa törölve",
     "deleteFolderFailed": "A mappa törlése sikertelen"
+  },
+  "setProfile": {
+    "title": "Állítsd be a profilodat",
+    "subtitle": "Válaszd ki, hogyan ismerjenek a DeHubon.\nKésőbb módosíthatod.",
+    "changePicture": "Profilkép módosítása",
+    "addPicture": "Profilkép hozzáadása",
+    "tapToChange": "Koppints a módosításhoz",
+    "addPhotoOptional": "Fotó hozzáadása (nem kötelező)",
+    "usernamePlaceholder": "@felhasználónév",
+    "displayNamePlaceholder": "Megjelenített név",
+    "checking": "Ellenőrzés…",
+    "available": "Elérhető",
+    "usernameTaken": "A felhasználónév foglalt",
+    "usernameHint": "3-30 karakter: betűk, számok, alulvonás.",
+    "continueA11y": "Tovább a profil beállításához",
+    "cancelSignOut": "Mégse és kijelentkezés",
+    "completeProfile": "A folytatáshoz töltsd ki a profilodat",
+    "imageFailed": "Ez a kép nem használható",
+    "usernameReserved": "Ez a felhasználónév foglalt",
+    "profileSet": "Profil sikeresen beállítva!",
+    "profileFailed": "A profil beállítása sikertelen"
   }
 }

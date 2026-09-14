@@ -3156,5 +3156,26 @@
     "deleteFolderBody": "هل تريد حذف \"{{name}}\"؟ لن تُحذف المنشورات المحفوظة بداخله من قائمة محفوظاتك.",
     "folderDeleted": "تم حذف المجلد",
     "deleteFolderFailed": "تعذّر حذف المجلد"
+  },
+  "setProfile": {
+    "title": "أعدّ ملفك الشخصي",
+    "subtitle": "اختر كيف ستُعرف على DeHub.\nيمكنك تغييرها لاحقًا.",
+    "changePicture": "تغيير صورة الملف الشخصي",
+    "addPicture": "أضف صورة للملف الشخصي",
+    "tapToChange": "انقر للتغيير",
+    "addPhotoOptional": "أضف صورة (اختياري)",
+    "usernamePlaceholder": "@اسم_المستخدم",
+    "displayNamePlaceholder": "الاسم المعروض",
+    "checking": "جارٍ التحقق…",
+    "available": "متاح",
+    "usernameTaken": "اسم المستخدم مأخوذ",
+    "usernameHint": "من 3 إلى 30 حرفًا: حروف وأرقام وشرطة سفلية.",
+    "continueA11y": "متابعة لإعداد الملف الشخصي",
+    "cancelSignOut": "إلغاء وتسجيل الخروج",
+    "completeProfile": "أكمل ملفك الشخصي للمتابعة",
+    "imageFailed": "تعذّر استخدام هذه الصورة",
+    "usernameReserved": "اسم المستخدم هذا محجوز",
+    "profileSet": "تم إعداد ملفك الشخصي بنجاح!",
+    "profileFailed": "تعذّر إعداد الملف الشخصي"
   }
 }

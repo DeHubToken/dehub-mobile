@@ -3059,5 +3059,26 @@
     "deleteFolderBody": "متأكد تريد تحذف \"{{name}}\"؟ المنشورات المحفوظة بداخله ما راح تنحذف من قائمة المحفوظات مالتك.",
     "folderDeleted": "انحذف المجلد",
     "deleteFolderFailed": "ما گدرنا نحذف المجلد"
+  },
+  "setProfile": {
+    "title": "سوّي ملفك الشخصي",
+    "subtitle": "اختار شلون راح يعرفونك بـ DeHub.\nتگدر تغيرها بعدين.",
+    "changePicture": "غيّر صورة الملف",
+    "addPicture": "ضيف صورة للملف",
+    "tapToChange": "دوس حتى تغير",
+    "addPhotoOptional": "ضيف صورة (اختياري)",
+    "usernamePlaceholder": "@اسم_المستخدم",
+    "displayNamePlaceholder": "الاسم المعروض",
+    "checking": "دنتحقق…",
+    "available": "متوفر",
+    "usernameTaken": "الاسم مأخوذ",
+    "usernameHint": "3-30 حرف: حروف، أرقام، شرطة سفلية.",
+    "continueA11y": "كمّل لضبط الملف الشخصي",
+    "cancelSignOut": "إلغاء وتسجيل خروج",
+    "completeProfile": "كمّل ملفك الشخصي حتى تكدر تكمل",
+    "imageFailed": "ما گدرنا نستخدم هذي الصورة",
+    "usernameReserved": "هذا الاسم محجوز",
+    "profileSet": "انضبط الملف الشخصي بنجاح!",
+    "profileFailed": "ما گدرنا نضبط الملف الشخصي"
   }
 }

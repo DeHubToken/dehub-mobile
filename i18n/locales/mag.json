@@ -3054,5 +3054,26 @@
     "deleteFolderBody": "की अहाँ सचमुच \"{{name}}\" मिटाबय चाहैत छी? भीतर सेव कएल पोस्ट अहाँक सेव सूची सँ नै मिटत।",
     "folderDeleted": "फोल्डर मिटि गेल",
     "deleteFolderFailed": "फोल्डर नै मिटल गेल"
+  },
+  "setProfile": {
+    "title": "अपन प्रोफाइल बनाउ",
+    "subtitle": "चुनू कि DeHub पर अहाँ के कोना जानल जाएत।\nबाद में बदलि सकैत छी।",
+    "changePicture": "प्रोफाइल फोटो बदलू",
+    "addPicture": "प्रोफाइल फोटो जोड़ू",
+    "tapToChange": "बदलय लेल टैप करू",
+    "addPhotoOptional": "फोटो जोड़ू (वैकल्पिक)",
+    "usernamePlaceholder": "@यूजरनेम",
+    "displayNamePlaceholder": "देखाबय वाला नाम",
+    "checking": "जाँच भ रहल अछि…",
+    "available": "उपलब्ध",
+    "usernameTaken": "यूजरनेम पहिने लेल गेल अछि",
+    "usernameHint": "3-30 अक्षर: अक्षर, अंक, अंडरस्कोर।",
+    "continueA11y": "प्रोफाइल बनाबय लेल आगू बढ़ू",
+    "cancelSignOut": "रद्द करू आ साइन आउट",
+    "completeProfile": "आगू बढ़य लेल अपन प्रोफाइल पूरा करू",
+    "imageFailed": "ऊ छवि प्रयोग नै भ सकल",
+    "usernameReserved": "ई यूजरनेम आरक्षित अछि",
+    "profileSet": "प्रोफाइल सफलतापूर्वक बनि गेल!",
+    "profileFailed": "प्रोफाइल नै बनि सकल"
   }
 }

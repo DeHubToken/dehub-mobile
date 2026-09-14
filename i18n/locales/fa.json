@@ -3114,5 +3114,26 @@
     "deleteFolderBody": "مطمئنید می‌خواهید \"{{name}}\" را حذف کنید؟ پست‌های ذخیره‌شده داخل آن از فهرست ذخیره‌شده‌های شما حذف نمی‌شوند.",
     "folderDeleted": "پوشه حذف شد",
     "deleteFolderFailed": "حذف پوشه ناموفق بود"
+  },
+  "setProfile": {
+    "title": "پروفایل خود را تنظیم کنید",
+    "subtitle": "انتخاب کنید در DeHub چگونه شناخته شوید.\nبعداً می‌توانید تغییر دهید.",
+    "changePicture": "تغییر عکس پروفایل",
+    "addPicture": "افزودن عکس پروفایل",
+    "tapToChange": "برای تغییر ضربه بزنید",
+    "addPhotoOptional": "افزودن عکس (اختیاری)",
+    "usernamePlaceholder": "@نام‌کاربری",
+    "displayNamePlaceholder": "نام نمایشی",
+    "checking": "در حال بررسی…",
+    "available": "در دسترس",
+    "usernameTaken": "این نام کاربری گرفته شده",
+    "usernameHint": "۳ تا ۳۰ نویسه: حروف، اعداد، زیرخط.",
+    "continueA11y": "برای تنظیم پروفایل ادامه دهید",
+    "cancelSignOut": "لغو و خروج",
+    "completeProfile": "برای ادامه، پروفایل خود را کامل کنید",
+    "imageFailed": "استفاده از آن تصویر ممکن نشد",
+    "usernameReserved": "این نام کاربری رزرو شده است",
+    "profileSet": "پروفایل با موفقیت تنظیم شد!",
+    "profileFailed": "تنظیم پروفایل ناموفق بود"
   }
 }

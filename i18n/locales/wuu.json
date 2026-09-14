@@ -3052,5 +3052,26 @@
     "deleteFolderBody": "确定要删除 \"{{name}}\" 吗？里面已保存的帖子不会从你的收藏列表中删除。",
     "folderDeleted": "文件夹已删除",
     "deleteFolderFailed": "无法删除文件夹"
+  },
+  "setProfile": {
+    "title": "设置你的资料",
+    "subtitle": "选择你在 DeHub 上的身份标识。\n之后可以更改。",
+    "changePicture": "更换头像",
+    "addPicture": "添加头像",
+    "tapToChange": "点按更换",
+    "addPhotoOptional": "添加照片（可选）",
+    "usernamePlaceholder": "@用户名",
+    "displayNamePlaceholder": "显示名称",
+    "checking": "检查中…",
+    "available": "可用",
+    "usernameTaken": "用户名已被占用",
+    "usernameHint": "3-30 个字符：字母、数字、下划线。",
+    "continueA11y": "继续设置资料",
+    "cancelSignOut": "取消并登出",
+    "completeProfile": "请先完善资料再继续",
+    "imageFailed": "无法使用该图片",
+    "usernameReserved": "该用户名为保留名",
+    "profileSet": "资料设置成功！",
+    "profileFailed": "无法设置资料"
   }
 }
