@@ -12,8 +12,6 @@ import {
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "expo-linear-gradient";
 import { icons } from "lucide-react-native";
-import { Image as ExpoImage } from "expo-image";
-import { lucideSvgUri } from "../../libs/iconSvg";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -108,28 +106,7 @@ const Icon: React.FC<IconProps> = ({
       />
     </MaskedView>
   ) : (
-    // Android draws each icon as a cached image: one native view, decoded
-    // once, instead of a four-to-six view SVG tree rasterised on every card
-    // mount. See libs/iconSvg for the measurements. Falls back to the live
-    // component for any icon the converter cannot express.
-    (Platform.OS === "android" &&
-      (() => {
-        const uri = lucideSvgUri(name, LucideIcon, {
-          color,
-          strokeWidth,
-          fill: fill || "none",
-        });
-        return uri ? (
-          <ExpoImage
-            source={{ uri }}
-            style={{ width: size, height: size }}
-            contentFit="contain"
-            cachePolicy="memory"
-          />
-        ) : null;
-      })()) || (
-      <LucideIcon size={size} color={color} strokeWidth={strokeWidth} fill={fill || "none"} />
-    )
+    <LucideIcon size={size} color={color} strokeWidth={strokeWidth} fill={fill || "none"} />
   );
 
   const isInteractive = !!(tooltip || onPress || onLongPress);
