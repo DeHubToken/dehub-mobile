@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
-import { View, Text, FlatList, TouchableOpacity, TextInput } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, TextInput, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Avatar from "../common/Avatar";
 import GlassModal from "../ui/GlassModal";
-import { getAvatarUrl } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import type { DmConversation, DmUser, ID } from "../../services/dm/dm.types";
 import { getOtherParticipant } from "../../services/dm/dm.types";
 
@@ -51,6 +51,7 @@ const ForwardPickerModalComponent: React.FC<ForwardPickerModalProps> = ({
       const other = getOtherParticipant(item, myUserId, myAddress);
       const name = other?.displayName || other?.username || "Unknown";
       const avatar = getAvatarUrl(other?.avatarImageUrl);
+      const badgeImg = getBadgeUrlFor(other as any);
       return (
         <TouchableOpacity
           onPress={() => handleSelect(item._id)}
@@ -64,9 +65,16 @@ const ForwardPickerModalComponent: React.FC<ForwardPickerModalProps> = ({
             size={40}
             name={name}
           />
-          <Text className="flex-1 text-[15px] text-white font-medium" numberOfLines={1}>
-            {name}
-          </Text>
+          {/* Name and badge share a row of their own — the outer row's 12px gap
+              is meant for the icon at the end, not for the badge. */}
+          <View className="flex-1 flex-row items-center" style={{ gap: 4, minWidth: 0 }}>
+            <Text className="text-[15px] text-white font-medium" numberOfLines={1} style={{ flexShrink: 1 }}>
+              {name}
+            </Text>
+            {badgeImg ? (
+              <Image source={badgeImg} style={{ width: 15, height: 15 }} resizeMode="contain" />
+            ) : null}
+          </View>
           <Ionicons name="arrow-redo" size={18} color="#A6A9AC" />
         </TouchableOpacity>
       );

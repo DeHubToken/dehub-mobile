@@ -8,6 +8,7 @@ import React, {
 import {
   ActivityIndicator,
   FlatList,
+  Image,
   Keyboard,
   Text,
   TextInput,
@@ -19,7 +20,7 @@ import { User } from "../../context/AuthContext";
 import { usersSearch } from "../../services/user.service";
 import { useDebounceCallback } from "../../hooks/useDebounceCallback";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
 import GlassModal from "../ui/GlassModal";
 import { useDM } from "../../hooks/useDM";
@@ -41,6 +42,7 @@ const ResultRow: React.FC<ResultRowProps> = ({ item, onPress, inContacts }) => {
   const subtitle = (item as any).username
     ? `@${(item as any).username}`
     : truncateAddress(addr);
+  const badgeImg = getBadgeUrlFor(item as any);
   const handlePress = useCallback(() => onPress(item), [onPress, item]);
   return (
     <TouchableOpacity
@@ -50,9 +52,14 @@ const ResultRow: React.FC<ResultRowProps> = ({ item, onPress, inContacts }) => {
     >
       <Avatar uri={getAvatarUrl((item as any).avatarImageUrl)} size={44} name={display} />
       <View className="ml-3 flex-1">
-        <Text className="text-white text-[15px] font-medium" numberOfLines={1}>
-          {display}
-        </Text>
+        <View className="flex-row items-center" style={{ gap: 4 }}>
+          <Text className="text-white text-[15px] font-medium" numberOfLines={1} style={{ flexShrink: 1 }}>
+            {display}
+          </Text>
+          {badgeImg ? (
+            <Image source={badgeImg} style={{ width: 15, height: 15 }} resizeMode="contain" />
+          ) : null}
+        </View>
         <Text className="text-theme-neutrals-400 text-[12px] mt-0.5" numberOfLines={1}>
           {subtitle}
         </Text>
@@ -303,6 +310,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
                   const subtitle = (item as any)?.username
                     ? `@${(item as any).username}`
                     : truncateAddress(addr);
+                  const badgeImg = getBadgeUrlFor(item as any);
                   const onPress = () => startDMWith(item as User);
                   return (
                     <TouchableOpacity
@@ -317,12 +325,22 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
                         name={display}
                       />
                       <View className="ml-3 flex-1">
-                        <Text
-                          className="text-white text-[15px] font-medium"
-                          numberOfLines={1}
-                        >
-                          {display}
-                        </Text>
+                        <View className="flex-row items-center" style={{ gap: 4 }}>
+                          <Text
+                            className="text-white text-[15px] font-medium"
+                            numberOfLines={1}
+                            style={{ flexShrink: 1 }}
+                          >
+                            {display}
+                          </Text>
+                          {badgeImg ? (
+                            <Image
+                              source={badgeImg}
+                              style={{ width: 15, height: 15 }}
+                              resizeMode="contain"
+                            />
+                          ) : null}
+                        </View>
                         <Text
                           className="text-theme-neutrals-400 text-[12px] mt-0.5"
                           numberOfLines={1}

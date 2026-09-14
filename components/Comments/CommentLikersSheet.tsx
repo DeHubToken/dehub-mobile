@@ -22,6 +22,7 @@ import {
   Pressable,
   FlatList,
   ActivityIndicator,
+  Image,
   Dimensions,
   StyleSheet,
 } from "react-native";
@@ -38,7 +39,7 @@ import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { getCommentLikers, type CommentLiker } from "../../services/nft.service";
-import { getAvatarUrl } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
@@ -54,6 +55,7 @@ interface CommentLikersSheetProps {
 const PersonRow: React.FC<{ item: CommentLiker; onPress: (address: string) => void }> = memo(
   ({ item, onPress }) => {
     const displayName = item.displayName || item.username || truncate(item.address, 12, "..");
+    const badgeImg = item.hideBadgeAndBalance ? undefined : getBadgeUrlFor(item);
     const handlePress = useCallback(() => onPress(item.address), [onPress, item.address]);
 
     return (
@@ -63,9 +65,18 @@ const PersonRow: React.FC<{ item: CommentLiker; onPress: (address: string) => vo
       >
         <Avatar uri={getAvatarUrl(item.avatarImageUrl || "")} size={38} name={displayName} />
         <View style={{ flex: 1, marginLeft: 12 }}>
-          <Text style={{ color: "#F9FBFF", fontWeight: "600", fontSize: 14 }} numberOfLines={1}>
-            {displayName}
-          </Text>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Text style={{ color: "#F9FBFF", fontWeight: "600", fontSize: 14 }} numberOfLines={1}>
+              {displayName}
+            </Text>
+            {badgeImg ? (
+              <Image
+                source={badgeImg}
+                style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
+                resizeMode="contain"
+              />
+            ) : null}
+          </View>
           {!!item.username && (
             <Text style={{ color: "#8B8D90", fontSize: 13, marginTop: 1 }} numberOfLines={1}>
               @{item.username}

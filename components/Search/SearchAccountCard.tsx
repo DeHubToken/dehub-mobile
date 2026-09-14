@@ -1,9 +1,10 @@
 import React, { FC, useCallback, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useUser } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
+import { getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
 import { followUser, unfollowUser } from "../../services/user.service";
 import Avatar from "../common/Avatar";
 import GlassFollowButton from "../ui/GlassFollowButton";
@@ -70,6 +71,9 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
   const displayAvatar = avatarSrc && avatarSrc !== "default-avatar" ? avatarSrc : undefined;
   const followers = account.followers ?? 0;
   const aboutMe = account.aboutMe || "";
+  // Balance and grandfathered tier together, so a result row wears the badge
+  // its owner wears on their own profile.
+  const badgeImg = account.hideBadgeAndBalance ? undefined : getBadgeUrlFor(account);
 
   const renderFollowButton = () => {
     if (isOwnAccount) return null;
@@ -96,6 +100,13 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
           <Text className="text-white font-semibold text-sm" numberOfLines={1}>
             {displayName}
           </Text>
+          {badgeImg ? (
+            <Image
+              source={badgeImg}
+              style={getBadgeOpticalStyle(badgeImg, 14, 3, 18)}
+              resizeMode="contain"
+            />
+          ) : null}
         </View>
         {/* <Text className="text-theme-neutrals-400 text-xs mt-0.5" numberOfLines={1}>
           @{username}
