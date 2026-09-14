@@ -3199,5 +3199,19 @@
     "usernameReserved": "This username is reserved",
     "profileSet": "Profile set successfully!",
     "profileFailed": "Failed to set profile"
+  },
+  "events": {
+    "mine": "Mine",
+    "subtitle": "Discover and RSVP to community events",
+    "going": "Going",
+    "interested": "Interested",
+    "goingCount": "{{count}} going",
+    "rsvpFailed": "Could not update RSVP",
+    "signInToRsvp": "Sign in to RSVP to events",
+    "noneCreated": "You haven't created any events yet",
+    "noPast": "No past events",
+    "noUpcoming": "No upcoming events",
+    "interestedCount": "{{count}} interested",
+    "loadFailed": "Couldn't load events"
   }
 }

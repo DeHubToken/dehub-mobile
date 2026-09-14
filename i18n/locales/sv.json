@@ -3133,5 +3133,19 @@
     "usernameReserved": "Det här användarnamnet är reserverat",
     "profileSet": "Profilen har ställts in!",
     "profileFailed": "Det gick inte att ställa in profilen"
+  },
+  "events": {
+    "mine": "Mina",
+    "subtitle": "Upptäck communityevenemang och anmäl dig",
+    "going": "Deltar",
+    "interested": "Intresserad",
+    "goingCount": "{{count}} deltar",
+    "rsvpFailed": "Det gick inte att uppdatera anmälan",
+    "signInToRsvp": "Logga in för att anmäla dig till evenemang",
+    "noneCreated": "Du har inte skapat några evenemang än",
+    "noPast": "Inga tidigare evenemang",
+    "noUpcoming": "Inga kommande evenemang",
+    "interestedCount": "{{count}} intresserade",
+    "loadFailed": "Det gick inte att läsa in evenemang"
   }
 }

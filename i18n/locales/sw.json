@@ -3129,5 +3129,19 @@
     "usernameReserved": "Jina hili la mtumiaji limehifadhiwa",
     "profileSet": "Wasifu umewekwa kwa mafanikio!",
     "profileFailed": "Imeshindwa kuweka wasifu"
+  },
+  "events": {
+    "mine": "Zangu",
+    "subtitle": "Gundua matukio ya jamii na thibitisha kuhudhuria",
+    "going": "Nitahudhuria",
+    "interested": "Nina hamu",
+    "goingCount": "{{count}} watahudhuria",
+    "rsvpFailed": "Imeshindwa kusasisha jibu la kuhudhuria",
+    "signInToRsvp": "Ingia ili kuthibitisha kuhudhuria matukio",
+    "noneCreated": "Bado hujaunda tukio lolote",
+    "noPast": "Hakuna matukio yaliyopita",
+    "noUpcoming": "Hakuna matukio yajayo",
+    "interestedCount": "{{count}} wana hamu",
+    "loadFailed": "Imeshindwa kupakia matukio"
   }
 }

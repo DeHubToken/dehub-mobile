@@ -3133,5 +3133,19 @@
     "usernameReserved": "Dette brugernavn er reserveret",
     "profileSet": "Profilen blev oprettet!",
     "profileFailed": "Kunne ikke oprette profil"
+  },
+  "events": {
+    "mine": "Mine",
+    "subtitle": "Find fællesskabsarrangementer og tilmeld dig",
+    "going": "Deltager",
+    "interested": "Interesseret",
+    "goingCount": "{{count}} deltager",
+    "rsvpFailed": "Kunne ikke opdatere tilmelding",
+    "signInToRsvp": "Log ind for at tilmelde dig arrangementer",
+    "noneCreated": "Du har ikke oprettet nogen arrangementer endnu",
+    "noPast": "Ingen tidligere arrangementer",
+    "noUpcoming": "Ingen kommende arrangementer",
+    "interestedCount": "{{count}} interesserede",
+    "loadFailed": "Kunne ikke indlæse arrangementer"
   }
 }

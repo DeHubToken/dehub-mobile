@@ -3080,5 +3080,19 @@
     "usernameReserved": "دا کارن نوم خوندي شوی دی",
     "profileSet": "پروفایل په بریالیتوب سره جوړ شو!",
     "profileFailed": "پروفایل جوړ نشو"
+  },
+  "events": {
+    "mine": "زما",
+    "subtitle": "د ټولنې پیښې ومومئ او ګډون تایید کړئ",
+    "going": "ځم",
+    "interested": "لیوالتیا لرم",
+    "goingCount": "{{count}} ځي",
+    "rsvpFailed": "د ګډون ځواب تازه نشو",
+    "signInToRsvp": "په پیښو کې د ګډون لپاره ننوځئ",
+    "noneCreated": "تاسو تر اوسه هیڅ پیښه نه ده جوړه کړې",
+    "noPast": "هیڅ تېرې پیښې نشته",
+    "noUpcoming": "هیڅ راتلونکې پیښه نشته",
+    "interestedCount": "{{count}} لیوالتیا لري",
+    "loadFailed": "پیښې بار نشوې"
   }
 }

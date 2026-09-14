@@ -3208,5 +3208,19 @@
     "usernameReserved": "Voatokana io anaran'ny mpampiasa io",
     "profileSet": "Voapetraka soa aman-tsara ny mombamomba!",
     "profileFailed": "Tsy voapetraka ny mombamomba"
+  },
+  "events": {
+    "mine": "Ahy",
+    "subtitle": "Tadiavo ny hetsiky ny vondrom-piarahamonina ary hamarino ny fanatrehanao",
+    "going": "Handeha",
+    "interested": "Liana",
+    "goingCount": "{{count}} handeha",
+    "rsvpFailed": "Tsy voahavaozina ny valin'ny fanatrehana",
+    "signInToRsvp": "Midira mba hanamarina ny fanatrehana hetsika",
+    "noneCreated": "Mbola tsy namorona hetsika ianao",
+    "noPast": "Tsy misy hetsika lasa",
+    "noUpcoming": "Tsy misy hetsika ho avy",
+    "interestedCount": "{{count}} liana",
+    "loadFailed": "Tsy voaraikitra ny hetsika"
   }
 }

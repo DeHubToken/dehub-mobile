@@ -3086,5 +3086,19 @@
     "usernameReserved": "ذا الاسم محجوز",
     "profileSet": "انضبط الملف الشخصي بنجاح!",
     "profileFailed": "ما قدرنا نضبط الملف الشخصي"
+  },
+  "events": {
+    "mine": "حقي",
+    "subtitle": "اكتشف فعاليات المجتمع وأكّد حضورك",
+    "going": "برايح",
+    "interested": "مهتم",
+    "goingCount": "{{count}} رايح",
+    "rsvpFailed": "ما قدرنا نحدّث تأكيد الحضور",
+    "signInToRsvp": "سجّل دخول عشان تأكد حضورك للفعاليات",
+    "noneCreated": "ما سويت أي فعالية للحين",
+    "noPast": "ما فيه فعاليات سابقة",
+    "noUpcoming": "ما فيه فعاليات جاية",
+    "interestedCount": "{{count}} مهتم",
+    "loadFailed": "ما قدرنا نحمّل الفعاليات"
   }
 }

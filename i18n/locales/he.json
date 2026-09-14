@@ -3116,5 +3116,19 @@
     "usernameReserved": "שם משתמש זה שמור",
     "profileSet": "הפרופיל הוגדר בהצלחה!",
     "profileFailed": "הגדרת הפרופיל נכשלה"
+  },
+  "events": {
+    "mine": "שלי",
+    "subtitle": "גלה אירועי קהילה ואשר הגעה",
+    "going": "מגיע",
+    "interested": "מעוניין",
+    "goingCount": "{{count}} מגיעים",
+    "rsvpFailed": "עדכון אישור ההגעה נכשל",
+    "signInToRsvp": "התחבר כדי לאשר הגעה לאירועים",
+    "noneCreated": "עדיין לא יצרת אירועים",
+    "noPast": "אין אירועים קודמים",
+    "noUpcoming": "אין אירועים קרובים",
+    "interestedCount": "{{count}} מעוניינים",
+    "loadFailed": "טעינת האירועים נכשלה"
   }
 }

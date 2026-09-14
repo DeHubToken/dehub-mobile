@@ -3128,5 +3128,19 @@
     "usernameReserved": "Šis naudotojo vardas rezervuotas",
     "profileSet": "Profilis sėkmingai nustatytas!",
     "profileFailed": "Nepavyko nustatyti profilio"
+  },
+  "events": {
+    "mine": "Mano",
+    "subtitle": "Atraskite bendruomenės renginius ir patvirtinkite dalyvavimą",
+    "going": "Dalyvausiu",
+    "interested": "Domiuosi",
+    "goingCount": "{{count}} dalyvaus",
+    "rsvpFailed": "Nepavyko atnaujinti dalyvavimo atsakymo",
+    "signInToRsvp": "Prisijunkite, kad patvirtintumėte dalyvavimą renginiuose",
+    "noneCreated": "Dar nesukūrėte jokių renginių",
+    "noPast": "Praėjusių renginių nėra",
+    "noUpcoming": "Artėjančių renginių nėra",
+    "interestedCount": "{{count}} domisi",
+    "loadFailed": "Nepavyko įkelti renginių"
   }
 }

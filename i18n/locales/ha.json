@@ -3119,5 +3119,19 @@
     "usernameReserved": "An ajiye wannan sunan",
     "profileSet": "An saita bayanan martaba cikin nasara!",
     "profileFailed": "An kasa saita bayanan martaba"
+  },
+  "events": {
+    "mine": "Nawa",
+    "subtitle": "Gano abubuwan da al'umma ke shiryawa kuma ka tabbatar da halarta",
+    "going": "Zan halarta",
+    "interested": "Ina sha'awa",
+    "goingCount": "{{count}} za su halarta",
+    "rsvpFailed": "An kasa sabunta amsar halarta",
+    "signInToRsvp": "Ka shiga don tabbatar da halartar abubuwan",
+    "noneCreated": "Ba ka ƙirƙiri wani taron ba tukuna",
+    "noPast": "Babu abubuwan da suka gabata",
+    "noUpcoming": "Babu abubuwan da ke tafe",
+    "interestedCount": "{{count}} suna sha'awa",
+    "loadFailed": "An kasa loda abubuwan"
   }
 }

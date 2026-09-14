@@ -3196,5 +3196,19 @@
     "usernameReserved": "このユーザー名は予約されています",
     "profileSet": "プロフィールを設定しました！",
     "profileFailed": "プロフィールを設定できませんでした"
+  },
+  "events": {
+    "mine": "自分の",
+    "subtitle": "コミュニティのイベントを見つけて参加表明しましょう",
+    "going": "参加する",
+    "interested": "興味あり",
+    "goingCount": "{{count}}人が参加",
+    "rsvpFailed": "参加表明を更新できませんでした",
+    "signInToRsvp": "イベントに参加表明するにはサインインしてください",
+    "noneCreated": "まだイベントを作成していません",
+    "noPast": "過去のイベントはありません",
+    "noUpcoming": "今後のイベントはありません",
+    "interestedCount": "{{count}}人が興味あり",
+    "loadFailed": "イベントを読み込めませんでした"
   }
 }

@@ -3128,5 +3128,19 @@
     "usernameReserved": "See kasutajanimi on reserveeritud",
     "profileSet": "Profiil edukalt seadistatud!",
     "profileFailed": "Profiili seadistamine ebaõnnestus"
+  },
+  "events": {
+    "mine": "Minu omad",
+    "subtitle": "Avasta kogukonna üritusi ja kinnita osalemine",
+    "going": "Lähen",
+    "interested": "Huvitatud",
+    "goingCount": "{{count}} läheb",
+    "rsvpFailed": "Osalemise vastust ei õnnestunud uuendada",
+    "signInToRsvp": "Logi sisse, et üritustele osalemist kinnitada",
+    "noneCreated": "Sa pole veel ühtegi üritust loonud",
+    "noPast": "Möödunud üritusi pole",
+    "noUpcoming": "Tulevasi üritusi pole",
+    "interestedCount": "{{count}} huvitatud",
+    "loadFailed": "Üritusi ei õnnestunud laadida"
   }
 }

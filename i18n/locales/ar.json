@@ -3184,5 +3184,19 @@
     "usernameReserved": "اسم المستخدم هذا محجوز",
     "profileSet": "تم إعداد ملفك الشخصي بنجاح!",
     "profileFailed": "تعذّر إعداد الملف الشخصي"
+  },
+  "events": {
+    "mine": "خاصتي",
+    "subtitle": "اكتشف فعاليات المجتمع وأكّد حضورك",
+    "going": "سأحضر",
+    "interested": "مهتم",
+    "goingCount": "{{count}} سيحضرون",
+    "rsvpFailed": "تعذّر تحديث تأكيد الحضور",
+    "signInToRsvp": "سجّل الدخول لتأكيد حضورك للفعاليات",
+    "noneCreated": "لم تنشئ أي فعالية بعد",
+    "noPast": "لا توجد فعاليات سابقة",
+    "noUpcoming": "لا توجد فعاليات قادمة",
+    "interestedCount": "{{count}} مهتم",
+    "loadFailed": "تعذّر تحميل الفعاليات"
   }
 }

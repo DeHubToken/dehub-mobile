@@ -3128,5 +3128,19 @@
     "usernameReserved": "Ky emër përdoruesi është i rezervuar",
     "profileSet": "Profili u vendos me sukses!",
     "profileFailed": "Profili nuk u vendos dot"
+  },
+  "events": {
+    "mine": "Të miat",
+    "subtitle": "Zbulo ngjarjet e komunitetit dhe konfirmo pjesëmarrjen",
+    "going": "Po shkoj",
+    "interested": "I interesuar",
+    "goingCount": "{{count}} po shkojnë",
+    "rsvpFailed": "Përgjigja e pjesëmarrjes nuk u përditësua dot",
+    "signInToRsvp": "Hyr për të konfirmuar pjesëmarrjen në ngjarje",
+    "noneCreated": "Nuk ke krijuar ende asnjë ngjarje",
+    "noPast": "Asnjë ngjarje e kaluar",
+    "noUpcoming": "Asnjë ngjarje e ardhshme",
+    "interestedCount": "{{count}} të interesuar",
+    "loadFailed": "Ngjarjet nuk u ngarkuan dot"
   }
 }

@@ -3142,5 +3142,19 @@
     "usernameReserved": "Acest nume de utilizator este rezervat",
     "profileSet": "Profil configurat cu succes!",
     "profileFailed": "Profilul nu a putut fi configurat"
+  },
+  "events": {
+    "mine": "Ale mele",
+    "subtitle": "Descoperă evenimente ale comunității și confirmă participarea",
+    "going": "Particip",
+    "interested": "Interesat",
+    "goingCount": "{{count}} participă",
+    "rsvpFailed": "Răspunsul de participare nu a putut fi actualizat",
+    "signInToRsvp": "Conectează-te pentru a confirma participarea la evenimente",
+    "noneCreated": "Nu ai creat încă niciun eveniment",
+    "noPast": "Niciun eveniment trecut",
+    "noUpcoming": "Niciun eveniment viitor",
+    "interestedCount": "{{count}} interesați",
+    "loadFailed": "Evenimentele nu au putut fi încărcate"
   }
 }

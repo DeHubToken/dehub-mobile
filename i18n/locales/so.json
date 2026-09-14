@@ -3120,5 +3120,19 @@
     "usernameReserved": "Magacan isticmaale waa la kaydiyay",
     "profileSet": "Astaanta si guul leh ayaa loo dejiyay!",
     "profileFailed": "Lama dejin karin astaanta"
+  },
+  "events": {
+    "mine": "Kayga",
+    "subtitle": "Hel munaasabadaha bulshada oo xaqiiji ka qaybgalka",
+    "going": "Waan tegayaa",
+    "interested": "Waan xiiseynayaa",
+    "goingCount": "{{count}} ayaa tegaya",
+    "rsvpFailed": "Lama cusbooneysiin karin ka qaybgalka",
+    "signInToRsvp": "Gal si aad munaasabadaha ugu xaqiijiso",
+    "noneCreated": "Weli ma aadan abuurin wax munaasabad ah",
+    "noPast": "Ma jiraan munaasabado hore",
+    "noUpcoming": "Ma jiraan munaasabado soo socda",
+    "interestedCount": "{{count}} ayaa xiiseynaya",
+    "loadFailed": "Lama soo rarin karin munaasabadaha"
   }
 }

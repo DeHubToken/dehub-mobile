@@ -3217,5 +3217,19 @@
     "usernameReserved": "Tên người dùng này được dành riêng",
     "profileSet": "Đã thiết lập hồ sơ thành công!",
     "profileFailed": "Không thiết lập được hồ sơ"
+  },
+  "events": {
+    "mine": "Của tôi",
+    "subtitle": "Khám phá sự kiện cộng đồng và xác nhận tham dự",
+    "going": "Sẽ tham dự",
+    "interested": "Quan tâm",
+    "goingCount": "{{count}} sẽ tham dự",
+    "rsvpFailed": "Không cập nhật được phản hồi tham dự",
+    "signInToRsvp": "Đăng nhập để xác nhận tham dự sự kiện",
+    "noneCreated": "Bạn chưa tạo sự kiện nào",
+    "noPast": "Không có sự kiện đã qua",
+    "noUpcoming": "Không có sự kiện sắp tới",
+    "interestedCount": "{{count}} quan tâm",
+    "loadFailed": "Không tải được sự kiện"
   }
 }
