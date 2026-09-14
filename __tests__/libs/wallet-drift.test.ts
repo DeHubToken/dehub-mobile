@@ -91,3 +91,35 @@ describe("isIdentitysOwnWallet", () => {
     expect(isIdentitysOwnWallet(drift(), LINKED, null)).toBe(false);
   });
 });
+
+/**
+ * The rescue above was shipped complete and never once ran.
+ *
+ * `moveDriftedAccountToThisWallet` was wired to consume a drift, this module
+ * was written and unit-tested, and nothing anywhere ever RECORDED one — so
+ * `takeWalletDrift()` answered null on every login for as long as the feature
+ * existed, and the fallback signature kept registering brand-new accounts.
+ * Every test in this file passed throughout.
+ *
+ * So this one is deliberately unlike the others: it reads the source rather
+ * than the behaviour, because the failure was not a wrong answer, it was a
+ * caller that did not exist. There is no cheaper place to catch that — a real
+ * harness for useAuthSession would have to stand up the whole auth stack.
+ */
+describe("the producer is actually wired", () => {
+  const hook = require("fs").readFileSync(
+    require("path").join(__dirname, "../../hooks/useAuthSession.ts"),
+    "utf8",
+  );
+
+  it("records a drift where the exchange finds the account at another address", () => {
+    expect(hook).toContain("recordWalletDrift({");
+    // The mismatch branch is the only place both addresses are known.
+    const mismatch = hook.indexOf("signInWithSupabaseSession:profile-mismatch");
+    const record = hook.indexOf("recordWalletDrift({");
+    expect(record).toBeGreaterThan(-1);
+    expect(mismatch).toBeGreaterThan(-1);
+    // Recorded before the branch gives up, or it never leaves the function.
+    expect(record).toBeLessThan(mismatch);
+  });
+});
