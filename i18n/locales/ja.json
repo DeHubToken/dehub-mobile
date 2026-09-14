@@ -3138,5 +3138,13 @@
     "logOutAllFailed": "端末をログアウトできませんでした",
     "devicesLoggedOut_one": "{{count}} 台の端末をログアウトしました",
     "devicesLoggedOut_other": "{{count}} 台の端末をログアウトしました"
+  },
+  "library": {
+    "myPosts": "自分の投稿",
+    "unlocked": "アンロック済み",
+    "clearHistoryTitle": "視聴履歴を消去",
+    "clearHistoryBody": "視聴済みの投稿をすべて履歴から削除します。",
+    "clear": "消去",
+    "clearFailed": "履歴を消去できませんでした。もう一度お試しください。"
   }
 }

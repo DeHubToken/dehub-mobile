@@ -3075,5 +3075,13 @@
     "logOutAllFailed": "Az eszközök kijelentkeztetése sikertelen",
     "devicesLoggedOut_one": "{{count}} eszköz kijelentkeztetve",
     "devicesLoggedOut_other": "{{count}} eszköz kijelentkeztetve"
+  },
+  "library": {
+    "myPosts": "Bejegyzéseim",
+    "unlocked": "Feloldott",
+    "clearHistoryTitle": "Megtekintési előzmények törlése",
+    "clearHistoryBody": "Ezzel az összes megtekintett bejegyzés törlődik az előzményeidből.",
+    "clear": "Törlés",
+    "clearFailed": "Az előzmények törlése sikertelen. Próbáld újra."
   }
 }

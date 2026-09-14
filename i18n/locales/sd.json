@@ -3054,5 +3054,13 @@
     "logOutAllFailed": "ڊيوائسون لاگ آئوٽ نه ٿي سگهيون",
     "devicesLoggedOut_one": "{{count}} ڊيوائس لاگ آئوٽ ٿي",
     "devicesLoggedOut_other": "{{count}} ڊيوائسون لاگ آئوٽ ٿيون"
+  },
+  "library": {
+    "myPosts": "منهنجيون پوسٽون",
+    "unlocked": "ان لاڪ",
+    "clearHistoryTitle": "ڏسڻ جي تاريخ صاف ڪريو",
+    "clearHistoryBody": "هي توهان جي تاريخ مان سڀ ڏٺل پوسٽون هٽائيندو.",
+    "clear": "صاف ڪريو",
+    "clearFailed": "تاريخ صاف نه ٿي سگهي. ٻيهر ڪوشش ڪريو."
   }
 }

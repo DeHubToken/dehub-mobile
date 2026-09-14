@@ -3030,5 +3030,13 @@
     "logOutAllFailed": "ออกจากระบบอุปกรณ์บ่สำเร็จ",
     "devicesLoggedOut_one": "ออกจากระบบ {{count}} อุปกรณ์แล้ว",
     "devicesLoggedOut_other": "ออกจากระบบ {{count}} อุปกรณ์แล้ว"
+  },
+  "library": {
+    "myPosts": "โพสต์ของข้อย",
+    "unlocked": "ปลดล็อกแล้ว",
+    "clearHistoryTitle": "ล้างประวัติการเบิ่ง",
+    "clearHistoryBody": "การเฮ็ดแบบนี้สิลบโพสต์ที่เบิ่งแล้วทั้งหมดออกจากประวัติของเจ้า",
+    "clear": "ล้าง",
+    "clearFailed": "ล้างประวัติบ่สำเร็จ โปรดลองอีกเทื่อ"
   }
 }

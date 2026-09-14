@@ -3070,5 +3070,13 @@
     "logOutAllFailed": "Pajisjet nuk dolën dot",
     "devicesLoggedOut_one": "{{count}} pajisje doli",
     "devicesLoggedOut_other": "{{count}} pajisje dolën"
+  },
+  "library": {
+    "myPosts": "Postimet e mia",
+    "unlocked": "Zhbllokuar",
+    "clearHistoryTitle": "Pastro historikun e shikimeve",
+    "clearHistoryBody": "Kjo do të heqë nga historiku yt të gjitha postimet e para.",
+    "clear": "Pastro",
+    "clearFailed": "Historiku nuk u pastrua dot. Provo përsëri."
   }
 }

@@ -3084,5 +3084,13 @@
     "logOutAllFailed": "Dispozitivele nu au putut fi deconectate",
     "devicesLoggedOut_one": "{{count}} dispozitiv deconectat",
     "devicesLoggedOut_other": "{{count}} dispozitive deconectate"
+  },
+  "library": {
+    "myPosts": "Postările mele",
+    "unlocked": "Deblocat",
+    "clearHistoryTitle": "Șterge istoricul vizionărilor",
+    "clearHistoryBody": "Aceasta va elimina din istoric toate postările vizionate.",
+    "clear": "Șterge",
+    "clearFailed": "Istoricul nu a putut fi șters. Încearcă din nou."
   }
 }

@@ -2839,5 +2839,13 @@
     "logOutAllFailed": "Одјава уређаја није успела",
     "devicesLoggedOut_one": "Одјављен {{count}} уређај",
     "devicesLoggedOut_other": "Одјављено {{count}} уређаја"
+  },
+  "library": {
+    "myPosts": "Моје објаве",
+    "unlocked": "Откључано",
+    "clearHistoryTitle": "Обриши историју гледања",
+    "clearHistoryBody": "Ово ће уклонити све погледане објаве из твоје историје.",
+    "clear": "Обриши",
+    "clearFailed": "Брисање историје није успело. Покушај поново."
   }
 }

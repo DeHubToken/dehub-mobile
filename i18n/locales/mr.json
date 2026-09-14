@@ -3059,5 +3059,13 @@
     "logOutAllFailed": "डिव्हाइस लॉग आउट करता आली नाहीत",
     "devicesLoggedOut_one": "{{count}} डिव्हाइस लॉग आउट झाले",
     "devicesLoggedOut_other": "{{count}} डिव्हाइस लॉग आउट झाली"
+  },
+  "library": {
+    "myPosts": "माझ्या पोस्ट",
+    "unlocked": "अनलॉक",
+    "clearHistoryTitle": "पाहण्याचा इतिहास साफ करा",
+    "clearHistoryBody": "यामुळे तुमच्या इतिहासातून पाहिलेल्या सर्व पोस्ट काढल्या जातील.",
+    "clear": "साफ करा",
+    "clearFailed": "इतिहास साफ करता आला नाही. पुन्हा प्रयत्न करा."
   }
 }

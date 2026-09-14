@@ -3100,5 +3100,13 @@
     "logOutAllFailed": "Ayikwazanga ukuphumisa amadivayisi",
     "devicesLoggedOut_one": "Idivayisi engu-{{count}} iphumile",
     "devicesLoggedOut_other": "Amadivayisi angu-{{count}} aphumile"
+  },
+  "library": {
+    "myPosts": "Okuthunyelwe kwami",
+    "unlocked": "Kuvuliwe",
+    "clearHistoryTitle": "Sula umlando wokubuka",
+    "clearHistoryBody": "Lokhu kuzosusa konke okuthunyelwe okubukiwe emlandweni wakho.",
+    "clear": "Sula",
+    "clearFailed": "Ayikwazanga ukusula umlando. Sicela uzame futhi."
   }
 }

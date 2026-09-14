@@ -3041,5 +3041,13 @@
     "logOutAllFailed": "Enjamlar çykarylyp bilmedi",
     "devicesLoggedOut_one": "{{count}} enjam çykaryldy",
     "devicesLoggedOut_other": "{{count}} enjam çykaryldy"
+  },
+  "library": {
+    "myPosts": "Meniň ýazgylarym",
+    "unlocked": "Açyldy",
+    "clearHistoryTitle": "Görüş taryhyny arassala",
+    "clearHistoryBody": "Bu görlen ähli ýazgylary taryhyňyzdan aýrar.",
+    "clear": "Arassala",
+    "clearFailed": "Taryh arassalanyp bilmedi. Täzeden synanyşyň."
   }
 }

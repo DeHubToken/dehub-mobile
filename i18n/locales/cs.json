@@ -3075,5 +3075,13 @@
     "logOutAllFailed": "Zařízení se nepodařilo odhlásit",
     "devicesLoggedOut_one": "Odhlášeno {{count}} zařízení",
     "devicesLoggedOut_other": "Odhlášeno {{count}} zařízení"
+  },
+  "library": {
+    "myPosts": "Moje příspěvky",
+    "unlocked": "Odemčené",
+    "clearHistoryTitle": "Vymazat historii sledování",
+    "clearHistoryBody": "Tím se z historie odstraní všechny zhlédnuté příspěvky.",
+    "clear": "Vymazat",
+    "clearFailed": "Historii se nepodařilo vymazat. Zkuste to znovu."
   }
 }

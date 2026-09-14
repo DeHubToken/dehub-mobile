@@ -3062,5 +3062,13 @@
     "logOutAllFailed": "Kunne ikke logge ut enhetene",
     "devicesLoggedOut_one": "{{count}} enhet logget ut",
     "devicesLoggedOut_other": "{{count}} enheter logget ut"
+  },
+  "library": {
+    "myPosts": "Mine innlegg",
+    "unlocked": "Låst opp",
+    "clearHistoryTitle": "Tøm visningshistorikk",
+    "clearHistoryBody": "Dette fjerner alle sette innlegg fra historikken din.",
+    "clear": "Tøm",
+    "clearFailed": "Kunne ikke tømme historikken. Prøv igjen."
   }
 }

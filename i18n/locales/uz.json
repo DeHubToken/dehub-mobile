@@ -3123,5 +3123,13 @@
     "logOutAllFailed": "Qurilmalarni chiqarib bo‘lmadi",
     "devicesLoggedOut_one": "{{count}} qurilma chiqarildi",
     "devicesLoggedOut_other": "{{count}} qurilma chiqarildi"
+  },
+  "library": {
+    "myPosts": "Mening postlarim",
+    "unlocked": "Ochilgan",
+    "clearHistoryTitle": "Ko‘rish tarixini tozalash",
+    "clearHistoryBody": "Bu ko‘rilgan barcha postlarni tarixingizdan o‘chiradi.",
+    "clear": "Tozalash",
+    "clearFailed": "Tarixni tozalab bo‘lmadi. Qayta urinib ko‘ring."
   }
 }

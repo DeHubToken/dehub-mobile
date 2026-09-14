@@ -3070,5 +3070,13 @@
     "logOutAllFailed": "Seadmete väljalogimine ebaõnnestus",
     "devicesLoggedOut_one": "{{count}} seade logiti välja",
     "devicesLoggedOut_other": "{{count}} seadet logiti välja"
+  },
+  "library": {
+    "myPosts": "Minu postitused",
+    "unlocked": "Avatud",
+    "clearHistoryTitle": "Tühjenda vaatamisajalugu",
+    "clearHistoryBody": "See eemaldab kõik vaadatud postitused sinu ajaloost.",
+    "clear": "Tühjenda",
+    "clearFailed": "Ajaloo tühjendamine ebaõnnestus. Proovi uuesti."
   }
 }

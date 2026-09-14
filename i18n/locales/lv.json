@@ -3070,5 +3070,13 @@
     "logOutAllFailed": "Neizdevās izrakstīt ierīces",
     "devicesLoggedOut_one": "{{count}} ierīce izrakstīta",
     "devicesLoggedOut_other": "{{count}} ierīces izrakstītas"
+  },
+  "library": {
+    "myPosts": "Mani ieraksti",
+    "unlocked": "Atbloķēts",
+    "clearHistoryTitle": "Notīrīt skatīšanās vēsturi",
+    "clearHistoryBody": "Tas noņems visas skatītās ziņas no tavas vēstures.",
+    "clear": "Notīrīt",
+    "clearFailed": "Neizdevās notīrīt vēsturi. Mēģini vēlreiz."
   }
 }

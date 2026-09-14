@@ -3141,5 +3141,13 @@
     "logOutAllFailed": "No se pudieron cerrar las sesiones de los dispositivos",
     "devicesLoggedOut_one": "{{count}} dispositivo desconectado",
     "devicesLoggedOut_other": "{{count}} dispositivos desconectados"
+  },
+  "library": {
+    "myPosts": "Mis publicaciones",
+    "unlocked": "Desbloqueado",
+    "clearHistoryTitle": "Borrar el historial de reproducción",
+    "clearHistoryBody": "Esto eliminará de tu historial todas las publicaciones vistas.",
+    "clear": "Borrar",
+    "clearFailed": "No se pudo borrar el historial. Inténtalo de nuevo."
   }
 }

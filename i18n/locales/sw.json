@@ -3071,5 +3071,13 @@
     "logOutAllFailed": "Imeshindwa kutoa vifaa",
     "devicesLoggedOut_one": "Kifaa {{count}} kimetolewa",
     "devicesLoggedOut_other": "Vifaa {{count}} vimetolewa"
+  },
+  "library": {
+    "myPosts": "Machapisho yangu",
+    "unlocked": "Imefunguliwa",
+    "clearHistoryTitle": "Futa historia ya kutazama",
+    "clearHistoryBody": "Hii itaondoa machapisho yote yaliyotazamwa kutoka historia yako.",
+    "clear": "Futa",
+    "clearFailed": "Imeshindwa kufuta historia. Tafadhali jaribu tena."
   }
 }

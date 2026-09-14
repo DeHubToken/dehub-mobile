@@ -3071,5 +3071,13 @@
     "logOutAllFailed": "Изходът от устройствата не бе успешен",
     "devicesLoggedOut_one": "{{count}} устройство е отписано",
     "devicesLoggedOut_other": "{{count}} устройства са отписани"
+  },
+  "library": {
+    "myPosts": "Моите публикации",
+    "unlocked": "Отключени",
+    "clearHistoryTitle": "Изчисти историята на гледане",
+    "clearHistoryBody": "Това ще премахне всички гледани публикации от историята ти.",
+    "clear": "Изчисти",
+    "clearFailed": "Историята не бе изчистена. Опитай пак."
   }
 }

@@ -3164,5 +3164,13 @@
     "logOutAllFailed": "ডিভাইসগুন লগ আউট গরা ন যায়",
     "devicesLoggedOut_one": "{{count}}টা ডিভাইস লগ আউট অইছে",
     "devicesLoggedOut_other": "{{count}}টা ডিভাইস লগ আউট অইছে"
+  },
+  "library": {
+    "myPosts": "আঁর পোস্ট",
+    "unlocked": "আনলক গরা",
+    "clearHistoryTitle": "দেখার ইতিহাস মুছন",
+    "clearHistoryBody": "ইতা অনর ইতিহাসর তুন দেখা সব পোস্ট সরাই দিব।",
+    "clear": "মুছন",
+    "clearFailed": "ইতিহাস মুছা ন যায়। আবার চেষ্টা গরন।"
   }
 }

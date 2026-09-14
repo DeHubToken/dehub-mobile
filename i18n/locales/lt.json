@@ -3070,5 +3070,13 @@
     "logOutAllFailed": "Nepavyko atjungti įrenginių",
     "devicesLoggedOut_one": "Atjungtas {{count}} įrenginys",
     "devicesLoggedOut_other": "Atjungti {{count}} įrenginiai"
+  },
+  "library": {
+    "myPosts": "Mano įrašai",
+    "unlocked": "Atrakinta",
+    "clearHistoryTitle": "Išvalyti žiūrėjimo istoriją",
+    "clearHistoryBody": "Tai pašalins visus žiūrėtus įrašus iš jūsų istorijos.",
+    "clear": "Išvalyti",
+    "clearFailed": "Nepavyko išvalyti istorijos. Bandykite dar kartą."
   }
 }

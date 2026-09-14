@@ -3071,5 +3071,13 @@
     "logOutAllFailed": "Odjava uređaja nije uspjela",
     "devicesLoggedOut_one": "Odjavljen {{count}} uređaj",
     "devicesLoggedOut_other": "Odjavljeno {{count}} uređaja"
+  },
+  "library": {
+    "myPosts": "Moje objave",
+    "unlocked": "Otključano",
+    "clearHistoryTitle": "Izbriši povijest gledanja",
+    "clearHistoryBody": "Ovo će ukloniti sve pogledane objave iz tvoje povijesti.",
+    "clear": "Izbriši",
+    "clearFailed": "Brisanje povijesti nije uspjelo. Pokušaj ponovno."
   }
 }

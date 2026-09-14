@@ -3106,5 +3106,13 @@
     "logOutAllFailed": "მოწყობილობების გამოყვანა ვერ მოხერხდა",
     "devicesLoggedOut_one": "{{count}} მოწყობილობა გამოვიდა",
     "devicesLoggedOut_other": "{{count}} მოწყობილობა გამოვიდა"
+  },
+  "library": {
+    "myPosts": "ჩემი პოსტები",
+    "unlocked": "განბლოკილი",
+    "clearHistoryTitle": "ყურების ისტორიის გასუფთავება",
+    "clearHistoryBody": "ეს წაშლის ყველა ნანახ პოსტს თქვენი ისტორიიდან.",
+    "clear": "გასუფთავება",
+    "clearFailed": "ისტორიის გასუფთავება ვერ მოხერხდა. სცადეთ ხელახლა."
   }
 }

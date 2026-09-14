@@ -3340,5 +3340,13 @@
     "logOutAllFailed": "Kon apparaten niet uitloggen",
     "devicesLoggedOut_one": "{{count}} apparaat uitgelogd",
     "devicesLoggedOut_other": "{{count}} apparaten uitgelogd"
+  },
+  "library": {
+    "myPosts": "Mijn berichten",
+    "unlocked": "Ontgrendeld",
+    "clearHistoryTitle": "Kijkgeschiedenis wissen",
+    "clearHistoryBody": "Hiermee worden alle bekeken berichten uit je geschiedenis verwijderd.",
+    "clear": "Wissen",
+    "clearFailed": "Kon geschiedenis niet wissen. Probeer het opnieuw."
   }
 }

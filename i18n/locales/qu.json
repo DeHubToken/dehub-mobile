@@ -3103,5 +3103,13 @@
     "logOutAllFailed": "Dispositivokunata mana lluqsichiyta atikunchu",
     "devicesLoggedOut_one": "{{count}} dispositivo lluqsichisqa",
     "devicesLoggedOut_other": "{{count}} dispositivokuna lluqsichisqa"
+  },
+  "library": {
+    "myPosts": "Publicacionniykuna",
+    "unlocked": "Kichasqa",
+    "clearHistoryTitle": "Qhaway historialta pichay",
+    "clearHistoryBody": "Kayqa llapan qhawasqa publicacionkunata historialniykimanta hurqunqa.",
+    "clear": "Pichay",
+    "clearFailed": "Historialta mana pichayta atikunchu. Yapamanta yanay."
   }
 }

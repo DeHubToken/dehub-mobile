@@ -3062,5 +3062,13 @@
     "logOutAllFailed": "Lama saari karin qalabka",
     "devicesLoggedOut_one": "{{count}} qalab ayaa laga saaray",
     "devicesLoggedOut_other": "{{count}} qalab ayaa laga saaray"
+  },
+  "library": {
+    "myPosts": "Boostooyinkayga",
+    "unlocked": "La furay",
+    "clearHistoryTitle": "Tirtir taariikhda daawashada",
+    "clearHistoryBody": "Tani waxay ka saari doontaa dhammaan boostooyinka la daawaday taariikhdaada.",
+    "clear": "Tirtir",
+    "clearFailed": "Lama tirtiri karin taariikhda. Fadlan isku day mar kale."
   }
 }

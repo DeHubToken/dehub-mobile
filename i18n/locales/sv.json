@@ -3075,5 +3075,13 @@
     "logOutAllFailed": "Det gick inte att logga ut enheterna",
     "devicesLoggedOut_one": "{{count}} enhet utloggad",
     "devicesLoggedOut_other": "{{count}} enheter utloggade"
+  },
+  "library": {
+    "myPosts": "Mina inlägg",
+    "unlocked": "Upplåst",
+    "clearHistoryTitle": "Rensa visningshistorik",
+    "clearHistoryBody": "Detta tar bort alla sedda inlägg från din historik.",
+    "clear": "Rensa",
+    "clearFailed": "Det gick inte att rensa historiken. Försök igen."
   }
 }

@@ -3058,5 +3058,13 @@
     "logOutAllFailed": "ניתוק המכשירים נכשל",
     "devicesLoggedOut_one": "{{count}} מכשיר נותק",
     "devicesLoggedOut_other": "{{count}} מכשירים נותקו"
+  },
+  "library": {
+    "myPosts": "הפוסטים שלי",
+    "unlocked": "נפתחו",
+    "clearHistoryTitle": "נקה היסטוריית צפייה",
+    "clearHistoryBody": "פעולה זו תסיר את כל הפוסטים שנצפו מההיסטוריה שלך.",
+    "clear": "נקה",
+    "clearFailed": "ניקוי ההיסטוריה נכשל. נסה שוב."
   }
 }

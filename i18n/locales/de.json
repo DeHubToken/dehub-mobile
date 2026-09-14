@@ -3140,5 +3140,13 @@
     "logOutAllFailed": "Geräte konnten nicht abgemeldet werden",
     "devicesLoggedOut_one": "{{count}} Gerät abgemeldet",
     "devicesLoggedOut_other": "{{count}} Geräte abgemeldet"
+  },
+  "library": {
+    "myPosts": "Meine Beiträge",
+    "unlocked": "Freigeschaltet",
+    "clearHistoryTitle": "Wiedergabeverlauf löschen",
+    "clearHistoryBody": "Dadurch werden alle angesehenen Beiträge aus deinem Verlauf entfernt.",
+    "clear": "Löschen",
+    "clearFailed": "Verlauf konnte nicht gelöscht werden. Bitte versuche es erneut."
   }
 }

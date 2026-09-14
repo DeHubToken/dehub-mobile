@@ -2892,5 +2892,13 @@
     "logOutAllFailed": "We no fit log out di devices",
     "devicesLoggedOut_one": "{{count}} device don log out",
     "devicesLoggedOut_other": "{{count}} devices don log out"
+  },
+  "library": {
+    "myPosts": "My Posts",
+    "unlocked": "Unlocked",
+    "clearHistoryTitle": "Clear Watch History",
+    "clearHistoryBody": "Dis go remove all di posts wey you don watch from your history.",
+    "clear": "Clear",
+    "clearFailed": "We no fit clear di history. Abeg try again."
   }
 }

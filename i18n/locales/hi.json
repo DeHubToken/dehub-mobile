@@ -3127,5 +3127,13 @@
     "logOutAllFailed": "डिवाइस लॉग आउट नहीं हो सके",
     "devicesLoggedOut_one": "{{count}} डिवाइस लॉग आउट हुआ",
     "devicesLoggedOut_other": "{{count}} डिवाइस लॉग आउट हुए"
+  },
+  "library": {
+    "myPosts": "मेरी पोस्ट",
+    "unlocked": "अनलॉक",
+    "clearHistoryTitle": "देखने का इतिहास मिटाएँ",
+    "clearHistoryBody": "इससे आपके इतिहास से सभी देखी गई पोस्ट हट जाएँगी।",
+    "clear": "मिटाएँ",
+    "clearFailed": "इतिहास नहीं मिटाया जा सका। फिर से कोशिश करें।"
   }
 }

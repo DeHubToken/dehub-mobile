@@ -3029,5 +3029,13 @@
     "logOutAllFailed": "ບໍ່ສາມາດອອກຈາກລະບົບອຸປະກອນໄດ້",
     "devicesLoggedOut_one": "ອອກຈາກລະບົບ {{count}} ອຸປະກອນແລ້ວ",
     "devicesLoggedOut_other": "ອອກຈາກລະບົບ {{count}} ອຸປະກອນແລ້ວ"
+  },
+  "library": {
+    "myPosts": "ໂພສຂອງຂ້ອຍ",
+    "unlocked": "ປົດລັອກແລ້ວ",
+    "clearHistoryTitle": "ລຶບປະຫວັດການເບິ່ງ",
+    "clearHistoryBody": "ນີ້ຈະລຶບໂພສທີ່ເບິ່ງແລ້ວທັງໝົດອອກຈາກປະຫວັດຂອງທ່ານ.",
+    "clear": "ລຶບ",
+    "clearFailed": "ບໍ່ສາມາດລຶບປະຫວັດໄດ້. ກະລຸນາລອງໃໝ່."
   }
 }

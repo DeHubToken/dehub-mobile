@@ -3133,5 +3133,13 @@
     "logOutAllFailed": "Cihazların oturumu kapatılamadı",
     "devicesLoggedOut_one": "{{count}} cihazın oturumu kapatıldı",
     "devicesLoggedOut_other": "{{count}} cihazın oturumu kapatıldı"
+  },
+  "library": {
+    "myPosts": "Gönderilerim",
+    "unlocked": "Kilidi açık",
+    "clearHistoryTitle": "İzleme geçmişini temizle",
+    "clearHistoryBody": "Bu, izlenen tüm gönderileri geçmişinden kaldırır.",
+    "clear": "Temizle",
+    "clearFailed": "Geçmiş temizlenemedi. Lütfen tekrar dene."
   }
 }

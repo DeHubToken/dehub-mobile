@@ -3069,5 +3069,13 @@
     "logOutAllFailed": "無法登出呢啲裝置",
     "devicesLoggedOut_one": "已登出 {{count}} 部裝置",
     "devicesLoggedOut_other": "已登出 {{count}} 部裝置"
+  },
+  "library": {
+    "myPosts": "我嘅帖子",
+    "unlocked": "已解鎖",
+    "clearHistoryTitle": "清除觀看記錄",
+    "clearHistoryBody": "呢個會由你嘅記錄中移除所有已觀看嘅帖子。",
+    "clear": "清除",
+    "clearFailed": "無法清除記錄，請再試。"
   }
 }

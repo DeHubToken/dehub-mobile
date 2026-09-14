@@ -3075,5 +3075,13 @@
     "logOutAllFailed": "Kunne ikke logge enhederne ud",
     "devicesLoggedOut_one": "{{count}} enhed logget ud",
     "devicesLoggedOut_other": "{{count}} enheder logget ud"
+  },
+  "library": {
+    "myPosts": "Mine opslag",
+    "unlocked": "Låst op",
+    "clearHistoryTitle": "Ryd visningshistorik",
+    "clearHistoryBody": "Dette fjerner alle sete opslag fra din historik.",
+    "clear": "Ryd",
+    "clearFailed": "Kunne ikke rydde historikken. Prøv igen."
   }
 }

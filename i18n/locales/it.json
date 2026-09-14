@@ -3141,5 +3141,13 @@
     "logOutAllFailed": "Impossibile disconnettere i dispositivi",
     "devicesLoggedOut_one": "{{count}} dispositivo disconnesso",
     "devicesLoggedOut_other": "{{count}} dispositivi disconnessi"
+  },
+  "library": {
+    "myPosts": "I miei post",
+    "unlocked": "Sbloccati",
+    "clearHistoryTitle": "Cancella cronologia visualizzazioni",
+    "clearHistoryBody": "Questo rimuoverà tutti i post visti dalla tua cronologia.",
+    "clear": "Cancella",
+    "clearFailed": "Impossibile cancellare la cronologia. Riprova."
   }
 }

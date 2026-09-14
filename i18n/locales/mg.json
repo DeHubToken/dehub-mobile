@@ -3150,5 +3150,13 @@
     "logOutAllFailed": "Tsy voavoaka ny fitaovana",
     "devicesLoggedOut_one": "Navoaka ny fitaovana {{count}}",
     "devicesLoggedOut_other": "Navoaka ny fitaovana {{count}}"
+  },
+  "library": {
+    "myPosts": "Ny lahatsoratro",
+    "unlocked": "Voasokatra",
+    "clearHistoryTitle": "Fafao ny tantaran'ny fijerena",
+    "clearHistoryBody": "Hanesotra ny lahatsoratra rehetra nojerena amin'ny tantaranao izany.",
+    "clear": "Fafao",
+    "clearFailed": "Tsy voafafa ny tantara. Andramo indray."
   }
 }

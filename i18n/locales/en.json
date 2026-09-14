@@ -3141,5 +3141,13 @@
     "logOutAllFailed": "Failed to log out devices",
     "devicesLoggedOut_one": "{{count}} device logged out",
     "devicesLoggedOut_other": "{{count}} devices logged out"
+  },
+  "library": {
+    "myPosts": "My Posts",
+    "unlocked": "Unlocked",
+    "clearHistoryTitle": "Clear Watch History",
+    "clearHistoryBody": "This will remove all watched posts from your history.",
+    "clear": "Clear",
+    "clearFailed": "Failed to clear history. Please try again."
   }
 }

@@ -3071,5 +3071,13 @@
     "logOutAllFailed": "No s'han pogut tancar les sessions dels dispositius",
     "devicesLoggedOut_one": "{{count}} dispositiu desconnectat",
     "devicesLoggedOut_other": "{{count}} dispositius desconnectats"
+  },
+  "library": {
+    "myPosts": "Les meves publicacions",
+    "unlocked": "Desbloquejat",
+    "clearHistoryTitle": "Esborra l'historial de visualitzacions",
+    "clearHistoryBody": "Això eliminarà totes les publicacions vistes del teu historial.",
+    "clear": "Esborra",
+    "clearFailed": "No s'ha pogut esborrar l'historial. Torna-ho a provar."
   }
 }

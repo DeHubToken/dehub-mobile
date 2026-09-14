@@ -2802,5 +2802,13 @@
     "logOutAllFailed": "ڈیوائسز لاگ آؤٹ نئیں ہو سکیں",
     "devicesLoggedOut_one": "{{count}} ڈیوائس لاگ آؤٹ ہو گئی",
     "devicesLoggedOut_other": "{{count}} ڈیوائسز لاگ آؤٹ ہو گئیں"
+  },
+  "library": {
+    "myPosts": "میری پوسٹس",
+    "unlocked": "ان لاک",
+    "clearHistoryTitle": "دیکھنے کی تاریخ صاف کرو",
+    "clearHistoryBody": "اس سے تمہاری تاریخ سے سب دیکھی گئی پوسٹس ہٹ جائیں گی۔",
+    "clear": "صاف کرو",
+    "clearFailed": "تاریخ صاف نئیں ہو سکی۔ دوبارہ کوشش کرو۔"
   }
 }

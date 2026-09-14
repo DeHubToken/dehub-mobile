@@ -3056,5 +3056,13 @@
     "logOutAllFailed": "Kāore i taea te takiputa i ngā pūrere",
     "devicesLoggedOut_one": "Kua takiputa te pūrere {{count}}",
     "devicesLoggedOut_other": "Kua takiputa ngā pūrere {{count}}"
+  },
+  "library": {
+    "myPosts": "Aku pānui",
+    "unlocked": "Kua wetekina",
+    "clearHistoryTitle": "Ūkuia te hītori mātakitaki",
+    "clearHistoryBody": "Ka tangohia e tēnei ngā pānui katoa i mātakitakihia mai i tō hītori.",
+    "clear": "Ūkui",
+    "clearFailed": "Kāore i taea te ūkui i te hītori. Ngana anō."
   }
 }

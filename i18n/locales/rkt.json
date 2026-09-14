@@ -3102,5 +3102,13 @@
     "logOutAllFailed": "ডিভাইসগুলা লগ আউট করা গেইল না",
     "devicesLoggedOut_one": "{{count}}টা ডিভাইস লগ আউট হইছে",
     "devicesLoggedOut_other": "{{count}}টা ডিভাইস লগ আউট হইছে"
+  },
+  "library": {
+    "myPosts": "মোর পোস্ট",
+    "unlocked": "আনলক করা",
+    "clearHistoryTitle": "দেখার ইতিহাস মুছো",
+    "clearHistoryBody": "এইটা তোমার ইতিহাস থাকি দেখা সব পোস্ট সরাই দিবে।",
+    "clear": "মুছো",
+    "clearFailed": "ইতিহাস মোছা গেইল না। আবার চেষ্টা করো।"
   }
 }

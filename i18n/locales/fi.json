@@ -3071,5 +3071,13 @@
     "logOutAllFailed": "Laitteiden uloskirjaus epäonnistui",
     "devicesLoggedOut_one": "{{count}} laite kirjattiin ulos",
     "devicesLoggedOut_other": "{{count}} laitetta kirjattiin ulos"
+  },
+  "library": {
+    "myPosts": "Omat julkaisuni",
+    "unlocked": "Avatut",
+    "clearHistoryTitle": "Tyhjennä katseluhistoria",
+    "clearHistoryBody": "Tämä poistaa kaikki katsotut julkaisut historiastasi.",
+    "clear": "Tyhjennä",
+    "clearFailed": "Historian tyhjennys epäonnistui. Yritä uudelleen."
   }
 }

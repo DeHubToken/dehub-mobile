@@ -3051,5 +3051,13 @@
     "logOutAllFailed": "စက်များကို ထွက်စေ၍မရပါ",
     "devicesLoggedOut_one": "စက် {{count}} လုံး ထွက်ပြီးပါပြီ",
     "devicesLoggedOut_other": "စက် {{count}} လုံး ထွက်ပြီးပါပြီ"
+  },
+  "library": {
+    "myPosts": "ကျွန်ုပ်၏ ပို့စ်များ",
+    "unlocked": "ဖွင့်ပြီး",
+    "clearHistoryTitle": "ကြည့်ရှုမှတ်တမ်း ရှင်းလင်းရန်",
+    "clearHistoryBody": "ဤသည် ကြည့်ပြီးသော ပို့စ်အားလုံးကို သင့်မှတ်တမ်းမှ ဖယ်ရှားမည်။",
+    "clear": "ရှင်းရန်",
+    "clearFailed": "မှတ်တမ်းကို ရှင်း၍မရပါ။ ထပ်စမ်းပါ။"
   }
 }

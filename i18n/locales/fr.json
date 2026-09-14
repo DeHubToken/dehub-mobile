@@ -3145,5 +3145,13 @@
     "logOutAllFailed": "Impossible de déconnecter les appareils",
     "devicesLoggedOut_one": "{{count}} appareil déconnecté",
     "devicesLoggedOut_other": "{{count}} appareils déconnectés"
+  },
+  "library": {
+    "myPosts": "Mes publications",
+    "unlocked": "Débloqué",
+    "clearHistoryTitle": "Effacer l'historique de visionnage",
+    "clearHistoryBody": "Cela supprimera toutes les publications vues de votre historique.",
+    "clear": "Effacer",
+    "clearFailed": "Impossible d'effacer l'historique. Réessayez."
   }
 }

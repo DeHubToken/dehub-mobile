@@ -3016,5 +3016,13 @@
     "logOutAllFailed": "Minɛnw ma se ka bɔ",
     "devicesLoggedOut_one": "Minɛn {{count}} bɔra",
     "devicesLoggedOut_other": "Minɛn {{count}} bɔra"
+  },
+  "library": {
+    "myPosts": "N ka sɛbɛnw",
+    "unlocked": "Dayɛlɛlen",
+    "clearHistoryTitle": "Filɛli tariku jɔsi",
+    "clearHistoryBody": "Nin bɛna sɛbɛn filɛlenw bɛɛ bɔ i ka tariku la.",
+    "clear": "Jɔsi",
+    "clearFailed": "Tariku ma se ka jɔsi. A kɛ kokura."
   }
 }

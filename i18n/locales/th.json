@@ -3108,5 +3108,13 @@
     "logOutAllFailed": "ออกจากระบบอุปกรณ์ไม่สำเร็จ",
     "devicesLoggedOut_one": "ออกจากระบบ {{count}} อุปกรณ์แล้ว",
     "devicesLoggedOut_other": "ออกจากระบบ {{count}} อุปกรณ์แล้ว"
+  },
+  "library": {
+    "myPosts": "โพสต์ของฉัน",
+    "unlocked": "ปลดล็อกแล้ว",
+    "clearHistoryTitle": "ล้างประวัติการดู",
+    "clearHistoryBody": "การทำเช่นนี้จะลบโพสต์ที่ดูแล้วทั้งหมดออกจากประวัติของคุณ",
+    "clear": "ล้าง",
+    "clearFailed": "ล้างประวัติไม่สำเร็จ โปรดลองอีกครั้ง"
   }
 }
