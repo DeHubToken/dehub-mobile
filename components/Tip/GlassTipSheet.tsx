@@ -335,11 +335,21 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
         const profile = res?.data?.result || res?.result || res;
         if (profile?.hideBadgeAndBalance) {
           setRecipientPrivate(true);
-          setTipError("This account has disabled tips while private balance mode is on.");
+          setTipError(
+            t(
+              "tip.privateBalanceError",
+              "This account has disabled tips while private balance mode is on.",
+            ),
+          );
           return;
         }
       } catch {
-        setTipError("Could not verify the recipient privacy setting. No tip was sent.");
+        setTipError(
+          t(
+            "tip.privacyCheckFailed",
+            "Could not verify the recipient privacy setting. No tip was sent.",
+          ),
+        );
         return;
       }
       if (disableSend || (phase !== "idle" && phase !== "error")) return;
@@ -362,7 +372,9 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           setSelectedPreset(null);
         } catch (e) {
           setPhase("error");
-          setTipError(e instanceof Error ? e.message : "Solana tip failed");
+          setTipError(
+            e instanceof Error ? e.message : t("tip.solanaFailed", "Solana tip failed"),
+          );
         }
         return;
       }
@@ -377,11 +389,11 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
         !tokenAddress ||
         !controllerAddress
       ) {
-        setTipError("Missing web3 context");
+        setTipError(t("tip.missingWeb3", "Missing web3 context"));
         return;
       }
       if (isSelf) {
-        setTipError("You can't tip yourself");
+        setTipError(t("tip.cannotTipSelf", "You can't tip yourself"));
         return;
       }
 
@@ -519,7 +531,9 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   const recipientLabel =
     recipientName || `${toAddress.slice(0, 6)}…${toAddress.slice(-4)}`;
   const subheader =
-    tipContext === "content" ? "Tip content" : `Tip ${recipientLabel}`;
+    tipContext === "content"
+      ? t("tip.toContent", "Tip content")
+      : t("tip.toCreator", "Tip {{name}}", { name: recipientLabel });
 
   return (
     <Modal
@@ -571,7 +585,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                 {/* Header */}
                 <View style={styles.headerRow}>
                   <Icon name="Gem" size={18} color="#F9FBFF" />
-                  <Text style={styles.headerTitle}>Send Tip</Text>
+                  <Text style={styles.headerTitle}>{t("tip.title", "Send Tip")}</Text>
                 </View>
                 <Text style={styles.recipientText}>{subheader}</Text>
 
@@ -579,7 +593,10 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                   <View style={styles.privateNotice}>
                     <Icon name="EyeOff" size={16} color="#A1A1AA" />
                     <Text style={styles.privateNoticeText}>
-                      This account has private balance mode on, so DeHub cannot send tokens or tips to it.
+                      {t(
+                        "tip.privateBalanceNotice",
+                        "This account has private balance mode on, so DeHub cannot send tokens or tips to it.",
+                      )}
                     </Text>
                   </View>
                 ) : null}
@@ -587,7 +604,9 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                 {/* Quick amounts — DHB only (SOL tips use the custom field),
                     and never when the amount is fixed by whatever raised this. */}
                 {!isSolanaTip && !isLocked && (
-                <Text style={styles.sectionLabel}>Quick amounts</Text>
+                <Text style={styles.sectionLabel}>
+                  {t("tip.quickAmounts", "Quick amounts")}
+                </Text>
                 )}
                 {!isSolanaTip && !isLocked && (
                 <View style={styles.presetsGrid}>
@@ -625,10 +644,12 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                 {/* Custom input */}
                 <Text style={styles.sectionLabel}>
                   {isLocked
-                    ? "Amount requested"
+                    ? t("tip.amountRequested", "Amount requested")
                     : isSolanaTip
-                      ? `Amount (${tipCurrency})`
-                      : "Or enter amount"}
+                      ? t("tip.amountIn", "Amount ({{currency}})", {
+                          currency: tipCurrency,
+                        })
+                      : t("tip.customAmount", "Or enter amount")}
                 </Text>
                 <View style={styles.inputRow}>
                   {!isSolanaTip && (
@@ -642,7 +663,9 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                     value={amount}
                     onChangeText={handleInputChange}
                     editable={!isLocked}
-                    placeholder={isSolanaTip ? "0.0" : "Enter amount"}
+                    placeholder={
+                      isSolanaTip ? "0.0" : t("tip.enterAmount", "Enter amount")
+                    }
                     placeholderTextColor="#6F7174"
                     keyboardType={isSolanaTip ? "decimal-pad" : "number-pad"}
                     style={styles.textInput}
@@ -653,20 +676,28 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                 <View style={styles.metaRow}>
                   <Text style={styles.balanceText}>
                     {isSolanaTip
-                      ? "Paid in SOL on Solana"
-                      : `Balance: ${formatCompactNumber(balance)} DHB`}
+                      ? t("tip.paidInSol", "Paid in SOL on Solana")
+                      : t("tip.balance", "Balance: {{amount}} DHB", {
+                          amount: formatCompactNumber(balance),
+                        })}
                   </Text>
                   {overLimit && (
                     <Text style={styles.errorSmall}>
-                      Max: {formatCompactNumber(limitTip)}
+                      {t("tip.max", "Max: {{amount}}", {
+                        amount: formatCompactNumber(limitTip),
+                      })}
                     </Text>
                   )}
                 </View>
                 {insufficient && (
-                  <Text style={styles.errorText}>Insufficient balance</Text>
+                  <Text style={styles.errorText}>
+                    {t("tip.insufficientBalance", "Insufficient balance")}
+                  </Text>
                 )}
                 {isSelf && (
-                  <Text style={styles.errorText}>You can't tip yourself</Text>
+                  <Text style={styles.errorText}>
+                    {t("tip.cannotTipSelf", "You can't tip yourself")}
+                  </Text>
                 )}
                 {tipError && <Text style={styles.errorText}>{tipError}</Text>}
 
@@ -678,7 +709,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                     style={[styles.closeBtn, isBusy && { opacity: 0.5 }]}
                     activeOpacity={0.7}
                   >
-                    <Text style={styles.closeBtnText}>Close</Text>
+                    <Text style={styles.closeBtnText}>{t("common.close", "Close")}</Text>
                   </TouchableOpacity>
 
                   <View style={{ flex: 1, opacity: disableSend && phase === "idle" ? 0.45 : 1 }}>
@@ -701,12 +732,12 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                         ) : null}
                         <Text style={styles.sendBtnText}>
                           {phase === "approving"
-                            ? "Approving…"
+                            ? t("tip.approving", "Approving...")
                             : phase === "sending"
-                              ? "Sending…"
+                              ? t("tip.sending", "Sending...")
                               : phase === "error"
-                                ? "Retry"
-                                : "Send"}
+                                ? t("common.retry", "Retry")
+                                : t("tip.send", "Send")}
                         </Text>
                       </TouchableOpacity>
                     </LinearGradient>
@@ -730,7 +761,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                   entering={FadeInDown.delay(200).duration(350)}
                   style={styles.successTitle}
                 >
-                  Tip Sent!
+                  {t("tip.sent", "Tip Sent!")}
                 </Animated.Text>
                 <Animated.Text
                   entering={FadeInDown.delay(300).duration(350)}
@@ -742,7 +773,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                   entering={FadeIn.delay(400).duration(300)}
                   style={styles.successSub}
                 >
-                  to {recipientLabel}
+                  {t("tip.toRecipient", "to {{name}}", { name: recipientLabel })}
                 </Animated.Text>
 
                 <Animated.View
@@ -762,14 +793,16 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                     style={styles.closeBtn}
                     activeOpacity={0.7}
                   >
-                    <Text style={styles.closeBtnText}>Send Again</Text>
+                    <Text style={styles.closeBtnText}>
+                      {t("tip.sendAgain", "Send Again")}
+                    </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={closeSheet}
                     style={[styles.closeBtn, { flex: 1 }]}
                     activeOpacity={0.7}
                   >
-                    <Text style={styles.closeBtnText}>Close</Text>
+                    <Text style={styles.closeBtnText}>{t("common.close", "Close")}</Text>
                   </TouchableOpacity>
                 </Animated.View>
               </View>

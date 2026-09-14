@@ -1,5 +1,6 @@
 import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -59,6 +60,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
   minAmount = 1,
   dhbBalance,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [inputValue, setInputValue] = useState(
     currentAmount > 0 ? String(currentAmount) : "",
@@ -196,14 +198,23 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
             <View style={styles.content}>
               <View style={styles.headerRow}>
                 <Icon name="Gem" size={18} color="#F4F4F5" />
-                <Text style={styles.headerTitle}>Add a Tip</Text>
+                <Text style={styles.headerTitle}>{t("tip.addTip", "Add a Tip")}</Text>
               </View>
               <Text style={styles.recipientText}>
-                Attach DHB tokens as a tip to your message
-                {minAmount > 1 ? `. Min ${Number(minAmount).toLocaleString()} DHB.` : ""}
+                {t(
+                  "tip.attachDescription",
+                  "Attach DHB tokens as a tip to your message",
+                )}
+                {minAmount > 1
+                  ? `. ${t("tip.minAmount", "Min {{amount}} DHB.", {
+                      amount: Number(minAmount).toLocaleString(),
+                    })}`
+                  : ""}
               </Text>
 
-              <Text style={styles.sectionLabel}>Quick amounts</Text>
+              <Text style={styles.sectionLabel}>
+                {t("tip.quickAmounts", "Quick amounts")}
+              </Text>
               <View style={styles.presetsGrid}>
                 {PRESETS.map((amount) => {
                   const isSelected = selectedPreset === amount;
@@ -235,7 +246,9 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
                 })}
               </View>
 
-              <Text style={styles.sectionLabel}>Or enter amount</Text>
+              <Text style={styles.sectionLabel}>
+                {t("tip.customAmount", "Or enter amount")}
+              </Text>
               <View style={styles.inputRow}>
                 <Image
                   source={DEHUB_COIN}
@@ -245,7 +258,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
                 <TextInput
                   value={inputValue}
                   onChangeText={handleInputChange}
-                  placeholder="Enter amount"
+                  placeholder={t("tip.enterAmount", "Enter amount")}
                   placeholderTextColor="#8B8D90"
                   keyboardType="number-pad"
                   style={styles.textInput}
@@ -254,10 +267,18 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
 
               <View style={styles.metaRow}>
                 <Text style={styles.balanceText}>
-                  Balance: {dhbBalance != null ? formatCompactNumber(Number(dhbBalance)) : "—"} <DhbCoin />
+                  {t("tip.balanceAmount", "Balance: {{amount}}", {
+                    amount:
+                      dhbBalance != null
+                        ? formatCompactNumber(Number(dhbBalance))
+                        : "—",
+                  })}{" "}
+                  <DhbCoin />
                 </Text>
                 {exceedsBalance && (
-                  <Text style={styles.errorSmall}>Insufficient</Text>
+                  <Text style={styles.errorSmall}>
+                    {t("tip.insufficientShort", "Insufficient")}
+                  </Text>
                 )}
               </View>
 
@@ -268,7 +289,9 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
                     style={styles.removeBtn}
                     activeOpacity={0.7}
                   >
-                    <Text style={styles.removeBtnText}>Remove Tip</Text>
+                    <Text style={styles.removeBtnText}>
+                      {t("tip.removeTip", "Remove Tip")}
+                    </Text>
                   </TouchableOpacity>
                 )}
                 <TouchableOpacity
@@ -287,10 +310,12 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
                     ]}
                   >
                     {exceedsBalance
-                      ? "Insufficient DHB"
+                      ? t("tip.insufficientDhb", "Insufficient DHB")
                       : isValid
-                        ? `Attach ${numericValue.toLocaleString()} DHB`
-                        : "Enter amount"}
+                        ? t("tip.attachAmount", "Attach {{amount}} DHB", {
+                            amount: numericValue.toLocaleString(),
+                          })
+                        : t("tip.enterAmount", "Enter amount")}
                   </Text>
                 </TouchableOpacity>
               </View>
