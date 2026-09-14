@@ -3134,5 +3134,25 @@
     "noUpcoming": "Babu abubuwan da ke tafe",
     "interestedCount": "{{count}} suna sha'awa",
     "loadFailed": "An kasa loda abubuwan"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Bayani",
+      "intro": "Kun yi amfani da DeHub na waje? Gaya mana abin da ya kasance. Kyau, mummuna ko takaici - duk shi ana karantawa. Idan kun yi farin ciki don mu yi amfani da cikakken magana naka, bugi akwatin kuma kila mu yi amfani da shi a jigogin jiya, bidiyo ko a gida.",
+      "placeholder": "A cikin kalmomka…",
+      "timeUsingPlaceholder": "Yaya kake nan? (ba dole ba)",
+      "consentPromo": "Ina ba da izini ga DeHub su yi amfani da wannan bayani a cikin kasua da kuma tallace-tallacen kasua.",
+      "consentName": "Kuna iya nuna sunana tare da shi. Bar wannan ba a bugi don a yi amfani da shi cikin sirri.",
+      "submit": "Aika bayani",
+      "sending": "Aika…",
+      "signedOut": "Shiga don barin bayani",
+      "thanks": "Sai dai - na gode. Duk abin da ka shirya don kasua ana dubawa shi ta mutum kafin ya bayyana a waje.",
+      "again": "Bar bayani kari",
+      "toastSent": "Godiya - bayani naka yana tare da mu",
+      "toastFailed": "Ba za a iya aika haka ba, gwada sake",
+      "wallTitle": "Abin da jama'a suke cewa",
+      "wallNote": "an buga tare da izini",
+      "anonymous": "Memba na DeHub"
+    }
   }
 }

@@ -3102,5 +3102,25 @@
     "noUpcoming": "Ora ana acara sabanjure",
     "interestedCount": "{{count}} kepéngin",
     "loadFailed": "Ora bisa ngemot acara"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Umpan Balik",
+      "intro": "Wis nggunakake DeHub sawetara? Kandakake apa rasane. Apik, ala utawa spesifik — kabeh iku dibaca. Yen sampeyan seneng yen kami ngutip, centang kothak lan kami bisa nggunakake ing posting, video utawa ing situs.",
+      "placeholder": "Kanthi tembung dhewe…",
+      "timeUsingPlaceholder": "Wis nganti kapan ing kene? (opsional)",
+      "consentPromo": "Aku ngidini DeHub ngutip umpan balik iki ing materi pemasaran lan promosi.",
+      "consentName": "Sampeyan bisa nunjukake jeneng panganggone ing samping. Yen ora dicekak, bakal dikutip kanthi anonim.",
+      "submit": "Kirim umpan balik",
+      "sending": "Ngirim…",
+      "signedOut": "Mlebu kanggo ninggalake umpan balik",
+      "thanks": "Ngerti — matur nuwun. Apa-apa sing sampeyan ijini kanggo panggunaan promosi ditinjau dening wong sadurunge katon ing endi-endi.",
+      "again": "Ninggalake umpan balik liyane",
+      "toastSent": "Matur nuwun — umpan balik sampeyan wis karo kami",
+      "toastFailed": "Ora bisa ngirim iku, coba maneh",
+      "wallTitle": "Apa sing dikandhakake wong",
+      "wallNote": "diterbitake kanthi ijin",
+      "anonymous": "Anggota DeHub"
+    }
   }
 }

@@ -3223,5 +3223,25 @@
     "noUpcoming": "Tsy misy hetsika ho avy",
     "interestedCount": "{{count}} liana",
     "loadFailed": "Tsy voaraikitra ny hetsika"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Fampahalalana",
+      "intro": "Efa nanao fampiasana DeHub mandritra ny fotoana? Lazao aminay hoe ahoana ny nohitanao. Tsara, ratsy na manokana — lahat amin izany dia vakina. Raha faly ianao hahavela anay hanonona anao, asio ny boaty ary mety hampiasainay izany amin ny posta, video na amin ny tranonkala.",
+      "placeholder": "Amin ny teny anao…",
+      "timeUsingPlaceholder": "Firy karazana fotoana ianao eto? (tsy ilaina)",
+      "consentPromo": "Avelako ny DeHub hampiasa ity fampahalalana ity amin ny fitaovam-pifampitsarana sy fitaovam-pampiroborobo.",
+      "consentName": "Azo asehon'ny DeHub ny anaran'ny mpampiasa ahy miaraka amin'izany. Avelao tsy asio ny boaty raha te-hanonona ianao.",
+      "submit": "Alefaso ny fampahalalana",
+      "sending": "Alefasana…",
+      "signedOut": "Miditra mba hanatitra fampahalalana",
+      "thanks": "Efa vita — misaotra. Ny zavatra rehetra nampahaidinao ho an'ny fampiasana fitaovam-pampiroborobo dia jerena amin'ny olona iray alohan'ny hiseho saika saika.",
+      "again": "Alefaso ny fampahalalana bebe kokoa",
+      "toastSent": "Misaotra — efa tonga aminay ny ianao fampahalalana",
+      "toastFailed": "Tsy afaka nalefa izany, andao indray",
+      "wallTitle": "Inona no lazain'ny olona",
+      "wallNote": "navoaka miaraka amin'ny alalana",
+      "anonymous": "Mpikambana DeHub"
+    }
   }
 }

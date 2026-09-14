@@ -3324,5 +3324,25 @@
     "noUpcoming": "Walang paparating na event",
     "interestedCount": "{{count}} ang interesado",
     "loadFailed": "Hindi ma-load ang mga event"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Feedback",
+      "intro": "Matagal na ba kayong gumagamit ng DeHub? Sabihin sa amin kung paano ito para sa inyo. Mabuti, masama o partikular — lahat ay binabasa. Kung masaya kayo na kami ay mag-quote sa inyo, i-tick ang kahon at maaari naming gamitin ito sa mga post, video o sa site.",
+      "placeholder": "Sa inyong sariling salita…",
+      "timeUsingPlaceholder": "Gaano katagal na kayo nandito? (opsyonal)",
+      "consentPromo": "Binibigyan ko ng pahintulot ang DeHub na mag-quote ng feedback na ito sa marketing at promotional materials.",
+      "consentName": "Maaari ninyong ipakita ang aking username kasama nito. Iwanan itong hindi na-tick upang ma-quote nang walang pangalan.",
+      "submit": "Magpadala ng feedback",
+      "sending": "Nagpapadala…",
+      "signedOut": "Mag-sign in upang magbigay ng feedback",
+      "thanks": "Nakuha — salamat. Ang kahit anong feedback na inyong inilabas para sa promotional use ay sinusuri ng isang tao bago ito lumitaw saanman.",
+      "again": "Magbigay ng mas maraming feedback",
+      "toastSent": "Salamat — ang inyong feedback ay nandito na sa amin",
+      "toastFailed": "Hindi mapadala iyon, subukan ulit",
+      "wallTitle": "Ano ang sinasabi ng mga tao",
+      "wallNote": "inilabas na may pahintulot",
+      "anonymous": "Isang miyembro ng DeHub"
+    }
   }
 }

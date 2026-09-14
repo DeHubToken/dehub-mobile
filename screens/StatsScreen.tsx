@@ -12,6 +12,7 @@ import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubR
 import Svg, { Line, Polyline } from "react-native-svg";
 import { useQuery } from "@tanstack/react-query";
 import ScreenHeader from "../components/ScreenHeader";
+import FeedbackSection from "../components/Stats/FeedbackSection";
 
 type Range = "7d" | "30d" | "1y" | "all";
 
@@ -157,6 +158,8 @@ export default function StatsScreen() {
             <MembersChart rows={rows} />
             <Text style={styles.source}>Recorded account history from DeHub’s public stats endpoint. No estimated values are used in this chart.</Text>
           </View>
+
+          <FeedbackSection />
         </ScrollView>
       )}
       <DeHubRefreshMark refreshing={query.isFetching} />

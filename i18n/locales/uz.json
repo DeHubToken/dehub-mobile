@@ -3196,5 +3196,25 @@
     "noUpcoming": "Kelgusi tadbirlar yo‘q",
     "interestedCount": "{{count}} kishi qiziqadi",
     "loadFailed": "Tadbirlarni yuklab bo‘lmadi"
+  },
+  "stats": {
+    "feedback": {
+      "title": "Fikr-mulohaza",
+      "intro": "DeHub-dan foydalanib turganmisiz? Uning qanday bo'lganini bizga ayting. Yaxshi, yomon yoki aniq — hammasini o'qiyamiz. Agar biz sizni sitata qilishiga rozi bo'lsangiz, katakni belgilang va biz uni postlarda, videolarda yoki saytda ishlatishimiz mumkin.",
+      "placeholder": "O'z so'zlaringiz bilan…",
+      "timeUsingPlaceholder": "Siz bu yerda qancha vaqt bo'ldingiz? (ixtiyoriy)",
+      "consentPromo": "Men DeHub-ga bu fikr-mulohazani marketing va reklama materiallari uchun sitata qilishiga ruxsat beraman.",
+      "consentName": "Mening foydalanuvchi nomimni uning yonida ko'rsatishingiz mumkin. Bu katakni belgilashni olib tashlang, agar anonimlik bilan sitata qilinishini xohlasangiz.",
+      "submit": "Fikr-mulohazani yuborish",
+      "sending": "Yuborilmoqda…",
+      "signedOut": "Fikr-mulohaza qoldirish uchun tizimga kiring",
+      "thanks": "Tushundim — rahmat. Reklama uchun tasdiqlanganlarning barchasi saytda paydo bo'lishidan oldin odam tomonidan tekshiriladi.",
+      "again": "Yana fikr-mulohaza qoldiring",
+      "toastSent": "Rahmat — sizning fikr-mulohazangiz bizda",
+      "toastFailed": "Buni yuborish mumkin emas, qayta urinib ko'ring",
+      "wallTitle": "Odamlar nima deyishadi",
+      "wallNote": "ruxsat bilan nashr etilgan",
+      "anonymous": "DeHub a'zosi"
+    }
   }
 }
