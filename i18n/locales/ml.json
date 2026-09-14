@@ -1993,7 +1993,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "ചിത്രം വളരെ വലുതാണ് — നിങ്ങളുടെ {{tier}} ടയർ {{limit}}MB വരെയുള്ള ഇമേജുകൾ സംഭരിക്കുന്നു",
-    "image_too_large_untiered": "ചിത്രം വളരെ വലുതാണ് — ഇമേജുകൾ {{limit}}MB വരെ സംഭരിക്കുന്നു"
+    "image_too_large_untiered": "ചിത്രം വളരെ വലുതാണ് — ഇമേജുകൾ {{limit}}MB വരെ സംഭരിക്കുന്നു",
+    "rate_limited": "റേറ്റ് ലിമിറ്റ്, പതുക്കെ"
   },
   "staking": {
     "title": "Staking",

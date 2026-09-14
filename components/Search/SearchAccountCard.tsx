@@ -8,6 +8,7 @@ import { getBadgeUrlFor, getBadgeOpticalStyle } from "../../libs/misc";
 import { followUser, unfollowUser } from "../../services/user.service";
 import Avatar from "../common/Avatar";
 import GlassFollowButton from "../ui/GlassFollowButton";
+import { reportActionError } from "../../libs/error-feedback";
 import type { SearchAccountResult } from "../../services/search.service";
 import type { FollowState } from "./SearchAccountChip";
 
@@ -60,6 +61,7 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
       }
     } catch (e) {
       console.error("[SearchAccountCard] follow error", e);
+      reportActionError(e, "Couldn't update follow");
     } finally {
       setFollowLoading(false);
     }

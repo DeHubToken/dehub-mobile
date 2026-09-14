@@ -2004,7 +2004,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "చిత్రం చాలా పెద్దది — మీ {{tier}} టైర్ {{limit}} MB వరకు చిత్రాలను స్టోర్ చేస్తుంది",
-    "image_too_large_untiered": "చిత్రం చాలా పెద్దది — చిత్రాలు {{limit}} MB వరకు నిల్వ చేయబడతాయి"
+    "image_too_large_untiered": "చిత్రం చాలా పెద్దది — చిత్రాలు {{limit}} MB వరకు నిల్వ చేయబడతాయి",
+    "rate_limited": "రేట్ లిమిట్, నెమ్మదిగా"
   },
   "staking": {
     "title": "Staking",

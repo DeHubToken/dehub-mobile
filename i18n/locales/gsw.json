@@ -1995,7 +1995,8 @@
     "waiting_for_confirmation": "Warte auf Bestätigung...",
     "error": "Fehler",
     "image_too_large_tier": "Bild isch z'gross — dini {{tier}} Tier speicheret Bilder bis {{limit}} MB",
-    "image_too_large_untiered": "Bild isch z'gross — Bilder wärde bis {{limit}} MB gspeicheret"
+    "image_too_large_untiered": "Bild isch z'gross — Bilder wärde bis {{limit}} MB gspeicheret",
+    "rate_limited": "Z'vill Aafroge, mach langsamer"
   },
   "staking": {
     "title": "Staking",

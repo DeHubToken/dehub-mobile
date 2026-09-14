@@ -7,6 +7,7 @@ import { formatCompactNumber } from "../../libs/numbers.util";
 import { followUser, unfollowUser } from "../../services/user.service";
 import Avatar from "../common/Avatar";
 import GlassFollowButton from "../ui/GlassFollowButton";
+import { reportActionError } from "../../libs/error-feedback";
 import type { SearchAccountResult } from "../../services/search.service";
 
 interface SearchAccountChipProps {
@@ -66,6 +67,7 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
       }
     } catch (e) {
       console.error("[SearchAccountChip] follow error", e);
+      reportActionError(e, "Couldn't update follow");
     } finally {
       setFollowLoading(false);
     }

@@ -494,7 +494,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Masyadong malaki ang larawan — ang iyong {{tier}} tier ay nag - iimbak ng mga larawan hanggang {{limit}} MB",
-    "image_too_large_untiered": "Masyadong malaki ang larawan — nakaimbak ang mga larawan hanggang {{limit}} MB"
+    "image_too_large_untiered": "Masyadong malaki ang larawan — nakaimbak ang mga larawan hanggang {{limit}} MB",
+    "rate_limited": "Rate limited, dahan-dahan lang"
   },
   "feed": {
     "home": "Home",

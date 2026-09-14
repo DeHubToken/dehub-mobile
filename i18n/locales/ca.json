@@ -2006,7 +2006,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "La imatge és massa gran: el teu nivell {{tier}} emmagatzema imatges de fins a {{limit}} MB",
-    "image_too_large_untiered": "La imatge és massa gran: les imatges s'emmagatzemen fins a {{limit}} MB"
+    "image_too_large_untiered": "La imatge és massa gran: les imatges s'emmagatzemen fins a {{limit}} MB",
+    "rate_limited": "Límit de peticions, ves més a poc a poc"
   },
   "staking": {
     "title": "Staking",

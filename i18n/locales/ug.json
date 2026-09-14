@@ -1963,7 +1963,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "سۈرەت بەك چوڭ — سىزنىڭ {{tier}} tier سۈرەتلەرنى ساقلايدۇ {{limit}} MB",
-    "image_too_large_untiered": "سۈرەت بېكىتتە چوڭ — سۈرەتلەر {{limit}} MB غىچە ساقلىنىدۇ"
+    "image_too_large_untiered": "سۈرەت بېكىتتە چوڭ — سۈرەتلەر {{limit}} MB غىچە ساقلىنىدۇ",
+    "rate_limited": "چەكلەندى، ئاستىراق"
   },
   "tip": {
     "title": "Send Tip",

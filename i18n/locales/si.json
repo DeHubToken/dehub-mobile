@@ -2021,7 +2021,8 @@
     "dhb_staked_on_chain": "{{amount}} DHB staked on {{chain}}.",
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
-    "image_too_large_untiered": "පිංතූරය විශාල වැඩියි — පිංතූර {{limit}} MB දක්වා ගබඩා කර ඇත"
+    "image_too_large_untiered": "පිංතූරය විශාල වැඩියි — පිංතූර {{limit}} MB දක්වා ගබඩා කර ඇත",
+    "rate_limited": "සීමාව පසු කළා, හෙමින් කරන්න"
   },
   "staking": {
     "title": "Staking",

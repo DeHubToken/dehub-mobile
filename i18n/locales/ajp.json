@@ -1963,7 +1963,8 @@
     "waiting_for_confirmation": "في انتظار التأكيد...",
     "error": "خطأ",
     "image_too_large_tier": "الصورة كبيرة كتير — متاجرك {{tier}} بتخزّن صور لحتى {{limit}} MB",
-    "image_too_large_untiered": "الصورة كبيرة كتير — الصور بتتخزن لحد {{limit}} ميجابايت"
+    "image_too_large_untiered": "الصورة كبيرة كتير — الصور بتتخزن لحد {{limit}} ميجابايت",
+    "rate_limited": "محدود بالمعدل، على مهلك"
   },
   "staking": {
     "title": "الإيداع",

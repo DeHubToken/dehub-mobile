@@ -1970,7 +1970,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Պատկերը չափազանց մեծ է ՝ ձեր {{tier}} մակարդակը պահպանում է պատկերները մինչև {{limit}} MB",
-    "image_too_large_untiered": "Պատկերը չափազանց մեծ է ․ պատկերները պահվում են մինչև {{limit}} MB"
+    "image_too_large_untiered": "Պատկերը չափազանց մեծ է ․ պատկերները պահվում են մինչև {{limit}} MB",
+    "rate_limited": "Հարցումների սահման, դանդաղեցրեք"
   },
   "tip": {
     "title": "Send Tip",

@@ -2006,7 +2006,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Imazhi është shumë i madh — juaji {{tier}} ruan imazhe deri në {{limit}} MB",
-    "image_too_large_untiered": "Imazhi është shumë i madh — imazhet ruhen deri në {{limit}} MB"
+    "image_too_large_untiered": "Imazhi është shumë i madh — imazhet ruhen deri në {{limit}} MB",
+    "rate_limited": "Kufi kërkesash, ngadalëso"
   },
   "staking": {
     "title": "Staking",

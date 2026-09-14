@@ -323,7 +323,8 @@
     "waiting_for_confirmation": "กำลังรอการยืนยัน...",
     "error": "ข้อผิดพลาด",
     "image_too_large_tier": "ภาพมีขนาดใหญ่เกินไป — ระดับ {{tier}} ของคุณจัดเก็บภาพได้สูงสุด {{limit}} MB",
-    "image_too_large_untiered": "ภาพมีขนาดใหญ่เกินไป — ภาพจะถูกจัดเก็บไว้สูงสุด {{limit}} MB"
+    "image_too_large_untiered": "ภาพมีขนาดใหญ่เกินไป — ภาพจะถูกจัดเก็บไว้สูงสุด {{limit}} MB",
+    "rate_limited": "ถูกจำกัดอัตรา ช้าลงหน่อย"
   },
   "feed": {
     "home": "Home",

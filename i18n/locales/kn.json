@@ -2015,7 +2015,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "ಚಿತ್ರವು ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ — ನಿಮ್ಮ {{tier}} ಶ್ರೇಣಿ {{limit}} MB ವರೆಗಿನ ಚಿತ್ರಗಳನ್ನು ಸಂಗ್ರಹಿಸುತ್ತದೆ",
-    "image_too_large_untiered": "ಚಿತ್ರವು ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ — ಚಿತ್ರಗಳನ್ನು {{limit}} MB ವರೆಗೆ ಸಂಗ್ರಹಿಸಲಾಗಿದೆ"
+    "image_too_large_untiered": "ಚಿತ್ರವು ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ — ಚಿತ್ರಗಳನ್ನು {{limit}} MB ವರೆಗೆ ಸಂಗ್ರಹಿಸಲಾಗಿದೆ",
+    "rate_limited": "ದರ ಮಿತಿ, ನಿಧಾನಿಸಿ"
   },
   "staking": {
     "title": "Staking",

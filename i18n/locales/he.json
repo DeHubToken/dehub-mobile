@@ -2007,7 +2007,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "התמונה גדולה מדי — השכבה {{tier}} מאחסנת תמונות עד {{limit}} MB",
-    "image_too_large_untiered": "התמונה גדולה מדי — התמונות מאוחסנות עד {{limit}} MB"
+    "image_too_large_untiered": "התמונה גדולה מדי — התמונות מאוחסנות עד {{limit}} MB",
+    "rate_limited": "הגעת למגבלת קצב, האט"
   },
   "staking": {
     "title": "Staking",

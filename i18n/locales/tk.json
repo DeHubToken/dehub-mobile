@@ -1952,7 +1952,8 @@
     "waiting_for_confirmation": "Waiting for confirmation...",
     "error": "Error",
     "image_too_large_tier": "Resim gaty uly — {{tier}} tier {{limit}}MB-eçenlisuratlary saklaýar",
-    "image_too_large_untiered": "Resim gaty uly — suratlar {{limit}}MB-de saklanýar"
+    "image_too_large_untiered": "Resim gaty uly — suratlar {{limit}}MB-de saklanýar",
+    "rate_limited": "Haýyş çägi, haýalladyň"
   },
   "tip": {
     "title": "Send Tip",

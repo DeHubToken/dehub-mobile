@@ -2007,7 +2007,8 @@
     "waiting_for_confirmation": "Menunggu konfirmasi...",
     "error": "Kesalahan",
     "image_too_large_tier": "Gambar terlalu besar — tingkatan {{tier}} Anda menyimpan gambar hingga {{limit}} MB",
-    "image_too_large_untiered": "Gambar terlalu besar — gambar disimpan hingga {{limit}} MB"
+    "image_too_large_untiered": "Gambar terlalu besar — gambar disimpan hingga {{limit}} MB",
+    "rate_limited": "Terlalu sering, pelan-pelan"
   },
   "staking": {
     "title": "Staking",
