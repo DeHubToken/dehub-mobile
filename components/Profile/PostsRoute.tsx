@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import {
   View,
   ActivityIndicator,
-  RefreshControl,
   type NativeSyntheticEvent,
   type NativeScrollEvent,
 } from "react-native";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import FeedCard from "../Home/FeedCard";
@@ -279,7 +279,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         onViewableItemsChanged={onViewableItemsChanged}
         extraData={visibilityExtraData}
         refreshControl={
-          <RefreshControl
+          <DeHubRefreshControl
             refreshing={refreshing}
             onRefresh={() => {
               setRefreshing(true);
@@ -298,6 +298,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
           ) : null
         }
       />
+      <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
 };

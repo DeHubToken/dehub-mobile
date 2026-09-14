@@ -10,6 +10,7 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import Icon from "../components/ui/Icon";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
@@ -691,7 +692,7 @@ const LiveChatScreen: React.FC = () => {
       <View className="flex-1 items-center justify-center py-20">
         {joining ? (
           <>
-            <ActivityIndicator size="large" color="rgba(255,255,255,0.3)" />
+            <DeHubLoader size={56} />
             <Text className="text-white/60 text-sm mt-4">Joining chat...</Text>
           </>
         ) : !connected ? (

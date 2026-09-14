@@ -11,6 +11,7 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -449,7 +450,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
 
   const renderClaimingContent = () => (
     <View style={styles.centeredContent}>
-      <ActivityIndicator size="large" color="#F9FBFF" />
+      <DeHubLoader size={56} />
       <Text style={styles.claimingTitle}>Claiming {pendingLabel} Bounty…</Text>
       <Text style={styles.claimingSubtitle}>Processing on-chain transaction</Text>
     </View>

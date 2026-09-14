@@ -2,14 +2,14 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "
 import {
   View,
   FlatList,
-  ActivityIndicator,
-  RefreshControl,
   Text,
   Pressable,
   NativeSyntheticEvent,
   NativeScrollEvent,
   ViewToken,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { useNavigation, useScrollToTop } from "@react-navigation/native";
 import ShortsGridCard, { CARD_HEIGHT, GRID_GAP } from "./ShortsGridCard";
@@ -308,7 +308,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         onMomentumScrollEnd={onScrollEnd}
         scrollEventThrottle={16}
         refreshControl={
-          <RefreshControl
+          <DeHubRefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
             tintColor={theme.colors.accent}
@@ -318,7 +318,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         ListFooterComponent={
           loadingMore ? (
             <View className="items-center py-6">
-              <ActivityIndicator size="large" color="#fff" />
+              <DeHubLoader size={32} />
             </View>
           ) : endReached && items.length > 0 ? (
             <View className="py-6 items-center">
@@ -335,6 +335,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
           ) : null
         }
       />
+      <DeHubRefreshMark refreshing={refreshing} topInset={headerInset} />
     </View>
   );
 };

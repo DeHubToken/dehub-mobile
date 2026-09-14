@@ -4,8 +4,9 @@ import {
   Text,
   FlatList,
   ActivityIndicator,
-  RefreshControl,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import { getQuotePosts } from "../../services/repost.service";
 import FeedCard from "../Home/FeedCard";
 
@@ -94,20 +95,21 @@ const QuoteTabComponent: React.FC<QuoteTabProps> = ({ tokenId }) => {
   if (loading) {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <ActivityIndicator size="large" color="#F9FBFF" />
+        <DeHubLoader size={56} />
       </View>
     );
   }
 
   return (
-    <FlatList
+    <View style={{ flex: 1 }}>
+      <FlatList
       data={posts}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0.3}
       refreshControl={
-        <RefreshControl
+        <DeHubRefreshControl
           refreshing={refreshing}
           onRefresh={handleRefresh}
           tintColor="#F9FBFF"
@@ -122,7 +124,9 @@ const QuoteTabComponent: React.FC<QuoteTabProps> = ({ tokenId }) => {
       }
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ flexGrow: 1, paddingTop: 8 }}
-    />
+      />
+      <DeHubRefreshMark refreshing={refreshing} />
+    </View>
   );
 };
 

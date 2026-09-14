@@ -14,6 +14,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import ScreenHeader from "../components/ScreenHeader";
 import PostsInfiniteList from "../components/Profile/PostsInfiniteList";
 import { useAuthState } from "../context/AuthContext";
@@ -375,7 +376,7 @@ const SavedPostsScreen: React.FC = () => {
         <View style={{ flex: 1 }}>
           {loadingFolders ? (
             <View style={styles.centerSpinner}>
-              <ActivityIndicator size="large" color="#D4D4D8" />
+              <DeHubLoader size={56} />
             </View>
           ) : (
             <FlatList

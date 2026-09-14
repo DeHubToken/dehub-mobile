@@ -9,13 +9,14 @@ import React, {
 import {
   ActivityIndicator,
   FlatList,
-  RefreshControl,
   Text,
   View,
   type ListRenderItemInfo,
   type NativeSyntheticEvent,
   type NativeScrollEvent,
 } from "react-native";
+import { DeHubLoader } from "../DeHubLoader";
+import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import FeedCard from "../Home/FeedCard";
 import Icon from "../ui/Icon";
 import { theme } from "../../theme";
@@ -170,7 +171,7 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
       <View className="flex-1">
         {!!headerComponent && <View>{headerComponent}</View>}
         <View className="flex-1 items-center justify-center py-16">
-          <ActivityIndicator size="large" color="#fff" />
+          <DeHubLoader size={56} />
         </View>
       </View>
     );
@@ -216,7 +217,8 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
 
 
   return (
-    <FlatList
+    <View className="flex-1">
+      <FlatList
       ref={listRef}
       data={items}
       renderItem={renderItem}
@@ -235,7 +237,7 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
       maxToRenderPerBatch={8}
       windowSize={7}
       refreshControl={
-        <RefreshControl
+        <DeHubRefreshControl
           refreshing={refreshing}
           onRefresh={handleRefresh}
           tintColor={theme.colors.accent}
@@ -252,7 +254,9 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
           </View>
         ) : null
       }
-    />
+      />
+      <DeHubRefreshMark refreshing={refreshing} />
+    </View>
   );
 };
 

@@ -40,6 +40,7 @@ import {
   Share,
   useWindowDimensions,
 } from "react-native";
+import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -1127,7 +1128,7 @@ export default function FeatureRequestsScreen() {
       {/* Content */}
       {loading ? (
         <View style={styles.center}>
-          <ActivityIndicator size="large" color="#FFFFFF" />
+          <DeHubLoader size={56} />
         </View>
       ) : isError && tab === "requests" ? (
         <View style={styles.emptyBento}>
