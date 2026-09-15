@@ -3234,5 +3234,31 @@
     "line": "A fiókod ki van tiltva, így nem tehetsz közzé, nem kommentelhetsz és nem küldhetsz üzeneteket.",
     "reason": "Ok: {{reason}}",
     "deleteAccount": "Fiókod és adataid törlése"
+  },
+  "teamUp": {
+    "title": "Csapatba állás",
+    "subtitle": "Egyesítsd a tárcád erejét legfeljebb hét másikkal. Mindenki azt a jelvényt viseli, amit az összegetek felold.",
+    "signInPrompt": "Jelentkezz be csapat létrehozásához vagy csatlakozáshoz. Jelvény nem szükséges.",
+    "leave": "Kilépés a csapatból",
+    "make": "Csapat létrehozása",
+    "makeHint": "Te leszel a tulajdonos. A csapatnevek nyilvánosak.",
+    "join": "Csatlakozás csapathoz",
+    "joinHint": "Egyszerre csak egy csapatban lehetsz.",
+    "none": "Nem található csapat.",
+    "namePlaceholder": "Csapatnév",
+    "searchPlaceholder": "Csapatok keresése",
+    "removeFailed": "Nem sikerült eltávolítani ezt a tagot",
+    "left": "Kiléptél a csapatból",
+    "leaveFailed": "Nem sikerült kilépni ebből a csapatból",
+    "created": "Csapat létrehozva",
+    "createFailed": "Nem sikerült létrehozni ezt a csapatot",
+    "joined": "Csatlakoztál ehhez: {{name}}",
+    "joinFailed": "Nem sikerült csatlakozni ehhez a csapathoz",
+    "removeTitle": "Eltávolítod a tagot?",
+    "removeBody": "Eltávolítod {{name}} tagot innen: {{team}}?",
+    "leaveTitle": "Kilépsz a csapatból?",
+    "leaveBody": "Kilépsz innen: {{name}}?",
+    "leaveAction": "Kilépés",
+    "noBadgeYet": "Még nincs jelvény"
   }
 }

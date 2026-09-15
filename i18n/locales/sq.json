@@ -3229,5 +3229,31 @@
     "line": "Llogaria jote është e ndaluar, kështu që nuk mund të postosh, të komentosh apo të dërgosh mesazhe.",
     "reason": "Arsyeja: {{reason}}",
     "deleteAccount": "Fshi llogarinë dhe të dhënat e tua"
+  },
+  "teamUp": {
+    "title": "Bashkohu në ekip",
+    "subtitle": "Bashko fuqinë e portofolit me deri në shtatë të tjerë. Të gjithë mbajnë distinktivin që zhbllokon totali juaj.",
+    "signInPrompt": "Hyr për të krijuar ose për t'u bashkuar me një ekip. Nuk kërkohet asnjë distinktiv.",
+    "leave": "Dil nga ekipi",
+    "make": "Krijo një ekip",
+    "makeHint": "Ti bëhesh pronari. Emrat e ekipeve janë publikë.",
+    "join": "Bashkohu me një ekip",
+    "joinHint": "Mund të jesh vetëm në një ekip në të njëjtën kohë.",
+    "none": "Nuk u gjetën ekipe.",
+    "namePlaceholder": "Emri i ekipit",
+    "searchPlaceholder": "Kërko ekipe",
+    "removeFailed": "Ai anëtar nuk u hoq dot",
+    "left": "Dole nga ekipi",
+    "leaveFailed": "Nuk u dol dot nga ai ekip",
+    "created": "Ekipi u krijua",
+    "createFailed": "Ai ekip nuk u krijua dot",
+    "joined": "U bashkove me {{name}}",
+    "joinFailed": "Nuk u bashkove dot me atë ekip",
+    "removeTitle": "Të hiqet anëtari?",
+    "removeBody": "Të hiqet {{name}} nga {{team}}?",
+    "leaveTitle": "Të dalësh nga ekipi?",
+    "leaveBody": "Të dalësh nga {{name}}?",
+    "leaveAction": "Dil",
+    "noBadgeYet": "Ende pa distinktiv"
   }
 }

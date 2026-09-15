@@ -3297,5 +3297,31 @@
     "line": "アカウントが禁止されているため、投稿、コメント、メッセージの送信はできません。",
     "reason": "理由：{{reason}}",
     "deleteAccount": "アカウントとデータを削除する"
+  },
+  "teamUp": {
+    "title": "チームを組む",
+    "subtitle": "最大 7 人までウォレットの力を合わせられます。合計額が解放したバッジを全員が身に着けます。",
+    "signInPrompt": "チームの作成や参加にはサインインしてください。バッジは不要です。",
+    "leave": "チームを離れる",
+    "make": "チームを作成",
+    "makeHint": "あなたがオーナーになります。チーム名は公開されます。",
+    "join": "チームに参加",
+    "joinHint": "同時に所属できるチームは 1 つだけです。",
+    "none": "チームが見つかりませんでした。",
+    "namePlaceholder": "チーム名",
+    "searchPlaceholder": "チームを検索",
+    "removeFailed": "そのメンバーを削除できませんでした",
+    "left": "チームを離れました",
+    "leaveFailed": "そのチームを離れられませんでした",
+    "created": "チームを作成しました",
+    "createFailed": "そのチームを作成できませんでした",
+    "joined": "{{name}} に参加しました",
+    "joinFailed": "そのチームに参加できませんでした",
+    "removeTitle": "メンバーを削除しますか？",
+    "removeBody": "{{name}} を {{team}} から削除しますか？",
+    "leaveTitle": "チームを離れますか？",
+    "leaveBody": "{{name}} を離れますか？",
+    "leaveAction": "離れる",
+    "noBadgeYet": "まだバッジはありません"
   }
 }

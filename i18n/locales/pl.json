@@ -3298,5 +3298,31 @@
     "line": "Twoje konto jest zablokowane, więc nie możesz publikować, komentować ani wysyłać wiadomości.",
     "reason": "Powód: {{reason}}",
     "deleteAccount": "Usuń swoje konto i dane"
+  },
+  "teamUp": {
+    "title": "Utwórz drużynę",
+    "subtitle": "Połącz siłę portfela z maksymalnie siedmioma innymi osobami. Wszyscy noszą odznakę, którą odblokuje wasza suma.",
+    "signInPrompt": "Zaloguj się, aby utworzyć drużynę lub do niej dołączyć. Odznaka nie jest wymagana.",
+    "leave": "Opuść drużynę",
+    "make": "Utwórz drużynę",
+    "makeHint": "Zostajesz właścicielem. Nazwy drużyn są publiczne.",
+    "join": "Dołącz do drużyny",
+    "joinHint": "Możesz należeć tylko do jednej drużyny naraz.",
+    "none": "Nie znaleziono drużyn.",
+    "namePlaceholder": "Nazwa drużyny",
+    "searchPlaceholder": "Szukaj drużyn",
+    "removeFailed": "Nie udało się usunąć tego członka",
+    "left": "Opuściłeś drużynę",
+    "leaveFailed": "Nie udało się opuścić tej drużyny",
+    "created": "Drużyna utworzona",
+    "createFailed": "Nie udało się utworzyć tej drużyny",
+    "joined": "Dołączono do {{name}}",
+    "joinFailed": "Nie udało się dołączyć do tej drużyny",
+    "removeTitle": "Usunąć członka?",
+    "removeBody": "Usunąć {{name}} z drużyny {{team}}?",
+    "leaveTitle": "Opuścić drużynę?",
+    "leaveBody": "Opuścić {{name}}?",
+    "leaveAction": "Opuść",
+    "noBadgeYet": "Brak odznaki"
   }
 }

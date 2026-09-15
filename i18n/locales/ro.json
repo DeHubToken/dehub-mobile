@@ -3243,5 +3243,31 @@
     "line": "Contul tău este interzis, deci nu poți posta, comenta sau trimite mesaje.",
     "reason": "Motiv: {{reason}}",
     "deleteAccount": "Ștergeți contul și datele"
+  },
+  "teamUp": {
+    "title": "Formează o echipă",
+    "subtitle": "Combină puterea portofelului cu până la alte șapte persoane. Toți poartă insigna pe care o deblochează totalul vostru.",
+    "signInPrompt": "Conectează-te ca să creezi sau să te alături unei echipe. Nu este nevoie de insignă.",
+    "leave": "Părăsește echipa",
+    "make": "Creează o echipă",
+    "makeHint": "Devii proprietarul. Numele echipelor sunt publice.",
+    "join": "Alătură-te unei echipe",
+    "joinHint": "Poți face parte doar dintr-o singură echipă odată.",
+    "none": "Nu s-au găsit echipe.",
+    "namePlaceholder": "Numele echipei",
+    "searchPlaceholder": "Caută echipe",
+    "removeFailed": "Nu s-a putut elimina acel membru",
+    "left": "Ai părăsit echipa",
+    "leaveFailed": "Nu s-a putut părăsi acea echipă",
+    "created": "Echipă creată",
+    "createFailed": "Nu s-a putut crea acea echipă",
+    "joined": "Te-ai alăturat echipei {{name}}",
+    "joinFailed": "Nu te-ai putut alătura acelei echipe",
+    "removeTitle": "Elimini membrul?",
+    "removeBody": "Elimini {{name}} din {{team}}?",
+    "leaveTitle": "Părăsești echipa?",
+    "leaveBody": "Părăsești {{name}}?",
+    "leaveAction": "Părăsește",
+    "noBadgeYet": "Încă fără insignă"
   }
 }

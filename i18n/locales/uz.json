@@ -3281,5 +3281,31 @@
     "body": "Siz hali ham tizimga kirishingiz, tasmangizni o&#39;qishingiz, xabarlaringizni ochishingiz va hisobingizdagi barcha narsalarni ko&#39;rishingiz mumkin. Siz xabar joylashtira olmaysiz, izoh qoldira olmaysiz, munosabat bildira olmaysiz, xabarlarni kuzatib bora olmaysiz yoki yubora olmaysiz.",
     "line": "Sizning hisobingiz bloklangan, shuning uchun siz post qoldira olmaysiz, izoh qoldira olmaysiz yoki xabar yubora olmaysiz.",
     "deleteAccount": "Hisobingiz va ma&#39;lumotlaringizni o&#39;chirib tashlang"
+  },
+  "teamUp": {
+    "title": "Jamoa tuzing",
+    "subtitle": "Hamyon kuchingizni yana yetti kishi bilan birlashtiring. Umumiy summangiz ochgan nishonni hamma taqadi.",
+    "signInPrompt": "Jamoa tuzish yoki qo‘shilish uchun kiring. Hech qanday nishon talab qilinmaydi.",
+    "leave": "Jamoadan chiqish",
+    "make": "Jamoa tuzish",
+    "makeHint": "Siz egasi bo‘lasiz. Jamoa nomlari ommaviy.",
+    "join": "Jamoaga qo‘shilish",
+    "joinHint": "Bir vaqtning o‘zida faqat bitta jamoada bo‘lishingiz mumkin.",
+    "none": "Jamoalar topilmadi.",
+    "namePlaceholder": "Jamoa nomi",
+    "searchPlaceholder": "Jamoalarni qidirish",
+    "removeFailed": "O‘sha a'zoni olib tashlab bo‘lmadi",
+    "left": "Siz jamoadan chiqdingiz",
+    "leaveFailed": "O‘sha jamoadan chiqib bo‘lmadi",
+    "created": "Jamoa tuzildi",
+    "createFailed": "O‘sha jamoani yaratib bo‘lmadi",
+    "joined": "{{name}} jamoasiga qo‘shildingiz",
+    "joinFailed": "O‘sha jamoaga qo‘shilib bo‘lmadi",
+    "removeTitle": "A'zo olib tashlansinmi?",
+    "removeBody": "{{name}} {{team}} jamoasidan olib tashlansinmi?",
+    "leaveTitle": "Jamoadan chiqilsinmi?",
+    "leaveBody": "{{name}} jamoasidan chiqilsinmi?",
+    "leaveAction": "Chiqish",
+    "noBadgeYet": "Hali nishon yo‘q"
   }
 }

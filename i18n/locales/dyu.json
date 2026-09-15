@@ -3174,5 +3174,31 @@
     "body": "I be se ka don, ka dumuni kalan, ka i ka lɛtɛrɛw yɛlɛ ani ka koo bɛɛ ye i ka ɔriganisasiyɔn ka ɔriganisasiyɔn ka ɔriganisasiyɔn kɔnɔ. U dɔw tɛna se ka kuma, wala lasɔmini ci aw ma, wala k'a filɛ u ye min sɛbɛ.",
     "line": "U dɔw tɛna se ka kuma, wala lasɔmini ci aw ma, wala k'a filɛ u ye min sɛbɛ.",
     "deleteAccount": "Ka kunnafoniw ni kunnafoniw bɔ"
+  },
+  "teamUp": {
+    "title": "Jɛkulu dilan",
+    "subtitle": "I ka wari maralan fanga fara mɔgɔ wolonwula wɛrɛ ta kan. Bɛɛ bɛ taamasiyɛn don min bɛ dayɛlɛ aw ka jama fɛ.",
+    "signInPrompt": "Don walasa ka jɛkulu dilan walima ka don a la. Taamasiyɛn si man kan.",
+    "leave": "Bɔ jɛkulu la",
+    "make": "Jɛkulu dilan",
+    "makeHint": "I bɛ kɛ tigi ye. Jɛkuluw tɔgɔw ye foroba ta ye.",
+    "join": "Don jɛkulu la",
+    "joinHint": "I bɛ se ka kɛ jɛkulu kelen dɔrɔn na waati kelen na.",
+    "none": "Jɛkulu si ma sɔrɔ.",
+    "namePlaceholder": "Jɛkulu tɔgɔ",
+    "searchPlaceholder": "Jɛkuluw ɲini",
+    "removeFailed": "O jɛkulu mɔgɔ ma se ka bɔ",
+    "left": "I bɔra jɛkulu la",
+    "leaveFailed": "An ma se k'i bɔ o jɛkulu la",
+    "created": "Jɛkulu dilanna",
+    "createFailed": "An ma se ka o jɛkulu dilan",
+    "joined": "I donna {{name}} la",
+    "joinFailed": "An ma se k'i don o jɛkulu la",
+    "removeTitle": "Jɛkulu mɔgɔ bɔ?",
+    "removeBody": "{{name}} bɔ {{team}} la?",
+    "leaveTitle": "Ka bɔ jɛkulu la?",
+    "leaveBody": "Ka bɔ {{name}} la?",
+    "leaveAction": "Bɔ",
+    "noBadgeYet": "Taamasiyɛn si tɛ yen fɔlɔ"
   }
 }

@@ -3498,5 +3498,31 @@
     "line": "Je account is geblokkeerd, dus je kunt geen berichten plaatsen, reageren of verzenden.",
     "reason": "Reden: {{reason}}",
     "deleteAccount": "Je account en gegevens verwijderen"
+  },
+  "teamUp": {
+    "title": "Vorm een team",
+    "subtitle": "Combineer je walletkracht met maximaal zeven anderen. Iedereen draagt de badge die jullie totaal ontgrendelt.",
+    "signInPrompt": "Log in om een team te maken of eraan deel te nemen. Er is geen badge nodig.",
+    "leave": "Team verlaten",
+    "make": "Team maken",
+    "makeHint": "Jij wordt de eigenaar. Teamnamen zijn openbaar.",
+    "join": "Word lid van een team",
+    "joinHint": "Je kunt maar in één team tegelijk zitten.",
+    "none": "Geen teams gevonden.",
+    "namePlaceholder": "Teamnaam",
+    "searchPlaceholder": "Teams zoeken",
+    "removeFailed": "Kon dat lid niet verwijderen",
+    "left": "Je hebt het team verlaten",
+    "leaveFailed": "Kon dat team niet verlaten",
+    "created": "Team aangemaakt",
+    "createFailed": "Kon dat team niet aanmaken",
+    "joined": "Lid geworden van {{name}}",
+    "joinFailed": "Kon niet deelnemen aan dat team",
+    "removeTitle": "Lid verwijderen?",
+    "removeBody": "{{name}} uit {{team}} verwijderen?",
+    "leaveTitle": "Team verlaten?",
+    "leaveBody": "{{name}} verlaten?",
+    "leaveAction": "Verlaten",
+    "noBadgeYet": "Nog geen badge"
   }
 }

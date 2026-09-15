@@ -3304,5 +3304,31 @@
     "line": "Votre compte est banni, vous ne pouvez donc pas publier, commenter ou envoyer de messages.",
     "reason": "Motif : {{reason}}",
     "deleteAccount": "Supprimer votre compte et vos données"
+  },
+  "teamUp": {
+    "title": "Faire équipe",
+    "subtitle": "Combinez la puissance de votre portefeuille avec jusqu'à sept autres. Tout le monde porte le badge que votre total débloque.",
+    "signInPrompt": "Connectez-vous pour créer une équipe ou en rejoindre une. Aucun badge n'est requis.",
+    "leave": "Quitter l'équipe",
+    "make": "Créer une équipe",
+    "makeHint": "Vous en devenez le propriétaire. Les noms d'équipe sont publics.",
+    "join": "Rejoindre une équipe",
+    "joinHint": "Vous ne pouvez faire partie que d'une seule équipe à la fois.",
+    "none": "Aucune équipe trouvée.",
+    "namePlaceholder": "Nom de l'équipe",
+    "searchPlaceholder": "Rechercher des équipes",
+    "removeFailed": "Impossible de retirer ce membre",
+    "left": "Vous avez quitté l'équipe",
+    "leaveFailed": "Impossible de quitter cette équipe",
+    "created": "Équipe créée",
+    "createFailed": "Impossible de créer cette équipe",
+    "joined": "Vous avez rejoint {{name}}",
+    "joinFailed": "Impossible de rejoindre cette équipe",
+    "removeTitle": "Retirer le membre ?",
+    "removeBody": "Retirer {{name}} de {{team}} ?",
+    "leaveTitle": "Quitter l'équipe ?",
+    "leaveBody": "Quitter {{name}} ?",
+    "leaveAction": "Quitter",
+    "noBadgeYet": "Pas encore de badge"
   }
 }

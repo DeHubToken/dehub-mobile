@@ -3220,5 +3220,31 @@
     "line": "An haramta asusunka, don haka ba za ku iya aikawa ba, sharhi ko aika saƙonni.",
     "reason": "Dalili: {{reason}}",
     "deleteAccount": "Share asusunka da bayanan ku"
+  },
+  "teamUp": {
+    "title": "Haɗa ƙungiya",
+    "subtitle": "Haɗa ƙarfin walat ɗinka da har mutane bakwai. Kowa yana sa lambar da jimillarku ke buɗewa.",
+    "signInPrompt": "Ka shiga don ƙirƙirar ƙungiya ko shiga ɗaya. Ba a buƙatar wata lamba.",
+    "leave": "Bar ƙungiyar",
+    "make": "Ƙirƙiri ƙungiya",
+    "makeHint": "Za ka zama mai shi. Sunayen ƙungiya na jama'a ne.",
+    "join": "Shiga ƙungiya",
+    "joinHint": "Za ka iya kasancewa a ƙungiya ɗaya kawai a lokaci guda.",
+    "none": "Ba a sami wata ƙungiya ba.",
+    "namePlaceholder": "Sunan ƙungiya",
+    "searchPlaceholder": "Nemi ƙungiyoyi",
+    "removeFailed": "An kasa cire wannan memba",
+    "left": "Ka bar ƙungiyar",
+    "leaveFailed": "An kasa barin wannan ƙungiyar",
+    "created": "An ƙirƙiri ƙungiya",
+    "createFailed": "An kasa ƙirƙirar wannan ƙungiyar",
+    "joined": "Ka shiga {{name}}",
+    "joinFailed": "An kasa shiga wannan ƙungiyar",
+    "removeTitle": "A cire memba?",
+    "removeBody": "A cire {{name}} daga {{team}}?",
+    "leaveTitle": "A bar ƙungiyar?",
+    "leaveBody": "A bar {{name}}?",
+    "leaveAction": "Bar",
+    "noBadgeYet": "Babu lamba tukuna"
   }
 }

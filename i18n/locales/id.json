@@ -3280,5 +3280,31 @@
     "line": "Akun Anda diblokir, jadi Anda tidak dapat memposting, berkomentar, atau mengirim pesan.",
     "reason": "Alasan: {{reason}}",
     "deleteAccount": "Hapus akun dan data Anda"
+  },
+  "teamUp": {
+    "title": "Bentuk tim",
+    "subtitle": "Gabungkan kekuatan dompet dengan hingga tujuh orang lain. Semua memakai lencana yang dibuka oleh total kalian.",
+    "signInPrompt": "Masuk untuk membuat atau bergabung dengan tim. Tidak perlu lencana.",
+    "leave": "Keluar dari tim",
+    "make": "Buat tim",
+    "makeHint": "Kamu menjadi pemiliknya. Nama tim bersifat publik.",
+    "join": "Gabung dengan tim",
+    "joinHint": "Kamu hanya bisa berada di satu tim dalam satu waktu.",
+    "none": "Tidak ada tim ditemukan.",
+    "namePlaceholder": "Nama tim",
+    "searchPlaceholder": "Cari tim",
+    "removeFailed": "Tidak dapat menghapus anggota itu",
+    "left": "Kamu keluar dari tim",
+    "leaveFailed": "Tidak dapat keluar dari tim itu",
+    "created": "Tim dibuat",
+    "createFailed": "Tidak dapat membuat tim itu",
+    "joined": "Bergabung dengan {{name}}",
+    "joinFailed": "Tidak dapat bergabung dengan tim itu",
+    "removeTitle": "Hapus anggota?",
+    "removeBody": "Hapus {{name}} dari {{team}}?",
+    "leaveTitle": "Keluar dari tim?",
+    "leaveBody": "Keluar dari {{name}}?",
+    "leaveAction": "Keluar",
+    "noBadgeYet": "Belum ada lencana"
   }
 }

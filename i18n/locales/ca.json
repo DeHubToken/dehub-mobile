@@ -3230,5 +3230,31 @@
     "line": "El teu compte està bloquejat, per la qual cosa no pots publicar, comentar ni enviar missatges.",
     "reason": "Motiu: {{reason}}",
     "deleteAccount": "Elimina el teu compte i les teves dades"
+  },
+  "teamUp": {
+    "title": "Fes equip",
+    "subtitle": "Combina la força de la teva cartera amb fins a set persones més. Tothom porta la insígnia que desbloqueja el vostre total.",
+    "signInPrompt": "Inicia sessió per crear un equip o unir-t'hi. No cal cap insígnia.",
+    "leave": "Deixa l'equip",
+    "make": "Crea un equip",
+    "makeHint": "En seràs el propietari. Els noms d'equip són públics.",
+    "join": "Uneix-te a un equip",
+    "joinHint": "Només pots ser en un equip alhora.",
+    "none": "No s'ha trobat cap equip.",
+    "namePlaceholder": "Nom de l'equip",
+    "searchPlaceholder": "Cerca equips",
+    "removeFailed": "No s'ha pogut eliminar aquest membre",
+    "left": "Has deixat l'equip",
+    "leaveFailed": "No s'ha pogut deixar aquest equip",
+    "created": "Equip creat",
+    "createFailed": "No s'ha pogut crear aquest equip",
+    "joined": "T'has unit a {{name}}",
+    "joinFailed": "No s'ha pogut unir a aquest equip",
+    "removeTitle": "Vols eliminar el membre?",
+    "removeBody": "Vols eliminar {{name}} de {{team}}?",
+    "leaveTitle": "Vols deixar l'equip?",
+    "leaveBody": "Vols deixar {{name}}?",
+    "leaveAction": "Surt",
+    "noBadgeYet": "Encara sense insígnia"
   }
 }

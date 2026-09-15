@@ -3299,5 +3299,31 @@
     "line": "Ihr Konto ist gesperrt, sodass Sie keine Nachrichten posten, kommentieren oder senden können.",
     "reason": "Grund: {{reason}}",
     "deleteAccount": "Löschen Sie Ihr Konto und Ihre Daten"
+  },
+  "teamUp": {
+    "title": "Team bilden",
+    "subtitle": "Verbinde deine Wallet-Stärke mit bis zu sieben anderen. Alle tragen das Abzeichen, das eure Summe freischaltet.",
+    "signInPrompt": "Melde dich an, um ein Team zu gründen oder beizutreten. Ein Abzeichen ist nicht nötig.",
+    "leave": "Team verlassen",
+    "make": "Team erstellen",
+    "makeHint": "Du wirst Eigentümer. Teamnamen sind öffentlich.",
+    "join": "Team beitreten",
+    "joinHint": "Du kannst immer nur in einem Team sein.",
+    "none": "Keine Teams gefunden.",
+    "namePlaceholder": "Teamname",
+    "searchPlaceholder": "Teams suchen",
+    "removeFailed": "Dieses Mitglied konnte nicht entfernt werden",
+    "left": "Du hast das Team verlassen",
+    "leaveFailed": "Dieses Team konnte nicht verlassen werden",
+    "created": "Team erstellt",
+    "createFailed": "Dieses Team konnte nicht erstellt werden",
+    "joined": "{{name}} beigetreten",
+    "joinFailed": "Diesem Team konnte nicht beigetreten werden",
+    "removeTitle": "Mitglied entfernen?",
+    "removeBody": "{{name}} aus {{team}} entfernen?",
+    "leaveTitle": "Team verlassen?",
+    "leaveBody": "{{name}} verlassen?",
+    "leaveAction": "Verlassen",
+    "noBadgeYet": "Noch kein Abzeichen"
   }
 }
