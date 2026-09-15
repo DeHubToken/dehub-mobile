@@ -3523,5 +3523,27 @@
     "custom": "Maalum",
     "contractPlaceholder": "Anwani ya mkataba (0x…)",
     "symbolPlaceholder": "Alama (mf. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Imeshindwa kubadili mtandao wa usajili",
+    "connectWallet": "Unganisha pochi yako ili kujisajili",
+    "notBuyable": "Mpango huu hauwezi kununuliwa. Mwombe mtayarishaji auunde upya",
+    "preparing": "Inaandaa…",
+    "startFailed": "Imeshindwa kuanza usajili",
+    "confirmInWallet": "Thibitisha kwenye pochi yako…",
+    "waitingTx": "Inasubiri muamala…",
+    "noTxHash": "Pochi haikurudisha hashi ya muamala",
+    "finishing": "Inakamilisha…",
+    "confirmTitle": "Thibitisha usajili",
+    "subscribeToFor": "Jisajili kwa {{name}} kwa {{price}}",
+    "youPay": "Unalipa {{amount}}",
+    "calculating": "Inahesabu jumla…",
+    "creatorReceives": "Mtayarishaji anapokea salio la {{amount}} USDT",
+    "custodyNote": "DHB yako inabaki chini ya uangalizi wa hazina ya DeHub na haiuzwi. Mtayarishaji anapokea salio la usajili kwa USDT.",
+    "editPlan": "Hariri mpango",
+    "notAvailableYet": "Bado haipatikani",
+    "subscribe": "Jisajili",
+    "subscriberCount_one": "Mfuatiliaji {{count}}",
+    "subscriberCount_other": "Wafuatiliaji {{count}}"
   }
 }

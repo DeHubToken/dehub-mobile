@@ -3640,5 +3640,27 @@
     "custom": "Pasgemaak",
     "contractPlaceholder": "Kontrakadres (0x…)",
     "symbolPlaceholder": "Simbool (bv. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Kon nie die intekennetwerk wissel nie",
+    "connectWallet": "Koppel jou beursie om in te teken",
+    "notBuyable": "Hierdie plan kan nie gekoop word nie. Vra die skepper om dit te herskep",
+    "preparing": "Berei voor…",
+    "startFailed": "Kon nie die intekening begin nie",
+    "confirmInWallet": "Bevestig in jou beursie…",
+    "waitingTx": "Wag vir die transaksie…",
+    "noTxHash": "Die beursie het nie 'n transaksiehasj teruggegee nie",
+    "finishing": "Rond af…",
+    "confirmTitle": "Bevestig intekening",
+    "subscribeToFor": "Teken in op {{name}} vir {{price}}",
+    "youPay": "Jy betaal {{amount}}",
+    "calculating": "Bereken die totaal…",
+    "creatorReceives": "Die skepper ontvang {{amount}} USDT krediet",
+    "custodyNote": "Jou DHB bly in DeHub se tesourie-bewaring en word nie verkoop nie. Die skepper ontvang 'n intekensaldo in USDT.",
+    "editPlan": "Wysig plan",
+    "notAvailableYet": "Nog nie beskikbaar nie",
+    "subscribe": "Teken in",
+    "subscriberCount_one": "{{count}} intekenaar",
+    "subscriberCount_other": "{{count}} intekenaars"
   }
 }

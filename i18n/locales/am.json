@@ -3518,5 +3518,27 @@
     "custom": "ብጁ",
     "contractPlaceholder": "የኮንትራት አድራሻ (0x…)",
     "symbolPlaceholder": "ምልክት (ለምሳሌ PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "የደንበኝነት አውታረ መረብ መቀየር አልተቻለም",
+    "connectWallet": "ለመመዝገብ ቦርሳዎን ያገናኙ",
+    "notBuyable": "ይህ ዕቅድ ሊገዛ አይችልም። ፈጣሪው እንደገና እንዲፈጥረው ይጠይቁ",
+    "preparing": "በማዘጋጀት ላይ…",
+    "startFailed": "ደንበኝነቱን መጀመር አልተቻለም",
+    "confirmInWallet": "በቦርሳዎ ውስጥ ያረጋግጡ…",
+    "waitingTx": "ግብይቱን በመጠበቅ ላይ…",
+    "noTxHash": "ቦርሳው የግብይት ሃሽ አልመለሰም",
+    "finishing": "በማጠናቀቅ ላይ…",
+    "confirmTitle": "ደንበኝነትን ያረጋግጡ",
+    "subscribeToFor": "በ{{price}} ለ{{name}} ይመዝገቡ",
+    "youPay": "{{amount}} ይከፍላሉ",
+    "calculating": "ጠቅላላውን በማስላት ላይ…",
+    "creatorReceives": "ፈጣሪው {{amount}} USDT ክሬዲት ይቀበላል",
+    "custodyNote": "የእርስዎ DHB በDeHub ግምጃ ቤት ጥበቃ ውስጥ ይቆያል እና አይሸጥም። ፈጣሪው በUSDT የተተመነ የደንበኝነት ቀሪ ሒሳብ ይቀበላል።",
+    "editPlan": "ዕቅዱን አርትዕ",
+    "notAvailableYet": "ገና አልተዘጋጀም",
+    "subscribe": "ይመዝገቡ",
+    "subscriberCount_one": "{{count}} ደንበኛ",
+    "subscriberCount_other": "{{count}} ደንበኞች"
   }
 }

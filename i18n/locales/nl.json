@@ -3791,5 +3791,27 @@
     "custom": "Aangepast",
     "contractPlaceholder": "Contractadres (0x…)",
     "symbolPlaceholder": "Symbool (bijv. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Kan abonnementsnetwerk niet wisselen",
+    "connectWallet": "Koppel je wallet om te abonneren",
+    "notBuyable": "Dit abonnement kan niet worden gekocht. Vraag de maker het opnieuw aan te maken",
+    "preparing": "Voorbereiden…",
+    "startFailed": "Kan abonnement niet starten",
+    "confirmInWallet": "Bevestig in je wallet…",
+    "waitingTx": "Wachten op de transactie…",
+    "noTxHash": "De wallet gaf geen transactiehash terug",
+    "finishing": "Afronden…",
+    "confirmTitle": "Abonnement bevestigen",
+    "subscribeToFor": "Abonneer op {{name}} voor {{price}}",
+    "youPay": "Je betaalt {{amount}}",
+    "calculating": "Totaal berekenen…",
+    "creatorReceives": "De maker ontvangt {{amount}} USDT tegoed",
+    "custodyNote": "Je DHB blijft in bewaring bij de DeHub-treasury en wordt niet verkocht. De maker ontvangt een in USDT uitgedrukt abonnementssaldo.",
+    "editPlan": "Abonnement bewerken",
+    "notAvailableYet": "Nog niet beschikbaar",
+    "subscribe": "Abonneren",
+    "subscriberCount_one": "{{count}} abonnee",
+    "subscriberCount_other": "{{count}} abonnees"
   }
 }

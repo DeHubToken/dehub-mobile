@@ -3556,5 +3556,27 @@
     "custom": "Уласны",
     "contractPlaceholder": "Адрас кантракта (0x…)",
     "symbolPlaceholder": "Сімвал (напр. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Не ўдалося пераключыць сетку падпіскі",
+    "connectWallet": "Падключыце кашалёк, каб падпісацца",
+    "notBuyable": "Гэты план нельга купіць. Папрасіце аўтара стварыць яго нанова",
+    "preparing": "Падрыхтоўка…",
+    "startFailed": "Не ўдалося пачаць падпіску",
+    "confirmInWallet": "Пацвердзіце ў кашальку…",
+    "waitingTx": "Чаканне транзакцыі…",
+    "noTxHash": "Кашалёк не вярнуў хэш транзакцыі",
+    "finishing": "Завяршэнне…",
+    "confirmTitle": "Пацвердзіць падпіску",
+    "subscribeToFor": "Падпішыцеся на {{name}} за {{price}}",
+    "youPay": "Вы плаціце {{amount}}",
+    "calculating": "Разлік агульнай сумы…",
+    "creatorReceives": "Аўтар атрымлівае {{amount}} USDT крэдыту",
+    "custodyNote": "Вашы DHB застаюцца пад захаваннем казначэйства DeHub і не прадаюцца. Аўтар атрымлівае баланс падпіскі ў USDT.",
+    "editPlan": "Змяніць план",
+    "notAvailableYet": "Пакуль недаступна",
+    "subscribe": "Падпісацца",
+    "subscriberCount_one": "{{count}} падпісчык",
+    "subscriberCount_other": "{{count}} падпісчыкаў"
   }
 }

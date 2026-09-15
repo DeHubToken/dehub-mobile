@@ -3574,5 +3574,27 @@
     "custom": "Maxsus",
     "contractPlaceholder": "Shartnoma manzili (0x…)",
     "symbolPlaceholder": "Belgi (masalan, PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Obuna tarmog‘ini almashtirib bo‘lmadi",
+    "connectWallet": "Obuna bo‘lish uchun hamyoningizni ulang",
+    "notBuyable": "Bu rejani sotib bo‘lmaydi. Muallifdan qaytadan yaratishni so‘rang",
+    "preparing": "Tayyorlanmoqda…",
+    "startFailed": "Obunani boshlab bo‘lmadi",
+    "confirmInWallet": "Hamyoningizda tasdiqlang…",
+    "waitingTx": "Tranzaksiya kutilmoqda…",
+    "noTxHash": "Hamyon tranzaksiya heshini qaytarmadi",
+    "finishing": "Yakunlanmoqda…",
+    "confirmTitle": "Obunani tasdiqlash",
+    "subscribeToFor": "{{price}} evaziga {{name}}’ga obuna bo‘ling",
+    "youPay": "Siz {{amount}} to‘laysiz",
+    "calculating": "Umumiy summa hisoblanmoqda…",
+    "creatorReceives": "Muallif {{amount}} USDT kredit oladi",
+    "custodyNote": "Sizning DHB’ingiz DeHub xazinasi saqlovida qoladi va sotilmaydi. Muallif USDT’da ifodalangan obuna balansini oladi.",
+    "editPlan": "Rejani tahrirlash",
+    "notAvailableYet": "Hali mavjud emas",
+    "subscribe": "Obuna bo‘lish",
+    "subscriberCount_one": "{{count}} obunachi",
+    "subscriberCount_other": "{{count}} obunachi"
   }
 }

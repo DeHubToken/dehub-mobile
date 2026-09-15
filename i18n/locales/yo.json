@@ -3513,5 +3513,27 @@
     "custom": "Àkànṣe",
     "contractPlaceholder": "Àdírẹ́sì ìwé àdéhùn (0x…)",
     "symbolPlaceholder": "Àmì (bí PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Kò lè yí nẹ́tíwọ̀kì ìforúkọsílẹ̀ padà",
+    "connectWallet": "So àpamọ́wọ́ rẹ pọ̀ láti forúkọsílẹ̀",
+    "notBuyable": "A kò lè ra ètò yìí. Sọ fún ẹlẹ́dàá láti tún un ṣẹ̀dá",
+    "preparing": "Ń múra…",
+    "startFailed": "Kò lè bẹ̀rẹ̀ ìforúkọsílẹ̀",
+    "confirmInWallet": "Jẹ́rìí sí i nínú àpamọ́wọ́ rẹ…",
+    "waitingTx": "Ń dúró de ìṣòwò…",
+    "noTxHash": "Àpamọ́wọ́ kò dá hash ìṣòwò padà",
+    "finishing": "Ń parí…",
+    "confirmTitle": "Jẹ́rìí sí ìforúkọsílẹ̀",
+    "subscribeToFor": "Forúkọsílẹ̀ fún {{name}} ní {{price}}",
+    "youPay": "Ìwọ san {{amount}}",
+    "calculating": "Ń ṣírò àpapọ̀…",
+    "creatorReceives": "Ẹlẹ́dàá gba kírẹ́dítì {{amount}} USDT",
+    "custodyNote": "DHB rẹ máa wà lábẹ́ ìtọ́jú ilé ìṣúra DeHub, a kò ní tà á. Ẹlẹ́dàá gba ìwọ̀n ìforúkọsílẹ̀ ní USDT.",
+    "editPlan": "Ṣàtúnṣe ètò",
+    "notAvailableYet": "Kò tíì sí",
+    "subscribe": "Forúkọsílẹ̀",
+    "subscriberCount_one": "Alábòwọlé {{count}}",
+    "subscriberCount_other": "Àwọn alábòwọlé {{count}}"
   }
 }

@@ -3611,5 +3611,27 @@
     "custom": "Tùy chỉnh",
     "contractPlaceholder": "Địa chỉ hợp đồng (0x…)",
     "symbolPlaceholder": "Ký hiệu (vd. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Không thể chuyển mạng đăng ký",
+    "connectWallet": "Kết nối ví để đăng ký",
+    "notBuyable": "Không thể mua gói này. Hãy nhờ người tạo tạo lại",
+    "preparing": "Đang chuẩn bị…",
+    "startFailed": "Không thể bắt đầu đăng ký",
+    "confirmInWallet": "Xác nhận trong ví của bạn…",
+    "waitingTx": "Đang chờ giao dịch…",
+    "noTxHash": "Ví không trả về mã băm giao dịch",
+    "finishing": "Đang hoàn tất…",
+    "confirmTitle": "Xác nhận đăng ký",
+    "subscribeToFor": "Đăng ký {{name}} với giá {{price}}",
+    "youPay": "Bạn trả {{amount}}",
+    "calculating": "Đang tính tổng…",
+    "creatorReceives": "Người sáng tạo nhận {{amount}} USDT tín dụng",
+    "custodyNote": "DHB của bạn vẫn do kho bạc DeHub giữ và không bị bán. Người sáng tạo nhận số dư đăng ký tính bằng USDT.",
+    "editPlan": "Sửa gói",
+    "notAvailableYet": "Chưa khả dụng",
+    "subscribe": "Đăng ký",
+    "subscriberCount_one": "{{count}} người đăng ký",
+    "subscriberCount_other": "{{count}} người đăng ký"
   }
 }

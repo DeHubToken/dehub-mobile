@@ -3592,5 +3592,27 @@
     "custom": "Свой вариант",
     "contractPlaceholder": "Адрес контракта (0x…)",
     "symbolPlaceholder": "Символ (напр. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Не удалось переключить сеть подписки",
+    "connectWallet": "Подключите кошелёк, чтобы подписаться",
+    "notBuyable": "Этот план нельзя купить. Попросите автора создать его заново",
+    "preparing": "Подготовка…",
+    "startFailed": "Не удалось начать подписку",
+    "confirmInWallet": "Подтвердите в кошельке…",
+    "waitingTx": "Ожидание транзакции…",
+    "noTxHash": "Кошелёк не вернул хеш транзакции",
+    "finishing": "Завершение…",
+    "confirmTitle": "Подтвердить подписку",
+    "subscribeToFor": "Подпишитесь на {{name}} за {{price}}",
+    "youPay": "Вы платите {{amount}}",
+    "calculating": "Расчёт итоговой суммы…",
+    "creatorReceives": "Автор получает {{amount}} USDT кредита",
+    "custodyNote": "Ваши DHB остаются на хранении в казначействе DeHub и не продаются. Автор получает баланс подписки, номинированный в USDT.",
+    "editPlan": "Изменить план",
+    "notAvailableYet": "Пока недоступно",
+    "subscribe": "Подписаться",
+    "subscriberCount_one": "{{count}} подписчик",
+    "subscriberCount_other": "{{count}} подписчиков"
   }
 }

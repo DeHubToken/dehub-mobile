@@ -3597,5 +3597,27 @@
     "custom": "Personnalisé",
     "contractPlaceholder": "Adresse du contrat (0x…)",
     "symbolPlaceholder": "Symbole (ex. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Impossible de changer le réseau d'abonnement",
+    "connectWallet": "Connectez votre portefeuille pour vous abonner",
+    "notBuyable": "Cet abonnement ne peut pas être acheté. Demandez au créateur de le recréer",
+    "preparing": "Préparation…",
+    "startFailed": "Impossible de démarrer l'abonnement",
+    "confirmInWallet": "Confirmez dans votre portefeuille…",
+    "waitingTx": "En attente de la transaction…",
+    "noTxHash": "Le portefeuille n'a pas renvoyé de hash de transaction",
+    "finishing": "Finalisation…",
+    "confirmTitle": "Confirmer l'abonnement",
+    "subscribeToFor": "Abonnez-vous à {{name}} pour {{price}}",
+    "youPay": "Vous payez {{amount}}",
+    "calculating": "Calcul du total…",
+    "creatorReceives": "Le créateur reçoit {{amount}} USDT de crédit",
+    "custodyNote": "Vos DHB restent sous la garde de la trésorerie DeHub et ne sont pas vendus. Le créateur reçoit un solde d'abonnement libellé en USDT.",
+    "editPlan": "Modifier l'abonnement",
+    "notAvailableYet": "Pas encore disponible",
+    "subscribe": "S'abonner",
+    "subscriberCount_one": "{{count}} abonné",
+    "subscriberCount_other": "{{count}} abonnés"
   }
 }

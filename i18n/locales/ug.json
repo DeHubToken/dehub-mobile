@@ -3513,5 +3513,27 @@
     "custom": "ئىختىيارى",
     "contractPlaceholder": "توختام ئادرېسى (0x…)",
     "symbolPlaceholder": "بەلگە (مەسىلەن PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "مۇشتەرىلىك تورىنى ئالماشتۇرغىلى بولمىدى",
+    "connectWallet": "مۇشتەرى بولۇش ئۈچۈن ھەمياننى ئۇلاڭ",
+    "notBuyable": "بۇ پىلاننى سېتىۋالغىلى بولمايدۇ. قۇرغۇچىدىن قايتا قۇرۇشنى تەلەپ قىلىڭ",
+    "preparing": "تەييارلىنىۋاتىدۇ…",
+    "startFailed": "مۇشتەرىلىكنى باشلىغىلى بولمىدى",
+    "confirmInWallet": "ھەميانىڭىزدا جەزملەڭ…",
+    "waitingTx": "سودا كۈتۈلۈۋاتىدۇ…",
+    "noTxHash": "ھەميان سودا hash ىنى قايتۇرمىدى",
+    "finishing": "ئاخىرلىشىۋاتىدۇ…",
+    "confirmTitle": "مۇشتەرىلىكنى جەزملەش",
+    "subscribeToFor": "{{price}} بىلەن {{name}} غا مۇشتەرى بولۇش",
+    "youPay": "سىز {{amount}} تۆلەيسىز",
+    "calculating": "ئومۇمىي سومما ھېسابلىنىۋاتىدۇ…",
+    "creatorReceives": "قۇرغۇچى {{amount}} USDT كرېدىت تاپشۇرۇۋالىدۇ",
+    "custodyNote": "سىزنىڭ DHB ىڭىز DeHub خەزىنىسىنىڭ ساقلىشىدا قالىدۇ ۋە سېتىلمايدۇ. قۇرغۇچى USDT ئاساسىدىكى مۇشتەرىلىك قالدۇقىغا ئېرىشىدۇ.",
+    "editPlan": "پىلاننى تەھرىرلەش",
+    "notAvailableYet": "تېخى ئىشلەتكىلى بولمايدۇ",
+    "subscribe": "مۇشتەرى بولۇش",
+    "subscriberCount_one": "{{count}} مۇشتەرى",
+    "subscriberCount_other": "{{count}} مۇشتەرى"
   }
 }

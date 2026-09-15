@@ -79,7 +79,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
         if (chainId !== targetChainId) await switchChain(targetChainId);
         setConfirmVisible(true);
       } catch (error) {
-        toastError(error, "Could not switch subscription network");
+        toastError(error, t("subscriptions.switchFailed"));
       }
     });
   };
@@ -88,21 +88,21 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
     const planId = plan.id || plan._id;
     if (!planId) return;
     if (!provider || !account) {
-      toastError(null, "Connect your wallet to subscribe");
+      toastError(null, t("subscriptions.connectWallet"));
       return;
     }
     const months = normaliseDuration(plan.duration);
     if (months === null) {
-      toastError(null, "This plan cannot be bought. Ask the creator to recreate it");
+      toastError(null, t("subscriptions.notBuyable"));
       return;
     }
 
     setSubscribing(true);
     try {
       // 1. Reserve the row the purchase settles against.
-      setStage("Preparing…");
+      setStage(t("subscriptions.preparing"));
       const intent = await buyPlan(String(planId), targetChainId);
-      if (!intent?.id) throw new Error("Could not start the subscription");
+      if (!intent?.id) throw new Error(t("subscriptions.startFailed"));
       if (
         intent.settlementMode !== "dhb_custody" ||
         !intent.dhbToken ||
@@ -115,7 +115,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
       // DHB is transferred into treasury custody and is not sold. The server
       // verifies this payment before it activates access and credits the
       // creator the plan's frozen USDT value.
-      setStage("Confirm in your wallet…");
+      setStage(t("subscriptions.confirmInWallet"));
       const dhbContract = await buildContract(provider, ERC20_ABI, intent.dhbToken, true);
       const tx = await writeContractAA(
         dhbContract,
@@ -123,13 +123,13 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
         [intent.treasuryAddress, ethers.BigNumber.from(intent.dhbAmountWei)],
         { context: "send" },
       );
-      setStage("Waiting for the transaction…");
+      setStage(t("subscriptions.waitingTx"));
       await tx.wait(1);
 
-      if (!tx?.hash) throw new Error("The wallet did not return a transaction hash");
+      if (!tx?.hash) throw new Error(t("subscriptions.noTxHash"));
 
       // 3. Have the server verify the transfer and create the creator credit.
-      setStage("Finishing up…");
+      setStage(t("subscriptions.finishing"));
       const paymentChainId = intent.chainId || chainId || targetChainId;
       await rememberPendingSubscriptionPayment({
         subId: String(intent.id),
@@ -139,7 +139,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
       await confirmSubscriptionPurchase(String(intent.id), tx.hash, paymentChainId);
       await clearPendingSubscriptionPayment(String(intent.id));
 
-      toastSuccess("Subscribed");
+      toastSuccess(t("filters.subscribed"));
       setConfirmVisible(false);
     } catch (e: any) {
       toastError(null, parseTxError(e, "send"));
@@ -176,7 +176,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
             </View>
             {isSubscribed && (
               <View style={s.subscribedBadge}>
-                <Text style={s.subscribedText}>Subscribed</Text>
+                <Text style={s.subscribedText}>{t("filters.subscribed")}</Text>
               </View>
             )}
           </View>
@@ -214,7 +214,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
             <View style={s.subCountRow}>
               <Icon name="Users" size={14} color="#A1A1AA" />
               <Text style={s.subCountText}>
-                {plan.subscriberCount} subscriber{plan.subscriberCount !== 1 ? "s" : ""}
+                {t("subscriptions.subscriberCount", { count: plan.subscriberCount })}
               </Text>
             </View>
           )}
@@ -222,12 +222,12 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           {/* Actions */}
           {isOwner ? (
             <TouchableOpacity onPress={onEdit} activeOpacity={0.7} style={s.editBtn}>
-              <Text style={s.editBtnText}>Edit Plan</Text>
+              <Text style={s.editBtnText}>{t("subscriptions.editPlan")}</Text>
             </TouchableOpacity>
           ) : isSubscribed ? (
             <View style={[s.editBtn, { opacity: 0.5 }]}>
               <Icon name="Check" size={16} color="#808089" />
-              <Text style={[s.editBtnText, { color: "#808089" }]}>Subscribed</Text>
+              <Text style={[s.editBtnText, { color: "#808089" }]}>{t("filters.subscribed")}</Text>
             </View>
           ) : !DIGITAL_PURCHASES_ENABLED ? (
             /* The App Store build shows the plan but cannot sell it (3.1.1). */
@@ -240,13 +240,13 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
                offering a button that reverts in the buyer's wallet. */
             <View style={[s.editBtn, { opacity: 0.6 }]}>
               <Icon name="Clock" size={14} color="#808089" />
-              <Text style={[s.editBtnText, { color: "#808089" }]}>Not available yet</Text>
+              <Text style={[s.editBtnText, { color: "#808089" }]}>{t("subscriptions.notAvailableYet")}</Text>
             </View>
           ) : (
             <AccentButtonGradient>
               <TouchableOpacity onPress={handleSubscribe} activeOpacity={0.7} style={s.subBtn}>
                 <Icon name="Star" size={16} color="#FFFFFF" />
-                <Text style={s.subBtnText}>Subscribe</Text>
+                <Text style={s.subBtnText}>{t("subscriptions.subscribe")}</Text>
               </TouchableOpacity>
             </AccentButtonGradient>
           )}
@@ -260,15 +260,12 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
         blurIntensity={40}
       >
         <View style={s.confirmContent}>
-          <Text style={s.confirmTitle}>Confirm Subscription</Text>
+          <Text style={s.confirmTitle}>{t("subscriptions.confirmTitle")}</Text>
           <Text style={s.confirmDesc}>
-            Subscribe to{" "}
-            <Text style={{ color: "#fff", fontWeight: "600" }}>{plan.name}</Text>{" "}
-            for{" "}
-            <Text style={{ color: "#D4D4D8", fontWeight: "600" }}>
-              {formattedPrice}
-            </Text>{" "}
-            / {formatDuration(plan.duration)}?
+            {t("subscriptions.subscribeToFor", {
+              name: plan.name,
+              price: `${formattedPrice} / ${formatDuration(plan.duration)}`,
+            })}
           </Text>
           {isUsdPriced && (
             <View style={s.confirmEquivalentRow}>
@@ -278,17 +275,17 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           )}
           <Text style={s.confirmTotal}>
             {total != null
-              ? `You pay ${formatDhbPayment(totalDhbEstimate)}`
-              : "Calculating the total…"}
+              ? t("subscriptions.youPay", { amount: formatDhbPayment(totalDhbEstimate) })
+              : t("subscriptions.calculating")}
           </Text>
           {totalDhbEstimate !== null && (
             <Text style={s.confirmCheckoutDhb}>
-              Creator receives {formatAmount(total ?? undefined, 2)} USDT credit
+              {t("subscriptions.creatorReceives", { amount: formatAmount(total ?? undefined, 2) })}
             </Text>
           )}
           {isUsdPriced && (
             <Text style={s.smartFundingText}>
-              Your DHB stays in DeHub treasury custody and is not sold. The creator receives a USDT-denominated subscription balance.
+              {t("subscriptions.custodyNote")}
             </Text>
           )}
           {!!stage && <Text style={s.confirmStage}>{stage}</Text>}
@@ -299,7 +296,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
               style={s.cancelBtn}
               activeOpacity={0.7}
             >
-              <Text style={s.cancelBtnText}>Cancel</Text>
+              <Text style={s.cancelBtnText}>{t("common.cancel")}</Text>
             </TouchableOpacity>
             <AccentButtonGradient>
               <TouchableOpacity
@@ -311,7 +308,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
                 {subscribing ? (
                   <ActivityIndicator color="#FFFFFF" />
                 ) : (
-                  <Text style={s.confirmBtnText}>Confirm</Text>
+                  <Text style={s.confirmBtnText}>{t("common.confirm")}</Text>
                 )}
               </TouchableOpacity>
             </AccentButtonGradient>

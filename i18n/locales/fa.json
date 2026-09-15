@@ -3536,5 +3536,27 @@
     "custom": "سفارشی",
     "contractPlaceholder": "آدرس قرارداد (0x…)",
     "symbolPlaceholder": "نماد (مثلاً PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "تغییر شبکه اشتراک ممکن نشد",
+    "connectWallet": "برای اشتراک کیف پول خود را متصل کنید",
+    "notBuyable": "این طرح قابل خرید نیست. از سازنده بخواهید دوباره بسازد",
+    "preparing": "در حال آماده‌سازی…",
+    "startFailed": "شروع اشتراک ممکن نشد",
+    "confirmInWallet": "در کیف پول خود تأیید کنید…",
+    "waitingTx": "در انتظار تراکنش…",
+    "noTxHash": "کیف پول هش تراکنش را برنگرداند",
+    "finishing": "در حال اتمام…",
+    "confirmTitle": "تأیید اشتراک",
+    "subscribeToFor": "با {{price}} در {{name}} مشترک شوید",
+    "youPay": "شما {{amount}} می‌پردازید",
+    "calculating": "در حال محاسبه مجموع…",
+    "creatorReceives": "سازنده {{amount}} USDT اعتبار دریافت می‌کند",
+    "custodyNote": "DHB شما در امانت خزانه DeHub می‌ماند و فروخته نمی‌شود. سازنده موجودی اشتراک بر پایه USDT دریافت می‌کند.",
+    "editPlan": "ویرایش طرح",
+    "notAvailableYet": "هنوز در دسترس نیست",
+    "subscribe": "اشتراک",
+    "subscriberCount_one": "{{count}} مشترک",
+    "subscriberCount_other": "{{count}} مشترک"
   }
 }

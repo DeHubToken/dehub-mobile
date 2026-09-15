@@ -3475,5 +3475,27 @@
     "custom": "कस्टम",
     "contractPlaceholder": "कॉन्ट्रैक्ट पता (0x…)",
     "symbolPlaceholder": "सिंबल (जेना PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "सब्सक्रिप्शन नेटवर्क नै बदल सकल",
+    "connectWallet": "सब्सक्राइब करे लेल अपन वॉलेट जोड़ू",
+    "notBuyable": "ई प्लान कीनल नै जा सकैत अछि। क्रिएटर सँ फेर बनाबे लेल कहू",
+    "preparing": "तैयार भ रहल अछि…",
+    "startFailed": "सब्सक्रिप्शन शुरू नै भ सकल",
+    "confirmInWallet": "अपन वॉलेट में पुष्टि करू…",
+    "waitingTx": "लेनदेन के प्रतीक्षा…",
+    "noTxHash": "वॉलेट लेनदेन के हैश नै लौटौलक",
+    "finishing": "पूरा भ रहल अछि…",
+    "confirmTitle": "सब्सक्रिप्शन के पुष्टि करू",
+    "subscribeToFor": "{{price}} में {{name}} के सब्सक्राइब करू",
+    "youPay": "अहाँ {{amount}} देब",
+    "calculating": "कुल जोड़ल जा रहल अछि…",
+    "creatorReceives": "क्रिएटर के {{amount}} USDT क्रेडिट भेटत",
+    "custodyNote": "अहाँक DHB DeHub ट्रेजरी के अभिरक्षा में रहैत अछि आ नै बेचल जाइत अछि। क्रिएटर के USDT में सब्सक्रिप्शन बैलेंस भेटैत अछि।",
+    "editPlan": "प्लान बदलू",
+    "notAvailableYet": "अखनि उपलब्ध नै",
+    "subscribe": "सब्सक्राइब करू",
+    "subscriberCount_one": "{{count}} सब्सक्राइबर",
+    "subscriberCount_other": "{{count}} सब्सक्राइबर"
   }
 }

@@ -3480,5 +3480,27 @@
     "custom": "مخصص",
     "contractPlaceholder": "عنوان العقد (0x…)",
     "symbolPlaceholder": "الرمز (مثلاً PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "ما كدر يبدل شبكة الاشتراك",
+    "connectWallet": "اربط محفظتك حتى تشترك",
+    "notBuyable": "هذي الخطة ما تنشرى. اطلب من المنشئ يعيد سويها",
+    "preparing": "يجهّز…",
+    "startFailed": "ما كدر يبدي الاشتراك",
+    "confirmInWallet": "أكد بمحفظتك…",
+    "waitingTx": "ينتظر المعاملة…",
+    "noTxHash": "المحفظة ما رجّعت هاش للمعاملة",
+    "finishing": "يخلّص…",
+    "confirmTitle": "أكد الاشتراك",
+    "subscribeToFor": "اشترك بـ{{name}} مقابل {{price}}",
+    "youPay": "تدفع {{amount}}",
+    "calculating": "يحسب المجموع…",
+    "creatorReceives": "المنشئ ياخذ رصيد {{amount}} USDT",
+    "custodyNote": "الـDHB مالتك يبقى بعهدة خزينة DeHub وما ينباع. المنشئ ياخذ رصيد اشتراك مقوّم بالـUSDT.",
+    "editPlan": "عدّل الخطة",
+    "notAvailableYet": "بعده مو متوفر",
+    "subscribe": "اشترك",
+    "subscriberCount_one": "{{count}} مشترك",
+    "subscriberCount_other": "{{count}} مشترك"
   }
 }

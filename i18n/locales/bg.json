@@ -3523,5 +3523,27 @@
     "custom": "Персонализирано",
     "contractPlaceholder": "Адрес на договора (0x…)",
     "symbolPlaceholder": "Символ (напр. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Мрежата за абонамент не можа да се смени",
+    "connectWallet": "Свържи портфейла си, за да се абонираш",
+    "notBuyable": "Този план не може да се купи. Помоли създателя да го създаде отново",
+    "preparing": "Подготовка…",
+    "startFailed": "Абонаментът не можа да започне",
+    "confirmInWallet": "Потвърди в портфейла си…",
+    "waitingTx": "Изчакване на транзакцията…",
+    "noTxHash": "Портфейлът не върна хеш на транзакцията",
+    "finishing": "Приключване…",
+    "confirmTitle": "Потвърди абонамента",
+    "subscribeToFor": "Абонирай се за {{name}} срещу {{price}}",
+    "youPay": "Плащаш {{amount}}",
+    "calculating": "Изчисляване на общата сума…",
+    "creatorReceives": "Създателят получава {{amount}} USDT кредит",
+    "custodyNote": "Твоите DHB остават на съхранение в трезора на DeHub и не се продават. Създателят получава абонаментен баланс в USDT.",
+    "editPlan": "Редактирай плана",
+    "notAvailableYet": "Още не е достъпно",
+    "subscribe": "Абонирай се",
+    "subscriberCount_one": "{{count}} абонат",
+    "subscriberCount_other": "{{count}} абоната"
   }
 }
