@@ -3255,5 +3255,25 @@
     "legacyTitle": "Eski Solana hamyoni — {{amount}} SOL",
     "legacyBody": "Ilovaning oldingi versiyasi faqat shu qurilmada mavjud bo‘lgan alohida Solana hamyonini yaratgan edi. Unda hali ham mablag‘ bor. Bu telefon qo‘lingizda ekan, mablag‘ni yuqoridagi manzilga o‘tkazing — o‘sha kalitni boshqa hech qayerdan tiklab bo‘lmaydi.",
     "legacyViewA11y": "Eski hamyonni Solscan'da ko‘rish"
+  },
+  "bridge": {
+    "title": "DHB ko‘prigi",
+    "from": "Qayerdan",
+    "to": "Qayerga",
+    "recent": "So‘nggi ko‘prik o‘tkazmalaringiz",
+    "noneRecent": "So‘nggi 7 kunda ko‘prik o‘tkazmalari yo‘q.",
+    "howItWorksBody": "Manba zanjiridagi ko‘prik relay manziliga DHB yuboring. Relay bir necha daqiqada maqsadli zanjirga ekvivalent miqdorni avtomatik yetkazadi.",
+    "relayAddress": "Ko‘prik relay manzili (DHB'ni manba zanjirida shu yerga yuboring):",
+    "addressCopied": "Ko‘prik manzili nusxalandi!",
+    "swapDirectionA11y": "Ko‘prik yo‘nalishini almashtirish",
+    "invalidAmount": "Ko‘prik uchun to‘g‘ri miqdorni kiriting.",
+    "walletNotReady": "Hamyon tayyor emas. Iltimos, qayta urinib ko‘ring.",
+    "insufficient": "{{chain}} da DHB yetarli emas.",
+    "switchFailed": "{{chain}} ga o‘tib bo‘lmadi. Iltimos, qayta urinib ko‘ring.",
+    "initiated": "Ko‘prik boshlandi! TX: {{tx}}",
+    "insufficientOnChain": "{{chain}} da DHB yetarli emas. Zanjirdagi balans ko‘rsatilganidan farq qilishi mumkin.",
+    "needGas": "{{chain}} da gaz uchun mahalliy {{token}} kerak.",
+    "bridging": "Ko‘prik orqali o‘tkazilmoqda…",
+    "bridgeAction": "Ko‘prik {{from}} → {{to}}"
   }
 }

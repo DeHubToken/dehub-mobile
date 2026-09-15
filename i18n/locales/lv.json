@@ -3202,5 +3202,25 @@
     "legacyTitle": "Vecāks Solana maks — {{amount}} SOL",
     "legacyBody": "Agrāka lietotnes versija izveidoja atsevišķu Solana maku, kas pastāvēja tikai šajā ierīcē. Tajā joprojām ir līdzekļi. Pārskaiti līdzekļus uz augstāk norādīto adresi, kamēr šis tālrunis ir pie tevis — to atslēgu nekur citur atgūt nevar.",
     "legacyViewA11y": "Skatīt vecāko maku Solscan"
+  },
+  "bridge": {
+    "title": "DHB tilts",
+    "from": "No",
+    "to": "Uz",
+    "recent": "Tavi jaunākie tilti",
+    "noneRecent": "Pēdējo 7 dienu laikā nav tilta pārskaitījumu.",
+    "howItWorksBody": "Nosūti DHB uz tilta releja adresi avota ķēdē. Relejs dažu minūšu laikā automātiski piegādā līdzvērtīgu summu mērķa ķēdē.",
+    "relayAddress": "Tilta releja adrese (sūti DHB šeit avota ķēdē):",
+    "addressCopied": "Tilta adrese nokopēta!",
+    "swapDirectionA11y": "Mainīt tilta virzienu",
+    "invalidAmount": "Ievadi derīgu summu tiltam.",
+    "walletNotReady": "Maks nav gatavs. Mēģini vēlreiz.",
+    "insufficient": "Nepietiek DHB ķēdē {{chain}}.",
+    "switchFailed": "Neizdevās pārslēgties uz {{chain}}. Mēģini vēlreiz.",
+    "initiated": "Tilts uzsākts! TX: {{tx}}",
+    "insufficientOnChain": "Nepietiek DHB ķēdē {{chain}}. Ķēdes bilance var atšķirties no parādītās.",
+    "needGas": "Ķēdē {{chain}} gāzei nepieciešams vietējais {{token}}.",
+    "bridging": "Notiek pārsūtīšana…",
+    "bridgeAction": "Tilts {{from}} → {{to}}"
   }
 }

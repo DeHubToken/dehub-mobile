@@ -3203,5 +3203,25 @@
     "legacyTitle": "Vanhempi Solana-lompakko — {{amount}} SOL",
     "legacyBody": "Sovelluksen aiempi versio loi erillisen Solana-lompakon, joka oli olemassa vain tällä laitteella. Siinä on yhä varoja. Siirrä varat yllä olevaan osoitteeseen, kun tämä puhelin on vielä sinulla — tuota avainta ei voi palauttaa mistään muualta.",
     "legacyViewA11y": "Näytä vanhempi lompakko Solscanissa"
+  },
+  "bridge": {
+    "title": "Siirrä DHB ketjujen välillä",
+    "from": "Mistä",
+    "to": "Mihin",
+    "recent": "Viimeisimmät siirtosi",
+    "noneRecent": "Ei siirtoja ketjujen välillä viimeisen 7 päivän aikana.",
+    "howItWorksBody": "Lähetä DHB sillan välitysosoitteeseen lähdeketjussa. Välittäjä toimittaa vastaavan summan kohdeketjuun automaattisesti minuuteissa.",
+    "relayAddress": "Sillan välitysosoite (lähetä DHB tänne lähdeketjussa):",
+    "addressCopied": "Sillan osoite kopioitu!",
+    "swapDirectionA11y": "Vaihda sillan suunta",
+    "invalidAmount": "Anna kelvollinen summa siirrettäväksi.",
+    "walletNotReady": "Lompakko ei ole valmis. Yritä uudelleen.",
+    "insufficient": "Ei tarpeeksi DHB:tä ketjussa {{chain}}.",
+    "switchFailed": "Vaihto ketjuun {{chain}} epäonnistui. Yritä uudelleen.",
+    "initiated": "Siirto aloitettu! TX: {{tx}}",
+    "insufficientOnChain": "Ei tarpeeksi DHB:tä ketjussa {{chain}}. Ketjun saldo voi poiketa näytetystä.",
+    "needGas": "Tarvitset natiivia {{token}} kaasumaksuihin ketjussa {{chain}}.",
+    "bridging": "Siirretään…",
+    "bridgeAction": "Siirrä {{from}} → {{to}}"
   }
 }

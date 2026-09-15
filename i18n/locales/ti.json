@@ -3168,5 +3168,25 @@
     "legacyTitle": "ዓሚቝ ዋሌት Solana — {{amount}} SOL",
     "legacyBody": "ናይ ቀደም ስሪት ኣፕሊኬሽን ኣብዚ መሳርሒ ጥራይ ዝነበረ ፍሉይ ዋሌት Solana ፈጢሩ ነይሩ። ክሳብ ሕጂ ገንዘብ ኣለዎ። እዚ ተሌፎን ኣብ ኢድካ እንከሎ ገንዘቡ ናብቲ ላዕሊ ዘሎ ኣድራሻ ኣሰጋግሮ — እቲ መፍትሕ ኣብ ካልእ ቦታ ክምለስ ኣይክእልን።",
     "legacyViewA11y": "ዓሚቝ ዋሌት ኣብ Solscan ርአ"
+  },
+  "bridge": {
+    "title": "ድልድል DHB",
+    "from": "ካብ",
+    "to": "ናብ",
+    "recent": "ናትካ ቀረባ ግዜ ድልድላት",
+    "noneRecent": "ኣብ ዝሓለፉ 7 መዓልቲ ናይ ድልድል ምትሕልላፍ የለን።",
+    "howItWorksBody": "ኣብ ምንጪ ሰንሰለት ናብ ኣድራሻ ሪለይ ድልድል DHB ስደድ። ሪለይ ኣብ ውሽጢ ደቓይቕ ነቲ ተመሳሳሊ መጠን ኣብ ዕላማ ሰንሰለት ብቐጥታ የብጽሖ።",
+    "relayAddress": "ኣድራሻ ሪለይ ድልድል (DHB ኣብዚ ኣብ ምንጪ ሰንሰለት ስደድ):",
+    "addressCopied": "ኣድራሻ ድልድል ተቐዲሑ!",
+    "swapDirectionA11y": "ኣንፈት ድልድል ቀይር",
+    "invalidAmount": "ንድልድል ቅኑዕ መጠን ኣእቱ።",
+    "walletNotReady": "ዋሌት ድሉው ኣይኮነን። በጃኻ ደጊምካ ፈትን።",
+    "insufficient": "ኣብ {{chain}} እኹል DHB የለን።",
+    "switchFailed": "ናብ {{chain}} ክቕየር ኣይከኣለን። በጃኻ ደጊምካ ፈትን።",
+    "initiated": "ድልድል ተጀሚሩ! TX: {{tx}}",
+    "insufficientOnChain": "ኣብ {{chain}} እኹል DHB የለን። ኣብ ሰንሰለት ዘሎ ሚዛን ካብቲ ዝርአ ክፍለ ይኽእል።",
+    "needGas": "ኣብ {{chain}} ንጋዝ ዝኸውን ዋና {{token}} የድሊ።",
+    "bridging": "ይድልድል ኣሎ…",
+    "bridgeAction": "ድልድል {{from}} → {{to}}"
   }
 }

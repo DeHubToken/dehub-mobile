@@ -3187,5 +3187,25 @@
     "legacyTitle": "Köhnə Solana cüzdanı — {{amount}} SOL",
     "legacyBody": "Tətbiqin əvvəlki versiyası yalnız bu cihazda mövcud olan ayrıca Solana cüzdanı yaratmışdı. Onda hələ də balans var. Bu telefon əlinizdə ikən vəsaiti yuxarıdakı ünvana köçürün — həmin açarı başqa heç yerdə bərpa etmək mümkün deyil.",
     "legacyViewA11y": "Köhnə cüzdana Solscan-da bax"
+  },
+  "bridge": {
+    "title": "DHB körpüsü",
+    "from": "Haradan",
+    "to": "Haraya",
+    "recent": "Son körpü əməliyyatlarınız",
+    "noneRecent": "Son 7 gündə körpü köçürməsi yoxdur.",
+    "howItWorksBody": "Mənbə şəbəkəsində körpünün ötürücü ünvanına DHB göndərin. Ötürücü ekvivalent məbləği təyinat şəbəkəsinə dəqiqələr ərzində avtomatik çatdırır.",
+    "relayAddress": "Körpünün ötürücü ünvanı (DHB-ni mənbə şəbəkəsində buraya göndərin):",
+    "addressCopied": "Körpü ünvanı kopyalandı!",
+    "swapDirectionA11y": "Körpü istiqamətini dəyiş",
+    "invalidAmount": "Körpü üçün düzgün məbləğ daxil edin.",
+    "walletNotReady": "Cüzdan hazır deyil. Zəhmət olmasa yenidən cəhd edin.",
+    "insufficient": "{{chain}} üzərində kifayət qədər DHB yoxdur.",
+    "switchFailed": "{{chain}} şəbəkəsinə keçmək mümkün olmadı. Yenidən cəhd edin.",
+    "initiated": "Körpü başladıldı! TX: {{tx}}",
+    "insufficientOnChain": "{{chain}} üzərində kifayət qədər DHB yoxdur. Şəbəkədəki balans göstərilən məbləğdən fərqlənə bilər.",
+    "needGas": "{{chain}} üzərində qaz üçün doğma {{token}} lazımdır.",
+    "bridging": "Körpülənir…",
+    "bridgeAction": "{{from}} → {{to}} körpülə"
   }
 }

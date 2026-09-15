@@ -3282,5 +3282,25 @@
     "legacyTitle": "Poketra Solana taloha — {{amount}} SOL",
     "legacyBody": "Nisy kinova taloha amin'ny fampiharana namorona poketra Solana misaraka izay tsy nisy afa-tsy tamin'ity fitaovana ity. Mbola misy vola ao. Afindrao amin'ny adiresy etsy ambony ny vola raha mbola eo an-tananao ity finday ity — tsy azo averina any an-kafa io lakile io.",
     "legacyViewA11y": "Jereo ny poketra taloha ao amin'ny Solscan"
+  },
+  "bridge": {
+    "title": "Tetezana DHB",
+    "from": "Avy amin'ny",
+    "to": "Mankany amin'ny",
+    "recent": "Ny tetezanao vao haingana",
+    "noneRecent": "Tsy nisy famindrana tetezana tao anatin'ny 7 andro lasa.",
+    "howItWorksBody": "Alefaso DHB any amin'ny adiresy mpampita an'ny tetezana eo amin'ny rojo loharano. Ny mpampita dia manatitra ho azy ny vola mitovy amin'ny rojo tanjona ao anatin'ny minitra vitsy.",
+    "relayAddress": "Adiresy mpampita an'ny tetezana (alefaso eto ny DHB amin'ny rojo loharano):",
+    "addressCopied": "Voadika ny adiresin'ny tetezana!",
+    "swapDirectionA11y": "Ovay ny lalan'ny tetezana",
+    "invalidAmount": "Ampidiro ny vola mety hampitaina.",
+    "walletNotReady": "Tsy vonona ny poketra. Andramo indray.",
+    "insufficient": "Tsy ampy DHB ao amin'ny {{chain}}.",
+    "switchFailed": "Tsy afaka niova ho {{chain}}. Andramo indray.",
+    "initiated": "Nanomboka ny tetezana! TX: {{tx}}",
+    "insufficientOnChain": "Tsy ampy DHB ao amin'ny {{chain}}. Mety tsy mitovy amin'ny aseho ny volanao eo amin'ny rojo.",
+    "needGas": "Mila {{token}} tena izy ho an'ny gazy ao amin'ny {{chain}}.",
+    "bridging": "Manao tetezana…",
+    "bridgeAction": "Tetezana {{from}} → {{to}}"
   }
 }

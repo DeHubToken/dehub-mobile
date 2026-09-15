@@ -3466,5 +3466,25 @@
     "legacyTitle": "Dompet Solana lama — {{amount}} SOL",
     "legacyBody": "Versi aplikasi yang lebih awal mencipta dompet Solana berasingan yang hanya wujud pada peranti ini. Ia masih menyimpan baki. Pindahkan dana ke alamat di atas selagi telefon ini ada pada anda — kunci itu tidak boleh dipulihkan di tempat lain.",
     "legacyViewA11y": "Lihat dompet lama di Solscan"
+  },
+  "bridge": {
+    "title": "Jambatan DHB",
+    "from": "Dari",
+    "to": "Ke",
+    "recent": "Jambatan terbaharu anda",
+    "noneRecent": "Tiada pemindahan jambatan dalam 7 hari lepas.",
+    "howItWorksBody": "Hantar DHB ke alamat geganti jambatan pada rantaian sumber. Geganti menghantar jumlah setara pada rantaian destinasi secara automatik dalam beberapa minit.",
+    "relayAddress": "Alamat geganti jambatan (hantar DHB ke sini pada rantaian sumber):",
+    "addressCopied": "Alamat jambatan disalin!",
+    "swapDirectionA11y": "Tukar arah jambatan",
+    "invalidAmount": "Masukkan jumlah yang sah untuk dijambatani.",
+    "walletNotReady": "Dompet belum sedia. Sila cuba lagi.",
+    "insufficient": "DHB tidak mencukupi pada {{chain}}.",
+    "switchFailed": "Tidak dapat bertukar ke {{chain}}. Sila cuba lagi.",
+    "initiated": "Jambatan dimulakan! TX: {{tx}}",
+    "insufficientOnChain": "DHB tidak mencukupi pada {{chain}}. Baki pada rantaian mungkin berbeza daripada yang dipaparkan.",
+    "needGas": "Perlukan {{token}} asli untuk gas pada {{chain}}.",
+    "bridging": "Menjambatani…",
+    "bridgeAction": "Jambatan {{from}} → {{to}}"
   }
 }

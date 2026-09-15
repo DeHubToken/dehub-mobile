@@ -3271,5 +3271,25 @@
     "legacyTitle": "Starszy portfel Solana — {{amount}} SOL",
     "legacyBody": "Wcześniejsza wersja aplikacji utworzyła osobny portfel Solana, który istniał tylko na tym urządzeniu. Wciąż ma środki. Przenieś je na adres powyżej, póki masz ten telefon — tego klucza nie da się odzyskać nigdzie indziej.",
     "legacyViewA11y": "Zobacz starszy portfel na Solscan"
+  },
+  "bridge": {
+    "title": "Most DHB",
+    "from": "Z",
+    "to": "Do",
+    "recent": "Twoje ostatnie mosty",
+    "noneRecent": "Brak przelewów mostem w ciągu ostatnich 7 dni.",
+    "howItWorksBody": "Wyślij DHB na adres przekaźnika mostu w łańcuchu źródłowym. Przekaźnik automatycznie dostarcza równowartość w łańcuchu docelowym w ciągu kilku minut.",
+    "relayAddress": "Adres przekaźnika mostu (wyślij tu DHB w łańcuchu źródłowym):",
+    "addressCopied": "Skopiowano adres mostu!",
+    "swapDirectionA11y": "Zamień kierunek mostu",
+    "invalidAmount": "Podaj prawidłową kwotę do przesłania mostem.",
+    "walletNotReady": "Portfel nie jest gotowy. Spróbuj ponownie.",
+    "insufficient": "Za mało DHB w sieci {{chain}}.",
+    "switchFailed": "Nie udało się przełączyć na {{chain}}. Spróbuj ponownie.",
+    "initiated": "Most uruchomiony! TX: {{tx}}",
+    "insufficientOnChain": "Za mało DHB w sieci {{chain}}. Saldo w łańcuchu może różnić się od wyświetlanego.",
+    "needGas": "Potrzebujesz natywnego {{token}} na gaz w sieci {{chain}}.",
+    "bridging": "Przesyłanie mostem…",
+    "bridgeAction": "Most {{from}} → {{to}}"
   }
 }

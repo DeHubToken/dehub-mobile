@@ -3277,5 +3277,25 @@
     "legacyTitle": "Carteira Solana antiga — {{amount}} SOL",
     "legacyBody": "Uma versão anterior do app criou uma carteira Solana separada que só existiu neste dispositivo. Ela ainda tem saldo. Transfira os fundos para o endereço acima enquanto você tiver este telefone — essa chave não pode ser recuperada em nenhum outro lugar.",
     "legacyViewA11y": "Ver carteira antiga no Solscan"
+  },
+  "bridge": {
+    "title": "Ponte de DHB",
+    "from": "De",
+    "to": "Para",
+    "recent": "Suas pontes recentes",
+    "noneRecent": "Nenhuma transferência por ponte nos últimos 7 dias.",
+    "howItWorksBody": "Envie DHB para o endereço de retransmissão da ponte na cadeia de origem. O retransmissor entrega automaticamente o valor equivalente na cadeia de destino em minutos.",
+    "relayAddress": "Endereço de retransmissão da ponte (envie DHB aqui na cadeia de origem):",
+    "addressCopied": "Endereço da ponte copiado!",
+    "swapDirectionA11y": "Inverter a direção da ponte",
+    "invalidAmount": "Insira um valor válido para a ponte.",
+    "walletNotReady": "Carteira não está pronta. Tente novamente.",
+    "insufficient": "DHB insuficiente em {{chain}}.",
+    "switchFailed": "Não foi possível mudar para {{chain}}. Tente novamente.",
+    "initiated": "Ponte iniciada! TX: {{tx}}",
+    "insufficientOnChain": "DHB insuficiente em {{chain}}. O saldo on-chain pode diferir do exibido.",
+    "needGas": "É preciso {{token}} nativo para o gás em {{chain}}.",
+    "bridging": "Fazendo a ponte…",
+    "bridgeAction": "Ponte {{from}} → {{to}}"
   }
 }

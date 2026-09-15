@@ -3270,5 +3270,25 @@
     "legacyTitle": "以前の Solana ウォレット — {{amount}} SOL",
     "legacyBody": "以前のバージョンのアプリは、この端末にのみ存在する別の Solana ウォレットを作成していました。まだ残高があります。この端末が手元にあるうちに、上のアドレスへ資金を移してください。その鍵は他のどこからも復元できません。",
     "legacyViewA11y": "以前のウォレットを Solscan で見る"
+  },
+  "bridge": {
+    "title": "DHB をブリッジ",
+    "from": "送信元",
+    "to": "送信先",
+    "recent": "最近のブリッジ",
+    "noneRecent": "過去 7 日間にブリッジ送金はありません。",
+    "howItWorksBody": "送信元チェーンのブリッジ中継アドレスへ DHB を送ってください。中継が数分以内に同額を送信先チェーンへ自動的に届けます。",
+    "relayAddress": "ブリッジ中継アドレス（送信元チェーンで DHB をここへ送ってください）:",
+    "addressCopied": "ブリッジアドレスをコピーしました！",
+    "swapDirectionA11y": "ブリッジの方向を入れ替える",
+    "invalidAmount": "ブリッジする有効な金額を入力してください。",
+    "walletNotReady": "ウォレットの準備ができていません。もう一度お試しください。",
+    "insufficient": "{{chain}} の DHB が不足しています。",
+    "switchFailed": "{{chain}} に切り替えられませんでした。もう一度お試しください。",
+    "initiated": "ブリッジを開始しました！TX: {{tx}}",
+    "insufficientOnChain": "{{chain}} の DHB が不足しています。オンチェーン残高は表示と異なる場合があります。",
+    "needGas": "{{chain}} のガス代にはネイティブ {{token}} が必要です。",
+    "bridging": "ブリッジ中…",
+    "bridgeAction": "{{from}} → {{to}} をブリッジ"
   }
 }

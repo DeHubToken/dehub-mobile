@@ -3253,5 +3253,25 @@
     "legacyTitle": "Dompet Solana lama — {{amount}} SOL",
     "legacyBody": "Versi lama aplikasi membuat dompet Solana terpisah yang hanya ada di perangkat ini. Saldonya masih ada. Pindahkan dananya ke alamat di atas selagi ponsel ini masih ada padamu — kunci itu tidak bisa dipulihkan di tempat lain.",
     "legacyViewA11y": "Lihat dompet lama di Solscan"
+  },
+  "bridge": {
+    "title": "Bridge DHB",
+    "from": "Dari",
+    "to": "Ke",
+    "recent": "Bridge terbaru kamu",
+    "noneRecent": "Tidak ada transfer bridge dalam 7 hari terakhir.",
+    "howItWorksBody": "Kirim DHB ke alamat relay bridge di rantai sumber. Relay otomatis mengirimkan jumlah setara di rantai tujuan dalam hitungan menit.",
+    "relayAddress": "Alamat relay bridge (kirim DHB ke sini di rantai sumber):",
+    "addressCopied": "Alamat bridge disalin!",
+    "swapDirectionA11y": "Tukar arah bridge",
+    "invalidAmount": "Masukkan jumlah yang valid untuk bridge.",
+    "walletNotReady": "Dompet belum siap. Silakan coba lagi.",
+    "insufficient": "DHB tidak cukup di {{chain}}.",
+    "switchFailed": "Tidak dapat beralih ke {{chain}}. Silakan coba lagi.",
+    "initiated": "Bridge dimulai! TX: {{tx}}",
+    "insufficientOnChain": "DHB tidak cukup di {{chain}}. Saldo di rantai bisa berbeda dari yang ditampilkan.",
+    "needGas": "Butuh {{token}} asli untuk gas di {{chain}}.",
+    "bridging": "Membridge…",
+    "bridgeAction": "Bridge {{from}} → {{to}}"
   }
 }

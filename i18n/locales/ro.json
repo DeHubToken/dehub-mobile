@@ -3216,5 +3216,25 @@
     "legacyTitle": "Portofel Solana mai vechi — {{amount}} SOL",
     "legacyBody": "O versiune anterioară a aplicației a creat un portofel Solana separat care a existat doar pe acest dispozitiv. Încă are fonduri. Mută fondurile la adresa de mai sus cât timp ai acest telefon — acea cheie nu poate fi recuperată în altă parte.",
     "legacyViewA11y": "Vezi portofelul mai vechi pe Solscan"
+  },
+  "bridge": {
+    "title": "Punte DHB",
+    "from": "De la",
+    "to": "Către",
+    "recent": "Punțile tale recente",
+    "noneRecent": "Niciun transfer prin punte în ultimele 7 zile.",
+    "howItWorksBody": "Trimite DHB la adresa de releu a punții pe lanțul sursă. Releul livrează automat suma echivalentă pe lanțul destinație în câteva minute.",
+    "relayAddress": "Adresa de releu a punții (trimite DHB aici pe lanțul sursă):",
+    "addressCopied": "Adresa punții a fost copiată!",
+    "swapDirectionA11y": "Inversează direcția punții",
+    "invalidAmount": "Introdu o sumă validă pentru punte.",
+    "walletNotReady": "Portofelul nu este pregătit. Încearcă din nou.",
+    "insufficient": "DHB insuficient pe {{chain}}.",
+    "switchFailed": "Nu s-a putut comuta la {{chain}}. Încearcă din nou.",
+    "initiated": "Puntea a fost inițiată! TX: {{tx}}",
+    "insufficientOnChain": "DHB insuficient pe {{chain}}. Soldul din lanț poate diferi de cel afișat.",
+    "needGas": "Ai nevoie de {{token}} nativ pentru gas pe {{chain}}.",
+    "bridging": "Se creează puntea…",
+    "bridgeAction": "Punte {{from}} → {{to}}"
   }
 }

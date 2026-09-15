@@ -3202,5 +3202,25 @@
     "legacyTitle": "Portofol Solana i vjetër — {{amount}} SOL",
     "legacyBody": "Një version i mëparshëm i aplikacionit krijoi një portofol Solana të veçantë që ekzistonte vetëm në këtë pajisje. Ai ende ka bilanc. Zhvendos fondet te adresa më sipër ndërsa e ke këtë telefon — ai çelës nuk mund të rikuperohet askund tjetër.",
     "legacyViewA11y": "Shiko portofolin e vjetër në Solscan"
+  },
+  "bridge": {
+    "title": "Urë DHB",
+    "from": "Nga",
+    "to": "Te",
+    "recent": "Urat e tua të fundit",
+    "noneRecent": "Asnjë transferim me urë në 7 ditët e fundit.",
+    "howItWorksBody": "Dërgo DHB në adresën e transmetimit të urës në zinxhirin burimor. Transmetuesi dorëzon automatikisht shumën ekuivalente në zinxhirin e destinacionit brenda pak minutash.",
+    "relayAddress": "Adresa e transmetimit të urës (dërgo DHB këtu në zinxhirin burimor):",
+    "addressCopied": "Adresa e urës u kopjua!",
+    "swapDirectionA11y": "Ndërro drejtimin e urës",
+    "invalidAmount": "Fut një shumë të vlefshme për urën.",
+    "walletNotReady": "Portofoli nuk është gati. Provo sërish.",
+    "insufficient": "DHB i pamjaftueshëm në {{chain}}.",
+    "switchFailed": "Nuk u kalua dot te {{chain}}. Provo sërish.",
+    "initiated": "Ura nisi! TX: {{tx}}",
+    "insufficientOnChain": "DHB i pamjaftueshëm në {{chain}}. Bilanci në zinxhir mund të ndryshojë nga ai i shfaqur.",
+    "needGas": "Duhet {{token}} vendas për gazin në {{chain}}.",
+    "bridging": "Po kalohet ura…",
+    "bridgeAction": "Urë {{from}} → {{to}}"
   }
 }

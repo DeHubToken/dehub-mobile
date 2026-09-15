@@ -3203,5 +3203,25 @@
     "legacyTitle": "Pochi ya zamani ya Solana — {{amount}} SOL",
     "legacyBody": "Toleo la awali la programu liliunda pochi tofauti ya Solana iliyokuwepo kwenye kifaa hiki pekee. Bado ina salio. Hamisha fedha kwenda anwani iliyo hapo juu ukiwa bado na simu hii — ufunguo huo hauwezi kurejeshwa mahali pengine popote.",
     "legacyViewA11y": "Angalia pochi ya zamani kwenye Solscan"
+  },
+  "bridge": {
+    "title": "Daraja la DHB",
+    "from": "Kutoka",
+    "to": "Kwenda",
+    "recent": "Madaraja yako ya hivi karibuni",
+    "noneRecent": "Hakuna uhamisho wa daraja katika siku 7 zilizopita.",
+    "howItWorksBody": "Tuma DHB kwenye anwani ya kipeperushi cha daraja kwenye mnyororo chanzo. Kipeperushi hukabidhi kiasi sawa kwenye mnyororo lengwa kiotomatiki ndani ya dakika chache.",
+    "relayAddress": "Anwani ya kipeperushi cha daraja (tuma DHB hapa kwenye mnyororo chanzo):",
+    "addressCopied": "Anwani ya daraja imenakiliwa!",
+    "swapDirectionA11y": "Badilisha mwelekeo wa daraja",
+    "invalidAmount": "Weka kiasi sahihi cha kuvusha.",
+    "walletNotReady": "Pochi haiko tayari. Tafadhali jaribu tena.",
+    "insufficient": "DHB haitoshi kwenye {{chain}}.",
+    "switchFailed": "Imeshindwa kubadili kwenda {{chain}}. Tafadhali jaribu tena.",
+    "initiated": "Daraja limeanzishwa! TX: {{tx}}",
+    "insufficientOnChain": "DHB haitoshi kwenye {{chain}}. Salio kwenye mnyororo linaweza kutofautiana na lililoonyeshwa.",
+    "needGas": "Unahitaji {{token}} asilia kwa gesi kwenye {{chain}}.",
+    "bridging": "Inavusha…",
+    "bridgeAction": "Daraja {{from}} → {{to}}"
   }
 }

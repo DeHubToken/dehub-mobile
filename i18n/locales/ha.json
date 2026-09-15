@@ -3193,5 +3193,25 @@
     "legacyTitle": "Tsohon walat ɗin Solana — {{amount}} SOL",
     "legacyBody": "Wani tsohon sigar manhajar ya ƙirƙiri walat ɗin Solana daban wanda ya wanzu a wannan na'urar kawai. Har yanzu yana da kuɗi. Matsar da kuɗin zuwa adireshin da ke sama yayin da kake da wannan wayar — ba a iya dawo da wannan maɓallin a wani wuri ba.",
     "legacyViewA11y": "Duba tsohon walat a Solscan"
+  },
+  "bridge": {
+    "title": "Gadar DHB",
+    "from": "Daga",
+    "to": "Zuwa",
+    "recent": "Gadojinka na baya-bayan nan",
+    "noneRecent": "Babu wani canja wurin gada a cikin kwanaki 7 da suka gabata.",
+    "howItWorksBody": "Aika DHB zuwa adireshin gadar relay a kan sarkar tushe. Relay ɗin yana isar da adadin da ya dace a kan sarkar makoma ta atomatik cikin mintuna.",
+    "relayAddress": "Adireshin relay na gada (aika DHB nan a kan sarkar tushe):",
+    "addressCopied": "An kwafi adireshin gada!",
+    "swapDirectionA11y": "Canza hanyar gada",
+    "invalidAmount": "Shigar da adadin da ya dace don gadar.",
+    "walletNotReady": "Walat ba shi a shirye ba. Sake gwadawa.",
+    "insufficient": "DHB bai isa ba a kan {{chain}}.",
+    "switchFailed": "An kasa canjawa zuwa {{chain}}. Sake gwadawa.",
+    "initiated": "An fara gadar! TX: {{tx}}",
+    "insufficientOnChain": "DHB bai isa ba a kan {{chain}}. Ma'aunin da ke kan sarkar na iya bambanta da wanda aka nuna.",
+    "needGas": "Kana buƙatar {{token}} na asali don gas a kan {{chain}}.",
+    "bridging": "Ana gadar…",
+    "bridgeAction": "Gada {{from}} → {{to}}"
   }
 }
