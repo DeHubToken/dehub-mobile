@@ -595,7 +595,8 @@
     "signIn": "እቶ",
     "takePhoto": "ስእሊ ኣልዕል",
     "recordVideo": "ቪድዮ ቅረጽ",
-    "saveChanges": "ለውጥታት ኣቐምጥ"
+    "saveChanges": "ለውጥታት ኣቐምጥ",
+    "copy": "ቅዳሕ"
   },
   "tip": {
     "title": "ሽልማት ስደድ",
@@ -3152,5 +3153,20 @@
     "membersOverTime": "ኣባላት ብግዜ",
     "lastDays": "ዝሓለፉ {{count}} መዓልቲ",
     "source": "ካብ ህዝባዊ መወዳእታ ነጥቢ ስታቲስቲክስ DeHub ዝተመዝገበ ታሪኽ ሕሳብ። ኣብዚ ግራፍ ዝተገመቱ ዋጋታት ኣይጥቀሙን።"
+  },
+  "solana": {
+    "unavailableTitle": "ዋሌት Solana ኣይርከብን",
+    "unavailableBody": "እዚ መሳርሒ ናይ DeHub ዋሌትካ መፍትሕ ኣይሓዘን። ንምምላሱ ደጊምካ እቶ፣ ዋሌት Solana ካኣ ምስኡ ይምለስ።",
+    "yourAddress": "ኣድራሻ Solana ናትካ",
+    "refreshBalanceA11y": "ሚዛን SOL ኣሐድስ",
+    "copyAddressA11y": "ኣድራሻ Solana ቅዳሕ",
+    "addressCopied": "ኣድራሻ Solana ተቐዲሑ",
+    "explorerFailed": "Solscan ክኽፈት ኣይከኣለን",
+    "fundingTitle": "ነዚ ዋሌት ምምላእ",
+    "fundingBody": "ኣብ Solana ምልጣፍ፡ ጉርሻ ምሃብን ምኽፋትን ኩሎም ካብዚ ኣድራሻ እዮም ዝኽፈሉ። ካብ ናይ ምልውዋጥ መድረኽ ወይ ካልእ ዋሌት SOL ስደደሉ — ኣስታት 0.01 SOL ንብዙሕ ልጠፋት ይኣክል። ካብ ዋሌት DeHub ናትካ ስለ ዝወጽእ፡ ኣብ ዝኾነ መሳርሒ እንተ ኣቲኻ ይምለስ።",
+    "mintingOff": "ኣብ Solana ምልጣፍ ሕጂ ኣብ ሰርቨር ተዓጽዩ ኣሎ። ዋሌትካን ሚዛንካን ኣይትንከፉን።",
+    "legacyTitle": "ዓሚቝ ዋሌት Solana — {{amount}} SOL",
+    "legacyBody": "ናይ ቀደም ስሪት ኣፕሊኬሽን ኣብዚ መሳርሒ ጥራይ ዝነበረ ፍሉይ ዋሌት Solana ፈጢሩ ነይሩ። ክሳብ ሕጂ ገንዘብ ኣለዎ። እዚ ተሌፎን ኣብ ኢድካ እንከሎ ገንዘቡ ናብቲ ላዕሊ ዘሎ ኣድራሻ ኣሰጋግሮ — እቲ መፍትሕ ኣብ ካልእ ቦታ ክምለስ ኣይክእልን።",
+    "legacyViewA11y": "ዓሚቝ ዋሌት ኣብ Solscan ርአ"
   }
 }

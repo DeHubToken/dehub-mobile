@@ -606,7 +606,8 @@
     "signIn": "Inicia la sessió",
     "takePhoto": "Fer una foto",
     "recordVideo": "Gravar vídeo",
-    "saveChanges": "Desa els canvis"
+    "saveChanges": "Desa els canvis",
+    "copy": "Copia"
   },
   "tip": {
     "title": "Enviar propina",
@@ -3187,5 +3188,20 @@
     "membersOverTime": "Membres al llarg del temps",
     "lastDays": "Últims {{count}} dies",
     "source": "Historial de comptes registrat des de l'endpoint públic d'estadístiques de DeHub. En aquest gràfic no s'utilitzen valors estimats."
+  },
+  "solana": {
+    "unavailableTitle": "Cartera de Solana no disponible",
+    "unavailableBody": "Aquest dispositiu no guarda la clau de la teva cartera DeHub. Inicia sessió de nou per restaurar-la, i la teva cartera Solana torna amb ella.",
+    "yourAddress": "La teva adreça de Solana",
+    "refreshBalanceA11y": "Actualitza el saldo de SOL",
+    "copyAddressA11y": "Copia l'adreça de Solana",
+    "addressCopied": "Adreça de Solana copiada",
+    "explorerFailed": "No s'ha pogut obrir Solscan",
+    "fundingTitle": "Com finançar aquesta cartera",
+    "fundingBody": "Publicar, donar propines i desbloquejar a Solana es paguen des d'aquesta adreça. Envia-hi SOL des d'un exchange o una altra cartera: uns 0,01 SOL cobreixen diverses publicacions. Deriva de la teva cartera DeHub, així que torna a qualsevol dispositiu on iniciïs sessió.",
+    "mintingOff": "La publicació a Solana està desactivada al servidor ara mateix. La teva cartera i el teu saldo no es veuen afectats.",
+    "legacyTitle": "Cartera de Solana antiga — {{amount}} SOL",
+    "legacyBody": "Una versió anterior de l'aplicació va crear una cartera de Solana separada que només existia en aquest dispositiu. Encara hi queda saldo. Mou els fons a l'adreça de dalt mentre tinguis aquest telèfon: aquella clau no es pot recuperar enlloc més.",
+    "legacyViewA11y": "Mostra la cartera antiga a Solscan"
   }
 }

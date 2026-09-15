@@ -618,7 +618,8 @@
     "signIn": "로그인",
     "takePhoto": "사진 촬영",
     "recordVideo": "동영상 촬영",
-    "saveChanges": "변경사항 저장"
+    "saveChanges": "변경사항 저장",
+    "copy": "복사"
   },
   "drawers": {
     "ppvTitle": "유료 콘텐츠",
@@ -3255,5 +3256,20 @@
     "membersOverTime": "시간에 따른 회원 수",
     "lastDays": "최근 {{count}}일",
     "source": "DeHub의 공개 통계 엔드포인트에 기록된 계정 이력입니다. 이 차트에는 추정값을 사용하지 않습니다."
+  },
+  "solana": {
+    "unavailableTitle": "Solana 지갑을 사용할 수 없습니다",
+    "unavailableBody": "이 기기에는 DeHub 지갑의 키가 없습니다. 다시 로그인하면 복구되며 Solana 지갑도 함께 돌아옵니다.",
+    "yourAddress": "내 Solana 주소",
+    "refreshBalanceA11y": "SOL 잔액 새로고침",
+    "copyAddressA11y": "Solana 주소 복사",
+    "addressCopied": "Solana 주소를 복사했습니다",
+    "explorerFailed": "Solscan을 열지 못했습니다",
+    "fundingTitle": "이 지갑에 자금 넣기",
+    "fundingBody": "Solana에서 게시, 팁, 잠금 해제는 모두 이 주소에서 결제됩니다. 거래소나 다른 지갑에서 SOL을 보내세요. 약 0.01 SOL이면 게시물 여러 건을 감당합니다. DeHub 지갑에서 파생되므로 로그인하는 어느 기기에서든 다시 나타납니다.",
+    "mintingOff": "현재 서버에서 Solana 게시가 꺼져 있습니다. 지갑과 잔액에는 영향이 없습니다.",
+    "legacyTitle": "이전 Solana 지갑 — {{amount}} SOL",
+    "legacyBody": "앱의 이전 버전은 이 기기에만 존재하던 별도의 Solana 지갑을 만들었습니다. 아직 잔액이 남아 있습니다. 이 휴대폰이 있을 때 위 주소로 자금을 옮기세요. 그 키는 다른 어디에서도 복구할 수 없습니다.",
+    "legacyViewA11y": "Solscan에서 이전 지갑 보기"
   }
 }

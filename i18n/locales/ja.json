@@ -620,7 +620,8 @@
     "signIn": "ログイン",
     "takePhoto": "写真を撮る",
     "recordVideo": "動画を撮る",
-    "saveChanges": "変更を保存"
+    "saveChanges": "変更を保存",
+    "copy": "コピー"
   },
   "postOptions": {
     "options": "オプション",
@@ -3254,5 +3255,20 @@
     "membersOverTime": "メンバー数の推移",
     "lastDays": "直近 {{count}} 日間",
     "source": "DeHub の公開統計エンドポイントに記録されたアカウント履歴です。このグラフに推計値は使用していません。"
+  },
+  "solana": {
+    "unavailableTitle": "Solana ウォレットを利用できません",
+    "unavailableBody": "この端末には DeHub ウォレットの鍵がありません。サインインし直すと復元され、Solana ウォレットも一緒に戻ります。",
+    "yourAddress": "あなたの Solana アドレス",
+    "refreshBalanceA11y": "SOL 残高を更新",
+    "copyAddressA11y": "Solana アドレスをコピー",
+    "addressCopied": "Solana アドレスをコピーしました",
+    "explorerFailed": "Solscan を開けませんでした",
+    "fundingTitle": "このウォレットへの入金",
+    "fundingBody": "Solana での投稿、チップ、アンロックはすべてこのアドレスから支払われます。取引所や別のウォレットから SOL を送ってください。おおよそ 0.01 SOL で数件の投稿をまかなえます。DeHub ウォレットから導出されるため、サインインしたどの端末でも復元されます。",
+    "mintingOff": "現在 Solana への投稿はサーバー側で無効になっています。ウォレットと残高には影響ありません。",
+    "legacyTitle": "以前の Solana ウォレット — {{amount}} SOL",
+    "legacyBody": "以前のバージョンのアプリは、この端末にのみ存在する別の Solana ウォレットを作成していました。まだ残高があります。この端末が手元にあるうちに、上のアドレスへ資金を移してください。その鍵は他のどこからも復元できません。",
+    "legacyViewA11y": "以前のウォレットを Solscan で見る"
   }
 }

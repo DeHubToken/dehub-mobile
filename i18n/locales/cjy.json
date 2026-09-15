@@ -565,7 +565,8 @@
     "signIn": "登录",
     "takePhoto": "拍照",
     "recordVideo": "录视频",
-    "saveChanges": "保存更改"
+    "saveChanges": "保存更改",
+    "copy": "复制"
   },
   "tip": {
     "title": "发打赏",
@@ -3187,5 +3188,20 @@
     "membersOverTime": "成员随时间变化",
     "lastDays": "最近 {{count}} 天",
     "source": "来自 DeHub 公开统计接口的账户历史记录。本图表不使用任何估算值。"
+  },
+  "solana": {
+    "unavailableTitle": "Solana 钱包不可用",
+    "unavailableBody": "此设备未保存你的 DeHub 钱包密钥。重新登录即可恢复，你的 Solana 钱包也会随之回来。",
+    "yourAddress": "你的 Solana 地址",
+    "refreshBalanceA11y": "刷新 SOL 余额",
+    "copyAddressA11y": "复制 Solana 地址",
+    "addressCopied": "已复制 Solana 地址",
+    "explorerFailed": "无法打开 Solscan",
+    "fundingTitle": "为此钱包充值",
+    "fundingBody": "在 Solana 上发帖、打赏和解锁都从此地址扣费。可从交易所或其他钱包向它转入 SOL——大约 0.01 SOL 足够发几条帖子。它派生自你的 DeHub 钱包，所以在任何登录的设备上都会回来。",
+    "mintingOff": "Solana 发帖目前在服务器上已关闭。你的钱包和余额不受影响。",
+    "legacyTitle": "旧的 Solana 钱包 — {{amount}} SOL",
+    "legacyBody": "应用的早期版本创建了一个独立的 Solana 钱包，它只存在于此设备上。其中仍有余额。趁手机还在，请把资金转到上面的地址——那把密钥在别处无法找回。",
+    "legacyViewA11y": "在 Solscan 上查看旧钱包"
   }
 }

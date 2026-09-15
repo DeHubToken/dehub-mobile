@@ -3456,5 +3456,20 @@
     "membersOverTime": "Leden in de tijd",
     "lastDays": "Laatste {{count}} dagen",
     "source": "Vastgelegde accountgeschiedenis uit het openbare statistiek-endpoint van DeHub. In deze grafiek worden geen geschatte waarden gebruikt."
+  },
+  "solana": {
+    "unavailableTitle": "Solana-wallet niet beschikbaar",
+    "unavailableBody": "Dit apparaat bewaart de sleutel van je DeHub-wallet niet. Log opnieuw in om hem te herstellen; je Solana-wallet komt daarmee terug.",
+    "yourAddress": "Je Solana-adres",
+    "refreshBalanceA11y": "SOL-saldo vernieuwen",
+    "copyAddressA11y": "Solana-adres kopiëren",
+    "addressCopied": "Solana-adres gekopieerd",
+    "explorerFailed": "Kon Solscan niet openen",
+    "fundingTitle": "Deze wallet vullen",
+    "fundingBody": "Posten, fooien geven en ontgrendelen op Solana worden vanaf dit adres betaald. Stuur er SOL naartoe vanaf een exchange of een andere wallet — ongeveer 0,01 SOL dekt meerdere posts. Het is afgeleid van je DeHub-wallet, dus het komt terug op elk apparaat waarop je inlogt.",
+    "mintingOff": "Posten op Solana staat momenteel uit op de server. Je wallet en saldo worden niet beïnvloed.",
+    "legacyTitle": "Oudere Solana-wallet — {{amount}} SOL",
+    "legacyBody": "Een eerdere versie van de app maakte een aparte Solana-wallet die alleen op dit apparaat bestond. Er staat nog saldo op. Verplaats het tegoed naar het adres hierboven zolang je deze telefoon hebt — die sleutel is nergens anders te herstellen.",
+    "legacyViewA11y": "Oudere wallet op Solscan bekijken"
   }
 }

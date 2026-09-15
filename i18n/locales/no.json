@@ -603,7 +603,8 @@
     "signIn": "Logg inn",
     "takePhoto": "Ta bilde",
     "recordVideo": "Ta opp video",
-    "saveChanges": "Lagre endringer"
+    "saveChanges": "Lagre endringer",
+    "copy": "Kopier"
   },
   "postOptions": {
     "options": "Alternativer",
@@ -3178,5 +3179,20 @@
     "membersOverTime": "Medlemmer over tid",
     "lastDays": "Siste {{count}} dager",
     "source": "Registrert kontohistorikk fra DeHubs offentlige statistikkendepunkt. Ingen estimerte verdier brukes i dette diagrammet."
+  },
+  "solana": {
+    "unavailableTitle": "Solana-lommebok utilgjengelig",
+    "unavailableBody": "Denne enheten har ikke nøkkelen til DeHub-lommeboken din. Logg inn på nytt for å gjenopprette den, så kommer Solana-lommeboken tilbake med den.",
+    "yourAddress": "Din Solana-adresse",
+    "refreshBalanceA11y": "Oppdater SOL-saldo",
+    "copyAddressA11y": "Kopier Solana-adresse",
+    "addressCopied": "Solana-adresse kopiert",
+    "explorerFailed": "Kunne ikke åpne Solscan",
+    "fundingTitle": "Fylle opp denne lommeboken",
+    "fundingBody": "Innlegg, tips og opplåsing på Solana betales fra denne adressen. Send SOL til den fra en børs eller en annen lommebok — omtrent 0,01 SOL dekker flere innlegg. Den utledes fra DeHub-lommeboken din, så den kommer tilbake på enhver enhet du logger inn på.",
+    "mintingOff": "Publisering på Solana er slått av på serveren akkurat nå. Lommeboken og saldoen din påvirkes ikke.",
+    "legacyTitle": "Eldre Solana-lommebok — {{amount}} SOL",
+    "legacyBody": "En tidligere versjon av appen opprettet en egen Solana-lommebok som bare fantes på denne enheten. Den har fortsatt en saldo. Flytt midlene til adressen over mens du har denne telefonen — den nøkkelen kan ikke gjenopprettes noe annet sted.",
+    "legacyViewA11y": "Vis eldre lommebok på Solscan"
   }
 }

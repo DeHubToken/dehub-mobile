@@ -595,7 +595,8 @@
     "signIn": "Daxil ol",
     "takePhoto": "Foto çək",
     "recordVideo": "Video çək",
-    "saveChanges": "Dəyişiklikləri yadda saxla"
+    "saveChanges": "Dəyişiklikləri yadda saxla",
+    "copy": "Kopyala"
   },
   "tip": {
     "title": "Bəxşiş Göndər",
@@ -3171,5 +3172,20 @@
     "membersOverTime": "Zamanla üzvlər",
     "lastDays": "Son {{count}} gün",
     "source": "DeHub-un ictimai statistika son nöqtəsindən qeydə alınmış hesab tarixçəsi. Bu qrafikdə təxmini dəyərlər istifadə olunmur."
+  },
+  "solana": {
+    "unavailableTitle": "Solana cüzdanı əlçatan deyil",
+    "unavailableBody": "Bu cihazda DeHub cüzdanınızın açarı yoxdur. Onu bərpa etmək üçün yenidən daxil olun, Solana cüzdanınız da onunla birlikdə qayıdacaq.",
+    "yourAddress": "Solana ünvanınız",
+    "refreshBalanceA11y": "SOL balansını yenilə",
+    "copyAddressA11y": "Solana ünvanını kopyala",
+    "addressCopied": "Solana ünvanı kopyalandı",
+    "explorerFailed": "Solscan açıla bilmədi",
+    "fundingTitle": "Bu cüzdanı doldurmaq",
+    "fundingBody": "Solana-da paylaşım, bəxşiş və kilidaçma bu ünvandan ödənilir. Birjadan və ya başqa cüzdandan ora SOL göndərin — təxminən 0,01 SOL bir neçə paylaşıma çatır. O, DeHub cüzdanınızdan törəyir, ona görə də daxil olduğunuz istənilən cihazda geri qayıdır.",
+    "mintingOff": "Solana-da paylaşım hazırda serverdə söndürülüb. Cüzdanınıza və balansınıza təsir etmir.",
+    "legacyTitle": "Köhnə Solana cüzdanı — {{amount}} SOL",
+    "legacyBody": "Tətbiqin əvvəlki versiyası yalnız bu cihazda mövcud olan ayrıca Solana cüzdanı yaratmışdı. Onda hələ də balans var. Bu telefon əlinizdə ikən vəsaiti yuxarıdakı ünvana köçürün — həmin açarı başqa heç yerdə bərpa etmək mümkün deyil.",
+    "legacyViewA11y": "Köhnə cüzdana Solscan-da bax"
   }
 }

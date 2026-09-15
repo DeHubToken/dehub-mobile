@@ -565,7 +565,8 @@
     "signIn": "Aamälde",
     "takePhoto": "Foto mache",
     "recordVideo": "Video ufnäh",
-    "saveChanges": "Änderige speichere"
+    "saveChanges": "Änderige speichere",
+    "copy": "Kopiere"
   },
   "tip": {
     "title": "Trinkgäld schicke",
@@ -3176,5 +3177,20 @@
     "membersOverTime": "Mitglider über d Ziit",
     "lastDays": "Letschti {{count}} Täg",
     "source": "Ufzeichnete Kontoverlauf us em öffentliche Statistik-Ändpunkt vo DeHub. In dem Diagramm wärded kei gschätzti Wärt bruucht."
+  },
+  "solana": {
+    "unavailableTitle": "Solana-Wallet nid verfüegbar",
+    "unavailableBody": "Das Grät het de Schlüssel für dini DeHub-Wallet nid. Mäld dich nomol aa zum sie widerherstelle – dini Solana-Wallet chunnt demit zrugg.",
+    "yourAddress": "Dini Solana-Adrässe",
+    "refreshBalanceA11y": "SOL-Guethabe aktualisiere",
+    "copyAddressA11y": "Solana-Adrässe kopiere",
+    "addressCopied": "Solana-Adrässe kopiert",
+    "explorerFailed": "Solscan het nid chönne uufgmacht werde",
+    "fundingTitle": "Die Wallet uflade",
+    "fundingBody": "Beiträg, Trinkgälder und Freischaltige uf Solana wärded vo dere Adrässe zahlt. Schick ere SOL vo ere Börse oder ere andere Wallet — öppe 0.01 SOL längt für es paar Beiträg. Si wird us dinere DeHub-Wallet abgleitet und chunnt drum uf jedem Grät zrugg, wo du dich aamäldsch.",
+    "mintingOff": "S Poste uf Solana isch grad uf em Server abgschaltet. Dini Wallet und dis Guethabe sind nid betroffe.",
+    "legacyTitle": "Elteri Solana-Wallet — {{amount}} SOL",
+    "legacyBody": "E früeneri Version vo dr App het e separati Solana-Wallet erstellt, wo nume uf dem Grät exischtiert het. Sie het immer no es Guethabe. Verschieb s Gäld uf d Adrässe obe, solang du das Telefon häsch — de Schlüssel cha niene susch widerhergstellt werde.",
+    "legacyViewA11y": "Elteri Wallet uf Solscan aaluege"
   }
 }

@@ -607,7 +607,8 @@
     "signIn": "Masuk",
     "takePhoto": "Ambil foto",
     "recordVideo": "Rekam video",
-    "saveChanges": "Simpan perubahan"
+    "saveChanges": "Simpan perubahan",
+    "copy": "Salin"
   },
   "drawers": {
     "ppvTitle": "Konten Bayar-Per-Tayang",
@@ -3237,5 +3238,20 @@
     "membersOverTime": "Anggota dari waktu ke waktu",
     "lastDays": "{{count}} hari terakhir",
     "source": "Riwayat akun yang tercatat dari endpoint statistik publik DeHub. Tidak ada nilai perkiraan yang digunakan dalam grafik ini."
+  },
+  "solana": {
+    "unavailableTitle": "Dompet Solana tidak tersedia",
+    "unavailableBody": "Perangkat ini tidak menyimpan kunci dompet DeHub kamu. Masuk lagi untuk memulihkannya, dan dompet Solana kamu ikut kembali.",
+    "yourAddress": "Alamat Solana kamu",
+    "refreshBalanceA11y": "Segarkan saldo SOL",
+    "copyAddressA11y": "Salin alamat Solana",
+    "addressCopied": "Alamat Solana disalin",
+    "explorerFailed": "Tidak dapat membuka Solscan",
+    "fundingTitle": "Mengisi dompet ini",
+    "fundingBody": "Memposting, memberi tip, dan membuka konten di Solana dibayar dari alamat ini. Kirim SOL ke sana dari bursa atau dompet lain — sekitar 0,01 SOL cukup untuk beberapa postingan. Alamat ini diturunkan dari dompet DeHub kamu, jadi akan kembali di perangkat mana pun yang kamu pakai untuk masuk.",
+    "mintingOff": "Posting di Solana sedang dimatikan di server. Dompet dan saldo kamu tidak terpengaruh.",
+    "legacyTitle": "Dompet Solana lama — {{amount}} SOL",
+    "legacyBody": "Versi lama aplikasi membuat dompet Solana terpisah yang hanya ada di perangkat ini. Saldonya masih ada. Pindahkan dananya ke alamat di atas selagi ponsel ini masih ada padamu — kunci itu tidak bisa dipulihkan di tempat lain.",
+    "legacyViewA11y": "Lihat dompet lama di Solscan"
   }
 }

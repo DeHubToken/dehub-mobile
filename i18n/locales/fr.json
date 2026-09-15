@@ -621,7 +621,8 @@
     "signIn": "Se connecter",
     "takePhoto": "Prendre une photo",
     "recordVideo": "Enregistrer une vidéo",
-    "saveChanges": "Enregistrer les modifications"
+    "saveChanges": "Enregistrer les modifications",
+    "copy": "Copier"
   },
   "drawers": {
     "ppvTitle": "Contenu à la carte",
@@ -3261,5 +3262,20 @@
     "membersOverTime": "Membres dans le temps",
     "lastDays": "{{count}} derniers jours",
     "source": "Historique des comptes enregistré depuis le point de terminaison public des statistiques de DeHub. Aucune valeur estimée n'est utilisée dans ce graphique."
+  },
+  "solana": {
+    "unavailableTitle": "Portefeuille Solana indisponible",
+    "unavailableBody": "Cet appareil ne détient pas la clé de votre portefeuille DeHub. Reconnectez-vous pour le restaurer, et votre portefeuille Solana revient avec lui.",
+    "yourAddress": "Votre adresse Solana",
+    "refreshBalanceA11y": "Actualiser le solde SOL",
+    "copyAddressA11y": "Copier l'adresse Solana",
+    "addressCopied": "Adresse Solana copiée",
+    "explorerFailed": "Impossible d'ouvrir Solscan",
+    "fundingTitle": "Approvisionner ce portefeuille",
+    "fundingBody": "Les publications, pourboires et déblocages sur Solana sont payés depuis cette adresse. Envoyez-y des SOL depuis une plateforme d'échange ou un autre portefeuille — environ 0,01 SOL couvre plusieurs publications. Elle est dérivée de votre portefeuille DeHub, elle revient donc sur tout appareil où vous vous connectez.",
+    "mintingOff": "La publication sur Solana est actuellement désactivée côté serveur. Votre portefeuille et votre solde ne sont pas affectés.",
+    "legacyTitle": "Ancien portefeuille Solana — {{amount}} SOL",
+    "legacyBody": "Une version antérieure de l'application a créé un portefeuille Solana distinct qui n'a jamais existé que sur cet appareil. Il contient encore un solde. Transférez les fonds vers l'adresse ci-dessus tant que vous avez ce téléphone — cette clé ne peut être récupérée nulle part ailleurs.",
+    "legacyViewA11y": "Voir l'ancien portefeuille sur Solscan"
   }
 }

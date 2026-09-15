@@ -598,7 +598,8 @@
     "signIn": "Banye",
     "takePhoto": "See foto",
     "recordVideo": "Dekọọ vidiyo",
-    "saveChanges": "Chekwaa mgbanwe"
+    "saveChanges": "Chekwaa mgbanwe",
+    "copy": "Detuo"
   },
   "tip": {
     "title": "Ziga Onyinye",
@@ -3165,5 +3166,20 @@
     "membersOverTime": "Ndị òtù n'oge",
     "lastDays": "Ụbọchị {{count}} gara aga",
     "source": "Akụkọ ihe mere eme nke akaụntụ edekọrọ site na njedebe ọnụọgụ ọha nke DeHub. Enweghị uru atụmatụ ejiri na eserese a."
+  },
+  "solana": {
+    "unavailableTitle": "Obere akpa Solana adịghị",
+    "unavailableBody": "Ngwaọrụ a ejighị igodo obere akpa DeHub gị. Banye ọzọ iji weghachi ya, obere akpa Solana gị ga-esokwa lọta.",
+    "yourAddress": "Adreesị Solana gị",
+    "refreshBalanceA11y": "Megharịa nguzozi SOL",
+    "copyAddressA11y": "Detuo adreesị Solana",
+    "addressCopied": "Edetuola adreesị Solana",
+    "explorerFailed": "Enweghị ike imepe Solscan",
+    "fundingTitle": "Itinye ego n'obere akpa a",
+    "fundingBody": "Ibipụta, inye ego ntụrụndụ na imeghe ihe na Solana niile na-akwụ ụgwọ site na adreesị a. Zigara ya SOL site na ebe mgbanwe ma ọ bụ obere akpa ọzọ — ihe dị ka 0.01 SOL ezuru maka ọtụtụ post. E si na obere akpa DeHub gị nweta ya, ya mere ọ na-alọta na ngwaọrụ ọ bụla ị banyere.",
+    "mintingOff": "A gbanyụrụ ibipụta na Solana na ihe nkesa ugbu a. Obere akpa gị na nguzozi gị emetụtaghị.",
+    "legacyTitle": "Obere akpa Solana ochie — {{amount}} SOL",
+    "legacyBody": "Ụdị ngwa ochie mepụtara obere akpa Solana dị iche nke dị naanị na ngwaọrụ a. Ọ ka nwere ego. Bufee ego ahụ na adreesị dị n'elu ka ekwentị a ka dị gị n'aka — enweghị ike iweghachi igodo ahụ ebe ọzọ.",
+    "legacyViewA11y": "Lee obere akpa ochie na Solscan"
   }
 }

@@ -605,7 +605,8 @@
     "signIn": "Kirish",
     "takePhoto": "Suratga olish",
     "recordVideo": "Video yozib olish",
-    "saveChanges": "O‘zgarishlarni saqlash"
+    "saveChanges": "O‘zgarishlarni saqlash",
+    "copy": "Nusxalash"
   },
   "tip": {
     "title": "Tip yuborish",
@@ -3239,5 +3240,20 @@
     "membersOverTime": "Vaqt bo‘yicha a'zolar",
     "lastDays": "Oxirgi {{count}} kun",
     "source": "DeHub'ning ommaviy statistika so‘nggi nuqtasidan yozib olingan hisob tarixi. Ushbu diagrammada taxminiy qiymatlar ishlatilmagan."
+  },
+  "solana": {
+    "unavailableTitle": "Solana hamyoni mavjud emas",
+    "unavailableBody": "Bu qurilmada DeHub hamyoningiz kaliti yo‘q. Uni tiklash uchun qaytadan kiring, Solana hamyoningiz ham u bilan birga qaytadi.",
+    "yourAddress": "Sizning Solana manzilingiz",
+    "refreshBalanceA11y": "SOL balansini yangilash",
+    "copyAddressA11y": "Solana manzilini nusxalash",
+    "addressCopied": "Solana manzili nusxalandi",
+    "explorerFailed": "Solscan ochilmadi",
+    "fundingTitle": "Ushbu hamyonni to‘ldirish",
+    "fundingBody": "Solana'da post joylash, choychaqa berish va qulfni ochish — barchasi shu manzildan to‘lanadi. Unga birjadan yoki boshqa hamyondan SOL yuboring — taxminan 0,01 SOL bir nechta post uchun yetadi. U DeHub hamyoningizdan olinadi, shuning uchun siz kirgan istalgan qurilmada qaytib keladi.",
+    "mintingOff": "Solana'da post joylash hozir serverda o‘chirilgan. Hamyoningiz va balansingizga ta'sir qilmaydi.",
+    "legacyTitle": "Eski Solana hamyoni — {{amount}} SOL",
+    "legacyBody": "Ilovaning oldingi versiyasi faqat shu qurilmada mavjud bo‘lgan alohida Solana hamyonini yaratgan edi. Unda hali ham mablag‘ bor. Bu telefon qo‘lingizda ekan, mablag‘ni yuqoridagi manzilga o‘tkazing — o‘sha kalitni boshqa hech qayerdan tiklab bo‘lmaydi.",
+    "legacyViewA11y": "Eski hamyonni Solscan'da ko‘rish"
   }
 }

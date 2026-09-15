@@ -655,7 +655,8 @@
     "unblockUserDesc": "Allow messages from {{name}} again.",
     "takePhoto": "Take photo",
     "recordVideo": "Record video",
-    "saveChanges": "Save Changes"
+    "saveChanges": "Save Changes",
+    "copy": "Copy"
   },
   "tip": {
     "title": "Send Tip",
@@ -3257,5 +3258,20 @@
     "membersOverTime": "Members over time",
     "lastDays": "Last {{count}} days",
     "source": "Recorded account history from DeHub's public stats endpoint. No estimated values are used in this chart."
+  },
+  "solana": {
+    "unavailableTitle": "Solana wallet unavailable",
+    "unavailableBody": "This device does not hold the key for your DeHub wallet. Sign in again to restore it, and your Solana wallet comes back with it.",
+    "yourAddress": "Your Solana address",
+    "refreshBalanceA11y": "Refresh SOL balance",
+    "copyAddressA11y": "Copy Solana address",
+    "addressCopied": "Solana address copied",
+    "explorerFailed": "Could not open Solscan",
+    "fundingTitle": "Funding this wallet",
+    "fundingBody": "Posting, tipping and unlocking on Solana are paid from this address. Send SOL to it from an exchange or another wallet — roughly 0.01 SOL covers several posts. It is derived from your DeHub wallet, so it comes back on any device you sign in to.",
+    "mintingOff": "Solana posting is turned off on the server right now. Your wallet and balance are unaffected.",
+    "legacyTitle": "Older Solana wallet — {{amount}} SOL",
+    "legacyBody": "An earlier version of the app created a separate Solana wallet that only ever existed on this device. It still holds a balance. Move the funds to the address above while you have this phone — that key cannot be recovered anywhere else.",
+    "legacyViewA11y": "View older wallet on Solscan"
   }
 }

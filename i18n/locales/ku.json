@@ -550,7 +550,8 @@
     "signIn": "Têkeve",
     "takePhoto": "Wêne bikişîne",
     "recordVideo": "Vîdyo tomar bike",
-    "saveChanges": "Guhertinan tomar bike"
+    "saveChanges": "Guhertinan tomar bike",
+    "copy": "Kopî bike"
   },
   "tip": {
     "title": "Bexşîş Bişîne",
@@ -2953,5 +2954,20 @@
     "membersOverTime": "Endam di dema de",
     "lastDays": "{{count}} rojên dawî",
     "source": "Dîroka hesaban a tomarkirî ji xala dawî ya statîstîkên giştî yên DeHub. Di vê xêzeyê de tu nirxên texmînî nayên bikaranîn."
+  },
+  "solana": {
+    "unavailableTitle": "Berîka Solana ne berdest e",
+    "unavailableBody": "Ev amûr mifteya berîka te ya DeHub nagire. Ji nû ve têkeve da ku wê vegerînî, berîka te ya Solana jî bi wê re vedigere.",
+    "yourAddress": "Navnîşana te ya Solana",
+    "refreshBalanceA11y": "Balansa SOL nû bike",
+    "copyAddressA11y": "Navnîşana Solana kopî bike",
+    "addressCopied": "Navnîşana Solana hat kopîkirin",
+    "explorerFailed": "Solscan nehat vekirin",
+    "fundingTitle": "Dagirtina vê berîkê",
+    "fundingBody": "Şandin, baxşîş û vekirin li ser Solana hemû ji vê navnîşanê têne dayîn. Ji borseyekê an berîkeke din SOL jê re bişîne — nêzîkî 0.01 SOL çend şandinan digire. Ew ji berîka te ya DeHub tê wergirtin, loma li her amûrekê ku tu têkevî vedigere.",
+    "mintingOff": "Şandin li ser Solana niha li ser rajekar girtî ye. Berîk û balansa te nayê bandorkirin.",
+    "legacyTitle": "Berîka Solana ya kevn — {{amount}} SOL",
+    "legacyBody": "Guhertoyeke berê ya sepanê berîkeke Solana ya cuda çêkiribû ku tenê li ser vê amûrê hebû. Hîn jî balansek tê de heye. Heta ku ev telefon di destê te de ye, drav veguhêze navnîşana jorîn — ew mifte li tu cihekî din nayê vegerandin.",
+    "legacyViewA11y": "Berîka kevn li Solscan bibîne"
   }
 }
