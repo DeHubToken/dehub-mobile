@@ -3453,5 +3453,17 @@
     "switchFirst": "ປ່ຽນໄປເຄືອຂ່າຍລາງວັນກ່ອນຮັບ",
     "missingSignature": "ບໍ່ມີລາຍເຊັນຮັບລາງວັນ",
     "txReverted": "ທຸລະກຳຖືກຍົກເລີກຢູ່ອອນເຊນ"
+  },
+  "poster": {
+    "format": "ຮູບແບບ",
+    "style": "ຮູບແບບ",
+    "logo": "ໂລໂກ້",
+    "headline": "ຫົວຂໍ້",
+    "headlinePlaceholder": "ຈະຖືກເພີ່ມຢ່າງຄົມຊັດຫຼັງສ້າງ — ຖ້າບໍ່ຕ້ອງການໃຫ້ປະວ່າງໄວ້",
+    "spotlightFeatures": "ຄຸນສົມບັດທີ່ເນັ້ນ",
+    "includeWebsite": "ລວມເວັບໄຊທ໌",
+    "includeSocials": "ລວມໂຊຊຽວມີເດຍ",
+    "extraNotes": "ບັນທຶກເພີ່ມເຕີມ",
+    "notesPlaceholder": "ສິ່ງອື່ນທີ່ໂປສເຕີຕ້ອງສະແດງ"
   }
 }

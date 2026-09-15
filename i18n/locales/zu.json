@@ -3524,5 +3524,17 @@
     "switchFirst": "Shintshela kunethiwekhi yomklomelo ngaphambi kokuthatha",
     "missingSignature": "Kushoda isiginesha sokuthatha umklomelo",
     "txReverted": "Ukuthengiselana kubuyiselwe emuva eshinini"
+  },
+  "poster": {
+    "format": "Ifomethi",
+    "style": "Isitayela",
+    "logo": "Ilogo",
+    "headline": "Isihloko",
+    "headlinePlaceholder": "Ingezwa ngokucacile ngemva kokudala — yishiye ingenalutho uma ungayidingi",
+    "spotlightFeatures": "Izici ozigqamisayo",
+    "includeWebsite": "Faka iwebhusayithi",
+    "includeSocials": "Faka ama-akhawunti ezokuxhumana",
+    "extraNotes": "Amanothi engeziwe",
+    "notesPlaceholder": "Noma yini enye okumele iposta iyibonise"
   }
 }

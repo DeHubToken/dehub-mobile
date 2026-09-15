@@ -3641,5 +3641,17 @@
     "switchFirst": "লওয়ার আগে বাউন্টি নেটওয়ার্কো যাউক্কা",
     "missingSignature": "বাউন্টি ক্লেইমর স্বাক্ষর নাই",
     "txReverted": "লেনদেন অন-চেইনো বাতিল অইছে"
+  },
+  "poster": {
+    "format": "ফরম্যাট",
+    "style": "স্টাইল",
+    "logo": "লোগো",
+    "headline": "শিরোনাম",
+    "headlinePlaceholder": "বানানির পরে স্পষ্টভাবে যোগ অয় — না চাইলে খালি রাখউক্কা",
+    "spotlightFeatures": "তুলি ধরার ফিচার",
+    "includeWebsite": "ওয়েবসাইট যোগ করউক্কা",
+    "includeSocials": "সোশ্যাল হ্যান্ডেল যোগ করউক্কা",
+    "extraNotes": "অতিরিক্ত নোট",
+    "notesPlaceholder": "পোস্টারো আর যা যা দেখাইতে অইবো"
   }
 }

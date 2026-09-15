@@ -3480,5 +3480,17 @@
     "switchFirst": "Hurihia ki te whatunga utu i mua i te tono",
     "missingSignature": "Kāore he waitohu tono utu",
     "txReverted": "I whakakorea te whakawhitinga i runga mekameka"
+  },
+  "poster": {
+    "format": "Hōputu",
+    "style": "Kāhua",
+    "logo": "Moko",
+    "headline": "Pane kōrero",
+    "headlinePlaceholder": "Ka tāpirihia mārama i muri i te waihanga — waiho kau ki te kore e hiahiatia",
+    "spotlightFeatures": "Āhuatanga whakanui",
+    "includeWebsite": "Whakauru paetukutuku",
+    "includeSocials": "Whakauru pāpori",
+    "extraNotes": "Tuhipoka tāpiri",
+    "notesPlaceholder": "Ētahi atu mea me whakaatu e te pānui"
   }
 }

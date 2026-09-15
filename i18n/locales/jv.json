@@ -3453,5 +3453,17 @@
     "switchFirst": "Pindhah menyang jaringan ganjaran sadurunge njupuk",
     "missingSignature": "Tandha tangan klaim ganjaran ora ana",
     "txReverted": "Transaksi dibatalake ing on-chain"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Gaya",
+    "logo": "Logo",
+    "headline": "Irah-irahan",
+    "headlinePlaceholder": "Ditambahake kanthi cetha sawise digawe — kosongake yen ora perlu",
+    "spotlightFeatures": "Fitur sing disorot",
+    "includeWebsite": "Lebokake situs web",
+    "includeSocials": "Lebokake media sosial",
+    "extraNotes": "Cathetan tambahan",
+    "notesPlaceholder": "Apa wae liyane sing kudu ditampilake poster"
   }
 }

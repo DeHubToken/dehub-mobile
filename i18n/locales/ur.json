@@ -3493,5 +3493,17 @@
     "switchFirst": "حاصل کرنے سے پہلے بانٹی نیٹ ورک پر جائیں",
     "missingSignature": "بانٹی کلیم کے دستخط موجود نہیں",
     "txReverted": "لین دین آن چین واپس ہو گیا"
+  },
+  "poster": {
+    "format": "فارمیٹ",
+    "style": "اسٹائل",
+    "logo": "لوگو",
+    "headline": "سرخی",
+    "headlinePlaceholder": "بننے کے بعد صاف طور پر شامل ہوتا ہے — نہ چاہیے تو خالی چھوڑیں",
+    "spotlightFeatures": "نمایاں کرنے والے فیچرز",
+    "includeWebsite": "ویب سائٹ شامل کریں",
+    "includeSocials": "سوشل ہینڈلز شامل کریں",
+    "extraNotes": "اضافی نوٹس",
+    "notesPlaceholder": "پوسٹر میں اور جو کچھ دکھانا ہے"
   }
 }

@@ -3499,5 +3499,17 @@
     "switchFirst": "Před vyzvednutím přepněte na síť odměny",
     "missingSignature": "Chybí podpis pro vyzvednutí odměny",
     "txReverted": "Transakce byla na blockchainu vrácena"
+  },
+  "poster": {
+    "format": "Formát",
+    "style": "Styl",
+    "logo": "Logo",
+    "headline": "Nadpis",
+    "headlinePlaceholder": "Po vygenerování se ostře doplní — nechte prázdné, pokud žádný nechcete",
+    "spotlightFeatures": "Zvýrazněné funkce",
+    "includeWebsite": "Zahrnout web",
+    "includeSocials": "Zahrnout sociální sítě",
+    "extraNotes": "Další poznámky",
+    "notesPlaceholder": "Cokoli dalšího, co má plakát ukázat"
   }
 }

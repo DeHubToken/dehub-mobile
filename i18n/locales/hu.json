@@ -3499,5 +3499,17 @@
     "switchFirst": "Igénylés előtt válts a jutalom hálózatára",
     "missingSignature": "Hiányzik a jutalomigénylés aláírása",
     "txReverted": "A tranzakció visszaállt a láncon"
+  },
+  "poster": {
+    "format": "Formátum",
+    "style": "Stílus",
+    "logo": "Logó",
+    "headline": "Főcím",
+    "headlinePlaceholder": "A generálás után élesen kerül rá — hagyd üresen, ha nem kell",
+    "spotlightFeatures": "Kiemelt funkciók",
+    "includeWebsite": "Weboldal feltüntetése",
+    "includeSocials": "Közösségi profilok feltüntetése",
+    "extraNotes": "További megjegyzések",
+    "notesPlaceholder": "Bármi más, aminek szerepelnie kell a poszteren"
   }
 }

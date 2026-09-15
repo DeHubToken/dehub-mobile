@@ -3485,5 +3485,17 @@
     "switchFirst": "Bytt til belønningsnettverket før du innløser",
     "missingSignature": "Signatur for innløsning mangler",
     "txReverted": "Transaksjonen ble tilbakestilt on-chain"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Stil",
+    "logo": "Logo",
+    "headline": "Overskrift",
+    "headlinePlaceholder": "Legges skarpt til etter generering — la stå tomt for ingen",
+    "spotlightFeatures": "Fremhevede funksjoner",
+    "includeWebsite": "Ta med nettsted",
+    "includeSocials": "Ta med sosiale medier",
+    "extraNotes": "Ekstra notater",
+    "notesPlaceholder": "Alt annet plakaten skal vise"
   }
 }

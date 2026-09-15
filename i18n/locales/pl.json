@@ -3563,5 +3563,17 @@
     "switchFirst": "Przed odbiorem przełącz się na sieć nagrody",
     "missingSignature": "Brak podpisu do odbioru nagrody",
     "txReverted": "Transakcja została cofnięta w łańcuchu"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Styl",
+    "logo": "Logo",
+    "headline": "Nagłówek",
+    "headlinePlaceholder": "Dodawany ostro po wygenerowaniu — zostaw puste, jeśli żadnego nie chcesz",
+    "spotlightFeatures": "Wyróżnione funkcje",
+    "includeWebsite": "Uwzględnij witrynę",
+    "includeSocials": "Uwzględnij media społecznościowe",
+    "extraNotes": "Dodatkowe uwagi",
+    "notesPlaceholder": "Cokolwiek jeszcze plakat ma pokazać"
   }
 }

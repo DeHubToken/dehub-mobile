@@ -3460,5 +3460,17 @@
     "switchFirst": "ቅድሚ ምውሳድካ ናብ መርበብ ሽልማት ቀይር",
     "missingSignature": "ፌርማ ሽልማት ምውሳድ የለን",
     "txReverted": "ግብይት ኣብ ሰንሰለት ተመሊሱ"
+  },
+  "poster": {
+    "format": "ቅርጺ",
+    "style": "ቅዲ",
+    "logo": "ኣርማ",
+    "headline": "ኣርእስቲ",
+    "headlinePlaceholder": "ድሕሪ ምፍጣር ብንጹር ይውሰኽ — እንተዘይደሊኻ ባዶ ግደፎ",
+    "spotlightFeatures": "ዝጉልሑ ባህርያት",
+    "includeWebsite": "መርበብ ሓበሬታ ኣእቱ",
+    "includeSocials": "ማሕበራዊ መርበባት ኣእቱ",
+    "extraNotes": "ተወሳኺ መዘኻኸሪ",
+    "notesPlaceholder": "ኣብ ፖስተር ክርአ ዘለዎ ካልእ ነገር"
   }
 }

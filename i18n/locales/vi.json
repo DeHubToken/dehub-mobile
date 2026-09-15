@@ -3583,5 +3583,17 @@
     "switchFirst": "Hãy chuyển sang mạng của phần thưởng trước khi nhận",
     "missingSignature": "Thiếu chữ ký nhận thưởng",
     "txReverted": "Giao dịch bị hoàn lại trên chuỗi"
+  },
+  "poster": {
+    "format": "Định dạng",
+    "style": "Phong cách",
+    "logo": "Logo",
+    "headline": "Tiêu đề",
+    "headlinePlaceholder": "Được ghép sắc nét sau khi tạo — để trống nếu không cần",
+    "spotlightFeatures": "Tính năng nổi bật",
+    "includeWebsite": "Thêm trang web",
+    "includeSocials": "Thêm mạng xã hội",
+    "extraNotes": "Ghi chú thêm",
+    "notesPlaceholder": "Bất kỳ điều gì khác poster phải thể hiện"
   }
 }

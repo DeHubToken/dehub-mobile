@@ -3451,5 +3451,17 @@
     "switchFirst": "بدّل لشبكة الجائزة قبل ما تستلم",
     "missingSignature": "توقيع استلام الجائزة ناقص",
     "txReverted": "المعاملة رجعت على السلسلة"
+  },
+  "poster": {
+    "format": "الصيغة",
+    "style": "الستايل",
+    "logo": "الشعار",
+    "headline": "العنوان",
+    "headlinePlaceholder": "بينضاف بوضوح بعد التوليد — خلّيه فاضي إذا ما بدك",
+    "spotlightFeatures": "ميزات بدك تبرزها",
+    "includeWebsite": "ضمّن الموقع",
+    "includeSocials": "ضمّن حسابات التواصل",
+    "extraNotes": "ملاحظات إضافية",
+    "notesPlaceholder": "أي شي تاني لازم يظهر بالملصق"
   }
 }

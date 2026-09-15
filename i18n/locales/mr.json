@@ -3483,5 +3483,17 @@
     "switchFirst": "मिळवण्यापूर्वी बक्षीस नेटवर्कवर जा",
     "missingSignature": "बक्षीस क्लेमची स्वाक्षरी नाही",
     "txReverted": "व्यवहार ऑन-चेन परत गेला"
+  },
+  "poster": {
+    "format": "स्वरूप",
+    "style": "शैली",
+    "logo": "लोगो",
+    "headline": "मथळा",
+    "headlinePlaceholder": "तयार झाल्यावर स्पष्टपणे जोडले जाते — नको असल्यास रिकामे ठेवा",
+    "spotlightFeatures": "ठळक वैशिष्ट्ये",
+    "includeWebsite": "वेबसाइट समाविष्ट करा",
+    "includeSocials": "सोशल हँडल समाविष्ट करा",
+    "extraNotes": "अतिरिक्त नोंदी",
+    "notesPlaceholder": "पोस्टरमध्ये आणखी जे दाखवायचे आहे"
   }
 }

@@ -3439,5 +3439,17 @@
     "switchFirst": "حاصل کرݨ کنوں پہلے انعام آلی نیٹ ورک تے ونڄو",
     "missingSignature": "انعام کلیم دا دستخط کائنی",
     "txReverted": "لین ݙین آن چین واپس تھی ڳیا"
+  },
+  "poster": {
+    "format": "فارمیٹ",
+    "style": "انداز",
+    "logo": "لوگو",
+    "headline": "سرخی",
+    "headlinePlaceholder": "بݨݨ کنوں بعد صاف طور تے شامل تھیندے — نہ چاہیدا ہووے تاں خالی چھوڑو",
+    "spotlightFeatures": "نمایاں کرݨ آلیاں خصوصیات",
+    "includeWebsite": "ویب سائٹ شامل کرو",
+    "includeSocials": "سوشل ہینڈلز شامل کرو",
+    "extraNotes": "اضافی نوٹس",
+    "notesPlaceholder": "پوسٹر وچ ٻیا جو کجھ ݙکھاوݨا ہے"
   }
 }

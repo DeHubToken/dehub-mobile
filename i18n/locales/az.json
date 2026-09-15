@@ -3479,5 +3479,17 @@
     "switchFirst": "Almazdan əvvəl mükafat şəbəkəsinə keçin",
     "missingSignature": "Mükafat tələbi imzası yoxdur",
     "txReverted": "Əməliyyat zəncirdə geri qaytarıldı"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Üslub",
+    "logo": "Loqo",
+    "headline": "Başlıq",
+    "headlinePlaceholder": "Yaradıldıqdan sonra aydın əlavə olunur — istəmirsinizsə boş buraxın",
+    "spotlightFeatures": "Vurğulanacaq funksiyalar",
+    "includeWebsite": "Veb saytı daxil et",
+    "includeSocials": "Sosial hesabları daxil et",
+    "extraNotes": "Əlavə qeydlər",
+    "notesPlaceholder": "Posterdə görünməli olan başqa nə varsa"
   }
 }

@@ -3545,5 +3545,17 @@
     "switchFirst": "Ganti ke jaringan hadiah sebelum mengklaim",
     "missingSignature": "Tanda tangan klaim hadiah tidak ada",
     "txReverted": "Transaksi dibatalkan di on-chain"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Gaya",
+    "logo": "Logo",
+    "headline": "Judul utama",
+    "headlinePlaceholder": "Ditambahkan dengan tajam setelah dibuat — kosongkan jika tidak perlu",
+    "spotlightFeatures": "Fitur yang disorot",
+    "includeWebsite": "Sertakan situs web",
+    "includeSocials": "Sertakan media sosial",
+    "extraNotes": "Catatan tambahan",
+    "notesPlaceholder": "Hal lain yang harus ditampilkan poster"
   }
 }

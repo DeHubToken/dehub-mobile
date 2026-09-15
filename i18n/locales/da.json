@@ -3499,5 +3499,17 @@
     "switchFirst": "Skift til belønningsnetværket, før du indløser",
     "missingSignature": "Signatur til indløsning mangler",
     "txReverted": "Transaktionen blev tilbageført on-chain"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Stil",
+    "logo": "Logo",
+    "headline": "Overskrift",
+    "headlinePlaceholder": "Tilføjes skarpt efter generering — lad stå tomt for ingen",
+    "spotlightFeatures": "Fremhævede funktioner",
+    "includeWebsite": "Medtag websted",
+    "includeSocials": "Medtag sociale medier",
+    "extraNotes": "Ekstra noter",
+    "notesPlaceholder": "Alt andet plakaten skal vise"
   }
 }

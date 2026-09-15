@@ -3587,5 +3587,17 @@
     "switchFirst": "লইবার আগে বাউন্টি নেটওয়ার্কত যান",
     "missingSignature": "বাউন্টি ক্লেইমর স্বাক্ষর নাই",
     "txReverted": "লেনদেন অন-চেইনত বাতিল অইয়্যি"
+  },
+  "poster": {
+    "format": "ফরম্যাট",
+    "style": "স্টাইল",
+    "logo": "লোগো",
+    "headline": "শিরোনাম",
+    "headlinePlaceholder": "বানাইবার পরে পরিষ্কার গরি যোগ অয় — না চাইলে খালি রাখন",
+    "spotlightFeatures": "তুলি ধরিবার ফিচার",
+    "includeWebsite": "ওয়েবসাইট যোগ গরন",
+    "includeSocials": "সোশ্যাল হ্যান্ডেল যোগ গরন",
+    "extraNotes": "অতিরিক্ত নোট",
+    "notesPlaceholder": "পোস্টারত আর যা যা দেখাইত অইব"
   }
 }
