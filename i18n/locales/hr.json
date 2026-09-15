@@ -3412,6 +3412,21 @@
     "micRequired": "Za snimanje zvuka potrebno je dopuštenje mikrofona.",
     "recordFailed": "Snimanje nije moguće pokrenuti.",
     "tierVisibility": "Napredujte kroz razine kako biste povećali vidljivost i dobili više dnevnih prikaza objave",
-    "buyTokens": "Kupi tokene"
+    "buyTokens": "Kupi tokene",
+    "community": "Zajednica",
+    "shop": "Trgovina",
+    "discard": "Odbaci",
+    "matureContent": "Sadržaj za odrasle",
+    "addOption": "Dodaj opciju",
+    "mintPost": "Kuj objavu",
+    "addCategories": "Dodaj kategorije",
+    "goLive": "Kreni uživo",
+    "startLivestream": "Pokrenite prijenos uživo",
+    "joinStage": "Pridružite se audio pozornici ili je pokrenite",
+    "saveToDrafts": "Spremi u skice",
+    "uploadAudio": "Prenesi zvuk",
+    "recordVoice": "Snimi glas",
+    "searchSounds": "Pretraži zvukove",
+    "pollQuestion": "Postavite pitanje…"
   }
 }

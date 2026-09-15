@@ -3370,6 +3370,21 @@
     "micRequired": "ຕ້ອງໄດ້ຮັບອະນຸຍາດໄມໂຄຣໂຟນເພື່ອບັນທຶກສຽງ.",
     "recordFailed": "ບໍ່ສາມາດເລີ່ມການບັນທຶກໄດ້.",
     "tierVisibility": "ເລື່ອນລະດັບຂຶ້ນເພື່ອເພີ່ມການເຫັນ ແລະ ໄດ້ຮັບການເຜີຍແຜ່ຫຼາຍຂຶ້ນຕໍ່ມື້",
-    "buyTokens": "ຊື້ໂທເຄັນ"
+    "buyTokens": "ຊື້ໂທເຄັນ",
+    "community": "ຊຸມຊົນ",
+    "shop": "ຮ້ານຄ້າ",
+    "discard": "ຍົກເລີກ",
+    "matureContent": "ເນື້ອຫາສຳລັບຜູ້ໃຫຍ່",
+    "addOption": "ເພີ່ມຕົວເລືອກ",
+    "mintPost": "Mint ໂພສ",
+    "addCategories": "ເພີ່ມໝວດໝູ່",
+    "goLive": "ເລີ່ມຖ່າຍທອດສົດ",
+    "startLivestream": "ເລີ່ມການຖ່າຍທອດສົດ",
+    "joinStage": "ເຂົ້າຮ່ວມ ຫຼື ເລີ່ມເວທີສຽງ",
+    "saveToDrafts": "ບັນທຶກໄປຮ່າງ",
+    "uploadAudio": "ອັບໂຫຼດສຽງ",
+    "recordVoice": "ບັນທຶກສຽງ",
+    "searchSounds": "ຄົ້ນຫາສຽງ",
+    "pollQuestion": "ຖາມຄຳຖາມ…"
   }
 }

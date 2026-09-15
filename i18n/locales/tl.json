@@ -3591,6 +3591,21 @@
     "micRequired": "Kailangan ng pahintulot sa mikropono para mag-record ng audio.",
     "recordFailed": "Nabigong simulan ang pag-record.",
     "tierVisibility": "Umakyat ng tier para tumaas ang visibility mo at makakuha ng mas maraming feed kada araw",
-    "buyTokens": "Bumili ng token"
+    "buyTokens": "Bumili ng token",
+    "community": "Komunidad",
+    "shop": "Tindahan",
+    "discard": "Itapon",
+    "matureContent": "Nilalaman para sa may edad",
+    "addOption": "Magdagdag ng opsyon",
+    "mintPost": "I-mint ang post",
+    "addCategories": "Magdagdag ng kategorya",
+    "goLive": "Mag-live",
+    "startLivestream": "Magsimula ng livestream",
+    "joinStage": "Sumali o magsimula ng audio stage",
+    "saveToDrafts": "I-save sa mga draft",
+    "uploadAudio": "Mag-upload ng audio",
+    "recordVoice": "Mag-record ng boses",
+    "searchSounds": "Maghanap ng tunog",
+    "pollQuestion": "Magtanong…"
   }
 }

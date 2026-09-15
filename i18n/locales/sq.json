@@ -3411,6 +3411,21 @@
     "micRequired": "Duhet leja e mikrofonit për të regjistruar audio.",
     "recordFailed": "Regjistrimi nuk mundi të fillojë.",
     "tierVisibility": "Ngjitu në nivele për të rritur dukshmërinë dhe për të marrë më shumë shpërndarje në ditë",
-    "buyTokens": "Blej tokena"
+    "buyTokens": "Blej tokena",
+    "community": "Komuniteti",
+    "shop": "Dyqani",
+    "discard": "Hidhe",
+    "matureContent": "Përmbajtje për të rritur",
+    "addOption": "Shto opsion",
+    "mintPost": "Minto postimin",
+    "addCategories": "Shto kategori",
+    "goLive": "Nis transmetimin",
+    "startLivestream": "Nis një transmetim live",
+    "joinStage": "Bashkohu ose nis një skenë audio",
+    "saveToDrafts": "Ruaj te skicat",
+    "uploadAudio": "Ngarko audio",
+    "recordVoice": "Regjistro zërin",
+    "searchSounds": "Kërko tinguj",
+    "pollQuestion": "Bëj një pyetje…"
   }
 }

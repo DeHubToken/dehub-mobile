@@ -3442,6 +3442,21 @@
     "micRequired": "Uyarita grabanapaq mikrofono saqiy necesitakun.",
     "recordFailed": "Grabayta qallariy mana atikurqachu.",
     "tierVisibility": "Patmakunata wichay rikukunaykipaq hinaspa sapa p'unchaw astawan willakuy chayananpaq",
-    "buyTokens": "Token rantiy"
+    "buyTokens": "Token rantiy",
+    "community": "Ayllu",
+    "shop": "Qhatu",
+    "discard": "Wikch'uy",
+    "matureContent": "Kuraq runakunapaq willay",
+    "addOption": "Akllanata yapay",
+    "mintPost": "Willakuyta mintiy",
+    "addCategories": "Rakikunata yapay",
+    "goLive": "Kunan pacha qallariy",
+    "startLivestream": "Kunan pacha willakuyta qallariy",
+    "joinStage": "Uyari pukllanaman yaykuy utaq qallariy",
+    "saveToDrafts": "Ruwanapaq waqaychay",
+    "uploadAudio": "Uyarita apachiy",
+    "recordVoice": "Kunkata graway",
+    "searchSounds": "Uyarikunata maskay",
+    "pollQuestion": "Huk tapukuyta ruray…"
   }
 }

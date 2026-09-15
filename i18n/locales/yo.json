@@ -3402,6 +3402,21 @@
     "micRequired": "A nílò àṣẹ gbohùngbohùn láti gba ohùn sílẹ̀.",
     "recordFailed": "Kò lè bẹ̀rẹ̀ ìgbàsílẹ̀.",
     "tierVisibility": "Gun àwọn ipele sókè láti mú kí ìhàn rẹ pọ̀ sí i kí ìfìwéránṣẹ́ rẹ sì gba ìtànkálẹ̀ púpọ̀ lójúmọ́",
-    "buyTokens": "Ra àwọn tòkénì"
+    "buyTokens": "Ra àwọn tòkénì",
+    "community": "Àwùjọ",
+    "shop": "Ilé ìtajà",
+    "discard": "Jù nù",
+    "matureContent": "Àkóónú fún àgbàlagbà",
+    "addOption": "Fi àṣàyàn kún un",
+    "mintPost": "Mint ìfìwéránṣẹ́",
+    "addCategories": "Fi àwọn ẹ̀ka kún un",
+    "goLive": "Bẹ̀rẹ̀ Ìgbóhùnsáfẹ́fẹ́",
+    "startLivestream": "Bẹ̀rẹ̀ ìgbóhùnsáfẹ́fẹ́ tààrà",
+    "joinStage": "Dara pọ̀ tàbí bẹ̀rẹ̀ ìpele ohùn",
+    "saveToDrafts": "Fi pamọ́ sí Àkọsílẹ̀ Àkọ́kọ́",
+    "uploadAudio": "Gbé ohùn sókè",
+    "recordVoice": "Gba ohùn sílẹ̀",
+    "searchSounds": "Wá àwọn ohùn",
+    "pollQuestion": "Bi ìbéèrè kan…"
   }
 }

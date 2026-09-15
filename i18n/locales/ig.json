@@ -3390,6 +3390,21 @@
     "micRequired": "Achọrọ ikike igwe okwu iji dekọọ ụda.",
     "recordFailed": "Enweghị ike ịmalite ndekọ.",
     "tierVisibility": "Rịgoro n'ọkwa iji bawanye ka a hụ gị ma nweta mgbasa ka ukwuu kwa ụbọchị",
-    "buyTokens": "Zụta tokens"
+    "buyTokens": "Zụta tokens",
+    "community": "Obodo",
+    "shop": "Ụlọ ahịa",
+    "discard": "Tụfuo",
+    "matureContent": "Ọdịnaya ndị okenye",
+    "addOption": "Tinye nhọrọ",
+    "mintPost": "Mint post",
+    "addCategories": "Tinye ụdị",
+    "goLive": "Malite ndụ",
+    "startLivestream": "Malite mgbasa ozi ndụ",
+    "joinStage": "Sonye ma ọ bụ malite ogbo ụda",
+    "saveToDrafts": "Chekwaa na ndetu",
+    "uploadAudio": "Bulite ụda",
+    "recordVoice": "Dekọọ olu",
+    "searchSounds": "Chọọ ụda",
+    "pollQuestion": "Jụọ ajụjụ…"
   }
 }

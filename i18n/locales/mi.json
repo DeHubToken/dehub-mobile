@@ -3397,6 +3397,21 @@
     "micRequired": "Me whai whakaaetanga hopuoro hei hopu ororongo.",
     "recordFailed": "Kāore i taea te tīmata i te hopu.",
     "tierVisibility": "Pikitia ngā taumata kia kitea ake koe, kia nui ake ngā whakaaturanga o te pānui ia rā",
-    "buyTokens": "Hokona ngā tohu"
+    "buyTokens": "Hokona ngā tohu",
+    "community": "Hapori",
+    "shop": "Toa",
+    "discard": "Whakakore",
+    "matureContent": "Ihirangi pakeke",
+    "addOption": "Tāpiri kōwhiringa",
+    "mintPost": "Whakaputa i te pānui",
+    "addCategories": "Tāpiri kāwai",
+    "goLive": "Tīmata ora",
+    "startLivestream": "Tīmata i tētahi hōtaka ora",
+    "joinStage": "Uru, tīmata rānei i tētahi atamira ororongo",
+    "saveToDrafts": "Tiaki ki ngā hukihuki",
+    "uploadAudio": "Tukuatu ororongo",
+    "recordVoice": "Hopu reo",
+    "searchSounds": "Rapu oro",
+    "pollQuestion": "Pātai mai…"
   }
 }

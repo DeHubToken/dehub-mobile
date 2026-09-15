@@ -3412,6 +3412,21 @@
     "micRequired": "Äänen tallentaminen vaatii mikrofonin käyttöoikeuden.",
     "recordFailed": "Tallennuksen aloittaminen epäonnistui.",
     "tierVisibility": "Nouse tasoilla lisätäksesi näkyvyyttäsi ja saadaksesi julkaisulle enemmän näyttöjä päivässä",
-    "buyTokens": "Osta tokeneita"
+    "buyTokens": "Osta tokeneita",
+    "community": "Yhteisö",
+    "shop": "Kauppa",
+    "discard": "Hylkää",
+    "matureContent": "Aikuisille tarkoitettu sisältö",
+    "addOption": "Lisää vaihtoehto",
+    "mintPost": "Lyö julkaisu",
+    "addCategories": "Lisää luokkia",
+    "goLive": "Aloita suora lähetys",
+    "startLivestream": "Aloita suoratoisto",
+    "joinStage": "Liity äänilavalle tai aloita oma",
+    "saveToDrafts": "Tallenna luonnoksiin",
+    "uploadAudio": "Lataa ääni",
+    "recordVoice": "Nauhoita ääni",
+    "searchSounds": "Hae ääniä",
+    "pollQuestion": "Esitä kysymys…"
   }
 }

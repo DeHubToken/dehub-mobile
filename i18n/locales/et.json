@@ -3411,6 +3411,21 @@
     "micRequired": "Heli salvestamiseks on vaja mikrofoni luba.",
     "recordFailed": "Salvestamise alustamine ebaõnnestus.",
     "tierVisibility": "Tõuse tasemetel, et suurendada nähtavust ja saada postitusele päevas rohkem levitust",
-    "buyTokens": "Osta tokeneid"
+    "buyTokens": "Osta tokeneid",
+    "community": "Kogukond",
+    "shop": "Pood",
+    "discard": "Loobu",
+    "matureContent": "Täiskasvanutele mõeldud sisu",
+    "addOption": "Lisa valik",
+    "mintPost": "Vermi postitus",
+    "addCategories": "Lisa kategooriad",
+    "goLive": "Alusta otseülekannet",
+    "startLivestream": "Alusta otseülekannet",
+    "joinStage": "Liitu heliesinemisega või alusta uut",
+    "saveToDrafts": "Salvesta mustanditesse",
+    "uploadAudio": "Laadi heli üles",
+    "recordVoice": "Salvesta hääl",
+    "searchSounds": "Otsi helisid",
+    "pollQuestion": "Küsi küsimus…"
   }
 }

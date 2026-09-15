@@ -3411,6 +3411,21 @@
     "micRequired": "Norint įrašyti garsą, reikia mikrofono leidimo.",
     "recordFailed": "Nepavyko pradėti įrašymo.",
     "tierVisibility": "Kilkite lygiais, kad padidintumėte matomumą ir gautumėte daugiau įrašo rodymų per dieną",
-    "buyTokens": "Pirkti žetonų"
+    "buyTokens": "Pirkti žetonų",
+    "community": "Bendruomenė",
+    "shop": "Parduotuvė",
+    "discard": "Atmesti",
+    "matureContent": "Suaugusiesiems skirtas turinys",
+    "addOption": "Pridėti parinktį",
+    "mintPost": "Nukaldinti įrašą",
+    "addCategories": "Pridėti kategorijų",
+    "goLive": "Pradėti tiesioginę transliaciją",
+    "startLivestream": "Pradėkite tiesioginę transliaciją",
+    "joinStage": "Prisijunkite prie garso scenos arba pradėkite naują",
+    "saveToDrafts": "Įrašyti į juodraščius",
+    "uploadAudio": "Įkelti garso įrašą",
+    "recordVoice": "Įrašyti balsą",
+    "searchSounds": "Ieškoti garsų",
+    "pollQuestion": "Užduokite klausimą…"
   }
 }
