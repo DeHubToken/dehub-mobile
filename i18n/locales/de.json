@@ -1993,6 +1993,7 @@
     "failed_to_create_post": "Beitrag konnte nicht erstellt werden",
     "notification_settings_updated": "Benachrichtigungseinstellungen aktualisiert",
     "report_submitted": "Meldung eingereicht",
+    "reported_for_moderation": "Gemeldet für dezentrale Moderation durch Badge-Inhaber",
     "failed_to_report": "Meldung fehlgeschlagen",
     "crosschain_deposit_completed": "Cross-Chain-Einzahlung abgeschlossen!",
     "proposal_submitted": "Vorschlag eingereicht!",

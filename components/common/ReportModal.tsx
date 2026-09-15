@@ -19,6 +19,7 @@ import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { reportContent, reportUser } from "../../services/nft.service";
 import { toastError } from "../../libs";
 import { useKeyboard } from "../../hooks/useKeyboard";
+import { useTranslation } from "react-i18next";
 
 interface ReportReason {
   id: string;
@@ -73,6 +74,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
   userId,
   userName,
 }) => {
+  const { t } = useTranslation();
   const [selectedReason, setSelectedReason] = useState<string | null>(null);
   const [additionalInfo, setAdditionalInfo] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -95,8 +97,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
             icon: "flag-outline" as keyof typeof Ionicons.glyphMap,
             iconColor: accentColor,
             iconBg: "bg-yellow-500/15",
-            successMessage:
-              "Thank you for helping keep the community safe. We'll review this content and take appropriate action.",
+            successMessage: t("toasts.reported_for_moderation"),
           }
         : {
             title: "Report User",
@@ -106,10 +107,9 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
             icon: "person-remove-outline" as keyof typeof Ionicons.glyphMap,
             iconColor: accentColor,
             iconBg: "bg-orange-500/15",
-            successMessage:
-              "Thank you for your report. We'll review this account and take appropriate action.",
+            successMessage: t("toasts.reported_for_moderation"),
           },
-    [type, userName]
+    [type, userName, t]
   );
 
   const resetState = useCallback(() => {
@@ -172,7 +172,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
             <Ionicons name="checkmark-circle" size={36} color="#F4F4F5" />
           </View>
           <Text className="text-white text-lg font-bold text-center mb-2">
-            Report Submitted
+            {t("toasts.report_submitted")}
           </Text>
           <Text className="text-theme-neutrals-400 text-sm text-center leading-5 mb-5">
             {headerConfig.successMessage}
@@ -182,7 +182,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
             className="bg-white/10 border border-white/15 px-8 py-3 rounded-xl"
             activeOpacity={0.8}
           >
-            <Text className="text-white text-sm font-semibold">Done</Text>
+            <Text className="text-white text-sm font-semibold">{t("common.done")}</Text>
           </TouchableOpacity>
         </View>
       </GlassModal>
