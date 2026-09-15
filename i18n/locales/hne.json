@@ -3291,7 +3291,12 @@
     "descriptionPlaceholder": "ये फोल्डर म का रखना हे?",
     "createAndSave": "बनाव अउ सहेजव",
     "createNew": "नवा फोल्डर बनाव",
-    "closeA11y": "फोल्डर चुनइया ल बंद करव"
+    "closeA11y": "फोल्डर चुनइया ल बंद करव",
+    "loadFailed": "बुकमार्क फोल्डर लोड नइ होइस",
+    "addedTo": "{{name}} म जोड़ दे गे",
+    "removedFrom": "{{name}} ले हटा दे गे",
+    "savedTo": "{{name}} म सहेज दे गे",
+    "createdNotAdded": "फोल्डर बनगे, फेर पोस्ट नइ जुड़िस"
   },
   "ppv": {
     "title": "देखे बर पइसा वाला कंटेंट",
@@ -3361,6 +3366,7 @@
     "secureWithBiometrics": "बायोमेट्रिक ले सुरक्षित करव",
     "thatsGoneToo": "ओ घलो चल गे — तभो नवा ले सुरू करव",
     "tryBiometrics": "ये फोन म बायोमेट्रिक अजमाव",
-    "unlockWithBiometrics": "बायोमेट्रिक ले खोलव"
+    "unlockWithBiometrics": "बायोमेट्रिक ले खोलव",
+    "confirmStartOver": "पुसटि करव कि तुमन नवा वॉलेट ले फेर ले सुरू करे चाहत हव"
   }
 }

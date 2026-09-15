@@ -3360,7 +3360,12 @@
     "descriptionPlaceholder": "Cosa va in questa cartella?",
     "createAndSave": "Crea e salva",
     "createNew": "Crea nuova cartella",
-    "closeA11y": "Chiudi il selettore di cartelle"
+    "closeA11y": "Chiudi il selettore di cartelle",
+    "loadFailed": "Impossibile caricare le cartelle dei segnalibri",
+    "addedTo": "Aggiunto a {{name}}",
+    "removedFrom": "Rimosso da {{name}}",
+    "savedTo": "Salvato in {{name}}",
+    "createdNotAdded": "Cartella creata, ma il post non è stato aggiunto"
   },
   "ppv": {
     "title": "Contenuto pay-per-view",
@@ -3430,6 +3435,7 @@
     "secureWithBiometrics": "Proteggi con biometria",
     "thatsGoneToo": "Anche quello è perso — ricomincia comunque",
     "tryBiometrics": "Prova la biometria su questo telefono",
-    "unlockWithBiometrics": "Sblocca con biometria"
+    "unlockWithBiometrics": "Sblocca con biometria",
+    "confirmStartOver": "Conferma di voler ricominciare con un nuovo wallet"
   }
 }

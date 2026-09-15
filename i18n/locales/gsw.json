@@ -3279,7 +3279,12 @@
     "descriptionPlaceholder": "Was ghört i de Ordner?",
     "createAndSave": "Erstelle und speichere",
     "createNew": "Neue Ordner erstelle",
-    "closeA11y": "Ordneruswahl zuemache"
+    "closeA11y": "Ordneruswahl zuemache",
+    "loadFailed": "Lesezeiche-Ordner hend nid chönne glade werde",
+    "addedTo": "Zu {{name}} hinzuegfüegt",
+    "removedFrom": "Us {{name}} entfernt",
+    "savedTo": "In {{name}} gspeicheret",
+    "createdNotAdded": "Ordner erstellt, aber de Biitrag isch nid hinzuegfüegt worde"
   },
   "ppv": {
     "title": "Pay-per-View-Inhalt",
@@ -3349,6 +3354,7 @@
     "secureWithBiometrics": "Mit Biometrie sichere",
     "thatsGoneToo": "Das isch au wäg — trotzdem nöi aafange",
     "tryBiometrics": "Biometrie uf dem Telefon probiere",
-    "unlockWithBiometrics": "Mit Biometrie entsperre"
+    "unlockWithBiometrics": "Mit Biometrie entsperre",
+    "confirmStartOver": "Bestätig, dass du mit ere neue Wallet nöi aafange wotsch"
   }
 }

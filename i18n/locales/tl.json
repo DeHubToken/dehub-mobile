@@ -3469,7 +3469,12 @@
     "descriptionPlaceholder": "Ano ang nilalaman ng folder na ito?",
     "createAndSave": "Gumawa at i-save",
     "createNew": "Gumawa ng bagong folder",
-    "closeA11y": "Isara ang folder picker"
+    "closeA11y": "Isara ang folder picker",
+    "loadFailed": "Hindi ma-load ang mga bookmark folder",
+    "addedTo": "Naidagdag sa {{name}}",
+    "removedFrom": "Inalis sa {{name}}",
+    "savedTo": "Na-save sa {{name}}",
+    "createdNotAdded": "Nagawa ang folder, pero hindi naidagdag ang post"
   },
   "ppv": {
     "title": "Nilalamang pay-per-view",
@@ -3539,6 +3544,7 @@
     "secureWithBiometrics": "I-secure gamit ang biometrics",
     "thatsGoneToo": "Nawala rin iyon — magsimula pa rin muli",
     "tryBiometrics": "Subukan ang biometrics sa teleponong ito",
-    "unlockWithBiometrics": "I-unlock gamit ang biometrics"
+    "unlockWithBiometrics": "I-unlock gamit ang biometrics",
+    "confirmStartOver": "Kumpirmahin na gusto mong magsimula muli gamit ang bagong wallet"
   }
 }

@@ -3378,7 +3378,12 @@
     "descriptionPlaceholder": "Thư mục này chứa gì?",
     "createAndSave": "Tạo và lưu",
     "createNew": "Tạo thư mục mới",
-    "closeA11y": "Đóng bộ chọn thư mục"
+    "closeA11y": "Đóng bộ chọn thư mục",
+    "loadFailed": "Không tải được thư mục dấu trang",
+    "addedTo": "Đã thêm vào {{name}}",
+    "removedFrom": "Đã xóa khỏi {{name}}",
+    "savedTo": "Đã lưu vào {{name}}",
+    "createdNotAdded": "Đã tạo thư mục, nhưng bài đăng chưa được thêm"
   },
   "ppv": {
     "title": "Nội dung trả tiền theo lượt xem",
@@ -3448,6 +3453,7 @@
     "secureWithBiometrics": "Bảo vệ bằng sinh trắc học",
     "thatsGoneToo": "Cái đó cũng mất — vẫn bắt đầu lại",
     "tryBiometrics": "Thử sinh trắc học trên điện thoại này",
-    "unlockWithBiometrics": "Mở khóa bằng sinh trắc học"
+    "unlockWithBiometrics": "Mở khóa bằng sinh trắc học",
+    "confirmStartOver": "Xác nhận rằng bạn muốn bắt đầu lại với một ví mới"
   }
 }

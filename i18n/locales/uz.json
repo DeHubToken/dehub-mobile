@@ -3341,7 +3341,12 @@
     "descriptionPlaceholder": "Ushbu papkada nima saqlanadi?",
     "createAndSave": "Yaratish va saqlash",
     "createNew": "Yangi papka yaratish",
-    "closeA11y": "Papka tanlagichni yopish"
+    "closeA11y": "Papka tanlagichni yopish",
+    "loadFailed": "Xatcho‘p papkalarini yuklab bo‘lmadi",
+    "addedTo": "{{name}} ga qo‘shildi",
+    "removedFrom": "{{name}} dan olib tashlandi",
+    "savedTo": "{{name}} ga saqlandi",
+    "createdNotAdded": "Papka yaratildi, lekin post qo‘shilmadi"
   },
   "ppv": {
     "title": "Har ko‘rish uchun to‘lovli kontent",
@@ -3411,6 +3416,7 @@
     "secureWithBiometrics": "Biometrika bilan himoyalang",
     "thatsGoneToo": "U ham yo‘qolgan — baribir qaytadan boshlang",
     "tryBiometrics": "Bu telefonda biometrikani sinab ko‘ring",
-    "unlockWithBiometrics": "Biometrika bilan oching"
+    "unlockWithBiometrics": "Biometrika bilan oching",
+    "confirmStartOver": "Yangi hamyon bilan qaytadan boshlamoqchi ekaningizni tasdiqlang"
   }
 }

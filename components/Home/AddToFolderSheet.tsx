@@ -108,7 +108,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
       setFolders(enriched);
     } catch (err) {
       console.warn("[AddToFolderSheet] Error loading folders:", err);
-      showNotice("Failed to load bookmark folders", "error");
+      showNotice(t("addToFolder.loadFailed"), "error");
     } finally {
       setLoading(false);
     }
@@ -187,10 +187,10 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
       try {
         if (isAdding) {
           await addItemToFolder(folderId, Number(tokenId));
-          showNotice(`Added to ${folder.name}`);
+          showNotice(t("addToFolder.addedTo", { name: folder.name }));
         } else {
           await removeItemFromFolder(folderId, Number(tokenId));
-          showNotice(`Removed from ${folder.name}`);
+          showNotice(t("addToFolder.removedFrom", { name: folder.name }));
         }
         setFolders((prev) =>
           prev.map((f) =>
@@ -199,7 +199,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
         );
       } catch (err) {
         console.warn("[AddToFolderSheet] Error toggling item in folder:", err);
-        showNotice("Failed to update folder", "error");
+        showNotice(t("savedPosts.updateFolderFailed"), "error");
         // Revert on error
         setFolders((prev) =>
           prev.map((f) =>
@@ -231,18 +231,18 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
             ...prev,
             { ...newFolder, checked: true, updating: false, itemCount: 1 },
           ]);
-          showNotice(`Saved to ${newFolder.name}`);
+          showNotice(t("addToFolder.savedTo", { name: newFolder.name }));
         } catch {
           setFolders((prev) => [
             ...prev,
             { ...newFolder, checked: false, updating: false, itemCount: 0 },
           ]);
-          showNotice("Folder created, but the post wasn't added", "error");
+          showNotice(t("addToFolder.createdNotAdded"), "error");
         }
       }
     } catch (err: any) {
       console.warn("[AddToFolderSheet] createFolder error", err);
-      showNotice(err?.message || "Failed to create folder", "error");
+      showNotice(err?.message || t("savedPosts.createFolderFailed"), "error");
     } finally {
       setCreating(false);
     }

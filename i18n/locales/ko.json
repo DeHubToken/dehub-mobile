@@ -3358,7 +3358,12 @@
     "descriptionPlaceholder": "이 폴더에는 무엇을 담나요?",
     "createAndSave": "만들고 저장",
     "createNew": "새 폴더 만들기",
-    "closeA11y": "폴더 선택 닫기"
+    "closeA11y": "폴더 선택 닫기",
+    "loadFailed": "북마크 폴더를 불러오지 못했습니다",
+    "addedTo": "{{name}}에 추가했습니다",
+    "removedFrom": "{{name}}에서 삭제했습니다",
+    "savedTo": "{{name}}에 저장했습니다",
+    "createdNotAdded": "폴더는 만들었지만 게시물이 추가되지 않았습니다"
   },
   "ppv": {
     "title": "유료 시청 콘텐츠",
@@ -3428,6 +3433,7 @@
     "secureWithBiometrics": "생체 인식으로 보호",
     "thatsGoneToo": "그것도 없습니다 — 그래도 처음부터 다시",
     "tryBiometrics": "이 휴대폰에서 생체 인식 시도",
-    "unlockWithBiometrics": "생체 인식으로 잠금 해제"
+    "unlockWithBiometrics": "생체 인식으로 잠금 해제",
+    "confirmStartOver": "새 지갑으로 다시 시작할 것인지 확인하세요"
   }
 }

@@ -3255,7 +3255,12 @@
     "descriptionPlaceholder": "ኣብዚ ፋይል እንታይ ይኣቱ?",
     "createAndSave": "ፍጠርን ኣቐምጥን",
     "createNew": "ሓድሽ ፋይል ፍጠር",
-    "closeA11y": "መምረጺ ፋይል ዕጸው"
+    "closeA11y": "መምረጺ ፋይል ዕጸው",
+    "loadFailed": "ፋይላት መኽተቢ ክጽዓኑ ኣይከኣሉን",
+    "addedTo": "ናብ {{name}} ተወሲኹ",
+    "removedFrom": "ካብ {{name}} ተኣልዩ",
+    "savedTo": "ኣብ {{name}} ተዓቂቡ",
+    "createdNotAdded": "ፋይል ተፈጢሩ፡ ግን እቲ ልጥፊ ኣይተወሰኸን"
   },
   "ppv": {
     "title": "ብምርኣይ ዝኽፈሎ ትሕዝቶ",
@@ -3325,6 +3330,7 @@
     "secureWithBiometrics": "ብባዮመትሪክ ሓልው",
     "thatsGoneToo": "እቲውን ጠፊኡ — ብዝኾነ ካብ መጀመርታ ጀምር",
     "tryBiometrics": "ኣብዚ ተሌፎን ባዮመትሪክ ፈትን",
-    "unlockWithBiometrics": "ብባዮመትሪክ ክፈት"
+    "unlockWithBiometrics": "ብባዮመትሪክ ክፈት",
+    "confirmStartOver": "ብሓድሽ ዋሌት ከም ብሓድሽ ክትጅምር ከም እትደሊ ኣረጋግጽ"
   }
 }

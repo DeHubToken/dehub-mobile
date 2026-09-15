@@ -3407,7 +3407,12 @@
     "descriptionPlaceholder": "Wat hoort in hierdie vouer?",
     "createAndSave": "Skep en stoor",
     "createNew": "Skep nuwe vouer",
-    "closeA11y": "Sluit vouerkieser"
+    "closeA11y": "Sluit vouerkieser",
+    "loadFailed": "Kon nie boekmerkvouers laai nie",
+    "addedTo": "By {{name}} gevoeg",
+    "removedFrom": "Uit {{name}} verwyder",
+    "savedTo": "In {{name}} gestoor",
+    "createdNotAdded": "Vouer geskep, maar die plasing is nie bygevoeg nie"
   },
   "ppv": {
     "title": "Betaal-per-kyk-inhoud",
@@ -3477,6 +3482,7 @@
     "secureWithBiometrics": "Beveilig met biometrie",
     "thatsGoneToo": "Dit is ook weg — begin in elk geval oor",
     "tryBiometrics": "Probeer biometrie op hierdie foon",
-    "unlockWithBiometrics": "Ontsluit met biometrie"
+    "unlockWithBiometrics": "Ontsluit met biometrie",
+    "confirmStartOver": "Bevestig dat jy met 'n nuwe beursie wil oorbegin"
   }
 }

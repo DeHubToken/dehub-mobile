@@ -3104,7 +3104,12 @@
     "descriptionPlaceholder": "Wetin go dey inside dis folder?",
     "createAndSave": "Create & save",
     "createNew": "Create new folder",
-    "closeA11y": "Close folder picker"
+    "closeA11y": "Close folder picker",
+    "loadFailed": "We no fit load di bookmark folders",
+    "addedTo": "Dem don add am to {{name}}",
+    "removedFrom": "Dem don remove am from {{name}}",
+    "savedTo": "Dem don save am for {{name}}",
+    "createdNotAdded": "Folder don create, but di post no enter"
   },
   "ppv": {
     "title": "Pay-Per-View content",
@@ -3174,6 +3179,7 @@
     "secureWithBiometrics": "Secure with biometrics",
     "thatsGoneToo": "Dat one don go too — still start again",
     "tryBiometrics": "Try biometrics for dis phone",
-    "unlockWithBiometrics": "Unlock with biometrics"
+    "unlockWithBiometrics": "Unlock with biometrics",
+    "confirmStartOver": "Confirm say you wan start again with new wallet"
   }
 }

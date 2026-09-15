@@ -3285,7 +3285,12 @@
     "descriptionPlaceholder": "በዚህ አቃፊ ውስጥ ምን ይገባል?",
     "createAndSave": "ፍጠርና አስቀምጥ",
     "createNew": "አዲስ አቃፊ ፍጠር",
-    "closeA11y": "የአቃፊ መምረጫን ዝጋ"
+    "closeA11y": "የአቃፊ መምረጫን ዝጋ",
+    "loadFailed": "የዕልባት አቃፊዎችን መጫን አልተሳካም",
+    "addedTo": "ወደ {{name}} ታክሏል",
+    "removedFrom": "ከ{{name}} ተወግዷል",
+    "savedTo": "ወደ {{name}} ተቀምጧል",
+    "createdNotAdded": "አቃፊው ተፈጥሯል፣ ግን ልጥፉ አልታከለም"
   },
   "ppv": {
     "title": "በእይታ የሚከፈልበት ይዘት",
@@ -3355,6 +3360,7 @@
     "secureWithBiometrics": "በባዮሜትሪክ አስጠብቅ",
     "thatsGoneToo": "ያም ጠፍቷል — ለማንኛውም እንደገና ጀምር",
     "tryBiometrics": "በዚህ ስልክ ባዮሜትሪክ ሞክር",
-    "unlockWithBiometrics": "በባዮሜትሪክ ክፈት"
+    "unlockWithBiometrics": "በባዮሜትሪክ ክፈት",
+    "confirmStartOver": "በአዲስ ቦርሳ እንደገና መጀመር እንደሚፈልጉ ያረጋግጡ"
   }
 }

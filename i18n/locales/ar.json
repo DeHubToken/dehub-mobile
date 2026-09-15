@@ -3345,7 +3345,12 @@
     "descriptionPlaceholder": "ما الذي ينتمي إلى هذا المجلد؟",
     "createAndSave": "إنشاء وحفظ",
     "createNew": "إنشاء مجلد جديد",
-    "closeA11y": "إغلاق منتقي المجلدات"
+    "closeA11y": "إغلاق منتقي المجلدات",
+    "loadFailed": "تعذّر تحميل مجلدات المحفوظات",
+    "addedTo": "تمت الإضافة إلى {{name}}",
+    "removedFrom": "تمت الإزالة من {{name}}",
+    "savedTo": "تم الحفظ في {{name}}",
+    "createdNotAdded": "تم إنشاء المجلد، لكن لم تتم إضافة المنشور"
   },
   "ppv": {
     "title": "محتوى الدفع مقابل المشاهدة",
@@ -3415,6 +3420,7 @@
     "secureWithBiometrics": "التأمين بالقياسات الحيوية",
     "thatsGoneToo": "ذاك مفقود أيضًا — ابدأ من جديد على أي حال",
     "tryBiometrics": "جرّب القياسات الحيوية على هذا الهاتف",
-    "unlockWithBiometrics": "الفتح بالقياسات الحيوية"
+    "unlockWithBiometrics": "الفتح بالقياسات الحيوية",
+    "confirmStartOver": "أكّد رغبتك في البدء من جديد بمحفظة جديدة"
   }
 }

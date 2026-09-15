@@ -3282,7 +3282,12 @@
     "descriptionPlaceholder": "આ ફોલ્ડરમાં શું રાખવાનું છે?",
     "createAndSave": "બનાવો અને સાચવો",
     "createNew": "નવું ફોલ્ડર બનાવો",
-    "closeA11y": "ફોલ્ડર પસંદગીકાર બંધ કરો"
+    "closeA11y": "ફોલ્ડર પસંદગીકાર બંધ કરો",
+    "loadFailed": "બુકમાર્ક ફોલ્ડર લોડ થઈ શક્યાં નહીં",
+    "addedTo": "{{name}} માં ઉમેર્યું",
+    "removedFrom": "{{name}} માંથી દૂર કર્યું",
+    "savedTo": "{{name}} માં સાચવ્યું",
+    "createdNotAdded": "ફોલ્ડર બન્યું, પણ પોસ્ટ ઉમેરાઈ નહીં"
   },
   "ppv": {
     "title": "દર્શન દીઠ ચુકવણી સામગ્રી",
@@ -3352,6 +3357,7 @@
     "secureWithBiometrics": "બાયોમેટ્રિક્સથી સુરક્ષિત કરો",
     "thatsGoneToo": "એ પણ ગયું — છતાં ફરી શરૂ કરો",
     "tryBiometrics": "આ ફોન પર બાયોમેટ્રિક્સ અજમાવો",
-    "unlockWithBiometrics": "બાયોમેટ્રિક્સથી ખોલો"
+    "unlockWithBiometrics": "બાયોમેટ્રિક્સથી ખોલો",
+    "confirmStartOver": "પુષ્ટિ કરો કે તમે નવા વૉલેટથી ફરી શરૂ કરવા માંગો છો"
   }
 }

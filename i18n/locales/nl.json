@@ -3558,7 +3558,12 @@
     "descriptionPlaceholder": "Wat hoort er in deze map?",
     "createAndSave": "Maken en opslaan",
     "createNew": "Nieuwe map maken",
-    "closeA11y": "Mapkiezer sluiten"
+    "closeA11y": "Mapkiezer sluiten",
+    "loadFailed": "Kon bladwijzermappen niet laden",
+    "addedTo": "Toegevoegd aan {{name}}",
+    "removedFrom": "Verwijderd uit {{name}}",
+    "savedTo": "Opgeslagen in {{name}}",
+    "createdNotAdded": "Map aangemaakt, maar het bericht is niet toegevoegd"
   },
   "ppv": {
     "title": "Pay-per-view-inhoud",
@@ -3628,6 +3633,7 @@
     "secureWithBiometrics": "Beveiligen met biometrie",
     "thatsGoneToo": "Dat is ook weg — begin toch opnieuw",
     "tryBiometrics": "Probeer biometrie op deze telefoon",
-    "unlockWithBiometrics": "Ontgrendelen met biometrie"
+    "unlockWithBiometrics": "Ontgrendelen met biometrie",
+    "confirmStartOver": "Bevestig dat je opnieuw wilt beginnen met een nieuwe wallet"
   }
 }

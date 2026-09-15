@@ -3248,7 +3248,12 @@
     "descriptionPlaceholder": "شنو يروح بهذا المجلد؟",
     "createAndSave": "سوّي وخزّن",
     "createNew": "سوّي مجلد جديد",
-    "closeA11y": "سدّ منتقي المجلدات"
+    "closeA11y": "سدّ منتقي المجلدات",
+    "loadFailed": "ما گدرنا نجيب مجلدات المحفوظات",
+    "addedTo": "انضاف لـ{{name}}",
+    "removedFrom": "انشال من {{name}}",
+    "savedTo": "انخزن بـ{{name}}",
+    "createdNotAdded": "انسوّى المجلد بس المنشور ما انضاف"
   },
   "ppv": {
     "title": "محتوى الدفع مقابل المشاهدة",
@@ -3318,6 +3323,7 @@
     "secureWithBiometrics": "أمّن بالبصمة",
     "thatsGoneToo": "هذا هم راح — ابدي من جديد على أي حال",
     "tryBiometrics": "جرّب البصمة بهذا التلفون",
-    "unlockWithBiometrics": "افتح بالبصمة"
+    "unlockWithBiometrics": "افتح بالبصمة",
+    "confirmStartOver": "أكّد إنك تريد تبدي من جديد بمحفظة جديدة"
   }
 }

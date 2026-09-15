@@ -3289,7 +3289,12 @@
     "descriptionPlaceholder": "Kas priklauso šiam aplankui?",
     "createAndSave": "Sukurti ir įrašyti",
     "createNew": "Sukurti naują aplanką",
-    "closeA11y": "Uždaryti aplankų parinkiklį"
+    "closeA11y": "Uždaryti aplankų parinkiklį",
+    "loadFailed": "Nepavyko įkelti žymių aplankų",
+    "addedTo": "Įtraukta į {{name}}",
+    "removedFrom": "Pašalinta iš {{name}}",
+    "savedTo": "Įrašyta į {{name}}",
+    "createdNotAdded": "Aplankas sukurtas, bet įrašas nebuvo pridėtas"
   },
   "ppv": {
     "title": "Turinys, apmokamas už peržiūrą",
@@ -3359,6 +3364,7 @@
     "secureWithBiometrics": "Apsaugoti biometrija",
     "thatsGoneToo": "Ir to nebėra — vis tiek pradėti iš naujo",
     "tryBiometrics": "Išbandykite biometriją šiame telefone",
-    "unlockWithBiometrics": "Atrakinti biometrija"
+    "unlockWithBiometrics": "Atrakinti biometrija",
+    "confirmStartOver": "Patvirtinkite, kad norite pradėti iš naujo su nauja pinigine"
   }
 }

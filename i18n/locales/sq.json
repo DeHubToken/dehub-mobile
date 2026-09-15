@@ -3289,7 +3289,12 @@
     "descriptionPlaceholder": "Çfarë i përket kësaj dosjeje?",
     "createAndSave": "Krijo dhe ruaj",
     "createNew": "Krijo dosje të re",
-    "closeA11y": "Mbyll zgjedhësin e dosjeve"
+    "closeA11y": "Mbyll zgjedhësin e dosjeve",
+    "loadFailed": "Dosjet e faqeruajtjeve nuk u ngarkuan dot",
+    "addedTo": "U shtua te {{name}}",
+    "removedFrom": "U hoq nga {{name}}",
+    "savedTo": "U ruajt te {{name}}",
+    "createdNotAdded": "Dosja u krijua, por postimi nuk u shtua"
   },
   "ppv": {
     "title": "Përmbajtje me pagesë për shikim",
@@ -3359,6 +3364,7 @@
     "secureWithBiometrics": "Siguro me biometri",
     "thatsGoneToo": "Edhe ajo humbi — fillo nga e para gjithsesi",
     "tryBiometrics": "Provo biometrinë në këtë telefon",
-    "unlockWithBiometrics": "Shkyç me biometri"
+    "unlockWithBiometrics": "Shkyç me biometri",
+    "confirmStartOver": "Konfirmo se dëshiron të fillosh nga e para me një portofol të ri"
   }
 }

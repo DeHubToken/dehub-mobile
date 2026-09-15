@@ -3289,7 +3289,12 @@
     "descriptionPlaceholder": "Mis kuulub sellesse kausta?",
     "createAndSave": "Loo ja salvesta",
     "createNew": "Loo uus kaust",
-    "closeA11y": "Sulge kaustavalija"
+    "closeA11y": "Sulge kaustavalija",
+    "loadFailed": "Järjehoidjate kaustu ei õnnestunud laadida",
+    "addedTo": "Lisatud kausta {{name}}",
+    "removedFrom": "Eemaldatud kaustast {{name}}",
+    "savedTo": "Salvestatud kausta {{name}}",
+    "createdNotAdded": "Kaust loodi, kuid postitust ei lisatud"
   },
   "ppv": {
     "title": "Vaatamise eest tasuline sisu",
@@ -3359,6 +3364,7 @@
     "secureWithBiometrics": "Kaitse biomeetriaga",
     "thatsGoneToo": "See on ka kadunud — alusta ikkagi uuesti",
     "tryBiometrics": "Proovi biomeetriat selles telefonis",
-    "unlockWithBiometrics": "Ava biomeetriaga"
+    "unlockWithBiometrics": "Ava biomeetriaga",
+    "confirmStartOver": "Kinnita, et soovid uue rahakotiga otsast alustada"
   }
 }

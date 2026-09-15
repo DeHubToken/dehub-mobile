@@ -3248,7 +3248,12 @@
     "descriptionPlaceholder": "ໂຟນເດີນີ້ເກັບຫຍັງ?",
     "createAndSave": "ສ້າງ ແລະ ບັນທຶກ",
     "createNew": "ສ້າງໂຟນເດີໃໝ່",
-    "closeA11y": "ປິດຕົວເລືອກໂຟນເດີ"
+    "closeA11y": "ປິດຕົວເລືອກໂຟນເດີ",
+    "loadFailed": "ບໍ່ສາມາດໂຫຼດໂຟນເດີບຸກມາກໄດ້",
+    "addedTo": "ເພີ່ມໃສ່ {{name}} ແລ້ວ",
+    "removedFrom": "ລຶບອອກຈາກ {{name}} ແລ້ວ",
+    "savedTo": "ບັນທຶກໃສ່ {{name}} ແລ້ວ",
+    "createdNotAdded": "ສ້າງໂຟນເດີແລ້ວ ແຕ່ໂພສບໍ່ໄດ້ຖືກເພີ່ມ"
   },
   "ppv": {
     "title": "ເນື້ອຫາຈ່າຍຕໍ່ການເບິ່ງ",
@@ -3318,6 +3323,7 @@
     "secureWithBiometrics": "ປົກປ້ອງດ້ວຍຊີວະມິຕິ",
     "thatsGoneToo": "ອັນນັ້ນກໍເສຍໄປແລ້ວ — ເລີ່ມໃໝ່ຢູ່ດີ",
     "tryBiometrics": "ລອງໃຊ້ຊີວະມິຕິໃນໂທລະສັບນີ້",
-    "unlockWithBiometrics": "ປົດລັອກດ້ວຍຊີວະມິຕິ"
+    "unlockWithBiometrics": "ປົດລັອກດ້ວຍຊີວະມິຕິ",
+    "confirmStartOver": "ຢືນຢັນວ່າທ່ານຕ້ອງການເລີ່ມໃໝ່ດ້ວຍກະເປົາໃໝ່"
   }
 }
