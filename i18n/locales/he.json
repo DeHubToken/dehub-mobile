@@ -754,7 +754,16 @@
     "multipleChoice": "Allow multiple answers"
   },
   "auth": {
-    "loginRequired": "נדרשת התחברות"
+    "loginRequired": "נדרשת התחברות",
+    "walletImported": "הארנק יובא",
+    "importWallet": "ייבוא ארנק",
+    "privateKeyPlaceholder": "הזן את המפתח הפרטי שלך",
+    "importExternalWallet": "ייבוא ארנק חיצוני",
+    "privateKey": "מפתח פרטי",
+    "pasteFromClipboard": "הדבק מהלוח",
+    "learnMoreAt": "מידע נוסף ב-dehub.io",
+    "accountsOnDevice": "חשבונות במכשיר הזה",
+    "use": "השתמש"
   },
   "explorePage": {
     "searchPlaceholder": "חפש אנשים, פוסטים או תוכן...",
@@ -3819,5 +3828,29 @@
   "search": {
     "endOfResults": "סוף התוצאות",
     "searchDehub": "חפש ב-DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "הישארו מעודכנים",
+    "subtitle": "הפעילו התראות כדי להישאר מעודכנים ב-DeHub",
+    "rowTips": "טיפים והכנסות נכנסים לארנק שלך",
+    "rowReplies": "תשובות, אזכורים והודעות פרטיות",
+    "rowLive": "כשיוצרים שאתם עוקבים אחריהם עולים לשידור חי",
+    "chooseInSettings": "אתם בוחרים בדיוק אילו מהם יגיעו אליכם — בהגדרות, בכל זמן.",
+    "turnOn": "הפעל התראות"
+  },
+  "review": {
+    "enjoyingApp": "אתם נהנים מהאפליקציה?",
+    "feedbackHelps": "המשוב שלכם עוזר לנו לשפר את DeHub",
+    "yes": "כן! 😊",
+    "notReally": "לא ממש 😕",
+    "thatsGreat": "מעולה!",
+    "rateUsOn": "תוכלו לדרג אותנו ב-{{store}}? זה ממש עוזר לנו לגדול!",
+    "rateOn": "דרג ב-{{store}}",
+    "yourFeedback": "המשוב שלך",
+    "feedbackPlaceholder": "מה נוכל לשפר?",
+    "followUpNote": "ייתכן שניצור קשר עם שאלות המשך על המשוב שלך",
+    "submitFeedback": "שלח משוב",
+    "provideFeedback": "נא לכתוב את המשוב שלך",
+    "thankYou": "תודה על המשוב!"
   }
 }

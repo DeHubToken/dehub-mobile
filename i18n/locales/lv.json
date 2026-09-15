@@ -1418,7 +1418,16 @@
     "attachmentTooLarge": "Katram failam jābūt mazākam par 20 MB"
   },
   "auth": {
-    "loginRequired": "Nepieciešama pieteikšanās"
+    "loginRequired": "Nepieciešama pieteikšanās",
+    "walletImported": "Maks importēts",
+    "importWallet": "Importēt maku",
+    "privateKeyPlaceholder": "Ievadiet savu privāto atslēgu",
+    "importExternalWallet": "Importēt ārējo maku",
+    "privateKey": "Privātā atslēga",
+    "pasteFromClipboard": "Ielīmēt no starpliktuves",
+    "learnMoreAt": "Uzziniet vairāk vietnē dehub.io",
+    "accountsOnDevice": "Konti šajā ierīcē",
+    "use": "Lietot"
   },
   "messages": {
     "smartRepliesOff": "Ieteiktās atbildes izslēgtas",
@@ -3831,5 +3840,29 @@
   "search": {
     "endOfResults": "Rezultātu beigas",
     "searchDehub": "Meklēt DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Esiet lietas kursā",
+    "subtitle": "Ieslēdziet paziņojumus, lai sekotu līdzi DeHub",
+    "rowTips": "Dzeramnauda un ienākumi nonāk jūsu makā",
+    "rowReplies": "Atbildes, pieminējumi un tiešās ziņas",
+    "rowLive": "Kad autori, kuriem sekojat, sāk tiešraidi",
+    "chooseInSettings": "Jūs pats izvēlaties, kuri no tiem jūs sasniegs — iestatījumos, jebkurā laikā.",
+    "turnOn": "Ieslēgt paziņojumus"
+  },
+  "review": {
+    "enjoyingApp": "Vai lietotne jums patīk?",
+    "feedbackHelps": "Jūsu atsauksmes palīdz mums uzlabot DeHub",
+    "yes": "Jā! 😊",
+    "notReally": "Ne visai 😕",
+    "thatsGreat": "Tas ir lieliski!",
+    "rateUsOn": "Vai novērtētu mūs {{store}}? Tas tiešām palīdz mums augt!",
+    "rateOn": "Novērtēt {{store}}",
+    "yourFeedback": "Jūsu atsauksmes",
+    "feedbackPlaceholder": "Ko varam uzlabot?",
+    "followUpNote": "Iespējams, sazināsimies ar papildu jautājumiem par jūsu atsauksmi",
+    "submitFeedback": "Nosūtīt atsauksmi",
+    "provideFeedback": "Lūdzu, uzrakstiet savu atsauksmi",
+    "thankYou": "Paldies par jūsu atsauksmi!"
   }
 }

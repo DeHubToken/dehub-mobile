@@ -1421,7 +1421,16 @@
     "attachmentTooLarge": "Sapa qillqa 20MB-manta pisi kanan"
   },
   "auth": {
-    "loginRequired": "Yaykuy munakun"
+    "loginRequired": "Yaykuy munakun",
+    "walletImported": "Qullqi wayaqa apamusqa",
+    "importWallet": "Qullqi wayaqata apamuy",
+    "privateKeyPlaceholder": "Pakasqa llavikita churay",
+    "importExternalWallet": "Hawa qullqi wayaqata apamuy",
+    "privateKey": "Pakasqa llavi",
+    "pasteFromClipboard": "Clipboard nisqamanta k'askachiy",
+    "learnMoreAt": "dehub.io pi astawan yachay",
+    "accountsOnDevice": "Kay antapi cuentakuna",
+    "use": "Llamk'achiy"
   },
   "messages": {
     "smartRepliesOff": "Ñisqa kutichiykunaqa wañuchisqa",
@@ -3862,5 +3871,29 @@
   "search": {
     "endOfResults": "Tarisqakuna tukuy",
     "searchDehub": "DeHub ukhupi maskay"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Yachaq kay",
+    "subtitle": "DeHub qatinaykipaq willakuykunata kichariy",
+    "rowTips": "Yanapay qullqi hinaspa gananciaqa wayaqaykiman chayan",
+    "rowReplies": "Kutichiykuna, sutinchaykuna hinaspa willakuykuna",
+    "rowLive": "Qatisqayki ruwaqkuna kawsaq chayachiyta qallariptin",
+    "chooseInSettings": "Qanmi akllanki mayqinkunachus chayamunan, Allichaykunapi, ima pachapipas.",
+    "turnOn": "Willakuykunata kichariy"
+  },
+  "review": {
+    "enjoyingApp": "¿Kay appta kusikuwanki?",
+    "feedbackHelps": "Nisqaykiqa DeHub allichanaykupaq yanapawanku",
+    "yes": "Arí! 😊",
+    "notReally": "Manam ancha 😕",
+    "thatsGreat": "¡Ancha allinmi!",
+    "rateUsOn": "¿{{store}} ukhupi chaninchawaykumanchu? Wiñanaykupaq ancham yanapawanku!",
+    "rateOn": "{{store}} ukhupi chaninchay",
+    "yourFeedback": "Nisqayki",
+    "feedbackPlaceholder": "¿Imatataq allinyachiyta atiykuman?",
+    "followUpNote": "Nisqaykimanta astawan tapunaykupaq willamusunkiman",
+    "submitFeedback": "Nisqata apachiy",
+    "provideFeedback": "Ama hina kaspa nisqaykita qillqay",
+    "thankYou": "¡Nisqaykimanta añay!"
   }
 }

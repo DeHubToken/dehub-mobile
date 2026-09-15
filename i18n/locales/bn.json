@@ -745,7 +745,16 @@
     "multipleChoice": "Allow multiple answers"
   },
   "auth": {
-    "loginRequired": "লগ ইন প্রয়োজন"
+    "loginRequired": "লগ ইন প্রয়োজন",
+    "walletImported": "ওয়ালেট ইমপোর্ট হয়েছে",
+    "importWallet": "ওয়ালেট ইমপোর্ট করুন",
+    "privateKeyPlaceholder": "আপনার প্রাইভেট কী দিন",
+    "importExternalWallet": "বাহ্যিক ওয়ালেট ইমপোর্ট করুন",
+    "privateKey": "প্রাইভেট কী",
+    "pasteFromClipboard": "ক্লিপবোর্ড থেকে পেস্ট করুন",
+    "learnMoreAt": "dehub.io-এ আরও জানুন",
+    "accountsOnDevice": "এই ডিভাইসের অ্যাকাউন্ট",
+    "use": "ব্যবহার করুন"
   },
   "explorePage": {
     "searchPlaceholder": "মানুষ, পোস্ট বা কন্টেন্ট খুঁজুন...",
@@ -3816,5 +3825,29 @@
   "search": {
     "endOfResults": "ফলাফলের শেষ",
     "searchDehub": "DeHub-এ খুঁজুন"
+  },
+  "notifPrompt": {
+    "stayInLoop": "খবরে থাকুন",
+    "subtitle": "DeHub-এর সঙ্গে থাকতে নোটিফিকেশন চালু করুন",
+    "rowTips": "টিপ ও আয় আপনার ওয়ালেটে আসে",
+    "rowReplies": "উত্তর, মেনশন ও সরাসরি বার্তা",
+    "rowLive": "আপনি যাদের ফলো করেন তারা লাইভে এলে",
+    "chooseInSettings": "এগুলোর কোনটি আপনার কাছে আসবে তা সেটিংসে যেকোনো সময় বেছে নিতে পারেন।",
+    "turnOn": "নোটিফিকেশন চালু করুন"
+  },
+  "review": {
+    "enjoyingApp": "অ্যাপটি কি ভালো লাগছে?",
+    "feedbackHelps": "আপনার মতামত DeHub উন্নত করতে সাহায্য করে",
+    "yes": "হ্যাঁ! 😊",
+    "notReally": "তেমন না 😕",
+    "thatsGreat": "দারুণ!",
+    "rateUsOn": "{{store}}-এ আমাদের রেটিং দেবেন? এতে আমাদের বাড়তে সত্যিই সাহায্য হয়!",
+    "rateOn": "{{store}}-এ রেটিং দিন",
+    "yourFeedback": "আপনার মতামত",
+    "feedbackPlaceholder": "আমরা কী আরও ভালো করতে পারি?",
+    "followUpNote": "আপনার মতামত নিয়ে পরে প্রশ্ন করতে আমরা যোগাযোগ করতে পারি",
+    "submitFeedback": "মতামত পাঠান",
+    "provideFeedback": "অনুগ্রহ করে আপনার মতামত লিখুন",
+    "thankYou": "আপনার মতামতের জন্য ধন্যবাদ!"
   }
 }

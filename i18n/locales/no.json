@@ -1169,7 +1169,16 @@
     "attachmentTooLarge": "Hver fil må være under 20 MB"
   },
   "auth": {
-    "loginRequired": "Innlogging påkrevd"
+    "loginRequired": "Innlogging påkrevd",
+    "walletImported": "Lommebok importert",
+    "importWallet": "Importer lommebok",
+    "privateKeyPlaceholder": "Skriv inn den private nøkkelen din",
+    "importExternalWallet": "Importer ekstern lommebok",
+    "privateKey": "Privat nøkkel",
+    "pasteFromClipboard": "Lim inn fra utklippstavlen",
+    "learnMoreAt": "Les mer på dehub.io",
+    "accountsOnDevice": "Kontoer på denne enheten",
+    "use": "Bruk"
   },
   "bookmarks": {
     "title": "Dine bokmerker",
@@ -3822,5 +3831,29 @@
   "search": {
     "endOfResults": "Slutt på resultatene",
     "searchDehub": "Søk i DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Hold deg oppdatert",
+    "subtitle": "Slå på varsler for å holde deg oppdatert på DeHub",
+    "rowTips": "Tips og inntekter havner i lommeboken din",
+    "rowReplies": "Svar, omtaler og direktemeldinger",
+    "rowLive": "Når skapere du følger går live",
+    "chooseInSettings": "Du velger selv hvilke som når deg — i Innstillinger, når som helst.",
+    "turnOn": "Slå på varsler"
+  },
+  "review": {
+    "enjoyingApp": "Liker du appen?",
+    "feedbackHelps": "Tilbakemeldingen din hjelper oss å forbedre DeHub",
+    "yes": "Ja! 😊",
+    "notReally": "Ikke helt 😕",
+    "thatsGreat": "Så bra!",
+    "rateUsOn": "Kan du gi oss en vurdering i {{store}}? Det hjelper oss virkelig å vokse!",
+    "rateOn": "Vurder i {{store}}",
+    "yourFeedback": "Tilbakemeldingen din",
+    "feedbackPlaceholder": "Hva kan vi gjøre bedre?",
+    "followUpNote": "Vi kan ta kontakt med oppfølgingsspørsmål om tilbakemeldingen din",
+    "submitFeedback": "Send tilbakemelding",
+    "provideFeedback": "Skriv inn tilbakemeldingen din",
+    "thankYou": "Takk for tilbakemeldingen!"
   }
 }

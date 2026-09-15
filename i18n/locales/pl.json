@@ -1470,7 +1470,16 @@
     "attachmentTooLarge": "Każdy plik musi mieć poniżej 20 MB"
   },
   "auth": {
-    "loginRequired": "Wymagane logowanie"
+    "loginRequired": "Wymagane logowanie",
+    "walletImported": "Portfel zaimportowany",
+    "importWallet": "Importuj portfel",
+    "privateKeyPlaceholder": "Wprowadź swój klucz prywatny",
+    "importExternalWallet": "Importuj zewnętrzny portfel",
+    "privateKey": "Klucz prywatny",
+    "pasteFromClipboard": "Wklej ze schowka",
+    "learnMoreAt": "Dowiedz się więcej na dehub.io",
+    "accountsOnDevice": "Konta na tym urządzeniu",
+    "use": "Użyj"
   },
   "bookmarks": {
     "title": "Twoje zakładki",
@@ -3900,5 +3909,29 @@
   "search": {
     "endOfResults": "Koniec wyników",
     "searchDehub": "Szukaj w DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Bądź na bieżąco",
+    "subtitle": "Włącz powiadomienia, aby nadążać za DeHub",
+    "rowTips": "Napiwki i zarobki trafiają do twojego portfela",
+    "rowReplies": "Odpowiedzi, wzmianki i wiadomości prywatne",
+    "rowLive": "Gdy obserwowani twórcy wchodzą na żywo",
+    "chooseInSettings": "To ty decydujesz, które z nich do ciebie dotrą — w ustawieniach, kiedy chcesz.",
+    "turnOn": "Włącz powiadomienia"
+  },
+  "review": {
+    "enjoyingApp": "Podoba ci się aplikacja?",
+    "feedbackHelps": "Twoja opinia pomaga nam ulepszać DeHub",
+    "yes": "Tak! 😊",
+    "notReally": "Nie bardzo 😕",
+    "thatsGreat": "To świetnie!",
+    "rateUsOn": "Czy ocenisz nas w {{store}}? To naprawdę pomaga nam rosnąć!",
+    "rateOn": "Oceń w {{store}}",
+    "yourFeedback": "Twoja opinia",
+    "feedbackPlaceholder": "Co możemy zrobić lepiej?",
+    "followUpNote": "Możemy się odezwać z dodatkowymi pytaniami o twoją opinię",
+    "submitFeedback": "Wyślij opinię",
+    "provideFeedback": "Wpisz swoją opinię",
+    "thankYou": "Dziękujemy za opinię!"
   }
 }

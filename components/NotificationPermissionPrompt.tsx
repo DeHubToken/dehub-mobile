@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "./ui/GlassModal";
 import { theme } from "../theme";
+import { useTranslation } from "react-i18next";
 
 interface NotificationPermissionPromptProps {
   visible: boolean;
@@ -26,6 +27,7 @@ const NotificationPermissionPrompt: React.FC<NotificationPermissionPromptProps> 
   onDecline,
   onAllow,
 }) => {
+  const { t } = useTranslation();
   return (
     <GlassModal
       visible={visible}
@@ -47,22 +49,22 @@ const NotificationPermissionPrompt: React.FC<NotificationPermissionPromptProps> 
 
         {/* Title */}
         <Text className="text-white text-2xl font-bold text-center mb-2">
-          Stay in the loop
+          {t("notifPrompt.stayInLoop")}
         </Text>
 
         <Text className="text-theme-neutrals-400 text-sm text-center mb-5">
-          Turn on notifications to keep up with DeHub
+          {t("notifPrompt.subtitle")}
         </Text>
 
         {/* What they get */}
         <View className="bg-theme-neutrals-800 rounded-xl p-4 mb-6 gap-3">
-          <PromptRow icon="cash-outline" label="Tips and earnings land in your wallet" />
-          <PromptRow icon="chatbubble-outline" label="Replies, mentions and direct messages" />
-          <PromptRow icon="radio-outline" label="Creators you follow going live" />
+          <PromptRow icon="cash-outline" label={t("notifPrompt.rowTips")} />
+          <PromptRow icon="chatbubble-outline" label={t("notifPrompt.rowReplies")} />
+          <PromptRow icon="radio-outline" label={t("notifPrompt.rowLive")} />
         </View>
 
         <Text className="text-theme-neutrals-300 text-sm text-center mb-6">
-          You choose exactly which of these reach you in Settings, any time.
+          {t("notifPrompt.chooseInSettings")}
         </Text>
 
         {/* Buttons */}
@@ -73,7 +75,7 @@ const NotificationPermissionPrompt: React.FC<NotificationPermissionPromptProps> 
             activeOpacity={0.8}
           >
             <Text className="text-theme-accent-foreground text-base font-semibold">
-              Turn on notifications
+              {t("notifPrompt.turnOn")}
             </Text>
           </TouchableOpacity>
 
@@ -82,7 +84,7 @@ const NotificationPermissionPrompt: React.FC<NotificationPermissionPromptProps> 
             className="py-3 px-6 items-center"
             activeOpacity={0.7}
           >
-            <Text className="text-theme-neutrals-400 text-base">Not now</Text>
+            <Text className="text-theme-neutrals-400 text-base">{t("ppv.notNow")}</Text>
           </TouchableOpacity>
         </View>
       </View>

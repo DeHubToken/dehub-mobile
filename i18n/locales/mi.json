@@ -1407,7 +1407,16 @@
     "attachmentTooLarge": "Me iti iho i te 20MB ia kōnae"
   },
   "auth": {
-    "loginRequired": "Me takiuru"
+    "loginRequired": "Me takiuru",
+    "walletImported": "Kua kawemai te pūkoro",
+    "importWallet": "Kawemai pūkoro",
+    "privateKeyPlaceholder": "Whakaurua tō kī matatapu",
+    "importExternalWallet": "Kawemai pūkoro o waho",
+    "privateKey": "Kī matatapu",
+    "pasteFromClipboard": "Whakapiri mai i te papatopenga",
+    "learnMoreAt": "Akohia atu i dehub.io",
+    "accountsOnDevice": "Ngā pūkete i tēnei pūrere",
+    "use": "Whakamahia"
   },
   "messages": {
     "smartRepliesOff": "Kua whakawetohia ngā whakautu tūtohu",
@@ -3817,5 +3826,29 @@
   "search": {
     "endOfResults": "Mutunga o ngā hua",
     "searchDehub": "Rapua a DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Kia mōhio tonu",
+    "subtitle": "Whakahohea ngā whakamōhiotanga kia mau tonu ki a DeHub",
+    "rowTips": "Ka tae ngā koha me ngā moni ki tō pūkoro",
+    "rowReplies": "Whakautu, whakahuatanga me ngā karere tōtika",
+    "rowLive": "Ka tīmata ngā kaihanga e whai ana koe ki te rere ora",
+    "chooseInSettings": "Māu anō e kōwhiri ko ēhea ka tae ki a koe, i ngā Tautuhinga, i ngā wā katoa.",
+    "turnOn": "Whakahohea ngā whakamōhiotanga"
+  },
+  "review": {
+    "enjoyingApp": "Kei te pai te taupānga ki a koe?",
+    "feedbackHelps": "Ka āwhina ō urupare i a mātou ki te whakapai i a DeHub",
+    "yes": "Āe! 😊",
+    "notReally": "Kāore i tino 😕",
+    "thatsGreat": "Ka rawe!",
+    "rateUsOn": "Ka whakatau koe i a mātou i {{store}}? He āwhina nui tērā ki tō mātou tipu!",
+    "rateOn": "Whakatauria i {{store}}",
+    "yourFeedback": "Ō urupare",
+    "feedbackPlaceholder": "He aha te mea ka pai ake?",
+    "followUpNote": "Tērā pea ka whakapā atu mātou mō ētahi pātai anō mō ō urupare",
+    "submitFeedback": "Tukuna urupare",
+    "provideFeedback": "Tēnā tuhia ō urupare",
+    "thankYou": "Ngā mihi mō ō urupare!"
   }
 }

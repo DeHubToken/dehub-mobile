@@ -1408,7 +1408,16 @@
     "attachmentTooLarge": "እያንዳንዱ ፋይል ከ20MB በታች መሆን አለበት"
   },
   "auth": {
-    "loginRequired": "መግባት ያስፈልጋል"
+    "loginRequired": "መግባት ያስፈልጋል",
+    "walletImported": "ቦርሳው ገብቷል",
+    "importWallet": "ቦርሳ አስገባ",
+    "privateKeyPlaceholder": "የግል ቁልፍዎን ያስገቡ",
+    "importExternalWallet": "የውጭ ቦርሳ አስገባ",
+    "privateKey": "የግል ቁልፍ",
+    "pasteFromClipboard": "ከቅንጥብ ሰሌዳ ለጥፍ",
+    "learnMoreAt": "በ dehub.io ላይ የበለጠ ይወቁ",
+    "accountsOnDevice": "በዚህ መሣሪያ ላይ ያሉ መለያዎች",
+    "use": "ተጠቀም"
   },
   "messages": {
     "smartRepliesOff": "የተጠቆሙ ምላሾች ጠፍተዋል",
@@ -3827,5 +3836,29 @@
   "search": {
     "endOfResults": "የውጤቶቹ መጨረሻ",
     "searchDehub": "DeHub ይፈልጉ"
+  },
+  "notifPrompt": {
+    "stayInLoop": "መረጃ ይከታተሉ",
+    "subtitle": "ከDeHub ጋር ለመቀጠል ማሳወቂያዎችን ያብሩ",
+    "rowTips": "ጉርሻዎችና ገቢዎች ወደ ቦርሳዎ ይደርሳሉ",
+    "rowReplies": "ምላሾች፣ ጥቅሶችና ቀጥታ መልእክቶች",
+    "rowLive": "የሚከተሏቸው ፈጣሪዎች በቀጥታ ሲሄዱ",
+    "chooseInSettings": "ከእነዚህ ውስጥ የትኞቹ እንደሚደርሱዎት በቅንብሮች ውስጥ በማንኛውም ጊዜ ይመርጣሉ።",
+    "turnOn": "ማሳወቂያዎችን አብራ"
+  },
+  "review": {
+    "enjoyingApp": "መተግበሪያውን እየተዝናኑበት ነው?",
+    "feedbackHelps": "አስተያየትዎ DeHubን እንድናሻሽል ይረዳናል",
+    "yes": "አዎ! 😊",
+    "notReally": "እምብዛም 😕",
+    "thatsGreat": "በጣም ጥሩ!",
+    "rateUsOn": "በ{{store}} ላይ ደረጃ ሊሰጡን ይችላሉ? በጣም ይረዳናል!",
+    "rateOn": "በ{{store}} ደረጃ ስጥ",
+    "yourFeedback": "አስተያየትዎ",
+    "feedbackPlaceholder": "ምን የተሻለ ማድረግ እንችላለን?",
+    "followUpNote": "ስለ አስተያየትዎ ተከታታይ ጥያቄዎችን ልንጠይቅዎ እንችላለን",
+    "submitFeedback": "አስተያየት ላክ",
+    "provideFeedback": "እባክዎ አስተያየትዎን ያስገቡ",
+    "thankYou": "ስለ አስተያየትዎ እናመሰግናለን!"
   }
 }

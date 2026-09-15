@@ -1391,7 +1391,16 @@
     "attachmentTooLarge": "हर फाइल 20MB ले कम होना चाही"
   },
   "auth": {
-    "loginRequired": "लॉग इन जरूरी हे"
+    "loginRequired": "लॉग इन जरूरी हे",
+    "walletImported": "वॉलेट इम्पोर्ट होगे",
+    "importWallet": "वॉलेट इम्पोर्ट करव",
+    "privateKeyPlaceholder": "अपन प्राइवेट की डालव",
+    "importExternalWallet": "बाहिर के वॉलेट इम्पोर्ट करव",
+    "privateKey": "प्राइवेट की",
+    "pasteFromClipboard": "क्लिपबोर्ड ले पेस्ट करव",
+    "learnMoreAt": "dehub.io म अउ जानव",
+    "accountsOnDevice": "ये डिवाइस के खाता",
+    "use": "उपयोग करव"
   },
   "messages": {
     "smartRepliesOff": "सुझाए गे जवाब बंद हो गे",
@@ -3833,5 +3842,29 @@
   "search": {
     "endOfResults": "नतीजा के अंत",
     "searchDehub": "DeHub म खोजव"
+  },
+  "notifPrompt": {
+    "stayInLoop": "अपडेट रहव",
+    "subtitle": "DeHub संग बने रहे बर नोटिफिकेसन चालू करव",
+    "rowTips": "टिप अउ कमाई तुम्हर वॉलेट म आथे",
+    "rowReplies": "जवाब, मेंसन अउ सीधा संदेस",
+    "rowLive": "जेला तुमन फॉलो करथव ओहा लाइव होय म",
+    "chooseInSettings": "एमा ले कोन तुम्हर तक पहुँचही, ये तुमन सेटिंग म कभू भी चुन सकव।",
+    "turnOn": "नोटिफिकेसन चालू करव"
+  },
+  "review": {
+    "enjoyingApp": "का तुमन ल ऐप बढ़िया लागत हे?",
+    "feedbackHelps": "तुम्हर फीडबैक हमन ल DeHub बढ़िया बनाय म मदद करथे",
+    "yes": "हव! 😊",
+    "notReally": "जादा नइ 😕",
+    "thatsGreat": "बहुत बढ़िया!",
+    "rateUsOn": "का तुमन {{store}} म हमन ल रेटिंग देहू? एकर ले हमन ल बढ़े म बहुत मदद मिलथे!",
+    "rateOn": "{{store}} म रेट करव",
+    "yourFeedback": "तुम्हर फीडबैक",
+    "feedbackPlaceholder": "हमन का बढ़िया कर सकथन?",
+    "followUpNote": "तुम्हर फीडबैक म अउ सवाल बर हमन संपर्क कर सकथन",
+    "submitFeedback": "फीडबैक भेजव",
+    "provideFeedback": "किरपा करके अपन फीडबैक लिखव",
+    "thankYou": "तुम्हर फीडबैक बर धन्यवाद!"
   }
 }

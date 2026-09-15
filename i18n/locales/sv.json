@@ -757,7 +757,16 @@
     "multipleChoice": "Allow multiple answers"
   },
   "auth": {
-    "loginRequired": "Inloggning krävs"
+    "loginRequired": "Inloggning krävs",
+    "walletImported": "Plånbok importerad",
+    "importWallet": "Importera plånbok",
+    "privateKeyPlaceholder": "Ange din privata nyckel",
+    "importExternalWallet": "Importera extern plånbok",
+    "privateKey": "Privat nyckel",
+    "pasteFromClipboard": "Klistra in från urklipp",
+    "learnMoreAt": "Läs mer på dehub.io",
+    "accountsOnDevice": "Konton på den här enheten",
+    "use": "Använd"
   },
   "explorePage": {
     "searchPlaceholder": "Sök personer, inlägg eller innehåll...",
@@ -3836,5 +3845,29 @@
   "search": {
     "endOfResults": "Slut på resultaten",
     "searchDehub": "Sök i DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Håll dig uppdaterad",
+    "subtitle": "Slå på aviseringar för att hänga med i DeHub",
+    "rowTips": "Dricks och intäkter landar i din plånbok",
+    "rowReplies": "Svar, omnämnanden och direktmeddelanden",
+    "rowLive": "När skapare du följer sänder live",
+    "chooseInSettings": "Du väljer själv vilka som når dig — i Inställningar, när som helst.",
+    "turnOn": "Slå på aviseringar"
+  },
+  "review": {
+    "enjoyingApp": "Gillar du appen?",
+    "feedbackHelps": "Din feedback hjälper oss att förbättra DeHub",
+    "yes": "Ja! 😊",
+    "notReally": "Inte direkt 😕",
+    "thatsGreat": "Vad kul!",
+    "rateUsOn": "Skulle du vilja betygsätta oss i {{store}}? Det hjälper oss verkligen att växa!",
+    "rateOn": "Betygsätt i {{store}}",
+    "yourFeedback": "Din feedback",
+    "feedbackPlaceholder": "Vad kan vi göra bättre?",
+    "followUpNote": "Vi kan höra av oss med följdfrågor om din feedback",
+    "submitFeedback": "Skicka feedback",
+    "provideFeedback": "Skriv gärna din feedback",
+    "thankYou": "Tack för din feedback!"
   }
 }

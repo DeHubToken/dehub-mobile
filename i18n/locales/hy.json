@@ -1172,7 +1172,16 @@
     "attachmentTooLarge": "Յուրաքանչյուր ֆայլ պետք է լինի 20ՄԲ-ից փոքր"
   },
   "auth": {
-    "loginRequired": "Moutq pahanjvoum e"
+    "loginRequired": "Moutq pahanjvoum e",
+    "walletImported": "Դրամապանակը ներմուծվեց",
+    "importWallet": "Ներմուծել դրամապանակ",
+    "privateKeyPlaceholder": "Մուտքագրեք ձեր գաղտնի բանալին",
+    "importExternalWallet": "Ներմուծել արտաքին դրամապանակ",
+    "privateKey": "Գաղտնի բանալի",
+    "pasteFromClipboard": "Տեղադրել սեղմատախտակից",
+    "learnMoreAt": "Իմացեք ավելին dehub.io-ում",
+    "accountsOnDevice": "Այս սարքի հաշիվները",
+    "use": "Օգտագործել"
   },
   "bookmarks": {
     "title": "Dzer ejavaorer",
@@ -3825,5 +3834,29 @@
   "search": {
     "endOfResults": "Արդյունքների վերջ",
     "searchDehub": "Որոնել DeHub-ում"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Մնացեք տեղեկացված",
+    "subtitle": "Միացրեք ծանուցումները՝ DeHub-ին հետևելու համար",
+    "rowTips": "Թեյավճարներն ու եկամուտները հասնում են ձեր դրամապանակ",
+    "rowReplies": "Պատասխաններ, հիշատակումներ և անձնական հաղորդագրություններ",
+    "rowLive": "Երբ ձեր հետևած հեղինակները ուղիղ եթեր են դուրս գալիս",
+    "chooseInSettings": "Դուք եք ընտրում, թե դրանցից որոնք հասնեն ձեզ՝ կարգավորումներում, ցանկացած պահի.",
+    "turnOn": "Միացնել ծանուցումները"
+  },
+  "review": {
+    "enjoyingApp": "Հավանո՞ւմ եք հավելվածը",
+    "feedbackHelps": "Ձեր կարծիքն օգնում է մեզ բարելավել DeHub-ը",
+    "yes": "Այո՛ 😊",
+    "notReally": "Ոչ այնքան 😕",
+    "thatsGreat": "Հիանալի է",
+    "rateUsOn": "Կգնահատեի՞ք մեզ {{store}}-ում։ Դա իսկապես օգնում է մեզ աճել։",
+    "rateOn": "Գնահատել {{store}}-ում",
+    "yourFeedback": "Ձեր կարծիքը",
+    "feedbackPlaceholder": "Ի՞նչ կարող ենք ավելի լավ անել",
+    "followUpNote": "Հնարավոր է կապվենք ձեզ հետ՝ ձեր կարծիքի վերաբերյալ լրացուցիչ հարցերով",
+    "submitFeedback": "Ուղարկել կարծիքը",
+    "provideFeedback": "Խնդրում ենք գրել ձեր կարծիքը",
+    "thankYou": "Շնորհակալություն ձեր կարծիքի համար"
   }
 }

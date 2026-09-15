@@ -1418,7 +1418,16 @@
     "attachmentTooLarge": "Iga fail peab olema alla 20 MB"
   },
   "auth": {
-    "loginRequired": "Sisselogimine nõutav"
+    "loginRequired": "Sisselogimine nõutav",
+    "walletImported": "Rahakott imporditud",
+    "importWallet": "Impordi rahakott",
+    "privateKeyPlaceholder": "Sisesta oma privaatvõti",
+    "importExternalWallet": "Impordi väline rahakott",
+    "privateKey": "Privaatvõti",
+    "pasteFromClipboard": "Kleebi lõikelaualt",
+    "learnMoreAt": "Loe lähemalt dehub.io-s",
+    "accountsOnDevice": "Selle seadme kontod",
+    "use": "Kasuta"
   },
   "messages": {
     "smartRepliesOff": "Soovitatud vastused on välja lülitatud",
@@ -3831,5 +3840,29 @@
   "search": {
     "endOfResults": "Tulemuste lõpp",
     "searchDehub": "Otsi DeHubist"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Ole kursis",
+    "subtitle": "Lülita teavitused sisse, et DeHubiga kursis olla",
+    "rowTips": "Jootrahad ja teenistus jõuavad sinu rahakotti",
+    "rowReplies": "Vastused, mainimised ja otsesõnumid",
+    "rowLive": "Kui sinu jälgitavad loojad lähevad otse-eetrisse",
+    "chooseInSettings": "Sa valid täpselt, millised neist sinuni jõuavad — seadetes, igal ajal.",
+    "turnOn": "Lülita teavitused sisse"
+  },
+  "review": {
+    "enjoyingApp": "Kas rakendus meeldib sulle?",
+    "feedbackHelps": "Sinu tagasiside aitab meil DeHubi paremaks teha",
+    "yes": "Jah! 😊",
+    "notReally": "Mitte eriti 😕",
+    "thatsGreat": "See on suurepärane!",
+    "rateUsOn": "Kas hindaksid meid {{store}}-s? See aitab meil tõesti kasvada!",
+    "rateOn": "Hinda {{store}}-s",
+    "yourFeedback": "Sinu tagasiside",
+    "feedbackPlaceholder": "Mida saaksime paremini teha?",
+    "followUpNote": "Võime sinuga ühendust võtta täpsustavate küsimustega tagasiside kohta",
+    "submitFeedback": "Saada tagasiside",
+    "provideFeedback": "Palun kirjuta oma tagasiside",
+    "thankYou": "Aitäh tagasiside eest!"
   }
 }

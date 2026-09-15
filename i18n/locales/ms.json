@@ -1665,7 +1665,16 @@
     "attachmentTooLarge": "Setiap fail mesti di bawah 20MB"
   },
   "auth": {
-    "loginRequired": "Log in required"
+    "loginRequired": "Log in required",
+    "walletImported": "Dompet diimport",
+    "importWallet": "Import dompet",
+    "privateKeyPlaceholder": "Masukkan kunci peribadi anda",
+    "importExternalWallet": "Import dompet luaran",
+    "privateKey": "Kunci peribadi",
+    "pasteFromClipboard": "Tampal dari papan keratan",
+    "learnMoreAt": "Ketahui lebih lanjut di dehub.io",
+    "accountsOnDevice": "Akaun pada peranti ini",
+    "use": "Guna"
   },
   "bookmarks": {
     "title": "Your Bookmarks",
@@ -4095,5 +4104,29 @@
   "search": {
     "endOfResults": "Penghujung hasil",
     "searchDehub": "Cari di DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Kekal dimaklumkan",
+    "subtitle": "Hidupkan pemberitahuan untuk terus mengikuti DeHub",
+    "rowTips": "Tip dan pendapatan masuk ke dompet anda",
+    "rowReplies": "Balasan, sebutan dan mesej terus",
+    "rowLive": "Apabila pencipta yang anda ikuti mula siaran langsung",
+    "chooseInSettings": "Anda pilih sendiri yang mana sampai kepada anda, dalam Tetapan, bila-bila masa.",
+    "turnOn": "Hidupkan pemberitahuan"
+  },
+  "review": {
+    "enjoyingApp": "Adakah anda menikmati apl ini?",
+    "feedbackHelps": "Maklum balas anda membantu kami menambah baik DeHub",
+    "yes": "Ya! 😊",
+    "notReally": "Tidak juga 😕",
+    "thatsGreat": "Bagusnya!",
+    "rateUsOn": "Sudikah anda menilai kami di {{store}}? Ia benar-benar membantu kami berkembang!",
+    "rateOn": "Nilai di {{store}}",
+    "yourFeedback": "Maklum balas anda",
+    "feedbackPlaceholder": "Apa yang boleh kami perbaiki?",
+    "followUpNote": "Kami mungkin menghubungi anda untuk soalan lanjut tentang maklum balas anda",
+    "submitFeedback": "Hantar maklum balas",
+    "provideFeedback": "Sila tuliskan maklum balas anda",
+    "thankYou": "Terima kasih atas maklum balas anda!"
   }
 }

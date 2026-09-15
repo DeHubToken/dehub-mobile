@@ -1404,7 +1404,16 @@
     "attachmentTooLarge": "Әр файл 20 МБ-тан кем болуы керек"
   },
   "auth": {
-    "loginRequired": "Авторизация қажет"
+    "loginRequired": "Авторизация қажет",
+    "walletImported": "Әмиян импортталды",
+    "importWallet": "Әмиянды импорттау",
+    "privateKeyPlaceholder": "Жеке кілтіңізді енгізіңіз",
+    "importExternalWallet": "Сыртқы әмиянды импорттау",
+    "privateKey": "Жеке кілт",
+    "pasteFromClipboard": "Аралық сақтағыштан қою",
+    "learnMoreAt": "dehub.io сайтынан толығырақ білу",
+    "accountsOnDevice": "Осы құрылғыдағы аккаунттар",
+    "use": "Қолдану"
   },
   "messages": {
     "smartRepliesOff": "Ұсынылған жауаптар өшірілді",
@@ -3888,5 +3897,29 @@
   "search": {
     "endOfResults": "Нәтижелердің соңы",
     "searchDehub": "DeHub ішінен іздеу"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Хабардар болыңыз",
+    "subtitle": "DeHub-тан қалмау үшін хабарландыруларды қосыңыз",
+    "rowTips": "Шайлық пен табыс әмиеніңізге түседі",
+    "rowReplies": "Жауаптар, аталымдар және жеке хабарлар",
+    "rowLive": "Сіз жазылған авторлар эфирге шыққанда",
+    "chooseInSettings": "Қайсысы сізге жететінін Параметрлерде кез келген уақытта өзіңіз таңдайсыз.",
+    "turnOn": "Хабарландыруларды қосу"
+  },
+  "review": {
+    "enjoyingApp": "Қолданба ұнап жатыр ма?",
+    "feedbackHelps": "Пікіріңіз DeHub-ты жақсартуға көмектеседі",
+    "yes": "Иә! 😊",
+    "notReally": "Онша емес 😕",
+    "thatsGreat": "Тамаша!",
+    "rateUsOn": "Бізді {{store}}-та бағалай аласыз ба? Бұл өсуімізге шынымен көмектеседі!",
+    "rateOn": "{{store}}-та бағалау",
+    "yourFeedback": "Сіздің пікіріңіз",
+    "feedbackPlaceholder": "Нені жақсарта аламыз?",
+    "followUpNote": "Пікіріңіз бойынша қосымша сұрақтармен хабарласуымыз мүмкін",
+    "submitFeedback": "Пікірді жіберу",
+    "provideFeedback": "Пікіріңізді жазыңыз",
+    "thankYou": "Пікіріңіз үшін рақмет!"
   }
 }

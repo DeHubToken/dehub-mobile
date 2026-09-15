@@ -1615,7 +1615,16 @@
     "attachmentTooLarge": "Dapat wala pang 20MB ang bawat file"
   },
   "auth": {
-    "loginRequired": "Log in required"
+    "loginRequired": "Log in required",
+    "walletImported": "Na-import ang wallet",
+    "importWallet": "Mag-import ng wallet",
+    "privateKeyPlaceholder": "Ilagay ang iyong private key",
+    "importExternalWallet": "Mag-import ng external wallet",
+    "privateKey": "Private key",
+    "pasteFromClipboard": "I-paste mula sa clipboard",
+    "learnMoreAt": "Matuto pa sa dehub.io",
+    "accountsOnDevice": "Mga account sa device na ito",
+    "use": "Gamitin"
   },
   "bookmarks": {
     "title": "Your Bookmarks",
@@ -4011,5 +4020,29 @@
   "search": {
     "endOfResults": "Katapusan ng mga resulta",
     "searchDehub": "Maghanap sa DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Manatiling updated",
+    "subtitle": "I-on ang notifications para makasabay sa DeHub",
+    "rowTips": "Dumadating sa wallet mo ang tips at kita",
+    "rowReplies": "Mga tugon, banggit at direktang mensahe",
+    "rowLive": "Kapag nag-live ang mga creator na sinusundan mo",
+    "chooseInSettings": "Ikaw ang pipili kung alin sa mga ito ang aabot sa iyo, sa Settings, anumang oras.",
+    "turnOn": "I-on ang notifications"
+  },
+  "review": {
+    "enjoyingApp": "Nage-enjoy ka ba sa app?",
+    "feedbackHelps": "Nakakatulong ang feedback mo para mapabuti ang DeHub",
+    "yes": "Oo! 😊",
+    "notReally": "Hindi masyado 😕",
+    "thatsGreat": "Ang galing naman!",
+    "rateUsOn": "Puwede mo ba kaming i-rate sa {{store}}? Malaking tulong ito sa paglago namin!",
+    "rateOn": "Mag-rate sa {{store}}",
+    "yourFeedback": "Ang feedback mo",
+    "feedbackPlaceholder": "Ano ang puwede naming pagbutihin?",
+    "followUpNote": "Baka makipag-ugnayan kami para sa karagdagang tanong tungkol sa feedback mo",
+    "submitFeedback": "Ipadala ang feedback",
+    "provideFeedback": "Pakisulat ang iyong feedback",
+    "thankYou": "Salamat sa iyong feedback!"
   }
 }

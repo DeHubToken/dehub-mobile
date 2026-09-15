@@ -772,7 +772,16 @@
     "multipleChoice": "Permitir várias respostas"
   },
   "auth": {
-    "loginRequired": "Login necessário"
+    "loginRequired": "Login necessário",
+    "walletImported": "Carteira importada",
+    "importWallet": "Importar carteira",
+    "privateKeyPlaceholder": "Introduza a sua chave privada",
+    "importExternalWallet": "Importar carteira externa",
+    "privateKey": "Chave privada",
+    "pasteFromClipboard": "Colar da área de transferência",
+    "learnMoreAt": "Saiba mais em dehub.io",
+    "accountsOnDevice": "Contas neste dispositivo",
+    "use": "Usar"
   },
   "explorePage": {
     "searchPlaceholder": "Buscar pessoas, posts ou conteúdo...",
@@ -3906,5 +3915,29 @@
   "search": {
     "endOfResults": "Fim dos resultados",
     "searchDehub": "Pesquisar no DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Fique a par",
+    "subtitle": "Ative as notificações para acompanhar o DeHub",
+    "rowTips": "As gorjetas e ganhos chegam à sua carteira",
+    "rowReplies": "Respostas, menções e mensagens diretas",
+    "rowLive": "Quando os criadores que segue entram em direto",
+    "chooseInSettings": "É você que escolhe exatamente quais lhe chegam, nas Definições, a qualquer altura.",
+    "turnOn": "Ativar notificações"
+  },
+  "review": {
+    "enjoyingApp": "Está a gostar da app?",
+    "feedbackHelps": "O seu feedback ajuda-nos a melhorar o DeHub",
+    "yes": "Sim! 😊",
+    "notReally": "Nem por isso 😕",
+    "thatsGreat": "Que ótimo!",
+    "rateUsOn": "Importa-se de nos avaliar na {{store}}? Ajuda-nos mesmo a crescer!",
+    "rateOn": "Avaliar na {{store}}",
+    "yourFeedback": "O seu feedback",
+    "feedbackPlaceholder": "O que podemos melhorar?",
+    "followUpNote": "Podemos contactá-lo com perguntas de seguimento sobre o seu feedback",
+    "submitFeedback": "Enviar feedback",
+    "provideFeedback": "Escreva o seu feedback",
+    "thankYou": "Obrigado pelo seu feedback!"
   }
 }

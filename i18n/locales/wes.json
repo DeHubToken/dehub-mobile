@@ -1361,7 +1361,16 @@
     "attachmentTooLarge": "Eni file mos dei anda 20MB"
   },
   "auth": {
-    "loginRequired": "Log in required"
+    "loginRequired": "Log in required",
+    "walletImported": "Wallet don import",
+    "importWallet": "Import wallet",
+    "privateKeyPlaceholder": "Enta yua private key",
+    "importExternalWallet": "Import outside wallet",
+    "privateKey": "Private key",
+    "pasteFromClipboard": "Paste from clipboard",
+    "learnMoreAt": "Learn more for dehub.io",
+    "accountsOnDevice": "Accounts wey dey dis device",
+    "use": "Use"
   },
   "messages": {
     "smartRepliesOff": "Dem don of di ansa dem weh wi propose",
@@ -3664,5 +3673,29 @@
   "search": {
     "endOfResults": "Results don finish",
     "searchDehub": "Search DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Mek you dey hia wetin dey happen",
+    "subtitle": "Turn on notification mek you dey follow DeHub",
+    "rowTips": "Tips an earnings dey enta yua wallet",
+    "rowReplies": "Replies, mentions an direct message",
+    "rowLive": "Wen creators wey you follow go live",
+    "chooseInSettings": "Na you go choose which one go reach you, for Settings, any time.",
+    "turnOn": "Turn on notification"
+  },
+  "review": {
+    "enjoyingApp": "You dey enjoy di app?",
+    "feedbackHelps": "Yua feedback dey help us mek DeHub beta",
+    "yes": "Yes! 😊",
+    "notReally": "Not really 😕",
+    "thatsGreat": "Dat one sweet!",
+    "rateUsOn": "You fit rate us for {{store}}? E really dey help us grow!",
+    "rateOn": "Rate us for {{store}}",
+    "yourFeedback": "Yua feedback",
+    "feedbackPlaceholder": "Wetin we fit do beta?",
+    "followUpNote": "We fit reach you mek we ask more question about yua feedback",
+    "submitFeedback": "Send feedback",
+    "provideFeedback": "Abeg write yua feedback",
+    "thankYou": "Thank you for yua feedback!"
   }
 }

@@ -1800,7 +1800,16 @@
     "forgotPassword": "পাসওয়ার্ড ভুলছো?",
     "resetPassword": "পাসওয়ার্ড রিসেট",
     "verifyEmail": "ইমেইল ভেরিফাই করো",
-    "loginRequired": "Log in required"
+    "loginRequired": "Log in required",
+    "walletImported": "ওয়ালেট ইমপোর্ট হইল",
+    "importWallet": "ওয়ালেট ইমপোর্ট করেন",
+    "privateKeyPlaceholder": "নিজের প্রাইভেট কী দেন",
+    "importExternalWallet": "বাইরার ওয়ালেট ইমপোর্ট করেন",
+    "privateKey": "প্রাইভেট কী",
+    "pasteFromClipboard": "ক্লিপবোর্ড থাকি পেস্ট করেন",
+    "learnMoreAt": "dehub.io ত আরো জানেন",
+    "accountsOnDevice": "এই ডিভাইসের একাউন্ট",
+    "use": "ব্যবহার করেন"
   },
   "music": {
     "nowPlaying": "এখন চলতাছে",
@@ -3865,5 +3874,29 @@
   "search": {
     "endOfResults": "ফলাফলের শেষ",
     "searchDehub": "DeHub ত খোঁজেন"
+  },
+  "notifPrompt": {
+    "stayInLoop": "খবরত থাকেন",
+    "subtitle": "DeHub এর সাথে থাকির লাগি নোটিফিকেশন চালু করেন",
+    "rowTips": "টিপ আর আয় আপনার ওয়ালেটত আইসে",
+    "rowReplies": "উত্তর, মেনশন আর সরাসরি বার্তা",
+    "rowLive": "আপনি যায়গুলাক ফলো করেন তারা লাইভত আসিলে",
+    "chooseInSettings": "এইগুলার কোনটা আপনার ঠাই আসিবে, সেইটা সেটিংসত যেকোনো সময় বাছি নিবার পারেন।",
+    "turnOn": "নোটিফিকেশন চালু করেন"
+  },
+  "review": {
+    "enjoyingApp": "অ্যাপটা কি ভালো নাগেছে?",
+    "feedbackHelps": "আপনার মতামত DeHub ভালো করির সাহায্য করে",
+    "yes": "হয়! 😊",
+    "notReally": "তেমন নোয়ায় 😕",
+    "thatsGreat": "এইটা তো ভালোই!",
+    "rateUsOn": "আপনি {{store}} ত আমাক রেটিং দিবেন? এইটা আমার বাড়ির সত্যিই সাহায্য করে!",
+    "rateOn": "{{store}} ত রেটিং দেন",
+    "yourFeedback": "আপনার মতামত",
+    "feedbackPlaceholder": "আমরা কী ভালো করির পারি?",
+    "followUpNote": "আপনার মতামত নিয়া আরো প্রশ্নের লাগি আমরা যোগাযোগ করির পারি",
+    "submitFeedback": "মতামত পাঠান",
+    "provideFeedback": "দয়া করি আপনার মতামত লেখেন",
+    "thankYou": "আপনার মতামতের লাগি ধন্যবাদ!"
   }
 }

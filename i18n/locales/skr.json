@@ -1371,7 +1371,16 @@
     "attachmentTooLarge": "ہر فائل 20MB کنوں گھٹ ہووݨ گھرجدی"
   },
   "auth": {
-    "loginRequired": "لاگ ان ضروری ہے"
+    "loginRequired": "لاگ ان ضروری ہے",
+    "walletImported": "والیٹ درآمد تھی ڳیا",
+    "importWallet": "والیٹ درآمد کرو",
+    "privateKeyPlaceholder": "اپݨی پرائیویٹ کی درج کرو",
+    "importExternalWallet": "باہرلا والیٹ درآمد کرو",
+    "privateKey": "پرائیویٹ کی",
+    "pasteFromClipboard": "کلپ بورڈ کنوں پیسٹ کرو",
+    "learnMoreAt": "dehub.io تے ودھیک ڄاݨو",
+    "accountsOnDevice": "ایں ڈیوائس دے اکاؤنٹ",
+    "use": "استعمال کرو"
   },
   "messages": {
     "smartRepliesOff": "تجویز کیتے ڳئے جواب بند تھی ڳئے",
@@ -3776,5 +3785,29 @@
   "search": {
     "endOfResults": "نتیجیاں دا آخر",
     "searchDehub": "DeHub وچ ڳولو"
+  },
+  "notifPrompt": {
+    "stayInLoop": "باخبر رہو",
+    "subtitle": "DeHub نال رہوݨ کیتے اطلاعات چالو کرو",
+    "rowTips": "ٹپ تے کمائی تہاݙے والیٹ وچ آندی ہے",
+    "rowReplies": "جواب، ذکر تے سدھے سنیہے",
+    "rowLive": "جڈاں تہاݙے فالو کیتے تخلیق کار لائیو ویندن",
+    "chooseInSettings": "ایں وچوں کیڑھیاں تہاݙے تئیں پہچن، ایہہ تساں سیٹنگز وچ کݙاہیں وی چݨ سڳدے او۔",
+    "turnOn": "اطلاعات چالو کرو"
+  },
+  "review": {
+    "enjoyingApp": "کیا تہاکوں ایپ چنگی لڳدی پئی ہے؟",
+    "feedbackHelps": "تہاݙی رائے ساکوں DeHub بہتر بݨاوݨ وچ مدد ݙیندی ہے",
+    "yes": "ہاں! 😊",
+    "notReally": "ودھیرے کائنی 😕",
+    "thatsGreat": "ایہہ تاں بہوں چنگا ہے!",
+    "rateUsOn": "کیا تساں {{store}} تے ساݙی ریٹنگ کریسو؟ ایں نال ساکوں ودھݨ وچ بہوں مدد ملدی ہے!",
+    "rateOn": "{{store}} تے ریٹ کرو",
+    "yourFeedback": "تہاݙی رائے",
+    "feedbackPlaceholder": "اساں کیا بہتر کر سڳدے ہیں؟",
+    "followUpNote": "تہاݙی رائے بارے ودھیک سوالاں کیتے اساں رابطہ کر سڳدے ہیں",
+    "submitFeedback": "رائے بھیجو",
+    "provideFeedback": "مہربانی کر کے اپݨی رائے لکھو",
+    "thankYou": "تہاݙی رائے کیتے شکریہ!"
   }
 }

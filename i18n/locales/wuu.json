@@ -1376,7 +1376,16 @@
     "attachmentTooLarge": "每只文件要小于 20MB"
   },
   "auth": {
-    "loginRequired": "需要登录"
+    "loginRequired": "需要登录",
+    "walletImported": "钱包已导入",
+    "importWallet": "导入钱包",
+    "privateKeyPlaceholder": "输入你的私钥",
+    "importExternalWallet": "导入外部钱包",
+    "privateKey": "私钥",
+    "pasteFromClipboard": "从剪贴板粘贴",
+    "learnMoreAt": "在 dehub.io 了解更多",
+    "accountsOnDevice": "此设备上的账号",
+    "use": "使用"
   },
   "messages": {
     "smartRepliesOff": "建议回复关脱哉",
@@ -3783,5 +3792,29 @@
   "search": {
     "endOfResults": "结果到底了",
     "searchDehub": "搜索 DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "保持关注",
+    "subtitle": "打开通知，紧跟 DeHub 的动态",
+    "rowTips": "打赏和收益会进入你的钱包",
+    "rowReplies": "回复、提及和私信",
+    "rowLive": "你关注的创作者开播时",
+    "chooseInSettings": "具体收到哪些，你随时可以在设置里自己选。",
+    "turnOn": "打开通知"
+  },
+  "review": {
+    "enjoyingApp": "用得还满意吗？",
+    "feedbackHelps": "你的反馈能帮我们把 DeHub 做得更好",
+    "yes": "很好！😊",
+    "notReally": "不太满意 😕",
+    "thatsGreat": "太好了！",
+    "rateUsOn": "方便到 {{store}} 给我们评个分吗？这对我们成长帮助很大！",
+    "rateOn": "在 {{store}} 评分",
+    "yourFeedback": "你的反馈",
+    "feedbackPlaceholder": "我们可以做得更好的地方？",
+    "followUpNote": "我们可能会就你的反馈再联系你追问细节",
+    "submitFeedback": "提交反馈",
+    "provideFeedback": "请填写你的反馈",
+    "thankYou": "感谢你的反馈！"
   }
 }

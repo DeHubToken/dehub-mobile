@@ -8,6 +8,7 @@ import { useDebounceCallback } from '../../hooks/useDebounceCallback';
 import { toastSuccess } from '../../libs';
 import { setAuthToken, setAuthUser } from '../../libs/auth.utils';
 import { User } from '../../context/AuthContext';
+import { useTranslation } from 'react-i18next';
 
 const statusRow: ViewStyle = { flexDirection: 'row', alignItems: 'center', gap: 6 };
 
@@ -18,6 +19,7 @@ interface Props {
 }
 
 export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUser, onComplete }) => {
+  const { t } = useTranslation();
   const [username, setUsername] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [checking, setChecking] = useState(false);
@@ -86,7 +88,7 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
   return (
     <GlassModal visible={visible} onClose={() => {}} presentation="center" blurIntensity={50}>
       <View style={{ padding: 24 }}>
-        <Text style={authText.modalTitle}>Set your profile</Text>
+        <Text style={authText.modalTitle}>{t("setProfile.title")}</Text>
         <Text style={[authText.body, { marginTop: 8, marginBottom: 20 }]}>
           Choose a username and display name to continue. You can change them later.
         </Text>
@@ -97,8 +99,8 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
           onChangeText={handleChange}
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder="Username"
-          accessibilityLabel="Username"
+          placeholder={t("settings.username")}
+          accessibilityLabel={t("settings.username")}
         />
         <View style={{ marginTop: 8, minHeight: 32 }}>
           {checking && (
@@ -135,8 +137,8 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
           onChangeText={handleDisplayNameChange}
           autoCapitalize="words"
           autoCorrect={false}
-          placeholder="Display name"
-          accessibilityLabel="Display name"
+          placeholder={t("setProfile.displayNamePlaceholder")}
+          accessibilityLabel={t("setProfile.displayNamePlaceholder")}
           containerStyle={{ marginTop: 16 }}
         />
         <View style={{ marginTop: 8, minHeight: 20 }}>
@@ -146,14 +148,14 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
             </Text>
           )}
           {displayName.length === 0 && (
-            <Text style={authText.caption}>Your public name shown on your profile.</Text>
+            <Text style={authText.caption}>{t("setProfile.displayNameHint")}</Text>
           )}
         </View>
 
         <AuthErrorNotice message={error} style={{ marginBottom: 12 }} />
         <AuthButton
           variant="primary"
-          label="Continue"
+          label={t("loginModal.continue")}
           onPress={handleSubmit}
           disabled={disabled}
           loading={submitting}

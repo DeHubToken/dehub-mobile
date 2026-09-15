@@ -1376,7 +1376,16 @@
     "attachmentTooLarge": "كل ملف لازم يكون أقل من 20MB"
   },
   "auth": {
-    "loginRequired": "مطلوب تسجيل دخول"
+    "loginRequired": "مطلوب تسجيل دخول",
+    "walletImported": "انستوردت المحفظة",
+    "importWallet": "استورد محفظة",
+    "privateKeyPlaceholder": "أدخل مفتاحك الخاص",
+    "importExternalWallet": "استورد محفظة خارجية",
+    "privateKey": "المفتاح الخاص",
+    "pasteFromClipboard": "الصق من الحافظة",
+    "learnMoreAt": "اعرف أكتر عند dehub.io",
+    "accountsOnDevice": "الحسابات عهالجهاز",
+    "use": "استخدم"
   },
   "messages": {
     "smartRepliesOff": "انطفت الردود المقترحة",
@@ -3788,5 +3797,29 @@
   "search": {
     "endOfResults": "نهاية النتائج",
     "searchDehub": "دوّر بـ DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "ضل على اطلاع",
+    "subtitle": "شغّل الإشعارات لتضل مواكب DeHub",
+    "rowTips": "الإكراميات والأرباح بتوصل لمحفظتك",
+    "rowReplies": "الردود والإشارات والرسائل الخاصة",
+    "rowLive": "المنشئون يلي بتتابعهن لما يبدأوا بث",
+    "chooseInSettings": "بتقدر تختار أي واحد فيهن يوصلك من الإعدادات، بأي وقت.",
+    "turnOn": "شغّل الإشعارات"
+  },
+  "review": {
+    "enjoyingApp": "عم بتستمتع بالتطبيق؟",
+    "feedbackHelps": "ملاحظاتك بتساعدنا نحسّن DeHub",
+    "yes": "أيوه! 😊",
+    "notReally": "مش كتير 😕",
+    "thatsGreat": "هذا شي حلو!",
+    "rateUsOn": "بتقدر تقيّمنا عـ {{store}}؟ بيساعدنا كتير!",
+    "rateOn": "قيّم عـ {{store}}",
+    "yourFeedback": "ملاحظاتك",
+    "feedbackPlaceholder": "شو فينا نحسّن؟",
+    "followUpNote": "ممكن نتواصل معك لأسئلة إضافية عن ملاحظاتك",
+    "submitFeedback": "ابعت الملاحظات",
+    "provideFeedback": "رجاءً اكتب ملاحظاتك",
+    "thankYou": "شكراً على ملاحظاتك!"
   }
 }

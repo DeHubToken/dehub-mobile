@@ -1490,7 +1490,16 @@
     "attachmentTooLarge": "Mỗi tệp phải nhỏ hơn 20MB"
   },
   "auth": {
-    "loginRequired": "Log in required"
+    "loginRequired": "Log in required",
+    "walletImported": "Đã nhập ví",
+    "importWallet": "Nhập ví",
+    "privateKeyPlaceholder": "Nhập khóa riêng của bạn",
+    "importExternalWallet": "Nhập ví bên ngoài",
+    "privateKey": "Khóa riêng",
+    "pasteFromClipboard": "Dán từ bộ nhớ tạm",
+    "learnMoreAt": "Tìm hiểu thêm tại dehub.io",
+    "accountsOnDevice": "Tài khoản trên thiết bị này",
+    "use": "Dùng"
   },
   "bookmarks": {
     "title": "Mục đã lưu của bạn",
@@ -3920,5 +3929,29 @@
   "search": {
     "endOfResults": "Hết kết quả",
     "searchDehub": "Tìm trên DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Không bỏ lỡ tin tức",
+    "subtitle": "Bật thông báo để không bỏ lỡ DeHub",
+    "rowTips": "Tiền thưởng và thu nhập vào ví của bạn",
+    "rowReplies": "Phản hồi, nhắc đến và tin nhắn riêng",
+    "rowLive": "Khi nhà sáng tạo bạn theo dõi lên sóng",
+    "chooseInSettings": "Bạn tự chọn chính xác những mục nào đến với mình, trong Cài đặt, bất cứ lúc nào.",
+    "turnOn": "Bật thông báo"
+  },
+  "review": {
+    "enjoyingApp": "Bạn có thích ứng dụng không?",
+    "feedbackHelps": "Phản hồi của bạn giúp chúng tôi cải thiện DeHub",
+    "yes": "Có! 😊",
+    "notReally": "Không hẳn 😕",
+    "thatsGreat": "Tuyệt quá!",
+    "rateUsOn": "Bạn đánh giá chúng tôi trên {{store}} nhé? Điều đó thực sự giúp chúng tôi phát triển!",
+    "rateOn": "Đánh giá trên {{store}}",
+    "yourFeedback": "Phản hồi của bạn",
+    "feedbackPlaceholder": "Chúng tôi có thể cải thiện điều gì?",
+    "followUpNote": "Chúng tôi có thể liên hệ để hỏi thêm về phản hồi của bạn",
+    "submitFeedback": "Gửi phản hồi",
+    "provideFeedback": "Vui lòng nhập phản hồi của bạn",
+    "thankYou": "Cảm ơn phản hồi của bạn!"
   }
 }

@@ -1378,7 +1378,16 @@
     "attachmentTooLarge": "แต่ละไฟล์ต้องน้อยกว่า 20MB"
   },
   "auth": {
-    "loginRequired": "ต้องเข้าสู่ระบบ"
+    "loginRequired": "ต้องเข้าสู่ระบบ",
+    "walletImported": "นำเข้ากระเป๋าเงินแล้ว",
+    "importWallet": "นำเข้ากระเป๋าเงิน",
+    "privateKeyPlaceholder": "ใส่คีย์ส่วนตั๋วของต้าน",
+    "importExternalWallet": "นำเข้ากระเป๋าเงินภายนอก",
+    "privateKey": "คีย์ส่วนตั๋ว",
+    "pasteFromClipboard": "วางจากคลิปบอร์ด",
+    "learnMoreAt": "ผ่อข้อมูลเพิ่มเติมตี้ dehub.io",
+    "accountsOnDevice": "บัญชีในอุปกรณ์นี้",
+    "use": "ใจ้"
   },
   "messages": {
     "smartRepliesOff": "ปิดคำตอบแนะนำแล้ว",
@@ -3791,5 +3800,29 @@
   "search": {
     "endOfResults": "หมดผลกาน໊ก้นหาแล้ว",
     "searchDehub": "ก้นหาใน DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "บ่พลาดตุกความเคลื่อนไหว",
+    "subtitle": "เปิดกาน໊แจ้งเตือนเปื้อบ่พลาดความเคลื่อนไหวของ DeHub",
+    "rowTips": "ทิปและฮายได้เข้ากระเป๋าเงินของต้าน",
+    "rowReplies": "กาน໊ตอบ กาน໊กล่าวเถิง และข้อความส่วนตั๋ว",
+    "rowLive": "เมื่อครีเอเตอร์ตี้ต้านติดต๋ามไลฟ์",
+    "chooseInSettings": "ต้านเลือกเก่าได้ว่าจะฮับอันไหนพ่อง ในกาน໊ตั้งก้า เมื่อใดก่ได้",
+    "turnOn": "เปิดกาน໊แจ้งเตือน"
+  },
+  "review": {
+    "enjoyingApp": "จอบแอปนี้ก่",
+    "feedbackHelps": "ความเห็นของต้านจ้วยหื้อเฮาป๊ะปุง DeHub หื้อดีขึ้น",
+    "yes": "ใจ้เลย! 😊",
+    "notReally": "บ่ปานใด 😕",
+    "thatsGreat": "ดีจ๊าดเลย!",
+    "rateUsOn": "จ้วยหื้อคะแนนเฮาใน {{store}} หน่อยได้ก่ จ้วยหื้อเฮาเติบโตได้จริง ๆ",
+    "rateOn": "หื้อคะแนนใน {{store}}",
+    "yourFeedback": "กำเห็นของต้าน",
+    "feedbackPlaceholder": "เฮาเยียะอะหยังหื้อดีขึ้นได้พ่อง",
+    "followUpNote": "เฮาอาจติดต่อกลับเปื้อถามเพิ่มเติมเกี่ยวกับกำเห็นของต้าน",
+    "submitFeedback": "ส่งกำเห็น",
+    "provideFeedback": "กะลุนาเขียนกำเห็นของต้าน",
+    "thankYou": "ขอบใจ๋สำหรับกำเห็น!"
   }
 }
