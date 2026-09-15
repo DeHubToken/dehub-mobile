@@ -3796,5 +3796,29 @@
     "stream": "স্ট্রিম",
     "boostPost": "পোস্ট বুস্ট করেন",
     "openSuperPowers": "SuperPowers খোলেন"
+  },
+  "dm": {
+    "attachFailed": "ওই ফাইল যোগ করা গেল না।",
+    "removeAttachment": "সংযুক্তি সরান",
+    "addTip": "টিপ যোগ করেন",
+    "chooseGif": "একটা GIF বাছেন",
+    "attachImage": "ছবি যোগ করেন",
+    "attachVideo": "ভিডিও যোগ করেন",
+    "attachFile": "ফাইল যোগ করেন",
+    "enhanceWithAi": "AI দিয়া বার্তা ভালো করেন",
+    "sendMessage": "বার্তা পাঠান",
+    "cantMessageYourself": "আপনি নিজেক বার্তা পাঠাইতে পারবেন না",
+    "askSomething": "কিছু সোধেন...",
+    "removeOption": "বিকল্প সরান",
+    "allowMultiple": "একাধিক উত্তরের অনুমতি দেন",
+    "preferences": "DM পছন্দ",
+    "enableDms": "DM চালু করেন",
+    "enableDmsSub": "সব বার্তা বন্ধ করির লাগি এইটা বন্ধ করেন।",
+    "allowNewDms": "নয়া DM অনুমতি দেন",
+    "allowNewDmsOn": "বন্ধ থাকিলে খালি যারগুলার সাথে আগোত কথা হইছে তারায় বার্তা পাঠাইতে পারিবে।",
+    "allowNewDmsOff": "নয়া বার্তার অনুমতি দিবার লাগি DM চালু করেন।",
+    "perMessageFee": "হর বার্তার ফি (DHB)",
+    "perMessageFeeSub": "হর বার্তাত ফি নেন। ফ্রি DM'র লাগি 0 দেন। কিছু ব্যবহারকারীক ফ্রি অ্যাক্সেস দিবার পারেন।",
+    "allDisabled": "এলা সব DM বন্ধ। নয়া DM ডিফল্টে আটকা।"
   }
 }

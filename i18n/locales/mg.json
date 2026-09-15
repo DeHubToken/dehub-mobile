@@ -3842,5 +3842,29 @@
     "stream": "Fandefasana",
     "boostPost": "Ampitomboy ny lahatsoratra",
     "openSuperPowers": "Sokafy ny SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Tsy voatohy io rakitra io.",
+    "removeAttachment": "Esory ny tovana",
+    "addTip": "Manampy tolotra",
+    "chooseGif": "Mifidiana GIF",
+    "attachImage": "Tohizo sary",
+    "attachVideo": "Tohizo lahatsary",
+    "attachFile": "Tohizo rakitra",
+    "enhanceWithAi": "Hatsarao amin'ny AI ny hafatra",
+    "sendMessage": "Alefaso ny hafatra",
+    "cantMessageYourself": "Tsy afaka mandefa hafatra ho an'ny tenanao ianao",
+    "askSomething": "Manontania zavatra...",
+    "removeOption": "Esory ny safidy",
+    "allowMultiple": "Avelao ny valiny maromaro",
+    "preferences": "Safidy DM",
+    "enableDms": "Alefaso ny DM",
+    "enableDmsSub": "Vonoy raha te hanakana ny hafatra rehetra.",
+    "allowNewDms": "Avelao ny DM vaovao",
+    "allowNewDmsOn": "Raha vonoina, ny olona efa niresaka taminao ihany no afaka mandefa hafatra.",
+    "allowNewDmsOff": "Alefaso ny DM raha te handray hafatra vaovao.",
+    "perMessageFee": "Sara isaky ny hafatra (DHB)",
+    "perMessageFeeSub": "Mangataha sara isaky ny hafatra. Ataovy 0 raha maimaim-poana. Afaka manome fidirana maimaim-poana amin'ny mpampiasa sasany ianao.",
+    "allDisabled": "Vonoina ny DM rehetra amin'izao. Voasakana ho azy ny DM vaovao."
   }
 }

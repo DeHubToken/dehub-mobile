@@ -3721,5 +3721,29 @@
     "stream": "ສະຕີມ",
     "boostPost": "ບູສໂພສ",
     "openSuperPowers": "ເປີດ SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "ແນບໄຟລ໌ນັ້ນບໍ່ໄດ້.",
+    "removeAttachment": "ລຶບໄຟລ໌ແນບ",
+    "addTip": "ເພີ່ມທິບ",
+    "chooseGif": "ເລືອກ GIF",
+    "attachImage": "ແນບຮູບ",
+    "attachVideo": "ແນບວິດີໂອ",
+    "attachFile": "ແນບໄຟລ໌",
+    "enhanceWithAi": "ປັບປຸງຂໍ້ຄວາມດ້ວຍ AI",
+    "sendMessage": "ສົ່ງຂໍ້ຄວາມ",
+    "cantMessageYourself": "ທ່ານສົ່ງຂໍ້ຄວາມຫາຕົນເອງບໍ່ໄດ້",
+    "askSomething": "ຖາມຫຍັງກໍໄດ້...",
+    "removeOption": "ລຶບຕົວເລືອກ",
+    "allowMultiple": "ອະນຸຍາດຫຼາຍຄຳຕອບ",
+    "preferences": "ການຕັ້ງຄ່າ DM",
+    "enableDms": "ເປີດໃຊ້ DM",
+    "enableDmsSub": "ປິດເພື່ອບລັອກທຸກຂໍ້ຄວາມ.",
+    "allowNewDms": "ອະນຸຍາດ DM ໃໝ່",
+    "allowNewDmsOn": "ຖ້າປິດ ມີແຕ່ຄົນທີ່ທ່ານເຄີຍລົມນຳເທົ່ານັ້ນທີ່ສົ່ງຫາທ່ານໄດ້.",
+    "allowNewDmsOff": "ເປີດ DM ເພື່ອອະນຸຍາດຂໍ້ຄວາມໃໝ່.",
+    "perMessageFee": "ຄ່າຕໍ່ຂໍ້ຄວາມ (DHB)",
+    "perMessageFeeSub": "ເກັບຄ່າຕໍ່ຂໍ້ຄວາມ. ຕັ້ງເປັນ 0 ເພື່ອ DM ຟຣີ. ທ່ານສາມາດໃຫ້ສິດຟຣີແກ່ຜູ້ໃຊ້ສະເພາະໄດ້.",
+    "allDisabled": "ຕອນນີ້ DM ທັງໝົດຖືກປິດ. DM ໃໝ່ຖືກບລັອກຕາມຄ່າເລີ່ມຕົ້ນ."
   }
 }

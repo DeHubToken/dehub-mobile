@@ -3831,5 +3831,29 @@
     "stream": "스트림",
     "boostPost": "게시물 부스트",
     "openSuperPowers": "SuperPowers 열기"
+  },
+  "dm": {
+    "attachFailed": "해당 파일을 첨부하지 못했습니다.",
+    "removeAttachment": "첨부 삭제",
+    "addTip": "후원 추가",
+    "chooseGif": "GIF 선택",
+    "attachImage": "이미지 첨부",
+    "attachVideo": "동영상 첨부",
+    "attachFile": "파일 첨부",
+    "enhanceWithAi": "AI로 메시지 다듬기",
+    "sendMessage": "메시지 보내기",
+    "cantMessageYourself": "자신에게는 메시지를 보낼 수 없습니다",
+    "askSomething": "무엇이든 물어보세요...",
+    "removeOption": "선택지 삭제",
+    "allowMultiple": "복수 응답 허용",
+    "preferences": "DM 설정",
+    "enableDms": "DM 사용",
+    "enableDmsSub": "모든 메시지를 차단하려면 끄세요.",
+    "allowNewDms": "새 DM 허용",
+    "allowNewDmsOn": "꺼져 있으면 이전에 대화한 사람만 메시지를 보낼 수 있습니다.",
+    "allowNewDmsOff": "새 메시지를 받으려면 DM을 켜세요.",
+    "perMessageFee": "메시지당 요금 (DHB)",
+    "perMessageFeeSub": "메시지마다 요금을 받습니다. 무료로 하려면 0으로 두세요. 특정 사용자에게는 무료 접근을 줄 수 있습니다.",
+    "allDisabled": "현재 모든 DM이 꺼져 있습니다. 새 DM은 기본적으로 차단됩니다."
   }
 }

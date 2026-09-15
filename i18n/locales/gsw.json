@@ -3752,5 +3752,29 @@
     "stream": "Stream",
     "boostPost": "Biitrag booste",
     "openSuperPowers": "SuperPowers uftue"
+  },
+  "dm": {
+    "attachFailed": "Die Datei het nöd chöne aaghänkt werde.",
+    "removeAttachment": "Aahang entfärne",
+    "addTip": "Trinkgäld hinzuefüege",
+    "chooseGif": "GIF uswähle",
+    "attachImage": "Bild aahänke",
+    "attachVideo": "Video aahänke",
+    "attachFile": "Datei aahänke",
+    "enhanceWithAi": "Nachricht mit KI verbessere",
+    "sendMessage": "Nachricht schicke",
+    "cantMessageYourself": "Du chasch dir nöd sälber schriibe",
+    "askSomething": "Frag öppis...",
+    "removeOption": "Option entfärne",
+    "allowMultiple": "Mehrfachantworte erlaube",
+    "preferences": "DM-Iistellige",
+    "enableDms": "DMs aktiviere",
+    "enableDmsSub": "Uuschalte, zum alli Nachrichte z blockiere.",
+    "allowNewDms": "Neui DMs zuelah",
+    "allowNewDmsOn": "Wenn us, chönd dir nur Lüt schriibe, wo du scho gschriibe hesch.",
+    "allowNewDmsOff": "Schalt DMs ii, zum neui Nachrichte z erlaube.",
+    "perMessageFee": "Gebühr pro Nachricht (DHB)",
+    "perMessageFeeSub": "Pro Nachricht verrächne. Uf 0 setze für gratis DMs. Einzelne Benutzer chasch gratis Zuegang geh.",
+    "allDisabled": "Alli DMs sind grad deaktiviert. Neui DMs werded standardmässig blockiert."
   }
 }

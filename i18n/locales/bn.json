@@ -3747,5 +3747,29 @@
     "stream": "স্ট্রিম",
     "boostPost": "পোস্ট বুস্ট করুন",
     "openSuperPowers": "SuperPowers খুলুন"
+  },
+  "dm": {
+    "attachFailed": "সেই ফাইল যুক্ত করা গেল না।",
+    "removeAttachment": "সংযুক্তি সরান",
+    "addTip": "টিপ যোগ করুন",
+    "chooseGif": "একটি GIF বাছুন",
+    "attachImage": "ছবি যুক্ত করুন",
+    "attachVideo": "ভিডিও যুক্ত করুন",
+    "attachFile": "ফাইল যুক্ত করুন",
+    "enhanceWithAi": "AI দিয়ে বার্তা উন্নত করুন",
+    "sendMessage": "বার্তা পাঠান",
+    "cantMessageYourself": "আপনি নিজেকে বার্তা পাঠাতে পারবেন না",
+    "askSomething": "কিছু জিজ্ঞাসা করুন...",
+    "removeOption": "বিকল্প সরান",
+    "allowMultiple": "একাধিক উত্তরের অনুমতি দিন",
+    "preferences": "DM পছন্দসমূহ",
+    "enableDms": "DM চালু করুন",
+    "enableDmsSub": "সব বার্তা বন্ধ করতে এটি নিষ্ক্রিয় করুন।",
+    "allowNewDms": "নতুন DM অনুমতি দিন",
+    "allowNewDmsOn": "বন্ধ থাকলে কেবল যাদের সঙ্গে আগে কথা হয়েছে তারাই বার্তা পাঠাতে পারবে।",
+    "allowNewDmsOff": "নতুন বার্তার অনুমতি দিতে DM চালু করুন।",
+    "perMessageFee": "প্রতি বার্তায় ফি (DHB)",
+    "perMessageFeeSub": "প্রতি বার্তায় ফি নিন। ফ্রি DM-এর জন্য 0 দিন। নির্দিষ্ট ব্যবহারকারীদের ফ্রি অ্যাক্সেস দিতে পারেন।",
+    "allDisabled": "এখন সব DM বন্ধ। নতুন DM ডিফল্টে আটকানো।"
   }
 }

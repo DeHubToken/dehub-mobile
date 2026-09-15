@@ -3753,5 +3753,29 @@
     "stream": "Ìtànkálẹ̀",
     "boostPost": "Boost ìfìwéránṣẹ́",
     "openSuperPowers": "Ṣí SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Kò ṣeé ṣe láti so fáìlì yẹn mọ́.",
+    "removeAttachment": "Yọ ìsopọ̀ kúrò",
+    "addTip": "Fi ẹ̀bùn kún",
+    "chooseGif": "Yan GIF",
+    "attachImage": "So àwòrán mọ́",
+    "attachVideo": "So fídíò mọ́",
+    "attachFile": "So fáìlì mọ́",
+    "enhanceWithAi": "Fi AI mú ìfiránṣẹ́ dára síi",
+    "sendMessage": "Fi ìfiránṣẹ́ ránṣẹ́",
+    "cantMessageYourself": "O kò lè fi ìfiránṣẹ́ ránṣẹ́ sí ara rẹ",
+    "askSomething": "Béèrè nǹkan...",
+    "removeOption": "Yọ àṣàyàn kúrò",
+    "allowMultiple": "Gba àwọn ìdáhùn púpọ̀ láàyè",
+    "preferences": "Àwọn ìfẹ́ DM",
+    "enableDms": "Mú DM ṣiṣẹ́",
+    "enableDmsSub": "Pa á kí gbogbo ìfiránṣẹ́ má lè wọlé.",
+    "allowNewDms": "Gba DM tuntun láàyè",
+    "allowNewDmsOn": "Tí ó bá pa, àwọn tí o ti bá sọ̀rọ̀ nìkan ló lè fi ìfiránṣẹ́ ránṣẹ́ sí ọ.",
+    "allowNewDmsOff": "Mú DM ṣiṣẹ́ kí ìfiránṣẹ́ tuntun lè wọlé.",
+    "perMessageFee": "Owó fún ìfiránṣẹ́ kọ̀ọ̀kan (DHB)",
+    "perMessageFeeSub": "Gba owó fún ìfiránṣẹ́ kọ̀ọ̀kan. Fi 0 sí i kí DM lè jẹ́ ọ̀fẹ́. O lè fún àwọn olùlò kan ní ààyè ọ̀fẹ́.",
+    "allDisabled": "Gbogbo DM ti pa lọ́wọ́lọ́wọ́. A ń dí DM tuntun lọ́nà gẹ́gẹ́ bí àbí."
   }
 }

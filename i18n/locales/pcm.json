@@ -3577,5 +3577,29 @@
     "stream": "Stream",
     "boostPost": "Boost di post",
     "openSuperPowers": "Open SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "We no fit attach dat file.",
+    "removeAttachment": "Remove attachment",
+    "addTip": "Add tip",
+    "chooseGif": "Choose GIF",
+    "attachImage": "Attach image",
+    "attachVideo": "Attach video",
+    "attachFile": "Attach file",
+    "enhanceWithAi": "Make AI improve di message",
+    "sendMessage": "Send message",
+    "cantMessageYourself": "You no fit message yourself",
+    "askSomething": "Ask somtin...",
+    "removeOption": "Remove option",
+    "allowMultiple": "Allow plenty answers",
+    "preferences": "DM settings",
+    "enableDms": "Turn on DMs",
+    "enableDmsSub": "Turn am off make all message block.",
+    "allowNewDms": "Allow new DMs",
+    "allowNewDmsOn": "If e off, na only people wey you don chat with fit message you.",
+    "allowNewDmsOff": "Turn on DMs make new message fit enter.",
+    "perMessageFee": "Fee for each message (DHB)",
+    "perMessageFeeSub": "Charge people for each message. Put 0 make DM free. You fit give some users free access.",
+    "allDisabled": "All DMs dey off now. New DMs dey block by default."
   }
 }

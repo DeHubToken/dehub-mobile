@@ -3764,5 +3764,29 @@
     "stream": "स्ट्रीम",
     "boostPost": "पोस्ट ल बूस्ट करव",
     "openSuperPowers": "SuperPowers खोलव"
+  },
+  "dm": {
+    "attachFailed": "ओ फाइल जोड़े नइ जा सकिस।",
+    "removeAttachment": "अटैचमेंट हटाव",
+    "addTip": "टिप जोड़व",
+    "chooseGif": "GIF चुनव",
+    "attachImage": "फोटो जोड़व",
+    "attachVideo": "वीडियो जोड़व",
+    "attachFile": "फाइल जोड़व",
+    "enhanceWithAi": "AI ले संदेस सुधारव",
+    "sendMessage": "संदेस भेजव",
+    "cantMessageYourself": "तुमन खुद ल संदेस नइ भेज सकव",
+    "askSomething": "कुछु पूछव...",
+    "removeOption": "विकल्प हटाव",
+    "allowMultiple": "एक ले जादा जवाब के अनुमति देव",
+    "preferences": "DM पसंद",
+    "enableDms": "DM चालू करव",
+    "enableDmsSub": "सबो संदेस रोके बर बंद करव।",
+    "allowNewDms": "नवा DM के अनुमति देव",
+    "allowNewDmsOn": "बंद रहिही त सिरिफ ओहीच मन संदेस भेज सकहीं जेकर ले तुमन पहिली गोठियाय हव।",
+    "allowNewDmsOff": "नवा संदेस के अनुमति बर DM चालू करव।",
+    "perMessageFee": "हर संदेस के फीस (DHB)",
+    "perMessageFeeSub": "हर संदेस म सुलक लेव। फोकट DM बर 0 रखव। कुछु उपयोगकर्ता ल फोकट पहुँच दे सकव।",
+    "allDisabled": "अभी सबो DM बंद हे। नवा DM डिफॉल्ट ले रोके गे हे।"
   }
 }

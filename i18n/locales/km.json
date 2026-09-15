@@ -3782,5 +3782,29 @@
     "stream": "ការផ្សាយ",
     "boostPost": "ជំរុញប្រកាស",
     "openSuperPowers": "បើក SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "មិនអាចភ្ជាប់ឯកសារនោះបានទេ។",
+    "removeAttachment": "លុបឯកសារភ្ជាប់",
+    "addTip": "បន្ថែមទឹកតែ",
+    "chooseGif": "ជ្រើសរើស GIF",
+    "attachImage": "ភ្ជាប់រូបភាព",
+    "attachVideo": "ភ្ជាប់វីដេអូ",
+    "attachFile": "ភ្ជាប់ឯកសារ",
+    "enhanceWithAi": "កែលម្អសារដោយ AI",
+    "sendMessage": "ផ្ញើសារ",
+    "cantMessageYourself": "អ្នកមិនអាចផ្ញើសារទៅខ្លួនឯងបានទេ",
+    "askSomething": "សួរអ្វីមួយ...",
+    "removeOption": "លុបជម្រើស",
+    "allowMultiple": "អនុញ្ញាតឱ្យឆ្លើយច្រើន",
+    "preferences": "ចំណូលចិត្ត DM",
+    "enableDms": "បើក DM",
+    "enableDmsSub": "បិទដើម្បីទប់ស្កាត់សារទាំងអស់។",
+    "allowNewDms": "អនុញ្ញាត DM ថ្មី",
+    "allowNewDmsOn": "បើបិទ មានតែអ្នកដែលអ្នកធ្លាប់ជជែកជាមួយប៉ុណ្ណោះដែលអាចផ្ញើសារមកអ្នក។",
+    "allowNewDmsOff": "បើក DM ដើម្បីអនុញ្ញាតសារថ្មី។",
+    "perMessageFee": "ថ្លៃក្នុងមួយសារ (DHB)",
+    "perMessageFeeSub": "គិតថ្លៃក្នុងមួយសារ។ កំណត់ 0 សម្រាប់ DM ឥតគិតថ្លៃ។ អ្នកអាចផ្តល់សិទ្ធិឥតគិតថ្លៃដល់អ្នកប្រើជាក់លាក់។",
+    "allDisabled": "បច្ចុប្បន្ន DM ទាំងអស់ត្រូវបានបិទ។ DM ថ្មីត្រូវបានទប់ស្កាត់តាមលំនាំដើម។"
   }
 }

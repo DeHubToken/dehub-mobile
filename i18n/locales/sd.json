@@ -3746,5 +3746,29 @@
     "stream": "اسٽريم",
     "boostPost": "پوسٽ کي بوسٽ ڪريو",
     "openSuperPowers": "SuperPowers کوليو"
+  },
+  "dm": {
+    "attachFailed": "اها فائل شامل نه ٿي سگهي.",
+    "removeAttachment": "منسلڪ هٽايو",
+    "addTip": "ٽپ شامل ڪريو",
+    "chooseGif": "GIF چونڊيو",
+    "attachImage": "تصوير شامل ڪريو",
+    "attachVideo": "وڊيو شامل ڪريو",
+    "attachFile": "فائل شامل ڪريو",
+    "enhanceWithAi": "AI سان پيغام بهتر ڪريو",
+    "sendMessage": "پيغام موڪليو",
+    "cantMessageYourself": "توهان پاڻ کي پيغام نٿا موڪلي سگهو",
+    "askSomething": "ڪجهه پڇو...",
+    "removeOption": "آپشن هٽايو",
+    "allowMultiple": "گھڻن جوابن جي اجازت ڏيو",
+    "preferences": "DM ترجيحون",
+    "enableDms": "DM فعال ڪريو",
+    "enableDmsSub": "سڀ پيغام روڪڻ لاءِ بند ڪريو.",
+    "allowNewDms": "نون DM جي اجازت ڏيو",
+    "allowNewDmsOn": "بند هجڻ تي رڳو اهي ماڻهو پيغام موڪلي سگهندا جن سان توهان اڳ ڳالهايو آهي.",
+    "allowNewDmsOff": "نون پيغامن جي اجازت لاءِ DM فعال ڪريو.",
+    "perMessageFee": "في پيغام فيس (DHB)",
+    "perMessageFeeSub": "في پيغام چارج ڪريو. مفت DM لاءِ 0 رکو. ڪجهه صارفن کي مفت رسائي ڏئي سگهو ٿا.",
+    "allDisabled": "هن وقت سڀ DM بند آهن. نوان DM ڊفالٽ طور روڪيل آهن."
   }
 }

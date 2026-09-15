@@ -3818,5 +3818,29 @@
     "stream": "بث",
     "boostPost": "عزّز المنشور",
     "openSuperPowers": "افتح SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "تعذّر إرفاق هذا الملف.",
+    "removeAttachment": "إزالة المرفق",
+    "addTip": "أضف إكرامية",
+    "chooseGif": "اختر GIF",
+    "attachImage": "أرفق صورة",
+    "attachVideo": "أرفق فيديو",
+    "attachFile": "أرفق ملفًا",
+    "enhanceWithAi": "حسّن الرسالة بالذكاء الاصطناعي",
+    "sendMessage": "أرسل الرسالة",
+    "cantMessageYourself": "لا يمكنك مراسلة نفسك",
+    "askSomething": "اطرح سؤالاً...",
+    "removeOption": "إزالة الخيار",
+    "allowMultiple": "السماح بإجابات متعددة",
+    "preferences": "تفضيلات الرسائل الخاصة",
+    "enableDms": "تفعيل الرسائل الخاصة",
+    "enableDmsSub": "أوقفه لحظر كل الرسائل.",
+    "allowNewDms": "السماح برسائل جديدة",
+    "allowNewDmsOn": "إذا كان متوقفًا، فلن يراسلك إلا من سبق أن تحدثت معهم.",
+    "allowNewDmsOff": "فعّل الرسائل الخاصة للسماح برسائل جديدة.",
+    "perMessageFee": "رسوم لكل رسالة (DHB)",
+    "perMessageFeeSub": "احتسب رسومًا على المستخدمين لكل رسالة. اضبطها على 0 لتصبح الرسائل مجانية. ويمكنك منح وصول مجاني لمستخدمين بعينهم.",
+    "allDisabled": "جميع الرسائل الخاصة معطّلة حاليًا، والرسائل الجديدة محظورة افتراضيًا."
   }
 }

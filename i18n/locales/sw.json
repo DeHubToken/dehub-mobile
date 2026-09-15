@@ -3763,5 +3763,29 @@
     "stream": "Matangazo",
     "boostPost": "Boresha chapisho",
     "openSuperPowers": "Fungua SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Faili hilo halikuweza kuambatishwa.",
+    "removeAttachment": "Ondoa kiambatisho",
+    "addTip": "Ongeza bakshishi",
+    "chooseGif": "Chagua GIF",
+    "attachImage": "Ambatisha picha",
+    "attachVideo": "Ambatisha video",
+    "attachFile": "Ambatisha faili",
+    "enhanceWithAi": "Boresha ujumbe kwa AI",
+    "sendMessage": "Tuma ujumbe",
+    "cantMessageYourself": "Huwezi kujitumia ujumbe",
+    "askSomething": "Uliza jambo...",
+    "removeOption": "Ondoa chaguo",
+    "allowMultiple": "Ruhusu majibu mengi",
+    "preferences": "Mapendeleo ya DM",
+    "enableDms": "Washa DM",
+    "enableDmsSub": "Zima ili kuzuia ujumbe wote.",
+    "allowNewDms": "Ruhusu DM mpya",
+    "allowNewDmsOn": "Ikizimwa, watu uliowahi kuzungumza nao pekee ndio wanaweza kukutumia ujumbe.",
+    "allowNewDmsOff": "Washa DM ili kuruhusu ujumbe mpya.",
+    "perMessageFee": "Ada kwa kila ujumbe (DHB)",
+    "perMessageFeeSub": "Tozi kwa kila ujumbe. Weka 0 kwa DM bila malipo. Unaweza kuwapa watumiaji fulani ufikiaji bila malipo.",
+    "allDisabled": "DM zote zimezimwa kwa sasa. DM mpya huzuiwa kwa chaguo-msingi."
   }
 }

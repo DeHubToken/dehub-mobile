@@ -3833,5 +3833,29 @@
     "stream": "Stream",
     "boostPost": "Boost post",
     "openSuperPowers": "Open SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Couldn't attach that file.",
+    "removeAttachment": "Remove attachment",
+    "addTip": "Add tip",
+    "chooseGif": "Choose a GIF",
+    "attachImage": "Attach image",
+    "attachVideo": "Attach video",
+    "attachFile": "Attach file",
+    "enhanceWithAi": "Enhance message with AI",
+    "sendMessage": "Send message",
+    "cantMessageYourself": "You can’t message yourself",
+    "askSomething": "Ask something...",
+    "removeOption": "Remove option",
+    "allowMultiple": "Allow multiple answers",
+    "preferences": "DM Preferences",
+    "enableDms": "Enable DMs",
+    "enableDmsSub": "Turn off to block all messages.",
+    "allowNewDms": "Allow New DMs",
+    "allowNewDmsOn": "If off, only people you've chatted with can message you.",
+    "allowNewDmsOff": "Turn on DMs to allow new messages.",
+    "perMessageFee": "Per-Message Fee (DHB)",
+    "perMessageFeeSub": "Charge users per message. Set to 0 for free DMs. You can grant free access to specific users.",
+    "allDisabled": "All DMs are currently disabled. New DMs are blocked by default."
   }
 }

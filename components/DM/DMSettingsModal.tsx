@@ -6,6 +6,7 @@ import { useUser, useAuthActions } from '../../context/AuthContext';
 import { toastError, toastWarning } from '../../libs/toast';
 import { updateDmUserStatus } from '../../services/dm/dm.api';
 import { DmDisableStatus, DmAction } from '../../services/enums/dm-preferences.enum';
+import { useTranslation } from 'react-i18next';
 
 export type DMSettingsModalProps = {
   open: boolean;
@@ -25,6 +26,7 @@ const Row: React.FC<{ title: string; subtitle?: string; right?: React.ReactNode 
 );
 
 const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange }) => {
+  const { t } = useTranslation();
   const user = useUser();
   const { patchUser } = useAuthActions();
   const initial = useMemo(() => {
@@ -201,7 +203,7 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
             <View className="w-9 h-9 rounded-xl bg-white/10 items-center justify-center mr-2">
               <Ionicons name="options-outline" color="#F4F4F5" size={18} />
             </View>
-            <Text className="text-theme-neutrals-100 text-[17px] font-semibold">DM Preferences</Text>
+            <Text className="text-theme-neutrals-100 text-[17px] font-semibold">{t("dm.preferences")}</Text>
           </View>
           <Text className="text-theme-neutrals-400 text-[12px] mt-2">
             Control who can message you and charge a per-message fee in DHB.
@@ -211,20 +213,20 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
         <View className="px-5 mt-4">
           <View className="bg-theme-neutrals-800 rounded-xl p-3 border border-theme-neutrals-700">
             <Row
-              title="Enable DMs"
-              subtitle="Turn off to block all messages."
+              title={t("dm.enableDms")}
+              subtitle={t("dm.enableDmsSub")}
               right={rightSwitchDms}
             />
             <View className="h-[1px] bg-theme-neutrals-700/60" />
             <Row
-              title="Allow New DMs"
-              subtitle={dmsEnabled ? 'If off, only people you\'ve chatted with can message you.' : 'Turn on DMs to allow new messages.'}
+              title={t("dm.allowNewDms")}
+              subtitle={dmsEnabled ? t("dm.allowNewDmsOn") : t("dm.allowNewDmsOff")}
               right={rightSwitchNew}
             />
             <View className="h-[1px] bg-theme-neutrals-700/60" />
             <View className="py-3">
-              <Text className="text-theme-neutrals-100 text-[15px] font-medium">Per-Message Fee (DHB)</Text>
-              <Text className="text-theme-neutrals-400 text-[12px] mt-1">Charge users per message. Set to 0 for free DMs. You can grant free access to specific users.</Text>
+              <Text className="text-theme-neutrals-100 text-[15px] font-medium">{t("dm.perMessageFee")}</Text>
+              <Text className="text-theme-neutrals-400 text-[12px] mt-1">{t("dm.perMessageFeeSub")}</Text>
               <View className="flex-row items-center mt-2">
                 <TextInput
                   value={fee}
@@ -249,7 +251,7 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
             </View>
             {!dmsEnabled ? (
               <View className="bg-white/10 border border-white/20 rounded-xl p-2">
-                <Text className="text-white/80 text-[12px]">All DMs are currently disabled. New DMs are blocked by default.</Text>
+                <Text className="text-white/80 text-[12px]">{t("dm.allDisabled")}</Text>
               </View>
             ) : null}
           </View>
@@ -260,7 +262,7 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
             onPress={close}
             className="px-4 h-11 rounded-xl bg-theme-neutrals-700 items-center justify-center active:opacity-80"
           >
-            <Text className="text-theme-neutrals-100">Close</Text>
+            <Text className="text-theme-neutrals-100">{t("common.close")}</Text>
           </TouchableOpacity>
         </View>
       </View>

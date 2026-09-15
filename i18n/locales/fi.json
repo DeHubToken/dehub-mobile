@@ -3763,5 +3763,29 @@
     "stream": "Lähetys",
     "boostPost": "Tehosta julkaisua",
     "openSuperPowers": "Avaa SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Tiedostoa ei voitu liittää.",
+    "removeAttachment": "Poista liite",
+    "addTip": "Lisää tippi",
+    "chooseGif": "Valitse GIF",
+    "attachImage": "Liitä kuva",
+    "attachVideo": "Liitä video",
+    "attachFile": "Liitä tiedosto",
+    "enhanceWithAi": "Paranna viestiä tekoälyllä",
+    "sendMessage": "Lähetä viesti",
+    "cantMessageYourself": "Et voi lähettää viestiä itsellesi",
+    "askSomething": "Kysy jotain...",
+    "removeOption": "Poista vaihtoehto",
+    "allowMultiple": "Salli useita vastauksia",
+    "preferences": "Viestiasetukset",
+    "enableDms": "Ota viestit käyttöön",
+    "enableDmsSub": "Estä kaikki viestit kytkemällä pois päältä.",
+    "allowNewDms": "Salli uudet viestit",
+    "allowNewDmsOn": "Jos pois päältä, vain aiemmin juttelemasi ihmiset voivat lähettää viestejä.",
+    "allowNewDmsOff": "Ota viestit käyttöön salliaksesi uudet viestit.",
+    "perMessageFee": "Viestikohtainen maksu (DHB)",
+    "perMessageFeeSub": "Veloita viestikohtaisesti. Aseta 0, jos viestit ovat ilmaisia. Voit myöntää tietyille käyttäjille ilmaisen pääsyn.",
+    "allDisabled": "Kaikki viestit ovat nyt pois käytöstä. Uudet estetään oletuksena."
   }
 }

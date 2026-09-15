@@ -3524,5 +3524,29 @@
     "stream": "Weşan",
     "boostPost": "Postê boost bike",
     "openSuperPowers": "SuperPowers veke"
+  },
+  "dm": {
+    "attachFailed": "Ew pel nehat pêvekirin.",
+    "removeAttachment": "Pêvekê rake",
+    "addTip": "Baxşîş zêde bike",
+    "chooseGif": "GIF hilbijêre",
+    "attachImage": "Wêne pêve bike",
+    "attachVideo": "Vîdyo pêve bike",
+    "attachFile": "Pel pêve bike",
+    "enhanceWithAi": "Peyamê bi AI baştir bike",
+    "sendMessage": "Peyamê bişîne",
+    "cantMessageYourself": "Tu nikarî ji xwe re peyam bişînî",
+    "askSomething": "Tiştekî bipirse...",
+    "removeOption": "Vebijarkê rake",
+    "allowMultiple": "Destûra gelek bersivan bide",
+    "preferences": "Tercîhên DM",
+    "enableDms": "DM çalak bike",
+    "enableDmsSub": "Ji bo astengkirina hemû peyaman vemirîne.",
+    "allowNewDms": "Destûra DM-yên nû bide",
+    "allowNewDmsOn": "Heke girtî be, tenê kesên ku te bi wan re peyivîye dikarin ji te re binivîsin.",
+    "allowNewDmsOff": "Ji bo destûra peyamên nû DM çalak bike.",
+    "perMessageFee": "Heqê her peyamê (DHB)",
+    "perMessageFeeSub": "Ji her peyamê heq bistîne. Ji bo DM-yên belaş 0 bike. Tu dikarî ji hin bikarhêneran re gihîştina belaş bidî.",
+    "allDisabled": "Niha hemû DM girtî ne. DM-yên nû bi awayê standard têne astengkirin."
   }
 }

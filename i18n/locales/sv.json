@@ -3767,5 +3767,29 @@
     "stream": "Sändning",
     "boostPost": "Boosta inlägget",
     "openSuperPowers": "Öppna SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Det gick inte att bifoga filen.",
+    "removeAttachment": "Ta bort bilaga",
+    "addTip": "Lägg till dricks",
+    "chooseGif": "Välj en GIF",
+    "attachImage": "Bifoga bild",
+    "attachVideo": "Bifoga video",
+    "attachFile": "Bifoga fil",
+    "enhanceWithAi": "Förbättra meddelandet med AI",
+    "sendMessage": "Skicka meddelande",
+    "cantMessageYourself": "Du kan inte messa dig själv",
+    "askSomething": "Fråga något...",
+    "removeOption": "Ta bort alternativ",
+    "allowMultiple": "Tillåt flera svar",
+    "preferences": "DM-inställningar",
+    "enableDms": "Aktivera DM",
+    "enableDmsSub": "Stäng av för att blockera alla meddelanden.",
+    "allowNewDms": "Tillåt nya DM",
+    "allowNewDmsOn": "Om av kan bara personer du redan chattat med skicka meddelanden.",
+    "allowNewDmsOff": "Slå på DM för att tillåta nya meddelanden.",
+    "perMessageFee": "Avgift per meddelande (DHB)",
+    "perMessageFeeSub": "Ta betalt per meddelande. Sätt 0 för gratis DM. Du kan ge enskilda användare gratis åtkomst.",
+    "allDisabled": "Alla DM är avstängda just nu. Nya DM blockeras som standard."
   }
 }

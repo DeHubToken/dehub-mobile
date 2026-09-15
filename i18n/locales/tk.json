@@ -3733,5 +3733,29 @@
     "stream": "Ýaýlym",
     "boostPost": "Ýazgyny güýçlendir",
     "openSuperPowers": "SuperPowers aç"
+  },
+  "dm": {
+    "attachFailed": "Ol faýly goşup bolmady.",
+    "removeAttachment": "Goşundyny aýyr",
+    "addTip": "Çaýpuly goş",
+    "chooseGif": "GIF saýla",
+    "attachImage": "Surat goş",
+    "attachVideo": "Wideo goş",
+    "attachFile": "Faýl goş",
+    "enhanceWithAi": "Habary emeli aň bilen gowulandyr",
+    "sendMessage": "Habar iber",
+    "cantMessageYourself": "Özüňize habar iberip bilmersiňiz",
+    "askSomething": "Bir zat sora...",
+    "removeOption": "Warianty aýyr",
+    "allowMultiple": "Birnäçe jogaba rugsat ber",
+    "preferences": "DM sazlamalary",
+    "enableDms": "DM-leri işjeňleşdir",
+    "enableDmsSub": "Ähli habarlary blokirlemek üçin öçüriň.",
+    "allowNewDms": "Täze DM-lere rugsat ber",
+    "allowNewDmsOn": "Öçürilen bolsa, diňe öň gürleşen adamlaryňyz size ýazyp biler.",
+    "allowNewDmsOff": "Täze habarlara rugsat bermek üçin DM-leri işjeňleşdiriň.",
+    "perMessageFee": "Her habar üçin töleg (DHB)",
+    "perMessageFeeSub": "Her habar üçin töleg al. Mugt DM üçin 0 goý. Käbir ulanyjylara mugt elýeterlilik berip bilersiňiz.",
+    "allDisabled": "Häzir ähli DM öçürilen. Täze DM-ler deslapky ýagdaýda blokirlenýär."
   }
 }

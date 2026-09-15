@@ -3762,5 +3762,29 @@
     "stream": "Transliacija",
     "boostPost": "Sustiprinti įrašą",
     "openSuperPowers": "Atidaryti SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Nepavyko pridėti to failo.",
+    "removeAttachment": "Pašalinti priedą",
+    "addTip": "Pridėti arbatpinigių",
+    "chooseGif": "Pasirinkti GIF",
+    "attachImage": "Pridėti paveikslėlį",
+    "attachVideo": "Pridėti vaizdo įrašą",
+    "attachFile": "Pridėti failą",
+    "enhanceWithAi": "Patobulinti žinutę su DI",
+    "sendMessage": "Siųsti žinutę",
+    "cantMessageYourself": "Negalite rašyti sau",
+    "askSomething": "Paklauskite ko nors...",
+    "removeOption": "Pašalinti parinktį",
+    "allowMultiple": "Leisti kelis atsakymus",
+    "preferences": "Žinučių nustatymai",
+    "enableDms": "Įjungti žinutes",
+    "enableDmsSub": "Išjunkite, kad užblokuotumėte visas žinutes.",
+    "allowNewDms": "Leisti naujas žinutes",
+    "allowNewDmsOn": "Jei išjungta, rašyti gali tik tie, su kuriais jau bendravote.",
+    "allowNewDmsOff": "Įjunkite žinutes, kad leistumėte naujas.",
+    "perMessageFee": "Mokestis už žinutę (DHB)",
+    "perMessageFeeSub": "Imkite mokestį už žinutę. Nustatykite 0 nemokamoms žinutėms. Konkretiems naudotojams galite suteikti nemokamą prieigą.",
+    "allDisabled": "Šiuo metu visos žinutės išjungtos. Naujos pagal numatytuosius nustatymus blokuojamos."
   }
 }

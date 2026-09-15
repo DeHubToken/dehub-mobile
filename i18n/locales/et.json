@@ -3762,5 +3762,29 @@
     "stream": "Voog",
     "boostPost": "Võimenda postitust",
     "openSuperPowers": "Ava SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Seda faili ei saanud manustada.",
+    "removeAttachment": "Eemalda manus",
+    "addTip": "Lisa jootraha",
+    "chooseGif": "Vali GIF",
+    "attachImage": "Manusta pilt",
+    "attachVideo": "Manusta video",
+    "attachFile": "Manusta fail",
+    "enhanceWithAi": "Paranda sõnumit tehisintellektiga",
+    "sendMessage": "Saada sõnum",
+    "cantMessageYourself": "Sa ei saa endale sõnumit saata",
+    "askSomething": "Küsi midagi...",
+    "removeOption": "Eemalda valik",
+    "allowMultiple": "Luba mitu vastust",
+    "preferences": "Sõnumite eelistused",
+    "enableDms": "Luba sõnumid",
+    "enableDmsSub": "Lülita välja, et blokeerida kõik sõnumid.",
+    "allowNewDms": "Luba uued sõnumid",
+    "allowNewDmsOn": "Kui väljas, saavad sulle kirjutada ainult need, kellega oled juba vestelnud.",
+    "allowNewDmsOff": "Lülita sõnumid sisse, et lubada uusi sõnumeid.",
+    "perMessageFee": "Tasu sõnumi kohta (DHB)",
+    "perMessageFeeSub": "Küsi tasu sõnumi kohta. Määra 0 tasuta sõnumite jaoks. Üksikutele kasutajatele saad anda tasuta juurdepääsu.",
+    "allDisabled": "Kõik sõnumid on praegu välja lülitatud. Uued blokeeritakse vaikimisi."
   }
 }

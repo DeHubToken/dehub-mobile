@@ -3748,5 +3748,29 @@
     "stream": "Rerenga",
     "boostPost": "Whakapikihia te pou",
     "openSuperPowers": "Whakatuwherahia SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Kāore i taea te āpiti i taua kōnae.",
+    "removeAttachment": "Tangohia te āpitihanga",
+    "addTip": "Tāpiri koha",
+    "chooseGif": "Kōwhiria he GIF",
+    "attachImage": "Āpitihia he whakaahua",
+    "attachVideo": "Āpitihia he ataata",
+    "attachFile": "Āpitihia he kōnae",
+    "enhanceWithAi": "Whakapaia te karere mā te AI",
+    "sendMessage": "Tukuna te karere",
+    "cantMessageYourself": "Kāore e taea te tuku karere ki a koe anō",
+    "askSomething": "Pātai mai...",
+    "removeOption": "Tangohia te kōwhiringa",
+    "allowMultiple": "Whakaaetia ngā whakautu maha",
+    "preferences": "Ngā manakohanga DM",
+    "enableDms": "Whakahohea ngā DM",
+    "enableDmsSub": "Whakawetohia hei ārai i ngā karere katoa.",
+    "allowNewDms": "Whakaaetia ngā DM hou",
+    "allowNewDmsOn": "Ki te weto, ko ngā tāngata kua kōrero kē koutou anake ka taea te tuku karere.",
+    "allowNewDmsOff": "Whakahohea ngā DM kia whakaaetia ngā karere hou.",
+    "perMessageFee": "Utu mō ia karere (DHB)",
+    "perMessageFeeSub": "Utaina ia karere. Whakaritea ki te 0 mō ngā DM koreutu. Ka taea e koe te tuku urunga koreutu ki ētahi kaiwhakamahi.",
+    "allDisabled": "Kua weto ngā DM katoa ināianei. Ka ārai te taunoa i ngā DM hou."
   }
 }

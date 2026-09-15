@@ -3827,5 +3827,29 @@
     "stream": "Tamsaasa",
     "boostPost": "Barreeffama guddisi",
     "openSuperPowers": "SuperPowers bani"
+  },
+  "dm": {
+    "attachFailed": "Faayilii sana maxxansuun hin dandaʼamne.",
+    "removeAttachment": "Maxxansaa haqi",
+    "addTip": "Kennaa dabali",
+    "chooseGif": "GIF filadhu",
+    "attachImage": "Suuraa maxxansi",
+    "attachVideo": "Viidiyoo maxxansi",
+    "attachFile": "Faayilii maxxansi",
+    "enhanceWithAi": "Ergaa AI'n fooyyessi",
+    "sendMessage": "Ergaa ergi",
+    "cantMessageYourself": "Ofii keetiif ergaa erguu hin dandeessu",
+    "askSomething": "Waan tokko gaafadhu...",
+    "removeOption": "Filannoo haqi",
+    "allowMultiple": "Deebii hedduu hayyami",
+    "preferences": "Filannoo DM",
+    "enableDms": "DM banuu",
+    "enableDmsSub": "Ergaa hunda ugguuf dhaamsi.",
+    "allowNewDms": "DM haaraa hayyami",
+    "allowNewDmsOn": "Yoo dhaamsame, namoonni ati duraan haasofte qofa si ergu.",
+    "allowNewDmsOff": "Ergaa haaraa hayyamuuf DM bani.",
+    "perMessageFee": "Kaffaltii ergaa tokkoon (DHB)",
+    "perMessageFeeSub": "Ergaa tokkoon kaffaltii fudhu. DM bilisaaf 0 godhi. Fayyadamtoota murtaaʼaniif bilisaan heyyamuu dandeessa.",
+    "allDisabled": "DM hundi amma dhaamaniiru. DM haaraan durtiidhaan ni ugguramu."
   }
 }

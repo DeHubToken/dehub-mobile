@@ -3741,5 +3741,29 @@
     "stream": "Ịgba mgbasa",
     "boostPost": "Kwalite post",
     "openSuperPowers": "Mepee SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Enweghị ike ịtụkwasị faịlụ ahụ.",
+    "removeAttachment": "Wepụ ihe ejikọrọ",
+    "addTip": "Tinye onyinye",
+    "chooseGif": "Họrọ GIF",
+    "attachImage": "Tụkwasị onyonyo",
+    "attachVideo": "Tụkwasị vidiyo",
+    "attachFile": "Tụkwasị faịlụ",
+    "enhanceWithAi": "Meziwanye ozi site na AI",
+    "sendMessage": "Zipụ ozi",
+    "cantMessageYourself": "Ị nweghị ike izigara onwe gị ozi",
+    "askSomething": "Jụọ ihe...",
+    "removeOption": "Wepụ nhọrọ",
+    "allowMultiple": "Kwe ka e nwee ọtụtụ azịza",
+    "preferences": "Nhọrọ DM",
+    "enableDms": "Kwado DM",
+    "enableDmsSub": "Gbanyụọ iji gbochie ozi niile.",
+    "allowNewDms": "Kwe DM ọhụrụ",
+    "allowNewDmsOn": "Ọ bụrụ na agbanyụọ, naanị ndị gị na ha kparịrị ụka nwere ike izigara gị ozi.",
+    "allowNewDmsOff": "Kwado DM ka ị nabata ozi ọhụrụ.",
+    "perMessageFee": "Ụgwọ kwa ozi (DHB)",
+    "perMessageFeeSub": "Na-ana ụgwọ kwa ozi. Tọọ ya na 0 maka DM n'efu. Ị nwere ike inye ụfọdụ ndị ọrụ ohere n'efu.",
+    "allDisabled": "A gbanyụrụ DM niile ugbu a. A na-egbochi DM ọhụrụ na ndabara."
   }
 }

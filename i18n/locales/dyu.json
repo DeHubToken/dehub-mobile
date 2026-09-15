@@ -3707,5 +3707,29 @@
     "stream": "Stream",
     "boostPost": "Sɛbɛn boost",
     "openSuperPowers": "SuperPowers da wuli"
+  },
+  "dm": {
+    "attachFailed": "O gafe ma se ka fara a kan.",
+    "removeAttachment": "Fɛn farali bɔ",
+    "addTip": "Bonya fara a kan",
+    "chooseGif": "GIF sugandi",
+    "attachImage": "Ja fara a kan",
+    "attachVideo": "Wideyo fara a kan",
+    "attachFile": "Gafe fara a kan",
+    "enhanceWithAi": "Cikan ɲɛ ni AI ye",
+    "sendMessage": "Cikan ci",
+    "cantMessageYourself": "I tɛ se ka ci i yɛrɛ ma",
+    "askSomething": "Fɛn dɔ ɲininka...",
+    "removeOption": "Sugandili bɔ",
+    "allowMultiple": "Jaabi caman sɔn",
+    "preferences": "DM latigɛliw",
+    "enableDms": "DM da wuli",
+    "enableDmsSub": "A faga walisa ka cikanw bɛɛ bali.",
+    "allowNewDms": "DM kuraw sɔn",
+    "allowNewDmsOn": "N'a fagara, mɔgɔ minnu ni i kumana ka ban, olu dɔrɔn de bɛ se ka ci i ma.",
+    "allowNewDmsOff": "DM da wuli walisa ka cikan kuraw sɔn.",
+    "perMessageFee": "Cikan kelen sara (DHB)",
+    "perMessageFeeSub": "Sara ta cikan kelen kelen na. A bila 0 la walisa DM ka kɛ fu ye. I bɛ se ka sira gansan di mɔgɔ dɔw ma.",
+    "allDisabled": "DM bɛɛ fagalen don sisan. DM kuraw balilen don."
   }
 }
