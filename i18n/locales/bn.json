@@ -3652,5 +3652,21 @@
     "openingCheckout": "চেকআউট খোলা হচ্ছে…",
     "checkoutUnavailable": "চেকআউট লিংক পাওয়া যাচ্ছে না। আবার চেষ্টা করুন।",
     "acceptTerms": "আমি মেনে নিচ্ছি <terms>পরিষেবার শর্তাবলি</terms>"
+  },
+  "musicSheet": {
+    "title": "গান তৈরি করুন",
+    "songTitle": "গানের শিরোনাম",
+    "titlePlaceholder": "খালি রাখুন, AI ঠিক করবে",
+    "styleLabel": "স্টাইল / ধরন",
+    "stylePlaceholder": "যেমন lo-fi, প্রাণবন্ত পপ, ডার্ক ট্র্যাপ",
+    "vocals": "কণ্ঠ",
+    "voiceAuto": "অটো",
+    "voiceMale": "পুরুষ",
+    "voiceFemale": "নারী",
+    "lyrics": "কথা",
+    "writeForMe": "আমার জন্য লিখে দাও",
+    "rewrite": "আবার লিখুন",
+    "lyricsPlaceholder": "শুধু বাদ্য চাইলে খালি রাখুন",
+    "lyricsFailed": "গানের কথা তৈরি করা গেল না"
   }
 }

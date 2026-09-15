@@ -3735,5 +3735,21 @@
     "openingCheckout": "決済ページを開いています…",
     "checkoutUnavailable": "決済リンクを利用できません。もう一度お試しください。",
     "acceptTerms": "同意します: <terms>利用規約</terms>"
+  },
+  "musicSheet": {
+    "title": "曲をつくる",
+    "songTitle": "曲名",
+    "titlePlaceholder": "空欄にすると AI が決めます",
+    "styleLabel": "スタイル / ジャンル",
+    "stylePlaceholder": "例: lo-fi、アップテンポなポップ、ダークなトラップ",
+    "vocals": "ボーカル",
+    "voiceAuto": "自動",
+    "voiceMale": "男性",
+    "voiceFemale": "女性",
+    "lyrics": "歌詞",
+    "writeForMe": "書いてもらう",
+    "rewrite": "書き直す",
+    "lyricsPlaceholder": "空欄にするとインストゥルメンタルになります",
+    "lyricsFailed": "歌詞を生成できませんでした"
   }
 }

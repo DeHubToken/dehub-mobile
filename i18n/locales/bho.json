@@ -3618,5 +3618,21 @@
     "openingCheckout": "भुगतान पन्ना खुलत बा…",
     "checkoutUnavailable": "भुगतान लिंक उपलब्ध नइखे। कृपया फेर कोशिश करीं।",
     "acceptTerms": "हम स्वीकार करत बानी <terms>सेवा के शर्त</terms>"
+  },
+  "musicSheet": {
+    "title": "गाना बनाईं",
+    "songTitle": "गाना के नाम",
+    "titlePlaceholder": "खाली छोड़ीं, AI तय करी",
+    "styleLabel": "स्टाइल / शैली",
+    "stylePlaceholder": "जइसे lo-fi, जोशीला पॉप, डार्क ट्रैप",
+    "vocals": "गायकी",
+    "voiceAuto": "ऑटो",
+    "voiceMale": "पुरुष",
+    "voiceFemale": "महिला",
+    "lyrics": "बोल",
+    "writeForMe": "हमरा खातिर लिखीं",
+    "rewrite": "फेर से लिखीं",
+    "lyricsPlaceholder": "बिना बोल के धुन खातिर खाली छोड़ीं",
+    "lyricsFailed": "बोल ना बन सकल"
   }
 }

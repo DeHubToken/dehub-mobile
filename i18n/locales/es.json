@@ -3738,5 +3738,21 @@
     "openingCheckout": "Abriendo el pago…",
     "checkoutUnavailable": "El enlace de pago no está disponible. Inténtalo de nuevo.",
     "acceptTerms": "Acepto los <terms>Términos y condiciones del servicio</terms>"
+  },
+  "musicSheet": {
+    "title": "Crear una canción",
+    "songTitle": "Título de la canción",
+    "titlePlaceholder": "Déjalo en blanco para que decida la IA",
+    "styleLabel": "Estilo / género",
+    "stylePlaceholder": "p. ej. lo-fi, pop animado, trap oscuro",
+    "vocals": "Voces",
+    "voiceAuto": "Automático",
+    "voiceMale": "Masculina",
+    "voiceFemale": "Femenina",
+    "lyrics": "Letra",
+    "writeForMe": "Escríbela por mí",
+    "rewrite": "Reescribir",
+    "lyricsPlaceholder": "Déjalo en blanco para un instrumental",
+    "lyricsFailed": "No se pudo generar la letra"
   }
 }

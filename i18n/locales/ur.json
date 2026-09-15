@@ -3666,5 +3666,21 @@
     "openingCheckout": "چیک آؤٹ کھولا جا رہا ہے…",
     "checkoutUnavailable": "چیک آؤٹ لنک دستیاب نہیں۔ دوبارہ کوشش کریں۔",
     "acceptTerms": "میں قبول کرتا ہوں <terms>سروس کی شرائط</terms>"
+  },
+  "musicSheet": {
+    "title": "گانا بنائیں",
+    "songTitle": "گانے کا عنوان",
+    "titlePlaceholder": "خالی چھوڑیں تاکہ AI فیصلہ کرے",
+    "styleLabel": "انداز / صنف",
+    "stylePlaceholder": "مثلاً lo-fi، پرجوش پاپ، ڈارک ٹریپ",
+    "vocals": "آواز",
+    "voiceAuto": "آٹو",
+    "voiceMale": "مرد",
+    "voiceFemale": "عورت",
+    "lyrics": "بول",
+    "writeForMe": "میرے لیے لکھیں",
+    "rewrite": "دوبارہ لکھیں",
+    "lyricsPlaceholder": "صرف میوزک کے لیے خالی چھوڑیں",
+    "lyricsFailed": "بول نہیں بن سکے"
   }
 }

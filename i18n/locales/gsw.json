@@ -3657,5 +3657,21 @@
     "openingCheckout": "Kasse wird ufgmacht…",
     "checkoutUnavailable": "Zahligslink nöd verfüegbar. Probier s nomol.",
     "acceptTerms": "Ich akzeptier d <terms>Nutzigsbedingige</terms>"
+  },
+  "musicSheet": {
+    "title": "Es Lied mache",
+    "songTitle": "Liedtitel",
+    "titlePlaceholder": "Leer la, dass d KI entscheidet",
+    "styleLabel": "Stil / Genre",
+    "stylePlaceholder": "z. B. Lo-Fi, flotte Pop, düschtere Trap",
+    "vocals": "Gsang",
+    "voiceAuto": "Auto",
+    "voiceMale": "Männlich",
+    "voiceFemale": "Wiiblich",
+    "lyrics": "Liedtext",
+    "writeForMe": "Für mich schriibe",
+    "rewrite": "Nöi schriibe",
+    "lyricsPlaceholder": "Leer la für es Instrumental",
+    "lyricsFailed": "De Liedtext het nöd chöne gmacht werde"
   }
 }

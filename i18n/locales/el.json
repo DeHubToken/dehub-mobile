@@ -3691,5 +3691,21 @@
     "openingCheckout": "Άνοιγμα ταμείου…",
     "checkoutUnavailable": "Ο σύνδεσμος πληρωμής δεν είναι διαθέσιμος. Δοκίμασε ξανά.",
     "acceptTerms": "Αποδέχομαι τους <terms>Όροι παροχής υπηρεσιών</terms>"
+  },
+  "musicSheet": {
+    "title": "Δημιουργήστε ένα τραγούδι",
+    "songTitle": "Τίτλος τραγουδιού",
+    "titlePlaceholder": "Αφήστε το κενό για να αποφασίσει η ΤΝ",
+    "styleLabel": "Στυλ / είδος",
+    "stylePlaceholder": "π.χ. lo-fi, ζωηρή ποπ, σκοτεινή trap",
+    "vocals": "Φωνητικά",
+    "voiceAuto": "Αυτόματο",
+    "voiceMale": "Ανδρική",
+    "voiceFemale": "Γυναικεία",
+    "lyrics": "Στίχοι",
+    "writeForMe": "Γράψ' τους για μένα",
+    "rewrite": "Ξαναγράψ' τους",
+    "lyricsPlaceholder": "Αφήστε το κενό για ορχηστρικό κομμάτι",
+    "lyricsFailed": "Δεν ήταν δυνατή η δημιουργία στίχων"
   }
 }

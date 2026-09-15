@@ -3667,5 +3667,21 @@
     "openingCheckout": "Po hapet pagesa…",
     "checkoutUnavailable": "Lidhja e pagesës nuk është e disponueshme. Provo sërish.",
     "acceptTerms": "I pranoj <terms>Kushtet e shërbimit</terms>"
+  },
+  "musicSheet": {
+    "title": "Krijo një këngë",
+    "songTitle": "Titulli i këngës",
+    "titlePlaceholder": "Lëre bosh që ta vendosë IA",
+    "styleLabel": "Stili / zhanri",
+    "stylePlaceholder": "p.sh. lo-fi, pop i gjallë, trap i errët",
+    "vocals": "Zërat",
+    "voiceAuto": "Automatik",
+    "voiceMale": "Mashkull",
+    "voiceFemale": "Femër",
+    "lyrics": "Teksti",
+    "writeForMe": "Shkruaji për mua",
+    "rewrite": "Rishkruaj",
+    "lyricsPlaceholder": "Lëre bosh për një instrumental",
+    "lyricsFailed": "Teksti nuk u gjenerua dot"
   }
 }

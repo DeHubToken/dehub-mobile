@@ -3661,5 +3661,21 @@
     "openingCheckout": "Վճարման էջի բացում…",
     "checkoutUnavailable": "Վճարման հղումն անհասանելի է։ Փորձեք կրկին։",
     "acceptTerms": "Ես ընդունում եմ <terms>Ծառայության պայմաններ</terms>"
+  },
+  "musicSheet": {
+    "title": "Ստեղծել երգ",
+    "songTitle": "Երգի վերնագիր",
+    "titlePlaceholder": "Թողեք դատարկ, որ ԱԲ-ն որոշի",
+    "styleLabel": "Ոճ / ժանր",
+    "stylePlaceholder": "օր.՝ lo-fi, եռանդուն փոփ, մութ trap",
+    "vocals": "Վոկալ",
+    "voiceAuto": "Ավտո",
+    "voiceMale": "Տղամարդու",
+    "voiceFemale": "Կնոջ",
+    "lyrics": "Բառեր",
+    "writeForMe": "Գրիր ինձ համար",
+    "rewrite": "Վերաշարադրել",
+    "lyricsPlaceholder": "Թողեք դատարկ՝ գործիքային տարբերակի համար",
+    "lyricsFailed": "Չհաջողվեց ստեղծել բառերը"
   }
 }

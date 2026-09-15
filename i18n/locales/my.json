@@ -3648,5 +3648,21 @@
     "openingCheckout": "ငွေရှင်းရန် စာမျက်နှာ ဖွင့်နေသည်…",
     "checkoutUnavailable": "ငွေရှင်းရန် လင့်ခ် မရနိုင်ပါ။ ထပ်စမ်းပါ။",
     "acceptTerms": "ကျွန်ုပ် လက်ခံပါသည် <terms>ဝန်ဆောင်မှု စည်းကမ်းချက်များ</terms>"
+  },
+  "musicSheet": {
+    "title": "သီချင်း ဖန်တီးပါ",
+    "songTitle": "သီချင်းခေါင်းစဉ်",
+    "titlePlaceholder": "AI ဆုံးဖြတ်ရန် ကွက်လပ်ထားပါ",
+    "styleLabel": "စတိုင် / အမျိုးအစား",
+    "stylePlaceholder": "ဥပမာ lo-fi, တက်ကြွသော pop, မှောင်သော trap",
+    "vocals": "အသံသွင်း",
+    "voiceAuto": "အလိုအလျောက်",
+    "voiceMale": "အမျိုးသား",
+    "voiceFemale": "အမျိုးသမီး",
+    "lyrics": "စာသား",
+    "writeForMe": "ကျွန်ုပ်အတွက် ရေးပေးပါ",
+    "rewrite": "ပြန်ရေးပါ",
+    "lyricsPlaceholder": "တူရိယာသီချင်းအတွက် ကွက်လပ်ထားပါ",
+    "lyricsFailed": "စာသား ဖန်တီး၍ မရပါ"
   }
 }

@@ -3646,5 +3646,21 @@
     "openingCheckout": "Na-emepe ịkwụ ụgwọ…",
     "checkoutUnavailable": "Njikọ ịkwụ ụgwọ adịghị. Nwaa ọzọ.",
     "acceptTerms": "Anabatara m <terms>Usoro ọrụ</terms>"
+  },
+  "musicSheet": {
+    "title": "Mepụta abụ",
+    "songTitle": "Aha abụ",
+    "titlePlaceholder": "Hapụ ya efu ka AI kpebie",
+    "styleLabel": "Ụdị / ụdịdị",
+    "stylePlaceholder": "dịka lo-fi, pop na-akpali akpali, trap gbara ọchịchịrị",
+    "vocals": "Olu abụ",
+    "voiceAuto": "Akpaaka",
+    "voiceMale": "Nwoke",
+    "voiceFemale": "Nwanyị",
+    "lyrics": "Okwu abụ",
+    "writeForMe": "Deere m ya",
+    "rewrite": "Deghachaa ya",
+    "lyricsPlaceholder": "Hapụ ya efu maka abụ na-enweghị okwu",
+    "lyricsFailed": "Enweghị ike ịmepụta okwu abụ"
   }
 }

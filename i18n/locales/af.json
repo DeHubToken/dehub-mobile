@@ -3785,5 +3785,21 @@
     "openingCheckout": "Maak betaling oop…",
     "checkoutUnavailable": "Betaalskakel nie beskikbaar nie. Probeer asseblief weer.",
     "acceptTerms": "Ek aanvaar die <terms>Diensvoorwaardes</terms>"
+  },
+  "musicSheet": {
+    "title": "Skep 'n liedjie",
+    "songTitle": "Liedtitel",
+    "titlePlaceholder": "Los leeg sodat die KI kan besluit",
+    "styleLabel": "Styl / genre",
+    "stylePlaceholder": "bv. lo-fi, opgewekte pop, donker trap",
+    "vocals": "Sang",
+    "voiceAuto": "Outo",
+    "voiceMale": "Manlik",
+    "voiceFemale": "Vroulik",
+    "lyrics": "Lirieke",
+    "writeForMe": "Skryf dit vir my",
+    "rewrite": "Herskryf",
+    "lyricsPlaceholder": "Los leeg vir 'n instrumentale stuk",
+    "lyricsFailed": "Kon nie lirieke skryf nie"
   }
 }

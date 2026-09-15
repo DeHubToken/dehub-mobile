@@ -3672,5 +3672,21 @@
     "openingCheckout": "Pénztár megnyitása…",
     "checkoutUnavailable": "A fizetési link nem érhető el. Próbáld újra.",
     "acceptTerms": "Elfogadom a <terms>Szolgáltatási feltételek</terms>"
+  },
+  "musicSheet": {
+    "title": "Dal készítése",
+    "songTitle": "A dal címe",
+    "titlePlaceholder": "Hagyd üresen, és az MI dönt",
+    "styleLabel": "Stílus / műfaj",
+    "stylePlaceholder": "pl. lo-fi, pörgős pop, sötét trap",
+    "vocals": "Ének",
+    "voiceAuto": "Automatikus",
+    "voiceMale": "Férfi",
+    "voiceFemale": "Női",
+    "lyrics": "Dalszöveg",
+    "writeForMe": "Írd meg helyettem",
+    "rewrite": "Újraírás",
+    "lyricsPlaceholder": "Hagyd üresen instrumentális számhoz",
+    "lyricsFailed": "Nem sikerült dalszöveget készíteni"
   }
 }

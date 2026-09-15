@@ -3935,5 +3935,21 @@
     "openingCheckout": "Afrekenen openen…",
     "checkoutUnavailable": "Betaallink niet beschikbaar. Probeer het opnieuw.",
     "acceptTerms": "Ik accepteer de <terms>Servicevoorwaarden</terms>"
+  },
+  "musicSheet": {
+    "title": "Een nummer maken",
+    "songTitle": "Titel van het nummer",
+    "titlePlaceholder": "Laat leeg en de AI beslist",
+    "styleLabel": "Stijl / genre",
+    "stylePlaceholder": "bijv. lo-fi, opgewekte pop, donkere trap",
+    "vocals": "Zang",
+    "voiceAuto": "Automatisch",
+    "voiceMale": "Mannelijk",
+    "voiceFemale": "Vrouwelijk",
+    "lyrics": "Songtekst",
+    "writeForMe": "Schrijf het voor mij",
+    "rewrite": "Herschrijven",
+    "lyricsPlaceholder": "Laat leeg voor een instrumentaal nummer",
+    "lyricsFailed": "Kan songtekst niet genereren"
   }
 }

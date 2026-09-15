@@ -3669,5 +3669,21 @@
     "openingCheckout": "चेकआउट खुलत हे…",
     "checkoutUnavailable": "चेकआउट लिंक उपलब्ध नइ हे। फेर कोसिस करव।",
     "acceptTerms": "मैं मानत हँव <terms>सेवा के सरत</terms>"
+  },
+  "musicSheet": {
+    "title": "गाना बनाव",
+    "songTitle": "गाना के नाव",
+    "titlePlaceholder": "खाली छोड़व, AI तय करही",
+    "styleLabel": "स्टाइल / शैली",
+    "stylePlaceholder": "जइसे lo-fi, जोशीला पॉप, डार्क ट्रैप",
+    "vocals": "गायकी",
+    "voiceAuto": "ऑटो",
+    "voiceMale": "पुरुष",
+    "voiceFemale": "महिला",
+    "lyrics": "बोल",
+    "writeForMe": "मोर बर लिख देव",
+    "rewrite": "फेर लिखव",
+    "lyricsPlaceholder": "सिरिफ संगीत बर खाली छोड़व",
+    "lyricsFailed": "बोल नइ बन सकिस"
   }
 }

@@ -3667,5 +3667,21 @@
     "openingCheckout": "Atveriamas apmokėjimas…",
     "checkoutUnavailable": "Mokėjimo nuoroda nepasiekiama. Bandykite dar kartą.",
     "acceptTerms": "Sutinku su <terms>Paslaugų teikimo sąlygos</terms>"
+  },
+  "musicSheet": {
+    "title": "Sukurti dainą",
+    "songTitle": "Dainos pavadinimas",
+    "titlePlaceholder": "Palikite tuščią, kad nuspręstų DI",
+    "styleLabel": "Stilius / žanras",
+    "stylePlaceholder": "pvz. lo-fi, energingas popsas, tamsus trap",
+    "vocals": "Vokalas",
+    "voiceAuto": "Automatinis",
+    "voiceMale": "Vyriškas",
+    "voiceFemale": "Moteriškas",
+    "lyrics": "Žodžiai",
+    "writeForMe": "Parašyk už mane",
+    "rewrite": "Perrašyti",
+    "lyricsPlaceholder": "Palikite tuščią instrumentinei versijai",
+    "lyricsFailed": "Nepavyko sukurti žodžių"
   }
 }

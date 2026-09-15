@@ -3668,5 +3668,21 @@
     "openingCheckout": "S'està obrint la compra…",
     "checkoutUnavailable": "L'enllaç de pagament no està disponible. Torna-ho a provar.",
     "acceptTerms": "Accepto els <terms>Termes i condicions del servei</terms>"
+  },
+  "musicSheet": {
+    "title": "Crea una cançó",
+    "songTitle": "Títol de la cançó",
+    "titlePlaceholder": "Deixa-ho en blanc perquè decideixi la IA",
+    "styleLabel": "Estil / gènere",
+    "stylePlaceholder": "p. ex. lo-fi, pop animat, trap fosc",
+    "vocals": "Veus",
+    "voiceAuto": "Automàtic",
+    "voiceMale": "Masculina",
+    "voiceFemale": "Femenina",
+    "lyrics": "Lletra",
+    "writeForMe": "Escriu-la per mi",
+    "rewrite": "Reescriu",
+    "lyricsPlaceholder": "Deixa-ho en blanc per a un instrumental",
+    "lyricsFailed": "No s'ha pogut generar la lletra"
   }
 }

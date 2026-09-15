@@ -4144,5 +4144,21 @@
     "openingCheckout": "Відкриття оплати…",
     "checkoutUnavailable": "Посилання на оплату недоступне. Спробуйте ще раз.",
     "acceptTerms": "Я приймаю <terms>Умови обслуговування</terms>"
+  },
+  "musicSheet": {
+    "title": "Створити пісню",
+    "songTitle": "Назва пісні",
+    "titlePlaceholder": "Залиште порожнім, щоб вирішив ШІ",
+    "styleLabel": "Стиль / жанр",
+    "stylePlaceholder": "напр. lo-fi, бадьорий поп, похмурий trap",
+    "vocals": "Вокал",
+    "voiceAuto": "Авто",
+    "voiceMale": "Чоловічий",
+    "voiceFemale": "Жіночий",
+    "lyrics": "Текст",
+    "writeForMe": "Напиши за мене",
+    "rewrite": "Переписати",
+    "lyricsPlaceholder": "Залиште порожнім для інструменталу",
+    "lyricsFailed": "Не вдалося створити текст"
   }
 }

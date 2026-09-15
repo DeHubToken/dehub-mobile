@@ -3667,5 +3667,21 @@
     "openingCheckout": "চেকআউট খোলা হইতেছে…",
     "checkoutUnavailable": "চেকআউট লিংক পাওয়া যাছে না। আবার চেষ্টা করেন।",
     "acceptTerms": "মুই মানি নেছু <terms>সেবার শর্ত</terms>"
+  },
+  "musicSheet": {
+    "title": "گۆرانییەک دروست بکە",
+    "songTitle": "ناونیشانی گۆرانی",
+    "titlePlaceholder": "بەتاڵی جێبهێڵە بۆ ئەوەی AI بڕیار بدات",
+    "styleLabel": "شێواز / جۆر",
+    "stylePlaceholder": "بۆ نموونە lo-fi، پۆپی چالاک، trap ـی تاریک",
+    "vocals": "دەنگ",
+    "voiceAuto": "خۆکار",
+    "voiceMale": "پیاو",
+    "voiceFemale": "ژن",
+    "lyrics": "دەق",
+    "writeForMe": "بۆم بنووسە",
+    "rewrite": "دووبارە بینووسەوە",
+    "lyricsPlaceholder": "بۆ ئاوازێکی بێ وشە بەتاڵی جێبهێڵە",
+    "lyricsFailed": "نەتوانرا دەق دروست بکرێت"
   }
 }

@@ -3612,5 +3612,21 @@
     "openingCheckout": "Sarali yɔrɔ bɛ da wuli…",
     "checkoutUnavailable": "Sarali sira tɛ yen. A lajɛ tuguni.",
     "acceptTerms": "N sɔnna <terms>Baara sariyaw</terms>"
+  },
+  "musicSheet": {
+    "title": "Dɔnkili dilan",
+    "songTitle": "Dɔnkili tɔgɔ",
+    "titlePlaceholder": "A to lakolon walisa AI ka latigɛ",
+    "styleLabel": "Cogoya / suguya",
+    "stylePlaceholder": "i n'a fɔ lo-fi, pop dusuman, trap dibi",
+    "vocals": "Dɔnkilida",
+    "voiceAuto": "Otomatiki",
+    "voiceMale": "Cɛ",
+    "voiceFemale": "Muso",
+    "lyrics": "Dɔnkili kumaw",
+    "writeForMe": "A sɛbɛn n ye",
+    "rewrite": "A sɛbɛn kokura",
+    "lyricsPlaceholder": "A to lakolon walisa ka fɔlifɛn dɔrɔn sɔrɔ",
+    "lyricsFailed": "Dɔnkili kumaw ma se ka dilan"
   }
 }

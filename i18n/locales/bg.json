@@ -3668,5 +3668,21 @@
     "openingCheckout": "Отваряне на плащането…",
     "checkoutUnavailable": "Връзката за плащане не е достъпна. Опитай отново.",
     "acceptTerms": "Приемам <terms>Условия за ползване</terms>"
+  },
+  "musicSheet": {
+    "title": "Създай песен",
+    "songTitle": "Заглавие на песента",
+    "titlePlaceholder": "Оставете празно, за да реши ИИ",
+    "styleLabel": "Стил / жанр",
+    "stylePlaceholder": "напр. lo-fi, жизнерадостен поп, мрачен трап",
+    "vocals": "Вокал",
+    "voiceAuto": "Автоматично",
+    "voiceMale": "Мъжки",
+    "voiceFemale": "Женски",
+    "lyrics": "Текст",
+    "writeForMe": "Напиши ги вместо мен",
+    "rewrite": "Пренапиши",
+    "lyricsPlaceholder": "Оставете празно за инструментал",
+    "lyricsFailed": "Текстът не можа да бъде създаден"
   }
 }

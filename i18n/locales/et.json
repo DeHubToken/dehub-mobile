@@ -3667,5 +3667,21 @@
     "openingCheckout": "Makselehe avamine…",
     "checkoutUnavailable": "Makselink pole saadaval. Proovi uuesti.",
     "acceptTerms": "Nõustun <terms>Teenusetingimused</terms>"
+  },
+  "musicSheet": {
+    "title": "Loo laul",
+    "songTitle": "Laulu pealkiri",
+    "titlePlaceholder": "Jäta tühjaks, et AI otsustaks",
+    "styleLabel": "Stiil / žanr",
+    "stylePlaceholder": "nt lo-fi, hoogne pop, tume trap",
+    "vocals": "Vokaal",
+    "voiceAuto": "Automaatne",
+    "voiceMale": "Mees",
+    "voiceFemale": "Naine",
+    "lyrics": "Sõnad",
+    "writeForMe": "Kirjuta minu eest",
+    "rewrite": "Kirjuta uuesti",
+    "lyricsPlaceholder": "Jäta tühjaks instrumentaalpala jaoks",
+    "lyricsFailed": "Sõnade loomine ebaõnnestus"
   }
 }

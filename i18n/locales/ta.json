@@ -3656,5 +3656,21 @@
     "openingCheckout": "கட்டணப் பக்கம் திறக்கப்படுகிறது…",
     "checkoutUnavailable": "கட்டண இணைப்பு கிடைக்கவில்லை. மீண்டும் முயலவும்.",
     "acceptTerms": "நான் ஏற்கிறேன் <terms>சேவை விதிமுறைகள்</terms>"
+  },
+  "musicSheet": {
+    "title": "பாடல் உருவாக்கு",
+    "songTitle": "பாடல் தலைப்பு",
+    "titlePlaceholder": "AI முடிவெடுக்க காலியாக விடுங்கள்",
+    "styleLabel": "பாணி / வகை",
+    "stylePlaceholder": "எ.கா. lo-fi, உற்சாகமான பாப், டார்க் ட்ராப்",
+    "vocals": "குரல்",
+    "voiceAuto": "தானியங்கி",
+    "voiceMale": "ஆண்",
+    "voiceFemale": "பெண்",
+    "lyrics": "பாடல் வரிகள்",
+    "writeForMe": "எனக்காக எழுது",
+    "rewrite": "மீண்டும் எழுது",
+    "lyricsPlaceholder": "இசை மட்டும் வேண்டுமெனில் காலியாக விடுங்கள்",
+    "lyricsFailed": "பாடல் வரிகளை உருவாக்க முடியவில்லை"
   }
 }

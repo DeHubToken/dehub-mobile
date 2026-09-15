@@ -3738,5 +3738,21 @@
     "openingCheckout": "Apertura del pagamento…",
     "checkoutUnavailable": "Link di pagamento non disponibile. Riprova.",
     "acceptTerms": "Accetto i <terms>Termini di servizio</terms>"
+  },
+  "musicSheet": {
+    "title": "Crea una canzone",
+    "songTitle": "Titolo della canzone",
+    "titlePlaceholder": "Lascia vuoto e deciderà l'IA",
+    "styleLabel": "Stile / genere",
+    "stylePlaceholder": "es. lo-fi, pop ritmato, trap cupo",
+    "vocals": "Voce",
+    "voiceAuto": "Auto",
+    "voiceMale": "Maschile",
+    "voiceFemale": "Femminile",
+    "lyrics": "Testo",
+    "writeForMe": "Scrivilo per me",
+    "rewrite": "Riscrivi",
+    "lyricsPlaceholder": "Lascia vuoto per un brano strumentale",
+    "lyricsFailed": "Impossibile generare il testo"
   }
 }

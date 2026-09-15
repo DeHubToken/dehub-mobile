@@ -3624,5 +3624,21 @@
     "openingCheckout": "عم يفتح صفحة الدفع…",
     "checkoutUnavailable": "رابط الدفع مش متوفر. رجاءً جرّب مرة تانية.",
     "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>"
+  },
+  "musicSheet": {
+    "title": "اعمل أغنية",
+    "songTitle": "عنوان الأغنية",
+    "titlePlaceholder": "خليه فاضي والذكاء الاصطناعي بيقرر",
+    "styleLabel": "الأسلوب / النوع",
+    "stylePlaceholder": "مثلاً لو-فاي، بوب حماسي، تراب داكن",
+    "vocals": "الغناء",
+    "voiceAuto": "تلقائي",
+    "voiceMale": "رجل",
+    "voiceFemale": "امرأة",
+    "lyrics": "الكلمات",
+    "writeForMe": "اكتبها إلي",
+    "rewrite": "أعد كتابتها",
+    "lyricsPlaceholder": "خليه فاضي لأغنية بدون كلمات",
+    "lyricsFailed": "ما قدرنا نكتب الكلمات"
   }
 }

@@ -3666,5 +3666,21 @@
     "openingCheckout": "正在開啟結帳頁…",
     "checkoutUnavailable": "結帳連結不可用。請重試。",
     "acceptTerms": "我接受 <terms>服務條款</terms>"
+  },
+  "musicSheet": {
+    "title": "創作一首歌",
+    "songTitle": "歌曲標題",
+    "titlePlaceholder": "留空由 AI 決定",
+    "styleLabel": "風格 / 曲風",
+    "stylePlaceholder": "例如 lo-fi、輕快流行、暗黑 trap",
+    "vocals": "人聲",
+    "voiceAuto": "自動",
+    "voiceMale": "男聲",
+    "voiceFemale": "女聲",
+    "lyrics": "歌詞",
+    "writeForMe": "幫我寫",
+    "rewrite": "重寫",
+    "lyricsPlaceholder": "留空可生成純音樂",
+    "lyricsFailed": "無法生成歌詞"
   }
 }

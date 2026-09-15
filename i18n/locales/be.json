@@ -3701,5 +3701,21 @@
     "openingCheckout": "Адкрыццё старонкі аплаты…",
     "checkoutUnavailable": "Спасылка на аплату недаступная. Паспрабуйце яшчэ раз.",
     "acceptTerms": "Я прымаю <terms>Умовы абслугоўвання</terms>"
+  },
+  "musicSheet": {
+    "title": "Стварыць песню",
+    "songTitle": "Назва песні",
+    "titlePlaceholder": "Пакіньце пустым, каб ШІ вырашыў",
+    "styleLabel": "Стыль / жанр",
+    "stylePlaceholder": "напр. lo-fi, бадзёры поп, змрочны трэп",
+    "vocals": "Вакал",
+    "voiceAuto": "Аўта",
+    "voiceMale": "Мужчынскі",
+    "voiceFemale": "Жаночы",
+    "lyrics": "Тэкст",
+    "writeForMe": "Напішы за мяне",
+    "rewrite": "Перапісаць",
+    "lyricsPlaceholder": "Пакіньце пустым для інструментала",
+    "lyricsFailed": "Не ўдалося напісаць тэкст"
   }
 }

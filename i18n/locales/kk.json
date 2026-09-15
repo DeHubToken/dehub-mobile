@@ -3724,5 +3724,21 @@
     "openingCheckout": "Төлем беті ашылуда…",
     "checkoutUnavailable": "Төлем сілтемесі қолжетімсіз. Қайталап көріңіз.",
     "acceptTerms": "Мен қабылдаймын <terms>Қызмет көрсету шарттары</terms>"
+  },
+  "musicSheet": {
+    "title": "Ән жасау",
+    "songTitle": "Ән атауы",
+    "titlePlaceholder": "Бос қалдырсаңыз, ЖИ шешеді",
+    "styleLabel": "Стиль / жанр",
+    "stylePlaceholder": "мысалы lo-fi, көңілді поп, қараңғы trap",
+    "vocals": "Вокал",
+    "voiceAuto": "Авто",
+    "voiceMale": "Ер",
+    "voiceFemale": "Әйел",
+    "lyrics": "Мәтін",
+    "writeForMe": "Мен үшін жаз",
+    "rewrite": "Қайта жазу",
+    "lyricsPlaceholder": "Аспаптық нұсқа үшін бос қалдырыңыз",
+    "lyricsFailed": "Мәтінді жасау мүмкін болмады"
   }
 }

@@ -3747,5 +3747,21 @@
     "openingCheckout": "Manokatra ny fandoavana…",
     "checkoutUnavailable": "Tsy misy ny rohy fandoavana. Andramo indray.",
     "acceptTerms": "Manaiky aho <terms>Fepetra sy Fanompoana</terms>"
+  },
+  "musicSheet": {
+    "title": "Mamorona hira",
+    "songTitle": "Lohatenin'ny hira",
+    "titlePlaceholder": "Avelao foana mba hanapaka ny AI",
+    "styleLabel": "Fomba / karazana",
+    "stylePlaceholder": "oh. lo-fi, pop mavitrika, trap maizina",
+    "vocals": "Feo",
+    "voiceAuto": "Ho azy",
+    "voiceMale": "Lahy",
+    "voiceFemale": "Vavy",
+    "lyrics": "Tononkira",
+    "writeForMe": "Soraty ho ahy",
+    "rewrite": "Soraty indray",
+    "lyricsPlaceholder": "Avelao foana raha tiana ho mozika fotsiny",
+    "lyricsFailed": "Tsy voaforona ny tononkira"
   }
 }
