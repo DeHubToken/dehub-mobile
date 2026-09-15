@@ -138,19 +138,22 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
           </TouchableOpacity>
         ) : null}
 
-        {/* External mode toggle (only pre-stream) */}
+        {/* External mode toggle (only pre-stream). Labelled, not a bare
+            glyph: this is the only route to the RTMP details, and a server
+            icon between a camera and a microphone reads as neither. */}
         {!hideExternalToggle ? (
           <TouchableOpacity
             onPress={onToggleExternal}
             activeOpacity={0.8}
-            className={`${CIRCLE} ${
+            className={`h-12 px-4 rounded-xl flex-row items-center justify-center ${
               externalMode ? "bg-white/20" : "bg-zinc-900/60"
             }`}
             accessibilityRole="button"
-            accessibilityLabel="External streaming mode"
+            accessibilityLabel="Stream from OBS or another encoder"
             accessibilityState={{ selected: externalMode }}
           >
             <Server color="#fff" size={18} />
+            <Text className="text-white text-xs font-semibold ml-1.5">OBS</Text>
           </TouchableOpacity>
         ) : null}
       </View>

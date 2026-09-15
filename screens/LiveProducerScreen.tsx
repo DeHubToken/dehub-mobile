@@ -37,7 +37,7 @@ import { LivestreamEvents, StreamActivityType } from "../services/enums/livestre
 import { toastSuccess, toastError, toastInfo } from "../libs/toast";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { createViewCountUpdater, seedViewerStats } from "../libs/viewers.util";
-import { updateStreamSettings } from "../services/live.service";
+import { updateStreamSettings, getIngestUrl } from "../services/live.service";
 import { deletePost } from "../services/nft.service";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
@@ -92,6 +92,12 @@ const LiveProducerScreen: React.FC = () => {
   const [micMuted, setMicMuted] = useState(false);
   const [cameraOff, setCameraOff] = useState(false);
   const [externalMode, setExternalMode] = useState(false);
+  /**
+   * The mint hands the ingest URL down as a route param, but a producer screen
+   * reached any other way (a resumed stream, a deep link) arrives without one,
+   * and the overlay must not fall back to a host this stream does not live on.
+   */
+  const [fetchedIngestUrl, setFetchedIngestUrl] = useState<string | null>(null);
   const [cameraFacing, setCameraFacing] = useState<"front" | "back">("front");
   const [videoLook, setVideoLook] = useState<VideoLookId>("none");
   const [looksOpen, setLooksOpen] = useState(false);
@@ -751,6 +757,23 @@ const LiveProducerScreen: React.FC = () => {
     [publisherFailed, setPublisherConnected, stage, end]
   );
 
+  // Only on demand: the URL is owner-only and nobody who stays on the camera
+  // ever needs it.
+  useEffect(() => {
+    if (!externalMode || !streamId || ingestUrl || fetchedIngestUrl) return;
+    let cancelled = false;
+    getIngestUrl(streamId)
+      .then((res: any) => {
+        if (!cancelled && res?.ingestUrl) setFetchedIngestUrl(res.ingestUrl);
+      })
+      .catch(() => {
+        /* The overlay shows an em dash rather than a wrong address. */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [externalMode, streamId, ingestUrl, fetchedIngestUrl]);
+
   const handleExitExternal = useCallback(() => {
     setExternalMode(false);
   }, []);
@@ -1115,6 +1138,8 @@ const LiveProducerScreen: React.FC = () => {
               streamKeyLoading={streamKeyLoading}
               onExitExternal={handleExitExternal}
               isLive={stage === "live"}
+              ingestUrl={ingestUrl || fetchedIngestUrl}
+              provider={(streamEntity as any)?.provider}
             />
           </View>
         ) : null}

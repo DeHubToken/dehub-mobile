@@ -10,6 +10,18 @@ interface ExternalStreamingOverlayProps {
   streamKeyLoading: boolean;
   onExitExternal: () => void;
   isLive?: boolean;
+  /**
+   * This stream's own ingest endpoint, from the mint or /ingesturl.
+   *
+   * It is not a constant. Streams provisioned on the self-hosted ingest
+   * publish to that host, not to Livepeer, and handing their creator
+   * Livepeer's endpoint points OBS at a server that will never accept the
+   * key. Livepeer's address is the fallback for a Livepeer stream whose URL
+   * has not arrived yet, and for nothing else.
+   */
+  ingestUrl?: string | null;
+  /** 'mediamtx' for a self-hosted stream; absent on the older Livepeer ones. */
+  provider?: string | null;
 }
 
 const ExternalStreamingOverlay: React.FC<ExternalStreamingOverlayProps> = ({
@@ -17,8 +29,12 @@ const ExternalStreamingOverlay: React.FC<ExternalStreamingOverlayProps> = ({
   streamKeyLoading,
   onExitExternal,
   isLive = false,
+  ingestUrl,
+  provider,
 }) => {
   const onCopy = (value: string) => () => copyToClipboard(value);
+  const serverUrl =
+    ingestUrl || (provider === 'mediamtx' ? null : LIVEPEER_RTMP_SERVER);
 
   return (
     <View className="px-6 w-full items-center">
@@ -57,13 +73,14 @@ const ExternalStreamingOverlay: React.FC<ExternalStreamingOverlayProps> = ({
         <View className="flex-row items-center bg-white/5 rounded-xl px-3 py-2">
           <Text className="text-white/50 text-[11px] mr-2 w-20">Server URL</Text>
           <TouchableOpacity
-            onPress={onCopy(LIVEPEER_RTMP_SERVER)}
+            onPress={serverUrl ? onCopy(serverUrl) : undefined}
             className="flex-1 flex-row items-center"
+            disabled={!serverUrl}
           >
             <Text className="text-white/80 text-[11px] flex-1" numberOfLines={1}>
-              {truncate(LIVEPEER_RTMP_SERVER, 30)}
+              {serverUrl ? truncate(serverUrl, 30) : streamKeyLoading ? 'Loading…' : '—'}
             </Text>
-            <Copy size={13} color="#A6A9AC" />
+            {serverUrl ? <Copy size={13} color="#A6A9AC" /> : null}
           </TouchableOpacity>
         </View>
       </View>
