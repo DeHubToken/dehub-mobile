@@ -3208,5 +3208,31 @@
     "line": "A machibidoro akaụntụ gị iwu, yabụ na ị gaghị ebipụta, kwuo ma ọ bụ zipu ozi.",
     "reason": "Ihe kpatara ya: {{reason}}",
     "deleteAccount": "Hichapụ akaụntụ na data gị"
+  },
+  "teamUp": {
+    "title": "Jikọọ ndị otu",
+    "subtitle": "Jikọta ike obere akpa gị na ndị ọzọ ruo asaa. Onye ọ bụla na-eyi baajị nke ngụkọta unu na-emeghe.",
+    "signInPrompt": "Banye iji mepụta ma ọ bụ sonye n'otu. Achọghị baajị ọ bụla.",
+    "leave": "Hapụ otu",
+    "make": "Mepụta otu",
+    "makeHint": "Ị ga-abụ onye nwe ya. Aha otu bụ nke ọha.",
+    "join": "Sonye n'otu",
+    "joinHint": "Ị nwere ike ịnọ naanị n'otu otu n'otu oge.",
+    "none": "Ahụghị otu ọ bụla.",
+    "namePlaceholder": "Aha otu",
+    "searchPlaceholder": "Chọọ otu",
+    "removeFailed": "Enweghị ike iwepụ onye òtù ahụ",
+    "left": "Ị hapụrụ otu ahụ",
+    "leaveFailed": "Enweghị ike ịhapụ otu ahụ",
+    "created": "E mepụtala otu",
+    "createFailed": "Enweghị ike imepụta otu ahụ",
+    "joined": "Sonyere na {{name}}",
+    "joinFailed": "Enweghị ike isonye n'otu ahụ",
+    "removeTitle": "Wepụ onye òtù?",
+    "removeBody": "Wepụ {{name}} na {{team}}?",
+    "leaveTitle": "Hapụ otu?",
+    "leaveBody": "Hapụ {{name}}?",
+    "leaveAction": "Hapụ",
+    "noBadgeYet": "Enwebeghị baajị"
   }
 }

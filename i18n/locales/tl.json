@@ -3409,5 +3409,31 @@
     "line": "Ipinagbabawal ang iyong account, kaya hindi ka maaaring mag - post, magkomento o magpadala ng mga mensahe.",
     "reason": "Dahilan:{{reason}}",
     "deleteAccount": "Tanggalin ang iyong account at data"
+  },
+  "teamUp": {
+    "title": "Bumuo ng team",
+    "subtitle": "Pagsamahin ang lakas ng wallet ninyo ng hanggang pitong iba pa. Isusuot ng lahat ang badge na bubuksan ng kabuuan ninyo.",
+    "signInPrompt": "Mag-sign in para gumawa o sumali sa team. Walang kailangang badge.",
+    "leave": "Umalis sa team",
+    "make": "Gumawa ng team",
+    "makeHint": "Ikaw ang magiging may-ari. Pampubliko ang mga pangalan ng team.",
+    "join": "Sumali sa team",
+    "joinHint": "Isang team lang ang puwede mong salihan nang sabay.",
+    "none": "Walang nakitang team.",
+    "namePlaceholder": "Pangalan ng team",
+    "searchPlaceholder": "Maghanap ng team",
+    "removeFailed": "Hindi maalis ang miyembrong iyon",
+    "left": "Umalis ka sa team",
+    "leaveFailed": "Hindi makaalis sa team na iyon",
+    "created": "Nagawa na ang team",
+    "createFailed": "Hindi magawa ang team na iyon",
+    "joined": "Sumali ka sa {{name}}",
+    "joinFailed": "Hindi makasali sa team na iyon",
+    "removeTitle": "Alisin ang miyembro?",
+    "removeBody": "Alisin si {{name}} sa {{team}}?",
+    "leaveTitle": "Umalis sa team?",
+    "leaveBody": "Umalis sa {{name}}?",
+    "leaveAction": "Umalis",
+    "noBadgeYet": "Wala pang badge"
   }
 }

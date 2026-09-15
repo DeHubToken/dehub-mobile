@@ -3318,5 +3318,31 @@
     "line": "Tài khoản của bạn bị cấm, vì vậy bạn không thể đăng, nhận xét hoặc gửi tin nhắn.",
     "reason": "Lý do: {{reason}}",
     "deleteAccount": "Xóa tài khoản và dữ liệu của bạn"
+  },
+  "teamUp": {
+    "title": "Lập đội",
+    "subtitle": "Kết hợp sức mạnh ví với tối đa bảy người khác. Mọi người đều đeo huy hiệu mà tổng của cả nhóm mở khóa.",
+    "signInPrompt": "Đăng nhập để tạo hoặc tham gia đội. Không cần huy hiệu nào.",
+    "leave": "Rời đội",
+    "make": "Tạo đội",
+    "makeHint": "Bạn sẽ là chủ đội. Tên đội là công khai.",
+    "join": "Tham gia đội",
+    "joinHint": "Bạn chỉ có thể ở trong một đội tại một thời điểm.",
+    "none": "Không tìm thấy đội nào.",
+    "namePlaceholder": "Tên đội",
+    "searchPlaceholder": "Tìm đội",
+    "removeFailed": "Không thể xóa thành viên đó",
+    "left": "Bạn đã rời đội",
+    "leaveFailed": "Không thể rời đội đó",
+    "created": "Đã tạo đội",
+    "createFailed": "Không thể tạo đội đó",
+    "joined": "Đã tham gia {{name}}",
+    "joinFailed": "Không thể tham gia đội đó",
+    "removeTitle": "Xóa thành viên?",
+    "removeBody": "Xóa {{name}} khỏi {{team}}?",
+    "leaveTitle": "Rời đội?",
+    "leaveBody": "Rời {{name}}?",
+    "leaveAction": "Rời",
+    "noBadgeYet": "Chưa có huy hiệu"
   }
 }

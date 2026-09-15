@@ -3229,5 +3229,31 @@
     "line": "Sinu konto on keelatud, nii et sa ei saa postitada, kommenteerida ega sõnumeid saata.",
     "reason": "Põhjus: {{reason}}",
     "deleteAccount": "Kustuta oma konto ja andmed"
+  },
+  "teamUp": {
+    "title": "Moodusta meeskond",
+    "subtitle": "Ühenda oma rahakoti võimsus kuni seitsme teisega. Kõik kannavad märki, mille teie kogusumma avab.",
+    "signInPrompt": "Logi sisse, et luua meeskond või sellega liituda. Märki pole vaja.",
+    "leave": "Lahku meeskonnast",
+    "make": "Loo meeskond",
+    "makeHint": "Sinust saab omanik. Meeskonnanimed on avalikud.",
+    "join": "Liitu meeskonnaga",
+    "joinHint": "Korraga saad olla ainult ühes meeskonnas.",
+    "none": "Meeskondi ei leitud.",
+    "namePlaceholder": "Meeskonna nimi",
+    "searchPlaceholder": "Otsi meeskondi",
+    "removeFailed": "Seda liiget ei õnnestunud eemaldada",
+    "left": "Lahkusid meeskonnast",
+    "leaveFailed": "Sellest meeskonnast ei õnnestunud lahkuda",
+    "created": "Meeskond loodud",
+    "createFailed": "Seda meeskonda ei õnnestunud luua",
+    "joined": "Liitusid meeskonnaga {{name}}",
+    "joinFailed": "Selle meeskonnaga ei õnnestunud liituda",
+    "removeTitle": "Kas eemaldada liige?",
+    "removeBody": "Kas eemaldada {{name}} meeskonnast {{team}}?",
+    "leaveTitle": "Kas lahkuda meeskonnast?",
+    "leaveBody": "Kas lahkuda meeskonnast {{name}}?",
+    "leaveAction": "Lahku",
+    "noBadgeYet": "Märki veel pole"
   }
 }

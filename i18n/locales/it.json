@@ -3300,5 +3300,31 @@
     "line": "Il tuo account è bannato, quindi non puoi pubblicare, commentare o inviare messaggi.",
     "reason": "Motivo: {{reason}}",
     "deleteAccount": "Elimina il tuo account e i tuoi dati"
+  },
+  "teamUp": {
+    "title": "Fai squadra",
+    "subtitle": "Unisci la potenza del tuo wallet con un massimo di altre sette persone. Tutti indossano il badge che il vostro totale sblocca.",
+    "signInPrompt": "Accedi per creare una squadra o unirti a una. Non serve alcun badge.",
+    "leave": "Lascia la squadra",
+    "make": "Crea una squadra",
+    "makeHint": "Ne diventi il proprietario. I nomi delle squadre sono pubblici.",
+    "join": "Unisciti a una squadra",
+    "joinHint": "Puoi far parte di una sola squadra alla volta.",
+    "none": "Nessuna squadra trovata.",
+    "namePlaceholder": "Nome della squadra",
+    "searchPlaceholder": "Cerca squadre",
+    "removeFailed": "Impossibile rimuovere quel membro",
+    "left": "Hai lasciato la squadra",
+    "leaveFailed": "Impossibile lasciare quella squadra",
+    "created": "Squadra creata",
+    "createFailed": "Impossibile creare quella squadra",
+    "joined": "Ti sei unito a {{name}}",
+    "joinFailed": "Impossibile unirsi a quella squadra",
+    "removeTitle": "Rimuovere il membro?",
+    "removeBody": "Rimuovere {{name}} da {{team}}?",
+    "leaveTitle": "Lasciare la squadra?",
+    "leaveBody": "Lasciare {{name}}?",
+    "leaveAction": "Lascia",
+    "noBadgeYet": "Nessun badge ancora"
   }
 }

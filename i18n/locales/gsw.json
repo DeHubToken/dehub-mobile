@@ -3219,5 +3219,31 @@
     "line": "Dini Konto isch gsperrt, drum chasch du nid poste, kommentiere oder Nachrichte schicke.",
     "reason": "Grund: {{reason}}",
     "deleteAccount": "Lösch dini Konto und Daten"
+  },
+  "teamUp": {
+    "title": "Team bilde",
+    "subtitle": "Verbind dini Wallet-Chraft mit bis zu siebe andere. Alli trage s Abzeiche, wo euri Summe freischaltet.",
+    "signInPrompt": "Mäld dich aa, zum es Team z gründe oder biizträtte. Es Abzeiche bruuchts nid.",
+    "leave": "Team verlah",
+    "make": "Team erstelle",
+    "makeHint": "Du wirsch de Bsitzer. Team-Näme sind öffentlich.",
+    "join": "Emne Team biiträtte",
+    "joinHint": "Du chasch immer nur i eim Team si.",
+    "none": "Kei Teams gfunde.",
+    "namePlaceholder": "Team-Name",
+    "searchPlaceholder": "Teams sueche",
+    "removeFailed": "Das Mitglid het nid chönne entfernt werde",
+    "left": "Du häsch s Team verlah",
+    "leaveFailed": "Das Team het nid chönne verlah werde",
+    "created": "Team erstellt",
+    "createFailed": "Das Team het nid chönne erstellt werde",
+    "joined": "{{name}} biitrette",
+    "joinFailed": "Dem Team het nid chönne biigträtte werde",
+    "removeTitle": "Mitglid entferne?",
+    "removeBody": "{{name}} us {{team}} entferne?",
+    "leaveTitle": "Team verlah?",
+    "leaveBody": "{{name}} verlah?",
+    "leaveAction": "Verlah",
+    "noBadgeYet": "No kei Abzeiche"
   }
 }

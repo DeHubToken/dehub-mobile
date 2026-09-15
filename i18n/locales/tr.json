@@ -3292,5 +3292,31 @@
     "line": "Hesabınız yasaklandı, bu nedenle yayınlayamaz, yorum yapamaz veya mesaj gönderemezsiniz.",
     "reason": "Neden: {{reason}}",
     "deleteAccount": "Hesabınızı ve verilerinizi silin"
+  },
+  "teamUp": {
+    "title": "Takım kur",
+    "subtitle": "Cüzdan gücünü en fazla yedi kişiyle birleştir. Toplamınızın açtığı rozeti herkes taşır.",
+    "signInPrompt": "Takım kurmak veya katılmak için oturum aç. Rozet gerekmez.",
+    "leave": "Takımdan ayrıl",
+    "make": "Takım kur",
+    "makeHint": "Sahibi sen olursun. Takım adları herkese açıktır.",
+    "join": "Takıma katıl",
+    "joinHint": "Aynı anda yalnızca bir takımda olabilirsin.",
+    "none": "Takım bulunamadı.",
+    "namePlaceholder": "Takım adı",
+    "searchPlaceholder": "Takım ara",
+    "removeFailed": "O üye kaldırılamadı",
+    "left": "Takımdan ayrıldın",
+    "leaveFailed": "O takımdan ayrılınamadı",
+    "created": "Takım oluşturuldu",
+    "createFailed": "O takım oluşturulamadı",
+    "joined": "{{name}} takımına katıldın",
+    "joinFailed": "O takıma katılınamadı",
+    "removeTitle": "Üye kaldırılsın mı?",
+    "removeBody": "{{name}} kişisi {{team}} takımından kaldırılsın mı?",
+    "leaveTitle": "Takımdan ayrılınsın mı?",
+    "leaveBody": "{{name}} takımından ayrılınsın mı?",
+    "leaveAction": "Ayrıl",
+    "noBadgeYet": "Henüz rozet yok"
   }
 }

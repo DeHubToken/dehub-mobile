@@ -3230,5 +3230,31 @@
     "line": "Tvoj je račun zabranjen, pa ne možeš objavljivati, komentirati ili slati poruke.",
     "reason": "Razlog: {{reason}}",
     "deleteAccount": "Brisanje računa i podataka"
+  },
+  "teamUp": {
+    "title": "Udruži se",
+    "subtitle": "Udruži snagu novčanika s najviše sedmero drugih. Svi nose bedž koji otključava vaš ukupni zbroj.",
+    "signInPrompt": "Prijavi se da stvoriš tim ili mu se pridružiš. Bedž nije potreban.",
+    "leave": "Napusti tim",
+    "make": "Stvori tim",
+    "makeHint": "Postaješ vlasnik. Imena timova su javna.",
+    "join": "Pridruži se timu",
+    "joinHint": "Možeš biti samo u jednom timu odjednom.",
+    "none": "Nema pronađenih timova.",
+    "namePlaceholder": "Ime tima",
+    "searchPlaceholder": "Traži timove",
+    "removeFailed": "Tog člana nije bilo moguće ukloniti",
+    "left": "Napustio si tim",
+    "leaveFailed": "Taj tim nije bilo moguće napustiti",
+    "created": "Tim je stvoren",
+    "createFailed": "Taj tim nije bilo moguće stvoriti",
+    "joined": "Pridružio si se timu {{name}}",
+    "joinFailed": "Tom se timu nije bilo moguće pridružiti",
+    "removeTitle": "Ukloniti člana?",
+    "removeBody": "Ukloniti {{name}} iz tima {{team}}?",
+    "leaveTitle": "Napustiti tim?",
+    "leaveBody": "Napustiti {{name}}?",
+    "leaveAction": "Napusti",
+    "noBadgeYet": "Još nema bedža"
   }
 }

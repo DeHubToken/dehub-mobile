@@ -3214,5 +3214,31 @@
     "line": "Hesabınız qadağan edilib, odur ki, mesaj yaza, şərh yaza və ya mesaj göndərə bilməzsiniz.",
     "reason": "Səbəb: {{reason}}",
     "deleteAccount": "Hesabınızı və məlumatlarınızı silin"
+  },
+  "teamUp": {
+    "title": "Komanda qur",
+    "subtitle": "Cüzdan gücünüzü yeddi nəfərə qədər başqaları ilə birləşdirin. Cəmi açdığı nişanı hamı daşıyır.",
+    "signInPrompt": "Komanda yaratmaq və ya qoşulmaq üçün daxil olun. Heç bir nişan tələb olunmur.",
+    "leave": "Komandadan çıx",
+    "make": "Komanda yarat",
+    "makeHint": "Sən sahib olursan. Komanda adları ictimaidir.",
+    "join": "Komandaya qoşul",
+    "joinHint": "Eyni anda yalnız bir komandada ola bilərsən.",
+    "none": "Komanda tapılmadı.",
+    "namePlaceholder": "Komanda adı",
+    "searchPlaceholder": "Komandaları axtar",
+    "removeFailed": "Həmin üzvü silmək mümkün olmadı",
+    "left": "Komandadan çıxdınız",
+    "leaveFailed": "Həmin komandadan çıxmaq mümkün olmadı",
+    "created": "Komanda yaradıldı",
+    "createFailed": "Həmin komandanı yaratmaq mümkün olmadı",
+    "joined": "{{name}} komandasına qoşuldunuz",
+    "joinFailed": "Həmin komandaya qoşulmaq mümkün olmadı",
+    "removeTitle": "Üzv silinsin?",
+    "removeBody": "{{name}} {{team}} komandasından silinsin?",
+    "leaveTitle": "Komandadan çıxılsın?",
+    "leaveBody": "{{name}} komandasından çıxılsın?",
+    "leaveAction": "Çıx",
+    "noBadgeYet": "Hələ nişan yoxdur"
   }
 }

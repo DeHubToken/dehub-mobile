@@ -3347,5 +3347,31 @@
     "line": "Jou rekening is verbode, sodat jy nie kan plaas, kommentaar lewer of boodskappe stuur nie.",
     "reason": "Reden: {{reason}}",
     "deleteAccount": "Skrap jou rekening en data"
+  },
+  "teamUp": {
+    "title": "Span saam",
+    "subtitle": "Kombineer beursiekrag met tot sewe ander. Almal dra die kenteken wat julle totaal ontsluit.",
+    "signInPrompt": "Meld aan om 'n span te maak of by een aan te sluit. Geen kenteken is nodig nie.",
+    "leave": "Verlaat span",
+    "make": "Maak 'n span",
+    "makeHint": "Jy word die eienaar. Spanname is openbaar.",
+    "join": "Sluit by 'n span aan",
+    "joinHint": "Jy kan net in een span op 'n slag wees.",
+    "none": "Geen spanne gevind nie.",
+    "namePlaceholder": "Spannaam",
+    "searchPlaceholder": "Soek spanne",
+    "removeFailed": "Kon nie daardie lid verwyder nie",
+    "left": "Jy het die span verlaat",
+    "leaveFailed": "Kon nie daardie span verlaat nie",
+    "created": "Span geskep",
+    "createFailed": "Kon nie daardie span skep nie",
+    "joined": "By {{name}} aangesluit",
+    "joinFailed": "Kon nie by daardie span aansluit nie",
+    "removeTitle": "Verwyder lid?",
+    "removeBody": "Verwyder {{name}} uit {{team}}?",
+    "leaveTitle": "Verlaat span?",
+    "leaveBody": "Verlaat {{name}}?",
+    "leaveAction": "Verlaat",
+    "noBadgeYet": "Nog geen kenteken nie"
   }
 }

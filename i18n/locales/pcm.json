@@ -3044,5 +3044,31 @@
     "needGas": "You need native {{token}} for gas for {{chain}}.",
     "bridging": "Bridging…",
     "bridgeAction": "Bridge {{from}} → {{to}}"
+  },
+  "teamUp": {
+    "title": "Join team",
+    "subtitle": "Join your wallet power with up to seven other people. Everybody go wear di badge wey una total unlock.",
+    "signInPrompt": "Sign in make you create or join team. You no need any badge.",
+    "leave": "Leave team",
+    "make": "Create team",
+    "makeHint": "You go be di owner. Team names dey public.",
+    "join": "Join team",
+    "joinHint": "You fit only dey inside one team at a time.",
+    "none": "We no see any team.",
+    "namePlaceholder": "Team name",
+    "searchPlaceholder": "Search teams",
+    "removeFailed": "We no fit remove dat member",
+    "left": "You don leave di team",
+    "leaveFailed": "We no fit comot you from dat team",
+    "created": "Team don create",
+    "createFailed": "We no fit create dat team",
+    "joined": "You don join {{name}}",
+    "joinFailed": "We no fit join you to dat team",
+    "removeTitle": "Remove member?",
+    "removeBody": "Remove {{name}} from {{team}}?",
+    "leaveTitle": "Leave team?",
+    "leaveBody": "Leave {{name}}?",
+    "leaveAction": "Leave",
+    "noBadgeYet": "No badge yet"
   }
 }

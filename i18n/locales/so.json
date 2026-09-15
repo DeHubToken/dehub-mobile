@@ -3221,5 +3221,31 @@
     "line": "Koontadaada waa la mamnuucay, sidaa darteed ma dhajin kartid, faallo ama farriin ma diri kartid.",
     "reason": "Sababta: {{reason}}",
     "deleteAccount": "Tirtir koontadaada iyo xogtaada"
+  },
+  "teamUp": {
+    "title": "Koox samee",
+    "subtitle": "Isku dar awoodda boorsadaada iyo ilaa toddoba qof oo kale. Qof walba wuxuu xirtaa astaanta ay wadarta idinku furto.",
+    "signInPrompt": "Gal si aad koox u samayso ama ugu biirto. Astaan looma baahna.",
+    "leave": "Ka bax kooxda",
+    "make": "Koox samee",
+    "makeHint": "Waxaad noqonaysaa milkiilaha. Magacyada kooxaha waa dadweyne.",
+    "join": "Ku biir koox",
+    "joinHint": "Waxaad ku jiri kartaa hal koox oo keliya wakhti kasta.",
+    "none": "Kooxo lama helin.",
+    "namePlaceholder": "Magaca kooxda",
+    "searchPlaceholder": "Raadi kooxo",
+    "removeFailed": "Xubintaas lama saari karin",
+    "left": "Waad ka baxday kooxda",
+    "leaveFailed": "Kooxdaas lagama bixi karin",
+    "created": "Kooxda waa la sameeyay",
+    "createFailed": "Kooxdaas lama abuuri karin",
+    "joined": "Waxaad ku biirtay {{name}}",
+    "joinFailed": "Kooxdaas laguma biiri karin",
+    "removeTitle": "Ma saaraa xubinta?",
+    "removeBody": "Ma saaraa {{name}} kooxda {{team}}?",
+    "leaveTitle": "Ma ka baxaa kooxda?",
+    "leaveBody": "Ma ka baxaa {{name}}?",
+    "leaveAction": "Ka bax",
+    "noBadgeYet": "Weli astaan ma jirto"
   }
 }

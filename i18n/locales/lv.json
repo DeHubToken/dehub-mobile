@@ -3229,5 +3229,31 @@
     "line": "Jūsu konts ir bloķēts, tāpēc jūs nevarat publicēt, komentēt vai sūtīt ziņojumus.",
     "reason": "Iemesls: {{reason}}",
     "deleteAccount": "Konta un datu dzēšana"
+  },
+  "teamUp": {
+    "title": "Izveido komandu",
+    "subtitle": "Apvieno maka spēku ar vēl līdz septiņiem citiem. Visi nēsā nozīmīti, ko atbloķē jūsu kopsumma.",
+    "signInPrompt": "Pieraksties, lai izveidotu komandu vai tai pievienotos. Nozīmīte nav nepieciešama.",
+    "leave": "Pamest komandu",
+    "make": "Izveidot komandu",
+    "makeHint": "Tu kļūsti par īpašnieku. Komandu nosaukumi ir publiski.",
+    "join": "Pievienoties komandai",
+    "joinHint": "Vienlaikus vari būt tikai vienā komandā.",
+    "none": "Komandas nav atrastas.",
+    "namePlaceholder": "Komandas nosaukums",
+    "searchPlaceholder": "Meklēt komandas",
+    "removeFailed": "Neizdevās noņemt šo dalībnieku",
+    "left": "Tu pameti komandu",
+    "leaveFailed": "Neizdevās pamest šo komandu",
+    "created": "Komanda izveidota",
+    "createFailed": "Neizdevās izveidot šo komandu",
+    "joined": "Pievienojies komandai {{name}}",
+    "joinFailed": "Neizdevās pievienoties šai komandai",
+    "removeTitle": "Noņemt dalībnieku?",
+    "removeBody": "Noņemt {{name}} no komandas {{team}}?",
+    "leaveTitle": "Pamest komandu?",
+    "leaveBody": "Pamest {{name}}?",
+    "leaveAction": "Pamest",
+    "noBadgeYet": "Vēl nav nozīmītes"
   }
 }

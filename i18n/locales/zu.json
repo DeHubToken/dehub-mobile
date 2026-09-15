@@ -3259,5 +3259,31 @@
     "line": "I-akhawunti yakho ivinjelwe, ngakho-ke awukwazi ukuphosta, ukuphawula noma ukuthumela imiyalezo.",
     "reason": "Isizathu: {{reason}}",
     "deleteAccount": "Susa i-akhawunti nedatha yakho"
+  },
+  "teamUp": {
+    "title": "Yakha ithimba",
+    "subtitle": "Hlanganisa amandla esikhwama sakho nabanye abafika kwabayisikhombisa. Wonke umuntu ugqoka ibheji evulwa isamba senu.",
+    "signInPrompt": "Ngena ukuze wakhe noma ujoyine ithimba. Ayidingeki ibheji.",
+    "leave": "Shiya ithimba",
+    "make": "Yakha ithimba",
+    "makeHint": "Uzoba umnikazi. Amagama amathimba asobala.",
+    "join": "Joyina ithimba",
+    "joinHint": "Ungaba kwithimba elilodwa kuphela ngesikhathi esisodwa.",
+    "none": "Awekho amathimba atholakele.",
+    "namePlaceholder": "Igama lethimba",
+    "searchPlaceholder": "Sesha amathimba",
+    "removeFailed": "Ayikwazanga ukususa lelo lungu",
+    "left": "Ushiye ithimba",
+    "leaveFailed": "Ayikwazanga ukushiya lelo thimba",
+    "created": "Ithimba lidaliwe",
+    "createFailed": "Ayikwazanga ukudala lelo thimba",
+    "joined": "Ujoyine i-{{name}}",
+    "joinFailed": "Ayikwazanga ukujoyina lelo thimba",
+    "removeTitle": "Susa ilungu?",
+    "removeBody": "Susa u-{{name}} ku-{{team}}?",
+    "leaveTitle": "Shiya ithimba?",
+    "leaveBody": "Shiya i-{{name}}?",
+    "leaveAction": "Shiya",
+    "noBadgeYet": "Ayikho ibheji okwamanje"
   }
 }

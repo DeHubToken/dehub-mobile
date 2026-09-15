@@ -3234,5 +3234,31 @@
     "line": "Din konto er spærret, så du kan ikke skrive, kommentere eller sende beskeder.",
     "reason": "Årsag:{{reason}}",
     "deleteAccount": "Slet din konto og dine data"
+  },
+  "teamUp": {
+    "title": "Slå jer sammen",
+    "subtitle": "Kombinér tegnebogsstyrke med op til syv andre. Alle bærer det badge, jeres samlede sum låser op.",
+    "signInPrompt": "Log ind for at oprette eller tilslutte dig et hold. Der kræves ingen badge.",
+    "leave": "Forlad holdet",
+    "make": "Opret et hold",
+    "makeHint": "Du bliver ejer. Holdnavne er offentlige.",
+    "join": "Tilslut dig et hold",
+    "joinHint": "Du kan kun være på ét hold ad gangen.",
+    "none": "Ingen hold fundet.",
+    "namePlaceholder": "Holdnavn",
+    "searchPlaceholder": "Søg efter hold",
+    "removeFailed": "Kunne ikke fjerne det medlem",
+    "left": "Du forlod holdet",
+    "leaveFailed": "Kunne ikke forlade det hold",
+    "created": "Hold oprettet",
+    "createFailed": "Kunne ikke oprette det hold",
+    "joined": "Tilsluttet {{name}}",
+    "joinFailed": "Kunne ikke tilslutte sig det hold",
+    "removeTitle": "Fjern medlem?",
+    "removeBody": "Fjern {{name}} fra {{team}}?",
+    "leaveTitle": "Forlad holdet?",
+    "leaveBody": "Forlad {{name}}?",
+    "leaveAction": "Forlad",
+    "noBadgeYet": "Intet badge endnu"
   }
 }
