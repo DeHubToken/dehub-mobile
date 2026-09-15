@@ -3613,5 +3613,28 @@
     "subscribe": "Жазылу",
     "subscriberCount_one": "{{count}} жазылушы",
     "subscriberCount_other": "{{count}} жазылушы"
+  },
+  "live": {
+    "notSet": "Орнатылмаған",
+    "liveChat": "Тікелей чат",
+    "pickDate": "Күнді таңдаңыз",
+    "pickTime": "Уақытты таңдаңыз",
+    "minTip": "Ең аз шайпұл"
+  },
+  "liveShop": {
+    "title": "Осы эфирден сатып алыңыз",
+    "onAir": "Эфирде",
+    "lastOne": "Соңғысы",
+    "stockLeft": "{{count}} қалды",
+    "walletNotReady": "Әмиян әзірге дайын емес",
+    "gettingPrice": "Баға алынуда…",
+    "ownListing": "Бұл сіздің өз жарнамаңыз.",
+    "shippingAddress": "Жеткізу мекенжайы",
+    "addressPlaceholder": "Аты, көше, қала, пошта индексі, ел",
+    "noteToSeller": "Сатушыға ескертпе (міндетті емес)",
+    "notePlaceholder": "Өлшемі, түсі, тағы бір нәрсе…",
+    "confirmingPayment": "Төлем расталуда…",
+    "retryConfirmation": "Растауды қайталау",
+    "buyNow": "Қазір сатып алу"
   }
 }

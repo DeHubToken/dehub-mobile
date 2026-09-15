@@ -3586,5 +3586,28 @@
     "subscribe": "Bhalisa",
     "subscriberCount_one": "Umbhalisi ongu-{{count}}",
     "subscriberCount_other": "Ababhalisi abangu-{{count}}"
+  },
+  "live": {
+    "notSet": "Akuzange kusethwe",
+    "liveChat": "Ingxoxo ebukhoma",
+    "pickDate": "Khetha usuku",
+    "pickTime": "Khetha isikhathi",
+    "minTip": "Ithiphu encane"
+  },
+  "liveShop": {
+    "title": "Thenga kulokhu kusakazwa",
+    "onAir": "Kusakazwa",
+    "lastOne": "Okokugcina",
+    "stockLeft": "Kusele {{count}}",
+    "walletNotReady": "Isikhwama asikakulungeli",
+    "gettingPrice": "Ithola intengo…",
+    "ownListing": "Lokhu ukufakwa kwakho siqu.",
+    "shippingAddress": "Ikheli lokuthumela",
+    "addressPlaceholder": "Igama, umgwaqo, idolobha, ikhodi yeposi, izwe",
+    "noteToSeller": "Inothi kumthengisi (okuzikhethela)",
+    "notePlaceholder": "Usayizi, umbala, okunye…",
+    "confirmingPayment": "Iqinisekisa inkokhelo…",
+    "retryConfirmation": "Zama futhi ukuqinisekisa",
+    "buyNow": "Thenga manje"
   }
 }

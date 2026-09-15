@@ -3592,5 +3592,28 @@
     "subscribe": "გამოწერა",
     "subscriberCount_one": "{{count}} გამომწერი",
     "subscriberCount_other": "{{count}} გამომწერი"
+  },
+  "live": {
+    "notSet": "არ არის მითითებული",
+    "liveChat": "პირდაპირი ჩატი",
+    "pickDate": "აირჩიეთ თარიღი",
+    "pickTime": "აირჩიეთ დრო",
+    "minTip": "მინ. ჩაი"
+  },
+  "liveShop": {
+    "title": "იყიდეთ ამ ტრანსლაციიდან",
+    "onAir": "ეთერში",
+    "lastOne": "ბოლო",
+    "stockLeft": "დარჩა {{count}}",
+    "walletNotReady": "საფულე ჯერ მზად არ არის",
+    "gettingPrice": "ფასის მიღება…",
+    "ownListing": "ეს თქვენი საკუთარი განცხადებაა.",
+    "shippingAddress": "მიწოდების მისამართი",
+    "addressPlaceholder": "სახელი, ქუჩა, ქალაქი, საფოსტო კოდი, ქვეყანა",
+    "noteToSeller": "შენიშვნა გამყიდველს (არასავალდებულო)",
+    "notePlaceholder": "ზომა, ფერი, სხვა რამ…",
+    "confirmingPayment": "გადახდის დადასტურება…",
+    "retryConfirmation": "დადასტურების ხელახლა ცდა",
+    "buyNow": "იყიდე ახლა"
   }
 }

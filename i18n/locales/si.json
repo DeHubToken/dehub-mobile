@@ -3539,5 +3539,28 @@
     "subscribe": "දායක වන්න",
     "subscriberCount_one": "දායකයින් {{count}}",
     "subscriberCount_other": "දායකයින් {{count}}"
+  },
+  "live": {
+    "notSet": "සකසා නැත",
+    "liveChat": "සජීවී කතාබහ",
+    "pickDate": "දිනය තෝරන්න",
+    "pickTime": "වේලාව තෝරන්න",
+    "minTip": "අවම ටිප්"
+  },
+  "liveShop": {
+    "title": "මෙම විකාශයෙන් මිලදී ගන්න",
+    "onAir": "විකාශයේ",
+    "lastOne": "අන්තිම එක",
+    "stockLeft": "{{count}} ඉතිරියි",
+    "walletNotReady": "පසුම්බිය තවම සූදානම් නැත",
+    "gettingPrice": "මිල ලබාගනිමින්…",
+    "ownListing": "මෙය ඔබේම ලැයිස්තුවකි.",
+    "shippingAddress": "බෙදාහැරීමේ ලිපිනය",
+    "addressPlaceholder": "නම, වීදිය, නගරය, තැපැල් කේතය, රට",
+    "noteToSeller": "විකුණන්නාට සටහන (විකල්ප)",
+    "notePlaceholder": "ප්‍රමාණය, වර්ණය, වෙන යමක්…",
+    "confirmingPayment": "ගෙවීම තහවුරු කරමින්…",
+    "retryConfirmation": "තහවුරු කිරීම නැවත උත්සාහ කරන්න",
+    "buyNow": "දැන් මිලදී ගන්න"
   }
 }

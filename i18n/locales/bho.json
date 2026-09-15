@@ -3507,5 +3507,28 @@
     "subscribe": "सब्सक्राइब करीं",
     "subscriberCount_one": "{{count}} सब्सक्राइबर",
     "subscriberCount_other": "{{count}} सब्सक्राइबर"
+  },
+  "live": {
+    "notSet": "सेट नइखे",
+    "liveChat": "लाइव चैट",
+    "pickDate": "तारीख चुनीं",
+    "pickTime": "समय चुनीं",
+    "minTip": "न्यूनतम टिप"
+  },
+  "liveShop": {
+    "title": "ई स्ट्रीम से खरीदीं",
+    "onAir": "प्रसारण में",
+    "lastOne": "आखिरी एगो",
+    "stockLeft": "{{count}} बाकी",
+    "walletNotReady": "वॉलेट अबहीं तइयार नइखे",
+    "gettingPrice": "दाम लावल जा रहल बा…",
+    "ownListing": "ई राउर आपन लिस्टिंग बा।",
+    "shippingAddress": "शिपिंग पता",
+    "addressPlaceholder": "नाम, गली, शहर, पिनकोड, देश",
+    "noteToSeller": "विक्रेता खातिर नोट (वैकल्पिक)",
+    "notePlaceholder": "साइज, रंग, अउर कुछ भी…",
+    "confirmingPayment": "भुगतान पक्का कइल जा रहल बा…",
+    "retryConfirmation": "पुष्टि फेर से करीं",
+    "buyNow": "अबहीं खरीदीं"
   }
 }

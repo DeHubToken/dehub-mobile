@@ -3535,5 +3535,28 @@
     "subscribe": "Debanye aha",
     "subscriberCount_one": "Onye debanyere aha {{count}}",
     "subscriberCount_other": "Ndị debanyere aha {{count}}"
+  },
+  "live": {
+    "notSet": "Edobeghị",
+    "liveChat": "Nkata ndụ",
+    "pickDate": "Họrọ ụbọchị",
+    "pickTime": "Họrọ oge",
+    "minTip": "Opekempe ego nturu ugo"
+  },
+  "liveShop": {
+    "title": "Zụọ ihe site na ngosi a",
+    "onAir": "Na ntanetị",
+    "lastOne": "Nke ikpeazụ",
+    "stockLeft": "{{count}} fọdụrụ",
+    "walletNotReady": "Obere akpa adịbeghị njikere",
+    "gettingPrice": "Na-enweta ọnụahịa…",
+    "ownListing": "Nke a bụ ndepụta gị.",
+    "shippingAddress": "Adreesị mbupu",
+    "addressPlaceholder": "Aha, okporo ámá, obodo, koodu nzipu ozi, mba",
+    "noteToSeller": "Ndetu nye onye na-ere ere (nhọrọ)",
+    "notePlaceholder": "Nha, agba, ihe ọ bụla ọzọ…",
+    "confirmingPayment": "Na-akwado ịkwụ ụgwọ…",
+    "retryConfirmation": "Nwaa nkwado ọzọ",
+    "buyNow": "Zụta ugbu a"
   }
 }

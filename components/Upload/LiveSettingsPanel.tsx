@@ -6,6 +6,7 @@
  * and expandable inline forms.
  */
 import { DhbCoin } from "../common/DhbCoin";
+import { useTranslation } from "react-i18next";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -78,6 +79,7 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
   state,
   onChange,
 }) => {
+  const { t, i18n } = useTranslation();
   const [expandedSection, setExpandedSection] = useState<
     "schedule" | "minTip" | null
   >(null);
@@ -149,14 +151,14 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
   );
 
   const formattedDate = useMemo(() => {
-    if (!state.scheduledDate) return "Not set";
-    return state.scheduledDate.toLocaleString(undefined, {
+    if (!state.scheduledDate) return t("live.notSet");
+    return state.scheduledDate.toLocaleString(i18n.language || undefined, {
       month: "short",
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
     });
-  }, [state.scheduledDate]);
+  }, [state.scheduledDate, t, i18n.language]);
 
   const confirmSchedule = useCallback(() => {
     setExpandedSection(null);
@@ -188,7 +190,7 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">
           <Ionicons name="chatbubble-outline" size={20} color="#fff" />
-          <Text className="text-white text-sm ml-3">Live Chat</Text>
+          <Text className="text-white text-sm ml-3">{t("live.liveChat")}</Text>
         </View>
         <CustomSwitch
           value={state.enableChat}
@@ -199,7 +201,7 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">
           <Ionicons name="calendar-outline" size={20} color="#fff" />
-          <Text className="text-white text-sm ml-3">Schedule</Text>
+          <Text className="text-white text-sm ml-3">{t("upload.schedule")}</Text>
         </View>
         <CustomSwitch
           value={state.scheduleEnabled}
@@ -234,14 +236,14 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
                 className="flex-1 flex-row items-center justify-center h-10 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700"
               >
                 <Ionicons name="calendar" size={16} color="#fff" />
-                <Text className="text-white text-xs ml-2">Pick Date</Text>
+                <Text className="text-white text-xs ml-2">{t("live.pickDate")}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => setShowTimePicker(true)}
                 className="flex-1 flex-row items-center justify-center h-10 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700"
               >
                 <Ionicons name="time" size={16} color="#fff" />
-                <Text className="text-white text-xs ml-2">Pick Time</Text>
+                <Text className="text-white text-xs ml-2">{t("live.pickTime")}</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -285,7 +287,7 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
             >
               <GlassIndicator borderRadius={12} />
               <Icon name="Check" size={16} color="#fff" />
-              <Text className="text-white text-sm ml-1">Done</Text>
+              <Text className="text-white text-sm ml-1">{t("common.done")}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -298,7 +300,7 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
       >
         <View className="flex-row items-center">
           <Ionicons name="diamond-outline" size={20} color="#fff" />
-          <Text className="text-white text-sm ml-3">Min Tip</Text>
+          <Text className="text-white text-sm ml-3">{t("live.minTip")}</Text>
         </View>
         <Text className="text-theme-neutrals-400 text-sm">
           {state.minTip || "1000"} <DhbCoin />
@@ -325,7 +327,7 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
           />
           <View className="flex-row justify-end mt-3 gap-3">
             <TouchableOpacity onPress={cancelTip} className="px-4 py-2">
-              <Text className="text-theme-neutrals-400 text-sm">Cancel</Text>
+              <Text className="text-theme-neutrals-400 text-sm">{t("common.cancel")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={confirmTip}
@@ -333,7 +335,7 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
             >
               <GlassIndicator borderRadius={12} />
               <Icon name="Check" size={16} color="#fff" />
-              <Text className="text-white text-sm ml-1">Confirm</Text>
+              <Text className="text-white text-sm ml-1">{t("common.confirm")}</Text>
             </TouchableOpacity>
           </View>
         </View>

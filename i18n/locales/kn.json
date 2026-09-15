@@ -3562,5 +3562,28 @@
     "subscribe": "ಚಂದಾದಾರರಾಗಿ",
     "subscriberCount_one": "{{count}} ಚಂದಾದಾರ",
     "subscriberCount_other": "{{count}} ಚಂದಾದಾರರು"
+  },
+  "live": {
+    "notSet": "ಹೊಂದಿಸಿಲ್ಲ",
+    "liveChat": "ಲೈವ್ ಚಾಟ್",
+    "pickDate": "ದಿನಾಂಕ ಆರಿಸಿ",
+    "pickTime": "ಸಮಯ ಆರಿಸಿ",
+    "minTip": "ಕನಿಷ್ಠ ಟಿಪ್"
+  },
+  "liveShop": {
+    "title": "ಈ ಸ್ಟ್ರೀಮ್‌ನಿಂದ ಖರೀದಿಸಿ",
+    "onAir": "ಪ್ರಸಾರದಲ್ಲಿ",
+    "lastOne": "ಕೊನೆಯದು",
+    "stockLeft": "{{count}} ಉಳಿದಿದೆ",
+    "walletNotReady": "ವಾಲೆಟ್ ಇನ್ನೂ ಸಿದ್ಧವಾಗಿಲ್ಲ",
+    "gettingPrice": "ಬೆಲೆ ಪಡೆಯಲಾಗುತ್ತಿದೆ…",
+    "ownListing": "ಇದು ನಿಮ್ಮದೇ ಪಟ್ಟಿ.",
+    "shippingAddress": "ರವಾನೆ ವಿಳಾಸ",
+    "addressPlaceholder": "ಹೆಸರು, ಬೀದಿ, ನಗರ, ಪಿನ್‌ಕೋಡ್, ದೇಶ",
+    "noteToSeller": "ಮಾರಾಟಗಾರರಿಗೆ ಟಿಪ್ಪಣಿ (ಐಚ್ಛಿಕ)",
+    "notePlaceholder": "ಗಾತ್ರ, ಬಣ್ಣ, ಬೇರೇನಾದರೂ…",
+    "confirmingPayment": "ಪಾವತಿ ದೃಢೀಕರಿಸಲಾಗುತ್ತಿದೆ…",
+    "retryConfirmation": "ದೃಢೀಕರಣ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
+    "buyNow": "ಈಗಲೇ ಖರೀದಿಸಿ"
   }
 }

@@ -3541,5 +3541,28 @@
     "subscribe": "Abunə ol",
     "subscriberCount_one": "{{count}} abunəçi",
     "subscriberCount_other": "{{count}} abunəçi"
+  },
+  "live": {
+    "notSet": "Təyin edilməyib",
+    "liveChat": "Canlı söhbət",
+    "pickDate": "Tarix seç",
+    "pickTime": "Vaxt seç",
+    "minTip": "Min. bəxşiş"
+  },
+  "liveShop": {
+    "title": "Bu yayımdan alış-veriş edin",
+    "onAir": "Efirdə",
+    "lastOne": "Sonuncu",
+    "stockLeft": "{{count}} qalıb",
+    "walletNotReady": "Cüzdan hələ hazır deyil",
+    "gettingPrice": "Qiymət alınır…",
+    "ownListing": "Bu sizin öz elanınızdır.",
+    "shippingAddress": "Çatdırılma ünvanı",
+    "addressPlaceholder": "Ad, küçə, şəhər, poçt kodu, ölkə",
+    "noteToSeller": "Satıcıya qeyd (istəyə bağlı)",
+    "notePlaceholder": "Ölçü, rəng, başqa nə varsa…",
+    "confirmingPayment": "Ödəniş təsdiqlənir…",
+    "retryConfirmation": "Təsdiqi yenidən sına",
+    "buyNow": "İndi al"
   }
 }

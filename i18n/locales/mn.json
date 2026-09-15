@@ -3536,5 +3536,28 @@
     "subscribe": "Захиалах",
     "subscriberCount_one": "{{count}} захиалагч",
     "subscriberCount_other": "{{count}} захиалагч"
+  },
+  "live": {
+    "notSet": "Тохируулаагүй",
+    "liveChat": "Шууд чат",
+    "pickDate": "Огноо сонгох",
+    "pickTime": "Цаг сонгох",
+    "minTip": "Хамгийн бага шан"
+  },
+  "liveShop": {
+    "title": "Энэ дамжуулалтаас худалдан авах",
+    "onAir": "Эфирт",
+    "lastOne": "Сүүлчийнх",
+    "stockLeft": "{{count}} үлдсэн",
+    "walletNotReady": "Түрийвч хараахан бэлэн болоогүй",
+    "gettingPrice": "Үнийг авч байна…",
+    "ownListing": "Энэ бол таны өөрийн зар.",
+    "shippingAddress": "Хүргэлтийн хаяг",
+    "addressPlaceholder": "Нэр, гудамж, хот, шуудангийн код, улс",
+    "noteToSeller": "Худалдагчид үлдээх тэмдэглэл (заавал биш)",
+    "notePlaceholder": "Хэмжээ, өнгө, өөр зүйл…",
+    "confirmingPayment": "Төлбөрийг баталгаажуулж байна…",
+    "retryConfirmation": "Баталгаажуулалтыг дахин оролдох",
+    "buyNow": "Одоо худалдаж авах"
   }
 }

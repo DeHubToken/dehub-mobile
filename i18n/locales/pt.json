@@ -3631,5 +3631,28 @@
     "subscribe": "Assinar",
     "subscriberCount_one": "{{count}} assinante",
     "subscriberCount_other": "{{count}} assinantes"
+  },
+  "live": {
+    "notSet": "Não definido",
+    "liveChat": "Chat ao vivo",
+    "pickDate": "Escolher data",
+    "pickTime": "Escolher hora",
+    "minTip": "Gorjeta mínima"
+  },
+  "liveShop": {
+    "title": "Compre nesta transmissão",
+    "onAir": "No ar",
+    "lastOne": "O último",
+    "stockLeft": "Restam {{count}}",
+    "walletNotReady": "A carteira ainda não está pronta",
+    "gettingPrice": "Obtendo o preço…",
+    "ownListing": "Este é o seu próprio anúncio.",
+    "shippingAddress": "Endereço de entrega",
+    "addressPlaceholder": "Nome, rua, cidade, código postal, país",
+    "noteToSeller": "Observação para o vendedor (opcional)",
+    "notePlaceholder": "Tamanho, cor, mais alguma coisa…",
+    "confirmingPayment": "Confirmando o pagamento…",
+    "retryConfirmation": "Tentar confirmação novamente",
+    "buyNow": "Comprar agora"
   }
 }

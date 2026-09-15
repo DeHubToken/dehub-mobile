@@ -3544,5 +3544,28 @@
     "subscribe": "הרשמה",
     "subscriberCount_one": "{{count}} מנוי",
     "subscriberCount_other": "{{count}} מנויים"
+  },
+  "live": {
+    "notSet": "לא הוגדר",
+    "liveChat": "צ'אט חי",
+    "pickDate": "בחירת תאריך",
+    "pickTime": "בחירת שעה",
+    "minTip": "טיפ מינימלי"
+  },
+  "liveShop": {
+    "title": "קנו מהשידור הזה",
+    "onAir": "בשידור",
+    "lastOne": "האחרון",
+    "stockLeft": "נותרו {{count}}",
+    "walletNotReady": "הארנק עדיין לא מוכן",
+    "gettingPrice": "מקבל מחיר…",
+    "ownListing": "זו הרשומה שלך.",
+    "shippingAddress": "כתובת למשלוח",
+    "addressPlaceholder": "שם, רחוב, עיר, מיקוד, מדינה",
+    "noteToSeller": "הערה למוכר (אופציונלי)",
+    "notePlaceholder": "מידה, צבע, כל דבר אחר…",
+    "confirmingPayment": "מאשר תשלום…",
+    "retryConfirmation": "נסה אישור שוב",
+    "buyNow": "קנה עכשיו"
   }
 }

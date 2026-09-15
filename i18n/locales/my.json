@@ -3537,5 +3537,28 @@
     "subscribe": "စာရင်းသွင်းရန်",
     "subscriberCount_one": "စာရင်းသွင်းသူ {{count}} ဦး",
     "subscriberCount_other": "စာရင်းသွင်းသူ {{count}} ဦး"
+  },
+  "live": {
+    "notSet": "မသတ်မှတ်ရသေး",
+    "liveChat": "တိုက်ရိုက် ချတ်",
+    "pickDate": "ရက်စွဲ ရွေးရန်",
+    "pickTime": "အချိန် ရွေးရန်",
+    "minTip": "အနည်းဆုံး လက်ဆောင်ငွေ"
+  },
+  "liveShop": {
+    "title": "ဤထုတ်လွှင့်မှုမှ ဝယ်ယူပါ",
+    "onAir": "ထုတ်လွှင့်နေဆဲ",
+    "lastOne": "နောက်ဆုံးတစ်ခု",
+    "stockLeft": "{{count}} ကျန်",
+    "walletNotReady": "ပိုက်ဆံအိတ် အဆင်သင့် မဖြစ်သေးပါ",
+    "gettingPrice": "စျေးနှုန်း ရယူနေသည်…",
+    "ownListing": "ဤသည်မှာ သင့်ကိုယ်ပိုင် စာရင်းဖြစ်သည်။",
+    "shippingAddress": "ပို့ဆောင်ရန် လိပ်စာ",
+    "addressPlaceholder": "အမည်၊ လမ်း၊ မြို့၊ စာပို့သင်္ကေတ၊ နိုင်ငံ",
+    "noteToSeller": "ရောင်းသူထံ မှတ်စု (ရွေးချယ်နိုင်)",
+    "notePlaceholder": "အရွယ်အစား၊ အရောင်၊ အခြားအရာ…",
+    "confirmingPayment": "ငွေပေးချေမှု အတည်ပြုနေသည်…",
+    "retryConfirmation": "အတည်ပြုချက် ထပ်စမ်းပါ",
+    "buyNow": "ယခုဝယ်ရန်"
   }
 }

@@ -3625,5 +3625,28 @@
     "subscribe": "구독하기",
     "subscriberCount_one": "구독자 {{count}}명",
     "subscriberCount_other": "구독자 {{count}}명"
+  },
+  "live": {
+    "notSet": "설정 안 됨",
+    "liveChat": "라이브 채팅",
+    "pickDate": "날짜 선택",
+    "pickTime": "시간 선택",
+    "minTip": "최소 팁"
+  },
+  "liveShop": {
+    "title": "이 방송에서 쇼핑하기",
+    "onAir": "방송 중",
+    "lastOne": "마지막 하나",
+    "stockLeft": "{{count}}개 남음",
+    "walletNotReady": "지갑이 아직 준비되지 않았습니다",
+    "gettingPrice": "가격을 불러오는 중…",
+    "ownListing": "이건 회원님이 올린 상품입니다.",
+    "shippingAddress": "배송 주소",
+    "addressPlaceholder": "이름, 도로명, 도시, 우편번호, 국가",
+    "noteToSeller": "판매자에게 남길 메모 (선택)",
+    "notePlaceholder": "사이즈, 색상, 그 밖의 요청…",
+    "confirmingPayment": "결제 확인 중…",
+    "retryConfirmation": "확인 다시 시도",
+    "buyNow": "지금 구매"
   }
 }

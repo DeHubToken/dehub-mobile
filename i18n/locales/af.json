@@ -3674,5 +3674,28 @@
     "subscribe": "Teken in",
     "subscriberCount_one": "{{count}} intekenaar",
     "subscriberCount_other": "{{count}} intekenaars"
+  },
+  "live": {
+    "notSet": "Nie gestel nie",
+    "liveChat": "Regstreekse klets",
+    "pickDate": "Kies datum",
+    "pickTime": "Kies tyd",
+    "minTip": "Min. fooi"
+  },
+  "liveShop": {
+    "title": "Koop uit hierdie uitsending",
+    "onAir": "In die lug",
+    "lastOne": "Laaste een",
+    "stockLeft": "{{count}} oor",
+    "walletNotReady": "Beursie is nog nie gereed nie",
+    "gettingPrice": "Kry prys…",
+    "ownListing": "Dit is jou eie lys.",
+    "shippingAddress": "Aflewerinsadres",
+    "addressPlaceholder": "Naam, straat, stad, poskode, land",
+    "noteToSeller": "Nota aan verkoper (opsioneel)",
+    "notePlaceholder": "Grootte, kleur, enigiets anders…",
+    "confirmingPayment": "Bevestig betaling…",
+    "retryConfirmation": "Probeer bevestiging weer",
+    "buyNow": "Koop nou"
   }
 }

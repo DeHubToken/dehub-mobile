@@ -3549,5 +3549,28 @@
     "subscribe": "સબસ્ક્રાઇબ કરો",
     "subscriberCount_one": "{{count}} સબસ્ક્રાઇબર",
     "subscriberCount_other": "{{count}} સબસ્ક્રાઇબર્સ"
+  },
+  "live": {
+    "notSet": "સેટ નથી",
+    "liveChat": "લાઇવ ચેટ",
+    "pickDate": "તારીખ પસંદ કરો",
+    "pickTime": "સમય પસંદ કરો",
+    "minTip": "ન્યૂનતમ ટિપ"
+  },
+  "liveShop": {
+    "title": "આ સ્ટ્રીમમાંથી ખરીદો",
+    "onAir": "પ્રસારણમાં",
+    "lastOne": "છેલ્લું",
+    "stockLeft": "{{count}} બાકી",
+    "walletNotReady": "વૉલેટ હજી તૈયાર નથી",
+    "gettingPrice": "કિંમત મેળવાઈ રહી છે…",
+    "ownListing": "આ તમારી પોતાની લિસ્ટિંગ છે.",
+    "shippingAddress": "શિપિંગ સરનામું",
+    "addressPlaceholder": "નામ, શેરી, શહેર, પિનકોડ, દેશ",
+    "noteToSeller": "વિક્રેતાને નોંધ (વૈકલ્પિક)",
+    "notePlaceholder": "સાઇઝ, રંગ, બીજું કંઈપણ…",
+    "confirmingPayment": "ચુકવણીની પુષ્ટિ થઈ રહી છે…",
+    "retryConfirmation": "પુષ્ટિ ફરી કરો",
+    "buyNow": "હમણાં ખરીદો"
   }
 }

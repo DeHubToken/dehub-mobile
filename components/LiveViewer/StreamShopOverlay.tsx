@@ -17,6 +17,8 @@
  */
 
 import { DhbCoin } from "../common/DhbCoin";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import React, { memo, useCallback, useEffect, useState } from "react";
 import {
   View,
@@ -60,11 +62,11 @@ function money(value: number): string {
   return decPart ? `${grouped}.${decPart}` : grouped;
 }
 
-function stockLabel(product: StreamProduct): string | null {
+function stockLabel(product: StreamProduct, t: TFunction): string | null {
   const stock = product.store_listings?.stock_quantity;
   if (stock === null || stock === undefined) return null;
   if (stock > LOW_STOCK_THRESHOLD) return null;
-  return stock === 1 ? "Last one" : `${stock} left`;
+  return stock === 1 ? t("liveShop.lastOne") : t("liveShop.stockLeft", { count: stock });
 }
 
 const Thumb = memo(function Thumb({
@@ -126,6 +128,7 @@ export function CheckoutSheet({
   visible: boolean;
   onClose: () => void;
 }) {
+  const { t } = useTranslation();
   const user = useUser() as any;
   const wallet = (user?.walletAddress || user?.address || null) as string | null;
   const dhbAddress = DHB_ADDRESSESS[ChainId.BASE_MAINNET];
@@ -141,7 +144,7 @@ export function CheckoutSheet({
 
   const sendTransfer = useCallback(
     async (to: string, amountWholeTokens: number): Promise<string> => {
-      if (!dhbContract) throw new Error("Wallet is not ready yet");
+      if (!dhbContract) throw new Error(t("liveShop.walletNotReady"));
       // The quote is always a whole number of DHB, and DHB has 18 decimals, so
       // the wei string is the integer with 18 zeros after it. Built as a string
       // rather than with BigInt because nothing else in this app uses BigInt —
@@ -256,7 +259,7 @@ export function CheckoutSheet({
                 ) : (
                   <View className="flex-row items-center">
                     <ActivityIndicator size="small" color="#a1a1aa" />
-                    <Text className="text-zinc-400 text-sm ml-2">Getting price…</Text>
+                    <Text className="text-zinc-400 text-sm ml-2">{t("liveShop.gettingPrice")}</Text>
                   </View>
                 )}
               </View>
@@ -284,7 +287,7 @@ export function CheckoutSheet({
 
             {isSelf ? (
               <View className="rounded-2xl border border-white/10 bg-white/5 p-3 mb-4">
-                <Text className="text-zinc-400 text-xs">This is your own listing.</Text>
+                <Text className="text-zinc-400 text-xs">{t("liveShop.ownListing")}</Text>
               </View>
             ) : null}
 
@@ -292,11 +295,11 @@ export function CheckoutSheet({
               <>
                 {needsShipping ? (
                   <View className="mb-3">
-                    <Text className="text-zinc-400 text-xs mb-1.5">Shipping address</Text>
+                    <Text className="text-zinc-400 text-xs mb-1.5">{t("liveShop.shippingAddress")}</Text>
                     <TextInput
                       value={shipping}
                       onChangeText={setShipping}
-                      placeholder="Name, street, city, postcode, country"
+                      placeholder={t("liveShop.addressPlaceholder")}
                       placeholderTextColor="#52525b"
                       multiline
                       className="bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-white text-sm"
@@ -305,11 +308,11 @@ export function CheckoutSheet({
                   </View>
                 ) : null}
                 <View className="mb-4">
-                  <Text className="text-zinc-400 text-xs mb-1.5">Note to seller (optional)</Text>
+                  <Text className="text-zinc-400 text-xs mb-1.5">{t("liveShop.noteToSeller")}</Text>
                   <TextInput
                     value={notes}
                     onChangeText={setNotes}
-                    placeholder="Size, colour, anything else…"
+                    placeholder={t("liveShop.notePlaceholder")}
                     placeholderTextColor="#52525b"
                     className="bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-white text-sm"
                   />
@@ -328,11 +331,11 @@ export function CheckoutSheet({
             {buy.isPending ? (
               <>
                 <ActivityIndicator size="small" color="#09090B" />
-                <Text className="text-[#09090B] font-semibold ml-2">Confirming payment…</Text>
+                <Text className="text-[#09090B] font-semibold ml-2">{t("liveShop.confirmingPayment")}</Text>
               </>
             ) : (
               <Text className={canBuy ? "text-[#09090B] font-semibold" : "text-white/50 font-semibold"}>
-                {paidHash ? "Retry confirmation" : "Buy now"}
+                {paidHash ? t("liveShop.retryConfirmation") : t("liveShop.buyNow")}
               </Text>
             )}
           </TouchableOpacity>
@@ -360,12 +363,13 @@ function ProductSheet({
   onClose: () => void;
   onSelect: (p: StreamProduct) => void;
 }) {
+  const { t } = useTranslation();
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <View className="flex-1 justify-end dark-surface bg-black/60">
         <View className="bg-zinc-900 rounded-t-3xl border-t border-white/10 px-4 pt-4 pb-8 max-h-[70%]">
           <View className="flex-row items-center justify-between mb-4">
-            <Text className="text-white font-semibold text-base">Shop this stream</Text>
+            <Text className="text-white font-semibold text-base">{t("liveShop.title")}</Text>
             <TouchableOpacity onPress={onClose} hitSlop={10}>
               <X size={20} color="#a1a1aa" />
             </TouchableOpacity>
@@ -373,7 +377,7 @@ function ProductSheet({
 
           <ScrollView>
             {products.map((product) => {
-              const label = stockLabel(product);
+              const label = stockLabel(product, t);
               return (
                 <TouchableOpacity
                   key={product.id}
@@ -396,7 +400,7 @@ function ProductSheet({
                   </View>
                   {product.is_pinned ? (
                     <View className="bg-white rounded px-1.5 py-0.5">
-                      <Text className="text-[9px] font-bold text-black uppercase">On air</Text>
+                      <Text className="text-[9px] font-bold text-black uppercase">{t("liveShop.onAir")}</Text>
                     </View>
                   ) : null}
                 </TouchableOpacity>
@@ -414,6 +418,7 @@ interface Props {
 }
 
 export default function StreamShopOverlay({ tokenId }: Props) {
+  const { t } = useTranslation();
   const { sellable, pinned } = useStreamProducts(tokenId);
   const [dismissedId, setDismissedId] = useState<string | null>(null);
   const [listOpen, setListOpen] = useState(false);
@@ -427,7 +432,7 @@ export default function StreamShopOverlay({ tokenId }: Props) {
   // separate `showPinned` flag leaves `pinned` as StreamProduct | null inside
   // the branch, which strict mode rejects.
   const activePinned = pinned && pinned.id !== dismissedId ? pinned : null;
-  const pinnedStock = activePinned ? stockLabel(activePinned) : null;
+  const pinnedStock = activePinned ? stockLabel(activePinned, t) : null;
 
   return (
     <View pointerEvents="box-none">
@@ -451,7 +456,7 @@ export default function StreamShopOverlay({ tokenId }: Props) {
             onPress={() => setCheckoutFor(activePinned)}
             className="bg-white rounded-xl px-3.5 py-2"
           >
-            <Text className="text-[#09090B] text-xs font-semibold">Buy</Text>
+            <Text className="text-[#09090B] text-xs font-semibold">{t("commandCentre.buy")}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => setDismissedId(activePinned.id)}

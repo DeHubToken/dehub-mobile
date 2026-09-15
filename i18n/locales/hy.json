@@ -3550,5 +3550,28 @@
     "subscribe": "Բաժանորդագրվել",
     "subscriberCount_one": "{{count}} բաժանորդ",
     "subscriberCount_other": "{{count}} բաժանորդ"
+  },
+  "live": {
+    "notSet": "Սահմանված չէ",
+    "liveChat": "Ուղիղ զրույց",
+    "pickDate": "Ընտրել ամսաթիվ",
+    "pickTime": "Ընտրել ժամը",
+    "minTip": "Նվազ. թեյավճար"
+  },
+  "liveShop": {
+    "title": "Գնումներ կատարեք այս հեռարձակումից",
+    "onAir": "Եթերում",
+    "lastOne": "Վերջինը",
+    "stockLeft": "Մնացել է {{count}}",
+    "walletNotReady": "Դրամապանակը դեռ պատրաստ չէ",
+    "gettingPrice": "Գնի ստացում…",
+    "ownListing": "Սա ձեր սեփական հայտարարությունն է։",
+    "shippingAddress": "Առաքման հասցե",
+    "addressPlaceholder": "Անուն, փողոց, քաղաք, փոստային ինդեքս, երկիր",
+    "noteToSeller": "Նշում վաճառողին (ըստ ցանկության)",
+    "notePlaceholder": "Չափս, գույն, այլ ցանկություն…",
+    "confirmingPayment": "Վճարման հաստատում…",
+    "retryConfirmation": "Կրկնել հաստատումը",
+    "buyNow": "Գնել հիմա"
   }
 }

@@ -3825,5 +3825,28 @@
     "subscribe": "Abonneren",
     "subscriberCount_one": "{{count}} abonnee",
     "subscriberCount_other": "{{count}} abonnees"
+  },
+  "live": {
+    "notSet": "Niet ingesteld",
+    "liveChat": "Livechat",
+    "pickDate": "Datum kiezen",
+    "pickTime": "Tijd kiezen",
+    "minTip": "Min. fooi"
+  },
+  "liveShop": {
+    "title": "Shop in deze stream",
+    "onAir": "In de uitzending",
+    "lastOne": "Laatste exemplaar",
+    "stockLeft": "Nog {{count}}",
+    "walletNotReady": "Wallet is nog niet gereed",
+    "gettingPrice": "Prijs ophalen…",
+    "ownListing": "Dit is je eigen aanbieding.",
+    "shippingAddress": "Bezorgadres",
+    "addressPlaceholder": "Naam, straat, stad, postcode, land",
+    "noteToSeller": "Notitie aan verkoper (optioneel)",
+    "notePlaceholder": "Maat, kleur, iets anders…",
+    "confirmingPayment": "Betaling bevestigen…",
+    "retryConfirmation": "Bevestiging opnieuw proberen",
+    "buyNow": "Nu kopen"
   }
 }

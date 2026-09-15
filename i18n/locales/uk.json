@@ -4035,5 +4035,28 @@
     "subscribe": "Підписатися",
     "subscriberCount_one": "{{count}} передплатник",
     "subscriberCount_other": "{{count}} передплатників"
+  },
+  "live": {
+    "notSet": "Не задано",
+    "liveChat": "Чат у прямому ефірі",
+    "pickDate": "Вибрати дату",
+    "pickTime": "Вибрати час",
+    "minTip": "Мін. чайові"
+  },
+  "liveShop": {
+    "title": "Купуйте в цьому ефірі",
+    "onAir": "В ефірі",
+    "lastOne": "Останній",
+    "stockLeft": "Залишилось {{count}}",
+    "walletNotReady": "Гаманець ще не готовий",
+    "gettingPrice": "Отримання ціни…",
+    "ownListing": "Це ваше власне оголошення.",
+    "shippingAddress": "Адреса доставки",
+    "addressPlaceholder": "Ім'я, вулиця, місто, індекс, країна",
+    "noteToSeller": "Примітка продавцю (необов'язково)",
+    "notePlaceholder": "Розмір, колір, щось іще…",
+    "confirmingPayment": "Підтвердження платежу…",
+    "retryConfirmation": "Повторити підтвердження",
+    "buyNow": "Купити зараз"
   }
 }

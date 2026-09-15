@@ -3624,5 +3624,28 @@
     "subscribe": "登録する",
     "subscriberCount_one": "登録者 {{count}} 人",
     "subscriberCount_other": "登録者 {{count}} 人"
+  },
+  "live": {
+    "notSet": "未設定",
+    "liveChat": "ライブチャット",
+    "pickDate": "日付を選択",
+    "pickTime": "時刻を選択",
+    "minTip": "最低チップ"
+  },
+  "liveShop": {
+    "title": "この配信でショッピング",
+    "onAir": "配信中",
+    "lastOne": "残り 1 点",
+    "stockLeft": "残り {{count}} 点",
+    "walletNotReady": "ウォレットの準備がまだできていません",
+    "gettingPrice": "価格を取得中…",
+    "ownListing": "これはあなた自身の出品です。",
+    "shippingAddress": "配送先住所",
+    "addressPlaceholder": "氏名、番地、市区町村、郵便番号、国",
+    "noteToSeller": "出品者へのメモ（任意）",
+    "notePlaceholder": "サイズ、色、その他のご要望…",
+    "confirmingPayment": "支払いを確認中…",
+    "retryConfirmation": "確認を再試行",
+    "buyNow": "今すぐ購入"
   }
 }

@@ -3612,5 +3612,28 @@
     "subscribe": "اشترك",
     "subscriberCount_one": "{{count}} مشترك",
     "subscriberCount_other": "{{count}} مشترك"
+  },
+  "live": {
+    "notSet": "غير محدّد",
+    "liveChat": "دردشة مباشرة",
+    "pickDate": "اختر التاريخ",
+    "pickTime": "اختر الوقت",
+    "minTip": "أدنى إكرامية"
+  },
+  "liveShop": {
+    "title": "تسوّق من هذا البث",
+    "onAir": "على الهواء",
+    "lastOne": "الأخيرة",
+    "stockLeft": "بقي {{count}}",
+    "walletNotReady": "المحفظة ليست جاهزة بعد",
+    "gettingPrice": "جارٍ جلب السعر…",
+    "ownListing": "هذا إعلانك أنت.",
+    "shippingAddress": "عنوان الشحن",
+    "addressPlaceholder": "الاسم، الشارع، المدينة، الرمز البريدي، البلد",
+    "noteToSeller": "ملاحظة للبائع (اختياري)",
+    "notePlaceholder": "المقاس، اللون، أي شيء آخر…",
+    "confirmingPayment": "جارٍ تأكيد الدفع…",
+    "retryConfirmation": "إعادة محاولة التأكيد",
+    "buyNow": "اشترِ الآن"
   }
 }
