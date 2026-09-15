@@ -3702,5 +3702,25 @@
     "rewrite": "Andika upya",
     "lyricsPlaceholder": "Acha wazi kwa wimbo wa ala pekee",
     "lyricsFailed": "Imeshindwa kutunga maneno"
+  },
+  "assets": {
+    "topUp": "Ongeza",
+    "bridge": "Daraja",
+    "comingSoon": "hivi karibuni",
+    "title": "Mali",
+    "held": "Kilichoshikiliwa",
+    "staked": "Kilichowekwa",
+    "gotIt": "Nimeelewa",
+    "dhbPositionNote": "DHB ni jumla ya msimamo wako — kilichoshikiliwa pamoja na kilichowekwa, katika Base na BNB Chain. Sehemu kubwa huwa imewekwa, hivyo idadi hii ni kubwa kuliko unachoweza kutumia sasa.",
+    "stakedIncludesUnstaking": "DHB iliyowekwa inajumuisha chochote ulichoomba kuondoa lakini bado hujarudishiwa.",
+    "otherBalancesNote": "Salio zako nyingine ziko kwenye {{network}} (mnyororo {{chainId}}) pekee. {{gas}} ni salio lako la gesi. Thamani zinaweza kuchelewa sekunde chache. Hamisha mali hadi {{network}} ili uzitumie hapa.",
+    "subscriptionEarnings": "Mapato ya usajili",
+    "withdrawableOnBase": "Inapatikana kutolewa kwenye Base",
+    "pendingTreasury": "Kwa USDT · inasubiri akiba ya hazina",
+    "cashOut": "Toa fedha",
+    "withdrawing": "Inatoa…",
+    "usdtSent": "{{amount}} USDT zimetumwa",
+    "withdrawableSoon": "Ada za usajili zitaweza kutolewa hivi karibuni",
+    "dpayBaseOnly": "Dpay inapatikana kwenye Base pekee."
   }
 }

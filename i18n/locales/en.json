@@ -3772,5 +3772,25 @@
     "rewrite": "Rewrite",
     "lyricsPlaceholder": "Leave blank for an instrumental",
     "lyricsFailed": "Failed to generate lyrics"
+  },
+  "assets": {
+    "topUp": "Top up",
+    "bridge": "Bridge",
+    "comingSoon": "coming soon",
+    "title": "Assets",
+    "held": "Held",
+    "staked": "Staked",
+    "gotIt": "Got it",
+    "dhbPositionNote": "DHB is your whole position — held plus staked, across Base and BNB Chain. Most of it is usually staked, so this is larger than what you can spend right now.",
+    "stakedIncludesUnstaking": "Staked DHB includes anything you have asked to unstake but not yet received back.",
+    "otherBalancesNote": "Your other balances are on {{network}} (chain {{chainId}}) only. {{gas}} is your gas balance. Values may lag a few seconds. Bridge or transfer assets to {{network}} to use them here.",
+    "subscriptionEarnings": "Subscription earnings",
+    "withdrawableOnBase": "Available to withdraw on Base",
+    "pendingTreasury": "USDT-denominated · pending treasury reserve",
+    "cashOut": "Cash out",
+    "withdrawing": "Withdrawing…",
+    "usdtSent": "{{amount}} USDT sent",
+    "withdrawableSoon": "Subscription fees will be withdrawable soon",
+    "dpayBaseOnly": "Dpay is only available on Base."
   }
 }

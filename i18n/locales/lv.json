@@ -3701,5 +3701,25 @@
     "rewrite": "Pārrakstīt",
     "lyricsPlaceholder": "Atstājiet tukšu instrumentālam skaņdarbam",
     "lyricsFailed": "Neizdevās izveidot vārdus"
+  },
+  "assets": {
+    "topUp": "Papildināt",
+    "bridge": "Tilts",
+    "comingSoon": "drīzumā",
+    "title": "Aktīvi",
+    "held": "Turēts",
+    "staked": "Likmē",
+    "gotIt": "Sapratu",
+    "dhbPositionNote": "DHB ir visa jūsu pozīcija — turētais plus likmē liktais, Base un BNB Chain tīklos. Lielākā daļa parasti ir likmē, tāpēc šis skaitlis ir lielāks par to, ko varat iztērēt tagad.",
+    "stakedIncludesUnstaking": "Likmē liktais DHB ietver arī to, ko esat lūdzis izņemt, bet vēl neesat saņēmis atpakaļ.",
+    "otherBalancesNote": "Pārējie atlikumi ir tikai {{network}} tīklā (ķēde {{chainId}}). {{gas}} ir jūsu gāzes atlikums. Vērtības var atpalikt dažas sekundes. Pārsūtiet aktīvus uz {{network}}, lai tos šeit izmantotu.",
+    "subscriptionEarnings": "Abonementu ieņēmumi",
+    "withdrawableOnBase": "Pieejams izņemšanai Base tīklā",
+    "pendingTreasury": "USDT izteiksmē · gaida kases rezervi",
+    "cashOut": "Izņemt",
+    "withdrawing": "Notiek izņemšana…",
+    "usdtSent": "Nosūtīts {{amount}} USDT",
+    "withdrawableSoon": "Abonementa maksas drīzumā varēs izņemt",
+    "dpayBaseOnly": "Dpay ir pieejams tikai Base tīklā."
   }
 }

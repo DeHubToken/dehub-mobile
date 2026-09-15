@@ -3790,5 +3790,25 @@
     "rewrite": "Viết lại",
     "lyricsPlaceholder": "Để trống nếu muốn bản hòa tấu",
     "lyricsFailed": "Không tạo được lời bài hát"
+  },
+  "assets": {
+    "topUp": "Nạp thêm",
+    "bridge": "Cầu nối",
+    "comingSoon": "sắp ra mắt",
+    "title": "Tài sản",
+    "held": "Đang giữ",
+    "staked": "Đang stake",
+    "gotIt": "Đã hiểu",
+    "dhbPositionNote": "DHB là toàn bộ vị thế của bạn — phần đang giữ cộng phần đang stake, trên cả Base và BNB Chain. Phần lớn thường đang stake, nên con số này lớn hơn số bạn có thể tiêu ngay.",
+    "stakedIncludesUnstaking": "Phần DHB đang stake bao gồm cả phần bạn đã yêu cầu rút nhưng chưa nhận lại.",
+    "otherBalancesNote": "Các số dư khác của bạn chỉ nằm trên {{network}} (chuỗi {{chainId}}). {{gas}} là số dư gas của bạn. Giá trị có thể trễ vài giây. Hãy chuyển tài sản sang {{network}} để dùng ở đây.",
+    "subscriptionEarnings": "Thu nhập từ đăng ký",
+    "withdrawableOnBase": "Có thể rút trên Base",
+    "pendingTreasury": "Tính bằng USDT · đang chờ quỹ dự trữ",
+    "cashOut": "Rút tiền",
+    "withdrawing": "Đang rút…",
+    "usdtSent": "Đã gửi {{amount}} USDT",
+    "withdrawableSoon": "Phí đăng ký sẽ sớm có thể rút được",
+    "dpayBaseOnly": "Dpay chỉ có trên Base."
   }
 }

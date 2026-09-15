@@ -3692,5 +3692,25 @@
     "rewrite": "Sake rubutawa",
     "lyricsPlaceholder": "Bar shi fanko don waƙar kiɗa kawai",
     "lyricsFailed": "An kasa ƙirƙirar kalmomin waƙa"
+  },
+  "assets": {
+    "topUp": "Ƙara kuɗi",
+    "bridge": "Gada",
+    "comingSoon": "nan ba da jimawa ba",
+    "title": "Kadarori",
+    "held": "Riƙe",
+    "staked": "An yi staking",
+    "gotIt": "Na gane",
+    "dhbPositionNote": "DHB shine duk matsayinka — abin da aka riƙe da wanda aka yi staking, a Base da BNB Chain. Yawancinsa yakan kasance a staking, don haka wannan ya fi abin da za ka iya kashewa yanzu.",
+    "stakedIncludesUnstaking": "DHB da aka yi staking ya haɗa da duk abin da ka nemi cirewa amma ba a mayar maka ba tukuna.",
+    "otherBalancesNote": "Sauran ma'aunanka suna kan {{network}} (sarƙa {{chainId}}) kawai. {{gas}} shine ma'aunin gas ɗinka. Ƙimomi na iya jinkirta 'yan daƙiƙu. Ka canja kadarori zuwa {{network}} don amfani da su a nan.",
+    "subscriptionEarnings": "Kuɗin shiga na biyan kuɗi",
+    "withdrawableOnBase": "Ana iya cirewa a Base",
+    "pendingTreasury": "An lissafa cikin USDT · ana jiran ajiyar baitulmali",
+    "cashOut": "Cire kuɗi",
+    "withdrawing": "Ana cirewa…",
+    "usdtSent": "An aika {{amount}} USDT",
+    "withdrawableSoon": "Za a iya cire kuɗin biyan kuɗi nan ba da jimawa ba",
+    "dpayBaseOnly": "Dpay yana samuwa a Base kawai."
   }
 }

@@ -3661,5 +3661,25 @@
     "rewrite": "เขียนใหม่",
     "lyricsPlaceholder": "เว้นว่างไว้ถ้าอยากได้เปลงบรรเลง",
     "lyricsFailed": "สร้างเนื้อเปลงบ่ได้"
+  },
+  "assets": {
+    "topUp": "เติมเงิน",
+    "bridge": "บริดจ์",
+    "comingSoon": "อีกบ่เมิน",
+    "title": "สินทรัพย์",
+    "held": "ถืออยู่",
+    "staked": "สเตกอยู่",
+    "gotIt": "เข้าใจ๋แล้ว",
+    "dhbPositionNote": "DHB คือสถานะตังหมดของต้าน — ตังตี้ถืออยู่และตี้สเตกไว้ ตังบน Base และ BNB Chain ส่วนใหญ่มักอยู่ในสเตก ตั๋วเลขนี้เลยมากกว่าตี้ต้านใจ้ได้ตอนนี้",
+    "stakedIncludesUnstaking": "DHB ตี้สเตกไว้รวมส่วนตี้ต้านขอถอนแล้วแต่ยังบ่ได้ฮับคืนตวย",
+    "otherBalancesNote": "ยอดคงเหลืออื่นของต้านอยู่บน {{network}} (เจน {{chainId}}) เต้าอั้น {{gas}} คือยอดก้าแก๊สของต้าน ก้าอาจจ๊ากว่าจริงบ่กี่วินาที โอนสินทรัพย์มาตี้ {{network}} เปื้อใจ้ตี้นี้",
+    "subscriptionEarnings": "ฮายได้จากกาน໊สมัครสมาจิก",
+    "withdrawableOnBase": "ถอนได้บน Base",
+    "pendingTreasury": "คิดเป๋น USDT · ลอเงินสำฮองคลัง",
+    "cashOut": "ถอนเงิน",
+    "withdrawing": "กำลังถอน…",
+    "usdtSent": "ส่ง {{amount}} USDT แล้ว",
+    "withdrawableSoon": "ก้าสมาจิกจะถอนได้อีกบ่เมิน",
+    "dpayBaseOnly": "Dpay ใจ้ได้เฉพาะบน Base เต้าอั้น"
   }
 }

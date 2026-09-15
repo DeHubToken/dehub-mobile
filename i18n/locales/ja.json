@@ -3769,5 +3769,25 @@
     "rewrite": "書き直す",
     "lyricsPlaceholder": "空欄にするとインストゥルメンタルになります",
     "lyricsFailed": "歌詞を生成できませんでした"
+  },
+  "assets": {
+    "topUp": "チャージ",
+    "bridge": "ブリッジ",
+    "comingSoon": "近日公開",
+    "title": "資産",
+    "held": "保有",
+    "staked": "ステーキング中",
+    "gotIt": "了解",
+    "dhbPositionNote": "DHB は保有分とステーキング分を合わせた、Base と BNB Chain 全体でのポジション全体です。多くは通常ステーキング中のため、この数字は今すぐ使える額より大きくなります。",
+    "stakedIncludesUnstaking": "ステーキング中の DHB には、解除を申請したがまだ戻っていない分も含まれます。",
+    "otherBalancesNote": "他の残高は {{network}}（チェーン {{chainId}}）にのみあります。{{gas}} はガス残高です。値は数秒遅れることがあります。ここで使うには資産を {{network}} へブリッジまたは送付してください。",
+    "subscriptionEarnings": "サブスク収益",
+    "withdrawableOnBase": "Base で出金できます",
+    "pendingTreasury": "USDT 建て · トレジャリー準備待ち",
+    "cashOut": "出金",
+    "withdrawing": "出金中…",
+    "usdtSent": "{{amount}} USDT を送金しました",
+    "withdrawableSoon": "サブスク収益はまもなく出金できるようになります",
+    "dpayBaseOnly": "Dpay は Base でのみ利用できます。"
   }
 }

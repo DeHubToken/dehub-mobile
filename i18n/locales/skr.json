@@ -3646,5 +3646,25 @@
     "rewrite": "ولدا لکھو",
     "lyricsPlaceholder": "صرف ساز کیتے خالی چھوڑو",
     "lyricsFailed": "بول کائنی بݨ سگھے"
+  },
+  "assets": {
+    "topUp": "ٹاپ اپ",
+    "bridge": "پل",
+    "comingSoon": "چھیتی",
+    "title": "اثاثے",
+    "held": "رکھیا ہویا",
+    "staked": "اسٹیک تھیا ہویا",
+    "gotIt": "سمجھ ڳیا",
+    "dhbPositionNote": "DHB تہاݙی پوری پوزیشن ہے — رکھیا ہویا تے اسٹیک تھیا ہویا، Base تے BNB Chain ݙوہیں تے۔ ودھیرا حصہ عام طور تے اسٹیک ہوندا ہے، ایں کیتے ایہہ اوندے کنوں ودھ ہے جیڑھا تساں ہݨ خرچ کر سڳدے او۔",
+    "stakedIncludesUnstaking": "اسٹیک تھئے DHB وچ اوہ وی شامل ہے جیڑھا تساں ان اسٹیک کرݨ کیتے آکھیا پر ہالے واپس کائنی ملیا۔",
+    "otherBalancesNote": "تہاݙے ٻئے بیلنس رڳو {{network}} (چین {{chainId}}) تے ہن۔ {{gas}} تہاݙا گیس بیلنس ہے۔ قدراں کجھ سیکنڈ پچھے تھی سڳدیاں ہن۔ ایتھاں استعمال کیتے اثاثے {{network}} تے بھیجو۔",
+    "subscriptionEarnings": "سبسکرپشن آمدن",
+    "withdrawableOnBase": "Base تے کڍݨ کیتے دستیاب",
+    "pendingTreasury": "USDT وچ · خزانے دے ذخیرے دی انتظار",
+    "cashOut": "کیش آؤٹ",
+    "withdrawing": "کڍیا ویندا پیا ہے…",
+    "usdtSent": "{{amount}} USDT بھیجے ڳئے",
+    "withdrawableSoon": "سبسکرپشن فیس چھیتی کڈھی ونج سڳسی",
+    "dpayBaseOnly": "Dpay رڳو Base تے دستیاب ہے۔"
   }
 }

@@ -3731,5 +3731,25 @@
     "rewrite": "Bhala kabusha",
     "lyricsPlaceholder": "Shiya kungenalutho ukuze kube ngokwezinsimbi kuphela",
     "lyricsFailed": "Ayikwazanga ukwakha amagama engoma"
+  },
+  "assets": {
+    "topUp": "Faka imali",
+    "bridge": "Ibhuloho",
+    "comingSoon": "kuyeza",
+    "title": "Impahla",
+    "held": "Okuphethwe",
+    "staked": "Okufakiwe",
+    "gotIt": "Ngiyaqonda",
+    "dhbPositionNote": "I-DHB yisikhundla sakho sonke — okuphethwe kanye nokufakiwe, ku-Base nase-BNB Chain. Iningi lakho ngokuvamile lifakiwe, ngakho leli nani likhulu kunalokho ongakusebenzisa manje.",
+    "stakedIncludesUnstaking": "I-DHB efakiwe ifaka phakathi noma yini oyicelile ukuyikhipha kodwa ongakayitholi.",
+    "otherBalancesNote": "Amanye amabhalansi akho ase-{{network}} (uchungechunge {{chainId}}) kuphela. I-{{gas}} yibhalansi yakho yegesi. Amanani angase ephuze ngemizuzwana embalwa. Dlulisela impahla ku-{{network}} ukuze uyisebenzise lapha.",
+    "subscriptionEarnings": "Imali engenayo yokubhalisa",
+    "withdrawableOnBase": "Kuyatholakala ukukhipha ku-Base",
+    "pendingTreasury": "Kubalwa nge-USDT · kulindwe isilondolozo somnyango wezimali",
+    "cashOut": "Khipha imali",
+    "withdrawing": "Kuyakhishwa…",
+    "usdtSent": "Kuthunyelwe {{amount}} USDT",
+    "withdrawableSoon": "Izimali zokubhalisa zizokwazi ukukhishwa maduze",
+    "dpayBaseOnly": "I-Dpay itholakala ku-Base kuphela."
   }
 }

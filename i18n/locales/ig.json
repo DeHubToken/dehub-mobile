@@ -3680,5 +3680,25 @@
     "rewrite": "Deghachaa ya",
     "lyricsPlaceholder": "Hapụ ya efu maka abụ na-enweghị okwu",
     "lyricsFailed": "Enweghị ike ịmepụta okwu abụ"
+  },
+  "assets": {
+    "topUp": "Tinye ego",
+    "bridge": "Àkwà",
+    "comingSoon": "na-abịa",
+    "title": "Akụ",
+    "held": "Ejide",
+    "staked": "Etinyere",
+    "gotIt": "Aghọtara m",
+    "dhbPositionNote": "DHB bụ ọnọdụ gị dum — nke ejidere na nke etinyere, na Base na BNB Chain. Ihe ka ukwuu na ya na-abụkarị nke etinyere, ya mere nke a karịrị ihe ị nwere ike imefu ugbu a.",
+    "stakedIncludesUnstaking": "DHB etinyere gụnyere ihe ọ bụla ị rịọrọ ka ewepụ ma ị natabeghị ya.",
+    "otherBalancesNote": "Ego ndị ọzọ gị dị naanị na {{network}} (chain {{chainId}}). {{gas}} bụ ego gas gị. Ụkpụrụ nwere ike ịla azụ sekọnd ole na ole. Bufee akụ gaa {{network}} iji jiri ha ebe a.",
+    "subscriptionEarnings": "Ego ndenye aha",
+    "withdrawableOnBase": "Ị nwere ike iwepụ ya na Base",
+    "pendingTreasury": "N'USDT · na-echere ndoputa akụ",
+    "cashOut": "Wepụta ego",
+    "withdrawing": "Na-ewepụta…",
+    "usdtSent": "Ezigara {{amount}} USDT",
+    "withdrawableSoon": "A ga-enwe ike iwepụta ụgwọ ndenye aha n'oge na-adịghị anya",
+    "dpayBaseOnly": "Dpay dị naanị na Base."
   }
 }
