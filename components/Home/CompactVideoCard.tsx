@@ -10,6 +10,7 @@ import { secondsToHMMSS } from "../../libs/date.util";
 import {
   getAvatarUrl,
   resolveThumbnail,
+  DEFAULT_BANNER_SENTINEL,
   getImageUrl,
   getBadgeUrlFor,
   getVideoUrl,
@@ -57,7 +58,14 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const thumbUrl = isLive
     ? resolveThumbnail(nft as any, COMPACT_THUMB_PT)
     : getImageUrl(rawThumb, COMPACT_THUMB_PT);
-  const thumbnail = thumbUrl && thumbUrl.length > 0 ? thumbUrl : "";
+  // A live row usually has no cover at all, and resolveThumbnail answers that
+  // with the "default-banner" sentinel rather than an empty string. Kept as a
+  // thumbnail it becomes an <Image> with no URL scheme — nothing painted, and
+  // the placeholder below skipped because a thumbnail appeared to exist.
+  const thumbnail =
+    thumbUrl && thumbUrl.length > 0 && thumbUrl !== DEFAULT_BANNER_SENTINEL
+      ? thumbUrl
+      : "";
   const title =
     (nft as any).name ||
     (nft as any).title ||
