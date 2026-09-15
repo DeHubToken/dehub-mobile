@@ -208,7 +208,6 @@ export default function HomeScreen() {
     headerAnimatedStyle,
     onHeaderLayout,
     scrollHandler,
-    scrollWorklet,
     handleScrollEnd,
     showHeader,
   } = useCollapsibleHeader();
@@ -733,7 +732,6 @@ export default function HomeScreen() {
         onRefresh={handleRefresh}
         onScrollBegin={handleScrollBegin}
         scrollHandler={scrollHandler}
-        scrollWorklet={scrollWorklet}
         onScrollEnd={handleScrollEnd}
         onCategorySelect={handleCategorySelect}
         onRetry={handleRetry}
