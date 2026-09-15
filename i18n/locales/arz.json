@@ -3408,6 +3408,21 @@
     "micRequired": "لازم إذن المايك علشان تسجل صوت.",
     "recordFailed": "مقدرش يبدأ التسجيل.",
     "tierVisibility": "اطلع في المستويات علشان تزود ظهورك وتاخد عرض أكتر للبوست في اليوم",
-    "buyTokens": "شراء توكنز"
+    "buyTokens": "شراء توكنز",
+    "community": "مجتمع",
+    "shop": "متجر",
+    "discard": "تجاهل",
+    "matureContent": "محتوى للكبار",
+    "addOption": "ضيف اختيار",
+    "mintPost": "سك البوست",
+    "addCategories": "ضيف تصنيفات",
+    "goLive": "ابدأ بث مباشر",
+    "startLivestream": "ابدأ بث مباشر",
+    "joinStage": "انضم أو ابدأ منصة صوتية",
+    "saveToDrafts": "احفظ في المسودات",
+    "uploadAudio": "ارفع ملف صوتي",
+    "recordVoice": "سجّل صوتك",
+    "searchSounds": "دوّر على أصوات",
+    "pollQuestion": "اسأل سؤال…"
   }
 }

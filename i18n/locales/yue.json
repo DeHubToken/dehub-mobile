@@ -3410,6 +3410,21 @@
     "micRequired": "錄音需要麥克風權限。",
     "recordFailed": "無法開始錄製。",
     "tierVisibility": "提升等級可以增加曝光，每日令帖子獲得更多推送",
-    "buyTokens": "購買代幣"
+    "buyTokens": "購買代幣",
+    "community": "社群",
+    "shop": "商店",
+    "discard": "捨棄",
+    "matureContent": "成人內容",
+    "addOption": "新增選項",
+    "mintPost": "鑄造帖子",
+    "addCategories": "新增分類",
+    "goLive": "開始直播",
+    "startLivestream": "開始直播",
+    "joinStage": "加入或者開始一個語音舞台",
+    "saveToDrafts": "儲存到草稿",
+    "uploadAudio": "上載音訊",
+    "recordVoice": "錄製語音",
+    "searchSounds": "搜尋音效",
+    "pollQuestion": "問個問題…"
   }
 }

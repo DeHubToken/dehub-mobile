@@ -3412,6 +3412,21 @@
     "micRequired": "Ruhusa ya maikrofoni inahitajika ili kurekodi sauti.",
     "recordFailed": "Imeshindwa kuanza kurekodi.",
     "tierVisibility": "Panda viwango ili kuongeza mwonekano wako na kupata usambazaji zaidi kwa siku",
-    "buyTokens": "Nunua tokeni"
+    "buyTokens": "Nunua tokeni",
+    "community": "Jumuiya",
+    "shop": "Duka",
+    "discard": "Tupa",
+    "matureContent": "Maudhui ya watu wazima",
+    "addOption": "Ongeza chaguo",
+    "mintPost": "Fua chapisho",
+    "addCategories": "Ongeza kategoria",
+    "goLive": "Anza moja kwa moja",
+    "startLivestream": "Anza matangazo ya moja kwa moja",
+    "joinStage": "Jiunge au anzisha jukwaa la sauti",
+    "saveToDrafts": "Hifadhi kwenye rasimu",
+    "uploadAudio": "Pakia sauti",
+    "recordVoice": "Rekodi sauti",
+    "searchSounds": "Tafuta sauti",
+    "pollQuestion": "Uliza swali…"
   }
 }

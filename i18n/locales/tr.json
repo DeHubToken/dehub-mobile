@@ -3474,6 +3474,21 @@
     "micRequired": "Ses kaydetmek için mikrofon izni gerekir.",
     "recordFailed": "Kayıt başlatılamadı.",
     "tierVisibility": "Görünürlüğünüzü artırmak ve gönderiniz için günde daha fazla yayın almak üzere seviye atlayın",
-    "buyTokens": "Token satın al"
+    "buyTokens": "Token satın al",
+    "community": "Topluluk",
+    "shop": "Mağaza",
+    "discard": "Vazgeç",
+    "matureContent": "Yetişkin içeriği",
+    "addOption": "Seçenek ekle",
+    "mintPost": "Gönderiyi mint et",
+    "addCategories": "Kategori ekle",
+    "goLive": "Canlı yayına geç",
+    "startLivestream": "Canlı yayın başlat",
+    "joinStage": "Bir sesli sahneye katılın veya başlatın",
+    "saveToDrafts": "Taslaklara kaydet",
+    "uploadAudio": "Ses yükle",
+    "recordVoice": "Ses kaydet",
+    "searchSounds": "Ses ara",
+    "pollQuestion": "Bir soru sorun…"
   }
 }

@@ -3370,6 +3370,21 @@
     "micRequired": "Idin mikrofon dibutuhake kanggo ngrekam audio.",
     "recordFailed": "Gagal miwiti rekaman.",
     "tierVisibility": "Munggah tingkat kanggo nambah visibilitas lan entuk luwih akeh tayangan saben dina",
-    "buyTokens": "Tuku token"
+    "buyTokens": "Tuku token",
+    "community": "Komunitas",
+    "shop": "Toko",
+    "discard": "Buwang",
+    "matureContent": "Konten diwasa",
+    "addOption": "Tambah pilihan",
+    "mintPost": "Mint postingan",
+    "addCategories": "Tambah kategori",
+    "goLive": "Miwiti siaran langsung",
+    "startLivestream": "Miwiti siaran langsung",
+    "joinStage": "Gabung utawa miwiti panggung audio",
+    "saveToDrafts": "Simpen menyang draf",
+    "uploadAudio": "Unggah audio",
+    "recordVoice": "Rekam swara",
+    "searchSounds": "Golek swara",
+    "pollQuestion": "Takon…"
   }
 }

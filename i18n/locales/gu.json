@@ -3404,6 +3404,21 @@
     "micRequired": "ઑડિયો રેકોર્ડ કરવા માઇક્રોફોનની પરવાનગી જરૂરી છે.",
     "recordFailed": "રેકોર્ડિંગ શરૂ કરી શકાયું નહીં.",
     "tierVisibility": "સ્તર વધારો જેથી તમારી દૃશ્યતા વધે અને દરરોજ પોસ્ટને વધુ ફીડ મળે",
-    "buyTokens": "ટોકન ખરીદો"
+    "buyTokens": "ટોકન ખરીદો",
+    "community": "સમુદાય",
+    "shop": "દુકાન",
+    "discard": "કાઢી નાખો",
+    "matureContent": "પુખ્ત સામગ્રી",
+    "addOption": "વિકલ્પ ઉમેરો",
+    "mintPost": "પોસ્ટ મિન્ટ કરો",
+    "addCategories": "શ્રેણીઓ ઉમેરો",
+    "goLive": "લાઇવ જાઓ",
+    "startLivestream": "લાઇવસ્ટ્રીમ શરૂ કરો",
+    "joinStage": "ઑડિયો સ્ટેજમાં જોડાઓ કે શરૂ કરો",
+    "saveToDrafts": "ડ્રાફ્ટમાં સાચવો",
+    "uploadAudio": "ઑડિયો અપલોડ કરો",
+    "recordVoice": "અવાજ રેકોર્ડ કરો",
+    "searchSounds": "અવાજો શોધો",
+    "pollQuestion": "એક પ્રશ્ન પૂછો…"
   }
 }

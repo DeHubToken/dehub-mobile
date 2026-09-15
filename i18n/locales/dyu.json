@@ -3356,6 +3356,21 @@
     "micRequired": "Kumakan mara kama, mikrɔfɔni sɔn ka kan.",
     "recordFailed": "Mara ma se ka daminɛ.",
     "tierVisibility": "Sanfɛ hakɛw yɛlɛ walisa i ka yeli ka caya ani post ka feed caman sɔrɔ don o don",
-    "buyTokens": "Token san"
+    "buyTokens": "Token san",
+    "community": "Jɛkulu",
+    "shop": "Butiki",
+    "discard": "A bila",
+    "matureContent": "Mɔgɔkɔrɔbaw ka kunnafoni",
+    "addOption": "Sugandi fara",
+    "mintPost": "Post minti",
+    "addCategories": "Kulu fara",
+    "goLive": "Jɔnjɔn daminɛ",
+    "startLivestream": "Jɔnjɔn daminɛ",
+    "joinStage": "Don kumakan kɛnɛ la walima k'a daminɛ",
+    "saveToDrafts": "A mara sɛbɛnfɔlɔw la",
+    "uploadAudio": "Kumakan bila",
+    "recordVoice": "Kan mara",
+    "searchSounds": "Kumakanw ɲini",
+    "pollQuestion": "Ɲininkali kɛ…"
   }
 }

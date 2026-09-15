@@ -3500,6 +3500,21 @@
     "micRequired": "Cần quyền micrô để ghi âm.",
     "recordFailed": "Không thể bắt đầu ghi.",
     "tierVisibility": "Lên bậc cao hơn để tăng mức hiển thị và nhận thêm lượt phân phối bài đăng mỗi ngày",
-    "buyTokens": "Mua token"
+    "buyTokens": "Mua token",
+    "community": "Cộng đồng",
+    "shop": "Cửa hàng",
+    "discard": "Hủy bỏ",
+    "matureContent": "Nội dung người lớn",
+    "addOption": "Thêm lựa chọn",
+    "mintPost": "Mint bài đăng",
+    "addCategories": "Thêm danh mục",
+    "goLive": "Phát trực tiếp",
+    "startLivestream": "Bắt đầu phát trực tiếp",
+    "joinStage": "Tham gia hoặc mở một sân khấu âm thanh",
+    "saveToDrafts": "Lưu vào bản nháp",
+    "uploadAudio": "Tải lên âm thanh",
+    "recordVoice": "Ghi âm giọng nói",
+    "searchSounds": "Tìm âm thanh",
+    "pollQuestion": "Đặt một câu hỏi…"
   }
 }

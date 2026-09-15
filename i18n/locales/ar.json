@@ -3467,6 +3467,21 @@
     "micRequired": "يلزم إذن الميكروفون لتسجيل الصوت.",
     "recordFailed": "تعذّر بدء التسجيل.",
     "tierVisibility": "ارتقِ في المستويات لزيادة ظهورك والحصول على عرض أكبر لمنشورك يوميًا",
-    "buyTokens": "شراء رموز"
+    "buyTokens": "شراء رموز",
+    "community": "مجتمع",
+    "shop": "متجر",
+    "discard": "تجاهل",
+    "matureContent": "محتوى للبالغين",
+    "addOption": "إضافة خيار",
+    "mintPost": "سكّ المنشور",
+    "addCategories": "إضافة تصنيفات",
+    "goLive": "بدء بث مباشر",
+    "startLivestream": "ابدأ بثًا مباشرًا",
+    "joinStage": "انضم إلى منصة صوتية أو ابدأ واحدة",
+    "saveToDrafts": "حفظ في المسودات",
+    "uploadAudio": "رفع ملف صوتي",
+    "recordVoice": "تسجيل صوتي",
+    "searchSounds": "البحث عن أصوات",
+    "pollQuestion": "اطرح سؤالاً…"
   }
 }

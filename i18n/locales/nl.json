@@ -3680,6 +3680,21 @@
     "micRequired": "Microfoontoestemming is vereist om audio op te nemen.",
     "recordFailed": "Kan opname niet starten.",
     "tierVisibility": "Klim in niveaus om je zichtbaarheid te vergroten en per dag meer weergaven voor je bericht te krijgen",
-    "buyTokens": "Tokens kopen"
+    "buyTokens": "Tokens kopen",
+    "community": "Community",
+    "shop": "Winkel",
+    "discard": "Verwijderen",
+    "matureContent": "Inhoud voor volwassenen",
+    "addOption": "Optie toevoegen",
+    "mintPost": "Bericht minten",
+    "addCategories": "Categorieën toevoegen",
+    "goLive": "Live gaan",
+    "startLivestream": "Start een livestream",
+    "joinStage": "Neem deel aan een audiostage of start er een",
+    "saveToDrafts": "Opslaan in concepten",
+    "uploadAudio": "Audio uploaden",
+    "recordVoice": "Stem opnemen",
+    "searchSounds": "Geluiden zoeken",
+    "pollQuestion": "Stel een vraag…"
   }
 }

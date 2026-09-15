@@ -3480,6 +3480,21 @@
     "micRequired": "오디오를 녹음하려면 마이크 권한이 필요합니다.",
     "recordFailed": "녹음을 시작하지 못했습니다.",
     "tierVisibility": "등급을 올리면 노출이 늘고 하루에 게시물이 더 많이 전달됩니다",
-    "buyTokens": "토큰 구매"
+    "buyTokens": "토큰 구매",
+    "community": "커뮤니티",
+    "shop": "상점",
+    "discard": "삭제",
+    "matureContent": "성인용 콘텐츠",
+    "addOption": "항목 추가",
+    "mintPost": "게시물 민팅",
+    "addCategories": "카테고리 추가",
+    "goLive": "라이브 시작",
+    "startLivestream": "라이브 방송 시작",
+    "joinStage": "오디오 스테이지에 참여하거나 새로 시작",
+    "saveToDrafts": "임시저장",
+    "uploadAudio": "오디오 업로드",
+    "recordVoice": "음성 녹음",
+    "searchSounds": "사운드 검색",
+    "pollQuestion": "질문을 입력하세요…"
   }
 }

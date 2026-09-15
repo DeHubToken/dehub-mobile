@@ -3411,6 +3411,21 @@
     "micRequired": "Lai ierakstītu audio, nepieciešama mikrofona atļauja.",
     "recordFailed": "Neizdevās sākt ierakstīšanu.",
     "tierVisibility": "Kāpiet līmeņos, lai palielinātu redzamību un iegūtu vairāk ieraksta rādījumu dienā",
-    "buyTokens": "Pirkt marķierus"
+    "buyTokens": "Pirkt marķierus",
+    "community": "Kopiena",
+    "shop": "Veikals",
+    "discard": "Atmest",
+    "matureContent": "Saturs pieaugušajiem",
+    "addOption": "Pievienot opciju",
+    "mintPost": "Izkalt ierakstu",
+    "addCategories": "Pievienot kategorijas",
+    "goLive": "Sākt tiešraidi",
+    "startLivestream": "Sāciet tiešraidi",
+    "joinStage": "Pievienojieties audio skatuvei vai sāciet jaunu",
+    "saveToDrafts": "Saglabāt melnrakstos",
+    "uploadAudio": "Augšupielādēt audio",
+    "recordVoice": "Ierakstīt balsi",
+    "searchSounds": "Meklēt skaņas",
+    "pollQuestion": "Uzdodiet jautājumu…"
   }
 }

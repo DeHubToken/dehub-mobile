@@ -3416,6 +3416,21 @@
     "micRequired": "Der kræves mikrofontilladelse for at optage lyd.",
     "recordFailed": "Kunne ikke starte optagelsen.",
     "tierVisibility": "Stig i niveauer for at øge din synlighed og få flere daglige visninger af opslaget",
-    "buyTokens": "Køb tokens"
+    "buyTokens": "Køb tokens",
+    "community": "Fællesskab",
+    "shop": "Butik",
+    "discard": "Kassér",
+    "matureContent": "Voksenindhold",
+    "addOption": "Tilføj valgmulighed",
+    "mintPost": "Mint opslag",
+    "addCategories": "Tilføj kategorier",
+    "goLive": "Gå live",
+    "startLivestream": "Start en livestream",
+    "joinStage": "Deltag i eller start en lydscene",
+    "saveToDrafts": "Gem i kladder",
+    "uploadAudio": "Upload lyd",
+    "recordVoice": "Optag stemme",
+    "searchSounds": "Søg efter lyde",
+    "pollQuestion": "Stil et spørgsmål…"
   }
 }
