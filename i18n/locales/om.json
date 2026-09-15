@@ -3559,5 +3559,17 @@
     "switchFirst": "Osoo hin fudhatin dura gara neetwoorkii badhaasaa jijjiiri",
     "missingSignature": "Mallattoon gaaffii badhaasaa hin jiru",
     "txReverted": "Daldalli sarara irratti deebiʼe"
+  },
+  "poster": {
+    "format": "Bifa",
+    "style": "Bocca",
+    "logo": "Mallattoo",
+    "headline": "Mata duree",
+    "headlinePlaceholder": "Erga uumamee booda ifa taʼee itti dabalama — yoo hin barbaadne duwwaa dhiisi",
+    "spotlightFeatures": "Amaloota xiyyeeffannoo argatan",
+    "includeWebsite": "Weebsaayitii dabali",
+    "includeSocials": "Miidiyaa hawaasaa dabali",
+    "extraNotes": "Yaadannoo dabalataa",
+    "notesPlaceholder": "Wanti biroo poostarri agarsiisuu qabu"
   }
 }

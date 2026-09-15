@@ -3557,5 +3557,17 @@
     "switchFirst": "Almadan önce ödül ağına geçin",
     "missingSignature": "Ödül alma imzası eksik",
     "txReverted": "İşlem zincir üzerinde geri alındı"
+  },
+  "poster": {
+    "format": "Biçim",
+    "style": "Stil",
+    "logo": "Logo",
+    "headline": "Başlık",
+    "headlinePlaceholder": "Oluşturma sonrası net biçimde eklenir — istemiyorsanız boş bırakın",
+    "spotlightFeatures": "Öne çıkarılacak özellikler",
+    "includeWebsite": "Web sitesini ekle",
+    "includeSocials": "Sosyal hesapları ekle",
+    "extraNotes": "Ek notlar",
+    "notesPlaceholder": "Afişte görünmesi gereken diğer her şey"
   }
 }

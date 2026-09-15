@@ -3551,5 +3551,17 @@
     "switchFirst": "लेने से पहले बाउंटी नेटवर्क पर जाएँ",
     "missingSignature": "बाउंटी क्लेम का हस्ताक्षर गायब है",
     "txReverted": "लेनदेन ऑन-चेन वापस हो गया"
+  },
+  "poster": {
+    "format": "फ़ॉर्मेट",
+    "style": "शैली",
+    "logo": "लोगो",
+    "headline": "शीर्षक",
+    "headlinePlaceholder": "जनरेट होने के बाद साफ़ जोड़ा जाता है — न चाहिए तो खाली छोड़ें",
+    "spotlightFeatures": "उजागर करने वाली सुविधाएँ",
+    "includeWebsite": "वेबसाइट शामिल करें",
+    "includeSocials": "सोशल हैंडल शामिल करें",
+    "extraNotes": "अतिरिक्त नोट",
+    "notesPlaceholder": "पोस्टर में और जो कुछ दिखाना हो"
   }
 }

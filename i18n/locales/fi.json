@@ -3495,5 +3495,17 @@
     "switchFirst": "Vaihda palkintoverkkoon ennen lunastusta",
     "missingSignature": "Palkinnon lunastusallekirjoitus puuttuu",
     "txReverted": "Tapahtuma peruuntui lohkoketjussa"
+  },
+  "poster": {
+    "format": "Muoto",
+    "style": "Tyyli",
+    "logo": "Logo",
+    "headline": "Otsikko",
+    "headlinePlaceholder": "Lisätään tarkkana luonnin jälkeen — jätä tyhjäksi, jos et halua",
+    "spotlightFeatures": "Esiin nostettavat ominaisuudet",
+    "includeWebsite": "Sisällytä verkkosivusto",
+    "includeSocials": "Sisällytä sosiaalinen media",
+    "extraNotes": "Lisähuomautukset",
+    "notesPlaceholder": "Kaikki muu, mitä julisteen pitää näyttää"
   }
 }

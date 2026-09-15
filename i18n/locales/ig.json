@@ -3473,5 +3473,17 @@
     "switchFirst": "Gbanwee gaa netwọk ụgwọ ọrụ tupu ị nara ya",
     "missingSignature": "Mbinye aka nnata ụgwọ ọrụ efuola",
     "txReverted": "A kwụsịrị azụmahịa na chain"
+  },
+  "poster": {
+    "format": "Ụdị",
+    "style": "Ụdị",
+    "logo": "Akara",
+    "headline": "Isiokwu",
+    "headlinePlaceholder": "A na-agbakwunye ya nke ọma mgbe emechara — hapụ ya efu ma ọ bụrụ na ịchọghị",
+    "spotlightFeatures": "Njirimara a ga-egosipụta",
+    "includeWebsite": "Tinye webụsaịtị",
+    "includeSocials": "Tinye akaụntụ mgbasa ozi",
+    "extraNotes": "Ndetu ndị ọzọ",
+    "notesPlaceholder": "Ihe ọ bụla ọzọ posta ahụ ga-egosi"
   }
 }

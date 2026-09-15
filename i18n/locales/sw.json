@@ -3495,5 +3495,17 @@
     "switchFirst": "Badilisha kwenda mtandao wa zawadi kabla ya kudai",
     "missingSignature": "Sahihi ya kudai zawadi haipo",
     "txReverted": "Muamala umetenguliwa kwenye mnyororo"
+  },
+  "poster": {
+    "format": "Umbizo",
+    "style": "Mtindo",
+    "logo": "Nembo",
+    "headline": "Kichwa",
+    "headlinePlaceholder": "Huongezwa kwa uwazi baada ya kutengeneza — acha wazi kama huhitaji",
+    "spotlightFeatures": "Vipengele vya kuangaziwa",
+    "includeWebsite": "Jumuisha tovuti",
+    "includeSocials": "Jumuisha mitandao ya kijamii",
+    "extraNotes": "Madokezo ya ziada",
+    "notesPlaceholder": "Kitu kingine chochote bango linalopaswa kuonyesha"
   }
 }

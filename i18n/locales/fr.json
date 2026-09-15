@@ -3569,5 +3569,17 @@
     "switchFirst": "Passez au réseau de la récompense avant de la réclamer",
     "missingSignature": "Signature de réclamation manquante",
     "txReverted": "La transaction a été annulée on-chain"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Style",
+    "logo": "Logo",
+    "headline": "Titre",
+    "headlinePlaceholder": "Ajouté nettement après la génération — laissez vide pour aucun",
+    "spotlightFeatures": "Fonctionnalités mises en avant",
+    "includeWebsite": "Inclure le site web",
+    "includeSocials": "Inclure les réseaux sociaux",
+    "extraNotes": "Notes supplémentaires",
+    "notesPlaceholder": "Tout ce que l'affiche doit montrer d'autre"
   }
 }

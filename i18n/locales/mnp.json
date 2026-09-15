@@ -3492,5 +3492,17 @@
     "switchFirst": "领取前请切换到赏金所在网络",
     "missingSignature": "缺少赏金领取签名",
     "txReverted": "交易在链上被回滚"
+  },
+  "poster": {
+    "format": "格式",
+    "style": "风格",
+    "logo": "标志",
+    "headline": "标题",
+    "headlinePlaceholder": "生成后会清晰叠加 — 不需要就留空",
+    "spotlightFeatures": "重点展示的功能",
+    "includeWebsite": "包含网址",
+    "includeSocials": "包含社交账号",
+    "extraNotes": "补充说明",
+    "notesPlaceholder": "海报还需要展示的其他内容"
   }
 }

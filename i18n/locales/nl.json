@@ -3763,5 +3763,17 @@
     "switchFirst": "Schakel over naar het beloningsnetwerk voordat je claimt",
     "missingSignature": "Handtekening voor beloningsclaim ontbreekt",
     "txReverted": "Transactie is on-chain teruggedraaid"
+  },
+  "poster": {
+    "format": "Formaat",
+    "style": "Stijl",
+    "logo": "Logo",
+    "headline": "Kop",
+    "headlinePlaceholder": "Wordt na de generatie scherp toegevoegd — laat leeg voor geen",
+    "spotlightFeatures": "Uitgelichte functies",
+    "includeWebsite": "Website opnemen",
+    "includeSocials": "Socials opnemen",
+    "extraNotes": "Extra notities",
+    "notesPlaceholder": "Al het andere dat de poster moet tonen"
   }
 }

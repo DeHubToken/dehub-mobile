@@ -3485,5 +3485,17 @@
     "switchFirst": "Yí padà sí nẹ́tíwọ̀kì èrè kí o tó gbà",
     "missingSignature": "Ìbùwọ́lù gbígba èrè kò sí",
     "txReverted": "A yí ìṣòwò náà padà lórí ẹ̀wọ̀n"
+  },
+  "poster": {
+    "format": "Ìrísí",
+    "style": "Àṣà",
+    "logo": "Àmì ìdánimọ̀",
+    "headline": "Àkọlé",
+    "headlinePlaceholder": "A ó fi kún un ní kedere lẹ́yìn ìṣẹ̀dá — fi sílẹ̀ ní òfìfo bí o kò bá fẹ́",
+    "spotlightFeatures": "Àwọn ẹ̀ya láti ṣàfihàn",
+    "includeWebsite": "Fi ojú-òpó wẹ́ẹ̀bù kún un",
+    "includeSocials": "Fi àwọn àkọ́ọ̀nù àwùjọ kún un",
+    "extraNotes": "Àkíyèsí àfikún",
+    "notesPlaceholder": "Ohunkóhun mìíràn tí póstà gbọ́dọ̀ fi hàn"
   }
 }

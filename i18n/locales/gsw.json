@@ -3484,5 +3484,17 @@
     "switchFirst": "Wächsle vor em Iiliise zum Bilohnigsnetzwärk",
     "missingSignature": "D Signatur für d Bilohnigsiiliisig fählt",
     "txReverted": "D Transaktion isch on-chain zrugggsetzt worde"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Stil",
+    "logo": "Logo",
+    "headline": "Überschrift",
+    "headlinePlaceholder": "Wird nach em Generiere scharf iigfüegt — läär lah für kei",
+    "spotlightFeatures": "Hervorghobeni Funktione",
+    "includeWebsite": "Website iibezieh",
+    "includeSocials": "Social-Media-Profil iibezieh",
+    "extraNotes": "Zuesätzlichi Hiiwiis",
+    "notesPlaceholder": "Alles anderi, was s Plakat sölli zeige"
   }
 }

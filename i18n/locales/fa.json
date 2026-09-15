@@ -3508,5 +3508,17 @@
     "switchFirst": "پیش از دریافت به شبکه پاداش بروید",
     "missingSignature": "امضای دریافت پاداش موجود نیست",
     "txReverted": "تراکنش روی زنجیره برگشت خورد"
+  },
+  "poster": {
+    "format": "قالب",
+    "style": "سبک",
+    "logo": "لوگو",
+    "headline": "تیتر",
+    "headlinePlaceholder": "پس از تولید به‌صورت واضح افزوده می‌شود — اگر نمی‌خواهید خالی بگذارید",
+    "spotlightFeatures": "قابلیت‌های برجسته",
+    "includeWebsite": "افزودن وب‌سایت",
+    "includeSocials": "افزودن شبکه‌های اجتماعی",
+    "extraNotes": "یادداشت‌های اضافی",
+    "notesPlaceholder": "هر چیز دیگری که پوستر باید نشان دهد"
   }
 }

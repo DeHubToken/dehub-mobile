@@ -3494,5 +3494,17 @@
     "switchFirst": "Prieš atsiimdami perjunkite į atlygio tinklą",
     "missingSignature": "Trūksta atlygio atsiėmimo parašo",
     "txReverted": "Operacija grandinėje buvo atšaukta"
+  },
+  "poster": {
+    "format": "Formatas",
+    "style": "Stilius",
+    "logo": "Logotipas",
+    "headline": "Antraštė",
+    "headlinePlaceholder": "Po generavimo pridedama ryškiai — palikite tuščią, jei nereikia",
+    "spotlightFeatures": "Išryškinamos funkcijos",
+    "includeWebsite": "Įtraukti svetainę",
+    "includeSocials": "Įtraukti socialinius tinklus",
+    "extraNotes": "Papildomos pastabos",
+    "notesPlaceholder": "Bet kas kita, ką plakatas turi rodyti"
   }
 }

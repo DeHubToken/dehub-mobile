@@ -3486,5 +3486,17 @@
     "switchFirst": "Isu beddel shabakadda abaalgudka ka hor qaadashada",
     "missingSignature": "Saxiixa qaadashada abaalgudka ma jiro",
     "txReverted": "Macaamilka waa laga noqday silsiladda"
+  },
+  "poster": {
+    "format": "Qaabka",
+    "style": "Qaabka",
+    "logo": "Astaan",
+    "headline": "Cinwaanka",
+    "headlinePlaceholder": "Si cad ayaa loogu daraa abuurista kadib — banaanka ka tag haddaadan rabin",
+    "spotlightFeatures": "Astaamaha la muujinayo",
+    "includeWebsite": "Ku dar websaydhka",
+    "includeSocials": "Ku dar baraha bulshada",
+    "extraNotes": "Qoraallo dheeraad ah",
+    "notesPlaceholder": "Wax kasta oo kale oo boostarku muujin karo"
   }
 }

@@ -3550,5 +3550,17 @@
     "switchFirst": "بدّل إلى شبكة المكافأة قبل الاستلام",
     "missingSignature": "توقيع استلام المكافأة مفقود",
     "txReverted": "تم التراجع عن المعاملة على السلسلة"
+  },
+  "poster": {
+    "format": "الصيغة",
+    "style": "النمط",
+    "logo": "الشعار",
+    "headline": "العنوان",
+    "headlinePlaceholder": "يُضاف بوضوح بعد التوليد — اتركه فارغًا إن لم ترده",
+    "spotlightFeatures": "الميزات المُبرَزة",
+    "includeWebsite": "تضمين الموقع",
+    "includeSocials": "تضمين حسابات التواصل",
+    "extraNotes": "ملاحظات إضافية",
+    "notesPlaceholder": "أي شيء آخر يجب أن يظهر في الملصق"
   }
 }

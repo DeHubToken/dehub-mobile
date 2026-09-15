@@ -3454,5 +3454,17 @@
     "switchFirst": "สลับไปเครือข่ายของรางวัลก่อนฮับ",
     "missingSignature": "บ่มีลายเซ็นสำหรับฮับรางวัล",
     "txReverted": "ธุรกรรมถูกย้อนกลับบนเชน"
+  },
+  "poster": {
+    "format": "ฮูปแบบ",
+    "style": "สไตล์",
+    "logo": "โลโก้",
+    "headline": "พาดหัว",
+    "headlinePlaceholder": "สิซ้อนทับอย่างคมชัดหลังสร้างเสร็จ — บ่ต้องการกะเว้นว่างไว้",
+    "spotlightFeatures": "ฟีเจอร์ที่อยากเน้น",
+    "includeWebsite": "ใส่เว็บไซต์",
+    "includeSocials": "ใส่โซเชียล",
+    "extraNotes": "หมายเหตุเพิ่มเติม",
+    "notesPlaceholder": "อย่างอื่นที่โปสเตอร์ต้องแสดง"
   }
 }

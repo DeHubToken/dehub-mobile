@@ -3445,5 +3445,17 @@
     "switchFirst": "लेवे से पहिले बाउंटी नेटवर्क पर जाईं",
     "missingSignature": "बाउंटी क्लेम के हस्ताक्षर गायब बा",
     "txReverted": "लेनदेन ऑन-चेन वापस हो गइल"
+  },
+  "poster": {
+    "format": "फॉर्मेट",
+    "style": "स्टाइल",
+    "logo": "लोगो",
+    "headline": "शीर्षक",
+    "headlinePlaceholder": "जनरेट होखला के बाद साफ-साफ जोड़ल जाला — ना चाहीं त खाली छोड़ीं",
+    "spotlightFeatures": "उजागर करे वाला फीचर",
+    "includeWebsite": "वेबसाइट जोड़ीं",
+    "includeSocials": "सोशल हैंडल जोड़ीं",
+    "extraNotes": "अतिरिक्त नोट",
+    "notesPlaceholder": "पोस्टर में जवन कुछ अउरी देखाए के बा"
   }
 }
