@@ -9,27 +9,16 @@ import React, {
 import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
   View,
-  ScrollViewProps,
-
+  FlatList,
+  ListRenderItem,
   Text,
   Pressable,
   NativeSyntheticEvent,
   NativeScrollEvent,
-
+  ViewToken,
 } from "react-native";
 import { DeHubLoader } from "../DeHubLoader";
-import Animated, {
-  runOnJS,
-  useAnimatedScrollHandler,
-  useAnimatedStyle,
-  type SharedValue,
-} from "react-native-reanimated";
-import {
-  FlashList,
-  type FlashListRef,
-  type ListRenderItem,
-  type ViewToken,
-} from "@shopify/flash-list";
+import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
 import EmptyFeedState from "./EmptyFeedState";
 import FeedCard from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
@@ -99,8 +88,6 @@ interface InfiniteVideoFeedProps {
   onEndReachedAll?: () => void;
   /** Reanimated worklet scroll handler — when provided, scroll events stay on the UI thread. */
   scrollHandler?: any;
-  /** The collapsing header's scroll logic as a bare worklet; folded into this list's own handler. */
-  scrollWorklet?: (scrollY: number) => void;
   onScrollOffset?: (offsetY: number, deltaY: number) => void;
   onScrollEnd?: () => void;
   onClearFilters?: () => void;
@@ -132,7 +119,7 @@ const FOOTER_SLOT = { height: 84 } as const;
 // to hold position — so the boosted card lands scrolled off the top of the
 // screen and is never seen. The threshold keeps a viewer already at the top
 // pinned to the top.
-const MAINTAIN_POSITION = { autoscrollToTopThreshold: 100 } as const;
+const MAINTAIN_POSITION = { minIndexForVisible: 1, autoscrollToTopThreshold: 100 } as const;
 
 // Rows the capped list needs before it can scroll at all. Below this the feed
 // pulls another page rather than sitting on a screenful of nothing.
@@ -152,10 +139,8 @@ const SETTLE_AFTER_DRAG_MS = 120;
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
 const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
 
-// How far past the viewport FlashList keeps cells live, in px: about two
-// screens, so a reversed fling meets rows that are already laid out.
-const DRAW_DISTANCE = 2400;
-
+// Animated wrapper so a worklet onScroll runs on the UI thread; cast keeps FlatList generics.
+const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
 
 // One row. Subscribes to its own visibility so a tick that moves another row
 // on or off screen never reaches this one.
@@ -196,7 +181,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   headerTranslateY = null,
   onEndReachedAll,
   scrollHandler,
-  scrollWorklet,
   onScrollOffset,
   onScrollEnd,
   onClearFilters,
@@ -215,47 +199,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // only the rows it changed, not every mounted cell. See libs/feedVisibility.
   const visibilityStore = useMemo(() => createFeedVisibilityStore(), []);
   const visibleKeysRef = useRef<Set<string>>(new Set());
-  const listRef = useRef<FlashListRef<FeedItem>>(null);
+  const listRef = useRef<FlatList<FeedItem>>(null);
   const prevYRef = useRef(0);
-
-  // FlashList calls the `onScroll` prop from JavaScript after its own native
-  // listener; it never attaches ours to the scroll view. The collapsing
-  // header needs its worklet on the UI thread, so the scroll view is
-  // rendered here with one Reanimated handler that drives the header and
-  // forwards a plain copy of the event to FlashList's listener.
-  const flashScrollRef = useRef<((e: NativeSyntheticEvent<NativeScrollEvent>) => void) | null>(null);
-  const forwardScroll = useCallback((nativeEvent: NativeScrollEvent) => {
-    flashScrollRef.current?.({ nativeEvent } as NativeSyntheticEvent<NativeScrollEvent>);
-  }, []);
-  const composedScroll = useAnimatedScrollHandler({
-    onScroll: (e) => {
-      "worklet";
-      scrollWorklet?.(e.contentOffset.y);
-      runOnJS(forwardScroll)({
-        contentOffset: e.contentOffset,
-        contentSize: e.contentSize,
-        layoutMeasurement: e.layoutMeasurement,
-        velocity: e.velocity,
-        zoomScale: 1,
-        contentInset: { top: 0, left: 0, bottom: 0, right: 0 },
-      } as NativeScrollEvent);
-    },
-  });
-  const ScrollComponent = useMemo(
-    () =>
-      React.forwardRef<Animated.ScrollView, ScrollViewProps>(function FeedScrollView(props, ref) {
-        flashScrollRef.current = (props.onScroll as any) ?? null;
-        return <Animated.ScrollView ref={ref} {...props} onScroll={composedScroll} scrollEventThrottle={16} />;
-      }),
-    [composedScroll],
-  );
-
-  // Separate recycle pools per card shape, so a video card is reused for a
-  // video card and a text card for a text card; a mismatch is a full re-render.
-  const getItemType = useCallback((item: FeedItem) => {
-    const t = (item as any).postType;
-    return t === "video" || t === "live" || t === "audio" || t === "text" ? t : "image";
-  }, []);
   // Set for the life of a drag or fling. Everything that would rewrite the
   // list mid-scroll — the live-count poll, the counts a fetched page carries,
   // the appended page itself — waits on this and lands from settleScroll().
@@ -344,8 +289,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   // Handle viewable items change for view tracking (feed posts only)
   const onViewableItemsChanged = useRef(({ viewableItems, changed }: {
-    viewableItems: ViewToken<FeedItem>[];
-    changed: ViewToken<FeedItem>[];
+    viewableItems: ViewToken[];
+    changed: ViewToken[];
   }) => {
     if (!activeRef.current) return;
 
@@ -994,27 +939,48 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           </Pressable>
         </Animated.View>
       )}
-      {/* FlashList recycles cells. Every earlier round measured the same
-          thing on a Galaxy S24+: the slow frames on a fling were the frames
-          that mounted a card — 12–19ms of native view creation, two frames
-          at 120Hz — and scrolling back up remounted every card it met (118
-          of 130 slow frames). A recycled cell is a prop update on views that
-          already exist, so a row scrolling into view costs a React render,
-          not a mount. Per-post state in the card resets through
-          useItemState; the players are keyed per post and remount. */}
-      <FlashList
+      <AnimatedFlatList
         ref={listRef}
         data={listData}
         keyExtractor={keyExtractor}
-        getItemType={getItemType}
         renderItem={renderItem}
         ListHeaderComponent={listHeader}
-        // On by default in v2; the threshold keeps scroll-to-top and
-        // pull-to-refresh behaving when rows are prepended near the top.
+        // Anchors the scroll position to the first visible row, so anything that
+        // changes size *above* the viewport adjusts contentOffset instead of
+        // shoving the user. Three things in this feed do exactly that:
+        // SuggestedAccountsSection renders null until its fetch resolves and
+        // then expands inside cell 4; StoriesBar appearing grows the header and
+        // therefore the top spacer; and a card can measure differently once its
+        // thumbnail decodes. minIndexForVisible: 1 excludes the header cell, so
+        // scroll-to-top and pull-to-refresh still behave normally.
         maintainVisibleContentPosition={MAINTAIN_POSITION}
-        // How far beyond the viewport cells are kept live, in px. Wide enough
-        // that a reversed fling finds its rows already laid out.
-        drawDistance={DRAW_DISTANCE}
+        initialNumToRender={3}
+        // One card per batch, mounted farther ahead. A screen recording of an
+        // upward fling on a Galaxy S24+ showed the content freezing for one to
+        // three frames at a time and then jumping on; every one of those UI
+        // thread frames over 16ms (29 of 29 in the trace) contained a Fabric
+        // mount of a batch of cards. Three cards in one commit is more than a
+        // frame's worth of native view creation. One card fits, and a wider
+        // window means the rows a reversed fling needs are usually there
+        // already. The GPU budget this used to cost was freed by hiding the
+        // far pager pages.
+        maxToRenderPerBatch={1}
+        windowSize={7}
+        // Deliberately NOT removeClippedSubviews. It and
+        // maintainVisibleContentPosition cannot both be on: Android picks the
+        // MVCP anchor by walking the content view's ATTACHED children
+        // (getChildAt(i) from minIndexForVisible), and clipping is defined as
+        // detaching the children that are off-screen. Once the feed is
+        // scrolled at all, index 1 stops meaning "the row after the header"
+        // and starts meaning "whatever survived the last clipping pass",
+        // which changes every frame of a fling. The correction MVCP applies
+        // on the next mount is then measured against a different row than the
+        // one it measured before, so appending a page mid-fling walks the
+        // viewport backwards instead of holding it. Virtualisation still
+        // unmounts distant rows; only the native detach-in-place trick goes.
+        // Omitting the prop is NOT off: RN defaults it to true on Android.
+        removeClippedSubviews={false}
+        updateCellsBatchingPeriod={50}
         contentContainerStyle={
           contentContainerStyle || {
             paddingHorizontal: 8,
@@ -1027,10 +993,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         // pulled the next page almost as soon as the last one landed. The
         // appended rows are held until the scroll settles anyway (listData).
         onEndReachedThreshold={1.5}
-        // FlashList does not attach `onScroll` natively, so the collapsing
-        // header's worklet rides the scroll view rendered below instead.
-        renderScrollComponent={ScrollComponent}
-        onScroll={handleScroll}
+        onScroll={scrollHandler ?? handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
         onScrollEndDrag={handleScrollEndDrag}
         onMomentumScrollBegin={handleMomentumScrollBegin}

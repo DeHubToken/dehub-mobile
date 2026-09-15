@@ -207,9 +207,6 @@ export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: numb
     headerHeight,
     headerAnimatedStyle,
     scrollHandler,
-    // The same logic as a bare worklet, for a list that owns its own scroll
-    // handler and folds this into it (InfiniteVideoFeed on FlashList).
-    scrollWorklet: driveWorklet,
     handleScroll,
     handleScrollOffset,
     handleScrollEnd,
