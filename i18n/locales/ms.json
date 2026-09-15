@@ -3655,5 +3655,26 @@
     "searchPlaceholder": "Cari dalam transkrip…",
     "speakerPlaceholder": "Masukkan nama atau pemegang penutur",
     "detectedLanguage": "Bahasa dikesan: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Dompet Solana tidak tersedia — peranti ini tidak menyimpan kunci dompet anda. Log masuk semula untuk memulihkannya.",
+    "solanaTempUnavailable": "Penyiaran di Solana tidak tersedia buat sementara. Cuba Base atau BNB.",
+    "enterTextFirst": "Masukkan teks dahulu",
+    "styleApplied": "Gaya digunakan!",
+    "textUpdated": "Teks dikemas kini!",
+    "textFailed": "Gagal memproses teks",
+    "fillRequired": "Sila isi medan yang diperlukan.",
+    "preCheckFailed": "Semakan sebelum muat naik gagal.",
+    "postingWithoutMint": "Disiarkan tanpa minting — ia memerlukan {{amount}} {{symbol}} dan baki anda tidak mencukupi. Anda boleh mint kemudian dari menu siaran.",
+    "allowanceUsed": "Anda telah menggunakan kuota siaran percuma hari ini",
+    "quoteNeedsContent": "Tulis sesuatu atau tambah media untuk memetik siaran ini.",
+    "videoTooLarge": "Video melebihi had {{limit}} bagi peringkat {{tier}} anda.",
+    "audioTooLarge": "Audio melebihi had {{limit}} bagi peringkat {{tier}} anda.",
+    "imagesOrVideo": "Satu siaran boleh mengandungi imej atau video, bukan kedua-duanya. Buang imej dahulu.",
+    "onlyOneVideo": "Hanya satu video setiap siaran — yang pertama dikekalkan.",
+    "micRequired": "Kebenaran mikrofon diperlukan untuk merakam audio.",
+    "recordFailed": "Gagal memulakan rakaman.",
+    "tierVisibility": "Naikkan peringkat untuk meningkatkan keterlihatan dan mendapat lebih banyak paparan sehari",
+    "buyTokens": "Beli token"
   }
 }

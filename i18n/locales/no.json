@@ -3382,5 +3382,26 @@
     "searchPlaceholder": "Søk i utskrift…",
     "speakerPlaceholder": "Skriv inn talerens navn eller brukernavn",
     "detectedLanguage": "Oppdaget språk: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana-lommebok er utilgjengelig — denne enheten har ikke nøkkelen din. Logg inn igjen for å gjenopprette den.",
+    "solanaTempUnavailable": "Publisering på Solana er midlertidig utilgjengelig. Prøv Base eller BNB i stedet.",
+    "enterTextFirst": "Skriv inn tekst først",
+    "styleApplied": "Stil brukt!",
+    "textUpdated": "Teksten er oppdatert!",
+    "textFailed": "Kunne ikke behandle teksten",
+    "fillRequired": "Fyll ut de obligatoriske feltene.",
+    "preCheckFailed": "Kontrollen før opplasting mislyktes.",
+    "postingWithoutMint": "Publiseres uten minting — det koster {{amount}} {{symbol}}, og saldoen din er for lav. Du kan minte det senere fra innleggsmenyen.",
+    "allowanceUsed": "Du har brukt opp dagens gratis innlegg",
+    "quoteNeedsContent": "Skriv noe eller legg til medier for å sitere dette innlegget.",
+    "videoTooLarge": "Videoen overskrider grensen på {{limit}} for {{tier}}-nivået ditt.",
+    "audioTooLarge": "Lyden overskrider grensen på {{limit}} for {{tier}}-nivået ditt.",
+    "imagesOrVideo": "Et innlegg kan inneholde bilder eller en video, ikke begge deler. Fjern bildene først.",
+    "onlyOneVideo": "Bare én video per innlegg — den første ble beholdt.",
+    "micRequired": "Mikrofontillatelse kreves for å ta opp lyd.",
+    "recordFailed": "Kunne ikke starte opptaket.",
+    "tierVisibility": "Klatre i nivåer for å øke synligheten og få flere visninger av innlegget per dag",
+    "buyTokens": "Kjøp tokens"
   }
 }

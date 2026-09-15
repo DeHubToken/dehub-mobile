@@ -3443,5 +3443,26 @@
     "searchPlaceholder": "Transkriptdan qidirish…",
     "speakerPlaceholder": "So‘zlovchi nomi yoki foydalanuvchi nomini kiriting",
     "detectedLanguage": "Aniqlangan til: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana hamyoni mavjud emas — bu qurilmada kalitingiz yo‘q. Tiklash uchun qaytadan kiring.",
+    "solanaTempUnavailable": "Solana’da nashr qilish vaqtincha ishlamaydi. Uning o‘rniga Base yoki BNB’ni sinab ko‘ring.",
+    "enterTextFirst": "Avval matn kiriting",
+    "styleApplied": "Uslub qo‘llanildi!",
+    "textUpdated": "Matn yangilandi!",
+    "textFailed": "Matnni qayta ishlab bo‘lmadi",
+    "fillRequired": "Iltimos, majburiy maydonlarni to‘ldiring.",
+    "preCheckFailed": "Yuklashdan oldingi tekshiruv muvaffaqiyatsiz.",
+    "postingWithoutMint": "Mintsiz e'lon qilinmoqda — mint {{amount}} {{symbol}} turadi, balansingiz yetmaydi. Keyinroq post menyusidan mint qilishingiz mumkin.",
+    "allowanceUsed": "Bugungi bepul post limitini ishlatib bo‘ldingiz",
+    "quoteNeedsContent": "Ushbu postdan iqtibos keltirish uchun biror narsa yozing yoki media qo‘shing.",
+    "videoTooLarge": "Video {{tier}} darajangizdagi {{limit}} chegarasidan oshadi.",
+    "audioTooLarge": "Audio {{tier}} darajangizdagi {{limit}} chegarasidan oshadi.",
+    "imagesOrVideo": "Post rasm yoki video saqlashi mumkin, ikkalasini emas. Avval rasmlarni olib tashlang.",
+    "onlyOneVideo": "Har bir postda faqat bitta video — birinchisi saqlandi.",
+    "micRequired": "Audio yozish uchun mikrofon ruxsati kerak.",
+    "recordFailed": "Yozishni boshlab bo‘lmadi.",
+    "tierVisibility": "Ko‘rinuvchanlikni oshirish va kuniga postga ko‘proq tarqatish olish uchun darajani ko‘taring",
+    "buyTokens": "Token sotib olish"
   }
 }

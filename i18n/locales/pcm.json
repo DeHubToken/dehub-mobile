@@ -3206,5 +3206,26 @@
     "searchPlaceholder": "Search di transcript…",
     "speakerPlaceholder": "Enta di speaker name or handle",
     "detectedLanguage": "Language wey dem detect: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana wallet no dey available — dis device no get your wallet key. Sign in again make e come back.",
+    "solanaTempUnavailable": "Posting for Solana no dey work for now. Try Base or BNB instead.",
+    "enterTextFirst": "Type sometin first",
+    "styleApplied": "Dem don apply di style!",
+    "textUpdated": "Dem don update di text!",
+    "textFailed": "E no fit process di text",
+    "fillRequired": "Abeg fill di fields wey dem need.",
+    "preCheckFailed": "Di check before upload fail.",
+    "postingWithoutMint": "Dem go post am without minting — minting cost {{amount}} {{symbol}} and your balance no reach. You fit mint am later for di post menu.",
+    "allowanceUsed": "You don finish today free posting allowance",
+    "quoteNeedsContent": "Write sometin or add media before you fit quote dis post.",
+    "videoTooLarge": "Di video pass di {{limit}} limit for your {{tier}} tier.",
+    "audioTooLarge": "Di audio pass di {{limit}} limit for your {{tier}} tier.",
+    "imagesOrVideo": "One post fit carry images or one video, no be both. Remove di images first.",
+    "onlyOneVideo": "Na only one video per post — we keep di first one.",
+    "micRequired": "You need microphone permission to record audio.",
+    "recordFailed": "E no fit start di recording.",
+    "tierVisibility": "Climb tiers make your visibility increase and make your post get more feeds every day",
+    "buyTokens": "Buy tokens"
   }
 }

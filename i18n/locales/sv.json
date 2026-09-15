@@ -3396,5 +3396,26 @@
     "searchPlaceholder": "Sök i transkriptionen…",
     "speakerPlaceholder": "Ange talarens namn eller användarnamn",
     "detectedLanguage": "Identifierat språk: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana-plånboken är inte tillgänglig — den här enheten har inte din nyckel. Logga in igen för att återställa den.",
+    "solanaTempUnavailable": "Publicering på Solana är tillfälligt otillgänglig. Prova Base eller BNB i stället.",
+    "enterTextFirst": "Skriv in lite text först",
+    "styleApplied": "Stilen tillämpad!",
+    "textUpdated": "Texten uppdaterad!",
+    "textFailed": "Det gick inte att bearbeta texten",
+    "fillRequired": "Fyll i de obligatoriska fälten.",
+    "preCheckFailed": "Kontrollen före uppladdning misslyckades.",
+    "postingWithoutMint": "Publiceras utan mint — det kostar {{amount}} {{symbol}} och ditt saldo räcker inte. Du kan minta det senare från inläggsmenyn.",
+    "allowanceUsed": "Du har använt dagens gratis inlägg",
+    "quoteNeedsContent": "Skriv något eller lägg till media för att citera det här inlägget.",
+    "videoTooLarge": "Videon överskrider gränsen på {{limit}} för din {{tier}}-nivå.",
+    "audioTooLarge": "Ljudet överskrider gränsen på {{limit}} för din {{tier}}-nivå.",
+    "imagesOrVideo": "Ett inlägg kan innehålla bilder eller en video, inte båda. Ta bort bilderna först.",
+    "onlyOneVideo": "Bara en video per inlägg — den första behölls.",
+    "micRequired": "Mikrofonbehörighet krävs för att spela in ljud.",
+    "recordFailed": "Det gick inte att starta inspelningen.",
+    "tierVisibility": "Klättra i nivåer för att öka din synlighet och få fler visningar av inlägget per dag",
+    "buyTokens": "Köp tokens"
   }
 }

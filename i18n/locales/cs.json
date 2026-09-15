@@ -3396,5 +3396,26 @@
     "searchPlaceholder": "Hledat v přepisu…",
     "speakerPlaceholder": "Zadejte jméno nebo přezdívku mluvčího",
     "detectedLanguage": "Rozpoznaný jazyk: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Peněženka Solana není dostupná — toto zařízení nemá váš klíč. Přihlaste se znovu a obnovte ji.",
+    "solanaTempUnavailable": "Publikování na Solaně je dočasně nedostupné. Zkuste místo toho Base nebo BNB.",
+    "enterTextFirst": "Nejprve zadejte text",
+    "styleApplied": "Styl použit!",
+    "textUpdated": "Text aktualizován!",
+    "textFailed": "Text se nepodařilo zpracovat",
+    "fillRequired": "Vyplňte prosím povinná pole.",
+    "preCheckFailed": "Kontrola před nahráním selhala.",
+    "postingWithoutMint": "Publikuje se bez ražby — ta stojí {{amount}} {{symbol}} a váš zůstatek nestačí. Razit můžete později z nabídky příspěvku.",
+    "allowanceUsed": "Vyčerpali jste dnešní bezplatný limit příspěvků",
+    "quoteNeedsContent": "Chcete-li citovat tento příspěvek, napište text nebo přidejte média.",
+    "videoTooLarge": "Video překračuje limit {{limit}} vaší úrovně {{tier}}.",
+    "audioTooLarge": "Zvuk překračuje limit {{limit}} vaší úrovně {{tier}}.",
+    "imagesOrVideo": "Příspěvek může obsahovat obrázky nebo video, ne obojí. Nejprve odstraňte obrázky.",
+    "onlyOneVideo": "Na příspěvek jen jedno video — ponecháno první.",
+    "micRequired": "K nahrávání zvuku je potřeba oprávnění k mikrofonu.",
+    "recordFailed": "Nahrávání se nepodařilo spustit.",
+    "tierVisibility": "Postupujte v úrovních a zvyšte svou viditelnost i denní dosah příspěvku",
+    "buyTokens": "Koupit tokeny"
   }
 }

@@ -3392,5 +3392,26 @@
     "searchPlaceholder": "Hae litteroinnista…",
     "speakerPlaceholder": "Anna puhujan nimi tai käyttäjätunnus",
     "detectedLanguage": "Tunnistettu kieli: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana-lompakko ei ole käytettävissä — tällä laitteella ei ole avaintasi. Kirjaudu uudelleen sisään palauttaaksesi sen.",
+    "solanaTempUnavailable": "Julkaiseminen Solanassa ei ole tilapäisesti käytettävissä. Kokeile Basea tai BNB:tä.",
+    "enterTextFirst": "Kirjoita ensin tekstiä",
+    "styleApplied": "Tyyli otettu käyttöön!",
+    "textUpdated": "Teksti päivitetty!",
+    "textFailed": "Tekstin käsittely epäonnistui",
+    "fillRequired": "Täytä pakolliset kentät.",
+    "preCheckFailed": "Lähetystä edeltävä tarkistus epäonnistui.",
+    "postingWithoutMint": "Julkaistaan ilman lyöntiä — se maksaa {{amount}} {{symbol}} eikä saldosi riitä. Voit lyödä sen myöhemmin julkaisun valikosta.",
+    "allowanceUsed": "Olet käyttänyt tämän päivän ilmaiset julkaisut",
+    "quoteNeedsContent": "Kirjoita jotain tai lisää mediaa lainataksesi tätä julkaisua.",
+    "videoTooLarge": "Video ylittää {{tier}}-tasosi {{limit}} rajan.",
+    "audioTooLarge": "Ääni ylittää {{tier}}-tasosi {{limit}} rajan.",
+    "imagesOrVideo": "Julkaisussa voi olla kuvia tai video, ei molempia. Poista ensin kuvat.",
+    "onlyOneVideo": "Vain yksi video julkaisua kohti — ensimmäinen säilytettiin.",
+    "micRequired": "Äänen tallentaminen vaatii mikrofonin käyttöoikeuden.",
+    "recordFailed": "Tallennuksen aloittaminen epäonnistui.",
+    "tierVisibility": "Nouse tasoilla lisätäksesi näkyvyyttäsi ja saadaksesi julkaisulle enemmän näyttöjä päivässä",
+    "buyTokens": "Osta tokeneita"
   }
 }

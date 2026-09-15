@@ -3462,5 +3462,26 @@
     "searchPlaceholder": "Cerca nella trascrizione…",
     "speakerPlaceholder": "Inserisci il nome o l'handle del relatore",
     "detectedLanguage": "Lingua rilevata: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Wallet Solana non disponibile: questo dispositivo non ha la tua chiave. Accedi di nuovo per ripristinarla.",
+    "solanaTempUnavailable": "La pubblicazione su Solana non è temporaneamente disponibile. Prova Base o BNB.",
+    "enterTextFirst": "Inserisci prima del testo",
+    "styleApplied": "Stile applicato!",
+    "textUpdated": "Testo aggiornato!",
+    "textFailed": "Impossibile elaborare il testo",
+    "fillRequired": "Compila i campi obbligatori.",
+    "preCheckFailed": "Controllo pre-caricamento non riuscito.",
+    "postingWithoutMint": "Pubblicato senza mint — il mint costa {{amount}} {{symbol}} e il tuo saldo non basta. Puoi farlo più tardi dal menu del post.",
+    "allowanceUsed": "Hai esaurito il limite gratuito di pubblicazioni di oggi",
+    "quoteNeedsContent": "Scrivi qualcosa o aggiungi contenuti per citare questo post.",
+    "videoTooLarge": "Il video supera il limite di {{limit}} del tuo livello {{tier}}.",
+    "audioTooLarge": "L'audio supera il limite di {{limit}} del tuo livello {{tier}}.",
+    "imagesOrVideo": "Un post può contenere immagini o un video, non entrambi. Rimuovi prima le immagini.",
+    "onlyOneVideo": "Un solo video per post: è stato mantenuto il primo.",
+    "micRequired": "È necessaria l'autorizzazione al microfono per registrare l'audio.",
+    "recordFailed": "Impossibile avviare la registrazione.",
+    "tierVisibility": "Sali di livello per aumentare la tua visibilità e ottenere più diffusione al giorno",
+    "buyTokens": "Acquista token"
   }
 }

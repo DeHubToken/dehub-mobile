@@ -3471,5 +3471,26 @@
     "searchPlaceholder": "Hikaroka ao amin'ny fandikana an-tsoratra…",
     "speakerPlaceholder": "Ampidiro ny anarana na anaram-pikambanan'ny mpandahateny",
     "detectedLanguage": "Fiteny hita: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Tsy misy ny poketra Solana — tsy mitazona ny lakilenao ity fitaovana ity. Midira indray mba hamerenana azy.",
+    "solanaTempUnavailable": "Tsy azo atao vetivety ny mandefa ao Solana. Andramo Base na BNB.",
+    "enterTextFirst": "Ampidiro aloha ny lahatsoratra",
+    "styleApplied": "Nampiharina ny endrika!",
+    "textUpdated": "Nohavaozina ny lahatsoratra!",
+    "textFailed": "Tsy afaka nikarakara ny lahatsoratra",
+    "fillRequired": "Fenoy azafady ireo saha ilaina.",
+    "preCheckFailed": "Tsy nahomby ny fanamarinana alohan'ny fampidirana.",
+    "postingWithoutMint": "Alefa tsy misy minting — mandany {{amount}} {{symbol}} izany ary tsy ampy ny volanao. Azonao atao ny minting aoriana ao amin'ny menu-n'ny lahatsoratra.",
+    "allowanceUsed": "Efa lany ny fetra fandefasana maimaim-poana anio",
+    "quoteNeedsContent": "Manorata zavatra na ampio media raha te hanonona ity lahatsoratra ity.",
+    "videoTooLarge": "Mihoatra ny fetra {{limit}} an'ny ambaratongan'ny {{tier}} ny horonan-tsary.",
+    "audioTooLarge": "Mihoatra ny fetra {{limit}} an'ny ambaratongan'ny {{tier}} ny feo.",
+    "imagesOrVideo": "Afaka misy sary na horonan-tsary ny lahatsoratra, tsy izy roa. Esory aloha ny sary.",
+    "onlyOneVideo": "Horonan-tsary iray ihany isaky ny lahatsoratra — notazonina ny voalohany.",
+    "micRequired": "Ilaina ny fahazoan-dàlana amin'ny mikrofonina hanaovana rakitra feo.",
+    "recordFailed": "Tsy afaka nanomboka ny fandraisana.",
+    "tierVisibility": "Miakara ambaratonga mba hampitombo ny fahitana anao sy hahazo fizarana bebe kokoa isan'andro",
+    "buyTokens": "Hividy token"
   }
 }

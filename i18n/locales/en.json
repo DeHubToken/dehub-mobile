@@ -3462,5 +3462,26 @@
     "searchPlaceholder": "Search transcript...",
     "speakerPlaceholder": "Enter speaker name or handle",
     "detectedLanguage": "Detected language: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana wallet unavailable — this device does not hold your wallet key. Sign in again to restore it.",
+    "solanaTempUnavailable": "Solana posting is temporarily unavailable. Try Base or BNB instead.",
+    "enterTextFirst": "Enter some text first",
+    "styleApplied": "Style applied!",
+    "textUpdated": "Text updated!",
+    "textFailed": "Failed to process text",
+    "fillRequired": "Please fill in required fields.",
+    "preCheckFailed": "Pre-upload check failed.",
+    "postingWithoutMint": "Posting without minting — that costs {{amount}} {{symbol}} and your balance is short. You can mint it later from the post menu.",
+    "allowanceUsed": "You've used today's free posting allowance",
+    "quoteNeedsContent": "Write something or add media to quote this post.",
+    "videoTooLarge": "Video exceeds your {{tier}} tier limit of {{limit}}.",
+    "audioTooLarge": "Audio exceeds your {{tier}} tier limit of {{limit}}.",
+    "imagesOrVideo": "A post can hold images or a video, not both. Remove the images first.",
+    "onlyOneVideo": "Only one video per post — kept the first one.",
+    "micRequired": "Microphone permission is required to record audio.",
+    "recordFailed": "Failed to start recording.",
+    "tierVisibility": "Climb tiers to increase your visibility and get more feeds on the post per day",
+    "buyTokens": "Buy Tokens"
   }
 }

@@ -3391,5 +3391,26 @@
     "searchPlaceholder": "Meklēt transkripcijā…",
     "speakerPlaceholder": "Ievadiet runātāja vārdu vai lietotājvārdu",
     "detectedLanguage": "Noteiktā valoda: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana maks nav pieejams — šajā ierīcē nav jūsu atslēgas. Piesakieties vēlreiz, lai to atjaunotu.",
+    "solanaTempUnavailable": "Publicēšana Solana pagaidām nav pieejama. Izmēģiniet Base vai BNB.",
+    "enterTextFirst": "Vispirms ievadiet tekstu",
+    "styleApplied": "Stils lietots!",
+    "textUpdated": "Teksts atjaunināts!",
+    "textFailed": "Neizdevās apstrādāt tekstu",
+    "fillRequired": "Lūdzu, aizpildiet obligātos laukus.",
+    "preCheckFailed": "Pārbaude pirms augšupielādes neizdevās.",
+    "postingWithoutMint": "Tiek publicēts bez kalšanas — tā maksā {{amount}} {{symbol}}, un jūsu atlikums nepietiek. Varat to izkalt vēlāk ieraksta izvēlnē.",
+    "allowanceUsed": "Esat izmantojis šodienas bezmaksas publicēšanas limitu",
+    "quoteNeedsContent": "Uzrakstiet ko nebūt vai pievienojiet multividi, lai citētu šo ierakstu.",
+    "videoTooLarge": "Videoklips pārsniedz jūsu {{tier}} līmeņa ierobežojumu {{limit}}.",
+    "audioTooLarge": "Audio pārsniedz jūsu {{tier}} līmeņa ierobežojumu {{limit}}.",
+    "imagesOrVideo": "Ierakstā var būt attēli vai video, bet ne abi. Vispirms noņemiet attēlus.",
+    "onlyOneVideo": "Vienā ierakstā tikai viens video — saglabāts pirmais.",
+    "micRequired": "Lai ierakstītu audio, nepieciešama mikrofona atļauja.",
+    "recordFailed": "Neizdevās sākt ierakstīšanu.",
+    "tierVisibility": "Kāpiet līmeņos, lai palielinātu redzamību un iegūtu vairāk ieraksta rādījumu dienā",
+    "buyTokens": "Pirkt marķierus"
   }
 }

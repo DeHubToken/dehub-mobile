@@ -3459,5 +3459,26 @@
     "searchPlaceholder": "文字起こしを検索…",
     "speakerPlaceholder": "話者の名前またはハンドルを入力",
     "detectedLanguage": "検出された言語: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana ウォレットを利用できません。この端末にウォレットキーがありません。再度サインインして復元してください。",
+    "solanaTempUnavailable": "Solana への投稿は一時的に利用できません。代わりに Base か BNB をお試しください。",
+    "enterTextFirst": "まずテキストを入力してください",
+    "styleApplied": "スタイルを適用しました。",
+    "textUpdated": "テキストを更新しました。",
+    "textFailed": "テキストを処理できませんでした",
+    "fillRequired": "必須項目を入力してください。",
+    "preCheckFailed": "アップロード前のチェックに失敗しました。",
+    "postingWithoutMint": "ミントせずに投稿します。ミントには {{amount}} {{symbol}} が必要ですが残高が不足しています。あとで投稿メニューからミントできます。",
+    "allowanceUsed": "本日の無料投稿枠を使い切りました",
+    "quoteNeedsContent": "この投稿を引用するには、テキストを書くかメディアを追加してください。",
+    "videoTooLarge": "動画が {{tier}} ティアの上限 {{limit}} を超えています。",
+    "audioTooLarge": "音声が {{tier}} ティアの上限 {{limit}} を超えています。",
+    "imagesOrVideo": "1 件の投稿に画像と動画は同時に入れられません。先に画像を削除してください。",
+    "onlyOneVideo": "投稿に入れられる動画は 1 件だけです。最初のものを残しました。",
+    "micRequired": "音声を録音するにはマイクの許可が必要です。",
+    "recordFailed": "録音を開始できませんでした。",
+    "tierVisibility": "ティアを上げると露出が増え、1 日あたりの投稿配信数も増えます",
+    "buyTokens": "トークンを購入"
   }
 }

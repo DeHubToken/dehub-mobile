@@ -3362,5 +3362,26 @@
     "searchPlaceholder": "Transkriptde gözle…",
     "speakerPlaceholder": "Çykyş edýäniň adyny ýa-da ulanyjy adyny giriziň",
     "detectedLanguage": "Kesgitlenen dil: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana gapjygy elýeterli däl — bu enjamda açaryňyz ýok. Dikeltmek üçin gaýtadan giriň.",
+    "solanaTempUnavailable": "Solana-da paýlaşmak wagtlaýyn elýeterli däl. Deregine Base ýa-da BNB synanyşyň.",
+    "enterTextFirst": "Ilki bilen tekst giriziň",
+    "styleApplied": "Stil ulanyldy!",
+    "textUpdated": "Tekst täzelendi!",
+    "textFailed": "Tekst işlenip bilmedi",
+    "fillRequired": "Zerur meýdanlary dolduruň.",
+    "preCheckFailed": "Ýüklemezden öňki barlag şowsuz boldy.",
+    "postingWithoutMint": "Mintsiz paýlaşylýar — mint {{amount}} {{symbol}} tölegi talap edýär, balansyňyz ýeterlik däl. Soňra ýazgy menýusyndan mint edip bilersiňiz.",
+    "allowanceUsed": "Şu günki mugt paýlaşyk çäkiňizi ulandyňyz",
+    "quoteNeedsContent": "Bu ýazgydan sitata getirmek üçin bir zat ýazyň ýa-da media goşuň.",
+    "videoTooLarge": "Wideo {{tier}} derejäňiziň {{limit}} çäginden geçýär.",
+    "audioTooLarge": "Ses {{tier}} derejäňiziň {{limit}} çäginden geçýär.",
+    "imagesOrVideo": "Bir ýazgyda suratlar ýa-da wideo bolup biler, ikisi bile däl. Ilki suratlary aýyryň.",
+    "onlyOneVideo": "Her ýazgyda diňe bir wideo — birinjisi saklandy.",
+    "micRequired": "Ses ýazmak üçin mikrofon rugsady gerek.",
+    "recordFailed": "Ýazgy başlanyp bilmedi.",
+    "tierVisibility": "Görnükliligiňizi artdyrmak we günde ýazgyňyza has köp ýaýlym almak üçin derejeleri ýokarlandyryň",
+    "buyTokens": "Token satyn al"
   }
 }
