@@ -32,6 +32,7 @@ const recordStakeEvent = (message: string, attempt: StakeAttempt, outcome?: stri
   } }).catch(() => {});
 };
 import { FIELD_TEXT } from "../../theme/inputs";
+import { appLocale } from "../../libs/date.util";
 
 const DHB_BASE = "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c";
 // Unified transfer-based staking target (same address on Base + BNB)
@@ -454,7 +455,7 @@ const StakingTab: React.FC = () => {
       setEarlyConfirmed(true);
       toastError(
         t("staking.lockedEarlyFee", {
-          date: new Date(legacyUnlockAt * 1000).toLocaleDateString(),
+          date: new Date(legacyUnlockAt * 1000).toLocaleDateString(appLocale()),
           fee: fmt(amt * 0.12),
         }),
       );
@@ -682,7 +683,7 @@ const StakingTab: React.FC = () => {
               }${
                 legacyStaked > 0 && legacyUnlockAt > Math.floor(Date.now() / 1000)
                   ? ` · ${t("staking.lockedUntilWithFee", {
-                      date: new Date(legacyUnlockAt * 1000).toLocaleDateString(),
+                      date: new Date(legacyUnlockAt * 1000).toLocaleDateString(appLocale()),
                     })}`
                   : ""
               }`}

@@ -35,6 +35,7 @@ import { useStages } from '../../context/StageContext';
 import { useUserProfileSheet } from '../../context/UserProfileSheetContext';
 import StageRecordingPlayer from '../Stages/StageRecordingPlayer';
 import { useWorkJob, WORK_TYPE_LABEL } from '../../hooks/useWork';
+import { appLocale } from "../../libs/date.util";
 
 /** How many cards one message or caption may draw before the rest stay as text. */
 export const MAX_CARDS_PER_MESSAGE = 2;
@@ -289,10 +290,10 @@ const EventCardEmbed: React.FC<{ eventNumber: string; onOpen: () => void; fallba
 
   const starts = data.starts_at ? new Date(data.starts_at) : null;
   const when = starts
-    ? starts.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })
+    ? starts.toLocaleDateString(appLocale(), { weekday: 'short', month: 'short', day: 'numeric' })
     : '';
   const time = starts
-    ? starts.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
+    ? starts.toLocaleTimeString(appLocale(), { hour: 'numeric', minute: '2-digit' })
     : '';
 
   return (
@@ -348,10 +349,10 @@ const StageCardEmbed: React.FC<{
   const isOverdue = !!starts && starts.getTime() < Date.now();
 
   const when = starts
-    ? starts.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })
+    ? starts.toLocaleDateString(appLocale(), { weekday: 'short', month: 'short', day: 'numeric' })
     : '';
   const time = starts
-    ? starts.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
+    ? starts.toLocaleTimeString(appLocale(), { hour: 'numeric', minute: '2-digit' })
     : '';
 
   // A live stage has already answered "when", and an ended one has nothing to
@@ -427,7 +428,7 @@ const BountyCardEmbed: React.FC<{ jobKey: string; onOpen: () => void; fallback: 
       subtitle={`${budget.toLocaleString(undefined, { maximumFractionDigits: 2 })} ${job.currency}`}
       meta={
         deadline
-          ? `Due ${deadline.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}`
+          ? `Due ${deadline.toLocaleDateString(appLocale(), { month: 'short', day: 'numeric' })}`
           : undefined
       }
       imageUri={job.cover_image_url}

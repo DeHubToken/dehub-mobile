@@ -5,6 +5,17 @@ import i18n from "i18next";
 import { pad } from './numbers.util';
 
 /**
+ * The locale every date and time in the app should be formatted in.
+ *
+ * `toLocaleDateString(undefined, …)` follows the DEVICE locale, which is not
+ * the language the user picked in the app — a phone set to English rendered
+ * English dates inside a Japanese app. Pass this instead.
+ */
+export function appLocale(): string | undefined {
+  return i18n.language || undefined;
+}
+
+/**
  * Parse a date-only string (YYYY-MM-DD) as a local calendar day. `new Date`
  * treats that form as UTC midnight, which west of UTC displays as the day
  * before; anything else falls through to the normal parser.
@@ -44,7 +55,7 @@ export function formatJoinedDate(createdAt?: string | null): string | null {
   try {
     const d = new Date(createdAt);
     if (isNaN(d.getTime())) return null;
-    const month = d.toLocaleString(undefined, { month: 'long' });
+    const month = d.toLocaleString(appLocale(), { month: 'long' });
     const day = d.getDate();
     const year = d.getFullYear();
     return `${month} ${day}, ${year}`;

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useCallback, useState, useMemo } from 'react';
 import { FlatList, Text, View, TouchableOpacity } from 'react-native';
+import { appLocale } from "../../libs/date.util";
 
 export interface ChatMessage {
   id: string;
@@ -37,7 +38,7 @@ const ChatMessageList: React.FC<Props> = ({ messages, onPressUser, onLongPressMe
         className="flex-row flex-wrap px-2 py-1"
       >
         <Text className="text-[11px] text-white/60 mr-1">
-          {new Date(item.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          {new Date(item.createdAt).toLocaleTimeString(appLocale(), { hour: '2-digit', minute: '2-digit' })}
         </Text>
         <Text
           className={[
