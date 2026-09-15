@@ -3491,5 +3491,21 @@
     "includeSocials": "Sosial hesabları daxil et",
     "extraNotes": "Əlavə qeydlər",
     "notesPlaceholder": "Posterdə görünməli olan başqa nə varsa"
+  },
+  "monetization": {
+    "tokenGated": "Token ilə qorunur",
+    "invalidToken": "Düzgün token müqavilə ünvanı daxil edin",
+    "createPlanAction": "Abunə planı yarat",
+    "createPlanFirst": "Əvvəlcə plan yaradın",
+    "publishPlanFirst": "Əvvəlcə abunə planınızı zəncirdə dərc edin.",
+    "subscribersOnly": "Bu paylaşımı yalnız abunəçiləriniz aça bilər.",
+    "price": "Qiymət ({{currency}})",
+    "paymentsSolana": "Ödənişlər Solana-da {{currency}} ilə aparılır",
+    "paymentsBase": "Ödənişlər Base zəncirində DHB ilə aparılır",
+    "requiresSpl": "Baxmaq üçün Solana-da SPL token tələb olunur",
+    "mustHoldOn": "İzləyicilər bu tokeni {{chain}} şəbəkəsində saxlamalıdır",
+    "custom": "Fərdi",
+    "contractPlaceholder": "Müqavilə ünvanı (0x…)",
+    "symbolPlaceholder": "Simvol (məsələn, PEPE)"
   }
 }

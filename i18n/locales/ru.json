@@ -3576,5 +3576,21 @@
     "includeSocials": "Включить соцсети",
     "extraNotes": "Дополнительные заметки",
     "notesPlaceholder": "Всё остальное, что должен показать постер"
+  },
+  "monetization": {
+    "tokenGated": "Доступ по токену",
+    "invalidToken": "Введите корректный адрес контракта токена",
+    "createPlanAction": "Создать план подписки",
+    "createPlanFirst": "Сначала создайте план",
+    "publishPlanFirst": "Сначала опубликуйте свой план подписки в сети.",
+    "subscribersOnly": "Этот пост могут открыть только ваши подписчики.",
+    "price": "Цена ({{currency}})",
+    "paymentsSolana": "Платежи проходят в {{currency}} в сети Solana",
+    "paymentsBase": "Платежи проходят в DHB в сети Base",
+    "requiresSpl": "Для просмотра нужен токен SPL в сети Solana",
+    "mustHoldOn": "Зрители должны держать этот токен в сети {{chain}}",
+    "custom": "Свой вариант",
+    "contractPlaceholder": "Адрес контракта (0x…)",
+    "symbolPlaceholder": "Символ (напр. PEPE)"
   }
 }

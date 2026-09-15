@@ -3506,5 +3506,21 @@
     "includeSocials": "Iekļaut sociālos tīklus",
     "extraNotes": "Papildu piezīmes",
     "notesPlaceholder": "Viss pārējais, kas jāparāda plakātā"
+  },
+  "monetization": {
+    "tokenGated": "Ierobežots ar marķieri",
+    "invalidToken": "Ievadiet derīgu marķiera līguma adresi",
+    "createPlanAction": "Izveidot abonēšanas plānu",
+    "createPlanFirst": "Vispirms izveidojiet plānu",
+    "publishPlanFirst": "Vispirms publicējiet savu abonēšanas plānu ķēdē.",
+    "subscribersOnly": "Šo ierakstu var atvērt tikai jūsu abonenti.",
+    "price": "Cena ({{currency}})",
+    "paymentsSolana": "Maksājumi tiek veikti {{currency}} Solana tīklā",
+    "paymentsBase": "Maksājumi tiek veikti DHB Base ķēdē",
+    "requiresSpl": "Lai skatītu, nepieciešams SPL marķieris Solana tīklā",
+    "mustHoldOn": "Skatītājiem jātur šis marķieris tīklā {{chain}}",
+    "custom": "Pielāgots",
+    "contractPlaceholder": "Līguma adrese (0x…)",
+    "symbolPlaceholder": "Simbols (piem., PEPE)"
   }
 }

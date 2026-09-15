@@ -3562,5 +3562,21 @@
     "includeSocials": "تضمين حسابات التواصل",
     "extraNotes": "ملاحظات إضافية",
     "notesPlaceholder": "أي شيء آخر يجب أن يظهر في الملصق"
+  },
+  "monetization": {
+    "tokenGated": "مقيَّد برمز",
+    "invalidToken": "أدخل عنوان عقد رمز صالحًا",
+    "createPlanAction": "إنشاء خطة اشتراك",
+    "createPlanFirst": "أنشئ خطة أولاً",
+    "publishPlanFirst": "انشر خطة اشتراكك على السلسلة أولاً.",
+    "subscribersOnly": "لا يمكن فتح هذا المنشور إلا للمشتركين لديك.",
+    "price": "السعر ({{currency}})",
+    "paymentsSolana": "تتم المدفوعات بـ{{currency}} على سولانا",
+    "paymentsBase": "تتم المدفوعات بـDHB على شبكة Base",
+    "requiresSpl": "يتطلب رمز SPL على سولانا لعرضه",
+    "mustHoldOn": "يجب أن يمتلك المشاهدون هذا الرمز على {{chain}}",
+    "custom": "مخصّص",
+    "contractPlaceholder": "عنوان العقد (0x…)",
+    "symbolPlaceholder": "الرمز (مثل PEPE)"
   }
 }

@@ -3465,5 +3465,21 @@
     "includeSocials": "Lebokake media sosial",
     "extraNotes": "Cathetan tambahan",
     "notesPlaceholder": "Apa wae liyane sing kudu ditampilake poster"
+  },
+  "monetization": {
+    "tokenGated": "Diwatesi token",
+    "invalidToken": "Lebokna alamat kontrak token sing bener",
+    "createPlanAction": "Gawe paket langganan",
+    "createPlanFirst": "Gawe paket dhisik",
+    "publishPlanFirst": "Terbitake paket langgananmu ing chain dhisik.",
+    "subscribersOnly": "Mung pelangganmu sing bisa mbukak postingan iki.",
+    "price": "Rega ({{currency}})",
+    "paymentsSolana": "Pambayaran nganggo {{currency}} ing Solana",
+    "paymentsBase": "Pambayaran nganggo DHB ing chain Base",
+    "requiresSpl": "Butuh token SPL ing Solana kanggo ndeleng",
+    "mustHoldOn": "Penonton kudu nduwe token iki ing {{chain}}",
+    "custom": "Khusus",
+    "contractPlaceholder": "Alamat kontrak (0x…)",
+    "symbolPlaceholder": "Simbol (contone PEPE)"
   }
 }

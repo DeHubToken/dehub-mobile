@@ -3497,5 +3497,21 @@
     "includeSocials": "ئىجتىمائىي ھېساباتلارنى قوشۇش",
     "extraNotes": "قوشۇمچە خاتىرىلەر",
     "notesPlaceholder": "ئېلانغا چىقىشقا تېگىشلىك باشقا نەرسىلەر"
+  },
+  "monetization": {
+    "tokenGated": "بەلگە بىلەن چەكلەنگەن",
+    "invalidToken": "ئىناۋەتلىك بەلگە توختام ئادرېسىنى كىرگۈزۈڭ",
+    "createPlanAction": "مۇشتەرىلىك پىلانى قۇرۇش",
+    "createPlanFirst": "ئالدى بىلەن پىلان قۇرۇڭ",
+    "publishPlanFirst": "ئالدى بىلەن مۇشتەرىلىك پىلانىڭىزنى زەنجىردە ئېلان قىلىڭ.",
+    "subscribersOnly": "بۇ يازمىنى پەقەت مۇشتەرىلىرىڭىزلا ئاچالايدۇ.",
+    "price": "باھاسى ({{currency}})",
+    "paymentsSolana": "پۇل تۆلەش Solana دا {{currency}} بىلەن",
+    "paymentsBase": "پۇل تۆلەش Base زەنجىرىدە DHB بىلەن",
+    "requiresSpl": "كۆرۈش ئۈچۈن Solana دا SPL بەلگىسى كېرەك",
+    "mustHoldOn": "كۆرۈرمەنلەر بۇ بەلگىنى {{chain}} دا ساقلىشى كېرەك",
+    "custom": "ئىختىيارى",
+    "contractPlaceholder": "توختام ئادرېسى (0x…)",
+    "symbolPlaceholder": "بەلگە (مەسىلەن PEPE)"
   }
 }

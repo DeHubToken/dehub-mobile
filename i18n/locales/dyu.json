@@ -3451,5 +3451,21 @@
     "includeSocials": "Sosiyali tɔgɔw fara a kan",
     "extraNotes": "Kunnafoni wɛrɛw",
     "notesPlaceholder": "Fɛn wɛrɛ minnu ka kan ka jira poster kan"
+  },
+  "monetization": {
+    "tokenGated": "Token ye a sariya",
+    "invalidToken": "Token kontra adrɛsi ɲuman sɛbɛn",
+    "createPlanAction": "Kalanso plan dilan",
+    "createPlanFirst": "Fɔlɔ ka plan dɔ dilan",
+    "publishPlanFirst": "Fɔlɔ ka i ka kalanso plan bila chain kan.",
+    "subscribersOnly": "I ka kalansobaw dɔrɔn bɛ se ka nin post da wuli.",
+    "price": "Sɔngɔ ({{currency}})",
+    "paymentsSolana": "Sarali bɛ kɛ ni {{currency}} ye Solana kan",
+    "paymentsBase": "Sarali bɛ kɛ ni DHB ye Base chain kan",
+    "requiresSpl": "Ka a lajɛ, SPL token ka kan ka kɛ Solana kan",
+    "mustHoldOn": "Filɛlikɛlaw ka kan ka nin token sɔrɔ {{chain}} kan",
+    "custom": "I yɛrɛ ta",
+    "contractPlaceholder": "Kontra adrɛsi (0x…)",
+    "symbolPlaceholder": "Taamasiyɛn (i n'a fɔ PEPE)"
   }
 }

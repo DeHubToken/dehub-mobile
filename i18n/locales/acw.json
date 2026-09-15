@@ -3464,5 +3464,21 @@
     "includeSocials": "ضمّن حسابات التواصل",
     "extraNotes": "ملاحظات إضافية",
     "notesPlaceholder": "أي شي تاني لازم يظهر بالملصق"
+  },
+  "monetization": {
+    "tokenGated": "مقيّد بتوكن",
+    "invalidToken": "اكتب عنوان عقد توكن صحيح",
+    "createPlanAction": "أنشئ خطة اشتراك",
+    "createPlanFirst": "أنشئ خطة أول",
+    "publishPlanFirst": "انشر خطة الاشتراك تبعك على السلسلة أول.",
+    "subscribersOnly": "بس المشتركين تبعك بيقدروا يفتحوا هالمنشور.",
+    "price": "السعر ({{currency}})",
+    "paymentsSolana": "الدفع بيكون بـ{{currency}} على سولانا",
+    "paymentsBase": "الدفع بيكون بـDHB على شبكة Base",
+    "requiresSpl": "بدو توكن SPL على سولانا لتشوفو",
+    "mustHoldOn": "المشاهدين لازم يملكوا هالتوكن على {{chain}}",
+    "custom": "مخصص",
+    "contractPlaceholder": "عنوان العقد (0x…)",
+    "symbolPlaceholder": "الرمز (مثلاً PEPE)"
   }
 }

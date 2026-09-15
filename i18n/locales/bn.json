@@ -3491,5 +3491,21 @@
     "includeSocials": "সোশ্যাল হ্যান্ডেল যোগ করুন",
     "extraNotes": "অতিরিক্ত নোট",
     "notesPlaceholder": "পোস্টারে আর যা যা থাকতে হবে"
+  },
+  "monetization": {
+    "tokenGated": "টোকেন-নিয়ন্ত্রিত",
+    "invalidToken": "সঠিক টোকেন কনট্র্যাক্ট ঠিকানা লিখুন",
+    "createPlanAction": "সাবস্ক্রিপশন প্ল্যান তৈরি করুন",
+    "createPlanFirst": "আগে একটি প্ল্যান তৈরি করুন",
+    "publishPlanFirst": "আগে আপনার সাবস্ক্রিপশন প্ল্যান চেইনে প্রকাশ করুন।",
+    "subscribersOnly": "কেবল আপনার সাবস্ক্রাইবাররা এই পোস্ট খুলতে পারবেন।",
+    "price": "মূল্য ({{currency}})",
+    "paymentsSolana": "পেমেন্ট সোলানায় {{currency}}-তে হয়",
+    "paymentsBase": "পেমেন্ট Base চেইনে DHB-তে হয়",
+    "requiresSpl": "দেখতে সোলানায় একটি SPL টোকেন লাগবে",
+    "mustHoldOn": "দর্শকদের {{chain}}-এ এই টোকেন থাকতে হবে",
+    "custom": "কাস্টম",
+    "contractPlaceholder": "কনট্র্যাক্ট ঠিকানা (0x…)",
+    "symbolPlaceholder": "প্রতীক (যেমন PEPE)"
   }
 }

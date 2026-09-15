@@ -6,6 +6,7 @@
  * Each option that needs values has a toggle + expandable inline form:
  * toggling on opens the form; confirming closes it and keeps the toggle on.
  */
+import { useTranslation } from "react-i18next";
 import React, { useCallback, useEffect, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import Animated, {
@@ -147,6 +148,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
   postChainId,
   onCreatePlan,
 }) => {
+  const { t } = useTranslation();
   const isSolana = isSolanaChain(postChainId);
   // The gate is the creator's own plans, so with none there is nothing to gate
   // on and the row stays off — see the comment on the switch.
@@ -270,7 +272,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
       if (gateUseCustom) {
         const addr = (next.contractAddress || "").trim();
         if (!isValidEvmAddress(addr)) {
-          setGateError("Enter a valid token contract address");
+          setGateError(t("monetization.invalidToken"));
           return;
         }
         next = { ...next, contractAddress: addr, tokenSymbol: (next.tokenSymbol || "TOKEN").trim() || "TOKEN" };
@@ -324,7 +326,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
             <View className="flex-row items-center">
               <Icon name="Star" size={18} color={hasPlans ? "#fff" : "rgba(255,255,255,0.4)"} />
               <Text className={hasPlans ? "text-white text-sm ml-3" : "text-white/40 text-sm ml-3"}>
-                Subscribers
+                {t("leaderboard.subscribers")}
               </Text>
             </View>
             <CustomSwitch
@@ -340,7 +342,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
           {!hasPlans && !plansLoading && (
             hasAnyPlan ? (
               <Text className="text-theme-neutrals-500 text-xs mt-1.5">
-                Publish your subscription plan on chain first.
+                {t("monetization.publishPlanFirst")}
               </Text>
             ) : (
               <TouchableOpacity
@@ -348,17 +350,17 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
                 disabled={!onCreatePlan}
                 activeOpacity={0.7}
                 accessibilityRole="button"
-                accessibilityLabel="Create a subscription plan"
+                accessibilityLabel={t("monetization.createPlanAction")}
               >
                 <Text className="text-theme-neutrals-400 text-xs mt-1.5 underline">
-                  Create a plan first
+                  {t("monetization.createPlanFirst")}
                 </Text>
               </TouchableOpacity>
             )
           )}
           {state.subscribersEnabled && hasPlans && (
             <Text className="text-theme-neutrals-500 text-xs mt-1.5">
-              Only your subscribers can open this post.
+              {t("monetization.subscribersOnly")}
             </Text>
           )}
         </View>
@@ -380,7 +382,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
       >
         <View className="pb-3">
           <Text className="text-white font-semibold text-sm mb-3">
-            Set PPV Price
+            {t("drawers.setPpvPrice")}
           </Text>
           {isSolana && (
             <SplTokenSelector
@@ -389,11 +391,11 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
             />
           )}
           <Text className="text-theme-neutrals-400 text-xs mb-1.5">
-            Price ({ppvCurrency})
+            {t("monetization.price", { currency: ppvCurrency })}
           </Text>
           <TextInput
             value={ppvDraft.price}
-            onChangeText={(t) => setPpvDraft((d) => ({ ...d, price: t }))}
+            onChangeText={(value) => setPpvDraft((d) => ({ ...d, price: value }))}
             placeholder="10"
             placeholderTextColor="#6F7174"
             keyboardType="decimal-pad"
@@ -401,12 +403,12 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
           />
           <Text className="text-theme-neutrals-500 text-xs mt-1.5">
             {isSolana
-              ? `Payments are in ${ppvCurrency} on Solana`
-              : "Payments are in DHB on Base chain"}
+              ? t("monetization.paymentsSolana", { currency: ppvCurrency })
+              : t("monetization.paymentsBase")}
           </Text>
           <View className="flex-row justify-end mt-3 gap-3">
             <TouchableOpacity onPress={cancelPpv} className="px-4 py-2">
-              <Text className="text-theme-neutrals-400 text-sm">Cancel</Text>
+              <Text className="text-theme-neutrals-400 text-sm">{t("common.cancel")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={confirmPpv}
@@ -414,7 +416,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
             >
               <GlassIndicator borderRadius={12} />
               <Icon name="Check" size={16} color="#fff" />
-              <Text className="text-white text-sm ml-1">Confirm</Text>
+              <Text className="text-white text-sm ml-1">{t("common.confirm")}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -426,7 +428,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
         <View className="flex-row items-center justify-between py-3">
           <View className="flex-row items-center">
             <Icon name="Gift" size={18} color="#fff" />
-            <Text className="text-white text-sm ml-3">Bounty</Text>
+            <Text className="text-white text-sm ml-3">{t("filters.bounty")}</Text>
           </View>
           <CustomSwitch
             value={state.bountyEnabled || expandedSection === "bounty"}
@@ -440,17 +442,17 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
       >
         <View className="pb-3">
           <Text className="text-white font-semibold text-sm mb-2">
-            Set Up Bounty
+            {t("drawers.setupBounty")}
           </Text>
           <View className="flex-row gap-3 mb-2">
             <View className="flex-1">
               <Text className="text-theme-neutrals-400 text-xs mb-1">
-                Viewers to reward
+                {t("drawers.viewersToReward")}
               </Text>
               <TextInput
                 value={bountyDraft.viewers}
-                onChangeText={(t) =>
-                  setBountyDraft((d) => ({ ...d, viewers: t }))
+                onChangeText={(value) =>
+                  setBountyDraft((d) => ({ ...d, viewers: value }))
                 }
                 placeholder="0"
                 placeholderTextColor="#6F7174"
@@ -461,12 +463,12 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
             </View>
             <View className="flex-1">
               <Text className="text-theme-neutrals-400 text-xs mb-1">
-                Commenters to reward
+                {t("drawers.commentersToReward")}
               </Text>
               <TextInput
                 value={bountyDraft.commenters}
-                onChangeText={(t) =>
-                  setBountyDraft((d) => ({ ...d, commenters: t }))
+                onChangeText={(value) =>
+                  setBountyDraft((d) => ({ ...d, commenters: value }))
                 }
                 placeholder="0"
                 placeholderTextColor="#6F7174"
@@ -477,14 +479,14 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
             </View>
           </View>
           <Text className="text-theme-neutrals-400 text-xs mb-1">
-            Reward per person (DHB)
+            {t("drawers.rewardPerPerson")}
           </Text>
           <TextInput
             value={bountyDraft.rewardPerPerson}
-            onChangeText={(t) =>
-              setBountyDraft((d) => ({ ...d, rewardPerPerson: t }))
+            onChangeText={(value) =>
+              setBountyDraft((d) => ({ ...d, rewardPerPerson: value }))
             }
-            placeholder="Amount per person"
+            placeholder={t("drawers.amountPerPerson")}
             placeholderTextColor="#6F7174"
             keyboardType="decimal-pad"
             className="h-10 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700 text-white text-sm"
@@ -492,7 +494,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
           />
           <View className="flex-row justify-end mt-2 gap-3">
             <TouchableOpacity onPress={cancelBounty} className="px-4 py-2">
-              <Text className="text-theme-neutrals-400 text-sm">Cancel</Text>
+              <Text className="text-theme-neutrals-400 text-sm">{t("common.cancel")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={confirmBounty}
@@ -500,7 +502,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
             >
               <GlassIndicator borderRadius={12} />
               <Icon name="Check" size={16} color="#fff" />
-              <Text className="text-white text-sm ml-1">Confirm</Text>
+              <Text className="text-white text-sm ml-1">{t("common.confirm")}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -509,7 +511,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">
           <Icon name="ShieldCheck" size={18} color="#fff" />
-          <Text className="text-white text-sm ml-3">Token Gated</Text>
+          <Text className="text-white text-sm ml-3">{t("monetization.tokenGated")}</Text>
         </View>
         <CustomSwitch
           value={state.tokenGatedEnabled || expandedSection === "tokenGated"}
@@ -524,12 +526,12 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
       >
         <View className="pb-3">
           <Text className="text-white font-semibold text-sm mb-2">
-            Token Gate Settings
+            {t("drawers.tokenGateSettings")}
           </Text>
           {isSolana ? (
             <>
               <Text className="text-theme-neutrals-400 text-xs mb-3">
-                Requires an SPL token on Solana to view
+                {t("monetization.requiresSpl")}
               </Text>
               <SplTokenSelector
                 value={tokenGateDraft.tokenSymbol}
@@ -539,26 +541,26 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
           ) : (
             <>
               <Text className="text-theme-neutrals-400 text-xs mb-2">
-                Viewers must hold this token on {evmChainLabel}
+                {t("monetization.mustHoldOn", { chain: evmChainLabel })}
               </Text>
               {/* Token picker — listed tokens for the chain + custom (#43) */}
               <View className="flex-row flex-wrap gap-2 mb-3">
-                {evmLockTokens.map((t) => {
-                  const active = !gateUseCustom && (tokenGateDraft.tokenSymbol || "DHB") === t.symbol;
+                {evmLockTokens.map((tok) => {
+                  const active = !gateUseCustom && (tokenGateDraft.tokenSymbol || "DHB") === tok.symbol;
                   return (
                     <TouchableOpacity
-                      key={t.address}
+                      key={tok.address}
                       onPress={() => {
                         setGateUseCustom(false);
                         setGateError(null);
-                        setTokenGateDraft((d) => ({ ...d, tokenSymbol: t.symbol, contractAddress: t.address }));
+                        setTokenGateDraft((d) => ({ ...d, tokenSymbol: tok.symbol, contractAddress: tok.address }));
                       }}
                       className={`px-3 py-1.5 rounded-lg border ${
                         active ? "bg-white/15 border-white/30" : "bg-theme-neutrals-900 border-theme-neutrals-700"
                       }`}
                     >
                       <Text className={active ? "text-white text-xs font-semibold" : "text-theme-neutrals-400 text-xs"}>
-                        {t.symbol}
+                        {tok.symbol}
                       </Text>
                     </TouchableOpacity>
                   );
@@ -574,7 +576,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
                   }`}
                 >
                   <Text className={gateUseCustom ? "text-white text-xs font-semibold" : "text-theme-neutrals-400 text-xs"}>
-                    Custom
+                    {t("monetization.custom")}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -582,11 +584,11 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
                 <>
                   <TextInput
                     value={tokenGateDraft.contractAddress}
-                    onChangeText={(t) => {
+                    onChangeText={(value) => {
                       setGateError(null);
-                      setTokenGateDraft((d) => ({ ...d, contractAddress: t }));
+                      setTokenGateDraft((d) => ({ ...d, contractAddress: value }));
                     }}
-                    placeholder="Contract address (0x…)"
+                    placeholder={t("monetization.contractPlaceholder")}
                     placeholderTextColor="#6F7174"
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -595,8 +597,8 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
                   />
                   <TextInput
                     value={tokenGateDraft.tokenSymbol}
-                    onChangeText={(t) => setTokenGateDraft((d) => ({ ...d, tokenSymbol: t.toUpperCase() }))}
-                    placeholder="Symbol (e.g. PEPE)"
+                    onChangeText={(value) => setTokenGateDraft((d) => ({ ...d, tokenSymbol: value.toUpperCase() }))}
+                    placeholder={t("monetization.symbolPlaceholder")}
                     placeholderTextColor="#6F7174"
                     autoCapitalize="characters"
                     autoCorrect={false}
@@ -612,7 +614,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
           </Text>
           <TextInput
             value={tokenGateDraft.minAmount}
-            onChangeText={(t) => setTokenGateDraft((d) => ({ ...d, minAmount: t }))}
+            onChangeText={(value) => setTokenGateDraft((d) => ({ ...d, minAmount: value }))}
             placeholder="10"
             placeholderTextColor="#6F7174"
             keyboardType="decimal-pad"
@@ -621,7 +623,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
           {gateError && <Text className="text-white/80 text-xs mt-1.5">{gateError}</Text>}
           <View className="flex-row justify-end mt-3 gap-3">
             <TouchableOpacity onPress={cancelTokenGate} className="px-4 py-2">
-              <Text className="text-theme-neutrals-400 text-sm">Cancel</Text>
+              <Text className="text-theme-neutrals-400 text-sm">{t("common.cancel")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={confirmTokenGate}
@@ -629,7 +631,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
             >
               <GlassIndicator borderRadius={12} />
               <Icon name="Check" size={16} color="#fff" />
-              <Text className="text-white text-sm ml-1">Confirm</Text>
+              <Text className="text-white text-sm ml-1">{t("common.confirm")}</Text>
             </TouchableOpacity>
           </View>
         </View>

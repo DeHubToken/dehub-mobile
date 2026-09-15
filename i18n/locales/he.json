@@ -3494,5 +3494,21 @@
     "includeSocials": "לכלול רשתות חברתיות",
     "extraNotes": "הערות נוספות",
     "notesPlaceholder": "כל דבר אחר שהכרזה צריכה להציג"
+  },
+  "monetization": {
+    "tokenGated": "מוגבל בטוקן",
+    "invalidToken": "הזינו כתובת חוזה טוקן תקינה",
+    "createPlanAction": "יצירת מסלול מנוי",
+    "createPlanFirst": "צרו קודם מסלול",
+    "publishPlanFirst": "פרסמו קודם את מסלול המנוי שלכם על השרשרת.",
+    "subscribersOnly": "רק המנויים שלך יכולים לפתוח את הפוסט הזה.",
+    "price": "מחיר ({{currency}})",
+    "paymentsSolana": "התשלומים הם ב־{{currency}} ברשת Solana",
+    "paymentsBase": "התשלומים הם ב־DHB ברשת Base",
+    "requiresSpl": "נדרש טוקן SPL ברשת Solana לצפייה",
+    "mustHoldOn": "הצופים חייבים להחזיק את הטוקן הזה ב־{{chain}}",
+    "custom": "מותאם אישית",
+    "contractPlaceholder": "כתובת החוזה (0x…)",
+    "symbolPlaceholder": "סמל (לדוגמה PEPE)"
   }
 }

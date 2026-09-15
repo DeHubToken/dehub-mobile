@@ -3536,5 +3536,21 @@
     "includeSocials": "Faka ama-akhawunti ezokuxhumana",
     "extraNotes": "Amanothi engeziwe",
     "notesPlaceholder": "Noma yini enye okumele iposta iyibonise"
+  },
+  "monetization": {
+    "tokenGated": "Kuvinjelwe ngethokheni",
+    "invalidToken": "Faka ikheli lesivumelwano sethokheni elivumelekile",
+    "createPlanAction": "Dala uhlelo lokubhalisa",
+    "createPlanFirst": "Dala uhlelo kuqala",
+    "publishPlanFirst": "Shicilela uhlelo lwakho lokubhalisa eshinini kuqala.",
+    "subscribersOnly": "Ababhalisi bakho kuphela abangavula lokhu okuthunyelwe.",
+    "price": "Intengo ({{currency}})",
+    "paymentsSolana": "Izinkokhelo zenziwa nge-{{currency}} ku-Solana",
+    "paymentsBase": "Izinkokhelo zenziwa nge-DHB kushini lwe-Base",
+    "requiresSpl": "Idinga ithokheni ye-SPL ku-Solana ukuze ubuke",
+    "mustHoldOn": "Ababukeli kumele babe nalelithokheni ku-{{chain}}",
+    "custom": "Ngokwezifiso",
+    "contractPlaceholder": "Ikheli lesivumelwano (0x…)",
+    "symbolPlaceholder": "Uphawu (isb. PEPE)"
   }
 }

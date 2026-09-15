@@ -3463,5 +3463,21 @@
     "includeSocials": "सामाजिकजालानि अन्तर्भावयतु",
     "extraNotes": "अतिरिक्तटिप्पण्यः",
     "notesPlaceholder": "यत् किमपि अन्यत् पत्रकं दर्शयेत्"
+  },
+  "monetization": {
+    "tokenGated": "टोकन्-नियन्त्रितम्",
+    "invalidToken": "वैधं टोकन्-सन्धिपत्रसङ्केतं लिखतु",
+    "createPlanAction": "अभिदानयोजनां रचयतु",
+    "createPlanFirst": "प्रथमं योजनां रचयतु",
+    "publishPlanFirst": "प्रथमं स्वस्य अभिदानयोजनां शृङ्खलायां प्रकाशयतु।",
+    "subscribersOnly": "एतत् प्रकाशनं केवलं भवतः अभिदातारः उद्घाटयितुं शक्नुवन्ति।",
+    "price": "मूल्यम् ({{currency}})",
+    "paymentsSolana": "भुक्तिः Solana-उपरि {{currency}}-रूपेण भवति",
+    "paymentsBase": "भुक्तिः Base-शृङ्खलायां DHB-रूपेण भवति",
+    "requiresSpl": "द्रष्टुं Solana-उपरि SPL-टोकन् आवश्यकम्",
+    "mustHoldOn": "दर्शकैः {{chain}}-उपरि एतत् टोकन् धारणीयम्",
+    "custom": "स्वनिर्मितम्",
+    "contractPlaceholder": "सन्धिपत्रसङ्केतः (0x…)",
+    "symbolPlaceholder": "प्रतीकम् (यथा PEPE)"
   }
 }

@@ -3576,5 +3576,21 @@
     "includeSocials": "Social-Media-Profile einbeziehen",
     "extraNotes": "Zusätzliche Hinweise",
     "notesPlaceholder": "Alles andere, was das Poster zeigen soll"
+  },
+  "monetization": {
+    "tokenGated": "Token-beschränkt",
+    "invalidToken": "Gib eine gültige Token-Vertragsadresse ein",
+    "createPlanAction": "Abo-Plan erstellen",
+    "createPlanFirst": "Erstelle zuerst einen Plan",
+    "publishPlanFirst": "Veröffentliche zuerst deinen Abo-Plan on-chain.",
+    "subscribersOnly": "Nur deine Abonnenten können diesen Beitrag öffnen.",
+    "price": "Preis ({{currency}})",
+    "paymentsSolana": "Zahlungen erfolgen in {{currency}} auf Solana",
+    "paymentsBase": "Zahlungen erfolgen in DHB auf der Base-Chain",
+    "requiresSpl": "Zum Ansehen ist ein SPL-Token auf Solana nötig",
+    "mustHoldOn": "Zuschauer müssen dieses Token auf {{chain}} halten",
+    "custom": "Benutzerdefiniert",
+    "contractPlaceholder": "Vertragsadresse (0x…)",
+    "symbolPlaceholder": "Symbol (z. B. PEPE)"
   }
 }

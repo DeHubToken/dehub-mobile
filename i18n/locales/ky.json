@@ -3500,5 +3500,21 @@
     "includeSocials": "Социалдык тармактарды кошуу",
     "extraNotes": "Кошумча эскертүүлөр",
     "notesPlaceholder": "Плакатта көрсөтүлүшү керек болгон башка нерселер"
+  },
+  "monetization": {
+    "tokenGated": "Токен менен чектелген",
+    "invalidToken": "Жарактуу токен келишим дарегин киргизиңиз",
+    "createPlanAction": "Жазылуу планын түзүү",
+    "createPlanFirst": "Адегенде план түзүңүз",
+    "publishPlanFirst": "Адегенде жазылуу планыңызды чынжырда жарыялаңыз.",
+    "subscribersOnly": "Бул жазууну сиздин жазылуучуларыңыз гана ача алат.",
+    "price": "Баасы ({{currency}})",
+    "paymentsSolana": "Төлөмдөр Solana тармагында {{currency}} менен",
+    "paymentsBase": "Төлөмдөр Base чынжырында DHB менен",
+    "requiresSpl": "Көрүү үчүн Solana'да SPL токени керек",
+    "mustHoldOn": "Көрүүчүлөрдө бул токен {{chain}} тармагында болушу керек",
+    "custom": "Ыңгайлаштырылган",
+    "contractPlaceholder": "Келишим дареги (0x…)",
+    "symbolPlaceholder": "Символ (мисалы, PEPE)"
   }
 }

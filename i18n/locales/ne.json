@@ -3540,5 +3540,21 @@
     "includeSocials": "सामाजिक सञ्जाल समावेश गर्नुहोस्",
     "extraNotes": "थप टिप्पणी",
     "notesPlaceholder": "पोस्टरमा देखाउनुपर्ने अरू केही"
+  },
+  "monetization": {
+    "tokenGated": "टोकन आधारित",
+    "invalidToken": "मान्य टोकन कन्ट्र्याक्ट ठेगाना राख्नुहोस्",
+    "createPlanAction": "सदस्यता योजना बनाउनुहोस्",
+    "createPlanFirst": "पहिले एउटा योजना बनाउनुहोस्",
+    "publishPlanFirst": "पहिले आफ्नो सदस्यता योजना चेनमा प्रकाशित गर्नुहोस्।",
+    "subscribersOnly": "यो पोस्ट तपाईंका सदस्यहरूले मात्र खोल्न सक्छन्।",
+    "price": "मूल्य ({{currency}})",
+    "paymentsSolana": "भुक्तानी सोलानामा {{currency}} मा हुन्छ",
+    "paymentsBase": "भुक्तानी Base चेनमा DHB मा हुन्छ",
+    "requiresSpl": "हेर्न सोलानामा SPL टोकन चाहिन्छ",
+    "mustHoldOn": "दर्शकहरूसँग {{chain}} मा यो टोकन हुनुपर्छ",
+    "custom": "अनुकूलित",
+    "contractPlaceholder": "कन्ट्र्याक्ट ठेगाना (0x…)",
+    "symbolPlaceholder": "प्रतीक (जस्तै PEPE)"
   }
 }

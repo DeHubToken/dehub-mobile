@@ -3506,5 +3506,21 @@
     "includeSocials": "Įtraukti socialinius tinklus",
     "extraNotes": "Papildomos pastabos",
     "notesPlaceholder": "Bet kas kita, ką plakatas turi rodyti"
+  },
+  "monetization": {
+    "tokenGated": "Ribojama žetonu",
+    "invalidToken": "Įveskite galiojantį žetono sutarties adresą",
+    "createPlanAction": "Sukurti prenumeratos planą",
+    "createPlanFirst": "Pirmiausia sukurkite planą",
+    "publishPlanFirst": "Pirmiausia paskelbkite savo prenumeratos planą grandinėje.",
+    "subscribersOnly": "Šį įrašą gali atidaryti tik jūsų prenumeratoriai.",
+    "price": "Kaina ({{currency}})",
+    "paymentsSolana": "Mokėjimai atliekami {{currency}} „Solana“ tinkle",
+    "paymentsBase": "Mokėjimai atliekami DHB „Base“ grandinėje",
+    "requiresSpl": "Norint peržiūrėti reikia SPL žetono „Solana“ tinkle",
+    "mustHoldOn": "Žiūrovai turi turėti šį žetoną tinkle {{chain}}",
+    "custom": "Pasirinktinis",
+    "contractPlaceholder": "Sutarties adresas (0x…)",
+    "symbolPlaceholder": "Simbolis (pvz., PEPE)"
   }
 }

@@ -3339,5 +3339,21 @@
     "includeSocials": "Add di social handles",
     "extraNotes": "Extra notes",
     "notesPlaceholder": "Anytin else wey di poster suppose show"
+  },
+  "monetization": {
+    "tokenGated": "Token gated",
+    "invalidToken": "Enta correct token contract address",
+    "createPlanAction": "Create subscription plan",
+    "createPlanFirst": "Create plan first",
+    "publishPlanFirst": "Publish your subscription plan for chain first.",
+    "subscribersOnly": "Na only your subscribers fit open dis post.",
+    "price": "Price ({{currency}})",
+    "paymentsSolana": "Payment dey for {{currency}} on Solana",
+    "paymentsBase": "Payment dey for DHB on Base chain",
+    "requiresSpl": "You need SPL token on Solana to view am",
+    "mustHoldOn": "Viewers must hold dis token on {{chain}}",
+    "custom": "Custom",
+    "contractPlaceholder": "Contract address (0x…)",
+    "symbolPlaceholder": "Symbol (like PEPE)"
   }
 }

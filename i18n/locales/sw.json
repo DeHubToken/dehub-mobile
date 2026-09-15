@@ -3507,5 +3507,21 @@
     "includeSocials": "Jumuisha mitandao ya kijamii",
     "extraNotes": "Madokezo ya ziada",
     "notesPlaceholder": "Kitu kingine chochote bango linalopaswa kuonyesha"
+  },
+  "monetization": {
+    "tokenGated": "Imezuiliwa kwa tokeni",
+    "invalidToken": "Weka anwani sahihi ya mkataba wa tokeni",
+    "createPlanAction": "Tengeneza mpango wa usajili",
+    "createPlanFirst": "Tengeneza mpango kwanza",
+    "publishPlanFirst": "Chapisha mpango wako wa usajili kwenye mnyororo kwanza.",
+    "subscribersOnly": "Ni wanaojisajili kwako pekee wanaoweza kufungua chapisho hili.",
+    "price": "Bei ({{currency}})",
+    "paymentsSolana": "Malipo ni kwa {{currency}} kwenye Solana",
+    "paymentsBase": "Malipo ni kwa DHB kwenye mnyororo wa Base",
+    "requiresSpl": "Inahitaji tokeni ya SPL kwenye Solana ili kutazama",
+    "mustHoldOn": "Watazamaji lazima wawe na tokeni hii kwenye {{chain}}",
+    "custom": "Maalum",
+    "contractPlaceholder": "Anwani ya mkataba (0x…)",
+    "symbolPlaceholder": "Alama (mf. PEPE)"
   }
 }

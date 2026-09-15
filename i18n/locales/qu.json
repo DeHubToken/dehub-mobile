@@ -3537,5 +3537,21 @@
     "includeSocials": "Sosyal kuentakunata yapay",
     "extraNotes": "Yapa qillqasqakuna",
     "notesPlaceholder": "Ima hukkunatapas afichi rikuchinan"
+  },
+  "monetization": {
+    "tokenGated": "Tokenwan hark'asqa",
+    "invalidToken": "Allin token kontrato direccionta churay",
+    "createPlanAction": "Qillqakuy planta kamay",
+    "createPlanFirst": "Ñawpaqta huk planta kamay",
+    "publishPlanFirst": "Ñawpaqta qillqakuy planaykita chainpi churay.",
+    "subscribersOnly": "Kay willakuyta qillqakuqniykikunallam kichanku.",
+    "price": "Chanin ({{currency}})",
+    "paymentsSolana": "Qullqi qupuyqa {{currency}}-pi Solana patapi",
+    "paymentsBase": "Qullqi qupuyqa DHB-pi Base chain patapi",
+    "requiresSpl": "Qhawanapaq Solanapi SPL token necesitakun",
+    "mustHoldOn": "Qhawaqkunaqa kay tokenta {{chain}}-pi hapinanku",
+    "custom": "Kikin akllasqa",
+    "contractPlaceholder": "Kontrato direccion (0x…)",
+    "symbolPlaceholder": "Unancha (kikin PEPE)"
   }
 }

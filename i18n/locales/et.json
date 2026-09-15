@@ -3506,5 +3506,21 @@
     "includeSocials": "Kaasa sotsiaalmeedia",
     "extraNotes": "Lisamärkused",
     "notesPlaceholder": "Kõik muu, mida plakat peab näitama"
+  },
+  "monetization": {
+    "tokenGated": "Tokeniga piiratud",
+    "invalidToken": "Sisesta kehtiv tokeni lepingu aadress",
+    "createPlanAction": "Loo tellimusplaan",
+    "createPlanFirst": "Loo kõigepealt plaan",
+    "publishPlanFirst": "Avalda kõigepealt oma tellimusplaan ahelas.",
+    "subscribersOnly": "Seda postitust saavad avada ainult sinu tellijad.",
+    "price": "Hind ({{currency}})",
+    "paymentsSolana": "Maksed tehakse {{currency}} Solana võrgus",
+    "paymentsBase": "Maksed tehakse DHB-s Base ahelas",
+    "requiresSpl": "Vaatamiseks on vaja SPL tokenit Solanas",
+    "mustHoldOn": "Vaatajatel peab olema see token võrgus {{chain}}",
+    "custom": "Kohandatud",
+    "contractPlaceholder": "Lepingu aadress (0x…)",
+    "symbolPlaceholder": "Sümbol (nt PEPE)"
   }
 }

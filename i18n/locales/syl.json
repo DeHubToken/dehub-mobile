@@ -3653,5 +3653,21 @@
     "includeSocials": "সোশ্যাল হ্যান্ডেল যোগ করউক্কা",
     "extraNotes": "অতিরিক্ত নোট",
     "notesPlaceholder": "পোস্টারো আর যা যা দেখাইতে অইবো"
+  },
+  "monetization": {
+    "tokenGated": "টোকেন-নিয়ন্ত্রিত",
+    "invalidToken": "সঠিক টোকেন কনট্র্যাক্ট ঠিকানা লেখউক্কা",
+    "createPlanAction": "সাবস্ক্রিপশন প্ল্যান বানাউক্কা",
+    "createPlanFirst": "আগে একটা প্ল্যান বানাউক্কা",
+    "publishPlanFirst": "আগে তোমার সাবস্ক্রিপশন প্ল্যান চেইনো প্রকাশ করউক্কা।",
+    "subscribersOnly": "ইলা পোস্ট খালি তোমার সাবস্ক্রাইবাররাই খুলতে পারবা।",
+    "price": "দাম ({{currency}})",
+    "paymentsSolana": "পেমেন্ট সোলানাত {{currency}} ও অয়",
+    "paymentsBase": "পেমেন্ট Base চেইনো DHB ও অয়",
+    "requiresSpl": "দেখতে Solana ত SPL টোকেন লাগে",
+    "mustHoldOn": "দর্শকর {{chain}} ও ইলা টোকেন থাকতে অইবো",
+    "custom": "কাস্টম",
+    "contractPlaceholder": "কনট্র্যাক্ট ঠিকানা (0x…)",
+    "symbolPlaceholder": "প্রতীক (যেমন PEPE)"
   }
 }

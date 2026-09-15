@@ -3540,5 +3540,21 @@
     "includeSocials": "Уключыць сацсеткі",
     "extraNotes": "Дадатковыя нататкі",
     "notesPlaceholder": "Усё астатняе, што павінна быць на плакаце"
+  },
+  "monetization": {
+    "tokenGated": "Абмежавана токенам",
+    "invalidToken": "Увядзіце сапраўдны адрас кантракта токена",
+    "createPlanAction": "Стварыць план падпіскі",
+    "createPlanFirst": "Спачатку стварыце план",
+    "publishPlanFirst": "Спачатку апублікуйце свой план падпіскі ў сетцы.",
+    "subscribersOnly": "Гэты пост могуць адкрыць толькі вашы падпісчыкі.",
+    "price": "Цана ({{currency}})",
+    "paymentsSolana": "Аплата ў {{currency}} у сетцы Solana",
+    "paymentsBase": "Аплата ў DHB у сетцы Base",
+    "requiresSpl": "Для прагляду патрэбны токен SPL у сетцы Solana",
+    "mustHoldOn": "Гледачы павінны мець гэты токен у сетцы {{chain}}",
+    "custom": "Уласны",
+    "contractPlaceholder": "Адрас кантракта (0x…)",
+    "symbolPlaceholder": "Сімвал (напр. PEPE)"
   }
 }

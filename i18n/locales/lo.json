@@ -3465,5 +3465,21 @@
     "includeSocials": "ລວມໂຊຊຽວມີເດຍ",
     "extraNotes": "ບັນທຶກເພີ່ມເຕີມ",
     "notesPlaceholder": "ສິ່ງອື່ນທີ່ໂປສເຕີຕ້ອງສະແດງ"
+  },
+  "monetization": {
+    "tokenGated": "ຈຳກັດດ້ວຍໂທເຄັນ",
+    "invalidToken": "ປ້ອນທີ່ຢູ່ສັນຍາໂທເຄັນທີ່ຖືກຕ້ອງ",
+    "createPlanAction": "ສ້າງແພັກເກັດສະໝັກສະມາຊິກ",
+    "createPlanFirst": "ກະລຸນາສ້າງແພັກເກັດກ່ອນ",
+    "publishPlanFirst": "ກະລຸນາເຜີຍແຜ່ແພັກເກັດສະໝັກຂອງທ່ານຢູ່ເຊນກ່ອນ.",
+    "subscribersOnly": "ມີແຕ່ຜູ້ສະໝັກຂອງທ່ານເທົ່ານັ້ນທີ່ເປີດໂພສນີ້ໄດ້.",
+    "price": "ລາຄາ ({{currency}})",
+    "paymentsSolana": "ການຈ່າຍເງິນເປັນ {{currency}} ຢູ່ Solana",
+    "paymentsBase": "ການຈ່າຍເງິນເປັນ DHB ຢູ່ເຊນ Base",
+    "requiresSpl": "ຕ້ອງມີໂທເຄັນ SPL ຢູ່ Solana ຈຶ່ງເບິ່ງໄດ້",
+    "mustHoldOn": "ຜູ້ຊົມຕ້ອງຖືໂທເຄັນນີ້ຢູ່ {{chain}}",
+    "custom": "ກຳນົດເອງ",
+    "contractPlaceholder": "ທີ່ຢູ່ສັນຍາ (0x…)",
+    "symbolPlaceholder": "ສັນຍະລັກ (ເຊັ່ນ PEPE)"
   }
 }
