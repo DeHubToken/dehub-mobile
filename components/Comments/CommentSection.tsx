@@ -32,6 +32,7 @@ import GifPicker from "../DM/GifPicker";
 import EmojiSheet from "../Upload/EmojiSheet";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import Avatar from "../common/Avatar";
+import { useTranslation } from "react-i18next";
 import MentionSuggestions from "../common/MentionSuggestions";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -135,6 +136,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   onDirtyChange,
   keyboardHandled = false,
 }) => {
+  const { t } = useTranslation();
   const user = useUser();
   const { isBanned: accountBanned } = useBannedAccount();
   const { requireAuth } = useAuthActions();
@@ -357,7 +359,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       }
     } catch (e) {
       console.error("Failed to load comments:", e);
-      if (!isRefresh) toastError("Failed to load comments");
+      if (!isRefresh) toastError(t("comments.loadFailed"));
     }
   }, [tokenId, userAddress, highlightCommentId, buildFlatComments]);
 
@@ -435,7 +437,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         });
       } catch (err) {
         console.warn("[CommentSection] Failed to load replies:", err);
-        toastError("Failed to load replies");
+        toastError(t("comments.loadRepliesFailed"));
       } finally {
         setLoadingRepliesMap((prev) => ({ ...prev, [commentId]: false }));
       }
@@ -522,7 +524,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       } catch (e: any) {
         if (e?.code !== "E_PICKER_CANCELLED") {
           console.error("[CommentSection] image picker error", e);
-          toastError("Failed to pick image");
+          toastError(t("comments.pickImageFailed"));
         }
       }
     });
@@ -705,7 +707,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         // Hand the attachment back rather than making them pick it again.
         setMediaAttachment(savedMedia);
         setReplyingTo(replyingTo);
-        toastError("Failed to send media comment");
+        toastError(t("comments.sendMediaFailed"));
       } finally {
         setMediaPosting(false);
       }
@@ -1346,7 +1348,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 onTouchStart={handlePostTouchStart}
                 disabled={posting || !inputText.trim()}
                 accessibilityRole="button"
-                accessibilityLabel="Post comment"
+                accessibilityLabel={t("comments.postComment")}
                 style={[
                   composerStyles.control,
                   { backgroundColor: inputText.trim() ? "#F9FBFF" : "rgba(255,255,255,0.1)" },
@@ -1376,7 +1378,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   onPress={handlePickImage}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
-                  accessibilityLabel="Add image"
+                  accessibilityLabel={t("comments.addImage")}
                   style={composerStyles.iconControl}
                 >
                   <Icon name="ImagePlus" size={20} color="#8B8D90" />
@@ -1385,7 +1387,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   onPress={handleOpenGifPicker}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
-                  accessibilityLabel="Add GIF"
+                  accessibilityLabel={t("comments.addGif")}
                   style={composerStyles.iconControl}
                 >
                   {/* A text glyph, not an icon — it only lines up with its neighbours
@@ -1396,7 +1398,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   onPress={handleOpenEmojiPicker}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
-                  accessibilityLabel="Add emoji"
+                  accessibilityLabel={t("comments.addEmoji")}
                   style={composerStyles.iconControl}
                 >
                   {/* A text glyph, not an icon — same reasoning as GIF above: a
@@ -1408,7 +1410,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   onPress={handleStartRecording}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
-                  accessibilityLabel="Record voice note"
+                  accessibilityLabel={t("comments.recordVoice")}
                   style={composerStyles.iconControl}
                 >
                   <Icon name="Mic" size={20} color="#8B8D90" />

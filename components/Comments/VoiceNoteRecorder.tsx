@@ -31,6 +31,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Audio, InterruptionModeIOS, InterruptionModeAndroid } from "expo-av";
 import { runWithPermissions } from "../../libs/permissions.util";
+import { useTranslation } from "react-i18next";
 
 /* ─── Constants ─────────────────────────────────────────────── */
 const MAX_DURATION_MS = 29_000; // 29 s — prevents server 30 s rejection
@@ -274,6 +275,7 @@ interface VoiceNoteRecordingOverlayProps {
 const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
   recorder,
 }) => {
+  const { t } = useTranslation();
   const {
     isRecording,
     isStopping,
@@ -335,7 +337,7 @@ const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
         onPress={cancelRecording}
         activeOpacity={0.7}
         accessibilityRole="button"
-        accessibilityLabel="Cancel recording"
+        accessibilityLabel={t("comments.cancelRecording")}
         className="ml-3 w-10 h-10 rounded-xl bg-theme-neutrals-700 items-center justify-center"
       >
         <Ionicons name="trash-outline" size={20} color="#F4F4F5" />
@@ -345,7 +347,7 @@ const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
         onPress={stopRecording}
         activeOpacity={0.7}
         accessibilityRole="button"
-        accessibilityLabel="Send voice note"
+        accessibilityLabel={t("comments.sendVoiceNote")}
         className="ml-2 w-10 h-10 rounded-xl bg-white items-center justify-center"
       >
         {isStopping ? (
