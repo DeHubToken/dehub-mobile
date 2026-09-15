@@ -3931,5 +3931,21 @@
     "openingCheckout": "Membuka pembayaran…",
     "checkoutUnavailable": "Pautan pembayaran tidak tersedia. Cuba lagi.",
     "acceptTerms": "Saya menerima <terms>Terma Perkhidmatan</terms>"
+  },
+  "musicSheet": {
+    "title": "Cipta lagu",
+    "songTitle": "Tajuk lagu",
+    "titlePlaceholder": "Biarkan kosong untuk AI tentukan",
+    "styleLabel": "Gaya / genre",
+    "stylePlaceholder": "cth. lo-fi, pop rancak, trap gelap",
+    "vocals": "Vokal",
+    "voiceAuto": "Auto",
+    "voiceMale": "Lelaki",
+    "voiceFemale": "Perempuan",
+    "lyrics": "Lirik",
+    "writeForMe": "Tuliskan untuk saya",
+    "rewrite": "Tulis semula",
+    "lyricsPlaceholder": "Biarkan kosong untuk lagu instrumental",
+    "lyricsFailed": "Gagal menjana lirik"
   }
 }

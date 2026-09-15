@@ -3701,5 +3701,21 @@
     "openingCheckout": "चेकआउट खोल्दै…",
     "checkoutUnavailable": "चेकआउट लिंक उपलब्ध छैन। फेरि प्रयास गर्नुहोस्।",
     "acceptTerms": "म स्वीकार गर्छु <terms>सेवाका सर्तहरू</terms>"
+  },
+  "musicSheet": {
+    "title": "गीत बनाउनुहोस्",
+    "songTitle": "गीतको शीर्षक",
+    "titlePlaceholder": "खाली छोड्नुहोस्, AI ले निर्णय गर्नेछ",
+    "styleLabel": "शैली / विधा",
+    "stylePlaceholder": "जस्तै lo-fi, जोसिलो पप, डार्क ट्र्याप",
+    "vocals": "स्वर",
+    "voiceAuto": "स्वतः",
+    "voiceMale": "पुरुष",
+    "voiceFemale": "महिला",
+    "lyrics": "बोल",
+    "writeForMe": "मेरा लागि लेख्नुहोस्",
+    "rewrite": "फेरि लेख्नुहोस्",
+    "lyricsPlaceholder": "वाद्य संगीतका लागि खाली छोड्नुहोस्",
+    "lyricsFailed": "बोल बनाउन सकिएन"
   }
 }

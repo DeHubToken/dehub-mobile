@@ -3647,5 +3647,21 @@
     "openingCheckout": "Төлбөрийн хуудсыг нээж байна…",
     "checkoutUnavailable": "Төлбөрийн холбоос боломжгүй. Дахин оролдоно уу.",
     "acceptTerms": "Би зөвшөөрч байна <terms>Үйлчилгээний нөхцөл</terms>"
+  },
+  "musicSheet": {
+    "title": "Дуу үүсгэх",
+    "songTitle": "Дууны нэр",
+    "titlePlaceholder": "Хоосон үлдээвэл AI шийднэ",
+    "styleLabel": "Хэв маяг / төрөл",
+    "stylePlaceholder": "ж.нь lo-fi, хөгжөөнт поп, харанхуй trap",
+    "vocals": "Дуулалт",
+    "voiceAuto": "Авто",
+    "voiceMale": "Эрэгтэй",
+    "voiceFemale": "Эмэгтэй",
+    "lyrics": "Үг",
+    "writeForMe": "Миний оронд бич",
+    "rewrite": "Дахин бичих",
+    "lyricsPlaceholder": "Зөвхөн хөгжим бол хоосон үлдээнэ үү",
+    "lyricsFailed": "Үг үүсгэж чадсангүй"
   }
 }

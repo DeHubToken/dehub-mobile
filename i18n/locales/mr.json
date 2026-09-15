@@ -3656,5 +3656,21 @@
     "openingCheckout": "चेकआउट उघडत आहे…",
     "checkoutUnavailable": "चेकआउट लिंक उपलब्ध नाही. पुन्हा प्रयत्न करा.",
     "acceptTerms": "मी स्वीकारतो <terms>सेवा अटी</terms>"
+  },
+  "musicSheet": {
+    "title": "गाणे तयार करा",
+    "songTitle": "गाण्याचे शीर्षक",
+    "titlePlaceholder": "रिकामे ठेवा, AI ठरवेल",
+    "styleLabel": "शैली / प्रकार",
+    "stylePlaceholder": "उदा. lo-fi, उत्साही पॉप, डार्क ट्रॅप",
+    "vocals": "गायन",
+    "voiceAuto": "ऑटो",
+    "voiceMale": "पुरुष",
+    "voiceFemale": "स्त्री",
+    "lyrics": "गीत",
+    "writeForMe": "माझ्यासाठी लिहा",
+    "rewrite": "पुन्हा लिहा",
+    "lyricsPlaceholder": "फक्त वाद्यसंगीतासाठी रिकामे ठेवा",
+    "lyricsFailed": "गीत तयार करता आले नाही"
   }
 }

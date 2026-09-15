@@ -3718,5 +3718,21 @@
     "openingCheckout": "Membuka pembayaran…",
     "checkoutUnavailable": "Tautan pembayaran tidak tersedia. Coba lagi.",
     "acceptTerms": "Saya menerima <terms>Ketentuan Layanan</terms>"
+  },
+  "musicSheet": {
+    "title": "Buat lagu",
+    "songTitle": "Judul lagu",
+    "titlePlaceholder": "Biarkan kosong agar AI yang menentukan",
+    "styleLabel": "Gaya / genre",
+    "stylePlaceholder": "mis. lo-fi, pop ceria, trap gelap",
+    "vocals": "Vokal",
+    "voiceAuto": "Otomatis",
+    "voiceMale": "Pria",
+    "voiceFemale": "Wanita",
+    "lyrics": "Lirik",
+    "writeForMe": "Tuliskan untuk saya",
+    "rewrite": "Tulis ulang",
+    "lyricsPlaceholder": "Biarkan kosong untuk lagu instrumental",
+    "lyricsFailed": "Gagal membuat lirik"
   }
 }

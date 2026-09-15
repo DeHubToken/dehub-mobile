@@ -3813,5 +3813,21 @@
     "openingCheckout": "চেকআউট খুলরো…",
     "checkoutUnavailable": "চেকআউট লিংক পাওয়া যাইরো না। আবার চেষ্টা করউক্কা।",
     "acceptTerms": "আমি মানি লাইরাম <terms>সেবার শর্ত</terms>"
+  },
+  "musicSheet": {
+    "title": "গান বানাও",
+    "songTitle": "গানর নাম",
+    "titlePlaceholder": "খালি রাখলে AI ঠিক করব",
+    "styleLabel": "স্টাইল / ধরন",
+    "stylePlaceholder": "যেমন lo-fi, প্রাণবন্ত পপ, ডার্ক ট্র্যাপ",
+    "vocals": "কণ্ঠ",
+    "voiceAuto": "অটো",
+    "voiceMale": "পুরুষ",
+    "voiceFemale": "মহিলা",
+    "lyrics": "গানর কথা",
+    "writeForMe": "আমার লাগি লেখি দেও",
+    "rewrite": "আবার লেখউ",
+    "lyricsPlaceholder": "খালি বাজনার লাগি খালি রাখউ",
+    "lyricsFailed": "গানর কথা বানানি গেল না"
   }
 }

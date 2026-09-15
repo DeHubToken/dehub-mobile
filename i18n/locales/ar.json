@@ -3723,5 +3723,21 @@
     "openingCheckout": "جارٍ فتح صفحة الدفع…",
     "checkoutUnavailable": "رابط الدفع غير متاح. يُرجى المحاولة مرة أخرى.",
     "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>"
+  },
+  "musicSheet": {
+    "title": "أنشئ أغنية",
+    "songTitle": "عنوان الأغنية",
+    "titlePlaceholder": "اتركه فارغًا ليقرر الذكاء الاصطناعي",
+    "styleLabel": "الأسلوب / النوع",
+    "stylePlaceholder": "مثلاً لو-فاي، بوب حماسي، تراب داكن",
+    "vocals": "الغناء",
+    "voiceAuto": "تلقائي",
+    "voiceMale": "ذكر",
+    "voiceFemale": "أنثى",
+    "lyrics": "الكلمات",
+    "writeForMe": "اكتبها لي",
+    "rewrite": "أعد الكتابة",
+    "lyricsPlaceholder": "اتركه فارغًا لمقطوعة بلا كلمات",
+    "lyricsFailed": "تعذّر إنشاء الكلمات"
   }
 }

@@ -3701,5 +3701,21 @@
     "boostCancelledSpent": "বুস্ট বাতিল হইল। এইটা আগেই শুরু হইছিল, সেইকারণে খরচ হিসাবেই থাকিবে।",
     "cancelFailed": "ওই বুস্ট বাতিল করা গেল না",
     "screenTitle": "SuperPowers"
+  },
+  "musicSheet": {
+    "title": "গান বানান",
+    "songTitle": "গানের নাম",
+    "titlePlaceholder": "খালি থুইলে AI ঠিক করিবে",
+    "styleLabel": "স্টাইল / ধরন",
+    "stylePlaceholder": "যেমন lo-fi, প্রাণবন্ত পপ, ডার্ক ট্র্যাপ",
+    "vocals": "কণ্ঠ",
+    "voiceAuto": "অটো",
+    "voiceMale": "পুরুষ",
+    "voiceFemale": "মহিলা",
+    "lyrics": "গানের কথা",
+    "writeForMe": "মোর লাগি লেখি দেও",
+    "rewrite": "আবার লেখেন",
+    "lyricsPlaceholder": "খালি বাজনার লাগি খালি থউক",
+    "lyricsFailed": "গানের কথা বানাওয়া গেল না"
   }
 }

@@ -3624,5 +3624,21 @@
     "openingCheckout": "भुक्तिपृष्ठम् उद्घाट्यते…",
     "checkoutUnavailable": "भुक्तिसंयोजनं न उपलब्धम्। पुनः प्रयतताम्।",
     "acceptTerms": "अहं स्वीकरोमि <terms>सेवानियमाः</terms>"
+  },
+  "musicSheet": {
+    "title": "गीतं रचयतु",
+    "songTitle": "गीतस्य शीर्षकम्",
+    "titlePlaceholder": "रिक्तं त्यजतु येन AI निर्णयं करोतु",
+    "styleLabel": "शैली / प्रकारः",
+    "stylePlaceholder": "यथा lo-fi, उत्साही pop, कृष्ण trap",
+    "vocals": "गायनम्",
+    "voiceAuto": "स्वयंचालितम्",
+    "voiceMale": "पुरुषः",
+    "voiceFemale": "स्त्री",
+    "lyrics": "गीतपदानि",
+    "writeForMe": "मम कृते लिखतु",
+    "rewrite": "पुनः लिखतु",
+    "lyricsPlaceholder": "वाद्यसङ्गीतार्थं रिक्तं त्यजतु",
+    "lyricsFailed": "गीतपदानि निर्मातुं न शक्यन्ते स्म"
   }
 }

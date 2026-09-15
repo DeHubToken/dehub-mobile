@@ -3658,5 +3658,21 @@
     "openingCheckout": "پۇل تۆلەش بېتى ئېچىلىۋاتىدۇ…",
     "checkoutUnavailable": "پۇل تۆلەش ئۇلانمىسى يوق. قايتا سىناڭ.",
     "acceptTerms": "مەن قوبۇل قىلىمەن <terms>مۇلازىمەت شەرتلىرى</terms>"
+  },
+  "musicSheet": {
+    "title": "ناخشا قۇرۇش",
+    "songTitle": "ناخشا نامى",
+    "titlePlaceholder": "قۇرۇق قالدۇرسىڭىز، AI قارار قىلىدۇ",
+    "styleLabel": "ئۇسلۇب / تۈر",
+    "stylePlaceholder": "مەسىلەن lo-fi، جانلىق pop، قاراڭغۇ trap",
+    "vocals": "ئاۋاز",
+    "voiceAuto": "ئاپتوماتىك",
+    "voiceMale": "ئەر",
+    "voiceFemale": "ئايال",
+    "lyrics": "ناخشا تېكىستى",
+    "writeForMe": "مەن ئۈچۈن يېزىڭ",
+    "rewrite": "قايتا يېزىڭ",
+    "lyricsPlaceholder": "ساز مۇزىكىسى ئۈچۈن قۇرۇق قالدۇرۇڭ",
+    "lyricsFailed": "ناخشا تېكىستى قۇرغىلى بولمىدى"
   }
 }

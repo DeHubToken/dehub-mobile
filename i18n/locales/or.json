@@ -3639,5 +3639,21 @@
     "openingCheckout": "ଚେକଆଉଟ ଖୋଲାଯାଉଛି…",
     "checkoutUnavailable": "ଚେକଆଉଟ ଲିଙ୍କ ଉପଲବ୍ଧ ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
     "acceptTerms": "ମୁଁ ଗ୍ରହଣ କରୁଛି <terms>ସେବା ସର୍ତ୍ତାବଳୀ</terms>"
+  },
+  "musicSheet": {
+    "title": "ଏକ ଗୀତ ତିଆରି କରନ୍ତୁ",
+    "songTitle": "ଗୀତର ଶୀର୍ଷକ",
+    "titlePlaceholder": "AI ନିଷ୍ପତ୍ତି ନେବା ପାଇଁ ଖାଲି ଛାଡ଼ନ୍ତୁ",
+    "styleLabel": "ଶୈଳୀ / ପ୍ରକାର",
+    "stylePlaceholder": "ଯେପରି lo-fi, ଉତ୍ସାହୀ ପପ୍, ଡାର୍କ ଟ୍ରାପ୍",
+    "vocals": "କଣ୍ଠ",
+    "voiceAuto": "ଅଟୋ",
+    "voiceMale": "ପୁରୁଷ",
+    "voiceFemale": "ମହିଳା",
+    "lyrics": "ଗୀତର କଥା",
+    "writeForMe": "ମୋ ପାଇଁ ଲେଖନ୍ତୁ",
+    "rewrite": "ପୁନଃଲେଖନ୍ତୁ",
+    "lyricsPlaceholder": "ବାଦ୍ୟସଙ୍ଗୀତ ପାଇଁ ଖାଲି ଛାଡ଼ନ୍ତୁ",
+    "lyricsFailed": "ଗୀତର କଥା ତିଆରି କରାଯାଇପାରିଲା ନାହିଁ"
   }
 }

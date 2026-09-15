@@ -3668,5 +3668,21 @@
     "openingCheckout": "Avataan kassaa…",
     "checkoutUnavailable": "Maksulinkki ei ole käytettävissä. Yritä uudelleen.",
     "acceptTerms": "Hyväksyn <terms>Käyttöehdot</terms>"
+  },
+  "musicSheet": {
+    "title": "Luo kappale",
+    "songTitle": "Kappaleen nimi",
+    "titlePlaceholder": "Jätä tyhjäksi, niin tekoäly päättää",
+    "styleLabel": "Tyyli / genre",
+    "stylePlaceholder": "esim. lo-fi, reipas pop, synkkä trap",
+    "vocals": "Laulu",
+    "voiceAuto": "Auto",
+    "voiceMale": "Mies",
+    "voiceFemale": "Nainen",
+    "lyrics": "Sanoitus",
+    "writeForMe": "Kirjoita puolestani",
+    "rewrite": "Kirjoita uudelleen",
+    "lyricsPlaceholder": "Jätä tyhjäksi instrumentaalia varten",
+    "lyricsFailed": "Sanoituksen luonti epäonnistui"
   }
 }

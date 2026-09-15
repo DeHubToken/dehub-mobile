@@ -3704,5 +3704,21 @@
     "openingCheckout": "กำลังเปิดหน้าชำระเงิน…",
     "checkoutUnavailable": "ลิงก์ชำระเงินใช้ไม่ได้ กรุณาลองใหม่",
     "acceptTerms": "ฉันยอมรับ <terms>ข้อกำหนดในการให้บริการ</terms>"
+  },
+  "musicSheet": {
+    "title": "สร้างเพลง",
+    "songTitle": "ชื่อเพลง",
+    "titlePlaceholder": "เว้นว่างไว้ให้ AI ตัดสินใจ",
+    "styleLabel": "สไตล์ / แนวเพลง",
+    "stylePlaceholder": "เช่น lo-fi, ป๊อปสดใส, ทแร็ปมืด",
+    "vocals": "เสียงร้อง",
+    "voiceAuto": "อัตโนมัติ",
+    "voiceMale": "ชาย",
+    "voiceFemale": "หญิง",
+    "lyrics": "เนื้อเพลง",
+    "writeForMe": "เขียนให้ฉัน",
+    "rewrite": "เขียนใหม่",
+    "lyricsPlaceholder": "เว้นว่างไว้หากต้องการเพลงบรรเลง",
+    "lyricsFailed": "สร้างเนื้อเพลงไม่สำเร็จ"
   }
 }

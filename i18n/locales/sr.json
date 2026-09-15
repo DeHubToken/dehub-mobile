@@ -3435,5 +3435,21 @@
     "boostCancelledSpent": "Буст је отказан. Већ је био почео, па остаје потрошен.",
     "cancelFailed": "Тај буст није било могуће отказати",
     "screenTitle": "SuperPowers"
+  },
+  "musicSheet": {
+    "title": "Направи песму",
+    "songTitle": "Наслов песме",
+    "titlePlaceholder": "Оставите празно да ВИ одлучи",
+    "styleLabel": "Стил / жанр",
+    "stylePlaceholder": "нпр. lo-fi, живахан поп, мрачни trap",
+    "vocals": "Вокали",
+    "voiceAuto": "Аутоматски",
+    "voiceMale": "Мушки",
+    "voiceFemale": "Женски",
+    "lyrics": "Текст",
+    "writeForMe": "Напиши уместо мене",
+    "rewrite": "Напиши поново",
+    "lyricsPlaceholder": "Оставите празно за инструментал",
+    "lyricsFailed": "Текст није било могуће генерисати"
   }
 }

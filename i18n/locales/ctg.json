@@ -3759,5 +3759,21 @@
     "openingCheckout": "চেকআউট খুলন অর…",
     "checkoutUnavailable": "চেকআউট লিংক পাওন ন যায়। আবার চেষ্টা গরন।",
     "acceptTerms": "আঁই মানি লইতাছি <terms>সেবার শর্ত</terms>"
+  },
+  "musicSheet": {
+    "title": "গান বানান",
+    "songTitle": "গানর নাম",
+    "titlePlaceholder": "খালি রাখন, AI ঠিক করিব",
+    "styleLabel": "স্টাইল / ধরন",
+    "stylePlaceholder": "যেমন lo-fi, জোরদার পপ, ডার্ক ট্র্যাপ",
+    "vocals": "গলার আওয়াজ",
+    "voiceAuto": "অটো",
+    "voiceMale": "মরদ",
+    "voiceFemale": "মাইয়া",
+    "lyrics": "গানর কথা",
+    "writeForMe": "আঁর লাই লেখি দ",
+    "rewrite": "আবার লেখন",
+    "lyricsPlaceholder": "খালি বাজনা চাইলে খালি রাখন",
+    "lyricsFailed": "গানর কথা বানানো গেল না"
   }
 }

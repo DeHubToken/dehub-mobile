@@ -3732,5 +3732,21 @@
     "openingCheckout": "Kaffaltii banaa jira…",
     "checkoutUnavailable": "Geessituun kaffaltii hin argamu. Irra deebiʼii yaali.",
     "acceptTerms": "Ani nan fudha <terms>Haala Tajaajilaa</terms>"
+  },
+  "musicSheet": {
+    "title": "Sirba uumi",
+    "songTitle": "Mata sirbaa",
+    "titlePlaceholder": "AI akka murteessuuf duwwaa dhiisi",
+    "styleLabel": "Akkaataa / gosa",
+    "stylePlaceholder": "fkn lo-fi, pop jajjabaa, trap dukkanaa",
+    "vocals": "Sagalee",
+    "voiceAuto": "Ofumaan",
+    "voiceMale": "Dhiira",
+    "voiceFemale": "Dubara",
+    "lyrics": "Jechoota sirbaa",
+    "writeForMe": "Anaaf barreessi",
+    "rewrite": "Irra deebi'ii barreessi",
+    "lyricsPlaceholder": "Sirba meeshaa qofaaf duwwaa dhiisi",
+    "lyricsFailed": "Jechoota sirbaa uumuun hin dandaʼamne"
   }
 }

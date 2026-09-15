@@ -3668,5 +3668,21 @@
     "openingCheckout": "Inafungua malipo…",
     "checkoutUnavailable": "Kiungo cha malipo hakipatikani. Jaribu tena.",
     "acceptTerms": "Ninakubali <terms>Masharti ya Huduma</terms>"
+  },
+  "musicSheet": {
+    "title": "Tengeneza wimbo",
+    "songTitle": "Jina la wimbo",
+    "titlePlaceholder": "Acha wazi ili AI iamue",
+    "styleLabel": "Mtindo / aina",
+    "stylePlaceholder": "k.m. lo-fi, pop ya kuchangamsha, trap ya giza",
+    "vocals": "Sauti",
+    "voiceAuto": "Otomatiki",
+    "voiceMale": "Mwanaume",
+    "voiceFemale": "Mwanamke",
+    "lyrics": "Maneno",
+    "writeForMe": "Niandikie",
+    "rewrite": "Andika upya",
+    "lyricsPlaceholder": "Acha wazi kwa wimbo wa ala pekee",
+    "lyricsFailed": "Imeshindwa kutunga maneno"
   }
 }

@@ -3659,5 +3659,21 @@
     "openingCheckout": "Waa la furayaa bixinta…",
     "checkoutUnavailable": "Linkiga bixinta lama helin. Isku day mar kale.",
     "acceptTerms": "Waan aqbalayaa <terms>Shuruudaha Adeegga</terms>"
+  },
+  "musicSheet": {
+    "title": "Samee hees",
+    "songTitle": "Cinwaanka heesta",
+    "titlePlaceholder": "Banaan ka tag si AI u go'aansado",
+    "styleLabel": "Qaab / nooc",
+    "stylePlaceholder": "tusaale lo-fi, pop firfircoon, trap madow",
+    "vocals": "Cod",
+    "voiceAuto": "Toos",
+    "voiceMale": "Lab",
+    "voiceFemale": "Dhedig",
+    "lyrics": "Erayada",
+    "writeForMe": "Ii qor",
+    "rewrite": "Dib u qor",
+    "lyricsPlaceholder": "Banaan ka tag haddii aad rabto muusig kaliya",
+    "lyricsFailed": "Lama abuuri karin erayada"
   }
 }

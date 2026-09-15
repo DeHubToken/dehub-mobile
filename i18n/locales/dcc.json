@@ -3398,5 +3398,21 @@
     "boostCancelledSpent": "بوسٹ منسوخ ہوا۔ وہ شروع ہو چکا تھا، اس لیے خرچ ہی رہے گا۔",
     "cancelFailed": "وہ بوسٹ منسوخ نہیں ہو سکا",
     "screenTitle": "SuperPowers"
+  },
+  "musicSheet": {
+    "title": "گانا بنائیں",
+    "songTitle": "گانے کا عنوان",
+    "titlePlaceholder": "خالی چھوڑیں، AI طے کرے گا",
+    "styleLabel": "انداز / صنف",
+    "stylePlaceholder": "مثلاً lo-fi، پرجوش پاپ، ڈارک ٹریپ",
+    "vocals": "آواز",
+    "voiceAuto": "آٹو",
+    "voiceMale": "مرد",
+    "voiceFemale": "عورت",
+    "lyrics": "بول",
+    "writeForMe": "میرے لیے لکھو",
+    "rewrite": "دوبارہ لکھیں",
+    "lyricsPlaceholder": "صرف میوزک کے لیے خالی چھوڑیں",
+    "lyricsFailed": "بول نہیں بن سکے"
   }
 }

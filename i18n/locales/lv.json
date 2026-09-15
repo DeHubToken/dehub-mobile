@@ -3667,5 +3667,21 @@
     "openingCheckout": "Tiek atvērta apmaksa…",
     "checkoutUnavailable": "Maksājuma saite nav pieejama. Mēģiniet vēlreiz.",
     "acceptTerms": "Es piekrītu <terms>Pakalpojuma noteikumi</terms>"
+  },
+  "musicSheet": {
+    "title": "Izveidot dziesmu",
+    "songTitle": "Dziesmas nosaukums",
+    "titlePlaceholder": "Atstājiet tukšu, lai izlemj MI",
+    "styleLabel": "Stils / žanrs",
+    "stylePlaceholder": "piem. lo-fi, možs pops, tumšs trap",
+    "vocals": "Vokāls",
+    "voiceAuto": "Automātiski",
+    "voiceMale": "Vīrieša",
+    "voiceFemale": "Sievietes",
+    "lyrics": "Vārdi",
+    "writeForMe": "Uzraksti manā vietā",
+    "rewrite": "Pārrakstīt",
+    "lyricsPlaceholder": "Atstājiet tukšu instrumentālam skaņdarbam",
+    "lyricsFailed": "Neizdevās izveidot vārdus"
   }
 }

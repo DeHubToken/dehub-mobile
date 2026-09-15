@@ -3653,5 +3653,21 @@
     "openingCheckout": "Kei te whakatuwhera i te utu…",
     "checkoutUnavailable": "Kāore e wātea te hononga utu. Ngana anō.",
     "acceptTerms": "Ka whakaae au ki <terms>Ngā Tikanga Ratonga</terms>"
+  },
+  "musicSheet": {
+    "title": "Hangaia he waiata",
+    "songTitle": "Taitara waiata",
+    "titlePlaceholder": "Waiho tuwhera kia whakatau te AI",
+    "styleLabel": "Momo / kāhua",
+    "stylePlaceholder": "hei tauira lo-fi, pop hihiri, trap pōuri",
+    "vocals": "Reo waiata",
+    "voiceAuto": "Aunoa",
+    "voiceMale": "Tāne",
+    "voiceFemale": "Wahine",
+    "lyrics": "Kupu waiata",
+    "writeForMe": "Tuhia māku",
+    "rewrite": "Tuhia anō",
+    "lyricsPlaceholder": "Waiho tuwhera mō te puoro anake",
+    "lyricsFailed": "Kāore i taea te waihanga kupu waiata"
   }
 }

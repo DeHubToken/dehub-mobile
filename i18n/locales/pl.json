@@ -3736,5 +3736,21 @@
     "openingCheckout": "Otwieranie płatności…",
     "checkoutUnavailable": "Link do płatności niedostępny. Spróbuj ponownie.",
     "acceptTerms": "Akceptuję <terms>Warunki korzystania z usługi</terms>"
+  },
+  "musicSheet": {
+    "title": "Utwórz piosenkę",
+    "songTitle": "Tytuł piosenki",
+    "titlePlaceholder": "Zostaw puste, aby zdecydowała SI",
+    "styleLabel": "Styl / gatunek",
+    "stylePlaceholder": "np. lo-fi, żwawy pop, mroczny trap",
+    "vocals": "Wokal",
+    "voiceAuto": "Auto",
+    "voiceMale": "Męski",
+    "voiceFemale": "Żeński",
+    "lyrics": "Tekst",
+    "writeForMe": "Napisz za mnie",
+    "rewrite": "Napisz ponownie",
+    "lyricsPlaceholder": "Zostaw puste dla wersji instrumentalnej",
+    "lyricsFailed": "Nie udało się wygenerować tekstu"
   }
 }

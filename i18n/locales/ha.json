@@ -3658,5 +3658,21 @@
     "openingCheckout": "Ana buɗe shafin biya…",
     "checkoutUnavailable": "Hanyar biya ba ta samuwa. Sake gwadawa.",
     "acceptTerms": "Na yarda da <terms>Sharuɗɗan Sabis</terms>"
+  },
+  "musicSheet": {
+    "title": "Ƙirƙiri waƙa",
+    "songTitle": "Taken waƙa",
+    "titlePlaceholder": "Bar shi fanko don AI ya yanke shawara",
+    "styleLabel": "Salo / nau'i",
+    "stylePlaceholder": "misali lo-fi, pop mai kuzari, dark trap",
+    "vocals": "Murya",
+    "voiceAuto": "Ta atomatik",
+    "voiceMale": "Namiji",
+    "voiceFemale": "Mace",
+    "lyrics": "Kalmomin waƙa",
+    "writeForMe": "Rubuta mini",
+    "rewrite": "Sake rubutawa",
+    "lyricsPlaceholder": "Bar shi fanko don waƙar kiɗa kawai",
+    "lyricsFailed": "An kasa ƙirƙirar kalmomin waƙa"
   }
 }

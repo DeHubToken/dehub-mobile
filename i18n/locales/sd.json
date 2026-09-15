@@ -3651,5 +3651,21 @@
     "openingCheckout": "چيڪ آئوٽ کوليو پيو وڃي…",
     "checkoutUnavailable": "چيڪ آئوٽ لنڪ دستياب ناهي. ٻيهر ڪوشش ڪريو.",
     "acceptTerms": "آئون قبول ڪريان ٿو <terms>خدمت جون شرطون</terms>"
+  },
+  "musicSheet": {
+    "title": "گيت ٺاهيو",
+    "songTitle": "گيت جو عنوان",
+    "titlePlaceholder": "خالي ڇڏيو ته AI فيصلو ڪري",
+    "styleLabel": "انداز / صنف",
+    "stylePlaceholder": "مثال طور lo-fi، جوشيلو پاپ، ڊارڪ ٽريپ",
+    "vocals": "آواز",
+    "voiceAuto": "خودڪار",
+    "voiceMale": "مرد",
+    "voiceFemale": "عورت",
+    "lyrics": "لفظ",
+    "writeForMe": "منهنجي لاءِ لکو",
+    "rewrite": "ٻيهر لکو",
+    "lyricsPlaceholder": "صرف ساز لاءِ خالي ڇڏيو",
+    "lyricsFailed": "لفظ ٺاهي نه سگهياسين"
   }
 }

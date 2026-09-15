@@ -3736,5 +3736,21 @@
     "openingCheckout": "결제 페이지 여는 중…",
     "checkoutUnavailable": "결제 링크를 사용할 수 없습니다. 다시 시도해 주세요.",
     "acceptTerms": "다음에 동의합니다: <terms>서비스 약관</terms>"
+  },
+  "musicSheet": {
+    "title": "곡 만들기",
+    "songTitle": "곡 제목",
+    "titlePlaceholder": "비워 두면 AI가 정합니다",
+    "styleLabel": "스타일 / 장르",
+    "stylePlaceholder": "예: lo-fi, 경쾌한 팝, 다크 트랩",
+    "vocals": "보컬",
+    "voiceAuto": "자동",
+    "voiceMale": "남성",
+    "voiceFemale": "여성",
+    "lyrics": "가사",
+    "writeForMe": "대신 써 줘",
+    "rewrite": "다시 쓰기",
+    "lyricsPlaceholder": "비워 두면 연주곡이 됩니다",
+    "lyricsFailed": "가사를 만들지 못했습니다"
   }
 }
