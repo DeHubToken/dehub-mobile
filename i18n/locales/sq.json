@@ -3391,5 +3391,26 @@
     "searchPlaceholder": "Kërko në transkript…",
     "speakerPlaceholder": "Shkruaj emrin ose pseudonimin e folësit",
     "detectedLanguage": "Gjuha e zbuluar: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Portofoli Solana i padisponueshëm — kjo pajisje nuk e ka çelësin tënd. Hyr sërish për ta rikthyer.",
+    "solanaTempUnavailable": "Postimi në Solana është përkohësisht i padisponueshëm. Provo Base ose BNB.",
+    "enterTextFirst": "Fillimisht shkruaj diçka",
+    "styleApplied": "Stili u zbatua!",
+    "textUpdated": "Teksti u përditësua!",
+    "textFailed": "Teksti nuk u përpunua",
+    "fillRequired": "Të lutem plotëso fushat e detyrueshme.",
+    "preCheckFailed": "Kontrolli para ngarkimit dështoi.",
+    "postingWithoutMint": "Po postohet pa u mintuar — mintimi kushton {{amount}} {{symbol}} dhe gjendja jote nuk mjafton. Mund ta mintosh më vonë nga menyja e postimit.",
+    "allowanceUsed": "Ke përdorur kuotën falas të postimeve të sotme",
+    "quoteNeedsContent": "Shkruaj diçka ose shto media për ta cituar këtë postim.",
+    "videoTooLarge": "Videoja e kalon kufirin {{limit}} të nivelit tënd {{tier}}.",
+    "audioTooLarge": "Audioja e kalon kufirin {{limit}} të nivelit tënd {{tier}}.",
+    "imagesOrVideo": "Një postim mund të ketë imazhe ose një video, jo të dyja. Hiq fillimisht imazhet.",
+    "onlyOneVideo": "Vetëm një video për postim — u mbajt e para.",
+    "micRequired": "Duhet leja e mikrofonit për të regjistruar audio.",
+    "recordFailed": "Regjistrimi nuk mundi të fillojë.",
+    "tierVisibility": "Ngjitu në nivele për të rritur dukshmërinë dhe për të marrë më shumë shpërndarje në ditë",
+    "buyTokens": "Blej tokena"
   }
 }

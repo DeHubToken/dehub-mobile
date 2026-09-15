@@ -3461,5 +3461,26 @@
     "searchPlaceholder": "Transkript durchsuchen…",
     "speakerPlaceholder": "Sprechername oder Handle eingeben",
     "detectedLanguage": "Erkannte Sprache: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana-Wallet nicht verfügbar — dieses Gerät hat deinen Wallet-Schlüssel nicht. Melde dich erneut an, um ihn wiederherzustellen.",
+    "solanaTempUnavailable": "Posten auf Solana ist vorübergehend nicht verfügbar. Nutze stattdessen Base oder BNB.",
+    "enterTextFirst": "Gib zuerst etwas Text ein",
+    "styleApplied": "Stil angewendet!",
+    "textUpdated": "Text aktualisiert!",
+    "textFailed": "Text konnte nicht verarbeitet werden",
+    "fillRequired": "Bitte fülle die Pflichtfelder aus.",
+    "preCheckFailed": "Prüfung vor dem Upload fehlgeschlagen.",
+    "postingWithoutMint": "Wird ohne Minting veröffentlicht — das kostet {{amount}} {{symbol}} und dein Guthaben reicht nicht. Du kannst es später über das Beitragsmenü minten.",
+    "allowanceUsed": "Du hast dein kostenloses Beitragskontingent für heute aufgebraucht",
+    "quoteNeedsContent": "Schreibe etwas oder füge Medien hinzu, um diesen Beitrag zu zitieren.",
+    "videoTooLarge": "Das Video überschreitet das {{limit}}-Limit deiner Stufe {{tier}}.",
+    "audioTooLarge": "Die Audiodatei überschreitet das {{limit}}-Limit deiner Stufe {{tier}}.",
+    "imagesOrVideo": "Ein Beitrag kann Bilder oder ein Video enthalten, nicht beides. Entferne zuerst die Bilder.",
+    "onlyOneVideo": "Nur ein Video pro Beitrag — das erste wurde behalten.",
+    "micRequired": "Für Audioaufnahmen ist die Mikrofonberechtigung erforderlich.",
+    "recordFailed": "Aufnahme konnte nicht gestartet werden.",
+    "tierVisibility": "Steige Stufen auf, um deine Sichtbarkeit zu erhöhen und pro Tag mehr Feeds für den Beitrag zu erhalten",
+    "buyTokens": "Token kaufen"
   }
 }

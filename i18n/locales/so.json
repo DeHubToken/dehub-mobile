@@ -3383,5 +3383,26 @@
     "searchPlaceholder": "Ka raadi qoraalka…",
     "speakerPlaceholder": "Geli magaca ama handelka hadlaha",
     "detectedLanguage": "Luqadda la ogaaday: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Jeebka Solana lama heli karo — qalabkani ma haysto furahaaga. Dib u gal si aad u soo celiso.",
+    "solanaTempUnavailable": "Qorista Solana ayaa si ku meel gaar ah loo joojiyay. Isku day Base ama BNB.",
+    "enterTextFirst": "Marka hore qor qoraal",
+    "styleApplied": "Qaabka waa la dabaqay!",
+    "textUpdated": "Qoraalka waa la cusboonaysiiyay!",
+    "textFailed": "Lama habayn karin qoraalka",
+    "fillRequired": "Fadlan buuxi meelaha loo baahan yahay.",
+    "preCheckFailed": "Hubinta ka hor soo gelinta way fashilantay.",
+    "postingWithoutMint": "Waa la qorayaa iyada oo aan la mintin — mintku wuxuu ku kacayaa {{amount}} {{symbol}} hadhaagaaguna kuma filna. Goor dambe ayaad ka mintin kartaa menu-ga qoraalka.",
+    "allowanceUsed": "Waad isticmaashay xadka qorista bilaashka ah ee maanta",
+    "quoteNeedsContent": "Qor wax ama ku dar warbaahin si aad u xigato qoraalkan.",
+    "videoTooLarge": "Fiidyaha wuxuu ka badan yahay xadka {{limit}} ee heerkaaga {{tier}}.",
+    "audioTooLarge": "Codku wuxuu ka badan yahay xadka {{limit}} ee heerkaaga {{tier}}.",
+    "imagesOrVideo": "Qoraal wuxuu qaadan karaa sawirro ama fiidyow, labadaba maaha. Marka hore ka saar sawirrada.",
+    "onlyOneVideo": "Hal fiidyow oo keliya qoraalkiiba — kii ugu horreeyay ayaa la hayay.",
+    "micRequired": "Waxaa loo baahan yahay ogolaanshaha makarafoonka si aad u duubto cod.",
+    "recordFailed": "Lama bilaabi karin duubista.",
+    "tierVisibility": "Kor u kac heerarka si aad u kordhiso muuqaalkaaga oo aad u hesho faafin badan maalintii",
+    "buyTokens": "Iibso tokens"
   }
 }

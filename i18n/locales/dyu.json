@@ -3336,5 +3336,26 @@
     "searchPlaceholder": "Ɲini sɛbɛnni kɔnɔ…",
     "speakerPlaceholder": "Kumalaw tɔgɔ walima tɔgɔsɛbɛn sɛbɛn",
     "detectedLanguage": "Kan minnu sɔrɔla: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana warijɛ tɛ yen — nin minɛn tɛ i ka warijɛ kilisi mara. Don kokura walisa k'a lasegin.",
+    "solanaTempUnavailable": "Solana kan bilali tɛ se sisan. Base walima BNB lajɛ.",
+    "enterTextFirst": "Fɔlɔ sɛbɛnni dɔ sɛbɛn",
+    "styleApplied": "Cogoya sɛbɛnna!",
+    "textUpdated": "Sɛbɛnni kuraya!",
+    "textFailed": "Sɛbɛnni ma se ka baara kɛ",
+    "fillRequired": "I ka wajibi yɔrɔw fa.",
+    "preCheckFailed": "Bila ɲɛ sɛgɛsɛgɛli ma ɲɛ.",
+    "postingWithoutMint": "A bɛ bila ni minting tɛ — o musaka ye {{amount}} {{symbol}} ye, i ka wari tɛ se. I bɛ se k'a kɛ kɔfɛ post ka liste la.",
+    "allowanceUsed": "I ye bi ka fu bilali hakɛ bɛɛ ban",
+    "quoteNeedsContent": "Sɛbɛn fɛn dɔ walima ka media fara walisa ka nin post ta.",
+    "videoTooLarge": "Wideyo tɛmɛna i ka {{tier}} hakɛ {{limit}} kan.",
+    "audioTooLarge": "Kumakan tɛmɛna i ka {{tier}} hakɛ {{limit}} kan.",
+    "imagesOrVideo": "Post bɛ se ka ja walima wideyo ta, fila bɛɛ tɛ. Fɔlɔ ka jaw bɔ.",
+    "onlyOneVideo": "Wideyo kelen dɔrɔn post kelen na — fɔlɔ tora.",
+    "micRequired": "Kumakan mara kama, mikrɔfɔni sɔn ka kan.",
+    "recordFailed": "Mara ma se ka daminɛ.",
+    "tierVisibility": "Sanfɛ hakɛw yɛlɛ walisa i ka yeli ka caya ani post ka feed caman sɔrɔ don o don",
+    "buyTokens": "Token san"
   }
 }

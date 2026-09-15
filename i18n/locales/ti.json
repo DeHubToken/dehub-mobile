@@ -3357,5 +3357,26 @@
     "searchPlaceholder": "ኣብ ጽሑፍ ቃል ድለ…",
     "speakerPlaceholder": "ስም ወይ መለለዪ ተዛራቢ ኣእቱ",
     "detectedLanguage": "እተፈልጠ ቋንቋ፦ {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "ዋሌት Solana ኣይርከብን — እዚ መሳርሒ መፍትሕኻ ኣይሓዘን። ንምምላስ እንደገና እቶ።",
+    "solanaTempUnavailable": "ኣብ Solana ምልጣፍ ንግዜኡ ኣይሰርሕን። ኣብ ክንዲኡ Base ወይ BNB ፈትን።",
+    "enterTextFirst": "ቅድሚኡ ገለ ጽሑፍ ኣእቱ",
+    "styleApplied": "ቅዲ ተተግቢሩ!",
+    "textUpdated": "ጽሑፍ ተሐዲሱ!",
+    "textFailed": "ጽሑፍ ክስራሕ ኣይከኣለን",
+    "fillRequired": "በጃኻ ኣድለይቲ ዓውድታት ምላእ።",
+    "preCheckFailed": "ቅድሚ ምስቃል ዝግበር መርመራ ኣይተዓወተን።",
+    "postingWithoutMint": "ብዘይ ሚንት ይልጠፍ ኣሎ — ሚንት {{amount}} {{symbol}} የድሊ፡ ተረፍካ ግና ኣይኣክልን። ጸኒሕካ ካብ ዝርዝር ልጥፊ ክትሚንት ትኽእል።",
+    "allowanceUsed": "ናይ ሎሚ ናጻ ናይ ምልጣፍ ደረት ወዲእካዮ",
+    "quoteNeedsContent": "ነዚ ልጥፊ ንምጥቃስ ገለ ጽሓፍ ወይ ሚድያ ወስኽ።",
+    "videoTooLarge": "ቪድዮ ካብ ናይ {{tier}} ደረጃኻ {{limit}} ደረት ይሓልፍ።",
+    "audioTooLarge": "ድምጺ ካብ ናይ {{tier}} ደረጃኻ {{limit}} ደረት ይሓልፍ።",
+    "imagesOrVideo": "ሓደ ልጥፊ ስእልታት ወይ ቪድዮ ክሕዝ ይኽእል፡ ክልቲኡ ኣይኮነን። ቅድሚኡ ስእልታት ኣወግድ።",
+    "onlyOneVideo": "ኣብ ሓደ ልጥፊ ሓንቲ ቪድዮ ጥራይ — እታ ቀዳመይቲ ተታሒዛ።",
+    "micRequired": "ድምጺ ንምቕዳሕ ናይ ማይክሮፎን ፍቓድ የድሊ።",
+    "recordFailed": "ቅዳሕ ክጅምር ኣይከኣለን።",
+    "tierVisibility": "ደረጃታት ብምድያብ ተራእይነትካ ወስኽ፡ ኣብ መዓልቲ ንልጥፍኻ ዝያዳ ስርጭት ርኸብ",
+    "buyTokens": "ቶከናት ግዛእ"
   }
 }

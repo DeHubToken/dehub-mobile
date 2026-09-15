@@ -3387,5 +3387,26 @@
     "searchPlaceholder": "በግልባጩ ውስጥ ፈልግ…",
     "speakerPlaceholder": "የተናጋሪውን ስም ወይም መለያ ያስገቡ",
     "detectedLanguage": "የተለየ ቋንቋ፦ {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "የሶላና ቦርሳ የለም — ይህ መሣሪያ የቦርሳዎን ቁልፍ አልያዘም። ለመመለስ እንደገና ይግቡ።",
+    "solanaTempUnavailable": "በሶላና ላይ መለጠፍ ለጊዜው አይሠራም። በምትኩ Base ወይም BNB ይሞክሩ።",
+    "enterTextFirst": "መጀመሪያ ጽሑፍ ያስገቡ",
+    "styleApplied": "ቅጡ ተተግብሯል!",
+    "textUpdated": "ጽሑፉ ተዘምኗል!",
+    "textFailed": "ጽሑፉን ማስኬድ አልተቻለም",
+    "fillRequired": "እባክዎ አስፈላጊ መስኮችን ይሙሉ።",
+    "preCheckFailed": "ከመጫን በፊት የሚደረግ ፍተሻ አልተሳካም።",
+    "postingWithoutMint": "ሳይመነዘር ይለጠፋል — መመንዘር {{amount}} {{symbol}} ያስወጣል ቀሪ ሒሳብዎ ግን አይበቃም። በኋላ ከልጥፉ ምናሌ መመንዘር ይችላሉ።",
+    "allowanceUsed": "የዛሬውን ነጻ የመለጠፍ ድርሻ ጨርሰዋል",
+    "quoteNeedsContent": "ይህን ልጥፍ ለመጥቀስ የሆነ ነገር ይጻፉ ወይም ሚዲያ ያክሉ።",
+    "videoTooLarge": "ቪዲዮው የ{{tier}} ደረጃዎን የ{{limit}} ገደብ አልፏል።",
+    "audioTooLarge": "ድምፁ የ{{tier}} ደረጃዎን የ{{limit}} ገደብ አልፏል።",
+    "imagesOrVideo": "አንድ ልጥፍ ምስሎችን ወይም ቪዲዮ ሊይዝ ይችላል፣ ሁለቱንም አይደለም። መጀመሪያ ምስሎቹን ያስወግዱ።",
+    "onlyOneVideo": "በአንድ ልጥፍ አንድ ቪዲዮ ብቻ — የመጀመሪያው ተይዟል።",
+    "micRequired": "ድምፅ ለመቅዳት የማይክሮፎን ፈቃድ ያስፈልጋል።",
+    "recordFailed": "ቀረጻውን መጀመር አልተቻለም።",
+    "tierVisibility": "ደረጃዎን ከፍ በማድረግ ታይነትዎን ይጨምሩ እና በቀን ለልጥፉ ተጨማሪ ስርጭት ያግኙ",
+    "buyTokens": "ቶከኖች ይግዙ"
   }
 }

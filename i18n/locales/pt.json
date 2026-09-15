@@ -3466,5 +3466,26 @@
     "searchPlaceholder": "Pesquisar na transcrição…",
     "speakerPlaceholder": "Digite o nome ou identificador do orador",
     "detectedLanguage": "Idioma detectado: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Carteira Solana indisponível — este dispositivo não tem a sua chave. Entre novamente para restaurá-la.",
+    "solanaTempUnavailable": "A publicação na Solana está temporariamente indisponível. Tente Base ou BNB.",
+    "enterTextFirst": "Digite algum texto primeiro",
+    "styleApplied": "Estilo aplicado!",
+    "textUpdated": "Texto atualizado!",
+    "textFailed": "Não foi possível processar o texto",
+    "fillRequired": "Preencha os campos obrigatórios.",
+    "preCheckFailed": "A verificação antes do envio falhou.",
+    "postingWithoutMint": "Publicando sem mintar — mintar custa {{amount}} {{symbol}} e o seu saldo é insuficiente. Você pode mintar depois pelo menu da publicação.",
+    "allowanceUsed": "Você já usou o limite gratuito de publicações de hoje",
+    "quoteNeedsContent": "Escreva algo ou adicione mídia para citar esta publicação.",
+    "videoTooLarge": "O vídeo excede o limite de {{limit}} do seu nível {{tier}}.",
+    "audioTooLarge": "O áudio excede o limite de {{limit}} do seu nível {{tier}}.",
+    "imagesOrVideo": "Uma publicação pode ter imagens ou um vídeo, não os dois. Remova as imagens primeiro.",
+    "onlyOneVideo": "Apenas um vídeo por publicação — o primeiro foi mantido.",
+    "micRequired": "É necessária permissão do microfone para gravar áudio.",
+    "recordFailed": "Não foi possível iniciar a gravação.",
+    "tierVisibility": "Suba de nível para aumentar sua visibilidade e ter mais alcance diário na publicação",
+    "buyTokens": "Comprar tokens"
   }
 }

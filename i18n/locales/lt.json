@@ -3391,5 +3391,26 @@
     "searchPlaceholder": "Ieškoti transkripcijoje…",
     "speakerPlaceholder": "Įveskite kalbėtojo vardą arba slapyvardį",
     "detectedLanguage": "Aptikta kalba: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana piniginė nepasiekiama — šiame įrenginyje nėra jūsų rakto. Prisijunkite iš naujo, kad ją atkurtumėte.",
+    "solanaTempUnavailable": "Skelbimas „Solana“ laikinai nepasiekiamas. Vietoj to išbandykite „Base“ arba BNB.",
+    "enterTextFirst": "Pirmiausia įveskite tekstą",
+    "styleApplied": "Stilius pritaikytas!",
+    "textUpdated": "Tekstas atnaujintas!",
+    "textFailed": "Nepavyko apdoroti teksto",
+    "fillRequired": "Užpildykite privalomus laukus.",
+    "preCheckFailed": "Patikra prieš įkeliant nepavyko.",
+    "postingWithoutMint": "Skelbiama be kaldinimo — jis kainuoja {{amount}} {{symbol}}, o jūsų likutis per mažas. Galite nukaldinti vėliau įrašo meniu.",
+    "allowanceUsed": "Išnaudojote šiandienos nemokamų įrašų limitą",
+    "quoteNeedsContent": "Parašykite ką nors arba pridėkite mediją, kad cituotumėte šį įrašą.",
+    "videoTooLarge": "Vaizdo įrašas viršija jūsų {{tier}} lygio {{limit}} ribą.",
+    "audioTooLarge": "Garso įrašas viršija jūsų {{tier}} lygio {{limit}} ribą.",
+    "imagesOrVideo": "Įraše gali būti vaizdų arba vaizdo įrašas, bet ne abu. Pirmiausia pašalinkite vaizdus.",
+    "onlyOneVideo": "Vienam įrašui tik vienas vaizdo įrašas — paliktas pirmasis.",
+    "micRequired": "Norint įrašyti garsą, reikia mikrofono leidimo.",
+    "recordFailed": "Nepavyko pradėti įrašymo.",
+    "tierVisibility": "Kilkite lygiais, kad padidintumėte matomumą ir gautumėte daugiau įrašo rodymų per dieną",
+    "buyTokens": "Pirkti žetonų"
   }
 }

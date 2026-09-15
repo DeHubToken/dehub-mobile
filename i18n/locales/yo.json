@@ -3382,5 +3382,26 @@
     "searchPlaceholder": "Wá nínú àkọsílẹ̀…",
     "speakerPlaceholder": "Tẹ orúkọ tàbí àmì agbọ̀rọ̀sọ sí i",
     "detectedLanguage": "Èdè tí a rí: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Àpamọ́wọ́ Solana kò sí — ẹ̀rọ yìí kò ní kọ́kọ́rọ́ àpamọ́wọ́ rẹ. Wọlé lẹ́ẹ̀kan sí i láti gbà á padà.",
+    "solanaTempUnavailable": "Fífiránṣẹ́ sórí Solana kò sí fún ìgbà díẹ̀. Gbìyànjú Base tàbí BNB dípò.",
+    "enterTextFirst": "Kọ ọ̀rọ̀ díẹ̀ ní àkọ́kọ́",
+    "styleApplied": "A ti lo àṣà náà!",
+    "textUpdated": "A ti ṣàtúnṣe ọ̀rọ̀ náà!",
+    "textFailed": "Kò lè ṣiṣẹ́ lórí ọ̀rọ̀ náà",
+    "fillRequired": "Jọ̀wọ́ kún àwọn àyè tí a nílò.",
+    "preCheckFailed": "Àyẹ̀wò ṣáájú ìgbésókè kùnà.",
+    "postingWithoutMint": "Yóò fi ránṣẹ́ láìsí minting — minting náà ná {{amount}} {{symbol}}, owó rẹ kò sì tó. O lè mint rẹ̀ nígbà mìíràn láti inú àtòjọ ìfìwéránṣẹ́.",
+    "allowanceUsed": "O ti lo àwọn ìfìwéránṣẹ́ ọ̀fẹ́ ti òní tán",
+    "quoteNeedsContent": "Kọ nǹkan tàbí fi media kún un láti fa ọ̀rọ̀ ìfìwéránṣẹ́ yìí yọ.",
+    "videoTooLarge": "Fídíò náà kọjá ààlà {{limit}} ti ipele {{tier}} rẹ.",
+    "audioTooLarge": "Ohùn náà kọjá ààlà {{limit}} ti ipele {{tier}} rẹ.",
+    "imagesOrVideo": "Ìfìwéránṣẹ́ kan lè ní àwọn àwòrán tàbí fídíò, kì í ṣe méjèèjì. Yọ àwọn àwòrán kúrò ní àkọ́kọ́.",
+    "onlyOneVideo": "Fídíò kan ṣoṣo fún ìfìwéránṣẹ́ kọ̀ọ̀kan — a pa àkọ́kọ́ mọ́.",
+    "micRequired": "A nílò àṣẹ gbohùngbohùn láti gba ohùn sílẹ̀.",
+    "recordFailed": "Kò lè bẹ̀rẹ̀ ìgbàsílẹ̀.",
+    "tierVisibility": "Gun àwọn ipele sókè láti mú kí ìhàn rẹ pọ̀ sí i kí ìfìwéránṣẹ́ rẹ sì gba ìtànkálẹ̀ púpọ̀ lójúmọ́",
+    "buyTokens": "Ra àwọn tòkénì"
   }
 }

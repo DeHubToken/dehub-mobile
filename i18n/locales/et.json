@@ -3391,5 +3391,26 @@
     "searchPlaceholder": "Otsi transkriptsioonist…",
     "speakerPlaceholder": "Sisesta kõneleja nimi või kasutajanimi",
     "detectedLanguage": "Tuvastatud keel: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana rahakott pole saadaval — selles seadmes pole sinu võtit. Taastamiseks logi uuesti sisse.",
+    "solanaTempUnavailable": "Solanas postitamine on ajutiselt kättesaamatu. Proovi selle asemel Base'i või BNB-d.",
+    "enterTextFirst": "Sisesta kõigepealt teksti",
+    "styleApplied": "Stiil rakendatud!",
+    "textUpdated": "Tekst uuendatud!",
+    "textFailed": "Teksti töötlemine ebaõnnestus",
+    "fillRequired": "Palun täida kohustuslikud väljad.",
+    "preCheckFailed": "Üleslaadimiseelne kontroll ebaõnnestus.",
+    "postingWithoutMint": "Postitatakse ilma vermimiseta — see maksab {{amount}} {{symbol}} ja sinu saldo ei piisa. Saad selle hiljem postituse menüüst vermida.",
+    "allowanceUsed": "Oled tänase tasuta postitamise limiidi ära kasutanud",
+    "quoteNeedsContent": "Selle postituse tsiteerimiseks kirjuta midagi või lisa meediat.",
+    "videoTooLarge": "Video ületab sinu {{tier}} taseme piiri {{limit}}.",
+    "audioTooLarge": "Heli ületab sinu {{tier}} taseme piiri {{limit}}.",
+    "imagesOrVideo": "Postitus võib sisaldada pilte või videot, mitte mõlemat. Eemalda kõigepealt pildid.",
+    "onlyOneVideo": "Postituse kohta ainult üks video — esimene jäeti alles.",
+    "micRequired": "Heli salvestamiseks on vaja mikrofoni luba.",
+    "recordFailed": "Salvestamise alustamine ebaõnnestus.",
+    "tierVisibility": "Tõuse tasemetel, et suurendada nähtavust ja saada postitusele päevas rohkem levitust",
+    "buyTokens": "Osta tokeneid"
   }
 }
