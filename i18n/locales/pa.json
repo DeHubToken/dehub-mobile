@@ -3471,5 +3471,17 @@
     "switchFirst": "ਲੈਣ ਤੋਂ ਪਹਿਲਾਂ ਇਨਾਮ ਨੈੱਟਵਰਕ ਉੱਤੇ ਜਾਓ",
     "missingSignature": "ਇਨਾਮ ਕਲੇਮ ਦਾ ਦਸਤਖ਼ਤ ਗੁੰਮ ਹੈ",
     "txReverted": "ਲੈਣ-ਦੇਣ ਆਨ-ਚੇਨ ਵਾਪਸ ਹੋ ਗਿਆ"
+  },
+  "poster": {
+    "format": "ਫਾਰਮੈਟ",
+    "style": "ਸ਼ੈਲੀ",
+    "logo": "ਲੋਗੋ",
+    "headline": "ਸੁਰਖੀ",
+    "headlinePlaceholder": "ਬਣਨ ਤੋਂ ਬਾਅਦ ਸਾਫ਼ ਜੋੜਿਆ ਜਾਂਦਾ ਹੈ — ਨਾ ਚਾਹੀਦਾ ਹੋਵੇ ਤਾਂ ਖਾਲੀ ਛੱਡੋ",
+    "spotlightFeatures": "ਉਜਾਗਰ ਕਰਨ ਵਾਲੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ",
+    "includeWebsite": "ਵੈੱਬਸਾਈਟ ਸ਼ਾਮਲ ਕਰੋ",
+    "includeSocials": "ਸੋਸ਼ਲ ਹੈਂਡਲ ਸ਼ਾਮਲ ਕਰੋ",
+    "extraNotes": "ਵਾਧੂ ਨੋਟ",
+    "notesPlaceholder": "ਪੋਸਟਰ ਵਿੱਚ ਹੋਰ ਜੋ ਵੀ ਦਿਖਾਉਣਾ ਹੈ"
   }
 }

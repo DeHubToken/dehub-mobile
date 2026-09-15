@@ -3564,5 +3564,17 @@
     "switchFirst": "Wechsle vor dem Einlösen zum Belohnungsnetzwerk",
     "missingSignature": "Signatur für die Belohnungseinlösung fehlt",
     "txReverted": "Transaktion wurde on-chain zurückgesetzt"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Stil",
+    "logo": "Logo",
+    "headline": "Überschrift",
+    "headlinePlaceholder": "Wird nach der Generierung scharf eingefügt — leer lassen für keine",
+    "spotlightFeatures": "Hervorgehobene Funktionen",
+    "includeWebsite": "Website einbeziehen",
+    "includeSocials": "Social-Media-Profile einbeziehen",
+    "extraNotes": "Zusätzliche Hinweise",
+    "notesPlaceholder": "Alles andere, was das Poster zeigen soll"
   }
 }

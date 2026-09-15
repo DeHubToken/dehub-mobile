@@ -3452,5 +3452,17 @@
     "switchFirst": "بدل لشبكة الجائزة قبل ما تستلم",
     "missingSignature": "توقيع استلام الجائزة ناقص",
     "txReverted": "المعاملة اترجعت على السلسلة"
+  },
+  "poster": {
+    "format": "الصيغة",
+    "style": "الأسلوب",
+    "logo": "الشعار",
+    "headline": "العنوان",
+    "headlinePlaceholder": "بيتضاف بوضوح بعد التوليد — سيبه فاضي لو ما عايزو",
+    "spotlightFeatures": "مميزات تسلط عليها الضوء",
+    "includeWebsite": "ضمّن الموقع",
+    "includeSocials": "ضمّن حسابات التواصل",
+    "extraNotes": "ملاحظات إضافية",
+    "notesPlaceholder": "أي حاجة تانية لازم تظهر في البوستر"
   }
 }

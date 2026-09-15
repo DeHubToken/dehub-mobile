@@ -3525,5 +3525,17 @@
     "switchFirst": "Chaskinaykipaq ñawpaqta sami redman tikray",
     "missingSignature": "Sami chaskiy firman kanchu",
     "txReverted": "Rantikuy chain patapi kutirqa"
+  },
+  "poster": {
+    "format": "Rikch'ay",
+    "style": "Rikch'aynin",
+    "logo": "Unancha",
+    "headline": "Uma qillqa",
+    "headlinePlaceholder": "Kamasqa qhipata sut'ita yapakun — mana munaspaykiqa ch'usaqta saqiy",
+    "spotlightFeatures": "Sut'inchana ruwaykuna",
+    "includeWebsite": "Web tiyanata yapay",
+    "includeSocials": "Sosyal kuentakunata yapay",
+    "extraNotes": "Yapa qillqasqakuna",
+    "notesPlaceholder": "Ima hukkunatapas afichi rikuchinan"
   }
 }

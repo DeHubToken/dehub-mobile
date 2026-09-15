@@ -3445,5 +3445,17 @@
     "switchFirst": "له ترلاسه کولو مخکې د انعام شبکې ته ولاړ شئ",
     "missingSignature": "د انعام غوښتنې لاسلیک نشته",
     "txReverted": "راکړه ورکړه په زنځیر کې بیرته شوه"
+  },
+  "poster": {
+    "format": "بڼه",
+    "style": "بڼه",
+    "logo": "لوګو",
+    "headline": "سرلیک",
+    "headlinePlaceholder": "له جوړېدو وروسته په څرګنده توګه ورزیاتیږي — که نه غواړئ خالي یې پریږدئ",
+    "spotlightFeatures": "برجسته ځانګړتیاوې",
+    "includeWebsite": "ویب پاڼه شامله کړئ",
+    "includeSocials": "ټولنیزې پاڼې شاملې کړئ",
+    "extraNotes": "اضافي یادښتونه",
+    "notesPlaceholder": "بل هر څه چې پوسټر یې باید وښیي"
   }
 }

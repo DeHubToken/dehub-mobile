@@ -3439,5 +3439,17 @@
     "switchFirst": "Sanni i ka ta, taga sara rezo kan",
     "missingSignature": "Sara tali bolonɔ tɛ yen",
     "txReverted": "Fɛnfeere seginna chain kan"
+  },
+  "poster": {
+    "format": "Cogoya",
+    "style": "Cogoya",
+    "logo": "Taamasiyɛn",
+    "headline": "Kunnafoni kuntigi",
+    "headlinePlaceholder": "A bɛ fara a kan ka jɛya dilanni kɔfɛ — a to lakolon ni i t'a fɛ",
+    "spotlightFeatures": "Baara minnu bɛ jira",
+    "includeWebsite": "Siti fara a kan",
+    "includeSocials": "Sosiyali tɔgɔw fara a kan",
+    "extraNotes": "Kunnafoni wɛrɛw",
+    "notesPlaceholder": "Fɛn wɛrɛ minnu ka kan ka jira poster kan"
   }
 }

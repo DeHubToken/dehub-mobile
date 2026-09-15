@@ -3521,5 +3521,17 @@
     "switchFirst": "بدل للشبكة ديال المكافأة قبل ما تتسلم",
     "missingSignature": "التوقيع ديال استلام المكافأة ناقص",
     "txReverted": "المعاملة ترجعات على السلسلة"
+  },
+  "poster": {
+    "format": "الصيغة",
+    "style": "السطايل",
+    "logo": "اللوگو",
+    "headline": "العنوان",
+    "headlinePlaceholder": "كيتزاد بوضوح من بعد التوليد — خليه خاوي إلا ما بغيتيهش",
+    "spotlightFeatures": "الميزات لي بغيتي تبرز",
+    "includeWebsite": "زيد الموقع",
+    "includeSocials": "زيد حسابات التواصل",
+    "extraNotes": "ملاحظات زايدة",
+    "notesPlaceholder": "أي حاجة أخرى خاصها تبان فالملصق"
   }
 }

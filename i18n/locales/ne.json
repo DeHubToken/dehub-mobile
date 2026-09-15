@@ -3528,5 +3528,17 @@
     "switchFirst": "लिनुअघि बाउन्टी नेटवर्कमा जानुहोस्",
     "missingSignature": "बाउन्टी दाबी हस्ताक्षर छैन",
     "txReverted": "कारोबार अन-चेनमा फिर्ता भयो"
+  },
+  "poster": {
+    "format": "ढाँचा",
+    "style": "शैली",
+    "logo": "लोगो",
+    "headline": "शीर्षक",
+    "headlinePlaceholder": "बनेपछि स्पष्ट रूपमा थपिन्छ — नचाहिए खाली छोड्नुहोस्",
+    "spotlightFeatures": "प्रमुख सुविधाहरू",
+    "includeWebsite": "वेबसाइट समावेश गर्नुहोस्",
+    "includeSocials": "सामाजिक सञ्जाल समावेश गर्नुहोस्",
+    "extraNotes": "थप टिप्पणी",
+    "notesPlaceholder": "पोस्टरमा देखाउनुपर्ने अरू केही"
   }
 }

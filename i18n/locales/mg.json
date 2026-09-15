@@ -3574,5 +3574,17 @@
     "switchFirst": "Miovà mankany amin'ny tambajotran'ny valisoa alohan'ny handraisana",
     "missingSignature": "Tsy misy ny sonia fangatahana valisoa",
     "txReverted": "Nofoanana an-drojo ny fifanakalozana"
+  },
+  "poster": {
+    "format": "Endrika",
+    "style": "Endrika",
+    "logo": "Logo",
+    "headline": "Lohateny",
+    "headlinePlaceholder": "Ampiana mazava tsara aorian'ny famoronana — avelao foana raha tsy ilaina",
+    "spotlightFeatures": "Fiasa asongadina",
+    "includeWebsite": "Ampidiro ny tranonkala",
+    "includeSocials": "Ampidiro ny media sosialy",
+    "extraNotes": "Fanamarihana fanampiny",
+    "notesPlaceholder": "Izay rehetra tokony hasehon'ny peta-drindrina"
   }
 }

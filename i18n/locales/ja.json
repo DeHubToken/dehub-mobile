@@ -3562,5 +3562,17 @@
     "switchFirst": "受け取る前に報酬のネットワークに切り替えてください",
     "missingSignature": "報酬受け取りの署名がありません",
     "txReverted": "取引がオンチェーンで巻き戻されました"
+  },
+  "poster": {
+    "format": "形式",
+    "style": "スタイル",
+    "logo": "ロゴ",
+    "headline": "見出し",
+    "headlinePlaceholder": "生成後に鮮明に合成されます。不要なら空欄のままに",
+    "spotlightFeatures": "強調する機能",
+    "includeWebsite": "ウェブサイトを含める",
+    "includeSocials": "SNS アカウントを含める",
+    "extraNotes": "追加メモ",
+    "notesPlaceholder": "ポスターに載せたいその他の内容"
   }
 }

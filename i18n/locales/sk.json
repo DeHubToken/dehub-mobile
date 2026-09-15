@@ -3664,5 +3664,17 @@
     "switchFirst": "Pred vyzdvihnutím prepnite na sieť odmeny",
     "missingSignature": "Chýba podpis na vyzdvihnutie odmeny",
     "txReverted": "Transakcia bola na blockchaine vrátená"
+  },
+  "poster": {
+    "format": "Formát",
+    "style": "Štýl",
+    "logo": "Logo",
+    "headline": "Nadpis",
+    "headlinePlaceholder": "Po vygenerovaní sa ostro doplní — nechajte prázdne, ak žiadny nechcete",
+    "spotlightFeatures": "Zvýraznené funkcie",
+    "includeWebsite": "Zahrnúť web",
+    "includeSocials": "Zahrnúť sociálne siete",
+    "extraNotes": "Ďalšie poznámky",
+    "notesPlaceholder": "Čokoľvek ďalšie, čo má plagát ukázať"
   }
 }

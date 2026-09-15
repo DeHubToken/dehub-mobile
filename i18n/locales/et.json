@@ -3494,5 +3494,17 @@
     "switchFirst": "Enne lunastamist lülitu preemia võrku",
     "missingSignature": "Preemia lunastuse allkiri puudub",
     "txReverted": "Tehing tühistati ahelas"
+  },
+  "poster": {
+    "format": "Vorming",
+    "style": "Stiil",
+    "logo": "Logo",
+    "headline": "Pealkiri",
+    "headlinePlaceholder": "Lisatakse teravalt pärast genereerimist — jäta tühjaks, kui ei soovi",
+    "spotlightFeatures": "Esiletõstetavad funktsioonid",
+    "includeWebsite": "Kaasa veebisait",
+    "includeSocials": "Kaasa sotsiaalmeedia",
+    "extraNotes": "Lisamärkused",
+    "notesPlaceholder": "Kõik muu, mida plakat peab näitama"
   }
 }

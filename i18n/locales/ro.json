@@ -3508,5 +3508,17 @@
     "switchFirst": "Comută la rețeaua recompensei înainte de a o revendica",
     "missingSignature": "Lipsește semnătura pentru revendicare",
     "txReverted": "Tranzacția a fost anulată on-chain"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Stil",
+    "logo": "Logo",
+    "headline": "Titlu",
+    "headlinePlaceholder": "Se adaugă clar după generare — lasă gol dacă nu vrei",
+    "spotlightFeatures": "Funcții evidențiate",
+    "includeWebsite": "Include site-ul web",
+    "includeSocials": "Include rețelele sociale",
+    "extraNotes": "Note suplimentare",
+    "notesPlaceholder": "Orice altceva trebuie să arate afișul"
   }
 }

@@ -15,6 +15,7 @@ import SheetDismissHandle from "../ui/SheetDismissHandle";
  * the same request made on desktop.
  */
 
+import { useTranslation } from "react-i18next";
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Dimensions,
@@ -305,6 +306,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
   userPrompt,
   onConfirm,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [dimension, setDimension] = useState<PosterConfig['dimension']>('portrait');
   const [style, setStyle] = useState('dehub-template');
@@ -441,7 +443,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
             contentContainerStyle={s.scrollContent}
             keyboardShouldPersistTaps="handled"
           >
-            <Text style={s.label}>Format</Text>
+            <Text style={s.label}>{t("poster.format")}</Text>
             <View style={s.chipRow}>
               {DIMENSIONS.map((option) => {
                 const selected = dimension === option.value;
@@ -462,7 +464,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
               })}
             </View>
 
-            <Text style={s.label}>Style</Text>
+            <Text style={s.label}>{t("poster.style")}</Text>
             <TouchableOpacity
               style={s.selector}
               activeOpacity={0.8}
@@ -495,7 +497,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
               </View>
             )}
 
-            <Text style={s.label}>Logo</Text>
+            <Text style={s.label}>{t("poster.logo")}</Text>
             <View style={s.chipRow}>
               {LOGO_VARIANTS.map((option) => {
                 const selected = logoVariant === option.value;
@@ -515,18 +517,18 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
               })}
             </View>
 
-            <Text style={s.label}>Headline</Text>
+            <Text style={s.label}>{t("poster.headline")}</Text>
             <TextInput
               style={s.input}
               value={tagline}
               onChangeText={setTagline}
-              placeholder="Composited crisply after generation — leave blank for none"
+              placeholder={t("poster.headlinePlaceholder")}
               placeholderTextColor="#4B4D50"
               maxLength={60}
             />
 
             <Text style={s.label}>
-              Spotlight features{features.length > 0 ? ` (${features.length})` : ''}
+              {t("poster.spotlightFeatures")}{features.length > 0 ? ` (${features.length})` : ''}
             </Text>
             {FEATURE_GROUPS.map((group) => {
               const isOpen = expandedGroup === group.group;
@@ -567,7 +569,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
             })}
 
             <View style={s.toggleRow}>
-              <Text style={s.toggleLabel}>Include website</Text>
+              <Text style={s.toggleLabel}>{t("poster.includeWebsite")}</Text>
               <Switch
                 value={includeWebsite}
                 onValueChange={setIncludeWebsite}
@@ -576,7 +578,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
               />
             </View>
             <View style={s.toggleRow}>
-              <Text style={s.toggleLabel}>Include socials</Text>
+              <Text style={s.toggleLabel}>{t("poster.includeSocials")}</Text>
               <Switch
                 value={includeSocials}
                 onValueChange={setIncludeSocials}
@@ -585,12 +587,12 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
               />
             </View>
 
-            <Text style={s.label}>Extra notes</Text>
+            <Text style={s.label}>{t("poster.extraNotes")}</Text>
             <TextInput
               style={[s.input, { minHeight: 72 }]}
               value={extraNotes}
               onChangeText={setExtraNotes}
-              placeholder="Anything else the poster must show"
+              placeholder={t("poster.notesPlaceholder")}
               placeholderTextColor="#4B4D50"
               multiline
               textAlignVertical="top"
@@ -599,10 +601,10 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
 
           <View style={s.footer}>
             <TouchableOpacity style={s.cancelBtn} onPress={closeSheet} activeOpacity={0.7}>
-              <Text style={s.cancelBtnText}>Cancel</Text>
+              <Text style={s.cancelBtnText}>{t("common.cancel")}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={s.confirmBtn} onPress={handleConfirm} activeOpacity={0.8}>
-              <Text style={s.confirmBtnText}>Continue</Text>
+              <Text style={s.confirmBtnText}>{t("settings.ensContinue")}</Text>
             </TouchableOpacity>
           </View>
         </Animated.View>

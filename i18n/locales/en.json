@@ -3565,5 +3565,17 @@
     "switchFirst": "Switch to the bounty network before claiming",
     "missingSignature": "Missing bounty claim signature",
     "txReverted": "Transaction reverted on-chain"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Style",
+    "logo": "Logo",
+    "headline": "Headline",
+    "headlinePlaceholder": "Composited crisply after generation — leave blank for none",
+    "spotlightFeatures": "Spotlight features",
+    "includeWebsite": "Include website",
+    "includeSocials": "Include socials",
+    "extraNotes": "Extra notes",
+    "notesPlaceholder": "Anything else the poster must show"
   }
 }

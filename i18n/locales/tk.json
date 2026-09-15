@@ -3465,5 +3465,17 @@
     "switchFirst": "Almazdan öň sylag ulgamyna geçiň",
     "missingSignature": "Sylag almak gol çekmesi ýok",
     "txReverted": "Amal zynjyrda yza gaýtaryldy"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Stil",
+    "logo": "Logotip",
+    "headline": "Sözbaşy",
+    "headlinePlaceholder": "Döredilenden soň anyk goşulýar — islemeseňiz boş goýuň",
+    "spotlightFeatures": "Nygtaljak mümkinçilikler",
+    "includeWebsite": "Web sahypany goş",
+    "includeSocials": "Sosial hasaplary goş",
+    "extraNotes": "Goşmaça bellikler",
+    "notesPlaceholder": "Posteriň görkezmeli beýleki zatlary"
   }
 }

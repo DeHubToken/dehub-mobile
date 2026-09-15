@@ -3499,5 +3499,17 @@
     "switchFirst": "Byt till belöningsnätverket innan du tar ut",
     "missingSignature": "Signatur för uttag saknas",
     "txReverted": "Transaktionen återställdes on-chain"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Stil",
+    "logo": "Logotyp",
+    "headline": "Rubrik",
+    "headlinePlaceholder": "Läggs till skarpt efter genereringen — lämna tomt för ingen",
+    "spotlightFeatures": "Framhävda funktioner",
+    "includeWebsite": "Inkludera webbplats",
+    "includeSocials": "Inkludera sociala medier",
+    "extraNotes": "Extra anteckningar",
+    "notesPlaceholder": "Allt annat som affischen ska visa"
   }
 }
