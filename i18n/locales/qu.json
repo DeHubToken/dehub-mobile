@@ -786,7 +786,11 @@
     "cancel": "Hina kachun",
     "confirm": "Chiqaqchay",
     "paying": "Qullqichkan...",
-    "payAmount": "{{amount}} {{currency}} qullqiy"
+    "payAmount": "{{amount}} {{currency}} qullqiy",
+    "firstViews_one": "Ñawpaq {{count}} qhaway",
+    "firstViews_other": "Ñawpaq {{count}} qhawaykuna",
+    "firstComments_one": "Ñawpaq {{count}} rimay",
+    "firstComments_other": "Ñawpaq {{count}} rimaykuna"
   },
   "assistant": {
     "title": "Yanapaq",
@@ -3491,5 +3495,35 @@
     "descriptionOptional": "Willakuy (munaspa)",
     "whatsHappening": "¿Imataq kachkan?",
     "quotaShortfall": "Kay willakuyqa {{cost}} DHB valin, qanqa {{held}} kanki."
+  },
+  "bounty": {
+    "claimed": "Chaskisqa",
+    "notEligible": "Mana hunt'aqchu",
+    "checking": "Hunt'aqchu qhawachkan…",
+    "rewardType": "Sami rikch'aq",
+    "transaction": "Rantikuy",
+    "onChainClaim": "Chain patapi mañakuy",
+    "confirmClaim": "Mañakuyta takyachiy",
+    "processing": "Chain patapi rantikuyta ruwachkan",
+    "success": "Sami chaskisqa!",
+    "awesome": "Allinmi!",
+    "claimUnable": "Samita chaskiy mana atikunchu",
+    "claimFailed": "Samita chaskiy mana atikurqachu",
+    "switchFailed": "Redta tikray mana atikunchu",
+    "claimViewerTitle": "Qhawaqpa samin chaskiy",
+    "claimCommenterTitle": "Rimaqpa samin chaskiy",
+    "claimingViewer": "Qhawaqpa samin chaskichkan…",
+    "claimingCommenter": "Rimaqpa samin chaskichkan…",
+    "viewerReward": "Qhawaqpa samin",
+    "commenterReward": "Rimaqpa samin",
+    "claimedViewer": "Qhawaqpa samin allinta chaskikurqa!",
+    "claimedCommenter": "Rimaqpa samin allinta chaskikurqa!",
+    "earnedViewer": "Qhawaq samiykita chaskirqanki",
+    "earnedCommenter": "Rimaq samiykita chaskirqanki",
+    "switchNetwork": "Redta tikray",
+    "eligibilityFailed": "Hunt'aqchu qhaway mana atikurqachu",
+    "switchFirst": "Chaskinaykipaq ñawpaqta sami redman tikray",
+    "missingSignature": "Sami chaskiy firman kanchu",
+    "txReverted": "Rantikuy chain patapi kutirqa"
   }
 }

@@ -744,7 +744,11 @@
     "cancel": "بىكار قىلىش",
     "confirm": "جەزملەشتۈرۈش",
     "paying": "تۆلەۋاتىدۇ...",
-    "payAmount": "{{amount}} {{currency}} تۆلەش"
+    "payAmount": "{{amount}} {{currency}} تۆلەش",
+    "firstViews_one": "تۇنجى {{count}} كۆرۈش",
+    "firstViews_other": "ئالدىنقى {{count}} كۆرۈش",
+    "firstComments_one": "تۇنجى {{count}} ئىنكاس",
+    "firstComments_other": "ئالدىنقى {{count}} ئىنكاس"
   },
   "assistant": {
     "title": "سۈنئىي ئەقىل ياردەمچىسى",
@@ -3451,5 +3455,35 @@
     "descriptionOptional": "چۈشەندۈرۈش (ئىختىيارى)",
     "whatsHappening": "نېمە ئىش بولۇۋاتىدۇ؟",
     "quotaShortfall": "بۇ يازما {{cost}} DHB كېتىدۇ، سىزدە {{held}} بار."
+  },
+  "bounty": {
+    "claimed": "تاپشۇرۇۋېلىندى",
+    "notEligible": "ماس كەلمەيدۇ",
+    "checking": "شەرتكە ئۇيغۇنلۇقى تەكشۈرۈلۈۋاتىدۇ…",
+    "rewardType": "مۇكاپات تۈرى",
+    "transaction": "سودا",
+    "onChainClaim": "زەنجىر ئۈستىدىكى تەلەپ",
+    "confirmClaim": "تەلەپنى جەزملەش",
+    "processing": "زەنجىر ئۈستىدىكى سودا بىر تەرەپ قىلىنىۋاتىدۇ",
+    "success": "مۇكاپات ئېلىندى!",
+    "awesome": "ئېسىل!",
+    "claimUnable": "مۇكاپاتنى ئالغىلى بولمىدى",
+    "claimFailed": "مۇكاپات ئېلىش مەغلۇپ بولدى",
+    "switchFailed": "تورنى ئالماشتۇرغىلى بولمىدى",
+    "claimViewerTitle": "كۆرۈرمەن مۇكاپاتىنى ئېلىش",
+    "claimCommenterTitle": "ئىنكاس قالدۇرغۇچى مۇكاپاتىنى ئېلىش",
+    "claimingViewer": "كۆرۈرمەن مۇكاپاتى ئېلىنىۋاتىدۇ…",
+    "claimingCommenter": "ئىنكاس قالدۇرغۇچى مۇكاپاتى ئېلىنىۋاتىدۇ…",
+    "viewerReward": "كۆرۈرمەن مۇكاپاتى",
+    "commenterReward": "ئىنكاس قالدۇرغۇچى مۇكاپاتى",
+    "claimedViewer": "كۆرۈرمەن مۇكاپاتى مۇۋەپپەقىيەتلىك ئېلىندى!",
+    "claimedCommenter": "ئىنكاس قالدۇرغۇچى مۇكاپاتى مۇۋەپپەقىيەتلىك ئېلىندى!",
+    "earnedViewer": "سىز كۆرۈرمەن مۇكاپاتىڭىزغا ئېرىشتىڭىز",
+    "earnedCommenter": "سىز ئىنكاس قالدۇرغۇچى مۇكاپاتىڭىزغا ئېرىشتىڭىز",
+    "switchNetwork": "تورنى ئالماشتۇرۇش",
+    "eligibilityFailed": "شەرتكە ئۇيغۇنلۇقنى تەكشۈرگىلى بولمىدى",
+    "switchFirst": "ئېلىشتىن بۇرۇن مۇكاپات تورىغا ئالمىشىڭ",
+    "missingSignature": "مۇكاپات ئېلىش ئىمزاسى يوق",
+    "txReverted": "سودا زەنجىردە قايتۇرۇلدى"
   }
 }

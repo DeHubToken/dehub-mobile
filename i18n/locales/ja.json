@@ -764,7 +764,11 @@
     "cancel": "キャンセル",
     "confirm": "確認",
     "paying": "支払い中...",
-    "payAmount": "{{amount}} {{currency}}を支払う"
+    "payAmount": "{{amount}} {{currency}}を支払う",
+    "firstViews_one": "最初の {{count}} 回の視聴",
+    "firstViews_other": "最初の {{count}} 回の視聴",
+    "firstComments_one": "最初の {{count}} 件のコメント",
+    "firstComments_other": "最初の {{count}} 件のコメント"
   },
   "wallet": {
     "notReady": "ウォレットの準備ができていません。少ししてからもう一度お試しください。",
@@ -3528,5 +3532,35 @@
     "descriptionOptional": "説明（任意）",
     "whatsHappening": "いま何してる？",
     "quotaShortfall": "この投稿には {{cost}} DHB が必要ですが、保有額は {{held}} です。"
+  },
+  "bounty": {
+    "claimed": "受け取り済み",
+    "notEligible": "対象外です",
+    "checking": "対象かどうかを確認中…",
+    "rewardType": "報酬の種類",
+    "transaction": "取引",
+    "onChainClaim": "オンチェーンでの受け取り",
+    "confirmClaim": "受け取りを確定",
+    "processing": "オンチェーン取引を処理中",
+    "success": "報酬を受け取りました！",
+    "awesome": "やった！",
+    "claimUnable": "報酬を受け取れません",
+    "claimFailed": "報酬の受け取りに失敗しました",
+    "switchFailed": "ネットワークを切り替えられません",
+    "claimViewerTitle": "視聴者報酬を受け取る",
+    "claimCommenterTitle": "コメント報酬を受け取る",
+    "claimingViewer": "視聴者報酬を受け取り中…",
+    "claimingCommenter": "コメント報酬を受け取り中…",
+    "viewerReward": "視聴者報酬",
+    "commenterReward": "コメント報酬",
+    "claimedViewer": "視聴者報酬を受け取りました！",
+    "claimedCommenter": "コメント報酬を受け取りました！",
+    "earnedViewer": "視聴者報酬を獲得しました",
+    "earnedCommenter": "コメント報酬を獲得しました",
+    "switchNetwork": "ネットワークを切り替え",
+    "eligibilityFailed": "対象かどうかを確認できませんでした",
+    "switchFirst": "受け取る前に報酬のネットワークに切り替えてください",
+    "missingSignature": "報酬受け取りの署名がありません",
+    "txReverted": "取引がオンチェーンで巻き戻されました"
   }
 }

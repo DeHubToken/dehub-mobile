@@ -792,7 +792,11 @@
     "cancel": "Болдырмау",
     "confirm": "Растау",
     "paying": "Төленуде...",
-    "payAmount": "{{amount}} {{currency}} төлеу"
+    "payAmount": "{{amount}} {{currency}} төлеу",
+    "firstViews_one": "Алғашқы {{count}} көрсетілім",
+    "firstViews_other": "Алғашқы {{count}} көрсетілім",
+    "firstComments_one": "Алғашқы {{count}} пікір",
+    "firstComments_other": "Алғашқы {{count}} пікір"
   },
   "assistant": {
     "title": "Көмекші",
@@ -3517,5 +3521,35 @@
     "descriptionOptional": "Сипаттама (міндетті емес)",
     "whatsHappening": "Не болып жатыр?",
     "quotaShortfall": "Бұл жазба {{cost}} DHB тұрады, сізде {{held}} бар."
+  },
+  "bounty": {
+    "claimed": "Алынды",
+    "notEligible": "Талапқа сай емес",
+    "checking": "Талапқа сәйкестік тексерілуде…",
+    "rewardType": "Сыйақы түрі",
+    "transaction": "Транзакция",
+    "onChainClaim": "Тізбектегі талап",
+    "confirmClaim": "Талапты растау",
+    "processing": "Тізбектегі транзакция өңделуде",
+    "success": "Сыйақы алынды!",
+    "awesome": "Керемет!",
+    "claimUnable": "Сыйақыны алу мүмкін болмады",
+    "claimFailed": "Сыйақыны алу сәтсіз аяқталды",
+    "switchFailed": "Желіні ауыстыру мүмкін болмады",
+    "claimViewerTitle": "Көрермен сыйақысын алу",
+    "claimCommenterTitle": "Пікір білдіруші сыйақысын алу",
+    "claimingViewer": "Көрермен сыйақысы алынуда…",
+    "claimingCommenter": "Пікір білдіруші сыйақысы алынуда…",
+    "viewerReward": "Көрермен сыйақысы",
+    "commenterReward": "Пікір білдіруші сыйақысы",
+    "claimedViewer": "Көрермен сыйақысы сәтті алынды!",
+    "claimedCommenter": "Пікір білдіруші сыйақысы сәтті алынды!",
+    "earnedViewer": "Көрермен сыйақыңызды алдыңыз",
+    "earnedCommenter": "Пікір білдіруші сыйақыңызды алдыңыз",
+    "switchNetwork": "Желіні ауыстыру",
+    "eligibilityFailed": "Талапқа сәйкестікті тексеру сәтсіз аяқталды",
+    "switchFirst": "Алу алдында сыйақы желісіне ауысыңыз",
+    "missingSignature": "Сыйақы алу қолтаңбасы жоқ",
+    "txReverted": "Транзакция тізбекте кері қайтарылды"
   }
 }

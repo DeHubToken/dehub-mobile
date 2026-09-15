@@ -776,7 +776,11 @@
     "cancel": "Whakakore",
     "confirm": "Whakaū",
     "paying": "Utu ana...",
-    "payAmount": "Utu {{amount}} {{currency}}"
+    "payAmount": "Utu {{amount}} {{currency}}",
+    "firstViews_one": "Te tirohanga tuatahi {{count}}",
+    "firstViews_other": "Ngā tirohanga tuatahi {{count}}",
+    "firstComments_one": "Te kōrero tuatahi {{count}}",
+    "firstComments_other": "Ngā kōrero tuatahi {{count}}"
   },
   "assistant": {
     "title": "Kaiāwhina",
@@ -3446,5 +3450,35 @@
     "descriptionOptional": "Whakaahuatanga (kōwhiringa)",
     "whatsHappening": "He aha kei te pā?",
     "quotaShortfall": "E utaina ana tēnei pānui ki te {{cost}} DHB, he {{held}} tāu."
+  },
+  "bounty": {
+    "claimed": "Kua tonoa",
+    "notEligible": "Kāore e tika",
+    "checking": "Kei te tirotiro i te tika…",
+    "rewardType": "Momo utu",
+    "transaction": "Whakawhitinga",
+    "onChainClaim": "Tono i runga mekameka",
+    "confirmClaim": "Whakaū i te tono",
+    "processing": "Kei te tukatuka whakawhitinga mekameka",
+    "success": "Kua riro te utu!",
+    "awesome": "Ka pai!",
+    "claimUnable": "Kāore e taea te tono i te utu",
+    "claimFailed": "I rahu te tono i te utu",
+    "switchFailed": "Kāore e taea te huri whatunga",
+    "claimViewerTitle": "Tonoa te utu mātakitaki",
+    "claimCommenterTitle": "Tonoa te utu kaikōrero",
+    "claimingViewer": "Kei te tono i te utu mātakitaki…",
+    "claimingCommenter": "Kei te tono i te utu kaikōrero…",
+    "viewerReward": "Utu mātakitaki",
+    "commenterReward": "Utu kaikōrero",
+    "claimedViewer": "Kua angitu te tono i te utu mātakitaki!",
+    "claimedCommenter": "Kua angitu te tono i te utu kaikōrero!",
+    "earnedViewer": "Kua riro i a koe tō utu mātakitaki",
+    "earnedCommenter": "Kua riro i a koe tō utu kaikōrero",
+    "switchNetwork": "Huri whatunga",
+    "eligibilityFailed": "I rahu te arotake i te tika",
+    "switchFirst": "Hurihia ki te whatunga utu i mua i te tono",
+    "missingSignature": "Kāore he waitohu tono utu",
+    "txReverted": "I whakakorea te whakawhitinga i runga mekameka"
   }
 }

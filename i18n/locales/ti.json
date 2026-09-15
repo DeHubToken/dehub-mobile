@@ -773,7 +773,11 @@
     "cancel": "ሰርዝ",
     "confirm": "ኣረጋግጽ",
     "paying": "ይኽፈል ኣሎ...",
-    "payAmount": "{{amount}} {{currency}} ክፈል"
+    "payAmount": "{{amount}} {{currency}} ክፈል",
+    "firstViews_one": "ቀዳማይ {{count}} ርእየት",
+    "firstViews_other": "ቀዳሞት {{count}} ርእየታት",
+    "firstComments_one": "ቀዳማይ {{count}} ርእይቶ",
+    "firstComments_other": "ቀዳሞት {{count}} ርእይቶታት"
   },
   "assistant": {
     "title": "ተሓጋጋዚ",
@@ -3426,5 +3430,35 @@
     "descriptionOptional": "መግለጺ (ኣማራጺ)",
     "whatsHappening": "እንታይ ይኸውን ኣሎ?",
     "quotaShortfall": "እዚ ልጥፊ {{cost}} DHB የድሊ፡ ንስኻ ግና {{held}} ኣሎካ።"
+  },
+  "bounty": {
+    "claimed": "ተወሲዱ",
+    "notEligible": "ብቑዕ ኣይኮንካን",
+    "checking": "ብቑዕነት ይምርመር ኣሎ…",
+    "rewardType": "ዓይነት ሽልማት",
+    "transaction": "ግብይት",
+    "onChainClaim": "ኣብ ሰንሰለት ዝግበር ጠለብ",
+    "confirmClaim": "ጠለብ ኣረጋግጽ",
+    "processing": "ኣብ ሰንሰለት ዘሎ ግብይት ይስራሕ ኣሎ",
+    "success": "ሽልማት ተወሲዱ!",
+    "awesome": "ብሉጽ!",
+    "claimUnable": "ሽልማት ክውሰድ ኣይከኣለን",
+    "claimFailed": "ሽልማት ምውሳድ ኣይተዓወተን",
+    "switchFailed": "መርበብ ክቕየር ኣይከኣለን",
+    "claimViewerTitle": "ሽልማት ተመልካቲ ውሰድ",
+    "claimCommenterTitle": "ሽልማት ርእይቶ ወሃቢ ውሰድ",
+    "claimingViewer": "ሽልማት ተመልካቲ ይውሰድ ኣሎ…",
+    "claimingCommenter": "ሽልማት ርእይቶ ወሃቢ ይውሰድ ኣሎ…",
+    "viewerReward": "ሽልማት ተመልካቲ",
+    "commenterReward": "ሽልማት ርእይቶ ወሃቢ",
+    "claimedViewer": "ሽልማት ተመልካቲ ብዓወት ተወሲዱ!",
+    "claimedCommenter": "ሽልማት ርእይቶ ወሃቢ ብዓወት ተወሲዱ!",
+    "earnedViewer": "ሽልማት ተመልካቲ ረኺብካ",
+    "earnedCommenter": "ሽልማት ርእይቶ ወሃቢ ረኺብካ",
+    "switchNetwork": "መርበብ ቀይር",
+    "eligibilityFailed": "ብቑዕነት ክምርመር ኣይከኣለን",
+    "switchFirst": "ቅድሚ ምውሳድካ ናብ መርበብ ሽልማት ቀይር",
+    "missingSignature": "ፌርማ ሽልማት ምውሳድ የለን",
+    "txReverted": "ግብይት ኣብ ሰንሰለት ተመሊሱ"
   }
 }

@@ -773,7 +773,11 @@
     "cancel": "निरस्तं कुर्वन्तु",
     "confirm": "पुष्टं कुर्वन्तु",
     "paying": "भुज्यते...",
-    "payAmount": "{{amount}} {{currency}} भुज्यताम्"
+    "payAmount": "{{amount}} {{currency}} भुज्यताम्",
+    "firstViews_one": "प्रथमं {{count}} दर्शनम्",
+    "firstViews_other": "प्रथमानि {{count}} दर्शनानि",
+    "firstComments_one": "प्रथमा {{count}} टिप्पणी",
+    "firstComments_other": "प्रथमाः {{count}} टिप्पण्यः"
   },
   "assistant": {
     "title": "सहायकः",
@@ -3417,5 +3421,35 @@
     "descriptionOptional": "विवरणम् (ऐच्छिकम्)",
     "whatsHappening": "किं भवति?",
     "quotaShortfall": "एतत् प्रकाशनं {{cost}} DHB मूल्यं गृह्णाति, भवतः समीपे {{held}} अस्ति।"
+  },
+  "bounty": {
+    "claimed": "प्राप्तम्",
+    "notEligible": "न अर्हः",
+    "checking": "अर्हता परीक्ष्यते…",
+    "rewardType": "पुरस्कारप्रकारः",
+    "transaction": "व्यवहारः",
+    "onChainClaim": "शृङ्खलोपरि याचना",
+    "confirmClaim": "याचनां निश्चिनोतु",
+    "processing": "शृङ्खलोपरि व्यवहारः संस्क्रियते",
+    "success": "पुरस्कारः प्राप्तः!",
+    "awesome": "उत्तमम्!",
+    "claimUnable": "पुरस्कारं ग्रहीतुं न शक्यते",
+    "claimFailed": "पुरस्कारग्रहणं विफलम्",
+    "switchFailed": "जालं परिवर्तयितुं न शक्यते",
+    "claimViewerTitle": "दर्शकपुरस्कारं गृह्णातु",
+    "claimCommenterTitle": "टिप्पणीकर्तृपुरस्कारं गृह्णातु",
+    "claimingViewer": "दर्शकपुरस्कारः गृह्यते…",
+    "claimingCommenter": "टिप्पणीकर्तृपुरस्कारः गृह्यते…",
+    "viewerReward": "दर्शकपुरस्कारः",
+    "commenterReward": "टिप्पणीकर्तृपुरस्कारः",
+    "claimedViewer": "दर्शकपुरस्कारः सफलतया प्राप्तः!",
+    "claimedCommenter": "टिप्पणीकर्तृपुरस्कारः सफलतया प्राप्तः!",
+    "earnedViewer": "भवान् दर्शकपुरस्कारं प्राप्तवान्",
+    "earnedCommenter": "भवान् टिप्पणीकर्तृपुरस्कारं प्राप्तवान्",
+    "switchNetwork": "जालं परिवर्तयतु",
+    "eligibilityFailed": "अर्हता परीक्षितुं न शक्यते",
+    "switchFirst": "ग्रहणात् पूर्वं पुरस्कारजालं प्रति गच्छतु",
+    "missingSignature": "पुरस्कारग्रहणहस्ताक्षरं न विद्यते",
+    "txReverted": "व्यवहारः शृङ्खलोपरि प्रत्यावर्तितः"
   }
 }

@@ -1250,7 +1250,11 @@
     "cancel": "Annuleren",
     "confirm": "Bevestigen",
     "paying": "Betalen...",
-    "payAmount": "Betaal {{amount}} {{currency}}"
+    "payAmount": "Betaal {{amount}} {{currency}}",
+    "firstViews_one": "Eerste {{count}} weergave",
+    "firstViews_other": "Eerste {{count}} weergaven",
+    "firstComments_one": "Eerste {{count}} reactie",
+    "firstComments_other": "Eerste {{count}} reacties"
   },
   "assistant": {
     "title": "AI Assistent",
@@ -3729,5 +3733,35 @@
     "descriptionOptional": "Beschrijving (optioneel)",
     "whatsHappening": "Wat gebeurt er?",
     "quotaShortfall": "Dit bericht kost {{cost}} DHB en jij hebt {{held}}."
+  },
+  "bounty": {
+    "claimed": "Geclaimd",
+    "notEligible": "Niet in aanmerking",
+    "checking": "Geschiktheid controleren…",
+    "rewardType": "Type beloning",
+    "transaction": "Transactie",
+    "onChainClaim": "On-chain claim",
+    "confirmClaim": "Claim bevestigen",
+    "processing": "On-chain transactie verwerken",
+    "success": "Beloning geclaimd!",
+    "awesome": "Geweldig!",
+    "claimUnable": "Kan beloning niet claimen",
+    "claimFailed": "Claimen van beloning mislukt",
+    "switchFailed": "Kan netwerk niet wisselen",
+    "claimViewerTitle": "Kijkersbeloning claimen",
+    "claimCommenterTitle": "Reageerdersbeloning claimen",
+    "claimingViewer": "Kijkersbeloning claimen…",
+    "claimingCommenter": "Reageerdersbeloning claimen…",
+    "viewerReward": "Kijkersbeloning",
+    "commenterReward": "Reageerdersbeloning",
+    "claimedViewer": "Kijkersbeloning geclaimd!",
+    "claimedCommenter": "Reageerdersbeloning geclaimd!",
+    "earnedViewer": "Je hebt je kijkersbeloning verdiend",
+    "earnedCommenter": "Je hebt je reageerdersbeloning verdiend",
+    "switchNetwork": "Netwerk wisselen",
+    "eligibilityFailed": "Kan geschiktheid niet controleren",
+    "switchFirst": "Schakel over naar het beloningsnetwerk voordat je claimt",
+    "missingSignature": "Handtekening voor beloningsclaim ontbreekt",
+    "txReverted": "Transactie is on-chain teruggedraaid"
   }
 }

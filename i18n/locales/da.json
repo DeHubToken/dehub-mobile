@@ -649,7 +649,11 @@
     "cancel": "Annuller",
     "confirm": "Bekræft",
     "paying": "Betaler...",
-    "payAmount": "Betal {{amount}} {{currency}}"
+    "payAmount": "Betal {{amount}} {{currency}}",
+    "firstViews_one": "Første {{count}} visning",
+    "firstViews_other": "Første {{count}} visninger",
+    "firstComments_one": "Første {{count}} kommentar",
+    "firstComments_other": "Første {{count}} kommentarer"
   },
   "wallet": {
     "notReady": "Tegnebogen er ikke klar — prøv igen om lidt.",
@@ -3465,5 +3469,35 @@
     "descriptionOptional": "Beskrivelse (valgfri)",
     "whatsHappening": "Hvad sker der?",
     "quotaShortfall": "Dette opslag koster {{cost}} DHB, og du har {{held}}."
+  },
+  "bounty": {
+    "claimed": "Indløst",
+    "notEligible": "Ikke kvalificeret",
+    "checking": "Tjekker om du er kvalificeret…",
+    "rewardType": "Belønningstype",
+    "transaction": "Transaktion",
+    "onChainClaim": "Indløsning on-chain",
+    "confirmClaim": "Bekræft indløsning",
+    "processing": "Behandler transaktion on-chain",
+    "success": "Belønning indløst!",
+    "awesome": "Fantastisk!",
+    "claimUnable": "Kan ikke indløse belønningen",
+    "claimFailed": "Kunne ikke indløse belønningen",
+    "switchFailed": "Kan ikke skifte netværk",
+    "claimViewerTitle": "Indløs seerbelønning",
+    "claimCommenterTitle": "Indløs kommentarbelønning",
+    "claimingViewer": "Indløser seerbelønning…",
+    "claimingCommenter": "Indløser kommentarbelønning…",
+    "viewerReward": "Seerbelønning",
+    "commenterReward": "Kommentarbelønning",
+    "claimedViewer": "Seerbelønningen er indløst!",
+    "claimedCommenter": "Kommentarbelønningen er indløst!",
+    "earnedViewer": "Du har optjent din seerbelønning",
+    "earnedCommenter": "Du har optjent din kommentarbelønning",
+    "switchNetwork": "Skift netværk",
+    "eligibilityFailed": "Kunne ikke tjekke kvalifikation",
+    "switchFirst": "Skift til belønningsnetværket, før du indløser",
+    "missingSignature": "Signatur til indløsning mangler",
+    "txReverted": "Transaktionen blev tilbageført on-chain"
   }
 }

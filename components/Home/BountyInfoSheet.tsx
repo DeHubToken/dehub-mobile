@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import React, { memo, useCallback, useEffect, useState } from "react";
 import {
   View,
@@ -95,6 +96,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
     commentorClaimed: false,
     loading: false,
   });
+  const { t } = useTranslation();
   const [sheetView, setSheetView] = useState<SheetView>("info");
   const [pendingClaimType, setPendingClaimType] = useState<"viewer" | "commentor" | null>(null);
   const [txPending, setTxPending] = useState(false);
@@ -137,7 +139,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
       setClaimState((prev) => ({
         ...prev,
         loading: false,
-        error: e?.message || "Failed to check eligibility",
+        error: e?.message || t("bounty.eligibilityFailed"),
         viewerSignature: undefined,
         commentorSignature: undefined,
       }));
@@ -220,7 +222,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
       const bountyType = type === "viewer" ? BOUNTY_TYPE_VIEWER : BOUNTY_TYPE_COMMENTOR;
 
       if (!signature) {
-        toastError("Unable to claim bounty");
+        toastError(t("bounty.claimUnable"));
         setSheetView("info");
         setPendingClaimType(null);
         return;
@@ -231,15 +233,15 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
 
       try {
         if (!bountyChainId || walletChainId !== bountyChainId) {
-          throw new Error("Switch to the bounty network before claiming");
+          throw new Error(t("bounty.switchFirst"));
         }
         const fresh = await getClaimBountySignature(tokenId);
         if (fresh.error) throw new Error(String(fresh.error));
         const freshSignature = fresh.result?.[type];
-        if (!freshSignature || fresh.result?.[`${type}_claimed`]) throw new Error("Not eligible");
+        if (!freshSignature || fresh.result?.[`${type}_claimed`]) throw new Error(t("bounty.notEligible"));
         const tokenIdNum = typeof tokenId === "string" ? parseInt(tokenId, 10) : tokenId;
         const v3 = isV3Chain(bountyChainId);
-        if (v3 && (!freshSignature.signature || !freshSignature.deadline)) throw new Error("Missing bounty claim signature");
+        if (v3 && (!freshSignature.signature || !freshSignature.deadline)) throw new Error(t("bounty.missingSignature"));
         const claimContract = v3 ? new ethers.Contract(streamController.address,
           ["function claimBounty(uint256 tokenId, uint8 bountyType, uint256 deadline, bytes signature)"],
           streamController.signer) : streamController;
@@ -269,7 +271,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
           ? parseInt(receipt.status, 16)
           : receipt.status;
 
-        if (status === 0) throw new Error("Transaction reverted on-chain");
+        if (status === 0) throw new Error(t("bounty.txReverted"));
 
         if (type === "viewer") {
           setClaimState((prev) => ({ ...prev, viewerClaimed: true, viewerSignature: undefined }));
@@ -277,13 +279,15 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
           setClaimState((prev) => ({ ...prev, commentorClaimed: true, commentorSignature: undefined }));
         }
 
-        setLastClaimedType(type === "viewer" ? "Viewer" : "Commenter");
+        setLastClaimedType(type);
         setSheetView("success");
-        toastSuccess(`Successfully claimed ${type} bounty!`);
+        toastSuccess(
+          t(type === "viewer" ? "bounty.claimedViewer" : "bounty.claimedCommenter")
+        );
         onBountyClaimed?.();
       } catch (e: any) {
         console.error("[BountyInfoSheet] claimBounty error", e);
-        toastError(e?.reason || e?.message || "Failed to claim bounty");
+        toastError(e?.reason || e?.message || t("bounty.claimFailed"));
         setSheetView("info");
         setPendingClaimType(null);
       } finally {
@@ -300,7 +304,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
 
   if (!visible && isFullyClosed) return null;
 
-  const pendingLabel = pendingClaimType === "viewer" ? "Viewer" : "Commenter";
+  const isViewerClaim = pendingClaimType === "viewer";
 
   const renderClaimButton = (type: "viewer" | "commentor") => {
     const claimed = type === "viewer" ? claimState.viewerClaimed : claimState.commentorClaimed;
@@ -312,7 +316,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
       return (
         <View style={styles.claimedBadge}>
           <Icon name="CircleCheck" size={12} color="#F4F4F5" />
-          <Text style={styles.claimedText}>Claimed</Text>
+          <Text style={styles.claimedText}>{t("bounty.claimed")}</Text>
         </View>
       );
     }
@@ -321,7 +325,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
         <TouchableOpacity
           onPress={async () => {
             if (bountyChainId && walletChainId !== bountyChainId) {
-              try { await switchChain(bountyChainId); } catch (error: any) { toastError(error?.message || "Unable to switch network"); }
+              try { await switchChain(bountyChainId); } catch (error: any) { toastError(error?.message || t("bounty.switchFailed")); }
               return;
             }
             handleClaimPress(type);
@@ -329,24 +333,24 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
           style={styles.claimBtn}
           activeOpacity={0.7}
         >
-          <Text style={styles.claimBtnText}>{bountyChainId && walletChainId !== bountyChainId ? "Switch network" : "Claim"}</Text>
+          <Text style={styles.claimBtnText}>{bountyChainId && walletChainId !== bountyChainId ? t("bounty.switchNetwork") : t("staking.claim")}</Text>
         </TouchableOpacity>
       );
     }
-    return <Text style={styles.ineligibleText}>Not eligible</Text>;
+    return <Text style={styles.ineligibleText}>{t("bounty.notEligible")}</Text>;
   };
 
   const renderInfoContent = () => (
     <View style={styles.content}>
       <View style={styles.headerRow}>
         <Icon name="Gift" size={18} color="#F9FBFF" />
-        <Text style={styles.headerTitle}>Bounty Rewards</Text>
+        <Text style={styles.headerTitle}>{t("drawers.bountyTitle")}</Text>
       </View>
 
       {claimState.loading ? (
         <View style={styles.loadingRow}>
           <ActivityIndicator size="small" color="#A6A9AC" />
-          <Text style={styles.loadingText}>Checking eligibility…</Text>
+          <Text style={styles.loadingText}>{t("bounty.checking")}</Text>
         </View>
       ) : (
         <>
@@ -357,9 +361,9 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
               </View>
               <View style={styles.rewardTextWrap}>
                 <Text style={styles.rewardTitle}>
-                  First {firstXViewers} {firstXViewers === 1 ? "view" : "views"}
+                  {t("drawers.firstViews", { count: firstXViewers })}
                 </Text>
-                <Text style={styles.rewardSubtitle}>Get rewarded for watching</Text>
+                <Text style={styles.rewardSubtitle}>{t("drawers.rewardedWatching")}</Text>
               </View>
               {isSignedIn && !isMinter && renderClaimButton("viewer")}
             </View>
@@ -372,16 +376,16 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
               </View>
               <View style={styles.rewardTextWrap}>
                 <Text style={styles.rewardTitle}>
-                  First {firstXComments} {firstXComments === 1 ? "comment" : "comments"}
+                  {t("drawers.firstComments", { count: firstXComments })}
                 </Text>
-                <Text style={styles.rewardSubtitle}>Get rewarded for engaging</Text>
+                <Text style={styles.rewardSubtitle}>{t("drawers.rewardedEngaging")}</Text>
               </View>
               {isSignedIn && !isMinter && renderClaimButton("commentor")}
             </View>
           )}
 
           <View style={styles.perUserRow}>
-            <Text style={styles.perUserLabel}>Reward per User</Text>
+            <Text style={styles.perUserLabel}>{t("drawers.rewardPerUser")}</Text>
             <View style={styles.perUserValueWrap}>
               <Image source={DEHUB_COIN} style={styles.coinIcon} resizeMode="contain" />
               <Text style={styles.perUserValue}>
@@ -406,22 +410,26 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
     <View style={styles.content}>
       <View style={styles.headerRow}>
         <Icon name="Gift" size={18} color="#F9FBFF" />
-        <Text style={styles.headerTitle}>Claim {pendingLabel} Bounty</Text>
+        <Text style={styles.headerTitle}>
+          {t(isViewerClaim ? "bounty.claimViewerTitle" : "bounty.claimCommenterTitle")}
+        </Text>
       </View>
 
       <View style={styles.detailRow}>
-        <Text style={styles.detailLabel}>Reward Type</Text>
-        <Text style={styles.detailValue}>{pendingLabel} Reward</Text>
+        <Text style={styles.detailLabel}>{t("bounty.rewardType")}</Text>
+        <Text style={styles.detailValue}>
+          {t(isViewerClaim ? "bounty.viewerReward" : "bounty.commenterReward")}
+        </Text>
       </View>
       <View style={styles.detailRow}>
-        <Text style={styles.detailLabel}>Amount</Text>
+        <Text style={styles.detailLabel}>{t("commandCentre.amount")}</Text>
         <Text style={[styles.detailValue, { color: "#F4F4F5" }]}>
           {formatCompactNumber(bountyAmount)} {bountyTokenSymbol}
         </Text>
       </View>
       <View style={[styles.detailRow, { marginBottom: 16 }]}>
-        <Text style={styles.detailLabel}>Transaction</Text>
-        <Text style={styles.detailValue}>On-chain claim</Text>
+        <Text style={styles.detailLabel}>{t("bounty.transaction")}</Text>
+        <Text style={styles.detailValue}>{t("bounty.onChainClaim")}</Text>
       </View>
 
       <Text style={styles.confirmHint}>
@@ -434,14 +442,14 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
           style={styles.cancelBtn}
           activeOpacity={0.7}
         >
-          <Text style={styles.cancelBtnText}>Cancel</Text>
+          <Text style={styles.cancelBtnText}>{t("common.cancel")}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={handleConfirmClaim}
           style={styles.confirmBtn}
           activeOpacity={0.7}
         >
-          <Text style={styles.confirmBtnText}>Confirm Claim</Text>
+          <Text style={styles.confirmBtnText}>{t("bounty.confirmClaim")}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -450,8 +458,10 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
   const renderClaimingContent = () => (
     <View style={styles.centeredContent}>
       <DeHubLoader size={56} />
-      <Text style={styles.claimingTitle}>Claiming {pendingLabel} Bounty…</Text>
-      <Text style={styles.claimingSubtitle}>Processing on-chain transaction</Text>
+      <Text style={styles.claimingTitle}>
+        {t(isViewerClaim ? "bounty.claimingViewer" : "bounty.claimingCommenter")}
+      </Text>
+      <Text style={styles.claimingSubtitle}>{t("bounty.processing")}</Text>
     </View>
   );
 
@@ -463,10 +473,10 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
         </View>
       </Animated.View>
       <Animated.Text entering={FadeInDown.delay(200).duration(350)} style={styles.successTitle}>
-        Bounty Claimed!
+        {t("bounty.success")}
       </Animated.Text>
       <Animated.Text entering={FadeInDown.delay(300).duration(350)} style={styles.successSub}>
-        You earned your {lastClaimedType?.toLowerCase()} bounty reward
+        {t(lastClaimedType === "viewer" ? "bounty.earnedViewer" : "bounty.earnedCommenter")}
       </Animated.Text>
       <Animated.View entering={FadeInDown.delay(400).duration(350)} style={styles.successAmountWrap}>
         <Image source={DEHUB_COIN} style={styles.successCoin} resizeMode="contain" />
@@ -479,7 +489,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
         style={styles.doneBtn}
         activeOpacity={0.7}
       >
-        <Text style={styles.doneBtnText}>Awesome!</Text>
+        <Text style={styles.doneBtnText}>{t("bounty.awesome")}</Text>
       </TouchableOpacity>
     </View>
   );

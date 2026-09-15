@@ -776,7 +776,11 @@
     "cancel": "Soke",
     "confirm": "Tabbatar",
     "paying": "Ana biya...",
-    "payAmount": "Biya {{amount}} {{currency}}"
+    "payAmount": "Biya {{amount}} {{currency}}",
+    "firstViews_one": "Kallo {{count}} na farko",
+    "firstViews_other": "Kallo {{count}} na farko",
+    "firstComments_one": "Sharhi {{count}} na farko",
+    "firstComments_other": "Sharhi {{count}} na farko"
   },
   "assistant": {
     "title": "Mai Taimako",
@@ -3451,5 +3455,35 @@
     "descriptionOptional": "Bayani (na zaɓi)",
     "whatsHappening": "Me ke faruwa?",
     "quotaShortfall": "Wannan saƙon yana kashe {{cost}} DHB kuma kana da {{held}}."
+  },
+  "bounty": {
+    "claimed": "An karɓa",
+    "notEligible": "Ba ka cancanta ba",
+    "checking": "Ana duba cancanta…",
+    "rewardType": "Nau'in lada",
+    "transaction": "Ma'amala",
+    "onChainClaim": "Karɓa a kan sarƙar",
+    "confirmClaim": "Tabbatar da karɓa",
+    "processing": "Ana sarrafa ma'amala a kan sarƙar",
+    "success": "An karɓi ladan!",
+    "awesome": "Madalla!",
+    "claimUnable": "Ba a iya karɓar ladan ba",
+    "claimFailed": "An kasa karɓar ladan",
+    "switchFailed": "Ba a iya canza hanyar sadarwa ba",
+    "claimViewerTitle": "Karɓi ladan mai kallo",
+    "claimCommenterTitle": "Karɓi ladan mai sharhi",
+    "claimingViewer": "Ana karɓar ladan mai kallo…",
+    "claimingCommenter": "Ana karɓar ladan mai sharhi…",
+    "viewerReward": "Ladan mai kallo",
+    "commenterReward": "Ladan mai sharhi",
+    "claimedViewer": "An karɓi ladan mai kallo cikin nasara!",
+    "claimedCommenter": "An karɓi ladan mai sharhi cikin nasara!",
+    "earnedViewer": "Ka samu ladan mai kallo naka",
+    "earnedCommenter": "Ka samu ladan mai sharhi naka",
+    "switchNetwork": "Canza hanyar sadarwa",
+    "eligibilityFailed": "An kasa duba cancanta",
+    "switchFirst": "Koma hanyar sadarwar ladan kafin ka karɓa",
+    "missingSignature": "Babu sa hannun karɓar ladan",
+    "txReverted": "An mayar da ma'amala a kan sarƙar"
   }
 }

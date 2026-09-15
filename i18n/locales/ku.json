@@ -695,7 +695,11 @@
     "cancel": "Betal bike",
     "confirm": "Piştrast bike",
     "paying": "Tê dayîn...",
-    "payAmount": "{{amount}} {{currency}} bide"
+    "payAmount": "{{amount}} {{currency}} bide",
+    "firstViews_one": "Dîtina {{count}} ya pêşîn",
+    "firstViews_other": "{{count}} dîtinên pêşîn",
+    "firstComments_one": "Şîroveya {{count}} ya pêşîn",
+    "firstComments_other": "{{count}} şîroveyên pêşîn"
   },
   "assistant": {
     "title": "Arîkar",
@@ -3220,5 +3224,35 @@
     "descriptionOptional": "Danasîn (bijarte)",
     "whatsHappening": "Çi diqewime?",
     "quotaShortfall": "Ev şandî {{cost}} DHB dixwaze û te {{held}} heye."
+  },
+  "bounty": {
+    "claimed": "Hate wergirtin",
+    "notEligible": "Ne hêja ye",
+    "checking": "Hêjahî tê kontrolkirin…",
+    "rewardType": "Cureyê xelatê",
+    "transaction": "Danûstandin",
+    "onChainClaim": "Daxwaza li ser zincîrê",
+    "confirmClaim": "Daxwazê piştrast bike",
+    "processing": "Danûstandina li ser zincîrê tê pêvajokirin",
+    "success": "Xelat hate wergirtin!",
+    "awesome": "Serkeftî!",
+    "claimUnable": "Xelat nayê wergirtin",
+    "claimFailed": "Wergirtina xelatê bi ser neket",
+    "switchFailed": "Tor nayê guhertin",
+    "claimViewerTitle": "Xelata temaşevan wergire",
+    "claimCommenterTitle": "Xelata şîrovekar wergire",
+    "claimingViewer": "Xelata temaşevan tê wergirtin…",
+    "claimingCommenter": "Xelata şîrovekar tê wergirtin…",
+    "viewerReward": "Xelata temaşevan",
+    "commenterReward": "Xelata şîrovekar",
+    "claimedViewer": "Xelata temaşevan bi serkeftî hate wergirtin!",
+    "claimedCommenter": "Xelata şîrovekar bi serkeftî hate wergirtin!",
+    "earnedViewer": "Te xelata temaşevanê xwe qezenc kir",
+    "earnedCommenter": "Te xelata şîrovekarê xwe qezenc kir",
+    "switchNetwork": "Torê biguherîne",
+    "eligibilityFailed": "Kontrolkirina hêjahiyê bi ser neket",
+    "switchFirst": "Berî wergirtinê derbasî tora xelatê bibe",
+    "missingSignature": "Îmzeya wergirtina xelatê kêm e",
+    "txReverted": "Danûstandin li ser zincîrê hate vegerandin"
   }
 }

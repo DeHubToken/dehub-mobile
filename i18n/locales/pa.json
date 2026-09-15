@@ -636,7 +636,11 @@
     "cancel": "ਰੱਦ",
     "confirm": "ਪੁਸ਼ਟੀ",
     "paying": "ਭੁਗਤਾਨ ਹੋ ਰਿਹਾ ਹੈ...",
-    "payAmount": "{{amount}} {{currency}} ਭੁਗਤਾਨ ਕਰੋ"
+    "payAmount": "{{amount}} {{currency}} ਭੁਗਤਾਨ ਕਰੋ",
+    "firstViews_one": "ਪਹਿਲਾ {{count}} ਵਿਊ",
+    "firstViews_other": "ਪਹਿਲੇ {{count}} ਵਿਊ",
+    "firstComments_one": "ਪਹਿਲਾ {{count}} ਟਿੱਪਣੀ",
+    "firstComments_other": "ਪਹਿਲੇ {{count}} ਟਿੱਪਣੀਆਂ"
   },
   "wallet": {
     "notReady": "ਵਾਲਿਟ ਤਿਆਰ ਨਹੀਂ — ਥੋੜ੍ਹੀ ਦੇਰ ਬਾਅਦ ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
@@ -3437,5 +3441,35 @@
     "descriptionOptional": "ਵੇਰਵਾ (ਵਿਕਲਪਿਕ)",
     "whatsHappening": "ਕੀ ਹੋ ਰਿਹਾ ਹੈ?",
     "quotaShortfall": "ਇਸ ਪੋਸਟ ਦੀ ਕੀਮਤ {{cost}} DHB ਹੈ ਅਤੇ ਤੁਹਾਡੇ ਕੋਲ {{held}} ਹਨ।"
+  },
+  "bounty": {
+    "claimed": "ਪ੍ਰਾਪਤ ਕੀਤਾ",
+    "notEligible": "ਯੋਗ ਨਹੀਂ",
+    "checking": "ਯੋਗਤਾ ਜਾਂਚੀ ਜਾ ਰਹੀ ਹੈ…",
+    "rewardType": "ਇਨਾਮ ਦੀ ਕਿਸਮ",
+    "transaction": "ਲੈਣ-ਦੇਣ",
+    "onChainClaim": "ਆਨ-ਚੇਨ ਕਲੇਮ",
+    "confirmClaim": "ਕਲੇਮ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
+    "processing": "ਆਨ-ਚੇਨ ਲੈਣ-ਦੇਣ ਪ੍ਰੋਸੈਸ ਹੋ ਰਿਹਾ ਹੈ",
+    "success": "ਇਨਾਮ ਮਿਲ ਗਿਆ!",
+    "awesome": "ਸ਼ਾਨਦਾਰ!",
+    "claimUnable": "ਇਨਾਮ ਨਹੀਂ ਲਿਆ ਜਾ ਸਕਿਆ",
+    "claimFailed": "ਇਨਾਮ ਲੈਣ ਵਿੱਚ ਅਸਫਲ",
+    "switchFailed": "ਨੈੱਟਵਰਕ ਬਦਲਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ",
+    "claimViewerTitle": "ਦਰਸ਼ਕ ਇਨਾਮ ਲਓ",
+    "claimCommenterTitle": "ਟਿੱਪਣੀਕਾਰ ਇਨਾਮ ਲਓ",
+    "claimingViewer": "ਦਰਸ਼ਕ ਇਨਾਮ ਲਿਆ ਜਾ ਰਿਹਾ ਹੈ…",
+    "claimingCommenter": "ਟਿੱਪਣੀਕਾਰ ਇਨਾਮ ਲਿਆ ਜਾ ਰਿਹਾ ਹੈ…",
+    "viewerReward": "ਦਰਸ਼ਕ ਇਨਾਮ",
+    "commenterReward": "ਟਿੱਪਣੀਕਾਰ ਇਨਾਮ",
+    "claimedViewer": "ਦਰਸ਼ਕ ਇਨਾਮ ਸਫਲਤਾਪੂਰਵਕ ਮਿਲ ਗਿਆ!",
+    "claimedCommenter": "ਟਿੱਪਣੀਕਾਰ ਇਨਾਮ ਸਫਲਤਾਪੂਰਵਕ ਮਿਲ ਗਿਆ!",
+    "earnedViewer": "ਤੁਹਾਨੂੰ ਦਰਸ਼ਕ ਇਨਾਮ ਮਿਲਿਆ",
+    "earnedCommenter": "ਤੁਹਾਨੂੰ ਟਿੱਪਣੀਕਾਰ ਇਨਾਮ ਮਿਲਿਆ",
+    "switchNetwork": "ਨੈੱਟਵਰਕ ਬਦਲੋ",
+    "eligibilityFailed": "ਯੋਗਤਾ ਜਾਂਚੀ ਨਹੀਂ ਜਾ ਸਕੀ",
+    "switchFirst": "ਲੈਣ ਤੋਂ ਪਹਿਲਾਂ ਇਨਾਮ ਨੈੱਟਵਰਕ ਉੱਤੇ ਜਾਓ",
+    "missingSignature": "ਇਨਾਮ ਕਲੇਮ ਦਾ ਦਸਤਖ਼ਤ ਗੁੰਮ ਹੈ",
+    "txReverted": "ਲੈਣ-ਦੇਣ ਆਨ-ਚੇਨ ਵਾਪਸ ਹੋ ਗਿਆ"
   }
 }

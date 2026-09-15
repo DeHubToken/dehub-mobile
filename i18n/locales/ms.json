@@ -1241,7 +1241,11 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "paying": "Paying...",
-    "payAmount": "Pay {{amount}} {{currency}}"
+    "payAmount": "Pay {{amount}} {{currency}}",
+    "firstViews_one": "{{count}} tontonan pertama",
+    "firstViews_other": "{{count}} tontonan pertama",
+    "firstComments_one": "{{count}} komen pertama",
+    "firstComments_other": "{{count}} komen pertama"
   },
   "assistant": {
     "title": "Assistant",
@@ -3724,5 +3728,35 @@
     "descriptionOptional": "Penerangan (pilihan)",
     "whatsHappening": "Apa yang berlaku?",
     "quotaShortfall": "Siaran ini memerlukan {{cost}} DHB dan anda memiliki {{held}}."
+  },
+  "bounty": {
+    "claimed": "Telah dituntut",
+    "notEligible": "Tidak layak",
+    "checking": "Menyemak kelayakan…",
+    "rewardType": "Jenis ganjaran",
+    "transaction": "Transaksi",
+    "onChainClaim": "Tuntutan atas rantai",
+    "confirmClaim": "Sahkan tuntutan",
+    "processing": "Memproses transaksi atas rantai",
+    "success": "Ganjaran telah dituntut!",
+    "awesome": "Hebat!",
+    "claimUnable": "Tidak dapat menuntut ganjaran",
+    "claimFailed": "Gagal menuntut ganjaran",
+    "switchFailed": "Tidak dapat menukar rangkaian",
+    "claimViewerTitle": "Tuntut ganjaran penonton",
+    "claimCommenterTitle": "Tuntut ganjaran pengulas",
+    "claimingViewer": "Menuntut ganjaran penonton…",
+    "claimingCommenter": "Menuntut ganjaran pengulas…",
+    "viewerReward": "Ganjaran penonton",
+    "commenterReward": "Ganjaran pengulas",
+    "claimedViewer": "Ganjaran penonton berjaya dituntut!",
+    "claimedCommenter": "Ganjaran pengulas berjaya dituntut!",
+    "earnedViewer": "Anda memperoleh ganjaran penonton",
+    "earnedCommenter": "Anda memperoleh ganjaran pengulas",
+    "switchNetwork": "Tukar rangkaian",
+    "eligibilityFailed": "Gagal menyemak kelayakan",
+    "switchFirst": "Tukar ke rangkaian ganjaran sebelum menuntut",
+    "missingSignature": "Tandatangan tuntutan ganjaran tiada",
+    "txReverted": "Transaksi dibatalkan atas rantai"
   }
 }

@@ -783,7 +783,11 @@
     "cancel": "Khansela",
     "confirm": "Qinisekisa",
     "paying": "Iyakhokha...",
-    "payAmount": "Khokha {{amount}} {{currency}}"
+    "payAmount": "Khokha {{amount}} {{currency}}",
+    "firstViews_one": "Ukubuka kokuqala {{count}}",
+    "firstViews_other": "Ukubuka kokuqala {{count}}",
+    "firstComments_one": "Amazwana okuqala {{count}}",
+    "firstComments_other": "Amazwana okuqala {{count}}"
   },
   "assistant": {
     "title": "Umsizi",
@@ -3490,5 +3494,35 @@
     "descriptionOptional": "Incazelo (okuzikhethela)",
     "whatsHappening": "Kwenzekani?",
     "quotaShortfall": "Lokhu okuthunyelwe kubiza {{cost}} DHB futhi unayo {{held}}."
+  },
+  "bounty": {
+    "claimed": "Kuthathiwe",
+    "notEligible": "Awufaneleki",
+    "checking": "Ihlola ukufaneleka…",
+    "rewardType": "Uhlobo lomklomelo",
+    "transaction": "Ukuthengiselana",
+    "onChainClaim": "Isicelo esiseshinini",
+    "confirmClaim": "Qinisekisa isicelo",
+    "processing": "Icubungula ukuthengiselana okuseshinini",
+    "success": "Umklomelo uthathiwe!",
+    "awesome": "Kuhle kakhulu!",
+    "claimUnable": "Ayikwazi ukuthatha umklomelo",
+    "claimFailed": "Kwehlulekile ukuthatha umklomelo",
+    "switchFailed": "Ayikwazi ukushintsha inethiwekhi",
+    "claimViewerTitle": "Thatha umklomelo wombukeli",
+    "claimCommenterTitle": "Thatha umklomelo womphawuli",
+    "claimingViewer": "Ithatha umklomelo wombukeli…",
+    "claimingCommenter": "Ithatha umklomelo womphawuli…",
+    "viewerReward": "Umklomelo wombukeli",
+    "commenterReward": "Umklomelo womphawuli",
+    "claimedViewer": "Umklomelo wombukeli uthathwe ngempumelelo!",
+    "claimedCommenter": "Umklomelo womphawuli uthathwe ngempumelelo!",
+    "earnedViewer": "Uthole umklomelo wakho wombukeli",
+    "earnedCommenter": "Uthole umklomelo wakho womphawuli",
+    "switchNetwork": "Shintsha inethiwekhi",
+    "eligibilityFailed": "Yehlulekile ukuhlola ukufaneleka",
+    "switchFirst": "Shintshela kunethiwekhi yomklomelo ngaphambi kokuthatha",
+    "missingSignature": "Kushoda isiginesha sokuthatha umklomelo",
+    "txReverted": "Ukuthengiselana kubuyiselwe emuva eshinini"
   }
 }

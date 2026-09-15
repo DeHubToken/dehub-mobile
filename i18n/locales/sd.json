@@ -772,7 +772,11 @@
     "cancel": "منسوخ",
     "confirm": "تصديق ڪريو",
     "paying": "ادائگي ٿي رهي آهي...",
-    "payAmount": "{{amount}} {{currency}} ادا ڪريو"
+    "payAmount": "{{amount}} {{currency}} ادا ڪريو",
+    "firstViews_one": "پهريون {{count}} ڏسڻ",
+    "firstViews_other": "پهريان {{count}} ڏسڻ",
+    "firstComments_one": "پهريون {{count}} تبصرو",
+    "firstComments_other": "پهريان {{count}} تبصرا"
   },
   "assistant": {
     "title": "مددگار",
@@ -3444,5 +3448,35 @@
     "descriptionOptional": "تفصيل (اختياري)",
     "whatsHappening": "ڇا ٿي رهيو آهي؟",
     "quotaShortfall": "هن پوسٽ جي قيمت {{cost}} DHB آهي ۽ توهان وٽ {{held}} آهن."
+  },
+  "bounty": {
+    "claimed": "حاصل ٿيو",
+    "notEligible": "اهل ناهي",
+    "checking": "اهليت جاچي پئي وڃي…",
+    "rewardType": "انعام جو قسم",
+    "transaction": "ٽرانزيڪشن",
+    "onChainClaim": "آن چين ڪليم",
+    "confirmClaim": "ڪليم جي تصديق ڪريو",
+    "processing": "آن چين ٽرانزيڪشن پروسيس ٿي رهيو آهي",
+    "success": "انعام حاصل ٿيو!",
+    "awesome": "بهترين!",
+    "claimUnable": "انعام حاصل نه ٿي سگهيو",
+    "claimFailed": "انعام حاصل ڪرڻ ۾ ناڪامي",
+    "switchFailed": "نيٽ ورڪ تبديل نه ٿي سگهيو",
+    "claimViewerTitle": "ڏسندڙ جو انعام حاصل ڪريو",
+    "claimCommenterTitle": "تبصري ڪندڙ جو انعام حاصل ڪريو",
+    "claimingViewer": "ڏسندڙ جو انعام حاصل ٿي رهيو آهي…",
+    "claimingCommenter": "تبصري ڪندڙ جو انعام حاصل ٿي رهيو آهي…",
+    "viewerReward": "ڏسندڙ جو انعام",
+    "commenterReward": "تبصري ڪندڙ جو انعام",
+    "claimedViewer": "ڏسندڙ جو انعام ڪاميابيءَ سان حاصل ٿيو!",
+    "claimedCommenter": "تبصري ڪندڙ جو انعام ڪاميابيءَ سان حاصل ٿيو!",
+    "earnedViewer": "توهان کي ڏسندڙ جو انعام مليو",
+    "earnedCommenter": "توهان کي تبصري ڪندڙ جو انعام مليو",
+    "switchNetwork": "نيٽ ورڪ تبديل ڪريو",
+    "eligibilityFailed": "اهليت جاچي نه سگهي",
+    "switchFirst": "حاصل ڪرڻ کان اڳ انعام واري نيٽ ورڪ تي وڃو",
+    "missingSignature": "انعام حاصل ڪرڻ جو دستخط ناهي",
+    "txReverted": "ٽرانزيڪشن آن چين واپس ٿي وئي"
   }
 }

@@ -663,7 +663,11 @@
     "cancel": "Cancelar",
     "confirm": "Confirmar",
     "paying": "Pagando...",
-    "payAmount": "Pagar {{amount}} {{currency}}"
+    "payAmount": "Pagar {{amount}} {{currency}}",
+    "firstViews_one": "Primeira {{count}} visualização",
+    "firstViews_other": "Primeiras {{count}} visualizações",
+    "firstComments_one": "Primeiro {{count}} comentário",
+    "firstComments_other": "Primeiros {{count}} comentários"
   },
   "wallet": {
     "notReady": "Carteira não está pronta — tente novamente daqui a pouco.",
@@ -3535,5 +3539,35 @@
     "descriptionOptional": "Descrição (opcional)",
     "whatsHappening": "O que está acontecendo?",
     "quotaShortfall": "Esta publicação custa {{cost}} DHB e você tem {{held}}."
+  },
+  "bounty": {
+    "claimed": "Resgatado",
+    "notEligible": "Não elegível",
+    "checking": "Verificando elegibilidade…",
+    "rewardType": "Tipo de recompensa",
+    "transaction": "Transação",
+    "onChainClaim": "Resgate on-chain",
+    "confirmClaim": "Confirmar resgate",
+    "processing": "Processando transação on-chain",
+    "success": "Recompensa resgatada!",
+    "awesome": "Ótimo!",
+    "claimUnable": "Não foi possível resgatar a recompensa",
+    "claimFailed": "Falha ao resgatar a recompensa",
+    "switchFailed": "Não foi possível trocar de rede",
+    "claimViewerTitle": "Resgatar recompensa de espectador",
+    "claimCommenterTitle": "Resgatar recompensa de comentarista",
+    "claimingViewer": "Resgatando recompensa de espectador…",
+    "claimingCommenter": "Resgatando recompensa de comentarista…",
+    "viewerReward": "Recompensa de espectador",
+    "commenterReward": "Recompensa de comentarista",
+    "claimedViewer": "Recompensa de espectador resgatada!",
+    "claimedCommenter": "Recompensa de comentarista resgatada!",
+    "earnedViewer": "Você ganhou sua recompensa de espectador",
+    "earnedCommenter": "Você ganhou sua recompensa de comentarista",
+    "switchNetwork": "Trocar de rede",
+    "eligibilityFailed": "Não foi possível verificar a elegibilidade",
+    "switchFirst": "Mude para a rede da recompensa antes de resgatar",
+    "missingSignature": "Falta a assinatura de resgate",
+    "txReverted": "A transação foi revertida on-chain"
   }
 }

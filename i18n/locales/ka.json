@@ -798,7 +798,11 @@
     "cancel": "გაუქმება",
     "confirm": "დადასტურება",
     "paying": "მიმდინარეობს გადახდა...",
-    "payAmount": "გადაიხადეთ {{amount}} {{currency}}"
+    "payAmount": "გადაიხადეთ {{amount}} {{currency}}",
+    "firstViews_one": "პირველი {{count}} ნახვა",
+    "firstViews_other": "პირველი {{count}} ნახვა",
+    "firstComments_one": "პირველი {{count}} კომენტარი",
+    "firstComments_other": "პირველი {{count}} კომენტარი"
   },
   "assistant": {
     "title": "ასისტენტი",
@@ -3496,5 +3500,35 @@
     "descriptionOptional": "აღწერა (არასავალდებულო)",
     "whatsHappening": "რა ხდება?",
     "quotaShortfall": "ეს პოსტი ჯდება {{cost}} DHB, თქვენ კი გაქვთ {{held}}."
+  },
+  "bounty": {
+    "claimed": "მიღებულია",
+    "notEligible": "არ აკმაყოფილებთ პირობებს",
+    "checking": "მიმდინარეობს შემოწმება…",
+    "rewardType": "ჯილდოს ტიპი",
+    "transaction": "ტრანზაქცია",
+    "onChainClaim": "ჯაჭვში მოთხოვნა",
+    "confirmClaim": "მოთხოვნის დადასტურება",
+    "processing": "მიმდინარეობს ჯაჭვში ტრანზაქცია",
+    "success": "ჯილდო მიღებულია!",
+    "awesome": "შესანიშნავია!",
+    "claimUnable": "ჯილდოს მიღება ვერ მოხერხდა",
+    "claimFailed": "ჯილდოს მიღება ვერ შესრულდა",
+    "switchFailed": "ქსელის შეცვლა ვერ მოხერხდა",
+    "claimViewerTitle": "მაყურებლის ჯილდოს მიღება",
+    "claimCommenterTitle": "კომენტატორის ჯილდოს მიღება",
+    "claimingViewer": "მიმდინარეობს მაყურებლის ჯილდოს მიღება…",
+    "claimingCommenter": "მიმდინარეობს კომენტატორის ჯილდოს მიღება…",
+    "viewerReward": "მაყურებლის ჯილდო",
+    "commenterReward": "კომენტატორის ჯილდო",
+    "claimedViewer": "მაყურებლის ჯილდო წარმატებით მიღებულია!",
+    "claimedCommenter": "კომენტატორის ჯილდო წარმატებით მიღებულია!",
+    "earnedViewer": "თქვენ მოიპოვეთ მაყურებლის ჯილდო",
+    "earnedCommenter": "თქვენ მოიპოვეთ კომენტატორის ჯილდო",
+    "switchNetwork": "ქსელის შეცვლა",
+    "eligibilityFailed": "შემოწმება ვერ მოხერხდა",
+    "switchFirst": "მიღებამდე გადართეთ ჯილდოს ქსელზე",
+    "missingSignature": "ჯილდოს მიღების ხელმოწერა აკლია",
+    "txReverted": "ტრანზაქცია ჯაჭვში გაუქმდა"
   }
 }

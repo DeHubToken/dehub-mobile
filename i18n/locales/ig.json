@@ -777,7 +777,11 @@
     "cancel": "Kagbuo",
     "confirm": "Kwado",
     "paying": "Ọ na-akwụ ụgwọ...",
-    "payAmount": "Kwụọ {{amount}} {{currency}}"
+    "payAmount": "Kwụọ {{amount}} {{currency}}",
+    "firstViews_one": "Nlele {{count}} mbụ",
+    "firstViews_other": "Nlele {{count}} mbụ",
+    "firstComments_one": "Nkọwa {{count}} mbụ",
+    "firstComments_other": "Nkọwa {{count}} mbụ"
   },
   "assistant": {
     "title": "Onye enyemaka",
@@ -3439,5 +3443,35 @@
     "descriptionOptional": "Nkọwa (nhọrọ)",
     "whatsHappening": "Gịnị na-eme?",
     "quotaShortfall": "Post a na-efu {{cost}} DHB, ị nwekwara {{held}}."
+  },
+  "bounty": {
+    "claimed": "Anatala",
+    "notEligible": "Eruberughị eru",
+    "checking": "Na-enyocha ntozu…",
+    "rewardType": "Ụdị ụgwọ ọrụ",
+    "transaction": "Azụmahịa",
+    "onChainClaim": "Nnata na chain",
+    "confirmClaim": "Kwado nnata",
+    "processing": "Na-ahazi azụmahịa na chain",
+    "success": "Anatala ụgwọ ọrụ!",
+    "awesome": "Ọ dị mma!",
+    "claimUnable": "Enweghị ike ịnara ụgwọ ọrụ",
+    "claimFailed": "Ọ dara inweta ụgwọ ọrụ",
+    "switchFailed": "Enweghị ike ịgbanwe netwọk",
+    "claimViewerTitle": "Nweta ụgwọ ọrụ onye na-ekiri",
+    "claimCommenterTitle": "Nweta ụgwọ ọrụ onye na-ekwu okwu",
+    "claimingViewer": "Na-anata ụgwọ ọrụ onye na-ekiri…",
+    "claimingCommenter": "Na-anata ụgwọ ọrụ onye na-ekwu okwu…",
+    "viewerReward": "Ụgwọ ọrụ onye na-ekiri",
+    "commenterReward": "Ụgwọ ọrụ onye na-ekwu okwu",
+    "claimedViewer": "Enwetara ụgwọ ọrụ onye na-ekiri nke ọma!",
+    "claimedCommenter": "Enwetara ụgwọ ọrụ onye na-ekwu okwu nke ọma!",
+    "earnedViewer": "I nwetara ụgwọ ọrụ onye na-ekiri gị",
+    "earnedCommenter": "I nwetara ụgwọ ọrụ onye na-ekwu okwu gị",
+    "switchNetwork": "Gbanwee netwọk",
+    "eligibilityFailed": "Ọ dara inyocha ntozu",
+    "switchFirst": "Gbanwee gaa netwọk ụgwọ ọrụ tupu ị nara ya",
+    "missingSignature": "Mbinye aka nnata ụgwọ ọrụ efuola",
+    "txReverted": "A kwụsịrị azụmahịa na chain"
   }
 }

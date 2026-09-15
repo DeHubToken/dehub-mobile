@@ -649,7 +649,11 @@
     "cancel": "Batal",
     "confirm": "Konfirmasi",
     "paying": "Membayar...",
-    "payAmount": "Bayar {{amount}} {{currency}}"
+    "payAmount": "Bayar {{amount}} {{currency}}",
+    "firstViews_one": "{{count}} tayangan pertama",
+    "firstViews_other": "{{count}} tayangan pertama",
+    "firstComments_one": "{{count}} komentar pertama",
+    "firstComments_other": "{{count}} komentar pertama"
   },
   "wallet": {
     "notReady": "Dompet belum siap — coba lagi sebentar lagi.",
@@ -3511,5 +3515,35 @@
     "descriptionOptional": "Deskripsi (opsional)",
     "whatsHappening": "Apa yang sedang terjadi?",
     "quotaShortfall": "Postingan ini butuh {{cost}} DHB dan kamu punya {{held}}."
+  },
+  "bounty": {
+    "claimed": "Sudah diklaim",
+    "notEligible": "Tidak memenuhi syarat",
+    "checking": "Memeriksa kelayakan…",
+    "rewardType": "Jenis hadiah",
+    "transaction": "Transaksi",
+    "onChainClaim": "Klaim on-chain",
+    "confirmClaim": "Konfirmasi klaim",
+    "processing": "Memproses transaksi on-chain",
+    "success": "Hadiah berhasil diklaim!",
+    "awesome": "Keren!",
+    "claimUnable": "Tidak dapat mengklaim hadiah",
+    "claimFailed": "Gagal mengklaim hadiah",
+    "switchFailed": "Tidak dapat mengganti jaringan",
+    "claimViewerTitle": "Klaim hadiah penonton",
+    "claimCommenterTitle": "Klaim hadiah komentator",
+    "claimingViewer": "Mengklaim hadiah penonton…",
+    "claimingCommenter": "Mengklaim hadiah komentator…",
+    "viewerReward": "Hadiah penonton",
+    "commenterReward": "Hadiah komentator",
+    "claimedViewer": "Hadiah penonton berhasil diklaim!",
+    "claimedCommenter": "Hadiah komentator berhasil diklaim!",
+    "earnedViewer": "Kamu mendapatkan hadiah penonton",
+    "earnedCommenter": "Kamu mendapatkan hadiah komentator",
+    "switchNetwork": "Ganti jaringan",
+    "eligibilityFailed": "Gagal memeriksa kelayakan",
+    "switchFirst": "Ganti ke jaringan hadiah sebelum mengklaim",
+    "missingSignature": "Tanda tangan klaim hadiah tidak ada",
+    "txReverted": "Transaksi dibatalkan di on-chain"
   }
 }

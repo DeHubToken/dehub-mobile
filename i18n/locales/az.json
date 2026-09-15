@@ -774,7 +774,11 @@
     "cancel": "Ləğv et",
     "confirm": "Təsdiq et",
     "paying": "Ödənilir...",
-    "payAmount": "{{amount}} {{currency}} ödə"
+    "payAmount": "{{amount}} {{currency}} ödə",
+    "firstViews_one": "İlk {{count}} baxış",
+    "firstViews_other": "İlk {{count}} baxış",
+    "firstComments_one": "İlk {{count}} şərh",
+    "firstComments_other": "İlk {{count}} şərh"
   },
   "assistant": {
     "title": "Köməkçi",
@@ -3445,5 +3449,35 @@
     "descriptionOptional": "Təsvir (istəyə bağlı)",
     "whatsHappening": "Nə baş verir?",
     "quotaShortfall": "Bu paylaşım {{cost}} DHB tələb edir, sizdə isə {{held}} var."
+  },
+  "bounty": {
+    "claimed": "Alınıb",
+    "notEligible": "Uyğun deyil",
+    "checking": "Uyğunluq yoxlanılır…",
+    "rewardType": "Mükafat növü",
+    "transaction": "Əməliyyat",
+    "onChainClaim": "Zəncir üzərində tələb",
+    "confirmClaim": "Tələbi təsdiqlə",
+    "processing": "Zəncir üzərindəki əməliyyat icra olunur",
+    "success": "Mükafat alındı!",
+    "awesome": "Əla!",
+    "claimUnable": "Mükafat alına bilmədi",
+    "claimFailed": "Mükafatın alınması alınmadı",
+    "switchFailed": "Şəbəkəni dəyişmək mümkün olmadı",
+    "claimViewerTitle": "İzləyici mükafatını al",
+    "claimCommenterTitle": "Şərh mükafatını al",
+    "claimingViewer": "İzləyici mükafatı alınır…",
+    "claimingCommenter": "Şərh mükafatı alınır…",
+    "viewerReward": "İzləyici mükafatı",
+    "commenterReward": "Şərh mükafatı",
+    "claimedViewer": "İzləyici mükafatı uğurla alındı!",
+    "claimedCommenter": "Şərh mükafatı uğurla alındı!",
+    "earnedViewer": "İzləyici mükafatınızı qazandınız",
+    "earnedCommenter": "Şərh mükafatınızı qazandınız",
+    "switchNetwork": "Şəbəkəni dəyiş",
+    "eligibilityFailed": "Uyğunluq yoxlanıla bilmədi",
+    "switchFirst": "Almazdan əvvəl mükafat şəbəkəsinə keçin",
+    "missingSignature": "Mükafat tələbi imzası yoxdur",
+    "txReverted": "Əməliyyat zəncirdə geri qaytarıldı"
   }
 }

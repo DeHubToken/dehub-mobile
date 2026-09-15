@@ -777,7 +777,11 @@
     "tokenGateSettings": "Token Gate Settings",
     "requiresDhb": "Requires DHB tokens on Base chain",
     "minimumDhb": "Minimum DHB Required",
-    "minimumAmount": "Minimum amount"
+    "minimumAmount": "Minimum amount",
+    "firstViews_one": "ပထမ {{count}} ကြည့်ရှုမှု",
+    "firstViews_other": "ပထမ {{count}} ကြည့်ရှုမှု",
+    "firstComments_one": "ပထမ {{count}} မှတ်ချက်",
+    "firstComments_other": "ပထမ {{count}} မှတ်ချက်"
   },
   "assistant": {
     "title": "အကူအညီ",
@@ -3441,5 +3445,35 @@
     "descriptionOptional": "ဖော်ပြချက် (ရွေးချယ်နိုင်)",
     "whatsHappening": "ဘာဖြစ်နေလဲ။",
     "quotaShortfall": "ဤပို့စ်အတွက် {{cost}} DHB လိုပြီး သင့်တွင် {{held}} ရှိသည်။"
+  },
+  "bounty": {
+    "claimed": "ရယူပြီး",
+    "notEligible": "အရည်အချင်း မပြည့်မီပါ",
+    "checking": "အရည်အချင်း စစ်ဆေးနေသည်…",
+    "rewardType": "ဆုအမျိုးအစား",
+    "transaction": "ငွေလွှဲမှု",
+    "onChainClaim": "ချိန်းပေါ်ရှိ တောင်းခံမှု",
+    "confirmClaim": "တောင်းခံမှု အတည်ပြုရန်",
+    "processing": "ချိန်းပေါ်ရှိ ငွေလွှဲမှု လုပ်ဆောင်နေသည်",
+    "success": "ဆု ရယူပြီးပါပြီ!",
+    "awesome": "အရမ်းကောင်းတယ်!",
+    "claimUnable": "ဆုကို မရယူနိုင်ပါ",
+    "claimFailed": "ဆုရယူခြင်း မအောင်မြင်ပါ",
+    "switchFailed": "ကွန်ရက် မပြောင်းနိုင်ပါ",
+    "claimViewerTitle": "ကြည့်ရှုသူ ဆု ရယူရန်",
+    "claimCommenterTitle": "မှတ်ချက်ပေးသူ ဆု ရယူရန်",
+    "claimingViewer": "ကြည့်ရှုသူဆု ရယူနေသည်…",
+    "claimingCommenter": "မှတ်ချက်ပေးသူဆု ရယူနေသည်…",
+    "viewerReward": "ကြည့်ရှုသူ ဆု",
+    "commenterReward": "မှတ်ချက်ပေးသူ ဆု",
+    "claimedViewer": "ကြည့်ရှုသူဆုကို အောင်မြင်စွာ ရယူပြီး!",
+    "claimedCommenter": "မှတ်ချက်ပေးသူဆုကို အောင်မြင်စွာ ရယူပြီး!",
+    "earnedViewer": "သင့်ကြည့်ရှုသူဆုကို ရရှိပါပြီ",
+    "earnedCommenter": "သင့်မှတ်ချက်ပေးသူဆုကို ရရှိပါပြီ",
+    "switchNetwork": "ကွန်ရက် ပြောင်းရန်",
+    "eligibilityFailed": "အရည်အချင်း မစစ်ဆေးနိုင်ပါ",
+    "switchFirst": "မရယူမီ ဆုကွန်ရက်သို့ ပြောင်းပါ",
+    "missingSignature": "ဆုတောင်းခံမှု လက်မှတ် မရှိပါ",
+    "txReverted": "ငွေလွှဲမှု ချိန်းပေါ်တွင် ပြန်ရုပ်သိမ်းခံရသည်"
   }
 }

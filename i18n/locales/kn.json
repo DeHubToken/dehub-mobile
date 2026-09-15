@@ -795,7 +795,11 @@
     "cancel": "ರದ್ದುಮಾಡಿ",
     "confirm": "ದೃಢೀಕರಿಸಿ",
     "paying": "ಪಾವತಿಸುತ್ತಿದೆ...",
-    "payAmount": "{{amount}} {{currency}} ಪಾವತಿಸಿ"
+    "payAmount": "{{amount}} {{currency}} ಪಾವತಿಸಿ",
+    "firstViews_one": "ಮೊದಲ {{count}} ವೀಕ್ಷಣೆ",
+    "firstViews_other": "ಮೊದಲ {{count}} ವೀಕ್ಷಣೆಗಳು",
+    "firstComments_one": "ಮೊದಲ {{count}} ಕಾಮೆಂಟ್",
+    "firstComments_other": "ಮೊದಲ {{count}} ಕಾಮೆಂಟ್‌ಗಳು"
   },
   "assistant": {
     "title": "ಸಹಾಯಕ",
@@ -3466,5 +3470,35 @@
     "descriptionOptional": "ವಿವರಣೆ (ಐಚ್ಛಿಕ)",
     "whatsHappening": "ಏನಾಗುತ್ತಿದೆ?",
     "quotaShortfall": "ಈ ಪೋಸ್ಟ್‌ಗೆ {{cost}} DHB ಬೇಕು, ನಿಮ್ಮಲ್ಲಿ {{held}} ಇದೆ."
+  },
+  "bounty": {
+    "claimed": "ಪಡೆದಿದೆ",
+    "notEligible": "ಅರ್ಹರಲ್ಲ",
+    "checking": "ಅರ್ಹತೆ ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ…",
+    "rewardType": "ಬಹುಮಾನದ ಪ್ರಕಾರ",
+    "transaction": "ವಹಿವಾಟು",
+    "onChainClaim": "ಆನ್-ಚೈನ್ ಕ್ಲೈಮ್",
+    "confirmClaim": "ಕ್ಲೈಮ್ ದೃಢೀಕರಿಸಿ",
+    "processing": "ಆನ್-ಚೈನ್ ವಹಿವಾಟು ಸಂಸ್ಕರಿಸಲಾಗುತ್ತಿದೆ",
+    "success": "ಬಹುಮಾನ ಪಡೆದಿದೆ!",
+    "awesome": "ಅದ್ಭುತ!",
+    "claimUnable": "ಬಹುಮಾನ ಪಡೆಯಲಾಗಲಿಲ್ಲ",
+    "claimFailed": "ಬಹುಮಾನ ಪಡೆಯುವುದು ವಿಫಲವಾಯಿತು",
+    "switchFailed": "ನೆಟ್‌ವರ್ಕ್ ಬದಲಾಯಿಸಲಾಗಲಿಲ್ಲ",
+    "claimViewerTitle": "ವೀಕ್ಷಕ ಬಹುಮಾನ ಪಡೆಯಿರಿ",
+    "claimCommenterTitle": "ಕಾಮೆಂಟ್‌ದಾರರ ಬಹುಮಾನ ಪಡೆಯಿರಿ",
+    "claimingViewer": "ವೀಕ್ಷಕ ಬಹುಮಾನ ಪಡೆಯಲಾಗುತ್ತಿದೆ…",
+    "claimingCommenter": "ಕಾಮೆಂಟ್‌ದಾರರ ಬಹುಮಾನ ಪಡೆಯಲಾಗುತ್ತಿದೆ…",
+    "viewerReward": "ವೀಕ್ಷಕ ಬಹುಮಾನ",
+    "commenterReward": "ಕಾಮೆಂಟ್‌ದಾರರ ಬಹುಮಾನ",
+    "claimedViewer": "ವೀಕ್ಷಕ ಬಹುಮಾನ ಯಶಸ್ವಿಯಾಗಿ ಸಿಕ್ಕಿತು!",
+    "claimedCommenter": "ಕಾಮೆಂಟ್‌ದಾರರ ಬಹುಮಾನ ಯಶಸ್ವಿಯಾಗಿ ಸಿಕ್ಕಿತು!",
+    "earnedViewer": "ನಿಮ್ಮ ವೀಕ್ಷಕ ಬಹುಮಾನ ಸಿಕ್ಕಿತು",
+    "earnedCommenter": "ನಿಮ್ಮ ಕಾಮೆಂಟ್‌ದಾರರ ಬಹುಮಾನ ಸಿಕ್ಕಿತು",
+    "switchNetwork": "ನೆಟ್‌ವರ್ಕ್ ಬದಲಾಯಿಸಿ",
+    "eligibilityFailed": "ಅರ್ಹತೆ ಪರಿಶೀಲಿಸಲಾಗಲಿಲ್ಲ",
+    "switchFirst": "ಪಡೆಯುವ ಮೊದಲು ಬಹುಮಾನ ನೆಟ್‌ವರ್ಕ್‌ಗೆ ಬದಲಾಯಿಸಿ",
+    "missingSignature": "ಬಹುಮಾನ ಕ್ಲೈಮ್ ಸಹಿ ಕಾಣೆಯಾಗಿದೆ",
+    "txReverted": "ವಹಿವಾಟು ಆನ್-ಚೈನ್‌ನಲ್ಲಿ ಹಿಂತಿರುಗಿತು"
   }
 }
