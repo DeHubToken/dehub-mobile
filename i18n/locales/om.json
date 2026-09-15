@@ -3237,6 +3237,19 @@
       "wallTitle": "Namoonni maaliif jedhu",
       "wallNote": "eeyyama wajjin gabaasame",
       "anonymous": "DeHub miseensa tokko"
-    }
+    },
+    "subtitle": "Lakkoofsota hawaasaa kallattiin",
+    "range7d": "Guyyaa 7",
+    "range30d": "Guyyaa 30",
+    "range1y": "Waggaa 1",
+    "notEnoughHistory": "Sararaaf seenaan gaʼaan hin jiru",
+    "chartA11y": "Sarara miseensotaa yeroon",
+    "loadFailed": "Istaatistiksii kallattii fe'uun hin dandaʼamne.",
+    "livePlatformTotal": "Waliigala kallattii pilaatifoormii",
+    "activeUsers": "Fayyadamtoota galmaa'an hojjetan",
+    "newMembers": "Miseensota haaraa",
+    "membersOverTime": "Miseensota yeroon",
+    "lastDays": "Guyyoota {{count}} darban",
+    "source": "Seenaa herregaa kan galmaa'e bakka dhumaa istaatistiksii uummataa DeHub irraa. Gatiiwwan tilmaamaa sarara kana keessatti hin fayyadamne."
   }
 }

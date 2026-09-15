@@ -3164,6 +3164,19 @@
       "wallTitle": "Waxaa dadku yidhaahda",
       "wallNote": "published with permission",
       "anonymous": "A DeHub member"
-    }
+    },
+    "subtitle": "Tirooyinka bulshada ee tooska ah",
+    "range7d": "7 maalmood",
+    "range30d": "30 maalmood",
+    "range1y": "1 sannad",
+    "notEnoughHistory": "Weli taariikh kuma filna jaantus",
+    "chartA11y": "Jaantuska xubnaha muddada",
+    "loadFailed": "Lama soo rarin karin tirakoobka tooska ah.",
+    "livePlatformTotal": "Wadarta tooska ah ee madasha",
+    "activeUsers": "Isticmaalayaal diiwaangashan oo firfircoon",
+    "newMembers": "Xubno cusub",
+    "membersOverTime": "Xubnaha muddada",
+    "lastDays": "{{count}} maalmood ee u dambeeyay",
+    "source": "Taariikhda akoonnada ee laga duubay meesha tirakoobka dadweynaha ee DeHub. Qiimayaal qiyaasi ah looma isticmaalo jaantuskan."
   }
 }

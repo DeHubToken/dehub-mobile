@@ -3173,6 +3173,19 @@
       "wallTitle": "Què diuen les persones",
       "wallNote": "publicat amb permís",
       "anonymous": "Un membre de DeHub"
-    }
+    },
+    "subtitle": "Xifres de la comunitat en directe",
+    "range7d": "7 dies",
+    "range30d": "30 dies",
+    "range1y": "1 any",
+    "notEnoughHistory": "Encara no hi ha prou historial per a un gràfic",
+    "chartA11y": "Gràfic de membres al llarg del temps",
+    "loadFailed": "No s'han pogut carregar les estadístiques en directe.",
+    "livePlatformTotal": "Total de la plataforma en directe",
+    "activeUsers": "Usuaris registrats actius",
+    "newMembers": "Membres nous",
+    "membersOverTime": "Membres al llarg del temps",
+    "lastDays": "Últims {{count}} dies",
+    "source": "Historial de comptes registrat des de l'endpoint públic d'estadístiques de DeHub. En aquest gràfic no s'utilitzen valors estimats."
   }
 }

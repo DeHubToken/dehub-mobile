@@ -3172,6 +3172,19 @@
       "wallTitle": "Ką sako žmonės",
       "wallNote": "paskelbta su leidimu",
       "anonymous": "DeHub narys"
-    }
+    },
+    "subtitle": "Bendruomenės skaičiai realiu laiku",
+    "range7d": "7 dienos",
+    "range30d": "30 dienų",
+    "range1y": "1 metai",
+    "notEnoughHistory": "Diagramai dar per mažai istorijos",
+    "chartA11y": "Narių diagrama laikui bėgant",
+    "loadFailed": "Nepavyko įkelti tiesioginės statistikos.",
+    "livePlatformTotal": "Platformos suma realiu laiku",
+    "activeUsers": "Aktyvūs registruoti naudotojai",
+    "newMembers": "Nauji nariai",
+    "membersOverTime": "Nariai laikui bėgant",
+    "lastDays": "Paskutinės {{count}} dienos",
+    "source": "Įrašyta paskyrų istorija iš viešo DeHub statistikos galinio taško. Šioje diagramoje nenaudojamos apytikslės reikšmės."
   }
 }

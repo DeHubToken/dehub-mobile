@@ -3173,6 +3173,19 @@
       "wallTitle": "Što ljudi kažu",
       "wallNote": "objavljeno sa dozvolom",
       "anonymous": "Član DeHuba"
-    }
+    },
+    "subtitle": "Brojke zajednice uživo",
+    "range7d": "7 dana",
+    "range30d": "30 dana",
+    "range1y": "1 godina",
+    "notEnoughHistory": "Još nema dovoljno povijesti za grafikon",
+    "chartA11y": "Grafikon članova kroz vrijeme",
+    "loadFailed": "Učitavanje statistike uživo nije uspjelo.",
+    "livePlatformTotal": "Ukupno na platformi uživo",
+    "activeUsers": "Aktivni registrirani korisnici",
+    "newMembers": "Novi članovi",
+    "membersOverTime": "Članovi kroz vrijeme",
+    "lastDays": "Zadnjih {{count}} dana",
+    "source": "Zabilježena povijest računa s DeHubovog javnog statističkog endpointa. U ovom se grafikonu ne koriste procijenjene vrijednosti."
   }
 }

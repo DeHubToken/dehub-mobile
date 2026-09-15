@@ -3173,6 +3173,19 @@
       "wallTitle": "Mitä ihmiset sanovat",
       "wallNote": "julkaistu luvalla",
       "anonymous": "DeHubin jäsen"
-    }
+    },
+    "subtitle": "Yhteisön reaaliaikaiset luvut",
+    "range7d": "7 päivää",
+    "range30d": "30 päivää",
+    "range1y": "1 vuosi",
+    "notEnoughHistory": "Kaaviolle ei ole vielä tarpeeksi historiaa",
+    "chartA11y": "Jäsenten kaavio ajan mittaan",
+    "loadFailed": "Reaaliaikaisia tilastoja ei voitu ladata.",
+    "livePlatformTotal": "Alustan reaaliaikainen kokonaismäärä",
+    "activeUsers": "Aktiiviset rekisteröityneet käyttäjät",
+    "newMembers": "Uudet jäsenet",
+    "membersOverTime": "Jäsenet ajan mittaan",
+    "lastDays": "Viimeiset {{count}} päivää",
+    "source": "Tallennettu tilihistoria DeHubin julkisesta tilastopäätepisteestä. Tässä kaaviossa ei käytetä arvioituja lukuja."
   }
 }

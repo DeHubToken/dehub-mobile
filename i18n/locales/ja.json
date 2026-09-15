@@ -3240,6 +3240,19 @@
       "wallTitle": "人々の声",
       "wallNote": "許可を得て公開",
       "anonymous": "DeHubメンバー"
-    }
+    },
+    "subtitle": "コミュニティのリアルタイム数値",
+    "range7d": "7日間",
+    "range30d": "30日間",
+    "range1y": "1年",
+    "notEnoughHistory": "グラフを描くには履歴がまだ足りません",
+    "chartA11y": "メンバー数の推移グラフ",
+    "loadFailed": "リアルタイム統計を読み込めませんでした。",
+    "livePlatformTotal": "プラットフォーム全体のリアルタイム合計",
+    "activeUsers": "アクティブな登録ユーザー",
+    "newMembers": "新規メンバー",
+    "membersOverTime": "メンバー数の推移",
+    "lastDays": "直近 {{count}} 日間",
+    "source": "DeHub の公開統計エンドポイントに記録されたアカウント履歴です。このグラフに推計値は使用していません。"
   }
 }

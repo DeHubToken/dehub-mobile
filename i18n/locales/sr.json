@@ -2936,7 +2936,20 @@
       "wallTitle": "What people say",
       "wallNote": "published with permission",
       "anonymous": "A DeHub member"
-    }
+    },
+    "subtitle": "Бројке заједнице уживо",
+    "range7d": "7 дана",
+    "range30d": "30 дана",
+    "range1y": "1 година",
+    "notEnoughHistory": "Још нема довољно историје за графикон",
+    "chartA11y": "Графикон чланова кроз време",
+    "loadFailed": "Учитавање статистике уживо није успело.",
+    "livePlatformTotal": "Укупно на платформи уживо",
+    "activeUsers": "Активни регистровани корисници",
+    "newMembers": "Нови чланови",
+    "membersOverTime": "Чланови кроз време",
+    "lastDays": "Последњих {{count}} дана",
+    "source": "Забележена историја налога са DeHub-овог јавног статистичког ендпоинта. У овом графикону се не користе процењене вредности."
   },
   "converter": {
     "publishAs": "Objavi kao",

@@ -3437,6 +3437,19 @@
       "wallTitle": "Apa yang orang katakan",
       "wallNote": "diterbitkan dengan kebenaran",
       "anonymous": "Seorang ahli DeHub"
-    }
+    },
+    "subtitle": "Angka komuniti secara langsung",
+    "range7d": "7 hari",
+    "range30d": "30 hari",
+    "range1y": "1 tahun",
+    "notEnoughHistory": "Sejarah belum mencukupi untuk carta",
+    "chartA11y": "Carta ahli mengikut masa",
+    "loadFailed": "Tidak dapat memuatkan statistik langsung.",
+    "livePlatformTotal": "Jumlah platform secara langsung",
+    "activeUsers": "Pengguna berdaftar yang aktif",
+    "newMembers": "Ahli baharu",
+    "membersOverTime": "Ahli mengikut masa",
+    "lastDays": "{{count}} hari lepas",
+    "source": "Sejarah akaun yang direkodkan daripada titik akhir statistik awam DeHub. Tiada nilai anggaran digunakan dalam carta ini."
   }
 }

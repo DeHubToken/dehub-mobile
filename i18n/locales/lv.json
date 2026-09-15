@@ -3172,6 +3172,19 @@
       "wallTitle": "Ko saka cilvēki",
       "wallNote": "publicēts ar atļauju",
       "anonymous": "DeHub biedrs"
-    }
+    },
+    "subtitle": "Kopienas dati reāllaikā",
+    "range7d": "7 dienas",
+    "range30d": "30 dienas",
+    "range1y": "1 gads",
+    "notEnoughHistory": "Diagrammai vēl nepietiek vēstures",
+    "chartA11y": "Dalībnieku diagramma laikā",
+    "loadFailed": "Neizdevās ielādēt reāllaika statistiku.",
+    "livePlatformTotal": "Platformas kopsumma reāllaikā",
+    "activeUsers": "Aktīvi reģistrēti lietotāji",
+    "newMembers": "Jauni dalībnieki",
+    "membersOverTime": "Dalībnieki laika gaitā",
+    "lastDays": "Pēdējās {{count}} dienas",
+    "source": "Reģistrēta kontu vēsture no DeHub publiskā statistikas galapunkta. Šajā diagrammā netiek izmantotas aptuvenas vērtības."
   }
 }

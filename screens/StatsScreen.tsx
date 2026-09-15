@@ -7,10 +7,11 @@ import {
   Text,
   View,
   useWindowDimensions,
-} from "react-native";
+} from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import Svg, { Line, Polyline } from "react-native-svg";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
 import FeedbackSection from "../components/Stats/FeedbackSection";
 
@@ -30,11 +31,11 @@ interface UserStats {
   history: { since: string | null; days: HistoryDay[] };
 }
 
-const RANGE_OPTIONS: { key: Range; label: string; days: number | null }[] = [
-  { key: "7d", label: "7 days", days: 7 },
-  { key: "30d", label: "30 days", days: 30 },
-  { key: "1y", label: "1 year", days: 365 },
-  { key: "all", label: "All time", days: null },
+const RANGE_OPTIONS: { key: Range; labelKey: string; days: number | null }[] = [
+  { key: "7d", labelKey: "stats.range7d", days: 7 },
+  { key: "30d", labelKey: "stats.range30d", days: 30 },
+  { key: "1y", labelKey: "stats.range1y", days: 365 },
+  { key: "all", labelKey: "leaderboard.allTime", days: null },
 ];
 
 const ENDPOINT = "https://api.dehub.io/api/stats/users";
@@ -52,6 +53,7 @@ async function fetchStats(): Promise<UserStats> {
 function MembersChart({ rows }: { rows: HistoryDay[] }) {
   const { width } = useWindowDimensions();
   const chartWidth = Math.max(260, width - 56);
+  const { t } = useTranslation();
   const chartHeight = 168;
   const sampled = useMemo(() => {
     if (rows.length <= 180) return rows;
@@ -61,7 +63,7 @@ function MembersChart({ rows }: { rows: HistoryDay[] }) {
     return points;
   }, [rows]);
 
-  if (sampled.length < 2) return <Text style={styles.empty}>Not enough history for a chart yet</Text>;
+  if (sampled.length < 2) return <Text style={styles.empty}>{t("stats.notEnoughHistory")}</Text>;
 
   const values = sampled.map((row) => row.total);
   const min = Math.min(...values);
@@ -77,7 +79,7 @@ function MembersChart({ rows }: { rows: HistoryDay[] }) {
 
   return (
     <View>
-      <Svg width={chartWidth} height={chartHeight} accessibilityLabel="Members over time chart">
+      <Svg width={chartWidth} height={chartHeight} accessibilityLabel={t("stats.chartA11y")}>
         <Line x1="0" y1={chartHeight - 1} x2={chartWidth} y2={chartHeight - 1} stroke="#383A3D" />
         <Polyline points={points} fill="none" stroke="#F4F4F5" strokeWidth={2.5} />
       </Svg>
@@ -108,6 +110,7 @@ export default function StatsScreen() {
     refetchInterval: 60_000,
     retry: 1,
   });
+  const { t } = useTranslation();
   const option = RANGE_OPTIONS.find((item) => item.key === range)!;
   const rows = useMemo(() => {
     const all = query.data?.history.days ?? [];
@@ -116,13 +119,13 @@ export default function StatsScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title="Stats" subtitle="Live community numbers" />
+      <ScreenHeader title={t("nav.stats")} subtitle={t("stats.subtitle")} />
       {query.isLoading ? (
         <View style={styles.center}><ActivityIndicator color="#F4F4F5" /></View>
       ) : query.isError || !query.data ? (
         <View style={styles.center}>
-          <Text style={styles.error}>Could not load live stats.</Text>
-          <Pressable style={styles.retry} onPress={() => query.refetch()}><Text style={styles.retryText}>Try again</Text></Pressable>
+          <Text style={styles.error}>{t("stats.loadFailed")}</Text>
+          <Pressable style={styles.retry} onPress={() => query.refetch()}><Text style={styles.retryText}>{t("common.tryAgain")}</Text></Pressable>
         </View>
       ) : (
         <ScrollView
@@ -132,31 +135,31 @@ export default function StatsScreen() {
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filters}>
             {RANGE_OPTIONS.map((item) => (
               <Pressable key={item.key} onPress={() => setRange(item.key)} style={[styles.filter, range === item.key && styles.filterActive]}>
-                <Text style={[styles.filterText, range === item.key && styles.filterTextActive]}>{item.label}</Text>
+                <Text style={[styles.filterText, range === item.key && styles.filterTextActive]}>{t(item.labelKey)}</Text>
               </Pressable>
             ))}
           </ScrollView>
 
-          <Metric label="Members" value={query.data.totals.total} hint="Live platform total" />
-          <Text style={styles.sectionTitle}>Active registered users</Text>
+          <Metric label={t("communities.membersLabel")} value={query.data.totals.total} hint={t("stats.livePlatformTotal")} />
+          <Text style={styles.sectionTitle}>{t("stats.activeUsers")}</Text>
           <View style={styles.grid}>
-            <Metric label="Today" value={query.data.active.daily} />
-            <Metric label="7 days" value={query.data.active.weekly} />
-            <Metric label="30 days" value={query.data.active.monthly} />
+            <Metric label={t("explorePage.today")} value={query.data.active.daily} />
+            <Metric label={t("stats.range7d")} value={query.data.active.weekly} />
+            <Metric label={t("stats.range30d")} value={query.data.active.monthly} />
           </View>
-          <Text style={styles.sectionTitle}>New members</Text>
+          <Text style={styles.sectionTitle}>{t("stats.newMembers")}</Text>
           <View style={styles.grid}>
-            <Metric label="Today" value={query.data.newUsers.today} />
-            <Metric label="This month" value={query.data.newUsers.thisMonth} />
-            <Metric label="This year" value={query.data.newUsers.thisYear} />
+            <Metric label={t("explorePage.today")} value={query.data.newUsers.today} />
+            <Metric label={t("explorePage.thisMonth")} value={query.data.newUsers.thisMonth} />
+            <Metric label={t("explorePage.thisYear")} value={query.data.newUsers.thisYear} />
           </View>
           <View style={styles.card}>
             <View style={styles.cardHeader}>
-              <Text style={styles.cardTitle}>Members over time</Text>
-              <Text style={styles.cardHint}>{option.days == null ? "All time" : `Last ${rows.length} days`}</Text>
+              <Text style={styles.cardTitle}>{t("stats.membersOverTime")}</Text>
+              <Text style={styles.cardHint}>{option.days == null ? t("leaderboard.allTime") : t("stats.lastDays", { count: rows.length })}</Text>
             </View>
             <MembersChart rows={rows} />
-            <Text style={styles.source}>Recorded account history from DeHub’s public stats endpoint. No estimated values are used in this chart.</Text>
+            <Text style={styles.source}>{t("stats.source")}</Text>
           </View>
 
           <FeedbackSection />
