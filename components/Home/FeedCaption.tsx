@@ -5,6 +5,7 @@
  * Detects URLs in text and renders them as blue, tappable links opened in-app.
  */
 import React, { memo, useState, useCallback, useMemo } from "react";
+import { useItemState } from "../../hooks/useItemState";
 import { View, Text, TouchableOpacity, NativeSyntheticEvent, TextLayoutEventData } from "react-native";
 import { openInApp } from "../../libs/links.utils";
 import { hasValidTLD } from "../../libs/tlds";
@@ -118,10 +119,13 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   showCategories = true,
   flagged = false,
 }) => {
-  const [expanded, setExpanded] = useState(fullContent);
   const verdictKey = `${maxLines}|${description ?? ""}`;
-  const [showSeeMore, setShowSeeMore] = useState(
+  // Keyed on the caption itself: a recycled cell must not keep the previous
+  // post's "see more" state.
+  const [expanded, setExpanded] = useItemState(fullContent, verdictKey);
+  const [showSeeMore, setShowSeeMore] = useItemState(
     () => !fullContent && (seeMoreVerdicts.get(verdictKey) ?? false),
+    verdictKey,
   );
   const { showUserProfile } = useUserProfileSheet();
 

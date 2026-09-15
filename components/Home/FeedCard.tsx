@@ -1,5 +1,6 @@
 import { isHoldGated } from "../../libs/content-gate";
 import React, { memo, useCallback, useRef, useState, useMemo, useEffect } from "react";
+import { useItemState } from "../../hooks/useItemState";
 import {
   View,
   DeviceEventEmitter,
@@ -222,6 +223,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const stream = (item as any).stream;
   const streamInfo = (item as any).streamInfo || stream?.streamInfo;
   const tokenId = item.tokenId ?? (item as any).id ?? stream?.tokenId;
+  // A recycling list hands this card a different post without remounting
+  // it, so every per-post useState below resets on this key (useItemState).
+  const recycleKey = (item as any).__listKey ?? String(tokenId);
   const mintTxHash = (item as any).mintTxHash || (item as any).transactionHash || (item as any).txHash;
   const chainId = (item as any).chainId || 8453;
 
@@ -474,21 +478,21 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const linkCopyFloor = useLinkCopyFloor(tokenId);
   const shareCount = repostCount + Math.max(linkCopyCount, linkCopyFloor);
   const trackLinkCopy = useTrackPostLinkCopy();
-  const [showShareSheet, setShowShareSheet] = useState(false);
-  const [showComments, setShowComments] = useState(false);
-  const [showReactionInfo, setShowReactionInfo] = useState(false);
-  const [showOptionsMenu, setShowOptionsMenu] = useState(false);
-  const [showTipModal, setShowTipModal] = useState(false);
-  const [showPPVModal, setShowPPVModal] = useState(false);
-  const [showBountyModal, setShowBountyModal] = useState(false);
-  const [showAISheet, setShowAISheet] = useState(false);
-  const [showAddToFolder, setShowAddToFolder] = useState(false);
-  const [showShareToDm, setShowShareToDm] = useState(false);
-  const [showBoost, setShowBoost] = useState(false);
+  const [showShareSheet, setShowShareSheet] = useItemState(false, recycleKey);
+  const [showComments, setShowComments] = useItemState(false, recycleKey);
+  const [showReactionInfo, setShowReactionInfo] = useItemState(false, recycleKey);
+  const [showOptionsMenu, setShowOptionsMenu] = useItemState(false, recycleKey);
+  const [showTipModal, setShowTipModal] = useItemState(false, recycleKey);
+  const [showPPVModal, setShowPPVModal] = useItemState(false, recycleKey);
+  const [showBountyModal, setShowBountyModal] = useItemState(false, recycleKey);
+  const [showAISheet, setShowAISheet] = useItemState(false, recycleKey);
+  const [showAddToFolder, setShowAddToFolder] = useItemState(false, recycleKey);
+  const [showShareToDm, setShowShareToDm] = useItemState(false, recycleKey);
+  const [showBoost, setShowBoost] = useItemState(false, recycleKey);
   const [activeCashtag, setActiveCashtag] = useState<string | null>(null);
   // Seeded from the session store so a card recycled out of the FlatList
   // window does not re-lock a post the viewer just paid for.
-  const [ppvUnlocked, setPpvUnlocked] = useState(() => isTokenUnlocked(tokenId));
+  const [ppvUnlocked, setPpvUnlocked] = useItemState(() => isTokenUnlocked(tokenId), recycleKey);
   // Local unlock overrides server PPV state after successful payment
   const isActuallyLockedPPV = isServerLockedPPV && !ppvUnlocked;
   const isActuallyComboLocked = isActuallyLockedPPV && isActuallyLockedHoldings;
@@ -506,11 +510,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // pay-per-view, and the creator's own post is warned about too — the warning
   // is for whoever is holding the phone.
   const matureGate = useMatureGate(localContentRating);
-  const [isHidden, setIsHidden] = useState(!!((item as any).isHidden));
-  const [isFollowingCreator, setIsFollowingCreator] = useState(!!((item as any).isFollowing));
-  const [isFollowReqPending, setIsFollowReqPending] = useState(!!((item as any).isFollowRequestPending));
-  const [localTitle, setLocalTitle] = useState(title);
-  const [localDescription, setLocalDescription] = useState(description);
+  const [isHidden, setIsHidden] = useItemState(!!((item as any).isHidden), recycleKey);
+  const [isFollowingCreator, setIsFollowingCreator] = useItemState(!!((item as any).isFollowing), recycleKey);
+  const [isFollowReqPending, setIsFollowReqPending] = useItemState(!!((item as any).isFollowRequestPending), recycleKey);
+  const [localTitle, setLocalTitle] = useItemState(title, recycleKey);
+  const [localDescription, setLocalDescription] = useItemState(description, recycleKey);
   const [localCommentsDisabled, setLocalCommentsDisabled] = useState<boolean>(!!(item as any).commentsDisabled);
   const [localCategories, setLocalCategories] = useState<string[]>(item.category || []);
 
@@ -552,8 +556,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const { isLoading: imgTranslating, error: imgTranslateError, result: imgTranslateResult, translateImage, clearResult: clearImgResult } =
     useImageTranslation();
-  const [showImgTranslationSheet, setShowImgTranslationSheet] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
+  const [showImgTranslationSheet, setShowImgTranslationSheet] = useItemState(false, recycleKey);
+  const [isDeleted, setIsDeleted] = useItemState(false, recycleKey);
 
   // --- Handlers ---
   const handleUserPress = useCallback(() => {
@@ -973,7 +977,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   // The gallery width is the maximum width available to each image. Portrait
   // images hug their rendered bitmap width so the next image follows directly.
-  const [itemWidth, setItemWidth] = useState(IMAGE_WIDTH);
+  const [itemWidth, setItemWidth] = useItemState(IMAGE_WIDTH, recycleKey);
 
   const handleGalleryLayout = useCallback(
     (e: LayoutChangeEvent) => {
@@ -1239,6 +1243,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const renderVideoThumbnail = () => (
     <FeedVideoPlayer
+      key={recycleKey}
       thumbnail={thumbnail}
       videoUrl={isActuallyGated ? undefined : (getVideoUrl(tokenId) || undefined)}
       transcodingStatus={item.transcodingStatus}
@@ -1377,6 +1382,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             {renderImageContent()}
             {tokenId != null && (
               <AudioPostPlayer
+                key={recycleKey}
                 audioUrl={getAudioUrl(item.audioUrl!)}
                 duration={item.audioDuration || 0}
                 tokenId={tokenId}
