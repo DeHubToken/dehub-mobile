@@ -3200,5 +3200,31 @@
     "line": "Olaryň käbiri size hiç haçan habar ýa-da duýduryş iberip bilmezler, ýa-da olaryň iberen zatlaryny barlap bilmezler!",
     "reason": "Sebep: {{reason}}",
     "deleteAccount": "Şkaýyňy we maglumatyňy gizle"
+  },
+  "teamUp": {
+    "title": "Topar döret",
+    "subtitle": "Gapjyk güýjüňizi ýedä çenli başgalar bilen birleşdiriň. Jemiňiziň açýan nyşanyny hemmeler dakýar.",
+    "signInPrompt": "Topar döretmek ýa-da goşulmak üçin giriň. Hiç hili nyşan gerek däl.",
+    "leave": "Topardan çyk",
+    "make": "Topar döret",
+    "makeHint": "Siz eýesi bolarsyňyz. Topar atlary köpçülige açyk.",
+    "join": "Topara goşul",
+    "joinHint": "Bir wagtda diňe bir toparda bolup bilersiňiz.",
+    "none": "Topar tapylmady.",
+    "namePlaceholder": "Toparyň ady",
+    "searchPlaceholder": "Toparlary gözle",
+    "removeFailed": "Ol agzany aýryp bolmady",
+    "left": "Siz topardan çykdyňyz",
+    "leaveFailed": "Ol topardan çykyp bolmady",
+    "created": "Topar döredildi",
+    "createFailed": "Ol topary döredip bolmady",
+    "joined": "{{name}} topara goşuldyňyz",
+    "joinFailed": "Ol topara goşulyp bolmady",
+    "removeTitle": "Agza aýrylsynmy?",
+    "removeBody": "{{name}} {{team}} topardan aýrylsynmy?",
+    "leaveTitle": "Topardan çykylsynmy?",
+    "leaveBody": "{{name}} topardan çykylsynmy?",
+    "leaveAction": "Çyk",
+    "noBadgeYet": "Entek nyşan ýok"
   }
 }

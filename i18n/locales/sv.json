@@ -3234,5 +3234,31 @@
     "line": "Ditt konto är spärrat, så du kan inte lägga upp, kommentera eller skicka meddelanden.",
     "reason": "Orsak: {{reason}}",
     "deleteAccount": "Radera ditt konto och dina data"
+  },
+  "teamUp": {
+    "title": "Slå ihop er",
+    "subtitle": "Kombinera plånbokskraft med upp till sju andra. Alla bär märket som er totalsumma låser upp.",
+    "signInPrompt": "Logga in för att skapa eller gå med i ett lag. Inget märke krävs.",
+    "leave": "Lämna laget",
+    "make": "Skapa ett lag",
+    "makeHint": "Du blir ägare. Lagnamn är offentliga.",
+    "join": "Gå med i ett lag",
+    "joinHint": "Du kan bara vara med i ett lag åt gången.",
+    "none": "Inga lag hittades.",
+    "namePlaceholder": "Lagnamn",
+    "searchPlaceholder": "Sök lag",
+    "removeFailed": "Det gick inte att ta bort den medlemmen",
+    "left": "Du lämnade laget",
+    "leaveFailed": "Det gick inte att lämna det laget",
+    "created": "Laget har skapats",
+    "createFailed": "Det gick inte att skapa det laget",
+    "joined": "Gick med i {{name}}",
+    "joinFailed": "Det gick inte att gå med i det laget",
+    "removeTitle": "Ta bort medlem?",
+    "removeBody": "Ta bort {{name}} från {{team}}?",
+    "leaveTitle": "Lämna laget?",
+    "leaveBody": "Lämna {{name}}?",
+    "leaveAction": "Lämna",
+    "noBadgeYet": "Inget märke än"
   }
 }

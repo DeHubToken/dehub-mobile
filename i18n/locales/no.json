@@ -3220,5 +3220,31 @@
     "body": "Du kan fortsatt logge inn, lese feeden din, åpne meldingene dine og se alt på kontoen din. Du kan ikke legge ut innlegg, kommentere, reagere, følge eller sende meldinger.",
     "line": "Kontoen din er utestengt, så du kan ikke legge ut innlegg, kommentere eller sende meldinger.",
     "deleteAccount": "Slett hele profilen og alle dataene dine"
+  },
+  "teamUp": {
+    "title": "Slå dere sammen",
+    "subtitle": "Kombiner lommebokkraften din med opptil sju andre. Alle bærer merket summen deres låser opp.",
+    "signInPrompt": "Logg inn for å opprette eller bli med i et lag. Ingen merke kreves.",
+    "leave": "Forlat laget",
+    "make": "Opprett et lag",
+    "makeHint": "Du blir eier. Lagnavn er offentlige.",
+    "join": "Bli med i et lag",
+    "joinHint": "Du kan bare være på ett lag om gangen.",
+    "none": "Fant ingen lag.",
+    "namePlaceholder": "Lagnavn",
+    "searchPlaceholder": "Søk etter lag",
+    "removeFailed": "Kunne ikke fjerne det medlemmet",
+    "left": "Du forlot laget",
+    "leaveFailed": "Kunne ikke forlate det laget",
+    "created": "Laget er opprettet",
+    "createFailed": "Kunne ikke opprette det laget",
+    "joined": "Ble med i {{name}}",
+    "joinFailed": "Kunne ikke bli med i det laget",
+    "removeTitle": "Fjerne medlem?",
+    "removeBody": "Fjerne {{name}} fra {{team}}?",
+    "leaveTitle": "Forlate laget?",
+    "leaveBody": "Forlate {{name}}?",
+    "leaveAction": "Forlat",
+    "noBadgeYet": "Ingen merke ennå"
   }
 }

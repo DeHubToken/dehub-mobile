@@ -3229,5 +3229,31 @@
     "line": "Jūsų paskyra užblokuota, todėl negalite skelbti, komentuoti ar siųsti žinučių.",
     "reason": "Priežastis: {{reason}}",
     "deleteAccount": "Paskyros ir duomenų ištrynimas"
+  },
+  "teamUp": {
+    "title": "Burkitės į komandą",
+    "subtitle": "Sujunkite piniginės galią su iki septynių kitų. Visi nešioja ženklelį, kurį atrakina jūsų bendra suma.",
+    "signInPrompt": "Prisijunkite, kad sukurtumėte komandą arba prie jos prisijungtumėte. Ženklelio nereikia.",
+    "leave": "Palikti komandą",
+    "make": "Sukurti komandą",
+    "makeHint": "Tapsite savininku. Komandų pavadinimai yra vieši.",
+    "join": "Prisijungti prie komandos",
+    "joinHint": "Vienu metu galite būti tik vienoje komandoje.",
+    "none": "Komandų nerasta.",
+    "namePlaceholder": "Komandos pavadinimas",
+    "searchPlaceholder": "Ieškoti komandų",
+    "removeFailed": "Nepavyko pašalinti to nario",
+    "left": "Palikote komandą",
+    "leaveFailed": "Nepavyko palikti tos komandos",
+    "created": "Komanda sukurta",
+    "createFailed": "Nepavyko sukurti tos komandos",
+    "joined": "Prisijungėte prie {{name}}",
+    "joinFailed": "Nepavyko prisijungti prie tos komandos",
+    "removeTitle": "Pašalinti narį?",
+    "removeBody": "Pašalinti {{name}} iš {{team}}?",
+    "leaveTitle": "Palikti komandą?",
+    "leaveBody": "Palikti {{name}}?",
+    "leaveAction": "Palikti",
+    "noBadgeYet": "Ženklelio dar nėra"
   }
 }

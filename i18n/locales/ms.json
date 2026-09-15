@@ -3493,5 +3493,31 @@
     "line": "Akaun anda telah diharamkan, jadi anda tidak boleh menyiarkan, memberi komen atau menghantar mesej.",
     "reason": "Sebab: {{reason}}",
     "deleteAccount": "Hapuskan akaun dan data anda"
+  },
+  "teamUp": {
+    "title": "Bentuk pasukan",
+    "subtitle": "Gabungkan kuasa dompet dengan sehingga tujuh orang lain. Semua memakai lencana yang dibuka oleh jumlah anda.",
+    "signInPrompt": "Log masuk untuk mencipta atau menyertai pasukan. Tiada lencana diperlukan.",
+    "leave": "Tinggalkan pasukan",
+    "make": "Cipta pasukan",
+    "makeHint": "Anda menjadi pemiliknya. Nama pasukan adalah awam.",
+    "join": "Sertai pasukan",
+    "joinHint": "Anda hanya boleh berada dalam satu pasukan pada satu masa.",
+    "none": "Tiada pasukan ditemui.",
+    "namePlaceholder": "Nama pasukan",
+    "searchPlaceholder": "Cari pasukan",
+    "removeFailed": "Tidak dapat mengeluarkan ahli itu",
+    "left": "Anda telah meninggalkan pasukan",
+    "leaveFailed": "Tidak dapat meninggalkan pasukan itu",
+    "created": "Pasukan dicipta",
+    "createFailed": "Tidak dapat mencipta pasukan itu",
+    "joined": "Menyertai {{name}}",
+    "joinFailed": "Tidak dapat menyertai pasukan itu",
+    "removeTitle": "Keluarkan ahli?",
+    "removeBody": "Keluarkan {{name}} daripada {{team}}?",
+    "leaveTitle": "Tinggalkan pasukan?",
+    "leaveBody": "Tinggalkan {{name}}?",
+    "leaveAction": "Tinggalkan",
+    "noBadgeYet": "Belum ada lencana"
   }
 }

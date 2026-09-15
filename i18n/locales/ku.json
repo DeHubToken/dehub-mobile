@@ -2989,5 +2989,31 @@
     "needGas": "Ji bo gazê li ser {{chain}} {{token}} ya resen hewce ye.",
     "bridging": "Tê veguhastin…",
     "bridgeAction": "Pir {{from}} → {{to}}"
+  },
+  "teamUp": {
+    "title": "Tîmê pêk bîne",
+    "subtitle": "Hêza berîka xwe bi heta heft kesên din re bike yek. Her kes nîşana ku giştiya we vedike li xwe dike.",
+    "signInPrompt": "Têkeve da ku tîmekê çêkî an tevlî bibî. Tu nîşan hewce nake.",
+    "leave": "Ji tîmê derkeve",
+    "make": "Tîmekê çêke",
+    "makeHint": "Tu dibî xwedî. Navên tîman gelemperî ne.",
+    "join": "Tevlî tîmekê bibe",
+    "joinHint": "Tu tenê dikarî di yek tîmê de bî.",
+    "none": "Tu tîm nehat dîtin.",
+    "namePlaceholder": "Navê tîmê",
+    "searchPlaceholder": "Li tîman bigere",
+    "removeFailed": "Ew endam nehat rakirin",
+    "left": "Tu ji tîmê derketî",
+    "leaveFailed": "Nehat derketin ji wê tîmê",
+    "created": "Tîm hat çêkirin",
+    "createFailed": "Ew tîm nehat çêkirin",
+    "joined": "Tu tevlî {{name}} bûyî",
+    "joinFailed": "Nehat tevlîbûn bo wê tîmê",
+    "removeTitle": "Endam bê rakirin?",
+    "removeBody": "{{name}} ji {{team}} bê rakirin?",
+    "leaveTitle": "Ji tîmê derkevî?",
+    "leaveBody": "Ji {{name}} derkevî?",
+    "leaveAction": "Derkeve",
+    "noBadgeYet": "Hîn nîşan tune"
   }
 }

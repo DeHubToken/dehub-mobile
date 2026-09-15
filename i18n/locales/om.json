@@ -3294,5 +3294,31 @@
     "line": "Akkaawuntii keessan dhorkamee waan jiruuf maxxansuu, yaada kennuu ykn ergaa erguu hin dandeessan.",
     "reason": "Sababni: {{reason}}",
     "deleteAccount": "Akkaawuntii fi daataa keessan haqi"
+  },
+  "teamUp": {
+    "title": "Garee ijaari",
+    "subtitle": "Humna boorsaa kee namoota biroo hanga torbaa waliin walitti makii. Namni hundi badhaasa waliigalli keessan banu uffata.",
+    "signInPrompt": "Garee uumuuf ykn itti makamuuf seeni. Badhaasni hin barbaachisu.",
+    "leave": "Garee gadhiisi",
+    "make": "Garee uumi",
+    "makeHint": "Ati abbaa taata. Maqaan garee uummataaf banaa dha.",
+    "join": "Garee tokkotti makami",
+    "joinHint": "Yeroo tokkotti garee tokko qofa keessa ta'uu dandeessa.",
+    "none": "Gareen hin argamne.",
+    "namePlaceholder": "Maqaa garee",
+    "searchPlaceholder": "Garee barbaadi",
+    "removeFailed": "Miseensa sana haquun hin dandaʼamne",
+    "left": "Garee gadhiiftee jirta",
+    "leaveFailed": "Garee sana gadhiisuun hin dandaʼamne",
+    "created": "Gareen uumame",
+    "createFailed": "Garee sana uumuun hin dandaʼamne",
+    "joined": "{{name}} tti makamtee jirta",
+    "joinFailed": "Garee sanatti makamuun hin dandaʼamne",
+    "removeTitle": "Miseensa haqu?",
+    "removeBody": "{{name}} {{team}} irraa haqu?",
+    "leaveTitle": "Garee gadhiisu?",
+    "leaveBody": "{{name}} gadhiisu?",
+    "leaveAction": "Gadhiisi",
+    "noBadgeYet": "Amma badhaasni hin jiru"
   }
 }

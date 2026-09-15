@@ -3234,5 +3234,31 @@
     "line": "Váš účet je zablokován, takže nemůžete zveřejňovat, komentovat ani odesílat zprávy.",
     "reason": "Důvod: {{reason}}",
     "deleteAccount": "Smazat účet a data"
+  },
+  "teamUp": {
+    "title": "Spojte síly",
+    "subtitle": "Spojte sílu peněženky až se sedmi dalšími. Odznak, který váš součet odemkne, nosí všichni.",
+    "signInPrompt": "Přihlaste se, abyste vytvořili tým nebo se k němu připojili. Odznak není potřeba.",
+    "leave": "Opustit tým",
+    "make": "Vytvořit tým",
+    "makeHint": "Stanete se vlastníkem. Názvy týmů jsou veřejné.",
+    "join": "Připojit se k týmu",
+    "joinHint": "Můžete být jen v jednom týmu najednou.",
+    "none": "Nenalezeny žádné týmy.",
+    "namePlaceholder": "Název týmu",
+    "searchPlaceholder": "Hledat týmy",
+    "removeFailed": "Tohoto člena se nepodařilo odebrat",
+    "left": "Opustili jste tým",
+    "leaveFailed": "Tento tým se nepodařilo opustit",
+    "created": "Tým vytvořen",
+    "createFailed": "Tento tým se nepodařilo vytvořit",
+    "joined": "Připojili jste se k {{name}}",
+    "joinFailed": "K tomuto týmu se nepodařilo připojit",
+    "removeTitle": "Odebrat člena?",
+    "removeBody": "Odebrat {{name}} z týmu {{team}}?",
+    "leaveTitle": "Opustit tým?",
+    "leaveBody": "Opustit {{name}}?",
+    "leaveAction": "Opustit",
+    "noBadgeYet": "Zatím žádný odznak"
   }
 }

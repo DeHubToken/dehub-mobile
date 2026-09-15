@@ -3260,5 +3260,31 @@
     "title": "Cuentaykiqa harkasqam kachkan",
     "line": "Yupayniyki hark&#39;asqa kachkan, chayrayku mana qillqayta, rimayta utaq willayta apachiyta atikunkichu.",
     "deleteAccount": "Cuentaykita, datosniykitapas chinkachiy"
+  },
+  "teamUp": {
+    "title": "Huñunakuy",
+    "subtitle": "Qullqi waqaychanaykip kallpanta qanchis runawan huñuy. Llapanku churakunku chay unanchata mayqinta hukllachasqaykichik kicharin.",
+    "signInPrompt": "Huñu kamanaykipaq utaq yaykunaykipaq yaykuy. Mana ima unanchapas necesitakunchu.",
+    "leave": "Huñumanta lloqsiy",
+    "make": "Huñu kamay",
+    "makeHint": "Qam duiñu kanki. Huñukunap sutinkuna llapapaq rikunapaq.",
+    "join": "Huñuman yaykuy",
+    "joinHint": "Hukllan huñullapi kanki huk kutilla.",
+    "none": "Mana huñukuna tarisqachu.",
+    "namePlaceholder": "Huñup sutin",
+    "searchPlaceholder": "Huñukunata maskay",
+    "removeFailed": "Chay masita hurquyta mana atikunchu",
+    "left": "Huñumanta lloqsirqanki",
+    "leaveFailed": "Chay huñumanta lloqsiyta mana atikunchu",
+    "created": "Huñu kamasqa",
+    "createFailed": "Chay huñuta kamayta mana atikunchu",
+    "joined": "{{name}} huñuman yaykurqanki",
+    "joinFailed": "Chay huñuman yaykuyta mana atikunchu",
+    "removeTitle": "Masita hurqusun?",
+    "removeBody": "{{name}} runata {{team}} huñumanta hurqusun?",
+    "leaveTitle": "Huñumanta lloqsisun?",
+    "leaveBody": "{{name}} huñumanta lloqsisun?",
+    "leaveAction": "Lloqsiy",
+    "noBadgeYet": "Manaraq unancha kanchu"
   }
 }

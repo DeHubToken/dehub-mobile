@@ -3300,5 +3300,31 @@
     "line": "Your account is banned, so you cannot post, comment or send messages.",
     "reason": "Reason: {{reason}}",
     "deleteAccount": "Delete your account and data"
+  },
+  "teamUp": {
+    "title": "Team up",
+    "subtitle": "Combine wallet power with up to seven others. Everyone wears the badge your total unlocks.",
+    "signInPrompt": "Sign in to make or join a team. No badge is required.",
+    "leave": "Leave team",
+    "make": "Make a team",
+    "makeHint": "You become the owner. Team names are public.",
+    "join": "Join a team",
+    "joinHint": "You can only be in one team at a time.",
+    "none": "No teams found.",
+    "namePlaceholder": "Team name",
+    "searchPlaceholder": "Search teams",
+    "removeFailed": "Could not remove that member",
+    "left": "You left the team",
+    "leaveFailed": "Could not leave that team",
+    "created": "Team created",
+    "createFailed": "Could not create that team",
+    "joined": "Joined {{name}}",
+    "joinFailed": "Could not join that team",
+    "removeTitle": "Remove member?",
+    "removeBody": "Remove {{name}} from {{team}}?",
+    "leaveTitle": "Leave team?",
+    "leaveBody": "Leave {{name}}?",
+    "leaveAction": "Leave",
+    "noBadgeYet": "No badge yet"
   }
 }

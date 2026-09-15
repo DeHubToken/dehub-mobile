@@ -19,6 +19,7 @@ import {
 } from '../../hooks/useSuperpowers';
 import { getAvatarUrl, toastError, toastSuccess } from '../../libs';
 import { useAuthActions } from '../../context/AuthContext';
+import { useTranslation } from 'react-i18next';
 import Avatar from './Avatar';
 import GlassModal from '../ui/GlassModal';
 import Icon from '../ui/Icon';
@@ -39,6 +40,7 @@ export default function TeamUpSheet({
   onClose: () => void;
   address: string | null;
 }) {
+  const { t } = useTranslation();
   const { requireAuth } = useAuthActions();
   const [name, setName] = useState('');
   const [search, setSearch] = useState('');
@@ -59,22 +61,22 @@ export default function TeamUpSheet({
           <View style={styles.headerText}>
             <View style={styles.titleRow}>
               <SuperPowerIcon power="team_up" style={styles.powerIcon} />
-              <Text style={styles.title}>Team up</Text>
+              <Text style={styles.title}>{t('teamUp.title')}</Text>
             </View>
             <Text style={styles.subtitle}>
-              Combine wallet power with up to seven others. Everyone wears the badge your total unlocks.
+              {t('teamUp.subtitle')}
             </Text>
           </View>
-          <Pressable onPress={onClose} hitSlop={10} accessibilityRole="button" accessibilityLabel="Close">
+          <Pressable onPress={onClose} hitSlop={10} accessibilityRole="button" accessibilityLabel={t('common.close')}>
             <Icon name="X" size={18} color="#A1A1AA" />
           </Pressable>
         </View>
 
         {!address ? (
           <View style={styles.panel}>
-            <Text style={styles.body}>Sign in to make or join a team. No badge is required.</Text>
+            <Text style={styles.body}>{t('teamUp.signInPrompt')}</Text>
             <Pressable onPress={() => requireAuth(() => {})} style={styles.primaryButton}>
-              <Text style={styles.primaryButtonText}>Sign in</Text>
+              <Text style={styles.primaryButtonText}>{t('common.signIn')}</Text>
             </Pressable>
           </View>
         ) : mine.isLoading ? (
@@ -87,7 +89,7 @@ export default function TeamUpSheet({
                 <Text style={styles.muted}>{mine.data.memberCount}/{mine.data.maxMembers} members</Text>
               </View>
               <View style={styles.right}>
-                <Text style={styles.teamTier}>{mine.data.tier || 'No badge yet'}</Text>
+                <Text style={styles.teamTier}>{mine.data.tier || t('teamUp.noBadgeYet')}</Text>
                 <Text style={styles.muted}>{compact.format(mine.data.pooledBadgeBalance)} DHB pooled</Text>
               </View>
             </View>
@@ -105,7 +107,7 @@ export default function TeamUpSheet({
                   />
                   <View style={styles.grow}>
                     <Text style={styles.memberName} numberOfLines={1}>
-                      {memberName(member)} {owner ? <Text style={styles.owner}>Owner</Text> : null}
+                      {memberName(member)} {owner ? <Text style={styles.owner}>{t('communities.owner')}</Text> : null}
                     </Text>
                     <Text style={styles.muted}>{compact.format(member.ownBadgeBalance)} DHB</Text>
                   </View>
@@ -113,22 +115,22 @@ export default function TeamUpSheet({
                     <Pressable
                       disabled={busy}
                       onPress={() => Alert.alert(
-                        'Remove member?',
-                        `Remove ${memberName(member)} from ${mine.data!.name}?`,
+                        t('teamUp.removeTitle'),
+                        t('teamUp.removeBody', { name: memberName(member), team: mine.data!.name }),
                         [
-                          { text: 'Cancel', style: 'cancel' },
+                          { text: t('common.cancel'), style: 'cancel' },
                           {
-                            text: 'Remove',
+                            text: t('follow.remove'),
                             style: 'destructive',
                             onPress: () => remove.mutate(
                               { teamId: mine.data!.id, address: member.address },
-                              { onError: (error: any) => toastError(error?.message || 'Could not remove that member') },
+                              { onError: (error: any) => toastError(error?.message || t('teamUp.removeFailed')) },
                             ),
                           },
                         ],
                       )}
                     >
-                      <Text style={styles.link}>Remove</Text>
+                      <Text style={styles.link}>{t('follow.remove')}</Text>
                     </Pressable>
                   ) : null}
                 </View>
@@ -139,65 +141,65 @@ export default function TeamUpSheet({
               disabled={busy}
               style={styles.secondaryButton}
               onPress={() => Alert.alert(
-                'Leave team?',
-                `Leave ${mine.data!.name}?`,
+                t('teamUp.leaveTitle'),
+                t('teamUp.leaveBody', { name: mine.data!.name }),
                 [
-                  { text: 'Cancel', style: 'cancel' },
+                  { text: t('common.cancel'), style: 'cancel' },
                   {
-                    text: 'Leave',
+                    text: t('teamUp.leaveAction'),
                     style: 'destructive',
                     onPress: () => leave.mutate(undefined, {
-                      onSuccess: () => toastSuccess('You left the team'),
-                      onError: (error: any) => toastError(error?.message || 'Could not leave that team'),
+                      onSuccess: () => toastSuccess(t('teamUp.left')),
+                      onError: (error: any) => toastError(error?.message || t('teamUp.leaveFailed')),
                     }),
                   },
                 ],
               )}
             >
-              <Text style={styles.secondaryButtonText}>Leave team</Text>
+              <Text style={styles.secondaryButtonText}>{t('teamUp.leave')}</Text>
             </Pressable>
           </ScrollView>
         ) : (
           <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.panel}>
-              <Text style={styles.panelTitle}>Make a team</Text>
-              <Text style={styles.muted}>You become the owner. Team names are public.</Text>
+              <Text style={styles.panelTitle}>{t('teamUp.make')}</Text>
+              <Text style={styles.muted}>{t('teamUp.makeHint')}</Text>
               <View style={styles.inputRow}>
                 <TextInput
                   value={name}
                   onChangeText={setName}
                   maxLength={40}
-                  placeholder="Team name"
+                  placeholder={t('teamUp.namePlaceholder')}
                   placeholderTextColor="#61616B"
                   style={styles.input}
-                  accessibilityLabel="Team name"
+                  accessibilityLabel={t('teamUp.namePlaceholder')}
                 />
                 <Pressable
                   disabled={busy || name.trim().length < 3}
                   style={[styles.primaryButton, (busy || name.trim().length < 3) && styles.disabled]}
                   onPress={() => create.mutate(name, {
-                    onSuccess: () => { setName(''); toastSuccess('Team created'); },
-                    onError: (error: any) => toastError(error?.message || 'Could not create that team'),
+                    onSuccess: () => { setName(''); toastSuccess(t('teamUp.created')); },
+                    onError: (error: any) => toastError(error?.message || t('teamUp.createFailed')),
                   })}
                 >
-                  <Text style={styles.primaryButtonText}>Create</Text>
+                  <Text style={styles.primaryButtonText}>{t('communities.create')}</Text>
                 </Pressable>
               </View>
             </View>
 
             <View style={styles.sectionHead}>
-              <Text style={styles.panelTitle}>Join a team</Text>
-              <Text style={styles.muted}>You can only be in one team at a time.</Text>
+              <Text style={styles.panelTitle}>{t('teamUp.join')}</Text>
+              <Text style={styles.muted}>{t('teamUp.joinHint')}</Text>
             </View>
             <View style={styles.searchWrap}>
               <Icon name="Search" size={16} color="#71717A" />
               <TextInput
                 value={search}
                 onChangeText={setSearch}
-                placeholder="Search teams"
+                placeholder={t('teamUp.searchPlaceholder')}
                 placeholderTextColor="#61616B"
                 style={styles.searchInput}
-                accessibilityLabel="Search teams"
+                accessibilityLabel={t('teamUp.searchPlaceholder')}
               />
             </View>
 
@@ -206,7 +208,7 @@ export default function TeamUpSheet({
             ) : (teams.data ?? []).length === 0 ? (
               <View style={styles.empty}>
                 <Icon name="Users" size={24} color="#52525B" />
-                <Text style={styles.emptyText}>No teams found.</Text>
+                <Text style={styles.emptyText}>{t('teamUp.none')}</Text>
               </View>
             ) : (teams.data ?? []).map(team => (
               <View key={team.id} style={styles.teamRow}>
@@ -220,8 +222,8 @@ export default function TeamUpSheet({
                   disabled={busy || team.memberCount >= team.maxMembers}
                   style={[styles.joinButton, (busy || team.memberCount >= team.maxMembers) && styles.disabled]}
                   onPress={() => join.mutate(team.id, {
-                    onSuccess: () => toastSuccess(`Joined ${team.name}`),
-                    onError: (error: any) => toastError(error?.message || 'Could not join that team'),
+                    onSuccess: () => toastSuccess(t('teamUp.joined', { name: team.name })),
+                    onError: (error: any) => toastError(error?.message || t('teamUp.joinFailed')),
                   })}
                 >
                   <Text style={styles.joinButtonText}>{team.memberCount >= team.maxMembers ? 'Full' : 'Join'}</Text>

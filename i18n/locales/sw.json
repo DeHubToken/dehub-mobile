@@ -3230,5 +3230,31 @@
     "line": "Akaunti yako imepigwa marufuku, kwa hivyo huwezi kuchapisha, kutoa maoni au kutuma ujumbe.",
     "reason": "Sababu: {{reason}}",
     "deleteAccount": "Futa akaunti na data yako"
+  },
+  "teamUp": {
+    "title": "Unda timu",
+    "subtitle": "Unganisha nguvu ya pochi na hadi watu wengine saba. Kila mtu huvaa beji ambayo jumla yenu inafungua.",
+    "signInPrompt": "Ingia ili kuunda au kujiunga na timu. Hakuna beji inayohitajika.",
+    "leave": "Ondoka kwenye timu",
+    "make": "Unda timu",
+    "makeHint": "Wewe unakuwa mmiliki. Majina ya timu ni ya umma.",
+    "join": "Jiunge na timu",
+    "joinHint": "Unaweza kuwa kwenye timu moja tu kwa wakati mmoja.",
+    "none": "Hakuna timu zilizopatikana.",
+    "namePlaceholder": "Jina la timu",
+    "searchPlaceholder": "Tafuta timu",
+    "removeFailed": "Imeshindwa kumwondoa mwanachama huyo",
+    "left": "Umeondoka kwenye timu",
+    "leaveFailed": "Imeshindwa kuondoka kwenye timu hiyo",
+    "created": "Timu imeundwa",
+    "createFailed": "Imeshindwa kuunda timu hiyo",
+    "joined": "Umejiunga na {{name}}",
+    "joinFailed": "Imeshindwa kujiunga na timu hiyo",
+    "removeTitle": "Kumwondoa mwanachama?",
+    "removeBody": "Kumwondoa {{name}} kwenye {{team}}?",
+    "leaveTitle": "Kuondoka kwenye timu?",
+    "leaveBody": "Kuondoka kwenye {{name}}?",
+    "leaveAction": "Ondoka",
+    "noBadgeYet": "Bado hakuna beji"
   }
 }

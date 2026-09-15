@@ -3230,5 +3230,31 @@
     "line": "Tilisi on estetty, joten et voi julkaista, kommentoida tai lähettää viestejä.",
     "reason": "Syy: {{reason}}",
     "deleteAccount": "Poista tilisi ja tietosi"
+  },
+  "teamUp": {
+    "title": "Muodosta tiimi",
+    "subtitle": "Yhdistä lompakkosi voima jopa seitsemän muun kanssa. Kaikki kantavat merkkiä, jonka yhteissummanne avaa.",
+    "signInPrompt": "Kirjaudu sisään luodaksesi tiimin tai liittyäksesi siihen. Merkkiä ei tarvita.",
+    "leave": "Poistu tiimistä",
+    "make": "Luo tiimi",
+    "makeHint": "Sinusta tulee omistaja. Tiimien nimet ovat julkisia.",
+    "join": "Liity tiimiin",
+    "joinHint": "Voit olla vain yhdessä tiimissä kerrallaan.",
+    "none": "Tiimejä ei löytynyt.",
+    "namePlaceholder": "Tiimin nimi",
+    "searchPlaceholder": "Hae tiimejä",
+    "removeFailed": "Jäsenen poistaminen ei onnistunut",
+    "left": "Poistuit tiimistä",
+    "leaveFailed": "Tiimistä poistuminen ei onnistunut",
+    "created": "Tiimi luotu",
+    "createFailed": "Tiimin luominen ei onnistunut",
+    "joined": "Liityit tiimiin {{name}}",
+    "joinFailed": "Tiimiin liittyminen ei onnistunut",
+    "removeTitle": "Poistetaanko jäsen?",
+    "removeBody": "Poistetaanko {{name}} tiimistä {{team}}?",
+    "leaveTitle": "Poistutaanko tiimistä?",
+    "leaveBody": "Poistutaanko tiimistä {{name}}?",
+    "leaveAction": "Poistu",
+    "noBadgeYet": "Ei vielä merkkiä"
   }
 }

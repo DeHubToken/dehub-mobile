@@ -3399,5 +3399,31 @@
     "line": "Váš účet je zablokovaný, takže nemôžete uverejňovať, komentovať ani odosielať správy.",
     "reason": "Dôvod: {{reason}}",
     "deleteAccount": "Odstráňte svoj účet a údaje"
+  },
+  "teamUp": {
+    "title": "Spojte sily",
+    "subtitle": "Spojte silu peňaženky až so siedmimi ďalšími. Odznak, ktorý váš súčet odomkne, nosia všetci.",
+    "signInPrompt": "Prihláste sa, aby ste vytvorili tím alebo sa k nemu pripojili. Odznak nie je potrebný.",
+    "leave": "Opustiť tím",
+    "make": "Vytvoriť tím",
+    "makeHint": "Stanete sa vlastníkom. Názvy tímov sú verejné.",
+    "join": "Pripojiť sa k tímu",
+    "joinHint": "Naraz môžete byť len v jednom tíme.",
+    "none": "Nenašli sa žiadne tímy.",
+    "namePlaceholder": "Názov tímu",
+    "searchPlaceholder": "Hľadať tímy",
+    "removeFailed": "Tohto člena sa nepodarilo odstrániť",
+    "left": "Opustili ste tím",
+    "leaveFailed": "Tento tím sa nepodarilo opustiť",
+    "created": "Tím vytvorený",
+    "createFailed": "Tento tím sa nepodarilo vytvoriť",
+    "joined": "Pripojili ste sa k {{name}}",
+    "joinFailed": "K tomuto tímu sa nepodarilo pripojiť",
+    "removeTitle": "Odstrániť člena?",
+    "removeBody": "Odstrániť {{name}} z tímu {{team}}?",
+    "leaveTitle": "Opustiť tím?",
+    "leaveBody": "Opustiť {{name}}?",
+    "leaveAction": "Opustiť",
+    "noBadgeYet": "Zatiaľ žiadny odznak"
   }
 }
