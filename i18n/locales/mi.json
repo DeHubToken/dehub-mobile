@@ -3542,5 +3542,28 @@
     "subscribe": "Ohaurunga",
     "subscriberCount_one": "{{count}} kaiohaurunga",
     "subscriberCount_other": "{{count}} kaiohaurunga"
+  },
+  "live": {
+    "notSet": "Kāore i tautuhia",
+    "liveChat": "Kōrerorero ora",
+    "pickDate": "Kōwhiria te rā",
+    "pickTime": "Kōwhiria te wā",
+    "minTip": "Tohu iti rawa"
+  },
+  "liveShop": {
+    "title": "Hokona mai i tēnei hōtaka",
+    "onAir": "Kei te pāho",
+    "lastOne": "Te mea whakamutunga",
+    "stockLeft": "E {{count}} e toe ana",
+    "walletNotReady": "Kāore anō te pūkoro kia rite",
+    "gettingPrice": "Kei te tiki utu…",
+    "ownListing": "Ko tāu ake rārangi tēnei.",
+    "shippingAddress": "Wāhitau tuku",
+    "addressPlaceholder": "Ingoa, tiriti, tāone, waehere poutāpeta, whenua",
+    "noteToSeller": "Tuhipoka ki te kaihoko (kōwhiringa)",
+    "notePlaceholder": "Rahi, tae, ētahi atu mea…",
+    "confirmingPayment": "Kei te whakaū i te utu…",
+    "retryConfirmation": "Ngana anō ki te whakaū",
+    "buyNow": "Hokona ināianei"
   }
 }

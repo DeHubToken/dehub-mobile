@@ -3556,5 +3556,28 @@
     "subscribe": "Prenumeruoti",
     "subscriberCount_one": "{{count}} prenumeratorius",
     "subscriberCount_other": "{{count}} prenumeratoriai"
+  },
+  "live": {
+    "notSet": "Nenustatyta",
+    "liveChat": "Tiesioginis pokalbis",
+    "pickDate": "Pasirinkti datą",
+    "pickTime": "Pasirinkti laiką",
+    "minTip": "Min. arbatpinigiai"
+  },
+  "liveShop": {
+    "title": "Pirkite iš šios transliacijos",
+    "onAir": "Transliuojama",
+    "lastOne": "Paskutinis",
+    "stockLeft": "Liko {{count}}",
+    "walletNotReady": "Piniginė dar neparuošta",
+    "gettingPrice": "Gaunama kaina…",
+    "ownListing": "Tai jūsų pačių skelbimas.",
+    "shippingAddress": "Pristatymo adresas",
+    "addressPlaceholder": "Vardas, gatvė, miestas, pašto kodas, šalis",
+    "noteToSeller": "Pastaba pardavėjui (nebūtina)",
+    "notePlaceholder": "Dydis, spalva, kita…",
+    "confirmingPayment": "Patvirtinamas mokėjimas…",
+    "retryConfirmation": "Bandyti patvirtinti dar kartą",
+    "buyNow": "Pirkti dabar"
   }
 }

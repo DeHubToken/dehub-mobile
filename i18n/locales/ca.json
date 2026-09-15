@@ -3557,5 +3557,28 @@
     "subscribe": "Subscriu-t'hi",
     "subscriberCount_one": "{{count}} subscriptor",
     "subscriberCount_other": "{{count}} subscriptors"
+  },
+  "live": {
+    "notSet": "Sense definir",
+    "liveChat": "Xat en directe",
+    "pickDate": "Tria la data",
+    "pickTime": "Tria l'hora",
+    "minTip": "Propina mínima"
+  },
+  "liveShop": {
+    "title": "Compra en aquesta emissió",
+    "onAir": "En directe",
+    "lastOne": "L'últim",
+    "stockLeft": "En queden {{count}}",
+    "walletNotReady": "La cartera encara no està a punt",
+    "gettingPrice": "S'està obtenint el preu…",
+    "ownListing": "Aquest és el teu propi anunci.",
+    "shippingAddress": "Adreça d'enviament",
+    "addressPlaceholder": "Nom, carrer, ciutat, codi postal, país",
+    "noteToSeller": "Nota per al venedor (opcional)",
+    "notePlaceholder": "Talla, color, qualsevol altra cosa…",
+    "confirmingPayment": "S'està confirmant el pagament…",
+    "retryConfirmation": "Torna a provar la confirmació",
+    "buyNow": "Compra ara"
   }
 }

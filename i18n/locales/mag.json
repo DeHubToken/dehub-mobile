@@ -3509,5 +3509,28 @@
     "subscribe": "सब्सक्राइब करू",
     "subscriberCount_one": "{{count}} सब्सक्राइबर",
     "subscriberCount_other": "{{count}} सब्सक्राइबर"
+  },
+  "live": {
+    "notSet": "सेट नै अछि",
+    "liveChat": "लाइव चैट",
+    "pickDate": "तारीख चुनू",
+    "pickTime": "समय चुनू",
+    "minTip": "न्यूनतम टिप"
+  },
+  "liveShop": {
+    "title": "ई स्ट्रीम सँ कीनू",
+    "onAir": "प्रसारण में",
+    "lastOne": "आखिरी एक",
+    "stockLeft": "{{count}} बाँकी",
+    "walletNotReady": "वॉलेट अखनि तैयार नै अछि",
+    "gettingPrice": "दाम अनल जा रहल अछि…",
+    "ownListing": "ई अहाँक अपन लिस्टिंग अछि।",
+    "shippingAddress": "भेजे के पता",
+    "addressPlaceholder": "नाम, गली, शहर, पिनकोड, देस",
+    "noteToSeller": "बेचे बला लेल नोट (वैकल्पिक)",
+    "notePlaceholder": "साइज, रंग, आर किछु…",
+    "confirmingPayment": "भुगतान के पुष्टि भ रहल अछि…",
+    "retryConfirmation": "पुष्टि फेर करू",
+    "buyNow": "अखनि कीनू"
   }
 }

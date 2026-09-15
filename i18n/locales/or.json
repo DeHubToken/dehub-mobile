@@ -3528,5 +3528,28 @@
     "subscribe": "ସବସ୍କ୍ରାଇବ କରନ୍ତୁ",
     "subscriberCount_one": "{{count}} ସବସ୍କ୍ରାଇବର",
     "subscriberCount_other": "{{count}} ସବସ୍କ୍ରାଇବର"
+  },
+  "live": {
+    "notSet": "ସେଟ ହୋଇନାହିଁ",
+    "liveChat": "ଲାଇଭ ଚାଟ",
+    "pickDate": "ତାରିଖ ବାଛନ୍ତୁ",
+    "pickTime": "ସମୟ ବାଛନ୍ତୁ",
+    "minTip": "ସର୍ବନିମ୍ନ ଟିପ"
+  },
+  "liveShop": {
+    "title": "ଏହି ଷ୍ଟ୍ରିମରୁ କିଣନ୍ତୁ",
+    "onAir": "ପ୍ରସାରଣରେ",
+    "lastOne": "ଶେଷଟି",
+    "stockLeft": "{{count}} ବାକି",
+    "walletNotReady": "ୱାଲେଟ ଏବେ ପ୍ରସ୍ତୁତ ନାହିଁ",
+    "gettingPrice": "ମୂଲ୍ୟ ଆଣାଯାଉଛି…",
+    "ownListing": "ଏହା ଆପଣଙ୍କ ନିଜର ତାଲିକା।",
+    "shippingAddress": "ପଠାଇବା ଠିକଣା",
+    "addressPlaceholder": "ନାମ, ରାସ୍ତା, ସହର, ପିନକୋଡ, ଦେଶ",
+    "noteToSeller": "ବିକ୍ରେତାଙ୍କୁ ଟିପ୍ପଣୀ (ଐଚ୍ଛିକ)",
+    "notePlaceholder": "ଆକାର, ରଙ୍ଗ, ଅନ୍ୟ କିଛି…",
+    "confirmingPayment": "ପେମେଣ୍ଟ ନିଶ୍ଚିତ ହେଉଛି…",
+    "retryConfirmation": "ନିଶ୍ଚିତକରଣ ପୁନଃ ଚେଷ୍ଟା କରନ୍ତୁ",
+    "buyNow": "ଏବେ କିଣନ୍ତୁ"
   }
 }

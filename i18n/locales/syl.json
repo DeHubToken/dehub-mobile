@@ -3703,5 +3703,28 @@
     "subscribe": "সাবস্ক্রাইব করউক্কা",
     "subscriberCount_one": "{{count}} সাবস্ক্রাইবার",
     "subscriberCount_other": "{{count}} সাবস্ক্রাইবার"
+  },
+  "live": {
+    "notSet": "ঠিক করা নাই",
+    "liveChat": "লাইভ চ্যাট",
+    "pickDate": "তারিখ বাছউক্কা",
+    "pickTime": "সময় বাছউক্কা",
+    "minTip": "সবতে কম টিপ"
+  },
+  "liveShop": {
+    "title": "ইলা স্ট্রিম থাকি কিনউক্কা",
+    "onAir": "সম্প্রচারো",
+    "lastOne": "শেষটা",
+    "stockLeft": "{{count}} বাকি",
+    "walletNotReady": "ওয়ালেট অখনো প্রস্তুত নায়",
+    "gettingPrice": "দাম আনরো…",
+    "ownListing": "ইতা তোমার নিজর তালিকা।",
+    "shippingAddress": "ডেলিভারির ঠিকানা",
+    "addressPlaceholder": "নাম, রাস্তা, শহর, পোস্টকোড, দেশ",
+    "noteToSeller": "বিক্রেতার লাগি নোট (ঐচ্ছিক)",
+    "notePlaceholder": "মাপ, রং, আর যেকোনো কিছু…",
+    "confirmingPayment": "পেমেন্ট নিশ্চিত অইরো…",
+    "retryConfirmation": "আবার নিশ্চিত করউক্কা",
+    "buyNow": "অখনই কিনউক্কা"
   }
 }

@@ -3627,5 +3627,28 @@
     "subscribe": "Abbonati",
     "subscriberCount_one": "{{count}} abbonato",
     "subscriberCount_other": "{{count}} abbonati"
+  },
+  "live": {
+    "notSet": "Non impostato",
+    "liveChat": "Chat dal vivo",
+    "pickDate": "Scegli la data",
+    "pickTime": "Scegli l'ora",
+    "minTip": "Mancia minima"
+  },
+  "liveShop": {
+    "title": "Acquista da questa diretta",
+    "onAir": "In onda",
+    "lastOne": "L'ultimo",
+    "stockLeft": "Ne restano {{count}}",
+    "walletNotReady": "Il wallet non è ancora pronto",
+    "gettingPrice": "Recupero del prezzo…",
+    "ownListing": "Questo è il tuo annuncio.",
+    "shippingAddress": "Indirizzo di spedizione",
+    "addressPlaceholder": "Nome, via, città, CAP, paese",
+    "noteToSeller": "Nota per il venditore (facoltativa)",
+    "notePlaceholder": "Taglia, colore, altro…",
+    "confirmingPayment": "Conferma del pagamento…",
+    "retryConfirmation": "Riprova la conferma",
+    "buyNow": "Acquista ora"
   }
 }

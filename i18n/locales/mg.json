@@ -3636,5 +3636,28 @@
     "subscribe": "Misoratra anarana",
     "subscriberCount_one": "Mpanoratra anarana {{count}}",
     "subscriberCount_other": "Mpanoratra anarana {{count}}"
+  },
+  "live": {
+    "notSet": "Tsy voafaritra",
+    "liveChat": "Resaka mivantana",
+    "pickDate": "Mifidy daty",
+    "pickTime": "Mifidy ora",
+    "minTip": "Tsolotra ambany indrindra"
+  },
+  "liveShop": {
+    "title": "Mividiana amin'ity fandefasana ity",
+    "onAir": "An-dàlana",
+    "lastOne": "Farany",
+    "stockLeft": "Sisa {{count}}",
+    "walletNotReady": "Tsy mbola vonona ny poketra",
+    "gettingPrice": "Maka ny vidiny…",
+    "ownListing": "Anao manokana ity lisitra ity.",
+    "shippingAddress": "Adiresy fandefasana",
+    "addressPlaceholder": "Anarana, arabe, tanàna, kaody paositra, firenena",
+    "noteToSeller": "Fanamarihana ho an'ny mpivarotra (tsy voatery)",
+    "notePlaceholder": "Habe, loko, zavatra hafa…",
+    "confirmingPayment": "Manamafy ny fandoavana…",
+    "retryConfirmation": "Andramo indray ny fanamafisana",
+    "buyNow": "Vidio izao"
   }
 }

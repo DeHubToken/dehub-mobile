@@ -3556,5 +3556,28 @@
     "subscribe": "Telli",
     "subscriberCount_one": "{{count}} tellija",
     "subscriberCount_other": "{{count}} tellijat"
+  },
+  "live": {
+    "notSet": "Määramata",
+    "liveChat": "Otsevestlus",
+    "pickDate": "Vali kuupäev",
+    "pickTime": "Vali kellaaeg",
+    "minTip": "Min. jootraha"
+  },
+  "liveShop": {
+    "title": "Osta sellest voost",
+    "onAir": "Eetris",
+    "lastOne": "Viimane",
+    "stockLeft": "Jäänud {{count}}",
+    "walletNotReady": "Rahakott pole veel valmis",
+    "gettingPrice": "Hinna hankimine…",
+    "ownListing": "See on sinu enda kuulutus.",
+    "shippingAddress": "Tarneaadress",
+    "addressPlaceholder": "Nimi, tänav, linn, sihtnumber, riik",
+    "noteToSeller": "Märkus müüjale (valikuline)",
+    "notePlaceholder": "Suurus, värv, muu soov…",
+    "confirmingPayment": "Makse kinnitamine…",
+    "retryConfirmation": "Proovi kinnitust uuesti",
+    "buyNow": "Osta kohe"
   }
 }

@@ -3547,5 +3547,28 @@
     "subscribe": "مۇشتەرى بولۇش",
     "subscriberCount_one": "{{count}} مۇشتەرى",
     "subscriberCount_other": "{{count}} مۇشتەرى"
+  },
+  "live": {
+    "notSet": "بەلگىلەنمىگەن",
+    "liveChat": "تور سۆھبىتى",
+    "pickDate": "چېسلا تاللاش",
+    "pickTime": "ۋاقىت تاللاش",
+    "minTip": "ئەڭ تۆۋەن قوشۇمچە ھەق"
+  },
+  "liveShop": {
+    "title": "بۇ تارقىتىشتىن سېتىۋېلىش",
+    "onAir": "تارقىتىلىۋاتىدۇ",
+    "lastOne": "ئاخىرقىسى",
+    "stockLeft": "{{count}} قالدى",
+    "walletNotReady": "ھەميان تېخى تەييار ئەمەس",
+    "gettingPrice": "باھا ئېلىنىۋاتىدۇ…",
+    "ownListing": "بۇ ئۆزىڭىزنىڭ ئېلانى.",
+    "shippingAddress": "يەتكۈزۈش ئادرېسى",
+    "addressPlaceholder": "ئىسمى، كوچا، شەھەر، پوچتا نومۇرى، دۆلەت",
+    "noteToSeller": "ساتقۇچىغا خاتىرە (ئىختىيارى)",
+    "notePlaceholder": "چوڭلۇقى، رەڭگى، باشقا نەرسە…",
+    "confirmingPayment": "پۇل تۆلەش جەزملىنىۋاتىدۇ…",
+    "retryConfirmation": "جەزملەشنى قايتا سىناڭ",
+    "buyNow": "ھازىر سېتىۋېلىش"
   }
 }

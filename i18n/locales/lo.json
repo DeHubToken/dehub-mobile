@@ -3515,5 +3515,28 @@
     "subscribe": "ສະໝັກ",
     "subscriberCount_one": "ຜູ້ສະໝັກ {{count}} ຄົນ",
     "subscriberCount_other": "ຜູ້ສະໝັກ {{count}} ຄົນ"
+  },
+  "live": {
+    "notSet": "ຍັງບໍ່ໄດ້ຕັ້ງ",
+    "liveChat": "ແຊັດສົດ",
+    "pickDate": "ເລືອກວັນທີ",
+    "pickTime": "ເລືອກເວລາ",
+    "minTip": "ທິບຂັ້ນຕ່ຳ"
+  },
+  "liveShop": {
+    "title": "ຊື້ຈາກການຖ່າຍທອດນີ້",
+    "onAir": "ກຳລັງອອກອາກາດ",
+    "lastOne": "ອັນສຸດທ້າຍ",
+    "stockLeft": "ເຫຼືອ {{count}}",
+    "walletNotReady": "ກະເປົາຍັງບໍ່ພ້ອມ",
+    "gettingPrice": "ກຳລັງດຶງລາຄາ…",
+    "ownListing": "ນີ້ແມ່ນລາຍການຂອງທ່ານເອງ.",
+    "shippingAddress": "ທີ່ຢູ່ຈັດສົ່ງ",
+    "addressPlaceholder": "ຊື່, ຖະໜົນ, ເມືອງ, ລະຫັດໄປສະນີ, ປະເທດ",
+    "noteToSeller": "ບັນທຶກເຖິງຜູ້ຂາຍ (ບໍ່ບັງຄັບ)",
+    "notePlaceholder": "ຂະໜາດ, ສີ, ສິ່ງອື່ນ…",
+    "confirmingPayment": "ກຳລັງຢືນຢັນການຈ່າຍເງິນ…",
+    "retryConfirmation": "ລອງຢືນຢັນອີກຄັ້ງ",
+    "buyNow": "ຊື້ດຽວນີ້"
   }
 }

@@ -3545,5 +3545,28 @@
     "subscribe": "सदस्य व्हा",
     "subscriberCount_one": "{{count}} सदस्य",
     "subscriberCount_other": "{{count}} सदस्य"
+  },
+  "live": {
+    "notSet": "सेट केलेले नाही",
+    "liveChat": "लाइव्ह चॅट",
+    "pickDate": "तारीख निवडा",
+    "pickTime": "वेळ निवडा",
+    "minTip": "किमान टिप"
+  },
+  "liveShop": {
+    "title": "या स्ट्रीममधून खरेदी करा",
+    "onAir": "प्रसारणात",
+    "lastOne": "शेवटचे",
+    "stockLeft": "{{count}} शिल्लक",
+    "walletNotReady": "वॉलेट अद्याप तयार नाही",
+    "gettingPrice": "किंमत मिळवत आहे…",
+    "ownListing": "ही तुमचीच जाहिरात आहे.",
+    "shippingAddress": "पाठवण्याचा पत्ता",
+    "addressPlaceholder": "नाव, रस्ता, शहर, पिनकोड, देश",
+    "noteToSeller": "विक्रेत्याला नोंद (पर्यायी)",
+    "notePlaceholder": "आकार, रंग, इतर काही…",
+    "confirmingPayment": "पेमेंटची पुष्टी होत आहे…",
+    "retryConfirmation": "पुष्टी पुन्हा करा",
+    "buyNow": "आता खरेदी करा"
   }
 }

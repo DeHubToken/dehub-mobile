@@ -3649,5 +3649,28 @@
     "subscribe": "সাবস্ক্রাইব গরন",
     "subscriberCount_one": "{{count}} সাবস্ক্রাইবার",
     "subscriberCount_other": "{{count}} সাবস্ক্রাইবার"
+  },
+  "live": {
+    "notSet": "ঠিক গরা নাই",
+    "liveChat": "লাইভ চ্যাট",
+    "pickDate": "তারিখ বাছন",
+    "pickTime": "সময় বাছন",
+    "minTip": "সর্বনিম্ন টিপ"
+  },
+  "liveShop": {
+    "title": "এই স্ট্রিমত্তুন কিনন",
+    "onAir": "সম্প্রচারত",
+    "lastOne": "শেষটা",
+    "stockLeft": "{{count}} বাকি",
+    "walletNotReady": "ওয়ালেট এহনো প্রস্তুত নয়",
+    "gettingPrice": "দাম আনন অর…",
+    "ownListing": "ইয়ান তোঁয়ার নিজর তালিকা।",
+    "shippingAddress": "ডেলিভারির ঠিকানা",
+    "addressPlaceholder": "নাম, রাস্তা, শহর, পোস্টকোড, দেশ",
+    "noteToSeller": "বিক্রেতার লাই নোট (ঐচ্ছিক)",
+    "notePlaceholder": "মাপ, রং, অন্য যা কিছু…",
+    "confirmingPayment": "পেমেন্ট নিশ্চিত অর…",
+    "retryConfirmation": "আবার নিশ্চিত গরন",
+    "buyNow": "এহনই কিনন"
   }
 }

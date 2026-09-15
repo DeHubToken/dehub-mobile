@@ -3580,5 +3580,28 @@
     "subscribe": "Εγγραφή",
     "subscriberCount_one": "{{count}} συνδρομητής",
     "subscriberCount_other": "{{count}} συνδρομητές"
+  },
+  "live": {
+    "notSet": "Δεν έχει οριστεί",
+    "liveChat": "Ζωντανή συνομιλία",
+    "pickDate": "Επιλογή ημερομηνίας",
+    "pickTime": "Επιλογή ώρας",
+    "minTip": "Ελάχιστο φιλοδώρημα"
+  },
+  "liveShop": {
+    "title": "Ψώνισε από αυτή τη μετάδοση",
+    "onAir": "Στον αέρα",
+    "lastOne": "Το τελευταίο",
+    "stockLeft": "Απομένουν {{count}}",
+    "walletNotReady": "Το πορτοφόλι δεν είναι ακόμη έτοιμο",
+    "gettingPrice": "Λήψη τιμής…",
+    "ownListing": "Αυτή είναι η δική σου καταχώριση.",
+    "shippingAddress": "Διεύθυνση αποστολής",
+    "addressPlaceholder": "Όνομα, οδός, πόλη, ΤΚ, χώρα",
+    "noteToSeller": "Σημείωση προς τον πωλητή (προαιρετικά)",
+    "notePlaceholder": "Μέγεθος, χρώμα, οτιδήποτε άλλο…",
+    "confirmingPayment": "Επιβεβαίωση πληρωμής…",
+    "retryConfirmation": "Επανάληψη επιβεβαίωσης",
+    "buyNow": "Αγόρασε τώρα"
   }
 }

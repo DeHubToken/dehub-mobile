@@ -3590,5 +3590,28 @@
     "subscribe": "Падпісацца",
     "subscriberCount_one": "{{count}} падпісчык",
     "subscriberCount_other": "{{count}} падпісчыкаў"
+  },
+  "live": {
+    "notSet": "Не зададзена",
+    "liveChat": "Жывы чат",
+    "pickDate": "Выберыце дату",
+    "pickTime": "Выберыце час",
+    "minTip": "Мін. чаявыя"
+  },
+  "liveShop": {
+    "title": "Купляйце з гэтага эфіру",
+    "onAir": "У эфіры",
+    "lastOne": "Апошні",
+    "stockLeft": "Засталося {{count}}",
+    "walletNotReady": "Кашалёк яшчэ не гатовы",
+    "gettingPrice": "Атрыманне цаны…",
+    "ownListing": "Гэта ваша ўласнае аб'ява.",
+    "shippingAddress": "Адрас дастаўкі",
+    "addressPlaceholder": "Імя, вуліца, горад, індэкс, краіна",
+    "noteToSeller": "Нататка прадаўцу (неабавязкова)",
+    "notePlaceholder": "Памер, колер, што заўгодна яшчэ…",
+    "confirmingPayment": "Пацвярджэнне аплаты…",
+    "retryConfirmation": "Паўтарыць пацвярджэнне",
+    "buyNow": "Купіць зараз"
   }
 }

@@ -3389,5 +3389,28 @@
     "subscribe": "Subscribe",
     "subscriberCount_one": "{{count}} subscriber",
     "subscriberCount_other": "{{count}} subscribers"
+  },
+  "live": {
+    "notSet": "Dem never set am",
+    "liveChat": "Live chat",
+    "pickDate": "Pick date",
+    "pickTime": "Pick time",
+    "minTip": "Min tip"
+  },
+  "liveShop": {
+    "title": "Shop for dis stream",
+    "onAir": "On air",
+    "lastOne": "Last one",
+    "stockLeft": "{{count}} remain",
+    "walletNotReady": "Wallet never ready",
+    "gettingPrice": "Dey get price…",
+    "ownListing": "Na your own listing be dis.",
+    "shippingAddress": "Shipping address",
+    "addressPlaceholder": "Name, street, city, postcode, country",
+    "noteToSeller": "Note for di seller (optional)",
+    "notePlaceholder": "Size, colour, anytin else…",
+    "confirmingPayment": "Dey confirm payment…",
+    "retryConfirmation": "Try di confirmation again",
+    "buyNow": "Buy now"
   }
 }

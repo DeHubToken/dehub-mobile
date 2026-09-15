@@ -3820,5 +3820,28 @@
     "subscribe": "Langgan",
     "subscriberCount_one": "{{count}} pelanggan",
     "subscriberCount_other": "{{count}} pelanggan"
+  },
+  "live": {
+    "notSet": "Belum ditetapkan",
+    "liveChat": "Sembang langsung",
+    "pickDate": "Pilih tarikh",
+    "pickTime": "Pilih masa",
+    "minTip": "Tip minimum"
+  },
+  "liveShop": {
+    "title": "Beli-belah dari siaran ini",
+    "onAir": "Sedang bersiaran",
+    "lastOne": "Yang terakhir",
+    "stockLeft": "Tinggal {{count}}",
+    "walletNotReady": "Dompet belum sedia",
+    "gettingPrice": "Mendapatkan harga…",
+    "ownListing": "Ini adalah penyenaraian anda sendiri.",
+    "shippingAddress": "Alamat penghantaran",
+    "addressPlaceholder": "Nama, jalan, bandar, poskod, negara",
+    "noteToSeller": "Nota kepada penjual (pilihan)",
+    "notePlaceholder": "Saiz, warna, apa-apa lagi…",
+    "confirmingPayment": "Mengesahkan pembayaran…",
+    "retryConfirmation": "Cuba sahkan semula",
+    "buyNow": "Beli sekarang"
   }
 }

@@ -3551,5 +3551,28 @@
     "subscribe": "సభ్యత్వం పొందండి",
     "subscriberCount_one": "{{count}} సభ్యుడు",
     "subscriberCount_other": "{{count}} సభ్యులు"
+  },
+  "live": {
+    "notSet": "సెట్ చేయలేదు",
+    "liveChat": "లైవ్ చాట్",
+    "pickDate": "తేదీ ఎంచుకోండి",
+    "pickTime": "సమయం ఎంచుకోండి",
+    "minTip": "కనీస టిప్"
+  },
+  "liveShop": {
+    "title": "ఈ స్ట్రీమ్ నుండి కొనండి",
+    "onAir": "ప్రసారంలో",
+    "lastOne": "చివరిది",
+    "stockLeft": "{{count}} మిగిలింది",
+    "walletNotReady": "వాలెట్ ఇంకా సిద్ధంగా లేదు",
+    "gettingPrice": "ధర తెస్తోంది…",
+    "ownListing": "ఇది మీ స్వంత లిస్టింగ్.",
+    "shippingAddress": "షిప్పింగ్ చిరునామా",
+    "addressPlaceholder": "పేరు, వీధి, నగరం, పిన్‌కోడ్, దేశం",
+    "noteToSeller": "అమ్మకందారుకు గమనిక (ఐచ్ఛికం)",
+    "notePlaceholder": "సైజు, రంగు, ఇంకేదైనా…",
+    "confirmingPayment": "చెల్లింపు నిర్ధారణ అవుతోంది…",
+    "retryConfirmation": "నిర్ధారణ మళ్లీ ప్రయత్నించండి",
+    "buyNow": "ఇప్పుడే కొనండి"
   }
 }

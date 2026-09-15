@@ -3283,5 +3283,28 @@
     "subscribe": "سبسکرائب کریں",
     "subscriberCount_one": "{{count}} سبسکرائبر",
     "subscriberCount_other": "{{count}} سبسکرائبرز"
+  },
+  "live": {
+    "notSet": "مقرر نئیں",
+    "liveChat": "لائیو چیٹ",
+    "pickDate": "تاریخ چنیں",
+    "pickTime": "وقت چنیں",
+    "minTip": "کم سے کم ٹپ"
+  },
+  "liveShop": {
+    "title": "اس اسٹریم سے خریداری کریں",
+    "onAir": "نشریات پر",
+    "lastOne": "آخری ایک",
+    "stockLeft": "{{count}} باقی",
+    "walletNotReady": "والٹ ابھی تیار نئیں",
+    "gettingPrice": "قیمت لی جا رہی ہے…",
+    "ownListing": "یہ آپ کی اپنی لسٹنگ ہے۔",
+    "shippingAddress": "ترسیل کا پتہ",
+    "addressPlaceholder": "نام، گلی، شہر، پوسٹ کوڈ، ملک",
+    "noteToSeller": "بیچنے والے کے لیے نوٹ (اختیاری)",
+    "notePlaceholder": "سائز، رنگ، اور کچھ بھی…",
+    "confirmingPayment": "ادائیگی کی تصدیق ہو رہی ہے…",
+    "retryConfirmation": "تصدیق دوبارہ کریں",
+    "buyNow": "ابھی خریدیں"
   }
 }

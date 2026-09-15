@@ -3621,5 +3621,28 @@
     "subscribe": "Galmaaʼi",
     "subscriberCount_one": "Galmeeffataa {{count}}",
     "subscriberCount_other": "Galmeeffattoota {{count}}"
+  },
+  "live": {
+    "notSet": "Hin qindoofne",
+    "liveChat": "Haasaa kallattii",
+    "pickDate": "Guyyaa filadhu",
+    "pickTime": "Yeroo filadhu",
+    "minTip": "Kennaa xiqqaa"
+  },
+  "liveShop": {
+    "title": "Tamsaasa kana irraa bitadhu",
+    "onAir": "Tamsaasa irra",
+    "lastOne": "Kan dhumaa",
+    "stockLeft": "{{count}} hafe",
+    "walletNotReady": "Boorsaan amma qophaaʼaa miti",
+    "gettingPrice": "Gatii fidaa jira…",
+    "ownListing": "Kun tarreeffama kee mataa keeti.",
+    "shippingAddress": "Teessoo ergaa",
+    "addressPlaceholder": "Maqaa, daandii, magaalaa, koodii poostaa, biyya",
+    "noteToSeller": "Yaadannoo gurgurtuuf (filannoo)",
+    "notePlaceholder": "Bal'ina, halluu, waan biraa…",
+    "confirmingPayment": "Kaffaltii mirkaneessaa jira…",
+    "retryConfirmation": "Mirkaneessa irra deebiʼii yaali",
+    "buyNow": "Amma bitadhu"
   }
 }

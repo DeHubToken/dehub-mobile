@@ -3556,5 +3556,28 @@
     "subscribe": "Abonēt",
     "subscriberCount_one": "{{count}} abonents",
     "subscriberCount_other": "{{count}} abonenti"
+  },
+  "live": {
+    "notSet": "Nav iestatīts",
+    "liveChat": "Tiešraides tērzēšana",
+    "pickDate": "Izvēlieties datumu",
+    "pickTime": "Izvēlieties laiku",
+    "minTip": "Min. dzeramnauda"
+  },
+  "liveShop": {
+    "title": "Iepērcieties šajā tiešraidē",
+    "onAir": "Ēterā",
+    "lastOne": "Pēdējais",
+    "stockLeft": "Atlikuši {{count}}",
+    "walletNotReady": "Maks vēl nav gatavs",
+    "gettingPrice": "Tiek iegūta cena…",
+    "ownListing": "Šis ir jūsu paša sludinājums.",
+    "shippingAddress": "Piegādes adrese",
+    "addressPlaceholder": "Vārds, iela, pilsēta, pasta indekss, valsts",
+    "noteToSeller": "Piezīme pārdevējam (neobligāti)",
+    "notePlaceholder": "Izmērs, krāsa, kas cits…",
+    "confirmingPayment": "Notiek maksājuma apstiprināšana…",
+    "retryConfirmation": "Mēģināt apstiprināt vēlreiz",
+    "buyNow": "Pirkt tagad"
   }
 }

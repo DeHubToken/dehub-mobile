@@ -3557,5 +3557,28 @@
     "subscribe": "Pretplati se",
     "subscriberCount_one": "{{count}} pretplatnik",
     "subscriberCount_other": "{{count}} pretplatnika"
+  },
+  "live": {
+    "notSet": "Nije postavljeno",
+    "liveChat": "Chat uživo",
+    "pickDate": "Odaberi datum",
+    "pickTime": "Odaberi vrijeme",
+    "minTip": "Min. napojnica"
+  },
+  "liveShop": {
+    "title": "Kupujte iz ovog prijenosa",
+    "onAir": "U eteru",
+    "lastOne": "Posljednji",
+    "stockLeft": "Preostalo {{count}}",
+    "walletNotReady": "Novčanik još nije spreman",
+    "gettingPrice": "Dohvaćanje cijene…",
+    "ownListing": "Ovo je vaš vlastiti oglas.",
+    "shippingAddress": "Adresa za dostavu",
+    "addressPlaceholder": "Ime, ulica, grad, poštanski broj, država",
+    "noteToSeller": "Napomena prodavatelju (neobavezno)",
+    "notePlaceholder": "Veličina, boja, bilo što drugo…",
+    "confirmingPayment": "Potvrđivanje plaćanja…",
+    "retryConfirmation": "Ponovi potvrdu",
+    "buyNow": "Kupi odmah"
   }
 }

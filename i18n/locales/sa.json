@@ -3513,5 +3513,28 @@
     "subscribe": "अभिदधातु",
     "subscriberCount_one": "{{count}} अभिदाता",
     "subscriberCount_other": "{{count}} अभिदातारः"
+  },
+  "live": {
+    "notSet": "न निर्धारितम्",
+    "liveChat": "प्रत्यक्षसंलापः",
+    "pickDate": "दिनाङ्कं चिनोतु",
+    "pickTime": "समयं चिनोतु",
+    "minTip": "न्यूनतमं पारितोषिकम्"
+  },
+  "liveShop": {
+    "title": "अस्मात् प्रसारात् क्रीणातु",
+    "onAir": "प्रसारे",
+    "lastOne": "अन्तिमम्",
+    "stockLeft": "{{count}} अवशिष्टम्",
+    "walletNotReady": "कोशः अद्यापि न सज्जः",
+    "gettingPrice": "मूल्यम् आनीयते…",
+    "ownListing": "एतत् भवतः स्वकीयं सूचीपत्रम्।",
+    "shippingAddress": "प्रेषणसङ्केतः",
+    "addressPlaceholder": "नाम, वीथी, नगरम्, डाककूटः, देशः",
+    "noteToSeller": "विक्रेतुः कृते टिप्पणी (ऐच्छिकम्)",
+    "notePlaceholder": "परिमाणम्, वर्णः, अन्यत् किमपि…",
+    "confirmingPayment": "भुक्तिः निश्चीयते…",
+    "retryConfirmation": "निश्चयनं पुनः प्रयतताम्",
+    "buyNow": "अधुना क्रीणातु"
   }
 }

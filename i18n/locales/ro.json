@@ -3570,5 +3570,28 @@
     "subscribe": "Abonează-te",
     "subscriberCount_one": "{{count}} abonat",
     "subscriberCount_other": "{{count}} abonați"
+  },
+  "live": {
+    "notSet": "Nesetat",
+    "liveChat": "Chat live",
+    "pickDate": "Alege data",
+    "pickTime": "Alege ora",
+    "minTip": "Bacșiș minim"
+  },
+  "liveShop": {
+    "title": "Cumpără din această transmisiune",
+    "onAir": "În direct",
+    "lastOne": "Ultimul",
+    "stockLeft": "Au rămas {{count}}",
+    "walletNotReady": "Portofelul nu este încă pregătit",
+    "gettingPrice": "Se obține prețul…",
+    "ownListing": "Acesta este propriul tău anunț.",
+    "shippingAddress": "Adresă de livrare",
+    "addressPlaceholder": "Nume, stradă, oraș, cod poștal, țară",
+    "noteToSeller": "Notă pentru vânzător (opțional)",
+    "notePlaceholder": "Mărime, culoare, altceva…",
+    "confirmingPayment": "Se confirmă plata…",
+    "retryConfirmation": "Reîncearcă confirmarea",
+    "buyNow": "Cumpără acum"
   }
 }

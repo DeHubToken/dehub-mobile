@@ -3631,5 +3631,28 @@
     "subscribe": "S'abonner",
     "subscriberCount_one": "{{count}} abonné",
     "subscriberCount_other": "{{count}} abonnés"
+  },
+  "live": {
+    "notSet": "Non défini",
+    "liveChat": "Chat en direct",
+    "pickDate": "Choisir la date",
+    "pickTime": "Choisir l'heure",
+    "minTip": "Pourboire min."
+  },
+  "liveShop": {
+    "title": "Achetez dans ce direct",
+    "onAir": "À l'antenne",
+    "lastOne": "Dernier exemplaire",
+    "stockLeft": "Il en reste {{count}}",
+    "walletNotReady": "Le portefeuille n'est pas encore prêt",
+    "gettingPrice": "Récupération du prix…",
+    "ownListing": "C'est votre propre annonce.",
+    "shippingAddress": "Adresse de livraison",
+    "addressPlaceholder": "Nom, rue, ville, code postal, pays",
+    "noteToSeller": "Note au vendeur (facultatif)",
+    "notePlaceholder": "Taille, couleur, autre précision…",
+    "confirmingPayment": "Confirmation du paiement…",
+    "retryConfirmation": "Relancer la confirmation",
+    "buyNow": "Acheter maintenant"
   }
 }

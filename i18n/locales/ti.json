@@ -3522,5 +3522,28 @@
     "subscribe": "ተመዝገብ",
     "subscriberCount_one": "{{count}} ተመዝጋቢ",
     "subscriberCount_other": "{{count}} ተመዝገብቲ"
+  },
+  "live": {
+    "notSet": "ኣይተቐመጠን",
+    "liveChat": "ቀጥታ ዕላል",
+    "pickDate": "ዕለት ምረጽ",
+    "pickTime": "ግዜ ምረጽ",
+    "minTip": "ዝተሓተ ሽልማት"
+  },
+  "liveShop": {
+    "title": "ካብዚ ስርጭት ግዛእ",
+    "onAir": "ኣብ ስርጭት",
+    "lastOne": "እታ ናይ መወዳእታ",
+    "stockLeft": "{{count}} ተሪፉ",
+    "walletNotReady": "ዋሌት ገና ድሉው ኣይኮነን",
+    "gettingPrice": "ዋጋ ይእከብ ኣሎ…",
+    "ownListing": "እዚ ናትካ ዝርዝር እዩ።",
+    "shippingAddress": "ኣድራሻ መላእኺ",
+    "addressPlaceholder": "ስም፡ ጎደና፡ ከተማ፡ ናይ ፖስታ ኮድ፡ ሃገር",
+    "noteToSeller": "መዘኻኸሪ ንሸያጢ (ኣማራጺ)",
+    "notePlaceholder": "መጠን፡ ሕብሪ፡ ካልእ ነገር…",
+    "confirmingPayment": "ክፍሊት ይረጋገጽ ኣሎ…",
+    "retryConfirmation": "መረጋገጺ እንደገና ፈትን",
+    "buyNow": "ሕጂ ግዛእ"
   }
 }

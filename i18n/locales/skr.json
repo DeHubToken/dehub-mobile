@@ -3501,5 +3501,28 @@
     "subscribe": "سبسکرائب کرو",
     "subscriberCount_one": "{{count}} سبسکرائبر",
     "subscriberCount_other": "{{count}} سبسکرائبرز"
+  },
+  "live": {
+    "notSet": "مقرر کائنی",
+    "liveChat": "لائیو چیٹ",
+    "pickDate": "تاریخ چݨو",
+    "pickTime": "ویلا چݨو",
+    "minTip": "گھٹ توں گھٹ ٹپ"
+  },
+  "liveShop": {
+    "title": "ایں سٹریم کنوں خریداری کرو",
+    "onAir": "نشریات تے",
+    "lastOne": "آخری ہک",
+    "stockLeft": "{{count}} باقی",
+    "walletNotReady": "والٹ ہالیں تیار کائنی",
+    "gettingPrice": "قیمت گھدی ویندی پئی ہے…",
+    "ownListing": "ایہہ تہاݙی آپݨی لسٹنگ ہے۔",
+    "shippingAddress": "ترسیل دا پتہ",
+    "addressPlaceholder": "ناں، گلی، شہر، پوسٹ کوڈ، ملک",
+    "noteToSeller": "ویچݨ آلے کیتے نوٹ (اختیاری)",
+    "notePlaceholder": "سائز، رنگ، تے کجھ وی…",
+    "confirmingPayment": "ادائیگی دی تصدیق تھیندی پئی ہے…",
+    "retryConfirmation": "تصدیق ولدا کوشش کرو",
+    "buyNow": "ہݨ خریدو"
   }
 }
