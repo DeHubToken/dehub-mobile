@@ -675,7 +675,13 @@
     "unpinPost": "Vom Profil entpinnen",
     "postPinned": "Auf Profil gepinnt",
     "postUnpinned": "Vom Profil entpinnt",
-    "pinFailed": "Konntä de Beitrag nöd pinnen oder entpinne"
+    "pinFailed": "Konntä de Beitrag nöd pinnen oder entpinne",
+    "sendToDm": "Per DM schicke",
+    "sendToDmDesc": "Dä Biitrag in emene Chat teile",
+    "boostPostDesc": "Setz ihn zoberscht im Home-Feed",
+    "mintPostDesc": "Dä Biitrag on-chain veröffentliche",
+    "giftBoost": "Boost verschänke",
+    "giftBoostDesc": "Gib eine vo dine Boosts für dä Biitrag us"
   },
   "filters": {
     "sort": "Sortiere",
@@ -3776,5 +3782,14 @@
     "perMessageFee": "Gebühr pro Nachricht (DHB)",
     "perMessageFeeSub": "Pro Nachricht verrächne. Uf 0 setze für gratis DMs. Einzelne Benutzer chasch gratis Zuegang geh.",
     "allDisabled": "Alli DMs sind grad deaktiviert. Neui DMs werded standardmässig blockiert."
+  },
+  "editPost": {
+    "mediaPermission": "Berächtigung für d Mediathek nötig",
+    "fileSwapping": "Neui Datei ufeglade — si wird iigwächslet, sobald d Verarbeitig fertig isch",
+    "titleTooShort": "De Titel mues mindeschtens 3 Zeiche haa",
+    "descTooShort": "D Beschriibig mues mindeschtens 3 Zeiche haa",
+    "updated": "Biitrag aktualisiert",
+    "titlePlaceholder": "Biitragstitel",
+    "descPlaceholder": "Biitragsbeschriibig"
   }
 }

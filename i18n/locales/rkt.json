@@ -1489,7 +1489,13 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "sendToDm": "DM ত পাঠান",
+    "sendToDmDesc": "এই পোস্ট কোনো আলাপত শেয়ার করেন",
+    "boostPostDesc": "এইটা হোম ফিডের সবার উপরত থোন",
+    "mintPostDesc": "এই পোস্ট অন-চেইন প্রকাশ করেন",
+    "giftBoost": "একটা বুস্ট উপহার দেন",
+    "giftBoostDesc": "নিজের একটা এই পোস্টত খরচ করেন"
   },
   "filters": {
     "all": "সব",
@@ -3820,5 +3826,14 @@
     "perMessageFee": "হর বার্তার ফি (DHB)",
     "perMessageFeeSub": "হর বার্তাত ফি নেন। ফ্রি DM'র লাগি 0 দেন। কিছু ব্যবহারকারীক ফ্রি অ্যাক্সেস দিবার পারেন।",
     "allDisabled": "এলা সব DM বন্ধ। নয়া DM ডিফল্টে আটকা।"
+  },
+  "editPost": {
+    "mediaPermission": "মিডিয়া লাইব্রেরির অনুমতি লাগে",
+    "fileSwapping": "নয়া ফাইল আপলোড হইল — প্রসেসিং শেষ হইলে বদলি যাইবে",
+    "titleTooShort": "শিরোনাম কমপক্ষে ৩ অক্ষরের হওয়া লাগিবে",
+    "descTooShort": "বিবরণ কমপক্ষে ৩ অক্ষরের হওয়া লাগিবে",
+    "updated": "পোস্ট আপডেট হইল",
+    "titlePlaceholder": "পোস্টের শিরোনাম",
+    "descPlaceholder": "পোস্টের বিবরণ"
   }
 }

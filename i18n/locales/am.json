@@ -706,7 +706,13 @@
     "unpinPost": "ከመገለጫዎ ያስወግዱ",
     "postPinned": "ወደ መገለጫዎ ተጣብቋል",
     "postUnpinned": "ከመገለጫዎ ያልታሸገ",
-    "pinFailed": "ይህንን ልኡክ ጽሁፍ ማንሸራተት ወይም ማንሸራተት አልተቻለም"
+    "pinFailed": "ይህንን ልኡክ ጽሁፍ ማንሸራተት ወይም ማንሸራተት አልተቻለም",
+    "sendToDm": "ወደ DM ላክ",
+    "sendToDmDesc": "ይህን ልጥፍ በውይይት ውስጥ ያጋሩ",
+    "boostPostDesc": "በዋናው ገጽ ላይ ከፍ ያድርጉት",
+    "mintPostDesc": "ይህን ልጥፍ በሰንሰለቱ ላይ ያትሙ",
+    "giftBoost": "ማበረታቻ በስጦታ ስጥ",
+    "giftBoostDesc": "ከእርስዎ አንዱን በዚህ ልጥፍ ላይ ያውጡ"
   },
   "filters": {
     "sort": "ደርድር",
@@ -3782,5 +3788,14 @@
     "perMessageFee": "በአንድ መልእክት ክፍያ (DHB)",
     "perMessageFeeSub": "ለእያንዳንዱ መልእክት ክፍያ ያስከፍሉ። ለነጻ DM 0 ያድርጉ። ለተወሰኑ ተጠቃሚዎች ነጻ መዳረሻ መስጠት ይችላሉ።",
     "allDisabled": "ሁሉም DM አሁን ጠፍተዋል። አዲስ DM በነባሪ ታግደዋል።"
+  },
+  "editPost": {
+    "mediaPermission": "የሚዲያ ቤተ-መጻሕፍት ፈቃድ ያስፈልጋል",
+    "fileSwapping": "አዲስ ፋይል ተጭኗል — ሂደቱ ሲጠናቀቅ ይተካል",
+    "titleTooShort": "ርዕሱ ቢያንስ 3 ቁምፊ መሆን አለበት",
+    "descTooShort": "መግለጫው ቢያንስ 3 ቁምፊ መሆን አለበት",
+    "updated": "ልጥፉ ተዘምኗል",
+    "titlePlaceholder": "የልጥፍ ርዕስ",
+    "descPlaceholder": "የልጥፍ መግለጫ"
   }
 }

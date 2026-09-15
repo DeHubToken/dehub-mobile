@@ -707,7 +707,13 @@
     "unpinPost": "Unpin daga bayaninka",
     "postPinned": "Pinned zuwa bayaninka",
     "postUnpinned": "Unpinned daga bayanin martaba",
-    "pinFailed": "Ba zai iya PIN ko unpin wannan post"
+    "pinFailed": "Ba zai iya PIN ko unpin wannan post",
+    "sendToDm": "Aika zuwa DM",
+    "sendToDmDesc": "Raba wannan saƙon a cikin tattaunawa",
+    "boostPostDesc": "Ka sanya shi a saman babban shafin",
+    "mintPostDesc": "Buga wannan saƙon a kan sarƙar",
+    "giftBoost": "Kyautata ƙarfafawa",
+    "giftBoostDesc": "Kashe ɗaya daga naka a kan wannan saƙon"
   },
   "filters": {
     "sort": "Tsara",
@@ -3777,5 +3783,14 @@
     "perMessageFee": "Kuɗin kowane saƙo (DHB)",
     "perMessageFeeSub": "Ka caji kowane saƙo. Sa 0 don DM kyauta. Za ka iya ba wasu masu amfani damar kyauta.",
     "allDisabled": "Duk DM a kashe suke yanzu. Sabbin DM an toshe su ta tsohuwar hanya."
+  },
+  "editPost": {
+    "mediaPermission": "Ana buƙatar izinin ɗakin karatu na kafofin watsa labarai",
+    "fileSwapping": "An loda sabon fayil — zai maye gurbin tsohon idan an gama sarrafawa",
+    "titleTooShort": "Taken dole ya kasance aƙalla haruffa 3",
+    "descTooShort": "Bayanin dole ya kasance aƙalla haruffa 3",
+    "updated": "An sabunta saƙon",
+    "titlePlaceholder": "Taken saƙo",
+    "descPlaceholder": "Bayanin saƙo"
   }
 }

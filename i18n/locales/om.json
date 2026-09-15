@@ -731,7 +731,13 @@
     "unpinPost": "Profaayila keessan irraa unpin",
     "postPinned": "Profaayilii keessan irratti pinned ta&#39;eera",
     "postUnpinned": "Profaayila keessan irraa unpinned",
-    "pinFailed": "Barreeffama kana pin ykn unpin gochuu hin dandeenye"
+    "pinFailed": "Barreeffama kana pin ykn unpin gochuu hin dandeenye",
+    "sendToDm": "Gara DM ergi",
+    "sendToDmDesc": "Barreeffama kana haasaa keessatti qoodi",
+    "boostPostDesc": "Fuula jalqabaa irratti ol kaa'i",
+    "mintPostDesc": "Barreeffama kana chain irratti maxxansi",
+    "giftBoost": "Guddina kennaa godhi",
+    "giftBoostDesc": "Kan kee keessaa tokko barreeffama kana irratti baasi"
   },
   "filters": {
     "sort": "Tartiibsi",
@@ -3851,5 +3857,14 @@
     "perMessageFee": "Kaffaltii ergaa tokkoon (DHB)",
     "perMessageFeeSub": "Ergaa tokkoon kaffaltii fudhu. DM bilisaaf 0 godhi. Fayyadamtoota murtaaʼaniif bilisaan heyyamuu dandeessa.",
     "allDisabled": "DM hundi amma dhaamaniiru. DM haaraan durtiidhaan ni ugguramu."
+  },
+  "editPost": {
+    "mediaPermission": "Hayyamni mana kitaabaa miidiyaa barbaachisa",
+    "fileSwapping": "Faayiliin haaraa olkaa'ameera — adeemsi yeroo xumuramu ni bakka bu'a",
+    "titleTooShort": "Mataduree yoo xiqqaate arfii 3 taʼuu qaba",
+    "descTooShort": "Ibsi yoo xiqqaate arfii 3 taʼuu qaba",
+    "updated": "Barreeffamni haaromfameera",
+    "titlePlaceholder": "Mata barreeffamaa",
+    "descPlaceholder": "Ibsa barreeffamaa"
   }
 }

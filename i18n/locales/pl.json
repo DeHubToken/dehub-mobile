@@ -978,7 +978,13 @@
     "unpinPost": "Odepnij od swojego profilu",
     "postPinned": "Przypięte do Twojego profilu",
     "postUnpinned": "Odepnij od swojego profilu",
-    "pinFailed": "Nie można przypiąć ani odpiąć tego wpisu"
+    "pinFailed": "Nie można przypiąć ani odpiąć tego wpisu",
+    "sendToDm": "Wyślij w wiadomości",
+    "sendToDmDesc": "Udostępnij ten post w rozmowie",
+    "boostPostDesc": "Umieść go na górze strony głównej",
+    "mintPostDesc": "Opublikuj ten post on-chain",
+    "giftBoost": "Podaruj boost",
+    "giftBoostDesc": "Wydaj jeden ze swoich na ten post"
   },
   "filters": {
     "sort": "Sortuj",
@@ -3855,5 +3861,14 @@
     "perMessageFee": "Opłata za wiadomość (DHB)",
     "perMessageFeeSub": "Pobieraj opłatę za wiadomość. Ustaw 0 dla darmowych wiadomości. Wybranym użytkownikom możesz dać darmowy dostęp.",
     "allDisabled": "Wszystkie wiadomości są teraz wyłączone. Nowe są domyślnie blokowane."
+  },
+  "editPost": {
+    "mediaPermission": "Wymagane jest uprawnienie do biblioteki multimediów",
+    "fileSwapping": "Nowy plik przesłany — podmieni się, gdy przetwarzanie się skończy",
+    "titleTooShort": "Tytuł musi mieć co najmniej 3 znaki",
+    "descTooShort": "Opis musi mieć co najmniej 3 znaki",
+    "updated": "Post zaktualizowany",
+    "titlePlaceholder": "Tytuł posta",
+    "descPlaceholder": "Opis posta"
   }
 }

@@ -707,7 +707,13 @@
     "unpinPost": "Unpin i tō kōtaha",
     "postPinned": "Whakapā mai ki tō kōtaha",
     "postUnpinned": "Te kore e taea te tiki i to koutou pūkete",
-    "pinFailed": "Kaore e taea e au te tuhi, te whakakore ranei i tenei tuhinga"
+    "pinFailed": "Kaore e taea e au te tuhi, te whakakore ranei i tenei tuhinga",
+    "sendToDm": "Tukuna ki te DM",
+    "sendToDmDesc": "Tiritiria tēnei pou i roto i tētahi kōrerorero",
+    "boostPostDesc": "Whakanohia ki runga o te kaupapa kāinga",
+    "mintPostDesc": "Whakaputaina tēnei pou ki runga mekameka",
+    "giftBoost": "Koha he whakapiki",
+    "giftBoostDesc": "Whakapaua tētahi o āu ki tēnei pou"
   },
   "filters": {
     "sort": "Raupapa",
@@ -3772,5 +3778,14 @@
     "perMessageFee": "Utu mō ia karere (DHB)",
     "perMessageFeeSub": "Utaina ia karere. Whakaritea ki te 0 mō ngā DM koreutu. Ka taea e koe te tuku urunga koreutu ki ētahi kaiwhakamahi.",
     "allDisabled": "Kua weto ngā DM katoa ināianei. Ka ārai te taunoa i ngā DM hou."
+  },
+  "editPost": {
+    "mediaPermission": "Me whai whakaaetanga whare pukapuka pāpāho",
+    "fileSwapping": "Kua tukuna te kōnae hou — ka whakawhitia ina oti te tukatuka",
+    "titleTooShort": "Me 3 pūāhua te iti rawa o te taitara",
+    "descTooShort": "Me 3 pūāhua te iti rawa o te whakaahuatanga",
+    "updated": "Kua whakahoutia te pou",
+    "titlePlaceholder": "Taitara pou",
+    "descPlaceholder": "Whakaahuatanga pou"
   }
 }

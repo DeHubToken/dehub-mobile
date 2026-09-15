@@ -782,7 +782,13 @@
     "unpinPost": "Unpin from your profile",
     "postPinned": "Pinned to your profile",
     "postUnpinned": "Unpinned from your profile",
-    "pinFailed": "Could not pin or unpin this post"
+    "pinFailed": "Could not pin or unpin this post",
+    "sendToDm": "Send to DM",
+    "sendToDmDesc": "Share this post in a conversation",
+    "boostPostDesc": "Put it at the top of the home feed",
+    "mintPostDesc": "Publish this post on-chain",
+    "giftBoost": "Gift a boost",
+    "giftBoostDesc": "Spend one of yours on this post"
   },
   "filters": {
     "sort": "Sort",
@@ -3857,5 +3863,14 @@
     "perMessageFee": "Per-Message Fee (DHB)",
     "perMessageFeeSub": "Charge users per message. Set to 0 for free DMs. You can grant free access to specific users.",
     "allDisabled": "All DMs are currently disabled. New DMs are blocked by default."
+  },
+  "editPost": {
+    "mediaPermission": "Media library permission is required",
+    "fileSwapping": "New file uploaded — it will swap in once it finishes processing",
+    "titleTooShort": "Title must be at least 3 characters",
+    "descTooShort": "Description must be at least 3 characters",
+    "updated": "Post updated",
+    "titlePlaceholder": "Post title",
+    "descPlaceholder": "Post description"
   }
 }

@@ -702,7 +702,13 @@
     "unpinPost": "Ka bɔ i ka sɛbɛ kɔnɔ",
     "postPinned": "I ka kunnafoniw lajɛ",
     "postUnpinned": "Ka bɔ i ka sɛbɛ kɔnɔ",
-    "pinFailed": "Ne tɛ se ka n yɛrɛ tanga o ma"
+    "pinFailed": "Ne tɛ se ka n yɛrɛ tanga o ma",
+    "sendToDm": "A ci DM la",
+    "sendToDmDesc": "Nin sɛbɛn tila baro dɔ la",
+    "boostPostDesc": "A bila so feed sanfɛ",
+    "mintPostDesc": "Nin sɛbɛn bɔ kɛnɛ kan chain kan",
+    "giftBoost": "Boost di ka kɛ nilifɛn ye",
+    "giftBoostDesc": "I ta kelen musaka nin sɛbɛn kan"
   },
   "filters": {
     "sort": "Kɔrɔbɔ",
@@ -3731,5 +3737,14 @@
     "perMessageFee": "Cikan kelen sara (DHB)",
     "perMessageFeeSub": "Sara ta cikan kelen kelen na. A bila 0 la walisa DM ka kɛ fu ye. I bɛ se ka sira gansan di mɔgɔ dɔw ma.",
     "allDisabled": "DM bɛɛ fagalen don sisan. DM kuraw balilen don."
+  },
+  "editPost": {
+    "mediaPermission": "Media gafemarayɔrɔ yamaruya wajibiyalen don",
+    "fileSwapping": "Gafe kura bɔra — a bɛna falen ni baara banna",
+    "titleTooShort": "Tɔgɔ ka kan ka kɛ sɛbɛnden 3 ye fɔlɔ",
+    "descTooShort": "Kunnafoni ka kan ka kɛ sɛbɛnden 3 ye fɔlɔ",
+    "updated": "Sɛbɛn kuraya",
+    "titlePlaceholder": "Sɛbɛn tɔgɔ",
+    "descPlaceholder": "Sɛbɛn kunnafoni"
   }
 }

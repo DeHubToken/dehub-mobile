@@ -716,7 +716,13 @@
     "unpinPost": "喺你嘅個人檔案度取消固定",
     "postPinned": "固定喺你嘅個人檔案",
     "postUnpinned": "喺你嘅個人檔案入面取消固定",
-    "pinFailed": "固定或者解除固定唔到呢個帖子"
+    "pinFailed": "固定或者解除固定唔到呢個帖子",
+    "sendToDm": "傳去私訊",
+    "sendToDmDesc": "喺對話入面分享呢個帖子",
+    "boostPostDesc": "放去首頁動態嘅最上面",
+    "mintPostDesc": "將呢個帖子發佈上鏈",
+    "giftBoost": "送一次加成",
+    "giftBoostDesc": "用你其中一次落呢個帖子"
   },
   "filters": {
     "sort": "排序",
@@ -3785,5 +3791,14 @@
     "perMessageFee": "每條訊息費用 (DHB)",
     "perMessageFeeSub": "按條收費。設為 0 就係免費私訊。你都可以俾特定用戶免費權限。",
     "allDisabled": "而家所有私訊都閂咗。新私訊預設會被封鎖。"
+  },
+  "editPost": {
+    "mediaPermission": "需要媒體庫權限",
+    "fileSwapping": "新檔案已上載——處理完成之後會自動換入",
+    "titleTooShort": "標題至少要 3 個字元",
+    "descTooShort": "描述至少要 3 個字元",
+    "updated": "帖子已更新",
+    "titlePlaceholder": "帖子標題",
+    "descPlaceholder": "帖子描述"
   }
 }

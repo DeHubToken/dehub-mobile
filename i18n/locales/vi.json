@@ -998,7 +998,13 @@
     "unpinPost": "Bỏ ghim khỏi hồ sơ của bạn",
     "postPinned": "Đã ghim vào hồ sơ của bạn",
     "postUnpinned": "Đã bỏ ghim khỏi hồ sơ của bạn",
-    "pinFailed": "Không thể ghim hoặc bỏ ghim bài đăng này"
+    "pinFailed": "Không thể ghim hoặc bỏ ghim bài đăng này",
+    "sendToDm": "Gửi qua tin nhắn",
+    "sendToDmDesc": "Chia sẻ bài đăng này trong cuộc trò chuyện",
+    "boostPostDesc": "Đưa lên đầu bảng tin chính",
+    "mintPostDesc": "Đăng bài này lên chuỗi",
+    "giftBoost": "Tặng một boost",
+    "giftBoostDesc": "Dùng một lượt của bạn cho bài này"
   },
   "filters": {
     "sort": "Sắp xếp",
@@ -3875,5 +3881,14 @@
     "perMessageFee": "Phí mỗi tin nhắn (DHB)",
     "perMessageFeeSub": "Thu phí mỗi tin nhắn. Đặt 0 để nhắn miễn phí. Bạn có thể cấp quyền miễn phí cho một số người dùng.",
     "allDisabled": "Hiện tất cả tin nhắn riêng đang tắt. Tin nhắn mới bị chặn mặc định."
+  },
+  "editPost": {
+    "mediaPermission": "Cần quyền truy cập thư viện phương tiện",
+    "fileSwapping": "Đã tải tệp mới lên — sẽ thay vào khi xử lý xong",
+    "titleTooShort": "Tiêu đề phải có ít nhất 3 ký tự",
+    "descTooShort": "Mô tả phải có ít nhất 3 ký tự",
+    "updated": "Đã cập nhật bài đăng",
+    "titlePlaceholder": "Tiêu đề bài đăng",
+    "descPlaceholder": "Mô tả bài đăng"
   }
 }

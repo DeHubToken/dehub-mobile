@@ -675,7 +675,13 @@
     "unpinPost": "Copot sematan saka profilmu",
     "postPinned": "Disematke menyang profilmu",
     "postUnpinned": "Dicopot sematane saka profilmu",
-    "pinFailed": "Ora bisa nyemak utawa mbusak sematan kiriman iki"
+    "pinFailed": "Ora bisa nyemak utawa mbusak sematan kiriman iki",
+    "sendToDm": "Kirim menyang DM",
+    "sendToDmDesc": "Bagikan kiriman iki ing obrolan",
+    "boostPostDesc": "Sèlèhake ing ndhuwur feed omah",
+    "mintPostDesc": "Terbitake kiriman iki ing chain",
+    "giftBoost": "Menehi boost",
+    "giftBoostDesc": "Gunakake siji duwekmu kanggo kiriman iki"
   },
   "filters": {
     "sort": "Urutake",
@@ -3745,5 +3751,14 @@
     "perMessageFee": "Ragad saben pesen (DHB)",
     "perMessageFeeSub": "Narik ragad saben pesen. Setel 0 kanggo DM gratis. Sampeyan bisa menehi akses gratis kanggo pangguna tartamtu.",
     "allDisabled": "Kabeh DM saiki dipateni. DM anyar diblokir kanthi standar."
+  },
+  "editPost": {
+    "mediaPermission": "Butuh idin pustaka media",
+    "fileSwapping": "Berkas anyar diunggah — bakal diganti sawise proses rampung",
+    "titleTooShort": "Irah-irahan kudu paling ora 3 karakter",
+    "descTooShort": "Katrangan kudu paling ora 3 karakter",
+    "updated": "Kiriman dianyari",
+    "titlePlaceholder": "Irah-irahan kiriman",
+    "descPlaceholder": "Katrangan kiriman"
   }
 }

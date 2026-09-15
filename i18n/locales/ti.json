@@ -704,7 +704,13 @@
     "unpinPost": "ካብ መገለጺኻ ኣርሕቕ",
     "postPinned": "ኣብ መገለጺኻ ተጸሚድካ",
     "postUnpinned": "ካብ መገለጺኻ ርሒቕካ",
-    "pinFailed": "ነዚ ጽሑፍ እዚ ክተኣታተወሉ ወይ ክተኣታተወሉ ኣይከኣለን ።"
+    "pinFailed": "ነዚ ጽሑፍ እዚ ክተኣታተወሉ ወይ ክተኣታተወሉ ኣይከኣለን ።",
+    "sendToDm": "ናብ DM ስደድ",
+    "sendToDmDesc": "ነዚ ጽሑፍ ኣብ ዝርርብ ኣካፍል",
+    "boostPostDesc": "ኣብ ላዕሊ ናይ ገዛ ፊድ ኣቐምጦ",
+    "mintPostDesc": "ነዚ ጽሑፍ ኣብ ሰንሰለት ኣውጽኦ",
+    "giftBoost": "ምብርባር ከም ህያብ ሃብ",
+    "giftBoostDesc": "ካብ ናትካ ሓደ ኣብዚ ጽሑፍ ኣውጽእ"
   },
   "filters": {
     "sort": "ደርድር",
@@ -3752,5 +3758,14 @@
     "perMessageFee": "ኣብ ነፍሲ ወከፍ መልእኽቲ ክፍሊት (DHB)",
     "perMessageFeeSub": "ኣብ ነፍሲ ወከፍ መልእኽቲ ክፍሊት ውሰድ። ብናጻ DM እንተደሊኻ 0 ግበሮ። ንገለ ተጠቀምቲ ናጻ መእተዊ ክትህብ ትኽእል።",
     "allDisabled": "ሕጂ ኩሎም DM ተዓጽዮም ኣለዉ። ሓደስቲ DM ብቐጥታ ተኸልኪሎም።"
+  },
+  "editPost": {
+    "mediaPermission": "ናይ ሚድያ ቤተ-መጻሕፍቲ ፍቓድ የድሊ",
+    "fileSwapping": "ሓድሽ ፋይል ተጻዒኑ — ኣሰራርሓ ምስ ተወድአ ክቅየር እዩ",
+    "titleTooShort": "ኣርእስቲ እንተወሓደ 3 ፊደላት ክኸውን ኣለዎ",
+    "descTooShort": "መግለጺ እንተወሓደ 3 ፊደላት ክኸውን ኣለዎ",
+    "updated": "ጽሑፍ ተሓዲሱ",
+    "titlePlaceholder": "ኣርእስቲ ጽሑፍ",
+    "descPlaceholder": "መግለጺ ጽሑፍ"
   }
 }

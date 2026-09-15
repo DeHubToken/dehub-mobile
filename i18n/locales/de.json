@@ -695,7 +695,13 @@
     "unpinPost": "Aus deinem Profil entfernen",
     "postPinned": "An Ihr Profil angeheftet",
     "postUnpinned": "Aus Ihrem Profil entfernt",
-    "pinFailed": "Dieser Beitrag konnte nicht angeheftet oder gelöst werden"
+    "pinFailed": "Dieser Beitrag konnte nicht angeheftet oder gelöst werden",
+    "sendToDm": "Per DM senden",
+    "sendToDmDesc": "Diesen Beitrag in einem Chat teilen",
+    "boostPostDesc": "Setze ihn an die Spitze des Home-Feeds",
+    "mintPostDesc": "Diesen Beitrag on-chain veröffentlichen",
+    "giftBoost": "Boost verschenken",
+    "giftBoostDesc": "Gib einen deiner Boosts für diesen Beitrag aus"
   },
   "filters": {
     "sort": "Sortieren",
@@ -3856,5 +3862,14 @@
     "perMessageFee": "Gebühr pro Nachricht (DHB)",
     "perMessageFeeSub": "Pro Nachricht abrechnen. Auf 0 setzen für kostenlose DMs. Einzelnen Nutzern kannst du freien Zugang geben.",
     "allDisabled": "Alle DMs sind derzeit deaktiviert. Neue DMs werden standardmäßig blockiert."
+  },
+  "editPost": {
+    "mediaPermission": "Berechtigung für die Mediathek erforderlich",
+    "fileSwapping": "Neue Datei hochgeladen — sie wird eingewechselt, sobald die Verarbeitung fertig ist",
+    "titleTooShort": "Der Titel muss mindestens 3 Zeichen lang sein",
+    "descTooShort": "Die Beschreibung muss mindestens 3 Zeichen lang sein",
+    "updated": "Beitrag aktualisiert",
+    "titlePlaceholder": "Beitragstitel",
+    "descPlaceholder": "Beitragsbeschreibung"
   }
 }

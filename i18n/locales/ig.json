@@ -708,7 +708,13 @@
     "unpinPost": "Wepụ site na profaịlụ gị",
     "postPinned": "Pinned na profaịlụ gị",
     "postUnpinned": "Ewepụghị na profaịlụ gị",
-    "pinFailed": "Agaghị enwenwu PIN ma ọ bụ wepu ọkwa a"
+    "pinFailed": "Agaghị enwenwu PIN ma ọ bụ wepu ọkwa a",
+    "sendToDm": "Zipụ na DM",
+    "sendToDmDesc": "Kesaa post a na mkparịta ụka",
+    "boostPostDesc": "Tinye ya n'elu feed ụlọ",
+    "mintPostDesc": "Bipụta post a na chain",
+    "giftBoost": "Nye nkwalite dị ka onyinye",
+    "giftBoostDesc": "Mefuo otu nke gị na post a"
   },
   "filters": {
     "sort": "Hazie",
@@ -3765,5 +3771,14 @@
     "perMessageFee": "Ụgwọ kwa ozi (DHB)",
     "perMessageFeeSub": "Na-ana ụgwọ kwa ozi. Tọọ ya na 0 maka DM n'efu. Ị nwere ike inye ụfọdụ ndị ọrụ ohere n'efu.",
     "allDisabled": "A gbanyụrụ DM niile ugbu a. A na-egbochi DM ọhụrụ na ndabara."
+  },
+  "editPost": {
+    "mediaPermission": "Achọrọ ikike ọbá ihe ọkiri",
+    "fileSwapping": "Ebugoro faịlụ ọhụrụ — ọ ga-agbanwe ozugbo nhazi gwụchara",
+    "titleTooShort": "Isiokwu ga-abụrịrị opekempe mkpụrụedemede 3",
+    "descTooShort": "Nkọwa ga-abụrịrị opekempe mkpụrụedemede 3",
+    "updated": "Emelitere post",
+    "titlePlaceholder": "Isiokwu post",
+    "descPlaceholder": "Nkọwa post"
   }
 }

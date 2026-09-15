@@ -681,7 +681,13 @@
     "unpinPost": "Poista kiinnitys profiilistasi",
     "postPinned": "Kiinnitetty profiiliisi",
     "postUnpinned": "Profiilisi kiinnitys poistettu",
-    "pinFailed": "Tätä julkaisua ei voitu kiinnittää tai poistaa"
+    "pinFailed": "Tätä julkaisua ei voitu kiinnittää tai poistaa",
+    "sendToDm": "Lähetä viestiin",
+    "sendToDmDesc": "Jaa tämä julkaisu keskustelussa",
+    "boostPostDesc": "Nosta se etusivun syötteen kärkeen",
+    "mintPostDesc": "Julkaise tämä julkaisu ketjussa",
+    "giftBoost": "Lahjoita tehoste",
+    "giftBoostDesc": "Käytä yksi omistasi tähän julkaisuun"
   },
   "filters": {
     "sort": "Lajittele",
@@ -3787,5 +3793,14 @@
     "perMessageFee": "Viestikohtainen maksu (DHB)",
     "perMessageFeeSub": "Veloita viestikohtaisesti. Aseta 0, jos viestit ovat ilmaisia. Voit myöntää tietyille käyttäjille ilmaisen pääsyn.",
     "allDisabled": "Kaikki viestit ovat nyt pois käytöstä. Uudet estetään oletuksena."
+  },
+  "editPost": {
+    "mediaPermission": "Mediakirjaston käyttöoikeus vaaditaan",
+    "fileSwapping": "Uusi tiedosto ladattu — se vaihtuu tilalle käsittelyn valmistuttua",
+    "titleTooShort": "Otsikossa on oltava vähintään 3 merkkiä",
+    "descTooShort": "Kuvauksessa on oltava vähintään 3 merkkiä",
+    "updated": "Julkaisu päivitetty",
+    "titlePlaceholder": "Julkaisun otsikko",
+    "descPlaceholder": "Julkaisun kuvaus"
   }
 }
