@@ -3194,5 +3194,25 @@
     "legacyTitle": "Eldre Solana-lommebok — {{amount}} SOL",
     "legacyBody": "En tidligere versjon av appen opprettet en egen Solana-lommebok som bare fantes på denne enheten. Den har fortsatt en saldo. Flytt midlene til adressen over mens du har denne telefonen — den nøkkelen kan ikke gjenopprettes noe annet sted.",
     "legacyViewA11y": "Vis eldre lommebok på Solscan"
+  },
+  "bridge": {
+    "title": "Bro DHB",
+    "from": "Fra",
+    "to": "Til",
+    "recent": "Dine siste broer",
+    "noneRecent": "Ingen brooverføringer de siste 7 dagene.",
+    "howItWorksBody": "Send DHB til broens relay-adresse på kildekjeden. Relayet leverer automatisk tilsvarende beløp på målkjeden i løpet av minutter.",
+    "relayAddress": "Broens relay-adresse (send DHB hit på kildekjeden):",
+    "addressCopied": "Bro-adresse kopiert!",
+    "swapDirectionA11y": "Bytt broretning",
+    "invalidAmount": "Skriv inn et gyldig beløp å bro.",
+    "walletNotReady": "Lommeboken er ikke klar. Prøv igjen.",
+    "insufficient": "Ikke nok DHB på {{chain}}.",
+    "switchFailed": "Kunne ikke bytte til {{chain}}. Prøv igjen.",
+    "initiated": "Broen er startet! TX: {{tx}}",
+    "insufficientOnChain": "Ikke nok DHB på {{chain}}. Saldoen på kjeden kan avvike fra den viste.",
+    "needGas": "Trenger native {{token}} til gass på {{chain}}.",
+    "bridging": "Broer…",
+    "bridgeAction": "Bro {{from}} → {{to}}"
   }
 }

@@ -3382,5 +3382,25 @@
     "legacyTitle": "Lumang Solana wallet — {{amount}} SOL",
     "legacyBody": "May naunang bersyon ng app na gumawa ng hiwalay na Solana wallet na sa device na ito lang umiral. May balance pa rin ito. Ilipat ang pondo sa address sa itaas habang nasa iyo pa ang teleponong ito — hindi na mababawi ang susi na iyon kahit saan pa.",
     "legacyViewA11y": "Tingnan ang lumang wallet sa Solscan"
+  },
+  "bridge": {
+    "title": "I-bridge ang DHB",
+    "from": "Mula sa",
+    "to": "Papunta sa",
+    "recent": "Ang iyong mga kamakailang bridge",
+    "noneRecent": "Walang bridge transfer sa nakalipas na 7 araw.",
+    "howItWorksBody": "Magpadala ng DHB sa bridge relay address sa source chain. Awtomatikong inihahatid ng relay ang katumbas na halaga sa destination chain sa loob ng ilang minuto.",
+    "relayAddress": "Bridge relay address (magpadala ng DHB dito sa source chain):",
+    "addressCopied": "Nakopya ang bridge address!",
+    "swapDirectionA11y": "Palitan ang direksyon ng bridge",
+    "invalidAmount": "Maglagay ng wastong halaga para sa bridge.",
+    "walletNotReady": "Hindi pa handa ang wallet. Pakisubukan ulit.",
+    "insufficient": "Kulang ang DHB sa {{chain}}.",
+    "switchFailed": "Hindi makalipat sa {{chain}}. Pakisubukan ulit.",
+    "initiated": "Nasimulan na ang bridge! TX: {{tx}}",
+    "insufficientOnChain": "Kulang ang DHB sa {{chain}}. Maaaring iba ang balance sa chain kaysa sa ipinapakita.",
+    "needGas": "Kailangan ng native na {{token}} para sa gas sa {{chain}}.",
+    "bridging": "Nagbi-bridge…",
+    "bridgeAction": "I-bridge {{from}} → {{to}}"
   }
 }

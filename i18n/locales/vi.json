@@ -3291,5 +3291,25 @@
     "legacyTitle": "Ví Solana cũ — {{amount}} SOL",
     "legacyBody": "Một phiên bản trước của ứng dụng đã tạo một ví Solana riêng chỉ tồn tại trên thiết bị này. Ví đó vẫn còn số dư. Hãy chuyển tiền sang địa chỉ ở trên khi bạn còn giữ chiếc điện thoại này — khóa đó không thể khôi phục ở bất kỳ nơi nào khác.",
     "legacyViewA11y": "Xem ví cũ trên Solscan"
+  },
+  "bridge": {
+    "title": "Cầu nối DHB",
+    "from": "Từ",
+    "to": "Đến",
+    "recent": "Các lần bắc cầu gần đây của bạn",
+    "noneRecent": "Không có giao dịch bắc cầu trong 7 ngày qua.",
+    "howItWorksBody": "Gửi DHB đến địa chỉ chuyển tiếp của cầu nối trên chuỗi nguồn. Bộ chuyển tiếp tự động giao số lượng tương đương trên chuỗi đích trong vòng vài phút.",
+    "relayAddress": "Địa chỉ chuyển tiếp của cầu nối (gửi DHB tới đây trên chuỗi nguồn):",
+    "addressCopied": "Đã sao chép địa chỉ cầu nối!",
+    "swapDirectionA11y": "Đổi chiều cầu nối",
+    "invalidAmount": "Nhập số tiền hợp lệ để bắc cầu.",
+    "walletNotReady": "Ví chưa sẵn sàng. Vui lòng thử lại.",
+    "insufficient": "Không đủ DHB trên {{chain}}.",
+    "switchFailed": "Không chuyển được sang {{chain}}. Vui lòng thử lại.",
+    "initiated": "Đã bắt đầu bắc cầu! TX: {{tx}}",
+    "insufficientOnChain": "Không đủ DHB trên {{chain}}. Số dư trên chuỗi có thể khác với số hiển thị.",
+    "needGas": "Cần {{token}} gốc để trả phí gas trên {{chain}}.",
+    "bridging": "Đang bắc cầu…",
+    "bridgeAction": "Bắc cầu {{from}} → {{to}}"
   }
 }

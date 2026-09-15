@@ -3173,5 +3173,25 @@
     "legacyTitle": "Köne Solana gapjygy — {{amount}} SOL",
     "legacyBody": "Programmanyň öňki wersiýasy diňe şu enjamda bar bolan aýratyn Solana gapjygyny döredipdi. Onda entek pul bar. Bu telefon eliňizdekä puly ýokardaky salga geçiriň — ol açary başga hiç ýerden dikeldip bolmaýar.",
     "legacyViewA11y": "Köne gapjygy Solscan-da gör"
+  },
+  "bridge": {
+    "title": "DHB köprüsi",
+    "from": "Nireden",
+    "to": "Nirä",
+    "recent": "Siziň soňky köprüleriňiz",
+    "noneRecent": "Soňky 7 günde köprü geçirimi ýok.",
+    "howItWorksBody": "Çeşme zynjyrynda köprüniň relé salgysyna DHB iberiň. Relé birnäçe minudyň içinde deň mukdary maksat zynjyrda awtomatik ýetirýär.",
+    "relayAddress": "Köprüniň relé salgysy (DHB şu ýere çeşme zynjyrynda iberiň):",
+    "addressCopied": "Köprü salgysy göçürildi!",
+    "swapDirectionA11y": "Köprüniň ugruny çalyş",
+    "invalidAmount": "Köprüden geçirmek üçin dogry mukdar giriziň.",
+    "walletNotReady": "Gapjyk taýýar däl. Haýyş, gaýtadan synanyşyň.",
+    "insufficient": "{{chain}} -da ýeterlik DHB ýok.",
+    "switchFailed": "{{chain}} -a geçip bolmady. Haýyş, gaýtadan synanyşyň.",
+    "initiated": "Köprü başlady! TX: {{tx}}",
+    "insufficientOnChain": "{{chain}} -da ýeterlik DHB ýok. Zynjyrdaky balans görkezilenden tapawutly bolup biler.",
+    "needGas": "{{chain}} -da gaz üçin ýerli {{token}} gerek.",
+    "bridging": "Köprüden geçirilýär…",
+    "bridgeAction": "Köprü {{from}} → {{to}}"
   }
 }

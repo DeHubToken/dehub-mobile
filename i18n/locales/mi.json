@@ -3188,5 +3188,25 @@
     "legacyTitle": "Pūkoro Solana tawhito — {{amount}} SOL",
     "legacyBody": "I hangaia e tētahi putanga o mua o te taupānga tētahi pūkoro Solana motuhake i noho anake ki tēnei pūrere. He toenga anō kei roto. Nekehia ngā pūtea ki te wāhitau kei runga i a koe anō tēnei waea — kāore taua kī e taea te whakaora i wāhi kē.",
     "legacyViewA11y": "Tirohia te pūkoro tawhito i Solscan"
+  },
+  "bridge": {
+    "title": "Piriti DHB",
+    "from": "Mai i",
+    "to": "Ki",
+    "recent": "Ō piriti tata nei",
+    "noneRecent": "Kāore he whakawhitinga piriti i ngā rā 7 kua pahure.",
+    "howItWorksBody": "Tukua he DHB ki te wāhitau tuku o te piriti i te mekameka pūtake. Ka tukuna aunoatia e te tuku te moni ōrite ki te mekameka whāinga i roto i ētahi meneti.",
+    "relayAddress": "Wāhitau tuku piriti (tukua he DHB ki konei i te mekameka pūtake):",
+    "addressCopied": "Kua tāruatia te wāhitau piriti!",
+    "swapDirectionA11y": "Whakawhitia te ahunga piriti",
+    "invalidAmount": "Whakaurua he moni tika hei piriti.",
+    "walletNotReady": "Kāore te pūkoro i rite. Ngana anō.",
+    "insufficient": "Kāore i rawaka te DHB i {{chain}}.",
+    "switchFailed": "Kāore i taea te huri ki {{chain}}. Ngana anō.",
+    "initiated": "Kua tīmata te piriti! TX: {{tx}}",
+    "insufficientOnChain": "Kāore i rawaka te DHB i {{chain}}. Kei te rerekē pea te toenga i runga mekameka i tērā e whakaatuhia ana.",
+    "needGas": "Me whai {{token}} taketake mō te hau i {{chain}}.",
+    "bridging": "Kei te piriti…",
+    "bridgeAction": "Piriti {{from}} → {{to}}"
   }
 }

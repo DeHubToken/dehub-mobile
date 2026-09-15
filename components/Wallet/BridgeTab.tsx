@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   Linking,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import * as Clipboard from "expo-clipboard";
 import { Ionicons } from "@expo/vector-icons";
 import { ethers } from "ethers";
@@ -62,6 +63,7 @@ function formatDHB(raw: ethers.BigNumber | null): string {
 }
 
 const BridgeTab: React.FC = () => {
+  const { t } = useTranslation();
   const user = useUser() as any;
   const walletAddress: string | undefined =
     user?.walletAddress || user?.address;
@@ -136,17 +138,17 @@ const BridgeTab: React.FC = () => {
   const handleBridge = async () => {
     const parsedAmount = parseFloat(amount);
     if (!parsedAmount || parsedAmount <= 0) {
-      toastError("Enter a valid amount to bridge.");
+      toastError(t("bridge.invalidAmount"));
       return;
     }
     if (!walletAddress) {
-      toastError("Wallet not connected.");
+      toastError(t("staking.walletNotConnected"));
       return;
     }
     if (sourceBal) {
       const amountWei = ethers.utils.parseUnits(amount, 18);
       if (amountWei.gt(sourceBal)) {
-        toastError(`Insufficient DHB on ${sourceChain}.`);
+        toastError(t("bridge.insufficient", { chain: sourceChain }));
         return;
       }
     }
@@ -159,13 +161,13 @@ const BridgeTab: React.FC = () => {
         try {
           await switchChain(targetChainId);
         } catch {
-          toastError(`Could not switch to ${sourceChain}. Please try again.`);
+          toastError(t("bridge.switchFailed", { chain: sourceChain }));
           return;
         }
         activeProvider = getSigningProvider() || provider;
       }
       if (!activeProvider?.request) {
-        toastError("Wallet not ready. Please try again.");
+        toastError(t("bridge.walletNotReady"));
         return;
       }
 
@@ -178,7 +180,7 @@ const BridgeTab: React.FC = () => {
         params: [{ from: walletAddress, to: sourceToken, data }],
       });
 
-      toastSuccess(`Bridge initiated! TX: ${txHash.slice(0, 10)}…`);
+      toastSuccess(t("bridge.initiated", { tx: txHash.slice(0, 10) + "…" }));
       toastSuccess(`${amount} DHB sent from ${sourceChain} → ${destChain}. Tokens arrive shortly.`);
       setAmount("");
       setTimeout(fetchBalances, 8000);
@@ -186,11 +188,11 @@ const BridgeTab: React.FC = () => {
     } catch (err: any) {
       const msg = String(err?.message || err || "Bridge failed");
       if (msg.includes("user rejected") || msg.includes("cancelled")) {
-        toastError("Transaction cancelled.");
+        toastError(t("staking.txCancelled"));
       } else if (msg.includes("transfer amount exceeds balance") || msg.includes("exceeds balance")) {
-        toastError(`Insufficient DHB on ${sourceChain}. On-chain balance may differ from displayed.`);
+        toastError(t("bridge.insufficientOnChain", { chain: sourceChain }));
       } else if (msg.includes("gas") || msg.includes("aa21") || msg.includes("aa25")) {
-        toastError(`Need native ${direction === "base-to-bnb" ? "ETH" : "BNB"} for gas on ${sourceChain}.`);
+        toastError(t("bridge.needGas", { token: direction === "base-to-bnb" ? "ETH" : "BNB", chain: sourceChain }));
       } else {
         toastError(msg.slice(0, 100));
       }
@@ -201,7 +203,7 @@ const BridgeTab: React.FC = () => {
 
   const handleCopyBridgeAddress = async () => {
     await Clipboard.setStringAsync(BRIDGE_ADDRESS);
-    toastSuccess("Bridge address copied!");
+    toastSuccess(t("bridge.addressCopied"));
   };
 
   return (
@@ -234,13 +236,13 @@ const BridgeTab: React.FC = () => {
 
       {/* Bridge card */}
       <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
-        <Text className="text-white font-semibold text-base mb-4">Bridge DHB</Text>
+        <Text className="text-white font-semibold text-base mb-4">{t("bridge.title")}</Text>
 
         {/* Direction display */}
         <View className="flex-row items-center gap-3 mb-5">
           <View className="flex-1 border border-white/10 bg-white/[0.03] rounded-xl p-3 items-center">
             <Text className="text-white/60 text-xs uppercase tracking-wider mb-1">
-              From
+              {t("bridge.from")}
             </Text>
             <Text className="text-white text-sm font-semibold">{sourceChain}</Text>
           </View>
@@ -255,14 +257,14 @@ const BridgeTab: React.FC = () => {
             className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center"
             hitSlop={{ top: 2, bottom: 2, left: 2, right: 2 }}
             accessibilityRole="button"
-            accessibilityLabel="Swap bridge direction"
+            accessibilityLabel={t("bridge.swapDirectionA11y")}
           >
             <Ionicons name="swap-vertical-outline" size={18} color="rgba(255,255,255,0.6)" />
           </TouchableOpacity>
 
           <View className="flex-1 border border-white/10 bg-white/[0.03] rounded-xl p-3 items-center">
             <Text className="text-white/60 text-xs uppercase tracking-wider mb-1">
-              To
+              {t("bridge.to")}
             </Text>
             <Text className="text-white text-sm font-semibold">{destChain}</Text>
           </View>
@@ -314,7 +316,7 @@ const BridgeTab: React.FC = () => {
             <Ionicons name="swap-horizontal-outline" size={16} color="white" />
           )}
           <Text className="text-white font-semibold text-sm">
-            {isBridging ? "Bridging…" : `Bridge ${sourceChain} → ${destChain}`}
+            {isBridging ? t("bridge.bridging") : t("bridge.bridgeAction", { from: sourceChain, to: destChain })}
           </Text>
         </TouchableOpacity>
       </View>
@@ -323,19 +325,17 @@ const BridgeTab: React.FC = () => {
       <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
         <View className="flex-row items-center gap-2 mb-2">
           <Ionicons name="information-circle-outline" size={16} color="#D4D4D8" />
-          <Text className="text-white font-semibold text-sm">How it works</Text>
+          <Text className="text-white font-semibold text-sm">{t("affiliate.howItWorks")}</Text>
         </View>
         <Text className="text-white/60 text-xs leading-5">
-          Send DHB to the bridge relay address on the source chain. The relay
-          automatically delivers the equivalent amount on the destination chain
-          within minutes.
+          {t("bridge.howItWorksBody")}
         </Text>
       </View>
 
       {/* Recent bridges */}
       <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4">
         <Text className="text-white/50 text-xs uppercase tracking-wider mb-3">
-          Your recent bridges
+          {t("bridge.recent")}
         </Text>
         {loadingTransfers ? (
           <View className="items-center py-4">
@@ -343,7 +343,7 @@ const BridgeTab: React.FC = () => {
           </View>
         ) : transfers.length === 0 ? (
           <Text className="text-white/50 text-xs text-center py-3">
-            No bridge transfers in the last 7 days.
+            {t("bridge.noneRecent")}
           </Text>
         ) : (
           <View className="gap-2">
@@ -379,7 +379,7 @@ const BridgeTab: React.FC = () => {
       {/* Manual bridge address */}
       <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
         <Text className="text-white/50 text-xs mb-2">
-          Bridge relay address (send DHB here on source chain):
+          {t("bridge.relayAddress")}
         </Text>
         <TouchableOpacity
           onPress={handleCopyBridgeAddress}
@@ -397,7 +397,7 @@ const BridgeTab: React.FC = () => {
         className="mt-4 items-center flex-row justify-center gap-2"
       >
         <Ionicons name="refresh-outline" size={14} color="rgba(255,255,255,0.6)" />
-        <Text className="text-white/60 text-xs">Refresh balances</Text>
+        <Text className="text-white/60 text-xs">{t("staking.refreshBalances")}</Text>
       </TouchableOpacity>
     </View>
   );

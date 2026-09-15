@@ -3207,5 +3207,25 @@
     "legacyTitle": "Ældre Solana-tegnebog — {{amount}} SOL",
     "legacyBody": "En tidligere version af appen oprettede en separat Solana-tegnebog, som kun fandtes på denne enhed. Den har stadig en saldo. Flyt midlerne til adressen ovenfor, mens du har denne telefon — den nøgle kan ikke gendannes noget andet sted.",
     "legacyViewA11y": "Se ældre tegnebog på Solscan"
+  },
+  "bridge": {
+    "title": "Bridge DHB",
+    "from": "Fra",
+    "to": "Til",
+    "recent": "Dine seneste bridges",
+    "noneRecent": "Ingen bridge-overførsler i de seneste 7 dage.",
+    "howItWorksBody": "Send DHB til bridgens relay-adresse på kildekæden. Relayet leverer automatisk det tilsvarende beløb på destinationskæden inden for få minutter.",
+    "relayAddress": "Bridgens relay-adresse (send DHB hertil på kildekæden):",
+    "addressCopied": "Bridge-adresse kopieret!",
+    "swapDirectionA11y": "Byt bridge-retning",
+    "invalidAmount": "Indtast et gyldigt beløb til bridging.",
+    "walletNotReady": "Tegnebogen er ikke klar. Prøv igen.",
+    "insufficient": "Utilstrækkelig DHB på {{chain}}.",
+    "switchFailed": "Kunne ikke skifte til {{chain}}. Prøv igen.",
+    "initiated": "Bridge startet! TX: {{tx}}",
+    "insufficientOnChain": "Utilstrækkelig DHB på {{chain}}. Saldoen på kæden kan afvige fra den viste.",
+    "needGas": "Der kræves native {{token}} til gas på {{chain}}.",
+    "bridging": "Bridger…",
+    "bridgeAction": "Bridge {{from}} → {{to}}"
   }
 }

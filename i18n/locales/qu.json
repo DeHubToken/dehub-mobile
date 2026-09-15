@@ -3235,5 +3235,25 @@
     "legacyTitle": "Ñawpa Solana qullqi waqaychana — {{amount}} SOL",
     "legacyBody": "Ñawpaq app ruwayqa huk t'aqasqa Solana qullqi waqaychanata kamarqan, chaytaq kay antallapi karqan. Kunanpas qullqi kanraq. Kay celularniyki kachkaptinraq qullqita hanaq ñan sutiman apachiy — chay llaveqa mana maypipas kutichiyta atikunchu.",
     "legacyViewA11y": "Ñawpa qullqi waqaychanata Solscan ukhupi qhaway"
+  },
+  "bridge": {
+    "title": "DHB chaka",
+    "from": "Maymanta",
+    "to": "Mayman",
+    "recent": "Qanpa qayna chakaykikuna",
+    "noneRecent": "Qhipa 7 pʼunchawpi mana chaka apachiykuna.",
+    "howItWorksBody": "DHB kachay chaka relay ñan sutiman qallariy cadenapi. Relayqa kikin chaninta apachin destino cadenaman pisi minutopi kikinmanta.",
+    "relayAddress": "Chaka relay ñan suti (DHB kayman kachay qallariy cadenapi):",
+    "addressCopied": "Chaka ñan suti kikinchasqa!",
+    "swapDirectionA11y": "Chaka ñanta tikray",
+    "invalidAmount": "Chakanapaq allin chanin qillqay.",
+    "walletNotReady": "Qullqi waqaychana mana wakichisqachu. Yapamanta ruway.",
+    "insufficient": "{{chain}} ukhupi DHB mana aypanchu.",
+    "switchFailed": "{{chain}} man tikrayta mana atikunchu. Yapamanta ruway.",
+    "initiated": "Chaka qallarirqan! TX: {{tx}}",
+    "insufficientOnChain": "{{chain}} ukhupi DHB mana aypanchu. Cadenapi puchuqqa rikuchisqamanta huk hina kanman.",
+    "needGas": "{{chain}} ukhupi gas paganapaq kikin {{token}} necesitanki.",
+    "bridging": "Chakachkan…",
+    "bridgeAction": "Chaka {{from}} → {{to}}"
   }
 }

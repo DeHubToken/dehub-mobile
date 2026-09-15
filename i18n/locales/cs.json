@@ -3207,5 +3207,25 @@
     "legacyTitle": "Starší peněženka Solana — {{amount}} SOL",
     "legacyBody": "Dřívější verze aplikace vytvořila samostatnou peněženku Solana, která existovala jen na tomto zařízení. Stále na ní zůstává zůstatek. Převeďte prostředky na adresu výše, dokud máte tento telefon — ten klíč už nikde jinde obnovit nelze.",
     "legacyViewA11y": "Zobrazit starší peněženku na Solscanu"
+  },
+  "bridge": {
+    "title": "Most DHB",
+    "from": "Z",
+    "to": "Do",
+    "recent": "Vaše nedávné mosty",
+    "noneRecent": "Za posledních 7 dní žádné mostové převody.",
+    "howItWorksBody": "Pošlete DHB na relay adresu mostu na zdrojovém řetězci. Relay automaticky doručí odpovídající částku na cílový řetězec během několika minut.",
+    "relayAddress": "Relay adresa mostu (pošlete sem DHB na zdrojovém řetězci):",
+    "addressCopied": "Adresa mostu zkopírována!",
+    "swapDirectionA11y": "Prohodit směr mostu",
+    "invalidAmount": "Zadejte platnou částku k převedení mostem.",
+    "walletNotReady": "Peněženka není připravena. Zkuste to znovu.",
+    "insufficient": "Nedostatek DHB na {{chain}}.",
+    "switchFailed": "Nepodařilo se přepnout na {{chain}}. Zkuste to znovu.",
+    "initiated": "Most zahájen! TX: {{tx}}",
+    "insufficientOnChain": "Nedostatek DHB na {{chain}}. Zůstatek na řetězci se může lišit od zobrazeného.",
+    "needGas": "Na {{chain}} je potřeba nativní {{token}} na poplatky.",
+    "bridging": "Probíhá převod…",
+    "bridgeAction": "Most {{from}} → {{to}}"
   }
 }

@@ -3193,5 +3193,25 @@
     "legacyTitle": "Àpò owó Solana àtijọ́ — {{amount}} SOL",
     "legacyBody": "Ẹ̀dà àgbà ti ohun-èlò náà dá àpò owó Solana ọ̀tọ̀ tí ó wà lórí ẹ̀rọ yìí nìkan. Owó ṣì wà nínú rẹ̀. Fi owó náà ránṣẹ́ sí àdírẹ́sì tó wà lókè nígbà tí fóònù yìí ṣì wà lọ́wọ́ rẹ — kọ́kọ́rọ́ yẹn kò lè padà bọ̀ láti ibòmíràn.",
     "legacyViewA11y": "Wo àpò owó àtijọ́ lórí Solscan"
+  },
+  "bridge": {
+    "title": "Afárá DHB",
+    "from": "Láti",
+    "to": "Sí",
+    "recent": "Àwọn afárá rẹ láìpẹ́",
+    "noneRecent": "Kò sí ìfìránṣẹ́ afárá ní ọjọ́ 7 sẹ́yìn.",
+    "howItWorksBody": "Fi DHB ránṣẹ́ sí àdírẹ́sì arínkiri afárá lórí ẹ̀wọ̀n orísun. Arínkiri náà yóò fi iye tó bá dọ́gba jíṣẹ́ lórí ẹ̀wọ̀n àfojúsùn láàrin ìṣẹ́jú díẹ̀ fúnra rẹ̀.",
+    "relayAddress": "Àdírẹ́sì arínkiri afárá (fi DHB ránṣẹ́ síbí lórí ẹ̀wọ̀n orísun):",
+    "addressCopied": "A ti ṣe àdàkọ àdírẹ́sì afárá!",
+    "swapDirectionA11y": "Yí ìtọ́sọ́nà afárá padà",
+    "invalidAmount": "Tẹ iye tó tọ́ sí i láti kọjá afárá.",
+    "walletNotReady": "Àpò owó kò tíì ṣetán. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kansi.",
+    "insufficient": "DHB kò tó lórí {{chain}}.",
+    "switchFailed": "Kò lè yí padà sí {{chain}}. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kansi.",
+    "initiated": "Afárá ti bẹ̀rẹ̀! TX: {{tx}}",
+    "insufficientOnChain": "DHB kò tó lórí {{chain}}. Ìwọ̀n tó wà lórí ẹ̀wọ̀n lè yàtọ̀ sí èyí tí a fi hàn.",
+    "needGas": "O nílò {{token}} ìbílẹ̀ fún gáàsì lórí {{chain}}.",
+    "bridging": "Ń kọjá afárá…",
+    "bridgeAction": "Afárá {{from}} → {{to}}"
   }
 }

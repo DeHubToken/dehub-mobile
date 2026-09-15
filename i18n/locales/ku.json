@@ -2969,5 +2969,25 @@
     "legacyTitle": "Berîka Solana ya kevn — {{amount}} SOL",
     "legacyBody": "Guhertoyeke berê ya sepanê berîkeke Solana ya cuda çêkiribû ku tenê li ser vê amûrê hebû. Hîn jî balansek tê de heye. Heta ku ev telefon di destê te de ye, drav veguhêze navnîşana jorîn — ew mifte li tu cihekî din nayê vegerandin.",
     "legacyViewA11y": "Berîka kevn li Solscan bibîne"
+  },
+  "bridge": {
+    "title": "Pira DHB",
+    "from": "Ji",
+    "to": "Bo",
+    "recent": "Pirên te yên dawî",
+    "noneRecent": "Di 7 rojên dawî de veguhastina pirê tune.",
+    "howItWorksBody": "DHB bişîne navnîşana relayê ya pirê li ser zincîra jêderk. Relay bi otomatîkî di nav çend deqîqeyan de heqê hevwate li ser zincîra armanc digihîne.",
+    "relayAddress": "Navnîşana relayê ya pirê (DHB li vir li ser zincîra jêderk bişîne):",
+    "addressCopied": "Navnîşana pirê hat kopîkirin!",
+    "swapDirectionA11y": "Aliyê pirê biguherîne",
+    "invalidAmount": "Ji bo pirê hejmareke derbasdar binivîse.",
+    "walletNotReady": "Berîk ne amade ye. Ji kerema xwe dîsa biceribîne.",
+    "insufficient": "DHB li ser {{chain}} têrê nake.",
+    "switchFailed": "Nehat guhertin bo {{chain}}. Ji kerema xwe dîsa biceribîne.",
+    "initiated": "Pir dest pê kir! TX: {{tx}}",
+    "insufficientOnChain": "DHB li ser {{chain}} têrê nake. Balansa li ser zincîrê dibe ku ji ya nîşandayî cuda be.",
+    "needGas": "Ji bo gazê li ser {{chain}} {{token}} ya resen hewce ye.",
+    "bridging": "Tê veguhastin…",
+    "bridgeAction": "Pir {{from}} → {{to}}"
   }
 }

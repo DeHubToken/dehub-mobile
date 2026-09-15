@@ -3148,5 +3148,25 @@
     "legacyTitle": "Solana wari maralan kɔrɔ — SOL {{amount}}",
     "legacyBody": "Porogaramu kɔrɔ dɔ ye Solana wari maralan wɛrɛ dilan min tun bɛ nin minɛn dɔrɔn kan. Wari bɛ a la halibi. Wari lataa sanfɛ ladɛrɛsi ma k'a to nin telefɔni bɛ i bolo — o konnɛgɛ tɛ se ka sɔrɔ yɔrɔ wɛrɛ la.",
     "legacyViewA11y": "Wari maralan kɔrɔ lajɛ Solscan kan"
+  },
+  "bridge": {
+    "title": "DHB tɛmɛ",
+    "from": "Ka bɔ",
+    "to": "Ka taa",
+    "recent": "I ka tɛmɛli kɔsawalenw",
+    "noneRecent": "Tɛmɛli si ma kɛ tile 7 tɛmɛnenw kɔnɔ.",
+    "howItWorksBody": "DHB ci bolodalan ladɛrɛsi ma jɔlɔkɔ fɔlɔ kan. Bolodalan bɛ hakɛ kelen di jɔlɔkɔ laban kan miniti damadɔ kɔnɔ a yɛrɛma.",
+    "relayAddress": "Bolodalan ladɛrɛsi (DHB ci yan jɔlɔkɔ fɔlɔ kan):",
+    "addressCopied": "Bolodalan ladɛrɛsi kopilen!",
+    "swapDirectionA11y": "Bolodalan sira falen",
+    "invalidAmount": "Wari hakɛ ɲuman sɛbɛn tɛmɛli kama.",
+    "walletNotReady": "Wari maralan ma labɛn. I ye a lajɛ tugun.",
+    "insufficient": "DHB man ca {{chain}} kan.",
+    "switchFailed": "An ma se ka yɛlɛma ka taa {{chain}} la. A lajɛ tugun.",
+    "initiated": "Tɛmɛli daminɛna! TX: {{tx}}",
+    "insufficientOnChain": "DHB man ca {{chain}} kan. Wari hakɛ jɔlɔkɔ kan bɛ se ka danfara ni jirali ye.",
+    "needGas": "{{token}} yɛrɛ ka kan ka kɛ gazi ye {{chain}} kan.",
+    "bridging": "Tɛmɛli bɛ kɛ…",
+    "bridgeAction": "Tɛmɛli {{from}} → {{to}}"
   }
 }
