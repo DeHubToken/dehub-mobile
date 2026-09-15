@@ -77,6 +77,7 @@ import {
   getVideoUrl,
   getShortsThumbnailUrl,
   resolveThumbnail,
+  DEFAULT_BANNER_SENTINEL,
   formatCompactNumber,
   toastError,
   toastSuccess,
@@ -248,10 +249,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const createdAt = item.createdAt || stream?.createdAt;
   const rawTitle = item.name || item.title || stream?.title || "";
-  const title = useMemo(
-    () => (rawTitle.toLowerCase() === "untitled" ? "" : rawTitle),
-    [rawTitle],
-  );
+  // Trimmed, because the Go Live flow mints its post with a single space for a
+  // name when the broadcaster leaves the title empty. " " is truthy, so every
+  // `title || fallback` on this card rendered that space instead of the
+  // fallback — a live card whose caption was one blank character.
+  const title = useMemo(() => {
+    const trimmed = rawTitle.trim();
+    return trimmed.toLowerCase() === "untitled" ? "" : trimmed;
+  }, [rawTitle]);
   const description = item.description || stream?.description || "";
   const soundtrack = useMemo(() => parseSoundtrack(description), [description]);
   const hasSoundtrack = !!soundtrack;
@@ -351,7 +356,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         const poster = liveThumbnailFor(stream as any);
         if (poster) return poster;
       }
-      return resolveThumbnail(item as any, IMAGE_WIDTH);
+      // resolveThumbnail answers with the SENTINEL "default-banner" — not a
+      // URL — when a post carries no picture at all. It reads as a thumbnail to
+      // every `typeof === string` check downstream, so a live post with no
+      // cover (the norm: the self-hosted ingest renders none and the token
+      // carries no image) handed that string to <Image>, which throws
+      // "no scheme was found for default-banner" and paints nothing. The card
+      // was then a flat grey slab: the poster was "present" so neither the
+      // preview's placeholder nor the fallback below could run.
+      const resolved = resolveThumbnail(item as any, IMAGE_WIDTH);
+      return resolved === DEFAULT_BANNER_SENTINEL ? "" : resolved;
     }
     if (isVideo) {
       if (isShort) {
@@ -1273,6 +1287,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     />
   );
 
+  // What a live card says when there is no picture to show — behind the player
+  // while it opens, and alone when there is nothing to play. The stream's own
+  // title where it has one, otherwise what the card is.
+  const liveFallbackLabel =
+    title || (isCurrentlyLive ? t("stages.liveNow") : t("feedCard.stream"));
+
   const renderLiveThumbnail = () => (
     <Pressable onPress={handleCardPress} className="relative w-full h-48 bg-zinc-800 rounded-xl overflow-hidden mt-2">
       {livePlayableUrl && !isActuallyGated ? (
@@ -1284,6 +1304,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           url={livePlayableUrl}
           thumbnail={hasThumb ? thumbnail : undefined}
           active={isVisible && isAutoplayActive}
+          label={liveFallbackLabel}
         />
       ) : hasThumb ? (
         <SmartImage
@@ -1303,7 +1324,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             numberOfLines={2}
             style={{ color: "#8B8D90", fontSize: 12, marginTop: 8, textAlign: "center" }}
           >
-            {title || (isCurrentlyLive ? t("stages.liveNow") : t("feedCard.stream"))}
+            {liveFallbackLabel}
           </Text>
         </View>
       )}

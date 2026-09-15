@@ -11,7 +11,7 @@
  */
 
 import React, { memo, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { VideoView, useVideoPlayer } from "expo-video";
 import SmartImage from "./SmartImage";
 import Icon from "../ui/Icon";
@@ -24,6 +24,24 @@ interface Props {
   thumbnail?: string;
   /** True only on the card the feed is autoplaying, and only while visible. */
   active: boolean;
+  /** Shown on the placeholder when there is no poster — the stream's title. */
+  label?: string;
+}
+
+/**
+ * A poster this component can actually point an <Image> at.
+ *
+ * Callers resolve thumbnails through helpers that answer a SENTINEL rather than
+ * a URL when a post has no picture ("default-banner"). Handed to expo-image
+ * that throws "no scheme was found", the element paints nothing, and the card
+ * shows a bare slab — with the placeholder below skipped, because a poster
+ * appeared to exist. Anything without a scheme is no poster.
+ */
+function usablePoster(thumbnail?: string): string | undefined {
+  if (!thumbnail) return undefined;
+  return /^(https?:|data:|file:|content:|asset:)/i.test(thumbnail.trim())
+    ? thumbnail
+    : undefined;
 }
 
 /**
@@ -63,14 +81,15 @@ function LivePlayer({ url }: { url: string }) {
   );
 }
 
-function LiveFeedPreviewComponent({ url, thumbnail, active }: Props) {
+function LiveFeedPreviewComponent({ url, thumbnail, active, label }: Props) {
+  const poster = usablePoster(thumbnail);
   return (
     <View style={StyleSheet.absoluteFill}>
-      {thumbnail ? (
+      {poster ? (
         <SmartImage
-          source={{ uri: thumbnail }}
+          source={{ uri: poster }}
           style={StyleSheet.absoluteFill}
-          recyclingKey={thumbnail}
+          recyclingKey={poster}
         />
       ) : (
         // The self-hosted ingest renders no thumbnail, so this is the common
@@ -79,6 +98,11 @@ function LiveFeedPreviewComponent({ url, thumbnail, active }: Props) {
         // is a blank grey slab — which is how "broken image" gets reported.
         <View style={[StyleSheet.absoluteFill, styles.placeholder]}>
           <Icon name="Radio" size={32} color="#6F7174" />
+          {!!label && (
+            <Text numberOfLines={2} style={styles.label}>
+              {label}
+            </Text>
+          )}
         </View>
       )}
       {/* Only the autoplaying card holds a player. Pausing was not enough: a
@@ -96,6 +120,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#18181B",
     alignItems: "center",
     justifyContent: "center",
+    paddingHorizontal: 24,
+  },
+  label: {
+    color: "#8B8D90",
+    fontSize: 12,
+    marginTop: 8,
+    textAlign: "center",
   },
 });
 
