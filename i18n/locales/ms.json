@@ -4026,5 +4026,29 @@
     "stream": "Siaran",
     "boostPost": "Boost siaran",
     "openSuperPowers": "Buka SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Tidak dapat melampirkan fail itu.",
+    "removeAttachment": "Buang lampiran",
+    "addTip": "Tambah tip",
+    "chooseGif": "Pilih GIF",
+    "attachImage": "Lampirkan imej",
+    "attachVideo": "Lampirkan video",
+    "attachFile": "Lampirkan fail",
+    "enhanceWithAi": "Tingkatkan mesej dengan AI",
+    "sendMessage": "Hantar mesej",
+    "cantMessageYourself": "Anda tidak boleh menghantar mesej kepada diri sendiri",
+    "askSomething": "Tanya sesuatu...",
+    "removeOption": "Buang pilihan",
+    "allowMultiple": "Benarkan berbilang jawapan",
+    "preferences": "Keutamaan DM",
+    "enableDms": "Dayakan DM",
+    "enableDmsSub": "Matikan untuk menyekat semua mesej.",
+    "allowNewDms": "Benarkan DM baharu",
+    "allowNewDmsOn": "Jika dimatikan, hanya orang yang pernah anda sembang boleh menghantar mesej.",
+    "allowNewDmsOff": "Dayakan DM untuk membenarkan mesej baharu.",
+    "perMessageFee": "Yuran setiap mesej (DHB)",
+    "perMessageFeeSub": "Kenakan bayaran setiap mesej. Tetapkan 0 untuk DM percuma. Anda boleh beri akses percuma kepada pengguna tertentu.",
+    "allDisabled": "Semua DM kini dimatikan. DM baharu disekat secara lalai."
   }
 }

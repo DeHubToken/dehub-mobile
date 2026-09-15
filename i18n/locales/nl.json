@@ -4030,5 +4030,29 @@
     "stream": "Stream",
     "boostPost": "Bericht boosten",
     "openSuperPowers": "SuperPowers openen"
+  },
+  "dm": {
+    "attachFailed": "Kan dat bestand niet bijvoegen.",
+    "removeAttachment": "Bijlage verwijderen",
+    "addTip": "Fooi toevoegen",
+    "chooseGif": "Kies een GIF",
+    "attachImage": "Afbeelding bijvoegen",
+    "attachVideo": "Video bijvoegen",
+    "attachFile": "Bestand bijvoegen",
+    "enhanceWithAi": "Bericht verbeteren met AI",
+    "sendMessage": "Bericht verzenden",
+    "cantMessageYourself": "Je kunt jezelf geen bericht sturen",
+    "askSomething": "Vraag iets...",
+    "removeOption": "Optie verwijderen",
+    "allowMultiple": "Meerdere antwoorden toestaan",
+    "preferences": "DM-voorkeuren",
+    "enableDms": "DM's inschakelen",
+    "enableDmsSub": "Schakel uit om alle berichten te blokkeren.",
+    "allowNewDms": "Nieuwe DM's toestaan",
+    "allowNewDmsOn": "Als dit uit staat, kunnen alleen mensen met wie je al hebt gechat je berichten sturen.",
+    "allowNewDmsOff": "Schakel DM's in om nieuwe berichten toe te staan.",
+    "perMessageFee": "Kosten per bericht (DHB)",
+    "perMessageFeeSub": "Reken per bericht. Zet op 0 voor gratis DM's. Je kunt specifieke gebruikers gratis toegang geven.",
+    "allDisabled": "Alle DM's staan momenteel uit. Nieuwe DM's worden standaard geblokkeerd."
   }
 }

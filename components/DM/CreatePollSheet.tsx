@@ -15,6 +15,7 @@ import Animated, { FadeIn, FadeOut, SlideInUp, SlideOutDown } from "react-native
 import Icon from "../ui/Icon";
 import { useCreatePoll } from "../../hooks/usePolls";
 import { ButtonLoader } from "../DeHubLoader";
+import { useTranslation } from "react-i18next";
 
 interface CreatePollSheetProps {
   visible: boolean;
@@ -36,6 +37,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
   onCreated,
   tokenId: postTokenId = 0,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { createPoll, loading } = useCreatePoll();
 
@@ -117,11 +119,11 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
               className="p-1"
               hitSlop={10}
               accessibilityRole="button"
-              accessibilityLabel="Close"
+              accessibilityLabel={t("common.close")}
             >
               <Icon name="X" size={20} color="#A6A9AC" />
             </TouchableOpacity>
-            <Text className="text-white font-semibold text-base">Create Poll</Text>
+            <Text className="text-white font-semibold text-base">{t("postOptions.createPoll")}</Text>
             <TouchableOpacity
               onPress={handleCreate}
               disabled={!canCreate}
@@ -155,7 +157,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
             <TextInput
               value={question}
               onChangeText={setQuestion}
-              placeholder="Ask something..."
+              placeholder={t("dm.askSomething")}
               placeholderTextColor="#8B8D90"
               maxLength={200}
               className="bg-theme-neutrals-700 rounded-xl px-3 py-2.5 text-white text-sm mb-4"
@@ -189,7 +191,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
                     className="p-1.5"
                     hitSlop={10}
                     accessibilityRole="button"
-                    accessibilityLabel="Remove option"
+                    accessibilityLabel={t("dm.removeOption")}
                   >
                     <Icon name="X" size={16} color="#A1A1AA" />
                   </TouchableOpacity>
@@ -203,7 +205,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
                 className="flex-row items-center gap-2 px-3 py-2.5 rounded-xl border border-dashed border-zinc-500 mb-4"
               >
                 <Icon name="Plus" size={14} color="#A1A1AA" />
-                <Text className="text-zinc-400 text-sm">Add option</Text>
+                <Text className="text-zinc-400 text-sm">{t("upload.addOption")}</Text>
               </TouchableOpacity>
             )}
 
@@ -212,7 +214,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
               onPress={() => setIsMultipleChoice((p) => !p)}
               className="flex-row items-center gap-3 mb-4"
               accessibilityRole="checkbox"
-              accessibilityLabel="Allow multiple answers"
+              accessibilityLabel={t("dm.allowMultiple")}
               accessibilityState={{ checked: isMultipleChoice }}
             >
               <View

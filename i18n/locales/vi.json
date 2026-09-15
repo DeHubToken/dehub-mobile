@@ -3851,5 +3851,29 @@
     "stream": "Phát trực tiếp",
     "boostPost": "Boost bài đăng",
     "openSuperPowers": "Mở SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Không đính kèm được tệp đó.",
+    "removeAttachment": "Xóa tệp đính kèm",
+    "addTip": "Thêm tiền thưởng",
+    "chooseGif": "Chọn GIF",
+    "attachImage": "Đính kèm ảnh",
+    "attachVideo": "Đính kèm video",
+    "attachFile": "Đính kèm tệp",
+    "enhanceWithAi": "Cải thiện tin nhắn bằng AI",
+    "sendMessage": "Gửi tin nhắn",
+    "cantMessageYourself": "Bạn không thể nhắn cho chính mình",
+    "askSomething": "Hỏi điều gì đó...",
+    "removeOption": "Xóa lựa chọn",
+    "allowMultiple": "Cho phép chọn nhiều đáp án",
+    "preferences": "Tùy chọn tin nhắn",
+    "enableDms": "Bật tin nhắn riêng",
+    "enableDmsSub": "Tắt để chặn mọi tin nhắn.",
+    "allowNewDms": "Cho phép tin nhắn mới",
+    "allowNewDmsOn": "Nếu tắt, chỉ những người bạn đã trò chuyện mới nhắn được cho bạn.",
+    "allowNewDmsOff": "Bật tin nhắn riêng để cho phép tin nhắn mới.",
+    "perMessageFee": "Phí mỗi tin nhắn (DHB)",
+    "perMessageFeeSub": "Thu phí mỗi tin nhắn. Đặt 0 để nhắn miễn phí. Bạn có thể cấp quyền miễn phí cho một số người dùng.",
+    "allDisabled": "Hiện tất cả tin nhắn riêng đang tắt. Tin nhắn mới bị chặn mặc định."
   }
 }

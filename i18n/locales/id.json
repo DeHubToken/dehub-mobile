@@ -3813,5 +3813,29 @@
     "stream": "Siaran",
     "boostPost": "Boost postingan",
     "openSuperPowers": "Buka SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Tidak bisa melampirkan berkas itu.",
+    "removeAttachment": "Hapus lampiran",
+    "addTip": "Tambah tip",
+    "chooseGif": "Pilih GIF",
+    "attachImage": "Lampirkan gambar",
+    "attachVideo": "Lampirkan video",
+    "attachFile": "Lampirkan berkas",
+    "enhanceWithAi": "Perbaiki pesan dengan AI",
+    "sendMessage": "Kirim pesan",
+    "cantMessageYourself": "Anda tidak bisa mengirim pesan ke diri sendiri",
+    "askSomething": "Tanyakan sesuatu...",
+    "removeOption": "Hapus opsi",
+    "allowMultiple": "Izinkan banyak jawaban",
+    "preferences": "Preferensi DM",
+    "enableDms": "Aktifkan DM",
+    "enableDmsSub": "Matikan untuk memblokir semua pesan.",
+    "allowNewDms": "Izinkan DM baru",
+    "allowNewDmsOn": "Jika mati, hanya orang yang pernah mengobrol dengan Anda yang bisa mengirim pesan.",
+    "allowNewDmsOff": "Aktifkan DM untuk mengizinkan pesan baru.",
+    "perMessageFee": "Biaya per pesan (DHB)",
+    "perMessageFeeSub": "Kenakan biaya per pesan. Setel 0 untuk DM gratis. Anda bisa memberi akses gratis ke pengguna tertentu.",
+    "allDisabled": "Saat ini semua DM dinonaktifkan. DM baru diblokir secara bawaan."
   }
 }

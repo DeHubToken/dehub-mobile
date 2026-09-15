@@ -3833,5 +3833,29 @@
     "stream": "Emisión",
     "boostPost": "Impulsar publicación",
     "openSuperPowers": "Abrir SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "No se pudo adjuntar ese archivo.",
+    "removeAttachment": "Quitar adjunto",
+    "addTip": "Añadir propina",
+    "chooseGif": "Elige un GIF",
+    "attachImage": "Adjuntar imagen",
+    "attachVideo": "Adjuntar vídeo",
+    "attachFile": "Adjuntar archivo",
+    "enhanceWithAi": "Mejorar mensaje con IA",
+    "sendMessage": "Enviar mensaje",
+    "cantMessageYourself": "No puedes enviarte mensajes a ti mismo",
+    "askSomething": "Pregunta algo...",
+    "removeOption": "Quitar opción",
+    "allowMultiple": "Permitir varias respuestas",
+    "preferences": "Preferencias de mensajes",
+    "enableDms": "Activar mensajes",
+    "enableDmsSub": "Desactívalo para bloquear todos los mensajes.",
+    "allowNewDms": "Permitir mensajes nuevos",
+    "allowNewDmsOn": "Si está desactivado, solo pueden escribirte las personas con las que ya has hablado.",
+    "allowNewDmsOff": "Activa los mensajes para permitir mensajes nuevos.",
+    "perMessageFee": "Tarifa por mensaje (DHB)",
+    "perMessageFeeSub": "Cobra por mensaje. Ponlo a 0 para mensajes gratis. Puedes dar acceso gratuito a usuarios concretos.",
+    "allDisabled": "Ahora mismo todos los mensajes están desactivados. Los nuevos se bloquean por defecto."
   }
 }

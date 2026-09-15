@@ -3831,5 +3831,29 @@
     "stream": "Transmisja",
     "boostPost": "Boostuj post",
     "openSuperPowers": "Otwórz SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Nie udało się załączyć tego pliku.",
+    "removeAttachment": "Usuń załącznik",
+    "addTip": "Dodaj napiwek",
+    "chooseGif": "Wybierz GIF",
+    "attachImage": "Załącz obraz",
+    "attachVideo": "Załącz wideo",
+    "attachFile": "Załącz plik",
+    "enhanceWithAi": "Ulepsz wiadomość za pomocą SI",
+    "sendMessage": "Wyślij wiadomość",
+    "cantMessageYourself": "Nie możesz napisać do siebie",
+    "askSomething": "Zapytaj o coś...",
+    "removeOption": "Usuń opcję",
+    "allowMultiple": "Zezwól na wiele odpowiedzi",
+    "preferences": "Ustawienia wiadomości",
+    "enableDms": "Włącz wiadomości",
+    "enableDmsSub": "Wyłącz, aby zablokować wszystkie wiadomości.",
+    "allowNewDms": "Zezwól na nowe wiadomości",
+    "allowNewDmsOn": "Gdy wyłączone, napisać mogą tylko osoby, z którymi już rozmawiałeś.",
+    "allowNewDmsOff": "Włącz wiadomości, aby zezwolić na nowe.",
+    "perMessageFee": "Opłata za wiadomość (DHB)",
+    "perMessageFeeSub": "Pobieraj opłatę za wiadomość. Ustaw 0 dla darmowych wiadomości. Wybranym użytkownikom możesz dać darmowy dostęp.",
+    "allDisabled": "Wszystkie wiadomości są teraz wyłączone. Nowe są domyślnie blokowane."
   }
 }

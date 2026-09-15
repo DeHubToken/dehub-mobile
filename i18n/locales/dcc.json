@@ -3493,5 +3493,29 @@
     "stream": "اسٹریم",
     "boostPost": "پوسٹ کو بوسٹ کریں",
     "openSuperPowers": "SuperPowers کھولیں"
+  },
+  "dm": {
+    "attachFailed": "وہ فائل منسلک نہیں ہو سکی۔",
+    "removeAttachment": "منسلکہ ہٹائیں",
+    "addTip": "ٹپ شامل کریں",
+    "chooseGif": "GIF چنیں",
+    "attachImage": "تصویر منسلک کریں",
+    "attachVideo": "ویڈیو منسلک کریں",
+    "attachFile": "فائل منسلک کریں",
+    "enhanceWithAi": "AI سے پیغام بہتر کریں",
+    "sendMessage": "پیغام بھیجیں",
+    "cantMessageYourself": "آپ خود کو پیغام نہیں بھیج سکتے",
+    "askSomething": "کچھ پوچھیں...",
+    "removeOption": "آپشن ہٹائیں",
+    "allowMultiple": "متعدد جوابات کی اجازت دیں",
+    "preferences": "DM ترجیحات",
+    "enableDms": "DM فعال کریں",
+    "enableDmsSub": "تمام پیغامات روکنے کے لیے بند کریں۔",
+    "allowNewDms": "نئے DM کی اجازت دیں",
+    "allowNewDmsOn": "بند ہو تو صرف وہی لوگ پیغام بھیج سکتے ہیں جن سے آپ نے بات کی ہو۔",
+    "allowNewDmsOff": "نئے پیغامات کی اجازت کے لیے DM چالو کریں۔",
+    "perMessageFee": "فی پیغام فیس (DHB)",
+    "perMessageFeeSub": "فی پیغام چارج کریں۔ مفت DM کے لیے 0 رکھیں۔ مخصوص صارفین کو مفت رسائی دے سکتے ہیں۔",
+    "allDisabled": "ابھی تمام DM بند ہیں۔ نئے DM بطور ڈیفالٹ روکے گئے ہیں۔"
   }
 }

@@ -3728,5 +3728,29 @@
     "stream": "ስርጭት",
     "boostPost": "ጽሑፍ ኣብርብር",
     "openSuperPowers": "SuperPowers ክፈት"
+  },
+  "dm": {
+    "attachFailed": "ነቲ ፋይል ክተሓሓዝ ኣይተኻእለን።",
+    "removeAttachment": "መተሓሓዚ ኣልግስ",
+    "addTip": "ጉርሻ ወስኽ",
+    "chooseGif": "GIF ምረጽ",
+    "attachImage": "ስእሊ ኣተሓሒዝ",
+    "attachVideo": "ቪድዮ ኣተሓሒዝ",
+    "attachFile": "ፋይል ኣተሓሒዝ",
+    "enhanceWithAi": "መልእኽቲ ብ AI ኣመሓይሽ",
+    "sendMessage": "መልእኽቲ ስደድ",
+    "cantMessageYourself": "ንባዕልኻ መልእኽቲ ክትሰድድ ኣይትኽእልን",
+    "askSomething": "ገለ ሕተት...",
+    "removeOption": "ኣማራጺ ኣልግስ",
+    "allowMultiple": "ብዙሓት መልስታት ፍቐድ",
+    "preferences": "ናይ DM ምርጫታት",
+    "enableDms": "DM ኣንቅስቕስ",
+    "enableDmsSub": "ኩሎም መልእኽትታት ንምዕጻው ኣጥፍኦ።",
+    "allowNewDms": "ሓደስቲ DM ፍቐድ",
+    "allowNewDmsOn": "እንተጠፊኡ፡ ምሳኻ ዝዘራረቡ ጥራይ መልእኽቲ ክሰዱልካ ይኽእሉ።",
+    "allowNewDmsOff": "ሓደስቲ መልእኽትታት ንምፍቃድ DM ኣንቅስቕስ።",
+    "perMessageFee": "ኣብ ነፍሲ ወከፍ መልእኽቲ ክፍሊት (DHB)",
+    "perMessageFeeSub": "ኣብ ነፍሲ ወከፍ መልእኽቲ ክፍሊት ውሰድ። ብናጻ DM እንተደሊኻ 0 ግበሮ። ንገለ ተጠቀምቲ ናጻ መእተዊ ክትህብ ትኽእል።",
+    "allDisabled": "ሕጂ ኩሎም DM ተዓጽዮም ኣለዉ። ሓደስቲ DM ብቐጥታ ተኸልኪሎም።"
   }
 }

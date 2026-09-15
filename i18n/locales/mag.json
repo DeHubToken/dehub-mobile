@@ -3715,5 +3715,29 @@
     "stream": "स्ट्रीम",
     "boostPost": "पोस्ट के बूस्ट करऽ",
     "openSuperPowers": "SuperPowers खोलऽ"
+  },
+  "dm": {
+    "attachFailed": "ऊ फाइल जोड़ल ना जा सकल।",
+    "removeAttachment": "अटैचमेंट हटावऽ",
+    "addTip": "टिप जोड़ऽ",
+    "chooseGif": "GIF चुनऽ",
+    "attachImage": "फोटो जोड़ऽ",
+    "attachVideo": "वीडियो जोड़ऽ",
+    "attachFile": "फाइल जोड़ऽ",
+    "enhanceWithAi": "AI से संदेस सुधारऽ",
+    "sendMessage": "संदेस भेजऽ",
+    "cantMessageYourself": "अहां खुद के संदेस ना भेज सकऽ हथ",
+    "askSomething": "कुछ पूछऽ...",
+    "removeOption": "विकल्प हटावऽ",
+    "allowMultiple": "कई जवाब के अनुमति दऽ",
+    "preferences": "DM पसंद",
+    "enableDms": "DM चालू करऽ",
+    "enableDmsSub": "सब संदेस रोके लेल बंद करऽ।",
+    "allowNewDms": "नया DM के अनुमति दऽ",
+    "allowNewDmsOn": "बंद रहतै त खाली ओकरे लोग संदेस भेज सकतै जेकरा से अहां पहिले बात कइलियै।",
+    "allowNewDmsOff": "नया संदेस के अनुमति लेल DM चालू करऽ।",
+    "perMessageFee": "हर संदेस के फीस (DHB)",
+    "perMessageFeeSub": "हर संदेस पर शुल्क लऽ। मुफ्त DM लेल 0 रखऽ। कुछ उपयोगकर्ता के मुफ्त पहुँच दऽ सकऽ हथ।",
+    "allDisabled": "अखने सब DM बंद हे। नया DM डिफॉल्ट से रोकल हे।"
   }
 }

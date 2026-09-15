@@ -3754,5 +3754,29 @@
     "stream": "Baahin",
     "boostPost": "Kordhi qoraalka",
     "openSuperPowers": "Fur SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Faylkaas lama lifaaqi karin.",
+    "removeAttachment": "Ka saar lifaaqa",
+    "addTip": "Ku dar tip",
+    "chooseGif": "Dooro GIF",
+    "attachImage": "Lifaaq sawir",
+    "attachVideo": "Lifaaq fiidyo",
+    "attachFile": "Lifaaq fayl",
+    "enhanceWithAi": "Fariinta ku hagaaji AI",
+    "sendMessage": "Dir fariinta",
+    "cantMessageYourself": "Naftaada fariin uma diri kartid",
+    "askSomething": "Wax weydii...",
+    "removeOption": "Ka saar doorashada",
+    "allowMultiple": "U ogolow jawaabo badan",
+    "preferences": "Doorbidyada DM",
+    "enableDms": "Shid DM-yada",
+    "enableDmsSub": "Dami si aad u xannibto dhammaan fariimaha.",
+    "allowNewDms": "U ogolow DM cusub",
+    "allowNewDmsOn": "Haddii la damiyo, dadka aad hore ula sheekaysatay oo keliya ayaa ku soo diri kara.",
+    "allowNewDmsOff": "Shid DM-yada si aad u ogolaato fariimo cusub.",
+    "perMessageFee": "Khidmad fariin kasta (DHB)",
+    "perMessageFeeSub": "Fariin kasta khidmad ka qaado. U dhig 0 DM bilaash ah. Waxaad siin kartaa isticmaaleyaal gaar ah gelitaan bilaash ah.",
+    "allDisabled": "Dhammaan DM-yada hadda waa la damiyay. DM cusub si caadi ah ayaa loo xannibay."
   }
 }

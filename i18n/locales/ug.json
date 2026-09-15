@@ -3753,5 +3753,29 @@
     "stream": "تارقىتىش",
     "boostPost": "يازمىنى كۈچەيتىش",
     "openSuperPowers": "SuperPowers نى ئېچىش"
+  },
+  "dm": {
+    "attachFailed": "ئۇ ھۆججەتنى قوشقىلى بولمىدى.",
+    "removeAttachment": "قوشۇمچىنى ئۆچۈرۈش",
+    "addTip": "چاي پۇلى قوشۇش",
+    "chooseGif": "GIF تاللاش",
+    "attachImage": "رەسىم قوشۇش",
+    "attachVideo": "سىن قوشۇش",
+    "attachFile": "ھۆججەت قوشۇش",
+    "enhanceWithAi": "ئۇچۇرنى AI بىلەن ياخشىلاش",
+    "sendMessage": "ئۇچۇر ئەۋەتىش",
+    "cantMessageYourself": "ئۆزىڭىزگە ئۇچۇر ئەۋەتەلمەيسىز",
+    "askSomething": "بىر نەرسە سوراڭ...",
+    "removeOption": "تاللانمىنى ئۆچۈرۈش",
+    "allowMultiple": "كۆپ جاۋابقا رۇخسەت قىلىش",
+    "preferences": "DM مايىللىقلىرى",
+    "enableDms": "DM نى قوزغىتىش",
+    "enableDmsSub": "بارلىق ئۇچۇرلارنى چەكلەش ئۈچۈن تاقاڭ.",
+    "allowNewDms": "يېڭى DM غا رۇخسەت قىلىش",
+    "allowNewDmsOn": "تاقالغان بولسا، پەقەت سىز بىلەن پاراڭلاشقانلارلا ئۇچۇر ئەۋەتەلەيدۇ.",
+    "allowNewDmsOff": "يېڭى ئۇچۇرلارغا رۇخسەت قىلىش ئۈچۈن DM نى ئېچىڭ.",
+    "perMessageFee": "ھەر ئۇچۇرغا ھەق (DHB)",
+    "perMessageFeeSub": "ھەر ئۇچۇرغا ھەق ئېلىڭ. ھەقسىز DM ئۈچۈن 0 قىلىڭ. بەزى ئىشلەتكۈچىلەرگە ھەقسىز زىيارەت بېرەلەيسىز.",
+    "allDisabled": "ھازىر بارلىق DM تاقالغان. يېڭى DM سۈكۈتتىكى ھالەتتە چەكلىنىدۇ."
   }
 }

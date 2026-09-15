@@ -3722,5 +3722,29 @@
     "stream": "สตรีม",
     "boostPost": "บูสต์โพสต์",
     "openSuperPowers": "เปิด SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "แนบไฟล์นั้นบ่ได้",
+    "removeAttachment": "ลบไฟล์แนบ",
+    "addTip": "เพิ่มทิป",
+    "chooseGif": "เลือก GIF",
+    "attachImage": "แนบฮูป",
+    "attachVideo": "แนบวิดีโอ",
+    "attachFile": "แนบไฟล์",
+    "enhanceWithAi": "ป๊ะข้อความด้วย AI",
+    "sendMessage": "ส่งข้อความ",
+    "cantMessageYourself": "ต้านส่งข้อความหาตั๋วเก่าบ่ได้",
+    "askSomething": "ถามอะหยังสักอย่าง...",
+    "removeOption": "ลบตั๋วเลือก",
+    "allowMultiple": "อนุญาตหื้อตอบได้หลายข้อ",
+    "preferences": "กาน໊ตั้งก้า DM",
+    "enableDms": "เปิดใจ้ DM",
+    "enableDmsSub": "ปิดเปื้อบล็อกข้อความตังหมด",
+    "allowNewDms": "อนุญาต DM ใหม่",
+    "allowNewDmsOn": "ถ้าปิด จะมีเต้าคนตี้ต้านเกยกุยด้วยตี้ส่งข้อความหาต้านได้",
+    "allowNewDmsOff": "เปิด DM เปื้ออนุญาตข้อความใหม่",
+    "perMessageFee": "ก้าธรรมเนียมต่อข้อความ (DHB)",
+    "perMessageFeeSub": "เก็บก้าธรรมเนียมต่อข้อความ ตั้งเป๋น 0 เปื้อหื้อ DM ฟรี ต้านหื้อสิทธิ์ฟรีกับผู้ใจ้บางคนได้",
+    "allDisabled": "ตอนนี้ DM ตังหมดถูกปิด DM ใหม่ถูกบล็อกโดยก้าเริ่มต้น"
   }
 }
