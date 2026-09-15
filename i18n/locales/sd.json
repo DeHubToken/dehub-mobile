@@ -3205,7 +3205,8 @@
     "insufficientOnChain": "{{chain}} تي ڪافي DHB ناهي. زنجير تي بيلنس ڏيکاريل کان مختلف ٿي سگهي ٿو.",
     "needGas": "{{chain}} تي گيس لاءِ اصل {{token}} گهرجي.",
     "bridging": "پل ٿي رهيو آهي…",
-    "bridgeAction": "پل {{from}} ← {{to}}"
+    "bridgeAction": "پل {{from}} ← {{to}}",
+    "failed": "پل ناڪام ٿيو"
   },
   "banned": {
     "title": "توھان جي کاتي تي پابندي آھي",

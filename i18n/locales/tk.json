@@ -3192,7 +3192,8 @@
     "insufficientOnChain": "{{chain}} -da ýeterlik DHB ýok. Zynjyrdaky balans görkezilenden tapawutly bolup biler.",
     "needGas": "{{chain}} -da gaz üçin ýerli {{token}} gerek.",
     "bridging": "Köprüden geçirilýär…",
-    "bridgeAction": "Köprü {{from}} → {{to}}"
+    "bridgeAction": "Köprü {{from}} → {{to}}",
+    "failed": "Köprü şowsuz boldy"
   },
   "banned": {
     "title": "Siziň hasabatyňyz gadagan edilýär",

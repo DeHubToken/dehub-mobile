@@ -3175,7 +3175,8 @@
     "insufficientOnChain": "{{chain}} पर पर्याप्त DHB नै। चेन पर बैलेंस देखाओल गेल सँ अलग भ सकैत अछि।",
     "needGas": "{{chain}} पर गैस लेल नेटिव {{token}} चाही।",
     "bridging": "ब्रिज भ रहल अछि…",
-    "bridgeAction": "{{from}} → {{to}} ब्रिज करू"
+    "bridgeAction": "{{from}} → {{to}} ब्रिज करू",
+    "failed": "ब्रिज असफल भेल"
   },
   "banned": {
     "title": "आपके अकाउंट के डिलीट हो गेल है ।",

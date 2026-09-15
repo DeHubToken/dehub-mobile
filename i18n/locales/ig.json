@@ -3200,7 +3200,8 @@
     "insufficientOnChain": "DHB ezughị na {{chain}}. Nguzozi dị na yinye nwere ike ịdị iche na nke egosiri.",
     "needGas": "Ị chọrọ {{token}} nke sitere na ya maka gas na {{chain}}.",
     "bridging": "Na-àkwà…",
-    "bridgeAction": "Àkwà {{from}} → {{to}}"
+    "bridgeAction": "Àkwà {{from}} → {{to}}",
+    "failed": "Àkwà dara"
   },
   "banned": {
     "title": "A machibidoro akaụntụ gị",

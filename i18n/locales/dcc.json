@@ -2955,7 +2955,8 @@
     "insufficientOnChain": "{{chain}} پر کافی DHB نئیں۔ چین پر بیلنس دکھائے گئے سے مختلف ہو سکتا ہے۔",
     "needGas": "{{chain}} پر گیس کے لیے نیٹو {{token}} چاہیے۔",
     "bridging": "برج ہو رہا ہے…",
-    "bridgeAction": "{{from}} → {{to}} برج کرو"
+    "bridgeAction": "{{from}} → {{to}} برج کرو",
+    "failed": "برج ناکام ہوا"
   },
   "teamUp": {
     "title": "ٹیم بناؤ",

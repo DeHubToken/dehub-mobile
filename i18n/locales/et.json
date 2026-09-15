@@ -3221,7 +3221,8 @@
     "insufficientOnChain": "{{chain}} ahelas pole piisavalt DHB-d. Ahela saldo võib kuvatavast erineda.",
     "needGas": "{{chain}} ahelas on gaasi jaoks vaja algupärast {{token}}.",
     "bridging": "Sildamine…",
-    "bridgeAction": "Sild {{from}} → {{to}}"
+    "bridgeAction": "Sild {{from}} → {{to}}",
+    "failed": "Sildamine ebaõnnestus"
   },
   "banned": {
     "title": "Sinu konto on keelatud",

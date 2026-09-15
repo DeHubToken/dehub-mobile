@@ -3255,7 +3255,8 @@
     "insufficientOnChain": "Недастаткова DHB у {{chain}}. Баланс у ланцугу можа адрознівацца ад паказанага.",
     "needGas": "Патрэбны родны {{token}} для газу ў {{chain}}.",
     "bridging": "Пераводзім…",
-    "bridgeAction": "Мост {{from}} → {{to}}"
+    "bridgeAction": "Мост {{from}} → {{to}}",
+    "failed": "Мост не ўдаўся"
   },
   "banned": {
     "title": "Ваш уліковы запіс забаронены",

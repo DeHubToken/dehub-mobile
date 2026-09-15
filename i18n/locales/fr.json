@@ -3296,7 +3296,8 @@
     "insufficientOnChain": "DHB insuffisant sur {{chain}}. Le solde on-chain peut différer de celui affiché.",
     "needGas": "Il faut du {{token}} natif pour le gaz sur {{chain}}.",
     "bridging": "Transfert en cours…",
-    "bridgeAction": "Pont {{from}} → {{to}}"
+    "bridgeAction": "Pont {{from}} → {{to}}",
+    "failed": "Échec du pont"
   },
   "banned": {
     "title": "Votre compte est banni",

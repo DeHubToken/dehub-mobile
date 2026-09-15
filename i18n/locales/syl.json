@@ -3368,7 +3368,8 @@
     "insufficientOnChain": "{{chain}}-ও যথেষ্ট DHB নাই। চেইনর ব্যালেন্স দেখানিত্তুন আলাদা অইতে পারে।",
     "needGas": "{{chain}}-ও গ্যাসর লাগি নেটিভ {{token}} লাগবো।",
     "bridging": "ব্রিজ অইরো…",
-    "bridgeAction": "{{from}} → {{to}} ব্রিজ করো"
+    "bridgeAction": "{{from}} → {{to}} ব্রিজ করো",
+    "failed": "ব্রিজ ব্যর্থ অইছে"
   },
   "banned": {
     "title": "আপনার অ্যাকাউন্ট নিষিদ্ধ করা হয়েছে",

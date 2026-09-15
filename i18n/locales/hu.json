@@ -3226,7 +3226,8 @@
     "insufficientOnChain": "Nincs elég DHB a(z) {{chain}} láncon. A láncon lévő egyenleg eltérhet a megjelenítettől.",
     "needGas": "Natív {{token}} szükséges a gázdíjhoz a(z) {{chain}} láncon.",
     "bridging": "Áthidalás folyamatban…",
-    "bridgeAction": "Áthidalás: {{from}} → {{to}}"
+    "bridgeAction": "Áthidalás: {{from}} → {{to}}",
+    "failed": "Az áthidalás sikertelen"
   },
   "banned": {
     "title": "A fiókodat letiltottuk",

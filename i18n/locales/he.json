@@ -3209,7 +3209,8 @@
     "insufficientOnChain": "אין מספיק DHB ב-{{chain}}. היתרה בשרשרת עשויה להיות שונה מזו המוצגת.",
     "needGas": "נדרש {{token}} מקורי עבור עמלות ב-{{chain}}.",
     "bridging": "מגשר…",
-    "bridgeAction": "גשר {{from}} ← {{to}}"
+    "bridgeAction": "גשר {{from}} ← {{to}}",
+    "failed": "הגישור נכשל"
   },
   "banned": {
     "title": "החשבון שלך נחסם",

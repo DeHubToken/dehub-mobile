@@ -3212,7 +3212,8 @@
     "insufficientOnChain": "DHB kò tó lórí {{chain}}. Ìwọ̀n tó wà lórí ẹ̀wọ̀n lè yàtọ̀ sí èyí tí a fi hàn.",
     "needGas": "O nílò {{token}} ìbílẹ̀ fún gáàsì lórí {{chain}}.",
     "bridging": "Ń kọjá afárá…",
-    "bridgeAction": "Afárá {{from}} → {{to}}"
+    "bridgeAction": "Afárá {{from}} → {{to}}",
+    "failed": "Afárá kùnà"
   },
   "banned": {
     "title": "A ti fòfin de àkántì rẹ.",

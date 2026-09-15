@@ -3222,7 +3222,8 @@
     "insufficientOnChain": "DHB haitoshi kwenye {{chain}}. Salio kwenye mnyororo linaweza kutofautiana na lililoonyeshwa.",
     "needGas": "Unahitaji {{token}} asilia kwa gesi kwenye {{chain}}.",
     "bridging": "Inavusha…",
-    "bridgeAction": "Daraja {{from}} → {{to}}"
+    "bridgeAction": "Daraja {{from}} → {{to}}",
+    "failed": "Daraja limeshindwa"
   },
   "banned": {
     "title": "Akaunti yako imepigwa marufuku",

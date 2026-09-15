@@ -3206,7 +3206,8 @@
     "insufficientOnChain": "{{chain}} üzərində kifayət qədər DHB yoxdur. Şəbəkədəki balans göstərilən məbləğdən fərqlənə bilər.",
     "needGas": "{{chain}} üzərində qaz üçün doğma {{token}} lazımdır.",
     "bridging": "Körpülənir…",
-    "bridgeAction": "{{from}} → {{to}} körpülə"
+    "bridgeAction": "{{from}} → {{to}} körpülə",
+    "failed": "Körpü alınmadı"
   },
   "banned": {
     "title": "Hesabınız qadağan edildi",

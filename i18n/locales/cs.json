@@ -3226,7 +3226,8 @@
     "insufficientOnChain": "Nedostatek DHB na {{chain}}. Zůstatek na řetězci se může lišit od zobrazeného.",
     "needGas": "Na {{chain}} je potřeba nativní {{token}} na poplatky.",
     "bridging": "Probíhá převod…",
-    "bridgeAction": "Most {{from}} → {{to}}"
+    "bridgeAction": "Most {{from}} → {{to}}",
+    "failed": "Most selhal"
   },
   "banned": {
     "title": "Tvůj účet je zablokován",

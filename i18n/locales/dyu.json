@@ -3167,7 +3167,8 @@
     "insufficientOnChain": "DHB man ca {{chain}} kan. Wari hakɛ jɔlɔkɔ kan bɛ se ka danfara ni jirali ye.",
     "needGas": "{{token}} yɛrɛ ka kan ka kɛ gazi ye {{chain}} kan.",
     "bridging": "Tɛmɛli bɛ kɛ…",
-    "bridgeAction": "Tɛmɛli {{from}} → {{to}}"
+    "bridgeAction": "Tɛmɛli {{from}} → {{to}}",
+    "failed": "Tɛmɛli ma ɲɛ"
   },
   "banned": {
     "title": "I ka wari man kan ka kɛ",
