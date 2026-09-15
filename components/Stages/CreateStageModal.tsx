@@ -13,6 +13,7 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { navigationRef } from "../../App";
 import { runWithPermissions } from "../../libs/permissions.util";
 import { createLogger } from "../../libs/logger";
+import { appLocale } from "../../libs/date.util";
 
 const log = createLogger("CreateStageModal");
 
@@ -153,12 +154,12 @@ const CreateStageModal: React.FC = () => {
     }
   };
 
-  const whenLabel = when.toLocaleDateString(undefined, {
+  const whenLabel = when.toLocaleDateString(appLocale(), {
     weekday: "short",
     month: "short",
     day: "numeric",
   });
-  const timeLabel = when.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+  const timeLabel = when.toLocaleTimeString(appLocale(), { hour: "numeric", minute: "2-digit" });
 
   // ── Scheduled: hand over the link ────────────────────────────────────────
   //

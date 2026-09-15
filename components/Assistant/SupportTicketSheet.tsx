@@ -28,6 +28,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import GlassModal from '../ui/GlassModal';
 import Icon, { type IconName } from '../ui/Icon';
 import { toastError, toastInfo, toastSuccess } from '../../libs/toast';
+import { appLocale } from "../../libs/date.util";
 import {
   SUPPORT_CATEGORIES,
   SUPPORT_SEVERITIES,
@@ -96,7 +97,7 @@ function formatDate(value?: string | null): string {
   if (!value) return '';
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return '';
-  return date.toLocaleDateString();
+  return date.toLocaleDateString(appLocale());
 }
 
 /** A pill row standing in for a picker — nine options do not need a modal. */

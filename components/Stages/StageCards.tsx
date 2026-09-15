@@ -36,6 +36,7 @@ import { radius } from "../../theme/radius";
 import { ShareLinks } from "../../navigation/linking.config";
 import { useStageReminder } from "../../hooks/useStageReminder";
 import type { AudioSpace } from "../../hooks/useStages";
+import { appLocale } from "../../libs/date.util";
 
 /** How long the stage ran, from its own timestamps. Mirrors web's row. */
 export function stageDuration(space: AudioSpace): string | null {
@@ -57,7 +58,7 @@ export function stageDuration(space: AudioSpace): string | null {
 export function formatStageDate(dateStr?: string | null): string {
   if (!dateStr) return "";
   try {
-    return new Date(dateStr).toLocaleDateString(undefined, {
+    return new Date(dateStr).toLocaleDateString(appLocale(), {
       month: "short",
       day: "numeric",
       hour: "2-digit",
@@ -72,12 +73,12 @@ function formatScheduledFor(dateStr?: string | null): string {
   if (!dateStr) return "";
   try {
     const d = new Date(dateStr);
-    const day = d.toLocaleDateString(undefined, {
+    const day = d.toLocaleDateString(appLocale(), {
       weekday: "short",
       month: "short",
       day: "numeric",
     });
-    const time = d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+    const time = d.toLocaleTimeString(appLocale(), { hour: "numeric", minute: "2-digit" });
     return `${day} · ${time}`;
   } catch {
     return "";

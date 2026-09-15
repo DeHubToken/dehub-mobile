@@ -38,6 +38,7 @@ import { getAvatarUrl, shareProfile } from "../libs/misc";
 import { copyToClipboard } from "../libs/clipboard.utils";
 import { toastError, toastSuccess } from "../libs/toast";
 import env from "../config/env";
+import { appLocale } from "../libs/date.util";
 import {
   AFFILIATE_L1_COMMISSION_PCT,
   AFFILIATE_L2_COMMISSION_PCT,
@@ -69,7 +70,7 @@ function formatReferralDate(iso: string | null): string | null {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return null;
   try {
-    return d.toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+    return d.toLocaleDateString(appLocale(), { day: "numeric", month: "short", year: "numeric" });
   } catch {
     return null;
   }
