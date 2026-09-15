@@ -3377,5 +3377,26 @@
     "searchPlaceholder": "Rapua i te tuhinga…",
     "speakerPlaceholder": "Whakaurua te ingoa kaikōrero, te ingoa kaiwhakamahi rānei",
     "detectedLanguage": "Reo kua kitea: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Kāore e wātea te pūkoro Solana — kāore tēnei pūrere i te pupuri i tō matapihi. Takiuru anō ki te whakaora.",
+    "solanaTempUnavailable": "Kāore e wātea te pānui ki Solana mō tētahi wā. Whakamātauria a Base, BNB rānei.",
+    "enterTextFirst": "Whakaurua he kupu i te tuatahi",
+    "styleApplied": "Kua tono te kāhua!",
+    "textUpdated": "Kua whakahoutia te kupu!",
+    "textFailed": "Kāore i taea te tukatuka i te kupu",
+    "fillRequired": "Tēnā whakakīia ngā āpure e hiahiatia ana.",
+    "preCheckFailed": "I rahu te arotake i mua i te tuku.",
+    "postingWithoutMint": "Ka pānuitia me te kore e whakaputa moni — ka utaina ki te {{amount}} {{symbol}}, kāore ō moni e ranea. Ka taea e koe ā muri ake i te tahua pānui.",
+    "allowanceUsed": "Kua pau i a koe te tapeke pānui kore utu o tēnei rā",
+    "quoteNeedsContent": "Tuhia tētahi mea, tāpirihia rānei he pāpāho hei tohu i tēnei pānui.",
+    "videoTooLarge": "Kua hipa te ataata i te tepe {{limit}} o tō taumata {{tier}}.",
+    "audioTooLarge": "Kua hipa te ororongo i te tepe {{limit}} o tō taumata {{tier}}.",
+    "imagesOrVideo": "Ka taea e te pānui ngā whakaahua, te ataata rānei, kaua ngā mea e rua. Tangohia ngā whakaahua i te tuatahi.",
+    "onlyOneVideo": "Kotahi anake te ataata mō ia pānui — kua mau te tuatahi.",
+    "micRequired": "Me whai whakaaetanga hopuoro hei hopu ororongo.",
+    "recordFailed": "Kāore i taea te tīmata i te hopu.",
+    "tierVisibility": "Pikitia ngā taumata kia kitea ake koe, kia nui ake ngā whakaaturanga o te pānui ia rā",
+    "buyTokens": "Hokona ngā tohu"
   }
 }

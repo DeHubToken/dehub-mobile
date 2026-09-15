@@ -3460,5 +3460,26 @@
     "searchPlaceholder": "Szukaj w transkrypcji…",
     "speakerPlaceholder": "Wpisz imię lub nazwę użytkownika mówcy",
     "detectedLanguage": "Wykryty język: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Portfel Solana niedostępny — to urządzenie nie ma twojego klucza. Zaloguj się ponownie, aby go przywrócić.",
+    "solanaTempUnavailable": "Publikowanie na Solanie jest chwilowo niedostępne. Spróbuj Base lub BNB.",
+    "enterTextFirst": "Najpierw wpisz tekst",
+    "styleApplied": "Styl zastosowany!",
+    "textUpdated": "Tekst zaktualizowany!",
+    "textFailed": "Nie udało się przetworzyć tekstu",
+    "fillRequired": "Wypełnij wymagane pola.",
+    "preCheckFailed": "Kontrola przed przesłaniem nie powiodła się.",
+    "postingWithoutMint": "Publikacja bez mintowania — kosztuje ono {{amount}} {{symbol}}, a twoje saldo nie wystarcza. Możesz zmintować później z menu posta.",
+    "allowanceUsed": "Wykorzystałeś dzisiejszy darmowy limit postów",
+    "quoteNeedsContent": "Napisz coś lub dodaj media, aby zacytować ten post.",
+    "videoTooLarge": "Wideo przekracza limit {{limit}} dla twojego poziomu {{tier}}.",
+    "audioTooLarge": "Audio przekracza limit {{limit}} dla twojego poziomu {{tier}}.",
+    "imagesOrVideo": "Post może zawierać zdjęcia albo wideo, nie oba. Najpierw usuń zdjęcia.",
+    "onlyOneVideo": "Tylko jedno wideo na post — zachowano pierwsze.",
+    "micRequired": "Do nagrywania dźwięku wymagane jest zezwolenie na mikrofon.",
+    "recordFailed": "Nie udało się rozpocząć nagrywania.",
+    "tierVisibility": "Zdobywaj wyższe poziomy, aby zwiększyć widoczność i mieć więcej wyświetleń posta dziennie",
+    "buyTokens": "Kup tokeny"
   }
 }

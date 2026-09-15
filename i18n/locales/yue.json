@@ -3390,5 +3390,26 @@
     "searchPlaceholder": "搜尋文字記錄…",
     "speakerPlaceholder": "輸入講者名稱或帳號",
     "detectedLanguage": "偵測到嘅語言：{{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana 錢包唔可用 — 呢部裝置冇你嘅錢包密鑰。請重新登入嚟還原。",
+    "solanaTempUnavailable": "Solana 發佈暫時唔可用。請改用 Base 或 BNB。",
+    "enterTextFirst": "請先輸入文字",
+    "styleApplied": "已套用樣式！",
+    "textUpdated": "已更新文字！",
+    "textFailed": "無法處理文字",
+    "fillRequired": "請填寫必填欄位。",
+    "preCheckFailed": "上載前檢查失敗。",
+    "postingWithoutMint": "會唔鑄造直接發佈 — 鑄造需要 {{amount}} {{symbol}}，你嘅餘額唔夠。稍後可以喺帖子選單鑄造。",
+    "allowanceUsed": "你已用完今日嘅免費發佈額度",
+    "quoteNeedsContent": "寫啲嘢或者加媒體先可以引用呢個帖子。",
+    "videoTooLarge": "影片超出你 {{tier}} 等級嘅 {{limit}} 上限。",
+    "audioTooLarge": "音訊超出你 {{tier}} 等級嘅 {{limit}} 上限。",
+    "imagesOrVideo": "一個帖子只可以放圖片或者影片，唔可以兩樣都有。請先移除圖片。",
+    "onlyOneVideo": "每個帖子只可以有一個影片 — 已保留第一個。",
+    "micRequired": "錄音需要麥克風權限。",
+    "recordFailed": "無法開始錄製。",
+    "tierVisibility": "提升等級可以增加曝光，每日令帖子獲得更多推送",
+    "buyTokens": "購買代幣"
   }
 }

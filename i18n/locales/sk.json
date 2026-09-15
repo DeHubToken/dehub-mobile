@@ -3561,5 +3561,26 @@
     "searchPlaceholder": "Hľadať v prepise…",
     "speakerPlaceholder": "Zadajte meno alebo prezývku rečníka",
     "detectedLanguage": "Rozpoznaný jazyk: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Peňaženka Solana nie je dostupná — toto zariadenie nemá váš kľúč. Prihláste sa znova a obnovte ju.",
+    "solanaTempUnavailable": "Publikovanie na Solane je dočasne nedostupné. Skúste Base alebo BNB.",
+    "enterTextFirst": "Najprv zadajte text",
+    "styleApplied": "Štýl použitý!",
+    "textUpdated": "Text aktualizovaný!",
+    "textFailed": "Text sa nepodarilo spracovať",
+    "fillRequired": "Vyplňte povinné polia.",
+    "preCheckFailed": "Kontrola pred nahraním zlyhala.",
+    "postingWithoutMint": "Publikuje sa bez razby — tá stojí {{amount}} {{symbol}} a váš zostatok nestačí. Raziť môžete neskôr z ponuky príspevku.",
+    "allowanceUsed": "Vyčerpali ste dnešný bezplatný limit príspevkov",
+    "quoteNeedsContent": "Ak chcete citovať tento príspevok, napíšte text alebo pridajte médiá.",
+    "videoTooLarge": "Video prekračuje limit {{limit}} vašej úrovne {{tier}}.",
+    "audioTooLarge": "Zvuk prekračuje limit {{limit}} vašej úrovne {{tier}}.",
+    "imagesOrVideo": "Príspevok môže obsahovať obrázky alebo video, nie oboje. Najprv odstráňte obrázky.",
+    "onlyOneVideo": "Na príspevok len jedno video — ponechané prvé.",
+    "micRequired": "Na nahrávanie zvuku je potrebné povolenie mikrofónu.",
+    "recordFailed": "Nahrávanie sa nepodarilo spustiť.",
+    "tierVisibility": "Postupujte v úrovniach a zvýšte svoju viditeľnosť aj denný dosah príspevku",
+    "buyTokens": "Kúpiť tokeny"
   }
 }

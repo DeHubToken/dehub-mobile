@@ -3480,5 +3480,26 @@
     "searchPlaceholder": "Tìm trong bản ghi…",
     "speakerPlaceholder": "Nhập tên hoặc handle của người nói",
     "detectedLanguage": "Ngôn ngữ phát hiện: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Không dùng được ví Solana — thiết bị này không giữ khóa ví của bạn. Hãy đăng nhập lại để khôi phục.",
+    "solanaTempUnavailable": "Đăng trên Solana tạm thời không khả dụng. Hãy dùng Base hoặc BNB.",
+    "enterTextFirst": "Hãy nhập một ít văn bản trước",
+    "styleApplied": "Đã áp dụng phong cách!",
+    "textUpdated": "Đã cập nhật văn bản!",
+    "textFailed": "Không thể xử lý văn bản",
+    "fillRequired": "Vui lòng điền các trường bắt buộc.",
+    "preCheckFailed": "Kiểm tra trước khi tải lên thất bại.",
+    "postingWithoutMint": "Đăng mà không mint — mint tốn {{amount}} {{symbol}} và số dư của bạn không đủ. Bạn có thể mint sau từ menu bài đăng.",
+    "allowanceUsed": "Bạn đã dùng hết lượt đăng miễn phí hôm nay",
+    "quoteNeedsContent": "Hãy viết gì đó hoặc thêm phương tiện để trích dẫn bài đăng này.",
+    "videoTooLarge": "Video vượt quá giới hạn {{limit}} của bậc {{tier}} của bạn.",
+    "audioTooLarge": "Âm thanh vượt quá giới hạn {{limit}} của bậc {{tier}} của bạn.",
+    "imagesOrVideo": "Một bài đăng chỉ chứa ảnh hoặc một video, không cả hai. Hãy xóa ảnh trước.",
+    "onlyOneVideo": "Mỗi bài đăng chỉ một video — đã giữ lại video đầu tiên.",
+    "micRequired": "Cần quyền micrô để ghi âm.",
+    "recordFailed": "Không thể bắt đầu ghi.",
+    "tierVisibility": "Lên bậc cao hơn để tăng mức hiển thị và nhận thêm lượt phân phối bài đăng mỗi ngày",
+    "buyTokens": "Mua token"
   }
 }

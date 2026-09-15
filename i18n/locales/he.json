@@ -3379,5 +3379,26 @@
     "searchPlaceholder": "חיפוש בתמלול…",
     "speakerPlaceholder": "הזינו שם או כינוי של הדובר",
     "detectedLanguage": "שפה שזוהתה: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "ארנק Solana אינו זמין — במכשיר הזה אין את המפתח שלך. היכנסו שוב כדי לשחזר אותו.",
+    "solanaTempUnavailable": "פרסום ב-Solana אינו זמין זמנית. נסו Base או BNB במקום.",
+    "enterTextFirst": "הזינו קודם טקסט",
+    "styleApplied": "הסגנון הוחל!",
+    "textUpdated": "הטקסט עודכן!",
+    "textFailed": "לא ניתן היה לעבד את הטקסט",
+    "fillRequired": "נא למלא את השדות הנדרשים.",
+    "preCheckFailed": "הבדיקה לפני ההעלאה נכשלה.",
+    "postingWithoutMint": "מתפרסם ללא הטבעה — ההטבעה עולה {{amount}} {{symbol}} והיתרה שלך לא מספיקה. אפשר להטביע מאוחר יותר מתפריט הפוסט.",
+    "allowanceUsed": "ניצלת את מכסת הפרסום החינמית של היום",
+    "quoteNeedsContent": "כתבו משהו או הוסיפו מדיה כדי לצטט את הפוסט הזה.",
+    "videoTooLarge": "הסרטון חורג ממגבלת {{limit}} של רמת {{tier}} שלך.",
+    "audioTooLarge": "השמע חורג ממגבלת {{limit}} של רמת {{tier}} שלך.",
+    "imagesOrVideo": "פוסט יכול להכיל תמונות או סרטון, לא את שניהם. הסירו קודם את התמונות.",
+    "onlyOneVideo": "רק סרטון אחד לפוסט — הראשון נשמר.",
+    "micRequired": "נדרשת הרשאת מיקרופון כדי להקליט שמע.",
+    "recordFailed": "לא ניתן היה להתחיל את ההקלטה.",
+    "tierVisibility": "עלו ברמות כדי להגדיל את החשיפה ולקבל יותר הצגות לפוסט ביום",
+    "buyTokens": "קניית טוקנים"
   }
 }

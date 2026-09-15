@@ -3449,5 +3449,26 @@
     "searchPlaceholder": "搜索文字记录…",
     "speakerPlaceholder": "输入发言人姓名或账号",
     "detectedLanguage": "检测到的语言：{{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana 钱包不可用 — 本设备没有你的钱包密钥。请重新登录以恢复。",
+    "solanaTempUnavailable": "Solana 发布暂时不可用。请改用 Base 或 BNB。",
+    "enterTextFirst": "请先输入文字",
+    "styleApplied": "样式已应用！",
+    "textUpdated": "文字已更新！",
+    "textFailed": "无法处理文字",
+    "fillRequired": "请填写必填项。",
+    "preCheckFailed": "上传前检查失败。",
+    "postingWithoutMint": "将不铸造直接发布 — 铸造需要 {{amount}} {{symbol}}，你的余额不足。稍后可从帖子菜单铸造。",
+    "allowanceUsed": "你已用完今天的免费发布额度",
+    "quoteNeedsContent": "写点内容或添加媒体才能引用这条帖子。",
+    "videoTooLarge": "视频超出你 {{tier}} 等级的 {{limit}} 上限。",
+    "audioTooLarge": "音频超出你 {{tier}} 等级的 {{limit}} 上限。",
+    "imagesOrVideo": "一条帖子只能放图片或视频，不能同时放。请先移除图片。",
+    "onlyOneVideo": "每条帖子只能有一个视频 — 已保留第一个。",
+    "micRequired": "录音需要麦克风权限。",
+    "recordFailed": "无法开始录制。",
+    "tierVisibility": "提升等级可以增加曝光，每天让帖子获得更多推送",
+    "buyTokens": "购买代币"
   }
 }

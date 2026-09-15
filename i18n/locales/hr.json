@@ -3392,5 +3392,26 @@
     "searchPlaceholder": "Pretraži transkript…",
     "speakerPlaceholder": "Unesite ime ili korisničko ime govornika",
     "detectedLanguage": "Otkriveni jezik: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana novčanik nije dostupan — ovaj uređaj nema vaš ključ. Ponovno se prijavite da ga vratite.",
+    "solanaTempUnavailable": "Objavljivanje na Solani privremeno nije dostupno. Pokušajte s Base ili BNB.",
+    "enterTextFirst": "Prvo unesite tekst",
+    "styleApplied": "Stil primijenjen!",
+    "textUpdated": "Tekst ažuriran!",
+    "textFailed": "Tekst nije moguće obraditi",
+    "fillRequired": "Ispunite obavezna polja.",
+    "preCheckFailed": "Provjera prije prijenosa nije uspjela.",
+    "postingWithoutMint": "Objavljuje se bez kovanja — ono stoji {{amount}} {{symbol}}, a vaš saldo nije dovoljan. Možete ga kovati kasnije iz izbornika objave.",
+    "allowanceUsed": "Iskoristili ste današnje besplatne objave",
+    "quoteNeedsContent": "Napišite nešto ili dodajte medij da biste citirali ovu objavu.",
+    "videoTooLarge": "Videozapis premašuje ograničenje od {{limit}} za vašu razinu {{tier}}.",
+    "audioTooLarge": "Zvuk premašuje ograničenje od {{limit}} za vašu razinu {{tier}}.",
+    "imagesOrVideo": "Objava može sadržavati slike ili videozapis, ne oboje. Najprije uklonite slike.",
+    "onlyOneVideo": "Samo jedan videozapis po objavi — zadržan je prvi.",
+    "micRequired": "Za snimanje zvuka potrebno je dopuštenje mikrofona.",
+    "recordFailed": "Snimanje nije moguće pokrenuti.",
+    "tierVisibility": "Napredujte kroz razine kako biste povećali vidljivost i dobili više dnevnih prikaza objave",
+    "buyTokens": "Kupi tokene"
   }
 }

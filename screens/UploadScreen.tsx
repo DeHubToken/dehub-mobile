@@ -149,9 +149,6 @@ const MAX_AUDIO_DURATION_MS = 60_000; // 60 seconds
 const AUDIO_MIME_TYPES = ["audio/mpeg", "audio/wav", "audio/aac", "audio/ogg", "audio/x-m4a", "audio/mp4", "audio/webm"];
 const CATEGORIES_MIN = 0;
 const CATEGORIES_MAX = 5;
-const TIER_VISIBILITY_MESSAGE =
-  "Climb tiers to increase your visibility and get more feeds on the post per day";
-
 type PickedAsset = ImagePicker.ImagePickerAsset;
 type MediaMode = "none" | "images" | "video" | "audio";
 
@@ -204,13 +201,13 @@ export default function UploadScreen() {
       if (isSolanaChain(targetChainId)) {
         const addr = await getSolanaAddress();
         if (!addr) {
-          toastError("Solana wallet unavailable — this device does not hold your wallet key. Sign in again to restore it.");
+          toastError(t("upload.solanaUnavailable"));
           return;
         }
         try {
           const status = await getSolanaMintStatus();
           if (status.mintingEnabled === false) {
-            toastError(status.message || "Solana posting is temporarily unavailable. Try Base or BNB instead.");
+            toastError(status.message || t("upload.solanaTempUnavailable"));
             return;
           }
         } catch {
@@ -714,7 +711,7 @@ export default function UploadScreen() {
     async (mode: EnhanceMode, styleId?: string) => {
       const text = bodyText.trim();
       if (!text) {
-        toastError("Enter some text first");
+        toastError(t("upload.enterTextFirst"));
         return;
       }
       if (isEnhancing) return;
@@ -722,9 +719,9 @@ export default function UploadScreen() {
       try {
         const enhanced = await enhanceText(text, mode, styleId);
         setBodyText(enhanced.slice(0, DESCRIPTION_MAX));
-        toastSuccess(mode === "style" ? "Style applied!" : "Text updated!");
+        toastSuccess(mode === "style" ? t("upload.styleApplied") : t("upload.textUpdated"));
       } catch (e: any) {
-        toastError(e?.message || "Failed to process text");
+        toastError(e?.message || t("upload.textFailed"));
       } finally {
         setIsEnhancing(false);
       }
@@ -973,7 +970,7 @@ export default function UploadScreen() {
 
     const validation = validateLive(payload);
     if (!validation.valid) {
-      toastError(validation.error ?? "Please fill in required fields.");
+      toastError(validation.error ?? t("upload.fillRequired"));
       return;
     }
 
@@ -1010,7 +1007,7 @@ export default function UploadScreen() {
     if (isSolanaChain(payload.postChainId)) {
       const addr = payload.solanaAddress ?? (await getSolanaAddress().catch(() => null));
       if (!addr) {
-        toastError("Solana wallet unavailable — this device does not hold your wallet key. Sign in again to restore it.");
+        toastError(t("upload.solanaUnavailable"));
         return false;
       }
       payload = { ...payload, solanaAddress: addr };
@@ -1032,7 +1029,7 @@ export default function UploadScreen() {
       if (short) {
         payload = { ...payload, shouldMint: false };
         toastSuccess(
-          `Posting without minting — that costs ${mintFee.amount} ${mintFee.symbol} and your balance is short. You can mint it later from the post menu.`,
+          t("upload.postingWithoutMint", { amount: mintFee.amount, symbol: mintFee.symbol }),
         );
       }
     }
@@ -1070,7 +1067,7 @@ export default function UploadScreen() {
       if (!DIGITAL_PURCHASES_ENABLED) {
         toastError(
           t("storefront.unavailable"),
-          "You've used today's free posting allowance",
+          t("upload.allowanceUsed"),
         );
         return false;
       }
@@ -1079,14 +1076,14 @@ export default function UploadScreen() {
       const owed = quotaCost.amountDhb + (postQuota?.outstandingDhb ?? 0);
       const openBuyDehub = () => nav.navigate(ScreenNames.Dpay, { initialTab: "buy" });
       if (held < owed) {
-        toastWithAction("info", TIER_VISIBILITY_MESSAGE, "Buy Tokens", openBuyDehub, {
+        toastWithAction("info", t("upload.tierVisibility"), t("upload.buyTokens"), openBuyDehub, {
           actionIcon: require("../assets/web-icons/dehub-coin.png"),
           description: `This post costs ${owed.toLocaleString()} DHB and you hold ${Math.floor(held).toLocaleString()}.`,
           duration: 10_000,
         });
         return false;
       }
-      toastWithAction("info", TIER_VISIBILITY_MESSAGE, "Buy Tokens", openBuyDehub, {
+      toastWithAction("info", t("upload.tierVisibility"), t("upload.buyTokens"), openBuyDehub, {
         actionIcon: require("../assets/web-icons/dehub-coin.png"),
         duration: 10_000,
       });
@@ -1178,7 +1175,7 @@ export default function UploadScreen() {
       // Quote mode: simpler validation, skip monetization checks
       if (isQuoteMode) {
         if (bodyText.trim().length === 0 && !pickedVideo && !pickedAudio && pickedImages.length === 0) {
-          toastError("Write something or add media to quote this post.");
+          toastError(t("upload.quoteNeedsContent"));
           return;
         }
         queued = submitQuotePost();
@@ -1190,14 +1187,14 @@ export default function UploadScreen() {
       // Validate form
       const validation = validate(payload);
       if (!validation.valid) {
-        toastError(validation.error ?? "Please fill in required fields.");
+        toastError(validation.error ?? t("upload.fillRequired"));
         return;
       }
 
       // Pre-upload checks (gas, balance)
       const preCheck = preUploadCheck(payload);
       if (!preCheck.valid) {
-        toastError(preCheck.error ?? "Pre-upload check failed.");
+        toastError(preCheck.error ?? t("upload.preCheckFailed"));
         return;
       }
 
@@ -1305,7 +1302,7 @@ export default function UploadScreen() {
             const info = await FileSystem.getInfoAsync(asset.uri);
             const size = (info as any)?.size as number | undefined;
             if (size && size > mediaUploadLimitBytes) {
-              toastError(`Video exceeds your ${postQuota?.tier || "base"} tier limit of ${mediaUploadLimitLabel}.`);
+              toastError(t("upload.videoTooLarge", { tier: postQuota?.tier || "base", limit: mediaUploadLimitLabel }));
               return;
             }
           } catch {}
@@ -1339,7 +1336,7 @@ export default function UploadScreen() {
         const info = await FileSystem.getInfoAsync(asset.uri);
         const size = (info as any)?.size as number | undefined;
         if (size && size > mediaUploadLimitBytes) {
-          toastError(`Video exceeds your ${postQuota?.tier || "base"} tier limit of ${mediaUploadLimitLabel}.`);
+          toastError(t("upload.videoTooLarge", { tier: postQuota?.tier || "base", limit: mediaUploadLimitLabel }));
           return false;
         }
       } catch {}
@@ -1427,11 +1424,11 @@ export default function UploadScreen() {
 
         if (videos.length > 0) {
           if (pickedImages.length > 0) {
-            toastError("A post can hold images or a video, not both. Remove the images first.");
+            toastError(t("upload.imagesOrVideo"));
             return;
           }
           if (videos.length > 1 || images.length > 0) {
-            toastError("Only one video per post — kept the first one.");
+            toastError(t("upload.onlyOneVideo"));
           }
           await adoptVideoAsset(videos[0]);
           return;
@@ -1456,7 +1453,7 @@ export default function UploadScreen() {
   const handlePickVideoFile = useCallback(async () => {
     if (mediaDisabled) return;
     if (pickedImages.length > 0) {
-      toastError("A post can hold images or a video, not both. Remove the images first.");
+      toastError(t("upload.imagesOrVideo"));
       return;
     }
     Keyboard.dismiss();
@@ -1465,7 +1462,7 @@ export default function UploadScreen() {
       if (result.canceled || !result.assets?.[0]) return;
       const file = result.assets[0];
       if (file.size && file.size > mediaUploadLimitBytes) {
-        toastError(`Video exceeds your ${postQuota?.tier || "base"} tier limit of ${mediaUploadLimitLabel}.`);
+        toastError(t("upload.videoTooLarge", { tier: postQuota?.tier || "base", limit: mediaUploadLimitLabel }));
         return;
       }
       await adoptVideoAsset({ uri: file.uri, fileName: file.name, mimeType: file.mimeType, fileSize: file.size, type: "video", width: 0, height: 0 });
@@ -1529,7 +1526,7 @@ export default function UploadScreen() {
 
         if (isVideoAsset(asset)) {
           if (pickedImages.length > 0) {
-            toastError("A post can hold images or a video, not both. Remove the images first.");
+            toastError(t("upload.imagesOrVideo"));
             return;
           }
           await adoptVideoAsset(asset);
@@ -1615,7 +1612,7 @@ export default function UploadScreen() {
         micGranted = true;
       });
       if (!micGranted) {
-        toastError("Microphone permission is required to record audio.");
+        toastError(t("upload.micRequired"));
         return;
       }
 
@@ -1666,7 +1663,7 @@ export default function UploadScreen() {
       }, 150);
     } catch (e) {
       console.error("[UploadScreen] audio recording start error:", e);
-      toastError("Failed to start recording.");
+      toastError(t("upload.recordFailed"));
     }
   }, []);
 
@@ -1735,7 +1732,7 @@ export default function UploadScreen() {
 
       // Check file size
       if (asset.size && asset.size > mediaUploadLimitBytes) {
-        toastError(`Audio exceeds your ${postQuota?.tier || "base"} tier limit of ${mediaUploadLimitLabel}.`);
+        toastError(t("upload.audioTooLarge", { tier: postQuota?.tier || "base", limit: mediaUploadLimitLabel }));
         return;
       }
 

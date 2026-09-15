@@ -3382,5 +3382,26 @@
     "searchPlaceholder": "Bincika a rubutun…",
     "speakerPlaceholder": "Shigar da sunan mai magana ko handel",
     "detectedLanguage": "Harshen da aka gano: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Walat ɗin Solana ba ya samuwa — wannan na'urar ba ta da makullin walat ɗinka. Sake shiga don dawo da shi.",
+    "solanaTempUnavailable": "Wallafawa a Solana ba ta samuwa na ɗan lokaci. Gwada Base ko BNB maimakon.",
+    "enterTextFirst": "Fara da shigar da wasu rubutu",
+    "styleApplied": "An yi amfani da salon!",
+    "textUpdated": "An sabunta rubutun!",
+    "textFailed": "An kasa sarrafa rubutun",
+    "fillRequired": "Don Allah cika filayen da ake buƙata.",
+    "preCheckFailed": "Duba kafin ɗorawa ya gaza.",
+    "postingWithoutMint": "Ana wallafawa ba tare da minting ba — yana kashe {{amount}} {{symbol}} kuma ma'aunin ka bai isa ba. Za ka iya yin minting daga baya a menu na sakon.",
+    "allowanceUsed": "Ka gama amfani da kason wallafa kyauta na yau",
+    "quoteNeedsContent": "Rubuta wani abu ko ƙara mīdiya don yin ƙaulin wannan sakon.",
+    "videoTooLarge": "Bidiyon ya wuce iyakar {{limit}} ta matakin ka na {{tier}}.",
+    "audioTooLarge": "Sautin ya wuce iyakar {{limit}} ta matakin ka na {{tier}}.",
+    "imagesOrVideo": "Saƙo na iya ɗaukar hotuna ko bidiyo, ba duka biyu ba. Cire hotunan tukuna.",
+    "onlyOneVideo": "Bidiyo ɗaya kawai a kowane saƙo — an riƙe na farko.",
+    "micRequired": "Ana buƙatar izinin makirufo don yin rikodin sauti.",
+    "recordFailed": "An kasa fara rikodin.",
+    "tierVisibility": "Hau matakai don ƙara bayyanarka kuma ka sami ƙarin watsawa ga sakon kowace rana",
+    "buyTokens": "Sayi tokens"
   }
 }

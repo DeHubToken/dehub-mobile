@@ -3454,5 +3454,26 @@
     "searchPlaceholder": "Dökümde ara…",
     "speakerPlaceholder": "Konuşmacının adını veya kullanıcı adını girin",
     "detectedLanguage": "Algılanan dil: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana cüzdanı kullanılamıyor — bu cihazda cüzdan anahtarınız yok. Geri almak için yeniden oturum açın.",
+    "solanaTempUnavailable": "Solana'da paylaşım geçici olarak kullanılamıyor. Bunun yerine Base veya BNB deneyin.",
+    "enterTextFirst": "Önce biraz metin girin",
+    "styleApplied": "Stil uygulandı!",
+    "textUpdated": "Metin güncellendi!",
+    "textFailed": "Metin işlenemedi",
+    "fillRequired": "Lütfen zorunlu alanları doldurun.",
+    "preCheckFailed": "Yükleme öncesi kontrol başarısız oldu.",
+    "postingWithoutMint": "Mint edilmeden paylaşılıyor — mint {{amount}} {{symbol}} tutuyor ve bakiyeniz yetersiz. Daha sonra gönderi menüsünden mint edebilirsiniz.",
+    "allowanceUsed": "Bugünkü ücretsiz paylaşım hakkınızı kullandınız",
+    "quoteNeedsContent": "Bu gönderiyi alıntılamak için bir şeyler yazın veya medya ekleyin.",
+    "videoTooLarge": "Video, {{tier}} seviyenizin {{limit}} sınırını aşıyor.",
+    "audioTooLarge": "Ses dosyası, {{tier}} seviyenizin {{limit}} sınırını aşıyor.",
+    "imagesOrVideo": "Bir gönderide görseller veya bir video olabilir, ikisi birden olamaz. Önce görselleri kaldırın.",
+    "onlyOneVideo": "Gönderi başına yalnızca bir video — ilki tutuldu.",
+    "micRequired": "Ses kaydetmek için mikrofon izni gerekir.",
+    "recordFailed": "Kayıt başlatılamadı.",
+    "tierVisibility": "Görünürlüğünüzü artırmak ve gönderiniz için günde daha fazla yayın almak üzere seviye atlayın",
+    "buyTokens": "Token satın al"
   }
 }

@@ -3509,5 +3509,26 @@
     "searchPlaceholder": "Deursoek transkripsie…",
     "speakerPlaceholder": "Voer sprekernaam of -handvatsel in",
     "detectedLanguage": "Taal bespeur: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana-beursie nie beskikbaar nie — hierdie toestel hou nie jou beursiesleutel nie. Meld weer aan om dit te herstel.",
+    "solanaTempUnavailable": "Plasing op Solana is tydelik nie beskikbaar nie. Probeer eerder Base of BNB.",
+    "enterTextFirst": "Voer eers teks in",
+    "styleApplied": "Styl toegepas!",
+    "textUpdated": "Teks bygewerk!",
+    "textFailed": "Kon nie teks verwerk nie",
+    "fillRequired": "Vul asseblief die verpligte velde in.",
+    "preCheckFailed": "Kontrole voor oplaai het misluk.",
+    "postingWithoutMint": "Word geplaas sonder om te munt — dit kos {{amount}} {{symbol}} en jou saldo is te min. Jy kan dit later uit die plasingkieslys munt.",
+    "allowanceUsed": "Jy het vandag se gratis plasingtoelaag opgebruik",
+    "quoteNeedsContent": "Skryf iets of voeg media by om hierdie plasing aan te haal.",
+    "videoTooLarge": "Video oorskry jou {{tier}}-vlak se limiet van {{limit}}.",
+    "audioTooLarge": "Klank oorskry jou {{tier}}-vlak se limiet van {{limit}}.",
+    "imagesOrVideo": "'n Plasing kan prente of 'n video bevat, nie albei nie. Verwyder eers die prente.",
+    "onlyOneVideo": "Net een video per plasing — die eerste een is behou.",
+    "micRequired": "Mikrofoontoestemming word vereis om klank op te neem.",
+    "recordFailed": "Kon nie opname begin nie.",
+    "tierVisibility": "Klim vlakke om jou sigbaarheid te verhoog en meer daaglikse vertonings vir jou plasing te kry",
+    "buyTokens": "Koop tokens"
   }
 }

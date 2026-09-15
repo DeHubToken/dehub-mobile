@@ -3392,5 +3392,26 @@
     "searchPlaceholder": "Tafuta katika nakala…",
     "speakerPlaceholder": "Weka jina au kitambulisho cha mzungumzaji",
     "detectedLanguage": "Lugha iliyotambuliwa: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Pochi ya Solana haipatikani — kifaa hiki hakina ufunguo wako. Ingia tena ili kuirejesha.",
+    "solanaTempUnavailable": "Kuchapisha kwenye Solana hakupatikani kwa muda. Jaribu Base au BNB badala yake.",
+    "enterTextFirst": "Weka maandishi kwanza",
+    "styleApplied": "Mtindo umetumika!",
+    "textUpdated": "Maandishi yamesasishwa!",
+    "textFailed": "Imeshindwa kuchakata maandishi",
+    "fillRequired": "Tafadhali jaza sehemu zinazohitajika.",
+    "preCheckFailed": "Ukaguzi kabla ya kupakia umeshindwa.",
+    "postingWithoutMint": "Inachapishwa bila kufua — kufua kunagharimu {{amount}} {{symbol}} na salio lako halitoshi. Unaweza kufua baadaye kutoka menyu ya chapisho.",
+    "allowanceUsed": "Umetumia kiwango cha machapisho bure cha leo",
+    "quoteNeedsContent": "Andika kitu au ongeza midia ili kunukuu chapisho hili.",
+    "videoTooLarge": "Video inazidi kikomo cha {{limit}} cha kiwango chako cha {{tier}}.",
+    "audioTooLarge": "Sauti inazidi kikomo cha {{limit}} cha kiwango chako cha {{tier}}.",
+    "imagesOrVideo": "Chapisho linaweza kuwa na picha au video, si vyote viwili. Ondoa picha kwanza.",
+    "onlyOneVideo": "Video moja tu kwa kila chapisho — ya kwanza imehifadhiwa.",
+    "micRequired": "Ruhusa ya maikrofoni inahitajika ili kurekodi sauti.",
+    "recordFailed": "Imeshindwa kuanza kurekodi.",
+    "tierVisibility": "Panda viwango ili kuongeza mwonekano wako na kupata usambazaji zaidi kwa siku",
+    "buyTokens": "Nunua tokeni"
   }
 }

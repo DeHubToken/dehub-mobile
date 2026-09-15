@@ -3376,5 +3376,26 @@
     "searchPlaceholder": "Transkriptdə axtar…",
     "speakerPlaceholder": "Danışanın adını və ya istifadəçi adını daxil edin",
     "detectedLanguage": "Aşkarlanan dil: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana cüzdanı əlçatmazdır — bu cihazda cüzdan açarınız yoxdur. Bərpa etmək üçün yenidən daxil olun.",
+    "solanaTempUnavailable": "Solana-da paylaşım müvəqqəti əlçatmazdır. Əvəzinə Base və ya BNB sınayın.",
+    "enterTextFirst": "Əvvəlcə mətn daxil edin",
+    "styleApplied": "Üslub tətbiq olundu!",
+    "textUpdated": "Mətn yeniləndi!",
+    "textFailed": "Mətn emal edilə bilmədi",
+    "fillRequired": "Zəhmət olmasa tələb olunan sahələri doldurun.",
+    "preCheckFailed": "Yükləmədən əvvəlki yoxlama alınmadı.",
+    "postingWithoutMint": "Zərb edilmədən paylaşılır — zərb {{amount}} {{symbol}} tələb edir, balansınız isə çatmır. Sonra paylaşım menyusundan zərb edə bilərsiniz.",
+    "allowanceUsed": "Bu günkü pulsuz paylaşım limitinizi doldurmusunuz",
+    "quoteNeedsContent": "Bu paylaşımı sitat gətirmək üçün nəsə yazın və ya media əlavə edin.",
+    "videoTooLarge": "Video {{tier}} səviyyəniz üçün {{limit}} həddini aşır.",
+    "audioTooLarge": "Səs {{tier}} səviyyəniz üçün {{limit}} həddini aşır.",
+    "imagesOrVideo": "Paylaşımda ya şəkillər, ya da video ola bilər, ikisi birdən yox. Əvvəlcə şəkilləri silin.",
+    "onlyOneVideo": "Hər paylaşımda yalnız bir video — birincisi saxlanıldı.",
+    "micRequired": "Səs yazmaq üçün mikrofon icazəsi lazımdır.",
+    "recordFailed": "Yazma başladıla bilmədi.",
+    "tierVisibility": "Görünürlüyünüzü artırmaq və gündə daha çox yayım almaq üçün səviyyələri yüksəldin",
+    "buyTokens": "Token al"
   }
 }

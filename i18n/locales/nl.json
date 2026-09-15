@@ -3660,5 +3660,26 @@
     "searchPlaceholder": "Zoek in transcript…",
     "speakerPlaceholder": "Voer naam of gebruikersnaam van spreker in",
     "detectedLanguage": "Gedetecteerde taal: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana-wallet niet beschikbaar — dit apparaat heeft je walletsleutel niet. Log opnieuw in om die te herstellen.",
+    "solanaTempUnavailable": "Posten op Solana is tijdelijk niet beschikbaar. Probeer in plaats daarvan Base of BNB.",
+    "enterTextFirst": "Voer eerst wat tekst in",
+    "styleApplied": "Stijl toegepast!",
+    "textUpdated": "Tekst bijgewerkt!",
+    "textFailed": "Kan tekst niet verwerken",
+    "fillRequired": "Vul de verplichte velden in.",
+    "preCheckFailed": "Controle vóór uploaden mislukt.",
+    "postingWithoutMint": "Wordt zonder minten geplaatst — minten kost {{amount}} {{symbol}} en je saldo is te laag. Je kunt het later minten via het berichtmenu.",
+    "allowanceUsed": "Je hebt je gratis plaatsingslimiet van vandaag gebruikt",
+    "quoteNeedsContent": "Schrijf iets of voeg media toe om dit bericht te citeren.",
+    "videoTooLarge": "Video overschrijdt de limiet van {{limit}} voor je {{tier}}-niveau.",
+    "audioTooLarge": "Audio overschrijdt de limiet van {{limit}} voor je {{tier}}-niveau.",
+    "imagesOrVideo": "Een bericht kan afbeeldingen of een video bevatten, niet allebei. Verwijder eerst de afbeeldingen.",
+    "onlyOneVideo": "Maar één video per bericht — de eerste is behouden.",
+    "micRequired": "Microfoontoestemming is vereist om audio op te nemen.",
+    "recordFailed": "Kan opname niet starten.",
+    "tierVisibility": "Klim in niveaus om je zichtbaarheid te vergroten en per dag meer weergaven voor je bericht te krijgen",
+    "buyTokens": "Tokens kopen"
   }
 }
