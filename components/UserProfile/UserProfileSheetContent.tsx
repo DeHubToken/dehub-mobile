@@ -329,8 +329,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
             <View className="mt-3 bg-white/15 border border-white/20 rounded-xl px-4 py-3 flex-row items-center">
               <Ionicons name="ban-outline" size={18} color="#F4F4F5" />
               <View className="flex-1 ml-3">
-                <Text className="text-white/80 text-sm font-medium">You blocked this user</Text>
-                <Text className="text-white/80 text-xs mt-0.5">Their content is hidden from your feeds.</Text>
+                <Text className="text-white/80 text-sm font-medium">{t("profileOptions.youBlocked")}</Text>
+                <Text className="text-white/80 text-xs mt-0.5">{t("profileOptions.youBlockedHint")}</Text>
               </View>
               <TouchableOpacity
                 onPress={onUnblock}
@@ -339,7 +339,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
                 className="bg-white/20 px-3 py-1.5 rounded-xl"
               >
                 <Text className="text-white/80 text-xs font-semibold">
-                  {blockLoading ? "..." : "Unblock"}
+                  {blockLoading ? "..." : t("profileOptions.unblock")}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -348,8 +348,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
             <View className="mt-3 bg-theme-neutrals-800/50 border border-theme-neutrals-700 rounded-xl px-4 py-3 flex-row items-center">
               <Ionicons name="information-circle-outline" size={18} color="#9CA3AF" />
               <View className="flex-1 ml-3">
-                <Text className="text-gray-400 text-sm font-medium">You were blocked by this user</Text>
-                <Text className="text-gray-500 text-xs mt-0.5">You may not be able to interact with this account.</Text>
+                <Text className="text-gray-400 text-sm font-medium">{t("profileOptions.blockedByThem")}</Text>
+                <Text className="text-gray-500 text-xs mt-0.5">{t("profileOptions.blockedByThemHint")}</Text>
               </View>
             </View>
           )}
@@ -450,9 +450,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               <Icon name="MessageSquare" size={18} color="#fff" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-[15px] font-medium">Message</Text>
+              <Text className="text-white text-[15px] font-medium">{t("profileOptions.message")}</Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                Send a direct message
+                {t("profileOptions.sendDm")}
               </Text>
             </View>
           </TouchableOpacity>
@@ -469,9 +469,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               <Icon name="HandCoins" size={18} color="#fff" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-[15px] font-medium">{paymentsHidden ? "Tips disabled" : "Send Tip"}</Text>
+              <Text className="text-white text-[15px] font-medium">{paymentsHidden ? t("profileOptions.tipsDisabled") : t("profileOptions.sendTip")}</Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                {paymentsHidden ? "Private balance mode is enabled" : `Send a tip to ${profileData?.displayName || "this user"}`}
+                {paymentsHidden ? t("profileOptions.privateBalanceMode") : t("profileOptions.sendTipTo", { name: profileData?.displayName || t("profileOptions.thisUser") })}
               </Text>
             </View>
           </TouchableOpacity>
@@ -505,9 +505,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               <Icon name="Share2" size={18} color="#fff" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-[15px] font-medium">Share Profile</Text>
+              <Text className="text-white text-[15px] font-medium">{t("profileOptions.shareProfile")}</Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                Share this profile with others
+                {t("profileOptions.shareProfileHint")}
               </Text>
             </View>
           </TouchableOpacity>
@@ -523,9 +523,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               <Icon name="Link" size={18} color="#fff" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-[15px] font-medium">Copy Profile URL</Text>
+              <Text className="text-white text-[15px] font-medium">{t("profileOptions.copyProfileUrl")}</Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                Copy link to clipboard
+                {t("profileOptions.copyLinkHint")}
               </Text>
             </View>
           </TouchableOpacity>
@@ -542,9 +542,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               <Icon name="Copy" size={18} color="#fff" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-[15px] font-medium">{paymentsHidden ? "Address hidden" : "Copy Address"}</Text>
+              <Text className="text-white text-[15px] font-medium">{paymentsHidden ? t("profileOptions.addressHidden") : t("profileOptions.copyAddress")}</Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                Copy wallet address to clipboard
+                {t("profileOptions.copyAddressHint")}
               </Text>
             </View>
           </TouchableOpacity>
@@ -563,7 +563,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
                 </View>
                 <View className="flex-1">
                   <Text className="text-white text-[15px] font-medium">
-                    Remove follower
+                    {t("profileOptions.removeFollower")}
                   </Text>
                   <Text className="text-theme-neutrals-500 text-xs mt-0.5">
                     Remove {profileData?.displayName || "this user"} from your followers
@@ -595,8 +595,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               </Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
                 {youBlocked
-                  ? "Allow this user to appear in your feeds"
-                  : "Hide their content and restrict interactions"}
+                  ? t("profileOptions.allowInFeeds")
+                  : t("profileOptions.hideContent")}
               </Text>
             </View>
           </TouchableOpacity>
@@ -616,7 +616,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
                 Report {profileData?.displayName || "user"}
               </Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                Report this account for violating guidelines
+                {t("profileOptions.reportHint")}
               </Text>
             </View>
           </TouchableOpacity>
@@ -635,10 +635,10 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
             <Ionicons name="person-remove-outline" size={28} color="#fff" />
           </View>
           <Text className="text-white text-lg font-semibold text-center mb-2">
-            Remove follower?
+            {t("profileOptions.removeFollowerTitle")}
           </Text>
           <Text className="text-theme-neutrals-400 text-sm text-center mb-6 leading-5">
-            {profileData?.displayName || "This user"} won't be notified that they were removed from your followers.
+            {t("profileOptions.removeFollowerBody", { name: profileData?.displayName || t("profileOptions.thisUser") })}
           </Text>
           <View className="flex-row gap-3 w-full">
             <TouchableOpacity
@@ -646,14 +646,14 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               className="flex-1 bg-theme-neutrals-800 py-3 rounded-xl items-center"
               activeOpacity={0.7}
             >
-              <Text className="text-white font-semibold">Cancel</Text>
+              <Text className="text-white font-semibold">{t("common.cancel")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={handleConfirmRemoveFollower}
               className="flex-1 bg-white/15 border border-white/25 py-3 rounded-xl items-center"
               activeOpacity={0.7}
             >
-              <Text className="text-white font-semibold">Remove</Text>
+              <Text className="text-white font-semibold">{t("follow.remove")}</Text>
             </TouchableOpacity>
           </View>
         </View>
