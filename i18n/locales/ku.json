@@ -3483,5 +3483,16 @@
     "usdtSent": "{{amount}} USDT hate şandin",
     "withdrawableSoon": "Heqên abonetiyê di demek nêz de tên derxistin",
     "dpayBaseOnly": "Dpay tenê li ser Base heye."
+  },
+  "feedCard": {
+    "reactionFailed": "Reaksiyon nehat nûkirin",
+    "saveFailed": "Nehat tomarkirin",
+    "linkCopied": "Girêdana postê hate kopîkirin",
+    "removeRepostFailed": "Repost nehat rakirin",
+    "mintToGenerate": "Ji bo çêkirina vê beşê vê postê mint bike",
+    "mint": "Mint",
+    "stream": "Weşan",
+    "boostPost": "Postê boost bike",
+    "openSuperPowers": "SuperPowers veke"
   }
 }

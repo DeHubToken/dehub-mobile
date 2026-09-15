@@ -3679,5 +3679,16 @@
     "usdtSent": "انرسل {{amount}} USDT",
     "withdrawableSoon": "رسوم الاشتراكات راح تنسحب قريباً",
     "dpayBaseOnly": "Dpay متاح بس على Base."
+  },
+  "feedCard": {
+    "reactionFailed": "ما قدرنا نحدث التفاعل",
+    "saveFailed": "ما قدرنا نحفظ",
+    "linkCopied": "انتنسخ رابط المنشور",
+    "removeRepostFailed": "ما قدرنا نشيل إعادة النشر",
+    "mintToGenerate": "سكّ هذا المنشور حتى يتولد هذا القسم",
+    "mint": "سكّ",
+    "stream": "بث",
+    "boostPost": "دفعة للمنشور",
+    "openSuperPowers": "افتح SuperPowers"
   }
 }

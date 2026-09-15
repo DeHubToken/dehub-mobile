@@ -3720,5 +3720,16 @@
     "usdtSent": "已發送 {{amount}} USDT",
     "withdrawableSoon": "訂閱費用好快就可以提現",
     "dpayBaseOnly": "Dpay 淨係喺 Base 先用得。"
+  },
+  "feedCard": {
+    "reactionFailed": "無法更新表態",
+    "saveFailed": "儲存失敗",
+    "linkCopied": "帖子連結已複製",
+    "removeRepostFailed": "無法取消轉發",
+    "mintToGenerate": "鑄造呢個帖子就會生成呢個部分",
+    "mint": "鑄造",
+    "stream": "直播",
+    "boostPost": "加成呢個帖子",
+    "openSuperPowers": "打開 SuperPowers"
   }
 }

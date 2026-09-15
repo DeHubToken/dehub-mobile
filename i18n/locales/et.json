@@ -3721,5 +3721,16 @@
     "usdtSent": "{{amount}} USDT saadetud",
     "withdrawableSoon": "Tellimustasusid saab varsti välja võtta",
     "dpayBaseOnly": "Dpay on saadaval ainult Base'is."
+  },
+  "feedCard": {
+    "reactionFailed": "Reaktsiooni uuendamine ebaõnnestus",
+    "saveFailed": "Salvestamine ebaõnnestus",
+    "linkCopied": "Postituse link kopeeritud",
+    "removeRepostFailed": "Taasjagamise eemaldamine ebaõnnestus",
+    "mintToGenerate": "Mindi see postitus, et see osa luua",
+    "mint": "Mint",
+    "stream": "Voog",
+    "boostPost": "Võimenda postitust",
+    "openSuperPowers": "Ava SuperPowers"
   }
 }

@@ -3757,5 +3757,16 @@
     "usdtSent": "გაიგზავნა {{amount}} USDT",
     "withdrawableSoon": "გამოწერის საფასურის გატანა მალე შესაძლებელი იქნება",
     "dpayBaseOnly": "Dpay ხელმისაწვდომია მხოლოდ Base-ზე."
+  },
+  "feedCard": {
+    "reactionFailed": "რეაქციის განახლება ვერ მოხერხდა",
+    "saveFailed": "შენახვა ვერ მოხერხდა",
+    "linkCopied": "პოსტის ბმული დაკოპირდა",
+    "removeRepostFailed": "რეპოსტის წაშლა ვერ მოხერხდა",
+    "mintToGenerate": "დაამინთეთ ეს პოსტი ამ სექციის შესაქმნელად",
+    "mint": "მინთი",
+    "stream": "სტრიმი",
+    "boostPost": "პოსტის ბუსტი",
+    "openSuperPowers": "SuperPowers-ის გახსნა"
   }
 }

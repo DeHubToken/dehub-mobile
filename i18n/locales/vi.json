@@ -3810,5 +3810,16 @@
     "usdtSent": "Đã gửi {{amount}} USDT",
     "withdrawableSoon": "Phí đăng ký sẽ sớm có thể rút được",
     "dpayBaseOnly": "Dpay chỉ có trên Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Không cập nhật được biểu cảm",
+    "saveFailed": "Không lưu được",
+    "linkCopied": "Đã sao chép liên kết bài đăng",
+    "removeRepostFailed": "Không gỡ được bài đăng lại",
+    "mintToGenerate": "Hãy mint bài đăng này để tạo phần này",
+    "mint": "Mint",
+    "stream": "Phát trực tiếp",
+    "boostPost": "Boost bài đăng",
+    "openSuperPowers": "Mở SuperPowers"
   }
 }

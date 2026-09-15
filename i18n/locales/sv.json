@@ -3726,5 +3726,16 @@
     "usdtSent": "{{amount}} USDT skickat",
     "withdrawableSoon": "Prenumerationsavgifter går snart att ta ut",
     "dpayBaseOnly": "Dpay finns bara på Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Det gick inte att uppdatera reaktionen",
+    "saveFailed": "Det gick inte att spara",
+    "linkCopied": "Inläggslänken kopierad",
+    "removeRepostFailed": "Det gick inte att ta bort delningen",
+    "mintToGenerate": "Minta det här inlägget för att generera det här avsnittet",
+    "mint": "Minta",
+    "stream": "Sändning",
+    "boostPost": "Boosta inlägget",
+    "openSuperPowers": "Öppna SuperPowers"
   }
 }

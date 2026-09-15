@@ -3713,5 +3713,16 @@
     "usdtSent": "{{amount}} USDT ayaa la diray",
     "withdrawableSoon": "Khidmadaha rukumaadka dhawaan waa la bixin doonaa",
     "dpayBaseOnly": "Dpay wuxuu ku shaqeeyaa Base oo keliya."
+  },
+  "feedCard": {
+    "reactionFailed": "Lama cusbooneysiin karin falcelinta",
+    "saveFailed": "Lama keydin karin",
+    "linkCopied": "Linkiga qoraalka waa la koobiyeeyay",
+    "removeRepostFailed": "Lama tirtiri karin dib u qoraalka",
+    "mintToGenerate": "Mint qoraalkan si qaybtan loo abuuro",
+    "mint": "Mint",
+    "stream": "Baahin",
+    "boostPost": "Kordhi qoraalka",
+    "openSuperPowers": "Fur SuperPowers"
   }
 }

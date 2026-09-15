@@ -3722,5 +3722,16 @@
     "usdtSent": "{{amount}} USDT zimetumwa",
     "withdrawableSoon": "Ada za usajili zitaweza kutolewa hivi karibuni",
     "dpayBaseOnly": "Dpay inapatikana kwenye Base pekee."
+  },
+  "feedCard": {
+    "reactionFailed": "Imeshindwa kusasisha mwitikio",
+    "saveFailed": "Imeshindwa kuhifadhi",
+    "linkCopied": "Kiungo cha chapisho kimenakiliwa",
+    "removeRepostFailed": "Imeshindwa kuondoa uchapishaji upya",
+    "mintToGenerate": "Mint chapisho hili ili kuunda sehemu hii",
+    "mint": "Mint",
+    "stream": "Matangazo",
+    "boostPost": "Boresha chapisho",
+    "openSuperPowers": "Fungua SuperPowers"
   }
 }

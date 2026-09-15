@@ -3710,5 +3710,16 @@
     "usdtSent": "{{amount}} USDT அனுப்பப்பட்டது",
     "withdrawableSoon": "சந்தாக் கட்டணங்களை விரைவில் திரும்பப் பெற முடியும்",
     "dpayBaseOnly": "Dpay Base இல் மட்டுமே கிடைக்கும்."
+  },
+  "feedCard": {
+    "reactionFailed": "எதிர்வினையைப் புதுப்பிக்க முடியவில்லை",
+    "saveFailed": "சேமிக்க முடியவில்லை",
+    "linkCopied": "இடுகை இணைப்பு நகலெடுக்கப்பட்டது",
+    "removeRepostFailed": "மறுபதிவை நீக்க முடியவில்லை",
+    "mintToGenerate": "இந்தப் பகுதியை உருவாக்க இந்த இடுகையை மிண்ட் செய்யுங்கள்",
+    "mint": "மிண்ட்",
+    "stream": "ஸ்ட்ரீம்",
+    "boostPost": "இடுகையை பூஸ்ட் செய்",
+    "openSuperPowers": "SuperPowers திற"
   }
 }

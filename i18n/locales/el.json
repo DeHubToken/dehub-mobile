@@ -3745,5 +3745,16 @@
     "usdtSent": "Στάλθηκαν {{amount}} USDT",
     "withdrawableSoon": "Οι συνδρομητικές χρεώσεις θα μπορούν σύντομα να αναληφθούν",
     "dpayBaseOnly": "Το Dpay είναι διαθέσιμο μόνο στο Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Δεν ήταν δυνατή η ενημέρωση της αντίδρασης",
+    "saveFailed": "Η αποθήκευση απέτυχε",
+    "linkCopied": "Ο σύνδεσμος της ανάρτησης αντιγράφηκε",
+    "removeRepostFailed": "Δεν ήταν δυνατή η αφαίρεση της αναδημοσίευσης",
+    "mintToGenerate": "Κάντε mint αυτή την ανάρτηση για να δημιουργηθεί αυτή η ενότητα",
+    "mint": "Mint",
+    "stream": "Μετάδοση",
+    "boostPost": "Ενίσχυση ανάρτησης",
+    "openSuperPowers": "Άνοιγμα SuperPowers"
   }
 }

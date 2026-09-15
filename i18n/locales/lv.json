@@ -3721,5 +3721,16 @@
     "usdtSent": "Nosūtīts {{amount}} USDT",
     "withdrawableSoon": "Abonementa maksas drīzumā varēs izņemt",
     "dpayBaseOnly": "Dpay ir pieejams tikai Base tīklā."
+  },
+  "feedCard": {
+    "reactionFailed": "Neizdevās atjaunināt reakciju",
+    "saveFailed": "Neizdevās saglabāt",
+    "linkCopied": "Ieraksta saite nokopēta",
+    "removeRepostFailed": "Neizdevās noņemt pārpublicējumu",
+    "mintToGenerate": "Mintējiet šo ierakstu, lai izveidotu šo sadaļu",
+    "mint": "Mintēt",
+    "stream": "Straume",
+    "boostPost": "Pastiprināt ierakstu",
+    "openSuperPowers": "Atvērt SuperPowers"
   }
 }

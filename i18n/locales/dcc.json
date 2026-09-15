@@ -3452,5 +3452,16 @@
     "usdtSent": "{{amount}} USDT بھیجے گئے",
     "withdrawableSoon": "سبسکرپشن فیس جلد نکالی جا سکے گی",
     "dpayBaseOnly": "Dpay صرف Base پر دستیاب ہے۔"
+  },
+  "feedCard": {
+    "reactionFailed": "ردعمل اپ ڈیٹ نہیں ہو سکا",
+    "saveFailed": "محفوظ نہیں ہو سکا",
+    "linkCopied": "پوسٹ کا لنک کاپی ہو گیا",
+    "removeRepostFailed": "ری پوسٹ ہٹایا نہیں جا سکا",
+    "mintToGenerate": "یہ سیکشن بنانے کے لیے یہ پوسٹ منٹ کریں",
+    "mint": "منٹ",
+    "stream": "اسٹریم",
+    "boostPost": "پوسٹ کو بوسٹ کریں",
+    "openSuperPowers": "SuperPowers کھولیں"
   }
 }

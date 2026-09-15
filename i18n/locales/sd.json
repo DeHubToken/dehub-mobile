@@ -3705,5 +3705,16 @@
     "usdtSent": "{{amount}} USDT موڪليا ويا",
     "withdrawableSoon": "سبسڪرپشن فيس جلد ڪڍي سگهبي",
     "dpayBaseOnly": "Dpay رڳو Base تي دستياب آهي."
+  },
+  "feedCard": {
+    "reactionFailed": "ردعمل اپڊيٽ نه ٿي سگهيو",
+    "saveFailed": "محفوظ نه ٿي سگهيو",
+    "linkCopied": "پوسٽ جو لنڪ ڪاپي ٿيو",
+    "removeRepostFailed": "ريپوسٽ هٽائي نه سگهياسين",
+    "mintToGenerate": "هي سيڪشن ٺاهڻ لاءِ هي پوسٽ منٽ ڪريو",
+    "mint": "منٽ",
+    "stream": "اسٽريم",
+    "boostPost": "پوسٽ کي بوسٽ ڪريو",
+    "openSuperPowers": "SuperPowers کوليو"
   }
 }

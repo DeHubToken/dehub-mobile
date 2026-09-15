@@ -3839,5 +3839,16 @@
     "usdtSent": "{{amount}} USDT gestuur",
     "withdrawableSoon": "Intekengelde sal binnekort onttrekbaar wees",
     "dpayBaseOnly": "Dpay is net op Base beskikbaar."
+  },
+  "feedCard": {
+    "reactionFailed": "Kon nie die reaksie opdateer nie",
+    "saveFailed": "Kon nie stoor nie",
+    "linkCopied": "Plasingskakel na knipbord gekopieer",
+    "removeRepostFailed": "Kon nie die herplasing verwyder nie",
+    "mintToGenerate": "Slaan hierdie plasing om hierdie afdeling te genereer",
+    "mint": "Slaan",
+    "stream": "Stroom",
+    "boostPost": "Gee plasing 'n hupstoot",
+    "openSuperPowers": "Open SuperPowers"
   }
 }

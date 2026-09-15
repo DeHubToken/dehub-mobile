@@ -3790,5 +3790,16 @@
     "usdtSent": "Wysłano {{amount}} USDT",
     "withdrawableSoon": "Opłaty subskrypcyjne wkrótce będzie można wypłacić",
     "dpayBaseOnly": "Dpay jest dostępny tylko na Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Nie udało się zaktualizować reakcji",
+    "saveFailed": "Nie udało się zapisać",
+    "linkCopied": "Skopiowano link do posta",
+    "removeRepostFailed": "Nie udało się usunąć podania dalej",
+    "mintToGenerate": "Zmintuj ten post, aby wygenerować tę sekcję",
+    "mint": "Mintuj",
+    "stream": "Transmisja",
+    "boostPost": "Boostuj post",
+    "openSuperPowers": "Otwórz SuperPowers"
   }
 }

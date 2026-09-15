@@ -3712,5 +3712,16 @@
     "usdtSent": "An aika {{amount}} USDT",
     "withdrawableSoon": "Za a iya cire kuɗin biyan kuɗi nan ba da jimawa ba",
     "dpayBaseOnly": "Dpay yana samuwa a Base kawai."
+  },
+  "feedCard": {
+    "reactionFailed": "An kasa sabunta martani",
+    "saveFailed": "An kasa adanawa",
+    "linkCopied": "An kwafi hanyar saƙon",
+    "removeRepostFailed": "An kasa cire sake wallafawa",
+    "mintToGenerate": "Ka yi mint ɗin wannan saƙon don samar da wannan sashe",
+    "mint": "Mint",
+    "stream": "Yaɗa",
+    "boostPost": "Ƙarfafa saƙon",
+    "openSuperPowers": "Buɗe SuperPowers"
   }
 }

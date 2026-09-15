@@ -3867,5 +3867,16 @@
     "usdtSent": "{{amount}} USDT পাঠানি অইছে",
     "withdrawableSoon": "সাবস্ক্রিপশন ফি তাড়াতাড়ি তুলা যাইব",
     "dpayBaseOnly": "Dpay খালি Base ও পাওয়া যায়।"
+  },
+  "feedCard": {
+    "reactionFailed": "প্রতিক্রিয়া আপডেট করা গেল না",
+    "saveFailed": "সেভ করা গেল না",
+    "linkCopied": "পোস্টর লিংক কপি অইছে",
+    "removeRepostFailed": "রিপোস্ট সরানি গেল না",
+    "mintToGenerate": "ইতা অংশ বানাইতে ইতা পোস্ট মিন্ট করউ",
+    "mint": "মিন্ট",
+    "stream": "স্ট্রিম",
+    "boostPost": "পোস্ট বুস্ট করউ",
+    "openSuperPowers": "SuperPowers খুলউ"
   }
 }

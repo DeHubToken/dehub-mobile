@@ -3712,5 +3712,16 @@
     "usdtSent": "A ti fi {{amount}} USDT ránṣẹ́",
     "withdrawableSoon": "Owó alábùwọlé yóò ṣeé yọ láìpẹ́",
     "dpayBaseOnly": "Dpay wà lórí Base nìkan."
+  },
+  "feedCard": {
+    "reactionFailed": "Kò ṣeé ṣe láti ṣàtúnṣe ìdáhùn",
+    "saveFailed": "Kò ṣeé ṣe láti fi pamọ́",
+    "linkCopied": "A ti daako ọ̀nà ìfìwéránṣẹ́",
+    "removeRepostFailed": "Kò ṣeé ṣe láti yọ ìfìwéránṣẹ́-padà",
+    "mintToGenerate": "Mint ìfìwéránṣẹ́ yìí láti ṣẹ̀dá apá yìí",
+    "mint": "Mint",
+    "stream": "Ìtànkálẹ̀",
+    "boostPost": "Boost ìfìwéránṣẹ́",
+    "openSuperPowers": "Ṣí SuperPowers"
   }
 }

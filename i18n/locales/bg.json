@@ -3722,5 +3722,16 @@
     "usdtSent": "Изпратени {{amount}} USDT",
     "withdrawableSoon": "Таксите от абонаменти скоро ще могат да се теглят",
     "dpayBaseOnly": "Dpay е достъпен само в Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Реакцията не можа да бъде обновена",
+    "saveFailed": "Запазването не бе успешно",
+    "linkCopied": "Линкът към публикацията е копиран",
+    "removeRepostFailed": "Репостът не можа да бъде премахнат",
+    "mintToGenerate": "Минтнете тази публикация, за да се генерира този раздел",
+    "mint": "Минтни",
+    "stream": "Стрийм",
+    "boostPost": "Бустни публикацията",
+    "openSuperPowers": "Отвори SuperPowers"
   }
 }

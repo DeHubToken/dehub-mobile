@@ -3722,5 +3722,16 @@
     "usdtSent": "{{amount}} USDT lähetetty",
     "withdrawableSoon": "Tilausmaksut ovat pian nostettavissa",
     "dpayBaseOnly": "Dpay on käytettävissä vain Basessa."
+  },
+  "feedCard": {
+    "reactionFailed": "Reaktion päivitys epäonnistui",
+    "saveFailed": "Tallennus epäonnistui",
+    "linkCopied": "Julkaisun linkki kopioitu",
+    "removeRepostFailed": "Uudelleenjaon poisto epäonnistui",
+    "mintToGenerate": "Mintaa tämä julkaisu, niin tämä osio luodaan",
+    "mint": "Minttaa",
+    "stream": "Lähetys",
+    "boostPost": "Tehosta julkaisua",
+    "openSuperPowers": "Avaa SuperPowers"
   }
 }

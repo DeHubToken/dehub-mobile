@@ -3777,5 +3777,16 @@
     "usdtSent": "تم إرسال {{amount}} USDT",
     "withdrawableSoon": "ستصبح رسوم الاشتراكات قابلة للسحب قريباً",
     "dpayBaseOnly": "‏Dpay متاح على Base فقط."
+  },
+  "feedCard": {
+    "reactionFailed": "تعذّر تحديث التفاعل",
+    "saveFailed": "تعذّر الحفظ",
+    "linkCopied": "تم نسخ رابط المنشور",
+    "removeRepostFailed": "تعذّر إزالة إعادة النشر",
+    "mintToGenerate": "‏اسكك هذا المنشور لتوليد هذا القسم",
+    "mint": "سكّ",
+    "stream": "بث",
+    "boostPost": "عزّز المنشور",
+    "openSuperPowers": "افتح SuperPowers"
   }
 }
