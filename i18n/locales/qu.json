@@ -3254,7 +3254,8 @@
     "insufficientOnChain": "{{chain}} ukhupi DHB mana aypanchu. Cadenapi puchuqqa rikuchisqamanta huk hina kanman.",
     "needGas": "{{chain}} ukhupi gas paganapaq kikin {{token}} necesitanki.",
     "bridging": "Chakachkan…",
-    "bridgeAction": "Chaka {{from}} → {{to}}"
+    "bridgeAction": "Chaka {{from}} → {{to}}",
+    "failed": "Chaka mana atipakurqanchu"
   },
   "banned": {
     "title": "Cuentaykiqa harkasqam kachkan",

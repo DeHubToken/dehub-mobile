@@ -3235,7 +3235,8 @@
     "insufficientOnChain": "DHB insuficient pe {{chain}}. Soldul din lanț poate diferi de cel afișat.",
     "needGas": "Ai nevoie de {{token}} nativ pentru gas pe {{chain}}.",
     "bridging": "Se creează puntea…",
-    "bridgeAction": "Punte {{from}} → {{to}}"
+    "bridgeAction": "Punte {{from}} → {{to}}",
+    "failed": "Puntea a eșuat"
   },
   "banned": {
     "title": "Contul tău este interzis",

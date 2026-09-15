@@ -3251,7 +3251,8 @@
     "insufficientOnChain": "I-DHB ayanele ku-{{chain}}. Ibhalansi eseketangweni ingahluka kuleyo ekhonjisiwe.",
     "needGas": "Udinga i-{{token}} yendabuko yegesi ku-{{chain}}.",
     "bridging": "Iyabhuloha…",
-    "bridgeAction": "Ibhuloho {{from}} → {{to}}"
+    "bridgeAction": "Ibhuloho {{from}} → {{to}}",
+    "failed": "Ibhuloho lihlulekile"
   },
   "banned": {
     "title": "I-akhawunti yakho ivinjelwe",

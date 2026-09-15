@@ -3220,7 +3220,8 @@
     "insufficientOnChain": "{{chain}} پر کافی DHB نہیں۔ چین پر بیلنس دکھائے گئے سے مختلف ہو سکتا ہے۔",
     "needGas": "{{chain}} پر گیس کے لیے نیٹو {{token}} چاہیے۔",
     "bridging": "برج ہو رہا ہے…",
-    "bridgeAction": "{{from}} → {{to}} برج کریں"
+    "bridgeAction": "{{from}} → {{to}} برج کریں",
+    "failed": "برج ناکام ہوا"
   },
   "banned": {
     "title": "آپ کا اکاؤنٹ ممنوع ہے",

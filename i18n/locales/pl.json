@@ -3290,7 +3290,8 @@
     "insufficientOnChain": "Za mało DHB w sieci {{chain}}. Saldo w łańcuchu może różnić się od wyświetlanego.",
     "needGas": "Potrzebujesz natywnego {{token}} na gaz w sieci {{chain}}.",
     "bridging": "Przesyłanie mostem…",
-    "bridgeAction": "Most {{from}} → {{to}}"
+    "bridgeAction": "Most {{from}} → {{to}}",
+    "failed": "Most nie powiódł się"
   },
   "banned": {
     "title": "Twoje konto jest zablokowane",

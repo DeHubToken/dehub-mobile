@@ -3213,7 +3213,8 @@
     "insufficientOnChain": "DHB kuma filna {{chain}}. Hadhaaga silsiladda ayaa laga yaabaa inuu ka duwan yahay kan la muujiyay.",
     "needGas": "Waxaad u baahan tahay {{token}} asalka ah oo gaas ah {{chain}}.",
     "bridging": "Waa la buundeynayaa…",
-    "bridgeAction": "Buundo {{from}} → {{to}}"
+    "bridgeAction": "Buundo {{from}} → {{to}}",
+    "failed": "Buundada way fashilantay"
   },
   "banned": {
     "title": "Koontadaada waa la mamnuucay",

@@ -3226,7 +3226,8 @@
     "insufficientOnChain": "Utilstrækkelig DHB på {{chain}}. Saldoen på kæden kan afvige fra den viste.",
     "needGas": "Der kræves native {{token}} til gas på {{chain}}.",
     "bridging": "Bridger…",
-    "bridgeAction": "Bridge {{from}} → {{to}}"
+    "bridgeAction": "Bridge {{from}} → {{to}}",
+    "failed": "Bridge mislykkedes"
   },
   "banned": {
     "title": "Din konto er spærret",

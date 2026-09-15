@@ -3200,7 +3200,8 @@
     "insufficientOnChain": "Дар {{chain}} DHB кофӣ нест. Тавозун дар занҷир метавонад аз нишондодашуда фарқ кунад.",
     "needGas": "Барои газ дар {{chain}} {{token}}-и аслӣ лозим аст.",
     "bridging": "Интиқол…",
-    "bridgeAction": "Пул {{from}} → {{to}}"
+    "bridgeAction": "Пул {{from}} → {{to}}",
+    "failed": "Пул ноком шуд"
   },
   "banned": {
     "title": "Ang iyong account ay hindi maaaring",

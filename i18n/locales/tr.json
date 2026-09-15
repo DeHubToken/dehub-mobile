@@ -3284,7 +3284,8 @@
     "insufficientOnChain": "{{chain}} üzerinde yeterli DHB yok. Zincirdeki bakiye gösterilenden farklı olabilir.",
     "needGas": "{{chain}} üzerinde gas için yerel {{token}} gerekiyor.",
     "bridging": "Köprüleniyor…",
-    "bridgeAction": "Köprü {{from}} → {{to}}"
+    "bridgeAction": "Köprü {{from}} → {{to}}",
+    "failed": "Köprü başarısız oldu"
   },
   "banned": {
     "title": "Hesabınız yasaklandı",

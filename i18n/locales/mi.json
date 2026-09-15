@@ -3207,7 +3207,8 @@
     "insufficientOnChain": "Kāore i rawaka te DHB i {{chain}}. Kei te rerekē pea te toenga i runga mekameka i tērā e whakaatuhia ana.",
     "needGas": "Me whai {{token}} taketake mō te hau i {{chain}}.",
     "bridging": "Kei te piriti…",
-    "bridgeAction": "Piriti {{from}} → {{to}}"
+    "bridgeAction": "Piriti {{from}} → {{to}}",
+    "failed": "I rahu te piriti"
   },
   "banned": {
     "title": "Kua aukatihia tō pūkete",

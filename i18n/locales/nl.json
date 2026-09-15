@@ -3490,7 +3490,8 @@
     "insufficientOnChain": "Onvoldoende DHB op {{chain}}. Het saldo op de keten kan afwijken van het weergegeven saldo.",
     "needGas": "Je hebt native {{token}} nodig voor gas op {{chain}}.",
     "bridging": "Bezig met bridgen…",
-    "bridgeAction": "Bridge {{from}} → {{to}}"
+    "bridgeAction": "Bridge {{from}} → {{to}}",
+    "failed": "Bridge mislukt"
   },
   "banned": {
     "title": "Je account is geblokkeerd",

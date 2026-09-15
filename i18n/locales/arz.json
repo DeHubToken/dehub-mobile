@@ -3218,7 +3218,8 @@
     "insufficientOnChain": "رصيد DHB مش كفاية على {{chain}}. الرصيد على السلسلة ممكن يختلف عن اللي معروض.",
     "needGas": "محتاج {{token}} الأصلي للغاز على {{chain}}.",
     "bridging": "بيجسر…",
-    "bridgeAction": "جسر {{from}} ← {{to}}"
+    "bridgeAction": "جسر {{from}} ← {{to}}",
+    "failed": "الجسر فشل"
   },
   "banned": {
     "title": "حسابك محظور",

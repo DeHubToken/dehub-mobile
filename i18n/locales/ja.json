@@ -3289,7 +3289,8 @@
     "insufficientOnChain": "{{chain}} の DHB が不足しています。オンチェーン残高は表示と異なる場合があります。",
     "needGas": "{{chain}} のガス代にはネイティブ {{token}} が必要です。",
     "bridging": "ブリッジ中…",
-    "bridgeAction": "{{from}} → {{to}} をブリッジ"
+    "bridgeAction": "{{from}} → {{to}} をブリッジ",
+    "failed": "ブリッジに失敗しました"
   },
   "banned": {
     "title": "アカウントが禁止されています",

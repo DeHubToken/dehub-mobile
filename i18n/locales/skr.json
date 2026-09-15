@@ -3166,7 +3166,8 @@
     "insufficientOnChain": "{{chain}} تے کافی DHB کائنی۔ زنجیر تے بیلنس ݙکھائے ڳئے کنوں وکھرا تھی سڳدے۔",
     "needGas": "{{chain}} تے گیس کیتے اصل {{token}} چاہیدا ہے۔",
     "bridging": "برج تھیندا پیا ہے…",
-    "bridgeAction": "{{from}} → {{to}} برج کرو"
+    "bridgeAction": "{{from}} → {{to}} برج کرو",
+    "failed": "برج ناکام تھیا"
   },
   "banned": {
     "title": "تہاڈو اکاؤنٹ بند ہے",

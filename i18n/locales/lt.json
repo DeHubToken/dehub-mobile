@@ -3221,7 +3221,8 @@
     "insufficientOnChain": "Nepakanka DHB grandinėje {{chain}}. Likutis grandinėje gali skirtis nuo rodomo.",
     "needGas": "Grandinėje {{chain}} dujoms reikia vietinio {{token}}.",
     "bridging": "Pervedama…",
-    "bridgeAction": "Tiltas {{from}} → {{to}}"
+    "bridgeAction": "Tiltas {{from}} → {{to}}",
+    "failed": "Tiltas nepavyko"
   },
   "banned": {
     "title": "Jūsų paskyra užblokuota",

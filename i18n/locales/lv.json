@@ -3221,7 +3221,8 @@
     "insufficientOnChain": "Nepietiek DHB ķēdē {{chain}}. Ķēdes bilance var atšķirties no parādītās.",
     "needGas": "Ķēdē {{chain}} gāzei nepieciešams vietējais {{token}}.",
     "bridging": "Notiek pārsūtīšana…",
-    "bridgeAction": "Tilts {{from}} → {{to}}"
+    "bridgeAction": "Tilts {{from}} → {{to}}",
+    "failed": "Tilts neizdevās"
   },
   "banned": {
     "title": "Jūsu konts ir bloķēts",

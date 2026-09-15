@@ -3187,7 +3187,8 @@
     "insufficientOnChain": "ኣብ {{chain}} እኹል DHB የለን። ኣብ ሰንሰለት ዘሎ ሚዛን ካብቲ ዝርአ ክፍለ ይኽእል።",
     "needGas": "ኣብ {{chain}} ንጋዝ ዝኸውን ዋና {{token}} የድሊ።",
     "bridging": "ይድልድል ኣሎ…",
-    "bridgeAction": "ድልድል {{from}} → {{to}}"
+    "bridgeAction": "ድልድል {{from}} → {{to}}",
+    "failed": "ድልድል ኣይሰለጠን"
   },
   "banned": {
     "title": "ሕሳብካ ክልኩል እዩ",

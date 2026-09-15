@@ -3291,7 +3291,8 @@
     "insufficientOnChain": "Nicht genug DHB auf {{chain}}. Das Guthaben auf der Kette kann vom angezeigten abweichen.",
     "needGas": "Für Gas auf {{chain}} wird natives {{token}} benötigt.",
     "bridging": "Wird überbrückt…",
-    "bridgeAction": "Bridge {{from}} → {{to}}"
+    "bridgeAction": "Bridge {{from}} → {{to}}",
+    "failed": "Bridge fehlgeschlagen"
   },
   "banned": {
     "title": "Dein Konto ist gesperrt",

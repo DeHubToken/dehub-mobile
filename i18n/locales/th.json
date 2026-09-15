@@ -3258,7 +3258,8 @@
     "insufficientOnChain": "DHB ไม่พอบน {{chain}} ยอดคงเหลือบนเชนอาจต่างจากที่แสดง",
     "needGas": "ต้องมี {{token}} ดั้งเดิมสำหรับค่าแก๊สบน {{chain}}",
     "bridging": "กำลังบริดจ์…",
-    "bridgeAction": "บริดจ์ {{from}} → {{to}}"
+    "bridgeAction": "บริดจ์ {{from}} → {{to}}",
+    "failed": "บริดจ์ล้มเหลว"
   },
   "banned": {
     "title": "บัญชีของคุณถูกแบน",

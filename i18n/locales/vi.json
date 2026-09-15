@@ -3310,7 +3310,8 @@
     "insufficientOnChain": "Không đủ DHB trên {{chain}}. Số dư trên chuỗi có thể khác với số hiển thị.",
     "needGas": "Cần {{token}} gốc để trả phí gas trên {{chain}}.",
     "bridging": "Đang bắc cầu…",
-    "bridgeAction": "Bắc cầu {{from}} → {{to}}"
+    "bridgeAction": "Bắc cầu {{from}} → {{to}}",
+    "failed": "Bắc cầu thất bại"
   },
   "banned": {
     "title": "Tài khoản của bạn đã bị cấm",

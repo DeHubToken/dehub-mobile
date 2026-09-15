@@ -186,7 +186,7 @@ const BridgeTab: React.FC = () => {
       setTimeout(fetchBalances, 8000);
       setTimeout(fetchTransfers, 8000);
     } catch (err: any) {
-      const msg = String(err?.message || err || "Bridge failed");
+      const msg = String(err?.message || err || t("bridge.failed"));
       if (msg.includes("user rejected") || msg.includes("cancelled")) {
         toastError(t("staking.txCancelled"));
       } else if (msg.includes("transfer amount exceeds balance") || msg.includes("exceeds balance")) {

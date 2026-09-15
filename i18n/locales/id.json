@@ -3272,7 +3272,8 @@
     "insufficientOnChain": "DHB tidak cukup di {{chain}}. Saldo di rantai bisa berbeda dari yang ditampilkan.",
     "needGas": "Butuh {{token}} asli untuk gas di {{chain}}.",
     "bridging": "Membridge…",
-    "bridgeAction": "Bridge {{from}} → {{to}}"
+    "bridgeAction": "Bridge {{from}} → {{to}}",
+    "failed": "Bridge gagal"
   },
   "banned": {
     "title": "Akun Anda diblokir",

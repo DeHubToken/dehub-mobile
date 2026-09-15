@@ -3292,7 +3292,8 @@
     "insufficientOnChain": "DHB insuficiente en {{chain}}. El saldo en la cadena puede diferir del mostrado.",
     "needGas": "Necesitas {{token}} nativo para el gas en {{chain}}.",
     "bridging": "Puenteando…",
-    "bridgeAction": "Puente {{from}} → {{to}}"
+    "bridgeAction": "Puente {{from}} → {{to}}",
+    "failed": "El puente falló"
   },
   "banned": {
     "title": "Tu cuenta está bloqueada",
