@@ -784,7 +784,11 @@
     "cancel": "Atšaukti",
     "confirm": "Patvirtinti",
     "paying": "Mokama...",
-    "payAmount": "Mokėti {{amount}} {{currency}}"
+    "payAmount": "Mokėti {{amount}} {{currency}}",
+    "firstViews_one": "Pirmas {{count}} peržiūra",
+    "firstViews_other": "Pirmos {{count}} peržiūros",
+    "firstComments_one": "Pirmas {{count}} komentaras",
+    "firstComments_other": "Pirmi {{count}} komentarai"
   },
   "assistant": {
     "title": "Asistentas",
@@ -3460,5 +3464,35 @@
     "descriptionOptional": "Aprašymas (nebūtina)",
     "whatsHappening": "Kas vyksta?",
     "quotaShortfall": "Šis įrašas kainuoja {{cost}} DHB, o jūs turite {{held}}."
+  },
+  "bounty": {
+    "claimed": "Atsiimta",
+    "notEligible": "Neatitinka reikalavimų",
+    "checking": "Tikrinama atitiktis…",
+    "rewardType": "Atlygio tipas",
+    "transaction": "Operacija",
+    "onChainClaim": "Atsiėmimas grandinėje",
+    "confirmClaim": "Patvirtinti atsiėmimą",
+    "processing": "Apdorojama operacija grandinėje",
+    "success": "Atlygis atsiimtas!",
+    "awesome": "Puiku!",
+    "claimUnable": "Nepavyko atsiimti atlygio",
+    "claimFailed": "Nepavyko atsiimti atlygio",
+    "switchFailed": "Nepavyko perjungti tinklo",
+    "claimViewerTitle": "Atsiimti žiūrovo atlygį",
+    "claimCommenterTitle": "Atsiimti komentatoriaus atlygį",
+    "claimingViewer": "Atsiimamas žiūrovo atlygis…",
+    "claimingCommenter": "Atsiimamas komentatoriaus atlygis…",
+    "viewerReward": "Žiūrovo atlygis",
+    "commenterReward": "Komentatoriaus atlygis",
+    "claimedViewer": "Žiūrovo atlygis sėkmingai atsiimtas!",
+    "claimedCommenter": "Komentatoriaus atlygis sėkmingai atsiimtas!",
+    "earnedViewer": "Uždirbote žiūrovo atlygį",
+    "earnedCommenter": "Uždirbote komentatoriaus atlygį",
+    "switchNetwork": "Perjungti tinklą",
+    "eligibilityFailed": "Nepavyko patikrinti atitikties",
+    "switchFirst": "Prieš atsiimdami perjunkite į atlygio tinklą",
+    "missingSignature": "Trūksta atlygio atsiėmimo parašo",
+    "txReverted": "Operacija grandinėje buvo atšaukta"
   }
 }

@@ -663,7 +663,11 @@
     "cancel": "Annuler",
     "confirm": "Confirmer",
     "paying": "Paiement...",
-    "payAmount": "Payer {{amount}} {{currency}}"
+    "payAmount": "Payer {{amount}} {{currency}}",
+    "firstViews_one": "Première {{count}} vue",
+    "firstViews_other": "{{count}} premières vues",
+    "firstComments_one": "Premier {{count}} commentaire",
+    "firstComments_other": "{{count}} premiers commentaires"
   },
   "commandCentre": {
     "title": "Centre de Commande",
@@ -3535,5 +3539,35 @@
     "descriptionOptional": "Description (facultatif)",
     "whatsHappening": "Quoi de neuf ?",
     "quotaShortfall": "Cette publication coûte {{cost}} DHB et vous en détenez {{held}}."
+  },
+  "bounty": {
+    "claimed": "Réclamé",
+    "notEligible": "Non éligible",
+    "checking": "Vérification de l'éligibilité…",
+    "rewardType": "Type de récompense",
+    "transaction": "Transaction",
+    "onChainClaim": "Réclamation on-chain",
+    "confirmClaim": "Confirmer la réclamation",
+    "processing": "Traitement de la transaction on-chain",
+    "success": "Récompense réclamée !",
+    "awesome": "Super !",
+    "claimUnable": "Impossible de réclamer la récompense",
+    "claimFailed": "Échec de la réclamation de la récompense",
+    "switchFailed": "Impossible de changer de réseau",
+    "claimViewerTitle": "Réclamer la récompense de spectateur",
+    "claimCommenterTitle": "Réclamer la récompense de commentateur",
+    "claimingViewer": "Réclamation de la récompense de spectateur…",
+    "claimingCommenter": "Réclamation de la récompense de commentateur…",
+    "viewerReward": "Récompense de spectateur",
+    "commenterReward": "Récompense de commentateur",
+    "claimedViewer": "Récompense de spectateur réclamée !",
+    "claimedCommenter": "Récompense de commentateur réclamée !",
+    "earnedViewer": "Vous avez gagné votre récompense de spectateur",
+    "earnedCommenter": "Vous avez gagné votre récompense de commentateur",
+    "switchNetwork": "Changer de réseau",
+    "eligibilityFailed": "Impossible de vérifier l'éligibilité",
+    "switchFirst": "Passez au réseau de la récompense avant de la réclamer",
+    "missingSignature": "Signature de réclamation manquante",
+    "txReverted": "La transaction a été annulée on-chain"
   }
 }

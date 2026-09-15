@@ -776,7 +776,11 @@
     "cancel": "Jooji",
     "confirm": "Xaqiiji",
     "paying": "Waa la bixinayaa...",
-    "payAmount": "Bixi {{amount}} {{currency}}"
+    "payAmount": "Bixi {{amount}} {{currency}}",
+    "firstViews_one": "Daawashada {{count}} ee ugu horreysa",
+    "firstViews_other": "Daawashooyinka {{count}} ee ugu horreeya",
+    "firstComments_one": "Faallada {{count}} ee ugu horreysa",
+    "firstComments_other": "Faallooyinka {{count}} ee ugu horreeya"
   },
   "assistant": {
     "title": "Kaaliye",
@@ -3452,5 +3456,35 @@
     "descriptionOptional": "Sharaxaad (ikhtiyaari)",
     "whatsHappening": "Maxaa socda?",
     "quotaShortfall": "Qoraalkani wuxuu ku kacayaa {{cost}} DHB adiguna waxaad haysataa {{held}}."
+  },
+  "bounty": {
+    "claimed": "La qaatay",
+    "notEligible": "Uma qalantid",
+    "checking": "Waa la hubinayaa u qalmitaanka…",
+    "rewardType": "Nooca abaalgudka",
+    "transaction": "Macaamil",
+    "onChainClaim": "Codsi silsilad-ku-saabsan",
+    "confirmClaim": "Xaqiiji codsiga",
+    "processing": "Waa la habaynayaa macaamilka silsiladda",
+    "success": "Abaalgudka waa la qaatay!",
+    "awesome": "Aad u fiican!",
+    "claimUnable": "Lama qaadan karo abaalgudka",
+    "claimFailed": "Qaadashada abaalgudka way fashilantay",
+    "switchFailed": "Lama beddeli karo shabakadda",
+    "claimViewerTitle": "Qaado abaalgudka daawadaha",
+    "claimCommenterTitle": "Qaado abaalgudka faallada",
+    "claimingViewer": "Waa la qaadanayaa abaalgudka daawadaha…",
+    "claimingCommenter": "Waa la qaadanayaa abaalgudka faallada…",
+    "viewerReward": "Abaalgudka daawadaha",
+    "commenterReward": "Abaalgudka faallada",
+    "claimedViewer": "Abaalgudka daawadaha si guul leh ayaa loo qaatay!",
+    "claimedCommenter": "Abaalgudka faallada si guul leh ayaa loo qaatay!",
+    "earnedViewer": "Waxaad heshay abaalgudka daawadaha",
+    "earnedCommenter": "Waxaad heshay abaalgudka faallada",
+    "switchNetwork": "Beddel shabakadda",
+    "eligibilityFailed": "Lama hubin karin u qalmitaanka",
+    "switchFirst": "Isu beddel shabakadda abaalgudka ka hor qaadashada",
+    "missingSignature": "Saxiixa qaadashada abaalgudka ma jiro",
+    "txReverted": "Macaamilka waa laga noqday silsiladda"
   }
 }

@@ -785,7 +785,11 @@
     "cancel": "Odustani",
     "confirm": "Potvrdi",
     "paying": "Plaćanje...",
-    "payAmount": "Plati {{amount}} {{currency}}"
+    "payAmount": "Plati {{amount}} {{currency}}",
+    "firstViews_one": "Prvi {{count}} pregled",
+    "firstViews_other": "Prvih {{count}} pregleda",
+    "firstComments_one": "Prvi {{count}} komentar",
+    "firstComments_other": "Prvih {{count}} komentara"
   },
   "assistant": {
     "title": "Pomoćnik",
@@ -3461,5 +3465,35 @@
     "descriptionOptional": "Opis (neobavezno)",
     "whatsHappening": "Što se događa?",
     "quotaShortfall": "Ova objava stoji {{cost}} DHB, a vi imate {{held}}."
+  },
+  "bounty": {
+    "claimed": "Preuzeto",
+    "notEligible": "Nije ispunjen uvjet",
+    "checking": "Provjera ispunjavanja uvjeta…",
+    "rewardType": "Vrsta nagrade",
+    "transaction": "Transakcija",
+    "onChainClaim": "Preuzimanje na lancu",
+    "confirmClaim": "Potvrdi preuzimanje",
+    "processing": "Obrada transakcije na lancu",
+    "success": "Nagrada preuzeta!",
+    "awesome": "Odlično!",
+    "claimUnable": "Nagradu nije moguće preuzeti",
+    "claimFailed": "Preuzimanje nagrade nije uspjelo",
+    "switchFailed": "Mrežu nije moguće promijeniti",
+    "claimViewerTitle": "Preuzmi nagradu gledatelja",
+    "claimCommenterTitle": "Preuzmi nagradu komentatora",
+    "claimingViewer": "Preuzimanje nagrade gledatelja…",
+    "claimingCommenter": "Preuzimanje nagrade komentatora…",
+    "viewerReward": "Nagrada gledatelja",
+    "commenterReward": "Nagrada komentatora",
+    "claimedViewer": "Nagrada gledatelja uspješno preuzeta!",
+    "claimedCommenter": "Nagrada komentatora uspješno preuzeta!",
+    "earnedViewer": "Zaslužili ste svoju nagradu gledatelja",
+    "earnedCommenter": "Zaslužili ste svoju nagradu komentatora",
+    "switchNetwork": "Promijeni mrežu",
+    "eligibilityFailed": "Provjera uvjeta nije uspjela",
+    "switchFirst": "Prije preuzimanja prijeđite na mrežu nagrade",
+    "missingSignature": "Nedostaje potpis za preuzimanje nagrade",
+    "txReverted": "Transakcija je poništena na lancu"
   }
 }

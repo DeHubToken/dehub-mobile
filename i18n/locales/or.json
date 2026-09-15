@@ -774,7 +774,11 @@
     "cancel": "ବାତିଲ",
     "confirm": "ନିଶ୍ଚିତ କରନ୍ତୁ",
     "paying": "ଦେୟ ହେଉଛି...",
-    "payAmount": "{{amount}} {{currency}} ଦେୟ ଦିଅନ୍ତୁ"
+    "payAmount": "{{amount}} {{currency}} ଦେୟ ଦିଅନ୍ତୁ",
+    "firstViews_one": "ପ୍ରଥମ {{count}} ଦର୍ଶନ",
+    "firstViews_other": "ପ୍ରଥମ {{count}} ଦର୍ଶନ",
+    "firstComments_one": "ପ୍ରଥମ {{count}} ମନ୍ତବ୍ୟ",
+    "firstComments_other": "ପ୍ରଥମ {{count}} ମନ୍ତବ୍ୟ"
   },
   "assistant": {
     "title": "ସହାୟକ",
@@ -3432,5 +3436,35 @@
     "descriptionOptional": "ବିବରଣୀ (ଐଚ୍ଛିକ)",
     "whatsHappening": "କଣ ଘଟୁଛି?",
     "quotaShortfall": "ଏହି ପୋଷ୍ଟ ପାଇଁ {{cost}} DHB ଲାଗେ ଏବଂ ଆପଣଙ୍କ ପାଖରେ {{held}} ଅଛି।"
+  },
+  "bounty": {
+    "claimed": "ଗ୍ରହଣ କରାଯାଇଛି",
+    "notEligible": "ଯୋଗ୍ୟ ନୁହନ୍ତି",
+    "checking": "ଯୋଗ୍ୟତା ଯାଞ୍ଚ ହେଉଛି…",
+    "rewardType": "ପୁରସ୍କାରର ପ୍ରକାର",
+    "transaction": "କାରବାର",
+    "onChainClaim": "ଅନ-ଚେନ ଦାବି",
+    "confirmClaim": "ଦାବି ନିଶ୍ଚିତ କରନ୍ତୁ",
+    "processing": "ଅନ-ଚେନ କାରବାର ପ୍ରକ୍ରିୟା ଚାଲିଛି",
+    "success": "ପୁରସ୍କାର ମିଳିଲା!",
+    "awesome": "ବଢ଼ିଆ!",
+    "claimUnable": "ପୁରସ୍କାର ନେଇହେଲା ନାହିଁ",
+    "claimFailed": "ପୁରସ୍କାର ନେବାରେ ବିଫଳ",
+    "switchFailed": "ନେଟୱାର୍କ ବଦଳାଇହେଲା ନାହିଁ",
+    "claimViewerTitle": "ଦର୍ଶକ ପୁରସ୍କାର ନିଅନ୍ତୁ",
+    "claimCommenterTitle": "ମନ୍ତବ୍ୟକାରୀ ପୁରସ୍କାର ନିଅନ୍ତୁ",
+    "claimingViewer": "ଦର୍ଶକ ପୁରସ୍କାର ନିଆଯାଉଛି…",
+    "claimingCommenter": "ମନ୍ତବ୍ୟକାରୀ ପୁରସ୍କାର ନିଆଯାଉଛି…",
+    "viewerReward": "ଦର୍ଶକ ପୁରସ୍କାର",
+    "commenterReward": "ମନ୍ତବ୍ୟକାରୀ ପୁରସ୍କାର",
+    "claimedViewer": "ଦର୍ଶକ ପୁରସ୍କାର ସଫଳତାର ସହ ମିଳିଲା!",
+    "claimedCommenter": "ମନ୍ତବ୍ୟକାରୀ ପୁରସ୍କାର ସଫଳତାର ସହ ମିଳିଲା!",
+    "earnedViewer": "ଆପଣ ଦର୍ଶକ ପୁରସ୍କାର ପାଇଲେ",
+    "earnedCommenter": "ଆପଣ ମନ୍ତବ୍ୟକାରୀ ପୁରସ୍କାର ପାଇଲେ",
+    "switchNetwork": "ନେଟୱାର୍କ ବଦଳାନ୍ତୁ",
+    "eligibilityFailed": "ଯୋଗ୍ୟତା ଯାଞ୍ଚ କରିହେଲା ନାହିଁ",
+    "switchFirst": "ନେବା ପୂର୍ବରୁ ପୁରସ୍କାର ନେଟୱାର୍କକୁ ଯାଆନ୍ତୁ",
+    "missingSignature": "ପୁରସ୍କାର ଦାବି ସ୍ୱାକ୍ଷର ନାହିଁ",
+    "txReverted": "କାରବାର ଅନ-ଚେନରେ ଫେରିଗଲା"
   }
 }

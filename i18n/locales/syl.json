@@ -1598,7 +1598,11 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "paying": "Paying...",
-    "payAmount": "Pay {{amount}} {{currency}}"
+    "payAmount": "Pay {{amount}} {{currency}}",
+    "firstViews_one": "পয়লা {{count}} ভিউ",
+    "firstViews_other": "পয়লা {{count}} ভিউ",
+    "firstComments_one": "পয়লা {{count}} মন্তব্য",
+    "firstComments_other": "পয়লা {{count}} মন্তব্য"
   },
   "publicChat": {
     "title": "পাবলিক চ্যাট",
@@ -3607,5 +3611,35 @@
     "descriptionOptional": "বিবরণ (ঐচ্ছিক)",
     "whatsHappening": "কিতা অইরো?",
     "quotaShortfall": "ইলা পোস্টো {{cost}} DHB লাগে, তোমার আছে {{held}}।"
+  },
+  "bounty": {
+    "claimed": "লইলিছে",
+    "notEligible": "যোগ্য নায়",
+    "checking": "যোগ্যতা যাচাই অইরো…",
+    "rewardType": "পুরস্কারর ধরন",
+    "transaction": "লেনদেন",
+    "onChainClaim": "অন-চেইন ক্লেইম",
+    "confirmClaim": "ক্লেইম নিশ্চিত করউক্কা",
+    "processing": "অন-চেইন লেনদেন প্রক্রিয়া অইরো",
+    "success": "বাউন্টি পাইছইন!",
+    "awesome": "খুব ভালা!",
+    "claimUnable": "বাউন্টি লওয়া গেল না",
+    "claimFailed": "বাউন্টি লইতে ব্যর্থ",
+    "switchFailed": "নেটওয়ার্ক বদলানি গেল না",
+    "claimViewerTitle": "দর্শক বাউন্টি লউক্কা",
+    "claimCommenterTitle": "মন্তব্যকারী বাউন্টি লউক্কা",
+    "claimingViewer": "দর্শক বাউন্টি লওয়া অইরো…",
+    "claimingCommenter": "মন্তব্যকারী বাউন্টি লওয়া অইরো…",
+    "viewerReward": "দর্শক পুরস্কার",
+    "commenterReward": "মন্তব্যকারী পুরস্কার",
+    "claimedViewer": "দর্শক বাউন্টি সফলভাবে পাইছইন!",
+    "claimedCommenter": "মন্তব্যকারী বাউন্টি সফলভাবে পাইছইন!",
+    "earnedViewer": "তুমি দর্শক বাউন্টি পুরস্কার পাইছো",
+    "earnedCommenter": "তুমি মন্তব্যকারী বাউন্টি পুরস্কার পাইছো",
+    "switchNetwork": "নেটওয়ার্ক বদলাউক্কা",
+    "eligibilityFailed": "যোগ্যতা যাচাই করা গেল না",
+    "switchFirst": "লওয়ার আগে বাউন্টি নেটওয়ার্কো যাউক্কা",
+    "missingSignature": "বাউন্টি ক্লেইমর স্বাক্ষর নাই",
+    "txReverted": "লেনদেন অন-চেইনো বাতিল অইছে"
   }
 }

@@ -1046,7 +1046,11 @@
     "cancel": "Anuluj",
     "confirm": "Potwierdź",
     "paying": "Płacenie...",
-    "payAmount": "Zapłać {{amount}} {{currency}}"
+    "payAmount": "Zapłać {{amount}} {{currency}}",
+    "firstViews_one": "Pierwsze {{count}} wyświetlenie",
+    "firstViews_other": "Pierwsze {{count}} wyświetleń",
+    "firstComments_one": "Pierwszy {{count}} komentarz",
+    "firstComments_other": "Pierwsze {{count}} komentarzy"
   },
   "assistant": {
     "title": "Asystent AI",
@@ -3529,5 +3533,35 @@
     "descriptionOptional": "Opis (opcjonalnie)",
     "whatsHappening": "Co słychać?",
     "quotaShortfall": "Ten post kosztuje {{cost}} DHB, a masz {{held}}."
+  },
+  "bounty": {
+    "claimed": "Odebrano",
+    "notEligible": "Nie kwalifikujesz się",
+    "checking": "Sprawdzanie uprawnień…",
+    "rewardType": "Rodzaj nagrody",
+    "transaction": "Transakcja",
+    "onChainClaim": "Odbiór w łańcuchu",
+    "confirmClaim": "Potwierdź odbiór",
+    "processing": "Przetwarzanie transakcji w łańcuchu",
+    "success": "Nagroda odebrana!",
+    "awesome": "Świetnie!",
+    "claimUnable": "Nie można odebrać nagrody",
+    "claimFailed": "Nie udało się odebrać nagrody",
+    "switchFailed": "Nie można przełączyć sieci",
+    "claimViewerTitle": "Odbierz nagrodę widza",
+    "claimCommenterTitle": "Odbierz nagrodę komentującego",
+    "claimingViewer": "Odbieranie nagrody widza…",
+    "claimingCommenter": "Odbieranie nagrody komentującego…",
+    "viewerReward": "Nagroda widza",
+    "commenterReward": "Nagroda komentującego",
+    "claimedViewer": "Nagroda widza odebrana!",
+    "claimedCommenter": "Nagroda komentującego odebrana!",
+    "earnedViewer": "Zdobyłeś nagrodę widza",
+    "earnedCommenter": "Zdobyłeś nagrodę komentującego",
+    "switchNetwork": "Przełącz sieć",
+    "eligibilityFailed": "Nie udało się sprawdzić uprawnień",
+    "switchFirst": "Przed odbiorem przełącz się na sieć nagrody",
+    "missingSignature": "Brak podpisu do odbioru nagrody",
+    "txReverted": "Transakcja została cofnięta w łańcuchu"
   }
 }

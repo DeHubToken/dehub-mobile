@@ -772,7 +772,11 @@
     "cancel": "Цуцлах",
     "confirm": "Баталгаажуулах",
     "paying": "Төлж байна...",
-    "payAmount": "{{amount}} {{currency}} төлөх"
+    "payAmount": "{{amount}} {{currency}} төлөх",
+    "firstViews_one": "Эхний {{count}} үзэлт",
+    "firstViews_other": "Эхний {{count}} үзэлт",
+    "firstComments_one": "Эхний {{count}} сэтгэгдэл",
+    "firstComments_other": "Эхний {{count}} сэтгэгдэл"
   },
   "assistant": {
     "title": "Туслах",
@@ -3440,5 +3444,35 @@
     "descriptionOptional": "Тайлбар (заавал биш)",
     "whatsHappening": "Юу болж байна?",
     "quotaShortfall": "Энэ нийтлэл {{cost}} DHB шаарддаг ба танд {{held}} байна."
+  },
+  "bounty": {
+    "claimed": "Авсан",
+    "notEligible": "Тэнцэхгүй",
+    "checking": "Тэнцэх эсэхийг шалгаж байна…",
+    "rewardType": "Шагналын төрөл",
+    "transaction": "Гүйлгээ",
+    "onChainClaim": "Сүлжээн дэх нэхэмжлэл",
+    "confirmClaim": "Нэхэмжлэлийг баталгаажуулах",
+    "processing": "Сүлжээн дэх гүйлгээг боловсруулж байна",
+    "success": "Шагнал авлаа!",
+    "awesome": "Гайхалтай!",
+    "claimUnable": "Шагналыг авч чадсангүй",
+    "claimFailed": "Шагнал авах амжилтгүй боллоо",
+    "switchFailed": "Сүлжээг сольж чадсангүй",
+    "claimViewerTitle": "Үзэгчийн шагналыг авах",
+    "claimCommenterTitle": "Сэтгэгдэл бичигчийн шагналыг авах",
+    "claimingViewer": "Үзэгчийн шагналыг авч байна…",
+    "claimingCommenter": "Сэтгэгдэл бичигчийн шагналыг авч байна…",
+    "viewerReward": "Үзэгчийн шагнал",
+    "commenterReward": "Сэтгэгдэл бичигчийн шагнал",
+    "claimedViewer": "Үзэгчийн шагналыг амжилттай авлаа!",
+    "claimedCommenter": "Сэтгэгдэл бичигчийн шагналыг амжилттай авлаа!",
+    "earnedViewer": "Та үзэгчийн шагналаа авлаа",
+    "earnedCommenter": "Та сэтгэгдэл бичигчийн шагналаа авлаа",
+    "switchNetwork": "Сүлжээг солих",
+    "eligibilityFailed": "Тэнцэх эсэхийг шалгаж чадсангүй",
+    "switchFirst": "Авахаасаа өмнө шагналын сүлжээнд шилжинэ үү",
+    "missingSignature": "Шагнал авах гарын үсэг байхгүй",
+    "txReverted": "Гүйлгээ сүлжээнд буцаагдлаа"
   }
 }

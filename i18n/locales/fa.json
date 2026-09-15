@@ -783,7 +783,11 @@
     "cancel": "لغو",
     "confirm": "تایید",
     "paying": "در حال پرداخت...",
-    "payAmount": "پرداخت {{amount}} {{currency}}"
+    "payAmount": "پرداخت {{amount}} {{currency}}",
+    "firstViews_one": "اولین {{count}} بازدید",
+    "firstViews_other": "{{count}} بازدید اول",
+    "firstComments_one": "اولین {{count}} نظر",
+    "firstComments_other": "{{count}} نظر اول"
   },
   "assistant": {
     "title": "دستیار",
@@ -3474,5 +3478,35 @@
     "descriptionOptional": "توضیح (اختیاری)",
     "whatsHappening": "چه خبر؟",
     "quotaShortfall": "این پست {{cost}} DHB هزینه دارد و شما {{held}} دارید."
+  },
+  "bounty": {
+    "claimed": "دریافت‌شده",
+    "notEligible": "واجد شرایط نیستید",
+    "checking": "در حال بررسی واجد شرایط بودن…",
+    "rewardType": "نوع پاداش",
+    "transaction": "تراکنش",
+    "onChainClaim": "دریافت روی زنجیره",
+    "confirmClaim": "تأیید دریافت",
+    "processing": "در حال پردازش تراکنش روی زنجیره",
+    "success": "پاداش دریافت شد!",
+    "awesome": "عالی!",
+    "claimUnable": "دریافت پاداش ممکن نیست",
+    "claimFailed": "دریافت پاداش ناموفق بود",
+    "switchFailed": "تغییر شبکه ممکن نیست",
+    "claimViewerTitle": "دریافت پاداش بیننده",
+    "claimCommenterTitle": "دریافت پاداش نظردهنده",
+    "claimingViewer": "در حال دریافت پاداش بیننده…",
+    "claimingCommenter": "در حال دریافت پاداش نظردهنده…",
+    "viewerReward": "پاداش بیننده",
+    "commenterReward": "پاداش نظردهنده",
+    "claimedViewer": "پاداش بیننده با موفقیت دریافت شد!",
+    "claimedCommenter": "پاداش نظردهنده با موفقیت دریافت شد!",
+    "earnedViewer": "پاداش بیننده خود را دریافت کردید",
+    "earnedCommenter": "پاداش نظردهنده خود را دریافت کردید",
+    "switchNetwork": "تغییر شبکه",
+    "eligibilityFailed": "بررسی واجد شرایط بودن ناموفق بود",
+    "switchFirst": "پیش از دریافت به شبکه پاداش بروید",
+    "missingSignature": "امضای دریافت پاداش موجود نیست",
+    "txReverted": "تراکنش روی زنجیره برگشت خورد"
   }
 }

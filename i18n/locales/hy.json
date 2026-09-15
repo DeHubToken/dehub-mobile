@@ -749,7 +749,11 @@
     "cancel": "Chegharakel",
     "confirm": "Hasdaedel",
     "paying": "Vcharvoum e...",
-    "payAmount": "Vcharel {{amount}} {{currency}}"
+    "payAmount": "Vcharel {{amount}} {{currency}}",
+    "firstViews_one": "Առաջին {{count}} դիտում",
+    "firstViews_other": "Առաջին {{count}} դիտում",
+    "firstComments_one": "Առաջին {{count}} մեկնաբանություն",
+    "firstComments_other": "Առաջին {{count}} մեկնաբանություն"
   },
   "assistant": {
     "title": "AI Oghnakinets",
@@ -3454,5 +3458,35 @@
     "descriptionOptional": "Նկարագրություն (ըստ ցանկության)",
     "whatsHappening": "Ի՞նչ է կատարվում",
     "quotaShortfall": "Այս գրառումն արժե {{cost}} DHB, իսկ դուք ունեք {{held}}։"
+  },
+  "bounty": {
+    "claimed": "Ստացված",
+    "notEligible": "Իրավասու չէ",
+    "checking": "Իրավասության ստուգում…",
+    "rewardType": "Պարգևի տեսակ",
+    "transaction": "Գործարք",
+    "onChainClaim": "Շղթայում ստացում",
+    "confirmClaim": "Հաստատել ստացումը",
+    "processing": "Շղթայում գործարքի մշակում",
+    "success": "Պարգևը ստացված է։",
+    "awesome": "Հիանալի է։",
+    "claimUnable": "Չհաջողվեց ստանալ պարգևը",
+    "claimFailed": "Պարգևի ստացումը ձախողվեց",
+    "switchFailed": "Չհաջողվեց փոխել ցանցը",
+    "claimViewerTitle": "Ստանալ դիտողի պարգևը",
+    "claimCommenterTitle": "Ստանալ մեկնաբանողի պարգևը",
+    "claimingViewer": "Դիտողի պարգևի ստացում…",
+    "claimingCommenter": "Մեկնաբանողի պարգևի ստացում…",
+    "viewerReward": "Դիտողի պարգև",
+    "commenterReward": "Մեկնաբանողի պարգև",
+    "claimedViewer": "Դիտողի պարգևը հաջողությամբ ստացվեց։",
+    "claimedCommenter": "Մեկնաբանողի պարգևը հաջողությամբ ստացվեց։",
+    "earnedViewer": "Դուք ստացաք ձեր դիտողի պարգևը",
+    "earnedCommenter": "Դուք ստացաք ձեր մեկնաբանողի պարգևը",
+    "switchNetwork": "Փոխել ցանցը",
+    "eligibilityFailed": "Չհաջողվեց ստուգել իրավասությունը",
+    "switchFirst": "Ստանալուց առաջ անցեք պարգևի ցանց",
+    "missingSignature": "Պարգևի ստացման ստորագրությունը բացակայում է",
+    "txReverted": "Գործարքը հետ է շրջվել շղթայում"
   }
 }

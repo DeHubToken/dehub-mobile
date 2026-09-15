@@ -744,7 +744,11 @@
     "cancel": "Batal",
     "confirm": "Konfirmasi",
     "paying": "Mbayar...",
-    "payAmount": "Bayar {{amount}} {{currency}}"
+    "payAmount": "Bayar {{amount}} {{currency}}",
+    "firstViews_one": "Tontonan {{count}} sepisanan",
+    "firstViews_other": "Tontonan {{count}} sepisanan",
+    "firstComments_one": "Komentar {{count}} sepisanan",
+    "firstComments_other": "Komentar {{count}} sepisanan"
   },
   "assistant": {
     "title": "Asisten",
@@ -3419,5 +3423,35 @@
     "descriptionOptional": "Katrangan (opsional)",
     "whatsHappening": "Ana apa?",
     "quotaShortfall": "Postingan iki regane {{cost}} DHB lan sampeyan duwe {{held}}."
+  },
+  "bounty": {
+    "claimed": "Wis diklaim",
+    "notEligible": "Ora nyukupi syarat",
+    "checking": "Mriksa kelayakan…",
+    "rewardType": "Jinis ganjaran",
+    "transaction": "Transaksi",
+    "onChainClaim": "Klaim on-chain",
+    "confirmClaim": "Konfirmasi klaim",
+    "processing": "Ngolah transaksi on-chain",
+    "success": "Ganjaran wis diklaim!",
+    "awesome": "Apik tenan!",
+    "claimUnable": "Ora bisa njupuk ganjaran",
+    "claimFailed": "Gagal njupuk ganjaran",
+    "switchFailed": "Ora bisa ngganti jaringan",
+    "claimViewerTitle": "Njupuk ganjaran penonton",
+    "claimCommenterTitle": "Njupuk ganjaran komentator",
+    "claimingViewer": "Njupuk ganjaran penonton…",
+    "claimingCommenter": "Njupuk ganjaran komentator…",
+    "viewerReward": "Ganjaran penonton",
+    "commenterReward": "Ganjaran komentator",
+    "claimedViewer": "Ganjaran penonton kasil dijupuk!",
+    "claimedCommenter": "Ganjaran komentator kasil dijupuk!",
+    "earnedViewer": "Sampeyan entuk ganjaran penonton",
+    "earnedCommenter": "Sampeyan entuk ganjaran komentator",
+    "switchNetwork": "Ganti jaringan",
+    "eligibilityFailed": "Gagal mriksa kelayakan",
+    "switchFirst": "Pindhah menyang jaringan ganjaran sadurunge njupuk",
+    "missingSignature": "Tandha tangan klaim ganjaran ora ana",
+    "txReverted": "Transaksi dibatalake ing on-chain"
   }
 }

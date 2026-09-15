@@ -764,7 +764,11 @@
     "cancel": "Abbrechen",
     "confirm": "Bestätigen",
     "paying": "Zahlung...",
-    "payAmount": "Zahlen {{amount}} {{currency}}"
+    "payAmount": "Zahlen {{amount}} {{currency}}",
+    "firstViews_one": "Erste {{count}} Ansicht",
+    "firstViews_other": "Erste {{count}} Ansichten",
+    "firstComments_one": "Erster {{count}} Kommentar",
+    "firstComments_other": "Erste {{count}} Kommentare"
   },
   "assistant": {
     "title": "KI-Assistent",
@@ -3530,5 +3534,35 @@
     "descriptionOptional": "Beschreibung (optional)",
     "whatsHappening": "Was gibt's Neues?",
     "quotaShortfall": "Dieser Beitrag kostet {{cost}} DHB und du hast {{held}}."
+  },
+  "bounty": {
+    "claimed": "Eingelöst",
+    "notEligible": "Nicht berechtigt",
+    "checking": "Berechtigung wird geprüft…",
+    "rewardType": "Belohnungsart",
+    "transaction": "Transaktion",
+    "onChainClaim": "On-Chain-Einlösung",
+    "confirmClaim": "Einlösung bestätigen",
+    "processing": "On-Chain-Transaktion wird verarbeitet",
+    "success": "Belohnung eingelöst!",
+    "awesome": "Super!",
+    "claimUnable": "Belohnung kann nicht eingelöst werden",
+    "claimFailed": "Einlösen der Belohnung fehlgeschlagen",
+    "switchFailed": "Netzwerk kann nicht gewechselt werden",
+    "claimViewerTitle": "Zuschauer-Belohnung einlösen",
+    "claimCommenterTitle": "Kommentator-Belohnung einlösen",
+    "claimingViewer": "Zuschauer-Belohnung wird eingelöst…",
+    "claimingCommenter": "Kommentator-Belohnung wird eingelöst…",
+    "viewerReward": "Zuschauer-Belohnung",
+    "commenterReward": "Kommentator-Belohnung",
+    "claimedViewer": "Zuschauer-Belohnung erfolgreich eingelöst!",
+    "claimedCommenter": "Kommentator-Belohnung erfolgreich eingelöst!",
+    "earnedViewer": "Du hast deine Zuschauer-Belohnung erhalten",
+    "earnedCommenter": "Du hast deine Kommentator-Belohnung erhalten",
+    "switchNetwork": "Netzwerk wechseln",
+    "eligibilityFailed": "Berechtigung konnte nicht geprüft werden",
+    "switchFirst": "Wechsle vor dem Einlösen zum Belohnungsnetzwerk",
+    "missingSignature": "Signatur für die Belohnungseinlösung fehlt",
+    "txReverted": "Transaktion wurde on-chain zurückgesetzt"
   }
 }

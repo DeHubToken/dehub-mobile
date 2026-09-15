@@ -769,7 +769,11 @@
     "tokenGateSettings": "Token Gate Settings",
     "requiresDhb": "Requires DHB tokens on Base chain",
     "minimumDhb": "Minimum DHB Required",
-    "minimumAmount": "Minimum amount"
+    "minimumAmount": "Minimum amount",
+    "firstViews_one": "පළමු නැරඹුම් {{count}}",
+    "firstViews_other": "පළමු නැරඹුම් {{count}}",
+    "firstComments_one": "පළමු අදහස් {{count}}",
+    "firstComments_other": "පළමු අදහස් {{count}}"
   },
   "assistant": {
     "title": "සහායක",
@@ -3443,5 +3447,35 @@
     "descriptionOptional": "විස්තරය (විකල්ප)",
     "whatsHappening": "මොකද වෙන්නේ?",
     "quotaShortfall": "මෙම පළකිරීමට {{cost}} DHB අවශ්‍යයි, ඔබ සතුව {{held}} ඇත."
+  },
+  "bounty": {
+    "claimed": "ලබාගෙන ඇත",
+    "notEligible": "සුදුසුකම් නැත",
+    "checking": "සුදුසුකම් පරීක්ෂා කරමින්…",
+    "rewardType": "ත්‍යාග වර්ගය",
+    "transaction": "ගනුදෙනුව",
+    "onChainClaim": "දාමය මත ලබාගැනීම",
+    "confirmClaim": "ලබාගැනීම තහවුරු කරන්න",
+    "processing": "දාමය මත ගනුදෙනුව සකසමින්",
+    "success": "ත්‍යාගය ලබාගත්තා!",
+    "awesome": "නියමයි!",
+    "claimUnable": "ත්‍යාගය ලබාගත නොහැක",
+    "claimFailed": "ත්‍යාගය ලබාගැනීම අසාර්ථකයි",
+    "switchFailed": "ජාලය මාරු කළ නොහැක",
+    "claimViewerTitle": "නරඹන්නාගේ ත්‍යාගය ලබාගන්න",
+    "claimCommenterTitle": "අදහස් දක්වන්නාගේ ත්‍යාගය ලබාගන්න",
+    "claimingViewer": "නරඹන්නාගේ ත්‍යාගය ලබාගනිමින්…",
+    "claimingCommenter": "අදහස් දක්වන්නාගේ ත්‍යාගය ලබාගනිමින්…",
+    "viewerReward": "නරඹන්නාගේ ත්‍යාගය",
+    "commenterReward": "අදහස් දක්වන්නාගේ ත්‍යාගය",
+    "claimedViewer": "නරඹන්නාගේ ත්‍යාගය සාර්ථකව ලැබුණා!",
+    "claimedCommenter": "අදහස් දක්වන්නාගේ ත්‍යාගය සාර්ථකව ලැබුණා!",
+    "earnedViewer": "ඔබ නරඹන්නාගේ ත්‍යාගය ලබාගත්තා",
+    "earnedCommenter": "ඔබ අදහස් දක්වන්නාගේ ත්‍යාගය ලබාගත්තා",
+    "switchNetwork": "ජාලය මාරු කරන්න",
+    "eligibilityFailed": "සුදුසුකම් පරීක්ෂා කළ නොහැකි විය",
+    "switchFirst": "ලබාගැනීමට පෙර ත්‍යාග ජාලයට මාරු වන්න",
+    "missingSignature": "ත්‍යාග ලබාගැනීමේ අත්සන නොමැත",
+    "txReverted": "ගනුදෙනුව දාමය මත ආපසු හැරවිණි"
   }
 }

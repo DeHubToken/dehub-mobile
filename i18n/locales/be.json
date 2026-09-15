@@ -784,7 +784,11 @@
     "tokenGateSettings": "Token Gate Settings",
     "requiresDhb": "Requires DHB tokens on Base chain",
     "minimumDhb": "Minimum DHB Required",
-    "minimumAmount": "Minimum amount"
+    "minimumAmount": "Minimum amount",
+    "firstViews_one": "Першы {{count}} прагляд",
+    "firstViews_other": "Першыя {{count}} праглядаў",
+    "firstComments_one": "Першы {{count}} каментар",
+    "firstComments_other": "Першыя {{count}} каментароў"
   },
   "assistant": {
     "title": "Памочнік",
@@ -3494,5 +3498,35 @@
     "descriptionOptional": "Апісанне (неабавязкова)",
     "whatsHappening": "Што адбываецца?",
     "quotaShortfall": "Гэты пост каштуе {{cost}} DHB, а ў вас {{held}}."
+  },
+  "bounty": {
+    "claimed": "Атрымана",
+    "notEligible": "Не адпавядае ўмовам",
+    "checking": "Праверка адпаведнасці…",
+    "rewardType": "Тып узнагароды",
+    "transaction": "Транзакцыя",
+    "onChainClaim": "Атрыманне ў сетцы",
+    "confirmClaim": "Пацвердзіць атрыманне",
+    "processing": "Апрацоўка транзакцыі ў сетцы",
+    "success": "Узнагарода атрымана!",
+    "awesome": "Выдатна!",
+    "claimUnable": "Не ўдалося атрымаць узнагароду",
+    "claimFailed": "Не ўдалося атрымаць узнагароду",
+    "switchFailed": "Не ўдалося пераключыць сетку",
+    "claimViewerTitle": "Атрымаць узнагароду гледача",
+    "claimCommenterTitle": "Атрымаць узнагароду каментатара",
+    "claimingViewer": "Атрыманне ўзнагароды гледача…",
+    "claimingCommenter": "Атрыманне ўзнагароды каментатара…",
+    "viewerReward": "Узнагарода гледача",
+    "commenterReward": "Узнагарода каментатара",
+    "claimedViewer": "Узнагарода гледача паспяхова атрымана!",
+    "claimedCommenter": "Узнагарода каментатара паспяхова атрымана!",
+    "earnedViewer": "Вы атрымалі ўзнагароду гледача",
+    "earnedCommenter": "Вы атрымалі ўзнагароду каментатара",
+    "switchNetwork": "Пераключыць сетку",
+    "eligibilityFailed": "Не ўдалося праверыць адпаведнасць",
+    "switchFirst": "Перад атрыманнем пераключыцеся на сетку ўзнагароды",
+    "missingSignature": "Адсутнічае подпіс для атрымання ўзнагароды",
+    "txReverted": "Транзакцыя адкочана ў сетцы"
   }
 }

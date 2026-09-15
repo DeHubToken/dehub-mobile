@@ -747,7 +747,11 @@
     "cancel": "Avbryt",
     "confirm": "Bekreft",
     "paying": "Betaler...",
-    "payAmount": "Betal {{amount}} {{currency}}"
+    "payAmount": "Betal {{amount}} {{currency}}",
+    "firstViews_one": "Første {{count}} visning",
+    "firstViews_other": "Første {{count}} visninger",
+    "firstComments_one": "Første {{count}} kommentar",
+    "firstComments_other": "Første {{count}} kommentarer"
   },
   "assistant": {
     "title": "AI-assistent",
@@ -3451,5 +3455,35 @@
     "descriptionOptional": "Beskrivelse (valgfritt)",
     "whatsHappening": "Hva skjer?",
     "quotaShortfall": "Dette innlegget koster {{cost}} DHB, og du har {{held}}."
+  },
+  "bounty": {
+    "claimed": "Innløst",
+    "notEligible": "Ikke kvalifisert",
+    "checking": "Sjekker om du er kvalifisert…",
+    "rewardType": "Belønningstype",
+    "transaction": "Transaksjon",
+    "onChainClaim": "Innløsning on-chain",
+    "confirmClaim": "Bekreft innløsning",
+    "processing": "Behandler transaksjon on-chain",
+    "success": "Belønning innløst!",
+    "awesome": "Fantastisk!",
+    "claimUnable": "Kan ikke innløse belønningen",
+    "claimFailed": "Kunne ikke innløse belønningen",
+    "switchFailed": "Kan ikke bytte nettverk",
+    "claimViewerTitle": "Innløs seerbelønning",
+    "claimCommenterTitle": "Innløs kommentarbelønning",
+    "claimingViewer": "Innløser seerbelønning…",
+    "claimingCommenter": "Innløser kommentarbelønning…",
+    "viewerReward": "Seerbelønning",
+    "commenterReward": "Kommentarbelønning",
+    "claimedViewer": "Seerbelønningen er innløst!",
+    "claimedCommenter": "Kommentarbelønningen er innløst!",
+    "earnedViewer": "Du har opptjent seerbelønningen din",
+    "earnedCommenter": "Du har opptjent kommentarbelønningen din",
+    "switchNetwork": "Bytt nettverk",
+    "eligibilityFailed": "Kunne ikke sjekke kvalifisering",
+    "switchFirst": "Bytt til belønningsnettverket før du innløser",
+    "missingSignature": "Signatur for innløsning mangler",
+    "txReverted": "Transaksjonen ble tilbakestilt on-chain"
   }
 }

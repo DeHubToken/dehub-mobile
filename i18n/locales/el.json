@@ -785,7 +785,11 @@
     "cancel": "Ακύρωση",
     "confirm": "Επιβεβαίωση",
     "paying": "Πληρωμή...",
-    "payAmount": "Πληρωμή {{amount}} {{currency}}"
+    "payAmount": "Πληρωμή {{amount}} {{currency}}",
+    "firstViews_one": "Πρώτη {{count}} προβολή",
+    "firstViews_other": "Πρώτες {{count}} προβολές",
+    "firstComments_one": "Πρώτο {{count}} σχόλιο",
+    "firstComments_other": "Πρώτα {{count}} σχόλια"
   },
   "assistant": {
     "title": "Βοηθός",
@@ -3484,5 +3488,35 @@
     "descriptionOptional": "Περιγραφή (προαιρετικά)",
     "whatsHappening": "Τι συμβαίνει;",
     "quotaShortfall": "Αυτή η ανάρτηση κοστίζει {{cost}} DHB και έχεις {{held}}."
+  },
+  "bounty": {
+    "claimed": "Παραλήφθηκε",
+    "notEligible": "Δεν πληροίτε τις προϋποθέσεις",
+    "checking": "Έλεγχος επιλεξιμότητας…",
+    "rewardType": "Τύπος ανταμοιβής",
+    "transaction": "Συναλλαγή",
+    "onChainClaim": "Αίτημα στην αλυσίδα",
+    "confirmClaim": "Επιβεβαίωση αιτήματος",
+    "processing": "Επεξεργασία συναλλαγής στην αλυσίδα",
+    "success": "Η ανταμοιβή παραλήφθηκε!",
+    "awesome": "Τέλεια!",
+    "claimUnable": "Δεν είναι δυνατή η παραλαβή της ανταμοιβής",
+    "claimFailed": "Αποτυχία παραλαβής ανταμοιβής",
+    "switchFailed": "Δεν είναι δυνατή η αλλαγή δικτύου",
+    "claimViewerTitle": "Παραλαβή ανταμοιβής θεατή",
+    "claimCommenterTitle": "Παραλαβή ανταμοιβής σχολιαστή",
+    "claimingViewer": "Παραλαβή ανταμοιβής θεατή…",
+    "claimingCommenter": "Παραλαβή ανταμοιβής σχολιαστή…",
+    "viewerReward": "Ανταμοιβή θεατή",
+    "commenterReward": "Ανταμοιβή σχολιαστή",
+    "claimedViewer": "Η ανταμοιβή θεατή παραλήφθηκε με επιτυχία!",
+    "claimedCommenter": "Η ανταμοιβή σχολιαστή παραλήφθηκε με επιτυχία!",
+    "earnedViewer": "Κέρδισες την ανταμοιβή θεατή σου",
+    "earnedCommenter": "Κέρδισες την ανταμοιβή σχολιαστή σου",
+    "switchNetwork": "Αλλαγή δικτύου",
+    "eligibilityFailed": "Αποτυχία ελέγχου επιλεξιμότητας",
+    "switchFirst": "Άλλαξε στο δίκτυο της ανταμοιβής πριν την παραλαβή",
+    "missingSignature": "Λείπει η υπογραφή παραλαβής ανταμοιβής",
+    "txReverted": "Η συναλλαγή αναιρέθηκε στην αλυσίδα"
   }
 }

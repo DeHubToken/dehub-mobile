@@ -784,7 +784,11 @@
     "cancel": "Ghairi",
     "confirm": "Thibitisha",
     "paying": "Inalipa...",
-    "payAmount": "Lipa {{amount}} {{currency}}"
+    "payAmount": "Lipa {{amount}} {{currency}}",
+    "firstViews_one": "Mwonekano {{count}} wa kwanza",
+    "firstViews_other": "Mionekano {{count}} ya kwanza",
+    "firstComments_one": "Maoni {{count}} ya kwanza",
+    "firstComments_other": "Maoni {{count}} ya kwanza"
   },
   "assistant": {
     "title": "Msaidizi",
@@ -3461,5 +3465,35 @@
     "descriptionOptional": "Maelezo (si lazima)",
     "whatsHappening": "Kuna nini?",
     "quotaShortfall": "Chapisho hili linagharimu {{cost}} DHB na una {{held}}."
+  },
+  "bounty": {
+    "claimed": "Imedaiwa",
+    "notEligible": "Hustahili",
+    "checking": "Inakagua ustahiki…",
+    "rewardType": "Aina ya zawadi",
+    "transaction": "Muamala",
+    "onChainClaim": "Dai la kwenye mnyororo",
+    "confirmClaim": "Thibitisha dai",
+    "processing": "Inachakata muamala wa kwenye mnyororo",
+    "success": "Zawadi imedaiwa!",
+    "awesome": "Vizuri sana!",
+    "claimUnable": "Imeshindwa kudai zawadi",
+    "claimFailed": "Imeshindwa kudai zawadi",
+    "switchFailed": "Imeshindwa kubadili mtandao",
+    "claimViewerTitle": "Dai zawadi ya mtazamaji",
+    "claimCommenterTitle": "Dai zawadi ya mtoa maoni",
+    "claimingViewer": "Inadai zawadi ya mtazamaji…",
+    "claimingCommenter": "Inadai zawadi ya mtoa maoni…",
+    "viewerReward": "Zawadi ya mtazamaji",
+    "commenterReward": "Zawadi ya mtoa maoni",
+    "claimedViewer": "Zawadi ya mtazamaji imedaiwa!",
+    "claimedCommenter": "Zawadi ya mtoa maoni imedaiwa!",
+    "earnedViewer": "Umepata zawadi yako ya mtazamaji",
+    "earnedCommenter": "Umepata zawadi yako ya mtoa maoni",
+    "switchNetwork": "Badilisha mtandao",
+    "eligibilityFailed": "Imeshindwa kukagua ustahiki",
+    "switchFirst": "Badilisha kwenda mtandao wa zawadi kabla ya kudai",
+    "missingSignature": "Sahihi ya kudai zawadi haipo",
+    "txReverted": "Muamala umetenguliwa kwenye mnyororo"
   }
 }

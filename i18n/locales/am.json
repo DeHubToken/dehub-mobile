@@ -775,7 +775,11 @@
     "cancel": "ሰርዝ",
     "confirm": "አረጋግጥ",
     "paying": "እየከፈለ...",
-    "payAmount": "{{amount}} {{currency}} ክፈል"
+    "payAmount": "{{amount}} {{currency}} ክፈል",
+    "firstViews_one": "የመጀመሪያው {{count}} እይታ",
+    "firstViews_other": "የመጀመሪያዎቹ {{count}} እይታዎች",
+    "firstComments_one": "የመጀመሪያው {{count}} አስተያየት",
+    "firstComments_other": "የመጀመሪያዎቹ {{count}} አስተያየቶች"
   },
   "assistant": {
     "title": "ረዳት",
@@ -3456,5 +3460,35 @@
     "descriptionOptional": "መግለጫ (አማራጭ)",
     "whatsHappening": "ምን እየሆነ ነው?",
     "quotaShortfall": "ይህ ልጥፍ {{cost}} DHB ያስወጣል፣ እርስዎ ግን {{held}} አለዎት።"
+  },
+  "bounty": {
+    "claimed": "ተወስዷል",
+    "notEligible": "ብቁ አይደሉም",
+    "checking": "ብቁነትን በማረጋገጥ ላይ…",
+    "rewardType": "የሽልማት ዓይነት",
+    "transaction": "ግብይት",
+    "onChainClaim": "በሰንሰለቱ ላይ የሚደረግ ጥያቄ",
+    "confirmClaim": "ጥያቄውን አረጋግጥ",
+    "processing": "በሰንሰለቱ ላይ ያለውን ግብይት በማስኬድ ላይ",
+    "success": "ሽልማቱ ተወስዷል!",
+    "awesome": "በጣም ጥሩ!",
+    "claimUnable": "ሽልማቱን መውሰድ አልተቻለም",
+    "claimFailed": "ሽልማቱን መውሰድ አልተሳካም",
+    "switchFailed": "አውታረ መረብ መቀየር አልተቻለም",
+    "claimViewerTitle": "የተመልካች ሽልማት ውሰድ",
+    "claimCommenterTitle": "የአስተያየት ሰጪ ሽልማት ውሰድ",
+    "claimingViewer": "የተመልካች ሽልማት በመውሰድ ላይ…",
+    "claimingCommenter": "የአስተያየት ሰጪ ሽልማት በመውሰድ ላይ…",
+    "viewerReward": "የተመልካች ሽልማት",
+    "commenterReward": "የአስተያየት ሰጪ ሽልማት",
+    "claimedViewer": "የተመልካች ሽልማት በተሳካ ሁኔታ ተወስዷል!",
+    "claimedCommenter": "የአስተያየት ሰጪ ሽልማት በተሳካ ሁኔታ ተወስዷል!",
+    "earnedViewer": "የተመልካች ሽልማትዎን አግኝተዋል",
+    "earnedCommenter": "የአስተያየት ሰጪ ሽልማትዎን አግኝተዋል",
+    "switchNetwork": "አውታረ መረብ ቀይር",
+    "eligibilityFailed": "ብቁነትን ማረጋገጥ አልተሳካም",
+    "switchFirst": "ከመውሰድዎ በፊት ወደ የሽልማቱ አውታረ መረብ ይቀይሩ",
+    "missingSignature": "የሽልማት ጥያቄ ፊርማ ጠፍቷል",
+    "txReverted": "ግብይቱ በሰንሰለቱ ላይ ተመልሷል"
   }
 }

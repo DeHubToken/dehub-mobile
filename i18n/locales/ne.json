@@ -783,7 +783,11 @@
     "tokenGateSettings": "Token Gate Settings",
     "requiresDhb": "Requires DHB tokens on Base chain",
     "minimumDhb": "Minimum DHB Required",
-    "minimumAmount": "Minimum amount"
+    "minimumAmount": "Minimum amount",
+    "firstViews_one": "पहिलो {{count}} भ्यू",
+    "firstViews_other": "पहिलो {{count}} भ्यू",
+    "firstComments_one": "पहिलो {{count}} टिप्पणी",
+    "firstComments_other": "पहिलो {{count}} टिप्पणी"
   },
   "assistant": {
     "title": "सहायक",
@@ -3494,5 +3498,35 @@
     "descriptionOptional": "विवरण (वैकल्पिक)",
     "whatsHappening": "के भइरहेको छ?",
     "quotaShortfall": "यो पोस्टको लागत {{cost}} DHB हो र तपाईंसँग {{held}} छ।"
+  },
+  "bounty": {
+    "claimed": "प्राप्त गरियो",
+    "notEligible": "योग्य हुनुहुन्न",
+    "checking": "योग्यता जाँच हुँदैछ…",
+    "rewardType": "पुरस्कारको प्रकार",
+    "transaction": "कारोबार",
+    "onChainClaim": "अन-चेन दाबी",
+    "confirmClaim": "दाबी पुष्टि गर्नुहोस्",
+    "processing": "अन-चेन कारोबार प्रशोधन हुँदैछ",
+    "success": "बाउन्टी प्राप्त भयो!",
+    "awesome": "बढिया!",
+    "claimUnable": "बाउन्टी लिन सकिएन",
+    "claimFailed": "बाउन्टी लिन असफल भयो",
+    "switchFailed": "नेटवर्क बदल्न सकिएन",
+    "claimViewerTitle": "दर्शक बाउन्टी लिनुहोस्",
+    "claimCommenterTitle": "टिप्पणीकर्ता बाउन्टी लिनुहोस्",
+    "claimingViewer": "दर्शक बाउन्टी लिँदै…",
+    "claimingCommenter": "टिप्पणीकर्ता बाउन्टी लिँदै…",
+    "viewerReward": "दर्शक पुरस्कार",
+    "commenterReward": "टिप्पणीकर्ता पुरस्कार",
+    "claimedViewer": "दर्शक बाउन्टी सफलतापूर्वक प्राप्त भयो!",
+    "claimedCommenter": "टिप्पणीकर्ता बाउन्टी सफलतापूर्वक प्राप्त भयो!",
+    "earnedViewer": "तपाईंले दर्शक बाउन्टी पुरस्कार पाउनुभयो",
+    "earnedCommenter": "तपाईंले टिप्पणीकर्ता बाउन्टी पुरस्कार पाउनुभयो",
+    "switchNetwork": "नेटवर्क बदल्नुहोस्",
+    "eligibilityFailed": "योग्यता जाँच्न सकिएन",
+    "switchFirst": "लिनुअघि बाउन्टी नेटवर्कमा जानुहोस्",
+    "missingSignature": "बाउन्टी दाबी हस्ताक्षर छैन",
+    "txReverted": "कारोबार अन-चेनमा फिर्ता भयो"
   }
 }

@@ -784,7 +784,11 @@
     "cancel": "Bekor qilish",
     "confirm": "Tasdiqlash",
     "paying": "Toʻlanmoqda...",
-    "payAmount": "{{amount}} {{currency}} toʻlash"
+    "payAmount": "{{amount}} {{currency}} toʻlash",
+    "firstViews_one": "Birinchi {{count}} ko‘rish",
+    "firstViews_other": "Birinchi {{count}} ko‘rish",
+    "firstComments_one": "Birinchi {{count}} izoh",
+    "firstComments_other": "Birinchi {{count}} izoh"
   },
   "assistant": {
     "title": "Yordamchi",
@@ -3512,5 +3516,35 @@
     "descriptionOptional": "Tavsif (ixtiyoriy)",
     "whatsHappening": "Nima gap?",
     "quotaShortfall": "Bu post {{cost}} DHB turadi, sizda esa {{held}} bor."
+  },
+  "bounty": {
+    "claimed": "Olindi",
+    "notEligible": "Mos emas",
+    "checking": "Moslik tekshirilmoqda…",
+    "rewardType": "Mukofot turi",
+    "transaction": "Tranzaksiya",
+    "onChainClaim": "Zanjirdagi da'vo",
+    "confirmClaim": "Da'voni tasdiqlash",
+    "processing": "Zanjirdagi tranzaksiya bajarilmoqda",
+    "success": "Mukofot olindi!",
+    "awesome": "Ajoyib!",
+    "claimUnable": "Mukofotni olib bo‘lmadi",
+    "claimFailed": "Mukofotni olish muvaffaqiyatsiz",
+    "switchFailed": "Tarmoqni almashtirib bo‘lmadi",
+    "claimViewerTitle": "Tomoshabin mukofotini olish",
+    "claimCommenterTitle": "Izoh qoldiruvchi mukofotini olish",
+    "claimingViewer": "Tomoshabin mukofoti olinmoqda…",
+    "claimingCommenter": "Izoh qoldiruvchi mukofoti olinmoqda…",
+    "viewerReward": "Tomoshabin mukofoti",
+    "commenterReward": "Izoh qoldiruvchi mukofoti",
+    "claimedViewer": "Tomoshabin mukofoti muvaffaqiyatli olindi!",
+    "claimedCommenter": "Izoh qoldiruvchi mukofoti muvaffaqiyatli olindi!",
+    "earnedViewer": "Tomoshabin mukofotini qo‘lga kiritdingiz",
+    "earnedCommenter": "Izoh qoldiruvchi mukofotini qo‘lga kiritdingiz",
+    "switchNetwork": "Tarmoqni almashtirish",
+    "eligibilityFailed": "Moslikni tekshirib bo‘lmadi",
+    "switchFirst": "Olishdan oldin mukofot tarmog‘iga o‘ting",
+    "missingSignature": "Mukofot olish imzosi yo‘q",
+    "txReverted": "Tranzaksiya zanjirda bekor qilindi"
   }
 }

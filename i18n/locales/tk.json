@@ -743,7 +743,11 @@
     "cancel": "Ýatyr",
     "confirm": "Tassykla",
     "paying": "Tölenýär...",
-    "payAmount": "{{amount}} {{currency}} tölemek"
+    "payAmount": "{{amount}} {{currency}} tölemek",
+    "firstViews_one": "Ilkinji {{count}} görnüş",
+    "firstViews_other": "Ilkinji {{count}} görnüş",
+    "firstComments_one": "Ilkinji {{count}} teswir",
+    "firstComments_other": "Ilkinji {{count}} teswir"
   },
   "assistant": {
     "title": "Emeli aň kömekçisi",
@@ -3431,5 +3435,35 @@
     "descriptionOptional": "Düşündiriş (islege bagly)",
     "whatsHappening": "Näme bolýar?",
     "quotaShortfall": "Bu ýazgy {{cost}} DHB talap edýär, sizde bolsa {{held}} bar."
+  },
+  "bounty": {
+    "claimed": "Alyndy",
+    "notEligible": "Laýyk däl",
+    "checking": "Laýyklyk barlanýar…",
+    "rewardType": "Sylag görnüşi",
+    "transaction": "Amal",
+    "onChainClaim": "Zynjyrdaky talap",
+    "confirmClaim": "Talaby tassykla",
+    "processing": "Zynjyrdaky amal işlenýär",
+    "success": "Sylag alyndy!",
+    "awesome": "Ajaýyp!",
+    "claimUnable": "Sylag alyp bolmady",
+    "claimFailed": "Sylag almak şowsuz boldy",
+    "switchFailed": "Ulgamy çalşyp bolmady",
+    "claimViewerTitle": "Tomaşaçy sylagyny al",
+    "claimCommenterTitle": "Teswir ýazanyň sylagyny al",
+    "claimingViewer": "Tomaşaçy sylagy alynýar…",
+    "claimingCommenter": "Teswir ýazanyň sylagy alynýar…",
+    "viewerReward": "Tomaşaçy sylagy",
+    "commenterReward": "Teswir ýazanyň sylagy",
+    "claimedViewer": "Tomaşaçy sylagy üstünlikli alyndy!",
+    "claimedCommenter": "Teswir ýazanyň sylagy üstünlikli alyndy!",
+    "earnedViewer": "Tomaşaçy sylagyňyzy gazandyňyz",
+    "earnedCommenter": "Teswir ýazan sylagyňyzy gazandyňyz",
+    "switchNetwork": "Ulgamy çalyş",
+    "eligibilityFailed": "Laýyklygy barlap bolmady",
+    "switchFirst": "Almazdan öň sylag ulgamyna geçiň",
+    "missingSignature": "Sylag almak gol çekmesi ýok",
+    "txReverted": "Amal zynjyrda yza gaýtaryldy"
   }
 }

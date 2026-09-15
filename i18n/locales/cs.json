@@ -648,7 +648,11 @@
     "cancel": "Zrušit",
     "confirm": "Potvrdit",
     "paying": "Platba...",
-    "payAmount": "Zaplatit {{amount}} {{currency}}"
+    "payAmount": "Zaplatit {{amount}} {{currency}}",
+    "firstViews_one": "První {{count}} zhlédnutí",
+    "firstViews_other": "Prvních {{count}} zhlédnutí",
+    "firstComments_one": "První {{count}} komentář",
+    "firstComments_other": "Prvních {{count}} komentářů"
   },
   "wallet": {
     "notReady": "Peněženka není připravená — zkus to za chvíli znovu.",
@@ -3465,5 +3469,35 @@
     "descriptionOptional": "Popis (volitelné)",
     "whatsHappening": "Co se děje?",
     "quotaShortfall": "Tento příspěvek stojí {{cost}} DHB a vy máte {{held}}."
+  },
+  "bounty": {
+    "claimed": "Vyzvednuto",
+    "notEligible": "Nesplňuje podmínky",
+    "checking": "Kontrola způsobilosti…",
+    "rewardType": "Typ odměny",
+    "transaction": "Transakce",
+    "onChainClaim": "Nárok na blockchainu",
+    "confirmClaim": "Potvrdit nárok",
+    "processing": "Zpracovává se transakce na blockchainu",
+    "success": "Odměna vyzvednuta!",
+    "awesome": "Skvělé!",
+    "claimUnable": "Odměnu nelze vyzvednout",
+    "claimFailed": "Vyzvednutí odměny selhalo",
+    "switchFailed": "Síť nelze přepnout",
+    "claimViewerTitle": "Vyzvednout odměnu diváka",
+    "claimCommenterTitle": "Vyzvednout odměnu komentujícího",
+    "claimingViewer": "Vyzvedávání odměny diváka…",
+    "claimingCommenter": "Vyzvedávání odměny komentujícího…",
+    "viewerReward": "Odměna diváka",
+    "commenterReward": "Odměna komentujícího",
+    "claimedViewer": "Odměna diváka byla úspěšně vyzvednuta!",
+    "claimedCommenter": "Odměna komentujícího byla úspěšně vyzvednuta!",
+    "earnedViewer": "Získali jste odměnu diváka",
+    "earnedCommenter": "Získali jste odměnu komentujícího",
+    "switchNetwork": "Přepnout síť",
+    "eligibilityFailed": "Nepodařilo se ověřit způsobilost",
+    "switchFirst": "Před vyzvednutím přepněte na síť odměny",
+    "missingSignature": "Chybí podpis pro vyzvednutí odměny",
+    "txReverted": "Transakce byla na blockchainu vrácena"
   }
 }

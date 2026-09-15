@@ -1066,7 +1066,11 @@
     "cancel": "Huỷ",
     "confirm": "Xác nhận",
     "paying": "Đang thanh toán...",
-    "payAmount": "Trả {{amount}} {{currency}}"
+    "payAmount": "Trả {{amount}} {{currency}}",
+    "firstViews_one": "{{count}} lượt xem đầu tiên",
+    "firstViews_other": "{{count}} lượt xem đầu tiên",
+    "firstComments_one": "{{count}} bình luận đầu tiên",
+    "firstComments_other": "{{count}} bình luận đầu tiên"
   },
   "assistant": {
     "title": "Trợ lý",
@@ -3549,5 +3553,35 @@
     "descriptionOptional": "Mô tả (tùy chọn)",
     "whatsHappening": "Có gì mới?",
     "quotaShortfall": "Bài đăng này tốn {{cost}} DHB và bạn đang có {{held}}."
+  },
+  "bounty": {
+    "claimed": "Đã nhận",
+    "notEligible": "Không đủ điều kiện",
+    "checking": "Đang kiểm tra điều kiện…",
+    "rewardType": "Loại phần thưởng",
+    "transaction": "Giao dịch",
+    "onChainClaim": "Yêu cầu trên chuỗi",
+    "confirmClaim": "Xác nhận nhận thưởng",
+    "processing": "Đang xử lý giao dịch trên chuỗi",
+    "success": "Đã nhận thưởng!",
+    "awesome": "Tuyệt vời!",
+    "claimUnable": "Không thể nhận thưởng",
+    "claimFailed": "Nhận thưởng thất bại",
+    "switchFailed": "Không thể chuyển mạng",
+    "claimViewerTitle": "Nhận thưởng người xem",
+    "claimCommenterTitle": "Nhận thưởng người bình luận",
+    "claimingViewer": "Đang nhận thưởng người xem…",
+    "claimingCommenter": "Đang nhận thưởng người bình luận…",
+    "viewerReward": "Thưởng người xem",
+    "commenterReward": "Thưởng người bình luận",
+    "claimedViewer": "Đã nhận thưởng người xem!",
+    "claimedCommenter": "Đã nhận thưởng người bình luận!",
+    "earnedViewer": "Bạn đã nhận thưởng người xem",
+    "earnedCommenter": "Bạn đã nhận thưởng người bình luận",
+    "switchNetwork": "Chuyển mạng",
+    "eligibilityFailed": "Không thể kiểm tra điều kiện",
+    "switchFirst": "Hãy chuyển sang mạng của phần thưởng trước khi nhận",
+    "missingSignature": "Thiếu chữ ký nhận thưởng",
+    "txReverted": "Giao dịch bị hoàn lại trên chuỗi"
   }
 }

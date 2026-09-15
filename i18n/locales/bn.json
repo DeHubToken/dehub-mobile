@@ -636,7 +636,11 @@
     "cancel": "বাতিল",
     "confirm": "নিশ্চিত",
     "paying": "পেমেন্ট হচ্ছে...",
-    "payAmount": "{{amount}} {{currency}} পেমেন্ট করুন"
+    "payAmount": "{{amount}} {{currency}} পেমেন্ট করুন",
+    "firstViews_one": "প্রথম {{count}} ভিউ",
+    "firstViews_other": "প্রথম {{count}} ভিউ",
+    "firstComments_one": "প্রথম {{count}} মন্তব্য",
+    "firstComments_other": "প্রথম {{count}} মন্তব্য"
   },
   "wallet": {
     "notReady": "ওয়ালেট প্রস্তুত নয় — একটু পরে আবার চেষ্টা করুন।",
@@ -3445,5 +3449,35 @@
     "descriptionOptional": "বিবরণ (ঐচ্ছিক)",
     "whatsHappening": "কী হচ্ছে?",
     "quotaShortfall": "এই পোস্টে {{cost}} DHB লাগে, আপনার আছে {{held}}।"
+  },
+  "bounty": {
+    "claimed": "সংগ্রহ করা হয়েছে",
+    "notEligible": "যোগ্য নন",
+    "checking": "যোগ্যতা যাচাই হচ্ছে…",
+    "rewardType": "পুরস্কারের ধরন",
+    "transaction": "লেনদেন",
+    "onChainClaim": "অন-চেইন ক্লেইম",
+    "confirmClaim": "ক্লেইম নিশ্চিত করুন",
+    "processing": "অন-চেইন লেনদেন প্রক্রিয়া হচ্ছে",
+    "success": "বাউন্টি পেয়ে গেছেন!",
+    "awesome": "দারুণ!",
+    "claimUnable": "বাউন্টি নেওয়া যাচ্ছে না",
+    "claimFailed": "বাউন্টি নিতে ব্যর্থ",
+    "switchFailed": "নেটওয়ার্ক বদলানো যাচ্ছে না",
+    "claimViewerTitle": "দর্শক বাউন্টি নিন",
+    "claimCommenterTitle": "মন্তব্যকারী বাউন্টি নিন",
+    "claimingViewer": "দর্শক বাউন্টি নেওয়া হচ্ছে…",
+    "claimingCommenter": "মন্তব্যকারী বাউন্টি নেওয়া হচ্ছে…",
+    "viewerReward": "দর্শক পুরস্কার",
+    "commenterReward": "মন্তব্যকারী পুরস্কার",
+    "claimedViewer": "দর্শক বাউন্টি সফলভাবে পাওয়া গেছে!",
+    "claimedCommenter": "মন্তব্যকারী বাউন্টি সফলভাবে পাওয়া গেছে!",
+    "earnedViewer": "আপনি দর্শক বাউন্টি পুরস্কার পেয়েছেন",
+    "earnedCommenter": "আপনি মন্তব্যকারী বাউন্টি পুরস্কার পেয়েছেন",
+    "switchNetwork": "নেটওয়ার্ক বদলান",
+    "eligibilityFailed": "যোগ্যতা যাচাই করা যায়নি",
+    "switchFirst": "নেওয়ার আগে বাউন্টি নেটওয়ার্কে যান",
+    "missingSignature": "বাউন্টি ক্লেইমের স্বাক্ষর নেই",
+    "txReverted": "লেনদেন অন-চেইনে বাতিল হয়েছে"
   }
 }

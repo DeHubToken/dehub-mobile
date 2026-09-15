@@ -783,7 +783,11 @@
     "cancel": "રદ કરો",
     "confirm": "પુષ્ટિ કરો",
     "paying": "ચૂકવણી થઈ રહી છે...",
-    "payAmount": "{{amount}} {{currency}} ચૂકવો"
+    "payAmount": "{{amount}} {{currency}} ચૂકવો",
+    "firstViews_one": "પ્રથમ {{count}} વ્યૂ",
+    "firstViews_other": "પ્રથમ {{count}} વ્યૂ",
+    "firstComments_one": "પ્રથમ {{count}} ટિપ્પણી",
+    "firstComments_other": "પ્રથમ {{count}} ટિપ્પણીઓ"
   },
   "assistant": {
     "title": "સહાયક",
@@ -3453,5 +3457,35 @@
     "descriptionOptional": "વર્ણન (વૈકલ્પિક)",
     "whatsHappening": "શું ચાલી રહ્યું છે?",
     "quotaShortfall": "આ પોસ્ટનો ખર્ચ {{cost}} DHB છે અને તમારી પાસે {{held}} છે."
+  },
+  "bounty": {
+    "claimed": "મેળવ્યું",
+    "notEligible": "પાત્ર નથી",
+    "checking": "પાત્રતા તપાસાઈ રહી છે…",
+    "rewardType": "પુરસ્કારનો પ્રકાર",
+    "transaction": "વ્યવહાર",
+    "onChainClaim": "ઑન-ચેઇન ક્લેમ",
+    "confirmClaim": "ક્લેમની પુષ્ટિ કરો",
+    "processing": "ઑન-ચેઇન વ્યવહાર પ્રક્રિયામાં છે",
+    "success": "બાઉન્ટી મળી ગઈ!",
+    "awesome": "સરસ!",
+    "claimUnable": "બાઉન્ટી મેળવી શકાતી નથી",
+    "claimFailed": "બાઉન્ટી મેળવવામાં નિષ્ફળ",
+    "switchFailed": "નેટવર્ક બદલી શકાતું નથી",
+    "claimViewerTitle": "દર્શક બાઉન્ટી મેળવો",
+    "claimCommenterTitle": "ટિપ્પણીકારની બાઉન્ટી મેળવો",
+    "claimingViewer": "દર્શક બાઉન્ટી મેળવાઈ રહી છે…",
+    "claimingCommenter": "ટિપ્પણીકારની બાઉન્ટી મેળવાઈ રહી છે…",
+    "viewerReward": "દર્શક પુરસ્કાર",
+    "commenterReward": "ટિપ્પણીકાર પુરસ્કાર",
+    "claimedViewer": "દર્શક બાઉન્ટી સફળતાપૂર્વક મળી!",
+    "claimedCommenter": "ટિપ્પણીકારની બાઉન્ટી સફળતાપૂર્વક મળી!",
+    "earnedViewer": "તમને તમારી દર્શક બાઉન્ટી મળી",
+    "earnedCommenter": "તમને તમારી ટિપ્પણીકાર બાઉન્ટી મળી",
+    "switchNetwork": "નેટવર્ક બદલો",
+    "eligibilityFailed": "પાત્રતા તપાસી શકાઈ નહીં",
+    "switchFirst": "મેળવતા પહેલાં બાઉન્ટી નેટવર્ક પર જાઓ",
+    "missingSignature": "બાઉન્ટી ક્લેમની સહી ખૂટે છે",
+    "txReverted": "વ્યવહાર ઑન-ચેઇન પાછો ફર્યો"
   }
 }

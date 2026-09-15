@@ -744,7 +744,11 @@
     "cancel": "ยกเลิก",
     "confirm": "ยืนยัน",
     "paying": "กำลังจ่าย...",
-    "payAmount": "จ่าย {{amount}} {{currency}}"
+    "payAmount": "จ่าย {{amount}} {{currency}}",
+    "firstViews_one": "การเบิ่ง {{count}} เทื่อทำอิด",
+    "firstViews_other": "การเบิ่ง {{count}} เทื่อทำอิด",
+    "firstComments_one": "ความคิดเห็น {{count}} อันทำอิด",
+    "firstComments_other": "ความคิดเห็น {{count}} อันทำอิด"
   },
   "assistant": {
     "title": "ผู้ช่วย",
@@ -3420,5 +3424,35 @@
     "descriptionOptional": "คำอธิบาย (บ่บังคับ)",
     "whatsHappening": "มีอะหยังใหม่แหน่",
     "quotaShortfall": "โพสต์นี้ใช้ {{cost}} DHB และเจ้ามี {{held}}"
+  },
+  "bounty": {
+    "claimed": "ฮับแล้ว",
+    "notEligible": "บ่เข้าเงื่อนไข",
+    "checking": "กำลังตรวจสอบสิทธิ์…",
+    "rewardType": "ประเภทรางวัล",
+    "transaction": "ธุรกรรม",
+    "onChainClaim": "การฮับแบบออนเชน",
+    "confirmClaim": "ยืนยันการฮับ",
+    "processing": "กำลังดำเนินธุรกรรมออนเชน",
+    "success": "ฮับรางวัลแล้ว!",
+    "awesome": "เยี่ยม!",
+    "claimUnable": "ฮับรางวัลบ่ได้",
+    "claimFailed": "ฮับรางวัลบ่สำเร็จ",
+    "switchFailed": "สลับเครือข่ายบ่ได้",
+    "claimViewerTitle": "ฮับรางวัลผู้เบิ่ง",
+    "claimCommenterTitle": "ฮับรางวัลผู้แสดงความคิดเห็น",
+    "claimingViewer": "กำลังฮับรางวัลผู้เบิ่ง…",
+    "claimingCommenter": "กำลังฮับรางวัลผู้แสดงความคิดเห็น…",
+    "viewerReward": "รางวัลผู้เบิ่ง",
+    "commenterReward": "รางวัลผู้แสดงความคิดเห็น",
+    "claimedViewer": "ฮับรางวัลผู้เบิ่งสำเร็จแล้ว!",
+    "claimedCommenter": "ฮับรางวัลผู้แสดงความคิดเห็นสำเร็จแล้ว!",
+    "earnedViewer": "เจ้าได้ฮับรางวัลผู้เบิ่งแล้ว",
+    "earnedCommenter": "เจ้าได้ฮับรางวัลผู้แสดงความคิดเห็นแล้ว",
+    "switchNetwork": "สลับเครือข่าย",
+    "eligibilityFailed": "ตรวจสอบสิทธิ์บ่สำเร็จ",
+    "switchFirst": "สลับไปเครือข่ายของรางวัลก่อนฮับ",
+    "missingSignature": "บ่มีลายเซ็นสำหรับฮับรางวัล",
+    "txReverted": "ธุรกรรมถูกย้อนกลับบนเชน"
   }
 }

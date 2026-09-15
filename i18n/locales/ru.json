@@ -662,7 +662,11 @@
     "cancel": "Отмена",
     "confirm": "Подтвердить",
     "paying": "Оплата...",
-    "payAmount": "Оплатить {{amount}} {{currency}}"
+    "payAmount": "Оплатить {{amount}} {{currency}}",
+    "firstViews_one": "Первый {{count}} просмотр",
+    "firstViews_other": "Первые {{count}} просмотров",
+    "firstComments_one": "Первый {{count}} комментарий",
+    "firstComments_other": "Первые {{count}} комментариев"
   },
   "wallet": {
     "notReady": "Кошелёк не готов — попробуйте через минуту.",
@@ -3530,5 +3534,35 @@
     "descriptionOptional": "Описание (необязательно)",
     "whatsHappening": "Что происходит?",
     "quotaShortfall": "Этот пост стоит {{cost}} DHB, а у вас {{held}}."
+  },
+  "bounty": {
+    "claimed": "Получено",
+    "notEligible": "Не соответствует условиям",
+    "checking": "Проверка соответствия…",
+    "rewardType": "Тип награды",
+    "transaction": "Транзакция",
+    "onChainClaim": "Получение в сети",
+    "confirmClaim": "Подтвердить получение",
+    "processing": "Обработка транзакции в сети",
+    "success": "Награда получена!",
+    "awesome": "Отлично!",
+    "claimUnable": "Не удалось получить награду",
+    "claimFailed": "Не удалось получить награду",
+    "switchFailed": "Не удалось переключить сеть",
+    "claimViewerTitle": "Получить награду зрителя",
+    "claimCommenterTitle": "Получить награду комментатора",
+    "claimingViewer": "Получение награды зрителя…",
+    "claimingCommenter": "Получение награды комментатора…",
+    "viewerReward": "Награда зрителя",
+    "commenterReward": "Награда комментатора",
+    "claimedViewer": "Награда зрителя получена!",
+    "claimedCommenter": "Награда комментатора получена!",
+    "earnedViewer": "Вы получили награду зрителя",
+    "earnedCommenter": "Вы получили награду комментатора",
+    "switchNetwork": "Переключить сеть",
+    "eligibilityFailed": "Не удалось проверить соответствие",
+    "switchFirst": "Перед получением переключитесь на сеть награды",
+    "missingSignature": "Отсутствует подпись для получения награды",
+    "txReverted": "Транзакция отменена в сети"
   }
 }

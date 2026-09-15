@@ -771,7 +771,11 @@
     "cancel": "Kɔrɔbɔ",
     "confirm": "Kɔrɔbɔ",
     "paying": "Kɔrɔbɔ...",
-    "payAmount": "Kɔrɔbɔ {{amount}} {{currency}}"
+    "payAmount": "Kɔrɔbɔ {{amount}} {{currency}}",
+    "firstViews_one": "Filɛli {{count}} fɔlɔ",
+    "firstViews_other": "Filɛli {{count}} fɔlɔw",
+    "firstComments_one": "Hakilina {{count}} fɔlɔ",
+    "firstComments_other": "Hakilina {{count}} fɔlɔw"
   },
   "assistant": {
     "title": "Fɔlɔw",
@@ -3405,5 +3409,35 @@
     "descriptionOptional": "Ɲɛfɔli (a ka kan tɛ)",
     "whatsHappening": "Mun bɛ kɛ?",
     "quotaShortfall": "Nin post musaka ye {{cost}} DHB ye, i bolo ye {{held}} ye."
+  },
+  "bounty": {
+    "claimed": "A tara",
+    "notEligible": "I tɛ se",
+    "checking": "Sɛgɛsɛgɛli bɛ kɛ…",
+    "rewardType": "Sara suguya",
+    "transaction": "Fɛnfeere",
+    "onChainClaim": "Chain kan tali",
+    "confirmClaim": "Tali sɛmɛntiya",
+    "processing": "Chain kan fɛnfeere bɛ kɛ",
+    "success": "Sara tara!",
+    "awesome": "A ka ɲi!",
+    "claimUnable": "Sara tɛ se ka ta",
+    "claimFailed": "Sara tali ma ɲɛ",
+    "switchFailed": "Rezo tɛ se ka falen",
+    "claimViewerTitle": "Filɛlikɛla sara ta",
+    "claimCommenterTitle": "Hakilinafɔla sara ta",
+    "claimingViewer": "Filɛlikɛla sara bɛ ta…",
+    "claimingCommenter": "Hakilinafɔla sara bɛ ta…",
+    "viewerReward": "Filɛlikɛla sara",
+    "commenterReward": "Hakilinafɔla sara",
+    "claimedViewer": "Filɛlikɛla sara tara ka ɲɛ!",
+    "claimedCommenter": "Hakilinafɔla sara tara ka ɲɛ!",
+    "earnedViewer": "I ye filɛlikɛla sara sɔrɔ",
+    "earnedCommenter": "I ye hakilinafɔla sara sɔrɔ",
+    "switchNetwork": "Rezo falen",
+    "eligibilityFailed": "Sɛgɛsɛgɛli ma ɲɛ",
+    "switchFirst": "Sanni i ka ta, taga sara rezo kan",
+    "missingSignature": "Sara tali bolonɔ tɛ yen",
+    "txReverted": "Fɛnfeere seginna chain kan"
   }
 }

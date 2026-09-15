@@ -798,7 +798,11 @@
     "cancel": "İptal",
     "confirm": "Onayla",
     "paying": "Ödeniyor...",
-    "payAmount": "{{amount}} {{currency}} öde"
+    "payAmount": "{{amount}} {{currency}} öde",
+    "firstViews_one": "İlk {{count}} görüntüleme",
+    "firstViews_other": "İlk {{count}} görüntüleme",
+    "firstComments_one": "İlk {{count}} yorum",
+    "firstComments_other": "İlk {{count}} yorum"
   },
   "wallet": {
     "notReady": "Cüzdan hazır değil — birazdan tekrar deneyin.",
@@ -3523,5 +3527,35 @@
     "descriptionOptional": "Açıklama (isteğe bağlı)",
     "whatsHappening": "Neler oluyor?",
     "quotaShortfall": "Bu gönderi {{cost}} DHB tutuyor ve sizde {{held}} var."
+  },
+  "bounty": {
+    "claimed": "Alındı",
+    "notEligible": "Uygun değil",
+    "checking": "Uygunluk kontrol ediliyor…",
+    "rewardType": "Ödül türü",
+    "transaction": "İşlem",
+    "onChainClaim": "Zincir üzerinde talep",
+    "confirmClaim": "Talebi onayla",
+    "processing": "Zincir üzerindeki işlem yürütülüyor",
+    "success": "Ödül alındı!",
+    "awesome": "Harika!",
+    "claimUnable": "Ödül alınamıyor",
+    "claimFailed": "Ödül alınamadı",
+    "switchFailed": "Ağ değiştirilemedi",
+    "claimViewerTitle": "İzleyici ödülünü al",
+    "claimCommenterTitle": "Yorumcu ödülünü al",
+    "claimingViewer": "İzleyici ödülü alınıyor…",
+    "claimingCommenter": "Yorumcu ödülü alınıyor…",
+    "viewerReward": "İzleyici ödülü",
+    "commenterReward": "Yorumcu ödülü",
+    "claimedViewer": "İzleyici ödülü başarıyla alındı!",
+    "claimedCommenter": "Yorumcu ödülü başarıyla alındı!",
+    "earnedViewer": "İzleyici ödülünüzü kazandınız",
+    "earnedCommenter": "Yorumcu ödülünüzü kazandınız",
+    "switchNetwork": "Ağı değiştir",
+    "eligibilityFailed": "Uygunluk kontrol edilemedi",
+    "switchFirst": "Almadan önce ödül ağına geçin",
+    "missingSignature": "Ödül alma imzası eksik",
+    "txReverted": "İşlem zincir üzerinde geri alındı"
   }
 }
