@@ -122,9 +122,19 @@ export function clearCreatorPlaybackRates() {
   save({ ...cached, ratesByCreator: {} });
 }
 
-// Loop and volume are carried through untouched: the players own both on
-// mobile (libs/videoMutedState, the loop prop), and they are kept in the blob
-// only so it stays the shape web writes.
+// Loop is carried through untouched: the players own it on mobile (the loop
+// prop), and it is kept in the blob only so it stays the shape web writes.
+
+/** The level a video starts at, 0 → 1. Shared with web through the blob. */
+export function getVolume(): number {
+  const v = cached.volume;
+  return typeof v === "number" && v >= 0 && v <= 1 ? v : DEFAULTS.volume;
+}
+
+/** Remember a level the viewer set by holding the speaker and dragging. */
+export function setVolume(volume: number) {
+  save({ ...cached, volume: Math.max(0, Math.min(1, volume)) });
+}
 
 /** The whole map, for a data export to carry. */
 export function getCreatorPlaybackRates(): Record<string, number> {

@@ -17,8 +17,14 @@ import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
 import PictureInPictureButton from "../common/PictureInPictureButton";
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../../libs/audioSession";
 import { feedSeekResponder } from "../../libs/feed-seek-responder";
+import { feedVolumeResponder } from "../../libs/feed-volume-responder";
 import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
-import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from "../../libs/video-preferences";
+import {
+  getPlaybackRateFor,
+  setPlaybackRate as persistPlaybackRate,
+  getVolume,
+  setVolume as persistVolume,
+} from "../../libs/video-preferences";
 import SmartImage from "../common/SmartImage";
 import Spinner from "../common/Spinner";
 import { useNavigation } from "@react-navigation/native";
@@ -329,6 +335,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     p.showNowPlayingNotification = true;
     p.loop = true;
     p.muted = getCachedMuted();
+    p.volume = getVolume();
     p.timeUpdateEventInterval = 0.5;
     // A rate pinned to this creator applies from the first frame; everyone
     // else plays at whatever rate was last used generally.
@@ -784,6 +791,54 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     }
   }, [isMuted, stopPlayback, startHideTimer]);
 
+  // Held-and-dragged on the speaker. The device volume moves everything at
+  // once, which is no use when one video is loud and the rest of the phone is
+  // fine; this is the video's own level, and it persists the same way the
+  // playback rate does.
+  const [volume, setVolumeState] = useState(() => getVolume());
+  const [volumeAdjusting, setVolumeAdjusting] = useState(false);
+  const volumeRef = useRef(volume);
+
+  const applyVolume = useCallback((next: number) => {
+    const level = Math.max(0, Math.min(1, next));
+    volumeRef.current = level;
+    setVolumeState(level);
+    persistVolume(level);
+    if (playerRef.current) playerRef.current.volume = level;
+
+    // Dragging to the bottom is how you mute, and dragging off it is how you
+    // come back — otherwise the icon and the level disagree.
+    const shouldMute = level === 0;
+    if (shouldMute !== isMuted) {
+      setIsMuted(shouldMute);
+      setMutedState(shouldMute);
+      if (playerRef.current) playerRef.current.muted = shouldMute;
+      if (shouldMute) releaseAudioFocus(stopPlayback);
+      else requestAudioFocus(stopPlayback);
+    }
+  }, [isMuted, stopPlayback]);
+
+  const volumePanResponder = useMemo(
+    () =>
+      PanResponder.create(
+        feedVolumeResponder({
+          onHoldStart: () => {
+            clearHideTimer();
+            setVolumeAdjusting(true);
+            // Muted, the slider is at the bottom whatever the stored level is.
+            return isMuted ? 0 : volumeRef.current;
+          },
+          onVolume: applyVolume,
+          onTap: handleToggleMute,
+          onEnd: () => {
+            setVolumeAdjusting(false);
+            if (isPlayingRef.current) startHideTimer();
+          },
+        }),
+      ),
+    [applyVolume, handleToggleMute, isMuted, clearHideTimer, startHideTimer],
+  );
+
   const [isLooping, setIsLooping] = useState(true);
   const [playbackRate, setPlaybackRate] = useState(() => getPlaybackRateFor(creator));
 
@@ -1027,10 +1082,25 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 <Icon name={isLooping ? "Repeat" : "ArrowRight"} size={14} color={isLooping ? "#fff" : "#9CA3AF"} />
               </Pressable>
 
-              <Pressable onPress={handleToggleMute} style={styles.glassButton}>
-                <View style={styles.glassOverlay} />
-                <Icon name={isMuted ? "VolumeX" : "Volume2"} size={16} color="#fff" />
-              </Pressable>
+              <View>
+                <View style={styles.glassButton} {...volumePanResponder.panHandlers}>
+                  <View style={styles.glassOverlay} />
+                  <Icon name={isMuted ? "VolumeX" : "Volume2"} size={16} color="#fff" />
+                </View>
+                {volumeAdjusting && (
+                  <View style={styles.volumeTrack} pointerEvents="none">
+                    <View style={styles.glassOverlay} />
+                    <View style={styles.volumeTrackInner}>
+                      <View
+                        style={[
+                          styles.volumeFill,
+                          { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` },
+                        ]}
+                      />
+                    </View>
+                  </View>
+                )}
+              </View>
               
               <PictureInPictureButton videoRef={videoViewRef} />
               <Pressable onPress={handleFullscreen} style={styles.glassButton}>
@@ -1242,6 +1312,32 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.1)",
+  },
+  volumeTrack: {
+    position: "absolute",
+    top: 36,
+    left: 0,
+    width: 32,
+    height: 104,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+  },
+  volumeTrackInner: {
+    width: 4,
+    height: 84,
+    borderRadius: 2,
+    backgroundColor: "rgba(255,255,255,0.3)",
+    justifyContent: "flex-end",
+    overflow: "hidden",
+  },
+  volumeFill: {
+    width: "100%",
+    backgroundColor: "#fff",
+    borderRadius: 2,
   },
   glassOverlay: {
     ...StyleSheet.absoluteFillObject,
