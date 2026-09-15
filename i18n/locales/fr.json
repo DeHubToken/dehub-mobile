@@ -920,7 +920,16 @@
     "multipleChoice": "Autoriser plusieurs réponses"
   },
   "auth": {
-    "loginRequired": "Connexion requise"
+    "loginRequired": "Connexion requise",
+    "walletImported": "Portefeuille importé",
+    "importWallet": "Importer un portefeuille",
+    "privateKeyPlaceholder": "Saisissez votre clé privée",
+    "importExternalWallet": "Importer un portefeuille externe",
+    "privateKey": "Clé privée",
+    "pasteFromClipboard": "Coller depuis le presse-papiers",
+    "learnMoreAt": "En savoir plus sur dehub.io",
+    "accountsOnDevice": "Comptes sur cet appareil",
+    "use": "Utiliser"
   },
   "explorePage": {
     "searchPlaceholder": "Rechercher des personnes, publications ou contenus...",
@@ -3906,5 +3915,29 @@
   "search": {
     "endOfResults": "Fin des résultats",
     "searchDehub": "Rechercher sur DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Restez informé",
+    "subtitle": "Activez les notifications pour suivre DeHub",
+    "rowTips": "Les pourboires et revenus arrivent dans votre portefeuille",
+    "rowReplies": "Réponses, mentions et messages privés",
+    "rowLive": "Quand les créateurs que vous suivez passent en direct",
+    "chooseInSettings": "Vous choisissez exactement lesquelles vous parviennent, dans les réglages, à tout moment.",
+    "turnOn": "Activer les notifications"
+  },
+  "review": {
+    "enjoyingApp": "L'application vous plaît ?",
+    "feedbackHelps": "Vos retours nous aident à améliorer DeHub",
+    "yes": "Oui ! 😊",
+    "notReally": "Pas vraiment 😕",
+    "thatsGreat": "C'est génial !",
+    "rateUsOn": "Accepteriez-vous de nous noter sur le {{store}} ? Cela nous aide beaucoup à grandir !",
+    "rateOn": "Noter sur le {{store}}",
+    "yourFeedback": "Vos retours",
+    "feedbackPlaceholder": "Que pouvons-nous améliorer ?",
+    "followUpNote": "Nous pourrions vous recontacter pour des questions complémentaires sur vos retours",
+    "submitFeedback": "Envoyer les retours",
+    "provideFeedback": "Veuillez saisir vos retours",
+    "thankYou": "Merci pour vos retours !"
   }
 }

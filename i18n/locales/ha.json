@@ -1410,7 +1410,16 @@
     "attachmentTooLarge": "Kowane fayil ya zama ƙasa da 20MB"
   },
   "auth": {
-    "loginRequired": "Ana buƙatar shiga"
+    "loginRequired": "Ana buƙatar shiga",
+    "walletImported": "An shigo da walat",
+    "importWallet": "Shigo da walat",
+    "privateKeyPlaceholder": "Shigar da maɓallin sirrin ka",
+    "importExternalWallet": "Shigo da walat na waje",
+    "privateKey": "Maɓallin sirri",
+    "pasteFromClipboard": "Manna daga allon rubutu",
+    "learnMoreAt": "Ƙara sani a dehub.io",
+    "accountsOnDevice": "Asusun da ke wannan na'urar",
+    "use": "Yi amfani"
   },
   "messages": {
     "smartRepliesOff": "An kashe amsoshin da aka ba da shawara",
@@ -3822,5 +3831,29 @@
   "search": {
     "endOfResults": "Ƙarshen sakamako",
     "searchDehub": "Bincika DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Ka kasance da labari",
+    "subtitle": "Kunna sanarwa don kasancewa tare da DeHub",
+    "rowTips": "Kyauta da kudaden shiga suna shiga walat ɗinka",
+    "rowReplies": "Amsoshi, ambato da saƙonni kai tsaye",
+    "rowLive": "Lokacin da masu ƙirƙira da kake bi suka fara kai tsaye",
+    "chooseInSettings": "Kai ne ke zaɓar waɗanne daga cikinsu suke zuwa gare ka, a Saituna, a kowane lokaci.",
+    "turnOn": "Kunna sanarwa"
+  },
+  "review": {
+    "enjoyingApp": "Kana jin daɗin manhajar?",
+    "feedbackHelps": "Ra'ayinka yana taimaka mana mu inganta DeHub",
+    "yes": "Eh! 😊",
+    "notReally": "Ba sosai ba 😕",
+    "thatsGreat": "Wannan yana da kyau!",
+    "rateUsOn": "Za ka ba mu kima a {{store}}? Yana taimaka mana ƙwarai mu girma!",
+    "rateOn": "Ba da kima a {{store}}",
+    "yourFeedback": "Ra'ayinka",
+    "feedbackPlaceholder": "Me za mu iya inganta?",
+    "followUpNote": "Za mu iya tuntuɓar ka da ƙarin tambayoyi game da ra'ayinka",
+    "submitFeedback": "Aika ra'ayi",
+    "provideFeedback": "Don Allah ka rubuta ra'ayinka",
+    "thankYou": "Na gode da ra'ayinka!"
   }
 }

@@ -1404,7 +1404,16 @@
     "attachmentTooLarge": "هر فائل 20MB کان گهٽ هجڻ گهرجي"
   },
   "auth": {
-    "loginRequired": "لاگ ان ضروري"
+    "loginRequired": "لاگ ان ضروري",
+    "walletImported": "والٽ درآمد ٿيو",
+    "importWallet": "والٽ درآمد ڪريو",
+    "privateKeyPlaceholder": "پنهنجي پرائيويٽ ڪي داخل ڪريو",
+    "importExternalWallet": "ٻاهريون والٽ درآمد ڪريو",
+    "privateKey": "پرائيويٽ ڪي",
+    "pasteFromClipboard": "ڪلپ بورڊ مان پيسٽ ڪريو",
+    "learnMoreAt": "dehub.io تي وڌيڪ ڄاڻو",
+    "accountsOnDevice": "هن ڊوائيس تي اڪائونٽ",
+    "use": "استعمال ڪريو"
   },
   "messages": {
     "smartRepliesOff": "تجويز ڪيل جواب بند ٿي ويا",
@@ -3815,5 +3824,29 @@
   "search": {
     "endOfResults": "نتيجن جو پڇاڙي",
     "searchDehub": "DeHub ۾ ڳوليو"
+  },
+  "notifPrompt": {
+    "stayInLoop": "باخبر رهو",
+    "subtitle": "DeHub سان گڏ رهڻ لاءِ نوٽيفڪيشن آن ڪريو",
+    "rowTips": "ٽپ ۽ ڪمائي توهان جي والٽ ۾ اچن ٿا",
+    "rowReplies": "جواب، ذڪر ۽ سڌا پيغام",
+    "rowLive": "جڏهن توهان جي فالو ڪيل تخليقڪار لائيو وڃن",
+    "chooseInSettings": "انهن مان ڪهڙيون توهان تائين پهچن، اهو توهان سيٽنگن ۾ ڪڏهن به چونڊي سگهو ٿا.",
+    "turnOn": "نوٽيفڪيشن آن ڪريو"
+  },
+  "review": {
+    "enjoyingApp": "ڇا توهان کي ايپ وڻي ٿي؟",
+    "feedbackHelps": "توهان جي راءِ اسان کي DeHub بهتر بڻائڻ ۾ مدد ڪري ٿي",
+    "yes": "ها! 😊",
+    "notReally": "ايترو نه 😕",
+    "thatsGreat": "اهو ته تمام سٺو آهي!",
+    "rateUsOn": "ڇا توهان {{store}} تي اسان کي ريٽنگ ڏيندا؟ اهو اسان جي واڌ ۾ تمام مدد ڪري ٿو!",
+    "rateOn": "{{store}} تي ريٽ ڪريو",
+    "yourFeedback": "توهان جي راءِ",
+    "feedbackPlaceholder": "اسان ڇا بهتر ڪري سگهون ٿا؟",
+    "followUpNote": "توهان جي راءِ بابت وڌيڪ سوالن لاءِ اسان رابطو ڪري سگهون ٿا",
+    "submitFeedback": "راءِ موڪليو",
+    "provideFeedback": "مهرباني ڪري پنهنجي راءِ لکو",
+    "thankYou": "توهان جي راءِ لاءِ مهرباني!"
   }
 }

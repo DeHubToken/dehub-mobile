@@ -1415,7 +1415,16 @@
     "attachmentTooLarge": "Fiecare fișier trebuie să fie sub 20 MB"
   },
   "auth": {
-    "loginRequired": "Log in required"
+    "loginRequired": "Log in required",
+    "walletImported": "Portofel importat",
+    "importWallet": "Importă portofel",
+    "privateKeyPlaceholder": "Introdu cheia ta privată",
+    "importExternalWallet": "Importă portofel extern",
+    "privateKey": "Cheie privată",
+    "pasteFromClipboard": "Lipește din clipboard",
+    "learnMoreAt": "Află mai multe pe dehub.io",
+    "accountsOnDevice": "Conturi de pe acest dispozitiv",
+    "use": "Folosește"
   },
   "bookmarks": {
     "title": "Your Bookmarks",
@@ -3845,5 +3854,29 @@
   "search": {
     "endOfResults": "Sfârșitul rezultatelor",
     "searchDehub": "Caută pe DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Rămâi la curent",
+    "subtitle": "Activează notificările ca să fii la curent cu DeHub",
+    "rowTips": "Bacșișurile și câștigurile ajung în portofelul tău",
+    "rowReplies": "Răspunsuri, mențiuni și mesaje directe",
+    "rowLive": "Când creatorii pe care îi urmărești intră live",
+    "chooseInSettings": "Tu alegi exact care dintre ele ajung la tine, în Setări, oricând.",
+    "turnOn": "Activează notificările"
+  },
+  "review": {
+    "enjoyingApp": "Îți place aplicația?",
+    "feedbackHelps": "Feedbackul tău ne ajută să îmbunătățim DeHub",
+    "yes": "Da! 😊",
+    "notReally": "Nu prea 😕",
+    "thatsGreat": "Ce bine!",
+    "rateUsOn": "Ne-ai da o notă în {{store}}? Ne ajută mult să creștem!",
+    "rateOn": "Evaluează în {{store}}",
+    "yourFeedback": "Feedbackul tău",
+    "feedbackPlaceholder": "Ce putem face mai bine?",
+    "followUpNote": "S-ar putea să te contactăm cu întrebări suplimentare despre feedbackul tău",
+    "submitFeedback": "Trimite feedbackul",
+    "provideFeedback": "Te rugăm să scrii feedbackul tău",
+    "thankYou": "Îți mulțumim pentru feedback!"
   }
 }

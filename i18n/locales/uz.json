@@ -1398,7 +1398,16 @@
     "attachmentTooLarge": "Har bir fayl 20 MB dan kichik bo'lishi kerak"
   },
   "auth": {
-    "loginRequired": "Avtorizatsiya kerak"
+    "loginRequired": "Avtorizatsiya kerak",
+    "walletImported": "Hamyon import qilindi",
+    "importWallet": "Hamyonni import qilish",
+    "privateKeyPlaceholder": "Shaxsiy kalitingizni kiriting",
+    "importExternalWallet": "Tashqi hamyonni import qilish",
+    "privateKey": "Shaxsiy kalit",
+    "pasteFromClipboard": "Almashish buferidan qo'yish",
+    "learnMoreAt": "dehub.io da batafsil bilib oling",
+    "accountsOnDevice": "Bu qurilmadagi hisoblar",
+    "use": "Ishlatish"
   },
   "messages": {
     "smartRepliesOff": "Tavsiya etilgan javoblar o'chirildi",
@@ -3883,5 +3892,29 @@
   "search": {
     "endOfResults": "Natijalar tugadi",
     "searchDehub": "DeHub dan qidirish"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Xabardor bo'ling",
+    "subtitle": "DeHub bilan hamqadam bo'lish uchun bildirishnomalarni yoqing",
+    "rowTips": "Choychaqa va daromad hamyoningizga tushadi",
+    "rowReplies": "Javoblar, eslatmalar va to'g'ridan-to'g'ri xabarlar",
+    "rowLive": "Siz kuzatadigan ijodkorlar jonli efirga chiqqanda",
+    "chooseInSettings": "Qaysilari sizga yetib kelishini Sozlamalarda istalgan vaqtda o'zingiz tanlaysiz.",
+    "turnOn": "Bildirishnomalarni yoqish"
+  },
+  "review": {
+    "enjoyingApp": "Ilova sizga yoqyaptimi?",
+    "feedbackHelps": "Fikringiz DeHub ni yaxshilashga yordam beradi",
+    "yes": "Ha! 😊",
+    "notReally": "Unchalik emas 😕",
+    "thatsGreat": "Bu ajoyib!",
+    "rateUsOn": "Bizni {{store}} da baholay olasizmi? Bu o'sishimizga juda yordam beradi!",
+    "rateOn": "{{store}} da baholash",
+    "yourFeedback": "Fikringiz",
+    "feedbackPlaceholder": "Nimani yaxshilashimiz mumkin?",
+    "followUpNote": "Fikringiz bo'yicha qo'shimcha savollar uchun siz bilan bog'lanishimiz mumkin",
+    "submitFeedback": "Fikrni yuborish",
+    "provideFeedback": "Iltimos, fikringizni yozing",
+    "thankYou": "Fikringiz uchun rahmat!"
   }
 }

@@ -1798,7 +1798,16 @@
     "attachmentTooLarge": "হর ফাইল ২০MB-র কম অইত অইবো"
   },
   "auth": {
-    "loginRequired": "লগইন দরকার"
+    "loginRequired": "লগইন দরকার",
+    "walletImported": "ওয়ালেট ইমপোর্ট অইছে",
+    "importWallet": "ওয়ালেট ইমপোর্ট করন",
+    "privateKeyPlaceholder": "আঁর প্রাইভেট কী দন",
+    "importExternalWallet": "বাইরের ওয়ালেট ইমপোর্ট করন",
+    "privateKey": "প্রাইভেট কী",
+    "pasteFromClipboard": "ক্লিপবোর্ডত্তুন পেস্ট করন",
+    "learnMoreAt": "dehub.io ত আরও জানন",
+    "accountsOnDevice": "এই ডিভাইসর একাউন্ট",
+    "use": "ব্যবহার করন"
   },
   "music": {
     "all": "সব",
@@ -3923,5 +3932,29 @@
   "search": {
     "endOfResults": "ফলাফলর শেষ",
     "searchDehub": "DeHub ত খুঁজন"
+  },
+  "notifPrompt": {
+    "stayInLoop": "খবরত থাকন",
+    "subtitle": "DeHub র লগে থাকিবার লাই নোটিফিকেশন চালু করন",
+    "rowTips": "টিপ আর আয় আঁর ওয়ালেটত আয়ে",
+    "rowReplies": "জবাব, মেনশন আর সরাসরি বার্তা",
+    "rowLive": "আঁই যেতারারে ফলো করন হেতারা লাইভত আইলে",
+    "chooseInSettings": "এগুনর কোনগান আঁর কাছে আইব হেইটা সেটিংসত যেকোনো সময় বাছি লইত পারন।",
+    "turnOn": "নোটিফিকেশন চালু করন"
+  },
+  "review": {
+    "enjoyingApp": "অ্যাপটা কি ভালা লাগের?",
+    "feedbackHelps": "আঁর মতামত DeHub ভালা করিবার লাই সাহায্য করে",
+    "yes": "অয়! 😊",
+    "notReally": "তেমন না 😕",
+    "thatsGreat": "এইটা তো ভালাই!",
+    "rateUsOn": "{{store}} ত আঁরারে রেটিং দিবেন নি? এইটা আঁরার বাড়িবার লাই সাহায্য করে!",
+    "rateOn": "{{store}} ত রেটিং দন",
+    "yourFeedback": "আঁর মতামত",
+    "feedbackPlaceholder": "আঁরা কিতা ভালা করিত পারি?",
+    "followUpNote": "আঁর মতামত লই আঁরা পরে প্রশ্ন করিবার লাই যোগাযোগ করিত পারি",
+    "submitFeedback": "মতামত পাঠান",
+    "provideFeedback": "দয়া করি আঁর মতামত লেখন",
+    "thankYou": "আঁর মতামতর লাই ধইন্যবাদ!"
   }
 }

@@ -1394,7 +1394,16 @@
     "attachmentTooLarge": "ነፍሲ ወከፍ ፋይል ትሕቲ 20MB ክኸውን ኣለዎ"
   },
   "auth": {
-    "loginRequired": "ብዓል ዝድሊ"
+    "loginRequired": "ብዓል ዝድሊ",
+    "walletImported": "ዋሌት ኣተወ",
+    "importWallet": "ዋሌት ኣእቱ",
+    "privateKeyPlaceholder": "ናትካ ብሕታዊ መፍትሕ ኣእቱ",
+    "importExternalWallet": "ናይ ደገ ዋሌት ኣእቱ",
+    "privateKey": "ብሕታዊ መፍትሕ",
+    "pasteFromClipboard": "ካብ ክሊፕቦርድ ለጥፍ",
+    "learnMoreAt": "ኣብ dehub.io ተወሳኺ ፍለጥ",
+    "accountsOnDevice": "ኣብዚ መሳርሒ ዘለዉ ኣካውንትታት",
+    "use": "ተጠቐም"
   },
   "messages": {
     "smartRepliesOff": "ዝተጠቕሱ መልስታት ጠፊኦም",
@@ -3797,5 +3806,29 @@
   "search": {
     "endOfResults": "መወዳእታ ውጽኢታት",
     "searchDehub": "ኣብ DeHub ድለ"
+  },
+  "notifPrompt": {
+    "stayInLoop": "ሓበሬታ ሓዝ",
+    "subtitle": "ምስ DeHub ንምቕጻል መፍለጢታት ኣንቅስቕስ",
+    "rowTips": "ጉርሻን ኣታዊን ናብ ዋሌትካ ይመጹ",
+    "rowReplies": "መልስታት፡ ጥቕስታትን ቀጥታ መልእኽትታትን",
+    "rowLive": "እትስዕቦም ፈጠርቲ ብቐጥታ ክፍንዉ ከለዉ",
+    "chooseInSettings": "ካብዚኣቶም ኣየኖት ክበጽሑኻ ከም ዘለዎም ኣብ ቅንብራት ኣብ ዝኾነ ግዜ ትመርጽ።",
+    "turnOn": "መፍለጢታት ኣንቅስቕስ"
+  },
+  "review": {
+    "enjoyingApp": "ነታ መተግበሪ ትፈትዋ ዲኻ?",
+    "feedbackHelps": "ርእይቶኻ ንDeHub ንምምሕያሽ ይሕግዘና",
+    "yes": "እወ! 😊",
+    "notReally": "ብዙሕ ኣይኮነን 😕",
+    "thatsGreat": "እዚ ኣዝዩ ጽቡቕ እዩ!",
+    "rateUsOn": "ኣብ {{store}} ደረጃ ክትህበና ትኽእል ዲኻ? ንዕብየትና ኣዝዩ ይሕግዘና!",
+    "rateOn": "ኣብ {{store}} ደረጃ ሃብ",
+    "yourFeedback": "ርእይቶኻ",
+    "feedbackPlaceholder": "እንታይ ከነመሓይሽ ንኽእል?",
+    "followUpNote": "ብዛዕባ ርእይቶኻ ተወሳኺ ሕቶታት ንምሕታት ክንረኽበካ ንኽእል",
+    "submitFeedback": "ርእይቶ ስደድ",
+    "provideFeedback": "በጃኻ ርእይቶኻ ጽሓፍ",
+    "thankYou": "ስለ ርእይቶኻ የመስግን!"
   }
 }

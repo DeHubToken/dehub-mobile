@@ -1337,7 +1337,16 @@
     "attachmentTooLarge": "Tsy maintsy latsaky ny 20MB ny rakitra tsirairay"
   },
   "auth": {
-    "loginRequired": "Ilaina ny fidirana"
+    "loginRequired": "Ilaina ny fidirana",
+    "walletImported": "Nampidirina ny poketra",
+    "importWallet": "Ampidiro ny poketra",
+    "privateKeyPlaceholder": "Ampidiro ny lakile manokana anao",
+    "importExternalWallet": "Ampidiro ny poketra ivelany",
+    "privateKey": "Lakile manokana",
+    "pasteFromClipboard": "Apetaho avy amin'ny fanaovan-tsoratra",
+    "learnMoreAt": "Fantaro bebe kokoa ao amin'ny dehub.io",
+    "accountsOnDevice": "Kaonty amin'ity fitaovana ity",
+    "use": "Ampiasao"
   },
   "messages": {
     "smartRepliesOff": "Novonoina ny valiny atolotra",
@@ -3911,5 +3920,29 @@
   "search": {
     "endOfResults": "Faran'ny valiny",
     "searchDehub": "Karohy ao amin'ny DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Mahafantatra hatrany",
+    "subtitle": "Alefaso ny fampahafantarana mba hanaraka ny DeHub",
+    "rowTips": "Tonga ao amin'ny poketranao ny tolotra sy ny vola azo",
+    "rowReplies": "Valiny, fitanisana ary hafatra mivantana",
+    "rowLive": "Rehefa mandeha mivantana ireo mpamorona arahinao",
+    "chooseInSettings": "Ianao no mifidy izay tonga aminao, ao amin'ny Fandrindrana, na oviana na oviana.",
+    "turnOn": "Alefaso ny fampahafantarana"
+  },
+  "review": {
+    "enjoyingApp": "Tianao ve ilay app?",
+    "feedbackHelps": "Manampy anay hanatsara ny DeHub ny hevitrao",
+    "yes": "Eny! 😊",
+    "notReally": "Tsy dia 😕",
+    "thatsGreat": "Tsara be izany!",
+    "rateUsOn": "Afaka manome naoty anay ao amin'ny {{store}} ve ianao? Manampy anay hitombo tokoa izany!",
+    "rateOn": "Omeo naoty ao amin'ny {{store}}",
+    "yourFeedback": "Ny hevitrao",
+    "feedbackPlaceholder": "Inona no azonay atsaraina?",
+    "followUpNote": "Mety hifandray aminao izahay hametraka fanontaniana fanampiny momba ny hevitrao",
+    "submitFeedback": "Alefaso ny hevitra",
+    "provideFeedback": "Azafady soraty ny hevitrao",
+    "thankYou": "Misaotra tamin'ny hevitrao!"
   }
 }

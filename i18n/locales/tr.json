@@ -913,7 +913,16 @@
     "multipleChoice": "Birden fazla seçime izin ver"
   },
   "auth": {
-    "loginRequired": "Giriş yapılması gerekiyor"
+    "loginRequired": "Giriş yapılması gerekiyor",
+    "walletImported": "Cüzdan içe aktarıldı",
+    "importWallet": "Cüzdan içe aktar",
+    "privateKeyPlaceholder": "Özel anahtarınızı girin",
+    "importExternalWallet": "Harici cüzdanı içe aktar",
+    "privateKey": "Özel anahtar",
+    "pasteFromClipboard": "Panodan yapıştır",
+    "learnMoreAt": "dehub.io adresinden daha fazlasını öğren",
+    "accountsOnDevice": "Bu cihazdaki hesaplar",
+    "use": "Kullan"
   },
   "assistant": {
     "title": "Asistan",
@@ -3894,5 +3903,29 @@
   "search": {
     "endOfResults": "Sonuçların sonu",
     "searchDehub": "DeHub'da ara"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Haberdar ol",
+    "subtitle": "DeHub'ı takip etmek için bildirimleri aç",
+    "rowTips": "Bahşişler ve kazançlar cüzdanınıza gelir",
+    "rowReplies": "Yanıtlar, bahsetmeler ve doğrudan mesajlar",
+    "rowLive": "Takip ettiğin içerik üreticileri yayına geçtiğinde",
+    "chooseInSettings": "Bunlardan hangilerinin size ulaşacağını Ayarlar'dan istediğiniz zaman seçersiniz.",
+    "turnOn": "Bildirimleri aç"
+  },
+  "review": {
+    "enjoyingApp": "Uygulamayı beğeniyor musunuz?",
+    "feedbackHelps": "Geri bildiriminiz DeHub'ı geliştirmemize yardımcı olur",
+    "yes": "Evet! 😊",
+    "notReally": "Pek değil 😕",
+    "thatsGreat": "Harika!",
+    "rateUsOn": "Bizi {{store}}'da değerlendirir misiniz? Büyümemize gerçekten yardımcı oluyor!",
+    "rateOn": "{{store}}'da değerlendir",
+    "yourFeedback": "Geri bildiriminiz",
+    "feedbackPlaceholder": "Neyi daha iyi yapabiliriz?",
+    "followUpNote": "Geri bildiriminizle ilgili ek sorular için size ulaşabiliriz",
+    "submitFeedback": "Geri bildirimi gönder",
+    "provideFeedback": "Lütfen geri bildiriminizi yazın",
+    "thankYou": "Geri bildiriminiz için teşekkürler!"
   }
 }

@@ -757,7 +757,16 @@
     "multipleChoice": "Allow multiple answers"
   },
   "auth": {
-    "loginRequired": "Bejelentkezés szükséges"
+    "loginRequired": "Bejelentkezés szükséges",
+    "walletImported": "Tárca importálva",
+    "importWallet": "Tárca importálása",
+    "privateKeyPlaceholder": "Add meg a privát kulcsodat",
+    "importExternalWallet": "Külső tárca importálása",
+    "privateKey": "Privát kulcs",
+    "pasteFromClipboard": "Beillesztés a vágólapról",
+    "learnMoreAt": "Tudj meg többet a dehub.io oldalon",
+    "accountsOnDevice": "Fiókok ezen az eszközön",
+    "use": "Használ"
   },
   "explorePage": {
     "searchPlaceholder": "Emberek, bejegyzések vagy tartalom keresése...",
@@ -3836,5 +3845,29 @@
   "search": {
     "endOfResults": "A találatok vége",
     "searchDehub": "Keresés a DeHubon"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Maradj naprakész",
+    "subtitle": "Kapcsold be az értesítéseket, hogy lépést tarts a DeHubbal",
+    "rowTips": "A borravalók és bevételek a tárcádba érkeznek",
+    "rowReplies": "Válaszok, említések és privát üzenetek",
+    "rowLive": "Amikor a követett alkotók élőben mennek",
+    "chooseInSettings": "Pontosan te döntöd el, melyek érjenek el — a Beállításokban, bármikor.",
+    "turnOn": "Értesítések bekapcsolása"
+  },
+  "review": {
+    "enjoyingApp": "Tetszik az alkalmazás?",
+    "feedbackHelps": "A visszajelzésed segít jobbá tenni a DeHubot",
+    "yes": "Igen! 😊",
+    "notReally": "Nem igazán 😕",
+    "thatsGreat": "Ez nagyszerű!",
+    "rateUsOn": "Értékelnél minket a {{store}}-ban? Ez rengeteget segít a növekedésünkben!",
+    "rateOn": "Értékelés a {{store}}-ban",
+    "yourFeedback": "A visszajelzésed",
+    "feedbackPlaceholder": "Min javíthatnánk?",
+    "followUpNote": "Lehet, hogy megkeresünk további kérdésekkel a visszajelzésedről",
+    "submitFeedback": "Visszajelzés küldése",
+    "provideFeedback": "Kérjük, írd le a visszajelzésedet",
+    "thankYou": "Köszönjük a visszajelzésed!"
   }
 }

@@ -1196,7 +1196,16 @@
     "global": "Ụwa niile"
   },
   "auth": {
-    "loginRequired": "Achọrọ ịbanye"
+    "loginRequired": "Achọrọ ịbanye",
+    "walletImported": "E bubatara obere akpa",
+    "importWallet": "Bubata obere akpa",
+    "privateKeyPlaceholder": "Tinye igodo nzuzo gị",
+    "importExternalWallet": "Bubata obere akpa mpụga",
+    "privateKey": "Igodo nzuzo",
+    "pasteFromClipboard": "Mapụta site na clipboard",
+    "learnMoreAt": "Mụtakwuo na dehub.io",
+    "accountsOnDevice": "Akaụntụ dị na ngwaọrụ a",
+    "use": "Jiri"
   },
   "bookmarks": {
     "title": "Akara mpịnye gị",
@@ -3810,5 +3819,29 @@
   "search": {
     "endOfResults": "Njedebe nsonaazụ",
     "searchDehub": "Chọọ na DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Nọrọ na-amata",
+    "subtitle": "Kwado ọkwa ka i soro DeHub",
+    "rowTips": "Onyinye na ego na-abanye n'obere akpa gị",
+    "rowReplies": "Nzaghachi, akpọ aha na ozi ozugbo",
+    "rowLive": "Mgbe ndị okike ị na-eso na-ebido ebugharị",
+    "chooseInSettings": "Ị na-ahọrọ kpọmkwem nke ga-erute gị, na Ntọala, oge ọ bụla.",
+    "turnOn": "Kwado ọkwa"
+  },
+  "review": {
+    "enjoyingApp": "Ngwa ahụ ọ na-atọ gị ụtọ?",
+    "feedbackHelps": "Nzaghachi gị na-enyere anyị aka imezi DeHub",
+    "yes": "Ee! 😊",
+    "notReally": "Ọ dịghị otú ahụ 😕",
+    "thatsGreat": "Nke ahụ dị mma!",
+    "rateUsOn": "Ị ga-enye anyị ọkwa na {{store}}? Ọ na-enyere anyị aka ito!",
+    "rateOn": "Nye ọkwa na {{store}}",
+    "yourFeedback": "Nzaghachi gị",
+    "feedbackPlaceholder": "Gịnị ka anyị nwere ike ime nke ọma?",
+    "followUpNote": "Anyị nwere ike ịkpọtụrụ gị ịjụ ajụjụ ndị ọzọ gbasara nzaghachi gị",
+    "submitFeedback": "Zipụ nzaghachi",
+    "provideFeedback": "Biko dee nzaghachi gị",
+    "thankYou": "Daalụ maka nzaghachi gị!"
   }
 }

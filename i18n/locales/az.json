@@ -1407,7 +1407,16 @@
     "attachmentTooLarge": "Hər fayl 20 MB-dan kiçik olmalıdır"
   },
   "auth": {
-    "loginRequired": "Daxil olmaq lazımdır"
+    "loginRequired": "Daxil olmaq lazımdır",
+    "walletImported": "Pul kisəsi idxal edildi",
+    "importWallet": "Pul kisəsini idxal et",
+    "privateKeyPlaceholder": "Şəxsi açarınızı daxil edin",
+    "importExternalWallet": "Xarici pul kisəsini idxal et",
+    "privateKey": "Şəxsi açar",
+    "pasteFromClipboard": "Mübadilə buferindən yapışdır",
+    "learnMoreAt": "dehub.io saytında ətraflı öyrənin",
+    "accountsOnDevice": "Bu cihazdakı hesablar",
+    "use": "İstifadə et"
   },
   "messages": {
     "smartRepliesOff": "Təklif olunan cavablar söndürüldü",
@@ -3816,5 +3825,29 @@
   "search": {
     "endOfResults": "Nəticələrin sonu",
     "searchDehub": "DeHub-da axtar"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Xəbərdar olun",
+    "subtitle": "DeHub-dan geri qalmamaq üçün bildirişləri aktiv edin",
+    "rowTips": "Bəxşişlər və gəlirlər pul kisənizə gəlir",
+    "rowReplies": "Cavablar, qeydlər və birbaşa mesajlar",
+    "rowLive": "İzlədiyiniz yaradıcılar canlı yayıma başlayanda",
+    "chooseInSettings": "Bunlardan hansının sizə çatacağını istənilən vaxt Parametrlərdə seçirsiniz.",
+    "turnOn": "Bildirişləri aç"
+  },
+  "review": {
+    "enjoyingApp": "Tətbiqdən zövq alırsınız?",
+    "feedbackHelps": "Rəyiniz DeHub-u yaxşılaşdırmağa kömək edir",
+    "yes": "Bəli! 😊",
+    "notReally": "Elə də yox 😕",
+    "thatsGreat": "Bu əladır!",
+    "rateUsOn": "Bizi {{store}}-da qiymətləndirərsiniz? Bu, böyüməyimizə çox kömək edir!",
+    "rateOn": "{{store}}-da qiymətləndir",
+    "yourFeedback": "Rəyiniz",
+    "feedbackPlaceholder": "Nəyi daha yaxşı edə bilərik?",
+    "followUpNote": "Rəyinizlə bağlı əlavə suallar üçün sizinlə əlaqə saxlaya bilərik",
+    "submitFeedback": "Rəyi göndər",
+    "provideFeedback": "Zəhmət olmasa rəyinizi yazın",
+    "thankYou": "Rəyiniz üçün təşəkkürlər!"
   }
 }

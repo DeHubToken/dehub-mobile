@@ -1418,7 +1418,16 @@
     "attachmentTooLarge": "Kiekvienas failas turi būti mažesnis nei 20 MB"
   },
   "auth": {
-    "loginRequired": "Reikia prisijungti"
+    "loginRequired": "Reikia prisijungti",
+    "walletImported": "Piniginė importuota",
+    "importWallet": "Importuoti piniginę",
+    "privateKeyPlaceholder": "Įveskite savo privatų raktą",
+    "importExternalWallet": "Importuoti išorinę piniginę",
+    "privateKey": "Privatus raktas",
+    "pasteFromClipboard": "Įklijuoti iš iškarpinės",
+    "learnMoreAt": "Sužinokite daugiau dehub.io",
+    "accountsOnDevice": "Paskyros šiame įrenginyje",
+    "use": "Naudoti"
   },
   "messages": {
     "smartRepliesOff": "Siūlomi atsakymai išjungti",
@@ -3831,5 +3840,29 @@
   "search": {
     "endOfResults": "Rezultatų pabaiga",
     "searchDehub": "Ieškoti DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Būkite informuoti",
+    "subtitle": "Įjunkite pranešimus, kad neatsiliktumėte nuo DeHub",
+    "rowTips": "Arbatpinigiai ir uždarbis atkeliauja į jūsų piniginę",
+    "rowReplies": "Atsakymai, paminėjimai ir asmeninės žinutės",
+    "rowLive": "Kai sekami kūrėjai pradeda transliaciją",
+    "chooseInSettings": "Jūs patys pasirenkate, kurie iš jų jus pasieks — nustatymuose, bet kada.",
+    "turnOn": "Įjungti pranešimus"
+  },
+  "review": {
+    "enjoyingApp": "Ar programėlė jums patinka?",
+    "feedbackHelps": "Jūsų atsiliepimai padeda mums tobulinti DeHub",
+    "yes": "Taip! 😊",
+    "notReally": "Ne visai 😕",
+    "thatsGreat": "Puiku!",
+    "rateUsOn": "Ar įvertintumėte mus {{store}}? Tai tikrai padeda mums augti!",
+    "rateOn": "Įvertinti {{store}}",
+    "yourFeedback": "Jūsų atsiliepimai",
+    "feedbackPlaceholder": "Ką galėtume padaryti geriau?",
+    "followUpNote": "Galime susisiekti su papildomais klausimais apie jūsų atsiliepimą",
+    "submitFeedback": "Pateikti atsiliepimą",
+    "provideFeedback": "Prašome parašyti savo atsiliepimą",
+    "thankYou": "Ačiū už jūsų atsiliepimą!"
   }
 }

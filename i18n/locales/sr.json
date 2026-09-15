@@ -691,7 +691,16 @@
     "multipleChoice": "Allow multiple answers"
   },
   "auth": {
-    "loginRequired": "Пријава је обавезна"
+    "loginRequired": "Пријава је обавезна",
+    "walletImported": "Новчаник је увезен",
+    "importWallet": "Увези новчаник",
+    "privateKeyPlaceholder": "Унесите свој приватни кључ",
+    "importExternalWallet": "Увези спољни новчаник",
+    "privateKey": "Приватни кључ",
+    "pasteFromClipboard": "Налепи из оставе",
+    "learnMoreAt": "Сазнајте више на dehub.io",
+    "accountsOnDevice": "Налози на овом уређају",
+    "use": "Користи"
   },
   "explorePage": {
     "searchPlaceholder": "Претражите људе, објаве или садржај...",
@@ -3599,5 +3608,29 @@
   "search": {
     "endOfResults": "Крај резултата",
     "searchDehub": "Претражи DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Будите у току",
+    "subtitle": "Укључите обавештења да пратите DeHub",
+    "rowTips": "Напојнице и зарада стижу у ваш новчаник",
+    "rowReplies": "Одговори, помињања и директне поруке",
+    "rowLive": "Када аутори које пратите крену уживо",
+    "chooseInSettings": "Ви бирате тачно које од њих стижу до вас — у подешавањима, у било које време.",
+    "turnOn": "Укључи обавештења"
+  },
+  "review": {
+    "enjoyingApp": "Да ли уживате у апликацији?",
+    "feedbackHelps": "Ваше повратне информације помажу нам да побољшамо DeHub",
+    "yes": "Да! 😊",
+    "notReally": "Не баш 😕",
+    "thatsGreat": "То је сјајно!",
+    "rateUsOn": "Да ли бисте нас оценили на {{store}}? То нам заиста помаже да растемо!",
+    "rateOn": "Оцени на {{store}}",
+    "yourFeedback": "Ваше повратне информације",
+    "feedbackPlaceholder": "Шта можемо да урадимо боље?",
+    "followUpNote": "Можда ћемо вас контактирати са додатним питањима о вашим повратним информацијама",
+    "submitFeedback": "Пошаљи повратне информације",
+    "provideFeedback": "Молимо напишите своје повратне информације",
+    "thankYou": "Хвала на повратним информацијама!"
   }
 }

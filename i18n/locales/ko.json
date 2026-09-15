@@ -768,7 +768,16 @@
     "multipleChoice": "복수 응답 허용"
   },
   "auth": {
-    "loginRequired": "로그인 필요"
+    "loginRequired": "로그인 필요",
+    "walletImported": "지갑을 가져왔습니다",
+    "importWallet": "지갑 가져오기",
+    "privateKeyPlaceholder": "개인 키를 입력하세요",
+    "importExternalWallet": "외부 지갑 가져오기",
+    "privateKey": "개인 키",
+    "pasteFromClipboard": "클립보드에서 붙여넣기",
+    "learnMoreAt": "dehub.io에서 자세히 알아보기",
+    "accountsOnDevice": "이 기기의 계정",
+    "use": "사용"
   },
   "explorePage": {
     "searchPlaceholder": "사람, 게시물, 콘텐츠 검색...",
@@ -3900,5 +3909,29 @@
   "search": {
     "endOfResults": "결과 끝",
     "searchDehub": "DeHub 검색"
+  },
+  "notifPrompt": {
+    "stayInLoop": "소식을 놓치지 마세요",
+    "subtitle": "알림을 켜고 DeHub 소식을 받아보세요",
+    "rowTips": "후원과 수익이 지갑으로 들어옵니다",
+    "rowReplies": "답글, 멘션, 다이렉트 메시지",
+    "rowLive": "팔로우한 크리에이터가 라이브를 시작할 때",
+    "chooseInSettings": "이 중 무엇을 받을지는 설정에서 언제든 직접 고를 수 있습니다.",
+    "turnOn": "알림 켜기"
+  },
+  "review": {
+    "enjoyingApp": "앱이 마음에 드시나요?",
+    "feedbackHelps": "여러분의 의견이 DeHub를 더 좋게 만듭니다",
+    "yes": "네! 😊",
+    "notReally": "별로예요 😕",
+    "thatsGreat": "정말 좋네요!",
+    "rateUsOn": "{{store}}에서 평가를 남겨주시겠어요? 저희가 성장하는 데 큰 힘이 됩니다!",
+    "rateOn": "{{store}}에서 평가하기",
+    "yourFeedback": "의견",
+    "feedbackPlaceholder": "무엇을 더 잘할 수 있을까요?",
+    "followUpNote": "의견에 대해 추가로 여쭤볼 수 있습니다",
+    "submitFeedback": "의견 보내기",
+    "provideFeedback": "의견을 입력해 주세요",
+    "thankYou": "의견 감사합니다!"
   }
 }

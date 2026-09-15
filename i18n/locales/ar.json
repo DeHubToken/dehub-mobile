@@ -755,7 +755,16 @@
     "multipleChoice": "السماح بإجابات متعددة"
   },
   "auth": {
-    "loginRequired": "تسجيل الدخول مطلوب"
+    "loginRequired": "تسجيل الدخول مطلوب",
+    "walletImported": "تم استيراد المحفظة",
+    "importWallet": "استيراد محفظة",
+    "privateKeyPlaceholder": "أدخل مفتاحك الخاص",
+    "importExternalWallet": "استيراد محفظة خارجية",
+    "privateKey": "المفتاح الخاص",
+    "pasteFromClipboard": "لصق من الحافظة",
+    "learnMoreAt": "اعرف المزيد على dehub.io",
+    "accountsOnDevice": "الحسابات على هذا الجهاز",
+    "use": "استخدام"
   },
   "explorePage": {
     "searchPlaceholder": "ابحث عن أشخاص أو منشورات أو محتوى...",
@@ -3887,5 +3896,29 @@
   "search": {
     "endOfResults": "نهاية النتائج",
     "searchDehub": "ابحث في DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "ابقَ على اطلاع",
+    "subtitle": "فعّل الإشعارات لمواكبة DeHub",
+    "rowTips": "الإكراميات والأرباح تصل إلى محفظتك",
+    "rowReplies": "الردود والإشارات والرسائل المباشرة",
+    "rowLive": "المنشئون الذين تتابعهم عندما يبدؤون البث",
+    "chooseInSettings": "أنت تختار بالضبط أيّها يصلك، من الإعدادات، في أي وقت.",
+    "turnOn": "تفعيل الإشعارات"
+  },
+  "review": {
+    "enjoyingApp": "هل يعجبك التطبيق؟",
+    "feedbackHelps": "ملاحظاتك تساعدنا على تحسين DeHub",
+    "yes": "نعم! 😊",
+    "notReally": "ليس تمامًا 😕",
+    "thatsGreat": "هذا رائع!",
+    "rateUsOn": "هل تمانع في تقييمنا على {{store}}؟ هذا يساعدنا كثيرًا على النمو!",
+    "rateOn": "قيّم على {{store}}",
+    "yourFeedback": "ملاحظاتك",
+    "feedbackPlaceholder": "ما الذي يمكننا تحسينه؟",
+    "followUpNote": "قد نتواصل معك بأسئلة إضافية حول ملاحظاتك",
+    "submitFeedback": "إرسال الملاحظات",
+    "provideFeedback": "يرجى كتابة ملاحظاتك",
+    "thankYou": "شكرًا على ملاحظاتك!"
   }
 }

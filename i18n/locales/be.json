@@ -1429,7 +1429,16 @@
     "attachmentTooLarge": "Кожны файл павінен быць меншы за 20 МБ"
   },
   "auth": {
-    "loginRequired": "Патрабуецца ўваход"
+    "loginRequired": "Патрабуецца ўваход",
+    "walletImported": "Гаманец імпартаваны",
+    "importWallet": "Імпартаваць гаманец",
+    "privateKeyPlaceholder": "Увядзіце свой прыватны ключ",
+    "importExternalWallet": "Імпартаваць знешні гаманец",
+    "privateKey": "Прыватны ключ",
+    "pasteFromClipboard": "Уставіць з буфера",
+    "learnMoreAt": "Даведайцеся больш на dehub.io",
+    "accountsOnDevice": "Акаўнты на гэтай прыладзе",
+    "use": "Выкарыстаць"
   },
   "messages": {
     "smartRepliesOff": "Прапанаваныя адказы выключаны",
@@ -3865,5 +3874,29 @@
   "search": {
     "endOfResults": "Канец вынікаў",
     "searchDehub": "Пошук у DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Будзьце ў курсе",
+    "subtitle": "Уключыце апавяшчэнні, каб сачыць за DeHub",
+    "rowTips": "Чаявыя і заробак трапляюць у ваш гаманец",
+    "rowReplies": "Адказы, згадкі і асабістыя паведамленні",
+    "rowLive": "Калі аўтары, на якіх вы падпісаны, выходзяць у эфір",
+    "chooseInSettings": "Вы самі выбіраеце, якія з іх да вас даходзяць — у наладах, у любы час.",
+    "turnOn": "Уключыць апавяшчэнні"
+  },
+  "review": {
+    "enjoyingApp": "Вам падабаецца праграма?",
+    "feedbackHelps": "Ваш водгук дапамагае нам паляпшаць DeHub",
+    "yes": "Так! 😊",
+    "notReally": "Не вельмі 😕",
+    "thatsGreat": "Гэта выдатна!",
+    "rateUsOn": "Ці не маглі б вы ацаніць нас у {{store}}? Гэта вельмі дапамагае нам расці!",
+    "rateOn": "Ацаніць у {{store}}",
+    "yourFeedback": "Ваш водгук",
+    "feedbackPlaceholder": "Што мы можам палепшыць?",
+    "followUpNote": "Мы можам звязацца з вамі з дадатковымі пытаннямі пра ваш водгук",
+    "submitFeedback": "Адправіць водгук",
+    "provideFeedback": "Калі ласка, напішыце свой водгук",
+    "thankYou": "Дзякуй за ваш водгук!"
   }
 }

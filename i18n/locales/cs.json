@@ -757,7 +757,16 @@
     "multipleChoice": "Allow multiple answers"
   },
   "auth": {
-    "loginRequired": "Vyžadováno přihlášení"
+    "loginRequired": "Vyžadováno přihlášení",
+    "walletImported": "Peněženka importována",
+    "importWallet": "Importovat peněženku",
+    "privateKeyPlaceholder": "Zadejte svůj soukromý klíč",
+    "importExternalWallet": "Importovat externí peněženku",
+    "privateKey": "Soukromý klíč",
+    "pasteFromClipboard": "Vložit ze schránky",
+    "learnMoreAt": "Více informací na dehub.io",
+    "accountsOnDevice": "Účty na tomto zařízení",
+    "use": "Použít"
   },
   "explorePage": {
     "searchPlaceholder": "Hledat lidi, příspěvky nebo obsah...",
@@ -3836,5 +3845,29 @@
   "search": {
     "endOfResults": "Konec výsledků",
     "searchDehub": "Hledat v DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Buďte v obraze",
+    "subtitle": "Zapněte oznámení, ať vám z DeHubu nic neunikne",
+    "rowTips": "Spropitné a výdělky přistanou ve vaší peněžence",
+    "rowReplies": "Odpovědi, zmínky a přímé zprávy",
+    "rowLive": "Když tvůrci, které sledujete, začnou vysílat",
+    "chooseInSettings": "Přesně si vyberete, které z nich vám přijdou — v nastavení, kdykoli.",
+    "turnOn": "Zapnout oznámení"
+  },
+  "review": {
+    "enjoyingApp": "Líbí se vám aplikace?",
+    "feedbackHelps": "Vaše zpětná vazba nám pomáhá vylepšovat DeHub",
+    "yes": "Ano! 😊",
+    "notReally": "Ani ne 😕",
+    "thatsGreat": "To je skvělé!",
+    "rateUsOn": "Ohodnotili byste nás v {{store}}? Opravdu nám to pomáhá růst!",
+    "rateOn": "Ohodnotit v {{store}}",
+    "yourFeedback": "Vaše zpětná vazba",
+    "feedbackPlaceholder": "Co můžeme udělat lépe?",
+    "followUpNote": "Možná vás oslovíme s doplňujícími dotazy k vaší zpětné vazbě",
+    "submitFeedback": "Odeslat zpětnou vazbu",
+    "provideFeedback": "Napište prosím svou zpětnou vazbu",
+    "thankYou": "Děkujeme za zpětnou vazbu!"
   }
 }

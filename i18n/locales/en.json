@@ -1485,7 +1485,16 @@
     "attachmentTooLarge": "Each file must be under 20MB"
   },
   "auth": {
-    "loginRequired": "Log in required"
+    "loginRequired": "Log in required",
+    "walletImported": "Wallet imported",
+    "importWallet": "Import Wallet",
+    "privateKeyPlaceholder": "Enter your private key",
+    "importExternalWallet": "Import external wallet",
+    "privateKey": "Private key",
+    "pasteFromClipboard": "Paste from clipboard",
+    "learnMoreAt": "Learn more at dehub.io",
+    "accountsOnDevice": "Accounts on this device",
+    "use": "Use"
   },
   "messages": {
     "smartRepliesOff": "Suggested replies turned off",
@@ -3902,5 +3911,29 @@
   "search": {
     "endOfResults": "End of results",
     "searchDehub": "Search DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Stay in the loop",
+    "subtitle": "Turn on notifications to keep up with DeHub",
+    "rowTips": "Tips and earnings land in your wallet",
+    "rowReplies": "Replies, mentions and direct messages",
+    "rowLive": "Creators you follow going live",
+    "chooseInSettings": "You choose exactly which of these reach you in Settings, any time.",
+    "turnOn": "Turn on notifications"
+  },
+  "review": {
+    "enjoyingApp": "Are you enjoying the app?",
+    "feedbackHelps": "Your feedback helps us improve DeHub",
+    "yes": "Yes! 😊",
+    "notReally": "Not Really 😕",
+    "thatsGreat": "That's great!",
+    "rateUsOn": "Would you mind rating us on the {{store}}? It really helps us grow!",
+    "rateOn": "Rate on {{store}}",
+    "yourFeedback": "Your Feedback",
+    "feedbackPlaceholder": "What can we do better?",
+    "followUpNote": "We may reach out to ask follow-up questions about your feedback",
+    "submitFeedback": "Submit Feedback",
+    "provideFeedback": "Please provide your feedback",
+    "thankYou": "Thank you for your feedback!"
   }
 }
