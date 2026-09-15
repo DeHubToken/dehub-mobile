@@ -563,7 +563,20 @@
     "badgeDelegationNoteAny": "Afyare wuxuu amaahiyaa mid ka mid ah calaamadahaaga aan la furin koonto kale. Dib u qaad markasta oo aad jeceshahay — booska ayaa xor u ah maalin ka dib.",
     "badgeDelegationRaisesOnlyTier": "Calaamadda aad amaahato waa inay ka sarreysaa tii ay horey u kasbatay.",
     "badgeDelegationPickTier": "Calaamad si aad u amaahdo",
-    "badgeDelegationLendsAny": "Mid kastaa wuxuu amaahiyaa koonto kale calaamad kasta oo aad furtay, ilaa adiga kuu gaar ah {{tier}}. Calaamad yar ayaa weli isticmaalaysa booska oo dhan."
+    "badgeDelegationLendsAny": "Mid kastaa wuxuu amaahiyaa koonto kale calaamad kasta oo aad furtay, ilaa adiga kuu gaar ah {{tier}}. Calaamad yar ayaa weli isticmaalaysa booska oo dhan.",
+    "kidsMode": "Habka Carruurta",
+    "kidsModeDesc": "Waxay muujineysaa kaliya qoraallada la daabacay ee loogu talagalay carruurta, meel kasta. PIN ayaa dib u rogaya.",
+    "kidsModeSetPin": "Dooro PIN",
+    "kidsModeSetPinHelp": "4 ilaa 8 lambar. Waxaad u baahan tahay inaad dib u soo celiso caruusadaha galmada mar kale.",
+    "kidsModeConfirmPin": "Mar kale soo gal",
+    "kidsModeConfirmPinHelp": "Waad ogtahay inaad dib u soo celin karto.",
+    "kidsModeEnterPin": "Gali PIN-kaaga",
+    "kidsModeEnterPinHelp": "Tani waxay ka dhigeysaa Caruurta Mode off on qalab this.",
+    "kidsModeTurnOn": "U beddel Habka Carruurta",
+    "kidsModeTurnOff": "Beddel Habka Carruurta",
+    "kidsModePinMismatch": "PIN-yadaas way kala duwan yihiin. dib u bilow.",
+    "kidsModeFailed": "Taasi ma aysan shaqeyn. isku day mar kale.",
+    "kidsModeForgotPin": "Iska ilow? Ku qor boorsadaada aalad kale si aad u damiso Mode Kids."
   },
   "common": {
     "mute": "Aamusi",
@@ -602,7 +615,8 @@
     "copy": "Koobi",
     "optionalSuffix": "(ikhtiyaari)",
     "yesterday": "Shalay",
-    "ok": "Waa hagaag"
+    "ok": "Waa hagaag",
+    "continue": "Sii wad"
   },
   "tip": {
     "title": "Dir Bakhshiish",
@@ -1809,7 +1823,8 @@
     "removeMedia": "Ka saar warbaahinta",
     "cancelRecording": "Jooji duubista",
     "sendVoiceNote": "Dir fariinta codka",
-    "noneYetAddYours": "Weli faallo ma jirto, taada ku dar."
+    "noneYetAddYours": "Weli faallo ma jirto, taada ku dar.",
+    "kidsOnlyThread": "Qoraalkan waxaa loogu talagalay carruurta. Kaliya hababka carruurta ayaa ka faalloon kara."
   },
   "postInfo": {
     "title": "Macluumaadka qoraalka",
@@ -3594,7 +3609,17 @@
     "unmuteVideo": "Fur codka fiidyaha",
     "descriptionOptional": "Sharaxaad (ikhtiyaari)",
     "whatsHappening": "Maxaa socda?",
-    "quotaShortfall": "Qoraalkani wuxuu ku kacayaa {{cost}} DHB adiguna waxaad haysataa {{held}}."
+    "quotaShortfall": "Qoraalkani wuxuu ku kacayaa {{cost}} DHB adiguna waxaad haysataa {{held}}.",
+    "madeForKids": "Loo sameeyay carruurta",
+    "madeForKidsHint": "Waxaa lagu tusi doonaa Kids Mode",
+    "madeForKidsConfirmTitle": "Ma alaabta carruurta?",
+    "madeForKidsConfirmAudience": "Carruurta isticmaala Kids Mode waxaa lagu tusi doonaa post-kan. Wax kale oo DeHub ah ma gaadho iyaga.",
+    "madeForKidsConfirmReach": "Waxayna sidoo kale ka baxda alaabta caadiga ah — dadku weli way ka helaan profile-kaaga, raadinta iyo isku xiriir aad wadaagto.",
+    "madeForKidsConfirmComments": "Kids Mode kaliya ayaa ka comment-i kara. Waxaad hadna ku jawaabin kartaa iyaga.",
+    "madeForKidsConfirmYes": "Hah, waa carruurta",
+    "madeForKidsOnDesc": "Waxaa lagu tusi doonaa carruurta isticmaala Kids Mode, iyo ka baxda alaabta caadiga ah. Kids Mode kaliya ayaa ka comment-i kara.",
+    "madeForKidsOffDesc": "Waxaa post-kan lagu tusi doonaa carruurta isticmaala Kids Mode, iyo waxaa laga saari doonaa alaabta caadiga ah.",
+    "madeForKidsBlockedByMature": "Post-ka lagu calaamadeeya inuu ballaaran yahay ma alaabta carruurta ah oo keliya."
   },
   "bounty": {
     "claimed": "La qaatay",

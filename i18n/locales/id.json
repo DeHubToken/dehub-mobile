@@ -573,7 +573,20 @@
     "badgeDelegationNoteAny": "Slot meminjamkan salah satu lencana Anda yang tidak terkunci ke akun lain. Ambil kembali kapan pun Anda mau — slotnya akan kosong sehari kemudian.",
     "badgeDelegationRaisesOnlyTier": "Lencana yang Anda pinjamkan harus lebih tinggi dari yang sudah mereka peroleh.",
     "badgeDelegationPickTier": "Lencana untuk dipinjamkan",
-    "badgeDelegationLendsAny": "Masing - masing meminjamkan lencana apa pun yang telah Anda buka ke akun lain, hingga {{tier}} Anda sendiri. Lencana yang lebih kecil masih menggunakan seluruh slot."
+    "badgeDelegationLendsAny": "Masing - masing meminjamkan lencana apa pun yang telah Anda buka ke akun lain, hingga {{tier}} Anda sendiri. Lencana yang lebih kecil masih menggunakan seluruh slot.",
+    "kidsMode": "Mode Anak",
+    "kidsModeDesc": "Hanya menampilkan postingan yang dipublikasikan untuk anak - anak, di mana saja. PIN mematikannya kembali.",
+    "kidsModeSetPin": "Pilih PIN",
+    "kidsModeSetPinHelp": "4 hingga 8 digit. Kamu membutuhkannya untuk menonaktifkan Mode Anak lagi.",
+    "kidsModeConfirmPin": "Masukkan lagi",
+    "kidsModeConfirmPinHelp": "Jadi Anda tahu Anda bisa mereproduksinya.",
+    "kidsModeEnterPin": "Masukkan PIN ANDA",
+    "kidsModeEnterPinHelp": "Ini mematikan Mode Anak di perangkat ini.",
+    "kidsModeTurnOn": "Aktifkan Mode Anak",
+    "kidsModeTurnOff": "Nonaktifkan Mode Anak",
+    "kidsModePinMismatch": "PIN itu berbeda. Mulai lagi.",
+    "kidsModeFailed": "Itu tidak berhasil. Coba lagi.",
+    "kidsModeForgotPin": "Lupa? Masuk dengan dompet Anda di perangkat lain untuk menonaktifkan Mode Anak."
   },
   "common": {
     "mute": "Bisukan",
@@ -612,7 +625,8 @@
     "copy": "Salin",
     "optionalSuffix": "(opsional)",
     "yesterday": "Kemarin",
-    "ok": "OKE"
+    "ok": "OKE",
+    "continue": "Lanjutkan"
   },
   "drawers": {
     "ppvTitle": "Konten Bayar-Per-Tayang",
@@ -1819,7 +1833,8 @@
     "removeMedia": "Hapus media",
     "cancelRecording": "Batalkan rekaman",
     "sendVoiceNote": "Kirim pesan suara",
-    "noneYetAddYours": "Belum ada komentar, tambahkan milikmu."
+    "noneYetAddYours": "Belum ada komentar, tambahkan milikmu.",
+    "kidsOnlyThread": "Postingan ini untuk anak - anak. Hanya Mode Anak yang dapat mengomentarinya."
   },
   "postInfo": {
     "title": "Info Postingan",
@@ -3653,7 +3668,18 @@
     "unmuteVideo": "Bunyikan video",
     "descriptionOptional": "Deskripsi (opsional)",
     "whatsHappening": "Apa yang sedang terjadi?",
-    "quotaShortfall": "Postingan ini butuh {{cost}} DHB dan kamu punya {{held}}."
+    "quotaShortfall": "Postingan ini butuh {{cost}} DHB dan kamu punya {{held}}.",
+    "madeForKids": "Dibuat untuk anak-anak",
+    "madeForKidsHint": "ditampilkan di Mode Anak-anak",
+    "madeForKidsConfirmTitle": "Publikasikan ini untuk anak-anak?",
+    "madeForKidsConfirmAudience": "Anak-anak yang menggunakan Mode Anak-anak akan ditampilkan postingan ini. Tidak ada yang lain di DeHub yang menjangkau mereka.",
+    "madeForKidsConfirmReach": "Ini juga keluar dari feed biasa — orang masih menemukannya di profil Anda, dalam pencarian dan melalui tautan yang Anda bagikan.",
+    "madeForKidsConfirmComments": "Hanya Mode Anak-anak yang dapat mengomentari. Anda masih dapat membalas mereka sendiri.",
+    "madeForKidsConfirmYes": "Ya, ini untuk anak-anak",
+    "markMadeForKids": "Tandai sebagai dibuat untuk anak - anak",
+    "madeForKidsOnDesc": "Ditampilkan kepada anak-anak di Mode Anak-anak, dan keluar dari feed biasa. Hanya Mode Anak-anak yang dapat mengomentari.",
+    "madeForKidsOffDesc": "Menampilkan postingan ini kepada anak-anak yang menggunakan Mode Anak-anak, dan mengeluarkannya dari feed biasa.",
+    "madeForKidsBlockedByMature": "Postingan yang ditandai dewasa tidak dapat juga dipublikasikan untuk anak-anak."
   },
   "bounty": {
     "claimed": "Sudah diklaim",

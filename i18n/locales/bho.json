@@ -559,7 +559,20 @@
     "smsCountryBlocked": "एह बरे अब हम पचे आपन देस तजि देइ नाहीं सकित ।",
     "badgeDelegationNoteAny": "आप अपने पोस्ट में Image जरूर Use करें लेकिन याद रहे Image Copyright Free हो. — असीमित जीवन, जब चाहें तब खेलें",
     "badgeDelegationRaisesOnlyTier": "उ पचे नगर क बचावइ क जतन मँ बहोत थक जइहीं, किन्तु उ पचे लपटन क सिरिफ ईर्धन होइहीं ।",
-    "badgeDelegationPickTier": "लैंडिंग खातिर रिंगटोन"
+    "badgeDelegationPickTier": "लैंडिंग खातिर रिंगटोन",
+    "kidsMode": "बच्चे के फैशन की खातिर",
+    "kidsModeDesc": "अपने ऐप्स एक्सेस करें, हर जगह काम करें एगो पेन ड्राइव फेरु से उछल जाई.",
+    "kidsModeSetPin": "एगो पेन ड्राइव चुनीं",
+    "kidsModeSetPinHelp": "4 से 8 घंटे/दिन के समुचित उपयोग करें । फिर से एक ढेर में सब कुछ गूंध ।",
+    "kidsModeConfirmPin": "आऊ फेरि गरौँ",
+    "kidsModeConfirmPinHelp": "7 तउ उ पचे दूसर रास्ट्रन स बदला लेइ सकइँ",
+    "kidsModeEnterPin": "फिर आप अपना PIN enter करे",
+    "kidsModeEnterPinHelp": "एकर मतलब ई हौ कि बढ़ई आपन मोटरसाइकिल छोड़ देईं ।",
+    "kidsModeTurnOn": "बच्चे के मोड में बदलें",
+    "kidsModeTurnOff": "बच्चे के फैशन से बदलें",
+    "kidsModePinMismatch": "आ गईल एक बार फिर से, नया एल्बम ।",
+    "kidsModeFailed": "कृपया उ के सक्षम करीं आ फिर से कोशिश करीं ',",
+    "kidsModeForgotPin": "अपने डिवाइस के लिए, इसे फिर से बंद करने के लिए, अपने डिवाइस पर कहीं से भी टैप करें ।"
   },
   "common": {
     "mute": "आवाज़ बंद करीं",
@@ -598,7 +611,8 @@
     "copy": "कॉपी करीं",
     "optionalSuffix": "(वैकल्पिक)",
     "yesterday": "काल्ह",
-    "ok": "ठीक बा"
+    "ok": "ठीक बा",
+    "continue": "जारी रहे"
   },
   "tip": {
     "title": "उपहार भेजीं",
@@ -1787,7 +1801,8 @@
     "removeMedia": "मीडिया हटाईं",
     "cancelRecording": "रिकॉर्डिंग रद्द करीं",
     "sendVoiceNote": "आवाज नोट भेजीं",
-    "noneYetAddYours": "अबले कवनो टिप्पणी नइखे, आपन जोड़ीं।"
+    "noneYetAddYours": "अबले कवनो टिप्पणी नइखे, आपन जोड़ीं।",
+    "kidsOnlyThread": "इ लेख एगो हिस्सा ह बच्चा खातिर । केवल समस्या के खोज करे वाला व्यक्ति एह बारे में कुछ ना कुछ लिख सकेला."
   },
   "postInfo": {
     "title": "पोस्ट जानकारी",
@@ -3553,7 +3568,17 @@
     "unmuteVideo": "वीडियो के आवाज चालू करीं",
     "descriptionOptional": "विवरण (वैकल्पिक)",
     "whatsHappening": "का हो रहल बा?",
-    "quotaShortfall": "ई पोस्ट में {{cost}} DHB लागेला आ राउर लगे {{held}} बा।"
+    "quotaShortfall": "ई पोस्ट में {{cost}} DHB लागेला आ राउर लगे {{held}} बा।",
+    "madeForKids": "बच्चों के लिए बनाया गया",
+    "madeForKidsHint": "किड्स मोड में दिखाया गया",
+    "madeForKidsConfirmTitle": "बच्चों के लिए यह प्रकाशित करें?",
+    "madeForKidsConfirmAudience": "किड्स मोड का उपयोग करने वाले बच्चों को यह पोस्ट दिखाई देगी। DeHub पर कुछ और उन तक नहीं पहुंचता।",
+    "madeForKidsConfirmReach": "यह साधारण फीड से भी हट जाता है — लोग इसे अभी भी आपकी प्रोफाइल पर, खोज में और आपके द्वारा साझा किए गए लिंक के माध्यम से पा सकते हैं।",
+    "madeForKidsConfirmComments": "केवल किड्स मोड इस पर टिप्पणी कर सकता है। आप अभी भी उन्हें जवाब दे सकते हैं।",
+    "madeForKidsConfirmYes": "हां, यह बच्चों के लिए है",
+    "madeForKidsOnDesc": "किड्स मोड में बच्चों को दिखाया गया, और साधारण फीड से हटाया गया। केवल किड्स मोड टिप्पणी कर सकता है।",
+    "madeForKidsOffDesc": "यह पोस्ट किड्स मोड का उपयोग करने वाले बच्चों को दिखाता है, और इसे साधारण फीड से हटा देता है।",
+    "madeForKidsBlockedByMature": "परिपक्व के रूप में चिह्नित पोस्ट को बच्चों के लिए भी प्रकाशित नहीं किया जा सकता।"
   },
   "bounty": {
     "claimed": "मिल गइल",

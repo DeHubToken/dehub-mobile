@@ -534,7 +534,10 @@
     "smsVerify": "Confirm code",
     "smsNumberVerified": "Number verified",
     "smsNumberRemoved": "Number removed",
-    "badgeDelegationPickTier": "Badge to lend"
+    "badgeDelegationPickTier": "Badge to lend",
+    "kidsMode": "Kids Mode",
+    "kidsModeSetPin": "Choose a PIN",
+    "kidsModeConfirmPin": "Enter it again"
   },
   "common": {
     "mute": "Off di sound",
@@ -573,7 +576,8 @@
     "copy": "Copy",
     "optionalSuffix": "(optional)",
     "yesterday": "Yesterday",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Continue"
   },
   "tip": {
     "title": "Send Tip",

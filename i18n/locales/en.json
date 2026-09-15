@@ -638,7 +638,20 @@
     "badgeDelegationNoteAny": "A slot lends one of your unlocked badges to another account. Take it back whenever you like — the slot frees up a day later.",
     "badgeDelegationRaisesOnlyTier": "The badge you lend must be higher than the one they already earn.",
     "badgeDelegationPickTier": "Badge to lend",
-    "badgeDelegationLendsAny": "Each one lends another account any badge you have unlocked, up to your own {{tier}}. A smaller badge still uses a whole slot."
+    "badgeDelegationLendsAny": "Each one lends another account any badge you have unlocked, up to your own {{tier}}. A smaller badge still uses a whole slot.",
+    "kidsMode": "Kids Mode",
+    "kidsModeDesc": "Shows only posts published for children, everywhere. A PIN turns it back off.",
+    "kidsModeSetPin": "Choose a PIN",
+    "kidsModeSetPinHelp": "4 to 8 digits. You need it to turn Kids Mode off again.",
+    "kidsModeConfirmPin": "Enter it again",
+    "kidsModeConfirmPinHelp": "So you know you can reproduce it.",
+    "kidsModeEnterPin": "Enter your PIN",
+    "kidsModeEnterPinHelp": "This turns Kids Mode off on this device.",
+    "kidsModeTurnOn": "Turn Kids Mode on",
+    "kidsModeTurnOff": "Turn Kids Mode off",
+    "kidsModePinMismatch": "Those PINs are different. Start again.",
+    "kidsModeFailed": "That did not work. Try again.",
+    "kidsModeForgotPin": "Forgotten it? Sign in with your wallet on another device to turn Kids Mode off."
   },
   "common": {
     "mute": "Mute",
@@ -677,7 +690,8 @@
     "copy": "Copy",
     "optionalSuffix": "(optional)",
     "yesterday": "Yesterday",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Continue"
   },
   "tip": {
     "title": "Send Tip",
@@ -1955,7 +1969,8 @@
     "removeMedia": "Remove media",
     "cancelRecording": "Cancel recording",
     "sendVoiceNote": "Send voice note",
-    "noneYetAddYours": "No comments yet, add yours."
+    "noneYetAddYours": "No comments yet, add yours.",
+    "kidsOnlyThread": "This post is for kids. Only Kids Mode can comment on it."
   },
   "postInfo": {
     "title": "Post Info",
@@ -3673,7 +3688,18 @@
     "unmuteVideo": "Unmute video",
     "descriptionOptional": "Description (optional)",
     "whatsHappening": "What's happening?",
-    "quotaShortfall": "This post costs {{cost}} DHB and you hold {{held}}."
+    "quotaShortfall": "This post costs {{cost}} DHB and you hold {{held}}.",
+    "madeForKids": "Made for kids",
+    "madeForKidsHint": "shown in Kids Mode",
+    "madeForKidsConfirmTitle": "Publish this for kids?",
+    "madeForKidsConfirmAudience": "Children using Kids Mode will be shown this post. Nothing else on DeHub reaches them.",
+    "madeForKidsConfirmReach": "It also comes off the ordinary feeds — people still find it on your profile, in search and through a link you share.",
+    "madeForKidsConfirmComments": "Only Kids Mode can comment on it. You can still reply to them yourself.",
+    "madeForKidsConfirmYes": "Yes, it's for kids",
+    "markMadeForKids": "Mark as made for kids",
+    "madeForKidsOnDesc": "Shown to children in Kids Mode, and off the ordinary feeds. Only Kids Mode can comment.",
+    "madeForKidsOffDesc": "Shows this post to children using Kids Mode, and takes it off the ordinary feeds.",
+    "madeForKidsBlockedByMature": "A post marked mature cannot also be published for children."
   },
   "bounty": {
     "claimed": "Claimed",

@@ -558,7 +558,20 @@
     "smsCountryBlocked": "An tɛ se ka sɛbɛw ci o jamana ma halibi.",
     "badgeDelegationNoteAny": "O la, i bena i ka batɛmu dɔ di mɔgɔ wɛrɛ ma. N'i b'a fɛ, i ka segi n'a ye.",
     "badgeDelegationRaisesOnlyTier": "I be batɛmu min ta, o ka kan ka tɛmɛ i ka batɛmu kan.",
-    "badgeDelegationPickTier": "A ka juru sara"
+    "badgeDelegationPickTier": "A ka juru sara",
+    "kidsMode": "Denmisɛnw ka kan ka kɛ ni kanuya ye",
+    "kidsModeDesc": "A yira yɔrɔ minw na denmisɛnw dɔrɔn lo be yen, yɔrɔ bɛɛ. O kɔ, a y'a daminɛ ka miiri a yɛrɛ koo la.",
+    "kidsModeSetPin": "I ka pin dɔ ta",
+    "kidsModeSetPinHelp": "Mɔgɔ naani ka se mɔgɔ seegi ma. O kama, a tun ka ɲi ka kɛ i n'a fɔ a tun y'a fɔ cogo min na.",
+    "kidsModeConfirmPin": "O kɔ, a ye n' ka soow lɔ.",
+    "kidsModeConfirmPinHelp": "I y'a lɔn ko i bena a dilan.",
+    "kidsModeEnterPin": "I ka pin ta",
+    "kidsModeEnterPinHelp": "O be se ka denmisɛnw bali ka baara kɛ n'o masini ye.",
+    "kidsModeTurnOn": "Denmisɛnw ka kan ka kɛ cogo min na, o filɛ nin ye:",
+    "kidsModeTurnOff": "Aw ye denmisɛnw bila ka bɔ u ka sira kan",
+    "kidsModePinMismatch": "O kɔ, u y'a daminɛ ka dɔ fara a kan.",
+    "kidsModeFailed": "N'i ma siran, o be yɛlɛma ka kɛ ten.",
+    "kidsModeForgotPin": "I ka wari bila baarakɛminan wɛrɛ kan walisa ka denmisɛnw bali ka baara kɛ."
   },
   "common": {
     "mute": "Kan bɔ",
@@ -597,7 +610,8 @@
     "copy": "Kopi",
     "optionalSuffix": "(a man wajibi ye)",
     "yesterday": "Kunu",
-    "ok": "Awɔ"
+    "ok": "Awɔ",
+    "continue": "Ka to ka taga"
   },
   "tip": {
     "title": "Kɔrɔbɔ",
@@ -1796,7 +1810,8 @@
     "removeMedia": "Media bɔ",
     "cancelRecording": "Sɛbɛnni dabila",
     "sendVoiceNote": "Kumakan ci",
-    "noneYetAddYours": "Hakilina si tɛ yen fɔlɔ, i ta fara a kan."
+    "noneYetAddYours": "Hakilina si tɛ yen fɔlɔ, i ta fara a kan.",
+    "kidsOnlyThread": "O barokun ye denmisɛnw ka barokun ye. Denmisɛnw dɔrɔn lo be se ka kuma o koo la."
   },
   "postInfo": {
     "title": "Post kunnafoni",
@@ -3547,7 +3562,17 @@
     "unmuteVideo": "Wideyo kan segin",
     "descriptionOptional": "Ɲɛfɔli (a ka kan tɛ)",
     "whatsHappening": "Mun bɛ kɛ?",
-    "quotaShortfall": "Nin post musaka ye {{cost}} DHB ye, i bolo ye {{held}} ye."
+    "quotaShortfall": "Nin post musaka ye {{cost}} DHB ye, i bolo ye {{held}} ye.",
+    "madeForKids": "A ka se don ka",
+    "madeForKidsHint": "Jɛ ka fɔ ka sɔrɔ Kids Mode la",
+    "madeForKidsConfirmTitle": "I ni ka jɔ ka sɔrɔ ka don ka se don ka?",
+    "madeForKidsConfirmAudience": "Den ye ka gara Kids Mode la, a bɛ sɔrɔ i post ye. Ɲɔgɔn tɛ DeHub la ma sɔrɔ.",
+    "madeForKidsConfirmReach": "A tun bɛ kɔ ka sɔrɔ ka jɔ ka sɔrɔ ka don ka — den bɛ a gara i profil la, search la ani link ye i ka jɔ.",
+    "madeForKidsConfirmComments": "Kids Mode ye nka a ka kɔmɛnt ka ɲɔgɔn. I bɛ ɲɔgɔn ka jɔ ka kɔmɛnt ka sɔrɔ.",
+    "madeForKidsConfirmYes": "Aw, a ye don ka se don ka",
+    "madeForKidsOnDesc": "A bɛ sɔrɔ den ye ka gara Kids Mode la, ani a bɛ kɔ ka sɔrɔ ka jɔ ka sɔrɔ ka don ka. Kids Mode ye nka a ka kɔmɛnt.",
+    "madeForKidsOffDesc": "A bɛ sɔrɔ i post ye den ye ka gara Kids Mode la, ani a bɛ kɔ ka sɔrɔ ka jɔ ka sɔrɔ ka don ka.",
+    "madeForKidsBlockedByMature": "Post ye ka jɔ ka sɔrɔ ka don ka tɛ ɲɔgɔn ka jɔ ka sɔrɔ ka don ka den ye ka gara."
   },
   "bounty": {
     "claimed": "A tara",

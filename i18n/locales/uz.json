@@ -571,7 +571,20 @@
     "badgeDelegationNoteAny": "Slot sizning ochilgan nishonlaringizdan birini boshqa hisobga o&#39;tkazadi. Uni xohlagan vaqtingizda qaytarib oling — slot bir kundan keyin bo&#39;shatiladi.",
     "badgeDelegationRaisesOnlyTier": "Siz qarzga beradigan nishon ular allaqachon topganidan yuqori bo&#39;lishi kerak.",
     "badgeDelegationPickTier": "Qarz berish uchun nishon",
-    "badgeDelegationLendsAny": "Ularning har biri siz ochgan har qanday nishonni, o&#39;zingizning {{tier}} raqamigacha, boshqa hisobga beradi. Kichikroq nishon hali ham butun uyani ishlatadi."
+    "badgeDelegationLendsAny": "Ularning har biri siz ochgan har qanday nishonni, o&#39;zingizning {{tier}} raqamigacha, boshqa hisobga beradi. Kichikroq nishon hali ham butun uyani ishlatadi.",
+    "kidsMode": "Bolalar rejimi",
+    "kidsModeDesc": "Faqat bolalar uchun chop etilgan postlarni hamma joyda ko&#39;rsatadi. PIN kod uni qayta o&#39;chiradi.",
+    "kidsModeSetPin": "PIN-kodni tanlang",
+    "kidsModeSetPinHelp": "4 dan 8 gacha raqam. Bolalar rejimini yana o&#39;chirish uchun kerak.",
+    "kidsModeConfirmPin": "Yana kiriting",
+    "kidsModeConfirmPinHelp": "Shunday qilib, siz uni qayta yaratishingiz mumkinligini bilasiz.",
+    "kidsModeEnterPin": "PIN-kodingizni kiriting",
+    "kidsModeEnterPinHelp": "Bu qurilmada Bolalar rejimini o&#39;chiradi.",
+    "kidsModeTurnOn": "Bolalar rejimini yoqing",
+    "kidsModeTurnOff": "Bolalar rejimini o&#39;chirib qo&#39;ying",
+    "kidsModePinMismatch": "PIN-kodlar boshqacha. Qaytadan boshlang.",
+    "kidsModeFailed": "Bu ish bermadi. Qaytadan urinib ko&#39;ring.",
+    "kidsModeForgotPin": "Unutdingizmi? Bolalar rejimini o&#39;chirish uchun boshqa qurilmada hamyoningiz bilan tizimga kiring."
   },
   "common": {
     "mute": "Ovozni o‘chirish",
@@ -610,7 +623,8 @@
     "copy": "Nusxalash",
     "optionalSuffix": "(ixtiyoriy)",
     "yesterday": "Kecha",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Davom eting"
   },
   "tip": {
     "title": "Tip yuborish",
@@ -1834,7 +1848,8 @@
     "removeMedia": "Mediani o'chirish",
     "cancelRecording": "Yozuvni bekor qilish",
     "sendVoiceNote": "Ovozli xabarni yuborish",
-    "noneYetAddYours": "Hali izoh yo'q, o'zingiznikini qo'shing."
+    "noneYetAddYours": "Hali izoh yo'q, o'zingiznikini qo'shing.",
+    "kidsOnlyThread": "Bu post bolalar uchun. Unga faqat Bolalar rejimi izoh qoldirishi mumkin."
   },
   "postInfo": {
     "title": "Post ma'lumoti",
@@ -3654,7 +3669,17 @@
     "unmuteVideo": "Video ovozini yoqish",
     "descriptionOptional": "Tavsif (ixtiyoriy)",
     "whatsHappening": "Nima gap?",
-    "quotaShortfall": "Bu post {{cost}} DHB turadi, sizda esa {{held}} bor."
+    "quotaShortfall": "Bu post {{cost}} DHB turadi, sizda esa {{held}} bor.",
+    "madeForKids": "Bolalar uchun yaratilgan",
+    "madeForKidsHint": "Bolalar rejimida ko'rsatiladi",
+    "madeForKidsConfirmTitle": "Buni bolalar uchun nashr qilasizmi?",
+    "madeForKidsConfirmAudience": "Bolalar rejimini ishlatayotgan bolalar ushbu postni ko'rishlari mumkin. DeHub-ga boshqa hech narsa ularning ko'rinishiga kelmaydi.",
+    "madeForKidsConfirmReach": "U oddiy tasmalardan ham chiqib ketadi — odamlar uni hali ham sizning profilingizda, qidiruvda va siz ulashgan havola orqali topishadi.",
+    "madeForKidsConfirmComments": "Faqat Bolalar rejimi sharhlay oladi. Siz ularning o'zingizga javob berishingiz mumkin.",
+    "madeForKidsConfirmYes": "Ha, bu bolalar uchun",
+    "madeForKidsOnDesc": "Bolalar rejimini ishlatayotgan bolalarga ko'rsatiladi va oddiy tasmalardan chiqib ketadi. Faqat Bolalar rejimi sharhlay oladi.",
+    "madeForKidsOffDesc": "Ushbu postni Bolalar rejimini ishlatayotgan bolalarga ko'rsatadi va uni oddiy tasmalardan olib tashlaydi.",
+    "madeForKidsBlockedByMature": "Yetuk deb belgilangan post ham bolalar uchun nashr qilinishi mumkin emas."
   },
   "bounty": {
     "claimed": "Olindi",

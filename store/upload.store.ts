@@ -56,6 +56,8 @@ export interface SerializedUploadPayload {
    * safe, which is also what a job persisted by an older build reads as.
    */
   contentRating?: "mature";
+  /** Published for children — the Kids Mode allowlist. Only ever true. */
+  forKids?: boolean;
   /**
    * The Shop board. Absent on a job persisted by an older build, which reads
    * as "no board" — the same thing it means on a post that never had one.

@@ -587,7 +587,20 @@
     "badgeDelegationNoteAny": "Een slot leent een van je ontgrendelde badges uit aan een ander account. Neem het terug wanneer je maar wilt — de sleuf komt een dag later vrij.",
     "badgeDelegationRaisesOnlyTier": "De badge die je uitleent, moet hoger zijn dan de badge die ze al verdienen.",
     "badgeDelegationPickTier": "Badge om uit te lenen",
-    "badgeDelegationLendsAny": "Elk leent een ander account een badge uit die je hebt ontgrendeld, tot aan je eigen {{tier}}. Een kleinere badge gebruikt nog steeds een hele sleuf."
+    "badgeDelegationLendsAny": "Elk leent een ander account een badge uit die je hebt ontgrendeld, tot aan je eigen {{tier}}. Een kleinere badge gebruikt nog steeds een hele sleuf.",
+    "kidsMode": "Kindermodus",
+    "kidsModeDesc": "Toont alleen berichten gepubliceerd voor kinderen, overal. Een PIN schakelt het weer uit.",
+    "kidsModeSetPin": "Kies een PINCODE",
+    "kidsModeSetPinHelp": "4 tot 8 cijfers. Je hebt het nodig om de kindermodus weer uit te schakelen.",
+    "kidsModeConfirmPin": "Voer het opnieuw in",
+    "kidsModeConfirmPinHelp": "Zodat je weet dat je het kunt reproduceren.",
+    "kidsModeEnterPin": "Voer je PINCODE IN",
+    "kidsModeEnterPinHelp": "Hiermee wordt de kindermodus uitgeschakeld op dit apparaat.",
+    "kidsModeTurnOn": "Zet de kindermodus aan",
+    "kidsModeTurnOff": "Zet de kindermodus uit",
+    "kidsModePinMismatch": "Die pincodes zijn anders. Begin opnieuw.",
+    "kidsModeFailed": "Dat werkte niet. Probeer het opnieuw.",
+    "kidsModeForgotPin": "Ben je het vergeten? Log in met je portemonnee op een ander apparaat om de kindermodus uit te schakelen."
   },
   "common": {
     "mute": "Dempen",
@@ -818,7 +831,8 @@
     "recordVideo": "Video opnemen",
     "saveChanges": "Wijzigingen opslaan",
     "optionalSuffix": "(optioneel)",
-    "yesterday": "Gisteren"
+    "yesterday": "Gisteren",
+    "continue": "Doorgaan"
   },
   "home": {
     "title": "Home",
@@ -2283,7 +2297,8 @@
     "removeMedia": "Media verwijderen",
     "cancelRecording": "Opname annuleren",
     "sendVoiceNote": "Spraakbericht verzenden",
-    "noneYetAddYours": "Nog geen reacties — plaats de eerste."
+    "noneYetAddYours": "Nog geen reacties — plaats de eerste.",
+    "kidsOnlyThread": "Dit bericht is voor kinderen. Alleen de kindermodus kan er commentaar op geven."
   },
   "postInfo": {
     "title": "Berichtinfo",
@@ -3870,7 +3885,18 @@
     "unmuteVideo": "Dempen van video opheffen",
     "descriptionOptional": "Beschrijving (optioneel)",
     "whatsHappening": "Wat gebeurt er?",
-    "quotaShortfall": "Dit bericht kost {{cost}} DHB en jij hebt {{held}}."
+    "quotaShortfall": "Dit bericht kost {{cost}} DHB en jij hebt {{held}}.",
+    "madeForKids": "Gemaakt voor kinderen",
+    "madeForKidsHint": "weergegeven in kindermodus",
+    "madeForKidsConfirmTitle": "Dit voor kinderen publiceren?",
+    "madeForKidsConfirmAudience": "Kinderen die de kindermodus gebruiken, krijgen dit bericht te zien. Niets anders op DeHub bereikt hen.",
+    "madeForKidsConfirmReach": "Het komt ook van de gewone feeds — mensen vinden het nog steeds op je profiel, in zoekopdrachten en via een link die je deelt.",
+    "madeForKidsConfirmComments": "Alleen de kindermodus kan er commentaar op geven. Je kunt ze nog steeds zelf beantwoorden.",
+    "madeForKidsConfirmYes": "Ja, het is voor kinderen",
+    "markMadeForKids": "Markeren als gemaakt voor kinderen",
+    "madeForKidsOnDesc": "Wordt getoond aan kinderen in de kindermodus en buiten de gewone feeds. Alleen de kindermodus kan reageren.",
+    "madeForKidsOffDesc": "Toont dit bericht aan kinderen in de kindermodus en haalt het van de gewone feeds.",
+    "madeForKidsBlockedByMature": "Een bericht dat als volwassen is gemarkeerd, kan niet ook voor kinderen worden gepubliceerd."
   },
   "bounty": {
     "claimed": "Geclaimd",

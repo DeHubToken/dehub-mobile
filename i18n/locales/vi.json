@@ -92,7 +92,8 @@
     "copy": "Sao chép",
     "optionalSuffix": "(tùy chọn)",
     "yesterday": "Hôm qua",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Tiếp tục"
   },
   "glossary": {
     "title": "Bảng thuật ngữ",
@@ -928,7 +929,20 @@
     "badgeDelegationNoteAny": "Một vị trí cho một trong các huy hiệu đã mở khóa của bạn mượn vào một tài khoản khác. Lấy lại bất cứ khi nào bạn muốn — khe cắm sẽ được giải phóng một ngày sau đó.",
     "badgeDelegationRaisesOnlyTier": "Huy hiệu bạn cho vay phải cao hơn huy hiệu họ đã kiếm được.",
     "badgeDelegationPickTier": "Huy hiệu cho mượn",
-    "badgeDelegationLendsAny": "Mỗi người cho một tài khoản khác mượn bất kỳ huy hiệu nào bạn đã mở khóa, tối đa là {{tier}} của riêng bạn. Một huy hiệu nhỏ hơn vẫn sử dụng toàn bộ vị trí."
+    "badgeDelegationLendsAny": "Mỗi người cho một tài khoản khác mượn bất kỳ huy hiệu nào bạn đã mở khóa, tối đa là {{tier}} của riêng bạn. Một huy hiệu nhỏ hơn vẫn sử dụng toàn bộ vị trí.",
+    "kidsMode": "Chế độ trẻ em",
+    "kidsModeDesc": "Chỉ hiển thị các bài đăng được xuất bản cho trẻ em, ở mọi nơi. Một GHIM sẽ tắt nó trở lại.",
+    "kidsModeSetPin": "Chọn mã PIN",
+    "kidsModeSetPinHelp": "4 đến 8 chữ số. Bạn cần nó để tắt lại Chế độ trẻ em.",
+    "kidsModeConfirmPin": "Nhập lại",
+    "kidsModeConfirmPinHelp": "Vì vậy, bạn biết bạn có thể tái tạo nó.",
+    "kidsModeEnterPin": "Nhập mã PIN của bạn",
+    "kidsModeEnterPinHelp": "Thao tác này sẽ tắt Chế độ trẻ em trên thiết bị này.",
+    "kidsModeTurnOn": "Bật Chế độ trẻ em",
+    "kidsModeTurnOff": "Tắt Chế độ trẻ em",
+    "kidsModePinMismatch": "Các mã PIN đó khác nhau. Hãy bắt đầu lại.",
+    "kidsModeFailed": "Điều đó không hiệu quả. Hãy thử lại.",
+    "kidsModeForgotPin": "Quên? Đăng nhập bằng ví của bạn trên một thiết bị khác để tắt Chế độ trẻ em."
   },
   "postOptions": {
     "options": "Tuỳ chọn",
@@ -2100,7 +2114,8 @@
     "removeMedia": "Xóa media",
     "cancelRecording": "Hủy ghi âm",
     "sendVoiceNote": "Gửi tin nhắn thoại",
-    "noneYetAddYours": "Chưa có bình luận, hãy viết đầu tiên."
+    "noneYetAddYours": "Chưa có bình luận, hãy viết đầu tiên.",
+    "kidsOnlyThread": "Bài đăng này dành cho trẻ em. Chỉ Chế độ trẻ em mới có thể bình luận về nó."
   },
   "postInfo": {
     "title": "Thông tin bài viết",
@@ -3691,7 +3706,17 @@
     "unmuteVideo": "Bật tiếng video",
     "descriptionOptional": "Mô tả (tùy chọn)",
     "whatsHappening": "Có gì mới?",
-    "quotaShortfall": "Bài đăng này tốn {{cost}} DHB và bạn đang có {{held}}."
+    "quotaShortfall": "Bài đăng này tốn {{cost}} DHB và bạn đang có {{held}}.",
+    "madeForKids": "Được tạo cho trẻ em",
+    "madeForKidsHint": "hiển thị trong Chế độ Trẻ em",
+    "madeForKidsConfirmTitle": "Xuất bản điều này cho trẻ em?",
+    "madeForKidsConfirmAudience": "Trẻ em sử dụng Chế độ Trẻ em sẽ được xem bài đăng này. Không có gì khác trên DeHub tiếp cận chúng.",
+    "madeForKidsConfirmReach": "Nó cũng được loại bỏ khỏi các bảng feed thông thường — mọi người vẫn tìm thấy nó trên hồ sơ của bạn, trong tìm kiếm và thông qua liên kết bạn chia sẻ.",
+    "madeForKidsConfirmComments": "Chỉ Chế độ Trẻ em mới có thể bình luận về nó. Bạn vẫn có thể tự trả lời chúng.",
+    "madeForKidsConfirmYes": "Có, nó dành cho trẻ em",
+    "madeForKidsOnDesc": "Hiển thị cho trẻ em trong Chế độ Trẻ em, và loại bỏ khỏi các bảng feed thông thường. Chỉ Chế độ Trẻ em mới có thể bình luận.",
+    "madeForKidsOffDesc": "Hiển thị bài đăng này cho trẻ em sử dụng Chế độ Trẻ em, và loại bỏ nó khỏi các bảng feed thông thường.",
+    "madeForKidsBlockedByMature": "Bài đăng được đánh dấu là dành cho người lớn không thể được xuất bản cho trẻ em."
   },
   "bounty": {
     "claimed": "Đã nhận",

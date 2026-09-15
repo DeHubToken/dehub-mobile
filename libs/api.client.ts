@@ -4,6 +4,7 @@ import env from '../config/env';
 import { createAuthHeaders, getAuthToken } from './auth.utils';
 import { tokenRefreshManager } from './token-refresh';
 import { getDeviceHeaders } from './device';
+import { isKidsModeLocked } from './kids-mode-lock';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
 const PLATFORM = Platform.OS; // 'ios' | 'android'
@@ -113,6 +114,13 @@ export const apiClient = {
       'X-Client-Type': 'mobile',
       'X-Platform': PLATFORM,
       'X-App-Version': APP_VERSION,
+      // Kids Mode travels on every request, signed in or not. The server also
+      // reads the flag off the account and that one is authoritative — but
+      // /api/feed answers an expired token with 200 and an anonymous item
+      // shape rather than a 401, so a lapsed session would be served the
+      // ordinary feed with nothing to say anything had changed. This is what
+      // survives that. See libs/kids-mode-lock.
+      ...(isKidsModeLocked() ? { 'X-Kids-Mode': '1' } : {}),
       ...(await getDeviceHeaders()),
       ...headers,
     };

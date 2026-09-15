@@ -513,7 +513,19 @@
     "resetDeviceLinkBody": "یہ فون بھول جائے گا کہ تمہارے Google/ای میل سائن ان کے لیے کون سا والٹ خود چنتا ہے۔ تم سائن آؤٹ ہو جاؤ گے، اور اگلی بار سائن ان کرتے وقت صحیح والٹ کو اس کے پاس ورڈ سے کھولنے کو کہا جائے گا (وہی جو ویب سائٹ استعمال کرتی ہے)۔",
     "resetAndSignOut": "ری سیٹ اور سائن آؤٹ",
     "deviceLinkReset": "ڈیوائس لنک ری سیٹ ہو گیا۔ صحیح اکاؤنٹ لینے کے لیے دوبارہ سائن ان کرو۔",
-    "deviceLinkResetFailed": "ڈیوائس لنک ری سیٹ نئیں ہو سکا۔"
+    "deviceLinkResetFailed": "ڈیوائس لنک ری سیٹ نئیں ہو سکا۔",
+    "kidsModeDesc": "केवल बच्चों के लिए प्रकाशित पोस्ट दिखाता है, हर जगह। एक PIN इसे वापस बंद कर देता है।",
+    "kidsModeSetPin": "PIN चुनें",
+    "kidsModeSetPinHelp": "4 से 8 अंक। आपको Kids Mode को फिर से बंद करने के लिए इसकी आवश्यकता है।",
+    "kidsModeConfirmPin": "इसे फिर से दर्ज करें",
+    "kidsModeConfirmPinHelp": "ताकि आप जान सकें कि आप इसे दोहरा सकते हैं।",
+    "kidsModeEnterPin": "अपना PIN दर्ज करें",
+    "kidsModeEnterPinHelp": "यह इस डिवाइस पर Kids Mode को बंद कर देता है।",
+    "kidsModeTurnOn": "Kids Mode चालू करें",
+    "kidsModeTurnOff": "Kids Mode बंद करें",
+    "kidsModePinMismatch": "वे PIN अलग हैं। फिर से शुरू करें।",
+    "kidsModeFailed": "यह काम नहीं आया। फिर से कोशिश करें।",
+    "kidsModeForgotPin": "भूल गए? Kids Mode को बंद करने के लिए दूसरे डिवाइस पर अपने वॉलेट से साइन इन करें।"
   },
   "common": {
     "mute": "آواز بند کرو",

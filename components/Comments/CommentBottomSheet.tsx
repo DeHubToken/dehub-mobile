@@ -40,6 +40,8 @@ interface CommentBottomSheetProps {
   contentType?: "video" | "feed";
   /** Creator turned replies off — swaps the composer for a notice. */
   commentsDisabled?: boolean;
+  /** The post is published for children — see CommentSection. */
+  forKids?: boolean;
   /** The post creator, for the Creator / Not-the-creator chips on comments. */
   postCreator?: PostCreator | null;
 }
@@ -51,6 +53,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   highlightCommentId,
   contentType = "video",
   commentsDisabled = false,
+  forKids = false,
   postCreator,
   inlineHeight,
   bottomOffset = 0,
@@ -240,6 +243,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
               highlightCommentId={highlightCommentId}
               contentType={contentType}
               commentsDisabled={commentsDisabled}
+              forKids={forKids}
               postCreator={postCreator}
               onDirtyChange={onDirtyChange}
               keyboardHandled={inline}

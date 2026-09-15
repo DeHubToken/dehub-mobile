@@ -572,7 +572,20 @@
     "badgeDelegationNoteAny": "Kolikkopeli lainaa yhden avaamistasi kunniamerkeistä toiselle tilille. Ota se takaisin milloin haluat — kolikkopeli vapautuu päivää myöhemmin.",
     "badgeDelegationRaisesOnlyTier": "Lainaamasi erikoismerkin on oltava suurempi kuin hänen jo ansaitsemansa erikoismerkki.",
     "badgeDelegationPickTier": "Lainattava kunniamerkki",
-    "badgeDelegationLendsAny": "Jokainen lainaa toiselle tilille minkä tahansa avaamasi erikoismerkin, jopa oman {{tier}}. Pienempi merkki käyttää silti kokonaista korttipaikkaa."
+    "badgeDelegationLendsAny": "Jokainen lainaa toiselle tilille minkä tahansa avaamasi erikoismerkin, jopa oman {{tier}}. Pienempi merkki käyttää silti kokonaista korttipaikkaa.",
+    "kidsMode": "Lasten tila",
+    "kidsModeDesc": "Näyttää vain lapsille julkaistut julkaisut kaikkialla. PIN-KOODI kytkee sen takaisin pois päältä.",
+    "kidsModeSetPin": "Valitse PIN-KOODI",
+    "kidsModeSetPinHelp": "4-8 numeroa. Tarvitset sitä kytkeäksesi lapsitilan uudelleen pois päältä.",
+    "kidsModeConfirmPin": "Syötä se uudelleen",
+    "kidsModeConfirmPinHelp": "Joten tiedät, että voit toistaa sen.",
+    "kidsModeEnterPin": "Syötä PIN-KOODISI",
+    "kidsModeEnterPinHelp": "Tämä kytkee tämän laitteen lapset-tilan pois päältä.",
+    "kidsModeTurnOn": "Kytke lasten tila päälle",
+    "kidsModeTurnOff": "Kytke lapset-tila pois päältä",
+    "kidsModePinMismatch": "Nämä PIN-koodit ovat erilaisia. Aloita alusta.",
+    "kidsModeFailed": "Se ei toiminut. Yritä uudelleen.",
+    "kidsModeForgotPin": "Unohditko sen? Kirjaudu sisään lompakollasi toisella laitteella kytkeäksesi lapsitilan pois päältä."
   },
   "common": {
     "mute": "Mykistä",
@@ -611,7 +624,8 @@
     "copy": "Kopioi",
     "optionalSuffix": "(valinnainen)",
     "yesterday": "Eilen",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Jatka"
   },
   "postOptions": {
     "options": "Vaihtoehdot",
@@ -1783,7 +1797,8 @@
     "removeMedia": "Poista media",
     "cancelRecording": "Peruuta nauhoitus",
     "sendVoiceNote": "Lähetä ääniviesti",
-    "noneYetAddYours": "Ei vielä kommentteja — lisää omasi."
+    "noneYetAddYours": "Ei vielä kommentteja — lisää omasi.",
+    "kidsOnlyThread": "Tämä viesti on tarkoitettu lapsille. Vain lapset-tila voi kommentoida sitä."
   },
   "postInfo": {
     "title": "Julkaisun tiedot",
@@ -3603,7 +3618,18 @@
     "unmuteVideo": "Poista videon mykistys",
     "descriptionOptional": "Kuvaus (valinnainen)",
     "whatsHappening": "Mitä kuuluu?",
-    "quotaShortfall": "Tämä julkaisu maksaa {{cost}} DHB ja sinulla on {{held}}."
+    "quotaShortfall": "Tämä julkaisu maksaa {{cost}} DHB ja sinulla on {{held}}.",
+    "madeForKids": "Tehty lapsille",
+    "madeForKidsHint": "näytetään Kids Mode -tilassa",
+    "madeForKidsConfirmTitle": "Julkaise tämä lapsille?",
+    "madeForKidsConfirmAudience": "Lapset, jotka käyttävät Kids Mode -tilaa, näkevät tämän viestin. Mikään muu DeHubissa ei saavuta heitä.",
+    "madeForKidsConfirmReach": "Se poistuu myös tavallisista syötteistä — ihmiset löytävät sen silti profiilissasi, haussa ja linkin kautta, jonka jaat.",
+    "madeForKidsConfirmComments": "Vain Kids Mode voi kommentoida sitä. Voit silti vastata heille itse.",
+    "madeForKidsConfirmYes": "Kyllä, se on lapsille",
+    "markMadeForKids": "Merkitse tehtyä lapsille",
+    "madeForKidsOnDesc": "Näytetään lapsille Kids Mode -tilassa ja pois tavallisista syötteistä. Vain Kids Mode voi kommentoida.",
+    "madeForKidsOffDesc": "Näyttää tämän viestin lapsille, jotka käyttävät Kids Mode -tilaa, ja poistaa sen tavallisista syötteistä.",
+    "madeForKidsBlockedByMature": "Kypsyydelle merkittyä viestiä ei voi myös julkaista lapsille."
   },
   "bounty": {
     "claimed": "Lunastettu",

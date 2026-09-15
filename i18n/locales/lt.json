@@ -571,7 +571,20 @@
     "badgeDelegationNoteAny": "Laiko tarpsnis suteikia vieną iš tavo atrakintų ženklelių kitai paskyrai. Atsiimkite, kada panorėję — anga atsilaisvins po dienos.",
     "badgeDelegationRaisesOnlyTier": "Paskolintas ženklelis turi būti didesnis nei jau uždirbtas.",
     "badgeDelegationPickTier": "Skolinamas ženklelis",
-    "badgeDelegationLendsAny": "Kiekvienas iš jų skolina kitai paskyrai bet kokį jūsų atrakintą ženklelį iki jūsų {{tier}}. Mažesnis ženklelis vis dar naudoja visą lizdą."
+    "badgeDelegationLendsAny": "Kiekvienas iš jų skolina kitai paskyrai bet kokį jūsų atrakintą ženklelį iki jūsų {{tier}}. Mažesnis ženklelis vis dar naudoja visą lizdą.",
+    "kidsMode": "Vaikų režimas",
+    "kidsModeDesc": "Visur rodomi tik vaikams paskelbti įrašai. KAIŠTIS jį išjungia.",
+    "kidsModeSetPin": "Pasirinkite SMEIGTUKĄ",
+    "kidsModeSetPinHelp": "Nuo 4 iki 8 skaitmenų. Jums reikia, kad vėl išjungtumėte Vaikų režimą.",
+    "kidsModeConfirmPin": "Įveskite dar kartą",
+    "kidsModeConfirmPinHelp": "Taigi, žinai, kad gali jį atgaminti.",
+    "kidsModeEnterPin": "Įveskite PIN KODĄ",
+    "kidsModeEnterPinHelp": "Tai išjungia vaikų režimą šiame įrenginyje.",
+    "kidsModeTurnOn": "Įjungti vaikų režimą",
+    "kidsModeTurnOff": "Išjungti vaikų režimą",
+    "kidsModePinMismatch": "Šie PIN kodai skiriasi. Pradėkite iš naujo.",
+    "kidsModeFailed": "Nepavyko. Bandykite dar kartą.",
+    "kidsModeForgotPin": "Pamiršote? Prisijunkite naudodami piniginę kitame įrenginyje, kad išjungtumėte vaikų režimą."
   },
   "common": {
     "mute": "Nutildyti",
@@ -610,7 +623,8 @@
     "copy": "Kopijuoti",
     "optionalSuffix": "(nebūtina)",
     "yesterday": "Vakar",
-    "ok": "Gerai"
+    "ok": "Gerai",
+    "continue": "Tęsti"
   },
   "tip": {
     "title": "Siųsti arbatpinigius",
@@ -1817,7 +1831,8 @@
     "removeMedia": "Pašalinti mediją",
     "cancelRecording": "Atšaukti įrašymą",
     "sendVoiceNote": "Siųsti balso žinutę",
-    "noneYetAddYours": "Komentarų dar nėra — parašykite savo."
+    "noneYetAddYours": "Komentarų dar nėra — parašykite savo.",
+    "kidsOnlyThread": "Šis įrašas skirtas vaikams. Jį gali komentuoti tik vaikų režimas."
   },
   "postInfo": {
     "title": "Įrašo informacija",
@@ -3602,7 +3617,17 @@
     "unmuteVideo": "Įjungti vaizdo įrašo garsą",
     "descriptionOptional": "Aprašymas (nebūtina)",
     "whatsHappening": "Kas vyksta?",
-    "quotaShortfall": "Šis įrašas kainuoja {{cost}} DHB, o jūs turite {{held}}."
+    "quotaShortfall": "Šis įrašas kainuoja {{cost}} DHB, o jūs turite {{held}}.",
+    "madeForKids": "Sukurta vaikams",
+    "madeForKidsHint": "rodoma vaikų režime",
+    "madeForKidsConfirmTitle": "Publikuoti tai vaikams?",
+    "madeForKidsConfirmAudience": "Vaikai, naudojantys vaikų režimą, pamatys šį įrašą. Jį nepasiekia niekas kitas „DeHub\".",
+    "madeForKidsConfirmReach": "Jis taip pat išimamas iš įprastų srautų — žmonės jį vis tiek randa jūsų profilyje, paieškoje ir per jūsų bendrą nuorodą.",
+    "madeForKidsConfirmComments": "Tik vaikų režimas gali komentuoti. Jūs vis tiek galite jiems atsakyti.",
+    "madeForKidsConfirmYes": "Taip, tai skirta vaikams",
+    "madeForKidsOnDesc": "Rodoma vaikams, naudojantiems vaikų režimą, ir išimama iš įprastų srautų. Komentuoti gali tik vaikų režimas.",
+    "madeForKidsOffDesc": "Rodo šį įrašą vaikams, naudojantiems vaikų režimą, ir išima jį iš įprastų srautų.",
+    "madeForKidsBlockedByMature": "Įrašas, pažymėtas kaip suaugusiųjų, negali būti publikuojamas ir vaikams."
   },
   "bounty": {
     "claimed": "Atsiimta",

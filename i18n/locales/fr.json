@@ -587,7 +587,20 @@
     "badgeDelegationNoteAny": "Un emplacement prête l'un de vos badges débloqués à un autre compte. Reprenez-le quand vous voulez — la machine à sous se libère un jour plus tard.",
     "badgeDelegationRaisesOnlyTier": "Le badge que vous prêtez doit être plus élevé que celui qu'ils gagnent déjà.",
     "badgeDelegationPickTier": "Badge à prêter",
-    "badgeDelegationLendsAny": "Chacun prête à un autre compte n'importe quel badge que vous avez débloqué, jusqu'à votre propre {{tier}}. Un badge plus petit utilise toujours un emplacement entier."
+    "badgeDelegationLendsAny": "Chacun prête à un autre compte n'importe quel badge que vous avez débloqué, jusqu'à votre propre {{tier}}. Un badge plus petit utilise toujours un emplacement entier.",
+    "kidsMode": "Mode enfants",
+    "kidsModeDesc": "N'affiche que les articles publiés pour les enfants, partout. Une ÉPINGLE l'éteint.",
+    "kidsModeSetPin": "Choisir un CODE PIN",
+    "kidsModeSetPinHelp": "4 à 8 chiffres. Vous en avez besoin pour désactiver à nouveau le mode Enfant.",
+    "kidsModeConfirmPin": "Saisissez-le à nouveau",
+    "kidsModeConfirmPinHelp": "Vous savez donc que vous pouvez le reproduire.",
+    "kidsModeEnterPin": "Saisissez votre CODE PIN",
+    "kidsModeEnterPinHelp": "Cela désactive le mode enfant sur cet appareil.",
+    "kidsModeTurnOn": "Activer le mode enfants",
+    "kidsModeTurnOff": "Désactiver le mode enfants",
+    "kidsModePinMismatch": "Ces codes pin sont différents. Recommencez.",
+    "kidsModeFailed": "Cela n'a pas fonctionné. Réessayez.",
+    "kidsModeForgotPin": "Vous l'avez oublié ? Connectez-vous avec votre portefeuille sur un autre appareil pour désactiver le mode Enfant."
   },
   "common": {
     "mute": "Couper le son",
@@ -626,7 +639,8 @@
     "copy": "Copier",
     "optionalSuffix": "(facultatif)",
     "yesterday": "Hier",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Continuer"
   },
   "drawers": {
     "ppvTitle": "Contenu à la carte",
@@ -1837,7 +1851,8 @@
     "removeMedia": "Retirer le média",
     "cancelRecording": "Annuler l'enregistrement",
     "sendVoiceNote": "Envoyer la note vocale",
-    "noneYetAddYours": "Aucun commentaire pour l'instant, ajoutez le vôtre."
+    "noneYetAddYours": "Aucun commentaire pour l'instant, ajoutez le vôtre.",
+    "kidsOnlyThread": "Cet article est pour les enfants. Seul le mode enfants peut le commenter."
   },
   "postInfo": {
     "title": "Info du Post",
@@ -3677,7 +3692,18 @@
     "unmuteVideo": "Réactiver le son de la vidéo",
     "descriptionOptional": "Description (facultatif)",
     "whatsHappening": "Quoi de neuf ?",
-    "quotaShortfall": "Cette publication coûte {{cost}} DHB et vous en détenez {{held}}."
+    "quotaShortfall": "Cette publication coûte {{cost}} DHB et vous en détenez {{held}}.",
+    "madeForKids": "Créé pour les enfants",
+    "madeForKidsHint": "affiché en Mode Enfants",
+    "madeForKidsConfirmTitle": "Publier ceci pour les enfants ?",
+    "madeForKidsConfirmAudience": "Les enfants utilisant le Mode Enfants verront cet article. Rien d'autre sur DeHub ne les atteint.",
+    "madeForKidsConfirmReach": "Il est également retiré des flux ordinaires — les gens le trouvent toujours sur votre profil, dans la recherche et via un lien que vous partagez.",
+    "madeForKidsConfirmComments": "Seul le Mode Enfants peut commenter. Vous pouvez toujours leur répondre vous-même.",
+    "madeForKidsConfirmYes": "Oui, c'est pour les enfants",
+    "markMadeForKids": "Marquer comme fait pour les enfants",
+    "madeForKidsOnDesc": "Affiché aux enfants en Mode Enfants, et retiré des flux ordinaires. Seul le Mode Enfants peut commenter.",
+    "madeForKidsOffDesc": "Affiche cet article aux enfants utilisant le Mode Enfants, et le retire des flux ordinaires.",
+    "madeForKidsBlockedByMature": "Un article marqué comme contenu pour adultes ne peut pas également être publié pour les enfants."
   },
   "bounty": {
     "claimed": "Réclamé",

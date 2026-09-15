@@ -561,7 +561,20 @@
     "smsCountryBlocked": "Hələ ki, mətnləri həmin ölkəyə çatdıra bilmirik.",
     "badgeDelegationNoteAny": "Yuva kilidlənməmiş nişanlarınızdan birini digər hesaba köçürür. İstədiyiniz zaman onu geri götürün — slot bir gün sonra donur.",
     "badgeDelegationRaisesOnlyTier": "Borc verdiyiniz nişan artıq qazandıqlarından daha yüksək olmalıdır.",
-    "badgeDelegationPickTier": "Borc vermək üçün nişan"
+    "badgeDelegationPickTier": "Borc vermək üçün nişan",
+    "kidsMode": "Uşaqlar üçün Rejim",
+    "kidsModeDesc": "Hər yerdə yalnız uşaqlar üçün dərc edilən yazıları göstərir. SANCAQ onu yenidən söndürür.",
+    "kidsModeSetPin": "PİN kodu seçin",
+    "kidsModeSetPinHelp": "4-8 rəqəmli. Uşaq Rejimini yenidən söndürməlisiniz.",
+    "kidsModeConfirmPin": "Yenidən daxil edin",
+    "kidsModeConfirmPinHelp": "Odur ki, onu təkrarlaya biləcəyinizi bilirsiniz.",
+    "kidsModeEnterPin": "PİN kodunuzu daxil edin",
+    "kidsModeEnterPinHelp": "Bu cihazda Uşaqlar Rejimini deaktiv edir.",
+    "kidsModeTurnOn": "Uşaq Rejimini işə salın",
+    "kidsModeTurnOff": "Uşaq Rejimini qeyri-aktiv edin",
+    "kidsModePinMismatch": "Həmin PIN kodlar fərqlidir. Yenidən başlayın.",
+    "kidsModeFailed": "Bu alınmadı. Yenidən cəhd edin.",
+    "kidsModeForgotPin": "Unutmusunuz? Uşaqlar Rejimini söndürmək üçün başqa bir cihazda cüzdanınızla daxil olun."
   },
   "common": {
     "mute": "Səssiz et",
@@ -600,7 +613,8 @@
     "copy": "Kopyala",
     "optionalSuffix": "(istəyə bağlı)",
     "yesterday": "Dünən",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Davam et"
   },
   "tip": {
     "title": "Bəxşiş Göndər",
@@ -1806,7 +1820,8 @@
     "removeMedia": "Medianı sil",
     "cancelRecording": "Yazmanı ləğv et",
     "sendVoiceNote": "Səsli qeydi göndər",
-    "noneYetAddYours": "Hələ şərh yoxdur, ilkini siz yazın."
+    "noneYetAddYours": "Hələ şərh yoxdur, ilkini siz yazın.",
+    "kidsOnlyThread": "Bu yazı uşaqlar üçündür. Yalnız Uşaqlar Rejimi bu barədə şərh yaza bilər."
   },
   "postInfo": {
     "title": "Paylaşım məlumatı",
@@ -3587,7 +3602,18 @@
     "unmuteVideo": "Videonun səsini aç",
     "descriptionOptional": "Təsvir (istəyə bağlı)",
     "whatsHappening": "Nə baş verir?",
-    "quotaShortfall": "Bu paylaşım {{cost}} DHB tələb edir, sizdə isə {{held}} var."
+    "quotaShortfall": "Bu paylaşım {{cost}} DHB tələb edir, sizdə isə {{held}} var.",
+    "madeForKids": "Uşaqlar üçün hazırlanmış",
+    "madeForKidsHint": "Uşaq Rejimində göstərilir",
+    "madeForKidsConfirmTitle": "Bunu uşaqlar üçün yayımla?",
+    "madeForKidsConfirmAudience": "Uşaq Rejimindən istifadə edən uşaqlar bu postu görəcəklər. DeHub-da başqa heç nə onlara çatmır.",
+    "madeForKidsConfirmReach": "Həm də adi lentlərdən çıxır — insanlar onu hələ də sizin profilinizde, axtarışda və paylaştığınız keçid vasitəsilə tapırlar.",
+    "madeForKidsConfirmComments": "Yalnız Uşaq Rejimi buna şərh yaza bilər. Siz hələ də onlara cavab verə bilərsiniz.",
+    "madeForKidsConfirmYes": "Bəli, uşaqlar üçün",
+    "markMadeForKids": "Uşaqlar üçün hazırlanmış kimi işarələ",
+    "madeForKidsOnDesc": "Uşaq Rejimindən istifadə edən uşaqlara göstərilir və adi lentlərdən çıxarılır. Yalnız Uşaq Rejimi şərh yaza bilər.",
+    "madeForKidsOffDesc": "Bu postu Uşaq Rejimindən istifadə edən uşaqlara göstərir və adi lentlərdən çıxarır.",
+    "madeForKidsBlockedByMature": "Yetkin kimi işarələnmiş bir post uşaqlar üçün də yayımlanmış ola bilməz."
   },
   "bounty": {
     "claimed": "Alınıb",

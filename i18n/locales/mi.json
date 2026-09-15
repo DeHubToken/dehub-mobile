@@ -563,7 +563,20 @@
     "smsCountryBlocked": "Kaore e taea e tatou te tuku i nga tuhinga ki taua whenua.",
     "badgeDelegationNoteAny": "Ka tukuna e te mokamoka tetahi o o tohu kaore i te tuwhera ki tetahi atu kaute. Tangohia ano i nga wa katoa e hiahia ana koe — ka tukuna te mokamoka i te ra i muri mai.",
     "badgeDelegationRaisesOnlyTier": "Me nui ake te utu e utua ana e koe i te mea kua riro mai i a raatau.",
-    "badgeDelegationPickTier": "He pai ki te nama"
+    "badgeDelegationPickTier": "He pai ki te nama",
+    "kidsMode": "Mode tamariki",
+    "kidsModeDesc": "E whakaatu ana i ngā pou anake i whakaputaina mō ngā tamariki, i ngā wāhi katoa. Ka hurihia e te PIN.",
+    "kidsModeSetPin": "Whiriwhiria he PIN",
+    "kidsModeSetPinHelp": "4 ki te 8 ngā tau. E hiahia ana koe ki te tiki i te reira ki te tahuri Kids Mode ano.",
+    "kidsModeConfirmPin": "Whakauru ano",
+    "kidsModeConfirmPinHelp": "Na e mohio ana koe e taea e koe te whakaputa i te reira.",
+    "kidsModeEnterPin": "Whakauru i to PIN",
+    "kidsModeEnterPinHelp": "Tenei tahuri Kids Mode atu i runga i tenei pūrere.",
+    "kidsModeTurnOn": "Tahuri tamariki aratau i runga i",
+    "kidsModeTurnOff": "Hurihia nga tamariki ki waho",
+    "kidsModePinMismatch": "He rerekē aua PIN. Tīmata anō.",
+    "kidsModeFailed": "Kaore i mahi. Whakamātauria ano.",
+    "kidsModeForgotPin": "Kua warewarehia? Hokona ki to putea i runga i tetahi atu taputapu ki te huri i te Kids Mode."
   },
   "common": {
     "mute": "Whakangū",
@@ -602,7 +615,8 @@
     "copy": "Tāruatia",
     "optionalSuffix": "(kōwhiringa)",
     "yesterday": "Inanahi",
-    "ok": "Ka pai"
+    "ok": "Ka pai",
+    "continue": "Haere tonu"
   },
   "tip": {
     "title": "Tukuna koha",
@@ -1806,7 +1820,8 @@
     "removeMedia": "Tangohia te pāpāho",
     "cancelRecording": "Whakakorea te hopu",
     "sendVoiceNote": "Tukuna te tuhipoka reo",
-    "noneYetAddYours": "Kāore anō he kōrero, tāpirihia tāu."
+    "noneYetAddYours": "Kāore anō he kōrero, tāpirihia tāu.",
+    "kidsOnlyThread": "Ko tenei tuhinga mo nga tamariki. Ko te tikanga tamariki anake e taea te kōrero i runga i te reira."
   },
   "postInfo": {
     "title": "Mōhiohio pou",
@@ -3588,7 +3603,17 @@
     "unmuteVideo": "Whakaohohia te oro ataata",
     "descriptionOptional": "Whakaahuatanga (kōwhiringa)",
     "whatsHappening": "He aha kei te pā?",
-    "quotaShortfall": "E utaina ana tēnei pānui ki te {{cost}} DHB, he {{held}} tāu."
+    "quotaShortfall": "E utaina ana tēnei pānui ki te {{cost}} DHB, he {{held}} tāu.",
+    "madeForKids": "I kupu mō ngā tamariki",
+    "madeForKidsHint": "Kua whakaatuhia i roto i te Kids Mode",
+    "madeForKidsConfirmTitle": "Whakapuaki tēnei mō ngā tamariki?",
+    "madeForKidsConfirmAudience": "Ngā tamariki e whakamahi ana i Kids Mode ka kite i tēnei pōtae. Kaore he atu mea i DeHub e tae atu ki a rātou.",
+    "madeForKidsConfirmReach": "Ka tango anō i ngā kaupapa noa — ka kitea tonu e te hunga i runga i tō kōpae, i roto i te rapu me te whakawhiti i te hononga e toha ai koe.",
+    "madeForKidsConfirmComments": "Ko Kids Mode anake ka taea te tīkomi. Ka taea tonu e koe te whakahoki i a rātou.",
+    "madeForKidsConfirmYes": "Āe, mō ngā tamariki",
+    "madeForKidsOnDesc": "Kua whakaatuhia ki ngā tamariki i roto i Kids Mode, me te tango i ngā kaupapa noa. Ko Kids Mode anake ka taea te tīkomi.",
+    "madeForKidsOffDesc": "Whakaatuhia tēnei pōtae ki ngā tamariki e whakamahi ana i Kids Mode, me te tango i ngā kaupapa noa.",
+    "madeForKidsBlockedByMature": "Kaore e taea te whakapuaki i tētahi pōtae kua tohua hei pakeke mō ngā tamariki."
   },
   "bounty": {
     "claimed": "Kua tonoa",

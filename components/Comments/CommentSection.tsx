@@ -35,6 +35,7 @@ import Avatar from "../common/Avatar";
 import { useTranslation } from "react-i18next";
 import MentionSuggestions from "../common/MentionSuggestions";
 import { useUser, useAuthActions } from "../../context/AuthContext";
+import { useKidsMode } from "../../hooks/useKidsMode";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import {
   getCommentsForToken,
@@ -86,6 +87,13 @@ interface CommentSectionProps {
    *  the list alone — disabling hides no history, the server simply refuses new
    *  comments (requestCommentFunc), so this is presentation not enforcement. */
   commentsDisabled?: boolean;
+  /**
+   * The post is published for children, so its thread is a Kids Mode room:
+   * only a Kids Mode session may write in it. Presentation only — the server
+   * refuses the write either way (KidsCommentGuard), and the list is filtered
+   * server-side too, so an adult reading here sees the thread as it stands.
+   */
+  forKids?: boolean;
   /** The post creator, for the Creator / Not-the-creator chips on comments. */
   postCreator?: PostCreator | null;
   /**
@@ -132,12 +140,18 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   highlightCommentId,
   contentType = "video",
   commentsDisabled = false,
+  forKids = false,
   postCreator,
   onDirtyChange,
   keyboardHandled = false,
 }) => {
   const { t } = useTranslation();
   const user = useUser();
+  // A kids post's thread is open to Kids Mode only. The post's own author is
+  // exempt server-side, and is also the one person who can always reach it, so
+  // there is nothing to show them here.
+  const { isKidsMode } = useKidsMode();
+  const kidsOnlyThread = forKids && !isKidsMode;
   const { isBanned: accountBanned } = useBannedAccount();
   const { requireAuth } = useAuthActions();
   const { showUserProfile } = useUserProfileSheet();
@@ -1284,6 +1298,19 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             <Icon name="MessageSquare" size={16} color="#6F7174" />
             <Text className="text-theme-neutrals-400 text-sm">
               Comments are turned off for this post
+            </Text>
+          </View>
+        ) : kidsOnlyThread ? (
+          /* Same shape as the notice above, and for a related reason: the
+             thread is readable and not writable. Says WHY, because "nothing
+             happens when I tap the box" is the alternative. */
+          <View
+            className="flex-row items-center justify-center"
+            style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter, minHeight: COMPOSER.control + COMPOSER.gutter * 2 }}
+          >
+            <Icon name="Baby" size={16} color="#6F7174" />
+            <Text className="text-theme-neutrals-400 text-sm text-center">
+              {t('comments.kidsOnlyThread', 'This post is for kids. Only Kids Mode can comment on it.')}
             </Text>
           </View>
         ) : recorder.isRecording ? (

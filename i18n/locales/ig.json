@@ -564,7 +564,20 @@
     "badgeDelegationNoteAny": "Oghere na-agbazinye otu n 'ime baajị gị a kpọchiri akpọchi na akaụntụ ọzọ. Weghachite ya oge ọ bụla masịrị gị — oghere ahụ tọhapụrụ otu ụbọchị ka e mesịrị.",
     "badgeDelegationRaisesOnlyTier": "Baajị ahụ ị binyere kwesịrị ịdị elu karịa nke ha nwetara ugbua.",
     "badgeDelegationPickTier": "Baajị iji gbazinye ego",
-    "badgeDelegationLendsAny": "Onye ọ bụla na-agbazinye akaụntụ ọzọ baajị ọ bụla i meghere, ruo na nke gị {{tier}}. A nta baajị ka na-eji a dum oghere."
+    "badgeDelegationLendsAny": "Onye ọ bụla na-agbazinye akaụntụ ọzọ baajị ọ bụla i meghere, ruo na nke gị {{tier}}. A nta baajị ka na-eji a dum oghere.",
+    "kidsMode": "Ọnọdụ ụmụaka",
+    "kidsModeDesc": "Na-egosi naanị posts bipụtara maka ụmụaka, ebe niile. PIN na-eme ka ọ laghachi azụ.",
+    "kidsModeSetPin": "Họrọ PIN",
+    "kidsModeSetPinHelp": "Nzọụkwụ 4 ruo 8. Ị chọrọ ya iji gbanyụọ ọnọdụ ụmụaka ọzọ.",
+    "kidsModeConfirmPin": "Tinye ya ọzọ",
+    "kidsModeConfirmPinHelp": "Ya bụ na ị maara na ị ga-emepụtagharị ya.",
+    "kidsModeEnterPin": "Tinye PIN gị",
+    "kidsModeEnterPinHelp": "Nke a gbanyụrụ ọnọdụ ụmụaka na ngwaọrụ a.",
+    "kidsModeTurnOn": "Tụgharịa Kids Mode na",
+    "kidsModeTurnOff": "Gbanyụọ ọnọdụ ụmụaka",
+    "kidsModePinMismatch": "PIN ndị ahụ dị iche. Malite ọzọ.",
+    "kidsModeFailed": "Nke ahụ arụghị ọrụ. Gbalịa ọzọ.",
+    "kidsModeForgotPin": "Echefuola ya? Jiri obere akpa gị banye na ngwaọrụ ọzọ iji gbanyụọ ọnọdụ ụmụaka."
   },
   "common": {
     "mute": "Mechie ụda",
@@ -603,7 +616,8 @@
     "copy": "Detuo",
     "optionalSuffix": "(nhọrọ)",
     "yesterday": "Ụnyaahụ",
-    "ok": "Ọ dị mma"
+    "ok": "Ọ dị mma",
+    "continue": "Gaa n 'ihu?"
   },
   "tip": {
     "title": "Ziga Onyinye",
@@ -1803,7 +1817,8 @@
     "removeMedia": "Wepụ media",
     "cancelRecording": "Kagbuo ndekọ",
     "sendVoiceNote": "Zipụ ozi olu",
-    "noneYetAddYours": "Enwebeghị nkọwa, tinye nke gị."
+    "noneYetAddYours": "Enwebeghị nkọwa, tinye nke gị.",
+    "kidsOnlyThread": "Nke a post bụ maka ụmụaka. Naanị Kids Mode nwere ike ikwu okwu na ya."
   },
   "postInfo": {
     "title": "Ozi banyere mbipụta",
@@ -3581,7 +3596,17 @@
     "unmuteVideo": "Meghee ụda vidiyo",
     "descriptionOptional": "Nkọwa (nhọrọ)",
     "whatsHappening": "Gịnị na-eme?",
-    "quotaShortfall": "Post a na-efu {{cost}} DHB, ị nwekwara {{held}}."
+    "quotaShortfall": "Post a na-efu {{cost}} DHB, ị nwekwara {{held}}.",
+    "madeForKids": "Emere maka ụmụaka",
+    "madeForKidsHint": "Egosiri na Kids Mode",
+    "madeForKidsConfirmTitle": "Bipụta nke a maka ụmụaka?",
+    "madeForKidsConfirmAudience": "Ụmụaka na-eji Kids Mode ga-ahụ post a. Ọ dịghị ihe ọzọ na DeHub na-eru ha.",
+    "madeForKidsConfirmReach": "Ọ na-apụkwa na feed ọ bụla — ndị mmadụ ka na-achọta ya na profaịlụ gị, na ntụgharị anya na site na njikọ ị na-ekerịta.",
+    "madeForKidsConfirmComments": "Naanị Kids Mode nwere ike ikwu okwu maka ya. Ị ka nwere ike ịzaghachi ha n'onwe gị.",
+    "madeForKidsConfirmYes": "Ee, ọ bụ maka ụmụaka",
+    "madeForKidsOnDesc": "Egosiri na ụmụaka na-eji Kids Mode, ma wepụ ya na feed ọ bụla. Naanị Kids Mode nwere ike ikwu okwu.",
+    "madeForKidsOffDesc": "Egosi post a nye ụmụaka na-eji Kids Mode, ma wepụ ya na feed ọ bụla.",
+    "madeForKidsBlockedByMature": "A post akọwapụtara na-adịghị mma agaghị ebipụtakwa maka ụmụaka."
   },
   "bounty": {
     "claimed": "Anatala",
