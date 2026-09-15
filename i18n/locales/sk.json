@@ -2042,7 +2042,16 @@
     "attachmentTooLarge": "Každý súbor musí mať menej než 20 MB"
   },
   "auth": {
-    "loginRequired": "Log in required"
+    "loginRequired": "Log in required",
+    "walletImported": "Peňaženka importovaná",
+    "importWallet": "Importovať peňaženku",
+    "privateKeyPlaceholder": "Zadajte svoj súkromný kľúč",
+    "importExternalWallet": "Importovať externú peňaženku",
+    "privateKey": "Súkromný kľúč",
+    "pasteFromClipboard": "Vložiť zo schránky",
+    "learnMoreAt": "Viac informácií na dehub.io",
+    "accountsOnDevice": "Účty na tomto zariadení",
+    "use": "Použiť"
   },
   "music": {
     "all": "All",
@@ -4000,5 +4009,29 @@
   "search": {
     "endOfResults": "Koniec výsledkov",
     "searchDehub": "Hľadať v DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Buďte v obraze",
+    "subtitle": "Zapnite upozornenia, aby vám z DeHubu nič neuniklo",
+    "rowTips": "Prepitné a zárobky pristanú vo vašej peňaženke",
+    "rowReplies": "Odpovede, zmienky a priame správy",
+    "rowLive": "Keď tvorcovia, ktorých sledujete, idú naživo",
+    "chooseInSettings": "Presne si vyberiete, ktoré z nich vám prídu — v nastaveniach, kedykoľvek.",
+    "turnOn": "Zapnúť upozornenia"
+  },
+  "review": {
+    "enjoyingApp": "Páči sa vám aplikácia?",
+    "feedbackHelps": "Vaša spätná väzba nám pomáha vylepšovať DeHub",
+    "yes": "Áno! 😊",
+    "notReally": "Ani nie 😕",
+    "thatsGreat": "To je skvelé!",
+    "rateUsOn": "Ohodnotili by ste nás v {{store}}? Naozaj nám to pomáha rásť!",
+    "rateOn": "Ohodnotiť v {{store}}",
+    "yourFeedback": "Vaša spätná väzba",
+    "feedbackPlaceholder": "Čo môžeme urobiť lepšie?",
+    "followUpNote": "Môžeme sa ozvať s doplňujúcimi otázkami k vašej spätnej väzbe",
+    "submitFeedback": "Odoslať spätnú väzbu",
+    "provideFeedback": "Napíšte prosím svoju spätnú väzbu",
+    "thankYou": "Ďakujeme za spätnú väzbu!"
   }
 }

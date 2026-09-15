@@ -1418,7 +1418,16 @@
     "attachmentTooLarge": "Ifayela ngalinye kufanele libe ngaphansi kuka-20MB"
   },
   "auth": {
-    "loginRequired": "Ukungena kuyadingeka"
+    "loginRequired": "Ukungena kuyadingeka",
+    "walletImported": "Isikhwama singenisiwe",
+    "importWallet": "Ngenisa isikhwama",
+    "privateKeyPlaceholder": "Faka ukhiye wakho oyimfihlo",
+    "importExternalWallet": "Ngenisa isikhwama sangaphandle",
+    "privateKey": "Ukhiye oyimfihlo",
+    "pasteFromClipboard": "Namathisela kusuka ebhodini lokukopisha",
+    "learnMoreAt": "Funda kabanzi ku-dehub.io",
+    "accountsOnDevice": "Ama-akhawunti kule divayisi",
+    "use": "Sebenzisa"
   },
   "messages": {
     "smartRepliesOff": "Izimpendulo eziphakanyisiwe zivaliwe",
@@ -3861,5 +3870,29 @@
   "search": {
     "endOfResults": "Ukuphela kwemiphumela",
     "searchDehub": "Sesha i-DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Hlala wazi",
+    "subtitle": "Vula izaziso ukuze uhambisane ne-DeHub",
+    "rowTips": "Amathiphu nemali eyenziwe kungena esikhwameni sakho",
+    "rowReplies": "Izimpendulo, ukushiwo nemilayezo eqondile",
+    "rowLive": "Uma abadali obalandelayo bedlala bukhoma",
+    "chooseInSettings": "Wena ukhetha ukuthi yikuphi kulokhu okufinyelela kuwe, kuzilungiselelo, noma nini.",
+    "turnOn": "Vula izaziso"
+  },
+  "review": {
+    "enjoyingApp": "Ingabe uyayijabulela le app?",
+    "feedbackHelps": "Impendulo yakho isisiza sithuthukise i-DeHub",
+    "yes": "Yebo! 😊",
+    "notReally": "Hhayi kangako 😕",
+    "thatsGreat": "Lokho kuhle kakhulu!",
+    "rateUsOn": "Ungasinika isilinganiso ku-{{store}}? Kusisiza ngempela ukukhula!",
+    "rateOn": "Linganisa ku-{{store}}",
+    "yourFeedback": "Impendulo yakho",
+    "feedbackPlaceholder": "Yini esingayenza kangcono?",
+    "followUpNote": "Singase sixhumane nawe ngemibuzo eyengeziwe mayelana nempendulo yakho",
+    "submitFeedback": "Thumela impendulo",
+    "provideFeedback": "Sicela ubhale impendulo yakho",
+    "thankYou": "Siyabonga ngempendulo yakho!"
   }
 }

@@ -756,7 +756,16 @@
     "multipleChoice": "एक से ज़्यादा जवाब की अनुमति दें"
   },
   "auth": {
-    "loginRequired": "लॉगिन आवश्यक है"
+    "loginRequired": "लॉगिन आवश्यक है",
+    "walletImported": "वॉलेट इम्पोर्ट हो गया",
+    "importWallet": "वॉलेट इम्पोर्ट करें",
+    "privateKeyPlaceholder": "अपनी प्राइवेट की दर्ज करें",
+    "importExternalWallet": "बाहरी वॉलेट इम्पोर्ट करें",
+    "privateKey": "प्राइवेट की",
+    "pasteFromClipboard": "क्लिपबोर्ड से पेस्ट करें",
+    "learnMoreAt": "dehub.io पर और जानें",
+    "accountsOnDevice": "इस डिवाइस के खाते",
+    "use": "उपयोग करें"
   },
   "explorePage": {
     "searchPlaceholder": "लोग, पोस्ट या सामग्री खोजें...",
@@ -3888,5 +3897,29 @@
   "search": {
     "endOfResults": "परिणामों का अंत",
     "searchDehub": "DeHub में खोजें"
+  },
+  "notifPrompt": {
+    "stayInLoop": "अपडेट रहें",
+    "subtitle": "DeHub के साथ बने रहने के लिए नोटिफ़िकेशन चालू करें",
+    "rowTips": "टिप और कमाई आपके वॉलेट में आती है",
+    "rowReplies": "जवाब, मेंशन और डायरेक्ट मैसेज",
+    "rowLive": "जिन क्रिएटर्स को आप फ़ॉलो करते हैं उनके लाइव होने पर",
+    "chooseInSettings": "इनमें से कौन-सी आप तक पहुँचे, यह आप सेटिंग्स में कभी भी चुन सकते हैं।",
+    "turnOn": "नोटिफ़िकेशन चालू करें"
+  },
+  "review": {
+    "enjoyingApp": "क्या आपको ऐप पसंद आ रहा है?",
+    "feedbackHelps": "आपका फ़ीडबैक हमें DeHub बेहतर बनाने में मदद करता है",
+    "yes": "हाँ! 😊",
+    "notReally": "ज़्यादा नहीं 😕",
+    "thatsGreat": "बहुत बढ़िया!",
+    "rateUsOn": "क्या आप {{store}} पर हमें रेटिंग देंगे? इससे हमें बढ़ने में बहुत मदद मिलती है!",
+    "rateOn": "{{store}} पर रेट करें",
+    "yourFeedback": "आपका फ़ीडबैक",
+    "feedbackPlaceholder": "हम क्या बेहतर कर सकते हैं?",
+    "followUpNote": "आपके फ़ीडबैक पर आगे के सवालों के लिए हम संपर्क कर सकते हैं",
+    "submitFeedback": "फ़ीडबैक भेजें",
+    "provideFeedback": "कृपया अपना फ़ीडबैक लिखें",
+    "thankYou": "आपके फ़ीडबैक के लिए धन्यवाद!"
   }
 }

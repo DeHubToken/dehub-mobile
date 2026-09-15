@@ -1397,7 +1397,16 @@
     "attachmentTooLarge": "Dosiye kelen-kelen ka kan ka dɔgɔya ni 20MB ye"
   },
   "auth": {
-    "loginRequired": "Sɔgɔma kɛ"
+    "loginRequired": "Sɔgɔma kɛ",
+    "walletImported": "Wallet donna",
+    "importWallet": "Wallet don",
+    "privateKeyPlaceholder": "I ka kilisi gundo sɛbɛn",
+    "importExternalWallet": "Kɛnɛma wallet don",
+    "privateKey": "Kilisi gundo",
+    "pasteFromClipboard": "A fara ka bɔ marayɔrɔ la",
+    "learnMoreAt": "Kunnafoni wɛrɛ sɔrɔ dehub.io kan",
+    "accountsOnDevice": "Jate minnu bɛ nin minɛn kan",
+    "use": "A baara"
   },
   "messages": {
     "smartRepliesOff": "Jaabi fɔlenw fagara",
@@ -3776,5 +3785,29 @@
   "search": {
     "endOfResults": "Jaabiw laban",
     "searchDehub": "DeHub kɔnɔ ɲini"
+  },
+  "notifPrompt": {
+    "stayInLoop": "To kunnafoni la",
+    "subtitle": "Kunnafoniw da wuli walisa ka to DeHub kɔfɛ",
+    "rowTips": "Bonya ni sɔrɔ bɛ na i ka wallet kɔnɔ",
+    "rowReplies": "Jaabiw, kofɔliw ni ci gundow",
+    "rowLive": "Ni i bɛ mɔgɔ minnu labato, olu taara ye",
+    "chooseInSettings": "I yɛrɛ de bɛ sugandi min bɛna se i ma, latigɛliw kɔnɔ, waati bɛɛ.",
+    "turnOn": "Kunnafoniw da wuli"
+  },
+  "review": {
+    "enjoyingApp": "Yala porogaramu ka di i ye wa?",
+    "feedbackHelps": "I ka hakilina bɛ dɛmɛ an ka DeHub ɲɛ",
+    "yes": "Awɔ! 😊",
+    "notReally": "Ayi kosɛbɛ 😕",
+    "thatsGreat": "O ka ɲi kosɛbɛ!",
+    "rateUsOn": "I bɛ se ka an jateminɛ {{store}} la wa? O bɛ an dɛmɛ kosɛbɛ!",
+    "rateOn": "A jateminɛ {{store}} la",
+    "yourFeedback": "I ka hakilina",
+    "feedbackPlaceholder": "An bɛ se ka mun ɲɛ?",
+    "followUpNote": "An bɛ se ka i kunbɛn ni ɲininkali wɛrɛw ye i ka hakilina kan",
+    "submitFeedback": "Hakilina ci",
+    "provideFeedback": "I ka hakilina sɛbɛn sɔn",
+    "thankYou": "I ni ce i ka hakilina la!"
   }
 }

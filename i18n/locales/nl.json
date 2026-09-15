@@ -1673,7 +1673,16 @@
     "attachmentTooLarge": "Elk bestand moet kleiner zijn dan 20 MB"
   },
   "auth": {
-    "loginRequired": "Inloggen vereist"
+    "loginRequired": "Inloggen vereist",
+    "walletImported": "Wallet geïmporteerd",
+    "importWallet": "Wallet importeren",
+    "privateKeyPlaceholder": "Voer je privésleutel in",
+    "importExternalWallet": "Externe wallet importeren",
+    "privateKey": "Privésleutel",
+    "pasteFromClipboard": "Plakken vanaf klembord",
+    "learnMoreAt": "Meer weten op dehub.io",
+    "accountsOnDevice": "Accounts op dit apparaat",
+    "use": "Gebruiken"
   },
   "bookmarks": {
     "title": "Jouw bladwijzers",
@@ -4099,5 +4108,29 @@
   "search": {
     "endOfResults": "Einde van de resultaten",
     "searchDehub": "Zoeken op DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Blijf op de hoogte",
+    "subtitle": "Zet meldingen aan om DeHub bij te houden",
+    "rowTips": "Fooien en inkomsten komen in je wallet",
+    "rowReplies": "Reacties, vermeldingen en directe berichten",
+    "rowLive": "Wanneer makers die je volgt live gaan",
+    "chooseInSettings": "Je kiest zelf welke je bereiken — in Instellingen, wanneer je maar wilt.",
+    "turnOn": "Meldingen aanzetten"
+  },
+  "review": {
+    "enjoyingApp": "Bevalt de app je?",
+    "feedbackHelps": "Jouw feedback helpt ons DeHub te verbeteren",
+    "yes": "Ja! 😊",
+    "notReally": "Niet echt 😕",
+    "thatsGreat": "Wat fijn!",
+    "rateUsOn": "Zou je ons willen beoordelen in de {{store}}? Dat helpt ons echt groeien!",
+    "rateOn": "Beoordelen in de {{store}}",
+    "yourFeedback": "Jouw feedback",
+    "feedbackPlaceholder": "Wat kunnen we beter doen?",
+    "followUpNote": "We nemen mogelijk contact op met vervolgvragen over je feedback",
+    "submitFeedback": "Feedback verzenden",
+    "provideFeedback": "Geef alsjeblieft je feedback",
+    "thankYou": "Bedankt voor je feedback!"
   }
 }

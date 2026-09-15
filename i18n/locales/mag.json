@@ -1390,7 +1390,16 @@
     "attachmentTooLarge": "हर फाइल 20MB स' कम होबाक चाही"
   },
   "auth": {
-    "loginRequired": "लॉग इन चाहिं"
+    "loginRequired": "लॉग इन चाहिं",
+    "walletImported": "वॉलेट इम्पोर्ट भ गेल",
+    "importWallet": "वॉलेट इम्पोर्ट करऽ",
+    "privateKeyPlaceholder": "अपन प्राइवेट की डालऽ",
+    "importExternalWallet": "बाहरी वॉलेट इम्पोर्ट करऽ",
+    "privateKey": "प्राइवेट की",
+    "pasteFromClipboard": "क्लिपबोर्ड से पेस्ट करऽ",
+    "learnMoreAt": "dehub.io पर अउर जानऽ",
+    "accountsOnDevice": "ई डिवाइस के खाता",
+    "use": "उपयोग करऽ"
   },
   "messages": {
     "smartRepliesOff": "सुझावल जवाब बंद हो गेल",
@@ -3784,5 +3793,29 @@
   "search": {
     "endOfResults": "नतीजा के अंत",
     "searchDehub": "DeHub में खोजऽ"
+  },
+  "notifPrompt": {
+    "stayInLoop": "अपडेट रहऽ",
+    "subtitle": "DeHub के संगे रहे लेल नोटिफिकेशन चालू करऽ",
+    "rowTips": "टिप आ कमाई अहां के वॉलेट में आवऽ हे",
+    "rowReplies": "जवाब, मेंशन आ सीधा संदेस",
+    "rowLive": "जे क्रिएटर के अहां फॉलो करऽ हथ ऊ लाइव होतै",
+    "chooseInSettings": "इनमें से कोन अहां तक पहुँचतै, ई अहां सेटिंग में कखनो चुन सकऽ हथ।",
+    "turnOn": "नोटिफिकेशन चालू करऽ"
+  },
+  "review": {
+    "enjoyingApp": "का अहां के ऐप नीक लगऽ हे?",
+    "feedbackHelps": "अहां के फीडबैक से हमनी के DeHub नीक बनावे में मदद होवऽ हे",
+    "yes": "हँ! 😊",
+    "notReally": "बेसी ना 😕",
+    "thatsGreat": "बहुत नीक!",
+    "rateUsOn": "का अहां {{store}} पर हमनी के रेटिंग देबै? एकरा से हमनी के बढ़े में बहुत मदद होतै!",
+    "rateOn": "{{store}} पर रेटिंग दऽ",
+    "yourFeedback": "अहां के फीडबैक",
+    "feedbackPlaceholder": "हमनी का नीक कर सकऽ ही?",
+    "followUpNote": "अहां के फीडबैक पर आगू के सवाल लेल हमनी संपर्क कर सकऽ ही",
+    "submitFeedback": "फीडबैक भेजऽ",
+    "provideFeedback": "किरपा कर के अपन फीडबैक लिखऽ",
+    "thankYou": "अहां के फीडबैक लेल धन्यबाद!"
   }
 }

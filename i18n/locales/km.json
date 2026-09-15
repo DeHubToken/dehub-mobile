@@ -1443,7 +1443,16 @@
     "attachmentTooLarge": "ឯកសារនីមួយៗត្រូវតែតិចជាង 20MB"
   },
   "auth": {
-    "loginRequired": "តម្រូវឲ្យចូល"
+    "loginRequired": "តម្រូវឲ្យចូល",
+    "walletImported": "បាននាំចូលកាបូប",
+    "importWallet": "នាំចូលកាបូប",
+    "privateKeyPlaceholder": "បញ្ចូលសោឯកជនរបស់អ្នក",
+    "importExternalWallet": "នាំចូលកាបូបខាងក្រៅ",
+    "privateKey": "សោឯកជន",
+    "pasteFromClipboard": "បិទភ្ជាប់ពីក្ដារតម្បៀតខ្ទាស់",
+    "learnMoreAt": "ស្វែងយល់បន្ថែមនៅ dehub.io",
+    "accountsOnDevice": "គណនីនៅលើឧបករណ៍នេះ",
+    "use": "ប្រើ"
   },
   "messages": {
     "smartRepliesOff": "បានបិទចម្លើយដែលបានស្នើ",
@@ -3851,5 +3860,29 @@
   "search": {
     "endOfResults": "ចុងបញ្ចប់នៃលទ្ធផល",
     "searchDehub": "ស្វែងរកក្នុង DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "ទទួលព័ត៌មានទាន់ហេតុការណ៍",
+    "subtitle": "បើកការជូនដំណឹង ដើម្បីតាមដាន DeHub",
+    "rowTips": "ទឹកតែ និងចំណូលនឹងចូលទៅកាបូបរបស់អ្នក",
+    "rowReplies": "ការឆ្លើយតប ការនិយាយដល់ និងសារផ្ទាល់",
+    "rowLive": "នៅពេលអ្នកបង្កើតដែលអ្នកតាមដានផ្សាយផ្ទាល់",
+    "chooseInSettings": "អ្នកជ្រើសរើសដោយខ្លួនឯងថាមួយណាមកដល់អ្នក នៅក្នុងការកំណត់ គ្រប់ពេល។",
+    "turnOn": "បើកការជូនដំណឹង"
+  },
+  "review": {
+    "enjoyingApp": "តើអ្នកចូលចិត្តកម្មវិធីនេះទេ?",
+    "feedbackHelps": "មតិយោបល់របស់អ្នកជួយយើងកែលម្អ DeHub",
+    "yes": "បាទ/ចាស! 😊",
+    "notReally": "មិនសូវទេ 😕",
+    "thatsGreat": "អស្ចារ្យណាស់!",
+    "rateUsOn": "តើអ្នកអាចវាយតម្លៃយើងនៅលើ {{store}} បានទេ? វាជួយយើងរីកចម្រើនយ៉ាងពិតប្រាកដ!",
+    "rateOn": "វាយតម្លៃលើ {{store}}",
+    "yourFeedback": "មតិយោបល់របស់អ្នក",
+    "feedbackPlaceholder": "តើយើងអាចធ្វើអ្វីឱ្យប្រសើរជាងនេះ?",
+    "followUpNote": "យើងអាចទាក់ទងអ្នកដើម្បីសួរសំណួរបន្ថែមអំពីមតិយោបល់របស់អ្នក",
+    "submitFeedback": "ផ្ញើមតិយោបល់",
+    "provideFeedback": "សូមសរសេរមតិយោបល់របស់អ្នក",
+    "thankYou": "សូមអរគុណសម្រាប់មតិយោបល់របស់អ្នក!"
   }
 }

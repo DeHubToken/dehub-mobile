@@ -1173,7 +1173,16 @@
     "attachmentTooLarge": "Jokaisen tiedoston on oltava alle 20 Mt"
   },
   "auth": {
-    "loginRequired": "Kirjautuminen vaaditaan"
+    "loginRequired": "Kirjautuminen vaaditaan",
+    "walletImported": "Lompakko tuotu",
+    "importWallet": "Tuo lompakko",
+    "privateKeyPlaceholder": "Syötä yksityinen avaimesi",
+    "importExternalWallet": "Tuo ulkoinen lompakko",
+    "privateKey": "Yksityinen avain",
+    "pasteFromClipboard": "Liitä leikepöydältä",
+    "learnMoreAt": "Lue lisää osoitteessa dehub.io",
+    "accountsOnDevice": "Tilit tällä laitteella",
+    "use": "Käytä"
   },
   "bookmarks": {
     "title": "Kirjanmerkkisi",
@@ -3832,5 +3841,29 @@
   "search": {
     "endOfResults": "Tulosten loppu",
     "searchDehub": "Hae DeHubista"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Pysy ajan tasalla",
+    "subtitle": "Ota ilmoitukset käyttöön pysyäksesi DeHubin tahdissa",
+    "rowTips": "Tipit ja tulot päätyvät lompakkoosi",
+    "rowReplies": "Vastaukset, maininnat ja yksityisviestit",
+    "rowLive": "Kun seuraamasi tekijät menevät suoraan lähetykseen",
+    "chooseInSettings": "Valitset itse, mitkä näistä sinulle tulevat — asetuksissa, milloin tahansa.",
+    "turnOn": "Ota ilmoitukset käyttöön"
+  },
+  "review": {
+    "enjoyingApp": "Pidätkö sovelluksesta?",
+    "feedbackHelps": "Palautteesi auttaa meitä parantamaan DeHubia",
+    "yes": "Kyllä! 😊",
+    "notReally": "Ei oikeastaan 😕",
+    "thatsGreat": "Hienoa!",
+    "rateUsOn": "Arvioisitko meidät {{store}}ssa? Se auttaa meitä todella kasvamaan!",
+    "rateOn": "Arvioi {{store}}ssa",
+    "yourFeedback": "Palautteesi",
+    "feedbackPlaceholder": "Mitä voisimme tehdä paremmin?",
+    "followUpNote": "Saatamme ottaa yhteyttä lisäkysymyksillä palautteestasi",
+    "submitFeedback": "Lähetä palaute",
+    "provideFeedback": "Kirjoita palautteesi",
+    "thankYou": "Kiitos palautteestasi!"
   }
 }

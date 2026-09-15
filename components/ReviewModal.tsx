@@ -27,6 +27,7 @@ import { APP_STORE_LINK, GOOGLE_PLAY_LINK } from "../config";
 import { openExternalLink } from "../libs/links.utils";
 import { toastSuccess, toastError } from "../libs/toast";
 import env from "../config/env";
+import { useTranslation } from "react-i18next";
 
 interface ReviewModalProps {
   visible: boolean;
@@ -41,6 +42,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
   onClose,
   userAddress,
 }) => {
+  const { t } = useTranslation();
   const [step, setStep] = useState<ReviewStep>("initial");
   const [rating, setRating] = useState(0);
   const [feedback, setFeedback] = useState("");
@@ -170,7 +172,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
 
   const handleSubmitFeedback = async () => {
     if (!feedback.trim()) {
-      toastError("Please provide your feedback");
+      toastError(t("review.provideFeedback"));
       return;
     }
 
@@ -207,7 +209,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
       }
 
       console.log("Feedback submitted successfully:", result);
-      toastSuccess("Thank you for your feedback!");
+      toastSuccess(t("review.thankYou"));
       handleClose();
     } catch (error: any) {
       console.error("[ReviewModal] Submit error:", error);
@@ -250,11 +252,11 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
       </View>
 
       <Text className="text-white text-2xl font-bold text-center mb-2">
-        Are you enjoying the app?
+        {t("review.enjoyingApp")}
       </Text>
 
       <Text className="text-theme-neutrals-300 text-sm text-center mb-6">
-        Your feedback helps us improve DeHub
+        {t("review.feedbackHelps")}
       </Text>
 
       <View className="gap-3">
@@ -264,7 +266,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
             className="py-3 px-6 items-center"
             activeOpacity={0.8}
           >
-            <Text className="text-white text-base font-semibold">Yes! 😊</Text>
+            <Text className="text-white text-base font-semibold">{t("review.yes")}</Text>
           </TouchableOpacity>
         </AccentButtonGradient>
 
@@ -273,7 +275,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
           className="py-3 px-6 items-center bg-theme-neutrals-800 rounded-xl"
           activeOpacity={0.7}
         >
-          <Text className="text-white text-base">Not Really 😕</Text>
+          <Text className="text-white text-base">{t("review.notReally")}</Text>
         </TouchableOpacity>
       </View>
     </Animated.View>
@@ -292,13 +294,13 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
         </View>
 
         <Text className="text-white text-2xl font-bold text-center mb-2">
-          That's great!
+          {t("review.thatsGreat")}
         </Text>
 
         <Text className="text-theme-neutrals-300 text-sm text-center mb-6">
-          Would you mind rating us on the{" "}
-          {Platform.OS === "ios" ? "App Store" : "Play Store"}? It really helps
-          us grow!
+          {t("review.rateUsOn", {
+            store: Platform.OS === "ios" ? "App Store" : "Play Store",
+          })}
         </Text>
 
         <View className="gap-3">
@@ -309,7 +311,9 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
               activeOpacity={0.8}
             >
               <Text className="text-white text-base font-semibold">
-                Rate on {Platform.OS === "ios" ? "App Store" : "Play Store"}
+                {t("review.rateOn", {
+                  store: Platform.OS === "ios" ? "App Store" : "Play Store",
+                })}
               </Text>
             </TouchableOpacity>
           </AccentButtonGradient>
@@ -369,12 +373,12 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
         <View className="mt-4">
           <View className="mb-4">
             <Text className="text-theme-neutrals-400 text-xs mb-2">
-              Your Feedback <Text className="text-white/80">*</Text>
+              {t("review.yourFeedback")} <Text className="text-white/80">*</Text>
             </Text>
             <TextInput
               value={feedback}
               onChangeText={setFeedback}
-              placeholder="What can we do better?"
+              placeholder={t("review.feedbackPlaceholder")}
               placeholderTextColor={theme.colors.neutrals[500]}
               multiline
               numberOfLines={4}
@@ -412,7 +416,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
           </View>
 
           <Text className="text-theme-neutrals-500 text-xs text-center mb-4">
-            We may reach out to ask follow-up questions about your feedback
+            {t("review.followUpNote")}
           </Text>
 
           <View className="gap-3">
@@ -424,7 +428,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
                 disabled={isSubmitting}
               >
                 <Text className="text-white text-base font-semibold">
-                  {isSubmitting ? "Submitting..." : "Submit Feedback"}
+                  {isSubmitting ? t("buyCoins.processing") : t("review.submitFeedback")}
                 </Text>
               </TouchableOpacity>
             </AccentButtonGradient>
@@ -435,7 +439,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
               activeOpacity={0.7}
               disabled={isSubmitting}
             >
-              <Text className="text-theme-neutrals-400 text-base">Cancel</Text>
+              <Text className="text-theme-neutrals-400 text-base">{t("common.cancel")}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -447,7 +451,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
           className="py-3 px-6 items-center"
           activeOpacity={0.7}
         >
-          <Text className="text-theme-neutrals-400 text-base">Cancel</Text>
+          <Text className="text-theme-neutrals-400 text-base">{t("common.cancel")}</Text>
         </TouchableOpacity>
       )}
     </View>

@@ -1419,7 +1419,16 @@
     "attachmentTooLarge": "Svaka datoteka mora biti manja od 20 MB"
   },
   "auth": {
-    "loginRequired": "Potrebna prijava"
+    "loginRequired": "Potrebna prijava",
+    "walletImported": "Novčanik uvezen",
+    "importWallet": "Uvezi novčanik",
+    "privateKeyPlaceholder": "Unesite svoj privatni ključ",
+    "importExternalWallet": "Uvezi vanjski novčanik",
+    "privateKey": "Privatni ključ",
+    "pasteFromClipboard": "Zalijepi iz međuspremnika",
+    "learnMoreAt": "Saznajte više na dehub.io",
+    "accountsOnDevice": "Računi na ovom uređaju",
+    "use": "Koristi"
   },
   "messages": {
     "smartRepliesOff": "Predloženi odgovori isključeni",
@@ -3832,5 +3841,29 @@
   "search": {
     "endOfResults": "Kraj rezultata",
     "searchDehub": "Pretraži DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Ostanite u toku",
+    "subtitle": "Uključite obavijesti da pratite DeHub",
+    "rowTips": "Napojnice i zarada stižu u vaš novčanik",
+    "rowReplies": "Odgovori, spominjanja i izravne poruke",
+    "rowLive": "Kad autori koje pratite krenu uživo",
+    "chooseInSettings": "Sami birate koje od njih vas dosegnu — u postavkama, bilo kada.",
+    "turnOn": "Uključi obavijesti"
+  },
+  "review": {
+    "enjoyingApp": "Uživate li u aplikaciji?",
+    "feedbackHelps": "Vaše povratne informacije pomažu nam poboljšati DeHub",
+    "yes": "Da! 😊",
+    "notReally": "Ne baš 😕",
+    "thatsGreat": "To je super!",
+    "rateUsOn": "Biste li nas ocijenili na {{store}}? To nam stvarno pomaže rasti!",
+    "rateOn": "Ocijeni na {{store}}",
+    "yourFeedback": "Vaše povratne informacije",
+    "feedbackPlaceholder": "Što možemo napraviti bolje?",
+    "followUpNote": "Možda vam se javimo s dodatnim pitanjima o vašim povratnim informacijama",
+    "submitFeedback": "Pošalji povratne informacije",
+    "provideFeedback": "Molimo napišite svoje povratne informacije",
+    "thankYou": "Hvala na povratnim informacijama!"
   }
 }

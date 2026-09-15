@@ -1811,7 +1811,16 @@
     "attachmentTooLarge": "Elke lêer moet kleiner as 20MB wees"
   },
   "auth": {
-    "loginRequired": "Log in required"
+    "loginRequired": "Log in required",
+    "walletImported": "Beursie ingevoer",
+    "importWallet": "Voer beursie in",
+    "privateKeyPlaceholder": "Voer jou private sleutel in",
+    "importExternalWallet": "Voer eksterne beursie in",
+    "privateKey": "Private sleutel",
+    "pasteFromClipboard": "Plak uit knipbord",
+    "learnMoreAt": "Lees meer by dehub.io",
+    "accountsOnDevice": "Rekeninge op hierdie toestel",
+    "use": "Gebruik"
   },
   "bookmarks": {
     "title": "Your Bookmarks",
@@ -3949,5 +3958,29 @@
   "search": {
     "endOfResults": "Einde van resultate",
     "searchDehub": "Soek DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Bly op hoogte",
+    "subtitle": "Skakel kennisgewings aan om by te bly met DeHub",
+    "rowTips": "Fooitjies en verdienste beland in jou beursie",
+    "rowReplies": "Antwoorde, vermeldings en direkte boodskappe",
+    "rowLive": "Skeppers wat jy volg wat regstreeks gaan",
+    "chooseInSettings": "Jy kies presies watter van hierdie jou bereik, in Instellings, enige tyd.",
+    "turnOn": "Skakel kennisgewings aan"
+  },
+  "review": {
+    "enjoyingApp": "Geniet jy die app?",
+    "feedbackHelps": "Jou terugvoer help ons om DeHub te verbeter",
+    "yes": "Ja! 😊",
+    "notReally": "Nie regtig nie 😕",
+    "thatsGreat": "Dis wonderlik!",
+    "rateUsOn": "Sal jy ons op {{store}} beoordeel? Dit help ons regtig groei!",
+    "rateOn": "Beoordeel op {{store}}",
+    "yourFeedback": "Jou terugvoer",
+    "feedbackPlaceholder": "Wat kan ons beter doen?",
+    "followUpNote": "Ons kontak jou dalk met opvolgvrae oor jou terugvoer",
+    "submitFeedback": "Stuur terugvoer",
+    "provideFeedback": "Gee asseblief jou terugvoer",
+    "thankYou": "Dankie vir jou terugvoer!"
   }
 }

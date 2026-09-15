@@ -1403,7 +1403,16 @@
     "attachmentTooLarge": "Файл бүр 20MB-аас бага байх ёстой"
   },
   "auth": {
-    "loginRequired": "Нэвтрэх шаардлагатай"
+    "loginRequired": "Нэвтрэх шаардлагатай",
+    "walletImported": "Хэтэвч импортлогдлоо",
+    "importWallet": "Хэтэвч импортлох",
+    "privateKeyPlaceholder": "Хувийн түлхүүрээ оруулна уу",
+    "importExternalWallet": "Гадаад хэтэвч импортлох",
+    "privateKey": "Хувийн түлхүүр",
+    "pasteFromClipboard": "Түр санахуйгаас буулгах",
+    "learnMoreAt": "dehub.io дээр дэлгэрэнгүй үзэх",
+    "accountsOnDevice": "Энэ төхөөрөмж дээрх бүртгэлүүд",
+    "use": "Ашиглах"
   },
   "messages": {
     "smartRepliesOff": "Санал болгосон хариултуудыг унтраалаа",
@@ -3811,5 +3820,29 @@
   "search": {
     "endOfResults": "Үр дүнгийн төгсгөл",
     "searchDehub": "DeHub-с хайх"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Мэдээллээ аваарай",
+    "subtitle": "DeHub-аас хоцрохгүйн тулд мэдэгдлийг асаа",
+    "rowTips": "Шан болон орлого таны хэтэвчинд ирнэ",
+    "rowReplies": "Хариултууд, дурдалт болон шууд мессеж",
+    "rowLive": "Таны дагадаг бүтээгчид шууд эфирт гарахад",
+    "chooseInSettings": "Эдгээрээс алийг нь хүлээж авахаа Тохиргоо хэсэгт хэдийд ч сонгоно.",
+    "turnOn": "Мэдэгдлийг асаах"
+  },
+  "review": {
+    "enjoyingApp": "Апп таалагдаж байна уу?",
+    "feedbackHelps": "Таны санал DeHub-ийг сайжруулахад тусална",
+    "yes": "Тийм ээ! 😊",
+    "notReally": "Тийм ч биш 😕",
+    "thatsGreat": "Гайхалтай!",
+    "rateUsOn": "{{store}}-д биднийг үнэлэхгүй юу? Энэ бидний өсөлтөд үнэхээр тусална!",
+    "rateOn": "{{store}}-д үнэлэх",
+    "yourFeedback": "Таны санал",
+    "feedbackPlaceholder": "Бид юуг илүү сайн хийж чадах вэ?",
+    "followUpNote": "Таны саналын талаар нэмэлт асуулт асуухаар холбогдож болно",
+    "submitFeedback": "Санал илгээх",
+    "provideFeedback": "Саналаа бичнэ үү",
+    "thankYou": "Саналд тань баярлалаа!"
   }
 }

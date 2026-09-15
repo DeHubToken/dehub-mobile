@@ -1417,7 +1417,16 @@
     "attachmentTooLarge": "كل ملف خاصو يكون أقل من 20MB"
   },
   "auth": {
-    "loginRequired": "خاصك تدخل"
+    "loginRequired": "خاصك تدخل",
+    "walletImported": "تستورد البورطفوي",
+    "importWallet": "استورد بورطفوي",
+    "privateKeyPlaceholder": "دخل المفتاح الخاص ديالك",
+    "importExternalWallet": "استورد بورطفوي خارجي",
+    "privateKey": "المفتاح الخاص",
+    "pasteFromClipboard": "لصق من الحافظة",
+    "learnMoreAt": "عرف كثر ف dehub.io",
+    "accountsOnDevice": "الحسابات ف هاد الجهاز",
+    "use": "استعمل"
   },
   "messages": {
     "smartRepliesOff": "تطفاو الردود المقترحة",
@@ -3858,5 +3867,29 @@
   "search": {
     "endOfResults": "نهاية النتائج",
     "searchDehub": "قلب ف DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "بقا على علم",
+    "subtitle": "شعل الإشعارات باش تبقى مع DeHub",
+    "rowTips": "البقشيش والأرباح كيوصلو للبورطفوي ديالك",
+    "rowReplies": "الردود والإشارات والرسائل الخاصة",
+    "rowLive": "المنشئين اللي كتتبع ملي يبداو البث",
+    "chooseInSettings": "نتا اللي كتختار أشمن واحد كيوصلك من الإعدادات، فأي وقت.",
+    "turnOn": "شعل الإشعارات"
+  },
+  "review": {
+    "enjoyingApp": "واش عجبك التطبيق؟",
+    "feedbackHelps": "الملاحظات ديالك كتعاوننا نحسنو DeHub",
+    "yes": "إيه! 😊",
+    "notReally": "ماشي بزاف 😕",
+    "thatsGreat": "هادشي زوين!",
+    "rateUsOn": "واش تقدر تقيمنا ف {{store}}؟ هادشي كيعاوننا بزاف!",
+    "rateOn": "قيم ف {{store}}",
+    "yourFeedback": "الملاحظات ديالك",
+    "feedbackPlaceholder": "شنو نقدرو نحسنو؟",
+    "followUpNote": "يمكن نتواصلو معاك بأسئلة زايدة على الملاحظات ديالك",
+    "submitFeedback": "صيفط الملاحظات",
+    "provideFeedback": "عافاك كتب الملاحظات ديالك",
+    "thankYou": "شكرا على الملاحظات ديالك!"
   }
 }

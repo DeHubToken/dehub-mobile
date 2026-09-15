@@ -25,6 +25,7 @@ import { setSigningProvider, setEoaSigningProvider, clearSigningProvider } from 
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { toastInfo, toastWarning } from "../../libs";
 import { getPreferredChainId } from "../../libs/auth.utils";
+import { useTranslation } from "react-i18next";
 
 export interface ImportWalletModalProps {
   visible: boolean;
@@ -36,6 +37,7 @@ const LIST_MAX_HEIGHT = Math.round(Dimensions.get("window").height * 0.45);
 
 const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
   ({ visible, onClose }) => {
+    const { t } = useTranslation();
     const { isLoading: authLoading, needsUsername } = useAuthState();
     const { signInWithWallet } = useAuthActions();
     const [privateKey, setPrivateKey] = useState<string>("");
@@ -117,7 +119,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
             await upsertLocalAccount({ address, privateKey });
           await signInWithWallet(address, effectiveChainId, privateKey);
           // Local account persistence will occur centrally after username is available
-          toastInfo("Wallet imported");
+          toastInfo(t("auth.walletImported"));
           setPrivateKey("");
           await refresh();
           onClose();
@@ -206,7 +208,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
         dismissible={!busy}
       >
         <View style={styles.sheet}>
-          <Text style={authText.modalTitle}>Import external wallet</Text>
+          <Text style={authText.modalTitle}>{t("auth.importExternalWallet")}</Text>
           <Text style={[authText.caption, { marginTop: 8, marginBottom: 20 }]}>
             Social logins are recommended. This tool is for importing existing accounts from{" "}
             <Text style={styles.link} onPress={() => openInApp(WEBSITE_LINK)}>
@@ -216,7 +218,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           </Text>
 
           <AuthField
-            label="Private key"
+            label={t("auth.privateKey")}
             value={privateKey}
             onChangeText={setPrivateKey}
             placeholder="0x… (64 hex)"
@@ -233,7 +235,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           />
           {clipboardPk && !privateKey ? (
             <AuthTextButton
-              label="Paste from clipboard"
+              label={t("auth.pasteFromClipboard")}
               onPress={async () => {
                 try {
                   const clip = (await Clipboard.getStringAsync())?.trim();
@@ -254,14 +256,14 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           <AuthButton
             variant="primary"
             icon="key"
-            label="Import"
+            label={t("wallet.import")}
             onPress={handleImport}
             disabled={!isPkValid}
             loading={busy}
             style={{ marginTop: 12 }}
           />
 
-          <AuthDivider label="Accounts on this device" />
+          <AuthDivider label={t("auth.accountsOnDevice")} />
 
           {accounts.length === 0 ? (
             <Text style={[authText.caption, { textAlign: "center", marginBottom: 12 }]}>
@@ -284,7 +286,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
                   </View>
                   <View style={styles.accountActions}>
                     <AuthButton
-                      label="Use"
+                      label={t("auth.use")}
                       onPress={() => handleUse(item.address)}
                       disabled={busy}
                       style={styles.useButton}

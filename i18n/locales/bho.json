@@ -1388,7 +1388,16 @@
     "attachmentTooLarge": "हर फाइल 20MB से कम होखे के चाहीं"
   },
   "auth": {
-    "loginRequired": "लॉगिन जरूरी बा"
+    "loginRequired": "लॉगिन जरूरी बा",
+    "walletImported": "वॉलेट इम्पोर्ट हो गइल",
+    "importWallet": "वॉलेट इम्पोर्ट करीं",
+    "privateKeyPlaceholder": "आपन प्राइवेट की डालीं",
+    "importExternalWallet": "बाहरी वॉलेट इम्पोर्ट करीं",
+    "privateKey": "प्राइवेट की",
+    "pasteFromClipboard": "क्लिपबोर्ड से पेस्ट करीं",
+    "learnMoreAt": "dehub.io पर अउरी जानीं",
+    "accountsOnDevice": "एह डिवाइस के खाता",
+    "use": "इस्तेमाल करीं"
   },
   "messages": {
     "smartRepliesOff": "सुझावल जवाब बंद हो गइल",
@@ -3782,5 +3791,29 @@
   "search": {
     "endOfResults": "नतीजा के अंत",
     "searchDehub": "DeHub में खोजीं"
+  },
+  "notifPrompt": {
+    "stayInLoop": "अपडेट रहीं",
+    "subtitle": "DeHub के साथे रहे खातिर नोटिफिकेशन चालू करीं",
+    "rowTips": "टिप आ कमाई रउरा वॉलेट में आवेला",
+    "rowReplies": "जवाब, मेंशन आ सीधा संदेश",
+    "rowLive": "जेकरा के रउआ फॉलो करीलें ऊ लाइव होखे पर",
+    "chooseInSettings": "रउआ खुद तय करीलें कि इनमें से कवन रउरा तक पहुँची — सेटिंग में, जब चाहीं।",
+    "turnOn": "नोटिफिकेशन चालू करीं"
+  },
+  "review": {
+    "enjoyingApp": "का रउरा के ऐप नीमन लागत बा?",
+    "feedbackHelps": "रउरा के फीडबैक से हमनी के DeHub बेहतर बनावे में मदद मिलेला",
+    "yes": "हँ! 😊",
+    "notReally": "ना बहुत 😕",
+    "thatsGreat": "ई त बढ़िया बा!",
+    "rateUsOn": "का रउआ {{store}} पर हमनी के रेटिंग देब? एसे हमनी के बढ़े में बहुत मदद मिली!",
+    "rateOn": "{{store}} पर रेटिंग दीं",
+    "yourFeedback": "रउरा के फीडबैक",
+    "feedbackPlaceholder": "हमनी का बेहतर कर सकीले?",
+    "followUpNote": "रउरा के फीडबैक पर आगे के सवाल खातिर हमनी संपर्क कर सकीले",
+    "submitFeedback": "फीडबैक भेजीं",
+    "provideFeedback": "कृपया आपन फीडबैक लिखीं",
+    "thankYou": "रउरा के फीडबैक खातिर धन्यवाद!"
   }
 }

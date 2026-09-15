@@ -1415,7 +1415,16 @@
     "attachmentTooLarge": "દરેક ફાઇલ 20MB થી ઓછી હોવી જોઈએ"
   },
   "auth": {
-    "loginRequired": "લૉગ ઇન જરૂરી"
+    "loginRequired": "લૉગ ઇન જરૂરી",
+    "walletImported": "વૉલેટ આયાત થયું",
+    "importWallet": "વૉલેટ આયાત કરો",
+    "privateKeyPlaceholder": "તમારી ખાનગી કી દાખલ કરો",
+    "importExternalWallet": "બાહ્ય વૉલેટ આયાત કરો",
+    "privateKey": "ખાનગી કી",
+    "pasteFromClipboard": "ક્લિપબોર્ડમાંથી પેસ્ટ કરો",
+    "learnMoreAt": "dehub.io પર વધુ જાણો",
+    "accountsOnDevice": "આ ઉપકરણ પરના એકાઉન્ટ",
+    "use": "વાપરો"
   },
   "messages": {
     "smartRepliesOff": "સૂચવેલા જવાબો બંધ કર્યા",
@@ -3824,5 +3833,29 @@
   "search": {
     "endOfResults": "પરિણામોનો અંત",
     "searchDehub": "DeHub માં શોધો"
+  },
+  "notifPrompt": {
+    "stayInLoop": "માહિતગાર રહો",
+    "subtitle": "DeHub સાથે રહેવા માટે નોટિફિકેશન ચાલુ કરો",
+    "rowTips": "ટિપ અને કમાણી તમારા વૉલેટમાં આવે છે",
+    "rowReplies": "જવાબો, ઉલ્લેખો અને સીધા સંદેશા",
+    "rowLive": "તમે જેમને ફોલો કરો છો તેઓ લાઇવ થાય ત્યારે",
+    "chooseInSettings": "તેમાંથી કઈ તમારા સુધી પહોંચે તે તમે સેટિંગ્સમાં ગમે ત્યારે પસંદ કરી શકો છો.",
+    "turnOn": "નોટિફિકેશન ચાલુ કરો"
+  },
+  "review": {
+    "enjoyingApp": "શું તમને એપ ગમે છે?",
+    "feedbackHelps": "તમારો પ્રતિસાદ અમને DeHub સુધારવામાં મદદ કરે છે",
+    "yes": "હા! 😊",
+    "notReally": "બહુ નહીં 😕",
+    "thatsGreat": "આ તો સરસ છે!",
+    "rateUsOn": "શું તમે {{store}} પર અમને રેટિંગ આપશો? એનાથી અમને વધવામાં ખૂબ મદદ મળે છે!",
+    "rateOn": "{{store}} પર રેટ કરો",
+    "yourFeedback": "તમારો પ્રતિસાદ",
+    "feedbackPlaceholder": "અમે શું સુધારી શકીએ?",
+    "followUpNote": "તમારા પ્રતિસાદ વિશે વધુ પ્રશ્નો માટે અમે સંપર્ક કરી શકીએ છીએ",
+    "submitFeedback": "પ્રતિસાદ મોકલો",
+    "provideFeedback": "કૃપા કરીને તમારો પ્રતિસાદ લખો",
+    "thankYou": "તમારા પ્રતિસાદ બદલ આભાર!"
   }
 }

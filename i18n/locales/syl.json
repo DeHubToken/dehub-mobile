@@ -1832,7 +1832,16 @@
     "forgotPassword": "পাসওয়ার্ড ভুলসো?",
     "resetPassword": "পাসওয়ার্ড রিসেট",
     "verifyEmail": "ইমেইল ভেরিফাই করো",
-    "loginRequired": "Log in required"
+    "loginRequired": "Log in required",
+    "walletImported": "ওয়ালেট ইমপোর্ট অইছে",
+    "importWallet": "ওয়ালেট ইমপোর্ট করউ",
+    "privateKeyPlaceholder": "তুমার প্রাইভেট কী দেউ",
+    "importExternalWallet": "বাইরর ওয়ালেট ইমপোর্ট করউ",
+    "privateKey": "প্রাইভেট কী",
+    "pasteFromClipboard": "ক্লিপবোর্ড থাকি পেস্ট করউ",
+    "learnMoreAt": "dehub.io ও আরো জানউ",
+    "accountsOnDevice": "ইতা ডিভাইসর একাউন্ট",
+    "use": "ব্যবহার করউ"
   },
   "music": {
     "nowPlaying": "এহন চলতাসে",
@@ -3977,5 +3986,29 @@
   "search": {
     "endOfResults": "ফলাফলর শেষ",
     "searchDehub": "DeHub ও খুজউ"
+  },
+  "notifPrompt": {
+    "stayInLoop": "খবরো থাকউ",
+    "subtitle": "DeHub র লগে থাকতে নোটিফিকেশন চালু করউ",
+    "rowTips": "টিপ আর আয় তুমার ওয়ালেটো আয়",
+    "rowReplies": "উত্তর, মেনশন আর সরাসরি বার্তা",
+    "rowLive": "তুমি যেতারারে ফলো করো তারা লাইভ অইলে",
+    "chooseInSettings": "ইতার মাঝে কোনটা তুমার কাছে আইব ইতা সেটিংসো যেকোনো সময় বাছতা পারবা।",
+    "turnOn": "নোটিফিকেশন চালু করউ"
+  },
+  "review": {
+    "enjoyingApp": "অ্যাপটা কিতা ভালা লাগের নি?",
+    "feedbackHelps": "তুমার মতামত DeHub ভালা করতে সাহায্য করে",
+    "yes": "অয়! 😊",
+    "notReally": "অতো না 😕",
+    "thatsGreat": "ইতা তো খুব বালা!",
+    "rateUsOn": "{{store}} ও আমরারে রেটিং দিবা নি? ইতা আমরার বাড়তে সত্যিই সাহায্য করে!",
+    "rateOn": "{{store}} ও রেটিং দেউ",
+    "yourFeedback": "তুমার মতামত",
+    "feedbackPlaceholder": "আমরা কিতা ভালা করতে পারি?",
+    "followUpNote": "তুমার মতামত লইয়া আরো প্রশ্নর লাগি আমরা যোগাযোগ করতা পারি",
+    "submitFeedback": "মতামত পাঠাও",
+    "provideFeedback": "দয়া করি তুমার মতামত লেখউ",
+    "thankYou": "তুমার মতামতর লাগি ধন্যবাদ!"
   }
 }

@@ -1447,7 +1447,16 @@
     "attachmentTooLarge": "Faayiliin tokkoon tokkoon isaa 20MB gadi ta'uu qaba"
   },
   "auth": {
-    "loginRequired": "Seeninuun barbaachisa"
+    "loginRequired": "Seeninuun barbaachisa",
+    "walletImported": "Boorsaan galfameera",
+    "importWallet": "Boorsaa galchi",
+    "privateKeyPlaceholder": "Furtuu dhuunfaa kee galchi",
+    "importExternalWallet": "Boorsaa alaa galchi",
+    "privateKey": "Furtuu dhuunfaa",
+    "pasteFromClipboard": "Kiliippoordii irraa maxxansi",
+    "learnMoreAt": "dehub.io irratti dabalataan baradhu",
+    "accountsOnDevice": "Herrega meeshaa kana irra jiran",
+    "use": "Fayyadami"
   },
   "messages": {
     "smartRepliesOff": "Deebiiwwan yaadaman dhaamamaniiru",
@@ -3896,5 +3905,29 @@
   "search": {
     "endOfResults": "Dhuma bu'aawwanii",
     "searchDehub": "DeHub keessaa barbaadi"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Odeeffannoo argadhu",
+    "subtitle": "DeHub waliin turuuf beeksisa bani",
+    "rowTips": "Kennaa fi galiin boorsaa keetti gala",
+    "rowReplies": "Deebii, waamicha fi ergaa kallattii",
+    "rowLive": "Yeroo uumtoonni ati hordoftu kallattiin tamsaasan",
+    "chooseInSettings": "Isaan keessaa kamtu si bira gaʼu Qindaaʼina keessatti yeroo barbaaddetti filatta.",
+    "turnOn": "Beeksisa bani"
+  },
+  "review": {
+    "enjoyingApp": "Aappilikeeshinii sitti tolaa?",
+    "feedbackHelps": "Yaadni kee DeHub fooyyessuuf nu gargaara",
+    "yes": "Eeyyee! 😊",
+    "notReally": "Baay'ee miti 😕",
+    "thatsGreat": "Kun baay'ee gaarii dha!",
+    "rateUsOn": "{{store}} irratti nu madaaluu ni dandeessuu? Kun guddina keenyaaf baay'ee nu gargaara!",
+    "rateOn": "{{store}} irratti madaali",
+    "yourFeedback": "Yaada kee",
+    "feedbackPlaceholder": "Maal fooyyessuu dandeenya?",
+    "followUpNote": "Waa'ee yaada keetii gaaffii dabalataaf si quunnamuu dandeenya",
+    "submitFeedback": "Yaada ergi",
+    "provideFeedback": "Maaloo yaada kee barreessi",
+    "thankYou": "Yaada keetiif galatoomi!"
   }
 }

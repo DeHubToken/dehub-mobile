@@ -1140,7 +1140,16 @@
     "solanaAddressCopied": "آدرس سولانا کپی شد"
   },
   "auth": {
-    "loginRequired": "ورود لازم است"
+    "loginRequired": "ورود لازم است",
+    "walletImported": "کیف پول وارد شد",
+    "importWallet": "وارد کردن کیف پول",
+    "privateKeyPlaceholder": "کلید خصوصی خود را وارد کنید",
+    "importExternalWallet": "وارد کردن کیف پول خارجی",
+    "privateKey": "کلید خصوصی",
+    "pasteFromClipboard": "چسباندن از کلیپ‌بورد",
+    "learnMoreAt": "اطلاعات بیشتر در dehub.io",
+    "accountsOnDevice": "حساب‌های این دستگاه",
+    "use": "استفاده"
   },
   "explorePage": {
     "searchPlaceholder": "جستجوی افراد، پست‌ها یا محتوا...",
@@ -3845,5 +3854,29 @@
   "search": {
     "endOfResults": "پایان نتایج",
     "searchDehub": "جستجو در DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "در جریان باشید",
+    "subtitle": "برای همراهی با DeHub اعلان‌ها را روشن کنید",
+    "rowTips": "انعام‌ها و درآمدها به کیف پول شما می‌رسد",
+    "rowReplies": "پاسخ‌ها، منشن‌ها و پیام‌های مستقیم",
+    "rowLive": "وقتی سازندگانی که دنبال می‌کنید زنده می‌شوند",
+    "chooseInSettings": "شما دقیقاً انتخاب می‌کنید کدام‌یک به شما برسد؛ هر زمان در تنظیمات.",
+    "turnOn": "روشن کردن اعلان‌ها"
+  },
+  "review": {
+    "enjoyingApp": "از برنامه لذت می‌برید؟",
+    "feedbackHelps": "بازخورد شما به بهبود DeHub کمک می‌کند",
+    "yes": "بله! 😊",
+    "notReally": "نه چندان 😕",
+    "thatsGreat": "عالیه!",
+    "rateUsOn": "زحمتی نیست در {{store}} به ما امتیاز بدهید؟ واقعاً به رشد ما کمک می‌کند!",
+    "rateOn": "امتیاز در {{store}}",
+    "yourFeedback": "بازخورد شما",
+    "feedbackPlaceholder": "چه چیزی را بهتر کنیم؟",
+    "followUpNote": "ممکن است برای پرسش‌های تکمیلی درباره بازخوردتان با شما تماس بگیریم",
+    "submitFeedback": "ارسال بازخورد",
+    "provideFeedback": "لطفاً بازخورد خود را بنویسید",
+    "thankYou": "از بازخورد شما سپاسگزاریم!"
   }
 }

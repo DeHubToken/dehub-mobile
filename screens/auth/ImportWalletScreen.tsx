@@ -42,6 +42,7 @@ import {
   authText,
 } from "../../components/auth/AuthControls";
 import ScreenHeader from "../../components/ScreenHeader";
+import { useTranslation } from "react-i18next";
 
 // 3D wallet image
 const WALLET_3D_IMAGE = require("../../assets/onboarding/wallet-3d.png");
@@ -55,6 +56,7 @@ interface ImportWalletScreenProps {
 const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
   navigation,
 }) => {
+  const { t } = useTranslation();
   const { isLoading: authLoading, needsUsername } = useAuthState();
   const { signInWithWallet } = useAuthActions();
 
@@ -152,7 +154,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
       try {
         await upsertLocalAccount({ address, privateKey });
         await signInWithWallet(address, effectiveChainId, privateKey);
-        toastInfo("Wallet imported");
+        toastInfo(t("auth.walletImported"));
         setPrivateKey("");
         await refresh();
       } finally {
@@ -242,7 +244,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
 
   return (
     <SafeAreaView className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title="Import Wallet" onBackPress={handleGoBack} />
+      <ScreenHeader title={t("auth.importWallet")} onBackPress={handleGoBack} />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
@@ -275,13 +277,13 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
 
           {/* Private Key Input */}
           <AuthField
-            label="Private Key"
+            label={t("auth.privateKey")}
             value={privateKey}
             onChangeText={setPrivateKey}
             autoCapitalize="none"
             autoCorrect={false}
             secureTextEntry={!showPk}
-            placeholder="Enter your private key"
+            placeholder={t("auth.privateKeyPlaceholder")}
             editable={!busy}
             trailing={
               <AuthIconButton
@@ -295,7 +297,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
           {/* Paste from clipboard */}
           {clipboardPk && !privateKey && (
             <AuthTextButton
-              label="Paste from clipboard"
+              label={t("auth.pasteFromClipboard")}
               onPress={handlePasteFromClipboard}
               tone="default"
               align="end"
@@ -305,7 +307,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
           {/* Import Wallet Button */}
           <AuthButton
             variant="primary"
-            label="Import Wallet"
+            label={t("auth.importWallet")}
             onPress={handleImport}
             disabled={!isPkValid}
             loading={busy}
@@ -314,7 +316,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
 
           {/* Learn More Link */}
           <AuthTextButton
-            label="Learn more at dehub.io"
+            label={t("auth.learnMoreAt")}
             onPress={handleLearnMore}
             style={{ marginTop: 8 }}
           />
@@ -322,7 +324,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
           {/* Previously Imported Accounts */}
           {accounts.length > 0 && (
             <View style={{ marginTop: 8 }}>
-              <AuthDivider label="Accounts on this device" />
+              <AuthDivider label={t("auth.accountsOnDevice")} />
 
               {accounts.map((account) => (
                 <View key={account.address} style={styles.accountRow}>
@@ -334,7 +336,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
                   </View>
                   <View style={styles.accountActions}>
                     <AuthButton
-                      label="Use"
+                      label={t("auth.use")}
                       onPress={() => handleUseAccount(account.address)}
                       disabled={busy}
                       style={styles.useButton}

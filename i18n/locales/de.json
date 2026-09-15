@@ -1187,7 +1187,16 @@
     "attachmentTooLarge": "Jede Datei muss unter 20 MB sein"
   },
   "auth": {
-    "loginRequired": "Anmeldung erforderlich"
+    "loginRequired": "Anmeldung erforderlich",
+    "walletImported": "Wallet importiert",
+    "importWallet": "Wallet importieren",
+    "privateKeyPlaceholder": "Gib deinen privaten Schlüssel ein",
+    "importExternalWallet": "Externe Wallet importieren",
+    "privateKey": "Privater Schlüssel",
+    "pasteFromClipboard": "Aus Zwischenablage einfügen",
+    "learnMoreAt": "Mehr erfahren auf dehub.io",
+    "accountsOnDevice": "Konten auf diesem Gerät",
+    "use": "Verwenden"
   },
   "bookmarks": {
     "title": "Deine Lesezeichen",
@@ -3901,5 +3910,29 @@
   "search": {
     "endOfResults": "Ende der Ergebnisse",
     "searchDehub": "DeHub durchsuchen"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Bleib auf dem Laufenden",
+    "subtitle": "Aktiviere Benachrichtigungen, um bei DeHub am Ball zu bleiben",
+    "rowTips": "Trinkgelder und Einnahmen landen in deiner Wallet",
+    "rowReplies": "Antworten, Erwähnungen und Direktnachrichten",
+    "rowLive": "Wenn Creator, denen du folgst, live gehen",
+    "chooseInSettings": "Du entscheidest genau, welche davon dich erreichen — jederzeit in den Einstellungen.",
+    "turnOn": "Benachrichtigungen aktivieren"
+  },
+  "review": {
+    "enjoyingApp": "Gefällt dir die App?",
+    "feedbackHelps": "Dein Feedback hilft uns, DeHub zu verbessern",
+    "yes": "Ja! 😊",
+    "notReally": "Nicht wirklich 😕",
+    "thatsGreat": "Das freut uns!",
+    "rateUsOn": "Würdest du uns im {{store}} bewerten? Das hilft uns wirklich beim Wachsen!",
+    "rateOn": "Im {{store}} bewerten",
+    "yourFeedback": "Dein Feedback",
+    "feedbackPlaceholder": "Was können wir besser machen?",
+    "followUpNote": "Wir melden uns eventuell mit Rückfragen zu deinem Feedback",
+    "submitFeedback": "Feedback senden",
+    "provideFeedback": "Bitte gib dein Feedback ein",
+    "thankYou": "Danke für dein Feedback!"
   }
 }

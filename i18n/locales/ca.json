@@ -1419,7 +1419,16 @@
     "attachmentTooLarge": "Cada fitxer ha de pesar menys de 20 MB"
   },
   "auth": {
-    "loginRequired": "Cal iniciar sessió"
+    "loginRequired": "Cal iniciar sessió",
+    "walletImported": "Cartera importada",
+    "importWallet": "Importa una cartera",
+    "privateKeyPlaceholder": "Introdueix la teva clau privada",
+    "importExternalWallet": "Importa una cartera externa",
+    "privateKey": "Clau privada",
+    "pasteFromClipboard": "Enganxa del porta-retalls",
+    "learnMoreAt": "Més informació a dehub.io",
+    "accountsOnDevice": "Comptes en aquest dispositiu",
+    "use": "Usa"
   },
   "messages": {
     "smartRepliesOff": "Respostes suggerides desactivades",
@@ -3832,5 +3841,29 @@
   "search": {
     "endOfResults": "Fi dels resultats",
     "searchDehub": "Cerca a DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Mantén-te al dia",
+    "subtitle": "Activa les notificacions per estar al dia de DeHub",
+    "rowTips": "Les propines i els guanys arriben a la teva cartera",
+    "rowReplies": "Respostes, mencions i missatges directes",
+    "rowLive": "Quan els creadors que segueixes es posen en directe",
+    "chooseInSettings": "Tu tries exactament quins t'arriben, a Configuració, quan vulguis.",
+    "turnOn": "Activa les notificacions"
+  },
+  "review": {
+    "enjoyingApp": "T'agrada l'aplicació?",
+    "feedbackHelps": "Els teus comentaris ens ajuden a millorar DeHub",
+    "yes": "Sí! 😊",
+    "notReally": "No gaire 😕",
+    "thatsGreat": "Que bé!",
+    "rateUsOn": "Ens podries valorar a {{store}}? Ens ajuda molt a créixer!",
+    "rateOn": "Valora a {{store}}",
+    "yourFeedback": "Els teus comentaris",
+    "feedbackPlaceholder": "Què podem millorar?",
+    "followUpNote": "És possible que et contactem amb preguntes de seguiment sobre els teus comentaris",
+    "submitFeedback": "Envia els comentaris",
+    "provideFeedback": "Escriu els teus comentaris",
+    "thankYou": "Gràcies pels teus comentaris!"
   }
 }

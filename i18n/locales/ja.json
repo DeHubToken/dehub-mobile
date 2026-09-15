@@ -878,7 +878,16 @@
     "multipleChoice": "複数回答を許可"
   },
   "auth": {
-    "loginRequired": "ログインが必要です"
+    "loginRequired": "ログインが必要です",
+    "walletImported": "ウォレットをインポートしました",
+    "importWallet": "ウォレットをインポート",
+    "privateKeyPlaceholder": "秘密鍵を入力してください",
+    "importExternalWallet": "外部ウォレットをインポート",
+    "privateKey": "秘密鍵",
+    "pasteFromClipboard": "クリップボードから貼り付け",
+    "learnMoreAt": "詳しくは dehub.io をご覧ください",
+    "accountsOnDevice": "この端末のアカウント",
+    "use": "使う"
   },
   "explorePage": {
     "searchPlaceholder": "人、投稿、コンテンツを検索...",
@@ -3899,5 +3908,29 @@
   "search": {
     "endOfResults": "結果はここまで",
     "searchDehub": "DeHub を検索"
+  },
+  "notifPrompt": {
+    "stayInLoop": "最新情報を受け取る",
+    "subtitle": "通知をオンにして DeHub の動きを逃さないようにしましょう",
+    "rowTips": "投げ銭や収益はウォレットに入ります",
+    "rowReplies": "返信、メンション、ダイレクトメッセージ",
+    "rowLive": "フォロー中のクリエイターがライブを始めたとき",
+    "chooseInSettings": "どれを受け取るかは、いつでも設定で選べます。",
+    "turnOn": "通知をオンにする"
+  },
+  "review": {
+    "enjoyingApp": "アプリは気に入っていますか？",
+    "feedbackHelps": "いただいたご意見が DeHub の改善につながります",
+    "yes": "はい！😊",
+    "notReally": "あまり 😕",
+    "thatsGreat": "うれしいです！",
+    "rateUsOn": "{{store}} で評価していただけますか？成長の大きな支えになります！",
+    "rateOn": "{{store}} で評価",
+    "yourFeedback": "ご意見",
+    "feedbackPlaceholder": "どこを改善できますか？",
+    "followUpNote": "ご意見について追加でお伺いすることがあります",
+    "submitFeedback": "ご意見を送信",
+    "provideFeedback": "ご意見をご入力ください",
+    "thankYou": "ご意見ありがとうございます！"
   }
 }
