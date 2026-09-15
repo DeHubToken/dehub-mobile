@@ -3275,5 +3275,21 @@
     "createAndSave": "Létrehozás és mentés",
     "createNew": "Új mappa létrehozása",
     "closeA11y": "Mappaválasztó bezárása"
+  },
+  "ppv": {
+    "title": "Nézetenként fizetős tartalom",
+    "unlockPrice": "Feloldási ár",
+    "topUpToUnlock": "Tölts fel a feloldáshoz",
+    "addTip": "Adj borravalót az alkotónak",
+    "cantPaySelf": "Nem fizethetsz saját magadnak",
+    "swapping": "ETH → DHB váltása…",
+    "processing": "Fizetés feldolgozása…",
+    "unlocked": "Feloldva!",
+    "canViewImage": "Most már megnézheted ezt a képet",
+    "canWatchVideo": "Most már megnézheted ezt a videót",
+    "solanaFailed": "A Solana-fizetés sikertelen",
+    "missingWeb3": "Hiányzik a web3 kontextus",
+    "preparingRouter": "Fizetési útválasztó előkészítése… próbáld újra egy pillanat múlva",
+    "swapShort": "A csere megtörtént, de a DHB még mindig kevés. Próbáld újra."
   }
 }

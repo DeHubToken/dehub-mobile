@@ -3241,5 +3241,21 @@
     "createAndSave": "Döret we ýatda sakla",
     "createNew": "Täze bukja döret",
     "closeA11y": "Bukja saýlaýjyny ýap"
+  },
+  "ppv": {
+    "title": "Her görkeziş üçin tölegli mazmun",
+    "unlockPrice": "Açmak bahasy",
+    "topUpToUnlock": "Açmak üçin doldur",
+    "addTip": "Döredijä çaý puly goş",
+    "cantPaySelf": "Siz özüňize töläp bilmeýärsiňiz",
+    "swapping": "ETH → DHB çalşylýar…",
+    "processing": "Töleg işlenýär…",
+    "unlocked": "Açyldy!",
+    "canViewImage": "Indi bu suraty görüp bilersiňiz",
+    "canWatchVideo": "Indi bu wideony görüp bilersiňiz",
+    "solanaFailed": "Solana tölegi şowsuz boldy",
+    "missingWeb3": "web3 konteksti ýok",
+    "preparingRouter": "Töleg marşrutizatory taýýarlanýar… biraz soň gaýtadan synanyşyň",
+    "swapShort": "Çalşyk tamamlandy, ýöne DHB entek ýeterlik däl. Gaýtadan synanyşyň."
   }
 }

@@ -3260,5 +3260,21 @@
     "createAndSave": "Erstelle und speichere",
     "createNew": "Neue Ordner erstelle",
     "closeA11y": "Ordneruswahl zuemache"
+  },
+  "ppv": {
+    "title": "Pay-per-View-Inhalt",
+    "unlockPrice": "Freischaltpriis",
+    "topUpToUnlock": "Uflade zum Freischalte",
+    "addTip": "Trinkgäld für de Creator hinzuefüege",
+    "cantPaySelf": "Du chasch dich nid sälber zahle",
+    "swapping": "ETH → DHB wird tuuscht…",
+    "processing": "Zahlig wird verarbeitet…",
+    "unlocked": "Freigschaltet!",
+    "canViewImage": "Du chasch das Bild jetz aaluege",
+    "canWatchVideo": "Du chasch das Video jetz aaluege",
+    "solanaFailed": "Solana-Zahlig fehlgschlage",
+    "missingWeb3": "web3-Kontext fählt",
+    "preparingRouter": "Zahligs-Router wird vorbereitet… gliich nomol probiere",
+    "swapShort": "Tuusch erledigt, aber DHB längt no nid. Bitte nomol probiere."
   }
 }

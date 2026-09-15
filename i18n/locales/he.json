@@ -3258,5 +3258,21 @@
     "createAndSave": "צור ושמור",
     "createNew": "צור תיקייה חדשה",
     "closeA11y": "סגור את בורר התיקיות"
+  },
+  "ppv": {
+    "title": "תוכן בתשלום לצפייה",
+    "unlockPrice": "מחיר פתיחה",
+    "topUpToUnlock": "טען יתרה כדי לפתוח",
+    "addTip": "הוסף טיפ ליוצר",
+    "cantPaySelf": "אינך יכול לשלם לעצמך",
+    "swapping": "מחליף ETH ← DHB…",
+    "processing": "מעבד תשלום…",
+    "unlocked": "נפתח!",
+    "canViewImage": "כעת תוכל לצפות בתמונה זו",
+    "canWatchVideo": "כעת תוכל לצפות בסרטון הזה",
+    "solanaFailed": "התשלום ב-Solana נכשל",
+    "missingWeb3": "חסר הקשר web3",
+    "preparingRouter": "מכין נתב תשלומים… נסה שוב בעוד רגע",
+    "swapShort": "ההחלפה בוצעה אך DHB עדיין חסר. נסה שוב."
   }
 }

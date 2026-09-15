@@ -3440,5 +3440,21 @@
     "createAndSave": "Vytvoriť a uložiť",
     "createNew": "Vytvoriť nový priečinok",
     "closeA11y": "Zavrieť výber priečinka"
+  },
+  "ppv": {
+    "title": "Obsah platený za zhliadnutie",
+    "unlockPrice": "Cena za odomknutie",
+    "topUpToUnlock": "Dobite na odomknutie",
+    "addTip": "Pridajte prepitné tvorcovi",
+    "cantPaySelf": "Nemôžete platiť sami sebe",
+    "swapping": "Prebieha výmena ETH → DHB…",
+    "processing": "Spracovanie platby…",
+    "unlocked": "Odomknuté!",
+    "canViewImage": "Teraz si môžete tento obrázok pozrieť",
+    "canWatchVideo": "Teraz si môžete toto video pozrieť",
+    "solanaFailed": "Platba cez Solana zlyhala",
+    "missingWeb3": "Chýba kontext web3",
+    "preparingRouter": "Pripravuje sa platobný smerovač… skúste to o chvíľu",
+    "swapShort": "Výmena prebehla, ale DHB stále nestačí. Skúste to znova."
   }
 }

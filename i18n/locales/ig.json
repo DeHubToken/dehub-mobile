@@ -3249,5 +3249,21 @@
     "createAndSave": "Mepụta ma chekwaa",
     "createNew": "Mepụta nchekwa ọhụrụ",
     "closeA11y": "Mechie nhọrọ nchekwa"
+  },
+  "ppv": {
+    "title": "Ọdịnaya ịkwụ ụgwọ maka nlele",
+    "unlockPrice": "Ọnụahịa imepe",
+    "topUpToUnlock": "Tinye ego iji mepee",
+    "addTip": "Tinye ego ntụrụndụ maka onye okike",
+    "cantPaySelf": "Ị nweghị ike ịkwụ onwe gị ụgwọ",
+    "swapping": "Na-agbanwe ETH → DHB…",
+    "processing": "Na-ahazi ịkwụ ụgwọ…",
+    "unlocked": "Emeghere ya!",
+    "canViewImage": "Ị nwere ike ilee onyonyo a ugbu a",
+    "canWatchVideo": "Ị nwere ike ikiri vidiyo a ugbu a",
+    "solanaFailed": "Ịkwụ ụgwọ Solana dara",
+    "missingWeb3": "Enweghị ọnọdụ web3",
+    "preparingRouter": "Na-akwadebe router ịkwụ ụgwọ… nwaa ọzọ n'oge na-adịghị anya",
+    "swapShort": "Emechara mgbanwe mana DHB ka na-akọ. Nwaa ọzọ."
   }
 }

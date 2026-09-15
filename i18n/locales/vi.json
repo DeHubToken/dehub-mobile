@@ -3359,5 +3359,21 @@
     "createAndSave": "Tạo và lưu",
     "createNew": "Tạo thư mục mới",
     "closeA11y": "Đóng bộ chọn thư mục"
+  },
+  "ppv": {
+    "title": "Nội dung trả tiền theo lượt xem",
+    "unlockPrice": "Giá mở khóa",
+    "topUpToUnlock": "Nạp thêm để mở khóa",
+    "addTip": "Thêm tiền thưởng cho người sáng tạo",
+    "cantPaySelf": "Bạn không thể thanh toán cho chính mình",
+    "swapping": "Đang đổi ETH → DHB…",
+    "processing": "Đang xử lý thanh toán…",
+    "unlocked": "Đã mở khóa!",
+    "canViewImage": "Bây giờ bạn có thể xem hình ảnh này",
+    "canWatchVideo": "Bây giờ bạn có thể xem video này",
+    "solanaFailed": "Thanh toán Solana thất bại",
+    "missingWeb3": "Thiếu ngữ cảnh web3",
+    "preparingRouter": "Đang chuẩn bị bộ định tuyến thanh toán… thử lại sau giây lát",
+    "swapShort": "Đã đổi xong nhưng DHB vẫn chưa đủ. Hãy thử lại."
   }
 }

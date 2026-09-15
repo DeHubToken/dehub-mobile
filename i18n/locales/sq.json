@@ -3270,5 +3270,21 @@
     "createAndSave": "Krijo dhe ruaj",
     "createNew": "Krijo dosje të re",
     "closeA11y": "Mbyll zgjedhësin e dosjeve"
+  },
+  "ppv": {
+    "title": "Përmbajtje me pagesë për shikim",
+    "unlockPrice": "Çmimi i shkyçjes",
+    "topUpToUnlock": "Mbush për ta shkyçur",
+    "addTip": "Shto një bakshish për krijuesin",
+    "cantPaySelf": "Nuk mund t'i paguash vetes",
+    "swapping": "Po këmbehet ETH → DHB…",
+    "processing": "Po përpunohet pagesa…",
+    "unlocked": "U shkyç!",
+    "canViewImage": "Tani mund ta shohësh këtë imazh",
+    "canWatchVideo": "Tani mund ta shikosh këtë video",
+    "solanaFailed": "Pagesa me Solana dështoi",
+    "missingWeb3": "Mungon konteksti web3",
+    "preparingRouter": "Po përgatitet routeri i pagesave… provo sërish pas pak",
+    "swapShort": "Këmbimi u krye por DHB ende s'mjafton. Provo sërish."
   }
 }

@@ -3271,5 +3271,21 @@
     "createAndSave": "Unda na uhifadhi",
     "createNew": "Unda folda mpya",
     "closeA11y": "Funga kiteuzi cha folda"
+  },
+  "ppv": {
+    "title": "Maudhui ya kulipia kila kutazama",
+    "unlockPrice": "Bei ya kufungua",
+    "topUpToUnlock": "Ongeza salio ili kufungua",
+    "addTip": "Ongeza bakshishi kwa mtayarishaji",
+    "cantPaySelf": "Huwezi kujilipa mwenyewe",
+    "swapping": "Inabadilisha ETH → DHB…",
+    "processing": "Inachakata malipo…",
+    "unlocked": "Imefunguliwa!",
+    "canViewImage": "Sasa unaweza kuona picha hii",
+    "canWatchVideo": "Sasa unaweza kutazama video hii",
+    "solanaFailed": "Malipo ya Solana yameshindwa",
+    "missingWeb3": "Muktadha wa web3 haupo",
+    "preparingRouter": "Inaandaa kipanga njia cha malipo… jaribu tena baada ya muda mfupi",
+    "swapShort": "Ubadilishaji umekamilika lakini DHB bado haitoshi. Jaribu tena."
   }
 }

@@ -3450,5 +3450,21 @@
     "createAndSave": "Gumawa at i-save",
     "createNew": "Gumawa ng bagong folder",
     "closeA11y": "Isara ang folder picker"
+  },
+  "ppv": {
+    "title": "Nilalamang pay-per-view",
+    "unlockPrice": "Presyo ng pag-unlock",
+    "topUpToUnlock": "Mag-top up para ma-unlock",
+    "addTip": "Magdagdag ng tip para sa creator",
+    "cantPaySelf": "Hindi mo puwedeng bayaran ang sarili mo",
+    "swapping": "Nagpapalit ng ETH → DHB…",
+    "processing": "Pinoproseso ang bayad…",
+    "unlocked": "Na-unlock!",
+    "canViewImage": "Puwede mo nang tingnan ang larawang ito",
+    "canWatchVideo": "Puwede mo nang panoorin ang video na ito",
+    "solanaFailed": "Nabigo ang bayad sa Solana",
+    "missingWeb3": "Walang web3 context",
+    "preparingRouter": "Inihahanda ang payment router… subukan ulit maya-maya",
+    "swapShort": "Tapos na ang swap pero kulang pa rin ang DHB. Subukan ulit."
   }
 }

@@ -3297,5 +3297,21 @@
     "createAndSave": "دير وسجل",
     "createNew": "دير مجلد جديد",
     "closeA11y": "سد منتقي المجلدات"
+  },
+  "ppv": {
+    "title": "محتوى الخلاص باش تشوف",
+    "unlockPrice": "الثمن ديال الفتح",
+    "topUpToUnlock": "عمر الرصيد باش تفتح",
+    "addTip": "زيد إكرامية للصانع",
+    "cantPaySelf": "ما تقدرش تخلص لراسك",
+    "swapping": "كيبدل ETH ← DHB…",
+    "processing": "كيعالج الخلاص…",
+    "unlocked": "تفتح!",
+    "canViewImage": "دابا تقدر تشوف هاد الصورة",
+    "canWatchVideo": "دابا تقدر تتفرج ف هاد الفيديو",
+    "solanaFailed": "الخلاص بسولانا فشل",
+    "missingWeb3": "سياق web3 ناقص",
+    "preparingRouter": "كيوجد موجه الخلاص… عاود جرب من بعد شوية",
+    "swapShort": "التبديل تدار ولكن DHB مازال ناقص. عاود جرب."
   }
 }

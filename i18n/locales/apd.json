@@ -3228,5 +3228,21 @@
     "createAndSave": "أنشئ واحفظ",
     "createNew": "أنشئ مجلد جديد",
     "closeA11y": "اقفل مختار المجلدات"
+  },
+  "ppv": {
+    "title": "محتوى الدفع مقابل المشاهدة",
+    "unlockPrice": "سعر الفتح",
+    "topUpToUnlock": "عبي رصيدك عشان تفتح",
+    "addTip": "ضيف إكرامية للمبدع",
+    "cantPaySelf": "ما بتقدر تدفع لنفسك",
+    "swapping": "بيبدّل ETH ← DHB…",
+    "processing": "بيعالج الدفعة…",
+    "unlocked": "اتفتح!",
+    "canViewImage": "تقدر تشوف الصورة دي هسة",
+    "canWatchVideo": "تقدر تتفرج على الفيديو ده هسة",
+    "solanaFailed": "الدفع بسولانا فشل",
+    "missingWeb3": "سياق web3 ناقص",
+    "preparingRouter": "بيجهز موجه الدفع… حاول بعد شوية",
+    "swapShort": "التبديل تم لكن DHB لسه ناقص. حاول تاني."
   }
 }

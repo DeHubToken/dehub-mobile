@@ -3345,5 +3345,21 @@
     "createAndSave": "Créer et enregistrer",
     "createNew": "Créer un nouveau dossier",
     "closeA11y": "Fermer le sélecteur de dossiers"
+  },
+  "ppv": {
+    "title": "Contenu à la séance",
+    "unlockPrice": "Prix de déblocage",
+    "topUpToUnlock": "Rechargez pour débloquer",
+    "addTip": "Ajoutez un pourboire pour le créateur",
+    "cantPaySelf": "Vous ne pouvez pas vous payer vous-même",
+    "swapping": "Échange ETH → DHB…",
+    "processing": "Traitement du paiement…",
+    "unlocked": "Débloqué !",
+    "canViewImage": "Vous pouvez maintenant voir cette image",
+    "canWatchVideo": "Vous pouvez maintenant regarder cette vidéo",
+    "solanaFailed": "Le paiement Solana a échoué",
+    "missingWeb3": "Contexte web3 manquant",
+    "preparingRouter": "Préparation du routeur de paiement… réessayez dans un instant",
+    "swapShort": "Échange effectué mais les DHB sont encore insuffisants. Réessayez."
   }
 }

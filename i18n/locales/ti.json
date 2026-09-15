@@ -3236,5 +3236,21 @@
     "createAndSave": "ፍጠርን ኣቐምጥን",
     "createNew": "ሓድሽ ፋይል ፍጠር",
     "closeA11y": "መምረጺ ፋይል ዕጸው"
+  },
+  "ppv": {
+    "title": "ብምርኣይ ዝኽፈሎ ትሕዝቶ",
+    "unlockPrice": "ዋጋ ምኽፋት",
+    "topUpToUnlock": "ንምኽፋት ኣምልእ",
+    "addTip": "ንፈጣሪ ጉርሻ ወስኽ",
+    "cantPaySelf": "ንርእስኻ ክትከፍል ኣይትኽእልን",
+    "swapping": "ETH → DHB ይልወጥ ኣሎ…",
+    "processing": "ክፍሊት ይሰላሰል ኣሎ…",
+    "unlocked": "ተኸፊቱ!",
+    "canViewImage": "ሕጂ ነዚ ስእሊ ክትርእዮ ትኽእል",
+    "canWatchVideo": "ሕጂ ነዚ ቪድዮ ክትርእዮ ትኽእል",
+    "solanaFailed": "ክፍሊት Solana ኣይሰለጠን",
+    "missingWeb3": "ኣውድ web3 የለን",
+    "preparingRouter": "መራሒ ክፍሊት ይዳሎ ኣሎ… ድሕሪ ቁሩብ ደጊምካ ፈትን",
+    "swapShort": "ምልውዋጥ ተፈጺሙ ግን DHB ገና ኣይኣክልን። ደጊምካ ፈትን።"
   }
 }
