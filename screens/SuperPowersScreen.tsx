@@ -26,6 +26,7 @@ import {
   Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { theme } from "../theme";
@@ -57,6 +58,7 @@ function formatMinutes(total: number): string {
 
 export default function SuperPowersScreen() {
   const navigation = useNavigation<any>();
+  const { t, i18n } = useTranslation();
   const { data: status, isLoading: loadingStatus, refetch: refetchStatus } = useSuperpowers();
   const { data: ladder, isLoading: loadingLadder } = useSuperpowerLadder();
   const cancelBoost = useCancelBoost();
@@ -70,8 +72,8 @@ export default function SuperPowersScreen() {
   const refillsOn = useMemo(() => {
     const iso = status?.cycleEndsAt ?? ladder?.cycleEndsAt;
     if (!iso) return null;
-    return new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "long" });
-  }, [status?.cycleEndsAt, ladder?.cycleEndsAt]);
+    return new Date(iso).toLocaleDateString(i18n.language, { day: "numeric", month: "long" });
+  }, [status?.cycleEndsAt, ladder?.cycleEndsAt, i18n.language]);
 
   // One sheet for every spendable power. It resolves the target a power needs — a
   // post, a comment, a Stage, a category — and books it; the server re-checks
@@ -91,25 +93,22 @@ export default function SuperPowersScreen() {
       onSuccess: ({ refunded }) =>
         toastSuccess(
           refunded
-            ? "Boost cancelled and returned to your allowance"
-            : "Boost cancelled. It had already started, so it stays spent.",
+            ? t("superpowers.boostCancelledRefunded")
+            : t("superpowers.boostCancelledSpent"),
         ),
-      onError: (error: any) => toastError(error?.message || "Could not cancel that boost"),
+      onError: (error: any) => toastError(error?.message || t("superpowers.cancelFailed")),
     });
 
   return (
     <View style={styles.root}>
       <ScreenHeader
-        title="SuperPowers"
-        subtitle="Badge boosts and Team up"
+        title={t("superpowers.screenTitle")}
+        subtitle={t("superpowers.screenSubtitle")}
         rightContent={<Icon name="Rocket" size={22} color={theme.colors.accent} />}
       />
 
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.intro}>
-          Badge holders get fresh boosts every fortnight. Team up is open to everyone: combine
-          wallet power with up to seven others and every member gets the badge your total unlocks.
-        </Text>
+        <Text style={styles.intro}>{t("superpowers.intro")}</Text>
 
         {/* ── Your allowance ───────────────────────────────────────────── */}
         {loadingStatus ? (
@@ -121,29 +120,27 @@ export default function SuperPowersScreen() {
             <BadgeProgress balance={status.badgeBalance} compact />
             {!!refillsOn && (
               <Text style={styles.footnote}>
-                Refills on {refillsOn} — the same moment for everybody.
+                {t("superpowers.refillsOn", { date: refillsOn })}
               </Text>
             )}
           </>
         ) : (
           // No badge — this screen's real audience. Say what it costs and where.
           <View style={styles.panel}>
-            <Text style={styles.body}>
-              Hold DHB to unlock a badge and its SuperPowers.
-            </Text>
-            <Text style={styles.muted}>Team up is open to every account, even without a badge.</Text>
+            <Text style={styles.body}>{t("superpowers.holdToUnlock")}</Text>
+            <Text style={styles.muted}>{t("superpowers.teamUpOpenToAll")}</Text>
             <BadgeProgress balance={status?.badgeBalance ?? 0} compact />
             <Pressable
               onPress={() => navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" })}
               style={styles.cta}
             >
-              <Text style={styles.ctaText}>Get DHB</Text>
+              <Text style={styles.ctaText}>{t("superpowers.getDhb")}</Text>
             </Pressable>
           </View>
         )}
 
         {/* ── The twelve powers ────────────────────────────────────────── */}
-        <Text style={styles.heading}>THE TWELVE POWERS</Text>
+        <Text style={styles.heading}>{t("superpowers.twelvePowers")}</Text>
         <View style={styles.powerGrid}>
           {powers.map((power, index) => {
             // Held AND built. A locked card stays inert rather than opening a
@@ -183,7 +180,7 @@ export default function SuperPowersScreen() {
                   <Text style={styles.powerSummary}>{power.summary}</Text>
                   {!isTeamUp && !!unlockBadge ? (
                     <View style={styles.unlockTier}>
-                      <Text style={styles.unlockTierLabel}>Unlocks at</Text>
+                      <Text style={styles.unlockTierLabel}>{t("superpowers.unlocksAt")}</Text>
                       <Image source={unlockBadge} style={styles.unlockBadge} resizeMode="contain" />
                       <Text style={styles.unlockTierName}>{power.tier}</Text>
                     </View>
@@ -192,12 +189,12 @@ export default function SuperPowersScreen() {
                 <View style={styles.powerFooter}>
                   <Text style={[styles.powerCount, !unlocked && styles.powerCountOff]}>
                     {isTeamUp && unlocked
-                      ? "Open to everyone"
+                      ? t("superpowers.openToEveryone")
                       : unlocked && allowance !== undefined
-                      ? `${allowance} ${allowance === 1 ? "use" : "uses"} left`
+                      ? t("superpowers.usesLeft", { count: allowance })
                       : !power.available
-                        ? "Coming soon"
-                        : "Locked"}
+                        ? t("screens.comingSoon")
+                        : t("superpowers.locked")}
                   </Text>
                   {!isTeamUp ? <Pressable
                     onPress={() => {
@@ -206,14 +203,14 @@ export default function SuperPowersScreen() {
                     }}
                     disabled={!status?.tier}
                     accessibilityRole="button"
-                    accessibilityLabel={`Show past ${power.label} usage`}
+                    accessibilityLabel={t("superpowers.showPastUsage", { power: power.label })}
                     style={({ pressed }) => [
                       styles.historyLink,
                       !status?.tier && styles.historyLinkDisabled,
                       pressed && styles.historyLinkPressed,
                     ]}
                   >
-                    <Text style={styles.historyLinkText}>Past usage</Text>
+                    <Text style={styles.historyLinkText}>{t("superpowers.pastUsage")}</Text>
                     <Icon name="ChevronRight" size={14} color="#A1A1AA" />
                   </Pressable> : null}
                 </View>
@@ -223,7 +220,7 @@ export default function SuperPowersScreen() {
         </View>
 
         {/* ── The ladder ───────────────────────────────────────────────── */}
-        <Text style={styles.heading}>WHAT EACH TIER GRANTS</Text>
+        <Text style={styles.heading}>{t("superpowers.whatEachTierGrants")}</Text>
         {loadingLadder ? (
           <View style={styles.loading}>
             <ActivityIndicator color="#fff" />
@@ -231,10 +228,10 @@ export default function SuperPowersScreen() {
         ) : (
           <View style={styles.table}>
             <View style={styles.tableHead}>
-              <Text style={[styles.th, styles.colTier]}>TIER</Text>
-              <Text style={[styles.th, styles.colNum]}>BOOSTS</Text>
-              <Text style={[styles.th, styles.colNum]}>EACH</Text>
-              <Text style={[styles.th, styles.colNum]}>PER CYCLE</Text>
+              <Text style={[styles.th, styles.colTier]}>{t("superpowers.thTier")}</Text>
+              <Text style={[styles.th, styles.colNum]}>{t("superpowers.thBoosts")}</Text>
+              <Text style={[styles.th, styles.colNum]}>{t("superpowers.thEach")}</Text>
+              <Text style={[styles.th, styles.colNum]}>{t("superpowers.thPerCycle")}</Text>
             </View>
             {(ladder?.tiers ?? [])
               .filter(tier => tier.name)
@@ -261,11 +258,7 @@ export default function SuperPowersScreen() {
         )}
 
         {/* The honest sentence, once, where the numbers are. */}
-        <Text style={styles.footnote}>
-          The boost slot rotates. When several boosts are running, viewers are dealt one weighted by
-          badge tier — a higher tier is shown more often, and everybody gets the window they were
-          granted.
-        </Text>
+        <Text style={styles.footnote}>{t("superpowers.rotationNote")}</Text>
       </ScrollView>
 
       <SpendPowerSheet
@@ -289,15 +282,15 @@ export default function SuperPowersScreen() {
             <View style={styles.historyHeaderText}>
               <View style={styles.historyTitleRow}>
                 {historyPower ? <SuperPowerIcon power={historyPower.key} style={styles.powerIcon} /> : null}
-                <Text style={styles.historyTitle}>{historyPower?.label} usage</Text>
+                <Text style={styles.historyTitle}>{t("superpowers.usageTitle", { power: historyPower?.label })}</Text>
               </View>
-              <Text style={styles.historySubtitle}>This cycle and anything still active.</Text>
+              <Text style={styles.historySubtitle}>{t("superpowers.usageSubtitle")}</Text>
             </View>
             <Pressable
               onPress={() => setHistoryPower(null)}
               hitSlop={10}
               accessibilityRole="button"
-              accessibilityLabel="Close"
+              accessibilityLabel={t("common.close")}
             >
               <Icon name="X" size={18} color="#A1A1AA" />
             </Pressable>
@@ -307,20 +300,22 @@ export default function SuperPowersScreen() {
             {historyBookings.length === 0 ? (
               <View style={styles.historyEmpty}>
                 <Icon name="History" size={25} color="#71717A" />
-                <Text style={styles.historyEmptyText}>No past usage for this power yet.</Text>
+                <Text style={styles.historyEmptyText}>{t("superpowers.noPastUsage")}</Text>
               </View>
             ) : (
               historyBookings.map(booking => {
                 const notificationPower = booking.power === "signal_flare" || booking.power === "harpoon";
                 const result = notificationPower
                   ? booking.signalDeliveryStatus === "sent"
-                    ? `${booking.signalRecipients ?? 0} notified`
+                    ? t("superpowers.notified", { count: booking.signalRecipients ?? 0 })
                     : booking.signalDeliveryStatus === "failed"
-                      ? "Delivery retrying"
-                      : booking.power === "harpoon" ? "Notifying badge holders" : "Notifying followers"
-                  : `${booking.served} seen`;
+                      ? t("superpowers.deliveryRetrying")
+                      : booking.power === "harpoon"
+                        ? t("superpowers.notifyingBadgeHolders")
+                        : t("superpowers.notifyingFollowers")
+                  : t("superpowers.seen", { count: booking.served });
                 const subject = booking.tokenId != null
-                  ? `Post #${booking.tokenId}`
+                  ? t("superpowers.postNumber", { id: booking.tokenId })
                   : booking.category || historyPower?.label || booking.power;
 
                 return (
@@ -329,7 +324,7 @@ export default function SuperPowersScreen() {
                     <View style={styles.historySubject}>
                       <Text numberOfLines={1} style={styles.historySubjectText}>{subject}</Text>
                       <Text style={styles.historyDate}>
-                        {new Date(booking.startsAt).toLocaleString(undefined, {
+                        {new Date(booking.startsAt).toLocaleString(i18n.language, {
                           day: "numeric",
                           month: "short",
                           hour: "2-digit",
@@ -341,7 +336,11 @@ export default function SuperPowersScreen() {
                       <Text style={styles.historyResultText}>{result}</Text>
                       {!notificationPower ? (
                         <Text style={styles.historyState}>
-                          {booking.live ? "Live" : booking.status === "active" ? "Queued" : "Finished"}
+                          {booking.live
+                            ? t("feed.live")
+                            : booking.status === "active"
+                              ? t("converter.statusQueued")
+                              : t("superpowers.stateFinished")}
                         </Text>
                       ) : null}
                     </View>
@@ -351,7 +350,7 @@ export default function SuperPowersScreen() {
                         disabled={cancelBoost.isPending}
                         hitSlop={8}
                       >
-                        <Text style={styles.cancel}>Cancel</Text>
+                        <Text style={styles.cancel}>{t("common.cancel")}</Text>
                       </Pressable>
                     ) : null}
                   </View>
