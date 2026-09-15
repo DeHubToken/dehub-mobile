@@ -3362,5 +3362,30 @@
     "tryBiometrics": "በዚህ ስልክ ባዮሜትሪክ ሞክር",
     "unlockWithBiometrics": "በባዮሜትሪክ ክፈት",
     "confirmStartOver": "በአዲስ ቦርሳ እንደገና መጀመር እንደሚፈልጉ ያረጋግጡ"
+  },
+  "transcript": {
+    "title": "ግልባጭ",
+    "loading": "ግልባጩን በመጫን ላይ…",
+    "noRecording": "ምንም የድምፅ ቅጂ የለም",
+    "generating": "የAI ግልባጭ በማዘጋጀት ላይ",
+    "generatingHint": "ይህ ሂደት እንደ መድረኩ ቅጂ ርዝመት አንድ ደቂቃ ሊወስድ ይችላል።",
+    "starting": "በመገልበጥ ላይ — ትንሽ ጊዜ ሊወስድ ይችላል",
+    "startFailed": "ግልባጩን መጀመር አልተቻለም",
+    "copied": "ግልባጩ ወደ ቅንጥብ ሰሌዳ ተቀድቷል",
+    "quoteCopied": "ጥቅሱ ተቀድቷል! በአዘጋጁ ውስጥ ይለጥፉት።",
+    "privacyFailed": "የግላዊነት ቅንብርን ማዘመን አልተቻለም",
+    "privacySet": "የግልባጩ ግላዊነት ወደ {{value}} ተቀይሯል",
+    "labelFailed": "መለያውን ማስቀመጥ አልተቻለም",
+    "speakerRenamed": "የተናጋሪው ስም በተሳካ ሁኔታ ተቀይሯል",
+    "failed": "ግልባጩ አልተሳካም",
+    "retry": "ግልባጩን እንደገና ሞክር",
+    "translating": "ግልባጩን በመተርጎም ላይ…",
+    "translationFailed": "ትርጉሙ አልተሳካም። ሌላ ቋንቋ ይሞክሩ።",
+    "quote": "ጥቅስ",
+    "renameSpeaker": "የተናጋሪውን ስም ቀይር",
+    "renameHint": "በዚህ ግልባጭ ውስጥ ሁሉ የተናጋሪውን መለያ ይቀይሩ።",
+    "searchPlaceholder": "በግልባጩ ውስጥ ፈልግ…",
+    "speakerPlaceholder": "የተናጋሪውን ስም ወይም መለያ ያስገቡ",
+    "detectedLanguage": "የተለየ ቋንቋ፦ {{lang}}"
   }
 }

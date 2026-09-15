@@ -3366,5 +3366,30 @@
     "tryBiometrics": "Išbandykite biometriją šiame telefone",
     "unlockWithBiometrics": "Atrakinti biometrija",
     "confirmStartOver": "Patvirtinkite, kad norite pradėti iš naujo su nauja pinigine"
+  },
+  "transcript": {
+    "title": "Transkripcija",
+    "loading": "Įkeliama transkripcija…",
+    "noRecording": "Garso įrašo nėra",
+    "generating": "Kuriama DI transkripcija",
+    "generatingHint": "Šis procesas gali užtrukti minutę, priklausomai nuo įrašo trukmės.",
+    "starting": "Transkribuojama — tai gali užtrukti",
+    "startFailed": "Nepavyko pradėti transkripcijos",
+    "copied": "Transkripcija nukopijuota į iškarpinę",
+    "quoteCopied": "Citata nukopijuota! Įklijuokite ją rengyklėje.",
+    "privacyFailed": "Nepavyko atnaujinti privatumo",
+    "privacySet": "Transkripcijos privatumas nustatytas į {{value}}",
+    "labelFailed": "Nepavyko išsaugoti etiketės",
+    "speakerRenamed": "Kalbėtojo vardas sėkmingai pakeistas",
+    "failed": "Transkripcija nepavyko",
+    "retry": "Bandyti transkripciją dar kartą",
+    "translating": "Verčiama transkripcija…",
+    "translationFailed": "Vertimas nepavyko. Pabandykite kitą kalbą.",
+    "quote": "Citata",
+    "renameSpeaker": "Pervadinti kalbėtoją",
+    "renameHint": "Pakeiskite kalbėtojo etiketę visoje transkripcijoje.",
+    "searchPlaceholder": "Ieškoti transkripcijoje…",
+    "speakerPlaceholder": "Įveskite kalbėtojo vardą arba slapyvardį",
+    "detectedLanguage": "Aptikta kalba: {{lang}}"
   }
 }

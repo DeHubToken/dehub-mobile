@@ -3366,5 +3366,30 @@
     "tryBiometrics": "Provo biometrinë në këtë telefon",
     "unlockWithBiometrics": "Shkyç me biometri",
     "confirmStartOver": "Konfirmo se dëshiron të fillosh nga e para me një portofol të ri"
+  },
+  "transcript": {
+    "title": "Transkript",
+    "loading": "Po ngarkohet transkripti…",
+    "noRecording": "Nuk ka regjistrim audio",
+    "generating": "Po gjenerohet transkripti me IA",
+    "generatingHint": "Ky proces mund të zgjasë një minutë në varësi të gjatësisë së regjistrimit.",
+    "starting": "Po transkriptohet — mund të zgjasë pak",
+    "startFailed": "Transkriptimi nuk mundi të fillojë",
+    "copied": "Transkripti u kopjua në kujtesë",
+    "quoteCopied": "Citimi u kopjua! Ngjiteni në hartues.",
+    "privacyFailed": "Privatësia nuk u përditësua",
+    "privacySet": "Privatësia e transkriptit u vendos në {{value}}",
+    "labelFailed": "Etiketa nuk u ruajt",
+    "speakerRenamed": "Emri i folësit u ndryshua me sukses",
+    "failed": "Transkriptimi dështoi",
+    "retry": "Riprovo transkriptimin",
+    "translating": "Po përkthehet transkripti…",
+    "translationFailed": "Përkthimi dështoi. Provo një gjuhë tjetër.",
+    "quote": "Citim",
+    "renameSpeaker": "Riemërto folësin",
+    "renameHint": "Ndrysho etiketën e folësit në gjithë transkriptin.",
+    "searchPlaceholder": "Kërko në transkript…",
+    "speakerPlaceholder": "Shkruaj emrin ose pseudonimin e folësit",
+    "detectedLanguage": "Gjuha e zbuluar: {{lang}}"
   }
 }

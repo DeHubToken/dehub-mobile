@@ -3345,5 +3345,30 @@
     "tryBiometrics": "Nwaa biometrics na ekwentị a",
     "unlockWithBiometrics": "Jiri biometrics mepee",
     "confirmStartOver": "Kwado na ịchọrọ ịmalitegharị na obere akpa ọhụrụ"
+  },
+  "transcript": {
+    "title": "Ihe edere ede",
+    "loading": "Na-ebubata ihe edere ede…",
+    "noRecording": "Enweghị ndekọ ụda dị",
+    "generating": "Na-emepụta ihe edere ede AI",
+    "generatingHint": "Usoro a nwere ike were otu nkeji dabere n'ogologo ndekọ ahụ.",
+    "starting": "Na-ede ede — o nwere ike were obere oge",
+    "startFailed": "Enweghị ike ịmalite ide ede",
+    "copied": "Edepụtala ihe edere ede n'ebe nchekwa",
+    "quoteCopied": "Edepụtala nkọwa ahụ! Rapado ya n'ebe odide.",
+    "privacyFailed": "Enweghị ike imelite nzuzo",
+    "privacySet": "Edobela nzuzo ihe edere ede ka ọ bụrụ {{value}}",
+    "labelFailed": "Enweghị ike ịchekwa akara",
+    "speakerRenamed": "Agbanwela aha onye na-ekwu okwu nke ọma",
+    "failed": "Ide ede dara",
+    "retry": "Nwaa ide ede ọzọ",
+    "translating": "Na-atụgharị ihe edere ede…",
+    "translationFailed": "Ntụgharị dara. Nwaa asụsụ ọzọ.",
+    "quote": "Nkọwa",
+    "renameSpeaker": "Gbanwee aha onye na-ekwu okwu",
+    "renameHint": "Gbanwee akara onye na-ekwu okwu n'ihe edere ede a niile.",
+    "searchPlaceholder": "Chọọ n'ihe edere ede…",
+    "speakerPlaceholder": "Tinye aha ma ọ bụ njirimara onye na-ekwu okwu",
+    "detectedLanguage": "Asụsụ achọpụtara: {{lang}}"
   }
 }

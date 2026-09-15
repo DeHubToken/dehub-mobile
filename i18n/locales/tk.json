@@ -3337,5 +3337,30 @@
     "tryBiometrics": "Bu telefonda biometrikany synap görüň",
     "unlockWithBiometrics": "Biometrika bilen aç",
     "confirmStartOver": "Täze gapjyk bilen täzeden başlamak isleýändigiňizi tassyklaň"
+  },
+  "transcript": {
+    "title": "Transkript",
+    "loading": "Transkript ýüklenýär…",
+    "noRecording": "Ses ýazgysy elýeterli däl",
+    "generating": "AI transkript döredilýär",
+    "generatingHint": "Bu amal ýazgynyň dowamlylygyna görä bir minut alyp biler.",
+    "starting": "Ýazga geçirilýär — biraz wagt alyp biler",
+    "startFailed": "Ýazga geçirmek başlanyp bilmedi",
+    "copied": "Transkript alyş-çalyş ýadyna göçürildi",
+    "quoteCopied": "Sitata göçürildi! Ony redaktora ýelmäň.",
+    "privacyFailed": "Gizlinlik täzelenip bilmedi",
+    "privacySet": "Transkriptiň gizlinligi {{value}} edildi",
+    "labelFailed": "Belgi ýatda saklanyp bilmedi",
+    "speakerRenamed": "Çykyş edýäniň ady üstünlikli üýtgedildi",
+    "failed": "Ýazga geçirmek şowsuz boldy",
+    "retry": "Ýazga geçirmegi gaýtadan synanyş",
+    "translating": "Transkript terjime edilýär…",
+    "translationFailed": "Terjime şowsuz boldy. Başga dil synanyşyň.",
+    "quote": "Sitata",
+    "renameSpeaker": "Çykyş edýäniň adyny üýtget",
+    "renameHint": "Bu transkriptiň ählisinde çykyş edýäniň belgisini üýtgediň.",
+    "searchPlaceholder": "Transkriptde gözle…",
+    "speakerPlaceholder": "Çykyş edýäniň adyny ýa-da ulanyjy adyny giriziň",
+    "detectedLanguage": "Kesgitlenen dil: {{lang}}"
   }
 }

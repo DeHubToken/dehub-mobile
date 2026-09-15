@@ -3437,5 +3437,30 @@
     "tryBiometrics": "Prova la biometria su questo telefono",
     "unlockWithBiometrics": "Sblocca con biometria",
     "confirmStartOver": "Conferma di voler ricominciare con un nuovo wallet"
+  },
+  "transcript": {
+    "title": "Trascrizione",
+    "loading": "Caricamento trascrizione…",
+    "noRecording": "Nessuna registrazione audio disponibile",
+    "generating": "Generazione della trascrizione AI",
+    "generatingHint": "Questo processo può richiedere un minuto in base alla durata della registrazione.",
+    "starting": "Trascrizione in corso — potrebbe richiedere un momento",
+    "startFailed": "Impossibile avviare la trascrizione",
+    "copied": "Trascrizione copiata negli appunti",
+    "quoteCopied": "Citazione copiata! Incollala nell'editor.",
+    "privacyFailed": "Impossibile aggiornare la privacy",
+    "privacySet": "Privacy della trascrizione impostata su {{value}}",
+    "labelFailed": "Impossibile salvare l'etichetta",
+    "speakerRenamed": "Nome del relatore modificato correttamente",
+    "failed": "Trascrizione non riuscita",
+    "retry": "Riprova la trascrizione",
+    "translating": "Traduzione della trascrizione…",
+    "translationFailed": "Traduzione non riuscita. Prova un'altra lingua.",
+    "quote": "Citazione",
+    "renameSpeaker": "Rinomina relatore",
+    "renameHint": "Cambia l'etichetta del relatore in tutta la trascrizione.",
+    "searchPlaceholder": "Cerca nella trascrizione…",
+    "speakerPlaceholder": "Inserisci il nome o l'handle del relatore",
+    "detectedLanguage": "Lingua rilevata: {{lang}}"
   }
 }

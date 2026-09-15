@@ -3363,5 +3363,30 @@
     "tryBiometrics": "جرّب البصمة على التليفون ده",
     "unlockWithBiometrics": "افتح بالبصمة",
     "confirmStartOver": "أكّد إنك عايز تبدأ من جديد بمحفظة جديدة"
+  },
+  "transcript": {
+    "title": "النص المكتوب",
+    "loading": "بيحمّل النص…",
+    "noRecording": "مفيش تسجيل صوتي متاح",
+    "generating": "بيعمل نص بالذكاء الاصطناعي",
+    "generatingHint": "العملية دي ممكن تاخد دقيقة حسب طول تسجيل المنصة.",
+    "starting": "بيعمل النص — ممكن ياخد شوية وقت",
+    "startFailed": "مقدرش يبدأ التفريغ النصي",
+    "copied": "اتنسخ النص في الحافظة",
+    "quoteCopied": "اتنسخ الاقتباس! الصقه في المحرر.",
+    "privacyFailed": "مقدرش يحدّث الخصوصية",
+    "privacySet": "خصوصية النص بقت {{value}}",
+    "labelFailed": "مقدرش يحفظ الاسم",
+    "speakerRenamed": "اتغير اسم المتحدث بنجاح",
+    "failed": "فشل التفريغ النصي",
+    "retry": "أعد التفريغ النصي",
+    "translating": "بيترجم النص…",
+    "translationFailed": "فشلت الترجمة. جرّب لغة تانية.",
+    "quote": "اقتباس",
+    "renameSpeaker": "غيّر اسم المتحدث",
+    "renameHint": "غيّر اسم المتحدث في كل النص ده.",
+    "searchPlaceholder": "دوّر في النص…",
+    "speakerPlaceholder": "اكتب اسم المتحدث أو المعرّف",
+    "detectedLanguage": "اللغة المكتشفة: {{lang}}"
   }
 }

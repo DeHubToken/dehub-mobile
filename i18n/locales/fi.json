@@ -3367,5 +3367,30 @@
     "tryBiometrics": "Kokeile biometriaa tällä puhelimella",
     "unlockWithBiometrics": "Avaa biometrialla",
     "confirmStartOver": "Vahvista, että haluat aloittaa alusta uudella lompakolla"
+  },
+  "transcript": {
+    "title": "Litterointi",
+    "loading": "Ladataan litterointia…",
+    "noRecording": "Äänitallennetta ei ole saatavilla",
+    "generating": "Luodaan tekoälylitterointia",
+    "generatingHint": "Tämä voi kestää minuutin tallenteen pituudesta riippuen.",
+    "starting": "Litteroidaan — tämä voi kestää hetken",
+    "startFailed": "Litterointia ei voitu aloittaa",
+    "copied": "Litterointi kopioitiin leikepöydälle",
+    "quoteCopied": "Lainaus kopioitu! Liitä se muokkaimeen.",
+    "privacyFailed": "Yksityisyysasetusta ei voitu päivittää",
+    "privacySet": "Litteroinnin yksityisyydeksi asetettiin {{value}}",
+    "labelFailed": "Nimeä ei voitu tallentaa",
+    "speakerRenamed": "Puhujan nimi vaihdettiin",
+    "failed": "Litterointi epäonnistui",
+    "retry": "Yritä litterointia uudelleen",
+    "translating": "Käännetään litterointia…",
+    "translationFailed": "Kääntäminen epäonnistui. Kokeile toista kieltä.",
+    "quote": "Lainaus",
+    "renameSpeaker": "Nimeä puhuja uudelleen",
+    "renameHint": "Vaihda puhujan nimi koko litteroinnissa.",
+    "searchPlaceholder": "Hae litteroinnista…",
+    "speakerPlaceholder": "Anna puhujan nimi tai käyttäjätunnus",
+    "detectedLanguage": "Tunnistettu kieli: {{lang}}"
   }
 }

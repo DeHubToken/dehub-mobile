@@ -3366,5 +3366,30 @@
     "tryBiometrics": "Izmēģini biometriju šajā tālrunī",
     "unlockWithBiometrics": "Atbloķēt ar biometriju",
     "confirmStartOver": "Apstiprini, ka vēlies sākt no jauna ar jaunu maku"
+  },
+  "transcript": {
+    "title": "Transkripcija",
+    "loading": "Notiek transkripcijas ielāde…",
+    "noRecording": "Audioieraksts nav pieejams",
+    "generating": "Tiek ģenerēta MI transkripcija",
+    "generatingHint": "Šis process var aizņemt minūti atkarībā no ieraksta garuma.",
+    "starting": "Notiek transkribēšana — tas var aizņemt brīdi",
+    "startFailed": "Neizdevās sākt transkribēšanu",
+    "copied": "Transkripcija nokopēta starpliktuvē",
+    "quoteCopied": "Citāts nokopēts! Ielīmējiet to redaktorā.",
+    "privacyFailed": "Neizdevās atjaunināt konfidencialitāti",
+    "privacySet": "Transkripcijas konfidencialitāte iestatīta uz {{value}}",
+    "labelFailed": "Neizdevās saglabāt etiķeti",
+    "speakerRenamed": "Runātāja vārds veiksmīgi mainīts",
+    "failed": "Transkribēšana neizdevās",
+    "retry": "Mēģināt transkribēt vēlreiz",
+    "translating": "Notiek transkripcijas tulkošana…",
+    "translationFailed": "Tulkošana neizdevās. Mēģiniet citu valodu.",
+    "quote": "Citāts",
+    "renameSpeaker": "Pārdēvēt runātāju",
+    "renameHint": "Mainiet runātāja etiķeti visā transkripcijā.",
+    "searchPlaceholder": "Meklēt transkripcijā…",
+    "speakerPlaceholder": "Ievadiet runātāja vārdu vai lietotājvārdu",
+    "detectedLanguage": "Noteiktā valoda: {{lang}}"
   }
 }

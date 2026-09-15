@@ -3546,5 +3546,30 @@
     "tryBiometrics": "Subukan ang biometrics sa teleponong ito",
     "unlockWithBiometrics": "I-unlock gamit ang biometrics",
     "confirmStartOver": "Kumpirmahin na gusto mong magsimula muli gamit ang bagong wallet"
+  },
+  "transcript": {
+    "title": "Transcript",
+    "loading": "Nilo-load ang transcript…",
+    "noRecording": "Walang available na audio recording",
+    "generating": "Ginagawa ang AI transcript",
+    "generatingHint": "Maaaring umabot ito ng isang minuto depende sa haba ng recording.",
+    "starting": "Nagta-transcribe — maaaring tumagal sandali",
+    "startFailed": "Hindi masimulan ang transcription",
+    "copied": "Nakopya ang transcript sa clipboard",
+    "quoteCopied": "Nakopya ang sipi! I-paste ito sa composer.",
+    "privacyFailed": "Hindi ma-update ang privacy",
+    "privacySet": "Itinakda ang privacy ng transcript sa {{value}}",
+    "labelFailed": "Hindi ma-save ang label",
+    "speakerRenamed": "Matagumpay na napalitan ang pangalan ng speaker",
+    "failed": "Nabigo ang transcription",
+    "retry": "Subukan muli ang transcription",
+    "translating": "Isinasalin ang transcript…",
+    "translationFailed": "Nabigo ang pagsasalin. Subukan ang ibang wika.",
+    "quote": "Sipi",
+    "renameSpeaker": "Palitan ang pangalan ng speaker",
+    "renameHint": "Palitan ang label ng speaker sa buong transcript na ito.",
+    "searchPlaceholder": "Maghanap sa transcript…",
+    "speakerPlaceholder": "Ilagay ang pangalan o handle ng speaker",
+    "detectedLanguage": "Natukoy na wika: {{lang}}"
   }
 }

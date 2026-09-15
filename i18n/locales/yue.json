@@ -3365,5 +3365,30 @@
     "tryBiometrics": "喺呢部電話試用生物辨識",
     "unlockWithBiometrics": "用生物辨識解鎖",
     "confirmStartOver": "確認你想用新錢包重新開始"
+  },
+  "transcript": {
+    "title": "文字記錄",
+    "loading": "正在載入文字記錄…",
+    "noRecording": "冇可用嘅錄音",
+    "generating": "正在生成 AI 文字記錄",
+    "generatingHint": "呢個過程可能需要一分鐘，視乎錄音嘅長度。",
+    "starting": "正在轉寫 — 可能要一陣",
+    "startFailed": "無法開始轉寫",
+    "copied": "已複製文字記錄到剪貼簿",
+    "quoteCopied": "已複製引文！貼上去編輯器。",
+    "privacyFailed": "無法更新私隱設定",
+    "privacySet": "文字記錄私隱已設為{{value}}",
+    "labelFailed": "無法儲存標籤",
+    "speakerRenamed": "已成功更改講者名稱",
+    "failed": "轉寫失敗",
+    "retry": "重試轉寫",
+    "translating": "正在翻譯文字記錄…",
+    "translationFailed": "翻譯失敗。試下第種語言。",
+    "quote": "引文",
+    "renameSpeaker": "更改講者名稱",
+    "renameHint": "喺成份文字記錄入面更改講者標籤。",
+    "searchPlaceholder": "搜尋文字記錄…",
+    "speakerPlaceholder": "輸入講者名稱或帳號",
+    "detectedLanguage": "偵測到嘅語言：{{lang}}"
   }
 }

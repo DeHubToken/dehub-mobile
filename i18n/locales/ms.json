@@ -3630,5 +3630,30 @@
     "tryBiometrics": "Cuba biometrik pada telefon ini",
     "unlockWithBiometrics": "Buka dengan biometrik",
     "confirmStartOver": "Sahkan anda mahu mula semula dengan dompet baharu"
+  },
+  "transcript": {
+    "title": "Transkrip",
+    "loading": "Memuatkan transkrip…",
+    "noRecording": "Tiada rakaman audio tersedia",
+    "generating": "Menjana transkrip AI",
+    "generatingHint": "Proses ini mungkin mengambil masa seminit bergantung pada panjang rakaman.",
+    "starting": "Menyalin — mungkin mengambil masa sebentar",
+    "startFailed": "Gagal memulakan transkripsi",
+    "copied": "Transkrip disalin ke papan keratan",
+    "quoteCopied": "Petikan disalin! Tampalkannya dalam penggubah.",
+    "privacyFailed": "Tidak dapat mengemas kini privasi",
+    "privacySet": "Privasi transkrip ditetapkan kepada {{value}}",
+    "labelFailed": "Tidak dapat menyimpan label",
+    "speakerRenamed": "Nama penutur berjaya ditukar",
+    "failed": "Transkripsi gagal",
+    "retry": "Cuba transkripsi semula",
+    "translating": "Menterjemah transkrip…",
+    "translationFailed": "Terjemahan gagal. Cuba bahasa lain.",
+    "quote": "Petikan",
+    "renameSpeaker": "Tukar nama penutur",
+    "renameHint": "Tukar label penutur di seluruh transkrip ini.",
+    "searchPlaceholder": "Cari dalam transkrip…",
+    "speakerPlaceholder": "Masukkan nama atau pemegang penutur",
+    "detectedLanguage": "Bahasa dikesan: {{lang}}"
   }
 }

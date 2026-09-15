@@ -3436,5 +3436,30 @@
     "tryBiometrics": "Biometrie auf diesem Telefon versuchen",
     "unlockWithBiometrics": "Mit Biometrie entsperren",
     "confirmStartOver": "Bestätige, dass du mit einer neuen Wallet neu beginnen willst"
+  },
+  "transcript": {
+    "title": "Transkript",
+    "loading": "Transkript wird geladen…",
+    "noRecording": "Keine Audioaufnahme verfügbar",
+    "generating": "KI-Transkript wird erstellt",
+    "generatingHint": "Dieser Vorgang kann je nach Länge der Aufnahme eine Minute dauern.",
+    "starting": "Wird transkribiert — das kann einen Moment dauern",
+    "startFailed": "Transkription konnte nicht gestartet werden",
+    "copied": "Transkript in die Zwischenablage kopiert",
+    "quoteCopied": "Zitat kopiert! Füge es im Editor ein.",
+    "privacyFailed": "Datenschutz konnte nicht aktualisiert werden",
+    "privacySet": "Transkript-Datenschutz auf {{value}} gesetzt",
+    "labelFailed": "Bezeichnung konnte nicht gespeichert werden",
+    "speakerRenamed": "Sprechername erfolgreich geändert",
+    "failed": "Transkription fehlgeschlagen",
+    "retry": "Transkription wiederholen",
+    "translating": "Transkript wird übersetzt…",
+    "translationFailed": "Übersetzung fehlgeschlagen. Probiere eine andere Sprache.",
+    "quote": "Zitat",
+    "renameSpeaker": "Sprecher umbenennen",
+    "renameHint": "Ändere die Sprecherbezeichnung im gesamten Transkript.",
+    "searchPlaceholder": "Transkript durchsuchen…",
+    "speakerPlaceholder": "Sprechername oder Handle eingeben",
+    "detectedLanguage": "Erkannte Sprache: {{lang}}"
   }
 }
