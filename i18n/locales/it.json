@@ -3482,6 +3482,21 @@
     "micRequired": "È necessaria l'autorizzazione al microfono per registrare l'audio.",
     "recordFailed": "Impossibile avviare la registrazione.",
     "tierVisibility": "Sali di livello per aumentare la tua visibilità e ottenere più diffusione al giorno",
-    "buyTokens": "Acquista token"
+    "buyTokens": "Acquista token",
+    "community": "Community",
+    "shop": "Negozio",
+    "discard": "Elimina",
+    "matureContent": "Contenuti per adulti",
+    "addOption": "Aggiungi opzione",
+    "mintPost": "Minta il post",
+    "addCategories": "Aggiungi categorie",
+    "goLive": "Vai in diretta",
+    "startLivestream": "Avvia una diretta",
+    "joinStage": "Partecipa o avvia uno stage audio",
+    "saveToDrafts": "Salva nelle bozze",
+    "uploadAudio": "Carica audio",
+    "recordVoice": "Registra voce",
+    "searchSounds": "Cerca suoni",
+    "pollQuestion": "Fai una domanda…"
   }
 }

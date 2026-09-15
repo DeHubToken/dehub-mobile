@@ -3402,6 +3402,21 @@
     "micRequired": "Ana buƙatar izinin makirufo don yin rikodin sauti.",
     "recordFailed": "An kasa fara rikodin.",
     "tierVisibility": "Hau matakai don ƙara bayyanarka kuma ka sami ƙarin watsawa ga sakon kowace rana",
-    "buyTokens": "Sayi tokens"
+    "buyTokens": "Sayi tokens",
+    "community": "Al'umma",
+    "shop": "Shago",
+    "discard": "Yar da",
+    "matureContent": "Abun ciki na manya",
+    "addOption": "Ƙara zaɓi",
+    "mintPost": "Yi minting na sakon",
+    "addCategories": "Ƙara rukunoni",
+    "goLive": "Fara kai tsaye",
+    "startLivestream": "Fara watsa shirye-shirye kai tsaye",
+    "joinStage": "Shiga ko fara wani dandalin sauti",
+    "saveToDrafts": "Ajiye a cikin daftarin aiki",
+    "uploadAudio": "Ɗora sauti",
+    "recordVoice": "Yi rikodin murya",
+    "searchSounds": "Nemo sautuka",
+    "pollQuestion": "Yi tambaya…"
   }
 }

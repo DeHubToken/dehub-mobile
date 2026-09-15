@@ -3675,6 +3675,21 @@
     "micRequired": "Kebenaran mikrofon diperlukan untuk merakam audio.",
     "recordFailed": "Gagal memulakan rakaman.",
     "tierVisibility": "Naikkan peringkat untuk meningkatkan keterlihatan dan mendapat lebih banyak paparan sehari",
-    "buyTokens": "Beli token"
+    "buyTokens": "Beli token",
+    "community": "Komuniti",
+    "shop": "Kedai",
+    "discard": "Buang",
+    "matureContent": "Kandungan dewasa",
+    "addOption": "Tambah pilihan",
+    "mintPost": "Mint siaran",
+    "addCategories": "Tambah kategori",
+    "goLive": "Mula siaran langsung",
+    "startLivestream": "Mulakan siaran langsung",
+    "joinStage": "Sertai atau mulakan pentas audio",
+    "saveToDrafts": "Simpan ke draf",
+    "uploadAudio": "Muat naik audio",
+    "recordVoice": "Rakam suara",
+    "searchSounds": "Cari bunyi",
+    "pollQuestion": "Tanya soalan…"
   }
 }

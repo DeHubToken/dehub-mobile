@@ -3438,6 +3438,21 @@
     "micRequired": "خاصك إذن الميكرو باش تسجل الصوت.",
     "recordFailed": "ما قدرش يبدا التسجيل.",
     "tierVisibility": "طلع فالمستويات باش تزيد الظهور ديالك وتاخد عرض كتر للبوست فالنهار",
-    "buyTokens": "شري توكنز"
+    "buyTokens": "شري توكنز",
+    "community": "مجتمع",
+    "shop": "حانوت",
+    "discard": "لغي",
+    "matureContent": "محتوى للكبار",
+    "addOption": "زيد اختيار",
+    "mintPost": "سك البوست",
+    "addCategories": "زيد تصنيفات",
+    "goLive": "بدا بث مباشر",
+    "startLivestream": "بدا بث مباشر",
+    "joinStage": "دخل ولا بدا منصة صوتية",
+    "saveToDrafts": "سجل فالمسودات",
+    "uploadAudio": "طلع ملف صوتي",
+    "recordVoice": "سجل صوتك",
+    "searchSounds": "قلب على أصوات",
+    "pollQuestion": "سول سؤال…"
   }
 }

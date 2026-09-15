@@ -3476,6 +3476,21 @@
     "micRequired": "Sagalee waraabuuf hayyamni maaykiroofoonii barbaachisa.",
     "recordFailed": "Waraabbii jalqabuun hin dandaʼamne.",
     "tierVisibility": "Mul'ata kee dabaluu fi guyyaatti tamsaasa dabalataa argachuuf sadarkaa ol kaasi",
-    "buyTokens": "Toookenii bitadhu"
+    "buyTokens": "Toookenii bitadhu",
+    "community": "Hawaasa",
+    "shop": "Suuqa",
+    "discard": "Gati",
+    "matureContent": "Qabiyyee gaʼeessotaa",
+    "addOption": "Filannoo dabali",
+    "mintPost": "Barreeffama mint godhi",
+    "addCategories": "Ramaddiiwwan dabali",
+    "goLive": "Kallattiin jalqabi",
+    "startLivestream": "Tamsaasa kallattii jalqabi",
+    "joinStage": "Oddeeffannoo sagalee seeni ykn jalqabi",
+    "saveToDrafts": "Wixinee keessatti olkaaʼi",
+    "uploadAudio": "Sagalee olkaaʼi",
+    "recordVoice": "Sagalee waraabi",
+    "searchSounds": "Sagalee barbaadi",
+    "pollQuestion": "Gaaffii gaafadhu…"
   }
 }

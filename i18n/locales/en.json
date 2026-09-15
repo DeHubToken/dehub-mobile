@@ -3482,6 +3482,21 @@
     "micRequired": "Microphone permission is required to record audio.",
     "recordFailed": "Failed to start recording.",
     "tierVisibility": "Climb tiers to increase your visibility and get more feeds on the post per day",
-    "buyTokens": "Buy Tokens"
+    "buyTokens": "Buy Tokens",
+    "community": "Community",
+    "shop": "Shop",
+    "discard": "Discard",
+    "matureContent": "Mature content",
+    "addOption": "Add option",
+    "mintPost": "Mint post",
+    "addCategories": "Add categories",
+    "goLive": "Go Live",
+    "startLivestream": "Start a livestream",
+    "joinStage": "Join or start an audio stage",
+    "saveToDrafts": "Save to Drafts",
+    "uploadAudio": "Upload Audio",
+    "recordVoice": "Record Voice",
+    "searchSounds": "Search Sounds",
+    "pollQuestion": "Ask a question..."
   }
 }

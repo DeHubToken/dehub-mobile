@@ -3399,6 +3399,21 @@
     "micRequired": "נדרשת הרשאת מיקרופון כדי להקליט שמע.",
     "recordFailed": "לא ניתן היה להתחיל את ההקלטה.",
     "tierVisibility": "עלו ברמות כדי להגדיל את החשיפה ולקבל יותר הצגות לפוסט ביום",
-    "buyTokens": "קניית טוקנים"
+    "buyTokens": "קניית טוקנים",
+    "community": "קהילה",
+    "shop": "חנות",
+    "discard": "מחיקה",
+    "matureContent": "תוכן למבוגרים",
+    "addOption": "הוספת אפשרות",
+    "mintPost": "הטבעת הפוסט",
+    "addCategories": "הוספת קטגוריות",
+    "goLive": "התחלת שידור חי",
+    "startLivestream": "התחילו שידור חי",
+    "joinStage": "הצטרפו או פתחו במה קולית",
+    "saveToDrafts": "שמירה בטיוטות",
+    "uploadAudio": "העלאת שמע",
+    "recordVoice": "הקלטת קול",
+    "searchSounds": "חיפוש צלילים",
+    "pollQuestion": "שאלו שאלה…"
   }
 }

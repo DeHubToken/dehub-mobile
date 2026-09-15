@@ -3413,6 +3413,21 @@
     "micRequired": "ऑडियो रिकॉर्ड करे बर माइक्रोफोन के अनुमति चाही।",
     "recordFailed": "रिकॉर्डिंग शुरू नइ हो सकिस।",
     "tierVisibility": "स्तर बढ़ावव ताकि तोर दिखई बढ़य अउ रोज पोस्ट ला अउ फीड मिलय",
-    "buyTokens": "टोकन बिसाहव"
+    "buyTokens": "टोकन बिसाहव",
+    "community": "समुदाय",
+    "shop": "दुकान",
+    "discard": "छोड़ देवव",
+    "matureContent": "सयान मन बर के सामग्री",
+    "addOption": "विकल्प जोड़व",
+    "mintPost": "पोस्ट ला मिंट करव",
+    "addCategories": "श्रेणी जोड़व",
+    "goLive": "लाइव जावव",
+    "startLivestream": "लाइवस्ट्रीम शुरू करव",
+    "joinStage": "ऑडियो स्टेज म जुड़व या शुरू करव",
+    "saveToDrafts": "ड्राफ्ट म सेव करव",
+    "uploadAudio": "ऑडियो अपलोड करव",
+    "recordVoice": "आवाज रिकॉर्ड करव",
+    "searchSounds": "आवाज खोजव",
+    "pollQuestion": "कोनो सवाल पूछव…"
   }
 }

@@ -3479,6 +3479,21 @@
     "micRequired": "音声を録音するにはマイクの許可が必要です。",
     "recordFailed": "録音を開始できませんでした。",
     "tierVisibility": "ティアを上げると露出が増え、1 日あたりの投稿配信数も増えます",
-    "buyTokens": "トークンを購入"
+    "buyTokens": "トークンを購入",
+    "community": "コミュニティ",
+    "shop": "ショップ",
+    "discard": "破棄",
+    "matureContent": "成人向けコンテンツ",
+    "addOption": "選択肢を追加",
+    "mintPost": "投稿をミント",
+    "addCategories": "カテゴリーを追加",
+    "goLive": "ライブを開始",
+    "startLivestream": "ライブ配信を始める",
+    "joinStage": "音声ステージに参加するか、新しく始める",
+    "saveToDrafts": "下書きに保存",
+    "uploadAudio": "音声をアップロード",
+    "recordVoice": "音声を録音",
+    "searchSounds": "サウンドを検索",
+    "pollQuestion": "質問をどうぞ…"
   }
 }

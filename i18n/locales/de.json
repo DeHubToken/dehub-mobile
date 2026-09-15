@@ -3481,6 +3481,21 @@
     "micRequired": "Für Audioaufnahmen ist die Mikrofonberechtigung erforderlich.",
     "recordFailed": "Aufnahme konnte nicht gestartet werden.",
     "tierVisibility": "Steige Stufen auf, um deine Sichtbarkeit zu erhöhen und pro Tag mehr Feeds für den Beitrag zu erhalten",
-    "buyTokens": "Token kaufen"
+    "buyTokens": "Token kaufen",
+    "community": "Community",
+    "shop": "Shop",
+    "discard": "Verwerfen",
+    "matureContent": "Inhalte für Erwachsene",
+    "addOption": "Option hinzufügen",
+    "mintPost": "Beitrag minten",
+    "addCategories": "Kategorien hinzufügen",
+    "goLive": "Live gehen",
+    "startLivestream": "Starte einen Livestream",
+    "joinStage": "Tritt einer Audio-Stage bei oder starte eine",
+    "saveToDrafts": "In Entwürfen speichern",
+    "uploadAudio": "Audio hochladen",
+    "recordVoice": "Stimme aufnehmen",
+    "searchSounds": "Sounds suchen",
+    "pollQuestion": "Stelle eine Frage…"
   }
 }

@@ -3395,6 +3395,21 @@
     "micRequired": "آڊيو رڪارڊ ڪرڻ لاءِ مائڪروفون جي اجازت گهرجي.",
     "recordFailed": "رڪارڊنگ شروع ٿي نه سگهي.",
     "tierVisibility": "درجا وڌايو ته توهان جي نمائش وڌي ۽ روزانو پوسٽ کي وڌيڪ فيڊ ملن",
-    "buyTokens": "ٽوڪن خريد ڪريو"
+    "buyTokens": "ٽوڪن خريد ڪريو",
+    "community": "ڪميونٽي",
+    "shop": "دڪان",
+    "discard": "رد ڪريو",
+    "matureContent": "بالغن لاءِ مواد",
+    "addOption": "آپشن شامل ڪريو",
+    "mintPost": "پوسٽ منٽ ڪريو",
+    "addCategories": "زمرا شامل ڪريو",
+    "goLive": "لائيو وڃو",
+    "startLivestream": "لائيو اسٽريم شروع ڪريو",
+    "joinStage": "آڊيو اسٽيج ۾ شامل ٿيو يا شروع ڪريو",
+    "saveToDrafts": "مسودن ۾ محفوظ ڪريو",
+    "uploadAudio": "آڊيو اپلوڊ ڪريو",
+    "recordVoice": "آواز رڪارڊ ڪريو",
+    "searchSounds": "آواز ڳوليو",
+    "pollQuestion": "ڪو سوال پڇو…"
   }
 }

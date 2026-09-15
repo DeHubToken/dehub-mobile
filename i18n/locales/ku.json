@@ -3171,6 +3171,21 @@
     "micRequired": "Ji bo tomarkirina dengî destûra mîkrofonê pêwîst e.",
     "recordFailed": "Destpêkirina tomarkirinê bi ser neket.",
     "tierVisibility": "Astan bilind bike da ku xuyabûna te zêde bibe û rojane bêtir belavkirin bistîne",
-    "buyTokens": "Token bikire"
+    "buyTokens": "Token bikire",
+    "community": "Civak",
+    "shop": "Dikan",
+    "discard": "Bavêje",
+    "matureContent": "Naveroka mezinan",
+    "addOption": "Vebijark zêde bike",
+    "mintPost": "Şandiyê mint bike",
+    "addCategories": "Kategorî zêde bike",
+    "goLive": "Rasterast dest pê bike",
+    "startLivestream": "Weşanek rasterast dest pê bike",
+    "joinStage": "Beşdarî sehneyeke dengî bibe an yekê dest pê bike",
+    "saveToDrafts": "Di reşnivîsan de tomar bike",
+    "uploadAudio": "Deng bar bike",
+    "recordVoice": "Deng tomar bike",
+    "searchSounds": "Li dengan bigere",
+    "pollQuestion": "Pirsekê bike…"
   }
 }

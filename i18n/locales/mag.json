@@ -3364,6 +3364,21 @@
     "micRequired": "ऑडियो रिकॉर्ड करे लेल माइक्रोफोन के अनुमति चाही।",
     "recordFailed": "रिकॉर्डिंग शुरू नै भ सकल।",
     "tierVisibility": "स्तर बढ़ाऊ ताकि अहाँक देखल जाएब बढ़य आ रोज पोस्ट के आर फीड भेटय",
-    "buyTokens": "टोकन कीनू"
+    "buyTokens": "टोकन कीनू",
+    "community": "समुदाय",
+    "shop": "दोकान",
+    "discard": "छोड़ू",
+    "matureContent": "वयस्क सामग्री",
+    "addOption": "विकल्प जोड़ू",
+    "mintPost": "पोस्ट के मिंट करू",
+    "addCategories": "श्रेणी जोड़ू",
+    "goLive": "लाइव जाऊ",
+    "startLivestream": "लाइवस्ट्रीम शुरू करू",
+    "joinStage": "ऑडियो स्टेज में जुड़ू या शुरू करू",
+    "saveToDrafts": "ड्राफ्ट में सेव करू",
+    "uploadAudio": "ऑडियो अपलोड करू",
+    "recordVoice": "आवाज रिकॉर्ड करू",
+    "searchSounds": "आवाज खोजू",
+    "pollQuestion": "कोनो सवाल पूछू…"
   }
 }

@@ -2406,7 +2406,7 @@ export default function UploadScreen() {
             {pollEnabled && (
               <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4">
                 <View className="flex-row items-center justify-between mb-3">
-                  <Text className="text-white font-semibold text-sm">Poll</Text>
+                  <Text className="text-white font-semibold text-sm">{t("publicChat.poll")}</Text>
                   <TouchableOpacity onPress={handleTogglePoll} hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}>
                     <Icon name="X" size={16} color="#6F7174" />
                   </TouchableOpacity>
@@ -2415,7 +2415,7 @@ export default function UploadScreen() {
                 <TextInput
                   value={pollQuestion}
                   onChangeText={setPollQuestion}
-                  placeholder="Ask a question..."
+                  placeholder={t("upload.pollQuestion")}
                   placeholderTextColor="#6F7174"
                   maxLength={200}
                   className="dark-surface bg-black/30 rounded-xl px-3 py-2.5 text-white text-sm mb-3"
@@ -2456,7 +2456,7 @@ export default function UploadScreen() {
                     className="flex-row items-center px-3 py-2.5 rounded-xl border border-dashed border-theme-neutrals-600 mb-3"
                   >
                     <Icon name="Plus" size={14} color="#6F7174" />
-                    <Text className="text-theme-neutrals-500 text-sm ml-2">Add option</Text>
+                    <Text className="text-theme-neutrals-500 text-sm ml-2">{t("upload.addOption")}</Text>
                   </TouchableOpacity>
                 )}
 
@@ -2471,10 +2471,10 @@ export default function UploadScreen() {
                   >
                     {pollIsMultiple && <Icon name="Check" size={12} color="#09090B" />}
                   </View>
-                  <Text className="text-theme-neutrals-300 text-sm ml-2">Allow multiple answers</Text>
+                  <Text className="text-theme-neutrals-300 text-sm ml-2">{t("publicChat.multipleChoice")}</Text>
                 </TouchableOpacity>
 
-                <Text className="text-theme-neutrals-500 text-xs mb-1.5">Duration</Text>
+                <Text className="text-theme-neutrals-500 text-xs mb-1.5">{t("filters.duration")}</Text>
                 <View className="flex-row gap-2">
                   {[{ label: "1 day", hours: 24 }, { label: "3 days", hours: 72 }, { label: "7 days", hours: 168 }].map((d) => (
                     <TouchableOpacity
@@ -2505,7 +2505,7 @@ export default function UploadScreen() {
                 <View className="flex-row items-center justify-between py-3">
                   <View className="flex-row items-center flex-1 mr-3">
                     <Icon name="Coins" size={18} color="#fff" />
-                    <Text className="text-white text-sm ml-3">Mint post</Text>
+                    <Text className="text-white text-sm ml-3">{t("upload.mintPost")}</Text>
                     {/* Web can afford a separate span for each of these; a phone
                         row cannot, so they share one line when both apply. */}
                     {mintRequired || (effectiveShouldMint && mintFeeLabel) ? (
@@ -2531,7 +2531,7 @@ export default function UploadScreen() {
                 <View className="flex-row items-center justify-between py-3">
                   <View className="flex-row items-center">
                     <Icon name="Type" size={18} color="#fff" />
-                    <Text className="text-white text-sm ml-3">Title</Text>
+                    <Text className="text-white text-sm ml-3">{t("features.titleLabel")}</Text>
                   </View>
                   <CustomSwitch
                     value={showTitle}
@@ -2567,7 +2567,7 @@ export default function UploadScreen() {
                     className="flex-row items-center"
                   >
                     <Icon name="Tag" size={18} color="#fff" />
-                    <Text className="text-white text-sm ml-3">Add categories</Text>
+                    <Text className="text-white text-sm ml-3">{t("upload.addCategories")}</Text>
                   </TouchableOpacity>
                 )}
 
@@ -2585,7 +2585,7 @@ export default function UploadScreen() {
                       className="flex-row items-center flex-1"
                     >
                       <Icon name="Users" size={18} color="#fff" />
-                      <Text className="text-white text-sm ml-3">Community</Text>
+                      <Text className="text-white text-sm ml-3">{t("upload.community")}</Text>
                     </TouchableOpacity>
                     <CustomSwitch
                       value={!!selectedCommunity}
@@ -2629,7 +2629,7 @@ export default function UploadScreen() {
                 >
                   <View className="flex-row items-center flex-1 mr-3">
                     <Icon name="ShoppingBag" size={18} color="#fff" />
-                    <Text className="text-white text-sm ml-3">Shop</Text>
+                    <Text className="text-white text-sm ml-3">{t("upload.shop")}</Text>
                     {shopRows ? (
                       <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
                         ({shopRows} of {shopAllowance.allowance})
@@ -2666,7 +2666,7 @@ export default function UploadScreen() {
                 <View className="flex-row items-center justify-between py-3">
                   <View className="flex-row items-center flex-1 mr-3">
                     <Icon name="EyeOff" size={18} color="#fff" />
-                    <Text className="text-white text-sm ml-3">Mature content</Text>
+                    <Text className="text-white text-sm ml-3">{t("upload.matureContent")}</Text>
                     {isMature ? (
                       <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
                         (not shown on the public feed)
@@ -2790,7 +2790,7 @@ export default function UploadScreen() {
                           className="flex-row items-center px-4 py-3"
                         >
                           <Icon name="CloudUpload" size={20} color="#fff" />
-                          <Text className="text-white text-sm ml-3">Upload Audio</Text>
+                          <Text className="text-white text-sm ml-3">{t("upload.uploadAudio")}</Text>
                         </TouchableOpacity>
                         <View className="h-px bg-theme-neutrals-700 mx-3" />
                         <TouchableOpacity
@@ -2799,7 +2799,7 @@ export default function UploadScreen() {
                           className="flex-row items-center px-4 py-3"
                         >
                           <Icon name="Mic" size={20} color="#fff" />
-                          <Text className="text-white text-sm ml-3">Record Voice</Text>
+                          <Text className="text-white text-sm ml-3">{t("upload.recordVoice")}</Text>
                         </TouchableOpacity>
                       </>
                     )}
@@ -2815,7 +2815,7 @@ export default function UploadScreen() {
                           className="flex-row items-center px-4 py-3"
                         >
                           <Icon name="Search" size={20} color="#fff" />
-                          <Text className="text-white text-sm ml-3">Search Sounds</Text>
+                          <Text className="text-white text-sm ml-3">{t("upload.searchSounds")}</Text>
                         </TouchableOpacity>
                       </>
                     )}
@@ -3000,14 +3000,14 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               className="flex-1 px-4 py-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 mr-2"
             >
-              <Text className="text-white text-center font-medium">Cancel</Text>
+              <Text className="text-white text-center font-medium">{t("common.cancel")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={handleConfirmSaveDraft}
               activeOpacity={0.7}
               className="flex-1 px-4 py-3 rounded-xl bg-white"
             >
-              <Text className="text-black text-center font-semibold">Save</Text>
+              <Text className="text-black text-center font-semibold">{t("common.save")}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -3060,8 +3060,8 @@ export default function UploadScreen() {
           >
             <Icon name="Radio" size={22} color="#F4F4F5" />
             <View className="flex-1">
-              <Text className="text-white font-semibold text-sm">Go Live</Text>
-              <Text className="text-theme-neutrals-400 text-xs mt-0.5">Start a livestream</Text>
+              <Text className="text-white font-semibold text-sm">{t("upload.goLive")}</Text>
+              <Text className="text-theme-neutrals-400 text-xs mt-0.5">{t("upload.startLivestream")}</Text>
             </View>
             <Icon name="ChevronRight" size={18} color="#6F7174" />
           </TouchableOpacity>
@@ -3079,8 +3079,8 @@ export default function UploadScreen() {
           >
             <Icon name="Mic" size={22} color="#D4D4D8" />
             <View className="flex-1">
-              <Text className="text-white font-semibold text-sm">Stages</Text>
-              <Text className="text-theme-neutrals-400 text-xs mt-0.5">Join or start an audio stage</Text>
+              <Text className="text-white font-semibold text-sm">{t("nav.stages")}</Text>
+              <Text className="text-theme-neutrals-400 text-xs mt-0.5">{t("upload.joinStage")}</Text>
             </View>
             <Icon name="ChevronRight" size={18} color="#6F7174" />
           </TouchableOpacity>
@@ -3129,21 +3129,21 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               className="px-4 py-3 rounded-xl bg-white"
             >
-              <Text className="text-black text-center font-semibold">Save to Drafts</Text>
+              <Text className="text-black text-center font-semibold">{t("upload.saveToDrafts")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={handleDiscard}
               activeOpacity={0.7}
               className="px-4 py-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700"
             >
-              <Text className="text-white/80 text-center font-medium">Discard</Text>
+              <Text className="text-white/80 text-center font-medium">{t("upload.discard")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => setShowDiscardModal(false)}
               activeOpacity={0.7}
               className="px-4 py-2"
             >
-              <Text className="text-theme-neutrals-400 text-center text-sm">Cancel</Text>
+              <Text className="text-theme-neutrals-400 text-center text-sm">{t("common.cancel")}</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -3402,6 +3402,21 @@
     "micRequired": "Mikrofontillatelse kreves for å ta opp lyd.",
     "recordFailed": "Kunne ikke starte opptaket.",
     "tierVisibility": "Klatre i nivåer for å øke synligheten og få flere visninger av innlegget per dag",
-    "buyTokens": "Kjøp tokens"
+    "buyTokens": "Kjøp tokens",
+    "community": "Fellesskap",
+    "shop": "Butikk",
+    "discard": "Forkast",
+    "matureContent": "Vokseninnhold",
+    "addOption": "Legg til alternativ",
+    "mintPost": "Mint innlegg",
+    "addCategories": "Legg til kategorier",
+    "goLive": "Gå live",
+    "startLivestream": "Start en direktesending",
+    "joinStage": "Bli med i eller start en lydscene",
+    "saveToDrafts": "Lagre i utkast",
+    "uploadAudio": "Last opp lyd",
+    "recordVoice": "Ta opp stemme",
+    "searchSounds": "Søk etter lyder",
+    "pollQuestion": "Still et spørsmål…"
   }
 }

@@ -3412,6 +3412,21 @@
     "micRequired": "Cal permís del micròfon per gravar àudio.",
     "recordFailed": "No s'ha pogut iniciar la gravació.",
     "tierVisibility": "Puja de nivell per augmentar la teva visibilitat i aconseguir més difusió diària de la publicació",
-    "buyTokens": "Compra fitxes"
+    "buyTokens": "Compra fitxes",
+    "community": "Comunitat",
+    "shop": "Botiga",
+    "discard": "Descarta",
+    "matureContent": "Contingut per a adults",
+    "addOption": "Afegeix una opció",
+    "mintPost": "Encunya la publicació",
+    "addCategories": "Afegeix categories",
+    "goLive": "Fes un directe",
+    "startLivestream": "Inicia una retransmissió en directe",
+    "joinStage": "Uneix-te a un escenari d'àudio o comença'n un",
+    "saveToDrafts": "Desa als esborranys",
+    "uploadAudio": "Puja àudio",
+    "recordVoice": "Grava la veu",
+    "searchSounds": "Cerca sons",
+    "pollQuestion": "Fes una pregunta…"
   }
 }
