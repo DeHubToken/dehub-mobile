@@ -3629,7 +3629,9 @@
     "markMadeForKids": "Маркирай като направено за деца",
     "madeForKidsOnDesc": "Показано на деца в Kids Mode и извън обикновените ленти. Само Kids Mode може да коментира.",
     "madeForKidsOffDesc": "Показва този пост на деца, които използват Kids Mode, и го премахва от обикновените ленти.",
-    "madeForKidsBlockedByMature": "Пост, маркиран като зрял, не може също да бъде публикуван за деца."
+    "madeForKidsBlockedByMature": "Пост, маркиран като зрял, не може също да бъде публикуван за деца.",
+    "encoderTitle": "OBS / енкодер",
+    "encoderHint": "Получете RTMP детайли"
   },
   "bounty": {
     "claimed": "Получено",

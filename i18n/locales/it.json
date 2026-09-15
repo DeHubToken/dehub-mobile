@@ -3699,7 +3699,9 @@
     "markMadeForKids": "Contrassegna come fatto per i bambini",
     "madeForKidsOnDesc": "Mostrato ai bambini in modalità Kids e fuori dai soliti feed. Solo la modalità Bambini può commentare.",
     "madeForKidsOffDesc": "Mostra questo post ai bambini che utilizzano la modalità Bambini e lo toglie dai normali feed.",
-    "madeForKidsBlockedByMature": "Un post contrassegnato come maturo non può essere pubblicato anche per i bambini."
+    "madeForKidsBlockedByMature": "Un post contrassegnato come maturo non può essere pubblicato anche per i bambini.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Ottieni i dettagli RTMP"
   },
   "bounty": {
     "claimed": "Riscosso",

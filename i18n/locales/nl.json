@@ -3896,7 +3896,9 @@
     "markMadeForKids": "Markeren als gemaakt voor kinderen",
     "madeForKidsOnDesc": "Wordt getoond aan kinderen in de kindermodus en buiten de gewone feeds. Alleen de kindermodus kan reageren.",
     "madeForKidsOffDesc": "Toont dit bericht aan kinderen in de kindermodus en haalt het van de gewone feeds.",
-    "madeForKidsBlockedByMature": "Een bericht dat als volwassen is gemarkeerd, kan niet ook voor kinderen worden gepubliceerd."
+    "madeForKidsBlockedByMature": "Een bericht dat als volwassen is gemarkeerd, kan niet ook voor kinderen worden gepubliceerd.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "RTMP-details ophalen"
   },
   "bounty": {
     "claimed": "Geclaimd",

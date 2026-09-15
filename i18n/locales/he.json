@@ -3615,7 +3615,9 @@
     "madeForKidsConfirmYes": "כן, זה לילדים",
     "madeForKidsOnDesc": "מוצג לילדים במצב ילדים, ומחוץ לפידים הרגילים. רק מצב ילדים יכול להגיב.",
     "madeForKidsOffDesc": "מציג את הפוסט הזה לילדים המשתמשים במצב ילדים, ומסיר אותו מהפידים הרגילים.",
-    "madeForKidsBlockedByMature": "לא ניתן לפרסם פוסט המסומן כבוגר גם לילדים."
+    "madeForKidsBlockedByMature": "לא ניתן לפרסם פוסט המסומן כבוגר גם לילדים.",
+    "encoderTitle": "OBS / מקודד",
+    "encoderHint": "לקבלת פרטי RTMP"
   },
   "bounty": {
     "claimed": "נאסף",

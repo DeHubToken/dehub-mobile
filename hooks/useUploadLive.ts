@@ -369,6 +369,8 @@ export function useUploadLive() {
                   tokenId: createdTokenId,
                   ingestUrl: stream.ingestUrl,
                   streamKey: stream.streamKey,
+                  // Picked in the live menu, before any of this ran.
+                  startExternal: !!p.settings.useEncoder,
                   // A producer left without ever airing should take its dead
                   // post with it — but only for an immediate launch. A
                   // scheduled stream legitimately exists before it starts.

@@ -3692,7 +3692,9 @@
     "madeForKidsConfirmYes": "Eeyyee, ijoolleef dha",
     "madeForKidsOnDesc": "Ijoollee Haala Ijoollee fayyadamuu keessatti mul'ata, fi feed idileetti keessaa baate. Haala Ijoollee qofatu jajjabeessuu danda'u.",
     "madeForKidsOffDesc": "Poost kana ijoollee Haala Ijoollee fayyadamuu keessatti mul'isa, fi feed idileetti keessaa baata.",
-    "madeForKidsBlockedByMature": "Poost uumamaa ta'e ijoolleef dabarsuun hin danda'amu."
+    "madeForKidsBlockedByMature": "Poost uumamaa ta'e ijoolleef dabarsuun hin danda'amu.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "RTMP details argachuu"
   },
   "bounty": {
     "claimed": "Fudhatame",

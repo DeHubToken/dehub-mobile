@@ -3598,7 +3598,9 @@
     "madeForKidsConfirmYes": "Hawa, çagalar üçin",
     "madeForKidsOnDesc": "Kids Mode-ny ulanýan çagalara görkezilýär we adaty feed-lerden çykyp gider. Diňe Kids Mode-ny ulanýanlar şerhek goşup bilýärler.",
     "madeForKidsOffDesc": "Bu postu Kids Mode-ny ulanýan çagalara görkezýär we adaty feed-lerden çykyp gidýär.",
-    "madeForKidsBlockedByMature": "Ýetginjek hökmünde bellenen post çagalar üçin hem neşir edilip bilmeýär."
+    "madeForKidsBlockedByMature": "Ýetginjek hökmünde bellenen post çagalar üçin hem neşir edilip bilmeýär.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "RTMP detallary alıň"
   },
   "bounty": {
     "claimed": "Alyndy",

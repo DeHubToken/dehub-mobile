@@ -3617,7 +3617,9 @@
     "madeForKidsConfirmYes": "Eh, shi ne don yara",
     "madeForKidsOnDesc": "Aka nuna shi ga yara da ke amfani da Kids Mode, kuma ya fita daga jerin abubuwa na yau da kullun. Kids Mode ne kawai zai iya sharewa.",
     "madeForKidsOffDesc": "Yana nuna wannan post ga yara da ke amfani da Kids Mode, kuma yana cire shi daga jerin abubuwa na yau da kullun.",
-    "madeForKidsBlockedByMature": "Ba za a iya buga post da aka yi wa balagu tare da buga shi don yara ba."
+    "madeForKidsBlockedByMature": "Ba za a iya buga post da aka yi wa balagu tare da buga shi don yara ba.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Sami RTMP details"
   },
   "bounty": {
     "claimed": "An karɓa",

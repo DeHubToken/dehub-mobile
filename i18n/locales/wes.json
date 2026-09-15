@@ -3450,7 +3450,9 @@
     "unmuteVideo": "Unmute video",
     "descriptionOptional": "Description (optional)",
     "whatsHappening": "Wetin dey happen?",
-    "quotaShortfall": "Dis post cost {{cost}} DHB and you get {{held}}."
+    "quotaShortfall": "Dis post cost {{cost}} DHB and you get {{held}}.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Get RTMP details"
   },
   "bounty": {
     "claimed": "Don claim",

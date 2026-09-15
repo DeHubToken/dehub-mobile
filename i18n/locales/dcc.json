@@ -3294,7 +3294,9 @@
     "unmuteVideo": "ویڈیو کی آواز چالو کریں",
     "descriptionOptional": "تفصیل (اختیاری)",
     "whatsHappening": "کیا ہو رہا ہے؟",
-    "quotaShortfall": "اس پوسٹ کی قیمت {{cost}} DHB ہے اور آپ کے پاس {{held}} ہیں۔"
+    "quotaShortfall": "اس پوسٹ کی قیمت {{cost}} DHB ہے اور آپ کے پاس {{held}} ہیں۔",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Get RTMP details"
   },
   "bounty": {
     "claimed": "وصول ہو گیا",

@@ -3572,7 +3572,9 @@
     "madeForKidsConfirmYes": "Aw, a ye don ka se don ka",
     "madeForKidsOnDesc": "A bɛ sɔrɔ den ye ka gara Kids Mode la, ani a bɛ kɔ ka sɔrɔ ka jɔ ka sɔrɔ ka don ka. Kids Mode ye nka a ka kɔmɛnt.",
     "madeForKidsOffDesc": "A bɛ sɔrɔ i post ye den ye ka gara Kids Mode la, ani a bɛ kɔ ka sɔrɔ ka jɔ ka sɔrɔ ka don ka.",
-    "madeForKidsBlockedByMature": "Post ye ka jɔ ka sɔrɔ ka don ka tɛ ɲɔgɔn ka jɔ ka sɔrɔ ka don ka den ye ka gara."
+    "madeForKidsBlockedByMature": "Post ye ka jɔ ka sɔrɔ ka don ka tɛ ɲɔgɔn ka jɔ ka sɔrɔ ka don ka den ye ka gara.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Get RTMP details"
   },
   "bounty": {
     "claimed": "A tara",

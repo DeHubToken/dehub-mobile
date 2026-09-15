@@ -48,6 +48,8 @@ type RouteParams = {
   tokenId?: number;
   ingestUrl?: string;
   streamKey?: string;
+  /** The creator chose OBS in the live menu; open on the ingest details. */
+  startExternal?: boolean;
   /**
    * Set by useUploadLive for an immediate (non-scheduled) launch: leaving the
    * producer without ever airing discards the freshly minted post instead of
@@ -76,7 +78,7 @@ const LiveProducerScreen: React.FC = () => {
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
-  const { streamId, tokenId, ingestUrl, streamKey, discardIfNeverLive } =
+  const { streamId, tokenId, ingestUrl, streamKey, startExternal, discardIfNeverLive } =
     (route.params || {}) as RouteParams;
   const {
     on: socketOn,
@@ -91,7 +93,7 @@ const LiveProducerScreen: React.FC = () => {
   // Unseen chat badge removed (panel itself can manage highlighting later)
   const [micMuted, setMicMuted] = useState(false);
   const [cameraOff, setCameraOff] = useState(false);
-  const [externalMode, setExternalMode] = useState(false);
+  const [externalMode, setExternalMode] = useState(!!startExternal);
   /**
    * The mint hands the ingest URL down as a route param, but a producer screen
    * reached any other way (a resumed stream, a deep link) arrives without one,

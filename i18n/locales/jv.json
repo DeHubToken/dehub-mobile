@@ -3586,7 +3586,9 @@
     "madeForKidsConfirmYes": "Ya, iki kanggo bocah",
     "madeForKidsOnDesc": "Ditampilake kanggo bocah ing Mode Bocah, lan metu saka feed biasa. Mung Mode Bocah sing bisa ngekomentari.",
     "madeForKidsOffDesc": "Nampilake posting iki kanggo bocah sing nggunakake Mode Bocah, lan ngilangi saka feed biasa.",
-    "madeForKidsBlockedByMature": "Posting sing ditandai dewasa ora bisa uga dinerbitake kanggo bocah."
+    "madeForKidsBlockedByMature": "Posting sing ditandai dewasa ora bisa uga dinerbitake kanggo bocah.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Njaluk rincian RTMP"
   },
   "bounty": {
     "claimed": "Wis diklaim",

@@ -3642,7 +3642,9 @@
     "markMadeForKids": "Marchează ca realizat pentru copii",
     "madeForKidsOnDesc": "Afișat copiilor în Modul pentru copii și scos din feed-urile obișnuite. Doar Modul pentru copii poate comenta.",
     "madeForKidsOffDesc": "Afișează această postare copiilor care folosesc Modul pentru copii și o scoate din feed-urile obișnuite.",
-    "madeForKidsBlockedByMature": "O postare marcată ca pentru adulți nu poate fi publicată și pentru copii."
+    "madeForKidsBlockedByMature": "O postare marcată ca pentru adulți nu poate fi publicată și pentru copii.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Obține detalii RTMP"
   },
   "bounty": {
     "claimed": "Revendicat",

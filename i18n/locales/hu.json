@@ -3633,7 +3633,9 @@
     "markMadeForKids": "Jelöld meg gyerekeknek készültként",
     "madeForKidsOnDesc": "Megjelenik a Gyerekmódot használó gyerekeknek, és eltűnik a szokásos hírfolyamokról. Csak a Gyerekmód írhat megjegyzéseket.",
     "madeForKidsOffDesc": "Megjeleníti ezt a bejegyzést a Gyerekmódot használó gyerekeknek, és eltávolítja a szokásos hírfolyamokról.",
-    "madeForKidsBlockedByMature": "Az érettnek jelölt bejegyzés nem tehető közzé gyerekeknek is."
+    "madeForKidsBlockedByMature": "Az érettnek jelölt bejegyzés nem tehető közzé gyerekeknek is.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "RTMP részletek megtekintése"
   },
   "bounty": {
     "claimed": "Igényelve",

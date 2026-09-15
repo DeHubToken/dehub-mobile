@@ -3697,7 +3697,9 @@
     "markMadeForKids": "어린이용으로 만든 것으로 표시",
     "madeForKidsOnDesc": "키즈 모드의 어린이와 일반 피드에 표시되지 않습니다. 키즈 모드만 댓글을 달 수 있습니다.",
     "madeForKidsOffDesc": "키즈 모드를 사용하는 어린이에게 이 게시물을 보여주고 일반 피드에서 벗어납니다.",
-    "madeForKidsBlockedByMature": "성인이라고 표시된 게시물은 어린이에게도 게시할 수 없습니다."
+    "madeForKidsBlockedByMature": "성인이라고 표시된 게시물은 어린이에게도 게시할 수 없습니다.",
+    "encoderTitle": "OBS / 인코더",
+    "encoderHint": "RTMP 세부정보 가져오기"
   },
   "bounty": {
     "claimed": "수령 완료",

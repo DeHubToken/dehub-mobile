@@ -3633,7 +3633,9 @@
     "markMadeForKids": "Označit jako vytvořeno pro děti",
     "madeForKidsOnDesc": "Zobrazeno dětem v režimu pro děti a mimo běžné kanály. Pouze režim pro děti může komentovat.",
     "madeForKidsOffDesc": "Zobrazuje tento příspěvek dětem používajícím režim pro děti a odstraňuje ho z běžných kanálů.",
-    "madeForKidsBlockedByMature": "Příspěvek označený jako pro dospělé nelze také publikovat pro děti."
+    "madeForKidsBlockedByMature": "Příspěvek označený jako pro dospělé nelze také publikovat pro děti.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Získejte podrobnosti RTMP"
   },
   "bounty": {
     "claimed": "Vyzvednuto",

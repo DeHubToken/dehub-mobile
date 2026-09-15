@@ -3586,7 +3586,9 @@
     "madeForKidsConfirmYes": "آي، هذا للأطفال",
     "madeForKidsOnDesc": "معروض للأطفال اللي يستخدمون وضع الأطفال، وينزل من الفيدات العادية. بس وضع الأطفال يقدر يعلق.",
     "madeForKidsOffDesc": "يعرض هالبوست للأطفال اللي يستخدمون وضع الأطفال، وينزله من الفيدات العادية.",
-    "madeForKidsBlockedByMature": "البوست اللي معلم بأنه للكبار ما يقدر ينشر للأطفال كمان."
+    "madeForKidsBlockedByMature": "البوست اللي معلم بأنه للكبار ما يقدر ينشر للأطفال كمان.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "احصل على تفاصيل RTMP"
   },
   "bounty": {
     "claimed": "متسلّم",

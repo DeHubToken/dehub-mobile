@@ -3657,7 +3657,9 @@
     "madeForKidsConfirmYes": "Yebo, kuyingabantwana",
     "madeForKidsOnDesc": "Ikhombiswe abantwaneni abasebenzisa i-Kids Mode, futhi iphume kumafeedi ajwayelekile. Kuphela i-Kids Mode engakwazi ukuhlongoza.",
     "madeForKidsOffDesc": "Ikhombisa lesi sikhwama abantwaneni abasebenzisa i-Kids Mode, futhi siyisuse kumafeedi ajwayelekile.",
-    "madeForKidsBlockedByMature": "Ikhwama elimakwe njengokukhanya kabantu abadala alikwazi futhi likupapashwe ngabantwana."
+    "madeForKidsBlockedByMature": "Ikhwama elimakwe njengokukhanya kabantu abadala alikwazi futhi likupapashwe ngabantwana.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Thola imininingwane ye-RTMP"
   },
   "bounty": {
     "claimed": "Kuthathiwe",

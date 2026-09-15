@@ -3698,7 +3698,9 @@
     "markMadeForKids": "Als für Kinder gemacht markieren",
     "madeForKidsOnDesc": "Wird Kindern in Kids Mode angezeigt und aus den normalen Feeds entfernt. Nur Kids Mode kann kommentieren.",
     "madeForKidsOffDesc": "Zeigt diesen Beitrag Kindern, die Kids Mode nutzen, und entfernt ihn aus den normalen Feeds.",
-    "madeForKidsBlockedByMature": "Ein als reif gekennzeichneter Beitrag kann nicht auch für Kinder veröffentlicht werden."
+    "madeForKidsBlockedByMature": "Ein als reif gekennzeichneter Beitrag kann nicht auch für Kinder veröffentlicht werden.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "RTMP-Details abrufen"
   },
   "bounty": {
     "claimed": "Eingelöst",

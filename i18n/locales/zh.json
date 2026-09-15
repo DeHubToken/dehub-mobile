@@ -3686,7 +3686,9 @@
     "markMadeForKids": "标记为为孩子制作",
     "madeForKidsOnDesc": "显示给使用儿童模式的儿童，并从普通信息流中移除。只有儿童模式可以评论。",
     "madeForKidsOffDesc": "向使用儿童模式的儿童显示此帖子，并将其从普通信息流中移除。",
-    "madeForKidsBlockedByMature": "标记为成人内容的帖子不能同时为儿童发布。"
+    "madeForKidsBlockedByMature": "标记为成人内容的帖子不能同时为儿童发布。",
+    "encoderTitle": "OBS / 推流软件",
+    "encoderHint": "获取 RTMP 信息"
   },
   "bounty": {
     "claimed": "已领取",

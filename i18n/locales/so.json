@@ -3619,7 +3619,9 @@
     "madeForKidsConfirmYes": "Hah, waa carruurta",
     "madeForKidsOnDesc": "Waxaa lagu tusi doonaa carruurta isticmaala Kids Mode, iyo ka baxda alaabta caadiga ah. Kids Mode kaliya ayaa ka comment-i kara.",
     "madeForKidsOffDesc": "Waxaa post-kan lagu tusi doonaa carruurta isticmaala Kids Mode, iyo waxaa laga saari doonaa alaabta caadiga ah.",
-    "madeForKidsBlockedByMature": "Post-ka lagu calaamadeeya inuu ballaaran yahay ma alaabta carruurta ah oo keliya."
+    "madeForKidsBlockedByMature": "Post-ka lagu calaamadeeya inuu ballaaran yahay ma alaabta carruurta ah oo keliya.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Hel RTMP details"
   },
   "bounty": {
     "claimed": "La qaatay",

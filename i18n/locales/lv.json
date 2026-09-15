@@ -3627,7 +3627,9 @@
     "madeForKidsConfirmYes": "Jā, tas ir bērniem",
     "madeForKidsOnDesc": "Rādīts bērniem bērnu režīmā un noņemts no parastajiem plūsmām. Tikai bērnu režīms var komentēt.",
     "madeForKidsOffDesc": "Parāda šo ierakstu bērniem, kuri izmanto bērnu režīmu, un noņem to no parastajiem plūsmām.",
-    "madeForKidsBlockedByMature": "Ieraksts, kas atzīmēts kā pieaugušiem paredzēts, nevar tikt publicēts arī bērniem."
+    "madeForKidsBlockedByMature": "Ieraksts, kas atzīmēts kā pieaugušiem paredzēts, nevar tikt publicēts arī bērniem.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Iegūstiet RTMP detaļas"
   },
   "bounty": {
     "claimed": "Saņemts",

@@ -3319,7 +3319,9 @@
     "unmuteVideo": "Укључи звук видеа",
     "descriptionOptional": "Опис (необавезно)",
     "whatsHappening": "Шта се дешава?",
-    "quotaShortfall": "Ова објава кошта {{cost}} DHB, а ви имате {{held}}."
+    "quotaShortfall": "Ова објава кошта {{cost}} DHB, а ви имате {{held}}.",
+    "encoderTitle": "OBS / Енкодер",
+    "encoderHint": "Добијте RTMP детаље"
   },
   "bounty": {
     "claimed": "Преузето",

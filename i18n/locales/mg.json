@@ -3707,7 +3707,9 @@
     "madeForKidsConfirmYes": "Eny, ho an'ny ankizy izany",
     "madeForKidsOnDesc": "Asehina amin'ny ankizy mampiasa Kids Mode, ary miala amin'ny feed mahazatra. Ny Kids Mode ihany no afaka maglasalasa.",
     "madeForKidsOffDesc": "Asehina ity postina ity amin'ny ankizy mampiasa Kids Mode, ary esorina amin'ny feed mahazatra.",
-    "madeForKidsBlockedByMature": "Ny postina nisy marika ho \"mature\" dia tsy afaka hamoaka ho an'ny ankizy."
+    "madeForKidsBlockedByMature": "Ny postina nisy marika ho \"mature\" dia tsy afaka hamoaka ho an'ny ankizy.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Avy amin'ny RTMP details"
   },
   "bounty": {
     "claimed": "Voaray",

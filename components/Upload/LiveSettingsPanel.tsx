@@ -28,6 +28,14 @@ export type LiveSettingsState = {
   scheduleEnabled: boolean;
   scheduledDate: Date | null;
   minTip: string;
+  /**
+   * Publish from OBS or another encoder rather than from the phone's camera.
+   *
+   * Picked in the live menu before anything is minted, so the producer opens
+   * on the ingest details instead of a camera the creator does not want. It is
+   * not shown in the settings panel — the menu is where the choice is made.
+   */
+  useEncoder: boolean;
 };
 
 export const INITIAL_LIVE_SETTINGS: LiveSettingsState = {
@@ -35,6 +43,7 @@ export const INITIAL_LIVE_SETTINGS: LiveSettingsState = {
   scheduleEnabled: false,
   scheduledDate: null,
   minTip: "1000",
+  useEncoder: false,
 };
 
 type LiveSettingsPanelProps = {

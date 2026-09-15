@@ -3699,7 +3699,9 @@
     "markMadeForKids": "Mark as made for kids",
     "madeForKidsOnDesc": "Shown to children in Kids Mode, and off the ordinary feeds. Only Kids Mode can comment.",
     "madeForKidsOffDesc": "Shows this post to children using Kids Mode, and takes it off the ordinary feeds.",
-    "madeForKidsBlockedByMature": "A post marked mature cannot also be published for children."
+    "madeForKidsBlockedByMature": "A post marked mature cannot also be published for children.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Get RTMP details"
   },
   "bounty": {
     "claimed": "Claimed",

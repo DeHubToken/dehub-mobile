@@ -3625,7 +3625,9 @@
     "madeForKidsConfirmYes": "是的，这是为孩子准备的",
     "madeForKidsOnDesc": "显示给使用孩子模式的儿童，并从普通信息流中移除。只有孩子模式可以评论。",
     "madeForKidsOffDesc": "将此帖子显示给使用孩子模式的儿童，并将其从普通信息流中移除。",
-    "madeForKidsBlockedByMature": "标记为成人内容的帖子不能同时为儿童发布。"
+    "madeForKidsBlockedByMature": "标记为成人内容的帖子不能同时为儿童发布。",
+    "encoderTitle": "OBS / 编码器",
+    "encoderHint": "获取 RTMP 详情"
   },
   "bounty": {
     "claimed": "已领取",

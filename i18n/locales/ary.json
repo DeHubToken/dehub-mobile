@@ -3644,7 +3644,9 @@
     "unmuteVideo": "رجع الصوت ديال الفيديو",
     "descriptionOptional": "وصف (اختياري)",
     "whatsHappening": "شنو كاين؟",
-    "quotaShortfall": "هاد البوست كيسوا {{cost}} DHB وعندك {{held}}."
+    "quotaShortfall": "هاد البوست كيسوا {{cost}} DHB وعندك {{held}}.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "حصل على RTMP details"
   },
   "bounty": {
     "claimed": "تسلم",
