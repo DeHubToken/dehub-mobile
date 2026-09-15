@@ -1427,7 +1427,12 @@
     "radio": "Радио",
     "trendingTracks": "Трендийн дуунууд",
     "moreVideos": "Илүү видео",
-    "newReleases": "Шинэ цомгууд"
+    "newReleases": "Шинэ цомгууд",
+    "noMusicVideos": "Одоогоор хөгжмийн видео алга",
+    "noAudioUploads": "Одоогоор аудио байршуулаагүй",
+    "noTracks": "Одоогоор трек алга",
+    "noPodcasts": "Одоогоор подкаст алга",
+    "noAudio": "Аудио алга"
   },
   "notFound": {
     "title": "Хуудас олдсонгүй",
@@ -3781,5 +3786,17 @@
     "updated": "Нийтлэлийг шинэчиллээ",
     "titlePlaceholder": "Нийтлэлийн гарчиг",
     "descPlaceholder": "Нийтлэлийн тайлбар"
+  },
+  "player": {
+    "openSettings": "Тохиргоог нээх",
+    "viewPlans": "Багцуудыг үзэх",
+    "playbackSpeed": "Тоглуулах хурд",
+    "moreOptions": "Бусад сонголт"
+  },
+  "liveViewer": {
+    "loadingStream": "Дамжуулалт ачаалж байна...",
+    "streamPaused": "Дамжуулалт түр зогссон",
+    "connectionDropped": "Дамжуулагчийн холболт тасарлаа.\nДахин холбогдохыг хүлээж байна...",
+    "autoEnding": "Үргэлжлэхгүй бол автоматаар дуусна"
   }
 }

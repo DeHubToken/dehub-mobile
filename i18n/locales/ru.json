@@ -1384,7 +1384,12 @@
     "radio": "Радио",
     "trendingTracks": "Популярные треки",
     "moreVideos": "Ещё видео",
-    "newReleases": "Новые релизы"
+    "newReleases": "Новые релизы",
+    "noMusicVideos": "Музыкальных видео пока нет",
+    "noAudioUploads": "Аудиозагрузок пока нет",
+    "noTracks": "Треков пока нет",
+    "noPodcasts": "Подкастов пока нет",
+    "noAudio": "Нет аудио"
   },
   "notFound": {
     "title": "Страница не найдена",
@@ -3871,5 +3876,17 @@
     "updated": "Пост обновлён",
     "titlePlaceholder": "Заголовок поста",
     "descPlaceholder": "Описание поста"
+  },
+  "player": {
+    "openSettings": "Открыть настройки",
+    "viewPlans": "Посмотреть тарифы",
+    "playbackSpeed": "Скорость воспроизведения",
+    "moreOptions": "Другие параметры"
+  },
+  "liveViewer": {
+    "loadingStream": "Загрузка трансляции...",
+    "streamPaused": "Трансляция приостановлена",
+    "connectionDropped": "Связь со стримером прервалась.\nЖдём его возвращения...",
+    "autoEnding": "Автоматически завершится, если не возобновится"
   }
 }

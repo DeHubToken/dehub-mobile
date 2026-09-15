@@ -1310,7 +1310,12 @@
     "radio": "Радио",
     "trendingTracks": "Популярдуу тректер",
     "moreVideos": "Дагы видеолор",
-    "newReleases": "Жаңы чыгарылыштар"
+    "newReleases": "Жаңы чыгарылыштар",
+    "noMusicVideos": "Азырынча музыкалык видео жок",
+    "noAudioUploads": "Азырынча аудио жүктөлгөн эмес",
+    "noTracks": "Азырынча трек жок",
+    "noPodcasts": "Азырынча подкаст жок",
+    "noAudio": "Аудио жок"
   },
   "leaderboard": {
     "title": "Рейтинг",
@@ -3795,5 +3800,17 @@
     "updated": "Пост жаңыртылды",
     "titlePlaceholder": "Посттун аталышы",
     "descPlaceholder": "Посттун сүрөттөмөсү"
+  },
+  "player": {
+    "openSettings": "Жөндөөлөрдү ачуу",
+    "viewPlans": "Пландарды көрүү",
+    "playbackSpeed": "Ойнотуу ылдамдыгы",
+    "moreOptions": "Дагы параметрлер"
+  },
+  "liveViewer": {
+    "loadingStream": "Стрим жүктөлүүдө...",
+    "streamPaused": "Стрим тындырылды",
+    "connectionDropped": "Стримердин байланышы үзүлдү.\nКайра туташуусун күтүүдө...",
+    "autoEnding": "Улантылбаса, автоматтык түрдө аяктайт"
   }
 }

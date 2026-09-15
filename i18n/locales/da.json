@@ -1372,7 +1372,12 @@
     "radio": "Radio",
     "trendingTracks": "Populære numre",
     "moreVideos": "Flere videoer",
-    "newReleases": "Nye udgivelser"
+    "newReleases": "Nye udgivelser",
+    "noMusicVideos": "Ingen musikvideoer endnu",
+    "noAudioUploads": "Ingen lyd-uploads endnu",
+    "noTracks": "Ingen numre endnu",
+    "noPodcasts": "Ingen podcasts endnu",
+    "noAudio": "Ingen lyd"
   },
   "notFound": {
     "title": "Siden blev ikke fundet",
@@ -3806,5 +3811,17 @@
     "updated": "Opslag opdateret",
     "titlePlaceholder": "Opslagstitel",
     "descPlaceholder": "Opslagsbeskrivelse"
+  },
+  "player": {
+    "openSettings": "Åbn indstillinger",
+    "viewPlans": "Se planer",
+    "playbackSpeed": "Afspilningshastighed",
+    "moreOptions": "Flere valgmuligheder"
+  },
+  "liveViewer": {
+    "loadingStream": "Indlæser stream...",
+    "streamPaused": "Stream sat på pause",
+    "connectionDropped": "Streamerens forbindelse faldt ud.\nVenter på, at de kommer tilbage...",
+    "autoEnding": "Afsluttes automatisk, hvis den ikke genoptages"
   }
 }

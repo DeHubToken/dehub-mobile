@@ -1438,7 +1438,12 @@
     "radio": "ວິທະຍຸ",
     "trendingTracks": "ເພງທີ່ນິຍົມ",
     "moreVideos": "ວິດີໂອເພີ່ມ",
-    "newReleases": "ອອກໃໝ່"
+    "newReleases": "ອອກໃໝ່",
+    "noMusicVideos": "ຍັງບໍ່ມີວິດີໂອເພງ",
+    "noAudioUploads": "ຍັງບໍ່ມີການອັບໂຫຼດສຽງ",
+    "noTracks": "ຍັງບໍ່ມີເພງ",
+    "noPodcasts": "ຍັງບໍ່ມີພອດແຄສ",
+    "noAudio": "ບໍ່ມີສຽງ"
   },
   "notFound": {
     "title": "ບໍ່ພົບໜ້າ",
@@ -3760,5 +3765,17 @@
     "updated": "ອັບເດດໂພສແລ້ວ",
     "titlePlaceholder": "ຫົວຂໍ້ໂພສ",
     "descPlaceholder": "ຄຳອະທິບາຍໂພສ"
+  },
+  "player": {
+    "openSettings": "ເປີດການຕັ້ງຄ່າ",
+    "viewPlans": "ເບິ່ງແພັກເກດ",
+    "playbackSpeed": "ຄວາມໄວການຫຼິ້ນ",
+    "moreOptions": "ຕົວເລືອກເພີ່ມເຕີມ"
+  },
+  "liveViewer": {
+    "loadingStream": "ກຳລັງໂຫຼດສະຕີມ...",
+    "streamPaused": "ສະຕີມຢຸດຊົ່ວຄາວ",
+    "connectionDropped": "ການເຊື່ອມຕໍ່ຂອງຜູ້ຖ່າຍທອດຫຼຸດ.\nກຳລັງລໍຖ້າໃຫ້ເຊື່ອມຕໍ່ໃໝ່...",
+    "autoEnding": "ຈະສິ້ນສຸດອັດຕະໂນມັດຫາກບໍ່ສືບຕໍ່"
   }
 }

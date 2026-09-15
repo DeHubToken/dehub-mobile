@@ -1358,7 +1358,12 @@
     "radio": "ਰੇਡੀਓ",
     "trendingTracks": "ਟ੍ਰੈਂਡਿੰਗ ਟ੍ਰੈਕ",
     "moreVideos": "ਹੋਰ ਵੀਡੀਓਜ਼",
-    "newReleases": "ਨਵੀਆਂ ਰਿਲੀਜ਼"
+    "newReleases": "ਨਵੀਆਂ ਰਿਲੀਜ਼",
+    "noMusicVideos": "ਹਾਲੇ ਕੋਈ ਮਿਊਜ਼ਿਕ ਵੀਡੀਓ ਨਹੀਂ",
+    "noAudioUploads": "ਹਾਲੇ ਕੋਈ ਆਡੀਓ ਅੱਪਲੋਡ ਨਹੀਂ",
+    "noTracks": "ਹਾਲੇ ਕੋਈ ਟਰੈਕ ਨਹੀਂ",
+    "noPodcasts": "ਹਾਲੇ ਕੋਈ ਪੌਡਕਾਸਟ ਨਹੀਂ",
+    "noAudio": "ਕੋਈ ਆਡੀਓ ਨਹੀਂ"
   },
   "notFound": {
     "title": "ਪੰਨਾ ਨਹੀਂ ਮਿਲਿਆ",
@@ -3778,5 +3783,17 @@
     "updated": "ਪੋਸਟ ਅੱਪਡੇਟ ਹੋਈ",
     "titlePlaceholder": "ਪੋਸਟ ਦਾ ਸਿਰਲੇਖ",
     "descPlaceholder": "ਪੋਸਟ ਦਾ ਵਰਣਨ"
+  },
+  "player": {
+    "openSettings": "ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ",
+    "viewPlans": "ਪਲਾਨ ਦੇਖੋ",
+    "playbackSpeed": "ਪਲੇਬੈਕ ਸਪੀਡ",
+    "moreOptions": "ਹੋਰ ਵਿਕਲਪ"
+  },
+  "liveViewer": {
+    "loadingStream": "ਸਟ੍ਰੀਮ ਲੋਡ ਹੋ ਰਹੀ ਹੈ...",
+    "streamPaused": "ਸਟ੍ਰੀਮ ਰੁਕੀ ਹੋਈ ਹੈ",
+    "connectionDropped": "ਸਟ੍ਰੀਮਰ ਦਾ ਕੁਨੈਕਸ਼ਨ ਟੁੱਟ ਗਿਆ।\nਮੁੜ ਜੁੜਨ ਦੀ ਉਡੀਕ ਹੈ...",
+    "autoEnding": "ਜੇ ਮੁੜ ਸ਼ੁਰੂ ਨਾ ਹੋਇਆ ਤਾਂ ਆਪਣੇ ਆਪ ਖਤਮ ਹੋ ਜਾਵੇਗਾ"
   }
 }

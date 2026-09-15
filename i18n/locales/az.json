@@ -1431,7 +1431,12 @@
     "radio": "Radio",
     "trendingTracks": "Trend Mahnılar",
     "moreVideos": "Daha Çox Video",
-    "newReleases": "Yeni Buraxılışlar"
+    "newReleases": "Yeni Buraxılışlar",
+    "noMusicVideos": "Hələ musiqi videosu yoxdur",
+    "noAudioUploads": "Hələ audio yükləməsi yoxdur",
+    "noTracks": "Hələ trek yoxdur",
+    "noPodcasts": "Hələ podkast yoxdur",
+    "noAudio": "Audio yoxdur"
   },
   "notFound": {
     "title": "Səhifə Tapılmadı",
@@ -3786,5 +3791,17 @@
     "updated": "Paylaşım yeniləndi",
     "titlePlaceholder": "Paylaşım başlığı",
     "descPlaceholder": "Paylaşım təsviri"
+  },
+  "player": {
+    "openSettings": "Parametrləri aç",
+    "viewPlans": "Planlara bax",
+    "playbackSpeed": "Oxutma sürəti",
+    "moreOptions": "Daha çox seçim"
+  },
+  "liveViewer": {
+    "loadingStream": "Yayım yüklənir...",
+    "streamPaused": "Yayım fasilədə",
+    "connectionDropped": "Yayımçının bağlantısı kəsildi.\nYenidən qoşulmasını gözləyirik...",
+    "autoEnding": "Davam etməzsə avtomatik bitəcək"
   }
 }

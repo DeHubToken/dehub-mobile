@@ -1331,7 +1331,12 @@
     "radio": "Radyo",
     "trendingTracks": "Stranên Trend",
     "moreVideos": "Vîdyoyên Zêdetir",
-    "newReleases": "Derketinên Nû"
+    "newReleases": "Derketinên Nû",
+    "noMusicVideos": "Hîn vîdyoyên muzîkê tune",
+    "noAudioUploads": "Hîn barkirinên dengî tune",
+    "noTracks": "Hîn stran tune",
+    "noPodcasts": "Hîn podcast tune",
+    "noAudio": "Deng tune"
   },
   "notFound": {
     "title": "Rûpel Nehat Dîtin",
@@ -3563,5 +3568,17 @@
     "updated": "Post hate nûkirin",
     "titlePlaceholder": "Sernavê postê",
     "descPlaceholder": "Danasîna postê"
+  },
+  "player": {
+    "openSettings": "Mîhengan veke",
+    "viewPlans": "Planan bibîne",
+    "playbackSpeed": "Leza lêdanê",
+    "moreOptions": "Vebijarkên din"
+  },
+  "liveViewer": {
+    "loadingStream": "Weşan tê barkirin...",
+    "streamPaused": "Weşan hate rawestandin",
+    "connectionDropped": "Girêdana weşanvan qut bû.\nLi benda vegera wî ne...",
+    "autoEnding": "Heke dest pê neke wê xweber biqede"
   }
 }

@@ -11,6 +11,7 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { ChainId, supportedChainIds } from "../../config/constants";
 import { isSolanaChain } from "../../config/solana.constants";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import { useTranslation } from "react-i18next";
 
 export interface VideoAreaProps {
   isTranscoding: boolean;
@@ -51,6 +52,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   muted,
   onVideoSize,
 }) => {
+  const { t } = useTranslation();
   const normalizedUrl: string | null =
     effectiveVideoUrl === undefined ? null : effectiveVideoUrl;
   const user = useUser();
@@ -108,7 +110,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
 
   const handleTopUp = (_neededAmt: any, _neededSymbol: string) => {
     if (chainId !== ChainId.BASE_MAINNET) {
-      toastInfo("Dpay is only available on Base.");
+      toastInfo(t("assets.dpayBaseOnly"));
       return;
     }
     navigation.navigate(ScreenNames.Dpay);
@@ -275,7 +277,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
               className="mt-4 bg-white/10 border border-white/20 rounded-xl px-5 py-2"
               activeOpacity={0.85}
             >
-              <Text className="text-white text-xs font-semibold">Open Settings</Text>
+              <Text className="text-white text-xs font-semibold">{t("player.openSettings")}</Text>
             </TouchableOpacity>
           </View>
         );
@@ -336,7 +338,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
               className="mt-4 bg-white/10 border border-white/20 rounded-xl px-5 py-2"
               activeOpacity={0.85}
             >
-              <Text className="text-white text-xs font-semibold">View plans</Text>
+              <Text className="text-white text-xs font-semibold">{t("player.viewPlans")}</Text>
             </TouchableOpacity>
           ) : null}
         </View>

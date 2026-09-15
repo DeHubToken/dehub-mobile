@@ -1331,7 +1331,12 @@
     "radio": "Radio",
     "trendingTracks": "Pistas populares",
     "moreVideos": "Más vídeos",
-    "newReleases": "Nuevos lanzamientos"
+    "newReleases": "Nuevos lanzamientos",
+    "noMusicVideos": "Aún no hay videoclips",
+    "noAudioUploads": "Aún no hay audios subidos",
+    "noTracks": "Aún no hay pistas",
+    "noPodcasts": "Aún no hay pódcasts",
+    "noAudio": "Sin audio"
   },
   "leaderboard": {
     "title": "Clasificación",
@@ -3872,5 +3877,17 @@
     "updated": "Publicación actualizada",
     "titlePlaceholder": "Título de la publicación",
     "descPlaceholder": "Descripción de la publicación"
+  },
+  "player": {
+    "openSettings": "Abrir ajustes",
+    "viewPlans": "Ver planes",
+    "playbackSpeed": "Velocidad de reproducción",
+    "moreOptions": "Más opciones"
+  },
+  "liveViewer": {
+    "loadingStream": "Cargando emisión...",
+    "streamPaused": "Emisión en pausa",
+    "connectionDropped": "Se ha cortado la conexión de quien emite.\nEsperando a que vuelva...",
+    "autoEnding": "Terminará automáticamente si no se reanuda"
   }
 }

@@ -1441,7 +1441,12 @@
     "radio": "راديو",
     "trendingTracks": "تراكات ترندي",
     "moreVideos": "فيديوهات كثر",
-    "newReleases": "إصدارات جداد"
+    "newReleases": "إصدارات جداد",
+    "noMusicVideos": "مازال ما كاين حتى فيديو ديال الموسيقى",
+    "noAudioUploads": "مازال ما كاين حتى صوت متصيفط",
+    "noTracks": "مازال ما كاين حتى تراك",
+    "noPodcasts": "مازال ما كاين حتى بودكاست",
+    "noAudio": "ما كاين حتى صوت"
   },
   "notFound": {
     "title": "الصفحة ما كايناش",
@@ -3828,5 +3833,17 @@
     "updated": "تحدث البوسط",
     "titlePlaceholder": "عنوان البوسط",
     "descPlaceholder": "وصف البوسط"
+  },
+  "player": {
+    "openSettings": "حل الإعدادات",
+    "viewPlans": "شوف الخطط",
+    "playbackSpeed": "سرعة التشغيل",
+    "moreOptions": "خيارات أخرى"
+  },
+  "liveViewer": {
+    "loadingStream": "كيتحمل البث...",
+    "streamPaused": "البث موقف",
+    "connectionDropped": "الاتصال ديال اللي كيبث تقطع.\nكنتسناوه يرجع...",
+    "autoEnding": "غادي يسالي وحدو إلا ما رجعش"
   }
 }

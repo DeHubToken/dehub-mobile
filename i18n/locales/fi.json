@@ -1316,7 +1316,12 @@
     "radio": "Radio",
     "trendingTracks": "Suositut kappaleet",
     "moreVideos": "Lisää videoita",
-    "newReleases": "Uudet julkaisut"
+    "newReleases": "Uudet julkaisut",
+    "noMusicVideos": "Ei vielä musiikkivideoita",
+    "noAudioUploads": "Ei vielä äänilatauksia",
+    "noTracks": "Ei vielä kappaleita",
+    "noPodcasts": "Ei vielä podcasteja",
+    "noAudio": "Ei ääntä"
   },
   "leaderboard": {
     "title": "Tulostaulukko",
@@ -3802,5 +3807,17 @@
     "updated": "Julkaisu päivitetty",
     "titlePlaceholder": "Julkaisun otsikko",
     "descPlaceholder": "Julkaisun kuvaus"
+  },
+  "player": {
+    "openSettings": "Avaa asetukset",
+    "viewPlans": "Katso paketit",
+    "playbackSpeed": "Toistonopeus",
+    "moreOptions": "Lisää vaihtoehtoja"
+  },
+  "liveViewer": {
+    "loadingStream": "Ladataan lähetystä...",
+    "streamPaused": "Lähetys keskeytetty",
+    "connectionDropped": "Lähettäjän yhteys katkesi.\nOdotetaan yhteyden palaamista...",
+    "autoEnding": "Päättyy automaattisesti, jos ei jatku"
   }
 }

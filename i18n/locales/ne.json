@@ -1453,7 +1453,12 @@
     "radio": "रेडियो",
     "trendingTracks": "ट्रेन्डिङ ट्र्याकहरू",
     "moreVideos": "थप भिडियोहरू",
-    "newReleases": "नयाँ रिलिजहरू"
+    "newReleases": "नयाँ रिलिजहरू",
+    "noMusicVideos": "अहिलेसम्म कुनै म्युजिक भिडियो छैन",
+    "noAudioUploads": "अहिलेसम्म कुनै अडियो अपलोड छैन",
+    "noTracks": "अहिलेसम्म कुनै ट्र्याक छैन",
+    "noPodcasts": "अहिलेसम्म कुनै पडकास्ट छैन",
+    "noAudio": "अडियो छैन"
   },
   "notFound": {
     "title": "पृष्ठ फेला परेन",
@@ -3835,5 +3840,17 @@
     "updated": "पोस्ट अद्यावधिक भयो",
     "titlePlaceholder": "पोस्टको शीर्षक",
     "descPlaceholder": "पोस्टको विवरण"
+  },
+  "player": {
+    "openSettings": "सेटिङ खोल्नुहोस्",
+    "viewPlans": "योजनाहरू हेर्नुहोस्",
+    "playbackSpeed": "प्लेब्याक गति",
+    "moreOptions": "थप विकल्प"
+  },
+  "liveViewer": {
+    "loadingStream": "स्ट्रिम लोड हुँदै...",
+    "streamPaused": "स्ट्रिम रोकिएको",
+    "connectionDropped": "स्ट्रिमरको जडान टुट्यो।\nपुनः जोडिने पर्खाइमा...",
+    "autoEnding": "पुनः सुरु नभए स्वतः समाप्त हुनेछ"
   }
 }

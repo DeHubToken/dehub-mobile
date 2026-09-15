@@ -1371,7 +1371,12 @@
     "radio": "Rádio",
     "trendingTracks": "Populární skladby",
     "moreVideos": "Více videí",
-    "newReleases": "Novinky"
+    "newReleases": "Novinky",
+    "noMusicVideos": "Zatím žádná hudební videa",
+    "noAudioUploads": "Zatím žádné nahrané audio",
+    "noTracks": "Zatím žádné skladby",
+    "noPodcasts": "Zatím žádné podcasty",
+    "noAudio": "Žádné audio"
   },
   "notFound": {
     "title": "Stránka nenalezena",
@@ -3806,5 +3811,17 @@
     "updated": "Příspěvek aktualizován",
     "titlePlaceholder": "Název příspěvku",
     "descPlaceholder": "Popis příspěvku"
+  },
+  "player": {
+    "openSettings": "Otevřít nastavení",
+    "viewPlans": "Zobrazit plány",
+    "playbackSpeed": "Rychlost přehrávání",
+    "moreOptions": "Další možnosti"
+  },
+  "liveViewer": {
+    "loadingStream": "Načítání streamu...",
+    "streamPaused": "Stream pozastaven",
+    "connectionDropped": "Streamerovi vypadlo připojení.\nČekáme, až se vrátí...",
+    "autoEnding": "Pokud se neobnoví, automaticky skončí"
   }
 }

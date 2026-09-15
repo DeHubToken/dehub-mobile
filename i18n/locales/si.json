@@ -1432,7 +1432,12 @@
     "radio": "ගුවන්විදුලි",
     "trendingTracks": "ප්‍රවණතා ගීත",
     "moreVideos": "තවත් වීඩියෝ",
-    "newReleases": "නව නිකුතු"
+    "newReleases": "නව නිකුතු",
+    "noMusicVideos": "තවම සංගීත වීඩියෝ නැත",
+    "noAudioUploads": "තවම ශ්‍රව්‍ය උඩුගත කිරීම් නැත",
+    "noTracks": "තවම ගීත නැත",
+    "noPodcasts": "තවම පොඩ්කාස්ට් නැත",
+    "noAudio": "ශ්‍රව්‍ය නැත"
   },
   "notFound": {
     "title": "පිටුව හමු නොවීය",
@@ -3784,5 +3789,17 @@
     "updated": "පළකිරීම යාවත්කාලීන කළා",
     "titlePlaceholder": "පළකිරීමේ ශීර්ෂය",
     "descPlaceholder": "පළකිරීමේ විස්තරය"
+  },
+  "player": {
+    "openSettings": "සැකසුම් විවෘත කරන්න",
+    "viewPlans": "සැලසුම් බලන්න",
+    "playbackSpeed": "වාදන වේගය",
+    "moreOptions": "තවත් විකල්ප"
+  },
+  "liveViewer": {
+    "loadingStream": "ප්‍රවාහය පූරණය වෙමින්...",
+    "streamPaused": "ප්‍රවාහය තාවකාලිකව නතර",
+    "connectionDropped": "ප්‍රවාහකයාගේ සම්බන්ධතාවය කැඩුණා.\nනැවත සම්බන්ධ වන තුරු බලා සිටිමින්...",
+    "autoEnding": "නැවත ආරම්භ නොවුණොත් ස්වයංක්‍රීයව අවසන් වේ"
   }
 }

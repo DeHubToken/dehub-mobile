@@ -1419,7 +1419,12 @@
     "radio": "ରେଡିଓ",
     "trendingTracks": "ଟ୍ରେଣ୍ଡିଂ ଟ୍ରାକ",
     "moreVideos": "ଅଧିକ ଭିଡିଓ",
-    "newReleases": "ନୂଆ ରିଲିଜ"
+    "newReleases": "ନୂଆ ରିଲିଜ",
+    "noMusicVideos": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ମ୍ୟୁଜିକ ଭିଡିଓ ନାହିଁ",
+    "noAudioUploads": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଅଡିଓ ଅପଲୋଡ ନାହିଁ",
+    "noTracks": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଟ୍ରାକ ନାହିଁ",
+    "noPodcasts": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ପଡକାଷ୍ଟ ନାହିଁ",
+    "noAudio": "କୌଣସି ଅଡିଓ ନାହିଁ"
   },
   "notFound": {
     "title": "ପୃଷ୍ଠା ମିଳିଲା ନାହିଁ",
@@ -3773,5 +3778,17 @@
     "updated": "ପୋଷ୍ଟ ଅଦ୍ୟତନ ହେଲା",
     "titlePlaceholder": "ପୋଷ୍ଟର ଶୀର୍ଷକ",
     "descPlaceholder": "ପୋଷ୍ଟର ବର୍ଣ୍ଣନା"
+  },
+  "player": {
+    "openSettings": "ସେଟିଂସ୍ ଖୋଲନ୍ତୁ",
+    "viewPlans": "ପ୍ଲାନ୍ ଦେଖନ୍ତୁ",
+    "playbackSpeed": "ପ୍ଲେବ୍ୟାକ୍ ଗତି",
+    "moreOptions": "ଅଧିକ ବିକଳ୍ପ"
+  },
+  "liveViewer": {
+    "loadingStream": "ଷ୍ଟ୍ରିମ ଲୋଡ୍ ହେଉଛି...",
+    "streamPaused": "ଷ୍ଟ୍ରିମ ବିରତ",
+    "connectionDropped": "ଷ୍ଟ୍ରିମରଙ୍କ ସଂଯୋଗ କଟିଗଲା।\nପୁନଃ ସଂଯୋଗ ପାଇଁ ଅପେକ୍ଷା...",
+    "autoEnding": "ପୁନଃ ଆରମ୍ଭ ନହେଲେ ସ୍ୱୟଂ ଶେଷ ହେବ"
   }
 }

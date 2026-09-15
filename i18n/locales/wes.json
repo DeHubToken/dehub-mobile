@@ -1385,7 +1385,12 @@
     "radio": "Radio",
     "trendingTracks": "Trending Tracks",
     "moreVideos": "More Videos",
-    "newReleases": "New Releases"
+    "newReleases": "New Releases",
+    "noMusicVideos": "No music video dey yet",
+    "noAudioUploads": "No audio upload dey yet",
+    "noTracks": "No track dey yet",
+    "noPodcasts": "No podcast dey yet",
+    "noAudio": "No audio"
   },
   "notFound": {
     "title": "Page No Dey",
@@ -3634,5 +3639,17 @@
     "updated": "Post don update",
     "titlePlaceholder": "Post title",
     "descPlaceholder": "Post description"
+  },
+  "player": {
+    "openSettings": "Open settings",
+    "viewPlans": "Si plans",
+    "playbackSpeed": "Playback speed",
+    "moreOptions": "More options"
+  },
+  "liveViewer": {
+    "loadingStream": "Stream dey load...",
+    "streamPaused": "Stream don pause",
+    "connectionDropped": "Di streamer connection don kut.\nWe dey wait mek dem kam bak...",
+    "autoEnding": "E go end by itself if e no continue"
   }
 }

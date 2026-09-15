@@ -1442,7 +1442,12 @@
     "radio": "Radijas",
     "trendingTracks": "Populiarūs takeliai",
     "moreVideos": "Daugiau vaizdo įrašų",
-    "newReleases": "Nauji leidimai"
+    "newReleases": "Nauji leidimai",
+    "noMusicVideos": "Muzikinių vaizdo įrašų dar nėra",
+    "noAudioUploads": "Garso įrašų dar neįkelta",
+    "noTracks": "Takelių dar nėra",
+    "noPodcasts": "Tinklalaidžių dar nėra",
+    "noAudio": "Garso nėra"
   },
   "notFound": {
     "title": "Puslapis nerastas",
@@ -3801,5 +3806,17 @@
     "updated": "Įrašas atnaujintas",
     "titlePlaceholder": "Įrašo pavadinimas",
     "descPlaceholder": "Įrašo aprašymas"
+  },
+  "player": {
+    "openSettings": "Atidaryti nustatymus",
+    "viewPlans": "Peržiūrėti planus",
+    "playbackSpeed": "Atkūrimo greitis",
+    "moreOptions": "Daugiau parinkčių"
+  },
+  "liveViewer": {
+    "loadingStream": "Įkeliama transliacija...",
+    "streamPaused": "Transliacija pristabdyta",
+    "connectionDropped": "Transliuotojo ryšys nutrūko.\nLaukiama, kol vėl prisijungs...",
+    "autoEnding": "Automatiškai baigsis, jei nebus tęsiama"
   }
 }

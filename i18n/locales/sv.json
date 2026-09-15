@@ -1371,7 +1371,12 @@
     "radio": "Radio",
     "trendingTracks": "Populära spår",
     "moreVideos": "Fler videor",
-    "newReleases": "Nya släpp"
+    "newReleases": "Nya släpp",
+    "noMusicVideos": "Inga musikvideor än",
+    "noAudioUploads": "Inga ljuduppladdningar än",
+    "noTracks": "Inga spår än",
+    "noPodcasts": "Inga poddar än",
+    "noAudio": "Inget ljud"
   },
   "notFound": {
     "title": "Sidan hittades inte",
@@ -3806,5 +3811,17 @@
     "updated": "Inlägget uppdaterat",
     "titlePlaceholder": "Inläggstitel",
     "descPlaceholder": "Inläggsbeskrivning"
+  },
+  "player": {
+    "openSettings": "Öppna inställningar",
+    "viewPlans": "Visa planer",
+    "playbackSpeed": "Uppspelningshastighet",
+    "moreOptions": "Fler alternativ"
+  },
+  "liveViewer": {
+    "loadingStream": "Läser in sändning...",
+    "streamPaused": "Sändning pausad",
+    "connectionDropped": "Sändarens anslutning bröts.\nVi väntar på att de ska ansluta igen...",
+    "autoEnding": "Avslutas automatiskt om den inte återupptas"
   }
 }

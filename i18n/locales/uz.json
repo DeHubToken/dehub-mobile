@@ -1422,7 +1422,12 @@
     "radio": "Radio",
     "trendingTracks": "Trendli treklar",
     "moreVideos": "Koʻproq video",
-    "newReleases": "Yangi relizlar"
+    "newReleases": "Yangi relizlar",
+    "noMusicVideos": "Hali musiqiy video yo'q",
+    "noAudioUploads": "Hali audio yuklanmagan",
+    "noTracks": "Hali trek yo'q",
+    "noPodcasts": "Hali podkast yo'q",
+    "noAudio": "Audio yo'q"
   },
   "notFound": {
     "title": "Sahifa topilmadi",
@@ -3853,5 +3858,17 @@
     "updated": "Post yangilandi",
     "titlePlaceholder": "Post sarlavhasi",
     "descPlaceholder": "Post tavsifi"
+  },
+  "player": {
+    "openSettings": "Sozlamalarni ochish",
+    "viewPlans": "Rejalarni ko'rish",
+    "playbackSpeed": "Ijro tezligi",
+    "moreOptions": "Boshqa variantlar"
+  },
+  "liveViewer": {
+    "loadingStream": "Efir yuklanmoqda...",
+    "streamPaused": "Efir to'xtatildi",
+    "connectionDropped": "Efir egasining aloqasi uzildi.\nQayta ulanishini kutmoqdamiz...",
+    "autoEnding": "Davom etmasa, avtomatik tugaydi"
   }
 }

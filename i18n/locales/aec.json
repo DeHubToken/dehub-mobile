@@ -1400,7 +1400,12 @@
     "radio": "راديو",
     "trendingTracks": "المقاطع الرائجة",
     "moreVideos": "فيديوهات أكتر",
-    "newReleases": "إصدارات جديدة"
+    "newReleases": "إصدارات جديدة",
+    "noMusicVideos": "ما في فيديوهات موسيقى بعد",
+    "noAudioUploads": "ما في رفعات صوتية بعد",
+    "noTracks": "ما في مقاطع بعد",
+    "noPodcasts": "ما في بودكاست بعد",
+    "noAudio": "ما في صوت"
   },
   "notFound": {
     "title": "الصفحة مش موجودة",
@@ -3802,5 +3807,17 @@
     "updated": "انتحدث المنشور",
     "titlePlaceholder": "عنوان المنشور",
     "descPlaceholder": "وصف المنشور"
+  },
+  "player": {
+    "openSettings": "افتح الإعدادات",
+    "viewPlans": "شوف الخطط",
+    "playbackSpeed": "سرعة التشغيل",
+    "moreOptions": "خيارات أكثر"
+  },
+  "liveViewer": {
+    "loadingStream": "يجري تحميل البث...",
+    "streamPaused": "البث متوقف",
+    "connectionDropped": "اتصال المذيع انقطع.\nننتظره حتى يرجع...",
+    "autoEnding": "راح ينتهي تلقائياً إذا ما رجع"
   }
 }

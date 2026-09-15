@@ -1442,7 +1442,12 @@
     "radio": "电台",
     "trendingTracks": "热门曲目",
     "moreVideos": "更多视频",
-    "newReleases": "新发布"
+    "newReleases": "新发布",
+    "noMusicVideos": "还没有音乐视频",
+    "noAudioUploads": "还没有音频上传",
+    "noTracks": "还没有曲目",
+    "noPodcasts": "还没有播客",
+    "noAudio": "没有音频"
   },
   "notFound": {
     "title": "页面未找到",
@@ -3859,5 +3864,17 @@
     "updated": "帖子已更新",
     "titlePlaceholder": "帖子标题",
     "descPlaceholder": "帖子描述"
+  },
+  "player": {
+    "openSettings": "打开设置",
+    "viewPlans": "查看方案",
+    "playbackSpeed": "播放速度",
+    "moreOptions": "更多选项"
+  },
+  "liveViewer": {
+    "loadingStream": "正在加载直播……",
+    "streamPaused": "直播已暂停",
+    "connectionDropped": "主播的连接断开了。\n正在等待重新连接……",
+    "autoEnding": "如果没有恢复，将自动结束"
   }
 }

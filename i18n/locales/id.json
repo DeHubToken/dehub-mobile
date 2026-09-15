@@ -1444,7 +1444,12 @@
     "radio": "Radio",
     "trendingTracks": "Lagu Trending",
     "moreVideos": "Video Lainnya",
-    "newReleases": "Rilis Baru"
+    "newReleases": "Rilis Baru",
+    "noMusicVideos": "Belum ada video musik",
+    "noAudioUploads": "Belum ada unggahan audio",
+    "noTracks": "Belum ada trek",
+    "noPodcasts": "Belum ada podcast",
+    "noAudio": "Tidak ada audio"
   },
   "notFound": {
     "title": "Halaman Tidak Ditemukan",
@@ -3852,5 +3857,17 @@
     "updated": "Postingan diperbarui",
     "titlePlaceholder": "Judul postingan",
     "descPlaceholder": "Deskripsi postingan"
+  },
+  "player": {
+    "openSettings": "Buka pengaturan",
+    "viewPlans": "Lihat paket",
+    "playbackSpeed": "Kecepatan pemutaran",
+    "moreOptions": "Opsi lainnya"
+  },
+  "liveViewer": {
+    "loadingStream": "Memuat siaran...",
+    "streamPaused": "Siaran dijeda",
+    "connectionDropped": "Koneksi streamer terputus.\nMenunggu mereka terhubung lagi...",
+    "autoEnding": "Berakhir otomatis jika tidak dilanjutkan"
   }
 }
