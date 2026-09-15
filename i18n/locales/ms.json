@@ -340,7 +340,9 @@
     "signIn": "Log masuk",
     "takePhoto": "Ambil foto",
     "recordVideo": "Rakam video",
-    "optionalSuffix": "(pilihan)"
+    "optionalSuffix": "(pilihan)",
+    "yesterday": "Semalam",
+    "ok": "OK"
   },
   "profileOptions": {
     "copyProfileUrl": "Salin URL profil",
@@ -3107,7 +3109,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Buang lampiran",
-    "attachFailed": "Tidak dapat menghantar gambar itu."
+    "attachFailed": "Tidak dapat menghantar gambar itu.",
+    "deleteMessage": "Padam mesej",
+    "deleteConfirm": "Anda pasti mahu memadamkan mesej ini?",
+    "pinFailed": "Gagal menyemat mesej",
+    "unpinFailed": "Gagal menyahsemat mesej",
+    "disconnected": "Terputus",
+    "subtitle": "Segala tentang DeHub…",
+    "joining": "Menyertai sembang…",
+    "reconnect": "Sambung semula",
+    "banned": "Anda disekat daripada sembang ini",
+    "someone": "Seseorang",
+    "oneTyping": "{{name}} sedang menaip…",
+    "fewTyping": "{{names}} sedang menaip…",
+    "manyTyping": "{{count}} orang sedang menaip…"
   },
   "promptFeed": {
     "headline": "Apa yang anda mahu lihat?",

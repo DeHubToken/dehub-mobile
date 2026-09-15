@@ -596,7 +596,9 @@
     "recordVideo": "वीडियो रिकॉर्ड करू",
     "saveChanges": "बदलाव सहेजू",
     "copy": "कॉपी करू",
-    "optionalSuffix": "(वैकल्पिक)"
+    "optionalSuffix": "(वैकल्पिक)",
+    "yesterday": "काल्हि",
+    "ok": "ठीक अछि"
   },
   "tip": {
     "title": "टिप भेजो",
@@ -2810,7 +2812,20 @@
     "attachGif": "जीएलई बनाम जीएलई",
     "attachEmoji": "उच्चारण रेकार्ड करे Emoji",
     "removeAttachment": "अटैचमेंट हटावे",
-    "attachFailed": "हम कभी सोचबो न कैली हल कि इ फ़िलिम में दिखावल जयतै"
+    "attachFailed": "हम कभी सोचबो न कैली हल कि इ फ़िलिम में दिखावल जयतै",
+    "deleteMessage": "संदेस मिटाऊ",
+    "deleteConfirm": "की अहाँ सचमुच ई संदेस मिटाबय चाहैत छी?",
+    "pinFailed": "संदेस पिन नै भ सकल",
+    "unpinFailed": "संदेस अनपिन नै भ सकल",
+    "disconnected": "कनेक्सन टूट गेल",
+    "subtitle": "DeHub के बारे में सब किछु…",
+    "joining": "चैट में जुड़ल जा रहल अछि…",
+    "reconnect": "फेर सँ जुड़ू",
+    "banned": "अहाँ के ई चैट सँ रोकल गेल अछि",
+    "someone": "केओ",
+    "oneTyping": "{{name}} लिख रहल अछि…",
+    "fewTyping": "{{names}} लिख रहल छथि…",
+    "manyTyping": "{{count}} लोग लिख रहल छथि…"
   },
   "promptFeed": {
     "headline": "अहाँ की देखल चाहैत छी?",

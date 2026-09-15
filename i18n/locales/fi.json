@@ -608,7 +608,9 @@
     "recordVideo": "Tallenna video",
     "saveChanges": "Tallenna muutokset",
     "copy": "Kopioi",
-    "optionalSuffix": "(valinnainen)"
+    "optionalSuffix": "(valinnainen)",
+    "yesterday": "Eilen",
+    "ok": "OK"
   },
   "postOptions": {
     "options": "Vaihtoehdot",
@@ -2844,7 +2846,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Poista liite",
-    "attachFailed": "Kuvan lähettäminen epäonnistui."
+    "attachFailed": "Kuvan lähettäminen epäonnistui.",
+    "deleteMessage": "Poista viesti",
+    "deleteConfirm": "Haluatko varmasti poistaa tämän viestin?",
+    "pinFailed": "Viestin kiinnittäminen epäonnistui",
+    "unpinFailed": "Viestin kiinnityksen poisto epäonnistui",
+    "disconnected": "Yhteys katkennut",
+    "subtitle": "Kaikki DeHubista…",
+    "joining": "Liitytään keskusteluun…",
+    "reconnect": "Yhdistä uudelleen",
+    "banned": "Sinut on estetty tästä keskustelusta",
+    "someone": "Joku",
+    "oneTyping": "{{name}} kirjoittaa…",
+    "fewTyping": "{{names}} kirjoittavat…",
+    "manyTyping": "{{count}} henkilöä kirjoittaa…"
   },
   "promptFeed": {
     "headline": "Mitä haluat nähdä?",

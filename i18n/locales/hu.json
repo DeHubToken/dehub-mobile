@@ -608,7 +608,9 @@
     "recordVideo": "Videó felvétele",
     "saveChanges": "Változtatások mentése",
     "copy": "Másolás",
-    "optionalSuffix": "(nem kötelező)"
+    "optionalSuffix": "(nem kötelező)",
+    "yesterday": "Tegnap",
+    "ok": "OK"
   },
   "drawers": {
     "ppvTitle": "Fizetés megtekintésenként",
@@ -2848,7 +2850,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Melléklet eltávolítása",
-    "attachFailed": "Nem sikerült elküldeni a fényképet."
+    "attachFailed": "Nem sikerült elküldeni a fényképet.",
+    "deleteMessage": "Üzenet törlése",
+    "deleteConfirm": "Biztosan törölni szeretnéd ezt az üzenetet?",
+    "pinFailed": "Az üzenet nem rögzíthető",
+    "unpinFailed": "Az üzenet rögzítése nem oldható fel",
+    "disconnected": "Szétkapcsolva",
+    "subtitle": "Minden a DeHubról…",
+    "joining": "Csatlakozás a csevegéshez…",
+    "reconnect": "Újracsatlakozás",
+    "banned": "Ki vagy tiltva ebből a csevegésből",
+    "someone": "Valaki",
+    "oneTyping": "{{name}} éppen ír…",
+    "fewTyping": "{{names}} éppen írnak…",
+    "manyTyping": "{{count}} ember ír…"
   },
   "promptFeed": {
     "headline": "Mit szeretnél látni?",

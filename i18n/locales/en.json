@@ -657,7 +657,9 @@
     "recordVideo": "Record video",
     "saveChanges": "Save Changes",
     "copy": "Copy",
-    "optionalSuffix": "(optional)"
+    "optionalSuffix": "(optional)",
+    "yesterday": "Yesterday",
+    "ok": "OK"
   },
   "tip": {
     "title": "Send Tip",
@@ -2914,7 +2916,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Remove attachment",
-    "attachFailed": "Couldn’t send that photo."
+    "attachFailed": "Couldn’t send that photo.",
+    "deleteMessage": "Delete Message",
+    "deleteConfirm": "Are you sure you want to delete this message?",
+    "pinFailed": "Failed to pin message",
+    "unpinFailed": "Failed to unpin message",
+    "disconnected": "Disconnected",
+    "subtitle": "All things DeHub...",
+    "joining": "Joining chat...",
+    "reconnect": "Reconnect",
+    "banned": "You are banned from this chat",
+    "someone": "Someone",
+    "oneTyping": "{{name}} is typing...",
+    "fewTyping": "{{names}} are typing...",
+    "manyTyping": "{{count}} people are typing..."
   },
   "promptFeed": {
     "headline": "What do you want to see?",

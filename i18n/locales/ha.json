@@ -599,7 +599,9 @@
     "recordVideo": "Ɗauki bidiyo",
     "saveChanges": "Ajiye canje-canje",
     "copy": "Kwafi",
-    "optionalSuffix": "(na zaɓi)"
+    "optionalSuffix": "(na zaɓi)",
+    "yesterday": "Jiya",
+    "ok": "To"
   },
   "tip": {
     "title": "Aika Kyauta",
@@ -2835,7 +2837,20 @@
     "attachGif": "Ввввввввввввввввввввввввввввввввв",
     "attachEmoji": "Emoji",
     "removeAttachment": "Cire haše-haše",
-    "attachFailed": "Ba zan iya aika wannan hoton ba."
+    "attachFailed": "Ba zan iya aika wannan hoton ba.",
+    "deleteMessage": "Share saƙo",
+    "deleteConfirm": "Ka tabbata kana son share wannan saƙon?",
+    "pinFailed": "An kasa liƙa saƙon",
+    "unpinFailed": "An kasa cire liƙa saƙon",
+    "disconnected": "An katse haɗin",
+    "subtitle": "Duk abin da ya shafi DeHub…",
+    "joining": "Ana shiga hira…",
+    "reconnect": "Sake haɗawa",
+    "banned": "An hana ka wannan hirar",
+    "someone": "Wani",
+    "oneTyping": "{{name}} yana rubutu…",
+    "fewTyping": "{{names}} suna rubutu…",
+    "manyTyping": "Mutane {{count}} suna rubutu…"
   },
   "promptFeed": {
     "headline": "Me kake son gani?",

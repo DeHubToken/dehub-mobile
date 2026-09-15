@@ -607,7 +607,9 @@
     "recordVideo": "سجّل فيديو",
     "saveChanges": "احفظ التغييرات",
     "copy": "انسخ",
-    "optionalSuffix": "(اختياري)"
+    "optionalSuffix": "(اختياري)",
+    "yesterday": "امبارح",
+    "ok": "تمام"
   },
   "tip": {
     "title": "بعت تيب",
@@ -2841,7 +2843,20 @@
     "attachPhoto": "صورة",
     "attachEmoji": "الرموز التعبيرية",
     "removeAttachment": "إزالة المرفق",
-    "attachFailed": "تعذر إرسال تلك الصورة."
+    "attachFailed": "تعذر إرسال تلك الصورة.",
+    "deleteMessage": "امسح الرسالة",
+    "deleteConfirm": "متأكد إنك عايز تمسح الرسالة دي؟",
+    "pinFailed": "مقدرش يثبت الرسالة",
+    "unpinFailed": "مقدرش يشيل تثبيت الرسالة",
+    "disconnected": "منقطع",
+    "subtitle": "كل حاجة عن DeHub…",
+    "joining": "بيدخل الشات…",
+    "reconnect": "أعد الاتصال",
+    "banned": "إنت محظور من الشات ده",
+    "someone": "حد",
+    "oneTyping": "{{name}} بيكتب…",
+    "fewTyping": "{{names}} بيكتبوا…",
+    "manyTyping": "{{count}} أشخاص بيكتبوا…"
   },
   "promptFeed": {
     "headline": "عايز تشوف إيه؟",

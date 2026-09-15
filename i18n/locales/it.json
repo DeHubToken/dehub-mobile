@@ -623,7 +623,9 @@
     "recordVideo": "Registra un video",
     "saveChanges": "Salva modifiche",
     "copy": "Copia",
-    "optionalSuffix": "(facoltativo)"
+    "optionalSuffix": "(facoltativo)",
+    "yesterday": "Ieri",
+    "ok": "OK"
   },
   "drawers": {
     "ppvTitle": "Contenuto Pay-Per-View",
@@ -2914,7 +2916,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Rimuovi allegato",
-    "attachFailed": "Impossibile inviare la foto."
+    "attachFailed": "Impossibile inviare la foto.",
+    "deleteMessage": "Elimina messaggio",
+    "deleteConfirm": "Vuoi davvero eliminare questo messaggio?",
+    "pinFailed": "Impossibile fissare il messaggio",
+    "unpinFailed": "Impossibile rimuovere il fissaggio del messaggio",
+    "disconnected": "Disconnesso",
+    "subtitle": "Tutto su DeHub…",
+    "joining": "Accesso alla chat…",
+    "reconnect": "Riconnetti",
+    "banned": "Sei bandito da questa chat",
+    "someone": "Qualcuno",
+    "oneTyping": "{{name}} sta scrivendo…",
+    "fewTyping": "{{names}} stanno scrivendo…",
+    "manyTyping": "{{count}} persone stanno scrivendo…"
   },
   "promptFeed": {
     "headline": "Cosa vuoi vedere?",

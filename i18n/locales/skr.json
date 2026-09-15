@@ -567,7 +567,9 @@
     "recordVideo": "ویڈیو ریکارڈ کرو",
     "saveChanges": "تبدیلیاں محفوظ کرو",
     "copy": "کاپی کرو",
-    "optionalSuffix": "(اختیاری)"
+    "optionalSuffix": "(اختیاری)",
+    "yesterday": "کل",
+    "ok": "ٹھیک ہے"
   },
   "tip": {
     "title": "ٹِپ گھلو",
@@ -2795,7 +2797,20 @@
     "attachPhoto": "تصویر",
     "attachEmoji": "ایموجی",
     "removeAttachment": "اٹیچمنٹ ہٹائیں",
-    "attachFailed": "وہ تصویر بھیج نہ سکا۔"
+    "attachFailed": "وہ تصویر بھیج نہ سکا۔",
+    "deleteMessage": "پیغام مٹاؤ",
+    "deleteConfirm": "کیا تساں سچ مچ ایہہ پیغام مٹاوݨ چاہدے او؟",
+    "pinFailed": "پیغام پن نہ تھی سڳیا",
+    "unpinFailed": "پیغام ان پن نہ تھی سڳیا",
+    "disconnected": "منقطع",
+    "subtitle": "DeHub بارے وچ سبھ کجھ…",
+    "joining": "چیٹ وچ شامل تھیندے پئے ہیں…",
+    "reconnect": "ولدا جوڑو",
+    "banned": "تساں ایں چیٹ کنوں پابند او",
+    "someone": "کوئی",
+    "oneTyping": "{{name}} لکھدا پیا ہے…",
+    "fewTyping": "{{names}} لکھدے پئے ہن…",
+    "manyTyping": "{{count}} لوک لکھدے پئے ہن…"
   },
   "promptFeed": {
     "headline": "تساں کیا ݙیکھݨ چاہندے ہو؟",

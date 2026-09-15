@@ -605,7 +605,9 @@
     "recordVideo": "ບັນທຶກວິດີໂອ",
     "saveChanges": "ບັນທຶກການປ່ຽນແປງ",
     "copy": "ສຳເນົາ",
-    "optionalSuffix": "(ທາງເລືອກ)"
+    "optionalSuffix": "(ທາງເລືອກ)",
+    "yesterday": "ມື້ວານນີ້",
+    "ok": "ຕົກລົງ"
   },
   "tip": {
     "title": "ສົ່ງທິບ",
@@ -2808,7 +2810,20 @@
     "attachPhoto": "ຮູບພາບ",
     "attachEmoji": "ອີໂມຈິ",
     "removeAttachment": "ເອົາເອກະສານຄັດຕິດອອກ",
-    "attachFailed": "ຂ້ອຍບໍ່ສາມາດເບິ່ງຮູບພາບໄດ້."
+    "attachFailed": "ຂ້ອຍບໍ່ສາມາດເບິ່ງຮູບພາບໄດ້.",
+    "deleteMessage": "ລຶບຂໍ້ຄວາມ",
+    "deleteConfirm": "ທ່ານແນ່ໃຈບໍ່ວ່າຈະລຶບຂໍ້ຄວາມນີ້?",
+    "pinFailed": "ບໍ່ສາມາດປັກໝຸດຂໍ້ຄວາມ",
+    "unpinFailed": "ບໍ່ສາມາດຍົກເລີກການປັກໝຸດຂໍ້ຄວາມ",
+    "disconnected": "ຕັດການເຊື່ອມຕໍ່",
+    "subtitle": "ທຸກສິ່ງກ່ຽວກັບ DeHub…",
+    "joining": "ກຳລັງເຂົ້າຮ່ວມແຊັດ…",
+    "reconnect": "ເຊື່ອມຕໍ່ໃໝ່",
+    "banned": "ທ່ານຖືກຫ້າມຈາກແຊັດນີ້",
+    "someone": "ບາງຄົນ",
+    "oneTyping": "{{name}} ກຳລັງພິມ…",
+    "fewTyping": "{{names}} ກຳລັງພິມ…",
+    "manyTyping": "{{count}} ຄົນກຳລັງພິມ…"
   },
   "promptFeed": {
     "headline": "ທ່ານຢາກເບິ່ງຫຍັງ?",

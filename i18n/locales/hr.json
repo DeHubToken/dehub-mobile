@@ -608,7 +608,9 @@
     "recordVideo": "Snimi video",
     "saveChanges": "Spremi promjene",
     "copy": "Kopiraj",
-    "optionalSuffix": "(neobavezno)"
+    "optionalSuffix": "(neobavezno)",
+    "yesterday": "Jučer",
+    "ok": "U redu"
   },
   "tip": {
     "title": "Pošalji napojnicu",
@@ -2844,7 +2846,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Ukloni privitak",
-    "attachFailed": "Slanje te fotografije nije uspjelo."
+    "attachFailed": "Slanje te fotografije nije uspjelo.",
+    "deleteMessage": "Izbriši poruku",
+    "deleteConfirm": "Jeste li sigurni da želite izbrisati ovu poruku?",
+    "pinFailed": "Poruku nije moguće prikvačiti",
+    "unpinFailed": "Poruku nije moguće otkvačiti",
+    "disconnected": "Odspojeno",
+    "subtitle": "Sve o DeHubu…",
+    "joining": "Pridruživanje chatu…",
+    "reconnect": "Ponovno se poveži",
+    "banned": "Zabranjen vam je pristup ovom chatu",
+    "someone": "Netko",
+    "oneTyping": "{{name}} piše…",
+    "fewTyping": "{{names}} pišu…",
+    "manyTyping": "{{count}} osoba piše…"
   },
   "promptFeed": {
     "headline": "Što želiš gledati?",

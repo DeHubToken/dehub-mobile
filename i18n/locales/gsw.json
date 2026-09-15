@@ -567,7 +567,9 @@
     "recordVideo": "Video ufnäh",
     "saveChanges": "Änderige speichere",
     "copy": "Kopiere",
-    "optionalSuffix": "(optional)"
+    "optionalSuffix": "(optional)",
+    "yesterday": "Geschter",
+    "ok": "OK"
   },
   "tip": {
     "title": "Trinkgäld schicke",
@@ -2833,7 +2835,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Uusnäh",
-    "attachFailed": "Das Foto chont nid a."
+    "attachFailed": "Das Foto chont nid a.",
+    "deleteMessage": "Nachricht lösche",
+    "deleteConfirm": "Wottsch die Nachricht würkli lösche?",
+    "pinFailed": "D Nachricht het nöd chöne aaheftet wärde",
+    "unpinFailed": "D Aaheftig vo dr Nachricht het nöd chöne ufghobe wärde",
+    "disconnected": "Trennt",
+    "subtitle": "Alles zum DeHub…",
+    "joining": "Chat wird betrete…",
+    "reconnect": "Nomol verbinde",
+    "banned": "Du bisch us dem Chat gsperrt",
+    "someone": "Öpper",
+    "oneTyping": "{{name}} schriibt…",
+    "fewTyping": "{{names}} schriibed…",
+    "manyTyping": "{{count}} Persone schriibed…"
   },
   "promptFeed": {
     "headline": "Was wotsch gseh?",

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import {
   View,
   Text,
@@ -38,16 +39,16 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { setPublicChatOpen } from "../libs/public-chat-alerts";
 
 /** Returns a readable date label for message grouping */
-const getDateLabel = (iso: string): string => {
+const getDateLabel = (iso: string, t: TFunction, lang?: string): string => {
   const d = new Date(iso);
   const now = new Date();
   const isToday = d.toDateString() === now.toDateString();
   const yesterday = new Date(now);
   yesterday.setDate(yesterday.getDate() - 1);
   const isYesterday = d.toDateString() === yesterday.toDateString();
-  if (isToday) return "Today";
-  if (isYesterday) return "Yesterday";
-  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  if (isToday) return t("explorePage.today");
+  if (isYesterday) return t("common.yesterday");
+  return d.toLocaleDateString(lang || undefined, { month: "short", day: "numeric", year: "numeric" });
 };
 
 /** Insert date separators between messages from different days */
@@ -57,6 +58,8 @@ type ListItem =
 
 const buildListItems = (
   messages: LiveChatMessageData[],
+  t: TFunction,
+  lang?: string,
   pinnedMessages?: LiveChatMessageData[],
 ): ListItem[] => {
   // Merge any pinned messages not already in the main messages array so they
@@ -73,7 +76,7 @@ const buildListItems = (
   const items: ListItem[] = [];
   let lastDate = "";
   for (const msg of allMessages) {
-    const dateLabel = getDateLabel(msg.createdAt);
+    const dateLabel = getDateLabel(msg.createdAt, t, lang);
     if (dateLabel !== lastDate) {
       const d = new Date(msg.createdAt);
       items.push({ type: "date", label: dateLabel, key: `date-${d.toDateString()}` });
@@ -85,7 +88,7 @@ const buildListItems = (
 };
 
 const LiveChatScreen: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const user = useUser();
   const { showUserProfile } = useUserProfileSheet();
   const navigation = useNavigation<any>();
@@ -151,7 +154,7 @@ const LiveChatScreen: React.FC = () => {
     confirmText: string;
     confirmKind: "primary" | "danger" | "neutral";
     onConfirm: () => void;
-  }>({ visible: false, title: "", confirmText: "Confirm", confirmKind: "primary", onConfirm: () => {} });
+  }>({ visible: false, title: "", confirmText: "", confirmKind: "primary", onConfirm: () => {} });
   const flatListRef = useRef<FlatList>(null);
   const isAtBottomRef = useRef(true);
   const prevMessageCountRef = useRef(0);
@@ -170,8 +173,8 @@ const LiveChatScreen: React.FC = () => {
   );
 
   const listItems = useMemo(
-    () => buildListItems(messages, room?.pinnedMessages),
-    [messages, room?.pinnedMessages],
+    () => buildListItems(messages, t, i18n.language, room?.pinnedMessages),
+    [messages, room?.pinnedMessages, t, i18n.language],
   );
 
   const scrollToBottom = useCallback((animated = true) => {
@@ -431,9 +434,9 @@ const LiveChatScreen: React.FC = () => {
   const handleDelete = useCallback(
     (msg: LiveChatMessageData) => {
       showConfirm({
-        title: "Delete Message",
-        description: "Are you sure you want to delete this message?",
-        confirmText: "Delete",
+        title: t("liveChat.deleteMessage"),
+        description: t("liveChat.deleteConfirm"),
+        confirmText: t("common.delete"),
         confirmKind: "danger",
         onConfirm: () => {
           deleteMessage(msg._id);
@@ -493,9 +496,9 @@ const LiveChatScreen: React.FC = () => {
   const handleContextDelete = useCallback(
     (msg: LiveChatMessageData) => {
       showConfirm({
-        title: "Delete Message",
-        description: "Are you sure you want to delete this message?",
-        confirmText: "Delete",
+        title: t("liveChat.deleteMessage"),
+        description: t("liveChat.deleteConfirm"),
+        confirmText: t("common.delete"),
         confirmKind: "danger",
         onConfirm: () => {
           deleteMessage(msg._id);
@@ -516,9 +519,9 @@ const LiveChatScreen: React.FC = () => {
         }
       } catch (e) {
         showConfirm({
-          title: "Error",
-          description: msg.isPinned ? "Failed to unpin message" : "Failed to pin message",
-          confirmText: "OK",
+          title: t("toasts.error"),
+          description: msg.isPinned ? t("liveChat.unpinFailed") : t("liveChat.pinFailed"),
+          confirmText: t("common.ok"),
           onConfirm: dismissConfirm,
         });
       }
@@ -532,9 +535,9 @@ const LiveChatScreen: React.FC = () => {
         await unpinMessageApi(msg._id);
       } catch {
         showConfirm({
-          title: "Error",
-          description: "Failed to unpin message",
-          confirmText: "OK",
+          title: t("toasts.error"),
+          description: t("liveChat.unpinFailed"),
+          confirmText: t("common.ok"),
           onConfirm: dismissConfirm,
         });
       }
@@ -624,14 +627,16 @@ const LiveChatScreen: React.FC = () => {
   const typingText = useMemo(() => {
     if (typingUsers.length === 0) return null;
     if (typingUsers.length === 1) {
-      return `${typingUsers[0].displayName || typingUsers[0].username || "Someone"} is typing...`;
+      return t("liveChat.oneTyping", {
+        name: typingUsers[0].displayName || typingUsers[0].username || t("liveChat.someone"),
+      });
     }
     if (typingUsers.length <= 3) {
-      const names = typingUsers.map((u) => u.displayName || u.username || "Someone");
-      return `${names.join(", ")} are typing...`;
+      const names = typingUsers.map((u) => u.displayName || u.username || t("liveChat.someone"));
+      return t("liveChat.fewTyping", { names: names.join(", ") });
     }
-    return `${typingUsers.length} people are typing...`;
-  }, [typingUsers]);
+    return t("liveChat.manyTyping", { count: typingUsers.length });
+  }, [typingUsers, t]);
 
   const participants = useMemo(() => {
     const seen = new Set<string>();
@@ -672,10 +677,10 @@ const LiveChatScreen: React.FC = () => {
 
   // Header subtitle
   const subtitle = useMemo(() => {
-    if (!connected && !joining) return "Disconnected";
-    if (joining) return "Connecting...";
-    return "All things DeHub...";
-  }, [connected, joining]);
+    if (!connected && !joining) return t("liveChat.disconnected");
+    if (joining) return t("nav.connecting");
+    return t("liveChat.subtitle");
+  }, [connected, joining, t]);
 
   const ListHeader = useMemo(
     () =>
@@ -693,24 +698,24 @@ const LiveChatScreen: React.FC = () => {
         {joining ? (
           <>
             <DeHubLoader size={56} />
-            <Text className="text-white/60 text-sm mt-4">Joining chat...</Text>
+            <Text className="text-white/60 text-sm mt-4">{t("liveChat.joining")}</Text>
           </>
         ) : !connected ? (
           <>
             <Icon name="WifiOff" size={48} color="rgba(255,255,255,0.15)" />
-            <Text className="text-white/60 text-sm mt-3">Not connected</Text>
+            <Text className="text-white/60 text-sm mt-3">{t("settings.notConnected")}</Text>
             <TouchableOpacity
               onPress={reconnect}
               className="mt-3 px-4 py-2 bg-blue-500/20 rounded-xl"
             >
-              <Text className="text-blue-400 text-sm font-medium">Reconnect</Text>
+              <Text className="text-blue-400 text-sm font-medium">{t("liveChat.reconnect")}</Text>
             </TouchableOpacity>
           </>
         ) : (
           <>
             <Icon name="MessageCircle" size={48} color="rgba(255,255,255,0.1)" />
-            <Text className="text-white/60 text-sm mt-3">No messages yet</Text>
-            <Text className="text-white/60 text-xs mt-1">Be the first to say something!</Text>
+            <Text className="text-white/60 text-sm mt-3">{t("publicChat.noMessages")}</Text>
+            <Text className="text-white/60 text-xs mt-1">{t("publicChat.beFirst")}</Text>
           </>
         )}
       </View>
@@ -739,7 +744,7 @@ const LiveChatScreen: React.FC = () => {
         <View className="bg-white/10 border-b border-white/20 px-4 py-2.5">
           <View className="flex-row items-center gap-2">
             <Icon name="Ban" size={16} color="#F4F4F5" />
-            <Text className="text-white/80 text-sm">You are banned from this chat</Text>
+            <Text className="text-white/80 text-sm">{t("liveChat.banned")}</Text>
           </View>
         </View>
       )}

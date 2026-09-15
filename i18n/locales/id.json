@@ -609,7 +609,9 @@
     "recordVideo": "Rekam video",
     "saveChanges": "Simpan perubahan",
     "copy": "Salin",
-    "optionalSuffix": "(opsional)"
+    "optionalSuffix": "(opsional)",
+    "yesterday": "Kemarin",
+    "ok": "OKE"
   },
   "drawers": {
     "ppvTitle": "Konten Bayar-Per-Tayang",
@@ -2894,7 +2896,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Hapus lampiran",
-    "attachFailed": "Tidak dapat mengirim foto itu."
+    "attachFailed": "Tidak dapat mengirim foto itu.",
+    "deleteMessage": "Hapus pesan",
+    "deleteConfirm": "Yakin ingin menghapus pesan ini?",
+    "pinFailed": "Gagal menyematkan pesan",
+    "unpinFailed": "Gagal melepas sematan pesan",
+    "disconnected": "Terputus",
+    "subtitle": "Segala hal tentang DeHub…",
+    "joining": "Bergabung ke obrolan…",
+    "reconnect": "Sambungkan lagi",
+    "banned": "Kamu diblokir dari obrolan ini",
+    "someone": "Seseorang",
+    "oneTyping": "{{name}} sedang mengetik…",
+    "fewTyping": "{{names}} sedang mengetik…",
+    "manyTyping": "{{count}} orang sedang mengetik…"
   },
   "promptFeed": {
     "headline": "Apa yang ingin kamu lihat?",

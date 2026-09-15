@@ -552,7 +552,9 @@
     "recordVideo": "Vîdyo tomar bike",
     "saveChanges": "Guhertinan tomar bike",
     "copy": "Kopî bike",
-    "optionalSuffix": "(bijarte)"
+    "optionalSuffix": "(bijarte)",
+    "yesterday": "Duh",
+    "ok": "Baş e"
   },
   "tip": {
     "title": "Bexşîş Bişîne",
@@ -3339,5 +3341,20 @@
     "confirmingPayment": "Dravdan tê piştrastkirin…",
     "retryConfirmation": "Piştrastkirinê dîsa biceribîne",
     "buyNow": "Niha bikire"
+  },
+  "liveChat": {
+    "deleteMessage": "Peyamê jê bibe",
+    "deleteConfirm": "Tu piştrast î ku dixwazî vê peyamê jê bibî?",
+    "pinFailed": "Peyam nehat pêvekirin",
+    "unpinFailed": "Pêvekirina peyamê nehat rakirin",
+    "disconnected": "Girêdan qut bû",
+    "subtitle": "Her tiştê li ser DeHub…",
+    "joining": "Beşdarî chatê dibe…",
+    "reconnect": "Dîsa girêde",
+    "banned": "Tu ji vê chatê hatî qedexekirin",
+    "someone": "Kesek",
+    "oneTyping": "{{name}} dinivîse…",
+    "fewTyping": "{{names}} dinivîsin…",
+    "manyTyping": "{{count}} kes dinivîsin…"
   }
 }

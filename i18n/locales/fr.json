@@ -623,7 +623,9 @@
     "recordVideo": "Enregistrer une vidéo",
     "saveChanges": "Enregistrer les modifications",
     "copy": "Copier",
-    "optionalSuffix": "(facultatif)"
+    "optionalSuffix": "(facultatif)",
+    "yesterday": "Hier",
+    "ok": "OK"
   },
   "drawers": {
     "ppvTitle": "Contenu à la carte",
@@ -2918,7 +2920,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Supprimer la pièce jointe",
-    "attachFailed": "Impossible d'envoyer cette photo."
+    "attachFailed": "Impossible d'envoyer cette photo.",
+    "deleteMessage": "Supprimer le message",
+    "deleteConfirm": "Voulez-vous vraiment supprimer ce message ?",
+    "pinFailed": "Impossible d'épingler le message",
+    "unpinFailed": "Impossible de désépingler le message",
+    "disconnected": "Déconnecté",
+    "subtitle": "Tout sur DeHub…",
+    "joining": "Connexion au chat…",
+    "reconnect": "Se reconnecter",
+    "banned": "Vous êtes banni de ce chat",
+    "someone": "Quelqu'un",
+    "oneTyping": "{{name}} est en train d'écrire…",
+    "fewTyping": "{{names}} sont en train d'écrire…",
+    "manyTyping": "{{count}} personnes sont en train d'écrire…"
   },
   "promptFeed": {
     "headline": "Que voulez-vous voir ?",

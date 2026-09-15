@@ -595,7 +595,9 @@
     "recordVideo": "वीडियो रिकॉर्ड करीं",
     "saveChanges": "बदलाव सहेजीं",
     "copy": "कॉपी करीं",
-    "optionalSuffix": "(वैकल्पिक)"
+    "optionalSuffix": "(वैकल्पिक)",
+    "yesterday": "काल्ह",
+    "ok": "ठीक बा"
   },
   "tip": {
     "title": "उपहार भेजीं",
@@ -2808,7 +2810,20 @@
     "attachGif": "गिफ्ट, गिफ्ट,",
     "attachEmoji": "उच्चारण उच्चारणकर्ता em",
     "removeAttachment": "संलग्नक हटावे",
-    "attachFailed": "आपने मेरी पोस्ट से बिल्कुल कुछ नहीं समझा ।"
+    "attachFailed": "आपने मेरी पोस्ट से बिल्कुल कुछ नहीं समझा ।",
+    "deleteMessage": "संदेश मिटाईं",
+    "deleteConfirm": "का रउरा सचमुच ई संदेश मिटावे चाहत बानी?",
+    "pinFailed": "संदेश पिन ना हो सकल",
+    "unpinFailed": "संदेश अनपिन ना हो सकल",
+    "disconnected": "कनेक्शन टूट गइल",
+    "subtitle": "DeHub के बारे में सब कुछ…",
+    "joining": "चैट में जुड़ल जा रहल बा…",
+    "reconnect": "फेर से जुड़ीं",
+    "banned": "रउरा ई चैट से बैन बानी",
+    "someone": "केहू",
+    "oneTyping": "{{name}} लिख रहल बा…",
+    "fewTyping": "{{names}} लिख रहल बाड़न…",
+    "manyTyping": "{{count}} लोग लिख रहल बाड़न…"
   },
   "promptFeed": {
     "headline": "रउआ का देखल चाहत बानी?",

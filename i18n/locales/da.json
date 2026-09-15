@@ -609,7 +609,9 @@
     "recordVideo": "Optag video",
     "saveChanges": "Gem ændringer",
     "copy": "Kopiér",
-    "optionalSuffix": "(valgfrit)"
+    "optionalSuffix": "(valgfrit)",
+    "yesterday": "I går",
+    "ok": "OK"
   },
   "drawers": {
     "ppvTitle": "Betal per visning",
@@ -2849,7 +2851,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Fjern vedhæftet fil",
-    "attachFailed": "Kunne ikke sende det billede."
+    "attachFailed": "Kunne ikke sende det billede.",
+    "deleteMessage": "Slet besked",
+    "deleteConfirm": "Er du sikker på, at du vil slette denne besked?",
+    "pinFailed": "Kunne ikke fastgøre beskeden",
+    "unpinFailed": "Kunne ikke frigøre beskeden",
+    "disconnected": "Afbrudt",
+    "subtitle": "Alt om DeHub…",
+    "joining": "Tilslutter chat…",
+    "reconnect": "Opret forbindelse igen",
+    "banned": "Du er udelukket fra denne chat",
+    "someone": "Nogen",
+    "oneTyping": "{{name}} skriver…",
+    "fewTyping": "{{names}} skriver…",
+    "manyTyping": "{{count}} personer skriver…"
   },
   "promptFeed": {
     "headline": "Hvad vil du se?",

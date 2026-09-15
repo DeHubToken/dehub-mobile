@@ -608,7 +608,9 @@
     "recordVideo": "Nagraj wideo",
     "saveChanges": "Zapisz zmiany",
     "copy": "Kopiuj",
-    "optionalSuffix": "(opcjonalnie)"
+    "optionalSuffix": "(opcjonalnie)",
+    "yesterday": "Wczoraj",
+    "ok": "OK"
   },
   "glossary": {
     "title": "Słownik",
@@ -2912,7 +2914,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Usuń załącznik",
-    "attachFailed": "Nie udało się wysłać tego zdjęcia."
+    "attachFailed": "Nie udało się wysłać tego zdjęcia.",
+    "deleteMessage": "Usuń wiadomość",
+    "deleteConfirm": "Czy na pewno chcesz usunąć tę wiadomość?",
+    "pinFailed": "Nie udało się przypiąć wiadomości",
+    "unpinFailed": "Nie udało się odpiąć wiadomości",
+    "disconnected": "Rozłączono",
+    "subtitle": "Wszystko o DeHub…",
+    "joining": "Dołączanie do czatu…",
+    "reconnect": "Połącz ponownie",
+    "banned": "Masz zakaz udziału w tym czacie",
+    "someone": "Ktoś",
+    "oneTyping": "{{name}} pisze…",
+    "fewTyping": "{{names}} piszą…",
+    "manyTyping": "{{count}} osób pisze…"
   },
   "promptFeed": {
     "headline": "Co chcesz oglądać?",

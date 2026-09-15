@@ -602,7 +602,9 @@
     "recordVideo": "سىن خاتىرىلەش",
     "saveChanges": "ئۆزگەرتىشلەرنى ساقلاڭ",
     "copy": "كۆچۈرۈش",
-    "optionalSuffix": "(ئىختىيارى)"
+    "optionalSuffix": "(ئىختىيارى)",
+    "yesterday": "تۈنۈگۈن",
+    "ok": "ماقۇل"
   },
   "postOptions": {
     "options": "تاللانمىلار",
@@ -2836,7 +2838,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "قوشۇشنى چىقىرىۋېتىش",
-    "attachFailed": "ئۇ سۈرەتنى ئەۋەتكىلى بولمىدى."
+    "attachFailed": "ئۇ سۈرەتنى ئەۋەتكىلى بولمىدى.",
+    "deleteMessage": "ئۇچۇرنى ئۆچۈرۈش",
+    "deleteConfirm": "بۇ ئۇچۇرنى ئۆچۈرمەكچى ئىكەنلىكىڭىزگە جەزىممۇ؟",
+    "pinFailed": "ئۇچۇرنى قادىغىلى بولمىدى",
+    "unpinFailed": "ئۇچۇرنىڭ قادىلىشىنى بىكار قىلغىلى بولمىدى",
+    "disconnected": "ئۈزۈلدى",
+    "subtitle": "DeHub ھەققىدىكى ھەممە نەرسە…",
+    "joining": "سۆھبەتكە قاتنىشىۋاتىدۇ…",
+    "reconnect": "قايتا ئۇلاش",
+    "banned": "سىز بۇ سۆھبەتتىن چەكلەنگەن",
+    "someone": "بىرەيلەن",
+    "oneTyping": "{{name}} خەت يېزىۋاتىدۇ…",
+    "fewTyping": "{{names}} خەت يېزىۋاتىدۇ…",
+    "manyTyping": "{{count}} كىشى خەت يېزىۋاتىدۇ…"
   },
   "promptFeed": {
     "headline": "نېمىنى كۆرمەكچىسىز؟",

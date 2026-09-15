@@ -605,7 +605,9 @@
     "recordVideo": "Ta opp video",
     "saveChanges": "Lagre endringer",
     "copy": "Kopier",
-    "optionalSuffix": "(valgfritt)"
+    "optionalSuffix": "(valgfritt)",
+    "yesterday": "I går",
+    "ok": "OK"
   },
   "postOptions": {
     "options": "Alternativer",
@@ -2840,7 +2842,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Fjern vedlegg",
-    "attachFailed": "Kunne ikke sende det bildet."
+    "attachFailed": "Kunne ikke sende det bildet.",
+    "deleteMessage": "Slett melding",
+    "deleteConfirm": "Er du sikker på at du vil slette denne meldingen?",
+    "pinFailed": "Kunne ikke feste meldingen",
+    "unpinFailed": "Kunne ikke løsne meldingen",
+    "disconnected": "Frakoblet",
+    "subtitle": "Alt om DeHub…",
+    "joining": "Blir med i chatten…",
+    "reconnect": "Koble til på nytt",
+    "banned": "Du er utestengt fra denne chatten",
+    "someone": "Noen",
+    "oneTyping": "{{name}} skriver…",
+    "fewTyping": "{{names}} skriver…",
+    "manyTyping": "{{count}} personer skriver…"
   },
   "promptFeed": {
     "headline": "Hva vil du se?",

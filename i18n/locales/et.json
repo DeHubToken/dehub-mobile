@@ -607,7 +607,9 @@
     "recordVideo": "Salvesta video",
     "saveChanges": "Salvesta muudatused",
     "copy": "Kopeeri",
-    "optionalSuffix": "(valikuline)"
+    "optionalSuffix": "(valikuline)",
+    "yesterday": "Eile",
+    "ok": "OK"
   },
   "tip": {
     "title": "Saada jootraha",
@@ -2843,7 +2845,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Eemalda manus",
-    "attachFailed": "Seda fotot ei saanud saata."
+    "attachFailed": "Seda fotot ei saanud saata.",
+    "deleteMessage": "Kustuta sõnum",
+    "deleteConfirm": "Kas soovid kindlasti selle sõnumi kustutada?",
+    "pinFailed": "Sõnumi kinnitamine ebaõnnestus",
+    "unpinFailed": "Sõnumi kinnituse eemaldamine ebaõnnestus",
+    "disconnected": "Ühendus katkes",
+    "subtitle": "Kõik DeHubist…",
+    "joining": "Vestlusega liitumine…",
+    "reconnect": "Ühenda uuesti",
+    "banned": "Oled sellest vestlusest keelatud",
+    "someone": "Keegi",
+    "oneTyping": "{{name}} kirjutab…",
+    "fewTyping": "{{names}} kirjutavad…",
+    "manyTyping": "{{count}} inimest kirjutavad…"
   },
   "promptFeed": {
     "headline": "Mida sa näha tahad?",
