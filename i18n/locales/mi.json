@@ -3256,5 +3256,21 @@
     "createAndSave": "Hanga me te tiaki",
     "createNew": "Hangaia he kōpaki hou",
     "closeA11y": "Katia te kōwhiri kōpaki"
+  },
+  "ppv": {
+    "title": "Ihirangi utu-ia-mātakitaki",
+    "unlockPrice": "Utu wetewete",
+    "topUpToUnlock": "Tāpiri hei wetewete",
+    "addTip": "Tāpirihia he koha mō te kaihanga",
+    "cantPaySelf": "Kāore e taea e koe te utu i a koe anō",
+    "swapping": "Kei te whakawhiti ETH → DHB…",
+    "processing": "Kei te tukatuka i te utu…",
+    "unlocked": "Kua wetekina!",
+    "canViewImage": "Ka taea e koe te tiro i tēnei whakaahua ināianei",
+    "canWatchVideo": "Ka taea e koe te mātakitaki i tēnei ataata ināianei",
+    "solanaFailed": "I rahu te utu Solana",
+    "missingWeb3": "Kāore he horopaki web3",
+    "preparingRouter": "Kei te whakarite i te kaiwhakawhiti utu… ngana anō ā tōna wā",
+    "swapShort": "Kua oti te whakawhiti engari kāore anō te DHB kia rawaka. Ngana anō."
   }
 }

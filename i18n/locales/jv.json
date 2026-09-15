@@ -3229,5 +3229,21 @@
     "createAndSave": "Gawe & simpen",
     "createNew": "Gawe folder anyar",
     "closeA11y": "Tutup pemilih folder"
+  },
+  "ppv": {
+    "title": "Konten bayar saben nonton",
+    "unlockPrice": "Rega mbukak",
+    "topUpToUnlock": "Isi saldo kanggo mbukak",
+    "addTip": "Tambahake tip kanggo kreator",
+    "cantPaySelf": "Sampeyan ora bisa mbayar awake dhewe",
+    "swapping": "Ngijolake ETH → DHB…",
+    "processing": "Ngolah pambayaran…",
+    "unlocked": "Kabukak!",
+    "canViewImage": "Saiki sampeyan bisa ndeleng gambar iki",
+    "canWatchVideo": "Saiki sampeyan bisa nonton video iki",
+    "solanaFailed": "Pambayaran Solana gagal",
+    "missingWeb3": "Konteks web3 ora ana",
+    "preparingRouter": "Nyiapake router pambayaran… coba maneh sedhela",
+    "swapShort": "Ijolan rampung nanging DHB isih kurang. Coba maneh."
   }
 }

@@ -3339,5 +3339,21 @@
     "createAndSave": "만들고 저장",
     "createNew": "새 폴더 만들기",
     "closeA11y": "폴더 선택 닫기"
+  },
+  "ppv": {
+    "title": "유료 시청 콘텐츠",
+    "unlockPrice": "잠금 해제 가격",
+    "topUpToUnlock": "충전하고 잠금 해제",
+    "addTip": "크리에이터에게 팁 추가",
+    "cantPaySelf": "본인에게는 결제할 수 없습니다",
+    "swapping": "ETH → DHB 교환 중…",
+    "processing": "결제 처리 중…",
+    "unlocked": "잠금 해제됨!",
+    "canViewImage": "이제 이 이미지를 볼 수 있습니다",
+    "canWatchVideo": "이제 이 동영상을 시청할 수 있습니다",
+    "solanaFailed": "Solana 결제에 실패했습니다",
+    "missingWeb3": "web3 컨텍스트가 없습니다",
+    "preparingRouter": "결제 라우터를 준비 중입니다… 잠시 후 다시 시도하세요",
+    "swapShort": "교환은 완료했지만 DHB가 아직 부족합니다. 다시 시도하세요."
   }
 }

@@ -3341,5 +3341,21 @@
     "createAndSave": "Create & save",
     "createNew": "Create new folder",
     "closeA11y": "Close folder picker"
+  },
+  "ppv": {
+    "title": "Pay-Per-View Content",
+    "unlockPrice": "Unlock Price",
+    "topUpToUnlock": "Top up to unlock",
+    "addTip": "Add a tip for the creator",
+    "cantPaySelf": "You can't pay yourself",
+    "swapping": "Swapping ETH → DHB…",
+    "processing": "Processing payment…",
+    "unlocked": "Unlocked!",
+    "canViewImage": "You can now view this image",
+    "canWatchVideo": "You can now watch this video",
+    "solanaFailed": "Solana payment failed",
+    "missingWeb3": "Missing web3 context",
+    "preparingRouter": "Preparing payment router… try again in a moment",
+    "swapShort": "Swap done but DHB still short. Try again."
   }
 }

@@ -3350,5 +3350,21 @@
     "createAndSave": "Mamorona sy mitahiry",
     "createNew": "Mamorona lahatahiry vaovao",
     "closeA11y": "Akatona ny mpisafidy lahatahiry"
+  },
+  "ppv": {
+    "title": "Votoaty andoavam-bola isaky ny fijerena",
+    "unlockPrice": "Vidin'ny fanokafana",
+    "topUpToUnlock": "Ampio vola hanokafana",
+    "addTip": "Manampia tolotra ho an'ny mpamorona",
+    "cantPaySelf": "Tsy afaka mandoa ho an'ny tenanao ianao",
+    "swapping": "Manakalo ETH → DHB…",
+    "processing": "Mikarakara ny fandoavam-bola…",
+    "unlocked": "Voasokatra!",
+    "canViewImage": "Afaka mijery ity sary ity ianao izao",
+    "canWatchVideo": "Afaka mijery ity horonan-tsary ity ianao izao",
+    "solanaFailed": "Tsy nahomby ny fandoavana Solana",
+    "missingWeb3": "Tsy misy ny tontolon'ny web3",
+    "preparingRouter": "Manomana ny mpandefa fandoavam-bola… andramo indray afaka kelikely",
+    "swapShort": "Vita ny fanakalozana fa mbola tsy ampy ny DHB. Andramo indray."
   }
 }

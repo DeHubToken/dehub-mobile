@@ -3534,5 +3534,21 @@
     "createAndSave": "Cipta & simpan",
     "createNew": "Cipta folder baharu",
     "closeA11y": "Tutup pemilih folder"
+  },
+  "ppv": {
+    "title": "Kandungan bayar setiap tontonan",
+    "unlockPrice": "Harga buka kunci",
+    "topUpToUnlock": "Tambah nilai untuk membuka",
+    "addTip": "Tambah tip untuk pencipta",
+    "cantPaySelf": "Anda tidak boleh membayar diri sendiri",
+    "swapping": "Menukar ETH → DHB…",
+    "processing": "Memproses pembayaran…",
+    "unlocked": "Dibuka!",
+    "canViewImage": "Kini anda boleh melihat imej ini",
+    "canWatchVideo": "Kini anda boleh menonton video ini",
+    "solanaFailed": "Pembayaran Solana gagal",
+    "missingWeb3": "Konteks web3 tiada",
+    "preparingRouter": "Menyediakan penghala pembayaran… cuba lagi sebentar",
+    "swapShort": "Pertukaran selesai tetapi DHB masih tidak mencukupi. Cuba lagi."
   }
 }

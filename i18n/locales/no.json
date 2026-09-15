@@ -3261,5 +3261,21 @@
     "createAndSave": "Opprett og lagre",
     "createNew": "Opprett ny mappe",
     "closeA11y": "Lukk mappevelger"
+  },
+  "ppv": {
+    "title": "Betal-per-visning-innhold",
+    "unlockPrice": "Opplåsingspris",
+    "topUpToUnlock": "Fyll på for å låse opp",
+    "addTip": "Legg til tips til skaperen",
+    "cantPaySelf": "Du kan ikke betale deg selv",
+    "swapping": "Bytter ETH → DHB…",
+    "processing": "Behandler betaling…",
+    "unlocked": "Låst opp!",
+    "canViewImage": "Du kan nå se dette bildet",
+    "canWatchVideo": "Du kan nå se denne videoen",
+    "solanaFailed": "Solana-betalingen mislyktes",
+    "missingWeb3": "web3-kontekst mangler",
+    "preparingRouter": "Forbereder betalingsruter… prøv igjen om et øyeblikk",
+    "swapShort": "Byttet er ferdig, men DHB er fortsatt for lite. Prøv igjen."
   }
 }

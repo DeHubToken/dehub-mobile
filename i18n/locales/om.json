@@ -3335,5 +3335,21 @@
     "createAndSave": "Uumi fi olkaa'i",
     "createNew": "Faayilii haaraa uumi",
     "closeA11y": "Filannoo faayilii cufi"
+  },
+  "ppv": {
+    "title": "Qabiyyee ilaalcha tokkoof kaffalamu",
+    "unlockPrice": "Gatii banuu",
+    "topUpToUnlock": "Banuuf guuti",
+    "addTip": "Uumaaf tiipii dabali",
+    "cantPaySelf": "Ofii keetiif kaffaluu hin dandeessu",
+    "swapping": "ETH → DHB jijjiiramaa jira…",
+    "processing": "Kaffaltii adeemsisaa jira…",
+    "unlocked": "Banameera!",
+    "canViewImage": "Amma fakkii kana ilaaluu dandeessa",
+    "canWatchVideo": "Amma viidiyoo kana ilaaluu dandeessa",
+    "solanaFailed": "Kaffaltiin Solana hin milkoofne",
+    "missingWeb3": "Haalli web3 hin jiru",
+    "preparingRouter": "Raawwataa kaffaltii qopheessaa jira… yeroo gabaabaa booda irra deebiʼii yaali",
+    "swapShort": "Jijjiirraan xumurameera garuu DHB ammallee hin gaʼu. Irra deebiʼii yaali."
   }
 }

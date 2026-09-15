@@ -3539,5 +3539,21 @@
     "createAndSave": "Maken en opslaan",
     "createNew": "Nieuwe map maken",
     "closeA11y": "Mapkiezer sluiten"
+  },
+  "ppv": {
+    "title": "Pay-per-view-inhoud",
+    "unlockPrice": "Ontgrendelprijs",
+    "topUpToUnlock": "Waardeer op om te ontgrendelen",
+    "addTip": "Voeg een fooi toe voor de maker",
+    "cantPaySelf": "Je kunt jezelf niet betalen",
+    "swapping": "ETH → DHB wisselen…",
+    "processing": "Betaling verwerken…",
+    "unlocked": "Ontgrendeld!",
+    "canViewImage": "Je kunt deze afbeelding nu bekijken",
+    "canWatchVideo": "Je kunt deze video nu bekijken",
+    "solanaFailed": "Solana-betaling mislukt",
+    "missingWeb3": "web3-context ontbreekt",
+    "preparingRouter": "Betalingsrouter voorbereiden… probeer het zo opnieuw",
+    "swapShort": "Wissel voltooid maar DHB is nog te weinig. Probeer het opnieuw."
   }
 }

@@ -3030,5 +3030,21 @@
     "createAndSave": "Çêke û tomar bike",
     "createNew": "Peldanka nû çêke",
     "closeA11y": "Hilbijêrê peldankê bigire"
+  },
+  "ppv": {
+    "title": "Naveroka bi dravdana her temaşeyê",
+    "unlockPrice": "Bihayê vekirinê",
+    "topUpToUnlock": "Ji bo vekirinê zêde bike",
+    "addTip": "Ji bo afirîner baxşîşek zêde bike",
+    "cantPaySelf": "Tu nikarî ji xwe re bidî",
+    "swapping": "ETH → DHB tê guhertin…",
+    "processing": "Dravdan tê pêvajokirin…",
+    "unlocked": "Vebû!",
+    "canViewImage": "Niha tu dikarî vê wêneyê bibînî",
+    "canWatchVideo": "Niha tu dikarî vê vîdyoyê temaşe bikî",
+    "solanaFailed": "Dravdana Solana bi ser neket",
+    "missingWeb3": "Çarçoveya web3 kêm e",
+    "preparingRouter": "Rêvebirê dravdanê tê amadekirin… demek şûnda dîsa biceribîne",
+    "swapShort": "Guhertin qediya lê DHB hîn kêm e. Dîsa biceribîne."
   }
 }

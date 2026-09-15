@@ -3322,5 +3322,21 @@
     "createAndSave": "Yaratish va saqlash",
     "createNew": "Yangi papka yaratish",
     "closeA11y": "Papka tanlagichni yopish"
+  },
+  "ppv": {
+    "title": "Har ko‘rish uchun to‘lovli kontent",
+    "unlockPrice": "Qulfni ochish narxi",
+    "topUpToUnlock": "Ochish uchun to‘ldiring",
+    "addTip": "Ijodkorga choychaqa qo‘shing",
+    "cantPaySelf": "O‘zingizga to‘lov qila olmaysiz",
+    "swapping": "ETH → DHB almashtirilmoqda…",
+    "processing": "To‘lov qayta ishlanmoqda…",
+    "unlocked": "Ochildi!",
+    "canViewImage": "Endi ushbu rasmni ko‘rishingiz mumkin",
+    "canWatchVideo": "Endi ushbu videoni ko‘rishingiz mumkin",
+    "solanaFailed": "Solana to‘lovi muvaffaqiyatsiz tugadi",
+    "missingWeb3": "web3 konteksti yo‘q",
+    "preparingRouter": "To‘lov routeri tayyorlanmoqda… bir ozdan so‘ng qayta urinib ko‘ring",
+    "swapShort": "Almashtirish bajarildi, lekin DHB hali ham yetarli emas. Qayta urinib ko‘ring."
   }
 }

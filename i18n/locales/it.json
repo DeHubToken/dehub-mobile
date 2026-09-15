@@ -3341,5 +3341,21 @@
     "createAndSave": "Crea e salva",
     "createNew": "Crea nuova cartella",
     "closeA11y": "Chiudi il selettore di cartelle"
+  },
+  "ppv": {
+    "title": "Contenuto pay-per-view",
+    "unlockPrice": "Prezzo di sblocco",
+    "topUpToUnlock": "Ricarica per sbloccare",
+    "addTip": "Aggiungi una mancia per il creator",
+    "cantPaySelf": "Non puoi pagare te stesso",
+    "swapping": "Scambio ETH → DHB…",
+    "processing": "Elaborazione del pagamento…",
+    "unlocked": "Sbloccato!",
+    "canViewImage": "Ora puoi vedere questa immagine",
+    "canWatchVideo": "Ora puoi guardare questo video",
+    "solanaFailed": "Pagamento Solana non riuscito",
+    "missingWeb3": "Contesto web3 mancante",
+    "preparingRouter": "Preparazione del router di pagamento… riprova tra un istante",
+    "swapShort": "Scambio effettuato ma i DHB non bastano ancora. Riprova."
   }
 }

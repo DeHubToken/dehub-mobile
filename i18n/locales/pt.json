@@ -3345,5 +3345,21 @@
     "createAndSave": "Criar e salvar",
     "createNew": "Criar nova pasta",
     "closeA11y": "Fechar o seletor de pastas"
+  },
+  "ppv": {
+    "title": "Conteúdo pago por visualização",
+    "unlockPrice": "Preço de desbloqueio",
+    "topUpToUnlock": "Recarregue para desbloquear",
+    "addTip": "Adicione uma gorjeta para o criador",
+    "cantPaySelf": "Você não pode pagar a si mesmo",
+    "swapping": "Trocando ETH → DHB…",
+    "processing": "Processando o pagamento…",
+    "unlocked": "Desbloqueado!",
+    "canViewImage": "Agora você pode ver esta imagem",
+    "canWatchVideo": "Agora você pode assistir a este vídeo",
+    "solanaFailed": "O pagamento com Solana falhou",
+    "missingWeb3": "Contexto web3 ausente",
+    "preparingRouter": "Preparando o roteador de pagamentos… tente de novo em instantes",
+    "swapShort": "Troca concluída mas o DHB ainda é insuficiente. Tente novamente."
   }
 }
