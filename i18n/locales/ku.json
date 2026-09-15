@@ -3308,7 +3308,6 @@
     "noTxHash": "Berîkê hash a danûstandinê venegerand",
     "finishing": "Tê temamkirin…",
     "confirmTitle": "Abonetiyê piştrast bike",
-    "subscribeToFor": "Bi {{price}} bibe abone yê {{name}}",
     "youPay": "Tu {{amount}} didî",
     "calculating": "Berhevok tê hesibandin…",
     "creatorReceives": "Afirîner {{amount}} USDT krediyê distîne",
@@ -3317,7 +3316,8 @@
     "notAvailableYet": "Hîn ne berdest e",
     "subscribe": "Bibe abone",
     "subscriberCount_one": "{{count}} abone",
-    "subscriberCount_other": "{{count}} abone"
+    "subscriberCount_other": "{{count}} abone",
+    "subscribeToForRich": "Bi <price>{{price}}</price> bibe abone yê <name>{{name}}</name>"
   },
   "live": {
     "notSet": "Nehatiye danîn",
@@ -3385,8 +3385,6 @@
     "confirmPurchase": "Kirînê piştrast bike",
     "amountIn": "Mîqdara {{currency}}",
     "approxReceive": "Nêzîkî wê bistînî {{symbol}}",
-    "iAcceptThe": "Ez qebûl dikim",
-    "termsOfService": "Mercên Xizmetê",
     "invalidAmountGtZero": "Mîqdareke derbasdar a ji 0 mezintir binivîse.",
     "enterValidAmount": "Mîqdareke derbasdar binivîse",
     "noSupply": "Kirîn ne berdest e — li ser vê zincîrê {{symbol}} tune.",
@@ -3395,6 +3393,7 @@
     "acceptTermsFirst": "Ji kerema xwe mercên xizmetê qebûl bike",
     "redirecting": "Beralîkirin bo dravdanê…",
     "openingCheckout": "Dravdan tê vekirin…",
-    "checkoutUnavailable": "Girêdana dravdanê ne berdest e. Dîsa biceribîne."
+    "checkoutUnavailable": "Girêdana dravdanê ne berdest e. Dîsa biceribîne.",
+    "acceptTerms": "Ez qebûl dikim <terms>Mercên Xizmetê</terms>"
   }
 }

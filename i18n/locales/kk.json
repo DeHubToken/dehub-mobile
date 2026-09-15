@@ -3618,7 +3618,6 @@
     "noTxHash": "Әмиян транзакция хэшін қайтармады",
     "finishing": "Аяқталуда…",
     "confirmTitle": "Жазылымды растау",
-    "subscribeToFor": "{{name}} жоспарына {{price}} үшін жазылыңыз",
     "youPay": "Сіз {{amount}} төлейсіз",
     "calculating": "Жалпы сома есептелуде…",
     "creatorReceives": "Автор {{amount}} USDT несие алады",
@@ -3627,7 +3626,8 @@
     "notAvailableYet": "Әзірге қолжетімсіз",
     "subscribe": "Жазылу",
     "subscriberCount_one": "{{count}} жазылушы",
-    "subscriberCount_other": "{{count}} жазылушы"
+    "subscriberCount_other": "{{count}} жазылушы",
+    "subscribeToForRich": "<name>{{name}}</name> жоспарына <price>{{price}}</price> үшін жазылыңыз"
   },
   "live": {
     "notSet": "Орнатылмаған",
@@ -3680,8 +3680,6 @@
     "confirmPurchase": "Сатып алуды растау",
     "amountIn": "{{currency}} сомасы",
     "approxReceive": "Шамамен аласыз {{symbol}}",
-    "iAcceptThe": "Мен қабылдаймын",
-    "termsOfService": "Қызмет көрсету шарттары",
     "invalidAmountGtZero": "0-ден үлкен жарамды соманы енгізіңіз.",
     "enterValidAmount": "Жарамды соманы енгізіңіз",
     "noSupply": "Сатып алу мүмкін емес — бұл тізбекте {{symbol}} қоры жоқ.",
@@ -3690,6 +3688,7 @@
     "acceptTermsFirst": "Қызмет көрсету шарттарын қабылдаңыз",
     "redirecting": "Төлем бетіне бағыттау…",
     "openingCheckout": "Төлем беті ашылуда…",
-    "checkoutUnavailable": "Төлем сілтемесі қолжетімсіз. Қайталап көріңіз."
+    "checkoutUnavailable": "Төлем сілтемесі қолжетімсіз. Қайталап көріңіз.",
+    "acceptTerms": "Мен қабылдаймын <terms>Қызмет көрсету шарттары</terms>"
   }
 }

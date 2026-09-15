@@ -3612,7 +3612,6 @@
     "noTxHash": "Dompet tidak mengembalikan hash transaksi",
     "finishing": "Menyelesaikan…",
     "confirmTitle": "Konfirmasi langganan",
-    "subscribeToFor": "Berlangganan {{name}} seharga {{price}}",
     "youPay": "Kamu membayar {{amount}}",
     "calculating": "Menghitung total…",
     "creatorReceives": "Kreator menerima kredit {{amount}} USDT",
@@ -3621,7 +3620,8 @@
     "notAvailableYet": "Belum tersedia",
     "subscribe": "Berlangganan",
     "subscriberCount_one": "{{count}} pelanggan",
-    "subscriberCount_other": "{{count}} pelanggan"
+    "subscriberCount_other": "{{count}} pelanggan",
+    "subscribeToForRich": "Berlangganan <name>{{name}}</name> seharga <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Belum diatur",
@@ -3674,8 +3674,6 @@
     "confirmPurchase": "Konfirmasi pembelian",
     "amountIn": "Jumlah {{currency}}",
     "approxReceive": "Perkiraan diterima {{symbol}}",
-    "iAcceptThe": "Saya menerima",
-    "termsOfService": "Ketentuan Layanan",
     "invalidAmountGtZero": "Masukkan jumlah valid lebih dari 0.",
     "enterValidAmount": "Masukkan jumlah yang valid",
     "noSupply": "Pembelian tidak tersedia — tidak ada pasokan {{symbol}} di chain ini.",
@@ -3684,6 +3682,7 @@
     "acceptTermsFirst": "Harap terima ketentuan layanan",
     "redirecting": "Mengalihkan ke pembayaran…",
     "openingCheckout": "Membuka pembayaran…",
-    "checkoutUnavailable": "Tautan pembayaran tidak tersedia. Coba lagi."
+    "checkoutUnavailable": "Tautan pembayaran tidak tersedia. Coba lagi.",
+    "acceptTerms": "Saya menerima <terms>Ketentuan Layanan</terms>"
   }
 }

@@ -3566,7 +3566,6 @@
     "noTxHash": "Plånboken returnerade ingen transaktionshash",
     "finishing": "Slutför…",
     "confirmTitle": "Bekräfta prenumeration",
-    "subscribeToFor": "Prenumerera på {{name}} för {{price}}",
     "youPay": "Du betalar {{amount}}",
     "calculating": "Beräknar totalen…",
     "creatorReceives": "Skaparen får {{amount}} USDT i kredit",
@@ -3575,7 +3574,8 @@
     "notAvailableYet": "Inte tillgänglig än",
     "subscribe": "Prenumerera",
     "subscriberCount_one": "{{count}} prenumerant",
-    "subscriberCount_other": "{{count}} prenumeranter"
+    "subscriberCount_other": "{{count}} prenumeranter",
+    "subscribeToForRich": "Prenumerera på <name>{{name}}</name> för <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Inte angivet",
@@ -3628,8 +3628,6 @@
     "confirmPurchase": "Bekräfta köpet",
     "amountIn": "{{currency}}-belopp",
     "approxReceive": "Du får ungefär {{symbol}}",
-    "iAcceptThe": "Jag godkänner",
-    "termsOfService": "Användarvillkor",
     "invalidAmountGtZero": "Ange ett giltigt belopp större än 0.",
     "enterValidAmount": "Ange ett giltigt belopp",
     "noSupply": "Köp inte möjligt — inget {{symbol}}-lager på den här kedjan.",
@@ -3638,6 +3636,7 @@
     "acceptTermsFirst": "Godkänn användarvillkoren",
     "redirecting": "Omdirigerar till kassan…",
     "openingCheckout": "Öppnar kassan…",
-    "checkoutUnavailable": "Betalningslänken är inte tillgänglig. Försök igen."
+    "checkoutUnavailable": "Betalningslänken är inte tillgänglig. Försök igen.",
+    "acceptTerms": "Jag godkänner <terms>Användarvillkor</terms>"
   }
 }

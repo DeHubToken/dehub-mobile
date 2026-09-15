@@ -3561,7 +3561,6 @@
     "noTxHash": "Maks neatgrieza darījuma jaucējkodu",
     "finishing": "Notiek pabeigšana…",
     "confirmTitle": "Apstiprināt abonēšanu",
-    "subscribeToFor": "Abonējiet {{name}} par {{price}}",
     "youPay": "Jūs maksājat {{amount}}",
     "calculating": "Tiek aprēķināta kopsumma…",
     "creatorReceives": "Autors saņem {{amount}} USDT kredītu",
@@ -3570,7 +3569,8 @@
     "notAvailableYet": "Vēl nav pieejams",
     "subscribe": "Abonēt",
     "subscriberCount_one": "{{count}} abonents",
-    "subscriberCount_other": "{{count}} abonenti"
+    "subscriberCount_other": "{{count}} abonenti",
+    "subscribeToForRich": "Abonējiet <name>{{name}}</name> par <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Nav iestatīts",
@@ -3623,8 +3623,6 @@
     "confirmPurchase": "Apstiprināt pirkumu",
     "amountIn": "{{currency}} summa",
     "approxReceive": "Saņemsiet aptuveni {{symbol}}",
-    "iAcceptThe": "Es piekrītu",
-    "termsOfService": "Pakalpojuma noteikumi",
     "invalidAmountGtZero": "Ievadiet derīgu summu, kas lielāka par 0.",
     "enterValidAmount": "Ievadiet derīgu summu",
     "noSupply": "Pirkums nav pieejams — šajā ķēdē nav {{symbol}} krājumu.",
@@ -3633,6 +3631,7 @@
     "acceptTermsFirst": "Lūdzu, pieņemiet pakalpojuma noteikumus",
     "redirecting": "Novirza uz apmaksu…",
     "openingCheckout": "Tiek atvērta apmaksa…",
-    "checkoutUnavailable": "Maksājuma saite nav pieejama. Mēģiniet vēlreiz."
+    "checkoutUnavailable": "Maksājuma saite nav pieejama. Mēģiniet vēlreiz.",
+    "acceptTerms": "Es piekrītu <terms>Pakalpojuma noteikumi</terms>"
   }
 }

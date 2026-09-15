@@ -3581,7 +3581,6 @@
     "noTxHash": "កាបូបមិនបានប្រគល់ hash ប្រតិបត្តិការទេ",
     "finishing": "កំពុងបញ្ចប់…",
     "confirmTitle": "បញ្ជាក់ការជាវ",
-    "subscribeToFor": "ជាវ {{name}} ក្នុងតម្លៃ {{price}}",
     "youPay": "អ្នកបង់ {{amount}}",
     "calculating": "កំពុងគណនាសរុប…",
     "creatorReceives": "អ្នកបង្កើតទទួលបានឥណទាន {{amount}} USDT",
@@ -3590,7 +3589,8 @@
     "notAvailableYet": "មិនទាន់មាន",
     "subscribe": "ជាវ",
     "subscriberCount_one": "អ្នកជាវ {{count}} នាក់",
-    "subscriberCount_other": "អ្នកជាវ {{count}} នាក់"
+    "subscriberCount_other": "អ្នកជាវ {{count}} នាក់",
+    "subscribeToForRich": "ជាវ <name>{{name}}</name> ក្នុងតម្លៃ <price>{{price}}</price>"
   },
   "live": {
     "notSet": "មិនទាន់កំណត់",
@@ -3643,8 +3643,6 @@
     "confirmPurchase": "បញ្ជាក់ការទិញ",
     "amountIn": "ចំនួន {{currency}}",
     "approxReceive": "ទទួលបានប្រហែល {{symbol}}",
-    "iAcceptThe": "ខ្ញុំយល់ព្រមនឹង",
-    "termsOfService": "លក្ខខណ្ឌសេវាកម្ម",
     "invalidAmountGtZero": "បញ្ចូលចំនួនត្រឹមត្រូវធំជាង 0។",
     "enterValidAmount": "បញ្ចូលចំនួនត្រឹមត្រូវ",
     "noSupply": "មិនអាចទិញបានទេ — គ្មានការផ្គត់ផ្គង់ {{symbol}} លើខ្សែច្រវាក់នេះ។",
@@ -3653,6 +3651,7 @@
     "acceptTermsFirst": "សូមទទួលយកលក្ខខណ្ឌសេវាកម្ម",
     "redirecting": "កំពុងបញ្ជូនទៅការទូទាត់…",
     "openingCheckout": "កំពុងបើកការទូទាត់…",
-    "checkoutUnavailable": "តំណទូទាត់មិនអាចប្រើបានទេ។ សូមព្យាយាមម្ដងទៀត។"
+    "checkoutUnavailable": "តំណទូទាត់មិនអាចប្រើបានទេ។ សូមព្យាយាមម្ដងទៀត។",
+    "acceptTerms": "ខ្ញុំយល់ព្រមនឹង <terms>លក្ខខណ្ឌសេវាកម្ម</terms>"
   }
 }

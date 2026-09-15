@@ -3618,7 +3618,6 @@
     "noTxHash": "वॉलेट ने लेनदेन का हैश नहीं लौटाया",
     "finishing": "पूरा हो रहा है…",
     "confirmTitle": "सब्सक्रिप्शन की पुष्टि करें",
-    "subscribeToFor": "{{price}} में {{name}} को सब्सक्राइब करें",
     "youPay": "आप {{amount}} देंगे",
     "calculating": "कुल राशि की गणना हो रही है…",
     "creatorReceives": "क्रिएटर को {{amount}} USDT क्रेडिट मिलेगा",
@@ -3627,7 +3626,8 @@
     "notAvailableYet": "अभी उपलब्ध नहीं",
     "subscribe": "सब्सक्राइब करें",
     "subscriberCount_one": "{{count}} सब्सक्राइबर",
-    "subscriberCount_other": "{{count}} सब्सक्राइबर"
+    "subscriberCount_other": "{{count}} सब्सक्राइबर",
+    "subscribeToForRich": "<price>{{price}}</price> में <name>{{name}}</name> को सब्सक्राइब करें"
   },
   "live": {
     "notSet": "सेट नहीं",
@@ -3680,8 +3680,6 @@
     "confirmPurchase": "खरीद की पुष्टि करें",
     "amountIn": "{{currency}} राशि",
     "approxReceive": "लगभग {{symbol}} मिलेगा",
-    "iAcceptThe": "मैं स्वीकार करता हूँ",
-    "termsOfService": "सेवा की शर्तें",
     "invalidAmountGtZero": "0 से बड़ी मान्य राशि दर्ज करें।",
     "enterValidAmount": "मान्य राशि दर्ज करें",
     "noSupply": "खरीद उपलब्ध नहीं — इस चेन पर {{symbol}} की आपूर्ति नहीं है।",
@@ -3690,6 +3688,7 @@
     "acceptTermsFirst": "कृपया सेवा की शर्तें स्वीकार करें",
     "redirecting": "चेकआउट पर भेजा जा रहा है…",
     "openingCheckout": "चेकआउट खोला जा रहा है…",
-    "checkoutUnavailable": "चेकआउट लिंक उपलब्ध नहीं। कृपया फिर कोशिश करें।"
+    "checkoutUnavailable": "चेकआउट लिंक उपलब्ध नहीं। कृपया फिर कोशिश करें।",
+    "acceptTerms": "मैं स्वीकार करता हूँ <terms>सेवा की शर्तें</terms>"
   }
 }

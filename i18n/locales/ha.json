@@ -3552,7 +3552,6 @@
     "noTxHash": "Walat ɗin bai mayar da hash na ma'amala ba",
     "finishing": "Ana kammalawa…",
     "confirmTitle": "Tabbatar da biyan kuɗi",
-    "subscribeToFor": "Yi rajista zuwa {{name}} kan {{price}}",
     "youPay": "Za ka biya {{amount}}",
     "calculating": "Ana lissafin jimillar…",
     "creatorReceives": "Mahaliccin zai karɓi kuɗin {{amount}} USDT",
@@ -3561,7 +3560,8 @@
     "notAvailableYet": "Bai samu ba tukuna",
     "subscribe": "Yi rajista",
     "subscriberCount_one": "Mai biyan kuɗi {{count}}",
-    "subscriberCount_other": "Masu biyan kuɗi {{count}}"
+    "subscriberCount_other": "Masu biyan kuɗi {{count}}",
+    "subscribeToForRich": "Yi rajista zuwa <name>{{name}}</name> kan <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Ba a saita ba",
@@ -3614,8 +3614,6 @@
     "confirmPurchase": "Tabbatar da sayayya",
     "amountIn": "Adadin {{currency}}",
     "approxReceive": "Za ka karɓi kusan {{symbol}}",
-    "iAcceptThe": "Na yarda da",
-    "termsOfService": "Sharuɗɗan Sabis",
     "invalidAmountGtZero": "Shigar da adadi mai inganci sama da 0.",
     "enterValidAmount": "Shigar da adadi mai inganci",
     "noSupply": "Ba za a iya saya ba — babu wadatar {{symbol}} a wannan sarƙa.",
@@ -3624,6 +3622,7 @@
     "acceptTermsFirst": "Don Allah amince da sharuɗɗan sabis",
     "redirecting": "Ana tura ka zuwa biya…",
     "openingCheckout": "Ana buɗe shafin biya…",
-    "checkoutUnavailable": "Hanyar biya ba ta samuwa. Sake gwadawa."
+    "checkoutUnavailable": "Hanyar biya ba ta samuwa. Sake gwadawa.",
+    "acceptTerms": "Na yarda da <terms>Sharuɗɗan Sabis</terms>"
   }
 }

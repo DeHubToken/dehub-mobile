@@ -3630,7 +3630,6 @@
     "noTxHash": "Portfel nie zwrócił hasha transakcji",
     "finishing": "Kończenie…",
     "confirmTitle": "Potwierdź subskrypcję",
-    "subscribeToFor": "Subskrybuj {{name}} za {{price}}",
     "youPay": "Płacisz {{amount}}",
     "calculating": "Obliczanie sumy…",
     "creatorReceives": "Twórca otrzymuje {{amount}} USDT kredytu",
@@ -3639,7 +3638,8 @@
     "notAvailableYet": "Jeszcze niedostępne",
     "subscribe": "Subskrybuj",
     "subscriberCount_one": "{{count}} subskrybent",
-    "subscriberCount_other": "{{count}} subskrybentów"
+    "subscriberCount_other": "{{count}} subskrybentów",
+    "subscribeToForRich": "Subskrybuj <name>{{name}}</name> za <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Nie ustawiono",
@@ -3692,8 +3692,6 @@
     "confirmPurchase": "Potwierdź zakup",
     "amountIn": "Kwota w {{currency}}",
     "approxReceive": "Otrzymasz około {{symbol}}",
-    "iAcceptThe": "Akceptuję",
-    "termsOfService": "Warunki korzystania z usługi",
     "invalidAmountGtZero": "Wpisz prawidłową kwotę większą niż 0.",
     "enterValidAmount": "Wpisz prawidłową kwotę",
     "noSupply": "Zakup niedostępny — brak podaży {{symbol}} w tym łańcuchu.",
@@ -3702,6 +3700,7 @@
     "acceptTermsFirst": "Zaakceptuj warunki korzystania z usługi",
     "redirecting": "Przekierowanie do płatności…",
     "openingCheckout": "Otwieranie płatności…",
-    "checkoutUnavailable": "Link do płatności niedostępny. Spróbuj ponownie."
+    "checkoutUnavailable": "Link do płatności niedostępny. Spróbuj ponownie.",
+    "acceptTerms": "Akceptuję <terms>Warunki korzystania z usługi</terms>"
   }
 }

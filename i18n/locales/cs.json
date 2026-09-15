@@ -3566,7 +3566,6 @@
     "noTxHash": "Peněženka nevrátila hash transakce",
     "finishing": "Dokončuje se…",
     "confirmTitle": "Potvrdit předplatné",
-    "subscribeToFor": "Předplaťte si {{name}} za {{price}}",
     "youPay": "Zaplatíte {{amount}}",
     "calculating": "Počítá se celková částka…",
     "creatorReceives": "Tvůrce obdrží kredit {{amount}} USDT",
@@ -3575,7 +3574,8 @@
     "notAvailableYet": "Zatím není dostupné",
     "subscribe": "Odebírat",
     "subscriberCount_one": "{{count}} odběratel",
-    "subscriberCount_other": "{{count}} odběratelů"
+    "subscriberCount_other": "{{count}} odběratelů",
+    "subscribeToForRich": "Předplaťte si <name>{{name}}</name> za <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Nenastaveno",
@@ -3628,8 +3628,6 @@
     "confirmPurchase": "Potvrdit nákup",
     "amountIn": "Částka v {{currency}}",
     "approxReceive": "Přibližně obdržíte {{symbol}}",
-    "iAcceptThe": "Souhlasím s",
-    "termsOfService": "Podmínky služby",
     "invalidAmountGtZero": "Zadejte platnou částku větší než 0.",
     "enterValidAmount": "Zadejte platnou částku",
     "noSupply": "Nákup není možný — na tomto řetězci není zásoba {{symbol}}.",
@@ -3638,6 +3636,7 @@
     "acceptTermsFirst": "Přijměte prosím podmínky služby",
     "redirecting": "Přesměrování k platbě…",
     "openingCheckout": "Otevírá se platba…",
-    "checkoutUnavailable": "Odkaz k platbě není dostupný. Zkuste to znovu."
+    "checkoutUnavailable": "Odkaz k platbě není dostupný. Zkuste to znovu.",
+    "acceptTerms": "Souhlasím s <terms>Podmínky služby</terms>"
   }
 }

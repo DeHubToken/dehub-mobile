@@ -3518,7 +3518,6 @@
     "noTxHash": "कोशः व्यवहारस्य हैश् न प्रत्यानीतवान्",
     "finishing": "समाप्यते…",
     "confirmTitle": "अभिदानं निश्चिनोतु",
-    "subscribeToFor": "{{price}}-मूल्येन {{name}} अभिदधातु",
     "youPay": "भवान् {{amount}} ददाति",
     "calculating": "योगः गण्यते…",
     "creatorReceives": "रचयिता {{amount}} USDT ऋणं प्राप्नोति",
@@ -3527,7 +3526,8 @@
     "notAvailableYet": "अद्यापि न उपलब्धम्",
     "subscribe": "अभिदधातु",
     "subscriberCount_one": "{{count}} अभिदाता",
-    "subscriberCount_other": "{{count}} अभिदातारः"
+    "subscriberCount_other": "{{count}} अभिदातारः",
+    "subscribeToForRich": "<price>{{price}}</price>-मूल्येन <name>{{name}}</name> अभिदधातु"
   },
   "live": {
     "notSet": "न निर्धारितम्",
@@ -3580,8 +3580,6 @@
     "confirmPurchase": "क्रयं निश्चिनोतु",
     "amountIn": "{{currency}}-परिमाणम्",
     "approxReceive": "प्रायः प्राप्स्यति {{symbol}}",
-    "iAcceptThe": "अहं स्वीकरोमि",
-    "termsOfService": "सेवानियमाः",
     "invalidAmountGtZero": "०तः अधिकं वैधं परिमाणं लिखतु।",
     "enterValidAmount": "वैधं परिमाणं लिखतु",
     "noSupply": "क्रयः न उपलब्धः — अस्यां शृङ्खलायां {{symbol}} न विद्यते।",
@@ -3590,6 +3588,7 @@
     "acceptTermsFirst": "कृपया सेवानियमान् स्वीकरोतु",
     "redirecting": "भुक्तिपृष्ठं प्रति नीयते…",
     "openingCheckout": "भुक्तिपृष्ठम् उद्घाट्यते…",
-    "checkoutUnavailable": "भुक्तिसंयोजनं न उपलब्धम्। पुनः प्रयतताम्।"
+    "checkoutUnavailable": "भुक्तिसंयोजनं न उपलब्धम्। पुनः प्रयतताम्।",
+    "acceptTerms": "अहं स्वीकरोमि <terms>सेवानियमाः</terms>"
   }
 }

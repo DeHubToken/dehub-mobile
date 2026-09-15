@@ -3540,7 +3540,6 @@
     "noTxHash": "Obere akpa ahụ enyeghị hash azụmahịa",
     "finishing": "Na-emecha…",
     "confirmTitle": "Kwado ndenye aha",
-    "subscribeToFor": "Debanye aha na {{name}} maka {{price}}",
     "youPay": "Ị na-akwụ {{amount}}",
     "calculating": "Na-agbakọ ngụkọta…",
     "creatorReceives": "Onye kere ya na-anata kredit {{amount}} USDT",
@@ -3549,7 +3548,8 @@
     "notAvailableYet": "Ọ ka adịghị",
     "subscribe": "Debanye aha",
     "subscriberCount_one": "Onye debanyere aha {{count}}",
-    "subscriberCount_other": "Ndị debanyere aha {{count}}"
+    "subscriberCount_other": "Ndị debanyere aha {{count}}",
+    "subscribeToForRich": "Debanye aha na <name>{{name}}</name> maka <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Edobeghị",
@@ -3602,8 +3602,6 @@
     "confirmPurchase": "Kwado ịzụta",
     "amountIn": "Ego {{currency}}",
     "approxReceive": "Ihe ị ga-enweta {{symbol}}",
-    "iAcceptThe": "Anabatara m",
-    "termsOfService": "Usoro ọrụ",
     "invalidAmountGtZero": "Tinye ego ziri ezi karịrị 0.",
     "enterValidAmount": "Tinye ego ziri ezi",
     "noSupply": "Enweghị ike ịzụta — enweghị {{symbol}} na chain a.",
@@ -3612,6 +3610,7 @@
     "acceptTermsFirst": "Biko nabata usoro ọrụ",
     "redirecting": "Na-eduga gị na ịkwụ ụgwọ…",
     "openingCheckout": "Na-emepe ịkwụ ụgwọ…",
-    "checkoutUnavailable": "Njikọ ịkwụ ụgwọ adịghị. Nwaa ọzọ."
+    "checkoutUnavailable": "Njikọ ịkwụ ụgwọ adịghị. Nwaa ọzọ.",
+    "acceptTerms": "Anabatara m <terms>Usoro ọrụ</terms>"
   }
 }

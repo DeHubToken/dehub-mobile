@@ -3551,7 +3551,6 @@
     "noTxHash": "D Wallet het kei Transaktions-Hash zruggäh",
     "finishing": "Wird abgschlosse…",
     "confirmTitle": "Abo bestätige",
-    "subscribeToFor": "{{name}} für {{price}} abonniere",
     "youPay": "Du zahlsch {{amount}}",
     "calculating": "Gsamtbetrag wird brächnet…",
     "creatorReceives": "De Ersteller überchunnt {{amount}} USDT Guthabe",
@@ -3560,7 +3559,8 @@
     "notAvailableYet": "Nonig verfüegbar",
     "subscribe": "Abonniere",
     "subscriberCount_one": "{{count}} Abonnänt",
-    "subscriberCount_other": "{{count}} Abonnänte"
+    "subscriberCount_other": "{{count}} Abonnänte",
+    "subscribeToForRich": "<name>{{name}}</name> für <price>{{price}}</price> abonniere"
   },
   "live": {
     "notSet": "Nöd festgleit",
@@ -3613,8 +3613,6 @@
     "confirmPurchase": "Chauf bestätige",
     "amountIn": "{{currency}}-Betrag",
     "approxReceive": "Ungfähr überchoo {{symbol}}",
-    "iAcceptThe": "Ich akzeptier d",
-    "termsOfService": "Nutzigsbedingige",
     "invalidAmountGtZero": "Gib en gültige Betrag grösser als 0 i.",
     "enterValidAmount": "Gib en gültige Betrag i",
     "noSupply": "Chauf nöd möglich — kei {{symbol}}-Bestand uf dere Chain.",
@@ -3623,6 +3621,7 @@
     "acceptTermsFirst": "Bitte akzeptier d Nutzigsbedingige",
     "redirecting": "Wiiterleitig zur Kasse…",
     "openingCheckout": "Kasse wird ufgmacht…",
-    "checkoutUnavailable": "Zahligslink nöd verfüegbar. Probier s nomol."
+    "checkoutUnavailable": "Zahligslink nöd verfüegbar. Probier s nomol.",
+    "acceptTerms": "Ich akzeptier d <terms>Nutzigsbedingige</terms>"
   }
 }

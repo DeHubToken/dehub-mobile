@@ -3741,7 +3741,6 @@
     "noTxHash": "Walang ibinalik na transaction hash ang wallet",
     "finishing": "Tinatapos…",
     "confirmTitle": "Kumpirmahin ang subscription",
-    "subscribeToFor": "Mag-subscribe sa {{name}} sa halagang {{price}}",
     "youPay": "Magbabayad ka ng {{amount}}",
     "calculating": "Kinakalkula ang kabuuan…",
     "creatorReceives": "Makakatanggap ang creator ng {{amount}} USDT credit",
@@ -3750,7 +3749,8 @@
     "notAvailableYet": "Hindi pa available",
     "subscribe": "Mag-subscribe",
     "subscriberCount_one": "{{count}} subscriber",
-    "subscriberCount_other": "{{count}} subscribers"
+    "subscriberCount_other": "{{count}} subscribers",
+    "subscribeToForRich": "Mag-subscribe sa <name>{{name}}</name> sa halagang <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Hindi nakatakda",
@@ -3803,8 +3803,6 @@
     "confirmPurchase": "Kumpirmahin ang pagbili",
     "amountIn": "Halaga sa {{currency}}",
     "approxReceive": "Tinatayang matatanggap {{symbol}}",
-    "iAcceptThe": "Tinatanggap ko ang",
-    "termsOfService": "Mga Tuntunin ng Serbisyo",
     "invalidAmountGtZero": "Maglagay ng wastong halagang higit sa 0.",
     "enterValidAmount": "Maglagay ng wastong halaga",
     "noSupply": "Hindi available ang pagbili — walang supply ng {{symbol}} sa chain na ito.",
@@ -3813,6 +3811,7 @@
     "acceptTermsFirst": "Pakitanggap ang mga tuntunin ng serbisyo",
     "redirecting": "Dinadala sa checkout…",
     "openingCheckout": "Binubuksan ang checkout…",
-    "checkoutUnavailable": "Hindi available ang checkout link. Subukan ulit."
+    "checkoutUnavailable": "Hindi available ang checkout link. Subukan ulit.",
+    "acceptTerms": "Tinatanggap ko ang <terms>Mga Tuntunin ng Serbisyo</terms>"
   }
 }

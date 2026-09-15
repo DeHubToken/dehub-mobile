@@ -3275,7 +3275,6 @@
     "noTxHash": "والٹ نے لین دین کا ہیش واپس نئیں کیا",
     "finishing": "مکمل ہو رہا ہے…",
     "confirmTitle": "سبسکرپشن کی تصدیق کریں",
-    "subscribeToFor": "{{price}} میں {{name}} سبسکرائب کریں",
     "youPay": "آپ {{amount}} ادا کریں گے",
     "calculating": "کل رقم شمار ہو رہی ہے…",
     "creatorReceives": "بنانے والے کو {{amount}} USDT کریڈٹ ملے گا",
@@ -3284,7 +3283,8 @@
     "notAvailableYet": "ابھی دستیاب نئیں",
     "subscribe": "سبسکرائب کریں",
     "subscriberCount_one": "{{count}} سبسکرائبر",
-    "subscriberCount_other": "{{count}} سبسکرائبرز"
+    "subscriberCount_other": "{{count}} سبسکرائبرز",
+    "subscribeToForRich": "<price>{{price}}</price> میں <name>{{name}}</name> سبسکرائب کریں"
   },
   "live": {
     "notSet": "مقرر نئیں",
@@ -3352,8 +3352,6 @@
     "confirmPurchase": "خریداری کی تصدیق کریں",
     "amountIn": "{{currency}} رقم",
     "approxReceive": "تقریباً {{symbol}} ملے گا",
-    "iAcceptThe": "میں قبول کرتا ہوں",
-    "termsOfService": "سروس کی شرائط",
     "invalidAmountGtZero": "0 سے زیادہ درست رقم لکھیں۔",
     "enterValidAmount": "درست رقم لکھیں",
     "noSupply": "خریداری دستیاب نئیں — اس چین پر {{symbol}} کی سپلائی نئیں۔",
@@ -3362,6 +3360,7 @@
     "acceptTermsFirst": "براہِ کرم سروس کی شرائط قبول کریں",
     "redirecting": "چیک آؤٹ پر بھیجا جا رہا ہے…",
     "openingCheckout": "چیک آؤٹ کھولا جا رہا ہے…",
-    "checkoutUnavailable": "چیک آؤٹ لنک دستیاب نئیں۔ دوبارہ کوشش کریں۔"
+    "checkoutUnavailable": "چیک آؤٹ لنک دستیاب نئیں۔ دوبارہ کوشش کریں۔",
+    "acceptTerms": "میں قبول کرتا ہوں <terms>سروس کی شرائط</terms>"
   }
 }

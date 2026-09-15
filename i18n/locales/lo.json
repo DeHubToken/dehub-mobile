@@ -3520,7 +3520,6 @@
     "noTxHash": "ກະເປົາບໍ່ໄດ້ສົ່ງຄືນ hash ຂອງທຸລະກຳ",
     "finishing": "ກຳລັງສຳເລັດ…",
     "confirmTitle": "ຢືນຢັນການສະໝັກ",
-    "subscribeToFor": "ສະໝັກ {{name}} ໃນລາຄາ {{price}}",
     "youPay": "ທ່ານຈ່າຍ {{amount}}",
     "calculating": "ກຳລັງຄິດໄລ່ຍອດລວມ…",
     "creatorReceives": "ຜູ້ສ້າງໄດ້ຮັບເຄຣດິດ {{amount}} USDT",
@@ -3529,7 +3528,8 @@
     "notAvailableYet": "ຍັງບໍ່ພ້ອມໃຊ້",
     "subscribe": "ສະໝັກ",
     "subscriberCount_one": "ຜູ້ສະໝັກ {{count}} ຄົນ",
-    "subscriberCount_other": "ຜູ້ສະໝັກ {{count}} ຄົນ"
+    "subscriberCount_other": "ຜູ້ສະໝັກ {{count}} ຄົນ",
+    "subscribeToForRich": "ສະໝັກ <name>{{name}}</name> ໃນລາຄາ <price>{{price}}</price>"
   },
   "live": {
     "notSet": "ຍັງບໍ່ໄດ້ຕັ້ງ",
@@ -3582,8 +3582,6 @@
     "confirmPurchase": "ຢືນຢັນການຊື້",
     "amountIn": "ຈຳນວນ {{currency}}",
     "approxReceive": "ຈະໄດ້ຮັບປະມານ {{symbol}}",
-    "iAcceptThe": "ຂ້ອຍຍອມຮັບ",
-    "termsOfService": "ເງື່ອນໄຂການໃຫ້ບໍລິການ",
     "invalidAmountGtZero": "ປ້ອນຈຳນວນທີ່ຖືກຕ້ອງຫຼາຍກວ່າ 0.",
     "enterValidAmount": "ປ້ອນຈຳນວນທີ່ຖືກຕ້ອງ",
     "noSupply": "ຊື້ບໍ່ໄດ້ — ບໍ່ມີ {{symbol}} ໃນເຊນນີ້.",
@@ -3592,6 +3590,7 @@
     "acceptTermsFirst": "ກະລຸນາຍອມຮັບເງື່ອນໄຂການໃຫ້ບໍລິການ",
     "redirecting": "ກຳລັງໄປຫາໜ້າຊຳລະເງິນ…",
     "openingCheckout": "ກຳລັງເປີດໜ້າຊຳລະເງິນ…",
-    "checkoutUnavailable": "ລິ້ງຊຳລະເງິນບໍ່ພ້ອມໃຊ້. ລອງໃໝ່."
+    "checkoutUnavailable": "ລິ້ງຊຳລະເງິນບໍ່ພ້ອມໃຊ້. ລອງໃໝ່.",
+    "acceptTerms": "ຂ້ອຍຍອມຮັບ <terms>ເງື່ອນໄຂການໃຫ້ບໍລິການ</terms>"
   }
 }

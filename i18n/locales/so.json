@@ -3553,7 +3553,6 @@
     "noTxHash": "Jeebku ma soo celin hash macaamil",
     "finishing": "Waa la dhammaynayaa…",
     "confirmTitle": "Xaqiiji rukumidda",
-    "subscribeToFor": "Ku rukun {{name}} {{price}}",
     "youPay": "Waxaad bixinaysaa {{amount}}",
     "calculating": "Waa la xisaabinayaa wadarta…",
     "creatorReceives": "Abuuraha wuxuu helayaa {{amount}} USDT deyn ah",
@@ -3562,7 +3561,8 @@
     "notAvailableYet": "Weli lama heli karo",
     "subscribe": "Rukun",
     "subscriberCount_one": "{{count}} rukume",
-    "subscriberCount_other": "{{count}} rukumayaal"
+    "subscriberCount_other": "{{count}} rukumayaal",
+    "subscribeToForRich": "Ku rukun <name>{{name}}</name> <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Lama dejin",
@@ -3615,8 +3615,6 @@
     "confirmPurchase": "Xaqiiji iibka",
     "amountIn": "Qaddarka {{currency}}",
     "approxReceive": "Waxaad heli doontaa qiyaastii {{symbol}}",
-    "iAcceptThe": "Waan aqbalayaa",
-    "termsOfService": "Shuruudaha Adeegga",
     "invalidAmountGtZero": "Geli qaddar sax ah oo ka weyn 0.",
     "enterValidAmount": "Geli qaddar sax ah",
     "noSupply": "Iibka lama heli karo — silsiladdan kuma jiro {{symbol}}.",
@@ -3625,6 +3623,7 @@
     "acceptTermsFirst": "Fadlan aqbal shuruudaha adeegga",
     "redirecting": "Waa lagu wareejinayaa bixinta…",
     "openingCheckout": "Waa la furayaa bixinta…",
-    "checkoutUnavailable": "Linkiga bixinta lama helin. Isku day mar kale."
+    "checkoutUnavailable": "Linkiga bixinta lama helin. Isku day mar kale.",
+    "acceptTerms": "Waan aqbalayaa <terms>Shuruudaha Adeegga</terms>"
   }
 }
