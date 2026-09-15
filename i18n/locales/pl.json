@@ -3575,5 +3575,21 @@
     "includeSocials": "Uwzględnij media społecznościowe",
     "extraNotes": "Dodatkowe uwagi",
     "notesPlaceholder": "Cokolwiek jeszcze plakat ma pokazać"
+  },
+  "monetization": {
+    "tokenGated": "Dostęp przez token",
+    "invalidToken": "Wpisz prawidłowy adres kontraktu tokena",
+    "createPlanAction": "Utwórz plan subskrypcji",
+    "createPlanFirst": "Najpierw utwórz plan",
+    "publishPlanFirst": "Najpierw opublikuj swój plan subskrypcji w łańcuchu.",
+    "subscribersOnly": "Ten post mogą otworzyć tylko twoi subskrybenci.",
+    "price": "Cena ({{currency}})",
+    "paymentsSolana": "Płatności są w {{currency}} w sieci Solana",
+    "paymentsBase": "Płatności są w DHB w łańcuchu Base",
+    "requiresSpl": "Do obejrzenia wymagany jest token SPL w sieci Solana",
+    "mustHoldOn": "Widzowie muszą posiadać ten token w sieci {{chain}}",
+    "custom": "Niestandardowe",
+    "contractPlaceholder": "Adres kontraktu (0x…)",
+    "symbolPlaceholder": "Symbol (np. PEPE)"
   }
 }

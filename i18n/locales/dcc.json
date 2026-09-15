@@ -3233,5 +3233,21 @@
     "includeSocials": "سوشل ہینڈلز شامل کریں",
     "extraNotes": "اضافی نوٹس",
     "notesPlaceholder": "پوسٹر میں اور جو کچھ دکھانا ہے"
+  },
+  "monetization": {
+    "tokenGated": "ٹوکن گیٹڈ",
+    "invalidToken": "درست ٹوکن کنٹریکٹ ایڈریس لکھیں",
+    "createPlanAction": "سبسکرپشن پلان بنائیں",
+    "createPlanFirst": "پہلے پلان بنائیں",
+    "publishPlanFirst": "پہلے اپنا سبسکرپشن پلان چین پر شائع کریں۔",
+    "subscribersOnly": "یہ پوسٹ صرف آپ کے سبسکرائبرز کھول سکتے ہیں۔",
+    "price": "قیمت ({{currency}})",
+    "paymentsSolana": "ادائیگی سولانا پر {{currency}} میں ہوتی ہے",
+    "paymentsBase": "ادائیگی Base چین پر DHB میں ہوتی ہے",
+    "requiresSpl": "دیکھنے کے لیے سولانا پر SPL ٹوکن چاہیے",
+    "mustHoldOn": "دیکھنے والوں کے پاس {{chain}} پر یہ ٹوکن ہونا چاہیے",
+    "custom": "کسٹم",
+    "contractPlaceholder": "کنٹریکٹ ایڈریس (0x…)",
+    "symbolPlaceholder": "علامت (مثلاً PEPE)"
   }
 }

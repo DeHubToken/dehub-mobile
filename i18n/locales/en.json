@@ -3577,5 +3577,21 @@
     "includeSocials": "Include socials",
     "extraNotes": "Extra notes",
     "notesPlaceholder": "Anything else the poster must show"
+  },
+  "monetization": {
+    "tokenGated": "Token Gated",
+    "invalidToken": "Enter a valid token contract address",
+    "createPlanAction": "Create a subscription plan",
+    "createPlanFirst": "Create a plan first",
+    "publishPlanFirst": "Publish your subscription plan on chain first.",
+    "subscribersOnly": "Only your subscribers can open this post.",
+    "price": "Price ({{currency}})",
+    "paymentsSolana": "Payments are in {{currency}} on Solana",
+    "paymentsBase": "Payments are in DHB on Base chain",
+    "requiresSpl": "Requires an SPL token on Solana to view",
+    "mustHoldOn": "Viewers must hold this token on {{chain}}",
+    "custom": "Custom",
+    "contractPlaceholder": "Contract address (0x…)",
+    "symbolPlaceholder": "Symbol (e.g. PEPE)"
   }
 }

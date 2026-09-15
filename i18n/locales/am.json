@@ -3502,5 +3502,21 @@
     "includeSocials": "ማህበራዊ አድራሻዎችን አካትት",
     "extraNotes": "ተጨማሪ ማስታወሻዎች",
     "notesPlaceholder": "በፖስተሩ ላይ መታየት ያለበት ሌላ ነገር"
+  },
+  "monetization": {
+    "tokenGated": "በቶከን የተገደበ",
+    "invalidToken": "ትክክለኛ የቶከን ኮንትራት አድራሻ ያስገቡ",
+    "createPlanAction": "የደንበኝነት ዕቅድ ይፍጠሩ",
+    "createPlanFirst": "መጀመሪያ ዕቅድ ይፍጠሩ",
+    "publishPlanFirst": "በመጀመሪያ የደንበኝነት ዕቅድዎን በሰንሰለቱ ላይ ያትሙ።",
+    "subscribersOnly": "ይህን ልጥፍ መክፈት የሚችሉት ደንበኞችዎ ብቻ ናቸው።",
+    "price": "ዋጋ ({{currency}})",
+    "paymentsSolana": "ክፍያዎች በሶላና ላይ በ{{currency}} ናቸው",
+    "paymentsBase": "ክፍያዎች በBase ሰንሰለት ላይ በDHB ናቸው",
+    "requiresSpl": "ለማየት በሶላና ላይ የSPL ቶከን ያስፈልጋል",
+    "mustHoldOn": "ተመልካቾች ይህን ቶከን በ{{chain}} ላይ መያዝ አለባቸው",
+    "custom": "ብጁ",
+    "contractPlaceholder": "የኮንትራት አድራሻ (0x…)",
+    "symbolPlaceholder": "ምልክት (ለምሳሌ PEPE)"
   }
 }

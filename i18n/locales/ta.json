@@ -3495,5 +3495,21 @@
     "includeSocials": "சமூக ஊடகக் கணக்குகளைச் சேர்",
     "extraNotes": "கூடுதல் குறிப்புகள்",
     "notesPlaceholder": "சுவரொட்டியில் காட்ட வேண்டிய மற்ற எதுவும்"
+  },
+  "monetization": {
+    "tokenGated": "டோக்கன் கட்டுப்பாடு",
+    "invalidToken": "செல்லுபடியாகும் டோக்கன் ஒப்பந்த முகவரியை உள்ளிடவும்",
+    "createPlanAction": "சந்தா திட்டத்தை உருவாக்கு",
+    "createPlanFirst": "முதலில் ஒரு திட்டத்தை உருவாக்கவும்",
+    "publishPlanFirst": "முதலில் உங்கள் சந்தா திட்டத்தை செயினில் வெளியிடவும்.",
+    "subscribersOnly": "இந்த இடுகையை உங்கள் சந்தாதாரர்கள் மட்டுமே திறக்க முடியும்.",
+    "price": "விலை ({{currency}})",
+    "paymentsSolana": "கட்டணங்கள் Solana-வில் {{currency}}-இல் இருக்கும்",
+    "paymentsBase": "கட்டணங்கள் Base செயினில் DHB-இல் இருக்கும்",
+    "requiresSpl": "பார்க்க Solana-வில் SPL டோக்கன் தேவை",
+    "mustHoldOn": "பார்வையாளர்கள் {{chain}}-இல் இந்த டோக்கனை வைத்திருக்க வேண்டும்",
+    "custom": "தனிப்பயன்",
+    "contractPlaceholder": "ஒப்பந்த முகவரி (0x…)",
+    "symbolPlaceholder": "குறியீடு (எ.கா. PEPE)"
   }
 }

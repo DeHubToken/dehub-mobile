@@ -3676,5 +3676,21 @@
     "includeSocials": "Zahrnúť sociálne siete",
     "extraNotes": "Ďalšie poznámky",
     "notesPlaceholder": "Čokoľvek ďalšie, čo má plagát ukázať"
+  },
+  "monetization": {
+    "tokenGated": "Prístup cez token",
+    "invalidToken": "Zadajte platnú adresu zmluvy tokenu",
+    "createPlanAction": "Vytvoriť predplatné",
+    "createPlanFirst": "Najprv vytvorte plán",
+    "publishPlanFirst": "Najprv publikujte svoje predplatné na blockchaine.",
+    "subscribersOnly": "Tento príspevok môžu otvoriť len vaši predplatitelia.",
+    "price": "Cena ({{currency}})",
+    "paymentsSolana": "Platby prebiehajú v {{currency}} na Solane",
+    "paymentsBase": "Platby prebiehajú v DHB na sieti Base",
+    "requiresSpl": "Na zobrazenie je potrebný token SPL na Solane",
+    "mustHoldOn": "Diváci musia držať tento token na {{chain}}",
+    "custom": "Vlastné",
+    "contractPlaceholder": "Adresa zmluvy (0x…)",
+    "symbolPlaceholder": "Symbol (napr. PEPE)"
   }
 }

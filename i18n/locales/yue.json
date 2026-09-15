@@ -3505,5 +3505,21 @@
     "includeSocials": "包含社交帳號",
     "extraNotes": "額外備註",
     "notesPlaceholder": "海報仲要展示嘅其他內容"
+  },
+  "monetization": {
+    "tokenGated": "代幣門檻",
+    "invalidToken": "請輸入有效嘅代幣合約地址",
+    "createPlanAction": "建立訂閱方案",
+    "createPlanFirst": "請先建立方案",
+    "publishPlanFirst": "請先將你嘅訂閱方案發佈到鏈上。",
+    "subscribersOnly": "只有你嘅訂閱者先可以打開呢個帖子。",
+    "price": "價格（{{currency}}）",
+    "paymentsSolana": "付款喺 Solana 上以 {{currency}} 結算",
+    "paymentsBase": "付款喺 Base 鏈上以 DHB 結算",
+    "requiresSpl": "需要 Solana 上嘅 SPL 代幣先可以睇",
+    "mustHoldOn": "觀眾必須喺 {{chain}} 上持有呢個代幣",
+    "custom": "自訂",
+    "contractPlaceholder": "合約地址（0x…）",
+    "symbolPlaceholder": "代號（例如 PEPE）"
   }
 }

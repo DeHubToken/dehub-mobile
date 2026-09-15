@@ -3577,5 +3577,21 @@
     "includeSocials": "Incluir las redes sociales",
     "extraNotes": "Notas adicionales",
     "notesPlaceholder": "Cualquier otra cosa que deba mostrar el póster"
+  },
+  "monetization": {
+    "tokenGated": "Restringido por token",
+    "invalidToken": "Introduce una dirección de contrato de token válida",
+    "createPlanAction": "Crea un plan de suscripción",
+    "createPlanFirst": "Crea primero un plan",
+    "publishPlanFirst": "Publica primero tu plan de suscripción en la cadena.",
+    "subscribersOnly": "Solo tus suscriptores pueden abrir esta publicación.",
+    "price": "Precio ({{currency}})",
+    "paymentsSolana": "Los pagos son en {{currency}} en Solana",
+    "paymentsBase": "Los pagos son en DHB en la cadena Base",
+    "requiresSpl": "Requiere un token SPL en Solana para verlo",
+    "mustHoldOn": "Los espectadores deben tener este token en {{chain}}",
+    "custom": "Personalizado",
+    "contractPlaceholder": "Dirección del contrato (0x…)",
+    "symbolPlaceholder": "Símbolo (p. ej., PEPE)"
   }
 }

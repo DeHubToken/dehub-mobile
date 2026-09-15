@@ -3542,5 +3542,21 @@
     "includeSocials": "სოციალური ქსელების ჩართვა",
     "extraNotes": "დამატებითი შენიშვნები",
     "notesPlaceholder": "ყველაფერი დანარჩენი, რაც პოსტერზე უნდა იყოს"
+  },
+  "monetization": {
+    "tokenGated": "ტოკენით შეზღუდული",
+    "invalidToken": "შეიყვანეთ ტოკენის კონტრაქტის სწორი მისამართი",
+    "createPlanAction": "შექმენით გამოწერის გეგმა",
+    "createPlanFirst": "ჯერ შექმენით გეგმა",
+    "publishPlanFirst": "ჯერ გამოაქვეყნეთ თქვენი გამოწერის გეგმა ჯაჭვში.",
+    "subscribersOnly": "ამ პოსტს მხოლოდ თქვენი გამომწერები გახსნიან.",
+    "price": "ფასი ({{currency}})",
+    "paymentsSolana": "გადახდები ხდება {{currency}}-ით Solana-ზე",
+    "paymentsBase": "გადახდები ხდება DHB-ით Base ჯაჭვზე",
+    "requiresSpl": "სანახავად საჭიროა SPL ტოკენი Solana-ზე",
+    "mustHoldOn": "მაყურებლებს უნდა ჰქონდეთ ეს ტოკენი {{chain}}-ზე",
+    "custom": "მორგებული",
+    "contractPlaceholder": "კონტრაქტის მისამართი (0x…)",
+    "symbolPlaceholder": "სიმბოლო (მაგ. PEPE)"
   }
 }

@@ -3497,5 +3497,21 @@
     "includeSocials": "Haɗa shafukan sada zumunta",
     "extraNotes": "Ƙarin bayanai",
     "notesPlaceholder": "Duk wani abu da fosta ke buƙatar nunawa"
+  },
+  "monetization": {
+    "tokenGated": "Ana buƙatar token",
+    "invalidToken": "Shigar da ingantaccen adireshin kwangilar token",
+    "createPlanAction": "Ƙirƙiri shirin biyan kuɗi",
+    "createPlanFirst": "Fara da ƙirƙirar shiri",
+    "publishPlanFirst": "Fara da buga shirin biyan kuɗin ka a kan sarƙar.",
+    "subscribersOnly": "Masu biyan kuɗin ka kaɗai za su iya buɗe wannan sakon.",
+    "price": "Farashi ({{currency}})",
+    "paymentsSolana": "Ana biyan kuɗi da {{currency}} a kan Solana",
+    "paymentsBase": "Ana biyan kuɗi da DHB a kan sarƙar Base",
+    "requiresSpl": "Yana buƙatar token SPL a Solana don kallo",
+    "mustHoldOn": "Masu kallo dole su mallaki wannan token a {{chain}}",
+    "custom": "Na musamman",
+    "contractPlaceholder": "Adireshin kwangila (0x…)",
+    "symbolPlaceholder": "Alama (misali PEPE)"
   }
 }

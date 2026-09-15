@@ -3569,5 +3569,21 @@
     "includeSocials": "Sosyal hesapları ekle",
     "extraNotes": "Ek notlar",
     "notesPlaceholder": "Afişte görünmesi gereken diğer her şey"
+  },
+  "monetization": {
+    "tokenGated": "Token korumalı",
+    "invalidToken": "Geçerli bir token sözleşme adresi girin",
+    "createPlanAction": "Abonelik planı oluştur",
+    "createPlanFirst": "Önce bir plan oluşturun",
+    "publishPlanFirst": "Önce abonelik planınızı zincirde yayımlayın.",
+    "subscribersOnly": "Bu gönderiyi yalnızca aboneleriniz açabilir.",
+    "price": "Fiyat ({{currency}})",
+    "paymentsSolana": "Ödemeler Solana üzerinde {{currency}} ile yapılır",
+    "paymentsBase": "Ödemeler Base zincirinde DHB ile yapılır",
+    "requiresSpl": "Görüntülemek için Solana'da SPL token gerekir",
+    "mustHoldOn": "İzleyicilerin bu tokeni {{chain}} üzerinde tutması gerekir",
+    "custom": "Özel",
+    "contractPlaceholder": "Sözleşme adresi (0x…)",
+    "symbolPlaceholder": "Sembol (örn. PEPE)"
   }
 }

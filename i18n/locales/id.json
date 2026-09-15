@@ -3557,5 +3557,21 @@
     "includeSocials": "Sertakan media sosial",
     "extraNotes": "Catatan tambahan",
     "notesPlaceholder": "Hal lain yang harus ditampilkan poster"
+  },
+  "monetization": {
+    "tokenGated": "Dibatasi token",
+    "invalidToken": "Masukkan alamat kontrak token yang valid",
+    "createPlanAction": "Buat paket langganan",
+    "createPlanFirst": "Buat paket dulu",
+    "publishPlanFirst": "Terbitkan dulu paket langgananmu di chain.",
+    "subscribersOnly": "Hanya pelangganmu yang bisa membuka postingan ini.",
+    "price": "Harga ({{currency}})",
+    "paymentsSolana": "Pembayaran dalam {{currency}} di Solana",
+    "paymentsBase": "Pembayaran dalam DHB di chain Base",
+    "requiresSpl": "Perlu token SPL di Solana untuk melihat",
+    "mustHoldOn": "Penonton harus memiliki token ini di {{chain}}",
+    "custom": "Kustom",
+    "contractPlaceholder": "Alamat kontrak (0x…)",
+    "symbolPlaceholder": "Simbol (mis. PEPE)"
   }
 }

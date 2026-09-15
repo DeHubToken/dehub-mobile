@@ -3498,5 +3498,21 @@
     "includeSocials": "Ku dar baraha bulshada",
     "extraNotes": "Qoraallo dheeraad ah",
     "notesPlaceholder": "Wax kasta oo kale oo boostarku muujin karo"
+  },
+  "monetization": {
+    "tokenGated": "Token ku xiran",
+    "invalidToken": "Geli cinwaan heshiis token oo sax ah",
+    "createPlanAction": "Abuur qorshe rukumid",
+    "createPlanFirst": "Marka hore abuur qorshe",
+    "publishPlanFirst": "Marka hore ku daabac qorshahaaga rukumidda silsiladda.",
+    "subscribersOnly": "Qoraalkan waxaa kaliya furi kara kuwa ku rukumay.",
+    "price": "Qiimaha ({{currency}})",
+    "paymentsSolana": "Lacag bixinta waa {{currency}} Solana",
+    "paymentsBase": "Lacag bixinta waa DHB silsiladda Base",
+    "requiresSpl": "Waxay u baahan tahay token SPL Solana si loo arko",
+    "mustHoldOn": "Daawadayaashu waa inay haystaan tokenkan {{chain}}",
+    "custom": "Gaar ah",
+    "contractPlaceholder": "Cinwaanka heshiiska (0x…)",
+    "symbolPlaceholder": "Astaan (tusaale PEPE)"
   }
 }

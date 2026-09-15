@@ -3489,5 +3489,21 @@
     "includeSocials": "സോഷ്യൽ ഹാൻഡിലുകൾ ഉൾപ്പെടുത്തുക",
     "extraNotes": "അധിക കുറിപ്പുകൾ",
     "notesPlaceholder": "പോസ്റ്ററിൽ കാണിക്കേണ്ട മറ്റെന്തും"
+  },
+  "monetization": {
+    "tokenGated": "ടോക്കൺ നിയന്ത്രിതം",
+    "invalidToken": "സാധുവായ ടോക്കൺ കരാർ വിലാസം നൽകുക",
+    "createPlanAction": "സബ്സ്ക്രിപ്ഷൻ പ്ലാൻ ഉണ്ടാക്കുക",
+    "createPlanFirst": "ആദ്യം ഒരു പ്ലാൻ ഉണ്ടാക്കുക",
+    "publishPlanFirst": "ആദ്യം നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ പ്ലാൻ ചെയിനിൽ പ്രസിദ്ധീകരിക്കുക.",
+    "subscribersOnly": "ഈ പോസ്റ്റ് നിങ്ങളുടെ വരിക്കാർക്ക് മാത്രമേ തുറക്കാനാകൂ.",
+    "price": "വില ({{currency}})",
+    "paymentsSolana": "പേയ്‌മെന്റുകൾ സോളാനയിൽ {{currency}} ൽ ആണ്",
+    "paymentsBase": "പേയ്‌മെന്റുകൾ Base ചെയിനിൽ DHB ൽ ആണ്",
+    "requiresSpl": "കാണാൻ സോളാനയിൽ ഒരു SPL ടോക്കൺ വേണം",
+    "mustHoldOn": "കാഴ്ചക്കാർക്ക് {{chain}} ൽ ഈ ടോക്കൺ ഉണ്ടായിരിക്കണം",
+    "custom": "ഇഷ്ടാനുസൃതം",
+    "contractPlaceholder": "കരാർ വിലാസം (0x…)",
+    "symbolPlaceholder": "ചിഹ്നം (ഉദാ. PEPE)"
   }
 }

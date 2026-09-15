@@ -3451,5 +3451,21 @@
     "includeSocials": "سوشل ہینڈلز شامل کرو",
     "extraNotes": "اضافی نوٹس",
     "notesPlaceholder": "پوسٹر وچ ٻیا جو کجھ ݙکھاوݨا ہے"
+  },
+  "monetization": {
+    "tokenGated": "ٹوکن گیٹڈ",
+    "invalidToken": "درست ٹوکن کنٹریکٹ ایڈریس لکھو",
+    "createPlanAction": "سبسکرپشن پلان بݨاؤ",
+    "createPlanFirst": "پہلے ہک پلان بݨاؤ",
+    "publishPlanFirst": "پہلے آپݨا سبسکرپشن پلان چین تے شائع کرو۔",
+    "subscribersOnly": "ایہہ پوسٹ رڳو تہاݙے سبسکرائبر کھول سڳدن۔",
+    "price": "قیمت ({{currency}})",
+    "paymentsSolana": "ادائیگی Solana تے {{currency}} وچ تھیندی ہے",
+    "paymentsBase": "ادائیگی Base چین تے DHB وچ تھیندی ہے",
+    "requiresSpl": "ݙیکھݨ کیتے Solana تے SPL ٹوکن گھرجدے",
+    "mustHoldOn": "ݙیکھݨ آلیاں کول {{chain}} تے ایہہ ٹوکن ہوݨا چاہیدے",
+    "custom": "کسٹم",
+    "contractPlaceholder": "کنٹریکٹ ایڈریس (0x…)",
+    "symbolPlaceholder": "علامت (مثلاً PEPE)"
   }
 }

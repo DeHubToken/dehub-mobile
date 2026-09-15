@@ -3487,5 +3487,21 @@
     "includeSocials": "ဆိုရှယ်မီဒီယာ ထည့်ရန်",
     "extraNotes": "ထပ်ဆောင်း မှတ်စုများ",
     "notesPlaceholder": "ပိုစတာတွင် ပြရမည့် အခြားအရာများ"
+  },
+  "monetization": {
+    "tokenGated": "တိုကင် ကန့်သတ်",
+    "invalidToken": "မှန်ကန်သော တိုကင် စာချုပ်လိပ်စာ ထည့်ပါ",
+    "createPlanAction": "စာရင်းသွင်းအစီအစဉ် ဖန်တီးရန်",
+    "createPlanFirst": "ဦးစွာ အစီအစဉ်တစ်ခု ဖန်တီးပါ",
+    "publishPlanFirst": "ဦးစွာ သင့်စာရင်းသွင်းအစီအစဉ်ကို ချိန်းပေါ်တွင် ထုတ်ဝေပါ။",
+    "subscribersOnly": "ဤပို့စ်ကို သင့်စာရင်းသွင်းသူများသာ ဖွင့်နိုင်သည်။",
+    "price": "စျေးနှုန်း ({{currency}})",
+    "paymentsSolana": "ငွေပေးချေမှုများသည် Solana ပေါ်တွင် {{currency}} ဖြင့်",
+    "paymentsBase": "ငွေပေးချေမှုများသည် Base ချိန်းပေါ်တွင် DHB ဖြင့်",
+    "requiresSpl": "ကြည့်ရန် Solana ပေါ်တွင် SPL တိုကင် လိုအပ်သည်",
+    "mustHoldOn": "ကြည့်ရှုသူများသည် {{chain}} တွင် ဤတိုကင်ကို ပိုင်ဆိုင်ရမည်",
+    "custom": "စိတ်ကြိုက်",
+    "contractPlaceholder": "စာချုပ်လိပ်စာ (0x…)",
+    "symbolPlaceholder": "သင်္ကေတ (ဥပမာ PEPE)"
   }
 }

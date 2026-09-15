@@ -3507,5 +3507,21 @@
     "includeSocials": "Uključi društvene mreže",
     "extraNotes": "Dodatne napomene",
     "notesPlaceholder": "Sve ostalo što plakat mora prikazati"
+  },
+  "monetization": {
+    "tokenGated": "Pristup putem tokena",
+    "invalidToken": "Unesite valjanu adresu ugovora tokena",
+    "createPlanAction": "Izradi pretplatnički plan",
+    "createPlanFirst": "Prvo izradite plan",
+    "publishPlanFirst": "Najprije objavite svoj pretplatnički plan na lancu.",
+    "subscribersOnly": "Ovu objavu mogu otvoriti samo vaši pretplatnici.",
+    "price": "Cijena ({{currency}})",
+    "paymentsSolana": "Plaćanja se vrše u {{currency}} na Solani",
+    "paymentsBase": "Plaćanja se vrše u DHB na lancu Base",
+    "requiresSpl": "Za pregled je potreban SPL token na Solani",
+    "mustHoldOn": "Gledatelji moraju posjedovati ovaj token na {{chain}}",
+    "custom": "Prilagođeno",
+    "contractPlaceholder": "Adresa ugovora (0x…)",
+    "symbolPlaceholder": "Simbol (npr. PEPE)"
   }
 }

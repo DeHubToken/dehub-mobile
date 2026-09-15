@@ -3595,5 +3595,21 @@
     "includeSocials": "Thêm mạng xã hội",
     "extraNotes": "Ghi chú thêm",
     "notesPlaceholder": "Bất kỳ điều gì khác poster phải thể hiện"
+  },
+  "monetization": {
+    "tokenGated": "Giới hạn bằng token",
+    "invalidToken": "Nhập địa chỉ hợp đồng token hợp lệ",
+    "createPlanAction": "Tạo gói đăng ký",
+    "createPlanFirst": "Hãy tạo gói trước",
+    "publishPlanFirst": "Hãy đăng gói đăng ký của bạn lên chuỗi trước.",
+    "subscribersOnly": "Chỉ người đăng ký của bạn mới mở được bài này.",
+    "price": "Giá ({{currency}})",
+    "paymentsSolana": "Thanh toán bằng {{currency}} trên Solana",
+    "paymentsBase": "Thanh toán bằng DHB trên chuỗi Base",
+    "requiresSpl": "Cần token SPL trên Solana để xem",
+    "mustHoldOn": "Người xem phải nắm giữ token này trên {{chain}}",
+    "custom": "Tùy chỉnh",
+    "contractPlaceholder": "Địa chỉ hợp đồng (0x…)",
+    "symbolPlaceholder": "Ký hiệu (vd. PEPE)"
   }
 }

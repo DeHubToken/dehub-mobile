@@ -3577,5 +3577,21 @@
     "includeSocials": "Includi i social",
     "extraNotes": "Note aggiuntive",
     "notesPlaceholder": "Tutto ciò che il poster deve mostrare"
+  },
+  "monetization": {
+    "tokenGated": "Accesso con token",
+    "invalidToken": "Inserisci un indirizzo di contratto token valido",
+    "createPlanAction": "Crea un piano di abbonamento",
+    "createPlanFirst": "Crea prima un piano",
+    "publishPlanFirst": "Pubblica prima il tuo piano di abbonamento on-chain.",
+    "subscribersOnly": "Solo i tuoi abbonati possono aprire questo post.",
+    "price": "Prezzo ({{currency}})",
+    "paymentsSolana": "I pagamenti sono in {{currency}} su Solana",
+    "paymentsBase": "I pagamenti sono in DHB sulla chain Base",
+    "requiresSpl": "Richiede un token SPL su Solana per la visione",
+    "mustHoldOn": "Gli spettatori devono possedere questo token su {{chain}}",
+    "custom": "Personalizzato",
+    "contractPlaceholder": "Indirizzo del contratto (0x…)",
+    "symbolPlaceholder": "Simbolo (es. PEPE)"
   }
 }

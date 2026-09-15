@@ -3581,5 +3581,21 @@
     "includeSocials": "Inclure les réseaux sociaux",
     "extraNotes": "Notes supplémentaires",
     "notesPlaceholder": "Tout ce que l'affiche doit montrer d'autre"
+  },
+  "monetization": {
+    "tokenGated": "Accès par jeton",
+    "invalidToken": "Saisissez une adresse de contrat de jeton valide",
+    "createPlanAction": "Créer un abonnement",
+    "createPlanFirst": "Créez d'abord un abonnement",
+    "publishPlanFirst": "Publiez d'abord votre abonnement on-chain.",
+    "subscribersOnly": "Seuls vos abonnés peuvent ouvrir cette publication.",
+    "price": "Prix ({{currency}})",
+    "paymentsSolana": "Les paiements se font en {{currency}} sur Solana",
+    "paymentsBase": "Les paiements se font en DHB sur la chaîne Base",
+    "requiresSpl": "Nécessite un jeton SPL sur Solana pour être vu",
+    "mustHoldOn": "Les spectateurs doivent détenir ce jeton sur {{chain}}",
+    "custom": "Personnalisé",
+    "contractPlaceholder": "Adresse du contrat (0x…)",
+    "symbolPlaceholder": "Symbole (ex. PEPE)"
   }
 }

@@ -3624,5 +3624,21 @@
     "includeSocials": "Sluit sosiale media in",
     "extraNotes": "Ekstra notas",
     "notesPlaceholder": "Enigiets anders wat die plakkaat moet wys"
+  },
+  "monetization": {
+    "tokenGated": "Tokengegrendel",
+    "invalidToken": "Voer 'n geldige tokenkontrakadres in",
+    "createPlanAction": "Skep 'n intekenplan",
+    "createPlanFirst": "Skep eers 'n plan",
+    "publishPlanFirst": "Publiseer eers jou intekenplan op die ketting.",
+    "subscribersOnly": "Slegs jou intekenaars kan hierdie plasing oopmaak.",
+    "price": "Prys ({{currency}})",
+    "paymentsSolana": "Betalings is in {{currency}} op Solana",
+    "paymentsBase": "Betalings is in DHB op die Base-ketting",
+    "requiresSpl": "Vereis 'n SPL-token op Solana om te sien",
+    "mustHoldOn": "Kykers moet hierdie token op {{chain}} besit",
+    "custom": "Pasgemaak",
+    "contractPlaceholder": "Kontrakadres (0x…)",
+    "symbolPlaceholder": "Simbool (bv. PEPE)"
   }
 }

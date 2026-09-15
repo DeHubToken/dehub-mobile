@@ -3558,5 +3558,21 @@
     "includeSocials": "Ijtimoiy tarmoqlarni qo‘shish",
     "extraNotes": "Qo‘shimcha eslatmalar",
     "notesPlaceholder": "Posterda ko‘rsatilishi kerak bo‘lgan boshqa narsalar"
+  },
+  "monetization": {
+    "tokenGated": "Token bilan cheklangan",
+    "invalidToken": "To‘g‘ri token shartnoma manzilini kiriting",
+    "createPlanAction": "Obuna rejasini yaratish",
+    "createPlanFirst": "Avval reja yarating",
+    "publishPlanFirst": "Avval obuna rejangizni zanjirda nashr qiling.",
+    "subscribersOnly": "Bu postni faqat obunachilaringiz ocha oladi.",
+    "price": "Narx ({{currency}})",
+    "paymentsSolana": "To‘lovlar Solana’da {{currency}} bilan amalga oshiriladi",
+    "paymentsBase": "To‘lovlar Base zanjirida DHB bilan amalga oshiriladi",
+    "requiresSpl": "Ko‘rish uchun Solana’da SPL token kerak",
+    "mustHoldOn": "Tomoshabinlarda ushbu token {{chain}}’da bo‘lishi kerak",
+    "custom": "Maxsus",
+    "contractPlaceholder": "Shartnoma manzili (0x…)",
+    "symbolPlaceholder": "Belgi (masalan, PEPE)"
   }
 }

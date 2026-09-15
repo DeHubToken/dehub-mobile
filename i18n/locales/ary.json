@@ -3533,5 +3533,21 @@
     "includeSocials": "زيد حسابات التواصل",
     "extraNotes": "ملاحظات زايدة",
     "notesPlaceholder": "أي حاجة أخرى خاصها تبان فالملصق"
+  },
+  "monetization": {
+    "tokenGated": "مقيد بتوكن",
+    "invalidToken": "دخل عنوان عقد توكن صحيح",
+    "createPlanAction": "دير خطة اشتراك",
+    "createPlanFirst": "دير خطة لول",
+    "publishPlanFirst": "نشر الخطة ديال الاشتراك على السلسلة لول.",
+    "subscribersOnly": "غير المشتركين ديالك لي يقدرو يحلو هاد البوست.",
+    "price": "الثمن ({{currency}})",
+    "paymentsSolana": "الخلاص كيكون بـ{{currency}} على سولانا",
+    "paymentsBase": "الخلاص كيكون بـDHB على شبكة Base",
+    "requiresSpl": "خاصو توكن SPL على سولانا باش تشوفو",
+    "mustHoldOn": "المشاهدين خاصهم يكون عندهم هاد التوكن على {{chain}}",
+    "custom": "مخصص",
+    "contractPlaceholder": "عنوان العقد (0x…)",
+    "symbolPlaceholder": "الرمز (مثلا PEPE)"
   }
 }

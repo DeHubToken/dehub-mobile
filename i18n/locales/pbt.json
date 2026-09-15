@@ -3457,5 +3457,21 @@
     "includeSocials": "ټولنیزې پاڼې شاملې کړئ",
     "extraNotes": "اضافي یادښتونه",
     "notesPlaceholder": "بل هر څه چې پوسټر یې باید وښیي"
+  },
+  "monetization": {
+    "tokenGated": "په ټوکن پورې تړلی",
+    "invalidToken": "د ټوکن د تړون سم پته ولیکئ",
+    "createPlanAction": "د ګډون پلان جوړ کړئ",
+    "createPlanFirst": "لومړی یو پلان جوړ کړئ",
+    "publishPlanFirst": "لومړی خپل د ګډون پلان په زنځیر خپور کړئ.",
+    "subscribersOnly": "دا پوسټ یوازې ستاسو ګډونوال پرانیستلی شي.",
+    "price": "بیه ({{currency}})",
+    "paymentsSolana": "تادیات په Solana کې په {{currency}} کیږي",
+    "paymentsBase": "تادیات د Base په زنځیر کې په DHB کیږي",
+    "requiresSpl": "د لیدلو لپاره په Solana کې SPL ټوکن اړین دی",
+    "mustHoldOn": "لیدونکي باید دا ټوکن په {{chain}} کې ولري",
+    "custom": "ځانګړی",
+    "contractPlaceholder": "د تړون پته (0x…)",
+    "symbolPlaceholder": "نښه (لکه PEPE)"
   }
 }
