@@ -624,7 +624,8 @@
     "copy": "Copia",
     "optionalSuffix": "(opcional)",
     "yesterday": "Ahir",
-    "ok": "D'acord"
+    "ok": "D'acord",
+    "continue": "Continua"
   },
   "tip": {
     "title": "Enviar propina",

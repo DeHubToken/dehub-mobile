@@ -639,7 +639,8 @@
     "copy": "Copia",
     "optionalSuffix": "(facoltativo)",
     "yesterday": "Ieri",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Continua"
   },
   "drawers": {
     "ppvTitle": "Contenuto Pay-Per-View",

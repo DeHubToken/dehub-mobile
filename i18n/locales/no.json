@@ -621,7 +621,8 @@
     "copy": "Kopier",
     "optionalSuffix": "(valgfritt)",
     "yesterday": "I går",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Fortsett"
   },
   "postOptions": {
     "options": "Alternativer",

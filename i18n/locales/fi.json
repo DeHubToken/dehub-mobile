@@ -624,7 +624,8 @@
     "copy": "Kopioi",
     "optionalSuffix": "(valinnainen)",
     "yesterday": "Eilen",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Jatka"
   },
   "postOptions": {
     "options": "Vaihtoehdot",

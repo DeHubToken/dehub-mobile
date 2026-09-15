@@ -624,7 +624,8 @@
     "copy": "Kopírovat",
     "optionalSuffix": "(nepovinné)",
     "yesterday": "Včera",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Pokračovat"
   },
   "drawers": {
     "ppvTitle": "Platba za zhlédnutí",

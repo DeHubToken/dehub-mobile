@@ -1207,7 +1207,8 @@
     "recordVideo": "Nahrať video",
     "saveChanges": "Uložiť zmeny",
     "optionalSuffix": "(nepovinné)",
-    "yesterday": "Včera"
+    "yesterday": "Včera",
+    "continue": "Pokračovať"
   },
   "featureRequests": {
     "title": "Požiadavky na funkcie",

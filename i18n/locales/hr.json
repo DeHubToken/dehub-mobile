@@ -624,7 +624,8 @@
     "copy": "Kopiraj",
     "optionalSuffix": "(neobavezno)",
     "yesterday": "Jučer",
-    "ok": "U redu"
+    "ok": "U redu",
+    "continue": "Nastavi"
   },
   "tip": {
     "title": "Pošalji napojnicu",

@@ -624,7 +624,8 @@
     "copy": "Másolás",
     "optionalSuffix": "(nem kötelező)",
     "yesterday": "Tegnap",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Folytatás"
   },
   "drawers": {
     "ppvTitle": "Fizetés megtekintésenként",

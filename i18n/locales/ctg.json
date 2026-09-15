@@ -1313,7 +1313,8 @@
     "recordVideo": "ভিডিও রেকর্ড গরন",
     "saveChanges": "পরিবর্তন রাখন",
     "optionalSuffix": "(ঐচ্ছিক)",
-    "yesterday": "গতকাইল"
+    "yesterday": "গতকাইল",
+    "continue": "আগে বাড়"
   },
   "featureRequests": {
     "title": "ফিচার অনুরোধ",

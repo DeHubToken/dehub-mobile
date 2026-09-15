@@ -623,7 +623,8 @@
     "copy": "کاپی",
     "optionalSuffix": "(اختیاری)",
     "yesterday": "کل",
-    "ok": "ٹھیک ہے"
+    "ok": "ٹھیک ہے",
+    "continue": "جاری رکھیں"
   },
   "drawers": {
     "ppvTitle": "پے پر ویو مواد",

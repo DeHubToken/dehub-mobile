@@ -438,7 +438,8 @@
     "takePhoto": "Зробити фото",
     "recordVideo": "Записати відео",
     "saveChanges": "Зберегти зміни",
-    "optionalSuffix": "(необов'язково)"
+    "optionalSuffix": "(необов'язково)",
+    "continue": "Продовжити"
   },
   "pages": {
     "home": {

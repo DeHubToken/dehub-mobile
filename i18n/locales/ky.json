@@ -619,7 +619,8 @@
     "copy": "Көчүрүү",
     "optionalSuffix": "(милдеттүү эмес)",
     "yesterday": "Кечээ",
-    "ok": "Макул"
+    "ok": "Макул",
+    "continue": "Улантуу"
   },
   "postOptions": {
     "options": "Тандоолор",

@@ -624,7 +624,8 @@
     "copy": "複製",
     "optionalSuffix": "（可選）",
     "yesterday": "尋日",
-    "ok": "確定"
+    "ok": "確定",
+    "continue": "繼續"
   },
   "tip": {
     "title": "送禮物",

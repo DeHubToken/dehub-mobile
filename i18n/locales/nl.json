@@ -831,7 +831,8 @@
     "recordVideo": "Video opnemen",
     "saveChanges": "Wijzigingen opslaan",
     "optionalSuffix": "(optioneel)",
-    "yesterday": "Gisteren"
+    "yesterday": "Gisteren",
+    "continue": "Doorgaan"
   },
   "home": {
     "title": "Home",

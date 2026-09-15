@@ -624,7 +624,8 @@
     "copy": "Kopiuj",
     "optionalSuffix": "(opcjonalnie)",
     "yesterday": "Wczoraj",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Kontynuuj"
   },
   "glossary": {
     "title": "Słownik",

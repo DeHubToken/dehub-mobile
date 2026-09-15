@@ -866,7 +866,8 @@
     "copy": "Copiază",
     "optionalSuffix": "(opțional)",
     "yesterday": "Ieri",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Continuare"
   },
   "postOptions": {
     "options": "Options",

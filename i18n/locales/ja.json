@@ -638,7 +638,8 @@
     "copy": "コピー",
     "optionalSuffix": "（任意）",
     "yesterday": "昨日",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "はい"
   },
   "postOptions": {
     "options": "オプション",

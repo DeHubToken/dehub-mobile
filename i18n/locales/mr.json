@@ -615,7 +615,8 @@
     "copy": "कॉपी करा",
     "optionalSuffix": "(पर्यायी)",
     "yesterday": "काल",
-    "ok": "ठीक आहे"
+    "ok": "ठीक आहे",
+    "continue": "सुरु ठेवा"
   },
   "drawers": {
     "ppvTitle": "पे पर व्ह्यू मजकूर",

@@ -1468,7 +1468,8 @@
     "copy": "Kopieer",
     "optionalSuffix": "(opsioneel)",
     "yesterday": "Gister",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Gaan voort"
   },
   "postOptions": {
     "options": "Options",

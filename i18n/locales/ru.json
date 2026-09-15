@@ -638,7 +638,8 @@
     "copy": "Копировать",
     "optionalSuffix": "(необязательно)",
     "yesterday": "Вчера",
-    "ok": "ОК"
+    "ok": "ОК",
+    "continue": "Продолжить"
   },
   "drawers": {
     "ppvTitle": "Платный контент",

@@ -611,7 +611,8 @@
     "copy": "Нусха",
     "optionalSuffix": "(ихтиёрӣ)",
     "yesterday": "Дирӯз",
-    "ok": "Хуб"
+    "ok": "Хуб",
+    "continue": "Давом додан"
   },
   "postOptions": {
     "options": "Имконот",

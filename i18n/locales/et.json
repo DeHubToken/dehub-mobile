@@ -623,7 +623,8 @@
     "copy": "Kopeeri",
     "optionalSuffix": "(valikuline)",
     "yesterday": "Eile",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Jätka"
   },
   "tip": {
     "title": "Saada jootraha",

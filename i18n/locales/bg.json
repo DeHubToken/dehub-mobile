@@ -624,7 +624,8 @@
     "copy": "Копирай",
     "optionalSuffix": "(по избор)",
     "yesterday": "Вчера",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Продължете"
   },
   "drawers": {
     "ppvTitle": "Плащане на гледане",

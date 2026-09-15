@@ -623,7 +623,8 @@
     "copy": "نسخ",
     "optionalSuffix": "(اختياري)",
     "yesterday": "أمس",
-    "ok": "حسنًا"
+    "ok": "حسنًا",
+    "continue": "تابع"
   },
   "drawers": {
     "ppvTitle": "محتوى الدفع لكل مشاهدة",

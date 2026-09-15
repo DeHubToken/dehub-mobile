@@ -636,7 +636,8 @@
     "copy": "복사",
     "optionalSuffix": "(선택)",
     "yesterday": "어제",
-    "ok": "확인"
+    "ok": "확인",
+    "continue": "계속하기"
   },
   "drawers": {
     "ppvTitle": "유료 콘텐츠",

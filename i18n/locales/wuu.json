@@ -583,7 +583,8 @@
     "copy": "复制",
     "optionalSuffix": "（可选）",
     "yesterday": "昨天",
-    "ok": "确定"
+    "ok": "确定",
+    "continue": "继续"
   },
   "tip": {
     "title": "送礼物",

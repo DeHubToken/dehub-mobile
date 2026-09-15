@@ -583,7 +583,8 @@
     "copy": "انسخ",
     "optionalSuffix": "(اختياري)",
     "yesterday": "أمس",
-    "ok": "تمام"
+    "ok": "تمام",
+    "continue": "كمل"
   },
   "tip": {
     "title": "أرسل إكرامية",

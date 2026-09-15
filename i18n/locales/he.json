@@ -622,7 +622,8 @@
     "copy": "העתק",
     "optionalSuffix": "(אופציונלי)",
     "yesterday": "אתמול",
-    "ok": "אישור"
+    "ok": "אישור",
+    "continue": "להמשיך"
   },
   "drawers": {
     "ppvTitle": "תוכן בתשלום",

@@ -612,7 +612,8 @@
     "copy": "কপি",
     "optionalSuffix": "(ঐচ্ছিক)",
     "yesterday": "গতকাল",
-    "ok": "ঠিক আছে"
+    "ok": "ঠিক আছে",
+    "continue": "এগিয়ে যান"
   },
   "drawers": {
     "ppvTitle": "পে-পার-ভিউ কন্টেন্ট",

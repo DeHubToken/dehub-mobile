@@ -583,7 +583,8 @@
     "copy": "Salin",
     "optionalSuffix": "(opsional)",
     "yesterday": "Wingi",
-    "ok": "OKE"
+    "ok": "OKE",
+    "continue": "Terusna"
   },
   "tip": {
     "title": "Kirim Hadiah",

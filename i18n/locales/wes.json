@@ -579,7 +579,8 @@
     "copy": "Copy",
     "optionalSuffix": "(optional)",
     "yesterday": "Yesterday",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Continue"
   },
   "tip": {
     "title": "Send Tip",

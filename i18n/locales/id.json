@@ -625,7 +625,8 @@
     "copy": "Salin",
     "optionalSuffix": "(opsional)",
     "yesterday": "Kemarin",
-    "ok": "OKE"
+    "ok": "OKE",
+    "continue": "Lanjutkan"
   },
   "drawers": {
     "ppvTitle": "Konten Bayar-Per-Tayang",

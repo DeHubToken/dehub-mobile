@@ -624,7 +624,8 @@
     "copy": "Kopiera",
     "optionalSuffix": "(valfritt)",
     "yesterday": "I går",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Fortsätt"
   },
   "drawers": {
     "ppvTitle": "Betala per visning",

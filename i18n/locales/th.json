@@ -104,7 +104,8 @@
     "saveChanges": "บันทึกการเปลี่ยนแปลง",
     "optionalSuffix": "(ไม่บังคับ)",
     "yesterday": "เมื่อวาน",
-    "ok": "ตกลง"
+    "ok": "ตกลง",
+    "continue": "ดำเนินการต่อ"
   },
   "glossary": {
     "title": "อภิธานศัพท์",

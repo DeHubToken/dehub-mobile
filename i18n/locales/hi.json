@@ -623,7 +623,8 @@
     "copy": "कॉपी",
     "optionalSuffix": "(वैकल्पिक)",
     "yesterday": "कल",
-    "ok": "ठीक है"
+    "ok": "ठीक है",
+    "continue": "जारी रखें"
   },
   "drawers": {
     "ppvTitle": "पे-पर-व्यू सामग्री",

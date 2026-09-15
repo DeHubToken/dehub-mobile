@@ -618,7 +618,8 @@
     "copy": "كۆچۈرۈش",
     "optionalSuffix": "(ئىختىيارى)",
     "yesterday": "تۈنۈگۈن",
-    "ok": "ماقۇل"
+    "ok": "ماقۇل",
+    "continue": "داۋالاش"
   },
   "postOptions": {
     "options": "تاللانمىلار",

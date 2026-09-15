@@ -623,7 +623,8 @@
     "copy": "Kopijuoti",
     "optionalSuffix": "(nebūtina)",
     "yesterday": "Vakar",
-    "ok": "Gerai"
+    "ok": "Gerai",
+    "continue": "Tęsti"
   },
   "tip": {
     "title": "Siųsti arbatpinigius",

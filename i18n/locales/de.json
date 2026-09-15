@@ -638,7 +638,8 @@
     "copy": "Kopieren",
     "optionalSuffix": "(optional)",
     "yesterday": "Gestern",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Fortfahren"
   },
   "postOptions": {
     "options": "Optionen",

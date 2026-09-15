@@ -639,7 +639,8 @@
     "copy": "Copier",
     "optionalSuffix": "(facultatif)",
     "yesterday": "Hier",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Continuer"
   },
   "drawers": {
     "ppvTitle": "Contenu à la carte",

@@ -639,7 +639,8 @@
     "copy": "Kopyala",
     "optionalSuffix": "(isteğe bağlı)",
     "yesterday": "Dün",
-    "ok": "Tamam"
+    "ok": "Tamam",
+    "continue": "Devam et"
   },
   "tip": {
     "title": "Bahşiş Gönder",

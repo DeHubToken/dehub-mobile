@@ -621,7 +621,8 @@
     "copy": "కాపీ చేయండి",
     "optionalSuffix": "(ఐచ్ఛికం)",
     "yesterday": "నిన్న",
-    "ok": "సరే"
+    "ok": "సరే",
+    "continue": "కొనసాగించు"
   },
   "drawers": {
     "ppvTitle": "పే పర్ వ్యూ కంటెంట్",

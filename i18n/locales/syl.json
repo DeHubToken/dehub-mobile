@@ -1308,7 +1308,8 @@
     "recordVideo": "ভিডিও রেকর্ড করো",
     "saveChanges": "পরিবর্তন সংরক্ষণ করো",
     "optionalSuffix": "(ঐচ্ছিক)",
-    "yesterday": "কাইল"
+    "yesterday": "কাইল",
+    "continue": "আগে"
   },
   "featureRequests": {
     "title": "ফিচার রিকোয়েস্ট",
