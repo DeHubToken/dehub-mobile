@@ -84,6 +84,10 @@ export async function readDhbBalance(): Promise<number> {
 export async function payPostQuota(
   amountDhb: number,
   treasury: string,
+  // What the shortfall message calls the thing being paid for. Defaults to a
+  // post because that is every existing caller; "Migrate all" passes its own,
+  // since telling someone a batch of 300 videos is "this post" is nonsense.
+  subjectLabel = "This post",
 ): Promise<QuotaPaymentResult> {
   const amount = Math.ceil(amountDhb);
   if (!Number.isFinite(amount) || amount <= 0) throw new Error("Nothing to pay.");
@@ -121,7 +125,7 @@ export async function payPostQuota(
       0,
     );
     throw new Error(
-      `This post costs ${amount.toLocaleString()} DHB and you hold ${Math.floor(held).toLocaleString()}.`,
+      `${subjectLabel} costs ${amount.toLocaleString()} DHB and you hold ${Math.floor(held).toLocaleString()}.`,
     );
   }
 
