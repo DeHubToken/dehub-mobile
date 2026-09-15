@@ -592,7 +592,8 @@
     "confirm": "Тасдиқ кардан",
     "signIn": "Ворид шудан",
     "takePhoto": "Акс гирифтан",
-    "recordVideo": "Сабти видео"
+    "recordVideo": "Сабти видео",
+    "saveChanges": "Тағйиротро нигоҳ доред"
   },
   "postOptions": {
     "options": "Имконот",
@@ -3056,7 +3057,8 @@
     "logOutFailed": "Дастгоҳ бароварда нашуд",
     "logOutAllFailed": "Дастгоҳҳо бароварда нашуданд",
     "devicesLoggedOut_one": "{{count}} дастгоҳ бароварда шуд",
-    "devicesLoggedOut_other": "{{count}} дастгоҳ бароварда шуд"
+    "devicesLoggedOut_other": "{{count}} дастгоҳ бароварда шуд",
+    "noActive": "Ҷаласаҳои фаъол нестанд"
   },
   "library": {
     "myPosts": "Постҳои ман",
@@ -3086,7 +3088,9 @@
     "deleteFolderTitle": "Нест кардани ҷузвдон",
     "deleteFolderBody": "Мутмаин ҳастед, ки \"{{name}}\"-ро нест кунед? Постҳои захирашудаи дарунӣ аз рӯйхати захирашудаи шумо нест намешаванд.",
     "folderDeleted": "Ҷузвдон нест карда шуд",
-    "deleteFolderFailed": "Ҷузвдон нест карда нашуд"
+    "deleteFolderFailed": "Ҷузвдон нест карда нашуд",
+    "noCollections": "Ҳанӯз маҷмӯаҳои шахсӣ нестанд",
+    "createCollection": "Маҷмӯа сохтан"
   },
   "setProfile": {
     "title": "Профили худро танзим кунед",
@@ -3107,7 +3111,8 @@
     "imageFailed": "Ин тасвирро истифода бурдан нашуд",
     "usernameReserved": "Ин ном ҳифз шудааст",
     "profileSet": "Профил бомуваффақият танзим шуд!",
-    "profileFailed": "Профил танзим нашуд"
+    "profileFailed": "Профил танзим нашуд",
+    "displayNameHint": "Номи оммавии шумо, ки дар профил нишон дода мешавад."
   },
   "events": {
     "mine": "Азони ман",

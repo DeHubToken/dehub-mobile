@@ -604,7 +604,8 @@
     "confirm": "Kinnita",
     "signIn": "Logi sisse",
     "takePhoto": "Tee foto",
-    "recordVideo": "Salvesta video"
+    "recordVideo": "Salvesta video",
+    "saveChanges": "Salvesta muudatused"
   },
   "tip": {
     "title": "Saada jootraha",
@@ -3077,7 +3078,8 @@
     "logOutFailed": "Seadme väljalogimine ebaõnnestus",
     "logOutAllFailed": "Seadmete väljalogimine ebaõnnestus",
     "devicesLoggedOut_one": "{{count}} seade logiti välja",
-    "devicesLoggedOut_other": "{{count}} seadet logiti välja"
+    "devicesLoggedOut_other": "{{count}} seadet logiti välja",
+    "noActive": "Aktiivseid seansse pole"
   },
   "library": {
     "myPosts": "Minu postitused",
@@ -3107,7 +3109,9 @@
     "deleteFolderTitle": "Kustuta kaust",
     "deleteFolderBody": "Kas soovid kindlasti kustutada \"{{name}}\"? Selle sees olevaid salvestatud postitusi sinu salvestatute loendist ei kustutata.",
     "folderDeleted": "Kaust kustutatud",
-    "deleteFolderFailed": "Kausta kustutamine ebaõnnestus"
+    "deleteFolderFailed": "Kausta kustutamine ebaõnnestus",
+    "noCollections": "Oma kogusid pole veel",
+    "createCollection": "Loo kogu"
   },
   "setProfile": {
     "title": "Seadista oma profiil",
@@ -3128,7 +3132,8 @@
     "imageFailed": "Seda pilti ei õnnestunud kasutada",
     "usernameReserved": "See kasutajanimi on reserveeritud",
     "profileSet": "Profiil edukalt seadistatud!",
-    "profileFailed": "Profiili seadistamine ebaõnnestus"
+    "profileFailed": "Profiili seadistamine ebaõnnestus",
+    "displayNameHint": "Sinu avalik nimi, mis kuvatakse profiilil."
   },
   "events": {
     "mine": "Minu omad",

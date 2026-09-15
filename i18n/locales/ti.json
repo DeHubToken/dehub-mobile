@@ -594,7 +594,8 @@
     "confirm": "ኣረጋግጽ",
     "signIn": "እቶ",
     "takePhoto": "ስእሊ ኣልዕል",
-    "recordVideo": "ቪድዮ ቅረጽ"
+    "recordVideo": "ቪድዮ ቅረጽ",
+    "saveChanges": "ለውጥታት ኣቐምጥ"
   },
   "tip": {
     "title": "ሽልማት ስደድ",
@@ -3043,7 +3044,8 @@
     "logOutFailed": "መሳርሒ ክወጽእ ኣይከኣለን",
     "logOutAllFailed": "መሳርሒታት ክወጽኡ ኣይከኣሉን",
     "devicesLoggedOut_one": "{{count}} መሳርሒ ወጺኡ",
-    "devicesLoggedOut_other": "{{count}} መሳርሒታት ወጺኦም"
+    "devicesLoggedOut_other": "{{count}} መሳርሒታት ወጺኦም",
+    "noActive": "ንጡፋት ክፍለ-ግዜታት የለዉን"
   },
   "library": {
     "myPosts": "ጽሑፋተይ",
@@ -3073,7 +3075,9 @@
     "deleteFolderTitle": "ፎልደር ሰርዝ",
     "deleteFolderBody": "ብርግጽ ን\"{{name}}\" ክትሰርዞ ትደሊ? እቶም ኣብ ውሽጡ ዝተዓቀቡ ጽሑፋት ካብ ዝርዝር ዝተዓቀቡ ኣይክስረዙን።",
     "folderDeleted": "ፎልደር ተሰሪዙ",
-    "deleteFolderFailed": "ፎልደር ክስረዝ ኣይከኣለን"
+    "deleteFolderFailed": "ፎልደር ክስረዝ ኣይከኣለን",
+    "noCollections": "ገና ናይ ገዛእ ርእስኻ ኣከፋፍላ የለን",
+    "createCollection": "ኣከፋፍላ ፍጠር"
   },
   "setProfile": {
     "title": "መለለዪኻ ኣቐምጥ",
@@ -3094,7 +3098,8 @@
     "imageFailed": "እቲ ስእሊ ክንጥቀመሉ ኣይከኣልናን",
     "usernameReserved": "እዚ ስም ተጠቃሚ ተሓዚኡ እዩ",
     "profileSet": "መለለዪ ብዓወት ተቐሚጡ!",
-    "profileFailed": "መለለዪ ክቕመጥ ኣይከኣለን"
+    "profileFailed": "መለለዪ ክቕመጥ ኣይከኣለን",
+    "displayNameHint": "ኣብ መለለዪኻ ዝረአ ህዝባዊ ስምካ።"
   },
   "events": {
     "mine": "ናተይ",

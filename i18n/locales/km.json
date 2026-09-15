@@ -617,7 +617,8 @@
     "confirm": "បញ្ជាក់",
     "signIn": "ចូល",
     "takePhoto": "ថតរូប",
-    "recordVideo": "ថតវីដេអូ"
+    "recordVideo": "ថតវីដេអូ",
+    "saveChanges": "រក្សាទុកការផ្លាស់ប្ដូរ"
   },
   "tip": {
     "title": "ផ្ញើជំនួយ",
@@ -3097,7 +3098,8 @@
     "logOutFailed": "មិនអាចចាកចេញពីឧបករណ៍បានទេ",
     "logOutAllFailed": "មិនអាចចាកចេញពីឧបករណ៍បានទេ",
     "devicesLoggedOut_one": "ឧបករណ៍ {{count}} បានចាកចេញ",
-    "devicesLoggedOut_other": "ឧបករណ៍ {{count}} បានចាកចេញ"
+    "devicesLoggedOut_other": "ឧបករណ៍ {{count}} បានចាកចេញ",
+    "noActive": "គ្មានវគ្គសកម្មទេ"
   },
   "library": {
     "myPosts": "ការបង្ហោះរបស់ខ្ញុំ",
@@ -3127,7 +3129,9 @@
     "deleteFolderTitle": "លុបថត",
     "deleteFolderBody": "តើអ្នកប្រាកដថាចង់លុប \"{{name}}\" ឬ? ការបង្ហោះដែលបានរក្សាទុកខាងក្នុងនឹងមិនត្រូវបានលុបចេញពីបញ្ជីរក្សាទុករបស់អ្នកទេ។",
     "folderDeleted": "បានលុបថត",
-    "deleteFolderFailed": "មិនអាចលុបថតបានទេ"
+    "deleteFolderFailed": "មិនអាចលុបថតបានទេ",
+    "noCollections": "មិនទាន់មានបណ្ដុំផ្ទាល់ខ្លួនទេ",
+    "createCollection": "បង្កើតបណ្ដុំ"
   },
   "setProfile": {
     "title": "កំណត់ប្រវត្តិរូបរបស់អ្នក",
@@ -3148,7 +3152,8 @@
     "imageFailed": "មិនអាចប្រើរូបភាពនោះបានទេ",
     "usernameReserved": "ឈ្មោះអ្នកប្រើនេះត្រូវបានបម្រុងទុក",
     "profileSet": "បានកំណត់ប្រវត្តិរូបដោយជោគជ័យ!",
-    "profileFailed": "មិនអាចកំណត់ប្រវត្តិរូបបានទេ"
+    "profileFailed": "មិនអាចកំណត់ប្រវត្តិរូបបានទេ",
+    "displayNameHint": "ឈ្មោះសាធារណៈរបស់អ្នកដែលបង្ហាញលើប្រវត្តិរូប។"
   },
   "events": {
     "mine": "របស់ខ្ញុំ",

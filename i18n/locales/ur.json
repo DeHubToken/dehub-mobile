@@ -604,7 +604,8 @@
     "confirm": "تصدیق کریں",
     "signIn": "سائن اِن کریں",
     "takePhoto": "تصویر لیں",
-    "recordVideo": "ویڈیو ریکارڈ کریں"
+    "recordVideo": "ویڈیو ریکارڈ کریں",
+    "saveChanges": "تبدیلیاں محفوظ کریں"
   },
   "drawers": {
     "ppvTitle": "پے پر ویو مواد",
@@ -3076,7 +3077,8 @@
     "logOutFailed": "ڈیوائس لاگ آؤٹ نہیں ہو سکی",
     "logOutAllFailed": "ڈیوائسز لاگ آؤٹ نہیں ہو سکیں",
     "devicesLoggedOut_one": "{{count}} ڈیوائس لاگ آؤٹ ہو گئی",
-    "devicesLoggedOut_other": "{{count}} ڈیوائسز لاگ آؤٹ ہو گئیں"
+    "devicesLoggedOut_other": "{{count}} ڈیوائسز لاگ آؤٹ ہو گئیں",
+    "noActive": "کوئی فعال سیشن نہیں"
   },
   "library": {
     "myPosts": "میری پوسٹس",
@@ -3106,7 +3108,9 @@
     "deleteFolderTitle": "فولڈر ڈیلیٹ کریں",
     "deleteFolderBody": "کیا آپ واقعی \"{{name}}\" ڈیلیٹ کرنا چاہتے ہیں؟ اندر کی محفوظ پوسٹس آپ کی محفوظ فہرست سے نہیں ہٹیں گی۔",
     "folderDeleted": "فولڈر ڈیلیٹ ہو گیا",
-    "deleteFolderFailed": "فولڈر ڈیلیٹ نہیں ہو سکا"
+    "deleteFolderFailed": "فولڈر ڈیلیٹ نہیں ہو سکا",
+    "noCollections": "ابھی آپ کا کوئی مجموعہ نہیں",
+    "createCollection": "مجموعہ بنائیں"
   },
   "setProfile": {
     "title": "اپنی پروفائل سیٹ کریں",
@@ -3127,7 +3131,8 @@
     "imageFailed": "وہ تصویر استعمال نہیں ہو سکی",
     "usernameReserved": "یہ یوزرنیم محفوظ ہے",
     "profileSet": "پروفائل کامیابی سے سیٹ ہو گئی!",
-    "profileFailed": "پروفائل سیٹ نہیں ہو سکی"
+    "profileFailed": "پروفائل سیٹ نہیں ہو سکی",
+    "displayNameHint": "آپ کا عوامی نام جو پروفائل پر دکھتا ہے۔"
   },
   "events": {
     "mine": "میرے",

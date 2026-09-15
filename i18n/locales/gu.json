@@ -605,7 +605,8 @@
     "confirm": "પુષ્ટિ કરો",
     "signIn": "સાઇન ઇન",
     "takePhoto": "ફોટો લો",
-    "recordVideo": "વિડિઓ રેકોર્ડ કરો"
+    "recordVideo": "વિડિઓ રેકોર્ડ કરો",
+    "saveChanges": "ફેરફારો સાચવો"
   },
   "tip": {
     "title": "ટિપ મોકલો",
@@ -3070,7 +3071,8 @@
     "logOutFailed": "ઉપકરણ લૉગ આઉટ કરી શકાયું નહીં",
     "logOutAllFailed": "ઉપકરણો લૉગ આઉટ કરી શકાયાં નહીં",
     "devicesLoggedOut_one": "{{count}} ઉપકરણ લૉગ આઉટ થયું",
-    "devicesLoggedOut_other": "{{count}} ઉપકરણો લૉગ આઉટ થયાં"
+    "devicesLoggedOut_other": "{{count}} ઉપકરણો લૉગ આઉટ થયાં",
+    "noActive": "કોઈ સક્રિય સત્રો નથી"
   },
   "library": {
     "myPosts": "મારી પોસ્ટ",
@@ -3100,7 +3102,9 @@
     "deleteFolderTitle": "ફોલ્ડર કાઢી નાખો",
     "deleteFolderBody": "શું તમે ખરેખર \"{{name}}\" કાઢી નાખવા માંગો છો? અંદરની સાચવેલી પોસ્ટ તમારી સાચવેલી યાદીમાંથી કાઢી નહીં નાખવામાં આવે.",
     "folderDeleted": "ફોલ્ડર કાઢી નાખ્યું",
-    "deleteFolderFailed": "ફોલ્ડર કાઢી શકાયું નહીં"
+    "deleteFolderFailed": "ફોલ્ડર કાઢી શકાયું નહીં",
+    "noCollections": "હજી કોઈ પોતાના સંગ્રહ નથી",
+    "createCollection": "સંગ્રહ બનાવો"
   },
   "setProfile": {
     "title": "તમારી પ્રોફાઇલ સેટ કરો",
@@ -3121,7 +3125,8 @@
     "imageFailed": "તે છબી વાપરી શકાઈ નહીં",
     "usernameReserved": "આ વપરાશકર્તા નામ અનામત છે",
     "profileSet": "પ્રોફાઇલ સફળતાપૂર્વક સેટ થઈ!",
-    "profileFailed": "પ્રોફાઇલ સેટ થઈ શકી નહીં"
+    "profileFailed": "પ્રોફાઇલ સેટ થઈ શકી નહીં",
+    "displayNameHint": "તમારું જાહેર નામ જે તમારી પ્રોફાઇલ પર દેખાય છે."
   },
   "events": {
     "mine": "મારા",

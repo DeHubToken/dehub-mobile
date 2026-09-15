@@ -604,7 +604,8 @@
     "confirm": "Tasdiqlash",
     "signIn": "Kirish",
     "takePhoto": "Suratga olish",
-    "recordVideo": "Video yozib olish"
+    "recordVideo": "Video yozib olish",
+    "saveChanges": "O‘zgarishlarni saqlash"
   },
   "tip": {
     "title": "Tip yuborish",
@@ -3130,7 +3131,8 @@
     "logOutFailed": "Qurilmani chiqarib bo‘lmadi",
     "logOutAllFailed": "Qurilmalarni chiqarib bo‘lmadi",
     "devicesLoggedOut_one": "{{count}} qurilma chiqarildi",
-    "devicesLoggedOut_other": "{{count}} qurilma chiqarildi"
+    "devicesLoggedOut_other": "{{count}} qurilma chiqarildi",
+    "noActive": "Faol seanslar yo‘q"
   },
   "library": {
     "myPosts": "Mening postlarim",
@@ -3160,7 +3162,9 @@
     "deleteFolderTitle": "Jildni o‘chirish",
     "deleteFolderBody": "\"{{name}}\" o‘chirilsinmi? Ichidagi saqlangan postlar Saqlanganlar ro‘yxatingizdan o‘chmaydi.",
     "folderDeleted": "Jild o‘chirildi",
-    "deleteFolderFailed": "Jildni o‘chirib bo‘lmadi"
+    "deleteFolderFailed": "Jildni o‘chirib bo‘lmadi",
+    "noCollections": "Hali o‘z to‘plamlaringiz yo‘q",
+    "createCollection": "To‘plam yaratish"
   },
   "setProfile": {
     "title": "Profilingizni sozlang",
@@ -3181,7 +3185,8 @@
     "imageFailed": "Bu rasmni ishlatib bo‘lmadi",
     "usernameReserved": "Bu foydalanuvchi nomi band qilingan",
     "profileSet": "Profil muvaffaqiyatli sozlandi!",
-    "profileFailed": "Profilni sozlab bo‘lmadi"
+    "profileFailed": "Profilni sozlab bo‘lmadi",
+    "displayNameHint": "Profilingizda ko‘rinadigan ommaviy ismingiz."
   },
   "events": {
     "mine": "Meniki",

@@ -603,7 +603,8 @@
     "confirm": "אישור",
     "signIn": "התחברות",
     "takePhoto": "צלם תמונה",
-    "recordVideo": "צלם וידאו"
+    "recordVideo": "צלם וידאו",
+    "saveChanges": "שמור שינויים"
   },
   "drawers": {
     "ppvTitle": "תוכן בתשלום",
@@ -3065,7 +3066,8 @@
     "logOutFailed": "ניתוק המכשיר נכשל",
     "logOutAllFailed": "ניתוק המכשירים נכשל",
     "devicesLoggedOut_one": "{{count}} מכשיר נותק",
-    "devicesLoggedOut_other": "{{count}} מכשירים נותקו"
+    "devicesLoggedOut_other": "{{count}} מכשירים נותקו",
+    "noActive": "אין הפעלות פעילות"
   },
   "library": {
     "myPosts": "הפוסטים שלי",
@@ -3095,7 +3097,9 @@
     "deleteFolderTitle": "מחק תיקייה",
     "deleteFolderBody": "בטוח שברצונך למחוק את \"{{name}}\"? הפוסטים השמורים בתוכה לא יימחקו מרשימת השמורים שלך.",
     "folderDeleted": "התיקייה נמחקה",
-    "deleteFolderFailed": "מחיקת התיקייה נכשלה"
+    "deleteFolderFailed": "מחיקת התיקייה נכשלה",
+    "noCollections": "עדיין אין אוספים משלך",
+    "createCollection": "צור אוסף"
   },
   "setProfile": {
     "title": "הגדר את הפרופיל שלך",
@@ -3116,7 +3120,8 @@
     "imageFailed": "לא ניתן היה להשתמש בתמונה זו",
     "usernameReserved": "שם משתמש זה שמור",
     "profileSet": "הפרופיל הוגדר בהצלחה!",
-    "profileFailed": "הגדרת הפרופיל נכשלה"
+    "profileFailed": "הגדרת הפרופיל נכשלה",
+    "displayNameHint": "השם הפומבי שלך שמוצג בפרופיל."
   },
   "events": {
     "mine": "שלי",

@@ -596,7 +596,8 @@
     "confirm": "पुष्टी करा",
     "signIn": "साइन इन",
     "takePhoto": "फोटो काढा",
-    "recordVideo": "व्हिडिओ रेकॉर्ड करा"
+    "recordVideo": "व्हिडिओ रेकॉर्ड करा",
+    "saveChanges": "बदल जतन करा"
   },
   "drawers": {
     "ppvTitle": "पे पर व्ह्यू मजकूर",
@@ -3066,7 +3067,8 @@
     "logOutFailed": "डिव्हाइस लॉग आउट करता आले नाही",
     "logOutAllFailed": "डिव्हाइस लॉग आउट करता आली नाहीत",
     "devicesLoggedOut_one": "{{count}} डिव्हाइस लॉग आउट झाले",
-    "devicesLoggedOut_other": "{{count}} डिव्हाइस लॉग आउट झाली"
+    "devicesLoggedOut_other": "{{count}} डिव्हाइस लॉग आउट झाली",
+    "noActive": "कोणतीही सक्रिय सत्रे नाहीत"
   },
   "library": {
     "myPosts": "माझ्या पोस्ट",
@@ -3096,7 +3098,9 @@
     "deleteFolderTitle": "फोल्डर हटवा",
     "deleteFolderBody": "तुम्हाला खरोखर \"{{name}}\" हटवायचे आहे? आतील जतन केलेल्या पोस्ट तुमच्या जतन यादीतून हटणार नाहीत.",
     "folderDeleted": "फोल्डर हटवले",
-    "deleteFolderFailed": "फोल्डर हटवता आले नाही"
+    "deleteFolderFailed": "फोल्डर हटवता आले नाही",
+    "noCollections": "अजून स्वतःचे संग्रह नाहीत",
+    "createCollection": "संग्रह तयार करा"
   },
   "setProfile": {
     "title": "तुमची प्रोफाइल सेट करा",
@@ -3117,7 +3121,8 @@
     "imageFailed": "ती प्रतिमा वापरता आली नाही",
     "usernameReserved": "हे वापरकर्तानाव राखीव आहे",
     "profileSet": "प्रोफाइल यशस्वीरीत्या सेट झाली!",
-    "profileFailed": "प्रोफाइल सेट करता आली नाही"
+    "profileFailed": "प्रोफाइल सेट करता आली नाही",
+    "displayNameHint": "तुमच्या प्रोफाइलवर दिसणारे सार्वजनिक नाव."
   },
   "events": {
     "mine": "माझे",

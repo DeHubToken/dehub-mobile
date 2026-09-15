@@ -604,7 +604,8 @@
     "confirm": "تأكيد",
     "signIn": "تسجيل الدخول",
     "takePhoto": "التقاط صورة",
-    "recordVideo": "تسجيل فيديو"
+    "recordVideo": "تسجيل فيديو",
+    "saveChanges": "حفظ التغييرات"
   },
   "drawers": {
     "ppvTitle": "محتوى الدفع لكل مشاهدة",
@@ -3133,7 +3134,8 @@
     "logOutFailed": "تعذّر تسجيل خروج الجهاز",
     "logOutAllFailed": "تعذّر تسجيل خروج الأجهزة",
     "devicesLoggedOut_one": "تم تسجيل خروج {{count}} جهاز",
-    "devicesLoggedOut_other": "تم تسجيل خروج {{count}} أجهزة"
+    "devicesLoggedOut_other": "تم تسجيل خروج {{count}} أجهزة",
+    "noActive": "لا توجد جلسات نشطة"
   },
   "library": {
     "myPosts": "منشوراتي",
@@ -3163,7 +3165,9 @@
     "deleteFolderTitle": "حذف المجلد",
     "deleteFolderBody": "هل تريد حذف \"{{name}}\"؟ لن تُحذف المنشورات المحفوظة بداخله من قائمة محفوظاتك.",
     "folderDeleted": "تم حذف المجلد",
-    "deleteFolderFailed": "تعذّر حذف المجلد"
+    "deleteFolderFailed": "تعذّر حذف المجلد",
+    "noCollections": "لا توجد مجموعات مخصصة بعد",
+    "createCollection": "إنشاء مجموعة"
   },
   "setProfile": {
     "title": "أعدّ ملفك الشخصي",
@@ -3184,7 +3188,8 @@
     "imageFailed": "تعذّر استخدام هذه الصورة",
     "usernameReserved": "اسم المستخدم هذا محجوز",
     "profileSet": "تم إعداد ملفك الشخصي بنجاح!",
-    "profileFailed": "تعذّر إعداد الملف الشخصي"
+    "profileFailed": "تعذّر إعداد الملف الشخصي",
+    "displayNameHint": "اسمك العلني الذي يظهر في ملفك الشخصي."
   },
   "events": {
     "mine": "خاصتي",

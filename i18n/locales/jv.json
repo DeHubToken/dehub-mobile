@@ -564,7 +564,8 @@
     "confirm": "Konfirmasi",
     "signIn": "Mlebu",
     "takePhoto": "Njupuk foto",
-    "recordVideo": "Rekam video"
+    "recordVideo": "Rekam video",
+    "saveChanges": "Simpen owahan"
   },
   "tip": {
     "title": "Kirim Hadiah",
@@ -3036,7 +3037,8 @@
     "logOutFailed": "Gagal metokake piranti",
     "logOutAllFailed": "Gagal metokake piranti",
     "devicesLoggedOut_one": "{{count}} piranti wis metu",
-    "devicesLoggedOut_other": "{{count}} piranti wis metu"
+    "devicesLoggedOut_other": "{{count}} piranti wis metu",
+    "noActive": "Ora ana sesi aktif"
   },
   "library": {
     "myPosts": "Kiriman kula",
@@ -3066,7 +3068,9 @@
     "deleteFolderTitle": "Busak folder",
     "deleteFolderBody": "Yakin arep mbusak \"{{name}}\"? Kiriman sing disimpen ing njerone ora bakal dibusak saka dhaptar Disimpen sampeyan.",
     "folderDeleted": "Folder wis dibusak",
-    "deleteFolderFailed": "Gagal mbusak folder"
+    "deleteFolderFailed": "Gagal mbusak folder",
+    "noCollections": "Durung ana koleksi dhewe",
+    "createCollection": "Gawe koleksi"
   },
   "setProfile": {
     "title": "Atur profilmu",
@@ -3087,7 +3091,8 @@
     "imageFailed": "Ora bisa nggunakake gambar kasebut",
     "usernameReserved": "Jeneng pangguna iki dicadhangake",
     "profileSet": "Profil kasil disetel!",
-    "profileFailed": "Gagal nyetel profil"
+    "profileFailed": "Gagal nyetel profil",
+    "displayNameHint": "Jeneng umum sing katon ing profilmu."
   },
   "events": {
     "mine": "Duwekku",

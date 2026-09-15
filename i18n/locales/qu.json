@@ -606,7 +606,8 @@
     "confirm": "Takyachiy",
     "signIn": "Yaykuy",
     "takePhoto": "Fotota hurquy",
-    "recordVideo": "Videota grabay"
+    "recordVideo": "Videota grabay",
+    "saveChanges": "Hukchasqakunata waqaychay"
   },
   "tip": {
     "title": "Propina apachiy",
@@ -3110,7 +3111,8 @@
     "logOutFailed": "Dispositivota mana lluqsichiyta atikunchu",
     "logOutAllFailed": "Dispositivokunata mana lluqsichiyta atikunchu",
     "devicesLoggedOut_one": "{{count}} dispositivo lluqsichisqa",
-    "devicesLoggedOut_other": "{{count}} dispositivokuna lluqsichisqa"
+    "devicesLoggedOut_other": "{{count}} dispositivokuna lluqsichisqa",
+    "noActive": "Mana llamkaq sesionkuna"
   },
   "library": {
     "myPosts": "Publicacionniykuna",
@@ -3140,7 +3142,9 @@
     "deleteFolderTitle": "Carpetata pichay",
     "deleteFolderBody": "\"{{name}}\" pichanaykita munankichu? Ukhupi waqaychasqa publicacionkunaqa Waqaychasqa listaykimanta mana pichakunchu.",
     "folderDeleted": "Carpeta pichasqa",
-    "deleteFolderFailed": "Carpetata mana pichayta atikunchu"
+    "deleteFolderFailed": "Carpetata mana pichayta atikunchu",
+    "noCollections": "Manaraq kikiyki huñusqakuna",
+    "createCollection": "Huñusqa kamay"
   },
   "setProfile": {
     "title": "Perfilniykita churay",
@@ -3161,7 +3165,8 @@
     "imageFailed": "Chay siq'ita mana llamk'achiyta atikunchu",
     "usernameReserved": "Kay sutiqa waqaychasqa",
     "profileSet": "Perfil allinta churasqa!",
-    "profileFailed": "Perfilta mana churayta atikunchu"
+    "profileFailed": "Perfilta mana churayta atikunchu",
+    "displayNameHint": "Perfilniykipi rikuchikuq sutiyki."
   },
   "events": {
     "mine": "Ñuqap",

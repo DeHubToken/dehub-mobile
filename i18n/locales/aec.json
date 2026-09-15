@@ -564,7 +564,8 @@
     "confirm": "أكّد",
     "signIn": "سجّل دخول",
     "takePhoto": "صوّر صورة",
-    "recordVideo": "سجّل فيديو"
+    "recordVideo": "سجّل فيديو",
+    "saveChanges": "حفظ التغييرات"
   },
   "tip": {
     "title": "ابعت بقشيش",
@@ -3078,7 +3079,8 @@
     "logOutFailed": "ما قدرناش نطلّع الجهاز",
     "logOutAllFailed": "ما قدرناش نطلّع الأجهزة",
     "devicesLoggedOut_one": "اتطلّع {{count}} جهاز",
-    "devicesLoggedOut_other": "اتطلّعت {{count}} أجهزة"
+    "devicesLoggedOut_other": "اتطلّعت {{count}} أجهزة",
+    "noActive": "مفيش جلسات نشطة"
   },
   "library": {
     "myPosts": "بوستاتي",
@@ -3108,7 +3110,9 @@
     "deleteFolderTitle": "حذف المجلد",
     "deleteFolderBody": "متأكد عايز تحذف \"{{name}}\"؟ البوستات المحفوظة جواه مش هتتحذف من قائمة المحفوظات بتاعتك.",
     "folderDeleted": "اتحذف المجلد",
-    "deleteFolderFailed": "ما قدرناش نحذف المجلد"
+    "deleteFolderFailed": "ما قدرناش نحذف المجلد",
+    "noCollections": "مفيش مجموعات مخصصة لسه",
+    "createCollection": "اعمل مجموعة"
   },
   "setProfile": {
     "title": "اعمل بروفايلك",
@@ -3129,7 +3133,8 @@
     "imageFailed": "ما قدرناش نستخدم الصورة دي",
     "usernameReserved": "الاسم ده محجوز",
     "profileSet": "اتظبط البروفايل بنجاح!",
-    "profileFailed": "ما قدرناش نظبط البروفايل"
+    "profileFailed": "ما قدرناش نظبط البروفايل",
+    "displayNameHint": "اسمك العلني اللي بيظهر في ملفك."
   },
   "events": {
     "mine": "بتاعي",

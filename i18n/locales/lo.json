@@ -602,7 +602,8 @@
     "confirm": "ຢືນຢັນ",
     "signIn": "ເຂົ້າສູ່ລະບົບ",
     "takePhoto": "ຖ່າຍຮູບ",
-    "recordVideo": "ບັນທຶກວິດີໂອ"
+    "recordVideo": "ບັນທຶກວິດີໂອ",
+    "saveChanges": "ບັນທຶກການປ່ຽນແປງ"
   },
   "tip": {
     "title": "ສົ່ງທິບ",
@@ -3036,7 +3037,8 @@
     "logOutFailed": "ບໍ່ສາມາດອອກຈາກລະບົບອຸປະກອນໄດ້",
     "logOutAllFailed": "ບໍ່ສາມາດອອກຈາກລະບົບອຸປະກອນໄດ້",
     "devicesLoggedOut_one": "ອອກຈາກລະບົບ {{count}} ອຸປະກອນແລ້ວ",
-    "devicesLoggedOut_other": "ອອກຈາກລະບົບ {{count}} ອຸປະກອນແລ້ວ"
+    "devicesLoggedOut_other": "ອອກຈາກລະບົບ {{count}} ອຸປະກອນແລ້ວ",
+    "noActive": "ບໍ່ມີເຊດຊັນທີ່ໃຊ້ງານ"
   },
   "library": {
     "myPosts": "ໂພສຂອງຂ້ອຍ",
@@ -3066,7 +3068,9 @@
     "deleteFolderTitle": "ລຶບໂຟນເດີ",
     "deleteFolderBody": "ທ່ານແນ່ໃຈບໍວ່າຕ້ອງການລຶບ \"{{name}}\"? ໂພສທີ່ບັນທຶກຢູ່ຂ້າງໃນຈະບໍ່ຖືກລຶບອອກຈາກລາຍການບັນທຶກຂອງທ່ານ.",
     "folderDeleted": "ລຶບໂຟນເດີແລ້ວ",
-    "deleteFolderFailed": "ບໍ່ສາມາດລຶບໂຟນເດີໄດ້"
+    "deleteFolderFailed": "ບໍ່ສາມາດລຶບໂຟນເດີໄດ້",
+    "noCollections": "ຍັງບໍ່ມີຄໍເລັກຊັນຂອງທ່ານ",
+    "createCollection": "ສ້າງຄໍເລັກຊັນ"
   },
   "setProfile": {
     "title": "ຕັ້ງຄ່າໂປຣໄຟລ໌ຂອງທ່ານ",
@@ -3087,7 +3091,8 @@
     "imageFailed": "ບໍ່ສາມາດໃຊ້ຮູບນັ້ນໄດ້",
     "usernameReserved": "ຊື່ຜູ້ໃຊ້ນີ້ຖືກສະຫງວນໄວ້",
     "profileSet": "ຕັ້ງຄ່າໂປຣໄຟລ໌ສຳເລັດແລ້ວ!",
-    "profileFailed": "ບໍ່ສາມາດຕັ້ງຄ່າໂປຣໄຟລ໌ໄດ້"
+    "profileFailed": "ບໍ່ສາມາດຕັ້ງຄ່າໂປຣໄຟລ໌ໄດ້",
+    "displayNameHint": "ຊື່ສາທາລະນະຂອງທ່ານທີ່ສະແດງໃນໂປຣໄຟລ໌."
   },
   "events": {
     "mine": "ຂອງຂ້ອຍ",

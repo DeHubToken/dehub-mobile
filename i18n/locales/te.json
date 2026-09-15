@@ -602,7 +602,8 @@
     "confirm": "నిర్ధారించండి",
     "signIn": "సైన్ ఇన్",
     "takePhoto": "ఫోటో తీయండి",
-    "recordVideo": "వీడియో రికార్డ్ చేయండి"
+    "recordVideo": "వీడియో రికార్డ్ చేయండి",
+    "saveChanges": "మార్పులను సేవ్ చేయండి"
   },
   "drawers": {
     "ppvTitle": "పే పర్ వ్యూ కంటెంట్",
@@ -3072,7 +3073,8 @@
     "logOutFailed": "పరికరాన్ని లాగ్ అవుట్ చేయలేకపోయాము",
     "logOutAllFailed": "పరికరాలను లాగ్ అవుట్ చేయలేకపోయాము",
     "devicesLoggedOut_one": "{{count}} పరికరం లాగ్ అవుట్ అయింది",
-    "devicesLoggedOut_other": "{{count}} పరికరాలు లాగ్ అవుట్ అయ్యాయి"
+    "devicesLoggedOut_other": "{{count}} పరికరాలు లాగ్ అవుట్ అయ్యాయి",
+    "noActive": "సక్రియ సెషన్‌లు లేవు"
   },
   "library": {
     "myPosts": "నా పోస్టులు",
@@ -3102,7 +3104,9 @@
     "deleteFolderTitle": "ఫోల్డర్‌ను తొలగించండి",
     "deleteFolderBody": "\"{{name}}\" ను తొలగించాలనుకుంటున్నారా? లోపల సేవ్ చేసిన పోస్టులు మీ సేవ్ జాబితా నుండి తొలగించబడవు.",
     "folderDeleted": "ఫోల్డర్ తొలగించబడింది",
-    "deleteFolderFailed": "ఫోల్డర్ తొలగించలేకపోయాము"
+    "deleteFolderFailed": "ఫోల్డర్ తొలగించలేకపోయాము",
+    "noCollections": "ఇంకా మీ సొంత సేకరణలు లేవు",
+    "createCollection": "సేకరణను సృష్టించండి"
   },
   "setProfile": {
     "title": "మీ ప్రొఫైల్ సెట్ చేయండి",
@@ -3123,7 +3127,8 @@
     "imageFailed": "ఆ చిత్రాన్ని ఉపయోగించలేకపోయాము",
     "usernameReserved": "ఈ వినియోగదారు పేరు రిజర్వ్ చేయబడింది",
     "profileSet": "ప్రొఫైల్ విజయవంతంగా సెట్ అయింది!",
-    "profileFailed": "ప్రొఫైల్ సెట్ చేయలేకపోయాము"
+    "profileFailed": "ప్రొఫైల్ సెట్ చేయలేకపోయాము",
+    "displayNameHint": "మీ ప్రొఫైల్‌లో కనిపించే బహిరంగ పేరు."
   },
   "events": {
     "mine": "నావి",
