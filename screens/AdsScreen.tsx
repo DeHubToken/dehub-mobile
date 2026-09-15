@@ -45,6 +45,7 @@ import { useERC20Contract, useWeb3Provider } from "../hooks/use-web3";
 import { writeContractAA } from "../libs/aa.write";
 import { ChainId, DHB_ADDRESSESS } from "../config/constants";
 import { useTokenPrices } from "../hooks/useStores";
+import { appLocale } from "../libs/date.util";
 import {
   useAdAccount,
   useEnsureAdAccount,
@@ -626,7 +627,7 @@ export default function AdsScreen() {
                       </Text>
                     </View>
                     <Text style={styles.dim}>
-                      {new Date(p.created_at).toLocaleDateString()}
+                      {new Date(p.created_at).toLocaleDateString(appLocale())}
                     </Text>
                   </View>
                 ))

@@ -34,6 +34,7 @@ import { toastError, toastSuccess } from "../libs/toast";
 import { getAccount } from "../services/user.service";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { useDaoTreasury, useContributeToDao } from "../hooks/useDaoTreasury";
+import { appLocale } from "../libs/date.util";
 import {
   DAO_TREASURY_ADDRESS,
   daoTxUrl,
@@ -96,7 +97,7 @@ const ContributorRow: React.FC<{ row: DaoContributor; rank: number; isSelf: bool
 
 const RecentRow: React.FC<{ item: DaoContribution }> = ({ item }) => {
   const profile = useContributorProfile(item.from);
-  const when = item.timestamp ? new Date(item.timestamp * 1000).toLocaleDateString() : "";
+  const when = item.timestamp ? new Date(item.timestamp * 1000).toLocaleDateString(appLocale()) : "";
   return (
     <Pressable onPress={() => Linking.openURL(daoTxUrl(item.chainId, item.txHash))} style={styles.recentRow}>
       <Text style={styles.recentName} numberOfLines={1}>{profile.name}</Text>

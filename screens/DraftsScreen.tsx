@@ -15,6 +15,7 @@ import { useGateToHome } from "../hooks/useGateToHome";
 import { useDrafts } from "../hooks/useDrafts";
 import type { Draft } from "../hooks/useDrafts";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { appLocale } from "../libs/date.util";
 
 
 const formatRelativeDate = (epoch: number): string => {
@@ -26,7 +27,7 @@ const formatRelativeDate = (epoch: number): string => {
   if (hrs < 24) return `${hrs}h ago`;
   const days = Math.floor(hrs / 24);
   if (days < 7) return `${days}d ago`;
-  return new Date(epoch).toLocaleDateString();
+  return new Date(epoch).toLocaleDateString(appLocale());
 };
 
 const getMediaLabel = (d: Draft): string => {

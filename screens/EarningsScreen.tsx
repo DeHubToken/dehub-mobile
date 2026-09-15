@@ -18,6 +18,7 @@ import EarningsComparisonCard from "../components/Earnings/EarningsComparisonCar
 import { supabase } from "../services/supabase";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
+import { appLocale } from "../libs/date.util";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 interface TipRecord {
@@ -65,7 +66,7 @@ function fmtAmount(n: number): string {
 }
 
 function fmtDate(iso: string): string {
-  return new Date(iso).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  return new Date(iso).toLocaleDateString(appLocale(), { month: "short", day: "numeric" });
 }
 
 // ─── Pie chart (SVG) ─────────────────────────────────────────────────────────

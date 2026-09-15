@@ -41,6 +41,7 @@ import { updateStreamSettings } from "../services/live.service";
 import { deletePost } from "../services/nft.service";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
+import { appLocale } from "../libs/date.util";
 
 type RouteParams = {
   streamId?: string;
@@ -1222,8 +1223,8 @@ const LiveProducerScreen: React.FC = () => {
                     </Text>
                     {scheduledForDate ? (
                       <Text className="text-white/80 text-[10px] mt-0.5">
-                        {scheduledForDate.toLocaleDateString()} at{" "}
-                        {scheduledForDate.toLocaleTimeString([], {
+                        {scheduledForDate.toLocaleDateString(appLocale())} at{" "}
+                        {scheduledForDate.toLocaleTimeString(appLocale(), {
                           hour: "2-digit",
                           minute: "2-digit",
                         })}
