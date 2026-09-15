@@ -3520,7 +3520,6 @@
     "noTxHash": "Dompet ora ngasilake hash transaksi",
     "finishing": "Ngrampungake…",
     "confirmTitle": "Konfirmasi langganan",
-    "subscribeToFor": "Langganan {{name}} regane {{price}}",
     "youPay": "Sampeyan mbayar {{amount}}",
     "calculating": "Ngitung total…",
     "creatorReceives": "Kreator nampa kredit {{amount}} USDT",
@@ -3529,7 +3528,8 @@
     "notAvailableYet": "Durung kasedhiya",
     "subscribe": "Langganan",
     "subscriberCount_one": "{{count}} pelanggan",
-    "subscriberCount_other": "{{count}} pelanggan"
+    "subscriberCount_other": "{{count}} pelanggan",
+    "subscribeToForRich": "Langganan <name>{{name}}</name> regane <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Durung disetel",
@@ -3582,8 +3582,6 @@
     "confirmPurchase": "Konfirmasi tuku",
     "amountIn": "Jumlah {{currency}}",
     "approxReceive": "Kira-kira nampa {{symbol}}",
-    "iAcceptThe": "Aku nampa",
-    "termsOfService": "Syarat Layanan",
     "invalidAmountGtZero": "Lebokna jumlah sing bener luwih saka 0.",
     "enterValidAmount": "Lebokna jumlah sing bener",
     "noSupply": "Ora bisa tuku — ora ana pasokan {{symbol}} ing chain iki.",
@@ -3592,6 +3590,7 @@
     "acceptTermsFirst": "Mangga tampa syarat layanan",
     "redirecting": "Ngalihake menyang pambayaran…",
     "openingCheckout": "Mbukak pambayaran…",
-    "checkoutUnavailable": "Link pambayaran ora kasedhiya. Coba maneh."
+    "checkoutUnavailable": "Link pambayaran ora kasedhiya. Coba maneh.",
+    "acceptTerms": "Aku nampa <terms>Syarat Layanan</terms>"
   }
 }

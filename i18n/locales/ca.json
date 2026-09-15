@@ -3562,7 +3562,6 @@
     "noTxHash": "La cartera no ha retornat cap hash de transacció",
     "finishing": "S'està finalitzant…",
     "confirmTitle": "Confirma la subscripció",
-    "subscribeToFor": "Subscriu-te a {{name}} per {{price}}",
     "youPay": "Pagues {{amount}}",
     "calculating": "S'està calculant el total…",
     "creatorReceives": "El creador rep {{amount}} USDT de crèdit",
@@ -3571,7 +3570,8 @@
     "notAvailableYet": "Encara no està disponible",
     "subscribe": "Subscriu-t'hi",
     "subscriberCount_one": "{{count}} subscriptor",
-    "subscriberCount_other": "{{count}} subscriptors"
+    "subscriberCount_other": "{{count}} subscriptors",
+    "subscribeToForRich": "Subscriu-te a <name>{{name}}</name> per <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Sense definir",
@@ -3624,8 +3624,6 @@
     "confirmPurchase": "Confirma la compra",
     "amountIn": "Import en {{currency}}",
     "approxReceive": "Rebràs aproximadament {{symbol}}",
-    "iAcceptThe": "Accepto els",
-    "termsOfService": "Termes i condicions del servei",
     "invalidAmountGtZero": "Introdueix un import vàlid superior a 0.",
     "enterValidAmount": "Introdueix un import vàlid",
     "noSupply": "Compra no disponible: no hi ha subministrament de {{symbol}} en aquesta cadena.",
@@ -3634,6 +3632,7 @@
     "acceptTermsFirst": "Accepta els termes del servei",
     "redirecting": "S'està redirigint a la compra…",
     "openingCheckout": "S'està obrint la compra…",
-    "checkoutUnavailable": "L'enllaç de pagament no està disponible. Torna-ho a provar."
+    "checkoutUnavailable": "L'enllaç de pagament no està disponible. Torna-ho a provar.",
+    "acceptTerms": "Accepto els <terms>Termes i condicions del servei</terms>"
   }
 }

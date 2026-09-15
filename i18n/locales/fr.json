@@ -3636,7 +3636,6 @@
     "noTxHash": "Le portefeuille n'a pas renvoyé de hash de transaction",
     "finishing": "Finalisation…",
     "confirmTitle": "Confirmer l'abonnement",
-    "subscribeToFor": "Abonnez-vous à {{name}} pour {{price}}",
     "youPay": "Vous payez {{amount}}",
     "calculating": "Calcul du total…",
     "creatorReceives": "Le créateur reçoit {{amount}} USDT de crédit",
@@ -3645,7 +3644,8 @@
     "notAvailableYet": "Pas encore disponible",
     "subscribe": "S'abonner",
     "subscriberCount_one": "{{count}} abonné",
-    "subscriberCount_other": "{{count}} abonnés"
+    "subscriberCount_other": "{{count}} abonnés",
+    "subscribeToForRich": "Abonnez-vous à <name>{{name}}</name> pour <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Non défini",
@@ -3698,8 +3698,6 @@
     "confirmPurchase": "Confirmer l'achat",
     "amountIn": "Montant en {{currency}}",
     "approxReceive": "Réception approximative {{symbol}}",
-    "iAcceptThe": "J'accepte les",
-    "termsOfService": "Conditions d'utilisation",
     "invalidAmountGtZero": "Saisissez un montant valide supérieur à 0.",
     "enterValidAmount": "Saisissez un montant valide",
     "noSupply": "Achat indisponible — aucune réserve de {{symbol}} sur cette chaîne.",
@@ -3708,6 +3706,7 @@
     "acceptTermsFirst": "Veuillez accepter les conditions d'utilisation",
     "redirecting": "Redirection vers le paiement…",
     "openingCheckout": "Ouverture du paiement…",
-    "checkoutUnavailable": "Lien de paiement indisponible. Veuillez réessayer."
+    "checkoutUnavailable": "Lien de paiement indisponible. Veuillez réessayer.",
+    "acceptTerms": "J'accepte les <terms>Conditions d'utilisation</terms>"
   }
 }

@@ -3547,7 +3547,6 @@
     "noTxHash": "Kāore te pūkoro i whakahoki mai i tētahi hash whakawhiti",
     "finishing": "Kei te whakaoti…",
     "confirmTitle": "Whakaū i te ohaurunga",
-    "subscribeToFor": "Ohaurunga ki {{name}} mō te {{price}}",
     "youPay": "Ka utua e koe te {{amount}}",
     "calculating": "Kei te tatau i te tapeke…",
     "creatorReceives": "Ka whiwhi te kaihanga i te nama {{amount}} USDT",
@@ -3556,7 +3555,8 @@
     "notAvailableYet": "Kāore anō kia wātea",
     "subscribe": "Ohaurunga",
     "subscriberCount_one": "{{count}} kaiohaurunga",
-    "subscriberCount_other": "{{count}} kaiohaurunga"
+    "subscriberCount_other": "{{count}} kaiohaurunga",
+    "subscribeToForRich": "Ohaurunga ki <name>{{name}}</name> mō te <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Kāore i tautuhia",
@@ -3609,8 +3609,6 @@
     "confirmPurchase": "Whakaū i te hoko",
     "amountIn": "Rahinga {{currency}}",
     "approxReceive": "Ka whiwhi tata ki {{symbol}}",
-    "iAcceptThe": "Ka whakaae au ki",
-    "termsOfService": "Ngā Tikanga Ratonga",
     "invalidAmountGtZero": "Whakaurua he moni whaimana nui ake i te 0.",
     "enterValidAmount": "Whakaurua he moni whaimana",
     "noSupply": "Kāore e taea te hoko — kāore he {{symbol}} i tēnei mekameka.",
@@ -3619,6 +3617,7 @@
     "acceptTermsFirst": "Tēnā whakaae ki ngā tikanga ratonga",
     "redirecting": "Kei te ahu ki te utu…",
     "openingCheckout": "Kei te whakatuwhera i te utu…",
-    "checkoutUnavailable": "Kāore e wātea te hononga utu. Ngana anō."
+    "checkoutUnavailable": "Kāore e wātea te hononga utu. Ngana anō.",
+    "acceptTerms": "Ka whakaae au ki <terms>Ngā Tikanga Ratonga</terms>"
   }
 }

@@ -3578,7 +3578,6 @@
     "noTxHash": "ওয়ালেট লেনদেনের হ্যাশ ফেরত দেয় নাই",
     "finishing": "শেষ হইতেছে…",
     "confirmTitle": "সাবস্ক্রিপশন নিশ্চিত করেন",
-    "subscribeToFor": "{{price}} ত {{name}} ত সাবস্ক্রাইব করেন",
     "youPay": "তোমরা {{amount}} দিবেন",
     "calculating": "মোট হিসাব হইতেছে…",
     "creatorReceives": "ক্রিয়েটর পাইবে {{amount}} USDT ক্রেডিট",
@@ -3587,7 +3586,8 @@
     "notAvailableYet": "এখনো পাওয়া যায় না",
     "subscribe": "সাবস্ক্রাইব করেন",
     "subscriberCount_one": "{{count}} সাবস্ক্রাইবার",
-    "subscriberCount_other": "{{count}} সাবস্ক্রাইবার"
+    "subscriberCount_other": "{{count}} সাবস্ক্রাইবার",
+    "subscribeToForRich": "<price>{{price}}</price> ত <name>{{name}}</name> ত সাবস্ক্রাইব করেন"
   },
   "live": {
     "notSet": "ঠিক করা নাই",
@@ -3655,8 +3655,6 @@
     "confirmPurchase": "কেনা নিশ্চিত করেন",
     "amountIn": "{{currency}} পরিমাণ",
     "approxReceive": "আন্দাজ পাইবেন {{symbol}}",
-    "iAcceptThe": "মুই মানি নেছু",
-    "termsOfService": "সেবার শর্ত",
     "invalidAmountGtZero": "0 তুন বেশি সঠিক রকম লেখেন।",
     "enterValidAmount": "সঠিক রকম লেখেন",
     "noSupply": "কেনা যাছে না — এই চেইনত {{symbol}} নাই।",
@@ -3665,6 +3663,7 @@
     "acceptTermsFirst": "দয়া করি সেবার শর্ত মানি নেন",
     "redirecting": "চেকআউটত নেওয়া হইতেছে…",
     "openingCheckout": "চেকআউট খোলা হইতেছে…",
-    "checkoutUnavailable": "চেকআউট লিংক পাওয়া যাছে না। আবার চেষ্টা করেন।"
+    "checkoutUnavailable": "চেকআউট লিংক পাওয়া যাছে না। আবার চেষ্টা করেন।",
+    "acceptTerms": "মুই মানি নেছু <terms>সেবার শর্ত</terms>"
   }
 }

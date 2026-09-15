@@ -3632,7 +3632,6 @@
     "noTxHash": "Il wallet non ha restituito un hash di transazione",
     "finishing": "Completamento…",
     "confirmTitle": "Conferma abbonamento",
-    "subscribeToFor": "Abbonati a {{name}} per {{price}}",
     "youPay": "Paghi {{amount}}",
     "calculating": "Calcolo del totale…",
     "creatorReceives": "Il creator riceve {{amount}} USDT di credito",
@@ -3641,7 +3640,8 @@
     "notAvailableYet": "Non ancora disponibile",
     "subscribe": "Abbonati",
     "subscriberCount_one": "{{count}} abbonato",
-    "subscriberCount_other": "{{count}} abbonati"
+    "subscriberCount_other": "{{count}} abbonati",
+    "subscribeToForRich": "Abbonati a <name>{{name}}</name> per <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Non impostato",
@@ -3694,8 +3694,6 @@
     "confirmPurchase": "Conferma l'acquisto",
     "amountIn": "Importo in {{currency}}",
     "approxReceive": "Riceverai circa {{symbol}}",
-    "iAcceptThe": "Accetto i",
-    "termsOfService": "Termini di servizio",
     "invalidAmountGtZero": "Inserisci un importo valido maggiore di 0.",
     "enterValidAmount": "Inserisci un importo valido",
     "noSupply": "Acquisto non disponibile: nessuna disponibilità di {{symbol}} su questa chain.",
@@ -3704,6 +3702,7 @@
     "acceptTermsFirst": "Accetta i termini di servizio",
     "redirecting": "Reindirizzamento al pagamento…",
     "openingCheckout": "Apertura del pagamento…",
-    "checkoutUnavailable": "Link di pagamento non disponibile. Riprova."
+    "checkoutUnavailable": "Link di pagamento non disponibile. Riprova.",
+    "acceptTerms": "Accetto i <terms>Termini di servizio</terms>"
   }
 }

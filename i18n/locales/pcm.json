@@ -3376,7 +3376,6 @@
     "noTxHash": "Di wallet no return transaction hash",
     "finishing": "Dey finish am…",
     "confirmTitle": "Confirm di subscription",
-    "subscribeToFor": "Subscribe to {{name}} for {{price}}",
     "youPay": "You go pay {{amount}}",
     "calculating": "Dey calculate di total…",
     "creatorReceives": "Di creator go receive {{amount}} USDT credit",
@@ -3385,7 +3384,8 @@
     "notAvailableYet": "E never dey available",
     "subscribe": "Subscribe",
     "subscriberCount_one": "{{count}} subscriber",
-    "subscriberCount_other": "{{count}} subscribers"
+    "subscriberCount_other": "{{count}} subscribers",
+    "subscribeToForRich": "Subscribe to <name>{{name}}</name> for <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Dem never set am",
@@ -3438,8 +3438,6 @@
     "confirmPurchase": "Confirm di purchase",
     "amountIn": "{{currency}} amount",
     "approxReceive": "You go receive around {{symbol}}",
-    "iAcceptThe": "I gree wit di",
-    "termsOfService": "Terms and service",
     "invalidAmountGtZero": "Enta correct amount wey pass 0.",
     "enterValidAmount": "Enta correct amount",
     "noSupply": "You no fit buy — no {{symbol}} supply for dis chain.",
@@ -3448,6 +3446,7 @@
     "acceptTermsFirst": "Abeg gree wit di terms and service",
     "redirecting": "Dey take you go checkout…",
     "openingCheckout": "Dey open di checkout…",
-    "checkoutUnavailable": "Checkout link no dey. Try again."
+    "checkoutUnavailable": "Checkout link no dey. Try again.",
+    "acceptTerms": "I gree wit di <terms>Terms and service</terms>"
   }
 }

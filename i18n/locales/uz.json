@@ -3613,7 +3613,6 @@
     "noTxHash": "Hamyon tranzaksiya heshini qaytarmadi",
     "finishing": "Yakunlanmoqda…",
     "confirmTitle": "Obunani tasdiqlash",
-    "subscribeToFor": "{{price}} evaziga {{name}}’ga obuna bo‘ling",
     "youPay": "Siz {{amount}} to‘laysiz",
     "calculating": "Umumiy summa hisoblanmoqda…",
     "creatorReceives": "Muallif {{amount}} USDT kredit oladi",
@@ -3622,7 +3621,8 @@
     "notAvailableYet": "Hali mavjud emas",
     "subscribe": "Obuna bo‘lish",
     "subscriberCount_one": "{{count}} obunachi",
-    "subscriberCount_other": "{{count}} obunachi"
+    "subscriberCount_other": "{{count}} obunachi",
+    "subscribeToForRich": "<price>{{price}}</price> evaziga <name>{{name}}</name>’ga obuna bo‘ling"
   },
   "live": {
     "notSet": "Belgilanmagan",
@@ -3675,8 +3675,6 @@
     "confirmPurchase": "Xaridni tasdiqlash",
     "amountIn": "{{currency}} miqdori",
     "approxReceive": "Taxminan olasiz {{symbol}}",
-    "iAcceptThe": "Men qabul qilaman",
-    "termsOfService": "Xizmat shartlari",
     "invalidAmountGtZero": "0 dan katta to‘g‘ri miqdorni kiriting.",
     "enterValidAmount": "To‘g‘ri miqdorni kiriting",
     "noSupply": "Xarid mumkin emas — bu zanjirda {{symbol}} zaxirasi yo‘q.",
@@ -3685,6 +3683,7 @@
     "acceptTermsFirst": "Iltimos, xizmat shartlarini qabul qiling",
     "redirecting": "To‘lov sahifasiga yo‘naltirilmoqda…",
     "openingCheckout": "To‘lov sahifasi ochilmoqda…",
-    "checkoutUnavailable": "To‘lov havolasi mavjud emas. Qayta urinib ko‘ring."
+    "checkoutUnavailable": "To‘lov havolasi mavjud emas. Qayta urinib ko‘ring.",
+    "acceptTerms": "Men qabul qilaman <terms>Xizmat shartlari</terms>"
   }
 }

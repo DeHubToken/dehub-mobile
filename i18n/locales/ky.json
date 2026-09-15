@@ -3555,7 +3555,6 @@
     "noTxHash": "Капчык транзакция хэшин кайтарган жок",
     "finishing": "Аяктоодо…",
     "confirmTitle": "Жазылууну ырастоо",
-    "subscribeToFor": "{{price}} үчүн {{name}} планына жазылыңыз",
     "youPay": "Сиз {{amount}} төлөйсүз",
     "calculating": "Жалпы сумма эсептелүүдө…",
     "creatorReceives": "Автор {{amount}} USDT кредит алат",
@@ -3564,7 +3563,8 @@
     "notAvailableYet": "Азырынча жеткиликсиз",
     "subscribe": "Жазылуу",
     "subscriberCount_one": "{{count}} жазылуучу",
-    "subscriberCount_other": "{{count}} жазылуучу"
+    "subscriberCount_other": "{{count}} жазылуучу",
+    "subscribeToForRich": "<price>{{price}}</price> үчүн <name>{{name}}</name> планына жазылыңыз"
   },
   "live": {
     "notSet": "Коюлган эмес",
@@ -3617,8 +3617,6 @@
     "confirmPurchase": "Сатып алууну ырастоо",
     "amountIn": "{{currency}} суммасы",
     "approxReceive": "Болжол менен аласыз {{symbol}}",
-    "iAcceptThe": "Мен кабыл алам",
-    "termsOfService": "Кызмат көрсөтүү шарттары",
     "invalidAmountGtZero": "0дөн чоң жарактуу сумманы киргизиңиз.",
     "enterValidAmount": "Жарактуу сумманы киргизиңиз",
     "noSupply": "Сатып алуу мүмкүн эмес — бул чынжырда {{symbol}} запасы жок.",
@@ -3627,6 +3625,7 @@
     "acceptTermsFirst": "Кызмат көрсөтүү шарттарын кабыл алыңыз",
     "redirecting": "Төлөмгө багыттоо…",
     "openingCheckout": "Төлөм бети ачылууда…",
-    "checkoutUnavailable": "Төлөм шилтемеси жеткиликсиз. Кайра аракет кылыңыз."
+    "checkoutUnavailable": "Төлөм шилтемеси жеткиликсиз. Кайра аракет кылыңыз.",
+    "acceptTerms": "Мен кабыл алам <terms>Кызмат көрсөтүү шарттары</terms>"
   }
 }

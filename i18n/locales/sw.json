@@ -3562,7 +3562,6 @@
     "noTxHash": "Pochi haikurudisha hashi ya muamala",
     "finishing": "Inakamilisha…",
     "confirmTitle": "Thibitisha usajili",
-    "subscribeToFor": "Jisajili kwa {{name}} kwa {{price}}",
     "youPay": "Unalipa {{amount}}",
     "calculating": "Inahesabu jumla…",
     "creatorReceives": "Mtayarishaji anapokea salio la {{amount}} USDT",
@@ -3571,7 +3570,8 @@
     "notAvailableYet": "Bado haipatikani",
     "subscribe": "Jisajili",
     "subscriberCount_one": "Mfuatiliaji {{count}}",
-    "subscriberCount_other": "Wafuatiliaji {{count}}"
+    "subscriberCount_other": "Wafuatiliaji {{count}}",
+    "subscribeToForRich": "Jisajili kwa <name>{{name}}</name> kwa <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Haijawekwa",
@@ -3624,8 +3624,6 @@
     "confirmPurchase": "Thibitisha ununuzi",
     "amountIn": "Kiasi cha {{currency}}",
     "approxReceive": "Utapokea takriban {{symbol}}",
-    "iAcceptThe": "Ninakubali",
-    "termsOfService": "Masharti ya Huduma",
     "invalidAmountGtZero": "Weka kiasi sahihi zaidi ya 0.",
     "enterValidAmount": "Weka kiasi sahihi",
     "noSupply": "Ununuzi haupatikani — hakuna usambazaji wa {{symbol}} kwenye mnyororo huu.",
@@ -3634,6 +3632,7 @@
     "acceptTermsFirst": "Tafadhali kubali masharti ya huduma",
     "redirecting": "Inakuelekeza kwenye malipo…",
     "openingCheckout": "Inafungua malipo…",
-    "checkoutUnavailable": "Kiungo cha malipo hakipatikani. Jaribu tena."
+    "checkoutUnavailable": "Kiungo cha malipo hakipatikani. Jaribu tena.",
+    "acceptTerms": "Ninakubali <terms>Masharti ya Huduma</terms>"
   }
 }

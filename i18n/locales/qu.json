@@ -3592,7 +3592,6 @@
     "noTxHash": "Qullqi wayaqa rantikuy hashninta mana kutichirqachu",
     "finishing": "Tukuchichkan…",
     "confirmTitle": "Qillqakuyta takyachiy",
-    "subscribeToFor": "{{price}}-pi {{name}}-man qillqakuy",
     "youPay": "Qan {{amount}} qupunki",
     "calculating": "Llapan yupachkan…",
     "creatorReceives": "Kamaqqa {{amount}} USDT kreditota chaskin",
@@ -3601,7 +3600,8 @@
     "notAvailableYet": "Manaraq kanchu",
     "subscribe": "Qillqakuy",
     "subscriberCount_one": "{{count}} qillqakuq",
-    "subscriberCount_other": "{{count}} qillqakuqkuna"
+    "subscriberCount_other": "{{count}} qillqakuqkuna",
+    "subscribeToForRich": "<price>{{price}}</price>-pi <name>{{name}}</name>-man qillqakuy"
   },
   "live": {
     "notSet": "Mana churasqa",
@@ -3654,8 +3654,6 @@
     "confirmPurchase": "Rantiyta takyachiy",
     "amountIn": "{{currency}} chhika",
     "approxReceive": "Yaqa chaskinki {{symbol}}",
-    "iAcceptThe": "Chaskikuni",
-    "termsOfService": "Llamk'ay kamachikuykuna",
     "invalidAmountGtZero": "0 mantaqa aswan hatun allin chhikata churay.",
     "enterValidAmount": "Allin chhikata churay",
     "noSupply": "Rantiy mana atikunchu — kay chainpi {{symbol}} kanchu.",
@@ -3664,6 +3662,7 @@
     "acceptTermsFirst": "Llamk'ay kamachikuykunata chaskiy",
     "redirecting": "Qullqi qupuy p'anqaman apachkan…",
     "openingCheckout": "Qullqi qupuy p'anqata kichachkan…",
-    "checkoutUnavailable": "Qullqi qupuy t'inkiy mana kanchu. Yapamanta ruray."
+    "checkoutUnavailable": "Qullqi qupuy t'inkiy mana kanchu. Yapamanta ruray.",
+    "acceptTerms": "Chaskikuni <terms>Llamk'ay kamachikuykuna</terms>"
   }
 }

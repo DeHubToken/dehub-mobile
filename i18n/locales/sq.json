@@ -3561,7 +3561,6 @@
     "noTxHash": "Portofoli nuk ktheu një hash transaksioni",
     "finishing": "Po përfundohet…",
     "confirmTitle": "Konfirmo abonimin",
-    "subscribeToFor": "Abonohu te {{name}} për {{price}}",
     "youPay": "Ti paguan {{amount}}",
     "calculating": "Po llogaritet totali…",
     "creatorReceives": "Krijuesi merr kredit {{amount}} USDT",
@@ -3570,7 +3569,8 @@
     "notAvailableYet": "Ende nuk është i disponueshëm",
     "subscribe": "Abonohu",
     "subscriberCount_one": "{{count}} abonent",
-    "subscriberCount_other": "{{count}} abonentë"
+    "subscriberCount_other": "{{count}} abonentë",
+    "subscribeToForRich": "Abonohu te <name>{{name}}</name> për <price>{{price}}</price>"
   },
   "live": {
     "notSet": "I pacaktuar",
@@ -3623,8 +3623,6 @@
     "confirmPurchase": "Konfirmo blerjen",
     "amountIn": "Shuma në {{currency}}",
     "approxReceive": "Do të marrësh afërsisht {{symbol}}",
-    "iAcceptThe": "I pranoj",
-    "termsOfService": "Kushtet e shërbimit",
     "invalidAmountGtZero": "Shkruaj një shumë të vlefshme më të madhe se 0.",
     "enterValidAmount": "Shkruaj një shumë të vlefshme",
     "noSupply": "Blerja nuk është e mundur — nuk ka rezerva {{symbol}} në këtë zinxhir.",
@@ -3633,6 +3631,7 @@
     "acceptTermsFirst": "Të lutem prano kushtet e shërbimit",
     "redirecting": "Po ridrejtohesh te pagesa…",
     "openingCheckout": "Po hapet pagesa…",
-    "checkoutUnavailable": "Lidhja e pagesës nuk është e disponueshme. Provo sërish."
+    "checkoutUnavailable": "Lidhja e pagesës nuk është e disponueshme. Provo sërish.",
+    "acceptTerms": "I pranoj <terms>Kushtet e shërbimit</terms>"
   }
 }

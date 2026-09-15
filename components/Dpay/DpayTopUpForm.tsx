@@ -1,5 +1,5 @@
 import { DhbCoin } from "../common/DhbCoin";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import React, { useEffect, useCallback, useMemo } from "react";
 import { View, Text, TextInput, TouchableOpacity, Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -523,13 +523,17 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
                   color={termsAccepted ? theme.colors.accent : "#9CA3AF"}
                 />
                 <Text className="text-gray-300 text-xs ml-2">
-                  {t("dpay.iAcceptThe")}{" "}
-                  <Text
-                    onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
-                    className="text-white font-semibold underline"
-                  >
-                    {t("dpay.termsOfService")}
-                  </Text>
+                  <Trans
+                    i18nKey="dpay.acceptTerms"
+                    components={{
+                      terms: (
+                        <Text
+                          onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
+                          className="text-white font-semibold underline"
+                        />
+                      ),
+                    }}
+                  />
                 </Text>
               </TouchableOpacity>
 

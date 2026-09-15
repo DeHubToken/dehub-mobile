@@ -3549,7 +3549,6 @@
     "noTxHash": "הארנק לא החזיר hash של עסקה",
     "finishing": "מסיים…",
     "confirmTitle": "אישור מנוי",
-    "subscribeToFor": "הירשמו ל־{{name}} תמורת {{price}}",
     "youPay": "אתם משלמים {{amount}}",
     "calculating": "מחשב את הסכום…",
     "creatorReceives": "היוצר מקבל זיכוי של {{amount}} USDT",
@@ -3558,7 +3557,8 @@
     "notAvailableYet": "עדיין לא זמין",
     "subscribe": "הרשמה",
     "subscriberCount_one": "{{count}} מנוי",
-    "subscriberCount_other": "{{count}} מנויים"
+    "subscriberCount_other": "{{count}} מנויים",
+    "subscribeToForRich": "הירשמו ל־<name>{{name}}</name> תמורת <price>{{price}}</price>"
   },
   "live": {
     "notSet": "לא הוגדר",
@@ -3611,8 +3611,6 @@
     "confirmPurchase": "אישור הרכישה",
     "amountIn": "סכום ב־{{currency}}",
     "approxReceive": "תקבלו בערך {{symbol}}",
-    "iAcceptThe": "אני מקבל את",
-    "termsOfService": "תנאי השירות",
     "invalidAmountGtZero": "הזינו סכום תקין גדול מ-0.",
     "enterValidAmount": "הזינו סכום תקין",
     "noSupply": "הרכישה אינה זמינה — אין מלאי {{symbol}} בשרשרת הזו.",
@@ -3621,6 +3619,7 @@
     "acceptTermsFirst": "נא לאשר את תנאי השירות",
     "redirecting": "מעביר לתשלום…",
     "openingCheckout": "פותח את התשלום…",
-    "checkoutUnavailable": "קישור התשלום אינו זמין. נסו שוב."
+    "checkoutUnavailable": "קישור התשלום אינו זמין. נסו שוב.",
+    "acceptTerms": "אני מקבל את <terms>תנאי השירות</terms>"
   }
 }

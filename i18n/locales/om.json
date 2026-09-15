@@ -3626,7 +3626,6 @@
     "noTxHash": "Boorsaan hash daldalaa hin deebisne",
     "finishing": "Xumuramaa jira…",
     "confirmTitle": "Galmee mirkaneessi",
-    "subscribeToFor": "{{price}}n {{name}} galmaaʼi",
     "youPay": "Ati {{amount}} kaffalta",
     "calculating": "Waliigala shallagaa jira…",
     "creatorReceives": "Uumaan kireedii {{amount}} USDT argata",
@@ -3635,7 +3634,8 @@
     "notAvailableYet": "Amma hin argamu",
     "subscribe": "Galmaaʼi",
     "subscriberCount_one": "Galmeeffataa {{count}}",
-    "subscriberCount_other": "Galmeeffattoota {{count}}"
+    "subscriberCount_other": "Galmeeffattoota {{count}}",
+    "subscribeToForRich": "<price>{{price}}</price>n <name>{{name}}</name> galmaaʼi"
   },
   "live": {
     "notSet": "Hin qindoofne",
@@ -3688,8 +3688,6 @@
     "confirmPurchase": "Bittaa mirkaneessi",
     "amountIn": "Hamma {{currency}}",
     "approxReceive": "Tilmaamaan argattu {{symbol}}",
-    "iAcceptThe": "Ani nan fudha",
-    "termsOfService": "Haala Tajaajilaa",
     "invalidAmountGtZero": "Hamma sirrii 0 caalu galchi.",
     "enterValidAmount": "Hamma sirrii galchi",
     "noSupply": "Bittaan hin danda'amu — sarara kana irratti dhiyeessii {{symbol}} hin jiru.",
@@ -3698,6 +3696,7 @@
     "acceptTermsFirst": "Maaloo haala tajaajilaa fudhadhu",
     "redirecting": "Gara kaffaltiitti geeddaramaa jira…",
     "openingCheckout": "Kaffaltii banaa jira…",
-    "checkoutUnavailable": "Geessituun kaffaltii hin argamu. Irra deebiʼii yaali."
+    "checkoutUnavailable": "Geessituun kaffaltii hin argamu. Irra deebiʼii yaali.",
+    "acceptTerms": "Ani nan fudha <terms>Haala Tajaajilaa</terms>"
   }
 }

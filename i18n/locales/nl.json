@@ -3829,7 +3829,6 @@
     "noTxHash": "De wallet gaf geen transactiehash terug",
     "finishing": "Afronden…",
     "confirmTitle": "Abonnement bevestigen",
-    "subscribeToFor": "Abonneer op {{name}} voor {{price}}",
     "youPay": "Je betaalt {{amount}}",
     "calculating": "Totaal berekenen…",
     "creatorReceives": "De maker ontvangt {{amount}} USDT tegoed",
@@ -3838,7 +3837,8 @@
     "notAvailableYet": "Nog niet beschikbaar",
     "subscribe": "Abonneren",
     "subscriberCount_one": "{{count}} abonnee",
-    "subscriberCount_other": "{{count}} abonnees"
+    "subscriberCount_other": "{{count}} abonnees",
+    "subscribeToForRich": "Abonneer op <name>{{name}}</name> voor <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Niet ingesteld",
@@ -3891,8 +3891,6 @@
     "confirmPurchase": "Aankoop bevestigen",
     "amountIn": "{{currency}}-bedrag",
     "approxReceive": "Je ontvangt ongeveer {{symbol}}",
-    "iAcceptThe": "Ik accepteer de",
-    "termsOfService": "Servicevoorwaarden",
     "invalidAmountGtZero": "Voer een geldig bedrag groter dan 0 in.",
     "enterValidAmount": "Voer een geldig bedrag in",
     "noSupply": "Kopen niet mogelijk — geen {{symbol}}-voorraad op deze chain.",
@@ -3901,6 +3899,7 @@
     "acceptTermsFirst": "Accepteer de servicevoorwaarden",
     "redirecting": "Doorsturen naar afrekenen…",
     "openingCheckout": "Afrekenen openen…",
-    "checkoutUnavailable": "Betaallink niet beschikbaar. Probeer het opnieuw."
+    "checkoutUnavailable": "Betaallink niet beschikbaar. Probeer het opnieuw.",
+    "acceptTerms": "Ik accepteer de <terms>Servicevoorwaarden</terms>"
   }
 }

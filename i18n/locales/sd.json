@@ -3545,7 +3545,6 @@
     "noTxHash": "والٽ ٽرانزيڪشن جو هيش واپس نه ڪيو",
     "finishing": "مڪمل ٿي رهيو آهي…",
     "confirmTitle": "سبسڪرپشن جي تصديق ڪريو",
-    "subscribeToFor": "{{price}} ۾ {{name}} سبسڪرائب ڪريو",
     "youPay": "توهان {{amount}} ادا ڪندا",
     "calculating": "ڪل رقم ڳڻي پئي وڃي…",
     "creatorReceives": "تخليقڪار کي {{amount}} USDT ڪريڊٽ ملندو",
@@ -3554,7 +3553,8 @@
     "notAvailableYet": "اڃا دستياب ناهي",
     "subscribe": "سبسڪرائب ڪريو",
     "subscriberCount_one": "{{count}} سبسڪرائبر",
-    "subscriberCount_other": "{{count}} سبسڪرائبر"
+    "subscriberCount_other": "{{count}} سبسڪرائبر",
+    "subscribeToForRich": "<price>{{price}}</price> ۾ <name>{{name}}</name> سبسڪرائب ڪريو"
   },
   "live": {
     "notSet": "مقرر ناهي",
@@ -3607,8 +3607,6 @@
     "confirmPurchase": "خريداري جي تصديق ڪريو",
     "amountIn": "{{currency}} رقم",
     "approxReceive": "لڳ ڀڳ ملندو {{symbol}}",
-    "iAcceptThe": "آئون قبول ڪريان ٿو",
-    "termsOfService": "خدمت جون شرطون",
     "invalidAmountGtZero": "0 کان وڏي صحيح رقم داخل ڪريو.",
     "enterValidAmount": "صحيح رقم داخل ڪريو",
     "noSupply": "خريداري دستياب ناهي — هن چين تي {{symbol}} جي رسد ناهي.",
@@ -3617,6 +3615,7 @@
     "acceptTermsFirst": "مهرباني ڪري خدمت جون شرطون قبول ڪريو",
     "redirecting": "چيڪ آئوٽ ڏانهن موڪليو پيو وڃي…",
     "openingCheckout": "چيڪ آئوٽ کوليو پيو وڃي…",
-    "checkoutUnavailable": "چيڪ آئوٽ لنڪ دستياب ناهي. ٻيهر ڪوشش ڪريو."
+    "checkoutUnavailable": "چيڪ آئوٽ لنڪ دستياب ناهي. ٻيهر ڪوشش ڪريو.",
+    "acceptTerms": "آئون قبول ڪريان ٿو <terms>خدمت جون شرطون</terms>"
   }
 }

@@ -3598,7 +3598,6 @@
     "noTxHash": "กระเป๋าไม่ได้ส่งคืนแฮชของธุรกรรม",
     "finishing": "กำลังทำให้เสร็จ…",
     "confirmTitle": "ยืนยันการสมัครสมาชิก",
-    "subscribeToFor": "สมัคร {{name}} ในราคา {{price}}",
     "youPay": "คุณจ่าย {{amount}}",
     "calculating": "กำลังคำนวณยอดรวม…",
     "creatorReceives": "ผู้สร้างได้รับเครดิต {{amount}} USDT",
@@ -3607,7 +3606,8 @@
     "notAvailableYet": "ยังไม่พร้อมใช้งาน",
     "subscribe": "สมัครสมาชิก",
     "subscriberCount_one": "สมาชิก {{count}} คน",
-    "subscriberCount_other": "สมาชิก {{count}} คน"
+    "subscriberCount_other": "สมาชิก {{count}} คน",
+    "subscribeToForRich": "สมัคร <name>{{name}}</name> ในราคา <price>{{price}}</price>"
   },
   "live": {
     "notSet": "ยังไม่ได้ตั้ง",
@@ -3660,8 +3660,6 @@
     "confirmPurchase": "ยืนยันการซื้อ",
     "amountIn": "จำนวน {{currency}}",
     "approxReceive": "จะได้รับประมาณ {{symbol}}",
-    "iAcceptThe": "ฉันยอมรับ",
-    "termsOfService": "ข้อกำหนดในการให้บริการ",
     "invalidAmountGtZero": "กรุณาใส่จำนวนที่ถูกต้องและมากกว่า 0",
     "enterValidAmount": "กรุณาใส่จำนวนที่ถูกต้อง",
     "noSupply": "ซื้อไม่ได้ — ไม่มี {{symbol}} บนเชนนี้",
@@ -3670,6 +3668,7 @@
     "acceptTermsFirst": "กรุณายอมรับข้อกำหนดในการให้บริการ",
     "redirecting": "กำลังพาไปหน้าชำระเงิน…",
     "openingCheckout": "กำลังเปิดหน้าชำระเงิน…",
-    "checkoutUnavailable": "ลิงก์ชำระเงินใช้ไม่ได้ กรุณาลองใหม่"
+    "checkoutUnavailable": "ลิงก์ชำระเงินใช้ไม่ได้ กรุณาลองใหม่",
+    "acceptTerms": "ฉันยอมรับ <terms>ข้อกำหนดในการให้บริการ</terms>"
   }
 }

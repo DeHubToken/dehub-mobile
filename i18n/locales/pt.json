@@ -3636,7 +3636,6 @@
     "noTxHash": "A carteira não retornou um hash de transação",
     "finishing": "Concluindo…",
     "confirmTitle": "Confirmar assinatura",
-    "subscribeToFor": "Assine {{name}} por {{price}}",
     "youPay": "Você paga {{amount}}",
     "calculating": "Calculando o total…",
     "creatorReceives": "O criador recebe {{amount}} USDT de crédito",
@@ -3645,7 +3644,8 @@
     "notAvailableYet": "Ainda não disponível",
     "subscribe": "Assinar",
     "subscriberCount_one": "{{count}} assinante",
-    "subscriberCount_other": "{{count}} assinantes"
+    "subscriberCount_other": "{{count}} assinantes",
+    "subscribeToForRich": "Assine <name>{{name}}</name> por <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Não definido",
@@ -3698,8 +3698,6 @@
     "confirmPurchase": "Confirmar compra",
     "amountIn": "Valor em {{currency}}",
     "approxReceive": "Você receberá cerca de {{symbol}}",
-    "iAcceptThe": "Eu aceito os",
-    "termsOfService": "Termos de Serviço",
     "invalidAmountGtZero": "Digite um valor válido maior que 0.",
     "enterValidAmount": "Digite um valor válido",
     "noSupply": "Compra indisponível — não há oferta de {{symbol}} nesta cadeia.",
@@ -3708,6 +3706,7 @@
     "acceptTermsFirst": "Aceite os termos de serviço",
     "redirecting": "Redirecionando para o pagamento…",
     "openingCheckout": "Abrindo o pagamento…",
-    "checkoutUnavailable": "Link de pagamento indisponível. Tente novamente."
+    "checkoutUnavailable": "Link de pagamento indisponível. Tente novamente.",
+    "acceptTerms": "Eu aceito os <terms>Termos de Serviço</terms>"
   }
 }

@@ -3631,7 +3631,6 @@
     "noTxHash": "Die Wallet hat keinen Transaktions-Hash zurückgegeben",
     "finishing": "Wird abgeschlossen…",
     "confirmTitle": "Abo bestätigen",
-    "subscribeToFor": "{{name}} für {{price}} abonnieren",
     "youPay": "Du zahlst {{amount}}",
     "calculating": "Gesamtbetrag wird berechnet…",
     "creatorReceives": "Der Ersteller erhält {{amount}} USDT Guthaben",
@@ -3640,7 +3639,8 @@
     "notAvailableYet": "Noch nicht verfügbar",
     "subscribe": "Abonnieren",
     "subscriberCount_one": "{{count}} Abonnent",
-    "subscriberCount_other": "{{count}} Abonnenten"
+    "subscriberCount_other": "{{count}} Abonnenten",
+    "subscribeToForRich": "<name>{{name}}</name> für <price>{{price}}</price> abonnieren"
   },
   "live": {
     "notSet": "Nicht festgelegt",
@@ -3693,8 +3693,6 @@
     "confirmPurchase": "Kauf bestätigen",
     "amountIn": "{{currency}}-Betrag",
     "approxReceive": "Ungefährer Erhalt {{symbol}}",
-    "iAcceptThe": "Ich akzeptiere die",
-    "termsOfService": "Nutzungsbedingungen",
     "invalidAmountGtZero": "Gib einen gültigen Betrag größer als 0 ein.",
     "enterValidAmount": "Gib einen gültigen Betrag ein",
     "noSupply": "Kauf nicht möglich — kein {{symbol}}-Bestand auf dieser Chain.",
@@ -3703,6 +3701,7 @@
     "acceptTermsFirst": "Bitte akzeptiere die Nutzungsbedingungen",
     "redirecting": "Weiterleitung zur Kasse…",
     "openingCheckout": "Kasse wird geöffnet…",
-    "checkoutUnavailable": "Zahlungslink nicht verfügbar. Bitte versuche es erneut."
+    "checkoutUnavailable": "Zahlungslink nicht verfügbar. Bitte versuche es erneut.",
+    "acceptTerms": "Ich akzeptiere die <terms>Nutzungsbedingungen</terms>"
   }
 }

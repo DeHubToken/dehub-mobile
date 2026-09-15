@@ -3562,7 +3562,6 @@
     "noTxHash": "Lompakko ei palauttanut tapahtuman tiivistettä",
     "finishing": "Viimeistellään…",
     "confirmTitle": "Vahvista tilaus",
-    "subscribeToFor": "Tilaa {{name}} hintaan {{price}}",
     "youPay": "Maksat {{amount}}",
     "calculating": "Lasketaan kokonaissummaa…",
     "creatorReceives": "Tekijä saa {{amount}} USDT hyvitystä",
@@ -3571,7 +3570,8 @@
     "notAvailableYet": "Ei vielä saatavilla",
     "subscribe": "Tilaa",
     "subscriberCount_one": "{{count}} tilaaja",
-    "subscriberCount_other": "{{count}} tilaajaa"
+    "subscriberCount_other": "{{count}} tilaajaa",
+    "subscribeToForRich": "Tilaa <name>{{name}}</name> hintaan <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Ei asetettu",
@@ -3624,8 +3624,6 @@
     "confirmPurchase": "Vahvista osto",
     "amountIn": "{{currency}}-summa",
     "approxReceive": "Saat noin {{symbol}}",
-    "iAcceptThe": "Hyväksyn",
-    "termsOfService": "Käyttöehdot",
     "invalidAmountGtZero": "Anna kelvollinen summa, joka on suurempi kuin 0.",
     "enterValidAmount": "Anna kelvollinen summa",
     "noSupply": "Osto ei onnistu — tässä ketjussa ei ole {{symbol}}-saldoa.",
@@ -3634,6 +3632,7 @@
     "acceptTermsFirst": "Hyväksy käyttöehdot",
     "redirecting": "Ohjataan kassalle…",
     "openingCheckout": "Avataan kassaa…",
-    "checkoutUnavailable": "Maksulinkki ei ole käytettävissä. Yritä uudelleen."
+    "checkoutUnavailable": "Maksulinkki ei ole käytettävissä. Yritä uudelleen.",
+    "acceptTerms": "Hyväksyn <terms>Käyttöehdot</terms>"
   }
 }

@@ -3561,7 +3561,6 @@
     "noTxHash": "Piniginė negrąžino operacijos maišos",
     "finishing": "Užbaigiama…",
     "confirmTitle": "Patvirtinti prenumeratą",
-    "subscribeToFor": "Prenumeruokite {{name}} už {{price}}",
     "youPay": "Jūs mokate {{amount}}",
     "calculating": "Skaičiuojama bendra suma…",
     "creatorReceives": "Kūrėjas gauna {{amount}} USDT kredito",
@@ -3570,7 +3569,8 @@
     "notAvailableYet": "Dar nepasiekiama",
     "subscribe": "Prenumeruoti",
     "subscriberCount_one": "{{count}} prenumeratorius",
-    "subscriberCount_other": "{{count}} prenumeratoriai"
+    "subscriberCount_other": "{{count}} prenumeratoriai",
+    "subscribeToForRich": "Prenumeruokite <name>{{name}}</name> už <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Nenustatyta",
@@ -3623,8 +3623,6 @@
     "confirmPurchase": "Patvirtinti pirkimą",
     "amountIn": "{{currency}} suma",
     "approxReceive": "Gausite maždaug {{symbol}}",
-    "iAcceptThe": "Sutinku su",
-    "termsOfService": "Paslaugų teikimo sąlygos",
     "invalidAmountGtZero": "Įveskite galiojančią sumą, didesnę už 0.",
     "enterValidAmount": "Įveskite galiojančią sumą",
     "noSupply": "Pirkti negalima — šioje grandinėje nėra {{symbol}} atsargų.",
@@ -3633,6 +3631,7 @@
     "acceptTermsFirst": "Sutikite su paslaugų teikimo sąlygomis",
     "redirecting": "Nukreipiama į apmokėjimą…",
     "openingCheckout": "Atveriamas apmokėjimas…",
-    "checkoutUnavailable": "Mokėjimo nuoroda nepasiekiama. Bandykite dar kartą."
+    "checkoutUnavailable": "Mokėjimo nuoroda nepasiekiama. Bandykite dar kartą.",
+    "acceptTerms": "Sutinku su <terms>Paslaugų teikimo sąlygos</terms>"
   }
 }
