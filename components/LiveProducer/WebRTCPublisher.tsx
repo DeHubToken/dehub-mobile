@@ -16,6 +16,7 @@ import {
   markIngestUnreachable,
   clearIngestUnreachable,
   isNetworkShapedError,
+  withOpusFec,
 } from "../../libs/live-ingest";
 import { videoEffectChain, type VideoLookId } from "./videoLooks";
 
@@ -513,7 +514,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
 
         dbg('creating offer', { gen: myGen });
         const offer = await pc.createOffer();
-        await pc.setLocalDescription(offer);
+        await pc.setLocalDescription({ type: "offer", sdp: withOpusFec(offer.sdp ?? "") });
         dbg('waiting for ICE gathering to complete', { gen: myGen });
         const localDesc: any = await new Promise((resolve) => {
           const max = setTimeout(() => resolve(pc.localDescription), 5000);
@@ -561,7 +562,8 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
         if (myGen !== pcGenerationRef.current) { dbg('start(): stale or cancelled before applying answer', { gen: myGen, currentGen: pcGenerationRef.current }); return; }
         dbg('received WHIP answer', { gen: myGen });
         const answer = await resp.text();
-        await pc.setRemoteDescription({ type: "answer", sdp: answer });
+        // FEC and stereo only switch on when the REMOTE fmtp carries them.
+        await pc.setRemoteDescription({ type: "answer", sdp: withOpusFec(answer) });
         // The publish is accepted from here on, so anything that goes wrong
         // next is the media leg. Stamped after the answer rather than before
         // the POST so a slow exchange does not eat the window.
