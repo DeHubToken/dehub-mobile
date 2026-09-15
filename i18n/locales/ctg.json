@@ -3686,5 +3686,24 @@
     "confirmingPayment": "পেমেন্ট নিশ্চিত অর…",
     "retryConfirmation": "আবার নিশ্চিত গরন",
     "buyNow": "এহনই কিনন"
+  },
+  "dpay": {
+    "success": "সফল",
+    "stripeStatus": "Stripe স্ট্যাটাস",
+    "tokenSendStatus": "টোকেন পাঠানোর স্ট্যাটাস",
+    "txnHash": "লেনদেন হ্যাশ",
+    "paymentCompleted": "পেমেন্ট শেষ",
+    "paymentProcessing": "পেমেন্ট প্রক্রিয়াধীন",
+    "actionRequired": "পদক্ষেপ লাগিব",
+    "awaitingMethod": "পেমেন্ট পদ্ধতির অপেক্ষাত",
+    "paymentCanceled": "পেমেন্ট বাতিল",
+    "paymentExpired": "পেমেন্টর মেয়াদ শেষ",
+    "sessionNotFound": "সেশন পাওন ন যায়",
+    "pendingPayment": "পেমেন্ট বাকি",
+    "tokensSent": "টোকেন পাঠাই দিয়্যি",
+    "sendingTokens": "টোকেন পাঠান অর",
+    "queuedForSending": "পাঠাইবার লাই লাইনত",
+    "tokenTransferFailed": "টোকেন ট্রান্সফার ব্যর্থ",
+    "notSentYet": "এহনো পাঠান ন অইয়ে"
   }
 }

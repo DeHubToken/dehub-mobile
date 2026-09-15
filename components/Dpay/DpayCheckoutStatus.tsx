@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import React, { useEffect, useCallback, useMemo, useRef } from "react";
 import {
   View,
@@ -31,6 +32,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
   initialSid,
   onClose,
 }) => {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const { patchUser } = useAuthActions();
   const [sid, setSid] = React.useState<string | null>(initialSid ?? null);
@@ -142,10 +144,10 @@ const DpayCheckoutStatus: React.FC<Props> = ({
 
   const shouldPoll = React.useMemo(() => {
     const s = (statusStripe || "").toLowerCase();
-    const t = (tokenSendStatus || "").toLowerCase();
+    const send = (tokenSendStatus || "").toLowerCase();
     if (["failed", "expired", "canceled", "not_found"].includes(s))
       return false;
-    if (["sent", "failed"].includes(t)) return false;
+    if (["sent", "failed"].includes(send)) return false;
     return true;
   }, [statusStripe, tokenSendStatus]);
 
@@ -198,7 +200,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
           <Animated.View style={{ transform: [{ scale }] }}>
             <Ionicons name="checkmark-circle" size={66} color="#F4F4F5" />
           </Animated.View>
-          <Text className="text-white text-xl font-semibold mt-3">Success</Text>
+          <Text className="text-white text-xl font-semibold mt-3">{t("dpay.success")}</Text>
           <Text className="text-gray-300 text-sm mt-1 text-center">
             {amountStr
               ? `${amountStr} ${tokenSymbol} was sent to ${miniAddress(
@@ -213,7 +215,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
                 activeOpacity={0.9}
                 className="rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 py-3 items-center"
               >
-                <Text className="text-white text-sm font-semibold">Close</Text>
+                <Text className="text-white text-sm font-semibold">{t("common.close")}</Text>
               </TouchableOpacity>
             </View>
             <View className="flex-1 ml-2">
@@ -237,39 +239,39 @@ const DpayCheckoutStatus: React.FC<Props> = ({
 
           <View className="border-t border-theme-neutrals-700/60 mt-2">
             <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60">
-              <Text className="text-gray-300 text-sm">Stripe Status</Text>
+              <Text className="text-gray-300 text-sm">{t("dpay.stripeStatus")}</Text>
               <Text className="text-white text-sm font-semibold">
                 {(() => {
                   const s = (statusStripe || "").toLowerCase();
-                  if (s === "succeeded") return "Payment completed";
-                  if (s === "processing") return "Payment processing";
-                  if (s === "requires_action") return "Action required";
+                  if (s === "succeeded") return t("dpay.paymentCompleted");
+                  if (s === "processing") return t("dpay.paymentProcessing");
+                  if (s === "requires_action") return t("dpay.actionRequired");
                   if (s === "requires_payment_method")
-                    return "Awaiting payment method";
-                  if (s === "canceled") return "Payment canceled";
-                  if (s === "expired") return "Payment expired";
-                  if (s === "not_found") return "Session not found";
-                  if (s === "failed") return "Payment failed";
-                  return "Pending payment";
+                    return t("dpay.awaitingMethod");
+                  if (s === "canceled") return t("dpay.paymentCanceled");
+                  if (s === "expired") return t("dpay.paymentExpired");
+                  if (s === "not_found") return t("dpay.sessionNotFound");
+                  if (s === "failed") return t("toasts.payment_failed");
+                  return t("dpay.pendingPayment");
                 })()}
               </Text>
             </View>
             <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60">
-              <Text className="text-gray-300 text-sm">Token Send Status</Text>
+              <Text className="text-gray-300 text-sm">{t("dpay.tokenSendStatus")}</Text>
               <Text className="text-white text-sm font-semibold">
                 {(() => {
-                  const t = (tokenSendStatus || "").toLowerCase();
-                  if (t === "sent") return "Tokens sent";
-                  if (t === "sending") return "Sending tokens";
-                  if (t === "queued") return "Queued for sending";
-                  if (t === "failed") return "Token transfer failed";
-                  return "Not sent yet";
+                  const status = (tokenSendStatus || "").toLowerCase();
+                  if (status === "sent") return t("dpay.tokensSent");
+                  if (status === "sending") return t("dpay.sendingTokens");
+                  if (status === "queued") return t("dpay.queuedForSending");
+                  if (status === "failed") return t("dpay.tokenTransferFailed");
+                  return t("dpay.notSentYet");
                 })()}
               </Text>
             </View>
             {txData?.tokenSendTxnHash ? (
               <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60">
-                <Text className="text-gray-300 text-sm">Txn Hash</Text>
+                <Text className="text-gray-300 text-sm">{t("dpay.txnHash")}</Text>
                 <Text className="text-white text-sm font-semibold">
                   {miniAddress(txData.tokenSendTxnHash)}
                 </Text>
@@ -290,7 +292,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
               activeOpacity={0.9}
               className="rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 py-3 items-center"
             >
-              <Text className="text-white text-sm font-semibold">Close</Text>
+              <Text className="text-white text-sm font-semibold">{t("common.close")}</Text>
             </TouchableOpacity>
           </View>
         </View>

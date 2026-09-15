@@ -3323,5 +3323,24 @@
     "oneTyping": "{{name}} لکھ رہے ہیں…",
     "fewTyping": "{{names}} لکھ رہے ہیں…",
     "manyTyping": "{{count}} لوگ لکھ رہے ہیں…"
+  },
+  "dpay": {
+    "success": "کامیاب",
+    "stripeStatus": "Stripe کی حالت",
+    "tokenSendStatus": "ٹوکن بھیجنے کی حالت",
+    "txnHash": "لین دین ہیش",
+    "paymentCompleted": "ادائیگی مکمل",
+    "paymentProcessing": "ادائیگی پراسیس ہو رہی ہے",
+    "actionRequired": "کارروائی درکار",
+    "awaitingMethod": "ادائیگی کے طریقے کا انتظار",
+    "paymentCanceled": "ادائیگی منسوخ",
+    "paymentExpired": "ادائیگی کی میعاد ختم",
+    "sessionNotFound": "سیشن نئیں ملا",
+    "pendingPayment": "ادائیگی زیرِ التوا",
+    "tokensSent": "ٹوکن بھیج دیے",
+    "sendingTokens": "ٹوکن بھیجے جا رہے ہیں",
+    "queuedForSending": "بھیجنے کے لیے قطار میں",
+    "tokenTransferFailed": "ٹوکن ٹرانسفر ناکام",
+    "notSentYet": "ابھی نئیں بھیجا"
   }
 }

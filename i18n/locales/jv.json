@@ -3553,5 +3553,24 @@
     "confirmingPayment": "Ngonfirmasi pambayaran…",
     "retryConfirmation": "Coba konfirmasi maneh",
     "buyNow": "Tuku saiki"
+  },
+  "dpay": {
+    "success": "Kasil",
+    "stripeStatus": "Status Stripe",
+    "tokenSendStatus": "Status ngirim token",
+    "txnHash": "Hash transaksi",
+    "paymentCompleted": "Pambayaran rampung",
+    "paymentProcessing": "Pambayaran diproses",
+    "actionRequired": "Butuh tindakan",
+    "awaitingMethod": "Ngenteni cara pambayaran",
+    "paymentCanceled": "Pambayaran dibatalake",
+    "paymentExpired": "Pambayaran kadaluwarsa",
+    "sessionNotFound": "Sesi ora ditemokake",
+    "pendingPayment": "Pambayaran ngenteni",
+    "tokensSent": "Token wis dikirim",
+    "sendingTokens": "Ngirim token",
+    "queuedForSending": "Antre kanggo dikirim",
+    "tokenTransferFailed": "Transfer token gagal",
+    "notSentYet": "Durung dikirim"
   }
 }

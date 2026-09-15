@@ -3587,5 +3587,24 @@
     "confirmingPayment": "ચુકવણીની પુષ્ટિ થઈ રહી છે…",
     "retryConfirmation": "પુષ્ટિ ફરી કરો",
     "buyNow": "હમણાં ખરીદો"
+  },
+  "dpay": {
+    "success": "સફળ",
+    "stripeStatus": "Stripe સ્થિતિ",
+    "tokenSendStatus": "ટોકન મોકલવાની સ્થિતિ",
+    "txnHash": "વ્યવહાર હેશ",
+    "paymentCompleted": "ચુકવણી પૂર્ણ",
+    "paymentProcessing": "ચુકવણી પ્રક્રિયામાં",
+    "actionRequired": "કાર્યવાહી જરૂરી",
+    "awaitingMethod": "ચુકવણી પદ્ધતિની રાહ",
+    "paymentCanceled": "ચુકવણી રદ",
+    "paymentExpired": "ચુકવણીની મુદત પૂરી",
+    "sessionNotFound": "સત્ર મળ્યું નહીં",
+    "pendingPayment": "ચુકવણી બાકી",
+    "tokensSent": "ટોકન મોકલ્યા",
+    "sendingTokens": "ટોકન મોકલાઈ રહ્યા છે",
+    "queuedForSending": "મોકલવા માટે કતારમાં",
+    "tokenTransferFailed": "ટોકન ટ્રાન્સફર નિષ્ફળ",
+    "notSentYet": "હજી મોકલ્યું નથી"
   }
 }

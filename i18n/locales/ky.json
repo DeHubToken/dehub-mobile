@@ -3588,5 +3588,24 @@
     "confirmingPayment": "Төлөм ырасталууда…",
     "retryConfirmation": "Ырастоону кайталоо",
     "buyNow": "Азыр сатып алуу"
+  },
+  "dpay": {
+    "success": "Ийгиликтүү",
+    "stripeStatus": "Stripe абалы",
+    "tokenSendStatus": "Токен жөнөтүү абалы",
+    "txnHash": "Транзакция хэши",
+    "paymentCompleted": "Төлөм аяктады",
+    "paymentProcessing": "Төлөм иштетилүүдө",
+    "actionRequired": "Аракет талап кылынат",
+    "awaitingMethod": "Төлөм ыкмасы күтүлүүдө",
+    "paymentCanceled": "Төлөм жокко чыгарылды",
+    "paymentExpired": "Төлөмдүн мөөнөтү бүттү",
+    "sessionNotFound": "Сессия табылган жок",
+    "pendingPayment": "Төлөм күтүүдө",
+    "tokensSent": "Токендер жөнөтүлдү",
+    "sendingTokens": "Токендер жөнөтүлүүдө",
+    "queuedForSending": "Жөнөтүү кезегинде",
+    "tokenTransferFailed": "Токенди которуу ийгиликсиз аяктады",
+    "notSentYet": "Азырынча жөнөтүлгөн жок"
   }
 }

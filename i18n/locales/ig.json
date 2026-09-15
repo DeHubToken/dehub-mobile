@@ -3573,5 +3573,24 @@
     "confirmingPayment": "Na-akwado ịkwụ ụgwọ…",
     "retryConfirmation": "Nwaa nkwado ọzọ",
     "buyNow": "Zụta ugbu a"
+  },
+  "dpay": {
+    "success": "Ọ gara nke ọma",
+    "stripeStatus": "Ọnọdụ Stripe",
+    "tokenSendStatus": "Ọnọdụ izipu token",
+    "txnHash": "Hash azụmahịa",
+    "paymentCompleted": "Ịkwụ ụgwọ zuru ezu",
+    "paymentProcessing": "A na-ahazi ịkwụ ụgwọ",
+    "actionRequired": "Achọrọ ihe ị ga-eme",
+    "awaitingMethod": "Na-eche ụzọ ịkwụ ụgwọ",
+    "paymentCanceled": "A kagburu ịkwụ ụgwọ",
+    "paymentExpired": "Oge ịkwụ ụgwọ agwụla",
+    "sessionNotFound": "Ahụghị nnọkọ ahụ",
+    "pendingPayment": "Ịkwụ ụgwọ na-echere",
+    "tokensSent": "E zigara tokens",
+    "sendingTokens": "Na-eziga tokens",
+    "queuedForSending": "Na kwụ n'ahịrị maka izipu",
+    "tokenTransferFailed": "Nnyefe token dara",
+    "notSentYet": "Ezigabeghị ya"
   }
 }

@@ -3594,5 +3594,24 @@
     "confirmingPayment": "Po konfirmohet pagesa…",
     "retryConfirmation": "Riprovo konfirmimin",
     "buyNow": "Blej tani"
+  },
+  "dpay": {
+    "success": "Sukses",
+    "stripeStatus": "Statusi i Stripe",
+    "tokenSendStatus": "Statusi i dërgimit të tokenit",
+    "txnHash": "Hash-i i transaksionit",
+    "paymentCompleted": "Pagesa u krye",
+    "paymentProcessing": "Pagesa po përpunohet",
+    "actionRequired": "Kërkohet veprim",
+    "awaitingMethod": "Në pritje të mënyrës së pagesës",
+    "paymentCanceled": "Pagesa u anulua",
+    "paymentExpired": "Pagesa skadoi",
+    "sessionNotFound": "Sesioni nuk u gjet",
+    "pendingPayment": "Pagesa në pritje",
+    "tokensSent": "Tokenat u dërguan",
+    "sendingTokens": "Po dërgohen tokenat",
+    "queuedForSending": "Në radhë për dërgim",
+    "tokenTransferFailed": "Transferimi i tokenit dështoi",
+    "notSentYet": "Ende nuk është dërguar"
   }
 }

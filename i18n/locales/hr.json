@@ -3595,5 +3595,24 @@
     "confirmingPayment": "Potvrđivanje plaćanja…",
     "retryConfirmation": "Ponovi potvrdu",
     "buyNow": "Kupi odmah"
+  },
+  "dpay": {
+    "success": "Uspjelo",
+    "stripeStatus": "Stripe status",
+    "tokenSendStatus": "Status slanja tokena",
+    "txnHash": "Hash transakcije",
+    "paymentCompleted": "Plaćanje dovršeno",
+    "paymentProcessing": "Plaćanje se obrađuje",
+    "actionRequired": "Potrebna je radnja",
+    "awaitingMethod": "Čeka se način plaćanja",
+    "paymentCanceled": "Plaćanje otkazano",
+    "paymentExpired": "Plaćanje je isteklo",
+    "sessionNotFound": "Sesija nije pronađena",
+    "pendingPayment": "Plaćanje na čekanju",
+    "tokensSent": "Tokeni poslani",
+    "sendingTokens": "Slanje tokena",
+    "queuedForSending": "U redu za slanje",
+    "tokenTransferFailed": "Prijenos tokena nije uspio",
+    "notSentYet": "Još nije poslano"
   }
 }

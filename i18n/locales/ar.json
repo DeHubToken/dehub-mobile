@@ -3650,5 +3650,24 @@
     "confirmingPayment": "جارٍ تأكيد الدفع…",
     "retryConfirmation": "إعادة محاولة التأكيد",
     "buyNow": "اشترِ الآن"
+  },
+  "dpay": {
+    "success": "تم بنجاح",
+    "stripeStatus": "حالة Stripe",
+    "tokenSendStatus": "حالة إرسال الرمز",
+    "txnHash": "تجزئة المعاملة",
+    "paymentCompleted": "اكتمل الدفع",
+    "paymentProcessing": "الدفع قيد المعالجة",
+    "actionRequired": "مطلوب إجراء",
+    "awaitingMethod": "في انتظار طريقة الدفع",
+    "paymentCanceled": "تم إلغاء الدفع",
+    "paymentExpired": "انتهت صلاحية الدفع",
+    "sessionNotFound": "لم يتم العثور على الجلسة",
+    "pendingPayment": "الدفع قيد الانتظار",
+    "tokensSent": "تم إرسال الرموز",
+    "sendingTokens": "جارٍ إرسال الرموز",
+    "queuedForSending": "في قائمة الانتظار للإرسال",
+    "tokenTransferFailed": "فشل نقل الرمز",
+    "notSentYet": "لم يُرسل بعد"
   }
 }

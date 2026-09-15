@@ -3599,5 +3599,24 @@
     "confirmingPayment": "Fizetés megerősítése…",
     "retryConfirmation": "Megerősítés újra",
     "buyNow": "Vásárlás most"
+  },
+  "dpay": {
+    "success": "Sikeres",
+    "stripeStatus": "Stripe-állapot",
+    "tokenSendStatus": "Tokenküldés állapota",
+    "txnHash": "Tranzakció hash",
+    "paymentCompleted": "Fizetés befejezve",
+    "paymentProcessing": "Fizetés feldolgozás alatt",
+    "actionRequired": "Művelet szükséges",
+    "awaitingMethod": "Fizetési mód várása",
+    "paymentCanceled": "Fizetés megszakítva",
+    "paymentExpired": "A fizetés lejárt",
+    "sessionNotFound": "A munkamenet nem található",
+    "pendingPayment": "Fizetés függőben",
+    "tokensSent": "Tokenek elküldve",
+    "sendingTokens": "Tokenek küldése",
+    "queuedForSending": "Küldési sorban",
+    "tokenTransferFailed": "A tokenátutalás nem sikerült",
+    "notSentYet": "Még nincs elküldve"
   }
 }

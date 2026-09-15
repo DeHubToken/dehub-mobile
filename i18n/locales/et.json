@@ -3594,5 +3594,24 @@
     "confirmingPayment": "Makse kinnitamine…",
     "retryConfirmation": "Proovi kinnitust uuesti",
     "buyNow": "Osta kohe"
+  },
+  "dpay": {
+    "success": "Õnnestus",
+    "stripeStatus": "Stripe'i olek",
+    "tokenSendStatus": "Tokeni saatmise olek",
+    "txnHash": "Tehingu räsi",
+    "paymentCompleted": "Makse lõpetatud",
+    "paymentProcessing": "Makset töödeldakse",
+    "actionRequired": "Nõutav on tegevus",
+    "awaitingMethod": "Makseviisi ootamine",
+    "paymentCanceled": "Makse tühistatud",
+    "paymentExpired": "Makse aegus",
+    "sessionNotFound": "Seanssi ei leitud",
+    "pendingPayment": "Makse ootel",
+    "tokensSent": "Tokenid saadetud",
+    "sendingTokens": "Tokenite saatmine",
+    "queuedForSending": "Saatmise järjekorras",
+    "tokenTransferFailed": "Tokeni ülekanne ebaõnnestus",
+    "notSentYet": "Pole veel saadetud"
   }
 }

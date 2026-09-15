@@ -3356,5 +3356,24 @@
     "oneTyping": "{{name}} dinivîse…",
     "fewTyping": "{{names}} dinivîsin…",
     "manyTyping": "{{count}} kes dinivîsin…"
+  },
+  "dpay": {
+    "success": "Serkeftin",
+    "stripeStatus": "Rewşa Stripe",
+    "tokenSendStatus": "Rewşa şandina tokenê",
+    "txnHash": "Hash a danûstandinê",
+    "paymentCompleted": "Dravdan qediya",
+    "paymentProcessing": "Dravdan tê pêvajokirin",
+    "actionRequired": "Kirin pêwîst e",
+    "awaitingMethod": "Li benda rêbaza dravdanê",
+    "paymentCanceled": "Dravdan hate betalkirin",
+    "paymentExpired": "Dema dravdanê qediya",
+    "sessionNotFound": "Danişîn nehat dîtin",
+    "pendingPayment": "Dravdan li benda ye",
+    "tokensSent": "Token hatin şandin",
+    "sendingTokens": "Token têne şandin",
+    "queuedForSending": "Di rêzê de ji bo şandinê",
+    "tokenTransferFailed": "Veguhastina tokenê bi ser neket",
+    "notSentYet": "Hîn nehatiye şandin"
   }
 }

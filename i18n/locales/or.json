@@ -3566,5 +3566,24 @@
     "confirmingPayment": "ପେମେଣ୍ଟ ନିଶ୍ଚିତ ହେଉଛି…",
     "retryConfirmation": "ନିଶ୍ଚିତକରଣ ପୁନଃ ଚେଷ୍ଟା କରନ୍ତୁ",
     "buyNow": "ଏବେ କିଣନ୍ତୁ"
+  },
+  "dpay": {
+    "success": "ସଫଳ",
+    "stripeStatus": "Stripe ସ୍ଥିତି",
+    "tokenSendStatus": "ଟୋକେନ ପଠାଇବା ସ୍ଥିତି",
+    "txnHash": "କାରବାର ହ୍ୟାସ",
+    "paymentCompleted": "ପେମେଣ୍ଟ ସମ୍ପୂର୍ଣ୍ଣ",
+    "paymentProcessing": "ପେମେଣ୍ଟ ପ୍ରକ୍ରିୟାଧୀନ",
+    "actionRequired": "କାର୍ଯ୍ୟ ଆବଶ୍ୟକ",
+    "awaitingMethod": "ପେମେଣ୍ଟ ପଦ୍ଧତି ଅପେକ୍ଷାରେ",
+    "paymentCanceled": "ପେମେଣ୍ଟ ବାତିଲ",
+    "paymentExpired": "ପେମେଣ୍ଟର ମିଆଦ ଶେଷ",
+    "sessionNotFound": "ସେସନ ମିଳିଲା ନାହିଁ",
+    "pendingPayment": "ପେମେଣ୍ଟ ବାକି",
+    "tokensSent": "ଟୋକେନ ପଠାଯାଇଛି",
+    "sendingTokens": "ଟୋକେନ ପଠାଯାଉଛି",
+    "queuedForSending": "ପଠାଇବା ପାଇଁ ଧାଡ଼ିରେ",
+    "tokenTransferFailed": "ଟୋକେନ ସ୍ଥାନାନ୍ତର ବିଫଳ",
+    "notSentYet": "ଏବେ ପଠାଯାଇନାହିଁ"
   }
 }

@@ -3774,5 +3774,24 @@
     "confirmingPayment": "Kinukumpirma ang bayad…",
     "retryConfirmation": "Subukan ulit ang kumpirmasyon",
     "buyNow": "Bilhin na"
+  },
+  "dpay": {
+    "success": "Tagumpay",
+    "stripeStatus": "Status ng Stripe",
+    "tokenSendStatus": "Status ng pagpapadala ng token",
+    "txnHash": "Txn hash",
+    "paymentCompleted": "Kumpleto ang bayad",
+    "paymentProcessing": "Pinoproseso ang bayad",
+    "actionRequired": "May kailangang gawin",
+    "awaitingMethod": "Hinihintay ang paraan ng pagbabayad",
+    "paymentCanceled": "Kanselado ang bayad",
+    "paymentExpired": "Nag-expire ang bayad",
+    "sessionNotFound": "Hindi natagpuan ang session",
+    "pendingPayment": "Nakabinbin ang bayad",
+    "tokensSent": "Naipadala ang mga token",
+    "sendingTokens": "Ipinapadala ang mga token",
+    "queuedForSending": "Nasa pila para ipadala",
+    "tokenTransferFailed": "Nabigo ang paglipat ng token",
+    "notSentYet": "Hindi pa naipapadala"
   }
 }

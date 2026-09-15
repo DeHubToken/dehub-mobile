@@ -3584,5 +3584,24 @@
     "confirmingPayment": "Zahlig wird bestätigt…",
     "retryConfirmation": "Bestätigung nomol probiere",
     "buyNow": "Jetzt chaufe"
+  },
+  "dpay": {
+    "success": "Erfolgriich",
+    "stripeStatus": "Stripe-Status",
+    "tokenSendStatus": "Status vom Token-Versand",
+    "txnHash": "Transaktions-Hash",
+    "paymentCompleted": "Zahlig abgschlosse",
+    "paymentProcessing": "Zahlig wird verarbeitet",
+    "actionRequired": "Aktion erforderlich",
+    "awaitingMethod": "Warte uf d Zahligsmethode",
+    "paymentCanceled": "Zahlig storniert",
+    "paymentExpired": "Zahlig abglaufe",
+    "sessionNotFound": "Sitzig nöd gfunde",
+    "pendingPayment": "Zahlig usstehend",
+    "tokensSent": "Token gschickt",
+    "sendingTokens": "Token wärded gschickt",
+    "queuedForSending": "I dr Warteschlange zum Schicke",
+    "tokenTransferFailed": "Token-Übertragig fehlgschlage",
+    "notSentYet": "Nonig gschickt"
   }
 }

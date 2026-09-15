@@ -3579,5 +3579,24 @@
     "confirmingPayment": "Ödəniş təsdiqlənir…",
     "retryConfirmation": "Təsdiqi yenidən sına",
     "buyNow": "İndi al"
+  },
+  "dpay": {
+    "success": "Uğurlu",
+    "stripeStatus": "Stripe statusu",
+    "tokenSendStatus": "Token göndərmə statusu",
+    "txnHash": "Əməliyyat heşi",
+    "paymentCompleted": "Ödəniş tamamlandı",
+    "paymentProcessing": "Ödəniş emal olunur",
+    "actionRequired": "Əməliyyat tələb olunur",
+    "awaitingMethod": "Ödəniş üsulu gözlənilir",
+    "paymentCanceled": "Ödəniş ləğv edildi",
+    "paymentExpired": "Ödənişin müddəti bitdi",
+    "sessionNotFound": "Sessiya tapılmadı",
+    "pendingPayment": "Ödəniş gözləmədə",
+    "tokensSent": "Tokenlər göndərildi",
+    "sendingTokens": "Tokenlər göndərilir",
+    "queuedForSending": "Göndərilmək üçün növbədə",
+    "tokenTransferFailed": "Token köçürülməsi alınmadı",
+    "notSentYet": "Hələ göndərilməyib"
   }
 }

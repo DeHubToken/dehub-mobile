@@ -3580,5 +3580,24 @@
     "confirmingPayment": "Kei te whakaū i te utu…",
     "retryConfirmation": "Ngana anō ki te whakaū",
     "buyNow": "Hokona ināianei"
+  },
+  "dpay": {
+    "success": "Angitu",
+    "stripeStatus": "Tūnga Stripe",
+    "tokenSendStatus": "Tūnga tuku tohu",
+    "txnHash": "Hash whakawhitinga",
+    "paymentCompleted": "Kua oti te utu",
+    "paymentProcessing": "Kei te tukatuka te utu",
+    "actionRequired": "Me mahi",
+    "awaitingMethod": "Kei te tatari mō te tikanga utu",
+    "paymentCanceled": "Kua whakakorea te utu",
+    "paymentExpired": "Kua pau te wā utu",
+    "sessionNotFound": "Kāore i kitea te wātū",
+    "pendingPayment": "Kei te tatari te utu",
+    "tokensSent": "Kua tukuna ngā tohu",
+    "sendingTokens": "Kei te tuku tohu",
+    "queuedForSending": "Kei te rārangi tatari kia tukuna",
+    "tokenTransferFailed": "I rahu te whakawhiti tohu",
+    "notSentYet": "Kāore anō kia tukuna"
   }
 }

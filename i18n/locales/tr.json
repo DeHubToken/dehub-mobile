@@ -3657,5 +3657,24 @@
     "confirmingPayment": "Ödeme onaylanıyor…",
     "retryConfirmation": "Onayı yeniden dene",
     "buyNow": "Şimdi satın al"
+  },
+  "dpay": {
+    "success": "Başarılı",
+    "stripeStatus": "Stripe durumu",
+    "tokenSendStatus": "Token gönderim durumu",
+    "txnHash": "İşlem hash'i",
+    "paymentCompleted": "Ödeme tamamlandı",
+    "paymentProcessing": "Ödeme işleniyor",
+    "actionRequired": "İşlem gerekiyor",
+    "awaitingMethod": "Ödeme yöntemi bekleniyor",
+    "paymentCanceled": "Ödeme iptal edildi",
+    "paymentExpired": "Ödemenin süresi doldu",
+    "sessionNotFound": "Oturum bulunamadı",
+    "pendingPayment": "Ödeme beklemede",
+    "tokensSent": "Tokenlar gönderildi",
+    "sendingTokens": "Tokenlar gönderiliyor",
+    "queuedForSending": "Gönderim sırasında",
+    "tokenTransferFailed": "Token transferi başarısız oldu",
+    "notSentYet": "Henüz gönderilmedi"
   }
 }

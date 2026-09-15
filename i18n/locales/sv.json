@@ -3599,5 +3599,24 @@
     "confirmingPayment": "Bekräftar betalning…",
     "retryConfirmation": "Försök bekräfta igen",
     "buyNow": "Köp nu"
+  },
+  "dpay": {
+    "success": "Klart",
+    "stripeStatus": "Stripe-status",
+    "tokenSendStatus": "Status för tokenutskick",
+    "txnHash": "Transaktionshash",
+    "paymentCompleted": "Betalning genomförd",
+    "paymentProcessing": "Betalningen behandlas",
+    "actionRequired": "Åtgärd krävs",
+    "awaitingMethod": "Väntar på betalningsmetod",
+    "paymentCanceled": "Betalning avbruten",
+    "paymentExpired": "Betalningen har upphört",
+    "sessionNotFound": "Sessionen hittades inte",
+    "pendingPayment": "Betalning väntar",
+    "tokensSent": "Tokens skickade",
+    "sendingTokens": "Skickar tokens",
+    "queuedForSending": "I kö för att skickas",
+    "tokenTransferFailed": "Tokenöverföringen misslyckades",
+    "notSentYet": "Inte skickat än"
   }
 }

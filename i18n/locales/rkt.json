@@ -3626,5 +3626,24 @@
     "oneTyping": "{{name}} লেখেছে…",
     "fewTyping": "{{names}} লেখেছে…",
     "manyTyping": "{{count}} জন লেখেছে…"
+  },
+  "dpay": {
+    "success": "সফল",
+    "stripeStatus": "Stripe স্ট্যাটাস",
+    "tokenSendStatus": "টোকেন পাঠানোর স্ট্যাটাস",
+    "txnHash": "লেনদেন হ্যাশ",
+    "paymentCompleted": "পেমেন্ট শেষ",
+    "paymentProcessing": "পেমেন্ট প্রক্রিয়াধীন",
+    "actionRequired": "পদক্ষেপ লাগিবে",
+    "awaitingMethod": "পেমেন্ট পদ্ধতির অপেক্ষাত",
+    "paymentCanceled": "পেমেন্ট বাতিল",
+    "paymentExpired": "পেমেন্টের মেয়াদ শেষ",
+    "sessionNotFound": "সেশন পাওয়া গেল না",
+    "pendingPayment": "পেমেন্ট বাকি",
+    "tokensSent": "টোকেন পাঠানো হইল",
+    "sendingTokens": "টোকেন পাঠানো হইতেছে",
+    "queuedForSending": "পাঠানোর জন্যে লাইনত",
+    "tokenTransferFailed": "টোকেন ট্রান্সফার ব্যর্থ",
+    "notSentYet": "এখনো পাঠানো হয় নাই"
   }
 }

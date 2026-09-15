@@ -3560,5 +3560,24 @@
     "confirmingPayment": "ክፍሊት ይረጋገጽ ኣሎ…",
     "retryConfirmation": "መረጋገጺ እንደገና ፈትን",
     "buyNow": "ሕጂ ግዛእ"
+  },
+  "dpay": {
+    "success": "ተዓዊቱ",
+    "stripeStatus": "ኩነታት Stripe",
+    "tokenSendStatus": "ኩነታት ምስዳድ ቶከን",
+    "txnHash": "ሃሽ ግብይት",
+    "paymentCompleted": "ክፍሊት ተዛዚሙ",
+    "paymentProcessing": "ክፍሊት ይስራሕ ኣሎ",
+    "actionRequired": "ስጉምቲ የድሊ",
+    "awaitingMethod": "ኣገባብ ክፍሊት ይጽበ ኣሎ",
+    "paymentCanceled": "ክፍሊት ተሰሪዙ",
+    "paymentExpired": "ግዜ ክፍሊት ወዲኡ",
+    "sessionNotFound": "ክፍለ ግዜ ኣይተረኽበን",
+    "pendingPayment": "ክፍሊት ይጽበ ኣሎ",
+    "tokensSent": "ቶከናት ተላኢኾም",
+    "sendingTokens": "ቶከናት ይለኣኹ ኣለዉ",
+    "queuedForSending": "ንምስዳድ ኣብ ተርታ",
+    "tokenTransferFailed": "ምትሕልላፍ ቶከን ኣይተዓወተን",
+    "notSentYet": "ገና ኣይተላእከን"
   }
 }

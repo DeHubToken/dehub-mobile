@@ -3624,5 +3624,24 @@
     "confirmingPayment": "Iqinisekisa inkokhelo…",
     "retryConfirmation": "Zama futhi ukuqinisekisa",
     "buyNow": "Thenga manje"
+  },
+  "dpay": {
+    "success": "Kuphumelele",
+    "stripeStatus": "Isimo se-Stripe",
+    "tokenSendStatus": "Isimo sokuthumela ithokheni",
+    "txnHash": "I-hash yokuthengiselana",
+    "paymentCompleted": "Inkokhelo iqediwe",
+    "paymentProcessing": "Inkokhelo iyacutshungulwa",
+    "actionRequired": "Kudingeka isenzo",
+    "awaitingMethod": "Ilinde indlela yokukhokha",
+    "paymentCanceled": "Inkokhelo ikhanseliwe",
+    "paymentExpired": "Inkokhelo iphelelwe yisikhathi",
+    "sessionNotFound": "Iseshini ayitholakalanga",
+    "pendingPayment": "Inkokhelo isalindile",
+    "tokensSent": "Amathokheni athunyelwe",
+    "sendingTokens": "Ithumela amathokheni",
+    "queuedForSending": "Kusemgqeni wokuthunyelwa",
+    "tokenTransferFailed": "Ukudluliswa kwethokheni kwehlulekile",
+    "notSentYet": "Akukathunyelwa"
   }
 }

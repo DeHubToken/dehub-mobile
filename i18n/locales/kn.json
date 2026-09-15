@@ -3600,5 +3600,24 @@
     "confirmingPayment": "ಪಾವತಿ ದೃಢೀಕರಿಸಲಾಗುತ್ತಿದೆ…",
     "retryConfirmation": "ದೃಢೀಕರಣ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
     "buyNow": "ಈಗಲೇ ಖರೀದಿಸಿ"
+  },
+  "dpay": {
+    "success": "ಯಶಸ್ವಿ",
+    "stripeStatus": "Stripe ಸ್ಥಿತಿ",
+    "tokenSendStatus": "ಟೋಕನ್ ಕಳುಹಿಸುವ ಸ್ಥಿತಿ",
+    "txnHash": "ವಹಿವಾಟು ಹ್ಯಾಶ್",
+    "paymentCompleted": "ಪಾವತಿ ಪೂರ್ಣಗೊಂಡಿದೆ",
+    "paymentProcessing": "ಪಾವತಿ ಸಂಸ್ಕರಣೆಯಲ್ಲಿದೆ",
+    "actionRequired": "ಕ್ರಮ ಅಗತ್ಯ",
+    "awaitingMethod": "ಪಾವತಿ ವಿಧಾನಕ್ಕಾಗಿ ಕಾಯಲಾಗುತ್ತಿದೆ",
+    "paymentCanceled": "ಪಾವತಿ ರದ್ದಾಗಿದೆ",
+    "paymentExpired": "ಪಾವತಿ ಅವಧಿ ಮುಗಿದಿದೆ",
+    "sessionNotFound": "ಸೆಷನ್ ಸಿಗಲಿಲ್ಲ",
+    "pendingPayment": "ಪಾವತಿ ಬಾಕಿ ಇದೆ",
+    "tokensSent": "ಟೋಕನ್‌ಗಳು ಕಳುಹಿಸಲಾಗಿದೆ",
+    "sendingTokens": "ಟೋಕನ್‌ಗಳನ್ನು ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ",
+    "queuedForSending": "ಕಳುಹಿಸಲು ಸರದಿಯಲ್ಲಿ",
+    "tokenTransferFailed": "ಟೋಕನ್ ವರ್ಗಾವಣೆ ವಿಫಲವಾಯಿತು",
+    "notSentYet": "ಇನ್ನೂ ಕಳುಹಿಸಿಲ್ಲ"
   }
 }

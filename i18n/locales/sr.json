@@ -3360,5 +3360,24 @@
     "oneTyping": "{{name}} куца…",
     "fewTyping": "{{names}} куцају…",
     "manyTyping": "{{count}} особа куца…"
+  },
+  "dpay": {
+    "success": "Успешно",
+    "stripeStatus": "Stripe статус",
+    "tokenSendStatus": "Статус слања токена",
+    "txnHash": "Хеш трансакције",
+    "paymentCompleted": "Плаћање завршено",
+    "paymentProcessing": "Плаћање се обрађује",
+    "actionRequired": "Потребна је радња",
+    "awaitingMethod": "Чека се начин плаћања",
+    "paymentCanceled": "Плаћање отказано",
+    "paymentExpired": "Плаћање је истекло",
+    "sessionNotFound": "Сесија није пронађена",
+    "pendingPayment": "Плаћање на чекању",
+    "tokensSent": "Токени послати",
+    "sendingTokens": "Слање токена",
+    "queuedForSending": "У реду за слање",
+    "tokenTransferFailed": "Пренос токена није успео",
+    "notSentYet": "Још није послато"
   }
 }

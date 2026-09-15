@@ -3645,5 +3645,24 @@
     "confirmingPayment": "Mengonfirmasi pembayaran…",
     "retryConfirmation": "Coba konfirmasi lagi",
     "buyNow": "Beli sekarang"
+  },
+  "dpay": {
+    "success": "Berhasil",
+    "stripeStatus": "Status Stripe",
+    "tokenSendStatus": "Status pengiriman token",
+    "txnHash": "Hash transaksi",
+    "paymentCompleted": "Pembayaran selesai",
+    "paymentProcessing": "Pembayaran diproses",
+    "actionRequired": "Perlu tindakan",
+    "awaitingMethod": "Menunggu metode pembayaran",
+    "paymentCanceled": "Pembayaran dibatalkan",
+    "paymentExpired": "Pembayaran kedaluwarsa",
+    "sessionNotFound": "Sesi tidak ditemukan",
+    "pendingPayment": "Pembayaran tertunda",
+    "tokensSent": "Token terkirim",
+    "sendingTokens": "Mengirim token",
+    "queuedForSending": "Dalam antrean pengiriman",
+    "tokenTransferFailed": "Transfer token gagal",
+    "notSentYet": "Belum dikirim"
   }
 }
