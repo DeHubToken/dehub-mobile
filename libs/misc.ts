@@ -110,12 +110,23 @@ export function getAvatarUrl(
   return cdnImage(base, { width: sizePt });
 }
 
+/**
+ * What getCoverUrl and resolveThumbnail answer when there is no picture.
+ *
+ * A sentinel, not a URL: the profile headers match on it and swap in a bundled
+ * asset. Anything that hands it straight to an <Image> gets a thrown
+ * "no scheme was found for default-banner" and an element that paints nothing,
+ * so a caller that cannot make that swap must compare against this and treat it
+ * as "no picture".
+ */
+export const DEFAULT_BANNER_SENTINEL = "default-banner";
+
 export function getCoverUrl(
   url: string | undefined | null,
   /** Rendered width in CSS points. Omit for the untouched original. */
   widthPt?: number,
 ): string {
-  if (!url) return "default-banner";
+  if (!url) return DEFAULT_BANNER_SENTINEL;
   // Same trap as getAvatarUrl: an absolute URL must not be reduced to its last
   // path segment and re-based onto our CDN.
   if (isAlreadyAddressable(url)) return cdnImage(url, { width: widthPt });
@@ -167,7 +178,7 @@ export function resolveThumbnail(
   widthPt?: number,
 ): string {
   const raw = obj.thumbnail || obj.thumbnailUrl || obj.imageUrl;
-  if (!raw) return "default-banner";
+  if (!raw) return DEFAULT_BANNER_SENTINEL;
   return cdnImage(`${env.CDN_BASE_URL}/${raw}`, { width: widthPt });
 }
 
