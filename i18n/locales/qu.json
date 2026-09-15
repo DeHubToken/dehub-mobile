@@ -717,7 +717,13 @@
     "unpinPost": "Perfilniykimanta hurquy",
     "postPinned": "Perfilniykiman clavado",
     "postUnpinned": "Perfilniykimanta mana pinchasqa",
-    "pinFailed": "Mana kay qillqasqata pinchayta nitaq unpinchayta atirqanichu"
+    "pinFailed": "Mana kay qillqasqata pinchayta nitaq unpinchayta atirqanichu",
+    "sendToDm": "DM-man apachiy",
+    "sendToDmDesc": "Kay willayta rimanakuypi rakiy",
+    "boostPostDesc": "Qallariy panqapa hanaqninman churay",
+    "mintPostDesc": "Kay willayta chain ukhupi willay",
+    "giftBoost": "Kallpachayta quy",
+    "giftBoostDesc": "Qampa hukninta kay willaypi gastay"
   },
   "filters": {
     "sort": "Churay",
@@ -3817,5 +3823,14 @@
     "perMessageFee": "Sapa willakuy chanin (DHB)",
     "perMessageFeeSub": "Sapa willakuymanta chaninchay. Qullqi mana kananpaq 0 churay. Wakin runakunaman qasilla yaykuyta qunki.",
     "allDisabled": "Kunanqa llapan DM wañusqam. Musuq DM harkasqam kachkan."
+  },
+  "editPost": {
+    "mediaPermission": "Media ñawinchana wasiman yaykuy saqiy necesitakun",
+    "fileSwapping": "Musuq willañiqi sichasqa — ruray tukuruptin rantinqa",
+    "titleTooShort": "Uma qillqaqa kimsa sananchamanta pisi kananchu",
+    "descTooShort": "Willakuyqa kimsa sananchamanta pisi kananchu",
+    "updated": "Willay musuqchasqa",
+    "titlePlaceholder": "Willay suti",
+    "descPlaceholder": "Willay willakuynin"
   }
 }

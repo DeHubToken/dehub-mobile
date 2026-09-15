@@ -940,7 +940,13 @@
     "unpinPost": "Desafixar do seu perfil",
     "postPinned": "Fixado no seu perfil",
     "postUnpinned": "Desafixado do seu perfil",
-    "pinFailed": "Não foi possível fixar ou desafixar este post"
+    "pinFailed": "Não foi possível fixar ou desafixar este post",
+    "sendToDm": "Enviar por mensagem",
+    "sendToDmDesc": "Partilhe esta publicação numa conversa",
+    "boostPostDesc": "Coloque-a no topo do feed inicial",
+    "mintPostDesc": "Publique esta publicação on-chain",
+    "giftBoost": "Ofereça um impulso",
+    "giftBoostDesc": "Gaste um dos seus nesta publicação"
   },
   "filters": {
     "sort": "Ordenar",
@@ -3861,5 +3867,14 @@
     "perMessageFee": "Taxa por mensagem (DHB)",
     "perMessageFeeSub": "Cobre por mensagem. Defina 0 para mensagens gratuitas. Pode dar acesso gratuito a utilizadores específicos.",
     "allDisabled": "Todas as mensagens estão desativadas. As novas são bloqueadas por predefinição."
+  },
+  "editPost": {
+    "mediaPermission": "É necessária permissão para a biblioteca multimédia",
+    "fileSwapping": "Novo ficheiro carregado — será trocado assim que o processamento terminar",
+    "titleTooShort": "O título deve ter pelo menos 3 caracteres",
+    "descTooShort": "A descrição deve ter pelo menos 3 caracteres",
+    "updated": "Publicação atualizada",
+    "titlePlaceholder": "Título da publicação",
+    "descPlaceholder": "Descrição da publicação"
   }
 }

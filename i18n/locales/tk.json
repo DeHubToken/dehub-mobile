@@ -674,7 +674,13 @@
     "unpinPost": "Profilinden çyk",
     "postPinned": "Profiline gir",
     "postUnpinned": "Profilinden çykyş",
-    "pinFailed": "Bu posty ýazmaga ýa-da ýazmaga rugsat berilmeýär"
+    "pinFailed": "Bu posty ýazmaga ýa-da ýazmaga rugsat berilmeýär",
+    "sendToDm": "DM-e iber",
+    "sendToDmDesc": "Bu ýazgyny söhbetde paýlaş",
+    "boostPostDesc": "Ony baş sahypanyň ýokarsyna goý",
+    "mintPostDesc": "Bu ýazgyny zynjyrda çap et",
+    "giftBoost": "Güýçlendirme sowgat et",
+    "giftBoostDesc": "Özüňkiden birini şu ýazga sarp et"
   },
   "filters": {
     "sort": "Tertiple",
@@ -3757,5 +3763,14 @@
     "perMessageFee": "Her habar üçin töleg (DHB)",
     "perMessageFeeSub": "Her habar üçin töleg al. Mugt DM üçin 0 goý. Käbir ulanyjylara mugt elýeterlilik berip bilersiňiz.",
     "allDisabled": "Häzir ähli DM öçürilen. Täze DM-ler deslapky ýagdaýda blokirlenýär."
+  },
+  "editPost": {
+    "mediaPermission": "Media kitaphanasyna rugsat gerek",
+    "fileSwapping": "Täze faýl ýüklendi — işlenip bolansoň çalşyrylar",
+    "titleTooShort": "Sözbaşy azyndan 3 harp bolmaly",
+    "descTooShort": "Beýany azyndan 3 harp bolmaly",
+    "updated": "Ýazgy täzelendi",
+    "titlePlaceholder": "Ýazgy sözbaşysy",
+    "descPlaceholder": "Ýazgy beýany"
   }
 }

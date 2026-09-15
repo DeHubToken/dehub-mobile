@@ -668,7 +668,13 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "sendToDm": "DM وچ بھیجو",
+    "sendToDmDesc": "ایہہ پوسٹ کیں ڳالھ بات وچ شیئر کرو",
+    "boostPostDesc": "ایں کوں ہوم فیڈ دے سبھ کنوں اُتے رکھو",
+    "mintPostDesc": "ایہہ پوسٹ آن چین شائع کرو",
+    "giftBoost": "ہک بوسٹ تحفہ ݙیوو",
+    "giftBoostDesc": "اپݨا ہک ایں پوسٹ تے خرچ کرو"
   },
   "filters": {
     "sort": "ترتیب",
@@ -3731,5 +3737,14 @@
     "perMessageFee": "فی سنیہا فیس (DHB)",
     "perMessageFeeSub": "فی سنیہا چارج کرو۔ مفت DM کیتے 0 رکھو۔ کجھ صارفین کوں مفت رسائی ݙے سڳدے او۔",
     "allDisabled": "ہݨ سارے DM بند ہن۔ نویں DM ڈیفالٹ طور تے روکے ڳئے ہن۔"
+  },
+  "editPost": {
+    "mediaPermission": "میڈیا لائبریری دی اجازت درکار ہے",
+    "fileSwapping": "نویں فائل اپ لوڈ تھی — پروسیسنگ مکمل تھیندے ای بدل ویسی",
+    "titleTooShort": "عنوان گھٹ کنوں گھٹ 3 حرف ہووݨ چاہیدا ہے",
+    "descTooShort": "تفصیل گھٹ کنوں گھٹ 3 حرف ہووݨ چاہیدی ہے",
+    "updated": "پوسٹ اپ ڈیٹ تھی ڳئی",
+    "titlePlaceholder": "پوسٹ دا عنوان",
+    "descPlaceholder": "پوسٹ دی تفصیل"
   }
 }

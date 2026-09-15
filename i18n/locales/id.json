@@ -926,7 +926,13 @@
     "unpinPost": "Batalkan sematan dari profil Anda",
     "postPinned": "Disematkan ke profil Anda",
     "postUnpinned": "Tidak disematkan dari profil Anda",
-    "pinFailed": "Tidak dapat menyematkan atau membatalkan sematan postingan ini"
+    "pinFailed": "Tidak dapat menyematkan atau membatalkan sematan postingan ini",
+    "sendToDm": "Kirim ke DM",
+    "sendToDmDesc": "Bagikan postingan ini dalam percakapan",
+    "boostPostDesc": "Taruh di bagian atas beranda",
+    "mintPostDesc": "Terbitkan postingan ini on-chain",
+    "giftBoost": "Hadiahkan boost",
+    "giftBoostDesc": "Gunakan satu milik Anda untuk postingan ini"
   },
   "filters": {
     "sort": "Urutkan",
@@ -3837,5 +3843,14 @@
     "perMessageFee": "Biaya per pesan (DHB)",
     "perMessageFeeSub": "Kenakan biaya per pesan. Setel 0 untuk DM gratis. Anda bisa memberi akses gratis ke pengguna tertentu.",
     "allDisabled": "Saat ini semua DM dinonaktifkan. DM baru diblokir secara bawaan."
+  },
+  "editPost": {
+    "mediaPermission": "Izin pustaka media diperlukan",
+    "fileSwapping": "Berkas baru diunggah — akan menggantikan setelah proses selesai",
+    "titleTooShort": "Judul minimal 3 karakter",
+    "descTooShort": "Deskripsi minimal 3 karakter",
+    "updated": "Postingan diperbarui",
+    "titlePlaceholder": "Judul postingan",
+    "descPlaceholder": "Deskripsi postingan"
   }
 }

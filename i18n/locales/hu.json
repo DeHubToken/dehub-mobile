@@ -925,7 +925,13 @@
     "unpinPost": "Leválasztás a profilodról",
     "postPinned": "Rögzítve a profilodhoz",
     "postUnpinned": "Eltávolítva a profilodból",
-    "pinFailed": "Nem sikerült rögzíteni vagy feloldani ezt a bejegyzést"
+    "pinFailed": "Nem sikerült rögzíteni vagy feloldani ezt a bejegyzést",
+    "sendToDm": "Küldés üzenetben",
+    "sendToDmDesc": "Oszd meg ezt a bejegyzést egy beszélgetésben",
+    "boostPostDesc": "Tedd a kezdőoldal tetejére",
+    "mintPostDesc": "Tedd közzé ezt a bejegyzést a láncon",
+    "giftBoost": "Boost ajándékozása",
+    "giftBoostDesc": "Költs egyet a sajátjaidból erre a bejegyzésre"
   },
   "filters": {
     "sort": "Rendezés",
@@ -3791,5 +3797,14 @@
     "perMessageFee": "Üzenetenkénti díj (DHB)",
     "perMessageFeeSub": "Számolj fel díjat üzenetenként. Állítsd 0-ra az ingyenes üzenetekhez. Egyes felhasználóknak ingyenes hozzáférést adhatsz.",
     "allDisabled": "Jelenleg minden üzenet ki van kapcsolva. Az újak alapból blokkolva vannak."
+  },
+  "editPost": {
+    "mediaPermission": "Médiakönyvtár-engedély szükséges",
+    "fileSwapping": "Új fájl feltöltve — a feldolgozás végeztével lecserélődik",
+    "titleTooShort": "A címnek legalább 3 karakterből kell állnia",
+    "descTooShort": "A leírásnak legalább 3 karakterből kell állnia",
+    "updated": "Bejegyzés frissítve",
+    "titlePlaceholder": "Bejegyzés címe",
+    "descPlaceholder": "Bejegyzés leírása"
   }
 }

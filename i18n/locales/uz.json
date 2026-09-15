@@ -715,7 +715,13 @@
     "unpinPost": "Profilingizdan olib tashlash",
     "postPinned": "Profilingizga mahkamlandi",
     "postUnpinned": "Profilingizdan olib tashlandi",
-    "pinFailed": "Bu postni mahkamlab yoki olib tashlab bo&#39;lmadi"
+    "pinFailed": "Bu postni mahkamlab yoki olib tashlab bo&#39;lmadi",
+    "sendToDm": "DM ga yuborish",
+    "sendToDmDesc": "Bu postni suhbatda ulashing",
+    "boostPostDesc": "Uni asosiy lentaning tepasiga qo'ying",
+    "mintPostDesc": "Bu postni zanjirda chop eting",
+    "giftBoost": "Boost sovg'a qilish",
+    "giftBoostDesc": "O'zingiznikidan birini shu postga sarflang"
   },
   "filters": {
     "sort": "Saralash",
@@ -3838,5 +3844,14 @@
     "perMessageFee": "Har bir xabar uchun to'lov (DHB)",
     "perMessageFeeSub": "Har bir xabar uchun to'lov oling. Bepul DM uchun 0 qo'ying. Ayrim foydalanuvchilarga bepul kirish bera olasiz.",
     "allDisabled": "Hozir barcha DM o'chirilgan. Yangi DM lar sukut bo'yicha bloklanadi."
+  },
+  "editPost": {
+    "mediaPermission": "Media kutubxonasiga ruxsat kerak",
+    "fileSwapping": "Yangi fayl yuklandi — ishlov tugagach almashtiriladi",
+    "titleTooShort": "Sarlavha kamida 3 belgidan iborat bo'lishi kerak",
+    "descTooShort": "Tavsif kamida 3 belgidan iborat bo'lishi kerak",
+    "updated": "Post yangilandi",
+    "titlePlaceholder": "Post sarlavhasi",
+    "descPlaceholder": "Post tavsifi"
   }
 }

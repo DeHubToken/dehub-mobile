@@ -675,7 +675,13 @@
     "unpinPost": "从你的个人资料取消钉扎",
     "postPinned": "已钉到你的个人资料",
     "postUnpinned": "已从你的个人资料取消钉扎",
-    "pinFailed": "无法钉扎或取消钉扎此帖子"
+    "pinFailed": "无法钉扎或取消钉扎此帖子",
+    "sendToDm": "发送到私信",
+    "sendToDmDesc": "在会话中分享这个帖子",
+    "boostPostDesc": "把它放到首页信息流顶部",
+    "mintPostDesc": "把这个帖子发布到链上",
+    "giftBoost": "赠送一次助推",
+    "giftBoostDesc": "把你的一次助推花在这个帖子上"
   },
   "filters": {
     "sort": "排序",
@@ -3738,5 +3744,14 @@
     "perMessageFee": "每条消息费用 (DHB)",
     "perMessageFeeSub": "按条收费。设为 0 即为免费私信。你也可以给特定用户免费权限。",
     "allDisabled": "目前所有私信都已关闭。新私信默认被屏蔽。"
+  },
+  "editPost": {
+    "mediaPermission": "需要媒体库权限",
+    "fileSwapping": "新文件已上传——处理完成后会自动替换",
+    "titleTooShort": "标题至少需要 3 个字符",
+    "descTooShort": "描述至少需要 3 个字符",
+    "updated": "帖子已更新",
+    "titlePlaceholder": "帖子标题",
+    "descPlaceholder": "帖子描述"
   }
 }

@@ -715,7 +715,13 @@
     "unpinPost": "Ondoa kwenye wasifu wako",
     "postPinned": "Imewekwa kwenye wasifu wako",
     "postUnpinned": "Imeondolewa kwenye wasifu wako",
-    "pinFailed": "Haikuweza kuweka PIN au kuiondoa kwenye chapisho hili"
+    "pinFailed": "Haikuweza kuweka PIN au kuiondoa kwenye chapisho hili",
+    "sendToDm": "Tuma kwenye DM",
+    "sendToDmDesc": "Shiriki chapisho hili kwenye mazungumzo",
+    "boostPostDesc": "Weka juu ya mlisho wa nyumbani",
+    "mintPostDesc": "Chapisha chapisho hili kwenye mnyororo",
+    "giftBoost": "Toa kiboreshaji kama zawadi",
+    "giftBoostDesc": "Tumia kimoja chako kwenye chapisho hili"
   },
   "filters": {
     "sort": "Panga",
@@ -3787,5 +3793,14 @@
     "perMessageFee": "Ada kwa kila ujumbe (DHB)",
     "perMessageFeeSub": "Tozi kwa kila ujumbe. Weka 0 kwa DM bila malipo. Unaweza kuwapa watumiaji fulani ufikiaji bila malipo.",
     "allDisabled": "DM zote zimezimwa kwa sasa. DM mpya huzuiwa kwa chaguo-msingi."
+  },
+  "editPost": {
+    "mediaPermission": "Ruhusa ya maktaba ya midia inahitajika",
+    "fileSwapping": "Faili jipya limepakiwa — litabadilishwa mara uchakataji utakapokamilika",
+    "titleTooShort": "Kichwa lazima kiwe na angalau herufi 3",
+    "descTooShort": "Maelezo lazima yawe na angalau herufi 3",
+    "updated": "Chapisho limesasishwa",
+    "titlePlaceholder": "Kichwa cha chapisho",
+    "descPlaceholder": "Maelezo ya chapisho"
   }
 }
