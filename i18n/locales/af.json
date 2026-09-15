@@ -3320,5 +3320,25 @@
     "legacyTitle": "Ouer Solana-beursie — {{amount}} SOL",
     "legacyBody": "'n Vroeër weergawe van die app het 'n aparte Solana-beursie geskep wat net op hierdie toestel bestaan het. Dit hou steeds 'n saldo. Skuif die fondse na die adres hierbo terwyl jy hierdie foon het — daardie sleutel kan nêrens anders herstel word nie.",
     "legacyViewA11y": "Bekyk ouer beursie op Solscan"
+  },
+  "bridge": {
+    "title": "Oorbrug DHB",
+    "from": "Van",
+    "to": "Na",
+    "recent": "Jou onlangse oorbruggings",
+    "noneRecent": "Geen oorbruggingsoordragte in die laaste 7 dae nie.",
+    "howItWorksBody": "Stuur DHB na die brug se aanstuuradres op die bronketting. Die aanstuurder lewer outomaties die gelykstaande bedrag op die bestemmingsketting binne minute.",
+    "relayAddress": "Brug se aanstuuradres (stuur DHB hierheen op die bronketting):",
+    "addressCopied": "Brugadres gekopieer!",
+    "swapDirectionA11y": "Ruil brugrigting om",
+    "invalidAmount": "Voer 'n geldige bedrag in om oor te brug.",
+    "walletNotReady": "Beursie is nie gereed nie. Probeer weer.",
+    "insufficient": "Onvoldoende DHB op {{chain}}.",
+    "switchFailed": "Kon nie na {{chain}} oorskakel nie. Probeer weer.",
+    "initiated": "Oorbrugging begin! TX: {{tx}}",
+    "insufficientOnChain": "Onvoldoende DHB op {{chain}}. Die kettingsaldo kan van die vertoonde saldo verskil.",
+    "needGas": "Jy het inheemse {{token}} vir gas op {{chain}} nodig.",
+    "bridging": "Besig om oor te brug…",
+    "bridgeAction": "Oorbrug {{from}} → {{to}}"
   }
 }

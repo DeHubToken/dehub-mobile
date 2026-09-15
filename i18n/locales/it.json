@@ -3273,5 +3273,25 @@
     "legacyTitle": "Wallet Solana precedente — {{amount}} SOL",
     "legacyBody": "Una versione precedente dell'app ha creato un wallet Solana separato esistito solo su questo dispositivo. Contiene ancora un saldo. Sposta i fondi all'indirizzo qui sopra finché hai questo telefono: quella chiave non è recuperabile altrove.",
     "legacyViewA11y": "Vedi il wallet precedente su Solscan"
+  },
+  "bridge": {
+    "title": "Bridge DHB",
+    "from": "Da",
+    "to": "A",
+    "recent": "I tuoi bridge recenti",
+    "noneRecent": "Nessun trasferimento tramite bridge negli ultimi 7 giorni.",
+    "howItWorksBody": "Invia DHB all'indirizzo relay del bridge sulla catena di origine. Il relay consegna automaticamente l'importo equivalente sulla catena di destinazione in pochi minuti.",
+    "relayAddress": "Indirizzo relay del bridge (invia DHB qui sulla catena di origine):",
+    "addressCopied": "Indirizzo del bridge copiato!",
+    "swapDirectionA11y": "Inverti la direzione del bridge",
+    "invalidAmount": "Inserisci un importo valido da trasferire.",
+    "walletNotReady": "Wallet non pronto. Riprova.",
+    "insufficient": "DHB insufficiente su {{chain}}.",
+    "switchFailed": "Impossibile passare a {{chain}}. Riprova.",
+    "initiated": "Bridge avviato! TX: {{tx}}",
+    "insufficientOnChain": "DHB insufficiente su {{chain}}. Il saldo on-chain può differire da quello mostrato.",
+    "needGas": "Serve {{token}} nativo per il gas su {{chain}}.",
+    "bridging": "Bridging in corso…",
+    "bridgeAction": "Bridge {{from}} → {{to}}"
   }
 }

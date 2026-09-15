@@ -3277,5 +3277,25 @@
     "legacyTitle": "Ancien portefeuille Solana — {{amount}} SOL",
     "legacyBody": "Une version antérieure de l'application a créé un portefeuille Solana distinct qui n'a jamais existé que sur cet appareil. Il contient encore un solde. Transférez les fonds vers l'adresse ci-dessus tant que vous avez ce téléphone — cette clé ne peut être récupérée nulle part ailleurs.",
     "legacyViewA11y": "Voir l'ancien portefeuille sur Solscan"
+  },
+  "bridge": {
+    "title": "Pont DHB",
+    "from": "De",
+    "to": "Vers",
+    "recent": "Vos ponts récents",
+    "noneRecent": "Aucun transfert par pont au cours des 7 derniers jours.",
+    "howItWorksBody": "Envoyez des DHB à l'adresse de relais du pont sur la chaîne source. Le relais livre automatiquement le montant équivalent sur la chaîne de destination en quelques minutes.",
+    "relayAddress": "Adresse de relais du pont (envoyez les DHB ici sur la chaîne source) :",
+    "addressCopied": "Adresse du pont copiée !",
+    "swapDirectionA11y": "Inverser le sens du pont",
+    "invalidAmount": "Saisissez un montant valide à transférer.",
+    "walletNotReady": "Portefeuille non prêt. Veuillez réessayer.",
+    "insufficient": "DHB insuffisant sur {{chain}}.",
+    "switchFailed": "Impossible de basculer vers {{chain}}. Veuillez réessayer.",
+    "initiated": "Pont lancé ! TX : {{tx}}",
+    "insufficientOnChain": "DHB insuffisant sur {{chain}}. Le solde on-chain peut différer de celui affiché.",
+    "needGas": "Il faut du {{token}} natif pour le gaz sur {{chain}}.",
+    "bridging": "Transfert en cours…",
+    "bridgeAction": "Pont {{from}} → {{to}}"
   }
 }

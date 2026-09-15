@@ -3272,5 +3272,25 @@
     "legacyTitle": "Ältere Solana-Wallet — {{amount}} SOL",
     "legacyBody": "Eine frühere Version der App hat eine separate Solana-Wallet erstellt, die nur auf diesem Gerät existierte. Sie hält noch Guthaben. Überweise die Mittel an die Adresse oben, solange du dieses Telefon hast — dieser Schlüssel lässt sich nirgendwo sonst wiederherstellen.",
     "legacyViewA11y": "Ältere Wallet auf Solscan ansehen"
+  },
+  "bridge": {
+    "title": "DHB überbrücken",
+    "from": "Von",
+    "to": "Nach",
+    "recent": "Deine letzten Bridges",
+    "noneRecent": "Keine Bridge-Überweisungen in den letzten 7 Tagen.",
+    "howItWorksBody": "Sende DHB an die Relay-Adresse der Bridge auf der Quellkette. Das Relay liefert den entsprechenden Betrag innerhalb weniger Minuten automatisch auf der Zielkette aus.",
+    "relayAddress": "Relay-Adresse der Bridge (sende DHB hierhin auf der Quellkette):",
+    "addressCopied": "Bridge-Adresse kopiert!",
+    "swapDirectionA11y": "Bridge-Richtung tauschen",
+    "invalidAmount": "Gib einen gültigen Betrag zum Überbrücken ein.",
+    "walletNotReady": "Wallet nicht bereit. Bitte erneut versuchen.",
+    "insufficient": "Nicht genug DHB auf {{chain}}.",
+    "switchFailed": "Wechsel zu {{chain}} nicht möglich. Bitte erneut versuchen.",
+    "initiated": "Bridge gestartet! TX: {{tx}}",
+    "insufficientOnChain": "Nicht genug DHB auf {{chain}}. Das Guthaben auf der Kette kann vom angezeigten abweichen.",
+    "needGas": "Für Gas auf {{chain}} wird natives {{token}} benötigt.",
+    "bridging": "Wird überbrückt…",
+    "bridgeAction": "Bridge {{from}} → {{to}}"
   }
 }

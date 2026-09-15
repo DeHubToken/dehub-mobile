@@ -3273,5 +3273,25 @@
     "legacyTitle": "Billetera de Solana anterior — {{amount}} SOL",
     "legacyBody": "Una versión anterior de la app creó una billetera de Solana aparte que solo existió en este dispositivo. Todavía tiene saldo. Mueve los fondos a la dirección de arriba mientras tengas este teléfono: esa clave no se puede recuperar en ningún otro sitio.",
     "legacyViewA11y": "Ver billetera anterior en Solscan"
+  },
+  "bridge": {
+    "title": "Puente de DHB",
+    "from": "Desde",
+    "to": "Hacia",
+    "recent": "Tus puentes recientes",
+    "noneRecent": "Sin transferencias de puente en los últimos 7 días.",
+    "howItWorksBody": "Envía DHB a la dirección de retransmisión del puente en la cadena de origen. El retransmisor entrega automáticamente el importe equivalente en la cadena de destino en cuestión de minutos.",
+    "relayAddress": "Dirección de retransmisión del puente (envía DHB aquí en la cadena de origen):",
+    "addressCopied": "¡Dirección del puente copiada!",
+    "swapDirectionA11y": "Invertir la dirección del puente",
+    "invalidAmount": "Introduce un importe válido para el puente.",
+    "walletNotReady": "La billetera no está lista. Inténtalo de nuevo.",
+    "insufficient": "DHB insuficiente en {{chain}}.",
+    "switchFailed": "No se pudo cambiar a {{chain}}. Inténtalo de nuevo.",
+    "initiated": "¡Puente iniciado! TX: {{tx}}",
+    "insufficientOnChain": "DHB insuficiente en {{chain}}. El saldo en la cadena puede diferir del mostrado.",
+    "needGas": "Necesitas {{token}} nativo para el gas en {{chain}}.",
+    "bridging": "Puenteando…",
+    "bridgeAction": "Puente {{from}} → {{to}}"
   }
 }

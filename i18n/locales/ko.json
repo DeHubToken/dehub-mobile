@@ -3271,5 +3271,25 @@
     "legacyTitle": "이전 Solana 지갑 — {{amount}} SOL",
     "legacyBody": "앱의 이전 버전은 이 기기에만 존재하던 별도의 Solana 지갑을 만들었습니다. 아직 잔액이 남아 있습니다. 이 휴대폰이 있을 때 위 주소로 자금을 옮기세요. 그 키는 다른 어디에서도 복구할 수 없습니다.",
     "legacyViewA11y": "Solscan에서 이전 지갑 보기"
+  },
+  "bridge": {
+    "title": "DHB 브리지",
+    "from": "보내는 체인",
+    "to": "받는 체인",
+    "recent": "최근 브리지 내역",
+    "noneRecent": "최근 7일간 브리지 전송이 없습니다.",
+    "howItWorksBody": "출발 체인에서 브리지 릴레이 주소로 DHB를 보내세요. 릴레이가 몇 분 안에 도착 체인으로 같은 금액을 자동으로 전달합니다.",
+    "relayAddress": "브리지 릴레이 주소 (출발 체인에서 DHB를 이곳으로 보내세요):",
+    "addressCopied": "브리지 주소를 복사했습니다!",
+    "swapDirectionA11y": "브리지 방향 바꾸기",
+    "invalidAmount": "브리지할 유효한 금액을 입력하세요.",
+    "walletNotReady": "지갑이 준비되지 않았습니다. 다시 시도해 주세요.",
+    "insufficient": "{{chain}}에 DHB가 부족합니다.",
+    "switchFailed": "{{chain}}(으)로 전환하지 못했습니다. 다시 시도해 주세요.",
+    "initiated": "브리지를 시작했습니다! TX: {{tx}}",
+    "insufficientOnChain": "{{chain}}에 DHB가 부족합니다. 온체인 잔액은 표시된 값과 다를 수 있습니다.",
+    "needGas": "{{chain}}의 가스비로 네이티브 {{token}}이(가) 필요합니다.",
+    "bridging": "브리지 중…",
+    "bridgeAction": "{{from}} → {{to}} 브리지"
   }
 }

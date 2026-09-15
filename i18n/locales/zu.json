@@ -3232,5 +3232,25 @@
     "legacyTitle": "Isikhwama se-Solana esidala — {{amount}} SOL",
     "legacyBody": "Inguqulo yangaphambili yohlelo yakha isikhwama se-Solana esehlukene esasikhona kule divayisi kuphela. Sisenemali. Dlulisela imali kwikheli elingenhla ngenkathi usenale foni — lowo khiye awukwazi ukutholakala kwenye indawo.",
     "legacyViewA11y": "Buka isikhwama esidala ku-Solscan"
+  },
+  "bridge": {
+    "title": "Ibhuloho le-DHB",
+    "from": "Kusuka",
+    "to": "Kuya",
+    "recent": "Amabhuloho akho akamuva",
+    "noneRecent": "Awekho amadluliselo ebhuloho ezinsukwini ezingu-7 ezedlule.",
+    "howItWorksBody": "Thumela i-DHB kwikheli le-relay yebhuloho kuketango lomthombo. I-relay ilethe ngokuzenzakalela inani elilinganayo kuketango eliqondiwe kungakapheli imizuzu.",
+    "relayAddress": "Ikheli le-relay yebhuloho (thumela i-DHB lapha kuketango lomthombo):",
+    "addressCopied": "Ikheli lebhuloho likopishiwe!",
+    "swapDirectionA11y": "Shintsha inkomba yebhuloho",
+    "invalidAmount": "Faka inani elivumelekile ozolibhuloha.",
+    "walletNotReady": "Isikhwama asikakulungeli. Sicela uzame futhi.",
+    "insufficient": "I-DHB ayanele ku-{{chain}}.",
+    "switchFailed": "Ayikwazanga ukushintshela ku-{{chain}}. Sicela uzame futhi.",
+    "initiated": "Ibhuloho liqalisiwe! TX: {{tx}}",
+    "insufficientOnChain": "I-DHB ayanele ku-{{chain}}. Ibhalansi eseketangweni ingahluka kuleyo ekhonjisiwe.",
+    "needGas": "Udinga i-{{token}} yendabuko yegesi ku-{{chain}}.",
+    "bridging": "Iyabhuloha…",
+    "bridgeAction": "Ibhuloho {{from}} → {{to}}"
   }
 }

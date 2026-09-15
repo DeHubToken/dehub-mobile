@@ -3192,5 +3192,25 @@
     "legacyTitle": "Elteri Solana-Wallet — {{amount}} SOL",
     "legacyBody": "E früeneri Version vo dr App het e separati Solana-Wallet erstellt, wo nume uf dem Grät exischtiert het. Sie het immer no es Guethabe. Verschieb s Gäld uf d Adrässe obe, solang du das Telefon häsch — de Schlüssel cha niene susch widerhergstellt werde.",
     "legacyViewA11y": "Elteri Wallet uf Solscan aaluege"
+  },
+  "bridge": {
+    "title": "DHB überbrugge",
+    "from": "Vo",
+    "to": "Uf",
+    "recent": "Dini letschte Bridges",
+    "noneRecent": "Kei Bridge-Überwiisige i de letschte 7 Täg.",
+    "howItWorksBody": "Schick DHB a d Relay-Adrässe vo dr Bridge uf dr Quällchetti. S Relay liferet de entsprächend Betrag innerhalb vo wenige Minute automatisch uf dr Zielchetti.",
+    "relayAddress": "Relay-Adrässe vo dr Bridge (schick DHB da ane uf dr Quällchetti):",
+    "addressCopied": "Bridge-Adrässe kopiert!",
+    "swapDirectionA11y": "Bridge-Richtig tusche",
+    "invalidAmount": "Gib en gültige Betrag zum Überbrugge ii.",
+    "walletNotReady": "Wallet isch nid parat. Bitte nomol probiere.",
+    "insufficient": "Nid gnueg DHB uf {{chain}}.",
+    "switchFailed": "Wächsle uf {{chain}} het nid klappet. Bitte nomol probiere.",
+    "initiated": "Bridge gstartet! TX: {{tx}}",
+    "insufficientOnChain": "Nid gnueg DHB uf {{chain}}. S Guethabe uf dr Chetti cha vom aagzeigte abwiiche.",
+    "needGas": "Für Gas uf {{chain}} bruuchsch natives {{token}}.",
+    "bridging": "Wird überbruggt…",
+    "bridgeAction": "Bridge {{from}} → {{to}}"
   }
 }

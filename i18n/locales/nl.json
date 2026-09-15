@@ -3471,5 +3471,25 @@
     "legacyTitle": "Oudere Solana-wallet — {{amount}} SOL",
     "legacyBody": "Een eerdere versie van de app maakte een aparte Solana-wallet die alleen op dit apparaat bestond. Er staat nog saldo op. Verplaats het tegoed naar het adres hierboven zolang je deze telefoon hebt — die sleutel is nergens anders te herstellen.",
     "legacyViewA11y": "Oudere wallet op Solscan bekijken"
+  },
+  "bridge": {
+    "title": "DHB bridgen",
+    "from": "Van",
+    "to": "Naar",
+    "recent": "Je recente bridges",
+    "noneRecent": "Geen bridge-overboekingen in de afgelopen 7 dagen.",
+    "howItWorksBody": "Stuur DHB naar het relay-adres van de bridge op de bronketen. De relay levert het equivalente bedrag automatisch binnen enkele minuten op de doelketen.",
+    "relayAddress": "Relay-adres van de bridge (stuur DHB hierheen op de bronketen):",
+    "addressCopied": "Bridge-adres gekopieerd!",
+    "swapDirectionA11y": "Bridge-richting omwisselen",
+    "invalidAmount": "Voer een geldig bedrag in om te bridgen.",
+    "walletNotReady": "Wallet niet gereed. Probeer het opnieuw.",
+    "insufficient": "Onvoldoende DHB op {{chain}}.",
+    "switchFailed": "Kon niet overschakelen naar {{chain}}. Probeer het opnieuw.",
+    "initiated": "Bridge gestart! TX: {{tx}}",
+    "insufficientOnChain": "Onvoldoende DHB op {{chain}}. Het saldo op de keten kan afwijken van het weergegeven saldo.",
+    "needGas": "Je hebt native {{token}} nodig voor gas op {{chain}}.",
+    "bridging": "Bezig met bridgen…",
+    "bridgeAction": "Bridge {{from}} → {{to}}"
   }
 }
