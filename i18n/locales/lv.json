@@ -604,7 +604,8 @@
     "confirm": "Apstiprināt",
     "signIn": "Pieteikties",
     "takePhoto": "Uzņemt foto",
-    "recordVideo": "Ierakstīt video"
+    "recordVideo": "Ierakstīt video",
+    "saveChanges": "Saglabāt izmaiņas"
   },
   "tip": {
     "title": "Sūtīt dzeramnaudu",
@@ -3077,7 +3078,8 @@
     "logOutFailed": "Neizdevās izrakstīt ierīci",
     "logOutAllFailed": "Neizdevās izrakstīt ierīces",
     "devicesLoggedOut_one": "{{count}} ierīce izrakstīta",
-    "devicesLoggedOut_other": "{{count}} ierīces izrakstītas"
+    "devicesLoggedOut_other": "{{count}} ierīces izrakstītas",
+    "noActive": "Nav aktīvu sesiju"
   },
   "library": {
     "myPosts": "Mani ieraksti",
@@ -3107,7 +3109,9 @@
     "deleteFolderTitle": "Dzēst mapi",
     "deleteFolderBody": "Vai tiešām vēlies dzēst \"{{name}}\"? Iekšā saglabātās ziņas netiks dzēstas no tava saglabāto saraksta.",
     "folderDeleted": "Mape dzēsta",
-    "deleteFolderFailed": "Neizdevās dzēst mapi"
+    "deleteFolderFailed": "Neizdevās dzēst mapi",
+    "noCollections": "Vēl nav savu kolekciju",
+    "createCollection": "Izveidot kolekciju"
   },
   "setProfile": {
     "title": "Iestati savu profilu",
@@ -3128,7 +3132,8 @@
     "imageFailed": "Neizdevās izmantot šo attēlu",
     "usernameReserved": "Šis lietotājvārds ir rezervēts",
     "profileSet": "Profils veiksmīgi iestatīts!",
-    "profileFailed": "Neizdevās iestatīt profilu"
+    "profileFailed": "Neizdevās iestatīt profilu",
+    "displayNameHint": "Tavs publiskais vārds, kas redzams profilā."
   },
   "events": {
     "mine": "Mani",

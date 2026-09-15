@@ -564,7 +564,8 @@
     "confirm": "تصدیق کرو",
     "signIn": "سائن ان",
     "takePhoto": "فوٹو گھنو",
-    "recordVideo": "ویڈیو ریکارڈ کرو"
+    "recordVideo": "ویڈیو ریکارڈ کرو",
+    "saveChanges": "تبدیلیاں محفوظ کرو"
   },
   "tip": {
     "title": "ٹِپ گھلو",
@@ -3022,7 +3023,8 @@
     "logOutFailed": "ڈیوائس لاگ آؤٹ نہ تھی سڳی",
     "logOutAllFailed": "ڈیوائساں لاگ آؤٹ نہ تھی سڳیاں",
     "devicesLoggedOut_one": "{{count}} ڈیوائس لاگ آؤٹ تھی ڳئی",
-    "devicesLoggedOut_other": "{{count}} ڈیوائساں لاگ آؤٹ تھی ڳئیاں"
+    "devicesLoggedOut_other": "{{count}} ڈیوائساں لاگ آؤٹ تھی ڳئیاں",
+    "noActive": "کوئی فعال سیشن کائنی"
   },
   "library": {
     "myPosts": "میݙیاں پوسٹاں",
@@ -3052,7 +3054,9 @@
     "deleteFolderTitle": "فولڈر ڈیلیٹ کرو",
     "deleteFolderBody": "کیا تساں سچ مچ \"{{name}}\" ڈیلیٹ کرݨ چاہندے ہو؟ اندر دیاں محفوظ پوسٹاں تہاڈی محفوظ فہرست توں نہ مِٹسن۔",
     "folderDeleted": "فولڈر ڈیلیٹ تھی ڳیا",
-    "deleteFolderFailed": "فولڈر ڈیلیٹ نہ تھی سڳیا"
+    "deleteFolderFailed": "فولڈر ڈیلیٹ نہ تھی سڳیا",
+    "noCollections": "ہݨ تائیں کوئی اپݨا مجموعہ کائنی",
+    "createCollection": "مجموعہ بݨاؤ"
   },
   "setProfile": {
     "title": "آپݨا پروفائل بݨاؤ",
@@ -3073,7 +3077,8 @@
     "imageFailed": "او تصویر ورتی نہ ونڄ سڳی",
     "usernameReserved": "ایہ یوزرنیم محفوظ ہے",
     "profileSet": "پروفائل کامیابی نال بݨ ڳیا!",
-    "profileFailed": "پروفائل نہ بݨ سڳیا"
+    "profileFailed": "پروفائل نہ بݨ سڳیا",
+    "displayNameHint": "تہاڈا عوامی ناں جیڑھا پروفائل تے ݙسدا ہے۔"
   },
   "events": {
     "mine": "میݙے",

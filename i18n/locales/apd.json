@@ -564,7 +564,8 @@
     "confirm": "أكّد",
     "signIn": "سجّل دخول",
     "takePhoto": "صوّر صورة",
-    "recordVideo": "سجّل فيديو"
+    "recordVideo": "سجّل فيديو",
+    "saveChanges": "حفظ التغييرات"
   },
   "tip": {
     "title": "ابعث هدية",
@@ -3035,7 +3036,8 @@
     "logOutFailed": "ما قدرنا نطلّع الجهاز",
     "logOutAllFailed": "ما قدرنا نطلّع الأجهزة",
     "devicesLoggedOut_one": "اتطلّع {{count}} جهاز",
-    "devicesLoggedOut_other": "اتطلّعت {{count}} أجهزة"
+    "devicesLoggedOut_other": "اتطلّعت {{count}} أجهزة",
+    "noActive": "مافي جلسات شغالة"
   },
   "library": {
     "myPosts": "بوستاتي",
@@ -3065,7 +3067,9 @@
     "deleteFolderTitle": "حذف المجلد",
     "deleteFolderBody": "متأكد داير تحذف \"{{name}}\"؟ البوستات المحفوظة جواهو ما بتتحذف من قائمة المحفوظات بتاعتك.",
     "folderDeleted": "اتحذف المجلد",
-    "deleteFolderFailed": "ما قدرنا نحذف المجلد"
+    "deleteFolderFailed": "ما قدرنا نحذف المجلد",
+    "noCollections": "مافي مجموعات خاصة لسه",
+    "createCollection": "أنشئ مجموعة"
   },
   "setProfile": {
     "title": "اعمل بروفايلك",
@@ -3086,7 +3090,8 @@
     "imageFailed": "ما قدرنا نستخدم الصورة دي",
     "usernameReserved": "الاسم دا محجوز",
     "profileSet": "اتظبط البروفايل بنجاح!",
-    "profileFailed": "ما قدرنا نظبط البروفايل"
+    "profileFailed": "ما قدرنا نظبط البروفايل",
+    "displayNameHint": "اسمك العلني البيظهر في ملفك."
   },
   "events": {
     "mine": "بتاعي",

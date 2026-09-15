@@ -613,7 +613,8 @@
     "confirm": "Растау",
     "signIn": "Кіру",
     "takePhoto": "Фото түсіру",
-    "recordVideo": "Бейне жазу"
+    "recordVideo": "Бейне жазу",
+    "saveChanges": "Өзгерістерді сақтау"
   },
   "tip": {
     "title": "Тип жіберу",
@@ -3134,7 +3135,8 @@
     "logOutFailed": "Құрылғыны шығару мүмкін болмады",
     "logOutAllFailed": "Құрылғыларды шығару мүмкін болмады",
     "devicesLoggedOut_one": "{{count}} құрылғы шығарылды",
-    "devicesLoggedOut_other": "{{count}} құрылғы шығарылды"
+    "devicesLoggedOut_other": "{{count}} құрылғы шығарылды",
+    "noActive": "Белсенді сеанстар жоқ"
   },
   "library": {
     "myPosts": "Менің жазбаларым",
@@ -3164,7 +3166,9 @@
     "deleteFolderTitle": "Қалтаны жою",
     "deleteFolderBody": "\"{{name}}\" жойылсын ба? Ішіндегі сақталған жазбалар Сақталғандар тізімінен жойылмайды.",
     "folderDeleted": "Қалта жойылды",
-    "deleteFolderFailed": "Қалтаны жою мүмкін болмады"
+    "deleteFolderFailed": "Қалтаны жою мүмкін болмады",
+    "noCollections": "Әзірге жеке жинақтар жоқ",
+    "createCollection": "Жинақ жасау"
   },
   "setProfile": {
     "title": "Профиліңізді реттеңіз",
@@ -3185,7 +3189,8 @@
     "imageFailed": "Бұл суретті пайдалану мүмкін болмады",
     "usernameReserved": "Бұл ат сақталған",
     "profileSet": "Профиль сәтті реттелді!",
-    "profileFailed": "Профильді реттеу мүмкін болмады"
+    "profileFailed": "Профильді реттеу мүмкін болмады",
+    "displayNameHint": "Профиліңізде көрсетілетін ашық атыңыз."
   },
   "events": {
     "mine": "Менікі",

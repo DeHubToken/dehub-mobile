@@ -604,7 +604,8 @@
     "confirm": "أكّد",
     "signIn": "دخل",
     "takePhoto": "صوّر تصويرة",
-    "recordVideo": "سجّل فيديو"
+    "recordVideo": "سجّل فيديو",
+    "saveChanges": "سجل التبديلات"
   },
   "tip": {
     "title": "بعت تيب",
@@ -3104,7 +3105,8 @@
     "logOutFailed": "ما قدرناش نخرجو الجهاز",
     "logOutAllFailed": "ما قدرناش نخرجو الأجهزة",
     "devicesLoggedOut_one": "تخرج {{count}} جهاز",
-    "devicesLoggedOut_other": "تخرجو {{count}} أجهزة"
+    "devicesLoggedOut_other": "تخرجو {{count}} أجهزة",
+    "noActive": "ما كايناش جلسات نشيطة"
   },
   "library": {
     "myPosts": "البوسطات ديالي",
@@ -3134,7 +3136,9 @@
     "deleteFolderTitle": "حذف المجلد",
     "deleteFolderBody": "متأكد بغيتي تحذف \"{{name}}\"؟ البوسطات المحفوظة داخلو ما غاديش يتحذفو من لائحة المحفوظات ديالك.",
     "folderDeleted": "تحذف المجلد",
-    "deleteFolderFailed": "ما قدرناش نحذفو المجلد"
+    "deleteFolderFailed": "ما قدرناش نحذفو المجلد",
+    "noCollections": "ما كايناش مجموعات ديالك حتى دابا",
+    "createCollection": "دير مجموعة"
   },
   "setProfile": {
     "title": "دير البروفايل ديالك",
@@ -3155,7 +3159,8 @@
     "imageFailed": "ما قدرناش نستعملو هاد التصويرة",
     "usernameReserved": "هاد السمية محجوزة",
     "profileSet": "تدار البروفايل بنجاح!",
-    "profileFailed": "ما قدرناش ندير البروفايل"
+    "profileFailed": "ما قدرناش ندير البروفايل",
+    "displayNameHint": "سميتك العلنية اللي كتبان فالبروفيل ديالك."
   },
   "events": {
     "mine": "ديالي",

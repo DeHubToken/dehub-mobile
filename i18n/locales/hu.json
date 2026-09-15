@@ -605,7 +605,8 @@
     "confirm": "Megerősítés",
     "signIn": "Bejelentkezés",
     "takePhoto": "Fénykép készítése",
-    "recordVideo": "Videó felvétele"
+    "recordVideo": "Videó felvétele",
+    "saveChanges": "Változtatások mentése"
   },
   "drawers": {
     "ppvTitle": "Fizetés megtekintésenként",
@@ -3082,7 +3083,8 @@
     "logOutFailed": "Az eszköz kijelentkeztetése sikertelen",
     "logOutAllFailed": "Az eszközök kijelentkeztetése sikertelen",
     "devicesLoggedOut_one": "{{count}} eszköz kijelentkeztetve",
-    "devicesLoggedOut_other": "{{count}} eszköz kijelentkeztetve"
+    "devicesLoggedOut_other": "{{count}} eszköz kijelentkeztetve",
+    "noActive": "Nincsenek aktív munkamenetek"
   },
   "library": {
     "myPosts": "Bejegyzéseim",
@@ -3112,7 +3114,9 @@
     "deleteFolderTitle": "Mappa törlése",
     "deleteFolderBody": "Biztosan törlöd a(z) \"{{name}}\" mappát? A benne mentett bejegyzések nem törlődnek a Mentettek listádról.",
     "folderDeleted": "Mappa törölve",
-    "deleteFolderFailed": "A mappa törlése sikertelen"
+    "deleteFolderFailed": "A mappa törlése sikertelen",
+    "noCollections": "Még nincsenek saját gyűjtemények",
+    "createCollection": "Gyűjtemény létrehozása"
   },
   "setProfile": {
     "title": "Állítsd be a profilodat",
@@ -3133,7 +3137,8 @@
     "imageFailed": "Ez a kép nem használható",
     "usernameReserved": "Ez a felhasználónév foglalt",
     "profileSet": "Profil sikeresen beállítva!",
-    "profileFailed": "A profil beállítása sikertelen"
+    "profileFailed": "A profil beállítása sikertelen",
+    "displayNameHint": "A profilodon megjelenő nyilvános neved."
   },
   "events": {
     "mine": "Sajátjaim",

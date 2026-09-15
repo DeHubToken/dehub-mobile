@@ -3343,7 +3343,8 @@
     "logOutFailed": "Gagal log keluar peranti",
     "logOutAllFailed": "Gagal log keluar peranti",
     "devicesLoggedOut_one": "{{count}} peranti telah log keluar",
-    "devicesLoggedOut_other": "{{count}} peranti telah log keluar"
+    "devicesLoggedOut_other": "{{count}} peranti telah log keluar",
+    "noActive": "Tiada sesi aktif"
   },
   "library": {
     "myPosts": "Siaran saya",
@@ -3373,7 +3374,9 @@
     "deleteFolderTitle": "Padam folder",
     "deleteFolderBody": "Anda pasti mahu memadam \"{{name}}\"? Siaran yang disimpan di dalamnya tidak akan dipadam daripada senarai Disimpan anda.",
     "folderDeleted": "Folder dipadam",
-    "deleteFolderFailed": "Gagal memadam folder"
+    "deleteFolderFailed": "Gagal memadam folder",
+    "noCollections": "Belum ada koleksi tersuai",
+    "createCollection": "Cipta koleksi"
   },
   "setProfile": {
     "title": "Tetapkan profil anda",
@@ -3394,7 +3397,8 @@
     "imageFailed": "Tidak dapat menggunakan imej itu",
     "usernameReserved": "Nama pengguna ini dikhaskan",
     "profileSet": "Profil berjaya ditetapkan!",
-    "profileFailed": "Gagal menetapkan profil"
+    "profileFailed": "Gagal menetapkan profil",
+    "displayNameHint": "Nama awam anda yang dipaparkan pada profil."
   },
   "events": {
     "mine": "Milik saya",

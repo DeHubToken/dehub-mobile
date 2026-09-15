@@ -365,7 +365,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
             placeholder={t("setProfile.displayNamePlaceholder")}
           />
           <View style={{ marginTop: 8, marginBottom: 24, minHeight: 20 }}>
-            <Text style={authText.caption}>Your public name shown on your profile.</Text>
+            <Text style={authText.caption}>{t("setProfile.displayNameHint")}</Text>
           </View>
 
           {/* Language — optional like the picture, and changeable in Settings

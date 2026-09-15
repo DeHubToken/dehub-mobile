@@ -1182,7 +1182,8 @@
     "anonymous": "Anonymný",
     "signIn": "Prihlásiť sa",
     "takePhoto": "Odfotiť",
-    "recordVideo": "Nahrať video"
+    "recordVideo": "Nahrať video",
+    "saveChanges": "Uložiť zmeny"
   },
   "featureRequests": {
     "title": "Požiadavky na funkcie",
@@ -3248,7 +3249,8 @@
     "logOutFailed": "Zariadenie sa nepodarilo odhlásiť",
     "logOutAllFailed": "Zariadenia sa nepodarilo odhlásiť",
     "devicesLoggedOut_one": "Odhlásené {{count}} zariadenie",
-    "devicesLoggedOut_other": "Odhlásených {{count}} zariadení"
+    "devicesLoggedOut_other": "Odhlásených {{count}} zariadení",
+    "noActive": "Žiadne aktívne relácie"
   },
   "library": {
     "myPosts": "Moje príspevky",
@@ -3278,7 +3280,9 @@
     "deleteFolderTitle": "Zmazať priečinok",
     "deleteFolderBody": "Naozaj chcete zmazať \"{{name}}\"? Uložené príspevky vnútri sa z vášho zoznamu uložených nevymažú.",
     "folderDeleted": "Priečinok zmazaný",
-    "deleteFolderFailed": "Priečinok sa nepodarilo zmazať"
+    "deleteFolderFailed": "Priečinok sa nepodarilo zmazať",
+    "noCollections": "Zatiaľ žiadne vlastné kolekcie",
+    "createCollection": "Vytvoriť kolekciu"
   },
   "setProfile": {
     "title": "Nastavte si profil",
@@ -3299,7 +3303,8 @@
     "imageFailed": "Tento obrázok sa nepodarilo použiť",
     "usernameReserved": "Toto používateľské meno je vyhradené",
     "profileSet": "Profil bol úspešne nastavený!",
-    "profileFailed": "Profil sa nepodarilo nastaviť"
+    "profileFailed": "Profil sa nepodarilo nastaviť",
+    "displayNameHint": "Vaše verejné meno zobrazené v profile."
   },
   "events": {
     "mine": "Moje",

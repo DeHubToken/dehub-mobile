@@ -594,7 +594,8 @@
     "confirm": "ନିଶ୍ଚିତ କରନ୍ତୁ",
     "signIn": "ସାଇନ ଇନ",
     "takePhoto": "ଫଟୋ ଉଠାନ୍ତୁ",
-    "recordVideo": "ଭିଡିଓ ରେକର୍ଡ କରନ୍ତୁ"
+    "recordVideo": "ଭିଡିଓ ରେକର୍ଡ କରନ୍ତୁ",
+    "saveChanges": "ପରିବର୍ତ୍ତନ ସଞ୍ଚୟ କରନ୍ତୁ"
   },
   "tip": {
     "title": "ଟିପ ପଠାନ୍ତୁ",
@@ -3049,7 +3050,8 @@
     "logOutFailed": "ଡିଭାଇସ୍ ଲଗ୍ ଆଉଟ୍ କରିହେଲା ନାହିଁ",
     "logOutAllFailed": "ଡିଭାଇସଗୁଡ଼ିକ ଲଗ୍ ଆଉଟ୍ କରିହେଲା ନାହିଁ",
     "devicesLoggedOut_one": "{{count}} ଡିଭାଇସ୍ ଲଗ୍ ଆଉଟ୍ ହେଲା",
-    "devicesLoggedOut_other": "{{count}} ଡିଭାଇସ୍ ଲଗ୍ ଆଉଟ୍ ହେଲା"
+    "devicesLoggedOut_other": "{{count}} ଡିଭାଇସ୍ ଲଗ୍ ଆଉଟ୍ ହେଲା",
+    "noActive": "କୌଣସି ସକ୍ରିୟ ସେସନ୍ ନାହିଁ"
   },
   "library": {
     "myPosts": "ମୋର ପୋଷ୍ଟ",
@@ -3079,7 +3081,9 @@
     "deleteFolderTitle": "ଫୋଲ୍ଡର ବିଲୋପ କରନ୍ତୁ",
     "deleteFolderBody": "ଆପଣ ନିଶ୍ଚିତ \"{{name}}\" ବିଲୋପ କରିବେ? ଭିତରର ସେଭ୍ ପୋଷ୍ଟଗୁଡ଼ିକ ଆପଣଙ୍କ ସେଭ୍ ତାଲିକାରୁ ବିଲୋପ ହେବ ନାହିଁ।",
     "folderDeleted": "ଫୋଲ୍ଡର ବିଲୋପ ହେଲା",
-    "deleteFolderFailed": "ଫୋଲ୍ଡର ବିଲୋପ କରିହେଲା ନାହିଁ"
+    "deleteFolderFailed": "ଫୋଲ୍ଡର ବିଲୋପ କରିହେଲା ନାହିଁ",
+    "noCollections": "ଏପର୍ଯ୍ୟନ୍ତ ନିଜର ସଂଗ୍ରହ ନାହିଁ",
+    "createCollection": "ସଂଗ୍ରହ ତିଆରି କରନ୍ତୁ"
   },
   "setProfile": {
     "title": "ଆପଣଙ୍କ ପ୍ରୋଫାଇଲ୍ ସେଟ୍ କରନ୍ତୁ",
@@ -3100,7 +3104,8 @@
     "imageFailed": "ସେହି ଛବି ବ୍ୟବହାର କରିହେଲା ନାହିଁ",
     "usernameReserved": "ଏହି ଉପଯୋଗକର୍ତ୍ତା ନାମ ସଂରକ୍ଷିତ",
     "profileSet": "ପ୍ରୋଫାଇଲ୍ ସଫଳତାର ସହ ସେଟ୍ ହେଲା!",
-    "profileFailed": "ପ୍ରୋଫାଇଲ୍ ସେଟ୍ କରିହେଲା ନାହିଁ"
+    "profileFailed": "ପ୍ରୋଫାଇଲ୍ ସେଟ୍ କରିହେଲା ନାହିଁ",
+    "displayNameHint": "ଆପଣଙ୍କ ପ୍ରୋଫାଇଲରେ ଦେଖାଯାଉଥିବା ସାର୍ବଜନୀନ ନାମ।"
   },
   "events": {
     "mine": "ମୋର",

@@ -564,7 +564,8 @@
     "confirm": "确认",
     "signIn": "登录",
     "takePhoto": "拍照",
-    "recordVideo": "录视频"
+    "recordVideo": "录视频",
+    "saveChanges": "保存更改"
   },
   "tip": {
     "title": "发打赏",
@@ -3078,7 +3079,8 @@
     "logOutFailed": "无法登出该设备",
     "logOutAllFailed": "无法登出这些设备",
     "devicesLoggedOut_one": "已登出 {{count}} 台设备",
-    "devicesLoggedOut_other": "已登出 {{count}} 台设备"
+    "devicesLoggedOut_other": "已登出 {{count}} 台设备",
+    "noActive": "没有活动会话"
   },
   "library": {
     "myPosts": "我的帖子",
@@ -3108,7 +3110,9 @@
     "deleteFolderTitle": "删除文件夹",
     "deleteFolderBody": "确定要删除 \"{{name}}\" 吗？里面已保存的帖子不会从你的收藏列表中删除。",
     "folderDeleted": "文件夹已删除",
-    "deleteFolderFailed": "无法删除文件夹"
+    "deleteFolderFailed": "无法删除文件夹",
+    "noCollections": "还没有自定义收藏夹",
+    "createCollection": "创建收藏夹"
   },
   "setProfile": {
     "title": "设置你的资料",
@@ -3129,7 +3133,8 @@
     "imageFailed": "无法使用该图片",
     "usernameReserved": "该用户名为保留名",
     "profileSet": "资料设置成功！",
-    "profileFailed": "无法设置资料"
+    "profileFailed": "无法设置资料",
+    "displayNameHint": "显示在你个人资料上的公开名称。"
   },
   "events": {
     "mine": "我的",

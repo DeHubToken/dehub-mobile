@@ -605,7 +605,8 @@
     "confirm": "Потвърждаване",
     "signIn": "Вход",
     "takePhoto": "Направи снимка",
-    "recordVideo": "Запиши видео"
+    "recordVideo": "Запиши видео",
+    "saveChanges": "Запази промените"
   },
   "drawers": {
     "ppvTitle": "Плащане на гледане",
@@ -3078,7 +3079,8 @@
     "logOutFailed": "Изходът от устройството не бе успешен",
     "logOutAllFailed": "Изходът от устройствата не бе успешен",
     "devicesLoggedOut_one": "{{count}} устройство е отписано",
-    "devicesLoggedOut_other": "{{count}} устройства са отписани"
+    "devicesLoggedOut_other": "{{count}} устройства са отписани",
+    "noActive": "Няма активни сесии"
   },
   "library": {
     "myPosts": "Моите публикации",
@@ -3108,7 +3110,9 @@
     "deleteFolderTitle": "Изтрий папката",
     "deleteFolderBody": "Сигурен ли си, че искаш да изтриеш \"{{name}}\"? Запазените публикации вътре няма да бъдат изтрити от списъка ти със запазени.",
     "folderDeleted": "Папката е изтрита",
-    "deleteFolderFailed": "Папката не бе изтрита"
+    "deleteFolderFailed": "Папката не бе изтрита",
+    "noCollections": "Още няма собствени колекции",
+    "createCollection": "Създай колекция"
   },
   "setProfile": {
     "title": "Настрой профила си",
@@ -3129,7 +3133,8 @@
     "imageFailed": "Изображението не може да се използва",
     "usernameReserved": "Това потребителско име е запазено",
     "profileSet": "Профилът е настроен успешно!",
-    "profileFailed": "Профилът не бе настроен"
+    "profileFailed": "Профилът не бе настроен",
+    "displayNameHint": "Публичното ти име, показвано в профила."
   },
   "events": {
     "mine": "Мои",

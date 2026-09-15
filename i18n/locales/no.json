@@ -602,7 +602,8 @@
     "confirm": "Bekreft",
     "signIn": "Logg inn",
     "takePhoto": "Ta bilde",
-    "recordVideo": "Ta opp video"
+    "recordVideo": "Ta opp video",
+    "saveChanges": "Lagre endringer"
   },
   "postOptions": {
     "options": "Alternativer",
@@ -3069,7 +3070,8 @@
     "logOutFailed": "Kunne ikke logge ut enheten",
     "logOutAllFailed": "Kunne ikke logge ut enhetene",
     "devicesLoggedOut_one": "{{count}} enhet logget ut",
-    "devicesLoggedOut_other": "{{count}} enheter logget ut"
+    "devicesLoggedOut_other": "{{count}} enheter logget ut",
+    "noActive": "Ingen aktive økter"
   },
   "library": {
     "myPosts": "Mine innlegg",
@@ -3099,7 +3101,9 @@
     "deleteFolderTitle": "Slett mappe",
     "deleteFolderBody": "Er du sikker på at du vil slette \"{{name}}\"? De lagrede innleggene inni slettes ikke fra Lagret-listen din.",
     "folderDeleted": "Mappen er slettet",
-    "deleteFolderFailed": "Kunne ikke slette mappen"
+    "deleteFolderFailed": "Kunne ikke slette mappen",
+    "noCollections": "Ingen egne samlinger ennå",
+    "createCollection": "Opprett samling"
   },
   "setProfile": {
     "title": "Sett opp profilen din",
@@ -3120,7 +3124,8 @@
     "imageFailed": "Kunne ikke bruke det bildet",
     "usernameReserved": "Dette brukernavnet er reservert",
     "profileSet": "Profilen ble satt opp!",
-    "profileFailed": "Kunne ikke sette opp profilen"
+    "profileFailed": "Kunne ikke sette opp profilen",
+    "displayNameHint": "Det offentlige navnet ditt som vises på profilen."
   },
   "events": {
     "mine": "Mine",

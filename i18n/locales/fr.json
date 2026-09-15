@@ -620,7 +620,8 @@
     "confirm": "Confirmer",
     "signIn": "Se connecter",
     "takePhoto": "Prendre une photo",
-    "recordVideo": "Enregistrer une vidéo"
+    "recordVideo": "Enregistrer une vidéo",
+    "saveChanges": "Enregistrer les modifications"
   },
   "drawers": {
     "ppvTitle": "Contenu à la carte",
@@ -3152,7 +3153,8 @@
     "logOutFailed": "Impossible de déconnecter l'appareil",
     "logOutAllFailed": "Impossible de déconnecter les appareils",
     "devicesLoggedOut_one": "{{count}} appareil déconnecté",
-    "devicesLoggedOut_other": "{{count}} appareils déconnectés"
+    "devicesLoggedOut_other": "{{count}} appareils déconnectés",
+    "noActive": "Aucune session active"
   },
   "library": {
     "myPosts": "Mes publications",
@@ -3182,7 +3184,9 @@
     "deleteFolderTitle": "Supprimer le dossier",
     "deleteFolderBody": "Voulez-vous vraiment supprimer « {{name}} » ? Les publications enregistrées à l'intérieur ne seront pas supprimées de votre liste d'enregistrements.",
     "folderDeleted": "Dossier supprimé",
-    "deleteFolderFailed": "Impossible de supprimer le dossier"
+    "deleteFolderFailed": "Impossible de supprimer le dossier",
+    "noCollections": "Pas encore de collections personnalisées",
+    "createCollection": "Créer une collection"
   },
   "setProfile": {
     "title": "Configurez votre profil",
@@ -3203,7 +3207,8 @@
     "imageFailed": "Impossible d'utiliser cette image",
     "usernameReserved": "Ce nom d'utilisateur est réservé",
     "profileSet": "Profil configuré avec succès !",
-    "profileFailed": "Impossible de configurer le profil"
+    "profileFailed": "Impossible de configurer le profil",
+    "displayNameHint": "Votre nom public affiché sur votre profil."
   },
   "events": {
     "mine": "Les miens",

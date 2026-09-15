@@ -598,7 +598,8 @@
     "confirm": "အတည်ပြုရန်",
     "signIn": "ဝင်ရောက်ရန်",
     "takePhoto": "ဓာတ်ပုံရိုက်ရန်",
-    "recordVideo": "ဗီဒီယိုရိုက်ရန်"
+    "recordVideo": "ဗီဒီယိုရိုက်ရန်",
+    "saveChanges": "ပြောင်းလဲမှုများ သိမ်းရန်"
   },
   "tip": {
     "title": "အကူအညီပေးရန်",
@@ -3058,7 +3059,8 @@
     "logOutFailed": "စက်ကို ထွက်စေ၍မရပါ",
     "logOutAllFailed": "စက်များကို ထွက်စေ၍မရပါ",
     "devicesLoggedOut_one": "စက် {{count}} လုံး ထွက်ပြီးပါပြီ",
-    "devicesLoggedOut_other": "စက် {{count}} လုံး ထွက်ပြီးပါပြီ"
+    "devicesLoggedOut_other": "စက် {{count}} လုံး ထွက်ပြီးပါပြီ",
+    "noActive": "အသုံးပြုဆဲ session မရှိပါ"
   },
   "library": {
     "myPosts": "ကျွန်ုပ်၏ ပို့စ်များ",
@@ -3088,7 +3090,9 @@
     "deleteFolderTitle": "ဖိုင်တွဲ ဖျက်ရန်",
     "deleteFolderBody": "\"{{name}}\" ကို ဖျက်မှာ သေချာပါသလား? အထဲရှိ သိမ်းထားသော ပို့စ်များသည် သင့်သိမ်းဆည်းစာရင်းမှ ပျက်မည်မဟုတ်ပါ။",
     "folderDeleted": "ဖိုင်တွဲ ဖျက်ပြီးပါပြီ",
-    "deleteFolderFailed": "ဖိုင်တွဲ ဖျက်၍မရပါ"
+    "deleteFolderFailed": "ဖိုင်တွဲ ဖျက်၍မရပါ",
+    "noCollections": "ကိုယ်ပိုင် စုစည်းမှု မရှိသေးပါ",
+    "createCollection": "စုစည်းမှု ဖန်တီးရန်"
   },
   "setProfile": {
     "title": "သင့်ပရိုဖိုင်ကို သတ်မှတ်ပါ",
@@ -3109,7 +3113,8 @@
     "imageFailed": "ထိုပုံကို အသုံးပြု၍မရပါ",
     "usernameReserved": "ဤအသုံးပြုသူအမည်ကို သီးသန့်ထားသည်",
     "profileSet": "ပရိုဖိုင် အောင်မြင်စွာ သတ်မှတ်ပြီးပါပြီ!",
-    "profileFailed": "ပရိုဖိုင် သတ်မှတ်၍မရပါ"
+    "profileFailed": "ပရိုဖိုင် သတ်မှတ်၍မရပါ",
+    "displayNameHint": "သင့်ပရိုဖိုင်တွင် ပြသမည့် အများသိအမည်။"
   },
   "events": {
     "mine": "ကျွန်ုပ်၏",

@@ -591,7 +591,8 @@
     "confirm": "A dafalen",
     "signIn": "Don",
     "takePhoto": "Ja ta",
-    "recordVideo": "Wideyo ta"
+    "recordVideo": "Wideyo ta",
+    "saveChanges": "Yɛlɛmaliw mara"
   },
   "tip": {
     "title": "Kɔrɔbɔ",
@@ -3023,7 +3024,8 @@
     "logOutFailed": "Minɛn ma se ka bɔ",
     "logOutAllFailed": "Minɛnw ma se ka bɔ",
     "devicesLoggedOut_one": "Minɛn {{count}} bɔra",
-    "devicesLoggedOut_other": "Minɛn {{count}} bɔra"
+    "devicesLoggedOut_other": "Minɛn {{count}} bɔra",
+    "noActive": "Baara waati si tɛ yen"
   },
   "library": {
     "myPosts": "N ka sɛbɛnw",
@@ -3053,7 +3055,9 @@
     "deleteFolderTitle": "Dosiye jɔsi",
     "deleteFolderBody": "I b'a fɛ ka \"{{name}}\" jɔsi wa? Sɛbɛn maralenw min bɛ a kɔnɔ, olu tɛna bɔ i ka maralenw lisi la.",
     "folderDeleted": "Dosiye jɔsira",
-    "deleteFolderFailed": "Dosiye ma se ka jɔsi"
+    "deleteFolderFailed": "Dosiye ma se ka jɔsi",
+    "noCollections": "I yɛrɛ ka fɛnw kafoli si tɛ yen fɔlɔ",
+    "createCollection": "Kafoli dilan"
   },
   "setProfile": {
     "title": "I ka profili labɛn",
@@ -3074,7 +3078,8 @@
     "imageFailed": "O ja ma se ka kɛ",
     "usernameReserved": "Nin tɔgɔ marala",
     "profileSet": "Profili labɛnna ka ɲɛ!",
-    "profileFailed": "Profili ma se ka labɛn"
+    "profileFailed": "Profili ma se ka labɛn",
+    "displayNameHint": "I tɔgɔ min bɛ yira i ka profil kan."
   },
   "events": {
     "mine": "N ta",

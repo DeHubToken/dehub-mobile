@@ -605,7 +605,8 @@
     "confirm": "Potvrdit",
     "signIn": "Přihlásit se",
     "takePhoto": "Vyfotit",
-    "recordVideo": "Natočit video"
+    "recordVideo": "Natočit video",
+    "saveChanges": "Uložit změny"
   },
   "drawers": {
     "ppvTitle": "Platba za zhlédnutí",
@@ -3082,7 +3083,8 @@
     "logOutFailed": "Zařízení se nepodařilo odhlásit",
     "logOutAllFailed": "Zařízení se nepodařilo odhlásit",
     "devicesLoggedOut_one": "Odhlášeno {{count}} zařízení",
-    "devicesLoggedOut_other": "Odhlášeno {{count}} zařízení"
+    "devicesLoggedOut_other": "Odhlášeno {{count}} zařízení",
+    "noActive": "Žádné aktivní relace"
   },
   "library": {
     "myPosts": "Moje příspěvky",
@@ -3112,7 +3114,9 @@
     "deleteFolderTitle": "Smazat složku",
     "deleteFolderBody": "Opravdu chcete smazat \"{{name}}\"? Uložené příspěvky uvnitř se z vašeho seznamu uložených nesmažou.",
     "folderDeleted": "Složka smazána",
-    "deleteFolderFailed": "Složku se nepodařilo smazat"
+    "deleteFolderFailed": "Složku se nepodařilo smazat",
+    "noCollections": "Zatím žádné vlastní kolekce",
+    "createCollection": "Vytvořit kolekci"
   },
   "setProfile": {
     "title": "Nastavte si profil",
@@ -3133,7 +3137,8 @@
     "imageFailed": "Tento obrázek nelze použít",
     "usernameReserved": "Toto uživatelské jméno je vyhrazené",
     "profileSet": "Profil byl úspěšně nastaven!",
-    "profileFailed": "Profil se nepodařilo nastavit"
+    "profileFailed": "Profil se nepodařilo nastavit",
+    "displayNameHint": "Vaše veřejné jméno zobrazené v profilu."
   },
   "events": {
     "mine": "Moje",

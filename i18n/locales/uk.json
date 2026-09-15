@@ -435,7 +435,8 @@
     "test": "Тест",
     "signIn": "Увійти",
     "takePhoto": "Зробити фото",
-    "recordVideo": "Записати відео"
+    "recordVideo": "Записати відео",
+    "saveChanges": "Зберегти зміни"
   },
   "pages": {
     "home": {
@@ -3557,7 +3558,8 @@
     "logOutFailed": "Не вдалося вивести пристрій",
     "logOutAllFailed": "Не вдалося вивести пристрої",
     "devicesLoggedOut_one": "{{count}} пристрій виведено",
-    "devicesLoggedOut_other": "{{count}} пристроїв виведено"
+    "devicesLoggedOut_other": "{{count}} пристроїв виведено",
+    "noActive": "Активних сеансів немає"
   },
   "library": {
     "myPosts": "Мої дописи",
@@ -3587,7 +3589,9 @@
     "deleteFolderTitle": "Видалити теку",
     "deleteFolderBody": "Точно видалити \"{{name}}\"? Збережені дописи всередині не буде видалено з вашого списку збережених.",
     "folderDeleted": "Теку видалено",
-    "deleteFolderFailed": "Не вдалося видалити теку"
+    "deleteFolderFailed": "Не вдалося видалити теку",
+    "noCollections": "Власних колекцій ще немає",
+    "createCollection": "Створити колекцію"
   },
   "setProfile": {
     "title": "Налаштуйте свій профіль",
@@ -3608,7 +3612,8 @@
     "imageFailed": "Не вдалося використати це зображення",
     "usernameReserved": "Це ім'я користувача зарезервоване",
     "profileSet": "Профіль успішно налаштовано!",
-    "profileFailed": "Не вдалося налаштувати профіль"
+    "profileFailed": "Не вдалося налаштувати профіль",
+    "displayNameHint": "Ваше публічне ім'я, яке показується в профілі."
   },
   "events": {
     "mine": "Мої",

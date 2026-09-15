@@ -1257,7 +1257,8 @@
     "anonymous": "নামহীন",
     "signIn": "সাইন ইন",
     "takePhoto": "ফটো তোলো",
-    "recordVideo": "ভিডিও রেকর্ড করো"
+    "recordVideo": "ভিডিও রেকর্ড করো",
+    "saveChanges": "পরিবর্তন সংরক্ষণ করো"
   },
   "featureRequests": {
     "title": "ফিচার রিকোয়েস্ট",
@@ -3109,7 +3110,8 @@
     "logOutFailed": "ডিভাইস লগ আউট করা গেইল না",
     "logOutAllFailed": "ডিভাইসগুলা লগ আউট করা গেইল না",
     "devicesLoggedOut_one": "{{count}}টা ডিভাইস লগ আউট হইছে",
-    "devicesLoggedOut_other": "{{count}}টা ডিভাইস লগ আউট হইছে"
+    "devicesLoggedOut_other": "{{count}}টা ডিভাইস লগ আউট হইছে",
+    "noActive": "কোনো চালু সেশন নাই"
   },
   "library": {
     "myPosts": "মোর পোস্ট",
@@ -3139,7 +3141,9 @@
     "deleteFolderTitle": "ফোল্ডার মুছো",
     "deleteFolderBody": "তুমি কি সত্যিই \"{{name}}\" মুছিবা চাও? ভিতরের সেভ করা পোস্টগুলা তোমার সেভ তালিকা থাকি মুছিবে না।",
     "folderDeleted": "ফোল্ডার মোছা হইছে",
-    "deleteFolderFailed": "ফোল্ডার মোছা গেইল না"
+    "deleteFolderFailed": "ফোল্ডার মোছা গেইল না",
+    "noCollections": "এখনো নিজের কোনো সংগ্রহ নাই",
+    "createCollection": "সংগ্রহ বানাও"
   },
   "setProfile": {
     "title": "তোমার প্রোফাইল সেট করো",
@@ -3160,7 +3164,8 @@
     "imageFailed": "ঐ ছবি ব্যবহার করা গেইল না",
     "usernameReserved": "এই ইউজারনেম সংরক্ষিত",
     "profileSet": "প্রোফাইল সফলভাবে সেট হইছে!",
-    "profileFailed": "প্রোফাইল সেট করা গেইল না"
+    "profileFailed": "প্রোফাইল সেট করা গেইল না",
+    "displayNameHint": "তোমার প্রোফাইলত দেখা যাওয়া প্রকাশ্য নাম।"
   },
   "events": {
     "mine": "মোর",

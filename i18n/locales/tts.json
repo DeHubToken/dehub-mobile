@@ -564,7 +564,8 @@
     "confirm": "ยืนยัน",
     "signIn": "เข้าสู่ระบบ",
     "takePhoto": "ถ่ายฮูป",
-    "recordVideo": "อัดวิดีโอ"
+    "recordVideo": "อัดวิดีโอ",
+    "saveChanges": "บันทึกการเปลี่ยนแปลง"
   },
   "tip": {
     "title": "ส่งทิป",
@@ -3037,7 +3038,8 @@
     "logOutFailed": "ออกจากระบบอุปกรณ์บ่สำเร็จ",
     "logOutAllFailed": "ออกจากระบบอุปกรณ์บ่สำเร็จ",
     "devicesLoggedOut_one": "ออกจากระบบ {{count}} อุปกรณ์แล้ว",
-    "devicesLoggedOut_other": "ออกจากระบบ {{count}} อุปกรณ์แล้ว"
+    "devicesLoggedOut_other": "ออกจากระบบ {{count}} อุปกรณ์แล้ว",
+    "noActive": "บ่มีเซสชันที่ใช้งานอยู่"
   },
   "library": {
     "myPosts": "โพสต์ของข้อย",
@@ -3067,7 +3069,9 @@
     "deleteFolderTitle": "ลบโฟลเดอร์",
     "deleteFolderBody": "แน่ใจบ่ว่าต้องการลบ \"{{name}}\" โพสต์ที่บันทึกไว้ข้างในสิบ่ถูกลบออกจากรายการที่บันทึกของเจ้า",
     "folderDeleted": "ลบโฟลเดอร์แล้ว",
-    "deleteFolderFailed": "ลบโฟลเดอร์บ่สำเร็จ"
+    "deleteFolderFailed": "ลบโฟลเดอร์บ่สำเร็จ",
+    "noCollections": "ยังบ่มีคอลเลกชันของเจ้า",
+    "createCollection": "สร้างคอลเลกชัน"
   },
   "setProfile": {
     "title": "ตั้งค่าโปรไฟล์ของเจ้า",
@@ -3088,7 +3092,8 @@
     "imageFailed": "ใช้รูปนั้นบ่ได้",
     "usernameReserved": "ชื่อผู้ใช้นี้ถูกสงวนไว้",
     "profileSet": "ตั้งค่าโปรไฟล์สำเร็จแล้ว!",
-    "profileFailed": "ตั้งค่าโปรไฟล์บ่สำเร็จ"
+    "profileFailed": "ตั้งค่าโปรไฟล์บ่สำเร็จ",
+    "displayNameHint": "ชื่อสาธารณะที่แสดงอยู่ในโปรไฟล์ของเจ้า"
   },
   "events": {
     "mine": "ของข้อย",

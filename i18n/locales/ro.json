@@ -826,7 +826,8 @@
     "confirm": "Confirmă",
     "signIn": "Autentifică-te",
     "takePhoto": "Fă o poză",
-    "recordVideo": "Înregistrează video"
+    "recordVideo": "Înregistrează video",
+    "saveChanges": "Salvează modificările"
   },
   "postOptions": {
     "options": "Options",
@@ -3091,7 +3092,8 @@
     "logOutFailed": "Dispozitivul nu a putut fi deconectat",
     "logOutAllFailed": "Dispozitivele nu au putut fi deconectate",
     "devicesLoggedOut_one": "{{count}} dispozitiv deconectat",
-    "devicesLoggedOut_other": "{{count}} dispozitive deconectate"
+    "devicesLoggedOut_other": "{{count}} dispozitive deconectate",
+    "noActive": "Nicio sesiune activă"
   },
   "library": {
     "myPosts": "Postările mele",
@@ -3121,7 +3123,9 @@
     "deleteFolderTitle": "Șterge dosarul",
     "deleteFolderBody": "Sigur vrei să ștergi \"{{name}}\"? Postările salvate dinăuntru nu vor fi șterse din lista ta de salvate.",
     "folderDeleted": "Dosar șters",
-    "deleteFolderFailed": "Dosarul nu a putut fi șters"
+    "deleteFolderFailed": "Dosarul nu a putut fi șters",
+    "noCollections": "Încă nu ai colecții proprii",
+    "createCollection": "Creează colecție"
   },
   "setProfile": {
     "title": "Configurează-ți profilul",
@@ -3142,7 +3146,8 @@
     "imageFailed": "Imaginea nu a putut fi folosită",
     "usernameReserved": "Acest nume de utilizator este rezervat",
     "profileSet": "Profil configurat cu succes!",
-    "profileFailed": "Profilul nu a putut fi configurat"
+    "profileFailed": "Profilul nu a putut fi configurat",
+    "displayNameHint": "Numele tău public afișat pe profil."
   },
   "events": {
     "mine": "Ale mele",

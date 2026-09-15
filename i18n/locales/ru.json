@@ -619,7 +619,8 @@
     "confirm": "Подтвердить",
     "signIn": "Войти",
     "takePhoto": "Сделать фото",
-    "recordVideo": "Записать видео"
+    "recordVideo": "Записать видео",
+    "saveChanges": "Сохранить изменения"
   },
   "drawers": {
     "ppvTitle": "Платный контент",
@@ -3147,7 +3148,8 @@
     "logOutFailed": "Не удалось вывести устройство",
     "logOutAllFailed": "Не удалось вывести устройства",
     "devicesLoggedOut_one": "{{count}} устройство выведено",
-    "devicesLoggedOut_other": "{{count}} устройств выведено"
+    "devicesLoggedOut_other": "{{count}} устройств выведено",
+    "noActive": "Активных сеансов нет"
   },
   "library": {
     "myPosts": "Мои посты",
@@ -3177,7 +3179,9 @@
     "deleteFolderTitle": "Удалить папку",
     "deleteFolderBody": "Точно удалить \"{{name}}\"? Сохранённые посты внутри не будут удалены из вашего списка сохранённых.",
     "folderDeleted": "Папка удалена",
-    "deleteFolderFailed": "Не удалось удалить папку"
+    "deleteFolderFailed": "Не удалось удалить папку",
+    "noCollections": "Пока нет своих коллекций",
+    "createCollection": "Создать коллекцию"
   },
   "setProfile": {
     "title": "Настройте свой профиль",
@@ -3198,7 +3202,8 @@
     "imageFailed": "Не удалось использовать это изображение",
     "usernameReserved": "Это имя пользователя зарезервировано",
     "profileSet": "Профиль успешно настроен!",
-    "profileFailed": "Не удалось настроить профиль"
+    "profileFailed": "Не удалось настроить профиль",
+    "displayNameHint": "Ваше публичное имя, отображаемое в профиле."
   },
   "events": {
     "mine": "Мои",

@@ -617,7 +617,8 @@
     "confirm": "확인",
     "signIn": "로그인",
     "takePhoto": "사진 촬영",
-    "recordVideo": "동영상 촬영"
+    "recordVideo": "동영상 촬영",
+    "saveChanges": "변경사항 저장"
   },
   "drawers": {
     "ppvTitle": "유료 콘텐츠",
@@ -3146,7 +3147,8 @@
     "logOutFailed": "기기를 로그아웃하지 못했습니다",
     "logOutAllFailed": "기기를 로그아웃하지 못했습니다",
     "devicesLoggedOut_one": "기기 {{count}}대를 로그아웃했습니다",
-    "devicesLoggedOut_other": "기기 {{count}}대를 로그아웃했습니다"
+    "devicesLoggedOut_other": "기기 {{count}}대를 로그아웃했습니다",
+    "noActive": "활성 세션이 없습니다"
   },
   "library": {
     "myPosts": "내 게시물",
@@ -3176,7 +3178,9 @@
     "deleteFolderTitle": "폴더 삭제",
     "deleteFolderBody": "\"{{name}}\"을(를) 삭제할까요? 안에 저장된 게시물은 저장 목록에서 삭제되지 않습니다.",
     "folderDeleted": "폴더를 삭제했습니다",
-    "deleteFolderFailed": "폴더를 삭제하지 못했습니다"
+    "deleteFolderFailed": "폴더를 삭제하지 못했습니다",
+    "noCollections": "아직 만든 컬렉션이 없습니다",
+    "createCollection": "컬렉션 만들기"
   },
   "setProfile": {
     "title": "프로필 설정",
@@ -3197,7 +3201,8 @@
     "imageFailed": "해당 이미지를 사용할 수 없습니다",
     "usernameReserved": "이 사용자 이름은 예약되어 있습니다",
     "profileSet": "프로필을 설정했습니다!",
-    "profileFailed": "프로필을 설정하지 못했습니다"
+    "profileFailed": "프로필을 설정하지 못했습니다",
+    "displayNameHint": "프로필에 표시되는 공개 이름입니다."
   },
   "events": {
     "mine": "내 것",

@@ -604,7 +604,8 @@
     "confirm": "पुष्टि करें",
     "signIn": "साइन इन करें",
     "takePhoto": "फ़ोटो लें",
-    "recordVideo": "वीडियो रिकॉर्ड करें"
+    "recordVideo": "वीडियो रिकॉर्ड करें",
+    "saveChanges": "बदलाव सहेजें"
   },
   "drawers": {
     "ppvTitle": "पे-पर-व्यू सामग्री",
@@ -3134,7 +3135,8 @@
     "logOutFailed": "डिवाइस लॉग आउट नहीं हो सका",
     "logOutAllFailed": "डिवाइस लॉग आउट नहीं हो सके",
     "devicesLoggedOut_one": "{{count}} डिवाइस लॉग आउट हुआ",
-    "devicesLoggedOut_other": "{{count}} डिवाइस लॉग आउट हुए"
+    "devicesLoggedOut_other": "{{count}} डिवाइस लॉग आउट हुए",
+    "noActive": "कोई सक्रिय सत्र नहीं"
   },
   "library": {
     "myPosts": "मेरी पोस्ट",
@@ -3164,7 +3166,9 @@
     "deleteFolderTitle": "फ़ोल्डर मिटाएँ",
     "deleteFolderBody": "क्या आप वाकई \"{{name}}\" मिटाना चाहते हैं? इसके अंदर सहेजी गई पोस्ट आपकी सहेजी सूची से नहीं मिटेंगी।",
     "folderDeleted": "फ़ोल्डर मिट गया",
-    "deleteFolderFailed": "फ़ोल्डर नहीं मिटाया जा सका"
+    "deleteFolderFailed": "फ़ोल्डर नहीं मिटाया जा सका",
+    "noCollections": "अभी तक कोई अपना संग्रह नहीं",
+    "createCollection": "संग्रह बनाएँ"
   },
   "setProfile": {
     "title": "अपनी प्रोफ़ाइल सेट करें",
@@ -3185,7 +3189,8 @@
     "imageFailed": "वह छवि उपयोग नहीं हो सकी",
     "usernameReserved": "यह यूज़रनेम आरक्षित है",
     "profileSet": "प्रोफ़ाइल सफलतापूर्वक सेट हुई!",
-    "profileFailed": "प्रोफ़ाइल सेट नहीं हो सकी"
+    "profileFailed": "प्रोफ़ाइल सेट नहीं हो सकी",
+    "displayNameHint": "आपका सार्वजनिक नाम जो आपकी प्रोफ़ाइल पर दिखता है।"
   },
   "events": {
     "mine": "मेरे",

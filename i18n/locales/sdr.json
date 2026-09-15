@@ -561,7 +561,8 @@
     "confirm": "پکا کرو",
     "signIn": "سائن ان",
     "takePhoto": "ছবি তুলা",
-    "recordVideo": "ভিডিও রেকর্ড করা"
+    "recordVideo": "ভিডিও রেকর্ড করা",
+    "saveChanges": "পরিবর্তন সংরক্ষণ করো"
   },
   "tip": {
     "title": "ٹِپ بھیجو",
@@ -3077,7 +3078,8 @@
     "logOutFailed": "ডিভাইস লগ আউট করা গেল না",
     "logOutAllFailed": "ডিভাইসগুলা লগ আউট করা গেল না",
     "devicesLoggedOut_one": "{{count}}টা ডিভাইস লগ আউট হইছে",
-    "devicesLoggedOut_other": "{{count}}টা ডিভাইস লগ আউট হইছে"
+    "devicesLoggedOut_other": "{{count}}টা ডিভাইস লগ আউট হইছে",
+    "noActive": "কোনো চালু সেশন নাই"
   },
   "library": {
     "myPosts": "মোর পোস্ট",
@@ -3107,7 +3109,9 @@
     "deleteFolderTitle": "ফোল্ডার মুছো",
     "deleteFolderBody": "তুমি কি সত্যিই \"{{name}}\" মুছিবা চাও? ভিতরের সেভ করা পোস্টগুলা তোমার সেভ তালিকা থাকি মুছিবে না।",
     "folderDeleted": "ফোল্ডার মোছা হইছে",
-    "deleteFolderFailed": "ফোল্ডার মোছা গেল না"
+    "deleteFolderFailed": "ফোল্ডার মোছা গেল না",
+    "noCollections": "এখনো নিজের কোনো সংগ্রহ নাই",
+    "createCollection": "সংগ্রহ বানাও"
   },
   "setProfile": {
     "title": "তোমার প্রোফাইল সেট করো",
@@ -3128,7 +3132,8 @@
     "imageFailed": "ঐ ছবি ব্যবহার করা গেল না",
     "usernameReserved": "এই ইউজারনেম সংরক্ষিত",
     "profileSet": "প্রোফাইল সফলভাবে সেট হইছে!",
-    "profileFailed": "প্রোফাইল সেট করা গেল না"
+    "profileFailed": "প্রোফাইল সেট করা গেল না",
+    "displayNameHint": "তোমার প্রোফাইলত দেখা যাওয়া প্রকাশ্য নাম।"
   },
   "events": {
     "mine": "মোর",

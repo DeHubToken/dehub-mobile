@@ -599,7 +599,8 @@
     "confirm": "جەزملەشتۈرۈش",
     "signIn": "كىرىش",
     "takePhoto": "سۈرەت تارتىش",
-    "recordVideo": "سىن خاتىرىلەش"
+    "recordVideo": "سىن خاتىرىلەش",
+    "saveChanges": "ئۆزگەرتىشلەرنى ساقلاڭ"
   },
   "postOptions": {
     "options": "تاللانمىلار",
@@ -3068,7 +3069,8 @@
     "logOutFailed": "ئۈسكۈنىنى چېكىندۈرگىلى بولمىدى",
     "logOutAllFailed": "ئۈسكۈنىلەرنى چېكىندۈرگىلى بولمىدى",
     "devicesLoggedOut_one": "{{count}} ئۈسكۈنە چېكىندۈرۈلدى",
-    "devicesLoggedOut_other": "{{count}} ئۈسكۈنە چېكىندۈرۈلدى"
+    "devicesLoggedOut_other": "{{count}} ئۈسكۈنە چېكىندۈرۈلدى",
+    "noActive": "ئاكتىپ ئەڭگىمە يوق"
   },
   "library": {
     "myPosts": "مېنىڭ يازمىلىرىم",
@@ -3098,7 +3100,9 @@
     "deleteFolderTitle": "قىسقۇچنى ئۆچۈرۈش",
     "deleteFolderBody": "\"{{name}}\" نى ئۆچۈرەمسىز؟ ئىچىدىكى ساقلانغان يازمىلار ساقلانغانلار تىزىملىكىڭىزدىن ئۆچۈرۈلمەيدۇ.",
     "folderDeleted": "قىسقۇچ ئۆچۈرۈلدى",
-    "deleteFolderFailed": "قىسقۇچنى ئۆچۈرگىلى بولمىدى"
+    "deleteFolderFailed": "قىسقۇچنى ئۆچۈرگىلى بولمىدى",
+    "noCollections": "تېخى ئۆزىڭىزنىڭ توپلىمى يوق",
+    "createCollection": "توپلام قۇرۇش"
   },
   "setProfile": {
     "title": "تەرجىمىھالىڭىزنى تەڭشەڭ",
@@ -3119,7 +3123,8 @@
     "imageFailed": "بۇ سۈرەتنى ئىشلەتكىلى بولمىدى",
     "usernameReserved": "بۇ ئىشلەتكۈچى نامى ساقلانغان",
     "profileSet": "تەرجىمىھال مۇۋەپپەقىيەتلىك تەڭشەلدى!",
-    "profileFailed": "تەرجىمىھالنى تەڭشىگىلى بولمىدى"
+    "profileFailed": "تەرجىمىھالنى تەڭشىگىلى بولمىدى",
+    "displayNameHint": "ئارخىپىڭىزدا كۆرۈنىدىغان ئاشكارا ئىسمىڭىز."
   },
   "events": {
     "mine": "مېنىڭ",
