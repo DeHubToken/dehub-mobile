@@ -568,7 +568,8 @@
     "signIn": "Sign in",
     "takePhoto": "Snap foto",
     "recordVideo": "Record video",
-    "saveChanges": "Save di changes"
+    "saveChanges": "Save di changes",
+    "copy": "Copy"
   },
   "tip": {
     "title": "Send Tip",
@@ -3008,5 +3009,20 @@
     "membersOverTime": "Members over time",
     "lastDays": "Last {{count}} days",
     "source": "Account history wey dem record from DeHub public stats endpoint. Dem no use any estimate for dis chart."
+  },
+  "solana": {
+    "unavailableTitle": "Solana wallet no dey available",
+    "unavailableBody": "Dis device no get di key for your DeHub wallet. Sign in again make e come back, and your Solana wallet go follow am come back.",
+    "yourAddress": "Your Solana address",
+    "refreshBalanceA11y": "Refresh SOL balance",
+    "copyAddressA11y": "Copy Solana address",
+    "addressCopied": "Solana address don copy",
+    "explorerFailed": "We no fit open Solscan",
+    "fundingTitle": "How to fund dis wallet",
+    "fundingBody": "Posting, tipping and unlocking for Solana, na from dis address dem dey pay. Send SOL enter am from exchange or anoda wallet — around 0.01 SOL fit cover plenty posts. Dem derive am from your DeHub wallet, so e go come back for any device wey you sign in.",
+    "mintingOff": "Dem don off Solana posting for di server now now. Your wallet and balance no change.",
+    "legacyTitle": "Old Solana wallet — {{amount}} SOL",
+    "legacyBody": "One old version of di app create anoda Solana wallet wey only dey for dis device. E still get money inside. Move di money go di address wey dey up while you still get dis phone — dat key no fit come back from anywhere else.",
+    "legacyViewA11y": "See di old wallet for Solscan"
   }
 }

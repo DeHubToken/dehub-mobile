@@ -3357,5 +3357,20 @@
     "membersOverTime": "Členovia v čase",
     "lastDays": "Posledných {{count}} dní",
     "source": "Zaznamenaná história účtov z verejného štatistického endpointu DeHub. V tomto grafe sa nepoužívajú odhadované hodnoty."
+  },
+  "solana": {
+    "unavailableTitle": "Peňaženka Solana nie je dostupná",
+    "unavailableBody": "Toto zariadenie nedrží kľúč k vašej peňaženke DeHub. Prihláste sa znova, aby ste ju obnovili, a peňaženka Solana sa vráti s ňou.",
+    "yourAddress": "Vaša adresa Solana",
+    "refreshBalanceA11y": "Obnoviť zostatok SOL",
+    "copyAddressA11y": "Kopírovať adresu Solana",
+    "addressCopied": "Adresa Solana skopírovaná",
+    "explorerFailed": "Solscan sa nepodarilo otvoriť",
+    "fundingTitle": "Financovanie tejto peňaženky",
+    "fundingBody": "Príspevky, prepitné a odomykanie na Solane sa platia z tejto adresy. Pošlite na ňu SOL z burzy alebo inej peňaženky — približne 0,01 SOL pokryje niekoľko príspevkov. Je odvodená z vašej peňaženky DeHub, takže sa vráti na akomkoľvek zariadení, kde sa prihlásite.",
+    "mintingOff": "Publikovanie na Solane je momentálne na serveri vypnuté. Vašu peňaženku a zostatok to neovplyvní.",
+    "legacyTitle": "Staršia peňaženka Solana — {{amount}} SOL",
+    "legacyBody": "Skoršia verzia aplikácie vytvorila samostatnú peňaženku Solana, ktorá existovala iba na tomto zariadení. Stále obsahuje zostatok. Presuňte prostriedky na adresu vyššie, kým máte tento telefón — ten kľúč sa nikde inde obnoviť nedá.",
+    "legacyViewA11y": "Zobraziť staršiu peňaženku na Solscane"
   }
 }

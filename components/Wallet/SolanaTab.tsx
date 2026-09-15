@@ -14,6 +14,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import * as Clipboard from "expo-clipboard";
 import { Ionicons } from "@expo/vector-icons";
 import {
@@ -38,6 +39,7 @@ function formatSol(value: number | null): string {
 }
 
 const SolanaTab: React.FC = () => {
+  const { t } = useTranslation();
   const [address, setAddress] = useState<string | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
@@ -102,16 +104,16 @@ const SolanaTab: React.FC = () => {
   const handleCopy = useCallback(async () => {
     if (!address) return;
     await Clipboard.setStringAsync(address);
-    toastSuccess("Solana address copied");
-  }, [address]);
+    toastSuccess(t("solana.addressCopied"));
+  }, [address, t]);
 
   const handleExplorer = useCallback(
     (addr: string) => {
       Linking.openURL(SOLSCAN + addr).catch(() =>
-        toastError("Could not open Solscan"),
+        toastError(t("solana.explorerFailed")),
       );
     },
-    [],
+    [t],
   );
 
   if (loading) {
@@ -126,11 +128,10 @@ const SolanaTab: React.FC = () => {
     return (
       <View className="bg-white/5 border border-white/10 rounded-xl p-5">
         <Text className="text-white font-semibold text-base mb-2">
-          Solana wallet unavailable
+          {t("solana.unavailableTitle")}
         </Text>
         <Text className="text-white/60 text-sm leading-5">
-          This device does not hold the key for your DeHub wallet. Sign in again
-          to restore it, and your Solana wallet comes back with it.
+          {t("solana.unavailableBody")}
         </Text>
       </View>
     );
@@ -142,14 +143,14 @@ const SolanaTab: React.FC = () => {
       <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
         <View className="flex-row items-center justify-between mb-1">
           <Text className="text-white/50 text-xs uppercase tracking-wider">
-            Balance
+            {t("commandCentre.balance")}
           </Text>
           <TouchableOpacity
             onPress={handleRefresh}
             disabled={refreshing}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             accessibilityRole="button"
-            accessibilityLabel="Refresh SOL balance"
+            accessibilityLabel={t("solana.refreshBalanceA11y")}
           >
             {refreshing ? (
               <ActivityIndicator size="small" color="rgba(255,255,255,0.6)" />
@@ -171,7 +172,7 @@ const SolanaTab: React.FC = () => {
       {/* Address */}
       <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
         <Text className="text-white/50 text-xs uppercase tracking-wider mb-2">
-          Your Solana address
+          {t("solana.yourAddress")}
         </Text>
         <Text className="text-white text-sm font-mono mb-3" selectable>
           {address}
@@ -181,16 +182,16 @@ const SolanaTab: React.FC = () => {
             onPress={handleCopy}
             className="flex-1 flex-row items-center justify-center gap-2 bg-white/10 border border-white/10 rounded-xl py-3"
             accessibilityRole="button"
-            accessibilityLabel="Copy Solana address"
+            accessibilityLabel={t("solana.copyAddressA11y")}
           >
             <Ionicons name="copy-outline" size={16} color="#fff" />
-            <Text className="text-white text-sm font-semibold">Copy</Text>
+            <Text className="text-white text-sm font-semibold">{t("common.copy")}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => handleExplorer(address)}
             className="flex-1 flex-row items-center justify-center gap-2 bg-white/5 border border-white/10 rounded-xl py-3"
             accessibilityRole="button"
-            accessibilityLabel="View on Solscan"
+            accessibilityLabel={t("postInfo.viewOnExplorer", { explorer: "Solscan" })}
           >
             <Ionicons name="open-outline" size={16} color="rgba(255,255,255,0.7)" />
             <Text className="text-white/70 text-sm font-semibold">Solscan</Text>
@@ -201,21 +202,17 @@ const SolanaTab: React.FC = () => {
       {/* Why it needs funding */}
       <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4">
         <Text className="text-white font-semibold text-sm mb-2">
-          Funding this wallet
+          {t("solana.fundingTitle")}
         </Text>
         <Text className="text-white/60 text-sm leading-5">
-          Posting, tipping and unlocking on Solana are paid from this address.
-          Send SOL to it from an exchange or another wallet — roughly 0.01 SOL
-          covers several posts. It is derived from your DeHub wallet, so it
-          comes back on any device you sign in to.
+          {t("solana.fundingBody")}
         </Text>
       </View>
 
       {mintingEnabled === false && (
         <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4">
           <Text className="text-white/70 text-sm leading-5">
-            Solana posting is turned off on the server right now. Your wallet
-            and balance are unaffected.
+            {t("solana.mintingOff")}
           </Text>
         </View>
       )}
@@ -224,13 +221,10 @@ const SolanaTab: React.FC = () => {
       {legacyAddress && (
         <View className="bg-white/[0.03] border border-white/20 rounded-xl p-4 mb-4">
           <Text className="text-white font-semibold text-sm mb-2">
-            Older Solana wallet — {formatSol(legacyBalance)} SOL
+            {t("solana.legacyTitle", { amount: formatSol(legacyBalance) })}
           </Text>
           <Text className="text-white/60 text-sm leading-5 mb-3">
-            An earlier version of the app created a separate Solana wallet that
-            only ever existed on this device. It still holds a balance. Move the
-            funds to the address above while you have this phone — that key
-            cannot be recovered anywhere else.
+            {t("solana.legacyBody")}
           </Text>
           <Text className="text-white/70 text-xs font-mono mb-3" selectable>
             {shorten(legacyAddress)}
@@ -239,11 +233,11 @@ const SolanaTab: React.FC = () => {
             onPress={() => handleExplorer(legacyAddress)}
             className="flex-row items-center justify-center gap-2 bg-white/5 border border-white/10 rounded-xl py-3"
             accessibilityRole="button"
-            accessibilityLabel="View older wallet on Solscan"
+            accessibilityLabel={t("solana.legacyViewA11y")}
           >
             <Ionicons name="open-outline" size={16} color="rgba(255,255,255,0.7)" />
             <Text className="text-white/70 text-sm font-semibold">
-              View on Solscan
+              {t("postInfo.viewOnExplorer", { explorer: "Solscan" })}
             </Text>
           </TouchableOpacity>
         </View>

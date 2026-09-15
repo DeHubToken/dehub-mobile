@@ -606,7 +606,8 @@
     "signIn": "Hyr",
     "takePhoto": "Bëj një foto",
     "recordVideo": "Regjistro video",
-    "saveChanges": "Ruaj ndryshimet"
+    "saveChanges": "Ruaj ndryshimet",
+    "copy": "Kopjo"
   },
   "tip": {
     "title": "Dërgo Bakshish",
@@ -3186,5 +3187,20 @@
     "membersOverTime": "Anëtarët me kalimin e kohës",
     "lastDays": "{{count}} ditët e fundit",
     "source": "Historik i regjistruar i llogarive nga pika publike e statistikave e DeHub. Në këtë grafik nuk përdoren vlera të vlerësuara."
+  },
+  "solana": {
+    "unavailableTitle": "Portofoli Solana nuk ofrohet",
+    "unavailableBody": "Kjo pajisje nuk e mban çelësin e portofolit tënd DeHub. Hyr sërish për ta rikthyer dhe portofoli yt Solana kthehet bashkë me të.",
+    "yourAddress": "Adresa jote Solana",
+    "refreshBalanceA11y": "Rifresko bilancin SOL",
+    "copyAddressA11y": "Kopjo adresën Solana",
+    "addressCopied": "Adresa Solana u kopjua",
+    "explorerFailed": "Solscan nuk u hap dot",
+    "fundingTitle": "Furnizimi i këtij portofoli",
+    "fundingBody": "Postimet, bakshishet dhe shkyçjet në Solana paguhen nga kjo adresë. Dërgoji SOL nga një shkëmbim ose nga një portofol tjetër — rreth 0,01 SOL mbulon disa postime. Ajo rrjedh nga portofoli yt DeHub, ndaj kthehet në çdo pajisje ku hyn.",
+    "mintingOff": "Postimi në Solana është i çaktivizuar në server për momentin. Portofoli dhe bilanci yt nuk preken.",
+    "legacyTitle": "Portofol Solana i vjetër — {{amount}} SOL",
+    "legacyBody": "Një version i mëparshëm i aplikacionit krijoi një portofol Solana të veçantë që ekzistonte vetëm në këtë pajisje. Ai ende ka bilanc. Zhvendos fondet te adresa më sipër ndërsa e ke këtë telefon — ai çelës nuk mund të rikuperohet askund tjetër.",
+    "legacyViewA11y": "Shiko portofolin e vjetër në Solscan"
   }
 }

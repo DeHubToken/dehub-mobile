@@ -621,7 +621,8 @@
     "signIn": "Iniciar sesión",
     "takePhoto": "Tomar foto",
     "recordVideo": "Grabar video",
-    "saveChanges": "Guardar cambios"
+    "saveChanges": "Guardar cambios",
+    "copy": "Copiar"
   },
   "postOptions": {
     "options": "Opciones",
@@ -3257,5 +3258,20 @@
     "membersOverTime": "Miembros a lo largo del tiempo",
     "lastDays": "Últimos {{count}} días",
     "source": "Historial de cuentas registrado desde el endpoint público de estadísticas de DeHub. En este gráfico no se usan valores estimados."
+  },
+  "solana": {
+    "unavailableTitle": "Billetera de Solana no disponible",
+    "unavailableBody": "Este dispositivo no guarda la clave de tu billetera DeHub. Inicia sesión de nuevo para restaurarla, y tu billetera Solana vuelve con ella.",
+    "yourAddress": "Tu dirección de Solana",
+    "refreshBalanceA11y": "Actualizar saldo de SOL",
+    "copyAddressA11y": "Copiar dirección de Solana",
+    "addressCopied": "Dirección de Solana copiada",
+    "explorerFailed": "No se pudo abrir Solscan",
+    "fundingTitle": "Cómo financiar esta billetera",
+    "fundingBody": "Publicar, dar propinas y desbloquear en Solana se pagan desde esta dirección. Envíale SOL desde un exchange u otra billetera: unos 0,01 SOL cubren varias publicaciones. Deriva de tu billetera DeHub, así que vuelve en cualquier dispositivo donde inicies sesión.",
+    "mintingOff": "La publicación en Solana está desactivada en el servidor ahora mismo. Tu billetera y tu saldo no se ven afectados.",
+    "legacyTitle": "Billetera de Solana anterior — {{amount}} SOL",
+    "legacyBody": "Una versión anterior de la app creó una billetera de Solana aparte que solo existió en este dispositivo. Todavía tiene saldo. Mueve los fondos a la dirección de arriba mientras tengas este teléfono: esa clave no se puede recuperar en ningún otro sitio.",
+    "legacyViewA11y": "Ver billetera anterior en Solscan"
   }
 }

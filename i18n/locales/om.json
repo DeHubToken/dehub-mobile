@@ -621,7 +621,8 @@
     "signIn": "Seeni",
     "takePhoto": "Suuraa kaasi",
     "recordVideo": "Viidiyoo waraabi",
-    "saveChanges": "Jijjiirama olkaa'i"
+    "saveChanges": "Jijjiirama olkaa'i",
+    "copy": "Garagalchi"
   },
   "tip": {
     "title": "Tiippii Ergi",
@@ -3251,5 +3252,20 @@
     "membersOverTime": "Miseensota yeroon",
     "lastDays": "Guyyoota {{count}} darban",
     "source": "Seenaa herregaa kan galmaa'e bakka dhumaa istaatistiksii uummataa DeHub irraa. Gatiiwwan tilmaamaa sarara kana keessatti hin fayyadamne."
+  },
+  "solana": {
+    "unavailableTitle": "Boorsaan Solana hin argamu",
+    "unavailableBody": "Meeshaan furtuu boorsaa DeHub kee hin qabatu. Deebisuuf irra deebiʼii seeni, boorsaan Solana kees isa waliin deebiʼa.",
+    "yourAddress": "Teessoo Solana kee",
+    "refreshBalanceA11y": "Hafteesa SOL haaromsi",
+    "copyAddressA11y": "Teessoo Solana garagalchi",
+    "addressCopied": "Teessoon Solana garagalfame",
+    "explorerFailed": "Solscan banuun hin dandaʼamne",
+    "fundingTitle": "Boorsaa kana guutuu",
+    "fundingBody": "Barreeffama maxxansuun, tiipii kennuu fi banuun Solana irratti hundi teessoo kana irraa kaffalamu. Gabaa jijjiirraa ykn boorsaa biraa irraa SOL itti ergi — tilmaamaan SOL 0.01 barreeffamoota hedduuf gaʼa. Boorsaa DeHub kee irraa waan argameef, meeshaa kamiyyuu ati itti seentu irratti ni deebiʼa.",
+    "mintingOff": "Solana irratti maxxansuun amma sarvara irratti cufameera. Boorsaan kee fi hafteessi kee hin miidhaman.",
+    "legacyTitle": "Boorsaa Solana moofaa — {{amount}} SOL",
+    "legacyBody": "Fooyyaan appii duraanii boorsaa Solana adda ta'e kan meeshaa kana qofa irra ture uume. Ammallee maallaqa qaba. Bilbila kana yeroo qabdutti maallaqicha gara teessoo armaan olii jijjiiri — furtuun sun bakka biraa hin deebifamu.",
+    "legacyViewA11y": "Boorsaa moofaa Solscan irratti ilaali"
   }
 }

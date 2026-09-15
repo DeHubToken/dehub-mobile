@@ -607,7 +607,8 @@
     "signIn": "Log ind",
     "takePhoto": "Tag et billede",
     "recordVideo": "Optag video",
-    "saveChanges": "Gem ændringer"
+    "saveChanges": "Gem ændringer",
+    "copy": "Kopiér"
   },
   "drawers": {
     "ppvTitle": "Betal per visning",
@@ -3191,5 +3192,20 @@
     "membersOverTime": "Medlemmer over tid",
     "lastDays": "Seneste {{count}} dage",
     "source": "Registreret kontohistorik fra DeHubs offentlige statistikendepunkt. Der bruges ingen estimerede værdier i dette diagram."
+  },
+  "solana": {
+    "unavailableTitle": "Solana-tegnebog utilgængelig",
+    "unavailableBody": "Denne enhed har ikke nøglen til din DeHub-tegnebog. Log ind igen for at gendanne den, så kommer din Solana-tegnebog med tilbage.",
+    "yourAddress": "Din Solana-adresse",
+    "refreshBalanceA11y": "Opdater SOL-saldo",
+    "copyAddressA11y": "Kopiér Solana-adresse",
+    "addressCopied": "Solana-adresse kopieret",
+    "explorerFailed": "Kunne ikke åbne Solscan",
+    "fundingTitle": "Sådan fylder du denne tegnebog op",
+    "fundingBody": "Opslag, drikkepenge og oplåsning på Solana betales fra denne adresse. Send SOL til den fra en børs eller en anden tegnebog — cirka 0,01 SOL dækker flere opslag. Den udledes af din DeHub-tegnebog, så den kommer tilbage på enhver enhed, du logger ind på.",
+    "mintingOff": "Opslag på Solana er slået fra på serveren lige nu. Din tegnebog og saldo påvirkes ikke.",
+    "legacyTitle": "Ældre Solana-tegnebog — {{amount}} SOL",
+    "legacyBody": "En tidligere version af appen oprettede en separat Solana-tegnebog, som kun fandtes på denne enhed. Den har stadig en saldo. Flyt midlerne til adressen ovenfor, mens du har denne telefon — den nøgle kan ikke gendannes noget andet sted.",
+    "legacyViewA11y": "Se ældre tegnebog på Solscan"
   }
 }

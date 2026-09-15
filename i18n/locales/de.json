@@ -620,7 +620,8 @@
     "signIn": "Anmelden",
     "takePhoto": "Foto aufnehmen",
     "recordVideo": "Video aufnehmen",
-    "saveChanges": "Änderungen speichern"
+    "saveChanges": "Änderungen speichern",
+    "copy": "Kopieren"
   },
   "postOptions": {
     "options": "Optionen",
@@ -3256,5 +3257,20 @@
     "membersOverTime": "Mitglieder im Zeitverlauf",
     "lastDays": "Letzte {{count}} Tage",
     "source": "Aufgezeichneter Kontoverlauf aus dem öffentlichen Statistik-Endpunkt von DeHub. In diesem Diagramm werden keine Schätzwerte verwendet."
+  },
+  "solana": {
+    "unavailableTitle": "Solana-Wallet nicht verfügbar",
+    "unavailableBody": "Dieses Gerät hat den Schlüssel für deine DeHub-Wallet nicht. Melde dich erneut an, um sie wiederherzustellen – deine Solana-Wallet kommt damit zurück.",
+    "yourAddress": "Deine Solana-Adresse",
+    "refreshBalanceA11y": "SOL-Guthaben aktualisieren",
+    "copyAddressA11y": "Solana-Adresse kopieren",
+    "addressCopied": "Solana-Adresse kopiert",
+    "explorerFailed": "Solscan konnte nicht geöffnet werden",
+    "fundingTitle": "Diese Wallet aufladen",
+    "fundingBody": "Beiträge, Trinkgelder und Freischaltungen auf Solana werden von dieser Adresse bezahlt. Sende ihr SOL von einer Börse oder einer anderen Wallet — rund 0,01 SOL reichen für mehrere Beiträge. Sie wird aus deiner DeHub-Wallet abgeleitet und kommt daher auf jedem Gerät zurück, auf dem du dich anmeldest.",
+    "mintingOff": "Das Posten auf Solana ist aktuell serverseitig deaktiviert. Deine Wallet und dein Guthaben sind nicht betroffen.",
+    "legacyTitle": "Ältere Solana-Wallet — {{amount}} SOL",
+    "legacyBody": "Eine frühere Version der App hat eine separate Solana-Wallet erstellt, die nur auf diesem Gerät existierte. Sie hält noch Guthaben. Überweise die Mittel an die Adresse oben, solange du dieses Telefon hast — dieser Schlüssel lässt sich nirgendwo sonst wiederherstellen.",
+    "legacyViewA11y": "Ältere Wallet auf Solscan ansehen"
   }
 }

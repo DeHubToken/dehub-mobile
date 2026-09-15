@@ -1421,7 +1421,8 @@
     "signIn": "Meld aan",
     "takePhoto": "Neem foto",
     "recordVideo": "Neem video op",
-    "saveChanges": "Stoor veranderinge"
+    "saveChanges": "Stoor veranderinge",
+    "copy": "Kopieer"
   },
   "postOptions": {
     "options": "Options",
@@ -3304,5 +3305,20 @@
     "membersOverTime": "Lede oor tyd",
     "lastDays": "Laaste {{count}} dae",
     "source": "Aangetekende rekeninggeskiedenis vanaf DeHub se openbare statistiek-eindpunt. Geen geskatte waardes word in hierdie grafiek gebruik nie."
+  },
+  "solana": {
+    "unavailableTitle": "Solana-beursie nie beskikbaar nie",
+    "unavailableBody": "Hierdie toestel hou nie die sleutel vir jou DeHub-beursie nie. Meld weer aan om dit te herstel, en jou Solana-beursie kom saam terug.",
+    "yourAddress": "Jou Solana-adres",
+    "refreshBalanceA11y": "Verfris SOL-saldo",
+    "copyAddressA11y": "Kopieer Solana-adres",
+    "addressCopied": "Solana-adres gekopieer",
+    "explorerFailed": "Kon nie Solscan oopmaak nie",
+    "fundingTitle": "Hoe om hierdie beursie te finansier",
+    "fundingBody": "Plasings, wenke en ontsluitings op Solana word vanaf hierdie adres betaal. Stuur SOL daarheen vanaf 'n beurs of 'n ander beursie — omtrent 0,01 SOL dek verskeie plasings. Dit word van jou DeHub-beursie afgelei, dus kom dit terug op enige toestel waarop jy aanmeld.",
+    "mintingOff": "Plasings op Solana is tans op die bediener afgeskakel. Jou beursie en saldo word nie geraak nie.",
+    "legacyTitle": "Ouer Solana-beursie — {{amount}} SOL",
+    "legacyBody": "'n Vroeër weergawe van die app het 'n aparte Solana-beursie geskep wat net op hierdie toestel bestaan het. Dit hou steeds 'n saldo. Skuif die fondse na die adres hierbo terwyl jy hierdie foon het — daardie sleutel kan nêrens anders herstel word nie.",
+    "legacyViewA11y": "Bekyk ouer beursie op Solscan"
   }
 }

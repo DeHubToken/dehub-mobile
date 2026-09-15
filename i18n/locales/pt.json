@@ -621,7 +621,8 @@
     "signIn": "Iniciar sessão",
     "takePhoto": "Tirar foto",
     "recordVideo": "Gravar vídeo",
-    "saveChanges": "Salvar alterações"
+    "saveChanges": "Salvar alterações",
+    "copy": "Copiar"
   },
   "drawers": {
     "ppvTitle": "Conteúdo Pay-Per-View",
@@ -3261,5 +3262,20 @@
     "membersOverTime": "Membros ao longo do tempo",
     "lastDays": "Últimos {{count}} dias",
     "source": "Histórico de contas registrado a partir do endpoint público de estatísticas da DeHub. Nenhum valor estimado é usado neste gráfico."
+  },
+  "solana": {
+    "unavailableTitle": "Carteira Solana indisponível",
+    "unavailableBody": "Este dispositivo não guarda a chave da sua carteira DeHub. Entre novamente para restaurá-la, e sua carteira Solana volta junto.",
+    "yourAddress": "Seu endereço Solana",
+    "refreshBalanceA11y": "Atualizar saldo de SOL",
+    "copyAddressA11y": "Copiar endereço Solana",
+    "addressCopied": "Endereço Solana copiado",
+    "explorerFailed": "Não foi possível abrir o Solscan",
+    "fundingTitle": "Como abastecer esta carteira",
+    "fundingBody": "Publicações, gorjetas e desbloqueios na Solana são pagos a partir deste endereço. Envie SOL para ele de uma corretora ou de outra carteira — cerca de 0,01 SOL cobre várias publicações. Ele é derivado da sua carteira DeHub, então volta em qualquer dispositivo em que você entrar.",
+    "mintingOff": "A publicação na Solana está desativada no servidor no momento. Sua carteira e seu saldo não são afetados.",
+    "legacyTitle": "Carteira Solana antiga — {{amount}} SOL",
+    "legacyBody": "Uma versão anterior do app criou uma carteira Solana separada que só existiu neste dispositivo. Ela ainda tem saldo. Transfira os fundos para o endereço acima enquanto você tiver este telefone — essa chave não pode ser recuperada em nenhum outro lugar.",
+    "legacyViewA11y": "Ver carteira antiga no Solscan"
   }
 }

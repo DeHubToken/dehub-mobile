@@ -592,7 +592,8 @@
     "signIn": "Don",
     "takePhoto": "Ja ta",
     "recordVideo": "Wideyo ta",
-    "saveChanges": "Yɛlɛmaliw mara"
+    "saveChanges": "Yɛlɛmaliw mara",
+    "copy": "Kopi"
   },
   "tip": {
     "title": "Kɔrɔbɔ",
@@ -3132,5 +3133,20 @@
     "membersOverTime": "Jɛkulu mɔgɔw waati kɔnɔ",
     "lastDays": "Tile {{count}} tɛmɛnen",
     "source": "DeHub ka jateden yɔrɔ la jatedenw. Jateminɛ si tɛ kɛ nin ja in kɔnɔ."
+  },
+  "solana": {
+    "unavailableTitle": "Solana wari maralan tɛ sɔrɔ",
+    "unavailableBody": "Nin minɛn tɛ i ka DeHub wari maralan konnɛgɛ mara. Don kokura walasa k'a lasegin, i ka Solana wari maralan fana bɛ segin n'a ye.",
+    "yourAddress": "I ka Solana ladɛrɛsi",
+    "refreshBalanceA11y": "SOL wari hakɛ kuraya",
+    "copyAddressA11y": "Solana ladɛrɛsi kopi",
+    "addressCopied": "Solana ladɛrɛsi kopilen",
+    "explorerFailed": "Solscan ma se ka da wuli",
+    "fundingTitle": "Nin wari maralan fali",
+    "fundingBody": "Sɛbɛnniw, bonyaliw ani dayɛlɛliw Solana kan bɛ sara nin ladɛrɛsi la. SOL ci a ma ka bɔ sanni-fɛɛrɛ yɔrɔ walima wari maralan wɛrɛ la — SOL 0.01 ɲɔgɔn bɛ se ka sɛbɛnni caaman sara. A bɔra i ka DeHub wari maralan na, o de y'a to a bɛ segin minɛn o minɛn kan i donna a la.",
+    "mintingOff": "Solana kan sɛbɛnni datugulen don sisan sɛrɛvɛri kan. I ka wari maralan ni i ka wari hakɛ tɛ nɔ sɔrɔ.",
+    "legacyTitle": "Solana wari maralan kɔrɔ — SOL {{amount}}",
+    "legacyBody": "Porogaramu kɔrɔ dɔ ye Solana wari maralan wɛrɛ dilan min tun bɛ nin minɛn dɔrɔn kan. Wari bɛ a la halibi. Wari lataa sanfɛ ladɛrɛsi ma k'a to nin telefɔni bɛ i bolo — o konnɛgɛ tɛ se ka sɔrɔ yɔrɔ wɛrɛ la.",
+    "legacyViewA11y": "Wari maralan kɔrɔ lajɛ Solscan kan"
   }
 }

@@ -597,7 +597,8 @@
     "signIn": "Gal",
     "takePhoto": "Sawir qaad",
     "recordVideo": "Duub muuqaal",
-    "saveChanges": "Kaydi isbeddellada"
+    "saveChanges": "Kaydi isbeddellada",
+    "copy": "Koobi"
   },
   "tip": {
     "title": "Dir Bakhshiish",
@@ -3178,5 +3179,20 @@
     "membersOverTime": "Xubnaha muddada",
     "lastDays": "{{count}} maalmood ee u dambeeyay",
     "source": "Taariikhda akoonnada ee laga duubay meesha tirakoobka dadweynaha ee DeHub. Qiimayaal qiyaasi ah looma isticmaalo jaantuskan."
+  },
+  "solana": {
+    "unavailableTitle": "Boorsada Solana lama helayo",
+    "unavailableBody": "Qalabkani ma hayo furaha boorsadaada DeHub. Mar kale gal si aad u soo celiso, boorsadaada Solana-na way la soo noqonaysaa.",
+    "yourAddress": "Cinwaankaaga Solana",
+    "refreshBalanceA11y": "Cusbooneysii hadhaaga SOL",
+    "copyAddressA11y": "Koobi cinwaanka Solana",
+    "addressCopied": "Cinwaanka Solana waa la koobiyeeyay",
+    "explorerFailed": "Lama furi karin Solscan",
+    "fundingTitle": "Sida loo buuxiyo boorsadan",
+    "fundingBody": "Qorista, tibaaxaha iyo furitaanka Solana dhammaantood waxaa laga bixiyaa cinwaankan. Uga dir SOL suuq-sarrifeed ama boorso kale — qiyaastii 0.01 SOL wuxuu ku filan yahay dhowr qoraal. Waxaa laga soo qaatay boorsadaada DeHub, markaa way ku soo noqonaysaa qalab kasta oo aad gasho.",
+    "mintingOff": "Qorista Solana hadda waa laga damiyay serverka. Boorsadaada iyo hadhaagaaga wax saameyn ah ma leh.",
+    "legacyTitle": "Boorso Solana ah oo hore — {{amount}} SOL",
+    "legacyBody": "Nooc hore oo app-ka ah wuxuu abuuray boorso Solana oo gooni ah oo kaliya ku jirtay qalabkan. Weli lacag bay haysataa. U wareeji lacagta cinwaanka kor ku xusan inta aad taleefankan haysato — furahaas meel kale lagama soo celin karo.",
+    "legacyViewA11y": "Ka eeg boorsada hore Solscan"
   }
 }
