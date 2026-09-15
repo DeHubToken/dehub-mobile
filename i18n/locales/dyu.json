@@ -3234,7 +3234,12 @@
     "descriptionPlaceholder": "Mun de bɛ kɛ nin dosiye kɔnɔ?",
     "createAndSave": "A dilan k'a mara",
     "createNew": "Dosiye kura dilan",
-    "closeA11y": "Dosiye sugandilan datugu"
+    "closeA11y": "Dosiye sugandilan datugu",
+    "loadFailed": "Taamasiyɛn dosiyew ma se ka doni",
+    "addedTo": "A farala {{name}} kan",
+    "removedFrom": "A bɔra {{name}} la",
+    "savedTo": "A marala {{name}} kɔnɔ",
+    "createdNotAdded": "Dosiye dilanna nka sɛbɛnni ma fara a kan"
   },
   "ppv": {
     "title": "Kunnafoni min sarali bɛ kɛ ka lajɛ",
@@ -3304,6 +3309,7 @@
     "secureWithBiometrics": "Bolonɔ la lakana",
     "thatsGoneToo": "O fana tununna — hali o, daminɛ kokura",
     "tryBiometrics": "Bolonɔ lajɛ nin telefɔni kan",
-    "unlockWithBiometrics": "Bolonɔ la a da wuli"
+    "unlockWithBiometrics": "Bolonɔ la a da wuli",
+    "confirmStartOver": "Sɛmɛntiya ko i b'a fɛ ka daminɛ kokura ni wari maralan kura ye"
   }
 }

@@ -3553,7 +3553,12 @@
     "descriptionPlaceholder": "Apa yang patut ada dalam folder ini?",
     "createAndSave": "Cipta & simpan",
     "createNew": "Cipta folder baharu",
-    "closeA11y": "Tutup pemilih folder"
+    "closeA11y": "Tutup pemilih folder",
+    "loadFailed": "Gagal memuatkan folder penanda buku",
+    "addedTo": "Ditambah ke {{name}}",
+    "removedFrom": "Dikeluarkan daripada {{name}}",
+    "savedTo": "Disimpan ke {{name}}",
+    "createdNotAdded": "Folder dicipta, tetapi siaran tidak ditambah"
   },
   "ppv": {
     "title": "Kandungan bayar setiap tontonan",
@@ -3623,6 +3628,7 @@
     "secureWithBiometrics": "Lindungi dengan biometrik",
     "thatsGoneToo": "Itu pun sudah hilang — mula semula juga",
     "tryBiometrics": "Cuba biometrik pada telefon ini",
-    "unlockWithBiometrics": "Buka dengan biometrik"
+    "unlockWithBiometrics": "Buka dengan biometrik",
+    "confirmStartOver": "Sahkan anda mahu mula semula dengan dompet baharu"
   }
 }

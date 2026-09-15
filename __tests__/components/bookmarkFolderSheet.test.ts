@@ -25,6 +25,6 @@ describe("bookmark folder sheet presentation", () => {
     expect(source).toContain("<Text style={styles.noticeText}>{notice.message}</Text>");
     expect(source).not.toMatch(/toastSuccess|toastError/);
     expect(source).not.toContain('Folder "${newFolder.name}" created');
-    expect(source).toContain("showNotice(`Saved to ${newFolder.name}`)");
+    expect(source).toContain(`showNotice(t("addToFolder.savedTo", { name: newFolder.name }))`);
   });
 });

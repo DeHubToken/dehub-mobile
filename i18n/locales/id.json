@@ -3340,7 +3340,12 @@
     "descriptionPlaceholder": "Apa isi folder ini?",
     "createAndSave": "Buat & simpan",
     "createNew": "Buat folder baru",
-    "closeA11y": "Tutup pemilih folder"
+    "closeA11y": "Tutup pemilih folder",
+    "loadFailed": "Gagal memuat folder markah",
+    "addedTo": "Ditambahkan ke {{name}}",
+    "removedFrom": "Dihapus dari {{name}}",
+    "savedTo": "Disimpan ke {{name}}",
+    "createdNotAdded": "Folder dibuat, tetapi postingan tidak ditambahkan"
   },
   "ppv": {
     "title": "Konten bayar per tayang",
@@ -3410,6 +3415,7 @@
     "secureWithBiometrics": "Amankan dengan biometrik",
     "thatsGoneToo": "Itu juga hilang — tetap mulai dari awal",
     "tryBiometrics": "Coba biometrik di ponsel ini",
-    "unlockWithBiometrics": "Buka dengan biometrik"
+    "unlockWithBiometrics": "Buka dengan biometrik",
+    "confirmStartOver": "Konfirmasi bahwa kamu ingin mulai dari awal dengan dompet baru"
   }
 }

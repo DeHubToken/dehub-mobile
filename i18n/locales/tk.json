@@ -3260,7 +3260,12 @@
     "descriptionPlaceholder": "Bu bukjada näme bolmaly?",
     "createAndSave": "Döret we ýatda sakla",
     "createNew": "Täze bukja döret",
-    "closeA11y": "Bukja saýlaýjyny ýap"
+    "closeA11y": "Bukja saýlaýjyny ýap",
+    "loadFailed": "Bellikleriň bukjalary ýüklenip bilmedi",
+    "addedTo": "{{name}} goşuldy",
+    "removedFrom": "{{name}} -dan aýryldy",
+    "savedTo": "{{name}} ýatda saklandy",
+    "createdNotAdded": "Bukja döredildi, ýöne paýlaşyk goşulmady"
   },
   "ppv": {
     "title": "Her görkeziş üçin tölegli mazmun",
@@ -3330,6 +3335,7 @@
     "secureWithBiometrics": "Biometrika bilen gora",
     "thatsGoneToo": "Ol hem ýitdi — şonda-da täzeden başla",
     "tryBiometrics": "Bu telefonda biometrikany synap görüň",
-    "unlockWithBiometrics": "Biometrika bilen aç"
+    "unlockWithBiometrics": "Biometrika bilen aç",
+    "confirmStartOver": "Täze gapjyk bilen täzeden başlamak isleýändigiňizi tassyklaň"
   }
 }

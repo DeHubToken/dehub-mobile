@@ -3369,7 +3369,12 @@
     "descriptionPlaceholder": "Inona no tokony ho ao amin'ity lahatahiry ity?",
     "createAndSave": "Mamorona sy mitahiry",
     "createNew": "Mamorona lahatahiry vaovao",
-    "closeA11y": "Akatona ny mpisafidy lahatahiry"
+    "closeA11y": "Akatona ny mpisafidy lahatahiry",
+    "loadFailed": "Tsy voaraikitra ny lahatahiry rakitsoratra",
+    "addedTo": "Nampiana tao amin'ny {{name}}",
+    "removedFrom": "Nesorina tamin'ny {{name}}",
+    "savedTo": "Voatahiry ao amin'ny {{name}}",
+    "createdNotAdded": "Voaforona ny lahatahiry, fa tsy nampiana ilay lahatsoratra"
   },
   "ppv": {
     "title": "Votoaty andoavam-bola isaky ny fijerena",
@@ -3439,6 +3444,7 @@
     "secureWithBiometrics": "Arovy amin'ny biometrika",
     "thatsGoneToo": "Very koa izany — manomboka indray ihany",
     "tryBiometrics": "Andramo ny biometrika amin'ity finday ity",
-    "unlockWithBiometrics": "Sokafy amin'ny biometrika"
+    "unlockWithBiometrics": "Sokafy amin'ny biometrika",
+    "confirmStartOver": "Hamarino fa te hanomboka indray amin'ny poketra vaovao ianao"
   }
 }

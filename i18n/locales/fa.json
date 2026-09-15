@@ -3303,7 +3303,12 @@
     "descriptionPlaceholder": "چه چیزی در این پوشه قرار می‌گیرد؟",
     "createAndSave": "ساخت و ذخیره",
     "createNew": "ساخت پوشهٔ جدید",
-    "closeA11y": "بستن انتخابگر پوشه"
+    "closeA11y": "بستن انتخابگر پوشه",
+    "loadFailed": "بارگذاری پوشه‌های نشانک ممکن نشد",
+    "addedTo": "به {{name}} افزوده شد",
+    "removedFrom": "از {{name}} حذف شد",
+    "savedTo": "در {{name}} ذخیره شد",
+    "createdNotAdded": "پوشه ساخته شد، اما پست اضافه نشد"
   },
   "ppv": {
     "title": "محتوای پرداخت به‌ازای تماشا",
@@ -3373,6 +3378,7 @@
     "secureWithBiometrics": "ایمن‌سازی با بیومتریک",
     "thatsGoneToo": "آن هم از دست رفته — به هر حال از نو شروع کنید",
     "tryBiometrics": "بیومتریک را روی این گوشی امتحان کنید",
-    "unlockWithBiometrics": "باز کردن با بیومتریک"
+    "unlockWithBiometrics": "باز کردن با بیومتریک",
+    "confirmStartOver": "تأیید کنید که می‌خواهید با کیف پول جدید از نو شروع کنید"
   }
 }

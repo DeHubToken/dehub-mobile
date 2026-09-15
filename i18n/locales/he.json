@@ -3277,7 +3277,12 @@
     "descriptionPlaceholder": "מה שייך לתיקייה הזו?",
     "createAndSave": "צור ושמור",
     "createNew": "צור תיקייה חדשה",
-    "closeA11y": "סגור את בורר התיקיות"
+    "closeA11y": "סגור את בורר התיקיות",
+    "loadFailed": "טעינת תיקיות הסימניות נכשלה",
+    "addedTo": "נוסף אל {{name}}",
+    "removedFrom": "הוסר מ-{{name}}",
+    "savedTo": "נשמר ב-{{name}}",
+    "createdNotAdded": "התיקייה נוצרה, אך הפוסט לא נוסף"
   },
   "ppv": {
     "title": "תוכן בתשלום לצפייה",
@@ -3347,6 +3352,7 @@
     "secureWithBiometrics": "אבטח באמצעות ביומטריה",
     "thatsGoneToo": "גם זה אבד — התחל מחדש בכל זאת",
     "tryBiometrics": "נסה ביומטריה בטלפון הזה",
-    "unlockWithBiometrics": "פתח באמצעות ביומטריה"
+    "unlockWithBiometrics": "פתח באמצעות ביומטריה",
+    "confirmStartOver": "אשר שברצונך להתחיל מחדש עם ארנק חדש"
   }
 }

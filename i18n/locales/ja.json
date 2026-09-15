@@ -3357,7 +3357,12 @@
     "descriptionPlaceholder": "このフォルダには何を入れますか？",
     "createAndSave": "作成して保存",
     "createNew": "新しいフォルダを作成",
-    "closeA11y": "フォルダ選択を閉じる"
+    "closeA11y": "フォルダ選択を閉じる",
+    "loadFailed": "ブックマークフォルダを読み込めませんでした",
+    "addedTo": "{{name}} に追加しました",
+    "removedFrom": "{{name}} から削除しました",
+    "savedTo": "{{name}} に保存しました",
+    "createdNotAdded": "フォルダは作成されましたが、投稿は追加されませんでした"
   },
   "ppv": {
     "title": "ペイパービューコンテンツ",
@@ -3427,6 +3432,7 @@
     "secureWithBiometrics": "生体認証で保護",
     "thatsGoneToo": "それも失いました — それでも最初からやり直す",
     "tryBiometrics": "この端末で生体認証を試す",
-    "unlockWithBiometrics": "生体認証で解除"
+    "unlockWithBiometrics": "生体認証で解除",
+    "confirmStartOver": "新しいウォレットでやり直すことを確認してください"
   }
 }

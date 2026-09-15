@@ -3364,7 +3364,12 @@
     "descriptionPlaceholder": "O que vai nesta pasta?",
     "createAndSave": "Criar e salvar",
     "createNew": "Criar nova pasta",
-    "closeA11y": "Fechar o seletor de pastas"
+    "closeA11y": "Fechar o seletor de pastas",
+    "loadFailed": "Não foi possível carregar as pastas de favoritos",
+    "addedTo": "Adicionado a {{name}}",
+    "removedFrom": "Removido de {{name}}",
+    "savedTo": "Salvo em {{name}}",
+    "createdNotAdded": "Pasta criada, mas a publicação não foi adicionada"
   },
   "ppv": {
     "title": "Conteúdo pago por visualização",
@@ -3434,6 +3439,7 @@
     "secureWithBiometrics": "Proteger com biometria",
     "thatsGoneToo": "Isso também se perdeu — recomeçar mesmo assim",
     "tryBiometrics": "Tente a biometria neste telefone",
-    "unlockWithBiometrics": "Desbloquear com biometria"
+    "unlockWithBiometrics": "Desbloquear com biometria",
+    "confirmStartOver": "Confirme que você quer recomeçar com uma nova carteira"
   }
 }

@@ -3303,7 +3303,12 @@
     "descriptionPlaceholder": "Ce pui în acest dosar?",
     "createAndSave": "Creează și salvează",
     "createNew": "Creează dosar nou",
-    "closeA11y": "Închide selectorul de dosare"
+    "closeA11y": "Închide selectorul de dosare",
+    "loadFailed": "Dosarele de marcaje nu au putut fi încărcate",
+    "addedTo": "Adăugat în {{name}}",
+    "removedFrom": "Eliminat din {{name}}",
+    "savedTo": "Salvat în {{name}}",
+    "createdNotAdded": "Dosarul a fost creat, dar postarea nu a fost adăugată"
   },
   "ppv": {
     "title": "Conținut cu plată per vizionare",
@@ -3373,6 +3378,7 @@
     "secureWithBiometrics": "Securizează cu biometrie",
     "thatsGoneToo": "Și aceea s-a pierdut — începe din nou oricum",
     "tryBiometrics": "Încearcă biometria pe acest telefon",
-    "unlockWithBiometrics": "Deblochează cu biometrie"
+    "unlockWithBiometrics": "Deblochează cu biometrie",
+    "confirmStartOver": "Confirmă că vrei să începi din nou cu un portofel nou"
   }
 }

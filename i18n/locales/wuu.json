@@ -3241,7 +3241,12 @@
     "descriptionPlaceholder": "这个文件夹里放什么？",
     "createAndSave": "创建并保存",
     "createNew": "新建文件夹",
-    "closeA11y": "关闭文件夹选择器"
+    "closeA11y": "关闭文件夹选择器",
+    "loadFailed": "无法加载书签文件夹",
+    "addedTo": "已添加到 {{name}}",
+    "removedFrom": "已从 {{name}} 移除",
+    "savedTo": "已保存到 {{name}}",
+    "createdNotAdded": "文件夹已创建，但帖子未被添加"
   },
   "ppv": {
     "title": "按次付费内容",
@@ -3311,6 +3316,7 @@
     "secureWithBiometrics": "用生物识别保护",
     "thatsGoneToo": "那个也没了——仍然重新开始",
     "tryBiometrics": "在这台手机上试用生物识别",
-    "unlockWithBiometrics": "用生物识别解锁"
+    "unlockWithBiometrics": "用生物识别解锁",
+    "confirmStartOver": "确认你要用新钱包重新开始"
   }
 }

@@ -3240,7 +3240,12 @@
     "descriptionPlaceholder": "एह फोल्डर में का राखल जाई?",
     "createAndSave": "बनाईं आ सहेजीं",
     "createNew": "नया फोल्डर बनाईं",
-    "closeA11y": "फोल्डर चुनइया के बंद करीं"
+    "closeA11y": "फोल्डर चुनइया के बंद करीं",
+    "loadFailed": "बुकमार्क फोल्डर लोड ना हो पावल",
+    "addedTo": "{{name}} में जोड़ल गइल",
+    "removedFrom": "{{name}} से हटावल गइल",
+    "savedTo": "{{name}} में सहेजल गइल",
+    "createdNotAdded": "फोल्डर बन गइल, बाकिर पोस्ट ना जुड़ल"
   },
   "ppv": {
     "title": "देखे खातिर भुगतान वाला कंटेंट",
@@ -3310,6 +3315,7 @@
     "secureWithBiometrics": "बायोमेट्रिक से सुरक्षित करीं",
     "thatsGoneToo": "ऊहो चल गइल — फिर भी नया से सुरू करीं",
     "tryBiometrics": "एह फोन पर बायोमेट्रिक आजमाईं",
-    "unlockWithBiometrics": "बायोमेट्रिक से खोलीं"
+    "unlockWithBiometrics": "बायोमेट्रिक से खोलीं",
+    "confirmStartOver": "पुष्टि करीं कि रउआ नया वॉलेट से फिर से सुरू करे के चाहत बानी"
   }
 }

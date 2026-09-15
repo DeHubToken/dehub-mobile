@@ -3288,7 +3288,12 @@
     "descriptionPlaceholder": "呢個資料夾放咩？",
     "createAndSave": "建立並儲存",
     "createNew": "建立新資料夾",
-    "closeA11y": "關閉資料夾選擇器"
+    "closeA11y": "關閉資料夾選擇器",
+    "loadFailed": "無法載入書籤資料夾",
+    "addedTo": "已加入 {{name}}",
+    "removedFrom": "已從 {{name}} 移除",
+    "savedTo": "已儲存到 {{name}}",
+    "createdNotAdded": "資料夾已建立，但帖子未加入"
   },
   "ppv": {
     "title": "按次付費內容",
@@ -3358,6 +3363,7 @@
     "secureWithBiometrics": "用生物辨識保護",
     "thatsGoneToo": "嗰個都冇咗——照樣重新開始",
     "tryBiometrics": "喺呢部電話試用生物辨識",
-    "unlockWithBiometrics": "用生物辨識解鎖"
+    "unlockWithBiometrics": "用生物辨識解鎖",
+    "confirmStartOver": "確認你想用新錢包重新開始"
   }
 }

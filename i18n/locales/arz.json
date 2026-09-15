@@ -3286,7 +3286,12 @@
     "descriptionPlaceholder": "إيه اللي يتحط في الفولدر ده؟",
     "createAndSave": "اعمل واحفظ",
     "createNew": "اعمل فولدر جديد",
-    "closeA11y": "اقفل مختار الفولدرات"
+    "closeA11y": "اقفل مختار الفولدرات",
+    "loadFailed": "مقدرناش نجيب فولدرات المحفوظات",
+    "addedTo": "اتضاف لـ{{name}}",
+    "removedFrom": "اتشال من {{name}}",
+    "savedTo": "اتحفظ في {{name}}",
+    "createdNotAdded": "الفولدر اتعمل بس البوست ماتضافش"
   },
   "ppv": {
     "title": "محتوى الدفع مقابل المشاهدة",
@@ -3356,6 +3361,7 @@
     "secureWithBiometrics": "أمّن بالبصمة",
     "thatsGoneToo": "ده كمان راح — ابدأ من جديد برضه",
     "tryBiometrics": "جرّب البصمة على التليفون ده",
-    "unlockWithBiometrics": "افتح بالبصمة"
+    "unlockWithBiometrics": "افتح بالبصمة",
+    "confirmStartOver": "أكّد إنك عايز تبدأ من جديد بمحفظة جديدة"
   }
 }

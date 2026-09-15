@@ -3459,7 +3459,12 @@
     "descriptionPlaceholder": "Čo patrí do tohto priečinka?",
     "createAndSave": "Vytvoriť a uložiť",
     "createNew": "Vytvoriť nový priečinok",
-    "closeA11y": "Zavrieť výber priečinka"
+    "closeA11y": "Zavrieť výber priečinka",
+    "loadFailed": "Priečinky záložiek sa nepodarilo načítať",
+    "addedTo": "Pridané do {{name}}",
+    "removedFrom": "Odstránené z {{name}}",
+    "savedTo": "Uložené do {{name}}",
+    "createdNotAdded": "Priečinok bol vytvorený, ale príspevok nebol pridaný"
   },
   "ppv": {
     "title": "Obsah platený za zhliadnutie",
@@ -3529,6 +3534,7 @@
     "secureWithBiometrics": "Zabezpečiť biometriou",
     "thatsGoneToo": "To je tiež preč — aj tak začať odznova",
     "tryBiometrics": "Vyskúšať biometriu na tomto telefóne",
-    "unlockWithBiometrics": "Odomknúť biometriou"
+    "unlockWithBiometrics": "Odomknúť biometriou",
+    "confirmStartOver": "Potvrďte, že chcete začať odznova s novou peňaženkou"
   }
 }

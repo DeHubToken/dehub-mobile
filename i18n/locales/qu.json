@@ -3320,7 +3320,12 @@
     "descriptionPlaceholder": "Kay qillqa churanapi imataq kanqa?",
     "createAndSave": "Kamay hinaspa waqaychay",
     "createNew": "Musuq qillqa churana kamay",
-    "closeA11y": "Qillqa churana akllanata wichqay"
+    "closeA11y": "Qillqa churana akllanata wichqay",
+    "loadFailed": "Bookmark qillqa churanakunata chaqnayta mana atikunchu",
+    "addedTo": "{{name}} man yapasqa",
+    "removedFrom": "{{name}} manta hurqusqa",
+    "savedTo": "{{name}} pi waqaychasqa",
+    "createdNotAdded": "Qillqa churana kamasqa, ichaqa willakuy mana yapasqachu"
   },
   "ppv": {
     "title": "Sapa qhawaypaq qullqi mañaq willakuy",
@@ -3390,6 +3395,7 @@
     "secureWithBiometrics": "Biometricowan amachay",
     "thatsGoneToo": "Chaypas chinkarunmi — chaypas musuqmanta qallariy",
     "tryBiometrics": "Kay celularpi biometricota ruway",
-    "unlockWithBiometrics": "Biometricowan kichay"
+    "unlockWithBiometrics": "Biometricowan kichay",
+    "confirmStartOver": "Musuq qullqi waqaychanawan musuqmanta qallariyta munasqaykita takyachiy"
   }
 }

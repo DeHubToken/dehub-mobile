@@ -3294,7 +3294,12 @@
     "descriptionPlaceholder": "Vad hör hemma i den här mappen?",
     "createAndSave": "Skapa och spara",
     "createNew": "Skapa ny mapp",
-    "closeA11y": "Stäng mappväljaren"
+    "closeA11y": "Stäng mappväljaren",
+    "loadFailed": "Det gick inte att läsa in bokmärkesmappar",
+    "addedTo": "Tillagd i {{name}}",
+    "removedFrom": "Borttagen från {{name}}",
+    "savedTo": "Sparad i {{name}}",
+    "createdNotAdded": "Mappen skapades, men inlägget lades inte till"
   },
   "ppv": {
     "title": "Betal-per-visning-innehåll",
@@ -3364,6 +3369,7 @@
     "secureWithBiometrics": "Säkra med biometri",
     "thatsGoneToo": "Det är också borta — börja om ändå",
     "tryBiometrics": "Prova biometri på den här telefonen",
-    "unlockWithBiometrics": "Lås upp med biometri"
+    "unlockWithBiometrics": "Lås upp med biometri",
+    "confirmStartOver": "Bekräfta att du vill börja om med en ny plånbok"
   }
 }
