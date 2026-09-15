@@ -160,6 +160,7 @@ export const DeepLinkPaths = {
   // The converter — dehub.io/converter. /yt-dlp is the old name and web still
   // redirects it, so a link from before the rename lands here too.
   CONVERTER: 'converter',
+  MIGRATE: 'migrate-youtube',
 
   // Handle marketplace. Web canonicalises /app/usernames onto the bare path and
   // shares the bare form, so that is the one declared here. `?handle=` on a
@@ -258,6 +259,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           },
 
           [ScreenNames.Converter]: DeepLinkPaths.CONVERTER,
+          [ScreenNames.Migrate]: DeepLinkPaths.MIGRATE,
 
           [ScreenNames.Usernames]: DeepLinkPaths.USERNAMES,
 
