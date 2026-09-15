@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import * as Clipboard from "expo-clipboard";
 import GlassModal from "../ui/GlassModal";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
@@ -184,6 +185,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
     onConfirm,
     onBack,
   }) => {
+    const { t } = useTranslation();
     const short = address ? `${address.slice(0, 6)}…${address.slice(-4)}` : "this wallet";
     const hasOtherWayIn = !!otherCopies && (otherCopies.recovery || otherCopies.passkeys > 0);
 
@@ -191,7 +193,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
       return (
         <View>
           <Text style={[authText.body, { marginBottom: 16 }]}>
-            Checking whether you have any other way back into this wallet…
+            {t("walletSetup.checkingWaysBack")}
           </Text>
           <ActivityIndicator color={authColors.label} style={{ marginVertical: 16 }} />
           {/* Both probe reads are un-timed Supabase queries, so this can sit
@@ -199,7 +201,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
               screen-level Cancel — which closes the whole sheet and, on the
               biometric-unlock route, wipes a half-typed recovery phrase that
               exitResetReview deliberately preserves. */}
-          <AuthTextButton label="Go back" onPress={onBack} />
+          <AuthTextButton label={t("walletSetup.goBack")} onPress={onBack} />
         </View>
       );
     }
@@ -212,11 +214,11 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
       return (
         <View>
           <Text style={[authText.title, { fontSize: 18, marginBottom: 12 }]}>
-            You may still be able to get this wallet back
+            {t("walletSetup.mayGetItBack")}
           </Text>
           {otherCopies.recovery && (
             <Text style={[authText.body, { marginBottom: 12 }]}>
-              This account has a <Text style={authText.emphasis}>recovery record</Text> from
+              {t("walletSetup.accountHasA")} <Text style={authText.emphasis}>recovery record</Text> from
               dehub.io. The 24-word recovery code you were given still opens this wallet. Open
               dehub.io on a computer, sign in the same way and with the same account, and use that
               code — it brings the wallet, and your account, back exactly as they were.
@@ -232,16 +234,16 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
           <AuthButton
             variant="primary"
             icon="open-outline"
-            label="Open dehub.io"
+            label={t("walletSetup.openDehub")}
             onPress={() => openInApp(WEBSITE_LINK)}
             style={{ marginTop: 4 }}
           />
           <AuthTextButton
-            label="That's gone too — start over anyway"
+            label={t("walletSetup.thatsGoneToo")}
             onPress={onOverride}
             style={{ marginTop: 8 }}
           />
-          <AuthTextButton label="Go back" onPress={onBack} tone="muted" />
+          <AuthTextButton label={t("walletSetup.goBack")} onPress={onBack} tone="muted" />
         </View>
       );
     }
@@ -249,9 +251,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
     return (
       <View>
         <Text style={[authText.body, { marginBottom: 16 }]}>
-          This gives your sign-in a brand-new, empty wallet, and moves your account onto it. It does
-          not open the old wallet — this phone can&apos;t, dehub.io can&apos;t, and neither can we —
-          so whatever is inside it stays there.
+          {t("walletSetup.resetExplainer")}
         </Text>
 
         {otherCopies.failed && (
@@ -260,7 +260,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
           </View>
         )}
 
-        <Text style={styles.resetHeading}>What you lose</Text>
+        <Text style={styles.resetHeading}>{t("walletSetup.whatYouLose")}</Text>
         {/* Stated as a loss, not softened with "but it's still on-chain".
             Anyone who reaches this screen has already failed the restore form,
             i.e. has no phrase and no private key — so "you could still reach
@@ -300,7 +300,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
           />
         )}
 
-        <Text style={[styles.resetHeading, { marginTop: 16 }]}>What you keep</Text>
+        <Text style={[styles.resetHeading, { marginTop: 16 }]}>{t("walletSetup.whatYouKeep")}</Text>
         {/* The account is a record, and the wallet address is one field on it.
             Replacing the wallet used to mean starting again as a stranger with
             a generated name, while the old account sat there keeping the handle
@@ -321,7 +321,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
           body="Same phone number, email or Google account, same one tap. It is the wallet behind the login that is being replaced, not the login."
         />
 
-        <Text style={[styles.resetHeading, { marginTop: 16 }]}>Before you do this</Text>
+        <Text style={[styles.resetHeading, { marginTop: 16 }]}>{t("walletSetup.beforeYouDoThis")}</Text>
         <ResetPoint
           tone="keep"
           head="Check the device you set it up on."
@@ -335,7 +335,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
           activeOpacity={0.7}
           accessibilityRole="checkbox"
           accessibilityState={{ checked: acknowledged }}
-          accessibilityLabel="I understand the old wallet, and anything in it, will be out of reach"
+          accessibilityLabel={t("walletSetup.understandOldWalletA11y")}
           style={styles.ackRow}
         >
           <Ionicons
@@ -349,7 +349,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
         </TouchableOpacity>
 
         <AuthField
-          label="Type RESET to confirm"
+          label={t("walletSetup.typeResetLabel", { word: "RESET" })}
           value={confirmText}
           onChangeText={onChangeConfirmText}
           placeholder="RESET"
@@ -363,13 +363,13 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
 
         <AuthButton
           variant="danger"
-          label="Reset and create a new wallet"
+          label={t("walletSetup.resetAndCreate")}
           onPress={onConfirm}
           disabled={!canReset}
           loading={busy}
           style={{ marginTop: 16 }}
         />
-        <AuthTextButton label="Go back" onPress={onBack} disabled={busy} />
+        <AuthTextButton label={t("walletSetup.goBack")} onPress={onBack} disabled={busy} />
       </View>
     );
   }
@@ -395,6 +395,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
     onSwitchAccount,
     onResetWallet,
   }) => {
+    const { t } = useTranslation();
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");
     const [showPw, setShowPw] = useState(false);
@@ -593,14 +594,14 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
           setError(
             full.breached === true
               ? "This password has appeared in a data breach — choose a different one"
-              : full.warnings[0] || "Choose a stronger password"
+              : full.warnings[0] || t("walletSetup.chooseStronger")
           );
           return;
         }
         await onSwitchAccount(request.privateKey, password);
         reset();
       } catch (e: any) {
-        setError(e?.message || "Could not finish setting up this account. Please try again.");
+        setError(e?.message || t("walletSetup.couldNotFinishSetup"));
       } finally {
         setBusy(false);
       }
@@ -614,7 +615,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         await onUnlock(password);
         reset();
       } catch (e: any) {
-        setError(e?.message || "Incorrect password");
+        setError(e?.message || t("walletSetup.incorrectPassword"));
       } finally {
         setBusy(false);
       }
@@ -628,7 +629,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         await onBiometricUnlock();
         reset();
       } catch (e: any) {
-        setBiometricError(e?.message || "Biometric unlock failed");
+        setBiometricError(e?.message || t("walletSetup.biometricFailed"));
       } finally {
         setBusy(false);
       }
@@ -663,14 +664,14 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
           setError(
             full.breached === true
               ? "This password has appeared in a data breach — choose a different one"
-              : full.warnings[0] || "Choose a stronger password"
+              : full.warnings[0] || t("walletSetup.chooseStronger")
           );
           return;
         }
         await onCreate({ kind: "password", password });
         reset();
       } catch (e: any) {
-        setError(e?.message || "Could not secure your wallet");
+        setError(e?.message || t("walletSetup.couldNotSecure"));
       } finally {
         setBusy(false);
       }
@@ -693,7 +694,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         }
         reset();
       } catch (e: any) {
-        setError(e?.message || "Could not secure your wallet");
+        setError(e?.message || t("walletSetup.couldNotSecure"));
       } finally {
         setBusy(false);
       }
@@ -709,7 +710,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         setPhraseAcknowledged(false);
         reset();
       } catch (e: any) {
-        setError(e?.message || "Could not finish signing in");
+        setError(e?.message || t("walletSetup.couldNotFinishSignIn"));
       } finally {
         setBusy(false);
       }
@@ -721,7 +722,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         await Clipboard.setStringAsync(recoveryPhrase);
         setError(null);
       } catch {
-        setError("Could not copy — write the words down instead.");
+        setError(t("walletSetup.couldNotCopy"));
       }
     }, [recoveryPhrase]);
 
@@ -766,14 +767,14 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
           setError(
             full.breached === true
               ? "This password has appeared in a data breach — choose a different one"
-              : full.warnings[0] || "Choose a stronger password"
+              : full.warnings[0] || t("walletSetup.chooseStronger")
           );
           return;
         }
         await onSwitchAccount(normalizedRestoreSecret, password);
         reset();
       } catch (e: any) {
-        setError(e?.message || "Could not restore this wallet");
+        setError(e?.message || t("walletSetup.couldNotRestore"));
       } finally {
         setBusy(false);
       }
@@ -801,7 +802,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         setError(
           e instanceof BiometricRejectedError
             ? "Device check cancelled — nothing was changed."
-            : e?.message || "Could not start over. Nothing was changed."
+            : e?.message || t("walletSetup.couldNotStartOver")
         );
       } finally {
         setBusy(false);
@@ -879,15 +880,14 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
 
               <AuthButton
                 icon="copy-outline"
-                label="Copy phrase"
+                label={t("walletSetup.copyPhrase")}
                 onPress={handleCopyPhrase}
                 disabled={busy}
                 style={{ marginTop: 12 }}
               />
 
               <Text style={[authText.caption, { marginTop: 12 }]}>
-                Write them down somewhere only you can reach. Anyone who has these words has your
-                wallet — DeHub support cannot recover them and cannot reset them.
+                {t("walletSetup.writeThemDown")}
               </Text>
 
               <TouchableOpacity
@@ -895,7 +895,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                 activeOpacity={0.7}
                 accessibilityRole="checkbox"
                 accessibilityState={{ checked: phraseAcknowledged }}
-                accessibilityLabel="I have saved my recovery phrase"
+                accessibilityLabel={t("walletSetup.savedPhraseA11y")}
                 style={styles.ackRow}
               >
                 <Ionicons
@@ -912,7 +912,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
 
               <AuthButton
                 variant="primary"
-                label="Create my wallet"
+                label={t("walletSetup.createMyWallet")}
                 onPress={handlePhraseAcknowledged}
                 disabled={!phraseAcknowledged}
                 loading={busy}
@@ -920,7 +920,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
               />
               {busy && (
                 <Text style={[authText.caption, { marginTop: 12, textAlign: "center" }]}>
-                  Creating your wallet and signing you in…
+                  {t("walletSetup.creatingWallet")}
                 </Text>
               )}
             </View>
@@ -937,8 +937,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
           {mode === "create" && !recoveryPhrase && biometricAvailable !== null && (
             <>
               <Text style={[authText.body, { marginBottom: 20 }]}>
-                To ensure only you can post or transact with this account, protect your wallet with
-                your device's biometrics or a password.
+                {t("walletSetup.protectWallet")}
               </Text>
 
               {biometricAvailable && (
@@ -968,18 +967,14 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   <View style={styles.note}>
                     <Ionicons name="finger-print" size={22} color={authColors.label} />
                     <Text style={[authText.caption, { flex: 1 }]}>
-                      Unlock with your fingerprint or face — nothing to type or remember. The key
-                      stays on this phone, so we&apos;ll show you a 12-word recovery phrase to write
-                      down; it is the only way back in from another handset, from the website, or
-                      after reinstalling. Pick Password instead and the password itself does that
-                      job.
+                      {t("walletSetup.biometricExplainer")}
                     </Text>
                   </View>
                   <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
                   <AuthButton
                     variant="primary"
                     icon="finger-print"
-                    label="Secure with biometrics"
+                    label={t("walletSetup.secureWithBiometrics")}
                     onPress={handleCreateWithBiometric}
                     loading={busy}
                     style={{ marginTop: 16 }}
@@ -991,7 +986,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                     label={`Password (min ${MIN_PASSWORD_LENGTH} chars)`}
                     value={password}
                     onChangeText={setPassword}
-                    placeholder="Password"
+                    placeholder={t("walletSetup.password")}
                     autoCapitalize="none"
                     autoCorrect={false}
                     secureTextEntry={!showPw}
@@ -1004,8 +999,8 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   <AuthField
                     value={confirm}
                     onChangeText={setConfirm}
-                    placeholder="Confirm password"
-                    accessibilityLabel="Confirm password"
+                    placeholder={t("walletSetup.confirmPassword")}
+                    accessibilityLabel={t("walletSetup.confirmPassword")}
                     autoCapitalize="none"
                     autoCorrect={false}
                     secureTextEntry={!showPw}
@@ -1017,7 +1012,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
 
                   <AuthButton
                     variant="primary"
-                    label="Secure wallet"
+                    label={t("walletSetup.secureWallet")}
                     onPress={handleCreateWithPassword}
                     disabled={!canSubmitPassword}
                     loading={busy}
@@ -1025,7 +1020,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   />
                   {busy && (
                     <Text style={[authText.caption, { marginTop: 12, textAlign: "center" }]}>
-                      Securing your wallet — this can take up to a minute on some devices…
+                      {t("walletSetup.securingWallet")}
                     </Text>
                   )}
                 </View>
@@ -1069,8 +1064,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                 phone was interrupted before it finished.
               </Text>
               <Text style={[authText.body, { marginBottom: 20 }]}>
-                If you have used dehub.io before, open it on your computer, sign in the same way and
-                with the same account, and <Text style={authText.emphasis}>add a wallet password</Text>{" "}
+                {t("walletSetup.ifYouUsedDehub")} <Text style={authText.emphasis}>add a wallet password</Text>{" "}
                 — that saves an encrypted backup to the cloud. Then come back here and try again.
               </Text>
               <Text style={[authText.caption, { marginBottom: 16 }]}>
@@ -1079,17 +1073,17 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
               <AuthButton
                 variant="primary"
                 icon="open-outline"
-                label="Open dehub.io"
+                label={t("walletSetup.openDehub")}
                 onPress={() => openInApp(WEBSITE_LINK)}
                 style={{ marginBottom: 12 }}
               />
               <AuthButton
-                label="I added a password — try again"
+                label={t("walletSetup.addedPasswordRetry")}
                 onPress={handleClose}
               />
               {!!onResetWallet && (
                 <AuthTextButton
-                  label="Never used dehub.io — start over"
+                  label={t("walletSetup.neverUsedDehub")}
                   onPress={enterResetReview}
                   disabled={busy}
                   style={{ marginTop: 8 }}
@@ -1107,7 +1101,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
               </Text>
               {legacyRecoveredAddress && (
                 <View style={styles.summaryCard}>
-                  <Text style={[authText.caption, { marginBottom: 4 }]}>DeHub profile wallet</Text>
+                  <Text style={[authText.caption, { marginBottom: 4 }]}>{t("walletSetup.profileWalletLabel")}</Text>
                   <Text style={styles.summaryValue}>
                     {legacyRecoveredAddress.slice(0, 6)}…{legacyRecoveredAddress.slice(-4)}
                   </Text>
@@ -1118,7 +1112,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                 label={`New password (min ${MIN_PASSWORD_LENGTH} chars)`}
                 value={password}
                 onChangeText={setPassword}
-                placeholder="Password"
+                placeholder={t("walletSetup.password")}
                 autoCapitalize="none"
                 autoCorrect={false}
                 secureTextEntry={!showPw}
@@ -1129,8 +1123,8 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
               <AuthField
                 value={confirm}
                 onChangeText={setConfirm}
-                placeholder="Confirm password"
-                accessibilityLabel="Confirm password"
+                placeholder={t("walletSetup.confirmPassword")}
+                accessibilityLabel={t("walletSetup.confirmPassword")}
                 autoCapitalize="none"
                 autoCorrect={false}
                 secureTextEntry={!showPw}
@@ -1142,7 +1136,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
 
               <AuthButton
                 variant="primary"
-                label="Finish setting up this account"
+                label={t("walletSetup.finishSettingUp")}
                 onPress={handleLegacyRecoveredSubmit}
                 disabled={!canSubmitLegacyRecovered}
                 loading={busy}
@@ -1176,8 +1170,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
               ) : deviceWrapKeyReady ? (
                 <>
                   <Text style={[authText.body, { marginBottom: 20 }]}>
-                    This wallet is protected by this device&apos;s biometrics. Confirm with
-                    fingerprint or face to continue.
+                    {t("walletSetup.biometricPrompt")}
                   </Text>
                   <AuthErrorNotice
                     message={
@@ -1190,7 +1183,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   <AuthButton
                     variant="primary"
                     icon="finger-print"
-                    label="Unlock with biometrics"
+                    label={t("walletSetup.unlockWithBiometrics")}
                     onPress={handleBiometricUnlockPress}
                     loading={busy}
                   />
@@ -1233,26 +1226,24 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
 
                   <AuthButton
                     icon="finger-print"
-                    label="Try biometrics on this phone"
+                    label={t("walletSetup.tryBiometrics")}
                     onPress={handleBiometricUnlockPress}
                     disabled={busy}
                     loading={busy}
                     accessibilityHint="Use this if you set this wallet up on this phone and it should already have the key"
                   />
 
-                  <AuthDivider label="or restore it" />
+                  <AuthDivider label={t("walletSetup.orRestoreIt")} />
 
                   <Text style={[authText.body, { marginBottom: 16 }]}>
-                    Enter the 12-word recovery phrase you saved when you created this wallet (or its
-                    private key, if you exported one). It goes back to the same account, and the
-                    password you set below becomes a backup that works everywhere from now on.
+                    {t("walletSetup.enterRecoveryPhrase")}
                   </Text>
 
                   <AuthField
-                    label="Recovery phrase or private key"
+                    label={t("walletSetup.recoveryPhraseLabel")}
                     value={restoreSecret}
                     onChangeText={setRestoreSecret}
-                    placeholder="12 words, or 0x…"
+                    placeholder={t("walletSetup.phrasePlaceholder")}
                     autoCapitalize="none"
                     autoCorrect={false}
                     autoComplete="off"
@@ -1272,7 +1263,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                     label={`New wallet password (min ${MIN_PASSWORD_LENGTH} chars)`}
                     value={password}
                     onChangeText={setPassword}
-                    placeholder="Password"
+                    placeholder={t("walletSetup.password")}
                     autoCapitalize="none"
                     autoCorrect={false}
                     secureTextEntry={!showPw}
@@ -1283,8 +1274,8 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   <AuthField
                     value={confirm}
                     onChangeText={setConfirm}
-                    placeholder="Confirm password"
-                    accessibilityLabel="Confirm password"
+                    placeholder={t("walletSetup.confirmPassword")}
+                    accessibilityLabel={t("walletSetup.confirmPassword")}
                     autoCapitalize="none"
                     autoCorrect={false}
                     secureTextEntry={!showPw}
@@ -1296,7 +1287,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
 
                   <AuthButton
                     variant="primary"
-                    label="Restore this wallet"
+                    label={t("walletSetup.restoreThisWallet")}
                     onPress={handleRestoreSubmit}
                     disabled={!canSubmitRestore}
                     loading={busy}
@@ -1304,9 +1295,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   />
 
                   <Text style={[authText.caption, { marginTop: 16 }]}>
-                    No phrase and no key? Then this wallet can only be opened from the device that
-                    set it up — nothing on the website or on our side can recover it. Sign in on
-                    that device if you still have it.
+                    {t("walletSetup.noPhraseNoKey")}
                   </Text>
 
                   {/* Deliberately the last thing on the screen, and a text
@@ -1317,7 +1306,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                       a failed cloud read never reaches this screen at all. */}
                   {!!onResetWallet && (
                     <AuthTextButton
-                      label="I've lost the phrase too — start over"
+                      label={t("walletSetup.lostPhraseToo")}
                       onPress={enterResetReview}
                       disabled={busy}
                       style={{ marginTop: 8 }}
@@ -1336,10 +1325,10 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   : "This account already has a wallet, protected by a password. Enter it to recover your wallet on this device."}
               </Text>
               <AuthField
-                label="Wallet password"
+                label={t("walletSetup.walletPassword")}
                 value={password}
                 onChangeText={setPassword}
-                placeholder="Password"
+                placeholder={t("walletSetup.password")}
                 autoCapitalize="none"
                 autoCorrect={false}
                 secureTextEntry={!showPw}
@@ -1353,7 +1342,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
               <AuthButton
                 variant="primary"
                 icon="lock-open"
-                label="Unlock"
+                label={t("walletSetup.unlock")}
                 onPress={handleUnlockSubmit}
                 disabled={!canSubmitPassword}
                 loading={busy}
@@ -1361,14 +1350,14 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
               />
               {busy && (
                 <Text style={[authText.caption, { marginTop: 12, textAlign: "center" }]}>
-                  Unlocking your wallet — this can take up to a minute on some devices…
+                  {t("walletSetup.unlockingWallet")}
                 </Text>
               )}
             </View>
           )}
 
           <AuthTextButton
-            label="Cancel"
+            label={t("common.cancel")}
             onPress={handleClose}
             disabled={busy}
             style={{ marginTop: 16 }}
