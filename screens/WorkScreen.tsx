@@ -22,7 +22,7 @@ import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { theme } from "../theme";
-import { parseDateOnly } from "../libs/date.util";
+import { appLocale, parseDateOnly } from "../libs/date.util";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
   useBrowseJobs,
@@ -116,7 +116,7 @@ export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, 
         {!!job.deadline && (
           <View style={[styles.metaItem, { marginLeft: "auto" }]}>
             <Icon name="Clock" size={12} color="#808089" />
-            <Text style={styles.metaText}>{parseDateOnly(job.deadline).toLocaleDateString()}</Text>
+            <Text style={styles.metaText}>{parseDateOnly(job.deadline).toLocaleDateString(appLocale())}</Text>
           </View>
         )}
       </View>

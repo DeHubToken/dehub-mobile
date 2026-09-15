@@ -52,6 +52,7 @@ import { getUserReplies } from "../../services/user.service";
 import { supabase } from "../../services/supabase";
 import { getImageUrl, toastError, toastPromise, toastSuccess } from "../../libs";
 import SuperPowerIcon from "./SuperPowerIcon";
+import { appLocale } from "../../libs/date.util";
 
 interface SpendPowerSheetProps {
   /** The power being spent. Null keeps the sheet closed. */
@@ -384,7 +385,7 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
                         </Text>
                       ) : null}
                       <Text className="mt-0.5 text-[11px] text-zinc-500">
-                        {post.createdAt ? new Date(post.createdAt).toLocaleDateString() : `#${id}`}
+                        {post.createdAt ? new Date(post.createdAt).toLocaleDateString(appLocale()) : `#${id}`}
                       </Text>
                     </View>
                     {picked ? <Icon name="Check" size={16} color="#4ADE80" /> : null}

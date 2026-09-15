@@ -15,6 +15,7 @@ import ProfileEmptyState from "./ProfileEmptyState";
 import { supabase } from "../../services/supabase";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import { appLocale } from "../../libs/date.util";
 
 interface FractionHolding {
   token_id: string;
@@ -135,7 +136,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
           {item.quantity} fraction{item.quantity !== 1 ? "s" : ""}
         </Text>
         <Text style={styles.date}>
-          {new Date(item.last_trade_at).toLocaleDateString()}
+          {new Date(item.last_trade_at).toLocaleDateString(appLocale())}
         </Text>
       </TouchableOpacity>
     ),

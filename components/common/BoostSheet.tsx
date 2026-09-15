@@ -39,6 +39,7 @@ import {
 } from "../../services/superpower.service";
 import { toastError, toastPromise, toastSuccess } from "../../libs";
 import SuperPowerIcon from "./SuperPowerIcon";
+import { appLocale } from "../../libs/date.util";
 
 export interface BoostSheetProps {
   visible: boolean;
@@ -116,7 +117,7 @@ export default function BoostSheet({
   const tierNames = (ladder?.tiers ?? []).map(r => r.name).filter(Boolean) as string[];
 
   const refillsOn = status?.cycleEndsAt
-    ? new Date(status.cycleEndsAt).toLocaleDateString(undefined, { day: "numeric", month: "short" })
+    ? new Date(status.cycleEndsAt).toLocaleDateString(appLocale(), { day: "numeric", month: "short" })
     : null;
 
   const handleBoost = () => {
