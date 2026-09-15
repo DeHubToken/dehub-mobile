@@ -3628,7 +3628,9 @@
     "markMadeForKids": "Märgi tehtud lastele",
     "madeForKidsOnDesc": "Näidatud lastele lastemoodis ja tavalistest voogudest välja. Ainult lastemood saab kommenteerida.",
     "madeForKidsOffDesc": "Näitab seda postitust lastele, kes kasutavad lastemoodust, ja eemaldab selle tavalistest voogudest.",
-    "madeForKidsBlockedByMature": "Täiskasvanuks märgitud postitust ei saa avaldada ka lastele."
+    "madeForKidsBlockedByMature": "Täiskasvanuks märgitud postitust ei saa avaldada ka lastele.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Hankige RTMP-üksikasjad"
   },
   "bounty": {
     "claimed": "Lunastatud",

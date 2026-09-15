@@ -3806,7 +3806,9 @@
     "madeForKidsConfirmYes": "Oo, ito ay para sa mga bata",
     "madeForKidsOnDesc": "Ipinakikita sa mga bata sa Kids Mode, at aalis sa ordinaryong feeds. Lamang ang Kids Mode ang makakakomento.",
     "madeForKidsOffDesc": "Ipapakita ang post na ito sa mga bata na gumagamit ng Kids Mode, at aalis ito sa ordinaryong feeds.",
-    "madeForKidsBlockedByMature": "Ang post na minarkahan bilang mature ay hindi maaaring ilathala din para sa mga bata."
+    "madeForKidsBlockedByMature": "Ang post na minarkahan bilang mature ay hindi maaaring ilathala din para sa mga bata.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Kunin ang RTMP details"
   },
   "bounty": {
     "claimed": "Nakuha na",

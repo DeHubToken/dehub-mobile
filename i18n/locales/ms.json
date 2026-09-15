@@ -3891,7 +3891,9 @@
     "markMadeForKids": "Tandakan sebagai dibuat untuk kanak-kanak",
     "madeForKidsOnDesc": "Ditunjukkan kepada kanak-kanak dalam Mod Kanak-kanak, dan di luar suapan biasa. Hanya Mod Kanak-kanak boleh memberi komen.",
     "madeForKidsOffDesc": "Menunjukkan siaran ini kepada kanak-kanak menggunakan Mod Kanak-kanak, dan mengeluarkannya daripada suapan biasa.",
-    "madeForKidsBlockedByMature": "Hantaran bertanda matang juga tidak boleh disiarkan untuk kanak-kanak."
+    "madeForKidsBlockedByMature": "Hantaran bertanda matang juga tidak boleh disiarkan untuk kanak-kanak.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Dapatkan butiran RTMP"
   },
   "bounty": {
     "claimed": "Telah dituntut",

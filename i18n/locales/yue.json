@@ -3626,7 +3626,9 @@
     "madeForKidsConfirmYes": "係，係為孩子製作",
     "madeForKidsOnDesc": "顯示畀孩子模式中嘅小朋友，同埋喺普通動態消息中移除。淨係孩子模式可以評論。",
     "madeForKidsOffDesc": "將呢個帖文顯示畀使用孩子模式嘅小朋友，同埋喺普通動態消息中移除佢。",
-    "madeForKidsBlockedByMature": "標記為成人嘅帖文唔可以同時為小朋友發佈。"
+    "madeForKidsBlockedByMature": "標記為成人嘅帖文唔可以同時為小朋友發佈。",
+    "encoderTitle": "OBS / 編碼器",
+    "encoderHint": "取得 RTMP 詳情"
   },
   "bounty": {
     "claimed": "已領取",

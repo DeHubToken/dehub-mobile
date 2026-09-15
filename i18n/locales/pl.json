@@ -3697,7 +3697,9 @@
     "markMadeForKids": "Oznacz jako stworzone dla dzieci",
     "madeForKidsOnDesc": "Pokazane dzieciom w trybie dziecięcym i poza zwykłymi kanałami. Tylko tryb dziecięcy może komentować.",
     "madeForKidsOffDesc": "Pokazuje ten post dzieciom korzystającym z trybu dziecięcego i usuwa go ze zwykłych kanałów.",
-    "madeForKidsBlockedByMature": "Post oznaczony jako dojrzały nie może być również publikowany dla dzieci."
+    "madeForKidsBlockedByMature": "Post oznaczony jako dojrzały nie może być również publikowany dla dzieci.",
+    "encoderTitle": "OBS / Koder",
+    "encoderHint": "Uzyskaj szczegóły RTMP"
   },
   "bounty": {
     "claimed": "Odebrano",

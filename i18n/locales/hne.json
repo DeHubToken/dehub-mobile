@@ -3629,7 +3629,9 @@
     "madeForKidsConfirmYes": "हाँ, ये बाळकन मन हे",
     "madeForKidsOnDesc": "बाळक के Kids Mode मन देखाय गे, अऊ साधारण फीड से हटा दिय गे। सिर्फ Kids Mode ही टिप्पणी कर सकत हे।",
     "madeForKidsOffDesc": "ये पोस्ट बाळक के Kids Mode उपयोग करत हें तेमन देखाय गे, अऊ साधारण फीड से हटा दिय गे।",
-    "madeForKidsBlockedByMature": "परिपक्व चिन्हित पोस्ट बाळकन मन प्रकाशित नइ कर सकत हे।"
+    "madeForKidsBlockedByMature": "परिपक्व चिन्हित पोस्ट बाळकन मन प्रकाशित नइ कर सकत हे।",
+    "encoderTitle": "OBS / एनकोडर",
+    "encoderHint": "RTMP विवरण प्राप्त करें"
   },
   "bounty": {
     "claimed": "मिल गे",

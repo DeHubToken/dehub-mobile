@@ -3600,7 +3600,9 @@
     "unmuteVideo": "වීඩියෝවේ හඬ සක්‍රීය කරන්න",
     "descriptionOptional": "විස්තරය (විකල්ප)",
     "whatsHappening": "මොකද වෙන්නේ?",
-    "quotaShortfall": "මෙම පළකිරීමට {{cost}} DHB අවශ්‍යයි, ඔබ සතුව {{held}} ඇත."
+    "quotaShortfall": "මෙම පළකිරීමට {{cost}} DHB අවශ්‍යයි, ඔබ සතුව {{held}} ඇත.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "RTMP විස්තර ලබා ගන්න"
   },
   "bounty": {
     "claimed": "ලබාගෙන ඇත",

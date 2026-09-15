@@ -3629,7 +3629,9 @@
     "markMadeForKids": "Označi kao napravljeno za djecu",
     "madeForKidsOnDesc": "Prikazano djeci u Dječjem modu, i izvan običnih feedova. Samo Dječji mod može komentirati.",
     "madeForKidsOffDesc": "Prikazuje ovaj post djeci koja koriste Dječji mod, i uklanja ga iz običnih feedova.",
-    "madeForKidsBlockedByMature": "Post označen kao zreo ne može se objaviti i za djecu."
+    "madeForKidsBlockedByMature": "Post označen kao zreo ne može se objaviti i za djecu.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Dobijte RTMP detalje"
   },
   "bounty": {
     "claimed": "Preuzeto",

@@ -3613,7 +3613,9 @@
     "madeForKidsConfirmYes": "Āe, mō ngā tamariki",
     "madeForKidsOnDesc": "Kua whakaatuhia ki ngā tamariki i roto i Kids Mode, me te tango i ngā kaupapa noa. Ko Kids Mode anake ka taea te tīkomi.",
     "madeForKidsOffDesc": "Whakaatuhia tēnei pōtae ki ngā tamariki e whakamahi ana i Kids Mode, me te tango i ngā kaupapa noa.",
-    "madeForKidsBlockedByMature": "Kaore e taea te whakapuaki i tētahi pōtae kua tohua hei pakeke mō ngā tamariki."
+    "madeForKidsBlockedByMature": "Kaore e taea te whakapuaki i tētahi pōtae kua tohua hei pakeke mō ngā tamariki.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Tīkina ngā taipitopito RTMP"
   },
   "bounty": {
     "claimed": "Kua tonoa",

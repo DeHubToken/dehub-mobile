@@ -3703,7 +3703,9 @@
     "markMadeForKids": "Marquer comme fait pour les enfants",
     "madeForKidsOnDesc": "Affiché aux enfants en Mode Enfants, et retiré des flux ordinaires. Seul le Mode Enfants peut commenter.",
     "madeForKidsOffDesc": "Affiche cet article aux enfants utilisant le Mode Enfants, et le retire des flux ordinaires.",
-    "madeForKidsBlockedByMature": "Un article marqué comme contenu pour adultes ne peut pas également être publié pour les enfants."
+    "madeForKidsBlockedByMature": "Un article marqué comme contenu pour adultes ne peut pas également être publié pour les enfants.",
+    "encoderTitle": "OBS / Encodeur",
+    "encoderHint": "Obtenir les détails RTMP"
   },
   "bounty": {
     "claimed": "Réclamé",

@@ -3618,7 +3618,9 @@
     "madeForKidsConfirmYes": "Ja, det er for barn",
     "madeForKidsOnDesc": "Vist for barn i barnmodus, og av de vanlige feedene. Bare barnmodus kan kommentere.",
     "madeForKidsOffDesc": "Viser dette innlegget for barn som bruker barnmodus, og tar det av de vanlige feedene.",
-    "madeForKidsBlockedByMature": "Et innlegg merket som modent kan ikke også publiseres for barn."
+    "madeForKidsBlockedByMature": "Et innlegg merket som modent kan ikke også publiseres for barn.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Få RTMP-detaljer"
   },
   "bounty": {
     "claimed": "Innløst",

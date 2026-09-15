@@ -3572,7 +3572,9 @@
     "madeForKidsConfirmYes": "ہاں، ایہ بچیاں لئی اے",
     "madeForKidsOnDesc": "بچیاں موڈ وچ بچیاں نوں دکھایا جاندا اے، اور عام فیڈز وچوں نکل جاندا اے۔ صرف بچیاں موڈ تبصرہ کر سکدا اے۔",
     "madeForKidsOffDesc": "ایہ پوسٹ بچیاں موڈ استعمال کرن والے بچیاں نوں دکھاندا اے، اور اسے عام فیڈز وچوں نکال دیندا اے۔",
-    "madeForKidsBlockedByMature": "پختہ نشان زد پوسٹ بچیاں لئی شائع نہیں کیتی جا سکدی۔"
+    "madeForKidsBlockedByMature": "پختہ نشان زد پوسٹ بچیاں لئی شائع نہیں کیتی جا سکدی۔",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "RTMP تفصیلات حاصل کریں"
   },
   "bounty": {
     "claimed": "حاصل تھی ڳیا",

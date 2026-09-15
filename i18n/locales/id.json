@@ -3679,7 +3679,9 @@
     "markMadeForKids": "Tandai sebagai dibuat untuk anak - anak",
     "madeForKidsOnDesc": "Ditampilkan kepada anak-anak di Mode Anak-anak, dan keluar dari feed biasa. Hanya Mode Anak-anak yang dapat mengomentari.",
     "madeForKidsOffDesc": "Menampilkan postingan ini kepada anak-anak yang menggunakan Mode Anak-anak, dan mengeluarkannya dari feed biasa.",
-    "madeForKidsBlockedByMature": "Postingan yang ditandai dewasa tidak dapat juga dipublikasikan untuk anak-anak."
+    "madeForKidsBlockedByMature": "Postingan yang ditandai dewasa tidak dapat juga dipublikasikan untuk anak-anak.",
+    "encoderTitle": "OBS / encoder",
+    "encoderHint": "Ambil detail RTMP"
   },
   "bounty": {
     "claimed": "Sudah diklaim",

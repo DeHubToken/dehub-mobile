@@ -3629,7 +3629,9 @@
     "markMadeForKids": "Weka alama kama iliyofanywa kwa watoto",
     "madeForKidsOnDesc": "Inayoonyeshwa kwa watoto wanayotumia Hali ya Watoto, na inatoka kwenye mtiririko wa kawaida. Hali ya Watoto tu inaweza kuandika maoni.",
     "madeForKidsOffDesc": "Inaonyesha ujumbe huu kwa watoto wanayotumia Hali ya Watoto, na kuiondoa kwenye mtiririko wa kawaida.",
-    "madeForKidsBlockedByMature": "Ujumbe uliowekwa alama kama wenye umri hauwezi pia kuchapishwa kwa watoto."
+    "madeForKidsBlockedByMature": "Ujumbe uliowekwa alama kama wenye umri hauwezi pia kuchapishwa kwa watoto.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Pata maelezo ya RTMP"
   },
   "bounty": {
     "claimed": "Imedaiwa",

@@ -3696,7 +3696,9 @@
     "markMadeForKids": "お子様用としてマーク",
     "madeForKidsOnDesc": "キッズモードでお子様に表示され、通常のフィードでは表示されません。コメントできるのはキッズモードのみです。",
     "madeForKidsOffDesc": "このポストを子ども向けモードを使用して子どもたちに表示し、通常のフィードから削除します。",
-    "madeForKidsBlockedByMature": "成人とマークされた投稿は、お子様にも公開できません。"
+    "madeForKidsBlockedByMature": "成人とマークされた投稿は、お子様にも公開できません。",
+    "encoderTitle": "OBS / エンコーダー",
+    "encoderHint": "RTMPの詳細を取得"
   },
   "bounty": {
     "claimed": "受け取り済み",

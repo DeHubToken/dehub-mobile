@@ -3716,7 +3716,9 @@
     "madeForKidsConfirmYes": "Có, nó dành cho trẻ em",
     "madeForKidsOnDesc": "Hiển thị cho trẻ em trong Chế độ Trẻ em, và loại bỏ khỏi các bảng feed thông thường. Chỉ Chế độ Trẻ em mới có thể bình luận.",
     "madeForKidsOffDesc": "Hiển thị bài đăng này cho trẻ em sử dụng Chế độ Trẻ em, và loại bỏ nó khỏi các bảng feed thông thường.",
-    "madeForKidsBlockedByMature": "Bài đăng được đánh dấu là dành cho người lớn không thể được xuất bản cho trẻ em."
+    "madeForKidsBlockedByMature": "Bài đăng được đánh dấu là dành cho người lớn không thể được xuất bản cho trẻ em.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Lấy chi tiết RTMP"
   },
   "bounty": {
     "claimed": "Đã nhận",

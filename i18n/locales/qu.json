@@ -3658,7 +3658,9 @@
     "madeForKidsConfirmYes": "Ari, wawakuna para",
     "madeForKidsOnDesc": "Wawakuna Wawakuna Modopi rikuchisqa, chaynallataq ordinario feed-manta urayta apakun. Solamente Wawakuna Modo comentario ruwakun.",
     "madeForKidsOffDesc": "Kaypi post-ta wawakuna Wawakuna Modota llamkachispa rikuchisun, chaynallataq ordinario feed-manta urayta apakun.",
-    "madeForKidsBlockedByMature": "Mature nisqa post-ta wawakuna para publishasqa mana atisunchu."
+    "madeForKidsBlockedByMature": "Mature nisqa post-ta wawakuna para publishasqa mana atisunchu.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "RTMP detalleskunata apay"
   },
   "bounty": {
     "claimed": "Chaskisqa",

@@ -3586,7 +3586,9 @@
     "madeForKidsConfirmYes": "ແມ່ນ, ມັນສໍາລັບເດັກນ້ອຍ",
     "madeForKidsOnDesc": "ສະແດງໃຫ້ເດັກນ້ອຍໃນ Kids Mode, ແລະ ອອກຈາກຟີດທົ່ວໄປ. ພຽງແຕ່ Kids Mode ເທົ່ານັ້ນທີ່ສາມາດແຕ່ມຄວາມເຫັນໄດ້.",
     "madeForKidsOffDesc": "ສະແດງໂພສ໋ຕ໌ນີ້ໃຫ້ເດັກນ້ອຍທີ່ໃຊ້ Kids Mode, ແລະ ເອົາມັນອອກຈາກຟີດທົ່ວໄປ.",
-    "madeForKidsBlockedByMature": "ໂພສ໋ຕ໌ທີ່ຖືກຕິດປ້າຍວ່າ mature ບໍ່ສາມາດເຜີຍແພ່ສໍາລັບເດັກນ້ອຍໄດ້."
+    "madeForKidsBlockedByMature": "ໂພສ໋ຕ໌ທີ່ຖືກຕິດປ້າຍວ່າ mature ບໍ່ສາມາດເຜີຍແພ່ສໍາລັບເດັກນ້ອຍໄດ້.",
+    "encoderTitle": "OBS / ເຄື່ອງເຂົ້າລະຫັດ",
+    "encoderHint": "ຮັບລາຍລະອຽດ RTMP"
   },
   "bounty": {
     "claimed": "ຮັບແລ້ວ",

@@ -3618,7 +3618,9 @@
     "madeForKidsConfirmYes": "Bẹẹni, o je fun awọn ọmọ",
     "madeForKidsOnDesc": "Ti han si awọn ọmọ ni Kids Mode, ati jade ninu awọn iwe-ìròyìn ti o wọpọ. Nikan Kids Mode ni o le ṣe asọye.",
     "madeForKidsOffDesc": "Ṣe atẹ̀jáde post yii si awọn ọmọ ti nlo Kids Mode, ati gbe e jade ninu awọn iwe-ìròyìn ti o wọpọ.",
-    "madeForKidsBlockedByMature": "Ọ̀rọ̀ ti a ṣe ami gidi ko le tun ṣe atẹ̀jáde fun awọn ọmọ."
+    "madeForKidsBlockedByMature": "Ọ̀rọ̀ ti a ṣe ami gidi ko le tun ṣe atẹ̀jáde fun awọn ọmọ.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Gba awọn alaye RTMP"
   },
   "bounty": {
     "claimed": "Ti gbà",

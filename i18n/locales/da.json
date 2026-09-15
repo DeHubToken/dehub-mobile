@@ -3633,7 +3633,9 @@
     "markMadeForKids": "Markér som lavet til børn",
     "madeForKidsOnDesc": "Vist for børn i børnetilstand, og væk fra de almindelige feeds. Kun børnetilstand kan kommentere.",
     "madeForKidsOffDesc": "Viser dette indlæg til børn, der bruger børnetilstand, og tager det væk fra de almindelige feeds.",
-    "madeForKidsBlockedByMature": "Et indlæg markeret som modent kan ikke også publiceres til børn."
+    "madeForKidsBlockedByMature": "Et indlæg markeret som modent kan ikke også publiceres til børn.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Få RTMP-detaljer"
   },
   "bounty": {
     "claimed": "Indløst",

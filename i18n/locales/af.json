@@ -3746,7 +3746,9 @@
     "markMadeForKids": "Merk as gemaak vir kinders",
     "madeForKidsOnDesc": "Getoon aan kinders in Kindermodus, en af van die gewone voere. Slegs Kindermodus kan kommentaar lewer.",
     "madeForKidsOffDesc": "Wys hierdie pos aan kinders wat Kindermodus gebruik, en haal dit af van die gewone voere.",
-    "madeForKidsBlockedByMature": "'n Pos wat as volwasse gemerk is, kan nie ook vir kinders gepubliseer word nie."
+    "madeForKidsBlockedByMature": "'n Pos wat as volwasse gemerk is, kan nie ook vir kinders gepubliseer word nie.",
+    "encoderTitle": "OBS / Enkodeerder",
+    "encoderHint": "Kry RTMP-besonderhede"
   },
   "bounty": {
     "claimed": "Opgeëis",

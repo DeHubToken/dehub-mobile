@@ -3616,7 +3616,9 @@
     "madeForKidsConfirmYes": "होय, हे मुलांसाठी आहे",
     "madeForKidsOnDesc": "Kids Mode मध्ये मुलांना दाखवले जाते आणि सामान्य फीडमधून हटवले जाते. केवळ Kids Mode टिप्पणी करू शकते.",
     "madeForKidsOffDesc": "हा पोस्ट Kids Mode वापरणारी मुलांना दाखवते आणि सामान्य फीडमधून हटवते.",
-    "madeForKidsBlockedByMature": "परिपक्व म्हणून चिन्हांकित केलेला पोस्ट मुलांसाठी प्रकाशित केला जाऊ शकत नाही."
+    "madeForKidsBlockedByMature": "परिपक्व म्हणून चिन्हांकित केलेला पोस्ट मुलांसाठी प्रकाशित केला जाऊ शकत नाही.",
+    "encoderTitle": "OBS / एनकोडर",
+    "encoderHint": "RTMP तपशील मिळवा"
   },
   "bounty": {
     "claimed": "मिळवले",

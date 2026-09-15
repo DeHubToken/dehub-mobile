@@ -3699,7 +3699,9 @@
     "markMadeForKids": "Marcar como hecho para niños",
     "madeForKidsOnDesc": "Mostrado a niños en Modo Niños, y fuera de los feeds ordinarios. Solo Modo Niños puede comentar.",
     "madeForKidsOffDesc": "Muestra esta publicación a niños que usan Modo Niños, y la saca de los feeds ordinarios.",
-    "madeForKidsBlockedByMature": "Una publicación marcada como contenido para adultos no puede publicarse también para niños."
+    "madeForKidsBlockedByMature": "Una publicación marcada como contenido para adultos no puede publicarse también para niños.",
+    "encoderTitle": "OBS / codificador",
+    "encoderHint": "Obtener los datos RTMP"
   },
   "bounty": {
     "claimed": "Reclamado",
