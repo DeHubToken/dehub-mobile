@@ -3481,5 +3481,27 @@
     "custom": "ກຳນົດເອງ",
     "contractPlaceholder": "ທີ່ຢູ່ສັນຍາ (0x…)",
     "symbolPlaceholder": "ສັນຍະລັກ (ເຊັ່ນ PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "ບໍ່ສາມາດປ່ຽນເຄືອຂ່າຍສະໝັກໄດ້",
+    "connectWallet": "ເຊື່ອມຕໍ່ກະເປົາເພື່ອສະໝັກ",
+    "notBuyable": "ແພັກເກັດນີ້ຊື້ບໍ່ໄດ້. ຂໍໃຫ້ຜູ້ສ້າງສ້າງໃໝ່",
+    "preparing": "ກຳລັງກຽມ…",
+    "startFailed": "ບໍ່ສາມາດເລີ່ມການສະໝັກໄດ້",
+    "confirmInWallet": "ຢືນຢັນໃນກະເປົາຂອງທ່ານ…",
+    "waitingTx": "ກຳລັງລໍຖ້າທຸລະກຳ…",
+    "noTxHash": "ກະເປົາບໍ່ໄດ້ສົ່ງຄືນ hash ຂອງທຸລະກຳ",
+    "finishing": "ກຳລັງສຳເລັດ…",
+    "confirmTitle": "ຢືນຢັນການສະໝັກ",
+    "subscribeToFor": "ສະໝັກ {{name}} ໃນລາຄາ {{price}}",
+    "youPay": "ທ່ານຈ່າຍ {{amount}}",
+    "calculating": "ກຳລັງຄິດໄລ່ຍອດລວມ…",
+    "creatorReceives": "ຜູ້ສ້າງໄດ້ຮັບເຄຣດິດ {{amount}} USDT",
+    "custodyNote": "DHB ຂອງທ່ານຢູ່ໃນການເກັບຮັກສາຂອງຄັງ DeHub ແລະບໍ່ຖືກຂາຍ. ຜູ້ສ້າງໄດ້ຮັບຍອດສະໝັກເປັນ USDT.",
+    "editPlan": "ແກ້ໄຂແພັກເກັດ",
+    "notAvailableYet": "ຍັງບໍ່ພ້ອມໃຊ້",
+    "subscribe": "ສະໝັກ",
+    "subscriberCount_one": "ຜູ້ສະໝັກ {{count}} ຄົນ",
+    "subscriberCount_other": "ຜູ້ສະໝັກ {{count}} ຄົນ"
   }
 }

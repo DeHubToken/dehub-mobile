@@ -3482,5 +3482,27 @@
     "custom": "กำหนดเอง",
     "contractPlaceholder": "ที่อยู่สัญญา (0x…)",
     "symbolPlaceholder": "สัญลักษณ์ (เช่น PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "สลับเครือข่ายสมาชิกบ่สำเร็จ",
+    "connectWallet": "เชื่อมต่อกระเป๋าเพื่อสมัครสมาชิก",
+    "notBuyable": "แพ็กเกจนี้ซื้อบ่ได้ ขอให้ผู้สร้างสร้างใหม่",
+    "preparing": "กำลังเตรียม…",
+    "startFailed": "เริ่มการสมัครสมาชิกบ่สำเร็จ",
+    "confirmInWallet": "ยืนยันในกระเป๋าของเจ้า…",
+    "waitingTx": "กำลังถ้าธุรกรรม…",
+    "noTxHash": "กระเป๋าบ่ได้ส่งคืนแฮชของธุรกรรม",
+    "finishing": "กำลังเฮ็ดให้เสร็จ…",
+    "confirmTitle": "ยืนยันการสมัครสมาชิก",
+    "subscribeToFor": "สมัคร {{name}} ในราคา {{price}}",
+    "youPay": "เจ้าจ่าย {{amount}}",
+    "calculating": "กำลังคำนวณยอดรวม…",
+    "creatorReceives": "ผู้สร้างได้ฮับเครดิต {{amount}} USDT",
+    "custodyNote": "DHB ของเจ้ายังอยู่ในการดูแลของคลัง DeHub และสิบ่ถูกขาย ผู้สร้างสิได้ฮับยอดสมาชิกในสกุล USDT",
+    "editPlan": "แก้ไขแพ็กเกจ",
+    "notAvailableYet": "ยังบ่พร้อมใช้งาน",
+    "subscribe": "สมัครสมาชิก",
+    "subscriberCount_one": "สมาชิก {{count}} คน",
+    "subscriberCount_other": "สมาชิก {{count}} คน"
   }
 }

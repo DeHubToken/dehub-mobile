@@ -3481,5 +3481,27 @@
     "custom": "Khusus",
     "contractPlaceholder": "Alamat kontrak (0x…)",
     "symbolPlaceholder": "Simbol (contone PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Ora bisa ngganti jaringan langganan",
+    "connectWallet": "Sambungake dompetmu kanggo langganan",
+    "notBuyable": "Paket iki ora bisa dituku. Njaluk kreator nggawe maneh",
+    "preparing": "Nyiapake…",
+    "startFailed": "Gagal miwiti langganan",
+    "confirmInWallet": "Konfirmasi ing dompetmu…",
+    "waitingTx": "Ngenteni transaksi…",
+    "noTxHash": "Dompet ora ngasilake hash transaksi",
+    "finishing": "Ngrampungake…",
+    "confirmTitle": "Konfirmasi langganan",
+    "subscribeToFor": "Langganan {{name}} regane {{price}}",
+    "youPay": "Sampeyan mbayar {{amount}}",
+    "calculating": "Ngitung total…",
+    "creatorReceives": "Kreator nampa kredit {{amount}} USDT",
+    "custodyNote": "DHB sampeyan tetep ing kustodi treasury DeHub lan ora didol. Kreator nampa saldo langganan ing USDT.",
+    "editPlan": "Owahi paket",
+    "notAvailableYet": "Durung kasedhiya",
+    "subscribe": "Langganan",
+    "subscriberCount_one": "{{count}} pelanggan",
+    "subscriberCount_other": "{{count}} pelanggan"
   }
 }

@@ -3514,5 +3514,27 @@
     "custom": "Gaar ah",
     "contractPlaceholder": "Cinwaanka heshiiska (0x…)",
     "symbolPlaceholder": "Astaan (tusaale PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Lama beddeli karin shabakadda rukumidda",
+    "connectWallet": "Ku xidh jeebkaaga si aad u rukunto",
+    "notBuyable": "Qorshahan lama iibsan karo. Weydiiso abuuraha inuu dib u abuuro",
+    "preparing": "Waa la diyaarinayaa…",
+    "startFailed": "Lama bilaabi karin rukumidda",
+    "confirmInWallet": "Ku xaqiiji jeebkaaga…",
+    "waitingTx": "Sugaya macaamilka…",
+    "noTxHash": "Jeebku ma soo celin hash macaamil",
+    "finishing": "Waa la dhammaynayaa…",
+    "confirmTitle": "Xaqiiji rukumidda",
+    "subscribeToFor": "Ku rukun {{name}} {{price}}",
+    "youPay": "Waxaad bixinaysaa {{amount}}",
+    "calculating": "Waa la xisaabinayaa wadarta…",
+    "creatorReceives": "Abuuraha wuxuu helayaa {{amount}} USDT deyn ah",
+    "custodyNote": "DHB-gaagu wuxuu ku sii jiraa hayntii khasnadda DeHub, lamana iibiyo. Abuuraha wuxuu helayaa haraaga rukumidda oo USDT ah.",
+    "editPlan": "Wax ka beddel qorshaha",
+    "notAvailableYet": "Weli lama heli karo",
+    "subscribe": "Rukun",
+    "subscriberCount_one": "{{count}} rukume",
+    "subscriberCount_other": "{{count}} rukumayaal"
   }
 }

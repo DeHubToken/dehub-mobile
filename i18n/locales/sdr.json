@@ -3522,5 +3522,27 @@
     "custom": "কাস্টম",
     "contractPlaceholder": "কনট্র্যাক্ট ঠিকানা (0x…)",
     "symbolPlaceholder": "প্রতীক (যেমন PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "সাবস্ক্রিপশন নেটওয়ার্ক বদলানো গেল না",
+    "connectWallet": "সাবস্ক্রাইব করির জন্যে তোমার ওয়ালেট যুক্ত করেন",
+    "notBuyable": "এই প্ল্যান কিনা যাবে না। ক্রিয়েটরক আবার বানাইতে কন",
+    "preparing": "প্রস্তুত হইতেছে…",
+    "startFailed": "সাবস্ক্রিপশন শুরু করা গেল না",
+    "confirmInWallet": "তোমার ওয়ালেটত নিশ্চিত করেন…",
+    "waitingTx": "লেনদেনের অপেক্ষাত…",
+    "noTxHash": "ওয়ালেট লেনদেনের হ্যাশ ফেরত দেয় নাই",
+    "finishing": "শেষ হইতেছে…",
+    "confirmTitle": "সাবস্ক্রিপশন নিশ্চিত করেন",
+    "subscribeToFor": "{{price}} ত {{name}} ত সাবস্ক্রাইব করেন",
+    "youPay": "তোমরা {{amount}} দিবেন",
+    "calculating": "মোট হিসাব হইতেছে…",
+    "creatorReceives": "ক্রিয়েটর পাইবে {{amount}} USDT ক্রেডিট",
+    "custodyNote": "তোমার DHB DeHub ট্রেজারির হেফাজতত থাকে আর বেচা হয় না। ক্রিয়েটর USDT ভিত্তিক সাবস্ক্রিপশন ব্যালেন্স পায়।",
+    "editPlan": "প্ল্যান বদলান",
+    "notAvailableYet": "এখনো পাওয়া যায় না",
+    "subscribe": "সাবস্ক্রাইব করেন",
+    "subscriberCount_one": "{{count}} সাবস্ক্রাইবার",
+    "subscriberCount_other": "{{count}} সাবস্ক্রাইবার"
   }
 }

@@ -3516,5 +3516,27 @@
     "custom": "Ыңгайлаштырылган",
     "contractPlaceholder": "Келишим дареги (0x…)",
     "symbolPlaceholder": "Символ (мисалы, PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Жазылуу тармагын алмаштыруу мүмкүн болбоду",
+    "connectWallet": "Жазылуу үчүн капчыгыңызды туташтырыңыз",
+    "notBuyable": "Бул планды сатып алуу мүмкүн эмес. Автордон кайра түзүүнү сураңыз",
+    "preparing": "Даярдалууда…",
+    "startFailed": "Жазылууну баштоо мүмкүн болбоду",
+    "confirmInWallet": "Капчыгыңызда ырастаңыз…",
+    "waitingTx": "Транзакция күтүлүүдө…",
+    "noTxHash": "Капчык транзакция хэшин кайтарган жок",
+    "finishing": "Аяктоодо…",
+    "confirmTitle": "Жазылууну ырастоо",
+    "subscribeToFor": "{{price}} үчүн {{name}} планына жазылыңыз",
+    "youPay": "Сиз {{amount}} төлөйсүз",
+    "calculating": "Жалпы сумма эсептелүүдө…",
+    "creatorReceives": "Автор {{amount}} USDT кредит алат",
+    "custodyNote": "Сиздин DHB DeHub казынасынын сактоосунда калат жана сатылбайт. Автор USDT менен көрсөтүлгөн жазылуу балансын алат.",
+    "editPlan": "Планды оңдоо",
+    "notAvailableYet": "Азырынча жеткиликсиз",
+    "subscribe": "Жазылуу",
+    "subscriberCount_one": "{{count}} жазылуучу",
+    "subscriberCount_other": "{{count}} жазылуучу"
   }
 }

@@ -3513,5 +3513,27 @@
     "custom": "Tilpasset",
     "contractPlaceholder": "Kontraktadresse (0x…)",
     "symbolPlaceholder": "Symbol (f.eks. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Kunne ikke bytte abonnementsnettverk",
+    "connectWallet": "Koble til lommeboken for å abonnere",
+    "notBuyable": "Denne planen kan ikke kjøpes. Be skaperen om å opprette den på nytt",
+    "preparing": "Forbereder…",
+    "startFailed": "Kunne ikke starte abonnementet",
+    "confirmInWallet": "Bekreft i lommeboken…",
+    "waitingTx": "Venter på transaksjonen…",
+    "noTxHash": "Lommeboken returnerte ingen transaksjonshash",
+    "finishing": "Fullfører…",
+    "confirmTitle": "Bekreft abonnement",
+    "subscribeToFor": "Abonner på {{name}} for {{price}}",
+    "youPay": "Du betaler {{amount}}",
+    "calculating": "Beregner totalen…",
+    "creatorReceives": "Skaperen mottar {{amount}} USDT i kreditt",
+    "custodyNote": "DHB-en din blir værende i DeHubs treasury-forvaring og selges ikke. Skaperen mottar en abonnementssaldo i USDT.",
+    "editPlan": "Rediger plan",
+    "notAvailableYet": "Ikke tilgjengelig ennå",
+    "subscribe": "Abonner",
+    "subscriberCount_one": "{{count}} abonnent",
+    "subscriberCount_other": "{{count}} abonnenter"
   }
 }

@@ -3499,5 +3499,27 @@
     "custom": "ਕਸਟਮ",
     "contractPlaceholder": "ਕੰਟਰੈਕਟ ਪਤਾ (0x…)",
     "symbolPlaceholder": "ਚਿੰਨ੍ਹ (ਜਿਵੇਂ PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਨੈੱਟਵਰਕ ਨਹੀਂ ਬਦਲਿਆ ਜਾ ਸਕਿਆ",
+    "connectWallet": "ਸਬਸਕ੍ਰਾਈਬ ਕਰਨ ਲਈ ਆਪਣਾ ਵਾਲੇਟ ਜੋੜੋ",
+    "notBuyable": "ਇਹ ਪਲਾਨ ਖਰੀਦਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ। ਕ੍ਰਿਏਟਰ ਨੂੰ ਦੁਬਾਰਾ ਬਣਾਉਣ ਲਈ ਕਹੋ",
+    "preparing": "ਤਿਆਰ ਹੋ ਰਿਹਾ ਹੈ…",
+    "startFailed": "ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋ ਸਕੀ",
+    "confirmInWallet": "ਆਪਣੇ ਵਾਲੇਟ ਵਿੱਚ ਪੁਸ਼ਟੀ ਕਰੋ…",
+    "waitingTx": "ਲੈਣ-ਦੇਣ ਦੀ ਉਡੀਕ…",
+    "noTxHash": "ਵਾਲੇਟ ਨੇ ਲੈਣ-ਦੇਣ ਦਾ ਹੈਸ਼ ਵਾਪਸ ਨਹੀਂ ਕੀਤਾ",
+    "finishing": "ਪੂਰਾ ਹੋ ਰਿਹਾ ਹੈ…",
+    "confirmTitle": "ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
+    "subscribeToFor": "{{price}} ਵਿੱਚ {{name}} ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ",
+    "youPay": "ਤੁਸੀਂ {{amount}} ਦਿਓਗੇ",
+    "calculating": "ਕੁੱਲ ਗਿਣਿਆ ਜਾ ਰਿਹਾ ਹੈ…",
+    "creatorReceives": "ਕ੍ਰਿਏਟਰ ਨੂੰ {{amount}} USDT ਕ੍ਰੈਡਿਟ ਮਿਲੇਗਾ",
+    "custodyNote": "ਤੁਹਾਡਾ DHB DeHub ਖਜ਼ਾਨੇ ਦੀ ਹਿਰਾਸਤ ਵਿੱਚ ਰਹਿੰਦਾ ਹੈ ਅਤੇ ਵੇਚਿਆ ਨਹੀਂ ਜਾਂਦਾ। ਕ੍ਰਿਏਟਰ ਨੂੰ USDT ਵਿੱਚ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਬਕਾਇਆ ਮਿਲਦਾ ਹੈ।",
+    "editPlan": "ਪਲਾਨ ਸੋਧੋ",
+    "notAvailableYet": "ਅਜੇ ਉਪਲਬਧ ਨਹੀਂ",
+    "subscribe": "ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ",
+    "subscriberCount_one": "{{count}} ਸਬਸਕ੍ਰਾਈਬਰ",
+    "subscriberCount_other": "{{count}} ਸਬਸਕ੍ਰਾਈਬਰ"
   }
 }

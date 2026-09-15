@@ -3587,5 +3587,27 @@
     "custom": "Kan mataa",
     "contractPlaceholder": "Teessoo konyaraatii (0x…)",
     "symbolPlaceholder": "Mallattoo (fkn PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Neetwoorkii galmee jijjiiruun hin dandaʼamne",
+    "connectWallet": "Galmaaʼuuf boorsaa kee walqabsiisi",
+    "notBuyable": "Karoorri kun bitamuu hin dandaʼu. Uumaa akka irra deebiʼee uumu gaafadhu",
+    "preparing": "Qophaaʼaa jira…",
+    "startFailed": "Galmee jalqabuun hin dandaʼamne",
+    "confirmInWallet": "Boorsaa kee keessatti mirkaneessi…",
+    "waitingTx": "Daldala eegaa jira…",
+    "noTxHash": "Boorsaan hash daldalaa hin deebisne",
+    "finishing": "Xumuramaa jira…",
+    "confirmTitle": "Galmee mirkaneessi",
+    "subscribeToFor": "{{price}}n {{name}} galmaaʼi",
+    "youPay": "Ati {{amount}} kaffalta",
+    "calculating": "Waliigala shallagaa jira…",
+    "creatorReceives": "Uumaan kireedii {{amount}} USDT argata",
+    "custodyNote": "DHB keessan kuusaa qabeenyaa DeHub keessatti hafa, hin gurguramu. Uumaan hafteedhaa galmee USDT dhaan argata.",
+    "editPlan": "Karoora gulaali",
+    "notAvailableYet": "Amma hin argamu",
+    "subscribe": "Galmaaʼi",
+    "subscriberCount_one": "Galmeeffataa {{count}}",
+    "subscriberCount_other": "Galmeeffattoota {{count}}"
   }
 }

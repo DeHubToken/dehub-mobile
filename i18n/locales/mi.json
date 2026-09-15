@@ -3508,5 +3508,27 @@
     "custom": "Ritenga",
     "contractPlaceholder": "Wāhitau kirimana (0x…)",
     "symbolPlaceholder": "Tohu (hei tauira PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Kāore i taea te huri i te whatunga ohaurunga",
+    "connectWallet": "Honoa tō pūkoro kia ohaurunga",
+    "notBuyable": "Kāore e taea te hoko i tēnei mahere. Tonoa te kaihanga kia hanga anō",
+    "preparing": "Kei te whakarite…",
+    "startFailed": "Kāore i taea te tīmata i te ohaurunga",
+    "confirmInWallet": "Whakaūngia i tō pūkoro…",
+    "waitingTx": "Kei te tatari mō te whakawhitinga…",
+    "noTxHash": "Kāore te pūkoro i whakahoki mai i tētahi hash whakawhiti",
+    "finishing": "Kei te whakaoti…",
+    "confirmTitle": "Whakaū i te ohaurunga",
+    "subscribeToFor": "Ohaurunga ki {{name}} mō te {{price}}",
+    "youPay": "Ka utua e koe te {{amount}}",
+    "calculating": "Kei te tatau i te tapeke…",
+    "creatorReceives": "Ka whiwhi te kaihanga i te nama {{amount}} USDT",
+    "custodyNote": "Ka noho tō DHB i raro i te tiaki a te pūtea DeHub, kāore e hokona. Ka whiwhi te kaihanga i tētahi toenga ohaurunga i te USDT.",
+    "editPlan": "Whakatika mahere",
+    "notAvailableYet": "Kāore anō kia wātea",
+    "subscribe": "Ohaurunga",
+    "subscriberCount_one": "{{count}} kaiohaurunga",
+    "subscriberCount_other": "{{count}} kaiohaurunga"
   }
 }

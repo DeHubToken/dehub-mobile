@@ -3494,5 +3494,27 @@
     "custom": "କଷ୍ଟମ",
     "contractPlaceholder": "କଣ୍ଟ୍ରାକ୍ଟ ଠିକଣା (0x…)",
     "symbolPlaceholder": "ପ୍ରତୀକ (ଯଥା PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "ସବସ୍କ୍ରିପସନ ନେଟୱାର୍କ ବଦଳାଇହେଲା ନାହିଁ",
+    "connectWallet": "ସବସ୍କ୍ରାଇବ କରିବାକୁ ଆପଣଙ୍କ ୱାଲେଟ ଯୋଡ଼ନ୍ତୁ",
+    "notBuyable": "ଏହି ଯୋଜନା କିଣିହେବ ନାହିଁ। ସ୍ରଷ୍ଟାଙ୍କୁ ପୁଣି ତିଆରି କରିବାକୁ କୁହନ୍ତୁ",
+    "preparing": "ପ୍ରସ୍ତୁତ ହେଉଛି…",
+    "startFailed": "ସବସ୍କ୍ରିପସନ ଆରମ୍ଭ କରିହେଲା ନାହିଁ",
+    "confirmInWallet": "ଆପଣଙ୍କ ୱାଲେଟରେ ନିଶ୍ଚିତ କରନ୍ତୁ…",
+    "waitingTx": "କାରବାରକୁ ଅପେକ୍ଷା…",
+    "noTxHash": "ୱାଲେଟ କାରବାର ହ୍ୟାସ ଫେରାଇଲା ନାହିଁ",
+    "finishing": "ସମାପ୍ତ ହେଉଛି…",
+    "confirmTitle": "ସବସ୍କ୍ରିପସନ ନିଶ୍ଚିତ କରନ୍ତୁ",
+    "subscribeToFor": "{{price}} ରେ {{name}} ସବସ୍କ୍ରାଇବ କରନ୍ତୁ",
+    "youPay": "ଆପଣ {{amount}} ଦେବେ",
+    "calculating": "ମୋଟ ଗଣନା ହେଉଛି…",
+    "creatorReceives": "ସ୍ରଷ୍ଟା {{amount}} USDT କ୍ରେଡିଟ ପାଇବେ",
+    "custodyNote": "ଆପଣଙ୍କ DHB DeHub ଟ୍ରେଜରିର ହେପାଜତରେ ରହେ ଏବଂ ବିକ୍ରି ହୁଏ ନାହିଁ। ସ୍ରଷ୍ଟା USDT ଭିତ୍ତିକ ସବସ୍କ୍ରିପସନ ବାଲାନ୍ସ ପାଆନ୍ତି।",
+    "editPlan": "ଯୋଜନା ସମ୍ପାଦନ କରନ୍ତୁ",
+    "notAvailableYet": "ଏବେ ଉପଲବ୍ଧ ନାହିଁ",
+    "subscribe": "ସବସ୍କ୍ରାଇବ କରନ୍ତୁ",
+    "subscriberCount_one": "{{count}} ସବସ୍କ୍ରାଇବର",
+    "subscriberCount_other": "{{count}} ସବସ୍କ୍ରାଇବର"
   }
 }

@@ -3558,5 +3558,27 @@
     "custom": "მორგებული",
     "contractPlaceholder": "კონტრაქტის მისამართი (0x…)",
     "symbolPlaceholder": "სიმბოლო (მაგ. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "გამოწერის ქსელის შეცვლა ვერ მოხერხდა",
+    "connectWallet": "გამოსაწერად დააკავშირეთ თქვენი საფულე",
+    "notBuyable": "ამ გეგმის ყიდვა შეუძლებელია. სთხოვეთ ავტორს ხელახლა შექმნას",
+    "preparing": "მზადდება…",
+    "startFailed": "გამოწერის დაწყება ვერ მოხერხდა",
+    "confirmInWallet": "დაადასტურეთ თქვენს საფულეში…",
+    "waitingTx": "ტრანზაქციის მოლოდინში…",
+    "noTxHash": "საფულემ ტრანზაქციის ჰეში არ დააბრუნა",
+    "finishing": "სრულდება…",
+    "confirmTitle": "გამოწერის დადასტურება",
+    "subscribeToFor": "გამოიწერეთ {{name}} {{price}}-ად",
+    "youPay": "თქვენ იხდით {{amount}}",
+    "calculating": "ჯამის გამოთვლა…",
+    "creatorReceives": "ავტორი იღებს {{amount}} USDT კრედიტს",
+    "custodyNote": "თქვენი DHB რჩება DeHub-ის ხაზინის მეთვალყურეობაში და არ იყიდება. ავტორი იღებს USDT-ში გამოსახულ გამოწერის ბალანსს.",
+    "editPlan": "გეგმის რედაქტირება",
+    "notAvailableYet": "ჯერ მიუწვდომელია",
+    "subscribe": "გამოწერა",
+    "subscriberCount_one": "{{count}} გამომწერი",
+    "subscriberCount_other": "{{count}} გამომწერი"
   }
 }

@@ -3542,5 +3542,27 @@
     "custom": "ផ្ទាល់ខ្លួន",
     "contractPlaceholder": "អាសយដ្ឋានកិច្ចសន្យា (0x…)",
     "symbolPlaceholder": "និមិត្តសញ្ញា (ឧ. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "មិនអាចប្ដូរបណ្ដាញជាវបានទេ",
+    "connectWallet": "ភ្ជាប់កាបូបរបស់អ្នកដើម្បីជាវ",
+    "notBuyable": "គម្រោងនេះមិនអាចទិញបានទេ។ សុំឱ្យអ្នកបង្កើតធ្វើវាឡើងវិញ",
+    "preparing": "កំពុងរៀបចំ…",
+    "startFailed": "មិនអាចចាប់ផ្ដើមការជាវបានទេ",
+    "confirmInWallet": "បញ្ជាក់ក្នុងកាបូបរបស់អ្នក…",
+    "waitingTx": "កំពុងរង់ចាំប្រតិបត្តិការ…",
+    "noTxHash": "កាបូបមិនបានប្រគល់ hash ប្រតិបត្តិការទេ",
+    "finishing": "កំពុងបញ្ចប់…",
+    "confirmTitle": "បញ្ជាក់ការជាវ",
+    "subscribeToFor": "ជាវ {{name}} ក្នុងតម្លៃ {{price}}",
+    "youPay": "អ្នកបង់ {{amount}}",
+    "calculating": "កំពុងគណនាសរុប…",
+    "creatorReceives": "អ្នកបង្កើតទទួលបានឥណទាន {{amount}} USDT",
+    "custodyNote": "DHB របស់អ្នកនៅក្នុងការគ្រប់គ្រងរបស់ឃ្លាំង DeHub និងមិនត្រូវបានលក់ទេ។ អ្នកបង្កើតទទួលបានសមតុល្យជាវគិតជា USDT។",
+    "editPlan": "កែគម្រោង",
+    "notAvailableYet": "មិនទាន់មាន",
+    "subscribe": "ជាវ",
+    "subscriberCount_one": "អ្នកជាវ {{count}} នាក់",
+    "subscriberCount_other": "អ្នកជាវ {{count}} នាក់"
   }
 }

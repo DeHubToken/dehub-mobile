@@ -3580,5 +3580,27 @@
     "custom": "自定义",
     "contractPlaceholder": "合约地址（0x…）",
     "symbolPlaceholder": "代号（例如 PEPE）"
+  },
+  "subscriptions": {
+    "switchFailed": "无法切换订阅网络",
+    "connectWallet": "请连接钱包以订阅",
+    "notBuyable": "此方案无法购买。请让创作者重新创建",
+    "preparing": "正在准备…",
+    "startFailed": "无法开始订阅",
+    "confirmInWallet": "请在钱包中确认…",
+    "waitingTx": "正在等待交易…",
+    "noTxHash": "钱包没有返回交易哈希",
+    "finishing": "正在收尾…",
+    "confirmTitle": "确认订阅",
+    "subscribeToFor": "以 {{price}} 订阅 {{name}}",
+    "youPay": "你支付 {{amount}}",
+    "calculating": "正在计算总额…",
+    "creatorReceives": "创作者获得 {{amount}} USDT 额度",
+    "custodyNote": "你的 DHB 由 DeHub 金库托管，不会被出售。创作者获得以 USDT 计价的订阅余额。",
+    "editPlan": "编辑方案",
+    "notAvailableYet": "尚不可用",
+    "subscribe": "订阅",
+    "subscriberCount_one": "{{count}} 位订阅者",
+    "subscriberCount_other": "{{count}} 位订阅者"
   }
 }

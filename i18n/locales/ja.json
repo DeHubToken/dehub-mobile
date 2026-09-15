@@ -3590,5 +3590,27 @@
     "custom": "カスタム",
     "contractPlaceholder": "コントラクトアドレス（0x…）",
     "symbolPlaceholder": "シンボル（例: PEPE）"
+  },
+  "subscriptions": {
+    "switchFailed": "サブスクのネットワークを切り替えられませんでした",
+    "connectWallet": "登録するにはウォレットを接続してください",
+    "notBuyable": "このプランは購入できません。作成者に作り直してもらってください",
+    "preparing": "準備中…",
+    "startFailed": "サブスクを開始できませんでした",
+    "confirmInWallet": "ウォレットで承認してください…",
+    "waitingTx": "取引を待っています…",
+    "noTxHash": "ウォレットがトランザクションハッシュを返しませんでした",
+    "finishing": "仕上げ中…",
+    "confirmTitle": "サブスクを確定",
+    "subscribeToFor": "{{price}} で {{name}} に登録",
+    "youPay": "お支払い {{amount}}",
+    "calculating": "合計を計算中…",
+    "creatorReceives": "クリエイターは {{amount}} USDT のクレジットを受け取ります",
+    "custodyNote": "あなたの DHB は DeHub トレジャリーの保管下に留まり、売却されません。クリエイターは USDT 建てのサブスク残高を受け取ります。",
+    "editPlan": "プランを編集",
+    "notAvailableYet": "まだ利用できません",
+    "subscribe": "登録する",
+    "subscriberCount_one": "登録者 {{count}} 人",
+    "subscriberCount_other": "登録者 {{count}} 人"
   }
 }

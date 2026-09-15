@@ -3501,5 +3501,27 @@
     "custom": "Nhazi onwe",
     "contractPlaceholder": "Adreesị nkwekọrịta (0x…)",
     "symbolPlaceholder": "Akara (dịka PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Enweghị ike ịgbanwe netwọk ndenye aha",
+    "connectWallet": "Jikọọ obere akpa gị iji debanye aha",
+    "notBuyable": "Enweghị ike ịzụta atụmatụ a. Gwa onye kere ya ka o mepụta ya ọzọ",
+    "preparing": "Na-akwado…",
+    "startFailed": "Enweghị ike ịmalite ndenye aha",
+    "confirmInWallet": "Kwado na obere akpa gị…",
+    "waitingTx": "Na-eche azụmahịa…",
+    "noTxHash": "Obere akpa ahụ enyeghị hash azụmahịa",
+    "finishing": "Na-emecha…",
+    "confirmTitle": "Kwado ndenye aha",
+    "subscribeToFor": "Debanye aha na {{name}} maka {{price}}",
+    "youPay": "Ị na-akwụ {{amount}}",
+    "calculating": "Na-agbakọ ngụkọta…",
+    "creatorReceives": "Onye kere ya na-anata kredit {{amount}} USDT",
+    "custodyNote": "DHB gị na-anọgide n'aka ụlọakụ DeHub, a naghị ere ya. Onye kere ya na-anata ego ndenye aha n'USDT.",
+    "editPlan": "Dezie atụmatụ",
+    "notAvailableYet": "Ọ ka adịghị",
+    "subscribe": "Debanye aha",
+    "subscriberCount_one": "Onye debanyere aha {{count}}",
+    "subscriberCount_other": "Ndị debanyere aha {{count}}"
   }
 }

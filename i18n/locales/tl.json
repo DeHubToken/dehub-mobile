@@ -3702,5 +3702,27 @@
     "custom": "Custom",
     "contractPlaceholder": "Contract address (0x…)",
     "symbolPlaceholder": "Symbol (hal. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Hindi mapalitan ang subscription network",
+    "connectWallet": "Ikonekta ang wallet mo para mag-subscribe",
+    "notBuyable": "Hindi mabibili ang plan na ito. Hilingin sa creator na gawin itong muli",
+    "preparing": "Inihahanda…",
+    "startFailed": "Hindi masimulan ang subscription",
+    "confirmInWallet": "Kumpirmahin sa wallet mo…",
+    "waitingTx": "Hinihintay ang transaksyon…",
+    "noTxHash": "Walang ibinalik na transaction hash ang wallet",
+    "finishing": "Tinatapos…",
+    "confirmTitle": "Kumpirmahin ang subscription",
+    "subscribeToFor": "Mag-subscribe sa {{name}} sa halagang {{price}}",
+    "youPay": "Magbabayad ka ng {{amount}}",
+    "calculating": "Kinakalkula ang kabuuan…",
+    "creatorReceives": "Makakatanggap ang creator ng {{amount}} USDT credit",
+    "custodyNote": "Nananatili ang DHB mo sa custody ng DeHub treasury at hindi ibinebenta. Ang creator ay tumatanggap ng subscription balance na naka-USDT.",
+    "editPlan": "I-edit ang plan",
+    "notAvailableYet": "Hindi pa available",
+    "subscribe": "Mag-subscribe",
+    "subscriberCount_one": "{{count}} subscriber",
+    "subscriberCount_other": "{{count}} subscribers"
   }
 }

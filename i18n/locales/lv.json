@@ -3522,5 +3522,27 @@
     "custom": "Pielāgots",
     "contractPlaceholder": "Līguma adrese (0x…)",
     "symbolPlaceholder": "Simbols (piem., PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Neizdevās pārslēgt abonēšanas tīklu",
+    "connectWallet": "Lai abonētu, pievienojiet maku",
+    "notBuyable": "Šo plānu nevar iegādāties. Palūdziet autoram to izveidot no jauna",
+    "preparing": "Notiek sagatavošana…",
+    "startFailed": "Neizdevās sākt abonēšanu",
+    "confirmInWallet": "Apstipriniet makā…",
+    "waitingTx": "Gaida darījumu…",
+    "noTxHash": "Maks neatgrieza darījuma jaucējkodu",
+    "finishing": "Notiek pabeigšana…",
+    "confirmTitle": "Apstiprināt abonēšanu",
+    "subscribeToFor": "Abonējiet {{name}} par {{price}}",
+    "youPay": "Jūs maksājat {{amount}}",
+    "calculating": "Tiek aprēķināta kopsumma…",
+    "creatorReceives": "Autors saņem {{amount}} USDT kredītu",
+    "custodyNote": "Jūsu DHB paliek DeHub kases glabāšanā un netiek pārdoti. Autors saņem abonēšanas atlikumu USDT valūtā.",
+    "editPlan": "Rediģēt plānu",
+    "notAvailableYet": "Vēl nav pieejams",
+    "subscribe": "Abonēt",
+    "subscriberCount_one": "{{count}} abonents",
+    "subscriberCount_other": "{{count}} abonenti"
   }
 }

@@ -3585,5 +3585,27 @@
     "custom": "Özel",
     "contractPlaceholder": "Sözleşme adresi (0x…)",
     "symbolPlaceholder": "Sembol (örn. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Abonelik ağı değiştirilemedi",
+    "connectWallet": "Abone olmak için cüzdanınızı bağlayın",
+    "notBuyable": "Bu plan satın alınamaz. Oluşturandan yeniden oluşturmasını isteyin",
+    "preparing": "Hazırlanıyor…",
+    "startFailed": "Abonelik başlatılamadı",
+    "confirmInWallet": "Cüzdanınızda onaylayın…",
+    "waitingTx": "İşlem bekleniyor…",
+    "noTxHash": "Cüzdan bir işlem hash'i döndürmedi",
+    "finishing": "Tamamlanıyor…",
+    "confirmTitle": "Aboneliği onayla",
+    "subscribeToFor": "{{price}} karşılığında {{name}} aboneliği alın",
+    "youPay": "{{amount}} ödersiniz",
+    "calculating": "Toplam hesaplanıyor…",
+    "creatorReceives": "Oluşturan {{amount}} USDT kredi alır",
+    "custodyNote": "DHB'niz DeHub hazinesinin saklamasında kalır ve satılmaz. Oluşturan, USDT cinsinden bir abonelik bakiyesi alır.",
+    "editPlan": "Planı düzenle",
+    "notAvailableYet": "Henüz kullanılamıyor",
+    "subscribe": "Abone ol",
+    "subscriberCount_one": "{{count}} abone",
+    "subscriberCount_other": "{{count}} abone"
   }
 }

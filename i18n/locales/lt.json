@@ -3522,5 +3522,27 @@
     "custom": "Pasirinktinis",
     "contractPlaceholder": "Sutarties adresas (0x…)",
     "symbolPlaceholder": "Simbolis (pvz., PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Nepavyko perjungti prenumeratos tinklo",
+    "connectWallet": "Norėdami užsiprenumeruoti prijunkite piniginę",
+    "notBuyable": "Šio plano negalima nusipirkti. Paprašykite kūrėjo sukurti jį iš naujo",
+    "preparing": "Ruošiama…",
+    "startFailed": "Nepavyko pradėti prenumeratos",
+    "confirmInWallet": "Patvirtinkite piniginėje…",
+    "waitingTx": "Laukiama operacijos…",
+    "noTxHash": "Piniginė negrąžino operacijos maišos",
+    "finishing": "Užbaigiama…",
+    "confirmTitle": "Patvirtinti prenumeratą",
+    "subscribeToFor": "Prenumeruokite {{name}} už {{price}}",
+    "youPay": "Jūs mokate {{amount}}",
+    "calculating": "Skaičiuojama bendra suma…",
+    "creatorReceives": "Kūrėjas gauna {{amount}} USDT kredito",
+    "custodyNote": "Jūsų DHB lieka „DeHub“ iždo saugojime ir nėra parduodami. Kūrėjas gauna prenumeratos likutį USDT valiuta.",
+    "editPlan": "Redaguoti planą",
+    "notAvailableYet": "Dar nepasiekiama",
+    "subscribe": "Prenumeruoti",
+    "subscriberCount_one": "{{count}} prenumeratorius",
+    "subscriberCount_other": "{{count}} prenumeratoriai"
   }
 }
