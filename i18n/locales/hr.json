@@ -607,7 +607,8 @@
     "takePhoto": "Snimi fotografiju",
     "recordVideo": "Snimi video",
     "saveChanges": "Spremi promjene",
-    "copy": "Kopiraj"
+    "copy": "Kopiraj",
+    "optionalSuffix": "(neobavezno)"
   },
   "tip": {
     "title": "Pošalji napojnicu",
@@ -3257,5 +3258,18 @@
     "leaveBody": "Napustiti {{name}}?",
     "leaveAction": "Napusti",
     "noBadgeYet": "Još nema bedža"
+  },
+  "addToFolder": {
+    "title": "Spremi u mapu",
+    "subtitle": "Odaberi gdje želiš spremiti ovu objavu.",
+    "loading": "Učitavanje mapa…",
+    "noneYet": "Još nema stvorenih mapa",
+    "noneYetHint": "Stvori jednu za organiziranje ove objave.",
+    "nameLabel": "Naziv mape",
+    "namePlaceholder": "npr. Kuhanje, Putovanja",
+    "descriptionPlaceholder": "Što pripada u ovu mapu?",
+    "createAndSave": "Stvori i spremi",
+    "createNew": "Stvori novu mapu",
+    "closeA11y": "Zatvori odabir mape"
   }
 }

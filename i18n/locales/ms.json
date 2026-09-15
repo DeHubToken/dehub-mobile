@@ -339,7 +339,8 @@
     "anonymous": "Tanpa nama",
     "signIn": "Log masuk",
     "takePhoto": "Ambil foto",
-    "recordVideo": "Rakam video"
+    "recordVideo": "Rakam video",
+    "optionalSuffix": "(pilihan)"
   },
   "profileOptions": {
     "copyProfileUrl": "Salin URL profil",
@@ -3520,5 +3521,18 @@
     "leaveBody": "Tinggalkan {{name}}?",
     "leaveAction": "Tinggalkan",
     "noBadgeYet": "Belum ada lencana"
+  },
+  "addToFolder": {
+    "title": "Simpan ke folder",
+    "subtitle": "Pilih tempat anda mahu menyimpan siaran ini.",
+    "loading": "Memuatkan folder…",
+    "noneYet": "Belum ada folder dicipta",
+    "noneYetHint": "Cipta satu untuk menyusun siaran ini.",
+    "nameLabel": "Nama folder",
+    "namePlaceholder": "cth. Memasak, Pengembaraan",
+    "descriptionPlaceholder": "Apa yang patut ada dalam folder ini?",
+    "createAndSave": "Cipta & simpan",
+    "createNew": "Cipta folder baharu",
+    "closeA11y": "Tutup pemilih folder"
   }
 }

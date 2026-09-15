@@ -596,7 +596,8 @@
     "takePhoto": "ስእሊ ኣልዕል",
     "recordVideo": "ቪድዮ ቅረጽ",
     "saveChanges": "ለውጥታት ኣቐምጥ",
-    "copy": "ቅዳሕ"
+    "copy": "ቅዳሕ",
+    "optionalSuffix": "(ኣማራጺ)"
   },
   "tip": {
     "title": "ሽልማት ስደድ",
@@ -3222,5 +3223,18 @@
     "leaveBody": "ካብ {{name}} ትወጽእ?",
     "leaveAction": "ውጻእ",
     "noBadgeYet": "ገና ባጅ የለን"
+  },
+  "addToFolder": {
+    "title": "ናብ ፋይል ኣቐምጥ",
+    "subtitle": "ነዚ ልጥፊ ኣበይ ክትዕቅቦ ከም እትደሊ ምረጽ።",
+    "loading": "ፋይላት ይጽዕኑ ኣለዉ…",
+    "noneYet": "ገና ዝተፈጥረ ፋይል የለን",
+    "noneYetHint": "ነዚ ልጥፊ ንምስራዕ ሓደ ፍጠር።",
+    "nameLabel": "ስም ፋይል",
+    "namePlaceholder": "ንኣብነት ምግቢ ምስንዳእ፣ ጉዕዞ",
+    "descriptionPlaceholder": "ኣብዚ ፋይል እንታይ ይኣቱ?",
+    "createAndSave": "ፍጠርን ኣቐምጥን",
+    "createNew": "ሓድሽ ፋይል ፍጠር",
+    "closeA11y": "መምረጺ ፋይል ዕጸው"
   }
 }

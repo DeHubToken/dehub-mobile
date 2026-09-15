@@ -621,7 +621,8 @@
     "takePhoto": "写真を撮る",
     "recordVideo": "動画を撮る",
     "saveChanges": "変更を保存",
-    "copy": "コピー"
+    "copy": "コピー",
+    "optionalSuffix": "（任意）"
   },
   "postOptions": {
     "options": "オプション",
@@ -3324,5 +3325,18 @@
     "leaveBody": "{{name}} を離れますか？",
     "leaveAction": "離れる",
     "noBadgeYet": "まだバッジはありません"
+  },
+  "addToFolder": {
+    "title": "フォルダに保存",
+    "subtitle": "この投稿をどこに保存するか選んでください。",
+    "loading": "フォルダを読み込み中…",
+    "noneYet": "まだフォルダが作成されていません",
+    "noneYetHint": "この投稿を整理するために作成しましょう。",
+    "nameLabel": "フォルダ名",
+    "namePlaceholder": "例：料理、旅行",
+    "descriptionPlaceholder": "このフォルダには何を入れますか？",
+    "createAndSave": "作成して保存",
+    "createNew": "新しいフォルダを作成",
+    "closeA11y": "フォルダ選択を閉じる"
   }
 }

@@ -593,7 +593,8 @@
     "takePhoto": "Maka sary",
     "recordVideo": "Mandray horonan-tsary",
     "saveChanges": "Tehirizo ny fiovana",
-    "copy": "Adikao"
+    "copy": "Adikao",
+    "optionalSuffix": "(safidy)"
   },
   "tip": {
     "title": "Handefa fanomezana",
@@ -3336,5 +3337,18 @@
     "leaveBody": "Hiala amin'ny {{name}}?",
     "leaveAction": "Hiala",
     "noBadgeYet": "Mbola tsy misy mari-pankasitrahana"
+  },
+  "addToFolder": {
+    "title": "Tehirizo ao amin'ny lahatahiry",
+    "subtitle": "Fidio izay tianao hitehirizana ity lahatsoratra ity.",
+    "loading": "Mampiditra lahatahiry…",
+    "noneYet": "Mbola tsy misy lahatahiry noforonina",
+    "noneYetHint": "Mamorona iray hikarakarana ity lahatsoratra ity.",
+    "nameLabel": "Anaran'ny lahatahiry",
+    "namePlaceholder": "oh. Fahandroana, Dia",
+    "descriptionPlaceholder": "Inona no tokony ho ao amin'ity lahatahiry ity?",
+    "createAndSave": "Mamorona sy mitahiry",
+    "createNew": "Mamorona lahatahiry vaovao",
+    "closeA11y": "Akatona ny mpisafidy lahatahiry"
   }
 }

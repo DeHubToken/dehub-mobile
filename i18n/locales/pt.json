@@ -622,7 +622,8 @@
     "takePhoto": "Tirar foto",
     "recordVideo": "Gravar vídeo",
     "saveChanges": "Salvar alterações",
-    "copy": "Copiar"
+    "copy": "Copiar",
+    "optionalSuffix": "(opcional)"
   },
   "drawers": {
     "ppvTitle": "Conteúdo Pay-Per-View",
@@ -3331,5 +3332,18 @@
     "leaveBody": "Sair de {{name}}?",
     "leaveAction": "Sair",
     "noBadgeYet": "Ainda sem distintivo"
+  },
+  "addToFolder": {
+    "title": "Salvar na pasta",
+    "subtitle": "Escolha onde quer guardar esta publicação.",
+    "loading": "Carregando pastas…",
+    "noneYet": "Nenhuma pasta criada ainda",
+    "noneYetHint": "Crie uma para organizar esta publicação.",
+    "nameLabel": "Nome da pasta",
+    "namePlaceholder": "ex.: Culinária, Viagem",
+    "descriptionPlaceholder": "O que vai nesta pasta?",
+    "createAndSave": "Criar e salvar",
+    "createNew": "Criar nova pasta",
+    "closeA11y": "Fechar o seletor de pastas"
   }
 }

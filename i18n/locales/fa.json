@@ -605,7 +605,8 @@
     "takePhoto": "گرفتن عکس",
     "recordVideo": "ضبط ویدیو",
     "saveChanges": "ذخیره تغییرات",
-    "copy": "کپی"
+    "copy": "کپی",
+    "optionalSuffix": "(اختیاری)"
   },
   "tip": {
     "title": "ارسال انعام",
@@ -3270,5 +3271,18 @@
     "leaveBody": "از {{name}} خارج شوید؟",
     "leaveAction": "خروج",
     "noBadgeYet": "هنوز نشانی نیست"
+  },
+  "addToFolder": {
+    "title": "ذخیره در پوشه",
+    "subtitle": "انتخاب کنید این پست را کجا نگه دارید.",
+    "loading": "در حال بارگذاری پوشه‌ها…",
+    "noneYet": "هنوز پوشه‌ای ساخته نشده است",
+    "noneYetHint": "برای سازمان‌دهی این پست یکی بسازید.",
+    "nameLabel": "نام پوشه",
+    "namePlaceholder": "مثلاً آشپزی، سفر",
+    "descriptionPlaceholder": "چه چیزی در این پوشه قرار می‌گیرد؟",
+    "createAndSave": "ساخت و ذخیره",
+    "createNew": "ساخت پوشهٔ جدید",
+    "closeA11y": "بستن انتخابگر پوشه"
   }
 }

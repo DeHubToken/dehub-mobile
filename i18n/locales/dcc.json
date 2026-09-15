@@ -548,7 +548,8 @@
     "takePhoto": "فوٹو لو",
     "recordVideo": "ویڈیو ریکارڈ کرو",
     "saveChanges": "تبدیلیاں محفوظ کرو",
-    "copy": "کاپی"
+    "copy": "کاپی",
+    "optionalSuffix": "(اختیاری)"
   },
   "tip": {
     "title": "ٹپ بھیجو",
@@ -2983,5 +2984,18 @@
     "leaveBody": "{{name}} چھوڑیں؟",
     "leaveAction": "چھوڑو",
     "noBadgeYet": "ابھی کوئی بیج نئیں"
+  },
+  "addToFolder": {
+    "title": "فولڈر میں محفوظ کرو",
+    "subtitle": "منتخب کرو کہ یہ پوسٹ کہاں رکھنی ہے۔",
+    "loading": "فولڈر لوڈ ہو رہے ہیں…",
+    "noneYet": "ابھی کوئی فولڈر نئیں بنا",
+    "noneYetHint": "اس پوسٹ کو ترتیب دینے کے لیے ایک بناؤ۔",
+    "nameLabel": "فولڈر کا نام",
+    "namePlaceholder": "مثلاً کھانا پکانا، سفر",
+    "descriptionPlaceholder": "اس فولڈر میں کیا رکھنا ہے؟",
+    "createAndSave": "بناؤ اور محفوظ کرو",
+    "createNew": "نیا فولڈر بناؤ",
+    "closeA11y": "فولڈر منتخب کرنے والا بند کرو"
   }
 }

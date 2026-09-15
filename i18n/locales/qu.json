@@ -608,7 +608,8 @@
     "takePhoto": "Fotota hurquy",
     "recordVideo": "Videota grabay",
     "saveChanges": "Hukchasqakunata waqaychay",
-    "copy": "Kikinchay"
+    "copy": "Kikinchay",
+    "optionalSuffix": "(munaspa)"
   },
   "tip": {
     "title": "Propina apachiy",
@@ -3287,5 +3288,18 @@
     "leaveBody": "{{name}} huñumanta lloqsisun?",
     "leaveAction": "Lloqsiy",
     "noBadgeYet": "Manaraq unancha kanchu"
+  },
+  "addToFolder": {
+    "title": "Qillqa churanaman waqaychay",
+    "subtitle": "Akllay maypi kay willakuyta waqaychayta munanki.",
+    "loading": "Qillqa churanakuna chaqnachkan…",
+    "noneYet": "Manaraq ima qillqa churana kamasqachu",
+    "noneYetHint": "Kay willakuyta allichanapaq hukta kamay.",
+    "nameLabel": "Qillqa churanap sutin",
+    "namePlaceholder": "kay hina Wayk'uy, Puriy",
+    "descriptionPlaceholder": "Kay qillqa churanapi imataq kanqa?",
+    "createAndSave": "Kamay hinaspa waqaychay",
+    "createNew": "Musuq qillqa churana kamay",
+    "closeA11y": "Qillqa churana akllanata wichqay"
   }
 }

@@ -600,7 +600,8 @@
     "takePhoto": "Surata düşür",
     "recordVideo": "Wideo ýazga al",
     "saveChanges": "Üýtgeşmeleri ýatda sakla",
-    "copy": "Göçür"
+    "copy": "Göçür",
+    "optionalSuffix": "(islege bagly)"
   },
   "postOptions": {
     "options": "Saýlawlar",
@@ -3227,5 +3228,18 @@
     "leaveBody": "{{name}} topardan çykylsynmy?",
     "leaveAction": "Çyk",
     "noBadgeYet": "Entek nyşan ýok"
+  },
+  "addToFolder": {
+    "title": "Bukja ýatda sakla",
+    "subtitle": "Bu paýlaşygy nirede saklamak isleýändigiňizi saýlaň.",
+    "loading": "Bukjalar ýüklenýär…",
+    "noneYet": "Entek bukja döredilmedi",
+    "noneYetHint": "Bu paýlaşygy tertipleşdirmek üçin bir sanysyny dörediň.",
+    "nameLabel": "Bukjanyň ady",
+    "namePlaceholder": "meselem Nahar bişirmek, Syýahat",
+    "descriptionPlaceholder": "Bu bukjada näme bolmaly?",
+    "createAndSave": "Döret we ýatda sakla",
+    "createNew": "Täze bukja döret",
+    "closeA11y": "Bukja saýlaýjyny ýap"
   }
 }

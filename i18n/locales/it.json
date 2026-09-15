@@ -622,7 +622,8 @@
     "takePhoto": "Scatta una foto",
     "recordVideo": "Registra un video",
     "saveChanges": "Salva modifiche",
-    "copy": "Copia"
+    "copy": "Copia",
+    "optionalSuffix": "(facoltativo)"
   },
   "drawers": {
     "ppvTitle": "Contenuto Pay-Per-View",
@@ -3327,5 +3328,18 @@
     "leaveBody": "Lasciare {{name}}?",
     "leaveAction": "Lascia",
     "noBadgeYet": "Nessun badge ancora"
+  },
+  "addToFolder": {
+    "title": "Salva nella cartella",
+    "subtitle": "Scegli dove vuoi conservare questo post.",
+    "loading": "Caricamento cartelle…",
+    "noneYet": "Nessuna cartella creata finora",
+    "noneYetHint": "Creane una per organizzare questo post.",
+    "nameLabel": "Nome della cartella",
+    "namePlaceholder": "es. Cucina, Viaggi",
+    "descriptionPlaceholder": "Cosa va in questa cartella?",
+    "createAndSave": "Crea e salva",
+    "createNew": "Crea nuova cartella",
+    "closeA11y": "Chiudi il selettore di cartelle"
   }
 }

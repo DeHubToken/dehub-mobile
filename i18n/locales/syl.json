@@ -1284,7 +1284,8 @@
     "signIn": "সাইন ইন",
     "takePhoto": "ফটো তুলো",
     "recordVideo": "ভিডিও রেকর্ড করো",
-    "saveChanges": "পরিবর্তন সংরক্ষণ করো"
+    "saveChanges": "পরিবর্তন সংরক্ষণ করো",
+    "optionalSuffix": "(ঐচ্ছিক)"
   },
   "featureRequests": {
     "title": "ফিচার রিকোয়েস্ট",
@@ -3403,5 +3404,18 @@
     "leaveBody": "{{name}} ছাড়বা নি?",
     "leaveAction": "ছাড়ো",
     "noBadgeYet": "অখনো কোনো ব্যাজ নাই"
+  },
+  "addToFolder": {
+    "title": "ফোল্ডারো সংরক্ষণ করো",
+    "subtitle": "ইতা পোস্ট কোনখানো রাখবায় বাছি লও।",
+    "loading": "ফোল্ডার লোড অইরো…",
+    "noneYet": "অখনো কোনো ফোল্ডার বানানি অইছে না",
+    "noneYetHint": "ইতা পোস্ট গুছাইতে একটা বানাও।",
+    "nameLabel": "ফোল্ডারর নাম",
+    "namePlaceholder": "যেমন রান্ধন, ভ্রমণ",
+    "descriptionPlaceholder": "ইতা ফোল্ডারো কিতা রাখবায়?",
+    "createAndSave": "বানাই সংরক্ষণ করো",
+    "createNew": "নয়া ফোল্ডার বানাও",
+    "closeA11y": "ফোল্ডার বাছাইকারী বন্ধ করো"
   }
 }

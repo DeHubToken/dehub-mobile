@@ -604,7 +604,8 @@
     "takePhoto": "ຖ່າຍຮູບ",
     "recordVideo": "ບັນທຶກວິດີໂອ",
     "saveChanges": "ບັນທຶກການປ່ຽນແປງ",
-    "copy": "ສຳເນົາ"
+    "copy": "ສຳເນົາ",
+    "optionalSuffix": "(ທາງເລືອກ)"
   },
   "tip": {
     "title": "ສົ່ງທິບ",
@@ -3215,5 +3216,18 @@
     "leaveBody": "ອອກຈາກ {{name}}?",
     "leaveAction": "ອອກ",
     "noBadgeYet": "ຍັງບໍ່ມີປ້າຍ"
+  },
+  "addToFolder": {
+    "title": "ບັນທຶກໃສ່ໂຟນເດີ",
+    "subtitle": "ເລືອກບ່ອນທີ່ທ່ານຢາກເກັບໂພສນີ້.",
+    "loading": "ກຳລັງໂຫຼດໂຟນເດີ…",
+    "noneYet": "ຍັງບໍ່ໄດ້ສ້າງໂຟນເດີໃດ",
+    "noneYetHint": "ສ້າງໜຶ່ງອັນເພື່ອຈັດລະບຽບໂພສນີ້.",
+    "nameLabel": "ຊື່ໂຟນເດີ",
+    "namePlaceholder": "ເຊັ່ນ ການເຮັດອາຫານ, ການທ່ອງທ່ຽວ",
+    "descriptionPlaceholder": "ໂຟນເດີນີ້ເກັບຫຍັງ?",
+    "createAndSave": "ສ້າງ ແລະ ບັນທຶກ",
+    "createNew": "ສ້າງໂຟນເດີໃໝ່",
+    "closeA11y": "ປິດຕົວເລືອກໂຟນເດີ"
   }
 }

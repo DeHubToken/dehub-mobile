@@ -551,7 +551,8 @@
     "takePhoto": "Wêne bikişîne",
     "recordVideo": "Vîdyo tomar bike",
     "saveChanges": "Guhertinan tomar bike",
-    "copy": "Kopî bike"
+    "copy": "Kopî bike",
+    "optionalSuffix": "(bijarte)"
   },
   "tip": {
     "title": "Bexşîş Bişîne",
@@ -3016,5 +3017,18 @@
     "leaveBody": "Ji {{name}} derkevî?",
     "leaveAction": "Derkeve",
     "noBadgeYet": "Hîn nîşan tune"
+  },
+  "addToFolder": {
+    "title": "Di peldankê de tomar bike",
+    "subtitle": "Hilbijêre ka tu dixwazî vê şandinê li ku bihêlî.",
+    "loading": "Peldank tên barkirin…",
+    "noneYet": "Hîn peldank nehatine çêkirin",
+    "noneYetHint": "Yekê çêke da ku vê şandinê birêk bixî.",
+    "nameLabel": "Navê peldankê",
+    "namePlaceholder": "mînak Xwarinpêjî, Rêwîtî",
+    "descriptionPlaceholder": "Çi dikeve vê peldankê?",
+    "createAndSave": "Çêke û tomar bike",
+    "createNew": "Peldanka nû çêke",
+    "closeA11y": "Hilbijêrê peldankê bigire"
   }
 }

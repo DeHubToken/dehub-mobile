@@ -606,7 +606,8 @@
     "takePhoto": "Tee foto",
     "recordVideo": "Salvesta video",
     "saveChanges": "Salvesta muudatused",
-    "copy": "Kopeeri"
+    "copy": "Kopeeri",
+    "optionalSuffix": "(valikuline)"
   },
   "tip": {
     "title": "Saada jootraha",
@@ -3256,5 +3257,18 @@
     "leaveBody": "Kas lahkuda meeskonnast {{name}}?",
     "leaveAction": "Lahku",
     "noBadgeYet": "Märki veel pole"
+  },
+  "addToFolder": {
+    "title": "Salvesta kausta",
+    "subtitle": "Vali, kuhu soovid selle postituse salvestada.",
+    "loading": "Kaustade laadimine…",
+    "noneYet": "Kaustu pole veel loodud",
+    "noneYetHint": "Loo üks, et see postitus korrastada.",
+    "nameLabel": "Kausta nimi",
+    "namePlaceholder": "nt Toiduvalmistamine, Reisimine",
+    "descriptionPlaceholder": "Mis kuulub sellesse kausta?",
+    "createAndSave": "Loo ja salvesta",
+    "createNew": "Loo uus kaust",
+    "closeA11y": "Sulge kaustavalija"
   }
 }

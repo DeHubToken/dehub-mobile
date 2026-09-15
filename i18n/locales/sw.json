@@ -606,7 +606,8 @@
     "takePhoto": "Piga picha",
     "recordVideo": "Rekodi video",
     "saveChanges": "Hifadhi mabadiliko",
-    "copy": "Nakili"
+    "copy": "Nakili",
+    "optionalSuffix": "(si lazima)"
   },
   "tip": {
     "title": "Tuma Kidokezo",
@@ -3257,5 +3258,18 @@
     "leaveBody": "Kuondoka kwenye {{name}}?",
     "leaveAction": "Ondoka",
     "noBadgeYet": "Bado hakuna beji"
+  },
+  "addToFolder": {
+    "title": "Hifadhi kwenye folda",
+    "subtitle": "Chagua mahali unapotaka kuhifadhi chapisho hili.",
+    "loading": "Inapakia folda…",
+    "noneYet": "Bado hakuna folda zilizoundwa",
+    "noneYetHint": "Unda moja ili kupanga chapisho hili.",
+    "nameLabel": "Jina la folda",
+    "namePlaceholder": "mf. Kupika, Kusafiri",
+    "descriptionPlaceholder": "Nini kinafaa kuwa kwenye folda hii?",
+    "createAndSave": "Unda na uhifadhi",
+    "createNew": "Unda folda mpya",
+    "closeA11y": "Funga kiteuzi cha folda"
   }
 }

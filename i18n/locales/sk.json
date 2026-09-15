@@ -1183,7 +1183,8 @@
     "signIn": "Prihlásiť sa",
     "takePhoto": "Odfotiť",
     "recordVideo": "Nahrať video",
-    "saveChanges": "Uložiť zmeny"
+    "saveChanges": "Uložiť zmeny",
+    "optionalSuffix": "(nepovinné)"
   },
   "featureRequests": {
     "title": "Požiadavky na funkcie",
@@ -3426,5 +3427,18 @@
     "leaveBody": "Opustiť {{name}}?",
     "leaveAction": "Opustiť",
     "noBadgeYet": "Zatiaľ žiadny odznak"
+  },
+  "addToFolder": {
+    "title": "Uložiť do priečinka",
+    "subtitle": "Vyberte, kam chcete tento príspevok uložiť.",
+    "loading": "Načítavanie priečinkov…",
+    "noneYet": "Zatiaľ neboli vytvorené žiadne priečinky",
+    "noneYetHint": "Vytvorte jeden na usporiadanie tohto príspevku.",
+    "nameLabel": "Názov priečinka",
+    "namePlaceholder": "napr. Varenie, Cestovanie",
+    "descriptionPlaceholder": "Čo patrí do tohto priečinka?",
+    "createAndSave": "Vytvoriť a uložiť",
+    "createNew": "Vytvoriť nový priečinok",
+    "closeA11y": "Zavrieť výber priečinka"
   }
 }

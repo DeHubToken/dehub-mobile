@@ -607,7 +607,8 @@
     "takePhoto": "Zrób zdjęcie",
     "recordVideo": "Nagraj wideo",
     "saveChanges": "Zapisz zmiany",
-    "copy": "Kopiuj"
+    "copy": "Kopiuj",
+    "optionalSuffix": "(opcjonalnie)"
   },
   "glossary": {
     "title": "Słownik",
@@ -3325,5 +3326,18 @@
     "leaveBody": "Opuścić {{name}}?",
     "leaveAction": "Opuść",
     "noBadgeYet": "Brak odznaki"
+  },
+  "addToFolder": {
+    "title": "Zapisz do folderu",
+    "subtitle": "Wybierz, gdzie chcesz zapisać ten post.",
+    "loading": "Ładowanie folderów…",
+    "noneYet": "Nie utworzono jeszcze żadnych folderów",
+    "noneYetHint": "Utwórz jeden, aby uporządkować ten post.",
+    "nameLabel": "Nazwa folderu",
+    "namePlaceholder": "np. Gotowanie, Podróże",
+    "descriptionPlaceholder": "Co trafia do tego folderu?",
+    "createAndSave": "Utwórz i zapisz",
+    "createNew": "Utwórz nowy folder",
+    "closeA11y": "Zamknij wybór folderu"
   }
 }

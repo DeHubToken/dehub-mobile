@@ -607,7 +607,8 @@
     "takePhoto": "ફોટો લો",
     "recordVideo": "વિડિઓ રેકોર્ડ કરો",
     "saveChanges": "ફેરફારો સાચવો",
-    "copy": "કૉપિ"
+    "copy": "કૉપિ",
+    "optionalSuffix": "(વૈકલ્પિક)"
   },
   "tip": {
     "title": "ટિપ મોકલો",
@@ -3249,5 +3250,18 @@
     "leaveBody": "{{name}} છોડવી?",
     "leaveAction": "છોડો",
     "noBadgeYet": "હજી કોઈ બેજ નથી"
+  },
+  "addToFolder": {
+    "title": "ફોલ્ડરમાં સાચવો",
+    "subtitle": "આ પોસ્ટ ક્યાં રાખવી છે તે પસંદ કરો.",
+    "loading": "ફોલ્ડર લોડ થઈ રહ્યાં છે…",
+    "noneYet": "હજી કોઈ ફોલ્ડર બન્યું નથી",
+    "noneYetHint": "આ પોસ્ટ ગોઠવવા માટે એક બનાવો.",
+    "nameLabel": "ફોલ્ડરનું નામ",
+    "namePlaceholder": "દા.ત. રસોઈ, પ્રવાસ",
+    "descriptionPlaceholder": "આ ફોલ્ડરમાં શું રાખવાનું છે?",
+    "createAndSave": "બનાવો અને સાચવો",
+    "createNew": "નવું ફોલ્ડર બનાવો",
+    "closeA11y": "ફોલ્ડર પસંદગીકાર બંધ કરો"
   }
 }

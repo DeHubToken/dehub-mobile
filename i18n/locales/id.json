@@ -608,7 +608,8 @@
     "takePhoto": "Ambil foto",
     "recordVideo": "Rekam video",
     "saveChanges": "Simpan perubahan",
-    "copy": "Salin"
+    "copy": "Salin",
+    "optionalSuffix": "(opsional)"
   },
   "drawers": {
     "ppvTitle": "Konten Bayar-Per-Tayang",
@@ -3307,5 +3308,18 @@
     "leaveBody": "Keluar dari {{name}}?",
     "leaveAction": "Keluar",
     "noBadgeYet": "Belum ada lencana"
+  },
+  "addToFolder": {
+    "title": "Simpan ke folder",
+    "subtitle": "Pilih tempat kamu ingin menyimpan postingan ini.",
+    "loading": "Memuat folder…",
+    "noneYet": "Belum ada folder yang dibuat",
+    "noneYetHint": "Buat satu untuk menata postingan ini.",
+    "nameLabel": "Nama folder",
+    "namePlaceholder": "mis. Memasak, Traveling",
+    "descriptionPlaceholder": "Apa isi folder ini?",
+    "createAndSave": "Buat & simpan",
+    "createNew": "Buat folder baru",
+    "closeA11y": "Tutup pemilih folder"
   }
 }

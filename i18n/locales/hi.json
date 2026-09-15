@@ -606,7 +606,8 @@
     "takePhoto": "फ़ोटो लें",
     "recordVideo": "वीडियो रिकॉर्ड करें",
     "saveChanges": "बदलाव सहेजें",
-    "copy": "कॉपी"
+    "copy": "कॉपी",
+    "optionalSuffix": "(वैकल्पिक)"
   },
   "drawers": {
     "ppvTitle": "पे-पर-व्यू सामग्री",
@@ -3313,5 +3314,18 @@
     "leaveBody": "{{name}} छोड़ें?",
     "leaveAction": "छोड़ें",
     "noBadgeYet": "अभी कोई बैज नहीं"
+  },
+  "addToFolder": {
+    "title": "फ़ोल्डर में सहेजें",
+    "subtitle": "चुनें कि इस पोस्ट को कहाँ रखना है।",
+    "loading": "फ़ोल्डर लोड हो रहे हैं…",
+    "noneYet": "अभी तक कोई फ़ोल्डर नहीं बना",
+    "noneYetHint": "इस पोस्ट को व्यवस्थित करने के लिए एक बनाएँ।",
+    "nameLabel": "फ़ोल्डर का नाम",
+    "namePlaceholder": "जैसे खाना बनाना, यात्रा",
+    "descriptionPlaceholder": "इस फ़ोल्डर में क्या रखना है?",
+    "createAndSave": "बनाएँ और सहेजें",
+    "createNew": "नया फ़ोल्डर बनाएँ",
+    "closeA11y": "फ़ोल्डर चयनकर्ता बंद करें"
   }
 }

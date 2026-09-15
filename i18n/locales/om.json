@@ -622,7 +622,8 @@
     "takePhoto": "Suuraa kaasi",
     "recordVideo": "Viidiyoo waraabi",
     "saveChanges": "Jijjiirama olkaa'i",
-    "copy": "Garagalchi"
+    "copy": "Garagalchi",
+    "optionalSuffix": "(filannoo)"
   },
   "tip": {
     "title": "Tiippii Ergi",
@@ -3321,5 +3322,18 @@
     "leaveBody": "{{name}} gadhiisu?",
     "leaveAction": "Gadhiisi",
     "noBadgeYet": "Amma badhaasni hin jiru"
+  },
+  "addToFolder": {
+    "title": "Gara faayilii olkaa'i",
+    "subtitle": "Barreeffama kana eessatti kaa'uu akka barbaaddu filadhu.",
+    "loading": "Faayilii fe'aa jira…",
+    "noneYet": "Amma faayiliin hin uumamne",
+    "noneYetHint": "Barreeffama kana qindeessuuf tokko uumi.",
+    "nameLabel": "Maqaa faayilii",
+    "namePlaceholder": "fkn Nyaata qopheessuu, Imala",
+    "descriptionPlaceholder": "Faayilii kana keessa maaltu jira?",
+    "createAndSave": "Uumi fi olkaa'i",
+    "createNew": "Faayilii haaraa uumi",
+    "closeA11y": "Filannoo faayilii cufi"
   }
 }
