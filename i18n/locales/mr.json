@@ -3210,7 +3210,8 @@
     "insufficientOnChain": "{{chain}} वर पुरेसे DHB नाही. चेनवरील शिल्लक दाखवलेल्यापेक्षा वेगळी असू शकते.",
     "needGas": "{{chain}} वर गॅससाठी नेटिव्ह {{token}} लागतो.",
     "bridging": "ब्रिज होत आहे…",
-    "bridgeAction": "{{from}} → {{to}} ब्रिज करा"
+    "bridgeAction": "{{from}} → {{to}} ब्रिज करा",
+    "failed": "ब्रिज अयशस्वी झाले"
   },
   "banned": {
     "title": "तुमच्या खात्यावर बंदी आहे",

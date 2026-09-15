@@ -3180,7 +3180,8 @@
     "insufficientOnChain": "DHB ບໍ່ພຽງພໍໃນ {{chain}}. ຍອດເງິນເທິງເຄືອອາດແຕກຕ່າງຈາກທີ່ສະແດງ.",
     "needGas": "ຕ້ອງການ {{token}} ດັ້ງເດີມສຳລັບ gas ໃນ {{chain}}.",
     "bridging": "ກຳລັງບຣິດ…",
-    "bridgeAction": "ບຣິດ {{from}} → {{to}}"
+    "bridgeAction": "ບຣິດ {{from}} → {{to}}",
+    "failed": "ບຣິດລົ້ມເຫຼວ"
   },
   "banned": {
     "title": "ບັນຊີຂອງທ່ານຖືກຫ້າມ",

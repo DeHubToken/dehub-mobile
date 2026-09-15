@@ -3485,7 +3485,8 @@
     "insufficientOnChain": "DHB tidak mencukupi pada {{chain}}. Baki pada rantaian mungkin berbeza daripada yang dipaparkan.",
     "needGas": "Perlukan {{token}} asli untuk gas pada {{chain}}.",
     "bridging": "Menjambatani…",
-    "bridgeAction": "Jambatan {{from}} → {{to}}"
+    "bridgeAction": "Jambatan {{from}} → {{to}}",
+    "failed": "Jambatan gagal"
   },
   "banned": {
     "title": "Akaun anda telah diharamkan",

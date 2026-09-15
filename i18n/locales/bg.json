@@ -3222,7 +3222,8 @@
     "insufficientOnChain": "Недостатъчно DHB в {{chain}}. Балансът във веригата може да се различава от показания.",
     "needGas": "Нужен е нативен {{token}} за газ в {{chain}}.",
     "bridging": "Прехвърляне…",
-    "bridgeAction": "Мост {{from}} → {{to}}"
+    "bridgeAction": "Мост {{from}} → {{to}}",
+    "failed": "Мостът е неуспешен"
   },
   "banned": {
     "title": "Акаунтът ви е забранен",

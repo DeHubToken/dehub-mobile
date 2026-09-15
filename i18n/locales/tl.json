@@ -3401,7 +3401,8 @@
     "insufficientOnChain": "Kulang ang DHB sa {{chain}}. Maaaring iba ang balance sa chain kaysa sa ipinapakita.",
     "needGas": "Kailangan ng native na {{token}} para sa gas sa {{chain}}.",
     "bridging": "Nagbi-bridge…",
-    "bridgeAction": "I-bridge {{from}} → {{to}}"
+    "bridgeAction": "I-bridge {{from}} → {{to}}",
+    "failed": "Nabigo ang bridge"
   },
   "banned": {
     "title": "Ipinagbabawal ang iyong account",

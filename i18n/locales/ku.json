@@ -2988,7 +2988,8 @@
     "insufficientOnChain": "DHB li ser {{chain}} têrê nake. Balansa li ser zincîrê dibe ku ji ya nîşandayî cuda be.",
     "needGas": "Ji bo gazê li ser {{chain}} {{token}} ya resen hewce ye.",
     "bridging": "Tê veguhastin…",
-    "bridgeAction": "Pir {{from}} → {{to}}"
+    "bridgeAction": "Pir {{from}} → {{to}}",
+    "failed": "Pir bi ser neket"
   },
   "teamUp": {
     "title": "Tîmê pêk bîne",

@@ -3213,7 +3213,8 @@
     "insufficientOnChain": "Ikke nok DHB på {{chain}}. Saldoen på kjeden kan avvike fra den viste.",
     "needGas": "Trenger native {{token}} til gass på {{chain}}.",
     "bridging": "Broer…",
-    "bridgeAction": "Bro {{from}} → {{to}}"
+    "bridgeAction": "Bro {{from}} → {{to}}",
+    "failed": "Broen mislyktes"
   },
   "banned": {
     "title": "Kontoen din er utestengt",

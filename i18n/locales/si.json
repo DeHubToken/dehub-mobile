@@ -3204,7 +3204,8 @@
     "insufficientOnChain": "{{chain}} හි ප්‍රමාණවත් DHB නැත. දාමයේ ශේෂය පෙන්වා ඇති දෙයට වඩා වෙනස් විය හැක.",
     "needGas": "{{chain}} හි ගෑස් සඳහා ස්වදේශීය {{token}} අවශ්‍යයි.",
     "bridging": "පාලම් කරමින්…",
-    "bridgeAction": "පාලම {{from}} → {{to}}"
+    "bridgeAction": "පාලම {{from}} → {{to}}",
+    "failed": "පාලම අසාර්ථක විය"
   },
   "banned": {
     "title": "ඔබගේ ගිණුම තහනම් කර ඇත",

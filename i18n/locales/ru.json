@@ -3291,7 +3291,8 @@
     "insufficientOnChain": "Недостаточно DHB в сети {{chain}}. Баланс в сети может отличаться от показанного.",
     "needGas": "Для газа в сети {{chain}} нужен нативный {{token}}.",
     "bridging": "Перевод через мост…",
-    "bridgeAction": "Мост {{from}} → {{to}}"
+    "bridgeAction": "Мост {{from}} → {{to}}",
+    "failed": "Мост не удался"
   },
   "banned": {
     "title": "Ваш аккаунт заблокирован",

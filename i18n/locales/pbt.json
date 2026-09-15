@@ -3173,7 +3173,8 @@
     "insufficientOnChain": "په {{chain}} کې کافي DHB نشته. په زنځیر کې بیلانس ښودل شوي څخه توپیر ولري.",
     "needGas": "په {{chain}} کې د ګاز لپاره اصلي {{token}} ته اړتیا ده.",
     "bridging": "پل کیږي…",
-    "bridgeAction": "پله {{from}} → {{to}}"
+    "bridgeAction": "پله {{from}} → {{to}}",
+    "failed": "پله ناکامه شوه"
   },
   "banned": {
     "title": "ستاسو حساب بند شوی دی",

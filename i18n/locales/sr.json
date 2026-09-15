@@ -2992,7 +2992,8 @@
     "insufficientOnChain": "Недовољно DHB на {{chain}}. Стање на ланцу може се разликовати од приказаног.",
     "needGas": "Потребан је изворни {{token}} за гас на {{chain}}.",
     "bridging": "Преношење…",
-    "bridgeAction": "Мост {{from}} → {{to}}"
+    "bridgeAction": "Мост {{from}} → {{to}}",
+    "failed": "Мост није успео"
   },
   "teamUp": {
     "title": "Удружи се",

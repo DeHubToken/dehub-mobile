@@ -3220,7 +3220,8 @@
     "insufficientOnChain": "{{chain}} 上嘅 DHB 不足。鏈上餘額可能同顯示嘅唔同。",
     "needGas": "喺 {{chain}} 上需要原生 {{token}} 嚟支付 gas。",
     "bridging": "跨鏈中…",
-    "bridgeAction": "跨鏈 {{from}} → {{to}}"
+    "bridgeAction": "跨鏈 {{from}} → {{to}}",
+    "failed": "跨鏈失敗"
   },
   "banned": {
     "title": "你嘅帳戶已被禁用",
