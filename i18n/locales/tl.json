@@ -3571,5 +3571,26 @@
     "searchPlaceholder": "Maghanap sa transcript…",
     "speakerPlaceholder": "Ilagay ang pangalan o handle ng speaker",
     "detectedLanguage": "Natukoy na wika: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Hindi available ang Solana wallet — wala sa device na ito ang iyong wallet key. Mag-sign in ulit para maibalik ito.",
+    "solanaTempUnavailable": "Pansamantalang hindi available ang pag-post sa Solana. Subukan ang Base o BNB.",
+    "enterTextFirst": "Maglagay muna ng teksto",
+    "styleApplied": "Nailapat ang estilo!",
+    "textUpdated": "Na-update ang teksto!",
+    "textFailed": "Hindi maproseso ang teksto",
+    "fillRequired": "Pakipunan ang mga kinakailangang field.",
+    "preCheckFailed": "Nabigo ang pagsusuri bago mag-upload.",
+    "postingWithoutMint": "Ipo-post nang walang minting — nagkakahalaga ito ng {{amount}} {{symbol}} at kulang ang balanse mo. Puwede mong i-mint mamaya mula sa menu ng post.",
+    "allowanceUsed": "Nagamit mo na ang libreng posting allowance ngayong araw",
+    "quoteNeedsContent": "Magsulat ng kahit ano o magdagdag ng media para masipi ang post na ito.",
+    "videoTooLarge": "Lumampas ang video sa limit na {{limit}} ng iyong {{tier}} tier.",
+    "audioTooLarge": "Lumampas ang audio sa limit na {{limit}} ng iyong {{tier}} tier.",
+    "imagesOrVideo": "Puwedeng may mga larawan o video ang isang post, hindi pareho. Alisin muna ang mga larawan.",
+    "onlyOneVideo": "Isang video lang kada post — ang una ang itinago.",
+    "micRequired": "Kailangan ng pahintulot sa mikropono para mag-record ng audio.",
+    "recordFailed": "Nabigong simulan ang pag-record.",
+    "tierVisibility": "Umakyat ng tier para tumaas ang visibility mo at makakuha ng mas maraming feed kada araw",
+    "buyTokens": "Bumili ng token"
   }
 }

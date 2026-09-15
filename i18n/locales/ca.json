@@ -3392,5 +3392,26 @@
     "searchPlaceholder": "Cerca a la transcripció…",
     "speakerPlaceholder": "Introdueix el nom o l'àlies de l'orador",
     "detectedLanguage": "Idioma detectat: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Cartera de Solana no disponible: aquest dispositiu no té la teva clau. Torna a iniciar la sessió per recuperar-la.",
+    "solanaTempUnavailable": "Publicar a Solana no està disponible temporalment. Prova Base o BNB.",
+    "enterTextFirst": "Primer escriu alguna cosa",
+    "styleApplied": "Estil aplicat!",
+    "textUpdated": "Text actualitzat!",
+    "textFailed": "No s'ha pogut processar el text",
+    "fillRequired": "Emplena els camps obligatoris.",
+    "preCheckFailed": "La comprovació prèvia a la pujada ha fallat.",
+    "postingWithoutMint": "Es publica sense encunyar: encunyar costa {{amount}} {{symbol}} i el teu saldo no hi arriba. Pots encunyar-lo més tard des del menú de la publicació.",
+    "allowanceUsed": "Has esgotat el límit gratuït de publicacions d'avui",
+    "quoteNeedsContent": "Escriu alguna cosa o afegeix contingut per citar aquesta publicació.",
+    "videoTooLarge": "El vídeo supera el límit de {{limit}} del teu nivell {{tier}}.",
+    "audioTooLarge": "L'àudio supera el límit de {{limit}} del teu nivell {{tier}}.",
+    "imagesOrVideo": "Una publicació pot tenir imatges o un vídeo, no totes dues coses. Elimina primer les imatges.",
+    "onlyOneVideo": "Només un vídeo per publicació: s'ha conservat el primer.",
+    "micRequired": "Cal permís del micròfon per gravar àudio.",
+    "recordFailed": "No s'ha pogut iniciar la gravació.",
+    "tierVisibility": "Puja de nivell per augmentar la teva visibilitat i aconseguir més difusió diària de la publicació",
+    "buyTokens": "Compra fitxes"
   }
 }

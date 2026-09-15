@@ -3442,5 +3442,26 @@
     "searchPlaceholder": "Cari di transkrip…",
     "speakerPlaceholder": "Masukkan nama atau handel pembicara",
     "detectedLanguage": "Bahasa terdeteksi: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Dompet Solana tidak tersedia — perangkat ini tidak menyimpan kunci dompetmu. Masuk lagi untuk memulihkannya.",
+    "solanaTempUnavailable": "Posting di Solana sementara tidak tersedia. Coba Base atau BNB.",
+    "enterTextFirst": "Masukkan teks dulu",
+    "styleApplied": "Gaya diterapkan!",
+    "textUpdated": "Teks diperbarui!",
+    "textFailed": "Gagal memproses teks",
+    "fillRequired": "Harap isi kolom yang wajib.",
+    "preCheckFailed": "Pemeriksaan sebelum unggah gagal.",
+    "postingWithoutMint": "Diposting tanpa minting — minting butuh {{amount}} {{symbol}} dan saldomu kurang. Kamu bisa minting nanti dari menu postingan.",
+    "allowanceUsed": "Kamu sudah memakai jatah posting gratis hari ini",
+    "quoteNeedsContent": "Tulis sesuatu atau tambahkan media untuk mengutip postingan ini.",
+    "videoTooLarge": "Video melebihi batas {{limit}} untuk tingkat {{tier}} kamu.",
+    "audioTooLarge": "Audio melebihi batas {{limit}} untuk tingkat {{tier}} kamu.",
+    "imagesOrVideo": "Sebuah postingan bisa berisi gambar atau video, bukan keduanya. Hapus gambarnya dulu.",
+    "onlyOneVideo": "Hanya satu video per postingan — yang pertama dipertahankan.",
+    "micRequired": "Izin mikrofon diperlukan untuk merekam audio.",
+    "recordFailed": "Gagal memulai perekaman.",
+    "tierVisibility": "Naikkan tingkatmu untuk menambah visibilitas dan mendapat lebih banyak tayangan per hari",
+    "buyTokens": "Beli token"
   }
 }

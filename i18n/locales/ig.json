@@ -3370,5 +3370,26 @@
     "searchPlaceholder": "Chọọ n'ihe edere ede…",
     "speakerPlaceholder": "Tinye aha ma ọ bụ njirimara onye na-ekwu okwu",
     "detectedLanguage": "Asụsụ achọpụtara: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Obere akpa Solana adịghị — ngwaọrụ a enweghị igodo gị. Banye ọzọ iji weghachi ya.",
+    "solanaTempUnavailable": "Ibipụta na Solana adịghị nwa oge. Gbalịa Base ma ọ bụ BNB.",
+    "enterTextFirst": "Buru ụzọ tinye ederede",
+    "styleApplied": "Etinyere ụdị ahụ!",
+    "textUpdated": "Emelitela ederede!",
+    "textFailed": "Enweghị ike ịhazi ederede",
+    "fillRequired": "Biko dejupụta ubi achọrọ.",
+    "preCheckFailed": "Nyocha tupu mbuli elu dara.",
+    "postingWithoutMint": "A na-ebipụta n'enweghị minting — ọ na-efu {{amount}} {{symbol}} ma ego gị ezughị. Ị nwere ike ime ya emesịa site na menu post.",
+    "allowanceUsed": "I jiriela oke nzipụ n'efu nke taa",
+    "quoteNeedsContent": "Dee ihe ma ọ bụ tinye mgbasa ozi iji hota post a.",
+    "videoTooLarge": "Vidiyo gafere oke {{limit}} nke ọkwa {{tier}} gị.",
+    "audioTooLarge": "Ụda gafere oke {{limit}} nke ọkwa {{tier}} gị.",
+    "imagesOrVideo": "Post nwere ike ịnwe foto ma ọ bụ vidiyo, ọ bụghị ha abụọ. Wepụ foto ndị ahụ buru ụzọ.",
+    "onlyOneVideo": "Naanị otu vidiyo n'otu post — edobere nke mbụ.",
+    "micRequired": "Achọrọ ikike igwe okwu iji dekọọ ụda.",
+    "recordFailed": "Enweghị ike ịmalite ndekọ.",
+    "tierVisibility": "Rịgoro n'ọkwa iji bawanye ka a hụ gị ma nweta mgbasa ka ukwuu kwa ụbọchị",
+    "buyTokens": "Zụta tokens"
   }
 }

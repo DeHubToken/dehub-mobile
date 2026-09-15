@@ -3396,5 +3396,26 @@
     "searchPlaceholder": "Keresés az átiratban…",
     "speakerPlaceholder": "Add meg a beszélő nevét vagy azonosítóját",
     "detectedLanguage": "Felismert nyelv: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "A Solana tárca nem érhető el — ezen az eszközön nincs meg a kulcsod. Jelentkezz be újra a visszaállításához.",
+    "solanaTempUnavailable": "A Solana-közzététel átmenetileg nem érhető el. Próbáld inkább a Base-t vagy a BNB-t.",
+    "enterTextFirst": "Először írj be szöveget",
+    "styleApplied": "Stílus alkalmazva!",
+    "textUpdated": "Szöveg frissítve!",
+    "textFailed": "A szöveg feldolgozása nem sikerült",
+    "fillRequired": "Töltsd ki a kötelező mezőket.",
+    "preCheckFailed": "A feltöltés előtti ellenőrzés nem sikerült.",
+    "postingWithoutMint": "Mintelés nélkül jelenik meg — a mintelés {{amount}} {{symbol}} és nincs elég egyenleged. Később mintelheted a bejegyzés menüjéből.",
+    "allowanceUsed": "Elhasználtad a mai ingyenes közzétételi kereted",
+    "quoteNeedsContent": "Írj valamit vagy adj hozzá médiát a bejegyzés idézéséhez.",
+    "videoTooLarge": "A videó meghaladja a(z) {{tier}} szinted {{limit}} korlátját.",
+    "audioTooLarge": "A hangfájl meghaladja a(z) {{tier}} szinted {{limit}} korlátját.",
+    "imagesOrVideo": "Egy bejegyzés képeket vagy videót tartalmazhat, mindkettőt nem. Előbb távolítsd el a képeket.",
+    "onlyOneVideo": "Bejegyzésenként csak egy videó — az elsőt tartottuk meg.",
+    "micRequired": "A hangrögzítéshez mikrofon-engedély szükséges.",
+    "recordFailed": "A felvétel nem indítható el.",
+    "tierVisibility": "Lépj feljebb a szinteken, hogy növeld a láthatóságod és több napi megjelenést kapj",
+    "buyTokens": "Tokenek vásárlása"
   }
 }

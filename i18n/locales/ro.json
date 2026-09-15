@@ -3405,5 +3405,26 @@
     "searchPlaceholder": "Caută în transcriere…",
     "speakerPlaceholder": "Introdu numele sau identificatorul vorbitorului",
     "detectedLanguage": "Limbă detectată: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Portofelul Solana este indisponibil — acest dispozitiv nu are cheia ta. Conectează-te din nou pentru a o restaura.",
+    "solanaTempUnavailable": "Postarea pe Solana este temporar indisponibilă. Încearcă Base sau BNB.",
+    "enterTextFirst": "Mai întâi scrie un text",
+    "styleApplied": "Stil aplicat!",
+    "textUpdated": "Text actualizat!",
+    "textFailed": "Textul nu a putut fi procesat",
+    "fillRequired": "Completează câmpurile obligatorii.",
+    "preCheckFailed": "Verificarea dinaintea încărcării a eșuat.",
+    "postingWithoutMint": "Se publică fără mintare — aceasta costă {{amount}} {{symbol}}, iar soldul tău nu ajunge. O poți minta mai târziu din meniul postării.",
+    "allowanceUsed": "Ai epuizat limita gratuită de postări de azi",
+    "quoteNeedsContent": "Scrie ceva sau adaugă media pentru a cita această postare.",
+    "videoTooLarge": "Videoclipul depășește limita de {{limit}} a nivelului tău {{tier}}.",
+    "audioTooLarge": "Fișierul audio depășește limita de {{limit}} a nivelului tău {{tier}}.",
+    "imagesOrVideo": "O postare poate conține imagini sau un videoclip, nu ambele. Elimină mai întâi imaginile.",
+    "onlyOneVideo": "Doar un videoclip per postare — a fost păstrat primul.",
+    "micRequired": "Este necesară permisiunea pentru microfon ca să înregistrezi audio.",
+    "recordFailed": "Înregistrarea nu a putut fi pornită.",
+    "tierVisibility": "Urcă niveluri ca să-ți crești vizibilitatea și să obții mai multe afișări pe zi",
+    "buyTokens": "Cumpără jetoane"
   }
 }

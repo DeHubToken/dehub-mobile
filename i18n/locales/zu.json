@@ -3421,5 +3421,26 @@
     "searchPlaceholder": "Sesha umbhalo…",
     "speakerPlaceholder": "Faka igama noma i-handle yesikhulumi",
     "detectedLanguage": "Ulimi olutholakele: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Isikhwama se-Solana asitholakali — le divayisi ayinaso ukhiye wakho. Ngena ngemvume futhi ukuze usibuyise.",
+    "solanaTempUnavailable": "Ukuthumela ku-Solana akutholakali okwesikhashana. Zama i-Base noma i-BNB.",
+    "enterTextFirst": "Faka umbhalo kuqala",
+    "styleApplied": "Isitayela sisebenzile!",
+    "textUpdated": "Umbhalo ubuyekeziwe!",
+    "textFailed": "Yehlulekile ukucubungula umbhalo",
+    "fillRequired": "Sicela ugcwalise izinkambu ezidingekayo.",
+    "preCheckFailed": "Ukuhlola ngaphambi kokulayisha kwehlulekile.",
+    "postingWithoutMint": "Kuthunyelwa ngaphandle kokukhanda — kubiza {{amount}} {{symbol}} futhi ibhalansi yakho ayanele. Ungakhanda kamuva kumenyu yokuthumela.",
+    "allowanceUsed": "Usuqede isabelo samahhala sanamuhla sokuthumela",
+    "quoteNeedsContent": "Bhala okuthile noma ungeze imidiya ukuze ucaphune lokhu okuthunyelwe.",
+    "videoTooLarge": "Ividiyo idlula umkhawulo we-{{limit}} weleveli yakho ye-{{tier}}.",
+    "audioTooLarge": "Umsindo udlula umkhawulo we-{{limit}} weleveli yakho ye-{{tier}}.",
+    "imagesOrVideo": "Okuthunyelwe kungaba nezithombe noma ividiyo, hhayi kokubili. Susa izithombe kuqala.",
+    "onlyOneVideo": "Ividiyo eyodwa kuphela ngokuthunyelwe ngakunye — kugcinwe eyokuqala.",
+    "micRequired": "Kudingeka imvume yemakrofoni ukuze urekhode umsindo.",
+    "recordFailed": "Yehlulekile ukuqala ukurekhoda.",
+    "tierVisibility": "Khuphuka amaleveli ukuze ubonakale kakhulu futhi uthole ukusakazwa okwengeziwe ngosuku",
+    "buyTokens": "Thenga amathokheni"
   }
 }

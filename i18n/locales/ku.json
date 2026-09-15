@@ -3151,5 +3151,26 @@
     "searchPlaceholder": "Di nivîsandinê de bigere…",
     "speakerPlaceholder": "Navê axêver an navê bikarhêner binivîse",
     "detectedLanguage": "Zimanê hatî dîtin: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Berîka Solana tune — ev amûr mifteya berîka te nagire. Ji bo vegerandinê dîsa têkeve.",
+    "solanaTempUnavailable": "Weşandina li Solana demkî ne berdest e. Li şûna wê Base an BNB biceribîne.",
+    "enterTextFirst": "Pêşî hin nivîs binivîse",
+    "styleApplied": "Şêwaz hate sepandin!",
+    "textUpdated": "Nivîs hate nûkirin!",
+    "textFailed": "Nivîs nehat pêvajokirin",
+    "fillRequired": "Ji kerema xwe qadên pêwîst dagirin.",
+    "preCheckFailed": "Kontrola berî barkirinê bi ser neket.",
+    "postingWithoutMint": "Bê minting tê weşandin — ew {{amount}} {{symbol}} dixwaze û hesabê te têrê nake. Tu dikarî paşê ji menuya şandiyê mint bikî.",
+    "allowanceUsed": "Te sînorê weşana belaş a îro bi kar anî",
+    "quoteNeedsContent": "Ji bo vê şandiyê jêder bikî tiştekî binivîse an medya zêde bike.",
+    "videoTooLarge": "Vîdyo ji sînorê {{limit}} ya asta te ya {{tier}} derbas dibe.",
+    "audioTooLarge": "Deng ji sînorê {{limit}} ya asta te ya {{tier}} derbas dibe.",
+    "imagesOrVideo": "Şandiyek dikare wêne an vîdyo hebe, ne herdu. Pêşî wêneyan rake.",
+    "onlyOneVideo": "Tenê yek vîdyo ji bo her şandiyekê — ya yekem hate hiştin.",
+    "micRequired": "Ji bo tomarkirina dengî destûra mîkrofonê pêwîst e.",
+    "recordFailed": "Destpêkirina tomarkirinê bi ser neket.",
+    "tierVisibility": "Astan bilind bike da ku xuyabûna te zêde bibe û rojane bêtir belavkirin bistîne",
+    "buyTokens": "Token bikire"
   }
 }

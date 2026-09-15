@@ -3392,5 +3392,26 @@
     "searchPlaceholder": "دوّر في النص…",
     "speakerPlaceholder": "اكتب اسم المتحدث أو المعرّف",
     "detectedLanguage": "اللغة المكتشفة: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "محفظة سولانا مش متاحة — الجهاز ده معندوش مفتاح محفظتك. سجّل دخول تاني علشان ترجعها.",
+    "solanaTempUnavailable": "النشر على سولانا مش متاح مؤقتاً. جرّب Base أو BNB.",
+    "enterTextFirst": "اكتب شوية نص الأول",
+    "styleApplied": "اتطبق الستايل!",
+    "textUpdated": "اتحدّث النص!",
+    "textFailed": "مقدرش يعالج النص",
+    "fillRequired": "من فضلك املا الحقول المطلوبة.",
+    "preCheckFailed": "فشل فحص ما قبل الرفع.",
+    "postingWithoutMint": "هينشر من غير سك — السك بيكلف {{amount}} {{symbol}} ورصيدك مش كفاية. تقدر تسكه بعدين من قائمة البوست.",
+    "allowanceUsed": "خلّصت حصتك المجانية للنشر النهارده",
+    "quoteNeedsContent": "اكتب حاجة أو ضيف ميديا علشان تقتبس البوست ده.",
+    "videoTooLarge": "الفيديو أكبر من حد مستواك {{tier}} اللي هو {{limit}}.",
+    "audioTooLarge": "الصوت أكبر من حد مستواك {{tier}} اللي هو {{limit}}.",
+    "imagesOrVideo": "البوست ياخد صور أو فيديو، مش الاتنين. شيل الصور الأول.",
+    "onlyOneVideo": "فيديو واحد بس في كل بوست — اتحفظ الأول.",
+    "micRequired": "لازم إذن المايك علشان تسجل صوت.",
+    "recordFailed": "مقدرش يبدأ التسجيل.",
+    "tierVisibility": "اطلع في المستويات علشان تزود ظهورك وتاخد عرض أكتر للبوست في اليوم",
+    "buyTokens": "شراء توكنز"
   }
 }

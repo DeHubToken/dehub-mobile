@@ -3422,5 +3422,26 @@
     "searchPlaceholder": "Qillqasqa rimaypi maskay…",
     "speakerPlaceholder": "Rimaqpa sutinta utaq sutichayninta qillqay",
     "detectedLanguage": "Tarisqa simi: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana qullqi wayaqa mana kanchu — kay antaqa llavellaykita mana waqaychanchu. Kutichinaykipaq yapamanta yaykuy.",
+    "solanaTempUnavailable": "Solana ukhupi churayqa kunanqa mana atikunchu. Base utaq BNB ruray.",
+    "enterTextFirst": "Ñawpaqta qillqata churay",
+    "styleApplied": "Rikch'aynin churasqa!",
+    "textUpdated": "Qillqa musuqchasqa!",
+    "textFailed": "Qillqata llamk'apuy mana atikurqachu",
+    "fillRequired": "Ama hina kaspa necesario kaqkunata hunt'achiy.",
+    "preCheckFailed": "Apachiy ñawpaq qhaway mana atikurqachu.",
+    "postingWithoutMint": "Mana mintispa churakuchkan — mintiyqa {{amount}} {{symbol}} valin, qullqiykitaq mana aypanchu. Qhipata willakuy menuManta mintiwaqmi.",
+    "allowanceUsed": "Kunan p'unchawpa qullqinnaq churana kaqniykita tukurqanki",
+    "quoteNeedsContent": "Kay willakuyta rimanaykipaq imatapas qillqay utaq media yapay.",
+    "videoTooLarge": "Videoqa {{tier}} patmaykipa {{limit}} sayayninmanta hatunmi.",
+    "audioTooLarge": "Uyarinaqa {{tier}} patmaykipa {{limit}} sayayninmanta hatunmi.",
+    "imagesOrVideo": "Huk willakuyqa rikchakunata utaq huk videota apan, manam iskayninta. Ñawpaqta rikchakunata qichuy.",
+    "onlyOneVideo": "Sapa willakuypi huk videollam — ñawpaqta hark'akurqa.",
+    "micRequired": "Uyarita grabanapaq mikrofono saqiy necesitakun.",
+    "recordFailed": "Grabayta qallariy mana atikurqachu.",
+    "tierVisibility": "Patmakunata wichay rikukunaykipaq hinaspa sapa p'unchaw astawan willakuy chayananpaq",
+    "buyTokens": "Token rantiy"
   }
 }

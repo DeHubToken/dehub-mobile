@@ -3466,5 +3466,26 @@
     "searchPlaceholder": "Rechercher dans la transcription…",
     "speakerPlaceholder": "Saisissez le nom ou l'identifiant de l'intervenant",
     "detectedLanguage": "Langue détectée : {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Portefeuille Solana indisponible — cet appareil ne détient pas votre clé. Reconnectez-vous pour la restaurer.",
+    "solanaTempUnavailable": "La publication sur Solana est temporairement indisponible. Essayez plutôt Base ou BNB.",
+    "enterTextFirst": "Saisissez d'abord du texte",
+    "styleApplied": "Style appliqué !",
+    "textUpdated": "Texte mis à jour !",
+    "textFailed": "Impossible de traiter le texte",
+    "fillRequired": "Veuillez remplir les champs obligatoires.",
+    "preCheckFailed": "Échec de la vérification avant envoi.",
+    "postingWithoutMint": "Publication sans frappe — cela coûte {{amount}} {{symbol}} et votre solde est insuffisant. Vous pourrez le frapper plus tard depuis le menu de la publication.",
+    "allowanceUsed": "Vous avez épuisé votre quota gratuit de publications du jour",
+    "quoteNeedsContent": "Écrivez quelque chose ou ajoutez un média pour citer cette publication.",
+    "videoTooLarge": "La vidéo dépasse la limite de {{limit}} de votre niveau {{tier}}.",
+    "audioTooLarge": "L'audio dépasse la limite de {{limit}} de votre niveau {{tier}}.",
+    "imagesOrVideo": "Une publication peut contenir des images ou une vidéo, pas les deux. Supprimez d'abord les images.",
+    "onlyOneVideo": "Une seule vidéo par publication — la première a été conservée.",
+    "micRequired": "L'autorisation du microphone est nécessaire pour enregistrer l'audio.",
+    "recordFailed": "Impossible de démarrer l'enregistrement.",
+    "tierVisibility": "Montez de niveau pour augmenter votre visibilité et obtenir plus de diffusions par jour",
+    "buyTokens": "Acheter des jetons"
   }
 }

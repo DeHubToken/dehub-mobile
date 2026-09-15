@@ -3456,5 +3456,26 @@
     "searchPlaceholder": "Barreeffama keessa barbaadi…",
     "speakerPlaceholder": "Maqaa ykn maqaa fayyadamaa dubbataa galchi",
     "detectedLanguage": "Afaan argame: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Boorsaan Solana hin argamu — meeshaan kun furtuu boorsaa kee hin qabu. Deebisuuf irra deebiʼii seeni.",
+    "solanaTempUnavailable": "Maxxansuun Solana irratti yeroof hin danda'amu. Kanaa mannaa Base ykn BNB yaali.",
+    "enterTextFirst": "Dura barreeffama galchi",
+    "styleApplied": "Bocci hojiirra oole!",
+    "textUpdated": "Barreeffamni haaromfame!",
+    "textFailed": "Barreeffama adeemsisuun hin dandaʼamne",
+    "fillRequired": "Maaloo iddoowwan barbaachisan guuti.",
+    "preCheckFailed": "Qorannoon olkaaʼuu dura hin milkoofne.",
+    "postingWithoutMint": "Osoo hin mint godhin maxxanfama — mint {{amount}} {{symbol}} barbaachisa, hafteen kee gaʼaa miti. Booda menu barreeffamaa irraa mint gochuu dandeessa.",
+    "allowanceUsed": "Daangaa maxxansa bilisaa har'aa fayyadamteetta",
+    "quoteNeedsContent": "Barreeffama kana caqasuuf waa barreessi ykn miidiyaa itti dabali.",
+    "videoTooLarge": "Viidiyoon daangaa {{limit}} sadarkaa {{tier}} kee ni caala.",
+    "audioTooLarge": "Sagaleen daangaa {{limit}} sadarkaa {{tier}} kee ni caala.",
+    "imagesOrVideo": "Barreeffamni suuraa ykn viidiyoo qabaachuu dandaʼa, lamaanuu miti. Dura suuraalee haqi.",
+    "onlyOneVideo": "Barreeffama tokkoof viidiyoo tokko qofa — kan jalqabaa qabame.",
+    "micRequired": "Sagalee waraabuuf hayyamni maaykiroofoonii barbaachisa.",
+    "recordFailed": "Waraabbii jalqabuun hin dandaʼamne.",
+    "tierVisibility": "Mul'ata kee dabaluu fi guyyaatti tamsaasa dabalataa argachuuf sadarkaa ol kaasi",
+    "buyTokens": "Toookenii bitadhu"
   }
 }

@@ -3396,5 +3396,26 @@
     "searchPlaceholder": "Søg i udskrift…",
     "speakerPlaceholder": "Indtast talerens navn eller brugernavn",
     "detectedLanguage": "Registreret sprog: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana-tegnebog er ikke tilgængelig — denne enhed har ikke din nøgle. Log ind igen for at gendanne den.",
+    "solanaTempUnavailable": "Opslag på Solana er midlertidigt utilgængeligt. Prøv Base eller BNB i stedet.",
+    "enterTextFirst": "Indtast noget tekst først",
+    "styleApplied": "Stil anvendt!",
+    "textUpdated": "Tekst opdateret!",
+    "textFailed": "Kunne ikke behandle tekst",
+    "fillRequired": "Udfyld venligst de påkrævede felter.",
+    "preCheckFailed": "Tjek før upload mislykkedes.",
+    "postingWithoutMint": "Udgives uden minting — det koster {{amount}} {{symbol}}, og din saldo er for lav. Du kan minte det senere fra opslagsmenuen.",
+    "allowanceUsed": "Du har brugt dagens gratis opslag",
+    "quoteNeedsContent": "Skriv noget, eller tilføj medier for at citere dette opslag.",
+    "videoTooLarge": "Videoen overskrider grænsen på {{limit}} for dit {{tier}}-niveau.",
+    "audioTooLarge": "Lyden overskrider grænsen på {{limit}} for dit {{tier}}-niveau.",
+    "imagesOrVideo": "Et opslag kan indeholde billeder eller en video, ikke begge dele. Fjern billederne først.",
+    "onlyOneVideo": "Kun én video pr. opslag — den første er beholdt.",
+    "micRequired": "Der kræves mikrofontilladelse for at optage lyd.",
+    "recordFailed": "Kunne ikke starte optagelsen.",
+    "tierVisibility": "Stig i niveauer for at øge din synlighed og få flere daglige visninger af opslaget",
+    "buyTokens": "Køb tokens"
   }
 }

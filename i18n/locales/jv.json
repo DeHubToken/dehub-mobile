@@ -3350,5 +3350,26 @@
     "searchPlaceholder": "Golek ing transkrip…",
     "speakerPlaceholder": "Lebokna jeneng utawa handel pamicara",
     "detectedLanguage": "Basa sing kadeteksi: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Dompet Solana ora kasedhiya — piranti iki ora nyimpen kunci dompetmu. Mlebu maneh kanggo mbalekake.",
+    "solanaTempUnavailable": "Ngeposake ing Solana sauntara ora kasedhiya. Coba Base utawa BNB.",
+    "enterTextFirst": "Lebokna teks dhisik",
+    "styleApplied": "Gaya ditrapake!",
+    "textUpdated": "Teks dianyari!",
+    "textFailed": "Gagal ngolah teks",
+    "fillRequired": "Mangga isi kolom sing wajib.",
+    "preCheckFailed": "Pamriksan sadurunge ngunggah gagal.",
+    "postingWithoutMint": "Diposting tanpa minting — minting butuh {{amount}} {{symbol}} lan saldomu kurang. Sampeyan bisa minting mengko saka menu postingan.",
+    "allowanceUsed": "Sampeyan wis nggunakake jatah posting gratis dina iki",
+    "quoteNeedsContent": "Tulis apa wae utawa tambahake media kanggo ngutip postingan iki.",
+    "videoTooLarge": "Video ngluwihi watesan {{limit}} kanggo tingkat {{tier}} sampeyan.",
+    "audioTooLarge": "Audio ngluwihi watesan {{limit}} kanggo tingkat {{tier}} sampeyan.",
+    "imagesOrVideo": "Postingan bisa ngemot gambar utawa video, ora loro-lorone. Busak gambare dhisik.",
+    "onlyOneVideo": "Mung siji video saben postingan — sing pisanan disimpen.",
+    "micRequired": "Idin mikrofon dibutuhake kanggo ngrekam audio.",
+    "recordFailed": "Gagal miwiti rekaman.",
+    "tierVisibility": "Munggah tingkat kanggo nambah visibilitas lan entuk luwih akeh tayangan saben dina",
+    "buyTokens": "Tuku token"
   }
 }

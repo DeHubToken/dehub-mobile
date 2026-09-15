@@ -3381,5 +3381,26 @@
     "searchPlaceholder": "Im Transkript sueche…",
     "speakerPlaceholder": "Sprächername oder Handle iigeh",
     "detectedLanguage": "Erkännti Sproch: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Solana-Wallet nöd verfüegbar — das Grät het dini Wallet-Schlüssel nöd. Mäld di nomol a zum s widerhärstelle.",
+    "solanaTempUnavailable": "S Poste uf Solana isch vorüborgehend nöd verfüegbar. Probier stattdesse Base oder BNB.",
+    "enterTextFirst": "Gib zerscht öppis Täxt i",
+    "styleApplied": "Stil aagwändet!",
+    "textUpdated": "Täxt aktualisiert!",
+    "textFailed": "Dr Täxt het nöd chöne verarbeitet wärde",
+    "fillRequired": "Bitte fülle d Pflichtfälder us.",
+    "preCheckFailed": "D Prüefig vor em Uelade isch fehlgschlage.",
+    "postingWithoutMint": "Wird ohni Minting veröffentlicht — das choschtet {{amount}} {{symbol}} und dis Guthabe längt nöd. Du chasch s spöter im Biitrags-Menü minte.",
+    "allowanceUsed": "Du hesch dis gratis Biitrags-Kontingänt für hüt ufbruucht",
+    "quoteNeedsContent": "Schriib öppis oder füeg Medie zue zum de Biitrag zitiere.",
+    "videoTooLarge": "S Video überschriitet s {{limit}}-Limit vo dinere Stuefe {{tier}}.",
+    "audioTooLarge": "S Audio überschriitet s {{limit}}-Limit vo dinere Stuefe {{tier}}.",
+    "imagesOrVideo": "E Biitrag cha Bilder oder es Video ha, nöd beides. Lösch zerscht d Bilder.",
+    "onlyOneVideo": "Nur ei Video pro Biitrag — s erschte isch bhalte worde.",
+    "micRequired": "Für Audioufnahme bruucht s d Mikrofon-Berechtigung.",
+    "recordFailed": "D Ufnahm het nöd chöne starte.",
+    "tierVisibility": "Stiig Stuefe uf, zum dini Sichtbarkeit z erhöhe und pro Tag meh Feeds für de Biitrag z überchoo",
+    "buyTokens": "Token chaufe"
   }
 }

@@ -3462,5 +3462,26 @@
     "searchPlaceholder": "Buscar en la transcripción…",
     "speakerPlaceholder": "Introduce el nombre o el alias del hablante",
     "detectedLanguage": "Idioma detectado: {{lang}}"
+  },
+  "upload": {
+    "solanaUnavailable": "Cartera de Solana no disponible: este dispositivo no tiene tu clave. Vuelve a iniciar sesión para restaurarla.",
+    "solanaTempUnavailable": "Publicar en Solana no está disponible temporalmente. Prueba con Base o BNB.",
+    "enterTextFirst": "Primero escribe algo",
+    "styleApplied": "¡Estilo aplicado!",
+    "textUpdated": "¡Texto actualizado!",
+    "textFailed": "No se pudo procesar el texto",
+    "fillRequired": "Completa los campos obligatorios.",
+    "preCheckFailed": "La comprobación previa a la subida falló.",
+    "postingWithoutMint": "Se publica sin acuñar: acuñar cuesta {{amount}} {{symbol}} y tu saldo no alcanza. Puedes acuñarlo más tarde desde el menú de la publicación.",
+    "allowanceUsed": "Has agotado tu límite gratuito de publicaciones de hoy",
+    "quoteNeedsContent": "Escribe algo o añade contenido para citar esta publicación.",
+    "videoTooLarge": "El vídeo supera el límite de {{limit}} de tu nivel {{tier}}.",
+    "audioTooLarge": "El audio supera el límite de {{limit}} de tu nivel {{tier}}.",
+    "imagesOrVideo": "Una publicación puede tener imágenes o un vídeo, no ambos. Elimina primero las imágenes.",
+    "onlyOneVideo": "Solo un vídeo por publicación: se ha conservado el primero.",
+    "micRequired": "Se necesita permiso del micrófono para grabar audio.",
+    "recordFailed": "No se pudo iniciar la grabación.",
+    "tierVisibility": "Sube de nivel para aumentar tu visibilidad y conseguir más difusión diaria de la publicación",
+    "buyTokens": "Comprar tokens"
   }
 }
