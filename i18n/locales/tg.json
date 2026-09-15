@@ -3201,5 +3201,12 @@
     "needGas": "Барои газ дар {{chain}} {{token}}-и аслӣ лозим аст.",
     "bridging": "Интиқол…",
     "bridgeAction": "Пул {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Ang iyong account ay hindi maaaring",
+    "body": "Maaari ka ring mag-sign in, basahin ang iyong feed, buksan ang iyong mga mensahe at makita ang lahat ng iyong account Hindi mo maaaring mag-post, komento, tumugon, sundin o ipadala ng mga mens",
+    "line": "Ang iyong account ay hindi maaaring maaaring mag-post, komento o ipadala ng mga mensahe.",
+    "reason": "Сабаб: {{reason}}",
+    "deleteAccount": "Tanggalin ang iyong account at data"
   }
 }

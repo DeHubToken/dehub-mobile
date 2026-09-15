@@ -3223,5 +3223,12 @@
     "needGas": "Potreban je izvorni {{token}} za gas na {{chain}}.",
     "bridging": "Prebacivanje…",
     "bridgeAction": "Most {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Tvoj je račun zabranjen",
+    "body": "I dalje se možeš prijaviti, pročitati sadržaj, otvoriti poruke i vidjeti sve na svom računu. Ne možete objavljivati, komentirati, reagirati, pratiti ili slati poruke.",
+    "line": "Tvoj je račun zabranjen, pa ne možeš objavljivati, komentirati ili slati poruke.",
+    "reason": "Razlog: {{reason}}",
+    "deleteAccount": "Brisanje računa i podataka"
   }
 }

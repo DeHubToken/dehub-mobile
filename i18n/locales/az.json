@@ -3207,5 +3207,12 @@
     "needGas": "{{chain}} üzərində qaz üçün doğma {{token}} lazımdır.",
     "bridging": "Körpülənir…",
     "bridgeAction": "{{from}} → {{to}} körpülə"
+  },
+  "banned": {
+    "title": "Hesabınız qadağan edildi",
+    "body": "Hələ də daxil ola, lentinizi oxuya, mesajlarınızı aça və hesabınızdakı hər şeyi görə bilərsiniz. Mesaj yaza, şərh yaza, reaksiya verə, izləyə və ya göndərə bilməzsiniz.",
+    "line": "Hesabınız qadağan edilib, odur ki, mesaj yaza, şərh yaza və ya mesaj göndərə bilməzsiniz.",
+    "reason": "Səbəb: {{reason}}",
+    "deleteAccount": "Hesabınızı və məlumatlarınızı silin"
   }
 }

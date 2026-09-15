@@ -3293,5 +3293,12 @@
     "needGas": "Necesitas {{token}} nativo para el gas en {{chain}}.",
     "bridging": "Puenteando…",
     "bridgeAction": "Puente {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Tu cuenta está bloqueada",
+    "body": "Todavía puedes iniciar sesión, leer tu feed, abrir tus mensajes y ver todo en tu cuenta. No puedes publicar, comentar, reaccionar, seguir o enviar mensajes.",
+    "line": "Tu cuenta está bloqueada, por lo que no puedes publicar, comentar ni enviar mensajes.",
+    "reason": "Motivo: {{reason}}",
+    "deleteAccount": "Elimina tu cuenta y tus datos"
   }
 }

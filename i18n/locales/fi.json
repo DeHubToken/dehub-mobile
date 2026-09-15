@@ -3223,5 +3223,12 @@
     "needGas": "Tarvitset natiivia {{token}} kaasumaksuihin ketjussa {{chain}}.",
     "bridging": "Siirretään…",
     "bridgeAction": "Siirrä {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Tilisi on estetty",
+    "body": "Voit silti kirjautua sisään, lukea syötteesi, avata viestisi ja nähdä kaiken tililläsi. Et voi julkaista, kommentoida, reagoida, seurata tai lähettää viestejä.",
+    "line": "Tilisi on estetty, joten et voi julkaista, kommentoida tai lähettää viestejä.",
+    "reason": "Syy: {{reason}}",
+    "deleteAccount": "Poista tilisi ja tietosi"
   }
 }

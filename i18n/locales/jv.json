@@ -3181,5 +3181,12 @@
     "needGas": "Butuh {{token}} asli kanggo gas ing {{chain}}.",
     "bridging": "Lagi bridge…",
     "bridgeAction": "Bridge {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Akun sampeyan wis dilarang",
+    "body": "Sampeyan isih bisa mlebu, maca feed, mbukak pesen lan ndeleng kabeh ing akun sampeyan. Sampeyan ora bisa ngirim, ngomentari, ngreaksi, ngetutake utawa ngirim pesen.",
+    "line": "Akun sampeyan wis dilarang, mula sampeyan ora bisa ngirim, ngomentari utawa ngirim pesen.",
+    "reason": "Alasan: {{reason}}",
+    "deleteAccount": "Busak akun lan data sampeyan"
   }
 }

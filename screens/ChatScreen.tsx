@@ -46,6 +46,8 @@ import ConfirmBlockModal from "../components/common/ConfirmBlockModal";
 import PinnedMessageBanner from "../components/DM/PinnedMessageBanner";
 
 import { useUser, useAuthState, useAuthActions, useProvider } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
+import { useBannedAccount } from "../hooks/useBannedAccount";
 import type { User } from "../context/AuthContext";
 import { useWebSocket } from "../context/WebSocketContext";
 import { useGateToHome } from "../hooks/useGateToHome";
@@ -139,6 +141,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const navigation = useNavigation<any>();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
+  const { t } = useTranslation();
+  // A banned account keeps every conversation it has and can send into none.
+  const { isBanned: accountBanned } = useBannedAccount();
   const { patchUser } = useAuthActions();
   // The session's own provider, not useWeb3Provider's read client below: on a
   // returning session this is the locked shim, and it is the only thing that
@@ -1706,7 +1711,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 onSendGif={onSendGif}
                 onStartVoice={onStartVoice}
                 onTypingChange={onTypingChange}
-                disabled={creating}
+                disabled={creating || accountBanned}
+                disabledMessage={accountBanned ? t("banned.line") : undefined}
                 sending={sending}
                 replyTo={replyTo}
                 onCancelReply={() => setReplyTo(null)}

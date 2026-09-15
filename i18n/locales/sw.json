@@ -3223,5 +3223,12 @@
     "needGas": "Unahitaji {{token}} asilia kwa gesi kwenye {{chain}}.",
     "bridging": "Inavusha…",
     "bridgeAction": "Daraja {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Akaunti yako imepigwa marufuku",
+    "body": "Bado unaweza kuingia, kusoma mpasho wako, kufungua ujumbe wako na kuona kila kitu kwenye akaunti yako. Huwezi kuchapisha, kutoa maoni, kujibu, kufuata au kutuma ujumbe.",
+    "line": "Akaunti yako imepigwa marufuku, kwa hivyo huwezi kuchapisha, kutoa maoni au kutuma ujumbe.",
+    "reason": "Sababu: {{reason}}",
+    "deleteAccount": "Futa akaunti na data yako"
   }
 }
