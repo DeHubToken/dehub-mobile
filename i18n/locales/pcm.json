@@ -3043,7 +3043,8 @@
     "insufficientOnChain": "DHB no plenty for {{chain}}. Di on-chain balance fit different from wetin dey show.",
     "needGas": "You need native {{token}} for gas for {{chain}}.",
     "bridging": "Bridging…",
-    "bridgeAction": "Bridge {{from}} → {{to}}"
+    "bridgeAction": "Bridge {{from}} → {{to}}",
+    "failed": "Bridge fail"
   },
   "teamUp": {
     "title": "Join team",

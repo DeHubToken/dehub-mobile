@@ -3226,7 +3226,8 @@
     "insufficientOnChain": "Otillräckligt med DHB på {{chain}}. Saldot på kedjan kan skilja sig från det visade.",
     "needGas": "Du behöver native {{token}} för gas på {{chain}}.",
     "bridging": "Bryggar…",
-    "bridgeAction": "Brygga {{from}} → {{to}}"
+    "bridgeAction": "Brygga {{from}} → {{to}}",
+    "failed": "Bryggningen misslyckades"
   },
   "banned": {
     "title": "Ditt konto är spärrat",

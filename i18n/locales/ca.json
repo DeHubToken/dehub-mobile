@@ -3222,7 +3222,8 @@
     "insufficientOnChain": "DHB insuficient a {{chain}}. El saldo a la cadena pot diferir del mostrat.",
     "needGas": "Cal {{token}} natiu per al gas a {{chain}}.",
     "bridging": "S'està fent el pont…",
-    "bridgeAction": "Pont {{from}} → {{to}}"
+    "bridgeAction": "Pont {{from}} → {{to}}",
+    "failed": "El pont ha fallat"
   },
   "banned": {
     "title": "El teu compte està bloquejat",

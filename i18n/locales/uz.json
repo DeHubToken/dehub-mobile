@@ -3274,7 +3274,8 @@
     "insufficientOnChain": "{{chain}} da DHB yetarli emas. Zanjirdagi balans ko‘rsatilganidan farq qilishi mumkin.",
     "needGas": "{{chain}} da gaz uchun mahalliy {{token}} kerak.",
     "bridging": "Ko‘prik orqali o‘tkazilmoqda…",
-    "bridgeAction": "Ko‘prik {{from}} → {{to}}"
+    "bridgeAction": "Ko‘prik {{from}} → {{to}}",
+    "failed": "Ko‘prik muvaffaqiyatsiz tugadi"
   },
   "banned": {
     "title": "Hisobingiz bloklandi",

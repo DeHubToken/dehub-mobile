@@ -3222,7 +3222,8 @@
     "insufficientOnChain": "Ei tarpeeksi DHB:tä ketjussa {{chain}}. Ketjun saldo voi poiketa näytetystä.",
     "needGas": "Tarvitset natiivia {{token}} kaasumaksuihin ketjussa {{chain}}.",
     "bridging": "Siirretään…",
-    "bridgeAction": "Siirrä {{from}} → {{to}}"
+    "bridgeAction": "Siirrä {{from}} → {{to}}",
+    "failed": "Siirto epäonnistui"
   },
   "banned": {
     "title": "Tilisi on estetty",

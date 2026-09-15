@@ -3290,7 +3290,8 @@
     "insufficientOnChain": "{{chain}}에 DHB가 부족합니다. 온체인 잔액은 표시된 값과 다를 수 있습니다.",
     "needGas": "{{chain}}의 가스비로 네이티브 {{token}}이(가) 필요합니다.",
     "bridging": "브리지 중…",
-    "bridgeAction": "{{from}} → {{to}} 브리지"
+    "bridgeAction": "{{from}} → {{to}} 브리지",
+    "failed": "브리지에 실패했습니다"
   },
   "banned": {
     "title": "계정이 차단되었습니다",

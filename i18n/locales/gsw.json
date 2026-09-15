@@ -3211,7 +3211,8 @@
     "insufficientOnChain": "Nid gnueg DHB uf {{chain}}. S Guethabe uf dr Chetti cha vom aagzeigte abwiiche.",
     "needGas": "Für Gas uf {{chain}} bruuchsch natives {{token}}.",
     "bridging": "Wird überbruggt…",
-    "bridgeAction": "Bridge {{from}} → {{to}}"
+    "bridgeAction": "Bridge {{from}} → {{to}}",
+    "failed": "Bridge fehlgschlage"
   },
   "banned": {
     "title": "Dini Konto isch gsperrt",

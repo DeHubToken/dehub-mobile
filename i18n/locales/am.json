@@ -3217,7 +3217,8 @@
     "insufficientOnChain": "በ{{chain}} ላይ በቂ DHB የለም። በሰንሰለቱ ላይ ያለው ቀሪ ሂሳብ ከሚታየው ሊለያይ ይችላል።",
     "needGas": "በ{{chain}} ላይ ለጋዝ የቤተኛ {{token}} ያስፈልጋል።",
     "bridging": "በማሻገር ላይ…",
-    "bridgeAction": "{{from}} → {{to}} ያሻግሩ"
+    "bridgeAction": "{{from}} → {{to}} ያሻግሩ",
+    "failed": "ማሻገር አልተሳካም"
   },
   "banned": {
     "title": "መለያዎ ታግዷል",

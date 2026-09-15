@@ -3301,7 +3301,8 @@
     "insufficientOnChain": "Tsy ampy DHB ao amin'ny {{chain}}. Mety tsy mitovy amin'ny aseho ny volanao eo amin'ny rojo.",
     "needGas": "Mila {{token}} tena izy ho an'ny gazy ao amin'ny {{chain}}.",
     "bridging": "Manao tetezana…",
-    "bridgeAction": "Tetezana {{from}} → {{to}}"
+    "bridgeAction": "Tetezana {{from}} → {{to}}",
+    "failed": "Tsy nahomby ny tetezana"
   },
   "banned": {
     "title": "Voarara ny kaontinao",

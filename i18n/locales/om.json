@@ -3286,7 +3286,8 @@
     "insufficientOnChain": "{{chain}} irratti DHB gaʼaan hin jiru. Hafteessi foddaa irraa kan agarsiifame irraa adda taʼuu dandaʼa.",
     "needGas": "{{chain}} irratti gaazii kaffaluuf {{token}} dhalootaa barbaachisa.",
     "bridging": "Riqicha keessa dabarsaa jira…",
-    "bridgeAction": "Riqicha {{from}} → {{to}}"
+    "bridgeAction": "Riqicha {{from}} → {{to}}",
+    "failed": "Riqichi hin milkoofne"
   },
   "banned": {
     "title": "Akkaawuntii keessan dhorkameera",

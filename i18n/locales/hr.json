@@ -3222,7 +3222,8 @@
     "insufficientOnChain": "Nedovoljno DHB na {{chain}}. Stanje na lancu može se razlikovati od prikazanog.",
     "needGas": "Potreban je izvorni {{token}} za gas na {{chain}}.",
     "bridging": "Prebacivanje…",
-    "bridgeAction": "Most {{from}} → {{to}}"
+    "bridgeAction": "Most {{from}} → {{to}}",
+    "failed": "Most nije uspio"
   },
   "banned": {
     "title": "Tvoj je račun zabranjen",

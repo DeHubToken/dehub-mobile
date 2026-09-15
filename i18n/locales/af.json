@@ -3339,7 +3339,8 @@
     "insufficientOnChain": "Onvoldoende DHB op {{chain}}. Die kettingsaldo kan van die vertoonde saldo verskil.",
     "needGas": "Jy het inheemse {{token}} vir gas op {{chain}} nodig.",
     "bridging": "Besig om oor te brug…",
-    "bridgeAction": "Oorbrug {{from}} → {{to}}"
+    "bridgeAction": "Oorbrug {{from}} → {{to}}",
+    "failed": "Oorbrugging het misluk"
   },
   "banned": {
     "title": "Jou rekening is verbode",

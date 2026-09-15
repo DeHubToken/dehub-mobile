@@ -3221,7 +3221,8 @@
     "insufficientOnChain": "DHB i pamjaftueshëm në {{chain}}. Bilanci në zinxhir mund të ndryshojë nga ai i shfaqur.",
     "needGas": "Duhet {{token}} vendas për gazin në {{chain}}.",
     "bridging": "Po kalohet ura…",
-    "bridgeAction": "Urë {{from}} → {{to}}"
+    "bridgeAction": "Urë {{from}} → {{to}}",
+    "failed": "Ura dështoi"
   },
   "banned": {
     "title": "Llogaria jote është e ndaluar",
