@@ -3074,7 +3074,12 @@
     "errorUnsupported": "हम उस लिंक से इम्पोर्ट नहीं कर सकते। इनमें से कोई एक आज़माएँ: {{sources}}",
     "errorNeedRights": "कृपया पुष्टि करें कि आपके पास इस सामग्री के अधिकार हैं",
     "errorClipboard": "क्लिपबोर्ड को पढ़ा नहीं जा सका — इसके बजाय मैन्युअल रूप से पेस्ट करें",
-    "errorQueueFailed": "उस इम्पोर्ट की कतार नहीं लगाई जा सकी"
+    "errorQueueFailed": "उस इम्पोर्ट की कतार नहीं लगाई जा सकी",
+    "publishAs": "इस रूप में प्रकाशित करें",
+    "kindVideo": "वीडियो",
+    "kindAudio": "inf",
+    "kindImage": "छवियाँ",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24घं",

@@ -3031,7 +3031,12 @@
     "errorUnsupported": "Nu putem importa de la acel link. Încearcă una dintre: {{sources}}",
     "errorNeedRights": "Vă rugăm să confirmați că aveți drepturi asupra acestui conținut",
     "errorClipboard": "Clipboard-ul nu a putut fi citit — lipiți manual în schimb",
-    "errorQueueFailed": "Imposibil de pus în coadă acel import"
+    "errorQueueFailed": "Imposibil de pus în coadă acel import",
+    "publishAs": "Publică ca…",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Imagini",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

@@ -3068,7 +3068,12 @@
     "errorUnsupported": "Kami tidak dapat mengimpor dari tautan itu. Coba salah satu dari: {{sources}}",
     "errorNeedRights": "Harap konfirmasikan bahwa Anda memiliki hak atas konten ini",
     "errorClipboard": "Tidak dapat membaca clipboard — tempelkan secara manual",
-    "errorQueueFailed": "Tidak dapat mengantre impor tersebut"
+    "errorQueueFailed": "Tidak dapat mengantre impor tersebut",
+    "publishAs": "Publikasikan sebagai",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Gambar",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24j",

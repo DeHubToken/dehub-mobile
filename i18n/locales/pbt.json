@@ -2969,7 +2969,12 @@
     "toastFailed": "دغه واردات په ټپه درېدلي دي.",
     "errorNeedRights": "مهرباني وکړئ تایید کړئ چې تاسو د دې مینځپانګې حقونه لرئ",
     "errorClipboard": "لوستونکی نه شي کولای، چې پر ځای یې لیکنه وکړي — ياران .کام",
-    "errorQueueFailed": "د دې وارداتو مخه نشي نیول کیدی"
+    "errorQueueFailed": "د دې وارداتو مخه نشي نیول کیدی",
+    "publishAs": "خپور شوی لکه څنګه چې",
+    "kindVideo": "ویدیوګانې",
+    "kindAudio": "ویډیوګانې",
+    "kindImage": "په انځورونو کې",
+    "tileSourceKind": "په نه په"
   },
   "earnings": {
     "filter24h": "24س",

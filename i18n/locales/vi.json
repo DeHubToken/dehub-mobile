@@ -3106,7 +3106,12 @@
     "errorUnsupported": "Chúng tôi không thể nhập từ liên kết đó. Thử một trong số: {{sources}}",
     "errorNeedRights": "Vui lòng xác nhận bạn có quyền đối với nội dung này",
     "errorClipboard": "Không thể đọc khay nhớ tạm — thay vào đó hãy dán thủ công",
-    "errorQueueFailed": "Không thể xếp hàng nhập"
+    "errorQueueFailed": "Không thể xếp hàng nhập",
+    "publishAs": "Xuất bản dưới dạng <canvas>",
+    "kindVideo": "Video",
+    "kindAudio": "Âm thanh",
+    "kindImage": "Hình ảnh",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24g",

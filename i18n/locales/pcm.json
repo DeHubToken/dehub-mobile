@@ -2839,7 +2839,12 @@
     "statusDownloading": "Downloading",
     "statusDownloadingPercent": "Downloading {{percent}}%",
     "statusQueued": "Queued",
-    "detailWaiting": "Waiting its turn."
+    "detailWaiting": "Waiting its turn.",
+    "publishAs": "Publish as",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Pictures",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

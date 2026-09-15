@@ -3082,7 +3082,12 @@
     "errorUnsupported": "Link sana irraa galchuu hin dandeenyu. Isaan keessaa tokko yaalaa: {{sources}}",
     "errorNeedRights": "Qabiyyee kanaaf mirga qabaachuu keessan mirkaneessaa",
     "errorClipboard": "Gabatee muraa dubbisuu hin dandeenye — bakka isaa harkaan maxxansi",
-    "errorQueueFailed": "Galchuu sana tarree galchuu hin dandeenye"
+    "errorQueueFailed": "Galchuu sana tarree galchuu hin dandeenye",
+    "publishAs": "Akka maxxansaa",
+    "kindVideo": "Viidiyoo",
+    "kindAudio": "Sagalee",
+    "kindImage": "Suuraalee",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24s",

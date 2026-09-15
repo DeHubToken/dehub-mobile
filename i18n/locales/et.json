@@ -3017,7 +3017,12 @@
     "errorUnsupported": "Me ei saa sellest lingist importida. Proovi ühte järgmistest: {{sources}}",
     "errorNeedRights": "Kinnita, et sul on sellele sisule õigused",
     "errorClipboard": "Lõikepuhvrit ei saanud lugeda — kleepige selle asemel käsitsi",
-    "errorQueueFailed": "Seda importi ei saanud järjekorda panna"
+    "errorQueueFailed": "Seda importi ei saanud järjekorda panna",
+    "publishAs": "Avalda kui",
+    "kindVideo": "Video",
+    "kindAudio": "Heli",
+    "kindImage": "Pildid",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

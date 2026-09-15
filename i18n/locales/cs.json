@@ -3022,7 +3022,12 @@
     "errorUnsupported": "Z tohoto odkazu nemůžeme importovat. Vyzkoušej jednu z následujících možností: {{sources}}",
     "errorNeedRights": "Potvrďte prosím, že máte práva k tomuto obsahu",
     "errorClipboard": "Nelze přečíst schránku — místo toho vložte ručně",
-    "errorQueueFailed": "Nelze zařadit tento import do fronty"
+    "errorQueueFailed": "Nelze zařadit tento import do fronty",
+    "publishAs": "Zveřejnit jako",
+    "kindVideo": "Videozáznam",
+    "kindAudio": "Zvuk",
+    "kindImage": "Obrázky",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

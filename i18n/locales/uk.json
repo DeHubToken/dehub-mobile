@@ -3497,7 +3497,12 @@
     "errorUnsupported": "Ми не можемо імпортувати з цього посилання. Спробуйте один із варіантів: {{sources}}",
     "errorNeedRights": "Підтвердьте, що у вас є права на цей вміст",
     "errorClipboard": "Не вдалося прочитати буфер обміну — замість цього вставте вручну",
-    "errorQueueFailed": "Не вдалося поставити імпорт у чергу"
+    "errorQueueFailed": "Не вдалося поставити імпорт у чергу",
+    "publishAs": "Опублікувати як",
+    "kindVideo": "Відео",
+    "kindAudio": "Аудіо",
+    "kindImage": "Картини",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24г",

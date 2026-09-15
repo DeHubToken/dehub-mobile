@@ -3003,7 +3003,12 @@
     "errorUnsupported": "E kore e taea e tatou te kawemai i taua hononga. Whakamātauria tetahi o: {{sources}}",
     "errorNeedRights": "Tena koa whakapumautanga kei a koe nga tika ki tenei ihirangi",
     "errorClipboard": "E kore e taea e koe te pānui i te papapātuhi — whakapiri i te ringa i te wahi",
-    "errorQueueFailed": "Kaore e taea e au te whakakore i taua kawemai"
+    "errorQueueFailed": "Kaore e taea e au te whakakore i taua kawemai",
+    "publishAs": "Te whakaputa i te mea",
+    "kindVideo": "ataata",
+    "kindAudio": "Ororongo",
+    "kindImage": "Whakaahua",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

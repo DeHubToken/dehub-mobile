@@ -3188,7 +3188,12 @@
     "errorUnsupported": "Z tohto odkazu nemôžeme importovať. Vyskúšajte jednu z týchto možností: {{sources}}",
     "errorNeedRights": "Potvrďte, že máte práva na tento obsah",
     "errorClipboard": "Nepodarilo sa prečítať schránku — namiesto toho vložte manuálne",
-    "errorQueueFailed": "Tento import sa nepodarilo zaradiť do fronty"
+    "errorQueueFailed": "Tento import sa nepodarilo zaradiť do fronty",
+    "publishAs": "Zverejniť ako",
+    "kindVideo": "Obraz",
+    "kindAudio": "Zvuk",
+    "kindImage": "Obrázky",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

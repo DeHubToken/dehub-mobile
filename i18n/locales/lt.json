@@ -3017,7 +3017,12 @@
     "errorUnsupported": "Negalime importuoti iš šios nuorodos. Išbandykite vieną iš šių: {{sources}}",
     "errorNeedRights": "Patvirtinkite, kad turite teises į šį turinį",
     "errorClipboard": "Nepavyko nuskaityti iškarpinės — įklijuokite rankiniu būdu",
-    "errorQueueFailed": "Nepavyko įtraukti importavimo į eilę"
+    "errorQueueFailed": "Nepavyko įtraukti importavimo į eilę",
+    "publishAs": "Skelbti kaip",
+    "kindVideo": "Vaizdo įrašas",
+    "kindAudio": "Garso įrašas",
+    "kindImage": "Nuotraukos",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24val",

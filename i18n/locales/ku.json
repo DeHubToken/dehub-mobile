@@ -2784,7 +2784,12 @@
   "converter": {
     "tryAgain": "هەوڵێ دوبارە",
     "statusImported": "ھێنراو (لە دەرەوە)، ھاووردە، ھاوردراو، ھێنراو، ھاوردە، بیانی یە",
-    "statusFailed": "سه‌رنه‌که‌وتوو"
+    "statusFailed": "سه‌رنه‌که‌وتوو",
+    "publishAs": "Weşandin wek",
+    "kindVideo": "Dîmen",
+    "kindAudio": "Deng",
+    "kindImage": "Wêne",
+    "tileSourceKind": "{{çavkanî}} · {{cure}}"
   },
   "earnings": {
     "filter24h": "24s",

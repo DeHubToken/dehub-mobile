@@ -2971,7 +2971,12 @@
     "toastFailed": "हम कह रहलियो ह, महोदय, कि अगर हम आपसे बात",
     "errorNeedRights": "कृपया सुनिश्चित करें कि आपके पास \"यूएसबी डिबग मोड\" \"क्वोट; ऑफ\"",
     "errorClipboard": "उच्चारण रेकार्ड करे cunt cunt [en — other] क्या आप जानते हैं कैसे उच्चारण cunt करें?",
-    "errorQueueFailed": "नइ निकलि सकलइ"
+    "errorQueueFailed": "नइ निकलि सकलइ",
+    "publishAs": "छाप के रूप में प्रकाशित करे",
+    "kindVideo": "इ औ सेकसी वीडियो",
+    "kindAudio": "ऑडियो कैलक्यूलेटर",
+    "kindImage": "इ औ सेकसी फोटो",
+    "tileSourceKind": "{{MONTHNAME}} से मिलई छई"
   },
   "earnings": {
     "filter24h": "24घं",

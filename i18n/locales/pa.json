@@ -2994,7 +2994,12 @@
     "errorUnsupported": "ਅਸੀਂ ਉਸ ਲਿੰਕ ਤੋਂ ਆਯਾਤ ਨਹੀਂ ਕਰ ਸਕਦੇ. ਇੱਕ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋਃ {{sources}}",
     "errorNeedRights": "ਕਿਰਪਾ ਕਰਕੇ ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਸਮੱਗਰੀ ਦੇ ਅਧਿਕਾਰ ਹਨ",
     "errorClipboard": "ਕਲਿੱਪਬੋਰਡ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ — ਇਸ ਦੀ ਬਜਾਏ ਖੁਦ ਪੇਸਟ ਕਰੋ",
-    "errorQueueFailed": "ਇੰਪੋਰਟ ਕਰਨ ਲਈ ਕਤਾਰ ਨਹੀਂ ਬਣਾਈ ਜਾ ਸਕੀ"
+    "errorQueueFailed": "ਇੰਪੋਰਟ ਕਰਨ ਲਈ ਕਤਾਰ ਨਹੀਂ ਬਣਾਈ ਜਾ ਸਕੀ",
+    "publishAs": "ਇਸ ਤਰਾਂ ਪ੍ਰਕਾਸ਼ਿਤ ਕਰੋ",
+    "kindVideo": "ਵੀਡਿਓ",
+    "kindAudio": "ਆਡੀਓ",
+    "kindImage": "ਤਸਵੀਰ",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24ਘੰ",

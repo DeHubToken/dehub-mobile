@@ -2937,5 +2937,12 @@
       "wallNote": "published with permission",
       "anonymous": "A DeHub member"
     }
+  },
+  "converter": {
+    "publishAs": "Objavi kao",
+    "kindVideo": "Video",
+    "kindAudio": "Аудио",
+    "kindImage": "Слике",
+    "tileSourceKind": "{{source}} · {{kind}}"
   }
 }

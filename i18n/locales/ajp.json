@@ -2974,7 +2974,12 @@
     "errorUnsupported": "ما فيّ نقدر نستورد من هالرابط. جرّب واحد من: {{sources}}",
     "errorNeedRights": "الرجاء تأكيد إنك عندك الحقوق لهالمحتوى",
     "errorClipboard": "ما قدرنا نقرأ من الحافظة — الصق يدويّ بدل",
-    "errorQueueFailed": "ما قدرنا نضيف الاستيراد للطابور"
+    "errorQueueFailed": "ما قدرنا نضيف الاستيراد للطابور",
+    "publishAs": "Publish as",
+    "kindVideo": "فيديو",
+    "kindAudio": "صوت",
+    "kindImage": "صور",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24س",

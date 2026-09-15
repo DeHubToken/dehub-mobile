@@ -3018,7 +3018,12 @@
     "errorUnsupported": "Не можем да импортираме от тази връзка. Опитайте едно от следните: {{sources}}",
     "errorNeedRights": "Потвърдете, че имате правата върху това съдържание",
     "errorClipboard": "Не може да се прочете клипборда — вместо това поставете ръчно",
-    "errorQueueFailed": "Неуспешно изчакване при импортиране"
+    "errorQueueFailed": "Неуспешно изчакване при импортиране",
+    "publishAs": "Публикуване като",
+    "kindVideo": "Видеоклип",
+    "kindAudio": "екрана",
+    "kindImage": "??·???±?Ђ?°?¶?µ?????ЏQShortcut",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24ч",

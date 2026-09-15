@@ -3037,7 +3037,12 @@
     "errorUnsupported": "យើងមិនអាចនាំចូលពីតំណនោះទេ ។ សាកល្បងមួយក្នុងចំណោម: {{sources}}",
     "errorNeedRights": "សូមបញ្ជាក់ថាលោកអ្នកមានសិទ្ធិក្នុងមាតិកានេះ",
     "errorClipboard": "មិន អាច អាន ក្ដារ តម្បៀត ខ្ទាស់ បាន ទេ — បិទភ្ជាប់ ដោយ ដៃ ជំនួស វិញ",
-    "errorQueueFailed": "មិន អាច ដាក់ ជួរ នាំចូល នោះ បាន ទេ"
+    "errorQueueFailed": "មិន អាច ដាក់ ជួរ នាំចូល នោះ បាន ទេ",
+    "publishAs": "បោះពុម្ពផ្សាយជា",
+    "kindVideo": "វីដេអូ",
+    "kindAudio": "សំឡេង",
+    "kindImage": "រូបភាព",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24ម",

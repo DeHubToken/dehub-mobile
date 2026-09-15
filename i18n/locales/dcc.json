@@ -2900,5 +2900,12 @@
       "wallNote": "published with permission",
       "anonymous": "A DeHub member"
     }
+  },
+  "converter": {
+    "publishAs": "Publish as",
+    "kindVideo": "Video",
+    "kindAudio": "آڈیو",
+    "kindImage": "Pictures",
+    "tileSourceKind": "{{source}} · {{kind}}"
   }
 }
