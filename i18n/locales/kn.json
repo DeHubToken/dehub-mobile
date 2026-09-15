@@ -3142,7 +3142,16 @@
     "kindVideo": "ವೀಡಿಯೊ",
     "kindAudio": "ಆಡಿಯೊ",
     "kindImage": "ಚಿತ್ರಗಳು",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "ಪೋಸ್ಟ್ ಮಾಡುವ ಮೊದಲು ಪರಿಶೀಲಿಸಿ",
+    "reviewSubtitle": "{{source}} ನಿಂದ, {{kind}} ಎಂದು. ನೀವು ಇಷ್ಟಪಡುವದನ್ನು ಸಂಪಾದಿಸಿ — ಮೂಲವನ್ನು ಉಳಿಸಿಕೊಳ್ಳಲು ಶೀರ್ಷಿಕೆಯನ್ನು ಖಾಲಿ ಬಿಡಿ.",
+    "reviewName": "ಶೀರ್ಷಿಕೆ",
+    "reviewNamePlaceholder": "ಮೂಲ ಶೀರ್ಷಿಕೆಯನ್ನು ಉಳಿಸಿಕೊಳ್ಳಲು ಖಾಲಿ ಬಿಡಿ",
+    "reviewDescription": "ವಿವರಣೆ",
+    "reviewDescriptionPlaceholder": "ಈ ಪೋಸ್ಟ್ ಬಗ್ಗೆ ಏನಾದರೂ ಹೇಳಿ (ಐಚ್ಛಿಕ)",
+    "reviewLiveWarning": "ಆ ಲಿಂಕ್ ಲೈವ್ ಸ್ಟ್ರೀಮ್ ಆಗಿದೆ. ಅದು ಮುಗಿಯುವವರೆಗೆ ಕಾಯಿರಿ ಮತ್ತು ಬದಲಿಗೆ ರೆಕಾರ್ಡಿಂಗ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ.",
+    "reviewCancel": "ರದ್ದುಗೊಳಿಸಿ",
+    "reviewConfirm": "ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ"
   },
   "earnings": {
     "filter24h": "24ಗಂ",

@@ -3023,7 +3023,16 @@
     "kindVideo": "Video",
     "kindAudio": "Аудио",
     "kindImage": "Слике",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Pregledajte pre objavljivanja",
+    "reviewSubtitle": "Od {{source}}, kao {{kind}}. Izmenite sve što vam se sviđa — ostavite naslov prazan da biste sačuvali original.",
+    "reviewName": "Naziv",
+    "reviewNamePlaceholder": "Ostavite prazno da biste zadržali prvobitni naziv",
+    "reviewDescription": "Opis",
+    "reviewDescriptionPlaceholder": "Recite nešto o ovoj objavi (nije obavezno)",
+    "reviewLiveWarning": "Taj link je strim uživo. Sačekajte da se završi i umesto toga uvezite snimak.",
+    "reviewCancel": "Otkaži",
+    "reviewConfirm": "Uvoz"
   },
   "solana": {
     "unavailableTitle": "Solana новчаник није доступан",

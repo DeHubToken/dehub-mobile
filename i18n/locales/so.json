@@ -3128,7 +3128,16 @@
     "kindVideo": "Waso",
     "kindAudio": "Cod",
     "kindImage": "Sawiro",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Dib u eeg ka hor inta aan la dhajin",
+    "reviewSubtitle": "Laga soo bilaabo {{source}}, sida {{kind}}. Wax kasta oo aad jeceshahay hagaaji — ka tag cinwaanka madhan si aad u ilaaliso asalka.",
+    "reviewName": "Cinwaanka",
+    "reviewNamePlaceholder": "Ka tag madhan si aad u ilaaliso cinwaanka asalka ah",
+    "reviewDescription": "Sharaxaad",
+    "reviewDescriptionPlaceholder": "Wax ka sheeg qoraalkan (optional)",
+    "reviewLiveWarning": "Xidhiidhkaas waa durdur nool. Sug ilaa ay dhammaato oo soo dejiso duubista halkii.",
+    "reviewCancel": "Jooji",
+    "reviewConfirm": "Soo dejiso"
   },
   "earnings": {
     "filter24h": "24s",

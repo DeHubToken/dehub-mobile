@@ -3119,7 +3119,16 @@
     "kindVideo": "වීඩියෝව",
     "kindAudio": "ශබ්ද",
     "kindImage": "පිංතුර",
-    "tileSourceKind": "{{මූලාශ් ‍ රය}}"
+    "tileSourceKind": "{{මූලාශ් ‍ රය}}",
+    "reviewTitle": "පළ කිරීමට පෙර සමාලෝචනය කරන්න",
+    "reviewSubtitle": "{{source}} වෙතින් {{kind}} ලෙස. ඔබ කැමති ඕනෑම දෙයක් සංස්කරණය කරන්න — මුල් තබා ගැනීමට මාතෘකාව හිස්ව තබන්න.",
+    "reviewName": "මාතෘකාව",
+    "reviewNamePlaceholder": "මුල් මාතෘකාව තබා ගැනීමට හිස්ව තබන්න",
+    "reviewDescription": "විස්තරය",
+    "reviewDescriptionPlaceholder": "මෙම ලිපිය ගැන යමක් කියන්න (අත් ‍ යවශ් ‍ ය නොවේ)",
+    "reviewLiveWarning": "මෙම සබැඳිය සජීවී විකාශනයකි. එය අවසන් වන තෙක් රැඳී සිටින්න සහ ඒ වෙනුවට පටිගත කිරීම ආයාත කරන්න.",
+    "reviewCancel": "අවලංගු කරන්න",
+    "reviewConfirm": "ආයාත කරන්න"
   },
   "earnings": {
     "filter24h": "24පැ",

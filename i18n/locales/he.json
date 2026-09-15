@@ -3124,7 +3124,16 @@
     "kindVideo": "ווידאו",
     "kindAudio": "אודיו",
     "kindImage": "תמונות",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "בדיקה לפני הפרסום",
+    "reviewSubtitle": "החל מ -{{source}}, בתור {{kind}}. ערכו כל מה שתרצו — השאירו את הכותרת ריקה כדי לשמור על המקור.",
+    "reviewName": "כותרת",
+    "reviewNamePlaceholder": "השאר ריק כדי לשמור על הכותרת המקורית",
+    "reviewDescription": "תיאור",
+    "reviewDescriptionPlaceholder": "אפשר לכתוב משהו על הפוסט הזה (אופציונלי)",
+    "reviewLiveWarning": "הקישור הזה הוא שידור חי. המתן עד שיסתיים וייבא את ההקלטה במקום זאת.",
+    "reviewCancel": "ביטול",
+    "reviewConfirm": "ייבוא"
   },
   "earnings": {
     "filter24h": "24ש",

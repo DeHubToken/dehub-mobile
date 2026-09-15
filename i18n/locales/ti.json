@@ -3102,7 +3102,16 @@
     "kindVideo": "ቪድዮ",
     "kindAudio": "ድምፂ",
     "kindImage": "ስእልታት",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "ቅድሚ ምእታዉ ገምግም",
+    "reviewSubtitle": "ካብ {{source}} ፡ ከም {{kind}}} ። ነቲ ኦሪጅናል ንምዕቃብ ፡ ነቲ ኣርእስቲ ባዶ ግበር ።",
+    "reviewName": "ኣርእስቲ",
+    "reviewNamePlaceholder": "ነቲ ናይ መጀመርታ ኣርእስቲ ንምሕላው ባዶ ግበር",
+    "reviewDescription": "መግለጺ",
+    "reviewDescriptionPlaceholder": "ብዛዕባ እዚ ጽሑፍ እዚ ገለ ነገር ንገሮ (ምምራጽ)",
+    "reviewLiveWarning": "እዚ ርክብ እዚ ህያው ፍሰት እዩ ። ክሳዕ ዚዛዘም ተጸበዩ ፡ ኣብ ክንዳኡስ ፡ ነቲ መዝገብ ኣምጽኡ ።",
+    "reviewCancel": "ሰርዝ",
+    "reviewConfirm": "ኣምጽእ"
   },
   "earnings": {
     "filter24h": "24ሰ",

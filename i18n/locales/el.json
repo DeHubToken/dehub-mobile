@@ -3160,7 +3160,16 @@
     "kindVideo": "Βίντεο",
     "kindAudio": "Ήχος",
     "kindImage": "Εικόνες",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Έλεγχος πριν από την ανάρτηση",
+    "reviewSubtitle": "Από {{source}}, ως {{kind}}. Επεξεργαστείτε ό, τι θέλετε — αφήστε τον τίτλο κενό για να διατηρήσετε το πρωτότυπο.",
+    "reviewName": "Τίτλος",
+    "reviewNamePlaceholder": "Αφήστε κενό για να διατηρήσετε τον αρχικό τίτλο",
+    "reviewDescription": "Περιγραφή",
+    "reviewDescriptionPlaceholder": "Πείτε κάτι για αυτήν την ανάρτηση (προαιρετικά)",
+    "reviewLiveWarning": "Αυτός ο σύνδεσμος είναι μια ζωντανή ροή. Περιμένετε μέχρι να τελειώσει και εισαγάγετε την εγγραφή.",
+    "reviewCancel": "Ακύρωση",
+    "reviewConfirm": "Εισαγωγή"
   },
   "earnings": {
     "filter24h": "24ω",

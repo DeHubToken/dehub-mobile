@@ -3206,7 +3206,16 @@
     "kindVideo": "Video",
     "kindAudio": "Audio",
     "kindImage": "Bilder",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Vor dem Posten überprüfen",
+    "reviewSubtitle": "Von {{source}}, als {{kind}}. Bearbeiten Sie alles, was Sie möchten — lassen Sie den Titel leer, um das Original zu behalten.",
+    "reviewName": "Titel",
+    "reviewNamePlaceholder": "Leer lassen, um den Originaltitel beizubehalten",
+    "reviewDescription": "Beschreibung",
+    "reviewDescriptionPlaceholder": "Sagen Sie etwas über diesen Beitrag (optional)",
+    "reviewLiveWarning": "Dieser Link ist ein Live-Stream. Warten Sie, bis es endet, und importieren Sie stattdessen die Aufnahme.",
+    "reviewCancel": "Abbrechen",
+    "reviewConfirm": "Import"
   },
   "earnings": {
     "filter24h": "24h",

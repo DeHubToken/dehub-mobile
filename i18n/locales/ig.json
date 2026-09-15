@@ -3115,7 +3115,16 @@
     "kindVideo": "Video",
     "kindAudio": "Odu",
     "kindImage": "Foto",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Review tupu ikenye",
+    "reviewSubtitle": "Site na {{source}}, dị ka {{kind}}. Dezie ihe ọ bụla masịrị gị — hapụ aha ahụ n 'efu iji debe nke mbụ.",
+    "reviewName": "Isiokwu",
+    "reviewNamePlaceholder": "Hapụ n 'efu ka idowe isiokwu mbụ ahụ",
+    "reviewDescription": "Nkọwa",
+    "reviewDescriptionPlaceholder": "Gwa ihe banyere nke a post (nhọrọ)",
+    "reviewLiveWarning": "Njikọ ahụ bụ iyi ndụ. Chere ruo mgbe ọ ga-agwụ ma bubata ndekọ ahụ kama.",
+    "reviewCancel": "Kagbuo",
+    "reviewConfirm": "Bubata"
   },
   "earnings": {
     "filter24h": "24a",

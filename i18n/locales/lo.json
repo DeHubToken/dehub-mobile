@@ -3095,7 +3095,16 @@
     "kindVideo": "ວີດີໂອ",
     "kindAudio": "ສຽງ",
     "kindImage": "ຮູບພາບ",
-    "tileSourceKind": "{{ແຫຼ່ງຂໍ້ມູນ}} · {{ປະເພດ}}"
+    "tileSourceKind": "{{ແຫຼ່ງຂໍ້ມູນ}} · {{ປະເພດ}}",
+    "reviewTitle": "ການທົບທວນຄືນກ່ອນການໂພສ",
+    "reviewSubtitle": "ຈາກ {{source}}, ເປັນ {{kind}}. ແກ້ໄຂທຸກສິ່ງທີ່ທ່ານຕ້ອງການ - ໃຫ້ຫົວຂໍ້ເປົ່າເພື່ອຮັກສາຕົ້ນສະບັບ.",
+    "reviewName": "ຫົວຂໍ້",
+    "reviewNamePlaceholder": "ປ່ອຍໃຫ້ເປົ່າເພື່ອຮັກສາຫົວຂໍ້ເດີມ",
+    "reviewDescription": "ລາຍລະອຽດ",
+    "reviewDescriptionPlaceholder": "ເວົ້າບາງຢ່າງກ່ຽວກັບຕໍາແຫນ່ງນີ້ (ທາງເລືອກ)",
+    "reviewLiveWarning": "ການເຊື່ອມຕໍ່ແມ່ນການຖ່າຍທອດສົດ. ລໍຖ້າຈົນກວ່າມັນຈະສິ້ນສຸດລົງແລະ ນໍາ ເຂົ້າບັນທຶກແທນ.",
+    "reviewCancel": "ຍົກເລີກ",
+    "reviewConfirm": "ນໍາເຂົ້າ"
   },
   "earnings": {
     "filter24h": "24ຊມ",

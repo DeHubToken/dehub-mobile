@@ -3136,7 +3136,16 @@
     "kindVideo": "Video",
     "kindAudio": "Heli",
     "kindImage": "Pildid",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Vaata enne postitamist üle",
+    "reviewSubtitle": "Alates {{source}}, kui {{kind}}. Muuda kõike, mis sulle meeldib — originaali säilitamiseks jäta pealkiri tühjaks.",
+    "reviewName": "Pealkiri",
+    "reviewNamePlaceholder": "Originaalpealkirja säilitamiseks jäta tühjaks",
+    "reviewDescription": "Kirjeldus",
+    "reviewDescriptionPlaceholder": "Ütle midagi selle postituse kohta (valikuline)",
+    "reviewLiveWarning": "See link on otseülekanne. Oodake, kuni see lõpeb, ja importige selle asemel salvestis.",
+    "reviewCancel": "Tühista",
+    "reviewConfirm": "Impordi"
   },
   "earnings": {
     "filter24h": "24h",

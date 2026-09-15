@@ -3120,7 +3120,16 @@
     "kindVideo": "وڊيو",
     "kindAudio": "آڊيو",
     "kindImage": "تصويرون",
-    "tileSourceKind": "{{مبسس4}} آيت {{مبسس4}}"
+    "tileSourceKind": "{{مبسس4}} آيت {{مبسس4}}",
+    "reviewTitle": "پوسٽ ڪرڻ کان اڳ نظرثاني ڪريو",
+    "reviewSubtitle": "{{source}} کان، جيئن {{kind}}. ڪنهن به شيءَ کي ايڊٽ ڪريو جيڪو توهان پسند ڪيو — اصل رکڻ لاءِ عنوان کي خالي ڇڏي ڏيو.",
+    "reviewName": "عنوان",
+    "reviewNamePlaceholder": "اصلي عنوان رکڻ لاءِ خالي ڇڏي ڏيو",
+    "reviewDescription": "تفصيل",
+    "reviewDescriptionPlaceholder": "هن پوسٽ بابت ڪجهه چئو (اختياري)",
+    "reviewLiveWarning": "اهو لنڪ هڪ زنده وهڪرو آهي. انتظار ڪريو جيستائين اهو ختم نه ٿئي ۽ بدران رڪارڊ درآمد ڪريو.",
+    "reviewCancel": "منسوخ ڪريو",
+    "reviewConfirm": "درآمد ڪريو"
   },
   "earnings": {
     "filter24h": "24ڪ",

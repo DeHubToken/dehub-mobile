@@ -3138,7 +3138,16 @@
     "kindVideo": "वीडियो",
     "kindAudio": "आडियो",
     "kindImage": "फोटू",
-    "tileSourceKind": "{{Portal: अक्सिटानिया}}"
+    "tileSourceKind": "{{Portal: अक्सिटानिया}}",
+    "reviewTitle": "प्रकाशित करे से पहिली समीक्षा",
+    "reviewSubtitle": "{{source}}, {{kind}} के रूप म । जो भी आप चाहें, संपादित करव — मूल ल बनाए रखे बर शीर्षक ल खाली छोड़ दें ।",
+    "reviewName": "सीर्सक",
+    "reviewNamePlaceholder": "मूल सीर्सक बनाए रखे बर खाली छोड़व",
+    "reviewDescription": "वर्नन",
+    "reviewDescriptionPlaceholder": "1) पहिली, App Find करे (ये Step TV बर हे)",
+    "reviewLiveWarning": "ए लिंक एक लाइव स्ट्रीम हवय । समाप्त होए तक प्रतीक्षा करे अउ एखर बजाय रिकॉर्डिंग आयात करे ।",
+    "reviewCancel": "खारिज करव",
+    "reviewConfirm": "आयात"
   },
   "earnings": {
     "filter24h": "24घं",

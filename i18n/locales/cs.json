@@ -3141,7 +3141,16 @@
     "kindVideo": "Videozáznam",
     "kindAudio": "Zvuk",
     "kindImage": "Obrázky",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Zkontrolovat před zveřejněním",
+    "reviewSubtitle": "Od {{source}}, jako {{kind}}. Upravte vše, co se vám líbí — ponechte název prázdný, aby byl zachován originál.",
+    "reviewName": "Název",
+    "reviewNamePlaceholder": "Ponechte prázdné pro ponechání původního názvu",
+    "reviewDescription": "Popis",
+    "reviewDescriptionPlaceholder": "Řekni něco o tomto příspěvku (nepovinné)",
+    "reviewLiveWarning": "Tento odkaz je živý přenos. Počkejte, dokud neskončí, a místo toho importujte záznam.",
+    "reviewCancel": "Zrušit",
+    "reviewConfirm": "Import"
   },
   "earnings": {
     "filter24h": "24h",

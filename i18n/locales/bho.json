@@ -3088,7 +3088,16 @@
     "kindVideo": "वीडियो समायोजित करें",
     "kindAudio": "ऑडियो समायोजित करें",
     "kindImage": "फोटो खींचल गइल",
-    "tileSourceKind": "(= डिफ़ॉल्ट आउर = delete अनुमति बा, हालांकि, हालाँकि ।"
+    "tileSourceKind": "(= डिफ़ॉल्ट आउर = delete अनुमति बा, हालांकि, हालाँकि ।",
+    "reviewTitle": "Post लिखने से पहले जरूर check करे",
+    "reviewSubtitle": "जइसे, जइसे, के जइसे, के जइसे, के जइसे कुछ भी लिखें — मूल शीर्षक से खाली छोड़ दें ।",
+    "reviewName": "नामांकन कइल गइल",
+    "reviewNamePlaceholder": "पिछला लेखसड़क पर रोक लगावे खातिर खाली छोड़ दीं",
+    "reviewDescription": "वर्णन कइल गइल बा",
+    "reviewDescriptionPlaceholder": "इस websites पे लिखी Post से आपने कुछ ना कुछ लिखा)",
+    "reviewLiveWarning": "ई देखीं, ई एगो फुटनोट मार्कर हवे । सब्सक्राइब करने के बाद, सब्सक्राइब करें और सब्सक्राइब करें के बजाय",
+    "reviewCancel": "रद्द करे",
+    "reviewConfirm": "आयातित करें"
   },
   "earnings": {
     "filter24h": "24घं",

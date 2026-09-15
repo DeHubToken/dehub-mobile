@@ -3132,7 +3132,16 @@
     "kindVideo": "፟ቪዲዮ",
     "kindAudio": "ኦዲዮ",
     "kindImage": "ሙዚቃ",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "ከመለጠፍዎ በፊት ይገምግሙ",
+    "reviewSubtitle": "ከ {{source}} ፣ እንደ {{kind}}} ። የሚወዱትን ማንኛውንም ነገር ያርትዑ — የመጀመሪያውን ለማቆየት ርዕሱን ባዶ ይተው ።",
+    "reviewName": "ርዕስ",
+    "reviewNamePlaceholder": "የመጀመሪያውን ርዕስ ለማቆየት ባዶ ይተው",
+    "reviewDescription": "መግለጫ",
+    "reviewDescriptionPlaceholder": "በዚህ ልጥፍ ላይ አንድ ነገር ይናገሩ (አማራጭ)",
+    "reviewLiveWarning": "ያ አገናኝ የቀጥታ ዥረት ነው ። እስኪጨርስ ድረስ ይጠብቁ እና በምትኩ ቀረጻ ማስመጣት.",
+    "reviewCancel": "ሰርዝ",
+    "reviewConfirm": "አስመጣ"
   },
   "earnings": {
     "filter24h": "24ሰ",

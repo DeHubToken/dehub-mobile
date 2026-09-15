@@ -3135,7 +3135,16 @@
     "kindVideo": "ویڈیو",
     "kindAudio": "آڈیو",
     "kindImage": "تصاویر",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "پوسٹ کرنے سے پہلے جائزہ لیں",
+    "reviewSubtitle": "منجانب {{source}}، منجانب {{kind}}۔ اپنی پسند کی کسی بھی چیز میں ترمیم کریں — اصل کو برقرار رکھنے کے لیے عنوان کو خالی چھوڑ دیں ۔",
+    "reviewName": "عنوان",
+    "reviewNamePlaceholder": "اصل عنوان رکھنے کے لیے خالی چھوڑیں",
+    "reviewDescription": "تفصیل",
+    "reviewDescriptionPlaceholder": "اس پوسٹ کے بارے میں کچھ کہیں (آپشنل)",
+    "reviewLiveWarning": "وہ لنک ایک لائیو اسٹریم ہے ۔ اس کے ختم ہونے تک انتظار کریں اور اس کے بجائے ریکارڈنگ درآمد کریں ۔",
+    "reviewCancel": "منسوخ کریں",
+    "reviewConfirm": "درآمد کریں"
   },
   "earnings": {
     "filter24h": "24گھنٹے",

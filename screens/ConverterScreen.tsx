@@ -45,9 +45,11 @@ import {
 } from '../libs/converter-sources';
 import {
   listConverterImports,
+  previewConverterImport,
   queueConverterImport,
   type ConverterImport,
 } from '../services/converter.service';
+import GlassModal from '../components/ui/GlassModal';
 
 /** Tiles a creator has waved off, per install. Finished and failed imports
  * stay on the server for a day and a week respectively — long enough to be
@@ -100,6 +102,13 @@ export default function ConverterScreen() {
    * the link" — a SoundCloud paste should not need a tap to say audio, and a
    * Pinterest one should not need a tap to say pictures. */
   const [pickedKind, setPickedKind] = useState<MediaKind | null>(null);
+  /** The link waiting on the review sheet, or null when nothing is. */
+  const [reviewing, setReviewing] = useState<string | null>(null);
+  const [reviewLoading, setReviewLoading] = useState(false);
+  const [reviewName, setReviewName] = useState('');
+  const [reviewDescription, setReviewDescription] = useState('');
+  const [reviewSource, setReviewSource] = useState<string | null>(null);
+  const [reviewIsLive, setReviewIsLive] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [imports, setImports] = useState<ConverterImport[]>([]);
   const [dismissed, setDismissed] = useState<Set<string>>(new Set());
@@ -246,13 +255,20 @@ export default function ConverterScreen() {
    * path gates on the checkbox, and "Try again" re-runs a link whose
    * attestation was made when it was first queued. */
   const queueImport = useCallback(
-    async (rawUrl: string, kind?: MediaKind) => {
+    async (rawUrl: string, kind?: MediaKind, details?: { name: string; description: string }) => {
       setSubmitting(true);
       try {
         // Omitted rather than guessed when re-running a failed tile: the
         // server falls back to the source's own default, which is what that
-        // job was queued as in the first place.
-        await queueConverterImport({ url: rawUrl, ownershipConfirmed: true, mediaKind: kind });
+        // job was queued as in the first place. Same for the title — a retry
+        // keeps whatever the original import was reviewed as.
+        await queueConverterImport({
+          url: rawUrl,
+          ownershipConfirmed: true,
+          mediaKind: kind,
+          name: details?.name || undefined,
+          description: details?.description || undefined,
+        });
         setUrl('');
         toastInfo(t('converter.toastQueued'));
         await refresh();
@@ -263,6 +279,37 @@ export default function ConverterScreen() {
       }
     },
     [refresh, t],
+  );
+
+  /**
+   * Open the review sheet and fill it from the server's preview.
+   *
+   * The sheet opens immediately and fills in when the metadata lands, rather
+   * than waiting on the fetch before appearing — a preview can be slow, and a
+   * button that does nothing for two seconds reads as broken. A failed preview
+   * leaves the fields empty and Import still works.
+   */
+  const openReview = useCallback(
+    (rawUrl: string) => {
+      setReviewing(rawUrl);
+      setReviewName('');
+      setReviewDescription('');
+      setReviewSource(null);
+      setReviewIsLive(false);
+      setReviewLoading(true);
+      previewConverterImport(rawUrl)
+        .then(p => {
+          setReviewName(p.title || '');
+          setReviewDescription(p.description || '');
+          setReviewSource(p.sourceLabel || null);
+          setReviewIsLive(Boolean(p.isLive));
+        })
+        // Deliberately silent: the sheet is already usable and a toast about
+        // metadata would be noise on top of it.
+        .catch(() => undefined)
+        .finally(() => setReviewLoading(false));
+    },
+    [],
   );
 
   const handleSubmit = useCallback(() => {
@@ -277,8 +324,11 @@ export default function ConverterScreen() {
       toastError(t('converter.errorNeedRights'));
       return;
     }
-    void queueImport(url.trim(), mediaKind);
-  }, [mediaKind, ownershipConfirmed, queueImport, t, url]);
+    // One paste gets reviewed before it posts. "Try again" on a failed tile
+    // does not: that link was reviewed once already, and reopening the sheet to
+    // retype the same thing is a worse retry than none.
+    openReview(url.trim());
+  }, [mediaKind, openReview, ownershipConfirmed, t, url]);
 
   const handleDismiss = useCallback(
     (jobId: string) => {
@@ -575,6 +625,96 @@ export default function ConverterScreen() {
 
   return (
     <View className="flex-1">
+      {/* Review before posting. Mirrors the web dialog rather than inventing a
+          second flow: same fields, same fallbacks, same rule that an empty
+          title means "keep the source's own". */}
+      <GlassModal
+        visible={reviewing !== null}
+        onClose={() => setReviewing(null)}
+        presentation="bottom"
+        maxHeight="80%"
+        blurIntensity={30}
+      >
+        <View className="flex-1">
+          <View className="px-5 pt-4 pb-3 flex-row items-center justify-between border-b border-white/10">
+            <Text className="text-white font-bold text-base">{t('converter.reviewTitle')}</Text>
+            {reviewLoading && <ActivityIndicator size="small" color="#F4F4F5" />}
+          </View>
+
+          <View className="px-5 pt-3 gap-3">
+            <Text className="text-theme-neutrals-500 text-xs">
+              {t('converter.reviewSubtitle', {
+                source: reviewSource || t('converter.thatSource'),
+                kind: t(`converter.kind${mediaKind[0].toUpperCase()}${mediaKind.slice(1)}`),
+              })}
+            </Text>
+
+            <View className="gap-1.5">
+              <Text className="text-theme-neutrals-400 text-xs">{t('converter.reviewName')}</Text>
+              <TextInput
+                value={reviewName}
+                onChangeText={setReviewName}
+                placeholder={reviewLoading ? '' : t('converter.reviewNamePlaceholder')}
+                placeholderTextColor="#71717a"
+                editable={!reviewLoading}
+                className="rounded-xl bg-theme-neutrals-900 px-3 h-11 text-theme-neutrals-50 text-sm"
+              />
+            </View>
+
+            <View className="gap-1.5">
+              <Text className="text-theme-neutrals-400 text-xs">{t('converter.reviewDescription')}</Text>
+              <TextInput
+                value={reviewDescription}
+                onChangeText={setReviewDescription}
+                placeholder={reviewLoading ? '' : t('converter.reviewDescriptionPlaceholder')}
+                placeholderTextColor="#71717a"
+                editable={!reviewLoading}
+                multiline
+                numberOfLines={5}
+                textAlignVertical="top"
+                className="rounded-xl bg-theme-neutrals-900 px-3 py-2 min-h-[96px] text-theme-neutrals-50 text-sm"
+              />
+            </View>
+
+            {reviewIsLive && (
+              <Text className="text-xs" style={{ color: '#fbbf24' }}>
+                {t('converter.reviewLiveWarning')}
+              </Text>
+            )}
+
+            <View className="flex-row gap-2 pt-1">
+              <Pressable
+                onPress={() => setReviewing(null)}
+                className="flex-1 h-11 rounded-xl items-center justify-center"
+                style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}
+              >
+                <Text className="text-theme-neutrals-300 text-sm font-medium">
+                  {t('converter.reviewCancel')}
+                </Text>
+              </Pressable>
+              <Pressable
+                onPress={() => {
+                  const target = reviewing;
+                  setReviewing(null);
+                  if (target) {
+                    void queueImport(target, mediaKind, {
+                      name: reviewName.trim(),
+                      description: reviewDescription.trim(),
+                    });
+                  }
+                }}
+                className="flex-1 h-11 rounded-xl items-center justify-center"
+                style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
+              >
+                <Text className="text-theme-neutrals-50 text-sm font-medium">
+                  {t('converter.reviewConfirm')}
+                </Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </GlassModal>
+
       <ScreenHeader title={t('converter.title')} />
       <FlatList
         data={visible}

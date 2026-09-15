@@ -3189,7 +3189,16 @@
     "kindVideo": "Video",
     "kindAudio": "Audio",
     "kindImage": "Pictures",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Joylashtirishdan oldin ko&#39;rib chiqing",
+    "reviewSubtitle": "{{source}} dan, {{kind}} sifatida. Xohlagan narsangizni tahrirlang — asl nusxasini saqlab qolish uchun sarlavhani bo&#39;sh qoldiring.",
+    "reviewName": "Unvon",
+    "reviewNamePlaceholder": "Asl sarlavhani saqlab qolish uchun bo&#39;sh qoldiring",
+    "reviewDescription": "Ma'lumot",
+    "reviewDescriptionPlaceholder": "Bu post haqida biror narsa deng (ixtiyoriy)",
+    "reviewLiveWarning": "Bu havola jonli efir. Tugashini kuting va yozuvni import qiling.",
+    "reviewCancel": "Bekor qilish",
+    "reviewConfirm": "Import"
   },
   "earnings": {
     "filter24h": "24s",

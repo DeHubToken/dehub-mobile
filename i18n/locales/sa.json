@@ -3093,7 +3093,16 @@
     "kindVideo": "दृश्यम्",
     "kindAudio": "ध्वनिः",
     "kindImage": "चित्राणि",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "पदोन्नति से पहले समीक्षा",
+    "reviewSubtitle": "सादृश्यम्, सादृश्यम्, सादृश्यम् । मते कारकलक्षणादिकं शब्दार्थरत्नेऽस्मामिर्दर्शितं यथा",
+    "reviewName": "शीर्षकः",
+    "reviewNamePlaceholder": "रिक्ति रिक्त पद मूल पद",
+    "reviewDescription": "वर्णन",
+    "reviewDescriptionPlaceholder": "कोई कहे कोई कहे कोई कहे (कविता)",
+    "reviewLiveWarning": "एष लिङ्कः सजीवप्रवाहः अस्ति । प्रतीक्षां समापयेत्सर्वं नित्यं समापयेत् ॥",
+    "reviewCancel": "रद्दम्",
+    "reviewConfirm": "आयात्यताम्"
   },
   "earnings": {
     "filter24h": "24घ",

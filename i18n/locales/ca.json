@@ -3137,7 +3137,16 @@
     "kindVideo": "Vídeo",
     "kindAudio": "Àudio",
     "kindImage": "Imatges",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Revisa abans de publicar",
+    "reviewSubtitle": "Des de {{source}}, fins a {{kind}}. Modifica el que vulguis: deixa el títol buit per conservar l'original.",
+    "reviewName": "Títol",
+    "reviewNamePlaceholder": "Deixa-ho buit per mantenir el títol original",
+    "reviewDescription": "Descripció",
+    "reviewDescriptionPlaceholder": "Explica alguna cosa sobre aquesta publicació (opcional)",
+    "reviewLiveWarning": "Aquest enllaç és una transmissió en directe. Espera fins que acabi i importa l'enregistrament.",
+    "reviewCancel": "Cancel·la",
+    "reviewConfirm": "Importar"
   },
   "earnings": {
     "filter24h": "24h",

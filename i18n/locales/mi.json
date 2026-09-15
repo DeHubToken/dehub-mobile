@@ -3122,7 +3122,16 @@
     "kindVideo": "ataata",
     "kindAudio": "Ororongo",
     "kindImage": "Whakaahua",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Arotake i mua i te tuku",
+    "reviewSubtitle": "Mai i te {{puna}}, rite {{kind}}}. Whakatika i nga mea katoa e hiahia ana koe — waiho te taitara kore ki te pupuri i te taketake.",
+    "reviewName": "Ingoa",
+    "reviewNamePlaceholder": "Waiho noa ki te pupuri i te taitara taketake",
+    "reviewDescription": "Whakaahuatanga",
+    "reviewDescriptionPlaceholder": "Korero i tetahi mea e pā ana ki tenei pou (kōwhiringa)",
+    "reviewLiveWarning": "Ko tenei hononga he awa ora. Kia tae noa ki te mutunga, me te kawemai i te tuhi i te wahi.",
+    "reviewCancel": "Whakakorea",
+    "reviewConfirm": "Te kawemai"
   },
   "earnings": {
     "filter24h": "24h",

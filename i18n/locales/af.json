@@ -3254,7 +3254,16 @@
     "kindVideo": "Agterground",
     "kindAudio": "Klank",
     "kindImage": "Prente",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Hersien voor plasing",
+    "reviewSubtitle": "Van {{source}}, as {{kind}}. Wysig alles wat jy wil — laat die titel leeg om die oorspronklike te hou.",
+    "reviewName": "Titel",
+    "reviewNamePlaceholder": "Laat leeg om die oorspronklike titel te behou",
+    "reviewDescription": "Beskrywing",
+    "reviewDescriptionPlaceholder": "Sê iets oor hierdie artikel (opsioneel)",
+    "reviewLiveWarning": "Die verbinding is 'n lewende stroom. Wag totdat dit eindig en voer die opname plaas.",
+    "reviewCancel": "Kanselleer",
+    "reviewConfirm": "Voer in"
   },
   "earnings": {
     "filter24h": "24u",

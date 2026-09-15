@@ -3150,7 +3150,16 @@
     "kindVideo": "ویدیو",
     "kindAudio": "صدا",
     "kindImage": "عکس",
-    "tileSourceKind": "{{منبع}} · {{نوع}}"
+    "tileSourceKind": "{{منبع}} · {{نوع}}",
+    "reviewTitle": "قبل از ارسال، مرور کنید",
+    "reviewSubtitle": "از {{source}}، به صورت {{kind}}. هر چیزی را که دوست دارید ویرایش کنید — عنوان را خالی بگذارید تا نسخه اصلی باقی بماند.",
+    "reviewName": "عنوان",
+    "reviewNamePlaceholder": "برای حفظ عنوان اصلی، خالی بگذارید",
+    "reviewDescription": "توضیحات آگهی",
+    "reviewDescriptionPlaceholder": "نظر خود را در مورد این پست بنویسید (اختیاری)",
+    "reviewLiveWarning": "آن لینک یک پخش زنده است. صبر کنید تا تمام شود و سپس فایل ضبط شده را وارد کنید.",
+    "reviewCancel": "لغو کنید",
+    "reviewConfirm": "وارد کردن"
   },
   "earnings": {
     "filter24h": "۲۴س",

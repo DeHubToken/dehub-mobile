@@ -3170,7 +3170,16 @@
     "kindVideo": "Відэа",
     "kindAudio": "Аудыа",
     "kindImage": "Малюнкі",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Перагледзець перад публікацыяй",
+    "reviewSubtitle": "Ад {{source}}, як {{kind}}. Рэдагаваць усё, што вам падабаецца — пакіньце назву пустой, каб захаваць арыгінал.",
+    "reviewName": "Назва",
+    "reviewNamePlaceholder": "Пакінуць пустым, каб захаваць першапачатковы загаловак",
+    "reviewDescription": "Апісанне",
+    "reviewDescriptionPlaceholder": "Скажыце што-небудзь пра гэты пост (неабавязкова)",
+    "reviewLiveWarning": "Гэтая спасылка з 'яўляецца жывым патокам. Пачакайце, пакуль ён скончыцца, і замест гэтага імпартуйце запіс.",
+    "reviewCancel": "Скасаваць",
+    "reviewConfirm": "Імпартаваць"
   },
   "earnings": {
     "filter24h": "24г",

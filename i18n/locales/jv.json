@@ -3095,7 +3095,16 @@
     "kindVideo": "Video",
     "kindAudio": "Audio",
     "kindImage": "Gambar",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Deleng maneh sadurunge posting",
+    "reviewSubtitle": "Saka {{source}}, minangka {{kind}}. Sunting apa wae sing sampeyan karepake — tinggalake judhule kosong kanggo tetep judhul asli.",
+    "reviewName": "Judhul",
+    "reviewNamePlaceholder": "Tinggalake kosong kanggo tetep judhul asli",
+    "reviewDescription": "Katrangan",
+    "reviewDescriptionPlaceholder": "Ngomong apa-apa babagan posting iki (opsional)",
+    "reviewLiveWarning": "Pranala iku live stream. Ngenteni nganti rampung banjur impor rekamane.",
+    "reviewCancel": "Batal",
+    "reviewConfirm": "Impor"
   },
   "earnings": {
     "filter24h": "24j",

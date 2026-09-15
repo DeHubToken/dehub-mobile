@@ -3127,7 +3127,16 @@
     "kindVideo": "Bidiyo",
     "kindAudio": "Sauti",
     "kindImage": "QShortcut",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Yi bita kafin aikawa",
+    "reviewSubtitle": "Daga {{source}}, kamar {{kind}}. Shirya duk abin da kake so — bar taken ba tare da komai ba don ci gaba da asali.",
+    "reviewName": "Title",
+    "reviewNamePlaceholder": "Bar komai don kiyaye taken asali",
+    "reviewDescription": "Bayani",
+    "reviewDescriptionPlaceholder": "Ka ce wani abu game da wannan post (zaɓi)",
+    "reviewLiveWarning": "Wannan hanyar haɗi shine rafi mai rai. Jira har sai ya ƙare kuma shigo da rikodin maimakon.",
+    "reviewCancel": "Cancel",
+    "reviewConfirm": "Shigo"
   },
   "earnings": {
     "filter24h": "24a",

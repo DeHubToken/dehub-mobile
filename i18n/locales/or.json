@@ -3108,7 +3108,16 @@
     "kindVideo": "ଭିଡ଼ିଓ",
     "kindAudio": "ଧ୍ୱନି",
     "kindImage": "ଛବିଗୁଡ଼ିକ",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "ପୋଷ୍ଟ କରିବା ପୂର୍ବରୁ ସମୀକ୍ଷା କରନ୍ତୁ",
+    "reviewSubtitle": "{{source}}, {{kind}} । ଆପଣ ଯାହା ଚାହୁଁଛନ୍ତି ତାହା ସମ୍ପାଦନ କରନ୍ତୁ — ମୂଳକୁ ରଖିବା ପାଇଁ ଶୀର୍ଷକକୁ ଖାଲି ରଖନ୍ତୁ ।",
+    "reviewName": "ଶୀର୍ଷକ",
+    "reviewNamePlaceholder": "ମୂଳ ଶୀର୍ଷକକୁ ରଖିବା ପାଇଁ ଖାଲି ରଖନ୍ତୁ",
+    "reviewDescription": "ବର୍ଣ୍ଣନା",
+    "reviewDescriptionPlaceholder": "ଏହି ପୋଷ୍ଟ ବିଷୟରେ କିଛି କୁହନ୍ତୁ (optional)",
+    "reviewLiveWarning": "ଏହି ଲିଙ୍କଟି ଏକ ଲାଇଭ ଷ୍ଟ୍ରିମ୍ । ଏହା ସମାପ୍ତ ହେବା ପର୍ଯ୍ୟନ୍ତ ଅପେକ୍ଷା କରନ୍ତୁ ଏବଂ ତା 'ପରିବର୍ତ୍ତେ ରେକର୍ଡିଂକୁ ଆମଦାନୀ କରନ୍ତୁ ।",
+    "reviewCancel": "ବାତିଲ କରନ୍ତୁ",
+    "reviewConfirm": "ଆମଦାନୀ କରନ୍ତୁ"
   },
   "earnings": {
     "filter24h": "24ଘ",
