@@ -3366,7 +3366,19 @@
     "solanaFailed": "Solana to‘lovi muvaffaqiyatsiz tugadi",
     "missingWeb3": "web3 konteksti yo‘q",
     "preparingRouter": "To‘lov routeri tayyorlanmoqda… bir ozdan so‘ng qayta urinib ko‘ring",
-    "swapShort": "Almashtirish bajarildi, lekin DHB hali ham yetarli emas. Qayta urinib ko‘ring."
+    "swapShort": "Almashtirish bajarildi, lekin DHB hali ham yetarli emas. Qayta urinib ko‘ring.",
+    "yourBalance": "Balansingiz",
+    "youNeed": "Sizga kerak",
+    "scanning": "Balansni to‘ldirishning eng tez yo‘li qidirilmoqda…",
+    "topUpAndUnlock": "To‘ldirib oching",
+    "notNow": "Hozir emas",
+    "buySymbol": "{{symbol}} sotib olish",
+    "topUpThenReturn": "Hamyoningizni to‘ldiring, so‘ng qayting",
+    "checkWalletFailed": "Hozir hamyoningizni tekshirib bo‘lmadi.",
+    "preparingWallet": "Hamyoningiz tayyorlanmoqda — bir ozdan keyin qayta urinib ko‘ring.",
+    "swapSettling": "Almashuvingiz hali yakunlanayotgan bo‘lishi mumkin. Qayta urinishdan oldin DHB balansingizni tekshiring — ikki marta almashtirmang.",
+    "notEnoughBase": "Base’dagi hamyoningizda buni qoplashga yetarli mablag‘ yo‘q. Mablag‘ qo‘shing — ochish sizni kutadi.",
+    "otherChain": "Bu post boshqa zanjirda hisoblanadi, shuning uchun u yerdagi hamyoningizda DHB kerak."
   },
   "walletSetup": {
     "writeThemDown": "Ularni faqat siz yeta oladigan joyga yozib qo‘ying. Bu so‘zlar kimda bo‘lsa, hamyoningiz ham unda — DeHub qo‘llab-quvvatlash xizmati ularni tiklay ham, qayta o‘rnata ham olmaydi.",

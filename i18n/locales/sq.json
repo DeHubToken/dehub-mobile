@@ -3314,7 +3314,19 @@
     "solanaFailed": "Pagesa me Solana dështoi",
     "missingWeb3": "Mungon konteksti web3",
     "preparingRouter": "Po përgatitet routeri i pagesave… provo sërish pas pak",
-    "swapShort": "Këmbimi u krye por DHB ende s'mjafton. Provo sërish."
+    "swapShort": "Këmbimi u krye por DHB ende s'mjafton. Provo sërish.",
+    "yourBalance": "Gjendja jote",
+    "youNeed": "Të duhet",
+    "scanning": "Po kërkohet mënyra më e shpejtë për ta mbushur…",
+    "topUpAndUnlock": "Mbush dhe shkyç",
+    "notNow": "Jo tani",
+    "buySymbol": "Blej {{symbol}}",
+    "topUpThenReturn": "Mbush portofolin, pastaj kthehu",
+    "checkWalletFailed": "Portofoli yt nuk u kontrollua dot tani.",
+    "preparingWallet": "Po përgatitet portofoli yt — provo sërish pas pak.",
+    "swapSettling": "Këmbimi yt mund të jetë ende duke u kryer. Kontrollo gjendjen e DHB para se të provosh sërish — mos e bëj këmbimin dy herë.",
+    "notEnoughBase": "Në portofolin tënd në Base nuk ka mjaftueshëm për ta mbuluar. Shto fonde dhe shkyçja të pret.",
+    "otherChain": "Ky postim shlyhet në një zinxhir tjetër, prandaj të duhet DHB në portofolin tënd atje."
   },
   "walletSetup": {
     "writeThemDown": "Shkruaji diku ku vetëm ti mund të arrish. Kushdo që i ka këto fjalë ka portofolin tënd — mbështetja e DeHub nuk mund t'i rikuperojë as t'i rivendosë.",

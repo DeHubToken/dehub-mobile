@@ -3314,7 +3314,19 @@
     "solanaFailed": "Solana maksājums neizdevās",
     "missingWeb3": "Trūkst web3 konteksta",
     "preparingRouter": "Tiek sagatavots maksājumu maršrutētājs… mēģini pēc brīža",
-    "swapShort": "Maiņa pabeigta, bet DHB joprojām nepietiek. Mēģini vēlreiz."
+    "swapShort": "Maiņa pabeigta, bet DHB joprojām nepietiek. Mēģini vēlreiz.",
+    "yourBalance": "Jūsu atlikums",
+    "youNeed": "Jums nepieciešams",
+    "scanning": "Meklējam ātrāko veidu, kā papildināt…",
+    "topUpAndUnlock": "Papildināt un atbloķēt",
+    "notNow": "Ne tagad",
+    "buySymbol": "Pirkt {{symbol}}",
+    "topUpThenReturn": "Papildiniet maku un atgriezieties",
+    "checkWalletFailed": "Pašlaik neizdevās pārbaudīt jūsu maku.",
+    "preparingWallet": "Tiek sagatavots jūsu maks — mēģiniet vēlreiz pēc brīža.",
+    "swapSettling": "Jūsu maiņa, iespējams, vēl tiek nokārtota. Pirms mēģināt vēlreiz, pārbaudiet DHB atlikumu — neveiciet maiņu divreiz.",
+    "notEnoughBase": "Jūsu makā Base tīklā nepietiek līdzekļu. Pievienojiet līdzekļus — atbloķēšana jūs gaida.",
+    "otherChain": "Šis ieraksts tiek nokārtots citā ķēdē, tāpēc tur jūsu makā nepieciešams DHB."
   },
   "walletSetup": {
     "writeThemDown": "Pieraksti tos vietā, kur tiec klāt tikai tu. Kam ir šie vārdi, tam ir tavs maks — DeHub atbalsts tos nevar ne atgūt, ne atiestatīt.",

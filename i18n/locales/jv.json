@@ -3273,7 +3273,19 @@
     "solanaFailed": "Pambayaran Solana gagal",
     "missingWeb3": "Konteks web3 ora ana",
     "preparingRouter": "Nyiapake router pambayaran… coba maneh sedhela",
-    "swapShort": "Ijolan rampung nanging DHB isih kurang. Coba maneh."
+    "swapShort": "Ijolan rampung nanging DHB isih kurang. Coba maneh.",
+    "yourBalance": "Saldomu",
+    "youNeed": "Sampeyan butuh",
+    "scanning": "Nggoleki cara paling cepet kanggo ngisi saldomu…",
+    "topUpAndUnlock": "Isi saldo lan bukak",
+    "notNow": "Ora saiki",
+    "buySymbol": "Tuku {{symbol}}",
+    "topUpThenReturn": "Isi dompetmu, banjur bali maneh",
+    "checkWalletFailed": "Dompetmu ora bisa dipriksa saiki.",
+    "preparingWallet": "Nyiapake dompetmu — coba maneh sedhela.",
+    "swapSettling": "Swap sampeyan bisa uga isih diproses. Priksa saldo DHB sadurunge nyoba maneh — aja swap kaping pindho.",
+    "notEnoughBase": "Saldo dompetmu ing Base ora cukup. Tambah dana, bukak kuncine ngenteni sampeyan.",
+    "otherChain": "Postingan iki ditutup ing chain liya, dadi butuh DHB ing dompetmu ana ing kono."
   },
   "walletSetup": {
     "writeThemDown": "Tulisen ing panggonan sing mung sampeyan bisa nggayuh. Sapa wae sing duwe tembung iki duwe dompetmu — dhukungan DeHub ora bisa mbalekake utawa nyetel ulang.",

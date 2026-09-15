@@ -3344,7 +3344,19 @@
     "solanaFailed": "Inkokhelo ye-Solana yehlulekile",
     "missingWeb3": "Umongo we-web3 awukho",
     "preparingRouter": "Ilungiselela i-router yenkokhelo… zama futhi emzuzwini",
-    "swapShort": "Ukushintsha kuqediwe kodwa i-DHB isashoda. Zama futhi."
+    "swapShort": "Ukushintsha kuqediwe kodwa i-DHB isashoda. Zama futhi.",
+    "yourBalance": "Ibhalansi yakho",
+    "youNeed": "Udinga",
+    "scanning": "Ithola indlela esheshayo yokukugcwalisela…",
+    "topUpAndUnlock": "Gcwalisa bese uvula",
+    "notNow": "Hhayi manje",
+    "buySymbol": "Thenga i-{{symbol}}",
+    "topUpThenReturn": "Gcwalisa isikhwama sakho, bese ubuya",
+    "checkWalletFailed": "Ayikwazanga ukuhlola isikhwama sakho njengamanje.",
+    "preparingWallet": "Ilungiselela isikhwama sakho — zama futhi emzuzwini.",
+    "swapSettling": "Ukushintshanisa kwakho kungase kusaqhubeka. Hlola ibhalansi yakho ye-DHB ngaphambi kokuzama futhi — ungashintshanisi kabili.",
+    "notEnoughBase": "Akwanele esikhwameni sakho ku-Base ukumboza lokhu. Faka imali, ukuvula kukulindile.",
+    "otherChain": "Lokhu okuthunyelwe kuqedwa kwesinye ishini, ngakho udinga i-DHB esikhwameni sakho lapho."
   },
   "walletSetup": {
     "writeThemDown": "Bhala phansi endaweni ongafinyelela kuyo wena kuphela. Noma ubani onala magama unesikhwama sakho — usizo lwe-DeHub alukwazi ukuwabuyisa noma ukuwasetha kabusha.",

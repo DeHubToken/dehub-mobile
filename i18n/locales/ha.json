@@ -3305,7 +3305,19 @@
     "solanaFailed": "Biyan Solana ya gaza",
     "missingWeb3": "Babu mahallin web3",
     "preparingRouter": "Ana shirya na'urar tura biyan kuɗi… sake gwadawa nan da nan",
-    "swapShort": "An yi musanya amma DHB har yanzu bai isa ba. Sake gwadawa."
+    "swapShort": "An yi musanya amma DHB har yanzu bai isa ba. Sake gwadawa.",
+    "yourBalance": "Ma'aunin ka",
+    "youNeed": "Kana buƙatar",
+    "scanning": "Ana neman hanya mafi sauri don cika maka…",
+    "topUpAndUnlock": "Cika ka buɗe",
+    "notNow": "Ba yanzu ba",
+    "buySymbol": "Sayi {{symbol}}",
+    "topUpThenReturn": "Cika walat ɗinka, sannan ka dawo",
+    "checkWalletFailed": "Ba a iya duba walat ɗinka a yanzu ba.",
+    "preparingWallet": "Ana shirya walat ɗinka — sake gwadawa nan da ɗan lokaci.",
+    "swapSettling": "Musanyar ka na iya har yanzu ana tantancewa. Duba ma'aunin DHB naka kafin sake gwadawa — kada ka musanya sau biyu.",
+    "notEnoughBase": "Babu isashen kuɗi a walat ɗinka a Base don rufe shi. Ƙara kuɗi, buɗewar tana jiran ka.",
+    "otherChain": "Wannan sakon yana daidaitawa a wata sarƙa, don haka kana buƙatar DHB a walat ɗinka a can."
   },
   "walletSetup": {
     "writeThemDown": "Rubuta su a wurin da kai kaɗai za ka iya kaiwa. Duk wanda ke da waɗannan kalmomin yana da walat ɗinka — tallafin DeHub ba zai iya dawo da su ko sake saita su ba.",

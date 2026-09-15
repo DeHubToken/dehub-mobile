@@ -3305,7 +3305,19 @@
     "solanaFailed": "Ìsanwó Solana kùnà",
     "missingWeb3": "Àyíká web3 kò sí",
     "preparingRouter": "Ń múra olùtọ́nà ìsanwó… gbìyànjú lẹ́ẹ̀kansi láìpẹ́",
-    "swapShort": "Ìpààrọ̀ ti parí ṣùgbọ́n DHB ṣì kéré. Gbìyànjú lẹ́ẹ̀kansi."
+    "swapShort": "Ìpààrọ̀ ti parí ṣùgbọ́n DHB ṣì kéré. Gbìyànjú lẹ́ẹ̀kansi.",
+    "yourBalance": "Ìwọ̀n owó rẹ",
+    "youNeed": "O nílò",
+    "scanning": "Ń wá ọ̀nà tó yára jù láti fi kún un…",
+    "topUpAndUnlock": "Fi kún un kí o sì ṣí i",
+    "notNow": "Kì í ṣe ní báyìí",
+    "buySymbol": "Ra {{symbol}}",
+    "topUpThenReturn": "Fi owó kún àpamọ́wọ́ rẹ, kí o sì padà wá",
+    "checkWalletFailed": "A kò lè ṣàyẹ̀wò àpamọ́wọ́ rẹ ní báyìí.",
+    "preparingWallet": "Ń múra àpamọ́wọ́ rẹ — gbìyànjú lẹ́ẹ̀kan sí i láìpẹ́.",
+    "swapSettling": "Ìpààrọ̀ rẹ lè máa parí síbẹ̀. Ṣàyẹ̀wò ìwọ̀n DHB rẹ kí o tó tún gbìyànjú — má ṣe pààrọ̀ lẹ́ẹ̀mejì.",
+    "notEnoughBase": "Owó tó wà nínú àpamọ́wọ́ rẹ lórí Base kò tó fún un. Fi owó kún un, ìṣílẹ̀kùn ń dúró dè ọ́.",
+    "otherChain": "Ìfìwéránṣẹ́ yìí ń parí lórí ẹ̀wọ̀n mìíràn, nítorí náà o nílò DHB nínú àpamọ́wọ́ rẹ níbẹ̀."
   },
   "walletSetup": {
     "writeThemDown": "Kọ wọ́n sí ibi tí ìwọ nìkan lè dé. Ẹnikẹ́ni tí ó bá ní àwọn ọ̀rọ̀ wọ̀nyí ní àpò owó rẹ — àtìlẹ́yìn DeHub kò lè gbà wọ́n padà bẹ́ẹ̀ ni kò lè tún wọn ṣe.",

@@ -3074,7 +3074,19 @@
     "solanaFailed": "Dravdana Solana bi ser neket",
     "missingWeb3": "Çarçoveya web3 kêm e",
     "preparingRouter": "Rêvebirê dravdanê tê amadekirin… demek şûnda dîsa biceribîne",
-    "swapShort": "Guhertin qediya lê DHB hîn kêm e. Dîsa biceribîne."
+    "swapShort": "Guhertin qediya lê DHB hîn kêm e. Dîsa biceribîne.",
+    "yourBalance": "Hesabê te",
+    "youNeed": "Pêdiviya te bi",
+    "scanning": "Li riya herî bilez a barkirinê tê gerîn…",
+    "topUpAndUnlock": "Bar bike û veke",
+    "notNow": "Niha na",
+    "buySymbol": "{{symbol}} bikire",
+    "topUpThenReturn": "Berîka xwe bar bike, paşê vegere",
+    "checkWalletFailed": "Niha berîka te nehat kontrolkirin.",
+    "preparingWallet": "Berîka te tê amadekirin — piştî kêliyekê dîsa biceribîne.",
+    "swapSettling": "Dibe ku pevguhertina te hîn tê temamkirin. Berî ku dîsa biceribînî balansa DHB kontrol bike — du caran pevnegihere.",
+    "notEnoughBase": "Di berîka te ya li ser Base de bes tune ku wê bigire. Drav zêde bike, vekirin li benda te ye.",
+    "otherChain": "Ev şandî li ser zincîreke din tê temamkirin, loma li wir DHB di berîka te de pêwîst e."
   },
   "walletSetup": {
     "writeThemDown": "Wan li cihekî binivîse ku tenê tu digihîjî. Kî van peyvan hebe berîka te heye — piştgiriya DeHub nikare wan vegerîne an ji nû ve saz bike.",

@@ -3315,7 +3315,19 @@
     "solanaFailed": "Solana-maksu epäonnistui",
     "missingWeb3": "web3-konteksti puuttuu",
     "preparingRouter": "Valmistellaan maksureititintä… yritä hetken kuluttua uudelleen",
-    "swapShort": "Vaihto tehty, mutta DHB ei vieläkään riitä. Yritä uudelleen."
+    "swapShort": "Vaihto tehty, mutta DHB ei vieläkään riitä. Yritä uudelleen.",
+    "yourBalance": "Saldosi",
+    "youNeed": "Tarvitset",
+    "scanning": "Etsitään nopeinta tapaa täydentää saldoasi…",
+    "topUpAndUnlock": "Lataa ja avaa",
+    "notNow": "Ei nyt",
+    "buySymbol": "Osta {{symbol}}",
+    "topUpThenReturn": "Lataa lompakkosi ja palaa takaisin",
+    "checkWalletFailed": "Lompakkoasi ei voitu juuri nyt tarkistaa.",
+    "preparingWallet": "Lompakkoasi valmistellaan — yritä hetken kuluttua uudelleen.",
+    "swapSettling": "Vaihtosi voi olla vielä selvitettävänä. Tarkista DHB-saldosi ennen uutta yritystä — älä tee vaihtoa kahdesti.",
+    "notEnoughBase": "Base-lompakossasi ei ole tarpeeksi tähän. Lisää varoja — avaaminen odottaa sinua.",
+    "otherChain": "Tämä julkaisu selvitetään toisessa ketjussa, joten tarvitset DHB:tä siellä olevaan lompakkoosi."
   },
   "walletSetup": {
     "writeThemDown": "Kirjoita ne paikkaan, johon vain sinä pääset. Kenellä nämä sanat ovat, sillä on lompakkosi — DeHubin tuki ei voi palauttaa eikä nollata niitä.",

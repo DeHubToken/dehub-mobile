@@ -3394,7 +3394,19 @@
     "solanaFailed": "Tsy nahomby ny fandoavana Solana",
     "missingWeb3": "Tsy misy ny tontolon'ny web3",
     "preparingRouter": "Manomana ny mpandefa fandoavam-bola… andramo indray afaka kelikely",
-    "swapShort": "Vita ny fanakalozana fa mbola tsy ampy ny DHB. Andramo indray."
+    "swapShort": "Vita ny fanakalozana fa mbola tsy ampy ny DHB. Andramo indray.",
+    "yourBalance": "Ny volanao",
+    "youNeed": "Mila ianao",
+    "scanning": "Mitady ny fomba haingana indrindra hamenoana…",
+    "topUpAndUnlock": "Fenoy sy sokafy",
+    "notNow": "Tsy izao",
+    "buySymbol": "Hividy {{symbol}}",
+    "topUpThenReturn": "Fenoy ny poketranao, dia miverena",
+    "checkWalletFailed": "Tsy afaka nanamarina ny poketranao izao.",
+    "preparingWallet": "Manomana ny poketranao — andramo indray afaka kelikely.",
+    "swapSettling": "Mety mbola vita ny fifanakalozanao. Hamarino ny volanao DHB alohan'ny hanandramana indray — aza manao fifanakalozana indroa.",
+    "notEnoughBase": "Tsy ampy ao amin'ny poketranao ao Base. Ampio vola, miandry anao ny fanokafana.",
+    "otherChain": "Vita ao amin'ny rojo hafa ity lahatsoratra ity, ka mila DHB ao amin'ny poketranao any ianao."
   },
   "walletSetup": {
     "writeThemDown": "Soraty any amin'ny toerana ianao irery no mahatratra. Izay manana ireo teny ireo dia manana ny poketranao — tsy afaka mamerina na mamerina amin'ny laoniny azy ireo ny fanohanana DeHub.",

@@ -3315,7 +3315,19 @@
     "solanaFailed": "El pagament amb Solana ha fallat",
     "missingWeb3": "Falta el context web3",
     "preparingRouter": "S'està preparant l'encaminador de pagaments… torna-ho a provar en un moment",
-    "swapShort": "L'intercanvi s'ha fet però encara falta DHB. Torna-ho a provar."
+    "swapShort": "L'intercanvi s'ha fet però encara falta DHB. Torna-ho a provar.",
+    "yourBalance": "El teu saldo",
+    "youNeed": "Necessites",
+    "scanning": "S'està cercant la manera més ràpida de recarregar…",
+    "topUpAndUnlock": "Recarrega i desbloqueja",
+    "notNow": "Ara no",
+    "buySymbol": "Compra {{symbol}}",
+    "topUpThenReturn": "Recarrega la cartera i torna",
+    "checkWalletFailed": "Ara mateix no s'ha pogut comprovar la teva cartera.",
+    "preparingWallet": "S'està preparant la teva cartera: torna-ho a provar d'aquí a un moment.",
+    "swapSettling": "És possible que el teu intercanvi encara s'estigui liquidant. Comprova el teu saldo de DHB abans de tornar-ho a provar: no facis l'intercanvi dues vegades.",
+    "notEnoughBase": "No tens prou fons a la teva cartera a Base per cobrir-ho. Afegeix fons i el desbloqueig t'espera.",
+    "otherChain": "Aquesta publicació es liquida en una altra cadena, així que necessites DHB a la teva cartera allà."
   },
   "walletSetup": {
     "writeThemDown": "Escriu-les en un lloc on només tu puguis arribar. Qui tingui aquestes paraules té la teva cartera: el suport de DeHub no les pot recuperar ni reiniciar.",

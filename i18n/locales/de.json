@@ -3384,7 +3384,19 @@
     "solanaFailed": "Solana-Zahlung fehlgeschlagen",
     "missingWeb3": "web3-Kontext fehlt",
     "preparingRouter": "Zahlungs-Router wird vorbereitet… gleich erneut versuchen",
-    "swapShort": "Tausch erfolgt, aber DHB reicht noch nicht. Bitte erneut versuchen."
+    "swapShort": "Tausch erfolgt, aber DHB reicht noch nicht. Bitte erneut versuchen.",
+    "yourBalance": "Dein Guthaben",
+    "youNeed": "Du benötigst",
+    "scanning": "Der schnellste Weg zum Aufladen wird gesucht…",
+    "topUpAndUnlock": "Aufladen & freischalten",
+    "notNow": "Jetzt nicht",
+    "buySymbol": "{{symbol}} kaufen",
+    "topUpThenReturn": "Lade deine Wallet auf und komm zurück",
+    "checkWalletFailed": "Deine Wallet konnte gerade nicht geprüft werden.",
+    "preparingWallet": "Deine Wallet wird vorbereitet — versuch es gleich noch mal.",
+    "swapSettling": "Dein Swap wird vielleicht noch abgewickelt. Prüfe dein DHB-Guthaben, bevor du es erneut versuchst — swappe nicht zweimal.",
+    "notEnoughBase": "In deiner Wallet auf Base ist nicht genug, um das zu decken. Lade auf — die Freischaltung wartet auf dich.",
+    "otherChain": "Dieser Beitrag wird auf einer anderen Chain abgewickelt, du brauchst dort also DHB in deiner Wallet."
   },
   "walletSetup": {
     "writeThemDown": "Schreibe sie an einem Ort auf, den nur du erreichst. Wer diese Wörter hat, hat deine Wallet — der DeHub-Support kann sie weder wiederherstellen noch zurücksetzen.",

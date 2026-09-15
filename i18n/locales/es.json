@@ -3385,7 +3385,19 @@
     "solanaFailed": "El pago con Solana falló",
     "missingWeb3": "Falta el contexto web3",
     "preparingRouter": "Preparando el enrutador de pagos… inténtalo de nuevo en un momento",
-    "swapShort": "El intercambio se hizo pero aún falta DHB. Inténtalo de nuevo."
+    "swapShort": "El intercambio se hizo pero aún falta DHB. Inténtalo de nuevo.",
+    "yourBalance": "Tu saldo",
+    "youNeed": "Necesitas",
+    "scanning": "Buscando la forma más rápida de recargar…",
+    "topUpAndUnlock": "Recargar y desbloquear",
+    "notNow": "Ahora no",
+    "buySymbol": "Comprar {{symbol}}",
+    "topUpThenReturn": "Recarga tu cartera y vuelve",
+    "checkWalletFailed": "Ahora mismo no se ha podido comprobar tu cartera.",
+    "preparingWallet": "Preparando tu cartera: inténtalo de nuevo en un momento.",
+    "swapSettling": "Puede que tu intercambio aún se esté liquidando. Comprueba tu saldo de DHB antes de volver a intentarlo: no hagas el intercambio dos veces.",
+    "notEnoughBase": "No tienes suficiente en tu cartera en Base para cubrirlo. Añade fondos y el desbloqueo te esperará.",
+    "otherChain": "Esta publicación se liquida en otra cadena, así que necesitas DHB en tu cartera allí."
   },
   "walletSetup": {
     "writeThemDown": "Escríbelas en un sitio al que solo tú puedas llegar. Quien tenga estas palabras tiene tu billetera: el soporte de DeHub no puede recuperarlas ni restablecerlas.",
