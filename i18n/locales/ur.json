@@ -1368,7 +1368,12 @@
     "radio": "ریڈیو",
     "trendingTracks": "رجحان ساز ٹریکس",
     "moreVideos": "مزید ویڈیوز",
-    "newReleases": "نئی ریلیزز"
+    "newReleases": "نئی ریلیزز",
+    "noMusicVideos": "ابھی کوئی میوزک ویڈیو نہیں",
+    "noAudioUploads": "ابھی کوئی آڈیو اپ لوڈ نہیں",
+    "noTracks": "ابھی کوئی ٹریک نہیں",
+    "noPodcasts": "ابھی کوئی پوڈکاسٹ نہیں",
+    "noAudio": "کوئی آڈیو نہیں"
   },
   "notFound": {
     "title": "صفحہ نہیں ملا",
@@ -3800,5 +3805,17 @@
     "updated": "پوسٹ اپ ڈیٹ ہو گئی",
     "titlePlaceholder": "پوسٹ کا عنوان",
     "descPlaceholder": "پوسٹ کی تفصیل"
+  },
+  "player": {
+    "openSettings": "سیٹنگز کھولیں",
+    "viewPlans": "پلانز دیکھیں",
+    "playbackSpeed": "پلے بیک اسپیڈ",
+    "moreOptions": "مزید آپشنز"
+  },
+  "liveViewer": {
+    "loadingStream": "اسٹریم لوڈ ہو رہی ہے...",
+    "streamPaused": "اسٹریم روکی گئی",
+    "connectionDropped": "اسٹریمر کا کنکشن ٹوٹ گیا۔\nدوبارہ جڑنے کا انتظار ہے...",
+    "autoEnding": "دوبارہ شروع نہ ہوا تو خود بخود ختم ہو جائے گا"
   }
 }

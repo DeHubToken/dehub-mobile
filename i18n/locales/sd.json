@@ -1428,7 +1428,12 @@
     "radio": "ريڊيو",
     "trendingTracks": "رجحاني ٽريڪ",
     "moreVideos": "وڌيڪ وڊيو",
-    "newReleases": "نوان ريليز"
+    "newReleases": "نوان ريليز",
+    "noMusicVideos": "اڃا ڪا به ميوزڪ وڊيو ناهي",
+    "noAudioUploads": "اڃا ڪو به آڊيو اپلوڊ ناهي",
+    "noTracks": "اڃا ڪو به ٽريڪ ناهي",
+    "noPodcasts": "اڃا ڪو به پوڊڪاسٽ ناهي",
+    "noAudio": "ڪو به آڊيو ناهي"
   },
   "notFound": {
     "title": "صفحو نه مليو",
@@ -3785,5 +3790,17 @@
     "updated": "پوسٽ اپڊيٽ ٿي وئي",
     "titlePlaceholder": "پوسٽ جو عنوان",
     "descPlaceholder": "پوسٽ جي تفصيل"
+  },
+  "player": {
+    "openSettings": "سيٽنگون کوليو",
+    "viewPlans": "پلان ڏسو",
+    "playbackSpeed": "پلي بيڪ رفتار",
+    "moreOptions": "وڌيڪ آپشن"
+  },
+  "liveViewer": {
+    "loadingStream": "اسٽريم لوڊ ٿي رهي آهي...",
+    "streamPaused": "اسٽريم روڪي وئي",
+    "connectionDropped": "اسٽريمر جو ڪنيڪشن ٽٽي ويو.\nٻيهر ڳنڍجڻ جو انتظار آهي...",
+    "autoEnding": "جيڪڏهن ٻيهر شروع نه ٿيو ته پاڻ ختم ٿي ويندو"
   }
 }

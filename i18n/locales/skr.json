@@ -1395,7 +1395,12 @@
     "radio": "ریڈیو",
     "trendingTracks": "ٹرینڈنگ ٹریک",
     "moreVideos": "ودھ ویڈیو",
-    "newReleases": "نویاں ریلیز"
+    "newReleases": "نویاں ریلیز",
+    "noMusicVideos": "ہالے کوئی میوزک ویڈیو کائنی",
+    "noAudioUploads": "ہالے کوئی آڈیو اپ لوڈ کائنی",
+    "noTracks": "ہالے کوئی ٹریک کائنی",
+    "noPodcasts": "ہالے کوئی پوڈکاسٹ کائنی",
+    "noAudio": "کوئی آڈیو کائنی"
   },
   "notFound": {
     "title": "صفحہ کائنی ملیا",
@@ -3746,5 +3751,17 @@
     "updated": "پوسٹ اپ ڈیٹ تھی ڳئی",
     "titlePlaceholder": "پوسٹ دا عنوان",
     "descPlaceholder": "پوسٹ دی تفصیل"
+  },
+  "player": {
+    "openSettings": "سیٹنگز کھولو",
+    "viewPlans": "پلان ݙیکھو",
+    "playbackSpeed": "پلے بیک رفتار",
+    "moreOptions": "ودھیک آپشن"
+  },
+  "liveViewer": {
+    "loadingStream": "اسٹریم لوڈ تھیندی پئی ہے...",
+    "streamPaused": "اسٹریم روکی ڳئی",
+    "connectionDropped": "اسٹریمر دا کنکشن ٹٹ ڳیا۔\nولدا جڑݨ دی انتظار ہے...",
+    "autoEnding": "جے ولدا شروع نہ تھیا تاں آپݨے آپ ختم تھی ویسی"
   }
 }

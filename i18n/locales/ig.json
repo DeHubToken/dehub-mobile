@@ -1428,7 +1428,12 @@
     "radio": "Redịo",
     "trendingTracks": "Egwu Na-ewu Ewu",
     "moreVideos": "Vidio Ndị Ọzọ",
-    "newReleases": "Ihe Ọhụrụ"
+    "newReleases": "Ihe Ọhụrụ",
+    "noMusicVideos": "Enwebeghị vidiyo egwu",
+    "noAudioUploads": "Ebugobeghị ụda ọ bụla",
+    "noTracks": "Enwebeghị egwu ọ bụla",
+    "noPodcasts": "Enwebeghị podcast",
+    "noAudio": "Enweghị ụda"
   },
   "notFound": {
     "title": "Achọtaghị Peeji",
@@ -3780,5 +3785,17 @@
     "updated": "Emelitere post",
     "titlePlaceholder": "Isiokwu post",
     "descPlaceholder": "Nkọwa post"
+  },
+  "player": {
+    "openSettings": "Mepee ntọala",
+    "viewPlans": "Lee atụmatụ",
+    "playbackSpeed": "Ọsọ nkpọghe",
+    "moreOptions": "Nhọrọ ndị ọzọ"
+  },
+  "liveViewer": {
+    "loadingStream": "Na-ebu mgbasa...",
+    "streamPaused": "Akwụsịtụla mgbasa",
+    "connectionDropped": "Njikọ onye na-agbasa adaala.\nNa-echere ka ọ laghachi...",
+    "autoEnding": "Ọ ga-akwụsị onwe ya ma ọ bụrụ na amalitegharịghị ya"
   }
 }

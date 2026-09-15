@@ -1443,7 +1443,12 @@
     "radio": "Ràdio",
     "trendingTracks": "Pistes populars",
     "moreVideos": "Més vídeos",
-    "newReleases": "Nous llançaments"
+    "newReleases": "Nous llançaments",
+    "noMusicVideos": "Encara no hi ha videoclips",
+    "noAudioUploads": "Encara no hi ha àudios penjats",
+    "noTracks": "Encara no hi ha pistes",
+    "noPodcasts": "Encara no hi ha podcasts",
+    "noAudio": "Sense àudio"
   },
   "notFound": {
     "title": "Pàgina no trobada",
@@ -3802,5 +3807,17 @@
     "updated": "Publicació actualitzada",
     "titlePlaceholder": "Títol de la publicació",
     "descPlaceholder": "Descripció de la publicació"
+  },
+  "player": {
+    "openSettings": "Obre la configuració",
+    "viewPlans": "Mira els plans",
+    "playbackSpeed": "Velocitat de reproducció",
+    "moreOptions": "Més opcions"
+  },
+  "liveViewer": {
+    "loadingStream": "S'està carregant l'emissió...",
+    "streamPaused": "Emissió en pausa",
+    "connectionDropped": "S'ha tallat la connexió de qui emet.\nEsperant que torni...",
+    "autoEnding": "S'acabarà automàticament si no es reprèn"
   }
 }

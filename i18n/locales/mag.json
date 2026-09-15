@@ -1414,7 +1414,12 @@
     "radio": "रेडियो",
     "trendingTracks": "ट्रेंडिंग ट्रैक",
     "moreVideos": "आउर वीडियो",
-    "newReleases": "नया रिलीज"
+    "newReleases": "नया रिलीज",
+    "noMusicVideos": "अखनो कोई म्यूजिक वीडियो ना",
+    "noAudioUploads": "अखनो कोई ऑडियो अपलोड ना",
+    "noTracks": "अखनो कोई ट्रैक ना",
+    "noPodcasts": "अखनो कोई पॉडकास्ट ना",
+    "noAudio": "कोई ऑडियो ना"
   },
   "notFound": {
     "title": "पेज नइ मिलल",
@@ -3754,5 +3759,17 @@
     "updated": "पोस्ट अपडेट भ गेल",
     "titlePlaceholder": "पोस्ट के सीर्षक",
     "descPlaceholder": "पोस्ट के बिबरन"
+  },
+  "player": {
+    "openSettings": "सेटिंग खोलऽ",
+    "viewPlans": "प्लान देखऽ",
+    "playbackSpeed": "प्लेबैक स्पीड",
+    "moreOptions": "अउर विकल्प"
+  },
+  "liveViewer": {
+    "loadingStream": "स्ट्रीम लोड होइत हे...",
+    "streamPaused": "स्ट्रीम रुकल हे",
+    "connectionDropped": "स्ट्रीमर के कनेक्शन टूट गेल।\nफेर जुड़े के इंतजार हे...",
+    "autoEnding": "अगर फेर चालू ना भेल त अपने आप खतम होतै"
   }
 }

@@ -1441,7 +1441,12 @@
     "radio": "رادیو",
     "trendingTracks": "آهنگ‌های محبوب",
     "moreVideos": "ویدیوهای بیشتر",
-    "newReleases": "انتشارات جدید"
+    "newReleases": "انتشارات جدید",
+    "noMusicVideos": "هنوز موزیک ویدیویی نیست",
+    "noAudioUploads": "هنوز فایل صوتی بارگذاری نشده",
+    "noTracks": "هنوز ترکی نیست",
+    "noPodcasts": "هنوز پادکستی نیست",
+    "noAudio": "بدون صدا"
   },
   "notFound": {
     "title": "صفحه یافت نشد",
@@ -3815,5 +3820,17 @@
     "updated": "پست به‌روزرسانی شد",
     "titlePlaceholder": "عنوان پست",
     "descPlaceholder": "توضیحات پست"
+  },
+  "player": {
+    "openSettings": "باز کردن تنظیمات",
+    "viewPlans": "مشاهده طرح‌ها",
+    "playbackSpeed": "سرعت پخش",
+    "moreOptions": "گزینه‌های بیشتر"
+  },
+  "liveViewer": {
+    "loadingStream": "در حال بارگذاری پخش...",
+    "streamPaused": "پخش متوقف شد",
+    "connectionDropped": "ارتباط پخش‌کننده قطع شد.\nمنتظر اتصال دوباره...",
+    "autoEnding": "اگر از سر گرفته نشود خودکار پایان می‌یابد"
   }
 }

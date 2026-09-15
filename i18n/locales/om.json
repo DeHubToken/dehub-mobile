@@ -1471,7 +1471,12 @@
     "radio": "Raadiyoo",
     "trendingTracks": "Tiraakii Trendii",
     "moreVideos": "Viidiyoo Dabalataa",
-    "newReleases": "Gadhiifama Haaraa"
+    "newReleases": "Gadhiifama Haaraa",
+    "noMusicVideos": "Amma viidiyoon muuziqaa hin jiru",
+    "noAudioUploads": "Amma sagaleen olkaaʼame hin jiru",
+    "noTracks": "Amma sirbi hin jiru",
+    "noPodcasts": "Amma podcast hin jiru",
+    "noAudio": "Sagalee hin jiru"
   },
   "notFound": {
     "title": "Fuulni hin argamne",
@@ -3866,5 +3871,17 @@
     "updated": "Barreeffamni haaromfameera",
     "titlePlaceholder": "Mata barreeffamaa",
     "descPlaceholder": "Ibsa barreeffamaa"
+  },
+  "player": {
+    "openSettings": "Qindaaʼina bani",
+    "viewPlans": "Karoora ilaali",
+    "playbackSpeed": "Saffisa taphachuu",
+    "moreOptions": "Filannoo dabalataa"
+  },
+  "liveViewer": {
+    "loadingStream": "Tamsaasa fe'aa jira...",
+    "streamPaused": "Tamsaasni addaan cite",
+    "connectionDropped": "Walqunnamtiin tamsaasaa cite.\nDeebiʼee akka walqunnamu eeggachaa jira...",
+    "autoEnding": "Yoo hin itti fufne ofumaan ni xumurama"
   }
 }

@@ -1442,7 +1442,12 @@
     "radio": "Ραδιόφωνο",
     "trendingTracks": "Δημοφιλή Κομμάτια",
     "moreVideos": "Περισσότερα Βίντεο",
-    "newReleases": "Νέες Κυκλοφορίες"
+    "newReleases": "Νέες Κυκλοφορίες",
+    "noMusicVideos": "Δεν υπάρχουν ακόμη μουσικά βίντεο",
+    "noAudioUploads": "Δεν υπάρχουν ακόμη μεταφορτώσεις ήχου",
+    "noTracks": "Δεν υπάρχουν ακόμη κομμάτια",
+    "noPodcasts": "Δεν υπάρχουν ακόμη podcast",
+    "noAudio": "Χωρίς ήχο"
   },
   "notFound": {
     "title": "Η Σελίδα Δεν Βρέθηκε",
@@ -3825,5 +3830,17 @@
     "updated": "Η ανάρτηση ενημερώθηκε",
     "titlePlaceholder": "Τίτλος ανάρτησης",
     "descPlaceholder": "Περιγραφή ανάρτησης"
+  },
+  "player": {
+    "openSettings": "Άνοιγμα ρυθμίσεων",
+    "viewPlans": "Δείτε τα πακέτα",
+    "playbackSpeed": "Ταχύτητα αναπαραγωγής",
+    "moreOptions": "Περισσότερες επιλογές"
+  },
+  "liveViewer": {
+    "loadingStream": "Φόρτωση μετάδοσης...",
+    "streamPaused": "Η μετάδοση σε παύση",
+    "connectionDropped": "Η σύνδεση του streamer έπεσε.\nΠεριμένουμε να επανασυνδεθεί...",
+    "autoEnding": "Θα τερματιστεί αυτόματα αν δεν συνεχιστεί"
   }
 }

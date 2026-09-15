@@ -138,6 +138,7 @@ import {
 import { MEDIA_TAP_SLOP_PX } from "../libs/media-gesture";
 import GlassTipSheet from "../components/Tip/GlassTipSheet";
 import { resolveViewCount } from "../libs/numbers.util";
+import { useTranslation as useCopy } from "react-i18next";
 
 
 
@@ -321,6 +322,7 @@ interface ShortItemProps {
 const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
   // Live window size, not a module-level snapshot: on iPad the pager cells
   // and tap zones were sized for the launch orientation.
+  const { t } = useCopy();
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
   const navigation = useNavigation<any>();
   const user = useUser();
@@ -708,7 +710,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
           dislikeCount: wasDislikeCount,
           reactionCounts: wasCounts,
         });
-        toastError("Failed to update reaction");
+        toastError(t("feedCard.reactionFailed"));
       };
 
       const request =
@@ -816,7 +818,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   const handleCopyLink = useCallback(() => {
     if (tokenId == null) return;
     copyToClipboard(ShareLinks.post(String(tokenId)));
-    toastSuccess("Link copied");
+    toastSuccess(t("postOptions.linkCopied"));
     // A copy is a share: it counts once per actor per post, next to reposts.
     trackLinkCopy(tokenId, userAddress, linkCopyCount);
   }, [tokenId, trackLinkCopy, userAddress, linkCopyCount]);
@@ -1403,7 +1405,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
                 icon="Gem"
                 label={formatCompactNumber(tipCount)}
                 onPress={handleTip}
-                accessibilityLabel="Tip"
+                accessibilityLabel={t("comments.tip")}
               />
 
               {/* Downvotes — one tap, no tray: 👎 is the only reaction on this
@@ -1441,14 +1443,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
                 active={reposted}
                 label={formatCompactNumber(shareCount)}
                 onPress={() => setShowShareSheet(true)}
-                accessibilityLabel="Share"
+                accessibilityLabel={t("postOptions.share")}
               />
 
               <ActionButton
                 icon="MessageSquare"
                 label={formatCompactNumber(commentCount)}
                 onPress={handleComment}
-                accessibilityLabel="Comments"
+                accessibilityLabel={t("settings.comments")}
               />
 
               {/* Reactions — tap to like/unlike, hold to pick a reaction.
@@ -1537,6 +1539,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
 });
 
 const ShortsViewerScreen = () => {
+  const { t } = useCopy();
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   const user = useUser();
@@ -1762,7 +1765,7 @@ const ShortsViewerScreen = () => {
       applyEngagement(key, { isSaved: !wasSaved });
       const rollback = () => {
         revertEngagement(key, { isSaved: wasSaved });
-        toastError("Failed to save");
+        toastError(t("feedCard.saveFailed"));
       };
       savePost(Number(activeTokenId), userAddress)
         .then((res) => {
@@ -1979,7 +1982,7 @@ const ShortsViewerScreen = () => {
         />
 
         <View style={styles.topBar} pointerEvents="box-none">
-          <Pressable onPress={handleBack} hitSlop={CHROME_HIT_SLOP} style={styles.topButton} accessibilityLabel="Back">
+          <Pressable onPress={handleBack} hitSlop={CHROME_HIT_SLOP} style={styles.topButton} accessibilityLabel={t("profile.back")}>
             <ChromeFill />
             {/* Web's `w-6 h-6` on the back chevron — larger than the three
                 playback controls opposite it, as there. */}
@@ -1992,7 +1995,7 @@ const ShortsViewerScreen = () => {
               onPress={handleCycleSpeed}
               hitSlop={CHROME_HIT_SLOP}
               style={[styles.topButton, styles.speedButton]}
-              accessibilityLabel="Playback speed"
+              accessibilityLabel={t("player.playbackSpeed")}
             >
               <ChromeFill />
               <Text style={styles.speedButtonText}>{formatRate(playbackRate)}</Text>
@@ -2027,7 +2030,7 @@ const ShortsViewerScreen = () => {
               onPress={() => setShowOptionsMenu(true)}
               style={styles.topButton}
               hitSlop={CHROME_HIT_SLOP}
-              accessibilityLabel="More options"
+              accessibilityLabel={t("player.moreOptions")}
             >
               <ChromeFill />
               <Icon name="Ellipsis" size={20} color="#fff" />

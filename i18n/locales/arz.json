@@ -1441,7 +1441,12 @@
     "radio": "راديو",
     "trendingTracks": "تراكات ترند",
     "moreVideos": "فيديوهات أكتر",
-    "newReleases": "إصدارات جديدة"
+    "newReleases": "إصدارات جديدة",
+    "noMusicVideos": "مفيش فيديوهات موسيقى لسه",
+    "noAudioUploads": "مفيش ملفات صوت مترفعة لسه",
+    "noTracks": "مفيش تراكات لسه",
+    "noPodcasts": "مفيش بودكاست لسه",
+    "noAudio": "مفيش صوت"
   },
   "notFound": {
     "title": "الصفحة مش موجودة",
@@ -3798,5 +3803,17 @@
     "updated": "اتحدث البوست",
     "titlePlaceholder": "عنوان البوست",
     "descPlaceholder": "وصف البوست"
+  },
+  "player": {
+    "openSettings": "افتح الإعدادات",
+    "viewPlans": "شوف الخطط",
+    "playbackSpeed": "سرعة التشغيل",
+    "moreOptions": "خيارات تانية"
+  },
+  "liveViewer": {
+    "loadingStream": "بيحمل البث...",
+    "streamPaused": "البث متوقف",
+    "connectionDropped": "اتصال اللي بيبث اتقطع.\nمستنيينه يرجع...",
+    "autoEnding": "هيخلص لوحده لو مرجعش"
   }
 }

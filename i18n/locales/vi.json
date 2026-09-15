@@ -1633,7 +1633,12 @@
     "radio": "Radio",
     "trendingTracks": "Trending Tracks",
     "moreVideos": "More Videos",
-    "newReleases": "New Releases"
+    "newReleases": "New Releases",
+    "noMusicVideos": "Chưa có video ca nhạc",
+    "noAudioUploads": "Chưa có bản tải lên âm thanh",
+    "noTracks": "Chưa có bản nhạc",
+    "noPodcasts": "Chưa có podcast",
+    "noAudio": "Không có âm thanh"
   },
   "leaderboard": {
     "title": "Bảng xếp hạng",
@@ -3890,5 +3895,17 @@
     "updated": "Đã cập nhật bài đăng",
     "titlePlaceholder": "Tiêu đề bài đăng",
     "descPlaceholder": "Mô tả bài đăng"
+  },
+  "player": {
+    "openSettings": "Mở cài đặt",
+    "viewPlans": "Xem các gói",
+    "playbackSpeed": "Tốc độ phát",
+    "moreOptions": "Tùy chọn khác"
+  },
+  "liveViewer": {
+    "loadingStream": "Đang tải luồng phát...",
+    "streamPaused": "Đã tạm dừng phát",
+    "connectionDropped": "Kết nối của người phát bị ngắt.\nĐang chờ họ kết nối lại...",
+    "autoEnding": "Sẽ tự kết thúc nếu không tiếp tục"
   }
 }

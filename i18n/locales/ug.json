@@ -1308,7 +1308,12 @@
     "radio": "رادىئو",
     "trendingTracks": "داڭلىق نەغمىلەر",
     "moreVideos": "تېخىمۇ كۆپ ۋىدىئو",
-    "newReleases": "يېڭى نەشرلەر"
+    "newReleases": "يېڭى نەشرلەر",
+    "noMusicVideos": "تېخى مۇزىكا سىنى يوق",
+    "noAudioUploads": "تېخى ئۈن يۈكلەنمىدى",
+    "noTracks": "تېخى ناخشا يوق",
+    "noPodcasts": "تېخى پودكاست يوق",
+    "noAudio": "ئۈن يوق"
   },
   "leaderboard": {
     "title": "تەرتىپنامە",
@@ -3792,5 +3797,17 @@
     "updated": "يازما يېڭىلاندى",
     "titlePlaceholder": "يازما ماۋزۇسى",
     "descPlaceholder": "يازما چۈشەندۈرۈشى"
+  },
+  "player": {
+    "openSettings": "تەڭشەكلەرنى ئېچىش",
+    "viewPlans": "پىلانلارنى كۆرۈش",
+    "playbackSpeed": "قويۇش سۈرئىتى",
+    "moreOptions": "تېخىمۇ كۆپ تاللانما"
+  },
+  "liveViewer": {
+    "loadingStream": "تارقىتىش يۈكلىنىۋاتىدۇ...",
+    "streamPaused": "تارقىتىش ۋاقىتلىق توختىدى",
+    "connectionDropped": "تارقاتقۇچىنىڭ ئۇلىنىشى ئۈزۈلدى.\nقايتا ئۇلىنىشىنى كۈتۈۋاتىمىز...",
+    "autoEnding": "داۋاملاشمىسا ئاپتوماتىك ئاخىرلىشىدۇ"
   }
 }

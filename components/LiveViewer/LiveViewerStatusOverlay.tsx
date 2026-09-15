@@ -20,6 +20,7 @@ import { formatDistance } from "date-fns";
 import Icon from "../ui/Icon";
 import type { IconName } from "../ui/Icon";
 import { ChromeFill, TEXT_SHADOW } from "../common/ViewerChrome";
+import { useTranslation } from "react-i18next";
 
 interface LiveViewerStatusOverlayProps {
   status: "paused" | "ended" | "scheduled" | "offline" | "loading" | null;
@@ -68,6 +69,7 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
   endedAtDate,
   startedAtDate,
 }) => {
+  const { t } = useTranslation();
   const durationText = useMemo(() => {
     if (!endedAtDate || !startedAtDate) return null;
     const ms = Math.max(0, endedAtDate.getTime() - startedAtDate.getTime());
@@ -87,7 +89,7 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
     return (
       <View style={[StyleSheet.absoluteFill, styles.centre, styles.loadingWash]}>
         <DeHubLoader size={56} />
-        <Text style={styles.loadingText}>Loading stream...</Text>
+        <Text style={styles.loadingText}>{t("liveViewer.loadingStream")}</Text>
       </View>
     );
   }
@@ -101,17 +103,17 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
           <ChromeFill radius={16} />
           <View style={styles.pausedHeading}>
             <PulseDot />
-            <Text style={styles.title}>Stream Paused</Text>
+            <Text style={styles.title}>{t("liveViewer.streamPaused")}</Text>
           </View>
           <Text style={styles.body}>
-            {"The streamer's connection dropped.\nWaiting for them to reconnect..."}
+            {t("liveViewer.connectionDropped")}
           </Text>
           {graceCountdown > 0 && (
             <View style={styles.centre}>
               <Text style={styles.countdown}>
                 {mins + ":" + String(secs).padStart(2, "0")}
               </Text>
-              <Text style={styles.caption}>Auto-ending if not resumed</Text>
+              <Text style={styles.caption}>{t("liveViewer.autoEnding")}</Text>
             </View>
           )}
         </View>

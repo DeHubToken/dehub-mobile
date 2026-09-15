@@ -1421,7 +1421,12 @@
     "radio": "Kɔrɔbɔ",
     "trendingTracks": "Kɔrɔbɔ",
     "moreVideos": "Kɔrɔbɔ",
-    "newReleases": "Kɔrɔbɔ"
+    "newReleases": "Kɔrɔbɔ",
+    "noMusicVideos": "Fɔlifɛn wideyo si tɛ yen fɔlɔ",
+    "noAudioUploads": "Kumakan si ma bɔ fɔlɔ",
+    "noTracks": "Dɔnkili si tɛ yen fɔlɔ",
+    "noPodcasts": "Podcast si tɛ yen fɔlɔ",
+    "noAudio": "Kumakan tɛ yen"
   },
   "notFound": {
     "title": "Kɔrɔbɔ bɔ",
@@ -3746,5 +3751,17 @@
     "updated": "Sɛbɛn kuraya",
     "titlePlaceholder": "Sɛbɛn tɔgɔ",
     "descPlaceholder": "Sɛbɛn kunnafoni"
+  },
+  "player": {
+    "openSettings": "Latigɛliw da wuli",
+    "viewPlans": "Labɛnw lajɛ",
+    "playbackSpeed": "Lafɔli teliya",
+    "moreOptions": "Sugandili wɛrɛw"
+  },
+  "liveViewer": {
+    "loadingStream": "Stream bɛ lajɛ...",
+    "streamPaused": "Stream jɔra",
+    "connectionDropped": "Streamer ka jɛgɛnɛ tigɛra.\nAn bɛ makɔnɔni a ka segin...",
+    "autoEnding": "A bɛna ban a yɛrɛ ma ni a ma daminɛ kokura"
   }
 }

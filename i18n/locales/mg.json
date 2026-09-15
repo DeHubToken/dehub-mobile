@@ -1361,7 +1361,12 @@
     "radio": "Radio",
     "trendingTracks": "Hira malaza",
     "moreVideos": "Horonan-tsary betsaka kokoa",
-    "newReleases": "Navoaka vao haingana"
+    "newReleases": "Navoaka vao haingana",
+    "noMusicVideos": "Mbola tsy misy horonan-tsary mozika",
+    "noAudioUploads": "Mbola tsy misy feo nampiakarina",
+    "noTracks": "Mbola tsy misy hira",
+    "noPodcasts": "Mbola tsy misy podcast",
+    "noAudio": "Tsy misy feo"
   },
   "notFound": {
     "title": "Tsy nahitana pejy",
@@ -3881,5 +3886,17 @@
     "updated": "Nohavaozina ny lahatsoratra",
     "titlePlaceholder": "Lohatenin'ny lahatsoratra",
     "descPlaceholder": "Famaritana ny lahatsoratra"
+  },
+  "player": {
+    "openSettings": "Sokafy ny fandrindrana",
+    "viewPlans": "Jereo ny drafitra",
+    "playbackSpeed": "Hafainganam-pamerenana",
+    "moreOptions": "Safidy hafa"
+  },
+  "liveViewer": {
+    "loadingStream": "Mampiditra ny fandefasana...",
+    "streamPaused": "Nampiatoana ny fandefasana",
+    "connectionDropped": "Tapaka ny fifandraisan'ny mpandefa.\nMiandry azy hifandray indray...",
+    "autoEnding": "Hifarana ho azy raha tsy tohizana"
   }
 }

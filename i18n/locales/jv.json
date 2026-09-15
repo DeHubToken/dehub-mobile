@@ -1402,7 +1402,12 @@
     "radio": "Radio",
     "trendingTracks": "Lagu Trending",
     "moreVideos": "Video Luwih Akeh",
-    "newReleases": "Rilis Anyar"
+    "newReleases": "Rilis Anyar",
+    "noMusicVideos": "Durung ana video musik",
+    "noAudioUploads": "Durung ana unggahan audio",
+    "noTracks": "Durung ana trek",
+    "noPodcasts": "Durung ana podcast",
+    "noAudio": "Ora ana audio"
   },
   "notFound": {
     "title": "Halaman Ora Ditemokake",
@@ -3760,5 +3765,17 @@
     "updated": "Kiriman dianyari",
     "titlePlaceholder": "Irah-irahan kiriman",
     "descPlaceholder": "Katrangan kiriman"
+  },
+  "player": {
+    "openSettings": "Bukak setelan",
+    "viewPlans": "Deleng paket",
+    "playbackSpeed": "Kacepetan muter",
+    "moreOptions": "Pilihan liyane"
+  },
+  "liveViewer": {
+    "loadingStream": "Ngunggah siaran...",
+    "streamPaused": "Siaran dijeda",
+    "connectionDropped": "Sambungan streamer pedhot.\nNgenteni dheweke nyambung maneh...",
+    "autoEnding": "Rampung otomatis yen ora diterusake"
   }
 }

@@ -1442,7 +1442,12 @@
     "radio": "Raadio",
     "trendingTracks": "Populaarsed lood",
     "moreVideos": "Rohkem videoid",
-    "newReleases": "Uued väljaanded"
+    "newReleases": "Uued väljaanded",
+    "noMusicVideos": "Muusikavideoid veel pole",
+    "noAudioUploads": "Helifaile pole veel üles laaditud",
+    "noTracks": "Palasid veel pole",
+    "noPodcasts": "Taskuhäälinguid veel pole",
+    "noAudio": "Heli puudub"
   },
   "notFound": {
     "title": "Lehte ei leitud",
@@ -3801,5 +3806,17 @@
     "updated": "Postitus uuendatud",
     "titlePlaceholder": "Postituse pealkiri",
     "descPlaceholder": "Postituse kirjeldus"
+  },
+  "player": {
+    "openSettings": "Ava seaded",
+    "viewPlans": "Vaata plaane",
+    "playbackSpeed": "Taasesituse kiirus",
+    "moreOptions": "Rohkem valikuid"
+  },
+  "liveViewer": {
+    "loadingStream": "Voo laadimine...",
+    "streamPaused": "Voog on peatatud",
+    "connectionDropped": "Striimija ühendus katkes.\nOotame, et ta uuesti ühenduks...",
+    "autoEnding": "Lõpeb automaatselt, kui seda ei jätkata"
   }
 }

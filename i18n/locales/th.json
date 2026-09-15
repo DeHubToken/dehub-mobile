@@ -1584,7 +1584,12 @@
     "radio": "Radio",
     "trendingTracks": "Trending Tracks",
     "moreVideos": "More Videos",
-    "newReleases": "New Releases"
+    "newReleases": "New Releases",
+    "noMusicVideos": "ยังไม่มีมิวสิกวิดีโอ",
+    "noAudioUploads": "ยังไม่มีไฟล์เสียงที่อัปโหลด",
+    "noTracks": "ยังไม่มีเพลง",
+    "noPodcasts": "ยังไม่มีพอดแคสต์",
+    "noAudio": "ไม่มีเสียง"
   },
   "leaderboard": {
     "title": "กระดานผู้นำ",
@@ -3838,5 +3843,17 @@
     "updated": "อัปเดตโพสต์แล้ว",
     "titlePlaceholder": "ชื่อโพสต์",
     "descPlaceholder": "คำอธิบายโพสต์"
+  },
+  "player": {
+    "openSettings": "เปิดการตั้งค่า",
+    "viewPlans": "ดูแพ็กเกจ",
+    "playbackSpeed": "ความเร็วการเล่น",
+    "moreOptions": "ตัวเลือกเพิ่มเติม"
+  },
+  "liveViewer": {
+    "loadingStream": "กำลังโหลดสตรีม...",
+    "streamPaused": "สตรีมหยุดชั่วคราว",
+    "connectionDropped": "การเชื่อมต่อของผู้สตรีมหลุด\nกำลังรอให้กลับมาเชื่อมต่อใหม่...",
+    "autoEnding": "จะจบอัตโนมัติหากไม่กลับมาต่อ"
   }
 }

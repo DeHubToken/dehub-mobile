@@ -2043,7 +2043,12 @@
     "radio": "Radio",
     "trendingTracks": "Trending Tracks",
     "moreVideos": "More Videos",
-    "newReleases": "New Releases"
+    "newReleases": "New Releases",
+    "noMusicVideos": "Zatiaľ žiadne hudobné videá",
+    "noAudioUploads": "Zatiaľ žiadne nahrané audio",
+    "noTracks": "Zatiaľ žiadne skladby",
+    "noPodcasts": "Zatiaľ žiadne podcasty",
+    "noAudio": "Žiadne audio"
   },
   "explorePage": {
     "searchPlaceholder": "Search for people, posts, or content...",
@@ -3970,5 +3975,17 @@
     "updated": "Príspevok aktualizovaný",
     "titlePlaceholder": "Názov príspevku",
     "descPlaceholder": "Popis príspevku"
+  },
+  "player": {
+    "openSettings": "Otvoriť nastavenia",
+    "viewPlans": "Zobraziť plány",
+    "playbackSpeed": "Rýchlosť prehrávania",
+    "moreOptions": "Ďalšie možnosti"
+  },
+  "liveViewer": {
+    "loadingStream": "Načítava sa stream...",
+    "streamPaused": "Stream pozastavený",
+    "connectionDropped": "Streamerovi vypadlo pripojenie.\nČakáme, kým sa vráti...",
+    "autoEnding": "Ak sa neobnoví, automaticky sa ukončí"
   }
 }

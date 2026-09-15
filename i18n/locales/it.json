@@ -1480,7 +1480,12 @@
     "radio": "Radio",
     "trendingTracks": "Brani di tendenza",
     "moreVideos": "Altri video",
-    "newReleases": "Nuove uscite"
+    "newReleases": "Nuove uscite",
+    "noMusicVideos": "Ancora nessun video musicale",
+    "noAudioUploads": "Ancora nessun audio caricato",
+    "noTracks": "Ancora nessuna traccia",
+    "noPodcasts": "Ancora nessun podcast",
+    "noAudio": "Nessun audio"
   },
   "notFound": {
     "title": "Pagina non trovata",
@@ -3872,5 +3877,17 @@
     "updated": "Post aggiornato",
     "titlePlaceholder": "Titolo del post",
     "descPlaceholder": "Descrizione del post"
+  },
+  "player": {
+    "openSettings": "Apri impostazioni",
+    "viewPlans": "Vedi i piani",
+    "playbackSpeed": "Velocità di riproduzione",
+    "moreOptions": "Altre opzioni"
+  },
+  "liveViewer": {
+    "loadingStream": "Caricamento diretta...",
+    "streamPaused": "Diretta in pausa",
+    "connectionDropped": "La connessione dello streamer è caduta.\nIn attesa che si riconnetta...",
+    "autoEnding": "Terminerà automaticamente se non riprende"
   }
 }

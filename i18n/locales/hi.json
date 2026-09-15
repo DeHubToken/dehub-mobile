@@ -1211,7 +1211,12 @@
     "radio": "रेडियो",
     "trendingTracks": "ट्रेंडिंग ट्रैक",
     "moreVideos": "और वीडियो",
-    "newReleases": "नई रिलीज़"
+    "newReleases": "नई रिलीज़",
+    "noMusicVideos": "अभी कोई म्यूज़िक वीडियो नहीं",
+    "noAudioUploads": "अभी कोई ऑडियो अपलोड नहीं",
+    "noTracks": "अभी कोई ट्रैक नहीं",
+    "noPodcasts": "अभी कोई पॉडकास्ट नहीं",
+    "noAudio": "कोई ऑडियो नहीं"
   },
   "notFound": {
     "title": "पेज नहीं मिला",
@@ -3858,5 +3863,17 @@
     "updated": "पोस्ट अपडेट हुई",
     "titlePlaceholder": "पोस्ट का शीर्षक",
     "descPlaceholder": "पोस्ट का विवरण"
+  },
+  "player": {
+    "openSettings": "सेटिंग्स खोलें",
+    "viewPlans": "प्लान देखें",
+    "playbackSpeed": "प्लेबैक गति",
+    "moreOptions": "और विकल्प"
+  },
+  "liveViewer": {
+    "loadingStream": "स्ट्रीम लोड हो रही है...",
+    "streamPaused": "स्ट्रीम रुकी हुई है",
+    "connectionDropped": "स्ट्रीमर का कनेक्शन टूट गया।\nदोबारा जुड़ने का इंतज़ार है...",
+    "autoEnding": "अगर फिर शुरू नहीं हुआ तो अपने आप खत्म हो जाएगा"
   }
 }
