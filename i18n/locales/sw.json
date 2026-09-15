@@ -571,7 +571,20 @@
     "badgeDelegationNoteAny": "Nafasi hukopesha moja ya beji zako ambazo hazijafunguliwa kwenye akaunti nyingine. Irudishe wakati wowote unapopenda — nafasi huwekwa huru siku moja baadaye.",
     "badgeDelegationRaisesOnlyTier": "Beji unayokopesha lazima iwe juu kuliko ile ambayo tayari wanapata.",
     "badgeDelegationPickTier": "Beji ya kukopesha",
-    "badgeDelegationLendsAny": "Kila mmoja hukopesha akaunti nyingine beji yoyote ambayo umefungua, hadi kwenye {{tier}} yako mwenyewe. Beji ndogo bado inatumia nafasi nzima."
+    "badgeDelegationLendsAny": "Kila mmoja hukopesha akaunti nyingine beji yoyote ambayo umefungua, hadi kwenye {{tier}} yako mwenyewe. Beji ndogo bado inatumia nafasi nzima.",
+    "kidsMode": "Hali ya Watoto",
+    "kidsModeDesc": "Inaonyesha tu machapisho yaliyochapishwa kwa ajili ya watoto, kila mahali. PINI inaizima.",
+    "kidsModeSetPin": "Chagua PIN",
+    "kidsModeSetPinHelp": "Tarakimu 4 hadi 8. Unahitaji ili kuzima Hali ya Watoto tena.",
+    "kidsModeConfirmPin": "Iweke tena",
+    "kidsModeConfirmPinHelp": "Ili ujue unaweza kuizalisha.",
+    "kidsModeEnterPin": "Weka PIN YAKO",
+    "kidsModeEnterPinHelp": "Hii inazima Hali ya Watoto kwenye kifaa hiki.",
+    "kidsModeTurnOn": "Washa Hali ya Watoto",
+    "kidsModeTurnOff": "Zima Hali ya Watoto",
+    "kidsModePinMismatch": "PIN hizo ni tofauti. Anza tena.",
+    "kidsModeFailed": "Hiyo haikufanya kazi. Jaribu tena.",
+    "kidsModeForgotPin": "Umesahau? Ingia kwa kutumia pochi yako kwenye kifaa kingine ili kuzima Modi ya Watoto."
   },
   "common": {
     "mute": "Nyamazisha",
@@ -1818,7 +1831,8 @@
     "removeMedia": "Ondoa midia",
     "cancelRecording": "Ghairi kurekodi",
     "sendVoiceNote": "Tuma ujumbe wa sauti",
-    "noneYetAddYours": "Bado hakuna maoni, ongeza yako."
+    "noneYetAddYours": "Bado hakuna maoni, ongeza yako.",
+    "kidsOnlyThread": "Chapisho hili ni kwa ajili ya watoto. Hali ya Watoto pekee ndiyo inayoweza kutoa maoni juu yake."
   },
   "postInfo": {
     "title": "Taarifa ya chapisho",
@@ -3603,7 +3617,18 @@
     "unmuteVideo": "Washa sauti ya video",
     "descriptionOptional": "Maelezo (si lazima)",
     "whatsHappening": "Kuna nini?",
-    "quotaShortfall": "Chapisho hili linagharimu {{cost}} DHB na una {{held}}."
+    "quotaShortfall": "Chapisho hili linagharimu {{cost}} DHB na una {{held}}.",
+    "madeForKids": "Iliyofanywa kwa watoto",
+    "madeForKidsHint": "Inayoonyeshwa katika Hali ya Watoto",
+    "madeForKidsConfirmTitle": "Chapisha hii kwa watoto?",
+    "madeForKidsConfirmAudience": "Watoto wanayotumia Hali ya Watoto watakuwa na ujumbe huu. Hakuna kitu kingine kwenye DeHub kinachowafika.",
+    "madeForKidsConfirmReach": "Pia inatoka kwenye mtiririko wa kawaida — watu bado wanaipatia kwenye wasifu wako, katika utafutaji na kupitia kiungo unachoshiriki.",
+    "madeForKidsConfirmComments": "Hali ya Watoto tu inaweza kuandika maoni juu yake. Unaweza bado kujibu wao mwenyewe.",
+    "madeForKidsConfirmYes": "Ndiyo, ni kwa watoto",
+    "markMadeForKids": "Weka alama kama iliyofanywa kwa watoto",
+    "madeForKidsOnDesc": "Inayoonyeshwa kwa watoto wanayotumia Hali ya Watoto, na inatoka kwenye mtiririko wa kawaida. Hali ya Watoto tu inaweza kuandika maoni.",
+    "madeForKidsOffDesc": "Inaonyesha ujumbe huu kwa watoto wanayotumia Hali ya Watoto, na kuiondoa kwenye mtiririko wa kawaida.",
+    "madeForKidsBlockedByMature": "Ujumbe uliowekwa alama kama wenye umri hauwezi pia kuchapishwa kwa watoto."
   },
   "bounty": {
     "claimed": "Imedaiwa",

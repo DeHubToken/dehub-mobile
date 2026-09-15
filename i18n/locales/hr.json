@@ -572,7 +572,20 @@
     "badgeDelegationNoteAny": "Slot posuđuje jednu od vaših otključanih znački na drugi račun. Vratite ga kad god želite — termin se oslobađa dan kasnije.",
     "badgeDelegationRaisesOnlyTier": "Značka koju posudite mora biti veća od one koju već zarađuju.",
     "badgeDelegationPickTier": "Značka za posudbu",
-    "badgeDelegationLendsAny": "Svaki od njih posuđuje drugom računu bilo koju značku koju ste otključali, do vlastite {{tier}}. Manji bedž i dalje koristi cijeli termin."
+    "badgeDelegationLendsAny": "Svaki od njih posuđuje drugom računu bilo koju značku koju ste otključali, do vlastite {{tier}}. Manji bedž i dalje koristi cijeli termin.",
+    "kidsMode": "Dječji način rada",
+    "kidsModeDesc": "Prikazuje samo objave objavljene za djecu, svugdje. PIN ga ponovno isključuje.",
+    "kidsModeSetPin": "Odaberite PIN",
+    "kidsModeSetPinHelp": "4 do 8 znamenki. Potreban vam je za ponovno isključivanje načina rada za djecu.",
+    "kidsModeConfirmPin": "Ponovno unesite",
+    "kidsModeConfirmPinHelp": "Tako da znate da ga možete reproducirati.",
+    "kidsModeEnterPin": "Unesite svoj PIN",
+    "kidsModeEnterPinHelp": "Time se isključuje Dječji način rada na ovom uređaju.",
+    "kidsModeTurnOn": "Uključi način rada za djecu",
+    "kidsModeTurnOff": "Isključi dječji način rada",
+    "kidsModePinMismatch": "Ti su PIN-ovi različiti. Krenite ispočetka.",
+    "kidsModeFailed": "To nije uspjelo. Pokušajte ponovno.",
+    "kidsModeForgotPin": "Zaboravili ste? Prijavite se svojim novčanikom na drugom uređaju da biste isključili način rada za djecu."
   },
   "common": {
     "mute": "Isključi zvuk",
@@ -1818,7 +1831,8 @@
     "removeMedia": "Ukloni medij",
     "cancelRecording": "Otkaži snimanje",
     "sendVoiceNote": "Pošalji glasovnu poruku",
-    "noneYetAddYours": "Još nema komentara, dodajte svoj."
+    "noneYetAddYours": "Još nema komentara, dodajte svoj.",
+    "kidsOnlyThread": "Ova je objava namijenjena djeci. Samo dječji način rada može komentirati."
   },
   "postInfo": {
     "title": "Informacije o objavi",
@@ -3603,7 +3617,18 @@
     "unmuteVideo": "Uključi zvuk videozapisa",
     "descriptionOptional": "Opis (neobavezno)",
     "whatsHappening": "Što se događa?",
-    "quotaShortfall": "Ova objava stoji {{cost}} DHB, a vi imate {{held}}."
+    "quotaShortfall": "Ova objava stoji {{cost}} DHB, a vi imate {{held}}.",
+    "madeForKids": "Napravljeno za djecu",
+    "madeForKidsHint": "prikazano u Dječjem modu",
+    "madeForKidsConfirmTitle": "Objaviti ovo za djecu?",
+    "madeForKidsConfirmAudience": "Djeca koja koriste Dječji mod vidjeti će ovaj post. Ništa drugo na DeHubu im ne dostiže.",
+    "madeForKidsConfirmReach": "Također se uklanja iz običnih feedova — ljudi ga i dalje mogu pronaći na vašem profilu, u pretrazi i kroz poveznicu koju dijelite.",
+    "madeForKidsConfirmComments": "Samo Dječji mod može komentirati. Vi i dalje možete odgovoriti sami.",
+    "madeForKidsConfirmYes": "Da, to je za djecu",
+    "markMadeForKids": "Označi kao napravljeno za djecu",
+    "madeForKidsOnDesc": "Prikazano djeci u Dječjem modu, i izvan običnih feedova. Samo Dječji mod može komentirati.",
+    "madeForKidsOffDesc": "Prikazuje ovaj post djeci koja koriste Dječji mod, i uklanja ga iz običnih feedova.",
+    "madeForKidsBlockedByMature": "Post označen kao zreo ne može se objaviti i za djecu."
   },
   "bounty": {
     "claimed": "Preuzeto",

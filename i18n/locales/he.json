@@ -570,7 +570,20 @@
     "badgeDelegationNoteAny": "משבצת משאילה אחד מהתגים הלא נעולים שלך לחשבון אחר. קחו אותו בחזרה מתי שתרצו — המשבצת תתפנה יום לאחר מכן.",
     "badgeDelegationRaisesOnlyTier": "התג שאתם מלווים חייב להיות גבוה מהתג שהם כבר מרוויחים.",
     "badgeDelegationPickTier": "תג להשאלה",
-    "badgeDelegationLendsAny": "כל אחד מהם מעניק לחשבון אחר כל תג ששחררת, עד {{tier}} משלך. תג קטן יותר עדיין משתמש בחריץ שלם."
+    "badgeDelegationLendsAny": "כל אחד מהם מעניק לחשבון אחר כל תג ששחררת, עד {{tier}} משלך. תג קטן יותר עדיין משתמש בחריץ שלם.",
+    "kidsMode": "מצב ילדים",
+    "kidsModeDesc": "מציג רק פוסטים שפורסמו לילדים, בכל מקום. PIN מכבה את זה בחזרה.",
+    "kidsModeSetPin": "בחר PIN",
+    "kidsModeSetPinHelp": "4 עד 8 ספרות. אתה צריך את זה כדי לכבות את Kids Mode שוב.",
+    "kidsModeConfirmPin": "הזן אותו שוב",
+    "kidsModeConfirmPinHelp": "כדי שתדע שאתה יכול לשחזר אותו.",
+    "kidsModeEnterPin": "הזן את ה-PIN שלך",
+    "kidsModeEnterPinHelp": "זה מכבה את Kids Mode בהתקן זה.",
+    "kidsModeTurnOn": "הפעל את Kids Mode",
+    "kidsModeTurnOff": "כבה את Kids Mode",
+    "kidsModePinMismatch": "ה-PIN-ים האלה שונים. התחל מחדש.",
+    "kidsModeFailed": "זה לא עבד. נסה שוב.",
+    "kidsModeForgotPin": "שכחת? התחבר עם הארנק שלך בהתקן אחר כדי לכבות את Kids Mode."
   },
   "common": {
     "mute": "השתק",
@@ -1819,7 +1832,8 @@
     "removeMedia": "הסר מדיה",
     "cancelRecording": "בטל הקלטה",
     "sendVoiceNote": "שלח הודעה קולית",
-    "noneYetAddYours": "עדיין אין תגובות — הוסיפו את שלכם."
+    "noneYetAddYours": "עדיין אין תגובות — הוסיפו את שלכם.",
+    "kidsOnlyThread": "הפוסט הזה מיועד לילדים. רק 'מצב ילדים' יכול להגיב על זה."
   },
   "postInfo": {
     "title": "מידע על הפוסט",
@@ -3590,7 +3604,17 @@
     "unmuteVideo": "ביטול השתקת הסרטון",
     "descriptionOptional": "תיאור (אופציונלי)",
     "whatsHappening": "מה קורה?",
-    "quotaShortfall": "הפוסט הזה עולה {{cost}} DHB ויש לך {{held}}."
+    "quotaShortfall": "הפוסט הזה עולה {{cost}} DHB ויש לך {{held}}.",
+    "madeForKids": "עשוי לילדים",
+    "madeForKidsHint": "מוצג במצב ילדים",
+    "madeForKidsConfirmTitle": "פרסם זאת לילדים?",
+    "madeForKidsConfirmAudience": "ילדים המשתמשים במצב ילדים יראו את הפוסט הזה. שום דבר אחר ב-DeHub לא מגיע אליהם.",
+    "madeForKidsConfirmReach": "זה גם מוצא מהפידים הרגילים — אנשים עדיין מוצאים אותו בפרופיל שלך, בחיפוש ובאמצעות קישור שאתה משתף.",
+    "madeForKidsConfirmComments": "רק מצב ילדים יכול להגיב עליו. אתה עדיין יכול להגיב להם בעצמך.",
+    "madeForKidsConfirmYes": "כן, זה לילדים",
+    "madeForKidsOnDesc": "מוצג לילדים במצב ילדים, ומחוץ לפידים הרגילים. רק מצב ילדים יכול להגיב.",
+    "madeForKidsOffDesc": "מציג את הפוסט הזה לילדים המשתמשים במצב ילדים, ומסיר אותו מהפידים הרגילים.",
+    "madeForKidsBlockedByMature": "לא ניתן לפרסם פוסט המסומן כבוגר גם לילדים."
   },
   "bounty": {
     "claimed": "נאסף",

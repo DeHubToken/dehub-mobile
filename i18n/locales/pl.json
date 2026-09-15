@@ -572,7 +572,20 @@
     "badgeDelegationNoteAny": "Automat pożycza jedną z Twoich odblokowanych odznak na inne konto. Odbierz go, kiedy tylko chcesz — automat zwolni się dzień później.",
     "badgeDelegationRaisesOnlyTier": "Odznaka, którą pożyczasz, musi być wyższa niż ta, którą już zdobył.",
     "badgeDelegationPickTier": "Odznaka do użyczenia",
-    "badgeDelegationLendsAny": "Każdy z nich pożycza innemu kontu każdą odblokowaną odznakę, do wysokości {{tier}}. Mniejsza odznaka nadal wykorzystuje całe miejsce."
+    "badgeDelegationLendsAny": "Każdy z nich pożycza innemu kontu każdą odblokowaną odznakę, do wysokości {{tier}}. Mniejsza odznaka nadal wykorzystuje całe miejsce.",
+    "kidsMode": "Tryb dla dzieci",
+    "kidsModeDesc": "Pokazuje tylko posty opublikowane dla dzieci, wszędzie. SZPILKA wyłącza go z powrotem.",
+    "kidsModeSetPin": "Wybierz PINEZKĘ",
+    "kidsModeSetPinHelp": "Od 4 do 8 cyfr. Potrzebujesz go, aby ponownie wyłączyć tryb dziecięcy.",
+    "kidsModeConfirmPin": "Wpisz go ponownie",
+    "kidsModeConfirmPinHelp": "Więc wiesz, że możesz go odtworzyć.",
+    "kidsModeEnterPin": "Wpisz KOD PIN",
+    "kidsModeEnterPinHelp": "Spowoduje to wyłączenie trybu dziecięcego na tym urządzeniu.",
+    "kidsModeTurnOn": "Włącz tryb dla dzieci",
+    "kidsModeTurnOff": "Wyłącz tryb dziecięcy",
+    "kidsModePinMismatch": "Te kody PIN są inne. Zacznij od nowa.",
+    "kidsModeFailed": "To nie zadziałało. Spróbuj ponownie.",
+    "kidsModeForgotPin": "Zapomniałeś? Zaloguj się za pomocą portfela na innym urządzeniu, aby wyłączyć tryb dziecięcy."
   },
   "common": {
     "mute": "Wycisz",
@@ -2080,7 +2093,8 @@
     "removeMedia": "Usuń multimedia",
     "cancelRecording": "Anuluj nagrywanie",
     "sendVoiceNote": "Wyślij notatkę głosową",
-    "noneYetAddYours": "Brak komentarzy — dodaj swój."
+    "noneYetAddYours": "Brak komentarzy — dodaj swój.",
+    "kidsOnlyThread": "Ten post jest dla dzieci. Tylko tryb dziecięcy może to komentować."
   },
   "postInfo": {
     "title": "Informacje o poście",
@@ -3671,7 +3685,18 @@
     "unmuteVideo": "Włącz dźwięk wideo",
     "descriptionOptional": "Opis (opcjonalnie)",
     "whatsHappening": "Co słychać?",
-    "quotaShortfall": "Ten post kosztuje {{cost}} DHB, a masz {{held}}."
+    "quotaShortfall": "Ten post kosztuje {{cost}} DHB, a masz {{held}}.",
+    "madeForKids": "Stworzone dla dzieci",
+    "madeForKidsHint": "pokazane w trybie dziecięcym",
+    "madeForKidsConfirmTitle": "Opublikować to dla dzieci?",
+    "madeForKidsConfirmAudience": "Ten post zostanie wyświetlony dzieciom korzystającym z trybu dziecięcego. Nic więcej na DeHub do nich nie dociera.",
+    "madeForKidsConfirmReach": "Pochodzi również ze zwykłych kanałów — ludzie nadal znajdują go na Twoim profilu, w wyszukiwarce i za pośrednictwem udostępnianego linku.",
+    "madeForKidsConfirmComments": "Tylko tryb dziecięcy może to komentować. Nadal możesz na nie odpowiedzieć samodzielnie.",
+    "madeForKidsConfirmYes": "To dla przedszkolaków.",
+    "markMadeForKids": "Oznacz jako stworzone dla dzieci",
+    "madeForKidsOnDesc": "Pokazane dzieciom w trybie dziecięcym i poza zwykłymi kanałami. Tylko tryb dziecięcy może komentować.",
+    "madeForKidsOffDesc": "Pokazuje ten post dzieciom korzystającym z trybu dziecięcego i usuwa go ze zwykłych kanałów.",
+    "madeForKidsBlockedByMature": "Post oznaczony jako dojrzały nie może być również publikowany dla dzieci."
   },
   "bounty": {
     "claimed": "Odebrano",

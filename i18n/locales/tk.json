@@ -565,7 +565,20 @@
     "badgeDelegationNoteAny": "A slot başga bir hasabat üçin açylmadyk belgileriniň birini berýändir. Siz ony islän wagtyňyz yzyna alyň — bir günden soň slot boşalýar.",
     "badgeDelegationRaisesOnlyTier": "Siz berýän belgeňiz olaryň eýýäm gazanan belgesinden ýokary bolmaly.",
     "badgeDelegationPickTier": "Öwrenmek üçin tagalla ediň",
-    "badgeDelegationLendsAny": "Her biri öz {{tier}} üçin başga bir hasabat berýändir. Kiçi bir belge henizem bütin bir gapy ulanýar."
+    "badgeDelegationLendsAny": "Her biri öz {{tier}} üçin başga bir hasabat berýändir. Kiçi bir belge henizem bütin bir gapy ulanýar.",
+    "kidsMode": "Çagalar Mody",
+    "kidsModeDesc": "Çagalar üçin, her ýerde çap edilen postlary görkeziň. Bir pen ony yzyna öwrýär.",
+    "kidsModeSetPin": "PIN-i saýlaň",
+    "kidsModeSetPinHelp": "4 - 8 sany. Siz çagalaryňyzy ýene-de aýyrmak üçin gerek.",
+    "kidsModeConfirmPin": "Gaýtalaň",
+    "kidsModeConfirmPinHelp": "Belki, sen hem bererdin, eger görseň.",
+    "kidsModeEnterPin": "PIN-i gir",
+    "kidsModeEnterPinHelp": "Bu çagalary bu esbapdan aýyrýar.",
+    "kidsModeTurnOn": "Çagalary aýlanyp görüň",
+    "kidsModeTurnOff": "Çagalary aýyr",
+    "kidsModePinMismatch": "Bu PIN-ler başgaça. Täze başlaň.",
+    "kidsModeFailed": "Ol ýene-de şeýle dolanyp gelýär.",
+    "kidsModeForgotPin": "Çagalar moduny söndürmek üçin başga bir esbapda pulçuk bilen ýazyl."
   },
   "common": {
     "mute": "Sesi öçür",
@@ -1764,7 +1777,8 @@
     "removeMedia": "Mediany aýyr",
     "cancelRecording": "Ýazgy almagy ýatyr",
     "sendVoiceNote": "Ses belligini iber",
-    "noneYetAddYours": "Heniz teswir ýok, özüňkini goş."
+    "noneYetAddYours": "Heniz teswir ýok, özüňkini goş.",
+    "kidsOnlyThread": "Bu binalar çagalar üçin howply. Bu barada diňe Çagalar Mody gürrüň berip biler."
   },
   "postInfo": {
     "title": "Ýazgy maglumaty",
@@ -3573,7 +3587,17 @@
     "unmuteVideo": "Wideonyň sesini aç",
     "descriptionOptional": "Düşündiriş (islege bagly)",
     "whatsHappening": "Näme bolýar?",
-    "quotaShortfall": "Bu ýazgy {{cost}} DHB talap edýär, sizde bolsa {{held}} bar."
+    "quotaShortfall": "Bu ýazgy {{cost}} DHB talap edýär, sizde bolsa {{held}} bar.",
+    "madeForKids": "Çagalar üçin döredildi",
+    "madeForKidsHint": "Kids Mode-da görkezilýär",
+    "madeForKidsConfirmTitle": "Bunu çagalar üçin neşir etmek isleýärsiňizmi?",
+    "madeForKidsConfirmAudience": "Kids Mode-ny ulanýan çagalar bu postu görer. DeHub-a başga hiç zat onlara ýetmeýär.",
+    "madeForKidsConfirmReach": "Şeýle hem adaty feed-lerden çykyp gider — adamlar ony henizem profilyňizde, gözleg-de we paýlaşan baglanyşykda tapyp bilýärler.",
+    "madeForKidsConfirmComments": "Diňe Kids Mode-ny ulanýanlar oňa şerhek goşup bilýärler. Siz henizem olara jogap berip bilýärsiňiz.",
+    "madeForKidsConfirmYes": "Hawa, çagalar üçin",
+    "madeForKidsOnDesc": "Kids Mode-ny ulanýan çagalara görkezilýär we adaty feed-lerden çykyp gider. Diňe Kids Mode-ny ulanýanlar şerhek goşup bilýärler.",
+    "madeForKidsOffDesc": "Bu postu Kids Mode-ny ulanýan çagalara görkezýär we adaty feed-lerden çykyp gidýär.",
+    "madeForKidsBlockedByMature": "Ýetginjek hökmünde bellenen post çagalar üçin hem neşir edilip bilmeýär."
   },
   "bounty": {
     "claimed": "Alyndy",

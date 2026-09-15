@@ -772,7 +772,20 @@
     "badgeDelegationNoteAny": "'N Slot leen een van jou oopgesluit kentekens na 'n ander rekening. Neem dit terug wanneer jy wil — die slot bevry 'n dag later.",
     "badgeDelegationRaisesOnlyTier": "Die wapen wat jy leen, moet hoër wees as die een wat hulle reeds verdien.",
     "badgeDelegationPickTier": "Badge om te leen",
-    "badgeDelegationLendsAny": "Elkeen leen 'n ander rekening enige kenteken wat jy ontsluit het, tot by jou eie {{tier}}. 'N Kleiner badge gebruik nog steeds 'n hele gleuf."
+    "badgeDelegationLendsAny": "Elkeen leen 'n ander rekening enige kenteken wat jy ontsluit het, tot by jou eie {{tier}}. 'N Kleiner badge gebruik nog steeds 'n hele gleuf.",
+    "kidsMode": "Kinders Modus",
+    "kidsModeDesc": "Show only posts published vir kinders, oral. Een pen draai dit terug.",
+    "kidsModeSetPin": "Kies 'n PIN",
+    "kidsModeSetPinHelp": "4 tot 8 syfers. Jy het dit nodig om die kindermodus weer af te skakel.",
+    "kidsModeConfirmPin": "Voer dit weer in",
+    "kidsModeConfirmPinHelp": "So jy weet jy kan dit reproduseer.",
+    "kidsModeEnterPin": "Voer jou PIN in",
+    "kidsModeEnterPinHelp": "Dit draai kinders af op hierdie toestel.",
+    "kidsModeTurnOn": "Skakel Kids af op",
+    "kidsModeTurnOff": "Skakel die kindermodus af",
+    "kidsModePinMismatch": "Daardie PIN's is anders. Begin weer.",
+    "kidsModeFailed": "Dit het nie gewerk nie. Probeer weer.",
+    "kidsModeForgotPin": "Vergeet dit? Teken in met jou beursie op 'n ander toestel om Kids Mode af te skakel."
   },
   "wallet": {
     "notReady": "Beursie is nie gereed nie — probeer oor 'n oomblik weer.",
@@ -2129,7 +2142,8 @@
     "removeMedia": "Verwyder media",
     "cancelRecording": "Kanselleer opname",
     "sendVoiceNote": "Stuur stemnota",
-    "noneYetAddYours": "Nog geen kommentaar nie — voeg joune by."
+    "noneYetAddYours": "Nog geen kommentaar nie — voeg joune by.",
+    "kidsOnlyThread": "Hierdie artikel is vir kinders. Net kinders kan hierop kommentaar lewer."
   },
   "postInfo": {
     "title": "Post Info",
@@ -3720,7 +3734,18 @@
     "unmuteVideo": "Ontdemp video",
     "descriptionOptional": "Beskrywing (opsioneel)",
     "whatsHappening": "Wat gebeur?",
-    "quotaShortfall": "Hierdie plasing kos {{cost}} DHB en jy het {{held}}."
+    "quotaShortfall": "Hierdie plasing kos {{cost}} DHB en jy het {{held}}.",
+    "madeForKids": "Gemaak vir kinders",
+    "madeForKidsHint": "Getoon in Kindermodus",
+    "madeForKidsConfirmTitle": "Publiseer dit vir kinders?",
+    "madeForKidsConfirmAudience": "Kinders wat Kindermodus gebruik, sal hierdie pos sien. Niks anders op DeHub bereik hulle nie.",
+    "madeForKidsConfirmReach": "Dit kom ook af van die gewone voere — mense vind dit steeds op jou profiel, in soektog en deur 'n skakel wat jy deel.",
+    "madeForKidsConfirmComments": "Slegs Kindermodus kan daarop kommentaar lewer. Jy kan steeds self op hulle antwoord.",
+    "madeForKidsConfirmYes": "Ja, dit is vir kinders",
+    "markMadeForKids": "Merk as gemaak vir kinders",
+    "madeForKidsOnDesc": "Getoon aan kinders in Kindermodus, en af van die gewone voere. Slegs Kindermodus kan kommentaar lewer.",
+    "madeForKidsOffDesc": "Wys hierdie pos aan kinders wat Kindermodus gebruik, en haal dit af van die gewone voere.",
+    "madeForKidsBlockedByMature": "'n Pos wat as volwasse gemerk is, kan nie ook vir kinders gepubliseer word nie."
   },
   "bounty": {
     "claimed": "Opgeëis",

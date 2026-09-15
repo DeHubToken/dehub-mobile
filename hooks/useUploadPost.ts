@@ -79,6 +79,8 @@ export type UploadPayload = {
    * turned mature content on in their own settings. Omitted means safe.
    */
   contentRating?: 'mature';
+  /** Published for children — the Kids Mode allowlist. Only ever true. */
+  forKids?: boolean;
   /**
    * The Shop board — affiliate and shop links shown behind the Shop button.
    * The server re-checks the count against the creator's badge tier, so this
@@ -295,6 +297,7 @@ export function useUploadPost() {
         pollData: p.pollData,
         scheduledAt: p.scheduledAt?.toISOString(),
         contentRating: p.contentRating,
+        forKids: p.forKids,
         shopLinks: p.shopLinks,
         shopListingIds: p.shopListingIds,
       };

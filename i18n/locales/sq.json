@@ -572,7 +572,20 @@
     "badgeDelegationNoteAny": "Një vend i caktuar jep një nga distinktivët e tu të zhbllokuar në një llogari tjetër. Merre përsëri sa herë që të duash — foleja çlirohet një ditë më vonë.",
     "badgeDelegationRaisesOnlyTier": "Distinktivi që jep duhet të jetë më i lartë se ai që merr tashmë.",
     "badgeDelegationPickTier": "Distinktivi për të dhënë hua",
-    "badgeDelegationLendsAny": "Secili i jep një llogarie tjetër çdo distinktiv që ke zhbllokuar, deri te llogaria jote {{tier}}. Një distinktiv më i vogël ende përdor një vrimë të tërë."
+    "badgeDelegationLendsAny": "Secili i jep një llogarie tjetër çdo distinktiv që ke zhbllokuar, deri te llogaria jote {{tier}}. Një distinktiv më i vogël ende përdor një vrimë të tërë.",
+    "kidsMode": "Modaliteti për Fëmijë",
+    "kidsModeDesc": "Shfaq vetëm postimet e publikuara për fëmijë, kudo. Një PIN e kthen atë përsëri.",
+    "kidsModeSetPin": "Zgjedh një PIN",
+    "kidsModeSetPinHelp": "4 deri 8 shifra. Ju duhet për të fikur Modalitetin për Fëmijë përsëri.",
+    "kidsModeConfirmPin": "Fut atë përsëri",
+    "kidsModeConfirmPinHelp": "Kështu që e di se mund ta riprodhosh atë.",
+    "kidsModeEnterPin": "Fut PIN-in tuaj",
+    "kidsModeEnterPinHelp": "Kjo e fik Modalitetin për Fëmijë në këtë pajisje.",
+    "kidsModeTurnOn": "Aktivizo Modalitetin për Fëmijë",
+    "kidsModeTurnOff": "Fik Modalitetin për Fëmijë",
+    "kidsModePinMismatch": "Ato PIN-a janë të ndryshme. Fillo përsëri.",
+    "kidsModeFailed": "Kjo nuk funksionoi. Provo përsëri.",
+    "kidsModeForgotPin": "E ke harruar? Hyr me portofolin tuaj në një pajisje tjetër për të fikur Modalitetin për Fëmijë."
   },
   "common": {
     "mute": "Hiq zërin",
@@ -1818,7 +1831,8 @@
     "removeMedia": "Hiq median",
     "cancelRecording": "Anulo regjistrimin",
     "sendVoiceNote": "Dërgo notën zanore",
-    "noneYetAddYours": "Ende pa komente, shto tëndin."
+    "noneYetAddYours": "Ende pa komente, shto tëndin.",
+    "kidsOnlyThread": "Ky postim është për fëmijë. Vetëm modaliteti Kids mund ta komentojë atë."
   },
   "postInfo": {
     "title": "Informacione për postimin",
@@ -3602,7 +3616,17 @@
     "unmuteVideo": "Aktivizo zërin e videos",
     "descriptionOptional": "Përshkrimi (opsional)",
     "whatsHappening": "Çfarë po ndodh?",
-    "quotaShortfall": "Ky postim kushton {{cost}} DHB dhe ti ke {{held}}."
+    "quotaShortfall": "Ky postim kushton {{cost}} DHB dhe ti ke {{held}}.",
+    "madeForKids": "Bërë për fëmijë",
+    "madeForKidsHint": "shfaqur në Modalitetin për Fëmijë",
+    "madeForKidsConfirmTitle": "Publiko këtë për fëmijë?",
+    "madeForKidsConfirmAudience": "Fëmijët që përdorin Modalitetin për Fëmijë do të shohin këtë postim. Asgjë tjetër në DeHub nuk i arrin ata.",
+    "madeForKidsConfirmReach": "Ajo gjithashtu del nga burimet e zakonshme — njerëzit ende e gjejnë atë në profilin tënd, në kërkim dhe përmes një linku që ndan.",
+    "madeForKidsConfirmComments": "Vetëm modaliteti Kids mund ta komentojë atë. Mund t 'u përgjigjesh ende vetë.",
+    "madeForKidsConfirmYes": "Po, është për fëmijë",
+    "madeForKidsOnDesc": "U shfaqet fëmijëve në Modalitetin e Fëmijëve dhe jashtë burimeve të zakonshme. Vetëm modaliteti \"Fëmijët\" mund të komentojë.",
+    "madeForKidsOffDesc": "Këtë postim ua tregon fëmijëve që përdorin modalitetin Kids dhe e heq nga burimet e zakonshme.",
+    "madeForKidsBlockedByMature": "Një postim i shënuar si i pjekur nuk mund të publikohet edhe për fëmijët."
   },
   "bounty": {
     "claimed": "E marrë",

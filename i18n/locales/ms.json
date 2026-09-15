@@ -1103,7 +1103,20 @@
     "badgeDelegationNoteAny": "Slot meminjamkan salah satu lencana anda yang tidak dikunci ke akaun lain. Ambil semula bila-bila masa yang anda suka — slot akan kosong sehari kemudian.",
     "badgeDelegationRaisesOnlyTier": "Lencana yang anda pinjamkan mestilah lebih tinggi daripada yang mereka perolehi.",
     "badgeDelegationPickTier": "Lencana untuk dipinjamkan",
-    "badgeDelegationLendsAny": "Setiap satu meminjamkan akaun lain sebarang lencana yang telah anda buka kunci, sehingga {{tier}} anda sendiri. Lencana yang lebih kecil masih menggunakan keseluruhan slot."
+    "badgeDelegationLendsAny": "Setiap satu meminjamkan akaun lain sebarang lencana yang telah anda buka kunci, sehingga {{tier}} anda sendiri. Lencana yang lebih kecil masih menggunakan keseluruhan slot.",
+    "kidsMode": "Mod Kanak-kanak",
+    "kidsModeDesc": "Menunjukkan hanya siaran yang disiarkan untuk kanak-kanak, di mana-mana sahaja. PIN mematikannya kembali.",
+    "kidsModeSetPin": "Pilih PIN",
+    "kidsModeSetPinHelp": "4 hingga 8 digit. Anda memerlukannya untuk mematikan Mod Kanak-kanak sekali lagi.",
+    "kidsModeConfirmPin": "Masukkan sekali lagi",
+    "kidsModeConfirmPinHelp": "Supaya awak tahu awak boleh menghasilkannya semula.",
+    "kidsModeEnterPin": "Masukkan PIN ANDA",
+    "kidsModeEnterPinHelp": "Ini akan mematikan Mod Kanak-kanak pada peranti ini.",
+    "kidsModeTurnOn": "Hidupkan Mod Kanak-kanak",
+    "kidsModeTurnOff": "Matikan Mod Kanak-kanak",
+    "kidsModePinMismatch": "Pin itu berbeza. Mulakan semula.",
+    "kidsModeFailed": "Itu tidak berjaya. Cuba lagi.",
+    "kidsModeForgotPin": "Lupa? Log masuk dengan dompet anda pada peranti lain untuk mematikan Mod Kanak-kanak."
   },
   "postOptions": {
     "options": "Options",
@@ -2275,7 +2288,8 @@
     "removeMedia": "Buang media",
     "cancelRecording": "Batalkan rakaman",
     "sendVoiceNote": "Hantar nota suara",
-    "noneYetAddYours": "Belum ada komen, tambah komen anda."
+    "noneYetAddYours": "Belum ada komen, tambah komen anda.",
+    "kidsOnlyThread": "Siaran ini untuk kanak-kanak. Hanya Mod Kanak-kanak boleh memberi komen mengenainya."
   },
   "postInfo": {
     "title": "Post Info",
@@ -3866,7 +3880,18 @@
     "unmuteVideo": "Nyahsenyapkan video",
     "descriptionOptional": "Penerangan (pilihan)",
     "whatsHappening": "Apa yang berlaku?",
-    "quotaShortfall": "Siaran ini memerlukan {{cost}} DHB dan anda memiliki {{held}}."
+    "quotaShortfall": "Siaran ini memerlukan {{cost}} DHB dan anda memiliki {{held}}.",
+    "madeForKids": "Dibuat untuk kanak-kanak",
+    "madeForKidsHint": "ditunjukkan dalam Mod Kanak-kanak",
+    "madeForKidsConfirmTitle": "Siarkan ini untuk kanak-kanak?",
+    "madeForKidsConfirmAudience": "Kanak-kanak yang menggunakan Mod Kanak-kanak akan ditunjukkan siaran ini. Tiada apa-apa lagi di DeHub yang sampai kepada mereka.",
+    "madeForKidsConfirmReach": "Ia juga datang daripada suapan biasa — orang masih menemuinya di profil anda, dalam carian dan melalui pautan yang anda kongsi.",
+    "madeForKidsConfirmComments": "Hanya Mod Kanak-kanak boleh memberi komen mengenainya. Anda masih boleh membalasnya sendiri.",
+    "madeForKidsConfirmYes": "Ya, ia untuk kanak-kanak",
+    "markMadeForKids": "Tandakan sebagai dibuat untuk kanak-kanak",
+    "madeForKidsOnDesc": "Ditunjukkan kepada kanak-kanak dalam Mod Kanak-kanak, dan di luar suapan biasa. Hanya Mod Kanak-kanak boleh memberi komen.",
+    "madeForKidsOffDesc": "Menunjukkan siaran ini kepada kanak-kanak menggunakan Mod Kanak-kanak, dan mengeluarkannya daripada suapan biasa.",
+    "madeForKidsBlockedByMature": "Hantaran bertanda matang juga tidak boleh disiarkan untuk kanak-kanak."
   },
   "bounty": {
     "claimed": "Telah dituntut",

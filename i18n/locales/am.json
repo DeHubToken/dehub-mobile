@@ -563,7 +563,20 @@
     "badgeDelegationNoteAny": "አንድ ማስገቢያ ከሌላ መለያዎ ያልተከፈቱ ባጆች አንዱን ያበድራል ። በፈለጉት ጊዜ መልሰው ይውሰዱ — ማስገቢያው ከአንድ ቀን በኋላ ነፃ ይሆናል ።",
     "badgeDelegationRaisesOnlyTier": "እርስዎ የሚያበድሩበት ባጅ ቀድሞውኑ ከሚያገኙት ከፍ ያለ መሆን አለበት ።",
     "badgeDelegationPickTier": "ለማበደር ባጅ",
-    "badgeDelegationLendsAny": "እያንዳንዳቸው የተከፈቱትን ማንኛውንም ባጅ ሌላ መለያ ያበድራሉ ፣ እስከ የራስዎ {{tier}} ድረስ ። ትንሽ ባጅ አሁንም አንድ ሙሉ ማስገቢያ ይጠቀማል."
+    "badgeDelegationLendsAny": "እያንዳንዳቸው የተከፈቱትን ማንኛውንም ባጅ ሌላ መለያ ያበድራሉ ፣ እስከ የራስዎ {{tier}} ድረስ ። ትንሽ ባጅ አሁንም አንድ ሙሉ ማስገቢያ ይጠቀማል.",
+    "kidsMode": "የልጆች ሁነታ",
+    "kidsModeDesc": "በሁሉም ቦታ ለህጻናት የታተሙ ልጥፎችን ብቻ ያሳያል ። አንድ ፒን ወደ ኋላ ያዞረዋል.",
+    "kidsModeSetPin": "ፒን ይምረጡ",
+    "kidsModeSetPinHelp": "ከ 4 እስከ 8 አሃዞች ። እንደገና የልጆች ሁነታን ማጥፋት ያስፈልግዎታል ።",
+    "kidsModeConfirmPin": "እንደገና አስገባ",
+    "kidsModeConfirmPinHelp": "ስለዚህ እሱን ማባዛት እንደሚችሉ ያውቃሉ ።",
+    "kidsModeEnterPin": "ፒንዎን ያስገቡ",
+    "kidsModeEnterPinHelp": "ይህ በዚህ መሣሪያ ላይ የልጆች ሁነታ ይለውጣል.",
+    "kidsModeTurnOn": "የልጆች ሁነታ ይለውጡ",
+    "kidsModeTurnOff": "የልጆች ሁነታ አጥፋ",
+    "kidsModePinMismatch": "እነዚያ ፒኖች የተለያዩ ናቸው እንደገና ይጀምሩ ።",
+    "kidsModeFailed": "ያ አልሰራም እንደገና ሞክር ።",
+    "kidsModeForgotPin": "ረስተውታል? የልጆችን ሁነታ ለማጥፋት በሌላ መሣሪያ ላይ ከኪስ ቦርሳዎ ጋር ይግቡ."
   },
   "common": {
     "mute": "ድምፅ አጥፋ",
@@ -1837,7 +1850,8 @@
     "removeMedia": "ሚዲያውን አስወግድ",
     "cancelRecording": "ቀረጻውን ሰርዝ",
     "sendVoiceNote": "የድምፅ ማስታወሻ ላክ",
-    "noneYetAddYours": "እስካሁን አስተያየት የለም፣ የእርስዎን ያክሉ።"
+    "noneYetAddYours": "እስካሁን አስተያየት የለም፣ የእርስዎን ያክሉ።",
+    "kidsOnlyThread": "ይህ ልጥፍ ለልጆች ነው ። በዚህ ጉዳይ ላይ አስተያየት መስጠት የሚችሉት የልጆች ሁነታ ብቻ ነው ።"
   },
   "postInfo": {
     "title": "የልጥፍ መረጃ",
@@ -3598,7 +3612,17 @@
     "unmuteVideo": "የቪዲዮውን ድምፅ አብራ",
     "descriptionOptional": "መግለጫ (አማራጭ)",
     "whatsHappening": "ምን እየሆነ ነው?",
-    "quotaShortfall": "ይህ ልጥፍ {{cost}} DHB ያስወጣል፣ እርስዎ ግን {{held}} አለዎት።"
+    "quotaShortfall": "ይህ ልጥፍ {{cost}} DHB ያስወጣል፣ እርስዎ ግን {{held}} አለዎት።",
+    "madeForKids": "ለልጆች የተሰራ",
+    "madeForKidsHint": "በልጆች ሞድ ውስጥ ታይቷል",
+    "madeForKidsConfirmTitle": "ይህንን ለልጆች ይታተም?",
+    "madeForKidsConfirmComments": "ልጆች ሞድ ብቻ ሊያስተያየት ይችላል። እርስዎ ራሳቸውን ሊመልሱ ይችላሉ።",
+    "madeForKidsConfirmYes": "አዎ፣ ለልጆች ነው",
+    "madeForKidsOnDesc": "ልጆች ሞድ የሚጠቀሙ ልጆች ይታያቸዋል፣ እና ከተለመደው ምግብ ውስጥ ይወጣል። ልጆች ሞድ ብቻ ሊያስተያየት ይችላል።",
+    "madeForKidsOffDesc": "ይህን ልጥፍ ልጆች ሞድ የሚጠቀሙ ልጆች ላይ ያሳያል፣ እና ከተለመደው ምግብ ውስጥ ይወጣል።",
+    "madeForKidsBlockedByMature": "ብሩህ ተብሎ የተሰየመ ልጥፍ ለልጆች ሊታተም አይችልም።",
+    "madeForKidsConfirmAudience": "የልጆች ሁነታን የሚጠቀሙ ልጆች ይህንን ልጥፍ ያሳያሉ ። በዴሆብ ላይ ሌላ ምንም ነገር አይደርሳቸውም ።",
+    "madeForKidsConfirmReach": "በተጨማሪም ከተለመደው ምግቦች ይወጣል — ሰዎች አሁንም በመገለጫዎ ፣ በፍለጋ እና በሚያጋሯቸው አገናኝ በኩል ያገኙታል ።"
   },
   "bounty": {
     "claimed": "ተወስዷል",

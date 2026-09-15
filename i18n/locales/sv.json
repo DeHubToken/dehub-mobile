@@ -572,7 +572,20 @@
     "badgeDelegationNoteAny": "En slot lånar ut ett av dina olåsta märken till ett annat konto. Ta tillbaka den när du vill — facket frigörs en dag senare.",
     "badgeDelegationRaisesOnlyTier": "Märket du lånar ut måste vara högre än det de redan tjänar.",
     "badgeDelegationPickTier": "Märke att låna ut",
-    "badgeDelegationLendsAny": "Var och en lånar ut ett annat konto som du har låst upp, upp till ditt eget {{tier}}. Ett mindre märke använder fortfarande en hel plats."
+    "badgeDelegationLendsAny": "Var och en lånar ut ett annat konto som du har låst upp, upp till ditt eget {{tier}}. Ett mindre märke använder fortfarande en hel plats.",
+    "kidsMode": "Barnläge",
+    "kidsModeDesc": "Visar endast inlägg publicerade för barn, överallt. Ett STIFT stänger av det igen.",
+    "kidsModeSetPin": "Välj en PIN-KOD",
+    "kidsModeSetPinHelp": "4 till 8 siffror. Du behöver den för att stänga av barnläget igen.",
+    "kidsModeConfirmPin": "Ange det igen",
+    "kidsModeConfirmPinHelp": "Så du vet att du kan reproducera den.",
+    "kidsModeEnterPin": "Ange din PIN-KOD",
+    "kidsModeEnterPinHelp": "Detta stänger av barnläget på den här enheten.",
+    "kidsModeTurnOn": "Slå på barnläget",
+    "kidsModeTurnOff": "Stäng av barnläge",
+    "kidsModePinMismatch": "Dessa PIN-koder är olika. Börja om.",
+    "kidsModeFailed": "Det fungerade inte. Försök igen.",
+    "kidsModeForgotPin": "Har du glömt det? Logga in med din plånbok på en annan enhet för att stänga av barnläget."
   },
   "common": {
     "mute": "Stäng av ljud",
@@ -1822,7 +1835,8 @@
     "removeMedia": "Ta bort media",
     "cancelRecording": "Avbryt inspelning",
     "sendVoiceNote": "Skicka röstmeddelande",
-    "noneYetAddYours": "Inga kommentarer än — skriv den första."
+    "noneYetAddYours": "Inga kommentarer än — skriv den första.",
+    "kidsOnlyThread": "Det här inlägget är för barn. Endast barnläget kan kommentera det."
   },
   "postInfo": {
     "title": "Inläggsinfo",
@@ -3607,7 +3621,18 @@
     "unmuteVideo": "Slå på ljudet på videon",
     "descriptionOptional": "Beskrivning (valfritt)",
     "whatsHappening": "Vad händer?",
-    "quotaShortfall": "Det här inlägget kostar {{cost}} DHB och du har {{held}}."
+    "quotaShortfall": "Det här inlägget kostar {{cost}} DHB och du har {{held}}.",
+    "madeForKids": "Gjord för barn",
+    "madeForKidsHint": "visas i barnläge",
+    "madeForKidsConfirmTitle": "Publicera detta för barn?",
+    "madeForKidsConfirmAudience": "Barn som använder barnläge kommer att se det här inlägget. Ingenting annat på DeHub når dem.",
+    "madeForKidsConfirmReach": "Det tas också bort från de vanliga flödena — människor hittar det fortfarande på din profil, i sökning och genom en länk du delar.",
+    "madeForKidsConfirmComments": "Endast barnläge kan kommentera det. Du kan fortfarande svara på dem själv.",
+    "madeForKidsConfirmYes": "Ja, det är för barn",
+    "markMadeForKids": "Markera som gjord för barn",
+    "madeForKidsOnDesc": "Visas för barn i barnläge och tas bort från de vanliga flödena. Endast barnläge kan kommentera.",
+    "madeForKidsOffDesc": "Visar det här inlägget för barn som använder barnläge och tar det bort från de vanliga flödena.",
+    "madeForKidsBlockedByMature": "Ett inlägg markerat som innehål för vuxna kan inte också publiceras för barn."
   },
   "bounty": {
     "claimed": "Uttagen",

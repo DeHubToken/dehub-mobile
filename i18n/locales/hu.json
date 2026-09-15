@@ -572,7 +572,20 @@
     "badgeDelegationNoteAny": "Egy nyerőgép kölcsönadja az egyik feloldott jelvényedet egy másik fióknak. Vigye vissza, amikor csak akarja — a nyílás egy nappal később szabadul fel.",
     "badgeDelegationRaisesOnlyTier": "A kölcsönadott jelvénynek magasabbnak kell lennie, mint a már megszerzett jelvény.",
     "badgeDelegationPickTier": "Kölcsönadandó jelvény",
-    "badgeDelegationLendsAny": "Mindegyik kölcsönöz egy másik fióknak bármilyen jelvényt, amit feloldottál, legfeljebb a saját {{tier}}jelvényedig. Egy kisebb jelvény még mindig egy egész nyílást használ."
+    "badgeDelegationLendsAny": "Mindegyik kölcsönöz egy másik fióknak bármilyen jelvényt, amit feloldottál, legfeljebb a saját {{tier}}jelvényedig. Egy kisebb jelvény még mindig egy egész nyílást használ.",
+    "kidsMode": "Gyermek üzemmód",
+    "kidsModeDesc": "Csak a gyermekek számára közzétett bejegyzéseket jeleníti meg mindenhol. Egy GOMBOSTŰ kikapcsolja.",
+    "kidsModeSetPin": "PIN-KÓD KIVÁLASZTÁSA",
+    "kidsModeSetPinHelp": "4-8 számjegy. Szüksége van rá, hogy ismét kikapcsolja a Gyermek üzemmódot.",
+    "kidsModeConfirmPin": "Adja meg újra",
+    "kidsModeConfirmPinHelp": "Így tudod, hogy reprodukálhatod.",
+    "kidsModeEnterPin": "Adja meg a PIN-KÓDJÁT",
+    "kidsModeEnterPinHelp": "Ez kikapcsolja a Gyermek üzemmódot ezen az eszközön.",
+    "kidsModeTurnOn": "Gyermek üzemmód bekapcsolása",
+    "kidsModeTurnOff": "Gyermek üzemmód kikapcsolása",
+    "kidsModePinMismatch": "Ezek a PIN-kódok eltérőek. Kezdje újra.",
+    "kidsModeFailed": "Ez nem sikerült. Próbálkozz újra.",
+    "kidsModeForgotPin": "Elfelejtette? A Gyermek üzemmód kikapcsolásához jelentkezzen be a pénztárcájával egy másik eszközön."
   },
   "common": {
     "mute": "Némítás",
@@ -1822,7 +1835,8 @@
     "removeMedia": "Média eltávolítása",
     "cancelRecording": "Felvétel megszakítása",
     "sendVoiceNote": "Hangjegyzet küldése",
-    "noneYetAddYours": "Még nincsenek hozzászólások — írd meg a tiédet."
+    "noneYetAddYours": "Még nincsenek hozzászólások — írd meg a tiédet.",
+    "kidsOnlyThread": "Ez a bejegyzés gyerekeknek szól. Csak Gyermek üzemmódban lehet megjegyzést fűzni hozzá."
   },
   "postInfo": {
     "title": "Bejegyzés infó",
@@ -3607,7 +3621,18 @@
     "unmuteVideo": "Videó némításának feloldása",
     "descriptionOptional": "Leírás (nem kötelező)",
     "whatsHappening": "Mi történik?",
-    "quotaShortfall": "Ez a bejegyzés {{cost}} DHB-be kerül, neked pedig {{held}} van."
+    "quotaShortfall": "Ez a bejegyzés {{cost}} DHB-be kerül, neked pedig {{held}} van.",
+    "madeForKids": "Gyerekeknek készült",
+    "madeForKidsHint": "Megjelenik a Gyerekmódban",
+    "madeForKidsConfirmTitle": "Közzéteszem ezt gyerekeknek?",
+    "madeForKidsConfirmAudience": "A Gyerekmódot használó gyerekek látni fogják ezt a bejegyzést. Semmi más nem éri el őket a DeHubon.",
+    "madeForKidsConfirmReach": "Eltűnik a szokásos hírfolyamokról is — az emberek még mindig megtalálják a profilodon, a keresésben és a megosztott linken keresztül.",
+    "madeForKidsConfirmComments": "Csak a Gyerekmód írhat megjegyzéseket. Te még mindig válaszolhatsz nekik.",
+    "madeForKidsConfirmYes": "Igen, gyerekeknek való",
+    "markMadeForKids": "Jelöld meg gyerekeknek készültként",
+    "madeForKidsOnDesc": "Megjelenik a Gyerekmódot használó gyerekeknek, és eltűnik a szokásos hírfolyamokról. Csak a Gyerekmód írhat megjegyzéseket.",
+    "madeForKidsOffDesc": "Megjeleníti ezt a bejegyzést a Gyerekmódot használó gyerekeknek, és eltávolítja a szokásos hírfolyamokról.",
+    "madeForKidsBlockedByMature": "Az érettnek jelölt bejegyzés nem tehető közzé gyerekeknek is."
   },
   "bounty": {
     "claimed": "Igényelve",

@@ -43,6 +43,7 @@ import { TAB_BAR_PILL_HEIGHT, TAB_BAR_SCRIM_HEIGHT } from "./tabBarLayout";
 import type { TabPressIntent } from "./tabPressIntent";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../context/ThemeContext";
+import { useKidsMode } from "../hooks/useKidsMode";
 
 const SCROLL_HINT_SEEN_KEY = "dehub:navScrollHintSeen";
 
@@ -166,6 +167,25 @@ const AUTHED_ONLY_SCREENS = new Set([
   ScreenNames.AccountSettings,
   ScreenNames.Affiliate,
   ScreenNames.Ads,
+]);
+
+/**
+ * The only destinations reachable in Kids Mode.
+ *
+ * An allowlist, not a denylist, and for the same reason web's is: this bar and
+ * the drawer behind it carry thirty-odd screens and grow most weeks, so a list
+ * of what is forbidden would be wrong the day somebody adds the next one — and
+ * wrong in the direction that matters.
+ *
+ * Settings stays because it is the way out; the panel there hides everything on
+ * it except the PIN pad. Everything else is absent: messages and stages are
+ * direct contact with adults, the wallet and dpay spend the parent's money,
+ * notifications and profiles are doors to whatever an account ever posted, and
+ * the assistant answers with text nobody rated.
+ */
+const KIDS_MODE_SCREENS = new Set([
+  ScreenNames.Home,
+  ScreenNames.AccountSettings,
 ]);
 
 const AnimatedPressable = Reanimated.createAnimatedComponent(Pressable);
@@ -355,6 +375,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   const tabW = tabWidthFor(screenW);
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
+  const { isKidsMode } = useKidsMode();
   const user = useUser();
   const myUserId = ((user as any)?._id || (user as any)?.id) as string | undefined;
   const dmUnread = useTotalUnreadMessagesCount(myUserId);
@@ -626,7 +647,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
           bounces={false}
           contentContainerStyle={styles.navRow}
         >
-          {TABS.map((tab, index) => {
+          {(isKidsMode ? TABS.filter((tab) => KIDS_MODE_SCREENS.has(tab.name as any)) : TABS).map((tab, index) => {
             const isActive = state.routes[state.index]?.name === tab.name;
             return (
               <NavButton
@@ -645,6 +666,10 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             );
           })}
           {SCROLL_NAV_ITEMS
+            // Kids Mode first, and by allowlist — a `url` entry has no screen
+            // to check, so it drops out too, which is correct: those open the
+            // website outside the app's own filtering entirely.
+            .filter((item) => !isKidsMode || (!!item.screen && KIDS_MODE_SCREENS.has(item.screen as any)))
             .filter((item) => isAuthed || !item.screen || !AUTHED_ONLY_SCREENS.has(item.screen as any))
             .filter((item) => DIGITAL_PURCHASES_ENABLED || !item.screen || !STOREFRONT_HIDDEN_SCREENS.has(item.screen as any))
             .map((item) => (

@@ -658,7 +658,20 @@
     "badgeDelegationNoteAny": "Slot požičia jeden z vašich odomknutých odznakov na iný účet. Vráťte ho kedykoľvek budete chcieť — slot sa uvoľní o deň neskôr.",
     "badgeDelegationRaisesOnlyTier": "Odznak, ktorý požičiavate, musí byť vyšší ako ten, ktorý už zarobili.",
     "badgeDelegationPickTier": "Odznak na požičanie",
-    "badgeDelegationLendsAny": "Každý z nich požičiava inému účtu akýkoľvek odomknutý odznak až po svoj vlastný {{tier}}. Menší odznak stále používa celý slot."
+    "badgeDelegationLendsAny": "Každý z nich požičiava inému účtu akýkoľvek odomknutý odznak až po svoj vlastný {{tier}}. Menší odznak stále používa celý slot.",
+    "kidsMode": "Detský režim",
+    "kidsModeDesc": "Zobrazuje iba príspevky publikované pre deti, všade. PIN ho vypne.",
+    "kidsModeSetPin": "Vyberte si PIN",
+    "kidsModeSetPinHelp": "4 až 8 číslic. Budete ho potrebovať na vypnutie detského režimu.",
+    "kidsModeConfirmPin": "Zadajte ho znova",
+    "kidsModeConfirmPinHelp": "Aby ste vedeli, že ho viete reprodukovať.",
+    "kidsModeEnterPin": "Zadajte svoj PIN",
+    "kidsModeEnterPinHelp": "Toto vypne detský režim na tomto zariadení.",
+    "kidsModeTurnOn": "Zapnúť detský režim",
+    "kidsModeTurnOff": "Vypnúť detský režim",
+    "kidsModePinMismatch": "Tieto PINy sú rozdielne. Začnite znova.",
+    "kidsModeFailed": "To nefungovalo. Skúste znova.",
+    "kidsModeForgotPin": "Zabudli ste? Prihláste sa pomocou peňaženky na inom zariadení a vypnite detský režim."
   },
   "notifications": {
     "title": "Upozornenia",
@@ -1344,7 +1357,8 @@
     "removeMedia": "Odstrániť médium",
     "cancelRecording": "Zrušiť nahrávanie",
     "sendVoiceNote": "Odoslať hlasovú poznámku",
-    "noneYetAddYours": "Zatiaľ žiadne komentáre, pridajte svoj."
+    "noneYetAddYours": "Zatiaľ žiadne komentáre, pridajte svoj.",
+    "kidsOnlyThread": "Tento príspevok je pre deti. Komentovať ho môže iba detský režim."
   },
   "postInfo": {
     "title": "Informácie o príspevku",
@@ -3771,7 +3785,17 @@
     "unmuteVideo": "Zapnúť zvuk videa",
     "descriptionOptional": "Popis (voliteľné)",
     "whatsHappening": "Čo sa deje?",
-    "quotaShortfall": "Tento príspevok stojí {{cost}} DHB a vy máte {{held}}."
+    "quotaShortfall": "Tento príspevok stojí {{cost}} DHB a vy máte {{held}}.",
+    "madeForKids": "Vyrobené pre deti",
+    "madeForKidsHint": "zobrazené v detskom režime",
+    "madeForKidsConfirmTitle": "Publikovať toto pre deti?",
+    "madeForKidsConfirmAudience": "Deti používajúce detský režim budú vidieť tento príspevok. Nič iné na DeHub sa im nedostane.",
+    "madeForKidsConfirmReach": "Vychádza aj z bežných informačných kanálov — ľudia ho stále nájdu vo vašom profile, vo vyhľadávaní a prostredníctvom odkazu, ktorý zdieľate.",
+    "madeForKidsConfirmComments": "Komentovať ho môže iba detský režim. Stále na ne môžete odpovedať sami.",
+    "madeForKidsConfirmYes": "Áno, je to pre deti",
+    "madeForKidsOnDesc": "Zobrazené deťom v detskom režime a mimo bežných krmív. Komentovať môže iba detský režim.",
+    "madeForKidsOffDesc": "Zobrazuje tento príspevok deťom používajúcim detský režim a odstraňuje ho z bežných kanálov.",
+    "madeForKidsBlockedByMature": "Príspevok označený ako zrelý nie je možné publikovať ani pre deti."
   },
   "bounty": {
     "claimed": "Vyzdvihnuté",

@@ -567,7 +567,20 @@
     "badgeDelegationNoteAny": "Iho máa ń yá ọ̀kan lára àwọn àmì ìfihàn tí o ṣí sílẹ̀ sí àkáǹtì mìíràn. Mú un padà nígbàkigbà tí o bá fẹ́ — ihò náà á tú sílẹ̀ ní ọjọ́ kan lẹ́yìn náà.",
     "badgeDelegationRaisesOnlyTier": "Àmì ìbánisọ̀rọ̀ tí o yá gbọ́dọ̀ ga ju èyí tí wọ́n ti rí gbà tẹ́lẹ̀ lọ.",
     "badgeDelegationPickTier": "Badge to lend",
-    "badgeDelegationLendsAny": "Olúkúlùkù ń yá àkáǹtì mìíràn ní ohunkóhun tí o bá ti ṣí sílẹ̀, títí dé tìrẹ {{tier}}. Àmì ìfipamọ́ kékeré ṣì ń lo gbogbo ihò."
+    "badgeDelegationLendsAny": "Olúkúlùkù ń yá àkáǹtì mìíràn ní ohunkóhun tí o bá ti ṣí sílẹ̀, títí dé tìrẹ {{tier}}. Àmì ìfipamọ́ kékeré ṣì ń lo gbogbo ihò.",
+    "kidsMode": "Ipo Awọn ọmọde",
+    "kidsModeDesc": "Ṣàfihàn àwọn iṣẹ́ tí a tẹ̀ jáde fún àwọn ọmọdé nìkan, níbikíbi. Pín kan yí i padà.",
+    "kidsModeSetPin": "Yan PIN kan",
+    "kidsModeSetPinHelp": "Àwọn nọ́mbà 4 sí 8. O nílò rẹ̀ láti pa Kids Mode mọ́ lẹ́ẹ̀kan síi.",
+    "kidsModeConfirmPin": "Wọle si i lẹẹkansi",
+    "kidsModeConfirmPinHelp": "Nítorí náà o mọ̀ pé o lè ṣe àtúnse rẹ̀.",
+    "kidsModeEnterPin": "Tẹ PIN rẹ sii",
+    "kidsModeEnterPinHelp": "Èyí yí Kids Mode kúrò lórí ẹ̀rọ yìí.",
+    "kidsModeTurnOn": "Tan Kids Ipo lori",
+    "kidsModeTurnOff": "Yipada Ipo Awọn ọmọde",
+    "kidsModePinMismatch": "Àwọn PIN wọ̀nyẹn yàtọ̀. Bẹ̀rẹ̀ lẹ́ẹ̀kan síi.",
+    "kidsModeFailed": "Ìyẹn kò ṣiṣẹ́. Gbìyànjú lẹ́ẹ̀kan síi.",
+    "kidsModeForgotPin": "Gbagbe rẹ? Wọlé pẹlu apamọwọ rẹ lori ẹrọ miiran lati pa Ipo Awọn ọmọde."
   },
   "common": {
     "mute": "Pa ohùn",
@@ -1814,7 +1827,8 @@
     "removeMedia": "Yọ àwòrán kúrò",
     "cancelRecording": "Fagilé àkọsílẹ̀",
     "sendVoiceNote": "Fi àkọsílẹ̀ ohùn ránṣẹ́",
-    "noneYetAddYours": "Kò sí àsọyé síbẹ̀, fi tìrẹ kún."
+    "noneYetAddYours": "Kò sí àsọyé síbẹ̀, fi tìrẹ kún.",
+    "kidsOnlyThread": "Iṣẹ́ yìí jẹ́ fún àwọn ọmọdé. Ìlànà Àwọn Ọmọdé nìkan ni ó lè sọ̀rọ̀ lórí rẹ̀."
   },
   "postInfo": {
     "title": "Ìwífún nípa àkọsílẹ̀",
@@ -3593,7 +3607,17 @@
     "unmuteVideo": "Ṣí ohùn fídíò",
     "descriptionOptional": "Àpèjúwe (àṣàyàn)",
     "whatsHappening": "Kí ló ń ṣẹlẹ̀?",
-    "quotaShortfall": "Ìfìwéránṣẹ́ yìí ná {{cost}} DHB, o sì ní {{held}}."
+    "quotaShortfall": "Ìfìwéránṣẹ́ yìí ná {{cost}} DHB, o sì ní {{held}}.",
+    "madeForKids": "A ti ṣe fun awọn ọmọ",
+    "madeForKidsHint": "Ti han ni Kids Mode",
+    "madeForKidsConfirmTitle": "Ṣe o fẹ́ ṣe atẹ̀jáde yii fun awọn ọmọ?",
+    "madeForKidsConfirmAudience": "Awọn ọmọ ti nlo Kids Mode yoo ri post yii. Ohun miiran ko si DeHub ko de wọn.",
+    "madeForKidsConfirmReach": "O tun jade ninu awọn iwe-ìròyìn ti o wọpọ — eniyan le ri i lori profili rẹ, ni wiwo ati nipasẹ olupo ti o pin.",
+    "madeForKidsConfirmComments": "Nikan Kids Mode ni o le ṣe asọye lori i. O le tun dahun fun wọn ara rẹ.",
+    "madeForKidsConfirmYes": "Bẹẹni, o je fun awọn ọmọ",
+    "madeForKidsOnDesc": "Ti han si awọn ọmọ ni Kids Mode, ati jade ninu awọn iwe-ìròyìn ti o wọpọ. Nikan Kids Mode ni o le ṣe asọye.",
+    "madeForKidsOffDesc": "Ṣe atẹ̀jáde post yii si awọn ọmọ ti nlo Kids Mode, ati gbe e jade ninu awọn iwe-ìròyìn ti o wọpọ.",
+    "madeForKidsBlockedByMature": "Ọ̀rọ̀ ti a ṣe ami gidi ko le tun ṣe atẹ̀jáde fun awọn ọmọ."
   },
   "bounty": {
     "claimed": "Ti gbà",

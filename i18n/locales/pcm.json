@@ -534,7 +534,10 @@
     "smsVerify": "Confirm code",
     "smsNumberVerified": "Number verified",
     "smsNumberRemoved": "Number removed",
-    "badgeDelegationPickTier": "Badge to lend"
+    "badgeDelegationPickTier": "Badge to lend",
+    "kidsMode": "Kids Mode",
+    "kidsModeSetPin": "Choose a PIN",
+    "kidsModeConfirmPin": "Enter it again"
   },
   "common": {
     "mute": "Off di sound",

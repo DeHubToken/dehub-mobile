@@ -587,7 +587,20 @@
     "badgeDelegationNoteAny": "Slot baajii keessan kan hin cufamne keessaa tokko akkaawuntii biraatti liqeessa. Yeroo barbaadde hundatti deebifadhu — slot guyyaa tokko booda bilisa ta&#39;a.",
     "badgeDelegationRaisesOnlyTier": "Baajiin ati liqeessitu kan isaan duraan argatan caalaa ol ta’uu qaba.",
     "badgeDelegationPickTier": "Baajii liqeessuuf",
-    "badgeDelegationLendsAny": "Tokkoon tokkoon isaanii baajii cuftan kamiyyuu akkaawuntii biraa liqeessu, hanga {{tier}} mataa keessaniitti. Baajiin xiqqaan ammallee bakka guutuu fayyadama."
+    "badgeDelegationLendsAny": "Tokkoon tokkoon isaanii baajii cuftan kamiyyuu akkaawuntii biraa liqeessu, hanga {{tier}} mataa keessaniitti. Baajiin xiqqaan ammallee bakka guutuu fayyadama.",
+    "kidsMode": "Haala Ijoollee",
+    "kidsModeDesc": "Maxxansa daa&#39;immaniif maxxanfame qofa agarsiisa, bakka hundatti. PIN tokko duubatti cufa.",
+    "kidsModeSetPin": "PIN filadhu",
+    "kidsModeSetPinHelp": "Dijiitii 4 hanga 8 ta’a. Kids Mode ammas cufuuf si barbaachisa.",
+    "kidsModeConfirmPin": "Ammas itti galchaa",
+    "kidsModeConfirmPinHelp": "Kanaaf baay&#39;isuu akka dandeessu beekta.",
+    "kidsModeEnterPin": "PIN keessan galchaa",
+    "kidsModeEnterPinHelp": "Kunis meeshaa kana irratti Kids Mode dhaamsa.",
+    "kidsModeTurnOn": "Haala Ijoollee ibsi",
+    "kidsModeTurnOff": "Haala Ijoollee cufaa",
+    "kidsModePinMismatch": "PIN sun adda adda. Ammas jalqabi.",
+    "kidsModeFailed": "Sun hin hojjenne. Ammas yaalaa.",
+    "kidsModeForgotPin": "Irraanfattee? Meeshaa biraa irratti boorsaa keessaniin galmaa&#39;uun Kids Mode dhaamsaa."
   },
   "common": {
     "mute": "Sagalee cufi",
@@ -1883,7 +1896,8 @@
     "removeMedia": "Miidiyaa haqi",
     "cancelRecording": "Waraabbii haqi",
     "sendVoiceNote": "Yaadannoo sagalee ergi",
-    "noneYetAddYours": "Amma yaadni hin jiru, kan kee dabali."
+    "noneYetAddYours": "Amma yaadni hin jiru, kan kee dabali.",
+    "kidsOnlyThread": "Barreeffamni kun ijoolleef kan qophaa&#39;edha. Kids Mode qofatu yaada irratti yaada kennuu danda&#39;a."
   },
   "postInfo": {
     "title": "Odeeffannoo maxxansaa",
@@ -3667,7 +3681,17 @@
     "unmuteVideo": "Sagalee viidiyoo bani",
     "descriptionOptional": "Ibsa (filannoo)",
     "whatsHappening": "Maaltu taʼaa jira?",
-    "quotaShortfall": "Barreeffamni kun {{cost}} DHB gaafata, ati immoo {{held}} qabda."
+    "quotaShortfall": "Barreeffamni kun {{cost}} DHB gaafata, ati immoo {{held}} qabda.",
+    "madeForKids": "Ijaaruuf Ijoollee",
+    "madeForKidsHint": "Haala Ijoollee keessatti mul'ata",
+    "madeForKidsConfirmTitle": "Kana ijoolleef dabarsi?",
+    "madeForKidsConfirmAudience": "Ijoolleen Haala Ijoollee fayyadamuu keessatti poost kana mul'atu. Wanti biraan DeHub irraa isaan hin gahe.",
+    "madeForKidsConfirmReach": "Akkasumas feed idileetti keessaa baate — namoonni isa profile keessatti, barruudhaan fi tuqaa ati qoodu keessatti argatu.",
+    "madeForKidsConfirmComments": "Haala Ijoollee qofatu isaa irratti jajjabeessuu danda'u. Ati ofii kee deebii kennuu dandeessa.",
+    "madeForKidsConfirmYes": "Eeyyee, ijoolleef dha",
+    "madeForKidsOnDesc": "Ijoollee Haala Ijoollee fayyadamuu keessatti mul'ata, fi feed idileetti keessaa baate. Haala Ijoollee qofatu jajjabeessuu danda'u.",
+    "madeForKidsOffDesc": "Poost kana ijoollee Haala Ijoollee fayyadamuu keessatti mul'isa, fi feed idileetti keessaa baata.",
+    "madeForKidsBlockedByMature": "Poost uumamaa ta'e ijoolleef dabarsuun hin danda'amu."
   },
   "bounty": {
     "claimed": "Fudhatame",

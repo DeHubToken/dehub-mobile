@@ -569,7 +569,20 @@
     "badgeDelegationNoteAny": "ສະລັອດຕິງໃຫ້ໜຶ່ງໃນປ້າຍທີ່ປົດລັອກຂອງທ່ານໃຫ້ກັບບັນຊີອື່ນ. ເອົາຄືນທຸກເວລາທີ່ທ່ານຕ້ອງການ - ສະລັອດຕິງຈະປ່ອຍອອກມາໃນມື້ຕໍ່ມາ.",
     "badgeDelegationRaisesOnlyTier": "ເງິນທີ່ເຈົ້າໄດ້ກູ້ຢືມນັ້ນ ຕ້ອງສູງກວ່າເງິນທີ່ເຈົ້າໄດ້ກູ້ຢືມມາແລ້ວ.",
     "badgeDelegationPickTier": "ປ້າຍ ກໍາ ກັບໃຫ້ກູ້ຢືມ",
-    "badgeDelegationLendsAny": "ແຕ່ລະຄົນໃຫ້ກູ້ຢືມບັນຊີອື່ນທຸກປ້າຍທີ່ທ່ານໄດ້ປົດລັອກ, ເຖິງ {{tier}} ຂອງທ່ານເອງ. A badge ຂະຫນາດນ້ອຍຍັງໃຊ້ສະລັອດຕິງທັງຫມົດ."
+    "badgeDelegationLendsAny": "ແຕ່ລະຄົນໃຫ້ກູ້ຢືມບັນຊີອື່ນທຸກປ້າຍທີ່ທ່ານໄດ້ປົດລັອກ, ເຖິງ {{tier}} ຂອງທ່ານເອງ. A badge ຂະຫນາດນ້ອຍຍັງໃຊ້ສະລັອດຕິງທັງຫມົດ.",
+    "kidsMode": "ໂໝດເດັກນ້ອຍ",
+    "kidsModeDesc": "ສະ ແດງ ໃຫ້ ເຫັນ ພຽງ ແຕ່ ບົດ ຄວາມ ທີ່ ພິມ ສໍາ ລັບ ເດັກ ນ້ອຍ, ທຸກ ບ່ອນ. A PIN ເຮັດໃຫ້ມັນກັບຄືນໄປບ່ອນ.",
+    "kidsModeSetPin": "ເລືອກ PIN",
+    "kidsModeSetPinHelp": "4 ຫາ 8 ດັດຊະນີ. ທ່ານຕ້ອງໄປລົງ stairs ອີກເທື່ອຫນຶ່ງ.",
+    "kidsModeConfirmPin": "ປ້ອນມັນອີກຄັ້ງ",
+    "kidsModeConfirmPinHelp": "ດັ່ງນັ້ນທ່ານຮູ້ວ່າທ່ານສາມາດຜະລິດມັນໄດ້.",
+    "kidsModeEnterPin": "ປ້ອນ PIN ຂອງທ່ານ",
+    "kidsModeEnterPinHelp": "ນີ້ປ່ຽນໂໝດເດັກນ້ອຍລົງໃນອຸປະກອນນີ້.",
+    "kidsModeTurnOn": "ເປີດໂໝດເດັກນ້ອຍ",
+    "kidsModeTurnOff": "ປິດໂໝດເດັກນ້ອຍ",
+    "kidsModePinMismatch": "PIN ເຫຼົ່ານັ້ນແມ່ນແຕກຕ່າງກັນ. ເລີ່ມຕົ້ນໃໝ່.",
+    "kidsModeFailed": "ນັ້ນບໍ່ໄດ້ຜົນ. ລອງໃໝ່ອີກຄັ້ງ.",
+    "kidsModeForgotPin": "ລືມແລ້ວບໍ? ເຂົ້າສູ່ລະບົບດ້ວຍກະເປົາເງິນຂອງທ່ານໃນອຸປະກອນອື່ນເພື່ອປິດໂໝດເດັກນ້ອຍ."
   },
   "common": {
     "mute": "ປິດສຽງ",
@@ -1813,7 +1826,8 @@
     "removeMedia": "ລຶບສື່",
     "cancelRecording": "ຍົກເລີກການບັນທຶກ",
     "sendVoiceNote": "ສົ່ງຂໍ້ຄວາມສຽງ",
-    "noneYetAddYours": "ຍັງບໍ່ມີຄຳເຫັນ, ເພີ່ມຂອງທ່ານ."
+    "noneYetAddYours": "ຍັງບໍ່ມີຄຳເຫັນ, ເພີ່ມຂອງທ່ານ.",
+    "kidsOnlyThread": "ບົດຄວາມນີ້ແມ່ນສໍາລັບເດັກນ້ອຍ. ມີພຽງແຕ່ Kids Mode ເທົ່ານັ້ນທີ່ສາມາດໃຫ້ ຄໍາ ເຫັນກ່ຽວກັບມັນ."
   },
   "postInfo": {
     "title": "ຂໍ້ມູນໂພສ",
@@ -3561,7 +3575,17 @@
     "unmuteVideo": "ເປີດສຽງວິດີໂອ",
     "descriptionOptional": "ຄຳອະທິບາຍ (ບໍ່ບັງຄັບ)",
     "whatsHappening": "ມີຫຍັງເກີດຂຶ້ນ?",
-    "quotaShortfall": "ໂພສນີ້ຕ້ອງໃຊ້ {{cost}} DHB ແລະທ່ານມີ {{held}}."
+    "quotaShortfall": "ໂພສນີ້ຕ້ອງໃຊ້ {{cost}} DHB ແລະທ່ານມີ {{held}}.",
+    "madeForKids": "ສ້າງສໍາລັບເດັກນ້ອຍ",
+    "madeForKidsHint": "ສະແດງໃນ Kids Mode",
+    "madeForKidsConfirmTitle": "ເຜີຍແພ່ສິ່ງນີ້ສໍາລັບເດັກນ້ອຍບໍ?",
+    "madeForKidsConfirmAudience": "ເດັກນ້ອຍທີ່ໃຊ້ Kids Mode ຈະໄດ້ຮັບການສະແດງໂພສ໋ຕ໌ນີ້. ບໍ່ມີສິ່ງອື່ນໃດໃນ DeHub ທີ່ເຂົ້າເຖິງພວກເຂົາ.",
+    "madeForKidsConfirmReach": "ມັນຍັງອອກຈາກຟີດທົ່ວໄປ — ຜູ້ຄົນຍັງຄົ້ນຫາມັນໃນໂປຣຟາຍລ໌ຂອງທ່ານ, ໃນການຄົ້ນຫາ ແລະ ຜ່ານລິ້ງທີ່ທ່ານແບ່ງປັນ.",
+    "madeForKidsConfirmComments": "ພຽງແຕ່ Kids Mode ເທົ່ານັ້ນທີ່ສາມາດແຕ່ມຄວາມເຫັນໄດ້. ທ່ານຍັງສາມາດຕອບໂຕ້ພວກເຂົາໄດ້.",
+    "madeForKidsConfirmYes": "ແມ່ນ, ມັນສໍາລັບເດັກນ້ອຍ",
+    "madeForKidsOnDesc": "ສະແດງໃຫ້ເດັກນ້ອຍໃນ Kids Mode, ແລະ ອອກຈາກຟີດທົ່ວໄປ. ພຽງແຕ່ Kids Mode ເທົ່ານັ້ນທີ່ສາມາດແຕ່ມຄວາມເຫັນໄດ້.",
+    "madeForKidsOffDesc": "ສະແດງໂພສ໋ຕ໌ນີ້ໃຫ້ເດັກນ້ອຍທີ່ໃຊ້ Kids Mode, ແລະ ເອົາມັນອອກຈາກຟີດທົ່ວໄປ.",
+    "madeForKidsBlockedByMature": "ໂພສ໋ຕ໌ທີ່ຖືກຕິດປ້າຍວ່າ mature ບໍ່ສາມາດເຜີຍແພ່ສໍາລັບເດັກນ້ອຍໄດ້."
   },
   "bounty": {
     "claimed": "ຮັບແລ້ວ",

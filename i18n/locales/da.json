@@ -573,7 +573,20 @@
     "badgeDelegationNoteAny": "Et slot låner et af dine ulåste badges til en anden konto. Tag den tilbage, når du har lyst — pladsen frigøres en dag senere.",
     "badgeDelegationRaisesOnlyTier": "Det badge, du låner, skal være højere end det, de allerede optjener.",
     "badgeDelegationPickTier": "Badge til udlån",
-    "badgeDelegationLendsAny": "Hver enkelt låner en anden konto et badge, du har låst op, op til dit eget {{tier}}. Et mindre badge bruger stadig et helt slot."
+    "badgeDelegationLendsAny": "Hver enkelt låner en anden konto et badge, du har låst op, op til dit eget {{tier}}. Et mindre badge bruger stadig et helt slot.",
+    "kidsMode": "Børnetilstand",
+    "kidsModeDesc": "Viser kun opslag, der er publiceret til børn, overalt. En STIFT slukker den igen.",
+    "kidsModeSetPin": "Vælg en PINKODE",
+    "kidsModeSetPinHelp": "4 til 8 cifre. Du skal bruge den for at slå Børnetilstand fra igen.",
+    "kidsModeConfirmPin": "Indtast det igen",
+    "kidsModeConfirmPinHelp": "Så du ved, at du kan reproducere det.",
+    "kidsModeEnterPin": "Indtast din PINKODE",
+    "kidsModeEnterPinHelp": "Dette slår Børnetilstand fra på denne enhed.",
+    "kidsModeTurnOn": "Slå børnetilstand til",
+    "kidsModeTurnOff": "Slå børnetilstand fra",
+    "kidsModePinMismatch": "Disse pinkoder er forskellige. Start forfra.",
+    "kidsModeFailed": "Det virkede ikke. Prøv igen.",
+    "kidsModeForgotPin": "Har du glemt det? Log ind med din tegnebog på en anden enhed for at slå Børnetilstand fra."
   },
   "common": {
     "mute": "Slå lyd fra",
@@ -1823,7 +1836,8 @@
     "removeMedia": "Fjern medie",
     "cancelRecording": "Annuller optagelse",
     "sendVoiceNote": "Send talebesked",
-    "noneYetAddYours": "Ingen kommentarer endnu — tilføj din."
+    "noneYetAddYours": "Ingen kommentarer endnu — tilføj din.",
+    "kidsOnlyThread": "Dette indlæg er til børn. Kun Kids Mode kan kommentere det."
   },
   "postInfo": {
     "title": "Opslags-info",
@@ -3607,7 +3621,18 @@
     "unmuteVideo": "Slå lyden til på video",
     "descriptionOptional": "Beskrivelse (valgfri)",
     "whatsHappening": "Hvad sker der?",
-    "quotaShortfall": "Dette opslag koster {{cost}} DHB, og du har {{held}}."
+    "quotaShortfall": "Dette opslag koster {{cost}} DHB, og du har {{held}}.",
+    "madeForKids": "Lavet til børn",
+    "madeForKidsHint": "vist i børnetilstand",
+    "madeForKidsConfirmTitle": "Publicer dette til børn?",
+    "madeForKidsConfirmAudience": "Børn, der bruger børnetilstand, vil få vist dette indlæg. Intet andet på DeHub når dem.",
+    "madeForKidsConfirmReach": "Det kommer også væk fra de almindelige feeds — folk finder det stadig på din profil, i søgning og gennem et link, du deler.",
+    "madeForKidsConfirmComments": "Kun børnetilstand kan kommentere på det. Du kan stadig svare på dem selv.",
+    "madeForKidsConfirmYes": "Ja, det er til børn",
+    "markMadeForKids": "Markér som lavet til børn",
+    "madeForKidsOnDesc": "Vist for børn i børnetilstand, og væk fra de almindelige feeds. Kun børnetilstand kan kommentere.",
+    "madeForKidsOffDesc": "Viser dette indlæg til børn, der bruger børnetilstand, og tager det væk fra de almindelige feeds.",
+    "madeForKidsBlockedByMature": "Et indlæg markeret som modent kan ikke også publiceres til børn."
   },
   "bounty": {
     "claimed": "Indløst",

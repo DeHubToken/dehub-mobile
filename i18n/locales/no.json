@@ -569,7 +569,20 @@
     "badgeDelegationNoteAny": "En plass låner ut et av dine ulåste merker til en annen konto. Ta det tilbake når du vil – plassen blir fri en dag senere.",
     "badgeDelegationRaisesOnlyTier": "Merket du låner ut må være høyere enn det de allerede har fortjent.",
     "badgeDelegationPickTier": "Merke å låne ut",
-    "badgeDelegationLendsAny": "Hver av dem låner ut ethvert merke du har låst opp til en annen konto, opptil ditt eget {{tier}}. Et mindre merke bruker fortsatt en hel plass."
+    "badgeDelegationLendsAny": "Hver av dem låner ut ethvert merke du har låst opp til en annen konto, opptil ditt eget {{tier}}. Et mindre merke bruker fortsatt en hel plass.",
+    "kidsMode": "Barnemodus",
+    "kidsModeDesc": "Viser bare innlegg publisert for barn, overalt. En PIN-kode slår det av igjen.",
+    "kidsModeSetPin": "Velg en PIN-kode",
+    "kidsModeSetPinHelp": "4 til 8 sifre. Du trenger det for å slå av barnemodus igjen.",
+    "kidsModeConfirmPin": "Skriv det inn igjen",
+    "kidsModeConfirmPinHelp": "Så du vet at du kan gjenskape det.",
+    "kidsModeEnterPin": "Skriv inn PIN-koden din",
+    "kidsModeEnterPinHelp": "Dette slår av Barnemodus på denne enheten.",
+    "kidsModeTurnOn": "Slå på barnemodus",
+    "kidsModeTurnOff": "Slå av barnemodus",
+    "kidsModePinMismatch": "Disse PIN-kodene er forskjellige. Start på nytt.",
+    "kidsModeFailed": "Det fungerte ikke. Prøv igjen.",
+    "kidsModeForgotPin": "Glemt det? Logg på med lommeboken din på en annen enhet for å slå av barnemodus."
   },
   "common": {
     "mute": "Demp",
@@ -1779,7 +1792,8 @@
     "removeMedia": "Fjern medie",
     "cancelRecording": "Avbryt opptak",
     "sendVoiceNote": "Send talemelding",
-    "noneYetAddYours": "Ingen kommentarer ennå — legg til din."
+    "noneYetAddYours": "Ingen kommentarer ennå — legg til din.",
+    "kidsOnlyThread": "Dette innlegget er for barn. Bare Barnemodus kan kommentere på det."
   },
   "postInfo": {
     "title": "Innleggsinformasjon",
@@ -3593,7 +3607,17 @@
     "unmuteVideo": "Slå på lyden på videoen",
     "descriptionOptional": "Beskrivelse (valgfritt)",
     "whatsHappening": "Hva skjer?",
-    "quotaShortfall": "Dette innlegget koster {{cost}} DHB, og du har {{held}}."
+    "quotaShortfall": "Dette innlegget koster {{cost}} DHB, og du har {{held}}.",
+    "madeForKids": "Laget for barn",
+    "madeForKidsHint": "vist i barnmodus",
+    "madeForKidsConfirmTitle": "Publiser dette for barn?",
+    "madeForKidsConfirmAudience": "Barn som bruker barnmodus vil se dette innlegget. Ingenting annet på DeHub når dem.",
+    "madeForKidsConfirmReach": "Det kommer også av de vanlige feedene — folk finner det fortsatt på profilen din, i søk og gjennom en lenke du deler.",
+    "madeForKidsConfirmComments": "Bare barnmodus kan kommentere på det. Du kan fortsatt svare på dem selv.",
+    "madeForKidsConfirmYes": "Ja, det er for barn",
+    "madeForKidsOnDesc": "Vist for barn i barnmodus, og av de vanlige feedene. Bare barnmodus kan kommentere.",
+    "madeForKidsOffDesc": "Viser dette innlegget for barn som bruker barnmodus, og tar det av de vanlige feedene.",
+    "madeForKidsBlockedByMature": "Et innlegg merket som modent kan ikke også publiseres for barn."
   },
   "bounty": {
     "claimed": "Innløst",

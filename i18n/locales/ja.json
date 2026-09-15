@@ -586,7 +586,20 @@
     "badgeDelegationNoteAny": "スロットは、アンロックされたバッジの1つを別のアカウントに貸し出します。 いつでもお持ち帰りいただけます。スロットは1日後に解放されます。",
     "badgeDelegationRaisesOnlyTier": "貸与するバッジは、すでに獲得しているバッジよりも高くなければなりません。",
     "badgeDelegationPickTier": "貸出バッジ",
-    "badgeDelegationLendsAny": "それぞれが、あなたがロック解除したバッジを別のアカウントに貸し出します。あなた自身の{{tier}}までです。 小さなバッジはまだスロット全体を使用します。"
+    "badgeDelegationLendsAny": "それぞれが、あなたがロック解除したバッジを別のアカウントに貸し出します。あなた自身の{{tier}}までです。 小さなバッジはまだスロット全体を使用します。",
+    "kidsMode": "キッズモード",
+    "kidsModeDesc": "どこでも子供向けに公開された投稿のみを表示します。 ピンを押すとオフになります。",
+    "kidsModeSetPin": "暗証番号を選択してください",
+    "kidsModeSetPinHelp": "4 ～ 8桁。 キッズモードを再びオフにするには、これが必要です。",
+    "kidsModeConfirmPin": "もう一度入力してください",
+    "kidsModeConfirmPinHelp": "あなたはそれを再現できることを知っています。",
+    "kidsModeEnterPin": "暗証番号を入力してください",
+    "kidsModeEnterPinHelp": "これにより、このデバイスのキッズモードがオフになります。",
+    "kidsModeTurnOn": "キッズモードをオンにする",
+    "kidsModeTurnOff": "キッズモードをオフにする",
+    "kidsModePinMismatch": "暗証番号が異なります。もう一度やり直してください。",
+    "kidsModeFailed": "うまくいきませんでした。もう一度やり直してください。",
+    "kidsModeForgotPin": "忘れましたか？別のデバイスでウォレットでサインインして、キッズモードをオフにします。"
   },
   "common": {
     "mute": "ミュート",
@@ -1832,7 +1845,8 @@
     "removeMedia": "メディアを削除",
     "cancelRecording": "録音をキャンセル",
     "sendVoiceNote": "ボイスメモを送信",
-    "noneYetAddYours": "コメントはまだありません。最初の一件をどうぞ。"
+    "noneYetAddYours": "コメントはまだありません。最初の一件をどうぞ。",
+    "kidsOnlyThread": "この投稿はお子様向けです。キッズモードのみがコメントできます。"
   },
   "postInfo": {
     "title": "投稿情報",
@@ -3670,7 +3684,18 @@
     "unmuteVideo": "動画のミュートを解除",
     "descriptionOptional": "説明（任意）",
     "whatsHappening": "いま何してる？",
-    "quotaShortfall": "この投稿には {{cost}} DHB が必要ですが、保有額は {{held}} です。"
+    "quotaShortfall": "この投稿には {{cost}} DHB が必要ですが、保有額は {{held}} です。",
+    "madeForKids": "子供向けに作られています",
+    "madeForKidsHint": "キッズモードで表示",
+    "madeForKidsConfirmTitle": "お子様向けに公開しますか？",
+    "madeForKidsConfirmAudience": "キッズモードを使用しているお子様には、この投稿が表示されます。DeHubには他に何も届きません。",
+    "madeForKidsConfirmReach": "また、通常のフィードからも表示されます。ユーザーはプロフィール、検索、共有リンクからも見つけることができます。",
+    "madeForKidsConfirmComments": "キッズモードのみがコメントできます。ご自身で返信することも可能です。",
+    "madeForKidsConfirmYes": "はい、子供用です",
+    "markMadeForKids": "お子様用としてマーク",
+    "madeForKidsOnDesc": "キッズモードでお子様に表示され、通常のフィードでは表示されません。コメントできるのはキッズモードのみです。",
+    "madeForKidsOffDesc": "このポストを子ども向けモードを使用して子どもたちに表示し、通常のフィードから削除します。",
+    "madeForKidsBlockedByMature": "成人とマークされた投稿は、お子様にも公開できません。"
   },
   "bounty": {
     "claimed": "受け取り済み",

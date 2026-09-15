@@ -587,7 +587,20 @@
     "badgeDelegationNoteAny": "Um slot empresta um dos seus crachás desbloqueados para outra conta. Leve-o de volta quando quiser — o slot é liberado um dia depois.",
     "badgeDelegationRaisesOnlyTier": "O emblema que você empresta deve ser maior do que o que eles já ganham.",
     "badgeDelegationPickTier": "Crachá para emprestar",
-    "badgeDelegationLendsAny": "Cada um empresta à outra conta qualquer selo que você tenha desbloqueado, até o seu próprio {{tier}}. Uma insígnia menor ainda usa um espaço inteiro."
+    "badgeDelegationLendsAny": "Cada um empresta à outra conta qualquer selo que você tenha desbloqueado, até o seu próprio {{tier}}. Uma insígnia menor ainda usa um espaço inteiro.",
+    "kidsMode": "Modo infantil",
+    "kidsModeDesc": "Mostra apenas postagens publicadas para crianças, em todos os lugares. Um ALFINETE o desliga.",
+    "kidsModeSetPin": "Escolha um PIN",
+    "kidsModeSetPinHelp": "4 a 8 dígitos. Você precisa dele para desligar o Modo Infantil novamente.",
+    "kidsModeConfirmPin": "Introduza-o novamente",
+    "kidsModeConfirmPinHelp": "Então sabe que pode reproduzi-lo.",
+    "kidsModeEnterPin": "Introduza o seu PIN",
+    "kidsModeEnterPinHelp": "Isso desliga o Modo Infantil neste dispositivo.",
+    "kidsModeTurnOn": "Ligar o Modo Criança",
+    "kidsModeTurnOff": "Desativar o Modo Infantil",
+    "kidsModePinMismatch": "Esses PINs são diferentes. Comece de novo.",
+    "kidsModeFailed": "Isso não funcionou. Tente novamente.",
+    "kidsModeForgotPin": "Esqueceu-se? Inicie sessão com a sua carteira noutro dispositivo para desativar o Modo Criança."
   },
   "common": {
     "mute": "Silenciar",
@@ -1837,7 +1850,8 @@
     "removeMedia": "Remover media",
     "cancelRecording": "Cancelar gravação",
     "sendVoiceNote": "Enviar nota de voz",
-    "noneYetAddYours": "Ainda sem comentários; adicione o seu."
+    "noneYetAddYours": "Ainda sem comentários; adicione o seu.",
+    "kidsOnlyThread": "Este post é para crianças. Apenas o Modo Infantil pode comentar."
   },
   "postInfo": {
     "title": "Info do Post",
@@ -3677,7 +3691,18 @@
     "unmuteVideo": "Ativar som do vídeo",
     "descriptionOptional": "Descrição (opcional)",
     "whatsHappening": "O que está acontecendo?",
-    "quotaShortfall": "Esta publicação custa {{cost}} DHB e você tem {{held}}."
+    "quotaShortfall": "Esta publicação custa {{cost}} DHB e você tem {{held}}.",
+    "madeForKids": "Feito para crianças",
+    "madeForKidsHint": "mostrado no Modo Infantil",
+    "madeForKidsConfirmTitle": "Publicar isso para crianças?",
+    "madeForKidsConfirmAudience": "As crianças que usam o Modo Infantil serão mostradas neste post. Nada mais no DeHub chega até eles.",
+    "madeForKidsConfirmReach": "Ele também sai dos feeds comuns — as pessoas ainda o encontram no seu perfil, nas buscas e através de um link que você compartilha.",
+    "madeForKidsConfirmComments": "Apenas o Modo Infantil pode comentar. Ainda pode responder pessoalmente.",
+    "madeForKidsConfirmYes": "Sim, é para crianças",
+    "markMadeForKids": "Marcar como feito para crianças",
+    "madeForKidsOnDesc": "Mostrado às crianças no Modo Infantil e fora dos feeds comuns. Apenas o Modo Infantil pode comentar.",
+    "madeForKidsOffDesc": "Mostra este post para crianças que usam o Modo Infantil e o retira dos feeds comuns.",
+    "madeForKidsBlockedByMature": "Um post marcado como maduro também não pode ser publicado para crianças."
   },
   "bounty": {
     "claimed": "Resgatado",

@@ -531,7 +531,20 @@
     "badgeDelegationNoteAny": "一个位置将你解锁的徽章之一借给另一个账户。随时可以取回——该位置会在一天后释放。",
     "badgeDelegationRaisesOnlyTier": "你借出的徽章必须高于他们已经获得的徽章。",
     "badgeDelegationPickTier": "要借出的徽章",
-    "badgeDelegationLendsAny": "每个位置都可以将你拥有的任何已解锁徽章借给另一个账户，最多达到你自己的 {{tier}}。较小的徽章仍然占用一个完整的位置。"
+    "badgeDelegationLendsAny": "每个位置都可以将你拥有的任何已解锁徽章借给另一个账户，最多达到你自己的 {{tier}}。较小的徽章仍然占用一个完整的位置。",
+    "kidsMode": "儿童模式",
+    "kidsModeDesc": "仅显示为儿童发布的帖子，随处可见。PIN 码可将其关闭。",
+    "kidsModeSetPin": "选择 PIN",
+    "kidsModeSetPinHelp": "4 到 8 位数字。您需要它来再次关闭儿童模式。",
+    "kidsModeConfirmPin": "再次输入",
+    "kidsModeConfirmPinHelp": "这样您就知道可以重现它。",
+    "kidsModeEnterPin": "输入您的 PIN",
+    "kidsModeEnterPinHelp": "这会在此设备上关闭儿童模式。",
+    "kidsModeTurnOn": "打开儿童模式",
+    "kidsModeTurnOff": "关闭儿童模式",
+    "kidsModePinMismatch": "这些 PIN 码不同。重新开始。",
+    "kidsModeFailed": "这不起作用。请重试。",
+    "kidsModeForgotPin": "忘记了？在另一台设备上用您的钱包登录以关闭儿童模式。"
   },
   "common": {
     "mute": "静音",
@@ -1775,7 +1788,8 @@
     "removeMedia": "移除媒体",
     "cancelRecording": "取消录制",
     "sendVoiceNote": "发送语音留言",
-    "noneYetAddYours": "还没有评论，来写第一条。"
+    "noneYetAddYours": "还没有评论，来写第一条。",
+    "kidsOnlyThread": "这个帖子是给孩子们的。只有儿童模式才能评论。"
   },
   "postInfo": {
     "title": "帖子信息",
@@ -3603,7 +3617,17 @@
     "unmuteVideo": "取消静音视频",
     "descriptionOptional": "描述（可选）",
     "whatsHappening": "有什么新鲜事？",
-    "quotaShortfall": "这条帖子需要 {{cost}} DHB，你持有 {{held}}。"
+    "quotaShortfall": "这条帖子需要 {{cost}} DHB，你持有 {{held}}。",
+    "madeForKids": "为孩子制作",
+    "madeForKidsHint": "在儿童模式中显示",
+    "madeForKidsConfirmTitle": "为孩子发布此内容？",
+    "madeForKidsConfirmAudience": "使用儿童模式的儿童将看到此帖子。DeHub 上没有其他内容会显示给他们。",
+    "madeForKidsConfirmReach": "它也会从普通信息流中移除——人们仍然可以在你的个人资料、搜索和你分享的链接中找到它。",
+    "madeForKidsConfirmComments": "只有儿童模式可以对其进行评论。你仍然可以自己回复他们。",
+    "madeForKidsConfirmYes": "是的，这是为孩子制作的",
+    "madeForKidsOnDesc": "显示给使用儿童模式的儿童，并从普通信息流中移除。只有儿童模式可以评论。",
+    "madeForKidsOffDesc": "将此帖子显示给使用儿童模式的儿童，并将其从普通信息流中移除。",
+    "madeForKidsBlockedByMature": "标记为成人内容的帖子不能同时为儿童发布。"
   },
   "bounty": {
     "claimed": "已领取",

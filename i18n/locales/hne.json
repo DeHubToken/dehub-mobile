@@ -559,7 +559,20 @@
     "smsCountryBlocked": "हमन अभी तक ओ देश ल पाठ नइ दे सकन ।",
     "badgeDelegationNoteAny": "एक स्लॉट आपके एक अनलॉक बैज ल दूसर खाता म ले जात हवय । जब भी आप चाहें, वापस ले — स्लॉट एक दिन बाद मुक्त हो जाएगा.",
     "badgeDelegationRaisesOnlyTier": "जऊन बटुआ ल आप उधार देथें, ओ बटुआ ल ओमन के कमाई ले जादा होना चाही ।",
-    "badgeDelegationPickTier": "लोन करे बर बैज"
+    "badgeDelegationPickTier": "लोन करे बर बैज",
+    "kidsMode": "किड्स मोड",
+    "kidsModeDesc": "हर जगह केवल बच्चों के लिए पोस्ट दिखाएं । एक पिन पीछे मुड़त हवय ।",
+    "kidsModeSetPin": "एक पिन चुनव",
+    "kidsModeSetPinHelp": "ठीक हवय लेकिन ए विधि 3 ले 8 ले ही संभव हवय तुमन ला फेर लइका मन ल चालू करे के जरूरत हे ।",
+    "kidsModeConfirmPin": "फिर से भरव",
+    "kidsModeConfirmPinHelp": "तुमन जानत हव कि तुमन एला पुनः पेश कर सकत हव ।",
+    "kidsModeEnterPin": "अपन पिन दर्ज करव",
+    "kidsModeEnterPinHelp": "ए डिवाइस म किड्स मोड बंद हो जात हवय ।",
+    "kidsModeTurnOn": "किड्स मोड चालू करव",
+    "kidsModeTurnOff": "किड्स मोड बन्द करव",
+    "kidsModePinMismatch": "ये पिन अलग हे. फिर से चालू करव.",
+    "kidsModeFailed": "ये काम नइ करिस. फेर प्रयास करव.",
+    "kidsModeForgotPin": "किड्स मोड ल बन्द करे बर दूसर उपकरन मं अपन बटुआ के साथ साइन इन करव."
   },
   "common": {
     "mute": "आवाज बंद करव",
@@ -1790,7 +1803,8 @@
     "removeMedia": "मीडिया हटाव",
     "cancelRecording": "रिकॉर्डिंग रद्द करव",
     "sendVoiceNote": "आवाज नोट भेजव",
-    "noneYetAddYours": "अभी कोनो टिप्पणी नइ हे, अपन जोड़व।"
+    "noneYetAddYours": "अभी कोनो टिप्पणी नइ हे, अपन जोड़व।",
+    "kidsOnlyThread": "ए लेख लइकामन बर हवय । केवल किड्स मोड ए बारे म टिप्पणी कर सकत हवय ।"
   },
   "postInfo": {
     "title": "पोस्ट जानकारी",
@@ -3604,7 +3618,17 @@
     "unmuteVideo": "वीडियो के आवाज चालू करव",
     "descriptionOptional": "बरनन (वैकल्पिक)",
     "whatsHappening": "का होवत हे?",
-    "quotaShortfall": "ये पोस्ट के लागत {{cost}} DHB हे अउ तोर करा {{held}} हे।"
+    "quotaShortfall": "ये पोस्ट के लागत {{cost}} DHB हे अउ तोर करा {{held}} हे।",
+    "madeForKids": "बाळकन मन बनाय गे",
+    "madeForKidsHint": "Kids Mode मन देखाय गे",
+    "madeForKidsConfirmTitle": "ये बाळकन मन प्रकाशित करबे?",
+    "madeForKidsConfirmAudience": "बाळक जो Kids Mode उपयोग करत हें तेमन ये पोस्ट देखाय जाही। DeHub मन कुछ और नइ पहुँचत हे।",
+    "madeForKidsConfirmReach": "ये साधारण फीड से भी हटा दिय जाही — मनखे अभी भी तुम्हर प्रोफाइल मन, खोज मन अऊ लिंक के जरिये खोज सकत हें।",
+    "madeForKidsConfirmComments": "सिर्फ Kids Mode ही टिप्पणी कर सकत हे। तुम अभी भी तेमन जवाब दे सकत हव।",
+    "madeForKidsConfirmYes": "हाँ, ये बाळकन मन हे",
+    "madeForKidsOnDesc": "बाळक के Kids Mode मन देखाय गे, अऊ साधारण फीड से हटा दिय गे। सिर्फ Kids Mode ही टिप्पणी कर सकत हे।",
+    "madeForKidsOffDesc": "ये पोस्ट बाळक के Kids Mode उपयोग करत हें तेमन देखाय गे, अऊ साधारण फीड से हटा दिय गे।",
+    "madeForKidsBlockedByMature": "परिपक्व चिन्हित पोस्ट बाळकन मन प्रकाशित नइ कर सकत हे।"
   },
   "bounty": {
     "claimed": "मिल गे",

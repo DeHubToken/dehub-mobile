@@ -1512,6 +1512,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           commentsDisabled={!!(item as any).commentsDisabled}
+          forKids={!!(item as any).forKids}
           postCreator={{ address: minterAddress, displayName, username }}
         />
       )}

@@ -531,7 +531,20 @@
     "badgeDelegationNoteAny": "A slot nyambut salah siji saka badge sing wis dibukak menyang akun liyane. Sampeyan bisa njupuk maneh kapan wae — slot kasebut bakal kosong sawise sedina.",
     "badgeDelegationRaisesOnlyTier": "Lencana sing sampeyan pinjemuké kudu luwih dhuwur tinimbang sing wis dhewéké raih.",
     "badgeDelegationPickTier": "Badge kanggo nyilih",
-    "badgeDelegationLendsAny": "Saben-saben nyambung akun liyane badge apa wae sing wis kowe buka, nganti menyang {{tier}} dhewe. Badge sing luwih cilik isih nganggo slot kabeh."
+    "badgeDelegationLendsAny": "Saben-saben nyambung akun liyane badge apa wae sing wis kowe buka, nganti menyang {{tier}} dhewe. Badge sing luwih cilik isih nganggo slot kabeh.",
+    "kidsMode": "Mode Anak-anak",
+    "kidsModeDesc": "Nampilake mung kiriman sing diterbitake kanggo anak-anak, ing mana-mana. PIN mateni maneh.",
+    "kidsModeSetPin": "Pilih PIN",
+    "kidsModeSetPinHelp": "4 nganti 8 digit. Sampeyan butuh kanggo mateni Mode Anak-anak maneh.",
+    "kidsModeConfirmPin": "Ketik maneh",
+    "kidsModeConfirmPinHelp": "Supaya sampeyan bisa nggawe maneh.",
+    "kidsModeEnterPin": "Ketik PIN sampeyan",
+    "kidsModeEnterPinHelp": "Iki mateni Mode Anak-anak ing piranti iki.",
+    "kidsModeTurnOn": "Nyalake Mode Anak-anak",
+    "kidsModeTurnOff": "Mateni Mode Anak-anak",
+    "kidsModePinMismatch": "PIN-PIN kasebut beda. Mulai maneh.",
+    "kidsModeFailed": "Iku ora bisa. Coba maneh.",
+    "kidsModeForgotPin": "Lali? Mlebu nganggo dompet sampeyan ing piranti liya kanggo mateni Mode Anak-anak."
   },
   "common": {
     "mute": "Bisu",
@@ -1777,7 +1790,8 @@
     "removeMedia": "Busak media",
     "cancelRecording": "Batalake rekaman",
     "sendVoiceNote": "Kirim pesen swara",
-    "noneYetAddYours": "Durung ana komentar, tambahna duwekmu."
+    "noneYetAddYours": "Durung ana komentar, tambahna duwekmu.",
+    "kidsOnlyThread": "Kiriman iki kanggo bocah-bocah. Mung Kids Mode sing bisa nglasani."
   },
   "postInfo": {
     "title": "Info Postingan",
@@ -3561,7 +3575,17 @@
     "unmuteVideo": "Uripake swara video",
     "descriptionOptional": "Katrangan (opsional)",
     "whatsHappening": "Ana apa?",
-    "quotaShortfall": "Postingan iki regane {{cost}} DHB lan sampeyan duwe {{held}}."
+    "quotaShortfall": "Postingan iki regane {{cost}} DHB lan sampeyan duwe {{held}}.",
+    "madeForKids": "Digawe kanggo bocah",
+    "madeForKidsHint": "ditampilake ing Mode Bocah",
+    "madeForKidsConfirmTitle": "Nerbitake iki kanggo bocah?",
+    "madeForKidsConfirmAudience": "Bocah-bocah sing nggunakake Mode Bocah bakal ditampilake posting iki. Ora ana liyane ing DeHub sing tekan wong-wong mau.",
+    "madeForKidsConfirmReach": "Uga metu saka feed biasa — wong-wong isih nemokake iku ing profil mu, ing panelusuran lan liwat link sing sampeyan bagekake.",
+    "madeForKidsConfirmComments": "Mung Mode Bocah sing bisa ngekomentari. Sampeyan isih bisa nanggepi wong-wong mau dhewe.",
+    "madeForKidsConfirmYes": "Ya, iki kanggo bocah",
+    "madeForKidsOnDesc": "Ditampilake kanggo bocah ing Mode Bocah, lan metu saka feed biasa. Mung Mode Bocah sing bisa ngekomentari.",
+    "madeForKidsOffDesc": "Nampilake posting iki kanggo bocah sing nggunakake Mode Bocah, lan ngilangi saka feed biasa.",
+    "madeForKidsBlockedByMature": "Posting sing ditandai dewasa ora bisa uga dinerbitake kanggo bocah."
   },
   "bounty": {
     "claimed": "Wis diklaim",

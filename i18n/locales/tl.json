@@ -1053,7 +1053,20 @@
     "badgeDelegationNoteAny": "Ang isang slot ay nagpapahiram ng isa sa iyong mga naka - unlock na badge sa isa pang account. Take it back anytime you like — the slot frees up sa loob ng isang taon na ang nakalipas",
     "badgeDelegationRaisesOnlyTier": "Ang badge na pinapahiram mo ay dapat na mas mataas kaysa sa kinikita na nila.",
     "badgeDelegationPickTier": "Badge na ipapahiram",
-    "badgeDelegationLendsAny": "Nagpapahiram ang bawat isa ng iba pang account ng anumang badge na na - unlock mo, hanggang sa sarili mong {{tier}}. Ang isang mas maliit na badge ay gumagamit pa rin ng isang buong slot."
+    "badgeDelegationLendsAny": "Nagpapahiram ang bawat isa ng iba pang account ng anumang badge na na - unlock mo, hanggang sa sarili mong {{tier}}. Ang isang mas maliit na badge ay gumagamit pa rin ng isang buong slot.",
+    "kidsMode": "Kids Mode",
+    "kidsModeDesc": "Nagpapakita lamang ng mga post na inilathala para sa mga bata, saanman. Ang PIN ay ibinabalik ito.",
+    "kidsModeSetPin": "Pumili ng PIN",
+    "kidsModeSetPinHelp": "4 hanggang 8 digit. Kailangan mo ito upang ibalik ang Kids Mode.",
+    "kidsModeConfirmPin": "Ilagay ito muli",
+    "kidsModeConfirmPinHelp": "Upang malaman mo na maaari mong gawin itong muli.",
+    "kidsModeEnterPin": "Ilagay ang iyong PIN",
+    "kidsModeEnterPinHelp": "Ito ay nagsasara ng Kids Mode sa device na ito.",
+    "kidsModeTurnOn": "Buksan ang Kids Mode",
+    "kidsModeTurnOff": "Isara ang Kids Mode",
+    "kidsModePinMismatch": "Ang mga PIN na iyon ay iba. Magsimula muli.",
+    "kidsModeFailed": "Hindi ito gumana. Subukan muli.",
+    "kidsModeForgotPin": "Nakalimutan mo? Mag-sign in gamit ang iyong wallet sa ibang device upang isara ang Kids Mode."
   },
   "postOptions": {
     "options": "Options",
@@ -2194,7 +2207,8 @@
     "removeMedia": "Alisin ang media",
     "cancelRecording": "Kanselahin ang pag-record",
     "sendVoiceNote": "Ipadala ang voice note",
-    "noneYetAddYours": "Wala pang komento, magdagdag ka ng sa iyo."
+    "noneYetAddYours": "Wala pang komento, magdagdag ka ng sa iyo.",
+    "kidsOnlyThread": "Ang post na ito ay para sa mga bata. Kids Mode lamang ang maaaring magkomento tungkol dito."
   },
   "postInfo": {
     "title": "Post Info",
@@ -3782,7 +3796,17 @@
     "unmuteVideo": "I-unmute ang video",
     "descriptionOptional": "Paglalarawan (opsyonal)",
     "whatsHappening": "Ano'ng nangyayari?",
-    "quotaShortfall": "Nagkakahalaga ang post na ito ng {{cost}} DHB at mayroon kang {{held}}."
+    "quotaShortfall": "Nagkakahalaga ang post na ito ng {{cost}} DHB at mayroon kang {{held}}.",
+    "madeForKids": "Ginawa para sa mga bata",
+    "madeForKidsHint": "ipinakita sa Kids Mode",
+    "madeForKidsConfirmTitle": "I-publish ito para sa mga bata?",
+    "madeForKidsConfirmAudience": "Ang mga bata na gumagamit ng Kids Mode ay makikita ang post na ito. Walang iba pang content sa DeHub na aabot sa kanila.",
+    "madeForKidsConfirmReach": "Ito rin ay aalis sa ordinaryong feeds — ang mga tao ay makikita pa rin ito sa iyong profile, sa search at sa pamamagitan ng link na ibabahagi mo.",
+    "madeForKidsConfirmComments": "Lamang ang Kids Mode ang makakakomento dito. Maaari mo pa ring sumagot sa kanila.",
+    "madeForKidsConfirmYes": "Oo, ito ay para sa mga bata",
+    "madeForKidsOnDesc": "Ipinakikita sa mga bata sa Kids Mode, at aalis sa ordinaryong feeds. Lamang ang Kids Mode ang makakakomento.",
+    "madeForKidsOffDesc": "Ipapakita ang post na ito sa mga bata na gumagamit ng Kids Mode, at aalis ito sa ordinaryong feeds.",
+    "madeForKidsBlockedByMature": "Ang post na minarkahan bilang mature ay hindi maaaring ilathala din para sa mga bata."
   },
   "bounty": {
     "claimed": "Nakuha na",

@@ -563,7 +563,19 @@
     "badgeDelegationNoteAny": "A Ramin bashi daya daga your unlocked badges zuwa wani lissafi. Ɗauki shi a duk lokacin da kake so — Ramin ya 'yantar da rana ɗaya daga baya.",
     "badgeDelegationRaisesOnlyTier": "Alamar da kuka ba da bashi dole ne ya kasance mafi girma fiye da wanda suka riga suka samu.",
     "badgeDelegationPickTier": "Badge don ba da bashi",
-    "badgeDelegationLendsAny": "Kowannensu yana ba da wani asusun kowane alamar da kuka buɗe, har zuwa naku {{tier}}. Ƙananan alama har yanzu yana amfani da cikakken Ramin."
+    "badgeDelegationLendsAny": "Kowannensu yana ba da wani asusun kowane alamar da kuka buɗe, har zuwa naku {{tier}}. Ƙananan alama har yanzu yana amfani da cikakken Ramin.",
+    "kidsModeDesc": "Nuna kawai sakonnin da aka buga don yara, a ko'ina. PIN yana juya shi baya.",
+    "kidsModeSetPin": "Zaɓi PIN",
+    "kidsModeSetPinHelp": "4 zuwa 8 lambobi. Kana bukatar shi don juya Kids Mode sake.",
+    "kidsModeConfirmPin": "Shigar da shi kuma",
+    "kidsModeConfirmPinHelp": "Don haka ka san za ka iya haifarwa shi.",
+    "kidsModeEnterPin": "Shigar da filinka",
+    "kidsModeEnterPinHelp": "Wannan juya Kids Mode kashe a kan wannan na'urar.",
+    "kidsModeTurnOn": "Juya Yanayin Yara akan",
+    "kidsModeTurnOff": "Kashe Yanayin Yara",
+    "kidsModePinMismatch": "Waɗannan PINs sun bambanta. sake farawa.",
+    "kidsModeFailed": "Wannan bai yi aiki ba. sake gwadawa.",
+    "kidsModeForgotPin": "Ka manta da shi? Shiga tare da walat ɗinka a kan wani na'urar don kunna Yanayin Kids kashe."
   },
   "common": {
     "mute": "Kashe sauti",
@@ -1809,7 +1821,8 @@
     "removeMedia": "Cire kafofin watsa labarai",
     "cancelRecording": "Soke rikodin",
     "sendVoiceNote": "Aika saƙon murya",
-    "noneYetAddYours": "Babu sharhi tukuna, ƙara naka."
+    "noneYetAddYours": "Babu sharhi tukuna, ƙara naka.",
+    "kidsOnlyThread": "Wannan post ne ga yara. Sai kawai Kids Mode iya sharhi a kan shi."
   },
   "postInfo": {
     "title": "Bayanan bugu",
@@ -3593,7 +3606,17 @@
     "unmuteVideo": "Kunna sautin bidiyo",
     "descriptionOptional": "Bayani (na zaɓi)",
     "whatsHappening": "Me ke faruwa?",
-    "quotaShortfall": "Wannan saƙon yana kashe {{cost}} DHB kuma kana da {{held}}."
+    "quotaShortfall": "Wannan saƙon yana kashe {{cost}} DHB kuma kana da {{held}}.",
+    "madeForKids": "An yi shi don yara",
+    "madeForKidsHint": "Aka nuna shi a Kids Mode",
+    "madeForKidsConfirmTitle": "Buga wannan don yara?",
+    "madeForKidsConfirmAudience": "Yara da ke amfani da Kids Mode za su ga wannan post. Babu wani abu da Kids Mode ya isa.",
+    "madeForKidsConfirmReach": "Har ila yau, ya fita daga jerin abubuwa na yau da kullun — mutane har yanzu suna samun shi a profayil ɗinka, a cikin bincike da ta hanyar linki da ka raba.",
+    "madeForKidsConfirmComments": "Kids Mode ne kawai zai iya sharewa akan shi. Kana iya amsa musu kanka.",
+    "madeForKidsConfirmYes": "Eh, shi ne don yara",
+    "madeForKidsOnDesc": "Aka nuna shi ga yara da ke amfani da Kids Mode, kuma ya fita daga jerin abubuwa na yau da kullun. Kids Mode ne kawai zai iya sharewa.",
+    "madeForKidsOffDesc": "Yana nuna wannan post ga yara da ke amfani da Kids Mode, kuma yana cire shi daga jerin abubuwa na yau da kullun.",
+    "madeForKidsBlockedByMature": "Ba za a iya buga post da aka yi wa balagu tare da buga shi don yara ba."
   },
   "bounty": {
     "claimed": "An karɓa",

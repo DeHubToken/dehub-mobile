@@ -571,7 +571,20 @@
     "badgeDelegationNoteAny": "Slots aizdod vienu no jūsu atbloķētajām nozīmītēm citam kontam. Atgūstiet to, kad vien vēlaties — slots atbrīvojas dienu vēlāk.",
     "badgeDelegationRaisesOnlyTier": "Aizdotajai nozīmītei jābūt lielākai par jau nopelnīto.",
     "badgeDelegationPickTier": "Aizdodamā nozīmīte",
-    "badgeDelegationLendsAny": "Katrs no tiem aizdod citam kontam jebkuru jūsu atbloķēto nozīmīti līdz jūsu {{tier}}. Mazāka nozīmīte joprojām izmanto visu slotu."
+    "badgeDelegationLendsAny": "Katrs no tiem aizdod citam kontam jebkuru jūsu atbloķēto nozīmīti līdz jūsu {{tier}}. Mazāka nozīmīte joprojām izmanto visu slotu.",
+    "kidsMode": "Bērnu režīms",
+    "kidsModeDesc": "Rāda tikai ziņas, kas publicētas bērniem visur. PIN KODS to izslēdz.",
+    "kidsModeSetPin": "Izvēlieties PIN KODU",
+    "kidsModeSetPinHelp": "No 4 līdz 8 cipariem. Tas ir nepieciešams, lai atkal izslēgtu bērnu režīmu.",
+    "kidsModeConfirmPin": "Ievadiet to vēlreiz",
+    "kidsModeConfirmPinHelp": "Tātad jūs zināt, ka varat to reproducēt.",
+    "kidsModeEnterPin": "Ievadiet savu PIN KODU",
+    "kidsModeEnterPinHelp": "Tādējādi šajā ierīcē tiek izslēgts bērnu režīms.",
+    "kidsModeTurnOn": "Ieslēgt bērnu režīmu",
+    "kidsModeTurnOff": "Izslēgt bērnu režīmu",
+    "kidsModePinMismatch": "Šie PIN ir atšķirīgi. Sāciet vēlreiz.",
+    "kidsModeFailed": "Tas neizdevās. Mēģiniet vēlreiz.",
+    "kidsModeForgotPin": "Vai aizmirsāt to? Pierakstieties ar maku citā ierīcē, lai izslēgtu bērnu režīmu."
   },
   "common": {
     "mute": "Izslēgt skaņu",
@@ -1817,7 +1830,8 @@
     "removeMedia": "Noņemt mediju",
     "cancelRecording": "Atcelt ierakstīšanu",
     "sendVoiceNote": "Sūtīt balss piezīmi",
-    "noneYetAddYours": "Vēl nav komentāru — pievienojiet savu."
+    "noneYetAddYours": "Vēl nav komentāru — pievienojiet savu.",
+    "kidsOnlyThread": "Šī ziņa ir paredzēta bērniem. To var komentēt tikai bērnu režīms."
   },
   "postInfo": {
     "title": "Ieraksta informācija",
@@ -3602,7 +3616,17 @@
     "unmuteVideo": "Ieslēgt video skaņu",
     "descriptionOptional": "Apraksts (neobligāts)",
     "whatsHappening": "Kas notiek?",
-    "quotaShortfall": "Šis ieraksts maksā {{cost}} DHB, un jums ir {{held}}."
+    "quotaShortfall": "Šis ieraksts maksā {{cost}} DHB, un jums ir {{held}}.",
+    "madeForKids": "Izveidots bērniem",
+    "madeForKidsHint": "Rādīts bērnu režīmā",
+    "madeForKidsConfirmTitle": "Publicēt šo bērniem?",
+    "madeForKidsConfirmAudience": "Bērni, kuri izmanto bērnu režīmu, redzēs šo ierakstu. Viņiem neko citu uz DeHub nepienāk.",
+    "madeForKidsConfirmReach": "Tas arī tiek noņemts no parastajiem plūsmām — cilvēki to joprojām atrod jūsu profilā, meklēšanā un caur jūsu koplietoto saiti.",
+    "madeForKidsConfirmComments": "Tikai bērnu režīms var komentēt. Jūs joprojām varat viņiem atbildēt.",
+    "madeForKidsConfirmYes": "Jā, tas ir bērniem",
+    "madeForKidsOnDesc": "Rādīts bērniem bērnu režīmā un noņemts no parastajiem plūsmām. Tikai bērnu režīms var komentēt.",
+    "madeForKidsOffDesc": "Parāda šo ierakstu bērniem, kuri izmanto bērnu režīmu, un noņem to no parastajiem plūsmām.",
+    "madeForKidsBlockedByMature": "Ieraksts, kas atzīmēts kā pieaugušiem paredzēts, nevar tikt publicēts arī bērniem."
   },
   "bounty": {
     "claimed": "Saņemts",
