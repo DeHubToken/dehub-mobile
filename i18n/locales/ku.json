@@ -626,7 +626,13 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "sendToDm": "Bişîne DM-ê",
+    "sendToDmDesc": "Vê postê di axaftinekê de parve bike",
+    "boostPostDesc": "Wê li serê feeda malê deyne",
+    "mintPostDesc": "Vê postê li ser zincîrê biweşîne",
+    "giftBoost": "Boostekê diyarî bike",
+    "giftBoostDesc": "Yekê ji yên xwe li ser vê postê xerc bike"
   },
   "filters": {
     "sort": "Rêzkirin",
@@ -3548,5 +3554,14 @@
     "perMessageFee": "Heqê her peyamê (DHB)",
     "perMessageFeeSub": "Ji her peyamê heq bistîne. Ji bo DM-yên belaş 0 bike. Tu dikarî ji hin bikarhêneran re gihîştina belaş bidî.",
     "allDisabled": "Niha hemû DM girtî ne. DM-yên nû bi awayê standard têne astengkirin."
+  },
+  "editPost": {
+    "mediaPermission": "Destûra pirtûkxaneya medyayê pêwîst e",
+    "fileSwapping": "Pelê nû hate barkirin — gava pêvajo biqede dê were guhertin",
+    "titleTooShort": "Sernav divê herî kêm 3 tîp be",
+    "descTooShort": "Danasîn divê herî kêm 3 tîp be",
+    "updated": "Post hate nûkirin",
+    "titlePlaceholder": "Sernavê postê",
+    "descPlaceholder": "Danasîna postê"
   }
 }

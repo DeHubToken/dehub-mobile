@@ -678,7 +678,13 @@
     "unpinPost": "Fjern fra profilen din",
     "postPinned": "Festet til profilen din",
     "postUnpinned": "Løsnet fra profilen din",
-    "pinFailed": "Kunne ikke feste eller løsne dette innlegget"
+    "pinFailed": "Kunne ikke feste eller løsne dette innlegget",
+    "sendToDm": "Send i DM",
+    "sendToDmDesc": "Del dette innlegget i en samtale",
+    "boostPostDesc": "Legg det øverst i hjemfeeden",
+    "mintPostDesc": "Publiser dette innlegget on-chain",
+    "giftBoost": "Gi bort et boost",
+    "giftBoostDesc": "Bruk en av dine på dette innlegget"
   },
   "filters": {
     "sort": "Sorter",
@@ -3777,5 +3783,14 @@
     "perMessageFee": "Avgift per melding (DHB)",
     "perMessageFeeSub": "Ta betalt per melding. Sett til 0 for gratis DM-er. Du kan gi enkelte brukere gratis tilgang.",
     "allDisabled": "Alle DM-er er avslått nå. Nye DM-er blokkeres som standard."
+  },
+  "editPost": {
+    "mediaPermission": "Tillatelse til mediebiblioteket kreves",
+    "fileSwapping": "Ny fil lastet opp — den byttes inn når behandlingen er ferdig",
+    "titleTooShort": "Tittelen må ha minst 3 tegn",
+    "descTooShort": "Beskrivelsen må ha minst 3 tegn",
+    "updated": "Innlegg oppdatert",
+    "titlePlaceholder": "Innleggstittel",
+    "descPlaceholder": "Innleggsbeskrivelse"
   }
 }

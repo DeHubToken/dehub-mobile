@@ -925,7 +925,13 @@
     "unpinPost": "Odpojit od profilu",
     "postPinned": "Připnuto k tvému profilu",
     "postUnpinned": "Odpojeno od tvého profilu",
-    "pinFailed": "Tento příspěvek se nepodařilo připnout nebo odepnout"
+    "pinFailed": "Tento příspěvek se nepodařilo připnout nebo odepnout",
+    "sendToDm": "Poslat do zpráv",
+    "sendToDmDesc": "Sdílejte tento příspěvek v konverzaci",
+    "boostPostDesc": "Umístěte jej na začátek domovského feedu",
+    "mintPostDesc": "Publikujte tento příspěvek on-chain",
+    "giftBoost": "Darovat boost",
+    "giftBoostDesc": "Utraťte jeden ze svých na tento příspěvek"
   },
   "filters": {
     "sort": "Řadit",
@@ -3791,5 +3797,14 @@
     "perMessageFee": "Poplatek za zprávu (DHB)",
     "perMessageFeeSub": "Účtujte si za zprávu. Nastavte 0 pro bezplatné zprávy. Konkrétním uživatelům můžete dát přístup zdarma.",
     "allDisabled": "Všechny zprávy jsou nyní vypnuté. Nové jsou ve výchozím nastavení blokované."
+  },
+  "editPost": {
+    "mediaPermission": "Je vyžadováno oprávnění k mediální knihovně",
+    "fileSwapping": "Nový soubor nahrán — vymění se, jakmile skončí zpracování",
+    "titleTooShort": "Název musí mít alespoň 3 znaky",
+    "descTooShort": "Popis musí mít alespoň 3 znaky",
+    "updated": "Příspěvek aktualizován",
+    "titlePlaceholder": "Název příspěvku",
+    "descPlaceholder": "Popis příspěvku"
   }
 }

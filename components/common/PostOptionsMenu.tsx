@@ -529,8 +529,8 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {!!onSendToDm && (
             <OptionRow
               icon="send-outline"
-              label="Send to DM"
-              sublabel="Share this post in a conversation"
+              label={t("postOptions.sendToDm")}
+              sublabel={t("postOptions.sendToDmDesc")}
               onPress={() => { onClose(); setTimeout(() => onSendToDm(), 300); }}
             />
           )}
@@ -583,8 +583,8 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               {!!onBoostPress && tokenId != null && (
                 <OptionRow
                   icon="rocket-outline"
-                  label="Boost post"
-                  sublabel="Put it at the top of the home feed"
+                  label={t("feedCard.boostPost")}
+                  sublabel={t("postOptions.boostPostDesc")}
                   onPress={() => { onClose(); setTimeout(() => onBoostPress(), 300); }}
                 />
               )}
@@ -593,8 +593,8 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               {postStatus === "signed" && tokenId != null && (
                 <OptionRow
                   icon="diamond-outline"
-                  label="Mint post"
-                  sublabel="Publish this post on-chain"
+                  label={t("upload.mintPost")}
+                  sublabel={t("postOptions.mintPostDesc")}
                   loading={isMinting}
                   onPress={() => {
                     mintExisting(Number(tokenId), postChainId ?? defaultChainId).then(
@@ -626,8 +626,8 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               {!!onGiftBoostPress && tokenId != null && (
                 <OptionRow
                   icon="gift-outline"
-                  label="Gift a boost"
-                  sublabel="Spend one of yours on this post"
+                  label={t("postOptions.giftBoost")}
+                  sublabel={t("postOptions.giftBoostDesc")}
                   onPress={() => { onClose(); setTimeout(() => onGiftBoostPress(), 300); }}
                 />
               )}

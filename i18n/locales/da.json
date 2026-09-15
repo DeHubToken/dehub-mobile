@@ -926,7 +926,13 @@
     "unpinPost": "Fjern fastgørelse fra din profil",
     "postPinned": "Fastgjort til din profil",
     "postUnpinned": "Ikke fastgjort fra din profil",
-    "pinFailed": "Kunne ikke fastgøre eller frigøre dette indlæg"
+    "pinFailed": "Kunne ikke fastgøre eller frigøre dette indlæg",
+    "sendToDm": "Send i DM",
+    "sendToDmDesc": "Del dette opslag i en samtale",
+    "boostPostDesc": "Læg det øverst i hjemmefeedet",
+    "mintPostDesc": "Udgiv dette opslag on-chain",
+    "giftBoost": "Giv et boost",
+    "giftBoostDesc": "Brug et af dine på dette opslag"
   },
   "filters": {
     "sort": "Sorter",
@@ -3791,5 +3797,14 @@
     "perMessageFee": "Gebyr pr. besked (DHB)",
     "perMessageFeeSub": "Opkræv pr. besked. Sæt til 0 for gratis DM'er. Du kan give bestemte brugere gratis adgang.",
     "allDisabled": "Alle DM'er er slået fra lige nu. Nye DM'er blokeres som standard."
+  },
+  "editPost": {
+    "mediaPermission": "Der kræves tilladelse til mediebiblioteket",
+    "fileSwapping": "Ny fil uploadet — den skiftes ind, når behandlingen er færdig",
+    "titleTooShort": "Titlen skal være mindst 3 tegn",
+    "descTooShort": "Beskrivelsen skal være mindst 3 tegn",
+    "updated": "Opslag opdateret",
+    "titlePlaceholder": "Opslagstitel",
+    "descPlaceholder": "Opslagsbeskrivelse"
   }
 }

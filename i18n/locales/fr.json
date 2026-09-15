@@ -1088,7 +1088,13 @@
     "unpinPost": "Désépingler de votre profil",
     "postPinned": "Épinglé à votre profil",
     "postUnpinned": "Désépinglé de votre profil",
-    "pinFailed": "Impossible d'épingler ou de désépingler cette publication"
+    "pinFailed": "Impossible d'épingler ou de désépingler cette publication",
+    "sendToDm": "Envoyer en message",
+    "sendToDmDesc": "Partagez cette publication dans une conversation",
+    "boostPostDesc": "Placez-la en haut du fil d'accueil",
+    "mintPostDesc": "Publiez cette publication on-chain",
+    "giftBoost": "Offrir un boost",
+    "giftBoostDesc": "Dépensez l'un des vôtres sur cette publication"
   },
   "filters": {
     "sort": "Trier",
@@ -3861,5 +3867,14 @@
     "perMessageFee": "Frais par message (DHB)",
     "perMessageFeeSub": "Facturez par message. Mettez 0 pour des messages gratuits. Vous pouvez accorder un accès gratuit à certains utilisateurs.",
     "allDisabled": "Tous les messages sont actuellement désactivés. Les nouveaux sont bloqués par défaut."
+  },
+  "editPost": {
+    "mediaPermission": "L'autorisation d'accès à la médiathèque est requise",
+    "fileSwapping": "Nouveau fichier envoyé — il remplacera l'ancien une fois le traitement terminé",
+    "titleTooShort": "Le titre doit contenir au moins 3 caractères",
+    "descTooShort": "La description doit contenir au moins 3 caractères",
+    "updated": "Publication mise à jour",
+    "titlePlaceholder": "Titre de la publication",
+    "descPlaceholder": "Description de la publication"
   }
 }

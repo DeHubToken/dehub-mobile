@@ -925,7 +925,13 @@
     "unpinPost": "Ta bort fästet från din profil",
     "postPinned": "Fäst i din profil",
     "postUnpinned": "Frigjord från din profil",
-    "pinFailed": "Det gick inte att fästa eller ta bort det här inlägget"
+    "pinFailed": "Det gick inte att fästa eller ta bort det här inlägget",
+    "sendToDm": "Skicka i DM",
+    "sendToDmDesc": "Dela det här inlägget i en konversation",
+    "boostPostDesc": "Lägg det överst i startflödet",
+    "mintPostDesc": "Publicera det här inlägget on-chain",
+    "giftBoost": "Ge bort en boost",
+    "giftBoostDesc": "Använd en av dina på det här inlägget"
   },
   "filters": {
     "sort": "Sortera",
@@ -3791,5 +3797,14 @@
     "perMessageFee": "Avgift per meddelande (DHB)",
     "perMessageFeeSub": "Ta betalt per meddelande. Sätt 0 för gratis DM. Du kan ge enskilda användare gratis åtkomst.",
     "allDisabled": "Alla DM är avstängda just nu. Nya DM blockeras som standard."
+  },
+  "editPost": {
+    "mediaPermission": "Behörighet till mediebiblioteket krävs",
+    "fileSwapping": "Ny fil uppladdad — den byts in när bearbetningen är klar",
+    "titleTooShort": "Titeln måste vara minst 3 tecken",
+    "descTooShort": "Beskrivningen måste vara minst 3 tecken",
+    "updated": "Inlägget uppdaterat",
+    "titlePlaceholder": "Inläggstitel",
+    "descPlaceholder": "Inläggsbeskrivning"
   }
 }

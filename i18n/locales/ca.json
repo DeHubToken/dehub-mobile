@@ -716,7 +716,13 @@
     "unpinPost": "Desenllaça el teu perfil",
     "postPinned": "S'ha fixat al teu perfil",
     "postUnpinned": "S'ha desvinculat del teu perfil",
-    "pinFailed": "No s'ha pogut fixar ni desanclar aquesta publicació"
+    "pinFailed": "No s'ha pogut fixar ni desanclar aquesta publicació",
+    "sendToDm": "Envia per missatge",
+    "sendToDmDesc": "Comparteix aquesta publicació en una conversa",
+    "boostPostDesc": "Posa-la a dalt del canal d'inici",
+    "mintPostDesc": "Publica aquesta publicació a la cadena",
+    "giftBoost": "Regala un impuls",
+    "giftBoostDesc": "Gasta un dels teus en aquesta publicació"
   },
   "filters": {
     "sort": "Ordenar",
@@ -3787,5 +3793,14 @@
     "perMessageFee": "Tarifa per missatge (DHB)",
     "perMessageFeeSub": "Cobra per missatge. Posa 0 per a missatges gratuïts. Pots donar accés gratuït a usuaris concrets.",
     "allDisabled": "Ara mateix tots els missatges estan desactivats. Els nous es bloquegen per defecte."
+  },
+  "editPost": {
+    "mediaPermission": "Cal permís per a la biblioteca multimèdia",
+    "fileSwapping": "Fitxer nou penjat: se substituirà quan acabi el processament",
+    "titleTooShort": "El títol ha de tenir com a mínim 3 caràcters",
+    "descTooShort": "La descripció ha de tenir com a mínim 3 caràcters",
+    "updated": "Publicació actualitzada",
+    "titlePlaceholder": "Títol de la publicació",
+    "descPlaceholder": "Descripció de la publicació"
   }
 }

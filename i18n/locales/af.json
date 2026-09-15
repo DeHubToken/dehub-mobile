@@ -1517,7 +1517,13 @@
     "unpinPost": "Ontkoppel van jou profiel",
     "postPinned": "Vasgepen op jou profiel",
     "postUnpinned": "Ongestemd van jou profiel",
-    "pinFailed": "Kon nie hierdie plasing vaspen of ontgin nie"
+    "pinFailed": "Kon nie hierdie plasing vaspen of ontgin nie",
+    "sendToDm": "Stuur na DM",
+    "sendToDmDesc": "Deel hierdie plasing in 'n gesprek",
+    "boostPostDesc": "Sit dit boaan die tuisstroom",
+    "mintPostDesc": "Publiseer hierdie plasing op die ketting",
+    "giftBoost": "Skenk 'n hupstoot",
+    "giftBoostDesc": "Bestee een van joune op hierdie plasing"
   },
   "filters": {
     "sort": "Sort",
@@ -3904,5 +3910,14 @@
     "perMessageFee": "Fooi per boodskap (DHB)",
     "perMessageFeeSub": "Hef 'n fooi per boodskap. Stel op 0 vir gratis DM's. Jy kan spesifieke gebruikers gratis toegang gee.",
     "allDisabled": "Alle DM's is tans af. Nuwe DM's word by verstek geblokkeer."
+  },
+  "editPost": {
+    "mediaPermission": "Toestemming vir die medialibrary word vereis",
+    "fileSwapping": "Nuwe lêer opgelaai — dit sal inruil sodra verwerking klaar is",
+    "titleTooShort": "Die titel moet minstens 3 karakters wees",
+    "descTooShort": "Die beskrywing moet minstens 3 karakters wees",
+    "updated": "Plasing bygewerk",
+    "titlePlaceholder": "Plasingstitel",
+    "descPlaceholder": "Plasingbeskrywing"
   }
 }

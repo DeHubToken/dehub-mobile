@@ -707,7 +707,13 @@
     "unpinPost": "Ka saar astaantaada",
     "postPinned": "Ku dheji astaantaada",
     "postUnpinned": "La 'aan ka timid astaantaada",
-    "pinFailed": "Can 't pin or unpin this post"
+    "pinFailed": "Can 't pin or unpin this post",
+    "sendToDm": "U dir DM",
+    "sendToDmDesc": "La wadaag qoraalkan wada-hadal",
+    "boostPostDesc": "Dhig meesha ugu sarreysa bogga guriga",
+    "mintPostDesc": "Ku daabac qoraalkan chain-ka",
+    "giftBoost": "Hadiyad u dhiib boost",
+    "giftBoostDesc": "Mid kaaga ah ku bixi qoraalkan"
   },
   "filters": {
     "sort": "Kala sooc",
@@ -3778,5 +3784,14 @@
     "perMessageFee": "Khidmad fariin kasta (DHB)",
     "perMessageFeeSub": "Fariin kasta khidmad ka qaado. U dhig 0 DM bilaash ah. Waxaad siin kartaa isticmaaleyaal gaar ah gelitaan bilaash ah.",
     "allDisabled": "Dhammaan DM-yada hadda waa la damiyay. DM cusub si caadi ah ayaa loo xannibay."
+  },
+  "editPost": {
+    "mediaPermission": "Waxaa loo baahan yahay ogolaanshaha maktabadda warbaahinta",
+    "fileSwapping": "Fayl cusub waa la soo geliyay — wuu beddelmi doonaa marka habaynta dhammaato",
+    "titleTooShort": "Cinwaanku waa inuu ugu yaraan 3 xaraf yahay",
+    "descTooShort": "Sharaxaadu waa inuu ugu yaraan 3 xaraf yahay",
+    "updated": "Qoraalka waa la cusbooneysiiyay",
+    "titlePlaceholder": "Cinwaanka qoraalka",
+    "descPlaceholder": "Sharaxaadda qoraalka"
   }
 }

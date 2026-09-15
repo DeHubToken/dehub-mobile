@@ -668,7 +668,13 @@
     "unpinPost": "I-unpin mula sa iyong profile",
     "postPinned": "Ipinapakita sa iyong profile",
     "postUnpinned": "Hindi nagpinapakita mula sa iyong profile",
-    "pinFailed": "Наметавонам ин постро PIN кунам ё ғайри фаъол созам"
+    "pinFailed": "Наметавонам ин постро PIN кунам ё ғайри фаъол созам",
+    "sendToDm": "Ба паёми шахсӣ фиристед",
+    "sendToDmDesc": "Ин паёмро дар сӯҳбат мубодила кунед",
+    "boostPostDesc": "Онро дар болои лентаи асосӣ гузоред",
+    "mintPostDesc": "Ин паёмро дар занҷир нашр кунед",
+    "giftBoost": "Бустро тӯҳфа кунед",
+    "giftBoostDesc": "Яке аз они худро барои ин паём сарф кунед"
   },
   "filters": {
     "sort": "Мураттаб",
@@ -3765,5 +3771,14 @@
     "perMessageFee": "Ҳаққи ҳар паём (DHB)",
     "perMessageFeeSub": "Барои ҳар паём ҳақ гиред. Барои паёмҳои ройгон 0 гузоред. Ба баъзе корбарон дастрасии ройгон дода метавонед.",
     "allDisabled": "Ҳоло ҳамаи паёмҳо хомӯшанд. Паёмҳои нав пешфарз манъ мешаванд."
+  },
+  "editPost": {
+    "mediaPermission": "Иҷозати китобхонаи медиа лозим аст",
+    "fileSwapping": "Файли нав боргузорӣ шуд — пас аз анҷоми коркард иваз мешавад",
+    "titleTooShort": "Сарлавҳа бояд ҳадди ақал 3 аломат бошад",
+    "descTooShort": "Тавсиф бояд ҳадди ақал 3 аломат бошад",
+    "updated": "Паём нав карда шуд",
+    "titlePlaceholder": "Сарлавҳаи паём",
+    "descPlaceholder": "Тавсифи паём"
   }
 }

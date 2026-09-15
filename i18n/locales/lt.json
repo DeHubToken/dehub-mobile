@@ -715,7 +715,13 @@
     "unpinPost": "Atsekti nuo savo profilio",
     "postPinned": "Prisegta prie jūsų profilio",
     "postUnpinned": "Atsegta nuo jūsų profilio",
-    "pinFailed": "Nepavyko prisegti arba atsegti šio įrašo"
+    "pinFailed": "Nepavyko prisegti arba atsegti šio įrašo",
+    "sendToDm": "Siųsti į žinutę",
+    "sendToDmDesc": "Bendrinkite šį įrašą pokalbyje",
+    "boostPostDesc": "Įkelkite jį į pagrindinio srauto viršų",
+    "mintPostDesc": "Paskelbkite šį įrašą grandinėje",
+    "giftBoost": "Padovanoti pastiprinimą",
+    "giftBoostDesc": "Išleiskite vieną savo šiam įrašui"
   },
   "filters": {
     "sort": "Rūšiuoti",
@@ -3786,5 +3792,14 @@
     "perMessageFee": "Mokestis už žinutę (DHB)",
     "perMessageFeeSub": "Imkite mokestį už žinutę. Nustatykite 0 nemokamoms žinutėms. Konkretiems naudotojams galite suteikti nemokamą prieigą.",
     "allDisabled": "Šiuo metu visos žinutės išjungtos. Naujos pagal numatytuosius nustatymus blokuojamos."
+  },
+  "editPost": {
+    "mediaPermission": "Reikalingas medijos bibliotekos leidimas",
+    "fileSwapping": "Naujas failas įkeltas — bus pakeistas, kai baigsis apdorojimas",
+    "titleTooShort": "Pavadinimą turi sudaryti bent 3 simboliai",
+    "descTooShort": "Aprašymą turi sudaryti bent 3 simboliai",
+    "updated": "Įrašas atnaujintas",
+    "titlePlaceholder": "Įrašo pavadinimas",
+    "descPlaceholder": "Įrašo aprašymas"
   }
 }

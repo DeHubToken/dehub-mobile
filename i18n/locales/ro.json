@@ -923,7 +923,13 @@
     "unpinPost": "Anulează fixarea din profilul tău",
     "postPinned": "Fixat la profilul tău",
     "postUnpinned": "S-a deconectat de la profilul tău",
-    "pinFailed": "Nu s-a putut fixa sau anula fixarea acestei postări"
+    "pinFailed": "Nu s-a putut fixa sau anula fixarea acestei postări",
+    "sendToDm": "Trimite în mesaj",
+    "sendToDmDesc": "Distribuie această postare într-o conversație",
+    "boostPostDesc": "Pune-o în capul fluxului principal",
+    "mintPostDesc": "Publică această postare on-chain",
+    "giftBoost": "Oferă un boost",
+    "giftBoostDesc": "Folosește unul dintre ale tale pe această postare"
   },
   "filters": {
     "sort": "Sort",
@@ -3800,5 +3806,14 @@
     "perMessageFee": "Taxă pe mesaj (DHB)",
     "perMessageFeeSub": "Percepe o taxă pe mesaj. Setează 0 pentru mesaje gratuite. Poți acorda acces gratuit anumitor utilizatori.",
     "allDisabled": "Toate mesajele sunt momentan dezactivate. Cele noi sunt blocate implicit."
+  },
+  "editPost": {
+    "mediaPermission": "Este necesară permisiunea pentru biblioteca media",
+    "fileSwapping": "Fișier nou încărcat — va fi schimbat după ce se termină procesarea",
+    "titleTooShort": "Titlul trebuie să aibă cel puțin 3 caractere",
+    "descTooShort": "Descrierea trebuie să aibă cel puțin 3 caractere",
+    "updated": "Postare actualizată",
+    "titlePlaceholder": "Titlul postării",
+    "descPlaceholder": "Descrierea postării"
   }
 }
