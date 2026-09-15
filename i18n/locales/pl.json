@@ -3291,5 +3291,12 @@
     "needGas": "Potrzebujesz natywnego {{token}} na gaz w sieci {{chain}}.",
     "bridging": "Przesyłanie mostem…",
     "bridgeAction": "Most {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Twoje konto jest zablokowane",
+    "body": "Nadal możesz się zalogować, przeczytać swój kanał, otworzyć wiadomości i zobaczyć wszystko na swoim koncie. Nie możesz publikować, komentować, reagować, obserwować ani wysyłać wiadomości.",
+    "line": "Twoje konto jest zablokowane, więc nie możesz publikować, komentować ani wysyłać wiadomości.",
+    "reason": "Powód: {{reason}}",
+    "deleteAccount": "Usuń swoje konto i dane"
   }
 }

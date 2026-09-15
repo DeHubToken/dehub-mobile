@@ -3223,5 +3223,12 @@
     "needGas": "Cal {{token}} natiu per al gas a {{chain}}.",
     "bridging": "S'està fent el pont…",
     "bridgeAction": "Pont {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "El teu compte està bloquejat",
+    "body": "Encara pots iniciar la sessió, llegir el teu feed, obrir els missatges i veure-ho tot al teu compte. No pots publicar, comentar, reaccionar, seguir ni enviar missatges.",
+    "line": "El teu compte està bloquejat, per la qual cosa no pots publicar, comentar ni enviar missatges.",
+    "reason": "Motiu: {{reason}}",
+    "deleteAccount": "Elimina el teu compte i les teves dades"
   }
 }

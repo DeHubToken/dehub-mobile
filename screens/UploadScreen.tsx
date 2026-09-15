@@ -47,6 +47,8 @@ import { defaultChainId } from "../config/constants";
 import { toastError, toastSuccess, toastWithAction } from "../libs/toast";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { useUser, useAuthActions, useProvider } from "../context/AuthContext";
+import { useBannedAccount } from "../hooks/useBannedAccount";
+import { BannedAccountNotice } from "../components/common/BannedAccountNotice";
 import { useWeb3Provider } from "../hooks/use-web3";
 import ChainSelector, { EVM_CHAINS } from "../components/common/ChainSelector";
 import { isChainAASupported, isSmartAccountIdentity } from "../libs/wallet-core/smart-account";
@@ -169,6 +171,7 @@ export default function UploadScreen() {
   const incomingQuotedPost = route.params?.quotedPost as Record<string, any> | undefined;
   const incomingInitialText = route.params?.initialText;
   const authUser = useUser();
+  const { isBanned: accountBanned } = useBannedAccount();
   const imageLimit = getPostImageLimitForBadge(
     authUser?.badgeBalance,
     authUser?.username,
@@ -1857,6 +1860,17 @@ export default function UploadScreen() {
   // 0 when the keyboard is down: this screen already ends above the home
   // indicator, so padding by insets.bottom again left a dead strip.
   const bottomPad = kbLift;
+
+  // A banned account reads every post on DeHub and writes none of them. The
+  // API refuses the mint either way; showing the composer first would only
+  // mean losing whatever was typed into it.
+  if (accountBanned) {
+    return (
+      <View className="flex-1 bg-theme-background justify-center px-6">
+        <BannedAccountNotice />
+      </View>
+    );
+  }
 
   return (
     <View className="flex-1 bg-theme-background">{/* don't add top inset */}

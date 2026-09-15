@@ -62,6 +62,8 @@ import { getNFT } from "../../services/nft.service";
 import { useQuery } from "@tanstack/react-query";
 import type { PostCreator } from "../../libs/impersonation";
 import type { PostReaction } from "../../libs/reactions";
+import { useBannedAccount } from "../../hooks/useBannedAccount";
+import { BannedAccountNotice } from "../common/BannedAccountNotice";
 
 // Extended comment type for flat list with reply info
 interface FlatComment extends Comment {
@@ -134,6 +136,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   keyboardHandled = false,
 }) => {
   const user = useUser();
+  const { isBanned: accountBanned } = useBannedAccount();
   const { requireAuth } = useAuthActions();
   const { showUserProfile } = useUserProfileSheet();
   const inputRef = useRef<TextInput>(null);
@@ -1265,7 +1268,13 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           loading={mentions.loading}
         />
 
-        {commentsDisabled ? (
+        {/* A banned account reads every comment on DeHub and writes none of
+           them. The API refuses the write either way. */}
+        {accountBanned ? (
+          <View style={{ padding: COMPOSER.gutter }}>
+            <BannedAccountNotice variant="line" />
+          </View>
+        ) : commentsDisabled ? (
           <View
             className="flex-row items-center justify-center"
             style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter, minHeight: COMPOSER.control + COMPOSER.gutter * 2 }}

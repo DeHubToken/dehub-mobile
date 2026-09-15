@@ -3292,5 +3292,12 @@
     "needGas": "Für Gas auf {{chain}} wird natives {{token}} benötigt.",
     "bridging": "Wird überbrückt…",
     "bridgeAction": "Bridge {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Dein Konto ist gesperrt",
+    "body": "Du kannst dich weiterhin anmelden, deinen Feed lesen, deine Nachrichten öffnen und alles in deinem Konto sehen. Sie können keine Nachrichten posten, kommentieren, reagieren, folgen oder senden.",
+    "line": "Ihr Konto ist gesperrt, sodass Sie keine Nachrichten posten, kommentieren oder senden können.",
+    "reason": "Grund: {{reason}}",
+    "deleteAccount": "Löschen Sie Ihr Konto und Ihre Daten"
   }
 }

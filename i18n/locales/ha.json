@@ -3213,5 +3213,12 @@
     "needGas": "Kana buƙatar {{token}} na asali don gas a kan {{chain}}.",
     "bridging": "Ana gadar…",
     "bridgeAction": "Gada {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "An haramta asusunka",
+    "body": "Har yanzu zaku iya shiga ciki, karanta abincin ku, buɗe saƙonninku kuma ku ga komai akan asusunku. Ba za ku iya aikawa ba, sharhi, amsawa, bi ko aika saƙonni.",
+    "line": "An haramta asusunka, don haka ba za ku iya aikawa ba, sharhi ko aika saƙonni.",
+    "reason": "Dalili: {{reason}}",
+    "deleteAccount": "Share asusunka da bayanan ku"
   }
 }

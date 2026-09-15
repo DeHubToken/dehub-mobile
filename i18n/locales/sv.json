@@ -3227,5 +3227,12 @@
     "needGas": "Du behöver native {{token}} för gas på {{chain}}.",
     "bridging": "Bryggar…",
     "bridgeAction": "Brygga {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Ditt konto är spärrat",
+    "body": "Du kan fortfarande logga in, läsa ditt flöde, öppna dina meddelanden och se allt på ditt konto. Du kan inte publicera, kommentera, reagera, följa eller skicka meddelanden.",
+    "line": "Ditt konto är spärrat, så du kan inte lägga upp, kommentera eller skicka meddelanden.",
+    "reason": "Orsak: {{reason}}",
+    "deleteAccount": "Radera ditt konto och dina data"
   }
 }

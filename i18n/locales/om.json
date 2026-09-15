@@ -3287,5 +3287,12 @@
     "needGas": "{{chain}} irratti gaazii kaffaluuf {{token}} dhalootaa barbaachisa.",
     "bridging": "Riqicha keessa dabarsaa jira…",
     "bridgeAction": "Riqicha {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Akkaawuntii keessan dhorkameera",
+    "body": "Ammas seenuu, feed kee dubbisuu, ergaawwan kee banuu fi waan hunda akkaawuntii kee irratti arguu dandeessa. Maxxansuu, yaada kennuu, deebii kennuu, hordofuu ykn ergaa erguu hin dandeessan.",
+    "line": "Akkaawuntii keessan dhorkamee waan jiruuf maxxansuu, yaada kennuu ykn ergaa erguu hin dandeessan.",
+    "reason": "Sababni: {{reason}}",
+    "deleteAccount": "Akkaawuntii fi daataa keessan haqi"
   }
 }

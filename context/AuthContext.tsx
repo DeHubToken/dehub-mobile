@@ -123,6 +123,17 @@ export interface User {
    */
   showMatureContent?: boolean;
   /**
+   * This account is banned. A ban on DeHub is read-only, not locked-out: the
+   * account keeps its sign-in, its feed, its conversations and its data until
+   * the person asks for it to be deleted, and loses posting, commenting,
+   * reacting, following and messaging. The API refuses every write with
+   * `403 ACCOUNT_BANNED`; this is what lets the app say so first.
+   */
+  isBanned?: boolean;
+  /** The moderator reason, on the signed-in account only. */
+  bannedReason?: string | null;
+  bannedAt?: string | null;
+  /**
    * Free-form profile settings blob returned by the account endpoints. Web
    * keeps follow visibility (`followVisibility`), default post visibility
    * (`defaultPostVisibility`) and default profile tab (`defaultProfileTab`) in

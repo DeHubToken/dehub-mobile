@@ -3491,5 +3491,12 @@
     "needGas": "Je hebt native {{token}} nodig voor gas op {{chain}}.",
     "bridging": "Bezig met bridgen…",
     "bridgeAction": "Bridge {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Je account is geblokkeerd",
+    "body": "Je kunt nog steeds inloggen, je feed lezen, je berichten openen en alles in je account bekijken. U kunt geen berichten plaatsen, reageren, volgen of verzenden.",
+    "line": "Je account is geblokkeerd, dus je kunt geen berichten plaatsen, reageren of verzenden.",
+    "reason": "Reden: {{reason}}",
+    "deleteAccount": "Je account en gegevens verwijderen"
   }
 }

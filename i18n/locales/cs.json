@@ -3227,5 +3227,12 @@
     "needGas": "Na {{chain}} je potřeba nativní {{token}} na poplatky.",
     "bridging": "Probíhá převod…",
     "bridgeAction": "Most {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Tvůj účet je zablokován",
+    "body": "Stále se můžete přihlásit, přečíst si svůj kanál, otevřít zprávy a zobrazit vše, co je na vašem účtu. Nemůžete zveřejňovat, komentovat, reagovat, sledovat nebo odesílat zprávy.",
+    "line": "Váš účet je zablokován, takže nemůžete zveřejňovat, komentovat ani odesílat zprávy.",
+    "reason": "Důvod: {{reason}}",
+    "deleteAccount": "Smazat účet a data"
   }
 }

@@ -3273,5 +3273,12 @@
     "needGas": "Butuh {{token}} asli untuk gas di {{chain}}.",
     "bridging": "Membridge…",
     "bridgeAction": "Bridge {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Akun Anda diblokir",
+    "body": "Anda masih bisa masuk, membaca umpan, membuka pesan, dan melihat semuanya di akun Anda. Anda tidak dapat memposting, berkomentar, bereaksi, mengikuti, atau mengirim pesan.",
+    "line": "Akun Anda diblokir, jadi Anda tidak dapat memposting, berkomentar, atau mengirim pesan.",
+    "reason": "Alasan: {{reason}}",
+    "deleteAccount": "Hapus akun dan data Anda"
   }
 }

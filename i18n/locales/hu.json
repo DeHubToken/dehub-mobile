@@ -3227,5 +3227,12 @@
     "needGas": "Natív {{token}} szükséges a gázdíjhoz a(z) {{chain}} láncon.",
     "bridging": "Áthidalás folyamatban…",
     "bridgeAction": "Áthidalás: {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "A fiókodat letiltottuk",
+    "body": "Továbbra is bejelentkezhetsz, elolvashatod a hírfolyamodat, megnyithatod az üzeneteidet, és mindent megtekinthetsz a fiókodban. Nem tehetsz közzé, kommentelhetsz, reagálhatsz, követhetsz vagy küldhetsz üzeneteket.",
+    "line": "A fiókod ki van tiltva, így nem tehetsz közzé, nem kommentelhetsz és nem küldhetsz üzeneteket.",
+    "reason": "Ok: {{reason}}",
+    "deleteAccount": "Fiókod és adataid törlése"
   }
 }

@@ -3297,5 +3297,12 @@
     "needGas": "Il faut du {{token}} natif pour le gaz sur {{chain}}.",
     "bridging": "Transfert en cours…",
     "bridgeAction": "Pont {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Votre compte est banni",
+    "body": "Vous pouvez toujours vous connecter, lire votre flux, ouvrir vos messages et tout voir sur votre compte. Vous ne pouvez pas publier, commenter, réagir, suivre ou envoyer de messages.",
+    "line": "Votre compte est banni, vous ne pouvez donc pas publier, commenter ou envoyer de messages.",
+    "reason": "Motif : {{reason}}",
+    "deleteAccount": "Supprimer votre compte et vos données"
   }
 }

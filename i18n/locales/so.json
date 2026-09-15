@@ -3214,5 +3214,12 @@
     "needGas": "Waxaad u baahan tahay {{token}} asalka ah oo gaas ah {{chain}}.",
     "bridging": "Waa la buundeynayaa…",
     "bridgeAction": "Buundo {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Koontadaada waa la mamnuucay",
+    "body": "Weli waad iska qori kartaa, akhri quudintaada, fur farriimahaaga oo arag wax walba koontadaada. Ma dhajin kartid, faallo, falcelin, raaci kartid ama farriimo ma diri kartid.",
+    "line": "Koontadaada waa la mamnuucay, sidaa darteed ma dhajin kartid, faallo ama farriin ma diri kartid.",
+    "reason": "Sababta: {{reason}}",
+    "deleteAccount": "Tirtir koontadaada iyo xogtaada"
   }
 }

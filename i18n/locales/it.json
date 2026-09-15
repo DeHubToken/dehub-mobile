@@ -3293,5 +3293,12 @@
     "needGas": "Serve {{token}} nativo per il gas su {{chain}}.",
     "bridging": "Bridging in corso…",
     "bridgeAction": "Bridge {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Il tuo account è stato bannato",
+    "body": "Puoi comunque accedere, leggere il tuo feed, aprire i tuoi messaggi e vedere tutto sul tuo account. Non puoi pubblicare, commentare, reagire, seguire o inviare messaggi.",
+    "line": "Il tuo account è bannato, quindi non puoi pubblicare, commentare o inviare messaggi.",
+    "reason": "Motivo: {{reason}}",
+    "deleteAccount": "Elimina il tuo account e i tuoi dati"
   }
 }

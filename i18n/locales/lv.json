@@ -3222,5 +3222,12 @@
     "needGas": "Ķēdē {{chain}} gāzei nepieciešams vietējais {{token}}.",
     "bridging": "Notiek pārsūtīšana…",
     "bridgeAction": "Tilts {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Jūsu konts ir bloķēts",
+    "body": "Joprojām vari pierakstīties, lasīt plūsmu, atvērt ziņojumus un skatīt visu kontā esošo informāciju. Jūs nevarat publicēt, komentēt, reaģēt, sekot vai sūtīt ziņojumus.",
+    "line": "Jūsu konts ir bloķēts, tāpēc jūs nevarat publicēt, komentēt vai sūtīt ziņojumus.",
+    "reason": "Iemesls: {{reason}}",
+    "deleteAccount": "Konta un datu dzēšana"
   }
 }
