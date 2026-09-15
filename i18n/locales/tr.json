@@ -3764,5 +3764,25 @@
     "rewrite": "Yeniden yaz",
     "lyricsPlaceholder": "Enstrümantal için boş bırakın",
     "lyricsFailed": "Sözler oluşturulamadı"
+  },
+  "assets": {
+    "topUp": "Yükle",
+    "bridge": "Köprü",
+    "comingSoon": "yakında",
+    "title": "Varlıklar",
+    "held": "Elde tutulan",
+    "staked": "Stake edilmiş",
+    "gotIt": "Anladım",
+    "dhbPositionNote": "DHB tüm pozisyonunuzdur — elde tutulan artı stake edilen, Base ve BNB Chain üzerinde. Çoğu genellikle stake hâlindedir, bu yüzden bu sayı şu anda harcayabileceğinizden büyüktür.",
+    "stakedIncludesUnstaking": "Stake edilmiş DHB, çözmeyi talep ettiğiniz ama henüz geri almadığınız miktarı da içerir.",
+    "otherBalancesNote": "Diğer bakiyeleriniz yalnızca {{network}} üzerinde ({{chainId}} zinciri). {{gas}} gas bakiyenizdir. Değerler birkaç saniye gecikebilir. Burada kullanmak için varlıkları {{network}} ağına aktarın.",
+    "subscriptionEarnings": "Abonelik kazançları",
+    "withdrawableOnBase": "Base üzerinde çekilebilir",
+    "pendingTreasury": "USDT cinsinden · hazine rezervi bekleniyor",
+    "cashOut": "Paraya çevir",
+    "withdrawing": "Çekiliyor…",
+    "usdtSent": "{{amount}} USDT gönderildi",
+    "withdrawableSoon": "Abonelik ücretleri yakında çekilebilir olacak",
+    "dpayBaseOnly": "Dpay yalnızca Base üzerinde kullanılabilir."
   }
 }

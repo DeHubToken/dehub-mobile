@@ -3881,5 +3881,25 @@
     "rewrite": "Isulat muli",
     "lyricsPlaceholder": "Iwanang blangko para sa instrumental",
     "lyricsFailed": "Hindi makabuo ng liriko"
+  },
+  "assets": {
+    "topUp": "Mag-top up",
+    "bridge": "Bridge",
+    "comingSoon": "malapit na",
+    "title": "Mga asset",
+    "held": "Hawak",
+    "staked": "Naka-stake",
+    "gotIt": "Nakuha ko",
+    "dhbPositionNote": "Ang DHB ang buong posisyon mo — hawak at naka-stake, sa Base at BNB Chain. Karaniwang naka-stake ang malaking bahagi, kaya mas malaki ito kaysa sa kayang mong gastusin ngayon.",
+    "stakedIncludesUnstaking": "Kasama sa naka-stake na DHB ang anumang hiniling mong i-unstake pero hindi mo pa natatanggap pabalik.",
+    "otherBalancesNote": "Nasa {{network}} (chain {{chainId}}) lang ang iba mong balanse. Ang {{gas}} ang gas balance mo. Puwedeng ma-delay ng ilang segundo ang halaga. Mag-bridge o maglipat ng asset sa {{network}} para magamit dito.",
+    "subscriptionEarnings": "Kita mula sa subscription",
+    "withdrawableOnBase": "Puwedeng i-withdraw sa Base",
+    "pendingTreasury": "Nakasukat sa USDT · naghihintay ng treasury reserve",
+    "cashOut": "Mag-cash out",
+    "withdrawing": "Nagwi-withdraw…",
+    "usdtSent": "Naipadala ang {{amount}} USDT",
+    "withdrawableSoon": "Malapit nang mai-withdraw ang bayad sa subscription",
+    "dpayBaseOnly": "Available lang ang Dpay sa Base."
   }
 }

@@ -3700,5 +3700,25 @@
     "rewrite": "دوبارہ لکھیں",
     "lyricsPlaceholder": "صرف میوزک کے لیے خالی چھوڑیں",
     "lyricsFailed": "بول نہیں بن سکے"
+  },
+  "assets": {
+    "topUp": "ٹاپ اپ",
+    "bridge": "برج",
+    "comingSoon": "جلد",
+    "title": "اثاثے",
+    "held": "رکھا ہوا",
+    "staked": "اسٹیک شدہ",
+    "gotIt": "سمجھ گیا",
+    "dhbPositionNote": "DHB آپ کی پوری پوزیشن ہے — رکھا ہوا اور اسٹیک شدہ، Base اور BNB Chain دونوں پر۔ زیادہ تر عام طور پر اسٹیک ہوتا ہے، اس لیے یہ اس سے بڑا ہے جو آپ ابھی خرچ کر سکتے ہیں۔",
+    "stakedIncludesUnstaking": "اسٹیک شدہ DHB میں وہ بھی شامل ہے جو آپ نے اَن اسٹیک کرنے کو کہا مگر ابھی واپس نہیں ملا۔",
+    "otherBalancesNote": "آپ کے باقی بیلنس صرف {{network}} (چین {{chainId}}) پر ہیں۔ {{gas}} آپ کا گیس بیلنس ہے۔ قدریں چند سیکنڈ پیچھے ہو سکتی ہیں۔ یہاں استعمال کے لیے اثاثے {{network}} پر منتقل کریں۔",
+    "subscriptionEarnings": "سبسکرپشن آمدنی",
+    "withdrawableOnBase": "Base پر نکالنے کے لیے دستیاب",
+    "pendingTreasury": "USDT میں · ٹریژری ریزرو کا انتظار",
+    "cashOut": "کیش آؤٹ",
+    "withdrawing": "نکالا جا رہا ہے…",
+    "usdtSent": "{{amount}} USDT بھیج دیے گئے",
+    "withdrawableSoon": "سبسکرپشن فیس جلد نکالی جا سکے گی",
+    "dpayBaseOnly": "Dpay صرف Base پر دستیاب ہے۔"
   }
 }

@@ -3660,5 +3660,25 @@
     "rewrite": "Tulis maneh",
     "lyricsPlaceholder": "Kosongake kanggo lagu instrumental",
     "lyricsFailed": "Gagal nggawe lirik"
+  },
+  "assets": {
+    "topUp": "Isi ulang",
+    "bridge": "Kreteg",
+    "comingSoon": "bakal teka",
+    "title": "Aset",
+    "held": "Dicekel",
+    "staked": "Di-staking",
+    "gotIt": "Ngerti",
+    "dhbPositionNote": "DHB iku kabeh posisimu — sing dicekel lan sing di-staking, ing Base lan BNB Chain. Umume biasane di-staking, dadi angka iki luwih gedhe tinimbang sing bisa mbok belanjakake saiki.",
+    "stakedIncludesUnstaking": "DHB sing di-staking kalebu kabeh sing wis mbok jaluk di-unstake nanging durung mbok tampa maneh.",
+    "otherBalancesNote": "Saldo liyane mung ana ing {{network}} (chain {{chainId}}). {{gas}} iku saldo gas sampeyan. Nilai bisa telat sawetara detik. Bridge utawa transfer aset menyang {{network}} supaya bisa dienggo ing kene.",
+    "subscriptionEarnings": "Pemasukan langganan",
+    "withdrawableOnBase": "Bisa ditarik ing Base",
+    "pendingTreasury": "Ing USDT · ngenteni cadangan kas",
+    "cashOut": "Tarik dana",
+    "withdrawing": "Narik dana…",
+    "usdtSent": "{{amount}} USDT wis dikirim",
+    "withdrawableSoon": "Ragad langganan bakal bisa ditarik ora suwe maneh",
+    "dpayBaseOnly": "Dpay mung kasedhiya ing Base."
   }
 }

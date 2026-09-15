@@ -3652,5 +3652,25 @@
     "rewrite": "بیا ولیکئ",
     "lyricsPlaceholder": "د یوازې موسیقۍ لپاره یې خالي پرېږدئ",
     "lyricsFailed": "متن جوړ نشو"
+  },
+  "assets": {
+    "topUp": "ډکول",
+    "bridge": "پل",
+    "comingSoon": "ژر راځي",
+    "title": "شتمنۍ",
+    "held": "ساتل شوی",
+    "staked": "سټیک شوی",
+    "gotIt": "پوه شوم",
+    "dhbPositionNote": "DHB ستاسو ټوله موقعیت دی — ساتل شوی او سټیک شوی، په Base او BNB Chain دواړو کې. ډیری یې معمولاً سټیک وي، نو دا شمېره له هغې لویه ده چې تاسو یې اوس لګولی شئ.",
+    "stakedIncludesUnstaking": "سټیک شوی DHB هغه څه هم رانغاړي چې تاسو یې د ایستلو غوښتنه کړې خو تر اوسه مو بیرته نه دي ترلاسه کړي.",
+    "otherBalancesNote": "ستاسو نور بیلانسونه یوازې په {{network}} (زنځیر {{chainId}}) کې دي. {{gas}} ستاسو د ګاز بیلانس دی. ارزښتونه ښایي څو ثانیې وروسته وي. دلته د کارولو لپاره شتمنۍ {{network}} ته ولیږدوئ.",
+    "subscriptionEarnings": "د ګډون عاید",
+    "withdrawableOnBase": "په Base کې د ایستلو وړ",
+    "pendingTreasury": "په USDT کې · د خزانې ذخیرې ته په تمه",
+    "cashOut": "پیسې وباسئ",
+    "withdrawing": "ایستل کیږي…",
+    "usdtSent": "{{amount}} USDT ولېږل شو",
+    "withdrawableSoon": "د ګډون فیسونه به ژر د ایستلو وړ شي",
+    "dpayBaseOnly": "Dpay یوازې په Base کې شتون لري."
   }
 }

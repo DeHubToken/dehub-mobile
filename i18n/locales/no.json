@@ -3692,5 +3692,25 @@
     "rewrite": "Skriv om",
     "lyricsPlaceholder": "La stå tomt for et instrumentalspor",
     "lyricsFailed": "Klarte ikke å lage teksten"
+  },
+  "assets": {
+    "topUp": "Fyll på",
+    "bridge": "Bro",
+    "comingSoon": "kommer snart",
+    "title": "Eiendeler",
+    "held": "Holdt",
+    "staked": "Staket",
+    "gotIt": "Forstått",
+    "dhbPositionNote": "DHB er hele posisjonen din — holdt pluss staket, på tvers av Base og BNB Chain. Det meste er vanligvis staket, så dette tallet er større enn det du kan bruke akkurat nå.",
+    "stakedIncludesUnstaking": "Staket DHB inkluderer alt du har bedt om å unstake, men ennå ikke fått tilbake.",
+    "otherBalancesNote": "De andre saldoene dine er kun på {{network}} (kjede {{chainId}}). {{gas}} er gassbalansen din. Verdier kan henge etter noen sekunder. Overfør eiendeler til {{network}} for å bruke dem her.",
+    "subscriptionEarnings": "Abonnementsinntekter",
+    "withdrawableOnBase": "Kan tas ut på Base",
+    "pendingTreasury": "I USDT · venter på treasury-reserve",
+    "cashOut": "Ta ut",
+    "withdrawing": "Tar ut…",
+    "usdtSent": "{{amount}} USDT sendt",
+    "withdrawableSoon": "Abonnementsavgifter kan snart tas ut",
+    "dpayBaseOnly": "Dpay er bare tilgjengelig på Base."
   }
 }

@@ -3965,5 +3965,25 @@
     "rewrite": "Tulis semula",
     "lyricsPlaceholder": "Biarkan kosong untuk lagu instrumental",
     "lyricsFailed": "Gagal menjana lirik"
+  },
+  "assets": {
+    "topUp": "Tambah nilai",
+    "bridge": "Jambatan",
+    "comingSoon": "akan datang",
+    "title": "Aset",
+    "held": "Dipegang",
+    "staked": "Distaking",
+    "gotIt": "Faham",
+    "dhbPositionNote": "DHB ialah keseluruhan kedudukan anda — yang dipegang serta yang distaking, merentasi Base dan BNB Chain. Kebanyakannya biasanya distaking, jadi angka ini lebih besar daripada yang boleh anda belanjakan sekarang.",
+    "stakedIncludesUnstaking": "DHB yang distaking termasuk apa-apa yang anda minta unstake tetapi belum diterima semula.",
+    "otherBalancesNote": "Baki anda yang lain hanya ada di {{network}} (rantaian {{chainId}}). {{gas}} ialah baki gas anda. Nilai mungkin lewat beberapa saat. Bridge atau pindahkan aset ke {{network}} untuk menggunakannya di sini.",
+    "subscriptionEarnings": "Pendapatan langganan",
+    "withdrawableOnBase": "Boleh dikeluarkan di Base",
+    "pendingTreasury": "Dalam USDT · menunggu rizab perbendaharaan",
+    "cashOut": "Keluarkan tunai",
+    "withdrawing": "Sedang mengeluarkan…",
+    "usdtSent": "{{amount}} USDT dihantar",
+    "withdrawableSoon": "Yuran langganan akan boleh dikeluarkan tidak lama lagi",
+    "dpayBaseOnly": "Dpay hanya tersedia di Base."
   }
 }

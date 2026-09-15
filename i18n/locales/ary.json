@@ -3728,5 +3728,25 @@
     "rewrite": "عاود كتبها",
     "lyricsPlaceholder": "خليه خاوي باش تكون بلا كلمات",
     "lyricsFailed": "ما قدرناش نكتبو الكلمات"
+  },
+  "assets": {
+    "topUp": "عمّر",
+    "bridge": "جسر",
+    "comingSoon": "قريباً",
+    "title": "الأصول",
+    "held": "محتفظ بيه",
+    "staked": "مركون",
+    "gotIt": "فهمت",
+    "dhbPositionNote": "DHB هو الپوزيسيون ديالك كامل — المحتفظ بيه والمركون، ف Base و BNB Chain. غالبيتو عادة مركون، إذن هاد الرقم كبر من اللي تقدر تصرفو دابا.",
+    "stakedIncludesUnstaking": "المركون كيشمل كل شي طلبتي تفكو ولكن مازال ما وصلك.",
+    "otherBalancesNote": "باقي الأرصدة ديالك ف {{network}} (تشين {{chainId}}) غير. {{gas}} هو رصيد الغاز ديالك. القيم يمكن تتأخر شي ثواني. دير جسر ولا حوّل الأصول ل {{network}} باش تستعملهم هنا.",
+    "subscriptionEarnings": "أرباح الاشتراكات",
+    "withdrawableOnBase": "متاح للسحب ف Base",
+    "pendingTreasury": "محسوب بالـ USDT · كيتسنا احتياطي الخزينة",
+    "cashOut": "سحب",
+    "withdrawing": "كيتسحب…",
+    "usdtSent": "تصيفط {{amount}} USDT",
+    "withdrawableSoon": "رسوم الاشتراكات غادي تولي قابلة للسحب قريباً",
+    "dpayBaseOnly": "Dpay متاح غير ف Base."
   }
 }

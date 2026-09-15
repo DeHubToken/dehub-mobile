@@ -3702,5 +3702,25 @@
     "rewrite": "Kirjoita uudelleen",
     "lyricsPlaceholder": "Jätä tyhjäksi instrumentaalia varten",
     "lyricsFailed": "Sanoituksen luonti epäonnistui"
+  },
+  "assets": {
+    "topUp": "Lataa",
+    "bridge": "Silta",
+    "comingSoon": "pian",
+    "title": "Varat",
+    "held": "Hallussa",
+    "staked": "Panostettu",
+    "gotIt": "Selvä",
+    "dhbPositionNote": "DHB on koko positiosi — hallussa plus panostettu, Basessa ja BNB Chainissa. Suurin osa on yleensä panostettu, joten luku on suurempi kuin se, minkä voit juuri nyt käyttää.",
+    "stakedIncludesUnstaking": "Panostettu DHB sisältää myös sen, minkä olet pyytänyt vapautettavaksi mutta et ole vielä saanut takaisin.",
+    "otherBalancesNote": "Muut saldosi ovat vain verkossa {{network}} (ketju {{chainId}}). {{gas}} on kaasusaldosi. Arvot voivat laahata muutaman sekunnin. Siirrä varat verkkoon {{network}}, jotta voit käyttää niitä täällä.",
+    "subscriptionEarnings": "Tilaustuotot",
+    "withdrawableOnBase": "Nostettavissa Basessa",
+    "pendingTreasury": "USDT-määräinen · odottaa rahaston reserviä",
+    "cashOut": "Nosta",
+    "withdrawing": "Nostetaan…",
+    "usdtSent": "{{amount}} USDT lähetetty",
+    "withdrawableSoon": "Tilausmaksut ovat pian nostettavissa",
+    "dpayBaseOnly": "Dpay on käytettävissä vain Basessa."
   }
 }

@@ -3702,5 +3702,25 @@
     "rewrite": "Reescriu",
     "lyricsPlaceholder": "Deixa-ho en blanc per a un instrumental",
     "lyricsFailed": "No s'ha pogut generar la lletra"
+  },
+  "assets": {
+    "topUp": "Recarrega",
+    "bridge": "Pont",
+    "comingSoon": "aviat",
+    "title": "Actius",
+    "held": "En possessió",
+    "staked": "En staking",
+    "gotIt": "Entesos",
+    "dhbPositionNote": "DHB és tota la teva posició: en possessió més en staking, a Base i BNB Chain. La major part sol estar en staking, així que aquesta xifra és més gran del que pots gastar ara.",
+    "stakedIncludesUnstaking": "El DHB en staking inclou tot allò que has demanat retirar però encara no has rebut.",
+    "otherBalancesNote": "Els altres saldos només són a {{network}} (cadena {{chainId}}). {{gas}} és el teu saldo de gas. Els valors poden trigar uns segons. Fes pont o transfereix actius a {{network}} per fer-los servir aquí.",
+    "subscriptionEarnings": "Guanys per subscripcions",
+    "withdrawableOnBase": "Disponible per retirar a Base",
+    "pendingTreasury": "En USDT · pendent de la reserva de tresoreria",
+    "cashOut": "Retira",
+    "withdrawing": "Retirant…",
+    "usdtSent": "S'han enviat {{amount}} USDT",
+    "withdrawableSoon": "Les quotes de subscripció es podran retirar aviat",
+    "dpayBaseOnly": "Dpay només està disponible a Base."
   }
 }

@@ -3701,5 +3701,25 @@
     "rewrite": "Perrašyti",
     "lyricsPlaceholder": "Palikite tuščią instrumentinei versijai",
     "lyricsFailed": "Nepavyko sukurti žodžių"
+  },
+  "assets": {
+    "topUp": "Papildyti",
+    "bridge": "Tiltas",
+    "comingSoon": "netrukus",
+    "title": "Turtas",
+    "held": "Turima",
+    "staked": "Įstatyta",
+    "gotIt": "Supratau",
+    "dhbPositionNote": "DHB yra visa jūsų pozicija — turima plius įstatyta, Base ir BNB Chain tinkluose. Didžioji dalis paprastai būna įstatyta, todėl šis skaičius didesnis nei tai, ką galite išleisti dabar.",
+    "stakedIncludesUnstaking": "Įstatytas DHB apima ir tai, ką paprašėte atsiimti, bet dar negavote atgal.",
+    "otherBalancesNote": "Kiti jūsų likučiai yra tik {{network}} tinkle (grandinė {{chainId}}). {{gas}} yra jūsų dujų likutis. Reikšmės gali vėluoti kelias sekundes. Perkelkite turtą į {{network}}, kad galėtumėte jį naudoti čia.",
+    "subscriptionEarnings": "Prenumeratų pajamos",
+    "withdrawableOnBase": "Galima išsiimti Base tinkle",
+    "pendingTreasury": "USDT verte · laukiama iždo rezervo",
+    "cashOut": "Išsiimti",
+    "withdrawing": "Išimama…",
+    "usdtSent": "Išsiųsta {{amount}} USDT",
+    "withdrawableSoon": "Prenumeratos mokesčius netrukus bus galima išsiimti",
+    "dpayBaseOnly": "Dpay galima naudoti tik Base tinkle."
   }
 }

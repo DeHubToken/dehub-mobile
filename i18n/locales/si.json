@@ -3684,5 +3684,25 @@
     "rewrite": "නැවත ලියන්න",
     "lyricsPlaceholder": "වාද්‍ය ගීතයක් සඳහා හිස්ව තබන්න",
     "lyricsFailed": "පද සෑදීම අසාර්ථකයි"
+  },
+  "assets": {
+    "topUp": "ටොප් අප්",
+    "bridge": "පාලම",
+    "comingSoon": "ළඟදීම",
+    "title": "වත්කම්",
+    "held": "රඳවා ඇති",
+    "staked": "ස්ටේක් කළ",
+    "gotIt": "තේරුණා",
+    "dhbPositionNote": "DHB යනු ඔබේ සම්පූර්ණ ස්ථානයයි — රඳවා ඇති සහ ස්ටේක් කළ, Base සහ BNB Chain දෙකෙහිම. බොහෝවිට වැඩි කොටසක් ස්ටේක් කර ඇති නිසා, මෙය ඔබට දැන් වියදම් කළ හැකි ප්‍රමාණයට වඩා විශාලයි.",
+    "stakedIncludesUnstaking": "ස්ටේක් කළ DHB වලට ඔබ ඉවත් කිරීමට ඉල්ලා තවම නැවත ලැබී නැති දේවලුත් ඇතුළත් වේ.",
+    "otherBalancesNote": "ඔබේ අනෙක් ශේෂ {{network}} (දාම {{chainId}}) හි පමණි. {{gas}} යනු ඔබේ ගෑස් ශේෂයයි. අගයන් තත්පර කිහිපයක් පමා විය හැක. මෙහි භාවිතා කිරීමට වත්කම් {{network}} වෙත මාරු කරන්න.",
+    "subscriptionEarnings": "දායකත්ව ඉපැයීම්",
+    "withdrawableOnBase": "Base හි ආපසු ගැනීමට ලබා ගත හැක",
+    "pendingTreasury": "USDT වලින් · භාණ්ඩාගාර සංචිතය බලාපොරොත්තුවෙන්",
+    "cashOut": "මුදල් ලබා ගන්න",
+    "withdrawing": "ලබා ගනිමින්…",
+    "usdtSent": "{{amount}} USDT යවා ඇත",
+    "withdrawableSoon": "දායක ගාස්තු ළඟදීම ලබා ගත හැකි වේ",
+    "dpayBaseOnly": "Dpay ලබා ගත හැක්කේ Base හි පමණි."
   }
 }

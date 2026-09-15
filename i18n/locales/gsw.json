@@ -3691,5 +3691,25 @@
     "rewrite": "Nöi schriibe",
     "lyricsPlaceholder": "Leer la für es Instrumental",
     "lyricsFailed": "De Liedtext het nöd chöne gmacht werde"
+  },
+  "assets": {
+    "topUp": "Uflade",
+    "bridge": "Bridge",
+    "comingSoon": "bald",
+    "title": "Vermöge",
+    "held": "Ghalte",
+    "staked": "Gstaked",
+    "gotIt": "Verstande",
+    "dhbPositionNote": "DHB isch dini ganzi Position — ghalte plus gstaked, uf Base und BNB Chain. S meischte isch mengmal gstaked, drum isch die Zahl grösser als was du grad usgeh chasch.",
+    "stakedIncludesUnstaking": "Gstakets DHB umfasst au alles, wo du zum Unstake aagfrogt hesch, aber no nöd zrugg übercho hesch.",
+    "otherBalancesNote": "Dini andere Guethabe sind nur uf {{network}} (Chain {{chainId}}). {{gas}} isch dis Gas-Guethabe. Wärt chönd es paar Sekunde hingerherhinke. Bridge oder transferier Assets uf {{network}}, zum si da z bruuche.",
+    "subscriptionEarnings": "Abo-Iinahme",
+    "withdrawableOnBase": "Uf Base uszahlbar",
+    "pendingTreasury": "In USDT · wartet uf d Treasury-Reserve",
+    "cashOut": "Uszahle",
+    "withdrawing": "Wird uszahlt…",
+    "usdtSent": "{{amount}} USDT gschickt",
+    "withdrawableSoon": "Abo-Gebühre chöi bald uszahlt werde",
+    "dpayBaseOnly": "Dpay isch nur uf Base verfüegbar."
   }
 }

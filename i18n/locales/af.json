@@ -3819,5 +3819,25 @@
     "rewrite": "Herskryf",
     "lyricsPlaceholder": "Los leeg vir 'n instrumentale stuk",
     "lyricsFailed": "Kon nie lirieke skryf nie"
+  },
+  "assets": {
+    "topUp": "Laai op",
+    "bridge": "Brug",
+    "comingSoon": "binnekort",
+    "title": "Bates",
+    "held": "Gehou",
+    "staked": "Gestaak",
+    "gotIt": "Ek verstaan",
+    "dhbPositionNote": "DHB is jou hele posisie — gehou plus gestaak, oor Base en BNB Chain. Die meeste daarvan is gewoonlik gestaak, so dit is groter as wat jy nou kan spandeer.",
+    "stakedIncludesUnstaking": "Gestaakte DHB sluit enigiets in wat jy gevra het om te ontstaak maar nog nie teruggekry het nie.",
+    "otherBalancesNote": "Jou ander saldo's is net op {{network}} (ketting {{chainId}}). {{gas}} is jou gasbalans. Waardes kan 'n paar sekondes agterloop. Brug of dra bates oor na {{network}} om hulle hier te gebruik.",
+    "subscriptionEarnings": "Intekenverdienste",
+    "withdrawableOnBase": "Beskikbaar om op Base te onttrek",
+    "pendingTreasury": "In USDT · wag op tesourie-reserwe",
+    "cashOut": "Trek uit",
+    "withdrawing": "Onttrek tans…",
+    "usdtSent": "{{amount}} USDT gestuur",
+    "withdrawableSoon": "Intekengelde sal binnekort onttrekbaar wees",
+    "dpayBaseOnly": "Dpay is net op Base beskikbaar."
   }
 }

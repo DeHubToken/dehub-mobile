@@ -3701,5 +3701,25 @@
     "rewrite": "Kirjuta uuesti",
     "lyricsPlaceholder": "Jäta tühjaks instrumentaalpala jaoks",
     "lyricsFailed": "Sõnade loomine ebaõnnestus"
+  },
+  "assets": {
+    "topUp": "Lae üles",
+    "bridge": "Sild",
+    "comingSoon": "tulekul",
+    "title": "Varad",
+    "held": "Hoiul",
+    "staked": "Panustatud",
+    "gotIt": "Sain aru",
+    "dhbPositionNote": "DHB on kogu sinu positsioon — hoiul pluss panustatud, nii Base'is kui BNB Chainis. Enamik on tavaliselt panustatud, seega on see number suurem kui see, mida saad praegu kulutada.",
+    "stakedIncludesUnstaking": "Panustatud DHB hõlmab ka seda, mille väljavõtmist oled taotlenud, kuid pole veel tagasi saanud.",
+    "otherBalancesNote": "Sinu ülejäänud saldod on ainult võrgus {{network}} (ahel {{chainId}}). {{gas}} on sinu gaasisaldo. Väärtused võivad paar sekundit hilineda. Kanna varad üle võrku {{network}}, et neid siin kasutada.",
+    "subscriptionEarnings": "Tellimustulu",
+    "withdrawableOnBase": "Saadaval väljavõtmiseks Base'is",
+    "pendingTreasury": "USDT-s · ootab varakassa reservi",
+    "cashOut": "Võta välja",
+    "withdrawing": "Võtan välja…",
+    "usdtSent": "{{amount}} USDT saadetud",
+    "withdrawableSoon": "Tellimustasusid saab varsti välja võtta",
+    "dpayBaseOnly": "Dpay on saadaval ainult Base'is."
   }
 }

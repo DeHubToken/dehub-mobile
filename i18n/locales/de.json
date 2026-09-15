@@ -3771,5 +3771,25 @@
     "rewrite": "Neu schreiben",
     "lyricsPlaceholder": "Leer lassen für ein Instrumental",
     "lyricsFailed": "Songtext konnte nicht erstellt werden"
+  },
+  "assets": {
+    "topUp": "Aufladen",
+    "bridge": "Bridge",
+    "comingSoon": "bald",
+    "title": "Vermögenswerte",
+    "held": "Gehalten",
+    "staked": "Gestaked",
+    "gotIt": "Verstanden",
+    "dhbPositionNote": "DHB ist deine gesamte Position — gehalten plus gestaked, über Base und BNB Chain hinweg. Das meiste ist meist gestaked, deshalb ist diese Zahl größer als das, was du gerade ausgeben kannst.",
+    "stakedIncludesUnstaking": "Gestaktes DHB umfasst auch alles, dessen Unstaking du beantragt, aber noch nicht zurückerhalten hast.",
+    "otherBalancesNote": "Deine übrigen Guthaben liegen nur auf {{network}} (Chain {{chainId}}). {{gas}} ist dein Gas-Guthaben. Werte können ein paar Sekunden hinterherhinken. Bridge oder transferiere Assets nach {{network}}, um sie hier zu nutzen.",
+    "subscriptionEarnings": "Abo-Einnahmen",
+    "withdrawableOnBase": "Auf Base auszahlbar",
+    "pendingTreasury": "In USDT · wartet auf Treasury-Reserve",
+    "cashOut": "Auszahlen",
+    "withdrawing": "Wird ausgezahlt…",
+    "usdtSent": "{{amount}} USDT gesendet",
+    "withdrawableSoon": "Abo-Gebühren lassen sich bald auszahlen",
+    "dpayBaseOnly": "Dpay ist nur auf Base verfügbar."
   }
 }

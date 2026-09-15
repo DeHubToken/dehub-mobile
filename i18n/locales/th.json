@@ -3738,5 +3738,25 @@
     "rewrite": "เขียนใหม่",
     "lyricsPlaceholder": "เว้นว่างไว้หากต้องการเพลงบรรเลง",
     "lyricsFailed": "สร้างเนื้อเพลงไม่สำเร็จ"
+  },
+  "assets": {
+    "topUp": "เติมเงิน",
+    "bridge": "บริดจ์",
+    "comingSoon": "เร็ว ๆ นี้",
+    "title": "สินทรัพย์",
+    "held": "ถืออยู่",
+    "staked": "สเตกอยู่",
+    "gotIt": "เข้าใจแล้ว",
+    "dhbPositionNote": "DHB คือสถานะทั้งหมดของคุณ — ทั้งที่ถืออยู่และที่สเตกไว้ ทั้งบน Base และ BNB Chain ส่วนใหญ่มักอยู่ในสเตก ตัวเลขนี้จึงมากกว่าที่คุณใช้ได้ตอนนี้",
+    "stakedIncludesUnstaking": "DHB ที่สเตกไว้รวมถึงส่วนที่คุณขอถอนแล้วแต่ยังไม่ได้รับคืนด้วย",
+    "otherBalancesNote": "ยอดคงเหลืออื่นของคุณอยู่บน {{network}} (เชน {{chainId}}) เท่านั้น {{gas}} คือยอดค่าแก๊สของคุณ ค่าอาจช้ากว่าจริงไม่กี่วินาที โอนสินทรัพย์มาที่ {{network}} เพื่อใช้ที่นี่",
+    "subscriptionEarnings": "รายได้จากการสมัครสมาชิก",
+    "withdrawableOnBase": "ถอนได้บน Base",
+    "pendingTreasury": "คิดเป็น USDT · รอเงินสำรองคลัง",
+    "cashOut": "ถอนเงิน",
+    "withdrawing": "กำลังถอน…",
+    "usdtSent": "ส่ง {{amount}} USDT แล้ว",
+    "withdrawableSoon": "ค่าสมาชิกจะถอนได้เร็ว ๆ นี้",
+    "dpayBaseOnly": "Dpay ใช้ได้เฉพาะบน Base เท่านั้น"
   }
 }

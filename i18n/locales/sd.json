@@ -3685,5 +3685,25 @@
     "rewrite": "ٻيهر لکو",
     "lyricsPlaceholder": "صرف ساز لاءِ خالي ڇڏيو",
     "lyricsFailed": "لفظ ٺاهي نه سگهياسين"
+  },
+  "assets": {
+    "topUp": "ٽاپ اپ",
+    "bridge": "پل",
+    "comingSoon": "جلد",
+    "title": "اثاثا",
+    "held": "رکيل",
+    "staked": "اسٽيڪ ٿيل",
+    "gotIt": "سمجهي ويس",
+    "dhbPositionNote": "DHB توهان جي پوري پوزيشن آهي — رکيل ۽ اسٽيڪ ٿيل، Base ۽ BNB Chain ٻنهي تي. گهڻو ڀاڱو عام طور اسٽيڪ هوندو آهي، ان ڪري هي انهيءَ کان وڏو آهي جيڪو توهان هينئر خرچ ڪري سگهو ٿا.",
+    "stakedIncludesUnstaking": "اسٽيڪ ٿيل DHB ۾ اهو به شامل آهي جيڪو توهان ان اسٽيڪ ڪرڻ لاءِ چيو پر اڃا واپس نه مليو.",
+    "otherBalancesNote": "توهان جا ٻيا بيلنس رڳو {{network}} (چين {{chainId}}) تي آهن. {{gas}} توهان جو گئس بيلنس آهي. قدر ڪجهه سيڪنڊ پوئتي ٿي سگهن ٿا. هتي استعمال لاءِ اثاثا {{network}} ڏانهن موڪليو.",
+    "subscriptionEarnings": "سبسڪرپشن آمدني",
+    "withdrawableOnBase": "Base تي ڪڍڻ لاءِ دستياب",
+    "pendingTreasury": "USDT ۾ · خزاني جي ذخيري جو انتظار",
+    "cashOut": "ڪيش آئوٽ",
+    "withdrawing": "ڪڍيو پيو وڃي…",
+    "usdtSent": "{{amount}} USDT موڪليا ويا",
+    "withdrawableSoon": "سبسڪرپشن فيس جلد ڪڍي سگهبي",
+    "dpayBaseOnly": "Dpay رڳو Base تي دستياب آهي."
   }
 }

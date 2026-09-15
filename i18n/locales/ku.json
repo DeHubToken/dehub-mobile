@@ -3463,5 +3463,25 @@
     "rewrite": "Ji nû ve binivîse",
     "lyricsPlaceholder": "Ji bo stranek bêgotin vala bihêle",
     "lyricsFailed": "Gotin nehatin çêkirin"
+  },
+  "assets": {
+    "topUp": "Bar bike",
+    "bridge": "Pir",
+    "comingSoon": "di demek nêz de",
+    "title": "Sermaye",
+    "held": "Girtî",
+    "staked": "Staked",
+    "gotIt": "Fêm kir",
+    "dhbPositionNote": "DHB tevahiya pozîsyona te ye — girtî û staked, li ser Base û BNB Chain. Pirraniya wê bi gelemperî staked e, loma ev hejmar ji ya ku tu niha dikarî xerc bikî mezintir e.",
+    "stakedIncludesUnstaking": "DHB ya staked her tiştê ku te xwestiye derxî lê hîn negirtiye jî dihewîne.",
+    "otherBalancesNote": "Balansên te yên din tenê li ser {{network}} (zincîra {{chainId}}) in. {{gas}} balansa gaza te ye. Nirx dikarin çend saniyan dereng bin. Ji bo bikaranîna li vir, sermayeyan veguhezîne {{network}}.",
+    "subscriptionEarnings": "Dahata abonetiyê",
+    "withdrawableOnBase": "Li ser Base tê derxistin",
+    "pendingTreasury": "Bi USDT · li benda rezerva xezîneyê",
+    "cashOut": "Derxîne",
+    "withdrawing": "Tê derxistin…",
+    "usdtSent": "{{amount}} USDT hate şandin",
+    "withdrawableSoon": "Heqên abonetiyê di demek nêz de tên derxistin",
+    "dpayBaseOnly": "Dpay tenê li ser Base heye."
   }
 }

@@ -3770,5 +3770,25 @@
     "rewrite": "Napisz ponownie",
     "lyricsPlaceholder": "Zostaw puste dla wersji instrumentalnej",
     "lyricsFailed": "Nie udało się wygenerować tekstu"
+  },
+  "assets": {
+    "topUp": "Doładuj",
+    "bridge": "Most",
+    "comingSoon": "wkrótce",
+    "title": "Aktywa",
+    "held": "Posiadane",
+    "staked": "W stakingu",
+    "gotIt": "Rozumiem",
+    "dhbPositionNote": "DHB to cała twoja pozycja — posiadane plus w stakingu, na Base i BNB Chain. Większość zwykle jest w stakingu, więc ta liczba jest większa niż to, co możesz teraz wydać.",
+    "stakedIncludesUnstaking": "DHB w stakingu obejmuje też to, o czego wypłatę poprosiłeś, ale jeszcze nie otrzymałeś.",
+    "otherBalancesNote": "Twoje pozostałe salda są tylko w sieci {{network}} (łańcuch {{chainId}}). {{gas}} to saldo na opłaty. Wartości mogą być opóźnione o kilka sekund. Przenieś aktywa do {{network}}, aby ich tu użyć.",
+    "subscriptionEarnings": "Przychody z subskrypcji",
+    "withdrawableOnBase": "Dostępne do wypłaty na Base",
+    "pendingTreasury": "W USDT · oczekuje na rezerwę skarbca",
+    "cashOut": "Wypłać",
+    "withdrawing": "Wypłacanie…",
+    "usdtSent": "Wysłano {{amount}} USDT",
+    "withdrawableSoon": "Opłaty subskrypcyjne wkrótce będzie można wypłacić",
+    "dpayBaseOnly": "Dpay jest dostępny tylko na Base."
   }
 }

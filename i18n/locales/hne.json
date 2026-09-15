@@ -3703,5 +3703,25 @@
     "rewrite": "फेर लिखव",
     "lyricsPlaceholder": "सिरिफ संगीत बर खाली छोड़व",
     "lyricsFailed": "बोल नइ बन सकिस"
+  },
+  "assets": {
+    "topUp": "टॉप अप",
+    "bridge": "ब्रिज",
+    "comingSoon": "जल्दिच",
+    "title": "संपत्ति",
+    "held": "रखे",
+    "staked": "स्टेक करे",
+    "gotIt": "समझ गेंव",
+    "dhbPositionNote": "DHB तुम्हर पूरा पोजीसन हे — रखे अउ स्टेक करे, Base अउ BNB Chain दूनो म। जादातर आमतौर म स्टेक रहिथे, तेकर सेती ये ओकर ले बड़े हे जउन ल तुम अभी खरचा कर सकथव।",
+    "stakedIncludesUnstaking": "स्टेक करे DHB म ओहू सामिल हे जेला तुमन अनस्टेक करे बर कहे हव फेर अभी वापस नइ मिले हे।",
+    "otherBalancesNote": "तुम्हर बाकी बैलेंस सिरिफ {{network}} (चेन {{chainId}}) म हे। {{gas}} तुम्हर गैस बैलेंस हे। मान कुछ सेकंड पाछू हो सकथे। इहाँ उपयोग बर संपत्ति ल {{network}} म ब्रिज या ट्रांसफर करव।",
+    "subscriptionEarnings": "सदस्यता के कमाई",
+    "withdrawableOnBase": "Base म निकाले बर उपलब्ध",
+    "pendingTreasury": "USDT म · ट्रेजरी रिजर्व के अगोरा म",
+    "cashOut": "कैस आउट",
+    "withdrawing": "निकाले जात हे…",
+    "usdtSent": "{{amount}} USDT भेजे गीस",
+    "withdrawableSoon": "सदस्यता फीस जल्दिच निकाले जा सकही",
+    "dpayBaseOnly": "Dpay सिरिफ Base म उपलब्ध हे।"
   }
 }

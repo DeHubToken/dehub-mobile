@@ -3706,5 +3706,25 @@
     "rewrite": "Skriv om",
     "lyricsPlaceholder": "Lämna tomt för ett instrumentalspår",
     "lyricsFailed": "Det gick inte att skapa texten"
+  },
+  "assets": {
+    "topUp": "Fyll på",
+    "bridge": "Brygga",
+    "comingSoon": "kommer snart",
+    "title": "Tillgångar",
+    "held": "Innehav",
+    "staked": "Stakat",
+    "gotIt": "Uppfattat",
+    "dhbPositionNote": "DHB är hela din position — innehav plus stakat, över Base och BNB Chain. Det mesta är oftast stakat, så den här siffran är större än vad du kan spendera just nu.",
+    "stakedIncludesUnstaking": "Stakat DHB inkluderar allt du har begärt att avstaka men ännu inte fått tillbaka.",
+    "otherBalancesNote": "Dina övriga saldon finns bara på {{network}} (kedja {{chainId}}). {{gas}} är ditt gassaldo. Värden kan släpa efter några sekunder. Bryggför eller överför tillgångar till {{network}} för att använda dem här.",
+    "subscriptionEarnings": "Prenumerationsintäkter",
+    "withdrawableOnBase": "Går att ta ut på Base",
+    "pendingTreasury": "I USDT · väntar på treasury-reserven",
+    "cashOut": "Ta ut",
+    "withdrawing": "Tar ut…",
+    "usdtSent": "{{amount}} USDT skickat",
+    "withdrawableSoon": "Prenumerationsavgifter går snart att ta ut",
+    "dpayBaseOnly": "Dpay finns bara på Base."
   }
 }

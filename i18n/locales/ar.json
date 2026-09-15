@@ -3757,5 +3757,25 @@
     "rewrite": "أعد الكتابة",
     "lyricsPlaceholder": "اتركه فارغًا لمقطوعة بلا كلمات",
     "lyricsFailed": "تعذّر إنشاء الكلمات"
+  },
+  "assets": {
+    "topUp": "شحن الرصيد",
+    "bridge": "جسر",
+    "comingSoon": "قريباً",
+    "title": "الأصول",
+    "held": "المحتفظ به",
+    "staked": "المرهون",
+    "gotIt": "فهمت",
+    "dhbPositionNote": "‏DHB هو مركزك بالكامل — المحتفظ به والمرهون، على Base وBNB Chain. معظمه عادةً مرهون، لذا هذا الرقم أكبر مما يمكنك إنفاقه الآن.",
+    "stakedIncludesUnstaking": "‏يشمل DHB المرهون كل ما طلبت فكّ رهنه ولم يصلك بعد.",
+    "otherBalancesNote": "‏أرصدتك الأخرى على {{network}} (سلسلة {{chainId}}) فقط. و{{gas}} هو رصيد الغاز لديك. قد تتأخر القيم بضع ثوانٍ. اجسر أصولك أو حوّلها إلى {{network}} لاستخدامها هنا.",
+    "subscriptionEarnings": "أرباح الاشتراكات",
+    "withdrawableOnBase": "متاح للسحب على Base",
+    "pendingTreasury": "مقوَّم بالدولار USDT · بانتظار احتياطي الخزينة",
+    "cashOut": "اسحب الأموال",
+    "withdrawing": "جارٍ السحب…",
+    "usdtSent": "تم إرسال {{amount}} USDT",
+    "withdrawableSoon": "ستصبح رسوم الاشتراكات قابلة للسحب قريباً",
+    "dpayBaseOnly": "‏Dpay متاح على Base فقط."
   }
 }

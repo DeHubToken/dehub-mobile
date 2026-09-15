@@ -3770,5 +3770,25 @@
     "rewrite": "다시 쓰기",
     "lyricsPlaceholder": "비워 두면 연주곡이 됩니다",
     "lyricsFailed": "가사를 만들지 못했습니다"
+  },
+  "assets": {
+    "topUp": "충전",
+    "bridge": "브릿지",
+    "comingSoon": "출시 예정",
+    "title": "자산",
+    "held": "보유",
+    "staked": "스테이킹",
+    "gotIt": "확인",
+    "dhbPositionNote": "DHB는 보유분과 스테이킹분을 합친, Base와 BNB Chain 전체의 포지션입니다. 대부분은 보통 스테이킹되어 있으므로 이 수치는 지금 쓸 수 있는 금액보다 큽니다.",
+    "stakedIncludesUnstaking": "스테이킹된 DHB에는 언스테이킹을 요청했지만 아직 돌려받지 못한 분량도 포함됩니다.",
+    "otherBalancesNote": "다른 잔액은 {{network}}(체인 {{chainId}})에만 있습니다. {{gas}}는 가스 잔액입니다. 값은 몇 초 늦을 수 있습니다. 여기서 쓰려면 자산을 {{network}}로 브릿지하거나 전송하세요.",
+    "subscriptionEarnings": "구독 수익",
+    "withdrawableOnBase": "Base에서 출금 가능",
+    "pendingTreasury": "USDT 기준 · 트레저리 준비금 대기 중",
+    "cashOut": "출금",
+    "withdrawing": "출금 중…",
+    "usdtSent": "{{amount}} USDT 전송 완료",
+    "withdrawableSoon": "구독료는 곧 출금할 수 있게 됩니다",
+    "dpayBaseOnly": "Dpay는 Base에서만 사용할 수 있습니다."
   }
 }

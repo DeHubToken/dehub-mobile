@@ -3766,5 +3766,25 @@
     "rewrite": "Irra deebi'ii barreessi",
     "lyricsPlaceholder": "Sirba meeshaa qofaaf duwwaa dhiisi",
     "lyricsFailed": "Jechoota sirbaa uumuun hin dandaʼamne"
+  },
+  "assets": {
+    "topUp": "Guuti",
+    "bridge": "Riqicha",
+    "comingSoon": "dhiyootti",
+    "title": "Qabeenya",
+    "held": "Qabame",
+    "staked": "Staked",
+    "gotIt": "Hubadheera",
+    "dhbPositionNote": "DHB iddoo kee guutuu dha — kan qabamee fi kan staked taʼe, Base fi BNB Chain irratti. Irra caalaan isaa yeroo baayʼee staked dha, kanaaf lakkoofsi kun waan amma baasuu dandeessu caala.",
+    "stakedIncludesUnstaking": "DHB staked taʼe waan ati akka baafamu gaafatte garuu hanga ammaatti hin deebine dabalata.",
+    "otherBalancesNote": "Baankiin kee kan biroo {{network}} (chain {{chainId}}) irra qofa jira. {{gas}} baankii gaazii keeti. Gatiin sekondii muraasaaf duubatti hafuu dandaʼa. Asitti fayyadamuuf qabeenya gara {{network}} dabarsi.",
+    "subscriptionEarnings": "Galii galmee",
+    "withdrawableOnBase": "Base irratti baafamuu dandaʼa",
+    "pendingTreasury": "USDT-n · kuusaa qabeenyaa eeggachaa jira",
+    "cashOut": "Maallaqa baasi",
+    "withdrawing": "Baasaa jira…",
+    "usdtSent": "{{amount}} USDT ergameera",
+    "withdrawableSoon": "Kaffaltiin galmee dhiyootti baafamuu dandaʼa",
+    "dpayBaseOnly": "Dpay Base irratti qofa argama."
   }
 }

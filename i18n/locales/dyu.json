@@ -3646,5 +3646,25 @@
     "rewrite": "A sɛbɛn kokura",
     "lyricsPlaceholder": "A to lakolon walisa ka fɔlifɛn dɔrɔn sɔrɔ",
     "lyricsFailed": "Dɔnkili kumaw ma se ka dilan"
+  },
+  "assets": {
+    "topUp": "A fa",
+    "bridge": "Bridge",
+    "comingSoon": "sɔɔni",
+    "title": "Nafolow",
+    "held": "Marali",
+    "staked": "Staked",
+    "gotIt": "N y'a faamu",
+    "dhbPositionNote": "DHB ye i ka fɛn bɛɛ ye — marali ni staked, Base ni BNB Chain kan. A caman ka teli ka kɛ staked ye, o de la nin hakɛ ka bon ni i bɛ se ka min musaka sisan ye.",
+    "stakedIncludesUnstaking": "Staked DHB bɛ fɛn bɛɛ ta min bɔli ɲinina nka a ma segin ka na fɔlɔ.",
+    "otherBalancesNote": "I ka wari tɔw bɛ {{network}} (chain {{chainId}}) dɔrɔn kan. {{gas}} ye i ka gas wari ye. Hakɛw bɛ se ka kɔfɛ ni sekonde damadɔ ye. Nafolow lasegin {{network}} kan walisa k'u baara yan.",
+    "subscriptionEarnings": "Bilali sɔrɔ",
+    "withdrawableOnBase": "A bɛ se ka bɔ Base kan",
+    "pendingTreasury": "USDT la · sɔrɔyɔrɔ marali makɔnɔni",
+    "cashOut": "A bɔ",
+    "withdrawing": "A bɛ bɔ la…",
+    "usdtSent": "{{amount}} USDT cira",
+    "withdrawableSoon": "Bilali wari bɛna se ka bɔ sɔɔni",
+    "dpayBaseOnly": "Dpay bɛ sɔrɔ Base dɔrɔn kan."
   }
 }
