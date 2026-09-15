@@ -3629,7 +3629,9 @@
     "markMadeForKids": "Marcar com a fet per a nens",
     "madeForKidsOnDesc": "Mostrat als nens en Mode Nens, i fora dels feeds ordinaris. Només Mode Nens pot comentar.",
     "madeForKidsOffDesc": "Mostra aquesta publicació als nens que utilitzen Mode Nens, i la treu dels feeds ordinaris.",
-    "madeForKidsBlockedByMature": "Una publicació marcada com a madura no pot ser publicada també per a nens."
+    "madeForKidsBlockedByMature": "Una publicació marcada com a madura no pot ser publicada també per a nens.",
+    "encoderTitle": "OBS / Codificador",
+    "encoderHint": "Obtén detalls RTMP"
   },
   "bounty": {
     "claimed": "Reclamat",

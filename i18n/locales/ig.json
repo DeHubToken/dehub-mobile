@@ -3606,7 +3606,9 @@
     "madeForKidsConfirmYes": "Ee, ọ bụ maka ụmụaka",
     "madeForKidsOnDesc": "Egosiri na ụmụaka na-eji Kids Mode, ma wepụ ya na feed ọ bụla. Naanị Kids Mode nwere ike ikwu okwu.",
     "madeForKidsOffDesc": "Egosi post a nye ụmụaka na-eji Kids Mode, ma wepụ ya na feed ọ bụla.",
-    "madeForKidsBlockedByMature": "A post akọwapụtara na-adịghị mma agaghị ebipụtakwa maka ụmụaka."
+    "madeForKidsBlockedByMature": "A post akọwapụtara na-adịghị mma agaghị ebipụtakwa maka ụmụaka.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Nweta RTMP ihe nddetail"
   },
   "bounty": {
     "claimed": "Anatala",

@@ -3629,7 +3629,9 @@
     "markMadeForKids": "Merkitse tehtyä lapsille",
     "madeForKidsOnDesc": "Näytetään lapsille Kids Mode -tilassa ja pois tavallisista syötteistä. Vain Kids Mode voi kommentoida.",
     "madeForKidsOffDesc": "Näyttää tämän viestin lapsille, jotka käyttävät Kids Mode -tilaa, ja poistaa sen tavallisista syötteistä.",
-    "madeForKidsBlockedByMature": "Kypsyydelle merkittyä viestiä ei voi myös julkaista lapsille."
+    "madeForKidsBlockedByMature": "Kypsyydelle merkittyä viestiä ei voi myös julkaista lapsille.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Hanki RTMP-tiedot"
   },
   "bounty": {
     "claimed": "Lunastettu",

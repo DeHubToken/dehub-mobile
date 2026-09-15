@@ -3593,7 +3593,9 @@
     "madeForKidsConfirmYes": "ወ፣ ንላልና እዩ",
     "madeForKidsOnDesc": "ንላልና Kids Mode ይጠቀምዋ ይርአይ፣ ካብ ተለመደ ምግላጽ ይወጽእ። ብ Kids Mode ብቻ ምልስ ይከኣል።",
     "madeForKidsOffDesc": "ነዚ ፅሑፍ ንላልና Kids Mode ይጠቀምዋ ይርአይ፣ ካብ ተለመደ ምግላጽ ይወጽእ።",
-    "madeForKidsBlockedByMature": "ሓድሽ ፅሑፍ ብ mature ምልክት ኣልዩ ንላልና ምልጻፍ ኣይከኣልን።"
+    "madeForKidsBlockedByMature": "ሓድሽ ፅሑፍ ብ mature ምልክት ኣልዩ ንላልና ምልጻፍ ኣይከኣልን።",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "ዝርዝር RTMP ርኸብ"
   },
   "bounty": {
     "claimed": "ተወሲዱ",

@@ -3617,7 +3617,9 @@
     "madeForKidsConfirmYes": "Ja, es isch für Chind",
     "madeForKidsOnDesc": "Aazeigt für Chind im Chind-Modus, und us de normale Feeds ewäg. Nur de Chind-Modus chan kommentiere.",
     "madeForKidsOffDesc": "Zeigt dä Poscht Chind wo de Chind-Modus bruche, und nimmt en us de normale Feeds ewäg.",
-    "madeForKidsBlockedByMature": "E Poscht wo als reif markiert isch, chan nid au für Chind veröffentlicht wärde."
+    "madeForKidsBlockedByMature": "E Poscht wo als reif markiert isch, chan nid au für Chind veröffentlicht wärde.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Hole RTMP-Details"
   },
   "bounty": {
     "claimed": "Iiglöst",

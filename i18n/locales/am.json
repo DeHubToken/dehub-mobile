@@ -3623,7 +3623,9 @@
     "madeForKidsOffDesc": "ይህን ልጥፍ ልጆች ሞድ የሚጠቀሙ ልጆች ላይ ያሳያል፣ እና ከተለመደው ምግብ ውስጥ ይወጣል።",
     "madeForKidsBlockedByMature": "ብሩህ ተብሎ የተሰየመ ልጥፍ ለልጆች ሊታተም አይችልም።",
     "madeForKidsConfirmAudience": "የልጆች ሁነታን የሚጠቀሙ ልጆች ይህንን ልጥፍ ያሳያሉ ። በዴሆብ ላይ ሌላ ምንም ነገር አይደርሳቸውም ።",
-    "madeForKidsConfirmReach": "በተጨማሪም ከተለመደው ምግቦች ይወጣል — ሰዎች አሁንም በመገለጫዎ ፣ በፍለጋ እና በሚያጋሯቸው አገናኝ በኩል ያገኙታል ።"
+    "madeForKidsConfirmReach": "በተጨማሪም ከተለመደው ምግቦች ይወጣል — ሰዎች አሁንም በመገለጫዎ ፣ በፍለጋ እና በሚያጋሯቸው አገናኝ በኩል ያገኙታል ።",
+    "encoderTitle": "OBS / ኢንኮደር",
+    "encoderHint": "RTMP ዝርዝሮችን ያግኙ"
   },
   "bounty": {
     "claimed": "ተወስዷል",

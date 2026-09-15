@@ -3796,7 +3796,9 @@
     "madeForKidsConfirmYes": "Áno, je to pre deti",
     "madeForKidsOnDesc": "Zobrazené deťom v detskom režime a mimo bežných krmív. Komentovať môže iba detský režim.",
     "madeForKidsOffDesc": "Zobrazuje tento príspevok deťom používajúcim detský režim a odstraňuje ho z bežných kanálov.",
-    "madeForKidsBlockedByMature": "Príspevok označený ako zrelý nie je možné publikovať ani pre deti."
+    "madeForKidsBlockedByMature": "Príspevok označený ako zrelý nie je možné publikovať ani pre deti.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Získajte podrobnosti RTMP"
   },
   "bounty": {
     "claimed": "Vyzdvihnuté",

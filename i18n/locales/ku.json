@@ -3359,7 +3359,9 @@
     "madeForKidsConfirmYes": "بەڵێ، بۆ منداڵان دروست کراوە",
     "madeForKidsOnDesc": "بۆ منداڵانی بەکارهێنەری Kids Mode نیشان دراوە، و لە فیدەکانی ئاسایی دەرچووە. تەنیا Kids Mode دەتوانێت تێبینی بکات.",
     "madeForKidsOffDesc": "ئەم پۆستە بۆ منداڵانی بەکارهێنەری Kids Mode نیشان دەدات، و لە فیدەکانی ئاسایی دەریدەخات.",
-    "madeForKidsBlockedByMature": "پۆستێک کە بە بالغ نیشان دراوە ناتوانێت هەروەها بۆ منداڵان بڵاو بکرێت."
+    "madeForKidsBlockedByMature": "پۆستێک کە بە بالغ نیشان دراوە ناتوانێت هەروەها بۆ منداڵان بڵاو بکرێت.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Get RTMP details"
   },
   "bounty": {
     "claimed": "Hate wergirtin",

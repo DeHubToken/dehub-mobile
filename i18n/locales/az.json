@@ -3613,7 +3613,9 @@
     "markMadeForKids": "Uşaqlar üçün hazırlanmış kimi işarələ",
     "madeForKidsOnDesc": "Uşaq Rejimindən istifadə edən uşaqlara göstərilir və adi lentlərdən çıxarılır. Yalnız Uşaq Rejimi şərh yaza bilər.",
     "madeForKidsOffDesc": "Bu postu Uşaq Rejimindən istifadə edən uşaqlara göstərir və adi lentlərdən çıxarır.",
-    "madeForKidsBlockedByMature": "Yetkin kimi işarələnmiş bir post uşaqlar üçün də yayımlanmış ola bilməz."
+    "madeForKidsBlockedByMature": "Yetkin kimi işarələnmiş bir post uşaqlar üçün də yayımlanmış ola bilməz.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "RTMP detallarını alın"
   },
   "bounty": {
     "claimed": "Alınıb",

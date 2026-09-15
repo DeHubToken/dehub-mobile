@@ -3691,7 +3691,9 @@
     "markMadeForKids": "Çocuklar için yapılmış olarak işaretle",
     "madeForKidsOnDesc": "Çocuk Modu'nu kullanan çocuklara gösterilir ve normal akışlardan çıkarılır. Yalnızca Çocuk Modu yorum yapabilir.",
     "madeForKidsOffDesc": "Bu gönderiyi Çocuk Modu'nu kullanan çocuklara gösterir ve normal akışlardan çıkarır.",
-    "madeForKidsBlockedByMature": "Olgun olarak işaretlenmiş bir gönderi aynı zamanda çocuklar için yayınlanamaz."
+    "madeForKidsBlockedByMature": "Olgun olarak işaretlenmiş bir gönderi aynı zamanda çocuklar için yayınlanamaz.",
+    "encoderTitle": "OBS / kodlayıcı",
+    "encoderHint": "RTMP bilgilerini al"
   },
   "bounty": {
     "claimed": "Alındı",

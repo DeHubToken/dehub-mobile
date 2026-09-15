@@ -3679,7 +3679,9 @@
     "madeForKidsConfirmYes": "Ha, bu bolalar uchun",
     "madeForKidsOnDesc": "Bolalar rejimini ishlatayotgan bolalarga ko'rsatiladi va oddiy tasmalardan chiqib ketadi. Faqat Bolalar rejimi sharhlay oladi.",
     "madeForKidsOffDesc": "Ushbu postni Bolalar rejimini ishlatayotgan bolalarga ko'rsatadi va uni oddiy tasmalardan olib tashlaydi.",
-    "madeForKidsBlockedByMature": "Yetuk deb belgilangan post ham bolalar uchun nashr qilinishi mumkin emas."
+    "madeForKidsBlockedByMature": "Yetuk deb belgilangan post ham bolalar uchun nashr qilinishi mumkin emas.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "RTMP tafsilotlarini oling"
   },
   "bounty": {
     "claimed": "Olindi",

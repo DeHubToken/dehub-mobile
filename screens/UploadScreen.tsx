@@ -3153,6 +3153,7 @@ export default function UploadScreen() {
             activeOpacity={0.8}
             onPress={() => {
               setShowLiveOptions(false);
+              setLiveSettings((prev) => ({ ...prev, useEncoder: false }));
               handleToggleLiveMode();
             }}
             className="flex-row items-center gap-3 py-4 px-4 rounded-xl mb-3"
@@ -3162,6 +3163,24 @@ export default function UploadScreen() {
             <View className="flex-1">
               <Text className="text-white font-semibold text-sm">{t("upload.goLive")}</Text>
               <Text className="text-theme-neutrals-400 text-xs mt-0.5">{t("upload.startLivestream")}</Text>
+            </View>
+            <Icon name="ChevronRight" size={18} color="#6F7174" />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => {
+              setShowLiveOptions(false);
+              setLiveSettings((prev) => ({ ...prev, useEncoder: true }));
+              handleToggleLiveMode();
+            }}
+            className="flex-row items-center gap-3 py-4 px-4 rounded-xl mb-3"
+            style={{ backgroundColor: "rgba(255,255,255,0.15)", borderWidth: 1, borderColor: "rgba(255,255,255,0.3)" }}
+          >
+            <Icon name="MonitorPlay" size={22} color="#D4D4D8" />
+            <View className="flex-1">
+              <Text className="text-white font-semibold text-sm">{t("upload.encoderTitle")}</Text>
+              <Text className="text-theme-neutrals-400 text-xs mt-0.5">{t("upload.encoderHint")}</Text>
             </View>
             <Icon name="ChevronRight" size={18} color="#6F7174" />
           </TouchableOpacity>

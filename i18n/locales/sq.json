@@ -3627,7 +3627,9 @@
     "madeForKidsConfirmYes": "Po, është për fëmijë",
     "madeForKidsOnDesc": "U shfaqet fëmijëve në Modalitetin e Fëmijëve dhe jashtë burimeve të zakonshme. Vetëm modaliteti \"Fëmijët\" mund të komentojë.",
     "madeForKidsOffDesc": "Këtë postim ua tregon fëmijëve që përdorin modalitetin Kids dhe e heq nga burimet e zakonshme.",
-    "madeForKidsBlockedByMature": "Një postim i shënuar si i pjekur nuk mund të publikohet edhe për fëmijët."
+    "madeForKidsBlockedByMature": "Një postim i shënuar si i pjekur nuk mund të publikohet edhe për fëmijët.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Merrni detajet RTMP"
   },
   "bounty": {
     "claimed": "E marrë",

@@ -3703,7 +3703,9 @@
     "markMadeForKids": "Marcar como feito para crianças",
     "madeForKidsOnDesc": "Mostrado às crianças no Modo Infantil e fora dos feeds comuns. Apenas o Modo Infantil pode comentar.",
     "madeForKidsOffDesc": "Mostra este post para crianças que usam o Modo Infantil e o retira dos feeds comuns.",
-    "madeForKidsBlockedByMature": "Um post marcado como maduro também não pode ser publicado para crianças."
+    "madeForKidsBlockedByMature": "Um post marcado como maduro também não pode ser publicado para crianças.",
+    "encoderTitle": "OBS / Encoder",
+    "encoderHint": "Obtenha detalhes RTMP"
   },
   "bounty": {
     "claimed": "Resgatado",

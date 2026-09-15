@@ -3627,7 +3627,9 @@
     "madeForKidsConfirmYes": "Taip, tai skirta vaikams",
     "madeForKidsOnDesc": "Rodoma vaikams, naudojantiems vaikų režimą, ir išimama iš įprastų srautų. Komentuoti gali tik vaikų režimas.",
     "madeForKidsOffDesc": "Rodo šį įrašą vaikams, naudojantiems vaikų režimą, ir išima jį iš įprastų srautų.",
-    "madeForKidsBlockedByMature": "Įrašas, pažymėtas kaip suaugusiųjų, negali būti publikuojamas ir vaikams."
+    "madeForKidsBlockedByMature": "Įrašas, pažymėtas kaip suaugusiųjų, negali būti publikuojamas ir vaikams.",
+    "encoderTitle": "OBS / Koduoklis",
+    "encoderHint": "Gaukite RTMP išsamią informaciją"
   },
   "bounty": {
     "claimed": "Atsiimta",
