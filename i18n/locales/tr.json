@@ -2614,7 +2614,24 @@
     "step3Body": "You receive {{l1}}% of every dollar of revenue your invites ever generate on DeHub.",
     "step4Title": "Earn {{l2}}% secondary",
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
-    "wallet": "Affiliate wallet"
+    "wallet": "Affiliate wallet",
+    "pageViews": "Sayfa görüntülemeleri",
+    "uniqueVisitors": "Tekil ziyaretçi",
+    "inLast30Days": "30 günde {{count}}",
+    "percentJoined": "%{{pct}} katıldı",
+    "noVisits": "Henüz ziyaret yok",
+    "joinedOn": " · {{date}} tarihinde katıldı",
+    "copyHint": "Davet bağlantısını kopyalar",
+    "customizeTitle": "Davet sayfanı özelleştir",
+    "customizeSub": "Sayfa senin gibi konuşsun. Ziyaretçiler katılmadan önce bu metni görür.",
+    "fieldHeadline": "Başlık · {{count}}/80",
+    "fieldMessage": "Karşılama mesajı · {{count}}/280",
+    "fieldCta": "Düğme metni · {{count}}/32",
+    "fieldDestination": "DeHub hedefi",
+    "livePreview": "Canlı önizleme",
+    "publishChanges": "Değişiklikleri yayınla",
+    "pagePublished": "Davet sayfası yayınlandı",
+    "pageSaveFailed": "Davet sayfası kaydedilemedi"
   },
   "arcade": {
     "intro": "Doğrudan uygulamanın içinde çalışan oyunlar. Kurulacak bir şey yok, satın alınacak bir şey yok — açık kaynak ve DeHub'ın kendisinden sunuluyor."
