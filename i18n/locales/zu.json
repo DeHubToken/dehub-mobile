@@ -1473,7 +1473,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Isixhumanisi sephrofayela ye-ENS sikopishiwe",
+    "subscribeNow": "Bhalisa manje",
+    "messageUser": "Thumela umsebenzisi umlayezo",
+    "backToTop": "Buyela phezulu",
+    "noImages": "Azikho izithombe okwamanje",
+    "noImagesSub": "Okuthunyelwe okunezithombe kuzovela lapha",
+    "noPlans": "Awekho amaphakheji okubhalisa",
+    "noPlansSub": "Lo mdali akakasetheli noma yiluphi uhlelo"
   },
   "tv": {
     "title": "TV",
@@ -1828,7 +1836,8 @@
     "removeVoiceNote": "Susa inothi lezwi",
     "removeMedia": "Susa imidiya",
     "cancelRecording": "Khansela ukuqopha",
-    "sendVoiceNote": "Thumela inothi lezwi"
+    "sendVoiceNote": "Thumela inothi lezwi",
+    "noneYetAddYours": "Awekho amazwana okwamanje, engeza elakho."
   },
   "postInfo": {
     "title": "Ulwazi Lokuthunyelwe",
@@ -3848,5 +3857,9 @@
     "streamPaused": "Ukusakaza kumiswe okwesikhashana",
     "connectionDropped": "Uxhumano lomsakazi luphukile.\nSilinde ukuthi axhumeke futhi...",
     "autoEnding": "Kuzophela ngokuzenzakalela uma kungaqhubeki"
+  },
+  "search": {
+    "endOfResults": "Ukuphela kwemiphumela",
+    "searchDehub": "Sesha i-DeHub"
   }
 }

@@ -1473,7 +1473,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "关注推荐"
+    "followSuggestions": "关注推荐",
+    "ensUrlCopied": "ENS 檔案連結已複製",
+    "subscribeNow": "即刻訂閱",
+    "messageUser": "傳訊息俾呢個用戶",
+    "backToTop": "返去頂部",
+    "noImages": "仲未有圖片",
+    "noImagesSub": "圖片帖子會喺呢度顯示",
+    "noPlans": "冇訂閱方案",
+    "noPlansSub": "呢位創作者仲未設定方案"
   },
   "tv": {
     "title": "電視",
@@ -1798,7 +1806,8 @@
     "removeVoiceNote": "移除語音留言",
     "removeMedia": "移除媒體",
     "cancelRecording": "取消錄製",
-    "sendVoiceNote": "發送語音留言"
+    "sendVoiceNote": "發送語音留言",
+    "noneYetAddYours": "仲未有評論，嚟寫第一個啦。"
   },
   "postInfo": {
     "title": "帖子資訊",
@@ -3817,5 +3826,9 @@
     "streamPaused": "直播已暫停",
     "connectionDropped": "主播嘅連線斷咗。\n等緊佢重新連線……",
     "autoEnding": "如果冇恢復，會自動結束"
+  },
+  "search": {
+    "endOfResults": "結果到底喇",
+    "searchDehub": "搜尋 DeHub"
   }
 }

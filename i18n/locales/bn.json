@@ -1460,7 +1460,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS প্রোফাইল লিংক কপি হয়েছে",
+    "subscribeNow": "এখনই সাবস্ক্রাইব করুন",
+    "messageUser": "ব্যবহারকারীকে বার্তা পাঠান",
+    "backToTop": "উপরে ফিরুন",
+    "noImages": "এখনও কোনো ছবি নেই",
+    "noImagesSub": "ছবির পোস্ট এখানে দেখা যাবে",
+    "noPlans": "কোনো সাবস্ক্রিপশন প্ল্যান নেই",
+    "noPlansSub": "এই ক্রিয়েটর এখনও কোনো প্ল্যান তৈরি করেননি"
   },
   "tv": {
     "title": "টিভি",
@@ -1785,7 +1793,8 @@
     "removeVoiceNote": "ভয়েস নোট সরান",
     "removeMedia": "মিডিয়া সরান",
     "cancelRecording": "রেকর্ডিং বাতিল করুন",
-    "sendVoiceNote": "ভয়েস নোট পাঠান"
+    "sendVoiceNote": "ভয়েস নোট পাঠান",
+    "noneYetAddYours": "এখনও কোনো মন্তব্য নেই, আপনারটা যোগ করুন।"
   },
   "postInfo": {
     "title": "পোস্টের তথ্য",
@@ -3803,5 +3812,9 @@
     "streamPaused": "স্ট্রিম বিরতিতে",
     "connectionDropped": "স্ট্রিমারের সংযোগ বিচ্ছিন্ন হয়েছে।\nআবার যুক্ত হওয়ার অপেক্ষা...",
     "autoEnding": "আবার শুরু না হলে নিজেই শেষ হয়ে যাবে"
+  },
+  "search": {
+    "endOfResults": "ফলাফলের শেষ",
+    "searchDehub": "DeHub-এ খুঁজুন"
   }
 }

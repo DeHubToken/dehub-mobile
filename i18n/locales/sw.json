@@ -1474,7 +1474,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Kiungo cha wasifu wa ENS kimenakiliwa",
+    "subscribeNow": "Jisajili sasa",
+    "messageUser": "Tuma ujumbe kwa mtumiaji",
+    "backToTop": "Rudi juu",
+    "noImages": "Bado hakuna picha",
+    "noImagesSub": "Machapisho ya picha yataonekana hapa",
+    "noPlans": "Hakuna mipango ya usajili",
+    "noPlansSub": "Mtayarishaji huyu bado hajaweka mipango yoyote"
   },
   "tv": {
     "title": "TV",
@@ -1799,7 +1807,8 @@
     "removeVoiceNote": "Ondoa ujumbe wa sauti",
     "removeMedia": "Ondoa midia",
     "cancelRecording": "Ghairi kurekodi",
-    "sendVoiceNote": "Tuma ujumbe wa sauti"
+    "sendVoiceNote": "Tuma ujumbe wa sauti",
+    "noneYetAddYours": "Bado hakuna maoni, ongeza yako."
   },
   "postInfo": {
     "title": "Taarifa ya chapisho",
@@ -3819,5 +3828,9 @@
     "streamPaused": "Matangazo yamesitishwa",
     "connectionDropped": "Muunganisho wa mtangazaji umekatika.\nTunasubiri aunganishe tena...",
     "autoEnding": "Itakoma yenyewe isipoendelea"
+  },
+  "search": {
+    "endOfResults": "Mwisho wa matokeo",
+    "searchDehub": "Tafuta katika DeHub"
   }
 }

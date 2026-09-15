@@ -1344,7 +1344,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "קישור פרופיל ה-ENS הועתק",
+    "subscribeNow": "הירשמו עכשיו",
+    "messageUser": "שלח הודעה למשתמש",
+    "backToTop": "חזרה למעלה",
+    "noImages": "עדיין אין תמונות",
+    "noImagesSub": "פוסטים עם תמונות יופיעו כאן",
+    "noPlans": "אין תוכניות מנוי",
+    "noPlansSub": "היוצר הזה עדיין לא יצר תוכניות"
   },
   "messages": {
     "smartRepliesOff": "התשובות המוצעות כובו",
@@ -1800,7 +1808,8 @@
     "removeVoiceNote": "הסר הודעה קולית",
     "removeMedia": "הסר מדיה",
     "cancelRecording": "בטל הקלטה",
-    "sendVoiceNote": "שלח הודעה קולית"
+    "sendVoiceNote": "שלח הודעה קולית",
+    "noneYetAddYours": "עדיין אין תגובות — הוסיפו את שלכם."
   },
   "postInfo": {
     "title": "מידע על הפוסט",
@@ -3806,5 +3815,9 @@
     "streamPaused": "השידור מושהה",
     "connectionDropped": "החיבור של המשדר נותק.\nממתינים שיתחבר מחדש...",
     "autoEnding": "יסתיים אוטומטית אם לא יחודש"
+  },
+  "search": {
+    "endOfResults": "סוף התוצאות",
+    "searchDehub": "חפש ב-DeHub"
   }
 }

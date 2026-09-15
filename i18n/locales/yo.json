@@ -1470,7 +1470,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "A ti daako ọ̀nà profáìlì ENS",
+    "subscribeNow": "Ṣe alábùwọlé báyìí",
+    "messageUser": "Fi ìfiránṣẹ́ ránṣẹ́ sí olùlò",
+    "backToTop": "Padà sí orí",
+    "noImages": "Kò sí àwòrán síbẹ̀",
+    "noImagesSub": "Àwọn ìfìwéránṣẹ́ àwòrán yóò hàn níbí",
+    "noPlans": "Kò sí ètò alábùwọlé",
+    "noPlansSub": "Ẹlẹ́dàá yìí kò tíì ṣẹ̀dá ètò kankan"
   },
   "tv": {
     "title": "TV",
@@ -1795,7 +1803,8 @@
     "removeVoiceNote": "Yọ àkọsílẹ̀ ohùn kúrò",
     "removeMedia": "Yọ àwòrán kúrò",
     "cancelRecording": "Fagilé àkọsílẹ̀",
-    "sendVoiceNote": "Fi àkọsílẹ̀ ohùn ránṣẹ́"
+    "sendVoiceNote": "Fi àkọsílẹ̀ ohùn ránṣẹ́",
+    "noneYetAddYours": "Kò sí àsọyé síbẹ̀, fi tìrẹ kún."
   },
   "postInfo": {
     "title": "Ìwífún nípa àkọsílẹ̀",
@@ -3809,5 +3818,9 @@
     "streamPaused": "Ìtànkálẹ̀ dúró fún ìgbà díẹ̀",
     "connectionDropped": "Ìsopọ̀ olùtànkálẹ̀ ti já.\nA ń dúró kí ó tún sopọ̀...",
     "autoEnding": "Yóò parí fúnra rẹ̀ tí kò bá tẹ̀síwájú"
+  },
+  "search": {
+    "endOfResults": "Òpin àwọn èsì",
+    "searchDehub": "Wá nínú DeHub"
   }
 }

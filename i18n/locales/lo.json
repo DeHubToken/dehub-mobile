@@ -1469,7 +1469,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ສຳເນົາລິງໂປຣໄຟລ໌ ENS ແລ້ວ",
+    "subscribeNow": "ສະໝັກດຽວນີ້",
+    "messageUser": "ສົ່ງຂໍ້ຄວາມຫາຜູ້ໃຊ້",
+    "backToTop": "ກັບຂຶ້ນເທິງ",
+    "noImages": "ຍັງບໍ່ມີຮູບ",
+    "noImagesSub": "ໂພສຮູບຈະປາກົດຢູ່ນີ້",
+    "noPlans": "ບໍ່ມີແພັກເກດສະໝັກ",
+    "noPlansSub": "ຜູ້ສ້າງນີ້ຍັງບໍ່ໄດ້ຕັ້ງແພັກເກດໃດເທື່ອ"
   },
   "tv": {
     "title": "ໂທລະພາບ",
@@ -1794,7 +1802,8 @@
     "removeVoiceNote": "ລຶບຂໍ້ຄວາມສຽງ",
     "removeMedia": "ລຶບສື່",
     "cancelRecording": "ຍົກເລີກການບັນທຶກ",
-    "sendVoiceNote": "ສົ່ງຂໍ້ຄວາມສຽງ"
+    "sendVoiceNote": "ສົ່ງຂໍ້ຄວາມສຽງ",
+    "noneYetAddYours": "ຍັງບໍ່ມີຄຳເຫັນ, ເພີ່ມຂອງທ່ານ."
   },
   "postInfo": {
     "title": "ຂໍ້ມູນໂພສ",
@@ -3777,5 +3786,9 @@
     "streamPaused": "ສະຕີມຢຸດຊົ່ວຄາວ",
     "connectionDropped": "ການເຊື່ອມຕໍ່ຂອງຜູ້ຖ່າຍທອດຫຼຸດ.\nກຳລັງລໍຖ້າໃຫ້ເຊື່ອມຕໍ່ໃໝ່...",
     "autoEnding": "ຈະສິ້ນສຸດອັດຕະໂນມັດຫາກບໍ່ສືບຕໍ່"
+  },
+  "search": {
+    "endOfResults": "ສິ້ນສຸດຜົນລັບ",
+    "searchDehub": "ຄົ້ນຫາໃນ DeHub"
   }
 }

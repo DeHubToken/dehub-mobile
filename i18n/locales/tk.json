@@ -1420,7 +1420,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS profil salgysy göçürildi",
+    "subscribeNow": "Häzir abunýa ýaz",
+    "messageUser": "Ulanyja habar iber",
+    "backToTop": "Ýokara gaýt",
+    "noImages": "Heniz surat ýok",
+    "noImagesSub": "Surat ýazgylary şu ýerde görkeziler",
+    "noPlans": "Abunýa meýilnamalary ýok",
+    "noPlansSub": "Bu döredijiniň heniz meýilnamasy ýok"
   },
   "tv": {
     "title": "TV",
@@ -1745,7 +1753,8 @@
     "removeVoiceNote": "Ses belligini aýyr",
     "removeMedia": "Mediany aýyr",
     "cancelRecording": "Ýazgy almagy ýatyr",
-    "sendVoiceNote": "Ses belligini iber"
+    "sendVoiceNote": "Ses belligini iber",
+    "noneYetAddYours": "Heniz teswir ýok, özüňkini goş."
   },
   "postInfo": {
     "title": "Ýazgy maglumaty",
@@ -3789,5 +3798,9 @@
     "streamPaused": "Ýaýlym saklandy",
     "connectionDropped": "Ýaýlymçynyň birikmesi kesildi.\nGaýtadan birikmegine garaşylýar...",
     "autoEnding": "Dowam etmese, awtomatik tamamlanar"
+  },
+  "search": {
+    "endOfResults": "Netijeleriň ahyry",
+    "searchDehub": "DeHub-da gözle"
   }
 }

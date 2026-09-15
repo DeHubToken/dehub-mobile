@@ -560,7 +560,7 @@ const SearchScreen: React.FC = () => {
     if (hasItems && !activePagination?.hasMore) {
       return (
         <View className="py-6">
-          <Text className="text-center text-theme-neutrals-500 text-xs">End of results</Text>
+          <Text className="text-center text-theme-neutrals-500 text-xs">{t("search.endOfResults")}</Text>
         </View>
       );
     }
@@ -847,7 +847,7 @@ const SearchScreen: React.FC = () => {
               <TextInput
                 ref={inputRef}
                 className="flex-1 text-white px-2 py-1"
-                placeholder="Search DeHub"
+                placeholder={t("search.searchDehub")}
                 placeholderTextColor="#9CA3AF"
                 value={searchQuery}
                 onChangeText={setSearchQuery}
@@ -866,7 +866,7 @@ const SearchScreen: React.FC = () => {
                 <TouchableOpacity
                   onPress={clearSearch}
                   accessibilityRole="button"
-                  accessibilityLabel="Clear search"
+                  accessibilityLabel={t("sidebar.clearSearch")}
                   hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                   className="w-6 h-6 rounded-lg bg-theme-neutrals-700 items-center justify-center mr-2"
                 >

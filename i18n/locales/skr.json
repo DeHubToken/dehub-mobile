@@ -1426,7 +1426,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS پروفائل لنک کاپی تھی ڳیا",
+    "subscribeNow": "ہݨ سبسکرائب کرو",
+    "messageUser": "صارف کوں سنیہا بھیجو",
+    "backToTop": "اُتے واپس",
+    "noImages": "ہالے کوئی تصویر کائنی",
+    "noImagesSub": "تصویر آلیاں پوسٹاں ایتھاں ݙسسن",
+    "noPlans": "کوئی سبسکرپشن پلان کائنی",
+    "noPlansSub": "ایں تخلیق کار ہالے کوئی پلان کائنی بݨایا"
   },
   "tv": {
     "title": "ٹی وی",
@@ -1751,7 +1759,8 @@
     "removeVoiceNote": "وائس نوٹ ہٹاؤ",
     "removeMedia": "میڈیا ہٹاؤ",
     "cancelRecording": "ریکارڈنگ منسوخ کرو",
-    "sendVoiceNote": "وائس نوٹ بھیجو"
+    "sendVoiceNote": "وائس نوٹ بھیجو",
+    "noneYetAddYours": "ہالے کوئی تبصرہ کائنی، اپݨا شامل کرو۔"
   },
   "postInfo": {
     "title": "پوسٹ معلومات",
@@ -3763,5 +3772,9 @@
     "streamPaused": "اسٹریم روکی ڳئی",
     "connectionDropped": "اسٹریمر دا کنکشن ٹٹ ڳیا۔\nولدا جڑݨ دی انتظار ہے...",
     "autoEnding": "جے ولدا شروع نہ تھیا تاں آپݨے آپ ختم تھی ویسی"
+  },
+  "search": {
+    "endOfResults": "نتیجیاں دا آخر",
+    "searchDehub": "DeHub وچ ڳولو"
   }
 }

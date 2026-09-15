@@ -1347,7 +1347,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS-profil linkje kimásolva",
+    "subscribeNow": "Feliratkozás most",
+    "messageUser": "Üzenet a felhasználónak",
+    "backToTop": "Vissza a tetejére",
+    "noImages": "Még nincsenek képek",
+    "noImagesSub": "A képes bejegyzések itt jelennek meg",
+    "noPlans": "Nincsenek előfizetési csomagok",
+    "noPlansSub": "Ez az alkotó még nem hozott létre csomagot"
   },
   "messages": {
     "smartRepliesOff": "A javasolt válaszok ki vannak kapcsolva",
@@ -1803,7 +1811,8 @@
     "removeVoiceNote": "Hangjegyzet eltávolítása",
     "removeMedia": "Média eltávolítása",
     "cancelRecording": "Felvétel megszakítása",
-    "sendVoiceNote": "Hangjegyzet küldése"
+    "sendVoiceNote": "Hangjegyzet küldése",
+    "noneYetAddYours": "Még nincsenek hozzászólások — írd meg a tiédet."
   },
   "postInfo": {
     "title": "Bejegyzés infó",
@@ -3823,5 +3832,9 @@
     "streamPaused": "Közvetítés szüneteltetve",
     "connectionDropped": "A közvetítő kapcsolata megszakadt.\nVárunk, hogy visszatérjen...",
     "autoEnding": "Automatikusan véget ér, ha nem folytatódik"
+  },
+  "search": {
+    "endOfResults": "A találatok vége",
+    "searchDehub": "Keresés a DeHubon"
   }
 }

@@ -1466,7 +1466,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS პროფილის ბმული დაკოპირდა",
+    "subscribeNow": "გამოიწერე ახლავე",
+    "messageUser": "მიწერე მომხმარებელს",
+    "backToTop": "დაბრუნება ზემოთ",
+    "noImages": "სურათები ჯერ არ არის",
+    "noImagesSub": "სურათიანი პოსტები აქ გამოჩნდება",
+    "noPlans": "გამოწერის გეგმები არ არის",
+    "noPlansSub": "ამ შემქმნელს ჯერ გეგმები არ შეუქმნია"
   },
   "tv": {
     "title": "ტელევიზია",
@@ -1828,7 +1836,8 @@
     "removeVoiceNote": "ხმოვანი შენიშვნის წაშლა",
     "removeMedia": "მედიის წაშლა",
     "cancelRecording": "ჩაწერის გაუქმება",
-    "sendVoiceNote": "ხმოვანი შენიშვნის გაგზავნა"
+    "sendVoiceNote": "ხმოვანი შენიშვნის გაგზავნა",
+    "noneYetAddYours": "კომენტარები ჯერ არ არის — დაწერეთ თქვენი."
   },
   "postInfo": {
     "title": "პოსტის ინფორმაცია",
@@ -3854,5 +3863,9 @@
     "streamPaused": "სტრიმი შეჩერებულია",
     "connectionDropped": "სტრიმერის კავშირი გაწყდა.\nველოდებით ხელახლა დაკავშირებას...",
     "autoEnding": "ავტომატურად დასრულდება, თუ არ განახლდა"
+  },
+  "search": {
+    "endOfResults": "შედეგების დასასრული",
+    "searchDehub": "ძებნა DeHub-ში"
   }
 }

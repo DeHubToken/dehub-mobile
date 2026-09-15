@@ -1756,7 +1756,15 @@
     "tabHome": "Trang chính",
     "tabImages": "Hình ảnh",
     "tabSubscribers": "Người đăng ký",
-    "followSuggestions": "Gợi ý theo dõi"
+    "followSuggestions": "Gợi ý theo dõi",
+    "ensUrlCopied": "Đã sao chép liên kết hồ sơ ENS",
+    "subscribeNow": "Đăng ký ngay",
+    "messageUser": "Nhắn tin cho người dùng",
+    "backToTop": "Về đầu trang",
+    "noImages": "Chưa có hình ảnh",
+    "noImagesSub": "Bài đăng có hình sẽ hiện ở đây",
+    "noPlans": "Chưa có gói đăng ký",
+    "noPlansSub": "Nhà sáng tạo này chưa lập gói nào"
   },
   "tv": {
     "title": "TV",
@@ -2081,7 +2089,8 @@
     "removeVoiceNote": "Xóa tin nhắn thoại",
     "removeMedia": "Xóa media",
     "cancelRecording": "Hủy ghi âm",
-    "sendVoiceNote": "Gửi tin nhắn thoại"
+    "sendVoiceNote": "Gửi tin nhắn thoại",
+    "noneYetAddYours": "Chưa có bình luận, hãy viết đầu tiên."
   },
   "postInfo": {
     "title": "Thông tin bài viết",
@@ -3907,5 +3916,9 @@
     "streamPaused": "Đã tạm dừng phát",
     "connectionDropped": "Kết nối của người phát bị ngắt.\nĐang chờ họ kết nối lại...",
     "autoEnding": "Sẽ tự kết thúc nếu không tiếp tục"
+  },
+  "search": {
+    "endOfResults": "Hết kết quả",
+    "searchDehub": "Tìm trên DeHub"
   }
 }

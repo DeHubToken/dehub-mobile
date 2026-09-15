@@ -1502,7 +1502,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Liinkiin piroofaayilii ENS garagalfameera",
+    "subscribeNow": "Amma galmaaʼi",
+    "messageUser": "Fayyadamaaf ergaa ergi",
+    "backToTop": "Gara olitti deebi'i",
+    "noImages": "Amma suuraan hin jiru",
+    "noImagesSub": "Barreeffamni suuraa asitti mul'ata",
+    "noPlans": "Karoorri galmee hin jiru",
+    "noPlansSub": "Uumaan kun amma karoora kamiyyuu hin qopheessine"
   },
   "dao": {
     "title": "Kasaa DAO",
@@ -1864,7 +1872,8 @@
     "removeVoiceNote": "Yaadannoo sagalee haqi",
     "removeMedia": "Miidiyaa haqi",
     "cancelRecording": "Waraabbii haqi",
-    "sendVoiceNote": "Yaadannoo sagalee ergi"
+    "sendVoiceNote": "Yaadannoo sagalee ergi",
+    "noneYetAddYours": "Amma yaadni hin jiru, kan kee dabali."
   },
   "postInfo": {
     "title": "Odeeffannoo maxxansaa",
@@ -3883,5 +3892,9 @@
     "streamPaused": "Tamsaasni addaan cite",
     "connectionDropped": "Walqunnamtiin tamsaasaa cite.\nDeebiʼee akka walqunnamu eeggachaa jira...",
     "autoEnding": "Yoo hin itti fufne ofumaan ni xumurama"
+  },
+  "search": {
+    "endOfResults": "Dhuma bu'aawwanii",
+    "searchDehub": "DeHub keessaa barbaadi"
   }
 }

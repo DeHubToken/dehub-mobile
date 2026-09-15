@@ -1421,7 +1421,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Пайванди профили ENS нусха шуд",
+    "subscribeNow": "Ҳозир обуна шавед",
+    "messageUser": "Ба корбар паём фиристед",
+    "backToTop": "Бозгашт ба боло",
+    "noImages": "Ҳанӯз тасвир нест",
+    "noImagesSub": "Паёмҳои тасвирӣ дар ин ҷо пайдо мешаванд",
+    "noPlans": "Нақшаҳои обуна нест",
+    "noPlansSub": "Ин эҷодкор ҳанӯз ягон нақша нақшабандӣ накардааст"
   },
   "tv": {
     "title": "TV",
@@ -1746,7 +1754,8 @@
     "removeVoiceNote": "Ёддошти овозиро нест кунед",
     "removeMedia": "Медиаро нест кунед",
     "cancelRecording": "Сабтро бекор кунед",
-    "sendVoiceNote": "Ёддошти овозиро фиристед"
+    "sendVoiceNote": "Ёддошти овозиро фиристед",
+    "noneYetAddYours": "Ҳанӯз шарҳ нест, аз они худро илова кунед."
   },
   "postInfo": {
     "title": "Маълумоти пост",
@@ -3797,5 +3806,9 @@
     "streamPaused": "Пахш таваққуф шуд",
     "connectionDropped": "Пайванди пахшкунанда қатъ шуд.\nМунтазири баргаштани ӯ ҳастем...",
     "autoEnding": "Агар аз сар гирифта нашавад, худкор анҷом меёбад"
+  },
+  "search": {
+    "endOfResults": "Охири натиҷаҳо",
+    "searchDehub": "Дар DeHub ҷустуҷӯ кунед"
   }
 }

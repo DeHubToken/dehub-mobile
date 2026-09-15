@@ -1473,7 +1473,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS profilio nuoroda nukopijuota",
+    "subscribeNow": "Prenumeruoti dabar",
+    "messageUser": "Rašyti naudotojui",
+    "backToTop": "Grįžti į viršų",
+    "noImages": "Paveikslėlių dar nėra",
+    "noImagesSub": "Įrašai su paveikslėliais bus rodomi čia",
+    "noPlans": "Nėra prenumeratos planų",
+    "noPlansSub": "Šis kūrėjas dar nesukūrė jokių planų"
   },
   "tv": {
     "title": "TV",
@@ -1798,7 +1806,8 @@
     "removeVoiceNote": "Pašalinti balso žinutę",
     "removeMedia": "Pašalinti mediją",
     "cancelRecording": "Atšaukti įrašymą",
-    "sendVoiceNote": "Siųsti balso žinutę"
+    "sendVoiceNote": "Siųsti balso žinutę",
+    "noneYetAddYours": "Komentarų dar nėra — parašykite savo."
   },
   "postInfo": {
     "title": "Įrašo informacija",
@@ -3818,5 +3827,9 @@
     "streamPaused": "Transliacija pristabdyta",
     "connectionDropped": "Transliuotojo ryšys nutrūko.\nLaukiama, kol vėl prisijungs...",
     "autoEnding": "Automatiškai baigsis, jei nebus tęsiama"
+  },
+  "search": {
+    "endOfResults": "Rezultatų pabaiga",
+    "searchDehub": "Ieškoti DeHub"
   }
 }
