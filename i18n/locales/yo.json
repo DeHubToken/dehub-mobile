@@ -1415,7 +1415,16 @@
     "attachmentTooLarge": "Fáìlì kọ̀ọ̀kan gbọ́dọ̀ kéré sí 20MB"
   },
   "auth": {
-    "loginRequired": "Wíwọlé ni a nílò"
+    "loginRequired": "Wíwọlé ni a nílò",
+    "walletImported": "A ti kó àpamọ́wọ́ wọlé",
+    "importWallet": "Kó àpamọ́wọ́ wọlé",
+    "privateKeyPlaceholder": "Tẹ kọ́kọ́rọ́ ìkọ̀kọ̀ rẹ sí i",
+    "importExternalWallet": "Kó àpamọ́wọ́ òde wọlé",
+    "privateKey": "Kọ́kọ́rọ́ ìkọ̀kọ̀",
+    "pasteFromClipboard": "Lẹ̀ mọ́ láti ibi ìdìpọ̀",
+    "learnMoreAt": "Kọ́ sí i ní dehub.io",
+    "accountsOnDevice": "Àwọn àkàǹtì lórí ẹ̀rọ yìí",
+    "use": "Lò"
   },
   "messages": {
     "smartRepliesOff": "A ti pa àwọn èsì tí a dábàá",
@@ -3822,5 +3831,29 @@
   "search": {
     "endOfResults": "Òpin àwọn èsì",
     "searchDehub": "Wá nínú DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Máa gbọ́ ìròyìn",
+    "subtitle": "Mú ìfitónilétí ṣiṣẹ́ kí o lè bá DeHub lọ",
+    "rowTips": "Ẹ̀bùn àti owó tí o rí máa ń wọ àpamọ́wọ́ rẹ",
+    "rowReplies": "Àwọn ìdáhùn, ìdárúkọ àti ìfiránṣẹ́ tààrà",
+    "rowLive": "Nígbà tí àwọn ẹlẹ́dàá tí o ń tẹ̀lé bá ń gbé látàrí",
+    "chooseInSettings": "Ìwọ ni yóò yan èwo nínú wọn ló máa dé ọ̀dọ̀ rẹ, nínú Ètò, nígbàkúgbà.",
+    "turnOn": "Mú ìfitónilétí ṣiṣẹ́"
+  },
+  "review": {
+    "enjoyingApp": "Ǹjẹ́ o ń gbádùn áàpù náà?",
+    "feedbackHelps": "Èsì rẹ ń ràn wá lọ́wọ́ láti mú DeHub dára síi",
+    "yes": "Bẹ́ẹ̀ ni! 😊",
+    "notReally": "Kò tó bẹ́ẹ̀ 😕",
+    "thatsGreat": "Ìyẹn dára gan!",
+    "rateUsOn": "Ǹjẹ́ o lè fún wa ní ìdíwọ̀n lórí {{store}}? Ó ń ràn wá lọ́wọ́ gan láti dàgbà!",
+    "rateOn": "Ṣàdíwọ̀n lórí {{store}}",
+    "yourFeedback": "Èsì rẹ",
+    "feedbackPlaceholder": "Kí ni a lè ṣe dáadáa sí i?",
+    "followUpNote": "A lè kàn sí ọ láti béèrè àwọn ìbéèrè síwájú sí i nípa èsì rẹ",
+    "submitFeedback": "Fi èsì ránṣẹ́",
+    "provideFeedback": "Jọ̀wọ́ kọ èsì rẹ",
+    "thankYou": "O ṣeun fún èsì rẹ!"
   }
 }

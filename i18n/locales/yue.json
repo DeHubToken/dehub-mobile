@@ -1418,7 +1418,16 @@
     "attachmentTooLarge": "每個檔案要細過 20MB"
   },
   "auth": {
-    "loginRequired": "需要登入"
+    "loginRequired": "需要登入",
+    "walletImported": "錢包已匯入",
+    "importWallet": "匯入錢包",
+    "privateKeyPlaceholder": "輸入你嘅私鑰",
+    "importExternalWallet": "匯入外部錢包",
+    "privateKey": "私鑰",
+    "pasteFromClipboard": "由剪貼簿貼上",
+    "learnMoreAt": "喺 dehub.io 了解更多",
+    "accountsOnDevice": "呢部裝置上嘅帳戶",
+    "use": "使用"
   },
   "messages": {
     "smartRepliesOff": "已閂咗建議回覆",
@@ -3830,5 +3839,29 @@
   "search": {
     "endOfResults": "結果到底喇",
     "searchDehub": "搜尋 DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "唔好錯過任何消息",
+    "subtitle": "開啟通知，緊貼 DeHub 嘅動態",
+    "rowTips": "打賞同收益會入你嘅錢包",
+    "rowReplies": "回覆、提及同私訊",
+    "rowLive": "你關注嘅創作者開播嗰陣",
+    "chooseInSettings": "收邊啲，你隨時可以喺設定入面自己揀。",
+    "turnOn": "開啟通知"
+  },
+  "review": {
+    "enjoyingApp": "用得仲滿意嗎？",
+    "feedbackHelps": "你嘅意見幫到我哋將 DeHub 做得更好",
+    "yes": "好好! 😊",
+    "notReally": "唔係幾滿意 😕",
+    "thatsGreat": "太好喇！",
+    "rateUsOn": "可唔可以喺 {{store}} 幫我哋評個分？對我哋成長好有幫助！",
+    "rateOn": "喺 {{store}} 評分",
+    "yourFeedback": "你嘅意見",
+    "feedbackPlaceholder": "我哋可以邊度做得更好？",
+    "followUpNote": "我哋可能會就你嘅意見再聯絡你問多啲",
+    "submitFeedback": "提交意見",
+    "provideFeedback": "請填寫你嘅意見",
+    "thankYou": "多謝你嘅意見！"
   }
 }

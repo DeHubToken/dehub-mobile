@@ -1419,7 +1419,16 @@
     "attachmentTooLarge": "Kila faili lazima liwe chini ya MB 20"
   },
   "auth": {
-    "loginRequired": "Kuingia kunahitajika"
+    "loginRequired": "Kuingia kunahitajika",
+    "walletImported": "Pochi imeingizwa",
+    "importWallet": "Ingiza pochi",
+    "privateKeyPlaceholder": "Weka ufunguo wako wa faragha",
+    "importExternalWallet": "Ingiza pochi ya nje",
+    "privateKey": "Ufunguo wa faragha",
+    "pasteFromClipboard": "Bandika kutoka ubao wa kunakili",
+    "learnMoreAt": "Jifunze zaidi kwenye dehub.io",
+    "accountsOnDevice": "Akaunti kwenye kifaa hiki",
+    "use": "Tumia"
   },
   "messages": {
     "smartRepliesOff": "Majibu yanayopendekezwa yamezimwa",
@@ -3832,5 +3841,29 @@
   "search": {
     "endOfResults": "Mwisho wa matokeo",
     "searchDehub": "Tafuta katika DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Endelea kufahamu",
+    "subtitle": "Washa arifa ili uendelee kufuatilia DeHub",
+    "rowTips": "Bakshishi na mapato huingia kwenye pochi yako",
+    "rowReplies": "Majibu, kutajwa na ujumbe wa moja kwa moja",
+    "rowLive": "Watayarishaji unaowafuata wanapoanza matangazo ya moja kwa moja",
+    "chooseInSettings": "Wewe huchagua ni zipi zinazokufikia, kwenye Mipangilio, wakati wowote.",
+    "turnOn": "Washa arifa"
+  },
+  "review": {
+    "enjoyingApp": "Je, unafurahia programu?",
+    "feedbackHelps": "Maoni yako yanatusaidia kuboresha DeHub",
+    "yes": "Ndiyo! 😊",
+    "notReally": "Si sana 😕",
+    "thatsGreat": "Hiyo ni nzuri sana!",
+    "rateUsOn": "Je, ungependa kutupa ukadiriaji kwenye {{store}}? Inatusaidia sana kukua!",
+    "rateOn": "Kadiria kwenye {{store}}",
+    "yourFeedback": "Maoni yako",
+    "feedbackPlaceholder": "Tunaweza kuboresha nini?",
+    "followUpNote": "Tunaweza kuwasiliana nawe kwa maswali zaidi kuhusu maoni yako",
+    "submitFeedback": "Tuma maoni",
+    "provideFeedback": "Tafadhali andika maoni yako",
+    "thankYou": "Asante kwa maoni yako!"
   }
 }

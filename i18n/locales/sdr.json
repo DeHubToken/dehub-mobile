@@ -1370,7 +1370,16 @@
     "attachmentTooLarge": "ہر ٹھو فائل 20MB سے کم رہے کے چاہی"
   },
   "auth": {
-    "loginRequired": "لاگ ان ضروری ہے"
+    "loginRequired": "لاگ ان ضروری ہے",
+    "walletImported": "جزدان هاوردەکرا",
+    "importWallet": "جزدان هاوردە بکە",
+    "privateKeyPlaceholder": "کلیلی تایبەتیت بنووسە",
+    "importExternalWallet": "جزدانی دەرەکی هاوردە بکە",
+    "privateKey": "کلیلی تایبەت",
+    "pasteFromClipboard": "لە کلیپبۆرد بیلکێنە",
+    "learnMoreAt": "زیاتر بزانە لە dehub.io",
+    "accountsOnDevice": "هەژمارەکانی ئەم ئامێرە",
+    "use": "بەکاری بهێنە"
   },
   "messages": {
     "smartRepliesOff": "تجویز کیل جواب بند ہو گیل",
@@ -3831,5 +3840,29 @@
   "search": {
     "endOfResults": "کۆتایی ئەنجامەکان",
     "searchDehub": "لە DeHub بگەڕێ"
+  },
+  "notifPrompt": {
+    "stayInLoop": "ئاگادار بە",
+    "subtitle": "بۆ بەدواداچوونی DeHub ئاگادارکردنەوەکان بکەرەوە",
+    "rowTips": "بەخشیش و داهات دەگاتە جزدانەکەت",
+    "rowReplies": "وەڵامەکان، ئاماژەکان و نامە ڕاستەوخۆکان",
+    "rowLive": "کاتێک ئەو دروستکەرانەی شوێنیان دەکەویت ڕاستەوخۆ دەبن",
+    "chooseInSettings": "خۆت هەڵدەبژێریت کامیان بگاتە دەستت — لە ڕێکخستنەکان، هەر کاتێک.",
+    "turnOn": "ئاگادارکردنەوەکان بکەرەوە"
+  },
+  "review": {
+    "enjoyingApp": "چێژ لە ئەپەکە دەبینیت؟",
+    "feedbackHelps": "ڕای تۆ یارمەتیمان دەدات DeHub باشتر بکەین",
+    "yes": "بەڵێ! 😊",
+    "notReally": "ئەوەندە نا 😕",
+    "thatsGreat": "ئەوە زۆر باشە!",
+    "rateUsOn": "دەتوانیت لە {{store}} هەڵسەنگاندنمان بۆ بکەیت؟ بەڕاستی یارمەتیمان دەدات گەشە بکەین!",
+    "rateOn": "لە {{store}} هەڵسەنگاندن بکە",
+    "yourFeedback": "ڕای تۆ",
+    "feedbackPlaceholder": "چی دەتوانین باشتر بکەین؟",
+    "followUpNote": "لەوانەیە پەیوەندیت پێوە بکەین بۆ پرسیاری زیاتر دەربارەی ڕاکەت",
+    "submitFeedback": "ڕا بنێرە",
+    "provideFeedback": "تکایە ڕای خۆت بنووسە",
+    "thankYou": "سوپاس بۆ ڕاکەت!"
   }
 }

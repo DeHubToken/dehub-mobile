@@ -1378,7 +1378,16 @@
     "attachmentTooLarge": "Jedi Datei mues under 20MB sy"
   },
   "auth": {
-    "loginRequired": "Aamäldig erforderlich"
+    "loginRequired": "Aamäldig erforderlich",
+    "walletImported": "Wallet importiert",
+    "importWallet": "Wallet importiere",
+    "privateKeyPlaceholder": "Gib din private Schlüssel ii",
+    "importExternalWallet": "Externi Wallet importiere",
+    "privateKey": "Private Schlüssel",
+    "pasteFromClipboard": "Us de Zwischeablag iifüege",
+    "learnMoreAt": "Meh erfahre uf dehub.io",
+    "accountsOnDevice": "Konte uf dem Grät",
+    "use": "Bruuche"
   },
   "messages": {
     "smartRepliesOff": "Antwortvorschläg abgschaltet",
@@ -3821,5 +3830,29 @@
   "search": {
     "endOfResults": "Ändi vo de Ergebnis",
     "searchDehub": "DeHub durchsueche"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Bliib uf em Laufende",
+    "subtitle": "Schalt Benachrichtigunge ii, zum bi DeHub am Ball z bliibe",
+    "rowTips": "Trinkgälder und Iinahme lande i dinere Wallet",
+    "rowReplies": "Antworte, Erwähnige und Direktnachrichte",
+    "rowLive": "Wenn Creator, wo du folgsch, live gönd",
+    "chooseInSettings": "Du entscheidsch genau, weli vo dene dich erreiched — jederziit i de Iistellige.",
+    "turnOn": "Benachrichtigunge iischalte"
+  },
+  "review": {
+    "enjoyingApp": "Gfallt dir d App?",
+    "feedbackHelps": "Dis Feedback hilft üs, DeHub z verbessere",
+    "yes": "Ja! 😊",
+    "notReally": "Nöd würklich 😕",
+    "thatsGreat": "Das freut üs!",
+    "rateUsOn": "Würdsch üs im {{store}} bewerte? Das hilft üs würkli zum Wachse!",
+    "rateOn": "Im {{store}} bewerte",
+    "yourFeedback": "Dis Feedback",
+    "feedbackPlaceholder": "Was chöne mir besser mache?",
+    "followUpNote": "Mir mälded üs villicht mit Rückfrage zu dim Feedback",
+    "submitFeedback": "Feedback schicke",
+    "provideFeedback": "Bitte gib dis Feedback ii",
+    "thankYou": "Danke für dis Feedback!"
   }
 }

@@ -1307,7 +1307,16 @@
     "attachmentTooLarge": "Divê her dosye ji 20MB kêmtir be"
   },
   "auth": {
-    "loginRequired": "Têketin pêwîst e"
+    "loginRequired": "Têketin pêwîst e",
+    "walletImported": "Berîk hate împortkirin",
+    "importWallet": "Berîkê împort bike",
+    "privateKeyPlaceholder": "Mifteya xwe ya taybet binivîse",
+    "importExternalWallet": "Berîka derveyî împort bike",
+    "privateKey": "Mifteya taybet",
+    "pasteFromClipboard": "Ji panoyê pêve bike",
+    "learnMoreAt": "Li dehub.io bêtir fêr bibe",
+    "accountsOnDevice": "Hesabên li ser vê amûrê",
+    "use": "Bikar bîne"
   },
   "messages": {
     "smartRepliesOff": "Bersivên pêşniyarkirî hatin girtin",
@@ -3593,5 +3602,29 @@
   "search": {
     "endOfResults": "Dawiya encaman",
     "searchDehub": "Li DeHub bigere"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Agahdar bimîne",
+    "subtitle": "Ji bo şopandina DeHub agahdariyan çalak bike",
+    "rowTips": "Baxşîş û dahat digihîjin berîka te",
+    "rowReplies": "Bersiv, behskirin û peyamên rasterast",
+    "rowLive": "Dema afirînerên ku tu dişopînî zindî diçin",
+    "chooseInSettings": "Tu bi xwe hildibijêrî kîjan ji van digihîjin te — di Mîhengan de, her dem.",
+    "turnOn": "Agahdariyan çalak bike"
+  },
+  "review": {
+    "enjoyingApp": "Tu ji sepanê hez dikî?",
+    "feedbackHelps": "Nêrîna te alîkariya me dike ku DeHub baştir bikin",
+    "yes": "Erê! 😊",
+    "notReally": "Ne bi rastî 😕",
+    "thatsGreat": "Ew pir baş e!",
+    "rateUsOn": "Tu dikarî li {{store}} me nirxînî? Ew bi rastî alîkariya mezinbûna me dike!",
+    "rateOn": "Li {{store}} binirxîne",
+    "yourFeedback": "Nêrîna te",
+    "feedbackPlaceholder": "Em çi dikarin baştir bikin?",
+    "followUpNote": "Dibe ku em ji bo pirsên din ên li ser nêrîna te bi te re têkilî daynin",
+    "submitFeedback": "Nêrînê bişîne",
+    "provideFeedback": "Ji kerema xwe nêrîna xwe binivîse",
+    "thankYou": "Spas ji bo nêrîna te!"
   }
 }

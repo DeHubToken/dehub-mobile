@@ -1419,7 +1419,16 @@
     "attachmentTooLarge": "Çdo skedar duhet të jetë nën 20 MB"
   },
   "auth": {
-    "loginRequired": "Kërkohet hyrja"
+    "loginRequired": "Kërkohet hyrja",
+    "walletImported": "Portofoli u importua",
+    "importWallet": "Importo portofolin",
+    "privateKeyPlaceholder": "Fut çelësin tënd privat",
+    "importExternalWallet": "Importo portofol të jashtëm",
+    "privateKey": "Çelësi privat",
+    "pasteFromClipboard": "Ngjit nga kujtesa",
+    "learnMoreAt": "Mëso më shumë në dehub.io",
+    "accountsOnDevice": "Llogaritë në këtë pajisje",
+    "use": "Përdor"
   },
   "messages": {
     "smartRepliesOff": "Përgjigjet e sugjeruara u çaktivizuan",
@@ -3831,5 +3840,29 @@
   "search": {
     "endOfResults": "Fundi i rezultateve",
     "searchDehub": "Kërko në DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Qëndro i informuar",
+    "subtitle": "Aktivizo njoftimet për të ndjekur DeHub",
+    "rowTips": "Bakshishet dhe fitimet vijnë në portofolin tënd",
+    "rowReplies": "Përgjigje, përmendje dhe mesazhe direkte",
+    "rowLive": "Kur krijuesit që ndjek dalin live",
+    "chooseInSettings": "Ti zgjedh saktësisht cilat të arrijnë, te Cilësimet, në çdo kohë.",
+    "turnOn": "Aktivizo njoftimet"
+  },
+  "review": {
+    "enjoyingApp": "A po e shijoni aplikacionin?",
+    "feedbackHelps": "Komentet tuaja na ndihmojnë të përmirësojmë DeHub",
+    "yes": "Po! 😊",
+    "notReally": "Jo shumë 😕",
+    "thatsGreat": "Sa mirë!",
+    "rateUsOn": "A do të na vlerësonit në {{store}}? Na ndihmon vërtet të rritemi!",
+    "rateOn": "Vlerëso në {{store}}",
+    "yourFeedback": "Komenti juaj",
+    "feedbackPlaceholder": "Çfarë mund të përmirësojmë?",
+    "followUpNote": "Mund të të kontaktojmë me pyetje shtesë për komentin tënd",
+    "submitFeedback": "Dërgo komentin",
+    "provideFeedback": "Ju lutemi shkruani komentin tuaj",
+    "thankYou": "Faleminderit për komentin tuaj!"
   }
 }

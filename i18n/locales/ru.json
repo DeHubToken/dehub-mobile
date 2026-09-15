@@ -770,7 +770,16 @@
     "multipleChoice": "Разрешить несколько ответов"
   },
   "auth": {
-    "loginRequired": "Необходимо войти"
+    "loginRequired": "Необходимо войти",
+    "walletImported": "Кошелёк импортирован",
+    "importWallet": "Импорт кошелька",
+    "privateKeyPlaceholder": "Введите свой приватный ключ",
+    "importExternalWallet": "Импорт внешнего кошелька",
+    "privateKey": "Приватный ключ",
+    "pasteFromClipboard": "Вставить из буфера обмена",
+    "learnMoreAt": "Узнать больше на dehub.io",
+    "accountsOnDevice": "Аккаунты на этом устройстве",
+    "use": "Использовать"
   },
   "explorePage": {
     "searchPlaceholder": "Поиск людей, публикаций или контента...",
@@ -3901,5 +3910,29 @@
   "search": {
     "endOfResults": "Конец результатов",
     "searchDehub": "Поиск в DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Будьте в курсе",
+    "subtitle": "Включите уведомления, чтобы не отставать от DeHub",
+    "rowTips": "Чаевые и доход попадают в ваш кошелёк",
+    "rowReplies": "Ответы, упоминания и личные сообщения",
+    "rowLive": "Когда авторы, на которых вы подписаны, выходят в эфир",
+    "chooseInSettings": "Вы сами выбираете, какие из них до вас доходят — в настройках, в любое время.",
+    "turnOn": "Включить уведомления"
+  },
+  "review": {
+    "enjoyingApp": "Вам нравится приложение?",
+    "feedbackHelps": "Ваш отзыв помогает нам улучшать DeHub",
+    "yes": "Да! 😊",
+    "notReally": "Не очень 😕",
+    "thatsGreat": "Это здорово!",
+    "rateUsOn": "Не могли бы вы оценить нас в {{store}}? Это очень помогает нам расти!",
+    "rateOn": "Оценить в {{store}}",
+    "yourFeedback": "Ваш отзыв",
+    "feedbackPlaceholder": "Что мы можем улучшить?",
+    "followUpNote": "Мы можем связаться с вами с уточняющими вопросами по вашему отзыву",
+    "submitFeedback": "Отправить отзыв",
+    "provideFeedback": "Пожалуйста, напишите свой отзыв",
+    "thankYou": "Спасибо за ваш отзыв!"
   }
 }

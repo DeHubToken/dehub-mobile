@@ -1408,7 +1408,16 @@
     "attachmentTooLarge": "එක් ගොනුවක් 20MB ට අඩු විය යුතුය"
   },
   "auth": {
-    "loginRequired": "පිවිසීම අවශ්‍යයි"
+    "loginRequired": "පිවිසීම අවශ්‍යයි",
+    "walletImported": "පසුම්බිය ආයාත කළා",
+    "importWallet": "පසුම්බිය ආයාත කරන්න",
+    "privateKeyPlaceholder": "ඔබේ පෞද්ගලික යතුර ඇතුළත් කරන්න",
+    "importExternalWallet": "බාහිර පසුම්බිය ආයාත කරන්න",
+    "privateKey": "පෞද්ගලික යතුර",
+    "pasteFromClipboard": "පසුරු පුවරුවෙන් අලවන්න",
+    "learnMoreAt": "dehub.io හි තව දැනගන්න",
+    "accountsOnDevice": "මෙම උපාංගයේ ගිණුම්",
+    "use": "භාවිතා කරන්න"
   },
   "messages": {
     "smartRepliesOff": "යෝජිත පිළිතුරු අක්‍රිය කෙරිණි",
@@ -3814,5 +3823,29 @@
   "search": {
     "endOfResults": "ප්‍රතිඵල අවසන්",
     "searchDehub": "DeHub හි සොයන්න"
+  },
+  "notifPrompt": {
+    "stayInLoop": "දැනුවත්ව සිටින්න",
+    "subtitle": "DeHub සමඟ රැඳී සිටීමට දැනුම්දීම් සක්‍රීය කරන්න",
+    "rowTips": "ටිප් සහ ඉපැයීම් ඔබේ පසුම්බියට එයි",
+    "rowReplies": "පිළිතුරු, සඳහන් කිරීම් සහ සෘජු පණිවිඩ",
+    "rowLive": "ඔබ අනුගමනය කරන නිර්මාතෘවරු සජීවී වන විට",
+    "chooseInSettings": "මේවායින් කුමක් ඔබට ලැබේද යන්න සැකසුම් තුළ ඕනෑම වේලාවක ඔබම තෝරන්න.",
+    "turnOn": "දැනුම්දීම් සක්‍රීය කරන්න"
+  },
+  "review": {
+    "enjoyingApp": "ඔබ යෙදුමට කැමතිද?",
+    "feedbackHelps": "ඔබේ ප්‍රතිපෝෂණය DeHub වැඩිදියුණු කිරීමට උදව් වේ",
+    "yes": "ඔව්! 😊",
+    "notReally": "එච්චර නෑ 😕",
+    "thatsGreat": "ඒක නම් හොඳයි!",
+    "rateUsOn": "{{store}} හි අපට ශ්‍රේණිගත කිරීමක් දෙන්නද? එය අපට වර්ධනය වීමට ඇත්තටම උදව් වේ!",
+    "rateOn": "{{store}} හි ශ්‍රේණිගත කරන්න",
+    "yourFeedback": "ඔබේ ප්‍රතිපෝෂණය",
+    "feedbackPlaceholder": "අපට වඩා හොඳින් කළ හැක්කේ කුමක්ද?",
+    "followUpNote": "ඔබේ ප්‍රතිපෝෂණය ගැන තවත් ප්‍රශ්න ඇසීමට අප සම්බන්ධ විය හැක",
+    "submitFeedback": "ප්‍රතිපෝෂණය යවන්න",
+    "provideFeedback": "කරුණාකර ඔබේ ප්‍රතිපෝෂණය ලියන්න",
+    "thankYou": "ඔබේ ප්‍රතිපෝෂණයට ස්තූතියි!"
   }
 }

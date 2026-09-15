@@ -1378,7 +1378,16 @@
     "attachmentTooLarge": "Saben berkas kudu kurang saka 20MB"
   },
   "auth": {
-    "loginRequired": "Kudu Mlebu"
+    "loginRequired": "Kudu Mlebu",
+    "walletImported": "Dompet wis diimpor",
+    "importWallet": "Impor dompet",
+    "privateKeyPlaceholder": "Lebokna kunci pribadimu",
+    "importExternalWallet": "Impor dompet njaba",
+    "privateKey": "Kunci pribadi",
+    "pasteFromClipboard": "Tempel saka papan klip",
+    "learnMoreAt": "Sinau luwih lengkap ing dehub.io",
+    "accountsOnDevice": "Akun ing piranti iki",
+    "use": "Gunakake"
   },
   "messages": {
     "smartRepliesOff": "Wangsulan sing disaranake dipateni",
@@ -3790,5 +3799,29 @@
   "search": {
     "endOfResults": "Pungkasan asil",
     "searchDehub": "Golek ing DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Tetep ngerti kabar",
+    "subtitle": "Uripake notifikasi supaya ora ketinggalan DeHub",
+    "rowTips": "Tip lan pendapatan mlebu dompetmu",
+    "rowReplies": "Wangsulan, sebutan lan pesen langsung",
+    "rowLive": "Nalika kreator sing mbok tut mulai siaran langsung",
+    "chooseInSettings": "Sampeyan sing milih endi sing tekan sampeyan, ing Setelan, kapan wae.",
+    "turnOn": "Uripake notifikasi"
+  },
+  "review": {
+    "enjoyingApp": "Apa sampeyan seneng karo aplikasine?",
+    "feedbackHelps": "Panyaruwe sampeyan mbantu kita ndandani DeHub",
+    "yes": "Iya! 😊",
+    "notReally": "Ora patiya 😕",
+    "thatsGreat": "Apik banget!",
+    "rateUsOn": "Gelem menehi rating ing {{store}}? Kuwi tenan mbantu kita ngrembaka!",
+    "rateOn": "Menehi rating ing {{store}}",
+    "yourFeedback": "Panyaruwe sampeyan",
+    "feedbackPlaceholder": "Apa sing bisa kita apikake?",
+    "followUpNote": "Kita bisa uga ngubungi sampeyan kanggo pitakon lanjutan babagan panyaruwe",
+    "submitFeedback": "Kirim panyaruwe",
+    "provideFeedback": "Mangga tulis panyaruwe sampeyan",
+    "thankYou": "Matur nuwun kanggo panyaruwene!"
   }
 }

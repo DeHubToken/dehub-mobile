@@ -1166,7 +1166,16 @@
     "attachmentTooLarge": "Her faýl 20MB-dan az bolmaly"
   },
   "auth": {
-    "loginRequired": "Girmek talap edilýär"
+    "loginRequired": "Girmek talap edilýär",
+    "walletImported": "Gapjyk import edildi",
+    "importWallet": "Gapjygy import et",
+    "privateKeyPlaceholder": "Şahsy açaryňyzy giriziň",
+    "importExternalWallet": "Daşarky gapjygy import et",
+    "privateKey": "Şahsy açar",
+    "pasteFromClipboard": "Alyş-çalyş tagtasyndan goý",
+    "learnMoreAt": "dehub.io-da has köp öwreniň",
+    "accountsOnDevice": "Bu enjamdaky hasaplar",
+    "use": "Ulan"
   },
   "bookmarks": {
     "title": "Bellikleriňiz",
@@ -3802,5 +3811,29 @@
   "search": {
     "endOfResults": "Netijeleriň ahyry",
     "searchDehub": "DeHub-da gözle"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Habarly boluň",
+    "subtitle": "DeHub bilen aýakdaş bolmak üçin habarnamalary açyň",
+    "rowTips": "Çaýpuly we girdeji gapjygyňyza gelýär",
+    "rowReplies": "Jogaplar, ýatlamalar we göni habarlar",
+    "rowLive": "Yzarlaýan döredijileriňiz göni ýaýlyma çykanda",
+    "chooseInSettings": "Haýsysynyň size gelmelidigini islendik wagt Sazlamalarda özüňiz saýlaýarsyňyz.",
+    "turnOn": "Habarnamalary aç"
+  },
+  "review": {
+    "enjoyingApp": "Programma halaýarsyňyzmy?",
+    "feedbackHelps": "Pikiriňiz bize DeHub-y gowulandyrmaga kömek edýär",
+    "yes": "Hawa! 😊",
+    "notReally": "Beýle däl 😕",
+    "thatsGreat": "Bu ajaýyp!",
+    "rateUsOn": "Bizi {{store}}-da bahalap bilersiňizmi? Bu ösmegimize hakykatdanam kömek edýär!",
+    "rateOn": "{{store}}-da bahala",
+    "yourFeedback": "Siziň pikiriňiz",
+    "feedbackPlaceholder": "Nämäni has gowy edip bileris?",
+    "followUpNote": "Pikiriňiz barada goşmaça soraglar üçin siz bilen habarlaşyp bileris",
+    "submitFeedback": "Pikiri iber",
+    "provideFeedback": "Haýyş, pikiriňizi ýazyň",
+    "thankYou": "Pikiriňiz üçin sag boluň!"
   }
 }

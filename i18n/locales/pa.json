@@ -745,7 +745,16 @@
     "multipleChoice": "Allow multiple answers"
   },
   "auth": {
-    "loginRequired": "ਲੌਗ ਇਨ ਜ਼ਰੂਰੀ ਹੈ"
+    "loginRequired": "ਲੌਗ ਇਨ ਜ਼ਰੂਰੀ ਹੈ",
+    "walletImported": "ਵਾਲਿਟ ਇੰਪੋਰਟ ਹੋ ਗਿਆ",
+    "importWallet": "ਵਾਲਿਟ ਇੰਪੋਰਟ ਕਰੋ",
+    "privateKeyPlaceholder": "ਆਪਣੀ ਪ੍ਰਾਈਵੇਟ ਕੀ ਦਰਜ ਕਰੋ",
+    "importExternalWallet": "ਬਾਹਰੀ ਵਾਲਿਟ ਇੰਪੋਰਟ ਕਰੋ",
+    "privateKey": "ਪ੍ਰਾਈਵੇਟ ਕੀ",
+    "pasteFromClipboard": "ਕਲਿੱਪਬੋਰਡ ਤੋਂ ਪੇਸਟ ਕਰੋ",
+    "learnMoreAt": "dehub.io ਉੱਤੇ ਹੋਰ ਜਾਣੋ",
+    "accountsOnDevice": "ਇਸ ਡਿਵਾਈਸ ਦੇ ਖਾਤੇ",
+    "use": "ਵਰਤੋ"
   },
   "explorePage": {
     "searchPlaceholder": "ਲੋਕ, ਪੋਸਟਾਂ ਜਾਂ ਸਮੱਗਰੀ ਖੋਜੋ...",
@@ -3808,5 +3817,29 @@
   "search": {
     "endOfResults": "ਨਤੀਜਿਆਂ ਦਾ ਅੰਤ",
     "searchDehub": "DeHub ਵਿੱਚ ਖੋਜੋ"
+  },
+  "notifPrompt": {
+    "stayInLoop": "ਜਾਣੂ ਰਹੋ",
+    "subtitle": "DeHub ਨਾਲ ਜੁੜੇ ਰਹਿਣ ਲਈ ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਕਰੋ",
+    "rowTips": "ਟਿਪ ਅਤੇ ਕਮਾਈ ਤੁਹਾਡੇ ਵਾਲਿਟ ਵਿੱਚ ਆਉਂਦੀ ਹੈ",
+    "rowReplies": "ਜਵਾਬ, ਜ਼ਿਕਰ ਅਤੇ ਸਿੱਧੇ ਸੁਨੇਹੇ",
+    "rowLive": "ਜਦੋਂ ਤੁਹਾਡੇ ਫਾਲੋ ਕੀਤੇ ਸਿਰਜਣਹਾਰ ਲਾਈਵ ਹੁੰਦੇ ਹਨ",
+    "chooseInSettings": "ਇਨ੍ਹਾਂ ਵਿੱਚੋਂ ਕਿਹੜੀਆਂ ਤੁਹਾਡੇ ਤੱਕ ਪਹੁੰਚਣ, ਇਹ ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਕਦੇ ਵੀ ਚੁਣ ਸਕਦੇ ਹੋ।",
+    "turnOn": "ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਕਰੋ"
+  },
+  "review": {
+    "enjoyingApp": "ਕੀ ਤੁਹਾਨੂੰ ਐਪ ਪਸੰਦ ਆ ਰਹੀ ਹੈ?",
+    "feedbackHelps": "ਤੁਹਾਡਾ ਫੀਡਬੈਕ ਸਾਨੂੰ DeHub ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ",
+    "yes": "ਹਾਂ! 😊",
+    "notReally": "ਬਹੁਤਾ ਨਹੀਂ 😕",
+    "thatsGreat": "ਇਹ ਤਾਂ ਬਹੁਤ ਵਧੀਆ ਹੈ!",
+    "rateUsOn": "ਕੀ ਤੁਸੀਂ {{store}} ਉੱਤੇ ਸਾਨੂੰ ਰੇਟਿੰਗ ਦਿਓਗੇ? ਇਸ ਨਾਲ ਸਾਨੂੰ ਵਧਣ ਵਿੱਚ ਬਹੁਤ ਮਦਦ ਮਿਲਦੀ ਹੈ!",
+    "rateOn": "{{store}} ਉੱਤੇ ਰੇਟ ਕਰੋ",
+    "yourFeedback": "ਤੁਹਾਡਾ ਫੀਡਬੈਕ",
+    "feedbackPlaceholder": "ਅਸੀਂ ਕੀ ਬਿਹਤਰ ਕਰ ਸਕਦੇ ਹਾਂ?",
+    "followUpNote": "ਤੁਹਾਡੇ ਫੀਡਬੈਕ ਬਾਰੇ ਹੋਰ ਸਵਾਲਾਂ ਲਈ ਅਸੀਂ ਸੰਪਰਕ ਕਰ ਸਕਦੇ ਹਾਂ",
+    "submitFeedback": "ਫੀਡਬੈਕ ਭੇਜੋ",
+    "provideFeedback": "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਫੀਡਬੈਕ ਲਿਖੋ",
+    "thankYou": "ਤੁਹਾਡੇ ਫੀਡਬੈਕ ਲਈ ਧੰਨਵਾਦ!"
   }
 }

@@ -753,7 +753,16 @@
     "multipleChoice": "Allow multiple answers"
   },
   "auth": {
-    "loginRequired": "లాగిన్ అవసరం"
+    "loginRequired": "లాగిన్ అవసరం",
+    "walletImported": "వాలెట్ దిగుమతి అయింది",
+    "importWallet": "వాలెట్ దిగుమతి చేయండి",
+    "privateKeyPlaceholder": "మీ ప్రైవేట్ కీని నమోదు చేయండి",
+    "importExternalWallet": "బాహ్య వాలెట్ దిగుమతి చేయండి",
+    "privateKey": "ప్రైవేట్ కీ",
+    "pasteFromClipboard": "క్లిప్‌బోర్డ్ నుండి అతికించండి",
+    "learnMoreAt": "dehub.io లో మరింత తెలుసుకోండి",
+    "accountsOnDevice": "ఈ పరికరంలోని ఖాతాలు",
+    "use": "ఉపయోగించండి"
   },
   "explorePage": {
     "searchPlaceholder": "వ్యక్తులు, పోస్ట్‌లు లేదా కంటెంట్‌ను వెతకండి...",
@@ -3826,5 +3835,29 @@
   "search": {
     "endOfResults": "ఫలితాల ముగింపు",
     "searchDehub": "DeHub లో వెతకండి"
+  },
+  "notifPrompt": {
+    "stayInLoop": "సమాచారంలో ఉండండి",
+    "subtitle": "DeHub తో ఉండటానికి నోటిఫికేషన్‌లు ఆన్ చేయండి",
+    "rowTips": "టిప్‌లు, ఆదాయం మీ వాలెట్‌కు చేరతాయి",
+    "rowReplies": "ప్రత్యుత్తరాలు, ప్రస్తావనలు, డైరెక్ట్ సందేశాలు",
+    "rowLive": "మీరు అనుసరించే క్రియేటర్లు లైవ్‌కు వచ్చినప్పుడు",
+    "chooseInSettings": "వీటిలో ఏవి మీకు చేరాలో సెట్టింగ్‌లలో ఎప్పుడైనా మీరే ఎంచుకోవచ్చు.",
+    "turnOn": "నోటిఫికేషన్‌లు ఆన్ చేయండి"
+  },
+  "review": {
+    "enjoyingApp": "యాప్ నచ్చుతోందా?",
+    "feedbackHelps": "మీ అభిప్రాయం DeHub ను మెరుగుపరచడంలో సహాయపడుతుంది",
+    "yes": "అవును! 😊",
+    "notReally": "అంతగా కాదు 😕",
+    "thatsGreat": "అది చాలా బాగుంది!",
+    "rateUsOn": "{{store}} లో మాకు రేటింగ్ ఇస్తారా? అది మేము ఎదగడానికి నిజంగా సహాయపడుతుంది!",
+    "rateOn": "{{store}} లో రేట్ చేయండి",
+    "yourFeedback": "మీ అభిప్రాయం",
+    "feedbackPlaceholder": "మేము ఏం మెరుగుపరచగలం?",
+    "followUpNote": "మీ అభిప్రాయంపై అదనపు ప్రశ్నల కోసం మేము సంప్రదించవచ్చు",
+    "submitFeedback": "అభిప్రాయం పంపండి",
+    "provideFeedback": "దయచేసి మీ అభిప్రాయం రాయండి",
+    "thankYou": "మీ అభిప్రాయానికి ధన్యవాదాలు!"
   }
 }

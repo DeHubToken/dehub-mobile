@@ -758,7 +758,16 @@
     "multipleChoice": "Allow multiple answers"
   },
   "auth": {
-    "loginRequired": "Login påkrævet"
+    "loginRequired": "Login påkrævet",
+    "walletImported": "Wallet importeret",
+    "importWallet": "Importér wallet",
+    "privateKeyPlaceholder": "Indtast din private nøgle",
+    "importExternalWallet": "Importér ekstern wallet",
+    "privateKey": "Privat nøgle",
+    "pasteFromClipboard": "Indsæt fra udklipsholder",
+    "learnMoreAt": "Læs mere på dehub.io",
+    "accountsOnDevice": "Konti på denne enhed",
+    "use": "Brug"
   },
   "explorePage": {
     "searchPlaceholder": "Søg personer, opslag eller indhold...",
@@ -3836,5 +3845,29 @@
   "search": {
     "endOfResults": "Slut på resultater",
     "searchDehub": "Søg i DeHub"
+  },
+  "notifPrompt": {
+    "stayInLoop": "Hold dig opdateret",
+    "subtitle": "Slå notifikationer til for at følge med i DeHub",
+    "rowTips": "Drikkepenge og indtjening lander i din wallet",
+    "rowReplies": "Svar, omtaler og direkte beskeder",
+    "rowLive": "Når skabere du følger går live",
+    "chooseInSettings": "Du vælger præcis hvilke af dem der når dig — i Indstillinger, når som helst.",
+    "turnOn": "Slå notifikationer til"
+  },
+  "review": {
+    "enjoyingApp": "Nyder du appen?",
+    "feedbackHelps": "Din feedback hjælper os med at forbedre DeHub",
+    "yes": "Ja! 😊",
+    "notReally": "Ikke rigtig 😕",
+    "thatsGreat": "Det er fantastisk!",
+    "rateUsOn": "Vil du give os en anmeldelse i {{store}}? Det hjælper os virkelig med at vokse!",
+    "rateOn": "Bedøm i {{store}}",
+    "yourFeedback": "Din feedback",
+    "feedbackPlaceholder": "Hvad kan vi gøre bedre?",
+    "followUpNote": "Vi kontakter dig måske med opfølgende spørgsmål til din feedback",
+    "submitFeedback": "Send feedback",
+    "provideFeedback": "Skriv venligst din feedback",
+    "thankYou": "Tak for din feedback!"
   }
 }
