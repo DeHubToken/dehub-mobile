@@ -9,6 +9,7 @@ import {
   clearIngestUnreachable,
   hadRecentIngestFailure,
   isNetworkShapedError,
+  withOpusFec,
 } from "../../libs/live-ingest";
 
 /**
@@ -263,5 +264,36 @@ describe("fetchTurnServers", () => {
     // The failed lookup reset the cache, so the media leg can be retried.
     await expect(fetchTurnServers()).resolves.toEqual(ICE);
     expect(global.fetch).toHaveBeenCalledTimes(2);
+  });
+});
+
+/**
+ * The Opus fmtp munge: FEC and stereo are added to every opus payload, other
+ * codecs are untouched, existing values are never overwritten, and CRLF
+ * survives — a WHIP server rejects an offer whose line endings changed.
+ */
+describe("withOpusFec", () => {
+  const sdp =
+    "v=0\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111 63\r\n" +
+    "a=rtpmap:111 opus/48000/2\r\na=fmtp:111 minptime=10;useinbandfec=0\r\n" +
+    "a=rtpmap:63 red/48000/2\r\na=fmtp:63 111/111\r\n" +
+    "m=video 9 UDP/TLS/RTP/SAVPF 96\r\na=rtpmap:96 H264/90000\r\na=fmtp:96 profile-level-id=42e01f\r\n";
+
+  it("adds stereo and bitrate to the opus line and keeps an existing fec value", () => {
+    const out = withOpusFec(sdp);
+    expect(out).toContain(
+      "a=fmtp:111 minptime=10;useinbandfec=0;stereo=1;sprop-stereo=1;maxaveragebitrate=128000\r\n"
+    );
+  });
+
+  it("leaves other codecs alone", () => {
+    const out = withOpusFec(sdp);
+    expect(out).toContain("a=fmtp:63 111/111\r\n");
+    expect(out).toContain("a=fmtp:96 profile-level-id=42e01f\r\n");
+  });
+
+  it("returns an sdp without opus unchanged", () => {
+    const none = "v=0\r\nm=video 9 UDP/TLS/RTP/SAVPF 96\r\na=rtpmap:96 H264/90000\r\n";
+    expect(withOpusFec(none)).toBe(none);
   });
 });
