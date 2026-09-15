@@ -3674,5 +3674,17 @@
     "switchFirst": "Lumipat sa bounty network bago mag-claim",
     "missingSignature": "Walang lagda para sa bounty claim",
     "txReverted": "Na-revert ang transaksyon on-chain"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Estilo",
+    "logo": "Logo",
+    "headline": "Headline",
+    "headlinePlaceholder": "Idaragdag nang malinaw pagkatapos ma-generate — iwanang blangko kung wala",
+    "spotlightFeatures": "Mga feature na itatampok",
+    "includeWebsite": "Isama ang website",
+    "includeSocials": "Isama ang socials",
+    "extraNotes": "Karagdagang tala",
+    "notesPlaceholder": "Anumang iba pang dapat ipakita ng poster"
   }
 }

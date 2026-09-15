@@ -3478,5 +3478,17 @@
     "switchFirst": "حاصل ڪرڻ کان اڳ انعام واري نيٽ ورڪ تي وڃو",
     "missingSignature": "انعام حاصل ڪرڻ جو دستخط ناهي",
     "txReverted": "ٽرانزيڪشن آن چين واپس ٿي وئي"
+  },
+  "poster": {
+    "format": "فارميٽ",
+    "style": "انداز",
+    "logo": "لوگو",
+    "headline": "سرخي",
+    "headlinePlaceholder": "ٺهڻ کان پوءِ صاف طور تي شامل ٿيندو — نه گهرجي ته خالي ڇڏيو",
+    "spotlightFeatures": "نمايان ڪرڻ واريون خاصيتون",
+    "includeWebsite": "ويب سائيٽ شامل ڪريو",
+    "includeSocials": "سوشل هينڊلز شامل ڪريو",
+    "extraNotes": "اضافي نوٽس",
+    "notesPlaceholder": "پوسٽر ۾ ٻيو جيڪو ڪجهه ڏيکارڻو آهي"
   }
 }

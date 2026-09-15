@@ -3612,5 +3612,17 @@
     "switchFirst": "Wissel na die beloningsnetwerk voordat jy opeis",
     "missingSignature": "Beloningseis se handtekening ontbreek",
     "txReverted": "Transaksie is op die ketting teruggerol"
+  },
+  "poster": {
+    "format": "Formaat",
+    "style": "Styl",
+    "logo": "Logo",
+    "headline": "Opskrif",
+    "headlinePlaceholder": "Word skerp bygevoeg ná generering — laat leeg vir geen",
+    "spotlightFeatures": "Kenmerke om uit te lig",
+    "includeWebsite": "Sluit webwerf in",
+    "includeSocials": "Sluit sosiale media in",
+    "extraNotes": "Ekstra notas",
+    "notesPlaceholder": "Enigiets anders wat die plakkaat moet wys"
   }
 }

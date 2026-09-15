@@ -3453,5 +3453,17 @@
     "switchFirst": "بدّل لشبكة الجائزة قبل الاستلام",
     "missingSignature": "توقيع استلام الجائزة ناقص",
     "txReverted": "المعاملة انرجعت على السلسلة"
+  },
+  "poster": {
+    "format": "الصيغة",
+    "style": "الستايل",
+    "logo": "الشعار",
+    "headline": "العنوان",
+    "headlinePlaceholder": "ينضاف بوضوح بعد التوليد — خلّيه فاضي إذا ما تريده",
+    "spotlightFeatures": "ميزات تسلط عليها الضوء",
+    "includeWebsite": "ضمّن الموقع",
+    "includeSocials": "ضمّن حسابات التواصل",
+    "extraNotes": "ملاحظات إضافية",
+    "notesPlaceholder": "أي شي ثاني لازم يظهر بالملصق"
   }
 }

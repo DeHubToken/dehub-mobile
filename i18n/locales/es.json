@@ -3565,5 +3565,17 @@
     "switchFirst": "Cambia a la red de la recompensa antes de reclamarla",
     "missingSignature": "Falta la firma de la reclamación",
     "txReverted": "La transacción se revirtió en la cadena"
+  },
+  "poster": {
+    "format": "Formato",
+    "style": "Estilo",
+    "logo": "Logotipo",
+    "headline": "Titular",
+    "headlinePlaceholder": "Se añade con nitidez tras la generación: déjalo en blanco si no quieres ninguno",
+    "spotlightFeatures": "Funciones destacadas",
+    "includeWebsite": "Incluir el sitio web",
+    "includeSocials": "Incluir las redes sociales",
+    "extraNotes": "Notas adicionales",
+    "notesPlaceholder": "Cualquier otra cosa que deba mostrar el póster"
   }
 }

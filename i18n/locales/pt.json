@@ -3569,5 +3569,17 @@
     "switchFirst": "Mude para a rede da recompensa antes de resgatar",
     "missingSignature": "Falta a assinatura de resgate",
     "txReverted": "A transação foi revertida on-chain"
+  },
+  "poster": {
+    "format": "Formato",
+    "style": "Estilo",
+    "logo": "Logotipo",
+    "headline": "Título",
+    "headlinePlaceholder": "Adicionado com nitidez após a geração — deixe em branco se não quiser",
+    "spotlightFeatures": "Recursos em destaque",
+    "includeWebsite": "Incluir o site",
+    "includeSocials": "Incluir as redes sociais",
+    "extraNotes": "Notas adicionais",
+    "notesPlaceholder": "Qualquer outra coisa que o pôster deva mostrar"
   }
 }

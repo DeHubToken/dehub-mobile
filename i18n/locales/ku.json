@@ -3254,5 +3254,17 @@
     "switchFirst": "Berî wergirtinê derbasî tora xelatê bibe",
     "missingSignature": "Îmzeya wergirtina xelatê kêm e",
     "txReverted": "Danûstandin li ser zincîrê hate vegerandin"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Şêwaz",
+    "logo": "Logo",
+    "headline": "Sernav",
+    "headlinePlaceholder": "Piştî çêkirinê bi zelalî tê zêdekirin — vala bihêle ku tu naxwazî",
+    "spotlightFeatures": "Taybetmendiyên tên ronîkirin",
+    "includeWebsite": "Malperê tê de bike",
+    "includeSocials": "Medyaya civakî tê de bike",
+    "extraNotes": "Nîşeyên zêde",
+    "notesPlaceholder": "Her tiştê din ku divê poster nîşan bide"
   }
 }

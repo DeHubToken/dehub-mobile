@@ -3494,5 +3494,17 @@
     "switchFirst": "Kalo në rrjetin e shpërblimit para se ta marrësh",
     "missingSignature": "Mungon nënshkrimi i marrjes së shpërblimit",
     "txReverted": "Transaksioni u kthye mbrapsht në zinxhir"
+  },
+  "poster": {
+    "format": "Formati",
+    "style": "Stili",
+    "logo": "Logoja",
+    "headline": "Titulli",
+    "headlinePlaceholder": "Shtohet qartë pas gjenerimit — lëre bosh nëse nuk do",
+    "spotlightFeatures": "Veçoritë e theksuara",
+    "includeWebsite": "Përfshi faqen e internetit",
+    "includeSocials": "Përfshi rrjetet sociale",
+    "extraNotes": "Shënime shtesë",
+    "notesPlaceholder": "Çdo gjë tjetër që posteri duhet të tregojë"
   }
 }

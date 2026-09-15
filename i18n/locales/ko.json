@@ -3563,5 +3563,17 @@
     "switchFirst": "수령 전에 보상 네트워크로 전환하세요",
     "missingSignature": "보상 수령 서명이 없습니다",
     "txReverted": "거래가 온체인에서 되돌려졌습니다"
+  },
+  "poster": {
+    "format": "형식",
+    "style": "스타일",
+    "logo": "로고",
+    "headline": "헤드라인",
+    "headlinePlaceholder": "생성 후 선명하게 합성됩니다. 필요 없으면 비워 두세요",
+    "spotlightFeatures": "강조할 기능",
+    "includeWebsite": "웹사이트 포함",
+    "includeSocials": "소셜 계정 포함",
+    "extraNotes": "추가 메모",
+    "notesPlaceholder": "포스터에 들어가야 할 그 밖의 내용"
   }
 }

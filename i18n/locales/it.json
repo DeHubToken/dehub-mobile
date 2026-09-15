@@ -3565,5 +3565,17 @@
     "switchFirst": "Passa alla rete della ricompensa prima di riscuoterla",
     "missingSignature": "Manca la firma per la riscossione",
     "txReverted": "La transazione è stata annullata on-chain"
+  },
+  "poster": {
+    "format": "Formato",
+    "style": "Stile",
+    "logo": "Logo",
+    "headline": "Titolo",
+    "headlinePlaceholder": "Viene aggiunto nitidamente dopo la generazione: lascia vuoto per nessuno",
+    "spotlightFeatures": "Funzionalità in evidenza",
+    "includeWebsite": "Includi il sito web",
+    "includeSocials": "Includi i social",
+    "extraNotes": "Note aggiuntive",
+    "notesPlaceholder": "Tutto ciò che il poster deve mostrare"
   }
 }

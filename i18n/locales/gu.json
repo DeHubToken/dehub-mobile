@@ -3487,5 +3487,17 @@
     "switchFirst": "મેળવતા પહેલાં બાઉન્ટી નેટવર્ક પર જાઓ",
     "missingSignature": "બાઉન્ટી ક્લેમની સહી ખૂટે છે",
     "txReverted": "વ્યવહાર ઑન-ચેઇન પાછો ફર્યો"
+  },
+  "poster": {
+    "format": "ફોર્મેટ",
+    "style": "શૈલી",
+    "logo": "લોગો",
+    "headline": "શીર્ષક",
+    "headlinePlaceholder": "જનરેશન પછી સ્પષ્ટ રીતે ઉમેરાય છે — ન જોઈએ તો ખાલી રાખો",
+    "spotlightFeatures": "મુખ્ય ફીચર્સ",
+    "includeWebsite": "વેબસાઇટ સામેલ કરો",
+    "includeSocials": "સોશિયલ હેન્ડલ્સ સામેલ કરો",
+    "extraNotes": "વધારાની નોંધ",
+    "notesPlaceholder": "પોસ્ટરમાં બીજું જે કંઈ બતાવવું હોય"
   }
 }

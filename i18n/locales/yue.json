@@ -3493,5 +3493,17 @@
     "switchFirst": "領取前請切換到賞金所在嘅網絡",
     "missingSignature": "缺少賞金領取簽名",
     "txReverted": "交易喺鏈上被回滾"
+  },
+  "poster": {
+    "format": "格式",
+    "style": "風格",
+    "logo": "標誌",
+    "headline": "標題",
+    "headlinePlaceholder": "生成後會清晰疊上 — 唔需要就留空",
+    "spotlightFeatures": "重點展示嘅功能",
+    "includeWebsite": "包含網址",
+    "includeSocials": "包含社交帳號",
+    "extraNotes": "額外備註",
+    "notesPlaceholder": "海報仲要展示嘅其他內容"
   }
 }

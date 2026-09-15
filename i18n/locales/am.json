@@ -3490,5 +3490,17 @@
     "switchFirst": "ከመውሰድዎ በፊት ወደ የሽልማቱ አውታረ መረብ ይቀይሩ",
     "missingSignature": "የሽልማት ጥያቄ ፊርማ ጠፍቷል",
     "txReverted": "ግብይቱ በሰንሰለቱ ላይ ተመልሷል"
+  },
+  "poster": {
+    "format": "ቅርጸት",
+    "style": "ቅጥ",
+    "logo": "ሎጎ",
+    "headline": "ርዕስ",
+    "headlinePlaceholder": "ከተፈጠረ በኋላ በጥርት ተጨምሯል — ካልፈለጉ ባዶ ይተዉት",
+    "spotlightFeatures": "የሚያጎሉ ባህሪያት",
+    "includeWebsite": "ድረ-ገጹን አካትት",
+    "includeSocials": "ማህበራዊ አድራሻዎችን አካትት",
+    "extraNotes": "ተጨማሪ ማስታወሻዎች",
+    "notesPlaceholder": "በፖስተሩ ላይ መታየት ያለበት ሌላ ነገር"
   }
 }

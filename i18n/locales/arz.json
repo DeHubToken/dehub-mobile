@@ -3491,5 +3491,17 @@
     "switchFirst": "غيّر لشبكة الجايزة قبل ما تستلم",
     "missingSignature": "توقيع استلام الجايزة ناقص",
     "txReverted": "المعاملة اترجعت على السلسلة"
+  },
+  "poster": {
+    "format": "الصيغة",
+    "style": "الستايل",
+    "logo": "اللوجو",
+    "headline": "العنوان",
+    "headlinePlaceholder": "بيتضاف بوضوح بعد التوليد — سيبه فاضي لو مش عايزه",
+    "spotlightFeatures": "المميزات اللي هتسلط عليها الضوء",
+    "includeWebsite": "ضمّن الموقع",
+    "includeSocials": "ضمّن حسابات السوشيال",
+    "extraNotes": "ملاحظات إضافية",
+    "notesPlaceholder": "أي حاجة تانية لازم تظهر في البوستر"
   }
 }

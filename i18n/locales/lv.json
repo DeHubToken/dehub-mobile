@@ -3494,5 +3494,17 @@
     "switchFirst": "Pirms saņemšanas pārslēdzieties uz atlīdzības tīklu",
     "missingSignature": "Trūkst atlīdzības saņemšanas paraksta",
     "txReverted": "Darījums ķēdē tika atcelts"
+  },
+  "poster": {
+    "format": "Formāts",
+    "style": "Stils",
+    "logo": "Logotips",
+    "headline": "Virsraksts",
+    "headlinePlaceholder": "Pēc ģenerēšanas tiek pievienots asi — atstājiet tukšu, ja nevēlaties",
+    "spotlightFeatures": "Izceļamās funkcijas",
+    "includeWebsite": "Iekļaut vietni",
+    "includeSocials": "Iekļaut sociālos tīklus",
+    "extraNotes": "Papildu piezīmes",
+    "notesPlaceholder": "Viss pārējais, kas jāparāda plakātā"
   }
 }

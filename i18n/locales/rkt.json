@@ -3525,5 +3525,17 @@
     "switchFirst": "নেওয়ার আগে বাউন্টি নেটওয়ার্কত যান",
     "missingSignature": "বাউন্টি দাবির স্বাক্ষর নাই",
     "txReverted": "লেনদেন অন-চেইনত বাতিল হইল"
+  },
+  "poster": {
+    "format": "ফরম্যাট",
+    "style": "স্টাইল",
+    "logo": "লোগো",
+    "headline": "শিরোনাম",
+    "headlinePlaceholder": "বানাইবার পরে স্পষ্টভাবে যোগ হয় — না চাইলে খালি রাখেন",
+    "spotlightFeatures": "তুলি ধরির ফিচার",
+    "includeWebsite": "ওয়েবসাইট যোগ করেন",
+    "includeSocials": "সোশ্যাল হ্যান্ডেল যোগ করেন",
+    "extraNotes": "অতিরিক্ত নোট",
+    "notesPlaceholder": "পোস্টারত আর যা যা দেখাইতে হইবে"
   }
 }

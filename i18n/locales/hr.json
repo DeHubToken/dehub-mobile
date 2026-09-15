@@ -3495,5 +3495,17 @@
     "switchFirst": "Prije preuzimanja prijeđite na mrežu nagrade",
     "missingSignature": "Nedostaje potpis za preuzimanje nagrade",
     "txReverted": "Transakcija je poništena na lancu"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Stil",
+    "logo": "Logotip",
+    "headline": "Naslov",
+    "headlinePlaceholder": "Dodaje se oštro nakon generiranja — ostavite prazno ako ne želite",
+    "spotlightFeatures": "Istaknute značajke",
+    "includeWebsite": "Uključi web-stranicu",
+    "includeSocials": "Uključi društvene mreže",
+    "extraNotes": "Dodatne napomene",
+    "notesPlaceholder": "Sve ostalo što plakat mora prikazati"
   }
 }

@@ -3496,5 +3496,17 @@
     "switchFirst": "लेवे के पहिली बाउंटी नेटवर्क म जावव",
     "missingSignature": "बाउंटी क्लेम के हस्ताक्षर नइ हे",
     "txReverted": "लेनदेन ऑन-चेन वापिस होगे"
+  },
+  "poster": {
+    "format": "फॉर्मेट",
+    "style": "शैली",
+    "logo": "लोगो",
+    "headline": "शीर्षक",
+    "headlinePlaceholder": "जनरेट होय के बाद साफ जुड़थे — नइ चाही त खाली छोड़व",
+    "spotlightFeatures": "उजागर करे वाला सुविधा",
+    "includeWebsite": "वेबसाइट जोड़व",
+    "includeSocials": "सोशल हैंडल जोड़व",
+    "extraNotes": "अउ नोट",
+    "notesPlaceholder": "पोस्टर म अउ जउन कुछू देखाना हे"
   }
 }

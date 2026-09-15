@@ -3485,5 +3485,17 @@
     "switchFirst": "Koma hanyar sadarwar ladan kafin ka karɓa",
     "missingSignature": "Babu sa hannun karɓar ladan",
     "txReverted": "An mayar da ma'amala a kan sarƙar"
+  },
+  "poster": {
+    "format": "Tsari",
+    "style": "Salo",
+    "logo": "Tambari",
+    "headline": "Kanun labari",
+    "headlinePlaceholder": "Ana ƙara shi a fili bayan ƙirƙira — bar shi fanko idan ba ka so",
+    "spotlightFeatures": "Fasalolin da za a nuna",
+    "includeWebsite": "Haɗa gidan yanar gizo",
+    "includeSocials": "Haɗa shafukan sada zumunta",
+    "extraNotes": "Ƙarin bayanai",
+    "notesPlaceholder": "Duk wani abu da fosta ke buƙatar nunawa"
   }
 }

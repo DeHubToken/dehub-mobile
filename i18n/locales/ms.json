@@ -3758,5 +3758,17 @@
     "switchFirst": "Tukar ke rangkaian ganjaran sebelum menuntut",
     "missingSignature": "Tandatangan tuntutan ganjaran tiada",
     "txReverted": "Transaksi dibatalkan atas rantai"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Gaya",
+    "logo": "Logo",
+    "headline": "Tajuk utama",
+    "headlinePlaceholder": "Ditambah dengan jelas selepas dijana — biarkan kosong jika tiada",
+    "spotlightFeatures": "Ciri yang diserlahkan",
+    "includeWebsite": "Sertakan laman web",
+    "includeSocials": "Sertakan media sosial",
+    "extraNotes": "Nota tambahan",
+    "notesPlaceholder": "Apa-apa lagi yang poster perlu tunjukkan"
   }
 }

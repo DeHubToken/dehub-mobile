@@ -3482,5 +3482,17 @@
     "switchFirst": "עברו לרשת התגמול לפני האיסוף",
     "missingSignature": "חסרה חתימת איסוף התגמול",
     "txReverted": "העסקה בוטלה על השרשרת"
+  },
+  "poster": {
+    "format": "פורמט",
+    "style": "סגנון",
+    "logo": "לוגו",
+    "headline": "כותרת",
+    "headlinePlaceholder": "נוסף בחדות לאחר היצירה — השאירו ריק אם לא נדרש",
+    "spotlightFeatures": "תכונות להדגשה",
+    "includeWebsite": "לכלול אתר",
+    "includeSocials": "לכלול רשתות חברתיות",
+    "extraNotes": "הערות נוספות",
+    "notesPlaceholder": "כל דבר אחר שהכרזה צריכה להציג"
   }
 }

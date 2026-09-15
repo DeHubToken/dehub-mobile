@@ -3546,5 +3546,17 @@
     "switchFirst": "Olishdan oldin mukofot tarmog‘iga o‘ting",
     "missingSignature": "Mukofot olish imzosi yo‘q",
     "txReverted": "Tranzaksiya zanjirda bekor qilindi"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Uslub",
+    "logo": "Logotip",
+    "headline": "Sarlavha",
+    "headlinePlaceholder": "Yaratilgandan so‘ng aniq qo‘shiladi — kerak bo‘lmasa bo‘sh qoldiring",
+    "spotlightFeatures": "Ajratib ko‘rsatiladigan imkoniyatlar",
+    "includeWebsite": "Veb-saytni qo‘shish",
+    "includeSocials": "Ijtimoiy tarmoqlarni qo‘shish",
+    "extraNotes": "Qo‘shimcha eslatmalar",
+    "notesPlaceholder": "Posterda ko‘rsatilishi kerak bo‘lgan boshqa narsalar"
   }
 }

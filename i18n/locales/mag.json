@@ -3447,5 +3447,17 @@
     "switchFirst": "लेबा सँ पहिने बाउंटी नेटवर्क पर जाऊ",
     "missingSignature": "बाउंटी क्लेम के हस्ताक्षर नै अछि",
     "txReverted": "लेनदेन ऑन-चेन वापस भ गेल"
+  },
+  "poster": {
+    "format": "फॉर्मेट",
+    "style": "शैली",
+    "logo": "लोगो",
+    "headline": "शीर्षक",
+    "headlinePlaceholder": "जनरेट भेला के बाद साफ जुड़ैत अछि — नै चाही त खाली छोड़ू",
+    "spotlightFeatures": "उजागर करे बला सुविधा",
+    "includeWebsite": "वेबसाइट जोड़ू",
+    "includeSocials": "सोशल हैंडल जोड़ू",
+    "extraNotes": "अतिरिक्त नोट",
+    "notesPlaceholder": "पोस्टर में आर जे किछु देखाबे के अछि"
   }
 }

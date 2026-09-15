@@ -3495,5 +3495,17 @@
     "switchFirst": "Canvia a la xarxa de la recompensa abans de reclamar-la",
     "missingSignature": "Falta la signatura de la reclamació",
     "txReverted": "La transacció s'ha revertit a la cadena"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Estil",
+    "logo": "Logotip",
+    "headline": "Titular",
+    "headlinePlaceholder": "S'afegeix amb nitidesa després de generar: deixa-ho en blanc si no en vols",
+    "spotlightFeatures": "Funcions destacades",
+    "includeWebsite": "Inclou el lloc web",
+    "includeSocials": "Inclou les xarxes socials",
+    "extraNotes": "Notes addicionals",
+    "notesPlaceholder": "Qualsevol altra cosa que hagi de mostrar el pòster"
   }
 }

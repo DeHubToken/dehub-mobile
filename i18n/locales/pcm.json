@@ -3309,5 +3309,17 @@
     "switchFirst": "Switch go di bounty network before you claim",
     "missingSignature": "Di bounty claim signature no dey",
     "txReverted": "Di transaction revert for on-chain"
+  },
+  "poster": {
+    "format": "Format",
+    "style": "Style",
+    "logo": "Logo",
+    "headline": "Headline",
+    "headlinePlaceholder": "Dem go add am sharp-sharp after generation — leave am empty if you no want",
+    "spotlightFeatures": "Features wey you wan highlight",
+    "includeWebsite": "Add di website",
+    "includeSocials": "Add di social handles",
+    "extraNotes": "Extra notes",
+    "notesPlaceholder": "Anytin else wey di poster suppose show"
   }
 }
