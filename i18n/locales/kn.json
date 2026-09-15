@@ -3528,5 +3528,27 @@
     "custom": "ಕಸ್ಟಮ್",
     "contractPlaceholder": "ಒಪ್ಪಂದ ವಿಳಾಸ (0x…)",
     "symbolPlaceholder": "ಚಿಹ್ನೆ (ಉದಾ. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "ಚಂದಾದಾರಿಕೆ ನೆಟ್‌ವರ್ಕ್ ಬದಲಾಯಿಸಲಾಗಲಿಲ್ಲ",
+    "connectWallet": "ಚಂದಾದಾರರಾಗಲು ನಿಮ್ಮ ವಾಲೆಟ್ ಸಂಪರ್ಕಿಸಿ",
+    "notBuyable": "ಈ ಯೋಜನೆಯನ್ನು ಖರೀದಿಸಲಾಗದು. ರಚನೆಕಾರರಿಗೆ ಮತ್ತೆ ರಚಿಸಲು ಕೇಳಿ",
+    "preparing": "ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ…",
+    "startFailed": "ಚಂದಾದಾರಿಕೆ ಪ್ರಾರಂಭಿಸಲಾಗಲಿಲ್ಲ",
+    "confirmInWallet": "ನಿಮ್ಮ ವಾಲೆಟ್‌ನಲ್ಲಿ ದೃಢೀಕರಿಸಿ…",
+    "waitingTx": "ವಹಿವಾಟಿಗಾಗಿ ಕಾಯಲಾಗುತ್ತಿದೆ…",
+    "noTxHash": "ವಾಲೆಟ್ ವಹಿವಾಟು ಹ್ಯಾಶ್ ಹಿಂತಿರುಗಿಸಲಿಲ್ಲ",
+    "finishing": "ಪೂರ್ಣಗೊಳಿಸಲಾಗುತ್ತಿದೆ…",
+    "confirmTitle": "ಚಂದಾದಾರಿಕೆ ದೃಢೀಕರಿಸಿ",
+    "subscribeToFor": "{{price}} ಗೆ {{name}} ಚಂದಾದಾರರಾಗಿ",
+    "youPay": "ನೀವು {{amount}} ಪಾವತಿಸುತ್ತೀರಿ",
+    "calculating": "ಒಟ್ಟು ಲೆಕ್ಕ ಹಾಕಲಾಗುತ್ತಿದೆ…",
+    "creatorReceives": "ರಚನೆಕಾರರಿಗೆ {{amount}} USDT ಕ್ರೆಡಿಟ್ ಸಿಗುತ್ತದೆ",
+    "custodyNote": "ನಿಮ್ಮ DHB DeHub ಖಜಾನೆಯ ಸುಪರ್ದಿಯಲ್ಲಿ ಉಳಿಯುತ್ತದೆ ಮತ್ತು ಮಾರಾಟವಾಗುವುದಿಲ್ಲ. ರಚನೆಕಾರರಿಗೆ USDT ಆಧಾರಿತ ಚಂದಾದಾರಿಕೆ ಬಾಕಿ ಸಿಗುತ್ತದೆ.",
+    "editPlan": "ಯೋಜನೆ ಸಂಪಾದಿಸಿ",
+    "notAvailableYet": "ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲ",
+    "subscribe": "ಚಂದಾದಾರರಾಗಿ",
+    "subscriberCount_one": "{{count}} ಚಂದಾದಾರ",
+    "subscriberCount_other": "{{count}} ಚಂದಾದಾರರು"
   }
 }

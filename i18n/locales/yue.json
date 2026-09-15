@@ -3521,5 +3521,27 @@
     "custom": "自訂",
     "contractPlaceholder": "合約地址（0x…）",
     "symbolPlaceholder": "代號（例如 PEPE）"
+  },
+  "subscriptions": {
+    "switchFailed": "無法切換訂閱網絡",
+    "connectWallet": "請連接錢包嚟訂閱",
+    "notBuyable": "呢個方案無法購買。請叫創作者重新建立",
+    "preparing": "正在準備…",
+    "startFailed": "無法開始訂閱",
+    "confirmInWallet": "請喺錢包確認…",
+    "waitingTx": "正在等待交易…",
+    "noTxHash": "錢包冇返回交易雜湊",
+    "finishing": "正在完成…",
+    "confirmTitle": "確認訂閱",
+    "subscribeToFor": "以 {{price}} 訂閱 {{name}}",
+    "youPay": "你支付 {{amount}}",
+    "calculating": "正在計算總額…",
+    "creatorReceives": "創作者獲得 {{amount}} USDT 額度",
+    "custodyNote": "你嘅 DHB 由 DeHub 金庫託管，唔會賣出。創作者獲得以 USDT 計價嘅訂閱餘額。",
+    "editPlan": "編輯方案",
+    "notAvailableYet": "尚未開放",
+    "subscribe": "訂閱",
+    "subscriberCount_one": "{{count}} 位訂閱者",
+    "subscriberCount_other": "{{count}} 位訂閱者"
   }
 }

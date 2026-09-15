@@ -3523,5 +3523,27 @@
     "custom": "Mukautettu",
     "contractPlaceholder": "Sopimusosoite (0x…)",
     "symbolPlaceholder": "Symboli (esim. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Tilausverkkoa ei voitu vaihtaa",
+    "connectWallet": "Yhdistä lompakkosi tilataksesi",
+    "notBuyable": "Tätä suunnitelmaa ei voi ostaa. Pyydä tekijää luomaan se uudelleen",
+    "preparing": "Valmistellaan…",
+    "startFailed": "Tilausta ei voitu aloittaa",
+    "confirmInWallet": "Vahvista lompakossasi…",
+    "waitingTx": "Odotetaan tapahtumaa…",
+    "noTxHash": "Lompakko ei palauttanut tapahtuman tiivistettä",
+    "finishing": "Viimeistellään…",
+    "confirmTitle": "Vahvista tilaus",
+    "subscribeToFor": "Tilaa {{name}} hintaan {{price}}",
+    "youPay": "Maksat {{amount}}",
+    "calculating": "Lasketaan kokonaissummaa…",
+    "creatorReceives": "Tekijä saa {{amount}} USDT hyvitystä",
+    "custodyNote": "DHB:si pysyy DeHubin rahaston säilytyksessä eikä sitä myydä. Tekijä saa USDT-määräisen tilaussaldon.",
+    "editPlan": "Muokkaa suunnitelmaa",
+    "notAvailableYet": "Ei vielä saatavilla",
+    "subscribe": "Tilaa",
+    "subscriberCount_one": "{{count}} tilaaja",
+    "subscriberCount_other": "{{count}} tilaajaa"
   }
 }

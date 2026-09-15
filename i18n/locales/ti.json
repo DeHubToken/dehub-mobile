@@ -3488,5 +3488,27 @@
     "custom": "ብሕታዊ",
     "contractPlaceholder": "ኣድራሻ ውዕል (0x…)",
     "symbolPlaceholder": "ምልክት (ንኣብነት PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "መርበብ ምዝገባ ክቕየር ኣይከኣለን",
+    "connectWallet": "ንምምዝጋብ ዋሌትካ ኣራኽብ",
+    "notBuyable": "እዚ መደብ ክግዛእ ኣይክእልን። ንፈጣሪኡ እንደገና ክፈጥሮ ሕተት",
+    "preparing": "ይዳሎ ኣሎ…",
+    "startFailed": "ምዝገባ ክጅምር ኣይከኣለን",
+    "confirmInWallet": "ኣብ ዋሌትካ ኣረጋግጽ…",
+    "waitingTx": "ግብይት ይጽበ ኣሎ…",
+    "noTxHash": "ዋሌት ናይ ግብይት ሃሽ ኣይመለሰን",
+    "finishing": "ይዛዘም ኣሎ…",
+    "confirmTitle": "ምዝገባ ኣረጋግጽ",
+    "subscribeToFor": "ብ{{price}} ናብ {{name}} ተመዝገብ",
+    "youPay": "ንስኻ {{amount}} ትኸፍል",
+    "calculating": "ጠቕላላ ይሕሰብ ኣሎ…",
+    "creatorReceives": "ፈጣሪ {{amount}} USDT ክሬዲት ይረክብ",
+    "custodyNote": "DHB ናትካ ኣብ ትሕቲ ሓለዋ ግምጃ ቤት DeHub ይጸንሕ እምበር ኣይሽየጥን። ፈጣሪ ብUSDT ዝተመዝገበ ተረፍ ምዝገባ ይረክብ።",
+    "editPlan": "መደብ ኣርም",
+    "notAvailableYet": "ገና ኣይተዳለወን",
+    "subscribe": "ተመዝገብ",
+    "subscriberCount_one": "{{count}} ተመዝጋቢ",
+    "subscriberCount_other": "{{count}} ተመዝገብቲ"
   }
 }

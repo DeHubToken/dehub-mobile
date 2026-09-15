@@ -3523,5 +3523,27 @@
     "custom": "Personalitzat",
     "contractPlaceholder": "Adreça del contracte (0x…)",
     "symbolPlaceholder": "Símbol (p. ex. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "No s'ha pogut canviar la xarxa de subscripció",
+    "connectWallet": "Connecta la cartera per subscriure't",
+    "notBuyable": "Aquest pla no es pot comprar. Demana al creador que el torni a crear",
+    "preparing": "S'està preparant…",
+    "startFailed": "No s'ha pogut iniciar la subscripció",
+    "confirmInWallet": "Confirma-ho a la cartera…",
+    "waitingTx": "S'està esperant la transacció…",
+    "noTxHash": "La cartera no ha retornat cap hash de transacció",
+    "finishing": "S'està finalitzant…",
+    "confirmTitle": "Confirma la subscripció",
+    "subscribeToFor": "Subscriu-te a {{name}} per {{price}}",
+    "youPay": "Pagues {{amount}}",
+    "calculating": "S'està calculant el total…",
+    "creatorReceives": "El creador rep {{amount}} USDT de crèdit",
+    "custodyNote": "Els teus DHB queden sota custòdia de la tresoreria de DeHub i no es venen. El creador rep un saldo de subscripció denominat en USDT.",
+    "editPlan": "Edita el pla",
+    "notAvailableYet": "Encara no està disponible",
+    "subscribe": "Subscriu-t'hi",
+    "subscriberCount_one": "{{count}} subscriptor",
+    "subscriberCount_other": "{{count}} subscriptors"
   }
 }

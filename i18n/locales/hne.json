@@ -3524,5 +3524,27 @@
     "custom": "कस्टम",
     "contractPlaceholder": "कॉन्ट्रैक्ट पता (0x…)",
     "symbolPlaceholder": "सिंबल (जइसे PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "सब्सक्रिप्शन नेटवर्क नइ बदल सकिस",
+    "connectWallet": "सब्सक्राइब करे बर अपन वॉलेट जोड़व",
+    "notBuyable": "ये प्लान बिसाहे नइ जा सकय। क्रिएटर ला फेर बनाय बर कहव",
+    "preparing": "तियार होवत हे…",
+    "startFailed": "सब्सक्रिप्शन शुरू नइ हो सकिस",
+    "confirmInWallet": "अपन वॉलेट म पुष्टि करव…",
+    "waitingTx": "लेनदेन के इंतजार हे…",
+    "noTxHash": "वॉलेट ह लेनदेन के हैश नइ लौटाइस",
+    "finishing": "पूरा होवत हे…",
+    "confirmTitle": "सब्सक्रिप्शन के पुष्टि करव",
+    "subscribeToFor": "{{price}} म {{name}} ला सब्सक्राइब करव",
+    "youPay": "तँय {{amount}} देबे",
+    "calculating": "कुल जोड़ होवत हे…",
+    "creatorReceives": "क्रिएटर ला {{amount}} USDT क्रेडिट मिलही",
+    "custodyNote": "तोर DHB DeHub ट्रेजरी के अभिरक्षा म रहिथे अउ बेचे नइ जाय। क्रिएटर ला USDT म सब्सक्रिप्शन बैलेंस मिलथे।",
+    "editPlan": "प्लान बदलव",
+    "notAvailableYet": "अभी उपलब्ध नइ हे",
+    "subscribe": "सब्सक्राइब करव",
+    "subscriberCount_one": "{{count}} सब्सक्राइबर",
+    "subscriberCount_other": "{{count}} सब्सक्राइबर"
   }
 }

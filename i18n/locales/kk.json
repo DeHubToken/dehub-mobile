@@ -3579,5 +3579,27 @@
     "custom": "Реттелетін",
     "contractPlaceholder": "Келісімшарт мекенжайы (0x…)",
     "symbolPlaceholder": "Таңба (мысалы, PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Жазылым желісін ауыстыру мүмкін болмады",
+    "connectWallet": "Жазылу үшін әмияныңызды қосыңыз",
+    "notBuyable": "Бұл жоспарды сатып алу мүмкін емес. Авторға қайта жасауын сұраңыз",
+    "preparing": "Дайындалуда…",
+    "startFailed": "Жазылымды бастау мүмкін болмады",
+    "confirmInWallet": "Әмияныңызда растаңыз…",
+    "waitingTx": "Транзакция күтілуде…",
+    "noTxHash": "Әмиян транзакция хэшін қайтармады",
+    "finishing": "Аяқталуда…",
+    "confirmTitle": "Жазылымды растау",
+    "subscribeToFor": "{{name}} жоспарына {{price}} үшін жазылыңыз",
+    "youPay": "Сіз {{amount}} төлейсіз",
+    "calculating": "Жалпы сома есептелуде…",
+    "creatorReceives": "Автор {{amount}} USDT несие алады",
+    "custodyNote": "Сіздің DHB DeHub қазынасының сақтауында қалады және сатылмайды. Автор USDT-мен көрсетілген жазылым балансын алады.",
+    "editPlan": "Жоспарды өңдеу",
+    "notAvailableYet": "Әзірге қолжетімсіз",
+    "subscribe": "Жазылу",
+    "subscriberCount_one": "{{count}} жазылушы",
+    "subscriberCount_other": "{{count}} жазылушы"
   }
 }

@@ -3467,5 +3467,27 @@
     "custom": "کسٹم",
     "contractPlaceholder": "کنٹریکٹ ایڈریس (0x…)",
     "symbolPlaceholder": "علامت (مثلاً PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "سبسکرپشن نیٹ ورک نہ بدل سڳیا",
+    "connectWallet": "سبسکرائب کرݨ کیتے آپݨا والٹ جوڑو",
+    "notBuyable": "ایہہ پلان خریدیا نہیں ونڄ سڳدا۔ بݨاوݨ آلے کوں ولدا بݨاوݨ کیتے آکھو",
+    "preparing": "تیار تھیندا پیا ہے…",
+    "startFailed": "سبسکرپشن شروع نہ تھی سڳیا",
+    "confirmInWallet": "آپݨے والٹ وچ تصدیق کرو…",
+    "waitingTx": "لین ݙین دا انتظار ہے…",
+    "noTxHash": "والٹ لین ݙین دا ہیش واپس نہ ڈتا",
+    "finishing": "مکمل تھیندا پیا ہے…",
+    "confirmTitle": "سبسکرپشن دی تصدیق کرو",
+    "subscribeToFor": "{{price}} وچ {{name}} سبسکرائب کرو",
+    "youPay": "تساں {{amount}} ادا کریسو",
+    "calculating": "کل رقم گݨی ویندی پئی ہے…",
+    "creatorReceives": "بݨاوݨ آلے کوں {{amount}} USDT کریڈٹ ملسی",
+    "custodyNote": "تہاݙا DHB DeHub خزانے دی حفاظت وچ رہندے تے ویچیا نہیں ویندا۔ بݨاوݨ آلے کوں USDT وچ سبسکرپشن بیلنس ملدے۔",
+    "editPlan": "پلان وچ تبدیلی کرو",
+    "notAvailableYet": "ہالیں دستیاب کائنی",
+    "subscribe": "سبسکرائب کرو",
+    "subscriberCount_one": "{{count}} سبسکرائبر",
+    "subscriberCount_other": "{{count}} سبسکرائبرز"
   }
 }

@@ -3553,5 +3553,27 @@
     "custom": "Kikin akllasqa",
     "contractPlaceholder": "Kontrato direccion (0x…)",
     "symbolPlaceholder": "Unancha (kikin PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Qillqakuy redta tikray mana atikurqachu",
+    "connectWallet": "Qillqakunaykipaq qullqi wayaqaykita t'inkiy",
+    "notBuyable": "Kay plan mana rantiy atinchu. Kamaqta yapamanta ruwananpaq mañay",
+    "preparing": "Wakichichkan…",
+    "startFailed": "Qillqakuyta qallariy mana atikurqachu",
+    "confirmInWallet": "Qullqi wayaqaykipi takyachiy…",
+    "waitingTx": "Rantikuyta suyachkan…",
+    "noTxHash": "Qullqi wayaqa rantikuy hashninta mana kutichirqachu",
+    "finishing": "Tukuchichkan…",
+    "confirmTitle": "Qillqakuyta takyachiy",
+    "subscribeToFor": "{{price}}-pi {{name}}-man qillqakuy",
+    "youPay": "Qan {{amount}} qupunki",
+    "calculating": "Llapan yupachkan…",
+    "creatorReceives": "Kamaqqa {{amount}} USDT kreditota chaskin",
+    "custodyNote": "DHB-yki DeHub qullqi wasipi waqaychasqa kanqa, mana rantikunqachu. Kamaqqa USDT-pi qillqakuy saldota chaskin.",
+    "editPlan": "Planta allichay",
+    "notAvailableYet": "Manaraq kanchu",
+    "subscribe": "Qillqakuy",
+    "subscriberCount_one": "{{count}} qillqakuq",
+    "subscriberCount_other": "{{count}} qillqakuqkuna"
   }
 }

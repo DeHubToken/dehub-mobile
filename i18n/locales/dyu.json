@@ -3467,5 +3467,27 @@
     "custom": "I yɛrɛ ta",
     "contractPlaceholder": "Kontra adrɛsi (0x…)",
     "symbolPlaceholder": "Taamasiyɛn (i n'a fɔ PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Kalanso rezo ma se ka falen",
+    "connectWallet": "I ka warijɛ sɔgɔ walisa ka don",
+    "notBuyable": "Nin plan tɛ se ka san. A dilanbaa ɲininka a ka a dilan kokura",
+    "preparing": "A bɛ labɛn…",
+    "startFailed": "Kalanso ma se ka daminɛ",
+    "confirmInWallet": "A sɛmɛntiya i ka warijɛ kɔnɔ…",
+    "waitingTx": "Fɛnfeere makɔnɔni…",
+    "noTxHash": "Warijɛ ma fɛnfeere hash lasegin",
+    "finishing": "A bɛ ban…",
+    "confirmTitle": "Kalanso sɛmɛntiya",
+    "subscribeToFor": "Don {{name}} la {{price}} la",
+    "youPay": "I bɛ {{amount}} sara",
+    "calculating": "Bɛɛ lajɛlen bɛ jate…",
+    "creatorReceives": "Dilanbaa bɛ {{amount}} USDT sɔrɔ",
+    "custodyNote": "I ka DHB bɛ to DeHub warimarayɔrɔ la, a tɛ feere. Dilanbaa bɛ kalanso wari sɔrɔ USDT la.",
+    "editPlan": "Plan yɛlɛma",
+    "notAvailableYet": "A ma se fɔlɔ",
+    "subscribe": "Don a la",
+    "subscriberCount_one": "Kalansoden {{count}}",
+    "subscriberCount_other": "Kalansodenw {{count}}"
   }
 }

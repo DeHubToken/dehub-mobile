@@ -3522,5 +3522,27 @@
     "custom": "I personalizuar",
     "contractPlaceholder": "Adresa e kontratës (0x…)",
     "symbolPlaceholder": "Simboli (p.sh. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Rrjeti i abonimit nuk u ndryshua",
+    "connectWallet": "Lidh portofolin për t'u abonuar",
+    "notBuyable": "Ky plan nuk mund të blihet. Kërko nga krijuesi ta rikrijojë",
+    "preparing": "Po përgatitet…",
+    "startFailed": "Abonimi nuk mundi të fillojë",
+    "confirmInWallet": "Konfirmo në portofolin tënd…",
+    "waitingTx": "Në pritje të transaksionit…",
+    "noTxHash": "Portofoli nuk ktheu një hash transaksioni",
+    "finishing": "Po përfundohet…",
+    "confirmTitle": "Konfirmo abonimin",
+    "subscribeToFor": "Abonohu te {{name}} për {{price}}",
+    "youPay": "Ti paguan {{amount}}",
+    "calculating": "Po llogaritet totali…",
+    "creatorReceives": "Krijuesi merr kredit {{amount}} USDT",
+    "custodyNote": "DHB-ja jote qëndron në kujdestarinë e thesarit të DeHub dhe nuk shitet. Krijuesi merr një bilanc abonimi të shprehur në USDT.",
+    "editPlan": "Redakto planin",
+    "notAvailableYet": "Ende nuk është i disponueshëm",
+    "subscribe": "Abonohu",
+    "subscriberCount_one": "{{count}} abonent",
+    "subscriberCount_other": "{{count}} abonentë"
   }
 }

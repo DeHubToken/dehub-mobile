@@ -3593,5 +3593,27 @@
     "custom": "Custom",
     "contractPlaceholder": "Contract address (0x…)",
     "symbolPlaceholder": "Symbol (e.g. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Could not switch subscription network",
+    "connectWallet": "Connect your wallet to subscribe",
+    "notBuyable": "This plan cannot be bought. Ask the creator to recreate it",
+    "preparing": "Preparing…",
+    "startFailed": "Could not start the subscription",
+    "confirmInWallet": "Confirm in your wallet…",
+    "waitingTx": "Waiting for the transaction…",
+    "noTxHash": "The wallet did not return a transaction hash",
+    "finishing": "Finishing up…",
+    "confirmTitle": "Confirm Subscription",
+    "subscribeToFor": "Subscribe to {{name}} for {{price}}",
+    "youPay": "You pay {{amount}}",
+    "calculating": "Calculating the total…",
+    "creatorReceives": "Creator receives {{amount}} USDT credit",
+    "custodyNote": "Your DHB stays in DeHub treasury custody and is not sold. The creator receives a USDT-denominated subscription balance.",
+    "editPlan": "Edit Plan",
+    "notAvailableYet": "Not available yet",
+    "subscribe": "Subscribe",
+    "subscriberCount_one": "{{count}} subscriber",
+    "subscriberCount_other": "{{count}} subscribers"
   }
 }

@@ -3602,5 +3602,27 @@
     "custom": "Manokana",
     "contractPlaceholder": "Adiresin'ny fifanarahana (0x…)",
     "symbolPlaceholder": "Marika (ohatra PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Tsy afaka nanova ny tambajotra fisoratana anarana",
+    "connectWallet": "Ampifandraiso ny poketranao mba hisoratra anarana",
+    "notBuyable": "Tsy azo vidiana ity drafitra ity. Angataho ny mpamorona hamorona azy indray",
+    "preparing": "Manomana…",
+    "startFailed": "Tsy afaka nanomboka ny fisoratana anarana",
+    "confirmInWallet": "Hamafiso ao amin'ny poketranao…",
+    "waitingTx": "Miandry ny fifanakalozana…",
+    "noTxHash": "Tsy namerina hash fifanakalozana ny poketra",
+    "finishing": "Mamita…",
+    "confirmTitle": "Hamafisy ny fisoratana anarana",
+    "subscribeToFor": "Misoratra anarana amin'ny {{name}} amin'ny {{price}}",
+    "youPay": "Mandoa {{amount}} ianao",
+    "calculating": "Manisa ny totaliny…",
+    "creatorReceives": "Mahazo kredy {{amount}} USDT ny mpamorona",
+    "custodyNote": "Mijanona eo ambany fiambenan'ny trano firaketana DeHub ny DHB anao ary tsy amidy. Mahazo tahiry fisoratana anarana amin'ny USDT ny mpamorona.",
+    "editPlan": "Ovay ny drafitra",
+    "notAvailableYet": "Mbola tsy misy",
+    "subscribe": "Misoratra anarana",
+    "subscriberCount_one": "Mpanoratra anarana {{count}}",
+    "subscriberCount_other": "Mpanoratra anarana {{count}}"
   }
 }

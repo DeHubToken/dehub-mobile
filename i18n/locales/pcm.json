@@ -3337,5 +3337,27 @@
     "custom": "Custom",
     "contractPlaceholder": "Contract address (0x…)",
     "symbolPlaceholder": "Symbol (like PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "E no fit switch di subscription network",
+    "connectWallet": "Connect your wallet before you fit subscribe",
+    "notBuyable": "You no fit buy dis plan. Tell di creator make e create am again",
+    "preparing": "Dey prepare…",
+    "startFailed": "E no fit start di subscription",
+    "confirmInWallet": "Confirm am for your wallet…",
+    "waitingTx": "Dey wait for di transaction…",
+    "noTxHash": "Di wallet no return transaction hash",
+    "finishing": "Dey finish am…",
+    "confirmTitle": "Confirm di subscription",
+    "subscribeToFor": "Subscribe to {{name}} for {{price}}",
+    "youPay": "You go pay {{amount}}",
+    "calculating": "Dey calculate di total…",
+    "creatorReceives": "Di creator go receive {{amount}} USDT credit",
+    "custodyNote": "Your DHB go stay for DeHub treasury custody, dem no go sell am. Di creator go receive subscription balance for USDT.",
+    "editPlan": "Edit plan",
+    "notAvailableYet": "E never dey available",
+    "subscribe": "Subscribe",
+    "subscriberCount_one": "{{count}} subscriber",
+    "subscriberCount_other": "{{count}} subscribers"
   }
 }

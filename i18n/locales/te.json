@@ -3517,5 +3517,27 @@
     "custom": "అనుకూలం",
     "contractPlaceholder": "కాంట్రాక్ట్ చిరునామా (0x…)",
     "symbolPlaceholder": "గుర్తు (ఉదా. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "సభ్యత్వ నెట్‌వర్క్ మార్చలేకపోయాం",
+    "connectWallet": "సభ్యత్వం పొందడానికి మీ వాలెట్ కనెక్ట్ చేయండి",
+    "notBuyable": "ఈ ప్లాన్‌ను కొనలేరు. మళ్లీ సృష్టించమని సృష్టికర్తను అడగండి",
+    "preparing": "సిద్ధమవుతోంది…",
+    "startFailed": "సభ్యత్వాన్ని ప్రారంభించలేకపోయాం",
+    "confirmInWallet": "మీ వాలెట్‌లో నిర్ధారించండి…",
+    "waitingTx": "లావాదేవీ కోసం వేచి ఉంది…",
+    "noTxHash": "వాలెట్ లావాదేవీ హాష్‌ను తిరిగి ఇవ్వలేదు",
+    "finishing": "పూర్తవుతోంది…",
+    "confirmTitle": "సభ్యత్వాన్ని నిర్ధారించండి",
+    "subscribeToFor": "{{price}} కి {{name}} సభ్యత్వం పొందండి",
+    "youPay": "మీరు {{amount}} చెల్లిస్తారు",
+    "calculating": "మొత్తం లెక్కిస్తోంది…",
+    "creatorReceives": "సృష్టికర్తకు {{amount}} USDT క్రెడిట్ లభిస్తుంది",
+    "custodyNote": "మీ DHB DeHub ట్రెజరీ అదుపులో ఉంటుంది, అమ్మబడదు. సృష్టికర్తకు USDT ఆధారిత సభ్యత్వ బ్యాలెన్స్ లభిస్తుంది.",
+    "editPlan": "ప్లాన్ సవరించండి",
+    "notAvailableYet": "ఇంకా అందుబాటులో లేదు",
+    "subscribe": "సభ్యత్వం పొందండి",
+    "subscriberCount_one": "{{count}} సభ్యుడు",
+    "subscriberCount_other": "{{count}} సభ్యులు"
   }
 }

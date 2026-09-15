@@ -3507,5 +3507,27 @@
     "custom": "Fərdi",
     "contractPlaceholder": "Müqavilə ünvanı (0x…)",
     "symbolPlaceholder": "Simvol (məsələn, PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Abunə şəbəkəsi dəyişdirilə bilmədi",
+    "connectWallet": "Abunə olmaq üçün cüzdanınızı qoşun",
+    "notBuyable": "Bu plan alına bilməz. Yaradıcıdan onu yenidən yaratmasını istəyin",
+    "preparing": "Hazırlanır…",
+    "startFailed": "Abunə başladıla bilmədi",
+    "confirmInWallet": "Cüzdanınızda təsdiqləyin…",
+    "waitingTx": "Əməliyyat gözlənilir…",
+    "noTxHash": "Cüzdan əməliyyat heşi qaytarmadı",
+    "finishing": "Tamamlanır…",
+    "confirmTitle": "Abunəni təsdiqlə",
+    "subscribeToFor": "{{price}} qarşılığında {{name}} planına abunə olun",
+    "youPay": "Siz {{amount}} ödəyirsiniz",
+    "calculating": "Cəmi hesablanır…",
+    "creatorReceives": "Yaradıcı {{amount}} USDT kredit alır",
+    "custodyNote": "DHB-niz DeHub xəzinəsinin nəzarətində qalır və satılmır. Yaradıcı USDT ilə ifadə olunan abunə balansı alır.",
+    "editPlan": "Planı redaktə et",
+    "notAvailableYet": "Hələ mövcud deyil",
+    "subscribe": "Abunə ol",
+    "subscriberCount_one": "{{count}} abunəçi",
+    "subscriberCount_other": "{{count}} abunəçi"
   }
 }

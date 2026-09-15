@@ -3493,5 +3493,27 @@
     "custom": "Şahsy",
     "contractPlaceholder": "Şertnama salgysy (0x…)",
     "symbolPlaceholder": "Nyşan (meselem, PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Abuna ulgamyny çalşyp bolmady",
+    "connectWallet": "Abuna bolmak üçin gapjygyňyzy birikdiriň",
+    "notBuyable": "Bu meýilnamany satyn alyp bolmaýar. Döredijiden ony gaýtadan döretmegi haýyş ediň",
+    "preparing": "Taýýarlanýar…",
+    "startFailed": "Abunany başlap bolmady",
+    "confirmInWallet": "Gapjygyňyzda tassyklaň…",
+    "waitingTx": "Amala garaşylýar…",
+    "noTxHash": "Gapjyk amal heşini gaýtarmady",
+    "finishing": "Tamamlanýar…",
+    "confirmTitle": "Abunany tassykla",
+    "subscribeToFor": "{{price}} bilen {{name}} abunasyny alyň",
+    "youPay": "Siz {{amount}} töleýärsiňiz",
+    "calculating": "Jemi hasaplanýar…",
+    "creatorReceives": "Döredijiler {{amount}} USDT karz alýar",
+    "custodyNote": "DHB-ňiz DeHub hazynasynyň saklawynda galýar we satylmaýar. Dörediji USDT bilen aňladylan abuna balansyny alýar.",
+    "editPlan": "Meýilnamany üýtget",
+    "notAvailableYet": "Heniz elýeterli däl",
+    "subscribe": "Abuna bol",
+    "subscriberCount_one": "{{count}} abunaçy",
+    "subscriberCount_other": "{{count}} abunaçy"
   }
 }

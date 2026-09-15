@@ -3522,5 +3522,27 @@
     "custom": "Kohandatud",
     "contractPlaceholder": "Lepingu aadress (0x…)",
     "symbolPlaceholder": "Sümbol (nt PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Tellimuse võrku ei saanud vahetada",
+    "connectWallet": "Tellimiseks ühenda oma rahakott",
+    "notBuyable": "Seda plaani ei saa osta. Palu loojal see uuesti luua",
+    "preparing": "Ettevalmistamine…",
+    "startFailed": "Tellimuse alustamine ebaõnnestus",
+    "confirmInWallet": "Kinnita oma rahakotis…",
+    "waitingTx": "Tehingu ootamine…",
+    "noTxHash": "Rahakott ei tagastanud tehingu räsi",
+    "finishing": "Lõpetamine…",
+    "confirmTitle": "Kinnita tellimus",
+    "subscribeToFor": "Telli {{name}} hinnaga {{price}}",
+    "youPay": "Sa maksad {{amount}}",
+    "calculating": "Kogusumma arvutamine…",
+    "creatorReceives": "Looja saab {{amount}} USDT krediiti",
+    "custodyNote": "Sinu DHB jääb DeHubi varakambri hoiule ja seda ei müüda. Looja saab USDT-põhise tellimusjäägi.",
+    "editPlan": "Muuda plaani",
+    "notAvailableYet": "Pole veel saadaval",
+    "subscribe": "Telli",
+    "subscriberCount_one": "{{count}} tellija",
+    "subscriberCount_other": "{{count}} tellijat"
   }
 }

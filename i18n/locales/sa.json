@@ -3479,5 +3479,27 @@
     "custom": "स्वनिर्मितम्",
     "contractPlaceholder": "सन्धिपत्रसङ्केतः (0x…)",
     "symbolPlaceholder": "प्रतीकम् (यथा PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "अभिदानजालं परिवर्तयितुं न शक्यते",
+    "connectWallet": "अभिदातुं स्वकोशं संयोजयतु",
+    "notBuyable": "एषा योजना क्रेतुं न शक्यते। रचयितारं पुनः रचयितुं वदतु",
+    "preparing": "सज्जीक्रियते…",
+    "startFailed": "अभिदानम् आरब्धुं न शक्यते",
+    "confirmInWallet": "स्वकोशे निश्चिनोतु…",
+    "waitingTx": "व्यवहारस्य प्रतीक्षा…",
+    "noTxHash": "कोशः व्यवहारस्य हैश् न प्रत्यानीतवान्",
+    "finishing": "समाप्यते…",
+    "confirmTitle": "अभिदानं निश्चिनोतु",
+    "subscribeToFor": "{{price}}-मूल्येन {{name}} अभिदधातु",
+    "youPay": "भवान् {{amount}} ददाति",
+    "calculating": "योगः गण्यते…",
+    "creatorReceives": "रचयिता {{amount}} USDT ऋणं प्राप्नोति",
+    "custodyNote": "भवतः DHB DeHub-कोषागारस्य रक्षणे तिष्ठति न च विक्रीयते। रचयिता USDT-मूल्याङ्कितम् अभिदानशेषं प्राप्नोति।",
+    "editPlan": "योजनां सम्पादयतु",
+    "notAvailableYet": "अद्यापि न उपलब्धम्",
+    "subscribe": "अभिदधातु",
+    "subscriberCount_one": "{{count}} अभिदाता",
+    "subscriberCount_other": "{{count}} अभिदातारः"
   }
 }

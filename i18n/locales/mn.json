@@ -3502,5 +3502,27 @@
     "custom": "Өөрчилсөн",
     "contractPlaceholder": "Гэрээний хаяг (0x…)",
     "symbolPlaceholder": "Тэмдэг (жишээ нь PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Захиалгын сүлжээг сольж чадсангүй",
+    "connectWallet": "Захиалахын тулд түрийвчээ холбоно уу",
+    "notBuyable": "Энэ төлөвлөгөөг худалдаж авах боломжгүй. Зохиогчоос дахин үүсгэхийг хүснэ үү",
+    "preparing": "Бэлтгэж байна…",
+    "startFailed": "Захиалгыг эхлүүлж чадсангүй",
+    "confirmInWallet": "Түрийвчдээ баталгаажуулна уу…",
+    "waitingTx": "Гүйлгээг хүлээж байна…",
+    "noTxHash": "Түрийвч гүйлгээний хэш буцаасангүй",
+    "finishing": "Дуусгаж байна…",
+    "confirmTitle": "Захиалгыг баталгаажуулах",
+    "subscribeToFor": "{{price}}-аар {{name}}-д захиалга өгөх",
+    "youPay": "Та {{amount}} төлнө",
+    "calculating": "Нийт дүнг тооцоолж байна…",
+    "creatorReceives": "Зохиогч {{amount}} USDT кредит авна",
+    "custodyNote": "Таны DHB нь DeHub сангийн хадгалалтад үлдэх бөгөөд зарагдахгүй. Зохиогч USDT-ээр илэрхийлсэн захиалгын үлдэгдэл авна.",
+    "editPlan": "Төлөвлөгөөг засах",
+    "notAvailableYet": "Одоохондоо боломжгүй",
+    "subscribe": "Захиалах",
+    "subscriberCount_one": "{{count}} захиалагч",
+    "subscriberCount_other": "{{count}} захиалагч"
   }
 }

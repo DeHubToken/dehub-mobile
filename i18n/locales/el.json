@@ -3546,5 +3546,27 @@
     "custom": "Προσαρμοσμένο",
     "contractPlaceholder": "Διεύθυνση συμβολαίου (0x…)",
     "symbolPlaceholder": "Σύμβολο (π.χ. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Δεν ήταν δυνατή η αλλαγή δικτύου συνδρομής",
+    "connectWallet": "Σύνδεσε το πορτοφόλι σου για να εγγραφείς",
+    "notBuyable": "Αυτό το πακέτο δεν μπορεί να αγοραστεί. Ζήτησε από τον δημιουργό να το ξαναφτιάξει",
+    "preparing": "Προετοιμασία…",
+    "startFailed": "Δεν ήταν δυνατή η έναρξη της συνδρομής",
+    "confirmInWallet": "Επιβεβαίωσε στο πορτοφόλι σου…",
+    "waitingTx": "Αναμονή για τη συναλλαγή…",
+    "noTxHash": "Το πορτοφόλι δεν επέστρεψε hash συναλλαγής",
+    "finishing": "Ολοκλήρωση…",
+    "confirmTitle": "Επιβεβαίωση συνδρομής",
+    "subscribeToFor": "Εγγραφή στο {{name}} για {{price}}",
+    "youPay": "Πληρώνεις {{amount}}",
+    "calculating": "Υπολογισμός συνόλου…",
+    "creatorReceives": "Ο δημιουργός λαμβάνει πίστωση {{amount}} USDT",
+    "custodyNote": "Τα DHB σου παραμένουν στη θεματοφυλακή του ταμείου DeHub και δεν πωλούνται. Ο δημιουργός λαμβάνει υπόλοιπο συνδρομής σε USDT.",
+    "editPlan": "Επεξεργασία πακέτου",
+    "notAvailableYet": "Δεν είναι ακόμη διαθέσιμο",
+    "subscribe": "Εγγραφή",
+    "subscriberCount_one": "{{count}} συνδρομητής",
+    "subscriberCount_other": "{{count}} συνδρομητές"
   }
 }

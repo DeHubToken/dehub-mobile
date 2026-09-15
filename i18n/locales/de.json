@@ -3592,5 +3592,27 @@
     "custom": "Benutzerdefiniert",
     "contractPlaceholder": "Vertragsadresse (0x…)",
     "symbolPlaceholder": "Symbol (z. B. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Abo-Netzwerk konnte nicht gewechselt werden",
+    "connectWallet": "Verbinde deine Wallet, um zu abonnieren",
+    "notBuyable": "Dieser Plan kann nicht gekauft werden. Bitte den Ersteller, ihn neu anzulegen",
+    "preparing": "Wird vorbereitet…",
+    "startFailed": "Abo konnte nicht gestartet werden",
+    "confirmInWallet": "Bestätige in deiner Wallet…",
+    "waitingTx": "Warten auf die Transaktion…",
+    "noTxHash": "Die Wallet hat keinen Transaktions-Hash zurückgegeben",
+    "finishing": "Wird abgeschlossen…",
+    "confirmTitle": "Abo bestätigen",
+    "subscribeToFor": "{{name}} für {{price}} abonnieren",
+    "youPay": "Du zahlst {{amount}}",
+    "calculating": "Gesamtbetrag wird berechnet…",
+    "creatorReceives": "Der Ersteller erhält {{amount}} USDT Guthaben",
+    "custodyNote": "Deine DHB bleiben in der Verwahrung der DeHub-Treasury und werden nicht verkauft. Der Ersteller erhält ein in USDT denominiertes Abo-Guthaben.",
+    "editPlan": "Plan bearbeiten",
+    "notAvailableYet": "Noch nicht verfügbar",
+    "subscribe": "Abonnieren",
+    "subscriberCount_one": "{{count}} Abonnent",
+    "subscriberCount_other": "{{count}} Abonnenten"
   }
 }

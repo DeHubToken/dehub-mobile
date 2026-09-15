@@ -3615,5 +3615,27 @@
     "custom": "কাস্টম",
     "contractPlaceholder": "কনট্র্যাক্ট ঠিকানা (0x…)",
     "symbolPlaceholder": "প্রতীক (যেমন PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "সাবস্ক্রিপশন নেটওয়ার্ক বদলান ন যায়",
+    "connectWallet": "সাবস্ক্রাইব গরিবার লাই তোঁয়ার ওয়ালেট যুক্ত গরন",
+    "notBuyable": "এই প্ল্যান কিনা ন যাইব। ক্রিয়েটররে আবার বানাইত কন",
+    "preparing": "প্রস্তুত অর…",
+    "startFailed": "সাবস্ক্রিপশন শুরু গরন ন যায়",
+    "confirmInWallet": "তোঁয়ার ওয়ালেটত নিশ্চিত গরন…",
+    "waitingTx": "লেনদেনর অপেক্ষাত…",
+    "noTxHash": "ওয়ালেট লেনদেনর হ্যাশ ফিরাই ন দিয়ে",
+    "finishing": "শেষ অর…",
+    "confirmTitle": "সাবস্ক্রিপশন নিশ্চিত গরন",
+    "subscribeToFor": "{{price}} ত {{name}} ত সাবস্ক্রাইব গরন",
+    "youPay": "তুঁই দিবা {{amount}}",
+    "calculating": "মোট হিসাব অর…",
+    "creatorReceives": "ক্রিয়েটর পাইব {{amount}} USDT ক্রেডিট",
+    "custodyNote": "তোঁয়ার DHB DeHub ট্রেজারির হেফাজতত থাকিব, বেচা ন যাইব। ক্রিয়েটর USDT-ত সাবস্ক্রিপশন ব্যালেন্স পাইব।",
+    "editPlan": "প্ল্যান বদলান",
+    "notAvailableYet": "এহনো পাওন ন যায়",
+    "subscribe": "সাবস্ক্রাইব গরন",
+    "subscriberCount_one": "{{count}} সাবস্ক্রাইবার",
+    "subscriberCount_other": "{{count}} সাবস্ক্রাইবার"
   }
 }

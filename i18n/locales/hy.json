@@ -3516,5 +3516,27 @@
     "custom": "Հատուկ",
     "contractPlaceholder": "Պայմանագրի հասցե (0x…)",
     "symbolPlaceholder": "Նշան (օր. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Չհաջողվեց փոխել բաժանորդագրության ցանցը",
+    "connectWallet": "Բաժանորդագրվելու համար միացրեք ձեր դրամապանակը",
+    "notBuyable": "Այս փաթեթը հնարավոր չէ գնել։ Խնդրեք հեղինակին կրկին ստեղծել այն",
+    "preparing": "Պատրաստվում է…",
+    "startFailed": "Չհաջողվեց սկսել բաժանորդագրությունը",
+    "confirmInWallet": "Հաստատեք ձեր դրամապանակում…",
+    "waitingTx": "Գործարքի սպասում…",
+    "noTxHash": "Դրամապանակը չվերադարձրեց գործարքի հեշ",
+    "finishing": "Ավարտվում է…",
+    "confirmTitle": "Հաստատել բաժանորդագրությունը",
+    "subscribeToFor": "Բաժանորդագրվեք {{name}}-ին {{price}}-ով",
+    "youPay": "Դուք վճարում եք {{amount}}",
+    "calculating": "Ընդհանուր գումարի հաշվարկ…",
+    "creatorReceives": "Հեղինակը ստանում է {{amount}} USDT կրեդիտ",
+    "custodyNote": "Ձեր DHB-ն մնում է DeHub գանձարանի պահպանության տակ և չի վաճառվում։ Հեղինակը ստանում է USDT-ով արտահայտված բաժանորդագրության մնացորդ։",
+    "editPlan": "Խմբագրել փաթեթը",
+    "notAvailableYet": "Դեռ հասանելի չէ",
+    "subscribe": "Բաժանորդագրվել",
+    "subscriberCount_one": "{{count}} բաժանորդ",
+    "subscriberCount_other": "{{count}} բաժանորդ"
   }
 }
