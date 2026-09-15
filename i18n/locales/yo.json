@@ -3280,7 +3280,12 @@
     "descriptionPlaceholder": "Kí ni yóò wà nínú àpò yìí?",
     "createAndSave": "Dá kí o sì fi pamọ́",
     "createNew": "Dá àpò tuntun",
-    "closeA11y": "Ti ayànfẹ́ àpò pa"
+    "closeA11y": "Ti ayànfẹ́ àpò pa",
+    "loadFailed": "Kò lè gbé àwọn àpò àmì-ìwé wọlé",
+    "addedTo": "A fi kún {{name}}",
+    "removedFrom": "A yọ kúrò nínú {{name}}",
+    "savedTo": "A fi pamọ́ sí {{name}}",
+    "createdNotAdded": "A dá àpò sílẹ̀, ṣùgbọ́n a kò fi ìfìwéránṣẹ́ kún un"
   },
   "ppv": {
     "title": "Àkóónú sísanwó fún ìwòran",
@@ -3350,6 +3355,7 @@
     "secureWithBiometrics": "Dáàbò bò pẹ̀lú biometrics",
     "thatsGoneToo": "Ìyẹn náà ti lọ — bẹ̀rẹ̀ láti ìbẹ̀rẹ̀ lọ́nàkọnà",
     "tryBiometrics": "Gbìyànjú biometrics lórí fóònù yìí",
-    "unlockWithBiometrics": "Ṣí pẹ̀lú biometrics"
+    "unlockWithBiometrics": "Ṣí pẹ̀lú biometrics",
+    "confirmStartOver": "Jẹ́rìí pé o fẹ́ bẹ̀rẹ̀ láti ìbẹ̀rẹ̀ pẹ̀lú àpò owó tuntun"
   }
 }

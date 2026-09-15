@@ -3290,7 +3290,12 @@
     "descriptionPlaceholder": "Što pripada u ovu mapu?",
     "createAndSave": "Stvori i spremi",
     "createNew": "Stvori novu mapu",
-    "closeA11y": "Zatvori odabir mape"
+    "closeA11y": "Zatvori odabir mape",
+    "loadFailed": "Učitavanje mapa oznaka nije uspjelo",
+    "addedTo": "Dodano u {{name}}",
+    "removedFrom": "Uklonjeno iz {{name}}",
+    "savedTo": "Spremljeno u {{name}}",
+    "createdNotAdded": "Mapa je stvorena, ali objava nije dodana"
   },
   "ppv": {
     "title": "Sadržaj s plaćanjem po gledanju",
@@ -3360,6 +3365,7 @@
     "secureWithBiometrics": "Zaštiti biometrijom",
     "thatsGoneToo": "I to je nestalo — svejedno počni ispočetka",
     "tryBiometrics": "Isprobaj biometriju na ovom telefonu",
-    "unlockWithBiometrics": "Otključaj biometrijom"
+    "unlockWithBiometrics": "Otključaj biometrijom",
+    "confirmStartOver": "Potvrdi da želiš početi ispočetka s novim novčanikom"
   }
 }

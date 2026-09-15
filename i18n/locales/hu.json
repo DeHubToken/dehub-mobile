@@ -3294,7 +3294,12 @@
     "descriptionPlaceholder": "Mi kerül ebbe a mappába?",
     "createAndSave": "Létrehozás és mentés",
     "createNew": "Új mappa létrehozása",
-    "closeA11y": "Mappaválasztó bezárása"
+    "closeA11y": "Mappaválasztó bezárása",
+    "loadFailed": "A könyvjelzőmappák betöltése sikertelen",
+    "addedTo": "Hozzáadva ehhez: {{name}}",
+    "removedFrom": "Eltávolítva innen: {{name}}",
+    "savedTo": "Mentve ide: {{name}}",
+    "createdNotAdded": "A mappa létrejött, de a bejegyzés nem került hozzá"
   },
   "ppv": {
     "title": "Nézetenként fizetős tartalom",
@@ -3364,6 +3369,7 @@
     "secureWithBiometrics": "Védelem biometriával",
     "thatsGoneToo": "Az is odalett — kezdd újra mindenképp",
     "tryBiometrics": "Próbáld a biometriát ezen a telefonon",
-    "unlockWithBiometrics": "Feloldás biometriával"
+    "unlockWithBiometrics": "Feloldás biometriával",
+    "confirmStartOver": "Erősítsd meg, hogy új tárcával szeretnéd újrakezdeni"
   }
 }

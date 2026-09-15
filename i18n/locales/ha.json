@@ -3280,7 +3280,12 @@
     "descriptionPlaceholder": "Me ya kamata ya kasance a wannan babban fayil?",
     "createAndSave": "Ƙirƙira ka ajiye",
     "createNew": "Ƙirƙiri sabon babban fayil",
-    "closeA11y": "Rufe mai zaɓar babban fayil"
+    "closeA11y": "Rufe mai zaɓar babban fayil",
+    "loadFailed": "An kasa loda manyan fayilolin alamun shafi",
+    "addedTo": "An ƙara zuwa {{name}}",
+    "removedFrom": "An cire daga {{name}}",
+    "savedTo": "An ajiye a {{name}}",
+    "createdNotAdded": "An ƙirƙiri babban fayil, amma ba a ƙara sakon ba"
   },
   "ppv": {
     "title": "Abun cikin biya kowane kallo",
@@ -3350,6 +3355,7 @@
     "secureWithBiometrics": "Kare da biometrics",
     "thatsGoneToo": "Wannan ma ya ɓace — duk da haka fara sabo",
     "tryBiometrics": "Gwada biometrics a wannan wayar",
-    "unlockWithBiometrics": "Buɗe da biometrics"
+    "unlockWithBiometrics": "Buɗe da biometrics",
+    "confirmStartOver": "Tabbatar kana son fara sabo da sabon walat"
   }
 }

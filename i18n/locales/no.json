@@ -3280,7 +3280,12 @@
     "descriptionPlaceholder": "Hva hører hjemme i denne mappen?",
     "createAndSave": "Opprett og lagre",
     "createNew": "Opprett ny mappe",
-    "closeA11y": "Lukk mappevelger"
+    "closeA11y": "Lukk mappevelger",
+    "loadFailed": "Kunne ikke laste bokmerkemapper",
+    "addedTo": "Lagt til i {{name}}",
+    "removedFrom": "Fjernet fra {{name}}",
+    "savedTo": "Lagret i {{name}}",
+    "createdNotAdded": "Mappen ble opprettet, men innlegget ble ikke lagt til"
   },
   "ppv": {
     "title": "Betal-per-visning-innhold",
@@ -3350,6 +3355,7 @@
     "secureWithBiometrics": "Sikre med biometri",
     "thatsGoneToo": "Det er borte også — start på nytt likevel",
     "tryBiometrics": "Prøv biometri på denne telefonen",
-    "unlockWithBiometrics": "Lås opp med biometri"
+    "unlockWithBiometrics": "Lås opp med biometri",
+    "confirmStartOver": "Bekreft at du vil starte på nytt med en ny lommebok"
   }
 }

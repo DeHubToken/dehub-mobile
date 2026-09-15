@@ -3352,7 +3352,12 @@
     "descriptionPlaceholder": "Bu klasöre ne konulur?",
     "createAndSave": "Oluştur ve kaydet",
     "createNew": "Yeni klasör oluştur",
-    "closeA11y": "Klasör seçiciyi kapat"
+    "closeA11y": "Klasör seçiciyi kapat",
+    "loadFailed": "Yer imi klasörleri yüklenemedi",
+    "addedTo": "{{name}} klasörüne eklendi",
+    "removedFrom": "{{name}} klasöründen kaldırıldı",
+    "savedTo": "{{name}} klasörüne kaydedildi",
+    "createdNotAdded": "Klasör oluşturuldu ama gönderi eklenmedi"
   },
   "ppv": {
     "title": "İzleme başına ödemeli içerik",
@@ -3422,6 +3427,7 @@
     "secureWithBiometrics": "Biyometriyle güvene al",
     "thatsGoneToo": "O da gitti — yine de baştan başla",
     "tryBiometrics": "Bu telefonda biyometriyi dene",
-    "unlockWithBiometrics": "Biyometriyle kilidi aç"
+    "unlockWithBiometrics": "Biyometriyle kilidi aç",
+    "confirmStartOver": "Yeni bir cüzdanla baştan başlamak istediğini onayla"
   }
 }

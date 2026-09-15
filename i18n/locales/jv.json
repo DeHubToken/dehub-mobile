@@ -3248,7 +3248,12 @@
     "descriptionPlaceholder": "Apa sing ana ing folder iki?",
     "createAndSave": "Gawe & simpen",
     "createNew": "Gawe folder anyar",
-    "closeA11y": "Tutup pemilih folder"
+    "closeA11y": "Tutup pemilih folder",
+    "loadFailed": "Gagal ngemot folder tandha",
+    "addedTo": "Ditambahake menyang {{name}}",
+    "removedFrom": "Dibusak saka {{name}}",
+    "savedTo": "Disimpen menyang {{name}}",
+    "createdNotAdded": "Folder digawe, nanging postingan ora ditambahake"
   },
   "ppv": {
     "title": "Konten bayar saben nonton",
@@ -3318,6 +3323,7 @@
     "secureWithBiometrics": "Amanake nganggo biometrik",
     "thatsGoneToo": "Kuwi uga wis ilang — tetep miwiti maneh",
     "tryBiometrics": "Coba biometrik ing HP iki",
-    "unlockWithBiometrics": "Bukak nganggo biometrik"
+    "unlockWithBiometrics": "Bukak nganggo biometrik",
+    "confirmStartOver": "Konfirmasi yen sampeyan arep miwiti maneh nganggo dompet anyar"
   }
 }

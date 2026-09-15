@@ -3319,7 +3319,12 @@
     "descriptionPlaceholder": "Yini efanele ibe kule folda?",
     "createAndSave": "Dala futhi ulondoloze",
     "createNew": "Dala ifolda entsha",
-    "closeA11y": "Vala isikhethi sefolda"
+    "closeA11y": "Vala isikhethi sefolda",
+    "loadFailed": "Ayikwazanga ukulayisha amafolda amabhukhimakhi",
+    "addedTo": "Kwengezwe ku-{{name}}",
+    "removedFrom": "Kususwe ku-{{name}}",
+    "savedTo": "Kulondolozwe ku-{{name}}",
+    "createdNotAdded": "Ifolda idaliwe, kodwa okuthunyelwe akufakwanga"
   },
   "ppv": {
     "title": "Okuqukethwe okukhokhelwa ngokubuka ngakunye",
@@ -3389,6 +3394,7 @@
     "secureWithBiometrics": "Vikela nge-biometrics",
     "thatsGoneToo": "Nalokho kulahlekile — qala kabusha noma kunjalo",
     "tryBiometrics": "Zama i-biometrics kule foni",
-    "unlockWithBiometrics": "Vula nge-biometrics"
+    "unlockWithBiometrics": "Vula nge-biometrics",
+    "confirmStartOver": "Qinisekisa ukuthi ufuna ukuqala kabusha ngesikhwama esisha"
   }
 }

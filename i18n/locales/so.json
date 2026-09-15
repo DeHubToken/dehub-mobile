@@ -3281,7 +3281,12 @@
     "descriptionPlaceholder": "Maxaa galka ku jira?",
     "createAndSave": "Samee oo kaydi",
     "createNew": "Samee gal cusub",
-    "closeA11y": "Xir doorashada galka"
+    "closeA11y": "Xir doorashada galka",
+    "loadFailed": "Lama soo rarin karin galalka calaamadaha",
+    "addedTo": "Waxaa lagu daray {{name}}",
+    "removedFrom": "Waa laga saaray {{name}}",
+    "savedTo": "Waxaa lagu kaydiyay {{name}}",
+    "createdNotAdded": "Galka waa la sameeyay, laakiin qoraalka lama darin"
   },
   "ppv": {
     "title": "Waxyaabaha lacag-bixinta daawasho kasta",
@@ -3351,6 +3356,7 @@
     "secureWithBiometrics": "Ku ilaali biometrics",
     "thatsGoneToo": "Taasna way lumtay — si kastaba dib u bilow",
     "tryBiometrics": "Isku day biometrics taleefankan",
-    "unlockWithBiometrics": "Ku fur biometrics"
+    "unlockWithBiometrics": "Ku fur biometrics",
+    "confirmStartOver": "Xaqiiji inaad rabto inaad dib u bilowdo boorso cusub"
   }
 }

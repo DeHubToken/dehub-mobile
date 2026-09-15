@@ -3268,7 +3268,12 @@
     "descriptionPlaceholder": "Gịnị dị na nchekwa a?",
     "createAndSave": "Mepụta ma chekwaa",
     "createNew": "Mepụta nchekwa ọhụrụ",
-    "closeA11y": "Mechie nhọrọ nchekwa"
+    "closeA11y": "Mechie nhọrọ nchekwa",
+    "loadFailed": "Ibubata nchekwa ebe nrịba ama dara",
+    "addedTo": "Agbakwunyere na {{name}}",
+    "removedFrom": "Ewepụrụ na {{name}}",
+    "savedTo": "Echekwara na {{name}}",
+    "createdNotAdded": "E mepụtara nchekwa, mana agbakwunyeghị post ahụ"
   },
   "ppv": {
     "title": "Ọdịnaya ịkwụ ụgwọ maka nlele",
@@ -3338,6 +3343,7 @@
     "secureWithBiometrics": "Jiri biometrics chekwaa",
     "thatsGoneToo": "Nke ahụ efukwala — malitegharịa n'agbanyeghị",
     "tryBiometrics": "Nwaa biometrics na ekwentị a",
-    "unlockWithBiometrics": "Jiri biometrics mepee"
+    "unlockWithBiometrics": "Jiri biometrics mepee",
+    "confirmStartOver": "Kwado na ịchọrọ ịmalitegharị na obere akpa ọhụrụ"
   }
 }

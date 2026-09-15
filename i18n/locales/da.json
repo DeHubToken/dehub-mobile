@@ -3294,7 +3294,12 @@
     "descriptionPlaceholder": "Hvad hører til i denne mappe?",
     "createAndSave": "Opret og gem",
     "createNew": "Opret ny mappe",
-    "closeA11y": "Luk mappevælger"
+    "closeA11y": "Luk mappevælger",
+    "loadFailed": "Kunne ikke indlæse bogmærkemapper",
+    "addedTo": "Tilføjet til {{name}}",
+    "removedFrom": "Fjernet fra {{name}}",
+    "savedTo": "Gemt i {{name}}",
+    "createdNotAdded": "Mappen blev oprettet, men opslaget blev ikke tilføjet"
   },
   "ppv": {
     "title": "Betal-per-visning-indhold",
@@ -3364,6 +3369,7 @@
     "secureWithBiometrics": "Sikr med biometri",
     "thatsGoneToo": "Det er også væk — start alligevel forfra",
     "tryBiometrics": "Prøv biometri på denne telefon",
-    "unlockWithBiometrics": "Lås op med biometri"
+    "unlockWithBiometrics": "Lås op med biometri",
+    "confirmStartOver": "Bekræft, at du vil starte forfra med en ny tegnebog"
   }
 }

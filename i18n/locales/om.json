@@ -3354,7 +3354,12 @@
     "descriptionPlaceholder": "Faayilii kana keessa maaltu jira?",
     "createAndSave": "Uumi fi olkaa'i",
     "createNew": "Faayilii haaraa uumi",
-    "closeA11y": "Filannoo faayilii cufi"
+    "closeA11y": "Filannoo faayilii cufi",
+    "loadFailed": "Faayilii ciiggaa fe'uun hin milkoofne",
+    "addedTo": "{{name}} tti dabalame",
+    "removedFrom": "{{name}} irraa haqame",
+    "savedTo": "{{name}} keessatti olkaaʼame",
+    "createdNotAdded": "Faayiliin uumame, garuu barreeffamni hin dabalamne"
   },
   "ppv": {
     "title": "Qabiyyee ilaalcha tokkoof kaffalamu",
@@ -3424,6 +3429,7 @@
     "secureWithBiometrics": "Baayoomeetirikiin eegi",
     "thatsGoneToo": "Sunis badeera — haa taʼu malee irra deebiʼii jalqabi",
     "tryBiometrics": "Bilbila kana irratti baayoomeetirikii yaali",
-    "unlockWithBiometrics": "Baayoomeetirikiin bani"
+    "unlockWithBiometrics": "Baayoomeetirikiin bani",
+    "confirmStartOver": "Boorsaa haaraadhaan irra deebiʼanii jalqabuu barbaaduu kee mirkaneessi"
   }
 }

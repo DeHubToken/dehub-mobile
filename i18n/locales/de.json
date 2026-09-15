@@ -3359,7 +3359,12 @@
     "descriptionPlaceholder": "Was gehört in diesen Ordner?",
     "createAndSave": "Erstellen und speichern",
     "createNew": "Neuen Ordner erstellen",
-    "closeA11y": "Ordnerauswahl schließen"
+    "closeA11y": "Ordnerauswahl schließen",
+    "loadFailed": "Lesezeichen-Ordner konnten nicht geladen werden",
+    "addedTo": "Zu {{name}} hinzugefügt",
+    "removedFrom": "Aus {{name}} entfernt",
+    "savedTo": "In {{name}} gespeichert",
+    "createdNotAdded": "Ordner erstellt, aber der Beitrag wurde nicht hinzugefügt"
   },
   "ppv": {
     "title": "Pay-per-View-Inhalt",
@@ -3429,6 +3434,7 @@
     "secureWithBiometrics": "Mit Biometrie sichern",
     "thatsGoneToo": "Das ist auch weg — trotzdem neu beginnen",
     "tryBiometrics": "Biometrie auf diesem Telefon versuchen",
-    "unlockWithBiometrics": "Mit Biometrie entsperren"
+    "unlockWithBiometrics": "Mit Biometrie entsperren",
+    "confirmStartOver": "Bestätige, dass du mit einer neuen Wallet neu beginnen willst"
   }
 }

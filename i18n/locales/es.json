@@ -3360,7 +3360,12 @@
     "descriptionPlaceholder": "¿Qué va en esta carpeta?",
     "createAndSave": "Crear y guardar",
     "createNew": "Crear carpeta nueva",
-    "closeA11y": "Cerrar el selector de carpetas"
+    "closeA11y": "Cerrar el selector de carpetas",
+    "loadFailed": "No se pudieron cargar las carpetas de marcadores",
+    "addedTo": "Añadido a {{name}}",
+    "removedFrom": "Eliminado de {{name}}",
+    "savedTo": "Guardado en {{name}}",
+    "createdNotAdded": "Se ha creado la carpeta, pero la publicación no se ha añadido"
   },
   "ppv": {
     "title": "Contenido de pago por visión",
@@ -3430,6 +3435,7 @@
     "secureWithBiometrics": "Proteger con biometría",
     "thatsGoneToo": "Eso también se ha perdido: empezar de nuevo igualmente",
     "tryBiometrics": "Prueba la biometría en este teléfono",
-    "unlockWithBiometrics": "Desbloquear con biometría"
+    "unlockWithBiometrics": "Desbloquear con biometría",
+    "confirmStartOver": "Confirma que quieres empezar de nuevo con una billetera nueva"
   }
 }

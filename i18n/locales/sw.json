@@ -3290,7 +3290,12 @@
     "descriptionPlaceholder": "Nini kinafaa kuwa kwenye folda hii?",
     "createAndSave": "Unda na uhifadhi",
     "createNew": "Unda folda mpya",
-    "closeA11y": "Funga kiteuzi cha folda"
+    "closeA11y": "Funga kiteuzi cha folda",
+    "loadFailed": "Imeshindwa kupakia folda za alamisho",
+    "addedTo": "Imeongezwa kwenye {{name}}",
+    "removedFrom": "Imeondolewa kwenye {{name}}",
+    "savedTo": "Imehifadhiwa kwenye {{name}}",
+    "createdNotAdded": "Folda imeundwa, lakini chapisho halikuongezwa"
   },
   "ppv": {
     "title": "Maudhui ya kulipia kila kutazama",
@@ -3360,6 +3365,7 @@
     "secureWithBiometrics": "Linda kwa biometriki",
     "thatsGoneToo": "Hiyo pia imepotea — anza upya hata hivyo",
     "tryBiometrics": "Jaribu biometriki kwenye simu hii",
-    "unlockWithBiometrics": "Fungua kwa biometriki"
+    "unlockWithBiometrics": "Fungua kwa biometriki",
+    "confirmStartOver": "Thibitisha unataka kuanza upya na pochi mpya"
   }
 }

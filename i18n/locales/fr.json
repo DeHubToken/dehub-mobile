@@ -3364,7 +3364,12 @@
     "descriptionPlaceholder": "Que contient ce dossier ?",
     "createAndSave": "Créer et enregistrer",
     "createNew": "Créer un nouveau dossier",
-    "closeA11y": "Fermer le sélecteur de dossiers"
+    "closeA11y": "Fermer le sélecteur de dossiers",
+    "loadFailed": "Impossible de charger les dossiers de favoris",
+    "addedTo": "Ajouté à {{name}}",
+    "removedFrom": "Retiré de {{name}}",
+    "savedTo": "Enregistré dans {{name}}",
+    "createdNotAdded": "Dossier créé, mais la publication n'a pas été ajoutée"
   },
   "ppv": {
     "title": "Contenu à la séance",
@@ -3434,6 +3439,7 @@
     "secureWithBiometrics": "Sécuriser par biométrie",
     "thatsGoneToo": "Cela aussi est perdu — recommencer quand même",
     "tryBiometrics": "Essayer la biométrie sur ce téléphone",
-    "unlockWithBiometrics": "Déverrouiller par biométrie"
+    "unlockWithBiometrics": "Déverrouiller par biométrie",
+    "confirmStartOver": "Confirmez que vous voulez recommencer avec un nouveau portefeuille"
   }
 }
