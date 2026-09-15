@@ -3388,5 +3388,21 @@
     "createAndSave": "Skep en stoor",
     "createNew": "Skep nuwe vouer",
     "closeA11y": "Sluit vouerkieser"
+  },
+  "ppv": {
+    "title": "Betaal-per-kyk-inhoud",
+    "unlockPrice": "Ontsluitprys",
+    "topUpToUnlock": "Laai op om te ontsluit",
+    "addTip": "Voeg 'n fooitjie vir die skepper by",
+    "cantPaySelf": "Jy kan nie jouself betaal nie",
+    "swapping": "Ruil ETH → DHB…",
+    "processing": "Betaling word verwerk…",
+    "unlocked": "Ontsluit!",
+    "canViewImage": "Jy kan nou hierdie beeld bekyk",
+    "canWatchVideo": "Jy kan nou hierdie video kyk",
+    "solanaFailed": "Solana-betaling het misluk",
+    "missingWeb3": "web3-konteks ontbreek",
+    "preparingRouter": "Berei betaalroeteerder voor… probeer netnou weer",
+    "swapShort": "Ruil is klaar maar DHB is steeds te min. Probeer weer."
   }
 }

@@ -3275,5 +3275,21 @@
     "createAndSave": "Vytvořit a uložit",
     "createNew": "Vytvořit novou složku",
     "closeA11y": "Zavřít výběr složky"
+  },
+  "ppv": {
+    "title": "Obsah placený za zhlédnutí",
+    "unlockPrice": "Cena za odemknutí",
+    "topUpToUnlock": "Dobijte pro odemknutí",
+    "addTip": "Přidejte spropitné pro tvůrce",
+    "cantPaySelf": "Nemůžete platit sami sobě",
+    "swapping": "Probíhá směna ETH → DHB…",
+    "processing": "Zpracování platby…",
+    "unlocked": "Odemčeno!",
+    "canViewImage": "Nyní si můžete tento obrázek prohlédnout",
+    "canWatchVideo": "Nyní si můžete toto video pustit",
+    "solanaFailed": "Platba přes Solana selhala",
+    "missingWeb3": "Chybí kontext web3",
+    "preparingRouter": "Připravuje se platební směrovač… zkuste to za chvíli",
+    "swapShort": "Směna proběhla, ale DHB stále nestačí. Zkuste to znovu."
   }
 }

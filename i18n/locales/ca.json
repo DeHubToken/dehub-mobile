@@ -3271,5 +3271,21 @@
     "createAndSave": "Crea i desa",
     "createNew": "Crea una carpeta nova",
     "closeA11y": "Tanca el selector de carpetes"
+  },
+  "ppv": {
+    "title": "Contingut de pagament per visualització",
+    "unlockPrice": "Preu de desbloqueig",
+    "topUpToUnlock": "Recarrega per desbloquejar",
+    "addTip": "Afegeix una propina per al creador",
+    "cantPaySelf": "No et pots pagar a tu mateix",
+    "swapping": "S'està canviant ETH → DHB…",
+    "processing": "S'està processant el pagament…",
+    "unlocked": "Desbloquejat!",
+    "canViewImage": "Ara pots veure aquesta imatge",
+    "canWatchVideo": "Ara pots veure aquest vídeo",
+    "solanaFailed": "El pagament amb Solana ha fallat",
+    "missingWeb3": "Falta el context web3",
+    "preparingRouter": "S'està preparant l'encaminador de pagaments… torna-ho a provar en un moment",
+    "swapShort": "L'intercanvi s'ha fet però encara falta DHB. Torna-ho a provar."
   }
 }

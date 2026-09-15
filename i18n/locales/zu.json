@@ -3300,5 +3300,21 @@
     "createAndSave": "Dala futhi ulondoloze",
     "createNew": "Dala ifolda entsha",
     "closeA11y": "Vala isikhethi sefolda"
+  },
+  "ppv": {
+    "title": "Okuqukethwe okukhokhelwa ngokubuka ngakunye",
+    "unlockPrice": "Intengo yokuvula",
+    "topUpToUnlock": "Faka imali ukuze uvule",
+    "addTip": "Engeza ithiphu kumdali",
+    "cantPaySelf": "Awukwazi ukuzikhokhela",
+    "swapping": "Ishintsha i-ETH → DHB…",
+    "processing": "Icubungula inkokhelo…",
+    "unlocked": "Kuvuliwe!",
+    "canViewImage": "Manje usungabuka lesi sithombe",
+    "canWatchVideo": "Manje usungabuka le vidiyo",
+    "solanaFailed": "Inkokhelo ye-Solana yehlulekile",
+    "missingWeb3": "Umongo we-web3 awukho",
+    "preparingRouter": "Ilungiselela i-router yenkokhelo… zama futhi emzuzwini",
+    "swapShort": "Ukushintsha kuqediwe kodwa i-DHB isashoda. Zama futhi."
   }
 }

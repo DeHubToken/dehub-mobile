@@ -3270,5 +3270,21 @@
     "createAndSave": "Sukurti ir įrašyti",
     "createNew": "Sukurti naują aplanką",
     "closeA11y": "Uždaryti aplankų parinkiklį"
+  },
+  "ppv": {
+    "title": "Turinys, apmokamas už peržiūrą",
+    "unlockPrice": "Atrakinimo kaina",
+    "topUpToUnlock": "Papildykite, kad atrakintumėte",
+    "addTip": "Pridėkite arbatpinigių kūrėjui",
+    "cantPaySelf": "Negalite mokėti sau",
+    "swapping": "Keičiama ETH → DHB…",
+    "processing": "Apdorojamas mokėjimas…",
+    "unlocked": "Atrakinta!",
+    "canViewImage": "Dabar galite peržiūrėti šį vaizdą",
+    "canWatchVideo": "Dabar galite žiūrėti šį vaizdo įrašą",
+    "solanaFailed": "Solana mokėjimas nepavyko",
+    "missingWeb3": "Trūksta web3 konteksto",
+    "preparingRouter": "Ruošiamas mokėjimų maršrutizatorius… pabandykite po akimirkos",
+    "swapShort": "Keitimas atliktas, bet DHB vis dar trūksta. Bandykite dar kartą."
   }
 }

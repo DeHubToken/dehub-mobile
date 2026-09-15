@@ -35,6 +35,7 @@ import {
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { supportedTokens } from "../../config/constants";
@@ -102,6 +103,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
   paymentChainId,
   onSuccess,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const user = useUser();
   const { requireAuth, patchUser } = useAuthActions();
@@ -252,7 +254,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
           } as any));
         } catch (e) {
           setPhase("error");
-          setPpvError(e instanceof Error ? e.message : "Solana payment failed");
+          setPpvError(e instanceof Error ? e.message : t("ppv.solanaFailed"));
         }
         return;
       }
@@ -262,10 +264,10 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
         !tokenContract || !controllerContract ||
         !tokenMeta || !tokenAddress || !controllerAddress
       ) {
-        setPpvError("Missing web3 context");
+        setPpvError(t("ppv.missingWeb3"));
         return;
       }
-      if (isSelf) { setPpvError("You can't pay yourself"); return; }
+      if (isSelf) { setPpvError(t("ppv.cantPaySelf")); return; }
 
       try {
         const ethers = (ethersImport as any).ethers || ethersImport;
@@ -275,7 +277,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
         // Used when a tip is added and the router is deployed for this chain.
         if (tipAmount > 0 && routerAvailable) {
           if (!paymentRouterContract) {
-            setPpvError("Preparing payment router… try again in a moment");
+            setPpvError(t("ppv.preparingRouter"));
             return;
           }
           setPhase("sending");
@@ -368,7 +370,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
             );
             if (ethers.BigNumber.from(dhbBalance).lt(amountBN)) {
               setPhase("error");
-              setPpvError("Swap done but DHB still short. Try again.");
+              setPpvError(t("ppv.swapShort"));
               return;
             }
           } catch (e) {
@@ -484,7 +486,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
             <View style={styles.content}>
               <View style={styles.headerRow}>
                 <Icon name="Ticket" size={18} color="#F9FBFF" />
-                <Text style={styles.headerTitle}>Top up to unlock</Text>
+                <Text style={styles.headerTitle}>{t("ppv.topUpToUnlock")}</Text>
               </View>
               <PPVTopUpStep
                 shortfall={shortfall}
@@ -501,11 +503,11 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
             <View style={styles.content}>
               <View style={styles.headerRow}>
                 <Icon name="Ticket" size={18} color="#F9FBFF" />
-                <Text style={styles.headerTitle}>Pay-Per-View Content</Text>
+                <Text style={styles.headerTitle}>{t("ppv.title")}</Text>
               </View>
 
               <View style={styles.priceRow}>
-                <Text style={styles.priceLabel}>Unlock Price</Text>
+                <Text style={styles.priceLabel}>{t("ppv.unlockPrice")}</Text>
                 <Text style={styles.priceValue}>
                   {formatCompactNumber(numericAmount)} {tokenSymbol}
                 </Text>
@@ -524,7 +526,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                     activeOpacity={0.7}
                   >
                     <Icon name="Gift" size={15} color="#A6A9AC" />
-                    <Text style={styles.tipToggleText}>Add a tip for the creator</Text>
+                    <Text style={styles.tipToggleText}>{t("ppv.addTip")}</Text>
                     <Icon
                       name={showTip ? "ChevronUp" : "ChevronDown"}
                       size={16}
@@ -557,14 +559,14 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                 </Text>
               )}
               {isSelf && (
-                <Text style={styles.errorText}>You can't pay yourself</Text>
+                <Text style={styles.errorText}>{t("ppv.cantPaySelf")}</Text>
               )}
               {ppvError && <Text style={styles.errorText}>{ppvError}</Text>}
 
               {phase === "swapping" && (
                 <View style={styles.statusRow}>
                   <ActivityIndicator size="small" color="#A6A9AC" />
-                  <Text style={styles.statusText}>Swapping ETH → DHB…</Text>
+                  <Text style={styles.statusText}>{t("ppv.swapping")}</Text>
                 </View>
               )}
               {phase === "approving" && (
@@ -576,7 +578,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
               {phase === "sending" && (
                 <View style={styles.statusRow}>
                   <ActivityIndicator size="small" color="#A6A9AC" />
-                  <Text style={styles.statusText}>Processing payment…</Text>
+                  <Text style={styles.statusText}>{t("ppv.processing")}</Text>
                 </View>
               )}
 
@@ -587,7 +589,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                   style={[styles.closeBtn, isBusy && { opacity: 0.5 }]}
                   activeOpacity={0.7}
                 >
-                  <Text style={styles.closeBtnText}>Close</Text>
+                  <Text style={styles.closeBtnText}>{t("common.close")}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -619,10 +621,10 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
               </Animated.View>
 
               <Animated.Text entering={FadeInDown.delay(200).duration(350)} style={styles.successTitle}>
-                Unlocked!
+                {t("ppv.unlocked")}
               </Animated.Text>
               <Animated.Text entering={FadeInDown.delay(300).duration(350)} style={styles.successSub}>
-                {contentType === "image" ? "You can now view this image" : "You can now watch this video"}
+                {contentType === "image" ? t("ppv.canViewImage") : t("ppv.canWatchVideo")}
               </Animated.Text>
 
               <TouchableOpacity
@@ -630,7 +632,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                 style={styles.continueBtn}
                 activeOpacity={0.7}
               >
-                <Text style={styles.continueBtnText}>Continue</Text>
+                <Text style={styles.continueBtnText}>{t("loginModal.continue")}</Text>
               </TouchableOpacity>
             </View>
           )}

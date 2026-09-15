@@ -3269,5 +3269,21 @@
     "createAndSave": "建立並儲存",
     "createNew": "建立新資料夾",
     "closeA11y": "關閉資料夾選擇器"
+  },
+  "ppv": {
+    "title": "按次付費內容",
+    "unlockPrice": "解鎖價格",
+    "topUpToUnlock": "增值以解鎖",
+    "addTip": "為創作者加打賞",
+    "cantPaySelf": "你唔可以俾錢畀自己",
+    "swapping": "正在兌換 ETH → DHB…",
+    "processing": "正在處理付款…",
+    "unlocked": "已解鎖！",
+    "canViewImage": "你而家可以睇呢張圖片",
+    "canWatchVideo": "你而家可以睇呢條影片",
+    "solanaFailed": "Solana 付款失敗",
+    "missingWeb3": "缺少 web3 上下文",
+    "preparingRouter": "正在準備付款路由… 請稍後再試",
+    "swapShort": "兌換已完成，但 DHB 仍然不足。請再試。"
   }
 }

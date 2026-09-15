@@ -3266,5 +3266,21 @@
     "createAndSave": "ፍጠርና አስቀምጥ",
     "createNew": "አዲስ አቃፊ ፍጠር",
     "closeA11y": "የአቃፊ መምረጫን ዝጋ"
+  },
+  "ppv": {
+    "title": "በእይታ የሚከፈልበት ይዘት",
+    "unlockPrice": "የመክፈቻ ዋጋ",
+    "topUpToUnlock": "ለመክፈት ያሙሉ",
+    "addTip": "ለፈጣሪው ጉርሻ ያክሉ",
+    "cantPaySelf": "ለራስዎ መክፈል አይችሉም",
+    "swapping": "ETH → DHB በመለወጥ ላይ…",
+    "processing": "ክፍያ በመከናወን ላይ…",
+    "unlocked": "ተከፍቷል!",
+    "canViewImage": "አሁን ይህን ምስል ማየት ይችላሉ",
+    "canWatchVideo": "አሁን ይህን ቪዲዮ ማየት ይችላሉ",
+    "solanaFailed": "የሶላና ክፍያ አልተሳካም",
+    "missingWeb3": "የweb3 አውድ ይጎድላል",
+    "preparingRouter": "የክፍያ መሪውን በማዘጋጀት ላይ… ከጥቂት ጊዜ በኋላ ይሞክሩ",
+    "swapShort": "መለዋወጡ ተጠናቅቋል ግን DHB አሁንም ያንሳል። እንደገና ይሞክሩ።"
   }
 }

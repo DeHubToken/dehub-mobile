@@ -3270,5 +3270,21 @@
     "createAndSave": "Izveidot un saglabāt",
     "createNew": "Izveidot jaunu mapi",
     "closeA11y": "Aizvērt mapju atlasītāju"
+  },
+  "ppv": {
+    "title": "Maksas satura skatīšanās",
+    "unlockPrice": "Atbloķēšanas cena",
+    "topUpToUnlock": "Papildini, lai atbloķētu",
+    "addTip": "Pievieno dzeramnaudu autoram",
+    "cantPaySelf": "Tu nevari maksāt pats sev",
+    "swapping": "Notiek ETH → DHB maiņa…",
+    "processing": "Notiek maksājuma apstrāde…",
+    "unlocked": "Atbloķēts!",
+    "canViewImage": "Tagad vari skatīt šo attēlu",
+    "canWatchVideo": "Tagad vari skatīties šo video",
+    "solanaFailed": "Solana maksājums neizdevās",
+    "missingWeb3": "Trūkst web3 konteksta",
+    "preparingRouter": "Tiek sagatavots maksājumu maršrutētājs… mēģini pēc brīža",
+    "swapShort": "Maiņa pabeigta, bet DHB joprojām nepietiek. Mēģini vēlreiz."
   }
 }

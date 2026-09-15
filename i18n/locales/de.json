@@ -3340,5 +3340,21 @@
     "createAndSave": "Erstellen und speichern",
     "createNew": "Neuen Ordner erstellen",
     "closeA11y": "Ordnerauswahl schließen"
+  },
+  "ppv": {
+    "title": "Pay-per-View-Inhalt",
+    "unlockPrice": "Freischaltpreis",
+    "topUpToUnlock": "Aufladen zum Freischalten",
+    "addTip": "Trinkgeld für den Creator hinzufügen",
+    "cantPaySelf": "Du kannst dich nicht selbst bezahlen",
+    "swapping": "ETH → DHB wird getauscht…",
+    "processing": "Zahlung wird verarbeitet…",
+    "unlocked": "Freigeschaltet!",
+    "canViewImage": "Du kannst dieses Bild jetzt ansehen",
+    "canWatchVideo": "Du kannst dieses Video jetzt ansehen",
+    "solanaFailed": "Solana-Zahlung fehlgeschlagen",
+    "missingWeb3": "web3-Kontext fehlt",
+    "preparingRouter": "Zahlungs-Router wird vorbereitet… gleich erneut versuchen",
+    "swapShort": "Tausch erfolgt, aber DHB reicht noch nicht. Bitte erneut versuchen."
   }
 }

@@ -3338,5 +3338,21 @@
     "createAndSave": "作成して保存",
     "createNew": "新しいフォルダを作成",
     "closeA11y": "フォルダ選択を閉じる"
+  },
+  "ppv": {
+    "title": "ペイパービューコンテンツ",
+    "unlockPrice": "解除価格",
+    "topUpToUnlock": "残高を追加して解除",
+    "addTip": "クリエイターにチップを追加",
+    "cantPaySelf": "自分自身には支払えません",
+    "swapping": "ETH → DHB を交換中…",
+    "processing": "支払いを処理中…",
+    "unlocked": "解除されました！",
+    "canViewImage": "この画像を閲覧できるようになりました",
+    "canWatchVideo": "この動画を視聴できるようになりました",
+    "solanaFailed": "Solana での支払いに失敗しました",
+    "missingWeb3": "web3 コンテキストがありません",
+    "preparingRouter": "支払いルーターを準備中… しばらくしてからもう一度お試しください",
+    "swapShort": "交換は完了しましたが DHB がまだ不足しています。もう一度お試しください。"
   }
 }

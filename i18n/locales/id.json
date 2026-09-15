@@ -3321,5 +3321,21 @@
     "createAndSave": "Buat & simpan",
     "createNew": "Buat folder baru",
     "closeA11y": "Tutup pemilih folder"
+  },
+  "ppv": {
+    "title": "Konten bayar per tayang",
+    "unlockPrice": "Harga buka kunci",
+    "topUpToUnlock": "Isi saldo untuk membuka",
+    "addTip": "Tambahkan tip untuk kreator",
+    "cantPaySelf": "Kamu tidak bisa membayar diri sendiri",
+    "swapping": "Menukar ETH → DHB…",
+    "processing": "Memproses pembayaran…",
+    "unlocked": "Terbuka!",
+    "canViewImage": "Sekarang kamu bisa melihat gambar ini",
+    "canWatchVideo": "Sekarang kamu bisa menonton video ini",
+    "solanaFailed": "Pembayaran Solana gagal",
+    "missingWeb3": "Konteks web3 tidak ada",
+    "preparingRouter": "Menyiapkan router pembayaran… coba lagi sebentar",
+    "swapShort": "Penukaran selesai tapi DHB masih kurang. Coba lagi."
   }
 }

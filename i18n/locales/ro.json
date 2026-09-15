@@ -3284,5 +3284,21 @@
     "createAndSave": "Creează și salvează",
     "createNew": "Creează dosar nou",
     "closeA11y": "Închide selectorul de dosare"
+  },
+  "ppv": {
+    "title": "Conținut cu plată per vizionare",
+    "unlockPrice": "Preț de deblocare",
+    "topUpToUnlock": "Alimentează pentru a debloca",
+    "addTip": "Adaugă un bacșiș pentru creator",
+    "cantPaySelf": "Nu îți poți plăti ție însuți",
+    "swapping": "Se schimbă ETH → DHB…",
+    "processing": "Se procesează plata…",
+    "unlocked": "Deblocat!",
+    "canViewImage": "Acum poți vedea această imagine",
+    "canWatchVideo": "Acum poți viziona acest videoclip",
+    "solanaFailed": "Plata prin Solana a eșuat",
+    "missingWeb3": "Lipsește contextul web3",
+    "preparingRouter": "Se pregătește routerul de plăți… încearcă din nou într-o clipă",
+    "swapShort": "Schimbul s-a făcut dar DHB tot nu ajunge. Încearcă din nou."
   }
 }

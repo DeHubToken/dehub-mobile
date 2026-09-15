@@ -3301,5 +3301,21 @@
     "createAndSave": "Kamay hinaspa waqaychay",
     "createNew": "Musuq qillqa churana kamay",
     "closeA11y": "Qillqa churana akllanata wichqay"
+  },
+  "ppv": {
+    "title": "Sapa qhawaypaq qullqi mañaq willakuy",
+    "unlockPrice": "Kichanapaq chanin",
+    "topUpToUnlock": "Kicharinaykipaq qullqi yapay",
+    "addTip": "Kamaqpaq yapay quy",
+    "cantPaySelf": "Mana kikiykiman qullqi quyta atinkichu",
+    "swapping": "ETH → DHB rantinakuchkan…",
+    "processing": "Qullqi quy ruwakuchkan…",
+    "unlocked": "Kicharisqa!",
+    "canViewImage": "Kunanqa kay rikchʼata qhawayta atinki",
+    "canWatchVideo": "Kunanqa kay videota qhawayta atinki",
+    "solanaFailed": "Solana qullqi quy mana atipakurqanchu",
+    "missingWeb3": "web3 contexto mana kanchu",
+    "preparingRouter": "Qullqi quy routerta wakichichkan… pisi pachamanta yapamanta ruway",
+    "swapShort": "Rantinakuy tukusqa ichaqa DHB manaraq aypanchu. Yapamanta ruway."
   }
 }

@@ -3270,5 +3270,21 @@
     "createAndSave": "Loo ja salvesta",
     "createNew": "Loo uus kaust",
     "closeA11y": "Sulge kaustavalija"
+  },
+  "ppv": {
+    "title": "Vaatamise eest tasuline sisu",
+    "unlockPrice": "Avamise hind",
+    "topUpToUnlock": "Ava lukk, täiendades saldot",
+    "addTip": "Lisa looja jaoks jootraha",
+    "cantPaySelf": "Sa ei saa endale maksta",
+    "swapping": "ETH → DHB vahetamine…",
+    "processing": "Makse töötlemine…",
+    "unlocked": "Avatud!",
+    "canViewImage": "Nüüd saad seda pilti vaadata",
+    "canWatchVideo": "Nüüd saad seda videot vaadata",
+    "solanaFailed": "Solana makse ebaõnnestus",
+    "missingWeb3": "web3 kontekst puudub",
+    "preparingRouter": "Maksemarsruuteri ettevalmistamine… proovi hetke pärast uuesti",
+    "swapShort": "Vahetus tehtud, kuid DHB-d on endiselt vähe. Proovi uuesti."
   }
 }
