@@ -814,7 +814,8 @@
     "anonymous": "Anoniem",
     "signIn": "Inloggen",
     "takePhoto": "Foto maken",
-    "recordVideo": "Video opnemen"
+    "recordVideo": "Video opnemen",
+    "saveChanges": "Wijzigingen opslaan"
   },
   "home": {
     "title": "Home",
@@ -3347,7 +3348,8 @@
     "logOutFailed": "Kon apparaat niet uitloggen",
     "logOutAllFailed": "Kon apparaten niet uitloggen",
     "devicesLoggedOut_one": "{{count}} apparaat uitgelogd",
-    "devicesLoggedOut_other": "{{count}} apparaten uitgelogd"
+    "devicesLoggedOut_other": "{{count}} apparaten uitgelogd",
+    "noActive": "Geen actieve sessies"
   },
   "library": {
     "myPosts": "Mijn berichten",
@@ -3377,7 +3379,9 @@
     "deleteFolderTitle": "Map verwijderen",
     "deleteFolderBody": "Weet je zeker dat je \"{{name}}\" wilt verwijderen? De opgeslagen berichten erin worden niet uit je Opgeslagen-lijst verwijderd.",
     "folderDeleted": "Map verwijderd",
-    "deleteFolderFailed": "Kon map niet verwijderen"
+    "deleteFolderFailed": "Kon map niet verwijderen",
+    "noCollections": "Nog geen eigen collecties",
+    "createCollection": "Collectie maken"
   },
   "setProfile": {
     "title": "Stel je profiel in",
@@ -3398,7 +3402,8 @@
     "imageFailed": "Kon die afbeelding niet gebruiken",
     "usernameReserved": "Deze gebruikersnaam is gereserveerd",
     "profileSet": "Profiel succesvol ingesteld!",
-    "profileFailed": "Kon profiel niet instellen"
+    "profileFailed": "Kon profiel niet instellen",
+    "displayNameHint": "Je openbare naam die op je profiel staat."
   },
   "events": {
     "mine": "Mijne",

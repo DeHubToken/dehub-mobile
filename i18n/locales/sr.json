@@ -546,7 +546,8 @@
     "confirm": "Потврди",
     "signIn": "Пријава",
     "takePhoto": "Сними фотографију",
-    "recordVideo": "Сними видео"
+    "recordVideo": "Сними видео",
+    "saveChanges": "Сачувај измене"
   },
   "drawers": {
     "ppvTitle": "Плаћање по гледању",
@@ -2846,7 +2847,8 @@
     "logOutFailed": "Одјава уређаја није успела",
     "logOutAllFailed": "Одјава уређаја није успела",
     "devicesLoggedOut_one": "Одјављен {{count}} уређај",
-    "devicesLoggedOut_other": "Одјављено {{count}} уређаја"
+    "devicesLoggedOut_other": "Одјављено {{count}} уређаја",
+    "noActive": "Нема активних сесија"
   },
   "library": {
     "myPosts": "Моје објаве",
@@ -2876,7 +2878,9 @@
     "deleteFolderTitle": "Обриши фасциклу",
     "deleteFolderBody": "Сигурно желиш да обришеш \"{{name}}\"? Сачуване објаве унутра неће бити обрисане са твог списка сачуваних.",
     "folderDeleted": "Фасцикла обрисана",
-    "deleteFolderFailed": "Брисање фасцикле није успело"
+    "deleteFolderFailed": "Брисање фасцикле није успело",
+    "noCollections": "Још нема сопствених колекција",
+    "createCollection": "Направи колекцију"
   },
   "setProfile": {
     "title": "Подеси свој профил",
@@ -2897,7 +2901,8 @@
     "imageFailed": "Ту слику није могуће употребити",
     "usernameReserved": "Ово корисничко име је резервисано",
     "profileSet": "Профил је успешно подешен!",
-    "profileFailed": "Подешавање профила није успело"
+    "profileFailed": "Подешавање профила није успело",
+    "displayNameHint": "Твоје јавно име приказано на профилу."
   },
   "events": {
     "mine": "Моји",

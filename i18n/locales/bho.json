@@ -592,7 +592,8 @@
     "confirm": "पुष्टि करीं",
     "signIn": "साइन इन",
     "takePhoto": "फोटो खींचीं",
-    "recordVideo": "वीडियो रिकॉर्ड करीं"
+    "recordVideo": "वीडियो रिकॉर्ड करीं",
+    "saveChanges": "बदलाव सहेजीं"
   },
   "tip": {
     "title": "उपहार भेजीं",
@@ -3029,7 +3030,8 @@
     "logOutFailed": "डिवाइस लॉग आउट ना हो पावल",
     "logOutAllFailed": "डिवाइस लॉग आउट ना हो पावल",
     "devicesLoggedOut_one": "{{count}} डिवाइस लॉग आउट भइल",
-    "devicesLoggedOut_other": "{{count}} डिवाइस लॉग आउट भइलें"
+    "devicesLoggedOut_other": "{{count}} डिवाइस लॉग आउट भइलें",
+    "noActive": "कवनो सक्रिय सत्र नइखे"
   },
   "library": {
     "myPosts": "हमार पोस्ट",
@@ -3059,7 +3061,9 @@
     "deleteFolderTitle": "फोल्डर मिटाईं",
     "deleteFolderBody": "का रउआ \"{{name}}\" मिटावे के चाहत बानी? भीतर के सेव कइल पोस्ट रउआ सेव लिस्ट से ना मिटी।",
     "folderDeleted": "फोल्डर मिट गइल",
-    "deleteFolderFailed": "फोल्डर ना मिट पावल"
+    "deleteFolderFailed": "फोल्डर ना मिट पावल",
+    "noCollections": "अभी तक कवनो अपना संग्रह नइखे",
+    "createCollection": "संग्रह बनाईं"
   },
   "setProfile": {
     "title": "आपन प्रोफाइल बनाईं",
@@ -3080,7 +3084,8 @@
     "imageFailed": "ऊ छवि इस्तेमाल ना हो पावल",
     "usernameReserved": "ई यूजरनेम आरक्षित बा",
     "profileSet": "प्रोफाइल सफलतापूर्वक बन गइल!",
-    "profileFailed": "प्रोफाइल ना बन पावल"
+    "profileFailed": "प्रोफाइल ना बन पावल",
+    "displayNameHint": "रउआ के सार्वजनिक नाम जे प्रोफाइल पर लउकेला।"
   },
   "events": {
     "mine": "हमार",

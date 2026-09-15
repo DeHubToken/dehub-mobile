@@ -567,7 +567,8 @@
     "confirm": "Confirm",
     "signIn": "Sign in",
     "takePhoto": "Snap foto",
-    "recordVideo": "Record video"
+    "recordVideo": "Record video",
+    "saveChanges": "Save di changes"
   },
   "tip": {
     "title": "Send Tip",
@@ -2899,7 +2900,8 @@
     "logOutFailed": "We no fit log out di device",
     "logOutAllFailed": "We no fit log out di devices",
     "devicesLoggedOut_one": "{{count}} device don log out",
-    "devicesLoggedOut_other": "{{count}} devices don log out"
+    "devicesLoggedOut_other": "{{count}} devices don log out",
+    "noActive": "No active sessions"
   },
   "library": {
     "myPosts": "My Posts",
@@ -2929,7 +2931,9 @@
     "deleteFolderTitle": "Delete Folder",
     "deleteFolderBody": "You sure say you wan delete \"{{name}}\"? Di saved posts inside no go comot from your Saved list.",
     "folderDeleted": "Folder don delete",
-    "deleteFolderFailed": "We no fit delete di folder"
+    "deleteFolderFailed": "We no fit delete di folder",
+    "noCollections": "You never get your own collection yet",
+    "createCollection": "Create collection"
   },
   "setProfile": {
     "title": "Set your profile",
@@ -2950,7 +2954,8 @@
     "imageFailed": "We no fit use dat image",
     "usernameReserved": "Dem reserve dis username",
     "profileSet": "Profile don set well well!",
-    "profileFailed": "We no fit set di profile"
+    "profileFailed": "We no fit set di profile",
+    "displayNameHint": "Your public name wey dey show for your profile."
   },
   "events": {
     "mine": "Mine",

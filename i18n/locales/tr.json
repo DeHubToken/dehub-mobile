@@ -620,7 +620,8 @@
     "blockUserDesc": "{{name}} kullanıcısından mesaj almayacaksınız. Daha sonra engeli kaldırabilirsiniz.",
     "unblockUserDesc": "{{name}} kullanıcısından tekrar mesaj alınmasına izin ver.",
     "takePhoto": "Fotoğraf çek",
-    "recordVideo": "Video kaydet"
+    "recordVideo": "Video kaydet",
+    "saveChanges": "Değişiklikleri kaydet"
   },
   "tip": {
     "title": "Bahşiş Gönder",
@@ -3140,7 +3141,8 @@
     "logOutFailed": "Cihazın oturumu kapatılamadı",
     "logOutAllFailed": "Cihazların oturumu kapatılamadı",
     "devicesLoggedOut_one": "{{count}} cihazın oturumu kapatıldı",
-    "devicesLoggedOut_other": "{{count}} cihazın oturumu kapatıldı"
+    "devicesLoggedOut_other": "{{count}} cihazın oturumu kapatıldı",
+    "noActive": "Etkin oturum yok"
   },
   "library": {
     "myPosts": "Gönderilerim",
@@ -3170,7 +3172,9 @@
     "deleteFolderTitle": "Klasörü sil",
     "deleteFolderBody": "\"{{name}}\" silinsin mi? İçindeki kaydedilmiş gönderiler Kaydedilenler listenden silinmez.",
     "folderDeleted": "Klasör silindi",
-    "deleteFolderFailed": "Klasör silinemedi"
+    "deleteFolderFailed": "Klasör silinemedi",
+    "noCollections": "Henüz kendi koleksiyonun yok",
+    "createCollection": "Koleksiyon oluştur"
   },
   "setProfile": {
     "title": "Profilini oluştur",
@@ -3191,7 +3195,8 @@
     "imageFailed": "Bu görsel kullanılamadı",
     "usernameReserved": "Bu kullanıcı adı ayrılmış",
     "profileSet": "Profil başarıyla oluşturuldu!",
-    "profileFailed": "Profil oluşturulamadı"
+    "profileFailed": "Profil oluşturulamadı",
+    "displayNameHint": "Profilinde görünen herkese açık adın."
   },
   "events": {
     "mine": "Benimkiler",

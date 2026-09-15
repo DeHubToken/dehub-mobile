@@ -99,7 +99,8 @@
     "anonymous": "ไม่ระบุชื่อ",
     "signIn": "เข้าสู่ระบบ",
     "takePhoto": "ถ่ายรูป",
-    "recordVideo": "บันทึกวิดีโอ"
+    "recordVideo": "บันทึกวิดีโอ",
+    "saveChanges": "บันทึกการเปลี่ยนแปลง"
   },
   "glossary": {
     "title": "อภิธานศัพท์",
@@ -3115,7 +3116,8 @@
     "logOutFailed": "ออกจากระบบอุปกรณ์ไม่สำเร็จ",
     "logOutAllFailed": "ออกจากระบบอุปกรณ์ไม่สำเร็จ",
     "devicesLoggedOut_one": "ออกจากระบบ {{count}} อุปกรณ์แล้ว",
-    "devicesLoggedOut_other": "ออกจากระบบ {{count}} อุปกรณ์แล้ว"
+    "devicesLoggedOut_other": "ออกจากระบบ {{count}} อุปกรณ์แล้ว",
+    "noActive": "ไม่มีเซสชันที่ใช้งานอยู่"
   },
   "library": {
     "myPosts": "โพสต์ของฉัน",
@@ -3145,7 +3147,9 @@
     "deleteFolderTitle": "ลบโฟลเดอร์",
     "deleteFolderBody": "แน่ใจหรือไม่ว่าต้องการลบ \"{{name}}\" โพสต์ที่บันทึกไว้ข้างในจะไม่ถูกลบออกจากรายการที่บันทึกของคุณ",
     "folderDeleted": "ลบโฟลเดอร์แล้ว",
-    "deleteFolderFailed": "ลบโฟลเดอร์ไม่สำเร็จ"
+    "deleteFolderFailed": "ลบโฟลเดอร์ไม่สำเร็จ",
+    "noCollections": "ยังไม่มีคอลเลกชันของคุณ",
+    "createCollection": "สร้างคอลเลกชัน"
   },
   "setProfile": {
     "title": "ตั้งค่าโปรไฟล์ของคุณ",
@@ -3166,7 +3170,8 @@
     "imageFailed": "ไม่สามารถใช้รูปนั้นได้",
     "usernameReserved": "ชื่อผู้ใช้นี้ถูกสงวนไว้",
     "profileSet": "ตั้งค่าโปรไฟล์สำเร็จแล้ว!",
-    "profileFailed": "ตั้งค่าโปรไฟล์ไม่สำเร็จ"
+    "profileFailed": "ตั้งค่าโปรไฟล์ไม่สำเร็จ",
+    "displayNameHint": "ชื่อสาธารณะที่แสดงบนโปรไฟล์ของคุณ"
   },
   "events": {
     "mine": "ของฉัน",

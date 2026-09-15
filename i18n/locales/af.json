@@ -1420,7 +1420,8 @@
     "confirm": "Bevestig",
     "signIn": "Meld aan",
     "takePhoto": "Neem foto",
-    "recordVideo": "Neem video op"
+    "recordVideo": "Neem video op",
+    "saveChanges": "Stoor veranderinge"
   },
   "postOptions": {
     "options": "Options",
@@ -3195,7 +3196,8 @@
     "logOutFailed": "Kon nie toestel afmeld nie",
     "logOutAllFailed": "Kon nie toestelle afmeld nie",
     "devicesLoggedOut_one": "{{count}} toestel afgemeld",
-    "devicesLoggedOut_other": "{{count}} toestelle afgemeld"
+    "devicesLoggedOut_other": "{{count}} toestelle afgemeld",
+    "noActive": "Geen aktiewe sessies nie"
   },
   "library": {
     "myPosts": "My plasings",
@@ -3225,7 +3227,9 @@
     "deleteFolderTitle": "Skrap vouer",
     "deleteFolderBody": "Is jy seker jy wil \"{{name}}\" skrap? Die gestoorde plasings binne word nie uit jou Gestoor-lys verwyder nie.",
     "folderDeleted": "Vouer geskrap",
-    "deleteFolderFailed": "Kon nie vouer skrap nie"
+    "deleteFolderFailed": "Kon nie vouer skrap nie",
+    "noCollections": "Nog geen eie versamelings nie",
+    "createCollection": "Skep versameling"
   },
   "setProfile": {
     "title": "Stel jou profiel op",
@@ -3246,7 +3250,8 @@
     "imageFailed": "Kon nie daardie prent gebruik nie",
     "usernameReserved": "Hierdie gebruikersnaam is gereserveer",
     "profileSet": "Profiel suksesvol opgestel!",
-    "profileFailed": "Kon nie profiel opstel nie"
+    "profileFailed": "Kon nie profiel opstel nie",
+    "displayNameHint": "Jou openbare naam wat op jou profiel wys."
   },
   "events": {
     "mine": "Myne",

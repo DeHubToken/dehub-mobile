@@ -603,7 +603,8 @@
     "confirm": "تأیید",
     "signIn": "ورود",
     "takePhoto": "گرفتن عکس",
-    "recordVideo": "ضبط ویدیو"
+    "recordVideo": "ضبط ویدیو",
+    "saveChanges": "ذخیره تغییرات"
   },
   "tip": {
     "title": "ارسال انعام",
@@ -3091,7 +3092,8 @@
     "logOutFailed": "خروج دستگاه ناموفق بود",
     "logOutAllFailed": "خروج دستگاه‌ها ناموفق بود",
     "devicesLoggedOut_one": "{{count}} دستگاه خارج شد",
-    "devicesLoggedOut_other": "{{count}} دستگاه خارج شدند"
+    "devicesLoggedOut_other": "{{count}} دستگاه خارج شدند",
+    "noActive": "هیچ نشست فعالی نیست"
   },
   "library": {
     "myPosts": "پست‌های من",
@@ -3121,7 +3123,9 @@
     "deleteFolderTitle": "حذف پوشه",
     "deleteFolderBody": "مطمئنید می‌خواهید \"{{name}}\" را حذف کنید؟ پست‌های ذخیره‌شده داخل آن از فهرست ذخیره‌شده‌های شما حذف نمی‌شوند.",
     "folderDeleted": "پوشه حذف شد",
-    "deleteFolderFailed": "حذف پوشه ناموفق بود"
+    "deleteFolderFailed": "حذف پوشه ناموفق بود",
+    "noCollections": "هنوز مجموعه‌ی سفارشی ندارید",
+    "createCollection": "ایجاد مجموعه"
   },
   "setProfile": {
     "title": "پروفایل خود را تنظیم کنید",
@@ -3142,7 +3146,8 @@
     "imageFailed": "استفاده از آن تصویر ممکن نشد",
     "usernameReserved": "این نام کاربری رزرو شده است",
     "profileSet": "پروفایل با موفقیت تنظیم شد!",
-    "profileFailed": "تنظیم پروفایل ناموفق بود"
+    "profileFailed": "تنظیم پروفایل ناموفق بود",
+    "displayNameHint": "نام عمومی شما که در نمایه‌تان دیده می‌شود."
   },
   "events": {
     "mine": "مال من",

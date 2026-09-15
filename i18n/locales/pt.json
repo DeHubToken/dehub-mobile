@@ -620,7 +620,8 @@
     "confirm": "Confirmar",
     "signIn": "Iniciar sessão",
     "takePhoto": "Tirar foto",
-    "recordVideo": "Gravar vídeo"
+    "recordVideo": "Gravar vídeo",
+    "saveChanges": "Salvar alterações"
   },
   "drawers": {
     "ppvTitle": "Conteúdo Pay-Per-View",
@@ -3152,7 +3153,8 @@
     "logOutFailed": "Não foi possível desconectar o dispositivo",
     "logOutAllFailed": "Não foi possível desconectar os dispositivos",
     "devicesLoggedOut_one": "{{count}} dispositivo desconectado",
-    "devicesLoggedOut_other": "{{count}} dispositivos desconectados"
+    "devicesLoggedOut_other": "{{count}} dispositivos desconectados",
+    "noActive": "Nenhuma sessão ativa"
   },
   "library": {
     "myPosts": "Meus posts",
@@ -3182,7 +3184,9 @@
     "deleteFolderTitle": "Excluir pasta",
     "deleteFolderBody": "Tem certeza de que quer excluir \"{{name}}\"? Os posts salvos dentro não serão excluídos da sua lista de salvos.",
     "folderDeleted": "Pasta excluída",
-    "deleteFolderFailed": "Não foi possível excluir a pasta"
+    "deleteFolderFailed": "Não foi possível excluir a pasta",
+    "noCollections": "Ainda não há coleções próprias",
+    "createCollection": "Criar coleção"
   },
   "setProfile": {
     "title": "Configure seu perfil",
@@ -3203,7 +3207,8 @@
     "imageFailed": "Não foi possível usar essa imagem",
     "usernameReserved": "Este nome de usuário é reservado",
     "profileSet": "Perfil configurado com sucesso!",
-    "profileFailed": "Não foi possível configurar o perfil"
+    "profileFailed": "Não foi possível configurar o perfil",
+    "displayNameHint": "Seu nome público exibido no perfil."
   },
   "events": {
     "mine": "Meus",

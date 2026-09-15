@@ -596,7 +596,8 @@
     "confirm": "Xaqiiji",
     "signIn": "Gal",
     "takePhoto": "Sawir qaad",
-    "recordVideo": "Duub muuqaal"
+    "recordVideo": "Duub muuqaal",
+    "saveChanges": "Kaydi isbeddellada"
   },
   "tip": {
     "title": "Dir Bakhshiish",
@@ -3069,7 +3070,8 @@
     "logOutFailed": "Lama saari karin qalabka",
     "logOutAllFailed": "Lama saari karin qalabka",
     "devicesLoggedOut_one": "{{count}} qalab ayaa laga saaray",
-    "devicesLoggedOut_other": "{{count}} qalab ayaa laga saaray"
+    "devicesLoggedOut_other": "{{count}} qalab ayaa laga saaray",
+    "noActive": "Ma jiraan kalfadhiyo firfircoon"
   },
   "library": {
     "myPosts": "Boostooyinkayga",
@@ -3099,7 +3101,9 @@
     "deleteFolderTitle": "Tirtir galka",
     "deleteFolderBody": "Ma hubtaa inaad tirtirto \"{{name}}\"? Boostooyinka la kaydiyay ee gudaha lagama tirtiri doono liiskaaga la kaydiyay.",
     "folderDeleted": "Galka waa la tirtiray",
-    "deleteFolderFailed": "Lama tirtiri karin galka"
+    "deleteFolderFailed": "Lama tirtiri karin galka",
+    "noCollections": "Weli ma jiraan ururin gaar ah",
+    "createCollection": "Samee ururin"
   },
   "setProfile": {
     "title": "Deji astaantaada",
@@ -3120,7 +3124,8 @@
     "imageFailed": "Sawirkaas lama isticmaali karin",
     "usernameReserved": "Magacan isticmaale waa la kaydiyay",
     "profileSet": "Astaanta si guul leh ayaa loo dejiyay!",
-    "profileFailed": "Lama dejin karin astaanta"
+    "profileFailed": "Lama dejin karin astaanta",
+    "displayNameHint": "Magacaaga dadweynaha ee ka muuqda boggaaga."
   },
   "events": {
     "mine": "Kayga",

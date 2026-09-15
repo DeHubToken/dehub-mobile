@@ -564,7 +564,8 @@
     "confirm": "أكّد",
     "signIn": "سجّل دخول",
     "takePhoto": "صوّر صورة",
-    "recordVideo": "سجّل فيديو"
+    "recordVideo": "سجّل فيديو",
+    "saveChanges": "حفظ التغييرات"
   },
   "tip": {
     "title": "أرسل إكرامية",
@@ -3035,7 +3036,8 @@
     "logOutFailed": "ما قدرنا نطلّع الجهاز",
     "logOutAllFailed": "ما قدرنا نطلّع الأجهزة",
     "devicesLoggedOut_one": "انطلّع {{count}} جهاز",
-    "devicesLoggedOut_other": "انطلّعت {{count}} أجهزة"
+    "devicesLoggedOut_other": "انطلّعت {{count}} أجهزة",
+    "noActive": "ما في جلسات فعّالة"
   },
   "library": {
     "myPosts": "منشوراتي",
@@ -3065,7 +3067,9 @@
     "deleteFolderTitle": "حذف المجلد",
     "deleteFolderBody": "متأكد بدك تحذف \"{{name}}\"؟ المنشورات المحفوظة بداخله ما رح تنحذف من قائمة المحفوظات تبعك.",
     "folderDeleted": "انحذف المجلد",
-    "deleteFolderFailed": "ما قدرنا نحذف المجلد"
+    "deleteFolderFailed": "ما قدرنا نحذف المجلد",
+    "noCollections": "ما في مجموعات مخصصة لهلق",
+    "createCollection": "أنشئ مجموعة"
   },
   "setProfile": {
     "title": "اعمل ملفك الشخصي",
@@ -3086,7 +3090,8 @@
     "imageFailed": "ما قدرنا نستخدم هالصورة",
     "usernameReserved": "هالاسم محجوز",
     "profileSet": "انضبط الملف الشخصي بنجاح!",
-    "profileFailed": "ما قدرنا نضبط الملف الشخصي"
+    "profileFailed": "ما قدرنا نضبط الملف الشخصي",
+    "displayNameHint": "اسمك العلني يلي بيظهر بملفك."
   },
   "events": {
     "mine": "تبعي",

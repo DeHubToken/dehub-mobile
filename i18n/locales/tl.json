@@ -118,7 +118,8 @@
     "anonymous": "Anonimo",
     "signIn": "Mag-sign in",
     "takePhoto": "Kumuha ng larawan",
-    "recordVideo": "Mag-record ng video"
+    "recordVideo": "Mag-record ng video",
+    "saveChanges": "I-save ang mga pagbabago"
   },
   "walletSelector": {
     "title": "Piliin ang Wallet",
@@ -3258,7 +3259,8 @@
     "logOutFailed": "Hindi ma-log out ang device",
     "logOutAllFailed": "Hindi ma-log out ang mga device",
     "devicesLoggedOut_one": "{{count}} device ang na-log out",
-    "devicesLoggedOut_other": "{{count}} device ang na-log out"
+    "devicesLoggedOut_other": "{{count}} device ang na-log out",
+    "noActive": "Walang aktibong session"
   },
   "library": {
     "myPosts": "Mga post ko",
@@ -3288,7 +3290,9 @@
     "deleteFolderTitle": "Burahin ang folder",
     "deleteFolderBody": "Sigurado kang burahin ang \"{{name}}\"? Hindi mabubura ang mga naka-save na post sa loob mula sa iyong Saved list.",
     "folderDeleted": "Nabura ang folder",
-    "deleteFolderFailed": "Hindi mabura ang folder"
+    "deleteFolderFailed": "Hindi mabura ang folder",
+    "noCollections": "Wala ka pang sariling collection",
+    "createCollection": "Gumawa ng collection"
   },
   "setProfile": {
     "title": "I-set up ang profile mo",
@@ -3309,7 +3313,8 @@
     "imageFailed": "Hindi magamit ang larawang iyon",
     "usernameReserved": "Nakalaan ang username na ito",
     "profileSet": "Matagumpay na na-set ang profile!",
-    "profileFailed": "Hindi ma-set ang profile"
+    "profileFailed": "Hindi ma-set ang profile",
+    "displayNameHint": "Ang pampublikong pangalan mong makikita sa profile."
   },
   "events": {
     "mine": "Akin",

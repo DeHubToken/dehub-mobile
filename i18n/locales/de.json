@@ -619,7 +619,8 @@
     "confirm": "Bestätigen",
     "signIn": "Anmelden",
     "takePhoto": "Foto aufnehmen",
-    "recordVideo": "Video aufnehmen"
+    "recordVideo": "Video aufnehmen",
+    "saveChanges": "Änderungen speichern"
   },
   "postOptions": {
     "options": "Optionen",
@@ -3147,7 +3148,8 @@
     "logOutFailed": "Gerät konnte nicht abgemeldet werden",
     "logOutAllFailed": "Geräte konnten nicht abgemeldet werden",
     "devicesLoggedOut_one": "{{count}} Gerät abgemeldet",
-    "devicesLoggedOut_other": "{{count}} Geräte abgemeldet"
+    "devicesLoggedOut_other": "{{count}} Geräte abgemeldet",
+    "noActive": "Keine aktiven Sitzungen"
   },
   "library": {
     "myPosts": "Meine Beiträge",
@@ -3177,7 +3179,9 @@
     "deleteFolderTitle": "Ordner löschen",
     "deleteFolderBody": "Möchtest du \"{{name}}\" wirklich löschen? Die gespeicherten Beiträge darin werden nicht aus deiner Gespeichert-Liste entfernt.",
     "folderDeleted": "Ordner gelöscht",
-    "deleteFolderFailed": "Ordner konnte nicht gelöscht werden"
+    "deleteFolderFailed": "Ordner konnte nicht gelöscht werden",
+    "noCollections": "Noch keine eigenen Sammlungen",
+    "createCollection": "Sammlung erstellen"
   },
   "setProfile": {
     "title": "Richte dein Profil ein",
@@ -3198,7 +3202,8 @@
     "imageFailed": "Dieses Bild konnte nicht verwendet werden",
     "usernameReserved": "Dieser Nutzername ist reserviert",
     "profileSet": "Profil erfolgreich eingerichtet!",
-    "profileFailed": "Profil konnte nicht eingerichtet werden"
+    "profileFailed": "Profil konnte nicht eingerichtet werden",
+    "displayNameHint": "Dein öffentlicher Name, der in deinem Profil erscheint."
   },
   "events": {
     "mine": "Meine",

@@ -597,7 +597,8 @@
     "confirm": "Kwado",
     "signIn": "Banye",
     "takePhoto": "See foto",
-    "recordVideo": "Dekọọ vidiyo"
+    "recordVideo": "Dekọọ vidiyo",
+    "saveChanges": "Chekwaa mgbanwe"
   },
   "tip": {
     "title": "Ziga Onyinye",
@@ -3056,7 +3057,8 @@
     "logOutFailed": "Ọ daghị iwepụ ngwaọrụ",
     "logOutAllFailed": "Ọ daghị iwepụ ngwaọrụ",
     "devicesLoggedOut_one": "E wepụrụ ngwaọrụ {{count}}",
-    "devicesLoggedOut_other": "E wepụrụ ngwaọrụ {{count}}"
+    "devicesLoggedOut_other": "E wepụrụ ngwaọrụ {{count}}",
+    "noActive": "Enweghị nnọkọ na-arụ ọrụ"
   },
   "library": {
     "myPosts": "Ozi m",
@@ -3086,7 +3088,9 @@
     "deleteFolderTitle": "Hichapụ folda",
     "deleteFolderBody": "Ị ji n'aka na ịchọrọ ihichapụ \"{{name}}\"? A gaghị ehichapụ ozi echekwara dị n'ime ya na ndepụta Echekwara gị.",
     "folderDeleted": "E hichapụrụ folda",
-    "deleteFolderFailed": "Ọ daghị ihichapụ folda"
+    "deleteFolderFailed": "Ọ daghị ihichapụ folda",
+    "noCollections": "Enwebeghị nchịkọta nke gị",
+    "createCollection": "Mepụta nchịkọta"
   },
   "setProfile": {
     "title": "Hazie profaịlụ gị",
@@ -3107,7 +3111,8 @@
     "imageFailed": "Enweghị ike iji onyonyo ahụ",
     "usernameReserved": "Edobere aha njirimara a",
     "profileSet": "Ahazila profaịlụ nke ọma!",
-    "profileFailed": "Ọ daghị ịhazi profaịlụ"
+    "profileFailed": "Ọ daghị ịhazi profaịlụ",
+    "displayNameHint": "Aha ọha gị na-egosi na profaịlụ gị."
   },
   "events": {
     "mine": "Nke m",

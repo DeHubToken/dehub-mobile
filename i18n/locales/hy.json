@@ -604,7 +604,8 @@
     "confirm": "Հաստատել",
     "signIn": "Մուտք գործել",
     "takePhoto": "Լուսանկարել",
-    "recordVideo": "Տեսագրել"
+    "recordVideo": "Տեսագրել",
+    "saveChanges": "Պահպանել փոփոխությունները"
   },
   "postOptions": {
     "options": "Entrankhner",
@@ -3071,7 +3072,8 @@
     "logOutFailed": "Չհաջողվեց դուրս բերել սարքը",
     "logOutAllFailed": "Չհաջողվեց դուրս բերել սարքերը",
     "devicesLoggedOut_one": "{{count}} սարք դուրս բերվեց",
-    "devicesLoggedOut_other": "{{count}} սարք դուրս բերվեց"
+    "devicesLoggedOut_other": "{{count}} սարք դուրս բերվեց",
+    "noActive": "Ակտիվ նստաշրջաններ չկան"
   },
   "library": {
     "myPosts": "Իմ գրառումները",
@@ -3101,7 +3103,9 @@
     "deleteFolderTitle": "Ջնջել պանակը",
     "deleteFolderBody": "Վստա՞հ եք, որ ուզում եք ջնջել \"{{name}}\"-ը։ Ներսի պահված գրառումները ձեր պահվածների ցանկից չեն ջնջվի։",
     "folderDeleted": "Պանակը ջնջվեց",
-    "deleteFolderFailed": "Չհաջողվեց ջնջել պանակը"
+    "deleteFolderFailed": "Չհաջողվեց ջնջել պանակը",
+    "noCollections": "Դեռ սեփական հավաքածուներ չկան",
+    "createCollection": "Ստեղծել հավաքածու"
   },
   "setProfile": {
     "title": "Կարգավորեք ձեր պրոֆիլը",
@@ -3122,7 +3126,8 @@
     "imageFailed": "Չհաջողվեց օգտագործել այդ պատկերը",
     "usernameReserved": "Այս օգտանունը վերապահված է",
     "profileSet": "Պրոֆիլը հաջողությամբ կարգավորվեց։",
-    "profileFailed": "Չհաջողվեց կարգավորել պրոֆիլը"
+    "profileFailed": "Չհաջողվեց կարգավորել պրոֆիլը",
+    "displayNameHint": "Ձեր հանրային անունը, որը ցուցադրվում է պրոֆիլում։"
   },
   "events": {
     "mine": "Իմերը",

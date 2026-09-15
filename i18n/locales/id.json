@@ -606,7 +606,8 @@
     "confirm": "Konfirmasi",
     "signIn": "Masuk",
     "takePhoto": "Ambil foto",
-    "recordVideo": "Rekam video"
+    "recordVideo": "Rekam video",
+    "saveChanges": "Simpan perubahan"
   },
   "drawers": {
     "ppvTitle": "Konten Bayar-Per-Tayang",
@@ -3128,7 +3129,8 @@
     "logOutFailed": "Gagal mengeluarkan perangkat",
     "logOutAllFailed": "Gagal mengeluarkan perangkat",
     "devicesLoggedOut_one": "{{count}} perangkat dikeluarkan",
-    "devicesLoggedOut_other": "{{count}} perangkat dikeluarkan"
+    "devicesLoggedOut_other": "{{count}} perangkat dikeluarkan",
+    "noActive": "Tidak ada sesi aktif"
   },
   "library": {
     "myPosts": "Kiriman saya",
@@ -3158,7 +3160,9 @@
     "deleteFolderTitle": "Hapus folder",
     "deleteFolderBody": "Yakin ingin menghapus \"{{name}}\"? Kiriman tersimpan di dalamnya tidak akan dihapus dari daftar Tersimpan Anda.",
     "folderDeleted": "Folder dihapus",
-    "deleteFolderFailed": "Gagal menghapus folder"
+    "deleteFolderFailed": "Gagal menghapus folder",
+    "noCollections": "Belum ada koleksi khusus",
+    "createCollection": "Buat koleksi"
   },
   "setProfile": {
     "title": "Atur profil Anda",
@@ -3179,7 +3183,8 @@
     "imageFailed": "Tidak dapat menggunakan gambar itu",
     "usernameReserved": "Nama pengguna ini dicadangkan",
     "profileSet": "Profil berhasil diatur!",
-    "profileFailed": "Gagal mengatur profil"
+    "profileFailed": "Gagal mengatur profil",
+    "displayNameHint": "Nama publik yang tampil di profilmu."
   },
   "events": {
     "mine": "Milik saya",

@@ -605,7 +605,8 @@
     "confirm": "Potvrdi",
     "signIn": "Prijava",
     "takePhoto": "Snimi fotografiju",
-    "recordVideo": "Snimi video"
+    "recordVideo": "Snimi video",
+    "saveChanges": "Spremi promjene"
   },
   "tip": {
     "title": "Pošalji napojnicu",
@@ -3078,7 +3079,8 @@
     "logOutFailed": "Odjava uređaja nije uspjela",
     "logOutAllFailed": "Odjava uređaja nije uspjela",
     "devicesLoggedOut_one": "Odjavljen {{count}} uređaj",
-    "devicesLoggedOut_other": "Odjavljeno {{count}} uređaja"
+    "devicesLoggedOut_other": "Odjavljeno {{count}} uređaja",
+    "noActive": "Nema aktivnih sesija"
   },
   "library": {
     "myPosts": "Moje objave",
@@ -3108,7 +3110,9 @@
     "deleteFolderTitle": "Izbriši mapu",
     "deleteFolderBody": "Sigurno želiš izbrisati \"{{name}}\"? Spremljene objave unutra neće biti izbrisane s tvog popisa spremljenih.",
     "folderDeleted": "Mapa izbrisana",
-    "deleteFolderFailed": "Brisanje mape nije uspjelo"
+    "deleteFolderFailed": "Brisanje mape nije uspjelo",
+    "noCollections": "Još nema vlastitih zbirki",
+    "createCollection": "Stvori zbirku"
   },
   "setProfile": {
     "title": "Postavi svoj profil",
@@ -3129,7 +3133,8 @@
     "imageFailed": "Tu sliku nije moguće upotrijebiti",
     "usernameReserved": "Ovo korisničko ime je rezervirano",
     "profileSet": "Profil je uspješno postavljen!",
-    "profileFailed": "Postavljanje profila nije uspjelo"
+    "profileFailed": "Postavljanje profila nije uspjelo",
+    "displayNameHint": "Tvoje javno ime prikazano na profilu."
   },
   "events": {
     "mine": "Moji",

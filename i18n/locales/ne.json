@@ -604,7 +604,8 @@
     "confirm": "पुष्टि गर्नुहोस्",
     "signIn": "साइन इन",
     "takePhoto": "फोटो खिच्नुहोस्",
-    "recordVideo": "भिडियो रेकर्ड गर्नुहोस्"
+    "recordVideo": "भिडियो रेकर्ड गर्नुहोस्",
+    "saveChanges": "परिवर्तन सुरक्षित गर्नुहोस्"
   },
   "tip": {
     "title": "टिप पठाउनुहोस्",
@@ -3111,7 +3112,8 @@
     "logOutFailed": "यन्त्र लग आउट गर्न सकिएन",
     "logOutAllFailed": "यन्त्रहरू लग आउट गर्न सकिएन",
     "devicesLoggedOut_one": "{{count}} यन्त्र लग आउट भयो",
-    "devicesLoggedOut_other": "{{count}} यन्त्र लग आउट भए"
+    "devicesLoggedOut_other": "{{count}} यन्त्र लग आउट भए",
+    "noActive": "कुनै सक्रिय सत्र छैन"
   },
   "library": {
     "myPosts": "मेरा पोस्ट",
@@ -3141,7 +3143,9 @@
     "deleteFolderTitle": "फोल्डर मेट्नुहोस्",
     "deleteFolderBody": "के तपाईं \"{{name}}\" मेट्न चाहनुहुन्छ? भित्रका सुरक्षित पोस्टहरू तपाईंको सुरक्षित सूचीबाट मेटिने छैनन्।",
     "folderDeleted": "फोल्डर मेटियो",
-    "deleteFolderFailed": "फोल्डर मेट्न सकिएन"
+    "deleteFolderFailed": "फोल्डर मेट्न सकिएन",
+    "noCollections": "अहिलेसम्म आफ्नो संग्रह छैन",
+    "createCollection": "संग्रह बनाउनुहोस्"
   },
   "setProfile": {
     "title": "आफ्नो प्रोफाइल सेट गर्नुहोस्",
@@ -3162,7 +3166,8 @@
     "imageFailed": "त्यो तस्बिर प्रयोग गर्न सकिएन",
     "usernameReserved": "यो प्रयोगकर्ता नाम आरक्षित छ",
     "profileSet": "प्रोफाइल सफलतापूर्वक सेट भयो!",
-    "profileFailed": "प्रोफाइल सेट गर्न सकिएन"
+    "profileFailed": "प्रोफाइल सेट गर्न सकिएन",
+    "displayNameHint": "तपाईंको प्रोफाइलमा देखिने सार्वजनिक नाम।"
   },
   "events": {
     "mine": "मेरा",

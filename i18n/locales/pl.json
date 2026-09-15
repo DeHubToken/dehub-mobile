@@ -605,7 +605,8 @@
     "confirm": "Potwierdź",
     "signIn": "Zaloguj się",
     "takePhoto": "Zrób zdjęcie",
-    "recordVideo": "Nagraj wideo"
+    "recordVideo": "Nagraj wideo",
+    "saveChanges": "Zapisz zmiany"
   },
   "glossary": {
     "title": "Słownik",
@@ -3146,7 +3147,8 @@
     "logOutFailed": "Nie udało się wylogować urządzenia",
     "logOutAllFailed": "Nie udało się wylogować urządzeń",
     "devicesLoggedOut_one": "Wylogowano {{count}} urządzenie",
-    "devicesLoggedOut_other": "Wylogowano {{count}} urządzeń"
+    "devicesLoggedOut_other": "Wylogowano {{count}} urządzeń",
+    "noActive": "Brak aktywnych sesji"
   },
   "library": {
     "myPosts": "Moje posty",
@@ -3176,7 +3178,9 @@
     "deleteFolderTitle": "Usuń folder",
     "deleteFolderBody": "Na pewno chcesz usunąć \"{{name}}\"? Zapisane posty w środku nie zostaną usunięte z twojej listy zapisanych.",
     "folderDeleted": "Folder usunięty",
-    "deleteFolderFailed": "Nie udało się usunąć folderu"
+    "deleteFolderFailed": "Nie udało się usunąć folderu",
+    "noCollections": "Brak własnych kolekcji",
+    "createCollection": "Utwórz kolekcję"
   },
   "setProfile": {
     "title": "Skonfiguruj swój profil",
@@ -3197,7 +3201,8 @@
     "imageFailed": "Nie udało się użyć tego obrazu",
     "usernameReserved": "Ta nazwa użytkownika jest zarezerwowana",
     "profileSet": "Profil ustawiony pomyślnie!",
-    "profileFailed": "Nie udało się ustawić profilu"
+    "profileFailed": "Nie udało się ustawić profilu",
+    "displayNameHint": "Twoja publiczna nazwa widoczna w profilu."
   },
   "events": {
     "mine": "Moje",

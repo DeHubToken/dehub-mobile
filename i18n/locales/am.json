@@ -596,7 +596,8 @@
     "confirm": "አረጋግጥ",
     "signIn": "ግባ",
     "takePhoto": "ፎቶ አንሳ",
-    "recordVideo": "ቪዲዮ ቅረጽ"
+    "recordVideo": "ቪዲዮ ቅረጽ",
+    "saveChanges": "ለውጦችን አስቀምጥ"
   },
   "tip": {
     "title": "ጥቆማ ላክ",
@@ -3073,7 +3074,8 @@
     "logOutFailed": "መሳሪያውን ማውጣት አልተሳካም",
     "logOutAllFailed": "መሳሪያዎቹን ማውጣት አልተሳካም",
     "devicesLoggedOut_one": "{{count}} መሳሪያ ወጥቷል",
-    "devicesLoggedOut_other": "{{count}} መሳሪያዎች ወጥተዋል"
+    "devicesLoggedOut_other": "{{count}} መሳሪያዎች ወጥተዋል",
+    "noActive": "ንቁ ክፍለ ጊዜዎች የሉም"
   },
   "library": {
     "myPosts": "የእኔ ልጥፎች",
@@ -3103,7 +3105,9 @@
     "deleteFolderTitle": "አቃፊ ሰርዝ",
     "deleteFolderBody": "\"{{name}}\"ን መሰረዝ ይፈልጋሉ? ውስጡ ያሉት የተቀመጡ ልጥፎች ከተቀመጡ ዝርዝርዎ አይሰረዙም።",
     "folderDeleted": "አቃፊው ተሰርዟል",
-    "deleteFolderFailed": "አቃፊውን መሰረዝ አልተሳካም"
+    "deleteFolderFailed": "አቃፊውን መሰረዝ አልተሳካም",
+    "noCollections": "እስካሁን ብጁ ስብስቦች የሉም",
+    "createCollection": "ስብስብ ፍጠር"
   },
   "setProfile": {
     "title": "መገለጫዎን ያዘጋጁ",
@@ -3124,7 +3128,8 @@
     "imageFailed": "ያንን ምስል መጠቀም አልተቻለም",
     "usernameReserved": "ይህ የተጠቃሚ ስም የተያዘ ነው",
     "profileSet": "መገለጫው በተሳካ ሁኔታ ተዘጋጅቷል!",
-    "profileFailed": "መገለጫውን ማዘጋጀት አልተሳካም"
+    "profileFailed": "መገለጫውን ማዘጋጀት አልተሳካም",
+    "displayNameHint": "በመገለጫዎ ላይ የሚታየው ይፋዊ ስምዎ።"
   },
   "events": {
     "mine": "የእኔ",

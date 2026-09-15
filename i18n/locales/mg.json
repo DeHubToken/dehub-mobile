@@ -591,7 +591,8 @@
     "confirm": "Hamarino",
     "signIn": "Hiditra",
     "takePhoto": "Maka sary",
-    "recordVideo": "Mandray horonan-tsary"
+    "recordVideo": "Mandray horonan-tsary",
+    "saveChanges": "Tehirizo ny fiovana"
   },
   "tip": {
     "title": "Handefa fanomezana",
@@ -3157,7 +3158,8 @@
     "logOutFailed": "Tsy voavoaka ny fitaovana",
     "logOutAllFailed": "Tsy voavoaka ny fitaovana",
     "devicesLoggedOut_one": "Navoaka ny fitaovana {{count}}",
-    "devicesLoggedOut_other": "Navoaka ny fitaovana {{count}}"
+    "devicesLoggedOut_other": "Navoaka ny fitaovana {{count}}",
+    "noActive": "Tsy misy fotoam-pampiasana mavitrika"
   },
   "library": {
     "myPosts": "Ny lahatsoratro",
@@ -3187,7 +3189,9 @@
     "deleteFolderTitle": "Fafao ny lahatahiry",
     "deleteFolderBody": "Tena tianao hofafana ve \"{{name}}\"? Ny lahatsoratra voatahiry ao anatiny dia tsy hofafana amin'ny lisitry ny voatahirinao.",
     "folderDeleted": "Voafafa ny lahatahiry",
-    "deleteFolderFailed": "Tsy voafafa ny lahatahiry"
+    "deleteFolderFailed": "Tsy voafafa ny lahatahiry",
+    "noCollections": "Mbola tsy misy fanangonana manokana",
+    "createCollection": "Mamorona fanangonana"
   },
   "setProfile": {
     "title": "Amboary ny mombamomba anao",
@@ -3208,7 +3212,8 @@
     "imageFailed": "Tsy azo nampiasaina io sary io",
     "usernameReserved": "Voatokana io anaran'ny mpampiasa io",
     "profileSet": "Voapetraka soa aman-tsara ny mombamomba!",
-    "profileFailed": "Tsy voapetraka ny mombamomba"
+    "profileFailed": "Tsy voapetraka ny mombamomba",
+    "displayNameHint": "Ny anaranao ampahibemaso miseho amin'ny mombamomba anao."
   },
   "events": {
     "mine": "Ahy",

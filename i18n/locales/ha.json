@@ -596,7 +596,8 @@
     "confirm": "Tabbatar",
     "signIn": "Shiga",
     "takePhoto": "Ɗauki hoto",
-    "recordVideo": "Ɗauki bidiyo"
+    "recordVideo": "Ɗauki bidiyo",
+    "saveChanges": "Ajiye canje-canje"
   },
   "tip": {
     "title": "Aika Kyauta",
@@ -3068,7 +3069,8 @@
     "logOutFailed": "An kasa fitar da na'urar",
     "logOutAllFailed": "An kasa fitar da na'urorin",
     "devicesLoggedOut_one": "An fitar da na'ura {{count}}",
-    "devicesLoggedOut_other": "An fitar da na'urori {{count}}"
+    "devicesLoggedOut_other": "An fitar da na'urori {{count}}",
+    "noActive": "Babu zaman da ke aiki"
   },
   "library": {
     "myPosts": "Saƙonnina",
@@ -3098,7 +3100,9 @@
     "deleteFolderTitle": "Share babban fayil",
     "deleteFolderBody": "Ka tabbata kana son share \"{{name}}\"? Saƙonnin da aka ajiye a ciki ba za a share su daga jerin abubuwan da ka ajiye ba.",
     "folderDeleted": "An share babban fayil",
-    "deleteFolderFailed": "An kasa share babban fayil"
+    "deleteFolderFailed": "An kasa share babban fayil",
+    "noCollections": "Babu tarin naka tukuna",
+    "createCollection": "Ƙirƙiri tari"
   },
   "setProfile": {
     "title": "Saita bayanan martabarka",
@@ -3119,7 +3123,8 @@
     "imageFailed": "Ba a iya amfani da hoton ba",
     "usernameReserved": "An ajiye wannan sunan",
     "profileSet": "An saita bayanan martaba cikin nasara!",
-    "profileFailed": "An kasa saita bayanan martaba"
+    "profileFailed": "An kasa saita bayanan martaba",
+    "displayNameHint": "Sunanka na jama'a da ake nunawa a bayananka."
   },
   "events": {
     "mine": "Nawa",

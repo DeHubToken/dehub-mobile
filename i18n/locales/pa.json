@@ -593,7 +593,8 @@
     "confirm": "ਪੁਸ਼ਟੀ ਕਰੋ",
     "signIn": "ਸਾਈਨ ਇਨ",
     "takePhoto": "ਫੋਟੋ ਖਿੱਚੋ",
-    "recordVideo": "ਵੀਡੀਓ ਰਿਕਾਰਡ ਕਰੋ"
+    "recordVideo": "ਵੀਡੀਓ ਰਿਕਾਰਡ ਕਰੋ",
+    "saveChanges": "ਤਬਦੀਲੀਆਂ ਸੰਭਾਲੋ"
   },
   "drawers": {
     "ppvTitle": "ਪੇ ਪਰ ਵਿਊ ਸਮੱਗਰੀ",
@@ -3054,7 +3055,8 @@
     "logOutFailed": "ਡਿਵਾਈਸ ਲੌਗ ਆਉਟ ਨਹੀਂ ਹੋ ਸਕਿਆ",
     "logOutAllFailed": "ਡਿਵਾਈਸ ਲੌਗ ਆਉਟ ਨਹੀਂ ਹੋ ਸਕੇ",
     "devicesLoggedOut_one": "{{count}} ਡਿਵਾਈਸ ਲੌਗ ਆਉਟ ਹੋਇਆ",
-    "devicesLoggedOut_other": "{{count}} ਡਿਵਾਈਸ ਲੌਗ ਆਉਟ ਹੋਏ"
+    "devicesLoggedOut_other": "{{count}} ਡਿਵਾਈਸ ਲੌਗ ਆਉਟ ਹੋਏ",
+    "noActive": "ਕੋਈ ਸਰਗਰਮ ਸੈਸ਼ਨ ਨਹੀਂ"
   },
   "library": {
     "myPosts": "ਮੇਰੀਆਂ ਪੋਸਟਾਂ",
@@ -3084,7 +3086,9 @@
     "deleteFolderTitle": "ਫੋਲਡਰ ਮਿਟਾਓ",
     "deleteFolderBody": "ਕੀ ਤੁਸੀਂ ਵਾਕਈ \"{{name}}\" ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਅੰਦਰਲੀਆਂ ਸੰਭਾਲੀਆਂ ਪੋਸਟਾਂ ਤੁਹਾਡੀ ਸੰਭਾਲੀ ਸੂਚੀ ਵਿੱਚੋਂ ਨਹੀਂ ਮਿਟਣਗੀਆਂ।",
     "folderDeleted": "ਫੋਲਡਰ ਮਿਟ ਗਿਆ",
-    "deleteFolderFailed": "ਫੋਲਡਰ ਨਹੀਂ ਮਿਟ ਸਕਿਆ"
+    "deleteFolderFailed": "ਫੋਲਡਰ ਨਹੀਂ ਮਿਟ ਸਕਿਆ",
+    "noCollections": "ਹਾਲੇ ਕੋਈ ਆਪਣਾ ਸੰਗ੍ਰਹਿ ਨਹੀਂ",
+    "createCollection": "ਸੰਗ੍ਰਹਿ ਬਣਾਓ"
   },
   "setProfile": {
     "title": "ਆਪਣੀ ਪ੍ਰੋਫਾਈਲ ਸੈੱਟ ਕਰੋ",
@@ -3105,7 +3109,8 @@
     "imageFailed": "ਉਹ ਤਸਵੀਰ ਵਰਤੀ ਨਹੀਂ ਜਾ ਸਕੀ",
     "usernameReserved": "ਇਹ ਯੂਜ਼ਰਨੇਮ ਰਾਖਵਾਂ ਹੈ",
     "profileSet": "ਪ੍ਰੋਫਾਈਲ ਸਫਲਤਾਪੂਰਵਕ ਸੈੱਟ ਹੋ ਗਈ!",
-    "profileFailed": "ਪ੍ਰੋਫਾਈਲ ਸੈੱਟ ਨਹੀਂ ਹੋ ਸਕੀ"
+    "profileFailed": "ਪ੍ਰੋਫਾਈਲ ਸੈੱਟ ਨਹੀਂ ਹੋ ਸਕੀ",
+    "displayNameHint": "ਤੁਹਾਡਾ ਜਨਤਕ ਨਾਂ ਜੋ ਪ੍ਰੋਫਾਈਲ 'ਤੇ ਦਿਖਦਾ ਹੈ।"
   },
   "events": {
     "mine": "ਮੇਰੇ",

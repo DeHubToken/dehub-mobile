@@ -600,7 +600,8 @@
     "confirm": "Ырастоо",
     "signIn": "Кирүү",
     "takePhoto": "Сүрөткө тартуу",
-    "recordVideo": "Видео жаздыруу"
+    "recordVideo": "Видео жаздыруу",
+    "saveChanges": "Өзгөрүүлөрдү сактоо"
   },
   "postOptions": {
     "options": "Тандоолор",
@@ -3071,7 +3072,8 @@
     "logOutFailed": "Түзмөктү чыгаруу мүмкүн болбоду",
     "logOutAllFailed": "Түзмөктөрдү чыгаруу мүмкүн болбоду",
     "devicesLoggedOut_one": "{{count}} түзмөк чыгарылды",
-    "devicesLoggedOut_other": "{{count}} түзмөк чыгарылды"
+    "devicesLoggedOut_other": "{{count}} түзмөк чыгарылды",
+    "noActive": "Активдүү сеанстар жок"
   },
   "library": {
     "myPosts": "Менин посттарым",
@@ -3101,7 +3103,9 @@
     "deleteFolderTitle": "Папканы өчүрүү",
     "deleteFolderBody": "\"{{name}}\" өчүрүлсүнбү? Ичиндеги сакталган посттор Сакталгандар тизмесинен өчпөйт.",
     "folderDeleted": "Папка өчүрүлдү",
-    "deleteFolderFailed": "Папканы өчүрүү мүмкүн болбоду"
+    "deleteFolderFailed": "Папканы өчүрүү мүмкүн болбоду",
+    "noCollections": "Азырынча өз жыйнактарыңыз жок",
+    "createCollection": "Жыйнак түзүү"
   },
   "setProfile": {
     "title": "Профилиңизди тууралаңыз",
@@ -3122,7 +3126,8 @@
     "imageFailed": "Ал сүрөттү колдонуу мүмкүн болбоду",
     "usernameReserved": "Бул ат сакталган",
     "profileSet": "Профиль ийгиликтүү тууралды!",
-    "profileFailed": "Профилди тууралоо мүмкүн болбоду"
+    "profileFailed": "Профилди тууралоо мүмкүн болбоду",
+    "displayNameHint": "Профилиңизде көрүнгөн ачык атыңыз."
   },
   "events": {
     "mine": "Меники",

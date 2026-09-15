@@ -598,7 +598,8 @@
     "confirm": "Tassykla",
     "signIn": "Gir",
     "takePhoto": "Surata düşür",
-    "recordVideo": "Wideo ýazga al"
+    "recordVideo": "Wideo ýazga al",
+    "saveChanges": "Üýtgeşmeleri ýatda sakla"
   },
   "postOptions": {
     "options": "Saýlawlar",
@@ -3048,7 +3049,8 @@
     "logOutFailed": "Enjam çykarylyp bilmedi",
     "logOutAllFailed": "Enjamlar çykarylyp bilmedi",
     "devicesLoggedOut_one": "{{count}} enjam çykaryldy",
-    "devicesLoggedOut_other": "{{count}} enjam çykaryldy"
+    "devicesLoggedOut_other": "{{count}} enjam çykaryldy",
+    "noActive": "Işjeň sessiýa ýok"
   },
   "library": {
     "myPosts": "Meniň ýazgylarym",
@@ -3078,7 +3080,9 @@
     "deleteFolderTitle": "Bukjany poz",
     "deleteFolderBody": "\"{{name}}\" pozulsynmy? Içindäki saklanan ýazgylar Saklananlar sanawyňyzdan pozulmaz.",
     "folderDeleted": "Bukja pozuldy",
-    "deleteFolderFailed": "Bukja pozulyp bilmedi"
+    "deleteFolderFailed": "Bukja pozulyp bilmedi",
+    "noCollections": "Entek öz ýygyndyňyz ýok",
+    "createCollection": "Ýygyndy döret"
   },
   "setProfile": {
     "title": "Profiliňizi düzüň",
@@ -3099,7 +3103,8 @@
     "imageFailed": "Şol suraty ulanyp bolmady",
     "usernameReserved": "Bu ulanyjy ady bellenen",
     "profileSet": "Profil üstünlikli düzüldi!",
-    "profileFailed": "Profil düzülip bilmedi"
+    "profileFailed": "Profil düzülip bilmedi",
+    "displayNameHint": "Profiliňizde görkezilýän köpçülik adyňyz."
   },
   "events": {
     "mine": "Meniňkiler",

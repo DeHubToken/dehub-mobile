@@ -592,7 +592,8 @@
     "confirm": "تایید کړئ",
     "signIn": "ننوتل",
     "takePhoto": "عکس واخله",
-    "recordVideo": "ویډیو ثبت کړه"
+    "recordVideo": "ویډیو ثبت کړه",
+    "saveChanges": "بدلونونه خوندي کړئ"
   },
   "tip": {
     "title": "ټپ ولیږئ",
@@ -3029,7 +3030,8 @@
     "logOutFailed": "وسیله ونه ایستل شوه",
     "logOutAllFailed": "وسیلې ونه ایستل شوې",
     "devicesLoggedOut_one": "{{count}} وسیله ووتله",
-    "devicesLoggedOut_other": "{{count}} وسیلې ووتلې"
+    "devicesLoggedOut_other": "{{count}} وسیلې ووتلې",
+    "noActive": "هیڅ فعال ناسته نشته"
   },
   "library": {
     "myPosts": "زما پوسټونه",
@@ -3059,7 +3061,9 @@
     "deleteFolderTitle": "فولډر ړنګ کړئ",
     "deleteFolderBody": "ایا تاسو ډاډه یاست چې \"{{name}}\" ړنګ کړئ؟ دننه خوندي شوي پوسټونه به ستاسو د خوندي شوو لړلیک څخه ونه ړنګیږي.",
     "folderDeleted": "فولډر ړنګ شو",
-    "deleteFolderFailed": "فولډر ړنګ نشو"
+    "deleteFolderFailed": "فولډر ړنګ نشو",
+    "noCollections": "تر اوسه ستاسو خپل ټولګه نشته",
+    "createCollection": "ټولګه جوړه کړئ"
   },
   "setProfile": {
     "title": "خپل پروفایل جوړ کړئ",
@@ -3080,7 +3084,8 @@
     "imageFailed": "هغه انځور نشو کارول کېدلی",
     "usernameReserved": "دا کارن نوم خوندي شوی دی",
     "profileSet": "پروفایل په بریالیتوب سره جوړ شو!",
-    "profileFailed": "پروفایل جوړ نشو"
+    "profileFailed": "پروفایل جوړ نشو",
+    "displayNameHint": "ستاسو عامه نوم چې ستاسو په پروفایل کې ښکاري."
   },
   "events": {
     "mine": "زما",

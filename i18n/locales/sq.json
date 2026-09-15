@@ -605,7 +605,8 @@
     "confirm": "Konfirmo",
     "signIn": "Hyr",
     "takePhoto": "Bëj një foto",
-    "recordVideo": "Regjistro video"
+    "recordVideo": "Regjistro video",
+    "saveChanges": "Ruaj ndryshimet"
   },
   "tip": {
     "title": "Dërgo Bakshish",
@@ -3077,7 +3078,8 @@
     "logOutFailed": "Pajisja nuk doli dot",
     "logOutAllFailed": "Pajisjet nuk dolën dot",
     "devicesLoggedOut_one": "{{count}} pajisje doli",
-    "devicesLoggedOut_other": "{{count}} pajisje dolën"
+    "devicesLoggedOut_other": "{{count}} pajisje dolën",
+    "noActive": "Asnjë sesion aktiv"
   },
   "library": {
     "myPosts": "Postimet e mia",
@@ -3107,7 +3109,9 @@
     "deleteFolderTitle": "Fshi dosjen",
     "deleteFolderBody": "Je i sigurt që do të fshish \"{{name}}\"? Postimet e ruajtura brenda nuk do të fshihen nga lista jote e të ruajturave.",
     "folderDeleted": "Dosja u fshi",
-    "deleteFolderFailed": "Dosja nuk u fshi dot"
+    "deleteFolderFailed": "Dosja nuk u fshi dot",
+    "noCollections": "Ende asnjë koleksion i yti",
+    "createCollection": "Krijo koleksion"
   },
   "setProfile": {
     "title": "Vendos profilin tënd",
@@ -3128,7 +3132,8 @@
     "imageFailed": "Ajo imazh nuk u përdor dot",
     "usernameReserved": "Ky emër përdoruesi është i rezervuar",
     "profileSet": "Profili u vendos me sukses!",
-    "profileFailed": "Profili nuk u vendos dot"
+    "profileFailed": "Profili nuk u vendos dot",
+    "displayNameHint": "Emri yt publik që shfaqet në profil."
   },
   "events": {
     "mine": "Të miat",

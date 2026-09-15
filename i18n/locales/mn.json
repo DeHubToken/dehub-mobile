@@ -593,7 +593,8 @@
     "confirm": "Баталгаажуулах",
     "signIn": "Нэвтрэх",
     "takePhoto": "Зураг авах",
-    "recordVideo": "Видео бичих"
+    "recordVideo": "Видео бичих",
+    "saveChanges": "Өөрчлөлтийг хадгалах"
   },
   "tip": {
     "title": "Бэлэг илгээх",
@@ -3057,7 +3058,8 @@
     "logOutFailed": "Төхөөрөмжийг гаргаж чадсангүй",
     "logOutAllFailed": "Төхөөрөмжүүдийг гаргаж чадсангүй",
     "devicesLoggedOut_one": "{{count}} төхөөрөмж гарлаа",
-    "devicesLoggedOut_other": "{{count}} төхөөрөмж гарлаа"
+    "devicesLoggedOut_other": "{{count}} төхөөрөмж гарлаа",
+    "noActive": "Идэвхтэй сесс алга"
   },
   "library": {
     "myPosts": "Миний нийтлэлүүд",
@@ -3087,7 +3089,9 @@
     "deleteFolderTitle": "Хавтас устгах",
     "deleteFolderBody": "\"{{name}}\"-ийг устгах уу? Дотор нь хадгалсан нийтлэлүүд Хадгалсан жагсаалтаас устахгүй.",
     "folderDeleted": "Хавтас устлаа",
-    "deleteFolderFailed": "Хавтасыг устгаж чадсангүй"
+    "deleteFolderFailed": "Хавтасыг устгаж чадсангүй",
+    "noCollections": "Одоогоор өөрийн цуглуулга алга",
+    "createCollection": "Цуглуулга үүсгэх"
   },
   "setProfile": {
     "title": "Профайлаа тохируулна уу",
@@ -3108,7 +3112,8 @@
     "imageFailed": "Тэр зургийг ашиглаж чадсангүй",
     "usernameReserved": "Энэ нэр нөөцөлсөн байна",
     "profileSet": "Профайл амжилттай тохирлоо!",
-    "profileFailed": "Профайл тохируулж чадсангүй"
+    "profileFailed": "Профайл тохируулж чадсангүй",
+    "displayNameHint": "Профайл дээр харагдах нийтийн нэр."
   },
   "events": {
     "mine": "Минийх",
