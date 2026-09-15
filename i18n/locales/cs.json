@@ -3561,5 +3561,28 @@
     "subscribe": "Odebírat",
     "subscriberCount_one": "{{count}} odběratel",
     "subscriberCount_other": "{{count}} odběratelů"
+  },
+  "live": {
+    "notSet": "Nenastaveno",
+    "liveChat": "Živý chat",
+    "pickDate": "Vybrat datum",
+    "pickTime": "Vybrat čas",
+    "minTip": "Min. spropitné"
+  },
+  "liveShop": {
+    "title": "Nakupujte z tohoto vysílání",
+    "onAir": "Ve vysílání",
+    "lastOne": "Poslední",
+    "stockLeft": "Zbývá {{count}}",
+    "walletNotReady": "Peněženka ještě není připravena",
+    "gettingPrice": "Načítá se cena…",
+    "ownListing": "Toto je vaše vlastní nabídka.",
+    "shippingAddress": "Doručovací adresa",
+    "addressPlaceholder": "Jméno, ulice, město, PSČ, země",
+    "noteToSeller": "Poznámka pro prodejce (volitelné)",
+    "notePlaceholder": "Velikost, barva, cokoli dalšího…",
+    "confirmingPayment": "Potvrzuje se platba…",
+    "retryConfirmation": "Zkusit potvrzení znovu",
+    "buyNow": "Koupit hned"
   }
 }

@@ -3547,5 +3547,28 @@
     "subscribe": "Yi rajista",
     "subscriberCount_one": "Mai biyan kuɗi {{count}}",
     "subscriberCount_other": "Masu biyan kuɗi {{count}}"
+  },
+  "live": {
+    "notSet": "Ba a saita ba",
+    "liveChat": "Hira kai tsaye",
+    "pickDate": "Zaɓi kwanan wata",
+    "pickTime": "Zaɓi lokaci",
+    "minTip": "Mafi ƙarancin kyauta"
+  },
+  "liveShop": {
+    "title": "Yi sayayya daga wannan watsawar",
+    "onAir": "Yana kan iska",
+    "lastOne": "Na ƙarshe",
+    "stockLeft": "Sauran {{count}}",
+    "walletNotReady": "Walat ɗin bai shirya ba tukuna",
+    "gettingPrice": "Ana samun farashi…",
+    "ownListing": "Wannan jerin naka ne.",
+    "shippingAddress": "Adireshin bayarwa",
+    "addressPlaceholder": "Suna, titi, birni, lambar gidan waya, ƙasa",
+    "noteToSeller": "Saƙo ga mai sayarwa (na zaɓi)",
+    "notePlaceholder": "Girma, launi, kowane abu…",
+    "confirmingPayment": "Ana tabbatar da biyan kuɗi…",
+    "retryConfirmation": "Sake gwada tabbatarwa",
+    "buyNow": "Saya yanzu"
   }
 }

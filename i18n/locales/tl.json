@@ -3736,5 +3736,28 @@
     "subscribe": "Mag-subscribe",
     "subscriberCount_one": "{{count}} subscriber",
     "subscriberCount_other": "{{count}} subscribers"
+  },
+  "live": {
+    "notSet": "Hindi nakatakda",
+    "liveChat": "Live chat",
+    "pickDate": "Pumili ng petsa",
+    "pickTime": "Pumili ng oras",
+    "minTip": "Min. tip"
+  },
+  "liveShop": {
+    "title": "Mamili mula sa stream na ito",
+    "onAir": "Nasa ere",
+    "lastOne": "Huling isa",
+    "stockLeft": "{{count}} na lang",
+    "walletNotReady": "Hindi pa handa ang wallet",
+    "gettingPrice": "Kinukuha ang presyo…",
+    "ownListing": "Ito ang sarili mong listing.",
+    "shippingAddress": "Address ng padala",
+    "addressPlaceholder": "Pangalan, kalye, lungsod, postcode, bansa",
+    "noteToSeller": "Tala sa nagbebenta (opsyonal)",
+    "notePlaceholder": "Sukat, kulay, anupaman…",
+    "confirmingPayment": "Kinukumpirma ang bayad…",
+    "retryConfirmation": "Subukan ulit ang kumpirmasyon",
+    "buyNow": "Bilhin na"
   }
 }

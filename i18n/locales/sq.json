@@ -3556,5 +3556,28 @@
     "subscribe": "Abonohu",
     "subscriberCount_one": "{{count}} abonent",
     "subscriberCount_other": "{{count}} abonentë"
+  },
+  "live": {
+    "notSet": "I pacaktuar",
+    "liveChat": "Bisedë live",
+    "pickDate": "Zgjidh datën",
+    "pickTime": "Zgjidh orën",
+    "minTip": "Bakshish minimal"
+  },
+  "liveShop": {
+    "title": "Bli nga ky transmetim",
+    "onAir": "Në transmetim",
+    "lastOne": "I fundit",
+    "stockLeft": "Kanë mbetur {{count}}",
+    "walletNotReady": "Portofoli nuk është ende gati",
+    "gettingPrice": "Po merret çmimi…",
+    "ownListing": "Ky është njoftimi yt.",
+    "shippingAddress": "Adresa e dërgesës",
+    "addressPlaceholder": "Emri, rruga, qyteti, kodi postar, shteti",
+    "noteToSeller": "Shënim për shitësin (opsional)",
+    "notePlaceholder": "Masa, ngjyra, çfarëdo tjetër…",
+    "confirmingPayment": "Po konfirmohet pagesa…",
+    "retryConfirmation": "Riprovo konfirmimin",
+    "buyNow": "Blej tani"
   }
 }

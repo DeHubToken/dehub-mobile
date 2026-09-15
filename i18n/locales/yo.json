@@ -3547,5 +3547,28 @@
     "subscribe": "Forúkọsílẹ̀",
     "subscriberCount_one": "Alábòwọlé {{count}}",
     "subscriberCount_other": "Àwọn alábòwọlé {{count}}"
+  },
+  "live": {
+    "notSet": "Kò tíì ṣètò",
+    "liveChat": "Ìfọ̀rọ̀wérọ̀ tààrà",
+    "pickDate": "Yan ọjọ́",
+    "pickTime": "Yan àkókò",
+    "minTip": "Owó ìdùnnú tó kéré jù"
+  },
+  "liveShop": {
+    "title": "Ra ọjà láti inú ìgbóhùnsáfẹ́fẹ́ yìí",
+    "onAir": "Lórí afẹ́fẹ́",
+    "lastOne": "Ìkẹyìn",
+    "stockLeft": "{{count}} kù",
+    "walletNotReady": "Àpamọ́wọ́ kò tíì ṣetán",
+    "gettingPrice": "Ń gba iye…",
+    "ownListing": "Èyí ni àtòjọ tìrẹ.",
+    "shippingAddress": "Àdírẹ́sì ìfiránṣẹ́",
+    "addressPlaceholder": "Orúkọ, òpópónà, ìlú, kóòdù ìfìwéránṣẹ́, orílẹ̀-èdè",
+    "noteToSeller": "Àkíyèsí sí olùtajà (àṣàyàn)",
+    "notePlaceholder": "Ìwọ̀n, àwọ̀, ohunkóhun mìíràn…",
+    "confirmingPayment": "Ń jẹ́rìí sí ìsanwó…",
+    "retryConfirmation": "Gbìyànjú ìjẹ́rìísí lẹ́ẹ̀kan sí i",
+    "buyNow": "Rà báyìí"
   }
 }

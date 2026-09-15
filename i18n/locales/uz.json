@@ -3608,5 +3608,28 @@
     "subscribe": "Obuna bo‘lish",
     "subscriberCount_one": "{{count}} obunachi",
     "subscriberCount_other": "{{count}} obunachi"
+  },
+  "live": {
+    "notSet": "Belgilanmagan",
+    "liveChat": "Jonli chat",
+    "pickDate": "Sanani tanlang",
+    "pickTime": "Vaqtni tanlang",
+    "minTip": "Minimal choychaqa"
+  },
+  "liveShop": {
+    "title": "Ushbu efirdan xarid qiling",
+    "onAir": "Efirda",
+    "lastOne": "Oxirgisi",
+    "stockLeft": "{{count}} qoldi",
+    "walletNotReady": "Hamyon hali tayyor emas",
+    "gettingPrice": "Narx olinmoqda…",
+    "ownListing": "Bu sizning o‘z e'loningiz.",
+    "shippingAddress": "Yetkazib berish manzili",
+    "addressPlaceholder": "Ism, ko‘cha, shahar, pochta indeksi, mamlakat",
+    "noteToSeller": "Sotuvchiga eslatma (ixtiyoriy)",
+    "notePlaceholder": "O‘lcham, rang, boshqa narsa…",
+    "confirmingPayment": "To‘lov tasdiqlanmoqda…",
+    "retryConfirmation": "Tasdiqni qayta urinib ko‘ring",
+    "buyNow": "Hozir sotib olish"
   }
 }

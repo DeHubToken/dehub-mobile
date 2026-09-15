@@ -3613,5 +3613,28 @@
     "subscribe": "सब्सक्राइब करें",
     "subscriberCount_one": "{{count}} सब्सक्राइबर",
     "subscriberCount_other": "{{count}} सब्सक्राइबर"
+  },
+  "live": {
+    "notSet": "सेट नहीं",
+    "liveChat": "लाइव चैट",
+    "pickDate": "तारीख चुनें",
+    "pickTime": "समय चुनें",
+    "minTip": "न्यूनतम टिप"
+  },
+  "liveShop": {
+    "title": "इस स्ट्रीम से खरीदें",
+    "onAir": "प्रसारण में",
+    "lastOne": "आखिरी एक",
+    "stockLeft": "{{count}} बाकी",
+    "walletNotReady": "वॉलेट अभी तैयार नहीं है",
+    "gettingPrice": "कीमत ली जा रही है…",
+    "ownListing": "यह आपकी अपनी लिस्टिंग है।",
+    "shippingAddress": "शिपिंग पता",
+    "addressPlaceholder": "नाम, गली, शहर, पिनकोड, देश",
+    "noteToSeller": "विक्रेता के लिए नोट (वैकल्पिक)",
+    "notePlaceholder": "साइज़, रंग, और कुछ भी…",
+    "confirmingPayment": "भुगतान की पुष्टि हो रही है…",
+    "retryConfirmation": "पुष्टि फिर से करें",
+    "buyNow": "अभी खरीदें"
   }
 }

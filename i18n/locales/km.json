@@ -3576,5 +3576,28 @@
     "subscribe": "ជាវ",
     "subscriberCount_one": "អ្នកជាវ {{count}} នាក់",
     "subscriberCount_other": "អ្នកជាវ {{count}} នាក់"
+  },
+  "live": {
+    "notSet": "មិនទាន់កំណត់",
+    "liveChat": "ជជែកផ្ទាល់",
+    "pickDate": "ជ្រើសរើសកាលបរិច្ឆេទ",
+    "pickTime": "ជ្រើសរើសពេលវេលា",
+    "minTip": "ទឹកតែអប្បបរមា"
+  },
+  "liveShop": {
+    "title": "ទិញទំនិញពីការផ្សាយនេះ",
+    "onAir": "កំពុងផ្សាយ",
+    "lastOne": "ចុងក្រោយ",
+    "stockLeft": "នៅសល់ {{count}}",
+    "walletNotReady": "កាបូបមិនទាន់រួចរាល់ទេ",
+    "gettingPrice": "កំពុងទាញយកតម្លៃ…",
+    "ownListing": "នេះជាបញ្ជីរបស់អ្នកផ្ទាល់។",
+    "shippingAddress": "អាសយដ្ឋានដឹកជញ្ជូន",
+    "addressPlaceholder": "ឈ្មោះ ផ្លូវ ទីក្រុង លេខកូដប្រៃសណីយ៍ ប្រទេស",
+    "noteToSeller": "កំណត់ចំណាំទៅអ្នកលក់ (ស្រេចចិត្ត)",
+    "notePlaceholder": "ទំហំ ពណ៌ អ្វីផ្សេងទៀត…",
+    "confirmingPayment": "កំពុងបញ្ជាក់ការទូទាត់…",
+    "retryConfirmation": "ព្យាយាមបញ្ជាក់ម្ដងទៀត",
+    "buyNow": "ទិញឥឡូវនេះ"
   }
 }

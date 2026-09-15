@@ -3316,5 +3316,28 @@
     "subscribe": "Bibe abone",
     "subscriberCount_one": "{{count}} abone",
     "subscriberCount_other": "{{count}} abone"
+  },
+  "live": {
+    "notSet": "Nehatiye danîn",
+    "liveChat": "Chata rasterast",
+    "pickDate": "Dîrokê hilbijêre",
+    "pickTime": "Demê hilbijêre",
+    "minTip": "Bexşîşa herî kêm"
+  },
+  "liveShop": {
+    "title": "Ji vê weşanê bikire",
+    "onAir": "Li ser hewayê",
+    "lastOne": "Ya dawî",
+    "stockLeft": "{{count}} maye",
+    "walletNotReady": "Berîk hîn ne amade ye",
+    "gettingPrice": "Biha tê wergirtin…",
+    "ownListing": "Ev navnîşa te ya xwe ye.",
+    "shippingAddress": "Navnîşana şandinê",
+    "addressPlaceholder": "Nav, kolan, bajar, koda posteyê, welat",
+    "noteToSeller": "Nîşe ji firoşkar re (bijarte)",
+    "notePlaceholder": "Mezinahî, reng, tiştekî din…",
+    "confirmingPayment": "Dravdan tê piştrastkirin…",
+    "retryConfirmation": "Piştrastkirinê dîsa biceribîne",
+    "buyNow": "Niha bikire"
   }
 }

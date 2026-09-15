@@ -3552,5 +3552,28 @@
     "subscribe": "ይመዝገቡ",
     "subscriberCount_one": "{{count}} ደንበኛ",
     "subscriberCount_other": "{{count}} ደንበኞች"
+  },
+  "live": {
+    "notSet": "አልተቀናበረም",
+    "liveChat": "የቀጥታ ውይይት",
+    "pickDate": "ቀን ይምረጡ",
+    "pickTime": "ሰዓት ይምረጡ",
+    "minTip": "ዝቅተኛ ስጦታ"
+  },
+  "liveShop": {
+    "title": "ከዚህ ስርጭት ይግዙ",
+    "onAir": "በስርጭት ላይ",
+    "lastOne": "የመጨረሻው",
+    "stockLeft": "{{count}} ቀርቷል",
+    "walletNotReady": "ቦርሳው ገና ዝግጁ አይደለም",
+    "gettingPrice": "ዋጋ በማምጣት ላይ…",
+    "ownListing": "ይህ የራስዎ ዝርዝር ነው።",
+    "shippingAddress": "የመላኪያ አድራሻ",
+    "addressPlaceholder": "ስም፣ መንገድ፣ ከተማ፣ ፖስታ ቁጥር፣ አገር",
+    "noteToSeller": "ለሻጩ ማስታወሻ (አማራጭ)",
+    "notePlaceholder": "መጠን፣ ቀለም፣ ሌላ ማንኛውም ነገር…",
+    "confirmingPayment": "ክፍያውን በማረጋገጥ ላይ…",
+    "retryConfirmation": "ማረጋገጫውን እንደገና ሞክር",
+    "buyNow": "አሁን ይግዙ"
   }
 }

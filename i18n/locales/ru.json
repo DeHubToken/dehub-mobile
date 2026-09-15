@@ -3626,5 +3626,28 @@
     "subscribe": "Подписаться",
     "subscriberCount_one": "{{count}} подписчик",
     "subscriberCount_other": "{{count}} подписчиков"
+  },
+  "live": {
+    "notSet": "Не задано",
+    "liveChat": "Чат в прямом эфире",
+    "pickDate": "Выбрать дату",
+    "pickTime": "Выбрать время",
+    "minTip": "Мин. чаевые"
+  },
+  "liveShop": {
+    "title": "Покупайте в этом эфире",
+    "onAir": "В эфире",
+    "lastOne": "Последний",
+    "stockLeft": "Осталось {{count}}",
+    "walletNotReady": "Кошелёк ещё не готов",
+    "gettingPrice": "Получение цены…",
+    "ownListing": "Это ваше собственное объявление.",
+    "shippingAddress": "Адрес доставки",
+    "addressPlaceholder": "Имя, улица, город, индекс, страна",
+    "noteToSeller": "Примечание продавцу (необязательно)",
+    "notePlaceholder": "Размер, цвет, что-то ещё…",
+    "confirmingPayment": "Подтверждение платежа…",
+    "retryConfirmation": "Повторить подтверждение",
+    "buyNow": "Купить сейчас"
   }
 }

@@ -3514,5 +3514,28 @@
     "subscribe": "اشترك",
     "subscriberCount_one": "{{count}} مشترك",
     "subscriberCount_other": "{{count}} مشترك"
+  },
+  "live": {
+    "notSet": "ما محدد",
+    "liveChat": "دردشة مباشرة",
+    "pickDate": "اختار التاريخ",
+    "pickTime": "اختار الوقت",
+    "minTip": "أقل إكرامية"
+  },
+  "liveShop": {
+    "title": "اتسوق من البث ده",
+    "onAir": "على الهوا",
+    "lastOne": "آخر واحد",
+    "stockLeft": "باقي {{count}}",
+    "walletNotReady": "المحفظة لسه ما جاهزة",
+    "gettingPrice": "بيجيب السعر…",
+    "ownListing": "ده إعلانك انت.",
+    "shippingAddress": "عنوان الشحن",
+    "addressPlaceholder": "الاسم، الشارع، المدينة، الرمز البريدي، البلد",
+    "noteToSeller": "ملاحظة للبائع (اختياري)",
+    "notePlaceholder": "المقاس، اللون، أي حاجة تانية…",
+    "confirmingPayment": "بيأكد الدفع…",
+    "retryConfirmation": "أعد التأكيد",
+    "buyNow": "اشتري هسه"
   }
 }

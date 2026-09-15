@@ -3726,5 +3726,28 @@
     "subscribe": "Odoberať",
     "subscriberCount_one": "{{count}} odberateľ",
     "subscriberCount_other": "{{count}} odberateľov"
+  },
+  "live": {
+    "notSet": "Nenastavené",
+    "liveChat": "Živý chat",
+    "pickDate": "Vybrať dátum",
+    "pickTime": "Vybrať čas",
+    "minTip": "Min. prepitné"
+  },
+  "liveShop": {
+    "title": "Nakupujte z tohto vysielania",
+    "onAir": "Vo vysielaní",
+    "lastOne": "Posledný",
+    "stockLeft": "Zostáva {{count}}",
+    "walletNotReady": "Peňaženka ešte nie je pripravená",
+    "gettingPrice": "Načítava sa cena…",
+    "ownListing": "Toto je vaša vlastná ponuka.",
+    "shippingAddress": "Doručovacia adresa",
+    "addressPlaceholder": "Meno, ulica, mesto, PSČ, krajina",
+    "noteToSeller": "Poznámka pre predajcu (voliteľné)",
+    "notePlaceholder": "Veľkosť, farba, čokoľvek ďalšie…",
+    "confirmingPayment": "Potvrdzuje sa platba…",
+    "retryConfirmation": "Skúsiť potvrdenie znova",
+    "buyNow": "Kúpiť teraz"
   }
 }

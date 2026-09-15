@@ -3515,5 +3515,28 @@
     "subscribe": "Langganan",
     "subscriberCount_one": "{{count}} pelanggan",
     "subscriberCount_other": "{{count}} pelanggan"
+  },
+  "live": {
+    "notSet": "Durung disetel",
+    "liveChat": "Obrolan langsung",
+    "pickDate": "Pilih tanggal",
+    "pickTime": "Pilih wektu",
+    "minTip": "Tip minimum"
+  },
+  "liveShop": {
+    "title": "Blanja saka siaran iki",
+    "onAir": "Lagi siaran",
+    "lastOne": "Sing pungkasan",
+    "stockLeft": "Kari {{count}}",
+    "walletNotReady": "Dompet durung siap",
+    "gettingPrice": "Njupuk rega…",
+    "ownListing": "Iki dhaptaran duwekmu dhewe.",
+    "shippingAddress": "Alamat pangiriman",
+    "addressPlaceholder": "Jeneng, dalan, kutha, kode pos, negara",
+    "noteToSeller": "Cathetan kanggo bakul (opsional)",
+    "notePlaceholder": "Ukuran, warna, liyane…",
+    "confirmingPayment": "Ngonfirmasi pambayaran…",
+    "retryConfirmation": "Coba konfirmasi maneh",
+    "buyNow": "Tuku saiki"
   }
 }

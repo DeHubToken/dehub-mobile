@@ -3561,5 +3561,28 @@
     "subscribe": "Előfizetés",
     "subscriberCount_one": "{{count}} előfizető",
     "subscriberCount_other": "{{count}} előfizető"
+  },
+  "live": {
+    "notSet": "Nincs beállítva",
+    "liveChat": "Élő csevegés",
+    "pickDate": "Dátum kiválasztása",
+    "pickTime": "Időpont kiválasztása",
+    "minTip": "Min. borravaló"
+  },
+  "liveShop": {
+    "title": "Vásárolj ebből az adásból",
+    "onAir": "Adásban",
+    "lastOne": "Az utolsó",
+    "stockLeft": "{{count}} maradt",
+    "walletNotReady": "A tárca még nem áll készen",
+    "gettingPrice": "Ár lekérése…",
+    "ownListing": "Ez a saját hirdetésed.",
+    "shippingAddress": "Szállítási cím",
+    "addressPlaceholder": "Név, utca, város, irányítószám, ország",
+    "noteToSeller": "Megjegyzés az eladónak (nem kötelező)",
+    "notePlaceholder": "Méret, szín, bármi más…",
+    "confirmingPayment": "Fizetés megerősítése…",
+    "retryConfirmation": "Megerősítés újra",
+    "buyNow": "Vásárlás most"
   }
 }

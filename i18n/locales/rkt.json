@@ -3587,5 +3587,28 @@
     "subscribe": "সাবস্ক্রাইব করেন",
     "subscriberCount_one": "{{count}} সাবস্ক্রাইবার",
     "subscriberCount_other": "{{count}} সাবস্ক্রাইবার"
+  },
+  "live": {
+    "notSet": "ঠিক করা নাই",
+    "liveChat": "লাইভ চ্যাট",
+    "pickDate": "তারিখ বাছেন",
+    "pickTime": "সময় বাছেন",
+    "minTip": "সর্বনিম্ন টিপ"
+  },
+  "liveShop": {
+    "title": "এই স্ট্রিম থাকি কিনেন",
+    "onAir": "সম্প্রচারত",
+    "lastOne": "শেষটা",
+    "stockLeft": "{{count}} বাকি",
+    "walletNotReady": "ওয়ালেট এখনো প্রস্তুত নোয়ায়",
+    "gettingPrice": "দাম আনা হইতেছে…",
+    "ownListing": "এইটা তোমার নিজের তালিকা।",
+    "shippingAddress": "ডেলিভারির ঠিকানা",
+    "addressPlaceholder": "নাম, রাস্তা, শহর, পোস্টকোড, দেশ",
+    "noteToSeller": "বিক্রেতার জন্যে নোট (ঐচ্ছিক)",
+    "notePlaceholder": "মাপ, রং, আর যা কিছু…",
+    "confirmingPayment": "পেমেন্ট নিশ্চিত হইতেছে…",
+    "retryConfirmation": "আবার নিশ্চিত করেন",
+    "buyNow": "এখনই কিনেন"
   }
 }

@@ -3607,5 +3607,28 @@
     "subscribe": "Berlangganan",
     "subscriberCount_one": "{{count}} pelanggan",
     "subscriberCount_other": "{{count}} pelanggan"
+  },
+  "live": {
+    "notSet": "Belum diatur",
+    "liveChat": "Obrolan langsung",
+    "pickDate": "Pilih tanggal",
+    "pickTime": "Pilih waktu",
+    "minTip": "Tip minimum"
+  },
+  "liveShop": {
+    "title": "Belanja dari siaran ini",
+    "onAir": "Sedang siaran",
+    "lastOne": "Terakhir",
+    "stockLeft": "Sisa {{count}}",
+    "walletNotReady": "Dompet belum siap",
+    "gettingPrice": "Mengambil harga…",
+    "ownListing": "Ini adalah listing milikmu sendiri.",
+    "shippingAddress": "Alamat pengiriman",
+    "addressPlaceholder": "Nama, jalan, kota, kode pos, negara",
+    "noteToSeller": "Catatan untuk penjual (opsional)",
+    "notePlaceholder": "Ukuran, warna, hal lainnya…",
+    "confirmingPayment": "Mengonfirmasi pembayaran…",
+    "retryConfirmation": "Coba konfirmasi lagi",
+    "buyNow": "Beli sekarang"
   }
 }

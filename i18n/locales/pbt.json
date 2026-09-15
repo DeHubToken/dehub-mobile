@@ -3507,5 +3507,28 @@
     "subscribe": "ګډون وکړئ",
     "subscriberCount_one": "{{count}} ګډونوال",
     "subscriberCount_other": "{{count}} ګډونوال"
+  },
+  "live": {
+    "notSet": "نه دی ټاکل شوی",
+    "liveChat": "ژوندۍ خبرې",
+    "pickDate": "نېټه وټاکئ",
+    "pickTime": "وخت وټاکئ",
+    "minTip": "لږ تر لږه ټیپ"
+  },
+  "liveShop": {
+    "title": "له دې خپرونې پیرود وکړئ",
+    "onAir": "په خپرونه کې",
+    "lastOne": "وروستی",
+    "stockLeft": "{{count}} پاتې",
+    "walletNotReady": "کڅوړه لا چمتو نده",
+    "gettingPrice": "بیه اخیستل کیږي…",
+    "ownListing": "دا ستاسو خپله لیست ده.",
+    "shippingAddress": "د لیږد پته",
+    "addressPlaceholder": "نوم، کوڅه، ښار، پوستي کوډ، هیواد",
+    "noteToSeller": "پلورونکي ته یادښت (اختیاري)",
+    "notePlaceholder": "اندازه، رنګ، بل هر څه…",
+    "confirmingPayment": "تادیه تاییدیږي…",
+    "retryConfirmation": "تایید بیا هڅه کړئ",
+    "buyNow": "اوس یې واخلئ"
   }
 }

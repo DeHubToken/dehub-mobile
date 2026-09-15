@@ -3546,5 +3546,28 @@
     "subscribe": "Abonniere",
     "subscriberCount_one": "{{count}} Abonnänt",
     "subscriberCount_other": "{{count}} Abonnänte"
+  },
+  "live": {
+    "notSet": "Nöd festgleit",
+    "liveChat": "Live-Chat",
+    "pickDate": "Datum uswähle",
+    "pickTime": "Ziit uswähle",
+    "minTip": "Min. Trinkgäld"
+  },
+  "liveShop": {
+    "title": "I dem Stream iichaufe",
+    "onAir": "Uf Sändig",
+    "lastOne": "S letschte",
+    "stockLeft": "Na {{count}}",
+    "walletNotReady": "D Wallet isch nonig parat",
+    "gettingPrice": "Priis wird gholt…",
+    "ownListing": "Das isch dis eigets Aagebot.",
+    "shippingAddress": "Lieferadrässe",
+    "addressPlaceholder": "Name, Strass, Stadt, PLZ, Land",
+    "noteToSeller": "Notiz a de Verchäufer (optional)",
+    "notePlaceholder": "Grössi, Farb, susch öppis…",
+    "confirmingPayment": "Zahlig wird bestätigt…",
+    "retryConfirmation": "Bestätigung nomol probiere",
+    "buyNow": "Jetzt chaufe"
   }
 }
