@@ -1459,7 +1459,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS профилінің сілтемесі көшірілді",
+    "subscribeNow": "Қазір жазылу",
+    "messageUser": "Пайдаланушыға жазу",
+    "backToTop": "Жоғарыға оралу",
+    "noImages": "Әзірге сурет жоқ",
+    "noImagesSub": "Суретті жазбалар осында шығады",
+    "noPlans": "Жазылым жоспарлары жоқ",
+    "noPlansSub": "Бұл автор әзірге жоспар жасамаған"
   },
   "tv": {
     "title": "Теледидар",
@@ -1821,7 +1829,8 @@
     "removeVoiceNote": "Дауыстық жазбаны жою",
     "removeMedia": "Медианы жою",
     "cancelRecording": "Жазуды болдырмау",
-    "sendVoiceNote": "Дауыстық жазбаны жіберу"
+    "sendVoiceNote": "Дауыстық жазбаны жіберу",
+    "noneYetAddYours": "Әзірге пікір жоқ, өзіңіздікін қосыңыз."
   },
   "postInfo": {
     "title": "Жазба ақпараты",
@@ -3875,5 +3884,9 @@
     "streamPaused": "Ағын кідіртілді",
     "connectionDropped": "Стример байланысы үзілді.\nҚайта қосылуын күтудеміз...",
     "autoEnding": "Жалғаспаса, автоматты түрде аяқталады"
+  },
+  "search": {
+    "endOfResults": "Нәтижелердің соңы",
+    "searchDehub": "DeHub ішінен іздеу"
   }
 }

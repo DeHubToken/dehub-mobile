@@ -1445,7 +1445,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "फ़ॉलो सुझाव"
+    "followSuggestions": "फ़ॉलो सुझाव",
+    "ensUrlCopied": "ENS प्रोफाइल लिंक कॉपी भ गेल",
+    "subscribeNow": "अखने सब्सक्राइब करऽ",
+    "messageUser": "उपयोगकर्ता के संदेस भेजऽ",
+    "backToTop": "उपर जाऽ",
+    "noImages": "अखनो कोई फोटो ना",
+    "noImagesSub": "फोटो पोस्ट इहां देखइतै",
+    "noPlans": "कोई सदस्यता योजना ना",
+    "noPlansSub": "ई क्रिएटर अखनो कोई योजना ना बनैलक"
   },
   "tv": {
     "title": "TV",
@@ -1770,7 +1778,8 @@
     "removeVoiceNote": "आवाज नोट हटावऽ",
     "removeMedia": "मीडिया हटावऽ",
     "cancelRecording": "रिकॉर्डिंग रद्द करऽ",
-    "sendVoiceNote": "आवाज नोट भेजऽ"
+    "sendVoiceNote": "आवाज नोट भेजऽ",
+    "noneYetAddYours": "अखनो कोई टिप्पणी ना, अपन जोड़ऽ।"
   },
   "postInfo": {
     "title": "पोस्ट जानकारी",
@@ -3771,5 +3780,9 @@
     "streamPaused": "स्ट्रीम रुकल हे",
     "connectionDropped": "स्ट्रीमर के कनेक्शन टूट गेल।\nफेर जुड़े के इंतजार हे...",
     "autoEnding": "अगर फेर चालू ना भेल त अपने आप खतम होतै"
+  },
+  "search": {
+    "endOfResults": "नतीजा के अंत",
+    "searchDehub": "DeHub में खोजऽ"
   }
 }

@@ -1475,7 +1475,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS ပရိုဖိုင်လင့်ခ်ကို ကူးယူပြီး",
+    "subscribeNow": "ယခုပင် စာရင်းသွင်းပါ",
+    "messageUser": "အသုံးပြုသူထံ စာပို့ပါ",
+    "backToTop": "ထိပ်သို့ ပြန်သွားပါ",
+    "noImages": "ပုံများ မရှိသေးပါ",
+    "noImagesSub": "ပုံပို့စ်များ ဤနေရာတွင် ပေါ်လာပါမည်",
+    "noPlans": "စာရင်းသွင်း အစီအစဉ်များ မရှိပါ",
+    "noPlansSub": "ဤဖန်တီးသူသည် အစီအစဉ်များ မသတ်မှတ်ရသေးပါ"
   },
   "dao": {
     "title": "DAO ဘဏ္ဍာရေး",
@@ -1827,7 +1835,8 @@
     "removeVoiceNote": "အသံမှတ်စု ဖယ်ရှားပါ",
     "removeMedia": "မီဒီယာ ဖယ်ရှားပါ",
     "cancelRecording": "အသံသွင်းခြင်း ပယ်ဖျက်ပါ",
-    "sendVoiceNote": "အသံမှတ်စု ပို့ပါ"
+    "sendVoiceNote": "အသံမှတ်စု ပို့ပါ",
+    "noneYetAddYours": "မှတ်ချက် မရှိသေးပါ၊ သင့်ဟာ ထည့်ပါ။"
   },
   "postInfo": {
     "title": "ပို့စ်အချက်အလက်",
@@ -3799,5 +3808,9 @@
     "streamPaused": "ထုတ်လွှင့်မှု ခေတ္တရပ်ထား",
     "connectionDropped": "ထုတ်လွှင့်သူ၏ ချိတ်ဆက်မှု ပြတ်သွားသည်။\nပြန်ချိတ်ဆက်ရန် စောင့်ဆိုင်းနေသည်...",
     "autoEnding": "ပြန်မစတင်ပါက အလိုအလျောက် အဆုံးသတ်ပါမည်"
+  },
+  "search": {
+    "endOfResults": "ရလဒ်များ အဆုံး",
+    "searchDehub": "DeHub တွင် ရှာပါ"
   }
 }

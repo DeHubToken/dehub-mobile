@@ -1341,7 +1341,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS ప్రొఫైల్ లింక్ కాపీ అయింది",
+    "subscribeNow": "ఇప్పుడే సబ్‌స్క్రైబ్ చేయండి",
+    "messageUser": "వినియోగదారుకు సందేశం పంపండి",
+    "backToTop": "పైకి తిరిగి వెళ్లండి",
+    "noImages": "ఇంకా చిత్రాలు లేవు",
+    "noImagesSub": "చిత్ర పోస్ట్‌లు ఇక్కడ కనిపిస్తాయి",
+    "noPlans": "సబ్‌స్క్రిప్షన్ ప్లాన్‌లు లేవు",
+    "noPlansSub": "ఈ క్రియేటర్ ఇంకా ఏ ప్లాన్‌నూ రూపొందించలేదు"
   },
   "messages": {
     "smartRepliesOff": "సూచించిన సమాధానాలు ఆఫ్ చేయబడ్డాయి",
@@ -1797,7 +1805,8 @@
     "removeVoiceNote": "వాయిస్ నోట్ తీసివేయండి",
     "removeMedia": "మీడియాను తీసివేయండి",
     "cancelRecording": "రికార్డింగ్ రద్దు చేయండి",
-    "sendVoiceNote": "వాయిస్ నోట్ పంపండి"
+    "sendVoiceNote": "వాయిస్ నోట్ పంపండి",
+    "noneYetAddYours": "ఇంకా వ్యాఖ్యలు లేవు, మీది జోడించండి."
   },
   "postInfo": {
     "title": "పోస్ట్ సమాచారం",
@@ -3813,5 +3822,9 @@
     "streamPaused": "స్ట్రీమ్ నిలిపివేయబడింది",
     "connectionDropped": "స్ట్రీమర్ కనెక్షన్ తెగింది.\nమళ్లీ కనెక్ట్ కావడం కోసం వేచి ఉన్నాం...",
     "autoEnding": "మళ్లీ ప్రారంభం కాకపోతే దానంతట అదే ముగుస్తుంది"
+  },
+  "search": {
+    "endOfResults": "ఫలితాల ముగింపు",
+    "searchDehub": "DeHub లో వెతకండి"
   }
 }

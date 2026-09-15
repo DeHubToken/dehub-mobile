@@ -1360,7 +1360,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Кого читать"
+    "followSuggestions": "Кого читать",
+    "ensUrlCopied": "Ссылка на профиль ENS скопирована",
+    "subscribeNow": "Подписаться сейчас",
+    "messageUser": "Написать пользователю",
+    "backToTop": "Наверх",
+    "noImages": "Изображений пока нет",
+    "noImagesSub": "Посты с изображениями появятся здесь",
+    "noPlans": "Нет планов подписки",
+    "noPlansSub": "Этот автор ещё не создал планов"
   },
   "messages": {
     "smartRepliesOff": "Предлагаемые ответы отключены",
@@ -1816,7 +1824,8 @@
     "removeVoiceNote": "Удалить голосовую заметку",
     "removeMedia": "Удалить медиа",
     "cancelRecording": "Отменить запись",
-    "sendVoiceNote": "Отправить голосовую заметку"
+    "sendVoiceNote": "Отправить голосовую заметку",
+    "noneYetAddYours": "Комментариев пока нет — добавьте свой."
   },
   "postInfo": {
     "title": "Информация о посте",
@@ -3888,5 +3897,9 @@
     "streamPaused": "Трансляция приостановлена",
     "connectionDropped": "Связь со стримером прервалась.\nЖдём его возвращения...",
     "autoEnding": "Автоматически завершится, если не возобновится"
+  },
+  "search": {
+    "endOfResults": "Конец результатов",
+    "searchDehub": "Поиск в DeHub"
   }
 }

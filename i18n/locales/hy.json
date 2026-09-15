@@ -1438,7 +1438,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS պրոֆիլի հղումը պատճենվեց",
+    "subscribeNow": "Բաժանորդագրվել հիմա",
+    "messageUser": "Գրել օգտատիրոջը",
+    "backToTop": "Վերադառնալ վերև",
+    "noImages": "Նկարներ դեռ չկան",
+    "noImagesSub": "Նկարներով գրառումները կհայտնվեն այստեղ",
+    "noPlans": "Բաժանորդագրության պլաններ չկան",
+    "noPlansSub": "Այս հեղինակը դեռ պլաններ չի ստեղծել"
   },
   "tv": {
     "title": "TV",
@@ -1763,7 +1771,8 @@
     "removeVoiceNote": "Հեռացնել ձայնային նշումը",
     "removeMedia": "Հեռացնել մեդիան",
     "cancelRecording": "Չեղարկել ձայնագրումը",
-    "sendVoiceNote": "Ուղարկել ձայնային նշումը"
+    "sendVoiceNote": "Ուղարկել ձայնային նշումը",
+    "noneYetAddYours": "Մեկնաբանություններ դեռ չկան, ավելացրեք ձերը։"
   },
   "postInfo": {
     "title": "Գdelaysայթի տdelaysdelays",
@@ -3812,5 +3821,9 @@
     "streamPaused": "Հեռարձակումը դադարեցված է",
     "connectionDropped": "Հեռարձակողի կապն ընդհատվեց։\nՍպասում ենք վերամիացմանը...",
     "autoEnding": "Ինքնաբերաբար կավարտվի, եթե չվերսկսվի"
+  },
+  "search": {
+    "endOfResults": "Արդյունքների վերջ",
+    "searchDehub": "Որոնել DeHub-ում"
   }
 }

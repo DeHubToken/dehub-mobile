@@ -1459,7 +1459,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Edepụtala njikọ profaịlụ ENS",
+    "subscribeNow": "Denye aha ugbu a",
+    "messageUser": "Zigara onye ọrụ ozi",
+    "backToTop": "Laghachi n'elu",
+    "noImages": "Enwebeghị onyonyo",
+    "noImagesSub": "Post onyonyo ga-apụta ebe a",
+    "noPlans": "Enweghị atụmatụ ndenye aha",
+    "noPlansSub": "Onye okike a edobebeghị atụmatụ ọ bụla"
   },
   "tv": {
     "title": "TV",
@@ -1784,7 +1792,8 @@
     "removeVoiceNote": "Wepụ ozi olu",
     "removeMedia": "Wepụ media",
     "cancelRecording": "Kagbuo ndekọ",
-    "sendVoiceNote": "Zipụ ozi olu"
+    "sendVoiceNote": "Zipụ ozi olu",
+    "noneYetAddYours": "Enwebeghị nkọwa, tinye nke gị."
   },
   "postInfo": {
     "title": "Ozi banyere mbipụta",
@@ -3797,5 +3806,9 @@
     "streamPaused": "Akwụsịtụla mgbasa",
     "connectionDropped": "Njikọ onye na-agbasa adaala.\nNa-echere ka ọ laghachi...",
     "autoEnding": "Ọ ga-akwụsị onwe ya ma ọ bụrụ na amalitegharịghị ya"
+  },
+  "search": {
+    "endOfResults": "Njedebe nsonaazụ",
+    "searchDehub": "Chọọ na DeHub"
   }
 }

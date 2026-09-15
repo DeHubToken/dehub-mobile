@@ -1540,7 +1540,15 @@
     "followers": "Followers",
     "following": "Following",
     "joined": "Joined",
-    "loginDescription": "Log in to view and manage your profile."
+    "loginDescription": "Log in to view and manage your profile.",
+    "ensUrlCopied": "ENS profile URL copied",
+    "subscribeNow": "Subscribe Now",
+    "messageUser": "Message user",
+    "backToTop": "Back to top",
+    "noImages": "No images yet",
+    "noImagesSub": "Image posts will appear here",
+    "noPlans": "No subscription plans",
+    "noPlansSub": "This creator hasn't set up any plans yet"
   },
   "tv": {
     "title": "TV",
@@ -1936,7 +1944,8 @@
     "removeVoiceNote": "Remove voice note",
     "removeMedia": "Remove media",
     "cancelRecording": "Cancel recording",
-    "sendVoiceNote": "Send voice note"
+    "sendVoiceNote": "Send voice note",
+    "noneYetAddYours": "No comments yet, add yours."
   },
   "postInfo": {
     "title": "Post Info",
@@ -3889,5 +3898,9 @@
     "streamPaused": "Stream Paused",
     "connectionDropped": "The streamer's connection dropped.\nWaiting for them to reconnect...",
     "autoEnding": "Auto-ending if not resumed"
+  },
+  "search": {
+    "endOfResults": "End of results",
+    "searchDehub": "Search DeHub"
   }
 }

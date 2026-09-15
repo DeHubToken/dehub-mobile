@@ -1446,7 +1446,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS परिचयसम्पर्कः प्रतिलिखितः",
+    "subscribeNow": "इदानीम् अभिदधातु",
+    "messageUser": "प्रयोक्त्रे सन्देशं प्रेषयतु",
+    "backToTop": "उपरि प्रत्यागच्छतु",
+    "noImages": "अद्यापि चित्राणि न सन्ति",
+    "noImagesSub": "चित्रप्रकाशनानि अत्र दृश्यन्ते",
+    "noPlans": "अभिदानयोजनाः न सन्ति",
+    "noPlansSub": "अयं रचयिता अद्यापि काञ्चित् योजनां न निर्मितवान्"
   },
   "tv": {
     "title": "दूरदर्शनम्",
@@ -1771,7 +1779,8 @@
     "removeVoiceNote": "ध्वनिटिप्पणीं निष्कासयतु",
     "removeMedia": "माध्यमं निष्कासयतु",
     "cancelRecording": "अङ्कनं निरस्यतु",
-    "sendVoiceNote": "ध्वनिटिप्पणीं प्रेषयतु"
+    "sendVoiceNote": "ध्वनिटिप्पणीं प्रेषयतु",
+    "noneYetAddYours": "अद्यापि टिप्पण्यः न सन्ति, स्वकीयां योजयतु।"
   },
   "postInfo": {
     "title": "प्रकाशनस्य सूचना",
@@ -3775,5 +3784,9 @@
     "streamPaused": "प्रसारणं स्थगितम्",
     "connectionDropped": "प्रसारकस्य सम्पर्कः त्रुटितः।\nपुनःसम्पर्कं प्रतीक्षामहे...",
     "autoEnding": "यदि न पुनरारभ्यते तर्हि स्वयमेव समाप्स्यते"
+  },
+  "search": {
+    "endOfResults": "फलानाम् अन्तः",
+    "searchDehub": "DeHub इत्यत्र अन्विष्यतु"
   }
 }

@@ -1346,7 +1346,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Линкът към ENS профила е копиран",
+    "subscribeNow": "Абонирай се сега",
+    "messageUser": "Пиши на потребителя",
+    "backToTop": "Обратно нагоре",
+    "noImages": "Още няма изображения",
+    "noImagesSub": "Публикациите с изображения ще се появят тук",
+    "noPlans": "Няма абонаментни планове",
+    "noPlansSub": "Този създател още не е създал планове"
   },
   "messages": {
     "smartRepliesOff": "Предложените отговори са изключени",
@@ -1802,7 +1810,8 @@
     "removeVoiceNote": "Премахни гласовата бележка",
     "removeMedia": "Премахни медията",
     "cancelRecording": "Отмени записа",
-    "sendVoiceNote": "Изпрати гласовата бележка"
+    "sendVoiceNote": "Изпрати гласовата бележка",
+    "noneYetAddYours": "Още няма коментари, добавете своя."
   },
   "postInfo": {
     "title": "Информация за публикацията",
@@ -3819,5 +3828,9 @@
     "streamPaused": "Потокът е на пауза",
     "connectionDropped": "Връзката на стриймъра прекъсна.\nЧакаме да се свърже отново...",
     "autoEnding": "Ще приключи автоматично, ако не се възобнови"
+  },
+  "search": {
+    "endOfResults": "Край на резултатите",
+    "searchDehub": "Търси в DeHub"
   }
 }

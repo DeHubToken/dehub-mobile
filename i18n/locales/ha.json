@@ -1465,7 +1465,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "An kwafi hanyar bayanan ENS",
+    "subscribeNow": "Yi rajista yanzu",
+    "messageUser": "Aika wa mai amfani saƙo",
+    "backToTop": "Koma sama",
+    "noImages": "Babu hotuna tukuna",
+    "noImagesSub": "Saƙonnin hoto za su bayyana a nan",
+    "noPlans": "Babu tsare-tsaren biyan kuɗi",
+    "noPlansSub": "Wannan mahaliccin bai kafa wani tsari ba tukuna"
   },
   "tv": {
     "title": "Talabijin",
@@ -1790,7 +1798,8 @@
     "removeVoiceNote": "Cire saƙon murya",
     "removeMedia": "Cire kafofin watsa labarai",
     "cancelRecording": "Soke rikodin",
-    "sendVoiceNote": "Aika saƙon murya"
+    "sendVoiceNote": "Aika saƙon murya",
+    "noneYetAddYours": "Babu sharhi tukuna, ƙara naka."
   },
   "postInfo": {
     "title": "Bayanan bugu",
@@ -3809,5 +3818,9 @@
     "streamPaused": "An dakatar da yaɗawa",
     "connectionDropped": "Haɗin mai yaɗawa ya yanke.\nAna jiran ya sake haɗawa...",
     "autoEnding": "Zai ƙare ta atomatik idan bai ci gaba ba"
+  },
+  "search": {
+    "endOfResults": "Ƙarshen sakamako",
+    "searchDehub": "Bincika DeHub"
   }
 }

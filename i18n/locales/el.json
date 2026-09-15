@@ -1473,7 +1473,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Ο σύνδεσμος προφίλ ENS αντιγράφηκε",
+    "subscribeNow": "Εγγραφείτε τώρα",
+    "messageUser": "Στείλτε μήνυμα στον χρήστη",
+    "backToTop": "Επιστροφή στην κορυφή",
+    "noImages": "Δεν υπάρχουν ακόμη εικόνες",
+    "noImagesSub": "Οι αναρτήσεις με εικόνες θα εμφανίζονται εδώ",
+    "noPlans": "Χωρίς πακέτα συνδρομής",
+    "noPlansSub": "Αυτός ο δημιουργός δεν έχει ορίσει ακόμη πακέτα"
   },
   "tv": {
     "title": "TV",
@@ -1828,7 +1836,8 @@
     "removeVoiceNote": "Αφαίρεση φωνητικού μηνύματος",
     "removeMedia": "Αφαίρεση πολυμέσου",
     "cancelRecording": "Ακύρωση ηχογράφησης",
-    "sendVoiceNote": "Αποστολή φωνητικού μηνύματος"
+    "sendVoiceNote": "Αποστολή φωνητικού μηνύματος",
+    "noneYetAddYours": "Δεν υπάρχουν ακόμη σχόλια — γράψτε το δικό σας."
   },
   "postInfo": {
     "title": "Πληροφορίες ανάρτησης",
@@ -3842,5 +3851,9 @@
     "streamPaused": "Η μετάδοση σε παύση",
     "connectionDropped": "Η σύνδεση του streamer έπεσε.\nΠεριμένουμε να επανασυνδεθεί...",
     "autoEnding": "Θα τερματιστεί αυτόματα αν δεν συνεχιστεί"
+  },
+  "search": {
+    "endOfResults": "Τέλος αποτελεσμάτων",
+    "searchDehub": "Αναζήτηση στο DeHub"
   }
 }

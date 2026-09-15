@@ -1431,7 +1431,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "اقتراحات للمتابعة"
+    "followSuggestions": "اقتراحات للمتابعة",
+    "ensUrlCopied": "انتنسخ رابط ملف ENS",
+    "subscribeNow": "اشترك هلق",
+    "messageUser": "ابعت للمستخدم",
+    "backToTop": "ارجع لفوق",
+    "noImages": "ما في صور بعد",
+    "noImagesSub": "منشورات الصور رح تظهر هون",
+    "noPlans": "ما في خطط اشتراك",
+    "noPlansSub": "هاد المنشئ لسا ما عمل أي خطة"
   },
   "tv": {
     "title": "تلفزيون",
@@ -1756,7 +1764,8 @@
     "removeVoiceNote": "شيل الملاحظة الصوتية",
     "removeMedia": "شيل الوسائط",
     "cancelRecording": "ألغي التسجيل",
-    "sendVoiceNote": "ابعت الملاحظة الصوتية"
+    "sendVoiceNote": "ابعت الملاحظة الصوتية",
+    "noneYetAddYours": "ما في تعليقات بعد، ضيف تبعك."
   },
   "postInfo": {
     "title": "معلومات المنشور",
@@ -3775,5 +3784,9 @@
     "streamPaused": "البث متوقف",
     "connectionDropped": "اتصال المذيع انقطع.\nعم نستنى يرجع...",
     "autoEnding": "رح ينتهي تلقائياً إذا ما رجع"
+  },
+  "search": {
+    "endOfResults": "نهاية النتائج",
+    "searchDehub": "دوّر بـ DeHub"
   }
 }

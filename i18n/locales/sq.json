@@ -1474,7 +1474,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Lidhja e profilit ENS u kopjua",
+    "subscribeNow": "Abonohu tani",
+    "messageUser": "Dërgo mesazh përdoruesit",
+    "backToTop": "Kthehu lart",
+    "noImages": "Ende pa imazhe",
+    "noImagesSub": "Postimet me imazhe do të shfaqen këtu",
+    "noPlans": "Pa plane abonimi",
+    "noPlansSub": "Ky krijues nuk ka krijuar ende asnjë plan"
   },
   "tv": {
     "title": "TV",
@@ -1799,7 +1807,8 @@
     "removeVoiceNote": "Hiq notën zanore",
     "removeMedia": "Hiq median",
     "cancelRecording": "Anulo regjistrimin",
-    "sendVoiceNote": "Dërgo notën zanore"
+    "sendVoiceNote": "Dërgo notën zanore",
+    "noneYetAddYours": "Ende pa komente, shto tëndin."
   },
   "postInfo": {
     "title": "Informacione për postimin",
@@ -3818,5 +3827,9 @@
     "streamPaused": "Transmetimi në pauzë",
     "connectionDropped": "Lidhja e transmetuesit ra.\nDuke pritur që të rilidhet...",
     "autoEnding": "Përfundon automatikisht nëse nuk rifillon"
+  },
+  "search": {
+    "endOfResults": "Fundi i rezultateve",
+    "searchDehub": "Kërko në DeHub"
   }
 }

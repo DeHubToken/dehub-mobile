@@ -1433,7 +1433,15 @@
     "tabHome": "หน้าแรก",
     "tabImages": "รูปภาพ",
     "tabSubscribers": "ผู้สมัครสมาชิก",
-    "followSuggestions": "แนะนำให้ติดตาม"
+    "followSuggestions": "แนะนำให้ติดตาม",
+    "ensUrlCopied": "ก๊อปปี้ลิงก์โปรไฟล์ ENS แล้ว",
+    "subscribeNow": "สมัครสมาจิกเลย",
+    "messageUser": "ส่งข้อความหาผู้ใจ้",
+    "backToTop": "กลับขึ้นด้านบน",
+    "noImages": "ยังบ่มีฮูปภาพ",
+    "noImagesSub": "โพสต์ฮูปภาพจะแสดงตี้นี้",
+    "noPlans": "บ่มีแพ็กเกจสมาจิก",
+    "noPlansSub": "ครีเอเตอร์คนนี้ยังบ่ได้ตั้งแพ็กเกจ"
   },
   "tv": {
     "title": "โทรทัศน์",
@@ -1758,7 +1766,8 @@
     "removeVoiceNote": "ลบข้อความเสียง",
     "removeMedia": "ลบสื่อ",
     "cancelRecording": "ยกเลิกกาน໊อัด",
-    "sendVoiceNote": "ส่งข้อความเสียง"
+    "sendVoiceNote": "ส่งข้อความเสียง",
+    "noneYetAddYours": "ยังบ่มีกำเห็น มาเป๋นคนแฮก"
   },
   "postInfo": {
     "title": "ข้อมูลโพสต์",
@@ -3778,5 +3787,9 @@
     "streamPaused": "สตรีมหยุดจั่วคราว",
     "connectionDropped": "กาน໊เจื่อมต่อของผู้สตรีมหลุด\nกำลังลอหื้อกลับมาเจื่อมต่อใหม่...",
     "autoEnding": "จะจบอัตโนมัติถ้าบ่กลับมาต่อ"
+  },
+  "search": {
+    "endOfResults": "หมดผลกาน໊ก้นหาแล้ว",
+    "searchDehub": "ก้นหาใน DeHub"
   }
 }

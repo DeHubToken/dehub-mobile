@@ -1431,7 +1431,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS ئارخىپ ئۇلانمىسى كۆچۈرۈلدى",
+    "subscribeNow": "ھازىر مۇشتەرى بولۇش",
+    "messageUser": "ئىشلەتكۈچىگە ئۇچۇر ئەۋەتىش",
+    "backToTop": "ئۈستىگە قايتىش",
+    "noImages": "تېخى رەسىم يوق",
+    "noImagesSub": "رەسىملىك يازمىلار بۇ يەردە كۆرۈنىدۇ",
+    "noPlans": "مۇشتەرىلىك پىلانى يوق",
+    "noPlansSub": "بۇ ئىجادكار تېخى پىلان تەڭشىمىگەن"
   },
   "tv": {
     "title": "TV",
@@ -1756,7 +1764,8 @@
     "removeVoiceNote": "ئاۋازلىق خاتىرىنى ئۆچۈرۈش",
     "removeMedia": "مېدىيانى ئۆچۈرۈش",
     "cancelRecording": "خاتىرىلەشنى بىكار قىلىش",
-    "sendVoiceNote": "ئاۋازلىق خاتىرىنى ئەۋەتىش"
+    "sendVoiceNote": "ئاۋازلىق خاتىرىنى ئەۋەتىش",
+    "noneYetAddYours": "تېخى ئىنكاس يوق، ئۆزىڭىزنىڭكىنى قوشۇڭ."
   },
   "postInfo": {
     "title": "يوللىما ئۇچۇرى",
@@ -3809,5 +3818,9 @@
     "streamPaused": "تارقىتىش ۋاقىتلىق توختىدى",
     "connectionDropped": "تارقاتقۇچىنىڭ ئۇلىنىشى ئۈزۈلدى.\nقايتا ئۇلىنىشىنى كۈتۈۋاتىمىز...",
     "autoEnding": "داۋاملاشمىسا ئاپتوماتىك ئاخىرلىشىدۇ"
+  },
+  "search": {
+    "endOfResults": "نەتىجىلەرنىڭ ئاخىرى",
+    "searchDehub": "DeHub تىن ئىزدەش"
   }
 }

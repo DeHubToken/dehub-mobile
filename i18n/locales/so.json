@@ -1465,7 +1465,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Linkiga astaanta ENS waa la koobiyeeyay",
+    "subscribeNow": "Hadda isdiiwaangeli",
+    "messageUser": "U dir fariin isticmaalaha",
+    "backToTop": "Dib ugu laabo sare",
+    "noImages": "Weli ma jiraan sawirro",
+    "noImagesSub": "Qoraallada sawirka halkan ayay ka muuqan doonaan",
+    "noPlans": "Ma jiraan qorshayaal rukumaad",
+    "noPlansSub": "Abuuraha ma uusan weli samayn wax qorshayaal ah"
   },
   "tv": {
     "title": "TV",
@@ -1790,7 +1798,8 @@
     "removeVoiceNote": "Ka saar fariinta codka",
     "removeMedia": "Ka saar warbaahinta",
     "cancelRecording": "Jooji duubista",
-    "sendVoiceNote": "Dir fariinta codka"
+    "sendVoiceNote": "Dir fariinta codka",
+    "noneYetAddYours": "Weli faallo ma jirto, taada ku dar."
   },
   "postInfo": {
     "title": "Macluumaadka qoraalka",
@@ -3810,5 +3819,9 @@
     "streamPaused": "Baahinta waa la hakiyay",
     "connectionDropped": "Xiriirka baahiyaha ayaa go'ay.\nWaxaan sugaynaa inuu dib u soo xiro...",
     "autoEnding": "Si toos ah ayuu u dhammaan doonaa haddii aan la sii wadin"
+  },
+  "search": {
+    "endOfResults": "Dhammaadka natiijooyinka",
+    "searchDehub": "Ka raadi DeHub"
   }
 }

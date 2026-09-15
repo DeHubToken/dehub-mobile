@@ -1463,7 +1463,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS පැතිකඩ සබැඳිය පිටපත් කළා",
+    "subscribeNow": "දැන් දායක වන්න",
+    "messageUser": "පරිශීලකයාට පණිවිඩයක් යවන්න",
+    "backToTop": "ඉහළට ආපසු",
+    "noImages": "තවම රූප නැත",
+    "noImagesSub": "රූප පළකිරීම් මෙහි පෙනෙනු ඇත",
+    "noPlans": "දායකත්ව සැලසුම් නැත",
+    "noPlansSub": "මෙම නිර්මාතෘ තවම කිසිදු සැලසුමක් සාදා නැත"
   },
   "dao": {
     "title": "DAO භmාව",
@@ -1815,7 +1823,8 @@
     "removeVoiceNote": "හඬ සටහන ඉවත් කරන්න",
     "removeMedia": "මාධ්‍ය ඉවත් කරන්න",
     "cancelRecording": "පටිගත කිරීම අවලංගු කරන්න",
-    "sendVoiceNote": "හඬ සටහන යවන්න"
+    "sendVoiceNote": "හඬ සටහන යවන්න",
+    "noneYetAddYours": "තවම අදහස් නැත, ඔබේ එක් කරන්න."
   },
   "postInfo": {
     "title": "පළ කිරීමේ තොරතුරු",
@@ -3801,5 +3810,9 @@
     "streamPaused": "ප්‍රවාහය තාවකාලිකව නතර",
     "connectionDropped": "ප්‍රවාහකයාගේ සම්බන්ධතාවය කැඩුණා.\nනැවත සම්බන්ධ වන තුරු බලා සිටිමින්...",
     "autoEnding": "නැවත ආරම්භ නොවුණොත් ස්වයංක්‍රීයව අවසන් වේ"
+  },
+  "search": {
+    "endOfResults": "ප්‍රතිඵල අවසන්",
+    "searchDehub": "DeHub හි සොයන්න"
   }
 }

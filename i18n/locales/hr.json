@@ -1474,7 +1474,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Poveznica ENS profila kopirana",
+    "subscribeNow": "Pretplati se sada",
+    "messageUser": "Pošalji poruku korisniku",
+    "backToTop": "Natrag na vrh",
+    "noImages": "Još nema slika",
+    "noImagesSub": "Objave sa slikama pojavit će se ovdje",
+    "noPlans": "Nema pretplatničkih planova",
+    "noPlansSub": "Ovaj autor još nije postavio planove"
   },
   "tv": {
     "title": "TV",
@@ -1799,7 +1807,8 @@
     "removeVoiceNote": "Ukloni glasovnu poruku",
     "removeMedia": "Ukloni medij",
     "cancelRecording": "Otkaži snimanje",
-    "sendVoiceNote": "Pošalji glasovnu poruku"
+    "sendVoiceNote": "Pošalji glasovnu poruku",
+    "noneYetAddYours": "Još nema komentara, dodajte svoj."
   },
   "postInfo": {
     "title": "Informacije o objavi",
@@ -3819,5 +3828,9 @@
     "streamPaused": "Prijenos pauziran",
     "connectionDropped": "Streamerova veza je pala.\nČekamo da se ponovno spoji...",
     "autoEnding": "Automatski završava ako se ne nastavi"
+  },
+  "search": {
+    "endOfResults": "Kraj rezultata",
+    "searchDehub": "Pretraži DeHub"
   }
 }

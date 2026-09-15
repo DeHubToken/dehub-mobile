@@ -1335,7 +1335,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS प्रोफाइल लिंक कॉपी झाली",
+    "subscribeNow": "आत्ताच सबस्क्राइब करा",
+    "messageUser": "वापरकर्त्याला संदेश पाठवा",
+    "backToTop": "वर परत जा",
+    "noImages": "अजून प्रतिमा नाहीत",
+    "noImagesSub": "प्रतिमा पोस्ट इथे दिसतील",
+    "noPlans": "सबस्क्रिप्शन योजना नाहीत",
+    "noPlansSub": "या निर्मात्याने अजून कोणतीही योजना तयार केलेली नाही"
   },
   "messages": {
     "smartRepliesOff": "सुचवलेली उत्तरे बंद केली",
@@ -1791,7 +1799,8 @@
     "removeVoiceNote": "व्हॉइस नोट काढा",
     "removeMedia": "मीडिया काढा",
     "cancelRecording": "रेकॉर्डिंग रद्द करा",
-    "sendVoiceNote": "व्हॉइस नोट पाठवा"
+    "sendVoiceNote": "व्हॉइस नोट पाठवा",
+    "noneYetAddYours": "अजून टिप्पण्या नाहीत, तुमची जोडा."
   },
   "postInfo": {
     "title": "पोस्ट माहिती",
@@ -3807,5 +3816,9 @@
     "streamPaused": "स्ट्रीम थांबवली",
     "connectionDropped": "स्ट्रीमरचे कनेक्शन तुटले.\nपुन्हा जोडले जाण्याची वाट पाहत आहोत...",
     "autoEnding": "पुन्हा सुरू न झाल्यास आपोआप संपेल"
+  },
+  "search": {
+    "endOfResults": "निकालांचा शेवट",
+    "searchDehub": "DeHub मध्ये शोधा"
   }
 }

@@ -1939,7 +1939,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Volgsuggesties"
+    "followSuggestions": "Volgsuggesties",
+    "ensUrlCopied": "ENS-profiellink gekopieerd",
+    "subscribeNow": "Nu abonneren",
+    "messageUser": "Gebruiker een bericht sturen",
+    "backToTop": "Terug naar boven",
+    "noImages": "Nog geen afbeeldingen",
+    "noImagesSub": "Berichten met afbeeldingen verschijnen hier",
+    "noPlans": "Geen abonnementen",
+    "noPlansSub": "Deze maker heeft nog geen abonnementen ingesteld"
   },
   "tv": {
     "title": "TV",
@@ -2264,7 +2272,8 @@
     "removeVoiceNote": "Spraakbericht verwijderen",
     "removeMedia": "Media verwijderen",
     "cancelRecording": "Opname annuleren",
-    "sendVoiceNote": "Spraakbericht verzenden"
+    "sendVoiceNote": "Spraakbericht verzenden",
+    "noneYetAddYours": "Nog geen reacties — plaats de eerste."
   },
   "postInfo": {
     "title": "Berichtinfo",
@@ -4086,5 +4095,9 @@
     "streamPaused": "Stream gepauzeerd",
     "connectionDropped": "De verbinding van de streamer is weggevallen.\nWachten tot ze terug zijn...",
     "autoEnding": "Stopt automatisch als het niet wordt hervat"
+  },
+  "search": {
+    "endOfResults": "Einde van de resultaten",
+    "searchDehub": "Zoeken op DeHub"
   }
 }

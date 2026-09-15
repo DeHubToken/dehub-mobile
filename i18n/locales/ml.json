@@ -1461,7 +1461,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS പ്രൊഫൈൽ ലിങ്ക് പകർത്തി",
+    "subscribeNow": "ഇപ്പോൾ സബ്സ്ക്രൈബ് ചെയ്യുക",
+    "messageUser": "ഉപയോക്താവിന് സന്ദേശം അയയ്ക്കുക",
+    "backToTop": "മുകളിലേക്ക് മടങ്ങുക",
+    "noImages": "ഇതുവരെ ചിത്രങ്ങളില്ല",
+    "noImagesSub": "ചിത്ര പോസ്റ്റുകൾ ഇവിടെ കാണാം",
+    "noPlans": "സബ്സ്ക്രിപ്ഷൻ പ്ലാനുകളില്ല",
+    "noPlansSub": "ഈ ക്രിയേറ്റർ ഇതുവരെ പ്ലാനുകളൊന്നും സൃഷ്ടിച്ചിട്ടില്ല"
   },
   "tv": {
     "title": "TV",
@@ -1786,7 +1794,8 @@
     "removeVoiceNote": "വോയ്‌സ് നോട്ട് നീക്കുക",
     "removeMedia": "മീഡിയ നീക്കുക",
     "cancelRecording": "റെക്കോർഡിംഗ് റദ്ദാക്കുക",
-    "sendVoiceNote": "വോയ്‌സ് നോട്ട് അയയ്ക്കുക"
+    "sendVoiceNote": "വോയ്‌സ് നോട്ട് അയയ്ക്കുക",
+    "noneYetAddYours": "ഇതുവരെ കമന്റുകളില്ല, നിങ്ങളുടേത് ചേർക്കൂ."
   },
   "postInfo": {
     "title": "പോസ്റ്റ് വിവരങ്ങൾ",
@@ -3801,5 +3810,9 @@
     "streamPaused": "സ്ട്രീം താൽക്കാലികമായി നിർത്തി",
     "connectionDropped": "സ്ട്രീമറുടെ കണക്ഷൻ പോയി.\nവീണ്ടും ബന്ധിപ്പിക്കാൻ കാത്തിരിക്കുന്നു...",
     "autoEnding": "വീണ്ടും തുടങ്ങിയില്ലെങ്കിൽ സ്വയം അവസാനിക്കും"
+  },
+  "search": {
+    "endOfResults": "ഫലങ്ങളുടെ അവസാനം",
+    "searchDehub": "DeHub-ൽ തിരയുക"
   }
 }

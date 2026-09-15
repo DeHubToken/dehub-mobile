@@ -1344,7 +1344,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS پروفائل لنک کاپی ہو گیا",
+    "subscribeNow": "ابھی سبسکرائب کریں",
+    "messageUser": "صارف کو پیغام بھیجیں",
+    "backToTop": "اوپر واپس",
+    "noImages": "ابھی کوئی تصویر نہیں",
+    "noImagesSub": "تصویر والی پوسٹس یہاں دکھائی دیں گی",
+    "noPlans": "کوئی سبسکرپشن پلان نہیں",
+    "noPlansSub": "اس تخلیق کار نے ابھی کوئی پلان نہیں بنایا"
   },
   "messages": {
     "smartRepliesOff": "تجویز کردہ جوابات بند کر دیے گئے",
@@ -1800,7 +1808,8 @@
     "removeVoiceNote": "وائس نوٹ ہٹائیں",
     "removeMedia": "میڈیا ہٹائیں",
     "cancelRecording": "ریکارڈنگ منسوخ کریں",
-    "sendVoiceNote": "وائس نوٹ بھیجیں"
+    "sendVoiceNote": "وائس نوٹ بھیجیں",
+    "noneYetAddYours": "ابھی کوئی تبصرہ نہیں، اپنا شامل کریں۔"
   },
   "postInfo": {
     "title": "پوسٹ کی معلومات",
@@ -3817,5 +3826,9 @@
     "streamPaused": "اسٹریم روکی گئی",
     "connectionDropped": "اسٹریمر کا کنکشن ٹوٹ گیا۔\nدوبارہ جڑنے کا انتظار ہے...",
     "autoEnding": "دوبارہ شروع نہ ہوا تو خود بخود ختم ہو جائے گا"
+  },
+  "search": {
+    "endOfResults": "نتائج کا اختتام",
+    "searchDehub": "DeHub میں تلاش کریں"
   }
 }

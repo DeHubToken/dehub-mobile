@@ -2147,7 +2147,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Посилання на профіль ENS скопійовано",
+    "subscribeNow": "Підписатися зараз",
+    "messageUser": "Написати користувачу",
+    "backToTop": "Нагору",
+    "noImages": "Зображень ще немає",
+    "noImagesSub": "Дописи із зображеннями з'являться тут",
+    "noPlans": "Немає планів підписки",
+    "noPlansSub": "Цей автор ще не створив планів"
   },
   "tv": {
     "title": "TV",
@@ -2472,7 +2480,8 @@
     "removeVoiceNote": "Видалити голосову нотатку",
     "removeMedia": "Видалити медіа",
     "cancelRecording": "Скасувати запис",
-    "sendVoiceNote": "Надіслати голосову нотатку"
+    "sendVoiceNote": "Надіслати голосову нотатку",
+    "noneYetAddYours": "Коментарів ще немає — додайте свій."
   },
   "postInfo": {
     "title": "Post Info",
@@ -4295,5 +4304,9 @@
     "streamPaused": "Трансляцію призупинено",
     "connectionDropped": "Зв'язок зі стрімером обірвався.\nЧекаємо, доки він повернеться...",
     "autoEnding": "Автоматично завершиться, якщо не відновиться"
+  },
+  "search": {
+    "endOfResults": "Кінець результатів",
+    "searchDehub": "Пошук у DeHub"
   }
 }

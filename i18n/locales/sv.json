@@ -1347,7 +1347,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS-profillänken kopierad",
+    "subscribeNow": "Prenumerera nu",
+    "messageUser": "Skicka meddelande till användaren",
+    "backToTop": "Tillbaka till toppen",
+    "noImages": "Inga bilder än",
+    "noImagesSub": "Bildinlägg visas här",
+    "noPlans": "Inga prenumerationsplaner",
+    "noPlansSub": "Den här skaparen har inte skapat några planer än"
   },
   "messages": {
     "smartRepliesOff": "Föreslagna svar avstängda",
@@ -1803,7 +1811,8 @@
     "removeVoiceNote": "Ta bort röstmeddelande",
     "removeMedia": "Ta bort media",
     "cancelRecording": "Avbryt inspelning",
-    "sendVoiceNote": "Skicka röstmeddelande"
+    "sendVoiceNote": "Skicka röstmeddelande",
+    "noneYetAddYours": "Inga kommentarer än — skriv den första."
   },
   "postInfo": {
     "title": "Inläggsinfo",
@@ -3823,5 +3832,9 @@
     "streamPaused": "Sändning pausad",
     "connectionDropped": "Sändarens anslutning bröts.\nVi väntar på att de ska ansluta igen...",
     "autoEnding": "Avslutas automatiskt om den inte återupptas"
+  },
+  "search": {
+    "endOfResults": "Slut på resultaten",
+    "searchDehub": "Sök i DeHub"
   }
 }

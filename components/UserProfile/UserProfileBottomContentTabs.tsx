@@ -51,6 +51,7 @@ import {
 } from "../Profile/useProfileContentFilters";
 import { useProfileContentCounts } from "../Profile/useProfileContentCounts";
 import { getPlans, type SubscriptionPlan } from "../../services/subscription.service";
+import { useTranslation } from "react-i18next";
 
 interface UserProfileBottomContentTabsProps {
   address: string;
@@ -131,6 +132,7 @@ const UserProfileBottomContentTabs: React.FC<
   pendingTab = null,
   onPendingTabConsumed,
 }) => {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const { hideUserProfile } = useUserProfileSheet();
   const listRef = useRef<FlatList<any> | null>(null);
@@ -402,7 +404,7 @@ const UserProfileBottomContentTabs: React.FC<
               className="bg-transparent px-8 py-3 rounded-xl"
               activeOpacity={0.8}
             >
-              <Text className="text-white font-semibold text-sm">Follow</Text>
+              <Text className="text-white font-semibold text-sm">{t("follow.follow")}</Text>
             </TouchableOpacity>
           </AccentButtonGradient>
         )}
@@ -511,8 +513,8 @@ const UserProfileBottomContentTabs: React.FC<
             ) : images.length === 0 ? (
               <ProfileEmptyState
                 kind="images"
-                title="No images yet"
-                subtitle="Image posts will appear here"
+                title={t("profile.noImages")}
+                subtitle={t("profile.noImagesSub")}
               />
             ) : (
               // onScroll was previously omitted here, so this tab alone never
@@ -537,8 +539,8 @@ const UserProfileBottomContentTabs: React.FC<
             ) : plans.length === 0 ? (
               <ProfileEmptyState
                 kind="subscribers"
-                title="No subscription plans"
-                subtitle="This creator hasn't set up any plans yet"
+                title={t("profile.noPlans")}
+                subtitle={t("profile.noPlansSub")}
               />
             ) : (
               <Animated.FlatList
@@ -625,7 +627,7 @@ const UserProfileBottomContentTabs: React.FC<
         <Pressable
           onPress={scrollToTop}
           accessibilityRole="button"
-          accessibilityLabel="Back to top"
+          accessibilityLabel={t("profile.backToTop")}
           className="absolute bottom-6 right-5 bg-theme-neutrals-800/90 rounded-xl p-3 active:opacity-80"
           style={{
             zIndex: 20,

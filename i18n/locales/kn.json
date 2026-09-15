@@ -1483,7 +1483,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS ಪ್ರೊಫೈಲ್ ಲಿಂಕ್ ನಕಲಿಸಲಾಗಿದೆ",
+    "subscribeNow": "ಈಗಲೇ ಚಂದಾದಾರರಾಗಿ",
+    "messageUser": "ಬಳಕೆದಾರರಿಗೆ ಸಂದೇಶ ಕಳುಹಿಸಿ",
+    "backToTop": "ಮೇಲಕ್ಕೆ ಹಿಂತಿರುಗಿ",
+    "noImages": "ಇನ್ನೂ ಚಿತ್ರಗಳಿಲ್ಲ",
+    "noImagesSub": "ಚಿತ್ರ ಪೋಸ್ಟ್‌ಗಳು ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ",
+    "noPlans": "ಚಂದಾದಾರಿಕೆ ಯೋಜನೆಗಳಿಲ್ಲ",
+    "noPlansSub": "ಈ ಕ್ರಿಯೇಟರ್ ಇನ್ನೂ ಯಾವುದೇ ಯೋಜನೆ ಸಿದ್ಧಪಡಿಸಿಲ್ಲ"
   },
   "tv": {
     "title": "ಟಿವಿ",
@@ -1808,7 +1816,8 @@
     "removeVoiceNote": "ಧ್ವನಿ ಟಿಪ್ಪಣಿ ತೆಗೆದುಹಾಕಿ",
     "removeMedia": "ಮಾಧ್ಯಮ ತೆಗೆದುಹಾಕಿ",
     "cancelRecording": "ರೆಕಾರ್ಡಿಂಗ್ ರದ್ದುಮಾಡಿ",
-    "sendVoiceNote": "ಧ್ವನಿ ಟಿಪ್ಪಣಿ ಕಳುಹಿಸಿ"
+    "sendVoiceNote": "ಧ್ವನಿ ಟಿಪ್ಪಣಿ ಕಳುಹಿಸಿ",
+    "noneYetAddYours": "ಇನ್ನೂ ಕಾಮೆಂಟ್‌ಗಳಿಲ್ಲ, ನಿಮ್ಮದನ್ನು ಸೇರಿಸಿ."
   },
   "postInfo": {
     "title": "ಪೋಸ್ಟ್ ಮಾಹಿತಿ",
@@ -3824,5 +3833,9 @@
     "streamPaused": "ಸ್ಟ್ರೀಮ್ ವಿರಾಮದಲ್ಲಿದೆ",
     "connectionDropped": "ಸ್ಟ್ರೀಮರ್‌ನ ಸಂಪರ್ಕ ಕಡಿದಿದೆ.\nಮತ್ತೆ ಸಂಪರ್ಕವಾಗಲು ಕಾಯುತ್ತಿದೆ...",
     "autoEnding": "ಮತ್ತೆ ಪ್ರಾರಂಭವಾಗದಿದ್ದರೆ ತಾನಾಗಿಯೇ ಮುಗಿಯುತ್ತದೆ"
+  },
+  "search": {
+    "endOfResults": "ಫಲಿತಾಂಶಗಳ ಅಂತ್ಯ",
+    "searchDehub": "DeHub ನಲ್ಲಿ ಹುಡುಕಿ"
   }
 }

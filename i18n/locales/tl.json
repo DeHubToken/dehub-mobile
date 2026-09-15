@@ -1850,7 +1850,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Nakopya ang ENS profile link",
+    "subscribeNow": "Mag-subscribe na",
+    "messageUser": "Mag-message sa user",
+    "backToTop": "Balik sa itaas",
+    "noImages": "Wala pang larawan",
+    "noImagesSub": "Lalabas dito ang mga image post",
+    "noPlans": "Walang subscription plan",
+    "noPlansSub": "Wala pang naitakdang plano ang creator na ito"
   },
   "tv": {
     "title": "TV",
@@ -2175,7 +2183,8 @@
     "removeVoiceNote": "Alisin ang voice note",
     "removeMedia": "Alisin ang media",
     "cancelRecording": "Kanselahin ang pag-record",
-    "sendVoiceNote": "Ipadala ang voice note"
+    "sendVoiceNote": "Ipadala ang voice note",
+    "noneYetAddYours": "Wala pang komento, magdagdag ka ng sa iyo."
   },
   "postInfo": {
     "title": "Post Info",
@@ -3998,5 +4007,9 @@
     "streamPaused": "Naka-pause ang stream",
     "connectionDropped": "Naputol ang koneksyon ng streamer.\nHinihintay silang bumalik...",
     "autoEnding": "Awtomatikong matatapos kung hindi magpapatuloy"
+  },
+  "search": {
+    "endOfResults": "Katapusan ng mga resulta",
+    "searchDehub": "Maghanap sa DeHub"
   }
 }

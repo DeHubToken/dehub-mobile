@@ -1462,7 +1462,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Kua tāruatia te hono kōtaha ENS",
+    "subscribeNow": "Ohauru ināianei",
+    "messageUser": "Tukuna he karere ki te kaiwhakamahi",
+    "backToTop": "Hoki ki runga",
+    "noImages": "Kāore anō he whakaahua",
+    "noImagesSub": "Ka puta mai ngā pou whakaahua ki konei",
+    "noPlans": "Kāore he mahere ohaoha",
+    "noPlansSub": "Kāore anō tēnei kaihanga kia whakarite mahere"
   },
   "tv": {
     "title": "TV",
@@ -1787,7 +1795,8 @@
     "removeVoiceNote": "Tangohia te tuhipoka reo",
     "removeMedia": "Tangohia te pāpāho",
     "cancelRecording": "Whakakorea te hopu",
-    "sendVoiceNote": "Tukuna te tuhipoka reo"
+    "sendVoiceNote": "Tukuna te tuhipoka reo",
+    "noneYetAddYours": "Kāore anō he kōrero, tāpirihia tāu."
   },
   "postInfo": {
     "title": "Mōhiohio pou",
@@ -3804,5 +3813,9 @@
     "streamPaused": "Kua tārewa te rerenga",
     "connectionDropped": "Kua motu te hononga a te kaituku.\nE tatari ana kia hono anō...",
     "autoEnding": "Ka mutu aunoa ki te kore e haere tonu"
+  },
+  "search": {
+    "endOfResults": "Mutunga o ngā hua",
+    "searchDehub": "Rapua a DeHub"
   }
 }

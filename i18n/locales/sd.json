@@ -1459,7 +1459,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS پروفائل لنڪ ڪاپي ٿيو",
+    "subscribeNow": "هاڻي سبسڪرائب ڪريو",
+    "messageUser": "صارف کي پيغام موڪليو",
+    "backToTop": "مٿي واپس",
+    "noImages": "اڃا ڪا به تصوير ناهي",
+    "noImagesSub": "تصويرن وارا پوسٽ هتي ڏسبا",
+    "noPlans": "ڪو به سبسڪرپشن پلان ناهي",
+    "noPlansSub": "هن تخليقڪار اڃا ڪو به پلان نه ٺاهيو آهي"
   },
   "tv": {
     "title": "TV",
@@ -1784,7 +1792,8 @@
     "removeVoiceNote": "وائس نوٽ هٽايو",
     "removeMedia": "ميڊيا هٽايو",
     "cancelRecording": "رڪارڊنگ منسوخ ڪريو",
-    "sendVoiceNote": "وائس نوٽ موڪليو"
+    "sendVoiceNote": "وائس نوٽ موڪليو",
+    "noneYetAddYours": "اڃا ڪو به تبصرو ناهي، پنهنجو شامل ڪريو."
   },
   "postInfo": {
     "title": "پوسٽ معلومات",
@@ -3802,5 +3811,9 @@
     "streamPaused": "اسٽريم روڪي وئي",
     "connectionDropped": "اسٽريمر جو ڪنيڪشن ٽٽي ويو.\nٻيهر ڳنڍجڻ جو انتظار آهي...",
     "autoEnding": "جيڪڏهن ٻيهر شروع نه ٿيو ته پاڻ ختم ٿي ويندو"
+  },
+  "search": {
+    "endOfResults": "نتيجن جو پڇاڙي",
+    "searchDehub": "DeHub ۾ ڳوليو"
   }
 }

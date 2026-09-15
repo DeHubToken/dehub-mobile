@@ -1498,7 +1498,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "បានចម្លងតំណប្រវត្តិរូប ENS",
+    "subscribeNow": "ជាវឥឡូវនេះ",
+    "messageUser": "ផ្ញើសារទៅអ្នកប្រើ",
+    "backToTop": "ត្រឡប់ទៅខាងលើ",
+    "noImages": "មិនទាន់មានរូបភាពទេ",
+    "noImagesSub": "ប្រកាសរូបភាពនឹងបង្ហាញនៅទីនេះ",
+    "noPlans": "គ្មានគម្រោងជាវទេ",
+    "noPlansSub": "អ្នកបង្កើតនេះមិនទាន់បានរៀបចំគម្រោងណាមួយទេ"
   },
   "dao": {
     "title": "ឃ្លាំងរបស់ DAO",
@@ -1850,7 +1858,8 @@
     "removeVoiceNote": "លុបសារជាសំឡេង",
     "removeMedia": "លុបមេឌៀ",
     "cancelRecording": "បោះបង់ការថត",
-    "sendVoiceNote": "ផ្ញើសារជាសំឡេង"
+    "sendVoiceNote": "ផ្ញើសារជាសំឡេង",
+    "noneYetAddYours": "មិនទាន់មានមតិទេ បន្ថែមមតិរបស់អ្នក។"
   },
   "postInfo": {
     "title": "ព័ត៌មានប្រកាស",
@@ -3838,5 +3847,9 @@
     "streamPaused": "ការផ្សាយត្រូវបានផ្អាក",
     "connectionDropped": "ការតភ្ជាប់របស់អ្នកផ្សាយបានដាច់។\nកំពុងរង់ចាំគាត់តភ្ជាប់ឡើងវិញ...",
     "autoEnding": "នឹងបញ្ចប់ដោយស្វ័យប្រវត្តិ ប្រសិនបើមិនបន្ត"
+  },
+  "search": {
+    "endOfResults": "ចុងបញ្ចប់នៃលទ្ធផល",
+    "searchDehub": "ស្វែងរកក្នុង DeHub"
   }
 }
