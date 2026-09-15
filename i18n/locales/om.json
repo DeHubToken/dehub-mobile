@@ -800,7 +800,11 @@
     "tokenGateSettings": "Token Gate Settings",
     "requiresDhb": "Requires DHB tokens on Base chain",
     "minimumDhb": "Minimum DHB Required",
-    "minimumAmount": "Minimum amount"
+    "minimumAmount": "Minimum amount",
+    "firstViews_one": "Ilaalcha {{count}} jalqabaa",
+    "firstViews_other": "Ilaalcha {{count}} jalqabaa",
+    "firstComments_one": "Yaada {{count}} jalqabaa",
+    "firstComments_other": "Yaada {{count}} jalqabaa"
   },
   "assistant": {
     "title": "Gargaaraa",
@@ -3525,5 +3529,35 @@
     "descriptionOptional": "Ibsa (filannoo)",
     "whatsHappening": "Maaltu taʼaa jira?",
     "quotaShortfall": "Barreeffamni kun {{cost}} DHB gaafata, ati immoo {{held}} qabda."
+  },
+  "bounty": {
+    "claimed": "Fudhatame",
+    "notEligible": "Ulaagaa hin guutu",
+    "checking": "Ulaagaa mirkaneessaa jira…",
+    "rewardType": "Gosa badhaasaa",
+    "transaction": "Daldala",
+    "onChainClaim": "Gaaffii sarara irratti",
+    "confirmClaim": "Gaaffii mirkaneessi",
+    "processing": "Daldala sarara irratti adeemsisaa jira",
+    "success": "Badhaasni fudhatame!",
+    "awesome": "Baay'ee gaarii!",
+    "claimUnable": "Badhaasa fudhachuun hin dandaʼamne",
+    "claimFailed": "Badhaasa fudhachuun hin milkoofne",
+    "switchFailed": "Neetwoorkii jijjiiruun hin dandaʼamne",
+    "claimViewerTitle": "Badhaasa ilaaltuu fudhadhu",
+    "claimCommenterTitle": "Badhaasa yaada kennaa fudhadhu",
+    "claimingViewer": "Badhaasa ilaaltuu fudhachaa jira…",
+    "claimingCommenter": "Badhaasa yaada kennaa fudhachaa jira…",
+    "viewerReward": "Badhaasa ilaaltuu",
+    "commenterReward": "Badhaasa yaada kennaa",
+    "claimedViewer": "Badhaasni ilaaltuu milkaaʼinaan fudhatame!",
+    "claimedCommenter": "Badhaasni yaada kennaa milkaaʼinaan fudhatame!",
+    "earnedViewer": "Badhaasa ilaaltuu kee argatteetta",
+    "earnedCommenter": "Badhaasa yaada kennaa kee argatteetta",
+    "switchNetwork": "Neetwoorkii jijjiiri",
+    "eligibilityFailed": "Ulaagaa mirkaneessuun hin dandaʼamne",
+    "switchFirst": "Osoo hin fudhatin dura gara neetwoorkii badhaasaa jijjiiri",
+    "missingSignature": "Mallattoon gaaffii badhaasaa hin jiru",
+    "txReverted": "Daldalli sarara irratti deebiʼe"
   }
 }

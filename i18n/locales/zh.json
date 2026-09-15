@@ -648,7 +648,11 @@
     "cancel": "取消",
     "confirm": "确认",
     "paying": "支付中...",
-    "payAmount": "支付 {{amount}} {{currency}}"
+    "payAmount": "支付 {{amount}} {{currency}}",
+    "firstViews_one": "前 {{count}} 次观看",
+    "firstViews_other": "前 {{count}} 次观看",
+    "firstComments_one": "前 {{count}} 条评论",
+    "firstComments_other": "前 {{count}} 条评论"
   },
   "wallet": {
     "notReady": "钱包尚未就绪——请稍后再试。",
@@ -3518,5 +3522,35 @@
     "descriptionOptional": "描述（可选）",
     "whatsHappening": "有什么新鲜事？",
     "quotaShortfall": "这条帖子需要 {{cost}} DHB，你持有 {{held}}。"
+  },
+  "bounty": {
+    "claimed": "已领取",
+    "notEligible": "不符合条件",
+    "checking": "正在检查资格…",
+    "rewardType": "奖励类型",
+    "transaction": "交易",
+    "onChainClaim": "链上领取",
+    "confirmClaim": "确认领取",
+    "processing": "正在处理链上交易",
+    "success": "赏金已领取！",
+    "awesome": "太好了！",
+    "claimUnable": "无法领取赏金",
+    "claimFailed": "领取赏金失败",
+    "switchFailed": "无法切换网络",
+    "claimViewerTitle": "领取观看者赏金",
+    "claimCommenterTitle": "领取评论者赏金",
+    "claimingViewer": "正在领取观看者赏金…",
+    "claimingCommenter": "正在领取评论者赏金…",
+    "viewerReward": "观看者奖励",
+    "commenterReward": "评论者奖励",
+    "claimedViewer": "已成功领取观看者赏金！",
+    "claimedCommenter": "已成功领取评论者赏金！",
+    "earnedViewer": "你获得了观看者赏金奖励",
+    "earnedCommenter": "你获得了评论者赏金奖励",
+    "switchNetwork": "切换网络",
+    "eligibilityFailed": "无法检查资格",
+    "switchFirst": "领取前请切换到赏金所在网络",
+    "missingSignature": "缺少赏金领取签名",
+    "txReverted": "交易在链上被回滚"
   }
 }

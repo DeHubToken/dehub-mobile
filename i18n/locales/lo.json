@@ -782,7 +782,11 @@
     "cancel": "ຍົກເລີກ",
     "confirm": "ຢືນຢັນ",
     "paying": "ກຳລັງຈ່າຍ...",
-    "payAmount": "ຈ່າຍ {{amount}} {{currency}}"
+    "payAmount": "ຈ່າຍ {{amount}} {{currency}}",
+    "firstViews_one": "ການເບິ່ງ {{count}} ຄັ້ງທຳອິດ",
+    "firstViews_other": "ການເບິ່ງ {{count}} ຄັ້ງທຳອິດ",
+    "firstComments_one": "ຄຳເຫັນ {{count}} ອັນທຳອິດ",
+    "firstComments_other": "ຄຳເຫັນ {{count}} ອັນທຳອິດ"
   },
   "assistant": {
     "title": "ຜູ້ຊ່ວຍ",
@@ -3419,5 +3423,35 @@
     "descriptionOptional": "ຄຳອະທິບາຍ (ບໍ່ບັງຄັບ)",
     "whatsHappening": "ມີຫຍັງເກີດຂຶ້ນ?",
     "quotaShortfall": "ໂພສນີ້ຕ້ອງໃຊ້ {{cost}} DHB ແລະທ່ານມີ {{held}}."
+  },
+  "bounty": {
+    "claimed": "ຮັບແລ້ວ",
+    "notEligible": "ບໍ່ມີສິດ",
+    "checking": "ກຳລັງກວດສິດ…",
+    "rewardType": "ປະເພດລາງວັນ",
+    "transaction": "ທຸລະກຳ",
+    "onChainClaim": "ການຮັບແບບອອນເຊນ",
+    "confirmClaim": "ຢືນຢັນການຮັບ",
+    "processing": "ກຳລັງດຳເນີນທຸລະກຳອອນເຊນ",
+    "success": "ຮັບລາງວັນແລ້ວ!",
+    "awesome": "ດີຫຼາຍ!",
+    "claimUnable": "ບໍ່ສາມາດຮັບລາງວັນໄດ້",
+    "claimFailed": "ການຮັບລາງວັນລົ້ມເຫຼວ",
+    "switchFailed": "ບໍ່ສາມາດປ່ຽນເຄືອຂ່າຍໄດ້",
+    "claimViewerTitle": "ຮັບລາງວັນຜູ້ຊົມ",
+    "claimCommenterTitle": "ຮັບລາງວັນຜູ້ຄິດເຫັນ",
+    "claimingViewer": "ກຳລັງຮັບລາງວັນຜູ້ຊົມ…",
+    "claimingCommenter": "ກຳລັງຮັບລາງວັນຜູ້ຄິດເຫັນ…",
+    "viewerReward": "ລາງວັນຜູ້ຊົມ",
+    "commenterReward": "ລາງວັນຜູ້ຄິດເຫັນ",
+    "claimedViewer": "ຮັບລາງວັນຜູ້ຊົມສຳເລັດແລ້ວ!",
+    "claimedCommenter": "ຮັບລາງວັນຜູ້ຄິດເຫັນສຳເລັດແລ້ວ!",
+    "earnedViewer": "ທ່ານໄດ້ຮັບລາງວັນຜູ້ຊົມແລ້ວ",
+    "earnedCommenter": "ທ່ານໄດ້ຮັບລາງວັນຜູ້ຄິດເຫັນແລ້ວ",
+    "switchNetwork": "ປ່ຽນເຄືອຂ່າຍ",
+    "eligibilityFailed": "ບໍ່ສາມາດກວດສິດໄດ້",
+    "switchFirst": "ປ່ຽນໄປເຄືອຂ່າຍລາງວັນກ່ອນຮັບ",
+    "missingSignature": "ບໍ່ມີລາຍເຊັນຮັບລາງວັນ",
+    "txReverted": "ທຸລະກຳຖືກຍົກເລີກຢູ່ອອນເຊນ"
   }
 }

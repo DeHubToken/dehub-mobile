@@ -780,7 +780,11 @@
     "cancel": "Fagilee",
     "confirm": "Jẹ́rìísí",
     "paying": "Ó ń sanwó...",
-    "payAmount": "San {{amount}} {{currency}}"
+    "payAmount": "San {{amount}} {{currency}}",
+    "firstViews_one": "Ìwòran {{count}} àkọ́kọ́",
+    "firstViews_other": "Ìwòran {{count}} àkọ́kọ́",
+    "firstComments_one": "Àsọyé {{count}} àkọ́kọ́",
+    "firstComments_other": "Àwọn àsọyé {{count}} àkọ́kọ́"
   },
   "assistant": {
     "title": "Olùrànlọ́wọ́",
@@ -3451,5 +3455,35 @@
     "descriptionOptional": "Àpèjúwe (àṣàyàn)",
     "whatsHappening": "Kí ló ń ṣẹlẹ̀?",
     "quotaShortfall": "Ìfìwéránṣẹ́ yìí ná {{cost}} DHB, o sì ní {{held}}."
+  },
+  "bounty": {
+    "claimed": "Ti gbà",
+    "notEligible": "Kò yẹ",
+    "checking": "Ń ṣàyẹ̀wò yíyẹ…",
+    "rewardType": "Irú èrè",
+    "transaction": "Ìṣòwò",
+    "onChainClaim": "Ìbéèrè lórí ẹ̀wọ̀n",
+    "confirmClaim": "Jẹ́rìí sí ìbéèrè",
+    "processing": "Ń ṣiṣẹ́ lórí ìṣòwò ẹ̀wọ̀n",
+    "success": "A ti gba èrè náà!",
+    "awesome": "Ó dáa!",
+    "claimUnable": "Kò lè gba èrè náà",
+    "claimFailed": "Gbígba èrè kùnà",
+    "switchFailed": "Kò lè yí nẹ́tíwọ̀kì padà",
+    "claimViewerTitle": "Gba èrè olùwòran",
+    "claimCommenterTitle": "Gba èrè asọ̀rọ̀",
+    "claimingViewer": "Ń gba èrè olùwòran…",
+    "claimingCommenter": "Ń gba èrè asọ̀rọ̀…",
+    "viewerReward": "Èrè olùwòran",
+    "commenterReward": "Èrè asọ̀rọ̀",
+    "claimedViewer": "A ti gba èrè olùwòran ní àṣeyọrí!",
+    "claimedCommenter": "A ti gba èrè asọ̀rọ̀ ní àṣeyọrí!",
+    "earnedViewer": "O ti gba èrè olùwòran rẹ",
+    "earnedCommenter": "O ti gba èrè asọ̀rọ̀ rẹ",
+    "switchNetwork": "Yí nẹ́tíwọ̀kì padà",
+    "eligibilityFailed": "Àyẹ̀wò yíyẹ kùnà",
+    "switchFirst": "Yí padà sí nẹ́tíwọ̀kì èrè kí o tó gbà",
+    "missingSignature": "Ìbùwọ́lù gbígba èrè kò sí",
+    "txReverted": "A yí ìṣòwò náà padà lórí ẹ̀wọ̀n"
   }
 }

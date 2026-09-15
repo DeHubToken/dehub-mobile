@@ -991,7 +991,11 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "paying": "Paying...",
-    "payAmount": "Pay {{amount}} {{currency}}"
+    "payAmount": "Pay {{amount}} {{currency}}",
+    "firstViews_one": "Prima {{count}} vizualizare",
+    "firstViews_other": "Primele {{count}} vizualizări",
+    "firstComments_one": "Primul {{count}} comentariu",
+    "firstComments_other": "Primele {{count}} comentarii"
   },
   "assistant": {
     "title": "Assistant",
@@ -3474,5 +3478,35 @@
     "descriptionOptional": "Descriere (opțional)",
     "whatsHappening": "Ce se întâmplă?",
     "quotaShortfall": "Această postare costă {{cost}} DHB și ai {{held}}."
+  },
+  "bounty": {
+    "claimed": "Revendicat",
+    "notEligible": "Nu ești eligibil",
+    "checking": "Se verifică eligibilitatea…",
+    "rewardType": "Tipul recompensei",
+    "transaction": "Tranzacție",
+    "onChainClaim": "Revendicare on-chain",
+    "confirmClaim": "Confirmă revendicarea",
+    "processing": "Se procesează tranzacția on-chain",
+    "success": "Recompensă revendicată!",
+    "awesome": "Grozav!",
+    "claimUnable": "Recompensa nu poate fi revendicată",
+    "claimFailed": "Revendicarea recompensei a eșuat",
+    "switchFailed": "Rețeaua nu poate fi schimbată",
+    "claimViewerTitle": "Revendică recompensa de spectator",
+    "claimCommenterTitle": "Revendică recompensa de comentator",
+    "claimingViewer": "Se revendică recompensa de spectator…",
+    "claimingCommenter": "Se revendică recompensa de comentator…",
+    "viewerReward": "Recompensă de spectator",
+    "commenterReward": "Recompensă de comentator",
+    "claimedViewer": "Recompensa de spectator a fost revendicată!",
+    "claimedCommenter": "Recompensa de comentator a fost revendicată!",
+    "earnedViewer": "Ai câștigat recompensa de spectator",
+    "earnedCommenter": "Ai câștigat recompensa de comentator",
+    "switchNetwork": "Schimbă rețeaua",
+    "eligibilityFailed": "Verificarea eligibilității a eșuat",
+    "switchFirst": "Comută la rețeaua recompensei înainte de a o revendica",
+    "missingSignature": "Lipsește semnătura pentru revendicare",
+    "txReverted": "Tranzacția a fost anulată on-chain"
   }
 }

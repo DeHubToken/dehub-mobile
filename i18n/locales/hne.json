@@ -771,7 +771,11 @@
     "cancel": "रद्द",
     "confirm": "पक्का",
     "paying": "भुगतान होवत हे...",
-    "payAmount": "{{amount}} {{currency}} देव"
+    "payAmount": "{{amount}} {{currency}} देव",
+    "firstViews_one": "पहिली {{count}} व्यू",
+    "firstViews_other": "पहिली {{count}} व्यू",
+    "firstComments_one": "पहिली {{count}} कमेंट",
+    "firstComments_other": "पहिली {{count}} कमेंट"
   },
   "assistant": {
     "title": "सहायक",
@@ -3462,5 +3466,35 @@
     "descriptionOptional": "बरनन (वैकल्पिक)",
     "whatsHappening": "का होवत हे?",
     "quotaShortfall": "ये पोस्ट के लागत {{cost}} DHB हे अउ तोर करा {{held}} हे।"
+  },
+  "bounty": {
+    "claimed": "मिल गे",
+    "notEligible": "पात्र नइ हस",
+    "checking": "पात्रता जाँचत हे…",
+    "rewardType": "पुरस्कार के परकार",
+    "transaction": "लेनदेन",
+    "onChainClaim": "ऑन-चेन क्लेम",
+    "confirmClaim": "क्लेम के पुष्टि करव",
+    "processing": "ऑन-चेन लेनदेन प्रोसेस होवत हे",
+    "success": "बाउंटी मिल गे!",
+    "awesome": "बढ़िया!",
+    "claimUnable": "बाउंटी नइ मिल सकिस",
+    "claimFailed": "बाउंटी लेवे म फेल",
+    "switchFailed": "नेटवर्क नइ बदल सकिस",
+    "claimViewerTitle": "देखइया बाउंटी लेवव",
+    "claimCommenterTitle": "कमेंट करइया बाउंटी लेवव",
+    "claimingViewer": "देखइया बाउंटी लेवत हे…",
+    "claimingCommenter": "कमेंट करइया बाउंटी लेवत हे…",
+    "viewerReward": "देखइया पुरस्कार",
+    "commenterReward": "कमेंट करइया पुरस्कार",
+    "claimedViewer": "देखइया बाउंटी सफलता ले मिल गे!",
+    "claimedCommenter": "कमेंट करइया बाउंटी सफलता ले मिल गे!",
+    "earnedViewer": "तोला देखइया बाउंटी इनाम मिलिस",
+    "earnedCommenter": "तोला कमेंट करइया बाउंटी इनाम मिलिस",
+    "switchNetwork": "नेटवर्क बदलव",
+    "eligibilityFailed": "पात्रता जाँच नइ हो सकिस",
+    "switchFirst": "लेवे के पहिली बाउंटी नेटवर्क म जावव",
+    "missingSignature": "बाउंटी क्लेम के हस्ताक्षर नइ हे",
+    "txReverted": "लेनदेन ऑन-चेन वापिस होगे"
   }
 }

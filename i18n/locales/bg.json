@@ -648,7 +648,11 @@
     "cancel": "Отмени",
     "confirm": "Потвърди",
     "paying": "Плащане...",
-    "payAmount": "Плати {{amount}} {{currency}}"
+    "payAmount": "Плати {{amount}} {{currency}}",
+    "firstViews_one": "Първите {{count}} гледания",
+    "firstViews_other": "Първите {{count}} гледания",
+    "firstComments_one": "Първият {{count}} коментар",
+    "firstComments_other": "Първите {{count}} коментара"
   },
   "wallet": {
     "notReady": "Портфейлът не е готов — опитайте отново след малко.",
@@ -3461,5 +3465,35 @@
     "descriptionOptional": "Описание (по избор)",
     "whatsHappening": "Какво става?",
     "quotaShortfall": "Тази публикация струва {{cost}} DHB, а ти имаш {{held}}."
+  },
+  "bounty": {
+    "claimed": "Получено",
+    "notEligible": "Не отговаря на условията",
+    "checking": "Проверка на условията…",
+    "rewardType": "Вид награда",
+    "transaction": "Транзакция",
+    "onChainClaim": "Заявка в блокчейна",
+    "confirmClaim": "Потвърди заявката",
+    "processing": "Обработва се транзакцията в блокчейна",
+    "success": "Наградата е получена!",
+    "awesome": "Страхотно!",
+    "claimUnable": "Наградата не може да бъде получена",
+    "claimFailed": "Получаването на наградата е неуспешно",
+    "switchFailed": "Мрежата не може да се смени",
+    "claimViewerTitle": "Получи наградата за зрител",
+    "claimCommenterTitle": "Получи наградата за коментиращ",
+    "claimingViewer": "Получаване на наградата за зрител…",
+    "claimingCommenter": "Получаване на наградата за коментиращ…",
+    "viewerReward": "Награда за зрител",
+    "commenterReward": "Награда за коментиращ",
+    "claimedViewer": "Наградата за зрител е получена успешно!",
+    "claimedCommenter": "Наградата за коментиращ е получена успешно!",
+    "earnedViewer": "Спечели наградата си за зрител",
+    "earnedCommenter": "Спечели наградата си за коментиращ",
+    "switchNetwork": "Смени мрежата",
+    "eligibilityFailed": "Проверката на условията е неуспешна",
+    "switchFirst": "Смени към мрежата на наградата, преди да получиш",
+    "missingSignature": "Липсва подпис за получаване на наградата",
+    "txReverted": "Транзакцията беше отменена в блокчейна"
   }
 }

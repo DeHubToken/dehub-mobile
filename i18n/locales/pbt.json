@@ -771,7 +771,11 @@
     "cancel": "لغوه",
     "confirm": "تأیید",
     "paying": "تادیه کیږي...",
-    "payAmount": "{{amount}} {{currency}} ورکړئ"
+    "payAmount": "{{amount}} {{currency}} ورکړئ",
+    "firstViews_one": "لومړی {{count}} لیدنه",
+    "firstViews_other": "لومړني {{count}} لیدنې",
+    "firstComments_one": "لومړی {{count}} تبصره",
+    "firstComments_other": "لومړنۍ {{count}} تبصرې"
   },
   "assistant": {
     "title": "مرستیال",
@@ -3411,5 +3415,35 @@
     "descriptionOptional": "تشریح (اختیاري)",
     "whatsHappening": "څه روان دي؟",
     "quotaShortfall": "دا پوسټ {{cost}} DHB لګښت لري او تاسو {{held}} لرئ."
+  },
+  "bounty": {
+    "claimed": "ترلاسه شو",
+    "notEligible": "وړ نه یاست",
+    "checking": "وړتیا کتل کیږي…",
+    "rewardType": "د انعام ډول",
+    "transaction": "راکړه ورکړه",
+    "onChainClaim": "په زنځیر باندې غوښتنه",
+    "confirmClaim": "غوښتنه تایید کړئ",
+    "processing": "په زنځیر باندې راکړه ورکړه پروسس کیږي",
+    "success": "انعام ترلاسه شو!",
+    "awesome": "ډېر ښه!",
+    "claimUnable": "انعام ترلاسه نه شو",
+    "claimFailed": "د انعام ترلاسه کول ناکام شول",
+    "switchFailed": "شبکه بدلول ونه شول",
+    "claimViewerTitle": "د لیدونکي انعام واخلئ",
+    "claimCommenterTitle": "د تبصره کوونکي انعام واخلئ",
+    "claimingViewer": "د لیدونکي انعام اخیستل کیږي…",
+    "claimingCommenter": "د تبصره کوونکي انعام اخیستل کیږي…",
+    "viewerReward": "د لیدونکي انعام",
+    "commenterReward": "د تبصره کوونکي انعام",
+    "claimedViewer": "د لیدونکي انعام په بریالیتوب سره ترلاسه شو!",
+    "claimedCommenter": "د تبصره کوونکي انعام په بریالیتوب سره ترلاسه شو!",
+    "earnedViewer": "تاسو د لیدونکي انعام ترلاسه کړ",
+    "earnedCommenter": "تاسو د تبصره کوونکي انعام ترلاسه کړ",
+    "switchNetwork": "شبکه بدله کړئ",
+    "eligibilityFailed": "وړتیا نه شوه کتل کیدی",
+    "switchFirst": "له ترلاسه کولو مخکې د انعام شبکې ته ولاړ شئ",
+    "missingSignature": "د انعام غوښتنې لاسلیک نشته",
+    "txReverted": "راکړه ورکړه په زنځیر کې بیرته شوه"
   }
 }

@@ -647,7 +647,11 @@
     "cancel": "منسوخ",
     "confirm": "تصدیق",
     "paying": "ادائیگی ہو رہی ہے...",
-    "payAmount": "{{amount}} {{currency}} ادا کریں"
+    "payAmount": "{{amount}} {{currency}} ادا کریں",
+    "firstViews_one": "پہلا {{count}} ویو",
+    "firstViews_other": "پہلے {{count}} ویوز",
+    "firstComments_one": "پہلا {{count}} تبصرہ",
+    "firstComments_other": "پہلے {{count}} تبصرے"
   },
   "wallet": {
     "notReady": "والٹ تیار نہیں — تھوڑی دیر بعد دوبارہ کوشش کریں۔",
@@ -3459,5 +3463,35 @@
     "descriptionOptional": "تفصیل (اختیاری)",
     "whatsHappening": "کیا ہو رہا ہے؟",
     "quotaShortfall": "اس پوسٹ کی قیمت {{cost}} DHB ہے اور آپ کے پاس {{held}} ہیں۔"
+  },
+  "bounty": {
+    "claimed": "وصول ہو گیا",
+    "notEligible": "اہل نہیں",
+    "checking": "اہلیت جانچی جا رہی ہے…",
+    "rewardType": "انعام کی قسم",
+    "transaction": "لین دین",
+    "onChainClaim": "آن چین کلیم",
+    "confirmClaim": "کلیم کی تصدیق کریں",
+    "processing": "آن چین لین دین پراسیس ہو رہا ہے",
+    "success": "انعام مل گیا!",
+    "awesome": "زبردست!",
+    "claimUnable": "انعام حاصل نہیں ہو سکا",
+    "claimFailed": "انعام حاصل کرنے میں ناکامی",
+    "switchFailed": "نیٹ ورک نہیں بدلا جا سکا",
+    "claimViewerTitle": "ناظر انعام حاصل کریں",
+    "claimCommenterTitle": "تبصرہ نگار انعام حاصل کریں",
+    "claimingViewer": "ناظر انعام حاصل ہو رہا ہے…",
+    "claimingCommenter": "تبصرہ نگار انعام حاصل ہو رہا ہے…",
+    "viewerReward": "ناظر انعام",
+    "commenterReward": "تبصرہ نگار انعام",
+    "claimedViewer": "ناظر انعام کامیابی سے مل گیا!",
+    "claimedCommenter": "تبصرہ نگار انعام کامیابی سے مل گیا!",
+    "earnedViewer": "آپ کو ناظر انعام مل گیا",
+    "earnedCommenter": "آپ کو تبصرہ نگار انعام مل گیا",
+    "switchNetwork": "نیٹ ورک بدلیں",
+    "eligibilityFailed": "اہلیت جانچی نہیں جا سکی",
+    "switchFirst": "حاصل کرنے سے پہلے بانٹی نیٹ ورک پر جائیں",
+    "missingSignature": "بانٹی کلیم کے دستخط موجود نہیں",
+    "txReverted": "لین دین آن چین واپس ہو گیا"
   }
 }

@@ -647,7 +647,11 @@
     "cancel": "إلغاء",
     "confirm": "تأكيد",
     "paying": "جاري الدفع...",
-    "payAmount": "دفع {{amount}} {{currency}}"
+    "payAmount": "دفع {{amount}} {{currency}}",
+    "firstViews_one": "أول {{count}} مشاهدة",
+    "firstViews_other": "أول {{count}} مشاهدة",
+    "firstComments_one": "أول {{count}} تعليق",
+    "firstComments_other": "أول {{count}} تعليق"
   },
   "wallet": {
     "notReady": "المحفظة غير جاهزة — أعد المحاولة بعد قليل.",
@@ -3516,5 +3520,35 @@
     "descriptionOptional": "وصف (اختياري)",
     "whatsHappening": "ماذا يحدث؟",
     "quotaShortfall": "يكلّف هذا المنشور {{cost}} DHB ولديك {{held}}."
+  },
+  "bounty": {
+    "claimed": "تم الاستلام",
+    "notEligible": "غير مؤهّل",
+    "checking": "جارٍ التحقّق من الأهلية…",
+    "rewardType": "نوع المكافأة",
+    "transaction": "المعاملة",
+    "onChainClaim": "استلام على السلسلة",
+    "confirmClaim": "تأكيد الاستلام",
+    "processing": "جارٍ تنفيذ المعاملة على السلسلة",
+    "success": "تم استلام المكافأة!",
+    "awesome": "رائع!",
+    "claimUnable": "تعذّر استلام المكافأة",
+    "claimFailed": "فشل استلام المكافأة",
+    "switchFailed": "تعذّر تبديل الشبكة",
+    "claimViewerTitle": "استلام مكافأة المشاهد",
+    "claimCommenterTitle": "استلام مكافأة المعلّق",
+    "claimingViewer": "جارٍ استلام مكافأة المشاهد…",
+    "claimingCommenter": "جارٍ استلام مكافأة المعلّق…",
+    "viewerReward": "مكافأة المشاهد",
+    "commenterReward": "مكافأة المعلّق",
+    "claimedViewer": "تم استلام مكافأة المشاهد بنجاح!",
+    "claimedCommenter": "تم استلام مكافأة المعلّق بنجاح!",
+    "earnedViewer": "لقد حصلت على مكافأة المشاهد",
+    "earnedCommenter": "لقد حصلت على مكافأة المعلّق",
+    "switchNetwork": "تبديل الشبكة",
+    "eligibilityFailed": "فشل التحقّق من الأهلية",
+    "switchFirst": "بدّل إلى شبكة المكافأة قبل الاستلام",
+    "missingSignature": "توقيع استلام المكافأة مفقود",
+    "txReverted": "تم التراجع عن المعاملة على السلسلة"
   }
 }

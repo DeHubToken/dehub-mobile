@@ -1464,7 +1464,11 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "paying": "Paying...",
-    "payAmount": "Pay {{amount}} {{currency}}"
+    "payAmount": "Pay {{amount}} {{currency}}",
+    "firstViews_one": "Перший {{count}} перегляд",
+    "firstViews_other": "Перші {{count}} переглядів",
+    "firstComments_one": "Перший {{count}} коментар",
+    "firstComments_other": "Перші {{count}} коментарів"
   },
   "assistant": {
     "title": "Assistant",
@@ -3939,5 +3943,35 @@
     "descriptionOptional": "Опис (необов'язково)",
     "whatsHappening": "Що відбувається?",
     "quotaShortfall": "Цей допис коштує {{cost}} DHB, а у вас {{held}}."
+  },
+  "bounty": {
+    "claimed": "Отримано",
+    "notEligible": "Не відповідає умовам",
+    "checking": "Перевірка відповідності…",
+    "rewardType": "Тип нагороди",
+    "transaction": "Транзакція",
+    "onChainClaim": "Отримання в мережі",
+    "confirmClaim": "Підтвердити отримання",
+    "processing": "Обробка транзакції в мережі",
+    "success": "Нагороду отримано!",
+    "awesome": "Чудово!",
+    "claimUnable": "Не вдалося отримати нагороду",
+    "claimFailed": "Не вдалося отримати нагороду",
+    "switchFailed": "Не вдалося перемкнути мережу",
+    "claimViewerTitle": "Отримати нагороду глядача",
+    "claimCommenterTitle": "Отримати нагороду коментатора",
+    "claimingViewer": "Отримання нагороди глядача…",
+    "claimingCommenter": "Отримання нагороди коментатора…",
+    "viewerReward": "Нагорода глядача",
+    "commenterReward": "Нагорода коментатора",
+    "claimedViewer": "Нагороду глядача отримано!",
+    "claimedCommenter": "Нагороду коментатора отримано!",
+    "earnedViewer": "Ви отримали нагороду глядача",
+    "earnedCommenter": "Ви отримали нагороду коментатора",
+    "switchNetwork": "Перемкнути мережу",
+    "eligibilityFailed": "Не вдалося перевірити відповідність",
+    "switchFirst": "Перед отриманням перемкніться на мережу нагороди",
+    "missingSignature": "Відсутній підпис для отримання нагороди",
+    "txReverted": "Транзакцію скасовано в мережі"
   }
 }

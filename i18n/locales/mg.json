@@ -771,7 +771,11 @@
     "cancel": "Hanafoana",
     "confirm": "Hamafy",
     "paying": "Mandoa...",
-    "payAmount": "Mandoa {{amount}} {{currency}}"
+    "payAmount": "Mandoa {{amount}} {{currency}}",
+    "firstViews_one": "Fijerena {{count}} voalohany",
+    "firstViews_other": "Fijerena {{count}} voalohany",
+    "firstComments_one": "Hevitra {{count}} voalohany",
+    "firstComments_other": "Hevitra {{count}} voalohany"
   },
   "assistant": {
     "title": "Mpanampy AI",
@@ -3540,5 +3544,35 @@
     "descriptionOptional": "Famaritana (tsy voatery)",
     "whatsHappening": "Inona no mitranga?",
     "quotaShortfall": "Mandany {{cost}} DHB ity lahatsoratra ity ary manana {{held}} ianao."
+  },
+  "bounty": {
+    "claimed": "Voaray",
+    "notEligible": "Tsy mahafeno fepetra",
+    "checking": "Manamarina ny fahafeno fepetra…",
+    "rewardType": "Karazana valisoa",
+    "transaction": "Fifanakalozana",
+    "onChainClaim": "Fangatahana an-drojo",
+    "confirmClaim": "Hamafisy ny fangatahana",
+    "processing": "Mikarakara ny fifanakalozana an-drojo",
+    "success": "Voaray ny valisoa!",
+    "awesome": "Tsara be!",
+    "claimUnable": "Tsy afaka mangataka ny valisoa",
+    "claimFailed": "Tsy nahomby ny fangatahana ny valisoa",
+    "switchFailed": "Tsy afaka manova tambajotra",
+    "claimViewerTitle": "Mangataka ny valisoan'ny mpijery",
+    "claimCommenterTitle": "Mangataka ny valisoan'ny mpaneho hevitra",
+    "claimingViewer": "Mangataka ny valisoan'ny mpijery…",
+    "claimingCommenter": "Mangataka ny valisoan'ny mpaneho hevitra…",
+    "viewerReward": "Valisoan'ny mpijery",
+    "commenterReward": "Valisoan'ny mpaneho hevitra",
+    "claimedViewer": "Voaray soa aman-tsara ny valisoan'ny mpijery!",
+    "claimedCommenter": "Voaray soa aman-tsara ny valisoan'ny mpaneho hevitra!",
+    "earnedViewer": "Nahazo ny valisoan'ny mpijery ianao",
+    "earnedCommenter": "Nahazo ny valisoan'ny mpaneho hevitra ianao",
+    "switchNetwork": "Ovay ny tambajotra",
+    "eligibilityFailed": "Tsy afaka nanamarina ny fahafeno fepetra",
+    "switchFirst": "Miovà mankany amin'ny tambajotran'ny valisoa alohan'ny handraisana",
+    "missingSignature": "Tsy misy ny sonia fangatahana valisoa",
+    "txReverted": "Nofoanana an-drojo ny fifanakalozana"
   }
 }

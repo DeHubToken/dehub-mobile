@@ -784,7 +784,11 @@
     "cancel": "إلغاء",
     "confirm": "تأكيد",
     "paying": "بيدفع...",
-    "payAmount": "ادفع {{amount}} {{currency}}"
+    "payAmount": "ادفع {{amount}} {{currency}}",
+    "firstViews_one": "أول {{count}} مشاهدة",
+    "firstViews_other": "أول {{count}} مشاهدة",
+    "firstComments_one": "أول {{count}} تعليق",
+    "firstComments_other": "أول {{count}} تعليق"
   },
   "assistant": {
     "title": "المساعد",
@@ -3457,5 +3461,35 @@
     "descriptionOptional": "وصف (اختياري)",
     "whatsHappening": "إيه اللي بيحصل؟",
     "quotaShortfall": "البوست ده بيكلف {{cost}} DHB وعندك {{held}}."
+  },
+  "bounty": {
+    "claimed": "اتسلم",
+    "notEligible": "مش مؤهل",
+    "checking": "بيتأكد من الأهلية…",
+    "rewardType": "نوع المكافأة",
+    "transaction": "المعاملة",
+    "onChainClaim": "استلام على السلسلة",
+    "confirmClaim": "أكد الاستلام",
+    "processing": "بيعالج المعاملة على السلسلة",
+    "success": "اتسلمت الجايزة!",
+    "awesome": "ممتاز!",
+    "claimUnable": "مقدرناش نستلم الجايزة",
+    "claimFailed": "فشل استلام الجايزة",
+    "switchFailed": "مقدرناش نغير الشبكة",
+    "claimViewerTitle": "استلم جايزة المشاهد",
+    "claimCommenterTitle": "استلم جايزة المعلق",
+    "claimingViewer": "بيستلم جايزة المشاهد…",
+    "claimingCommenter": "بيستلم جايزة المعلق…",
+    "viewerReward": "مكافأة المشاهد",
+    "commenterReward": "مكافأة المعلق",
+    "claimedViewer": "اتسلمت جايزة المشاهد بنجاح!",
+    "claimedCommenter": "اتسلمت جايزة المعلق بنجاح!",
+    "earnedViewer": "حصلت على مكافأة المشاهد بتاعتك",
+    "earnedCommenter": "حصلت على مكافأة المعلق بتاعتك",
+    "switchNetwork": "غيّر الشبكة",
+    "eligibilityFailed": "فشل التحقق من الأهلية",
+    "switchFirst": "غيّر لشبكة الجايزة قبل ما تستلم",
+    "missingSignature": "توقيع استلام الجايزة ناقص",
+    "txReverted": "المعاملة اترجعت على السلسلة"
   }
 }

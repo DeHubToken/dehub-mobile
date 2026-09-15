@@ -765,7 +765,11 @@
     "cancel": "Cancelar",
     "confirm": "Confirmar",
     "paying": "Pagando...",
-    "payAmount": "Pagar {{amount}} {{currency}}"
+    "payAmount": "Pagar {{amount}} {{currency}}",
+    "firstViews_one": "Primera {{count}} visualización",
+    "firstViews_other": "Primeras {{count}} visualizaciones",
+    "firstComments_one": "Primer {{count}} comentario",
+    "firstComments_other": "Primeros {{count}} comentarios"
   },
   "assistant": {
     "title": "Asistente IA",
@@ -3531,5 +3535,35 @@
     "descriptionOptional": "Descripción (opcional)",
     "whatsHappening": "¿Qué está pasando?",
     "quotaShortfall": "Esta publicación cuesta {{cost}} DHB y tienes {{held}}."
+  },
+  "bounty": {
+    "claimed": "Reclamado",
+    "notEligible": "No cumples los requisitos",
+    "checking": "Comprobando los requisitos…",
+    "rewardType": "Tipo de recompensa",
+    "transaction": "Transacción",
+    "onChainClaim": "Reclamación en la cadena",
+    "confirmClaim": "Confirmar la reclamación",
+    "processing": "Procesando la transacción en la cadena",
+    "success": "¡Recompensa reclamada!",
+    "awesome": "¡Genial!",
+    "claimUnable": "No se puede reclamar la recompensa",
+    "claimFailed": "Error al reclamar la recompensa",
+    "switchFailed": "No se puede cambiar de red",
+    "claimViewerTitle": "Reclamar la recompensa de espectador",
+    "claimCommenterTitle": "Reclamar la recompensa de comentarista",
+    "claimingViewer": "Reclamando la recompensa de espectador…",
+    "claimingCommenter": "Reclamando la recompensa de comentarista…",
+    "viewerReward": "Recompensa de espectador",
+    "commenterReward": "Recompensa de comentarista",
+    "claimedViewer": "¡Recompensa de espectador reclamada correctamente!",
+    "claimedCommenter": "¡Recompensa de comentarista reclamada correctamente!",
+    "earnedViewer": "Has ganado tu recompensa de espectador",
+    "earnedCommenter": "Has ganado tu recompensa de comentarista",
+    "switchNetwork": "Cambiar de red",
+    "eligibilityFailed": "No se pudieron comprobar los requisitos",
+    "switchFirst": "Cambia a la red de la recompensa antes de reclamarla",
+    "missingSignature": "Falta la firma de la reclamación",
+    "txReverted": "La transacción se revirtió en la cadena"
   }
 }

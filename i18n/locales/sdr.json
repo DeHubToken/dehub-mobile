@@ -738,7 +738,11 @@
     "cancel": "منسوخ",
     "confirm": "تصدیق",
     "paying": "ادائیگی ہو رہی ہے...",
-    "payAmount": "{{amount}} {{currency}} ادا کرو"
+    "payAmount": "{{amount}} {{currency}} ادا کرو",
+    "firstViews_one": "প্রথম {{count}} ভিউ",
+    "firstViews_other": "প্রথম {{count}} ভিউ",
+    "firstComments_one": "প্রথম {{count}} মন্তব্য",
+    "firstComments_other": "প্রথম {{count}} মন্তব্য"
   },
   "assistant": {
     "title": "مددگار",
@@ -3460,5 +3464,35 @@
     "descriptionOptional": "বিবরণ (ঐচ্ছিক)",
     "whatsHappening": "কী হইতেছে?",
     "quotaShortfall": "এই পোস্টত {{cost}} DHB নাগে আর তোমার আছে {{held}}।"
+  },
+  "bounty": {
+    "claimed": "নেওয়া হইছে",
+    "notEligible": "যোগ্য নন",
+    "checking": "যোগ্যতা যাচাই হইতেছে…",
+    "rewardType": "পুরস্কারের ধরন",
+    "transaction": "লেনদেন",
+    "onChainClaim": "অন-চেইন ক্লেইম",
+    "confirmClaim": "ক্লেইম নিশ্চিত করেন",
+    "processing": "অন-চেইন লেনদেন প্রক্রিয়া হইতেছে",
+    "success": "বাউন্টি পাইছেন!",
+    "awesome": "দারুণ!",
+    "claimUnable": "বাউন্টি নেওয়া গেল না",
+    "claimFailed": "বাউন্টি নিতে ব্যর্থ",
+    "switchFailed": "নেটওয়ার্ক বদলানো গেল না",
+    "claimViewerTitle": "দর্শক বাউন্টি নেন",
+    "claimCommenterTitle": "মন্তব্যকারী বাউন্টি নেন",
+    "claimingViewer": "দর্শক বাউন্টি নেওয়া হইতেছে…",
+    "claimingCommenter": "মন্তব্যকারী বাউন্টি নেওয়া হইতেছে…",
+    "viewerReward": "দর্শক পুরস্কার",
+    "commenterReward": "মন্তব্যকারী পুরস্কার",
+    "claimedViewer": "দর্শক বাউন্টি সফলভাবে পাইছেন!",
+    "claimedCommenter": "মন্তব্যকারী বাউন্টি সফলভাবে পাইছেন!",
+    "earnedViewer": "তোমরা দর্শক বাউন্টি পুরস্কার পাইছেন",
+    "earnedCommenter": "তোমরা মন্তব্যকারী বাউন্টি পুরস্কার পাইছেন",
+    "switchNetwork": "নেটওয়ার্ক বদলান",
+    "eligibilityFailed": "যোগ্যতা যাচাই করা গেল না",
+    "switchFirst": "নেওয়ার আগে বাউন্টি নেটওয়ার্কত যান",
+    "missingSignature": "বাউন্টি দাবির স্বাক্ষর নাই",
+    "txReverted": "লেনদেন অন-চেইনত বাতিল হইল"
   }
 }

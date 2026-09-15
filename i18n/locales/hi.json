@@ -647,7 +647,11 @@
     "cancel": "रद्द करें",
     "confirm": "पुष्टि करें",
     "paying": "भुगतान हो रहा है...",
-    "payAmount": "{{amount}} {{currency}} भुगतान करें"
+    "payAmount": "{{amount}} {{currency}} भुगतान करें",
+    "firstViews_one": "पहला {{count}} व्यू",
+    "firstViews_other": "पहले {{count}} व्यू",
+    "firstComments_one": "पहला {{count}} कमेंट",
+    "firstComments_other": "पहले {{count}} कमेंट"
   },
   "wallet": {
     "notReady": "वॉलेट तैयार नहीं — थोड़ी देर में फिर कोशिश करें।",
@@ -3517,5 +3521,35 @@
     "descriptionOptional": "विवरण (वैकल्पिक)",
     "whatsHappening": "क्या हो रहा है?",
     "quotaShortfall": "इस पोस्ट की लागत {{cost}} DHB है और आपके पास {{held}} हैं।"
+  },
+  "bounty": {
+    "claimed": "प्राप्त किया",
+    "notEligible": "पात्र नहीं",
+    "checking": "पात्रता जाँची जा रही है…",
+    "rewardType": "पुरस्कार का प्रकार",
+    "transaction": "लेनदेन",
+    "onChainClaim": "ऑन-चेन क्लेम",
+    "confirmClaim": "क्लेम की पुष्टि करें",
+    "processing": "ऑन-चेन लेनदेन प्रोसेस हो रहा है",
+    "success": "बाउंटी मिल गई!",
+    "awesome": "बढ़िया!",
+    "claimUnable": "बाउंटी नहीं ली जा सकी",
+    "claimFailed": "बाउंटी लेने में विफल",
+    "switchFailed": "नेटवर्क नहीं बदला जा सका",
+    "claimViewerTitle": "दर्शक बाउंटी लें",
+    "claimCommenterTitle": "कमेंटकर्ता बाउंटी लें",
+    "claimingViewer": "दर्शक बाउंटी ली जा रही है…",
+    "claimingCommenter": "कमेंटकर्ता बाउंटी ली जा रही है…",
+    "viewerReward": "दर्शक पुरस्कार",
+    "commenterReward": "कमेंटकर्ता पुरस्कार",
+    "claimedViewer": "दर्शक बाउंटी सफलतापूर्वक मिल गई!",
+    "claimedCommenter": "कमेंटकर्ता बाउंटी सफलतापूर्वक मिल गई!",
+    "earnedViewer": "आपको दर्शक बाउंटी इनाम मिला",
+    "earnedCommenter": "आपको कमेंटकर्ता बाउंटी इनाम मिला",
+    "switchNetwork": "नेटवर्क बदलें",
+    "eligibilityFailed": "पात्रता जाँची नहीं जा सकी",
+    "switchFirst": "लेने से पहले बाउंटी नेटवर्क पर जाएँ",
+    "missingSignature": "बाउंटी क्लेम का हस्ताक्षर गायब है",
+    "txReverted": "लेनदेन ऑन-चेन वापस हो गया"
   }
 }

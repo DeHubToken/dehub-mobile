@@ -785,7 +785,11 @@
     "cancel": "Cancel·lar",
     "confirm": "Confirmar",
     "paying": "Pagant...",
-    "payAmount": "Pagar {{amount}} {{currency}}"
+    "payAmount": "Pagar {{amount}} {{currency}}",
+    "firstViews_one": "Primera {{count}} visualització",
+    "firstViews_other": "Primeres {{count}} visualitzacions",
+    "firstComments_one": "Primer {{count}} comentari",
+    "firstComments_other": "Primers {{count}} comentaris"
   },
   "assistant": {
     "title": "Assistent",
@@ -3461,5 +3465,35 @@
     "descriptionOptional": "Descripció (opcional)",
     "whatsHappening": "Què passa?",
     "quotaShortfall": "Aquesta publicació costa {{cost}} DHB i en tens {{held}}."
+  },
+  "bounty": {
+    "claimed": "Reclamat",
+    "notEligible": "No compleix els requisits",
+    "checking": "S'estan comprovant els requisits…",
+    "rewardType": "Tipus de recompensa",
+    "transaction": "Transacció",
+    "onChainClaim": "Reclamació a la cadena",
+    "confirmClaim": "Confirma la reclamació",
+    "processing": "S'està processant la transacció a la cadena",
+    "success": "Recompensa reclamada!",
+    "awesome": "Genial!",
+    "claimUnable": "No es pot reclamar la recompensa",
+    "claimFailed": "No s'ha pogut reclamar la recompensa",
+    "switchFailed": "No es pot canviar de xarxa",
+    "claimViewerTitle": "Reclama la recompensa d'espectador",
+    "claimCommenterTitle": "Reclama la recompensa de comentarista",
+    "claimingViewer": "S'està reclamant la recompensa d'espectador…",
+    "claimingCommenter": "S'està reclamant la recompensa de comentarista…",
+    "viewerReward": "Recompensa d'espectador",
+    "commenterReward": "Recompensa de comentarista",
+    "claimedViewer": "Recompensa d'espectador reclamada correctament!",
+    "claimedCommenter": "Recompensa de comentarista reclamada correctament!",
+    "earnedViewer": "Has guanyat la teva recompensa d'espectador",
+    "earnedCommenter": "Has guanyat la teva recompensa de comentarista",
+    "switchNetwork": "Canvia de xarxa",
+    "eligibilityFailed": "No s'han pogut comprovar els requisits",
+    "switchFirst": "Canvia a la xarxa de la recompensa abans de reclamar-la",
+    "missingSignature": "Falta la signatura de la reclamació",
+    "txReverted": "La transacció s'ha revertit a la cadena"
   }
 }

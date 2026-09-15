@@ -1871,7 +1871,11 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "paying": "Paying...",
-    "payAmount": "Pay {{amount}} {{currency}}"
+    "payAmount": "Pay {{amount}} {{currency}}",
+    "firstViews_one": "Prvé {{count}} zhliadnutie",
+    "firstViews_other": "Prvých {{count}} zhliadnutí",
+    "firstComments_one": "Prvý {{count}} komentár",
+    "firstComments_other": "Prvých {{count}} komentárov"
   },
   "publicChat": {
     "title": "Public Chat",
@@ -3630,5 +3634,35 @@
     "descriptionOptional": "Popis (voliteľné)",
     "whatsHappening": "Čo sa deje?",
     "quotaShortfall": "Tento príspevok stojí {{cost}} DHB a vy máte {{held}}."
+  },
+  "bounty": {
+    "claimed": "Vyzdvihnuté",
+    "notEligible": "Nespĺňa podmienky",
+    "checking": "Kontroluje sa oprávnenosť…",
+    "rewardType": "Typ odmeny",
+    "transaction": "Transakcia",
+    "onChainClaim": "Nárok na blockchaine",
+    "confirmClaim": "Potvrdiť nárok",
+    "processing": "Spracúva sa transakcia na blockchaine",
+    "success": "Odmena vyzdvihnutá!",
+    "awesome": "Skvelé!",
+    "claimUnable": "Odmenu nie je možné vyzdvihnúť",
+    "claimFailed": "Vyzdvihnutie odmeny zlyhalo",
+    "switchFailed": "Sieť sa nedá prepnúť",
+    "claimViewerTitle": "Vyzdvihnúť odmenu diváka",
+    "claimCommenterTitle": "Vyzdvihnúť odmenu komentujúceho",
+    "claimingViewer": "Vyzdvihuje sa odmena diváka…",
+    "claimingCommenter": "Vyzdvihuje sa odmena komentujúceho…",
+    "viewerReward": "Odmena diváka",
+    "commenterReward": "Odmena komentujúceho",
+    "claimedViewer": "Odmena diváka bola úspešne vyzdvihnutá!",
+    "claimedCommenter": "Odmena komentujúceho bola úspešne vyzdvihnutá!",
+    "earnedViewer": "Získali ste odmenu diváka",
+    "earnedCommenter": "Získali ste odmenu komentujúceho",
+    "switchNetwork": "Prepnúť sieť",
+    "eligibilityFailed": "Nepodarilo sa overiť oprávnenosť",
+    "switchFirst": "Pred vyzdvihnutím prepnite na sieť odmeny",
+    "missingSignature": "Chýba podpis na vyzdvihnutie odmeny",
+    "txReverted": "Transakcia bola na blockchaine vrátená"
   }
 }

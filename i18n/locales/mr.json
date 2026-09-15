@@ -639,7 +639,11 @@
     "cancel": "रद्द करा",
     "confirm": "पुष्टी करा",
     "paying": "देत आहे...",
-    "payAmount": "{{amount}} {{currency}} द्या"
+    "payAmount": "{{amount}} {{currency}} द्या",
+    "firstViews_one": "पहिले {{count}} दृश्य",
+    "firstViews_other": "पहिली {{count}} दृश्ये",
+    "firstComments_one": "पहिली {{count}} टिप्पणी",
+    "firstComments_other": "पहिल्या {{count}} टिप्पण्या"
   },
   "wallet": {
     "notReady": "वॉलेट तयार नाही — काही वेळाने पुन्हा प्रयत्न करा.",
@@ -3449,5 +3453,35 @@
     "descriptionOptional": "वर्णन (पर्यायी)",
     "whatsHappening": "काय चालू आहे?",
     "quotaShortfall": "या पोस्टसाठी {{cost}} DHB लागतात आणि तुमच्याकडे {{held}} आहेत."
+  },
+  "bounty": {
+    "claimed": "मिळवले",
+    "notEligible": "पात्र नाही",
+    "checking": "पात्रता तपासली जात आहे…",
+    "rewardType": "बक्षिसाचा प्रकार",
+    "transaction": "व्यवहार",
+    "onChainClaim": "ऑन-चेन क्लेम",
+    "confirmClaim": "क्लेमची पुष्टी करा",
+    "processing": "ऑन-चेन व्यवहार प्रक्रिया सुरू आहे",
+    "success": "बक्षीस मिळाले!",
+    "awesome": "छान!",
+    "claimUnable": "बक्षीस मिळवता आले नाही",
+    "claimFailed": "बक्षीस मिळवण्यात अपयश",
+    "switchFailed": "नेटवर्क बदलता आले नाही",
+    "claimViewerTitle": "प्रेक्षक बक्षीस मिळवा",
+    "claimCommenterTitle": "टिप्पणीकाराचे बक्षीस मिळवा",
+    "claimingViewer": "प्रेक्षक बक्षीस मिळवले जात आहे…",
+    "claimingCommenter": "टिप्पणीकाराचे बक्षीस मिळवले जात आहे…",
+    "viewerReward": "प्रेक्षक बक्षीस",
+    "commenterReward": "टिप्पणीकार बक्षीस",
+    "claimedViewer": "प्रेक्षक बक्षीस यशस्वीरीत्या मिळाले!",
+    "claimedCommenter": "टिप्पणीकाराचे बक्षीस यशस्वीरीत्या मिळाले!",
+    "earnedViewer": "तुम्हाला प्रेक्षक बक्षीस मिळाले",
+    "earnedCommenter": "तुम्हाला टिप्पणीकार बक्षीस मिळाले",
+    "switchNetwork": "नेटवर्क बदला",
+    "eligibilityFailed": "पात्रता तपासता आली नाही",
+    "switchFirst": "मिळवण्यापूर्वी बक्षीस नेटवर्कवर जा",
+    "missingSignature": "बक्षीस क्लेमची स्वाक्षरी नाही",
+    "txReverted": "व्यवहार ऑन-चेन परत गेला"
   }
 }

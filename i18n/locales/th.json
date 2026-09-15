@@ -1019,7 +1019,11 @@
     "cancel": "ยกเลิก",
     "confirm": "ยืนยัน",
     "paying": "กำลังชำระเงิน...",
-    "payAmount": "จ่าย {{amount}} {{currency}}"
+    "payAmount": "จ่าย {{amount}} {{currency}}",
+    "firstViews_one": "การดู {{count}} ครั้งแรก",
+    "firstViews_other": "การดู {{count}} ครั้งแรก",
+    "firstComments_one": "ความคิดเห็น {{count}} รายการแรก",
+    "firstComments_other": "ความคิดเห็น {{count}} รายการแรก"
   },
   "assistant": {
     "title": "ผู้ช่วย",
@@ -3497,5 +3501,35 @@
     "descriptionOptional": "คำอธิบาย (ไม่บังคับ)",
     "whatsHappening": "มีอะไรใหม่บ้าง",
     "quotaShortfall": "โพสต์นี้ใช้ {{cost}} DHB และคุณมี {{held}}"
+  },
+  "bounty": {
+    "claimed": "รับแล้ว",
+    "notEligible": "ไม่เข้าเงื่อนไข",
+    "checking": "กำลังตรวจสอบสิทธิ์…",
+    "rewardType": "ประเภทรางวัล",
+    "transaction": "ธุรกรรม",
+    "onChainClaim": "การรับแบบออนเชน",
+    "confirmClaim": "ยืนยันการรับ",
+    "processing": "กำลังดำเนินธุรกรรมออนเชน",
+    "success": "รับรางวัลแล้ว!",
+    "awesome": "เยี่ยม!",
+    "claimUnable": "รับรางวัลไม่ได้",
+    "claimFailed": "รับรางวัลไม่สำเร็จ",
+    "switchFailed": "สลับเครือข่ายไม่ได้",
+    "claimViewerTitle": "รับรางวัลผู้ชม",
+    "claimCommenterTitle": "รับรางวัลผู้แสดงความคิดเห็น",
+    "claimingViewer": "กำลังรับรางวัลผู้ชม…",
+    "claimingCommenter": "กำลังรับรางวัลผู้แสดงความคิดเห็น…",
+    "viewerReward": "รางวัลผู้ชม",
+    "commenterReward": "รางวัลผู้แสดงความคิดเห็น",
+    "claimedViewer": "รับรางวัลผู้ชมสำเร็จแล้ว!",
+    "claimedCommenter": "รับรางวัลผู้แสดงความคิดเห็นสำเร็จแล้ว!",
+    "earnedViewer": "คุณได้รับรางวัลผู้ชมแล้ว",
+    "earnedCommenter": "คุณได้รับรางวัลผู้แสดงความคิดเห็นแล้ว",
+    "switchNetwork": "สลับเครือข่าย",
+    "eligibilityFailed": "ตรวจสอบสิทธิ์ไม่สำเร็จ",
+    "switchFirst": "สลับไปยังเครือข่ายของรางวัลก่อนรับ",
+    "missingSignature": "ไม่มีลายเซ็นสำหรับรับรางวัล",
+    "txReverted": "ธุรกรรมถูกย้อนกลับบนเชน"
   }
 }

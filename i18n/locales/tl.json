@@ -1191,7 +1191,11 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "paying": "Paying...",
-    "payAmount": "Pay {{amount}} {{currency}}"
+    "payAmount": "Pay {{amount}} {{currency}}",
+    "firstViews_one": "Unang {{count}} panonood",
+    "firstViews_other": "Unang {{count}} panonood",
+    "firstComments_one": "Unang {{count}} komento",
+    "firstComments_other": "Unang {{count}} komento"
   },
   "assistant": {
     "title": "Assistant",
@@ -3640,5 +3644,35 @@
     "descriptionOptional": "Paglalarawan (opsyonal)",
     "whatsHappening": "Ano'ng nangyayari?",
     "quotaShortfall": "Nagkakahalaga ang post na ito ng {{cost}} DHB at mayroon kang {{held}}."
+  },
+  "bounty": {
+    "claimed": "Nakuha na",
+    "notEligible": "Hindi kwalipikado",
+    "checking": "Sinusuri ang pagiging kwalipikado…",
+    "rewardType": "Uri ng reward",
+    "transaction": "Transaksyon",
+    "onChainClaim": "On-chain na claim",
+    "confirmClaim": "Kumpirmahin ang claim",
+    "processing": "Pinoproseso ang on-chain na transaksyon",
+    "success": "Nakuha ang bounty!",
+    "awesome": "Ang galing!",
+    "claimUnable": "Hindi makuha ang bounty",
+    "claimFailed": "Nabigong makuha ang bounty",
+    "switchFailed": "Hindi mapalitan ang network",
+    "claimViewerTitle": "Kunin ang viewer bounty",
+    "claimCommenterTitle": "Kunin ang commenter bounty",
+    "claimingViewer": "Kinukuha ang viewer bounty…",
+    "claimingCommenter": "Kinukuha ang commenter bounty…",
+    "viewerReward": "Viewer reward",
+    "commenterReward": "Commenter reward",
+    "claimedViewer": "Matagumpay na nakuha ang viewer bounty!",
+    "claimedCommenter": "Matagumpay na nakuha ang commenter bounty!",
+    "earnedViewer": "Nakuha mo ang iyong viewer bounty reward",
+    "earnedCommenter": "Nakuha mo ang iyong commenter bounty reward",
+    "switchNetwork": "Palitan ang network",
+    "eligibilityFailed": "Nabigong suriin ang pagiging kwalipikado",
+    "switchFirst": "Lumipat sa bounty network bago mag-claim",
+    "missingSignature": "Walang lagda para sa bounty claim",
+    "txReverted": "Na-revert ang transaksyon on-chain"
   }
 }

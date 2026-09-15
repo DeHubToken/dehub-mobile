@@ -744,7 +744,11 @@
     "cancel": "إلغاء",
     "confirm": "تأكيد",
     "paying": "يدفع...",
-    "payAmount": "ادفع {{amount}} {{currency}}"
+    "payAmount": "ادفع {{amount}} {{currency}}",
+    "firstViews_one": "أول {{count}} مشاهدة",
+    "firstViews_other": "أول {{count}} مشاهدة",
+    "firstComments_one": "أول {{count}} تعليق",
+    "firstComments_other": "أول {{count}} تعليق"
   },
   "assistant": {
     "title": "المساعد",
@@ -3418,5 +3422,35 @@
     "descriptionOptional": "وصف (اختياري)",
     "whatsHappening": "شنو صاير؟",
     "quotaShortfall": "هذا المنشور يكلف {{cost}} DHB وعندك {{held}}."
+  },
+  "bounty": {
+    "claimed": "متسلّم",
+    "notEligible": "مو مؤهل",
+    "checking": "يتأكد من الأهلية…",
+    "rewardType": "نوع المكافأة",
+    "transaction": "المعاملة",
+    "onChainClaim": "استلام على السلسلة",
+    "confirmClaim": "أكد الاستلام",
+    "processing": "يعالج المعاملة على السلسلة",
+    "success": "انتسلمت الجائزة!",
+    "awesome": "ممتاز!",
+    "claimUnable": "ما نكدر نستلم الجائزة",
+    "claimFailed": "فشل استلام الجائزة",
+    "switchFailed": "ما نكدر نبدل الشبكة",
+    "claimViewerTitle": "استلم جائزة المشاهد",
+    "claimCommenterTitle": "استلم جائزة المعلّق",
+    "claimingViewer": "يستلم جائزة المشاهد…",
+    "claimingCommenter": "يستلم جائزة المعلّق…",
+    "viewerReward": "مكافأة المشاهد",
+    "commenterReward": "مكافأة المعلّق",
+    "claimedViewer": "انتسلمت جائزة المشاهد بنجاح!",
+    "claimedCommenter": "انتسلمت جائزة المعلّق بنجاح!",
+    "earnedViewer": "حصلت على مكافأة المشاهد مالتك",
+    "earnedCommenter": "حصلت على مكافأة المعلّق مالتك",
+    "switchNetwork": "بدّل الشبكة",
+    "eligibilityFailed": "فشل التحقق من الأهلية",
+    "switchFirst": "بدّل لشبكة الجائزة قبل الاستلام",
+    "missingSignature": "توقيع استلام الجائزة ناقص",
+    "txReverted": "المعاملة انرجعت على السلسلة"
   }
 }

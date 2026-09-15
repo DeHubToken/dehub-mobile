@@ -589,7 +589,11 @@
     "cancel": "Откажи",
     "confirm": "Потврди",
     "paying": "Плаћање...",
-    "payAmount": "Плати {{amount}} {{currency}}"
+    "payAmount": "Плати {{amount}} {{currency}}",
+    "firstViews_one": "Први {{count}} преглед",
+    "firstViews_other": "Првих {{count}} прегледа",
+    "firstComments_one": "Први {{count}} коментар",
+    "firstComments_other": "Првих {{count}} коментара"
   },
   "wallet": {
     "notReady": "Новчаник није спреман — покушај поново за који тренутак.",
@@ -3224,5 +3228,35 @@
     "descriptionOptional": "Опис (необавезно)",
     "whatsHappening": "Шта се дешава?",
     "quotaShortfall": "Ова објава кошта {{cost}} DHB, а ви имате {{held}}."
+  },
+  "bounty": {
+    "claimed": "Преузето",
+    "notEligible": "Не испуњавате услове",
+    "checking": "Провера услова…",
+    "rewardType": "Врста награде",
+    "transaction": "Трансакција",
+    "onChainClaim": "Преузимање на ланцу",
+    "confirmClaim": "Потврди преузимање",
+    "processing": "Обрада трансакције на ланцу",
+    "success": "Награда је преузета!",
+    "awesome": "Одлично!",
+    "claimUnable": "Награду није могуће преузети",
+    "claimFailed": "Преузимање награде није успело",
+    "switchFailed": "Мрежу није могуће променити",
+    "claimViewerTitle": "Преузми награду гледаоца",
+    "claimCommenterTitle": "Преузми награду коментатора",
+    "claimingViewer": "Преузимање награде гледаоца…",
+    "claimingCommenter": "Преузимање награде коментатора…",
+    "viewerReward": "Награда гледаоца",
+    "commenterReward": "Награда коментатора",
+    "claimedViewer": "Награда гледаоца је успешно преузета!",
+    "claimedCommenter": "Награда коментатора је успешно преузета!",
+    "earnedViewer": "Освојили сте награду гледаоца",
+    "earnedCommenter": "Освојили сте награду коментатора",
+    "switchNetwork": "Промени мрежу",
+    "eligibilityFailed": "Провера услова није успела",
+    "switchFirst": "Пре преузимања пређите на мрежу награде",
+    "missingSignature": "Недостаје потпис за преузимање награде",
+    "txReverted": "Трансакција је поништена на ланцу"
   }
 }

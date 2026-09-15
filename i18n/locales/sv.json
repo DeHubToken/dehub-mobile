@@ -648,7 +648,11 @@
     "cancel": "Avbryt",
     "confirm": "Bekräfta",
     "paying": "Betalar...",
-    "payAmount": "Betala {{amount}} {{currency}}"
+    "payAmount": "Betala {{amount}} {{currency}}",
+    "firstViews_one": "Första {{count}} visning",
+    "firstViews_other": "Första {{count}} visningar",
+    "firstComments_one": "Första {{count}} kommentar",
+    "firstComments_other": "Första {{count}} kommentarer"
   },
   "wallet": {
     "notReady": "Plånboken är inte redo — försök igen om en stund.",
@@ -3465,5 +3469,35 @@
     "descriptionOptional": "Beskrivning (valfritt)",
     "whatsHappening": "Vad händer?",
     "quotaShortfall": "Det här inlägget kostar {{cost}} DHB och du har {{held}}."
+  },
+  "bounty": {
+    "claimed": "Uttagen",
+    "notEligible": "Inte berättigad",
+    "checking": "Kontrollerar behörighet…",
+    "rewardType": "Belöningstyp",
+    "transaction": "Transaktion",
+    "onChainClaim": "Uttag on-chain",
+    "confirmClaim": "Bekräfta uttag",
+    "processing": "Bearbetar transaktion on-chain",
+    "success": "Belöning uttagen!",
+    "awesome": "Toppen!",
+    "claimUnable": "Det går inte att ta ut belöningen",
+    "claimFailed": "Det gick inte att ta ut belöningen",
+    "switchFailed": "Det går inte att byta nätverk",
+    "claimViewerTitle": "Ta ut tittarbelöning",
+    "claimCommenterTitle": "Ta ut kommentarsbelöning",
+    "claimingViewer": "Tar ut tittarbelöning…",
+    "claimingCommenter": "Tar ut kommentarsbelöning…",
+    "viewerReward": "Tittarbelöning",
+    "commenterReward": "Kommentarsbelöning",
+    "claimedViewer": "Tittarbelöningen är uttagen!",
+    "claimedCommenter": "Kommentarsbelöningen är uttagen!",
+    "earnedViewer": "Du har tjänat in din tittarbelöning",
+    "earnedCommenter": "Du har tjänat in din kommentarsbelöning",
+    "switchNetwork": "Byt nätverk",
+    "eligibilityFailed": "Det gick inte att kontrollera behörigheten",
+    "switchFirst": "Byt till belöningsnätverket innan du tar ut",
+    "missingSignature": "Signatur för uttag saknas",
+    "txReverted": "Transaktionen återställdes on-chain"
   }
 }

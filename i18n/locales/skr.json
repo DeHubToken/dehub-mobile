@@ -737,7 +737,11 @@
     "cancel": "منسوخ",
     "confirm": "تصدیق",
     "paying": "ادائیگی ہو ریہی ہے...",
-    "payAmount": "{{amount}} {{currency}} ادائیگی کرو"
+    "payAmount": "{{amount}} {{currency}} ادائیگی کرو",
+    "firstViews_one": "پہلا {{count}} ویو",
+    "firstViews_other": "پہلے {{count}} ویوز",
+    "firstComments_one": "پہلا {{count}} تبصرہ",
+    "firstComments_other": "پہلے {{count}} تبصرے"
   },
   "assistant": {
     "title": "معاون",
@@ -3405,5 +3409,35 @@
     "descriptionOptional": "تفصیل (اختیاری)",
     "whatsHappening": "کیا تھیندا پیا ہے؟",
     "quotaShortfall": "ایں پوسٹ دی قیمت {{cost}} DHB ہے تے تہاݙے کول {{held}} ہن۔"
+  },
+  "bounty": {
+    "claimed": "حاصل تھی ڳیا",
+    "notEligible": "اہل کائنی",
+    "checking": "اہلیت جانچی ویندی پئی ہے…",
+    "rewardType": "انعام دی قسم",
+    "transaction": "لین ݙین",
+    "onChainClaim": "آن چین کلیم",
+    "confirmClaim": "کلیم دی تصدیق کرو",
+    "processing": "آن چین لین ݙین پراسیس تھیندا پیا ہے",
+    "success": "انعام مل ڳیا!",
+    "awesome": "زبردست!",
+    "claimUnable": "انعام حاصل نہ تھی سڳیا",
+    "claimFailed": "انعام حاصل کرݨ وچ ناکامی",
+    "switchFailed": "نیٹ ورک نہ بدل سڳیا",
+    "claimViewerTitle": "ݙیکھݨ آلے دا انعام گھنو",
+    "claimCommenterTitle": "تبصرہ کرݨ آلے دا انعام گھنو",
+    "claimingViewer": "ݙیکھݨ آلے دا انعام گھدا ویندا پیا ہے…",
+    "claimingCommenter": "تبصرہ کرݨ آلے دا انعام گھدا ویندا پیا ہے…",
+    "viewerReward": "ݙیکھݨ آلے دا انعام",
+    "commenterReward": "تبصرہ کرݨ آلے دا انعام",
+    "claimedViewer": "ݙیکھݨ آلے دا انعام کامیابی نال مل ڳیا!",
+    "claimedCommenter": "تبصرہ کرݨ آلے دا انعام کامیابی نال مل ڳیا!",
+    "earnedViewer": "تہاکوں ݙیکھݨ آلے دا انعام مل ڳیا",
+    "earnedCommenter": "تہاکوں تبصرہ کرݨ آلے دا انعام مل ڳیا",
+    "switchNetwork": "نیٹ ورک بدلو",
+    "eligibilityFailed": "اہلیت جانچی نہ ونڄ سڳی",
+    "switchFirst": "حاصل کرݨ کنوں پہلے انعام آلی نیٹ ورک تے ونڄو",
+    "missingSignature": "انعام کلیم دا دستخط کائنی",
+    "txReverted": "لین ݙین آن چین واپس تھی ڳیا"
   }
 }
