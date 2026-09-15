@@ -567,7 +567,9 @@
     "recordVideo": "سجّل فيديو",
     "saveChanges": "حفظ التغييرات",
     "copy": "انسخ",
-    "optionalSuffix": "(اختياري)"
+    "optionalSuffix": "(اختياري)",
+    "yesterday": "مبارح",
+    "ok": "تمام"
   },
   "tip": {
     "title": "أرسل إكرامية",
@@ -2800,7 +2802,20 @@
     "attachPhoto": "صورة",
     "attachEmoji": "إيموجي",
     "removeAttachment": "إزالة المرفق",
-    "attachFailed": "لم يتم إرسال هذه الصورة."
+    "attachFailed": "لم يتم إرسال هذه الصورة.",
+    "deleteMessage": "احذف الرسالة",
+    "deleteConfirm": "أكيد بدك تحذف هالرسالة؟",
+    "pinFailed": "ما قدر يثبّت الرسالة",
+    "unpinFailed": "ما قدر يشيل تثبيت الرسالة",
+    "disconnected": "منقطع",
+    "subtitle": "كل شي عن DeHub…",
+    "joining": "عم يدخل الدردشة…",
+    "reconnect": "عيد الاتصال",
+    "banned": "إنت محظور من هالدردشة",
+    "someone": "حدا",
+    "oneTyping": "{{name}} عم يكتب…",
+    "fewTyping": "{{names}} عم يكتبوا…",
+    "manyTyping": "{{count}} أشخاص عم يكتبوا…"
   },
   "promptFeed": {
     "headline": "شو بدك تشوف؟",

@@ -564,7 +564,9 @@
     "recordVideo": "ভিডিও রেকর্ড করা",
     "saveChanges": "পরিবর্তন সংরক্ষণ করো",
     "copy": "কপি করো",
-    "optionalSuffix": "(ঐচ্ছিক)"
+    "optionalSuffix": "(ঐচ্ছিক)",
+    "yesterday": "কাইল",
+    "ok": "ঠিক আছে"
   },
   "tip": {
     "title": "ٹِپ بھیجو",
@@ -2863,7 +2865,20 @@
     "attachPhoto": "Photo",
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
-    "removeAttachment": "Remove attachment"
+    "removeAttachment": "Remove attachment",
+    "deleteMessage": "বার্তা মুছেন",
+    "deleteConfirm": "তোমরা কি সত্যিই এই বার্তা মুছির চান?",
+    "pinFailed": "বার্তা পিন করা গেল না",
+    "unpinFailed": "বার্তা আনপিন করা গেল না",
+    "disconnected": "সংযোগ বিচ্ছিন্ন",
+    "subtitle": "DeHub র সবকিছু…",
+    "joining": "চ্যাটত যোগ দেওয়া হইতেছে…",
+    "reconnect": "আবার সংযোগ করেন",
+    "banned": "তোমরা এই চ্যাট থাকি নিষিদ্ধ",
+    "someone": "কায়ও",
+    "oneTyping": "{{name}} লেখেছে…",
+    "fewTyping": "{{names}} লেখেছে…",
+    "manyTyping": "{{count}} জন লেখেছে…"
   },
   "promptFeed": {
     "headline": "তুমি কি দেখিবা চাও?",

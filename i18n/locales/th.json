@@ -101,7 +101,9 @@
     "takePhoto": "ถ่ายรูป",
     "recordVideo": "บันทึกวิดีโอ",
     "saveChanges": "บันทึกการเปลี่ยนแปลง",
-    "optionalSuffix": "(ไม่บังคับ)"
+    "optionalSuffix": "(ไม่บังคับ)",
+    "yesterday": "เมื่อวาน",
+    "ok": "ตกลง"
   },
   "glossary": {
     "title": "อภิธานศัพท์",
@@ -2882,7 +2884,20 @@
     "attachPhoto": "ภาพถ่าย",
     "attachEmoji": "อีโมจิ",
     "removeAttachment": "ลบสิ่งที่แนบมา",
-    "attachFailed": "ส่งรูปนั้นไม่ได้"
+    "attachFailed": "ส่งรูปนั้นไม่ได้",
+    "deleteMessage": "ลบข้อความ",
+    "deleteConfirm": "แน่ใจหรือไม่ว่าต้องการลบข้อความนี้",
+    "pinFailed": "ปักหมุดข้อความไม่สำเร็จ",
+    "unpinFailed": "ยกเลิกปักหมุดข้อความไม่สำเร็จ",
+    "disconnected": "ตัดการเชื่อมต่อ",
+    "subtitle": "ทุกเรื่องเกี่ยวกับ DeHub…",
+    "joining": "กำลังเข้าร่วมแชท…",
+    "reconnect": "เชื่อมต่อใหม่",
+    "banned": "คุณถูกแบนจากแชทนี้",
+    "someone": "บางคน",
+    "oneTyping": "{{name}} กำลังพิมพ์…",
+    "fewTyping": "{{names}} กำลังพิมพ์…",
+    "manyTyping": "{{count}} คนกำลังพิมพ์…"
   },
   "promptFeed": {
     "headline": "คุณอยากดูอะไร",

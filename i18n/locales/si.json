@@ -598,7 +598,9 @@
     "recordVideo": "වීඩියෝ පටිගත කරන්න",
     "saveChanges": "වෙනස්කම් සුරකින්න",
     "copy": "පිටපත් කරන්න",
-    "optionalSuffix": "(විකල්ප)"
+    "optionalSuffix": "(විකල්ප)",
+    "yesterday": "ඊයේ",
+    "ok": "හරි"
   },
   "tip": {
     "title": "ටිප් එවන්න",
@@ -2834,7 +2836,20 @@
     "attachPhoto": "ඡායාරූපය",
     "attachEmoji": "ඉමොජි",
     "removeAttachment": "ඇමුණුම ඉවත් කරන්න",
-    "attachFailed": "මට ඒ ඡායාරූපය එවන්න බැරි වුණා."
+    "attachFailed": "මට ඒ ඡායාරූපය එවන්න බැරි වුණා.",
+    "deleteMessage": "පණිවිඩය මකන්න",
+    "deleteConfirm": "මෙම පණිවිඩය මකන්නට අවශ්‍ය බව විශ්වාසද?",
+    "pinFailed": "පණිවිඩය අමුණන්නට නොහැකි විය",
+    "unpinFailed": "පණිවිඩයේ අමුණුම ඉවත් කළ නොහැකි විය",
+    "disconnected": "විසන්ධි විය",
+    "subtitle": "DeHub ගැන සියල්ල…",
+    "joining": "කතාබහට සම්බන්ධ වෙමින්…",
+    "reconnect": "නැවත සම්බන්ධ වන්න",
+    "banned": "ඔබව මෙම කතාබහෙන් තහනම් කර ඇත",
+    "someone": "යමෙක්",
+    "oneTyping": "{{name}} ලියමින් සිටී…",
+    "fewTyping": "{{names}} ලියමින් සිටිති…",
+    "manyTyping": "{{count}} දෙනෙක් ලියමින් සිටිති…"
   },
   "promptFeed": {
     "headline": "ඔබට බලන්න ඕනෑ මොනවාද?",

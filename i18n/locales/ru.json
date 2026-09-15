@@ -622,7 +622,9 @@
     "recordVideo": "Записать видео",
     "saveChanges": "Сохранить изменения",
     "copy": "Копировать",
-    "optionalSuffix": "(необязательно)"
+    "optionalSuffix": "(необязательно)",
+    "yesterday": "Вчера",
+    "ok": "ОК"
   },
   "drawers": {
     "ppvTitle": "Платный контент",
@@ -2915,7 +2917,20 @@
     "attachPhoto": "Фото",
     "attachEmoji": "Эмодзи",
     "removeAttachment": "Удалить вложение",
-    "attachFailed": "Не удалось отправить это фото."
+    "attachFailed": "Не удалось отправить это фото.",
+    "deleteMessage": "Удалить сообщение",
+    "deleteConfirm": "Точно удалить это сообщение?",
+    "pinFailed": "Не удалось закрепить сообщение",
+    "unpinFailed": "Не удалось открепить сообщение",
+    "disconnected": "Отключено",
+    "subtitle": "Всё о DeHub…",
+    "joining": "Подключение к чату…",
+    "reconnect": "Переподключиться",
+    "banned": "Вы заблокированы в этом чате",
+    "someone": "Кто-то",
+    "oneTyping": "{{name}} печатает…",
+    "fewTyping": "{{names}} печатают…",
+    "manyTyping": "{{count}} человек печатают…"
   },
   "promptFeed": {
     "headline": "Что вы хотите видеть?",

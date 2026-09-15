@@ -1443,7 +1443,9 @@
     "recordVideo": "Neem video op",
     "saveChanges": "Stoor veranderinge",
     "copy": "Kopieer",
-    "optionalSuffix": "(opsioneel)"
+    "optionalSuffix": "(opsioneel)",
+    "yesterday": "Gister",
+    "ok": "OK"
   },
   "postOptions": {
     "options": "Options",
@@ -2961,7 +2963,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Verwyder aanhegsel",
-    "attachFailed": "Ek kon nie die foto stuur nie."
+    "attachFailed": "Ek kon nie die foto stuur nie.",
+    "deleteMessage": "Verwyder boodskap",
+    "deleteConfirm": "Is jy seker jy wil hierdie boodskap verwyder?",
+    "pinFailed": "Kon nie boodskap vaspen nie",
+    "unpinFailed": "Kon nie boodskap losmaak nie",
+    "disconnected": "Ontkoppel",
+    "subtitle": "Alles oor DeHub…",
+    "joining": "Sluit by klets aan…",
+    "reconnect": "Herkoppel",
+    "banned": "Jy is uit hierdie klets verban",
+    "someone": "Iemand",
+    "oneTyping": "{{name}} tik…",
+    "fewTyping": "{{names}} tik…",
+    "manyTyping": "{{count}} mense tik…"
   },
   "promptFeed": {
     "headline": "Wat wil jy sien?",

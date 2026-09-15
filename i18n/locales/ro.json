@@ -849,7 +849,9 @@
     "recordVideo": "Înregistrează video",
     "saveChanges": "Salvează modificările",
     "copy": "Copiază",
-    "optionalSuffix": "(opțional)"
+    "optionalSuffix": "(opțional)",
+    "yesterday": "Ieri",
+    "ok": "OK"
   },
   "postOptions": {
     "options": "Options",
@@ -2857,7 +2859,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Eliminați accesoriul",
-    "attachFailed": "Nu am putut trimite acea fotografie."
+    "attachFailed": "Nu am putut trimite acea fotografie.",
+    "deleteMessage": "Șterge mesajul",
+    "deleteConfirm": "Sigur vrei să ștergi acest mesaj?",
+    "pinFailed": "Mesajul nu a putut fi fixat",
+    "unpinFailed": "Mesajul nu a putut fi anulat din fixare",
+    "disconnected": "Deconectat",
+    "subtitle": "Tot despre DeHub…",
+    "joining": "Se intră în chat…",
+    "reconnect": "Reconectează",
+    "banned": "Ești interzis în acest chat",
+    "someone": "Cineva",
+    "oneTyping": "{{name}} scrie…",
+    "fewTyping": "{{names}} scriu…",
+    "manyTyping": "{{count}} persoane scriu…"
   },
   "promptFeed": {
     "headline": "Ce vrei să vezi?",

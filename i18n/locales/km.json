@@ -620,7 +620,9 @@
     "recordVideo": "ថតវីដេអូ",
     "saveChanges": "រក្សាទុកការផ្លាស់ប្ដូរ",
     "copy": "ចម្លង",
-    "optionalSuffix": "(ស្រេចចិត្ត)"
+    "optionalSuffix": "(ស្រេចចិត្ត)",
+    "yesterday": "ម្សិលមិញ",
+    "ok": "យល់ព្រម"
   },
   "tip": {
     "title": "ផ្ញើជំនួយ",
@@ -2864,7 +2866,20 @@
     "attachPhoto": "រូបថត",
     "attachEmoji": "អេម៉ូជី",
     "removeAttachment": "យក ឯកសារ ភ្ជាប់ ចេញ",
-    "attachFailed": "ខ្ញុំ មិន អាច ចោល រូបថត នោះ បាន ទេ ។"
+    "attachFailed": "ខ្ញុំ មិន អាច ចោល រូបថត នោះ បាន ទេ ។",
+    "deleteMessage": "លុបសារ",
+    "deleteConfirm": "តើអ្នកប្រាកដថាចង់លុបសារនេះមែនទេ?",
+    "pinFailed": "មិនអាចខ្ទាស់សារបានទេ",
+    "unpinFailed": "មិនអាចដកខ្ទាស់សារបានទេ",
+    "disconnected": "ផ្ដាច់ការតភ្ជាប់",
+    "subtitle": "អ្វីៗគ្រប់យ៉ាងអំពី DeHub…",
+    "joining": "កំពុងចូលរួមការជជែក…",
+    "reconnect": "តភ្ជាប់ឡើងវិញ",
+    "banned": "អ្នកត្រូវបានហាមឃាត់ពីការជជែកនេះ",
+    "someone": "នរណាម្នាក់",
+    "oneTyping": "{{name}} កំពុងវាយ…",
+    "fewTyping": "{{names}} កំពុងវាយ…",
+    "manyTyping": "មនុស្ស {{count}} នាក់កំពុងវាយ…"
   },
   "promptFeed": {
     "headline": "តើអ្នកចង់មើលអ្វី?",

@@ -596,7 +596,9 @@
     "recordVideo": "وڊيو رڪارڊ ڪريو",
     "saveChanges": "تبديليون محفوظ ڪريو",
     "copy": "ڪاپي ڪريو",
-    "optionalSuffix": "(اختياري)"
+    "optionalSuffix": "(اختياري)",
+    "yesterday": "ڪالهه",
+    "ok": "ٺيڪ آهي"
   },
   "tip": {
     "title": "ٽپ موڪليو",
@@ -2827,7 +2829,20 @@
     "attachPhoto": "تصوير",
     "attachEmoji": "ايموجي",
     "removeAttachment": "منسلڪ ختم ڪريو",
-    "attachFailed": "اها تصوير موڪلي نه سگهيس."
+    "attachFailed": "اها تصوير موڪلي نه سگهيس.",
+    "deleteMessage": "پيغام ڊاهيو",
+    "deleteConfirm": "ڇا توهان واقعي هي پيغام ڊاهڻ چاهيو ٿا؟",
+    "pinFailed": "پيغام پن نه ٿي سگهيو",
+    "unpinFailed": "پيغام ان پن نه ٿي سگهيو",
+    "disconnected": "منقطع",
+    "subtitle": "DeHub بابت سڀ ڪجهه…",
+    "joining": "چيٽ ۾ شامل ٿي رهيا آهيون…",
+    "reconnect": "ٻيهر ڳنڍيو",
+    "banned": "توهان کي هن چيٽ مان پابند ڪيو ويو آهي",
+    "someone": "ڪو",
+    "oneTyping": "{{name}} لکي رهيو آهي…",
+    "fewTyping": "{{names}} لکي رهيا آهن…",
+    "manyTyping": "{{count}} ماڻهو لکي رهيا آهن…"
   },
   "promptFeed": {
     "headline": "توهان ڇا ڏسڻ چاهيو ٿا؟",

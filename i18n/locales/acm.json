@@ -567,7 +567,9 @@
     "recordVideo": "سجّل فيديو",
     "saveChanges": "حفظ التغييرات",
     "copy": "انسخ",
-    "optionalSuffix": "(اختياري)"
+    "optionalSuffix": "(اختياري)",
+    "yesterday": "أمس",
+    "ok": "تمام"
   },
   "tip": {
     "title": "أرسل إكرامية",
@@ -2802,7 +2804,20 @@
     "attachPhoto": "صورة",
     "attachEmoji": "إيموجي",
     "removeAttachment": "إزالة المرفق",
-    "attachFailed": "لم يتم إرسال هذه الصورة."
+    "attachFailed": "لم يتم إرسال هذه الصورة.",
+    "deleteMessage": "احذف الرسالة",
+    "deleteConfirm": "أكيد تريد تحذف هاي الرسالة؟",
+    "pinFailed": "ما كدر يثبت الرسالة",
+    "unpinFailed": "ما كدر يشيل تثبيت الرسالة",
+    "disconnected": "منقطع",
+    "subtitle": "كلشي عن DeHub…",
+    "joining": "يدخل الدردشة…",
+    "reconnect": "أعد الاتصال",
+    "banned": "أنت محظور من هاي الدردشة",
+    "someone": "شخص",
+    "oneTyping": "{{name}} يكتب…",
+    "fewTyping": "{{names}} يكتبون…",
+    "manyTyping": "{{count}} أشخاص يكتبون…"
   },
   "promptFeed": {
     "headline": "شتريد تشوف؟",

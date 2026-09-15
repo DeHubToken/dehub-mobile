@@ -816,7 +816,8 @@
     "takePhoto": "Foto maken",
     "recordVideo": "Video opnemen",
     "saveChanges": "Wijzigingen opslaan",
-    "optionalSuffix": "(optioneel)"
+    "optionalSuffix": "(optioneel)",
+    "yesterday": "Gisteren"
   },
   "home": {
     "title": "Home",
@@ -3112,7 +3113,20 @@
     "attachGif": "Gif",
     "attachEmoji": "Emoji",
     "removeAttachment": "Bijlage verwijderen",
-    "attachFailed": "Kon die foto niet verzenden."
+    "attachFailed": "Kon die foto niet verzenden.",
+    "deleteMessage": "Bericht verwijderen",
+    "deleteConfirm": "Weet je zeker dat je dit bericht wilt verwijderen?",
+    "pinFailed": "Kan bericht niet vastmaken",
+    "unpinFailed": "Kan bericht niet losmaken",
+    "disconnected": "Verbinding verbroken",
+    "subtitle": "Alles over DeHub…",
+    "joining": "Deelnemen aan chat…",
+    "reconnect": "Opnieuw verbinden",
+    "banned": "Je bent verbannen uit deze chat",
+    "someone": "Iemand",
+    "oneTyping": "{{name}} is aan het typen…",
+    "fewTyping": "{{names}} zijn aan het typen…",
+    "manyTyping": "{{count}} mensen zijn aan het typen…"
   },
   "promptFeed": {
     "headline": "Wat wil je zien?",

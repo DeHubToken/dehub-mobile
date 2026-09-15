@@ -549,7 +549,9 @@
     "recordVideo": "Сними видео",
     "saveChanges": "Сачувај измене",
     "copy": "Копирај",
-    "optionalSuffix": "(необавезно)"
+    "optionalSuffix": "(необавезно)",
+    "yesterday": "Јуче",
+    "ok": "У реду"
   },
   "drawers": {
     "ppvTitle": "Плаћање по гледању",
@@ -3343,5 +3345,20 @@
     "confirmingPayment": "Потврђивање плаћања…",
     "retryConfirmation": "Понови потврду",
     "buyNow": "Купи одмах"
+  },
+  "liveChat": {
+    "deleteMessage": "Обриши поруку",
+    "deleteConfirm": "Јесте ли сигурни да желите да обришете ову поруку?",
+    "pinFailed": "Поруку није могуће закачити",
+    "unpinFailed": "Поруку није могуће откачити",
+    "disconnected": "Прекинута веза",
+    "subtitle": "Све о DeHub-у…",
+    "joining": "Придруживање ћаскању…",
+    "reconnect": "Поново се повежи",
+    "banned": "Забрањен вам је приступ овом ћаскању",
+    "someone": "Неко",
+    "oneTyping": "{{name}} куца…",
+    "fewTyping": "{{names}} куцају…",
+    "manyTyping": "{{count}} особа куца…"
   }
 }

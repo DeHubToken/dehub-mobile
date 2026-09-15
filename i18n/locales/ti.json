@@ -597,7 +597,9 @@
     "recordVideo": "ቪድዮ ቅረጽ",
     "saveChanges": "ለውጥታት ኣቐምጥ",
     "copy": "ቅዳሕ",
-    "optionalSuffix": "(ኣማራጺ)"
+    "optionalSuffix": "(ኣማራጺ)",
+    "yesterday": "ትማሊ",
+    "ok": "ሕራይ"
   },
   "tip": {
     "title": "ሽልማት ስደድ",
@@ -2817,7 +2819,20 @@
     "attachPhoto": "ስእሊ",
     "attachEmoji": "ኢሞጂ",
     "removeAttachment": "ኣሳእል ኣወግድ",
-    "attachFailed": "ነዚ ስእሊ እዚ ክሕዝ ኣይከኣልኩን ።"
+    "attachFailed": "ነዚ ስእሊ እዚ ክሕዝ ኣይከኣልኩን ።",
+    "deleteMessage": "መልእኽቲ ደምስስ",
+    "deleteConfirm": "ነዚ መልእኽቲ ክትድምስስ ርግጸኛ ዲኻ?",
+    "pinFailed": "መልእኽቲ ክጽጋዕ ኣይከኣለን",
+    "unpinFailed": "ናይ መልእኽቲ ጽጋዕ ክውገድ ኣይከኣለን",
+    "disconnected": "ርክብ ተቋሪጹ",
+    "subtitle": "ብዛዕባ DeHub ኩሉ ነገር…",
+    "joining": "ናብ ዕላል ይኣቱ ኣሎ…",
+    "reconnect": "እንደገና ተራኸብ",
+    "banned": "ካብዚ ዕላል ተኸሊእካ ኣለኻ",
+    "someone": "ሓደ ሰብ",
+    "oneTyping": "{{name}} ይጽሕፍ ኣሎ…",
+    "fewTyping": "{{names}} ይጽሕፉ ኣለዉ…",
+    "manyTyping": "{{count}} ሰባት ይጽሕፉ ኣለዉ…"
   },
   "promptFeed": {
     "headline": "እንታይ ክትርኢ ትደሊ?",

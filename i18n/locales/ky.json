@@ -603,7 +603,9 @@
     "recordVideo": "Видео жаздыруу",
     "saveChanges": "Өзгөрүүлөрдү сактоо",
     "copy": "Көчүрүү",
-    "optionalSuffix": "(милдеттүү эмес)"
+    "optionalSuffix": "(милдеттүү эмес)",
+    "yesterday": "Кечээ",
+    "ok": "Макул"
   },
   "postOptions": {
     "options": "Тандоолор",
@@ -2838,7 +2840,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Эмодзи",
     "removeAttachment": "Тиркемени алып салуу",
-    "attachFailed": "Сүрөттү жөнөтүүгө болбоду."
+    "attachFailed": "Сүрөттү жөнөтүүгө болбоду.",
+    "deleteMessage": "Билдирүүнү өчүрүү",
+    "deleteConfirm": "Бул билдирүүнү өчүргүңүз келгенине ишенесизби?",
+    "pinFailed": "Билдирүүнү бекитүү мүмкүн болбоду",
+    "unpinFailed": "Билдирүүнүн бекитүүсүн алуу мүмкүн болбоду",
+    "disconnected": "Ажыратылган",
+    "subtitle": "DeHub жөнүндө баары…",
+    "joining": "Чатка кошулууда…",
+    "reconnect": "Кайра туташуу",
+    "banned": "Сиз бул чаттан бөгөттөлдүңүз",
+    "someone": "Кимдир",
+    "oneTyping": "{{name}} жазып жатат…",
+    "fewTyping": "{{names}} жазып жатышат…",
+    "manyTyping": "{{count}} киши жазып жатат…"
   },
   "promptFeed": {
     "headline": "Эмнени көргүңүз келет?",

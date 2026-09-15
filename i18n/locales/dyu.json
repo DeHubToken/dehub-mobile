@@ -594,7 +594,9 @@
     "recordVideo": "Wideyo ta",
     "saveChanges": "Yɛlɛmaliw mara",
     "copy": "Kopi",
-    "optionalSuffix": "(a man wajibi ye)"
+    "optionalSuffix": "(a man wajibi ye)",
+    "yesterday": "Kunu",
+    "ok": "Awɔ"
   },
   "tip": {
     "title": "Kɔrɔbɔ",
@@ -2800,7 +2802,20 @@
     "attachGif": "GIF ka koo",
     "attachEmoji": "Emoji ka koo",
     "removeAttachment": "Ka taga ni a ye",
-    "attachFailed": "Ne tɛ se ka n ka fotogwɛlɛsi to yen."
+    "attachFailed": "Ne tɛ se ka n ka fotogwɛlɛsi to yen.",
+    "deleteMessage": "Bataki jɔsi",
+    "deleteConfirm": "I dalen b'a la ka nin bataki jɔsi?",
+    "pinFailed": "Bataki ma se ka nɔrɔ",
+    "unpinFailed": "Bataki nɔrɔli ma se ka bɔ",
+    "disconnected": "A tɛ nɔrɔ",
+    "subtitle": "DeHub ko bɛɛ…",
+    "joining": "Baro la donni…",
+    "reconnect": "Nɔrɔli segin",
+    "banned": "I balila ka bɔ nin baro la",
+    "someone": "Mɔgɔ dɔ",
+    "oneTyping": "{{name}} bɛ sɛbɛnni kɛ…",
+    "fewTyping": "{{names}} bɛ sɛbɛnni kɛ…",
+    "manyTyping": "Mɔgɔ {{count}} bɛ sɛbɛnni kɛ…"
   },
   "promptFeed": {
     "headline": "I b'a fɛ ka mun ye?",

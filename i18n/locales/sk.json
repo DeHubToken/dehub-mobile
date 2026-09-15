@@ -1184,7 +1184,8 @@
     "takePhoto": "Odfotiť",
     "recordVideo": "Nahrať video",
     "saveChanges": "Uložiť zmeny",
-    "optionalSuffix": "(nepovinné)"
+    "optionalSuffix": "(nepovinné)",
+    "yesterday": "Včera"
   },
   "featureRequests": {
     "title": "Požiadavky na funkcie",
@@ -3013,7 +3014,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Odstrániť prílohu",
-    "attachFailed": "Túto fotku sa nepodarilo odoslať."
+    "attachFailed": "Túto fotku sa nepodarilo odoslať.",
+    "deleteMessage": "Odstrániť správu",
+    "deleteConfirm": "Naozaj chcete túto správu odstrániť?",
+    "pinFailed": "Správu sa nepodarilo pripnúť",
+    "unpinFailed": "Správu sa nepodarilo odopnúť",
+    "disconnected": "Odpojené",
+    "subtitle": "Všetko o DeHube…",
+    "joining": "Pripája sa k chatu…",
+    "reconnect": "Znova pripojiť",
+    "banned": "V tomto chate máte zákaz",
+    "someone": "Niekto",
+    "oneTyping": "{{name}} píše…",
+    "fewTyping": "{{names}} píšu…",
+    "manyTyping": "Píše {{count}} ľudí…"
   },
   "promptFeed": {
     "headline": "Čo chcete vidieť?",

@@ -623,7 +623,9 @@
     "recordVideo": "Viidiyoo waraabi",
     "saveChanges": "Jijjiirama olkaa'i",
     "copy": "Garagalchi",
-    "optionalSuffix": "(filannoo)"
+    "optionalSuffix": "(filannoo)",
+    "yesterday": "Kaleessa",
+    "ok": "Tole"
   },
   "tip": {
     "title": "Tiippii Ergi",
@@ -2909,7 +2911,20 @@
     "attachGif": "GIF",
     "attachEmoji": "😊",
     "removeAttachment": "Attachment irraa kaasi",
-    "attachFailed": "Suuraa sana erguu hin dandeenye."
+    "attachFailed": "Suuraa sana erguu hin dandeenye.",
+    "deleteMessage": "Ergaa haqi",
+    "deleteConfirm": "Ergaa kana haquu dhugumatti barbaaddaa?",
+    "pinFailed": "Ergaa maxxansuun hin dandaʼamne",
+    "unpinFailed": "Maxxansa ergaa kaasuun hin dandaʼamne",
+    "disconnected": "Walqabsiisni cite",
+    "subtitle": "Waaʼee DeHub hunda…",
+    "joining": "Haasaa seenaa jira…",
+    "reconnect": "Irra deebiʼii walqabsiisi",
+    "banned": "Haasaa kana irraa dhorkamteetta",
+    "someone": "Namni tokko",
+    "oneTyping": "{{name}} barreessaa jira…",
+    "fewTyping": "{{names}} barreessaa jiru…",
+    "manyTyping": "Namoonni {{count}} barreessaa jiru…"
   },
   "promptFeed": {
     "headline": "Maal ilaaluu barbaadda?",

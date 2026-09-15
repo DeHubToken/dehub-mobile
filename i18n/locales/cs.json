@@ -608,7 +608,9 @@
     "recordVideo": "Natočit video",
     "saveChanges": "Uložit změny",
     "copy": "Kopírovat",
-    "optionalSuffix": "(nepovinné)"
+    "optionalSuffix": "(nepovinné)",
+    "yesterday": "Včera",
+    "ok": "OK"
   },
   "drawers": {
     "ppvTitle": "Platba za zhlédnutí",
@@ -2848,7 +2850,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Odebrat přílohu",
-    "attachFailed": "Tuto fotku se nepodařilo odeslat."
+    "attachFailed": "Tuto fotku se nepodařilo odeslat.",
+    "deleteMessage": "Smazat zprávu",
+    "deleteConfirm": "Opravdu chcete tuto zprávu smazat?",
+    "pinFailed": "Zprávu se nepodařilo připnout",
+    "unpinFailed": "Zprávu se nepodařilo odepnout",
+    "disconnected": "Odpojeno",
+    "subtitle": "Vše o DeHubu…",
+    "joining": "Připojování k chatu…",
+    "reconnect": "Znovu připojit",
+    "banned": "V tomto chatu máte zákaz",
+    "someone": "Někdo",
+    "oneTyping": "{{name}} píše…",
+    "fewTyping": "{{names}} píší…",
+    "manyTyping": "Píše {{count}} lidí…"
   },
   "promptFeed": {
     "headline": "Co chcete vidět?",

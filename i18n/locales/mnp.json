@@ -566,7 +566,9 @@
     "recordVideo": "录视频",
     "saveChanges": "保存更改",
     "copy": "复制",
-    "optionalSuffix": "（可选）"
+    "optionalSuffix": "（可选）",
+    "yesterday": "昨天",
+    "ok": "确定"
   },
   "tip": {
     "title": "送打赏",
@@ -2842,7 +2844,20 @@
     "attachPhoto": "相片",
     "attachEmoji": "表情符号",
     "removeAttachment": "移除附件",
-    "attachFailed": "发唔出张相。"
+    "attachFailed": "发唔出张相。",
+    "deleteMessage": "删除消息",
+    "deleteConfirm": "确定要删除这条消息吗？",
+    "pinFailed": "无法置顶消息",
+    "unpinFailed": "无法取消置顶消息",
+    "disconnected": "已断开",
+    "subtitle": "关于 DeHub 的一切…",
+    "joining": "正在加入聊天…",
+    "reconnect": "重新连接",
+    "banned": "你已被禁止参与此聊天",
+    "someone": "某人",
+    "oneTyping": "{{name}} 正在输入…",
+    "fewTyping": "{{names}} 正在输入…",
+    "manyTyping": "{{count}} 人正在输入…"
   },
   "promptFeed": {
     "headline": "你想看什么？",

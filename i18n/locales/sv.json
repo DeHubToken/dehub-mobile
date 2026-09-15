@@ -608,7 +608,9 @@
     "recordVideo": "Spela in video",
     "saveChanges": "Spara ändringar",
     "copy": "Kopiera",
-    "optionalSuffix": "(valfritt)"
+    "optionalSuffix": "(valfritt)",
+    "yesterday": "I går",
+    "ok": "OK"
   },
   "drawers": {
     "ppvTitle": "Betala per visning",
@@ -2848,7 +2850,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Ta bort bilaga",
-    "attachFailed": "Det gick inte att skicka fotot."
+    "attachFailed": "Det gick inte att skicka fotot.",
+    "deleteMessage": "Radera meddelande",
+    "deleteConfirm": "Är du säker på att du vill radera det här meddelandet?",
+    "pinFailed": "Det gick inte att fästa meddelandet",
+    "unpinFailed": "Det gick inte att lossa meddelandet",
+    "disconnected": "Frånkopplad",
+    "subtitle": "Allt om DeHub…",
+    "joining": "Ansluter till chatten…",
+    "reconnect": "Anslut igen",
+    "banned": "Du är avstängd från den här chatten",
+    "someone": "Någon",
+    "oneTyping": "{{name}} skriver…",
+    "fewTyping": "{{names}} skriver…",
+    "manyTyping": "{{count}} personer skriver…"
   },
   "promptFeed": {
     "headline": "Vad vill du se?",
