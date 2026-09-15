@@ -1823,7 +1823,13 @@
     "unpinPost": "Zrušiť pripnutie zo svojho profilu",
     "postPinned": "Pripnuté k vášmu profilu",
     "postUnpinned": "Odpojené od vášho profilu",
-    "pinFailed": "Nepodarilo sa pripnúť alebo zrušiť pripnutie tohto príspevku"
+    "pinFailed": "Nepodarilo sa pripnúť alebo zrušiť pripnutie tohto príspevku",
+    "sendToDm": "Poslať do správ",
+    "sendToDmDesc": "Zdieľajte tento príspevok v konverzácii",
+    "boostPostDesc": "Umiestnite ho na vrch domovského kanála",
+    "mintPostDesc": "Publikujte tento príspevok on-chain",
+    "giftBoost": "Darovať boost",
+    "giftBoostDesc": "Miňte jeden zo svojich na tento príspevok"
   },
   "filters": {
     "sort": "Sort",
@@ -3955,5 +3961,14 @@
     "perMessageFee": "Poplatok za správu (DHB)",
     "perMessageFeeSub": "Účtujte si za správu. Nastavte 0 pre bezplatné správy. Konkrétnym používateľom môžete dať prístup zadarmo.",
     "allDisabled": "Všetky správy sú momentálne vypnuté. Nové sú štandardne blokované."
+  },
+  "editPost": {
+    "mediaPermission": "Vyžaduje sa povolenie k mediálnej knižnici",
+    "fileSwapping": "Nový súbor nahraný — vymení sa, len čo sa dokončí spracovanie",
+    "titleTooShort": "Názov musí mať aspoň 3 znaky",
+    "descTooShort": "Popis musí mať aspoň 3 znaky",
+    "updated": "Príspevok aktualizovaný",
+    "titlePlaceholder": "Názov príspevku",
+    "descPlaceholder": "Popis príspevku"
   }
 }

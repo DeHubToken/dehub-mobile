@@ -714,7 +714,13 @@
     "unpinPost": "Khipha kuphrofayili yakho",
     "postPinned": "Kuphinwe kuphrofayili yakho",
     "postUnpinned": "Kukhishwe kuphrofayili yakho",
-    "pinFailed": "Ayikwazanga ukufaka iphini noma ukususa le phosti"
+    "pinFailed": "Ayikwazanga ukufaka iphini noma ukususa le phosti",
+    "sendToDm": "Thumela ku-DM",
+    "sendToDmDesc": "Yabelana ngalokhu okuthunyelwe engxoxweni",
+    "boostPostDesc": "Ibeke phezulu kufidi lasekhaya",
+    "mintPostDesc": "Shicilela lokhu okuthunyelwe ku-chain",
+    "giftBoost": "Nikeza i-boost njengesipho",
+    "giftBoostDesc": "Sebenzisa eyodwa yakho kulokhu okuthunyelwe"
   },
   "filters": {
     "sort": "Hlela",
@@ -3816,5 +3822,14 @@
     "perMessageFee": "Imali ngomlayezo ngamunye (DHB)",
     "perMessageFeeSub": "Khokhisa umlayezo ngamunye. Beka ku-0 ukuze ama-DM abe mahhala. Ungavumela abasebenzisi abathile mahhala.",
     "allDisabled": "Wonke ama-DM avaliwe njengamanje. Ama-DM amasha avinjelwe ngokuzenzakalelayo."
+  },
+  "editPost": {
+    "mediaPermission": "Kudingeka imvume yomtapo wolwazi wemidiya",
+    "fileSwapping": "Ifayela elisha lilayishiwe — lizongena uma ukucutshungulwa kuqeda",
+    "titleTooShort": "Isihloko kumele sibe okungenani izinhlamvu ezingu-3",
+    "descTooShort": "Incazelo kumele ibe okungenani izinhlamvu ezingu-3",
+    "updated": "Okuthunyelwe kubuyekeziwe",
+    "titlePlaceholder": "Isihloko sokuthunyelwe",
+    "descPlaceholder": "Incazelo yokuthunyelwe"
   }
 }

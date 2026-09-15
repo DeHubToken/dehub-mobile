@@ -623,7 +623,13 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "sendToDm": "DM میں بھیجیں",
+    "sendToDmDesc": "یہ پوسٹ کسی گفتگو میں شیئر کریں",
+    "boostPostDesc": "اسے ہوم فیڈ کے سب سے اوپر رکھیں",
+    "mintPostDesc": "یہ پوسٹ آن چین شائع کریں",
+    "giftBoost": "بوسٹ تحفہ دیں",
+    "giftBoostDesc": "اپنا ایک اس پوسٹ پر خرچ کریں"
   },
   "filters": {
     "sort": "سارٹ",
@@ -3517,5 +3523,14 @@
     "perMessageFee": "فی پیغام فیس (DHB)",
     "perMessageFeeSub": "فی پیغام چارج کریں۔ مفت DM کے لیے 0 رکھیں۔ مخصوص صارفین کو مفت رسائی دے سکتے ہیں۔",
     "allDisabled": "ابھی تمام DM بند ہیں۔ نئے DM بطور ڈیفالٹ روکے گئے ہیں۔"
+  },
+  "editPost": {
+    "mediaPermission": "میڈیا لائبریری کی اجازت درکار ہے",
+    "fileSwapping": "نئی فائل اپ لوڈ ہوئی — پروسیسنگ مکمل ہوتے ہی بدل جائے گی",
+    "titleTooShort": "عنوان کم از کم 3 حروف کا ہونا چاہیے",
+    "descTooShort": "تفصیل کم از کم 3 حروف کی ہونی چاہیے",
+    "updated": "پوسٹ اپ ڈیٹ ہو گئی",
+    "titlePlaceholder": "پوسٹ کا عنوان",
+    "descPlaceholder": "پوسٹ کی تفصیل"
   }
 }

@@ -696,7 +696,13 @@
     "unpinPost": "Desanclar de tu perfil",
     "postPinned": "Fijado a tu perfil",
     "postUnpinned": "Desanclado de tu perfil",
-    "pinFailed": "No se ha podido anclar o desanclar esta publicación"
+    "pinFailed": "No se ha podido anclar o desanclar esta publicación",
+    "sendToDm": "Enviar por mensaje",
+    "sendToDmDesc": "Comparte esta publicación en una conversación",
+    "boostPostDesc": "Ponla arriba del todo en el inicio",
+    "mintPostDesc": "Publica esta publicación en la cadena",
+    "giftBoost": "Regala un impulso",
+    "giftBoostDesc": "Gasta uno de los tuyos en esta publicación"
   },
   "filters": {
     "sort": "Ordenar",
@@ -3857,5 +3863,14 @@
     "perMessageFee": "Tarifa por mensaje (DHB)",
     "perMessageFeeSub": "Cobra por mensaje. Ponlo a 0 para mensajes gratis. Puedes dar acceso gratuito a usuarios concretos.",
     "allDisabled": "Ahora mismo todos los mensajes están desactivados. Los nuevos se bloquean por defecto."
+  },
+  "editPost": {
+    "mediaPermission": "Se necesita permiso para la biblioteca multimedia",
+    "fileSwapping": "Archivo nuevo subido: se cambiará cuando termine el procesamiento",
+    "titleTooShort": "El título debe tener al menos 3 caracteres",
+    "descTooShort": "La descripción debe tener al menos 3 caracteres",
+    "updated": "Publicación actualizada",
+    "titlePlaceholder": "Título de la publicación",
+    "descPlaceholder": "Descripción de la publicación"
   }
 }

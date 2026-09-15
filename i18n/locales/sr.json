@@ -825,7 +825,13 @@
     "blockUser": "Block {{name}}",
     "blockDesc": "Hide their content and restrict interactions",
     "unblockUser": "Unblock {{name}}",
-    "unblockDesc": "Allow this user to appear in your feeds"
+    "unblockDesc": "Allow this user to appear in your feeds",
+    "sendToDm": "Пошаљи у поруку",
+    "sendToDmDesc": "Поделите ову објаву у разговору",
+    "boostPostDesc": "Ставите је на врх почетног фида",
+    "mintPostDesc": "Објавите ову објаву на ланцу",
+    "giftBoost": "Поклони буст",
+    "giftBoostDesc": "Потрошите један од својих на ову објаву"
   },
   "filters": {
     "sort": "Сортирај",
@@ -3554,5 +3560,14 @@
     "perMessageFee": "Накнада по поруци (DHB)",
     "perMessageFeeSub": "Наплаћујте по поруци. Поставите 0 за бесплатне поруке. Појединим корисницима можете дати бесплатан приступ.",
     "allDisabled": "Све поруке су тренутно искључене. Нове се подразумевано блокирају."
+  },
+  "editPost": {
+    "mediaPermission": "Потребна је дозвола за медијску библиотеку",
+    "fileSwapping": "Нова датотека је отпремљена — замениће се чим се обрада заврши",
+    "titleTooShort": "Наслов мора имати бар 3 знака",
+    "descTooShort": "Опис мора имати бар 3 знака",
+    "updated": "Објава је ажурирана",
+    "titlePlaceholder": "Наслов објаве",
+    "descPlaceholder": "Опис објаве"
   }
 }

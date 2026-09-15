@@ -667,7 +667,13 @@
     "unblockUser": "Unblock {{name}}",
     "unblockDesc": "Allow this user to appear in your feeds",
     "bookmark": "Bookmark",
-    "removeBookmark": "Remove bookmark"
+    "removeBookmark": "Remove bookmark",
+    "sendToDm": "Send am for DM",
+    "sendToDmDesc": "Share dis post inside one conversation",
+    "boostPostDesc": "Put am for top of di home feed",
+    "mintPostDesc": "Publish dis post on-chain",
+    "giftBoost": "Gift one boost",
+    "giftBoostDesc": "Spend one of yours on dis post"
   },
   "filters": {
     "sort": "Sort",
@@ -3601,5 +3607,14 @@
     "perMessageFee": "Fee for each message (DHB)",
     "perMessageFeeSub": "Charge people for each message. Put 0 make DM free. You fit give some users free access.",
     "allDisabled": "All DMs dey off now. New DMs dey block by default."
+  },
+  "editPost": {
+    "mediaPermission": "You need media library permission",
+    "fileSwapping": "New file don upload — e go swap once processing finish",
+    "titleTooShort": "Title must be 3 characters at least",
+    "descTooShort": "Description must be 3 characters at least",
+    "updated": "Post don update",
+    "titlePlaceholder": "Post title",
+    "descPlaceholder": "Post description"
   }
 }

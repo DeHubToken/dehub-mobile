@@ -1173,7 +1173,13 @@
     "unpinPost": "Buang sematan daripada profil anda",
     "postPinned": "Disematkan pada profil anda",
     "postUnpinned": "Tidak disematkan daripada profil anda",
-    "pinFailed": "Tidak dapat menyematkan atau membatalkan pin hantaran ini"
+    "pinFailed": "Tidak dapat menyematkan atau membatalkan pin hantaran ini",
+    "sendToDm": "Hantar ke DM",
+    "sendToDmDesc": "Kongsi siaran ini dalam perbualan",
+    "boostPostDesc": "Letakkan di bahagian atas suapan utama",
+    "mintPostDesc": "Terbitkan siaran ini di rantaian",
+    "giftBoost": "Hadiahkan boost",
+    "giftBoostDesc": "Gunakan satu milik anda pada siaran ini"
   },
   "filters": {
     "sort": "Sort",
@@ -4050,5 +4056,14 @@
     "perMessageFee": "Yuran setiap mesej (DHB)",
     "perMessageFeeSub": "Kenakan bayaran setiap mesej. Tetapkan 0 untuk DM percuma. Anda boleh beri akses percuma kepada pengguna tertentu.",
     "allDisabled": "Semua DM kini dimatikan. DM baharu disekat secara lalai."
+  },
+  "editPost": {
+    "mediaPermission": "Kebenaran pustaka media diperlukan",
+    "fileSwapping": "Fail baharu dimuat naik — akan bertukar sebaik pemprosesan selesai",
+    "titleTooShort": "Tajuk mesti sekurang-kurangnya 3 aksara",
+    "descTooShort": "Penerangan mesti sekurang-kurangnya 3 aksara",
+    "updated": "Siaran dikemas kini",
+    "titlePlaceholder": "Tajuk siaran",
+    "descPlaceholder": "Penerangan siaran"
   }
 }

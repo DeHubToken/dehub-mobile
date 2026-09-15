@@ -1181,7 +1181,13 @@
     "unpinPost": "Loskoppelen van je profiel",
     "postPinned": "Vastgemaakt aan je profiel",
     "postUnpinned": "Ontkoppeld van je profiel",
-    "pinFailed": "Kan dit bericht niet vastmaken of losmaken"
+    "pinFailed": "Kan dit bericht niet vastmaken of losmaken",
+    "sendToDm": "Via DM sturen",
+    "sendToDmDesc": "Deel dit bericht in een gesprek",
+    "boostPostDesc": "Zet het bovenaan de startfeed",
+    "mintPostDesc": "Publiceer dit bericht on-chain",
+    "giftBoost": "Een boost cadeau doen",
+    "giftBoostDesc": "Geef er een van jezelf uit aan dit bericht"
   },
   "filters": {
     "sort": "Sorteren",
@@ -4054,5 +4060,14 @@
     "perMessageFee": "Kosten per bericht (DHB)",
     "perMessageFeeSub": "Reken per bericht. Zet op 0 voor gratis DM's. Je kunt specifieke gebruikers gratis toegang geven.",
     "allDisabled": "Alle DM's staan momenteel uit. Nieuwe DM's worden standaard geblokkeerd."
+  },
+  "editPost": {
+    "mediaPermission": "Toestemming voor de mediabibliotheek is vereist",
+    "fileSwapping": "Nieuw bestand geüpload — het wordt vervangen zodra de verwerking klaar is",
+    "titleTooShort": "De titel moet minstens 3 tekens bevatten",
+    "descTooShort": "De beschrijving moet minstens 3 tekens bevatten",
+    "updated": "Bericht bijgewerkt",
+    "titlePlaceholder": "Berichttitel",
+    "descPlaceholder": "Berichtbeschrijving"
   }
 }

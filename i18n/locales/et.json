@@ -715,7 +715,13 @@
     "unpinPost": "Tühista oma profiili kinnitamine",
     "postPinned": "Kinnitatud sinu profiilile",
     "postUnpinned": "Sinu profiili kinnitamine on tühistatud",
-    "pinFailed": "Seda postitust ei saanud kinnitada või eemaldada"
+    "pinFailed": "Seda postitust ei saanud kinnitada või eemaldada",
+    "sendToDm": "Saada sõnumisse",
+    "sendToDmDesc": "Jaga seda postitust vestluses",
+    "boostPostDesc": "Pane see avavoo etteotsa",
+    "mintPostDesc": "Avalda see postitus ahelas",
+    "giftBoost": "Kingi võimendus",
+    "giftBoostDesc": "Kuluta üks omadest sellele postitusele"
   },
   "filters": {
     "sort": "Sorteeri",
@@ -3786,5 +3792,14 @@
     "perMessageFee": "Tasu sõnumi kohta (DHB)",
     "perMessageFeeSub": "Küsi tasu sõnumi kohta. Määra 0 tasuta sõnumite jaoks. Üksikutele kasutajatele saad anda tasuta juurdepääsu.",
     "allDisabled": "Kõik sõnumid on praegu välja lülitatud. Uued blokeeritakse vaikimisi."
+  },
+  "editPost": {
+    "mediaPermission": "Meediakogu luba on nõutav",
+    "fileSwapping": "Uus fail üles laaditud — see vahetatakse sisse, kui töötlus lõpeb",
+    "titleTooShort": "Pealkiri peab olema vähemalt 3 tähemärki",
+    "descTooShort": "Kirjeldus peab olema vähemalt 3 tähemärki",
+    "updated": "Postitus uuendatud",
+    "titlePlaceholder": "Postituse pealkiri",
+    "descPlaceholder": "Postituse kirjeldus"
   }
 }

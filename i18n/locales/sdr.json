@@ -669,7 +669,13 @@
     "bookmark": "Bookmark",
     "removeBookmark": "Remove bookmark",
     "postPinned": "Tohre profile mein pin kar dehel",
-    "pinFailed": "دې پوسټ ته نشي پین یا انپین کیدی"
+    "pinFailed": "دې پوسټ ته نشي پین یا انپین کیدی",
+    "sendToDm": "بنێرە بۆ DM",
+    "sendToDmDesc": "ئەم پۆستە لە گفتوگۆیەکدا هاوبەش بکە",
+    "boostPostDesc": "بیخەرە سەرەوەی فیدی سەرەکی",
+    "mintPostDesc": "ئەم پۆستە لەسەر زنجیرە بڵاو بکەرەوە",
+    "giftBoost": "بووستێک دیاری بکە",
+    "giftBoostDesc": "یەکێک لە هی خۆت لەسەر ئەم پۆستە خەرج بکە"
   },
   "filters": {
     "sort": "ترتیب",
@@ -3786,5 +3792,14 @@
     "perMessageFee": "کرێی هەر نامەیەک (DHB)",
     "perMessageFeeSub": "بۆ هەر نامەیەک پارە وەربگرە. بۆ DM ی بێبەرامبەر 0 دابنێ. دەتوانیت دەستگەیشتنی خۆڕایی بە بەکارهێنەرانی دیاریکراو بدەیت.",
     "allDisabled": "لە ئێستادا هەموو DM ـەکان کوژاونەتەوە. DM ی نوێ بە بنەڕەت ڕێگری لێدەکرێت."
+  },
+  "editPost": {
+    "mediaPermission": "مۆڵەتی کتێبخانەی مێدیا پێویستە",
+    "fileSwapping": "فایلی نوێ بارکرا — کاتێک پرۆسێسکردن تەواو بێت جێگۆڕکێ دەکات",
+    "titleTooShort": "ناونیشان دەبێت لانیکەم ٣ پیت بێت",
+    "descTooShort": "وەسف دەبێت لانیکەم ٣ پیت بێت",
+    "updated": "پۆست نوێکرایەوە",
+    "titlePlaceholder": "ناونیشانی پۆست",
+    "descPlaceholder": "وەسفی پۆست"
   }
 }

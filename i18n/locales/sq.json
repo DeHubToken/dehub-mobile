@@ -716,7 +716,13 @@
     "unpinPost": "Hiqe nga profili yt",
     "postPinned": "Pinned në profilin tënd",
     "postUnpinned": "Shkëputur nga profili yt",
-    "pinFailed": "Nuk mund ta shënjoj ose çaktivizoj këtë postim"
+    "pinFailed": "Nuk mund ta shënjoj ose çaktivizoj këtë postim",
+    "sendToDm": "Dërgo në DM",
+    "sendToDmDesc": "Ndaje këtë postim në një bisedë",
+    "boostPostDesc": "Vendose në krye të feed-it kryesor",
+    "mintPostDesc": "Publiko këtë postim on-chain",
+    "giftBoost": "Dhuro një boost",
+    "giftBoostDesc": "Shpenzo një nga të tutë për këtë postim"
   },
   "filters": {
     "sort": "Rendit",
@@ -3786,5 +3792,14 @@
     "perMessageFee": "Tarifa për mesazh (DHB)",
     "perMessageFeeSub": "Tarifo për çdo mesazh. Vendos 0 për mesazhe falas. Mund t'u japësh qasje falas përdoruesve të caktuar.",
     "allDisabled": "Të gjitha DM-të janë aktualisht të fikura. Të rejat bllokohen sipas parazgjedhjes."
+  },
+  "editPost": {
+    "mediaPermission": "Kërkohet leja për bibliotekën e medias",
+    "fileSwapping": "Skedari i ri u ngarkua — do të zëvendësohet sapo të përfundojë përpunimi",
+    "titleTooShort": "Titulli duhet të ketë të paktën 3 karaktere",
+    "descTooShort": "Përshkrimi duhet të ketë të paktën 3 karaktere",
+    "updated": "Postimi u përditësua",
+    "titlePlaceholder": "Titulli i postimit",
+    "descPlaceholder": "Përshkrimi i postimit"
   }
 }

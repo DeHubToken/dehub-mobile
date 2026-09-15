@@ -1123,7 +1123,13 @@
     "unpinPost": "I - unpin mula sa iyong profile",
     "postPinned": "Na - pin sa iyong profile",
     "postUnpinned": "Na - unpin mula sa iyong profile",
-    "pinFailed": "Hindi ma - pin o ma - unpin ang post na ito"
+    "pinFailed": "Hindi ma - pin o ma - unpin ang post na ito",
+    "sendToDm": "Ipadala sa DM",
+    "sendToDmDesc": "Ibahagi ang post na ito sa isang usapan",
+    "boostPostDesc": "Ilagay ito sa itaas ng home feed",
+    "mintPostDesc": "I-publish ang post na ito on-chain",
+    "giftBoost": "Magregalo ng boost",
+    "giftBoostDesc": "Gamitin ang isa sa iyo para sa post na ito"
   },
   "filters": {
     "sort": "Sort",
@@ -3966,5 +3972,14 @@
     "perMessageFee": "Bayad kada mensahe (DHB)",
     "perMessageFeeSub": "Maningil kada mensahe. Itakda sa 0 para libre ang DM. Puwede kang magbigay ng libreng access sa ilang user.",
     "allDisabled": "Naka-off lahat ng DM ngayon. Naka-block bilang default ang bagong DM."
+  },
+  "editPost": {
+    "mediaPermission": "Kailangan ng pahintulot sa media library",
+    "fileSwapping": "Na-upload ang bagong file — papalit ito kapag tapos nang iproseso",
+    "titleTooShort": "Kailangang hindi bababa sa 3 karakter ang pamagat",
+    "descTooShort": "Kailangang hindi bababa sa 3 karakter ang paglalarawan",
+    "updated": "Na-update ang post",
+    "titlePlaceholder": "Pamagat ng post",
+    "descPlaceholder": "Paglalarawan ng post"
   }
 }

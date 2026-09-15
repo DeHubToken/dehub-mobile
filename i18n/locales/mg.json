@@ -702,7 +702,13 @@
     "unpinPost": "Unpin avy amin'ny mombamomba anao",
     "postPinned": "Nafotaka tamin'ny mombamomba anao",
     "postUnpinned": "Tsy tafalatsaka amin'ny mombamomba anao",
-    "pinFailed": "Tsy nahafaritra na nangeja ity lahatsoratra ity"
+    "pinFailed": "Tsy nahafaritra na nangeja ity lahatsoratra ity",
+    "sendToDm": "Alefaso amin'ny DM",
+    "sendToDmDesc": "Zarao amin'ny resaka iray ity lahatsoratra ity",
+    "boostPostDesc": "Apetraho eo an-tampon'ny fandefasana fandraisana",
+    "mintPostDesc": "Avoaka amin'ny rojo ity lahatsoratra ity",
+    "giftBoost": "Manolotra boost",
+    "giftBoostDesc": "Lanio ny iray amin'ny anao amin'ity lahatsoratra ity"
   },
   "filters": {
     "sort": "Alamino",
@@ -3866,5 +3872,14 @@
     "perMessageFee": "Sara isaky ny hafatra (DHB)",
     "perMessageFeeSub": "Mangataha sara isaky ny hafatra. Ataovy 0 raha maimaim-poana. Afaka manome fidirana maimaim-poana amin'ny mpampiasa sasany ianao.",
     "allDisabled": "Vonoina ny DM rehetra amin'izao. Voasakana ho azy ny DM vaovao."
+  },
+  "editPost": {
+    "mediaPermission": "Ilaina ny fahazoan-dàlana amin'ny tranomboky media",
+    "fileSwapping": "Voampiakatra ny rakitra vaovao — hosoloina rehefa vita ny fikarakarana",
+    "titleTooShort": "Tsy maintsy misy litera 3 farafahakeliny ny lohateny",
+    "descTooShort": "Tsy maintsy misy litera 3 farafahakeliny ny famaritana",
+    "updated": "Nohavaozina ny lahatsoratra",
+    "titlePlaceholder": "Lohatenin'ny lahatsoratra",
+    "descPlaceholder": "Famaritana ny lahatsoratra"
   }
 }

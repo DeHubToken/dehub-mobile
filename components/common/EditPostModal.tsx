@@ -29,6 +29,7 @@ import { toastSuccess, toastError } from "../../libs";
 import { useKeyboard } from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
 import EditPostImages from './EditPostImages';
+import { useTranslation } from "react-i18next";
 
 interface EditPostModalProps {
   visible: boolean;
@@ -68,6 +69,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   canReplaceVideo = false,
   onSuccess,
 }) => {
+  const { t } = useTranslation();
   const [commentsDisabled, setCommentsDisabled] = useState(initialCommentsDisabled);
   const [isMature, setIsMature] = useState(initialContentRating === "mature");
   const [shopLinks, setShopLinks] = useState<ShopLink[]>(initialShopLinks ?? []);
@@ -106,7 +108,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
 
     const perm = await ensureMediaLibraryPermission();
     if (!perm.granted) {
-      toastError("Media library permission is required");
+      toastError(t("editPost.mediaPermission"));
       return;
     }
 
@@ -145,7 +147,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         },
         { onProgress: (fraction) => setReplaceProgress(Math.round(fraction * 100)) },
       );
-      toastSuccess("New file uploaded — it will swap in once it finishes processing");
+      toastSuccess(t("editPost.fileSwapping"));
     } catch (e: any) {
       toastError(e?.message || "Could not replace that file");
     } finally {
@@ -211,11 +213,11 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     const trimmedDesc = description.trim();
 
     if (trimmedTitle.length > 0 && trimmedTitle.length < 3) {
-      toastError("Title must be at least 3 characters");
+      toastError(t("editPost.titleTooShort"));
       return;
     }
     if (trimmedDesc.length > 0 && trimmedDesc.length < 3) {
-      toastError("Description must be at least 3 characters");
+      toastError(t("editPost.descTooShort"));
       return;
     }
 
@@ -266,7 +268,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       for (const id of toAttach) await attach.mutateAsync({ listingId: id });
 
       await editPost(tokenId, payload);
-      toastSuccess("Post updated");
+      toastSuccess(t("editPost.updated"));
       onSuccess?.({
         name: payload.name,
         description: payload.description,
@@ -340,7 +342,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             <View className="w-9 h-9 rounded-xl bg-blue-500/15 items-center justify-center mr-2">
               <Ionicons name="create-outline" size={18} color="#D4D4D8" />
             </View>
-            <Text className="text-white text-lg font-bold">Edit Post</Text>
+            <Text className="text-white text-lg font-bold">{t("postOptions.editPost")}</Text>
           </View>
           <TouchableOpacity
             onPress={onClose}
@@ -365,7 +367,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               onChangeText={(t) => titleMentions.handleChangeText(t.slice(0, 140))}
               onSelectionChange={titleMentions.handleSelectionChange}
               maxLength={140}
-              placeholder="Post title"
+              placeholder={t("editPost.titlePlaceholder")}
               placeholderTextColor="#8B8D90"
               className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm mb-1"
             />
@@ -392,7 +394,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               onChangeText={(t) => descMentions.handleChangeText(t.slice(0, 500))}
               onSelectionChange={descMentions.handleSelectionChange}
               maxLength={500}
-              placeholder="Post description"
+              placeholder={t("editPost.descPlaceholder")}
               placeholderTextColor="#8B8D90"
               multiline
               numberOfLines={4}
@@ -608,7 +610,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
                 {saving ? (
                   <ActivityIndicator size="small" color="#fff" />
                 ) : (
-                  <Text className="text-white text-sm font-semibold">Save</Text>
+                  <Text className="text-white text-sm font-semibold">{t("common.save")}</Text>
                 )}
               </TouchableOpacity>
             </AccentButtonGradient>

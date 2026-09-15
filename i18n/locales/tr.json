@@ -729,7 +729,13 @@
     "unpinPost": "Profilinden sabitlemeyi kaldır",
     "postPinned": "Profiline sabitlendi",
     "postUnpinned": "Profilinden sabitleme kaldırıldı",
-    "pinFailed": "Bu gönderi sabitlenemedi veya sabitlemesi kaldırılamadı"
+    "pinFailed": "Bu gönderi sabitlenemedi veya sabitlemesi kaldırılamadı",
+    "sendToDm": "DM ile gönder",
+    "sendToDmDesc": "Bu gönderiyi bir sohbette paylaş",
+    "boostPostDesc": "Ana akışın en üstüne koy",
+    "mintPostDesc": "Bu gönderiyi zincir üzerinde yayınla",
+    "giftBoost": "Bir güçlendirme hediye et",
+    "giftBoostDesc": "Kendi hakkından birini bu gönderiye harca"
   },
   "filters": {
     "sort": "Sırala",
@@ -3849,5 +3855,14 @@
     "perMessageFee": "Mesaj başına ücret (DHB)",
     "perMessageFeeSub": "Mesaj başına ücret alın. Ücretsiz DM için 0 yapın. Belirli kullanıcılara ücretsiz erişim verebilirsiniz.",
     "allDisabled": "Şu anda tüm DM'ler kapalı. Yeni DM'ler varsayılan olarak engellenir."
+  },
+  "editPost": {
+    "mediaPermission": "Medya kitaplığı izni gerekiyor",
+    "fileSwapping": "Yeni dosya yüklendi — işlem bitince yerine geçecek",
+    "titleTooShort": "Başlık en az 3 karakter olmalı",
+    "descTooShort": "Açıklama en az 3 karakter olmalı",
+    "updated": "Gönderi güncellendi",
+    "titlePlaceholder": "Gönderi başlığı",
+    "descPlaceholder": "Gönderi açıklaması"
   }
 }

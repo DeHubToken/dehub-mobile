@@ -703,7 +703,13 @@
     "unpinPost": "پنهنجي پروفائل مان پن ڪ unيو",
     "postPinned": "توھان جي پروفائل تي پن",
     "postUnpinned": "توهان جي پروفائيل مان Unpinned",
-    "pinFailed": "هن پوسٽ کي پن يا ڪ unي نه سگھيو"
+    "pinFailed": "هن پوسٽ کي پن يا ڪ unي نه سگھيو",
+    "sendToDm": "DM ۾ موڪليو",
+    "sendToDmDesc": "هي پوسٽ ڪنهن گفتگو ۾ شيئر ڪريو",
+    "boostPostDesc": "ان کي هوم فيڊ جي مٿان رکو",
+    "mintPostDesc": "هي پوسٽ آن چين شايع ڪريو",
+    "giftBoost": "هڪ بوسٽ تحفو ڏيو",
+    "giftBoostDesc": "پنهنجو هڪ هن پوسٽ تي خرچ ڪريو"
   },
   "filters": {
     "sort": "ترتيب",
@@ -3770,5 +3776,14 @@
     "perMessageFee": "في پيغام فيس (DHB)",
     "perMessageFeeSub": "في پيغام چارج ڪريو. مفت DM لاءِ 0 رکو. ڪجهه صارفن کي مفت رسائي ڏئي سگهو ٿا.",
     "allDisabled": "هن وقت سڀ DM بند آهن. نوان DM ڊفالٽ طور روڪيل آهن."
+  },
+  "editPost": {
+    "mediaPermission": "ميڊيا لائبريري جي اجازت گھربل آهي",
+    "fileSwapping": "نئين فائل اپلوڊ ٿي — پروسيسنگ پوري ٿيندي ئي بدلجي ويندي",
+    "titleTooShort": "عنوان گھٽ ۾ گھٽ 3 اکر هجڻ گهرجي",
+    "descTooShort": "تفصيل گھٽ ۾ گھٽ 3 اکر هجڻ گهرجي",
+    "updated": "پوسٽ اپڊيٽ ٿي وئي",
+    "titlePlaceholder": "پوسٽ جو عنوان",
+    "descPlaceholder": "پوسٽ جي تفصيل"
   }
 }

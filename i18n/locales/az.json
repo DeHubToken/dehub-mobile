@@ -705,7 +705,13 @@
     "unpinPost": "Profilinizdən silin",
     "postPinned": "Profilinizə bərkidilib",
     "postUnpinned": "Profilinizdən silinmədi",
-    "pinFailed": "Bu yazını sancmaq və ya açmaq mümkün olmadı"
+    "pinFailed": "Bu yazını sancmaq və ya açmaq mümkün olmadı",
+    "sendToDm": "DM-ə göndər",
+    "sendToDmDesc": "Bu paylaşımı söhbətdə paylaşın",
+    "boostPostDesc": "Onu ana lentin başına qoy",
+    "mintPostDesc": "Bu paylaşımı zəncirdə dərc et",
+    "giftBoost": "Gücləndirmə hədiyyə et",
+    "giftBoostDesc": "Öz gücləndirmələrindən birini bu paylaşıma xərclə"
   },
   "filters": {
     "sort": "Sırala",
@@ -3771,5 +3777,14 @@
     "perMessageFee": "Mesaj başına haqq (DHB)",
     "perMessageFeeSub": "İstifadəçilərdən mesaj başına haqq alın. Pulsuz DM üçün 0 qoyun. Ayrı-ayrı istifadəçilərə pulsuz giriş verə bilərsiniz.",
     "allDisabled": "Hazırda bütün DM-lər söndürülüb. Yeni DM-lər susmaya görə bloklanır."
+  },
+  "editPost": {
+    "mediaPermission": "Media kitabxanasına icazə tələb olunur",
+    "fileSwapping": "Yeni fayl yükləndi — emal bitən kimi əvəz olunacaq",
+    "titleTooShort": "Başlıq ən azı 3 simvol olmalıdır",
+    "descTooShort": "Təsvir ən azı 3 simvol olmalıdır",
+    "updated": "Paylaşım yeniləndi",
+    "titlePlaceholder": "Paylaşım başlığı",
+    "descPlaceholder": "Paylaşım təsviri"
   }
 }

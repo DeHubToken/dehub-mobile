@@ -711,7 +711,13 @@
     "unpinPost": "Yọ kuro ninu profaili rẹ",
     "postPinned": "Pọn si profaili rẹ",
     "postUnpinned": "Unpinned lati rẹ profaili",
-    "pinFailed": "Ko le pin tabi yọ ifiweranṣẹ yii kuro."
+    "pinFailed": "Ko le pin tabi yọ ifiweranṣẹ yii kuro.",
+    "sendToDm": "Fi ránṣẹ́ sí DM",
+    "sendToDmDesc": "Pín ìfìwéránṣẹ́ yìí nínú ìbáraẹnisọ̀rọ̀",
+    "boostPostDesc": "Fi sí orí àkọ́kọ́ ti ìṣàn ilé",
+    "mintPostDesc": "Tẹ ìfìwéránṣẹ́ yìí jáde lórí ẹ̀wọ̀n",
+    "giftBoost": "Ta boost lọ́rẹ",
+    "giftBoostDesc": "Ná ọ̀kan nínú tìrẹ lórí ìfìwéránṣẹ́ yìí"
   },
   "filters": {
     "sort": "Tò",
@@ -3777,5 +3783,14 @@
     "perMessageFee": "Owó fún ìfiránṣẹ́ kọ̀ọ̀kan (DHB)",
     "perMessageFeeSub": "Gba owó fún ìfiránṣẹ́ kọ̀ọ̀kan. Fi 0 sí i kí DM lè jẹ́ ọ̀fẹ́. O lè fún àwọn olùlò kan ní ààyè ọ̀fẹ́.",
     "allDisabled": "Gbogbo DM ti pa lọ́wọ́lọ́wọ́. A ń dí DM tuntun lọ́nà gẹ́gẹ́ bí àbí."
+  },
+  "editPost": {
+    "mediaPermission": "A nílò àṣẹ ilé-ìkàwé àwòrán",
+    "fileSwapping": "A ti gbé fáìlì tuntun sókè — yóò rọ́pò rẹ̀ nígbà tí ìṣiṣẹ́ bá parí",
+    "titleTooShort": "Àkọlé gbọdọ̀ jẹ́ ó kéré tán àmì 3",
+    "descTooShort": "Àpèjúwe gbọdọ̀ jẹ́ ó kéré tán àmì 3",
+    "updated": "A ti ṣàtúnṣe ìfìwéránṣẹ́",
+    "titlePlaceholder": "Àkọlé ìfìwéránṣẹ́",
+    "descPlaceholder": "Àpèjúwe ìfìwéránṣẹ́"
   }
 }

@@ -716,7 +716,13 @@
     "unpinPost": "Otkvači sa svog profila",
     "postPinned": "Prikvačeno na tvoj profil",
     "postUnpinned": "Otkvačeno s tvog profila",
-    "pinFailed": "Nije moguće prikvačiti ili otkvačiti ovu objavu"
+    "pinFailed": "Nije moguće prikvačiti ili otkvačiti ovu objavu",
+    "sendToDm": "Pošalji u poruku",
+    "sendToDmDesc": "Podijelite ovu objavu u razgovoru",
+    "boostPostDesc": "Postavite je na vrh početnog feeda",
+    "mintPostDesc": "Objavite ovu objavu on-chain",
+    "giftBoost": "Pokloni boost",
+    "giftBoostDesc": "Potrošite jedan od svojih na ovu objavu"
   },
   "filters": {
     "sort": "Sortiraj",
@@ -3787,5 +3793,14 @@
     "perMessageFee": "Naknada po poruci (DHB)",
     "perMessageFeeSub": "Naplaćujte po poruci. Postavite 0 za besplatne poruke. Pojedinim korisnicima možete dati besplatan pristup.",
     "allDisabled": "Sve su poruke trenutačno isključene. Nove se prema zadanom blokiraju."
+  },
+  "editPost": {
+    "mediaPermission": "Potrebno je dopuštenje za medijsku knjižnicu",
+    "fileSwapping": "Nova datoteka prenesena — zamijenit će se čim obrada završi",
+    "titleTooShort": "Naslov mora imati barem 3 znaka",
+    "descTooShort": "Opis mora imati barem 3 znaka",
+    "updated": "Objava ažurirana",
+    "titlePlaceholder": "Naslov objave",
+    "descPlaceholder": "Opis objave"
   }
 }

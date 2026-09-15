@@ -695,7 +695,13 @@
     "unpinPost": "プロフィールからピンを外す",
     "postPinned": "プロフィールにピン留めされました",
     "postUnpinned": "プロフィールからピンを外しました",
-    "pinFailed": "この投稿をピン留めまたはピン留め解除できませんでした"
+    "pinFailed": "この投稿をピン留めまたはピン留め解除できませんでした",
+    "sendToDm": "DM で送る",
+    "sendToDmDesc": "この投稿を会話で共有します",
+    "boostPostDesc": "ホームフィードの先頭に表示します",
+    "mintPostDesc": "この投稿をオンチェーンで公開します",
+    "giftBoost": "ブーストを贈る",
+    "giftBoostDesc": "自分のブーストをこの投稿に使います"
   },
   "filters": {
     "sort": "並べ替え",
@@ -3854,5 +3860,14 @@
     "perMessageFee": "メッセージごとの料金 (DHB)",
     "perMessageFeeSub": "メッセージごとに課金します。無料にするには 0 にしてください。特定のユーザーには無料アクセスを付与できます。",
     "allDisabled": "現在すべての DM が無効です。新しい DM は既定でブロックされます。"
+  },
+  "editPost": {
+    "mediaPermission": "メディアライブラリへのアクセス許可が必要です",
+    "fileSwapping": "新しいファイルをアップロードしました。処理が終わり次第、差し替わります",
+    "titleTooShort": "タイトルは 3 文字以上にしてください",
+    "descTooShort": "説明は 3 文字以上にしてください",
+    "updated": "投稿を更新しました",
+    "titlePlaceholder": "投稿タイトル",
+    "descPlaceholder": "投稿の説明"
   }
 }

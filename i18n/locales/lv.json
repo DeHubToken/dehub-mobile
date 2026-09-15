@@ -715,7 +715,13 @@
     "unpinPost": "Atspraust no profila",
     "postPinned": "Piesprausts jūsu profilam",
     "postUnpinned": "Atsprausti no jūsu profila",
-    "pinFailed": "Nevarēja piespraust vai atspraust šo ziņu"
+    "pinFailed": "Nevarēja piespraust vai atspraust šo ziņu",
+    "sendToDm": "Sūtīt ziņā",
+    "sendToDmDesc": "Kopīgojiet šo ierakstu sarunā",
+    "boostPostDesc": "Novietojiet to sākuma plūsmas augšgalā",
+    "mintPostDesc": "Publicējiet šo ierakstu ķēdē",
+    "giftBoost": "Uzdāvināt pastiprinājumu",
+    "giftBoostDesc": "Iztērējiet vienu no savējiem šim ierakstam"
   },
   "filters": {
     "sort": "Kārtot",
@@ -3786,5 +3792,14 @@
     "perMessageFee": "Maksa par ziņu (DHB)",
     "perMessageFeeSub": "Iekasējiet maksu par ziņu. Iestatiet 0 bezmaksas ziņām. Atsevišķiem lietotājiem varat piešķirt bezmaksas piekļuvi.",
     "allDisabled": "Pašlaik visas ziņas ir izslēgtas. Jaunās pēc noklusējuma tiek bloķētas."
+  },
+  "editPost": {
+    "mediaPermission": "Nepieciešama medijbibliotēkas atļauja",
+    "fileSwapping": "Jauns fails augšupielādēts — tas nomainīsies, tiklīdz beigsies apstrāde",
+    "titleTooShort": "Virsrakstā jābūt vismaz 3 rakstzīmēm",
+    "descTooShort": "Aprakstā jābūt vismaz 3 rakstzīmēm",
+    "updated": "Ieraksts atjaunināts",
+    "titlePlaceholder": "Ieraksta virsraksts",
+    "descPlaceholder": "Ieraksta apraksts"
   }
 }
