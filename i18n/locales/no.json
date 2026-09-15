@@ -3603,6 +3603,27 @@
     "sendingTokens": "Sender tokens",
     "queuedForSending": "I kø for sending",
     "tokenTransferFailed": "Tokenoverføring mislyktes",
-    "notSentYet": "Ikke sendt ennå"
+    "notSentYet": "Ikke sendt ennå",
+    "topUp": "Fyll på",
+    "selectCurrency": "Velg valuta",
+    "chooseCurrency": "Velg en valuta",
+    "currentPrice": "Gjeldende {{symbol}}-pris",
+    "walletAddress": "Lommebokadresse",
+    "selectChain": "Velg kjede",
+    "chooseChain": "Velg en kjede",
+    "confirmPurchase": "Bekreft kjøp",
+    "amountIn": "{{currency}}-beløp",
+    "approxReceive": "Mottar ca. {{symbol}}",
+    "iAcceptThe": "Jeg godtar",
+    "termsOfService": "Vilkår for tjenesten",
+    "invalidAmountGtZero": "Skriv inn et gyldig beløp større enn 0.",
+    "enterValidAmount": "Skriv inn et gyldig beløp",
+    "noSupply": "Kjøp er ikke mulig — ingen {{symbol}}-beholdning på denne kjeden.",
+    "insufficientSupply": "Utilstrekkelig {{symbol}}-beholdning: bare {{available}} på denne kjeden.",
+    "connectWallet": "Koble til lommeboken",
+    "acceptTermsFirst": "Godta vilkårene for tjenesten",
+    "redirecting": "Omdirigerer til betaling…",
+    "openingCheckout": "Åpner betaling…",
+    "checkoutUnavailable": "Betalingslenken er ikke tilgjengelig. Prøv igjen."
   }
 }

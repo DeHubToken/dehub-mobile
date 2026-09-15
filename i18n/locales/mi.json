@@ -3598,6 +3598,27 @@
     "sendingTokens": "Kei te tuku tohu",
     "queuedForSending": "Kei te rārangi tatari kia tukuna",
     "tokenTransferFailed": "I rahu te whakawhiti tohu",
-    "notSentYet": "Kāore anō kia tukuna"
+    "notSentYet": "Kāore anō kia tukuna",
+    "topUp": "Whakakī",
+    "selectCurrency": "Kōwhiria te moni",
+    "chooseCurrency": "Kōwhiria tētahi moni",
+    "currentPrice": "Utu {{symbol}} o nāianei",
+    "walletAddress": "Wāhitau pūkoro",
+    "selectChain": "Kōwhiria te mekameka",
+    "chooseChain": "Kōwhiria tētahi mekameka",
+    "confirmPurchase": "Whakaū i te hoko",
+    "amountIn": "Rahinga {{currency}}",
+    "approxReceive": "Ka whiwhi tata ki {{symbol}}",
+    "iAcceptThe": "Ka whakaae au ki",
+    "termsOfService": "Ngā Tikanga Ratonga",
+    "invalidAmountGtZero": "Whakaurua he moni whaimana nui ake i te 0.",
+    "enterValidAmount": "Whakaurua he moni whaimana",
+    "noSupply": "Kāore e taea te hoko — kāore he {{symbol}} i tēnei mekameka.",
+    "insufficientSupply": "Kāore e ranea te {{symbol}}: {{available}} anake kei tēnei mekameka.",
+    "connectWallet": "Tēnā honoa te pūkoro",
+    "acceptTermsFirst": "Tēnā whakaae ki ngā tikanga ratonga",
+    "redirecting": "Kei te ahu ki te utu…",
+    "openingCheckout": "Kei te whakatuwhera i te utu…",
+    "checkoutUnavailable": "Kāore e wātea te hononga utu. Ngana anō."
   }
 }

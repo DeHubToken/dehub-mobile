@@ -3613,6 +3613,27 @@
     "sendingTokens": "Slanje tokena",
     "queuedForSending": "U redu za slanje",
     "tokenTransferFailed": "Prijenos tokena nije uspio",
-    "notSentYet": "Još nije poslano"
+    "notSentYet": "Još nije poslano",
+    "topUp": "Nadopuna",
+    "selectCurrency": "Odaberi valutu",
+    "chooseCurrency": "Odaberite valutu",
+    "currentPrice": "Trenutna cijena {{symbol}}",
+    "walletAddress": "Adresa novčanika",
+    "selectChain": "Odaberi lanac",
+    "chooseChain": "Odaberite lanac",
+    "confirmPurchase": "Potvrdi kupnju",
+    "amountIn": "Iznos u {{currency}}",
+    "approxReceive": "Primit ćete otprilike {{symbol}}",
+    "iAcceptThe": "Prihvaćam",
+    "termsOfService": "Uvjeti pružanja usluge",
+    "invalidAmountGtZero": "Unesite valjani iznos veći od 0.",
+    "enterValidAmount": "Unesite valjani iznos",
+    "noSupply": "Kupnja nije dostupna — nema zalihe {{symbol}} na ovom lancu.",
+    "insufficientSupply": "Nedovoljna zaliha {{symbol}}: na ovom lancu dostupno je samo {{available}}.",
+    "connectWallet": "Povežite novčanik",
+    "acceptTermsFirst": "Prihvatite uvjete pružanja usluge",
+    "redirecting": "Preusmjeravanje na naplatu…",
+    "openingCheckout": "Otvaranje naplate…",
+    "checkoutUnavailable": "Poveznica za plaćanje nije dostupna. Pokušajte ponovno."
   }
 }

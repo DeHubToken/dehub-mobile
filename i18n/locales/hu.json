@@ -3617,6 +3617,27 @@
     "sendingTokens": "Tokenek küldése",
     "queuedForSending": "Küldési sorban",
     "tokenTransferFailed": "A tokenátutalás nem sikerült",
-    "notSentYet": "Még nincs elküldve"
+    "notSentYet": "Még nincs elküldve",
+    "topUp": "Feltöltés",
+    "selectCurrency": "Válassz pénznemet",
+    "chooseCurrency": "Válassz egy pénznemet",
+    "currentPrice": "Aktuális {{symbol}} ár",
+    "walletAddress": "Tárcacím",
+    "selectChain": "Válassz láncot",
+    "chooseChain": "Válassz egy láncot",
+    "confirmPurchase": "Vásárlás megerősítése",
+    "amountIn": "{{currency}} összeg",
+    "approxReceive": "Körülbelül ennyit kapsz: {{symbol}}",
+    "iAcceptThe": "Elfogadom a",
+    "termsOfService": "Szolgáltatási feltételek",
+    "invalidAmountGtZero": "Adj meg 0-nál nagyobb érvényes összeget.",
+    "enterValidAmount": "Adj meg érvényes összeget",
+    "noSupply": "A vásárlás nem lehetséges — nincs {{symbol}}-készlet ezen a láncon.",
+    "insufficientSupply": "Nincs elég {{symbol}}: ezen a láncon csak {{available}} érhető el.",
+    "connectWallet": "Csatlakoztasd a tárcát",
+    "acceptTermsFirst": "Fogadd el a szolgáltatási feltételeket",
+    "redirecting": "Átirányítás a pénztárhoz…",
+    "openingCheckout": "Pénztár megnyitása…",
+    "checkoutUnavailable": "A fizetési link nem érhető el. Próbáld újra."
   }
 }

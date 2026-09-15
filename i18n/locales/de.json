@@ -3682,6 +3682,27 @@
     "sendingTokens": "Token werden gesendet",
     "queuedForSending": "In der Warteschlange zum Senden",
     "tokenTransferFailed": "Token-Übertragung fehlgeschlagen",
-    "notSentYet": "Noch nicht gesendet"
+    "notSentYet": "Noch nicht gesendet",
+    "topUp": "Aufladen",
+    "selectCurrency": "Währung wählen",
+    "chooseCurrency": "Währung auswählen",
+    "currentPrice": "Aktueller {{symbol}}-Preis",
+    "walletAddress": "Wallet-Adresse",
+    "selectChain": "Chain wählen",
+    "chooseChain": "Chain auswählen",
+    "confirmPurchase": "Kauf bestätigen",
+    "amountIn": "{{currency}}-Betrag",
+    "approxReceive": "Ungefährer Erhalt {{symbol}}",
+    "iAcceptThe": "Ich akzeptiere die",
+    "termsOfService": "Nutzungsbedingungen",
+    "invalidAmountGtZero": "Gib einen gültigen Betrag größer als 0 ein.",
+    "enterValidAmount": "Gib einen gültigen Betrag ein",
+    "noSupply": "Kauf nicht möglich — kein {{symbol}}-Bestand auf dieser Chain.",
+    "insufficientSupply": "Nicht genug {{symbol}}: nur {{available}} auf dieser Chain verfügbar.",
+    "connectWallet": "Bitte verbinde deine Wallet",
+    "acceptTermsFirst": "Bitte akzeptiere die Nutzungsbedingungen",
+    "redirecting": "Weiterleitung zur Kasse…",
+    "openingCheckout": "Kasse wird geöffnet…",
+    "checkoutUnavailable": "Zahlungslink nicht verfügbar. Bitte versuche es erneut."
   }
 }

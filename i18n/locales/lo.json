@@ -3571,6 +3571,27 @@
     "sendingTokens": "ກຳລັງສົ່ງໂທເຄັນ",
     "queuedForSending": "ຢູ່ໃນຄິວເພື່ອສົ່ງ",
     "tokenTransferFailed": "ການໂອນໂທເຄັນລົ້ມເຫຼວ",
-    "notSentYet": "ຍັງບໍ່ໄດ້ສົ່ງ"
+    "notSentYet": "ຍັງບໍ່ໄດ້ສົ່ງ",
+    "topUp": "ເຕີມເງິນ",
+    "selectCurrency": "ເລືອກສະກຸນເງິນ",
+    "chooseCurrency": "ເລືອກສະກຸນເງິນໜຶ່ງ",
+    "currentPrice": "ລາຄາ {{symbol}} ປັດຈຸບັນ",
+    "walletAddress": "ທີ່ຢູ່ກະເປົາ",
+    "selectChain": "ເລືອກເຊນ",
+    "chooseChain": "ເລືອກເຊນໜຶ່ງ",
+    "confirmPurchase": "ຢືນຢັນການຊື້",
+    "amountIn": "ຈຳນວນ {{currency}}",
+    "approxReceive": "ຈະໄດ້ຮັບປະມານ {{symbol}}",
+    "iAcceptThe": "ຂ້ອຍຍອມຮັບ",
+    "termsOfService": "ເງື່ອນໄຂການໃຫ້ບໍລິການ",
+    "invalidAmountGtZero": "ປ້ອນຈຳນວນທີ່ຖືກຕ້ອງຫຼາຍກວ່າ 0.",
+    "enterValidAmount": "ປ້ອນຈຳນວນທີ່ຖືກຕ້ອງ",
+    "noSupply": "ຊື້ບໍ່ໄດ້ — ບໍ່ມີ {{symbol}} ໃນເຊນນີ້.",
+    "insufficientSupply": "{{symbol}} ບໍ່ພໍ: ມີພຽງ {{available}} ໃນເຊນນີ້.",
+    "connectWallet": "ກະລຸນາເຊື່ອມຕໍ່ກະເປົາ",
+    "acceptTermsFirst": "ກະລຸນາຍອມຮັບເງື່ອນໄຂການໃຫ້ບໍລິການ",
+    "redirecting": "ກຳລັງໄປຫາໜ້າຊຳລະເງິນ…",
+    "openingCheckout": "ກຳລັງເປີດໜ້າຊຳລະເງິນ…",
+    "checkoutUnavailable": "ລິ້ງຊຳລະເງິນບໍ່ພ້ອມໃຊ້. ລອງໃໝ່."
   }
 }

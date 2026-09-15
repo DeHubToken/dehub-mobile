@@ -3591,6 +3591,27 @@
     "sendingTokens": "Фиристодани токенҳо",
     "queuedForSending": "Дар навбат барои фиристодан",
     "tokenTransferFailed": "Интиқоли токен ноком шуд",
-    "notSentYet": "Ҳанӯз фиристода нашудааст"
+    "notSentYet": "Ҳанӯз фиристода нашудааст",
+    "topUp": "Пуркунӣ",
+    "selectCurrency": "Асъорро интихоб кунед",
+    "chooseCurrency": "Асъоре интихоб кунед",
+    "currentPrice": "Нархи ҷории {{symbol}}",
+    "walletAddress": "Суроғаи ҳамён",
+    "selectChain": "Занҷирро интихоб кунед",
+    "chooseChain": "Занҷире интихоб кунед",
+    "confirmPurchase": "Тасдиқи харид",
+    "amountIn": "Маблағи {{currency}}",
+    "approxReceive": "Тақрибан мегиред {{symbol}}",
+    "iAcceptThe": "Ман қабул мекунам",
+    "termsOfService": "Шартҳои хидматрасонӣ",
+    "invalidAmountGtZero": "Маблағи дурусти аз 0 зиёдро ворид кунед.",
+    "enterValidAmount": "Маблағи дурустро ворид кунед",
+    "noSupply": "Харид имконнопазир — дар ин занҷир захираи {{symbol}} нест.",
+    "insufficientSupply": "Захираи {{symbol}} кофӣ нест: дар ин занҷир танҳо {{available}} мавҷуд аст.",
+    "connectWallet": "Лутфан ҳамёнро пайваст кунед",
+    "acceptTermsFirst": "Лутфан шартҳои хидматрасониро қабул кунед",
+    "redirecting": "Интиқол ба пардохт…",
+    "openingCheckout": "Кушодани пардохт…",
+    "checkoutUnavailable": "Пайванди пардохт дастрас нест. Дубора кӯшиш кунед."
   }
 }

@@ -3683,6 +3683,27 @@
     "sendingTokens": "Sending tokens",
     "queuedForSending": "Queued for sending",
     "tokenTransferFailed": "Token transfer failed",
-    "notSentYet": "Not sent yet"
+    "notSentYet": "Not sent yet",
+    "topUp": "Top Up",
+    "selectCurrency": "Select Currency",
+    "chooseCurrency": "Choose currency",
+    "currentPrice": "Current {{symbol}} Price",
+    "walletAddress": "Wallet Address",
+    "selectChain": "Select Chain",
+    "chooseChain": "Choose chain",
+    "confirmPurchase": "Confirm Purchase",
+    "amountIn": "{{currency}} Amount",
+    "approxReceive": "Approx Receive {{symbol}}",
+    "iAcceptThe": "I accept the",
+    "termsOfService": "Terms and Service",
+    "invalidAmountGtZero": "Enter a valid amount greater than 0.",
+    "enterValidAmount": "Enter a valid amount",
+    "noSupply": "Purchase unavailable — no {{symbol}} supply on this chain.",
+    "insufficientSupply": "Insufficient {{symbol}} supply: only {{available}} available on this chain.",
+    "connectWallet": "Please connect to Wallet",
+    "acceptTermsFirst": "Please accept the Terms and Service",
+    "redirecting": "Redirecting to checkout…",
+    "openingCheckout": "Opening checkout…",
+    "checkoutUnavailable": "Checkout link unavailable. Please try again."
   }
 }

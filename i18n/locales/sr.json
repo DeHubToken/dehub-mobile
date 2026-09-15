@@ -3378,6 +3378,27 @@
     "sendingTokens": "Слање токена",
     "queuedForSending": "У реду за слање",
     "tokenTransferFailed": "Пренос токена није успео",
-    "notSentYet": "Још није послато"
+    "notSentYet": "Још није послато",
+    "topUp": "Допуна",
+    "selectCurrency": "Изабери валуту",
+    "chooseCurrency": "Изаберите валуту",
+    "currentPrice": "Тренутна цена {{symbol}}",
+    "walletAddress": "Адреса новчаника",
+    "selectChain": "Изабери ланац",
+    "chooseChain": "Изаберите ланац",
+    "confirmPurchase": "Потврди куповину",
+    "amountIn": "Износ у {{currency}}",
+    "approxReceive": "Примићете отприлике {{symbol}}",
+    "iAcceptThe": "Прихватам",
+    "termsOfService": "Услови коришћења",
+    "invalidAmountGtZero": "Унесите важећи износ већи од 0.",
+    "enterValidAmount": "Унесите важећи износ",
+    "noSupply": "Куповина није доступна — нема залиха {{symbol}} на овом ланцу.",
+    "insufficientSupply": "Недовољна залиха {{symbol}}: на овом ланцу је доступно само {{available}}.",
+    "connectWallet": "Молимо повежите новчаник",
+    "acceptTermsFirst": "Молимо прихватите услове коришћења",
+    "redirecting": "Преусмеравање на плаћање…",
+    "openingCheckout": "Отварање плаћања…",
+    "checkoutUnavailable": "Веза за плаћање није доступна. Покушајте поново."
   }
 }

@@ -3374,6 +3374,27 @@
     "sendingTokens": "Token têne şandin",
     "queuedForSending": "Di rêzê de ji bo şandinê",
     "tokenTransferFailed": "Veguhastina tokenê bi ser neket",
-    "notSentYet": "Hîn nehatiye şandin"
+    "notSentYet": "Hîn nehatiye şandin",
+    "topUp": "Barkirin",
+    "selectCurrency": "Diravê hilbijêre",
+    "chooseCurrency": "Diravekî hilbijêre",
+    "currentPrice": "Bihaya niha ya {{symbol}}",
+    "walletAddress": "Navnîşana berîkê",
+    "selectChain": "Zincîrê hilbijêre",
+    "chooseChain": "Zincîrekî hilbijêre",
+    "confirmPurchase": "Kirînê piştrast bike",
+    "amountIn": "Mîqdara {{currency}}",
+    "approxReceive": "Nêzîkî wê bistînî {{symbol}}",
+    "iAcceptThe": "Ez qebûl dikim",
+    "termsOfService": "Mercên Xizmetê",
+    "invalidAmountGtZero": "Mîqdareke derbasdar a ji 0 mezintir binivîse.",
+    "enterValidAmount": "Mîqdareke derbasdar binivîse",
+    "noSupply": "Kirîn ne berdest e — li ser vê zincîrê {{symbol}} tune.",
+    "insufficientSupply": "{{symbol}} têrê nake: li ser vê zincîrê tenê {{available}} heye.",
+    "connectWallet": "Ji kerema xwe berîkê girêde",
+    "acceptTermsFirst": "Ji kerema xwe mercên xizmetê qebûl bike",
+    "redirecting": "Beralîkirin bo dravdanê…",
+    "openingCheckout": "Dravdan tê vekirin…",
+    "checkoutUnavailable": "Girêdana dravdanê ne berdest e. Dîsa biceribîne."
   }
 }

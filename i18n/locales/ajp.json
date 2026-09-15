@@ -3569,6 +3569,27 @@
     "sendingTokens": "عم يبعت التوكنز",
     "queuedForSending": "بالدور للإرسال",
     "tokenTransferFailed": "فشل نقل التوكن",
-    "notSentYet": "لسا ما انبعت"
+    "notSentYet": "لسا ما انبعت",
+    "topUp": "اشحن الرصيد",
+    "selectCurrency": "اختر العملة",
+    "chooseCurrency": "اختر عملة",
+    "currentPrice": "سعر {{symbol}} الحالي",
+    "walletAddress": "عنوان المحفظة",
+    "selectChain": "اختر السلسلة",
+    "chooseChain": "اختر سلسلة",
+    "confirmPurchase": "أكد الشراء",
+    "amountIn": "مبلغ {{currency}}",
+    "approxReceive": "بتستلم تقريباً {{symbol}}",
+    "iAcceptThe": "أوافق على",
+    "termsOfService": "شروط الخدمة",
+    "invalidAmountGtZero": "اكتب مبلغ صحيح أكبر من 0.",
+    "enterValidAmount": "اكتب مبلغ صحيح",
+    "noSupply": "الشراء مش متوفر — ما في رصيد {{symbol}} على هالسلسلة.",
+    "insufficientSupply": "رصيد {{symbol}} ما بيكفي: بس {{available}} متوفر على هالسلسلة.",
+    "connectWallet": "رجاءً اربط المحفظة",
+    "acceptTermsFirst": "رجاءً وافق على شروط الخدمة",
+    "redirecting": "عم يحولك للدفع…",
+    "openingCheckout": "عم يفتح صفحة الدفع…",
+    "checkoutUnavailable": "رابط الدفع مش متوفر. رجاءً جرّب مرة تانية."
   }
 }

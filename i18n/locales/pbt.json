@@ -3563,6 +3563,27 @@
     "sendingTokens": "ټوکنونه لیږل کیږي",
     "queuedForSending": "د لیږلو لپاره په کتار کې",
     "tokenTransferFailed": "د ټوکن لیږد ناکام شو",
-    "notSentYet": "لا تر اوسه نه دي لیږل شوي"
+    "notSentYet": "لا تر اوسه نه دي لیږل شوي",
+    "topUp": "ډکول",
+    "selectCurrency": "اسعار وټاکئ",
+    "chooseCurrency": "یو اسعار وټاکئ",
+    "currentPrice": "اوسنی د {{symbol}} بیه",
+    "walletAddress": "د کڅوړې پته",
+    "selectChain": "زنځیر وټاکئ",
+    "chooseChain": "یو زنځیر وټاکئ",
+    "confirmPurchase": "پیرود تایید کړئ",
+    "amountIn": "د {{currency}} اندازه",
+    "approxReceive": "نږدې به ترلاسه کړئ {{symbol}}",
+    "iAcceptThe": "زه مني",
+    "termsOfService": "د خدماتو شرایط",
+    "invalidAmountGtZero": "له 0 څخه لویه سمه اندازه ولیکئ.",
+    "enterValidAmount": "سمه اندازه ولیکئ",
+    "noSupply": "پیرود شتون نلري — په دې زنځیر کې د {{symbol}} ذخیره نشته.",
+    "insufficientSupply": "د {{symbol}} ذخیره کافي نده: په دې زنځیر کې یوازې {{available}} شتون لري.",
+    "connectWallet": "مهرباني وکړئ کڅوړه وصل کړئ",
+    "acceptTermsFirst": "مهرباني وکړئ د خدماتو شرایط ومنئ",
+    "redirecting": "تادیې ته لیږل کیږي…",
+    "openingCheckout": "تادیه پرانیستل کیږي…",
+    "checkoutUnavailable": "د تادیې لینک شتون نلري. بیا هڅه وکړئ."
   }
 }

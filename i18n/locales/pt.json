@@ -3687,6 +3687,27 @@
     "sendingTokens": "Enviando tokens",
     "queuedForSending": "Na fila para envio",
     "tokenTransferFailed": "Falha na transferência do token",
-    "notSentYet": "Ainda não enviado"
+    "notSentYet": "Ainda não enviado",
+    "topUp": "Recarregar",
+    "selectCurrency": "Escolher moeda",
+    "chooseCurrency": "Escolha uma moeda",
+    "currentPrice": "Preço atual do {{symbol}}",
+    "walletAddress": "Endereço da carteira",
+    "selectChain": "Escolher cadeia",
+    "chooseChain": "Escolha uma cadeia",
+    "confirmPurchase": "Confirmar compra",
+    "amountIn": "Valor em {{currency}}",
+    "approxReceive": "Você receberá cerca de {{symbol}}",
+    "iAcceptThe": "Eu aceito os",
+    "termsOfService": "Termos de Serviço",
+    "invalidAmountGtZero": "Digite um valor válido maior que 0.",
+    "enterValidAmount": "Digite um valor válido",
+    "noSupply": "Compra indisponível — não há oferta de {{symbol}} nesta cadeia.",
+    "insufficientSupply": "Oferta de {{symbol}} insuficiente: apenas {{available}} disponível nesta cadeia.",
+    "connectWallet": "Conecte a carteira",
+    "acceptTermsFirst": "Aceite os termos de serviço",
+    "redirecting": "Redirecionando para o pagamento…",
+    "openingCheckout": "Abrindo o pagamento…",
+    "checkoutUnavailable": "Link de pagamento indisponível. Tente novamente."
   }
 }

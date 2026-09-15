@@ -3604,6 +3604,27 @@
     "sendingTokens": "Waa la dirayaa tokens",
     "queuedForSending": "Safka dirista ku jira",
     "tokenTransferFailed": "Wareejinta token way fashilantay",
-    "notSentYet": "Weli lama dirin"
+    "notSentYet": "Weli lama dirin",
+    "topUp": "Buuxi",
+    "selectCurrency": "Dooro lacagta",
+    "chooseCurrency": "Dooro lacag",
+    "currentPrice": "Qiimaha hadda ee {{symbol}}",
+    "walletAddress": "Cinwaanka jeebka",
+    "selectChain": "Dooro silsiladda",
+    "chooseChain": "Dooro silsilad",
+    "confirmPurchase": "Xaqiiji iibka",
+    "amountIn": "Qaddarka {{currency}}",
+    "approxReceive": "Waxaad heli doontaa qiyaastii {{symbol}}",
+    "iAcceptThe": "Waan aqbalayaa",
+    "termsOfService": "Shuruudaha Adeegga",
+    "invalidAmountGtZero": "Geli qaddar sax ah oo ka weyn 0.",
+    "enterValidAmount": "Geli qaddar sax ah",
+    "noSupply": "Iibka lama heli karo — silsiladdan kuma jiro {{symbol}}.",
+    "insufficientSupply": "Sahayda {{symbol}} kuma filna: silsiladdan waxaa ku jira {{available}} oo keliya.",
+    "connectWallet": "Fadlan ku xidh jeebka",
+    "acceptTermsFirst": "Fadlan aqbal shuruudaha adeegga",
+    "redirecting": "Waa lagu wareejinayaa bixinta…",
+    "openingCheckout": "Waa la furayaa bixinta…",
+    "checkoutUnavailable": "Linkiga bixinta lama helin. Isku day mar kale."
   }
 }

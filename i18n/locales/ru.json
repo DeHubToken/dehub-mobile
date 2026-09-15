@@ -3682,6 +3682,27 @@
     "sendingTokens": "Отправка токенов",
     "queuedForSending": "В очереди на отправку",
     "tokenTransferFailed": "Перевод токена не удался",
-    "notSentYet": "Ещё не отправлено"
+    "notSentYet": "Ещё не отправлено",
+    "topUp": "Пополнение",
+    "selectCurrency": "Выберите валюту",
+    "chooseCurrency": "Выберите валюту",
+    "currentPrice": "Текущая цена {{symbol}}",
+    "walletAddress": "Адрес кошелька",
+    "selectChain": "Выберите сеть",
+    "chooseChain": "Выберите сеть",
+    "confirmPurchase": "Подтвердить покупку",
+    "amountIn": "Сумма в {{currency}}",
+    "approxReceive": "Получите примерно {{symbol}}",
+    "iAcceptThe": "Я принимаю",
+    "termsOfService": "Условия обслуживания",
+    "invalidAmountGtZero": "Введите корректную сумму больше 0.",
+    "enterValidAmount": "Введите корректную сумму",
+    "noSupply": "Покупка недоступна — на этой сети нет запаса {{symbol}}.",
+    "insufficientSupply": "Недостаточно {{symbol}}: в этой сети доступно только {{available}}.",
+    "connectWallet": "Пожалуйста, подключите кошелёк",
+    "acceptTermsFirst": "Пожалуйста, примите условия обслуживания",
+    "redirecting": "Перенаправление к оплате…",
+    "openingCheckout": "Открытие оплаты…",
+    "checkoutUnavailable": "Ссылка на оплату недоступна. Попробуйте ещё раз."
   }
 }

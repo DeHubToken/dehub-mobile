@@ -3681,6 +3681,27 @@
     "sendingTokens": "Wysyłanie tokenów",
     "queuedForSending": "W kolejce do wysłania",
     "tokenTransferFailed": "Transfer tokena nie powiódł się",
-    "notSentYet": "Jeszcze nie wysłano"
+    "notSentYet": "Jeszcze nie wysłano",
+    "topUp": "Doładowanie",
+    "selectCurrency": "Wybierz walutę",
+    "chooseCurrency": "Wybierz walutę",
+    "currentPrice": "Aktualna cena {{symbol}}",
+    "walletAddress": "Adres portfela",
+    "selectChain": "Wybierz łańcuch",
+    "chooseChain": "Wybierz łańcuch",
+    "confirmPurchase": "Potwierdź zakup",
+    "amountIn": "Kwota w {{currency}}",
+    "approxReceive": "Otrzymasz około {{symbol}}",
+    "iAcceptThe": "Akceptuję",
+    "termsOfService": "Warunki korzystania z usługi",
+    "invalidAmountGtZero": "Wpisz prawidłową kwotę większą niż 0.",
+    "enterValidAmount": "Wpisz prawidłową kwotę",
+    "noSupply": "Zakup niedostępny — brak podaży {{symbol}} w tym łańcuchu.",
+    "insufficientSupply": "Niewystarczająca podaż {{symbol}}: w tym łańcuchu dostępne tylko {{available}}.",
+    "connectWallet": "Połącz portfel",
+    "acceptTermsFirst": "Zaakceptuj warunki korzystania z usługi",
+    "redirecting": "Przekierowanie do płatności…",
+    "openingCheckout": "Otwieranie płatności…",
+    "checkoutUnavailable": "Link do płatności niedostępny. Spróbuj ponownie."
   }
 }

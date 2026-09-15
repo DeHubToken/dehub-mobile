@@ -3670,6 +3670,27 @@
     "sendingTokens": "正在发送代币",
     "queuedForSending": "已排队等待发送",
     "tokenTransferFailed": "代币转账失败",
-    "notSentYet": "尚未发送"
+    "notSentYet": "尚未发送",
+    "topUp": "充值",
+    "selectCurrency": "选择货币",
+    "chooseCurrency": "选择一种货币",
+    "currentPrice": "当前 {{symbol}} 价格",
+    "walletAddress": "钱包地址",
+    "selectChain": "选择链",
+    "chooseChain": "选择一条链",
+    "confirmPurchase": "确认购买",
+    "amountIn": "{{currency}} 金额",
+    "approxReceive": "预计收到 {{symbol}}",
+    "iAcceptThe": "我接受",
+    "termsOfService": "服务条款",
+    "invalidAmountGtZero": "请输入大于 0 的有效金额。",
+    "enterValidAmount": "请输入有效金额",
+    "noSupply": "无法购买 — 此链上没有 {{symbol}} 供应。",
+    "insufficientSupply": "{{symbol}} 供应不足：此链上仅有 {{available}}。",
+    "connectWallet": "请连接钱包",
+    "acceptTermsFirst": "请接受服务条款",
+    "redirecting": "正在跳转到结账…",
+    "openingCheckout": "正在打开结账页…",
+    "checkoutUnavailable": "结账链接不可用。请重试。"
   }
 }

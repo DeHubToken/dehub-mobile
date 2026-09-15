@@ -3606,6 +3606,27 @@
     "sendingTokens": "Токендер жөнөтүлүүдө",
     "queuedForSending": "Жөнөтүү кезегинде",
     "tokenTransferFailed": "Токенди которуу ийгиликсиз аяктады",
-    "notSentYet": "Азырынча жөнөтүлгөн жок"
+    "notSentYet": "Азырынча жөнөтүлгөн жок",
+    "topUp": "Толтуруу",
+    "selectCurrency": "Валютаны тандаңыз",
+    "chooseCurrency": "Валюта тандаңыз",
+    "currentPrice": "Учурдагы {{symbol}} баасы",
+    "walletAddress": "Капчык дареги",
+    "selectChain": "Чынжырды тандаңыз",
+    "chooseChain": "Чынжыр тандаңыз",
+    "confirmPurchase": "Сатып алууну ырастоо",
+    "amountIn": "{{currency}} суммасы",
+    "approxReceive": "Болжол менен аласыз {{symbol}}",
+    "iAcceptThe": "Мен кабыл алам",
+    "termsOfService": "Кызмат көрсөтүү шарттары",
+    "invalidAmountGtZero": "0дөн чоң жарактуу сумманы киргизиңиз.",
+    "enterValidAmount": "Жарактуу сумманы киргизиңиз",
+    "noSupply": "Сатып алуу мүмкүн эмес — бул чынжырда {{symbol}} запасы жок.",
+    "insufficientSupply": "{{symbol}} запасы жетишсиз: бул чынжырда {{available}} гана бар.",
+    "connectWallet": "Сураныч, капчыкты туташтырыңыз",
+    "acceptTermsFirst": "Кызмат көрсөтүү шарттарын кабыл алыңыз",
+    "redirecting": "Төлөмгө багыттоо…",
+    "openingCheckout": "Төлөм бети ачылууда…",
+    "checkoutUnavailable": "Төлөм шилтемеси жеткиликсиз. Кайра аракет кылыңыз."
   }
 }

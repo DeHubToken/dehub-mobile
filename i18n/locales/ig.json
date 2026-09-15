@@ -3591,6 +3591,27 @@
     "sendingTokens": "Na-eziga tokens",
     "queuedForSending": "Na kwụ n'ahịrị maka izipu",
     "tokenTransferFailed": "Nnyefe token dara",
-    "notSentYet": "Ezigabeghị ya"
+    "notSentYet": "Ezigabeghị ya",
+    "topUp": "Tinye ego",
+    "selectCurrency": "Họrọ ego",
+    "chooseCurrency": "Họrọ otu ego",
+    "currentPrice": "Ọnụahịa {{symbol}} ugbu a",
+    "walletAddress": "Adreesị obere akpa",
+    "selectChain": "Họrọ chain",
+    "chooseChain": "Họrọ otu chain",
+    "confirmPurchase": "Kwado ịzụta",
+    "amountIn": "Ego {{currency}}",
+    "approxReceive": "Ihe ị ga-enweta {{symbol}}",
+    "iAcceptThe": "Anabatara m",
+    "termsOfService": "Usoro ọrụ",
+    "invalidAmountGtZero": "Tinye ego ziri ezi karịrị 0.",
+    "enterValidAmount": "Tinye ego ziri ezi",
+    "noSupply": "Enweghị ike ịzụta — enweghị {{symbol}} na chain a.",
+    "insufficientSupply": "{{symbol}} ezughị: naanị {{available}} dị na chain a.",
+    "connectWallet": "Biko jikọọ obere akpa",
+    "acceptTermsFirst": "Biko nabata usoro ọrụ",
+    "redirecting": "Na-eduga gị na ịkwụ ụgwọ…",
+    "openingCheckout": "Na-emepe ịkwụ ụgwọ…",
+    "checkoutUnavailable": "Njikọ ịkwụ ụgwọ adịghị. Nwaa ọzọ."
   }
 }

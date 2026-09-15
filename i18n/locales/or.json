@@ -3584,6 +3584,27 @@
     "sendingTokens": "ଟୋକେନ ପଠାଯାଉଛି",
     "queuedForSending": "ପଠାଇବା ପାଇଁ ଧାଡ଼ିରେ",
     "tokenTransferFailed": "ଟୋକେନ ସ୍ଥାନାନ୍ତର ବିଫଳ",
-    "notSentYet": "ଏବେ ପଠାଯାଇନାହିଁ"
+    "notSentYet": "ଏବେ ପଠାଯାଇନାହିଁ",
+    "topUp": "ଟପ ଅପ",
+    "selectCurrency": "ମୁଦ୍ରା ବାଛନ୍ତୁ",
+    "chooseCurrency": "ଏକ ମୁଦ୍ରା ବାଛନ୍ତୁ",
+    "currentPrice": "ବର୍ତ୍ତମାନ {{symbol}} ମୂଲ୍ୟ",
+    "walletAddress": "ୱାଲେଟ ଠିକଣା",
+    "selectChain": "ଚେନ ବାଛନ୍ତୁ",
+    "chooseChain": "ଏକ ଚେନ ବାଛନ୍ତୁ",
+    "confirmPurchase": "କ୍ରୟ ନିଶ୍ଚିତ କରନ୍ତୁ",
+    "amountIn": "{{currency}} ପରିମାଣ",
+    "approxReceive": "ପ୍ରାୟ ପାଇବେ {{symbol}}",
+    "iAcceptThe": "ମୁଁ ଗ୍ରହଣ କରୁଛି",
+    "termsOfService": "ସେବା ସର୍ତ୍ତାବଳୀ",
+    "invalidAmountGtZero": "0 ଠାରୁ ଅଧିକ ବୈଧ ପରିମାଣ ଦିଅନ୍ତୁ।",
+    "enterValidAmount": "ବୈଧ ପରିମାଣ ଦିଅନ୍ତୁ",
+    "noSupply": "କ୍ରୟ ଉପଲବ୍ଧ ନାହିଁ — ଏହି ଚେନରେ {{symbol}} ଯୋଗାଣ ନାହିଁ।",
+    "insufficientSupply": "{{symbol}} ଯୋଗାଣ ଯଥେଷ୍ଟ ନୁହେଁ: ଏହି ଚେନରେ କେବଳ {{available}} ଅଛି।",
+    "connectWallet": "ଦୟାକରି ୱାଲେଟ ଯୋଡ଼ନ୍ତୁ",
+    "acceptTermsFirst": "ଦୟାକରି ସେବା ସର୍ତ୍ତାବଳୀ ଗ୍ରହଣ କରନ୍ତୁ",
+    "redirecting": "ଚେକଆଉଟକୁ ନେଉଛି…",
+    "openingCheckout": "ଚେକଆଉଟ ଖୋଲାଯାଉଛି…",
+    "checkoutUnavailable": "ଚେକଆଉଟ ଲିଙ୍କ ଉପଲବ୍ଧ ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।"
   }
 }
