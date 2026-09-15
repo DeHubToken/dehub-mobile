@@ -3679,7 +3679,6 @@
     "noTxHash": "Die beursie het nie 'n transaksiehasj teruggegee nie",
     "finishing": "Rond af…",
     "confirmTitle": "Bevestig intekening",
-    "subscribeToFor": "Teken in op {{name}} vir {{price}}",
     "youPay": "Jy betaal {{amount}}",
     "calculating": "Bereken die totaal…",
     "creatorReceives": "Die skepper ontvang {{amount}} USDT krediet",
@@ -3688,7 +3687,8 @@
     "notAvailableYet": "Nog nie beskikbaar nie",
     "subscribe": "Teken in",
     "subscriberCount_one": "{{count}} intekenaar",
-    "subscriberCount_other": "{{count}} intekenaars"
+    "subscriberCount_other": "{{count}} intekenaars",
+    "subscribeToForRich": "Teken in op <name>{{name}}</name> vir <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Nie gestel nie",
@@ -3741,8 +3741,6 @@
     "confirmPurchase": "Bevestig aankoop",
     "amountIn": "{{currency}}-bedrag",
     "approxReceive": "Ontvang ongeveer {{symbol}}",
-    "iAcceptThe": "Ek aanvaar die",
-    "termsOfService": "Diensvoorwaardes",
     "invalidAmountGtZero": "Voer 'n geldige bedrag groter as 0 in.",
     "enterValidAmount": "Voer 'n geldige bedrag in",
     "noSupply": "Aankoop nie beskikbaar nie — geen {{symbol}}-voorraad op hierdie ketting nie.",
@@ -3751,6 +3749,7 @@
     "acceptTermsFirst": "Aanvaar asseblief die diensvoorwaardes",
     "redirecting": "Herlei na betaling…",
     "openingCheckout": "Maak betaling oop…",
-    "checkoutUnavailable": "Betaalskakel nie beskikbaar nie. Probeer asseblief weer."
+    "checkoutUnavailable": "Betaalskakel nie beskikbaar nie. Probeer asseblief weer.",
+    "acceptTerms": "Ek aanvaar die <terms>Diensvoorwaardes</terms>"
   }
 }

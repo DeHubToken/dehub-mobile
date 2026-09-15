@@ -3555,7 +3555,6 @@
     "noTxHash": "Դրամապանակը չվերադարձրեց գործարքի հեշ",
     "finishing": "Ավարտվում է…",
     "confirmTitle": "Հաստատել բաժանորդագրությունը",
-    "subscribeToFor": "Բաժանորդագրվեք {{name}}-ին {{price}}-ով",
     "youPay": "Դուք վճարում եք {{amount}}",
     "calculating": "Ընդհանուր գումարի հաշվարկ…",
     "creatorReceives": "Հեղինակը ստանում է {{amount}} USDT կրեդիտ",
@@ -3564,7 +3563,8 @@
     "notAvailableYet": "Դեռ հասանելի չէ",
     "subscribe": "Բաժանորդագրվել",
     "subscriberCount_one": "{{count}} բաժանորդ",
-    "subscriberCount_other": "{{count}} բաժանորդ"
+    "subscriberCount_other": "{{count}} բաժանորդ",
+    "subscribeToForRich": "Բաժանորդագրվեք <name>{{name}}</name>-ին <price>{{price}}</price>-ով"
   },
   "live": {
     "notSet": "Սահմանված չէ",
@@ -3617,8 +3617,6 @@
     "confirmPurchase": "Հաստատել գնումը",
     "amountIn": "{{currency}} գումար",
     "approxReceive": "Կստանաք մոտավորապես {{symbol}}",
-    "iAcceptThe": "Ես ընդունում եմ",
-    "termsOfService": "Ծառայության պայմաններ",
     "invalidAmountGtZero": "Մուտքագրեք 0-ից մեծ վավեր գումար։",
     "enterValidAmount": "Մուտքագրեք վավեր գումար",
     "noSupply": "Գնումն անհասանելի է — այս շղթայում {{symbol}} պաշար չկա։",
@@ -3627,6 +3625,7 @@
     "acceptTermsFirst": "Խնդրում ենք ընդունել ծառայության պայմանները",
     "redirecting": "Վերահղում վճարման էջ…",
     "openingCheckout": "Վճարման էջի բացում…",
-    "checkoutUnavailable": "Վճարման հղումն անհասանելի է։ Փորձեք կրկին։"
+    "checkoutUnavailable": "Վճարման հղումն անհասանելի է։ Փորձեք կրկին։",
+    "acceptTerms": "Ես ընդունում եմ <terms>Ծառայության պայմաններ</terms>"
   }
 }

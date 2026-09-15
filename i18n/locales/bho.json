@@ -3512,7 +3512,6 @@
     "noTxHash": "वॉलेट लेनदेन के हैश ना लौटवलस",
     "finishing": "पूरा हो रहल बा…",
     "confirmTitle": "सब्सक्रिप्शन पक्का करीं",
-    "subscribeToFor": "{{price}} में {{name}} के सब्सक्राइब करीं",
     "youPay": "रउरा {{amount}} देब",
     "calculating": "कुल जोड़ल जा रहल बा…",
     "creatorReceives": "क्रिएटर के {{amount}} USDT क्रेडिट मिलेला",
@@ -3521,7 +3520,8 @@
     "notAvailableYet": "अबहीं उपलब्ध नइखे",
     "subscribe": "सब्सक्राइब करीं",
     "subscriberCount_one": "{{count}} सब्सक्राइबर",
-    "subscriberCount_other": "{{count}} सब्सक्राइबर"
+    "subscriberCount_other": "{{count}} सब्सक्राइबर",
+    "subscribeToForRich": "<price>{{price}}</price> में <name>{{name}}</name> के सब्सक्राइब करीं"
   },
   "live": {
     "notSet": "सेट नइखे",
@@ -3574,8 +3574,6 @@
     "confirmPurchase": "खरीद पक्का करीं",
     "amountIn": "{{currency}} रकम",
     "approxReceive": "लगभग {{symbol}} मिली",
-    "iAcceptThe": "हम स्वीकार करत बानी",
-    "termsOfService": "सेवा के शर्त",
     "invalidAmountGtZero": "0 से बड़ सही रकम डालीं।",
     "enterValidAmount": "सही रकम डालीं",
     "noSupply": "खरीद उपलब्ध नइखे — ई चेन पर {{symbol}} के आपूर्ति नइखे।",
@@ -3584,6 +3582,7 @@
     "acceptTermsFirst": "कृपया सेवा के शर्त स्वीकार करीं",
     "redirecting": "भुगतान पर भेजल जा रहल बा…",
     "openingCheckout": "भुगतान पन्ना खुलत बा…",
-    "checkoutUnavailable": "भुगतान लिंक उपलब्ध नइखे। कृपया फेर कोशिश करीं।"
+    "checkoutUnavailable": "भुगतान लिंक उपलब्ध नइखे। कृपया फेर कोशिश करीं।",
+    "acceptTerms": "हम स्वीकार करत बानी <terms>सेवा के शर्त</terms>"
   }
 }

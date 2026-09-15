@@ -3562,7 +3562,6 @@
     "noTxHash": "Портфейлът не върна хеш на транзакцията",
     "finishing": "Приключване…",
     "confirmTitle": "Потвърди абонамента",
-    "subscribeToFor": "Абонирай се за {{name}} срещу {{price}}",
     "youPay": "Плащаш {{amount}}",
     "calculating": "Изчисляване на общата сума…",
     "creatorReceives": "Създателят получава {{amount}} USDT кредит",
@@ -3571,7 +3570,8 @@
     "notAvailableYet": "Още не е достъпно",
     "subscribe": "Абонирай се",
     "subscriberCount_one": "{{count}} абонат",
-    "subscriberCount_other": "{{count}} абоната"
+    "subscriberCount_other": "{{count}} абоната",
+    "subscribeToForRich": "Абонирай се за <name>{{name}}</name> срещу <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Не е зададено",
@@ -3624,8 +3624,6 @@
     "confirmPurchase": "Потвърди покупката",
     "amountIn": "Сума в {{currency}}",
     "approxReceive": "Ще получиш приблизително {{symbol}}",
-    "iAcceptThe": "Приемам",
-    "termsOfService": "Условия за ползване",
     "invalidAmountGtZero": "Въведи валидна сума над 0.",
     "enterValidAmount": "Въведи валидна сума",
     "noSupply": "Покупката е невъзможна — няма наличност от {{symbol}} в тази верига.",
@@ -3634,6 +3632,7 @@
     "acceptTermsFirst": "Моля, приеми условията за ползване",
     "redirecting": "Пренасочване към плащане…",
     "openingCheckout": "Отваряне на плащането…",
-    "checkoutUnavailable": "Връзката за плащане не е достъпна. Опитай отново."
+    "checkoutUnavailable": "Връзката за плащане не е достъпна. Опитай отново.",
+    "acceptTerms": "Приемам <terms>Условия за ползване</terms>"
   }
 }

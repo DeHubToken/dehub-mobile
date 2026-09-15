@@ -3556,7 +3556,6 @@
     "noTxHash": "వాలెట్ లావాదేవీ హాష్‌ను తిరిగి ఇవ్వలేదు",
     "finishing": "పూర్తవుతోంది…",
     "confirmTitle": "సభ్యత్వాన్ని నిర్ధారించండి",
-    "subscribeToFor": "{{price}} కి {{name}} సభ్యత్వం పొందండి",
     "youPay": "మీరు {{amount}} చెల్లిస్తారు",
     "calculating": "మొత్తం లెక్కిస్తోంది…",
     "creatorReceives": "సృష్టికర్తకు {{amount}} USDT క్రెడిట్ లభిస్తుంది",
@@ -3565,7 +3564,8 @@
     "notAvailableYet": "ఇంకా అందుబాటులో లేదు",
     "subscribe": "సభ్యత్వం పొందండి",
     "subscriberCount_one": "{{count}} సభ్యుడు",
-    "subscriberCount_other": "{{count}} సభ్యులు"
+    "subscriberCount_other": "{{count}} సభ్యులు",
+    "subscribeToForRich": "<price>{{price}}</price> కి <name>{{name}}</name> సభ్యత్వం పొందండి"
   },
   "live": {
     "notSet": "సెట్ చేయలేదు",
@@ -3618,8 +3618,6 @@
     "confirmPurchase": "కొనుగోలు నిర్ధారించండి",
     "amountIn": "{{currency}} మొత్తం",
     "approxReceive": "సుమారుగా పొందుతారు {{symbol}}",
-    "iAcceptThe": "నేను అంగీకరిస్తున్నాను",
-    "termsOfService": "సేవా నిబంధనలు",
     "invalidAmountGtZero": "0 కంటే ఎక్కువ చెల్లుబాటు అయ్యే మొత్తం నమోదు చేయండి.",
     "enterValidAmount": "చెల్లుబాటు అయ్యే మొత్తం నమోదు చేయండి",
     "noSupply": "కొనుగోలు అందుబాటులో లేదు — ఈ చైన్‌లో {{symbol}} సరఫరా లేదు.",
@@ -3628,6 +3626,7 @@
     "acceptTermsFirst": "దయచేసి సేవా నిబంధనలను అంగీకరించండి",
     "redirecting": "చెక్‌అవుట్‌కు తీసుకెళ్తోంది…",
     "openingCheckout": "చెక్‌అవుట్ తెరుస్తోంది…",
-    "checkoutUnavailable": "చెక్‌అవుట్ లింక్ అందుబాటులో లేదు. మళ్లీ ప్రయత్నించండి."
+    "checkoutUnavailable": "చెక్‌అవుట్ లింక్ అందుబాటులో లేదు. మళ్లీ ప్రయత్నించండి.",
+    "acceptTerms": "నేను అంగీకరిస్తున్నాను <terms>సేవా నిబంధనలు</terms>"
   }
 }

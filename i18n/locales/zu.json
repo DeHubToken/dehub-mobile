@@ -3591,7 +3591,6 @@
     "noTxHash": "Isikhwama asibuyiselanga i-hash yokuthengiselana",
     "finishing": "Iyaqeda…",
     "confirmTitle": "Qinisekisa ukubhalisa",
-    "subscribeToFor": "Bhalisela {{name}} nge-{{price}}",
     "youPay": "Ukhokha {{amount}}",
     "calculating": "Ibala inani eliphelele…",
     "creatorReceives": "Umdali uthola isikweletu se-{{amount}} USDT",
@@ -3600,7 +3599,8 @@
     "notAvailableYet": "Akukatholakali okwamanje",
     "subscribe": "Bhalisa",
     "subscriberCount_one": "Umbhalisi ongu-{{count}}",
-    "subscriberCount_other": "Ababhalisi abangu-{{count}}"
+    "subscriberCount_other": "Ababhalisi abangu-{{count}}",
+    "subscribeToForRich": "Bhalisela <name>{{name}}</name> nge-<price>{{price}}</price>"
   },
   "live": {
     "notSet": "Akuzange kusethwe",
@@ -3653,8 +3653,6 @@
     "confirmPurchase": "Qinisekisa ukuthenga",
     "amountIn": "Inani le-{{currency}}",
     "approxReceive": "Cishe uzothola {{symbol}}",
-    "iAcceptThe": "Ngiyayamukela",
-    "termsOfService": "Imigomo Yesevisi",
     "invalidAmountGtZero": "Faka inani elivumelekile elingaphezu kuka-0.",
     "enterValidAmount": "Faka inani elivumelekile",
     "noSupply": "Ukuthenga akutholakali — ayikho i-{{symbol}} kulesi shini.",
@@ -3663,6 +3661,7 @@
     "acceptTermsFirst": "Sicela wamukele imigomo yesevisi",
     "redirecting": "Iqondisa ekukhokheni…",
     "openingCheckout": "Ivula ukukhokha…",
-    "checkoutUnavailable": "Isixhumanisi sokukhokha asitholakali. Zama futhi."
+    "checkoutUnavailable": "Isixhumanisi sokukhokha asitholakali. Zama futhi.",
+    "acceptTerms": "Ngiyayamukela <terms>Imigomo Yesevisi</terms>"
   }
 }

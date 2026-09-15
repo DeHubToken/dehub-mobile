@@ -3575,7 +3575,6 @@
     "noTxHash": "Portofelul nu a returnat un hash de tranzacție",
     "finishing": "Se finalizează…",
     "confirmTitle": "Confirmă abonamentul",
-    "subscribeToFor": "Abonează-te la {{name}} pentru {{price}}",
     "youPay": "Plătești {{amount}}",
     "calculating": "Se calculează totalul…",
     "creatorReceives": "Creatorul primește credit de {{amount}} USDT",
@@ -3584,7 +3583,8 @@
     "notAvailableYet": "Încă nu este disponibil",
     "subscribe": "Abonează-te",
     "subscriberCount_one": "{{count}} abonat",
-    "subscriberCount_other": "{{count}} abonați"
+    "subscriberCount_other": "{{count}} abonați",
+    "subscribeToForRich": "Abonează-te la <name>{{name}}</name> pentru <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Nesetat",
@@ -3637,8 +3637,6 @@
     "confirmPurchase": "Confirmă achiziția",
     "amountIn": "Sumă în {{currency}}",
     "approxReceive": "Vei primi aproximativ {{symbol}}",
-    "iAcceptThe": "Accept",
-    "termsOfService": "Termenii serviciului",
     "invalidAmountGtZero": "Introdu o sumă validă mai mare decât 0.",
     "enterValidAmount": "Introdu o sumă validă",
     "noSupply": "Achiziția nu este disponibilă — nu există stoc {{symbol}} pe acest lanț.",
@@ -3647,6 +3645,7 @@
     "acceptTermsFirst": "Te rugăm să accepți termenii serviciului",
     "redirecting": "Se redirecționează către plată…",
     "openingCheckout": "Se deschide plata…",
-    "checkoutUnavailable": "Linkul de plată nu este disponibil. Încearcă din nou."
+    "checkoutUnavailable": "Linkul de plată nu este disponibil. Încearcă din nou.",
+    "acceptTerms": "Accept <terms>Termenii serviciului</terms>"
   }
 }

@@ -3730,7 +3730,6 @@
     "noTxHash": "Peňaženka nevrátila hash transakcie",
     "finishing": "Dokončuje sa…",
     "confirmTitle": "Potvrdiť predplatné",
-    "subscribeToFor": "Predplaťte si {{name}} za {{price}}",
     "youPay": "Zaplatíte {{amount}}",
     "calculating": "Počíta sa celková suma…",
     "creatorReceives": "Tvorca dostane kredit {{amount}} USDT",
@@ -3739,7 +3738,8 @@
     "notAvailableYet": "Zatiaľ nedostupné",
     "subscribe": "Odoberať",
     "subscriberCount_one": "{{count}} odberateľ",
-    "subscriberCount_other": "{{count}} odberateľov"
+    "subscriberCount_other": "{{count}} odberateľov",
+    "subscribeToForRich": "Predplaťte si <name>{{name}}</name> za <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Nenastavené",
@@ -3792,8 +3792,6 @@
     "confirmPurchase": "Potvrdiť nákup",
     "amountIn": "Suma v {{currency}}",
     "approxReceive": "Približne dostanete {{symbol}}",
-    "iAcceptThe": "Súhlasím s",
-    "termsOfService": "Podmienky služby",
     "invalidAmountGtZero": "Zadajte platnú sumu väčšiu ako 0.",
     "enterValidAmount": "Zadajte platnú sumu",
     "noSupply": "Nákup nie je možný — na tomto reťazci nie je zásoba {{symbol}}.",
@@ -3802,6 +3800,7 @@
     "acceptTermsFirst": "Prijmite prosím podmienky služby",
     "redirecting": "Presmerovanie na platbu…",
     "openingCheckout": "Otvára sa platba…",
-    "checkoutUnavailable": "Odkaz na platbu nie je dostupný. Skúste znova."
+    "checkoutUnavailable": "Odkaz na platbu nie je dostupný. Skúste znova.",
+    "acceptTerms": "Súhlasím s <terms>Podmienky služby</terms>"
   }
 }

@@ -3632,7 +3632,6 @@
     "noTxHash": "The wallet did not return a transaction hash",
     "finishing": "Finishing up…",
     "confirmTitle": "Confirm Subscription",
-    "subscribeToFor": "Subscribe to {{name}} for {{price}}",
     "youPay": "You pay {{amount}}",
     "calculating": "Calculating the total…",
     "creatorReceives": "Creator receives {{amount}} USDT credit",
@@ -3641,7 +3640,8 @@
     "notAvailableYet": "Not available yet",
     "subscribe": "Subscribe",
     "subscriberCount_one": "{{count}} subscriber",
-    "subscriberCount_other": "{{count}} subscribers"
+    "subscriberCount_other": "{{count}} subscribers",
+    "subscribeToForRich": "Subscribe to <name>{{name}}</name> for <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Not set",
@@ -3694,8 +3694,6 @@
     "confirmPurchase": "Confirm Purchase",
     "amountIn": "{{currency}} Amount",
     "approxReceive": "Approx Receive {{symbol}}",
-    "iAcceptThe": "I accept the",
-    "termsOfService": "Terms and Service",
     "invalidAmountGtZero": "Enter a valid amount greater than 0.",
     "enterValidAmount": "Enter a valid amount",
     "noSupply": "Purchase unavailable — no {{symbol}} supply on this chain.",
@@ -3704,6 +3702,7 @@
     "acceptTermsFirst": "Please accept the Terms and Service",
     "redirecting": "Redirecting to checkout…",
     "openingCheckout": "Opening checkout…",
-    "checkoutUnavailable": "Checkout link unavailable. Please try again."
+    "checkoutUnavailable": "Checkout link unavailable. Please try again.",
+    "acceptTerms": "I accept the <terms>Terms and Service</terms>"
   }
 }

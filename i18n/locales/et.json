@@ -3561,7 +3561,6 @@
     "noTxHash": "Rahakott ei tagastanud tehingu räsi",
     "finishing": "Lõpetamine…",
     "confirmTitle": "Kinnita tellimus",
-    "subscribeToFor": "Telli {{name}} hinnaga {{price}}",
     "youPay": "Sa maksad {{amount}}",
     "calculating": "Kogusumma arvutamine…",
     "creatorReceives": "Looja saab {{amount}} USDT krediiti",
@@ -3570,7 +3569,8 @@
     "notAvailableYet": "Pole veel saadaval",
     "subscribe": "Telli",
     "subscriberCount_one": "{{count}} tellija",
-    "subscriberCount_other": "{{count}} tellijat"
+    "subscriberCount_other": "{{count}} tellijat",
+    "subscribeToForRich": "Telli <name>{{name}}</name> hinnaga <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Määramata",
@@ -3623,8 +3623,6 @@
     "confirmPurchase": "Kinnita ost",
     "amountIn": "{{currency}} summa",
     "approxReceive": "Saad ligikaudu {{symbol}}",
-    "iAcceptThe": "Nõustun",
-    "termsOfService": "Teenusetingimused",
     "invalidAmountGtZero": "Sisesta kehtiv summa, mis on suurem kui 0.",
     "enterValidAmount": "Sisesta kehtiv summa",
     "noSupply": "Ost pole võimalik — selles ahelas pole {{symbol}} varusid.",
@@ -3633,6 +3631,7 @@
     "acceptTermsFirst": "Palun nõustu teenusetingimustega",
     "redirecting": "Suunamine makselehele…",
     "openingCheckout": "Makselehe avamine…",
-    "checkoutUnavailable": "Makselink pole saadaval. Proovi uuesti."
+    "checkoutUnavailable": "Makselink pole saadaval. Proovi uuesti.",
+    "acceptTerms": "Nõustun <terms>Teenusetingimused</terms>"
   }
 }

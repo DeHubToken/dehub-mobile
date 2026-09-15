@@ -3567,7 +3567,6 @@
     "noTxHash": "ವಾಲೆಟ್ ವಹಿವಾಟು ಹ್ಯಾಶ್ ಹಿಂತಿರುಗಿಸಲಿಲ್ಲ",
     "finishing": "ಪೂರ್ಣಗೊಳಿಸಲಾಗುತ್ತಿದೆ…",
     "confirmTitle": "ಚಂದಾದಾರಿಕೆ ದೃಢೀಕರಿಸಿ",
-    "subscribeToFor": "{{price}} ಗೆ {{name}} ಚಂದಾದಾರರಾಗಿ",
     "youPay": "ನೀವು {{amount}} ಪಾವತಿಸುತ್ತೀರಿ",
     "calculating": "ಒಟ್ಟು ಲೆಕ್ಕ ಹಾಕಲಾಗುತ್ತಿದೆ…",
     "creatorReceives": "ರಚನೆಕಾರರಿಗೆ {{amount}} USDT ಕ್ರೆಡಿಟ್ ಸಿಗುತ್ತದೆ",
@@ -3576,7 +3575,8 @@
     "notAvailableYet": "ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲ",
     "subscribe": "ಚಂದಾದಾರರಾಗಿ",
     "subscriberCount_one": "{{count}} ಚಂದಾದಾರ",
-    "subscriberCount_other": "{{count}} ಚಂದಾದಾರರು"
+    "subscriberCount_other": "{{count}} ಚಂದಾದಾರರು",
+    "subscribeToForRich": "<price>{{price}}</price> ಗೆ <name>{{name}}</name> ಚಂದಾದಾರರಾಗಿ"
   },
   "live": {
     "notSet": "ಹೊಂದಿಸಿಲ್ಲ",
@@ -3629,8 +3629,6 @@
     "confirmPurchase": "ಖರೀದಿ ದೃಢೀಕರಿಸಿ",
     "amountIn": "{{currency}} ಮೊತ್ತ",
     "approxReceive": "ಅಂದಾಜು ಸಿಗುವುದು {{symbol}}",
-    "iAcceptThe": "ನಾನು ಒಪ್ಪುತ್ತೇನೆ",
-    "termsOfService": "ಸೇವಾ ನಿಯಮಗಳು",
     "invalidAmountGtZero": "0 ಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ಮಾನ್ಯ ಮೊತ್ತ ನಮೂದಿಸಿ.",
     "enterValidAmount": "ಮಾನ್ಯ ಮೊತ್ತ ನಮೂದಿಸಿ",
     "noSupply": "ಖರೀದಿ ಸಾಧ್ಯವಿಲ್ಲ — ಈ ಚೈನ್‌ನಲ್ಲಿ {{symbol}} ಪೂರೈಕೆ ಇಲ್ಲ.",
@@ -3639,6 +3637,7 @@
     "acceptTermsFirst": "ದಯವಿಟ್ಟು ಸೇವಾ ನಿಯಮಗಳನ್ನು ಒಪ್ಪಿಕೊಳ್ಳಿ",
     "redirecting": "ಚೆಕ್‌ಔಟ್‌ಗೆ ಕರೆದೊಯ್ಯಲಾಗುತ್ತಿದೆ…",
     "openingCheckout": "ಚೆಕ್‌ಔಟ್ ತೆರೆಯಲಾಗುತ್ತಿದೆ…",
-    "checkoutUnavailable": "ಚೆಕ್‌ಔಟ್ ಲಿಂಕ್ ಲಭ್ಯವಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+    "checkoutUnavailable": "ಚೆಕ್‌ಔಟ್ ಲಿಂಕ್ ಲಭ್ಯವಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+    "acceptTerms": "ನಾನು ಒಪ್ಪುತ್ತೇನೆ <terms>ಸೇವಾ ನಿಯಮಗಳು</terms>"
   }
 }

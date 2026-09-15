@@ -3554,7 +3554,6 @@
     "noTxHash": "વૉલેટે વ્યવહારનો હેશ પરત કર્યો નથી",
     "finishing": "પૂર્ણ થઈ રહ્યું છે…",
     "confirmTitle": "સબસ્ક્રિપ્શનની પુષ્ટિ કરો",
-    "subscribeToFor": "{{price}} માં {{name}} સબસ્ક્રાઇબ કરો",
     "youPay": "તમે {{amount}} ચૂકવશો",
     "calculating": "કુલ ગણતરી થઈ રહી છે…",
     "creatorReceives": "સર્જકને {{amount}} USDT ક્રેડિટ મળશે",
@@ -3563,7 +3562,8 @@
     "notAvailableYet": "હજી ઉપલબ્ધ નથી",
     "subscribe": "સબસ્ક્રાઇબ કરો",
     "subscriberCount_one": "{{count}} સબસ્ક્રાઇબર",
-    "subscriberCount_other": "{{count}} સબસ્ક્રાઇબર્સ"
+    "subscriberCount_other": "{{count}} સબસ્ક્રાઇબર્સ",
+    "subscribeToForRich": "<price>{{price}}</price> માં <name>{{name}}</name> સબસ્ક્રાઇબ કરો"
   },
   "live": {
     "notSet": "સેટ નથી",
@@ -3616,8 +3616,6 @@
     "confirmPurchase": "ખરીદીની પુષ્ટિ કરો",
     "amountIn": "{{currency}} રકમ",
     "approxReceive": "આશરે મળશે {{symbol}}",
-    "iAcceptThe": "હું સ્વીકારું છું",
-    "termsOfService": "સેવાની શરતો",
     "invalidAmountGtZero": "0 કરતાં મોટી માન્ય રકમ દાખલ કરો.",
     "enterValidAmount": "માન્ય રકમ દાખલ કરો",
     "noSupply": "ખરીદી ઉપલબ્ધ નથી — આ ચેઇન પર {{symbol}} નો પુરવઠો નથી.",
@@ -3626,6 +3624,7 @@
     "acceptTermsFirst": "કૃપા કરીને સેવાની શરતો સ્વીકારો",
     "redirecting": "ચેકઆઉટ પર લઈ જવાઈ રહ્યા છીએ…",
     "openingCheckout": "ચેકઆઉટ ખૂલી રહ્યું છે…",
-    "checkoutUnavailable": "ચેકઆઉટ લિંક ઉપલબ્ધ નથી. ફરી પ્રયાસ કરો."
+    "checkoutUnavailable": "ચેકઆઉટ લિંક ઉપલબ્ધ નથી. ફરી પ્રયાસ કરો.",
+    "acceptTerms": "હું સ્વીકારું છું <terms>સેવાની શરતો</terms>"
   }
 }

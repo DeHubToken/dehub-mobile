@@ -3533,7 +3533,6 @@
     "noTxHash": "ୱାଲେଟ କାରବାର ହ୍ୟାସ ଫେରାଇଲା ନାହିଁ",
     "finishing": "ସମାପ୍ତ ହେଉଛି…",
     "confirmTitle": "ସବସ୍କ୍ରିପସନ ନିଶ୍ଚିତ କରନ୍ତୁ",
-    "subscribeToFor": "{{price}} ରେ {{name}} ସବସ୍କ୍ରାଇବ କରନ୍ତୁ",
     "youPay": "ଆପଣ {{amount}} ଦେବେ",
     "calculating": "ମୋଟ ଗଣନା ହେଉଛି…",
     "creatorReceives": "ସ୍ରଷ୍ଟା {{amount}} USDT କ୍ରେଡିଟ ପାଇବେ",
@@ -3542,7 +3541,8 @@
     "notAvailableYet": "ଏବେ ଉପଲବ୍ଧ ନାହିଁ",
     "subscribe": "ସବସ୍କ୍ରାଇବ କରନ୍ତୁ",
     "subscriberCount_one": "{{count}} ସବସ୍କ୍ରାଇବର",
-    "subscriberCount_other": "{{count}} ସବସ୍କ୍ରାଇବର"
+    "subscriberCount_other": "{{count}} ସବସ୍କ୍ରାଇବର",
+    "subscribeToForRich": "<price>{{price}}</price> ରେ <name>{{name}}</name> ସବସ୍କ୍ରାଇବ କରନ୍ତୁ"
   },
   "live": {
     "notSet": "ସେଟ ହୋଇନାହିଁ",
@@ -3595,8 +3595,6 @@
     "confirmPurchase": "କ୍ରୟ ନିଶ୍ଚିତ କରନ୍ତୁ",
     "amountIn": "{{currency}} ପରିମାଣ",
     "approxReceive": "ପ୍ରାୟ ପାଇବେ {{symbol}}",
-    "iAcceptThe": "ମୁଁ ଗ୍ରହଣ କରୁଛି",
-    "termsOfService": "ସେବା ସର୍ତ୍ତାବଳୀ",
     "invalidAmountGtZero": "0 ଠାରୁ ଅଧିକ ବୈଧ ପରିମାଣ ଦିଅନ୍ତୁ।",
     "enterValidAmount": "ବୈଧ ପରିମାଣ ଦିଅନ୍ତୁ",
     "noSupply": "କ୍ରୟ ଉପଲବ୍ଧ ନାହିଁ — ଏହି ଚେନରେ {{symbol}} ଯୋଗାଣ ନାହିଁ।",
@@ -3605,6 +3603,7 @@
     "acceptTermsFirst": "ଦୟାକରି ସେବା ସର୍ତ୍ତାବଳୀ ଗ୍ରହଣ କରନ୍ତୁ",
     "redirecting": "ଚେକଆଉଟକୁ ନେଉଛି…",
     "openingCheckout": "ଚେକଆଉଟ ଖୋଲାଯାଉଛି…",
-    "checkoutUnavailable": "ଚେକଆଉଟ ଲିଙ୍କ ଉପଲବ୍ଧ ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।"
+    "checkoutUnavailable": "ଚେକଆଉଟ ଲିଙ୍କ ଉପଲବ୍ଧ ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "acceptTerms": "ମୁଁ ଗ୍ରହଣ କରୁଛି <terms>ସେବା ସର୍ତ୍ତାବଳୀ</terms>"
   }
 }

@@ -3624,7 +3624,6 @@
     "noTxHash": "Cüzdan bir işlem hash'i döndürmedi",
     "finishing": "Tamamlanıyor…",
     "confirmTitle": "Aboneliği onayla",
-    "subscribeToFor": "{{price}} karşılığında {{name}} aboneliği alın",
     "youPay": "{{amount}} ödersiniz",
     "calculating": "Toplam hesaplanıyor…",
     "creatorReceives": "Oluşturan {{amount}} USDT kredi alır",
@@ -3633,7 +3632,8 @@
     "notAvailableYet": "Henüz kullanılamıyor",
     "subscribe": "Abone ol",
     "subscriberCount_one": "{{count}} abone",
-    "subscriberCount_other": "{{count}} abone"
+    "subscriberCount_other": "{{count}} abone",
+    "subscribeToForRich": "<price>{{price}}</price> karşılığında <name>{{name}}</name> aboneliği alın"
   },
   "live": {
     "notSet": "Ayarlanmadı",
@@ -3686,8 +3686,6 @@
     "confirmPurchase": "Satın almayı onayla",
     "amountIn": "{{currency}} tutarı",
     "approxReceive": "Yaklaşık alacağınız {{symbol}}",
-    "iAcceptThe": "Kabul ediyorum:",
-    "termsOfService": "Hizmet Şartları",
     "invalidAmountGtZero": "0'dan büyük geçerli bir tutar girin.",
     "enterValidAmount": "Geçerli bir tutar girin",
     "noSupply": "Satın alınamıyor — bu zincirde {{symbol}} arzı yok.",
@@ -3696,6 +3694,7 @@
     "acceptTermsFirst": "Lütfen hizmet şartlarını kabul edin",
     "redirecting": "Ödemeye yönlendiriliyor…",
     "openingCheckout": "Ödeme açılıyor…",
-    "checkoutUnavailable": "Ödeme bağlantısı kullanılamıyor. Lütfen tekrar deneyin."
+    "checkoutUnavailable": "Ödeme bağlantısı kullanılamıyor. Lütfen tekrar deneyin.",
+    "acceptTerms": "Kabul ediyorum: <terms>Hizmet Şartları</terms>"
   }
 }

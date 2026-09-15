@@ -3630,7 +3630,6 @@
     "noTxHash": "지갑이 트랜잭션 해시를 반환하지 않았습니다",
     "finishing": "마무리 중…",
     "confirmTitle": "구독 확인",
-    "subscribeToFor": "{{price}}에 {{name}} 구독",
     "youPay": "결제 금액 {{amount}}",
     "calculating": "총액 계산 중…",
     "creatorReceives": "크리에이터는 {{amount}} USDT 크레딧을 받습니다",
@@ -3639,7 +3638,8 @@
     "notAvailableYet": "아직 이용할 수 없습니다",
     "subscribe": "구독하기",
     "subscriberCount_one": "구독자 {{count}}명",
-    "subscriberCount_other": "구독자 {{count}}명"
+    "subscriberCount_other": "구독자 {{count}}명",
+    "subscribeToForRich": "<price>{{price}}</price>에 <name>{{name}}</name> 구독"
   },
   "live": {
     "notSet": "설정 안 됨",
@@ -3692,8 +3692,6 @@
     "confirmPurchase": "구매 확인",
     "amountIn": "{{currency}} 금액",
     "approxReceive": "예상 수령 {{symbol}}",
-    "iAcceptThe": "다음에 동의합니다:",
-    "termsOfService": "서비스 약관",
     "invalidAmountGtZero": "0보다 큰 유효한 금액을 입력하세요.",
     "enterValidAmount": "유효한 금액을 입력하세요",
     "noSupply": "구매할 수 없습니다 — 이 체인에 {{symbol}} 공급이 없습니다.",
@@ -3702,6 +3700,7 @@
     "acceptTermsFirst": "서비스 약관에 동의해 주세요",
     "redirecting": "결제 페이지로 이동 중…",
     "openingCheckout": "결제 페이지 여는 중…",
-    "checkoutUnavailable": "결제 링크를 사용할 수 없습니다. 다시 시도해 주세요."
+    "checkoutUnavailable": "결제 링크를 사용할 수 없습니다. 다시 시도해 주세요.",
+    "acceptTerms": "다음에 동의합니다: <terms>서비스 약관</terms>"
   }
 }

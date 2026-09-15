@@ -3541,7 +3541,6 @@
     "noTxHash": "Түрийвч гүйлгээний хэш буцаасангүй",
     "finishing": "Дуусгаж байна…",
     "confirmTitle": "Захиалгыг баталгаажуулах",
-    "subscribeToFor": "{{price}}-аар {{name}}-д захиалга өгөх",
     "youPay": "Та {{amount}} төлнө",
     "calculating": "Нийт дүнг тооцоолж байна…",
     "creatorReceives": "Зохиогч {{amount}} USDT кредит авна",
@@ -3550,7 +3549,8 @@
     "notAvailableYet": "Одоохондоо боломжгүй",
     "subscribe": "Захиалах",
     "subscriberCount_one": "{{count}} захиалагч",
-    "subscriberCount_other": "{{count}} захиалагч"
+    "subscriberCount_other": "{{count}} захиалагч",
+    "subscribeToForRich": "<price>{{price}}</price>-аар <name>{{name}}</name>-д захиалга өгөх"
   },
   "live": {
     "notSet": "Тохируулаагүй",
@@ -3603,8 +3603,6 @@
     "confirmPurchase": "Худалдан авалтыг баталгаажуулах",
     "amountIn": "{{currency}} дүн",
     "approxReceive": "Ойролцоогоор авах {{symbol}}",
-    "iAcceptThe": "Би зөвшөөрч байна",
-    "termsOfService": "Үйлчилгээний нөхцөл",
     "invalidAmountGtZero": "0-оос их хүчинтэй дүн оруулна уу.",
     "enterValidAmount": "Хүчинтэй дүн оруулна уу",
     "noSupply": "Худалдан авах боломжгүй — энэ сүлжээнд {{symbol}} нөөц алга.",
@@ -3613,6 +3611,7 @@
     "acceptTermsFirst": "Үйлчилгээний нөхцөлийг зөвшөөрнө үү",
     "redirecting": "Төлбөрийн хуудас руу шилжүүлж байна…",
     "openingCheckout": "Төлбөрийн хуудсыг нээж байна…",
-    "checkoutUnavailable": "Төлбөрийн холбоос боломжгүй. Дахин оролдоно уу."
+    "checkoutUnavailable": "Төлбөрийн холбоос боломжгүй. Дахин оролдоно уу.",
+    "acceptTerms": "Би зөвшөөрч байна <terms>Үйлчилгээний нөхцөл</terms>"
   }
 }

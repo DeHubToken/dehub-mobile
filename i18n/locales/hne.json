@@ -3563,7 +3563,6 @@
     "noTxHash": "वॉलेट ह लेनदेन के हैश नइ लौटाइस",
     "finishing": "पूरा होवत हे…",
     "confirmTitle": "सब्सक्रिप्शन के पुष्टि करव",
-    "subscribeToFor": "{{price}} म {{name}} ला सब्सक्राइब करव",
     "youPay": "तँय {{amount}} देबे",
     "calculating": "कुल जोड़ होवत हे…",
     "creatorReceives": "क्रिएटर ला {{amount}} USDT क्रेडिट मिलही",
@@ -3572,7 +3571,8 @@
     "notAvailableYet": "अभी उपलब्ध नइ हे",
     "subscribe": "सब्सक्राइब करव",
     "subscriberCount_one": "{{count}} सब्सक्राइबर",
-    "subscriberCount_other": "{{count}} सब्सक्राइबर"
+    "subscriberCount_other": "{{count}} सब्सक्राइबर",
+    "subscribeToForRich": "<price>{{price}}</price> म <name>{{name}}</name> ला सब्सक्राइब करव"
   },
   "live": {
     "notSet": "सेट नइ हे",
@@ -3625,8 +3625,6 @@
     "confirmPurchase": "बिसाही के पुष्टि करव",
     "amountIn": "{{currency}} रकम",
     "approxReceive": "लगभग {{symbol}} मिलही",
-    "iAcceptThe": "मैं मानत हँव",
-    "termsOfService": "सेवा के सरत",
     "invalidAmountGtZero": "0 ले बड़े सही रकम भरव।",
     "enterValidAmount": "सही रकम भरव",
     "noSupply": "बिसाही उपलब्ध नइ हे — ये चेन म {{symbol}} नइ हे।",
@@ -3635,6 +3633,7 @@
     "acceptTermsFirst": "किरपा करके सेवा के सरत मानव",
     "redirecting": "चेकआउट म भेजत हन…",
     "openingCheckout": "चेकआउट खुलत हे…",
-    "checkoutUnavailable": "चेकआउट लिंक उपलब्ध नइ हे। फेर कोसिस करव।"
+    "checkoutUnavailable": "चेकआउट लिंक उपलब्ध नइ हे। फेर कोसिस करव।",
+    "acceptTerms": "मैं मानत हँव <terms>सेवा के सरत</terms>"
   }
 }

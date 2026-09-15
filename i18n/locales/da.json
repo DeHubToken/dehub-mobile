@@ -3566,7 +3566,6 @@
     "noTxHash": "Tegnebogen returnerede ingen transaktionshash",
     "finishing": "Afslutter…",
     "confirmTitle": "Bekræft abonnement",
-    "subscribeToFor": "Abonnér på {{name}} for {{price}}",
     "youPay": "Du betaler {{amount}}",
     "calculating": "Beregner totalen…",
     "creatorReceives": "Skaberen modtager {{amount}} USDT i kredit",
@@ -3575,7 +3574,8 @@
     "notAvailableYet": "Endnu ikke tilgængelig",
     "subscribe": "Abonnér",
     "subscriberCount_one": "{{count}} abonnent",
-    "subscriberCount_other": "{{count}} abonnenter"
+    "subscriberCount_other": "{{count}} abonnenter",
+    "subscribeToForRich": "Abonnér på <name>{{name}}</name> for <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Ikke angivet",
@@ -3628,8 +3628,6 @@
     "confirmPurchase": "Bekræft køb",
     "amountIn": "{{currency}}-beløb",
     "approxReceive": "Modtager ca. {{symbol}}",
-    "iAcceptThe": "Jeg accepterer",
-    "termsOfService": "Servicevilkår",
     "invalidAmountGtZero": "Indtast et gyldigt beløb større end 0.",
     "enterValidAmount": "Indtast et gyldigt beløb",
     "noSupply": "Køb er ikke muligt — ingen {{symbol}}-forsyning på denne kæde.",
@@ -3638,6 +3636,7 @@
     "acceptTermsFirst": "Accepter venligst servicevilkårene",
     "redirecting": "Omdirigerer til betaling…",
     "openingCheckout": "Åbner betaling…",
-    "checkoutUnavailable": "Betalingslinket er ikke tilgængeligt. Prøv igen."
+    "checkoutUnavailable": "Betalingslinket er ikke tilgængeligt. Prøv igen.",
+    "acceptTerms": "Jeg accepterer <terms>Servicevilkår</terms>"
   }
 }

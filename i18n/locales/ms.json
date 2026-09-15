@@ -3825,7 +3825,6 @@
     "noTxHash": "Dompet tidak memulangkan hash transaksi",
     "finishing": "Menyelesaikan…",
     "confirmTitle": "Sahkan langganan",
-    "subscribeToFor": "Langgan {{name}} dengan harga {{price}}",
     "youPay": "Anda membayar {{amount}}",
     "calculating": "Mengira jumlah…",
     "creatorReceives": "Pencipta menerima kredit {{amount}} USDT",
@@ -3834,7 +3833,8 @@
     "notAvailableYet": "Belum tersedia",
     "subscribe": "Langgan",
     "subscriberCount_one": "{{count}} pelanggan",
-    "subscriberCount_other": "{{count}} pelanggan"
+    "subscriberCount_other": "{{count}} pelanggan",
+    "subscribeToForRich": "Langgan <name>{{name}}</name> dengan harga <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Belum ditetapkan",
@@ -3887,8 +3887,6 @@
     "confirmPurchase": "Sahkan pembelian",
     "amountIn": "Jumlah {{currency}}",
     "approxReceive": "Anggaran terima {{symbol}}",
-    "iAcceptThe": "Saya menerima",
-    "termsOfService": "Terma Perkhidmatan",
     "invalidAmountGtZero": "Masukkan jumlah sah lebih daripada 0.",
     "enterValidAmount": "Masukkan jumlah yang sah",
     "noSupply": "Pembelian tidak tersedia — tiada bekalan {{symbol}} pada rantai ini.",
@@ -3897,6 +3895,7 @@
     "acceptTermsFirst": "Sila terima terma perkhidmatan",
     "redirecting": "Mengalihkan ke pembayaran…",
     "openingCheckout": "Membuka pembayaran…",
-    "checkoutUnavailable": "Pautan pembayaran tidak tersedia. Cuba lagi."
+    "checkoutUnavailable": "Pautan pembayaran tidak tersedia. Cuba lagi.",
+    "acceptTerms": "Saya menerima <terms>Terma Perkhidmatan</terms>"
   }
 }

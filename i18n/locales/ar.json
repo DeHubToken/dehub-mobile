@@ -3617,7 +3617,6 @@
     "noTxHash": "لم تُرجع المحفظة تجزئة للمعاملة",
     "finishing": "جارٍ الإنهاء…",
     "confirmTitle": "تأكيد الاشتراك",
-    "subscribeToFor": "اشترك في {{name}} مقابل {{price}}",
     "youPay": "تدفع {{amount}}",
     "calculating": "جارٍ حساب الإجمالي…",
     "creatorReceives": "يحصل المُنشئ على رصيد {{amount}} USDT",
@@ -3626,7 +3625,8 @@
     "notAvailableYet": "غير متاح بعد",
     "subscribe": "اشترك",
     "subscriberCount_one": "{{count}} مشترك",
-    "subscriberCount_other": "{{count}} مشترك"
+    "subscriberCount_other": "{{count}} مشترك",
+    "subscribeToForRich": "اشترك في <name>{{name}}</name> مقابل <price>{{price}}</price>"
   },
   "live": {
     "notSet": "غير محدّد",
@@ -3679,8 +3679,6 @@
     "confirmPurchase": "تأكيد الشراء",
     "amountIn": "مبلغ {{currency}}",
     "approxReceive": "ستستلم تقريبًا {{symbol}}",
-    "iAcceptThe": "أوافق على",
-    "termsOfService": "شروط الخدمة",
     "invalidAmountGtZero": "أدخل مبلغًا صالحًا أكبر من 0.",
     "enterValidAmount": "أدخل مبلغًا صالحًا",
     "noSupply": "الشراء غير متاح — لا يوجد مخزون {{symbol}} على هذه السلسلة.",
@@ -3689,6 +3687,7 @@
     "acceptTermsFirst": "يُرجى الموافقة على شروط الخدمة",
     "redirecting": "جارٍ التحويل إلى صفحة الدفع…",
     "openingCheckout": "جارٍ فتح صفحة الدفع…",
-    "checkoutUnavailable": "رابط الدفع غير متاح. يُرجى المحاولة مرة أخرى."
+    "checkoutUnavailable": "رابط الدفع غير متاح. يُرجى المحاولة مرة أخرى.",
+    "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>"
   }
 }

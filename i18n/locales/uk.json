@@ -4038,7 +4038,6 @@
     "noTxHash": "Гаманець не повернув хеш транзакції",
     "finishing": "Завершення…",
     "confirmTitle": "Підтвердити підписку",
-    "subscribeToFor": "Підпишіться на {{name}} за {{price}}",
     "youPay": "Ви платите {{amount}}",
     "calculating": "Обчислення загальної суми…",
     "creatorReceives": "Автор отримує {{amount}} USDT кредиту",
@@ -4047,7 +4046,8 @@
     "notAvailableYet": "Поки недоступно",
     "subscribe": "Підписатися",
     "subscriberCount_one": "{{count}} передплатник",
-    "subscriberCount_other": "{{count}} передплатників"
+    "subscriberCount_other": "{{count}} передплатників",
+    "subscribeToForRich": "Підпишіться на <name>{{name}}</name> за <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Не задано",
@@ -4100,8 +4100,6 @@
     "confirmPurchase": "Підтвердити покупку",
     "amountIn": "Сума в {{currency}}",
     "approxReceive": "Отримаєте приблизно {{symbol}}",
-    "iAcceptThe": "Я приймаю",
-    "termsOfService": "Умови обслуговування",
     "invalidAmountGtZero": "Введіть коректну суму більшу за 0.",
     "enterValidAmount": "Введіть коректну суму",
     "noSupply": "Покупка недоступна — у цій мережі немає запасу {{symbol}}.",
@@ -4110,6 +4108,7 @@
     "acceptTermsFirst": "Будь ласка, прийміть умови обслуговування",
     "redirecting": "Перенаправлення до оплати…",
     "openingCheckout": "Відкриття оплати…",
-    "checkoutUnavailable": "Посилання на оплату недоступне. Спробуйте ще раз."
+    "checkoutUnavailable": "Посилання на оплату недоступне. Спробуйте ще раз.",
+    "acceptTerms": "Я приймаю <terms>Умови обслуговування</terms>"
   }
 }

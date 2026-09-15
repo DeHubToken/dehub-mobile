@@ -3641,7 +3641,6 @@
     "noTxHash": "Tsy namerina hash fifanakalozana ny poketra",
     "finishing": "Mamita…",
     "confirmTitle": "Hamafisy ny fisoratana anarana",
-    "subscribeToFor": "Misoratra anarana amin'ny {{name}} amin'ny {{price}}",
     "youPay": "Mandoa {{amount}} ianao",
     "calculating": "Manisa ny totaliny…",
     "creatorReceives": "Mahazo kredy {{amount}} USDT ny mpamorona",
@@ -3650,7 +3649,8 @@
     "notAvailableYet": "Mbola tsy misy",
     "subscribe": "Misoratra anarana",
     "subscriberCount_one": "Mpanoratra anarana {{count}}",
-    "subscriberCount_other": "Mpanoratra anarana {{count}}"
+    "subscriberCount_other": "Mpanoratra anarana {{count}}",
+    "subscribeToForRich": "Misoratra anarana amin'ny <name>{{name}}</name> amin'ny <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Tsy voafaritra",
@@ -3703,8 +3703,6 @@
     "confirmPurchase": "Hamafisy ny fividianana",
     "amountIn": "Vola {{currency}}",
     "approxReceive": "Handray manodidina {{symbol}}",
-    "iAcceptThe": "Manaiky aho",
-    "termsOfService": "Fepetra sy Fanompoana",
     "invalidAmountGtZero": "Ampidiro vola mihoatra ny 0.",
     "enterValidAmount": "Ampidiro vola manan-kery",
     "noSupply": "Tsy azo atao ny fividianana — tsy misy tahiry {{symbol}} amin'ity rojo ity.",
@@ -3713,6 +3711,7 @@
     "acceptTermsFirst": "Ekeo azafady ny fepetra sy fanompoana",
     "redirecting": "Mamily mankany amin'ny fandoavana…",
     "openingCheckout": "Manokatra ny fandoavana…",
-    "checkoutUnavailable": "Tsy misy ny rohy fandoavana. Andramo indray."
+    "checkoutUnavailable": "Tsy misy ny rohy fandoavana. Andramo indray.",
+    "acceptTerms": "Manaiky aho <terms>Fepetra sy Fanompoana</terms>"
   }
 }

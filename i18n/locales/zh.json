@@ -3619,7 +3619,6 @@
     "noTxHash": "钱包没有返回交易哈希",
     "finishing": "正在收尾…",
     "confirmTitle": "确认订阅",
-    "subscribeToFor": "以 {{price}} 订阅 {{name}}",
     "youPay": "你支付 {{amount}}",
     "calculating": "正在计算总额…",
     "creatorReceives": "创作者获得 {{amount}} USDT 额度",
@@ -3628,7 +3627,8 @@
     "notAvailableYet": "尚不可用",
     "subscribe": "订阅",
     "subscriberCount_one": "{{count}} 位订阅者",
-    "subscriberCount_other": "{{count}} 位订阅者"
+    "subscriberCount_other": "{{count}} 位订阅者",
+    "subscribeToForRich": "以 <price>{{price}}</price> 订阅 <name>{{name}}</name>"
   },
   "live": {
     "notSet": "未设置",
@@ -3681,8 +3681,6 @@
     "confirmPurchase": "确认购买",
     "amountIn": "{{currency}} 金额",
     "approxReceive": "预计收到 {{symbol}}",
-    "iAcceptThe": "我接受",
-    "termsOfService": "服务条款",
     "invalidAmountGtZero": "请输入大于 0 的有效金额。",
     "enterValidAmount": "请输入有效金额",
     "noSupply": "无法购买 — 此链上没有 {{symbol}} 供应。",
@@ -3691,6 +3689,7 @@
     "acceptTermsFirst": "请接受服务条款",
     "redirecting": "正在跳转到结账…",
     "openingCheckout": "正在打开结账页…",
-    "checkoutUnavailable": "结账链接不可用。请重试。"
+    "checkoutUnavailable": "结账链接不可用。请重试。",
+    "acceptTerms": "我接受 <terms>服务条款</terms>"
   }
 }

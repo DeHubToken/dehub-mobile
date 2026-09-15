@@ -3597,7 +3597,6 @@
     "noTxHash": "საფულემ ტრანზაქციის ჰეში არ დააბრუნა",
     "finishing": "სრულდება…",
     "confirmTitle": "გამოწერის დადასტურება",
-    "subscribeToFor": "გამოიწერეთ {{name}} {{price}}-ად",
     "youPay": "თქვენ იხდით {{amount}}",
     "calculating": "ჯამის გამოთვლა…",
     "creatorReceives": "ავტორი იღებს {{amount}} USDT კრედიტს",
@@ -3606,7 +3605,8 @@
     "notAvailableYet": "ჯერ მიუწვდომელია",
     "subscribe": "გამოწერა",
     "subscriberCount_one": "{{count}} გამომწერი",
-    "subscriberCount_other": "{{count}} გამომწერი"
+    "subscriberCount_other": "{{count}} გამომწერი",
+    "subscribeToForRich": "გამოიწერეთ <name>{{name}}</name> <price>{{price}}</price>-ად"
   },
   "live": {
     "notSet": "არ არის მითითებული",
@@ -3659,8 +3659,6 @@
     "confirmPurchase": "შესყიდვის დადასტურება",
     "amountIn": "{{currency}} თანხა",
     "approxReceive": "მიიღებთ დაახლოებით {{symbol}}",
-    "iAcceptThe": "ვეთანხმები",
-    "termsOfService": "მომსახურების პირობები",
     "invalidAmountGtZero": "შეიყვანეთ 0-ზე მეტი სწორი თანხა.",
     "enterValidAmount": "შეიყვანეთ სწორი თანხა",
     "noSupply": "შესყიდვა მიუწვდომელია — ამ ჯაჭვზე {{symbol}} მარაგი არ არის.",
@@ -3669,6 +3667,7 @@
     "acceptTermsFirst": "გთხოვთ, დაეთანხმოთ მომსახურების პირობებს",
     "redirecting": "გადამისამართება გადახდაზე…",
     "openingCheckout": "გადახდის გახსნა…",
-    "checkoutUnavailable": "გადახდის ბმული მიუწვდომელია. სცადეთ ხელახლა."
+    "checkoutUnavailable": "გადახდის ბმული მიუწვდომელია. სცადეთ ხელახლა.",
+    "acceptTerms": "ვეთანხმები <terms>მომსახურების პირობები</terms>"
   }
 }

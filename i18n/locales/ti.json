@@ -3527,7 +3527,6 @@
     "noTxHash": "ዋሌት ናይ ግብይት ሃሽ ኣይመለሰን",
     "finishing": "ይዛዘም ኣሎ…",
     "confirmTitle": "ምዝገባ ኣረጋግጽ",
-    "subscribeToFor": "ብ{{price}} ናብ {{name}} ተመዝገብ",
     "youPay": "ንስኻ {{amount}} ትኸፍል",
     "calculating": "ጠቕላላ ይሕሰብ ኣሎ…",
     "creatorReceives": "ፈጣሪ {{amount}} USDT ክሬዲት ይረክብ",
@@ -3536,7 +3535,8 @@
     "notAvailableYet": "ገና ኣይተዳለወን",
     "subscribe": "ተመዝገብ",
     "subscriberCount_one": "{{count}} ተመዝጋቢ",
-    "subscriberCount_other": "{{count}} ተመዝገብቲ"
+    "subscriberCount_other": "{{count}} ተመዝገብቲ",
+    "subscribeToForRich": "ብ<price>{{price}}</price> ናብ <name>{{name}}</name> ተመዝገብ"
   },
   "live": {
     "notSet": "ኣይተቐመጠን",
@@ -3589,8 +3589,6 @@
     "confirmPurchase": "ግዝኣት ኣረጋግጽ",
     "amountIn": "መጠን {{currency}}",
     "approxReceive": "ብግምት ክትረክብ {{symbol}}",
-    "iAcceptThe": "እቕበል ኣለኹ",
-    "termsOfService": "ውዕላት ኣገልግሎት",
     "invalidAmountGtZero": "ካብ 0 ዝዓቢ ቅኑዕ መጠን ኣእቱ።",
     "enterValidAmount": "ቅኑዕ መጠን ኣእቱ",
     "noSupply": "ግዝኣት ኣይክኣልን — ኣብዚ ሰንሰለት {{symbol}} የለን።",
@@ -3599,6 +3597,7 @@
     "acceptTermsFirst": "በጃኻ ውዕላት ኣገልግሎት ተቐበል",
     "redirecting": "ናብ ክፍሊት ይመርሓካ ኣሎ…",
     "openingCheckout": "ገጽ ክፍሊት ይኽፈት ኣሎ…",
-    "checkoutUnavailable": "መላግቦ ክፍሊት የለን። እንደገና ፈትን።"
+    "checkoutUnavailable": "መላግቦ ክፍሊት የለን። እንደገና ፈትን።",
+    "acceptTerms": "እቕበል ኣለኹ <terms>ውዕላት ኣገልግሎት</terms>"
   }
 }

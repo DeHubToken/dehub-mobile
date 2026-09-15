@@ -3540,7 +3540,6 @@
     "noTxHash": "Ҳамён ҳеши муомилотро барнагардонд",
     "finishing": "Ба итмом мерасад…",
     "confirmTitle": "Тасдиқи обуна",
-    "subscribeToFor": "Ба {{name}} бо {{price}} обуна шавед",
     "youPay": "Шумо {{amount}} мепардозед",
     "calculating": "Ҳисоби маблағи умумӣ…",
     "creatorReceives": "Эҷодкор {{amount}} USDT кредит мегирад",
@@ -3549,7 +3548,8 @@
     "notAvailableYet": "Ҳанӯз дастрас нест",
     "subscribe": "Обуна шудан",
     "subscriberCount_one": "{{count}} обуначӣ",
-    "subscriberCount_other": "{{count}} обуначӣ"
+    "subscriberCount_other": "{{count}} обуначӣ",
+    "subscribeToForRich": "Ба <name>{{name}}</name> бо <price>{{price}}</price> обуна шавед"
   },
   "live": {
     "notSet": "Муқаррар нашудааст",
@@ -3602,8 +3602,6 @@
     "confirmPurchase": "Тасдиқи харид",
     "amountIn": "Маблағи {{currency}}",
     "approxReceive": "Тақрибан мегиред {{symbol}}",
-    "iAcceptThe": "Ман қабул мекунам",
-    "termsOfService": "Шартҳои хидматрасонӣ",
     "invalidAmountGtZero": "Маблағи дурусти аз 0 зиёдро ворид кунед.",
     "enterValidAmount": "Маблағи дурустро ворид кунед",
     "noSupply": "Харид имконнопазир — дар ин занҷир захираи {{symbol}} нест.",
@@ -3612,6 +3610,7 @@
     "acceptTermsFirst": "Лутфан шартҳои хидматрасониро қабул кунед",
     "redirecting": "Интиқол ба пардохт…",
     "openingCheckout": "Кушодани пардохт…",
-    "checkoutUnavailable": "Пайванди пардохт дастрас нест. Дубора кӯшиш кунед."
+    "checkoutUnavailable": "Пайванди пардохт дастрас нест. Дубора кӯшиш кунед.",
+    "acceptTerms": "Ман қабул мекунам <terms>Шартҳои хидматрасонӣ</terms>"
   }
 }

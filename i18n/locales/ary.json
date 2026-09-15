@@ -3588,7 +3588,6 @@
     "noTxHash": "المحفظة ما ردّاتش هاش ديال المعاملة",
     "finishing": "كيسالي…",
     "confirmTitle": "أكد الاشتراك",
-    "subscribeToFor": "اشترك ف{{name}} بـ{{price}}",
     "youPay": "غادي تخلص {{amount}}",
     "calculating": "كيحسب المجموع…",
     "creatorReceives": "صاحب المحتوى كياخد رصيد {{amount}} USDT",
@@ -3597,7 +3596,8 @@
     "notAvailableYet": "مازال ماشي متوفر",
     "subscribe": "اشترك",
     "subscriberCount_one": "{{count}} مشترك",
-    "subscriberCount_other": "{{count}} مشترك"
+    "subscriberCount_other": "{{count}} مشترك",
+    "subscribeToForRich": "اشترك ف<name>{{name}}</name> بـ<price>{{price}}</price>"
   },
   "live": {
     "notSet": "ماشي محدد",
@@ -3650,8 +3650,6 @@
     "confirmPurchase": "أكد الشرا",
     "amountIn": "المبلغ ديال {{currency}}",
     "approxReceive": "غادي تاخد تقريبا {{symbol}}",
-    "iAcceptThe": "كنوافق على",
-    "termsOfService": "شروط الخدمة",
     "invalidAmountGtZero": "دخل مبلغ صحيح كبر من 0.",
     "enterValidAmount": "دخل مبلغ صحيح",
     "noSupply": "الشرا ماشي متوفر — ما كاينش {{symbol}} على هاد السلسلة.",
@@ -3660,6 +3658,7 @@
     "acceptTermsFirst": "عافاك وافق على شروط الخدمة",
     "redirecting": "كيحولك للخلاص…",
     "openingCheckout": "كيحل صفحة الخلاص…",
-    "checkoutUnavailable": "رابط الخلاص ماشي متوفر. عاود جرب."
+    "checkoutUnavailable": "رابط الخلاص ماشي متوفر. عاود جرب.",
+    "acceptTerms": "كنوافق على <terms>شروط الخدمة</terms>"
   }
 }

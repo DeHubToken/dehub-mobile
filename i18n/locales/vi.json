@@ -3650,7 +3650,6 @@
     "noTxHash": "Ví không trả về mã băm giao dịch",
     "finishing": "Đang hoàn tất…",
     "confirmTitle": "Xác nhận đăng ký",
-    "subscribeToFor": "Đăng ký {{name}} với giá {{price}}",
     "youPay": "Bạn trả {{amount}}",
     "calculating": "Đang tính tổng…",
     "creatorReceives": "Người sáng tạo nhận {{amount}} USDT tín dụng",
@@ -3659,7 +3658,8 @@
     "notAvailableYet": "Chưa khả dụng",
     "subscribe": "Đăng ký",
     "subscriberCount_one": "{{count}} người đăng ký",
-    "subscriberCount_other": "{{count}} người đăng ký"
+    "subscriberCount_other": "{{count}} người đăng ký",
+    "subscribeToForRich": "Đăng ký <name>{{name}}</name> với giá <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Chưa đặt",
@@ -3712,8 +3712,6 @@
     "confirmPurchase": "Xác nhận mua",
     "amountIn": "Số tiền {{currency}}",
     "approxReceive": "Ước tính nhận {{symbol}}",
-    "iAcceptThe": "Tôi chấp nhận",
-    "termsOfService": "Điều khoản dịch vụ",
     "invalidAmountGtZero": "Nhập số tiền hợp lệ lớn hơn 0.",
     "enterValidAmount": "Nhập số tiền hợp lệ",
     "noSupply": "Không thể mua — chuỗi này không có nguồn cung {{symbol}}.",
@@ -3722,6 +3720,7 @@
     "acceptTermsFirst": "Vui lòng chấp nhận điều khoản dịch vụ",
     "redirecting": "Đang chuyển đến trang thanh toán…",
     "openingCheckout": "Đang mở trang thanh toán…",
-    "checkoutUnavailable": "Không có liên kết thanh toán. Vui lòng thử lại."
+    "checkoutUnavailable": "Không có liên kết thanh toán. Vui lòng thử lại.",
+    "acceptTerms": "Tôi chấp nhận <terms>Điều khoản dịch vụ</terms>"
   }
 }

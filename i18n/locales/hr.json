@@ -3562,7 +3562,6 @@
     "noTxHash": "Novčanik nije vratio hash transakcije",
     "finishing": "Dovršavanje…",
     "confirmTitle": "Potvrdi pretplatu",
-    "subscribeToFor": "Pretplatite se na {{name}} za {{price}}",
     "youPay": "Plaćate {{amount}}",
     "calculating": "Izračun ukupnog iznosa…",
     "creatorReceives": "Autor prima {{amount}} USDT kredita",
@@ -3571,7 +3570,8 @@
     "notAvailableYet": "Još nije dostupno",
     "subscribe": "Pretplati se",
     "subscriberCount_one": "{{count}} pretplatnik",
-    "subscriberCount_other": "{{count}} pretplatnika"
+    "subscriberCount_other": "{{count}} pretplatnika",
+    "subscribeToForRich": "Pretplatite se na <name>{{name}}</name> za <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Nije postavljeno",
@@ -3624,8 +3624,6 @@
     "confirmPurchase": "Potvrdi kupnju",
     "amountIn": "Iznos u {{currency}}",
     "approxReceive": "Primit ćete otprilike {{symbol}}",
-    "iAcceptThe": "Prihvaćam",
-    "termsOfService": "Uvjeti pružanja usluge",
     "invalidAmountGtZero": "Unesite valjani iznos veći od 0.",
     "enterValidAmount": "Unesite valjani iznos",
     "noSupply": "Kupnja nije dostupna — nema zalihe {{symbol}} na ovom lancu.",
@@ -3634,6 +3632,7 @@
     "acceptTermsFirst": "Prihvatite uvjete pružanja usluge",
     "redirecting": "Preusmjeravanje na naplatu…",
     "openingCheckout": "Otvaranje naplate…",
-    "checkoutUnavailable": "Poveznica za plaćanje nije dostupna. Pokušajte ponovno."
+    "checkoutUnavailable": "Poveznica za plaćanje nije dostupna. Pokušajte ponovno.",
+    "acceptTerms": "Prihvaćam <terms>Uvjeti pružanja usluge</terms>"
   }
 }

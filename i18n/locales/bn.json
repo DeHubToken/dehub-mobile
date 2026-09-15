@@ -3546,7 +3546,6 @@
     "noTxHash": "ওয়ালেট লেনদেনের হ্যাশ ফেরত দেয়নি",
     "finishing": "শেষ হচ্ছে…",
     "confirmTitle": "সাবস্ক্রিপশন নিশ্চিত করুন",
-    "subscribeToFor": "{{price}}-এ {{name}}-এ সাবস্ক্রাইব করুন",
     "youPay": "আপনি দেবেন {{amount}}",
     "calculating": "মোট হিসাব হচ্ছে…",
     "creatorReceives": "ক্রিয়েটর পান {{amount}} USDT ক্রেডিট",
@@ -3555,7 +3554,8 @@
     "notAvailableYet": "এখনো পাওয়া যাচ্ছে না",
     "subscribe": "সাবস্ক্রাইব করুন",
     "subscriberCount_one": "{{count}} সাবস্ক্রাইবার",
-    "subscriberCount_other": "{{count}} সাবস্ক্রাইবার"
+    "subscriberCount_other": "{{count}} সাবস্ক্রাইবার",
+    "subscribeToForRich": "<price>{{price}}</price>-এ <name>{{name}}</name>-এ সাবস্ক্রাইব করুন"
   },
   "live": {
     "notSet": "নির্ধারিত নয়",
@@ -3608,8 +3608,6 @@
     "confirmPurchase": "কেনাকাটা নিশ্চিত করুন",
     "amountIn": "{{currency}} পরিমাণ",
     "approxReceive": "আনুমানিক পাবেন {{symbol}}",
-    "iAcceptThe": "আমি মেনে নিচ্ছি",
-    "termsOfService": "পরিষেবার শর্তাবলি",
     "invalidAmountGtZero": "0-এর বেশি একটি সঠিক পরিমাণ লিখুন।",
     "enterValidAmount": "সঠিক পরিমাণ লিখুন",
     "noSupply": "কেনা যাচ্ছে না — এই চেইনে {{symbol}} সরবরাহ নেই।",
@@ -3618,6 +3616,7 @@
     "acceptTermsFirst": "অনুগ্রহ করে পরিষেবার শর্তাবলি মেনে নিন",
     "redirecting": "চেকআউটে নিয়ে যাওয়া হচ্ছে…",
     "openingCheckout": "চেকআউট খোলা হচ্ছে…",
-    "checkoutUnavailable": "চেকআউট লিংক পাওয়া যাচ্ছে না। আবার চেষ্টা করুন।"
+    "checkoutUnavailable": "চেকআউট লিংক পাওয়া যাচ্ছে না। আবার চেষ্টা করুন।",
+    "acceptTerms": "আমি মেনে নিচ্ছি <terms>পরিষেবার শর্তাবলি</terms>"
   }
 }

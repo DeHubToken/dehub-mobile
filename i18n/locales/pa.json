@@ -3538,7 +3538,6 @@
     "noTxHash": "ਵਾਲੇਟ ਨੇ ਲੈਣ-ਦੇਣ ਦਾ ਹੈਸ਼ ਵਾਪਸ ਨਹੀਂ ਕੀਤਾ",
     "finishing": "ਪੂਰਾ ਹੋ ਰਿਹਾ ਹੈ…",
     "confirmTitle": "ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
-    "subscribeToFor": "{{price}} ਵਿੱਚ {{name}} ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ",
     "youPay": "ਤੁਸੀਂ {{amount}} ਦਿਓਗੇ",
     "calculating": "ਕੁੱਲ ਗਿਣਿਆ ਜਾ ਰਿਹਾ ਹੈ…",
     "creatorReceives": "ਕ੍ਰਿਏਟਰ ਨੂੰ {{amount}} USDT ਕ੍ਰੈਡਿਟ ਮਿਲੇਗਾ",
@@ -3547,7 +3546,8 @@
     "notAvailableYet": "ਅਜੇ ਉਪਲਬਧ ਨਹੀਂ",
     "subscribe": "ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ",
     "subscriberCount_one": "{{count}} ਸਬਸਕ੍ਰਾਈਬਰ",
-    "subscriberCount_other": "{{count}} ਸਬਸਕ੍ਰਾਈਬਰ"
+    "subscriberCount_other": "{{count}} ਸਬਸਕ੍ਰਾਈਬਰ",
+    "subscribeToForRich": "<price>{{price}}</price> ਵਿੱਚ <name>{{name}}</name> ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ"
   },
   "live": {
     "notSet": "ਸੈੱਟ ਨਹੀਂ",
@@ -3600,8 +3600,6 @@
     "confirmPurchase": "ਖਰੀਦ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
     "amountIn": "{{currency}} ਰਕਮ",
     "approxReceive": "ਲਗਭਗ ਮਿਲੇਗਾ {{symbol}}",
-    "iAcceptThe": "ਮੈਂ ਸਵੀਕਾਰ ਕਰਦਾ ਹਾਂ",
-    "termsOfService": "ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ",
     "invalidAmountGtZero": "0 ਤੋਂ ਵੱਡੀ ਸਹੀ ਰਕਮ ਦਰਜ ਕਰੋ।",
     "enterValidAmount": "ਸਹੀ ਰਕਮ ਦਰਜ ਕਰੋ",
     "noSupply": "ਖਰੀਦ ਉਪਲਬਧ ਨਹੀਂ — ਇਸ ਚੇਨ ਉੱਤੇ {{symbol}} ਦੀ ਸਪਲਾਈ ਨਹੀਂ ਹੈ।",
@@ -3610,6 +3608,7 @@
     "acceptTermsFirst": "ਕਿਰਪਾ ਕਰਕੇ ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ ਸਵੀਕਾਰ ਕਰੋ",
     "redirecting": "ਚੈੱਕਆਉਟ ਉੱਤੇ ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ…",
     "openingCheckout": "ਚੈੱਕਆਉਟ ਖੁੱਲ੍ਹ ਰਿਹਾ ਹੈ…",
-    "checkoutUnavailable": "ਚੈੱਕਆਉਟ ਲਿੰਕ ਉਪਲਬਧ ਨਹੀਂ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+    "checkoutUnavailable": "ਚੈੱਕਆਉਟ ਲਿੰਕ ਉਪਲਬਧ ਨਹੀਂ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
+    "acceptTerms": "ਮੈਂ ਸਵੀਕਾਰ ਕਰਦਾ ਹਾਂ <terms>ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ</terms>"
   }
 }

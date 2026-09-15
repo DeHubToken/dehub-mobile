@@ -3312,7 +3312,6 @@
     "noTxHash": "Новчаник није вратио хеш трансакције",
     "finishing": "Довршавање…",
     "confirmTitle": "Потврди претплату",
-    "subscribeToFor": "Претплатите се на {{name}} за {{price}}",
     "youPay": "Плаћате {{amount}}",
     "calculating": "Израчунавање укупног износа…",
     "creatorReceives": "Аутор добија {{amount}} USDT кредита",
@@ -3321,7 +3320,8 @@
     "notAvailableYet": "Још није доступно",
     "subscribe": "Претплати се",
     "subscriberCount_one": "{{count}} претплатник",
-    "subscriberCount_other": "{{count}} претплатника"
+    "subscriberCount_other": "{{count}} претплатника",
+    "subscribeToForRich": "Претплатите се на <name>{{name}}</name> за <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Није постављено",
@@ -3389,8 +3389,6 @@
     "confirmPurchase": "Потврди куповину",
     "amountIn": "Износ у {{currency}}",
     "approxReceive": "Примићете отприлике {{symbol}}",
-    "iAcceptThe": "Прихватам",
-    "termsOfService": "Услови коришћења",
     "invalidAmountGtZero": "Унесите важећи износ већи од 0.",
     "enterValidAmount": "Унесите важећи износ",
     "noSupply": "Куповина није доступна — нема залиха {{symbol}} на овом ланцу.",
@@ -3399,6 +3397,7 @@
     "acceptTermsFirst": "Молимо прихватите услове коришћења",
     "redirecting": "Преусмеравање на плаћање…",
     "openingCheckout": "Отварање плаћања…",
-    "checkoutUnavailable": "Веза за плаћање није доступна. Покушајте поново."
+    "checkoutUnavailable": "Веза за плаћање није доступна. Покушајте поново.",
+    "acceptTerms": "Прихватам <terms>Услови коришћења</terms>"
   }
 }

@@ -3631,7 +3631,6 @@
     "noTxHash": "Кошелёк не вернул хеш транзакции",
     "finishing": "Завершение…",
     "confirmTitle": "Подтвердить подписку",
-    "subscribeToFor": "Подпишитесь на {{name}} за {{price}}",
     "youPay": "Вы платите {{amount}}",
     "calculating": "Расчёт итоговой суммы…",
     "creatorReceives": "Автор получает {{amount}} USDT кредита",
@@ -3640,7 +3639,8 @@
     "notAvailableYet": "Пока недоступно",
     "subscribe": "Подписаться",
     "subscriberCount_one": "{{count}} подписчик",
-    "subscriberCount_other": "{{count}} подписчиков"
+    "subscriberCount_other": "{{count}} подписчиков",
+    "subscribeToForRich": "Подпишитесь на <name>{{name}}</name> за <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Не задано",
@@ -3693,8 +3693,6 @@
     "confirmPurchase": "Подтвердить покупку",
     "amountIn": "Сумма в {{currency}}",
     "approxReceive": "Получите примерно {{symbol}}",
-    "iAcceptThe": "Я принимаю",
-    "termsOfService": "Условия обслуживания",
     "invalidAmountGtZero": "Введите корректную сумму больше 0.",
     "enterValidAmount": "Введите корректную сумму",
     "noSupply": "Покупка недоступна — на этой сети нет запаса {{symbol}}.",
@@ -3703,6 +3701,7 @@
     "acceptTermsFirst": "Пожалуйста, примите условия обслуживания",
     "redirecting": "Перенаправление к оплате…",
     "openingCheckout": "Открытие оплаты…",
-    "checkoutUnavailable": "Ссылка на оплату недоступна. Попробуйте ещё раз."
+    "checkoutUnavailable": "Ссылка на оплату недоступна. Попробуйте ещё раз.",
+    "acceptTerms": "Я принимаю <terms>Условия обслуживания</terms>"
   }
 }
