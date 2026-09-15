@@ -4198,5 +4198,16 @@
     "usdtSent": "Надіслано {{amount}} USDT",
     "withdrawableSoon": "Плату за підписки незабаром можна буде вивести",
     "dpayBaseOnly": "Dpay доступний лише в Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Не вдалося оновити реакцію",
+    "saveFailed": "Не вдалося зберегти",
+    "linkCopied": "Посилання на допис скопійовано",
+    "removeRepostFailed": "Не вдалося прибрати репост",
+    "mintToGenerate": "Змінтіть цей допис, щоб згенерувати цей розділ",
+    "mint": "Мінт",
+    "stream": "Стрім",
+    "boostPost": "Бустнути допис",
+    "openSuperPowers": "Відкрити SuperPowers"
   }
 }

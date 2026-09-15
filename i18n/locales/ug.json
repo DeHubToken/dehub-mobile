@@ -3712,5 +3712,16 @@
     "usdtSent": "{{amount}} USDT ئەۋەتىلدى",
     "withdrawableSoon": "مۇشتەرىلىك ھەققىنى پات يېقىندا چىقارغىلى بولىدۇ",
     "dpayBaseOnly": "Dpay پەقەت Base دىلا بار."
+  },
+  "feedCard": {
+    "reactionFailed": "ئىنكاسنى يېڭىلىغىلى بولمىدى",
+    "saveFailed": "ساقلىغىلى بولمىدى",
+    "linkCopied": "يازما ئۇلانمىسى كۆچۈرۈلدى",
+    "removeRepostFailed": "قايتا يوللاشنى ئۆچۈرگىلى بولمىدى",
+    "mintToGenerate": "بۇ بۆلەكنى ھاسىل قىلىش ئۈچۈن بۇ يازمىنى mint قىلىڭ",
+    "mint": "Mint",
+    "stream": "تارقىتىش",
+    "boostPost": "يازمىنى كۈچەيتىش",
+    "openSuperPowers": "SuperPowers نى ئېچىش"
   }
 }

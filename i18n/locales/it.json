@@ -3792,5 +3792,16 @@
     "usdtSent": "Inviati {{amount}} USDT",
     "withdrawableSoon": "Le quote di abbonamento saranno presto prelevabili",
     "dpayBaseOnly": "Dpay è disponibile solo su Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Impossibile aggiornare la reazione",
+    "saveFailed": "Salvataggio non riuscito",
+    "linkCopied": "Link del post copiato",
+    "removeRepostFailed": "Impossibile rimuovere la ricondivisione",
+    "mintToGenerate": "Fai il mint di questo post per generare questa sezione",
+    "mint": "Mint",
+    "stream": "Diretta",
+    "boostPost": "Boost del post",
+    "openSuperPowers": "Apri SuperPowers"
   }
 }

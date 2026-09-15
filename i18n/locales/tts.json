@@ -3681,5 +3681,16 @@
     "usdtSent": "ส่ง {{amount}} USDT แล้ว",
     "withdrawableSoon": "ก้าสมาจิกจะถอนได้อีกบ่เมิน",
     "dpayBaseOnly": "Dpay ใจ้ได้เฉพาะบน Base เต้าอั้น"
+  },
+  "feedCard": {
+    "reactionFailed": "อัปเดตรีแอกจั้นบ่ได้",
+    "saveFailed": "บันทึกบ่ได้",
+    "linkCopied": "ก๊อปปี้ลิงก์โพสต์แล้ว",
+    "removeRepostFailed": "เอาฮีโพสต์ออกบ่ได้",
+    "mintToGenerate": "มินต์โพสต์นี้เปื้อสร้างส่วนนี้",
+    "mint": "มินต์",
+    "stream": "สตรีม",
+    "boostPost": "บูสต์โพสต์",
+    "openSuperPowers": "เปิด SuperPowers"
   }
 }

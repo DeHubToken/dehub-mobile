@@ -3711,5 +3711,16 @@
     "usdtSent": "{{amount}} USDT gschickt",
     "withdrawableSoon": "Abo-Gebühre chöi bald uszahlt werde",
     "dpayBaseOnly": "Dpay isch nur uf Base verfüegbar."
+  },
+  "feedCard": {
+    "reactionFailed": "D Reaktion het nöd chöne aktualisiert werde",
+    "saveFailed": "Speichere fehlgschlage",
+    "linkCopied": "Biitragslink kopiert",
+    "removeRepostFailed": "De Repost het nöd chöne entfernt werde",
+    "mintToGenerate": "Mint dä Biitrag, damit de Abschnitt gmacht wird",
+    "mint": "Minte",
+    "stream": "Stream",
+    "boostPost": "Biitrag booste",
+    "openSuperPowers": "SuperPowers uftue"
   }
 }

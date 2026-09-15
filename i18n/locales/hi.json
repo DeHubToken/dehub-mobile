@@ -3778,5 +3778,16 @@
     "usdtSent": "{{amount}} USDT भेजे गए",
     "withdrawableSoon": "सब्सक्रिप्शन फीस जल्द ही निकाली जा सकेगी",
     "dpayBaseOnly": "Dpay केवल Base पर उपलब्ध है।"
+  },
+  "feedCard": {
+    "reactionFailed": "प्रतिक्रिया अपडेट नहीं हो सकी",
+    "saveFailed": "सेव नहीं हो सका",
+    "linkCopied": "पोस्ट लिंक कॉपी हो गया",
+    "removeRepostFailed": "रीपोस्ट हटाया नहीं जा सका",
+    "mintToGenerate": "यह सेक्शन बनाने के लिए इस पोस्ट को मिंट करें",
+    "mint": "मिंट",
+    "stream": "स्ट्रीम",
+    "boostPost": "पोस्ट बूस्ट करें",
+    "openSuperPowers": "SuperPowers खोलें"
   }
 }

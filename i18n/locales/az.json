@@ -3706,5 +3706,16 @@
     "usdtSent": "{{amount}} USDT göndərildi",
     "withdrawableSoon": "Abunə haqları tezliklə çıxarıla biləcək",
     "dpayBaseOnly": "Dpay yalnız Base şəbəkəsində mövcuddur."
+  },
+  "feedCard": {
+    "reactionFailed": "Reaksiya yenilənə bilmədi",
+    "saveFailed": "Saxlanıla bilmədi",
+    "linkCopied": "Paylaşım linki kopyalandı",
+    "removeRepostFailed": "Repost silinə bilmədi",
+    "mintToGenerate": "Bu bölmənin yaradılması üçün paylaşımı mint edin",
+    "mint": "Mint et",
+    "stream": "Yayım",
+    "boostPost": "Paylaşımı gücləndir",
+    "openSuperPowers": "SuperPowers-i aç"
   }
 }

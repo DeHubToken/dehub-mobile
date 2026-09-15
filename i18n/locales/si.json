@@ -3704,5 +3704,16 @@
     "usdtSent": "{{amount}} USDT යවා ඇත",
     "withdrawableSoon": "දායක ගාස්තු ළඟදීම ලබා ගත හැකි වේ",
     "dpayBaseOnly": "Dpay ලබා ගත හැක්කේ Base හි පමණි."
+  },
+  "feedCard": {
+    "reactionFailed": "ප්‍රතිචාරය යාවත්කාලීන කිරීම අසාර්ථකයි",
+    "saveFailed": "සුරැකීම අසාර්ථකයි",
+    "linkCopied": "පළකිරීමේ සබැඳිය පිටපත් කළා",
+    "removeRepostFailed": "නැවත පළකිරීම ඉවත් කිරීම අසාර්ථකයි",
+    "mintToGenerate": "මෙම කොටස සෑදීමට මෙම පළකිරීම මින්ට් කරන්න",
+    "mint": "මින්ට්",
+    "stream": "ප්‍රවාහය",
+    "boostPost": "පළකිරීම බූස්ට් කරන්න",
+    "openSuperPowers": "SuperPowers විවෘත කරන්න"
   }
 }

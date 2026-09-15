@@ -3666,5 +3666,16 @@
     "usdtSent": "{{amount}} USDT cira",
     "withdrawableSoon": "Bilali wari bɛna se ka bɔ sɔɔni",
     "dpayBaseOnly": "Dpay bɛ sɔrɔ Base dɔrɔn kan."
+  },
+  "feedCard": {
+    "reactionFailed": "Jaabi ma se ka kura",
+    "saveFailed": "A ma se ka mara",
+    "linkCopied": "Sɛbɛn jurusira kopilen",
+    "removeRepostFailed": "Seginkan ma se ka bɔ",
+    "mintToGenerate": "Nin sɛbɛn mint walisa nin yɔrɔ ka dilan",
+    "mint": "Mint",
+    "stream": "Stream",
+    "boostPost": "Sɛbɛn boost",
+    "openSuperPowers": "SuperPowers da wuli"
   }
 }

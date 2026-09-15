@@ -3790,5 +3790,16 @@
     "usdtSent": "{{amount}} USDT 전송 완료",
     "withdrawableSoon": "구독료는 곧 출금할 수 있게 됩니다",
     "dpayBaseOnly": "Dpay는 Base에서만 사용할 수 있습니다."
+  },
+  "feedCard": {
+    "reactionFailed": "반응을 업데이트하지 못했습니다",
+    "saveFailed": "저장하지 못했습니다",
+    "linkCopied": "게시물 링크를 복사했습니다",
+    "removeRepostFailed": "리포스트를 취소하지 못했습니다",
+    "mintToGenerate": "이 섹션을 생성하려면 이 게시물을 민팅하세요",
+    "mint": "민팅",
+    "stream": "스트림",
+    "boostPost": "게시물 부스트",
+    "openSuperPowers": "SuperPowers 열기"
   }
 }

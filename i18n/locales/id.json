@@ -3772,5 +3772,16 @@
     "usdtSent": "{{amount}} USDT terkirim",
     "withdrawableSoon": "Biaya langganan segera bisa ditarik",
     "dpayBaseOnly": "Dpay hanya tersedia di Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Gagal memperbarui reaksi",
+    "saveFailed": "Gagal menyimpan",
+    "linkCopied": "Tautan postingan disalin",
+    "removeRepostFailed": "Gagal menghapus repost",
+    "mintToGenerate": "Mint postingan ini untuk membuat bagian ini",
+    "mint": "Mint",
+    "stream": "Siaran",
+    "boostPost": "Boost postingan",
+    "openSuperPowers": "Buka SuperPowers"
   }
 }

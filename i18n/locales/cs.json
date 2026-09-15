@@ -3726,5 +3726,16 @@
     "usdtSent": "Odesláno {{amount}} USDT",
     "withdrawableSoon": "Poplatky z předplatného půjde brzy vybrat",
     "dpayBaseOnly": "Dpay je dostupný jen na Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Reakci se nepodařilo aktualizovat",
+    "saveFailed": "Uložení se nezdařilo",
+    "linkCopied": "Odkaz na příspěvek zkopírován",
+    "removeRepostFailed": "Repost se nepodařilo odebrat",
+    "mintToGenerate": "Zmintujte tento příspěvek, aby se tato sekce vygenerovala",
+    "mint": "Mint",
+    "stream": "Stream",
+    "boostPost": "Boostnout příspěvek",
+    "openSuperPowers": "Otevřít SuperPowers"
   }
 }

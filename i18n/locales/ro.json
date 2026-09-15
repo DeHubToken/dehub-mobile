@@ -3735,5 +3735,16 @@
     "usdtSent": "{{amount}} USDT trimiși",
     "withdrawableSoon": "Taxele de abonament vor putea fi retrase în curând",
     "dpayBaseOnly": "Dpay este disponibil doar pe Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Reacția nu a putut fi actualizată",
+    "saveFailed": "Salvarea a eșuat",
+    "linkCopied": "Linkul postării a fost copiat",
+    "removeRepostFailed": "Repostarea nu a putut fi eliminată",
+    "mintToGenerate": "Mintează această postare pentru a genera această secțiune",
+    "mint": "Mintează",
+    "stream": "Transmisiune",
+    "boostPost": "Boostează postarea",
+    "openSuperPowers": "Deschide SuperPowers"
   }
 }

@@ -3693,5 +3693,16 @@
     "usdtSent": "{{amount}} USDT ପଠାଗଲା",
     "withdrawableSoon": "ସବସ୍କ୍ରିପସନ ଫି ଶୀଘ୍ର ଉଠାଯାଇପାରିବ",
     "dpayBaseOnly": "Dpay କେବଳ Base ରେ ଉପଲବ୍ଧ।"
+  },
+  "feedCard": {
+    "reactionFailed": "ପ୍ରତିକ୍ରିୟା ଅଦ୍ୟତନ କରାଯାଇପାରିଲା ନାହିଁ",
+    "saveFailed": "ସଞ୍ଚୟ କରାଯାଇପାରିଲା ନାହିଁ",
+    "linkCopied": "ପୋଷ୍ଟ ଲିଙ୍କ କପି ହେଲା",
+    "removeRepostFailed": "ରିପୋଷ୍ଟ ହଟାଯାଇପାରିଲା ନାହିଁ",
+    "mintToGenerate": "ଏହି ବିଭାଗ ତିଆରି କରିବାକୁ ଏହି ପୋଷ୍ଟ ମିଣ୍ଟ କରନ୍ତୁ",
+    "mint": "ମିଣ୍ଟ",
+    "stream": "ଷ୍ଟ୍ରିମ୍",
+    "boostPost": "ପୋଷ୍ଟ ବୁଷ୍ଟ କରନ୍ତୁ",
+    "openSuperPowers": "SuperPowers ଖୋଲନ୍ତୁ"
   }
 }

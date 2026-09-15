@@ -3721,5 +3721,16 @@
     "usdtSent": "U dërguan {{amount}} USDT",
     "withdrawableSoon": "Tarifat e abonimit do të mund të tërhiqen së shpejti",
     "dpayBaseOnly": "Dpay është i disponueshëm vetëm në Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Reagimi nuk u përditësua dot",
+    "saveFailed": "Nuk u ruajt dot",
+    "linkCopied": "Lidhja e postimit u kopjua",
+    "removeRepostFailed": "Ripostimi nuk u hoq dot",
+    "mintToGenerate": "Minto këtë postim për të gjeneruar këtë seksion",
+    "mint": "Minto",
+    "stream": "Transmetim",
+    "boostPost": "Boost postimin",
+    "openSuperPowers": "Hap SuperPowers"
   }
 }

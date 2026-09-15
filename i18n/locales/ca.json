@@ -3722,5 +3722,16 @@
     "usdtSent": "S'han enviat {{amount}} USDT",
     "withdrawableSoon": "Les quotes de subscripció es podran retirar aviat",
     "dpayBaseOnly": "Dpay només està disponible a Base."
+  },
+  "feedCard": {
+    "reactionFailed": "No s'ha pogut actualitzar la reacció",
+    "saveFailed": "No s'ha pogut desar",
+    "linkCopied": "Enllaç de la publicació copiat",
+    "removeRepostFailed": "No s'ha pogut eliminar la republicació",
+    "mintToGenerate": "Encunya aquesta publicació per generar aquesta secció",
+    "mint": "Encunya",
+    "stream": "Emissió",
+    "boostPost": "Impulsa la publicació",
+    "openSuperPowers": "Obre SuperPowers"
   }
 }

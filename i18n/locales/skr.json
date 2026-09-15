@@ -3666,5 +3666,16 @@
     "usdtSent": "{{amount}} USDT بھیجے ڳئے",
     "withdrawableSoon": "سبسکرپشن فیس چھیتی کڈھی ونج سڳسی",
     "dpayBaseOnly": "Dpay رڳو Base تے دستیاب ہے۔"
+  },
+  "feedCard": {
+    "reactionFailed": "ردعمل اپ ڈیٹ کائنی تھی سگھیا",
+    "saveFailed": "محفوظ کائنی تھی سگھیا",
+    "linkCopied": "پوسٹ دا لنک کاپی تھی ڳیا",
+    "removeRepostFailed": "ری پوسٹ ہٹائی کائنی ونج سڳی",
+    "mintToGenerate": "ایہہ سیکشن بݨاوݨ کیتے ایہہ پوسٹ منٹ کرو",
+    "mint": "منٹ",
+    "stream": "اسٹریم",
+    "boostPost": "پوسٹ کوں بوسٹ کرو",
+    "openSuperPowers": "SuperPowers کھولو"
   }
 }

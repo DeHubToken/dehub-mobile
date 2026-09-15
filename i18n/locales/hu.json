@@ -3726,5 +3726,16 @@
     "usdtSent": "{{amount}} USDT elküldve",
     "withdrawableSoon": "Az előfizetési díjak hamarosan kivehetők lesznek",
     "dpayBaseOnly": "A Dpay csak a Base-en érhető el."
+  },
+  "feedCard": {
+    "reactionFailed": "A reakciót nem sikerült frissíteni",
+    "saveFailed": "A mentés nem sikerült",
+    "linkCopied": "A bejegyzés linkje kimásolva",
+    "removeRepostFailed": "A megosztást nem sikerült eltávolítani",
+    "mintToGenerate": "Mintold ezt a bejegyzést, hogy létrejöjjön ez a szakasz",
+    "mint": "Mintolás",
+    "stream": "Közvetítés",
+    "boostPost": "Bejegyzés boostolása",
+    "openSuperPowers": "SuperPowers megnyitása"
   }
 }

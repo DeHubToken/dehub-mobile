@@ -3672,5 +3672,16 @@
     "usdtSent": "{{amount}} USDT ولېږل شو",
     "withdrawableSoon": "د ګډون فیسونه به ژر د ایستلو وړ شي",
     "dpayBaseOnly": "Dpay یوازې په Base کې شتون لري."
+  },
+  "feedCard": {
+    "reactionFailed": "غبرګون تازه نشو",
+    "saveFailed": "ونه ساتل شو",
+    "linkCopied": "د پوسټ لینک کاپي شو",
+    "removeRepostFailed": "بیا خپرول ونه لرې شول",
+    "mintToGenerate": "د دې برخې جوړولو لپاره دا پوسټ mint کړئ",
+    "mint": "Mint",
+    "stream": "خپرونه",
+    "boostPost": "پوسټ بوسټ کړئ",
+    "openSuperPowers": "SuperPowers خلاص کړئ"
   }
 }

@@ -3755,5 +3755,16 @@
     "usdtSent": "{{amount}} USDT पठाइयो",
     "withdrawableSoon": "सदस्यता शुल्क चाँडै झिक्न मिल्नेछ",
     "dpayBaseOnly": "Dpay Base मा मात्र उपलब्ध छ।"
+  },
+  "feedCard": {
+    "reactionFailed": "प्रतिक्रिया अद्यावधिक गर्न सकिएन",
+    "saveFailed": "सुरक्षित गर्न सकिएन",
+    "linkCopied": "पोस्ट लिंक प्रतिलिपि भयो",
+    "removeRepostFailed": "रिपोस्ट हटाउन सकिएन",
+    "mintToGenerate": "यो खण्ड बनाउन यो पोस्ट मिन्ट गर्नुहोस्",
+    "mint": "मिन्ट",
+    "stream": "स्ट्रिम",
+    "boostPost": "पोस्ट बुस्ट गर्नुहोस्",
+    "openSuperPowers": "SuperPowers खोल्नुहोस्"
   }
 }

@@ -3718,5 +3718,16 @@
     "usdtSent": "اتبعت {{amount}} USDT",
     "withdrawableSoon": "رسوم الاشتراكات هتبقى قابلة للسحب قريب",
     "dpayBaseOnly": "Dpay متاح بس على Base."
+  },
+  "feedCard": {
+    "reactionFailed": "مقدرناش نحدث التفاعل",
+    "saveFailed": "مقدرناش نحفظ",
+    "linkCopied": "اتنسخ لينك البوست",
+    "removeRepostFailed": "مقدرناش نشيل اعادة النشر",
+    "mintToGenerate": "اعمل mint للبوست ده علشان القسم ده يتولد",
+    "mint": "Mint",
+    "stream": "بث",
+    "boostPost": "عزز البوست",
+    "openSuperPowers": "افتح SuperPowers"
   }
 }

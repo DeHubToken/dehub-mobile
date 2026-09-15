@@ -3752,5 +3752,16 @@
     "usdtSent": "{{amount}} USDT apachisqa",
     "withdrawableSoon": "Qillqakuy chaninkunaqa ñachu horqonalla kanqa",
     "dpayBaseOnly": "Dpay Base ukhullapim tarikun."
+  },
+  "feedCard": {
+    "reactionFailed": "Kutichiyta mana musuqchayta atinchu",
+    "saveFailed": "Mana waqaychayta atinchu",
+    "linkCopied": "Willay t'inka kikinchasqa",
+    "removeRepostFailed": "Musuqmanta willayta mana horqoyta atinchu",
+    "mintToGenerate": "Kay rakita ruwanapaq kay willayta mint ruway",
+    "mint": "Mint",
+    "stream": "Chayachiy",
+    "boostPost": "Willayta kallpachay",
+    "openSuperPowers": "SuperPowers kichay"
   }
 }
