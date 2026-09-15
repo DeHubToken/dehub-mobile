@@ -3483,5 +3483,21 @@
     "includeSocials": "ਸੋਸ਼ਲ ਹੈਂਡਲ ਸ਼ਾਮਲ ਕਰੋ",
     "extraNotes": "ਵਾਧੂ ਨੋਟ",
     "notesPlaceholder": "ਪੋਸਟਰ ਵਿੱਚ ਹੋਰ ਜੋ ਵੀ ਦਿਖਾਉਣਾ ਹੈ"
+  },
+  "monetization": {
+    "tokenGated": "ਟੋਕਨ ਆਧਾਰਿਤ",
+    "invalidToken": "ਸਹੀ ਟੋਕਨ ਕੰਟਰੈਕਟ ਪਤਾ ਦਰਜ ਕਰੋ",
+    "createPlanAction": "ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਪਲਾਨ ਬਣਾਓ",
+    "createPlanFirst": "ਪਹਿਲਾਂ ਇੱਕ ਪਲਾਨ ਬਣਾਓ",
+    "publishPlanFirst": "ਪਹਿਲਾਂ ਆਪਣਾ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਪਲਾਨ ਚੇਨ ਉੱਤੇ ਪ੍ਰਕਾਸ਼ਿਤ ਕਰੋ।",
+    "subscribersOnly": "ਇਹ ਪੋਸਟ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਸਬਸਕ੍ਰਾਈਬਰ ਖੋਲ੍ਹ ਸਕਦੇ ਹਨ।",
+    "price": "ਕੀਮਤ ({{currency}})",
+    "paymentsSolana": "ਭੁਗਤਾਨ ਸੋਲਾਨਾ ਉੱਤੇ {{currency}} ਵਿੱਚ ਹੁੰਦਾ ਹੈ",
+    "paymentsBase": "ਭੁਗਤਾਨ Base ਚੇਨ ਉੱਤੇ DHB ਵਿੱਚ ਹੁੰਦਾ ਹੈ",
+    "requiresSpl": "ਦੇਖਣ ਲਈ Solana ਉੱਤੇ SPL ਟੋਕਨ ਚਾਹੀਦਾ ਹੈ",
+    "mustHoldOn": "ਦਰਸ਼ਕਾਂ ਕੋਲ {{chain}} ਉੱਤੇ ਇਹ ਟੋਕਨ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+    "custom": "ਕਸਟਮ",
+    "contractPlaceholder": "ਕੰਟਰੈਕਟ ਪਤਾ (0x…)",
+    "symbolPlaceholder": "ਚਿੰਨ੍ਹ (ਜਿਵੇਂ PEPE)"
   }
 }

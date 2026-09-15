@@ -3526,5 +3526,21 @@
     "includeSocials": "បញ្ចូលបណ្ដាញសង្គម",
     "extraNotes": "កំណត់ចំណាំបន្ថែម",
     "notesPlaceholder": "អ្វីផ្សេងទៀតដែលផ្ទាំងរូបភាពត្រូវបង្ហាញ"
+  },
+  "monetization": {
+    "tokenGated": "កំណត់ដោយថូខឹន",
+    "invalidToken": "បញ្ចូលអាសយដ្ឋានកិច្ចសន្យាថូខឹនត្រឹមត្រូវ",
+    "createPlanAction": "បង្កើតគម្រោងជាវ",
+    "createPlanFirst": "សូមបង្កើតគម្រោងជាមុនសិន",
+    "publishPlanFirst": "សូមបោះពុម្ពគម្រោងជាវរបស់អ្នកលើខ្សែច្រវាក់ជាមុនសិន។",
+    "subscribersOnly": "មានតែអ្នកជាវរបស់អ្នកទេដែលអាចបើកប្រកាសនេះ។",
+    "price": "តម្លៃ ({{currency}})",
+    "paymentsSolana": "ការទូទាត់ជា {{currency}} លើ Solana",
+    "paymentsBase": "ការទូទាត់ជា DHB លើខ្សែច្រវាក់ Base",
+    "requiresSpl": "ត្រូវការថូខឹន SPL លើ Solana ដើម្បីមើល",
+    "mustHoldOn": "អ្នកមើលត្រូវតែកាន់ថូខឹននេះនៅលើ {{chain}}",
+    "custom": "ផ្ទាល់ខ្លួន",
+    "contractPlaceholder": "អាសយដ្ឋានកិច្ចសន្យា (0x…)",
+    "symbolPlaceholder": "និមិត្តសញ្ញា (ឧ. PEPE)"
   }
 }

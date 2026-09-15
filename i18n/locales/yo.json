@@ -3497,5 +3497,21 @@
     "includeSocials": "Fi àwọn àkọ́ọ̀nù àwùjọ kún un",
     "extraNotes": "Àkíyèsí àfikún",
     "notesPlaceholder": "Ohunkóhun mìíràn tí póstà gbọ́dọ̀ fi hàn"
+  },
+  "monetization": {
+    "tokenGated": "Ààlà tòkénì",
+    "invalidToken": "Tẹ àdírẹ́sì ìwé àdéhùn tòkénì tó tọ́ sí i",
+    "createPlanAction": "Ṣẹ̀dá ètò ìforúkọsílẹ̀",
+    "createPlanFirst": "Ṣẹ̀dá ètò ní àkọ́kọ́",
+    "publishPlanFirst": "Kọ́kọ́ tẹ ètò ìforúkọsílẹ̀ rẹ jáde lórí ẹ̀wọ̀n.",
+    "subscribersOnly": "Àwọn alábòwọlé rẹ nìkan ló lè ṣí ìfìwéránṣẹ́ yìí.",
+    "price": "Iye ({{currency}})",
+    "paymentsSolana": "Ìsanwó wà ní {{currency}} lórí Solana",
+    "paymentsBase": "Ìsanwó wà ní DHB lórí ẹ̀wọ̀n Base",
+    "requiresSpl": "Ó nílò tòkénì SPL lórí Solana láti wò ó",
+    "mustHoldOn": "Àwọn olùwòran gbọ́dọ̀ ní tòkénì yìí lórí {{chain}}",
+    "custom": "Àkànṣe",
+    "contractPlaceholder": "Àdírẹ́sì ìwé àdéhùn (0x…)",
+    "symbolPlaceholder": "Àmì (bí PEPE)"
   }
 }

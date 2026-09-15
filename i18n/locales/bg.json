@@ -3507,5 +3507,21 @@
     "includeSocials": "Включи социалните мрежи",
     "extraNotes": "Допълнителни бележки",
     "notesPlaceholder": "Всичко друго, което плакатът трябва да показва"
+  },
+  "monetization": {
+    "tokenGated": "С токен достъп",
+    "invalidToken": "Въведи валиден адрес на токен договор",
+    "createPlanAction": "Създай абонаментен план",
+    "createPlanFirst": "Първо създай план",
+    "publishPlanFirst": "Първо публикувай абонаментния си план в блокчейна.",
+    "subscribersOnly": "Само абонатите ти могат да отворят тази публикация.",
+    "price": "Цена ({{currency}})",
+    "paymentsSolana": "Плащанията са в {{currency}} в Solana",
+    "paymentsBase": "Плащанията са в DHB в мрежата Base",
+    "requiresSpl": "За преглед е нужен SPL токен в Solana",
+    "mustHoldOn": "Зрителите трябва да държат този токен в {{chain}}",
+    "custom": "Персонализирано",
+    "contractPlaceholder": "Адрес на договора (0x…)",
+    "symbolPlaceholder": "Символ (напр. PEPE)"
   }
 }

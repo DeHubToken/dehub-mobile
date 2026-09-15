@@ -3543,5 +3543,21 @@
     "includeSocials": "ใส่โซเชียล",
     "extraNotes": "หมายเหตุเพิ่มเติม",
     "notesPlaceholder": "อย่างอื่นที่โปสเตอร์ต้องแสดง"
+  },
+  "monetization": {
+    "tokenGated": "จำกัดด้วยโทเคน",
+    "invalidToken": "ใส่ที่อยู่สัญญาโทเคนที่ถูกต้อง",
+    "createPlanAction": "สร้างแพ็กเกจสมาชิก",
+    "createPlanFirst": "กรุณาสร้างแพ็กเกจก่อน",
+    "publishPlanFirst": "กรุณาเผยแพร่แพ็กเกจสมาชิกของคุณบนเชนก่อน",
+    "subscribersOnly": "เฉพาะสมาชิกของคุณเท่านั้นที่เปิดโพสต์นี้ได้",
+    "price": "ราคา ({{currency}})",
+    "paymentsSolana": "ชำระเงินเป็น {{currency}} บน Solana",
+    "paymentsBase": "ชำระเงินเป็น DHB บนเชน Base",
+    "requiresSpl": "ต้องมีโทเคน SPL บน Solana จึงจะดูได้",
+    "mustHoldOn": "ผู้ชมต้องถือโทเคนนี้บน {{chain}}",
+    "custom": "กำหนดเอง",
+    "contractPlaceholder": "ที่อยู่สัญญา (0x…)",
+    "symbolPlaceholder": "สัญลักษณ์ (เช่น PEPE)"
   }
 }

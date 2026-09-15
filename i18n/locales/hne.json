@@ -3508,5 +3508,21 @@
     "includeSocials": "सोशल हैंडल जोड़व",
     "extraNotes": "अउ नोट",
     "notesPlaceholder": "पोस्टर म अउ जउन कुछू देखाना हे"
+  },
+  "monetization": {
+    "tokenGated": "टोकन गेटेड",
+    "invalidToken": "सही टोकन कॉन्ट्रैक्ट पता भरव",
+    "createPlanAction": "सब्सक्रिप्शन प्लान बनावव",
+    "createPlanFirst": "पहिली एक प्लान बनावव",
+    "publishPlanFirst": "पहिली अपन सब्सक्रिप्शन प्लान चेन म प्रकाशित करव।",
+    "subscribersOnly": "ये पोस्ट ला सिरिफ तोर सब्सक्राइबर खोल सकथें।",
+    "price": "दाम ({{currency}})",
+    "paymentsSolana": "भुगतान सोलाना म {{currency}} म होथे",
+    "paymentsBase": "भुगतान Base चेन म DHB म होथे",
+    "requiresSpl": "देखे बर सोलाना म SPL टोकन चाही",
+    "mustHoldOn": "देखइया मन करा {{chain}} म ये टोकन होना चाही",
+    "custom": "कस्टम",
+    "contractPlaceholder": "कॉन्ट्रैक्ट पता (0x…)",
+    "symbolPlaceholder": "सिंबल (जइसे PEPE)"
   }
 }

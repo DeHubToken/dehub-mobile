@@ -3530,5 +3530,21 @@
     "includeSocials": "Συμπερίληψη κοινωνικών δικτύων",
     "extraNotes": "Πρόσθετες σημειώσεις",
     "notesPlaceholder": "Οτιδήποτε άλλο πρέπει να δείχνει η αφίσα"
+  },
+  "monetization": {
+    "tokenGated": "Με πρόσβαση μέσω token",
+    "invalidToken": "Εισαγάγετε έγκυρη διεύθυνση συμβολαίου token",
+    "createPlanAction": "Δημιουργία συνδρομητικού πακέτου",
+    "createPlanFirst": "Δημιούργησε πρώτα ένα πακέτο",
+    "publishPlanFirst": "Δημοσίευσε πρώτα το πακέτο συνδρομής σου στην αλυσίδα.",
+    "subscribersOnly": "Μόνο οι συνδρομητές σου μπορούν να ανοίξουν αυτή την ανάρτηση.",
+    "price": "Τιμή ({{currency}})",
+    "paymentsSolana": "Οι πληρωμές γίνονται σε {{currency}} στο Solana",
+    "paymentsBase": "Οι πληρωμές γίνονται σε DHB στην αλυσίδα Base",
+    "requiresSpl": "Απαιτείται token SPL στο Solana για προβολή",
+    "mustHoldOn": "Οι θεατές πρέπει να κατέχουν αυτό το token στο {{chain}}",
+    "custom": "Προσαρμοσμένο",
+    "contractPlaceholder": "Διεύθυνση συμβολαίου (0x…)",
+    "symbolPlaceholder": "Σύμβολο (π.χ. PEPE)"
   }
 }

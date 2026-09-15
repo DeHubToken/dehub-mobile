@@ -3458,5 +3458,21 @@
     "includeSocials": "包含社交账号",
     "extraNotes": "补充说明",
     "notesPlaceholder": "海报还需要展示的其他内容"
+  },
+  "monetization": {
+    "tokenGated": "代币门槛",
+    "invalidToken": "请输入有效的代币合约地址",
+    "createPlanAction": "创建订阅方案",
+    "createPlanFirst": "请先创建方案",
+    "publishPlanFirst": "请先把你的订阅方案发布到链上。",
+    "subscribersOnly": "只有你的订阅者能打开这条帖子。",
+    "price": "价格（{{currency}}）",
+    "paymentsSolana": "付款在 Solana 上以 {{currency}} 结算",
+    "paymentsBase": "付款在 Base 链上以 DHB 结算",
+    "requiresSpl": "需要 Solana 上的 SPL 代币才能查看",
+    "mustHoldOn": "观看者需要在 {{chain}} 上持有该代币",
+    "custom": "自定义",
+    "contractPlaceholder": "合约地址（0x…）",
+    "symbolPlaceholder": "代号（例如 PEPE）"
   }
 }

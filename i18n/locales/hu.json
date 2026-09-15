@@ -3511,5 +3511,21 @@
     "includeSocials": "Közösségi profilok feltüntetése",
     "extraNotes": "További megjegyzések",
     "notesPlaceholder": "Bármi más, aminek szerepelnie kell a poszteren"
+  },
+  "monetization": {
+    "tokenGated": "Tokennel védett",
+    "invalidToken": "Adj meg érvényes token-szerződéscímet",
+    "createPlanAction": "Előfizetési csomag létrehozása",
+    "createPlanFirst": "Előbb hozz létre egy csomagot",
+    "publishPlanFirst": "Előbb tedd közzé az előfizetési csomagodat a láncon.",
+    "subscribersOnly": "Ezt a bejegyzést csak az előfizetőid nyithatják meg.",
+    "price": "Ár ({{currency}})",
+    "paymentsSolana": "A fizetés {{currency}}-ben történik a Solanán",
+    "paymentsBase": "A fizetés DHB-ben történik a Base láncon",
+    "requiresSpl": "A megtekintéshez SPL token kell a Solanán",
+    "mustHoldOn": "A nézőknek rendelkezniük kell ezzel a tokennel a(z) {{chain}} láncon",
+    "custom": "Egyéni",
+    "contractPlaceholder": "Szerződéscím (0x…)",
+    "symbolPlaceholder": "Szimbólum (pl. PEPE)"
   }
 }

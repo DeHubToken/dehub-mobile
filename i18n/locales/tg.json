@@ -3485,5 +3485,21 @@
     "includeSocials": "Илова кардани шабакаҳои иҷтимоӣ",
     "extraNotes": "Ёддоштҳои иловагӣ",
     "notesPlaceholder": "Ҳар чизи дигаре, ки плакат бояд нишон диҳад"
+  },
+  "monetization": {
+    "tokenGated": "Бо токен маҳдуд",
+    "invalidToken": "Суроғаи дурусти шартномаи токенро ворид кунед",
+    "createPlanAction": "Эҷоди нақшаи обуна",
+    "createPlanFirst": "Аввал нақша эҷод кунед",
+    "publishPlanFirst": "Аввал нақшаи обунаи худро дар занҷир нашр кунед.",
+    "subscribersOnly": "Ин постро танҳо обуначиёни шумо кушода метавонанд.",
+    "price": "Нарх ({{currency}})",
+    "paymentsSolana": "Пардохтҳо бо {{currency}} дар Solana мебошанд",
+    "paymentsBase": "Пардохтҳо бо DHB дар занҷири Base мебошанд",
+    "requiresSpl": "Барои дидан токени SPL дар Solana лозим аст",
+    "mustHoldOn": "Тамошобинон бояд ин токенро дар {{chain}} дошта бошанд",
+    "custom": "Фардӣ",
+    "contractPlaceholder": "Суроғаи шартнома (0x…)",
+    "symbolPlaceholder": "Аломат (мас. PEPE)"
   }
 }

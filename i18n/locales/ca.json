@@ -3507,5 +3507,21 @@
     "includeSocials": "Inclou les xarxes socials",
     "extraNotes": "Notes addicionals",
     "notesPlaceholder": "Qualsevol altra cosa que hagi de mostrar el pòster"
+  },
+  "monetization": {
+    "tokenGated": "Restringit per token",
+    "invalidToken": "Introdueix una adreça de contracte de token vàlida",
+    "createPlanAction": "Crea un pla de subscripció",
+    "createPlanFirst": "Crea primer un pla",
+    "publishPlanFirst": "Publica primer el teu pla de subscripció a la cadena.",
+    "subscribersOnly": "Només els teus subscriptors poden obrir aquesta publicació.",
+    "price": "Preu ({{currency}})",
+    "paymentsSolana": "Els pagaments són en {{currency}} a Solana",
+    "paymentsBase": "Els pagaments són en DHB a la cadena Base",
+    "requiresSpl": "Cal un token SPL a Solana per veure-ho",
+    "mustHoldOn": "Els espectadors han de tenir aquest token a {{chain}}",
+    "custom": "Personalitzat",
+    "contractPlaceholder": "Adreça del contracte (0x…)",
+    "symbolPlaceholder": "Símbol (p. ex. PEPE)"
   }
 }

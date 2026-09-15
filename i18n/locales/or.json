@@ -3478,5 +3478,21 @@
     "includeSocials": "ସୋସିଆଲ ହ୍ୟାଣ୍ଡଲ ଅନ୍ତର୍ଭୁକ୍ତ କରନ୍ତୁ",
     "extraNotes": "ଅତିରିକ୍ତ ଟିପ୍ପଣୀ",
     "notesPlaceholder": "ପୋଷ୍ଟରରେ ଦେଖାଇବାକୁ ଥିବା ଅନ୍ୟ କିଛି"
+  },
+  "monetization": {
+    "tokenGated": "ଟୋକେନ ଆଧାରିତ",
+    "invalidToken": "ବୈଧ ଟୋକେନ କଣ୍ଟ୍ରାକ୍ଟ ଠିକଣା ଦିଅନ୍ତୁ",
+    "createPlanAction": "ସବସ୍କ୍ରିପସନ ଯୋଜନା ତିଆରି କରନ୍ତୁ",
+    "createPlanFirst": "ପ୍ରଥମେ ଏକ ଯୋଜନା ତିଆରି କରନ୍ତୁ",
+    "publishPlanFirst": "ପ୍ରଥମେ ଆପଣଙ୍କ ସବସ୍କ୍ରିପସନ ଯୋଜନା ଚେନରେ ପ୍ରକାଶ କରନ୍ତୁ।",
+    "subscribersOnly": "ଏହି ପୋଷ୍ଟ କେବଳ ଆପଣଙ୍କ ସବସ୍କ୍ରାଇବର ଖୋଲିପାରିବେ।",
+    "price": "ମୂଲ୍ୟ ({{currency}})",
+    "paymentsSolana": "ପେମେଣ୍ଟ ସୋଲାନାରେ {{currency}} ରେ ହୁଏ",
+    "paymentsBase": "ପେମେଣ୍ଟ Base ଚେନରେ DHB ରେ ହୁଏ",
+    "requiresSpl": "ଦେଖିବାକୁ Solana ରେ SPL ଟୋକେନ ଆବଶ୍ୟକ",
+    "mustHoldOn": "ଦର୍ଶକମାନଙ୍କ ପାଖରେ {{chain}} ରେ ଏହି ଟୋକେନ ଥିବା ଆବଶ୍ୟକ",
+    "custom": "କଷ୍ଟମ",
+    "contractPlaceholder": "କଣ୍ଟ୍ରାକ୍ଟ ଠିକଣା (0x…)",
+    "symbolPlaceholder": "ପ୍ରତୀକ (ଯଥା PEPE)"
   }
 }

@@ -3499,5 +3499,21 @@
     "includeSocials": "સોશિયલ હેન્ડલ્સ સામેલ કરો",
     "extraNotes": "વધારાની નોંધ",
     "notesPlaceholder": "પોસ્ટરમાં બીજું જે કંઈ બતાવવું હોય"
+  },
+  "monetization": {
+    "tokenGated": "ટોકન ગેટેડ",
+    "invalidToken": "માન્ય ટોકન કોન્ટ્રાક્ટ સરનામું દાખલ કરો",
+    "createPlanAction": "સબસ્ક્રિપ્શન પ્લાન બનાવો",
+    "createPlanFirst": "પહેલા એક પ્લાન બનાવો",
+    "publishPlanFirst": "પહેલા તમારો સબસ્ક્રિપ્શન પ્લાન ચેઇન પર પ્રકાશિત કરો.",
+    "subscribersOnly": "આ પોસ્ટ ફક્ત તમારા સબસ્ક્રાઇબર્સ ખોલી શકે છે.",
+    "price": "કિંમત ({{currency}})",
+    "paymentsSolana": "ચુકવણી સોલાના પર {{currency}} માં થાય છે",
+    "paymentsBase": "ચુકવણી Base ચેઇન પર DHB માં થાય છે",
+    "requiresSpl": "જોવા માટે સોલાના પર SPL ટોકન જરૂરી છે",
+    "mustHoldOn": "દર્શકો પાસે {{chain}} પર આ ટોકન હોવું જોઈએ",
+    "custom": "કસ્ટમ",
+    "contractPlaceholder": "કોન્ટ્રાક્ટ સરનામું (0x…)",
+    "symbolPlaceholder": "પ્રતીક (દા.ત. PEPE)"
   }
 }

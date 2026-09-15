@@ -3512,5 +3512,21 @@
     "includeSocials": "ಸಾಮಾಜಿಕ ಖಾತೆಗಳನ್ನು ಸೇರಿಸಿ",
     "extraNotes": "ಹೆಚ್ಚುವರಿ ಟಿಪ್ಪಣಿಗಳು",
     "notesPlaceholder": "ಪೋಸ್ಟರ್‌ನಲ್ಲಿ ತೋರಿಸಬೇಕಾದ ಇನ್ನೇನಾದರೂ"
+  },
+  "monetization": {
+    "tokenGated": "ಟೋಕನ್ ಆಧಾರಿತ",
+    "invalidToken": "ಮಾನ್ಯ ಟೋಕನ್ ಒಪ್ಪಂದ ವಿಳಾಸ ನಮೂದಿಸಿ",
+    "createPlanAction": "ಚಂದಾದಾರಿಕೆ ಯೋಜನೆ ರಚಿಸಿ",
+    "createPlanFirst": "ಮೊದಲು ಯೋಜನೆ ರಚಿಸಿ",
+    "publishPlanFirst": "ಮೊದಲು ನಿಮ್ಮ ಚಂದಾದಾರಿಕೆ ಯೋಜನೆಯನ್ನು ಚೈನ್‌ನಲ್ಲಿ ಪ್ರಕಟಿಸಿ.",
+    "subscribersOnly": "ಈ ಪೋಸ್ಟ್ ಅನ್ನು ನಿಮ್ಮ ಚಂದಾದಾರರು ಮಾತ್ರ ತೆರೆಯಬಹುದು.",
+    "price": "ಬೆಲೆ ({{currency}})",
+    "paymentsSolana": "ಪಾವತಿಗಳು Solana ನಲ್ಲಿ {{currency}} ನಲ್ಲಿ",
+    "paymentsBase": "ಪಾವತಿಗಳು Base ಚೈನ್‌ನಲ್ಲಿ DHB ನಲ್ಲಿ",
+    "requiresSpl": "ನೋಡಲು Solana ನಲ್ಲಿ SPL ಟೋಕನ್ ಬೇಕು",
+    "mustHoldOn": "ವೀಕ್ಷಕರು {{chain}} ನಲ್ಲಿ ಈ ಟೋಕನ್ ಹೊಂದಿರಬೇಕು",
+    "custom": "ಕಸ್ಟಮ್",
+    "contractPlaceholder": "ಒಪ್ಪಂದ ವಿಳಾಸ (0x…)",
+    "symbolPlaceholder": "ಚಿಹ್ನೆ (ಉದಾ. PEPE)"
   }
 }

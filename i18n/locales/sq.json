@@ -3506,5 +3506,21 @@
     "includeSocials": "Përfshi rrjetet sociale",
     "extraNotes": "Shënime shtesë",
     "notesPlaceholder": "Çdo gjë tjetër që posteri duhet të tregojë"
+  },
+  "monetization": {
+    "tokenGated": "I kufizuar me token",
+    "invalidToken": "Shkruaj një adresë kontrate tokeni të vlefshme",
+    "createPlanAction": "Krijo një plan abonimi",
+    "createPlanFirst": "Fillimisht krijo një plan",
+    "publishPlanFirst": "Fillimisht publiko planin tënd të abonimit në zinxhir.",
+    "subscribersOnly": "Vetëm abonentët e tu mund ta hapin këtë postim.",
+    "price": "Çmimi ({{currency}})",
+    "paymentsSolana": "Pagesat bëhen në {{currency}} në Solana",
+    "paymentsBase": "Pagesat bëhen në DHB në zinxhirin Base",
+    "requiresSpl": "Kërkon një token SPL në Solana për ta parë",
+    "mustHoldOn": "Shikuesit duhet ta kenë këtë token në {{chain}}",
+    "custom": "I personalizuar",
+    "contractPlaceholder": "Adresa e kontratës (0x…)",
+    "symbolPlaceholder": "Simboli (p.sh. PEPE)"
   }
 }

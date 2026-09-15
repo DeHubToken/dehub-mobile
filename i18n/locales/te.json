@@ -3501,5 +3501,21 @@
     "includeSocials": "సోషల్ హ్యాండిల్స్ చేర్చండి",
     "extraNotes": "అదనపు గమనికలు",
     "notesPlaceholder": "పోస్టర్‌లో చూపాల్సిన మరేదైనా"
+  },
+  "monetization": {
+    "tokenGated": "టోకెన్ ఆధారితం",
+    "invalidToken": "చెల్లుబాటు అయ్యే టోకెన్ కాంట్రాక్ట్ చిరునామా నమోదు చేయండి",
+    "createPlanAction": "సభ్యత్వ ప్లాన్ సృష్టించండి",
+    "createPlanFirst": "ముందుగా ఒక ప్లాన్ సృష్టించండి",
+    "publishPlanFirst": "ముందుగా మీ సభ్యత్వ ప్లాన్‌ను చైన్‌లో ప్రచురించండి.",
+    "subscribersOnly": "ఈ పోస్ట్‌ను మీ సభ్యులు మాత్రమే తెరవగలరు.",
+    "price": "ధర ({{currency}})",
+    "paymentsSolana": "చెల్లింపులు Solana లో {{currency}} లో ఉంటాయి",
+    "paymentsBase": "చెల్లింపులు Base చైన్‌లో DHB లో ఉంటాయి",
+    "requiresSpl": "చూడటానికి Solana లో SPL టోకెన్ అవసరం",
+    "mustHoldOn": "వీక్షకులు {{chain}} లో ఈ టోకెన్ కలిగి ఉండాలి",
+    "custom": "అనుకూలం",
+    "contractPlaceholder": "కాంట్రాక్ట్ చిరునామా (0x…)",
+    "symbolPlaceholder": "గుర్తు (ఉదా. PEPE)"
   }
 }

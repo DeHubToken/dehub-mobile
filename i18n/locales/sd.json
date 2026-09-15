@@ -3490,5 +3490,21 @@
     "includeSocials": "سوشل هينڊلز شامل ڪريو",
     "extraNotes": "اضافي نوٽس",
     "notesPlaceholder": "پوسٽر ۾ ٻيو جيڪو ڪجهه ڏيکارڻو آهي"
+  },
+  "monetization": {
+    "tokenGated": "ٽوڪن گيٽيڊ",
+    "invalidToken": "صحيح ٽوڪن ڪانٽريڪٽ ائڊريس داخل ڪريو",
+    "createPlanAction": "سبسڪرپشن پلان ٺاهيو",
+    "createPlanFirst": "پهريان هڪ پلان ٺاهيو",
+    "publishPlanFirst": "پهريان پنهنجو سبسڪرپشن پلان چين تي شايع ڪريو.",
+    "subscribersOnly": "هي پوسٽ صرف توهان جا سبسڪرائبر کولي سگهن ٿا.",
+    "price": "قيمت ({{currency}})",
+    "paymentsSolana": "ادائيگيون Solana تي {{currency}} ۾ ٿينديون آهن",
+    "paymentsBase": "ادائيگيون Base چين تي DHB ۾ ٿينديون آهن",
+    "requiresSpl": "ڏسڻ لاءِ Solana تي SPL ٽوڪن گهرجي",
+    "mustHoldOn": "ڏسندڙن وٽ {{chain}} تي هي ٽوڪن هجڻ گهرجي",
+    "custom": "ڪسٽم",
+    "contractPlaceholder": "ڪانٽريڪٽ ائڊريس (0x…)",
+    "symbolPlaceholder": "علامت (مثلاً PEPE)"
   }
 }

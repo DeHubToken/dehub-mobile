@@ -3270,5 +3270,21 @@
     "includeSocials": "Укључи друштвене мреже",
     "extraNotes": "Додатне напомене",
     "notesPlaceholder": "Све остало што постер мора да прикаже"
+  },
+  "monetization": {
+    "tokenGated": "Приступ преко токена",
+    "invalidToken": "Унесите важећу адресу уговора токена",
+    "createPlanAction": "Направи претплатнички план",
+    "createPlanFirst": "Прво направите план",
+    "publishPlanFirst": "Прво објавите свој претплатнички план на ланцу.",
+    "subscribersOnly": "Ову објаву могу отворити само ваши претплатници.",
+    "price": "Цена ({{currency}})",
+    "paymentsSolana": "Плаћања се врше у {{currency}} на Солани",
+    "paymentsBase": "Плаћања се врше у DHB на ланцу Base",
+    "requiresSpl": "За преглед је потребан SPL токен на Солани",
+    "mustHoldOn": "Гледаоци морају држати овај токен на {{chain}}",
+    "custom": "Прилагођено",
+    "contractPlaceholder": "Адреса уговора (0x…)",
+    "symbolPlaceholder": "Симбол (нпр. PEPE)"
   }
 }

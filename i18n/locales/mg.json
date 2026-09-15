@@ -3586,5 +3586,21 @@
     "includeSocials": "Ampidiro ny media sosialy",
     "extraNotes": "Fanamarihana fanampiny",
     "notesPlaceholder": "Izay rehetra tokony hasehon'ny peta-drindrina"
+  },
+  "monetization": {
+    "tokenGated": "Voafetran'ny token",
+    "invalidToken": "Ampidiro adiresy fifanarahana token manan-kery",
+    "createPlanAction": "Mamorona drafitra fisoratana anarana",
+    "createPlanFirst": "Mamorona drafitra aloha",
+    "publishPlanFirst": "Avoahy aloha ao amin'ny rojo ny drafitra fisoratana anaranao.",
+    "subscribersOnly": "Ny mpanoratra anarana anao ihany no afaka manokatra ity lahatsoratra ity.",
+    "price": "Vidiny ({{currency}})",
+    "paymentsSolana": "Atao amin'ny {{currency}} ao Solana ny fandoavam-bola",
+    "paymentsBase": "Atao amin'ny DHB ao amin'ny rojo Base ny fandoavam-bola",
+    "requiresSpl": "Mila token SPL ao Solana vao afaka mijery",
+    "mustHoldOn": "Tsy maintsy manana ity token ity ao amin'ny {{chain}} ny mpijery",
+    "custom": "Manokana",
+    "contractPlaceholder": "Adiresin'ny fifanarahana (0x…)",
+    "symbolPlaceholder": "Marika (ohatra PEPE)"
   }
 }

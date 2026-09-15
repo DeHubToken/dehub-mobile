@@ -3775,5 +3775,21 @@
     "includeSocials": "Socials opnemen",
     "extraNotes": "Extra notities",
     "notesPlaceholder": "Al het andere dat de poster moet tonen"
+  },
+  "monetization": {
+    "tokenGated": "Tokenbeperkt",
+    "invalidToken": "Voer een geldig tokencontractadres in",
+    "createPlanAction": "Abonnement maken",
+    "createPlanFirst": "Maak eerst een abonnement",
+    "publishPlanFirst": "Publiceer eerst je abonnement on-chain.",
+    "subscribersOnly": "Alleen je abonnees kunnen dit bericht openen.",
+    "price": "Prijs ({{currency}})",
+    "paymentsSolana": "Betalingen zijn in {{currency}} op Solana",
+    "paymentsBase": "Betalingen zijn in DHB op de Base-chain",
+    "requiresSpl": "Vereist een SPL-token op Solana om te bekijken",
+    "mustHoldOn": "Kijkers moeten dit token op {{chain}} bezitten",
+    "custom": "Aangepast",
+    "contractPlaceholder": "Contractadres (0x…)",
+    "symbolPlaceholder": "Symbool (bijv. PEPE)"
   }
 }

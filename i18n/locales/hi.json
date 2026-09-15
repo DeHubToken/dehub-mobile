@@ -3563,5 +3563,21 @@
     "includeSocials": "सोशल हैंडल शामिल करें",
     "extraNotes": "अतिरिक्त नोट",
     "notesPlaceholder": "पोस्टर में और जो कुछ दिखाना हो"
+  },
+  "monetization": {
+    "tokenGated": "टोकन गेटेड",
+    "invalidToken": "मान्य टोकन कॉन्ट्रैक्ट पता दर्ज करें",
+    "createPlanAction": "सब्सक्रिप्शन प्लान बनाएँ",
+    "createPlanFirst": "पहले एक प्लान बनाएँ",
+    "publishPlanFirst": "पहले अपना सब्सक्रिप्शन प्लान चेन पर प्रकाशित करें।",
+    "subscribersOnly": "यह पोस्ट केवल आपके सब्सक्राइबर खोल सकते हैं।",
+    "price": "कीमत ({{currency}})",
+    "paymentsSolana": "भुगतान सोलाना पर {{currency}} में होता है",
+    "paymentsBase": "भुगतान Base चेन पर DHB में होता है",
+    "requiresSpl": "देखने के लिए सोलाना पर SPL टोकन चाहिए",
+    "mustHoldOn": "देखने वालों के पास {{chain}} पर यह टोकन होना चाहिए",
+    "custom": "कस्टम",
+    "contractPlaceholder": "कॉन्ट्रैक्ट पता (0x…)",
+    "symbolPlaceholder": "सिंबल (जैसे PEPE)"
   }
 }
