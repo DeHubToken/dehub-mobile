@@ -124,6 +124,7 @@ const Step: React.FC<{ n: number; title: string; body: string }> = ({ n, title, 
  */
 const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry; profile?: AccountSummary }> = ({ entry, profile }) => {
   const { showUserProfile } = useUserProfileSheet();
+  const { t } = useTranslation();
 
   const username = profile?.username || null;
   const name = profile?.displayName || username || truncateAddress(entry.address);
@@ -145,7 +146,7 @@ const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry; profile?: AccountS
         </Text>
         <Text style={styles.rowSub} numberOfLines={1}>
           {username ? `@${username}` : truncateAddress(entry.address)}
-          {joined ? ` · joined ${joined}` : ""}
+          {joined ? t("affiliate.joinedOn", { date: joined }) : ""}
         </Text>
       </View>
       <Icon name="ChevronRight" size={16} color="#52525B" />
@@ -237,9 +238,9 @@ export default function AffiliateScreen() {
     try {
       await saveAffiliateLanding(wallet, stats.code, landing);
       setStats((current) => current ? { ...current, landing } : current);
-      toastSuccess("Invite page published");
+      toastSuccess(t("affiliate.pagePublished"));
     } catch (error) {
-      toastError(error instanceof Error ? error.message : "Could not save invite page");
+      toastError(error instanceof Error ? error.message : t("affiliate.pageSaveFailed"));
     } finally {
       setSavingLanding(false);
     }
@@ -317,15 +318,21 @@ export default function AffiliateScreen() {
         <View style={styles.statGrid}>
           <StatCard
             icon="ExternalLink"
-            label="Page views"
+            label={t("affiliate.pageViews")}
             value={loading ? null : String(stats?.totalViews ?? 0)}
-            hint={`${stats?.views30d ?? 0} in 30 days`}
+            hint={t("affiliate.inLast30Days", { count: stats?.views30d ?? 0 })}
           />
           <StatCard
             icon="Users"
-            label="Unique visitors"
+            label={t("affiliate.uniqueVisitors")}
             value={loading ? null : String(stats?.uniqueVisitors ?? 0)}
-            hint={stats?.uniqueVisitors ? `${((stats.referrals / stats.uniqueVisitors) * 100).toFixed(1)}% joined` : "No visits yet"}
+            hint={
+              stats?.uniqueVisitors
+                ? t("affiliate.percentJoined", {
+                    pct: ((stats.referrals / stats.uniqueVisitors) * 100).toFixed(1),
+                  })
+                : t("affiliate.noVisits")
+            }
           />
           <StatCard
             icon="Users"
@@ -361,10 +368,12 @@ export default function AffiliateScreen() {
         </View>
 
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>Customize your invite page</Text>
-          <Text style={styles.cardSub}>Make the page sound like you. Visitors see this copy before they join.</Text>
+          <Text style={styles.cardTitle}>{t("affiliate.customizeTitle")}</Text>
+          <Text style={styles.cardSub}>{t("affiliate.customizeSub")}</Text>
 
-          <Text style={styles.fieldLabel}>Headline · {landing.headline.length}/80</Text>
+          <Text style={styles.fieldLabel}>
+            {t("affiliate.fieldHeadline", { count: landing.headline.length })}
+          </Text>
           <TextInput
             value={landing.headline}
             onChangeText={(headline) => setLanding((v) => ({ ...v, headline }))}
@@ -373,7 +382,9 @@ export default function AffiliateScreen() {
             placeholderTextColor="#52525B"
             style={styles.input}
           />
-          <Text style={styles.fieldLabel}>Welcome message · {landing.message.length}/280</Text>
+          <Text style={styles.fieldLabel}>
+            {t("affiliate.fieldMessage", { count: landing.message.length })}
+          </Text>
           <TextInput
             value={landing.message}
             onChangeText={(message) => setLanding((v) => ({ ...v, message }))}
@@ -382,14 +393,16 @@ export default function AffiliateScreen() {
             textAlignVertical="top"
             style={[styles.input, styles.messageInput]}
           />
-          <Text style={styles.fieldLabel}>Button text · {landing.ctaLabel.length}/32</Text>
+          <Text style={styles.fieldLabel}>
+            {t("affiliate.fieldCta", { count: landing.ctaLabel.length })}
+          </Text>
           <TextInput
             value={landing.ctaLabel}
             onChangeText={(ctaLabel) => setLanding((v) => ({ ...v, ctaLabel }))}
             maxLength={32}
             style={styles.input}
           />
-          <Text style={styles.fieldLabel}>DeHub destination</Text>
+          <Text style={styles.fieldLabel}>{t("affiliate.fieldDestination")}</Text>
           <TextInput
             value={landing.destination}
             onChangeText={(destination) => setLanding((v) => ({ ...v, destination }))}
@@ -402,7 +415,7 @@ export default function AffiliateScreen() {
           />
 
           <View style={styles.preview}>
-            <Text style={styles.previewLabel}>Live preview</Text>
+            <Text style={styles.previewLabel}>{t("affiliate.livePreview")}</Text>
             <Text style={styles.previewHeadline}>{landing.headline || DEFAULT_AFFILIATE_LANDING.headline}</Text>
             <Text style={styles.previewMessage}>{landing.message || DEFAULT_AFFILIATE_LANDING.message}</Text>
             <View style={styles.previewButton}><Text style={styles.previewButtonText}>{landing.ctaLabel || DEFAULT_AFFILIATE_LANDING.ctaLabel}</Text></View>
@@ -410,10 +423,10 @@ export default function AffiliateScreen() {
 
           <View style={styles.linkActions}>
             <Pressable style={styles.secondaryBtn} onPress={() => setLanding(DEFAULT_AFFILIATE_LANDING)}>
-              <Text style={styles.secondaryBtnText}>Reset</Text>
+              <Text style={styles.secondaryBtnText}>{t("settings.reset")}</Text>
             </Pressable>
             <Pressable style={styles.primaryBtn} onPress={() => void onSaveLanding()} disabled={savingLanding || !landing.headline.trim() || !landing.message.trim() || !landing.ctaLabel.trim()}>
-              {savingLanding ? <ActivityIndicator size="small" color="#000000" /> : <Text style={styles.primaryBtnText}>Publish changes</Text>}
+              {savingLanding ? <ActivityIndicator size="small" color="#000000" /> : <Text style={styles.primaryBtnText}>{t("affiliate.publishChanges")}</Text>}
             </Pressable>
           </View>
         </View>
@@ -439,7 +452,7 @@ export default function AffiliateScreen() {
                 onPress={onCopy}
                 accessibilityRole="button"
                 accessibilityLabel={inviteLink}
-                accessibilityHint="Copies invite link"
+                accessibilityHint={t("affiliate.copyHint")}
               >
                 <Text style={styles.linkText} numberOfLines={1}>
                   {inviteLink}
