@@ -10,6 +10,7 @@ import React, { memo, useCallback } from "react";
 import { View, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import VoiceNotePlayer from "./VoiceNotePlayer";
+import { useTranslation } from "react-i18next";
 
 export type MediaAttachment =
   | { type: "image"; uri: string }
@@ -29,6 +30,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
   onSend,
   sending = false,
 }) => {
+  const { t } = useTranslation();
   const handleRemove = useCallback(() => onRemove(), [onRemove]);
   const handleSend = useCallback(() => onSend(), [onSend]);
 
@@ -39,7 +41,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           onPress={handleRemove}
           activeOpacity={0.7}
           accessibilityRole="button"
-          accessibilityLabel="Remove voice note"
+          accessibilityLabel={t("comments.removeVoiceNote")}
           hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           className="mr-2"
         >
@@ -59,7 +61,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           activeOpacity={0.7}
           disabled={sending}
           accessibilityRole="button"
-          accessibilityLabel="Send"
+          accessibilityLabel={t("tip.send")}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           className="ml-2 w-9 h-9 rounded-xl bg-white items-center justify-center"
         >
@@ -84,7 +86,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           onPress={handleRemove}
           activeOpacity={0.7}
           accessibilityRole="button"
-          accessibilityLabel="Remove media"
+          accessibilityLabel={t("comments.removeMedia")}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           className="absolute -top-1 -right-1 w-6 h-6 rounded-lg dark-surface bg-black/60 items-center justify-center"
         >
@@ -99,7 +101,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
         activeOpacity={0.7}
         disabled={sending}
         accessibilityRole="button"
-        accessibilityLabel="Send"
+        accessibilityLabel={t("tip.send")}
         hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         className="w-9 h-9 rounded-xl bg-white items-center justify-center"
       >
