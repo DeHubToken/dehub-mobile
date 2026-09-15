@@ -3701,5 +3701,25 @@
     "rewrite": "Rishkruaj",
     "lyricsPlaceholder": "Lëre bosh për një instrumental",
     "lyricsFailed": "Teksti nuk u gjenerua dot"
+  },
+  "assets": {
+    "topUp": "Rimbush",
+    "bridge": "Urë",
+    "comingSoon": "së shpejti",
+    "title": "Asetet",
+    "held": "Në zotërim",
+    "staked": "Në staking",
+    "gotIt": "E kuptova",
+    "dhbPositionNote": "DHB është i gjithë pozicioni yt — në zotërim plus në staking, në Base dhe BNB Chain. Pjesa më e madhe zakonisht është në staking, prandaj kjo shifër është më e madhe se sa mund të shpenzosh tani.",
+    "stakedIncludesUnstaking": "DHB në staking përfshin edhe çdo gjë që ke kërkuar ta tërheqësh por nuk e ke marrë ende.",
+    "otherBalancesNote": "Bilancet e tua të tjera janë vetëm në {{network}} (zinxhiri {{chainId}}). {{gas}} është bilanci yt i gazit. Vlerat mund të vonohen disa sekonda. Kalo asetet te {{network}} për t'i përdorur këtu.",
+    "subscriptionEarnings": "Fitimet nga abonimet",
+    "withdrawableOnBase": "I disponueshëm për tërheqje në Base",
+    "pendingTreasury": "Në USDT · në pritje të rezervës së thesarit",
+    "cashOut": "Tërhiq",
+    "withdrawing": "Po tërhiqet…",
+    "usdtSent": "U dërguan {{amount}} USDT",
+    "withdrawableSoon": "Tarifat e abonimit do të mund të tërhiqen së shpejti",
+    "dpayBaseOnly": "Dpay është i disponueshëm vetëm në Base."
   }
 }

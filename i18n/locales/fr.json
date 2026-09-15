@@ -3776,5 +3776,25 @@
     "rewrite": "Réécrire",
     "lyricsPlaceholder": "Laissez vide pour un instrumental",
     "lyricsFailed": "Impossible de générer les paroles"
+  },
+  "assets": {
+    "topUp": "Recharger",
+    "bridge": "Pont",
+    "comingSoon": "bientôt",
+    "title": "Actifs",
+    "held": "Détenu",
+    "staked": "En staking",
+    "gotIt": "Compris",
+    "dhbPositionNote": "DHB représente toute votre position — détenue et en staking, sur Base et BNB Chain. L'essentiel est généralement en staking, ce chiffre est donc supérieur à ce que vous pouvez dépenser maintenant.",
+    "stakedIncludesUnstaking": "Le DHB en staking inclut tout ce dont vous avez demandé le retrait mais que vous n'avez pas encore reçu.",
+    "otherBalancesNote": "Vos autres soldes sont uniquement sur {{network}} (chaîne {{chainId}}). {{gas}} est votre solde de gas. Les valeurs peuvent accuser quelques secondes de retard. Transférez vos actifs vers {{network}} pour les utiliser ici.",
+    "subscriptionEarnings": "Revenus d'abonnement",
+    "withdrawableOnBase": "Disponible au retrait sur Base",
+    "pendingTreasury": "Libellé en USDT · en attente de la réserve de trésorerie",
+    "cashOut": "Retirer",
+    "withdrawing": "Retrait en cours…",
+    "usdtSent": "{{amount}} USDT envoyés",
+    "withdrawableSoon": "Les frais d'abonnement seront bientôt retirables",
+    "dpayBaseOnly": "Dpay n'est disponible que sur Base."
   }
 }

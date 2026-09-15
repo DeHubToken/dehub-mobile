@@ -3735,5 +3735,25 @@
     "rewrite": "फेरि लेख्नुहोस्",
     "lyricsPlaceholder": "वाद्य संगीतका लागि खाली छोड्नुहोस्",
     "lyricsFailed": "बोल बनाउन सकिएन"
+  },
+  "assets": {
+    "topUp": "टप अप",
+    "bridge": "ब्रिज",
+    "comingSoon": "चाँडै",
+    "title": "सम्पत्ति",
+    "held": "राखिएको",
+    "staked": "स्टेक गरिएको",
+    "gotIt": "बुझेँ",
+    "dhbPositionNote": "DHB तपाईंको पूरा पोजिसन हो — राखिएको र स्टेक गरिएको, Base र BNB Chain दुवैमा। धेरैजसो सामान्यतया स्टेक हुन्छ, त्यसैले यो अहिले खर्च गर्न सक्नेभन्दा ठूलो हुन्छ।",
+    "stakedIncludesUnstaking": "स्टेक गरिएको DHB मा तपाईंले अनस्टेक गर्न भनेको तर अझै फिर्ता नपाएको पनि समावेश छ।",
+    "otherBalancesNote": "तपाईंका अन्य ब्यालेन्स {{network}} (चेन {{chainId}}) मा मात्र छन्। {{gas}} तपाईंको ग्यास ब्यालेन्स हो। मानहरू केही सेकेन्ड ढिलो हुन सक्छन्। यहाँ प्रयोग गर्न सम्पत्ति {{network}} मा पठाउनुहोस्।",
+    "subscriptionEarnings": "सदस्यता आम्दानी",
+    "withdrawableOnBase": "Base मा झिक्न उपलब्ध",
+    "pendingTreasury": "USDT मा · ट्रेजरी रिजर्भ पर्खाइमा",
+    "cashOut": "क्यास आउट",
+    "withdrawing": "झिकिँदै…",
+    "usdtSent": "{{amount}} USDT पठाइयो",
+    "withdrawableSoon": "सदस्यता शुल्क चाँडै झिक्न मिल्नेछ",
+    "dpayBaseOnly": "Dpay Base मा मात्र उपलब्ध छ।"
   }
 }

@@ -3753,5 +3753,25 @@
     "rewrite": "Qayta yozish",
     "lyricsPlaceholder": "Cholg'u versiyasi uchun bo'sh qoldiring",
     "lyricsFailed": "Matn yaratib bo'lmadi"
+  },
+  "assets": {
+    "topUp": "To'ldirish",
+    "bridge": "Ko'prik",
+    "comingSoon": "tez orada",
+    "title": "Aktivlar",
+    "held": "Saqlanayotgan",
+    "staked": "Steykingda",
+    "gotIt": "Tushundim",
+    "dhbPositionNote": "DHB — bu sizning butun pozitsiyangiz: saqlanayotgan va steykingdagi, Base va BNB Chain bo'ylab. Ko'pi odatda steykingda bo'ladi, shuning uchun bu raqam hozir sarflay oladiganingizdan katta.",
+    "stakedIncludesUnstaking": "Steykingdagi DHB siz chiqarishni so'ragan, ammo hali qaytib kelmagan qismni ham o'z ichiga oladi.",
+    "otherBalancesNote": "Boshqa balanslaringiz faqat {{network}} tarmog'ida ({{chainId}} zanjiri). {{gas}} — bu gaz balansingiz. Qiymatlar bir necha soniya kechikishi mumkin. Bu yerda ishlatish uchun aktivlarni {{network}} ga o'tkazing.",
+    "subscriptionEarnings": "Obuna daromadi",
+    "withdrawableOnBase": "Base da yechib olish mumkin",
+    "pendingTreasury": "USDT da · g'aznachilik zaxirasini kutmoqda",
+    "cashOut": "Naqd qilish",
+    "withdrawing": "Yechilmoqda…",
+    "usdtSent": "{{amount}} USDT yuborildi",
+    "withdrawableSoon": "Obuna to'lovlarini tez orada yechib olish mumkin bo'ladi",
+    "dpayBaseOnly": "Dpay faqat Base da mavjud."
   }
 }

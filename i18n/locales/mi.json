@@ -3687,5 +3687,25 @@
     "rewrite": "Tuhia anō",
     "lyricsPlaceholder": "Waiho tuwhera mō te puoro anake",
     "lyricsFailed": "Kāore i taea te waihanga kupu waiata"
+  },
+  "assets": {
+    "topUp": "Whakakī",
+    "bridge": "Piriti",
+    "comingSoon": "kei te haere mai",
+    "title": "Rawa",
+    "held": "Kua puritia",
+    "staked": "Kua tāpaetia",
+    "gotIt": "Kua mārama",
+    "dhbPositionNote": "Ko DHB tō tūnga katoa — kua puritia me te tāpae, puta noa i Base me BNB Chain. He nui te wāhanga kua tāpaetia, nō reira he nui ake tēnei i te mea ka taea e koe te whakapau ināianei.",
+    "stakedIncludesUnstaking": "Kei roto i te DHB kua tāpaetia ngā mea kua tono koe kia tangohia engari kāore anō kia whakahokia.",
+    "otherBalancesNote": "Kei runga i te {{network}} (mekameka {{chainId}}) anake ō toenga kē. Ko {{gas}} tō toenga hinu. Tērā pea ka whakaroa ngā uara mō ētahi hēkona. Whakawhitia ngā rawa ki {{network}} kia whakamahia i konei.",
+    "subscriptionEarnings": "Moni ohaoha ā-ohunga",
+    "withdrawableOnBase": "E wātea ana kia tangohia i Base",
+    "pendingTreasury": "Ka whakawhāititia ki te USDT · e tatari ana ki te pūtea rāhui",
+    "cashOut": "Tango moni",
+    "withdrawing": "E tango ana…",
+    "usdtSent": "Kua tukuna {{amount}} USDT",
+    "withdrawableSoon": "Kāore e roa ka taea te tango i ngā utu ohunga",
+    "dpayBaseOnly": "Kei Base anake a Dpay."
   }
 }

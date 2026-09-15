@@ -3534,5 +3534,25 @@
     "rewrite": "Rewrite am",
     "lyricsPlaceholder": "Leave am empty if you want instrumental",
     "lyricsFailed": "We no fit generate lyrics"
+  },
+  "assets": {
+    "topUp": "Top up",
+    "bridge": "Bridge",
+    "comingSoon": "e di kam",
+    "title": "Assets",
+    "held": "Wetin you hold",
+    "staked": "Wetin you stake",
+    "gotIt": "A don understand",
+    "dhbPositionNote": "DHB na yua whole position — wetin you hold plus wetin you stake, for Base an BNB Chain. Most of am dey staked, so dis number big pass wetin you fit spend now.",
+    "stakedIncludesUnstaking": "Di staked DHB include anytin wey you don ask to unstake but you neva collect back.",
+    "otherBalancesNote": "Yua oda balance dem dey only for {{network}} (chain {{chainId}}). {{gas}} na yua gas balance. Values fit delay small. Bridge or transfer asset go {{network}} mek you fit yus am here.",
+    "subscriptionEarnings": "Subscription moni",
+    "withdrawableOnBase": "You fit withdraw am for Base",
+    "pendingTreasury": "Na USDT · e dey wait treasury reserve",
+    "cashOut": "Cash out",
+    "withdrawing": "Dey withdraw…",
+    "usdtSent": "{{amount}} USDT don send",
+    "withdrawableSoon": "You go soon fit withdraw subscription fees",
+    "dpayBaseOnly": "Dpay dey only for Base."
   }
 }

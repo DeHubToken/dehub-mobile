@@ -3715,5 +3715,25 @@
     "rewrite": "Rescrie",
     "lyricsPlaceholder": "Lasă gol pentru o piesă instrumentală",
     "lyricsFailed": "Nu s-au putut genera versurile"
+  },
+  "assets": {
+    "topUp": "Alimentează",
+    "bridge": "Punte",
+    "comingSoon": "în curând",
+    "title": "Active",
+    "held": "Deținut",
+    "staked": "În staking",
+    "gotIt": "Am înțeles",
+    "dhbPositionNote": "DHB este întreaga ta poziție — deținut plus în staking, pe Base și BNB Chain. Cea mai mare parte este de obicei în staking, așa că această cifră e mai mare decât ce poți cheltui acum.",
+    "stakedIncludesUnstaking": "DHB în staking include și ce ai cerut să retragi, dar nu ai primit încă înapoi.",
+    "otherBalancesNote": "Celelalte solduri sunt doar pe {{network}} (lanțul {{chainId}}). {{gas}} este soldul tău de gas. Valorile pot întârzia câteva secunde. Transferă activele pe {{network}} ca să le folosești aici.",
+    "subscriptionEarnings": "Venituri din abonamente",
+    "withdrawableOnBase": "Disponibil pentru retragere pe Base",
+    "pendingTreasury": "În USDT · în așteptarea rezervei de trezorerie",
+    "cashOut": "Retrage",
+    "withdrawing": "Se retrage…",
+    "usdtSent": "{{amount}} USDT trimiși",
+    "withdrawableSoon": "Taxele de abonament vor putea fi retrase în curând",
+    "dpayBaseOnly": "Dpay este disponibil doar pe Base."
   }
 }

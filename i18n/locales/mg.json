@@ -3781,5 +3781,25 @@
     "rewrite": "Soraty indray",
     "lyricsPlaceholder": "Avelao foana raha tiana ho mozika fotsiny",
     "lyricsFailed": "Tsy voaforona ny tononkira"
+  },
+  "assets": {
+    "topUp": "Ampio vola",
+    "bridge": "Tetezana",
+    "comingSoon": "tsy ho ela",
+    "title": "Fananana",
+    "held": "Tazonina",
+    "staked": "Nampiasaina staking",
+    "gotIt": "Azoko",
+    "dhbPositionNote": "DHB no toerana manontolo anananao — tazonina sy nampiasaina staking, eo amin'ny Base sy BNB Chain. Matetika dia ao amin'ny staking ny ankamaroany, ka lehibe noho izay azonao lanina izao ity isa ity.",
+    "stakedIncludesUnstaking": "Ao anatin'ny DHB nampiasaina staking ihany koa izay efa nangatahinao esorina nefa mbola tsy voaverina aminao.",
+    "otherBalancesNote": "Ao amin'ny {{network}} (rojo {{chainId}}) ihany ny volanao hafa. {{gas}} no volanao ho an'ny gas. Mety hisy fahatarana segondra vitsy ny sanda. Alefaso any amin'ny {{network}} ny fananana raha te hampiasa azy eto.",
+    "subscriptionEarnings": "Vola azo amin'ny fisoratana anarana",
+    "withdrawableOnBase": "Azo esorina ao amin'ny Base",
+    "pendingTreasury": "Amin'ny USDT · miandry ny tahiry",
+    "cashOut": "Esory ny vola",
+    "withdrawing": "Manesotra…",
+    "usdtSent": "Nalefa {{amount}} USDT",
+    "withdrawableSoon": "Ho azo esorina tsy ho ela ny sara fisoratana anarana",
+    "dpayBaseOnly": "Ao amin'ny Base ihany no misy Dpay."
   }
 }

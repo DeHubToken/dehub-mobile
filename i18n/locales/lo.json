@@ -3660,5 +3660,25 @@
     "rewrite": "ຂຽນໃໝ່",
     "lyricsPlaceholder": "ປະວ່າງໄວ້ ສຳລັບເພງບັນເລງ",
     "lyricsFailed": "ສ້າງເນື້ອເພງບໍ່ສຳເລັດ"
+  },
+  "assets": {
+    "topUp": "ເຕີມເງິນ",
+    "bridge": "ບຣິດ",
+    "comingSoon": "ໄວໆນີ້",
+    "title": "ຊັບສິນ",
+    "held": "ຖືໄວ້",
+    "staked": "ສະເຕັກ",
+    "gotIt": "ເຂົ້າໃຈແລ້ວ",
+    "dhbPositionNote": "DHB ແມ່ນຕຳແໜ່ງທັງໝົດຂອງທ່ານ — ທີ່ຖືໄວ້ ບວກກັບທີ່ສະເຕັກ ທັງໃນ Base ແລະ BNB Chain. ສ່ວນໃຫຍ່ມັກຈະຢູ່ໃນສະເຕັກ ດັ່ງນັ້ນຕົວເລກນີ້ຈຶ່ງໃຫຍ່ກວ່າທີ່ທ່ານໃຊ້ໄດ້ຕອນນີ້.",
+    "stakedIncludesUnstaking": "DHB ທີ່ສະເຕັກລວມທຸກຢ່າງທີ່ທ່ານໄດ້ຂໍຖອນແຕ່ຍັງບໍ່ໄດ້ຮັບຄືນ.",
+    "otherBalancesNote": "ຍອດເງິນອື່ນຂອງທ່ານຢູ່ໃນ {{network}} (ເຄືອຂ່າຍ {{chainId}}) ເທົ່ານັ້ນ. {{gas}} ແມ່ນຍອດຄ່າ gas ຂອງທ່ານ. ຄ່າອາດຊ້າສອງສາມວິນາທີ. ໂອນຊັບສິນໄປ {{network}} ເພື່ອໃຊ້ຢູ່ນີ້.",
+    "subscriptionEarnings": "ລາຍໄດ້ຈາກການສະໝັກ",
+    "withdrawableOnBase": "ຖອນໄດ້ຢູ່ Base",
+    "pendingTreasury": "ຄິດເປັນ USDT · ລໍຖ້າທຶນສຳຮອງ",
+    "cashOut": "ຖອນເງິນ",
+    "withdrawing": "ກຳລັງຖອນ…",
+    "usdtSent": "ສົ່ງ {{amount}} USDT ແລ້ວ",
+    "withdrawableSoon": "ຄ່າສະໝັກຈະຖອນໄດ້ໃນໄວໆນີ້",
+    "dpayBaseOnly": "Dpay ໃຊ້ໄດ້ສະເພາະໃນ Base ເທົ່ານັ້ນ."
   }
 }

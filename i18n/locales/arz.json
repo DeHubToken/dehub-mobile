@@ -3698,5 +3698,25 @@
     "rewrite": "اعد كتابتها",
     "lyricsPlaceholder": "سيبه فاضي علشان تبقى بدون كلمات",
     "lyricsFailed": "مقدرناش نكتب الكلمات"
+  },
+  "assets": {
+    "topUp": "شحن",
+    "bridge": "جسر",
+    "comingSoon": "قريب",
+    "title": "الأصول",
+    "held": "متحفظ بيه",
+    "staked": "مركون",
+    "gotIt": "فهمت",
+    "dhbPositionNote": "DHB هو المركز بتاعك كله — المتحفظ بيه والمركون، على Base و BNB Chain. معظمه عادة مركون، فالرقم ده أكبر من اللي تقدر تصرفه دلوقتي.",
+    "stakedIncludesUnstaking": "المركون بيشمل أي حاجة طلبت تفكها بس لسه مجتلكش.",
+    "otherBalancesNote": "باقي أرصدتك على {{network}} (تشين {{chainId}}) بس. {{gas}} هو رصيد الغاز بتاعك. القيم ممكن تتأخر كام ثانية. اعمل جسر أو حوّل الأصول لـ {{network}} علشان تستخدمها هنا.",
+    "subscriptionEarnings": "أرباح الاشتراكات",
+    "withdrawableOnBase": "متاح للسحب على Base",
+    "pendingTreasury": "محسوب بالـ USDT · مستني احتياطي الخزينة",
+    "cashOut": "اسحب",
+    "withdrawing": "بيتسحب…",
+    "usdtSent": "اتبعت {{amount}} USDT",
+    "withdrawableSoon": "رسوم الاشتراكات هتبقى قابلة للسحب قريب",
+    "dpayBaseOnly": "Dpay متاح بس على Base."
   }
 }

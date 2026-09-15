@@ -3689,5 +3689,25 @@
     "rewrite": "כתוב מחדש",
     "lyricsPlaceholder": "השאירו ריק לגרסה אינסטרומנטלית",
     "lyricsFailed": "יצירת המילים נכשלה"
+  },
+  "assets": {
+    "topUp": "טעינה",
+    "bridge": "גשר",
+    "comingSoon": "בקרוב",
+    "title": "נכסים",
+    "held": "מוחזק",
+    "staked": "בהפקדה",
+    "gotIt": "הבנתי",
+    "dhbPositionNote": "DHB הוא כל הפוזיציה שלך — המוחזק וגם זה שבהפקדה, ב-Base וב-BNB Chain. רובו בדרך כלל בהפקדה, ולכן המספר גדול ממה שאפשר להוציא עכשיו.",
+    "stakedIncludesUnstaking": "ה-DHB שבהפקדה כולל גם כל מה שביקשת לשחרר אך טרם קיבלת בחזרה.",
+    "otherBalancesNote": "היתרות האחרות שלך נמצאות רק ב-{{network}} (רשת {{chainId}}). {{gas}} היא יתרת העמלות שלך. הערכים עשויים להתעדכן בפיגור של כמה שניות. העבירו נכסים אל {{network}} כדי להשתמש בהם כאן.",
+    "subscriptionEarnings": "הכנסות ממנויים",
+    "withdrawableOnBase": "זמין למשיכה ב-Base",
+    "pendingTreasury": "נקוב ב-USDT · ממתין לרזרבת האוצר",
+    "cashOut": "משיכה",
+    "withdrawing": "מושך…",
+    "usdtSent": "נשלחו {{amount}} USDT",
+    "withdrawableSoon": "דמי המנוי יהיו זמינים למשיכה בקרוב",
+    "dpayBaseOnly": "Dpay זמין רק ב-Base."
   }
 }

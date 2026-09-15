@@ -3686,5 +3686,25 @@
     "rewrite": "Yenidən yaz",
     "lyricsPlaceholder": "İnstrumental üçün boş buraxın",
     "lyricsFailed": "Sözlər yaradıla bilmədi"
+  },
+  "assets": {
+    "topUp": "Balansı artır",
+    "bridge": "Körpü",
+    "comingSoon": "tezliklə",
+    "title": "Aktivlər",
+    "held": "Saxlanılan",
+    "staked": "Steyk edilmiş",
+    "gotIt": "Anladım",
+    "dhbPositionNote": "DHB sizin bütün mövqeyinizdir — saxlanılan və steyk edilmiş, Base və BNB Chain üzərində. Çoxu adətən steykdə olur, ona görə bu rəqəm indi xərcləyə biləcəyinizdən böyükdür.",
+    "stakedIncludesUnstaking": "Steyk edilmiş DHB-yə steykdən çıxarmağı istədiyiniz, amma hələ geri almadığınız hər şey daxildir.",
+    "otherBalancesNote": "Digər balanslarınız yalnız {{network}} ({{chainId}} zənciri) üzərindədir. {{gas}} sizin qaz balansınızdır. Dəyərlər bir neçə saniyə gecikə bilər. Burada istifadə etmək üçün aktivləri {{network}} şəbəkəsinə körpüləyin və ya köçürün.",
+    "subscriptionEarnings": "Abunə gəlirləri",
+    "withdrawableOnBase": "Base şəbəkəsində çıxarıla bilər",
+    "pendingTreasury": "USDT ilə ifadə olunur · xəzinə ehtiyatı gözlənilir",
+    "cashOut": "Çıxar",
+    "withdrawing": "Çıxarılır…",
+    "usdtSent": "{{amount}} USDT göndərildi",
+    "withdrawableSoon": "Abunə haqları tezliklə çıxarıla biləcək",
+    "dpayBaseOnly": "Dpay yalnız Base şəbəkəsində mövcuddur."
   }
 }

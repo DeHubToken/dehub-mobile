@@ -3654,5 +3654,25 @@
     "rewrite": "फेर लिखऽ",
     "lyricsPlaceholder": "खाली छोड़ऽ त खाली धुन बनतै",
     "lyricsFailed": "बोल ना बन सकल"
+  },
+  "assets": {
+    "topUp": "टॉप अप",
+    "bridge": "ब्रिज",
+    "comingSoon": "जल्दिये",
+    "title": "संपत्ति",
+    "held": "रखल",
+    "staked": "स्टेक कइल",
+    "gotIt": "समझ गेलिअइ",
+    "dhbPositionNote": "DHB अहां के पूरा पोजीशन हे — रखल आ स्टेक कइल, Base आ BNB Chain दूनू पर। ज्यादातर आमतौर पर स्टेक रहऽ हे, तें ई ओकरा से बड़ हे जे अखने खरच कर सकऽ हथ।",
+    "stakedIncludesUnstaking": "स्टेक कइल DHB में ऊहो शामिल हे जेकरा अहां अनस्टेक करे लेल कहलियै मुदा अखनो वापस ना भेटल।",
+    "otherBalancesNote": "अहां के बाकी बैलेंस खाली {{network}} (चेन {{chainId}}) पर हे। {{gas}} अहां के गैस बैलेंस हे। मान कुछ सेकंड पाछू रह सकऽ हे। इहां उपयोग लेल संपत्ति के {{network}} पर भेजऽ।",
+    "subscriptionEarnings": "सदस्यता के कमाई",
+    "withdrawableOnBase": "Base पर निकासे लेल उपलब्ध",
+    "pendingTreasury": "USDT में · ट्रेजरी रिजर्व के इंतजार में",
+    "cashOut": "कैस आउट",
+    "withdrawing": "निकासल जा रहल हे…",
+    "usdtSent": "{{amount}} USDT भेजल गेल",
+    "withdrawableSoon": "सदस्यता फीस जल्दिये निकासल जा सकतै",
+    "dpayBaseOnly": "Dpay खाली Base पर उपलब्ध हे।"
   }
 }

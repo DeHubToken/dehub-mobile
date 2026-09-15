@@ -3678,5 +3678,25 @@
     "rewrite": "ਮੁੜ ਲਿਖੋ",
     "lyricsPlaceholder": "ਸਿਰਫ਼ ਸੰਗੀਤ ਲਈ ਖਾਲੀ ਛੱਡੋ",
     "lyricsFailed": "ਬੋਲ ਨਹੀਂ ਬਣ ਸਕੇ"
+  },
+  "assets": {
+    "topUp": "ਟਾਪ ਅੱਪ",
+    "bridge": "ਬ੍ਰਿਜ",
+    "comingSoon": "ਜਲਦੀ",
+    "title": "ਸੰਪਤੀਆਂ",
+    "held": "ਰੱਖਿਆ",
+    "staked": "ਸਟੇਕ ਕੀਤਾ",
+    "gotIt": "ਸਮਝ ਗਿਆ",
+    "dhbPositionNote": "DHB ਤੁਹਾਡੀ ਪੂਰੀ ਪੋਜ਼ੀਸ਼ਨ ਹੈ — ਰੱਖਿਆ ਅਤੇ ਸਟੇਕ ਕੀਤਾ, Base ਅਤੇ BNB Chain ਦੋਵਾਂ ਉੱਤੇ। ਬਹੁਤਾ ਹਿੱਸਾ ਆਮ ਤੌਰ 'ਤੇ ਸਟੇਕ ਹੁੰਦਾ ਹੈ, ਇਸ ਲਈ ਇਹ ਉਸ ਤੋਂ ਵੱਡਾ ਹੈ ਜੋ ਤੁਸੀਂ ਹੁਣੇ ਖਰਚ ਸਕਦੇ ਹੋ।",
+    "stakedIncludesUnstaking": "ਸਟੇਕ ਕੀਤੇ DHB ਵਿੱਚ ਉਹ ਵੀ ਸ਼ਾਮਲ ਹੈ ਜੋ ਤੁਸੀਂ ਅਨਸਟੇਕ ਕਰਨ ਲਈ ਕਿਹਾ ਹੈ ਪਰ ਹਾਲੇ ਵਾਪਸ ਨਹੀਂ ਮਿਲਿਆ।",
+    "otherBalancesNote": "ਤੁਹਾਡੇ ਬਾਕੀ ਬੈਲੰਸ ਸਿਰਫ਼ {{network}} (ਚੇਨ {{chainId}}) ਉੱਤੇ ਹਨ। {{gas}} ਤੁਹਾਡਾ ਗੈਸ ਬੈਲੰਸ ਹੈ। ਮੁੱਲ ਕੁਝ ਸਕਿੰਟ ਪਿੱਛੇ ਹੋ ਸਕਦੇ ਹਨ। ਇੱਥੇ ਵਰਤਣ ਲਈ ਸੰਪਤੀਆਂ {{network}} ਉੱਤੇ ਭੇਜੋ।",
+    "subscriptionEarnings": "ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਕਮਾਈ",
+    "withdrawableOnBase": "Base ਉੱਤੇ ਕਢਵਾਉਣ ਲਈ ਉਪਲਬਧ",
+    "pendingTreasury": "USDT ਵਿੱਚ · ਖਜ਼ਾਨਾ ਰਿਜ਼ਰਵ ਦੀ ਉਡੀਕ",
+    "cashOut": "ਕੈਸ਼ ਆਊਟ",
+    "withdrawing": "ਕਢਵਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…",
+    "usdtSent": "{{amount}} USDT ਭੇਜੇ ਗਏ",
+    "withdrawableSoon": "ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਫੀਸ ਜਲਦੀ ਕਢਵਾਈ ਜਾ ਸਕੇਗੀ",
+    "dpayBaseOnly": "Dpay ਸਿਰਫ਼ Base ਉੱਤੇ ਉਪਲਬਧ ਹੈ।"
   }
 }

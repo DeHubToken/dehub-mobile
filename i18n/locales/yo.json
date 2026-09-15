@@ -3692,5 +3692,25 @@
     "rewrite": "Tún kọ",
     "lyricsPlaceholder": "Fi sílẹ̀ ní òfìfo fún orin aláìlọ́rọ̀",
     "lyricsFailed": "Kò ṣeé ṣe láti kọ ọ̀rọ̀ orin"
+  },
+  "assets": {
+    "topUp": "Fikún",
+    "bridge": "Afárá",
+    "comingSoon": "ń bọ̀",
+    "title": "Àwọn ohun-ìní",
+    "held": "Tí a dì mú",
+    "staked": "Tí a fi sí staking",
+    "gotIt": "Mo ti gbọ́",
+    "dhbPositionNote": "DHB ni gbogbo ìpò rẹ — èyí tí o dì mú àti èyí tí o fi sí staking, ní Base àti BNB Chain. Ọ̀pọ̀ rẹ̀ máa ń wà ní staking, nítorí náà èyí pọ̀ ju ohun tí o lè ná báyìí lọ.",
+    "stakedIncludesUnstaking": "DHB tí ó wà ní staking pẹ̀lú ohunkóhun tí o ti béèrè láti yọ kúrò ṣùgbọ́n tí o kò tíì gbà padà.",
+    "otherBalancesNote": "Àwọn ìyókù rẹ wà lórí {{network}} (ẹ̀wọ̀n {{chainId}}) nìkan. {{gas}} ni ìyókù gas rẹ. Àwọn iye lè pẹ́ díẹ̀ ní ìṣẹ́jú-àáyá. Gbé àwọn ohun-ìní lọ sí {{network}} kí o lè lò wọ́n níbí.",
+    "subscriptionEarnings": "Owó láti ọ̀dọ̀ alábùwọlé",
+    "withdrawableOnBase": "Ó wà fún yíyọ lórí Base",
+    "pendingTreasury": "Ní USDT · ń dúró de ìpamọ́ ilé-ìṣúra",
+    "cashOut": "Yọ owó",
+    "withdrawing": "Ń yọ…",
+    "usdtSent": "A ti fi {{amount}} USDT ránṣẹ́",
+    "withdrawableSoon": "Owó alábùwọlé yóò ṣeé yọ láìpẹ́",
+    "dpayBaseOnly": "Dpay wà lórí Base nìkan."
   }
 }

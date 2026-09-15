@@ -3870,5 +3870,25 @@
     "rewrite": "Prepísať",
     "lyricsPlaceholder": "Nechajte prázdne pre inštrumentálku",
     "lyricsFailed": "Text sa nepodarilo vytvoriť"
+  },
+  "assets": {
+    "topUp": "Dobiť",
+    "bridge": "Most",
+    "comingSoon": "už čoskoro",
+    "title": "Aktíva",
+    "held": "Držané",
+    "staked": "V stakingu",
+    "gotIt": "Rozumiem",
+    "dhbPositionNote": "DHB je celá vaša pozícia — držané plus v stakingu, na Base aj BNB Chain. Väčšina býva v stakingu, takže toto číslo je väčšie než to, čo môžete práve teraz minúť.",
+    "stakedIncludesUnstaking": "DHB v stakingu zahŕňa aj to, čo ste požiadali odomknúť, ale ešte ste nedostali späť.",
+    "otherBalancesNote": "Vaše ostatné zostatky sú len na {{network}} (reťazec {{chainId}}). {{gas}} je váš zostatok na poplatky. Hodnoty sa môžu o pár sekúnd oneskoriť. Presuňte aktíva na {{network}}, aby ste ich tu mohli použiť.",
+    "subscriptionEarnings": "Príjmy z predplatného",
+    "withdrawableOnBase": "Dostupné na výber na Base",
+    "pendingTreasury": "V USDT · čaká na rezervu pokladnice",
+    "cashOut": "Vybrať",
+    "withdrawing": "Vyberá sa…",
+    "usdtSent": "Odoslaných {{amount}} USDT",
+    "withdrawableSoon": "Poplatky z predplatného bude čoskoro možné vybrať",
+    "dpayBaseOnly": "Dpay je dostupný len na Base."
   }
 }

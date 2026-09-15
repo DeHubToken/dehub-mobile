@@ -3697,5 +3697,25 @@
     "rewrite": "እንደገና ጻፍ",
     "lyricsPlaceholder": "ለመሣሪያ ብቻ ዜማ ባዶ ይተዉት",
     "lyricsFailed": "ግጥም መፍጠር አልተቻለም"
+  },
+  "assets": {
+    "topUp": "ሙላ",
+    "bridge": "ድልድይ",
+    "comingSoon": "በቅርቡ",
+    "title": "ንብረቶች",
+    "held": "የተያዘ",
+    "staked": "የተቀመጠ",
+    "gotIt": "ገባኝ",
+    "dhbPositionNote": "DHB ጠቅላላ ይዞታዎ ነው — የተያዘውና የተቀመጠው፣ በBase እና BNB Chain ላይ። አብዛኛው ብዙውን ጊዜ የተቀመጠ ነው፣ ስለዚህ ይህ አሁን ሊያወጡት ከሚችሉት ይበልጣል።",
+    "stakedIncludesUnstaking": "የተቀመጠው DHB እርስዎ ለማውጣት የጠየቁትን ግን ገና ያልተመለሰውን ያካትታል።",
+    "otherBalancesNote": "ሌሎች ቀሪ ሂሳቦችዎ በ{{network}} ({{chainId}} ሰንሰለት) ላይ ብቻ ናቸው። {{gas}} የነዳጅ ሂሳብዎ ነው። እሴቶች ጥቂት ሰከንዶች ሊዘገዩ ይችላሉ። እዚህ ለመጠቀም ንብረቶችን ወደ {{network}} ያሻግሩ ወይም ያስተላልፉ።",
+    "subscriptionEarnings": "የምዝገባ ገቢ",
+    "withdrawableOnBase": "በBase ላይ ለማውጣት ዝግጁ",
+    "pendingTreasury": "በUSDT የተተመነ · የግምጃ ቤት ክምችት በመጠባበቅ ላይ",
+    "cashOut": "አውጣ",
+    "withdrawing": "በማውጣት ላይ…",
+    "usdtSent": "{{amount}} USDT ተልኳል",
+    "withdrawableSoon": "የምዝገባ ክፍያዎች በቅርቡ ማውጣት ይቻላል",
+    "dpayBaseOnly": "Dpay የሚገኘው በBase ላይ ብቻ ነው።"
   }
 }

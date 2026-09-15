@@ -19,6 +19,7 @@ import {
   dhbPosition as computeDhbPosition,
 } from "../../libs/dhb-position";
 import TransferModal from "../Transfer/TransferModal";
+import { useTranslation } from "react-i18next";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import {
   getSubscriptionEarnings,
@@ -121,20 +122,21 @@ const ProfileAssets = () => {
     });
   }, [walletBalances, chainId, dhbPosition]);
 
+  const { t } = useTranslation();
   const [transferOpen, setTransferOpen] = useState(false);
   const dhbActions = [
-    { label: "Top up", subtitle: undefined, disabled: false },
-    { label: "Bridge", subtitle: "coming soon", disabled: true },
-    { label: "Transfer", disabled: false },
+    { key: "topUp", label: t("assets.topUp"), subtitle: undefined, disabled: false },
+    { key: "bridge", label: t("assets.bridge"), subtitle: t("assets.comingSoon"), disabled: true },
+    { key: "transfer", label: t("commandCentre.transfer"), disabled: false },
   ];
 
   const handleTopUp = React.useCallback(() => {
     if (chainId !== ChainId.BASE_MAINNET) {
-      toastInfo("Dpay is only available on Base.");
+      toastInfo(t("assets.dpayBaseOnly"));
       return;
     }
     navigation.navigate(ScreenNames.Dpay);
-  }, [chainId, navigation]);
+  }, [chainId, navigation, t]);
 
   const toggleDHBOptions = () => {
     setShowDHBOptions((prev) => !prev);
@@ -142,16 +144,16 @@ const ProfileAssets = () => {
 
   const handleSubscriptionWithdrawal = async () => {
     if (!subscriptionEarnings?.withdrawalAvailable) {
-      toastInfo(subscriptionEarnings?.withdrawalMessage || "Subscription fees will be withdrawable soon");
+      toastInfo(subscriptionEarnings?.withdrawalMessage || t("assets.withdrawableSoon"));
       return;
     }
     setWithdrawingSubscriptions(true);
     try {
       const result = await withdrawSubscriptionEarnings();
       setSubscriptionEarnings(result.status);
-      toastSuccess(`${result.amountUsdt.toLocaleString()} USDT sent`);
+      toastSuccess(t("assets.usdtSent", { amount: result.amountUsdt.toLocaleString() }));
     } catch (error) {
-      toastError(error, "Subscription fees will be withdrawable soon");
+      toastError(error, t("assets.withdrawableSoon"));
     } finally {
       setWithdrawingSubscriptions(false);
     }
@@ -160,14 +162,14 @@ const ProfileAssets = () => {
   return (
     <View className="mx-4 my-3 bg-theme-neutrals-800 rounded-xl p-4 relative">
       <View className="flex-row items-center justify-between mb-2">
-        <Text className="text-base text-white font-semibold">Assets</Text>
+        <Text className="text-base text-white font-semibold">{t("assets.title")}</Text>
         <InfoTooltip
           open={showInfo}
           onOpenChange={setShowInfo}
           triggerClassName="pl-3"
         >
           <Text className="text-xs leading-5 text-white">
-            {`DHB is your whole position — held plus staked, across Base and BNB Chain. Most of it is usually staked, so this is larger than what you can spend right now.`}
+            {t("assets.dhbPositionNote")}
           </Text>
 
           {dhbBreakdown.rows.length > 0 && (
@@ -176,13 +178,13 @@ const ProfileAssets = () => {
                 <View key={row.chain} className="mb-1">
                   <Text className="text-[11px] text-white/60 mb-0.5">{row.chain}</Text>
                   <View className="flex-row justify-between">
-                    <Text className="text-[11px] text-white/80">Held</Text>
+                    <Text className="text-[11px] text-white/80">{t("assets.held")}</Text>
                     <Text className="text-[11px] text-white">
                       {formatCompactNumber(row.wallet)} <DhbCoin />
                     </Text>
                   </View>
                   <View className="flex-row justify-between">
-                    <Text className="text-[11px] text-white/80">Staked</Text>
+                    <Text className="text-[11px] text-white/80">{t("assets.staked")}</Text>
                     <Text className="text-[11px] text-white">
                       {formatCompactNumber(row.staked)} <DhbCoin />
                     </Text>
@@ -190,14 +192,13 @@ const ProfileAssets = () => {
                 </View>
               ))}
               <View className="flex-row justify-between border-t border-white/10 pt-1 mt-1">
-                <Text className="text-[11px] text-white font-semibold">Total</Text>
+                <Text className="text-[11px] text-white font-semibold">{t("earnings.total")}</Text>
                 <Text className="text-[11px] text-white font-semibold">
                   {formatCompactNumber(dhbPosition)} <DhbCoin />
                 </Text>
               </View>
               <Text className="text-[10px] leading-4 text-white/50 mt-1">
-                Staked DHB includes anything you have asked to unstake but not
-                yet received back.
+                {t("assets.stakedIncludesUnstaking")}
               </Text>
             </View>
           )}
@@ -212,9 +213,11 @@ const ProfileAssets = () => {
                 ? "BNB Chain"
                 : `Chain ${chainId ?? "N/A"}`;
               const gasSym = isBase ? "ETH" : isBNB ? "BNB" : "ETH";
-              return `Your other balances are on ${netName} (chain ${
-                chainId ?? "N/A"
-              }) only. ${gasSym} is your gas balance. Values may lag a few seconds. Bridge or transfer assets to ${netName} to use them here.`;
+              return t("assets.otherBalancesNote", {
+                network: netName,
+                chainId: chainId ?? "N/A",
+                gas: gasSym,
+              });
             })()}
           </Text>
           <View className="flex-row justify-end mt-2">
@@ -222,7 +225,7 @@ const ProfileAssets = () => {
               onPress={() => setShowInfo(false)}
               className="px-2 py-1 rounded bg-zinc-800"
             >
-              <Text className="text-[11px] text-white font-medium">Got it</Text>
+              <Text className="text-[11px] text-white font-medium">{t("assets.gotIt")}</Text>
             </TouchableOpacity>
           </View>
         </InfoTooltip>
@@ -262,16 +265,16 @@ const ProfileAssets = () => {
             <View className="ml-9 mt-1 mb-2 flex-row space-x-2">
               {dhbActions.map((action) => (
                 <TouchableOpacity
-                  key={action.label}
+                  key={action.key}
                   className={`py-2 px-3 rounded-xl flex-1 mx-1 ${
                     action.disabled ? "bg-theme-neutrals-800" : "bg-theme-neutrals-700"
                   }`}
                   onPress={
                     action.disabled
                       ? undefined
-                      : action.label === "Top up"
+                      : action.key === "topUp"
                       ? handleTopUp
-                      : action.label === "Transfer"
+                      : action.key === "transfer"
                       ? () => setTransferOpen(true)
                       : undefined
                   }
@@ -298,11 +301,11 @@ const ProfileAssets = () => {
             <View className="flex-row items-center flex-1">
               <Image source={usdtIcon} className="w-8 h-8 rounded-full mr-3" />
               <View className="flex-1">
-                <Text className="text-sm text-white font-semibold">Subscription earnings</Text>
+                <Text className="text-sm text-white font-semibold">{t("assets.subscriptionEarnings")}</Text>
                 <Text className="text-[11px] text-white/50">
                   {subscriptionEarnings.withdrawalAvailable
-                    ? "Available to withdraw on Base"
-                    : "USDT-denominated · pending treasury reserve"}
+                    ? t("assets.withdrawableOnBase")
+                    : t("assets.pendingTreasury")}
                 </Text>
               </View>
             </View>
@@ -316,7 +319,7 @@ const ProfileAssets = () => {
             className="mt-3 py-2.5 rounded-xl items-center bg-theme-neutrals-700"
           >
             <Text className="text-xs text-white font-semibold">
-              {withdrawingSubscriptions ? "Withdrawing…" : "Cash out"}
+              {withdrawingSubscriptions ? t("assets.withdrawing") : t("assets.cashOut")}
             </Text>
           </TouchableOpacity>
         </View>

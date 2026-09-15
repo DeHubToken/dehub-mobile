@@ -3706,5 +3706,25 @@
     "rewrite": "Újraírás",
     "lyricsPlaceholder": "Hagyd üresen instrumentális számhoz",
     "lyricsFailed": "Nem sikerült dalszöveget készíteni"
+  },
+  "assets": {
+    "topUp": "Feltöltés",
+    "bridge": "Híd",
+    "comingSoon": "hamarosan",
+    "title": "Eszközök",
+    "held": "Birtokolt",
+    "staked": "Stakelve",
+    "gotIt": "Értem",
+    "dhbPositionNote": "A DHB a teljes pozíciód — a birtokolt és a stakelt együtt, a Base-en és a BNB Chainen. A legtöbbje általában stakelve van, ezért ez a szám nagyobb annál, amit most el tudsz költeni.",
+    "stakedIncludesUnstaking": "A stakelt DHB azt is tartalmazza, aminek a kivonását kérted, de még nem kaptad vissza.",
+    "otherBalancesNote": "A többi egyenleged csak a(z) {{network}} hálózaton van ({{chainId}} lánc). A {{gas}} a gázegyenleged. Az értékek pár másodpercet késhetnek. Küldd át az eszközöket a(z) {{network}} hálózatra, hogy itt használhasd őket.",
+    "subscriptionEarnings": "Előfizetési bevétel",
+    "withdrawableOnBase": "Kivehető a Base-en",
+    "pendingTreasury": "USDT-ben · a kincstári tartalékra vár",
+    "cashOut": "Kifizetés",
+    "withdrawing": "Kifizetés folyamatban…",
+    "usdtSent": "{{amount}} USDT elküldve",
+    "withdrawableSoon": "Az előfizetési díjak hamarosan kivehetők lesznek",
+    "dpayBaseOnly": "A Dpay csak a Base-en érhető el."
   }
 }

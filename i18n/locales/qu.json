@@ -3732,5 +3732,25 @@
     "rewrite": "Musuqmanta qillqay",
     "lyricsPlaceholder": "Ch'usaqta saqiy takiy simi mana kananpaq",
     "lyricsFailed": "Taki simita mana ruwayta atinchu"
+  },
+  "assets": {
+    "topUp": "Huntachiy",
+    "bridge": "Chaka",
+    "comingSoon": "ñachu",
+    "title": "Imayuq kaykuna",
+    "held": "Hap'isqa",
+    "staked": "Churasqa",
+    "gotIt": "Hap' irquni",
+    "dhbPositionNote": "DHB llapan kapuqniykim — hap'isqa hinaspa churasqa, Base hinaspa BNB Chain ukhupi. Aswan yupaqa churasqam kakun, chayrayku kay yupayqa aswan hatun kanan gastanaykimanta.",
+    "stakedIncludesUnstaking": "Churasqa DHB-qa hap'illantaqmi mañakusqaykita horqonaykipaq ichaqa manaraq chaskisqaykita.",
+    "otherBalancesNote": "Huk qullqiykikunaqa {{network}} (chain {{chainId}}) ukhullapim. {{gas}} gas qullqiykim. Yupaykunaqa pisi segundollatam qhipakunman. Kaypi llamk'achinaykipaq imayuq kaykunata {{network}} man apachiy.",
+    "subscriptionEarnings": "Qillqakuymanta qullqi",
+    "withdrawableOnBase": "Base ukhupi horqonapaq",
+    "pendingTreasury": "USDT-pi · qullqi wasi waqaychaykuta suyachkan",
+    "cashOut": "Qullqita horqoy",
+    "withdrawing": "Horqochkan…",
+    "usdtSent": "{{amount}} USDT apachisqa",
+    "withdrawableSoon": "Qillqakuy chaninkunaqa ñachu horqonalla kanqa",
+    "dpayBaseOnly": "Dpay Base ukhullapim tarikun."
   }
 }

@@ -3847,5 +3847,25 @@
     "rewrite": "আবার লেখউ",
     "lyricsPlaceholder": "খালি বাজনার লাগি খালি রাখউ",
     "lyricsFailed": "গানর কথা বানানি গেল না"
+  },
+  "assets": {
+    "topUp": "টপ আপ",
+    "bridge": "ব্রিজ",
+    "comingSoon": "তাড়াতাড়ি",
+    "title": "সম্পদ",
+    "held": "রাখা",
+    "staked": "স্টেক করা",
+    "gotIt": "বুঝছি",
+    "dhbPositionNote": "DHB তুমার পুরা পজিশন — রাখা আর স্টেক করা, Base আর BNB Chain দুইটাতও। বেশিরভাগ সাধারণত স্টেক করা থাকে, তাই ইতা এখন খরচ করতে পারতায় ইতার থাকি বেশি।",
+    "stakedIncludesUnstaking": "স্টেক করা DHB ত ইতাও আছে যেগুন তুমি আনস্টেক করতে কইছো কিন্তু এখনো ফিরত পাও নাই।",
+    "otherBalancesNote": "তুমার বাকি ব্যালেন্স খালি {{network}} (চেইন {{chainId}}) ও আছে। {{gas}} অইলো তুমার গ্যাস ব্যালেন্স। মান কয়েক সেকেন্ড পিছাইতে পারে। ইখানো ব্যবহার করার লাগি সম্পদ {{network}} ও পাঠাও।",
+    "subscriptionEarnings": "সাবস্ক্রিপশন আয়",
+    "withdrawableOnBase": "Base ও তুলার লাগি পাওয়া যায়",
+    "pendingTreasury": "USDT ত · ট্রেজারি রিজার্ভর অপেক্ষাত",
+    "cashOut": "ক্যাশ আউট",
+    "withdrawing": "তুলা অইরা…",
+    "usdtSent": "{{amount}} USDT পাঠানি অইছে",
+    "withdrawableSoon": "সাবস্ক্রিপশন ফি তাড়াতাড়ি তুলা যাইব",
+    "dpayBaseOnly": "Dpay খালি Base ও পাওয়া যায়।"
   }
 }
