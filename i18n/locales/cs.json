@@ -572,7 +572,20 @@
     "badgeDelegationNoteAny": "Slot zapůjčí jeden z vašich odemčených odznaků na jiný účet. Vraťte ji kdykoliv budete chtít — slot se uvolní o den později.",
     "badgeDelegationRaisesOnlyTier": "Odznak, který půjčíte, musí být vyšší než ten, který již získali.",
     "badgeDelegationPickTier": "Odznak k zapůjčení",
-    "badgeDelegationLendsAny": "Každý z nich půjčí jinému účtu jakýkoli odemčený odznak, a to až do výše svého {{tier}}. Menší odznak stále používá celý slot."
+    "badgeDelegationLendsAny": "Každý z nich půjčí jinému účtu jakýkoli odemčený odznak, a to až do výše svého {{tier}}. Menší odznak stále používá celý slot.",
+    "kidsMode": "Dětský režim",
+    "kidsModeDesc": "Zobrazí pouze příspěvky publikované pro děti, všude. ŠPENDLÍK jej opět vypne.",
+    "kidsModeSetPin": "Vyber ŠPENDLÍK",
+    "kidsModeSetPinHelp": "4 až 8 číslic. Potřebujete jej k opětovnému vypnutí dětského režimu.",
+    "kidsModeConfirmPin": "Zadejte jej znovu",
+    "kidsModeConfirmPinHelp": "Takže víte, že ji můžete reprodukovat.",
+    "kidsModeEnterPin": "Zadejte svůj PIN",
+    "kidsModeEnterPinHelp": "Tím se na tomto zařízení vypne dětský režim.",
+    "kidsModeTurnOn": "Zapnout dětský režim",
+    "kidsModeTurnOff": "Vypnout dětský režim",
+    "kidsModePinMismatch": "Tyto kódy PIN jsou jiné. Začněte znovu.",
+    "kidsModeFailed": "To nefungovalo. Zkuste to znovu.",
+    "kidsModeForgotPin": "Zapomněli jste? Přihlaste se pomocí peněženky na jiném zařízení a vypněte dětský režim."
   },
   "common": {
     "mute": "Ztlumit",
@@ -611,7 +624,8 @@
     "copy": "Kopírovat",
     "optionalSuffix": "(nepovinné)",
     "yesterday": "Včera",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Pokračovat"
   },
   "drawers": {
     "ppvTitle": "Platba za zhlédnutí",
@@ -1822,7 +1836,8 @@
     "removeMedia": "Odebrat médium",
     "cancelRecording": "Zrušit nahrávání",
     "sendVoiceNote": "Odeslat hlasovou zprávu",
-    "noneYetAddYours": "Zatím žádné komentáře, přidejte svůj."
+    "noneYetAddYours": "Zatím žádné komentáře, přidejte svůj.",
+    "kidsOnlyThread": "Tento příspěvek je pro děti. Komentovat to může pouze dětský režim."
   },
   "postInfo": {
     "title": "Informace o příspěvku",
@@ -3607,7 +3622,18 @@
     "unmuteVideo": "Zapnout zvuk videa",
     "descriptionOptional": "Popis (volitelné)",
     "whatsHappening": "Co se děje?",
-    "quotaShortfall": "Tento příspěvek stojí {{cost}} DHB a vy máte {{held}}."
+    "quotaShortfall": "Tento příspěvek stojí {{cost}} DHB a vy máte {{held}}.",
+    "madeForKids": "Vytvořeno pro děti",
+    "madeForKidsHint": "zobrazeno v režimu pro děti",
+    "madeForKidsConfirmTitle": "Publikovat toto pro děti?",
+    "madeForKidsConfirmAudience": "Děti používající režim pro děti uvidí tento příspěvek. Nic jiného na DeHub se jim nedostane.",
+    "madeForKidsConfirmReach": "Také se to dostane z běžných kanálů — lidé ho stále najdou na vašem profilu, v hledání a prostřednictvím odkazu, který sdílíte.",
+    "madeForKidsConfirmComments": "Pouze režim pro děti může komentovat. Můžete jim stále odpovídat sami.",
+    "madeForKidsConfirmYes": "Ano, je to pro děti",
+    "markMadeForKids": "Označit jako vytvořeno pro děti",
+    "madeForKidsOnDesc": "Zobrazeno dětem v režimu pro děti a mimo běžné kanály. Pouze režim pro děti může komentovat.",
+    "madeForKidsOffDesc": "Zobrazuje tento příspěvek dětem používajícím režim pro děti a odstraňuje ho z běžných kanálů.",
+    "madeForKidsBlockedByMature": "Příspěvek označený jako pro dospělé nelze také publikovat pro děti."
   },
   "bounty": {
     "claimed": "Vyzvednuto",

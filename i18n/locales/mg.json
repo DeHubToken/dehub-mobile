@@ -558,7 +558,20 @@
     "badgeDelegationNoteAny": "Ny slot mampisambotra iray amin'ireo famantarana ny nanokatra kaonty hafa. Raiso indray isaky ny tianao — ny slot manafaka ny andro iray taty aoriana.",
     "badgeDelegationRaisesOnlyTier": "Ny famantarana mampisambotra anao dia tsy maintsy manana bebe kokoa noho ny iray izay efa mahazo.",
     "badgeDelegationPickTier": "Badge mba hampisambotra",
-    "badgeDelegationLendsAny": "Samy mampisambotra kaonty hafa ny tsirairay izay efa nanokatra ny marika, hatramin'ny anao {{tier}}. Misy valizy iray ilaina amin'ny fitaovana iray manontolo."
+    "badgeDelegationLendsAny": "Samy mampisambotra kaonty hafa ny tsirairay izay efa nanokatra ny marika, hatramin'ny anao {{tier}}. Misy valizy iray ilaina amin'ny fitaovana iray manontolo.",
+    "kidsMode": "Ny fomba fiasan'ny ankizy",
+    "kidsModeDesc": "Natao ho an'ny ankizy na aiza na aiza misy azy ireo. Ny PIN dia mamerina azy indray.",
+    "kidsModeSetPin": "Misafidiana PIN iray",
+    "kidsModeSetPinHelp": "Nampian'ny 8 fanambarana manokana. Noho izany dia zava-dehibe kokoa ny mamela ny ankizy hanao firaisana ara-nofo indray.",
+    "kidsModeConfirmPin": "Ampidiro indray",
+    "kidsModeConfirmPinHelp": "Fantatrao fa afaka mamokatra azy ireo ianao.",
+    "kidsModeEnterPin": "Ampidiro ny PIN",
+    "kidsModeEnterPinHelp": "Io fomba io dia manampy ny ankizy hivezivezy amin'ny fitaovana.",
+    "kidsModeTurnOn": "Manova ny fomba fiasan'ny ankizy",
+    "kidsModeTurnOff": "Avereno ny fomba fiasan'ny ankizy",
+    "kidsModePinMismatch": "Ireo PINs dia hafa. Avereno indray.",
+    "kidsModeFailed": "Tsy nandeha izany. Andramo indray.",
+    "kidsModeForgotPin": "Adinoy izany? Midira amin'ny kitapom-batsy amin'ny fitaovana hafa mba hampody ny Kids Mode eny."
   },
   "common": {
     "mute": "Hampangina",
@@ -597,7 +610,8 @@
     "copy": "Adikao",
     "optionalSuffix": "(safidy)",
     "yesterday": "Omaly",
-    "ok": "Eny"
+    "ok": "Eny",
+    "continue": "Sehon'ny mpiaty"
   },
   "tip": {
     "title": "Handefa fanomezana",
@@ -1736,7 +1750,8 @@
     "removeMedia": "Esory ny media",
     "cancelRecording": "Foano ny fandraiketana",
     "sendVoiceNote": "Alefaso ny naoty feo",
-    "noneYetAddYours": "Mbola tsy misy hevitra, ampio ny anao."
+    "noneYetAddYours": "Mbola tsy misy hevitra, ampio ny anao.",
+    "kidsOnlyThread": "Ity boky ity dia ho an'ny ankizy. Ireo mpihaza mpihaza irery ihany no afaka maneho hevitra momba izany."
   },
   "postInfo": {
     "title": "Fampahalalana momba ny lahatsoratra",
@@ -3682,7 +3697,17 @@
     "unmuteVideo": "Avereno ny feon'ny horonan-tsary",
     "descriptionOptional": "Famaritana (tsy voatery)",
     "whatsHappening": "Inona no mitranga?",
-    "quotaShortfall": "Mandany {{cost}} DHB ity lahatsoratra ity ary manana {{held}} ianao."
+    "quotaShortfall": "Mandany {{cost}} DHB ity lahatsoratra ity ary manana {{held}} ianao.",
+    "madeForKids": "Natao ho an'ny ankizy",
+    "madeForKidsHint": "Asehina amin'ny Kids Mode",
+    "madeForKidsConfirmTitle": "Hamoaka ity ho an'ny ankizy?",
+    "madeForKidsConfirmAudience": "Ny ankizy mampiasa Kids Mode dia hahita ity postina ity. Tsy misy hafa amin'ny DeHub no makakarating amin'izy ireo.",
+    "madeForKidsConfirmReach": "Miala amin'ny feed mahazatra koa — ny olona dia haka-hita azy amin'ny profily, amin'ny fikarohana ary amin'ny rohy izay zarazarinao.",
+    "madeForKidsConfirmComments": "Ny Kids Mode ihany no afaka maglasalasa amin'ity. Azonao atsy hanorata amin'izy ireo.",
+    "madeForKidsConfirmYes": "Eny, ho an'ny ankizy izany",
+    "madeForKidsOnDesc": "Asehina amin'ny ankizy mampiasa Kids Mode, ary miala amin'ny feed mahazatra. Ny Kids Mode ihany no afaka maglasalasa.",
+    "madeForKidsOffDesc": "Asehina ity postina ity amin'ny ankizy mampiasa Kids Mode, ary esorina amin'ny feed mahazatra.",
+    "madeForKidsBlockedByMature": "Ny postina nisy marika ho \"mature\" dia tsy afaka hamoaka ho an'ny ankizy."
   },
   "bounty": {
     "claimed": "Voaray",

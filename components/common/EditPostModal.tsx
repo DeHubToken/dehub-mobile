@@ -43,6 +43,8 @@ interface EditPostModalProps {
   initialShopLinks?: ShopLink[];
   /** Absent means safe — the API stores nothing for the default. */
   initialContentRating?: string;
+  /** Whether this post is published for children — the Kids Mode allowlist. */
+  initialForKids?: boolean;
   /** Offer the "replace the file" row — creator, video post, not live. */
   canReplaceVideo?: boolean;
   onSuccess?: (data: {
@@ -51,6 +53,7 @@ interface EditPostModalProps {
     category?: string[];
     commentsDisabled?: boolean;
     contentRating?: string;
+    forKids?: boolean;
     shopLinks?: ShopLink[];
     shopListingCount?: number;
   }) => void;
@@ -66,12 +69,14 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   initialCommentsDisabled = false,
   initialShopLinks,
   initialContentRating,
+  initialForKids,
   canReplaceVideo = false,
   onSuccess,
 }) => {
   const { t } = useTranslation();
   const [commentsDisabled, setCommentsDisabled] = useState(initialCommentsDisabled);
   const [isMature, setIsMature] = useState(initialContentRating === "mature");
+  const [isForKids, setIsForKids] = useState(initialForKids === true);
   const [shopLinks, setShopLinks] = useState<ShopLink[]>(initialShopLinks ?? []);
   const [shopSheetVisible, setShopSheetVisible] = useState(false);
   const shopAllowance = useShopLinkAllowance();
@@ -166,8 +171,10 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       setDescription(initialDescription);
       setSelectedCategories(initialCategories);
       setCommentsDisabled(initialCommentsDisabled);
+      setIsMature(initialContentRating === "mature");
+      setIsForKids(initialForKids === true);
     }
-  }, [visible, initialTitle, initialDescription, initialCategories, initialCommentsDisabled]);
+  }, [visible, initialTitle, initialDescription, initialCategories, initialCommentsDisabled, initialContentRating, initialForKids]);
 
   // Load categories when modal opens
   useEffect(() => {
@@ -241,6 +248,12 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       if (nextRating !== (initialContentRating ?? "safe")) {
         payload.contentRating = nextRating;
       }
+      // Unlike the rating, this one is sent as a plain boolean in both
+      // directions: taking the mark OFF is a real edit, and the server records
+      // who did it.
+      if (isForKids !== (initialForKids === true)) {
+        payload.forKids = isForKids;
+      }
 
       // Sent whole, including `[]` — that is the only way to clear a board,
       // and the server treats an empty array as exactly that.
@@ -292,6 +305,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     selectedCategories,
     commentsDisabled,
     isMature,
+    isForKids,
     shopLinks,
     listingIds,
     attachedIds,
@@ -303,6 +317,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     initialCommentsDisabled,
     initialShopLinks,
     initialContentRating,
+    initialForKids,
     onSuccess,
     onClose,
   ]);
@@ -312,6 +327,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     description.trim() !== initialDescription ||
     commentsDisabled !== initialCommentsDisabled ||
     (isMature ? "mature" : "safe") !== (initialContentRating ?? "safe") ||
+    isForKids !== (initialForKids === true) ||
     JSON.stringify(shopLinks) !== JSON.stringify(initialShopLinks ?? []) ||
     JSON.stringify([...listingIds].sort()) !== JSON.stringify([...attachedIds].sort()) ||
     JSON.stringify(selectedCategories.sort()) !==
@@ -503,12 +519,68 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             </View>
           </TouchableOpacity>
 
+          {/* Made for kids. Above the content rating and separated from it, the
+              same way the composer separates the two — they are opposites, and
+              a mis-tap between them is expensive in both directions. Disabled
+              while the post is marked mature: the server refuses the pair, and
+              a switch that produces an unactionable error is worse than one
+              that says why it is off. */}
+          <TouchableOpacity
+            onPress={() => !isMature && setIsForKids((v) => !v)}
+            activeOpacity={isMature ? 1 : 0.7}
+            accessibilityRole="switch"
+            accessibilityState={{ checked: isForKids, disabled: isMature }}
+            className={`flex-row items-center justify-between mt-3 p-3 rounded-xl bg-white/[0.03] border border-white/10 ${
+              isMature ? "opacity-40" : ""
+            }`}
+          >
+            <View className="flex-1 mr-3">
+              <Text className="text-white text-sm font-semibold">
+                {isForKids
+                  ? t("upload.madeForKids", "Made for kids")
+                  : t("upload.markMadeForKids", "Mark as made for kids")}
+              </Text>
+              <Text className="text-theme-neutrals-400 text-xs mt-0.5">
+                {isMature
+                  ? t(
+                      "upload.madeForKidsBlockedByMature",
+                      "A post marked mature cannot also be published for children.",
+                    )
+                  : isForKids
+                    ? t(
+                        "upload.madeForKidsOnDesc",
+                        "Shown to children in Kids Mode, and off the ordinary feeds. Only Kids Mode can comment.",
+                      )
+                    : t(
+                        "upload.madeForKidsOffDesc",
+                        "Shows this post to children using Kids Mode, and takes it off the ordinary feeds.",
+                      )}
+              </Text>
+            </View>
+            <View
+              className={`w-11 h-6 rounded-full justify-center ${
+                isForKids ? "bg-emerald-500" : "bg-neutral-700"
+              }`}
+            >
+              <View
+                className={`w-5 h-5 rounded-full bg-white ${isForKids ? "ml-[22px]" : "ml-0.5"}`}
+              />
+            </View>
+          </TouchableOpacity>
+
           {/* Content rating. Same switch the composer carries, for a post that
               is already out — refused with 403 once a moderator has rated it,
               and that message surfaces as-is. */}
           {MATURE_CONTENT_ENABLED && (
           <TouchableOpacity
-            onPress={() => setIsMature((v) => !v)}
+            onPress={() => {
+              // Marking mature clears the kids marking rather than letting the
+              // creator send a contradiction the server refuses.
+              setIsMature((v) => {
+                if (!v) setIsForKids(false);
+                return !v;
+              });
+            }}
             activeOpacity={0.7}
             accessibilityRole="switch"
             accessibilityState={{ checked: isMature }}

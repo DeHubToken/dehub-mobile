@@ -572,7 +572,20 @@
     "badgeDelegationNoteAny": "插槽會將你其中一個解鎖嘅徽章借畀另一個帳戶。你想幾時攞返佢 — 個插槽喺一日之後就會騰出。",
     "badgeDelegationRaisesOnlyTier": "你借嘅徽章一定要高過佢哋已經賺到嘅徽章。",
     "badgeDelegationPickTier": "要借嘅徽章",
-    "badgeDelegationLendsAny": "每個人都會借出你解鎖嘅任何徽章畀另一個帳戶，最多可以借畀你自己嘅 {{tier}} 。較細嘅徽章仍然會用成個插槽。"
+    "badgeDelegationLendsAny": "每個人都會借出你解鎖嘅任何徽章畀另一個帳戶，最多可以借畀你自己嘅 {{tier}} 。較細嘅徽章仍然會用成個插槽。",
+    "kidsMode": "兒童模式",
+    "kidsModeDesc": "只顯示為兒童發佈嘅文章，隨處可見。有個 PIN 可以閂返佢。",
+    "kidsModeSetPin": "揀個 PIN 碼",
+    "kidsModeSetPinHelp": "4 至 8 位數。你需要佢先可以再次閂兒童模式。",
+    "kidsModeConfirmPin": "再輸入一次",
+    "kidsModeConfirmPinHelp": "噉你就知道你可以重現佢。",
+    "kidsModeEnterPin": "輸入你嘅 PIN 碼",
+    "kidsModeEnterPinHelp": "呢個操作會閂呢部裝置嘅兒童模式。",
+    "kidsModeTurnOn": "開兒童模式",
+    "kidsModeTurnOff": "閂兒童模式",
+    "kidsModePinMismatch": "嗰啲 PIN 唔同。重新開始。",
+    "kidsModeFailed": "噉樣做唔到。再試多次。",
+    "kidsModeForgotPin": "唔記得咗？喺另一部裝置上面用銀包登入就可以閂兒童模式。"
   },
   "common": {
     "mute": "靜音",
@@ -611,7 +624,8 @@
     "copy": "複製",
     "optionalSuffix": "（可選）",
     "yesterday": "尋日",
-    "ok": "確定"
+    "ok": "確定",
+    "continue": "繼續"
   },
   "tip": {
     "title": "送禮物",
@@ -1817,7 +1831,8 @@
     "removeMedia": "移除媒體",
     "cancelRecording": "取消錄製",
     "sendVoiceNote": "發送語音留言",
-    "noneYetAddYours": "仲未有評論，嚟寫第一個啦。"
+    "noneYetAddYours": "仲未有評論，嚟寫第一個啦。",
+    "kidsOnlyThread": "呢個帖子係畀小朋友嘅。只有兒童模式可以對佢作出評論。"
   },
   "postInfo": {
     "title": "帖子資訊",
@@ -3601,7 +3616,17 @@
     "unmuteVideo": "取消靜音影片",
     "descriptionOptional": "描述（選填）",
     "whatsHappening": "有咩新鮮事？",
-    "quotaShortfall": "呢個帖子需要 {{cost}} DHB，你持有 {{held}}。"
+    "quotaShortfall": "呢個帖子需要 {{cost}} DHB，你持有 {{held}}。",
+    "madeForKids": "為孩子製作",
+    "madeForKidsHint": "喺孩子模式中顯示",
+    "madeForKidsConfirmTitle": "為孩子發佈呢個帖文？",
+    "madeForKidsConfirmAudience": "使用孩子模式嘅小朋友會睇到呢個帖文。DeHub 上冇其他嘢會到達佢哋。",
+    "madeForKidsConfirmReach": "佢都會喺普通動態消息中移除 — 人哋仲係可以喺你嘅個人檔案、搜尋同埋你分享嘅連結度搵到佢。",
+    "madeForKidsConfirmComments": "淨係孩子模式可以評論佢。你仲係可以自己回覆佢哋。",
+    "madeForKidsConfirmYes": "係，係為孩子製作",
+    "madeForKidsOnDesc": "顯示畀孩子模式中嘅小朋友，同埋喺普通動態消息中移除。淨係孩子模式可以評論。",
+    "madeForKidsOffDesc": "將呢個帖文顯示畀使用孩子模式嘅小朋友，同埋喺普通動態消息中移除佢。",
+    "madeForKidsBlockedByMature": "標記為成人嘅帖文唔可以同時為小朋友發佈。"
   },
   "bounty": {
     "claimed": "已領取",

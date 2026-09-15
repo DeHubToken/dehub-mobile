@@ -1109,6 +1109,14 @@ export interface EditPostInput {
    */
   contentRating?: 'safe' | 'mature';
   /**
+   * Mark or unmark a published post as made for children. Refused with 403
+   * once a moderator has ruled on it, same as the rating above.
+   *
+   * Sent as a plain boolean in both directions — taking the mark off is a real
+   * edit, not an absence.
+   */
+  forKids?: boolean;
+  /**
    * Replace the Shop board. `[]` clears it, which is how the toggle is turned
    * off after publishing.
    *
@@ -1120,7 +1128,7 @@ export interface EditPostInput {
 
 export interface EditPostResponse {
   result: boolean;
-  data?: { tokenId: number; name?: string; description?: string; category?: string[]; contentRating?: string; shopLinks?: ShopLink[] };
+  data?: { tokenId: number; name?: string; description?: string; category?: string[]; contentRating?: string; forKids?: boolean; shopLinks?: ShopLink[] };
 }
 
 /**

@@ -587,7 +587,20 @@
     "badgeDelegationNoteAny": "Bir slot, kilidi açılmış rozetlerinizden birini başka bir hesaba ödünç verir. İstediğiniz zaman geri alın — slot bir gün sonra boşalır.",
     "badgeDelegationRaisesOnlyTier": "Ödünç verdiğiniz rozet, halihazırda kazandıklarından daha yüksek olmalıdır.",
     "badgeDelegationPickTier": "Ödünç verilecek rozet",
-    "badgeDelegationLendsAny": "Her biri, kendi {{tier}}' ınıza kadar açtığınız herhangi bir rozeti başka bir hesaba ödünç verir. Daha küçük bir rozet hala tam bir yuva kullanır."
+    "badgeDelegationLendsAny": "Her biri, kendi {{tier}}' ınıza kadar açtığınız herhangi bir rozeti başka bir hesaba ödünç verir. Daha küçük bir rozet hala tam bir yuva kullanır.",
+    "kidsMode": "Çocuk Modu",
+    "kidsModeDesc": "Her yerde yalnızca çocuklar için yayınlanan gönderileri gösterir. Bir PIN onu geri kapatır.",
+    "kidsModeSetPin": "Bir PIN SEÇİN",
+    "kidsModeSetPinHelp": "4 ila 8 basamak. Çocuk Modunu tekrar kapatmak için buna ihtiyacınız var.",
+    "kidsModeConfirmPin": "Tekrar girin",
+    "kidsModeConfirmPinHelp": "Böylece onu çoğaltabileceğinizi bilirsiniz.",
+    "kidsModeEnterPin": "PIN KODUNUZU GİRİN",
+    "kidsModeEnterPinHelp": "Bu, bu cihazda Çocuk Modunu kapatır.",
+    "kidsModeTurnOn": "Çocuk Modunu Aç",
+    "kidsModeTurnOff": "Çocuk Modunu kapat",
+    "kidsModePinMismatch": "Bu PIN'ler farklı. Tekrar başlayın.",
+    "kidsModeFailed": "Bu işe yaramadı. Tekrar deneyin.",
+    "kidsModeForgotPin": "Unuttunuz mu? Çocuk Modunu kapatmak için başka bir cihazda cüzdanınızla oturum açın."
   },
   "common": {
     "mute": "Sesi kapat",
@@ -626,7 +639,8 @@
     "copy": "Kopyala",
     "optionalSuffix": "(isteğe bağlı)",
     "yesterday": "Dün",
-    "ok": "Tamam"
+    "ok": "Tamam",
+    "continue": "Devam et"
   },
   "tip": {
     "title": "Bahşiş Gönder",
@@ -1902,7 +1916,8 @@
     "removeMedia": "Medyayı kaldır",
     "cancelRecording": "Kaydı iptal et",
     "sendVoiceNote": "Sesli notu gönder",
-    "noneYetAddYours": "Henüz yorum yok, ilkini sen yaz."
+    "noneYetAddYours": "Henüz yorum yok, ilkini sen yaz.",
+    "kidsOnlyThread": "Bu gönderi çocuklar içindir. Sadece Çocuk Modu yorum yapabilir."
   },
   "postInfo": {
     "title": "Gönderi Bilgisi",
@@ -3665,7 +3680,18 @@
     "unmuteVideo": "Videonun sesini aç",
     "descriptionOptional": "Açıklama (isteğe bağlı)",
     "whatsHappening": "Neler oluyor?",
-    "quotaShortfall": "Bu gönderi {{cost}} DHB tutuyor ve sizde {{held}} var."
+    "quotaShortfall": "Bu gönderi {{cost}} DHB tutuyor ve sizde {{held}} var.",
+    "madeForKids": "Çocuklar için yapılmış",
+    "madeForKidsHint": "Çocuk Modu'nda gösterilir",
+    "madeForKidsConfirmTitle": "Bunu çocuklar için yayınlasın mı?",
+    "madeForKidsConfirmAudience": "Çocuk Modu'nu kullanan çocuklara bu gönderi gösterilecektir. DeHub'daki başka hiçbir şey onlara ulaşmaz.",
+    "madeForKidsConfirmReach": "Ayrıca normal akışlardan çıkarılır — insanlar bunu yine de profilinizde, aramada ve paylaştığınız bir bağlantıda bulabilirler.",
+    "madeForKidsConfirmComments": "Yalnızca Çocuk Modu yorum yapabilir. Siz yine de onlara yanıt verebilirsiniz.",
+    "madeForKidsConfirmYes": "Evet, çocuklar için",
+    "markMadeForKids": "Çocuklar için yapılmış olarak işaretle",
+    "madeForKidsOnDesc": "Çocuk Modu'nu kullanan çocuklara gösterilir ve normal akışlardan çıkarılır. Yalnızca Çocuk Modu yorum yapabilir.",
+    "madeForKidsOffDesc": "Bu gönderiyi Çocuk Modu'nu kullanan çocuklara gösterir ve normal akışlardan çıkarır.",
+    "madeForKidsBlockedByMature": "Olgun olarak işaretlenmiş bir gönderi aynı zamanda çocuklar için yayınlanamaz."
   },
   "bounty": {
     "claimed": "Alındı",

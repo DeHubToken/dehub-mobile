@@ -561,7 +561,20 @@
     "badgeDelegationNoteAny": "ሓደ ኣፈፃፅማ ሓደ ካብ ዘይተኸፈተ ባጅኻ ናብ ካልእ መለያ ይኽፈል ። ኣብ ዝደለኻዮ ግዜ ተመሊስካ ውሰድ — እቲ ኣፈፃፅማ ድሕሪ ሓደ መዓልቲ ይድገም ።",
     "badgeDelegationRaisesOnlyTier": "እቲ እተቐበልካዮ ባጅ ካብቲ ኣቐዲሞም ዚረኽብዎ ንላዕሊ ኪኸውን ኣለዎ ።",
     "badgeDelegationPickTier": "ናይ ልቓሕ ባጅ",
-    "badgeDelegationLendsAny": "ነፍሲ ወከፍ ሰብ ካልእ መለያ ሂቡ ፡ ክሳብ ናይ ገዛእ ርእስኻ {{tier}}. ንእሽቶ ባጅ ገና ምሉእ ክፋል ይጥቀም ኣሎ ።"
+    "badgeDelegationLendsAny": "ነፍሲ ወከፍ ሰብ ካልእ መለያ ሂቡ ፡ ክሳብ ናይ ገዛእ ርእስኻ {{tier}}. ንእሽቶ ባጅ ገና ምሉእ ክፋል ይጥቀም ኣሎ ።",
+    "kidsMode": "ናይ ቈልዑ ኣገባብ",
+    "kidsModeDesc": "ኣብ ኵሉ ቦታ ፡ ንቘልዑ እተሓትሙ ጽሑፋት ጥራይ እዩ ዜርኢ ። ሓደ ፒን ንድሕሪት ይመልሶ ።",
+    "kidsModeSetPin": "ፒን ምረጽ",
+    "kidsModeSetPinHelp": "ካብ 4 ክሳብ 8 ፊደላት ። ነቲ ናይ ቈልዑ ሞድ እንደገና ክትመልሶ ኣሎካ ።",
+    "kidsModeConfirmPin": "መሊስካ ኣእቲኻ",
+    "kidsModeConfirmPinHelp": "ስለዚ ክትመልሶ ከም እትኽእል ትፈልጥ ኢኻ ።",
+    "kidsModeEnterPin": "PINኻ ኣእቲኻ",
+    "kidsModeEnterPinHelp": "እዚ ድማ ንቘልዑ ኣብ'ዚ መሳርሒ'ዚ ዘጥፍእ እዩ ።",
+    "kidsModeTurnOn": "ንቘልዑ ኣዘውቲርካ ኣማዕብል",
+    "kidsModeTurnOff": "ንቘልዑ ኣጥፍኦም",
+    "kidsModePinMismatch": "እዞም ፒንታት እዚኣቶም እተፈልዩ እዮም ። መሊስካ ምጅማር ።",
+    "kidsModeFailed": "በጃኻ ኣይትጨነቕ ፡ ከም'ዚ... እንደገና ይዞር ኣሎ ።",
+    "kidsModeForgotPin": "ነዚ ረሲዕካዶ ፧ ነቲ ናይ ቈልዑ ሞድ ንምጥፋእ ኣብ ካልእ መሳርሒ ምስ ቦርሳኻ ኣቲኻ ኣቲኻ ኣቲኻ ።"
   },
   "common": {
     "mute": "ድምጺ ኣጥፍእ",
@@ -600,7 +613,8 @@
     "copy": "ቅዳሕ",
     "optionalSuffix": "(ኣማራጺ)",
     "yesterday": "ትማሊ",
-    "ok": "ሕራይ"
+    "ok": "ሕራይ",
+    "continue": "ቀጽል"
   },
   "tip": {
     "title": "ሽልማት ስደድ",
@@ -1793,7 +1807,8 @@
     "removeMedia": "ሚድያ ኣልግስ",
     "cancelRecording": "ቅዳሕ ሰርዝ",
     "sendVoiceNote": "ናይ ድምጺ መዘኻኸሪ ስደድ",
-    "noneYetAddYours": "ክሳብ ሕጂ ርእይቶ የለን፡ ናትካ ወስኽ።"
+    "noneYetAddYours": "ክሳብ ሕጂ ርእይቶ የለን፡ ናትካ ወስኽ።",
+    "kidsOnlyThread": "እዚ ጽሑፍ እዚ ንቘልዑ እዩ ። ቈልዑ ጥራይ እዮም ብዛዕባኡ ኺገልጹ ዚኽእሉ ።"
   },
   "postInfo": {
     "title": "ሓበሬታ ጽሑፍ",
@@ -3568,7 +3583,17 @@
     "unmuteVideo": "ድምጺ ቪድዮ ኣብራህር",
     "descriptionOptional": "መግለጺ (ኣማራጺ)",
     "whatsHappening": "እንታይ ይኸውን ኣሎ?",
-    "quotaShortfall": "እዚ ልጥፊ {{cost}} DHB የድሊ፡ ንስኻ ግና {{held}} ኣሎካ።"
+    "quotaShortfall": "እዚ ልጥፊ {{cost}} DHB የድሊ፡ ንስኻ ግና {{held}} ኣሎካ።",
+    "madeForKids": "ንላልና ተሰሪሑ",
+    "madeForKidsHint": "ኣብ Kids Mode ይርአይ",
+    "madeForKidsConfirmTitle": "ንላልና ንምልጻፍ ትደልዩ?",
+    "madeForKidsConfirmAudience": "ላልና Kids Mode ይጠቀምዋ ነዚ ፅሑፍ ይርእዩ። ካልእ ነገር ኣብ DeHub ኣይደርስ ኣለዎ።",
+    "madeForKidsConfirmReach": "ካብ ተለመደ ምግላጽ ይወጽእ — ሰባት ኣብ ገጽካ፣ ኣብ ምድላይ ከም ሓንቲ ሊንክ ትሓቦ ይረኽቡዋ።",
+    "madeForKidsConfirmComments": "ብ Kids Mode ብቻ ምልስ ይከኣል። ንሱ ምላሽ ክገብር ትኽእል ኢኻ።",
+    "madeForKidsConfirmYes": "ወ፣ ንላልና እዩ",
+    "madeForKidsOnDesc": "ንላልና Kids Mode ይጠቀምዋ ይርአይ፣ ካብ ተለመደ ምግላጽ ይወጽእ። ብ Kids Mode ብቻ ምልስ ይከኣል።",
+    "madeForKidsOffDesc": "ነዚ ፅሑፍ ንላልና Kids Mode ይጠቀምዋ ይርአይ፣ ካብ ተለመደ ምግላጽ ይወጽእ።",
+    "madeForKidsBlockedByMature": "ሓድሽ ፅሑፍ ብ mature ምልክት ኣልዩ ንላልና ምልጻፍ ኣይከኣልን።"
   },
   "bounty": {
     "claimed": "ተወሲዱ",

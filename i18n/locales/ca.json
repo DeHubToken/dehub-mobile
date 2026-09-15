@@ -572,7 +572,20 @@
     "badgeDelegationNoteAny": "Una ranura presta una de les teves insígnies desbloquejades a un altre compte. Torna'l quan vulguis: la ranura s'allibera un dia després.",
     "badgeDelegationRaisesOnlyTier": "El distintiu que prestis ha de ser més alt que el que ja guanyen.",
     "badgeDelegationPickTier": "Insígnia per prestar",
-    "badgeDelegationLendsAny": "Cadascun presta a un altre compte qualsevol distintiu que hagis desbloquejat, fins al teu propi {{tier}}. Un distintiu més petit encara utilitza una ranura sencera."
+    "badgeDelegationLendsAny": "Cadascun presta a un altre compte qualsevol distintiu que hagis desbloquejat, fins al teu propi {{tier}}. Un distintiu més petit encara utilitza una ranura sencera.",
+    "kidsMode": "Mode nens",
+    "kidsModeDesc": "Mostra només les publicacions per a nens, a tot arreu. Un PIN ho torna a desactivar.",
+    "kidsModeSetPin": "Tria un PIN",
+    "kidsModeSetPinHelp": "De 4 a 8 dígits. Necessites aquesta opció per tornar a desactivar el mode nens.",
+    "kidsModeConfirmPin": "Torna-ho a introduir",
+    "kidsModeConfirmPinHelp": "Així que saps que pots reproduir-lo.",
+    "kidsModeEnterPin": "Introdueix el PIN",
+    "kidsModeEnterPinHelp": "Això desactiva el mode nens en aquest dispositiu.",
+    "kidsModeTurnOn": "Activa el mode nens",
+    "kidsModeTurnOff": "Desactiva el mode nens",
+    "kidsModePinMismatch": "Aquests PIN són diferents. Torna a començar.",
+    "kidsModeFailed": "No ha funcionat. Torna-ho a provar.",
+    "kidsModeForgotPin": "Ho has oblidat? Inicia sessió amb la teva cartera en un altre dispositiu per desactivar el mode nens."
   },
   "common": {
     "mute": "Silencia",
@@ -611,7 +624,8 @@
     "copy": "Copia",
     "optionalSuffix": "(opcional)",
     "yesterday": "Ahir",
-    "ok": "D'acord"
+    "ok": "D'acord",
+    "continue": "Continua"
   },
   "tip": {
     "title": "Enviar propina",
@@ -1818,7 +1832,8 @@
     "removeMedia": "Elimina el contingut",
     "cancelRecording": "Cancel·la la gravació",
     "sendVoiceNote": "Envia la nota de veu",
-    "noneYetAddYours": "Encara no hi ha comentaris; afegeix el teu."
+    "noneYetAddYours": "Encara no hi ha comentaris; afegeix el teu.",
+    "kidsOnlyThread": "Aquesta publicació és per a nens. Només el mode nens pot comentar-ho."
   },
   "postInfo": {
     "title": "Informació de la publicació",
@@ -3603,7 +3618,18 @@
     "unmuteVideo": "Activa el so del vídeo",
     "descriptionOptional": "Descripció (opcional)",
     "whatsHappening": "Què passa?",
-    "quotaShortfall": "Aquesta publicació costa {{cost}} DHB i en tens {{held}}."
+    "quotaShortfall": "Aquesta publicació costa {{cost}} DHB i en tens {{held}}.",
+    "madeForKids": "Fet per a nens",
+    "madeForKidsHint": "mostrat en Mode Nens",
+    "madeForKidsConfirmTitle": "Publico això per a nens?",
+    "madeForKidsConfirmAudience": "Els nens que utilitzen el Mode Nens veuran aquesta publicació. Res més a DeHub els arriba.",
+    "madeForKidsConfirmReach": "També es treu dels feeds ordinaris — la gent encara la troba al teu perfil, en la cerca i a través d'un enllaç que comparteix.",
+    "madeForKidsConfirmComments": "Només el Mode Nens pot comentar-ho. Encara pots respondre tu mateix.",
+    "madeForKidsConfirmYes": "Sí, és per a nens",
+    "markMadeForKids": "Marcar com a fet per a nens",
+    "madeForKidsOnDesc": "Mostrat als nens en Mode Nens, i fora dels feeds ordinaris. Només Mode Nens pot comentar.",
+    "madeForKidsOffDesc": "Mostra aquesta publicació als nens que utilitzen Mode Nens, i la treu dels feeds ordinaris.",
+    "madeForKidsBlockedByMature": "Una publicació marcada com a madura no pot ser publicada també per a nens."
   },
   "bounty": {
     "claimed": "Reclamat",

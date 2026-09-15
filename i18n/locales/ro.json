@@ -814,7 +814,20 @@
     "badgeDelegationNoteAny": "Un slot împrumută una dintre insignele deblocate unui alt cont. Luați-l înapoi ori de câte ori doriți — slotul se eliberează o zi mai târziu.",
     "badgeDelegationRaisesOnlyTier": "Insigna pe care o împrumuți trebuie să fie mai mare decât cea pe care o câștigă deja.",
     "badgeDelegationPickTier": "Insignă de împrumutat",
-    "badgeDelegationLendsAny": "Fiecare dintre ele împrumută unui alt cont orice insignă pe care ai deblocat-o, până la {{tier}}. O insignă mai mică utilizează în continuare un slot întreg."
+    "badgeDelegationLendsAny": "Fiecare dintre ele împrumută unui alt cont orice insignă pe care ai deblocat-o, până la {{tier}}. O insignă mai mică utilizează în continuare un slot întreg.",
+    "kidsMode": "Modul pentru copii",
+    "kidsModeDesc": "Afișează doar postările publicate pentru copii, peste tot. Un PIN o dezactivează.",
+    "kidsModeSetPin": "Alege un PIN",
+    "kidsModeSetPinHelp": "4 până la 8 cifre. Ai nevoie de el pentru a dezactiva din nou Modul pentru copii.",
+    "kidsModeConfirmPin": "Introdu-l din nou",
+    "kidsModeConfirmPinHelp": "Pentru a ști că poți să-l reproduci.",
+    "kidsModeEnterPin": "Introdu PIN-ul tău",
+    "kidsModeEnterPinHelp": "Aceasta dezactivează Modul pentru copii pe acest dispozitiv.",
+    "kidsModeTurnOn": "Activează Modul pentru copii",
+    "kidsModeTurnOff": "Dezactivează Modul pentru copii",
+    "kidsModePinMismatch": "Acele PIN-uri sunt diferite. Începe din nou.",
+    "kidsModeFailed": "Asta nu a funcționat. Încearcă din nou.",
+    "kidsModeForgotPin": "L-ai uitat? Conectează-te cu portofelul tău pe alt dispozitiv pentru a dezactiva Modul pentru copii."
   },
   "common": {
     "mute": "Dezactivează sunetul",
@@ -853,7 +866,8 @@
     "copy": "Copiază",
     "optionalSuffix": "(opțional)",
     "yesterday": "Ieri",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Continuare"
   },
   "postOptions": {
     "options": "Options",
@@ -2025,7 +2039,8 @@
     "removeMedia": "Elimină media",
     "cancelRecording": "Anulează înregistrarea",
     "sendVoiceNote": "Trimite nota vocală",
-    "noneYetAddYours": "Încă niciun comentariu, adaugă-l pe al tău."
+    "noneYetAddYours": "Încă niciun comentariu, adaugă-l pe al tău.",
+    "kidsOnlyThread": "Această postare este pentru copii. Numai modul Copii poate comenta acest lucru."
   },
   "postInfo": {
     "title": "Post Info",
@@ -3616,7 +3631,18 @@
     "unmuteVideo": "Pornește sunetul videoclipului",
     "descriptionOptional": "Descriere (opțional)",
     "whatsHappening": "Ce se întâmplă?",
-    "quotaShortfall": "Această postare costă {{cost}} DHB și ai {{held}}."
+    "quotaShortfall": "Această postare costă {{cost}} DHB și ai {{held}}.",
+    "madeForKids": "Realizat pentru copii",
+    "madeForKidsHint": "afișat în Modul pentru copii",
+    "madeForKidsConfirmTitle": "Publici asta pentru copii?",
+    "madeForKidsConfirmAudience": "Copiii care folosesc Modul pentru copii vor vedea această postare. Nimic altceva pe DeHub nu le ajunge.",
+    "madeForKidsConfirmReach": "De asemenea, dispare din feed-urile obișnuite — oamenii o găsesc în continuare pe profilul tău, în căutare și printr-un link pe care îl partajezi.",
+    "madeForKidsConfirmComments": "Doar Modul pentru copii poate comenta. Tu poți să-i răspunzi în continuare.",
+    "madeForKidsConfirmYes": "Da, e pentru copii",
+    "markMadeForKids": "Marchează ca realizat pentru copii",
+    "madeForKidsOnDesc": "Afișat copiilor în Modul pentru copii și scos din feed-urile obișnuite. Doar Modul pentru copii poate comenta.",
+    "madeForKidsOffDesc": "Afișează această postare copiilor care folosesc Modul pentru copii și o scoate din feed-urile obișnuite.",
+    "madeForKidsBlockedByMature": "O postare marcată ca pentru adulți nu poate fi publicată și pentru copii."
   },
   "bounty": {
     "claimed": "Revendicat",

@@ -3349,7 +3349,17 @@
     "unmuteVideo": "Dengê vîdyoyê veke",
     "descriptionOptional": "Danasîn (bijarte)",
     "whatsHappening": "Çi diqewime?",
-    "quotaShortfall": "Ev şandî {{cost}} DHB dixwaze û te {{held}} heye."
+    "quotaShortfall": "Ev şandî {{cost}} DHB dixwaze û te {{held}} heye.",
+    "madeForKids": "بۆ منداڵان دروست کراوە",
+    "madeForKidsHint": "لە Kids Mode نیشان دراوە",
+    "madeForKidsConfirmTitle": "ئایا ئەم پۆستە بۆ منداڵان بڵاو بکەم؟",
+    "madeForKidsConfirmAudience": "منداڵانی بەکارهێنەری Kids Mode ئەم پۆستە بۆ دەکەن. هیچ شتێکی تر لە DeHub بۆ ئەوان نایگات.",
+    "madeForKidsConfirmReach": "ئەمەش لە فیدەکانی ئاسایی دەرچێت — خەڵک هێشتا لە پڕۆفایلی تۆ، لە گەڕان و بە ڕێگەی لینکی کە تۆ بەشێوەی هاوبەش دەکەی دەیدۆزنەوە.",
+    "madeForKidsConfirmComments": "تەنیا Kids Mode دەتوانێت تێبینی لێ بکات. تۆ هێشتا دەتوانیت خۆت وەڵامی بدەیت.",
+    "madeForKidsConfirmYes": "بەڵێ، بۆ منداڵان دروست کراوە",
+    "madeForKidsOnDesc": "بۆ منداڵانی بەکارهێنەری Kids Mode نیشان دراوە، و لە فیدەکانی ئاسایی دەرچووە. تەنیا Kids Mode دەتوانێت تێبینی بکات.",
+    "madeForKidsOffDesc": "ئەم پۆستە بۆ منداڵانی بەکارهێنەری Kids Mode نیشان دەدات، و لە فیدەکانی ئاسایی دەریدەخات.",
+    "madeForKidsBlockedByMature": "پۆستێک کە بە بالغ نیشان دراوە ناتوانێت هەروەها بۆ منداڵان بڵاو بکرێت."
   },
   "bounty": {
     "claimed": "Hate wergirtin",

@@ -83,12 +83,14 @@ export interface PostOptionsMenuProps {
   currentShopLinks?: ShopLink[];
   /** Absent means safe — the API stores nothing for the default. */
   currentContentRating?: string;
+  /** Whether this post is published for children — the Kids Mode allowlist. */
+  currentForKids?: boolean;
   /** Called after a successful follow/unfollow to update parent state */
   onFollowChange?: (following: boolean, pending?: boolean) => void;
   /** Called after visibility toggle to update parent state */
   onVisibilityChange?: (isHidden: boolean) => void;
   /** Called after edit success to update parent state */
-  onEditSuccess?: (data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; shopLinks?: ShopLink[]; shopListingCount?: number }) => void;
+  onEditSuccess?: (data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; forKids?: boolean; shopLinks?: ShopLink[]; shopListingCount?: number }) => void;
   /** Called after delete success */
   onDeleteSuccess?: () => void;
   /** Called when user taps Send to DM */
@@ -201,6 +203,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   currentCommentsDisabled,
   currentShopLinks,
   currentContentRating,
+  currentForKids,
   onFollowChange,
   onVisibilityChange,
   onEditSuccess,
@@ -364,7 +367,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   }, [openSubModal]);
 
   const handleEditDone = useCallback(
-    (data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; shopLinks?: ShopLink[]; shopListingCount?: number }) => {
+    (data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; forKids?: boolean; shopLinks?: ShopLink[]; shopListingCount?: number }) => {
       setShowEdit(false);
       onEditSuccess?.(data);
     },
@@ -711,6 +714,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         initialCommentsDisabled={currentCommentsDisabled}
         initialShopLinks={currentShopLinks}
         initialContentRating={currentContentRating}
+        initialForKids={currentForKids}
         canReplaceVideo={canReplaceVideo}
         onSuccess={handleEditDone}
       />

@@ -382,6 +382,23 @@ export default function UploadScreen() {
   const [isMature, setIsMature] = useState(false);
 
   /**
+   * Published for children — the Kids Mode allowlist.
+   *
+   * Same reasoning as the rating above and pointing the other way: reset after
+   * every post rather than remembered, because a flag that stays on is a flag
+   * that eventually marks something nobody meant to put in front of a child.
+   *
+   * The two are mutually exclusive, enforced here as well as on the server:
+   * marking a post mature clears this, so the payload can never carry the
+   * contradiction the API refuses with an error the creator cannot act on.
+   */
+  const [isForKids, setIsForKids] = useState(false);
+  const [forKidsConfirmOpen, setForKidsConfirmOpen] = useState(false);
+  useEffect(() => {
+    if (isMature && isForKids) setIsForKids(false);
+  }, [isMature, isForKids]);
+
+  /**
    * The creator's Shop board — affiliate and shop links for this post.
    *
    * Empty is the toggle being off; there is no separate boolean, because a
@@ -886,10 +903,13 @@ export default function UploadScreen() {
       solanaAddress: solanaAddress ?? undefined,
       shouldMint,
       contentRating: isMature ? ("mature" as const) : undefined,
+      // Only ever sent as true — absent is what "not kids content" means, so a
+      // false would store a second representation of the same state.
+      forKids: isForKids ? true : undefined,
       shopLinks: shopLinks.length ? shopLinks : undefined,
       shopListingIds,
     };
-  }, [bodyText, titleText, showTitle, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, shopLinks, shopListingIds]);
+  }, [bodyText, titleText, showTitle, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -2613,6 +2633,36 @@ export default function UploadScreen() {
                 </View>
               )}
 
+              {/* Made for kids — directly under Category and Community, as on
+                  web, because that is what it behaves like: in Kids Mode the
+                  category chips are derived from the categories kids posts
+                  actually carry, so this is what puts a post behind any of them.
+
+                  Far from the Mature switch at the bottom, and that distance is
+                  the point. Mature is last because a mis-tap there cost a
+                  creator the public feed; this one has the same problem
+                  pointing the other way, so it confirms before it arms.
+                  Turning it back off is free. */}
+              <TouchableOpacity
+                onPress={() => (isForKids ? setIsForKids(false) : setForKidsConfirmOpen(true))}
+                activeOpacity={0.7}
+                className="flex-row items-center justify-between py-3"
+              >
+                <View className="flex-row items-center flex-1 mr-3">
+                  <Icon name="Baby" size={18} color="#fff" />
+                  <Text className="text-white text-sm ml-3">{t("upload.madeForKids")}</Text>
+                  {isForKids ? (
+                    <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
+                      ({t("upload.madeForKidsHint")})
+                    </Text>
+                  ) : null}
+                </View>
+                <CustomSwitch
+                  value={isForKids}
+                  onValueChange={(v) => (v ? setForKidsConfirmOpen(true) : setIsForKids(false))}
+                />
+              </TouchableOpacity>
+
               {!isQuoteMode && (
                 <MonetizationPanel
                   state={monetization}
@@ -3011,6 +3061,53 @@ export default function UploadScreen() {
               className="flex-1 px-4 py-3 rounded-xl bg-white"
             >
               <Text className="text-black text-center font-semibold">{t("common.save")}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </GlassModal>
+
+      {/* Made for kids — confirm before arming, never before clearing.
+          The three lines are the three things a creator can get wrong about
+          this switch: who it adds, what it costs, and who can reply. */}
+      <GlassModal
+        visible={forKidsConfirmOpen}
+        onClose={() => setForKidsConfirmOpen(false)}
+        presentation="center"
+        maxHeight="55%"
+        blurIntensity={30}
+      >
+        <View className="p-5">
+          <Text className="text-white text-lg font-bold text-center mb-3">
+            {t("upload.madeForKidsConfirmTitle")}
+          </Text>
+          <Text className="text-theme-neutrals-400 text-sm mb-2">
+            {t("upload.madeForKidsConfirmAudience")}
+          </Text>
+          <Text className="text-theme-neutrals-400 text-sm mb-2">
+            {t("upload.madeForKidsConfirmReach")}
+          </Text>
+          <Text className="text-theme-neutrals-400 text-sm mb-4">
+            {t("upload.madeForKidsConfirmComments")}
+          </Text>
+          <View className="flex-row">
+            <TouchableOpacity
+              onPress={() => setForKidsConfirmOpen(false)}
+              activeOpacity={0.7}
+              className="flex-1 px-4 py-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 mr-2"
+            >
+              <Text className="text-white text-center font-medium">{t("common.cancel")}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                setIsForKids(true);
+                setForKidsConfirmOpen(false);
+              }}
+              activeOpacity={0.7}
+              className="flex-1 px-4 py-3 rounded-xl bg-white"
+            >
+              <Text className="text-black text-center font-semibold">
+                {t("upload.madeForKidsConfirmYes")}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

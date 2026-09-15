@@ -531,7 +531,20 @@
     "badgeDelegationNoteAny": "الـ slot بتقرض واحد من الـ badges المفتوحة تاعك لحساب تاني. تقدر تاخدو بتاعك في أي وقت — الـ slot بتتحرر بعد يوم.",
     "badgeDelegationRaisesOnlyTier": "الـ badge اللي بتقرضو لازم يكون أعلى من الـ badge اللي هسع بيكسبو.",
     "badgeDelegationPickTier": "شارة للاستعارة",
-    "badgeDelegationLendsAny": "كل واحد بيقرض حساب تاني أي badge عندك مفتوح، لحد الـ {{tier}} تاعك. حتى الـ badge الصغير بيستخدم slot كامل."
+    "badgeDelegationLendsAny": "كل واحد بيقرض حساب تاني أي badge عندك مفتوح، لحد الـ {{tier}} تاعك. حتى الـ badge الصغير بيستخدم slot كامل.",
+    "kidsMode": "وضع الأطفال",
+    "kidsModeDesc": "يعرض فقط المنشورات المنشورة للأطفال، في كل مكان. رمز PIN يعيده مرة أخرى.",
+    "kidsModeSetPin": "اختر رمز PIN",
+    "kidsModeSetPinHelp": "من 4 إلى 8 أرقام. تحتاجه لإيقاف وضع الأطفال مرة أخرى.",
+    "kidsModeConfirmPin": "أدخله مرة أخرى",
+    "kidsModeConfirmPinHelp": "حتى تعرف أنك تستطيع تكراره.",
+    "kidsModeEnterPin": "أدخل رمز PIN الخاص بك",
+    "kidsModeEnterPinHelp": "هذا يوقف وضع الأطفال على هذا الجهاز.",
+    "kidsModeTurnOn": "تشغيل وضع الأطفال",
+    "kidsModeTurnOff": "إيقاف وضع الأطفال",
+    "kidsModePinMismatch": "هذه رموز PIN مختلفة. ابدأ من جديد.",
+    "kidsModeFailed": "هذا لم ينجح. حاول مرة أخرى.",
+    "kidsModeForgotPin": "هل نسيته؟ قم بتسجيل الدخول باستخدام محفظتك على جهاز آخر لإيقاف وضع الأطفال."
   },
   "common": {
     "mute": "اكتم الصوت",
@@ -570,7 +583,8 @@
     "copy": "انسخ",
     "optionalSuffix": "(اختياري)",
     "yesterday": "أمس",
-    "ok": "تمام"
+    "ok": "تمام",
+    "continue": "واصل"
   },
   "tip": {
     "title": "ابعث هدية",
@@ -1776,7 +1790,8 @@
     "removeMedia": "شيل الوسائط",
     "cancelRecording": "ألغِ التسجيل",
     "sendVoiceNote": "أرسل الملاحظة الصوتية",
-    "noneYetAddYours": "ما في تعليقات بعد، ضيف مالتك."
+    "noneYetAddYours": "ما في تعليقات بعد، ضيف مالتك.",
+    "kidsOnlyThread": "الپوست دا للأطفال. بتاع الأطفال بس يقدرو يعلقو عليهو."
   },
   "postInfo": {
     "title": "معلومات المنشور",
@@ -3560,7 +3575,17 @@
     "unmuteVideo": "شغل صوت الفيديو",
     "descriptionOptional": "وصف (اختياري)",
     "whatsHappening": "شنو قاعد يحصل؟",
-    "quotaShortfall": "البوست ده بيكلف {{cost}} DHB وعندك {{held}}."
+    "quotaShortfall": "البوست ده بيكلف {{cost}} DHB وعندك {{held}}.",
+    "madeForKids": "مصنوع للأطفال",
+    "madeForKidsHint": "معروض في وضع الأطفال",
+    "madeForKidsConfirmTitle": "نشر هذا للأطفال؟",
+    "madeForKidsConfirmAudience": "الأطفال الذين يستخدمون وضع الأطفال سيشوفوا هسع البوست. ما حاجة تانية على DeHub توصل ليهم.",
+    "madeForKidsConfirmReach": "كمان بتطلع من الفيدات العادية — الناس بتلقاها على بروفايلك، في البحث وفي الروابط اللي بتشاركها.",
+    "madeForKidsConfirmComments": "بس وضع الأطفال اللي يقدر يعلق عليها. انت بتقدر ترد عليهم بنفسك.",
+    "madeForKidsConfirmYes": "آه، هسع للأطفال",
+    "madeForKidsOnDesc": "معروض للأطفال اللي بيستخدموا وضع الأطفال، وطالع من الفيدات العادية. بس وضع الأطفال اللي يقدر يعلق.",
+    "madeForKidsOffDesc": "بتعرض هسع البوست للأطفال اللي بيستخدموا وضع الأطفال، وبتطلعو من الفيدات العادية.",
+    "madeForKidsBlockedByMature": "البوست اللي معلم ناضج ما يقدر ينشر للأطفال كمان."
   },
   "bounty": {
     "claimed": "اتسلم",

@@ -185,6 +185,12 @@ function rebuildFormData(job: UploadJob): FormData {
     fd.append("contentRating", "mature");
   }
 
+  // Same rule, other direction: absent is what "not kids content" means, so a
+  // false would store a second representation of the same state.
+  if (payload.forKids === true) {
+    fd.append("forKids", "true");
+  }
+
   // The Shop board. Only sent when there is one — an empty array is a valid
   // "clear it" instruction on a post that has nothing to clear.
   if (payload.shopLinks?.length) {

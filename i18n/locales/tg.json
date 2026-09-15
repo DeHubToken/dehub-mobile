@@ -559,7 +559,20 @@
     "badgeDelegationNoteAny": "Name Онро ҳар вақте, ки мехоҳед, гиред — ковокии як рӯз баъд озод мешавад.",
     "badgeDelegationRaisesOnlyTier": "Нишонае, ки шумо қарз медиҳед, бояд аз нишоне, ки онҳо аллакай ба даст овардаанд, баландтар бошад.",
     "badgeDelegationPickTier": "Нишона барои қарздиҳӣ",
-    "badgeDelegationLendsAny": "Ҳар яке ба ҳисоби дигар ягон нишонаеро, ки шумо кушодаед, қарз медиҳад, то ба худи шумо {{tier}}. Name"
+    "badgeDelegationLendsAny": "Ҳар яке ба ҳисоби дигар ягон нишонаеро, ки шумо кушодаед, қарз медиҳад, то ба худи шумо {{tier}}. Name",
+    "kidsMode": "Усули Кудакон",
+    "kidsModeDesc": "Ipinapakita lamang ang mga post na na-publish para sa mga tao Name",
+    "kidsModeSetPin": "Pumili ng PIN",
+    "kidsModeSetPinHelp": "4 то 8 рақам. Ба шумо лозим аст, ки ҳолати кӯдаконро аз нав хомӯш кунед.",
+    "kidsModeConfirmPin": "Аз нав ворид кунед",
+    "kidsModeConfirmPinHelp": "Пас шумо медонед, ки шумо метавонед онро дубора тавлид кунед.",
+    "kidsModeEnterPin": "Ipasok ang iyong PIN",
+    "kidsModeEnterPinHelp": "Ин ҳолати кӯдаконро дар ин дастгоҳ хомӯш мекунад.",
+    "kidsModeTurnOn": "Ҳолати Кудаконро фаъол созед",
+    "kidsModeTurnOff": "Ҳолати Кудаконро хомӯш кунед",
+    "kidsModePinMismatch": "Ang mga PIN ay iba 't ibang. Magsimula muli.",
+    "kidsModeFailed": "Ин кор накард. Бори дигар кӯшиш кунед.",
+    "kidsModeForgotPin": "Онро фаромӯш кардед? Бо ҳамён дар дастгоҳи дигар барои хомӯш кардани ҳолати кӯдакон ворид шавед."
   },
   "common": {
     "mute": "Хомӯш кардани садо",
@@ -598,7 +611,8 @@
     "copy": "Нусха",
     "optionalSuffix": "(ихтиёрӣ)",
     "yesterday": "Дирӯз",
-    "ok": "Хуб"
+    "ok": "Хуб",
+    "continue": "Давом додан"
   },
   "postOptions": {
     "options": "Имконот",
@@ -1765,7 +1779,8 @@
     "removeMedia": "Медиаро нест кунед",
     "cancelRecording": "Сабтро бекор кунед",
     "sendVoiceNote": "Ёддошти овозиро фиристед",
-    "noneYetAddYours": "Ҳанӯз шарҳ нест, аз они худро илова кунед."
+    "noneYetAddYours": "Ҳанӯз шарҳ нест, аз они худро илова кунед.",
+    "kidsOnlyThread": "Ин мансаби аст, ки барои кудакон. Танҳо Ҳолати Кудакон метавонад дар бораи он шарҳ диҳад."
   },
   "postInfo": {
     "title": "Маълумоти пост",
@@ -3581,7 +3596,17 @@
     "unmuteVideo": "Фаъол кардани садои видео",
     "descriptionOptional": "Тавсиф (ихтиёрӣ)",
     "whatsHappening": "Чӣ ҳодиса шуда истодааст?",
-    "quotaShortfall": "Ин пост {{cost}} DHB арзиш дорад ва шумо {{held}} доред."
+    "quotaShortfall": "Ин пост {{cost}} DHB арзиш дорад ва шумо {{held}} доред.",
+    "madeForKids": "Барои кудакон сохта шудааст",
+    "madeForKidsHint": "дар режими Kids Mode нишон дода мешавад",
+    "madeForKidsConfirmTitle": "Ин постро барои кудакон нашр кунам?",
+    "madeForKidsConfirmAudience": "Кудаконе, ки режими Kids Mode-ро истифода мебаранд, ин постро мебинанд. Ҳеҷ чизи дигари DeHub ба онҳо намерасад.",
+    "madeForKidsConfirmReach": "Он инчунин аз ленти оддӣ хориҷ мешавад — мардум онро дар профили шумо, дар ҷустуҷӯ ва тавассути пайванди шумо пайдо мекунанд.",
+    "madeForKidsConfirmComments": "Танҳо Kids Mode метавонад дар он шарҳ диҳад. Шумо ҳамчунон метавонед ба онҳо ҷавоб диҳед.",
+    "madeForKidsConfirmYes": "Бале, ин барои кудакон аст",
+    "madeForKidsOnDesc": "Ба кудаконе, ки режими Kids Mode-ро истифода мебаранд, нишон дода мешавад ва аз ленти оддӣ хориҷ мешавад. Танҳо Kids Mode метавонад шарҳ диҳад.",
+    "madeForKidsOffDesc": "Ин постро ба кудаконе, ки режими Kids Mode-ро истифода мебаранд, нишон медиҳад ва онро аз ленти оддӣ хориҷ мекунад.",
+    "madeForKidsBlockedByMature": "Постеро, ки ҳамчун бузургсолона нишон дода шудааст, наметавонад барои кудакон нашр шавад."
   },
   "bounty": {
     "claimed": "Гирифта шуд",

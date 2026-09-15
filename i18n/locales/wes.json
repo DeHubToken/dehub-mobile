@@ -527,7 +527,20 @@
     "deviceLinkReset": "Device link don reset. Sign in again make you pick di correct account.",
     "deviceLinkResetFailed": "We no fit reset di device link.",
     "emailNotificationsDescLinked": "Sent to {{email}}",
-    "badgeDelegationPickTier": "Badge to lend"
+    "badgeDelegationPickTier": "Badge to lend",
+    "kidsMode": "Kids Mode",
+    "kidsModeSetPin": "Choose a PIN",
+    "kidsModeConfirmPin": "Enter it again",
+    "kidsModeDesc": "Shɔ́ only pɔ́st wé dɛ́n pablish fɔ́ pikin, evriwhɛ́r. A PIN tɛ́n am bak ɔ́f.",
+    "kidsModeSetPinHelp": "4 to 8 digit. Yu nid am fɔ́ tɛ́n Kids Mode ɔ́f agɛ́n.",
+    "kidsModeConfirmPinHelp": "So yu sabi yu fit du am.",
+    "kidsModeEnterPin": "Entɛ́r yu PIN",
+    "kidsModeEnterPinHelp": "Dis tɛ́n Kids Mode ɔ́f ɔ́n dis divais.",
+    "kidsModeTurnOn": "Tɛ́n Kids Mode ɔ́n",
+    "kidsModeTurnOff": "Tɛ́n Kids Mode ɔ́f",
+    "kidsModePinMismatch": "Dɔ́z PIN dɛ́m difren. Stat agɛ́n.",
+    "kidsModeFailed": "Dat nɔ́ wɔ́k. Tri agɛ́n.",
+    "kidsModeForgotPin": "Yu fɔ́gɛ́t am? Sain in wé yu walet ɔ́n anɔ́da divais fɔ́ tɛ́n Kids Mode ɔ́f."
   },
   "common": {
     "mute": "Off di sound",
@@ -566,7 +579,8 @@
     "copy": "Copy",
     "optionalSuffix": "(optional)",
     "yesterday": "Yesterday",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Continue"
   },
   "tip": {
     "title": "Send Tip",
@@ -1760,7 +1774,8 @@
     "removeMedia": "Remove di media",
     "cancelRecording": "Cancel di recording",
     "sendVoiceNote": "Send di voice note",
-    "noneYetAddYours": "No comment dey yet, add yours."
+    "noneYetAddYours": "No comment dey yet, add yours.",
+    "kidsOnlyThread": "Dis post na for pikin dem. Only Kids Mode fit comment on am."
   },
   "postInfo": {
     "title": "Post Info",

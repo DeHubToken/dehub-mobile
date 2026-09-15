@@ -570,7 +570,20 @@
     "badgeDelegationNoteAny": "Isikhala siboleka elinye lamabheji akho avuliwe kwenye i-akhawunti. Yibuyisele noma nini lapho uthanda — isikhala siyakhululeka ngemva kosuku.",
     "badgeDelegationRaisesOnlyTier": "Ibheji olibolekisayo kumelwe libe phezulu kunalelo asevele elizuzile.",
     "badgeDelegationPickTier": "Ibheji ongaliboleka",
-    "badgeDelegationLendsAny": "Ngamunye waboleka enye i-akhawunti noma yiliphi ibheji olivulile, kuze kufike ku- {{tier}} yakho. Ibheji elincane lisasebenzisa indawo yonke."
+    "badgeDelegationLendsAny": "Ngamunye waboleka enye i-akhawunti noma yiliphi ibheji olivulile, kuze kufike ku- {{tier}} yakho. Ibheji elincane lisasebenzisa indawo yonke.",
+    "kidsMode": "Imodi Yezingane",
+    "kidsModeDesc": "Ibonisa kuphela amaphosti ashicilelwe izingane, yonke indawo. I-PIN iyayicisha.",
+    "kidsModeSetPin": "Khetha I-PIN",
+    "kidsModeSetPinHelp": "Izinombolo ezingu-4 kuya kwezingu-8. Udinga ukuze uvale Imodi Yezingane futhi.",
+    "kidsModeConfirmPin": "Yifake futhi",
+    "kidsModeConfirmPinHelp": "Ngakho uyazi ukuthi ungalikhiqiza kabusha.",
+    "kidsModeEnterPin": "Faka i-PIN yakho",
+    "kidsModeEnterPinHelp": "Lokhu kuvala Imodi Yezingane kule divayisi.",
+    "kidsModeTurnOn": "Vula Imodi Yezingane",
+    "kidsModeTurnOff": "Vala Imodi Yezingane",
+    "kidsModePinMismatch": "Lawo ma-PIN ahlukile. Qala futhi.",
+    "kidsModeFailed": "Lokho akuzange kusebenze. Phinda uzame.",
+    "kidsModeForgotPin": "Uyikhohliwe? Ngena ngemvume ngesikhwama sakho semali kwenye idivayisi ukuze uvale Imodi Yezingane."
   },
   "common": {
     "mute": "Thulisa",
@@ -609,7 +622,8 @@
     "copy": "Kopisha",
     "optionalSuffix": "(okuzikhethela)",
     "yesterday": "Izolo",
-    "ok": "Kulungile"
+    "ok": "Kulungile",
+    "continue": "Qhubeka"
   },
   "tip": {
     "title": "Thumela Ithiphu",
@@ -1847,7 +1861,8 @@
     "removeMedia": "Susa imidiya",
     "cancelRecording": "Khansela ukuqopha",
     "sendVoiceNote": "Thumela inothi lezwi",
-    "noneYetAddYours": "Awekho amazwana okwamanje, engeza elakho."
+    "noneYetAddYours": "Awekho amazwana okwamanje, engeza elakho.",
+    "kidsOnlyThread": "Le phosti ngeyezingane. Imodi Yezingane kuphela engaphawula ngayo."
   },
   "postInfo": {
     "title": "Ulwazi Lokuthunyelwe",
@@ -3632,7 +3647,17 @@
     "unmuteVideo": "Vula umsindo wevidiyo",
     "descriptionOptional": "Incazelo (okuzikhethela)",
     "whatsHappening": "Kwenzekani?",
-    "quotaShortfall": "Lokhu okuthunyelwe kubiza {{cost}} DHB futhi unayo {{held}}."
+    "quotaShortfall": "Lokhu okuthunyelwe kubiza {{cost}} DHB futhi unayo {{held}}.",
+    "madeForKids": "Wenzwe ngabantwana",
+    "madeForKidsHint": "Ikhombiswe ku-Kids Mode",
+    "madeForKidsConfirmTitle": "Publish lokhu ngabantwana?",
+    "madeForKidsConfirmAudience": "Abantwana abasebenzisa i-Kids Mode bazobonakala lesi sikhwama. Akukho enye ku-DeHub ekufinyelela kubo.",
+    "madeForKidsConfirmReach": "Iphuma futhi kumafeedi ajwayelekile — abantu basayithola ku-profile yakho, ekusesheni nasethubeni ozishintshela.",
+    "madeForKidsConfirmComments": "Kuphela i-Kids Mode engakwazi ukuhlongoza. Ungasaziphendula ngokwakho.",
+    "madeForKidsConfirmYes": "Yebo, kuyingabantwana",
+    "madeForKidsOnDesc": "Ikhombiswe abantwaneni abasebenzisa i-Kids Mode, futhi iphume kumafeedi ajwayelekile. Kuphela i-Kids Mode engakwazi ukuhlongoza.",
+    "madeForKidsOffDesc": "Ikhombisa lesi sikhwama abantwaneni abasebenzisa i-Kids Mode, futhi siyisuse kumafeedi ajwayelekile.",
+    "madeForKidsBlockedByMature": "Ikhwama elimakwe njengokukhanya kabantu abadala alikwazi futhi likupapashwe ngabantwana."
   },
   "bounty": {
     "claimed": "Kuthathiwe",

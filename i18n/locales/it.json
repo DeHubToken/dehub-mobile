@@ -587,7 +587,20 @@
     "badgeDelegationNoteAny": "Uno slot presta uno dei tuoi badge sbloccati a un altro account. Riprenditelo quando vuoi: lo slot si libera il giorno dopo.",
     "badgeDelegationRaisesOnlyTier": "Il badge che presti deve essere più alto di quello che già guadagnano.",
     "badgeDelegationPickTier": "Badge da prestare",
-    "badgeDelegationLendsAny": "Ognuno presta a un altro account qualsiasi badge che hai sbloccato, fino al tuo {{tier}}. Un badge più piccolo utilizza ancora un intero slot."
+    "badgeDelegationLendsAny": "Ognuno presta a un altro account qualsiasi badge che hai sbloccato, fino al tuo {{tier}}. Un badge più piccolo utilizza ancora un intero slot.",
+    "kidsMode": "Modalità Bambini",
+    "kidsModeDesc": "Mostra solo i post pubblicati per i bambini, ovunque. Un PERNO lo spegne di nuovo.",
+    "kidsModeSetPin": "Scegli un PIN",
+    "kidsModeSetPinHelp": "Da 4 a 8 cifre. Ne hai bisogno per disattivare di nuovo la modalità Bambini.",
+    "kidsModeConfirmPin": "Inseriscilo di nuovo",
+    "kidsModeConfirmPinHelp": "Quindi sai che puoi riprodurlo.",
+    "kidsModeEnterPin": "Inserisci il tuo PIN",
+    "kidsModeEnterPinHelp": "Questo disattiva la modalità Bambini su questo dispositivo.",
+    "kidsModeTurnOn": "Attiva la modalità bambini",
+    "kidsModeTurnOff": "Disattiva la modalità bambini",
+    "kidsModePinMismatch": "Quei pin sono diversi. Ricomincia.",
+    "kidsModeFailed": "Non ha funzionato. Riprova.",
+    "kidsModeForgotPin": "Dimenticato? Accedi con il tuo portafoglio su un altro dispositivo per disattivare la Modalità Bambini."
   },
   "common": {
     "mute": "Disattiva audio",
@@ -626,7 +639,8 @@
     "copy": "Copia",
     "optionalSuffix": "(facoltativo)",
     "yesterday": "Ieri",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Continua"
   },
   "drawers": {
     "ppvTitle": "Contenuto Pay-Per-View",
@@ -1833,7 +1847,8 @@
     "removeMedia": "Rimuovi il media",
     "cancelRecording": "Annulla registrazione",
     "sendVoiceNote": "Invia la nota vocale",
-    "noneYetAddYours": "Ancora nessun commento, aggiungi il tuo."
+    "noneYetAddYours": "Ancora nessun commento, aggiungi il tuo.",
+    "kidsOnlyThread": "Questo post è per bambini. Solo la modalità Bambini può commentare."
   },
   "postInfo": {
     "title": "Info Post",
@@ -3673,7 +3688,18 @@
     "unmuteVideo": "Riattiva l'audio del video",
     "descriptionOptional": "Descrizione (facoltativa)",
     "whatsHappening": "Che succede?",
-    "quotaShortfall": "Questo post costa {{cost}} DHB e tu ne hai {{held}}."
+    "quotaShortfall": "Questo post costa {{cost}} DHB e tu ne hai {{held}}.",
+    "madeForKids": "Pensato per i bambini",
+    "madeForKidsHint": "mostrato in modalità Bambini",
+    "madeForKidsConfirmTitle": "Vuoi pubblicarlo per i bambini?",
+    "madeForKidsConfirmAudience": "Questo post verrà mostrato ai bambini che utilizzano la modalità Bambini. Nient' altro su DeHub li raggiunge.",
+    "madeForKidsConfirmReach": "Viene anche dai feed ordinari: le persone lo trovano ancora sul tuo profilo, nella ricerca e attraverso un link che condividi.",
+    "madeForKidsConfirmComments": "Solo la modalità Bambini può commentare. Puoi comunque rispondere tu stesso.",
+    "madeForKidsConfirmYes": "Sì, è per bambini",
+    "markMadeForKids": "Contrassegna come fatto per i bambini",
+    "madeForKidsOnDesc": "Mostrato ai bambini in modalità Kids e fuori dai soliti feed. Solo la modalità Bambini può commentare.",
+    "madeForKidsOffDesc": "Mostra questo post ai bambini che utilizzano la modalità Bambini e lo toglie dai normali feed.",
+    "madeForKidsBlockedByMature": "Un post contrassegnato come maturo non può essere pubblicato anche per i bambini."
   },
   "bounty": {
     "claimed": "Riscosso",

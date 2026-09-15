@@ -502,6 +502,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [localContentRating, setLocalContentRating] = useState<string | undefined>(
     (item as any).contentRating,
   );
+  // Same pattern again for the Kids Mode marking, so taking it off from the
+  // options menu re-opens the comment box on this card without a refetch.
+  const [localForKids, setLocalForKids] = useState<boolean>(!!(item as any).forKids);
   // Same pattern for the Shop board, so adding or clearing links from the
   // options menu shows on this card immediately.
   const [localShopLinks, setLocalShopLinks] = useState<ShopLink[] | undefined>(undefined);
@@ -957,7 +960,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     setIsHidden(hidden);
   }, []);
 
-  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; shopLinks?: ShopLink[]; shopListingCount?: number }) => {
+  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; forKids?: boolean; shopLinks?: ShopLink[]; shopListingCount?: number }) => {
     if (data.name !== undefined) setLocalTitle(data.name);
     if (data.description !== undefined) setLocalDescription(data.description);
     if (data.category !== undefined) setLocalCategories(data.category);
@@ -965,6 +968,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     // creator would still see an input on a post they just closed.
     if (data.commentsDisabled !== undefined) setLocalCommentsDisabled(data.commentsDisabled);
     if (data.contentRating !== undefined) setLocalContentRating(data.contentRating);
+    if (data.forKids !== undefined) setLocalForKids(data.forKids);
     // Same reason: the Shop button has to appear, change count or disappear on
     // the card that is already on screen.
     if (data.shopLinks !== undefined) setLocalShopLinks(data.shopLinks);
@@ -1657,6 +1661,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           commentsDisabled={localCommentsDisabled}
+          forKids={localForKids}
           postCreator={{ address: minterAddress, displayName, username }}
         />
       )}
@@ -1751,6 +1756,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentCommentsDisabled={localCommentsDisabled}
           currentShopLinks={localShopLinks ?? (item as any).shopLinks}
           currentContentRating={localContentRating}
+          currentForKids={localForKids}
           hideReportContent={isLive}
           hideEdit={isLive}
           onFollowChange={handleFollowChange}

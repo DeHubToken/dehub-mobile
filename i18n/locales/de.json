@@ -586,7 +586,20 @@
     "badgeDelegationNoteAny": "Ein Spielautomat verleiht einem anderen Konto eines Ihrer freigeschalteten Abzeichen. Nehmen Sie es zurück, wann immer Sie möchten — der Spielautomat gibt einen Tag später frei.",
     "badgeDelegationRaisesOnlyTier": "Das Abzeichen, das du ausleihst, muss höher sein als das, das sie bereits verdienen.",
     "badgeDelegationPickTier": "Badge zum Ausleihen",
-    "badgeDelegationLendsAny": "Jeder verleiht einem anderen Konto jedes Abzeichen, das Sie freigeschaltet haben, bis zu Ihrem eigenen {{tier}}. Ein kleineres Abzeichen verwendet immer noch einen ganzen Slot."
+    "badgeDelegationLendsAny": "Jeder verleiht einem anderen Konto jedes Abzeichen, das Sie freigeschaltet haben, bis zu Ihrem eigenen {{tier}}. Ein kleineres Abzeichen verwendet immer noch einen ganzen Slot.",
+    "kidsMode": "Kindermodus",
+    "kidsModeDesc": "Zeigt überall nur Beiträge an, die für Kinder veröffentlicht wurden. Ein STIFT schaltet ihn wieder aus.",
+    "kidsModeSetPin": "PIN AUSWÄHLEN",
+    "kidsModeSetPinHelp": "4- bis 8-stellig. Sie benötigen es, um den Kindermodus wieder auszuschalten.",
+    "kidsModeConfirmPin": "Erneut eingeben",
+    "kidsModeConfirmPinHelp": "Sie wissen also, dass Sie es reproduzieren können.",
+    "kidsModeEnterPin": "Geben Sie Ihre PIN EIN",
+    "kidsModeEnterPinHelp": "Dies schaltet den Kindermodus auf diesem Gerät aus.",
+    "kidsModeTurnOn": "Kindermodus einschalten",
+    "kidsModeTurnOff": "Kindermodus ausschalten",
+    "kidsModePinMismatch": "Diese PINs unterscheiden sich. Beginnen Sie erneut.",
+    "kidsModeFailed": "Das hat nicht funktioniert. Versuchen Sie es erneut.",
+    "kidsModeForgotPin": "Haben Sie es vergessen? Melden Sie sich mit Ihrer Brieftasche auf einem anderen Gerät an, um den Kindermodus auszuschalten."
   },
   "common": {
     "mute": "Stumm schalten",
@@ -625,7 +638,8 @@
     "copy": "Kopieren",
     "optionalSuffix": "(optional)",
     "yesterday": "Gestern",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Fortfahren"
   },
   "postOptions": {
     "options": "Optionen",
@@ -1832,7 +1846,8 @@
     "removeMedia": "Medium entfernen",
     "cancelRecording": "Aufnahme abbrechen",
     "sendVoiceNote": "Sprachnotiz senden",
-    "noneYetAddYours": "Noch keine Kommentare — schreib den ersten."
+    "noneYetAddYours": "Noch keine Kommentare — schreib den ersten.",
+    "kidsOnlyThread": "Dieser Beitrag ist für Kinder. Nur der Kindermodus kann es kommentieren."
   },
   "postInfo": {
     "title": "Beitragsinfo",
@@ -3672,7 +3687,18 @@
     "unmuteVideo": "Stummschaltung des Videos aufheben",
     "descriptionOptional": "Beschreibung (optional)",
     "whatsHappening": "Was gibt's Neues?",
-    "quotaShortfall": "Dieser Beitrag kostet {{cost}} DHB und du hast {{held}}."
+    "quotaShortfall": "Dieser Beitrag kostet {{cost}} DHB und du hast {{held}}.",
+    "madeForKids": "Für Kinder gemacht",
+    "madeForKidsHint": "In Kids Mode angezeigt",
+    "madeForKidsConfirmTitle": "Für Kinder veröffentlichen?",
+    "madeForKidsConfirmAudience": "Kinder, die Kids Mode nutzen, sehen diesen Beitrag. Nichts anderes auf DeHub erreicht sie.",
+    "madeForKidsConfirmReach": "Er wird auch aus den normalen Feeds entfernt — Nutzer finden ihn aber noch auf deinem Profil, in der Suche und über einen Link, den du teilst.",
+    "madeForKidsConfirmComments": "Nur Kids Mode kann Kommentare hinterlassen. Du kannst ihnen selbst noch antworten.",
+    "madeForKidsConfirmYes": "Ja, es ist für Kinder",
+    "markMadeForKids": "Als für Kinder gemacht markieren",
+    "madeForKidsOnDesc": "Wird Kindern in Kids Mode angezeigt und aus den normalen Feeds entfernt. Nur Kids Mode kann kommentieren.",
+    "madeForKidsOffDesc": "Zeigt diesen Beitrag Kindern, die Kids Mode nutzen, und entfernt ihn aus den normalen Feeds.",
+    "madeForKidsBlockedByMature": "Ein als reif gekennzeichneter Beitrag kann nicht auch für Kinder veröffentlicht werden."
   },
   "bounty": {
     "claimed": "Eingelöst",

@@ -573,7 +573,20 @@
     "badgeDelegationNoteAny": "Huk ranura huknin mana wichqasqa insigniaykita huk yupayman prestan. Kutichiy mayk’aqllapas munasqayki — ranuraqa huk p’unchaw qhipaman kacharin.",
     "badgeDelegationRaisesOnlyTier": "Prestasqayki insigniaqa aswan hatunmi kanan ganasqankumanta.",
     "badgeDelegationPickTier": "Insignia prestanapaq",
-    "badgeDelegationLendsAny": "Sapa huknin huk yupayman prestan ima insigniatapas kichasqayki, kikiykipa {{tier}} nisqakama. Aswan huch’uy insigniaqa kunankamapas huk entero ranuratan utilizan."
+    "badgeDelegationLendsAny": "Sapa huknin huk yupayman prestan ima insigniatapas kichasqayki, kikiykipa {{tier}} nisqakama. Aswan huch’uy insigniaqa kunankamapas huk entero ranuratan utilizan.",
+    "kidsMode": "Modo Niños",
+    "kidsModeDesc": "Wawakunapaq qillqasqa qillqakunallatam qawachin, tukuy hinastinpi. HUQ PIN nisqataq kutirispa wañuchin.",
+    "kidsModeSetPin": "Huk PIN nisqa akllay",
+    "kidsModeSetPinHelp": "4manta 8 yupaykama. Necesitanki Modo Infantil kaqmanta wañuchinaykipaq.",
+    "kidsModeConfirmPin": "Hukmanta yaykuy",
+    "kidsModeConfirmPinHelp": "Chaymi yachanki mirachiyta atisqaykita.",
+    "kidsModeEnterPin": "PIN nisqaykitaqa qillqay",
+    "kidsModeEnterPinHelp": "Kayqa kay dispositivopi Kids Mode nisqatam wañuchin.",
+    "kidsModeTurnOn": "Modo Niños nisqa llank’achiyta",
+    "kidsModeTurnOff": "Modo Niños nisqatapas apagay",
+    "kidsModePinMismatch": "Chay PIN nisqakunaqa hukniraymi. Hukmanta qallariy.",
+    "kidsModeFailed": "Chayqa manan allinchu karqan. Hukmanta kallpachakuy.",
+    "kidsModeForgotPin": "¿Qunqarqankichu? Huk dispositivopi billeteraykiwan yaykuy Modo Niños nisqa wañuchinaykipaq."
   },
   "common": {
     "mute": "Upallachiy",
@@ -612,7 +625,8 @@
     "copy": "Kikinchay",
     "optionalSuffix": "(munaspa)",
     "yesterday": "Qayna",
-    "ok": "Allinmi"
+    "ok": "Allinmi",
+    "continue": "Qatiy"
   },
   "tip": {
     "title": "Propina apachiy",
@@ -1850,7 +1864,8 @@
     "removeMedia": "Media qichuy",
     "cancelRecording": "Waqaychayta chinkachiy",
     "sendVoiceNote": "Kunka qillqata apachiy",
-    "noneYetAddYours": "Manaraq rimakuykuna kanchu, qampata yapay."
+    "noneYetAddYours": "Manaraq rimakuykuna kanchu, qampata yapay.",
+    "kidsOnlyThread": "Kay qillqasqaqa wawakunapaqmi. Modo Niños nisqalla chaymanta rimayta atin."
   },
   "postInfo": {
     "title": "Post willay",
@@ -3633,7 +3648,17 @@
     "unmuteVideo": "Videopa uyarinta kachariy",
     "descriptionOptional": "Willakuy (munaspa)",
     "whatsHappening": "¿Imataq kachkan?",
-    "quotaShortfall": "Kay willakuyqa {{cost}} DHB valin, qanqa {{held}} kanki."
+    "quotaShortfall": "Kay willakuyqa {{cost}} DHB valin, qanqa {{held}} kanki.",
+    "madeForKids": "Wawakuna para hechusqa",
+    "madeForKidsHint": "Wawakuna Modopi rikuchisqa",
+    "madeForKidsConfirmTitle": "¿Kayta wawakuna para publishasunchik?",
+    "madeForKidsConfirmAudience": "Wawakuna Wawakuna Modota llamkachispa kaypi rikuchisunka. Huk ima DeHub-pi mana rikuchisunchu.",
+    "madeForKidsConfirmReach": "Hinallataq ordinario feed-manta urayta apakun — ama hina kaypi, perfil-pi, search-pi, chaynallataq qatiq liŋk-pi taripanku.",
+    "madeForKidsConfirmComments": "Solamente Wawakuna Modo comentario ruwakun. Qanqa sulpayki ruwakuyta atinkichu.",
+    "madeForKidsConfirmYes": "Ari, wawakuna para",
+    "madeForKidsOnDesc": "Wawakuna Wawakuna Modopi rikuchisqa, chaynallataq ordinario feed-manta urayta apakun. Solamente Wawakuna Modo comentario ruwakun.",
+    "madeForKidsOffDesc": "Kaypi post-ta wawakuna Wawakuna Modota llamkachispa rikuchisun, chaynallataq ordinario feed-manta urayta apakun.",
+    "madeForKidsBlockedByMature": "Mature nisqa post-ta wawakuna para publishasqa mana atisunchu."
   },
   "bounty": {
     "claimed": "Chaskisqa",

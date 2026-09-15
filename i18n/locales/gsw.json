@@ -531,7 +531,20 @@
     "badgeDelegationNoteAny": "E Slot leiht eim andere Konto eis vo dine freigsperrte Badges. Du chasch es jederziit zrugghole — de Slot wird e Tag spöter frei.",
     "badgeDelegationRaisesOnlyTier": "De Badge wo du leihsch muss höher sii als de wo si scho verdiene.",
     "badgeDelegationPickTier": "Badge zum Leihe",
-    "badgeDelegationLendsAny": "Jede leiht eim andere Konto irgend e Badge wo du freigsperrt hesch, bis zu dinem {{tier}}. E chlinere Badge brucht immer no e ganze Slot."
+    "badgeDelegationLendsAny": "Jede leiht eim andere Konto irgend e Badge wo du freigsperrt hesch, bis zu dinem {{tier}}. E chlinere Badge brucht immer no e ganze Slot.",
+    "kidsMode": "Chindermodus",
+    "kidsModeDesc": "Zeigt nur Beiträg, wo für Chinder veröffentlicht worde sind, überall. E PIN schaltet ihn wieder us.",
+    "kidsModeSetPin": "Wähle e PIN",
+    "kidsModeSetPinHelp": "4 bis 8 Ziffere. Du bruuchsch sie, um de Chindermodus wieder auszschalte.",
+    "kidsModeConfirmPin": "Gib sie nomol ii",
+    "kidsModeConfirmPinHelp": "Damit du weisch, dass du sie chösch wiederherstelle.",
+    "kidsModeEnterPin": "Gib dini PIN ii",
+    "kidsModeEnterPinHelp": "Das schaltet de Chindermodus uf dem Gerät us.",
+    "kidsModeTurnOn": "Chindermodus iischalte",
+    "kidsModeTurnOff": "Chindermodus usschalte",
+    "kidsModePinMismatch": "Die PINs sind verschide. Fang nomol a.",
+    "kidsModeFailed": "Das het nid funktioniert. Versuchs nomol.",
+    "kidsModeForgotPin": "Vergesse? Melde dich uf nem andere Gerät mit dim Wallet a, um de Chindermodus auszschalte."
   },
   "common": {
     "mute": "Stumm schalte",
@@ -570,7 +583,8 @@
     "copy": "Kopiere",
     "optionalSuffix": "(optional)",
     "yesterday": "Geschter",
-    "ok": "OK"
+    "ok": "OK",
+    "continue": "Witer"
   },
   "tip": {
     "title": "Trinkgäld schicke",
@@ -1807,7 +1821,8 @@
     "removeMedia": "Medium entfärne",
     "cancelRecording": "Ufnahm abbräche",
     "sendVoiceNote": "Sprachnotiz schicke",
-    "noneYetAddYours": "No kei Kommentär — schriib de erscht."
+    "noneYetAddYours": "No kei Kommentär — schriib de erscht.",
+    "kidsOnlyThread": "Dä Post isch für Chind. Nur Chind-Modus chan druf kommentiere."
   },
   "postInfo": {
     "title": "Biitragsinformation",
@@ -3592,7 +3607,17 @@
     "unmuteVideo": "Stummschaltig ufhebe",
     "descriptionOptional": "Beschriibig (optional)",
     "whatsHappening": "Was laufft?",
-    "quotaShortfall": "De Biitrag choschtet {{cost}} DHB und du hesch {{held}}."
+    "quotaShortfall": "De Biitrag choschtet {{cost}} DHB und du hesch {{held}}.",
+    "madeForKids": "Gmacht für Chind",
+    "madeForKidsHint": "Aazeigt im Chind-Modus",
+    "madeForKidsConfirmTitle": "Veröffentliche das für Chind?",
+    "madeForKidsConfirmAudience": "Chind wo de Chind-Modus bruche, wärde dä Poscht aazeigt. Nüt anders uf DeHub erreicht si.",
+    "madeForKidsConfirmReach": "Es chunnt au us de normale Feeds ewäg — Lüt finde es immer no uf dinem Profil, in de Suech und über e Link wo du teisch.",
+    "madeForKidsConfirmComments": "Nur de Chind-Modus chan kommentiere. Du chasch immer no sälber antworte.",
+    "madeForKidsConfirmYes": "Ja, es isch für Chind",
+    "madeForKidsOnDesc": "Aazeigt für Chind im Chind-Modus, und us de normale Feeds ewäg. Nur de Chind-Modus chan kommentiere.",
+    "madeForKidsOffDesc": "Zeigt dä Poscht Chind wo de Chind-Modus bruche, und nimmt en us de normale Feeds ewäg.",
+    "madeForKidsBlockedByMature": "E Poscht wo als reif markiert isch, chan nid au für Chind veröffentlicht wärde."
   },
   "bounty": {
     "claimed": "Iiglöst",

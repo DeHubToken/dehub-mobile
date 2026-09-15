@@ -22,6 +22,8 @@ import { SettingsScrollView } from './SettingsAnchor';
 import { useAppPrefs, setAppPref } from '../../hooks/useAppPrefs';
 import { useMatureContent } from '../../hooks/useMatureContent';
 import { MATURE_CONTENT_ENABLED } from '../../config/storefront';
+import { useKidsMode } from '../../hooks/useKidsMode';
+import KidsModePad from './KidsModePad';
 
 const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility: string }> = ({
   onOpenPrivacy,
@@ -30,6 +32,8 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
   const { t } = useTranslation();
   const prefs = useAppPrefs();
   const { showMatureContent, setShowMatureContent, saving: savingMature } = useMatureContent();
+  const { isKidsMode, enable: enableKids, disable: disableKids, saving: savingKids } = useKidsMode();
+  const [kidsPadOpen, setKidsPadOpen] = React.useState(false);
 
   return (
     <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
@@ -81,6 +85,31 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
         <Divider />
         </>
         )}
+        {/* Kids Mode: the only setting in the app that needs a PIN to undo.
+            Beside the mature switch because both answer "what may this account
+            be shown", but not the same kind of control — that one widens what
+            one reader sees and is theirs to flip back, this narrows the whole
+            app to posts published for children and turning it off is the thing
+            being protected.
+
+            Present on the App Store build too, unlike the row above: this one
+            only ever narrows what the API serves, so there is nothing for it to
+            promise that the build cannot do. */}
+        <SettingsToggleRow
+          icon="Baby"
+          label={t('settings.kidsMode', 'Kids Mode')}
+          description={t(
+            'settings.kidsModeDesc',
+            'Shows only posts published for children, everywhere. A PIN turns it back off.',
+          )}
+          value={isKidsMode}
+          // Never a bare toggle: the pad decides, and the switch only moves
+          // once the server has agreed. A switch that silently drops a device
+          // out of Kids Mode is the failure this feature exists to prevent.
+          onValueChange={() => setKidsPadOpen(true)}
+          disabled={savingKids}
+        />
+        <Divider />
         {/* Device-local, and deliberately off by default: a feed that quietly
             drops what you have already seen is the wrong surprise to hand
             someone who never asked for it. Only videos and shorts are ever
@@ -114,6 +143,14 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
       </SettingsSection>
 
       <SettingsNote>{t('settings.contentFilteringNote')}</SettingsNote>
+
+      <KidsModePad
+        visible={kidsPadOpen}
+        onClose={() => setKidsPadOpen(false)}
+        mode={isKidsMode ? 'disable' : 'enable'}
+        onSubmit={(pin) => (isKidsMode ? disableKids(pin) : enableKids(pin))}
+        busy={savingKids}
+      />
     </SettingsScrollView>
   );
 };
