@@ -3051,7 +3051,12 @@
     "errorUnsupported": "Мы не можам імпартаваць з гэтай спасылкі. Паспрабуйце адзін з: {{sources}}",
     "errorNeedRights": "Калі ласка, пацвердзіце, што ў вас ёсць правы на гэты кантэнт",
     "errorClipboard": "Немагчыма прачытаць буфер абмену — замест гэтага ўставіць уручную",
-    "errorQueueFailed": "Немагчыма чаргаваць імпарт"
+    "errorQueueFailed": "Немагчыма чаргаваць імпарт",
+    "publishAs": "Апублікаваць як",
+    "kindVideo": "Відэа",
+    "kindAudio": "Аудыа",
+    "kindImage": "Малюнкі",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24г",

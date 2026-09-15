@@ -3135,7 +3135,12 @@
     "errorUnsupported": "Ons kan nie van daardie skakel invoer nie. Probeer een van: {{sources}}",
     "errorNeedRights": "Bevestig asseblief dat u die regte op hierdie inhoud het",
     "errorClipboard": "Kon nie die knipbord lees nie — plak eerder handmatig",
-    "errorQueueFailed": "Kon nie daardie invoer wagtou nie"
+    "errorQueueFailed": "Kon nie daardie invoer wagtou nie",
+    "publishAs": "Publiseer as",
+    "kindVideo": "Agterground",
+    "kindAudio": "Klank",
+    "kindImage": "Prente",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24u",

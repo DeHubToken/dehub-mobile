@@ -3017,7 +3017,12 @@
     "errorUnsupported": "Mēs nevaram importēt no šīs saites. Izmēģiniet kādu no šīm iespējām: {{sources}}",
     "errorNeedRights": "Lūdzu, apstipriniet, ka jums ir tiesības uz šo saturu",
     "errorClipboard": "Nevarēja nolasīt starpliktuvi — tā vietā ielīmējiet manuāli",
-    "errorQueueFailed": "Nevarēja ierindot importēto"
+    "errorQueueFailed": "Nevarēja ierindot importēto",
+    "publishAs": "Publicēt kā",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Fotogrāfiju",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

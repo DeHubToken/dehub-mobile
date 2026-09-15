@@ -2962,7 +2962,12 @@
     "errorUnsupported": "اسے اوہ لنک توں درآمد نئیں کر سکنے۔ انہاں وچوں کوئی کوشش کریں: {{sources}}",
     "errorNeedRights": "براہ کرم تصدیق کریں کہ تہانوں اس مواد دے حقوق حاصل نیں",
     "errorClipboard": "کلپ بورڈ پڑھ نئیں سکیا — بجائے اس دے دستی طور تے پیسٹ کریں",
-    "errorQueueFailed": "اوہ درآمد قطار وچ نئیں لگایا جا سکیا"
+    "errorQueueFailed": "اوہ درآمد قطار وچ نئیں لگایا جا سکیا",
+    "publishAs": "Publish as",
+    "kindVideo": "ویڈیو",
+    "kindAudio": "آڈیو",
+    "kindImage": "تصویراں",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24گھ",

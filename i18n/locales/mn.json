@@ -2997,7 +2997,12 @@
     "errorUnsupported": "Бид энэ холбоосоос импорт хийх боломжгүй. Аль нэгийг нь үзээрэй: {{sources}}",
     "errorNeedRights": "Та энэ агуулгын эрхтэй болохыг баталгаажуулна уу",
     "errorClipboard": "Түр санах ойг уншиж чадахгүй байна — оронд нь гараар буулгана",
-    "errorQueueFailed": "Импортлохын тулд дараалал хийж чадсангүй"
+    "errorQueueFailed": "Импортлохын тулд дараалал хийж чадсангүй",
+    "publishAs": "Нийтлэх хугацаа",
+    "kindVideo": "Видео",
+    "kindAudio": "Аудио",
+    "kindImage": "Зураг",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24ц",

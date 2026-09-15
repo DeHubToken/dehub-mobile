@@ -2996,7 +2996,12 @@
     "errorUnsupported": "Hindi namin mag-import mula sa link na ito. Санҷидани яке аз: {{sources}}",
     "errorNeedRights": "Pakitiyak na mayroon kang mga kanan sa nilalaman na ito",
     "errorClipboard": "Натавонистам силули мухобиротиро хонам — ба ҷои он дастӣ часпонед",
-    "errorQueueFailed": "Hindi mababa ang pag-import na ito"
+    "errorQueueFailed": "Hindi mababa ang pag-import na ito",
+    "publishAs": "I-publish bilang",
+    "kindVideo": "Видео",
+    "kindAudio": "Аудио",
+    "kindImage": "Тасвирҳо",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24с",

@@ -3015,7 +3015,12 @@
     "errorUnsupported": "我们无法从该链接导入。请尝试以下之一：{{sources}}",
     "errorNeedRights": "请确认您有权使用此内容",
     "errorClipboard": "无法读取剪贴板 — 请改为手动粘贴",
-    "errorQueueFailed": "无法将该导入加入队列"
+    "errorQueueFailed": "无法将该导入加入队列",
+    "publishAs": "Publish as",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "圖片",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24小时",

@@ -3006,7 +3006,12 @@
     "errorUnsupported": "आम्ही त्या लिंकवरून आयात करू शकत नाही. यापैकी एक वापरून पहा: {{sources}}",
     "errorNeedRights": "कृपया आपल्याकडे या सामग्रीचे अधिकार असल्याची पुष्टी करा",
     "errorClipboard": "क्लिपबोर्ड वाचू शकले नाही — त्याऐवजी स्वतः पेस्ट करा",
-    "errorQueueFailed": "त्या इम्पोर्टला रांग लावणे अशक्य"
+    "errorQueueFailed": "त्या इम्पोर्टला रांग लावणे अशक्य",
+    "publishAs": "म्हणून प्रकाशित करा",
+    "kindVideo": "व्हिडिओ",
+    "kindAudio": "ऑडिओ",
+    "kindImage": "चित्रे",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24ता",

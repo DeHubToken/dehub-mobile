@@ -3008,7 +3008,12 @@
     "errorUnsupported": "Ba za mu iya shigo da wannan hanyar haɗi ba. Gwada daya daga cikin: {{sources}}",
     "errorNeedRights": "Da fatan za a tabbatar kana da haƙƙoƙin wannan abun ciki",
     "errorClipboard": "Ba za a iya karanta clipboard ba — manna hannu maimakon",
-    "errorQueueFailed": "Ba zai iya jere cewa shigo da"
+    "errorQueueFailed": "Ba zai iya jere cewa shigo da",
+    "publishAs": "Buga kamar",
+    "kindVideo": "Bidiyo",
+    "kindAudio": "Sauti",
+    "kindImage": "QShortcut",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24a",

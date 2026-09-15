@@ -3088,7 +3088,12 @@
     "errorUnsupported": "Non possiamo importare da quel link. Prova uno dei seguenti: {{sources}}",
     "errorNeedRights": "Conferma di avere i diritti per questo contenuto",
     "errorClipboard": "Impossibile leggere gli appunti: incolla manualmente",
-    "errorQueueFailed": "Impossibile accodare l'importazione"
+    "errorQueueFailed": "Impossibile accodare l'importazione",
+    "publishAs": "Pubblica come",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Quadri",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

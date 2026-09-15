@@ -39,7 +39,9 @@ import { ScreenNames } from '../navigation/ScreenNames';
 import {
   CONVERTER_SOURCES,
   converterSourceList,
+  defaultMediaKind,
   detectConverterSource,
+  type MediaKind,
 } from '../libs/converter-sources';
 import {
   listConverterImports,
@@ -94,6 +96,10 @@ export default function ConverterScreen() {
 
   const [url, setUrl] = useState('');
   const [ownershipConfirmed, setOwnershipConfirmed] = useState(false);
+  /** What the creator picked, or null while they have not. Null means "follow
+   * the link" — a SoundCloud paste should not need a tap to say audio, and a
+   * Pinterest one should not need a tap to say pictures. */
+  const [pickedKind, setPickedKind] = useState<MediaKind | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [imports, setImports] = useState<ConverterImport[]>([]);
   const [dismissed, setDismissed] = useState<Set<string>>(new Set());
@@ -118,6 +124,17 @@ export default function ConverterScreen() {
       cancelled = true;
     };
   }, []);
+
+  /** The source of whatever is currently in the box, if it is one we take. */
+  const pastedSource = detectConverterSource(url);
+  /** What this paste will publish as. The creator's pick wins, but only while
+   * the pasted link can actually do it — pasting a SoundCloud link after
+   * choosing Pictures must not silently queue something the server refuses. */
+  const mediaKind: MediaKind = (() => {
+    if (!pastedSource) return pickedKind ?? 'video';
+    if (pickedKind && pastedSource.media.includes(pickedKind)) return pickedKind;
+    return defaultMediaKind(pastedSource);
+  })();
 
   const statusLabel = useCallback(
     (job: ConverterImport): string => {
@@ -229,10 +246,13 @@ export default function ConverterScreen() {
    * path gates on the checkbox, and "Try again" re-runs a link whose
    * attestation was made when it was first queued. */
   const queueImport = useCallback(
-    async (rawUrl: string) => {
+    async (rawUrl: string, kind?: MediaKind) => {
       setSubmitting(true);
       try {
-        await queueConverterImport({ url: rawUrl, ownershipConfirmed: true });
+        // Omitted rather than guessed when re-running a failed tile: the
+        // server falls back to the source's own default, which is what that
+        // job was queued as in the first place.
+        await queueConverterImport({ url: rawUrl, ownershipConfirmed: true, mediaKind: kind });
         setUrl('');
         toastInfo(t('converter.toastQueued'));
         await refresh();
@@ -257,8 +277,8 @@ export default function ConverterScreen() {
       toastError(t('converter.errorNeedRights'));
       return;
     }
-    void queueImport(url.trim());
-  }, [ownershipConfirmed, queueImport, t, url]);
+    void queueImport(url.trim(), mediaKind);
+  }, [mediaKind, ownershipConfirmed, queueImport, t, url]);
 
   const handleDismiss = useCallback(
     (jobId: string) => {
@@ -329,7 +349,18 @@ export default function ConverterScreen() {
                 className="absolute bottom-2 left-2 rounded px-2 py-0.5"
                 style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}
               >
-                <Text className="text-white/90 text-[11px] font-medium">{source}</Text>
+                {/* Source alone stopped being enough once one link could
+                    become three different posts — the same TikTok URL is a
+                    video, a sound or a slideshow depending on what was
+                    picked. */}
+                <Text className="text-white/90 text-[11px] font-medium">
+                  {job.mediaKind && job.mediaKind !== 'video'
+                    ? t('converter.tileSourceKind', {
+                        source,
+                        kind: t(`converter.kind${job.mediaKind[0].toUpperCase()}${job.mediaKind.slice(1)}`),
+                      })
+                    : source}
+                </Text>
               </View>
             )}
 
@@ -385,7 +416,7 @@ export default function ConverterScreen() {
               </Pressable>
             )}
             {job.state === 'failed' && job.url && (
-              <Pressable onPress={() => void queueImport(job.url!)} hitSlop={6} className="mt-1.5">
+              <Pressable onPress={() => void queueImport(job.url!, job.mediaKind)} hitSlop={6} className="mt-1.5">
                 <Text className="text-theme-neutrals-50 text-xs underline">
                   {t('converter.tryAgain')}
                 </Text>
@@ -428,6 +459,46 @@ export default function ConverterScreen() {
             <Text className="text-theme-neutrals-300 text-xs ml-1">{t('converter.paste')}</Text>
           </Pressable>
         </View>
+
+        {/* What this link becomes. Only rendered once the box holds a link we
+            recognise: before that there is nothing to choose between, and
+            three buttons over an empty field is a question nobody asked yet.
+
+            A source only offers what it can actually do — SoundCloud shows
+            Audio alone, Pinterest leads with Pictures — so the control never
+            presents an option the server would refuse. */}
+        {pastedSource && (
+          <View className="flex-row items-center gap-2">
+            <Text className="text-theme-neutrals-500 text-xs">{t('converter.publishAs')}</Text>
+            <View className="flex-row flex-wrap gap-1.5">
+              {pastedSource.media.map(kind => {
+                const active = kind === mediaKind;
+                return (
+                  <Pressable
+                    key={kind}
+                    onPress={() => setPickedKind(kind)}
+                    disabled={submitting}
+                    accessibilityRole="button"
+                    accessibilityState={{ selected: active, disabled: submitting }}
+                    hitSlop={6}
+                    className="rounded-lg px-2.5 py-1"
+                    style={{
+                      backgroundColor: active ? '#ffffff' : 'rgba(255,255,255,0.05)',
+                      opacity: submitting ? 0.5 : 1,
+                    }}
+                  >
+                    <Text
+                      className="text-xs font-medium"
+                      style={{ color: active ? '#000000' : '#d4d4d8' }}
+                    >
+                      {t(`converter.kind${kind[0].toUpperCase()}${kind.slice(1)}`)}
+                    </Text>
+                  </Pressable>
+                );
+              })}
+            </View>
+          </View>
+        )}
 
         {/* The list of sources, spelled out rather than described. "Paste a
             link from a supported platform" makes a creator guess and then

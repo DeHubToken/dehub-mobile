@@ -3013,7 +3013,12 @@
     "errorUnsupported": "ከዚያ አገናኝ ማስመጣት አንችልም ። አንዱን ይሞክሩ: {{sources}}",
     "errorNeedRights": "እባክዎን የዚህ ይዘት መብቶች እንዳለዎት ያረጋግጡ",
     "errorClipboard": "ክሊፖቹን ማንበብ አልተቻለም — በምትኩ በእጅ ይለጥፉ",
-    "errorQueueFailed": "ያንን ማስመጣት መዘርጋት አልተቻለም"
+    "errorQueueFailed": "ያንን ማስመጣት መዘርጋት አልተቻለም",
+    "publishAs": "እንደ ያትሙ",
+    "kindVideo": "፟ቪዲዮ",
+    "kindAudio": "ኦዲዮ",
+    "kindImage": "ሙዚቃ",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24ሰ",

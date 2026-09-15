@@ -3022,7 +3022,12 @@
     "errorUnsupported": "Erről a linkről nem tudunk importálni. Próbáld ki a következőt: {{sources}}",
     "errorNeedRights": "Erősítsd meg, hogy jogod van ehhez a tartalomhoz",
     "errorClipboard": "Nem sikerült beolvasni a vágólapot — inkább kézzel illessze be",
-    "errorQueueFailed": "Nem sikerült sorba állítani ezt az importot"
+    "errorQueueFailed": "Nem sikerült sorba állítani ezt az importot",
+    "publishAs": "Közzététel",
+    "kindVideo": "Videó",
+    "kindAudio": "Audió",
+    "kindImage": "Képek",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24ó",

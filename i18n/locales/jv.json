@@ -2976,7 +2976,12 @@
     "errorUnsupported": "Kita ora bisa ngimpor saka link kasebut. Coba salah siji saka: {{sources}}",
     "errorNeedRights": "Mangga konfirmasi yen sampeyan duwe hak kanggo konten iki",
     "errorClipboard": "Ora bisa maca clipboard — tempel kanthi manual",
-    "errorQueueFailed": "Ora bisa ngantri impor kasebut"
+    "errorQueueFailed": "Ora bisa ngantri impor kasebut",
+    "publishAs": "Publish as",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Gambar",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24j",

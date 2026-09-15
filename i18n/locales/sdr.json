@@ -3017,7 +3017,12 @@
     "errorUnsupported": "हम उस लिंक से आयात नहीं कर सकते। इनमें से एक का प्रयास करें: {{sources}}",
     "errorNeedRights": "कृपया पुष्टि करें कि आपके पास इस सामग्री के अधिकार हैं",
     "errorClipboard": "क्लिपबोर्ड को नहीं पढ़ सके — इसके बजाय मैन्युअल रूप से पेस्ट करें",
-    "errorQueueFailed": "उस आयात को कतार में नहीं रख सके"
+    "errorQueueFailed": "उस आयात को कतार में नहीं रख सके",
+    "publishAs": "Publish as",
+    "kindVideo": "Video",
+    "kindAudio": "آڈیو",
+    "kindImage": "तस्वीरें",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "২৪ঘ",

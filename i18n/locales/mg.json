@@ -3097,7 +3097,12 @@
     "errorUnsupported": "Tsy azontsika afindra avy amin'io rohy io izany. Andramo iray ny: {{sources}}",
     "errorNeedRights": "Azafady manamafy fa manana ny zonao amin'ity votoatiny ity ianao.",
     "errorClipboard": "Tsy afaka namaky ny fanindri-taratasy — mametaka tanana fa tsy",
-    "errorQueueFailed": "Tsy afaka namaritra ilay fanafarana"
+    "errorQueueFailed": "Tsy afaka namaritra ilay fanafarana",
+    "publishAs": "Avoahy toy ny",
+    "kindVideo": "Horonan-tsary",
+    "kindAudio": "Raki-peo",
+    "kindImage": "Sary",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24o",

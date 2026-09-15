@@ -3019,7 +3019,12 @@
     "errorUnsupported": "हम ए लिंक ले आयात नी कर सकन । एक का प्रयास करे: {{sources}} 1",
     "errorNeedRights": "किरपा करके, पुष्टि करव कि आप मन ए सामग्री बर अधिकार हे",
     "errorClipboard": "क्लिपबोर्ड पढ़ नइ सकिस — एखर बदले मं मैनुअल पेस्ट करव",
-    "errorQueueFailed": "ये आयात ल कतार मं नइ ले सकिस"
+    "errorQueueFailed": "ये आयात ल कतार मं नइ ले सकिस",
+    "publishAs": "प्रकाशित करे",
+    "kindVideo": "वीडियो",
+    "kindAudio": "आडियो",
+    "kindImage": "फोटू",
+    "tileSourceKind": "{{Portal: अक्सिटानिया}}"
   },
   "earnings": {
     "filter24h": "24घं",

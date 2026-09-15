@@ -3002,7 +3002,12 @@
     "errorUnsupported": "আমরা সেই লিঙ্ক থেকে আমদানি করতে পারি না । এর মধ্যে একটি ব্যবহার করে দেখুন: {{sources}}",
     "errorNeedRights": "অনুগ্রহ করে নিশ্চিত করুন যে আপনার কাছে এই বিষয়বস্তুর অধিকার রয়েছে",
     "errorClipboard": "ক্লিপবোর্ডটি পড়া যায়নি — পরিবর্তে ম্যানুয়ালি পেস্ট করুন",
-    "errorQueueFailed": "যে আমদানি সারিবদ্ধ করতে পারেনি"
+    "errorQueueFailed": "যে আমদানি সারিবদ্ধ করতে পারেনি",
+    "publishAs": "হিসাবে প্রকাশ করুন",
+    "kindVideo": "ভিডিও",
+    "kindAudio": "অডিও",
+    "kindImage": "ছবি",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "২৪ঘ",

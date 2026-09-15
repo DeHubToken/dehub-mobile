@@ -3074,7 +3074,12 @@
     "errorUnsupported": "Біз бұл сілтемеден импорттай алмаймыз. Біреуін қолданып көріңіз: {{sources}}",
     "errorNeedRights": "Осы мазмұнға құқығыңыз бар екенін растаңыз",
     "errorClipboard": "Алмасу буферін оқу мүмкін болмады — оның орнына қолмен қойыңыз",
-    "errorQueueFailed": "Импорттау кезегі табылмады"
+    "errorQueueFailed": "Импорттау кезегі табылмады",
+    "publishAs": "Жариялау ретінде",
+    "kindVideo": "В_идео",
+    "kindAudio": "Аудио",
+    "kindImage": "QShortcut",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24с",

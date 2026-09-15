@@ -3051,7 +3051,12 @@
     "errorUnsupported": "हामी त्यो लिङ्कबाट आयात गर्न सक्दैनौं । एउटा प्रयास गर्नुहोस्: {{sources}}",
     "errorNeedRights": "कृपया पुष्टि गर्नुहोस् कि तपाईंसँग यस सामग्रीको अधिकार छ",
     "errorClipboard": "क्लिपबोर्ड पढ्न सकेन — यसको सट्टामा म्यानुअल रूपमा टाँस्नुहोस्",
-    "errorQueueFailed": "त्यो आयातलाई लामबद्ध गर्न सकिएन"
+    "errorQueueFailed": "त्यो आयातलाई लामबद्ध गर्न सकिएन",
+    "publishAs": "यस रूपमा प्रकाशित गर्नुहोस्",
+    "kindVideo": "भिडियो",
+    "kindAudio": "अडियो",
+    "kindImage": "चित्र",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24घ",

@@ -3092,7 +3092,12 @@
     "errorUnsupported": "Nous ne pouvons pas importer à partir de ce lien. Essayez l'un des produits suivants : {{sources}}",
     "errorNeedRights": "Veuillez confirmer que vous avez les droits sur ce contenu",
     "errorClipboard": "Impossible de lire le presse-papiers — coller manuellement à la place",
-    "errorQueueFailed": "Impossible de mettre en file d'attente cette importation"
+    "errorQueueFailed": "Impossible de mettre en file d'attente cette importation",
+    "publishAs": "Publier en tant que",
+    "kindVideo": "Vidéo",
+    "kindAudio": "Audio",
+    "kindImage": "Images",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

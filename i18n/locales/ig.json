@@ -2996,7 +2996,12 @@
     "errorUnsupported": "Anyị agaghị ebubata site na njikọ ahụ. Gbalịa otu n 'ime: {{sources}}",
     "errorNeedRights": "Biko kwado na ị nwere ikike inweta ọdịnaya a",
     "errorClipboard": "Enwenwughị ike ịgụ wọ́kspéèsì — kechie n 'aka kama",
-    "errorQueueFailed": "Agaghị enwenwu ahịrị mbubata ahụ"
+    "errorQueueFailed": "Agaghị enwenwu ahịrị mbubata ahụ",
+    "publishAs": "Bipute dị ka",
+    "kindVideo": "Video",
+    "kindAudio": "Odu",
+    "kindImage": "Foto",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24a",

@@ -3022,7 +3022,12 @@
     "errorUnsupported": "Vi kan inte importera från den länken. Prova en av: {{sources}}",
     "errorNeedRights": "Bekräfta att du har rättigheterna till detta innehåll",
     "errorClipboard": "Kunde inte läsa urklipp — klistra in manuellt istället",
-    "errorQueueFailed": "Det gick inte att köa den importen"
+    "errorQueueFailed": "Det gick inte att köa den importen",
+    "publishAs": "Publicera som",
+    "kindVideo": "Video",
+    "kindAudio": "Ljud",
+    "kindImage": "Bilder",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

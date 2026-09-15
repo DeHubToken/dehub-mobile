@@ -3086,7 +3086,12 @@
     "errorUnsupported": "Nie możemy zaimportować z tego linku. Wypróbuj jeden z: {{sources}}",
     "errorNeedRights": "Potwierdź, że masz prawa do tej treści",
     "errorClipboard": "Nie można odczytać schowka — wklej ręcznie",
-    "errorQueueFailed": "Nie można utworzyć kolejki do importu"
+    "errorQueueFailed": "Nie można utworzyć kolejki do importu",
+    "publishAs": "Publikuj jako",
+    "kindVideo": "Karta graficzna",
+    "kindAudio": "Dźwięk",
+    "kindImage": "Obrazy",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

@@ -3005,7 +3005,12 @@
     "errorUnsupported": "לא ניתן לייבא מקישור זה. כדאי לנסות אחד מ: {{sources}}",
     "errorNeedRights": "אנא אשר שיש לך את הזכויות לתוכן זה",
     "errorClipboard": "לא ניתן היה לקרוא את לוח העריכה — הדבק ידנית במקום זאת",
-    "errorQueueFailed": "לא ניתן היה לתור את הייבוא"
+    "errorQueueFailed": "לא ניתן היה לתור את הייבוא",
+    "publishAs": "פרסם בתור",
+    "kindVideo": "ווידאו",
+    "kindAudio": "אודיו",
+    "kindImage": "תמונות",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24ש",

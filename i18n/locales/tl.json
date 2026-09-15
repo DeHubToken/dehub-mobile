@@ -3198,7 +3198,12 @@
     "errorUnsupported": "Hindi kami maaaring mag - import mula sa link na iyon. Subukan ang isa sa:{{sources}}",
     "errorNeedRights": "Mangyaring kumpirmahing mayroon kang mga karapatan sa nilalamang ito",
     "errorClipboard": "Hindi mabasa ang clipboard — i — paste nang manu — mano sa halip",
-    "errorQueueFailed": "Hindi ma - queue ang import na iyon"
+    "errorQueueFailed": "Hindi ma - queue ang import na iyon",
+    "publishAs": "I - publish bilang",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Mga Larawan",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24o",
