@@ -3713,5 +3713,29 @@
     "stream": "स्ट्रीम",
     "boostPost": "पोस्ट के बूस्ट करीं",
     "openSuperPowers": "SuperPowers खोलीं"
+  },
+  "dm": {
+    "attachFailed": "ऊ फाइल जोड़ल ना जा सकल।",
+    "removeAttachment": "अटैचमेंट हटाईं",
+    "addTip": "टिप जोड़ीं",
+    "chooseGif": "GIF चुनीं",
+    "attachImage": "फोटो जोड़ीं",
+    "attachVideo": "वीडियो जोड़ीं",
+    "attachFile": "फाइल जोड़ीं",
+    "enhanceWithAi": "AI से संदेश सुधारीं",
+    "sendMessage": "संदेश भेजीं",
+    "cantMessageYourself": "रउरा खुद के संदेश ना भेज सकीलें",
+    "askSomething": "कुछ पूछीं...",
+    "removeOption": "विकल्प हटाईं",
+    "allowMultiple": "कई जवाब के अनुमति दीं",
+    "preferences": "DM पसंद",
+    "enableDms": "DM चालू करीं",
+    "enableDmsSub": "सब संदेश रोके खातिर बंद करीं।",
+    "allowNewDms": "नया DM के अनुमति दीं",
+    "allowNewDmsOn": "बंद रही त खाली ऊहे लोग संदेश भेज सकी जेकरा से रउरा पहिले बात कइले बानी।",
+    "allowNewDmsOff": "नया संदेश के अनुमति देवे खातिर DM चालू करीं।",
+    "perMessageFee": "हर संदेश के फीस (DHB)",
+    "perMessageFeeSub": "हर संदेश पर शुल्क लीं। मुफ्त DM खातिर 0 राखीं। कुछ खास लोगन के मुफ्त पहुँच दे सकीलें।",
+    "allDisabled": "अबहीं सब DM बंद बा। नया DM डिफॉल्ट से रोकल बा।"
   }
 }

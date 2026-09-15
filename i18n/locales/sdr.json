@@ -3762,5 +3762,29 @@
     "stream": "پەخش",
     "boostPost": "پۆست بووست بکە",
     "openSuperPowers": "SuperPowers بکەرەوە"
+  },
+  "dm": {
+    "attachFailed": "نەتوانرا ئەو فایلە هاوپێچ بکرێت.",
+    "removeAttachment": "هاوپێچ لابدە",
+    "addTip": "بەخشیش زیاد بکە",
+    "chooseGif": "GIF هەڵبژێرە",
+    "attachImage": "وێنە هاوپێچ بکە",
+    "attachVideo": "ڤیدیۆ هاوپێچ بکە",
+    "attachFile": "فایل هاوپێچ بکە",
+    "enhanceWithAi": "نامەکە بە AI باشتر بکە",
+    "sendMessage": "نامە بنێرە",
+    "cantMessageYourself": "ناتوانیت نامە بۆ خۆت بنێریت",
+    "askSomething": "شتێک بپرسە...",
+    "removeOption": "هەڵبژاردە لابدە",
+    "allowMultiple": "ڕێگە بە چەند وەڵامێک بدە",
+    "preferences": "هەڵبژاردەکانی DM",
+    "enableDms": "DM چالاک بکە",
+    "enableDmsSub": "بیکوژەوە بۆ ڕێگرتن لە هەموو نامەکان.",
+    "allowNewDms": "ڕێگە بە DM ی نوێ بدە",
+    "allowNewDmsOn": "ئەگەر کوژاوە بێت، تەنها ئەو کەسانەی پێشتر قسەت لەگەڵ کردوون دەتوانن نامەت بۆ بنێرن.",
+    "allowNewDmsOff": "بۆ ڕێگەدان بە نامەی نوێ، DM چالاک بکە.",
+    "perMessageFee": "کرێی هەر نامەیەک (DHB)",
+    "perMessageFeeSub": "بۆ هەر نامەیەک پارە وەربگرە. بۆ DM ی بێبەرامبەر 0 دابنێ. دەتوانیت دەستگەیشتنی خۆڕایی بە بەکارهێنەرانی دیاریکراو بدەیت.",
+    "allDisabled": "لە ئێستادا هەموو DM ـەکان کوژاونەتەوە. DM ی نوێ بە بنەڕەت ڕێگری لێدەکرێت."
   }
 }

@@ -3833,5 +3833,29 @@
     "stream": "Diretta",
     "boostPost": "Boost del post",
     "openSuperPowers": "Apri SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Impossibile allegare quel file.",
+    "removeAttachment": "Rimuovi allegato",
+    "addTip": "Aggiungi mancia",
+    "chooseGif": "Scegli una GIF",
+    "attachImage": "Allega immagine",
+    "attachVideo": "Allega video",
+    "attachFile": "Allega file",
+    "enhanceWithAi": "Migliora il messaggio con l'IA",
+    "sendMessage": "Invia messaggio",
+    "cantMessageYourself": "Non puoi inviarti un messaggio",
+    "askSomething": "Chiedi qualcosa...",
+    "removeOption": "Rimuovi opzione",
+    "allowMultiple": "Consenti più risposte",
+    "preferences": "Preferenze messaggi",
+    "enableDms": "Attiva i messaggi",
+    "enableDmsSub": "Disattiva per bloccare tutti i messaggi.",
+    "allowNewDms": "Consenti nuovi messaggi",
+    "allowNewDmsOn": "Se disattivato, possono scriverti solo le persone con cui hai già chattato.",
+    "allowNewDmsOff": "Attiva i messaggi per consentire quelli nuovi.",
+    "perMessageFee": "Tariffa per messaggio (DHB)",
+    "perMessageFeeSub": "Applica una tariffa per messaggio. Imposta 0 per messaggi gratuiti. Puoi dare accesso gratuito a utenti specifici.",
+    "allDisabled": "Tutti i messaggi sono attualmente disattivati. I nuovi vengono bloccati per impostazione predefinita."
   }
 }

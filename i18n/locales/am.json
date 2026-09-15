@@ -3758,5 +3758,29 @@
     "stream": "ስርጭት",
     "boostPost": "ልጥፉን አበረታታ",
     "openSuperPowers": "SuperPowers ክፈት"
+  },
+  "dm": {
+    "attachFailed": "ያንን ፋይል ማያያዝ አልተቻለም።",
+    "removeAttachment": "አባሪውን አስወግድ",
+    "addTip": "ጉርሻ ጨምር",
+    "chooseGif": "GIF ይምረጡ",
+    "attachImage": "ምስል አያይዝ",
+    "attachVideo": "ቪዲዮ አያይዝ",
+    "attachFile": "ፋይል አያይዝ",
+    "enhanceWithAi": "መልእክቱን በ AI አሻሽል",
+    "sendMessage": "መልእክት ላክ",
+    "cantMessageYourself": "ለራስዎ መልእክት መላክ አይችሉም",
+    "askSomething": "የሆነ ነገር ይጠይቁ...",
+    "removeOption": "አማራጩን አስወግድ",
+    "allowMultiple": "ብዙ መልሶችን ፍቀድ",
+    "preferences": "የDM ምርጫዎች",
+    "enableDms": "DM አንቃ",
+    "enableDmsSub": "ሁሉንም መልእክቶች ለመከልከል ያጥፉት።",
+    "allowNewDms": "አዲስ DM ፍቀድ",
+    "allowNewDmsOn": "ከጠፋ፣ አስቀድመው የተጫወቷቸው ብቻ ሊልኩልዎ ይችላሉ።",
+    "allowNewDmsOff": "አዲስ መልእክቶችን ለመፍቀድ DM ያብሩ።",
+    "perMessageFee": "በአንድ መልእክት ክፍያ (DHB)",
+    "perMessageFeeSub": "ለእያንዳንዱ መልእክት ክፍያ ያስከፍሉ። ለነጻ DM 0 ያድርጉ። ለተወሰኑ ተጠቃሚዎች ነጻ መዳረሻ መስጠት ይችላሉ።",
+    "allDisabled": "ሁሉም DM አሁን ጠፍተዋል። አዲስ DM በነባሪ ታግደዋል።"
   }
 }

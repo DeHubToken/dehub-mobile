@@ -3931,5 +3931,29 @@
     "stream": "Stream",
     "boostPost": "Boostnúť príspevok",
     "openSuperPowers": "Otvoriť SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Ten súbor sa nepodarilo priložiť.",
+    "removeAttachment": "Odstrániť prílohu",
+    "addTip": "Pridať prepitné",
+    "chooseGif": "Vybrať GIF",
+    "attachImage": "Priložiť obrázok",
+    "attachVideo": "Priložiť video",
+    "attachFile": "Priložiť súbor",
+    "enhanceWithAi": "Vylepšiť správu pomocou AI",
+    "sendMessage": "Odoslať správu",
+    "cantMessageYourself": "Nemôžete písať sami sebe",
+    "askSomething": "Opýtajte sa na niečo...",
+    "removeOption": "Odstrániť možnosť",
+    "allowMultiple": "Povoliť viac odpovedí",
+    "preferences": "Predvoľby správ",
+    "enableDms": "Povoliť správy",
+    "enableDmsSub": "Vypnutím zablokujete všetky správy.",
+    "allowNewDms": "Povoliť nové správy",
+    "allowNewDmsOn": "Ak je vypnuté, písať vám môžu len ľudia, s ktorými ste už hovorili.",
+    "allowNewDmsOff": "Zapnite správy, aby ste povolili nové.",
+    "perMessageFee": "Poplatok za správu (DHB)",
+    "perMessageFeeSub": "Účtujte si za správu. Nastavte 0 pre bezplatné správy. Konkrétnym používateľom môžete dať prístup zadarmo.",
+    "allDisabled": "Všetky správy sú momentálne vypnuté. Nové sú štandardne blokované."
   }
 }

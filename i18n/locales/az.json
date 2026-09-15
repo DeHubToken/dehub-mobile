@@ -3747,5 +3747,29 @@
     "stream": "Yayım",
     "boostPost": "Paylaşımı gücləndir",
     "openSuperPowers": "SuperPowers-i aç"
+  },
+  "dm": {
+    "attachFailed": "Həmin fayl əlavə edilə bilmədi.",
+    "removeAttachment": "Əlavəni sil",
+    "addTip": "Bəxşiş əlavə et",
+    "chooseGif": "GIF seç",
+    "attachImage": "Şəkil əlavə et",
+    "attachVideo": "Video əlavə et",
+    "attachFile": "Fayl əlavə et",
+    "enhanceWithAi": "Mesajı süni intellektlə yaxşılaşdır",
+    "sendMessage": "Mesajı göndər",
+    "cantMessageYourself": "Özünüzə mesaj göndərə bilməzsiniz",
+    "askSomething": "Nəsə soruş...",
+    "removeOption": "Variantı sil",
+    "allowMultiple": "Bir neçə cavaba icazə ver",
+    "preferences": "DM parametrləri",
+    "enableDms": "DM-ləri aktiv et",
+    "enableDmsSub": "Bütün mesajları bloklamaq üçün söndürün.",
+    "allowNewDms": "Yeni DM-lərə icazə ver",
+    "allowNewDmsOn": "Söndürülübsə, yalnız əvvəl yazışdığınız adamlar sizə mesaj yaza bilər.",
+    "allowNewDmsOff": "Yeni mesajlara icazə vermək üçün DM-ləri aktiv edin.",
+    "perMessageFee": "Mesaj başına haqq (DHB)",
+    "perMessageFeeSub": "İstifadəçilərdən mesaj başına haqq alın. Pulsuz DM üçün 0 qoyun. Ayrı-ayrı istifadəçilərə pulsuz giriş verə bilərsiniz.",
+    "allDisabled": "Hazırda bütün DM-lər söndürülüb. Yeni DM-lər susmaya görə bloklanır."
   }
 }

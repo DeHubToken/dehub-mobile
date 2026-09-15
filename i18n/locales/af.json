@@ -3880,5 +3880,29 @@
     "stream": "Stroom",
     "boostPost": "Gee plasing 'n hupstoot",
     "openSuperPowers": "Open SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Kon nie daardie lêer aanheg nie.",
+    "removeAttachment": "Verwyder aanhegsel",
+    "addTip": "Voeg fooitjie by",
+    "chooseGif": "Kies 'n GIF",
+    "attachImage": "Heg prent aan",
+    "attachVideo": "Heg video aan",
+    "attachFile": "Heg lêer aan",
+    "enhanceWithAi": "Verbeter boodskap met KI",
+    "sendMessage": "Stuur boodskap",
+    "cantMessageYourself": "Jy kan nie vir jouself 'n boodskap stuur nie",
+    "askSomething": "Vra iets...",
+    "removeOption": "Verwyder opsie",
+    "allowMultiple": "Laat meervoudige antwoorde toe",
+    "preferences": "DM-voorkeure",
+    "enableDms": "Aktiveer DM's",
+    "enableDmsSub": "Skakel af om alle boodskappe te blokkeer.",
+    "allowNewDms": "Laat nuwe DM's toe",
+    "allowNewDmsOn": "As dit af is, kan net mense met wie jy al gesels het jou boodskap.",
+    "allowNewDmsOff": "Skakel DM's aan om nuwe boodskappe toe te laat.",
+    "perMessageFee": "Fooi per boodskap (DHB)",
+    "perMessageFeeSub": "Hef 'n fooi per boodskap. Stel op 0 vir gratis DM's. Jy kan spesifieke gebruikers gratis toegang gee.",
+    "allDisabled": "Alle DM's is tans af. Nuwe DM's word by verstek geblokkeer."
   }
 }

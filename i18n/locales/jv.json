@@ -3721,5 +3721,29 @@
     "stream": "Siaran",
     "boostPost": "Boost kiriman",
     "openSuperPowers": "Bukak SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Ora bisa nglampirake berkas kuwi.",
+    "removeAttachment": "Busak lampiran",
+    "addTip": "Tambah tip",
+    "chooseGif": "Pilih GIF",
+    "attachImage": "Lampirake gambar",
+    "attachVideo": "Lampirake video",
+    "attachFile": "Lampirake berkas",
+    "enhanceWithAi": "Apikake pesen nganggo AI",
+    "sendMessage": "Kirim pesen",
+    "cantMessageYourself": "Sampeyan ora bisa ngirim pesen menyang awake dhewe",
+    "askSomething": "Takon apa wae...",
+    "removeOption": "Busak pilihan",
+    "allowMultiple": "Ngidini wangsulan akeh",
+    "preferences": "Preferensi DM",
+    "enableDms": "Uripake DM",
+    "enableDmsSub": "Patenana kanggo mblokir kabeh pesen.",
+    "allowNewDms": "Ngidini DM anyar",
+    "allowNewDmsOn": "Yen mati, mung wong sing wis tau ngobrol karo sampeyan sing bisa ngirim pesen.",
+    "allowNewDmsOff": "Uripake DM supaya bisa nampa pesen anyar.",
+    "perMessageFee": "Ragad saben pesen (DHB)",
+    "perMessageFeeSub": "Narik ragad saben pesen. Setel 0 kanggo DM gratis. Sampeyan bisa menehi akses gratis kanggo pangguna tartamtu.",
+    "allDisabled": "Kabeh DM saiki dipateni. DM anyar diblokir kanthi standar."
   }
 }

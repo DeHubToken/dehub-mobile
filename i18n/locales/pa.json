@@ -3739,5 +3739,29 @@
     "stream": "ਸਟ੍ਰੀਮ",
     "boostPost": "ਪੋਸਟ ਬੂਸਟ ਕਰੋ",
     "openSuperPowers": "SuperPowers ਖੋਲ੍ਹੋ"
+  },
+  "dm": {
+    "attachFailed": "ਉਹ ਫਾਈਲ ਨੱਥੀ ਨਹੀਂ ਹੋ ਸਕੀ।",
+    "removeAttachment": "ਨੱਥੀ ਹਟਾਓ",
+    "addTip": "ਟਿਪ ਜੋੜੋ",
+    "chooseGif": "GIF ਚੁਣੋ",
+    "attachImage": "ਤਸਵੀਰ ਨੱਥੀ ਕਰੋ",
+    "attachVideo": "ਵੀਡੀਓ ਨੱਥੀ ਕਰੋ",
+    "attachFile": "ਫਾਈਲ ਨੱਥੀ ਕਰੋ",
+    "enhanceWithAi": "AI ਨਾਲ ਸੁਨੇਹਾ ਸੁਧਾਰੋ",
+    "sendMessage": "ਸੁਨੇਹਾ ਭੇਜੋ",
+    "cantMessageYourself": "ਤੁਸੀਂ ਆਪਣੇ ਆਪ ਨੂੰ ਸੁਨੇਹਾ ਨਹੀਂ ਭੇਜ ਸਕਦੇ",
+    "askSomething": "ਕੁਝ ਪੁੱਛੋ...",
+    "removeOption": "ਵਿਕਲਪ ਹਟਾਓ",
+    "allowMultiple": "ਇੱਕ ਤੋਂ ਵੱਧ ਜਵਾਬਾਂ ਦੀ ਆਗਿਆ ਦਿਓ",
+    "preferences": "DM ਤਰਜੀਹਾਂ",
+    "enableDms": "DM ਚਾਲੂ ਕਰੋ",
+    "enableDmsSub": "ਸਾਰੇ ਸੁਨੇਹੇ ਰੋਕਣ ਲਈ ਬੰਦ ਕਰੋ।",
+    "allowNewDms": "ਨਵੇਂ DM ਦੀ ਆਗਿਆ ਦਿਓ",
+    "allowNewDmsOn": "ਬੰਦ ਹੋਣ 'ਤੇ ਸਿਰਫ਼ ਉਹੀ ਲੋਕ ਸੁਨੇਹਾ ਭੇਜ ਸਕਦੇ ਹਨ ਜਿਨ੍ਹਾਂ ਨਾਲ ਤੁਸੀਂ ਪਹਿਲਾਂ ਗੱਲ ਕੀਤੀ ਹੈ।",
+    "allowNewDmsOff": "ਨਵੇਂ ਸੁਨੇਹਿਆਂ ਦੀ ਆਗਿਆ ਲਈ DM ਚਾਲੂ ਕਰੋ।",
+    "perMessageFee": "ਪ੍ਰਤੀ ਸੁਨੇਹਾ ਫੀਸ (DHB)",
+    "perMessageFeeSub": "ਪ੍ਰਤੀ ਸੁਨੇਹਾ ਫੀਸ ਲਓ। ਮੁਫ਼ਤ DM ਲਈ 0 ਰੱਖੋ। ਕੁਝ ਵਰਤੋਂਕਾਰਾਂ ਨੂੰ ਮੁਫ਼ਤ ਪਹੁੰਚ ਦੇ ਸਕਦੇ ਹੋ।",
+    "allDisabled": "ਇਸ ਵੇਲੇ ਸਾਰੇ DM ਬੰਦ ਹਨ। ਨਵੇਂ DM ਮੂਲ ਰੂਪ ਵਿੱਚ ਰੋਕੇ ਗਏ ਹਨ।"
   }
 }

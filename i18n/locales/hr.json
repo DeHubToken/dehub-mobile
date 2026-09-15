@@ -3763,5 +3763,29 @@
     "stream": "Prijenos",
     "boostPost": "Boostaj objavu",
     "openSuperPowers": "Otvori SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Tu datoteku nije bilo moguće priložiti.",
+    "removeAttachment": "Ukloni privitak",
+    "addTip": "Dodaj napojnicu",
+    "chooseGif": "Odaberi GIF",
+    "attachImage": "Priloži sliku",
+    "attachVideo": "Priloži videozapis",
+    "attachFile": "Priloži datoteku",
+    "enhanceWithAi": "Poboljšaj poruku pomoću AI-ja",
+    "sendMessage": "Pošalji poruku",
+    "cantMessageYourself": "Ne možete poslati poruku sebi",
+    "askSomething": "Pitajte nešto...",
+    "removeOption": "Ukloni opciju",
+    "allowMultiple": "Dopusti više odgovora",
+    "preferences": "Postavke poruka",
+    "enableDms": "Omogući poruke",
+    "enableDmsSub": "Isključite da blokirate sve poruke.",
+    "allowNewDms": "Dopusti nove poruke",
+    "allowNewDmsOn": "Ako je isključeno, pisati vam mogu samo osobe s kojima ste već razgovarali.",
+    "allowNewDmsOff": "Uključite poruke da dopustite nove.",
+    "perMessageFee": "Naknada po poruci (DHB)",
+    "perMessageFeeSub": "Naplaćujte po poruci. Postavite 0 za besplatne poruke. Pojedinim korisnicima možete dati besplatan pristup.",
+    "allDisabled": "Sve su poruke trenutačno isključene. Nove se prema zadanom blokiraju."
   }
 }

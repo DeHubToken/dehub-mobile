@@ -3750,5 +3750,29 @@
     "stream": "שידור",
     "boostPost": "בוסט לפוסט",
     "openSuperPowers": "פתח SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "לא ניתן היה לצרף את הקובץ הזה.",
+    "removeAttachment": "הסר קובץ מצורף",
+    "addTip": "הוסף טיפ",
+    "chooseGif": "בחר GIF",
+    "attachImage": "צרף תמונה",
+    "attachVideo": "צרף וידאו",
+    "attachFile": "צרף קובץ",
+    "enhanceWithAi": "שפר את ההודעה עם AI",
+    "sendMessage": "שלח הודעה",
+    "cantMessageYourself": "אי אפשר לשלוח הודעה לעצמך",
+    "askSomething": "שאל משהו...",
+    "removeOption": "הסר אפשרות",
+    "allowMultiple": "אפשר מספר תשובות",
+    "preferences": "העדפות הודעות",
+    "enableDms": "הפעל הודעות",
+    "enableDmsSub": "כבה כדי לחסום את כל ההודעות.",
+    "allowNewDms": "אפשר הודעות חדשות",
+    "allowNewDmsOn": "אם כבוי, רק אנשים שכבר התכתבת איתם יכולים לשלוח לך הודעה.",
+    "allowNewDmsOff": "הפעל הודעות כדי לאפשר הודעות חדשות.",
+    "perMessageFee": "עמלה לכל הודעה (DHB)",
+    "perMessageFeeSub": "גבו תשלום לכל הודעה. הגדירו 0 להודעות חינם. אפשר להעניק גישה חינם למשתמשים מסוימים.",
+    "allDisabled": "כל ההודעות מושבתות כרגע. הודעות חדשות נחסמות כברירת מחדל."
   }
 }

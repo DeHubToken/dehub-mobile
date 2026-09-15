@@ -3755,5 +3755,29 @@
     "stream": "સ્ટ્રીમ",
     "boostPost": "પોસ્ટ બૂસ્ટ કરો",
     "openSuperPowers": "SuperPowers ખોલો"
+  },
+  "dm": {
+    "attachFailed": "તે ફાઇલ જોડી શકાઈ નહીં.",
+    "removeAttachment": "જોડાણ કાઢો",
+    "addTip": "ટિપ ઉમેરો",
+    "chooseGif": "GIF પસંદ કરો",
+    "attachImage": "છબી જોડો",
+    "attachVideo": "વિડિયો જોડો",
+    "attachFile": "ફાઇલ જોડો",
+    "enhanceWithAi": "AI વડે સંદેશ સુધારો",
+    "sendMessage": "સંદેશ મોકલો",
+    "cantMessageYourself": "તમે તમારી જાતને સંદેશ મોકલી શકતા નથી",
+    "askSomething": "કંઈક પૂછો...",
+    "removeOption": "વિકલ્પ કાઢો",
+    "allowMultiple": "એકથી વધુ જવાબોની મંજૂરી આપો",
+    "preferences": "DM પસંદગીઓ",
+    "enableDms": "DM ચાલુ કરો",
+    "enableDmsSub": "બધા સંદેશા બ્લોક કરવા બંધ કરો.",
+    "allowNewDms": "નવા DM ની મંજૂરી આપો",
+    "allowNewDmsOn": "બંધ હોય તો ફક્ત તમે જેમની સાથે ચેટ કરી છે તેઓ જ સંદેશ મોકલી શકે.",
+    "allowNewDmsOff": "નવા સંદેશની મંજૂરી માટે DM ચાલુ કરો.",
+    "perMessageFee": "પ્રતિ સંદેશ ફી (DHB)",
+    "perMessageFeeSub": "પ્રતિ સંદેશ ચાર્જ કરો. મફત DM માટે 0 રાખો. ચોક્કસ વપરાશકર્તાઓને મફત ઍક્સેસ આપી શકો છો.",
+    "allDisabled": "હાલ બધા DM બંધ છે. નવા DM ડિફોલ્ટ રૂપે બ્લોક છે."
   }
 }

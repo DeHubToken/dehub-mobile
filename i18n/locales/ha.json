@@ -3753,5 +3753,29 @@
     "stream": "Yaɗa",
     "boostPost": "Ƙarfafa saƙon",
     "openSuperPowers": "Buɗe SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "An kasa haɗa wannan fayil ɗin.",
+    "removeAttachment": "Cire haɗe-haɗe",
+    "addTip": "Ƙara kyauta",
+    "chooseGif": "Zaɓi GIF",
+    "attachImage": "Haɗa hoto",
+    "attachVideo": "Haɗa bidiyo",
+    "attachFile": "Haɗa fayil",
+    "enhanceWithAi": "Inganta saƙon da AI",
+    "sendMessage": "Aika saƙo",
+    "cantMessageYourself": "Ba za ka iya aika wa kanka saƙo ba",
+    "askSomething": "Yi tambaya...",
+    "removeOption": "Cire zaɓi",
+    "allowMultiple": "Ba da damar amsoshi da yawa",
+    "preferences": "Zaɓuɓɓukan DM",
+    "enableDms": "Kunna DM",
+    "enableDmsSub": "Kashe don toshe duk saƙonni.",
+    "allowNewDms": "Ba da damar sabbin DM",
+    "allowNewDmsOn": "Idan a kashe, mutanen da ka riga ka tattauna da su kaɗai za su iya aiko maka.",
+    "allowNewDmsOff": "Kunna DM don ba da damar sabbin saƙonni.",
+    "perMessageFee": "Kuɗin kowane saƙo (DHB)",
+    "perMessageFeeSub": "Ka caji kowane saƙo. Sa 0 don DM kyauta. Za ka iya ba wasu masu amfani damar kyauta.",
+    "allDisabled": "Duk DM a kashe suke yanzu. Sabbin DM an toshe su ta tsohuwar hanya."
   }
 }

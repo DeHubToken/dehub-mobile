@@ -3793,5 +3793,29 @@
     "stream": "Chayachiy",
     "boostPost": "Willayta kallpachay",
     "openSuperPowers": "SuperPowers kichay"
+  },
+  "dm": {
+    "attachFailed": "Chay willañiqita mana yapayta atinchu.",
+    "removeAttachment": "Yapasqata qichuy",
+    "addTip": "Yanapay qullqita yapay",
+    "chooseGif": "GIF akllay",
+    "attachImage": "Rikchata yapay",
+    "attachVideo": "Videota yapay",
+    "attachFile": "Willañiqita yapay",
+    "enhanceWithAi": "Willakuyta AI-wan allichay",
+    "sendMessage": "Willakuyta apachiy",
+    "cantMessageYourself": "Manam kikiykiman willakuyta apachiyta atinkichu",
+    "askSomething": "Imatapas tapuy...",
+    "removeOption": "Akllanata qichuy",
+    "allowMultiple": "Achka kutichiyta saqiy",
+    "preferences": "DM akllaykuna",
+    "enableDms": "DM kichariy",
+    "enableDmsSub": "Llapan willakuyta harkanapaq wañuchiy.",
+    "allowNewDms": "Musuq DM saqiy",
+    "allowNewDmsOn": "Wañusqa kaptinqa, pikunawanchus rimarqanki chaykunallam willakuyta apachiyta atinku.",
+    "allowNewDmsOff": "Musuq willakuyta chaskinaykipaq DM kichariy.",
+    "perMessageFee": "Sapa willakuy chanin (DHB)",
+    "perMessageFeeSub": "Sapa willakuymanta chaninchay. Qullqi mana kananpaq 0 churay. Wakin runakunaman qasilla yaykuyta qunki.",
+    "allDisabled": "Kunanqa llapan DM wañusqam. Musuq DM harkasqam kachkan."
   }
 }

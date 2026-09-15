@@ -3713,5 +3713,29 @@
     "stream": "خپرونه",
     "boostPost": "پوسټ بوسټ کړئ",
     "openSuperPowers": "SuperPowers خلاص کړئ"
+  },
+  "dm": {
+    "attachFailed": "هغه فایل ونه نښلول شو.",
+    "removeAttachment": "نښلونی لرې کړئ",
+    "addTip": "بخشش ورزیات کړئ",
+    "chooseGif": "GIF غوره کړئ",
+    "attachImage": "انځور ونښلوئ",
+    "attachVideo": "ویډیو ونښلوئ",
+    "attachFile": "فایل ونښلوئ",
+    "enhanceWithAi": "پیغام په AI سره ښه کړئ",
+    "sendMessage": "پیغام ولیږئ",
+    "cantMessageYourself": "تاسو ځان ته پیغام نشئ لیږلی",
+    "askSomething": "یو څه وپوښتئ...",
+    "removeOption": "انتخاب لرې کړئ",
+    "allowMultiple": "څو ځوابونو ته اجازه ورکړئ",
+    "preferences": "د DM غوره توبونه",
+    "enableDms": "DM فعال کړئ",
+    "enableDmsSub": "د ټولو پیغامونو د بندولو لپاره یې بند کړئ.",
+    "allowNewDms": "نویو DM ته اجازه ورکړئ",
+    "allowNewDmsOn": "که بند وي، یوازې هغه کسان چې ورسره مو خبرې کړې دي کولی شي پیغام درکړي.",
+    "allowNewDmsOff": "د نویو پیغامونو د اجازې لپاره DM فعال کړئ.",
+    "perMessageFee": "د هر پیغام فیس (DHB)",
+    "perMessageFeeSub": "د هر پیغام لپاره فیس واخلئ. وړیا DM لپاره یې 0 کړئ. تاسو ځینو کاروونکو ته وړیا لاسرسی ورکولی شئ.",
+    "allDisabled": "اوس مهال ټول DM بند دي. نوي DM په اصل کې بند دي."
   }
 }

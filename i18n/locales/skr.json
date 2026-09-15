@@ -3707,5 +3707,29 @@
     "stream": "اسٹریم",
     "boostPost": "پوسٹ کوں بوسٹ کرو",
     "openSuperPowers": "SuperPowers کھولو"
+  },
+  "dm": {
+    "attachFailed": "اوہ فائل نتھی کائنی تھی سگھی۔",
+    "removeAttachment": "نتھی ہٹاؤ",
+    "addTip": "ٹپ شامل کرو",
+    "chooseGif": "GIF چݨو",
+    "attachImage": "تصویر نتھی کرو",
+    "attachVideo": "ویڈیو نتھی کرو",
+    "attachFile": "فائل نتھی کرو",
+    "enhanceWithAi": "AI نال سنیہا بہتر کرو",
+    "sendMessage": "سنیہا بھیجو",
+    "cantMessageYourself": "تساں آپݨے آپ کوں سنیہا کائنی بھیج سڳدے",
+    "askSomething": "کجھ پچھو...",
+    "removeOption": "آپشن ہٹاؤ",
+    "allowMultiple": "کئی جوابےں دی اجازت ݙیوو",
+    "preferences": "DM ترجیحات",
+    "enableDms": "DM فعال کرو",
+    "enableDmsSub": "سارے سنیہے روکݨ کیتے بند کرو۔",
+    "allowNewDms": "نویں DM دی اجازت ݙیوو",
+    "allowNewDmsOn": "بند ہووے تاں رڳو اوہ لوک سنیہا بھیج سڳدے ہن جیں نال تساں پہلے ڳالھ کیتی ہووے۔",
+    "allowNewDmsOff": "نویں سنیہیاں دی اجازت کیتے DM فعال کرو۔",
+    "perMessageFee": "فی سنیہا فیس (DHB)",
+    "perMessageFeeSub": "فی سنیہا چارج کرو۔ مفت DM کیتے 0 رکھو۔ کجھ صارفین کوں مفت رسائی ݙے سڳدے او۔",
+    "allDisabled": "ہݨ سارے DM بند ہن۔ نویں DM ڈیفالٹ طور تے روکے ڳئے ہن۔"
   }
 }

@@ -3751,5 +3751,29 @@
     "stream": "स्ट्रीम",
     "boostPost": "पोस्ट बूस्ट करा",
     "openSuperPowers": "SuperPowers उघडा"
+  },
+  "dm": {
+    "attachFailed": "ती फाइल जोडता आली नाही.",
+    "removeAttachment": "संलग्नक काढा",
+    "addTip": "टिप जोडा",
+    "chooseGif": "GIF निवडा",
+    "attachImage": "प्रतिमा जोडा",
+    "attachVideo": "व्हिडिओ जोडा",
+    "attachFile": "फाइल जोडा",
+    "enhanceWithAi": "AI ने संदेश सुधारा",
+    "sendMessage": "संदेश पाठवा",
+    "cantMessageYourself": "तुम्ही स्वतःला संदेश पाठवू शकत नाही",
+    "askSomething": "काहीतरी विचारा...",
+    "removeOption": "पर्याय काढा",
+    "allowMultiple": "अनेक उत्तरांना परवानगी द्या",
+    "preferences": "DM प्राधान्ये",
+    "enableDms": "DM सुरू करा",
+    "enableDmsSub": "सर्व संदेश रोखण्यासाठी बंद करा.",
+    "allowNewDms": "नवीन DM ला परवानगी द्या",
+    "allowNewDmsOn": "बंद असल्यास फक्त तुम्ही ज्यांच्याशी बोलला आहात तेच संदेश पाठवू शकतात.",
+    "allowNewDmsOff": "नवीन संदेशांना परवानगी देण्यासाठी DM सुरू करा.",
+    "perMessageFee": "प्रति संदेश शुल्क (DHB)",
+    "perMessageFeeSub": "प्रति संदेश शुल्क घ्या. मोफत DM साठी 0 ठेवा. विशिष्ट वापरकर्त्यांना मोफत प्रवेश देऊ शकता.",
+    "allDisabled": "सध्या सर्व DM बंद आहेत. नवीन DM डीफॉल्टनुसार अवरोधित आहेत."
   }
 }

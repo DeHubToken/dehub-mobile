@@ -3745,5 +3745,29 @@
     "stream": "ප්‍රවාහය",
     "boostPost": "පළකිරීම බූස්ට් කරන්න",
     "openSuperPowers": "SuperPowers විවෘත කරන්න"
+  },
+  "dm": {
+    "attachFailed": "එම ගොනුව අමුණන්න බැරි විය.",
+    "removeAttachment": "ඇමුණුම ඉවත් කරන්න",
+    "addTip": "ටිප් එකක් එක් කරන්න",
+    "chooseGif": "GIF එකක් තෝරන්න",
+    "attachImage": "රූපයක් අමුණන්න",
+    "attachVideo": "වීඩියෝවක් අමුණන්න",
+    "attachFile": "ගොනුවක් අමුණන්න",
+    "enhanceWithAi": "AI මගින් පණිවිඩය වැඩිදියුණු කරන්න",
+    "sendMessage": "පණිවිඩය යවන්න",
+    "cantMessageYourself": "ඔබට ඔබටම පණිවිඩයක් යැවිය නොහැක",
+    "askSomething": "යමක් අහන්න...",
+    "removeOption": "විකල්පය ඉවත් කරන්න",
+    "allowMultiple": "පිළිතුරු කිහිපයකට ඉඩ දෙන්න",
+    "preferences": "DM මනාපයන්",
+    "enableDms": "DM සක්‍රීය කරන්න",
+    "enableDmsSub": "සියලු පණිවිඩ අවහිර කිරීමට අක්‍රීය කරන්න.",
+    "allowNewDms": "නව DM වලට ඉඩ දෙන්න",
+    "allowNewDmsOn": "අක්‍රීය නම්, ඔබ කලින් කතා කළ අයට පමණක් ඔබට පණිවිඩ යැවිය හැක.",
+    "allowNewDmsOff": "නව පණිවිඩ සඳහා ඉඩ දීමට DM සක්‍රීය කරන්න.",
+    "perMessageFee": "පණිවිඩයකට ගාස්තුව (DHB)",
+    "perMessageFeeSub": "පණිවිඩයකට ගාස්තුවක් අය කරන්න. නොමිලේ DM සඳහා 0 ලෙස තබන්න. නිශ්චිත පරිශීලකයන්ට නොමිලේ ප්‍රවේශය දිය හැක.",
+    "allDisabled": "දැනට සියලු DM අක්‍රීයයි. නව DM පෙරනිමියෙන් අවහිර වේ."
   }
 }

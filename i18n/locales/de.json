@@ -3832,5 +3832,29 @@
     "stream": "Stream",
     "boostPost": "Beitrag boosten",
     "openSuperPowers": "SuperPowers öffnen"
+  },
+  "dm": {
+    "attachFailed": "Diese Datei konnte nicht angehängt werden.",
+    "removeAttachment": "Anhang entfernen",
+    "addTip": "Trinkgeld hinzufügen",
+    "chooseGif": "GIF auswählen",
+    "attachImage": "Bild anhängen",
+    "attachVideo": "Video anhängen",
+    "attachFile": "Datei anhängen",
+    "enhanceWithAi": "Nachricht mit KI verbessern",
+    "sendMessage": "Nachricht senden",
+    "cantMessageYourself": "Du kannst dir nicht selbst schreiben",
+    "askSomething": "Frag etwas...",
+    "removeOption": "Option entfernen",
+    "allowMultiple": "Mehrfachantworten erlauben",
+    "preferences": "DM-Einstellungen",
+    "enableDms": "DMs aktivieren",
+    "enableDmsSub": "Ausschalten, um alle Nachrichten zu blockieren.",
+    "allowNewDms": "Neue DMs zulassen",
+    "allowNewDmsOn": "Wenn aus, können dir nur Leute schreiben, mit denen du schon gechattet hast.",
+    "allowNewDmsOff": "Aktiviere DMs, um neue Nachrichten zuzulassen.",
+    "perMessageFee": "Gebühr pro Nachricht (DHB)",
+    "perMessageFeeSub": "Pro Nachricht abrechnen. Auf 0 setzen für kostenlose DMs. Einzelnen Nutzern kannst du freien Zugang geben.",
+    "allDisabled": "Alle DMs sind derzeit deaktiviert. Neue DMs werden standardmäßig blockiert."
   }
 }

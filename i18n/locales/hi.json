@@ -3819,5 +3819,29 @@
     "stream": "स्ट्रीम",
     "boostPost": "पोस्ट बूस्ट करें",
     "openSuperPowers": "SuperPowers खोलें"
+  },
+  "dm": {
+    "attachFailed": "वह फ़ाइल संलग्न नहीं हो सकी।",
+    "removeAttachment": "अटैचमेंट हटाएँ",
+    "addTip": "टिप जोड़ें",
+    "chooseGif": "GIF चुनें",
+    "attachImage": "छवि संलग्न करें",
+    "attachVideo": "वीडियो संलग्न करें",
+    "attachFile": "फ़ाइल संलग्न करें",
+    "enhanceWithAi": "AI से संदेश सुधारें",
+    "sendMessage": "संदेश भेजें",
+    "cantMessageYourself": "आप खुद को संदेश नहीं भेज सकते",
+    "askSomething": "कुछ पूछें...",
+    "removeOption": "विकल्प हटाएँ",
+    "allowMultiple": "एक से अधिक उत्तर की अनुमति दें",
+    "preferences": "DM प्राथमिकताएँ",
+    "enableDms": "DM चालू करें",
+    "enableDmsSub": "सभी संदेश रोकने के लिए बंद करें।",
+    "allowNewDms": "नए DM की अनुमति दें",
+    "allowNewDmsOn": "बंद होने पर केवल वही लोग संदेश भेज सकते हैं जिनसे आप पहले बात कर चुके हैं।",
+    "allowNewDmsOff": "नए संदेशों की अनुमति देने के लिए DM चालू करें।",
+    "perMessageFee": "प्रति संदेश शुल्क (DHB)",
+    "perMessageFeeSub": "प्रति संदेश शुल्क लें। मुफ़्त DM के लिए 0 रखें। आप कुछ उपयोगकर्ताओं को मुफ़्त पहुँच दे सकते हैं।",
+    "allDisabled": "फ़िलहाल सभी DM बंद हैं। नए DM डिफ़ॉल्ट रूप से रोके गए हैं।"
   }
 }

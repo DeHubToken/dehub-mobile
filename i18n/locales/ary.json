@@ -3789,5 +3789,29 @@
     "stream": "بث",
     "boostPost": "عزز البوسط",
     "openSuperPowers": "حل SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "ما قدرناش نرفقو هاد الملف.",
+    "removeAttachment": "حيد المرفق",
+    "addTip": "زيد بقشيش",
+    "chooseGif": "ختار GIF",
+    "attachImage": "رفق تصويرة",
+    "attachVideo": "رفق فيديو",
+    "attachFile": "رفق ملف",
+    "enhanceWithAi": "حسن الرسالة بالذكاء الاصطناعي",
+    "sendMessage": "صيفط الرسالة",
+    "cantMessageYourself": "ما تقدرش تصيفط لراسك",
+    "askSomething": "سول شي حاجة...",
+    "removeOption": "حيد الخيار",
+    "allowMultiple": "سمح بأكثر من جواب",
+    "preferences": "تفضيلات الرسائل",
+    "enableDms": "فعل الرسائل",
+    "enableDmsSub": "طفيه باش تمنع كاع الرسائل.",
+    "allowNewDms": "سمح برسائل جداد",
+    "allowNewDmsOn": "إلا كان مطفي، غير اللي هدرتي معاهم يقدرو يصيفطو ليك.",
+    "allowNewDmsOff": "شعل الرسائل باش تسمح برسائل جداد.",
+    "perMessageFee": "تمن لكل رسالة (DHB)",
+    "perMessageFeeSub": "حسب على المستخدمين كل رسالة. حطو 0 باش تكون الرسائل بلاش. تقدر تعطي وصول مجاني لناس معينين.",
+    "allDisabled": "كاع الرسائل مطفيين دابا. الرسائل الجداد ممنوعين بشكل افتراضي."
   }
 }

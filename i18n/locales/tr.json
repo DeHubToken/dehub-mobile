@@ -3825,5 +3825,29 @@
     "stream": "Yayın",
     "boostPost": "Gönderiyi güçlendir",
     "openSuperPowers": "SuperPowers'ı aç"
+  },
+  "dm": {
+    "attachFailed": "O dosya eklenemedi.",
+    "removeAttachment": "Eki kaldır",
+    "addTip": "Bahşiş ekle",
+    "chooseGif": "GIF seç",
+    "attachImage": "Görsel ekle",
+    "attachVideo": "Video ekle",
+    "attachFile": "Dosya ekle",
+    "enhanceWithAi": "Mesajı yapay zekâ ile geliştir",
+    "sendMessage": "Mesajı gönder",
+    "cantMessageYourself": "Kendinize mesaj gönderemezsiniz",
+    "askSomething": "Bir şey sor...",
+    "removeOption": "Seçeneği kaldır",
+    "allowMultiple": "Birden fazla yanıta izin ver",
+    "preferences": "DM tercihleri",
+    "enableDms": "DM'leri aç",
+    "enableDmsSub": "Tüm mesajları engellemek için kapatın.",
+    "allowNewDms": "Yeni DM'lere izin ver",
+    "allowNewDmsOn": "Kapalıysa yalnızca daha önce konuştuğunuz kişiler size yazabilir.",
+    "allowNewDmsOff": "Yeni mesajlara izin vermek için DM'leri açın.",
+    "perMessageFee": "Mesaj başına ücret (DHB)",
+    "perMessageFeeSub": "Mesaj başına ücret alın. Ücretsiz DM için 0 yapın. Belirli kullanıcılara ücretsiz erişim verebilirsiniz.",
+    "allDisabled": "Şu anda tüm DM'ler kapalı. Yeni DM'ler varsayılan olarak engellenir."
   }
 }

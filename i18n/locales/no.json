@@ -3753,5 +3753,29 @@
     "stream": "Strøm",
     "boostPost": "Boost innlegget",
     "openSuperPowers": "Åpne SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Kunne ikke legge ved den filen.",
+    "removeAttachment": "Fjern vedlegg",
+    "addTip": "Legg til tips",
+    "chooseGif": "Velg en GIF",
+    "attachImage": "Legg ved bilde",
+    "attachVideo": "Legg ved video",
+    "attachFile": "Legg ved fil",
+    "enhanceWithAi": "Forbedre meldingen med KI",
+    "sendMessage": "Send melding",
+    "cantMessageYourself": "Du kan ikke sende melding til deg selv",
+    "askSomething": "Spør om noe...",
+    "removeOption": "Fjern alternativ",
+    "allowMultiple": "Tillat flere svar",
+    "preferences": "DM-innstillinger",
+    "enableDms": "Aktiver DM-er",
+    "enableDmsSub": "Slå av for å blokkere alle meldinger.",
+    "allowNewDms": "Tillat nye DM-er",
+    "allowNewDmsOn": "Hvis av, kan bare folk du har chattet med sende deg meldinger.",
+    "allowNewDmsOff": "Slå på DM-er for å tillate nye meldinger.",
+    "perMessageFee": "Avgift per melding (DHB)",
+    "perMessageFeeSub": "Ta betalt per melding. Sett til 0 for gratis DM-er. Du kan gi enkelte brukere gratis tilgang.",
+    "allDisabled": "Alle DM-er er avslått nå. Nye DM-er blokkeres som standard."
   }
 }

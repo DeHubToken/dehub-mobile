@@ -3792,5 +3792,29 @@
     "stream": "Ukusakaza",
     "boostPost": "Khuthaza okuthunyelwe",
     "openSuperPowers": "Vula i-SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Ayikwazanga ukunamathisela lelo fayela.",
+    "removeAttachment": "Susa okunamathiselwe",
+    "addTip": "Engeza ithiphu",
+    "chooseGif": "Khetha i-GIF",
+    "attachImage": "Namathisela isithombe",
+    "attachVideo": "Namathisela ividiyo",
+    "attachFile": "Namathisela ifayela",
+    "enhanceWithAi": "Thuthukisa umlayezo nge-AI",
+    "sendMessage": "Thumela umlayezo",
+    "cantMessageYourself": "Awukwazi ukuzithumelela umlayezo",
+    "askSomething": "Buza okuthile...",
+    "removeOption": "Susa inketho",
+    "allowMultiple": "Vumela izimpendulo eziningi",
+    "preferences": "Okuncanyelwayo kwe-DM",
+    "enableDms": "Vula ama-DM",
+    "enableDmsSub": "Vala ukuze uvimbe yonke imilayezo.",
+    "allowNewDms": "Vumela ama-DM amasha",
+    "allowNewDmsOn": "Uma kuvaliwe, yilabo obukhuluma nabo kuphela abangakuthumelela umlayezo.",
+    "allowNewDmsOff": "Vula ama-DM ukuze uvumele imilayezo emisha.",
+    "perMessageFee": "Imali ngomlayezo ngamunye (DHB)",
+    "perMessageFeeSub": "Khokhisa umlayezo ngamunye. Beka ku-0 ukuze ama-DM abe mahhala. Ungavumela abasebenzisi abathile mahhala.",
+    "allDisabled": "Wonke ama-DM avaliwe njengamanje. Ama-DM amasha avinjelwe ngokuzenzakalelayo."
   }
 }
