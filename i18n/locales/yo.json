@@ -1439,7 +1439,12 @@
     "radio": "Rédíò",
     "trendingTracks": "Orin tó ń trendì",
     "moreVideos": "Fídíò síi",
-    "newReleases": "Tí a ṣẹ̀ṣẹ̀ tú sílẹ̀"
+    "newReleases": "Tí a ṣẹ̀ṣẹ̀ tú sílẹ̀",
+    "noMusicVideos": "Kò sí fídíò orin síbẹ̀",
+    "noAudioUploads": "Kò sí ohùn tí a gbé sókè síbẹ̀",
+    "noTracks": "Kò sí orin síbẹ̀",
+    "noPodcasts": "Kò sí pódkàsì síbẹ̀",
+    "noAudio": "Kò sí ohùn"
   },
   "notFound": {
     "title": "A Kò Rí Ojú Ìwé",
@@ -3792,5 +3797,17 @@
     "updated": "A ti ṣàtúnṣe ìfìwéránṣẹ́",
     "titlePlaceholder": "Àkọlé ìfìwéránṣẹ́",
     "descPlaceholder": "Àpèjúwe ìfìwéránṣẹ́"
+  },
+  "player": {
+    "openSettings": "Ṣí àwọn ètò",
+    "viewPlans": "Wo àwọn ètò",
+    "playbackSpeed": "Ìyára ìṣeré",
+    "moreOptions": "Àwọn àṣàyàn mìíràn"
+  },
+  "liveViewer": {
+    "loadingStream": "Ń ṣe ìkójọpọ̀ ìtànkálẹ̀...",
+    "streamPaused": "Ìtànkálẹ̀ dúró fún ìgbà díẹ̀",
+    "connectionDropped": "Ìsopọ̀ olùtànkálẹ̀ ti já.\nA ń dúró kí ó tún sopọ̀...",
+    "autoEnding": "Yóò parí fúnra rẹ̀ tí kò bá tẹ̀síwájú"
   }
 }

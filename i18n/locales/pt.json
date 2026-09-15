@@ -1458,7 +1458,12 @@
     "radio": "Rádio",
     "trendingTracks": "Faixas em alta",
     "moreVideos": "Mais vídeos",
-    "newReleases": "Lançamentos"
+    "newReleases": "Lançamentos",
+    "noMusicVideos": "Ainda sem videoclipes",
+    "noAudioUploads": "Ainda sem áudios carregados",
+    "noTracks": "Ainda sem faixas",
+    "noPodcasts": "Ainda sem podcasts",
+    "noAudio": "Sem áudio"
   },
   "notFound": {
     "title": "Página não encontrada",
@@ -3876,5 +3881,17 @@
     "updated": "Publicação atualizada",
     "titlePlaceholder": "Título da publicação",
     "descPlaceholder": "Descrição da publicação"
+  },
+  "player": {
+    "openSettings": "Abrir definições",
+    "viewPlans": "Ver planos",
+    "playbackSpeed": "Velocidade de reprodução",
+    "moreOptions": "Mais opções"
+  },
+  "liveViewer": {
+    "loadingStream": "A carregar transmissão...",
+    "streamPaused": "Transmissão em pausa",
+    "connectionDropped": "A ligação de quem transmite caiu.\nÀ espera que volte...",
+    "autoEnding": "Termina automaticamente se não for retomada"
   }
 }

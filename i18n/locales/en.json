@@ -1509,7 +1509,12 @@
     "radio": "Radio",
     "trendingTracks": "Trending Tracks",
     "moreVideos": "More Videos",
-    "newReleases": "New Releases"
+    "newReleases": "New Releases",
+    "noMusicVideos": "No music videos yet",
+    "noAudioUploads": "No audio uploads yet",
+    "noTracks": "No tracks yet",
+    "noPodcasts": "No podcasts yet",
+    "noAudio": "No audio"
   },
   "notFound": {
     "title": "Page Not Found",
@@ -3872,5 +3877,17 @@
     "updated": "Post updated",
     "titlePlaceholder": "Post title",
     "descPlaceholder": "Post description"
+  },
+  "player": {
+    "openSettings": "Open Settings",
+    "viewPlans": "View plans",
+    "playbackSpeed": "Playback speed",
+    "moreOptions": "More options"
+  },
+  "liveViewer": {
+    "loadingStream": "Loading stream...",
+    "streamPaused": "Stream Paused",
+    "connectionDropped": "The streamer's connection dropped.\nWaiting for them to reconnect...",
+    "autoEnding": "Auto-ending if not resumed"
   }
 }

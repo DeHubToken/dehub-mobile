@@ -1841,7 +1841,12 @@
     "radio": "Radio",
     "trendingTracks": "Trending Tracks",
     "moreVideos": "More Videos",
-    "newReleases": "New Releases"
+    "newReleases": "New Releases",
+    "noMusicVideos": "এখনো কোনো মিউজিক ভিডিও নাই",
+    "noAudioUploads": "এখনো কোনো অডিও আপলোড নাই",
+    "noTracks": "এখনো কোনো ট্র্যাক নাই",
+    "noPodcasts": "এখনো কোনো পডকাস্ট নাই",
+    "noAudio": "কোনো অডিও নাই"
   },
   "notFound": {
     "title": "পেজ পাওয়া যায় নাই",
@@ -3947,5 +3952,17 @@
     "updated": "পোস্ট আপডেট অইছে",
     "titlePlaceholder": "পোস্টর শিরোনাম",
     "descPlaceholder": "পোস্টর বিবরণ"
+  },
+  "player": {
+    "openSettings": "সেটিংস খুলউ",
+    "viewPlans": "প্ল্যান দেখউ",
+    "playbackSpeed": "প্লেব্যাক গতি",
+    "moreOptions": "আরো অপশন"
+  },
+  "liveViewer": {
+    "loadingStream": "স্ট্রিম লোড অইরা...",
+    "streamPaused": "স্ট্রিম থামি আছে",
+    "connectionDropped": "স্ট্রিমারর সংযোগ কাটি গেছে।\nআবার জুড়ার অপেক্ষাত...",
+    "autoEnding": "আবার শুরু না অইলে নিজে নিজেউ শেষ অইব"
   }
 }

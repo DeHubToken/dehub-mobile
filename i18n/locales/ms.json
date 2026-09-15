@@ -1808,7 +1808,12 @@
     "radio": "Radio",
     "trendingTracks": "Trending Tracks",
     "moreVideos": "More Videos",
-    "newReleases": "New Releases"
+    "newReleases": "New Releases",
+    "noMusicVideos": "Belum ada video muzik",
+    "noAudioUploads": "Belum ada muat naik audio",
+    "noTracks": "Belum ada trek",
+    "noPodcasts": "Belum ada podcast",
+    "noAudio": "Tiada audio"
   },
   "leaderboard": {
     "title": "Leaderboards",
@@ -4065,5 +4070,17 @@
     "updated": "Siaran dikemas kini",
     "titlePlaceholder": "Tajuk siaran",
     "descPlaceholder": "Penerangan siaran"
+  },
+  "player": {
+    "openSettings": "Buka tetapan",
+    "viewPlans": "Lihat pelan",
+    "playbackSpeed": "Kelajuan main balik",
+    "moreOptions": "Lagi pilihan"
+  },
+  "liveViewer": {
+    "loadingStream": "Memuatkan siaran...",
+    "streamPaused": "Siaran dijeda",
+    "connectionDropped": "Sambungan penyiar terputus.\nMenunggu mereka menyambung semula...",
+    "autoEnding": "Akan tamat automatik jika tidak disambung semula"
   }
 }

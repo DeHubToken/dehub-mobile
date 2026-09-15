@@ -1455,7 +1455,12 @@
     "radio": "ラジオ",
     "trendingTracks": "トレンドトラック",
     "moreVideos": "もっと動画",
-    "newReleases": "新着リリース"
+    "newReleases": "新着リリース",
+    "noMusicVideos": "ミュージックビデオはまだありません",
+    "noAudioUploads": "音声のアップロードはまだありません",
+    "noTracks": "トラックはまだありません",
+    "noPodcasts": "ポッドキャストはまだありません",
+    "noAudio": "音声なし"
   },
   "notFound": {
     "title": "ページが見つかりません",
@@ -3869,5 +3874,17 @@
     "updated": "投稿を更新しました",
     "titlePlaceholder": "投稿タイトル",
     "descPlaceholder": "投稿の説明"
+  },
+  "player": {
+    "openSettings": "設定を開く",
+    "viewPlans": "プランを見る",
+    "playbackSpeed": "再生速度",
+    "moreOptions": "その他の操作"
+  },
+  "liveViewer": {
+    "loadingStream": "配信を読み込み中…",
+    "streamPaused": "配信は一時停止中",
+    "connectionDropped": "配信者の接続が切れました。\n再接続を待っています…",
+    "autoEnding": "再開されない場合は自動終了します"
   }
 }

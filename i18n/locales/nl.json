@@ -1816,7 +1816,12 @@
     "radio": "Radio",
     "trendingTracks": "Populaire nummers",
     "moreVideos": "Meer video's",
-    "newReleases": "Nieuwe releases"
+    "newReleases": "Nieuwe releases",
+    "noMusicVideos": "Nog geen videoclips",
+    "noAudioUploads": "Nog geen audio-uploads",
+    "noTracks": "Nog geen tracks",
+    "noPodcasts": "Nog geen podcasts",
+    "noAudio": "Geen audio"
   },
   "leaderboard": {
     "title": "Ranglijsten",
@@ -4069,5 +4074,17 @@
     "updated": "Bericht bijgewerkt",
     "titlePlaceholder": "Berichttitel",
     "descPlaceholder": "Berichtbeschrijving"
+  },
+  "player": {
+    "openSettings": "Instellingen openen",
+    "viewPlans": "Abonnementen bekijken",
+    "playbackSpeed": "Afspeelsnelheid",
+    "moreOptions": "Meer opties"
+  },
+  "liveViewer": {
+    "loadingStream": "Stream laden...",
+    "streamPaused": "Stream gepauzeerd",
+    "connectionDropped": "De verbinding van de streamer is weggevallen.\nWachten tot ze terug zijn...",
+    "autoEnding": "Stopt automatisch als het niet wordt hervat"
   }
 }

@@ -1435,7 +1435,12 @@
     "radio": "რადიო",
     "trendingTracks": "ტრენდული ტრეკები",
     "moreVideos": "მეტი ვიდეო",
-    "newReleases": "ახალი რელიზები"
+    "newReleases": "ახალი რელიზები",
+    "noMusicVideos": "მუსიკალური ვიდეოები ჯერ არ არის",
+    "noAudioUploads": "აუდიო ჯერ არ აიტვირთა",
+    "noTracks": "ტრეკები ჯერ არ არის",
+    "noPodcasts": "პოდკასტები ჯერ არ არის",
+    "noAudio": "აუდიო არ არის"
   },
   "notFound": {
     "title": "გვერდი ვერ მოიძებნა",
@@ -3837,5 +3842,17 @@
     "updated": "პოსტი განახლდა",
     "titlePlaceholder": "პოსტის სათაური",
     "descPlaceholder": "პოსტის აღწერა"
+  },
+  "player": {
+    "openSettings": "პარამეტრების გახსნა",
+    "viewPlans": "ნახე გეგმები",
+    "playbackSpeed": "დაკვრის სიჩქარე",
+    "moreOptions": "სხვა ვარიანტები"
+  },
+  "liveViewer": {
+    "loadingStream": "სტრიმის ჩატვირთვა...",
+    "streamPaused": "სტრიმი შეჩერებულია",
+    "connectionDropped": "სტრიმერის კავშირი გაწყდა.\nველოდებით ხელახლა დაკავშირებას...",
+    "autoEnding": "ავტომატურად დასრულდება, თუ არ განახლდა"
   }
 }

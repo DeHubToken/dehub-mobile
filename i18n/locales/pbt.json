@@ -1413,7 +1413,12 @@
     "radio": "راډیو",
     "trendingTracks": "ټرنډینګ ترانې",
     "moreVideos": "نورې ویډیوګانې",
-    "newReleases": "نوي خپرونې"
+    "newReleases": "نوي خپرونې",
+    "noMusicVideos": "تر اوسه د موسیقۍ ویډیو نشته",
+    "noAudioUploads": "تر اوسه غږیز اپلوډ نشته",
+    "noTracks": "تر اوسه ټریک نشته",
+    "noPodcasts": "تر اوسه پوډکاسټ نشته",
+    "noAudio": "غږ نشته"
   },
   "notFound": {
     "title": "پاڼه ونه موندل شوه",
@@ -3752,5 +3757,17 @@
     "updated": "پوسټ تازه شو",
     "titlePlaceholder": "د پوسټ سرلیک",
     "descPlaceholder": "د پوسټ تشریح"
+  },
+  "player": {
+    "openSettings": "امستنې خلاصې کړئ",
+    "viewPlans": "پلانونه وګورئ",
+    "playbackSpeed": "د غږولو سرعت",
+    "moreOptions": "نور انتخابونه"
+  },
+  "liveViewer": {
+    "loadingStream": "خپرونه لوډیږي...",
+    "streamPaused": "خپرونه ودرېده",
+    "connectionDropped": "د خپرونکي اړیکه پرې شوه.\nد بیا وصلېدو په تمه یو...",
+    "autoEnding": "که بیا پیل نشي نو پخپله به پای ته ورسیږي"
   }
 }

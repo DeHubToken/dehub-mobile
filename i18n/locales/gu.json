@@ -1439,7 +1439,12 @@
     "radio": "રેડિયો",
     "trendingTracks": "ટ્રેન્ડિંગ ટ્રેક્સ",
     "moreVideos": "વધુ વીડિયો",
-    "newReleases": "નવા રિલીઝ"
+    "newReleases": "નવા રિલીઝ",
+    "noMusicVideos": "હજી કોઈ મ્યુઝિક વિડિયો નથી",
+    "noAudioUploads": "હજી કોઈ ઑડિયો અપલોડ નથી",
+    "noTracks": "હજી કોઈ ટ્રેક નથી",
+    "noPodcasts": "હજી કોઈ પોડકાસ્ટ નથી",
+    "noAudio": "કોઈ ઑડિયો નથી"
   },
   "notFound": {
     "title": "પૃષ્ઠ મળ્યું નથી",
@@ -3794,5 +3799,17 @@
     "updated": "પોસ્ટ અપડેટ થઈ",
     "titlePlaceholder": "પોસ્ટનું શીર્ષક",
     "descPlaceholder": "પોસ્ટનું વર્ણન"
+  },
+  "player": {
+    "openSettings": "સેટિંગ્સ ખોલો",
+    "viewPlans": "પ્લાન જુઓ",
+    "playbackSpeed": "પ્લેબેક સ્પીડ",
+    "moreOptions": "વધુ વિકલ્પો"
+  },
+  "liveViewer": {
+    "loadingStream": "સ્ટ્રીમ લોડ થઈ રહી છે...",
+    "streamPaused": "સ્ટ્રીમ થોભાવી",
+    "connectionDropped": "સ્ટ્રીમરનું કનેક્શન તૂટી ગયું.\nફરી જોડાવાની રાહ જોવાઈ રહી છે...",
+    "autoEnding": "ફરી શરૂ ન થાય તો આપોઆપ સમાપ્ત થશે"
   }
 }

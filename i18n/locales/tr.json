@@ -1478,7 +1478,12 @@
     "radio": "Radyo",
     "trendingTracks": "Trend Parçalar",
     "moreVideos": "Daha Fazla Video",
-    "newReleases": "Yeni Çıkanlar"
+    "newReleases": "Yeni Çıkanlar",
+    "noMusicVideos": "Henüz müzik videosu yok",
+    "noAudioUploads": "Henüz ses yüklemesi yok",
+    "noTracks": "Henüz parça yok",
+    "noPodcasts": "Henüz podcast yok",
+    "noAudio": "Ses yok"
   },
   "notFound": {
     "title": "Sayfa Bulunamadı",
@@ -3864,5 +3869,17 @@
     "updated": "Gönderi güncellendi",
     "titlePlaceholder": "Gönderi başlığı",
     "descPlaceholder": "Gönderi açıklaması"
+  },
+  "player": {
+    "openSettings": "Ayarları aç",
+    "viewPlans": "Planları görüntüle",
+    "playbackSpeed": "Oynatma hızı",
+    "moreOptions": "Diğer seçenekler"
+  },
+  "liveViewer": {
+    "loadingStream": "Yayın yükleniyor...",
+    "streamPaused": "Yayın duraklatıldı",
+    "connectionDropped": "Yayıncının bağlantısı koptu.\nYeniden bağlanmasını bekliyoruz...",
+    "autoEnding": "Devam etmezse otomatik olarak sona erer"
   }
 }

@@ -1418,7 +1418,12 @@
     "radio": "ራድዮ",
     "trendingTracks": "ዝዘውሩ ትራኻት",
     "moreVideos": "ዝያዳ ቪድዮታት",
-    "newReleases": "ሓደስቲ ምውጻእ"
+    "newReleases": "ሓደስቲ ምውጻእ",
+    "noMusicVideos": "ክሳብ ሕጂ ናይ ሙዚቃ ቪድዮታት የለዉን",
+    "noAudioUploads": "ክሳብ ሕጂ ናይ ድምጺ ምጽዓን የለን",
+    "noTracks": "ክሳብ ሕጂ ትራክ የለን",
+    "noPodcasts": "ክሳብ ሕጂ ፖድካስት የለን",
+    "noAudio": "ድምጺ የለን"
   },
   "notFound": {
     "title": "ገጽ ኣይተረኽበን",
@@ -3767,5 +3772,17 @@
     "updated": "ጽሑፍ ተሓዲሱ",
     "titlePlaceholder": "ኣርእስቲ ጽሑፍ",
     "descPlaceholder": "መግለጺ ጽሑፍ"
+  },
+  "player": {
+    "openSettings": "ቅንብራት ክፈት",
+    "viewPlans": "መደባት ርአ",
+    "playbackSpeed": "ፍጥነት ምጽዋት",
+    "moreOptions": "ተወሳኺ ኣማራጺታት"
+  },
+  "liveViewer": {
+    "loadingStream": "ስርጭት ይጽዓን ኣሎ...",
+    "streamPaused": "ስርጭት ተቛሪጹ",
+    "connectionDropped": "ናይ ኣስራጪ ርክብ ተቛሪጹ።\nከም ብሓድሽ ክራኸብ ንጽበ ኣለና...",
+    "autoEnding": "እንተዘይቀጺሉ ባዕሉ ክውዳእ እዩ"
   }
 }

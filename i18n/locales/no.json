@@ -1312,7 +1312,12 @@
     "radio": "Radio",
     "trendingTracks": "Populære spor",
     "moreVideos": "Flere videoer",
-    "newReleases": "Nye utgivelser"
+    "newReleases": "Nye utgivelser",
+    "noMusicVideos": "Ingen musikkvideoer ennå",
+    "noAudioUploads": "Ingen lydopplastinger ennå",
+    "noTracks": "Ingen spor ennå",
+    "noPodcasts": "Ingen podkaster ennå",
+    "noAudio": "Ingen lyd"
   },
   "leaderboard": {
     "title": "Toppliste",
@@ -3792,5 +3797,17 @@
     "updated": "Innlegg oppdatert",
     "titlePlaceholder": "Innleggstittel",
     "descPlaceholder": "Innleggsbeskrivelse"
+  },
+  "player": {
+    "openSettings": "Åpne innstillinger",
+    "viewPlans": "Se planer",
+    "playbackSpeed": "Avspillingshastighet",
+    "moreOptions": "Flere alternativer"
+  },
+  "liveViewer": {
+    "loadingStream": "Laster strøm...",
+    "streamPaused": "Strøm satt på pause",
+    "connectionDropped": "Streamerens tilkobling falt ut.\nVenter på at de kobler til igjen...",
+    "autoEnding": "Avsluttes automatisk hvis den ikke gjenopptas"
   }
 }

@@ -1434,7 +1434,12 @@
     "radio": "Rediyo",
     "trendingTracks": "Waƙoƙin da ake sha'awa",
     "moreVideos": "Ƙarin bidiyo",
-    "newReleases": "Sabbin fitarwa"
+    "newReleases": "Sabbin fitarwa",
+    "noMusicVideos": "Babu bidiyon waƙa tukuna",
+    "noAudioUploads": "Babu loda sauti tukuna",
+    "noTracks": "Babu waƙoƙi tukuna",
+    "noPodcasts": "Babu kasidu tukuna",
+    "noAudio": "Babu sauti"
   },
   "notFound": {
     "title": "Ba a Sami Shafin Ba",
@@ -3792,5 +3797,17 @@
     "updated": "An sabunta saƙon",
     "titlePlaceholder": "Taken saƙo",
     "descPlaceholder": "Bayanin saƙo"
+  },
+  "player": {
+    "openSettings": "Buɗe saituna",
+    "viewPlans": "Duba tsare-tsare",
+    "playbackSpeed": "Saurin kunnawa",
+    "moreOptions": "Ƙarin zaɓuɓɓuka"
+  },
+  "liveViewer": {
+    "loadingStream": "Ana loda yaɗawa...",
+    "streamPaused": "An dakatar da yaɗawa",
+    "connectionDropped": "Haɗin mai yaɗawa ya yanke.\nAna jiran ya sake haɗawa...",
+    "autoEnding": "Zai ƙare ta atomatik idan bai ci gaba ba"
   }
 }

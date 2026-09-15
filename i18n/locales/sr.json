@@ -1254,7 +1254,12 @@
     "radio": "Радио",
     "trendingTracks": "Популарне нумере",
     "moreVideos": "Још видео снимака",
-    "newReleases": "Нова издања"
+    "newReleases": "Нова издања",
+    "noMusicVideos": "Још нема музичких спотова",
+    "noAudioUploads": "Још нема отпремљених аудио записа",
+    "noTracks": "Још нема нумера",
+    "noPodcasts": "Још нема подкаста",
+    "noAudio": "Нема звука"
   },
   "notFound": {
     "title": "Страница није пронађена",
@@ -3569,5 +3574,17 @@
     "updated": "Објава је ажурирана",
     "titlePlaceholder": "Наслов објаве",
     "descPlaceholder": "Опис објаве"
+  },
+  "player": {
+    "openSettings": "Отвори подешавања",
+    "viewPlans": "Погледај планове",
+    "playbackSpeed": "Брзина репродукције",
+    "moreOptions": "Више опција"
+  },
+  "liveViewer": {
+    "loadingStream": "Учитавање стрима...",
+    "streamPaused": "Стрим је паузиран",
+    "connectionDropped": "Стримеру је пала веза.\nЧекамо да се поново повеже...",
+    "autoEnding": "Аутоматски се завршава ако се не настави"
   }
 }

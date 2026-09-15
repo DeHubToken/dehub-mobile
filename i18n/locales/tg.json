@@ -1298,7 +1298,12 @@
     "radio": "Радио",
     "trendingTracks": "Суруди маъмул",
     "moreVideos": "Видеоҳои бештар",
-    "newReleases": "Нашрҳои нав"
+    "newReleases": "Нашрҳои нав",
+    "noMusicVideos": "Ҳанӯз видеои мусиқӣ нест",
+    "noAudioUploads": "Ҳанӯз аудио боргузорӣ нашудааст",
+    "noTracks": "Ҳанӯз трек нест",
+    "noPodcasts": "Ҳанӯз подкаст нест",
+    "noAudio": "Аудио нест"
   },
   "leaderboard": {
     "title": "Рейтинг",
@@ -3780,5 +3785,17 @@
     "updated": "Паём нав карда шуд",
     "titlePlaceholder": "Сарлавҳаи паём",
     "descPlaceholder": "Тавсифи паём"
+  },
+  "player": {
+    "openSettings": "Танзимотро кушоед",
+    "viewPlans": "Нақшаҳоро бинед",
+    "playbackSpeed": "Суръати пахш",
+    "moreOptions": "Имконоти бештар"
+  },
+  "liveViewer": {
+    "loadingStream": "Пахш бор мешавад...",
+    "streamPaused": "Пахш таваққуф шуд",
+    "connectionDropped": "Пайванди пахшкунанда қатъ шуд.\nМунтазири баргаштани ӯ ҳастем...",
+    "autoEnding": "Агар аз сар гирифта нашавад, худкор анҷом меёбад"
   }
 }

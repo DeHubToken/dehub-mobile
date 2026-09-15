@@ -1315,7 +1315,12 @@
     "radio": "Radiyo",
     "trendingTracks": "Taradzoghe yerazhshtoutyunner",
     "moreVideos": "Aveli shat tesaholvakner",
-    "newReleases": "Nor targmanner"
+    "newReleases": "Nor targmanner",
+    "noMusicVideos": "Երաժշտական տեսահոլովակներ դեռ չկան",
+    "noAudioUploads": "Աուդիո վերբեռնումներ դեռ չկան",
+    "noTracks": "Թրեքեր դեռ չկան",
+    "noPodcasts": "Փոդքասթեր դեռ չկան",
+    "noAudio": "Աուդիո չկա"
   },
   "leaderboard": {
     "title": "Dasakargoum",
@@ -3795,5 +3800,17 @@
     "updated": "Գրառումը թարմացվեց",
     "titlePlaceholder": "Գրառման վերնագիր",
     "descPlaceholder": "Գրառման նկարագրություն"
+  },
+  "player": {
+    "openSettings": "Բացել կարգավորումները",
+    "viewPlans": "Դիտել պլանները",
+    "playbackSpeed": "Նվագարկման արագություն",
+    "moreOptions": "Այլ ընտրանքներ"
+  },
+  "liveViewer": {
+    "loadingStream": "Հեռարձակումը բեռնվում է...",
+    "streamPaused": "Հեռարձակումը դադարեցված է",
+    "connectionDropped": "Հեռարձակողի կապն ընդհատվեց։\nՍպասում ենք վերամիացմանը...",
+    "autoEnding": "Ինքնաբերաբար կավարտվի, եթե չվերսկսվի"
   }
 }

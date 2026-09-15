@@ -1434,7 +1434,12 @@
     "radio": "Raadiyaha",
     "trendingTracks": "Heesaha Trend-ka ah",
     "moreVideos": "Fiidiyow Kale",
-    "newReleases": "Soo Saarista Cusub"
+    "newReleases": "Soo Saarista Cusub",
+    "noMusicVideos": "Weli ma jiraan fiidyo muusiko",
+    "noAudioUploads": "Weli ma jiraan codad la soo geliyay",
+    "noTracks": "Weli ma jiraan heeso",
+    "noPodcasts": "Weli ma jiraan podcast",
+    "noAudio": "Cod ma jiro"
   },
   "notFound": {
     "title": "Bogga Lama Helin",
@@ -3793,5 +3798,17 @@
     "updated": "Qoraalka waa la cusbooneysiiyay",
     "titlePlaceholder": "Cinwaanka qoraalka",
     "descPlaceholder": "Sharaxaadda qoraalka"
+  },
+  "player": {
+    "openSettings": "Fur goobaha",
+    "viewPlans": "Eeg qorshayaasha",
+    "playbackSpeed": "Xawaaraha ciyaarista",
+    "moreOptions": "Doorasho dheeraad ah"
+  },
+  "liveViewer": {
+    "loadingStream": "Baahinta waa la soo rarayaa...",
+    "streamPaused": "Baahinta waa la hakiyay",
+    "connectionDropped": "Xiriirka baahiyaha ayaa go'ay.\nWaxaan sugaynaa inuu dib u soo xiro...",
+    "autoEnding": "Si toos ah ayuu u dhammaan doonaa haddii aan la sii wadin"
   }
 }

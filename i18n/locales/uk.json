@@ -2024,7 +2024,12 @@
     "radio": "Radio",
     "trendingTracks": "Trending Tracks",
     "moreVideos": "More Videos",
-    "newReleases": "New Releases"
+    "newReleases": "New Releases",
+    "noMusicVideos": "Музичних відео ще немає",
+    "noAudioUploads": "Аудіозавантажень ще немає",
+    "noTracks": "Треків ще немає",
+    "noPodcasts": "Подкастів ще немає",
+    "noAudio": "Немає аудіо"
   },
   "leaderboard": {
     "title": "Leaderboards",
@@ -4278,5 +4283,17 @@
     "updated": "Допис оновлено",
     "titlePlaceholder": "Заголовок допису",
     "descPlaceholder": "Опис допису"
+  },
+  "player": {
+    "openSettings": "Відкрити налаштування",
+    "viewPlans": "Переглянути плани",
+    "playbackSpeed": "Швидкість відтворення",
+    "moreOptions": "Інші параметри"
+  },
+  "liveViewer": {
+    "loadingStream": "Завантаження трансляції...",
+    "streamPaused": "Трансляцію призупинено",
+    "connectionDropped": "Зв'язок зі стрімером обірвався.\nЧекаємо, доки він повернеться...",
+    "autoEnding": "Автоматично завершиться, якщо не відновиться"
   }
 }

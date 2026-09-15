@@ -1394,7 +1394,12 @@
     "radio": "ریڈیو",
     "trendingTracks": "ٹرینڈنگ ٹریک",
     "moreVideos": "مزید ویڈیو",
-    "newReleases": "نئی ریلیز"
+    "newReleases": "نئی ریلیز",
+    "noMusicVideos": "هێشتا هیچ ڤیدیۆیەکی مۆسیقا نییە",
+    "noAudioUploads": "هێشتا هیچ دەنگێک بار نەکراوە",
+    "noTracks": "هێشتا هیچ تراکێک نییە",
+    "noPodcasts": "هێشتا هیچ پۆدکاستێک نییە",
+    "noAudio": "دەنگ نییە"
   },
   "notFound": {
     "title": "صفحہ نہیں ملا",
@@ -3801,5 +3806,17 @@
     "updated": "پۆست نوێکرایەوە",
     "titlePlaceholder": "ناونیشانی پۆست",
     "descPlaceholder": "وەسفی پۆست"
+  },
+  "player": {
+    "openSettings": "ڕێکخستنەکان بکەرەوە",
+    "viewPlans": "پلانەکان ببینە",
+    "playbackSpeed": "خێرایی لێدان",
+    "moreOptions": "هەڵبژاردەی زیاتر"
+  },
+  "liveViewer": {
+    "loadingStream": "پەخش بار دەکرێت...",
+    "streamPaused": "پەخش وەستێنرا",
+    "connectionDropped": "پەیوەندی پەخشکەر پچڕا.\nچاوەڕێی دەکەین پەیوەندی بکاتەوە...",
+    "autoEnding": "ئەگەر دەست پێنەکاتەوە بە خۆکارانە کۆتایی دێت"
   }
 }

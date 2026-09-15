@@ -1458,7 +1458,12 @@
     "radio": "Radio",
     "trendingTracks": "Pistes tendance",
     "moreVideos": "Plus de vidéos",
-    "newReleases": "Nouveautés"
+    "newReleases": "Nouveautés",
+    "noMusicVideos": "Aucun clip pour l'instant",
+    "noAudioUploads": "Aucun audio téléversé pour l'instant",
+    "noTracks": "Aucun titre pour l'instant",
+    "noPodcasts": "Aucun podcast pour l'instant",
+    "noAudio": "Aucun audio"
   },
   "notFound": {
     "title": "Page non trouvée",
@@ -3876,5 +3881,17 @@
     "updated": "Publication mise à jour",
     "titlePlaceholder": "Titre de la publication",
     "descPlaceholder": "Description de la publication"
+  },
+  "player": {
+    "openSettings": "Ouvrir les réglages",
+    "viewPlans": "Voir les formules",
+    "playbackSpeed": "Vitesse de lecture",
+    "moreOptions": "Plus d'options"
+  },
+  "liveViewer": {
+    "loadingStream": "Chargement de la diffusion...",
+    "streamPaused": "Diffusion en pause",
+    "connectionDropped": "La connexion du streamer a été coupée.\nEn attente de sa reconnexion...",
+    "autoEnding": "Se terminera automatiquement s'il ne reprend pas"
   }
 }

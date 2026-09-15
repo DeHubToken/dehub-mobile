@@ -1865,7 +1865,12 @@
     "radio": "Radio",
     "trendingTracks": "Trending Tracks",
     "moreVideos": "More Videos",
-    "newReleases": "New Releases"
+    "newReleases": "New Releases",
+    "noMusicVideos": "Nog geen musiekvideo's nie",
+    "noAudioUploads": "Nog geen klanklaaiings nie",
+    "noTracks": "Nog geen snitte nie",
+    "noPodcasts": "Nog geen potgooie nie",
+    "noAudio": "Geen klank nie"
   },
   "explorePage": {
     "searchPlaceholder": "Search for people, posts, or content...",
@@ -3919,5 +3924,17 @@
     "updated": "Plasing bygewerk",
     "titlePlaceholder": "Plasingstitel",
     "descPlaceholder": "Plasingbeskrywing"
+  },
+  "player": {
+    "openSettings": "Open instellings",
+    "viewPlans": "Bekyk planne",
+    "playbackSpeed": "Terugspeelspoed",
+    "moreOptions": "Meer opsies"
+  },
+  "liveViewer": {
+    "loadingStream": "Laai stroom...",
+    "streamPaused": "Stroom onderbreek",
+    "connectionDropped": "Die stromer se verbinding het geval.\nOns wag dat hulle weer inskakel...",
+    "autoEnding": "Eindig outomaties as dit nie hervat nie"
   }
 }

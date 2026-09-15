@@ -1443,7 +1443,12 @@
     "radio": "Radio",
     "trendingTracks": "Trendovske pjesme",
     "moreVideos": "Više videozapisa",
-    "newReleases": "Nova izdanja"
+    "newReleases": "Nova izdanja",
+    "noMusicVideos": "Još nema glazbenih spotova",
+    "noAudioUploads": "Još nema prenesenih audiozapisa",
+    "noTracks": "Još nema pjesama",
+    "noPodcasts": "Još nema podcasta",
+    "noAudio": "Nema zvuka"
   },
   "notFound": {
     "title": "Stranica nije pronađena",
@@ -3802,5 +3807,17 @@
     "updated": "Objava ažurirana",
     "titlePlaceholder": "Naslov objave",
     "descPlaceholder": "Opis objave"
+  },
+  "player": {
+    "openSettings": "Otvori postavke",
+    "viewPlans": "Pogledaj planove",
+    "playbackSpeed": "Brzina reprodukcije",
+    "moreOptions": "Više opcija"
+  },
+  "liveViewer": {
+    "loadingStream": "Učitavanje prijenosa...",
+    "streamPaused": "Prijenos pauziran",
+    "connectionDropped": "Streamerova veza je pala.\nČekamo da se ponovno spoji...",
+    "autoEnding": "Automatski završava ako se ne nastavi"
   }
 }
