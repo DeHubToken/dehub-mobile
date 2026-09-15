@@ -3289,7 +3289,12 @@
     "descriptionPlaceholder": "Kas pieder šajā mapē?",
     "createAndSave": "Izveidot un saglabāt",
     "createNew": "Izveidot jaunu mapi",
-    "closeA11y": "Aizvērt mapju atlasītāju"
+    "closeA11y": "Aizvērt mapju atlasītāju",
+    "loadFailed": "Neizdevās ielādēt grāmatzīmju mapes",
+    "addedTo": "Pievienots mapei {{name}}",
+    "removedFrom": "Noņemts no mapes {{name}}",
+    "savedTo": "Saglabāts mapē {{name}}",
+    "createdNotAdded": "Mape izveidota, bet ieraksts netika pievienots"
   },
   "ppv": {
     "title": "Maksas satura skatīšanās",
@@ -3359,6 +3364,7 @@
     "secureWithBiometrics": "Aizsargāt ar biometriju",
     "thatsGoneToo": "Arī tā vairs nav — tomēr sākt no jauna",
     "tryBiometrics": "Izmēģini biometriju šajā tālrunī",
-    "unlockWithBiometrics": "Atbloķēt ar biometriju"
+    "unlockWithBiometrics": "Atbloķēt ar biometriju",
+    "confirmStartOver": "Apstiprini, ka vēlies sākt no jauna ar jaunu maku"
   }
 }

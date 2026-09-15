@@ -3290,7 +3290,12 @@
     "descriptionPlaceholder": "Mitä tähän kansioon kuuluu?",
     "createAndSave": "Luo ja tallenna",
     "createNew": "Luo uusi kansio",
-    "closeA11y": "Sulje kansiovalitsin"
+    "closeA11y": "Sulje kansiovalitsin",
+    "loadFailed": "Kirjanmerkkikansioita ei voitu ladata",
+    "addedTo": "Lisätty kansioon {{name}}",
+    "removedFrom": "Poistettu kansiosta {{name}}",
+    "savedTo": "Tallennettu kansioon {{name}}",
+    "createdNotAdded": "Kansio luotiin, mutta julkaisua ei lisätty"
   },
   "ppv": {
     "title": "Katselumaksullinen sisältö",
@@ -3360,6 +3365,7 @@
     "secureWithBiometrics": "Suojaa biometrialla",
     "thatsGoneToo": "Sekin on mennyt — aloita silti alusta",
     "tryBiometrics": "Kokeile biometriaa tällä puhelimella",
-    "unlockWithBiometrics": "Avaa biometrialla"
+    "unlockWithBiometrics": "Avaa biometrialla",
+    "confirmStartOver": "Vahvista, että haluat aloittaa alusta uudella lompakolla"
   }
 }

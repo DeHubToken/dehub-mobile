@@ -3240,7 +3240,12 @@
     "descriptionPlaceholder": "په دې فولډر کې څه ځای لري؟",
     "createAndSave": "جوړ کړئ او خوندي کړئ",
     "createNew": "نوی فولډر جوړ کړئ",
-    "closeA11y": "د فولډر غوره کوونکی وتړئ"
+    "closeA11y": "د فولډر غوره کوونکی وتړئ",
+    "loadFailed": "د نښانو فولډرونه بار نشول",
+    "addedTo": "{{name}} ته اضافه شو",
+    "removedFrom": "له {{name}} څخه لرې شو",
+    "savedTo": "په {{name}} کې خوندي شو",
+    "createdNotAdded": "فولډر جوړ شو، خو لیکنه ورزیاته نشوه"
   },
   "ppv": {
     "title": "د هرې کتنې لپاره تادیه شوې منځپانګه",
@@ -3310,6 +3315,7 @@
     "secureWithBiometrics": "په بایومیټریک خوندي کړئ",
     "thatsGoneToo": "هغه هم ورک شو — بیا هم پیل وکړئ",
     "tryBiometrics": "په دې ټیلیفون کې بایومیټریک هڅه وکړئ",
-    "unlockWithBiometrics": "په بایومیټریک خلاص کړئ"
+    "unlockWithBiometrics": "په بایومیټریک خلاص کړئ",
+    "confirmStartOver": "تایید کړئ چې غواړئ له نوې کیسې سره بیا پیل وکړئ"
   }
 }

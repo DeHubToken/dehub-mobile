@@ -3294,7 +3294,12 @@
     "descriptionPlaceholder": "Co patří do této složky?",
     "createAndSave": "Vytvořit a uložit",
     "createNew": "Vytvořit novou složku",
-    "closeA11y": "Zavřít výběr složky"
+    "closeA11y": "Zavřít výběr složky",
+    "loadFailed": "Složky záložek se nepodařilo načíst",
+    "addedTo": "Přidáno do {{name}}",
+    "removedFrom": "Odebráno z {{name}}",
+    "savedTo": "Uloženo do {{name}}",
+    "createdNotAdded": "Složka byla vytvořena, ale příspěvek nebyl přidán"
   },
   "ppv": {
     "title": "Obsah placený za zhlédnutí",
@@ -3364,6 +3369,7 @@
     "secureWithBiometrics": "Zabezpečit biometrikou",
     "thatsGoneToo": "To je taky pryč — přesto začít znovu",
     "tryBiometrics": "Vyzkoušet biometriku na tomto telefonu",
-    "unlockWithBiometrics": "Odemknout biometrikou"
+    "unlockWithBiometrics": "Odemknout biometrikou",
+    "confirmStartOver": "Potvrďte, že chcete začít znovu s novou peněženkou"
   }
 }

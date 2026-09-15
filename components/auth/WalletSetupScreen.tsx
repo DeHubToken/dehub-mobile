@@ -796,7 +796,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       try {
         // A phone with no screen lock returns "unenforceable" without throwing,
         // consistent with every other key gate in the app.
-        await requireDeviceOwner("Confirm you want to start over with a new wallet");
+        await requireDeviceOwner(t("walletSetup.confirmStartOver"));
         await onResetWallet();
       } catch (e: any) {
         setError(

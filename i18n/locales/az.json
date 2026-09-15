@@ -3274,7 +3274,12 @@
     "descriptionPlaceholder": "Bu qovluqda nə saxlanılacaq?",
     "createAndSave": "Yarat və saxla",
     "createNew": "Yeni qovluq yarat",
-    "closeA11y": "Qovluq seçicisini bağla"
+    "closeA11y": "Qovluq seçicisini bağla",
+    "loadFailed": "Əlfəcin qovluqları yüklənmədi",
+    "addedTo": "{{name}} qovluğuna əlavə edildi",
+    "removedFrom": "{{name}} qovluğundan silindi",
+    "savedTo": "{{name}} qovluğuna yadda saxlanıldı",
+    "createdNotAdded": "Qovluq yaradıldı, lakin paylaşım əlavə edilmədi"
   },
   "ppv": {
     "title": "Baxış başına ödənişli məzmun",
@@ -3344,6 +3349,7 @@
     "secureWithBiometrics": "Biometrika ilə qoru",
     "thatsGoneToo": "O da yoxdur — yenə də yenidən başla",
     "tryBiometrics": "Bu telefonda biometrikanı sınayın",
-    "unlockWithBiometrics": "Biometrika ilə aç"
+    "unlockWithBiometrics": "Biometrika ilə aç",
+    "confirmStartOver": "Yeni cüzdanla yenidən başlamaq istədiyinizi təsdiqləyin"
   }
 }

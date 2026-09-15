@@ -3290,7 +3290,12 @@
     "descriptionPlaceholder": "Què va en aquesta carpeta?",
     "createAndSave": "Crea i desa",
     "createNew": "Crea una carpeta nova",
-    "closeA11y": "Tanca el selector de carpetes"
+    "closeA11y": "Tanca el selector de carpetes",
+    "loadFailed": "No s'han pogut carregar les carpetes de marcadors",
+    "addedTo": "Afegit a {{name}}",
+    "removedFrom": "Eliminat de {{name}}",
+    "savedTo": "Desat a {{name}}",
+    "createdNotAdded": "S'ha creat la carpeta, però la publicació no s'ha afegit"
   },
   "ppv": {
     "title": "Contingut de pagament per visualització",
@@ -3360,6 +3365,7 @@
     "secureWithBiometrics": "Protegeix amb biometria",
     "thatsGoneToo": "Això també s'ha perdut: torna a començar igualment",
     "tryBiometrics": "Prova la biometria en aquest telèfon",
-    "unlockWithBiometrics": "Desbloqueja amb biometria"
+    "unlockWithBiometrics": "Desbloqueja amb biometria",
+    "confirmStartOver": "Confirma que vols tornar a començar amb una cartera nova"
   }
 }

@@ -3275,7 +3275,12 @@
     "descriptionPlaceholder": "He aha kei roto i tēnei kōpaki?",
     "createAndSave": "Hanga me te tiaki",
     "createNew": "Hangaia he kōpaki hou",
-    "closeA11y": "Katia te kōwhiri kōpaki"
+    "closeA11y": "Katia te kōwhiri kōpaki",
+    "loadFailed": "Kāore i taea te uta i ngā kōpaki tohuwāhi",
+    "addedTo": "Kua tāpirihia ki {{name}}",
+    "removedFrom": "Kua tangohia i {{name}}",
+    "savedTo": "Kua tiakina ki {{name}}",
+    "createdNotAdded": "Kua hangaia te kōpaki, engari kāore te pou i tāpirihia"
   },
   "ppv": {
     "title": "Ihirangi utu-ia-mātakitaki",
@@ -3345,6 +3350,7 @@
     "secureWithBiometrics": "Haumarutia mā te koiora",
     "thatsGoneToo": "Kua ngaro hoki tērā — tīmata anō ahakoa",
     "tryBiometrics": "Whakamātauria te koiora i tēnei waea",
-    "unlockWithBiometrics": "Wetewetehia mā te koiora"
+    "unlockWithBiometrics": "Wetewetehia mā te koiora",
+    "confirmStartOver": "Whakaūngia e hiahia ana koe ki te tīmata anō me tētahi pūkoro hou"
   }
 }

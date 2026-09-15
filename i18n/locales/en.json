@@ -3360,7 +3360,12 @@
     "descriptionPlaceholder": "What belongs in this folder?",
     "createAndSave": "Create & save",
     "createNew": "Create new folder",
-    "closeA11y": "Close folder picker"
+    "closeA11y": "Close folder picker",
+    "loadFailed": "Failed to load bookmark folders",
+    "addedTo": "Added to {{name}}",
+    "removedFrom": "Removed from {{name}}",
+    "savedTo": "Saved to {{name}}",
+    "createdNotAdded": "Folder created, but the post wasn't added"
   },
   "ppv": {
     "title": "Pay-Per-View Content",
@@ -3430,6 +3435,7 @@
     "secureWithBiometrics": "Secure with biometrics",
     "thatsGoneToo": "That's gone too — start over anyway",
     "tryBiometrics": "Try biometrics on this phone",
-    "unlockWithBiometrics": "Unlock with biometrics"
+    "unlockWithBiometrics": "Unlock with biometrics",
+    "confirmStartOver": "Confirm you want to start over with a new wallet"
   }
 }

@@ -3358,7 +3358,12 @@
     "descriptionPlaceholder": "Co trafia do tego folderu?",
     "createAndSave": "Utwórz i zapisz",
     "createNew": "Utwórz nowy folder",
-    "closeA11y": "Zamknij wybór folderu"
+    "closeA11y": "Zamknij wybór folderu",
+    "loadFailed": "Nie udało się wczytać folderów zakładek",
+    "addedTo": "Dodano do {{name}}",
+    "removedFrom": "Usunięto z {{name}}",
+    "savedTo": "Zapisano w {{name}}",
+    "createdNotAdded": "Folder utworzony, ale post nie został dodany"
   },
   "ppv": {
     "title": "Treść płatna za obejrzenie",
@@ -3428,6 +3433,7 @@
     "secureWithBiometrics": "Zabezpiecz biometrią",
     "thatsGoneToo": "Tego też nie ma — mimo to zacznij od nowa",
     "tryBiometrics": "Wypróbuj biometrię na tym telefonie",
-    "unlockWithBiometrics": "Odblokuj biometrią"
+    "unlockWithBiometrics": "Odblokuj biometrią",
+    "confirmStartOver": "Potwierdź, że chcesz zacząć od nowa z nowym portfelem"
   }
 }

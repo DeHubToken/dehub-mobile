@@ -3242,7 +3242,12 @@
     "descriptionPlaceholder": "ई फोल्डर मे की रखय के अछि?",
     "createAndSave": "बनाउ आ सहेजू",
     "createNew": "नया फोल्डर बनाउ",
-    "closeA11y": "फोल्डर चुनय वाला बंद करू"
+    "closeA11y": "फोल्डर चुनय वाला बंद करू",
+    "loadFailed": "बुकमार्क फोल्डर लोड नै भेल",
+    "addedTo": "{{name}} मे जोड़ल गेल",
+    "removedFrom": "{{name}} सँ हटाओल गेल",
+    "savedTo": "{{name}} मे सहेजल गेल",
+    "createdNotAdded": "फोल्डर बनि गेल मुदा पोस्ट नै जुड़ल"
   },
   "ppv": {
     "title": "देखय लेल भुगतान वाला कंटेंट",
@@ -3312,6 +3317,7 @@
     "secureWithBiometrics": "बायोमेट्रिक सँ सुरक्षित करू",
     "thatsGoneToo": "ओहो चलि गेल — तैयो नया सँ शुरू करू",
     "tryBiometrics": "ई फोन पर बायोमेट्रिक अजमाउ",
-    "unlockWithBiometrics": "बायोमेट्रिक सँ खोलू"
+    "unlockWithBiometrics": "बायोमेट्रिक सँ खोलू",
+    "confirmStartOver": "पुष्टि करू जे अहाँ नया वॉलेट सँ फेर सँ शुरू करय चाहैत छी"
   }
 }

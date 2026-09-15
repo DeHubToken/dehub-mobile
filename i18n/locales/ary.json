@@ -3316,7 +3316,12 @@
     "descriptionPlaceholder": "شنو خاصو يدخل لهاد المجلد؟",
     "createAndSave": "دير وسجل",
     "createNew": "دير مجلد جديد",
-    "closeA11y": "سد منتقي المجلدات"
+    "closeA11y": "سد منتقي المجلدات",
+    "loadFailed": "ما قدرناش نجيبو المجلدات ديال المحفوظات",
+    "addedTo": "تزاد ل{{name}}",
+    "removedFrom": "تحيد من {{name}}",
+    "savedTo": "تسجل ف {{name}}",
+    "createdNotAdded": "المجلد تدار ولكن المنشور ما تزادش"
   },
   "ppv": {
     "title": "محتوى الخلاص باش تشوف",
@@ -3386,6 +3391,7 @@
     "secureWithBiometrics": "أمن بالبصمة",
     "thatsGoneToo": "هادا تاني مشا — بدا من جديد على أي حال",
     "tryBiometrics": "جرب البصمة ف هاد التيليفون",
-    "unlockWithBiometrics": "حل بالبصمة"
+    "unlockWithBiometrics": "حل بالبصمة",
+    "confirmStartOver": "أكد بللي بغيتي تبدا من جديد بمحفظة جديدة"
   }
 }

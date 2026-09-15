@@ -3049,7 +3049,12 @@
     "descriptionPlaceholder": "Çi dikeve vê peldankê?",
     "createAndSave": "Çêke û tomar bike",
     "createNew": "Peldanka nû çêke",
-    "closeA11y": "Hilbijêrê peldankê bigire"
+    "closeA11y": "Hilbijêrê peldankê bigire",
+    "loadFailed": "Peldankên nîşankeran nehatin barkirin",
+    "addedTo": "Li {{name}} hat zêdekirin",
+    "removedFrom": "Ji {{name}} hat rakirin",
+    "savedTo": "Li {{name}} hat tomarkirin",
+    "createdNotAdded": "Peldank hat çêkirin, lê şandin nehat zêdekirin"
   },
   "ppv": {
     "title": "Naveroka bi dravdana her temaşeyê",
@@ -3119,6 +3124,7 @@
     "secureWithBiometrics": "Bi biyometrîkê biparêze",
     "thatsGoneToo": "Ew jî winda bûye — bi her awayî ji nû ve dest pê bike",
     "tryBiometrics": "Li vê telefonê biyometrîkê biceribîne",
-    "unlockWithBiometrics": "Bi biyometrîkê veke"
+    "unlockWithBiometrics": "Bi biyometrîkê veke",
+    "confirmStartOver": "Piştrast bike ku tu dixwazî bi berîkeke nû ji nû ve dest pê bikî"
   }
 }

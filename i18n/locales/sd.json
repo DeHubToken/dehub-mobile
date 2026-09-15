@@ -3273,7 +3273,12 @@
     "descriptionPlaceholder": "هن فولڊر ۾ ڇا رکڻو آهي؟",
     "createAndSave": "ٺاهيو ۽ محفوظ ڪريو",
     "createNew": "نئون فولڊر ٺاهيو",
-    "closeA11y": "فولڊر چونڊيندڙ بند ڪريو"
+    "closeA11y": "فولڊر چونڊيندڙ بند ڪريو",
+    "loadFailed": "بُڪ مارڪ فولڊر لوڊ نه ٿي سگهيا",
+    "addedTo": "{{name}} ۾ شامل ڪيو ويو",
+    "removedFrom": "{{name}} مان هٽايو ويو",
+    "savedTo": "{{name}} ۾ محفوظ ڪيو ويو",
+    "createdNotAdded": "فولڊر ٺهي ويو، پر پوسٽ شامل نه ٿي"
   },
   "ppv": {
     "title": "في ڏسڻ ادائيگي وارو مواد",
@@ -3343,6 +3348,7 @@
     "secureWithBiometrics": "بايوميٽرڪ سان محفوظ ڪريو",
     "thatsGoneToo": "اهو به وڃي ويو — تڏهن به نئين سر شروع ڪريو",
     "tryBiometrics": "هن فون تي بايوميٽرڪ آزمايو",
-    "unlockWithBiometrics": "بايوميٽرڪ سان کوليو"
+    "unlockWithBiometrics": "بايوميٽرڪ سان کوليو",
+    "confirmStartOver": "تصديق ڪريو ته توهان نئين والٽ سان نئين سر شروع ڪرڻ چاهيو ٿا"
   }
 }
