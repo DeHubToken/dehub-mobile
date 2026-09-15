@@ -566,7 +566,8 @@
     "takePhoto": "صوّر صورة",
     "recordVideo": "سجّل فيديو",
     "saveChanges": "حفظ التغييرات",
-    "copy": "انسخ"
+    "copy": "انسخ",
+    "optionalSuffix": "(اختياري)"
   },
   "tip": {
     "title": "ابعث هدية",
@@ -3214,5 +3215,18 @@
     "leaveBody": "تطلع من {{name}}؟",
     "leaveAction": "اطلع",
     "noBadgeYet": "لسه مافي شارة"
+  },
+  "addToFolder": {
+    "title": "احفظ في مجلد",
+    "subtitle": "اختار وين عايز تحفظ البوست ده.",
+    "loading": "بيحمّل المجلدات…",
+    "noneYet": "لسه مافي مجلدات",
+    "noneYetHint": "اعمل واحد عشان تنظم البوست ده.",
+    "nameLabel": "اسم المجلد",
+    "namePlaceholder": "مثلاً طبيخ، سفر",
+    "descriptionPlaceholder": "شنو بينحط في المجلد ده؟",
+    "createAndSave": "أنشئ واحفظ",
+    "createNew": "أنشئ مجلد جديد",
+    "closeA11y": "اقفل مختار المجلدات"
   }
 }

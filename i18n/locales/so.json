@@ -598,7 +598,8 @@
     "takePhoto": "Sawir qaad",
     "recordVideo": "Duub muuqaal",
     "saveChanges": "Kaydi isbeddellada",
-    "copy": "Koobi"
+    "copy": "Koobi",
+    "optionalSuffix": "(ikhtiyaari)"
   },
   "tip": {
     "title": "Dir Bakhshiish",
@@ -3248,5 +3249,18 @@
     "leaveBody": "Ma ka baxaa {{name}}?",
     "leaveAction": "Ka bax",
     "noBadgeYet": "Weli astaan ma jirto"
+  },
+  "addToFolder": {
+    "title": "Ku kaydi galka",
+    "subtitle": "Dooro halka aad rabto inaad ku kaydiso qoraalkan.",
+    "loading": "Waa la soo rarayaa galalka…",
+    "noneYet": "Weli galal lama abuurin",
+    "noneYetHint": "Samee mid si aad u habayso qoraalkan.",
+    "nameLabel": "Magaca galka",
+    "namePlaceholder": "tusaale Karinta, Safarka",
+    "descriptionPlaceholder": "Maxaa galka ku jira?",
+    "createAndSave": "Samee oo kaydi",
+    "createNew": "Samee gal cusub",
+    "closeA11y": "Xir doorashada galka"
   }
 }

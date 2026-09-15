@@ -607,7 +607,8 @@
     "takePhoto": "影相",
     "recordVideo": "拍片",
     "saveChanges": "儲存變更",
-    "copy": "複製"
+    "copy": "複製",
+    "optionalSuffix": "（可選）"
   },
   "tip": {
     "title": "送禮物",
@@ -3255,5 +3256,18 @@
     "leaveBody": "退出 {{name}}？",
     "leaveAction": "退出",
     "noBadgeYet": "仲未有徽章"
+  },
+  "addToFolder": {
+    "title": "儲存到資料夾",
+    "subtitle": "揀你想將呢個帖子儲存喺邊度。",
+    "loading": "正在載入資料夾…",
+    "noneYet": "仲未建立過資料夾",
+    "noneYetHint": "建立一個嚟整理呢個帖子。",
+    "nameLabel": "資料夾名稱",
+    "namePlaceholder": "例如：烹飪、旅行",
+    "descriptionPlaceholder": "呢個資料夾放咩？",
+    "createAndSave": "建立並儲存",
+    "createNew": "建立新資料夾",
+    "closeA11y": "關閉資料夾選擇器"
   }
 }

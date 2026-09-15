@@ -436,7 +436,8 @@
     "signIn": "Увійти",
     "takePhoto": "Зробити фото",
     "recordVideo": "Записати відео",
-    "saveChanges": "Зберегти зміни"
+    "saveChanges": "Зберегти зміни",
+    "optionalSuffix": "(необов'язково)"
   },
   "pages": {
     "home": {
@@ -3735,5 +3736,18 @@
     "leaveBody": "Покинути {{name}}?",
     "leaveAction": "Покинути",
     "noBadgeYet": "Значка ще немає"
+  },
+  "addToFolder": {
+    "title": "Зберегти в папку",
+    "subtitle": "Виберіть, де зберегти цю публікацію.",
+    "loading": "Завантаження папок…",
+    "noneYet": "Папки ще не створені",
+    "noneYetHint": "Створіть папку, щоб упорядкувати цю публікацію.",
+    "nameLabel": "Назва папки",
+    "namePlaceholder": "напр. Кулінарія, Подорожі",
+    "descriptionPlaceholder": "Що потрапляє в цю папку?",
+    "createAndSave": "Створити й зберегти",
+    "createNew": "Створити нову папку",
+    "closeA11y": "Закрити вибір папки"
   }
 }

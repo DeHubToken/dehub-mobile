@@ -566,7 +566,8 @@
     "takePhoto": "صوّر صورة",
     "recordVideo": "سجّل فيديو",
     "saveChanges": "حفظ التغييرات",
-    "copy": "انسخ"
+    "copy": "انسخ",
+    "optionalSuffix": "(اختياري)"
   },
   "tip": {
     "title": "أرسل إكرامية",
@@ -3214,5 +3215,18 @@
     "leaveBody": "تترك {{name}}؟",
     "leaveAction": "اترك",
     "noBadgeYet": "ما في شارة بعد"
+  },
+  "addToFolder": {
+    "title": "احفظ بمجلد",
+    "subtitle": "اختار وين بدك تحفظ هالمنشور.",
+    "loading": "عم يحمّل المجلدات…",
+    "noneYet": "ما في مجلدات بعد",
+    "noneYetHint": "اعمل واحد لتنظّم هالمنشور.",
+    "nameLabel": "اسم المجلد",
+    "namePlaceholder": "مثلاً طبخ، سفر",
+    "descriptionPlaceholder": "شو بينحط بهالمجلد؟",
+    "createAndSave": "أنشئ واحفظ",
+    "createNew": "أنشئ مجلد جديد",
+    "closeA11y": "سكّر منتقي المجلدات"
   }
 }

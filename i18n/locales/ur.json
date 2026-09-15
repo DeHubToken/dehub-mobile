@@ -606,7 +606,8 @@
     "takePhoto": "تصویر لیں",
     "recordVideo": "ویڈیو ریکارڈ کریں",
     "saveChanges": "تبدیلیاں محفوظ کریں",
-    "copy": "کاپی"
+    "copy": "کاپی",
+    "optionalSuffix": "(اختیاری)"
   },
   "drawers": {
     "ppvTitle": "پے پر ویو مواد",
@@ -3255,5 +3256,18 @@
     "leaveBody": "{{name}} چھوڑیں؟",
     "leaveAction": "چھوڑیں",
     "noBadgeYet": "ابھی کوئی بیج نہیں"
+  },
+  "addToFolder": {
+    "title": "فولڈر میں محفوظ کریں",
+    "subtitle": "منتخب کریں کہ یہ پوسٹ کہاں رکھنی ہے۔",
+    "loading": "فولڈر لوڈ ہو رہے ہیں…",
+    "noneYet": "ابھی تک کوئی فولڈر نہیں بنا",
+    "noneYetHint": "اس پوسٹ کو ترتیب دینے کے لیے ایک بنائیں۔",
+    "nameLabel": "فولڈر کا نام",
+    "namePlaceholder": "مثلاً کھانا پکانا، سفر",
+    "descriptionPlaceholder": "اس فولڈر میں کیا رکھنا ہے؟",
+    "createAndSave": "بنائیں اور محفوظ کریں",
+    "createNew": "نیا فولڈر بنائیں",
+    "closeA11y": "فولڈر منتخب کرنے والا بند کریں"
   }
 }

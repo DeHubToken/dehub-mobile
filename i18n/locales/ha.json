@@ -598,7 +598,8 @@
     "takePhoto": "Ɗauki hoto",
     "recordVideo": "Ɗauki bidiyo",
     "saveChanges": "Ajiye canje-canje",
-    "copy": "Kwafi"
+    "copy": "Kwafi",
+    "optionalSuffix": "(na zaɓi)"
   },
   "tip": {
     "title": "Aika Kyauta",
@@ -3247,5 +3248,18 @@
     "leaveBody": "A bar {{name}}?",
     "leaveAction": "Bar",
     "noBadgeYet": "Babu lamba tukuna"
+  },
+  "addToFolder": {
+    "title": "Ajiye a babban fayil",
+    "subtitle": "Zaɓi inda kake son ajiye wannan sakon.",
+    "loading": "Ana loda manyan fayiloli…",
+    "noneYet": "Ba a ƙirƙiri manyan fayiloli ba tukuna",
+    "noneYetHint": "Ƙirƙiri ɗaya don tsara wannan sakon.",
+    "nameLabel": "Sunan babban fayil",
+    "namePlaceholder": "misali Girki, Tafiya",
+    "descriptionPlaceholder": "Me ya kamata ya kasance a wannan babban fayil?",
+    "createAndSave": "Ƙirƙira ka ajiye",
+    "createNew": "Ƙirƙiri sabon babban fayil",
+    "closeA11y": "Rufe mai zaɓar babban fayil"
   }
 }

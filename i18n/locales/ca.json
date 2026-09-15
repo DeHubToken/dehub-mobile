@@ -607,7 +607,8 @@
     "takePhoto": "Fer una foto",
     "recordVideo": "Gravar vídeo",
     "saveChanges": "Desa els canvis",
-    "copy": "Copia"
+    "copy": "Copia",
+    "optionalSuffix": "(opcional)"
   },
   "tip": {
     "title": "Enviar propina",
@@ -3257,5 +3258,18 @@
     "leaveBody": "Vols deixar {{name}}?",
     "leaveAction": "Surt",
     "noBadgeYet": "Encara sense insígnia"
+  },
+  "addToFolder": {
+    "title": "Desa a la carpeta",
+    "subtitle": "Tria on vols desar aquesta publicació.",
+    "loading": "S'estan carregant les carpetes…",
+    "noneYet": "Encara no s'ha creat cap carpeta",
+    "noneYetHint": "Crea'n una per organitzar aquesta publicació.",
+    "nameLabel": "Nom de la carpeta",
+    "namePlaceholder": "p. ex. Cuina, Viatges",
+    "descriptionPlaceholder": "Què va en aquesta carpeta?",
+    "createAndSave": "Crea i desa",
+    "createNew": "Crea una carpeta nova",
+    "closeA11y": "Tanca el selector de carpetes"
   }
 }

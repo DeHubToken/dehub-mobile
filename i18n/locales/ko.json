@@ -619,7 +619,8 @@
     "takePhoto": "사진 촬영",
     "recordVideo": "동영상 촬영",
     "saveChanges": "변경사항 저장",
-    "copy": "복사"
+    "copy": "복사",
+    "optionalSuffix": "(선택)"
   },
   "drawers": {
     "ppvTitle": "유료 콘텐츠",
@@ -3325,5 +3326,18 @@
     "leaveBody": "{{name}}에서 나갈까요?",
     "leaveAction": "나가기",
     "noBadgeYet": "아직 배지 없음"
+  },
+  "addToFolder": {
+    "title": "폴더에 저장",
+    "subtitle": "이 게시물을 어디에 보관할지 선택하세요.",
+    "loading": "폴더를 불러오는 중…",
+    "noneYet": "아직 만든 폴더가 없습니다",
+    "noneYetHint": "이 게시물을 정리할 폴더를 만들어 보세요.",
+    "nameLabel": "폴더 이름",
+    "namePlaceholder": "예: 요리, 여행",
+    "descriptionPlaceholder": "이 폴더에는 무엇을 담나요?",
+    "createAndSave": "만들고 저장",
+    "createNew": "새 폴더 만들기",
+    "closeA11y": "폴더 선택 닫기"
   }
 }

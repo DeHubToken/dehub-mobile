@@ -606,7 +606,8 @@
     "takePhoto": "التقاط صورة",
     "recordVideo": "تسجيل فيديو",
     "saveChanges": "حفظ التغييرات",
-    "copy": "نسخ"
+    "copy": "نسخ",
+    "optionalSuffix": "(اختياري)"
   },
   "drawers": {
     "ppvTitle": "محتوى الدفع لكل مشاهدة",
@@ -3312,5 +3313,18 @@
     "leaveBody": "مغادرة {{name}}؟",
     "leaveAction": "مغادرة",
     "noBadgeYet": "لا توجد شارة بعد"
+  },
+  "addToFolder": {
+    "title": "الحفظ في مجلد",
+    "subtitle": "اختر أين تريد حفظ هذا المنشور.",
+    "loading": "جارٍ تحميل المجلدات…",
+    "noneYet": "لم يتم إنشاء أي مجلد بعد",
+    "noneYetHint": "أنشئ واحدًا لتنظيم هذا المنشور.",
+    "nameLabel": "اسم المجلد",
+    "namePlaceholder": "مثل: طبخ، سفر",
+    "descriptionPlaceholder": "ما الذي ينتمي إلى هذا المجلد؟",
+    "createAndSave": "إنشاء وحفظ",
+    "createNew": "إنشاء مجلد جديد",
+    "closeA11y": "إغلاق منتقي المجلدات"
   }
 }

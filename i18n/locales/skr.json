@@ -566,7 +566,8 @@
     "takePhoto": "فوٹو گھنو",
     "recordVideo": "ویڈیو ریکارڈ کرو",
     "saveChanges": "تبدیلیاں محفوظ کرو",
-    "copy": "کاپی کرو"
+    "copy": "کاپی کرو",
+    "optionalSuffix": "(اختیاری)"
   },
   "tip": {
     "title": "ٹِپ گھلو",
@@ -3201,5 +3202,18 @@
     "leaveBody": "{{name}} چھوڑو؟",
     "leaveAction": "چھوڑو",
     "noBadgeYet": "ہݨ تائیں کوئی بیج کائنی"
+  },
+  "addToFolder": {
+    "title": "فولڈر وچ محفوظ کرو",
+    "subtitle": "چُݨو جو ایہہ پوسٹ کِتھاں رکھݨی ہے۔",
+    "loading": "فولڈر لوڈ تھیندے پئے ہن…",
+    "noneYet": "ہݨ تائیں کوئی فولڈر کائنی بݨیا",
+    "noneYetHint": "ایں پوسٹ کوں ترتیب ݙیوݨ کیتے ہک بݨاؤ۔",
+    "nameLabel": "فولڈر دا ناں",
+    "namePlaceholder": "مثلاً کھاݨا بݨاوݨ، سفر",
+    "descriptionPlaceholder": "ایں فولڈر وچ کیا رکھݨا ہے؟",
+    "createAndSave": "بݨاؤ تے محفوظ کرو",
+    "createNew": "نواں فولڈر بݨاؤ",
+    "closeA11y": "فولڈر چُݨݨ آلا بند کرو"
   }
 }

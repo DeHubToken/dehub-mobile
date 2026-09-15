@@ -622,7 +622,8 @@
     "takePhoto": "Fotoğraf çek",
     "recordVideo": "Video kaydet",
     "saveChanges": "Değişiklikleri kaydet",
-    "copy": "Kopyala"
+    "copy": "Kopyala",
+    "optionalSuffix": "(isteğe bağlı)"
   },
   "tip": {
     "title": "Bahşiş Gönder",
@@ -3319,5 +3320,18 @@
     "leaveBody": "{{name}} takımından ayrılınsın mı?",
     "leaveAction": "Ayrıl",
     "noBadgeYet": "Henüz rozet yok"
+  },
+  "addToFolder": {
+    "title": "Klasöre kaydet",
+    "subtitle": "Bu gönderiyi nerede saklamak istediğini seç.",
+    "loading": "Klasörler yükleniyor…",
+    "noneYet": "Henüz klasör oluşturulmadı",
+    "noneYetHint": "Bu gönderiyi düzenlemek için bir tane oluştur.",
+    "nameLabel": "Klasör adı",
+    "namePlaceholder": "ör. Yemek, Seyahat",
+    "descriptionPlaceholder": "Bu klasöre ne konulur?",
+    "createAndSave": "Oluştur ve kaydet",
+    "createNew": "Yeni klasör oluştur",
+    "closeA11y": "Klasör seçiciyi kapat"
   }
 }

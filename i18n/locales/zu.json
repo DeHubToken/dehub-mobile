@@ -605,7 +605,8 @@
     "takePhoto": "Thatha isithombe",
     "recordVideo": "Qopha ividiyo",
     "saveChanges": "Londoloza izinguquko",
-    "copy": "Kopisha"
+    "copy": "Kopisha",
+    "optionalSuffix": "(okuzikhethela)"
   },
   "tip": {
     "title": "Thumela Ithiphu",
@@ -3286,5 +3287,18 @@
     "leaveBody": "Shiya i-{{name}}?",
     "leaveAction": "Shiya",
     "noBadgeYet": "Ayikho ibheji okwamanje"
+  },
+  "addToFolder": {
+    "title": "Londoloza kufolda",
+    "subtitle": "Khetha lapho ufuna ukugcina khona lokhu okuthunyelwe.",
+    "loading": "Ilayisha amafolda…",
+    "noneYet": "Awekho amafolda akadalwa",
+    "noneYetHint": "Dala eyodwa ukuze uhlele lokhu okuthunyelwe.",
+    "nameLabel": "Igama lefolda",
+    "namePlaceholder": "isb. Ukupheka, Ukuhamba",
+    "descriptionPlaceholder": "Yini efanele ibe kule folda?",
+    "createAndSave": "Dala futhi ulondoloze",
+    "createNew": "Dala ifolda entsha",
+    "closeA11y": "Vala isikhethi sefolda"
   }
 }

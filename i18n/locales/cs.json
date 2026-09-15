@@ -607,7 +607,8 @@
     "takePhoto": "Vyfotit",
     "recordVideo": "Natočit video",
     "saveChanges": "Uložit změny",
-    "copy": "Kopírovat"
+    "copy": "Kopírovat",
+    "optionalSuffix": "(nepovinné)"
   },
   "drawers": {
     "ppvTitle": "Platba za zhlédnutí",
@@ -3261,5 +3262,18 @@
     "leaveBody": "Opustit {{name}}?",
     "leaveAction": "Opustit",
     "noBadgeYet": "Zatím žádný odznak"
+  },
+  "addToFolder": {
+    "title": "Uložit do složky",
+    "subtitle": "Vyberte, kam chcete tento příspěvek uložit.",
+    "loading": "Načítání složek…",
+    "noneYet": "Zatím nebyly vytvořeny žádné složky",
+    "noneYetHint": "Vytvořte složku pro uspořádání tohoto příspěvku.",
+    "nameLabel": "Název složky",
+    "namePlaceholder": "např. Vaření, Cestování",
+    "descriptionPlaceholder": "Co patří do této složky?",
+    "createAndSave": "Vytvořit a uložit",
+    "createNew": "Vytvořit novou složku",
+    "closeA11y": "Zavřít výběr složky"
   }
 }
