@@ -138,7 +138,7 @@ import {
 import { MEDIA_TAP_SLOP_PX } from "../libs/media-gesture";
 import GlassTipSheet from "../components/Tip/GlassTipSheet";
 import { resolveViewCount } from "../libs/numbers.util";
-import { useTranslation } from "react-i18next";
+import { useTranslation as useCopy } from "react-i18next";
 
 
 
@@ -322,7 +322,7 @@ interface ShortItemProps {
 const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
   // Live window size, not a module-level snapshot: on iPad the pager cells
   // and tap zones were sized for the launch orientation.
-  const { t } = useTranslation();
+  const { t } = useCopy();
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
   const navigation = useNavigation<any>();
   const user = useUser();
@@ -1539,7 +1539,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
 });
 
 const ShortsViewerScreen = () => {
-  const { t } = useTranslation();
+  const { t } = useCopy();
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   const user = useUser();
