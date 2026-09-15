@@ -593,7 +593,8 @@
     "confirm": "নিশ্চিত করুন",
     "signIn": "সাইন ইন করুন",
     "takePhoto": "ছবি তুলুন",
-    "recordVideo": "ভিডিও রেকর্ড করুন"
+    "recordVideo": "ভিডিও রেকর্ড করুন",
+    "saveChanges": "পরিবর্তন সংরক্ষণ করুন"
   },
   "drawers": {
     "ppvTitle": "পে-পার-ভিউ কন্টেন্ট",
@@ -3062,7 +3063,8 @@
     "logOutFailed": "ডিভাইস লগ আউট করা যায়নি",
     "logOutAllFailed": "ডিভাইসগুলো লগ আউট করা যায়নি",
     "devicesLoggedOut_one": "{{count}}টি ডিভাইস লগ আউট হয়েছে",
-    "devicesLoggedOut_other": "{{count}}টি ডিভাইস লগ আউট হয়েছে"
+    "devicesLoggedOut_other": "{{count}}টি ডিভাইস লগ আউট হয়েছে",
+    "noActive": "কোনো সক্রিয় সেশন নেই"
   },
   "library": {
     "myPosts": "আমার পোস্ট",
@@ -3092,7 +3094,9 @@
     "deleteFolderTitle": "ফোল্ডার মুছুন",
     "deleteFolderBody": "আপনি কি \"{{name}}\" মুছতে চান? ভেতরের সংরক্ষিত পোস্টগুলো আপনার সংরক্ষিত তালিকা থেকে মুছবে না।",
     "folderDeleted": "ফোল্ডার মোছা হয়েছে",
-    "deleteFolderFailed": "ফোল্ডার মোছা যায়নি"
+    "deleteFolderFailed": "ফোল্ডার মোছা যায়নি",
+    "noCollections": "এখনও কোনো নিজস্ব সংগ্রহ নেই",
+    "createCollection": "সংগ্রহ তৈরি করুন"
   },
   "setProfile": {
     "title": "আপনার প্রোফাইল সেট করুন",
@@ -3113,7 +3117,8 @@
     "imageFailed": "সেই ছবিটি ব্যবহার করা যায়নি",
     "usernameReserved": "এই ইউজারনেম সংরক্ষিত",
     "profileSet": "প্রোফাইল সফলভাবে সেট হয়েছে!",
-    "profileFailed": "প্রোফাইল সেট করা যায়নি"
+    "profileFailed": "প্রোফাইল সেট করা যায়নি",
+    "displayNameHint": "আপনার প্রোফাইলে দেখানো প্রকাশ্য নাম।"
   },
   "events": {
     "mine": "আমার",

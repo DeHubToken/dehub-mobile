@@ -593,7 +593,8 @@
     "confirm": "تصديق ڪريو",
     "signIn": "سائن ان",
     "takePhoto": "فوٽو وٺو",
-    "recordVideo": "وڊيو رڪارڊ ڪريو"
+    "recordVideo": "وڊيو رڪارڊ ڪريو",
+    "saveChanges": "تبديليون محفوظ ڪريو"
   },
   "tip": {
     "title": "ٽپ موڪليو",
@@ -3061,7 +3062,8 @@
     "logOutFailed": "ڊيوائس لاگ آئوٽ نه ٿي سگهي",
     "logOutAllFailed": "ڊيوائسون لاگ آئوٽ نه ٿي سگهيون",
     "devicesLoggedOut_one": "{{count}} ڊيوائس لاگ آئوٽ ٿي",
-    "devicesLoggedOut_other": "{{count}} ڊيوائسون لاگ آئوٽ ٿيون"
+    "devicesLoggedOut_other": "{{count}} ڊيوائسون لاگ آئوٽ ٿيون",
+    "noActive": "ڪو به فعال سيشن ناهي"
   },
   "library": {
     "myPosts": "منهنجيون پوسٽون",
@@ -3091,7 +3093,9 @@
     "deleteFolderTitle": "فولڊر ڊاهيو",
     "deleteFolderBody": "ڇا توهان پڪ سان \"{{name}}\" ڊاهڻ چاهيو ٿا؟ اندر محفوظ پوسٽون توهان جي محفوظ فهرست مان نه ڊهنديون.",
     "folderDeleted": "فولڊر ڊهي ويو",
-    "deleteFolderFailed": "فولڊر ڊاهي نه سگهيو"
+    "deleteFolderFailed": "فولڊر ڊاهي نه سگهيو",
+    "noCollections": "اڃا ڪو به پنهنجو مجموعو ناهي",
+    "createCollection": "مجموعو ٺاهيو"
   },
   "setProfile": {
     "title": "پنهنجو پروفائل مقرر ڪريو",
@@ -3112,7 +3116,8 @@
     "imageFailed": "اها تصوير استعمال نه ٿي سگهي",
     "usernameReserved": "هي يوزرنيم محفوظ آهي",
     "profileSet": "پروفائل ڪاميابيءَ سان مقرر ٿيو!",
-    "profileFailed": "پروفائل مقرر نه ٿي سگهيو"
+    "profileFailed": "پروفائل مقرر نه ٿي سگهيو",
+    "displayNameHint": "توهان جو عوامي نالو جيڪو پروفائل تي ڏيکاريو وڃي ٿو."
   },
   "events": {
     "mine": "منهنجا",

@@ -619,7 +619,8 @@
     "confirm": "確認",
     "signIn": "ログイン",
     "takePhoto": "写真を撮る",
-    "recordVideo": "動画を撮る"
+    "recordVideo": "動画を撮る",
+    "saveChanges": "変更を保存"
   },
   "postOptions": {
     "options": "オプション",
@@ -3145,7 +3146,8 @@
     "logOutFailed": "端末をログアウトできませんでした",
     "logOutAllFailed": "端末をログアウトできませんでした",
     "devicesLoggedOut_one": "{{count}} 台の端末をログアウトしました",
-    "devicesLoggedOut_other": "{{count}} 台の端末をログアウトしました"
+    "devicesLoggedOut_other": "{{count}} 台の端末をログアウトしました",
+    "noActive": "アクティブなセッションはありません"
   },
   "library": {
     "myPosts": "自分の投稿",
@@ -3175,7 +3177,9 @@
     "deleteFolderTitle": "フォルダを削除",
     "deleteFolderBody": "「{{name}}」を削除しますか？中に保存された投稿は保存リストからは削除されません。",
     "folderDeleted": "フォルダを削除しました",
-    "deleteFolderFailed": "フォルダを削除できませんでした"
+    "deleteFolderFailed": "フォルダを削除できませんでした",
+    "noCollections": "カスタムコレクションはまだありません",
+    "createCollection": "コレクションを作成"
   },
   "setProfile": {
     "title": "プロフィールを設定",
@@ -3196,7 +3200,8 @@
     "imageFailed": "その画像は使用できませんでした",
     "usernameReserved": "このユーザー名は予約されています",
     "profileSet": "プロフィールを設定しました！",
-    "profileFailed": "プロフィールを設定できませんでした"
+    "profileFailed": "プロフィールを設定できませんでした",
+    "displayNameHint": "プロフィールに表示される公開名です。"
   },
   "events": {
     "mine": "自分の",

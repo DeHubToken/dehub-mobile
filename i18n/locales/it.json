@@ -620,7 +620,8 @@
     "confirm": "Conferma",
     "signIn": "Accedi",
     "takePhoto": "Scatta una foto",
-    "recordVideo": "Registra un video"
+    "recordVideo": "Registra un video",
+    "saveChanges": "Salva modifiche"
   },
   "drawers": {
     "ppvTitle": "Contenuto Pay-Per-View",
@@ -3148,7 +3149,8 @@
     "logOutFailed": "Impossibile disconnettere il dispositivo",
     "logOutAllFailed": "Impossibile disconnettere i dispositivi",
     "devicesLoggedOut_one": "{{count}} dispositivo disconnesso",
-    "devicesLoggedOut_other": "{{count}} dispositivi disconnessi"
+    "devicesLoggedOut_other": "{{count}} dispositivi disconnessi",
+    "noActive": "Nessuna sessione attiva"
   },
   "library": {
     "myPosts": "I miei post",
@@ -3178,7 +3180,9 @@
     "deleteFolderTitle": "Elimina cartella",
     "deleteFolderBody": "Vuoi davvero eliminare \"{{name}}\"? I post salvati al suo interno non verranno eliminati dal tuo elenco dei salvati.",
     "folderDeleted": "Cartella eliminata",
-    "deleteFolderFailed": "Impossibile eliminare la cartella"
+    "deleteFolderFailed": "Impossibile eliminare la cartella",
+    "noCollections": "Nessuna raccolta personalizzata",
+    "createCollection": "Crea raccolta"
   },
   "setProfile": {
     "title": "Imposta il tuo profilo",
@@ -3199,7 +3203,8 @@
     "imageFailed": "Impossibile usare quell'immagine",
     "usernameReserved": "Questo nome utente è riservato",
     "profileSet": "Profilo impostato con successo!",
-    "profileFailed": "Impossibile impostare il profilo"
+    "profileFailed": "Impossibile impostare il profilo",
+    "displayNameHint": "Il tuo nome pubblico mostrato nel profilo."
   },
   "events": {
     "mine": "I miei",

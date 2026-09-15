@@ -654,7 +654,8 @@
     "blockUserDesc": "You won't receive messages from {{name}}. You can unblock later.",
     "unblockUserDesc": "Allow messages from {{name}} again.",
     "takePhoto": "Take photo",
-    "recordVideo": "Record video"
+    "recordVideo": "Record video",
+    "saveChanges": "Save Changes"
   },
   "tip": {
     "title": "Send Tip",
@@ -3148,7 +3149,8 @@
     "logOutFailed": "Failed to log out device",
     "logOutAllFailed": "Failed to log out devices",
     "devicesLoggedOut_one": "{{count}} device logged out",
-    "devicesLoggedOut_other": "{{count}} devices logged out"
+    "devicesLoggedOut_other": "{{count}} devices logged out",
+    "noActive": "No active sessions"
   },
   "library": {
     "myPosts": "My Posts",
@@ -3178,7 +3180,9 @@
     "deleteFolderTitle": "Delete Folder",
     "deleteFolderBody": "Are you sure you want to delete \"{{name}}\"? The saved posts inside will not be deleted from your Saved list.",
     "folderDeleted": "Folder deleted",
-    "deleteFolderFailed": "Failed to delete folder"
+    "deleteFolderFailed": "Failed to delete folder",
+    "noCollections": "No custom collections yet",
+    "createCollection": "Create Collection"
   },
   "setProfile": {
     "title": "Set your profile",
@@ -3199,7 +3203,8 @@
     "imageFailed": "Could not use that image",
     "usernameReserved": "This username is reserved",
     "profileSet": "Profile set successfully!",
-    "profileFailed": "Failed to set profile"
+    "profileFailed": "Failed to set profile",
+    "displayNameHint": "Your public name shown on your profile."
   },
   "events": {
     "mine": "Mine",

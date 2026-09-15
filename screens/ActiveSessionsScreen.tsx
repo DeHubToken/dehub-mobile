@@ -299,7 +299,7 @@ export default function ActiveSessionsScreen() {
           ListEmptyComponent={
             <View className="items-center justify-center py-20">
               <Icon name="ShieldCheck" size={40} color="#6b7280" />
-              <Text className="text-theme-neutrals-400 text-sm mt-3">No active sessions</Text>
+              <Text className="text-theme-neutrals-400 text-sm mt-3">{t("sessions.noActive")}</Text>
             </View>
           }
           refreshControl={

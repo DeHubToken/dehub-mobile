@@ -564,7 +564,8 @@
     "confirm": "Bstätige",
     "signIn": "Aamälde",
     "takePhoto": "Foto mache",
-    "recordVideo": "Video ufnäh"
+    "recordVideo": "Video ufnäh",
+    "saveChanges": "Änderige speichere"
   },
   "tip": {
     "title": "Trinkgäld schicke",
@@ -3067,7 +3068,8 @@
     "logOutFailed": "S Grät het nid chönne abgmäldet wärde",
     "logOutAllFailed": "D Grät händ nid chönne abgmäldet wärde",
     "devicesLoggedOut_one": "{{count}} Grät abgmäldet",
-    "devicesLoggedOut_other": "{{count}} Grät abgmäldet"
+    "devicesLoggedOut_other": "{{count}} Grät abgmäldet",
+    "noActive": "Kei aktivi Sitzige"
   },
   "library": {
     "myPosts": "Mini Beiträg",
@@ -3097,7 +3099,9 @@
     "deleteFolderTitle": "Ordner lösche",
     "deleteFolderBody": "Wotsch \"{{name}}\" würklich lösche? D gspeicherete Beiträg dinne wärded nid us dinere Gspeicheret-Lischte glöscht.",
     "folderDeleted": "Ordner glöscht",
-    "deleteFolderFailed": "De Ordner het nid chönne glöscht wärde"
+    "deleteFolderFailed": "De Ordner het nid chönne glöscht wärde",
+    "noCollections": "No kei eigeni Sammlige",
+    "createCollection": "Sammlig erstelle"
   },
   "setProfile": {
     "title": "Richt dis Profil ii",
@@ -3118,7 +3122,8 @@
     "imageFailed": "Das Bild het nid chönne bruucht wärde",
     "usernameReserved": "Dä Benutzername isch reserviert",
     "profileSet": "Profil erfolgriich iigrichtet!",
-    "profileFailed": "S Profil het nid chönne iigrichtet wärde"
+    "profileFailed": "S Profil het nid chönne iigrichtet wärde",
+    "displayNameHint": "Din öffentliche Name, wo im Profil aagzeigt wird."
   },
   "events": {
     "mine": "Mini",

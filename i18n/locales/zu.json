@@ -603,7 +603,8 @@
     "confirm": "Qinisekisa",
     "signIn": "Ngena",
     "takePhoto": "Thatha isithombe",
-    "recordVideo": "Qopha ividiyo"
+    "recordVideo": "Qopha ividiyo",
+    "saveChanges": "Londoloza izinguquko"
   },
   "tip": {
     "title": "Thumela Ithiphu",
@@ -3107,7 +3108,8 @@
     "logOutFailed": "Ayikwazanga ukuphumisa idivayisi",
     "logOutAllFailed": "Ayikwazanga ukuphumisa amadivayisi",
     "devicesLoggedOut_one": "Idivayisi engu-{{count}} iphumile",
-    "devicesLoggedOut_other": "Amadivayisi angu-{{count}} aphumile"
+    "devicesLoggedOut_other": "Amadivayisi angu-{{count}} aphumile",
+    "noActive": "Azikho izikhathi ezisebenzayo"
   },
   "library": {
     "myPosts": "Okuthunyelwe kwami",
@@ -3137,7 +3139,9 @@
     "deleteFolderTitle": "Susa ifolda",
     "deleteFolderBody": "Uqinisekile ufuna ukususa \"{{name}}\"? Okuthunyelwe okulondoloziwe ngaphakathi ngeke kususwe ohlwini lwakho lokuLondoloziwe.",
     "folderDeleted": "Ifolda isusiwe",
-    "deleteFolderFailed": "Ayikwazanga ukususa ifolda"
+    "deleteFolderFailed": "Ayikwazanga ukususa ifolda",
+    "noCollections": "Awukabi nayo iqoqo lakho",
+    "createCollection": "Dala iqoqo"
   },
   "setProfile": {
     "title": "Setha iphrofayela yakho",
@@ -3158,7 +3162,8 @@
     "imageFailed": "Ayikwazanga ukusebenzisa leso sithombe",
     "usernameReserved": "Leli gama lomsebenzisi ligodliwe",
     "profileSet": "Iphrofayela isethwe ngempumelelo!",
-    "profileFailed": "Ayikwazanga ukusetha iphrofayela"
+    "profileFailed": "Ayikwazanga ukusetha iphrofayela",
+    "displayNameHint": "Igama lakho lomphakathi elibonakala kuphrofayela yakho."
   },
   "events": {
     "mine": "Okwami",

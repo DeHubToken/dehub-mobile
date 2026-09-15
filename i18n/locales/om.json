@@ -620,7 +620,8 @@
     "confirm": "Mirkaneessi",
     "signIn": "Seeni",
     "takePhoto": "Suuraa kaasi",
-    "recordVideo": "Viidiyoo waraabi"
+    "recordVideo": "Viidiyoo waraabi",
+    "saveChanges": "Jijjiirama olkaa'i"
   },
   "tip": {
     "title": "Tiippii Ergi",
@@ -3142,7 +3143,8 @@
     "logOutFailed": "Meeshaa baasuun hin milkoofne",
     "logOutAllFailed": "Meeshaalee baasuun hin milkoofne",
     "devicesLoggedOut_one": "Meeshaan {{count}} ba'eera",
-    "devicesLoggedOut_other": "Meeshaaleen {{count}} ba'aniiru"
+    "devicesLoggedOut_other": "Meeshaaleen {{count}} ba'aniiru",
+    "noActive": "Sessiiwwan hojjetan hin jiran"
   },
   "library": {
     "myPosts": "Maxxansa koo",
@@ -3172,7 +3174,9 @@
     "deleteFolderTitle": "Faayilii haqi",
     "deleteFolderBody": "Dhugumatti \"{{name}}\" haquu barbaaddaa? Maxxansaaleen keessa kuufaman tarree Kuufame kee irraa hin haqaman.",
     "folderDeleted": "Faayiliin haqameera",
-    "deleteFolderFailed": "Faayilii haquun hin milkoofne"
+    "deleteFolderFailed": "Faayilii haquun hin milkoofne",
+    "noCollections": "Amma walitti qabamaan kee hin jiru",
+    "createCollection": "Walitti qabaa uumi"
   },
   "setProfile": {
     "title": "Piroofaayilii kee qopheessi",
@@ -3193,7 +3197,8 @@
     "imageFailed": "Fakkii sana fayyadamuun hin dandaʼamne",
     "usernameReserved": "Maqaan fayyadamaa kun qabameera",
     "profileSet": "Piroofaayiliin milkaa'inaan qophaa'eera!",
-    "profileFailed": "Piroofaayilii qopheessuun hin milkoofne"
+    "profileFailed": "Piroofaayilii qopheessuun hin milkoofne",
+    "displayNameHint": "Maqaa kee uummataa kan piroofaayilii kee irratti mul'atu."
   },
   "events": {
     "mine": "Kan koo",

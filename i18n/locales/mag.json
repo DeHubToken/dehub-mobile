@@ -593,7 +593,8 @@
     "confirm": "पुष्टि करूँ",
     "signIn": "साइन इन",
     "takePhoto": "फोटो खींचू",
-    "recordVideo": "वीडियो रिकॉर्ड करू"
+    "recordVideo": "वीडियो रिकॉर्ड करू",
+    "saveChanges": "बदलाव सहेजू"
   },
   "tip": {
     "title": "टिप भेजो",
@@ -3031,7 +3032,8 @@
     "logOutFailed": "डिवाइस लॉग आउट नै भ सकल",
     "logOutAllFailed": "डिवाइस लॉग आउट नै भ सकल",
     "devicesLoggedOut_one": "{{count}} डिवाइस लॉग आउट भेल",
-    "devicesLoggedOut_other": "{{count}} डिवाइस लॉग आउट भेल"
+    "devicesLoggedOut_other": "{{count}} डिवाइस लॉग आउट भेल",
+    "noActive": "कोनो सक्रिय सत्र नै"
   },
   "library": {
     "myPosts": "हमर पोस्ट",
@@ -3061,7 +3063,9 @@
     "deleteFolderTitle": "फोल्डर मिटाउ",
     "deleteFolderBody": "की अहाँ सचमुच \"{{name}}\" मिटाबय चाहैत छी? भीतर सेव कएल पोस्ट अहाँक सेव सूची सँ नै मिटत।",
     "folderDeleted": "फोल्डर मिटि गेल",
-    "deleteFolderFailed": "फोल्डर नै मिटल गेल"
+    "deleteFolderFailed": "फोल्डर नै मिटल गेल",
+    "noCollections": "अखन धरि कोनो अपन संग्रह नै",
+    "createCollection": "संग्रह बनाऊ"
   },
   "setProfile": {
     "title": "अपन प्रोफाइल बनाउ",
@@ -3082,7 +3086,8 @@
     "imageFailed": "ऊ छवि प्रयोग नै भ सकल",
     "usernameReserved": "ई यूजरनेम आरक्षित अछि",
     "profileSet": "प्रोफाइल सफलतापूर्वक बनि गेल!",
-    "profileFailed": "प्रोफाइल नै बनि सकल"
+    "profileFailed": "प्रोफाइल नै बनि सकल",
+    "displayNameHint": "अहाँक सार्वजनिक नाम जे प्रोफाइल पर देखाइत अछि।"
   },
   "events": {
     "mine": "हमर",

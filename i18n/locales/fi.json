@@ -605,7 +605,8 @@
     "confirm": "Vahvista",
     "signIn": "Kirjaudu sisään",
     "takePhoto": "Ota kuva",
-    "recordVideo": "Tallenna video"
+    "recordVideo": "Tallenna video",
+    "saveChanges": "Tallenna muutokset"
   },
   "postOptions": {
     "options": "Vaihtoehdot",
@@ -3078,7 +3079,8 @@
     "logOutFailed": "Laitteen uloskirjaus epäonnistui",
     "logOutAllFailed": "Laitteiden uloskirjaus epäonnistui",
     "devicesLoggedOut_one": "{{count}} laite kirjattiin ulos",
-    "devicesLoggedOut_other": "{{count}} laitetta kirjattiin ulos"
+    "devicesLoggedOut_other": "{{count}} laitetta kirjattiin ulos",
+    "noActive": "Ei aktiivisia istuntoja"
   },
   "library": {
     "myPosts": "Omat julkaisuni",
@@ -3108,7 +3110,9 @@
     "deleteFolderTitle": "Poista kansio",
     "deleteFolderBody": "Haluatko varmasti poistaa kohteen \"{{name}}\"? Sen sisällä olevia tallennettuja julkaisuja ei poisteta Tallennetut-listaltasi.",
     "folderDeleted": "Kansio poistettu",
-    "deleteFolderFailed": "Kansion poisto epäonnistui"
+    "deleteFolderFailed": "Kansion poisto epäonnistui",
+    "noCollections": "Ei vielä omia kokoelmia",
+    "createCollection": "Luo kokoelma"
   },
   "setProfile": {
     "title": "Määritä profiilisi",
@@ -3129,7 +3133,8 @@
     "imageFailed": "Kuvaa ei voitu käyttää",
     "usernameReserved": "Tämä käyttäjänimi on varattu",
     "profileSet": "Profiili määritetty onnistuneesti!",
-    "profileFailed": "Profiilin määritys epäonnistui"
+    "profileFailed": "Profiilin määritys epäonnistui",
+    "displayNameHint": "Julkinen nimesi, joka näkyy profiilissasi."
   },
   "events": {
     "mine": "Omat",

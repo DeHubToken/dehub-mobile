@@ -593,7 +593,8 @@
     "confirm": "पुष्टीकरोतु",
     "signIn": "प्रवेशं करोतु",
     "takePhoto": "चित्रं गृह्णातु",
-    "recordVideo": "चलचित्रं अभिलिखतु"
+    "recordVideo": "चलचित्रं अभिलिखतु",
+    "saveChanges": "परिवर्तनानि रक्षतु"
   },
   "tip": {
     "title": "उपहारं प्रेषयतु",
@@ -3034,7 +3035,8 @@
     "logOutFailed": "उपकरणं निर्गमयितुं न शक्यते",
     "logOutAllFailed": "उपकरणानि निर्गमयितुं न शक्यन्ते",
     "devicesLoggedOut_one": "{{count}} उपकरणं निर्गमितम्",
-    "devicesLoggedOut_other": "{{count}} उपकरणानि निर्गमितानि"
+    "devicesLoggedOut_other": "{{count}} उपकरणानि निर्गमितानि",
+    "noActive": "सक्रियाणि सत्राणि न सन्ति"
   },
   "library": {
     "myPosts": "मम प्रकाशनानि",
@@ -3064,7 +3066,9 @@
     "deleteFolderTitle": "सञ्चयं लोपयतु",
     "deleteFolderBody": "किं भवान् \"{{name}}\" लोपयितुम् इच्छति? अन्तः रक्षितानि प्रकाशनानि भवतः रक्षितसूचीतः न लोपिष्यन्ते।",
     "folderDeleted": "सञ्चयः लोपितः",
-    "deleteFolderFailed": "सञ्चयं लोपयितुं न शक्यते"
+    "deleteFolderFailed": "सञ्चयं लोपयितुं न शक्यते",
+    "noCollections": "अद्यापि स्वकीयाः संग्रहाः न सन्ति",
+    "createCollection": "संग्रहं निर्मातु"
   },
   "setProfile": {
     "title": "भवतः परिचयं स्थापयतु",
@@ -3085,7 +3089,8 @@
     "imageFailed": "तत् चित्रं प्रयोक्तुं न शक्यते",
     "usernameReserved": "इदम् उपयोक्तृनाम आरक्षितम्",
     "profileSet": "परिचयः सफलतया स्थापितः!",
-    "profileFailed": "परिचयं स्थापयितुं न शक्यते"
+    "profileFailed": "परिचयं स्थापयितुं न शक्यते",
+    "displayNameHint": "भवतः सार्वजनिकं नाम यत् प्रोफाइले दृश्यते।"
   },
   "events": {
     "mine": "मम",

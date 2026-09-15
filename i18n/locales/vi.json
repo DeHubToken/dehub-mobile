@@ -86,7 +86,8 @@
     "anonymous": "Ẩn danh",
     "signIn": "Đăng nhập",
     "takePhoto": "Chụp ảnh",
-    "recordVideo": "Quay video"
+    "recordVideo": "Quay video",
+    "saveChanges": "Lưu thay đổi"
   },
   "glossary": {
     "title": "Bảng thuật ngữ",
@@ -3166,7 +3167,8 @@
     "logOutFailed": "Không đăng xuất được thiết bị",
     "logOutAllFailed": "Không đăng xuất được các thiết bị",
     "devicesLoggedOut_one": "Đã đăng xuất {{count}} thiết bị",
-    "devicesLoggedOut_other": "Đã đăng xuất {{count}} thiết bị"
+    "devicesLoggedOut_other": "Đã đăng xuất {{count}} thiết bị",
+    "noActive": "Không có phiên hoạt động"
   },
   "library": {
     "myPosts": "Bài của tôi",
@@ -3196,7 +3198,9 @@
     "deleteFolderTitle": "Xóa thư mục",
     "deleteFolderBody": "Bạn chắc muốn xóa \"{{name}}\"? Các bài đã lưu bên trong sẽ không bị xóa khỏi danh sách Đã lưu của bạn.",
     "folderDeleted": "Đã xóa thư mục",
-    "deleteFolderFailed": "Không xóa được thư mục"
+    "deleteFolderFailed": "Không xóa được thư mục",
+    "noCollections": "Chưa có bộ sưu tập nào của bạn",
+    "createCollection": "Tạo bộ sưu tập"
   },
   "setProfile": {
     "title": "Thiết lập hồ sơ của bạn",
@@ -3217,7 +3221,8 @@
     "imageFailed": "Không dùng được ảnh đó",
     "usernameReserved": "Tên người dùng này được dành riêng",
     "profileSet": "Đã thiết lập hồ sơ thành công!",
-    "profileFailed": "Không thiết lập được hồ sơ"
+    "profileFailed": "Không thiết lập được hồ sơ",
+    "displayNameHint": "Tên công khai hiển thị trên hồ sơ của bạn."
   },
   "events": {
     "mine": "Của tôi",

@@ -546,7 +546,8 @@
     "confirm": "تصدیق کرو",
     "signIn": "سائن ان",
     "takePhoto": "فوٹو لو",
-    "recordVideo": "ویڈیو ریکارڈ کرو"
+    "recordVideo": "ویڈیو ریکارڈ کرو",
+    "saveChanges": "تبدیلیاں محفوظ کرو"
   },
   "tip": {
     "title": "ٹپ بھیجو",
@@ -2809,7 +2810,8 @@
     "logOutFailed": "ڈیوائس لاگ آؤٹ نئیں ہو سکی",
     "logOutAllFailed": "ڈیوائسز لاگ آؤٹ نئیں ہو سکیں",
     "devicesLoggedOut_one": "{{count}} ڈیوائس لاگ آؤٹ ہو گئی",
-    "devicesLoggedOut_other": "{{count}} ڈیوائسز لاگ آؤٹ ہو گئیں"
+    "devicesLoggedOut_other": "{{count}} ڈیوائسز لاگ آؤٹ ہو گئیں",
+    "noActive": "کوئی فعال سیشن نئیں"
   },
   "library": {
     "myPosts": "میری پوسٹس",
@@ -2839,7 +2841,9 @@
     "deleteFolderTitle": "فولڈر ڈیلیٹ کرو",
     "deleteFolderBody": "کیا تم واقعی \"{{name}}\" ڈیلیٹ کرنا چاہتے ہو؟ اندر کی محفوظ پوسٹس تمہاری محفوظ فہرست سے نئیں ہٹیں گی۔",
     "folderDeleted": "فولڈر ڈیلیٹ ہو گیا",
-    "deleteFolderFailed": "فولڈر ڈیلیٹ نئیں ہو سکا"
+    "deleteFolderFailed": "فولڈر ڈیلیٹ نئیں ہو سکا",
+    "noCollections": "ابھی کوئی اپنا مجموعہ نئیں",
+    "createCollection": "مجموعہ بناؤ"
   },
   "setProfile": {
     "title": "اپنا پروفائل بناؤ",
@@ -2860,7 +2864,8 @@
     "imageFailed": "وہ تصویر استعمال نئیں ہو سکی",
     "usernameReserved": "یہ یوزرنیم محفوظ ہے",
     "profileSet": "پروفائل کامیابی سے بن گیا!",
-    "profileFailed": "پروفائل نئیں بن سکا"
+    "profileFailed": "پروفائل نئیں بن سکا",
+    "displayNameHint": "تمارا عوامی نام جو پروفائل پر دکھتا ہے۔"
   },
   "events": {
     "mine": "میرے",

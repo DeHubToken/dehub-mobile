@@ -333,7 +333,7 @@ const SavedPostsScreen: React.FC = () => {
                   {submitting ? (
                     <ActivityIndicator size="small" color="#1E1E1E" />
                   ) : (
-                    <Text style={styles.modalSubmitText}>Save Changes</Text>
+                    <Text style={styles.modalSubmitText}>{t("common.saveChanges")}</Text>
                   )}
                 </TouchableOpacity>
               </View>
@@ -403,7 +403,7 @@ const SavedPostsScreen: React.FC = () => {
               ListEmptyComponent={
                 <View style={styles.emptyGrid}>
                   <Icon name="Folder" size={48} color="#A1A1AA" />
-                  <Text style={styles.emptyGridText}>No custom collections yet</Text>
+                  <Text style={styles.emptyGridText}>{t("savedPosts.noCollections")}</Text>
                 </View>
               }
             />
@@ -479,7 +479,7 @@ const SavedPostsScreen: React.FC = () => {
           style={styles.modalBackdrop}
         >
           <View style={styles.modalCard}>
-            <Text style={styles.modalTitle}>Create Collection</Text>
+            <Text style={styles.modalTitle}>{t("savedPosts.createCollection")}</Text>
             <TextInput
               placeholder={t("savedPosts.collectionNamePlaceholder")}
               placeholderTextColor="#A1A1AA"
@@ -541,7 +541,7 @@ const SavedPostsScreen: React.FC = () => {
           style={styles.modalBackdrop}
         >
           <View style={styles.modalCard}>
-            <Text style={styles.modalTitle}>Edit Collection</Text>
+            <Text style={styles.modalTitle}>{t("savedPosts.editCollection")}</Text>
             <TextInput
               placeholder={t("savedPosts.namePlaceholder")}
               placeholderTextColor="#A1A1AA"
@@ -578,7 +578,7 @@ const SavedPostsScreen: React.FC = () => {
                 {submitting ? (
                   <ActivityIndicator size="small" color="#1E1E1E" />
                 ) : (
-                  <Text style={styles.modalSubmitText}>Save Changes</Text>
+                  <Text style={styles.modalSubmitText}>{t("common.saveChanges")}</Text>
                 )}
               </TouchableOpacity>
             </View>

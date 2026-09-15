@@ -600,7 +600,8 @@
     "confirm": "Fọwọ́sí",
     "signIn": "Wọlé",
     "takePhoto": "Ya fọto",
-    "recordVideo": "Ṣe fídíò"
+    "recordVideo": "Ṣe fídíò",
+    "saveChanges": "Fi àwọn àyípadà pamọ́"
   },
   "tip": {
     "title": "Fi Ẹ̀bùn Ránṣẹ́",
@@ -3068,7 +3069,8 @@
     "logOutFailed": "Kò lè jáde ẹ̀rọ náà",
     "logOutAllFailed": "Kò lè jáde àwọn ẹ̀rọ náà",
     "devicesLoggedOut_one": "A ti jáde ẹ̀rọ {{count}}",
-    "devicesLoggedOut_other": "A ti jáde àwọn ẹ̀rọ {{count}}"
+    "devicesLoggedOut_other": "A ti jáde àwọn ẹ̀rọ {{count}}",
+    "noActive": "Kò sí ìpàdé tí ń ṣiṣẹ́"
   },
   "library": {
     "myPosts": "Àwọn ìfiránṣẹ́ mi",
@@ -3098,7 +3100,9 @@
     "deleteFolderTitle": "Pa fóldà rẹ́",
     "deleteFolderBody": "Ṣé ó dájú pé o fẹ́ pa \"{{name}}\" rẹ́? Àwọn ìfiránṣẹ́ tí a fi pamọ́ nínú rẹ̀ kò ní kúrò nínú àkọsílẹ̀ Ìfipamọ́ rẹ.",
     "folderDeleted": "A ti pa fóldà rẹ́",
-    "deleteFolderFailed": "Kò lè pa fóldà rẹ́"
+    "deleteFolderFailed": "Kò lè pa fóldà rẹ́",
+    "noCollections": "O kò tíì ní àkójọ tìrẹ",
+    "createCollection": "Ṣẹ̀dá àkójọ"
   },
   "setProfile": {
     "title": "Ṣètò profáìlì rẹ",
@@ -3119,7 +3123,8 @@
     "imageFailed": "Kò lè lo àwòrán yẹn",
     "usernameReserved": "A ti pa orúkọ olùmúlò yìí mọ́",
     "profileSet": "A ti ṣètò profáìlì ní àṣeyọrí!",
-    "profileFailed": "Kò lè ṣètò profáìlì"
+    "profileFailed": "Kò lè ṣètò profáìlì",
+    "displayNameHint": "Orúkọ gbogbogbò rẹ tí ó hàn lórí profáìlì rẹ."
   },
   "events": {
     "mine": "Tèmi",

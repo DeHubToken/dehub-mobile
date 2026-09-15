@@ -604,7 +604,8 @@
     "confirm": "Patvirtinti",
     "signIn": "Prisijungti",
     "takePhoto": "Fotografuoti",
-    "recordVideo": "Įrašyti vaizdo įrašą"
+    "recordVideo": "Įrašyti vaizdo įrašą",
+    "saveChanges": "Įrašyti pakeitimus"
   },
   "tip": {
     "title": "Siųsti arbatpinigius",
@@ -3077,7 +3078,8 @@
     "logOutFailed": "Nepavyko atjungti įrenginio",
     "logOutAllFailed": "Nepavyko atjungti įrenginių",
     "devicesLoggedOut_one": "Atjungtas {{count}} įrenginys",
-    "devicesLoggedOut_other": "Atjungti {{count}} įrenginiai"
+    "devicesLoggedOut_other": "Atjungti {{count}} įrenginiai",
+    "noActive": "Aktyvių seansų nėra"
   },
   "library": {
     "myPosts": "Mano įrašai",
@@ -3107,7 +3109,9 @@
     "deleteFolderTitle": "Ištrinti aplanką",
     "deleteFolderBody": "Tikrai norite ištrinti \"{{name}}\"? Viduje išsaugoti įrašai nebus ištrinti iš jūsų išsaugotų sąrašo.",
     "folderDeleted": "Aplankas ištrintas",
-    "deleteFolderFailed": "Nepavyko ištrinti aplanko"
+    "deleteFolderFailed": "Nepavyko ištrinti aplanko",
+    "noCollections": "Savų rinkinių dar nėra",
+    "createCollection": "Sukurti rinkinį"
   },
   "setProfile": {
     "title": "Nustatykite savo profilį",
@@ -3128,7 +3132,8 @@
     "imageFailed": "Nepavyko panaudoti šio vaizdo",
     "usernameReserved": "Šis naudotojo vardas rezervuotas",
     "profileSet": "Profilis sėkmingai nustatytas!",
-    "profileFailed": "Nepavyko nustatyti profilio"
+    "profileFailed": "Nepavyko nustatyti profilio",
+    "displayNameHint": "Jūsų viešas vardas, rodomas profilyje."
   },
   "events": {
     "mine": "Mano",

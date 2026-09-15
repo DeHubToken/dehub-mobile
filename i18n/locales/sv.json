@@ -605,7 +605,8 @@
     "confirm": "Bekräfta",
     "signIn": "Logga in",
     "takePhoto": "Ta foto",
-    "recordVideo": "Spela in video"
+    "recordVideo": "Spela in video",
+    "saveChanges": "Spara ändringar"
   },
   "drawers": {
     "ppvTitle": "Betala per visning",
@@ -3082,7 +3083,8 @@
     "logOutFailed": "Det gick inte att logga ut enheten",
     "logOutAllFailed": "Det gick inte att logga ut enheterna",
     "devicesLoggedOut_one": "{{count}} enhet utloggad",
-    "devicesLoggedOut_other": "{{count}} enheter utloggade"
+    "devicesLoggedOut_other": "{{count}} enheter utloggade",
+    "noActive": "Inga aktiva sessioner"
   },
   "library": {
     "myPosts": "Mina inlägg",
@@ -3112,7 +3114,9 @@
     "deleteFolderTitle": "Radera mapp",
     "deleteFolderBody": "Är du säker på att du vill radera \"{{name}}\"? De sparade inläggen inuti raderas inte från din Sparat-lista.",
     "folderDeleted": "Mappen har raderats",
-    "deleteFolderFailed": "Det gick inte att radera mappen"
+    "deleteFolderFailed": "Det gick inte att radera mappen",
+    "noCollections": "Inga egna samlingar än",
+    "createCollection": "Skapa samling"
   },
   "setProfile": {
     "title": "Ställ in din profil",
@@ -3133,7 +3137,8 @@
     "imageFailed": "Det gick inte att använda den bilden",
     "usernameReserved": "Det här användarnamnet är reserverat",
     "profileSet": "Profilen har ställts in!",
-    "profileFailed": "Det gick inte att ställa in profilen"
+    "profileFailed": "Det gick inte att ställa in profilen",
+    "displayNameHint": "Ditt offentliga namn som visas på profilen."
   },
   "events": {
     "mine": "Mina",

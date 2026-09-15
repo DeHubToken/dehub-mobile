@@ -596,7 +596,8 @@
     "confirm": "Whakaū",
     "signIn": "Takiuru",
     "takePhoto": "Tango whakaahua",
-    "recordVideo": "Hopu ataata"
+    "recordVideo": "Hopu ataata",
+    "saveChanges": "Tiakina ngā panoni"
   },
   "tip": {
     "title": "Tukuna koha",
@@ -3063,7 +3064,8 @@
     "logOutFailed": "Kāore i taea te takiputa i te pūrere",
     "logOutAllFailed": "Kāore i taea te takiputa i ngā pūrere",
     "devicesLoggedOut_one": "Kua takiputa te pūrere {{count}}",
-    "devicesLoggedOut_other": "Kua takiputa ngā pūrere {{count}}"
+    "devicesLoggedOut_other": "Kua takiputa ngā pūrere {{count}}",
+    "noActive": "Kāore he wātū kaha"
   },
   "library": {
     "myPosts": "Aku pānui",
@@ -3093,7 +3095,9 @@
     "deleteFolderTitle": "Muku kōpaki",
     "deleteFolderBody": "Kei te tino hiahia koe ki te muku i \"{{name}}\"? Ko ngā pānui kua tiakina ki roto kāore e mukua i tō rārangi Tiaki.",
     "folderDeleted": "Kua mukua te kōpaki",
-    "deleteFolderFailed": "Kāore i taea te muku i te kōpaki"
+    "deleteFolderFailed": "Kāore i taea te muku i te kōpaki",
+    "noCollections": "Kāore anō he kohinga ake",
+    "createCollection": "Hangaia he kohinga"
   },
   "setProfile": {
     "title": "Whakaritea tō kōtaha",
@@ -3114,7 +3118,8 @@
     "imageFailed": "Kāore i taea te whakamahi i taua whakaahua",
     "usernameReserved": "Kua rāhuitia tēnei ingoa kaiwhakamahi",
     "profileSet": "Kua oti te whakarite kōtaha!",
-    "profileFailed": "Kāore i taea te whakarite kōtaha"
+    "profileFailed": "Kāore i taea te whakarite kōtaha",
+    "displayNameHint": "Tō ingoa tūmatanui e whakaatuhia ana i tō kōtaha."
   },
   "events": {
     "mine": "Āku",

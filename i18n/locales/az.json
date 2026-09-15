@@ -594,7 +594,8 @@
     "confirm": "Təsdiqlə",
     "signIn": "Daxil ol",
     "takePhoto": "Foto çək",
-    "recordVideo": "Video çək"
+    "recordVideo": "Video çək",
+    "saveChanges": "Dəyişiklikləri yadda saxla"
   },
   "tip": {
     "title": "Bəxşiş Göndər",
@@ -3062,7 +3063,8 @@
     "logOutFailed": "Cihaz çıxarıla bilmədi",
     "logOutAllFailed": "Cihazlar çıxarıla bilmədi",
     "devicesLoggedOut_one": "{{count}} cihaz çıxarıldı",
-    "devicesLoggedOut_other": "{{count}} cihaz çıxarıldı"
+    "devicesLoggedOut_other": "{{count}} cihaz çıxarıldı",
+    "noActive": "Aktiv sessiya yoxdur"
   },
   "library": {
     "myPosts": "Paylaşımlarım",
@@ -3092,7 +3094,9 @@
     "deleteFolderTitle": "Qovluğu sil",
     "deleteFolderBody": "\"{{name}}\" silinsin? İçindəki saxlanmış paylaşımlar Saxlananlar siyahından silinməyəcək.",
     "folderDeleted": "Qovluq silindi",
-    "deleteFolderFailed": "Qovluq silinə bilmədi"
+    "deleteFolderFailed": "Qovluq silinə bilmədi",
+    "noCollections": "Hələ fərdi kolleksiya yoxdur",
+    "createCollection": "Kolleksiya yarat"
   },
   "setProfile": {
     "title": "Profilini qur",
@@ -3113,7 +3117,8 @@
     "imageFailed": "Bu şəkil istifadə edilə bilmədi",
     "usernameReserved": "Bu istifadəçi adı ehtiyatda saxlanılıb",
     "profileSet": "Profil uğurla quruldu!",
-    "profileFailed": "Profil qurula bilmədi"
+    "profileFailed": "Profil qurula bilmədi",
+    "displayNameHint": "Profilində görünən ictimai adın."
   },
   "events": {
     "mine": "Mənimkilər",

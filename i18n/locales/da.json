@@ -606,7 +606,8 @@
     "confirm": "Bekræft",
     "signIn": "Log ind",
     "takePhoto": "Tag et billede",
-    "recordVideo": "Optag video"
+    "recordVideo": "Optag video",
+    "saveChanges": "Gem ændringer"
   },
   "drawers": {
     "ppvTitle": "Betal per visning",
@@ -3082,7 +3083,8 @@
     "logOutFailed": "Kunne ikke logge enheden ud",
     "logOutAllFailed": "Kunne ikke logge enhederne ud",
     "devicesLoggedOut_one": "{{count}} enhed logget ud",
-    "devicesLoggedOut_other": "{{count}} enheder logget ud"
+    "devicesLoggedOut_other": "{{count}} enheder logget ud",
+    "noActive": "Ingen aktive sessioner"
   },
   "library": {
     "myPosts": "Mine opslag",
@@ -3112,7 +3114,9 @@
     "deleteFolderTitle": "Slet mappe",
     "deleteFolderBody": "Er du sikker på, at du vil slette \"{{name}}\"? De gemte opslag indeni bliver ikke slettet fra din Gemt-liste.",
     "folderDeleted": "Mappe slettet",
-    "deleteFolderFailed": "Kunne ikke slette mappe"
+    "deleteFolderFailed": "Kunne ikke slette mappe",
+    "noCollections": "Ingen egne samlinger endnu",
+    "createCollection": "Opret samling"
   },
   "setProfile": {
     "title": "Opret din profil",
@@ -3133,7 +3137,8 @@
     "imageFailed": "Kunne ikke bruge det billede",
     "usernameReserved": "Dette brugernavn er reserveret",
     "profileSet": "Profilen blev oprettet!",
-    "profileFailed": "Kunne ikke oprette profil"
+    "profileFailed": "Kunne ikke oprette profil",
+    "displayNameHint": "Dit offentlige navn, der vises på din profil."
   },
   "events": {
     "mine": "Mine",

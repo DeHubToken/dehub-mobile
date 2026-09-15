@@ -595,7 +595,8 @@
     "confirm": "තහවුරු කරන්න",
     "signIn": "පිවිසෙන්න",
     "takePhoto": "ඡායාරූපයක් ගන්න",
-    "recordVideo": "වීඩියෝ පටිගත කරන්න"
+    "recordVideo": "වීඩියෝ පටිගත කරන්න",
+    "saveChanges": "වෙනස්කම් සුරකින්න"
   },
   "tip": {
     "title": "ටිප් එවන්න",
@@ -3060,7 +3061,8 @@
     "logOutFailed": "උපාංගය ඉවත් කළ නොහැකි විය",
     "logOutAllFailed": "උපාංග ඉවත් කළ නොහැකි විය",
     "devicesLoggedOut_one": "උපාංග {{count}}ක් ඉවත් විය",
-    "devicesLoggedOut_other": "උපාංග {{count}}ක් ඉවත් විය"
+    "devicesLoggedOut_other": "උපාංග {{count}}ක් ඉවත් විය",
+    "noActive": "සක්‍රීය සැසි නැත"
   },
   "library": {
     "myPosts": "මගේ පළ කිරීම්",
@@ -3090,7 +3092,9 @@
     "deleteFolderTitle": "ෆෝල්ඩරය මකන්න",
     "deleteFolderBody": "\"{{name}}\" මැකීමට විශ්වාසද? ඇතුළත සුරකින ලද පළ කිරීම් ඔබේ සුරැකි ලැයිස්තුවෙන් මැකෙන්නේ නැත.",
     "folderDeleted": "ෆෝල්ඩරය මකා දමන ලදී",
-    "deleteFolderFailed": "ෆෝල්ඩරය මැකිය නොහැකි විය"
+    "deleteFolderFailed": "ෆෝල්ඩරය මැකිය නොහැකි විය",
+    "noCollections": "තවම ඔබේම එකතු නැත",
+    "createCollection": "එකතුවක් සාදන්න"
   },
   "setProfile": {
     "title": "ඔබේ පැතිකඩ සකසන්න",
@@ -3111,7 +3115,8 @@
     "imageFailed": "එම රූපය භාවිතා කළ නොහැකි විය",
     "usernameReserved": "මෙම පරිශීලක නාමය වෙන් කර ඇත",
     "profileSet": "පැතිකඩ සාර්ථකව සකසන ලදී!",
-    "profileFailed": "පැතිකඩ සැකසිය නොහැකි විය"
+    "profileFailed": "පැතිකඩ සැකසිය නොහැකි විය",
+    "displayNameHint": "ඔබේ පැතිකඩෙහි පෙන්වන ප්‍රසිද්ධ නම."
   },
   "events": {
     "mine": "මගේ",

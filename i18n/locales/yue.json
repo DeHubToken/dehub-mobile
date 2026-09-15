@@ -605,7 +605,8 @@
     "confirm": "確認",
     "signIn": "登入",
     "takePhoto": "影相",
-    "recordVideo": "拍片"
+    "recordVideo": "拍片",
+    "saveChanges": "儲存變更"
   },
   "tip": {
     "title": "送禮物",
@@ -3076,7 +3077,8 @@
     "logOutFailed": "無法登出該裝置",
     "logOutAllFailed": "無法登出呢啲裝置",
     "devicesLoggedOut_one": "已登出 {{count}} 部裝置",
-    "devicesLoggedOut_other": "已登出 {{count}} 部裝置"
+    "devicesLoggedOut_other": "已登出 {{count}} 部裝置",
+    "noActive": "冇進行中嘅工作階段"
   },
   "library": {
     "myPosts": "我嘅帖子",
@@ -3106,7 +3108,9 @@
     "deleteFolderTitle": "刪除資料夾",
     "deleteFolderBody": "確定要刪除 \"{{name}}\" 嗎？入面已儲存嘅帖子唔會喺你嘅收藏清單中刪除。",
     "folderDeleted": "資料夾已刪除",
-    "deleteFolderFailed": "無法刪除資料夾"
+    "deleteFolderFailed": "無法刪除資料夾",
+    "noCollections": "仲未有自訂收藏",
+    "createCollection": "建立收藏"
   },
   "setProfile": {
     "title": "設定你嘅個人檔案",
@@ -3127,7 +3131,8 @@
     "imageFailed": "無法使用該圖片",
     "usernameReserved": "呢個用戶名已被保留",
     "profileSet": "個人檔案設定成功！",
-    "profileFailed": "無法設定個人檔案"
+    "profileFailed": "無法設定個人檔案",
+    "displayNameHint": "喺你個人檔案顯示嘅公開名稱。"
   },
   "events": {
     "mine": "我嘅",

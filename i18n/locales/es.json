@@ -620,7 +620,8 @@
     "confirm": "Confirmar",
     "signIn": "Iniciar sesión",
     "takePhoto": "Tomar foto",
-    "recordVideo": "Grabar video"
+    "recordVideo": "Grabar video",
+    "saveChanges": "Guardar cambios"
   },
   "postOptions": {
     "options": "Opciones",
@@ -3148,7 +3149,8 @@
     "logOutFailed": "No se pudo cerrar la sesión del dispositivo",
     "logOutAllFailed": "No se pudieron cerrar las sesiones de los dispositivos",
     "devicesLoggedOut_one": "{{count}} dispositivo desconectado",
-    "devicesLoggedOut_other": "{{count}} dispositivos desconectados"
+    "devicesLoggedOut_other": "{{count}} dispositivos desconectados",
+    "noActive": "No hay sesiones activas"
   },
   "library": {
     "myPosts": "Mis publicaciones",
@@ -3178,7 +3180,9 @@
     "deleteFolderTitle": "Eliminar carpeta",
     "deleteFolderBody": "¿Seguro que quieres eliminar \"{{name}}\"? Las publicaciones guardadas dentro no se eliminarán de tu lista de guardados.",
     "folderDeleted": "Carpeta eliminada",
-    "deleteFolderFailed": "No se pudo eliminar la carpeta"
+    "deleteFolderFailed": "No se pudo eliminar la carpeta",
+    "noCollections": "Aún no hay colecciones propias",
+    "createCollection": "Crear colección"
   },
   "setProfile": {
     "title": "Configura tu perfil",
@@ -3199,7 +3203,8 @@
     "imageFailed": "No se pudo usar esa imagen",
     "usernameReserved": "Este nombre de usuario está reservado",
     "profileSet": "¡Perfil configurado correctamente!",
-    "profileFailed": "No se pudo configurar el perfil"
+    "profileFailed": "No se pudo configurar el perfil",
+    "displayNameHint": "Tu nombre público que aparece en tu perfil."
   },
   "events": {
     "mine": "Míos",
