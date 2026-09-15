@@ -2977,7 +2977,12 @@
     "errorUnsupported": "เราไม่สามารถนำเข้าจากลิงก์นั้นได้ ลองใช้อันใดอันหนึ่งเหล่านี้: {{sources}}",
     "errorNeedRights": "โปรดยืนยันว่าคุณมีสิทธิ์ในเนื้อหานี้",
     "errorClipboard": "ไม่สามารถอ่านคลิปบอร์ด — วางด้วยตนเองแทน",
-    "errorQueueFailed": "ไม่สามารถจัดคิวการนำเข้านั้นได้"
+    "errorQueueFailed": "ไม่สามารถจัดคิวการนำเข้านั้นได้",
+    "publishAs": "Publish as",
+    "kindVideo": "Video",
+    "kindAudio": "เสียง",
+    "kindImage": "รูปภาพ",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24ชม.",

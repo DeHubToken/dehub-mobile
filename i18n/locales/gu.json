@@ -3010,7 +3010,12 @@
     "errorUnsupported": "અમે તે લિંકમાંથી આયાત કરી શકતા નથી. તેમાંથી એક અજમાવો: {{sources}}",
     "errorNeedRights": "કૃપા કરીને ખાતરી કરો કે તમારી પાસે આ સામગ્રીના અધિકારો છે",
     "errorClipboard": "ક્લિપબોર્ડ વાંચી શકાતું નથી — તેના બદલે મેન્યુઅલી પેસ્ટ કરો",
-    "errorQueueFailed": "તે આયાત માટે કતાર લગાવી શકાતી નથી"
+    "errorQueueFailed": "તે આયાત માટે કતાર લગાવી શકાતી નથી",
+    "publishAs": "આ રીતે પ્રકાશિત કરો",
+    "kindVideo": "વીડિયો",
+    "kindAudio": "ધ્વનિ",
+    "kindImage": "ચિત્રો",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24ક",

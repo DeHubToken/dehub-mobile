@@ -2963,7 +2963,12 @@
     "toastFailed": "O kɔrɔ ko, a tun be se ka kɛ ko a tun ye",
     "errorNeedRights": "N'i b'a fɛ ka koo dɔ kɛ min be se k'i bali ka koo dɔ kɛ min be se k'i bali ka koo dɔ",
     "errorClipboard": "Ne tɛ se ka n ka gafew kalan - n' tɛ se ka n ka gafew kalan",
-    "errorQueueFailed": "Ne tɛ se ka o fɔ"
+    "errorQueueFailed": "Ne tɛ se ka o fɔ",
+    "publishAs": "A fɔra yen ko:",
+    "kindVideo": "O video ye min ye",
+    "kindAudio": "Aw ye mɛnni kɛ",
+    "kindImage": "O ye ɲɛyirali ɲuman ye",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24l",

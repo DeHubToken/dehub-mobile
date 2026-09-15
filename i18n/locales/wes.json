@@ -2857,7 +2857,12 @@
     "errorUnsupported": "We no fit bring am from dat link. Try one of: {{sources}}",
     "errorNeedRights": "Make you confirm say you get right for dis content",
     "errorClipboard": "No fit read di clipboard — paste am by hand instead",
-    "errorQueueFailed": "No fit put dat bring-in for queue"
+    "errorQueueFailed": "No fit put dat bring-in for queue",
+    "publishAs": "Publish as",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Picha",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

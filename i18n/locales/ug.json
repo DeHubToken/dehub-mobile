@@ -3008,7 +3008,12 @@
     "errorUnsupported": "بۇ ئۇلانمىدىن ئىمپورت قىلالمايمىز. بىرنى سىناپ بېقىڭ: {{sources}}",
     "errorNeedRights": "بۇ مەزمۇنغا ھوقۇقىڭىز بارلىقىنى ئىسپاتلاڭ",
     "errorClipboard": "ئالماشتۇرۇش تاختىسىنى ئوقۇغىلى بولمىدى - ئۇنىڭ ئورنىغا قول بىلەن چاپلاش",
-    "errorQueueFailed": "بۇ ئىمپورتنى ئالماشتۇرغىلى بولمىدى"
+    "errorQueueFailed": "بۇ ئىمپورتنى ئالماشتۇرغىلى بولمىدى",
+    "publishAs": "تۆۋەندىكىدەك نەشر قىل",
+    "kindVideo": "Video",
+    "kindAudio": "ئاۋاز",
+    "kindImage": "سۈرەتلەر",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24س",

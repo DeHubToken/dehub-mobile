@@ -3008,7 +3008,12 @@
     "errorUnsupported": "A kò lè ṣe àmúwọlé láti ọ̀dọ̀ ìjápọ yẹn. Gbiyanju ọkan ninu: {{sources}}",
     "errorNeedRights": "Jọwọ jẹrisi pe o ni awọn ẹtọ si akoonu yii.",
     "errorClipboard": "Mi ò lè ka àtẹ̀jíṣẹ́ náà — fi ọwọ́ tẹ dípò",
-    "errorQueueFailed": "Kò lè ṣe àlàfo àmúwọlé yẹn."
+    "errorQueueFailed": "Kò lè ṣe àlàfo àmúwọlé yẹn.",
+    "publishAs": "Tẹjade bi",
+    "kindVideo": "Fídíò",
+    "kindAudio": "Ohùn",
+    "kindImage": "Àwọn àwòrán",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24w",

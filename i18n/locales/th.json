@@ -3055,7 +3055,12 @@
     "errorUnsupported": "เราไม่สามารถนำเข้าจากลิงก์นั้นได้ ลองหนึ่งใน: {{sources}}",
     "errorNeedRights": "โปรดยืนยันว่าคุณมีสิทธิ์ในเนื้อหานี้",
     "errorClipboard": "ไม่สามารถอ่านคลิปบอร์ดได้ — วางด้วยตนเองแทน",
-    "errorQueueFailed": "ไม่สามารถจัดคิวการนำเข้านั้นได้"
+    "errorQueueFailed": "ไม่สามารถจัดคิวการนำเข้านั้นได้",
+    "publishAs": "เผยแพร่เป็น",
+    "kindVideo": "วิดีโอ",
+    "kindAudio": "เสียง",
+    "kindImage": "รูป",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24ชม.",

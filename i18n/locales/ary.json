@@ -3044,7 +3044,12 @@
     "errorUnsupported": "لا يمكننا الاستيراد من هذا الرابط. جرب واحدة من: {{sources}}",
     "errorNeedRights": "يرجى تأكيد أن لديك حقوق هذا المحتوى",
     "errorClipboard": "تعذر قراءة الحافظة — الصقها يدويًا بدلاً من ذلك",
-    "errorQueueFailed": "تعذر وضع هذا الاستيراد في قائمة الانتظار"
+    "errorQueueFailed": "تعذر وضع هذا الاستيراد في قائمة الانتظار",
+    "publishAs": "نشر كـ",
+    "kindVideo": "فيديو",
+    "kindAudio": "الصوت",
+    "kindImage": "الصور",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24س",

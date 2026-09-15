@@ -3050,7 +3050,12 @@
     "errorUnsupported": "Chay t&#39;inkimantaqa manam hawaman apamuyta atichwanchu. Hukninta prueba: {{sources}}",
     "errorNeedRights": "Ama hina kaspa, kay willakuypa derechonkunayuq kasqaykita takyachiy",
     "errorClipboard": "Manam atirqanchu qillqana mayt&#39;uta ñawiriyta — makiwan k&#39;askachiy chaypa rantinpi",
-    "errorQueueFailed": "Chay apamuyta mana filapi churayta atirqanchu"
+    "errorQueueFailed": "Chay apamuyta mana filapi churayta atirqanchu",
+    "publishAs": "Publicar como",
+    "kindVideo": "Video",
+    "kindAudio": "Audio nisqa",
+    "kindImage": "Siqikuna",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

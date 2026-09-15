@@ -2974,7 +2974,12 @@
     "toastFailed": "आयातः अपयशम् अभवत् ।",
     "errorNeedRights": "कृपया एतत् पृष्ठं सम्पाद्यताम् = कृपया एतत् पृष्ठं सम्पाद्यताम् ।",
     "errorClipboard": "पठनं न शक्यमस्ति_पठनं न शक्यमस्ति_",
-    "errorQueueFailed": "इतस्ततः आयातं कर्तुं न शक्नोमि"
+    "errorQueueFailed": "इतस्ततः आयातं कर्तुं न शक्नोमि",
+    "publishAs": "प्रकाशितं यथा",
+    "kindVideo": "दृश्यम्",
+    "kindAudio": "ध्वनिः",
+    "kindImage": "चित्राणि",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24घ",

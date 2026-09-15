@@ -3009,7 +3009,12 @@
     "errorUnsupported": "Vi kan ikke importere fra den lenken. Prøv en av: {{sources}}",
     "errorNeedRights": "Vennligst bekreft at du har rettighetene til dette innholdet",
     "errorClipboard": "Kunne ikke lese utklippstavlen – lim inn manuelt i stedet",
-    "errorQueueFailed": "Kunne ikke sette den importen i kø"
+    "errorQueueFailed": "Kunne ikke sette den importen i kø",
+    "publishAs": "Publiser som",
+    "kindVideo": "Video",
+    "kindAudio": "Lyd",
+    "kindImage": "Bilder",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24t",

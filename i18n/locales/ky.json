@@ -3011,7 +3011,12 @@
     "errorUnsupported": "Бул шилтемеден импорттой албайбыз. Төмөнкүлөрдүн бирин колдонуп көрүңүз: {{sources}}",
     "errorNeedRights": "Бул мазмунга укугуңуз бар экендигин ырастаңыз",
     "errorClipboard": "Алмашуу буферин окууга болбоду — анын ордуна кол менен чаптоо",
-    "errorQueueFailed": "Импорттоого кезек келбеди"
+    "errorQueueFailed": "Импорттоого кезек келбеди",
+    "publishAs": "Жарыялоо",
+    "kindVideo": "_Видео",
+    "kindAudio": "Аудио",
+    "kindImage": "Сүрөттөр",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24с",

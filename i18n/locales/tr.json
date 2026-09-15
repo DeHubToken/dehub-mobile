@@ -3080,7 +3080,12 @@
     "errorUnsupported": "Bu bağlantıdan içe aktaramıyoruz. Şunlardan birini deneyin: {{sources}}",
     "errorNeedRights": "Lütfen bu içeriğin haklarına sahip olduğunuzu onaylayın",
     "errorClipboard": "Pano okunamadı — bunun yerine manuel olarak yapıştırın",
-    "errorQueueFailed": "Bu içe aktarma kuyruğa alınamadı"
+    "errorQueueFailed": "Bu içe aktarma kuyruğa alınamadı",
+    "publishAs": "Farklı yayınla",
+    "kindVideo": "Video",
+    "kindAudio": "Ses",
+    "kindImage": "Resimler",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24s",

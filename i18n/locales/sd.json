@@ -3001,7 +3001,12 @@
     "errorUnsupported": "اسان انهي لنڪ مان درآمد نٿا ڪري سگهون. هڪ جي ڪوشش ڪريو: {{sources}}",
     "errorNeedRights": "مهرباني ڪري تصديق ڪريو ته توهان وٽ هن مواد جا حق آهن",
     "errorClipboard": "ڪلپ بورڊ نه پڙھي سگھيو — ان جي بدران دستي طور پيسٽ ڪريو",
-    "errorQueueFailed": "ان درآمد کي قطار ۾ رکي نه سگھيو"
+    "errorQueueFailed": "ان درآمد کي قطار ۾ رکي نه سگھيو",
+    "publishAs": "طور شايع ڪريو",
+    "kindVideo": "وڊيو",
+    "kindAudio": "آڊيو",
+    "kindImage": "تصويرون",
+    "tileSourceKind": "{{مبسس4}} آيت {{مبسس4}}"
   },
   "earnings": {
     "filter24h": "24ڪ",

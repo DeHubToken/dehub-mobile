@@ -3088,7 +3088,12 @@
     "errorUnsupported": "We cannot import from that link. Try one of: {{sources}}",
     "errorNeedRights": "Please confirm you have the rights to this content",
     "errorClipboard": "Could not read the clipboard — paste manually instead",
-    "errorQueueFailed": "Could not queue that import"
+    "errorQueueFailed": "Could not queue that import",
+    "publishAs": "Publish as",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Pictures",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

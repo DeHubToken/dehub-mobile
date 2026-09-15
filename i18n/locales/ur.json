@@ -3016,7 +3016,12 @@
     "errorUnsupported": "ہم اس لنک سے درآمد نہیں کر سکتے ۔ ان میں سے کوئی ایک آزمائیں: {{sources}}",
     "errorNeedRights": "براہ کرم تصدیق کریں کہ آپ کے پاس اس مواد کے حقوق ہیں",
     "errorClipboard": "کلپ بورڈ نہیں پڑھ سکا — اس کے بجائے دستی طور پر پیسٹ کریں",
-    "errorQueueFailed": "اس درآمد کی قطار نہیں لگائی جا سکی"
+    "errorQueueFailed": "اس درآمد کی قطار نہیں لگائی جا سکی",
+    "publishAs": "شائع کریں بطور",
+    "kindVideo": "ویڈیو",
+    "kindAudio": "آڈیو",
+    "kindImage": "تصاویر",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24گھنٹے",

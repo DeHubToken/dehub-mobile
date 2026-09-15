@@ -3017,7 +3017,12 @@
     "errorUnsupported": "Nuk mund të importojmë nga ai link. Provo një nga: {{sources}}",
     "errorNeedRights": "Konfirmo që ke të drejtat për këtë përmbajtje",
     "errorClipboard": "Nuk mund të lexohet kujtesa e përkohshme — ngjiteni manualisht më mirë",
-    "errorQueueFailed": "Importimi nuk mund të vihej në radhë"
+    "errorQueueFailed": "Importimi nuk mund të vihej në radhë",
+    "publishAs": "Publiko si",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Piktura",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24o",

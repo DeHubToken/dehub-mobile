@@ -3086,7 +3086,12 @@
     "errorUnsupported": "해당 링크에서 가져올 수 없습니다. 다음 중 하나를 시도해보세요: {{sources}}",
     "errorNeedRights": "이 콘텐츠에 대한 권리가 있는지 확인하십시오.",
     "errorClipboard": "클립보드를 읽을 수 없음 — 수동으로 붙여넣기",
-    "errorQueueFailed": "가져오기를 대기열에 넣을 수 없습니다"
+    "errorQueueFailed": "가져오기를 대기열에 넣을 수 없습니다",
+    "publishAs": "다음으로 게시",
+    "kindVideo": "영상",
+    "kindAudio": "오디오",
+    "kindImage": "사진",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24시간",

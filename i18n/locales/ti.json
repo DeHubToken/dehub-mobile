@@ -2983,7 +2983,12 @@
     "errorUnsupported": "ካብዚ ርክባት እዚ ክንኣቱ ኣይንኽእልን ኢና ። ሓደ ፈትኖ ፦ {{sources}}",
     "errorNeedRights": "ነዚ ትሕዝቶ እዚ መሰል ከም ዘሎካ ኣረጋግጽ",
     "errorClipboard": "ነቲ ክሊፕቦርድ ክነንብቦ ኣይከኣልኩን — ብኢድ ኣብ ክንዲ",
-    "errorQueueFailed": "ነዚ ኣምጽኦ እዚ ክኣክል ክኣክል ኣይከኣልኩን ።"
+    "errorQueueFailed": "ነዚ ኣምጽኦ እዚ ክኣክል ክኣክል ኣይከኣልኩን ።",
+    "publishAs": "ከም",
+    "kindVideo": "ቪድዮ",
+    "kindAudio": "ድምፂ",
+    "kindImage": "ስእልታት",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24ሰ",

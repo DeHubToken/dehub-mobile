@@ -3092,7 +3092,12 @@
     "errorUnsupported": "Não podemos importar a partir desse link. Experimente um dos seguintes: {{sources}}",
     "errorNeedRights": "Confirme que tem os direitos sobre este conteúdo",
     "errorClipboard": "Não foi possível ler a área de transferência — em vez disso, cole manualmente",
-    "errorQueueFailed": "Não foi possível enfileirar essa importação"
+    "errorQueueFailed": "Não foi possível enfileirar essa importação",
+    "publishAs": "Publicar como…",
+    "kindVideo": "Vídeo",
+    "kindAudio": "Áudio",
+    "kindImage": "Pinturas",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

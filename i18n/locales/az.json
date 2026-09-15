@@ -3002,7 +3002,12 @@
     "errorUnsupported": "Bu linkdən idxal edə bilmərik. Bunlardan birini sınayın: {{sources}}",
     "errorNeedRights": "Bu məzmunda hüquqlarınızın olduğunu təsdiq edin",
     "errorClipboard": "Mübadilə buferini oxumaq mümkün olmadı — əvəzinə əllə yapışdırın",
-    "errorQueueFailed": "Bu idxalı növbə ilə dəyişmək mümkün olmadı"
+    "errorQueueFailed": "Bu idxalı növbə ilə dəyişmək mümkün olmadı",
+    "publishAs": "Bu cür dərc edin:",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Şəkillər",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24s",

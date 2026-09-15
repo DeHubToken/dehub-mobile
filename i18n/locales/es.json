@@ -3088,7 +3088,12 @@
     "errorUnsupported": "No podemos importar desde ese enlace. Prueba uno de los siguientes: {{sources}}",
     "errorNeedRights": "Confirma que tienes los derechos de este contenido",
     "errorClipboard": "No se ha podido leer el portapapeles — pegar manualmente en su lugar",
-    "errorQueueFailed": "No se ha podido poner en cola esa importación"
+    "errorQueueFailed": "No se ha podido poner en cola esa importación",
+    "publishAs": "Publicar como",
+    "kindVideo": "Video",
+    "kindAudio": "Sonido",
+    "kindImage": "imágenes",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

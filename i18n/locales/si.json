@@ -3000,7 +3000,12 @@
     "errorUnsupported": "අපිට ඒ ලින්ක් එකෙන් ඉන්ස්ටෝල් කරන්න බෑ. එකක් උත්සාහ කරන්න: {{sources}}",
     "errorNeedRights": "මෙම අන්තර්ගතයට ඔබට හිමිකම් ඇති බව තහවුරු කරන්න",
     "errorClipboard": "ක්ලිප් පුවරුව කියවිය නොහැකි විය — ඒ වෙනුවට අතින් අලවන්න",
-    "errorQueueFailed": "එම ආයාතය පෝලිමේ තැබිය නොහැකි විය"
+    "errorQueueFailed": "එම ආයාතය පෝලිමේ තැබිය නොහැකි විය",
+    "publishAs": "ලෙස ප් ‍ රකාශයට පත් කරන්න",
+    "kindVideo": "වීඩියෝව",
+    "kindAudio": "ශබ්ද",
+    "kindImage": "පිංතුර",
+    "tileSourceKind": "{{මූලාශ් ‍ රය}}"
   },
   "earnings": {
     "filter24h": "24පැ",

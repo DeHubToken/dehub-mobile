@@ -2988,7 +2988,12 @@
     "errorUnsupported": "Biz bu baglanyşygy äkidip bilmeris. Birini synap görüň: {{sources}}",
     "errorNeedRights": "Siz bu maglumatlara haklydygyňyzy tassyklaň",
     "errorClipboard": "Klipbordy okamady - onuň ýerine el bilen ýapyş",
-    "errorQueueFailed": "Bu äpişgede seretmek mümkin däl"
+    "errorQueueFailed": "Bu äpişgede seretmek mümkin däl",
+    "publishAs": "Öňki ýaly çap ediň",
+    "kindVideo": "Video",
+    "kindAudio": "Ses",
+    "kindImage": "Suratlar",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24s",

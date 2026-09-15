@@ -2976,7 +2976,12 @@
     "errorUnsupported": "ພວກເຮົາບໍ່ສາມາດນໍາເຂົ້າຈາກລິ້ງນີ້ໄດ້. ພະ ຍາ ຍາມ ຫນຶ່ງ ໃນ: {{sources}}",
     "errorNeedRights": "ກະລຸນາຢືນຢັນວ່າທ່ານມີສິດຕໍ່ເນື້ອຫານີ້",
     "errorClipboard": "ບໍ່ສາມາດອ່ານຄລິບບອດໄດ້ - ຕິດດ້ວຍມືແທນ",
-    "errorQueueFailed": "ບໍ່ສາມາດລຽນແຖວການນໍາເຂົ້ານັ້ນໄດ້"
+    "errorQueueFailed": "ບໍ່ສາມາດລຽນແຖວການນໍາເຂົ້ານັ້ນໄດ້",
+    "publishAs": "ພິມເປັນ",
+    "kindVideo": "ວີດີໂອ",
+    "kindAudio": "ສຽງ",
+    "kindImage": "ຮູບພາບ",
+    "tileSourceKind": "{{ແຫຼ່ງຂໍ້ມູນ}} · {{ປະເພດ}}"
   },
   "earnings": {
     "filter24h": "24ຊມ",

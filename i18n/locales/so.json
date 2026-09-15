@@ -3009,7 +3009,12 @@
     "errorUnsupported": "Ma soo dejisan karno xiriirkaas. Isku day mid ka mid ah: {{sources}}",
     "errorNeedRights": "Fadlan xaqiiji inaad xaq u leedahay nuxurkan",
     "errorClipboard": "Ma aqrin karo clipboard — ku dheji gacanta halkii",
-    "errorQueueFailed": "Ma safan karo soo dejinta"
+    "errorQueueFailed": "Ma safan karo soo dejinta",
+    "publishAs": "Daabac sida",
+    "kindVideo": "Waso",
+    "kindAudio": "Cod",
+    "kindImage": "Sawiro",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24s",

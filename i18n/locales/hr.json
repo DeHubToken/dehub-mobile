@@ -3018,7 +3018,12 @@
     "errorUnsupported": "Ne možemo uvesti s te poveznice. Isprobajte nešto od sljedećeg: {{sources}}",
     "errorNeedRights": "Potvrdite da imate prava na ovaj sadržaj",
     "errorClipboard": "Nije moguće pročitati međuspremnik — umjesto toga ručno zalijepite",
-    "errorQueueFailed": "Nije bilo moguće staviti taj uvoz u red čekanja"
+    "errorQueueFailed": "Nije bilo moguće staviti taj uvoz u red čekanja",
+    "publishAs": "Objavi kao",
+    "kindVideo": "Video",
+    "kindAudio": "Zvuk",
+    "kindImage": "Slike",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

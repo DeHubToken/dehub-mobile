@@ -14,6 +14,10 @@ import { apiClient } from '../libs/api.client';
 
 export interface ConverterImportParams {
   url: string;
+  /** Publish as a video post, an audio one, or a picture post. Omitted means
+   * the source's own default, which is what every client sent before the
+   * choice existed. */
+  mediaKind?: 'video' | 'audio' | 'image';
   /** No ownership check is possible from a URL, so this is the liability
    * gate. The API rejects the request without it. */
   ownershipConfirmed: boolean;
@@ -34,6 +38,8 @@ export interface ConverterImport {
   url?: string;
   /** Which supported source it came from — `youtube`, `tiktok`, … */
   sourceId?: string;
+  /** What this job publishes as. */
+  mediaKind?: 'video' | 'audio' | 'image';
   /** How that source names itself. The server owns the list, so the tile
    * renders what it is told rather than looking the id up locally. */
   sourceLabel?: string;

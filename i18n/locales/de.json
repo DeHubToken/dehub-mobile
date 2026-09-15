@@ -3087,7 +3087,12 @@
     "errorUnsupported": "Wir können nicht von diesem Link importieren. Probieren Sie eine der folgenden Möglichkeiten aus: {{sources}}",
     "errorNeedRights": "Bitte bestätigen Sie, dass Sie die Rechte an diesem Inhalt haben",
     "errorClipboard": "Zwischenablage konnte nicht gelesen werden — stattdessen manuell einfügen",
-    "errorQueueFailed": "Dieser Import konnte nicht in die Warteschlange gestellt werden"
+    "errorQueueFailed": "Dieser Import konnte nicht in die Warteschlange gestellt werden",
+    "publishAs": "Veröffentlichen als",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Bilder",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

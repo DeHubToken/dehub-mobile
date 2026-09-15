@@ -3018,7 +3018,12 @@
     "errorUnsupported": "Hatuwezi kuingiza kutoka kwenye kiunganishi hicho. Jaribu moja kati ya: {{sources}}",
     "errorNeedRights": "Tafadhali thibitisha kuwa una haki za maudhui haya",
     "errorClipboard": "Haikuweza kusoma ubao wa kunakili — bandika mwenyewe badala yake",
-    "errorQueueFailed": "Imeshindwa kupanga foleni ya uingizaji huo"
+    "errorQueueFailed": "Imeshindwa kupanga foleni ya uingizaji huo",
+    "publishAs": "Chapisha kama",
+    "kindVideo": "Video",
+    "kindAudio": "Sauti",
+    "kindImage": "Taswira",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24s",

@@ -3016,7 +3016,12 @@
     "errorUnsupported": "我哋唔可以喺嗰個連結匯入。試下其中一個： {{sources}}",
     "errorNeedRights": "請確認你擁有呢個內容嘅權利",
     "errorClipboard": "讀唔到剪貼簿 — 改為手動貼上",
-    "errorQueueFailed": "排隊唔到嗰個匯入"
+    "errorQueueFailed": "排隊唔到嗰個匯入",
+    "publishAs": "發佈為",
+    "kindVideo": "影片",
+    "kindAudio": "音頻",
+    "kindImage": "圖片",
+    "tileSourceKind": "{{ 來源 } } · {{ 種類 } }"
   },
   "earnings": {
     "filter24h": "24小時",

@@ -3282,7 +3282,12 @@
     "errorUnsupported": "Kami tidak boleh mengimport dari pautan tersebut. Cuba salah satu daripada: {{sources}}",
     "errorNeedRights": "Sila sahkan bahawa anda mempunyai hak ke atas kandungan ini",
     "errorClipboard": "Tidak dapat membaca papan klip — tampal secara manual",
-    "errorQueueFailed": "Tidak dapat membaris gilir import tersebut"
+    "errorQueueFailed": "Tidak dapat membaris gilir import tersebut",
+    "publishAs": "Siarkan sebagai",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Gambar",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24j",

@@ -3018,7 +3018,12 @@
     "errorUnsupported": "No podem importar des d'aquest enllaç. Prova una de les següents opcions: {{sources}}",
     "errorNeedRights": "Confirma que tens els drets sobre aquest contingut",
     "errorClipboard": "No s'ha pogut llegir el porta-retalls: enganxa-ho manualment",
-    "errorQueueFailed": "No s'ha pogut posar en cua aquesta importació"
+    "errorQueueFailed": "No s'ha pogut posar en cua aquesta importació",
+    "publishAs": "Publica com a",
+    "kindVideo": "Vídeo",
+    "kindAudio": "Àudio",
+    "kindImage": "Imatges",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

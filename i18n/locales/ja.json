@@ -3085,7 +3085,12 @@
     "errorUnsupported": "そのリンクからインポートすることはできません。 次のいずれかをお試しください：{{sources}}",
     "errorNeedRights": "このコンテンツの権利を持っていることを確認してください",
     "errorClipboard": "クリップボードを読み取れませんでした—代わりに手動で貼り付けてください",
-    "errorQueueFailed": "インポートをキューに入れることができませんでした"
+    "errorQueueFailed": "インポートをキューに入れることができませんでした",
+    "publishAs": "設定して公開...",
+    "kindVideo": "動画",
+    "kindAudio": "オーディオ",
+    "kindImage": "絵画",
+    "tileSourceKind": "{{source}}・{{kind}}"
   },
   "earnings": {
     "filter24h": "24時間",

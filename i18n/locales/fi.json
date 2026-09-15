@@ -3018,7 +3018,12 @@
     "errorUnsupported": "Emme voi tuoda tästä linkistä. Kokeile yhtä seuraavista: {{sources}}",
     "errorNeedRights": "Vahvista, että sinulla on oikeudet tähän sisältöön",
     "errorClipboard": "Leikepöytää ei voitu lukea — liitä sen sijaan manuaalisesti",
-    "errorQueueFailed": "Tuontia ei voitu jonottaa"
+    "errorQueueFailed": "Tuontia ei voitu jonottaa",
+    "publishAs": "Julkaise nimellä",
+    "kindVideo": "Video",
+    "kindAudio": "Ääni",
+    "kindImage": "Kuvat",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",

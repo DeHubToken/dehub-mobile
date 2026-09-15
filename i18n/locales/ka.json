@@ -3053,7 +3053,12 @@
     "errorUnsupported": "Ამ ბმულიდან იმპორტირება ვერ მოხერხდება. Სცადეთ ერთ-ერთი: {{sources}}",
     "errorNeedRights": "Გთხოვთ, დაადასტუროთ, რომ გაქვთ ამ კონტენტზე უფლებები",
     "errorClipboard": "Ბუფერის წაკითხვის შეცდომა — ხელით ჩასმა",
-    "errorQueueFailed": "Ამ იმპორტის რიგში მდგომი ვერ მოხერხდა"
+    "errorQueueFailed": "Ამ იმპორტის რიგში მდგომი ვერ მოხერხდა",
+    "publishAs": "Გამოაქვეყნეთ, როგორც",
+    "kindVideo": "ვიდეო",
+    "kindAudio": "აუდიო",
+    "kindImage": "სურათები",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24სთ",

@@ -3287,7 +3287,12 @@
     "errorUnsupported": "We kunnen niet importeren vanaf die link. Probeer een van de volgende opties: {{sources}}",
     "errorNeedRights": "Bevestig dat je de rechten hebt op deze inhoud",
     "errorClipboard": "Kon het klembord niet lezen — plak in plaats daarvan handmatig",
-    "errorQueueFailed": "Kon die import niet in de wachtrij plaatsen"
+    "errorQueueFailed": "Kon die import niet in de wachtrij plaatsen",
+    "publishAs": "Publiceren als",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Afbeeldingen",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24u",

@@ -3012,7 +3012,12 @@
     "errorUnsupported": "మేము ఆ లింక్ నుండి దిగుమతి చేయలేము. వీటిలో ఒకదాన్ని ప్రయత్నించండి: {{sources}}",
     "errorNeedRights": "దయచేసి ఈ కంటెంట్ ‌ కు మీకు హక్కులు ఉన్నాయని నిర్ధారించండి",
     "errorClipboard": "క్లిప్ ‌ బోర్డ్ చదవలేకపోయాము — బదులుగా మాన్యువల్ ‌ గా అతికించండి",
-    "errorQueueFailed": "ఆ దిగుమతి క్యూలో నిలబడలేకపోయింది"
+    "errorQueueFailed": "ఆ దిగుమతి క్యూలో నిలబడలేకపోయింది",
+    "publishAs": "ఇలా ప్రచురించండి",
+    "kindVideo": "వీడియో",
+    "kindAudio": "ఆడియో",
+    "kindImage": "నొక్కుQShortcut",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24గం",

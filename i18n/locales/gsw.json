@@ -3007,7 +3007,12 @@
     "errorUnsupported": "Mir chönd nid vo dem Link importiere. Probier öis vo dene: {{sources}}",
     "errorNeedRights": "Bitte bestätig, dass du d'Rächt für dä Inhalt häsch",
     "errorClipboard": "Chönd d'Zwüschablage nid läse — füeg manuell ii statt",
-    "errorQueueFailed": "Chönd dä Import nid i d'Warteschlange iireihe"
+    "errorQueueFailed": "Chönd dä Import nid i d'Warteschlange iireihe",
+    "publishAs": "Publish as",
+    "kindVideo": "Video",
+    "kindAudio": "Audio",
+    "kindImage": "Bilder",
+    "tileSourceKind": "{{source}} · {{kind}}"
   },
   "earnings": {
     "filter24h": "24h",
