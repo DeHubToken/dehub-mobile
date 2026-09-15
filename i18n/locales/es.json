@@ -3632,7 +3632,6 @@
     "noTxHash": "La cartera no devolvió un hash de transacción",
     "finishing": "Finalizando…",
     "confirmTitle": "Confirmar suscripción",
-    "subscribeToFor": "Suscríbete a {{name}} por {{price}}",
     "youPay": "Pagas {{amount}}",
     "calculating": "Calculando el total…",
     "creatorReceives": "El creador recibe {{amount}} USDT de crédito",
@@ -3641,7 +3640,8 @@
     "notAvailableYet": "Aún no está disponible",
     "subscribe": "Suscribirse",
     "subscriberCount_one": "{{count}} suscriptor",
-    "subscriberCount_other": "{{count}} suscriptores"
+    "subscriberCount_other": "{{count}} suscriptores",
+    "subscribeToForRich": "Suscríbete a <name>{{name}}</name> por <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Sin definir",
@@ -3694,8 +3694,6 @@
     "confirmPurchase": "Confirmar la compra",
     "amountIn": "Importe en {{currency}}",
     "approxReceive": "Recibirás aproximadamente {{symbol}}",
-    "iAcceptThe": "Acepto los",
-    "termsOfService": "Términos y condiciones del servicio",
     "invalidAmountGtZero": "Introduce un importe válido mayor que 0.",
     "enterValidAmount": "Introduce un importe válido",
     "noSupply": "Compra no disponible: no hay suministro de {{symbol}} en esta cadena.",
@@ -3704,6 +3702,7 @@
     "acceptTermsFirst": "Acepta los términos del servicio",
     "redirecting": "Redirigiendo al pago…",
     "openingCheckout": "Abriendo el pago…",
-    "checkoutUnavailable": "El enlace de pago no está disponible. Inténtalo de nuevo."
+    "checkoutUnavailable": "El enlace de pago no está disponible. Inténtalo de nuevo.",
+    "acceptTerms": "Acepto los <terms>Términos y condiciones del servicio</terms>"
   }
 }

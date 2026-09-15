@@ -3546,7 +3546,6 @@
     "noTxHash": "Cüzdan əməliyyat heşi qaytarmadı",
     "finishing": "Tamamlanır…",
     "confirmTitle": "Abunəni təsdiqlə",
-    "subscribeToFor": "{{price}} qarşılığında {{name}} planına abunə olun",
     "youPay": "Siz {{amount}} ödəyirsiniz",
     "calculating": "Cəmi hesablanır…",
     "creatorReceives": "Yaradıcı {{amount}} USDT kredit alır",
@@ -3555,7 +3554,8 @@
     "notAvailableYet": "Hələ mövcud deyil",
     "subscribe": "Abunə ol",
     "subscriberCount_one": "{{count}} abunəçi",
-    "subscriberCount_other": "{{count}} abunəçi"
+    "subscriberCount_other": "{{count}} abunəçi",
+    "subscribeToForRich": "<price>{{price}}</price> qarşılığında <name>{{name}}</name> planına abunə olun"
   },
   "live": {
     "notSet": "Təyin edilməyib",
@@ -3608,8 +3608,6 @@
     "confirmPurchase": "Alışı təsdiqlə",
     "amountIn": "{{currency}} məbləği",
     "approxReceive": "Təxmini alacağınız {{symbol}}",
-    "iAcceptThe": "Qəbul edirəm",
-    "termsOfService": "Xidmət şərtləri",
     "invalidAmountGtZero": "0-dan böyük düzgün məbləğ daxil edin.",
     "enterValidAmount": "Düzgün məbləğ daxil edin",
     "noSupply": "Alış mümkün deyil — bu zəncirdə {{symbol}} ehtiyatı yoxdur.",
@@ -3618,6 +3616,7 @@
     "acceptTermsFirst": "Zəhmət olmasa xidmət şərtlərini qəbul edin",
     "redirecting": "Ödənişə yönləndirilir…",
     "openingCheckout": "Ödəniş səhifəsi açılır…",
-    "checkoutUnavailable": "Ödəniş linki əlçatmazdır. Zəhmət olmasa yenidən cəhd edin."
+    "checkoutUnavailable": "Ödəniş linki əlçatmazdır. Zəhmət olmasa yenidən cəhd edin.",
+    "acceptTerms": "Qəbul edirəm <terms>Xidmət şərtləri</terms>"
   }
 }

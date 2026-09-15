@@ -3560,7 +3560,6 @@
     "noTxHash": "錢包冇返回交易雜湊",
     "finishing": "正在完成…",
     "confirmTitle": "確認訂閱",
-    "subscribeToFor": "以 {{price}} 訂閱 {{name}}",
     "youPay": "你支付 {{amount}}",
     "calculating": "正在計算總額…",
     "creatorReceives": "創作者獲得 {{amount}} USDT 額度",
@@ -3569,7 +3568,8 @@
     "notAvailableYet": "尚未開放",
     "subscribe": "訂閱",
     "subscriberCount_one": "{{count}} 位訂閱者",
-    "subscriberCount_other": "{{count}} 位訂閱者"
+    "subscriberCount_other": "{{count}} 位訂閱者",
+    "subscribeToForRich": "以 <price>{{price}}</price> 訂閱 <name>{{name}}</name>"
   },
   "live": {
     "notSet": "未設定",
@@ -3622,8 +3622,6 @@
     "confirmPurchase": "確認購買",
     "amountIn": "{{currency}} 金額",
     "approxReceive": "預計收到 {{symbol}}",
-    "iAcceptThe": "我接受",
-    "termsOfService": "服務條款",
     "invalidAmountGtZero": "請輸入大過 0 嘅有效金額。",
     "enterValidAmount": "請輸入有效金額",
     "noSupply": "無法購買 — 呢條鏈冇 {{symbol}} 供應。",
@@ -3632,6 +3630,7 @@
     "acceptTermsFirst": "請接受服務條款",
     "redirecting": "正在跳轉到結帳…",
     "openingCheckout": "正在開啟結帳頁…",
-    "checkoutUnavailable": "結帳連結不可用。請重試。"
+    "checkoutUnavailable": "結帳連結不可用。請重試。",
+    "acceptTerms": "我接受 <terms>服務條款</terms>"
   }
 }

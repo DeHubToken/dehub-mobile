@@ -3557,7 +3557,6 @@
     "noTxHash": "ቦርሳው የግብይት ሃሽ አልመለሰም",
     "finishing": "በማጠናቀቅ ላይ…",
     "confirmTitle": "ደንበኝነትን ያረጋግጡ",
-    "subscribeToFor": "በ{{price}} ለ{{name}} ይመዝገቡ",
     "youPay": "{{amount}} ይከፍላሉ",
     "calculating": "ጠቅላላውን በማስላት ላይ…",
     "creatorReceives": "ፈጣሪው {{amount}} USDT ክሬዲት ይቀበላል",
@@ -3566,7 +3565,8 @@
     "notAvailableYet": "ገና አልተዘጋጀም",
     "subscribe": "ይመዝገቡ",
     "subscriberCount_one": "{{count}} ደንበኛ",
-    "subscriberCount_other": "{{count}} ደንበኞች"
+    "subscriberCount_other": "{{count}} ደንበኞች",
+    "subscribeToForRich": "በ<price>{{price}}</price> ለ<name>{{name}}</name> ይመዝገቡ"
   },
   "live": {
     "notSet": "አልተቀናበረም",
@@ -3619,8 +3619,6 @@
     "confirmPurchase": "ግዢውን ያረጋግጡ",
     "amountIn": "የ{{currency}} መጠን",
     "approxReceive": "በግምት የሚደርስዎ {{symbol}}",
-    "iAcceptThe": "እስማማለሁ በ",
-    "termsOfService": "የአገልግሎት ውሎች",
     "invalidAmountGtZero": "ከ0 የሚበልጥ ትክክለኛ መጠን ያስገቡ።",
     "enterValidAmount": "ትክክለኛ መጠን ያስገቡ",
     "noSupply": "ግዢ አይቻልም — በዚህ ሰንሰለት ላይ የ{{symbol}} አቅርቦት የለም።",
@@ -3629,6 +3627,7 @@
     "acceptTermsFirst": "እባክዎ የአገልግሎት ውሎችን ይቀበሉ",
     "redirecting": "ወደ ክፍያ በማዞር ላይ…",
     "openingCheckout": "የክፍያ ገጽ በመክፈት ላይ…",
-    "checkoutUnavailable": "የክፍያ አገናኝ የለም። እባክዎ እንደገና ይሞክሩ።"
+    "checkoutUnavailable": "የክፍያ አገናኝ የለም። እባክዎ እንደገና ይሞክሩ።",
+    "acceptTerms": "እስማማለሁ በ <terms>የአገልግሎት ውሎች</terms>"
   }
 }

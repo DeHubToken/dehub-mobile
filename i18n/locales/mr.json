@@ -3550,7 +3550,6 @@
     "noTxHash": "वॉलेटने व्यवहाराचा हॅश परत केला नाही",
     "finishing": "पूर्ण होत आहे…",
     "confirmTitle": "सदस्यतेची पुष्टी करा",
-    "subscribeToFor": "{{price}} मध्ये {{name}} ची सदस्यता घ्या",
     "youPay": "तुम्ही {{amount}} द्याल",
     "calculating": "एकूण मोजले जात आहे…",
     "creatorReceives": "निर्मात्याला {{amount}} USDT क्रेडिट मिळेल",
@@ -3559,7 +3558,8 @@
     "notAvailableYet": "अद्याप उपलब्ध नाही",
     "subscribe": "सदस्य व्हा",
     "subscriberCount_one": "{{count}} सदस्य",
-    "subscriberCount_other": "{{count}} सदस्य"
+    "subscriberCount_other": "{{count}} सदस्य",
+    "subscribeToForRich": "<price>{{price}}</price> मध्ये <name>{{name}}</name> ची सदस्यता घ्या"
   },
   "live": {
     "notSet": "सेट केलेले नाही",
@@ -3612,8 +3612,6 @@
     "confirmPurchase": "खरेदीची पुष्टी करा",
     "amountIn": "{{currency}} रक्कम",
     "approxReceive": "अंदाजे मिळेल {{symbol}}",
-    "iAcceptThe": "मी स्वीकारतो",
-    "termsOfService": "सेवा अटी",
     "invalidAmountGtZero": "0 पेक्षा मोठी वैध रक्कम टाका.",
     "enterValidAmount": "वैध रक्कम टाका",
     "noSupply": "खरेदी उपलब्ध नाही — या चेनवर {{symbol}} चा पुरवठा नाही.",
@@ -3622,6 +3620,7 @@
     "acceptTermsFirst": "कृपया सेवा अटी स्वीकारा",
     "redirecting": "चेकआउटवर नेत आहे…",
     "openingCheckout": "चेकआउट उघडत आहे…",
-    "checkoutUnavailable": "चेकआउट लिंक उपलब्ध नाही. पुन्हा प्रयत्न करा."
+    "checkoutUnavailable": "चेकआउट लिंक उपलब्ध नाही. पुन्हा प्रयत्न करा.",
+    "acceptTerms": "मी स्वीकारतो <terms>सेवा अटी</terms>"
   }
 }

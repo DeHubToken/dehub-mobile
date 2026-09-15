@@ -3552,7 +3552,6 @@
     "noTxHash": "ھەميان سودا hash ىنى قايتۇرمىدى",
     "finishing": "ئاخىرلىشىۋاتىدۇ…",
     "confirmTitle": "مۇشتەرىلىكنى جەزملەش",
-    "subscribeToFor": "{{price}} بىلەن {{name}} غا مۇشتەرى بولۇش",
     "youPay": "سىز {{amount}} تۆلەيسىز",
     "calculating": "ئومۇمىي سومما ھېسابلىنىۋاتىدۇ…",
     "creatorReceives": "قۇرغۇچى {{amount}} USDT كرېدىت تاپشۇرۇۋالىدۇ",
@@ -3561,7 +3560,8 @@
     "notAvailableYet": "تېخى ئىشلەتكىلى بولمايدۇ",
     "subscribe": "مۇشتەرى بولۇش",
     "subscriberCount_one": "{{count}} مۇشتەرى",
-    "subscriberCount_other": "{{count}} مۇشتەرى"
+    "subscriberCount_other": "{{count}} مۇشتەرى",
+    "subscribeToForRich": "<price>{{price}}</price> بىلەن <name>{{name}}</name> غا مۇشتەرى بولۇش"
   },
   "live": {
     "notSet": "بەلگىلەنمىگەن",
@@ -3614,8 +3614,6 @@
     "confirmPurchase": "سېتىۋېلىشنى جەزملەش",
     "amountIn": "{{currency}} سوممىسى",
     "approxReceive": "تەخمىنەن ئالىسىز {{symbol}}",
-    "iAcceptThe": "مەن قوبۇل قىلىمەن",
-    "termsOfService": "مۇلازىمەت شەرتلىرى",
     "invalidAmountGtZero": "0 دىن چوڭ ئىناۋەتلىك سوممىنى كىرگۈزۈڭ.",
     "enterValidAmount": "ئىناۋەتلىك سوممىنى كىرگۈزۈڭ",
     "noSupply": "سېتىۋالغىلى بولمايدۇ — بۇ زەنجىردە {{symbol}} زاپىسى يوق.",
@@ -3624,6 +3622,7 @@
     "acceptTermsFirst": "مۇلازىمەت شەرتلىرىنى قوبۇل قىلىڭ",
     "redirecting": "پۇل تۆلەش بېتىگە يېتەكلىنىۋاتىدۇ…",
     "openingCheckout": "پۇل تۆلەش بېتى ئېچىلىۋاتىدۇ…",
-    "checkoutUnavailable": "پۇل تۆلەش ئۇلانمىسى يوق. قايتا سىناڭ."
+    "checkoutUnavailable": "پۇل تۆلەش ئۇلانمىسى يوق. قايتا سىناڭ.",
+    "acceptTerms": "مەن قوبۇل قىلىمەن <terms>مۇلازىمەت شەرتلىرى</terms>"
   }
 }

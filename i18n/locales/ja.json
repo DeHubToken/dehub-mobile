@@ -3629,7 +3629,6 @@
     "noTxHash": "ウォレットがトランザクションハッシュを返しませんでした",
     "finishing": "仕上げ中…",
     "confirmTitle": "サブスクを確定",
-    "subscribeToFor": "{{price}} で {{name}} に登録",
     "youPay": "お支払い {{amount}}",
     "calculating": "合計を計算中…",
     "creatorReceives": "クリエイターは {{amount}} USDT のクレジットを受け取ります",
@@ -3638,7 +3637,8 @@
     "notAvailableYet": "まだ利用できません",
     "subscribe": "登録する",
     "subscriberCount_one": "登録者 {{count}} 人",
-    "subscriberCount_other": "登録者 {{count}} 人"
+    "subscriberCount_other": "登録者 {{count}} 人",
+    "subscribeToForRich": "<price>{{price}}</price> で <name>{{name}}</name> に登録"
   },
   "live": {
     "notSet": "未設定",
@@ -3691,8 +3691,6 @@
     "confirmPurchase": "購入を確定",
     "amountIn": "{{currency}} 金額",
     "approxReceive": "受取目安 {{symbol}}",
-    "iAcceptThe": "同意します:",
-    "termsOfService": "利用規約",
     "invalidAmountGtZero": "0 より大きい有効な金額を入力してください。",
     "enterValidAmount": "有効な金額を入力してください",
     "noSupply": "購入できません。このチェーンには {{symbol}} の在庫がありません。",
@@ -3701,6 +3699,7 @@
     "acceptTermsFirst": "利用規約に同意してください",
     "redirecting": "決済ページへ移動中…",
     "openingCheckout": "決済ページを開いています…",
-    "checkoutUnavailable": "決済リンクを利用できません。もう一度お試しください。"
+    "checkoutUnavailable": "決済リンクを利用できません。もう一度お試しください。",
+    "acceptTerms": "同意します: <terms>利用規約</terms>"
   }
 }

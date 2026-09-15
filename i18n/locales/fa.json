@@ -3575,7 +3575,6 @@
     "noTxHash": "کیف پول هش تراکنش را برنگرداند",
     "finishing": "در حال اتمام…",
     "confirmTitle": "تأیید اشتراک",
-    "subscribeToFor": "با {{price}} در {{name}} مشترک شوید",
     "youPay": "شما {{amount}} می‌پردازید",
     "calculating": "در حال محاسبه مجموع…",
     "creatorReceives": "سازنده {{amount}} USDT اعتبار دریافت می‌کند",
@@ -3584,7 +3583,8 @@
     "notAvailableYet": "هنوز در دسترس نیست",
     "subscribe": "اشتراک",
     "subscriberCount_one": "{{count}} مشترک",
-    "subscriberCount_other": "{{count}} مشترک"
+    "subscriberCount_other": "{{count}} مشترک",
+    "subscribeToForRich": "با <price>{{price}}</price> در <name>{{name}}</name> مشترک شوید"
   },
   "live": {
     "notSet": "تنظیم نشده",
@@ -3637,8 +3637,6 @@
     "confirmPurchase": "تأیید خرید",
     "amountIn": "مبلغ {{currency}}",
     "approxReceive": "تقریباً دریافت می‌کنید {{symbol}}",
-    "iAcceptThe": "می‌پذیرم",
-    "termsOfService": "شرایط خدمات",
     "invalidAmountGtZero": "مبلغ معتبری بزرگ‌تر از ۰ وارد کنید.",
     "enterValidAmount": "مبلغ معتبری وارد کنید",
     "noSupply": "خرید ممکن نیست — در این زنجیره موجودی {{symbol}} وجود ندارد.",
@@ -3647,6 +3645,7 @@
     "acceptTermsFirst": "لطفاً شرایط خدمات را بپذیرید",
     "redirecting": "در حال انتقال به پرداخت…",
     "openingCheckout": "در حال باز کردن صفحه پرداخت…",
-    "checkoutUnavailable": "لینک پرداخت در دسترس نیست. دوباره تلاش کنید."
+    "checkoutUnavailable": "لینک پرداخت در دسترس نیست. دوباره تلاش کنید.",
+    "acceptTerms": "می‌پذیرم <terms>شرایط خدمات</terms>"
   }
 }

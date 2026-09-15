@@ -3544,7 +3544,6 @@
     "noTxHash": "വാലറ്റ് ഇടപാട് ഹാഷ് തിരികെ നൽകിയില്ല",
     "finishing": "പൂർത്തിയാക്കുന്നു…",
     "confirmTitle": "സബ്സ്ക്രിപ്ഷൻ സ്ഥിരീകരിക്കുക",
-    "subscribeToFor": "{{price}} ന് {{name}} സബ്സ്ക്രൈബ് ചെയ്യുക",
     "youPay": "നിങ്ങൾ {{amount}} നൽകും",
     "calculating": "ആകെത്തുക കണക്കാക്കുന്നു…",
     "creatorReceives": "സ്രഷ്ടാവിന് {{amount}} USDT ക്രെഡിറ്റ് ലഭിക്കും",
@@ -3553,7 +3552,8 @@
     "notAvailableYet": "ഇനിയും ലഭ്യമല്ല",
     "subscribe": "സബ്സ്ക്രൈബ് ചെയ്യുക",
     "subscriberCount_one": "{{count}} വരിക്കാരൻ",
-    "subscriberCount_other": "{{count}} വരിക്കാർ"
+    "subscriberCount_other": "{{count}} വരിക്കാർ",
+    "subscribeToForRich": "<price>{{price}}</price> ന് <name>{{name}}</name> സബ്സ്ക്രൈബ് ചെയ്യുക"
   },
   "live": {
     "notSet": "സജ്ജമാക്കിയിട്ടില്ല",
@@ -3606,8 +3606,6 @@
     "confirmPurchase": "വാങ്ങൽ സ്ഥിരീകരിക്കുക",
     "amountIn": "{{currency}} തുക",
     "approxReceive": "ഏകദേശം ലഭിക്കും {{symbol}}",
-    "iAcceptThe": "ഞാൻ അംഗീകരിക്കുന്നു",
-    "termsOfService": "സേവന നിബന്ധനകൾ",
     "invalidAmountGtZero": "0-യിൽ കൂടുതലുള്ള സാധുവായ തുക നൽകുക.",
     "enterValidAmount": "സാധുവായ തുക നൽകുക",
     "noSupply": "വാങ്ങൽ ലഭ്യമല്ല — ഈ ചെയിനിൽ {{symbol}} സ്റ്റോക്ക് ഇല്ല.",
@@ -3616,6 +3614,7 @@
     "acceptTermsFirst": "ദയവായി സേവന നിബന്ധനകൾ അംഗീകരിക്കുക",
     "redirecting": "ചെക്ക്ഔട്ടിലേക്ക് നയിക്കുന്നു…",
     "openingCheckout": "ചെക്ക്ഔട്ട് തുറക്കുന്നു…",
-    "checkoutUnavailable": "ചെക്ക്ഔട്ട് ലിങ്ക് ലഭ്യമല്ല. വീണ്ടും ശ്രമിക്കൂ."
+    "checkoutUnavailable": "ചെക്ക്ഔട്ട് ലിങ്ക് ലഭ്യമല്ല. വീണ്ടും ശ്രമിക്കൂ.",
+    "acceptTerms": "ഞാൻ അംഗീകരിക്കുന്നു <terms>സേവന നിബന്ധനകൾ</terms>"
   }
 }

@@ -3550,7 +3550,6 @@
     "noTxHash": "பணப்பை பரிவர்த்தனை ஹாஷைத் திருப்பித் தரவில்லை",
     "finishing": "நிறைவு செய்யப்படுகிறது…",
     "confirmTitle": "சந்தாவை உறுதிசெய்",
-    "subscribeToFor": "{{price}}-க்கு {{name}} சந்தா பெறுங்கள்",
     "youPay": "நீங்கள் {{amount}} செலுத்துவீர்கள்",
     "calculating": "மொத்தம் கணக்கிடப்படுகிறது…",
     "creatorReceives": "படைப்பாளர் {{amount}} USDT கிரெடிட் பெறுவார்",
@@ -3559,7 +3558,8 @@
     "notAvailableYet": "இன்னும் கிடைக்கவில்லை",
     "subscribe": "சந்தா பெறு",
     "subscriberCount_one": "{{count}} சந்தாதாரர்",
-    "subscriberCount_other": "{{count}} சந்தாதாரர்கள்"
+    "subscriberCount_other": "{{count}} சந்தாதாரர்கள்",
+    "subscribeToForRich": "<price>{{price}}</price>-க்கு <name>{{name}}</name> சந்தா பெறுங்கள்"
   },
   "live": {
     "notSet": "அமைக்கப்படவில்லை",
@@ -3612,8 +3612,6 @@
     "confirmPurchase": "வாங்குதலை உறுதிசெய்",
     "amountIn": "{{currency}} தொகை",
     "approxReceive": "தோராயமாகப் பெறுவீர்கள் {{symbol}}",
-    "iAcceptThe": "நான் ஏற்கிறேன்",
-    "termsOfService": "சேவை விதிமுறைகள்",
     "invalidAmountGtZero": "0-ஐ விட அதிகமான செல்லுபடியாகும் தொகையை உள்ளிடவும்.",
     "enterValidAmount": "செல்லுபடியாகும் தொகையை உள்ளிடவும்",
     "noSupply": "வாங்க முடியாது — இந்த செயினில் {{symbol}} இருப்பு இல்லை.",
@@ -3622,6 +3620,7 @@
     "acceptTermsFirst": "சேவை விதிமுறைகளை ஏற்கவும்",
     "redirecting": "கட்டணப் பக்கத்திற்கு அனுப்பப்படுகிறது…",
     "openingCheckout": "கட்டணப் பக்கம் திறக்கப்படுகிறது…",
-    "checkoutUnavailable": "கட்டண இணைப்பு கிடைக்கவில்லை. மீண்டும் முயலவும்."
+    "checkoutUnavailable": "கட்டண இணைப்பு கிடைக்கவில்லை. மீண்டும் முயலவும்.",
+    "acceptTerms": "நான் ஏற்கிறேன் <terms>சேவை விதிமுறைகள்</terms>"
   }
 }

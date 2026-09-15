@@ -3506,7 +3506,6 @@
     "noTxHash": "Warijɛ ma fɛnfeere hash lasegin",
     "finishing": "A bɛ ban…",
     "confirmTitle": "Kalanso sɛmɛntiya",
-    "subscribeToFor": "Don {{name}} la {{price}} la",
     "youPay": "I bɛ {{amount}} sara",
     "calculating": "Bɛɛ lajɛlen bɛ jate…",
     "creatorReceives": "Dilanbaa bɛ {{amount}} USDT sɔrɔ",
@@ -3515,7 +3514,8 @@
     "notAvailableYet": "A ma se fɔlɔ",
     "subscribe": "Don a la",
     "subscriberCount_one": "Kalansoden {{count}}",
-    "subscriberCount_other": "Kalansodenw {{count}}"
+    "subscriberCount_other": "Kalansodenw {{count}}",
+    "subscribeToForRich": "Don <name>{{name}}</name> la <price>{{price}}</price> la"
   },
   "live": {
     "notSet": "A ma sigi",
@@ -3568,8 +3568,6 @@
     "confirmPurchase": "Sanni sɛmɛntiya",
     "amountIn": "{{currency}} hakɛ",
     "approxReceive": "I bɛna {{symbol}} sɔrɔ",
-    "iAcceptThe": "N sɔnna",
-    "termsOfService": "Baara sariyaw",
     "invalidAmountGtZero": "Wari hakɛ ɲuman sɛbɛn min ka bon ni 0 ye.",
     "enterValidAmount": "Wari hakɛ ɲuman sɛbɛn",
     "noSupply": "Sanni tɛ se — {{symbol}} tɛ nin chain kan.",
@@ -3578,6 +3576,7 @@
     "acceptTermsFirst": "I sɔn baara sariyaw ma",
     "redirecting": "I bɛ bila sarali yɔrɔ la…",
     "openingCheckout": "Sarali yɔrɔ bɛ da wuli…",
-    "checkoutUnavailable": "Sarali sira tɛ yen. A lajɛ tuguni."
+    "checkoutUnavailable": "Sarali sira tɛ yen. A lajɛ tuguni.",
+    "acceptTerms": "N sɔnna <terms>Baara sariyaw</terms>"
   }
 }

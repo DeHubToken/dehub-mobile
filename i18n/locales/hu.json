@@ -3566,7 +3566,6 @@
     "noTxHash": "A tárca nem adott vissza tranzakciós hasht",
     "finishing": "Befejezés…",
     "confirmTitle": "Előfizetés megerősítése",
-    "subscribeToFor": "Fizess elő a(z) {{name}} csomagra {{price}} áron",
     "youPay": "Te {{amount}}-t fizetsz",
     "calculating": "Végösszeg számítása…",
     "creatorReceives": "A készítő {{amount}} USDT jóváírást kap",
@@ -3575,7 +3574,8 @@
     "notAvailableYet": "Még nem elérhető",
     "subscribe": "Előfizetés",
     "subscriberCount_one": "{{count}} előfizető",
-    "subscriberCount_other": "{{count}} előfizető"
+    "subscriberCount_other": "{{count}} előfizető",
+    "subscribeToForRich": "Fizess elő a(z) <name>{{name}}</name> csomagra <price>{{price}}</price> áron"
   },
   "live": {
     "notSet": "Nincs beállítva",
@@ -3628,8 +3628,6 @@
     "confirmPurchase": "Vásárlás megerősítése",
     "amountIn": "{{currency}} összeg",
     "approxReceive": "Körülbelül ennyit kapsz: {{symbol}}",
-    "iAcceptThe": "Elfogadom a",
-    "termsOfService": "Szolgáltatási feltételek",
     "invalidAmountGtZero": "Adj meg 0-nál nagyobb érvényes összeget.",
     "enterValidAmount": "Adj meg érvényes összeget",
     "noSupply": "A vásárlás nem lehetséges — nincs {{symbol}}-készlet ezen a láncon.",
@@ -3638,6 +3636,7 @@
     "acceptTermsFirst": "Fogadd el a szolgáltatási feltételeket",
     "redirecting": "Átirányítás a pénztárhoz…",
     "openingCheckout": "Pénztár megnyitása…",
-    "checkoutUnavailable": "A fizetési link nem érhető el. Próbáld újra."
+    "checkoutUnavailable": "A fizetési link nem érhető el. Próbáld újra.",
+    "acceptTerms": "Elfogadom a <terms>Szolgáltatási feltételek</terms>"
   }
 }

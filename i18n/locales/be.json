@@ -3595,7 +3595,6 @@
     "noTxHash": "Кашалёк не вярнуў хэш транзакцыі",
     "finishing": "Завяршэнне…",
     "confirmTitle": "Пацвердзіць падпіску",
-    "subscribeToFor": "Падпішыцеся на {{name}} за {{price}}",
     "youPay": "Вы плаціце {{amount}}",
     "calculating": "Разлік агульнай сумы…",
     "creatorReceives": "Аўтар атрымлівае {{amount}} USDT крэдыту",
@@ -3604,7 +3603,8 @@
     "notAvailableYet": "Пакуль недаступна",
     "subscribe": "Падпісацца",
     "subscriberCount_one": "{{count}} падпісчык",
-    "subscriberCount_other": "{{count}} падпісчыкаў"
+    "subscriberCount_other": "{{count}} падпісчыкаў",
+    "subscribeToForRich": "Падпішыцеся на <name>{{name}}</name> за <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Не зададзена",
@@ -3657,8 +3657,6 @@
     "confirmPurchase": "Пацвердзіць пакупку",
     "amountIn": "Сума {{currency}}",
     "approxReceive": "Атрымаеце прыкладна {{symbol}}",
-    "iAcceptThe": "Я прымаю",
-    "termsOfService": "Умовы абслугоўвання",
     "invalidAmountGtZero": "Увядзіце сапраўдную суму больш за 0.",
     "enterValidAmount": "Увядзіце сапраўдную суму",
     "noSupply": "Пакупка недаступная — няма запасу {{symbol}} у гэтай сетцы.",
@@ -3667,6 +3665,7 @@
     "acceptTermsFirst": "Калі ласка, прыміце ўмовы абслугоўвання",
     "redirecting": "Перанакіраванне да аплаты…",
     "openingCheckout": "Адкрыццё старонкі аплаты…",
-    "checkoutUnavailable": "Спасылка на аплату недаступная. Паспрабуйце яшчэ раз."
+    "checkoutUnavailable": "Спасылка на аплату недаступная. Паспрабуйце яшчэ раз.",
+    "acceptTerms": "Я прымаю <terms>Умовы абслугоўвання</terms>"
   }
 }

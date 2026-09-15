@@ -3512,7 +3512,6 @@
     "noTxHash": "کڅوړې د راکړې ورکړې هش بیرته نه راکړ",
     "finishing": "بشپړیږي…",
     "confirmTitle": "ګډون تایید کړئ",
-    "subscribeToFor": "په {{price}} کې د {{name}} ګډون وکړئ",
     "youPay": "تاسو {{amount}} ورکوئ",
     "calculating": "ټوله شمېرل کیږي…",
     "creatorReceives": "جوړوونکی {{amount}} USDT کریډیټ ترلاسه کوي",
@@ -3521,7 +3520,8 @@
     "notAvailableYet": "لا تر اوسه شتون نلري",
     "subscribe": "ګډون وکړئ",
     "subscriberCount_one": "{{count}} ګډونوال",
-    "subscriberCount_other": "{{count}} ګډونوال"
+    "subscriberCount_other": "{{count}} ګډونوال",
+    "subscribeToForRich": "په <price>{{price}}</price> کې د <name>{{name}}</name> ګډون وکړئ"
   },
   "live": {
     "notSet": "نه دی ټاکل شوی",
@@ -3574,8 +3574,6 @@
     "confirmPurchase": "پیرود تایید کړئ",
     "amountIn": "د {{currency}} اندازه",
     "approxReceive": "نږدې به ترلاسه کړئ {{symbol}}",
-    "iAcceptThe": "زه مني",
-    "termsOfService": "د خدماتو شرایط",
     "invalidAmountGtZero": "له 0 څخه لویه سمه اندازه ولیکئ.",
     "enterValidAmount": "سمه اندازه ولیکئ",
     "noSupply": "پیرود شتون نلري — په دې زنځیر کې د {{symbol}} ذخیره نشته.",
@@ -3584,6 +3582,7 @@
     "acceptTermsFirst": "مهرباني وکړئ د خدماتو شرایط ومنئ",
     "redirecting": "تادیې ته لیږل کیږي…",
     "openingCheckout": "تادیه پرانیستل کیږي…",
-    "checkoutUnavailable": "د تادیې لینک شتون نلري. بیا هڅه وکړئ."
+    "checkoutUnavailable": "د تادیې لینک شتون نلري. بیا هڅه وکړئ.",
+    "acceptTerms": "زه مني <terms>د خدماتو شرایط</terms>"
   }
 }

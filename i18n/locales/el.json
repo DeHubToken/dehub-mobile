@@ -3585,7 +3585,6 @@
     "noTxHash": "Το πορτοφόλι δεν επέστρεψε hash συναλλαγής",
     "finishing": "Ολοκλήρωση…",
     "confirmTitle": "Επιβεβαίωση συνδρομής",
-    "subscribeToFor": "Εγγραφή στο {{name}} για {{price}}",
     "youPay": "Πληρώνεις {{amount}}",
     "calculating": "Υπολογισμός συνόλου…",
     "creatorReceives": "Ο δημιουργός λαμβάνει πίστωση {{amount}} USDT",
@@ -3594,7 +3593,8 @@
     "notAvailableYet": "Δεν είναι ακόμη διαθέσιμο",
     "subscribe": "Εγγραφή",
     "subscriberCount_one": "{{count}} συνδρομητής",
-    "subscriberCount_other": "{{count}} συνδρομητές"
+    "subscriberCount_other": "{{count}} συνδρομητές",
+    "subscribeToForRich": "Εγγραφή στο <name>{{name}}</name> για <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Δεν έχει οριστεί",
@@ -3647,8 +3647,6 @@
     "confirmPurchase": "Επιβεβαίωση αγοράς",
     "amountIn": "Ποσό σε {{currency}}",
     "approxReceive": "Θα λάβεις περίπου {{symbol}}",
-    "iAcceptThe": "Αποδέχομαι τους",
-    "termsOfService": "Όροι παροχής υπηρεσιών",
     "invalidAmountGtZero": "Εισαγάγετε έγκυρο ποσό μεγαλύτερο του 0.",
     "enterValidAmount": "Εισαγάγετε έγκυρο ποσό",
     "noSupply": "Η αγορά δεν είναι διαθέσιμη — δεν υπάρχει απόθεμα {{symbol}} σε αυτή την αλυσίδα.",
@@ -3657,6 +3655,7 @@
     "acceptTermsFirst": "Αποδέξου τους όρους παροχής υπηρεσιών",
     "redirecting": "Ανακατεύθυνση στο ταμείο…",
     "openingCheckout": "Άνοιγμα ταμείου…",
-    "checkoutUnavailable": "Ο σύνδεσμος πληρωμής δεν είναι διαθέσιμος. Δοκίμασε ξανά."
+    "checkoutUnavailable": "Ο σύνδεσμος πληρωμής δεν είναι διαθέσιμος. Δοκίμασε ξανά.",
+    "acceptTerms": "Αποδέχομαι τους <terms>Όροι παροχής υπηρεσιών</terms>"
   }
 }

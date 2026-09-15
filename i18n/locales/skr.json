@@ -3506,7 +3506,6 @@
     "noTxHash": "والٹ لین ݙین دا ہیش واپس نہ ڈتا",
     "finishing": "مکمل تھیندا پیا ہے…",
     "confirmTitle": "سبسکرپشن دی تصدیق کرو",
-    "subscribeToFor": "{{price}} وچ {{name}} سبسکرائب کرو",
     "youPay": "تساں {{amount}} ادا کریسو",
     "calculating": "کل رقم گݨی ویندی پئی ہے…",
     "creatorReceives": "بݨاوݨ آلے کوں {{amount}} USDT کریڈٹ ملسی",
@@ -3515,7 +3514,8 @@
     "notAvailableYet": "ہالیں دستیاب کائنی",
     "subscribe": "سبسکرائب کرو",
     "subscriberCount_one": "{{count}} سبسکرائبر",
-    "subscriberCount_other": "{{count}} سبسکرائبرز"
+    "subscriberCount_other": "{{count}} سبسکرائبرز",
+    "subscribeToForRich": "<price>{{price}}</price> وچ <name>{{name}}</name> سبسکرائب کرو"
   },
   "live": {
     "notSet": "مقرر کائنی",
@@ -3568,8 +3568,6 @@
     "confirmPurchase": "خریداری دی تصدیق کرو",
     "amountIn": "{{currency}} رقم",
     "approxReceive": "تقریباً ملسی {{symbol}}",
-    "iAcceptThe": "میں قبول کریندا ہاں",
-    "termsOfService": "سروس دیاں شرطاں",
     "invalidAmountGtZero": "0 کنوں ودھ درست رقم لکھو۔",
     "enterValidAmount": "درست رقم لکھو",
     "noSupply": "خریداری دستیاب کائنی — ایں چین تے {{symbol}} دی سپلائی کائنی۔",
@@ -3578,6 +3576,7 @@
     "acceptTermsFirst": "مہربانی کر کے سروس دیاں شرطاں قبول کرو",
     "redirecting": "چیک آؤٹ تے گھلیا ویندا پیا ہے…",
     "openingCheckout": "چیک آؤٹ کھولیا ویندا پیا ہے…",
-    "checkoutUnavailable": "چیک آؤٹ لنک دستیاب کائنی۔ ولدا کوشش کرو۔"
+    "checkoutUnavailable": "چیک آؤٹ لنک دستیاب کائنی۔ ولدا کوشش کرو۔",
+    "acceptTerms": "میں قبول کریندا ہاں <terms>سروس دیاں شرطاں</terms>"
   }
 }

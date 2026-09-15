@@ -1,5 +1,5 @@
 import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
@@ -262,10 +262,17 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
         <View style={s.confirmContent}>
           <Text style={s.confirmTitle}>{t("subscriptions.confirmTitle")}</Text>
           <Text style={s.confirmDesc}>
-            {t("subscriptions.subscribeToFor", {
-              name: plan.name,
-              price: `${formattedPrice} / ${formatDuration(plan.duration)}`,
-            })}
+            <Trans
+              i18nKey="subscriptions.subscribeToForRich"
+              values={{
+                name: plan.name,
+                price: `${formattedPrice} / ${formatDuration(plan.duration)}`,
+              }}
+              components={{
+                name: <Text style={{ color: "#fff", fontWeight: "600" }} />,
+                price: <Text style={{ color: "#D4D4D8", fontWeight: "600" }} />,
+              }}
+            />
           </Text>
           {isUsdPriced && (
             <View style={s.confirmEquivalentRow}>

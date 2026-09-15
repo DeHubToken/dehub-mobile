@@ -3519,7 +3519,6 @@
     "noTxHash": "المحفظة ما رجّعت هاش للمعاملة",
     "finishing": "عم يخلّص…",
     "confirmTitle": "أكد الاشتراك",
-    "subscribeToFor": "اشترك بـ{{name}} مقابل {{price}}",
     "youPay": "بتدفع {{amount}}",
     "calculating": "عم يحسب المجموع…",
     "creatorReceives": "المنشئ بياخد رصيد {{amount}} USDT",
@@ -3528,7 +3527,8 @@
     "notAvailableYet": "لسا مش متوفر",
     "subscribe": "اشترك",
     "subscriberCount_one": "{{count}} مشترك",
-    "subscriberCount_other": "{{count}} مشترك"
+    "subscriberCount_other": "{{count}} مشترك",
+    "subscribeToForRich": "اشترك بـ<name>{{name}}</name> مقابل <price>{{price}}</price>"
   },
   "live": {
     "notSet": "مش محدد",
@@ -3581,8 +3581,6 @@
     "confirmPurchase": "أكد الشراء",
     "amountIn": "مبلغ {{currency}}",
     "approxReceive": "بتستلم تقريباً {{symbol}}",
-    "iAcceptThe": "أوافق على",
-    "termsOfService": "شروط الخدمة",
     "invalidAmountGtZero": "اكتب مبلغ صحيح أكبر من 0.",
     "enterValidAmount": "اكتب مبلغ صحيح",
     "noSupply": "الشراء مش متوفر — ما في رصيد {{symbol}} على هالسلسلة.",
@@ -3591,6 +3589,7 @@
     "acceptTermsFirst": "رجاءً وافق على شروط الخدمة",
     "redirecting": "عم يحولك للدفع…",
     "openingCheckout": "عم يفتح صفحة الدفع…",
-    "checkoutUnavailable": "رابط الدفع مش متوفر. رجاءً جرّب مرة تانية."
+    "checkoutUnavailable": "رابط الدفع مش متوفر. رجاءً جرّب مرة تانية.",
+    "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>"
   }
 }

@@ -3552,7 +3552,6 @@
     "noTxHash": "Lommeboken returnerte ingen transaksjonshash",
     "finishing": "Fullfører…",
     "confirmTitle": "Bekreft abonnement",
-    "subscribeToFor": "Abonner på {{name}} for {{price}}",
     "youPay": "Du betaler {{amount}}",
     "calculating": "Beregner totalen…",
     "creatorReceives": "Skaperen mottar {{amount}} USDT i kreditt",
@@ -3561,7 +3560,8 @@
     "notAvailableYet": "Ikke tilgjengelig ennå",
     "subscribe": "Abonner",
     "subscriberCount_one": "{{count}} abonnent",
-    "subscriberCount_other": "{{count}} abonnenter"
+    "subscriberCount_other": "{{count}} abonnenter",
+    "subscribeToForRich": "Abonner på <name>{{name}}</name> for <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Ikke angitt",
@@ -3614,8 +3614,6 @@
     "confirmPurchase": "Bekreft kjøp",
     "amountIn": "{{currency}}-beløp",
     "approxReceive": "Mottar ca. {{symbol}}",
-    "iAcceptThe": "Jeg godtar",
-    "termsOfService": "Vilkår for tjenesten",
     "invalidAmountGtZero": "Skriv inn et gyldig beløp større enn 0.",
     "enterValidAmount": "Skriv inn et gyldig beløp",
     "noSupply": "Kjøp er ikke mulig — ingen {{symbol}}-beholdning på denne kjeden.",
@@ -3624,6 +3622,7 @@
     "acceptTermsFirst": "Godta vilkårene for tjenesten",
     "redirecting": "Omdirigerer til betaling…",
     "openingCheckout": "Åpner betaling…",
-    "checkoutUnavailable": "Betalingslenken er ikke tilgjengelig. Prøv igjen."
+    "checkoutUnavailable": "Betalingslenken er ikke tilgjengelig. Prøv igjen.",
+    "acceptTerms": "Jeg godtar <terms>Vilkår for tjenesten</terms>"
   }
 }

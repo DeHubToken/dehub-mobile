@@ -3552,7 +3552,6 @@
     "noTxHash": "Àpamọ́wọ́ kò dá hash ìṣòwò padà",
     "finishing": "Ń parí…",
     "confirmTitle": "Jẹ́rìí sí ìforúkọsílẹ̀",
-    "subscribeToFor": "Forúkọsílẹ̀ fún {{name}} ní {{price}}",
     "youPay": "Ìwọ san {{amount}}",
     "calculating": "Ń ṣírò àpapọ̀…",
     "creatorReceives": "Ẹlẹ́dàá gba kírẹ́dítì {{amount}} USDT",
@@ -3561,7 +3560,8 @@
     "notAvailableYet": "Kò tíì sí",
     "subscribe": "Forúkọsílẹ̀",
     "subscriberCount_one": "Alábòwọlé {{count}}",
-    "subscriberCount_other": "Àwọn alábòwọlé {{count}}"
+    "subscriberCount_other": "Àwọn alábòwọlé {{count}}",
+    "subscribeToForRich": "Forúkọsílẹ̀ fún <name>{{name}}</name> ní <price>{{price}}</price>"
   },
   "live": {
     "notSet": "Kò tíì ṣètò",
@@ -3614,8 +3614,6 @@
     "confirmPurchase": "Jẹ́rìí sí ìrà",
     "amountIn": "Iye {{currency}}",
     "approxReceive": "Ìwọ̀n tí o máa gbà {{symbol}}",
-    "iAcceptThe": "Mo gba",
-    "termsOfService": "Àwọn Òfin Iṣẹ́",
     "invalidAmountGtZero": "Tẹ iye tó tọ́ tí ó pọ̀ ju 0 lọ sí i.",
     "enterValidAmount": "Tẹ iye tó tọ́ sí i",
     "noSupply": "A kò lè rà — kò sí ìpèsè {{symbol}} lórí ẹ̀wọ̀n yìí.",
@@ -3624,6 +3622,7 @@
     "acceptTermsFirst": "Jọ̀wọ́ gba àwọn òfin iṣẹ́",
     "redirecting": "Ń darí rẹ sí ojú ìsanwó…",
     "openingCheckout": "Ń ṣí ojú ìsanwó…",
-    "checkoutUnavailable": "Ọ̀nà ìsanwó kò sí. Gbìyànjú lẹ́ẹ̀kan sí i."
+    "checkoutUnavailable": "Ọ̀nà ìsanwó kò sí. Gbìyànjú lẹ́ẹ̀kan sí i.",
+    "acceptTerms": "Mo gba <terms>Àwọn Òfin Iṣẹ́</terms>"
   }
 }
