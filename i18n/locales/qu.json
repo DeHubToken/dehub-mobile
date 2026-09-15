@@ -3255,5 +3255,10 @@
     "needGas": "{{chain}} ukhupi gas paganapaq kikin {{token}} necesitanki.",
     "bridging": "Chakachkan…",
     "bridgeAction": "Chaka {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Cuentaykiqa harkasqam kachkan",
+    "line": "Yupayniyki hark&#39;asqa kachkan, chayrayku mana qillqayta, rimayta utaq willayta apachiyta atikunkichu.",
+    "deleteAccount": "Cuentaykita, datosniykitapas chinkachiy"
   }
 }

@@ -3275,5 +3275,11 @@
     "needGas": "{{chain}} da gaz uchun mahalliy {{token}} kerak.",
     "bridging": "Ko‘prik orqali o‘tkazilmoqda…",
     "bridgeAction": "Ko‘prik {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Hisobingiz bloklandi",
+    "body": "Siz hali ham tizimga kirishingiz, tasmangizni o&#39;qishingiz, xabarlaringizni ochishingiz va hisobingizdagi barcha narsalarni ko&#39;rishingiz mumkin. Siz xabar joylashtira olmaysiz, izoh qoldira olmaysiz, munosabat bildira olmaysiz, xabarlarni kuzatib bora olmaysiz yoki yubora olmaysiz.",
+    "line": "Sizning hisobingiz bloklangan, shuning uchun siz post qoldira olmaysiz, izoh qoldira olmaysiz yoki xabar yubora olmaysiz.",
+    "deleteAccount": "Hisobingiz va ma&#39;lumotlaringizni o&#39;chirib tashlang"
   }
 }

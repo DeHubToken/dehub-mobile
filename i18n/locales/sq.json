@@ -3222,5 +3222,12 @@
     "needGas": "Duhet {{token}} vendas për gazin në {{chain}}.",
     "bridging": "Po kalohet ura…",
     "bridgeAction": "Urë {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Llogaria jote është e ndaluar",
+    "body": "Ti ende mund të hysh, të lexosh burimin tënd, të hapësh mesazhet e tua dhe të shohësh gjithçka në llogarinë tënde. Nuk mund të postosh, të komentosh, të reagosh, të ndjekësh ose të dërgosh mesazhe.",
+    "line": "Llogaria jote është e ndaluar, kështu që nuk mund të postosh, të komentosh apo të dërgosh mesazhe.",
+    "reason": "Arsyeja: {{reason}}",
+    "deleteAccount": "Fshi llogarinë dhe të dhënat e tua"
   }
 }

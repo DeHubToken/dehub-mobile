@@ -3227,5 +3227,12 @@
     "needGas": "Der kræves native {{token}} til gas på {{chain}}.",
     "bridging": "Bridger…",
     "bridgeAction": "Bridge {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Din konto er spærret",
+    "body": "Du kan stadig logge ind, læse dit feed, åbne dine beskeder og se alt på din konto. Du kan ikke skrive, kommentere, reagere, følge eller sende beskeder.",
+    "line": "Din konto er spærret, så du kan ikke skrive, kommentere eller sende beskeder.",
+    "reason": "Årsag:{{reason}}",
+    "deleteAccount": "Slet din konto og dine data"
   }
 }

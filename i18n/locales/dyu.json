@@ -3168,5 +3168,11 @@
     "needGas": "{{token}} yɛrɛ ka kan ka kɛ gazi ye {{chain}} kan.",
     "bridging": "Tɛmɛli bɛ kɛ…",
     "bridgeAction": "Tɛmɛli {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "I ka wari man kan ka kɛ",
+    "body": "I be se ka don, ka dumuni kalan, ka i ka lɛtɛrɛw yɛlɛ ani ka koo bɛɛ ye i ka ɔriganisasiyɔn ka ɔriganisasiyɔn ka ɔriganisasiyɔn kɔnɔ. U dɔw tɛna se ka kuma, wala lasɔmini ci aw ma, wala k'a filɛ u ye min sɛbɛ.",
+    "line": "U dɔw tɛna se ka kuma, wala lasɔmini ci aw ma, wala k'a filɛ u ye min sɛbɛ.",
+    "deleteAccount": "Ka kunnafoniw ni kunnafoniw bɔ"
   }
 }

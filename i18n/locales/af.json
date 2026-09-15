@@ -3340,5 +3340,12 @@
     "needGas": "Jy het inheemse {{token}} vir gas op {{chain}} nodig.",
     "bridging": "Besig om oor te brug…",
     "bridgeAction": "Oorbrug {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Jou rekening is verbode",
+    "body": "Jy kan steeds inteken, jou voer lees, jou boodskappe oopmaak en alles op jou rekening sien. Jy kan nie boodskappe plaas, kommentaar lewer, reageer, volg of stuur nie.",
+    "line": "Jou rekening is verbode, sodat jy nie kan plaas, kommentaar lewer of boodskappe stuur nie.",
+    "reason": "Reden: {{reason}}",
+    "deleteAccount": "Skrap jou rekening en data"
   }
 }

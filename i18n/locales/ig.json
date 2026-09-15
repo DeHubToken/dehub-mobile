@@ -3201,5 +3201,12 @@
     "needGas": "Ị chọrọ {{token}} nke sitere na ya maka gas na {{chain}}.",
     "bridging": "Na-àkwà…",
     "bridgeAction": "Àkwà {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "A machibidoro akaụntụ gị",
+    "body": "Ị ka nwere ike ịbanye, gụọ ndepụta gị, mepee ozi gị ma hụ ihe niile dị na akaụntụ gị. Ị nweghị ike biputere, kwuo okwu, meghachi omume, soro ma ọ bụ zipu ozi.",
+    "line": "A machibidoro akaụntụ gị iwu, yabụ na ị gaghị ebipụta, kwuo ma ọ bụ zipu ozi.",
+    "reason": "Ihe kpatara ya: {{reason}}",
+    "deleteAccount": "Hichapụ akaụntụ na data gị"
   }
 }

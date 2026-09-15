@@ -3213,5 +3213,12 @@
     "needGas": "O nílò {{token}} ìbílẹ̀ fún gáàsì lórí {{chain}}.",
     "bridging": "Ń kọjá afárá…",
     "bridgeAction": "Afárá {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "A ti fòfin de àkántì rẹ.",
+    "body": "O ṣì lè wọlé, ka oúnjẹ rẹ, ṣí àwọn àtẹ̀jísẹ́ rẹ kí o sì rí ohun gbogbo lórí àkántì rẹ. O kò lè fi àtẹ̀jíṣẹ́ ránṣẹ́, kí o sọ̀rọ̀, kí o fèsì, kí o tẹ̀lé tàbí kí o fi àtẹ̀jíṣẹ́ ránṣẹ́.",
+    "line": "A ti fòfin de àkántì rẹ, nítorí náà o kò lè fi àtẹ̀jíṣẹ́ ránṣẹ́, ṣe àlàyé tàbí fi àtẹ̀jíṣẹ́ ránṣẹ́.",
+    "reason": "Ìdí: {{reason}}",
+    "deleteAccount": "Pa àkọọ́lẹ̀ rẹ àti àkóónú rẹ rẹ́."
   }
 }

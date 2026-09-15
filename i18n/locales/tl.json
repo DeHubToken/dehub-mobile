@@ -3402,5 +3402,12 @@
     "needGas": "Kailangan ng native na {{token}} para sa gas sa {{chain}}.",
     "bridging": "Nagbi-bridge…",
     "bridgeAction": "I-bridge {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Ipinagbabawal ang iyong account",
+    "body": "Maaari ka pa ring mag - sign in, basahin ang iyong feed, buksan ang iyong mga mensahe at makita ang lahat sa iyong account. Hindi ka maaaring mag - post, magkomento, tumugon, sumunod o magpadala ng mga mensahe.",
+    "line": "Ipinagbabawal ang iyong account, kaya hindi ka maaaring mag - post, magkomento o magpadala ng mga mensahe.",
+    "reason": "Dahilan:{{reason}}",
+    "deleteAccount": "Tanggalin ang iyong account at data"
   }
 }

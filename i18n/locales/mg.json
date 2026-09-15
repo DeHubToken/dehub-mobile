@@ -3302,5 +3302,12 @@
     "needGas": "Mila {{token}} tena izy ho an'ny gazy ao amin'ny {{chain}}.",
     "bridging": "Manao tetezana…",
     "bridgeAction": "Tetezana {{from}} → {{to}}"
+  },
+  "banned": {
+    "title": "Voarara ny kaontinao",
+    "body": "Afaka mbola miditra ianao, mamaky ny fahana, sokafy ny hafatrao ary jereo ny zavatra rehetra ao amin'ny kaontinao. Tsy azonao atao ny mandefa hafatra, maneho hevitra, manaraka, na mandefa hafatra.",
+    "line": "Voaràra ny kaontinao ka tsy afaka mamoaka, fanehoan-kevitra na mandefa hafatra ianao.",
+    "reason": "Antony: {{reason}}",
+    "deleteAccount": "Fafao ny kaontinao sy ny angona"
   }
 }
