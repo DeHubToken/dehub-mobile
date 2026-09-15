@@ -3266,5 +3266,21 @@
     "includeSocials": "Medyaya civakî tê de bike",
     "extraNotes": "Nîşeyên zêde",
     "notesPlaceholder": "Her tiştê din ku divê poster nîşan bide"
+  },
+  "monetization": {
+    "tokenGated": "Bi token sînordar",
+    "invalidToken": "Navnîşaneke peymana tokenê ya derbasdar binivîse",
+    "createPlanAction": "Planeke abonetiyê çêbike",
+    "createPlanFirst": "Pêşî planekê çêbike",
+    "publishPlanFirst": "Pêşî plana xwe ya abonetiyê li ser zincîrê biweşîne.",
+    "subscribersOnly": "Tenê abonetiyên te dikarin vê şandiyê vekin.",
+    "price": "Biha ({{currency}})",
+    "paymentsSolana": "Dravdan bi {{currency}} li ser Solana ye",
+    "paymentsBase": "Dravdan bi DHB li ser zincîra Base ye",
+    "requiresSpl": "Ji bo dîtinê tokeneke SPL li ser Solana pêwîst e",
+    "mustHoldOn": "Divê temaşevan vê tokenê li ser {{chain}} bigirin",
+    "custom": "Taybet",
+    "contractPlaceholder": "Navnîşana peymanê (0x…)",
+    "symbolPlaceholder": "Sembol (mînak PEPE)"
   }
 }

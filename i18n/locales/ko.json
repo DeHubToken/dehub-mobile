@@ -3575,5 +3575,21 @@
     "includeSocials": "소셜 계정 포함",
     "extraNotes": "추가 메모",
     "notesPlaceholder": "포스터에 들어가야 할 그 밖의 내용"
+  },
+  "monetization": {
+    "tokenGated": "토큰 제한",
+    "invalidToken": "유효한 토큰 컨트랙트 주소를 입력하세요",
+    "createPlanAction": "구독 플랜 만들기",
+    "createPlanFirst": "먼저 플랜을 만드세요",
+    "publishPlanFirst": "먼저 구독 플랜을 온체인에 게시하세요.",
+    "subscribersOnly": "이 게시물은 구독자만 열 수 있습니다.",
+    "price": "가격({{currency}})",
+    "paymentsSolana": "결제는 Solana의 {{currency}}로 이루어집니다",
+    "paymentsBase": "결제는 Base 체인의 DHB로 이루어집니다",
+    "requiresSpl": "보려면 Solana의 SPL 토큰이 필요합니다",
+    "mustHoldOn": "시청자는 {{chain}}에서 이 토큰을 보유해야 합니다",
+    "custom": "사용자 지정",
+    "contractPlaceholder": "컨트랙트 주소 (0x…)",
+    "symbolPlaceholder": "심볼 (예: PEPE)"
   }
 }

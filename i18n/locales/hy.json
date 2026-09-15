@@ -3500,5 +3500,21 @@
     "includeSocials": "Ներառել սոցցանցերը",
     "extraNotes": "Լրացուցիչ նշումներ",
     "notesPlaceholder": "Այն ամենը, ինչ ևս պետք է ցույց տա պաստառը"
+  },
+  "monetization": {
+    "tokenGated": "Թոքենով սահմանափակված",
+    "invalidToken": "Մուտքագրեք վավեր թոքենի պայմանագրի հասցե",
+    "createPlanAction": "Ստեղծել բաժանորդագրության փաթեթ",
+    "createPlanFirst": "Նախ ստեղծեք փաթեթ",
+    "publishPlanFirst": "Նախ հրապարակեք ձեր բաժանորդագրության փաթեթը շղթայում։",
+    "subscribersOnly": "Այս գրառումը կարող են բացել միայն ձեր բաժանորդները։",
+    "price": "Գին ({{currency}})",
+    "paymentsSolana": "Վճարումները կատարվում են {{currency}}-ով Solana-ում",
+    "paymentsBase": "Վճարումները կատարվում են DHB-ով Base շղթայում",
+    "requiresSpl": "Դիտելու համար անհրաժեշտ է SPL թոքեն Solana-ում",
+    "mustHoldOn": "Դիտողները պետք է ունենան այս թոքենը {{chain}}-ում",
+    "custom": "Հատուկ",
+    "contractPlaceholder": "Պայմանագրի հասցե (0x…)",
+    "symbolPlaceholder": "Նշան (օր. PEPE)"
   }
 }

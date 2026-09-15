@@ -3472,5 +3472,21 @@
     "includeSocials": "ማሕበራዊ መርበባት ኣእቱ",
     "extraNotes": "ተወሳኺ መዘኻኸሪ",
     "notesPlaceholder": "ኣብ ፖስተር ክርአ ዘለዎ ካልእ ነገር"
+  },
+  "monetization": {
+    "tokenGated": "ብቶከን ዝተገደበ",
+    "invalidToken": "ቅኑዕ ናይ ቶከን ውዕል ኣድራሻ ኣእቱ",
+    "createPlanAction": "መደብ ምዝገባ ፍጠር",
+    "createPlanFirst": "ቅድሚኡ መደብ ፍጠር",
+    "publishPlanFirst": "ቅድሚኡ መደብ ምዝገባኻ ኣብ ሰንሰለት ኣውጽእ።",
+    "subscribersOnly": "ነዚ ልጥፊ ክኸፍትዎ ዝኽእሉ ተመዝገብትኻ ጥራይ እዮም።",
+    "price": "ዋጋ ({{currency}})",
+    "paymentsSolana": "ክፍሊት ኣብ Solana ብ{{currency}} እዩ",
+    "paymentsBase": "ክፍሊት ኣብ ሰንሰለት Base ብDHB እዩ",
+    "requiresSpl": "ንምርኣይ ኣብ Solana ናይ SPL ቶከን የድሊ",
+    "mustHoldOn": "ተመልከትቲ ነዚ ቶከን ኣብ {{chain}} ክሕዙ ኣለዎም",
+    "custom": "ብሕታዊ",
+    "contractPlaceholder": "ኣድራሻ ውዕል (0x…)",
+    "symbolPlaceholder": "ምልክት (ንኣብነት PEPE)"
   }
 }

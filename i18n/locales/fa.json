@@ -3520,5 +3520,21 @@
     "includeSocials": "افزودن شبکه‌های اجتماعی",
     "extraNotes": "یادداشت‌های اضافی",
     "notesPlaceholder": "هر چیز دیگری که پوستر باید نشان دهد"
+  },
+  "monetization": {
+    "tokenGated": "محدود به توکن",
+    "invalidToken": "یک آدرس قرارداد توکن معتبر وارد کنید",
+    "createPlanAction": "ساخت طرح اشتراک",
+    "createPlanFirst": "ابتدا یک طرح بسازید",
+    "publishPlanFirst": "ابتدا طرح اشتراک خود را روی زنجیره منتشر کنید.",
+    "subscribersOnly": "فقط مشترکان شما می‌توانند این پست را باز کنند.",
+    "price": "قیمت ({{currency}})",
+    "paymentsSolana": "پرداخت‌ها با {{currency}} روی سولانا انجام می‌شود",
+    "paymentsBase": "پرداخت‌ها با DHB روی زنجیره Base انجام می‌شود",
+    "requiresSpl": "برای مشاهده به یک توکن SPL روی سولانا نیاز است",
+    "mustHoldOn": "بینندگان باید این توکن را روی {{chain}} داشته باشند",
+    "custom": "سفارشی",
+    "contractPlaceholder": "آدرس قرارداد (0x…)",
+    "symbolPlaceholder": "نماد (مثلاً PEPE)"
   }
 }

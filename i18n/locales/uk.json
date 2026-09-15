@@ -3985,5 +3985,21 @@
     "includeSocials": "Додати соцмережі",
     "extraNotes": "Додаткові нотатки",
     "notesPlaceholder": "Усе інше, що має показати постер"
+  },
+  "monetization": {
+    "tokenGated": "Доступ за токеном",
+    "invalidToken": "Введіть коректну адресу контракту токена",
+    "createPlanAction": "Створити план підписки",
+    "createPlanFirst": "Спершу створіть план",
+    "publishPlanFirst": "Спершу опублікуйте свій план підписки в мережі.",
+    "subscribersOnly": "Цей допис можуть відкрити лише ваші передплатники.",
+    "price": "Ціна ({{currency}})",
+    "paymentsSolana": "Платежі здійснюються в {{currency}} у мережі Solana",
+    "paymentsBase": "Платежі здійснюються в DHB у мережі Base",
+    "requiresSpl": "Для перегляду потрібен токен SPL у мережі Solana",
+    "mustHoldOn": "Глядачі мають тримати цей токен у мережі {{chain}}",
+    "custom": "Власний",
+    "contractPlaceholder": "Адреса контракту (0x…)",
+    "symbolPlaceholder": "Символ (напр. PEPE)"
   }
 }

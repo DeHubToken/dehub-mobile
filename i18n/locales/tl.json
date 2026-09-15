@@ -3686,5 +3686,21 @@
     "includeSocials": "Isama ang socials",
     "extraNotes": "Karagdagang tala",
     "notesPlaceholder": "Anumang iba pang dapat ipakita ng poster"
+  },
+  "monetization": {
+    "tokenGated": "Token gated",
+    "invalidToken": "Maglagay ng wastong token contract address",
+    "createPlanAction": "Gumawa ng subscription plan",
+    "createPlanFirst": "Gumawa muna ng plan",
+    "publishPlanFirst": "I-publish muna ang subscription plan mo on-chain.",
+    "subscribersOnly": "Ang mga subscriber mo lang ang makakabukas ng post na ito.",
+    "price": "Presyo ({{currency}})",
+    "paymentsSolana": "Ang bayad ay sa {{currency}} sa Solana",
+    "paymentsBase": "Ang bayad ay sa DHB sa Base chain",
+    "requiresSpl": "Kailangan ng SPL token sa Solana para matingnan",
+    "mustHoldOn": "Kailangang hawak ng viewers ang token na ito sa {{chain}}",
+    "custom": "Custom",
+    "contractPlaceholder": "Contract address (0x…)",
+    "symbolPlaceholder": "Symbol (hal. PEPE)"
   }
 }

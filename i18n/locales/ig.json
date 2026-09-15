@@ -3485,5 +3485,21 @@
     "includeSocials": "Tinye akaụntụ mgbasa ozi",
     "extraNotes": "Ndetu ndị ọzọ",
     "notesPlaceholder": "Ihe ọ bụla ọzọ posta ahụ ga-egosi"
+  },
+  "monetization": {
+    "tokenGated": "Token na-eche ya",
+    "invalidToken": "Tinye adreesị nkwekọrịta token ziri ezi",
+    "createPlanAction": "Mepụta atụmatụ ndenye aha",
+    "createPlanFirst": "Buru ụzọ mepụta atụmatụ",
+    "publishPlanFirst": "Buru ụzọ bipụta atụmatụ ndenye aha gị na chain.",
+    "subscribersOnly": "Naanị ndị debanyere aha gị nwere ike imepe post a.",
+    "price": "Ọnụahịa ({{currency}})",
+    "paymentsSolana": "A na-akwụ ụgwọ na {{currency}} na Solana",
+    "paymentsBase": "A na-akwụ ụgwọ na DHB na chain Base",
+    "requiresSpl": "Chọrọ token SPL na Solana iji lee ya",
+    "mustHoldOn": "Ndị na-ekiri ga-enwerịrị token a na {{chain}}",
+    "custom": "Nhazi onwe",
+    "contractPlaceholder": "Adreesị nkwekọrịta (0x…)",
+    "symbolPlaceholder": "Akara (dịka PEPE)"
   }
 }

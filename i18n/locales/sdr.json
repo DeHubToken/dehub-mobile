@@ -3506,5 +3506,21 @@
     "includeSocials": "সোশ্যাল হ্যান্ডেল যোগ করেন",
     "extraNotes": "অতিরিক্ত নোট",
     "notesPlaceholder": "পোস্টারত আর যা যা দেখাইতে হইবে"
+  },
+  "monetization": {
+    "tokenGated": "টোকেন-নিয়ন্ত্রিত",
+    "invalidToken": "সঠিক টোকেন কনট্র্যাক্ট ঠিকানা লেখেন",
+    "createPlanAction": "সাবস্ক্রিপশন প্ল্যান বানান",
+    "createPlanFirst": "আগে একটা প্ল্যান বানান",
+    "publishPlanFirst": "আগে তোমার সাবস্ক্রিপশন প্ল্যান চেইনত প্রকাশ করেন।",
+    "subscribersOnly": "এই পোস্ট খালি তোমার সাবস্ক্রাইবাররাই খুলির পাইবে।",
+    "price": "দাম ({{currency}})",
+    "paymentsSolana": "পেমেন্ট সোলানাত {{currency}} ত হয়",
+    "paymentsBase": "পেমেন্ট Base চেইনত DHB ত হয়",
+    "requiresSpl": "দেখির জন্যে সোলানাত SPL টোকেন লাগে",
+    "mustHoldOn": "দর্শকের {{chain}} ত এই টোকেন থাকা লাগিবে",
+    "custom": "কাস্টম",
+    "contractPlaceholder": "কনট্র্যাক্ট ঠিকানা (0x…)",
+    "symbolPlaceholder": "প্রতীক (যেমন PEPE)"
   }
 }

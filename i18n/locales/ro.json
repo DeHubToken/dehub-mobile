@@ -3520,5 +3520,21 @@
     "includeSocials": "Include rețelele sociale",
     "extraNotes": "Note suplimentare",
     "notesPlaceholder": "Orice altceva trebuie să arate afișul"
+  },
+  "monetization": {
+    "tokenGated": "Restricționat prin token",
+    "invalidToken": "Introdu o adresă validă de contract token",
+    "createPlanAction": "Creează un plan de abonament",
+    "createPlanFirst": "Creează mai întâi un plan",
+    "publishPlanFirst": "Publică mai întâi planul de abonament pe lanț.",
+    "subscribersOnly": "Doar abonații tăi pot deschide această postare.",
+    "price": "Preț ({{currency}})",
+    "paymentsSolana": "Plățile se fac în {{currency}} pe Solana",
+    "paymentsBase": "Plățile se fac în DHB pe lanțul Base",
+    "requiresSpl": "Necesită un token SPL pe Solana pentru vizualizare",
+    "mustHoldOn": "Spectatorii trebuie să dețină acest token pe {{chain}}",
+    "custom": "Personalizat",
+    "contractPlaceholder": "Adresa contractului (0x…)",
+    "symbolPlaceholder": "Simbol (ex. PEPE)"
   }
 }

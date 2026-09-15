@@ -3563,5 +3563,21 @@
     "includeSocials": "Әлеуметтік желілерді қосу",
     "extraNotes": "Қосымша ескертпелер",
     "notesPlaceholder": "Плакатта көрсетілуі тиіс басқа нәрселер"
+  },
+  "monetization": {
+    "tokenGated": "Токенмен шектелген",
+    "invalidToken": "Жарамды токен келісімшарт мекенжайын енгізіңіз",
+    "createPlanAction": "Жазылым жоспарын жасау",
+    "createPlanFirst": "Алдымен жоспар жасаңыз",
+    "publishPlanFirst": "Алдымен жазылым жоспарыңызды тізбекте жариялаңыз.",
+    "subscribersOnly": "Бұл жазбаны тек жазылушыларыңыз аша алады.",
+    "price": "Баға ({{currency}})",
+    "paymentsSolana": "Төлемдер Solana желісінде {{currency}} арқылы",
+    "paymentsBase": "Төлемдер Base тізбегінде DHB арқылы",
+    "requiresSpl": "Көру үшін Solana желісінде SPL токені қажет",
+    "mustHoldOn": "Көрермендерде бұл токен {{chain}} желісінде болуы керек",
+    "custom": "Реттелетін",
+    "contractPlaceholder": "Келісімшарт мекенжайы (0x…)",
+    "symbolPlaceholder": "Таңба (мысалы, PEPE)"
   }
 }

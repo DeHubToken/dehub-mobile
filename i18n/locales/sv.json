@@ -3511,5 +3511,21 @@
     "includeSocials": "Inkludera sociala medier",
     "extraNotes": "Extra anteckningar",
     "notesPlaceholder": "Allt annat som affischen ska visa"
+  },
+  "monetization": {
+    "tokenGated": "Tokenbegränsad",
+    "invalidToken": "Ange en giltig tokenkontraktsadress",
+    "createPlanAction": "Skapa en prenumerationsplan",
+    "createPlanFirst": "Skapa en plan först",
+    "publishPlanFirst": "Publicera din prenumerationsplan on-chain först.",
+    "subscribersOnly": "Bara dina prenumeranter kan öppna det här inlägget.",
+    "price": "Pris ({{currency}})",
+    "paymentsSolana": "Betalningar sker i {{currency}} på Solana",
+    "paymentsBase": "Betalningar sker i DHB på Base-kedjan",
+    "requiresSpl": "Kräver en SPL-token på Solana för att visa",
+    "mustHoldOn": "Tittare måste äga denna token på {{chain}}",
+    "custom": "Anpassad",
+    "contractPlaceholder": "Kontraktsadress (0x…)",
+    "symbolPlaceholder": "Symbol (t.ex. PEPE)"
   }
 }

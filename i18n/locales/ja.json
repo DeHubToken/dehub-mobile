@@ -3574,5 +3574,21 @@
     "includeSocials": "SNS アカウントを含める",
     "extraNotes": "追加メモ",
     "notesPlaceholder": "ポスターに載せたいその他の内容"
+  },
+  "monetization": {
+    "tokenGated": "トークン限定",
+    "invalidToken": "有効なトークンのコントラクトアドレスを入力してください",
+    "createPlanAction": "サブスクプランを作成",
+    "createPlanFirst": "先にプランを作成してください",
+    "publishPlanFirst": "先にサブスクプランをオンチェーンで公開してください。",
+    "subscribersOnly": "この投稿を開けるのはサブスク登録者だけです。",
+    "price": "価格（{{currency}}）",
+    "paymentsSolana": "支払いは Solana 上の {{currency}} です",
+    "paymentsBase": "支払いは Base チェーン上の DHB です",
+    "requiresSpl": "閲覧には Solana 上の SPL トークンが必要です",
+    "mustHoldOn": "視聴者は {{chain}} でこのトークンを保有している必要があります",
+    "custom": "カスタム",
+    "contractPlaceholder": "コントラクトアドレス（0x…）",
+    "symbolPlaceholder": "シンボル（例: PEPE）"
   }
 }

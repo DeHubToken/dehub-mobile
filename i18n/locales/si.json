@@ -3489,5 +3489,21 @@
     "includeSocials": "සමාජ ජාල ඇතුළත් කරන්න",
     "extraNotes": "අමතර සටහන්",
     "notesPlaceholder": "පෝස්ටරයේ පෙන්විය යුතු වෙනත් ඕනෑම දෙයක්"
+  },
+  "monetization": {
+    "tokenGated": "ටෝකන මගින් සීමිත",
+    "invalidToken": "වලංගු ටෝකන ගිවිසුම් ලිපිනයක් ඇතුළත් කරන්න",
+    "createPlanAction": "දායකත්ව සැලැස්මක් සාදන්න",
+    "createPlanFirst": "පළමුව සැලැස්මක් සාදන්න",
+    "publishPlanFirst": "පළමුව ඔබේ දායකත්ව සැලැස්ම දාමයේ පළ කරන්න.",
+    "subscribersOnly": "මෙම පළකිරීම විවෘත කළ හැක්කේ ඔබේ දායකයින්ට පමණි.",
+    "price": "මිල ({{currency}})",
+    "paymentsSolana": "ගෙවීම් Solana හි {{currency}} වලින්",
+    "paymentsBase": "ගෙවීම් Base දාමයේ DHB වලින්",
+    "requiresSpl": "බැලීමට Solana හි SPL ටෝකනයක් අවශ්‍යයි",
+    "mustHoldOn": "නරඹන්නන් මෙම ටෝකනය {{chain}} හි තිබිය යුතුයි",
+    "custom": "අභිරුචි",
+    "contractPlaceholder": "ගිවිසුම් ලිපිනය (0x…)",
+    "symbolPlaceholder": "සංකේතය (උදා. PEPE)"
   }
 }

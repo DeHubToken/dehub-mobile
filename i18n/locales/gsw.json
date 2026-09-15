@@ -3496,5 +3496,21 @@
     "includeSocials": "Social-Media-Profil iibezieh",
     "extraNotes": "Zuesätzlichi Hiiwiis",
     "notesPlaceholder": "Alles anderi, was s Plakat sölli zeige"
+  },
+  "monetization": {
+    "tokenGated": "Token-bschränkt",
+    "invalidToken": "Gib e gültigi Token-Verträgsadrässe i",
+    "createPlanAction": "Abo-Plan erstelle",
+    "createPlanFirst": "Erstell zerscht en Plan",
+    "publishPlanFirst": "Veröffentlich zerscht din Abo-Plan on-chain.",
+    "subscribersOnly": "Nur dini Abonnänte chönd de Biitrag ufmache.",
+    "price": "Priis ({{currency}})",
+    "paymentsSolana": "Zahlige erfolged i {{currency}} uf Solana",
+    "paymentsBase": "Zahlige erfolged i DHB uf de Base-Chain",
+    "requiresSpl": "Zum Aaluege bruucht s en SPL-Token uf Solana",
+    "mustHoldOn": "Zueschauer müend das Token uf {{chain}} ha",
+    "custom": "Benutzerdefiniert",
+    "contractPlaceholder": "Verträgsadrässe (0x…)",
+    "symbolPlaceholder": "Symbol (z. B. PEPE)"
   }
 }

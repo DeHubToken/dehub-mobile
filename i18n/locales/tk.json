@@ -3477,5 +3477,21 @@
     "includeSocials": "Sosial hasaplary goş",
     "extraNotes": "Goşmaça bellikler",
     "notesPlaceholder": "Posteriň görkezmeli beýleki zatlary"
+  },
+  "monetization": {
+    "tokenGated": "Token bilen çäklendi",
+    "invalidToken": "Dogry token şertnama salgysyny giriziň",
+    "createPlanAction": "Abuna meýilnamasyny döret",
+    "createPlanFirst": "Ilki meýilnama dörediň",
+    "publishPlanFirst": "Ilki abuna meýilnamaňyzy zynjyrda çap ediň.",
+    "subscribersOnly": "Bu ýazgyny diňe abunaçylaryňyz açyp biler.",
+    "price": "Baha ({{currency}})",
+    "paymentsSolana": "Tölegler Solana-da {{currency}} bilen amala aşyrylýar",
+    "paymentsBase": "Tölegler Base zynjyrynda DHB bilen amala aşyrylýar",
+    "requiresSpl": "Görmek üçin Solana-da SPL token gerek",
+    "mustHoldOn": "Tomaşaçylar bu tokeni {{chain}} ulgamynda saklamaly",
+    "custom": "Şahsy",
+    "contractPlaceholder": "Şertnama salgysy (0x…)",
+    "symbolPlaceholder": "Nyşan (meselem, PEPE)"
   }
 }

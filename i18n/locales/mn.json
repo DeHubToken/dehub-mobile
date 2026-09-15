@@ -3486,5 +3486,21 @@
     "includeSocials": "Сошиал хаягуудыг оруулах",
     "extraNotes": "Нэмэлт тэмдэглэл",
     "notesPlaceholder": "Постерт харагдах ёстой бусад зүйл"
+  },
+  "monetization": {
+    "tokenGated": "Токеноор хязгаарласан",
+    "invalidToken": "Хүчинтэй токен гэрээний хаяг оруулна уу",
+    "createPlanAction": "Захиалгын төлөвлөгөө үүсгэх",
+    "createPlanFirst": "Эхлээд төлөвлөгөө үүсгэнэ үү",
+    "publishPlanFirst": "Эхлээд захиалгын төлөвлөгөөгөө сүлжээнд нийтэлнэ үү.",
+    "subscribersOnly": "Энэ нийтлэлийг зөвхөн таны захиалагчид нээж чадна.",
+    "price": "Үнэ ({{currency}})",
+    "paymentsSolana": "Төлбөр Solana дээр {{currency}}-ээр хийгдэнэ",
+    "paymentsBase": "Төлбөр Base сүлжээнд DHB-ээр хийгдэнэ",
+    "requiresSpl": "Үзэхийн тулд Solana дээр SPL токен шаардлагатай",
+    "mustHoldOn": "Үзэгчид энэ токеныг {{chain}} дээр эзэмшсэн байх ёстой",
+    "custom": "Өөрчилсөн",
+    "contractPlaceholder": "Гэрээний хаяг (0x…)",
+    "symbolPlaceholder": "Тэмдэг (жишээ нь PEPE)"
   }
 }

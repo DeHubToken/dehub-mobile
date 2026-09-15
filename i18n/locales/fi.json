@@ -3507,5 +3507,21 @@
     "includeSocials": "Sisällytä sosiaalinen media",
     "extraNotes": "Lisähuomautukset",
     "notesPlaceholder": "Kaikki muu, mitä julisteen pitää näyttää"
+  },
+  "monetization": {
+    "tokenGated": "Token-rajoitettu",
+    "invalidToken": "Anna kelvollinen tokenin sopimusosoite",
+    "createPlanAction": "Luo tilaussuunnitelma",
+    "createPlanFirst": "Luo ensin suunnitelma",
+    "publishPlanFirst": "Julkaise tilaussuunnitelmasi ensin lohkoketjussa.",
+    "subscribersOnly": "Vain tilaajasi voivat avata tämän julkaisun.",
+    "price": "Hinta ({{currency}})",
+    "paymentsSolana": "Maksut suoritetaan {{currency}}-valuutalla Solanassa",
+    "paymentsBase": "Maksut suoritetaan DHB:llä Base-ketjussa",
+    "requiresSpl": "Katseluun vaaditaan SPL-token Solanassa",
+    "mustHoldOn": "Katsojilla on oltava tämä token verkossa {{chain}}",
+    "custom": "Mukautettu",
+    "contractPlaceholder": "Sopimusosoite (0x…)",
+    "symbolPlaceholder": "Symboli (esim. PEPE)"
   }
 }

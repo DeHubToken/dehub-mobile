@@ -3511,5 +3511,21 @@
     "includeSocials": "Medtag sociale medier",
     "extraNotes": "Ekstra noter",
     "notesPlaceholder": "Alt andet plakaten skal vise"
+  },
+  "monetization": {
+    "tokenGated": "Token-adgang",
+    "invalidToken": "Indtast en gyldig tokenkontraktadresse",
+    "createPlanAction": "Opret et abonnement",
+    "createPlanFirst": "Opret først en plan",
+    "publishPlanFirst": "Udgiv først dit abonnement on-chain.",
+    "subscribersOnly": "Kun dine abonnenter kan åbne dette opslag.",
+    "price": "Pris ({{currency}})",
+    "paymentsSolana": "Betalinger sker i {{currency}} på Solana",
+    "paymentsBase": "Betalinger sker i DHB på Base-kæden",
+    "requiresSpl": "Kræver en SPL-token på Solana for at se",
+    "mustHoldOn": "Seere skal eje denne token på {{chain}}",
+    "custom": "Tilpasset",
+    "contractPlaceholder": "Kontraktadresse (0x…)",
+    "symbolPlaceholder": "Symbol (fx PEPE)"
   }
 }

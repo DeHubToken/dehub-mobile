@@ -3492,5 +3492,21 @@
     "includeSocials": "Whakauru pāpori",
     "extraNotes": "Tuhipoka tāpiri",
     "notesPlaceholder": "Ētahi atu mea me whakaatu e te pānui"
+  },
+  "monetization": {
+    "tokenGated": "Kua herea ki te tohu",
+    "invalidToken": "Whakaurua he wāhitau kirimana tohu whaimana",
+    "createPlanAction": "Hangaia he mahere ohaurunga",
+    "createPlanFirst": "Hangaia he mahere i te tuatahi",
+    "publishPlanFirst": "Whakaputaina tō mahere ohaurunga ki te mekameka i te tuatahi.",
+    "subscribersOnly": "Ko ō kaiohaurunga anake ka taea te whakatuwhera i tēnei pānui.",
+    "price": "Utu ({{currency}})",
+    "paymentsSolana": "Ka utua ki te {{currency}} i runga i a Solana",
+    "paymentsBase": "Ka utua ki te DHB i runga i te mekameka Base",
+    "requiresSpl": "Me whai tohu SPL i runga i a Solana kia kite",
+    "mustHoldOn": "Me pupuri ngā kaimātakitaki i tēnei tohu i runga i te {{chain}}",
+    "custom": "Ritenga",
+    "contractPlaceholder": "Wāhitau kirimana (0x…)",
+    "symbolPlaceholder": "Tohu (hei tauira PEPE)"
   }
 }

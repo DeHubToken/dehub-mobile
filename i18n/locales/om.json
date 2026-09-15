@@ -3571,5 +3571,21 @@
     "includeSocials": "Miidiyaa hawaasaa dabali",
     "extraNotes": "Yaadannoo dabalataa",
     "notesPlaceholder": "Wanti biroo poostarri agarsiisuu qabu"
+  },
+  "monetization": {
+    "tokenGated": "Toookeniin daangeffame",
+    "invalidToken": "Teessoo konyaraatii tookenii sirrii galchi",
+    "createPlanAction": "Karoora galmee uumi",
+    "createPlanFirst": "Dura karoora uumi",
+    "publishPlanFirst": "Dura karoora galmee kee sarara irratti maxxansi.",
+    "subscribersOnly": "Barreeffama kana kan banuu dandaʼu galmeeffattoota kee qofa.",
+    "price": "Gatii ({{currency}})",
+    "paymentsSolana": "Kaffaltiin Solana irratti {{currency}} dhaan raawwatama",
+    "paymentsBase": "Kaffaltiin sarara Base irratti DHB dhaan raawwatama",
+    "requiresSpl": "Ilaaluuf Solana irratti tookenii SPL barbaachisa",
+    "mustHoldOn": "Ilaaltonni tookenii kana {{chain}} irratti qabaachuu qabu",
+    "custom": "Kan mataa",
+    "contractPlaceholder": "Teessoo konyaraatii (0x…)",
+    "symbolPlaceholder": "Mallattoo (fkn PEPE)"
   }
 }
