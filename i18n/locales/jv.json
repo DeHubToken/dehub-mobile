@@ -567,7 +567,9 @@
     "recordVideo": "Rekam video",
     "saveChanges": "Simpen owahan",
     "copy": "Salin",
-    "optionalSuffix": "(opsional)"
+    "optionalSuffix": "(opsional)",
+    "yesterday": "Wingi",
+    "ok": "OKE"
   },
   "tip": {
     "title": "Kirim Hadiah",
@@ -2803,7 +2805,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Copot lampiran",
-    "attachFailed": "Ora bisa ngirim foto kuwi."
+    "attachFailed": "Ora bisa ngirim foto kuwi.",
+    "deleteMessage": "Busak pesen",
+    "deleteConfirm": "Yakin arep mbusak pesen iki?",
+    "pinFailed": "Gagal nyemat pesen",
+    "unpinFailed": "Gagal nyopot sematan pesen",
+    "disconnected": "Pedhot",
+    "subtitle": "Kabeh bab DeHub…",
+    "joining": "Gabung obrolan…",
+    "reconnect": "Sambung maneh",
+    "banned": "Sampeyan diblokir saka obrolan iki",
+    "someone": "Sapa wae",
+    "oneTyping": "{{name}} lagi ngetik…",
+    "fewTyping": "{{names}} lagi ngetik…",
+    "manyTyping": "{{count}} wong lagi ngetik…"
   },
   "promptFeed": {
     "headline": "Sampeyan pengin ndeleng apa?",

@@ -570,7 +570,9 @@
     "recordVideo": "Record video",
     "saveChanges": "Save di changes",
     "copy": "Copy",
-    "optionalSuffix": "(optional)"
+    "optionalSuffix": "(optional)",
+    "yesterday": "Yesterday",
+    "ok": "OK"
   },
   "tip": {
     "title": "Send Tip",
@@ -2743,7 +2745,20 @@
     "attachPhoto": "Photo",
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
-    "removeAttachment": "Remove attachment"
+    "removeAttachment": "Remove attachment",
+    "deleteMessage": "Delete message",
+    "deleteConfirm": "You sure say you wan delete dis message?",
+    "pinFailed": "E no fit pin di message",
+    "unpinFailed": "E no fit unpin di message",
+    "disconnected": "E don disconnect",
+    "subtitle": "Everytin about DeHub…",
+    "joining": "Dey join di chat…",
+    "reconnect": "Connect again",
+    "banned": "Dem don ban you from dis chat",
+    "someone": "Somebody",
+    "oneTyping": "{{name}} dey type…",
+    "fewTyping": "{{names}} dey type…",
+    "manyTyping": "{{count}} people dey type…"
   },
   "promptFeed": {
     "headline": "Wetin you wan see?",

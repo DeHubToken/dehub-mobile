@@ -607,7 +607,9 @@
     "recordVideo": "Տեսագրել",
     "saveChanges": "Պահպանել փոփոխությունները",
     "copy": "Պատճենել",
-    "optionalSuffix": "(ըստ ցանկության)"
+    "optionalSuffix": "(ըստ ցանկության)",
+    "yesterday": "Երեկ",
+    "ok": "Լավ"
   },
   "postOptions": {
     "options": "Entrankhner",
@@ -2843,7 +2845,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Էմոջի",
     "removeAttachment": "Հեռացնել կցորդը",
-    "attachFailed": "Չհաջողվեց ուղարկել այդ լուսանկարը ։"
+    "attachFailed": "Չհաջողվեց ուղարկել այդ լուսանկարը ։",
+    "deleteMessage": "Ջնջել հաղորդագրությունը",
+    "deleteConfirm": "Վստա՞հ եք, որ ուզում եք ջնջել այս հաղորդագրությունը։",
+    "pinFailed": "Չհաջողվեց ամրացնել հաղորդագրությունը",
+    "unpinFailed": "Չհաջողվեց ապամրացնել հաղորդագրությունը",
+    "disconnected": "Անջատված",
+    "subtitle": "Ամեն ինչ DeHub-ի մասին…",
+    "joining": "Միանում է զրույցին…",
+    "reconnect": "Վերամիանալ",
+    "banned": "Դուք արգելափակված եք այս զրույցից",
+    "someone": "Ինչ-որ մեկը",
+    "oneTyping": "{{name}} գրում է…",
+    "fewTyping": "{{names}} գրում են…",
+    "manyTyping": "{{count}} մարդ գրում է…"
   },
   "promptFeed": {
     "headline": "Ի՞նչ եք ուզում տեսնել։",

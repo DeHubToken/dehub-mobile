@@ -606,7 +606,9 @@
     "recordVideo": "צלם וידאו",
     "saveChanges": "שמור שינויים",
     "copy": "העתק",
-    "optionalSuffix": "(אופציונלי)"
+    "optionalSuffix": "(אופציונלי)",
+    "yesterday": "אתמול",
+    "ok": "אישור"
   },
   "drawers": {
     "ppvTitle": "תוכן בתשלום",
@@ -2831,7 +2833,20 @@
     "attachPhoto": "תמונה",
     "attachEmoji": "אימוג'י",
     "removeAttachment": "הסר קובץ מצורף",
-    "attachFailed": "לא ניתן לשלוח את התמונה הזו."
+    "attachFailed": "לא ניתן לשלוח את התמונה הזו.",
+    "deleteMessage": "מחיקת הודעה",
+    "deleteConfirm": "בטוח שברצונך למחוק את ההודעה הזו?",
+    "pinFailed": "לא ניתן היה להצמיד את ההודעה",
+    "unpinFailed": "לא ניתן היה לבטל את הצמדת ההודעה",
+    "disconnected": "מנותק",
+    "subtitle": "הכול על DeHub…",
+    "joining": "מצטרף לצ'אט…",
+    "reconnect": "התחברות מחדש",
+    "banned": "נחסמת מהצ'אט הזה",
+    "someone": "מישהו",
+    "oneTyping": "{{name}} מקליד…",
+    "fewTyping": "{{names}} מקלידים…",
+    "manyTyping": "{{count}} אנשים מקלידים…"
   },
   "promptFeed": {
     "headline": "מה תרצה לראות?",

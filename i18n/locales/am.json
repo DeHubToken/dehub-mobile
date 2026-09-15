@@ -599,7 +599,9 @@
     "recordVideo": "ቪዲዮ ቅረጽ",
     "saveChanges": "ለውጦችን አስቀምጥ",
     "copy": "ቅዳ",
-    "optionalSuffix": "(አማራጭ)"
+    "optionalSuffix": "(አማራጭ)",
+    "yesterday": "ትናንት",
+    "ok": "እሺ"
   },
   "tip": {
     "title": "ጥቆማ ላክ",
@@ -2849,7 +2851,20 @@
     "attachPhoto": "ፎቶ",
     "attachEmoji": "ኢሞጂ",
     "removeAttachment": "አባሪ አስወግድ",
-    "attachFailed": "ያንን ፎቶ መላክ አልተቻለም ።"
+    "attachFailed": "ያንን ፎቶ መላክ አልተቻለም ።",
+    "deleteMessage": "መልእክቱን ሰርዝ",
+    "deleteConfirm": "ይህን መልእክት መሰረዝ እርግጠኛ ነዎት?",
+    "pinFailed": "መልእክቱን መሰካት አልተቻለም",
+    "unpinFailed": "የመልእክቱን መሰካት ማንሳት አልተቻለም",
+    "disconnected": "ግንኙነት ተቋርጧል",
+    "subtitle": "ስለ DeHub ሁሉም ነገር…",
+    "joining": "ወደ ውይይቱ በመግባት ላይ…",
+    "reconnect": "እንደገና ተገናኝ",
+    "banned": "ከዚህ ውይይት ታግደዋል",
+    "someone": "አንድ ሰው",
+    "oneTyping": "{{name}} እየጻፈ ነው…",
+    "fewTyping": "{{names}} እየጻፉ ናቸው…",
+    "manyTyping": "{{count}} ሰዎች እየጻፉ ናቸው…"
   },
   "promptFeed": {
     "headline": "ምን ማየት ይፈልጋሉ?",

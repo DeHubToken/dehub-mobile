@@ -567,7 +567,9 @@
     "recordVideo": "سجّل فيديو",
     "saveChanges": "حفظ التغييرات",
     "copy": "انسخ",
-    "optionalSuffix": "(اختياري)"
+    "optionalSuffix": "(اختياري)",
+    "yesterday": "أمس",
+    "ok": "تمام"
   },
   "tip": {
     "title": "ابعث هدية",
@@ -2801,7 +2803,20 @@
     "attachPhoto": "صورة",
     "attachEmoji": "إيموجي",
     "removeAttachment": "إزالة المرفق",
-    "attachFailed": "لم يتم إرسال هذه الصورة."
+    "attachFailed": "لم يتم إرسال هذه الصورة.",
+    "deleteMessage": "امسح الرسالة",
+    "deleteConfirm": "متأكد إنك عايز تمسح الرسالة دي؟",
+    "pinFailed": "ما قدر يثبت الرسالة",
+    "unpinFailed": "ما قدر يشيل تثبيت الرسالة",
+    "disconnected": "منقطع",
+    "subtitle": "كل حاجة عن DeHub…",
+    "joining": "بيدخل الدردشة…",
+    "reconnect": "أعد الاتصال",
+    "banned": "إنت محظور من الدردشة دي",
+    "someone": "زول",
+    "oneTyping": "{{name}} بيكتب…",
+    "fewTyping": "{{names}} بيكتبوا…",
+    "manyTyping": "{{count}} ناس بيكتبوا…"
   },
   "promptFeed": {
     "headline": "داير تشوف شنو؟",

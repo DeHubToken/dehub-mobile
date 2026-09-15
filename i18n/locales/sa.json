@@ -596,7 +596,9 @@
     "recordVideo": "चलचित्रं अभिलिखतु",
     "saveChanges": "परिवर्तनानि रक्षतु",
     "copy": "प्रतिलिख्यताम्",
-    "optionalSuffix": "(वैकल्पिकम्)"
+    "optionalSuffix": "(वैकल्पिकम्)",
+    "yesterday": "ह्यः",
+    "ok": "साधु"
   },
   "tip": {
     "title": "उपहारं प्रेषयतु",
@@ -2813,7 +2815,20 @@
     "attachGif": "GIF",
     "attachEmoji": "इमोजी",
     "removeAttachment": "संलग्नता हटाउनुहोस्",
-    "attachFailed": "तस्विरं पठितुं न शक्नोमि ।"
+    "attachFailed": "तस्विरं पठितुं न शक्नोमि ।",
+    "deleteMessage": "सन्देशं लोपयतु",
+    "deleteConfirm": "किं भवान् एतं सन्देशं लोपयितुम् इच्छति?",
+    "pinFailed": "सन्देशं स्थापयितुं न शक्यते",
+    "unpinFailed": "सन्देशस्य स्थापनं निवारयितुं न शक्यते",
+    "disconnected": "विच्छिन्नम्",
+    "subtitle": "DeHub-विषये सर्वम्…",
+    "joining": "संलापे प्रविशति…",
+    "reconnect": "पुनः संयोजयतु",
+    "banned": "अस्मात् संलापात् भवान् निषिद्धः",
+    "someone": "कश्चित्",
+    "oneTyping": "{{name}} लिखति…",
+    "fewTyping": "{{names}} लिखन्ति…",
+    "manyTyping": "{{count}} जनाः लिखन्ति…"
   },
   "promptFeed": {
     "headline": "भवान् किं द्रष्टुम् इच्छति?",

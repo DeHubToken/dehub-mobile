@@ -622,7 +622,9 @@
     "recordVideo": "動画を撮る",
     "saveChanges": "変更を保存",
     "copy": "コピー",
-    "optionalSuffix": "（任意）"
+    "optionalSuffix": "（任意）",
+    "yesterday": "昨日",
+    "ok": "OK"
   },
   "postOptions": {
     "options": "オプション",
@@ -2912,7 +2914,20 @@
     "attachPhoto": "写真",
     "attachEmoji": "絵文字",
     "removeAttachment": "添付ファイルを削除",
-    "attachFailed": "写真を送信できませんでした。"
+    "attachFailed": "写真を送信できませんでした。",
+    "deleteMessage": "メッセージを削除",
+    "deleteConfirm": "このメッセージを削除してもよろしいですか？",
+    "pinFailed": "メッセージをピン留めできませんでした",
+    "unpinFailed": "メッセージのピン留めを解除できませんでした",
+    "disconnected": "切断されました",
+    "subtitle": "DeHub のすべて…",
+    "joining": "チャットに参加中…",
+    "reconnect": "再接続",
+    "banned": "このチャットから禁止されています",
+    "someone": "誰か",
+    "oneTyping": "{{name}} が入力中…",
+    "fewTyping": "{{names}} が入力中…",
+    "manyTyping": "{{count}} 人が入力中…"
   },
   "promptFeed": {
     "headline": "何を見たいですか？",

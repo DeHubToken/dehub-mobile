@@ -606,7 +606,9 @@
     "recordVideo": "ضبط ویدیو",
     "saveChanges": "ذخیره تغییرات",
     "copy": "کپی",
-    "optionalSuffix": "(اختیاری)"
+    "optionalSuffix": "(اختیاری)",
+    "yesterday": "دیروز",
+    "ok": "باشه"
   },
   "tip": {
     "title": "ارسال انعام",
@@ -2858,7 +2860,20 @@
     "attachPhoto": "عکس",
     "attachEmoji": "ایموجی",
     "removeAttachment": "حذف پيوست",
-    "attachFailed": "نتونستم اون عکس رو بفرستم."
+    "attachFailed": "نتونستم اون عکس رو بفرستم.",
+    "deleteMessage": "حذف پیام",
+    "deleteConfirm": "مطمئنید که می‌خواهید این پیام را حذف کنید؟",
+    "pinFailed": "سنجاق کردن پیام ناموفق بود",
+    "unpinFailed": "برداشتن سنجاق پیام ناموفق بود",
+    "disconnected": "قطع شده",
+    "subtitle": "همه چیز درباره DeHub…",
+    "joining": "در حال پیوستن به گفتگو…",
+    "reconnect": "اتصال دوباره",
+    "banned": "شما از این گفتگو مسدود شده‌اید",
+    "someone": "کسی",
+    "oneTyping": "{{name}} در حال نوشتن است…",
+    "fewTyping": "{{names}} در حال نوشتن هستند…",
+    "manyTyping": "{{count}} نفر در حال نوشتن هستند…"
   },
   "promptFeed": {
     "headline": "چه چیزی می‌خواهید ببینید؟",

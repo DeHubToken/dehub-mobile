@@ -599,7 +599,9 @@
     "recordVideo": "Hopu ataata",
     "saveChanges": "Tiakina ngā panoni",
     "copy": "Tāruatia",
-    "optionalSuffix": "(kōwhiringa)"
+    "optionalSuffix": "(kōwhiringa)",
+    "yesterday": "Inanahi",
+    "ok": "Ka pai"
   },
   "tip": {
     "title": "Tukuna koha",
@@ -2831,7 +2833,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Whakakorea te whakauru",
-    "attachFailed": "Kaore e taea e au te tuku i taua whakaahua."
+    "attachFailed": "Kaore e taea e au te tuku i taua whakaahua.",
+    "deleteMessage": "Muku karere",
+    "deleteConfirm": "Kei te tino hiahia koe ki te muku i tēnei karere?",
+    "pinFailed": "Kāore i taea te titi i te karere",
+    "unpinFailed": "Kāore i taea te wete i te titi karere",
+    "disconnected": "Kua motu",
+    "subtitle": "Ngā mea katoa mō DeHub…",
+    "joining": "Kei te uru ki te kōrerorero…",
+    "reconnect": "Hono anō",
+    "banned": "Kua aukatia koe i tēnei kōrerorero",
+    "someone": "Tētahi",
+    "oneTyping": "Kei te patopato a {{name}}…",
+    "fewTyping": "Kei te patopato a {{names}}…",
+    "manyTyping": "E {{count}} ngā tāngata e patopato ana…"
   },
   "promptFeed": {
     "headline": "He aha tāu e hiahia ana kia kite?",

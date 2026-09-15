@@ -606,7 +606,9 @@
     "recordVideo": "Qopha ividiyo",
     "saveChanges": "Londoloza izinguquko",
     "copy": "Kopisha",
-    "optionalSuffix": "(okuzikhethela)"
+    "optionalSuffix": "(okuzikhethela)",
+    "yesterday": "Izolo",
+    "ok": "Kulungile"
   },
   "tip": {
     "title": "Thumela Ithiphu",
@@ -2873,7 +2875,20 @@
     "attachGif": "I-GIF",
     "attachEmoji": "I-Emoji",
     "removeAttachment": "Susa okunamathiselwe",
-    "attachFailed": "Ayikwazanga ukuthumela leso sithombe."
+    "attachFailed": "Ayikwazanga ukuthumela leso sithombe.",
+    "deleteMessage": "Susa umlayezo",
+    "deleteConfirm": "Uqinisekile ukuthi ufuna ukususa lo mlayezo?",
+    "pinFailed": "Yehlulekile ukuphina umlayezo",
+    "unpinFailed": "Yehlulekile ukususa ukuphina umlayezo",
+    "disconnected": "Kunqamukile",
+    "subtitle": "Konke mayelana ne-DeHub…",
+    "joining": "Ijoyina ingxoxo…",
+    "reconnect": "Xhuma futhi",
+    "banned": "Uvinjelwe kule ngxoxo",
+    "someone": "Umuntu othile",
+    "oneTyping": "U-{{name}} uyathayipha…",
+    "fewTyping": "O-{{names}} bayathayipha…",
+    "manyTyping": "Abantu abangu-{{count}} bayathayipha…"
   },
   "promptFeed": {
     "headline": "Ufuna ukubona ini?",

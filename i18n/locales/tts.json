@@ -567,7 +567,9 @@
     "recordVideo": "อัดวิดีโอ",
     "saveChanges": "บันทึกการเปลี่ยนแปลง",
     "copy": "คัดลอก",
-    "optionalSuffix": "(บ่บังคับ)"
+    "optionalSuffix": "(บ่บังคับ)",
+    "yesterday": "มื้อวานนี้",
+    "ok": "ตกลง"
   },
   "tip": {
     "title": "ส่งทิป",
@@ -2803,7 +2805,20 @@
     "attachGif": "GIF",
     "attachEmoji": "อิโมจิ",
     "removeAttachment": "ลบไฟล์แนบ",
-    "attachFailed": "ส่งรูปภาพนั้นไม่ได้"
+    "attachFailed": "ส่งรูปภาพนั้นไม่ได้",
+    "deleteMessage": "ลบข้อความ",
+    "deleteConfirm": "แน่ใจบ่ว่าอยากลบข้อความนี้",
+    "pinFailed": "ปักหมุดข้อความบ่สำเร็จ",
+    "unpinFailed": "ยกเลิกปักหมุดข้อความบ่สำเร็จ",
+    "disconnected": "ตัดการเชื่อมต่อ",
+    "subtitle": "ทุกเรื่องเกี่ยวกับ DeHub…",
+    "joining": "กำลังเข้าร่วมแชท…",
+    "reconnect": "เชื่อมต่อใหม่",
+    "banned": "เจ้าถูกแบนจากแชทนี้",
+    "someone": "ผู้ได๋ผู้หนึ่ง",
+    "oneTyping": "{{name}} กำลังพิมพ์…",
+    "fewTyping": "{{names}} กำลังพิมพ์…",
+    "manyTyping": "{{count}} คนกำลังพิมพ์…"
   },
   "promptFeed": {
     "headline": "เจ้าอยากเบิ่งหยัง",

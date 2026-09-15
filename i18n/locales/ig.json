@@ -600,7 +600,9 @@
     "recordVideo": "Dekọọ vidiyo",
     "saveChanges": "Chekwaa mgbanwe",
     "copy": "Detuo",
-    "optionalSuffix": "(nhọrọ)"
+    "optionalSuffix": "(nhọrọ)",
+    "yesterday": "Ụnyaahụ",
+    "ok": "Ọ dị mma"
   },
   "tip": {
     "title": "Ziga Onyinye",
@@ -2829,7 +2831,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Wepụ mgbakwunye",
-    "attachFailed": "Enweghị m ike iziga foto ahụ."
+    "attachFailed": "Enweghị m ike iziga foto ahụ.",
+    "deleteMessage": "Hichapụ ozi",
+    "deleteConfirm": "Ị ji n'aka na ị chọrọ ihichapụ ozi a?",
+    "pinFailed": "Enweghị ike ịkpọgide ozi",
+    "unpinFailed": "Enweghị ike iwepụ nkpọgide ozi",
+    "disconnected": "Ejikọtaghị",
+    "subtitle": "Ihe niile gbasara DeHub…",
+    "joining": "Na-abanye na nkata…",
+    "reconnect": "Jikọọ ọzọ",
+    "banned": "Amachibidoro gị na nkata a",
+    "someone": "Onye",
+    "oneTyping": "{{name}} na-ede…",
+    "fewTyping": "{{names}} na-ede…",
+    "manyTyping": "Mmadụ {{count}} na-ede…"
   },
   "promptFeed": {
     "headline": "Gịnị ka ị chọrọ ịhụ?",

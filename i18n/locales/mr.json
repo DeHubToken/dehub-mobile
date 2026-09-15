@@ -599,7 +599,9 @@
     "recordVideo": "व्हिडिओ रेकॉर्ड करा",
     "saveChanges": "बदल जतन करा",
     "copy": "कॉपी करा",
-    "optionalSuffix": "(पर्यायी)"
+    "optionalSuffix": "(पर्यायी)",
+    "yesterday": "काल",
+    "ok": "ठीक आहे"
   },
   "drawers": {
     "ppvTitle": "पे पर व्ह्यू मजकूर",
@@ -2834,7 +2836,20 @@
     "attachPhoto": "फोटो",
     "attachEmoji": "इमोजी",
     "removeAttachment": "अटॅचमेंट काढून टाका",
-    "attachFailed": "मी तो फोटो पाठवू शकलो नाही."
+    "attachFailed": "मी तो फोटो पाठवू शकलो नाही.",
+    "deleteMessage": "संदेश हटवा",
+    "deleteConfirm": "तुम्हाला खात्री आहे की हा संदेश हटवायचा आहे?",
+    "pinFailed": "संदेश पिन करता आला नाही",
+    "unpinFailed": "संदेश अनपिन करता आला नाही",
+    "disconnected": "डिस्कनेक्ट",
+    "subtitle": "DeHub बद्दल सर्व काही…",
+    "joining": "चॅटमध्ये सामील होत आहे…",
+    "reconnect": "पुन्हा कनेक्ट करा",
+    "banned": "तुम्हाला या चॅटमधून प्रतिबंधित केले आहे",
+    "someone": "कोणीतरी",
+    "oneTyping": "{{name}} टाइप करत आहेत…",
+    "fewTyping": "{{names}} टाइप करत आहेत…",
+    "manyTyping": "{{count}} लोक टाइप करत आहेत…"
   },
   "promptFeed": {
     "headline": "तुम्हाला काय पाहायचे आहे?",

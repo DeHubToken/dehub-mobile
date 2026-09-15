@@ -601,7 +601,9 @@
     "recordVideo": "Wideo ýazga al",
     "saveChanges": "Üýtgeşmeleri ýatda sakla",
     "copy": "Göçür",
-    "optionalSuffix": "(islege bagly)"
+    "optionalSuffix": "(islege bagly)",
+    "yesterday": "Düýn",
+    "ok": "Bolýar"
   },
   "postOptions": {
     "options": "Saýlawlar",
@@ -2824,7 +2826,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Baglaýyşy Çykar",
-    "attachFailed": "Men bu suraty iberip bilmedim."
+    "attachFailed": "Men bu suraty iberip bilmedim.",
+    "deleteMessage": "Habary poz",
+    "deleteConfirm": "Bu habary pozmak isleýändigiňize ynanýarsyňyzmy?",
+    "pinFailed": "Habary berkidip bolmady",
+    "unpinFailed": "Habaryň berkidilmegi aýrylyp bilmedi",
+    "disconnected": "Baglanyşyk kesildi",
+    "subtitle": "DeHub barada ähli zat…",
+    "joining": "Söhbete goşulýar…",
+    "reconnect": "Gaýtadan birik",
+    "banned": "Siz bu söhbetden gadagan edildiňiz",
+    "someone": "Kimdir",
+    "oneTyping": "{{name}} ýazýar…",
+    "fewTyping": "{{names}} ýazýarlar…",
+    "manyTyping": "{{count}} adam ýazýar…"
   },
   "promptFeed": {
     "headline": "Näme görmek isleýärsiňiz?",

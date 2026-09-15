@@ -120,7 +120,9 @@
     "takePhoto": "Kumuha ng larawan",
     "recordVideo": "Mag-record ng video",
     "saveChanges": "I-save ang mga pagbabago",
-    "optionalSuffix": "(opsyonal)"
+    "optionalSuffix": "(opsyonal)",
+    "yesterday": "Kahapon",
+    "ok": "OK"
   },
   "walletSelector": {
     "title": "Piliin ang Wallet",
@@ -3024,7 +3026,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Alisin ang attachment",
-    "attachFailed": "Hindi maipadala ang litratong iyon."
+    "attachFailed": "Hindi maipadala ang litratong iyon.",
+    "deleteMessage": "Burahin ang mensahe",
+    "deleteConfirm": "Sigurado kang gusto mong burahin ang mensaheng ito?",
+    "pinFailed": "Nabigong i-pin ang mensahe",
+    "unpinFailed": "Nabigong i-unpin ang mensahe",
+    "disconnected": "Nadiskonekta",
+    "subtitle": "Lahat tungkol sa DeHub…",
+    "joining": "Sumasali sa chat…",
+    "reconnect": "Kumonekta ulit",
+    "banned": "Naka-ban ka sa chat na ito",
+    "someone": "May isang tao",
+    "oneTyping": "Nagta-type si {{name}}…",
+    "fewTyping": "Nagta-type sina {{names}}…",
+    "manyTyping": "{{count}} katao ang nagta-type…"
   },
   "promptFeed": {
     "headline": "Ano ang gusto mong makita?",

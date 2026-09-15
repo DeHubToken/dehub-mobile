@@ -1254,7 +1254,7 @@
     "less": "কম",
     "yes": "হ্যাঁ",
     "no": "না",
-    "ok": "ঠিক আসে",
+    "ok": "ঠিক আছে",
     "copy": "কপি করো",
     "copied": "কপি অইসে",
     "share": "শেয়ার করো",
@@ -1285,7 +1285,8 @@
     "takePhoto": "ফটো তুলো",
     "recordVideo": "ভিডিও রেকর্ড করো",
     "saveChanges": "পরিবর্তন সংরক্ষণ করো",
-    "optionalSuffix": "(ঐচ্ছিক)"
+    "optionalSuffix": "(ঐচ্ছিক)",
+    "yesterday": "কাইল"
   },
   "featureRequests": {
     "title": "ফিচার রিকোয়েস্ট",
@@ -2995,7 +2996,20 @@
     "attachPhoto": "ফটো",
     "attachEmoji": "ইমোজি",
     "removeAttachment": "এটাচমেন্ট সরান",
-    "attachFailed": "এই ফটো পাঠানো যায়নি।"
+    "attachFailed": "এই ফটো পাঠানো যায়নি।",
+    "deleteMessage": "মেসেজ মুছউক্কা",
+    "deleteConfirm": "তুমি কি সত্যিই ইলা মেসেজ মুছতে চাও?",
+    "pinFailed": "মেসেজ পিন করা গেল না",
+    "unpinFailed": "মেসেজ আনপিন করা গেল না",
+    "disconnected": "সংযোগ বিচ্ছিন্ন",
+    "subtitle": "DeHub র সবকিছু…",
+    "joining": "চ্যাটো যোগ দিরো…",
+    "reconnect": "আবার সংযোগ করউক্কা",
+    "banned": "তোমারে ইলা চ্যাট থাকি নিষিদ্ধ করা অইছে",
+    "someone": "কেউ",
+    "oneTyping": "{{name}} লিখরা…",
+    "fewTyping": "{{names}} লিখরা…",
+    "manyTyping": "{{count}} জন লিখরা…"
   },
   "promptFeed": {
     "headline": "তুমি কিতা দেখতে চাও?",

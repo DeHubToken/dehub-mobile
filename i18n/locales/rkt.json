@@ -1259,7 +1259,8 @@
     "takePhoto": "ফটো তোলো",
     "recordVideo": "ভিডিও রেকর্ড করো",
     "saveChanges": "পরিবর্তন সংরক্ষণ করো",
-    "optionalSuffix": "(ঐচ্ছিক)"
+    "optionalSuffix": "(ঐচ্ছিক)",
+    "yesterday": "কাইল"
   },
   "featureRequests": {
     "title": "ফিচার রিকোয়েস্ট",
@@ -3610,5 +3611,20 @@
     "confirmingPayment": "পেমেন্ট নিশ্চিত হইতেছে…",
     "retryConfirmation": "আবার নিশ্চিত করেন",
     "buyNow": "এখনই কিনেন"
+  },
+  "liveChat": {
+    "deleteMessage": "বার্তা মুছেন",
+    "deleteConfirm": "তোমরা কি সত্যিই এই বার্তা মুছির চান?",
+    "pinFailed": "বার্তা পিন করা গেল না",
+    "unpinFailed": "বার্তা আনপিন করা গেল না",
+    "disconnected": "সংযোগ বিচ্ছিন্ন",
+    "subtitle": "DeHub র সবকিছু…",
+    "joining": "চ্যাটত যোগ দেওয়া হইতেছে…",
+    "reconnect": "আবার সংযোগ করেন",
+    "banned": "তোমরা এই চ্যাট থাকি নিষিদ্ধ",
+    "someone": "কায়ও",
+    "oneTyping": "{{name}} লেখেছে…",
+    "fewTyping": "{{names}} লেখেছে…",
+    "manyTyping": "{{count}} জন লেখেছে…"
   }
 }

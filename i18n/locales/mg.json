@@ -594,7 +594,9 @@
     "recordVideo": "Mandray horonan-tsary",
     "saveChanges": "Tehirizo ny fiovana",
     "copy": "Adikao",
-    "optionalSuffix": "(safidy)"
+    "optionalSuffix": "(safidy)",
+    "yesterday": "Omaly",
+    "ok": "Eny"
   },
   "tip": {
     "title": "Handefa fanomezana",
@@ -2926,7 +2928,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Mpanaraka",
-    "attachFailed": "Tsy afaka mahazo izany sary izany aho."
+    "attachFailed": "Tsy afaka mahazo izany sary izany aho.",
+    "deleteMessage": "Fafao ny hafatra",
+    "deleteConfirm": "Tena tianao hofafana ity hafatra ity?",
+    "pinFailed": "Tsy afaka nampipetaka ny hafatra",
+    "unpinFailed": "Tsy afaka nesorina ny fametahana ny hafatra",
+    "disconnected": "Tapaka",
+    "subtitle": "Ny zava-drehetra momba ny DeHub…",
+    "joining": "Miditra ao amin'ny resaka…",
+    "reconnect": "Mifandray indray",
+    "banned": "Voarara amin'ity resaka ity ianao",
+    "someone": "Olona iray",
+    "oneTyping": "Manoratra i {{name}}…",
+    "fewTyping": "Manoratra i {{names}}…",
+    "manyTyping": "Olona {{count}} no manoratra…"
   },
   "promptFeed": {
     "headline": "Inona no tianao hojerena?",

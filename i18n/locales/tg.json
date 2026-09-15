@@ -595,7 +595,9 @@
     "recordVideo": "Сабти видео",
     "saveChanges": "Тағйиротро нигоҳ доред",
     "copy": "Нусха",
-    "optionalSuffix": "(ихтиёрӣ)"
+    "optionalSuffix": "(ихтиёрӣ)",
+    "yesterday": "Дирӯз",
+    "ok": "Хуб"
   },
   "postOptions": {
     "options": "Имконот",
@@ -2825,7 +2827,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Удалить замима",
-    "attachFailed": "Hindi maipadala ang larawan na ito."
+    "attachFailed": "Hindi maipadala ang larawan na ito.",
+    "deleteMessage": "Нест кардани паём",
+    "deleteConfirm": "Мутмаин ҳастед, ки ин паёмро нест кунед?",
+    "pinFailed": "Часпондани паём ноком шуд",
+    "unpinFailed": "Ҷудо кардани паём ноком шуд",
+    "disconnected": "Қатъ шуд",
+    "subtitle": "Ҳама чиз дар бораи DeHub…",
+    "joining": "Ҳамроҳ шудан ба чат…",
+    "reconnect": "Аз нав пайваст шудан",
+    "banned": "Шумо аз ин чат манъ шудаед",
+    "someone": "Касе",
+    "oneTyping": "{{name}} менависад…",
+    "fewTyping": "{{names}} менависанд…",
+    "manyTyping": "{{count}} нафар менависанд…"
   },
   "promptFeed": {
     "headline": "Шумо чиро дидан мехоҳед?",
