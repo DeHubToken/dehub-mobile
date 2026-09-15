@@ -3969,5 +3969,25 @@
     "rewrite": "Herschrijven",
     "lyricsPlaceholder": "Laat leeg voor een instrumentaal nummer",
     "lyricsFailed": "Kan songtekst niet genereren"
+  },
+  "assets": {
+    "topUp": "Opwaarderen",
+    "bridge": "Bridge",
+    "comingSoon": "binnenkort",
+    "title": "Activa",
+    "held": "In bezit",
+    "staked": "Gestaket",
+    "gotIt": "Begrepen",
+    "dhbPositionNote": "DHB is je hele positie — in bezit plus gestaket, op Base en BNB Chain. Het meeste staat meestal gestaket, dus dit is groter dan wat je nu kunt uitgeven.",
+    "stakedIncludesUnstaking": "Gestaket DHB omvat ook alles waarvan je unstaking hebt aangevraagd maar nog niet hebt teruggekregen.",
+    "otherBalancesNote": "Je andere saldi staan alleen op {{network}} (chain {{chainId}}). {{gas}} is je gassaldo. Waarden kunnen enkele seconden achterlopen. Bridge of verstuur assets naar {{network}} om ze hier te gebruiken.",
+    "subscriptionEarnings": "Abonnementsinkomsten",
+    "withdrawableOnBase": "Beschikbaar om op te nemen via Base",
+    "pendingTreasury": "In USDT · wacht op treasuryreserve",
+    "cashOut": "Uitbetalen",
+    "withdrawing": "Bezig met opnemen…",
+    "usdtSent": "{{amount}} USDT verzonden",
+    "withdrawableSoon": "Abonnementskosten kunnen binnenkort worden opgenomen",
+    "dpayBaseOnly": "Dpay is alleen beschikbaar op Base."
   }
 }

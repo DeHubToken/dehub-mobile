@@ -3693,5 +3693,25 @@
     "rewrite": "Dib u qor",
     "lyricsPlaceholder": "Banaan ka tag haddii aad rabto muusig kaliya",
     "lyricsFailed": "Lama abuuri karin erayada"
+  },
+  "assets": {
+    "topUp": "Shubo",
+    "bridge": "Buundo",
+    "comingSoon": "dhawaan",
+    "title": "Hantida",
+    "held": "La hayo",
+    "staked": "La dhigay",
+    "gotIt": "Waan fahmay",
+    "dhbPositionNote": "DHB waa dhammaan booskaaga — waxa la hayo iyo waxa la dhigay, Base iyo BNB Chain labadaba. Inta badan waa la dhigaa, sidaas darteed tiradan way ka weyn tahay waxa aad hadda bixin karto.",
+    "stakedIncludesUnstaking": "DHB-ga la dhigay wuxuu ku jiraa wax kasta oo aad codsatay in la soo saaro laakiin aan weli lagu soo celin.",
+    "otherBalancesNote": "Hadhaagaaga kale waxay ku jiraan {{network}} (silsilada {{chainId}}) oo keliya. {{gas}} waa hadhaaga gaaska. Qiimayaashu waxay daahi karaan dhowr ilbiriqsi. U wareeji hantida {{network}} si aad halkan uga isticmaasho.",
+    "subscriptionEarnings": "Dakhliga rukumaadka",
+    "withdrawableOnBase": "Waa la bixin karaa Base",
+    "pendingTreasury": "Lagu qiimeeyay USDT · sugaya kaydka khasnadda",
+    "cashOut": "Lacag bixi",
+    "withdrawing": "Waa la bixinayaa…",
+    "usdtSent": "{{amount}} USDT ayaa la diray",
+    "withdrawableSoon": "Khidmadaha rukumaadka dhawaan waa la bixin doonaa",
+    "dpayBaseOnly": "Dpay wuxuu ku shaqeeyaa Base oo keliya."
   }
 }

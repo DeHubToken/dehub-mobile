@@ -3672,5 +3672,25 @@
     "rewrite": "Täzeden ýaz",
     "lyricsPlaceholder": "Diňe saz üçin boş goýuň",
     "lyricsFailed": "Sözleri döredip bolmady"
+  },
+  "assets": {
+    "topUp": "Doldur",
+    "bridge": "Köpri",
+    "comingSoon": "tiz wagtda",
+    "title": "Aktiwler",
+    "held": "Saklanýan",
+    "staked": "Steýkde",
+    "gotIt": "Düşündim",
+    "dhbPositionNote": "DHB siziň ähli pozisiýaňyz — saklanýan we steýkde, Base hem-de BNB Chain boýunça. Köpüsi adatça steýkde bolýar, şonuň üçin bu san häzir harçlap biljek mukdaryňyzdan uludyr.",
+    "stakedIncludesUnstaking": "Steýkdäki DHB siziň çykarmagy soran, ýöne heniz yzyna alynmadyk bölegini hem öz içine alýar.",
+    "otherBalancesNote": "Beýleki galyndylaryňyz diňe {{network}} (zynjyr {{chainId}}) tor bar. {{gas}} siziň gaz galyndyňyzdyr. Bahalar birnäçe sekunt gijä galyp biler. Bu ýerde ulanmak üçin aktiwleri {{network}} tora geçiriň.",
+    "subscriptionEarnings": "Abunýa girdejisi",
+    "withdrawableOnBase": "Base-de çykaryp bolýar",
+    "pendingTreasury": "USDT-de · hazyna ätiýaçlygyna garaşylýar",
+    "cashOut": "Çykar",
+    "withdrawing": "Çykarylýar…",
+    "usdtSent": "{{amount}} USDT iberildi",
+    "withdrawableSoon": "Abunýa tölegleri ýakyn wagtda çykaryp bolar",
+    "dpayBaseOnly": "Dpay diňe Base-de elýeterlidir."
   }
 }

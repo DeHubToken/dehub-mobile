@@ -3776,5 +3776,25 @@
     "rewrite": "Reescrever",
     "lyricsPlaceholder": "Deixe em branco para um instrumental",
     "lyricsFailed": "Não foi possível gerar a letra"
+  },
+  "assets": {
+    "topUp": "Carregar",
+    "bridge": "Ponte",
+    "comingSoon": "em breve",
+    "title": "Ativos",
+    "held": "Detido",
+    "staked": "Em staking",
+    "gotIt": "Entendi",
+    "dhbPositionNote": "DHB é toda a sua posição — detido mais em staking, na Base e na BNB Chain. A maior parte costuma estar em staking, por isso este número é maior do que aquilo que pode gastar agora.",
+    "stakedIncludesUnstaking": "O DHB em staking inclui tudo o que pediu para retirar mas ainda não recebeu de volta.",
+    "otherBalancesNote": "Os seus outros saldos estão apenas na {{network}} (cadeia {{chainId}}). {{gas}} é o seu saldo de gás. Os valores podem atrasar alguns segundos. Faça bridge ou transfira ativos para a {{network}} para os usar aqui.",
+    "subscriptionEarnings": "Receitas de subscrição",
+    "withdrawableOnBase": "Disponível para levantamento na Base",
+    "pendingTreasury": "Em USDT · a aguardar reserva do tesouro",
+    "cashOut": "Levantar",
+    "withdrawing": "A levantar…",
+    "usdtSent": "{{amount}} USDT enviados",
+    "withdrawableSoon": "As taxas de subscrição poderão ser levantadas em breve",
+    "dpayBaseOnly": "O Dpay só está disponível na Base."
   }
 }

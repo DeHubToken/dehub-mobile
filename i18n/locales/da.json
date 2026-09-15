@@ -3706,5 +3706,25 @@
     "rewrite": "Skriv om",
     "lyricsPlaceholder": "Lad stå tomt for et instrumentalnummer",
     "lyricsFailed": "Kunne ikke generere teksten"
+  },
+  "assets": {
+    "topUp": "Fyld op",
+    "bridge": "Bro",
+    "comingSoon": "kommer snart",
+    "title": "Aktiver",
+    "held": "Beholdt",
+    "staked": "Staked",
+    "gotIt": "Forstået",
+    "dhbPositionNote": "DHB er hele din position — beholdt plus staket, på tværs af Base og BNB Chain. Det meste er som regel staket, så tallet er større end det, du kan bruge lige nu.",
+    "stakedIncludesUnstaking": "Staket DHB inkluderer alt, du har bedt om at unstake, men endnu ikke har fået tilbage.",
+    "otherBalancesNote": "Dine andre saldi er kun på {{network}} (kæde {{chainId}}). {{gas}} er din gas-saldo. Værdier kan halte et par sekunder bagefter. Brug bro eller overfør aktiver til {{network}} for at bruge dem her.",
+    "subscriptionEarnings": "Abonnementsindtægter",
+    "withdrawableOnBase": "Kan hæves på Base",
+    "pendingTreasury": "I USDT · afventer statskassereserve",
+    "cashOut": "Hæv",
+    "withdrawing": "Hæver…",
+    "usdtSent": "{{amount}} USDT sendt",
+    "withdrawableSoon": "Abonnementsgebyrer kan snart hæves",
+    "dpayBaseOnly": "Dpay er kun tilgængelig på Base."
   }
 }

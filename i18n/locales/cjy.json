@@ -3702,5 +3702,25 @@
     "rewrite": "重写",
     "lyricsPlaceholder": "留空可生成纯音乐",
     "lyricsFailed": "无法生成歌词"
+  },
+  "assets": {
+    "topUp": "充值",
+    "bridge": "跨链",
+    "comingSoon": "即将推出",
+    "title": "资产",
+    "held": "持有",
+    "staked": "质押",
+    "gotIt": "知道了",
+    "dhbPositionNote": "DHB 是你的全部持仓——持有加质押，涵盖 Base 和 BNB Chain。其中大部分通常处于质押状态，所以这个数字比你现在能花的要大。",
+    "stakedIncludesUnstaking": "质押的 DHB 也包含你已申请解押但尚未到账的部分。",
+    "otherBalancesNote": "你的其他余额只在 {{network}}（链 {{chainId}}）上。{{gas}} 是你的 gas 余额。数值可能延迟几秒。把资产跨链或转账到 {{network}} 才能在这里使用。",
+    "subscriptionEarnings": "订阅收益",
+    "withdrawableOnBase": "可在 Base 上提现",
+    "pendingTreasury": "以 USDT 计价 · 等待国库储备",
+    "cashOut": "提现",
+    "withdrawing": "提现中…",
+    "usdtSent": "已发送 {{amount}} USDT",
+    "withdrawableSoon": "订阅费用很快就能提现",
+    "dpayBaseOnly": "Dpay 仅在 Base 上可用。"
   }
 }

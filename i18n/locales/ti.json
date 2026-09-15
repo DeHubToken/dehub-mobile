@@ -3667,5 +3667,25 @@
     "rewrite": "እንደገና ጽሓፍ",
     "lyricsPlaceholder": "ናይ መሳርሒ ጥራይ ደርፊ እንተደሊኻ ባዶ ግደፎ",
     "lyricsFailed": "ግጥሚ ክፍጠር ኣይተኻእለን"
+  },
+  "assets": {
+    "topUp": "ምምላእ",
+    "bridge": "ድልድል",
+    "comingSoon": "ኣብ ቀረባ ግዜ",
+    "title": "ንብረታት",
+    "held": "ዝተታሕዘ",
+    "staked": "ዝተቐመጠ",
+    "gotIt": "ተረዲኡኒ",
+    "dhbPositionNote": "DHB ምሉእ ኩነታትካ እዩ — ዝተታሕዘን ዝተቐመጠን፡ ኣብ Base ከምኡ'ውን BNB Chain። መብዛሕትኡ መብዛሕትኡ ግዜ ዝተቐመጠ እዩ፡ ስለዚ እዚ ቁጽሪ ካብቲ ሕጂ ከተውጽኦ እትኽእል ይዓቢ።",
+    "stakedIncludesUnstaking": "ዝተቐመጠ DHB ነቲ ከተውጽኦ ዝሓተትካዮ ግን ገና ዘይተመልሰልካ'ውን ይሓቁፍ።",
+    "otherBalancesNote": "ካልኦት ሚዛናትካ ኣብ {{network}} (ሰንሰለት {{chainId}}) ጥራይ እዮም። {{gas}} ናይ ጋዝ ሚዛንካ እዩ። ክብርታት ቁሩብ ካልኢታት ክድንጉዩ ይኽእሉ። ኣብዚ ንምጥቃም ንብረት ናብ {{network}} ኣመሓላልፍ።",
+    "subscriptionEarnings": "ኣታዊ ምዝገባ",
+    "withdrawableOnBase": "ኣብ Base ክውጻእ ይከኣል",
+    "pendingTreasury": "ብ USDT · ናይ ግምጃ ቤት መዋህለሊ ይጽበ ኣሎ",
+    "cashOut": "ገንዘብ ኣውጽእ",
+    "withdrawing": "ይውጽእ ኣሎ…",
+    "usdtSent": "{{amount}} USDT ተላኢኹ",
+    "withdrawableSoon": "ናይ ምዝገባ ክፍሊት ኣብ ቀረባ ግዜ ክውጻእ ይኽእል",
+    "dpayBaseOnly": "Dpay ኣብ Base ጥራይ እዩ ዝርከብ።"
   }
 }

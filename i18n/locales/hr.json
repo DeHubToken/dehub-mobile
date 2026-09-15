@@ -3702,5 +3702,25 @@
     "rewrite": "Napiši ponovno",
     "lyricsPlaceholder": "Ostavite prazno za instrumental",
     "lyricsFailed": "Tekst nije moguće generirati"
+  },
+  "assets": {
+    "topUp": "Nadoplati",
+    "bridge": "Most",
+    "comingSoon": "uskoro",
+    "title": "Imovina",
+    "held": "U posjedu",
+    "staked": "U stakingu",
+    "gotIt": "Razumijem",
+    "dhbPositionNote": "DHB je cijela vaša pozicija — u posjedu plus u stakingu, na Baseu i BNB Chainu. Većina je obično u stakingu, pa je ovaj broj veći od onoga što možete potrošiti sada.",
+    "stakedIncludesUnstaking": "DHB u stakingu uključuje i sve što ste zatražili povući, ali još niste primili natrag.",
+    "otherBalancesNote": "Ostala stanja su samo na {{network}} (lanac {{chainId}}). {{gas}} je vaše stanje za naknade. Vrijednosti mogu kasniti nekoliko sekundi. Prebacite imovinu na {{network}} da biste je koristili ovdje.",
+    "subscriptionEarnings": "Zarada od pretplata",
+    "withdrawableOnBase": "Dostupno za isplatu na Baseu",
+    "pendingTreasury": "U USDT-u · čeka rezervu riznice",
+    "cashOut": "Isplati",
+    "withdrawing": "Isplaćuje se…",
+    "usdtSent": "Poslano {{amount}} USDT",
+    "withdrawableSoon": "Naknade od pretplata uskoro će se moći isplatiti",
+    "dpayBaseOnly": "Dpay je dostupan samo na Baseu."
   }
 }

@@ -3700,5 +3700,25 @@
     "rewrite": "重寫",
     "lyricsPlaceholder": "留空可生成純音樂",
     "lyricsFailed": "無法生成歌詞"
+  },
+  "assets": {
+    "topUp": "增值",
+    "bridge": "跨鏈",
+    "comingSoon": "即將推出",
+    "title": "資產",
+    "held": "持有",
+    "staked": "質押",
+    "gotIt": "知道喇",
+    "dhbPositionNote": "DHB 係你嘅全部持倉——持有加質押，涵蓋 Base 同 BNB Chain。當中大部分通常喺質押狀態，所以呢個數字大過你而家可以用嘅。",
+    "stakedIncludesUnstaking": "質押嘅 DHB 都包含你已經申請解押但仲未收返嘅部分。",
+    "otherBalancesNote": "你其他嘅餘額只喺 {{network}}（鏈 {{chainId}}）上面。{{gas}} 係你嘅 gas 餘額。數值可能延遲幾秒。將資產跨鏈或轉賬去 {{network}} 先可以喺度用。",
+    "subscriptionEarnings": "訂閱收益",
+    "withdrawableOnBase": "可以喺 Base 提現",
+    "pendingTreasury": "以 USDT 計價 · 等待國庫儲備",
+    "cashOut": "提現",
+    "withdrawing": "提現中…",
+    "usdtSent": "已發送 {{amount}} USDT",
+    "withdrawableSoon": "訂閱費用好快就可以提現",
+    "dpayBaseOnly": "Dpay 淨係喺 Base 先用得。"
   }
 }
