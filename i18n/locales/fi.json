@@ -606,7 +606,8 @@
     "signIn": "Kirjaudu sisään",
     "takePhoto": "Ota kuva",
     "recordVideo": "Tallenna video",
-    "saveChanges": "Tallenna muutokset"
+    "saveChanges": "Tallenna muutokset",
+    "copy": "Kopioi"
   },
   "postOptions": {
     "options": "Vaihtoehdot",
@@ -3187,5 +3188,20 @@
     "membersOverTime": "Jäsenet ajan mittaan",
     "lastDays": "Viimeiset {{count}} päivää",
     "source": "Tallennettu tilihistoria DeHubin julkisesta tilastopäätepisteestä. Tässä kaaviossa ei käytetä arvioituja lukuja."
+  },
+  "solana": {
+    "unavailableTitle": "Solana-lompakko ei ole käytettävissä",
+    "unavailableBody": "Tällä laitteella ei ole DeHub-lompakkosi avainta. Kirjaudu uudelleen sisään palauttaaksesi sen, ja Solana-lompakkosi palaa sen mukana.",
+    "yourAddress": "Solana-osoitteesi",
+    "refreshBalanceA11y": "Päivitä SOL-saldo",
+    "copyAddressA11y": "Kopioi Solana-osoite",
+    "addressCopied": "Solana-osoite kopioitu",
+    "explorerFailed": "Solscania ei voitu avata",
+    "fundingTitle": "Tämän lompakon rahoittaminen",
+    "fundingBody": "Julkaisut, tipit ja avaukset Solanassa maksetaan tästä osoitteesta. Lähetä siihen SOL:ia pörssistä tai toisesta lompakosta — noin 0,01 SOL riittää useaan julkaisuun. Se johdetaan DeHub-lompakostasi, joten se palaa jokaisella laitteella, johon kirjaudut.",
+    "mintingOff": "Julkaiseminen Solanassa on juuri nyt pois päältä palvelimella. Lompakkoosi ja saldoosi tämä ei vaikuta.",
+    "legacyTitle": "Vanhempi Solana-lompakko — {{amount}} SOL",
+    "legacyBody": "Sovelluksen aiempi versio loi erillisen Solana-lompakon, joka oli olemassa vain tällä laitteella. Siinä on yhä varoja. Siirrä varat yllä olevaan osoitteeseen, kun tämä puhelin on vielä sinulla — tuota avainta ei voi palauttaa mistään muualta.",
+    "legacyViewA11y": "Näytä vanhempi lompakko Solscanissa"
   }
 }

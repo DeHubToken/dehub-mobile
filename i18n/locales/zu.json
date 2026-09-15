@@ -604,7 +604,8 @@
     "signIn": "Ngena",
     "takePhoto": "Thatha isithombe",
     "recordVideo": "Qopha ividiyo",
-    "saveChanges": "Londoloza izinguquko"
+    "saveChanges": "Londoloza izinguquko",
+    "copy": "Kopisha"
   },
   "tip": {
     "title": "Thumela Ithiphu",
@@ -3216,5 +3217,20 @@
     "membersOverTime": "Amalungu ngokuhamba kwesikhathi",
     "lastDays": "Izinsuku ezingu-{{count}} ezidlule",
     "source": "Umlando we-akhawunti orekhodiwe ophuma kwi-endpoint yezibalo zomphakathi ye-DeHub. Awekho amanani alinganiselwe asetshenziswa kuleli shadi."
+  },
+  "solana": {
+    "unavailableTitle": "Isikhwama se-Solana asitholakali",
+    "unavailableBody": "Le divayisi ayiluphethe ukhiye wesikhwama sakho se-DeHub. Ngena futhi ukuze ubuyisele, nesikhwama sakho se-Solana sibuya naso.",
+    "yourAddress": "Ikheli lakho le-Solana",
+    "refreshBalanceA11y": "Vuselela ibhalansi ye-SOL",
+    "copyAddressA11y": "Kopisha ikheli le-Solana",
+    "addressCopied": "Ikheli le-Solana likopishiwe",
+    "explorerFailed": "Ayikwazanga ukuvula i-Solscan",
+    "fundingTitle": "Ukufaka imali kulesi sikhwama",
+    "fundingBody": "Ukuthumela, ukunikela nokuvula ku-Solana konke kukhokhelwa kusuka kuleli kheli. Thumela i-SOL kulo usuka ku-exchange noma kwesinye isikhwama — cishe i-0.01 SOL yanele okuthunyelwe okuningana. Litholakala esikhwameni sakho se-DeHub, ngakho libuya kunoma iyiphi idivayisi ongena kuyo.",
+    "mintingOff": "Ukuthumela ku-Solana kuvaliwe kuseva njengamanje. Isikhwama sakho nebhalansi akuthintekile.",
+    "legacyTitle": "Isikhwama se-Solana esidala — {{amount}} SOL",
+    "legacyBody": "Inguqulo yangaphambili yohlelo yakha isikhwama se-Solana esehlukene esasikhona kule divayisi kuphela. Sisenemali. Dlulisela imali kwikheli elingenhla ngenkathi usenale foni — lowo khiye awukwazi ukutholakala kwenye indawo.",
+    "legacyViewA11y": "Buka isikhwama esidala ku-Solscan"
   }
 }

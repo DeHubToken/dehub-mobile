@@ -597,7 +597,8 @@
     "signIn": "Takiuru",
     "takePhoto": "Tango whakaahua",
     "recordVideo": "Hopu ataata",
-    "saveChanges": "Tiakina ngā panoni"
+    "saveChanges": "Tiakina ngā panoni",
+    "copy": "Tāruatia"
   },
   "tip": {
     "title": "Tukuna koha",
@@ -3172,5 +3173,20 @@
     "membersOverTime": "Ngā mema i roto i te wā",
     "lastDays": "Ngā rā {{count}} kua pahure",
     "source": "Hītori pūkete kua tuhia mai i te pito tatauranga tūmatanui a DeHub. Kāore he uara whakatau e whakamahia ana i tēnei tūtohi."
+  },
+  "solana": {
+    "unavailableTitle": "Kāore e wātea te pūkoro Solana",
+    "unavailableBody": "Kāore tēnei pūrere e pupuri i te kī mō tō pūkoro DeHub. Takiuru anō ki te whakaora, ā, ka hoki mai tō pūkoro Solana me ia.",
+    "yourAddress": "Tō wāhitau Solana",
+    "refreshBalanceA11y": "Whakahoutia te toenga SOL",
+    "copyAddressA11y": "Tāruatia te wāhitau Solana",
+    "addressCopied": "Kua tāruatia te wāhitau Solana",
+    "explorerFailed": "Kāore i taea te whakatuwhera i a Solscan",
+    "fundingTitle": "Te whāngai i tēnei pūkoro",
+    "fundingBody": "Ko ngā pou, ngā koha me ngā whakatuwheratanga i runga i a Solana ka utua mai i tēnei wāhitau. Tukua he SOL ki reira mai i tētahi whakawhitinga, i tētahi pūkoro rānei — tata ki te 0.01 SOL mō ētahi pou maha. Ka ahu mai i tō pūkoro DeHub, nō reira ka hoki mai i runga i tētahi pūrere ka takiuru koe.",
+    "mintingOff": "Kua whakawetohia te pou ki Solana i te tūmau i tēnei wā. Kāore tō pūkoro me tō toenga e pāngia.",
+    "legacyTitle": "Pūkoro Solana tawhito — {{amount}} SOL",
+    "legacyBody": "I hangaia e tētahi putanga o mua o te taupānga tētahi pūkoro Solana motuhake i noho anake ki tēnei pūrere. He toenga anō kei roto. Nekehia ngā pūtea ki te wāhitau kei runga i a koe anō tēnei waea — kāore taua kī e taea te whakaora i wāhi kē.",
+    "legacyViewA11y": "Tirohia te pūkoro tawhito i Solscan"
   }
 }

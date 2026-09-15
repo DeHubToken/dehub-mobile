@@ -605,7 +605,8 @@
     "signIn": "Prisijungti",
     "takePhoto": "Fotografuoti",
     "recordVideo": "Įrašyti vaizdo įrašą",
-    "saveChanges": "Įrašyti pakeitimus"
+    "saveChanges": "Įrašyti pakeitimus",
+    "copy": "Kopijuoti"
   },
   "tip": {
     "title": "Siųsti arbatpinigius",
@@ -3186,5 +3187,20 @@
     "membersOverTime": "Nariai laikui bėgant",
     "lastDays": "Paskutinės {{count}} dienos",
     "source": "Įrašyta paskyrų istorija iš viešo DeHub statistikos galinio taško. Šioje diagramoje nenaudojamos apytikslės reikšmės."
+  },
+  "solana": {
+    "unavailableTitle": "Solana piniginė nepasiekiama",
+    "unavailableBody": "Šiame įrenginyje nėra jūsų DeHub piniginės rakto. Prisijunkite dar kartą, kad ją atkurtumėte, ir Solana piniginė grįš kartu.",
+    "yourAddress": "Jūsų Solana adresas",
+    "refreshBalanceA11y": "Atnaujinti SOL likutį",
+    "copyAddressA11y": "Kopijuoti Solana adresą",
+    "addressCopied": "Solana adresas nukopijuotas",
+    "explorerFailed": "Nepavyko atidaryti Solscan",
+    "fundingTitle": "Šios piniginės papildymas",
+    "fundingBody": "Įrašai, arbatpinigiai ir atrakinimai Solanoje apmokami iš šio adreso. Siųskite į jį SOL iš biržos ar kitos piniginės — maždaug 0,01 SOL pakanka keliems įrašams. Jis išvedamas iš jūsų DeHub piniginės, todėl grįžta bet kuriame įrenginyje, kuriame prisijungiate.",
+    "mintingOff": "Skelbimas Solanoje šiuo metu serveryje išjungtas. Jūsų piniginei ir likučiui tai neturi įtakos.",
+    "legacyTitle": "Senesnė Solana piniginė — {{amount}} SOL",
+    "legacyBody": "Ankstesnė programėlės versija sukūrė atskirą Solana piniginę, kuri egzistavo tik šiame įrenginyje. Joje vis dar yra lėšų. Perveskite lėšas į aukščiau nurodytą adresą, kol turite šį telefoną — to rakto niekur kitur atkurti nepavyks.",
+    "legacyViewA11y": "Peržiūrėti senesnę piniginę Solscan"
   }
 }

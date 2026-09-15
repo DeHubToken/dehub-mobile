@@ -606,7 +606,8 @@
     "signIn": "Bejelentkezés",
     "takePhoto": "Fénykép készítése",
     "recordVideo": "Videó felvétele",
-    "saveChanges": "Változtatások mentése"
+    "saveChanges": "Változtatások mentése",
+    "copy": "Másolás"
   },
   "drawers": {
     "ppvTitle": "Fizetés megtekintésenként",
@@ -3191,5 +3192,20 @@
     "membersOverTime": "Tagok az idő során",
     "lastDays": "Utolsó {{count}} nap",
     "source": "Rögzített fiókelőzmények a DeHub nyilvános statisztikai végpontjáról. Ebben a diagramban nincsenek becsült értékek."
+  },
+  "solana": {
+    "unavailableTitle": "A Solana tárca nem érhető el",
+    "unavailableBody": "Ez az eszköz nem őrzi a DeHub tárcád kulcsát. Jelentkezz be újra a visszaállításához, és a Solana tárcád is visszatér vele.",
+    "yourAddress": "A Solana-címed",
+    "refreshBalanceA11y": "SOL-egyenleg frissítése",
+    "copyAddressA11y": "Solana-cím másolása",
+    "addressCopied": "Solana-cím másolva",
+    "explorerFailed": "A Solscan megnyitása sikertelen",
+    "fundingTitle": "A tárca feltöltése",
+    "fundingBody": "A Solanán a bejegyzések, borravalók és feloldások erről a címről fizetnek. Küldj rá SOL-t tőzsdéről vagy másik tárcából — nagyjából 0,01 SOL több bejegyzésre is elég. A DeHub tárcádból származik, így minden eszközön visszatér, ahol bejelentkezel.",
+    "mintingOff": "A Solanára való közzététel jelenleg ki van kapcsolva a szerveren. A tárcádat és az egyenlegedet ez nem érinti.",
+    "legacyTitle": "Régebbi Solana tárca — {{amount}} SOL",
+    "legacyBody": "Az alkalmazás egy korábbi verziója külön Solana tárcát hozott létre, amely csak ezen az eszközön létezett. Még mindig van rajta egyenleg. Utald át az összeget a fenti címre, amíg megvan ez a telefon — az a kulcs sehol máshol nem állítható vissza.",
+    "legacyViewA11y": "Régebbi tárca megtekintése a Solscanon"
   }
 }

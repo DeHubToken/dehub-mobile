@@ -606,7 +606,8 @@
     "signIn": "登入",
     "takePhoto": "影相",
     "recordVideo": "拍片",
-    "saveChanges": "儲存變更"
+    "saveChanges": "儲存變更",
+    "copy": "複製"
   },
   "tip": {
     "title": "送禮物",
@@ -3185,5 +3186,20 @@
     "membersOverTime": "成員隨時間變化",
     "lastDays": "最近 {{count}} 日",
     "source": "嚟自 DeHub 公開統計接口嘅帳戶歷史記錄。本圖表唔使用任何估算值。"
+  },
+  "solana": {
+    "unavailableTitle": "Solana 錢包不可用",
+    "unavailableBody": "呢部裝置冇你 DeHub 錢包嘅密鑰。重新登入就可以復原，你嘅 Solana 錢包都會一齊返嚟。",
+    "yourAddress": "你嘅 Solana 地址",
+    "refreshBalanceA11y": "重新整理 SOL 餘額",
+    "copyAddressA11y": "複製 Solana 地址",
+    "addressCopied": "已複製 Solana 地址",
+    "explorerFailed": "無法開啟 Solscan",
+    "fundingTitle": "為呢個錢包充值",
+    "fundingBody": "喺 Solana 上發帖、打賞同解鎖都由呢個地址扣費。可以由交易所或者第個錢包轉 SOL 入嚟——大約 0.01 SOL 夠發幾個帖。佢係由你嘅 DeHub 錢包衍生出嚟，所以喺任何你登入嘅裝置都會返嚟。",
+    "mintingOff": "Solana 發帖而家喺伺服器上已經關閉。你嘅錢包同餘額唔受影響。",
+    "legacyTitle": "舊嘅 Solana 錢包 — {{amount}} SOL",
+    "legacyBody": "應用程式嘅舊版本建立咗一個獨立嘅 Solana 錢包，只存在於呢部裝置上。入面仲有餘額。趁部電話仲喺手，請將資金轉去上面嘅地址——嗰條密鑰喺其他地方無法復原。",
+    "legacyViewA11y": "喺 Solscan 查看舊錢包"
   }
 }

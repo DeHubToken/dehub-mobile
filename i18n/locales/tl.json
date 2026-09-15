@@ -3367,5 +3367,20 @@
     "membersOverTime": "Mga miyembro sa paglipas ng panahon",
     "lastDays": "Huling {{count}} araw",
     "source": "Naitalang kasaysayan ng account mula sa pampublikong stats endpoint ng DeHub. Walang tinatayang halaga na ginagamit sa chart na ito."
+  },
+  "solana": {
+    "unavailableTitle": "Hindi available ang Solana wallet",
+    "unavailableBody": "Wala sa device na ito ang susi ng iyong DeHub wallet. Mag-sign in ulit para maibalik ito, at babalik din ang Solana wallet mo kasama nito.",
+    "yourAddress": "Ang iyong Solana address",
+    "refreshBalanceA11y": "I-refresh ang SOL balance",
+    "copyAddressA11y": "Kopyahin ang Solana address",
+    "addressCopied": "Nakopya ang Solana address",
+    "explorerFailed": "Hindi mabuksan ang Solscan",
+    "fundingTitle": "Paglalagay ng pondo sa wallet na ito",
+    "fundingBody": "Ang pagpo-post, pagbibigay ng tip at pag-unlock sa Solana ay binabayaran mula sa address na ito. Magpadala rito ng SOL mula sa isang exchange o ibang wallet — humigit-kumulang 0.01 SOL ang sapat para sa ilang post. Nagmumula ito sa iyong DeHub wallet, kaya bumabalik ito sa kahit anong device na pagsa-sign in mo.",
+    "mintingOff": "Naka-off ngayon sa server ang pag-post sa Solana. Hindi apektado ang wallet at balance mo.",
+    "legacyTitle": "Lumang Solana wallet — {{amount}} SOL",
+    "legacyBody": "May naunang bersyon ng app na gumawa ng hiwalay na Solana wallet na sa device na ito lang umiral. May balance pa rin ito. Ilipat ang pondo sa address sa itaas habang nasa iyo pa ang teleponong ito — hindi na mababawi ang susi na iyon kahit saan pa.",
+    "legacyViewA11y": "Tingnan ang lumang wallet sa Solscan"
   }
 }

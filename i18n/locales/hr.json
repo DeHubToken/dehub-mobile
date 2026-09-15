@@ -606,7 +606,8 @@
     "signIn": "Prijava",
     "takePhoto": "Snimi fotografiju",
     "recordVideo": "Snimi video",
-    "saveChanges": "Spremi promjene"
+    "saveChanges": "Spremi promjene",
+    "copy": "Kopiraj"
   },
   "tip": {
     "title": "Pošalji napojnicu",
@@ -3187,5 +3188,20 @@
     "membersOverTime": "Članovi kroz vrijeme",
     "lastDays": "Zadnjih {{count}} dana",
     "source": "Zabilježena povijest računa s DeHubovog javnog statističkog endpointa. U ovom se grafikonu ne koriste procijenjene vrijednosti."
+  },
+  "solana": {
+    "unavailableTitle": "Solana novčanik nije dostupan",
+    "unavailableBody": "Ovaj uređaj nema ključ tvog DeHub novčanika. Prijavi se ponovno da ga vratiš, a Solana novčanik vraća se s njim.",
+    "yourAddress": "Tvoja Solana adresa",
+    "refreshBalanceA11y": "Osvježi SOL stanje",
+    "copyAddressA11y": "Kopiraj Solana adresu",
+    "addressCopied": "Solana adresa kopirana",
+    "explorerFailed": "Otvaranje Solscana nije uspjelo",
+    "fundingTitle": "Punjenje ovog novčanika",
+    "fundingBody": "Objave, napojnice i otključavanja na Solani plaćaju se s ove adrese. Pošalji joj SOL s burze ili drugog novčanika — otprilike 0,01 SOL pokriva nekoliko objava. Izvedena je iz tvog DeHub novčanika pa se vraća na svakom uređaju na koji se prijaviš.",
+    "mintingOff": "Objavljivanje na Solani trenutačno je isključeno na poslužitelju. Tvoj novčanik i stanje nisu zahvaćeni.",
+    "legacyTitle": "Stariji Solana novčanik — {{amount}} SOL",
+    "legacyBody": "Ranija verzija aplikacije stvorila je zaseban Solana novčanik koji je postojao samo na ovom uređaju. U njemu je i dalje stanje. Prebaci sredstva na adresu iznad dok imaš ovaj telefon — taj se ključ nigdje drugdje ne može vratiti.",
+    "legacyViewA11y": "Prikaži stariji novčanik na Solscanu"
   }
 }

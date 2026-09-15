@@ -606,7 +606,8 @@
     "signIn": "Zaloguj się",
     "takePhoto": "Zrób zdjęcie",
     "recordVideo": "Nagraj wideo",
-    "saveChanges": "Zapisz zmiany"
+    "saveChanges": "Zapisz zmiany",
+    "copy": "Kopiuj"
   },
   "glossary": {
     "title": "Słownik",
@@ -3255,5 +3256,20 @@
     "membersOverTime": "Członkowie w czasie",
     "lastDays": "Ostatnie {{count}} dni",
     "source": "Zarejestrowana historia kont z publicznego punktu statystyk DeHub. W tym wykresie nie używa się wartości szacunkowych."
+  },
+  "solana": {
+    "unavailableTitle": "Portfel Solana niedostępny",
+    "unavailableBody": "To urządzenie nie przechowuje klucza do twojego portfela DeHub. Zaloguj się ponownie, aby go przywrócić — portfel Solana wróci razem z nim.",
+    "yourAddress": "Twój adres Solana",
+    "refreshBalanceA11y": "Odśwież saldo SOL",
+    "copyAddressA11y": "Kopiuj adres Solana",
+    "addressCopied": "Skopiowano adres Solana",
+    "explorerFailed": "Nie udało się otworzyć Solscan",
+    "fundingTitle": "Zasilanie tego portfela",
+    "fundingBody": "Publikacje, napiwki i odblokowania na Solanie są opłacane z tego adresu. Wyślij na niego SOL z giełdy lub innego portfela — około 0,01 SOL wystarczy na kilka postów. Jest wyprowadzany z twojego portfela DeHub, więc wraca na każdym urządzeniu, na którym się zalogujesz.",
+    "mintingOff": "Publikowanie na Solanie jest w tej chwili wyłączone po stronie serwera. Twój portfel i saldo pozostają nienaruszone.",
+    "legacyTitle": "Starszy portfel Solana — {{amount}} SOL",
+    "legacyBody": "Wcześniejsza wersja aplikacji utworzyła osobny portfel Solana, który istniał tylko na tym urządzeniu. Wciąż ma środki. Przenieś je na adres powyżej, póki masz ten telefon — tego klucza nie da się odzyskać nigdzie indziej.",
+    "legacyViewA11y": "Zobacz starszy portfel na Solscan"
   }
 }

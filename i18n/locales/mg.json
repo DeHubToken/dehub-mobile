@@ -592,7 +592,8 @@
     "signIn": "Hiditra",
     "takePhoto": "Maka sary",
     "recordVideo": "Mandray horonan-tsary",
-    "saveChanges": "Tehirizo ny fiovana"
+    "saveChanges": "Tehirizo ny fiovana",
+    "copy": "Adikao"
   },
   "tip": {
     "title": "Handefa fanomezana",
@@ -3266,5 +3267,20 @@
     "membersOverTime": "Mpikambana araka ny fotoana",
     "lastDays": "{{count}} andro farany",
     "source": "Tantaran'ny kaonty voarakitra avy amin'ny endpoint antontanisa ho an'ny daholobe an'ny DeHub. Tsy misy sanda tombanana ampiasaina amin'ity kisary ity."
+  },
+  "solana": {
+    "unavailableTitle": "Tsy misy ny poketra Solana",
+    "unavailableBody": "Tsy mitana ny lakilen'ny poketra DeHub-nao ity fitaovana ity. Midira indray mba hamerina azy, ary hiverina miaraka aminy ny poketra Solana-nao.",
+    "yourAddress": "Ny adiresinao Solana",
+    "refreshBalanceA11y": "Havaozy ny volan'ny SOL",
+    "copyAddressA11y": "Adikao ny adiresy Solana",
+    "addressCopied": "Voadika ny adiresy Solana",
+    "explorerFailed": "Tsy voasokatra ny Solscan",
+    "fundingTitle": "Fanomezam-bola an'ity poketra ity",
+    "fundingBody": "Ny lahatsoratra, ny tolotra ary ny fanokafana ao amin'ny Solana dia aloa avy amin'ity adiresy ity. Alefaso SOL any avy amin'ny sehatra fifanakalozana na poketra hafa — 0,01 SOL eo ho eo dia ampy amin'ny lahatsoratra maromaro. Avy amin'ny poketra DeHub-nao izy io, ka miverina amin'ny fitaovana rehetra idiranao.",
+    "mintingOff": "Mihidy ao amin'ny mpizara ny famoahana lahatsoratra ao amin'ny Solana amin'izao fotoana izao. Tsy voakasika ny poketranao sy ny volanao.",
+    "legacyTitle": "Poketra Solana taloha — {{amount}} SOL",
+    "legacyBody": "Nisy kinova taloha amin'ny fampiharana namorona poketra Solana misaraka izay tsy nisy afa-tsy tamin'ity fitaovana ity. Mbola misy vola ao. Afindrao amin'ny adiresy etsy ambony ny vola raha mbola eo an-tananao ity finday ity — tsy azo averina any an-kafa io lakile io.",
+    "legacyViewA11y": "Jereo ny poketra taloha ao amin'ny Solscan"
   }
 }

@@ -605,7 +605,8 @@
     "signIn": "Ingia",
     "takePhoto": "Piga picha",
     "recordVideo": "Rekodi video",
-    "saveChanges": "Hifadhi mabadiliko"
+    "saveChanges": "Hifadhi mabadiliko",
+    "copy": "Nakili"
   },
   "tip": {
     "title": "Tuma Kidokezo",
@@ -3187,5 +3188,20 @@
     "membersOverTime": "Wanachama kwa muda",
     "lastDays": "Siku {{count}} zilizopita",
     "source": "Historia ya akaunti iliyorekodiwa kutoka kituo cha takwimu cha umma cha DeHub. Hakuna thamani za makadirio zinazotumika kwenye chati hii."
+  },
+  "solana": {
+    "unavailableTitle": "Pochi ya Solana haipatikani",
+    "unavailableBody": "Kifaa hiki hakina ufunguo wa pochi yako ya DeHub. Ingia tena ili kuirejesha, na pochi yako ya Solana itarudi nayo.",
+    "yourAddress": "Anwani yako ya Solana",
+    "refreshBalanceA11y": "Onyesha upya salio la SOL",
+    "copyAddressA11y": "Nakili anwani ya Solana",
+    "addressCopied": "Anwani ya Solana imenakiliwa",
+    "explorerFailed": "Imeshindwa kufungua Solscan",
+    "fundingTitle": "Kuweka fedha kwenye pochi hii",
+    "fundingBody": "Kuchapisha, kutoa bakshishi na kufungua maudhui kwenye Solana vyote hulipwa kutoka anwani hii. Tuma SOL kwake kutoka soko la kubadilisha au pochi nyingine — takriban SOL 0.01 hutosha machapisho kadhaa. Inatokana na pochi yako ya DeHub, hivyo inarudi kwenye kifaa chochote unachoingia.",
+    "mintingOff": "Kuchapisha kwenye Solana kumezimwa kwenye seva kwa sasa. Pochi yako na salio lako havijaathirika.",
+    "legacyTitle": "Pochi ya zamani ya Solana — {{amount}} SOL",
+    "legacyBody": "Toleo la awali la programu liliunda pochi tofauti ya Solana iliyokuwepo kwenye kifaa hiki pekee. Bado ina salio. Hamisha fedha kwenda anwani iliyo hapo juu ukiwa bado na simu hii — ufunguo huo hauwezi kurejeshwa mahali pengine popote.",
+    "legacyViewA11y": "Angalia pochi ya zamani kwenye Solscan"
   }
 }

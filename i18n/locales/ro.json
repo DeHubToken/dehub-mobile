@@ -827,7 +827,8 @@
     "signIn": "Autentifică-te",
     "takePhoto": "Fă o poză",
     "recordVideo": "Înregistrează video",
-    "saveChanges": "Salvează modificările"
+    "saveChanges": "Salvează modificările",
+    "copy": "Copiază"
   },
   "postOptions": {
     "options": "Options",
@@ -3200,5 +3201,20 @@
     "membersOverTime": "Membri în timp",
     "lastDays": "Ultimele {{count}} zile",
     "source": "Istoric de conturi înregistrat din punctul final public de statistici al DeHub. În acest grafic nu sunt folosite valori estimate."
+  },
+  "solana": {
+    "unavailableTitle": "Portofelul Solana nu este disponibil",
+    "unavailableBody": "Acest dispozitiv nu păstrează cheia portofelului tău DeHub. Conectează-te din nou pentru a-l restaura, iar portofelul Solana revine odată cu el.",
+    "yourAddress": "Adresa ta Solana",
+    "refreshBalanceA11y": "Reîmprospătează soldul SOL",
+    "copyAddressA11y": "Copiază adresa Solana",
+    "addressCopied": "Adresa Solana a fost copiată",
+    "explorerFailed": "Solscan nu a putut fi deschis",
+    "fundingTitle": "Alimentarea acestui portofel",
+    "fundingBody": "Postările, bacșișurile și deblocările pe Solana se plătesc de la această adresă. Trimite-i SOL de la un exchange sau din alt portofel — aproximativ 0,01 SOL acoperă mai multe postări. Este derivată din portofelul tău DeHub, așa că revine pe orice dispozitiv pe care te conectezi.",
+    "mintingOff": "Postarea pe Solana este oprită pe server momentan. Portofelul și soldul tău nu sunt afectate.",
+    "legacyTitle": "Portofel Solana mai vechi — {{amount}} SOL",
+    "legacyBody": "O versiune anterioară a aplicației a creat un portofel Solana separat care a existat doar pe acest dispozitiv. Încă are fonduri. Mută fondurile la adresa de mai sus cât timp ai acest telefon — acea cheie nu poate fi recuperată în altă parte.",
+    "legacyViewA11y": "Vezi portofelul mai vechi pe Solscan"
   }
 }

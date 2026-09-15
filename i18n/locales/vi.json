@@ -87,7 +87,8 @@
     "signIn": "Đăng nhập",
     "takePhoto": "Chụp ảnh",
     "recordVideo": "Quay video",
-    "saveChanges": "Lưu thay đổi"
+    "saveChanges": "Lưu thay đổi",
+    "copy": "Sao chép"
   },
   "glossary": {
     "title": "Bảng thuật ngữ",
@@ -3275,5 +3276,20 @@
     "membersOverTime": "Thành viên theo thời gian",
     "lastDays": "{{count}} ngày gần nhất",
     "source": "Lịch sử tài khoản được ghi nhận từ endpoint thống kê công khai của DeHub. Biểu đồ này không dùng giá trị ước tính."
+  },
+  "solana": {
+    "unavailableTitle": "Không có ví Solana",
+    "unavailableBody": "Thiết bị này không giữ khóa ví DeHub của bạn. Đăng nhập lại để khôi phục, và ví Solana của bạn sẽ trở lại cùng nó.",
+    "yourAddress": "Địa chỉ Solana của bạn",
+    "refreshBalanceA11y": "Làm mới số dư SOL",
+    "copyAddressA11y": "Sao chép địa chỉ Solana",
+    "addressCopied": "Đã sao chép địa chỉ Solana",
+    "explorerFailed": "Không mở được Solscan",
+    "fundingTitle": "Nạp tiền vào ví này",
+    "fundingBody": "Đăng bài, tặng thưởng và mở khóa trên Solana đều được trả từ địa chỉ này. Gửi SOL vào đó từ một sàn giao dịch hoặc ví khác — khoảng 0,01 SOL đủ cho vài bài đăng. Địa chỉ này bắt nguồn từ ví DeHub của bạn, nên sẽ trở lại trên bất kỳ thiết bị nào bạn đăng nhập.",
+    "mintingOff": "Việc đăng bài trên Solana hiện đang tắt ở phía máy chủ. Ví và số dư của bạn không bị ảnh hưởng.",
+    "legacyTitle": "Ví Solana cũ — {{amount}} SOL",
+    "legacyBody": "Một phiên bản trước của ứng dụng đã tạo một ví Solana riêng chỉ tồn tại trên thiết bị này. Ví đó vẫn còn số dư. Hãy chuyển tiền sang địa chỉ ở trên khi bạn còn giữ chiếc điện thoại này — khóa đó không thể khôi phục ở bất kỳ nơi nào khác.",
+    "legacyViewA11y": "Xem ví cũ trên Solscan"
   }
 }
