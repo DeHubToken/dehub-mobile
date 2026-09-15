@@ -49,6 +49,7 @@ import {
   Platform,
   AccessibilityInfo,
   Easing,
+  PanResponder,
 } from "react-native";
 import useKeyboard from "../hooks/useKeyboard";
 import { runOnJS, useSharedValue } from "react-native-reanimated";
@@ -59,6 +60,8 @@ import { VideoView, useVideoPlayer } from "expo-video";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../libs/audioSession";
 import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
+import { feedVolumeResponder } from "../libs/feed-volume-responder";
+import { getVolume, setVolume as persistVolume } from "../libs/video-preferences";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
 import Icon from "../components/ui/Icon";
@@ -296,8 +299,10 @@ interface ShortItemProps {
   activeVideoRef: React.RefObject<VideoView | null>;
   itemHeight: number;
   viewportHeight: number;
-  /** Viewer-level, so mute and speed carry across shorts as they do on web. */
+  /** Viewer-level, so mute, volume and speed carry across shorts as they do on web. */
   isMuted: boolean;
+  /** 0 → 1, held-and-dragged on the speaker in the top chrome. */
+  volume: number;
   playbackRate: number;
   /**
    * The pager's own gesture, so the swipe-down can declare that the list must
@@ -313,7 +318,7 @@ interface ShortItemProps {
   onCommentsVisibilityChange: (visible: boolean) => void;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, itemHeight, viewportHeight, isMuted, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
   // Live window size, not a module-level snapshot: on iPad the pager cells
   // and tap zones were sized for the launch orientation.
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
@@ -615,6 +620,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
     if (!player) return;
     try { player.muted = isMuted; } catch {}
   }, [player, isMuted]);
+
+  useEffect(() => {
+    if (!player) return;
+    try { player.volume = volume; } catch {}
+  }, [player, volume]);
 
   // Hold-on-the-right temporarily overrides the chosen rate; releasing drops
   // back to it rather than hardcoding 1x.
@@ -1557,6 +1567,36 @@ const ShortsViewerScreen = () => {
   // Viewer-level playback chrome — mute and speed persist across shorts, as on
   // web, rather than resetting with every slide.
   const [isMuted, setIsMuted] = useState(false);
+  // The phone's volume keys move everything at once. Holding the speaker and
+  // dragging sets this short's own level, and it is remembered the same way
+  // the playback rate is. Same gesture as the feed player.
+  const [volume, setVolume] = useState(() => getVolume());
+  const [volumeAdjusting, setVolumeAdjusting] = useState(false);
+  const volumeRef = useRef(volume);
+
+  const applyVolume = useCallback((next: number) => {
+    const level = Math.max(0, Math.min(1, next));
+    volumeRef.current = level;
+    setVolume(level);
+    persistVolume(level);
+    setIsMuted(level === 0);
+  }, []);
+
+  const volumePanResponder = useMemo(
+    () =>
+      PanResponder.create(
+        feedVolumeResponder({
+          onHoldStart: () => {
+            setVolumeAdjusting(true);
+            return isMuted ? 0 : volumeRef.current;
+          },
+          onVolume: applyVolume,
+          onTap: () => setIsMuted((m) => !m),
+          onEnd: () => setVolumeAdjusting(false),
+        }),
+      ),
+    [applyVolume, isMuted],
+  );
   const [playbackRate, setPlaybackRate] = useState<number>(1);
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
   // Clearing a short's chrome — by holding the middle of it, or by the
@@ -1861,13 +1901,14 @@ const ShortsViewerScreen = () => {
         itemHeight={containerHeight}
         viewportHeight={viewportHeight}
         isMuted={isMuted}
+        volume={volume}
         playbackRate={playbackRate}
         pagerGesture={pagerGesture}
         onChromeVisibilityChange={setChromeVisible}
         onCommentsVisibilityChange={setCommentsVisible}
       />
     ),
-    [activeIndex, containerHeight, viewportHeight, isMuted, playbackRate, pagerGesture, setChromeVisible],
+    [activeIndex, containerHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, setChromeVisible],
   );
 
   const keyExtractor = useCallback(
@@ -1957,15 +1998,30 @@ const ShortsViewerScreen = () => {
               <Text style={styles.speedButtonText}>{formatRate(playbackRate)}</Text>
             </Pressable>
 
-            <Pressable
-              onPress={() => setIsMuted((m) => !m)}
-              style={styles.topButton}
-              hitSlop={CHROME_HIT_SLOP}
-              accessibilityLabel={isMuted ? "Unmute" : "Mute"}
-            >
-              <ChromeFill />
-              <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
-            </Pressable>
+            <View>
+              <View
+                style={styles.topButton}
+                hitSlop={CHROME_HIT_SLOP}
+                accessibilityLabel={isMuted ? "Unmute" : "Mute"}
+                {...volumePanResponder.panHandlers}
+              >
+                <ChromeFill />
+                <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
+              </View>
+              {volumeAdjusting && (
+                <View style={styles.volumeTrack} pointerEvents="none">
+                  <ChromeFill />
+                  <View style={styles.volumeTrackInner}>
+                    <View
+                      style={[
+                        styles.volumeFill,
+                        { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` },
+                      ]}
+                    />
+                  </View>
+                </View>
+              )}
+            </View>
 
             <Pressable
               onPress={() => setShowOptionsMenu(true)}
@@ -2062,6 +2118,30 @@ const styles = StyleSheet.create({
     height: CHROME_SIZE,
     alignItems: "center",
     justifyContent: "center",
+  },
+  volumeTrack: {
+    position: "absolute",
+    top: CHROME_SIZE + 4,
+    left: 0,
+    width: CHROME_SIZE,
+    height: 120,
+    borderRadius: CHROME_SIZE / 2,
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+  },
+  volumeTrackInner: {
+    width: 4,
+    height: 96,
+    borderRadius: 2,
+    backgroundColor: "rgba(255,255,255,0.3)",
+    justifyContent: "flex-end",
+    overflow: "hidden",
+  },
+  volumeFill: {
+    width: "100%",
+    backgroundColor: "#fff",
+    borderRadius: 2,
   },
   // Web's `h-10 min-w-[40px] px-1.5`: it grows past the square only when the
   // rate needs the room ("1.25x"), and keeps the height so the group's
