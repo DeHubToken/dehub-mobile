@@ -1681,7 +1681,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Linkul profilului ENS a fost copiat",
+    "subscribeNow": "Abonează-te acum",
+    "messageUser": "Trimite mesaj utilizatorului",
+    "backToTop": "Înapoi sus",
+    "noImages": "Încă nicio imagine",
+    "noImagesSub": "Postările cu imagini vor apărea aici",
+    "noPlans": "Niciun plan de abonament",
+    "noPlansSub": "Acest creator nu a creat încă niciun plan"
   },
   "tv": {
     "title": "TV",
@@ -2006,7 +2014,8 @@
     "removeVoiceNote": "Elimină nota vocală",
     "removeMedia": "Elimină media",
     "cancelRecording": "Anulează înregistrarea",
-    "sendVoiceNote": "Trimite nota vocală"
+    "sendVoiceNote": "Trimite nota vocală",
+    "noneYetAddYours": "Încă niciun comentariu, adaugă-l pe al tău."
   },
   "postInfo": {
     "title": "Post Info",
@@ -3832,5 +3841,9 @@
     "streamPaused": "Transmisiune în pauză",
     "connectionDropped": "Conexiunea celui care transmite a căzut.\nAșteptăm să revină...",
     "autoEnding": "Se va încheia automat dacă nu este reluată"
+  },
+  "search": {
+    "endOfResults": "Sfârșitul rezultatelor",
+    "searchDehub": "Caută pe DeHub"
   }
 }

@@ -1433,7 +1433,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS профилинин шилтемеси көчүрүлдү",
+    "subscribeNow": "Азыр жазылуу",
+    "messageUser": "Колдонуучуга жазуу",
+    "backToTop": "Жогорку кайтуу",
+    "noImages": "Азырынча сүрөт жок",
+    "noImagesSub": "Сүрөттүү посттор бул жерде көрүнөт",
+    "noPlans": "Жазылуу пландары жок",
+    "noPlansSub": "Бул автор азырынча план түзгөн эмес"
   },
   "tv": {
     "title": "ТВ",
@@ -1758,7 +1766,8 @@
     "removeVoiceNote": "Үн жазууну өчүрүү",
     "removeMedia": "Медианы өчүрүү",
     "cancelRecording": "Жазууну жокко чыгаруу",
-    "sendVoiceNote": "Үн жазууну жөнөтүү"
+    "sendVoiceNote": "Үн жазууну жөнөтүү",
+    "noneYetAddYours": "Азырынча комментарий жок, өзүңүздүкүн кошуңуз."
   },
   "postInfo": {
     "title": "Пост маалыматы",
@@ -3812,5 +3821,9 @@
     "streamPaused": "Стрим тындырылды",
     "connectionDropped": "Стримердин байланышы үзүлдү.\nКайра туташуусун күтүүдө...",
     "autoEnding": "Улантылбаса, автоматтык түрдө аяктайт"
+  },
+  "search": {
+    "endOfResults": "Натыйжалардын аягы",
+    "searchDehub": "DeHub'дан издөө"
   }
 }

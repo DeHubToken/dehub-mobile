@@ -257,7 +257,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS-profielskakel gekopieer",
+    "subscribeNow": "Teken nou in",
+    "messageUser": "Stuur gebruiker 'n boodskap",
+    "backToTop": "Terug na bo",
+    "noImages": "Nog geen beelde nie",
+    "noImagesSub": "Beeldplasings sal hier verskyn",
+    "noPlans": "Geen intekenplanne nie",
+    "noPlansSub": "Hierdie skepper het nog geen planne opgestel nie"
   },
   "settings": {
     "smartReplies": "Voorgestelde antwoorde",
@@ -2110,7 +2118,8 @@
     "removeVoiceNote": "Verwyder stemnota",
     "removeMedia": "Verwyder media",
     "cancelRecording": "Kanselleer opname",
-    "sendVoiceNote": "Stuur stemnota"
+    "sendVoiceNote": "Stuur stemnota",
+    "noneYetAddYours": "Nog geen kommentaar nie — voeg joune by."
   },
   "postInfo": {
     "title": "Post Info",
@@ -3936,5 +3945,9 @@
     "streamPaused": "Stroom onderbreek",
     "connectionDropped": "Die stromer se verbinding het geval.\nOns wag dat hulle weer inskakel...",
     "autoEnding": "Eindig outomaties as dit nie hervat nie"
+  },
+  "search": {
+    "endOfResults": "Einde van resultate",
+    "searchDehub": "Soek DeHub"
   }
 }

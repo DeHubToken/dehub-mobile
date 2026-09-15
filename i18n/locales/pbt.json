@@ -1444,7 +1444,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "د ENS پروفایل لینک کاپي شو",
+    "subscribeNow": "اوس ګډون وکړئ",
+    "messageUser": "کاروونکي ته پیغام ولیږئ",
+    "backToTop": "بیرته پورته",
+    "noImages": "تر اوسه انځورونه نشته",
+    "noImagesSub": "د انځور پوسټونه به دلته ښکاره شي",
+    "noPlans": "د ګډون پلانونه نشته",
+    "noPlansSub": "دې جوړوونکي لا تر اوسه هیڅ پلان نه دی جوړ کړی"
   },
   "tv": {
     "title": "TV",
@@ -1769,7 +1777,8 @@
     "removeVoiceNote": "غږیز یادښت لرې کړئ",
     "removeMedia": "رسنۍ لرې کړئ",
     "cancelRecording": "ثبتول لغوه کړئ",
-    "sendVoiceNote": "غږیز یادښت ولیږئ"
+    "sendVoiceNote": "غږیز یادښت ولیږئ",
+    "noneYetAddYours": "تر اوسه تبصره نشته، خپله ورزیاته کړئ."
   },
   "postInfo": {
     "title": "د پوسټ معلومات",
@@ -3769,5 +3778,9 @@
     "streamPaused": "خپرونه ودرېده",
     "connectionDropped": "د خپرونکي اړیکه پرې شوه.\nد بیا وصلېدو په تمه یو...",
     "autoEnding": "که بیا پیل نشي نو پخپله به پای ته ورسیږي"
+  },
+  "search": {
+    "endOfResults": "د پایلو پای",
+    "searchDehub": "په DeHub کې ولټوئ"
   }
 }

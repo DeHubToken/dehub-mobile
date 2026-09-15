@@ -1433,7 +1433,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Tautan profil ENS wis disalin",
+    "subscribeNow": "Langganan saiki",
+    "messageUser": "Kirim pesen menyang pangguna",
+    "backToTop": "Bali menyang ndhuwur",
+    "noImages": "Durung ana gambar",
+    "noImagesSub": "Kiriman gambar bakal katon ing kene",
+    "noPlans": "Ora ana paket langganan",
+    "noPlansSub": "Kreator iki durung nggawe paket apa wae"
   },
   "tv": {
     "title": "TV",
@@ -1758,7 +1766,8 @@
     "removeVoiceNote": "Busak pesen swara",
     "removeMedia": "Busak media",
     "cancelRecording": "Batalake rekaman",
-    "sendVoiceNote": "Kirim pesen swara"
+    "sendVoiceNote": "Kirim pesen swara",
+    "noneYetAddYours": "Durung ana komentar, tambahna duwekmu."
   },
   "postInfo": {
     "title": "Info Postingan",
@@ -3777,5 +3786,9 @@
     "streamPaused": "Siaran dijeda",
     "connectionDropped": "Sambungan streamer pedhot.\nNgenteni dheweke nyambung maneh...",
     "autoEnding": "Rampung otomatis yen ora diterusake"
+  },
+  "search": {
+    "endOfResults": "Pungkasan asil",
+    "searchDehub": "Golek ing DeHub"
   }
 }

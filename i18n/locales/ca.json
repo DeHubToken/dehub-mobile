@@ -1474,7 +1474,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Enllaç del perfil ENS copiat",
+    "subscribeNow": "Subscriu-t'hi ara",
+    "messageUser": "Envia un missatge a l'usuari",
+    "backToTop": "Torna a dalt",
+    "noImages": "Encara no hi ha imatges",
+    "noImagesSub": "Les publicacions amb imatges apareixeran aquí",
+    "noPlans": "Sense plans de subscripció",
+    "noPlansSub": "Aquest creador encara no ha creat cap pla"
   },
   "tv": {
     "title": "TV",
@@ -1799,7 +1807,8 @@
     "removeVoiceNote": "Elimina la nota de veu",
     "removeMedia": "Elimina el contingut",
     "cancelRecording": "Cancel·la la gravació",
-    "sendVoiceNote": "Envia la nota de veu"
+    "sendVoiceNote": "Envia la nota de veu",
+    "noneYetAddYours": "Encara no hi ha comentaris; afegeix el teu."
   },
   "postInfo": {
     "title": "Informació de la publicació",
@@ -3819,5 +3828,9 @@
     "streamPaused": "Emissió en pausa",
     "connectionDropped": "S'ha tallat la connexió de qui emet.\nEsperant que torni...",
     "autoEnding": "S'acabarà automàticament si no es reprèn"
+  },
+  "search": {
+    "endOfResults": "Fi dels resultats",
+    "searchDehub": "Cerca a DeHub"
   }
 }

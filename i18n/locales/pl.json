@@ -1736,7 +1736,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Propozycje obserwowania"
+    "followSuggestions": "Propozycje obserwowania",
+    "ensUrlCopied": "Skopiowano link profilu ENS",
+    "subscribeNow": "Subskrybuj teraz",
+    "messageUser": "Napisz do użytkownika",
+    "backToTop": "Wróć na górę",
+    "noImages": "Brak obrazów",
+    "noImagesSub": "Posty ze zdjęciami pojawią się tutaj",
+    "noPlans": "Brak planów subskrypcji",
+    "noPlansSub": "Ten twórca nie utworzył jeszcze żadnych planów"
   },
   "tv": {
     "title": "TV",
@@ -2061,7 +2069,8 @@
     "removeVoiceNote": "Usuń notatkę głosową",
     "removeMedia": "Usuń multimedia",
     "cancelRecording": "Anuluj nagrywanie",
-    "sendVoiceNote": "Wyślij notatkę głosową"
+    "sendVoiceNote": "Wyślij notatkę głosową",
+    "noneYetAddYours": "Brak komentarzy — dodaj swój."
   },
   "postInfo": {
     "title": "Informacje o poście",
@@ -3887,5 +3896,9 @@
     "streamPaused": "Transmisja wstrzymana",
     "connectionDropped": "Połączenie streamera zerwało się.\nCzekamy, aż wróci...",
     "autoEnding": "Zakończy się automatycznie, jeśli nie zostanie wznowiona"
+  },
+  "search": {
+    "endOfResults": "Koniec wyników",
+    "searchDehub": "Szukaj w DeHub"
   }
 }

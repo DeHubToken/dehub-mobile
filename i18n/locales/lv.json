@@ -1473,7 +1473,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS profila saite nokopēta",
+    "subscribeNow": "Abonēt tagad",
+    "messageUser": "Sūtīt ziņu lietotājam",
+    "backToTop": "Atpakaļ uz augšu",
+    "noImages": "Vēl nav attēlu",
+    "noImagesSub": "Ieraksti ar attēliem parādīsies šeit",
+    "noPlans": "Nav abonementu plānu",
+    "noPlansSub": "Šis autors vēl nav izveidojis plānus"
   },
   "tv": {
     "title": "TV",
@@ -1798,7 +1806,8 @@
     "removeVoiceNote": "Noņemt balss piezīmi",
     "removeMedia": "Noņemt mediju",
     "cancelRecording": "Atcelt ierakstīšanu",
-    "sendVoiceNote": "Sūtīt balss piezīmi"
+    "sendVoiceNote": "Sūtīt balss piezīmi",
+    "noneYetAddYours": "Vēl nav komentāru — pievienojiet savu."
   },
   "postInfo": {
     "title": "Ieraksta informācija",
@@ -3818,5 +3827,9 @@
     "streamPaused": "Straume apturēta",
     "connectionDropped": "Straumētāja savienojums pārtrūka.\nGaidām, kad viņš atkal pievienosies...",
     "autoEnding": "Beigsies automātiski, ja netiks atsākta"
+  },
+  "search": {
+    "endOfResults": "Rezultātu beigas",
+    "searchDehub": "Meklēt DeHub"
   }
 }

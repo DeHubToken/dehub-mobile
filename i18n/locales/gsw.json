@@ -1433,7 +1433,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Folge-Vorschläge"
+    "followSuggestions": "Folge-Vorschläge",
+    "ensUrlCopied": "ENS-Profillink kopiert",
+    "subscribeNow": "Jetz abonniere",
+    "messageUser": "Benutzer aaschriibe",
+    "backToTop": "Zrugg uf",
+    "noImages": "No kei Bilder",
+    "noImagesSub": "Bildbiiträg erschiinid da",
+    "noPlans": "Kei Abo-Plän",
+    "noPlansSub": "De Creator het no kei Plän iigrichtet"
   },
   "tv": {
     "title": "TV",
@@ -1788,7 +1796,8 @@
     "removeVoiceNote": "Sprachnotiz entfärne",
     "removeMedia": "Medium entfärne",
     "cancelRecording": "Ufnahm abbräche",
-    "sendVoiceNote": "Sprachnotiz schicke"
+    "sendVoiceNote": "Sprachnotiz schicke",
+    "noneYetAddYours": "No kei Kommentär — schriib de erscht."
   },
   "postInfo": {
     "title": "Biitragsinformation",
@@ -3808,5 +3817,9 @@
     "streamPaused": "Stream pausiert",
     "connectionDropped": "D Verbindig vom Streamer isch abbroche.\nMir wartet, bis er zrugg isch...",
     "autoEnding": "Ändet automatisch, wenn's nöd wiitergaht"
+  },
+  "search": {
+    "endOfResults": "Ändi vo de Ergebnis",
+    "searchDehub": "DeHub durchsueche"
   }
 }

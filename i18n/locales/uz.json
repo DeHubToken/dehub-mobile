@@ -1453,7 +1453,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS profil havolasi nusxalandi",
+    "subscribeNow": "Hozir obuna bo'ling",
+    "messageUser": "Foydalanuvchiga xabar yuborish",
+    "backToTop": "Yuqoriga qaytish",
+    "noImages": "Hali rasm yo'q",
+    "noImagesSub": "Rasmli postlar shu yerda paydo bo'ladi",
+    "noPlans": "Obuna rejalari yo'q",
+    "noPlansSub": "Bu ijodkor hali reja yaratmagan"
   },
   "tv": {
     "title": "Televizor",
@@ -1815,7 +1823,8 @@
     "removeVoiceNote": "Ovozli xabarni o'chirish",
     "removeMedia": "Mediani o'chirish",
     "cancelRecording": "Yozuvni bekor qilish",
-    "sendVoiceNote": "Ovozli xabarni yuborish"
+    "sendVoiceNote": "Ovozli xabarni yuborish",
+    "noneYetAddYours": "Hali izoh yo'q, o'zingiznikini qo'shing."
   },
   "postInfo": {
     "title": "Post ma'lumoti",
@@ -3870,5 +3879,9 @@
     "streamPaused": "Efir to'xtatildi",
     "connectionDropped": "Efir egasining aloqasi uzildi.\nQayta ulanishini kutmoqdamiz...",
     "autoEnding": "Davom etmasa, avtomatik tugaydi"
+  },
+  "search": {
+    "endOfResults": "Natijalar tugadi",
+    "searchDehub": "DeHub dan qidirish"
   }
 }

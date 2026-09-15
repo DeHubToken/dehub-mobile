@@ -1472,7 +1472,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "اقتراحات للمتابعة"
+    "followSuggestions": "اقتراحات للمتابعة",
+    "ensUrlCopied": "اتنسخ لينك بروفايل ENS",
+    "subscribeNow": "اشترك دلوقتي",
+    "messageUser": "ابعت للمستخدم",
+    "backToTop": "ارجع لفوق",
+    "noImages": "مفيش صور لسه",
+    "noImagesSub": "بوستات الصور هتظهر هنا",
+    "noPlans": "مفيش خطط اشتراك",
+    "noPlansSub": "المنشئ ده لسه معملش أي خطة"
   },
   "tv": {
     "title": "TV",
@@ -1797,7 +1805,8 @@
     "removeVoiceNote": "شيل الملاحظة الصوتية",
     "removeMedia": "شيل الميديا",
     "cancelRecording": "الغي التسجيل",
-    "sendVoiceNote": "ابعت الملاحظة الصوتية"
+    "sendVoiceNote": "ابعت الملاحظة الصوتية",
+    "noneYetAddYours": "مفيش تعليقات لسه، ضيف بتاعك."
   },
   "postInfo": {
     "title": "معلومات المنشور",
@@ -3815,5 +3824,9 @@
     "streamPaused": "البث متوقف",
     "connectionDropped": "اتصال اللي بيبث اتقطع.\nمستنيينه يرجع...",
     "autoEnding": "هيخلص لوحده لو مرجعش"
+  },
+  "search": {
+    "endOfResults": "آخر النتايج",
+    "searchDehub": "دور في DeHub"
   }
 }

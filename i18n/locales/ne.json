@@ -1484,7 +1484,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS प्रोफाइल लिंक प्रतिलिपि भयो",
+    "subscribeNow": "अहिल्यै सदस्यता लिनुहोस्",
+    "messageUser": "प्रयोगकर्तालाई सन्देश पठाउनुहोस्",
+    "backToTop": "माथि फर्कनुहोस्",
+    "noImages": "अहिलेसम्म कुनै छवि छैन",
+    "noImagesSub": "छवि पोस्टहरू यहाँ देखिनेछन्",
+    "noPlans": "कुनै सदस्यता योजना छैन",
+    "noPlansSub": "यी सिर्जनाकर्ताले अहिलेसम्म कुनै योजना बनाएका छैनन्"
   },
   "dao": {
     "title": "DAO कोष",
@@ -1836,7 +1844,8 @@
     "removeVoiceNote": "भ्वाइस नोट हटाउनुहोस्",
     "removeMedia": "मिडिया हटाउनुहोस्",
     "cancelRecording": "रेकर्डिङ रद्द गर्नुहोस्",
-    "sendVoiceNote": "भ्वाइस नोट पठाउनुहोस्"
+    "sendVoiceNote": "भ्वाइस नोट पठाउनुहोस्",
+    "noneYetAddYours": "अहिलेसम्म टिप्पणी छैन, आफ्नो थप्नुहोस्।"
   },
   "postInfo": {
     "title": "पोस्ट जानकारी",
@@ -3852,5 +3861,9 @@
     "streamPaused": "स्ट्रिम रोकिएको",
     "connectionDropped": "स्ट्रिमरको जडान टुट्यो।\nपुनः जोडिने पर्खाइमा...",
     "autoEnding": "पुनः सुरु नभए स्वतः समाप्त हुनेछ"
+  },
+  "search": {
+    "endOfResults": "नतिजाको अन्त्य",
+    "searchDehub": "DeHub मा खोज्नुहोस्"
   }
 }

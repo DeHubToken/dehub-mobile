@@ -1391,7 +1391,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "팔로우 추천"
+    "followSuggestions": "팔로우 추천",
+    "ensUrlCopied": "ENS 프로필 링크를 복사했습니다",
+    "subscribeNow": "지금 구독하기",
+    "messageUser": "사용자에게 메시지 보내기",
+    "backToTop": "맨 위로",
+    "noImages": "아직 이미지가 없습니다",
+    "noImagesSub": "이미지 게시물이 여기에 표시됩니다",
+    "noPlans": "구독 플랜이 없습니다",
+    "noPlansSub": "이 크리에이터는 아직 플랜을 만들지 않았습니다"
   },
   "tv": {
     "title": "TV",
@@ -1814,7 +1822,8 @@
     "removeVoiceNote": "음성 메모 삭제",
     "removeMedia": "미디어 삭제",
     "cancelRecording": "녹음 취소",
-    "sendVoiceNote": "음성 메모 보내기"
+    "sendVoiceNote": "음성 메모 보내기",
+    "noneYetAddYours": "아직 댓글이 없습니다. 첫 댓글을 남겨보세요."
   },
   "postInfo": {
     "title": "게시물 정보",
@@ -3887,5 +3896,9 @@
     "streamPaused": "스트림 일시중지됨",
     "connectionDropped": "스트리머의 연결이 끊겼습니다.\n다시 연결되기를 기다리는 중…",
     "autoEnding": "재개되지 않으면 자동으로 종료됩니다"
+  },
+  "search": {
+    "endOfResults": "결과 끝",
+    "searchDehub": "DeHub 검색"
   }
 }

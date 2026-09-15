@@ -1472,7 +1472,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "اقتراحات للمتابعة"
+    "followSuggestions": "اقتراحات للمتابعة",
+    "ensUrlCopied": "تنسخ رابط البروفيل ديال ENS",
+    "subscribeNow": "تسجل دابا",
+    "messageUser": "صيفط للمستخدم",
+    "backToTop": "رجع لفوق",
+    "noImages": "مازال ما كاين تصاور",
+    "noImagesSub": "البوسطات ديال التصاور غادي تبان هنا",
+    "noPlans": "ما كاين حتى خطة ديال الاشتراك",
+    "noPlansSub": "هاد المنشئ مازال ما دار حتى خطة"
   },
   "tv": {
     "title": "التلفزة",
@@ -1827,7 +1835,8 @@
     "removeVoiceNote": "حيد النوطة الصوتية",
     "removeMedia": "حيد الوسائط",
     "cancelRecording": "لغي التسجيل",
-    "sendVoiceNote": "صيفط النوطة الصوتية"
+    "sendVoiceNote": "صيفط النوطة الصوتية",
+    "noneYetAddYours": "مازال ما كاين تعليقات، زيد ديالك."
   },
   "postInfo": {
     "title": "معلومات المنشور",
@@ -3845,5 +3854,9 @@
     "streamPaused": "البث موقف",
     "connectionDropped": "الاتصال ديال اللي كيبث تقطع.\nكنتسناوه يرجع...",
     "autoEnding": "غادي يسالي وحدو إلا ما رجعش"
+  },
+  "search": {
+    "endOfResults": "نهاية النتائج",
+    "searchDehub": "قلب ف DeHub"
   }
 }

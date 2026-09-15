@@ -136,7 +136,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS প্রোফাইল লিংক কপি হইল",
+    "subscribeNow": "এলাই সাবস্ক্রাইব করেন",
+    "messageUser": "ব্যবহারকারীক বার্তা পাঠান",
+    "backToTop": "উপরত ফিরি যান",
+    "noImages": "এলাও কোনো ছবি নাই",
+    "noImagesSub": "ছবির পোস্ট এটে দেখা যাইবে",
+    "noPlans": "কোনো সাবস্ক্রিপশন প্ল্যান নাই",
+    "noPlansSub": "এই ক্রিয়েটর এলাও কোনো প্ল্যান বানায় নাই"
   },
   "settings": {
     "smartReplies": "পরামর্শ দেওয়া জবাব",
@@ -1948,7 +1956,8 @@
     "removeVoiceNote": "ভয়েস নোট সরান",
     "removeMedia": "মিডিয়া সরান",
     "cancelRecording": "রেকর্ডিং বাতিল করেন",
-    "sendVoiceNote": "ভয়েস নোট পাঠান"
+    "sendVoiceNote": "ভয়েস নোট পাঠান",
+    "noneYetAddYours": "এলাও কোনো মন্তব্য নাই, নিজের টা যোগ করেন।"
   },
   "postInfo": {
     "title": "পোস্ট তথ্য",
@@ -3852,5 +3861,9 @@
     "streamPaused": "স্ট্রিম থামি আছে",
     "connectionDropped": "স্ট্রিমারের সংযোগ কাটি গেল।\nআবার জুড়িবার অপেক্ষাত...",
     "autoEnding": "আবার শুরু না হইলে নিজেই শেষ হইবে"
+  },
+  "search": {
+    "endOfResults": "ফলাফলের শেষ",
+    "searchDehub": "DeHub ত খোঁজেন"
   }
 }

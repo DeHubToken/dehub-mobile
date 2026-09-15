@@ -1230,7 +1230,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Линк ENS профила је копиран",
+    "subscribeNow": "Претплати се сада",
+    "messageUser": "Пошаљи поруку кориснику",
+    "backToTop": "Назад на врх",
+    "noImages": "Још нема слика",
+    "noImagesSub": "Објаве са сликама појавиће се овде",
+    "noPlans": "Нема претплатничких планова",
+    "noPlansSub": "Овај аутор још није направио планове"
   },
   "messages": {
     "smartRepliesOff": "Предложени одговори су искључени",
@@ -1686,7 +1694,8 @@
     "removeVoiceNote": "Уклони гласовну поруку",
     "removeMedia": "Уклони медиј",
     "cancelRecording": "Откажи снимање",
-    "sendVoiceNote": "Пошаљи гласовну поруку"
+    "sendVoiceNote": "Пошаљи гласовну поруку",
+    "noneYetAddYours": "Још нема коментара, додајте свој."
   },
   "postInfo": {
     "title": "Информације о објави",
@@ -3586,5 +3595,9 @@
     "streamPaused": "Стрим је паузиран",
     "connectionDropped": "Стримеру је пала веза.\nЧекамо да се поново повеже...",
     "autoEnding": "Аутоматски се завршава ако се не настави"
+  },
+  "search": {
+    "endOfResults": "Крај резултата",
+    "searchDehub": "Претражи DeHub"
   }
 }

@@ -1456,7 +1456,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Suggerimenti da seguire"
+    "followSuggestions": "Suggerimenti da seguire",
+    "ensUrlCopied": "Link del profilo ENS copiato",
+    "subscribeNow": "Abbonati ora",
+    "messageUser": "Invia un messaggio all'utente",
+    "backToTop": "Torna su",
+    "noImages": "Ancora nessuna immagine",
+    "noImagesSub": "I post con immagini appariranno qui",
+    "noPlans": "Nessun piano di abbonamento",
+    "noPlansSub": "Questo creator non ha ancora creato piani"
   },
   "messages": {
     "smartRepliesOff": "Risposte suggerite disattivate",
@@ -1814,7 +1822,8 @@
     "removeVoiceNote": "Rimuovi la nota vocale",
     "removeMedia": "Rimuovi il media",
     "cancelRecording": "Annulla registrazione",
-    "sendVoiceNote": "Invia la nota vocale"
+    "sendVoiceNote": "Invia la nota vocale",
+    "noneYetAddYours": "Ancora nessun commento, aggiungi il tuo."
   },
   "postInfo": {
     "title": "Info Post",
@@ -3889,5 +3898,9 @@
     "streamPaused": "Diretta in pausa",
     "connectionDropped": "La connessione dello streamer è caduta.\nIn attesa che si riconnetta...",
     "autoEnding": "Terminerà automaticamente se non riprende"
+  },
+  "search": {
+    "endOfResults": "Fine dei risultati",
+    "searchDehub": "Cerca su DeHub"
   }
 }

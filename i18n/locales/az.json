@@ -1462,7 +1462,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS profil linki kopyalandı",
+    "subscribeNow": "İndi abunə ol",
+    "messageUser": "İstifadəçiyə mesaj yaz",
+    "backToTop": "Yuxarı qayıt",
+    "noImages": "Hələ şəkil yoxdur",
+    "noImagesSub": "Şəkil paylaşımları burada görünəcək",
+    "noPlans": "Abunə planı yoxdur",
+    "noPlansSub": "Bu yaradıcı hələ plan qurmayıb"
   },
   "tv": {
     "title": "TV",
@@ -1787,7 +1795,8 @@
     "removeVoiceNote": "Səsli qeydi sil",
     "removeMedia": "Medianı sil",
     "cancelRecording": "Yazmanı ləğv et",
-    "sendVoiceNote": "Səsli qeydi göndər"
+    "sendVoiceNote": "Səsli qeydi göndər",
+    "noneYetAddYours": "Hələ şərh yoxdur, ilkini siz yazın."
   },
   "postInfo": {
     "title": "Paylaşım məlumatı",
@@ -3803,5 +3812,9 @@
     "streamPaused": "Yayım fasilədə",
     "connectionDropped": "Yayımçının bağlantısı kəsildi.\nYenidən qoşulmasını gözləyirik...",
     "autoEnding": "Davam etməzsə avtomatik bitəcək"
+  },
+  "search": {
+    "endOfResults": "Nəticələrin sonu",
+    "searchDehub": "DeHub-da axtar"
   }
 }

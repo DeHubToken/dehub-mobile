@@ -1392,7 +1392,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Voadika ny rohin'ny mombamomba ENS",
+    "subscribeNow": "Misoratra anarana izao",
+    "messageUser": "Alefaso hafatra ny mpampiasa",
+    "backToTop": "Miverina any ambony",
+    "noImages": "Mbola tsy misy sary",
+    "noImagesSub": "Hiseho eto ny lahatsoratra misy sary",
+    "noPlans": "Tsy misy drafitra fisoratana anarana",
+    "noPlansSub": "Mbola tsy nametraka drafitra ity mpamorona ity"
   },
   "tv": {
     "title": "TV",
@@ -1717,7 +1725,8 @@
     "removeVoiceNote": "Esory ny naoty feo",
     "removeMedia": "Esory ny media",
     "cancelRecording": "Foano ny fandraiketana",
-    "sendVoiceNote": "Alefaso ny naoty feo"
+    "sendVoiceNote": "Alefaso ny naoty feo",
+    "noneYetAddYours": "Mbola tsy misy hevitra, ampio ny anao."
   },
   "postInfo": {
     "title": "Fampahalalana momba ny lahatsoratra",
@@ -3898,5 +3907,9 @@
     "streamPaused": "Nampiatoana ny fandefasana",
     "connectionDropped": "Tapaka ny fifandraisan'ny mpandefa.\nMiandry azy hifandray indray...",
     "autoEnding": "Hifarana ho azy raha tsy tohizana"
+  },
+  "search": {
+    "endOfResults": "Faran'ny valiny",
+    "searchDehub": "Karohy ao amin'ny DeHub"
   }
 }

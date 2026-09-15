@@ -1475,7 +1475,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Saran untuk diikuti"
+    "followSuggestions": "Saran untuk diikuti",
+    "ensUrlCopied": "Tautan profil ENS disalin",
+    "subscribeNow": "Langganan sekarang",
+    "messageUser": "Kirim pesan ke pengguna",
+    "backToTop": "Kembali ke atas",
+    "noImages": "Belum ada gambar",
+    "noImagesSub": "Postingan gambar akan muncul di sini",
+    "noPlans": "Tidak ada paket langganan",
+    "noPlansSub": "Kreator ini belum membuat paket apa pun"
   },
   "tv": {
     "title": "TV",
@@ -1800,7 +1808,8 @@
     "removeVoiceNote": "Hapus pesan suara",
     "removeMedia": "Hapus media",
     "cancelRecording": "Batalkan rekaman",
-    "sendVoiceNote": "Kirim pesan suara"
+    "sendVoiceNote": "Kirim pesan suara",
+    "noneYetAddYours": "Belum ada komentar, tambahkan milikmu."
   },
   "postInfo": {
     "title": "Info Postingan",
@@ -3869,5 +3878,9 @@
     "streamPaused": "Siaran dijeda",
     "connectionDropped": "Koneksi streamer terputus.\nMenunggu mereka terhubung lagi...",
     "autoEnding": "Berakhir otomatis jika tidak dilanjutkan"
+  },
+  "search": {
+    "endOfResults": "Akhir hasil",
+    "searchDehub": "Cari di DeHub"
   }
 }

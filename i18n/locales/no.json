@@ -1435,7 +1435,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS-profillenken er kopiert",
+    "subscribeNow": "Abonner nå",
+    "messageUser": "Send melding til brukeren",
+    "backToTop": "Tilbake til toppen",
+    "noImages": "Ingen bilder ennå",
+    "noImagesSub": "Bildeinnlegg vises her",
+    "noPlans": "Ingen abonnementsplaner",
+    "noPlansSub": "Denne skaperen har ikke laget planer ennå"
   },
   "tv": {
     "title": "TV",
@@ -1760,7 +1768,8 @@
     "removeVoiceNote": "Fjern talemelding",
     "removeMedia": "Fjern medie",
     "cancelRecording": "Avbryt opptak",
-    "sendVoiceNote": "Send talemelding"
+    "sendVoiceNote": "Send talemelding",
+    "noneYetAddYours": "Ingen kommentarer ennå — legg til din."
   },
   "postInfo": {
     "title": "Innleggsinformasjon",
@@ -3809,5 +3818,9 @@
     "streamPaused": "Strøm satt på pause",
     "connectionDropped": "Streamerens tilkobling falt ut.\nVenter på at de kobler til igjen...",
     "autoEnding": "Avsluttes automatisk hvis den ikke gjenopptas"
+  },
+  "search": {
+    "endOfResults": "Slutt på resultatene",
+    "searchDehub": "Søk i DeHub"
   }
 }

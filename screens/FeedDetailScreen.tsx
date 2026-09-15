@@ -210,7 +210,7 @@ export default function FeedDetailScreen() {
       } catch (e: any) {
         if (e?.code !== "E_PICKER_CANCELLED") {
           console.error("[FeedDetailScreen] image picker error", e);
-          toastError("Failed to pick image");
+          toastError(t("comments.pickImageFailed"));
         }
       }
     });
@@ -880,7 +880,7 @@ export default function FeedDetailScreen() {
         setComments((prev) => prev.filter((c) => c.id !== tempId));
         // Hand the attachment back rather than making them pick it again.
         setMediaAttachment(savedMedia);
-        toastError("Failed to send media comment");
+        toastError(t("comments.sendMediaFailed"));
       } finally {
         setMediaPosting(false);
       }
@@ -1101,7 +1101,7 @@ export default function FeedDetailScreen() {
         onScrollToIndexFailed={handleScrollToIndexFailed}
         ListEmptyComponent={!loading ? (
           <View className="px-4 py-6">
-            <Text className="text-theme-neutrals-400 text-sm">No comments yet, add yours.</Text>
+            <Text className="text-theme-neutrals-400 text-sm">{t("comments.noneYetAddYours")}</Text>
           </View>
         ) : (
           <View className="px-4 py-3">
@@ -1216,7 +1216,7 @@ export default function FeedDetailScreen() {
                 disabled={posting || !inputText.trim()}
                 activeOpacity={0.7}
                 accessibilityRole="button"
-                accessibilityLabel="Post comment"
+                accessibilityLabel={t("comments.postComment")}
                 style={[
                   composerStyles.iconControl,
                   { backgroundColor: inputText.trim() ? "#F9FBFF" : "rgba(255,255,255,0.1)" },
@@ -1238,7 +1238,7 @@ export default function FeedDetailScreen() {
                   onPress={handlePickImage}
                   activeOpacity={0.7}
                   accessibilityRole="button"
-                  accessibilityLabel="Add image"
+                  accessibilityLabel={t("comments.addImage")}
                   style={composerStyles.iconControl}
                 >
                   <Ionicons name="image-outline" size={20} color={theme.colors.mutedForeground} />
@@ -1247,7 +1247,7 @@ export default function FeedDetailScreen() {
                   onPress={handleOpenGifPicker}
                   activeOpacity={0.7}
                   accessibilityRole="button"
-                  accessibilityLabel="Add GIF"
+                  accessibilityLabel={t("comments.addGif")}
                   style={composerStyles.iconControl}
                 >
                   {/* A text glyph, not an icon — it only lines up with its neighbours
@@ -1258,7 +1258,7 @@ export default function FeedDetailScreen() {
                   onPress={handleOpenEmojiPicker}
                   activeOpacity={0.7}
                   accessibilityRole="button"
-                  accessibilityLabel="Add emoji"
+                  accessibilityLabel={t("comments.addEmoji")}
                   style={composerStyles.iconControl}
                 >
                   {/* A text glyph, not an icon — same reasoning as GIF above: a
@@ -1273,7 +1273,7 @@ export default function FeedDetailScreen() {
                   }}
                   activeOpacity={0.7}
                   accessibilityRole="button"
-                  accessibilityLabel="Record voice note"
+                  accessibilityLabel={t("comments.recordVoice")}
                   style={composerStyles.iconControl}
                 >
                   <Ionicons name="mic-outline" size={20} color={theme.colors.mutedForeground} />

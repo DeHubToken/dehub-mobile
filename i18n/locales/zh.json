@@ -1473,7 +1473,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "关注推荐"
+    "followSuggestions": "关注推荐",
+    "ensUrlCopied": "ENS 资料链接已复制",
+    "subscribeNow": "立即订阅",
+    "messageUser": "给该用户发消息",
+    "backToTop": "回到顶部",
+    "noImages": "还没有图片",
+    "noImagesSub": "图片帖子会显示在这里",
+    "noPlans": "没有订阅方案",
+    "noPlansSub": "这位创作者还没有设置方案"
   },
   "tv": {
     "title": "电视",
@@ -1802,7 +1810,8 @@
     "removeVoiceNote": "移除语音留言",
     "removeMedia": "移除媒体",
     "cancelRecording": "取消录制",
-    "sendVoiceNote": "发送语音留言"
+    "sendVoiceNote": "发送语音留言",
+    "noneYetAddYours": "还没有评论，来写第一条。"
   },
   "postInfo": {
     "title": "帖子信息",
@@ -3876,5 +3885,9 @@
     "streamPaused": "直播已暂停",
     "connectionDropped": "主播的连接断开了。\n正在等待重新连接……",
     "autoEnding": "如果没有恢复，将自动结束"
+  },
+  "search": {
+    "endOfResults": "结果到底了",
+    "searchDehub": "搜索 DeHub"
   }
 }
