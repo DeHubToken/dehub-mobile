@@ -3583,7 +3583,19 @@
     "solanaFailed": "Solana-betaling mislukt",
     "missingWeb3": "web3-context ontbreekt",
     "preparingRouter": "Betalingsrouter voorbereiden… probeer het zo opnieuw",
-    "swapShort": "Wissel voltooid maar DHB is nog te weinig. Probeer het opnieuw."
+    "swapShort": "Wissel voltooid maar DHB is nog te weinig. Probeer het opnieuw.",
+    "yourBalance": "Je saldo",
+    "youNeed": "Je hebt nodig",
+    "scanning": "De snelste manier om op te waarderen wordt gezocht…",
+    "topUpAndUnlock": "Opwaarderen en ontgrendelen",
+    "notNow": "Nu niet",
+    "buySymbol": "{{symbol}} kopen",
+    "topUpThenReturn": "Waardeer je wallet op en kom terug",
+    "checkWalletFailed": "Kan je wallet op dit moment niet controleren.",
+    "preparingWallet": "Je wallet wordt voorbereid — probeer het zo opnieuw.",
+    "swapSettling": "Je swap wordt mogelijk nog afgewikkeld. Controleer je DHB-saldo voordat je het opnieuw probeert — swap niet twee keer.",
+    "notEnoughBase": "Er zit niet genoeg in je wallet op Base om dit te dekken. Vul aan — de ontgrendeling wacht op je.",
+    "otherChain": "Dit bericht wordt op een andere chain afgewikkeld, dus je hebt daar DHB in je wallet nodig."
   },
   "walletSetup": {
     "writeThemDown": "Schrijf ze op een plek die alleen jij kunt bereiken. Wie deze woorden heeft, heeft je wallet — DeHub-ondersteuning kan ze niet herstellen en niet resetten.",

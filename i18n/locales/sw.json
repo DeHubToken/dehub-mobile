@@ -3315,7 +3315,19 @@
     "solanaFailed": "Malipo ya Solana yameshindwa",
     "missingWeb3": "Muktadha wa web3 haupo",
     "preparingRouter": "Inaandaa kipanga njia cha malipo… jaribu tena baada ya muda mfupi",
-    "swapShort": "Ubadilishaji umekamilika lakini DHB bado haitoshi. Jaribu tena."
+    "swapShort": "Ubadilishaji umekamilika lakini DHB bado haitoshi. Jaribu tena.",
+    "yourBalance": "Salio lako",
+    "youNeed": "Unahitaji",
+    "scanning": "Inatafuta njia ya haraka zaidi ya kukuongezea…",
+    "topUpAndUnlock": "Ongeza salio na ufungue",
+    "notNow": "Si sasa",
+    "buySymbol": "Nunua {{symbol}}",
+    "topUpThenReturn": "Ongeza salio la pochi yako, kisha urudi",
+    "checkWalletFailed": "Imeshindwa kukagua pochi yako kwa sasa.",
+    "preparingWallet": "Inaandaa pochi yako — jaribu tena baada ya muda mfupi.",
+    "swapSettling": "Ubadilishaji wako unaweza bado kukamilika. Angalia salio lako la DHB kabla ya kujaribu tena — usibadilishe mara mbili.",
+    "notEnoughBase": "Pochi yako kwenye Base haina kiasi cha kutosha. Ongeza fedha, na ufunguzi utakusubiri.",
+    "otherChain": "Chapisho hili linakamilishwa kwenye mnyororo mwingine, kwa hivyo unahitaji DHB kwenye pochi yako huko."
   },
   "walletSetup": {
     "writeThemDown": "Ziandike mahali ambapo wewe pekee unaweza kufikia. Yeyote aliye na maneno haya ana pochi yako — usaidizi wa DeHub hauwezi kuyarejesha wala kuyaweka upya.",

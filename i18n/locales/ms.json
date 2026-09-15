@@ -3578,7 +3578,19 @@
     "solanaFailed": "Pembayaran Solana gagal",
     "missingWeb3": "Konteks web3 tiada",
     "preparingRouter": "Menyediakan penghala pembayaran… cuba lagi sebentar",
-    "swapShort": "Pertukaran selesai tetapi DHB masih tidak mencukupi. Cuba lagi."
+    "swapShort": "Pertukaran selesai tetapi DHB masih tidak mencukupi. Cuba lagi.",
+    "yourBalance": "Baki anda",
+    "youNeed": "Anda perlukan",
+    "scanning": "Mencari cara terpantas untuk menambah nilai…",
+    "topUpAndUnlock": "Tambah nilai & buka kunci",
+    "notNow": "Bukan sekarang",
+    "buySymbol": "Beli {{symbol}}",
+    "topUpThenReturn": "Tambah nilai dompet anda, kemudian kembali",
+    "checkWalletFailed": "Dompet anda tidak dapat disemak sekarang.",
+    "preparingWallet": "Menyediakan dompet anda — cuba lagi sebentar.",
+    "swapSettling": "Pertukaran anda mungkin masih diselesaikan. Semak baki DHB sebelum mencuba lagi — jangan tukar dua kali.",
+    "notEnoughBase": "Baki dompet anda di Base tidak mencukupi. Tambah dana dan buka kunci menanti anda.",
+    "otherChain": "Siaran ini diselesaikan pada rantai lain, jadi anda perlukan DHB dalam dompet anda di sana."
   },
   "walletSetup": {
     "writeThemDown": "Tuliskannya di tempat yang hanya anda boleh capai. Sesiapa yang ada perkataan ini memiliki dompet anda — sokongan DeHub tidak boleh memulihkan atau menetapkannya semula.",

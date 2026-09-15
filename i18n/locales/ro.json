@@ -3328,7 +3328,19 @@
     "solanaFailed": "Plata prin Solana a eșuat",
     "missingWeb3": "Lipsește contextul web3",
     "preparingRouter": "Se pregătește routerul de plăți… încearcă din nou într-o clipă",
-    "swapShort": "Schimbul s-a făcut dar DHB tot nu ajunge. Încearcă din nou."
+    "swapShort": "Schimbul s-a făcut dar DHB tot nu ajunge. Încearcă din nou.",
+    "yourBalance": "Soldul tău",
+    "youNeed": "Ai nevoie de",
+    "scanning": "Se caută cea mai rapidă metodă de reîncărcare…",
+    "topUpAndUnlock": "Reîncarcă și deblochează",
+    "notNow": "Nu acum",
+    "buySymbol": "Cumpără {{symbol}}",
+    "topUpThenReturn": "Reîncarcă-ți portofelul, apoi revino",
+    "checkWalletFailed": "Portofelul tău nu a putut fi verificat acum.",
+    "preparingWallet": "Se pregătește portofelul tău — încearcă din nou într-o clipă.",
+    "swapSettling": "Schimbul tău poate fi încă în decontare. Verifică soldul DHB înainte să încerci din nou — nu face schimbul de două ori.",
+    "notEnoughBase": "Nu ai destul în portofelul de pe Base pentru asta. Adaugă fonduri, iar deblocarea te așteaptă.",
+    "otherChain": "Această postare se decontează pe alt lanț, deci ai nevoie de DHB în portofelul de acolo."
   },
   "walletSetup": {
     "writeThemDown": "Notează-le într-un loc la care doar tu ajungi. Oricine are aceste cuvinte are portofelul tău — asistența DeHub nu le poate recupera și nu le poate reseta.",

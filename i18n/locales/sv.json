@@ -3319,7 +3319,19 @@
     "solanaFailed": "Solana-betalningen misslyckades",
     "missingWeb3": "web3-kontext saknas",
     "preparingRouter": "Förbereder betalningsrouter… försök igen om en stund",
-    "swapShort": "Växlingen är klar men DHB räcker fortfarande inte. Försök igen."
+    "swapShort": "Växlingen är klar men DHB räcker fortfarande inte. Försök igen.",
+    "yourBalance": "Ditt saldo",
+    "youNeed": "Du behöver",
+    "scanning": "Söker det snabbaste sättet att fylla på…",
+    "topUpAndUnlock": "Fyll på och lås upp",
+    "notNow": "Inte nu",
+    "buySymbol": "Köp {{symbol}}",
+    "topUpThenReturn": "Fyll på din plånbok och kom tillbaka",
+    "checkWalletFailed": "Det gick inte att kontrollera din plånbok just nu.",
+    "preparingWallet": "Din plånbok förbereds — försök igen om en stund.",
+    "swapSettling": "Din växling kan fortfarande hålla på att avvecklas. Kontrollera ditt DHB-saldo innan du försöker igen — växla inte två gånger.",
+    "notEnoughBase": "Det finns inte tillräckligt i din plånbok på Base för att täcka det. Fyll på — upplåsningen väntar på dig.",
+    "otherChain": "Det här inlägget avvecklas på en annan kedja, så du behöver DHB i din plånbok där."
   },
   "walletSetup": {
     "writeThemDown": "Skriv ner dem på ett ställe bara du når. Den som har dessa ord har din plånbok — DeHubs support kan varken återställa eller nollställa dem.",

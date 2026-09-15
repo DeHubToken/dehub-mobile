@@ -3299,7 +3299,19 @@
     "solanaFailed": "Solana ödənişi alınmadı",
     "missingWeb3": "web3 konteksti çatışmır",
     "preparingRouter": "Ödəniş marşrutlayıcısı hazırlanır… bir azdan yenidən cəhd edin",
-    "swapShort": "Dəyişmə tamamlandı, lakin DHB hələ də çatmır. Yenidən cəhd edin."
+    "swapShort": "Dəyişmə tamamlandı, lakin DHB hələ də çatmır. Yenidən cəhd edin.",
+    "yourBalance": "Balansınız",
+    "youNeed": "Sizə lazımdır",
+    "scanning": "Balansınızı artırmağın ən sürətli yolu axtarılır…",
+    "topUpAndUnlock": "Artır və aç",
+    "notNow": "İndi yox",
+    "buySymbol": "{{symbol}} al",
+    "topUpThenReturn": "Cüzdanınızı artırın, sonra qayıdın",
+    "checkWalletFailed": "Hazırda cüzdanınız yoxlanıla bilmədi.",
+    "preparingWallet": "Cüzdanınız hazırlanır — bir azdan yenidən cəhd edin.",
+    "swapSettling": "Dəyişməniz hələ tamamlanmamış ola bilər. Yenidən cəhd etməzdən əvvəl DHB balansınızı yoxlayın — iki dəfə dəyişməyin.",
+    "notEnoughBase": "Base-dəki cüzdanınızda bunu qarşılamaq üçün kifayət qədər vəsait yoxdur. Vəsait əlavə edin, kilidin açılması sizi gözləyir.",
+    "otherChain": "Bu paylaşım başqa zəncirdə hesablanır, ona görə orada cüzdanınızda DHB olmalıdır."
   },
   "walletSetup": {
     "writeThemDown": "Onları yalnız sizin çata biləcəyiniz yerdə yazın. Bu sözlərə sahib olan hər kəs cüzdanınıza sahibdir — DeHub dəstəyi onları bərpa da, sıfırlaya da bilməz.",

@@ -3319,7 +3319,19 @@
     "solanaFailed": "Solana-betalingen mislykkedes",
     "missingWeb3": "web3-kontekst mangler",
     "preparingRouter": "Forbereder betalingsrouter… prøv igen om et øjeblik",
-    "swapShort": "Byttet er gennemført, men DHB er stadig for lidt. Prøv igen."
+    "swapShort": "Byttet er gennemført, men DHB er stadig for lidt. Prøv igen.",
+    "yourBalance": "Din saldo",
+    "youNeed": "Du mangler",
+    "scanning": "Finder den hurtigste måde at fylde op på…",
+    "topUpAndUnlock": "Fyld op og lås op",
+    "notNow": "Ikke nu",
+    "buySymbol": "Køb {{symbol}}",
+    "topUpThenReturn": "Fyld din tegnebog op, og kom så tilbage",
+    "checkWalletFailed": "Kunne ikke tjekke din tegnebog lige nu.",
+    "preparingWallet": "Din tegnebog gøres klar — prøv igen om et øjeblik.",
+    "swapSettling": "Dit byt er måske stadig ved at blive afviklet. Tjek din DHB-saldo, før du prøver igen — byt ikke to gange.",
+    "notEnoughBase": "Der er ikke nok i din tegnebog på Base til at dække det. Tilføj midler — oplåsningen venter på dig.",
+    "otherChain": "Dette opslag afvikles på en anden kæde, så du skal have DHB i din tegnebog der."
   },
   "walletSetup": {
     "writeThemDown": "Skriv dem ned et sted, kun du kan nå. Enhver med disse ord har din tegnebog — DeHub-support kan hverken gendanne eller nulstille dem.",

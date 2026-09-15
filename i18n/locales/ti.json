@@ -3280,7 +3280,19 @@
     "solanaFailed": "ክፍሊት Solana ኣይሰለጠን",
     "missingWeb3": "ኣውድ web3 የለን",
     "preparingRouter": "መራሒ ክፍሊት ይዳሎ ኣሎ… ድሕሪ ቁሩብ ደጊምካ ፈትን",
-    "swapShort": "ምልውዋጥ ተፈጺሙ ግን DHB ገና ኣይኣክልን። ደጊምካ ፈትን።"
+    "swapShort": "ምልውዋጥ ተፈጺሙ ግን DHB ገና ኣይኣክልን። ደጊምካ ፈትን።",
+    "yourBalance": "ተረፍካ",
+    "youNeed": "የድልየካ",
+    "scanning": "ቅልጡፍ መንገዲ መመልኢ ይድለ ኣሎ…",
+    "topUpAndUnlock": "መላእ ከምኡውን ክፈት",
+    "notNow": "ሕጂ ኣይኮነን",
+    "buySymbol": "{{symbol}} ግዛእ",
+    "topUpThenReturn": "ዋሌትካ መላእ፡ ደሓር ተመለስ",
+    "checkWalletFailed": "ሕጂ ዋሌትካ ክምርመር ኣይከኣለን።",
+    "preparingWallet": "ዋሌትካ ይዳሎ ኣሎ — ድሕሪ ቁሩብ እንደገና ፈትን።",
+    "swapSettling": "ምልውዋጥካ ገና ይፍጸም ይህሉ። ቅድሚ እንደገና ምፍታንካ ተረፍ DHB ርአ — ክልተ ግዜ ኣይትለዋወጥ።",
+    "notEnoughBase": "ኣብ Base ኣብ ዘሎ ዋሌትካ እኹል የለን። ገንዘብ ወስኽ፡ ምኽፋት ይጽበየካ ኣሎ።",
+    "otherChain": "እዚ ልጥፊ ኣብ ካልእ ሰንሰለት እዩ ዝፍጸም፡ ስለዚ ኣብኡ ኣብ ዋሌትካ DHB የድሊ።"
   },
   "walletSetup": {
     "writeThemDown": "ኣብ ንስኻ ጥራይ እትበጽሖ ቦታ ጽሓፎም። እዞም ቃላት ዘለዎ ዝኾነ ሰብ ዋሌትካ ኣለዎ — ደገፍ DeHub ክመልሶምን ክቕይሮምን ኣይክእልን።",

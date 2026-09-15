@@ -3300,7 +3300,19 @@
     "solanaFailed": "I rahu te utu Solana",
     "missingWeb3": "Kāore he horopaki web3",
     "preparingRouter": "Kei te whakarite i te kaiwhakawhiti utu… ngana anō ā tōna wā",
-    "swapShort": "Kua oti te whakawhiti engari kāore anō te DHB kia rawaka. Ngana anō."
+    "swapShort": "Kua oti te whakawhiti engari kāore anō te DHB kia rawaka. Ngana anō.",
+    "yourBalance": "Tō toenga",
+    "youNeed": "Kei te hiahia koe",
+    "scanning": "Kei te rapu i te huarahi tere rawa hei whakakī…",
+    "topUpAndUnlock": "Whakakī me te wewete",
+    "notNow": "Kaua i tēnei wā",
+    "buySymbol": "Hokona te {{symbol}}",
+    "topUpThenReturn": "Whakakīa tō pūkoro, kātahi ka hoki mai",
+    "checkWalletFailed": "Kāore i taea te tirotiro i tō pūkoro i tēnei wā.",
+    "preparingWallet": "Kei te whakarite i tō pūkoro — ngana anō ā tōna wā.",
+    "swapSettling": "Kei te whakatau tonu pea tō whakawhiti. Tirohia tō toenga DHB i mua i te ngana anō — kaua e whakawhiti tuarua.",
+    "notEnoughBase": "Kāore he moni e ranea ana i tō pūkoro i Base. Tāpirihia he moni, kei te tatari te wetewete ki a koe.",
+    "otherChain": "Ka whakataua tēnei pānui ki tētahi atu mekameka, nō reira me whai DHB koe i tō pūkoro i reira."
   },
   "walletSetup": {
     "writeThemDown": "Tuhia ki tētahi wāhi ko koe anake ka tae. Ko te tangata kei a ia ēnei kupu, kei a ia tō pūkoro — kāore te tautoko DeHub e taea te whakaora, te tautuhi anō rānei.",
