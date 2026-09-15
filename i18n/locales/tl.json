@@ -3494,7 +3494,19 @@
     "solanaFailed": "Nabigo ang bayad sa Solana",
     "missingWeb3": "Walang web3 context",
     "preparingRouter": "Inihahanda ang payment router… subukan ulit maya-maya",
-    "swapShort": "Tapos na ang swap pero kulang pa rin ang DHB. Subukan ulit."
+    "swapShort": "Tapos na ang swap pero kulang pa rin ang DHB. Subukan ulit.",
+    "yourBalance": "Balanse mo",
+    "youNeed": "Kailangan mo",
+    "scanning": "Hinahanap ang pinakamabilis na paraan para mag-top up…",
+    "topUpAndUnlock": "Mag-top up at i-unlock",
+    "notNow": "Sa ibang pagkakataon",
+    "buySymbol": "Bumili ng {{symbol}}",
+    "topUpThenReturn": "Mag-top up sa wallet mo, tapos bumalik",
+    "checkWalletFailed": "Hindi masuri ang wallet mo ngayon.",
+    "preparingWallet": "Inihahanda ang wallet mo — subukan ulit maya-maya.",
+    "swapSettling": "Maaaring hindi pa tapos ang swap mo. Tingnan ang DHB balance mo bago subukan ulit — huwag mag-swap nang dalawang beses.",
+    "notEnoughBase": "Kulang ang laman ng wallet mo sa Base para dito. Magdagdag ng pondo at naghihintay ang unlock.",
+    "otherChain": "Ang post na ito ay nag-se-settle sa ibang chain, kaya kailangan mo ng DHB sa wallet mo doon."
   },
   "walletSetup": {
     "writeThemDown": "Isulat ang mga ito sa lugar na ikaw lang ang makakarating. Sinumang may hawak ng mga salitang ito ay may hawak ng iyong wallet — hindi ito mababawi o mareresét ng DeHub support.",

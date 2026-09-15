@@ -3259,7 +3259,19 @@
     "solanaFailed": "Solana sarali ma ɲɛ",
     "missingWeb3": "web3 kunnafoni tɛ yen",
     "preparingRouter": "Sarali sira bɛ labɛn… a lajɛ tugun dɔɔnin kɔfɛ",
-    "swapShort": "Falen kɛra nka DHB man ca halibi. A lajɛ tugun."
+    "swapShort": "Falen kɛra nka DHB man ca halibi. A lajɛ tugun.",
+    "yourBalance": "I ka wari",
+    "youNeed": "I mago bɛ",
+    "scanning": "Sira teliman ɲinini i ka wari lafa kama…",
+    "topUpAndUnlock": "Wari lafa ka a da wuli",
+    "notNow": "Sisan tɛ",
+    "buySymbol": "{{symbol}} san",
+    "topUpThenReturn": "I ka warijɛ lafa, ka segin",
+    "checkWalletFailed": "I ka warijɛ ma se ka lajɛ sisan.",
+    "preparingWallet": "I ka warijɛ bɛ labɛn — a lajɛ tuguni waati dɔɔni kɔfɛ.",
+    "swapSettling": "I ka falen bɛ se ka ban ka kɛ halibi. I ka DHB wari lajɛ sanni i ka a lajɛ tuguni — kana falen siɲɛ fila.",
+    "notEnoughBase": "I ka warijɛ kɔnɔ Base kan, wari tɛ se. Wari fara a kan, da wulili bɛ i makɔnɔ.",
+    "otherChain": "Nin post bɛ ban chain wɛrɛ kan, o la DHB ka kan ka kɛ i ka warijɛ kɔnɔ yen."
   },
   "walletSetup": {
     "writeThemDown": "U sɛbɛn yɔrɔ dɔ la i kelen bɛ se ka taa min na. Mɔgɔ o mɔgɔ min bɛ ni nin daɲɛw ye, i ka wari maralan bɛ o bolo — DeHub dɛmɛbaga tɛ se k'u lasegin wala k'u labɛn kokura.",

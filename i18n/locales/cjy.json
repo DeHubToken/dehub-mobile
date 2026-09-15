@@ -3315,7 +3315,19 @@
     "solanaFailed": "Solana 支付失败",
     "missingWeb3": "缺少 web3 上下文",
     "preparingRouter": "正在准备支付路由… 请稍后重试",
-    "swapShort": "兑换已完成，但 DHB 仍然不足。请重试。"
+    "swapShort": "兑换已完成，但 DHB 仍然不足。请重试。",
+    "yourBalance": "你的余额",
+    "youNeed": "还需要",
+    "scanning": "正在寻找最快的充值方式…",
+    "topUpAndUnlock": "充值并解锁",
+    "notNow": "现在不用",
+    "buySymbol": "购买 {{symbol}}",
+    "topUpThenReturn": "先给钱包充值，再回来",
+    "checkWalletFailed": "现在无法检查你的钱包。",
+    "preparingWallet": "正在准备你的钱包 — 请稍后再试。",
+    "swapSettling": "你的兑换可能仍在结算中。再试之前请先查看 DHB 余额 — 不要重复兑换。",
+    "notEnoughBase": "你在 Base 上的钱包余额不足以支付。补充资金后，解锁在等你。",
+    "otherChain": "这条帖子在另一条链上结算，所以你在那条链的钱包里需要有 DHB。"
   },
   "walletSetup": {
     "writeThemDown": "把它们写在只有你能拿到的地方。谁掌握这些词，谁就掌握你的钱包——DeHub 客服既无法找回，也无法重置。",

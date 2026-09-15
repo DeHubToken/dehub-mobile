@@ -3484,7 +3484,19 @@
     "solanaFailed": "Platba cez Solana zlyhala",
     "missingWeb3": "Chýba kontext web3",
     "preparingRouter": "Pripravuje sa platobný smerovač… skúste to o chvíľu",
-    "swapShort": "Výmena prebehla, ale DHB stále nestačí. Skúste to znova."
+    "swapShort": "Výmena prebehla, ale DHB stále nestačí. Skúste to znova.",
+    "yourBalance": "Váš zostatok",
+    "youNeed": "Potrebujete",
+    "scanning": "Hľadá sa najrýchlejší spôsob dobitia…",
+    "topUpAndUnlock": "Dobiť a odomknúť",
+    "notNow": "Teraz nie",
+    "buySymbol": "Kúpiť {{symbol}}",
+    "topUpThenReturn": "Dobite peňaženku a vráťte sa",
+    "checkWalletFailed": "Vašu peňaženku sa teraz nepodarilo overiť.",
+    "preparingWallet": "Pripravuje sa vaša peňaženka — skúste to o chvíľu.",
+    "swapSettling": "Vaša výmena sa možno stále vyrovnáva. Pred ďalším pokusom skontrolujte zostatok DHB — nevymieňajte dvakrát.",
+    "notEnoughBase": "Vo vašej peňaženke na Base nie je dosť prostriedkov. Doplňte ich — odomknutie na vás počká.",
+    "otherChain": "Tento príspevok sa vyrovnáva na inom reťazci, takže tam potrebujete DHB v peňaženke."
   },
   "walletSetup": {
     "writeThemDown": "Zapíšte si ich niekam, kam sa dostanete len vy. Kto má tieto slová, má vašu peňaženku — podpora DeHub ich nedokáže obnoviť ani resetovať.",

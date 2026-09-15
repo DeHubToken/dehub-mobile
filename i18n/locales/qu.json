@@ -3345,7 +3345,19 @@
     "solanaFailed": "Solana qullqi quy mana atipakurqanchu",
     "missingWeb3": "web3 contexto mana kanchu",
     "preparingRouter": "Qullqi quy routerta wakichichkan… pisi pachamanta yapamanta ruway",
-    "swapShort": "Rantinakuy tukusqa ichaqa DHB manaraq aypanchu. Yapamanta ruway."
+    "swapShort": "Rantinakuy tukusqa ichaqa DHB manaraq aypanchu. Yapamanta ruway.",
+    "yourBalance": "Qullqiyki",
+    "youNeed": "Necesitanki",
+    "scanning": "Utqay hunt'achinapaq ñanta maskachkan…",
+    "topUpAndUnlock": "Hunt'achiy hinaspa kichay",
+    "notNow": "Kunanqa manam",
+    "buySymbol": "{{symbol}} rantiy",
+    "topUpThenReturn": "Qullqi wayaqaykita hunt'achiy, chaymanta kutimuy",
+    "checkWalletFailed": "Kunanqa qullqi wayaqaykita qhaway mana atikurqachu.",
+    "preparingWallet": "Qullqi wayaqaykita wakichichkan — pisi pachamanta yapamanta ruray.",
+    "swapSettling": "Trukayniykiqa manaraqchá tukusqachu. Yapamanta ruwanaykipaq ñawpaqta DHB qullqiykita qhaway — ama iskay kutita trukaychu.",
+    "notEnoughBase": "Base ukhupi qullqi wayaqaykipi mana aypanchu. Qullqita yapay, kichayqa suyasunki.",
+    "otherChain": "Kay willakuyqa huk chainpim tukun, chayrayku chaypi qullqi wayaqaykipi DHB necesitanki."
   },
   "walletSetup": {
     "writeThemDown": "Qanlla chayana atinayki cheqaspi qillqay. Pipas kay simikunata hapiq, qullqi waqaychanaykitam hapin — DeHub yanapaqqa mana kutichiyta nitaq musuqchayta atinchu.",

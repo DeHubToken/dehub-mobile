@@ -3306,7 +3306,19 @@
     "solanaFailed": "Lacag-bixinta Solana way fashilantay",
     "missingWeb3": "Macnaha web3 ma jiro",
     "preparingRouter": "Waa la diyaarinayaa router-ka lacag-bixinta… isku day mar kale daqiiqad kadib",
-    "swapShort": "Beddelka waa la sameeyay laakiin DHB weli kuma filna. Isku day mar kale."
+    "swapShort": "Beddelka waa la sameeyay laakiin DHB weli kuma filna. Isku day mar kale.",
+    "yourBalance": "Hadhaagaaga",
+    "youNeed": "Waxaad u baahan tahay",
+    "scanning": "Waxaa la raadinayaa habka ugu dhaqsaha badan ee lagugu buuxiyo…",
+    "topUpAndUnlock": "Buuxi oo fur",
+    "notNow": "Ma aha hadda",
+    "buySymbol": "Iibso {{symbol}}",
+    "topUpThenReturn": "Buuxi jeebkaaga, kadibna soo laabo",
+    "checkWalletFailed": "Hadda lama hubin karin jeebkaaga.",
+    "preparingWallet": "Jeebkaaga waa la diyaarinayaa — daqiiqado kadib isku day mar kale.",
+    "swapSettling": "Beddelkaagu weli wuu dhammaystiranayaa. Hubi hadhaaga DHB ka hor intaadan mar kale isku dayin — ha beddelin laba jeer.",
+    "notEnoughBase": "Jeebkaaga Base kuma filna in lagu daboolo. Ku dar lacag, furitaanka wuu ku sugayaa.",
+    "otherChain": "Qoraalkan wuxuu ku dhammaystirmaa silsilad kale, markaa waxaad u baahan tahay DHB jeebkaaga halkaas."
   },
   "walletSetup": {
     "writeThemDown": "Ku qor meel adiga oo kaliya aad gaari karto. Qof kasta oo haysta erayadan wuxuu haystaa boorsadaada — taageerada DeHub ma soo celin karto mana dib u dejin karto.",

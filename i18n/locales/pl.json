@@ -3383,7 +3383,19 @@
     "solanaFailed": "Płatność Solana nie powiodła się",
     "missingWeb3": "Brak kontekstu web3",
     "preparingRouter": "Przygotowywanie routera płatności… spróbuj ponownie za chwilę",
-    "swapShort": "Wymiana wykonana, ale DHB nadal brakuje. Spróbuj ponownie."
+    "swapShort": "Wymiana wykonana, ale DHB nadal brakuje. Spróbuj ponownie.",
+    "yourBalance": "Twoje saldo",
+    "youNeed": "Potrzebujesz",
+    "scanning": "Szukanie najszybszego sposobu doładowania…",
+    "topUpAndUnlock": "Doładuj i odblokuj",
+    "notNow": "Nie teraz",
+    "buySymbol": "Kup {{symbol}}",
+    "topUpThenReturn": "Doładuj portfel i wróć",
+    "checkWalletFailed": "Nie udało się teraz sprawdzić twojego portfela.",
+    "preparingWallet": "Przygotowywanie portfela — spróbuj ponownie za chwilę.",
+    "swapSettling": "Twoja wymiana może wciąż się rozliczać. Sprawdź saldo DHB, zanim spróbujesz ponownie — nie wymieniaj dwa razy.",
+    "notEnoughBase": "W twoim portfelu na Base nie ma dość środków. Doładuj — odblokowanie na ciebie czeka.",
+    "otherChain": "Ten post rozlicza się w innym łańcuchu, więc potrzebujesz tam DHB w portfelu."
   },
   "walletSetup": {
     "writeThemDown": "Zapisz je w miejscu, do którego masz dostęp tylko ty. Kto ma te słowa, ma twój portfel — wsparcie DeHub nie może ich odzyskać ani zresetować.",

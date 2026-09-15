@@ -3293,7 +3293,19 @@
     "solanaFailed": "Ịkwụ ụgwọ Solana dara",
     "missingWeb3": "Enweghị ọnọdụ web3",
     "preparingRouter": "Na-akwadebe router ịkwụ ụgwọ… nwaa ọzọ n'oge na-adịghị anya",
-    "swapShort": "Emechara mgbanwe mana DHB ka na-akọ. Nwaa ọzọ."
+    "swapShort": "Emechara mgbanwe mana DHB ka na-akọ. Nwaa ọzọ.",
+    "yourBalance": "Ego gị",
+    "youNeed": "Ị chọrọ",
+    "scanning": "Na-achọ ụzọ kacha ọsọ iji tinyere gị ego…",
+    "topUpAndUnlock": "Tinye ego ma mepee",
+    "notNow": "Ọ bụghị ugbu a",
+    "buySymbol": "Zụta {{symbol}}",
+    "topUpThenReturn": "Tinye ego n'obere akpa gị, wee laghachi",
+    "checkWalletFailed": "Enweghị ike ịlele obere akpa gị ugbu a.",
+    "preparingWallet": "Na-akwado obere akpa gị — nwaa ọzọ n'obere oge.",
+    "swapSettling": "Mgbanwe gị nwere ike ka na-adozi. Lelee ego DHB gị tupu ị nwaa ọzọ — agbanwela ugboro abụọ.",
+    "notEnoughBase": "O nweghị ihe zuru ezu n'obere akpa gị na Base iji kpuchie ya. Tinye ego, mmeghe ahụ na-echere gị.",
+    "otherChain": "Post a na-akwụcha na chain ọzọ, ya mere ị chọrọ DHB n'obere akpa gị ebe ahụ."
   },
   "walletSetup": {
     "writeThemDown": "Dee ha n'ebe naanị gị nwere ike iru. Onye ọ bụla nwere okwu ndị a nwere obere akpa gị — nkwado DeHub enweghị ike iweghachi ha ma ọ bụ tọgharịa ha.",

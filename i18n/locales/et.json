@@ -3314,7 +3314,19 @@
     "solanaFailed": "Solana makse ebaõnnestus",
     "missingWeb3": "web3 kontekst puudub",
     "preparingRouter": "Maksemarsruuteri ettevalmistamine… proovi hetke pärast uuesti",
-    "swapShort": "Vahetus tehtud, kuid DHB-d on endiselt vähe. Proovi uuesti."
+    "swapShort": "Vahetus tehtud, kuid DHB-d on endiselt vähe. Proovi uuesti.",
+    "yourBalance": "Sinu saldo",
+    "youNeed": "Sul on vaja",
+    "scanning": "Otsime kiireimat viisi konto täiendamiseks…",
+    "topUpAndUnlock": "Täienda ja ava",
+    "notNow": "Mitte praegu",
+    "buySymbol": "Osta {{symbol}}",
+    "topUpThenReturn": "Täienda oma rahakotti ja tule tagasi",
+    "checkWalletFailed": "Praegu ei õnnestunud sinu rahakotti kontrollida.",
+    "preparingWallet": "Sinu rahakotti valmistatakse ette — proovi hetke pärast uuesti.",
+    "swapSettling": "Sinu vahetus võib veel arveldada. Kontrolli oma DHB saldot enne uut katset — ära vaheta kaks korda.",
+    "notEnoughBase": "Sinu Base'i rahakotis pole selleks piisavalt. Lisa vahendeid — avamine ootab sind.",
+    "otherChain": "See postitus arveldab teises ahelas, seega vajad seal oma rahakotis DHB-d."
   },
   "walletSetup": {
     "writeThemDown": "Kirjuta need kohta, kuhu pääsed ainult sina. Kellel on need sõnad, sellel on sinu rahakott — DeHubi tugi ei saa neid taastada ega lähtestada.",

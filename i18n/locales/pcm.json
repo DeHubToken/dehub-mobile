@@ -3129,7 +3129,19 @@
     "solanaFailed": "Solana payment fail",
     "missingWeb3": "web3 context no dey",
     "preparingRouter": "Dey prepare payment router… try again small time",
-    "swapShort": "Swap don finish but DHB still no reach. Try again."
+    "swapShort": "Swap don finish but DHB still no reach. Try again.",
+    "yourBalance": "Your balance",
+    "youNeed": "You need",
+    "scanning": "Dey find di fastest way to top you up…",
+    "topUpAndUnlock": "Top up & unlock",
+    "notNow": "No be now",
+    "buySymbol": "Buy {{symbol}}",
+    "topUpThenReturn": "Top up your wallet, come back after",
+    "checkWalletFailed": "E no fit check your wallet right now.",
+    "preparingWallet": "Dey prepare your wallet — try again small time.",
+    "swapSettling": "Your swap fit still dey settle. Check your DHB balance before you try again — no swap two times.",
+    "notEnoughBase": "Wetin dey your wallet for Base no reach to cover am. Add money, di unlock go dey wait for you.",
+    "otherChain": "Dis post dey settle for anoda chain, so you need DHB for your wallet dia."
   },
   "walletSetup": {
     "writeThemDown": "Write dem for place wey na only you fit reach. Anybody wey get dis words get your wallet — DeHub support no fit recover dem and no fit reset dem.",

@@ -3383,7 +3383,19 @@
     "solanaFailed": "Solana 결제에 실패했습니다",
     "missingWeb3": "web3 컨텍스트가 없습니다",
     "preparingRouter": "결제 라우터를 준비 중입니다… 잠시 후 다시 시도하세요",
-    "swapShort": "교환은 완료했지만 DHB가 아직 부족합니다. 다시 시도하세요."
+    "swapShort": "교환은 완료했지만 DHB가 아직 부족합니다. 다시 시도하세요.",
+    "yourBalance": "내 잔액",
+    "youNeed": "필요 금액",
+    "scanning": "가장 빠른 충전 방법을 찾는 중…",
+    "topUpAndUnlock": "충전하고 잠금 해제",
+    "notNow": "나중에",
+    "buySymbol": "{{symbol}} 구매",
+    "topUpThenReturn": "지갑을 충전한 뒤 다시 오세요",
+    "checkWalletFailed": "지금은 지갑을 확인할 수 없습니다.",
+    "preparingWallet": "지갑을 준비하는 중입니다. 잠시 후 다시 시도해 주세요.",
+    "swapSettling": "스왑이 아직 정산 중일 수 있습니다. 다시 시도하기 전에 DHB 잔액을 확인하세요. 두 번 스왑하지 마세요.",
+    "notEnoughBase": "Base의 지갑 잔액이 부족합니다. 자금을 추가하면 잠금 해제가 기다리고 있습니다.",
+    "otherChain": "이 게시물은 다른 체인에서 정산되므로 그 체인의 지갑에 DHB가 필요합니다."
   },
   "walletSetup": {
     "writeThemDown": "오직 당신만 접근할 수 있는 곳에 적어 두세요. 이 단어를 가진 사람은 누구든 당신의 지갑을 갖게 됩니다. DeHub 고객지원은 복구할 수도, 재설정할 수도 없습니다.",
