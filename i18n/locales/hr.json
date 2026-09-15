@@ -3203,5 +3203,25 @@
     "legacyTitle": "Stariji Solana novčanik — {{amount}} SOL",
     "legacyBody": "Ranija verzija aplikacije stvorila je zaseban Solana novčanik koji je postojao samo na ovom uređaju. U njemu je i dalje stanje. Prebaci sredstva na adresu iznad dok imaš ovaj telefon — taj se ključ nigdje drugdje ne može vratiti.",
     "legacyViewA11y": "Prikaži stariji novčanik na Solscanu"
+  },
+  "bridge": {
+    "title": "Most za DHB",
+    "from": "Iz",
+    "to": "U",
+    "recent": "Tvoji nedavni mostovi",
+    "noneRecent": "Nema prijenosa mostom u zadnjih 7 dana.",
+    "howItWorksBody": "Pošalji DHB na relay adresu mosta na izvornom lancu. Relay automatski isporučuje odgovarajući iznos na odredišnom lancu u roku od nekoliko minuta.",
+    "relayAddress": "Relay adresa mosta (pošalji DHB ovdje na izvornom lancu):",
+    "addressCopied": "Adresa mosta kopirana!",
+    "swapDirectionA11y": "Zamijeni smjer mosta",
+    "invalidAmount": "Unesi valjani iznos za most.",
+    "walletNotReady": "Novčanik nije spreman. Pokušaj ponovno.",
+    "insufficient": "Nedovoljno DHB na {{chain}}.",
+    "switchFailed": "Prebacivanje na {{chain}} nije uspjelo. Pokušaj ponovno.",
+    "initiated": "Most pokrenut! TX: {{tx}}",
+    "insufficientOnChain": "Nedovoljno DHB na {{chain}}. Stanje na lancu može se razlikovati od prikazanog.",
+    "needGas": "Potreban je izvorni {{token}} za gas na {{chain}}.",
+    "bridging": "Prebacivanje…",
+    "bridgeAction": "Most {{from}} → {{to}}"
   }
 }

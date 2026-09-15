@@ -3207,5 +3207,25 @@
     "legacyTitle": "Äldre Solana-plånbok — {{amount}} SOL",
     "legacyBody": "En tidigare version av appen skapade en separat Solana-plånbok som bara fanns på den här enheten. Den har fortfarande ett saldo. Flytta pengarna till adressen ovan medan du har den här telefonen — den nyckeln går inte att återställa någon annanstans.",
     "legacyViewA11y": "Visa äldre plånbok på Solscan"
+  },
+  "bridge": {
+    "title": "Brygga DHB",
+    "from": "Från",
+    "to": "Till",
+    "recent": "Dina senaste bryggor",
+    "noneRecent": "Inga bryggöverföringar de senaste 7 dagarna.",
+    "howItWorksBody": "Skicka DHB till bryggans relä-adress på källkedjan. Reläet levererar automatiskt motsvarande belopp på målkedjan inom några minuter.",
+    "relayAddress": "Bryggans relä-adress (skicka DHB hit på källkedjan):",
+    "addressCopied": "Bryggans adress kopierad!",
+    "swapDirectionA11y": "Byt bryggans riktning",
+    "invalidAmount": "Ange ett giltigt belopp att brygga.",
+    "walletNotReady": "Plånboken är inte redo. Försök igen.",
+    "insufficient": "Otillräckligt med DHB på {{chain}}.",
+    "switchFailed": "Det gick inte att byta till {{chain}}. Försök igen.",
+    "initiated": "Bryggningen har startat! TX: {{tx}}",
+    "insufficientOnChain": "Otillräckligt med DHB på {{chain}}. Saldot på kedjan kan skilja sig från det visade.",
+    "needGas": "Du behöver native {{token}} för gas på {{chain}}.",
+    "bridging": "Bryggar…",
+    "bridgeAction": "Brygga {{from}} → {{to}}"
   }
 }

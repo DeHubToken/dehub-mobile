@@ -3202,5 +3202,25 @@
     "legacyTitle": "Vanem Solana rahakott — {{amount}} SOL",
     "legacyBody": "Rakenduse varasem versioon lõi eraldi Solana rahakoti, mis eksisteeris ainult selles seadmes. Selles on endiselt raha. Kanna vahendid ülaltoodud aadressile, kuni see telefon on sul käes — seda võtit ei saa mujalt taastada.",
     "legacyViewA11y": "Vaata vanemat rahakotti Solscanis"
+  },
+  "bridge": {
+    "title": "DHB sild",
+    "from": "Kust",
+    "to": "Kuhu",
+    "recent": "Sinu hiljutised sillad",
+    "noneRecent": "Viimase 7 päeva jooksul sillaülekandeid pole.",
+    "howItWorksBody": "Saada DHB silla edastusaadressile lähteahelas. Edastaja toimetab samaväärse summa sihtahelasse automaatselt minutite jooksul.",
+    "relayAddress": "Silla edastusaadress (saada DHB siia lähteahelas):",
+    "addressCopied": "Silla aadress kopeeritud!",
+    "swapDirectionA11y": "Vaheta silla suunda",
+    "invalidAmount": "Sisesta sildamiseks kehtiv summa.",
+    "walletNotReady": "Rahakott pole valmis. Proovi uuesti.",
+    "insufficient": "{{chain}} ahelas pole piisavalt DHB-d.",
+    "switchFailed": "{{chain}} ahelale ei õnnestunud lülituda. Proovi uuesti.",
+    "initiated": "Sildamine alustatud! TX: {{tx}}",
+    "insufficientOnChain": "{{chain}} ahelas pole piisavalt DHB-d. Ahela saldo võib kuvatavast erineda.",
+    "needGas": "{{chain}} ahelas on gaasi jaoks vaja algupärast {{token}}.",
+    "bridging": "Sildamine…",
+    "bridgeAction": "Sild {{from}} → {{to}}"
   }
 }

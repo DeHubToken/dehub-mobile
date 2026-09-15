@@ -3265,5 +3265,25 @@
     "legacyTitle": "Eski Solana cüzdanı — {{amount}} SOL",
     "legacyBody": "Uygulamanın daha eski bir sürümü, yalnızca bu cihazda var olan ayrı bir Solana cüzdanı oluşturmuştu. Hâlâ bakiyesi var. Bu telefon elindeyken parayı yukarıdaki adrese taşı — o anahtar başka hiçbir yerden kurtarılamaz.",
     "legacyViewA11y": "Eski cüzdanı Solscan'da görüntüle"
+  },
+  "bridge": {
+    "title": "DHB köprüsü",
+    "from": "Nereden",
+    "to": "Nereye",
+    "recent": "Son köprü işlemlerin",
+    "noneRecent": "Son 7 günde köprü transferi yok.",
+    "howItWorksBody": "Kaynak zincirde köprünün aktarma adresine DHB gönder. Aktarıcı, eşdeğer tutarı hedef zincire birkaç dakika içinde otomatik olarak iletir.",
+    "relayAddress": "Köprü aktarma adresi (DHB'yi kaynak zincirde buraya gönder):",
+    "addressCopied": "Köprü adresi kopyalandı!",
+    "swapDirectionA11y": "Köprü yönünü değiştir",
+    "invalidAmount": "Köprülemek için geçerli bir tutar gir.",
+    "walletNotReady": "Cüzdan hazır değil. Lütfen tekrar dene.",
+    "insufficient": "{{chain}} üzerinde yeterli DHB yok.",
+    "switchFailed": "{{chain}} ağına geçilemedi. Lütfen tekrar dene.",
+    "initiated": "Köprü başlatıldı! TX: {{tx}}",
+    "insufficientOnChain": "{{chain}} üzerinde yeterli DHB yok. Zincirdeki bakiye gösterilenden farklı olabilir.",
+    "needGas": "{{chain}} üzerinde gas için yerel {{token}} gerekiyor.",
+    "bridging": "Köprüleniyor…",
+    "bridgeAction": "Köprü {{from}} → {{to}}"
   }
 }

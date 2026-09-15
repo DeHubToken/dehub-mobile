@@ -3200,5 +3200,25 @@
     "legacyTitle": "旧的 Solana 钱包 — {{amount}} SOL",
     "legacyBody": "应用的早期版本创建了一个独立的 Solana 钱包，它只存在于此设备上。其中仍有余额。趁手机还在，请把资金转到上面的地址——那把密钥在别处无法找回。",
     "legacyViewA11y": "在 Solscan 上查看旧钱包"
+  },
+  "bridge": {
+    "title": "跨链转移 DHB",
+    "from": "从",
+    "to": "到",
+    "recent": "你最近的跨链转移",
+    "noneRecent": "最近 7 天没有跨链转移。",
+    "howItWorksBody": "在源链上把 DHB 发送到桥接中继地址。中继会在几分钟内自动把等额资产送达目标链。",
+    "relayAddress": "桥接中继地址（在源链上把 DHB 发到这里）：",
+    "addressCopied": "已复制桥接地址！",
+    "swapDirectionA11y": "切换跨链方向",
+    "invalidAmount": "请输入有效的跨链金额。",
+    "walletNotReady": "钱包尚未就绪。请重试。",
+    "insufficient": "{{chain}} 上的 DHB 不足。",
+    "switchFailed": "无法切换到 {{chain}}。请重试。",
+    "initiated": "跨链已发起！TX: {{tx}}",
+    "insufficientOnChain": "{{chain}} 上的 DHB 不足。链上余额可能与显示的不同。",
+    "needGas": "在 {{chain}} 上需要原生 {{token}} 支付 gas。",
+    "bridging": "跨链中…",
+    "bridgeAction": "跨链 {{from}} → {{to}}"
   }
 }

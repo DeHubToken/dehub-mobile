@@ -3203,5 +3203,25 @@
     "legacyTitle": "Cartera de Solana antiga — {{amount}} SOL",
     "legacyBody": "Una versió anterior de l'aplicació va crear una cartera de Solana separada que només existia en aquest dispositiu. Encara hi queda saldo. Mou els fons a l'adreça de dalt mentre tinguis aquest telèfon: aquella clau no es pot recuperar enlloc més.",
     "legacyViewA11y": "Mostra la cartera antiga a Solscan"
+  },
+  "bridge": {
+    "title": "Pont de DHB",
+    "from": "Des de",
+    "to": "Cap a",
+    "recent": "Els teus ponts recents",
+    "noneRecent": "Cap transferència de pont en els últims 7 dies.",
+    "howItWorksBody": "Envia DHB a l'adreça de relé del pont a la cadena d'origen. El relé lliura automàticament l'import equivalent a la cadena de destinació en qüestió de minuts.",
+    "relayAddress": "Adreça de relé del pont (envia DHB aquí a la cadena d'origen):",
+    "addressCopied": "Adreça del pont copiada!",
+    "swapDirectionA11y": "Inverteix la direcció del pont",
+    "invalidAmount": "Introdueix un import vàlid per al pont.",
+    "walletNotReady": "La cartera no està a punt. Torna-ho a provar.",
+    "insufficient": "DHB insuficient a {{chain}}.",
+    "switchFailed": "No s'ha pogut canviar a {{chain}}. Torna-ho a provar.",
+    "initiated": "Pont iniciat! TX: {{tx}}",
+    "insufficientOnChain": "DHB insuficient a {{chain}}. El saldo a la cadena pot diferir del mostrat.",
+    "needGas": "Cal {{token}} natiu per al gas a {{chain}}.",
+    "bridging": "S'està fent el pont…",
+    "bridgeAction": "Pont {{from}} → {{to}}"
   }
 }

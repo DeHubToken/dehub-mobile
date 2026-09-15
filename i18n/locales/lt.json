@@ -3202,5 +3202,25 @@
     "legacyTitle": "Senesnė Solana piniginė — {{amount}} SOL",
     "legacyBody": "Ankstesnė programėlės versija sukūrė atskirą Solana piniginę, kuri egzistavo tik šiame įrenginyje. Joje vis dar yra lėšų. Perveskite lėšas į aukščiau nurodytą adresą, kol turite šį telefoną — to rakto niekur kitur atkurti nepavyks.",
     "legacyViewA11y": "Peržiūrėti senesnę piniginę Solscan"
+  },
+  "bridge": {
+    "title": "DHB tiltas",
+    "from": "Iš",
+    "to": "Į",
+    "recent": "Jūsų naujausi tiltai",
+    "noneRecent": "Per pastarąsias 7 dienas tilto pervedimų nebuvo.",
+    "howItWorksBody": "Siųskite DHB į tilto perdavimo adresą šaltinio grandinėje. Perdavimo mazgas automatiškai pristato lygiavertę sumą paskirties grandinėje per kelias minutes.",
+    "relayAddress": "Tilto perdavimo adresas (siųskite DHB čia šaltinio grandinėje):",
+    "addressCopied": "Tilto adresas nukopijuotas!",
+    "swapDirectionA11y": "Sukeisti tilto kryptį",
+    "invalidAmount": "Įveskite galiojančią sumą pervedimui tiltu.",
+    "walletNotReady": "Piniginė neparuošta. Bandykite dar kartą.",
+    "insufficient": "Nepakanka DHB grandinėje {{chain}}.",
+    "switchFailed": "Nepavyko perjungti į {{chain}}. Bandykite dar kartą.",
+    "initiated": "Tiltas pradėtas! TX: {{tx}}",
+    "insufficientOnChain": "Nepakanka DHB grandinėje {{chain}}. Likutis grandinėje gali skirtis nuo rodomo.",
+    "needGas": "Grandinėje {{chain}} dujoms reikia vietinio {{token}}.",
+    "bridging": "Pervedama…",
+    "bridgeAction": "Tiltas {{from}} → {{to}}"
   }
 }

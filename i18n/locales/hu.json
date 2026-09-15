@@ -3207,5 +3207,25 @@
     "legacyTitle": "Régebbi Solana tárca — {{amount}} SOL",
     "legacyBody": "Az alkalmazás egy korábbi verziója külön Solana tárcát hozott létre, amely csak ezen az eszközön létezett. Még mindig van rajta egyenleg. Utald át az összeget a fenti címre, amíg megvan ez a telefon — az a kulcs sehol máshol nem állítható vissza.",
     "legacyViewA11y": "Régebbi tárca megtekintése a Solscanon"
+  },
+  "bridge": {
+    "title": "DHB áthidalása",
+    "from": "Innen",
+    "to": "Ide",
+    "recent": "Legutóbbi áthidalásaid",
+    "noneRecent": "Az elmúlt 7 napban nem volt áthidalási átutalás.",
+    "howItWorksBody": "Küldj DHB-t a híd relé címére a forrásláncon. A relé néhány percen belül automatikusan kézbesíti az egyenértékű összeget a célláncon.",
+    "relayAddress": "A híd relé címe (küldj ide DHB-t a forrásláncon):",
+    "addressCopied": "Híd címe másolva!",
+    "swapDirectionA11y": "Híd irányának felcserélése",
+    "invalidAmount": "Adj meg érvényes összeget az áthidaláshoz.",
+    "walletNotReady": "A tárca nem áll készen. Próbáld újra.",
+    "insufficient": "Nincs elég DHB a(z) {{chain}} láncon.",
+    "switchFailed": "Nem sikerült átváltani erre: {{chain}}. Próbáld újra.",
+    "initiated": "Áthidalás elindítva! TX: {{tx}}",
+    "insufficientOnChain": "Nincs elég DHB a(z) {{chain}} láncon. A láncon lévő egyenleg eltérhet a megjelenítettől.",
+    "needGas": "Natív {{token}} szükséges a gázdíjhoz a(z) {{chain}} láncon.",
+    "bridging": "Áthidalás folyamatban…",
+    "bridgeAction": "Áthidalás: {{from}} → {{to}}"
   }
 }

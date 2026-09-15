@@ -3024,5 +3024,25 @@
     "legacyTitle": "Old Solana wallet — {{amount}} SOL",
     "legacyBody": "One old version of di app create anoda Solana wallet wey only dey for dis device. E still get money inside. Move di money go di address wey dey up while you still get dis phone — dat key no fit come back from anywhere else.",
     "legacyViewA11y": "See di old wallet for Solscan"
+  },
+  "bridge": {
+    "title": "Bridge DHB",
+    "from": "From",
+    "to": "To",
+    "recent": "Your recent bridges",
+    "noneRecent": "No bridge transfer for di last 7 days.",
+    "howItWorksBody": "Send DHB go di bridge relay address for di source chain. Di relay go automatically deliver di same amount for di destination chain within minutes.",
+    "relayAddress": "Bridge relay address (send DHB here for di source chain):",
+    "addressCopied": "Bridge address don copy!",
+    "swapDirectionA11y": "Swap di bridge direction",
+    "invalidAmount": "Enter correct amount to bridge.",
+    "walletNotReady": "Wallet never ready. Abeg try again.",
+    "insufficient": "DHB no plenty for {{chain}}.",
+    "switchFailed": "We no fit switch go {{chain}}. Abeg try again.",
+    "initiated": "Bridge don start! TX: {{tx}}",
+    "insufficientOnChain": "DHB no plenty for {{chain}}. Di on-chain balance fit different from wetin dey show.",
+    "needGas": "You need native {{token}} for gas for {{chain}}.",
+    "bridging": "Bridging…",
+    "bridgeAction": "Bridge {{from}} → {{to}}"
   }
 }

@@ -3267,5 +3267,25 @@
     "legacyTitle": "Boorsaa Solana moofaa — {{amount}} SOL",
     "legacyBody": "Fooyyaan appii duraanii boorsaa Solana adda ta'e kan meeshaa kana qofa irra ture uume. Ammallee maallaqa qaba. Bilbila kana yeroo qabdutti maallaqicha gara teessoo armaan olii jijjiiri — furtuun sun bakka biraa hin deebifamu.",
     "legacyViewA11y": "Boorsaa moofaa Solscan irratti ilaali"
+  },
+  "bridge": {
+    "title": "Riqicha DHB",
+    "from": "Irraa",
+    "to": "Gara",
+    "recent": "Riqichoota kee dhiheenya",
+    "noneRecent": "Guyyoota 7 darban keessatti dabarsi riqichaa hin jiru.",
+    "howItWorksBody": "Foddaa madda irratti teessoo dabarsaa riqichaatti DHB ergi. Dabarsaan sun hangi walqixa ta'e foddaa galmaa irratti daqiiqaa muraasa keessatti ofumaan geessa.",
+    "relayAddress": "Teessoo dabarsaa riqichaa (DHB as ergi foddaa madda irratti):",
+    "addressCopied": "Teessoon riqichaa garagalfame!",
+    "swapDirectionA11y": "Kallattii riqichaa jijjiiri",
+    "invalidAmount": "Riqicha keessa dabarsuuf hanga sirrii galchi.",
+    "walletNotReady": "Boorsaan qophaa'aa miti. Irra deebiʼii yaali.",
+    "insufficient": "{{chain}} irratti DHB gaʼaan hin jiru.",
+    "switchFailed": "Gara {{chain}} jijjiiruun hin dandaʼamne. Irra deebiʼii yaali.",
+    "initiated": "Riqichi jalqabame! TX: {{tx}}",
+    "insufficientOnChain": "{{chain}} irratti DHB gaʼaan hin jiru. Hafteessi foddaa irraa kan agarsiifame irraa adda taʼuu dandaʼa.",
+    "needGas": "{{chain}} irratti gaazii kaffaluuf {{token}} dhalootaa barbaachisa.",
+    "bridging": "Riqicha keessa dabarsaa jira…",
+    "bridgeAction": "Riqicha {{from}} → {{to}}"
   }
 }

@@ -3161,5 +3161,25 @@
     "legacyTitle": "Dompet Solana lawas — {{amount}} SOL",
     "legacyBody": "Versi lawas aplikasi iki nggawe dompet Solana kapisah sing mung ana ing piranti iki. Isih ana saldone. Pindhahna dhuwite menyang alamat ing ndhuwur nalika HP iki isih ana ing sampeyan — kunci kuwi ora bisa dibalekake ing panggonan liya.",
     "legacyViewA11y": "Ndeleng dompet lawas ing Solscan"
+  },
+  "bridge": {
+    "title": "Bridge DHB",
+    "from": "Saka",
+    "to": "Menyang",
+    "recent": "Bridge anyar sampeyan",
+    "noneRecent": "Ora ana transfer bridge ing 7 dina pungkasan.",
+    "howItWorksBody": "Kirim DHB menyang alamat relay bridge ing rantai sumber. Relay kanthi otomatis ngirim jumlah sing padha ing rantai tujuan sajrone sawetara menit.",
+    "relayAddress": "Alamat relay bridge (kirim DHB mrene ing rantai sumber):",
+    "addressCopied": "Alamat bridge wis disalin!",
+    "swapDirectionA11y": "Ganti arah bridge",
+    "invalidAmount": "Lebokna jumlah sing bener kanggo bridge.",
+    "walletNotReady": "Dompet durung siap. Coba maneh.",
+    "insufficient": "DHB ora cukup ing {{chain}}.",
+    "switchFailed": "Ora bisa ngganti menyang {{chain}}. Coba maneh.",
+    "initiated": "Bridge diwiwiti! TX: {{tx}}",
+    "insufficientOnChain": "DHB ora cukup ing {{chain}}. Saldo ing rantai bisa beda karo sing ditampilake.",
+    "needGas": "Butuh {{token}} asli kanggo gas ing {{chain}}.",
+    "bridging": "Lagi bridge…",
+    "bridgeAction": "Bridge {{from}} → {{to}}"
   }
 }

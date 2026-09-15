@@ -3181,5 +3181,25 @@
     "legacyTitle": "Obere akpa Solana ochie — {{amount}} SOL",
     "legacyBody": "Ụdị ngwa ochie mepụtara obere akpa Solana dị iche nke dị naanị na ngwaọrụ a. Ọ ka nwere ego. Bufee ego ahụ na adreesị dị n'elu ka ekwentị a ka dị gị n'aka — enweghị ike iweghachi igodo ahụ ebe ọzọ.",
     "legacyViewA11y": "Lee obere akpa ochie na Solscan"
+  },
+  "bridge": {
+    "title": "Àkwà DHB",
+    "from": "Site na",
+    "to": "Ruo",
+    "recent": "Àkwà gị na nso nso a",
+    "noneRecent": "Enweghị nnyefe àkwà n'ime ụbọchị 7 gara aga.",
+    "howItWorksBody": "Ziga DHB na adreesị mgbanye àkwà na yinye isi. Mgbanye ahụ na-ebuga ego nhata ya na yinye ebumnuche na-akpaghị aka n'ime nkeji ole na ole.",
+    "relayAddress": "Adreesị mgbanye àkwà (zitere DHB ebe a na yinye isi):",
+    "addressCopied": "Edetuola adreesị àkwà!",
+    "swapDirectionA11y": "Gbanwee ntụzịaka àkwà",
+    "invalidAmount": "Tinye ego ziri ezi maka àkwà.",
+    "walletNotReady": "Obere akpa adịghị njikere. Biko nwaa ọzọ.",
+    "insufficient": "DHB ezughị na {{chain}}.",
+    "switchFailed": "Enweghị ike ịgbanwe gaa {{chain}}. Biko nwaa ọzọ.",
+    "initiated": "Àkwà amalitela! TX: {{tx}}",
+    "insufficientOnChain": "DHB ezughị na {{chain}}. Nguzozi dị na yinye nwere ike ịdị iche na nke egosiri.",
+    "needGas": "Ị chọrọ {{token}} nke sitere na ya maka gas na {{chain}}.",
+    "bridging": "Na-àkwà…",
+    "bridgeAction": "Àkwà {{from}} → {{to}}"
   }
 }
