@@ -3536,5 +3536,16 @@
     "usdtSent": "{{amount}} USDT don send",
     "withdrawableSoon": "You go soon fit withdraw subscription fees",
     "dpayBaseOnly": "Dpay dey only for Base."
+  },
+  "feedCard": {
+    "reactionFailed": "We no fit update di reaction",
+    "saveFailed": "We no fit save am",
+    "linkCopied": "Post link don copy",
+    "removeRepostFailed": "We no fit remove di repost",
+    "mintToGenerate": "Mint dis post make dis section show",
+    "mint": "Mint",
+    "stream": "Stream",
+    "boostPost": "Boost di post",
+    "openSuperPowers": "Open SuperPowers"
   }
 }

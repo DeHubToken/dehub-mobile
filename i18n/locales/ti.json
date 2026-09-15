@@ -3687,5 +3687,16 @@
     "usdtSent": "{{amount}} USDT ተላኢኹ",
     "withdrawableSoon": "ናይ ምዝገባ ክፍሊት ኣብ ቀረባ ግዜ ክውጻእ ይኽእል",
     "dpayBaseOnly": "Dpay ኣብ Base ጥራይ እዩ ዝርከብ።"
+  },
+  "feedCard": {
+    "reactionFailed": "ግብረመልሲ ክሕደስ ኣይተኻእለን",
+    "saveFailed": "ክዕቀብ ኣይተኻእለን",
+    "linkCopied": "መላግቦ ጽሑፍ ተቐዲሑ",
+    "removeRepostFailed": "ዳግመ ምልጣፍ ክውገድ ኣይተኻእለን",
+    "mintToGenerate": "ነዚ ክፍሊ ንምፍጣር ነዚ ጽሑፍ mint ግበሮ",
+    "mint": "Mint",
+    "stream": "ስርጭት",
+    "boostPost": "ጽሑፍ ኣብርብር",
+    "openSuperPowers": "SuperPowers ክፈት"
   }
 }

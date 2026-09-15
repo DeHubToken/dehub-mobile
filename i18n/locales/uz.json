@@ -3773,5 +3773,16 @@
     "usdtSent": "{{amount}} USDT yuborildi",
     "withdrawableSoon": "Obuna to'lovlarini tez orada yechib olish mumkin bo'ladi",
     "dpayBaseOnly": "Dpay faqat Base da mavjud."
+  },
+  "feedCard": {
+    "reactionFailed": "Reaksiyani yangilab bo'lmadi",
+    "saveFailed": "Saqlab bo'lmadi",
+    "linkCopied": "Post havolasi nusxalandi",
+    "removeRepostFailed": "Repostni olib bo'lmadi",
+    "mintToGenerate": "Bu bo'limni yaratish uchun ushbu postni mint qiling",
+    "mint": "Mint",
+    "stream": "Efir",
+    "boostPost": "Postni boost qilish",
+    "openSuperPowers": "SuperPowers ni ochish"
   }
 }

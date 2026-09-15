@@ -3672,5 +3672,16 @@
     "usdtSent": "{{amount}} USDT भेजल गइल",
     "withdrawableSoon": "सदस्यता के फीस जल्दिये निकाले लायक हो जाई",
     "dpayBaseOnly": "Dpay खाली Base पर उपलब्ध बा।"
+  },
+  "feedCard": {
+    "reactionFailed": "प्रतिक्रिया अपडेट ना हो सकल",
+    "saveFailed": "सेव ना हो सकल",
+    "linkCopied": "पोस्ट लिंक कॉपी हो गइल",
+    "removeRepostFailed": "रीपोस्ट हटावल ना जा सकल",
+    "mintToGenerate": "ई सेक्शन बनावे खातिर ई पोस्ट के मिंट करीं",
+    "mint": "मिंट",
+    "stream": "स्ट्रीम",
+    "boostPost": "पोस्ट के बूस्ट करीं",
+    "openSuperPowers": "SuperPowers खोलीं"
   }
 }

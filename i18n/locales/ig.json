@@ -3700,5 +3700,16 @@
     "usdtSent": "Ezigara {{amount}} USDT",
     "withdrawableSoon": "A ga-enwe ike iwepụta ụgwọ ndenye aha n'oge na-adịghị anya",
     "dpayBaseOnly": "Dpay dị naanị na Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Emelitechaghị mmeghachi omume",
+    "saveFailed": "Echekwaghị ya",
+    "linkCopied": "Edepụtala njikọ post ahụ",
+    "removeRepostFailed": "Ewepụghị nbipụtaghachi",
+    "mintToGenerate": "Mint post a iji mepụta ngalaba a",
+    "mint": "Mint",
+    "stream": "Ịgba mgbasa",
+    "boostPost": "Kwalite post",
+    "openSuperPowers": "Mepee SuperPowers"
   }
 }

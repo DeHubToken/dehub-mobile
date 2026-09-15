@@ -3801,5 +3801,16 @@
     "usdtSent": "Nalefa {{amount}} USDT",
     "withdrawableSoon": "Ho azo esorina tsy ho ela ny sara fisoratana anarana",
     "dpayBaseOnly": "Ao amin'ny Base ihany no misy Dpay."
+  },
+  "feedCard": {
+    "reactionFailed": "Tsy voaova ny fihetsika",
+    "saveFailed": "Tsy voatahiry",
+    "linkCopied": "Voadika ny rohin'ny lahatsoratra",
+    "removeRepostFailed": "Tsy voaesotra ny famerenana",
+    "mintToGenerate": "Mint-o ity lahatsoratra ity mba hamoronana ity fizarana ity",
+    "mint": "Mint",
+    "stream": "Fandefasana",
+    "boostPost": "Ampitomboy ny lahatsoratra",
+    "openSuperPowers": "Sokafy ny SuperPowers"
   }
 }

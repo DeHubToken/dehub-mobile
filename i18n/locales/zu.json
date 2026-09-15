@@ -3751,5 +3751,16 @@
     "usdtSent": "Kuthunyelwe {{amount}} USDT",
     "withdrawableSoon": "Izimali zokubhalisa zizokwazi ukukhishwa maduze",
     "dpayBaseOnly": "I-Dpay itholakala ku-Base kuphela."
+  },
+  "feedCard": {
+    "reactionFailed": "Ayikwazanga ukubuyekeza ukusabela",
+    "saveFailed": "Ayikwazanga ukulondoloza",
+    "linkCopied": "Isixhumanisi sokuthunyelwe sikopishiwe",
+    "removeRepostFailed": "Ayikwazanga ukususa ukuphinda kuthunyelwe",
+    "mintToGenerate": "Yenza i-mint yalokhu okuthunyelwe ukuze kwakhiwe lesi sigaba",
+    "mint": "Mint",
+    "stream": "Ukusakaza",
+    "boostPost": "Khuthaza okuthunyelwe",
+    "openSuperPowers": "Vula i-SuperPowers"
   }
 }

@@ -3778,5 +3778,16 @@
     "usdtSent": "{{amount}} USDT жіберілді",
     "withdrawableSoon": "Жазылым төлемдерін жақында шығаруға болады",
     "dpayBaseOnly": "Dpay тек Base желісінде қолжетімді."
+  },
+  "feedCard": {
+    "reactionFailed": "Реакцияны жаңарту мүмкін болмады",
+    "saveFailed": "Сақтау мүмкін болмады",
+    "linkCopied": "Жазба сілтемесі көшірілді",
+    "removeRepostFailed": "Репостты жою мүмкін болмады",
+    "mintToGenerate": "Осы бөлімді жасау үшін жазбаны mint жасаңыз",
+    "mint": "Mint",
+    "stream": "Ағын",
+    "boostPost": "Жазбаны күшейту",
+    "openSuperPowers": "SuperPowers ашу"
   }
 }

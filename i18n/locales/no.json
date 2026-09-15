@@ -3712,5 +3712,16 @@
     "usdtSent": "{{amount}} USDT sendt",
     "withdrawableSoon": "Abonnementsavgifter kan snart tas ut",
     "dpayBaseOnly": "Dpay er bare tilgjengelig på Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Klarte ikke å oppdatere reaksjonen",
+    "saveFailed": "Kunne ikke lagre",
+    "linkCopied": "Innleggslenken er kopiert",
+    "removeRepostFailed": "Klarte ikke å fjerne reposten",
+    "mintToGenerate": "Mint dette innlegget for å generere denne delen",
+    "mint": "Mint",
+    "stream": "Strøm",
+    "boostPost": "Boost innlegget",
+    "openSuperPowers": "Åpne SuperPowers"
   }
 }

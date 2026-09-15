@@ -3701,5 +3701,16 @@
     "usdtSent": "{{amount}} USDT илгээлээ",
     "withdrawableSoon": "Захиалгын төлбөрийг удахгүй татаж авах боломжтой болно",
     "dpayBaseOnly": "Dpay зөвхөн Base дээр ажиллана."
+  },
+  "feedCard": {
+    "reactionFailed": "Хариу үйлдлийг шинэчилж чадсангүй",
+    "saveFailed": "Хадгалж чадсангүй",
+    "linkCopied": "Нийтлэлийн холбоосыг хууллаа",
+    "removeRepostFailed": "Дахин нийтлэлийг устгаж чадсангүй",
+    "mintToGenerate": "Энэ хэсгийг үүсгэхийн тулд энэ нийтлэлийг mint хийнэ үү",
+    "mint": "Mint",
+    "stream": "Дамжуулалт",
+    "boostPost": "Нийтлэлийг бустлах",
+    "openSuperPowers": "SuperPowers нээх"
   }
 }

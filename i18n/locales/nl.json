@@ -3989,5 +3989,16 @@
     "usdtSent": "{{amount}} USDT verzonden",
     "withdrawableSoon": "Abonnementskosten kunnen binnenkort worden opgenomen",
     "dpayBaseOnly": "Dpay is alleen beschikbaar op Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Kan reactie niet bijwerken",
+    "saveFailed": "Opslaan mislukt",
+    "linkCopied": "Berichtlink gekopieerd",
+    "removeRepostFailed": "Kan repost niet verwijderen",
+    "mintToGenerate": "Mint dit bericht om deze sectie te genereren",
+    "mint": "Minten",
+    "stream": "Stream",
+    "boostPost": "Bericht boosten",
+    "openSuperPowers": "SuperPowers openen"
   }
 }

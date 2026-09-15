@@ -3678,5 +3678,16 @@
     "usdtSent": "{{amount}} USDT प्रेषितम्",
     "withdrawableSoon": "अभिदानशुल्कानि शीघ्रम् अपसारयितुं शक्यन्ते",
     "dpayBaseOnly": "Dpay केवलं Base इत्यत्र उपलभ्यते।"
+  },
+  "feedCard": {
+    "reactionFailed": "प्रतिक्रिया अद्यतनीकर्तुं न शक्यते स्म",
+    "saveFailed": "रक्षितुं न शक्यते स्म",
+    "linkCopied": "प्रकाशनसम्पर्कः प्रतिलिखितः",
+    "removeRepostFailed": "पुनःप्रकाशनं निष्कासयितुं न शक्यते स्म",
+    "mintToGenerate": "एतद् विभागं जनयितुं इदं प्रकाशनं mint कुरुत",
+    "mint": "Mint",
+    "stream": "प्रसारणम्",
+    "boostPost": "प्रकाशनं वर्धयतु",
+    "openSuperPowers": "SuperPowers उद्घाटयतु"
   }
 }

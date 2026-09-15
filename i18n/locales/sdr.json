@@ -3721,5 +3721,16 @@
     "usdtSent": "{{amount}} USDT نێردرا",
     "withdrawableSoon": "کرێی بەشداری بەم زووانە دەتوانرێت دەربهێنرێت",
     "dpayBaseOnly": "Dpay تەنها لەسەر Base بەردەستە."
+  },
+  "feedCard": {
+    "reactionFailed": "نەتوانرا کاردانەوە نوێ بکرێتەوە",
+    "saveFailed": "نەتوانرا پاشەکەوت بکرێت",
+    "linkCopied": "بەستەری پۆست کۆپی کرا",
+    "removeRepostFailed": "نەتوانرا ڕیپۆست لابدرێت",
+    "mintToGenerate": "بۆ دروستکردنی ئەم بەشە ئەم پۆستە mint بکە",
+    "mint": "Mint",
+    "stream": "پەخش",
+    "boostPost": "پۆست بووست بکە",
+    "openSuperPowers": "SuperPowers بکەرەوە"
   }
 }

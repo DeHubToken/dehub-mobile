@@ -3735,5 +3735,16 @@
     "usdtSent": "{{amount}} USDT ارسال شد",
     "withdrawableSoon": "کارمزد اشتراک به‌زودی قابل برداشت می‌شود",
     "dpayBaseOnly": "Dpay فقط روی Base در دسترس است."
+  },
+  "feedCard": {
+    "reactionFailed": "به‌روزرسانی واکنش ناموفق بود",
+    "saveFailed": "ذخیره ناموفق بود",
+    "linkCopied": "لینک پست کپی شد",
+    "removeRepostFailed": "حذف بازنشر ناموفق بود",
+    "mintToGenerate": "برای ساخت این بخش، این پست را mint کنید",
+    "mint": "Mint",
+    "stream": "پخش",
+    "boostPost": "بوست پست",
+    "openSuperPowers": "باز کردن SuperPowers"
   }
 }

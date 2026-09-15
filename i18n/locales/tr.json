@@ -3784,5 +3784,16 @@
     "usdtSent": "{{amount}} USDT gönderildi",
     "withdrawableSoon": "Abonelik ücretleri yakında çekilebilir olacak",
     "dpayBaseOnly": "Dpay yalnızca Base üzerinde kullanılabilir."
+  },
+  "feedCard": {
+    "reactionFailed": "Tepki güncellenemedi",
+    "saveFailed": "Kaydedilemedi",
+    "linkCopied": "Gönderi bağlantısı kopyalandı",
+    "removeRepostFailed": "Repost kaldırılamadı",
+    "mintToGenerate": "Bu bölümün oluşması için gönderiyi mint edin",
+    "mint": "Mint",
+    "stream": "Yayın",
+    "boostPost": "Gönderiyi güçlendir",
+    "openSuperPowers": "SuperPowers'ı aç"
   }
 }

@@ -3692,5 +3692,16 @@
     "usdtSent": "{{amount}} USDT iberildi",
     "withdrawableSoon": "Abunýa tölegleri ýakyn wagtda çykaryp bolar",
     "dpayBaseOnly": "Dpay diňe Base-de elýeterlidir."
+  },
+  "feedCard": {
+    "reactionFailed": "Reaksiýany täzeläp bolmady",
+    "saveFailed": "Ýatda saklap bolmady",
+    "linkCopied": "Ýazgy salgysy göçürildi",
+    "removeRepostFailed": "Reposty aýryp bolmady",
+    "mintToGenerate": "Bu bölümi döretmek üçin bu ýazgyny mint ediň",
+    "mint": "Mint",
+    "stream": "Ýaýlym",
+    "boostPost": "Ýazgyny güýçlendir",
+    "openSuperPowers": "SuperPowers aç"
   }
 }

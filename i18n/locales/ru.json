@@ -3791,5 +3791,16 @@
     "usdtSent": "Отправлено {{amount}} USDT",
     "withdrawableSoon": "Плату за подписки скоро можно будет вывести",
     "dpayBaseOnly": "Dpay доступен только в Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Не удалось обновить реакцию",
+    "saveFailed": "Не удалось сохранить",
+    "linkCopied": "Ссылка на пост скопирована",
+    "removeRepostFailed": "Не удалось убрать репост",
+    "mintToGenerate": "Сминтите этот пост, чтобы сгенерировать этот раздел",
+    "mint": "Минт",
+    "stream": "Стрим",
+    "boostPost": "Бустнуть пост",
+    "openSuperPowers": "Открыть SuperPowers"
   }
 }

@@ -3748,5 +3748,16 @@
     "usdtSent": "تصيفط {{amount}} USDT",
     "withdrawableSoon": "رسوم الاشتراكات غادي تولي قابلة للسحب قريباً",
     "dpayBaseOnly": "Dpay متاح غير ف Base."
+  },
+  "feedCard": {
+    "reactionFailed": "ما قدرناش نحدثو التفاعل",
+    "saveFailed": "ما قدرناش نسجلو",
+    "linkCopied": "تنسخ رابط البوسط",
+    "removeRepostFailed": "ما قدرناش نحيدو إعادة النشر",
+    "mintToGenerate": "دير mint لهاد البوسط باش يتولد هاد القسم",
+    "mint": "Mint",
+    "stream": "بث",
+    "boostPost": "عزز البوسط",
+    "openSuperPowers": "حل SuperPowers"
   }
 }

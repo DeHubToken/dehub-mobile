@@ -3489,5 +3489,16 @@
     "usdtSent": "Послато {{amount}} USDT",
     "withdrawableSoon": "Накнаде од претплата ускоро ће моћи да се исплате",
     "dpayBaseOnly": "Dpay је доступан само на Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Реакцију није било могуће ажурирати",
+    "saveFailed": "Чување није успело",
+    "linkCopied": "Линк објаве је копиран",
+    "removeRepostFailed": "Репост није било могуће уклонити",
+    "mintToGenerate": "Минтујте ову објаву да би се овај одељак генерисао",
+    "mint": "Минт",
+    "stream": "Стрим",
+    "boostPost": "Бустуј објаву",
+    "openSuperPowers": "Отвори SuperPowers"
   }
 }

@@ -3727,5 +3727,16 @@
     "usdtSent": "{{amount}} USDT ಕಳುಹಿಸಲಾಗಿದೆ",
     "withdrawableSoon": "ಚಂದಾ ಶುಲ್ಕವನ್ನು ಶೀಘ್ರದಲ್ಲಿ ಹಿಂಪಡೆಯಬಹುದು",
     "dpayBaseOnly": "Dpay Base ನಲ್ಲಿ ಮಾತ್ರ ಲಭ್ಯ."
+  },
+  "feedCard": {
+    "reactionFailed": "ಪ್ರತಿಕ್ರಿಯೆ ನವೀಕರಿಸಲಾಗಲಿಲ್ಲ",
+    "saveFailed": "ಉಳಿಸಲಾಗಲಿಲ್ಲ",
+    "linkCopied": "ಪೋಸ್ಟ್ ಲಿಂಕ್ ನಕಲಿಸಲಾಗಿದೆ",
+    "removeRepostFailed": "ರಿಪೋಸ್ಟ್ ತೆಗೆದುಹಾಕಲಾಗಲಿಲ್ಲ",
+    "mintToGenerate": "ಈ ವಿಭಾಗ ರಚಿಸಲು ಈ ಪೋಸ್ಟ್ ಮಿಂಟ್ ಮಾಡಿ",
+    "mint": "ಮಿಂಟ್",
+    "stream": "ಸ್ಟ್ರೀಮ್",
+    "boostPost": "ಪೋಸ್ಟ್ ಬೂಸ್ಟ್ ಮಾಡಿ",
+    "openSuperPowers": "SuperPowers ತೆರೆಯಿರಿ"
   }
 }

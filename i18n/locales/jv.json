@@ -3680,5 +3680,16 @@
     "usdtSent": "{{amount}} USDT wis dikirim",
     "withdrawableSoon": "Ragad langganan bakal bisa ditarik ora suwe maneh",
     "dpayBaseOnly": "Dpay mung kasedhiya ing Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Gagal nganyari reaksi",
+    "saveFailed": "Gagal nyimpen",
+    "linkCopied": "Tautan kiriman wis disalin",
+    "removeRepostFailed": "Gagal mbusak repost",
+    "mintToGenerate": "Mint kiriman iki supaya bagean iki digawe",
+    "mint": "Mint",
+    "stream": "Siaran",
+    "boostPost": "Boost kiriman",
+    "openSuperPowers": "Bukak SuperPowers"
   }
 }

@@ -3726,5 +3726,16 @@
     "usdtSent": "{{amount}} USDT sendt",
     "withdrawableSoon": "Abonnementsgebyrer kan snart hæves",
     "dpayBaseOnly": "Dpay er kun tilgængelig på Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Kunne ikke opdatere reaktionen",
+    "saveFailed": "Kunne ikke gemme",
+    "linkCopied": "Link til opslaget er kopieret",
+    "removeRepostFailed": "Kunne ikke fjerne gendelingen",
+    "mintToGenerate": "Mint dette opslag for at generere dette afsnit",
+    "mint": "Mint",
+    "stream": "Stream",
+    "boostPost": "Boost opslaget",
+    "openSuperPowers": "Åbn SuperPowers"
   }
 }
