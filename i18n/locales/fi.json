@@ -750,7 +750,11 @@
     "cancel": "Peruuta",
     "confirm": "Vahvista",
     "paying": "Maksetaan...",
-    "payAmount": "Maksa {{amount}} {{currency}}"
+    "payAmount": "Maksa {{amount}} {{currency}}",
+    "firstViews_one": "Ensimmäinen {{count}} katselu",
+    "firstViews_other": "Ensimmäiset {{count}} katselua",
+    "firstComments_one": "Ensimmäinen {{count}} kommentti",
+    "firstComments_other": "Ensimmäiset {{count}} kommenttia"
   },
   "assistant": {
     "title": "Tekoälyavustaja",
@@ -3461,5 +3465,35 @@
     "descriptionOptional": "Kuvaus (valinnainen)",
     "whatsHappening": "Mitä kuuluu?",
     "quotaShortfall": "Tämä julkaisu maksaa {{cost}} DHB ja sinulla on {{held}}."
+  },
+  "bounty": {
+    "claimed": "Lunastettu",
+    "notEligible": "Ei oikeutettu",
+    "checking": "Tarkistetaan oikeutta…",
+    "rewardType": "Palkinnon tyyppi",
+    "transaction": "Tapahtuma",
+    "onChainClaim": "Lunastus lohkoketjussa",
+    "confirmClaim": "Vahvista lunastus",
+    "processing": "Käsitellään lohkoketjutapahtumaa",
+    "success": "Palkinto lunastettu!",
+    "awesome": "Hienoa!",
+    "claimUnable": "Palkintoa ei voi lunastaa",
+    "claimFailed": "Palkinnon lunastus epäonnistui",
+    "switchFailed": "Verkkoa ei voi vaihtaa",
+    "claimViewerTitle": "Lunasta katsojapalkinto",
+    "claimCommenterTitle": "Lunasta kommentoijapalkinto",
+    "claimingViewer": "Lunastetaan katsojapalkintoa…",
+    "claimingCommenter": "Lunastetaan kommentoijapalkintoa…",
+    "viewerReward": "Katsojapalkinto",
+    "commenterReward": "Kommentoijapalkinto",
+    "claimedViewer": "Katsojapalkinto lunastettu!",
+    "claimedCommenter": "Kommentoijapalkinto lunastettu!",
+    "earnedViewer": "Ansaitsit katsojapalkintosi",
+    "earnedCommenter": "Ansaitsit kommentoijapalkintosi",
+    "switchNetwork": "Vaihda verkkoa",
+    "eligibilityFailed": "Oikeutta ei voitu tarkistaa",
+    "switchFirst": "Vaihda palkintoverkkoon ennen lunastusta",
+    "missingSignature": "Palkinnon lunastusallekirjoitus puuttuu",
+    "txReverted": "Tapahtuma peruuntui lohkoketjussa"
   }
 }

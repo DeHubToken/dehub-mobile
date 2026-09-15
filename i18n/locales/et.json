@@ -784,7 +784,11 @@
     "cancel": "Tühista",
     "confirm": "Kinnita",
     "paying": "Maksmine...",
-    "payAmount": "Maksa {{amount}} {{currency}}"
+    "payAmount": "Maksa {{amount}} {{currency}}",
+    "firstViews_one": "Esimene {{count}} vaatamine",
+    "firstViews_other": "Esimesed {{count}} vaatamist",
+    "firstComments_one": "Esimene {{count}} kommentaar",
+    "firstComments_other": "Esimesed {{count}} kommentaari"
   },
   "assistant": {
     "title": "Assistent",
@@ -3460,5 +3464,35 @@
     "descriptionOptional": "Kirjeldus (valikuline)",
     "whatsHappening": "Mis toimub?",
     "quotaShortfall": "See postitus maksab {{cost}} DHB ja sul on {{held}}."
+  },
+  "bounty": {
+    "claimed": "Lunastatud",
+    "notEligible": "Ei vasta tingimustele",
+    "checking": "Sobivuse kontroll…",
+    "rewardType": "Preemia tüüp",
+    "transaction": "Tehing",
+    "onChainClaim": "Ahelasisene lunastus",
+    "confirmClaim": "Kinnita lunastus",
+    "processing": "Ahelasisese tehingu töötlemine",
+    "success": "Preemia lunastatud!",
+    "awesome": "Suurepärane!",
+    "claimUnable": "Preemiat ei saa lunastada",
+    "claimFailed": "Preemia lunastamine ebaõnnestus",
+    "switchFailed": "Võrku ei saa vahetada",
+    "claimViewerTitle": "Lunasta vaataja preemia",
+    "claimCommenterTitle": "Lunasta kommenteerija preemia",
+    "claimingViewer": "Vaataja preemia lunastamine…",
+    "claimingCommenter": "Kommenteerija preemia lunastamine…",
+    "viewerReward": "Vaataja preemia",
+    "commenterReward": "Kommenteerija preemia",
+    "claimedViewer": "Vaataja preemia edukalt lunastatud!",
+    "claimedCommenter": "Kommenteerija preemia edukalt lunastatud!",
+    "earnedViewer": "Teenisid oma vaataja preemia",
+    "earnedCommenter": "Teenisid oma kommenteerija preemia",
+    "switchNetwork": "Vaheta võrku",
+    "eligibilityFailed": "Sobivuse kontroll ebaõnnestus",
+    "switchFirst": "Enne lunastamist lülitu preemia võrku",
+    "missingSignature": "Preemia lunastuse allkiri puudub",
+    "txReverted": "Tehing tühistati ahelas"
   }
 }

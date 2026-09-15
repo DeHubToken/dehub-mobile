@@ -645,7 +645,11 @@
     "cancel": "రద్దు",
     "confirm": "నిర్ధారించు",
     "paying": "చెల్లిస్తోంది...",
-    "payAmount": "{{amount}} {{currency}} చెల్లించు"
+    "payAmount": "{{amount}} {{currency}} చెల్లించు",
+    "firstViews_one": "మొదటి {{count}} వీక్షణ",
+    "firstViews_other": "మొదటి {{count}} వీక్షణలు",
+    "firstComments_one": "మొదటి {{count}} వ్యాఖ్య",
+    "firstComments_other": "మొదటి {{count}} వ్యాఖ్యలు"
   },
   "wallet": {
     "notReady": "వాలెట్ సిద్ధంగా లేదు — కాసేపటి తర్వాత మళ్ళీ ప్రయత్నించండి.",
@@ -3455,5 +3459,35 @@
     "descriptionOptional": "వివరణ (ఐచ్ఛికం)",
     "whatsHappening": "ఏం జరుగుతోంది?",
     "quotaShortfall": "ఈ పోస్ట్‌కు {{cost}} DHB అవసరం, మీ వద్ద {{held}} ఉంది."
+  },
+  "bounty": {
+    "claimed": "పొందారు",
+    "notEligible": "అర్హత లేదు",
+    "checking": "అర్హత తనిఖీ అవుతోంది…",
+    "rewardType": "బహుమతి రకం",
+    "transaction": "లావాదేవీ",
+    "onChainClaim": "ఆన్-చైన్ క్లెయిమ్",
+    "confirmClaim": "క్లెయిమ్ నిర్ధారించండి",
+    "processing": "ఆన్-చైన్ లావాదేవీ ప్రాసెస్ అవుతోంది",
+    "success": "బహుమతి పొందారు!",
+    "awesome": "అద్భుతం!",
+    "claimUnable": "బహుమతి పొందలేకపోయాం",
+    "claimFailed": "బహుమతి పొందడం విఫలమైంది",
+    "switchFailed": "నెట్‌వర్క్ మార్చలేకపోయాం",
+    "claimViewerTitle": "వీక్షకుడి బహుమతి పొందండి",
+    "claimCommenterTitle": "వ్యాఖ్యాత బహుమతి పొందండి",
+    "claimingViewer": "వీక్షకుడి బహుమతి పొందుతోంది…",
+    "claimingCommenter": "వ్యాఖ్యాత బహుమతి పొందుతోంది…",
+    "viewerReward": "వీక్షకుడి బహుమతి",
+    "commenterReward": "వ్యాఖ్యాత బహుమతి",
+    "claimedViewer": "వీక్షకుడి బహుమతి విజయవంతంగా పొందారు!",
+    "claimedCommenter": "వ్యాఖ్యాత బహుమతి విజయవంతంగా పొందారు!",
+    "earnedViewer": "మీరు వీక్షకుడి బహుమతిని పొందారు",
+    "earnedCommenter": "మీరు వ్యాఖ్యాత బహుమతిని పొందారు",
+    "switchNetwork": "నెట్‌వర్క్ మార్చండి",
+    "eligibilityFailed": "అర్హతను తనిఖీ చేయలేకపోయాం",
+    "switchFirst": "పొందే ముందు బహుమతి నెట్‌వర్క్‌కు మారండి",
+    "missingSignature": "బహుమతి క్లెయిమ్ సంతకం లేదు",
+    "txReverted": "లావాదేవీ ఆన్-చైన్‌లో వెనక్కి వెళ్లింది"
   }
 }

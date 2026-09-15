@@ -834,7 +834,11 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "paying": "Paying...",
-    "payAmount": "Pay {{amount}} {{currency}}"
+    "payAmount": "Pay {{amount}} {{currency}}",
+    "firstViews_one": "First {{count}} view",
+    "firstViews_other": "First {{count}} views",
+    "firstComments_one": "First {{count}} comment",
+    "firstComments_other": "First {{count}} comments"
   },
   "assistant": {
     "title": "Assistant",
@@ -3531,5 +3535,35 @@
     "descriptionOptional": "Description (optional)",
     "whatsHappening": "What's happening?",
     "quotaShortfall": "This post costs {{cost}} DHB and you hold {{held}}."
+  },
+  "bounty": {
+    "claimed": "Claimed",
+    "notEligible": "Not eligible",
+    "checking": "Checking eligibility…",
+    "rewardType": "Reward Type",
+    "transaction": "Transaction",
+    "onChainClaim": "On-chain claim",
+    "confirmClaim": "Confirm Claim",
+    "processing": "Processing on-chain transaction",
+    "success": "Bounty Claimed!",
+    "awesome": "Awesome!",
+    "claimUnable": "Unable to claim bounty",
+    "claimFailed": "Failed to claim bounty",
+    "switchFailed": "Unable to switch network",
+    "claimViewerTitle": "Claim Viewer Bounty",
+    "claimCommenterTitle": "Claim Commenter Bounty",
+    "claimingViewer": "Claiming Viewer Bounty…",
+    "claimingCommenter": "Claiming Commenter Bounty…",
+    "viewerReward": "Viewer Reward",
+    "commenterReward": "Commenter Reward",
+    "claimedViewer": "Successfully claimed viewer bounty!",
+    "claimedCommenter": "Successfully claimed commenter bounty!",
+    "earnedViewer": "You earned your viewer bounty reward",
+    "earnedCommenter": "You earned your commenter bounty reward",
+    "switchNetwork": "Switch network",
+    "eligibilityFailed": "Failed to check eligibility",
+    "switchFirst": "Switch to the bounty network before claiming",
+    "missingSignature": "Missing bounty claim signature",
+    "txReverted": "Transaction reverted on-chain"
   }
 }

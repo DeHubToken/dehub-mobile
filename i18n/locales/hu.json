@@ -648,7 +648,11 @@
     "cancel": "Mégse",
     "confirm": "Megerősítés",
     "paying": "Fizetés...",
-    "payAmount": "Fizetés: {{amount}} {{currency}}"
+    "payAmount": "Fizetés: {{amount}} {{currency}}",
+    "firstViews_one": "Első {{count}} megtekintés",
+    "firstViews_other": "Első {{count}} megtekintés",
+    "firstComments_one": "Első {{count}} hozzászólás",
+    "firstComments_other": "Első {{count}} hozzászólás"
   },
   "wallet": {
     "notReady": "A tárca nem áll készen — próbáld újra pár pillanat múlva.",
@@ -3465,5 +3469,35 @@
     "descriptionOptional": "Leírás (nem kötelező)",
     "whatsHappening": "Mi történik?",
     "quotaShortfall": "Ez a bejegyzés {{cost}} DHB-be kerül, neked pedig {{held}} van."
+  },
+  "bounty": {
+    "claimed": "Igényelve",
+    "notEligible": "Nem jogosult",
+    "checking": "Jogosultság ellenőrzése…",
+    "rewardType": "Jutalom típusa",
+    "transaction": "Tranzakció",
+    "onChainClaim": "Láncon belüli igénylés",
+    "confirmClaim": "Igénylés megerősítése",
+    "processing": "Láncon belüli tranzakció feldolgozása",
+    "success": "Jutalom igényelve!",
+    "awesome": "Szuper!",
+    "claimUnable": "A jutalom nem igényelhető",
+    "claimFailed": "A jutalom igénylése nem sikerült",
+    "switchFailed": "A hálózat nem váltható",
+    "claimViewerTitle": "Nézői jutalom igénylése",
+    "claimCommenterTitle": "Hozzászólói jutalom igénylése",
+    "claimingViewer": "Nézői jutalom igénylése…",
+    "claimingCommenter": "Hozzászólói jutalom igénylése…",
+    "viewerReward": "Nézői jutalom",
+    "commenterReward": "Hozzászólói jutalom",
+    "claimedViewer": "A nézői jutalmat sikeresen igényelted!",
+    "claimedCommenter": "A hozzászólói jutalmat sikeresen igényelted!",
+    "earnedViewer": "Megszerezted a nézői jutalmadat",
+    "earnedCommenter": "Megszerezted a hozzászólói jutalmadat",
+    "switchNetwork": "Hálózat váltása",
+    "eligibilityFailed": "A jogosultság ellenőrzése nem sikerült",
+    "switchFirst": "Igénylés előtt válts a jutalom hálózatára",
+    "missingSignature": "Hiányzik a jutalomigénylés aláírása",
+    "txReverted": "A tranzakció visszaállt a láncon"
   }
 }

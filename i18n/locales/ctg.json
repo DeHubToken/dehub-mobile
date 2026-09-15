@@ -1588,7 +1588,11 @@
     "tokenGateSettings": "Token Gate Settings",
     "requiresDhb": "Requires DHB tokens on Base chain",
     "minimumDhb": "Minimum DHB Required",
-    "minimumAmount": "Minimum amount"
+    "minimumAmount": "Minimum amount",
+    "firstViews_one": "পয়লা {{count}} ভিউ",
+    "firstViews_other": "পয়লা {{count}} ভিউ",
+    "firstComments_one": "পয়লা {{count}} মন্তব্য",
+    "firstComments_other": "পয়লা {{count}} মন্তব্য"
   },
   "publicChat": {
     "title": "পাবলিক চ্যাট",
@@ -3553,5 +3557,35 @@
     "descriptionOptional": "বিবরণ (ঐচ্ছিক)",
     "whatsHappening": "কী অর?",
     "quotaShortfall": "এই পোস্টত {{cost}} DHB লাগে, তোঁয়ার আছে {{held}}।"
+  },
+  "bounty": {
+    "claimed": "লই ফেলাইয়্যি",
+    "notEligible": "যোগ্য নয়",
+    "checking": "যোগ্যতা যাচাই অর…",
+    "rewardType": "পুরস্কারর ধরন",
+    "transaction": "লেনদেন",
+    "onChainClaim": "অন-চেইন ক্লেইম",
+    "confirmClaim": "ক্লেইম নিশ্চিত গরন",
+    "processing": "অন-চেইন লেনদেন প্রক্রিয়া অর",
+    "success": "বাউন্টি পাই গেইয়ে!",
+    "awesome": "বেশ!",
+    "claimUnable": "বাউন্টি লইত ন পারে",
+    "claimFailed": "বাউন্টি লইত ব্যর্থ",
+    "switchFailed": "নেটওয়ার্ক বদলাইত ন পারে",
+    "claimViewerTitle": "দর্শক বাউন্টি লন",
+    "claimCommenterTitle": "মন্তব্যকারী বাউন্টি লন",
+    "claimingViewer": "দর্শক বাউন্টি লওন অর…",
+    "claimingCommenter": "মন্তব্যকারী বাউন্টি লওন অর…",
+    "viewerReward": "দর্শক পুরস্কার",
+    "commenterReward": "মন্তব্যকারী পুরস্কার",
+    "claimedViewer": "দর্শক বাউন্টি সফলভাবে পাই গেইয়ে!",
+    "claimedCommenter": "মন্তব্যকারী বাউন্টি সফলভাবে পাই গেইয়ে!",
+    "earnedViewer": "তুঁই দর্শক বাউন্টি পুরস্কার পাইয়্যো",
+    "earnedCommenter": "তুঁই মন্তব্যকারী বাউন্টি পুরস্কার পাইয়্যো",
+    "switchNetwork": "নেটওয়ার্ক বদলান",
+    "eligibilityFailed": "যোগ্যতা যাচাই গরন ন যায়",
+    "switchFirst": "লইবার আগে বাউন্টি নেটওয়ার্কত যান",
+    "missingSignature": "বাউন্টি ক্লেইমর স্বাক্ষর নাই",
+    "txReverted": "লেনদেন অন-চেইনত বাতিল অইয়্যি"
   }
 }

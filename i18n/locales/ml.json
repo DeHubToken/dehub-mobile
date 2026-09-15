@@ -774,7 +774,11 @@
     "cancel": "റദ്ദാക്കുക",
     "confirm": "സ്ഥിരീകരിക്കുക",
     "paying": "പണം നൽകുന്നു...",
-    "payAmount": "{{amount}} {{currency}} നൽകുക"
+    "payAmount": "{{amount}} {{currency}} നൽകുക",
+    "firstViews_one": "ആദ്യ {{count}} കാഴ്ച",
+    "firstViews_other": "ആദ്യ {{count}} കാഴ്ചകൾ",
+    "firstComments_one": "ആദ്യ {{count}} കമന്റ്",
+    "firstComments_other": "ആദ്യ {{count}} കമന്റുകൾ"
   },
   "assistant": {
     "title": "സഹായി",
@@ -3443,5 +3447,35 @@
     "descriptionOptional": "വിവരണം (ഐച്ഛികം)",
     "whatsHappening": "എന്താണ് നടക്കുന്നത്?",
     "quotaShortfall": "ഈ പോസ്റ്റിന് {{cost}} DHB വേണം, നിങ്ങളുടെ കൈയിൽ {{held}} ഉണ്ട്."
+  },
+  "bounty": {
+    "claimed": "സ്വീകരിച്ചു",
+    "notEligible": "യോഗ്യതയില്ല",
+    "checking": "യോഗ്യത പരിശോധിക്കുന്നു…",
+    "rewardType": "പ്രതിഫലത്തിന്റെ തരം",
+    "transaction": "ഇടപാട്",
+    "onChainClaim": "ഓൺ-ചെയിൻ ക്ലെയിം",
+    "confirmClaim": "ക്ലെയിം സ്ഥിരീകരിക്കുക",
+    "processing": "ഓൺ-ചെയിൻ ഇടപാട് പ്രോസസ് ചെയ്യുന്നു",
+    "success": "ബൗണ്ടി ലഭിച്ചു!",
+    "awesome": "കൊള്ളാം!",
+    "claimUnable": "ബൗണ്ടി ലഭിക്കാനായില്ല",
+    "claimFailed": "ബൗണ്ടി നേടുന്നതിൽ പരാജയപ്പെട്ടു",
+    "switchFailed": "നെറ്റ്‌വർക്ക് മാറ്റാനായില്ല",
+    "claimViewerTitle": "കാഴ്ചക്കാരന്റെ ബൗണ്ടി നേടുക",
+    "claimCommenterTitle": "കമന്റ് ചെയ്യുന്നയാളുടെ ബൗണ്ടി നേടുക",
+    "claimingViewer": "കാഴ്ചക്കാരന്റെ ബൗണ്ടി നേടുന്നു…",
+    "claimingCommenter": "കമന്റ് ചെയ്യുന്നയാളുടെ ബൗണ്ടി നേടുന്നു…",
+    "viewerReward": "കാഴ്ചക്കാരന്റെ പ്രതിഫലം",
+    "commenterReward": "കമന്റ് ചെയ്യുന്നയാളുടെ പ്രതിഫലം",
+    "claimedViewer": "കാഴ്ചക്കാരന്റെ ബൗണ്ടി വിജയകരമായി ലഭിച്ചു!",
+    "claimedCommenter": "കമന്റ് ചെയ്യുന്നയാളുടെ ബൗണ്ടി വിജയകരമായി ലഭിച്ചു!",
+    "earnedViewer": "നിങ്ങളുടെ കാഴ്ചക്കാരന്റെ ബൗണ്ടി നേടി",
+    "earnedCommenter": "നിങ്ങളുടെ കമന്റ് ബൗണ്ടി നേടി",
+    "switchNetwork": "നെറ്റ്‌വർക്ക് മാറ്റുക",
+    "eligibilityFailed": "യോഗ്യത പരിശോധിക്കാനായില്ല",
+    "switchFirst": "നേടുന്നതിന് മുമ്പ് ബൗണ്ടി നെറ്റ്‌വർക്കിലേക്ക് മാറുക",
+    "missingSignature": "ബൗണ്ടി ക്ലെയിം ഒപ്പ് ഇല്ല",
+    "txReverted": "ഇടപാട് ഓൺ-ചെയിനിൽ റിവേർട്ട് ആയി"
   }
 }

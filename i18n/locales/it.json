@@ -663,7 +663,11 @@
     "cancel": "Annulla",
     "confirm": "Conferma",
     "paying": "Pagamento...",
-    "payAmount": "Paga {{amount}} {{currency}}"
+    "payAmount": "Paga {{amount}} {{currency}}",
+    "firstViews_one": "Prima {{count}} visualizzazione",
+    "firstViews_other": "Prime {{count}} visualizzazioni",
+    "firstComments_one": "Primo {{count}} commento",
+    "firstComments_other": "Primi {{count}} commenti"
   },
   "wallet": {
     "notReady": "Portafoglio non pronto: riprova tra un momento.",
@@ -3531,5 +3535,35 @@
     "descriptionOptional": "Descrizione (facoltativa)",
     "whatsHappening": "Che succede?",
     "quotaShortfall": "Questo post costa {{cost}} DHB e tu ne hai {{held}}."
+  },
+  "bounty": {
+    "claimed": "Riscosso",
+    "notEligible": "Non idoneo",
+    "checking": "Verifica dell'idoneità…",
+    "rewardType": "Tipo di ricompensa",
+    "transaction": "Transazione",
+    "onChainClaim": "Riscossione on-chain",
+    "confirmClaim": "Conferma riscossione",
+    "processing": "Elaborazione della transazione on-chain",
+    "success": "Ricompensa riscossa!",
+    "awesome": "Fantastico!",
+    "claimUnable": "Impossibile riscuotere la ricompensa",
+    "claimFailed": "Riscossione della ricompensa non riuscita",
+    "switchFailed": "Impossibile cambiare rete",
+    "claimViewerTitle": "Riscuoti la ricompensa spettatore",
+    "claimCommenterTitle": "Riscuoti la ricompensa commentatore",
+    "claimingViewer": "Riscossione della ricompensa spettatore…",
+    "claimingCommenter": "Riscossione della ricompensa commentatore…",
+    "viewerReward": "Ricompensa spettatore",
+    "commenterReward": "Ricompensa commentatore",
+    "claimedViewer": "Ricompensa spettatore riscossa!",
+    "claimedCommenter": "Ricompensa commentatore riscossa!",
+    "earnedViewer": "Hai ottenuto la tua ricompensa spettatore",
+    "earnedCommenter": "Hai ottenuto la tua ricompensa commentatore",
+    "switchNetwork": "Cambia rete",
+    "eligibilityFailed": "Impossibile verificare l'idoneità",
+    "switchFirst": "Passa alla rete della ricompensa prima di riscuoterla",
+    "missingSignature": "Manca la firma per la riscossione",
+    "txReverted": "La transazione è stata annullata on-chain"
   }
 }

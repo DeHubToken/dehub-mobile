@@ -660,7 +660,11 @@
     "cancel": "취소",
     "confirm": "확인",
     "paying": "결제 중...",
-    "payAmount": "{{amount}} {{currency}} 결제"
+    "payAmount": "{{amount}} {{currency}} 결제",
+    "firstViews_one": "첫 {{count}}회 조회",
+    "firstViews_other": "첫 {{count}}회 조회",
+    "firstComments_one": "첫 {{count}}개 댓글",
+    "firstComments_other": "첫 {{count}}개 댓글"
   },
   "wallet": {
     "notReady": "지갑이 준비되지 않았습니다 — 잠시 후 다시 시도하세요.",
@@ -3529,5 +3533,35 @@
     "descriptionOptional": "설명 (선택)",
     "whatsHappening": "무슨 일이 있나요?",
     "quotaShortfall": "이 게시물에는 {{cost}} DHB가 필요하지만 보유액은 {{held}}입니다."
+  },
+  "bounty": {
+    "claimed": "수령 완료",
+    "notEligible": "대상이 아닙니다",
+    "checking": "대상 여부 확인 중…",
+    "rewardType": "보상 유형",
+    "transaction": "거래",
+    "onChainClaim": "온체인 수령",
+    "confirmClaim": "수령 확인",
+    "processing": "온체인 거래 처리 중",
+    "success": "보상을 받았습니다!",
+    "awesome": "좋아요!",
+    "claimUnable": "보상을 받을 수 없습니다",
+    "claimFailed": "보상 수령에 실패했습니다",
+    "switchFailed": "네트워크를 전환할 수 없습니다",
+    "claimViewerTitle": "시청자 보상 받기",
+    "claimCommenterTitle": "댓글 보상 받기",
+    "claimingViewer": "시청자 보상 수령 중…",
+    "claimingCommenter": "댓글 보상 수령 중…",
+    "viewerReward": "시청자 보상",
+    "commenterReward": "댓글 보상",
+    "claimedViewer": "시청자 보상을 받았습니다!",
+    "claimedCommenter": "댓글 보상을 받았습니다!",
+    "earnedViewer": "시청자 보상을 획득했습니다",
+    "earnedCommenter": "댓글 보상을 획득했습니다",
+    "switchNetwork": "네트워크 전환",
+    "eligibilityFailed": "대상 여부를 확인하지 못했습니다",
+    "switchFirst": "수령 전에 보상 네트워크로 전환하세요",
+    "missingSignature": "보상 수령 서명이 없습니다",
+    "txReverted": "거래가 온체인에서 되돌려졌습니다"
   }
 }

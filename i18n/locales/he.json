@@ -646,7 +646,11 @@
     "cancel": "בטל",
     "confirm": "אשר",
     "paying": "משלם...",
-    "payAmount": "שלם {{amount}} {{currency}}"
+    "payAmount": "שלם {{amount}} {{currency}}",
+    "firstViews_one": "הצפייה ה־{{count}} הראשונה",
+    "firstViews_other": "{{count}} הצפיות הראשונות",
+    "firstComments_one": "התגובה ה־{{count}} הראשונה",
+    "firstComments_other": "{{count}} התגובות הראשונות"
   },
   "wallet": {
     "notReady": "הארנק לא מוכן — נסו שוב בעוד רגע.",
@@ -3448,5 +3452,35 @@
     "descriptionOptional": "תיאור (אופציונלי)",
     "whatsHappening": "מה קורה?",
     "quotaShortfall": "הפוסט הזה עולה {{cost}} DHB ויש לך {{held}}."
+  },
+  "bounty": {
+    "claimed": "נאסף",
+    "notEligible": "לא זכאי",
+    "checking": "בודק זכאות…",
+    "rewardType": "סוג התגמול",
+    "transaction": "עסקה",
+    "onChainClaim": "תביעה על השרשרת",
+    "confirmClaim": "אישור התביעה",
+    "processing": "מעבד עסקה על השרשרת",
+    "success": "התגמול נאסף!",
+    "awesome": "מעולה!",
+    "claimUnable": "לא ניתן לאסוף את התגמול",
+    "claimFailed": "איסוף התגמול נכשל",
+    "switchFailed": "לא ניתן להחליף רשת",
+    "claimViewerTitle": "איסוף תגמול הצופה",
+    "claimCommenterTitle": "איסוף תגמול המגיב",
+    "claimingViewer": "אוסף את תגמול הצופה…",
+    "claimingCommenter": "אוסף את תגמול המגיב…",
+    "viewerReward": "תגמול צופה",
+    "commenterReward": "תגמול מגיב",
+    "claimedViewer": "תגמול הצופה נאסף בהצלחה!",
+    "claimedCommenter": "תגמול המגיב נאסף בהצלחה!",
+    "earnedViewer": "זכית בתגמול הצופה שלך",
+    "earnedCommenter": "זכית בתגמול המגיב שלך",
+    "switchNetwork": "החלפת רשת",
+    "eligibilityFailed": "בדיקת הזכאות נכשלה",
+    "switchFirst": "עברו לרשת התגמול לפני האיסוף",
+    "missingSignature": "חסרה חתימת איסוף התגמול",
+    "txReverted": "העסקה בוטלה על השרשרת"
   }
 }

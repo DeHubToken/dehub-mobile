@@ -745,7 +745,11 @@
     "cancel": "Жокко чыгаруу",
     "confirm": "Ырастоо",
     "paying": "Төлөнүүдө...",
-    "payAmount": "{{amount}} {{currency}} төлөө"
+    "payAmount": "{{amount}} {{currency}} төлөө",
+    "firstViews_one": "Биринчи {{count}} көрүү",
+    "firstViews_other": "Биринчи {{count}} көрүү",
+    "firstComments_one": "Биринчи {{count}} комментарий",
+    "firstComments_other": "Биринчи {{count}} комментарий"
   },
   "assistant": {
     "title": "AI Жардамчы",
@@ -3454,5 +3458,35 @@
     "descriptionOptional": "Сүрөттөмө (милдеттүү эмес)",
     "whatsHappening": "Эмне болуп жатат?",
     "quotaShortfall": "Бул жазуу {{cost}} DHB турат, сизде {{held}} бар."
+  },
+  "bounty": {
+    "claimed": "Алынды",
+    "notEligible": "Ылайык эмес",
+    "checking": "Ылайыктуулук текшерилүүдө…",
+    "rewardType": "Сыйлык түрү",
+    "transaction": "Транзакция",
+    "onChainClaim": "Чынжырдагы талап",
+    "confirmClaim": "Талапты ырастоо",
+    "processing": "Чынжырдагы транзакция иштетилүүдө",
+    "success": "Сыйлык алынды!",
+    "awesome": "Сонун!",
+    "claimUnable": "Сыйлыкты алуу мүмкүн болбоду",
+    "claimFailed": "Сыйлыкты алуу ийгиликсиз аяктады",
+    "switchFailed": "Тармакты алмаштыруу мүмкүн болбоду",
+    "claimViewerTitle": "Көрүүчү сыйлыгын алуу",
+    "claimCommenterTitle": "Комментатор сыйлыгын алуу",
+    "claimingViewer": "Көрүүчү сыйлыгы алынууда…",
+    "claimingCommenter": "Комментатор сыйлыгы алынууда…",
+    "viewerReward": "Көрүүчү сыйлыгы",
+    "commenterReward": "Комментатор сыйлыгы",
+    "claimedViewer": "Көрүүчү сыйлыгы ийгиликтүү алынды!",
+    "claimedCommenter": "Комментатор сыйлыгы ийгиликтүү алынды!",
+    "earnedViewer": "Көрүүчү сыйлыгыңызды алдыңыз",
+    "earnedCommenter": "Комментатор сыйлыгыңызды алдыңыз",
+    "switchNetwork": "Тармакты алмаштыруу",
+    "eligibilityFailed": "Ылайыктуулукту текшерүү ийгиликсиз аяктады",
+    "switchFirst": "Алуудан мурун сыйлык тармагына өтүңүз",
+    "missingSignature": "Сыйлык алуу колтамгасы жок",
+    "txReverted": "Транзакция чынжырда жокко чыгарылды"
   }
 }

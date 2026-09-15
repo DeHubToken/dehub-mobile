@@ -1585,7 +1585,11 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "paying": "Paying...",
-    "payAmount": "Pay {{amount}} {{currency}}"
+    "payAmount": "Pay {{amount}} {{currency}}",
+    "firstViews_one": "Eerste {{count}} besigtiging",
+    "firstViews_other": "Eerste {{count}} besigtigings",
+    "firstComments_one": "Eerste {{count}} kommentaar",
+    "firstComments_other": "Eerste {{count}} kommentare"
   },
   "assistant": {
     "title": "Assistant",
@@ -3578,5 +3582,35 @@
     "descriptionOptional": "Beskrywing (opsioneel)",
     "whatsHappening": "Wat gebeur?",
     "quotaShortfall": "Hierdie plasing kos {{cost}} DHB en jy het {{held}}."
+  },
+  "bounty": {
+    "claimed": "Opgeëis",
+    "notEligible": "Nie kwalifiseer nie",
+    "checking": "Kontroleer kwalifikasie…",
+    "rewardType": "Beloningstipe",
+    "transaction": "Transaksie",
+    "onChainClaim": "Eis op die ketting",
+    "confirmClaim": "Bevestig eis",
+    "processing": "Verwerk transaksie op die ketting",
+    "success": "Beloning opgeëis!",
+    "awesome": "Wonderlik!",
+    "claimUnable": "Kan nie beloning opeis nie",
+    "claimFailed": "Kon nie beloning opeis nie",
+    "switchFailed": "Kan nie netwerk wissel nie",
+    "claimViewerTitle": "Eis kykerbeloning op",
+    "claimCommenterTitle": "Eis kommentaarbeloning op",
+    "claimingViewer": "Eis kykerbeloning op…",
+    "claimingCommenter": "Eis kommentaarbeloning op…",
+    "viewerReward": "Kykerbeloning",
+    "commenterReward": "Kommentaarbeloning",
+    "claimedViewer": "Kykerbeloning suksesvol opgeëis!",
+    "claimedCommenter": "Kommentaarbeloning suksesvol opgeëis!",
+    "earnedViewer": "Jy het jou kykerbeloning verdien",
+    "earnedCommenter": "Jy het jou kommentaarbeloning verdien",
+    "switchNetwork": "Wissel netwerk",
+    "eligibilityFailed": "Kon nie kwalifikasie kontroleer nie",
+    "switchFirst": "Wissel na die beloningsnetwerk voordat jy opeis",
+    "missingSignature": "Beloningseis se handtekening ontbreek",
+    "txReverted": "Transaksie is op die ketting teruggerol"
   }
 }

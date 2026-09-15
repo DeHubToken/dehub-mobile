@@ -797,7 +797,11 @@
     "tokenGateSettings": "Token Gate Settings",
     "requiresDhb": "Requires DHB tokens on Base chain",
     "minimumDhb": "Minimum DHB Required",
-    "minimumAmount": "Minimum amount"
+    "minimumAmount": "Minimum amount",
+    "firstViews_one": "ការមើល {{count}} ដំបូង",
+    "firstViews_other": "ការមើល {{count}} ដំបូង",
+    "firstComments_one": "មតិយោបល់ {{count}} ដំបូង",
+    "firstComments_other": "មតិយោបល់ {{count}} ដំបូង"
   },
   "assistant": {
     "title": "ជំនួយការ",
@@ -3480,5 +3484,35 @@
     "descriptionOptional": "ការពិពណ៌នា (ស្រេចចិត្ត)",
     "whatsHappening": "មានអ្វីកើតឡើង?",
     "quotaShortfall": "ប្រកាសនេះចំណាយ {{cost}} DHB ហើយអ្នកមាន {{held}}។"
+  },
+  "bounty": {
+    "claimed": "បានទាមទារ",
+    "notEligible": "មិនមានសិទ្ធិ",
+    "checking": "កំពុងពិនិត្យសិទ្ធិ…",
+    "rewardType": "ប្រភេទរង្វាន់",
+    "transaction": "ប្រតិបត្តិការ",
+    "onChainClaim": "ការទាមទារលើខ្សែច្រវាក់",
+    "confirmClaim": "បញ្ជាក់ការទាមទារ",
+    "processing": "កំពុងដំណើរការប្រតិបត្តិការលើខ្សែច្រវាក់",
+    "success": "បានទាមទាររង្វាន់!",
+    "awesome": "អស្ចារ្យ!",
+    "claimUnable": "មិនអាចទាមទាររង្វាន់បានទេ",
+    "claimFailed": "ការទាមទាររង្វាន់បានបរាជ័យ",
+    "switchFailed": "មិនអាចប្ដូរបណ្ដាញបានទេ",
+    "claimViewerTitle": "ទាមទាររង្វាន់អ្នកមើល",
+    "claimCommenterTitle": "ទាមទាររង្វាន់អ្នកបញ្ចេញមតិ",
+    "claimingViewer": "កំពុងទាមទាររង្វាន់អ្នកមើល…",
+    "claimingCommenter": "កំពុងទាមទាររង្វាន់អ្នកបញ្ចេញមតិ…",
+    "viewerReward": "រង្វាន់អ្នកមើល",
+    "commenterReward": "រង្វាន់អ្នកបញ្ចេញមតិ",
+    "claimedViewer": "បានទាមទាររង្វាន់អ្នកមើលដោយជោគជ័យ!",
+    "claimedCommenter": "បានទាមទាររង្វាន់អ្នកបញ្ចេញមតិដោយជោគជ័យ!",
+    "earnedViewer": "អ្នកបានទទួលរង្វាន់អ្នកមើលរបស់អ្នក",
+    "earnedCommenter": "អ្នកបានទទួលរង្វាន់អ្នកបញ្ចេញមតិរបស់អ្នក",
+    "switchNetwork": "ប្ដូរបណ្ដាញ",
+    "eligibilityFailed": "មិនអាចពិនិត្យសិទ្ធិបានទេ",
+    "switchFirst": "ប្ដូរទៅបណ្ដាញរង្វាន់មុនពេលទាមទារ",
+    "missingSignature": "បាត់ហត្ថលេខាទាមទាររង្វាន់",
+    "txReverted": "ប្រតិបត្តិការត្រូវបានត្រឡប់វិញលើខ្សែច្រវាក់"
   }
 }

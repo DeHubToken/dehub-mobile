@@ -784,7 +784,11 @@
     "cancel": "Atcelt",
     "confirm": "Apstiprināt",
     "paying": "Maksāšana...",
-    "payAmount": "Maksāt {{amount}} {{currency}}"
+    "payAmount": "Maksāt {{amount}} {{currency}}",
+    "firstViews_one": "Pirmais {{count}} skatījums",
+    "firstViews_other": "Pirmie {{count}} skatījumi",
+    "firstComments_one": "Pirmais {{count}} komentārs",
+    "firstComments_other": "Pirmie {{count}} komentāri"
   },
   "assistant": {
     "title": "Asistents",
@@ -3460,5 +3464,35 @@
     "descriptionOptional": "Apraksts (neobligāts)",
     "whatsHappening": "Kas notiek?",
     "quotaShortfall": "Šis ieraksts maksā {{cost}} DHB, un jums ir {{held}}."
+  },
+  "bounty": {
+    "claimed": "Saņemts",
+    "notEligible": "Neatbilst prasībām",
+    "checking": "Notiek atbilstības pārbaude…",
+    "rewardType": "Atlīdzības veids",
+    "transaction": "Darījums",
+    "onChainClaim": "Pieprasījums ķēdē",
+    "confirmClaim": "Apstiprināt pieprasījumu",
+    "processing": "Notiek ķēdes darījuma apstrāde",
+    "success": "Atlīdzība saņemta!",
+    "awesome": "Lieliski!",
+    "claimUnable": "Nevar saņemt atlīdzību",
+    "claimFailed": "Neizdevās saņemt atlīdzību",
+    "switchFailed": "Nevar pārslēgt tīklu",
+    "claimViewerTitle": "Saņemt skatītāja atlīdzību",
+    "claimCommenterTitle": "Saņemt komentētāja atlīdzību",
+    "claimingViewer": "Notiek skatītāja atlīdzības saņemšana…",
+    "claimingCommenter": "Notiek komentētāja atlīdzības saņemšana…",
+    "viewerReward": "Skatītāja atlīdzība",
+    "commenterReward": "Komentētāja atlīdzība",
+    "claimedViewer": "Skatītāja atlīdzība veiksmīgi saņemta!",
+    "claimedCommenter": "Komentētāja atlīdzība veiksmīgi saņemta!",
+    "earnedViewer": "Jūs nopelnījāt skatītāja atlīdzību",
+    "earnedCommenter": "Jūs nopelnījāt komentētāja atlīdzību",
+    "switchNetwork": "Pārslēgt tīklu",
+    "eligibilityFailed": "Neizdevās pārbaudīt atbilstību",
+    "switchFirst": "Pirms saņemšanas pārslēdzieties uz atlīdzības tīklu",
+    "missingSignature": "Trūkst atlīdzības saņemšanas paraksta",
+    "txReverted": "Darījums ķēdē tika atcelts"
   }
 }

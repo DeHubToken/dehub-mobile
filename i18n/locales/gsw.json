@@ -744,7 +744,11 @@
     "cancel": "Abbräche",
     "confirm": "Bestätige",
     "paying": "Am Zahle...",
-    "payAmount": "{{amount}} {{currency}} zahle"
+    "payAmount": "{{amount}} {{currency}} zahle",
+    "firstViews_one": "Erschti {{count}} Aasicht",
+    "firstViews_other": "Erschti {{count}} Aasichte",
+    "firstComments_one": "Erschte {{count}} Kommentar",
+    "firstComments_other": "Erschti {{count}} Kommentär"
   },
   "assistant": {
     "title": "Assischtänt",
@@ -3450,5 +3454,35 @@
     "descriptionOptional": "Beschriibig (optional)",
     "whatsHappening": "Was laufft?",
     "quotaShortfall": "De Biitrag choschtet {{cost}} DHB und du hesch {{held}}."
+  },
+  "bounty": {
+    "claimed": "Iiglöst",
+    "notEligible": "Nöd berächtigt",
+    "checking": "Berächtigung wird prüeft…",
+    "rewardType": "Bilohnigsart",
+    "transaction": "Transaktion",
+    "onChainClaim": "On-Chain-Iiliisig",
+    "confirmClaim": "Iiliisig bestätige",
+    "processing": "On-Chain-Transaktion wird verarbeitet",
+    "success": "Bilohnig iiglöst!",
+    "awesome": "Super!",
+    "claimUnable": "Bilohnig cha nöd iiglöst wärde",
+    "claimFailed": "S Iiliise vo dr Bilohnig isch fehlgschlage",
+    "switchFailed": "S Netzwärk cha nöd gwächslet wärde",
+    "claimViewerTitle": "Zueschauer-Bilohnig iiliise",
+    "claimCommenterTitle": "Kommentator-Bilohnig iiliise",
+    "claimingViewer": "Zueschauer-Bilohnig wird iiglöst…",
+    "claimingCommenter": "Kommentator-Bilohnig wird iiglöst…",
+    "viewerReward": "Zueschauer-Bilohnig",
+    "commenterReward": "Kommentator-Bilohnig",
+    "claimedViewer": "Zueschauer-Bilohnig erfolgriich iiglöst!",
+    "claimedCommenter": "Kommentator-Bilohnig erfolgriich iiglöst!",
+    "earnedViewer": "Du hesch dini Zueschauer-Bilohnig überchoo",
+    "earnedCommenter": "Du hesch dini Kommentator-Bilohnig überchoo",
+    "switchNetwork": "Netzwärk wächsle",
+    "eligibilityFailed": "D Berächtigung het nöd chöne prüeft wärde",
+    "switchFirst": "Wächsle vor em Iiliise zum Bilohnigsnetzwärk",
+    "missingSignature": "D Signatur für d Bilohnigsiiliisig fählt",
+    "txReverted": "D Transaktion isch on-chain zrugggsetzt worde"
   }
 }

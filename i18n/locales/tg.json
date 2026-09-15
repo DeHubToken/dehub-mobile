@@ -737,7 +737,11 @@
     "cancel": "Бекор",
     "confirm": "Тасдиқ",
     "paying": "Пардохт мешавад...",
-    "payAmount": "Пардохти {{amount}} {{currency}}"
+    "payAmount": "Пардохти {{amount}} {{currency}}",
+    "firstViews_one": "Аввалин {{count}} тамошо",
+    "firstViews_other": "{{count}} тамошои аввал",
+    "firstComments_one": "Аввалин {{count}} шарҳ",
+    "firstComments_other": "{{count}} шарҳи аввал"
   },
   "assistant": {
     "title": "Дастёри зеҳни сунъӣ",
@@ -3439,5 +3443,35 @@
     "descriptionOptional": "Тавсиф (ихтиёрӣ)",
     "whatsHappening": "Чӣ ҳодиса шуда истодааст?",
     "quotaShortfall": "Ин пост {{cost}} DHB арзиш дорад ва шумо {{held}} доред."
+  },
+  "bounty": {
+    "claimed": "Гирифта шуд",
+    "notEligible": "Мувофиқ нест",
+    "checking": "Санҷиши мувофиқат…",
+    "rewardType": "Навъи мукофот",
+    "transaction": "Муомилот",
+    "onChainClaim": "Дархост дар занҷир",
+    "confirmClaim": "Тасдиқи дархост",
+    "processing": "Коркарди муомилот дар занҷир",
+    "success": "Мукофот гирифта шуд!",
+    "awesome": "Аъло!",
+    "claimUnable": "Гирифтани мукофот имконнопазир аст",
+    "claimFailed": "Гирифтани мукофот ноком шуд",
+    "switchFailed": "Иваз кардани шабака имконнопазир аст",
+    "claimViewerTitle": "Гирифтани мукофоти тамошобин",
+    "claimCommenterTitle": "Гирифтани мукофоти шарҳдиҳанда",
+    "claimingViewer": "Мукофоти тамошобин гирифта мешавад…",
+    "claimingCommenter": "Мукофоти шарҳдиҳанда гирифта мешавад…",
+    "viewerReward": "Мукофоти тамошобин",
+    "commenterReward": "Мукофоти шарҳдиҳанда",
+    "claimedViewer": "Мукофоти тамошобин бомуваффақият гирифта шуд!",
+    "claimedCommenter": "Мукофоти шарҳдиҳанда бомуваффақият гирифта шуд!",
+    "earnedViewer": "Шумо мукофоти тамошобинро гирифтед",
+    "earnedCommenter": "Шумо мукофоти шарҳдиҳандаро гирифтед",
+    "switchNetwork": "Иваз кардани шабака",
+    "eligibilityFailed": "Санҷиши мувофиқат ноком шуд",
+    "switchFirst": "Пеш аз гирифтан ба шабакаи мукофот гузаред",
+    "missingSignature": "Имзои гирифтани мукофот нест",
+    "txReverted": "Муомилот дар занҷир бекор шуд"
   }
 }

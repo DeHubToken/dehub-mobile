@@ -736,7 +736,11 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "paying": "E dey pay...",
-    "payAmount": "Pay {{amount}} {{currency}}"
+    "payAmount": "Pay {{amount}} {{currency}}",
+    "firstViews_one": "First {{count}} view",
+    "firstViews_other": "First {{count}} views",
+    "firstComments_one": "First {{count}} comment",
+    "firstComments_other": "First {{count}} comments"
   },
   "assistant": {
     "title": "Assistant",
@@ -3275,5 +3279,35 @@
     "descriptionOptional": "Description (optional)",
     "whatsHappening": "Wetin dey happen?",
     "quotaShortfall": "Dis post cost {{cost}} DHB and you get {{held}}."
+  },
+  "bounty": {
+    "claimed": "Don claim",
+    "notEligible": "You no qualify",
+    "checking": "Dey check if you qualify…",
+    "rewardType": "Reward type",
+    "transaction": "Transaction",
+    "onChainClaim": "On-chain claim",
+    "confirmClaim": "Confirm di claim",
+    "processing": "Dey process di on-chain transaction",
+    "success": "You don claim di bounty!",
+    "awesome": "Nice one!",
+    "claimUnable": "You no fit claim di bounty",
+    "claimFailed": "Di bounty claim fail",
+    "switchFailed": "You no fit switch network",
+    "claimViewerTitle": "Claim viewer bounty",
+    "claimCommenterTitle": "Claim commenter bounty",
+    "claimingViewer": "Dey claim viewer bounty…",
+    "claimingCommenter": "Dey claim commenter bounty…",
+    "viewerReward": "Viewer reward",
+    "commenterReward": "Commenter reward",
+    "claimedViewer": "You don claim di viewer bounty!",
+    "claimedCommenter": "You don claim di commenter bounty!",
+    "earnedViewer": "You don earn your viewer bounty reward",
+    "earnedCommenter": "You don earn your commenter bounty reward",
+    "switchNetwork": "Switch network",
+    "eligibilityFailed": "E no fit check if you qualify",
+    "switchFirst": "Switch go di bounty network before you claim",
+    "missingSignature": "Di bounty claim signature no dey",
+    "txReverted": "Di transaction revert for on-chain"
   }
 }

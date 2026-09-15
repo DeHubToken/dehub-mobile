@@ -785,7 +785,11 @@
     "cancel": "Anulo",
     "confirm": "Konfirmo",
     "paying": "Po paguhet...",
-    "payAmount": "Paguaj {{amount}} {{currency}}"
+    "payAmount": "Paguaj {{amount}} {{currency}}",
+    "firstViews_one": "Shikimi i parë {{count}}",
+    "firstViews_other": "{{count}} shikimet e para",
+    "firstComments_one": "Komenti i parë {{count}}",
+    "firstComments_other": "{{count}} komentet e para"
   },
   "assistant": {
     "title": "Asistenti",
@@ -3460,5 +3464,35 @@
     "descriptionOptional": "Përshkrimi (opsional)",
     "whatsHappening": "Çfarë po ndodh?",
     "quotaShortfall": "Ky postim kushton {{cost}} DHB dhe ti ke {{held}}."
+  },
+  "bounty": {
+    "claimed": "E marrë",
+    "notEligible": "Nuk je i kualifikuar",
+    "checking": "Po kontrollohet përshtatshmëria…",
+    "rewardType": "Lloji i shpërblimit",
+    "transaction": "Transaksioni",
+    "onChainClaim": "Kërkesë në zinxhir",
+    "confirmClaim": "Konfirmo kërkesën",
+    "processing": "Po përpunohet transaksioni në zinxhir",
+    "success": "Shpërblimi u mor!",
+    "awesome": "Shkëlqyeshëm!",
+    "claimUnable": "Shpërblimi nuk mund të merret",
+    "claimFailed": "Marrja e shpërblimit dështoi",
+    "switchFailed": "Rrjeti nuk mund të ndryshohet",
+    "claimViewerTitle": "Merr shpërblimin e shikuesit",
+    "claimCommenterTitle": "Merr shpërblimin e komentuesit",
+    "claimingViewer": "Po merret shpërblimi i shikuesit…",
+    "claimingCommenter": "Po merret shpërblimi i komentuesit…",
+    "viewerReward": "Shpërblimi i shikuesit",
+    "commenterReward": "Shpërblimi i komentuesit",
+    "claimedViewer": "Shpërblimi i shikuesit u mor me sukses!",
+    "claimedCommenter": "Shpërblimi i komentuesit u mor me sukses!",
+    "earnedViewer": "E fitove shpërblimin e shikuesit",
+    "earnedCommenter": "E fitove shpërblimin e komentuesit",
+    "switchNetwork": "Ndrysho rrjetin",
+    "eligibilityFailed": "Kontrolli i përshtatshmërisë dështoi",
+    "switchFirst": "Kalo në rrjetin e shpërblimit para se ta marrësh",
+    "missingSignature": "Mungon nënshkrimi i marrjes së shpërblimit",
+    "txReverted": "Transaksioni u kthye mbrapsht në zinxhir"
   }
 }

@@ -784,7 +784,11 @@
     "cancel": "إلغاء",
     "confirm": "تأكيد",
     "paying": "كيخلص...",
-    "payAmount": "خلص {{amount}} {{currency}}"
+    "payAmount": "خلص {{amount}} {{currency}}",
+    "firstViews_one": "أول {{count}} مشاهدة",
+    "firstViews_other": "أول {{count}} مشاهدة",
+    "firstComments_one": "أول {{count}} تعليق",
+    "firstComments_other": "أول {{count}} تعليق"
   },
   "assistant": {
     "title": "المساعد",
@@ -3487,5 +3491,35 @@
     "descriptionOptional": "وصف (اختياري)",
     "whatsHappening": "شنو كاين؟",
     "quotaShortfall": "هاد البوست كيسوا {{cost}} DHB وعندك {{held}}."
+  },
+  "bounty": {
+    "claimed": "تسلم",
+    "notEligible": "ماشي مؤهل",
+    "checking": "كيتحقق من الأهلية…",
+    "rewardType": "نوع المكافأة",
+    "transaction": "المعاملة",
+    "onChainClaim": "استلام على السلسلة",
+    "confirmClaim": "أكد الاستلام",
+    "processing": "كيعالج المعاملة على السلسلة",
+    "success": "تسلمتي المكافأة!",
+    "awesome": "زوين!",
+    "claimUnable": "ما قدرناش نتسلمو المكافأة",
+    "claimFailed": "فشل استلام المكافأة",
+    "switchFailed": "ما قدرناش نبدلو الشبكة",
+    "claimViewerTitle": "تسلم مكافأة المشاهد",
+    "claimCommenterTitle": "تسلم مكافأة المعلق",
+    "claimingViewer": "كيتسلم مكافأة المشاهد…",
+    "claimingCommenter": "كيتسلم مكافأة المعلق…",
+    "viewerReward": "مكافأة المشاهد",
+    "commenterReward": "مكافأة المعلق",
+    "claimedViewer": "تسلمات مكافأة المشاهد بنجاح!",
+    "claimedCommenter": "تسلمات مكافأة المعلق بنجاح!",
+    "earnedViewer": "ربحتي المكافأة ديال المشاهد",
+    "earnedCommenter": "ربحتي المكافأة ديال المعلق",
+    "switchNetwork": "بدل الشبكة",
+    "eligibilityFailed": "فشل التحقق من الأهلية",
+    "switchFirst": "بدل للشبكة ديال المكافأة قبل ما تتسلم",
+    "missingSignature": "التوقيع ديال استلام المكافأة ناقص",
+    "txReverted": "المعاملة ترجعات على السلسلة"
   }
 }
