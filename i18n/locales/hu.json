@@ -1371,7 +1371,12 @@
     "radio": "Rádió",
     "trendingTracks": "Népszerű számok",
     "moreVideos": "Több videó",
-    "newReleases": "Új megjelenések"
+    "newReleases": "Új megjelenések",
+    "noMusicVideos": "Még nincsenek zenei videók",
+    "noAudioUploads": "Még nincs feltöltött hanganyag",
+    "noTracks": "Még nincsenek számok",
+    "noPodcasts": "Még nincsenek podcastok",
+    "noAudio": "Nincs hang"
   },
   "notFound": {
     "title": "Az oldal nem található",
@@ -3806,5 +3811,17 @@
     "updated": "Bejegyzés frissítve",
     "titlePlaceholder": "Bejegyzés címe",
     "descPlaceholder": "Bejegyzés leírása"
+  },
+  "player": {
+    "openSettings": "Beállítások megnyitása",
+    "viewPlans": "Csomagok megtekintése",
+    "playbackSpeed": "Lejátszási sebesség",
+    "moreOptions": "További lehetőségek"
+  },
+  "liveViewer": {
+    "loadingStream": "Közvetítés betöltése...",
+    "streamPaused": "Közvetítés szüneteltetve",
+    "connectionDropped": "A közvetítő kapcsolata megszakadt.\nVárunk, hogy visszatérjen...",
+    "autoEnding": "Automatikusan véget ér, ha nem folytatódik"
   }
 }

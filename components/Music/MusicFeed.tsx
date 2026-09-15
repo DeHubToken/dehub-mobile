@@ -59,6 +59,7 @@ import {
 import { useDebouncedValue } from "../../hooks/useDebouncedValue";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { getAvatarUrl } from "../../libs/misc";
+import { useTranslation } from "react-i18next";
 
 const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
 
@@ -171,6 +172,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
   onRefresh,
   feedRef,
 }) => {
+  const { t } = useTranslation();
   const listRef = useRef<FlatList<any> | null>(null);
   useEffect(() => {
     if (!feedRef) return;
@@ -307,7 +309,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
               {loadingCarouselVideos ? (
                 <ShelfSkeleton width={MUSIC_CARD_WIDTH} height={168} />
               ) : carouselVideos.length === 0 ? (
-                <Text style={styles.shelfNote}>No music videos yet</Text>
+                <Text style={styles.shelfNote}>{t("music.noMusicVideos")}</Text>
               ) : (
                 <HorizontalShelf
                   data={carouselVideos}
@@ -347,7 +349,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
               {loadingAudio ? (
                 <ShelfSkeleton width={280} height={124} />
               ) : audioUploads.length === 0 ? (
-                <Text style={styles.shelfNote}>No audio uploads yet</Text>
+                <Text style={styles.shelfNote}>{t("music.noAudioUploads")}</Text>
               ) : (
                 <AudioUploadsShelf items={audioUploads} active={active} />
               )}
@@ -356,9 +358,9 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
         case "stages":
           return <StagesCarousel />;
         case "tracks":
-          return <EmptyShelf icon="Disc3" title="Tracks" note="No tracks yet" />;
+          return <EmptyShelf icon="Disc3" title={t("music.tracks")} note={t("music.noTracks")} />;
         case "podcasts":
-          return <EmptyShelf icon="MicVocal" title="Podcasts" note="No podcasts yet" />;
+          return <EmptyShelf icon="MicVocal" title={t("music.podcasts")} note={t("music.noPodcasts")} />;
       }
     },
     [carouselVideos, loadingCarouselVideos, curatedStations, audioUploads, loadingAudio, active],
@@ -525,7 +527,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
       return (
         <View style={styles.empty}>
           <Icon name="Play" size={26} color="rgba(255,255,255,0.3)" />
-          <Text style={styles.emptyTitle}>No music videos yet</Text>
+          <Text style={styles.emptyTitle}>{t("music.noMusicVideos")}</Text>
         </View>
       );
     }
@@ -627,6 +629,7 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({
   nft,
   isVisible,
 }) => {
+  const { t } = useTranslation();
   const tokenId = nft.tokenId ?? nft.id;
   const audioUrl = (nft as any).audioUrl as string | undefined;
   const title = nft.name || (nft as any).title || "Untitled";
@@ -660,7 +663,7 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({
           compact
         />
       ) : (
-        <Text style={styles.shelfNote}>No audio</Text>
+        <Text style={styles.shelfNote}>{t("music.noAudio")}</Text>
       )}
     </View>
   );

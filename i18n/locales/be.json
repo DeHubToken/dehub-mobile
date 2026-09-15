@@ -1453,7 +1453,12 @@
     "radio": "Радыё",
     "trendingTracks": "Папулярныя трэкі",
     "moreVideos": "Яшчэ відэа",
-    "newReleases": "Новыя рэлізы"
+    "newReleases": "Новыя рэлізы",
+    "noMusicVideos": "Музычных відэа яшчэ няма",
+    "noAudioUploads": "Аўдыязагрузак яшчэ няма",
+    "noTracks": "Трэкаў яшчэ няма",
+    "noPodcasts": "Падкастаў яшчэ няма",
+    "noAudio": "Няма аўдыя"
   },
   "notFound": {
     "title": "Старонка не знойдзена",
@@ -3835,5 +3840,17 @@
     "updated": "Пост абноўлены",
     "titlePlaceholder": "Загаловак паста",
     "descPlaceholder": "Апісанне паста"
+  },
+  "player": {
+    "openSettings": "Адкрыць налады",
+    "viewPlans": "Паглядзець планы",
+    "playbackSpeed": "Хуткасць прайгравання",
+    "moreOptions": "Больш опцый"
+  },
+  "liveViewer": {
+    "loadingStream": "Загрузка трансляцыі...",
+    "streamPaused": "Трансляцыя прыпынена",
+    "connectionDropped": "Злучэнне стрымера перарвалася.\nЧакаем, пакуль ён вернецца...",
+    "autoEnding": "Аўтаматычна завершыцца, калі не адновіцца"
   }
 }

@@ -1415,7 +1415,12 @@
     "radio": "रेडियो",
     "trendingTracks": "ट्रेंडिंग गाना",
     "moreVideos": "अउ वीडियो",
-    "newReleases": "नवा रिलीज"
+    "newReleases": "नवा रिलीज",
+    "noMusicVideos": "अभी कोनो म्यूजिक वीडियो नइ हे",
+    "noAudioUploads": "अभी कोनो ऑडियो अपलोड नइ हे",
+    "noTracks": "अभी कोनो ट्रैक नइ हे",
+    "noPodcasts": "अभी कोनो पॉडकास्ट नइ हे",
+    "noAudio": "कोनो ऑडियो नइ हे"
   },
   "notFound": {
     "title": "पेज नइ मिलिस",
@@ -3803,5 +3808,17 @@
     "updated": "पोस्ट अपडेट होगे",
     "titlePlaceholder": "पोस्ट के सीर्षक",
     "descPlaceholder": "पोस्ट के बिबरन"
+  },
+  "player": {
+    "openSettings": "सेटिंग खोलव",
+    "viewPlans": "प्लान देखव",
+    "playbackSpeed": "प्लेबैक स्पीड",
+    "moreOptions": "अउ विकल्प"
+  },
+  "liveViewer": {
+    "loadingStream": "स्ट्रीम लोड होवत हे...",
+    "streamPaused": "स्ट्रीम रुके हे",
+    "connectionDropped": "स्ट्रीमर के कनेक्सन टूटगे।\nफेर जुड़े के अगोरा हे...",
+    "autoEnding": "अगर फेर चालू नइ होइस त अपने आप खतम होही"
   }
 }

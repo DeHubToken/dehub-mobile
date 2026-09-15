@@ -1443,7 +1443,12 @@
     "radio": "Radio",
     "trendingTracks": "Këngët në Trend",
     "moreVideos": "Më Shumë Video",
-    "newReleases": "Publikimet e Reja"
+    "newReleases": "Publikimet e Reja",
+    "noMusicVideos": "Ende pa videoklipe",
+    "noAudioUploads": "Ende pa audio të ngarkuara",
+    "noTracks": "Ende pa këngë",
+    "noPodcasts": "Ende pa podkaste",
+    "noAudio": "Pa audio"
   },
   "notFound": {
     "title": "Faqja Nuk u Gjet",
@@ -3801,5 +3806,17 @@
     "updated": "Postimi u përditësua",
     "titlePlaceholder": "Titulli i postimit",
     "descPlaceholder": "Përshkrimi i postimit"
+  },
+  "player": {
+    "openSettings": "Hap cilësimet",
+    "viewPlans": "Shiko planet",
+    "playbackSpeed": "Shpejtësia e luajtjes",
+    "moreOptions": "Më shumë opsione"
+  },
+  "liveViewer": {
+    "loadingStream": "Po ngarkohet transmetimi...",
+    "streamPaused": "Transmetimi në pauzë",
+    "connectionDropped": "Lidhja e transmetuesit ra.\nDuke pritur që të rilidhet...",
+    "autoEnding": "Përfundon automatikisht nëse nuk rifillon"
   }
 }

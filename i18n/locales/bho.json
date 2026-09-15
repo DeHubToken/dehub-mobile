@@ -1412,7 +1412,12 @@
     "radio": "रेडियो",
     "trendingTracks": "ट्रेंडिंग गाना",
     "moreVideos": "और वीडियो",
-    "newReleases": "नया रिलीज"
+    "newReleases": "नया रिलीज",
+    "noMusicVideos": "अबले कवनो म्यूजिक वीडियो नइखे",
+    "noAudioUploads": "अबले कवनो ऑडियो अपलोड नइखे",
+    "noTracks": "अबले कवनो ट्रैक नइखे",
+    "noPodcasts": "अबले कवनो पॉडकास्ट नइखे",
+    "noAudio": "कवनो ऑडियो नइखे"
   },
   "notFound": {
     "title": "पन्ना नइखे मिलल",
@@ -3752,5 +3757,17 @@
     "updated": "पोस्ट अपडेट हो गइल",
     "titlePlaceholder": "पोस्ट के शीर्षक",
     "descPlaceholder": "पोस्ट के विवरण"
+  },
+  "player": {
+    "openSettings": "सेटिंग खोलीं",
+    "viewPlans": "प्लान देखीं",
+    "playbackSpeed": "प्लेबैक स्पीड",
+    "moreOptions": "अउरी विकल्प"
+  },
+  "liveViewer": {
+    "loadingStream": "स्ट्रीम लोड हो रहल बा...",
+    "streamPaused": "स्ट्रीम रुकल बा",
+    "connectionDropped": "स्ट्रीमर के कनेक्शन टूट गइल।\nओकरा फेर जुड़े के इंतजार बा...",
+    "autoEnding": "अगर फेर शुरू ना भइल त अपने आप खतम हो जाई"
   }
 }

@@ -1443,7 +1443,12 @@
     "radio": "Redio",
     "trendingTracks": "Nyimbo zinazovuma",
     "moreVideos": "Video zaidi",
-    "newReleases": "Zilizotolewa hivi karibuni"
+    "newReleases": "Zilizotolewa hivi karibuni",
+    "noMusicVideos": "Bado hakuna video za muziki",
+    "noAudioUploads": "Bado hakuna sauti zilizopakiwa",
+    "noTracks": "Bado hakuna nyimbo",
+    "noPodcasts": "Bado hakuna podikasti",
+    "noAudio": "Hakuna sauti"
   },
   "notFound": {
     "title": "Ukurasa Haujapatikana",
@@ -3802,5 +3807,17 @@
     "updated": "Chapisho limesasishwa",
     "titlePlaceholder": "Kichwa cha chapisho",
     "descPlaceholder": "Maelezo ya chapisho"
+  },
+  "player": {
+    "openSettings": "Fungua mipangilio",
+    "viewPlans": "Tazama mipango",
+    "playbackSpeed": "Kasi ya kucheza",
+    "moreOptions": "Chaguo zaidi"
+  },
+  "liveViewer": {
+    "loadingStream": "Inapakia matangazo...",
+    "streamPaused": "Matangazo yamesitishwa",
+    "connectionDropped": "Muunganisho wa mtangazaji umekatika.\nTunasubiri aunganishe tena...",
+    "autoEnding": "Itakoma yenyewe isipoendelea"
   }
 }

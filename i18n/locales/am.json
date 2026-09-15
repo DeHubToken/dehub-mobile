@@ -1432,7 +1432,12 @@
     "radio": "ሬዲዮ",
     "trendingTracks": "ተወዳጅ ትራኮች",
     "moreVideos": "ተጨማሪ ቪዲዮዎች",
-    "newReleases": "አዳዲስ ልቀቶች"
+    "newReleases": "አዳዲስ ልቀቶች",
+    "noMusicVideos": "እስካሁን የሙዚቃ ቪዲዮ የለም",
+    "noAudioUploads": "እስካሁን የድምፅ ስቀላ የለም",
+    "noTracks": "እስካሁን ትራክ የለም",
+    "noPodcasts": "እስካሁን ፖድካስት የለም",
+    "noAudio": "ድምፅ የለም"
   },
   "notFound": {
     "title": "ገጽ አልተገኘም",
@@ -3797,5 +3802,17 @@
     "updated": "ልጥፉ ተዘምኗል",
     "titlePlaceholder": "የልጥፍ ርዕስ",
     "descPlaceholder": "የልጥፍ መግለጫ"
+  },
+  "player": {
+    "openSettings": "ቅንብሮችን ክፈት",
+    "viewPlans": "ዕቅዶችን ይመልከቱ",
+    "playbackSpeed": "የመልሶ ማጫወት ፍጥነት",
+    "moreOptions": "ተጨማሪ አማራጮች"
+  },
+  "liveViewer": {
+    "loadingStream": "ስርጭቱ እየተጫነ ነው...",
+    "streamPaused": "ስርጭቱ ቆሟል",
+    "connectionDropped": "የአስተላላፊው ግንኙነት ተቋርጧል።\nእንደገና እስኪገናኝ እየተጠበቀ ነው...",
+    "autoEnding": "ካልቀጠለ በራሱ ይጠናቀቃል"
   }
 }

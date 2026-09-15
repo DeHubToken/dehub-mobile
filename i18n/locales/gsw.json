@@ -1402,7 +1402,12 @@
     "radio": "Radio",
     "trendingTracks": "Trendigi Tracks",
     "moreVideos": "Meh Videos",
-    "newReleases": "Neui Veröffentlichige"
+    "newReleases": "Neui Veröffentlichige",
+    "noMusicVideos": "No kei Musigvideos",
+    "noAudioUploads": "No kei Audio-Uploads",
+    "noTracks": "No kei Tracks",
+    "noPodcasts": "No kei Podcasts",
+    "noAudio": "Kei Audio"
   },
   "notFound": {
     "title": "Siite nid gfunde",
@@ -3791,5 +3796,17 @@
     "updated": "Biitrag aktualisiert",
     "titlePlaceholder": "Biitragstitel",
     "descPlaceholder": "Biitragsbeschriibig"
+  },
+  "player": {
+    "openSettings": "Iistellige uftue",
+    "viewPlans": "Plän aaluege",
+    "playbackSpeed": "Abspiilgschwindigkeit",
+    "moreOptions": "Meh Optione"
+  },
+  "liveViewer": {
+    "loadingStream": "Stream wird glade...",
+    "streamPaused": "Stream pausiert",
+    "connectionDropped": "D Verbindig vom Streamer isch abbroche.\nMir wartet, bis er zrugg isch...",
+    "autoEnding": "Ändet automatisch, wenn's nöd wiitergaht"
   }
 }

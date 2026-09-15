@@ -1442,7 +1442,12 @@
     "radio": "Radio",
     "trendingTracks": "Populārie ieraksti",
     "moreVideos": "Vairāk video",
-    "newReleases": "Jaunie izlaidumi"
+    "newReleases": "Jaunie izlaidumi",
+    "noMusicVideos": "Vēl nav mūzikas video",
+    "noAudioUploads": "Vēl nav augšupielādēta audio",
+    "noTracks": "Vēl nav ierakstu",
+    "noPodcasts": "Vēl nav podkāstu",
+    "noAudio": "Nav audio"
   },
   "notFound": {
     "title": "Lapa nav atrasta",
@@ -3801,5 +3806,17 @@
     "updated": "Ieraksts atjaunināts",
     "titlePlaceholder": "Ieraksta virsraksts",
     "descPlaceholder": "Ieraksta apraksts"
+  },
+  "player": {
+    "openSettings": "Atvērt iestatījumus",
+    "viewPlans": "Skatīt plānus",
+    "playbackSpeed": "Atskaņošanas ātrums",
+    "moreOptions": "Vairāk opciju"
+  },
+  "liveViewer": {
+    "loadingStream": "Ielādē straumi...",
+    "streamPaused": "Straume apturēta",
+    "connectionDropped": "Straumētāja savienojums pārtrūka.\nGaidām, kad viņš atkal pievienosies...",
+    "autoEnding": "Beigsies automātiski, ja netiks atsākta"
   }
 }

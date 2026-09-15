@@ -1402,7 +1402,12 @@
     "radio": "วิทยุ",
     "trendingTracks": "เพลงฮิต",
     "moreVideos": "วิดีโอเพิ่ม",
-    "newReleases": "ออกใหม่"
+    "newReleases": "ออกใหม่",
+    "noMusicVideos": "ยังบ่มีมิวสิกวิดีโอ",
+    "noAudioUploads": "ยังบ่มีไฟล์เสียงตี้อัปโหลด",
+    "noTracks": "ยังบ่มีเปลง",
+    "noPodcasts": "ยังบ่มีพอดแคสต์",
+    "noAudio": "บ่มีเสียง"
   },
   "notFound": {
     "title": "บ่พบหน้า",
@@ -3761,5 +3766,17 @@
     "updated": "อัปเดตโพสต์แล้ว",
     "titlePlaceholder": "จื้อโพสต์",
     "descPlaceholder": "กำอธิบายโพสต์"
+  },
+  "player": {
+    "openSettings": "เปิดกาน໊ตั้งก้า",
+    "viewPlans": "ผ่อแพ็กเกจ",
+    "playbackSpeed": "ความไวกาน໊หลิ้น",
+    "moreOptions": "ตั๋วเลือกเพิ่มเติม"
+  },
+  "liveViewer": {
+    "loadingStream": "กำลังโหลดสตรีม...",
+    "streamPaused": "สตรีมหยุดจั่วคราว",
+    "connectionDropped": "กาน໊เจื่อมต่อของผู้สตรีมหลุด\nกำลังลอหื้อกลับมาเจื่อมต่อใหม่...",
+    "autoEnding": "จะจบอัตโนมัติถ้าบ่กลับมาต่อ"
   }
 }

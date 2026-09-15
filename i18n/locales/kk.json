@@ -1428,7 +1428,12 @@
     "radio": "Радио",
     "trendingTracks": "Тренд тректер",
     "moreVideos": "Көбірек бейне",
-    "newReleases": "Жаңа шығарылымдар"
+    "newReleases": "Жаңа шығарылымдар",
+    "noMusicVideos": "Әзірге музыкалық бейне жоқ",
+    "noAudioUploads": "Әзірге аудио жүктелмеген",
+    "noTracks": "Әзірге тректер жоқ",
+    "noPodcasts": "Әзірге подкаст жоқ",
+    "noAudio": "Аудио жоқ"
   },
   "notFound": {
     "title": "Бет табылмады",
@@ -3858,5 +3863,17 @@
     "updated": "Жазба жаңартылды",
     "titlePlaceholder": "Жазба тақырыбы",
     "descPlaceholder": "Жазба сипаттамасы"
+  },
+  "player": {
+    "openSettings": "Параметрлерді ашу",
+    "viewPlans": "Жоспарларды қарау",
+    "playbackSpeed": "Ойнату жылдамдығы",
+    "moreOptions": "Қосымша опциялар"
+  },
+  "liveViewer": {
+    "loadingStream": "Ағын жүктелуде...",
+    "streamPaused": "Ағын кідіртілді",
+    "connectionDropped": "Стример байланысы үзілді.\nҚайта қосылуын күтудеміз...",
+    "autoEnding": "Жалғаспаса, автоматты түрде аяқталады"
   }
 }

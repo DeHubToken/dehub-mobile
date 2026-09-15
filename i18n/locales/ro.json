@@ -1558,7 +1558,12 @@
     "radio": "Radio",
     "trendingTracks": "Trending Tracks",
     "moreVideos": "More Videos",
-    "newReleases": "New Releases"
+    "newReleases": "New Releases",
+    "noMusicVideos": "Încă niciun videoclip muzical",
+    "noAudioUploads": "Încă niciun fișier audio încărcat",
+    "noTracks": "Încă nicio piesă",
+    "noPodcasts": "Încă niciun podcast",
+    "noAudio": "Fără audio"
   },
   "leaderboard": {
     "title": "Leaderboards",
@@ -3815,5 +3820,17 @@
     "updated": "Postare actualizată",
     "titlePlaceholder": "Titlul postării",
     "descPlaceholder": "Descrierea postării"
+  },
+  "player": {
+    "openSettings": "Deschide setările",
+    "viewPlans": "Vezi planurile",
+    "playbackSpeed": "Viteza de redare",
+    "moreOptions": "Mai multe opțiuni"
+  },
+  "liveViewer": {
+    "loadingStream": "Se încarcă transmisiunea...",
+    "streamPaused": "Transmisiune în pauză",
+    "connectionDropped": "Conexiunea celui care transmite a căzut.\nAșteptăm să revină...",
+    "autoEnding": "Se va încheia automat dacă nu este reluată"
   }
 }

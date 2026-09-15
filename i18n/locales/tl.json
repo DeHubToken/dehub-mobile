@@ -1757,7 +1757,12 @@
     "radio": "Radio",
     "trendingTracks": "Trending Tracks",
     "moreVideos": "More Videos",
-    "newReleases": "New Releases"
+    "newReleases": "New Releases",
+    "noMusicVideos": "Wala pang music video",
+    "noAudioUploads": "Wala pang na-upload na audio",
+    "noTracks": "Wala pang track",
+    "noPodcasts": "Wala pang podcast",
+    "noAudio": "Walang audio"
   },
   "explorePage": {
     "searchPlaceholder": "Search for people, posts, or content...",
@@ -3981,5 +3986,17 @@
     "updated": "Na-update ang post",
     "titlePlaceholder": "Pamagat ng post",
     "descPlaceholder": "Paglalarawan ng post"
+  },
+  "player": {
+    "openSettings": "Buksan ang settings",
+    "viewPlans": "Tingnan ang mga plano",
+    "playbackSpeed": "Bilis ng playback",
+    "moreOptions": "Higit pang opsyon"
+  },
+  "liveViewer": {
+    "loadingStream": "Nilo-load ang stream...",
+    "streamPaused": "Naka-pause ang stream",
+    "connectionDropped": "Naputol ang koneksyon ng streamer.\nHinihintay silang bumalik...",
+    "autoEnding": "Awtomatikong matatapos kung hindi magpapatuloy"
   }
 }

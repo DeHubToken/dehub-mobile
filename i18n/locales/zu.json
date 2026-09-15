@@ -1442,7 +1442,12 @@
     "radio": "Umsakazo",
     "trendingTracks": "Amaculo adumile",
     "moreVideos": "Amavidiyo amanye",
-    "newReleases": "Okusha okukhishiwe"
+    "newReleases": "Okusha okukhishiwe",
+    "noMusicVideos": "Awekho amavidiyo omculo okwamanje",
+    "noAudioUploads": "Awekho ama-audio alayishiwe okwamanje",
+    "noTracks": "Azikho izingoma okwamanje",
+    "noPodcasts": "Awekho ama-podcast okwamanje",
+    "noAudio": "Alukho umsindo"
   },
   "notFound": {
     "title": "Ikhasi Alitholakalanga",
@@ -3831,5 +3836,17 @@
     "updated": "Okuthunyelwe kubuyekeziwe",
     "titlePlaceholder": "Isihloko sokuthunyelwe",
     "descPlaceholder": "Incazelo yokuthunyelwe"
+  },
+  "player": {
+    "openSettings": "Vula izilungiselelo",
+    "viewPlans": "Buka amaphakheji",
+    "playbackSpeed": "Isivinini sokudlala",
+    "moreOptions": "Ezinye izinketho"
+  },
+  "liveViewer": {
+    "loadingStream": "Kulayishwa ukusakaza...",
+    "streamPaused": "Ukusakaza kumiswe okwesikhashana",
+    "connectionDropped": "Uxhumano lomsakazi luphukile.\nSilinde ukuthi axhumeke futhi...",
+    "autoEnding": "Kuzophela ngokuzenzakalela uma kungaqhubeki"
   }
 }

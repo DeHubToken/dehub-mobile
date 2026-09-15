@@ -1442,7 +1442,12 @@
     "radio": "電台",
     "trendingTracks": "熱門歌曲",
     "moreVideos": "更多影片",
-    "newReleases": "新發佈"
+    "newReleases": "新發佈",
+    "noMusicVideos": "仲未有音樂影片",
+    "noAudioUploads": "仲未有音訊上載",
+    "noTracks": "仲未有曲目",
+    "noPodcasts": "仲未有播客",
+    "noAudio": "冇音訊"
   },
   "notFound": {
     "title": "搵唔到頁面",
@@ -3800,5 +3805,17 @@
     "updated": "帖子已更新",
     "titlePlaceholder": "帖子標題",
     "descPlaceholder": "帖子描述"
+  },
+  "player": {
+    "openSettings": "打開設定",
+    "viewPlans": "查看方案",
+    "playbackSpeed": "播放速度",
+    "moreOptions": "更多選項"
+  },
+  "liveViewer": {
+    "loadingStream": "正在載入直播……",
+    "streamPaused": "直播已暫停",
+    "connectionDropped": "主播嘅連線斷咗。\n等緊佢重新連線……",
+    "autoEnding": "如果冇恢復，會自動結束"
   }
 }

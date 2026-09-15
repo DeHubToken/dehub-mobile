@@ -1445,7 +1445,12 @@
     "radio": "Radio",
     "trendingTracks": "Trending takiykuna",
     "moreVideos": "Aswan videokuna",
-    "newReleases": "Musuq lluqsiykuna"
+    "newReleases": "Musuq lluqsiykuna",
+    "noMusicVideos": "Manaraq takiy videokuna kanchu",
+    "noAudioUploads": "Manaraq audio sichasqa kanchu",
+    "noTracks": "Manaraq takikuna kanchu",
+    "noPodcasts": "Manaraq podcastkuna kanchu",
+    "noAudio": "Mana audio"
   },
   "notFound": {
     "title": "Mana p'anqa tarisqachu",
@@ -3832,5 +3837,17 @@
     "updated": "Willay musuqchasqa",
     "titlePlaceholder": "Willay suti",
     "descPlaceholder": "Willay willakuynin"
+  },
+  "player": {
+    "openSettings": "Allichaykunata kichay",
+    "viewPlans": "Planokunata qhaway",
+    "playbackSpeed": "Uyarichiy utqay",
+    "moreOptions": "Astawan akllanakuna"
+  },
+  "liveViewer": {
+    "loadingStream": "Chayachiy chaskichkan...",
+    "streamPaused": "Chayachiy sayachisqa",
+    "connectionDropped": "Chayachiqpa tinkiynin p'akikurqan.\nKutimunanta suyachkanchik...",
+    "autoEnding": "Mana qatiptinqa kikinmanta tukukunqa"
   }
 }

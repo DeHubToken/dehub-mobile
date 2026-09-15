@@ -1359,7 +1359,12 @@
     "radio": "रेडिओ",
     "trendingTracks": "ट्रेंडिंग ट्रॅक्स",
     "moreVideos": "अधिक व्हिडिओ",
-    "newReleases": "नवीन प्रकाशने"
+    "newReleases": "नवीन प्रकाशने",
+    "noMusicVideos": "अजून म्युझिक व्हिडिओ नाहीत",
+    "noAudioUploads": "अजून ऑडिओ अपलोड नाहीत",
+    "noTracks": "अजून ट्रॅक नाहीत",
+    "noPodcasts": "अजून पॉडकास्ट नाहीत",
+    "noAudio": "ऑडिओ नाही"
   },
   "notFound": {
     "title": "पृष्ठ आढळले नाही",
@@ -3790,5 +3795,17 @@
     "updated": "पोस्ट अपडेट झाली",
     "titlePlaceholder": "पोस्टचे शीर्षक",
     "descPlaceholder": "पोस्टचे वर्णन"
+  },
+  "player": {
+    "openSettings": "सेटिंग्ज उघडा",
+    "viewPlans": "योजना पहा",
+    "playbackSpeed": "प्लेबॅक वेग",
+    "moreOptions": "अधिक पर्याय"
+  },
+  "liveViewer": {
+    "loadingStream": "स्ट्रीम लोड होत आहे...",
+    "streamPaused": "स्ट्रीम थांबवली",
+    "connectionDropped": "स्ट्रीमरचे कनेक्शन तुटले.\nपुन्हा जोडले जाण्याची वाट पाहत आहोत...",
+    "autoEnding": "पुन्हा सुरू न झाल्यास आपोआप संपेल"
   }
 }

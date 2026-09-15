@@ -1368,7 +1368,12 @@
     "radio": "רדיו",
     "trendingTracks": "רצועות פופולריות",
     "moreVideos": "עוד סרטונים",
-    "newReleases": "שחרורים חדשים"
+    "newReleases": "שחרורים חדשים",
+    "noMusicVideos": "עדיין אין קליפים",
+    "noAudioUploads": "עדיין אין העלאות אודיו",
+    "noTracks": "עדיין אין רצועות",
+    "noPodcasts": "עדיין אין פודקאסטים",
+    "noAudio": "אין אודיו"
   },
   "notFound": {
     "title": "הדף לא נמצא",
@@ -3789,5 +3794,17 @@
     "updated": "הפוסט עודכן",
     "titlePlaceholder": "כותרת הפוסט",
     "descPlaceholder": "תיאור הפוסט"
+  },
+  "player": {
+    "openSettings": "פתח הגדרות",
+    "viewPlans": "צפה בתוכניות",
+    "playbackSpeed": "מהירות הפעלה",
+    "moreOptions": "אפשרויות נוספות"
+  },
+  "liveViewer": {
+    "loadingStream": "טוען שידור...",
+    "streamPaused": "השידור מושהה",
+    "connectionDropped": "החיבור של המשדר נותק.\nממתינים שיתחבר מחדש...",
+    "autoEnding": "יסתיים אוטומטית אם לא יחודש"
   }
 }

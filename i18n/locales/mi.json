@@ -1431,7 +1431,12 @@
     "radio": "Reo irirangi",
     "trendingTracks": "Waiata rongonui",
     "moreVideos": "Ataata anō",
-    "newReleases": "Tuku hou"
+    "newReleases": "Tuku hou",
+    "noMusicVideos": "Kāore anō he ataata puoro",
+    "noAudioUploads": "Kāore anō he oro kua tukuna",
+    "noTracks": "Kāore anō he waiata",
+    "noPodcasts": "Kāore anō he pāhorangi",
+    "noAudio": "Kāore he oro"
   },
   "notFound": {
     "title": "Kāore i kitea te whārangi",
@@ -3787,5 +3792,17 @@
     "updated": "Kua whakahoutia te pou",
     "titlePlaceholder": "Taitara pou",
     "descPlaceholder": "Whakaahuatanga pou"
+  },
+  "player": {
+    "openSettings": "Whakatuwherahia ngā tautuhinga",
+    "viewPlans": "Tirohia ngā mahere",
+    "playbackSpeed": "Tere pūrei",
+    "moreOptions": "Ētahi atu kōwhiringa"
+  },
+  "liveViewer": {
+    "loadingStream": "E uta ana i te rerenga...",
+    "streamPaused": "Kua tārewa te rerenga",
+    "connectionDropped": "Kua motu te hononga a te kaituku.\nE tatari ana kia hono anō...",
+    "autoEnding": "Ka mutu aunoa ki te kore e haere tonu"
   }
 }

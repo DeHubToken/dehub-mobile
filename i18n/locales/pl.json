@@ -1613,7 +1613,12 @@
     "radio": "Radio",
     "trendingTracks": "Popularne utwory",
     "moreVideos": "Więcej filmów",
-    "newReleases": "Nowe wydania"
+    "newReleases": "Nowe wydania",
+    "noMusicVideos": "Brak teledysków",
+    "noAudioUploads": "Brak przesłanych plików audio",
+    "noTracks": "Brak utworów",
+    "noPodcasts": "Brak podcastów",
+    "noAudio": "Brak dźwięku"
   },
   "leaderboard": {
     "title": "Rankingi",
@@ -3870,5 +3875,17 @@
     "updated": "Post zaktualizowany",
     "titlePlaceholder": "Tytuł posta",
     "descPlaceholder": "Opis posta"
+  },
+  "player": {
+    "openSettings": "Otwórz ustawienia",
+    "viewPlans": "Zobacz plany",
+    "playbackSpeed": "Prędkość odtwarzania",
+    "moreOptions": "Więcej opcji"
+  },
+  "liveViewer": {
+    "loadingStream": "Wczytywanie transmisji...",
+    "streamPaused": "Transmisja wstrzymana",
+    "connectionDropped": "Połączenie streamera zerwało się.\nCzekamy, aż wróci...",
+    "autoEnding": "Zakończy się automatycznie, jeśli nie zostanie wznowiona"
   }
 }

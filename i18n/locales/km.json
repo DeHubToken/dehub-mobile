@@ -1467,7 +1467,12 @@
     "radio": "វិទ្យុ",
     "trendingTracks": "បទចម្រៀងពេញនិយម",
     "moreVideos": "វីដេអូបន្ថែម",
-    "newReleases": "ចេញផ្សាយថ្មី"
+    "newReleases": "ចេញផ្សាយថ្មី",
+    "noMusicVideos": "មិនទាន់មានវីដេអូតន្ត្រីទេ",
+    "noAudioUploads": "មិនទាន់មានការបញ្ចូលសំឡេងទេ",
+    "noTracks": "មិនទាន់មានបទទេ",
+    "noPodcasts": "មិនទាន់មាន podcast ទេ",
+    "noAudio": "គ្មានសំឡេង"
   },
   "notFound": {
     "title": "រកទំព័រមិនឃើញ",
@@ -3821,5 +3826,17 @@
     "updated": "បានធ្វើបច្ចុប្បន្នភាពប្រកាស",
     "titlePlaceholder": "ចំណងជើងប្រកាស",
     "descPlaceholder": "ការពិពណ៌នាប្រកាស"
+  },
+  "player": {
+    "openSettings": "បើកការកំណត់",
+    "viewPlans": "មើលគម្រោង",
+    "playbackSpeed": "ល្បឿនចាក់",
+    "moreOptions": "ជម្រើសបន្ថែម"
+  },
+  "liveViewer": {
+    "loadingStream": "កំពុងផ្ទុកការផ្សាយ...",
+    "streamPaused": "ការផ្សាយត្រូវបានផ្អាក",
+    "connectionDropped": "ការតភ្ជាប់របស់អ្នកផ្សាយបានដាច់។\nកំពុងរង់ចាំគាត់តភ្ជាប់ឡើងវិញ...",
+    "autoEnding": "នឹងបញ្ចប់ដោយស្វ័យប្រវត្តិ ប្រសិនបើមិនបន្ត"
   }
 }

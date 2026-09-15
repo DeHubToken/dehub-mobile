@@ -1330,7 +1330,12 @@
     "radio": "Radio",
     "trendingTracks": "Trend-Tracks",
     "moreVideos": "Mehr Videos",
-    "newReleases": "Neuerscheinungen"
+    "newReleases": "Neuerscheinungen",
+    "noMusicVideos": "Noch keine Musikvideos",
+    "noAudioUploads": "Noch keine Audio-Uploads",
+    "noTracks": "Noch keine Tracks",
+    "noPodcasts": "Noch keine Podcasts",
+    "noAudio": "Kein Audio"
   },
   "leaderboard": {
     "title": "Rangliste",
@@ -3871,5 +3876,17 @@
     "updated": "Beitrag aktualisiert",
     "titlePlaceholder": "Beitragstitel",
     "descPlaceholder": "Beitragsbeschreibung"
+  },
+  "player": {
+    "openSettings": "Einstellungen öffnen",
+    "viewPlans": "Pläne ansehen",
+    "playbackSpeed": "Wiedergabegeschwindigkeit",
+    "moreOptions": "Weitere Optionen"
+  },
+  "liveViewer": {
+    "loadingStream": "Stream wird geladen...",
+    "streamPaused": "Stream pausiert",
+    "connectionDropped": "Die Verbindung des Streamers ist abgebrochen.\nWir warten auf die Rückkehr...",
+    "autoEnding": "Endet automatisch, wenn es nicht fortgesetzt wird"
   }
 }
