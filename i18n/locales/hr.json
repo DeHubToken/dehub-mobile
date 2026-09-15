@@ -3137,7 +3137,16 @@
     "kindVideo": "Video",
     "kindAudio": "Zvuk",
     "kindImage": "Slike",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Pregledajte prije objavljivanja",
+    "reviewSubtitle": "Od {{source}}, kao {{kind}}. Uredite sve što vam se sviđa — ostavite naslov prazan kako biste zadržali izvornik.",
+    "reviewName": "Naziv",
+    "reviewNamePlaceholder": "Ostavite prazno da biste zadržali izvorni naziv",
+    "reviewDescription": "Opis",
+    "reviewDescriptionPlaceholder": "Recite nešto o ovoj objavi (nije obavezno)",
+    "reviewLiveWarning": "Ta je poveznica prijenos uživo. Pričekajte da završi i umjesto toga importirajte snimku.",
+    "reviewCancel": "Odustani",
+    "reviewConfirm": "Uvoz"
   },
   "earnings": {
     "filter24h": "24h",

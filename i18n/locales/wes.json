@@ -2976,7 +2976,16 @@
     "kindVideo": "Video",
     "kindAudio": "Audio",
     "kindImage": "Picha",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Review before posting",
+    "reviewSubtitle": "From {{source}}, as {{kind}}. Edit anything you like — leave the title empty to keep the original.",
+    "reviewName": "Title",
+    "reviewNamePlaceholder": "Leave empty to keep the original title",
+    "reviewDescription": "Description",
+    "reviewDescriptionPlaceholder": "Say something about this post (optional)",
+    "reviewLiveWarning": "That link is a live stream. Wait until it ends and import the recording instead.",
+    "reviewCancel": "Cancel",
+    "reviewConfirm": "Import"
   },
   "earnings": {
     "filter24h": "24h",

@@ -3170,7 +3170,16 @@
     "kindVideo": "भिडियो",
     "kindAudio": "अडियो",
     "kindImage": "चित्र",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "पोस्ट गर्नु अघि समीक्षा गर्नुहोस्",
+    "reviewSubtitle": "{{source}} बाट, {{kind}} सम्म । तपाईंलाई मनपर्ने कुनै पनि सम्पादन गर्नुहोस् — मौलिक राख्न शीर्षक खाली छोड्नुहोस् ।",
+    "reviewName": "शीर्षक",
+    "reviewNamePlaceholder": "मौलिक शीर्षक राख्न खाली छोड्नुहोस्",
+    "reviewDescription": "विवरण",
+    "reviewDescriptionPlaceholder": "यस पोष्टको बारेमा केही भन्नुहोस् (वैकल्पिक)",
+    "reviewLiveWarning": "त्यो लिङ्क लाइभ स्ट्रिम हो । यो समाप्त नभएसम्म पर्खनुहोस् र यसको सट्टामा रेकर्डिङ आयात गर्नुहोस् ।",
+    "reviewCancel": "रद्द गर्नुहोस्",
+    "reviewConfirm": "आयात गर्नुहोस्"
   },
   "earnings": {
     "filter24h": "24घ",

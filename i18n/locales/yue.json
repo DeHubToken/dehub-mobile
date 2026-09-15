@@ -3135,7 +3135,16 @@
     "kindVideo": "影片",
     "kindAudio": "音頻",
     "kindImage": "圖片",
-    "tileSourceKind": "{{ 來源 } } · {{ 種類 } }"
+    "tileSourceKind": "{{ 來源 } } · {{ 種類 } }",
+    "reviewTitle": "喺發佈之前睇吓",
+    "reviewSubtitle": "由 {{source}} ，作為 {{kind}} 。編輯任何你鍾意嘅內容 — 將標題留空，以保留原始內容。",
+    "reviewName": "標題:",
+    "reviewNamePlaceholder": "留空嚟保留原始標題",
+    "reviewDescription": "描述",
+    "reviewDescriptionPlaceholder": "講啲關於呢個帖子嘅嘢（可選）",
+    "reviewLiveWarning": "嗰個連結係一個直播。等到佢完結，然後轉入錄音。",
+    "reviewCancel": "取消",
+    "reviewConfirm": "進口"
   },
   "earnings": {
     "filter24h": "24小時",

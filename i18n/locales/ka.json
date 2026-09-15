@@ -3172,7 +3172,16 @@
     "kindVideo": "ვიდეო",
     "kindAudio": "აუდიო",
     "kindImage": "სურათები",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Გადახედვა გამოქვეყნებამდე",
+    "reviewSubtitle": "{{source}} -დან, როგორც {{kind}}. Ჩაასწორეთ სასურველი რამ — ორიგინალის შესანარჩუნებლად სათაური ცარიელი დატოვეთ.",
+    "reviewName": "Სათაური",
+    "reviewNamePlaceholder": "Თავდაპირველი სათაურის შესანარჩუნებლად დატოვეთ ცარიელი",
+    "reviewDescription": "Აღწერა",
+    "reviewDescriptionPlaceholder": "Მიუთითეთ რაიმე ამ პოსტის შესახებ (არასავალდებულო)",
+    "reviewLiveWarning": "Ეს ბმული პირდაპირი ტრანსლაციაა. Დაელოდეთ მის დასრულებას და სანაცვლოდ შემოიტანეთ ჩანაწერი.",
+    "reviewCancel": "Გაუქმება",
+    "reviewConfirm": "Შემოტანა"
   },
   "earnings": {
     "filter24h": "24სთ",

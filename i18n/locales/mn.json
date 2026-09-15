@@ -3116,7 +3116,16 @@
     "kindVideo": "Видео",
     "kindAudio": "Аудио",
     "kindImage": "Зураг",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Тусгахаас өмнө тоймлон үзэх",
+    "reviewSubtitle": "{{source}}, {{kind}} -с эхлэн. Таалагдсан зүйлээ засах — эхийг нь хадгалахын тулд гарчигийг хоосон орхино уу.",
+    "reviewName": "Гарчиг",
+    "reviewNamePlaceholder": "Анхны нэрийг хадгалахын тулд хоосон орхих",
+    "reviewDescription": "Тайлбар",
+    "reviewDescriptionPlaceholder": "Энэ нийтлэлийн талаар ямар нэг зүйл хэлээрэй (заавал биш)",
+    "reviewLiveWarning": "Энэ холбоос бол шууд дамжуулалт юм. Үүний оронд бичлэгийг дуусч импортлох хүртэл хүлээнэ үү.",
+    "reviewCancel": "Цуцлах",
+    "reviewConfirm": "Импортлох"
   },
   "earnings": {
     "filter24h": "24ц",

@@ -3169,7 +3169,16 @@
     "kindVideo": "Video",
     "kindAudio": "Audio nisqa",
     "kindImage": "Siqikuna",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Manaraq churachkaspa qhawariy",
+    "reviewSubtitle": "{{source}} nisqamanta, {{kind}} hina. Ima munasqaykitapas llamk&#39;apuy — tituluta ch&#39;usaq saqiy ñawpaq kaqta waqaychanaykipaq.",
+    "reviewName": "Suti",
+    "reviewNamePlaceholder": "Ch’usaqllata saqiy, ñawpaq tituluta waqaychanaykipaq",
+    "reviewDescription": "Ima kasqan",
+    "reviewDescriptionPlaceholder": "Kay qillqasqamanta imatapas niy (munasqa) .",
+    "reviewLiveWarning": "Chay t&#39;inkiqa kawsaq purichiymi. Tukunankama suyay hinaspa chaypa rantinpi grabacionta apamuy.",
+    "reviewCancel": "Sayachiy...",
+    "reviewConfirm": "Yaykuchiy..."
   },
   "earnings": {
     "filter24h": "24h",

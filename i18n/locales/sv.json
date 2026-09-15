@@ -3141,7 +3141,16 @@
     "kindVideo": "Video",
     "kindAudio": "Ljud",
     "kindImage": "Bilder",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Granska innan du publicerar",
+    "reviewSubtitle": "Från {{source}}, som {{kind}}. Redigera vad du vill — lämna titeln tom för att behålla originalet.",
+    "reviewName": "Titel",
+    "reviewNamePlaceholder": "Lämna tomt för att behålla den ursprungliga titeln",
+    "reviewDescription": "Beskrivning",
+    "reviewDescriptionPlaceholder": "Säg något om det här inlägget (valfritt)",
+    "reviewLiveWarning": "Den länken är en livestream. Vänta tills det slutar och importera inspelningen istället.",
+    "reviewCancel": "Avbryt",
+    "reviewConfirm": "Importera"
   },
   "earnings": {
     "filter24h": "24h",

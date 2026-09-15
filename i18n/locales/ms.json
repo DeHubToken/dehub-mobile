@@ -3400,7 +3400,16 @@
     "kindVideo": "Video",
     "kindAudio": "Audio",
     "kindImage": "Gambar",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Semak sebelum menyiarkan",
+    "reviewSubtitle": "Daripada {{source}}, sebagai {{kind}}. Edit apa sahaja yang anda suka — biarkan tajuk kosong untuk mengekalkan yang asal.",
+    "reviewName": "Tajuk",
+    "reviewNamePlaceholder": "Biarkan kosong untuk mengekalkan tajuk asal",
+    "reviewDescription": "Keterangan",
+    "reviewDescriptionPlaceholder": "Katakan sesuatu tentang hantaran ini (pilihan)",
+    "reviewLiveWarning": "Pautan itu adalah strim langsung. Tunggu sehingga ia berakhir dan import rakaman.",
+    "reviewCancel": "Batal",
+    "reviewConfirm": "Import"
   },
   "earnings": {
     "filter24h": "24j",

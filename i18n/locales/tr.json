@@ -3199,7 +3199,16 @@
     "kindVideo": "Video",
     "kindAudio": "Ses",
     "kindImage": "Resimler",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Göndermeden önce gözden geçirin",
+    "reviewSubtitle": "{{source}} tarihinden itibaren {{kind}} olarak. İstediğiniz herhangi bir şeyi düzenleyin — orijinali saklamak için başlığı boş bırakın.",
+    "reviewName": "Unvanı",
+    "reviewNamePlaceholder": "Orijinal başlığı korumak için boş bırakın",
+    "reviewDescription": "Açıklama",
+    "reviewDescriptionPlaceholder": "Bu gönderi hakkında bir şeyler söyle (isteğe bağlı)",
+    "reviewLiveWarning": "Bu bağlantı canlı bir akış. Bitene kadar bekleyin ve bunun yerine kaydı içe aktarın.",
+    "reviewCancel": "İptal",
+    "reviewConfirm": "İçe Aktar"
   },
   "earnings": {
     "filter24h": "24s",

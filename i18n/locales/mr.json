@@ -3125,7 +3125,16 @@
     "kindVideo": "व्हिडिओ",
     "kindAudio": "ऑडिओ",
     "kindImage": "चित्रे",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "पोस्ट करण्यापूर्वी पुनरावलोकन करा",
+    "reviewSubtitle": "{{source}} कडून, {{kind}} म्हणून. तुम्हाला जे काही आवडते ते संपादित करा — मूळ ठेवण्यासाठी शीर्षक रिकामे ठेवा.",
+    "reviewName": "शीर्षक",
+    "reviewNamePlaceholder": "मूळ शीर्षक ठेवण्यासाठी रिक्त सोडा",
+    "reviewDescription": "वर्णन",
+    "reviewDescriptionPlaceholder": "या पोस्टबद्दल काहीतरी सांगा (ऐच्छिक)",
+    "reviewLiveWarning": "या संप्रेषण एक लाइव्ह प्रवाह आहे. तो समाप्त होईपर्यंत प्रतीक्षा करा आणि ऐवजी रेकॉर्डिंग आयात.",
+    "reviewCancel": "रद्द करा",
+    "reviewConfirm": "आयात करा"
   },
   "earnings": {
     "filter24h": "24ता",

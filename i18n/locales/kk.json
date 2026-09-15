@@ -3193,7 +3193,16 @@
     "kindVideo": "В_идео",
     "kindAudio": "Аудио",
     "kindImage": "QShortcut",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Жіберу алдында шолу",
+    "reviewSubtitle": "{{source}} бастап, {{kind}} ретінде. Өзіңізге ұнайтын нәрсені өңдеңіз — түпнұсқаны сақтау үшін тақырыпты бос қалдырыңыз.",
+    "reviewName": "Тақырып",
+    "reviewNamePlaceholder": "Бастапқы тақырыпты сақтау үшін бос қалдырыңыз",
+    "reviewDescription": "Сипаттама",
+    "reviewDescriptionPlaceholder": "Осы лауазым туралы бірдеңе айтыңыз (міндетті емес)",
+    "reviewLiveWarning": "Бұл сілтеме тікелей ағын болып табылады. Ол аяқталғанша күтіңіз және оның орнына жазбаны импорттаңыз.",
+    "reviewCancel": "Бас тарту",
+    "reviewConfirm": "Импорттау"
   },
   "earnings": {
     "filter24h": "24с",

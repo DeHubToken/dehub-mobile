@@ -3404,7 +3404,16 @@
     "kindVideo": "Video",
     "kindAudio": "Audio",
     "kindImage": "Afbeeldingen",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Recensie voordat u plaatst",
+    "reviewSubtitle": "Vanaf {{source}}, als {{kind}}. Bewerk alles wat je wilt — laat de titel leeg om het origineel te behouden.",
+    "reviewName": "Titel",
+    "reviewNamePlaceholder": "Laat leeg om de oorspronkelijke titel te behouden",
+    "reviewDescription": "Omschrijving",
+    "reviewDescriptionPlaceholder": "Zeg iets over deze post (optioneel)",
+    "reviewLiveWarning": "Die link is een livestream. Wacht tot het eindigt en importeer in plaats daarvan de opname.",
+    "reviewCancel": "Annuleren",
+    "reviewConfirm": "Importeren"
   },
   "earnings": {
     "filter24h": "24u",

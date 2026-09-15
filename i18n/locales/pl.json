@@ -3205,7 +3205,16 @@
     "kindVideo": "Karta graficzna",
     "kindAudio": "Dźwięk",
     "kindImage": "Obrazy",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Przejrzyj przed opublikowaniem",
+    "reviewSubtitle": "Od {{source}}, jako {{kind}}. Edytuj, co chcesz — pozostaw tytuł pusty, aby zachować oryginał.",
+    "reviewName": "Tytuł",
+    "reviewNamePlaceholder": "Pozostaw puste, aby zachować oryginalny tytuł",
+    "reviewDescription": "Opis",
+    "reviewDescriptionPlaceholder": "Powiedz coś o tym poście (opcjonalnie)",
+    "reviewLiveWarning": "Ten link to transmisja na żywo. Poczekaj, aż się skończy i zaimportuj nagranie.",
+    "reviewCancel": "Anuluj",
+    "reviewConfirm": "Import"
   },
   "earnings": {
     "filter24h": "24h",

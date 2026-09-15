@@ -3141,7 +3141,16 @@
     "kindVideo": "Videó",
     "kindAudio": "Audió",
     "kindImage": "Képek",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Áttekintés közzététel előtt",
+    "reviewSubtitle": "{{source}} -tól, {{kind}} -ként. Szerkessz bármit, ami tetszik — hagyd üresen a címet, hogy megtartsd az eredetit.",
+    "reviewName": "Cím",
+    "reviewNamePlaceholder": "Hagyja üresen az eredeti cím megtartásához",
+    "reviewDescription": "Leírás",
+    "reviewDescriptionPlaceholder": "Mondj valamit erről a bejegyzésről (nem kötelező)",
+    "reviewLiveWarning": "Ez a link élő közvetítés. Várja meg, amíg véget ér, és importálja a felvételt.",
+    "reviewCancel": "Mégse",
+    "reviewConfirm": "Importálás"
   },
   "earnings": {
     "filter24h": "24ó",

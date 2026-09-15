@@ -3166,7 +3166,16 @@
     "kindVideo": "I_vidiyo",
     "kindAudio": "Okwemisindo",
     "kindImage": "izithombe",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Buyekeza ngaphambi kokuphosta",
+    "reviewSubtitle": "Kusuka ku-{{source}}, njenge- {{kind}}. Hlela noma yini oyithandayo — shiya isihloko singenalutho ukuze ugcine okokuqala.",
+    "reviewName": "Isihloko",
+    "reviewNamePlaceholder": "Shiya ungenalutho ukuze ugcine isihloko sokuqala",
+    "reviewDescription": "Incazelo",
+    "reviewDescriptionPlaceholder": "Yisho okuthile ngale phosti (akuphoqelekile)",
+    "reviewLiveWarning": "Leyo linki ingukusakaza bukhoma. Linda kuze kube yilapho kuphela bese ungenisa irekhodi.",
+    "reviewCancel": "Khansela",
+    "reviewConfirm": "Ngenisa"
   },
   "earnings": {
     "filter24h": "24h",

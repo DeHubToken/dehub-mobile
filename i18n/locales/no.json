@@ -3128,7 +3128,16 @@
     "kindVideo": "Video",
     "kindAudio": "Lyd",
     "kindImage": "Bilder",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Se gjennom før du legger ut",
+    "reviewSubtitle": "Fra {{source}}, som {{kind}}. Rediger hva du vil – la tittelen stå tom for å beholde originalen.",
+    "reviewName": "Tittel",
+    "reviewNamePlaceholder": "La stå tomt for å beholde den opprinnelige tittelen",
+    "reviewDescription": "Beskrivelse",
+    "reviewDescriptionPlaceholder": "Si noe om dette innlegget (valgfritt)",
+    "reviewLiveWarning": "Den lenken er en direktestrømming. Vent til den slutter og importer opptaket i stedet.",
+    "reviewCancel": "Avbryt",
+    "reviewConfirm": "Importere"
   },
   "earnings": {
     "filter24h": "24t",

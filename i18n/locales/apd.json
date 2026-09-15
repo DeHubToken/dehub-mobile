@@ -3094,7 +3094,16 @@
     "kindVideo": "Video",
     "kindAudio": "صوت",
     "kindImage": "صور",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "شوف قبل ما تنشر",
+    "reviewSubtitle": "من {{source}}، بتاع {{kind}}. عدّل أي حاجة تحتاج — اترك العنوان فاضي عشان تحافظ على العنوان الأصلي.",
+    "reviewName": "العنوان",
+    "reviewNamePlaceholder": "اترك فاضي عشان تحافظ على العنوان الأصلي",
+    "reviewDescription": "الوصف",
+    "reviewDescriptionPlaceholder": "قول حاجة عن البوست دي (اختياري)",
+    "reviewLiveWarning": "الرابط دا بث مباشر. استنى لما ينتهي وبعدين استورد التسجيل بدل ما تستورد البث.",
+    "reviewCancel": "إلغاء",
+    "reviewConfirm": "استورد"
   },
   "earnings": {
     "filter24h": "24س",

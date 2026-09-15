@@ -3125,7 +3125,16 @@
     "kindVideo": "வீடியோ",
     "kindAudio": "Audio",
     "kindImage": "படங்கள்",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "இடுகையிடுவதற்கு முன் மதிப்பாய்வு செய்யவும்",
+    "reviewSubtitle": "{{source}}, {{kind}}. நீங்கள் விரும்பும் எதையும் திருத்தவும் — அசலை வைத்திருக்க தலைப்பை காலியாக விடவும்.",
+    "reviewName": "தலைப்பு",
+    "reviewNamePlaceholder": "அசல் தலைப்பை வைத்திருக்க காலியாக விடவும்",
+    "reviewDescription": "விளக்கம்",
+    "reviewDescriptionPlaceholder": "இந்த இடுகையைப் பற்றி ஏதாவது கூறுங்கள் (விரும்பினால்)",
+    "reviewLiveWarning": "அந்த இணைப்பு ஒரு நேரடி ஸ்ட்ரீம். அது முடியும் வரை காத்திருந்து பதிவை இறக்குமதி செய்யவும்.",
+    "reviewCancel": "ரத்துசெய்",
+    "reviewConfirm": "இறக்குமதி"
   },
   "earnings": {
     "filter24h": "24ம",

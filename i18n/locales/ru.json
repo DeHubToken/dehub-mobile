@@ -3206,7 +3206,16 @@
     "kindVideo": "Видео мониторинг",
     "kindAudio": "Аудиоданные",
     "kindImage": "Картины",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Проверить перед публикацией",
+    "reviewSubtitle": "От {{source}} до {{kind}}. Отредактируйте все, что вам нравится — оставьте заголовок пустым, чтобы сохранить оригинал.",
+    "reviewName": "Название",
+    "reviewNamePlaceholder": "Оставьте пустым, чтобы сохранить оригинальный заголовок",
+    "reviewDescription": "Описание",
+    "reviewDescriptionPlaceholder": "Расскажите об этой публикации (необязательно)",
+    "reviewLiveWarning": "Эта ссылка - прямая трансляция. Подождите, пока запись не закончится, и вместо этого импортируйте запись.",
+    "reviewCancel": "Отмена",
+    "reviewConfirm": "Импорт"
   },
   "earnings": {
     "filter24h": "24ч",

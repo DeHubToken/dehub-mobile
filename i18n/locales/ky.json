@@ -3130,7 +3130,16 @@
     "kindVideo": "_Видео",
     "kindAudio": "Аудио",
     "kindImage": "Сүрөттөр",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Жарыяланганга чейин карап чыгуу",
+    "reviewSubtitle": "From {{source}}, катары {{kind}}. Түп нускасын сактоо үчүн аталышты бош калтырыңыз.",
+    "reviewName": "Аталышы",
+    "reviewNamePlaceholder": "Түп нускасын сактоо үчүн бош калтыруу",
+    "reviewDescription": "Сыпаттамасы",
+    "reviewDescriptionPlaceholder": "Бул билдирүү жөнүндө бир нерсе айтуу (милдеттүү эмес)",
+    "reviewLiveWarning": "Бул шилтеме түз агым. Ал бүткөнгө чейин күтө туруңуз жана анын ордуна жазууну импорттоңуз.",
+    "reviewCancel": "Жокко чыгаруу",
+    "reviewConfirm": "Импорттоо"
   },
   "earnings": {
     "filter24h": "24с",

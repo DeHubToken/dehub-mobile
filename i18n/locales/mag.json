@@ -3090,7 +3090,16 @@
     "kindVideo": "इ औ सेकसी वीडियो",
     "kindAudio": "ऑडियो कैलक्यूलेटर",
     "kindImage": "इ औ सेकसी फोटो",
-    "tileSourceKind": "{{MONTHNAME}} से मिलई छई"
+    "tileSourceKind": "{{MONTHNAME}} से मिलई छई",
+    "reviewTitle": "पोस्ट करे से पहले Review करे",
+    "reviewSubtitle": "के रूप में, के रूप में, के रूप में, के रूप में जब तक कोई चाहे, सेवा का उपयोग कर सकता है, लेकिन उपयोगकर्ता द्वारा लागू सीमाओं के भीतर.",
+    "reviewName": "Title \"दस्तावेज के समय खतम हो",
+    "reviewNamePlaceholder": "Title \"ई पता पर रोक लगावल गेल अछि \">",
+    "reviewDescription": "विवरण देवे वाला",
+    "reviewDescriptionPlaceholder": "1) सबसे पहले, App Find करे (यह Step TV के लिए है)",
+    "reviewLiveWarning": "ई पन्ना एगो अनुप्रेषण हः वापस अप, बहाल, ठीक, और WhatsApp डाटा हस्तांतरण.",
+    "reviewCancel": "रद्द करे",
+    "reviewConfirm": "आयात कैलक्यूलेटर"
   },
   "earnings": {
     "filter24h": "24घं",

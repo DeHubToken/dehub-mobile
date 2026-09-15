@@ -3201,7 +3201,16 @@
     "kindVideo": "Viidiyoo",
     "kindAudio": "Sagalee",
     "kindImage": "Suuraalee",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Maxxansuu kee dura irra deebi&#39;ii ilaali",
+    "reviewSubtitle": "{{source}} irraa, akka {{kind}}. Waan jaallattu hunda gulaali — mata duree duwwaa dhiisii ​​jalqabaa akka turuuf.",
+    "reviewName": "Mata-duree",
+    "reviewNamePlaceholder": "Mata duree jalqabaa akka turuuf duwwaa dhiisi",
+    "reviewDescription": "Ibsa",
+    "reviewDescriptionPlaceholder": "Waa&#39;ee barreeffama kanaa waa jedhi (optional) .",
+    "reviewLiveWarning": "Link sun live stream dha. Hanga xumuramutti eegaa bakka isaa waraabbii galchi.",
+    "reviewCancel": "Haquu",
+    "reviewConfirm": "Biyya alaatii galchuu"
   },
   "earnings": {
     "filter24h": "24s",

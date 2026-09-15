@@ -3225,7 +3225,16 @@
     "kindVideo": "Video",
     "kindAudio": "Âm thanh",
     "kindImage": "Hình ảnh",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Xem lại trước khi đăng",
+    "reviewSubtitle": "Từ {{source}}, với tên {{kind}}. Chỉnh sửa bất cứ điều gì bạn thích — để trống tiêu đề để giữ nguyên bản gốc.",
+    "reviewName": "Tiêu đề",
+    "reviewNamePlaceholder": "Để trống để giữ tiêu đề ban đầu",
+    "reviewDescription": "Mô tả",
+    "reviewDescriptionPlaceholder": "Nói điều gì đó về bài đăng này (không bắt buộc)",
+    "reviewLiveWarning": "Liên kết đó là một phát trực tuyến. Thay vào đó, hãy đợi cho đến khi kết thúc và nhập bản ghi.",
+    "reviewCancel": "Hủy",
+    "reviewConfirm": "Nhập"
   },
   "earnings": {
     "filter24h": "24g",

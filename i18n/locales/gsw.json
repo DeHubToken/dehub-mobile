@@ -3126,7 +3126,16 @@
     "kindVideo": "Video",
     "kindAudio": "Audio",
     "kindImage": "Bilder",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Vor em Poschte überprüfe",
+    "reviewSubtitle": "Vo {{source}}, as {{kind}}. Ändere öppis, wenn du wotsch — la de Titel leer, zum de ursprüngliche z'behalte.",
+    "reviewName": "Titel",
+    "reviewNamePlaceholder": "Laa leer, zum de ursprüngliche Titel z'behalte",
+    "reviewDescription": "Beschriibig",
+    "reviewDescriptionPlaceholder": "Säg öppis über dä Poscht (optional)",
+    "reviewLiveWarning": "De Link isch e Live-Stream. Warte, bis er fertig isch, und importiere de Mitschnitt statt däm.",
+    "reviewCancel": "Abbräche",
+    "reviewConfirm": "Importiere"
   },
   "earnings": {
     "filter24h": "24h",

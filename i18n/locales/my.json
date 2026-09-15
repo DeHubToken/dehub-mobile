@@ -3117,7 +3117,16 @@
     "kindVideo": "ဗီဒီယို",
     "kindAudio": "အသံ",
     "kindImage": "ရုပ်ပုံများ",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "ပို့စ်တင်ခြင်းမပြုမီ ပြန်လည်သုံးသပ်ပါ",
+    "reviewSubtitle": "{{source}} မှ {{kind}} အဖြစ် ။ သင်ကြိုက်နှစ်သက်သောမည်သည့်အရာကိုမဆိုတည်းဖြတ်ပါ - မူရင်းကိုထိန်းသိမ်းရန်ခေါင်းစဉ်ကိုအလွတ်ထားခဲ့ပါ ။",
+    "reviewName": "ခေါင်းစဉ်",
+    "reviewNamePlaceholder": "မူရင်းခေါင်းစဉ်ကို ထိန်းသိမ်းရန် ဗလာချန်ထားပါ",
+    "reviewDescription": "ဖော်ပြချက်",
+    "reviewDescriptionPlaceholder": "ဒီ post ကိုအကြောင်းအရာတစ်ခုခုပြောပြပါ (optional)",
+    "reviewLiveWarning": "ဒီလင့်ခ်က တိုက်ရိုက်လွှင့်တဲ့ လိုင်းပါ ။ ပြီးဆုံးသည်အထိစောင့်ပြီး ၎ င်းအစား မှတ်တမ်းတင်ခြင်းကို တင်သွင်းပါ ။",
+    "reviewCancel": "ပယ်ဖျက်မည်",
+    "reviewConfirm": "ထည့်သွင်း"
   },
   "earnings": {
     "filter24h": "24နာရီ",

@@ -3088,7 +3088,16 @@
     "kindVideo": "Video",
     "kindAudio": "音频",
     "kindImage": "图片",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "发布前检查",
+    "reviewSubtitle": "从 {{source}}，作为 {{kind}}。编辑你喜欢的任何东西——留下标题为空以保持原始。",
+    "reviewName": "Title",
+    "reviewNamePlaceholder": "留空来保持原始标题",
+    "reviewDescription": "描述",
+    "reviewDescriptionPlaceholder": "这篇帖子没有具体内容好评论。",
+    "reviewLiveWarning": "那个链接是直播。等到它结束后再导入录像。",
+    "reviewCancel": "Cancel",
+    "reviewConfirm": "Import"
   },
   "earnings": {
     "filter24h": "24小时",

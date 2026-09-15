@@ -3093,7 +3093,16 @@
     "kindVideo": "فيديو",
     "kindAudio": "صوت",
     "kindImage": "صور",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "راجع قبل ما تنشر",
+    "reviewSubtitle": "من {{source}}، كـ {{kind}}. عدّل أي شي بتحب — اترك العنوان فاضي عشان تحافظ على العنوان الأصلي.",
+    "reviewName": "العنوان",
+    "reviewNamePlaceholder": "اترك فاضي عشان تحافظ على العنوان الأصلي",
+    "reviewDescription": "الوصف",
+    "reviewDescriptionPlaceholder": "قول شي عن هالمنشور (اختياري)",
+    "reviewLiveWarning": "هالرابط بث مباشر. استنى لحتى ينتهي وبعدين استورد التسجيل بدل ما تستورد البث.",
+    "reviewCancel": "إلغاء",
+    "reviewConfirm": "استورد"
   },
   "earnings": {
     "filter24h": "24س",

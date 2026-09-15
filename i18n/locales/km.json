@@ -3156,7 +3156,16 @@
     "kindVideo": "វីដេអូ",
     "kindAudio": "សំឡេង",
     "kindImage": "រូបភាព",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "ពិនិត្យមើលមុនពេលបង្ហោះ",
+    "reviewSubtitle": "ពី {{source}}, ដូច {{kind}} ។ កែសម្រួលអ្វីដែលអ្នកចូលចិត្ត - ទុកចំណងជើងទទេដើម្បីរក្សាសំណៅដើម ។",
+    "reviewName": "ចំណងជើង",
+    "reviewNamePlaceholder": "ទុកឱ្យនៅទទេដើម្បីរក្សាចំណងជើងដើម",
+    "reviewDescription": "ការពិព័ណ៌នា",
+    "reviewDescriptionPlaceholder": "1) ដំបូង ត្រូវ ធ្វើ App Find (វា សម្រាប់ Step TV)",
+    "reviewLiveWarning": "ការភ្ជាប់នេះ គឺជាការផ្សាយបន្តផ្ទាល់ ។ រង់ចាំរហូតដល់វាបញ្ចប់ ហើយនាំចូលការថតជំនួសវិញ ។",
+    "reviewCancel": "បោះបង់",
+    "reviewConfirm": "នាំចូល"
   },
   "earnings": {
     "filter24h": "24ម",

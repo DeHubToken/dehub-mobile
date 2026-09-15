@@ -3173,7 +3173,16 @@
     "kindVideo": "วิดีโอ",
     "kindAudio": "เสียง",
     "kindImage": "รูป",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "ตรวจสอบก่อนโพสต์",
+    "reviewSubtitle": "จาก {{source}} เป็น {{kind}} แก้ไขอะไรก็ได้ที่คุณชอบ — ปล่อยให้ชื่อว่างไว้เพื่อเก็บต้นฉบับไว้",
+    "reviewName": "ชื่อ",
+    "reviewNamePlaceholder": "เว้นว่างไว้เพื่อคงชื่อเดิมไว้",
+    "reviewDescription": "คำอธิบาย",
+    "reviewDescriptionPlaceholder": "พูดอะไรบางอย่างเกี่ยวกับโพสต์นี้ (ไม่บังคับ)",
+    "reviewLiveWarning": "ลิงก์นั้นเป็นสตรีมสด รอจนกว่าจะจบและนำเข้าข้อมูลที่บันทึกไว้แทน",
+    "reviewCancel": "ยกเลิก",
+    "reviewConfirm": "นำเข้า"
   },
   "earnings": {
     "filter24h": "24ชม.",

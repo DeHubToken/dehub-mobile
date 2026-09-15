@@ -3150,7 +3150,16 @@
     "kindVideo": "Video",
     "kindAudio": "Audio",
     "kindImage": "Imagini",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Verifică înainte de a posta",
+    "reviewSubtitle": "De la {{source}}, ca {{kind}}. Editați tot ce vă place — lăsați titlul gol pentru a păstra originalul.",
+    "reviewName": "Titlu",
+    "reviewNamePlaceholder": "Lăsați necompletat pentru a păstra titlul original",
+    "reviewDescription": "Descriere",
+    "reviewDescriptionPlaceholder": "Spune ceva despre această postare (opțional)",
+    "reviewLiveWarning": "Acel link este un flux live. Așteptați până se termină și importați înregistrarea în schimb.",
+    "reviewCancel": "Anulează",
+    "reviewConfirm": "Import"
   },
   "earnings": {
     "filter24h": "24h",

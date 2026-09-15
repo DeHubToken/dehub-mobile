@@ -3121,7 +3121,16 @@
     "kindVideo": "Video",
     "kindAudio": "Audio",
     "kindImage": "Şəkillər",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Göndərməzdən əvvəl nəzərdən keçirin",
+    "reviewSubtitle": "{{kind}} kimi {{source}} mənbəyindən. İstədiyiniz hər şeyi redaktə edin — orijinalı saxlamaq üçün başlığı boş saxlayın.",
+    "reviewName": "Başlıq",
+    "reviewNamePlaceholder": "Orijinal başlığı saxlamaq üçün boş buraxın",
+    "reviewDescription": "Təsvir",
+    "reviewDescriptionPlaceholder": "Bu yazı haqqında nəsə deyin (qeyri-məcburi)",
+    "reviewLiveWarning": "Bu link canlı yayımdır. Bitənə qədər gözləyin və əvəzinə səsyazmanı idxal edin.",
+    "reviewCancel": "Ləğv et",
+    "reviewConfirm": "İdxal et"
   },
   "earnings": {
     "filter24h": "24s",

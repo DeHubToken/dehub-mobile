@@ -3131,7 +3131,16 @@
     "kindVideo": "వీడియో",
     "kindAudio": "ఆడియో",
     "kindImage": "నొక్కుQShortcut",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "పోస్ట్ చేయడానికి ముందు సమీక్షించండి",
+    "reviewSubtitle": "{{source}}, {{kind}} నుండి. మీకు నచ్చినదాన్ని సవరించండి — ఒరిజినల్ ‌ ను ఉంచడానికి టైటిల్ ‌ ను ఖాళీగా ఉంచండి.",
+    "reviewName": "శీర్షిక",
+    "reviewNamePlaceholder": "అసలు శీర్షికను ఉంచడానికి ఖాళీగా ఉంచండి",
+    "reviewDescription": "వివరణ",
+    "reviewDescriptionPlaceholder": "ఈ పోస్ట్ గురించి ఏదైనా చెప్పండి (ఐచ్ఛికం)",
+    "reviewLiveWarning": "ఆ లింక్ ఒక ప్రత్యక్ష ప్రసారం. అది ముగిసే వరకు వేచి ఉండి, బదులుగా రికార్డింగ్ ‌ ను ఇంపోర్ట్ చేయండి.",
+    "reviewCancel": "రద్దు చేయండి",
+    "reviewConfirm": "దిగుమతి చేయండి"
   },
   "earnings": {
     "filter24h": "24గం",

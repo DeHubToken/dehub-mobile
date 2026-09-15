@@ -3115,7 +3115,16 @@
     "kindVideo": "Видео",
     "kindAudio": "Аудио",
     "kindImage": "Тасвирҳо",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Шарҳи пеш аз фиристодан",
+    "reviewSubtitle": "{{source}}, as {{kind}}. I-edit ang anumang gusto mo — ilagay ang pamagat upang mag-save ng orihinal",
+    "reviewName": "Сарлавҳа",
+    "reviewNamePlaceholder": "Барои нигоҳ доштани сарлавҳаи аслӣ холӣ гузоред",
+    "reviewDescription": "Тавсиф",
+    "reviewDescriptionPlaceholder": "Дар бораи ин пост чизе бигӯед (ихтиёрӣ)",
+    "reviewLiveWarning": "Ang link na ito ay isang live stream. Интизор шавед, то он ба итмом расад ва сабтро ба ҷои он ворид кунед.",
+    "reviewCancel": "Бекор кардан",
+    "reviewConfirm": "Воридот"
   },
   "earnings": {
     "filter24h": "24с",

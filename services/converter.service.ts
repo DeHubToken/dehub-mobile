@@ -21,6 +21,8 @@ export interface ConverterImportParams {
   /** No ownership check is possible from a URL, so this is the liability
    * gate. The API rejects the request without it. */
   ownershipConfirmed: boolean;
+  /** Title and description from the review sheet. Empty means "use the
+   * source's own title", which is what clearing the box asks for. */
   name?: string;
   description?: string;
   chainId?: number;
@@ -65,6 +67,35 @@ export interface ConverterImport {
   queuedAt?: number;
   result?: { createdTokenId?: string; duplicate?: boolean; [key: string]: unknown };
   failedReason?: string;
+}
+
+/** What a link is, read without downloading it. */
+export interface ConverterPreview {
+  title: string;
+  description: string;
+  durationSeconds: number;
+  thumbnailUrl?: string;
+  sourceId: string;
+  sourceLabel: string;
+  /** Which kinds this link offers, best-first. Served by the API so a source
+   * whose capabilities change does not need an app release to match. */
+  media: ('video' | 'audio' | 'image')[];
+  isLive: boolean;
+  /** The preview could not read the link. The fields are empty and importing
+   * still works — the queue retries on its own schedule and the server falls
+   * back to the source's own title. */
+  unavailable?: boolean;
+}
+
+/**
+ * Metadata for a link, so the review sheet can open already filled in.
+ *
+ * No download, no queue, no charge. A rejection means "open the sheet empty",
+ * not "the import failed" — a slow metadata fetch must not read as a broken
+ * importer.
+ */
+export async function previewConverterImport(url: string): Promise<ConverterPreview> {
+  return apiClient.post<ConverterPreview>('/youtube_import/preview', { url });
 }
 
 export async function queueConverterImport(

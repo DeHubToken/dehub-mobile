@@ -3137,7 +3137,16 @@
     "kindVideo": "Видеоклип",
     "kindAudio": "екрана",
     "kindImage": "??·???±?Ђ?°?¶?µ?????ЏQShortcut",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Преглед преди публикуване",
+    "reviewSubtitle": "От {{source}}, като {{kind}}. Редактирайте всичко, което искате — оставете заглавието празно, за да запазите оригинала.",
+    "reviewName": "Заглавие",
+    "reviewNamePlaceholder": "Оставете празно, за да запазите оригиналното заглавие",
+    "reviewDescription": "Описание",
+    "reviewDescriptionPlaceholder": "Кажете нещо за тази публикация (незадължително)",
+    "reviewLiveWarning": "Тази връзка е поточно предаване на живо. Изчакайте, докато приключи, и вместо това импортирайте записа.",
+    "reviewCancel": "Отказ",
+    "reviewConfirm": "Импортиране"
   },
   "earnings": {
     "filter24h": "24ч",

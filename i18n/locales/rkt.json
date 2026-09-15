@@ -3119,7 +3119,16 @@
     "kindVideo": "ভিডিও",
     "kindAudio": "ऑडियो",
     "kindImage": "ছবি",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "পোস্ট করার আগে পর্যালোচনা করুন",
+    "reviewSubtitle": "{{source}} থেকে, {{kind}} হিসাবে। আপনি যা চান তা সম্পাদনা করুন — মূল শিরোনাম রাখতে শিরোনাম খালি রেখে দিন।",
+    "reviewName": "শিরোনাম",
+    "reviewNamePlaceholder": "মূল শিরোনাম রাখতে খালি রেখে দিন",
+    "reviewDescription": "বর্ণনা",
+    "reviewDescriptionPlaceholder": "এই পোস্ট সম্পর্কে কিছু বলুন (ঐচ্ছিক)",
+    "reviewLiveWarning": "সেই লিঙ্কটি একটি লাইভ স্ট্রিম। এটি শেষ না হওয়া পর্যন্ত অপেক্ষা করুন এবং পরিবর্তে রেকর্ডিং আমদানি করুন।",
+    "reviewCancel": "বাতিল করুন",
+    "reviewConfirm": "আমদানি করুন"
   },
   "earnings": {
     "filter24h": "২৪ঘ",

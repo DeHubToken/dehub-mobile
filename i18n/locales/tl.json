@@ -3316,7 +3316,16 @@
     "kindVideo": "Video",
     "kindAudio": "Audio",
     "kindImage": "Mga Larawan",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Suriin bago mag - post",
+    "reviewSubtitle": "Mula {{source}}, bilang {{kind}}. I - edit ang anumang gusto mo — iwanan ang pamagat na walang laman upang panatilihing orihinal.",
+    "reviewName": "Pamagat",
+    "reviewNamePlaceholder": "Iwanan ang walang laman upang panatilihin ang orihinal na pamagat",
+    "reviewDescription": "Paglalarawan",
+    "reviewDescriptionPlaceholder": "Magsabi ng isang bagay tungkol sa post na ito (opsyonal)",
+    "reviewLiveWarning": "Ang link na iyon ay isang live stream. Maghintay hanggang sa matapos ito at sa halip ay i - import ang recording.",
+    "reviewCancel": "Kanselahin",
+    "reviewConfirm": "I-import"
   },
   "earnings": {
     "filter24h": "24o",

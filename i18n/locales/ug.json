@@ -3127,7 +3127,16 @@
     "kindVideo": "Video",
     "kindAudio": "ئاۋاز",
     "kindImage": "سۈرەتلەر",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "يوللاشتىن بۇرۇن تەھلىل قىلىش",
+    "reviewSubtitle": "{{source}} دىن، {{kind}} دىن. خالىغىنىڭىزنى تەھرىرلەڭ — ئەسلى بېتىنى ساقلاش ئۈچۈن بېتىنى بوش قويۇڭ.",
+    "reviewName": "Title",
+    "reviewNamePlaceholder": "ئەسلى بېتىنى ساقلاش ئۈچۈن بوشلۇق قالدۇرۇڭ",
+    "reviewDescription": "تەسۋىر",
+    "reviewDescriptionPlaceholder": "بۇ يازما ھەققىدە بىر نەرسە دېگىن (ئىختىيارىي)",
+    "reviewLiveWarning": "بۇ ئۇلانما ھاياتلىق ئېقىمى. ئاخىرلىشىشىنى كۈتۈپ، ئۇنىڭ ئورنىغا خاتىرە ھۆججىتىنى ئىمپورت قىلىڭ.",
+    "reviewCancel": "ئەمەلدىن قالدۇرۇش",
+    "reviewConfirm": "ئىمپورت"
   },
   "earnings": {
     "filter24h": "24س",

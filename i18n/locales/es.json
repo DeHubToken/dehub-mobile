@@ -3207,7 +3207,16 @@
     "kindVideo": "Video",
     "kindAudio": "Sonido",
     "kindImage": "imágenes",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Revisar antes de publicar",
+    "reviewSubtitle": "Desde {{source}}, como {{kind}}. Edita lo que quieras: deja el título vacío para mantener el original.",
+    "reviewName": "Título",
+    "reviewNamePlaceholder": "Dejar en blanco para mantener el título original",
+    "reviewDescription": "Descripción",
+    "reviewDescriptionPlaceholder": "Di algo sobre esta publicación (opcional)",
+    "reviewLiveWarning": "Ese enlace es una transmisión en vivo. Espere hasta que termine e importe la grabación en su lugar.",
+    "reviewCancel": "Cancelar",
+    "reviewConfirm": "Importar"
   },
   "earnings": {
     "filter24h": "24h",

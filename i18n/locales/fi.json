@@ -3137,7 +3137,16 @@
     "kindVideo": "Video",
     "kindAudio": "Ääni",
     "kindImage": "Kuvat",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Tarkista ennen julkaisemista",
+    "reviewSubtitle": "Alkaen {{source}}, nimellä {{kind}}. Muokkaa mitä haluat — jätä otsikko tyhjäksi, jotta alkuperäinen säilyy.",
+    "reviewName": "Otsikko",
+    "reviewNamePlaceholder": "Jätä tyhjäksi säilyttääksesi alkuperäisen otsikon",
+    "reviewDescription": "Kuvaus",
+    "reviewDescriptionPlaceholder": "Sano jotain tästä julkaisusta (valinnainen)",
+    "reviewLiveWarning": "Tämä linkki on live-suoratoisto. Odota, kunnes se päättyy, ja tuo sen sijaan tallenne.",
+    "reviewCancel": "Peruuta",
+    "reviewConfirm": "Tuo"
   },
   "earnings": {
     "filter24h": "24h",

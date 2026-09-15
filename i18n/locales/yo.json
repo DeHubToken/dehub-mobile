@@ -3127,7 +3127,16 @@
     "kindVideo": "Fídíò",
     "kindAudio": "Ohùn",
     "kindImage": "Àwọn àwòrán",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Ṣe àtúnyẹ̀wò kí o tó gbé e jáde",
+    "reviewSubtitle": "Láti {{orísun}}, bí {{irú}}. Ṣàtúnṣe ohunkóhun tí o bá fẹ́ — jẹ́ kí àkọlé náà di òfìfo láti fi ojúlówó pamọ́.",
+    "reviewName": "Àkọlé",
+    "reviewNamePlaceholder": "Fi òfìfo sílẹ̀ láti pa àkọlé ìpilẹ̀ṣẹ̀ náà mọ́.",
+    "reviewDescription": "Àpèjúwe",
+    "reviewDescriptionPlaceholder": "Sọ ohun kan nípa iṣẹ́ yìí (bí ó bá wù ú)",
+    "reviewLiveWarning": "Ìsopọ̀ yẹn jẹ́ àtẹ̀jísẹ́ tí ó wà láàyè. Dúró títí yóò fi parí kí o sì ṣe àmúlò àfihàn náà dípò ìyẹn.",
+    "reviewCancel": "Fagilé",
+    "reviewConfirm": "Ṣàgbéwọlé"
   },
   "earnings": {
     "filter24h": "24w",

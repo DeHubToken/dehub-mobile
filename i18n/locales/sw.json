@@ -3137,7 +3137,16 @@
     "kindVideo": "Video",
     "kindAudio": "Sauti",
     "kindImage": "Taswira",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Tathmini kabla ya kuchapisha",
+    "reviewSubtitle": "Kutoka {{source}}, kama {{kind}}. Hariri chochote unachopenda — acha kichwa tupu ili kuweka asili.",
+    "reviewName": "Kichwa",
+    "reviewNamePlaceholder": "Acha tupu ili kuweka kichwa cha awali",
+    "reviewDescription": "Maelezo",
+    "reviewDescriptionPlaceholder": "Sema kitu kuhusu chapisho hili (hiari)",
+    "reviewLiveWarning": "Kiunganishi hicho ni mkondo wa moja kwa moja. Subiri hadi iishe na uingize rekodi badala yake.",
+    "reviewCancel": "Ghairi",
+    "reviewConfirm": "Ingiza"
   },
   "earnings": {
     "filter24h": "24s",

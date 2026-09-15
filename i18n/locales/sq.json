@@ -3136,7 +3136,16 @@
     "kindVideo": "Video",
     "kindAudio": "Audio",
     "kindImage": "Piktura",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Kontrollo para se të postosh",
+    "reviewSubtitle": "Nga {{source}}, si {{kind}}. Modifiko çdo gjë që të pëlqen — lëre titullin bosh për ta mbajtur origjinalin.",
+    "reviewName": "Titulli",
+    "reviewNamePlaceholder": "Lëre bosh për të mbajtur titullin origjinal",
+    "reviewDescription": "Përshkrimi",
+    "reviewDescriptionPlaceholder": "Thuaj diçka për këtë postim (me zgjedhje)",
+    "reviewLiveWarning": "Ky link është transmetim i drejtpërdrejtë. Prisni derisa të përfundojë dhe importoni regjistrimin në vend të tij.",
+    "reviewCancel": "Anulo",
+    "reviewConfirm": "Importo"
   },
   "earnings": {
     "filter24h": "24o",
