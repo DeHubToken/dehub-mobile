@@ -605,7 +605,9 @@
     "recordVideo": "వీడియో రికార్డ్ చేయండి",
     "saveChanges": "మార్పులను సేవ్ చేయండి",
     "copy": "కాపీ చేయండి",
-    "optionalSuffix": "(ఐచ్ఛికం)"
+    "optionalSuffix": "(ఐచ్ఛికం)",
+    "yesterday": "నిన్న",
+    "ok": "సరే"
   },
   "drawers": {
     "ppvTitle": "పే పర్ వ్యూ కంటెంట్",
@@ -2840,7 +2842,20 @@
     "attachPhoto": "ఫోటో",
     "attachEmoji": "ఎమోజి",
     "removeAttachment": "అటాచ్ ‌ మెంట్ ‌ ను తీసివేయండి",
-    "attachFailed": "ఆ ఫోటోను పంపలేకపోయాము."
+    "attachFailed": "ఆ ఫోటోను పంపలేకపోయాము.",
+    "deleteMessage": "సందేశాన్ని తొలగించండి",
+    "deleteConfirm": "ఈ సందేశాన్ని తొలగించాలని ఖచ్చితంగా అనుకుంటున్నారా?",
+    "pinFailed": "సందేశాన్ని పిన్ చేయలేకపోయాం",
+    "unpinFailed": "సందేశాన్ని అన్‌పిన్ చేయలేకపోయాం",
+    "disconnected": "కనెక్షన్ తెగింది",
+    "subtitle": "DeHub గురించి అన్నీ…",
+    "joining": "చాట్‌లో చేరుతోంది…",
+    "reconnect": "మళ్లీ కనెక్ట్ చేయండి",
+    "banned": "మిమ్మల్ని ఈ చాట్ నుండి నిషేధించారు",
+    "someone": "ఎవరో",
+    "oneTyping": "{{name}} టైప్ చేస్తున్నారు…",
+    "fewTyping": "{{names}} టైప్ చేస్తున్నారు…",
+    "manyTyping": "{{count}} మంది టైప్ చేస్తున్నారు…"
   },
   "promptFeed": {
     "headline": "మీరు ఏమి చూడాలనుకుంటున్నారు?",

@@ -1290,7 +1290,8 @@
     "takePhoto": "ফটো তুলন",
     "recordVideo": "ভিডিও রেকর্ড গরন",
     "saveChanges": "পরিবর্তন রাখন",
-    "optionalSuffix": "(ঐচ্ছিক)"
+    "optionalSuffix": "(ঐচ্ছিক)",
+    "yesterday": "গতকাইল"
   },
   "featureRequests": {
     "title": "ফিচার অনুরোধ",
@@ -2970,7 +2971,20 @@
     "attachPhoto": "ফটো",
     "attachEmoji": "ইমোজি",
     "removeAttachment": "এটাচমেন্ট সরান",
-    "attachFailed": "এই ফটোটা পাঠানো যায় নাই।"
+    "attachFailed": "এই ফটোটা পাঠানো যায় নাই।",
+    "deleteMessage": "মেসেজ মুছন",
+    "deleteConfirm": "তুঁই কি সত্যিই এই মেসেজ মুছিত চাও?",
+    "pinFailed": "মেসেজ পিন গরন ন যায়",
+    "unpinFailed": "মেসেজ আনপিন গরন ন যায়",
+    "disconnected": "সংযোগ বিচ্ছিন্ন",
+    "subtitle": "DeHub-র সবকিছু…",
+    "joining": "চ্যাটত যোগ দেওন অর…",
+    "reconnect": "আবার সংযোগ গরন",
+    "banned": "তুঁই এই চ্যাটত্তুন নিষিদ্ধ",
+    "someone": "কেঊ",
+    "oneTyping": "{{name}} লিখের…",
+    "fewTyping": "{{names}} লিখের…",
+    "manyTyping": "{{count}} জন লিখের…"
   },
   "promptFeed": {
     "headline": "অনে কি চাইতে চান?",

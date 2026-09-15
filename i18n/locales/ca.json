@@ -608,7 +608,9 @@
     "recordVideo": "Gravar vídeo",
     "saveChanges": "Desa els canvis",
     "copy": "Copia",
-    "optionalSuffix": "(opcional)"
+    "optionalSuffix": "(opcional)",
+    "yesterday": "Ahir",
+    "ok": "D'acord"
   },
   "tip": {
     "title": "Enviar propina",
@@ -2844,7 +2846,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Elimina l'adjunt",
-    "attachFailed": "No s'ha pogut enviar aquesta foto."
+    "attachFailed": "No s'ha pogut enviar aquesta foto.",
+    "deleteMessage": "Elimina el missatge",
+    "deleteConfirm": "Segur que vols eliminar aquest missatge?",
+    "pinFailed": "No s'ha pogut fixar el missatge",
+    "unpinFailed": "No s'ha pogut deixar de fixar el missatge",
+    "disconnected": "Desconnectat",
+    "subtitle": "Tot sobre DeHub…",
+    "joining": "S'està entrant al xat…",
+    "reconnect": "Torna a connectar",
+    "banned": "Estàs vetat d'aquest xat",
+    "someone": "Algú",
+    "oneTyping": "{{name}} està escrivint…",
+    "fewTyping": "{{names}} estan escrivint…",
+    "manyTyping": "{{count}} persones estan escrivint…"
   },
   "promptFeed": {
     "headline": "Què vols veure?",

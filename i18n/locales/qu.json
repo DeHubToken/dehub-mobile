@@ -609,7 +609,9 @@
     "recordVideo": "Videota grabay",
     "saveChanges": "Hukchasqakunata waqaychay",
     "copy": "Kikinchay",
-    "optionalSuffix": "(munaspa)"
+    "optionalSuffix": "(munaspa)",
+    "yesterday": "Qayna",
+    "ok": "Allinmi"
   },
   "tip": {
     "title": "Propina apachiy",
@@ -2876,7 +2878,20 @@
     "attachGif": "GIF nisqa",
     "attachEmoji": "Emoji nisqa",
     "removeAttachment": "K’askachiyta hurquy",
-    "attachFailed": "Mana chay fotota apachiyta atirqanichu."
+    "attachFailed": "Mana chay fotota apachiyta atirqanichu.",
+    "deleteMessage": "Willakuyta chinkachiy",
+    "deleteConfirm": "¿Chiqaqchu kay willakuyta chinkachiyta munanki?",
+    "pinFailed": "Willakuyta k'askachiy mana atikurqachu",
+    "unpinFailed": "Willakuypa k'askasqanta hurquy mana atikurqachu",
+    "disconnected": "T'aqasqa",
+    "subtitle": "DeHub nisqamanta llapan…",
+    "joining": "Rimanakuyman yaykuchkan…",
+    "reconnect": "Yapamanta t'inkiy",
+    "banned": "Kay rimanakuymanta harkasqa kanki",
+    "someone": "Pipas",
+    "oneTyping": "{{name}} qillqachkan…",
+    "fewTyping": "{{names}} qillqachkanku…",
+    "manyTyping": "{{count}} runakuna qillqachkanku…"
   },
   "promptFeed": {
     "headline": "Imatataq rikuyta munanki?",

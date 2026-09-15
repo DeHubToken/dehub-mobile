@@ -608,7 +608,9 @@
     "recordVideo": "Regjistro video",
     "saveChanges": "Ruaj ndryshimet",
     "copy": "Kopjo",
-    "optionalSuffix": "(opsionale)"
+    "optionalSuffix": "(opsionale)",
+    "yesterday": "Dje",
+    "ok": "Në rregull"
   },
   "tip": {
     "title": "Dërgo Bakshish",
@@ -2844,7 +2846,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Hiq dokumentin e bashkangjitur",
-    "attachFailed": "Nuk mund ta dërgoja atë fotografi."
+    "attachFailed": "Nuk mund ta dërgoja atë fotografi.",
+    "deleteMessage": "Fshi mesazhin",
+    "deleteConfirm": "Je i sigurt që do ta fshish këtë mesazh?",
+    "pinFailed": "Mesazhi nuk u fiksua",
+    "unpinFailed": "Mesazhi nuk u hoq nga fiksimi",
+    "disconnected": "Shkëputur",
+    "subtitle": "Gjithçka rreth DeHub…",
+    "joining": "Po bashkohesh me bisedën…",
+    "reconnect": "Rilidhu",
+    "banned": "Je i përjashtuar nga kjo bisedë",
+    "someone": "Dikush",
+    "oneTyping": "{{name}} po shkruan…",
+    "fewTyping": "{{names}} po shkruajnë…",
+    "manyTyping": "{{count}} persona po shkruajnë…"
   },
   "promptFeed": {
     "headline": "Çfarë do të shohësh?",

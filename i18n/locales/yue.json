@@ -608,7 +608,9 @@
     "recordVideo": "拍片",
     "saveChanges": "儲存變更",
     "copy": "複製",
-    "optionalSuffix": "（可選）"
+    "optionalSuffix": "（可選）",
+    "yesterday": "尋日",
+    "ok": "確定"
   },
   "tip": {
     "title": "送禮物",
@@ -2842,7 +2844,20 @@
     "attachPhoto": "相",
     "attachEmoji": "表情符號",
     "removeAttachment": "移除附件",
-    "attachFailed": "寄唔到嗰張相。"
+    "attachFailed": "寄唔到嗰張相。",
+    "deleteMessage": "刪除訊息",
+    "deleteConfirm": "確定要刪除呢個訊息？",
+    "pinFailed": "無法置頂訊息",
+    "unpinFailed": "無法取消置頂訊息",
+    "disconnected": "已中斷",
+    "subtitle": "關於 DeHub 嘅一切…",
+    "joining": "正在加入聊天…",
+    "reconnect": "重新連接",
+    "banned": "你已被禁止參與呢個聊天",
+    "someone": "某人",
+    "oneTyping": "{{name}} 正在輸入…",
+    "fewTyping": "{{names}} 正在輸入…",
+    "manyTyping": "{{count}} 人正在輸入…"
   },
   "promptFeed": {
     "headline": "你想睇啲咩？",

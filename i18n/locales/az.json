@@ -597,7 +597,9 @@
     "recordVideo": "Video çək",
     "saveChanges": "Dəyişiklikləri yadda saxla",
     "copy": "Kopyala",
-    "optionalSuffix": "(istəyə bağlı)"
+    "optionalSuffix": "(istəyə bağlı)",
+    "yesterday": "Dünən",
+    "ok": "OK"
   },
   "tip": {
     "title": "Bəxşiş Göndər",
@@ -2832,7 +2834,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Qoşmanı silin",
-    "attachFailed": "Bu fotonu göndərmək mümkün olmadı."
+    "attachFailed": "Bu fotonu göndərmək mümkün olmadı.",
+    "deleteMessage": "Mesajı sil",
+    "deleteConfirm": "Bu mesajı silmək istədiyinizə əminsiniz?",
+    "pinFailed": "Mesaj sabitlənə bilmədi",
+    "unpinFailed": "Mesajın sabitlənməsi ləğv edilə bilmədi",
+    "disconnected": "Bağlantı kəsildi",
+    "subtitle": "DeHub haqqında hər şey…",
+    "joining": "Söhbətə qoşulur…",
+    "reconnect": "Yenidən qoşul",
+    "banned": "Bu söhbətdən qadağan olunmusunuz",
+    "someone": "Kimsə",
+    "oneTyping": "{{name}} yazır…",
+    "fewTyping": "{{names}} yazır…",
+    "manyTyping": "{{count}} nəfər yazır…"
   },
   "promptFeed": {
     "headline": "Nə görmək istəyirsən?",

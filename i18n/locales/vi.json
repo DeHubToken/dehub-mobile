@@ -89,7 +89,9 @@
     "recordVideo": "Quay video",
     "saveChanges": "Lưu thay đổi",
     "copy": "Sao chép",
-    "optionalSuffix": "(tùy chọn)"
+    "optionalSuffix": "(tùy chọn)",
+    "yesterday": "Hôm qua",
+    "ok": "OK"
   },
   "glossary": {
     "title": "Bảng thuật ngữ",
@@ -2932,7 +2934,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Biểu tượng cảm xúc",
     "removeAttachment": "Xóa tệp đính kèm",
-    "attachFailed": "Không thể gửi ảnh đó."
+    "attachFailed": "Không thể gửi ảnh đó.",
+    "deleteMessage": "Xóa tin nhắn",
+    "deleteConfirm": "Bạn có chắc muốn xóa tin nhắn này không?",
+    "pinFailed": "Không thể ghim tin nhắn",
+    "unpinFailed": "Không thể bỏ ghim tin nhắn",
+    "disconnected": "Đã ngắt kết nối",
+    "subtitle": "Mọi thứ về DeHub…",
+    "joining": "Đang tham gia trò chuyện…",
+    "reconnect": "Kết nối lại",
+    "banned": "Bạn bị cấm trong cuộc trò chuyện này",
+    "someone": "Ai đó",
+    "oneTyping": "{{name}} đang nhập…",
+    "fewTyping": "{{names}} đang nhập…",
+    "manyTyping": "{{count}} người đang nhập…"
   },
   "promptFeed": {
     "headline": "Bạn muốn xem gì?",

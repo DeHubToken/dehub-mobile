@@ -597,7 +597,9 @@
     "recordVideo": "ଭିଡିଓ ରେକର୍ଡ କରନ୍ତୁ",
     "saveChanges": "ପରିବର୍ତ୍ତନ ସଞ୍ଚୟ କରନ୍ତୁ",
     "copy": "କପି କରନ୍ତୁ",
-    "optionalSuffix": "(ବୈକଳ୍ପିକ)"
+    "optionalSuffix": "(ବୈକଳ୍ପିକ)",
+    "yesterday": "ଗତକାଲି",
+    "ok": "ଠିକ ଅଛି"
   },
   "tip": {
     "title": "ଟିପ ପଠାନ୍ତୁ",
@@ -2817,7 +2819,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Smruti",
     "removeAttachment": "ସଂଲଗ୍ନକକୁ ଅପସାରଣ କରନ୍ତୁ",
-    "attachFailed": "ସେହି ଫଟୋକୁ ପଠାଯାଇପାରିଲା ନାହିଁ ।"
+    "attachFailed": "ସେହି ଫଟୋକୁ ପଠାଯାଇପାରିଲା ନାହିଁ ।",
+    "deleteMessage": "ବାର୍ତ୍ତା ବିଲୋପ କରନ୍ତୁ",
+    "deleteConfirm": "ଆପଣ ନିଶ୍ଚିତ ଯେ ଏହି ବାର୍ତ୍ତା ବିଲୋପ କରିବେ?",
+    "pinFailed": "ବାର୍ତ୍ତା ପିନ କରିହେଲା ନାହିଁ",
+    "unpinFailed": "ବାର୍ତ୍ତା ଅନପିନ କରିହେଲା ନାହିଁ",
+    "disconnected": "ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ",
+    "subtitle": "DeHub ବିଷୟରେ ସବୁକିଛି…",
+    "joining": "ଚାଟରେ ଯୋଗ ଦେଉଛି…",
+    "reconnect": "ପୁନଃ ସଂଯୋଗ କରନ୍ତୁ",
+    "banned": "ଆପଣଙ୍କୁ ଏହି ଚାଟରୁ ନିଷେଧ କରାଯାଇଛି",
+    "someone": "କେହି",
+    "oneTyping": "{{name}} ଟାଇପ କରୁଛନ୍ତି…",
+    "fewTyping": "{{names}} ଟାଇପ କରୁଛନ୍ତି…",
+    "manyTyping": "{{count}} ଜଣ ଟାଇପ କରୁଛନ୍ତି…"
   },
   "promptFeed": {
     "headline": "ଆପଣ କ'ଣ ଦେଖିବାକୁ ଚାହାଁନ୍ତି?",

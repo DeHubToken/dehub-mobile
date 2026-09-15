@@ -607,7 +607,9 @@
     "recordVideo": "Įrašyti vaizdo įrašą",
     "saveChanges": "Įrašyti pakeitimus",
     "copy": "Kopijuoti",
-    "optionalSuffix": "(nebūtina)"
+    "optionalSuffix": "(nebūtina)",
+    "yesterday": "Vakar",
+    "ok": "Gerai"
   },
   "tip": {
     "title": "Siųsti arbatpinigius",
@@ -2843,7 +2845,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Pašalinti priedą",
-    "attachFailed": "Nepavyko išsiųsti šios nuotraukos."
+    "attachFailed": "Nepavyko išsiųsti šios nuotraukos.",
+    "deleteMessage": "Ištrinti žinutę",
+    "deleteConfirm": "Ar tikrai norite ištrinti šią žinutę?",
+    "pinFailed": "Nepavyko prisegti žinutės",
+    "unpinFailed": "Nepavyko atsegti žinutės",
+    "disconnected": "Atjungta",
+    "subtitle": "Viskas apie DeHub…",
+    "joining": "Jungiamasi prie pokalbio…",
+    "reconnect": "Prisijungti iš naujo",
+    "banned": "Jums uždrausta dalyvauti šiame pokalbyje",
+    "someone": "Kažkas",
+    "oneTyping": "{{name}} rašo…",
+    "fewTyping": "{{names}} rašo…",
+    "manyTyping": "Rašo {{count}} žmonės…"
   },
   "promptFeed": {
     "headline": "Ką norite matyti?",

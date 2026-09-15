@@ -599,7 +599,9 @@
     "recordVideo": "Duub muuqaal",
     "saveChanges": "Kaydi isbeddellada",
     "copy": "Koobi",
-    "optionalSuffix": "(ikhtiyaari)"
+    "optionalSuffix": "(ikhtiyaari)",
+    "yesterday": "Shalay",
+    "ok": "Waa hagaag"
   },
   "tip": {
     "title": "Dir Bakhshiish",
@@ -2835,7 +2837,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Ka saar lifaaq",
-    "attachFailed": "Suurtagal ma ahan in aan soo diro sawirkaas."
+    "attachFailed": "Suurtagal ma ahan in aan soo diro sawirkaas.",
+    "deleteMessage": "Tirtir fariinta",
+    "deleteConfirm": "Ma hubtaa inaad rabto inaad tirtirto fariintan?",
+    "pinFailed": "Lama qodbi karin fariinta",
+    "unpinFailed": "Lama furi karin qodbista fariinta",
+    "disconnected": "Xidhiidhku wuu go'ay",
+    "subtitle": "Wax kasta oo ku saabsan DeHub…",
+    "joining": "Waa lagu biirayaa sheekada…",
+    "reconnect": "Dib u xidh",
+    "banned": "Waa lagaa mamnuucay sheekadan",
+    "someone": "Qof",
+    "oneTyping": "{{name}} wuu qorayaa…",
+    "fewTyping": "{{names}} way qorayaan…",
+    "manyTyping": "{{count}} qof ayaa qoraya…"
   },
   "promptFeed": {
     "headline": "Maxaad rabtaa inaad aragto?",

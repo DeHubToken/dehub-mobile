@@ -618,7 +618,9 @@
     "recordVideo": "ವೀಡಿಯೊ ರೆಕಾರ್ಡ್ ಮಾಡಿ",
     "saveChanges": "ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ",
     "copy": "ನಕಲಿಸಿ",
-    "optionalSuffix": "(ಐಚ್ಛಿಕ)"
+    "optionalSuffix": "(ಐಚ್ಛಿಕ)",
+    "yesterday": "ನಿನ್ನೆ",
+    "ok": "ಸರಿ"
   },
   "tip": {
     "title": "ಉಡುಗೊರೆ ಕಳುಹಿಸಿ",
@@ -2851,7 +2853,20 @@
     "attachPhoto": "ಫೋಟೋ",
     "attachEmoji": "ಎಮೋಜಿ",
     "removeAttachment": "ಲಗತ್ತನ್ನು ತೆಗೆದುಹಾಕಿ",
-    "attachFailed": "ಆ ಫೋಟೋವನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ."
+    "attachFailed": "ಆ ಫೋಟೋವನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.",
+    "deleteMessage": "ಸಂದೇಶ ಅಳಿಸಿ",
+    "deleteConfirm": "ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲು ಖಚಿತವೇ?",
+    "pinFailed": "ಸಂದೇಶ ಪಿನ್ ಮಾಡಲಾಗಲಿಲ್ಲ",
+    "unpinFailed": "ಸಂದೇಶ ಅನ್‌ಪಿನ್ ಮಾಡಲಾಗಲಿಲ್ಲ",
+    "disconnected": "ಸಂಪರ್ಕ ಕಡಿತಗೊಂಡಿದೆ",
+    "subtitle": "DeHub ಕುರಿತ ಎಲ್ಲವೂ…",
+    "joining": "ಚಾಟ್‌ಗೆ ಸೇರುತ್ತಿದೆ…",
+    "reconnect": "ಮತ್ತೆ ಸಂಪರ್ಕಿಸಿ",
+    "banned": "ನಿಮ್ಮನ್ನು ಈ ಚಾಟ್‌ನಿಂದ ನಿಷೇಧಿಸಲಾಗಿದೆ",
+    "someone": "ಯಾರೋ",
+    "oneTyping": "{{name}} ಟೈಪ್ ಮಾಡುತ್ತಿದ್ದಾರೆ…",
+    "fewTyping": "{{names}} ಟೈಪ್ ಮಾಡುತ್ತಿದ್ದಾರೆ…",
+    "manyTyping": "{{count}} ಜನ ಟೈಪ್ ಮಾಡುತ್ತಿದ್ದಾರೆ…"
   },
   "promptFeed": {
     "headline": "ನೀವು ಏನು ನೋಡಲು ಬಯಸುತ್ತೀರಿ?",

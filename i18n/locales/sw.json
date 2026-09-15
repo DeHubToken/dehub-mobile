@@ -607,7 +607,9 @@
     "recordVideo": "Rekodi video",
     "saveChanges": "Hifadhi mabadiliko",
     "copy": "Nakili",
-    "optionalSuffix": "(si lazima)"
+    "optionalSuffix": "(si lazima)",
+    "yesterday": "Jana",
+    "ok": "Sawa"
   },
   "tip": {
     "title": "Tuma Kidokezo",
@@ -2844,7 +2846,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Ondoa kiambatisho",
-    "attachFailed": "Imeshindwa kutuma picha hiyo."
+    "attachFailed": "Imeshindwa kutuma picha hiyo.",
+    "deleteMessage": "Futa ujumbe",
+    "deleteConfirm": "Una uhakika unataka kufuta ujumbe huu?",
+    "pinFailed": "Imeshindwa kubandika ujumbe",
+    "unpinFailed": "Imeshindwa kuondoa ubandikaji wa ujumbe",
+    "disconnected": "Imekatika",
+    "subtitle": "Kila kitu kuhusu DeHub…",
+    "joining": "Inajiunga na gumzo…",
+    "reconnect": "Unganisha tena",
+    "banned": "Umepigwa marufuku kwenye gumzo hili",
+    "someone": "Mtu fulani",
+    "oneTyping": "{{name}} anaandika…",
+    "fewTyping": "{{names}} wanaandika…",
+    "manyTyping": "Watu {{count}} wanaandika…"
   },
   "promptFeed": {
     "headline": "Unataka kuona nini?",

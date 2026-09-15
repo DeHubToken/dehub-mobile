@@ -607,7 +607,9 @@
     "recordVideo": "वीडियो रिकॉर्ड करें",
     "saveChanges": "बदलाव सहेजें",
     "copy": "कॉपी",
-    "optionalSuffix": "(वैकल्पिक)"
+    "optionalSuffix": "(वैकल्पिक)",
+    "yesterday": "कल",
+    "ok": "ठीक है"
   },
   "drawers": {
     "ppvTitle": "पे-पर-व्यू सामग्री",
@@ -2901,7 +2903,20 @@
     "attachPhoto": "फ़ोटो",
     "attachEmoji": "इमोजी",
     "removeAttachment": "अटैचमेंट हटाएँ",
-    "attachFailed": "वह फ़ोटो नहीं भेजी जा सकी।"
+    "attachFailed": "वह फ़ोटो नहीं भेजी जा सकी।",
+    "deleteMessage": "संदेश हटाएँ",
+    "deleteConfirm": "क्या आप वाकई यह संदेश हटाना चाहते हैं?",
+    "pinFailed": "संदेश पिन नहीं हो सका",
+    "unpinFailed": "संदेश अनपिन नहीं हो सका",
+    "disconnected": "डिस्कनेक्ट",
+    "subtitle": "DeHub के बारे में सब कुछ…",
+    "joining": "चैट में शामिल हो रहे हैं…",
+    "reconnect": "फिर से जुड़ें",
+    "banned": "आपको इस चैट से प्रतिबंधित किया गया है",
+    "someone": "कोई",
+    "oneTyping": "{{name}} लिख रहे हैं…",
+    "fewTyping": "{{names}} लिख रहे हैं…",
+    "manyTyping": "{{count}} लोग लिख रहे हैं…"
   },
   "promptFeed": {
     "headline": "आप क्या देखना चाहते हैं?",

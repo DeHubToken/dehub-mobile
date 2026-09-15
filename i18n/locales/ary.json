@@ -607,7 +607,9 @@
     "recordVideo": "سجّل فيديو",
     "saveChanges": "سجل التبديلات",
     "copy": "نسخ",
-    "optionalSuffix": "(اختياري)"
+    "optionalSuffix": "(اختياري)",
+    "yesterday": "البارح",
+    "ok": "واخا"
   },
   "tip": {
     "title": "بعت تيب",
@@ -2871,7 +2873,20 @@
     "attachPhoto": "صورة",
     "attachEmoji": "الرموز التعبيرية",
     "removeAttachment": "إزالة المرفق",
-    "attachFailed": "تعذر إرسال تلك الصورة."
+    "attachFailed": "تعذر إرسال تلك الصورة.",
+    "deleteMessage": "مسح الرسالة",
+    "deleteConfirm": "متأكد بغيتي تمسح هاد الرسالة؟",
+    "pinFailed": "ما قدرش يثبت الرسالة",
+    "unpinFailed": "ما قدرش يحيد تثبيت الرسالة",
+    "disconnected": "مقطوع",
+    "subtitle": "كولشي على DeHub…",
+    "joining": "كيدخل للشات…",
+    "reconnect": "عاود الاتصال",
+    "banned": "نتا محظور من هاد الشات",
+    "someone": "شي واحد",
+    "oneTyping": "{{name}} كيكتب…",
+    "fewTyping": "{{names}} كيكتبو…",
+    "manyTyping": "{{count}} ناس كيكتبو…"
   },
   "promptFeed": {
     "headline": "شنو بغيتي تشوف؟",

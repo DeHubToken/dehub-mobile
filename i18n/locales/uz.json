@@ -607,7 +607,9 @@
     "recordVideo": "Video yozib olish",
     "saveChanges": "O‘zgarishlarni saqlash",
     "copy": "Nusxalash",
-    "optionalSuffix": "(ixtiyoriy)"
+    "optionalSuffix": "(ixtiyoriy)",
+    "yesterday": "Kecha",
+    "ok": "OK"
   },
   "tip": {
     "title": "Tip yuborish",
@@ -2898,7 +2900,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Ilovani & olib tashlash",
-    "attachFailed": "Bu rasmni yuborib bo&#39;lmadi."
+    "attachFailed": "Bu rasmni yuborib bo&#39;lmadi.",
+    "deleteMessage": "Xabarni o‘chirish",
+    "deleteConfirm": "Ushbu xabarni o‘chirmoqchi ekaningizga ishonchingiz komilmi?",
+    "pinFailed": "Xabarni mahkamlab bo‘lmadi",
+    "unpinFailed": "Xabarning mahkamlanishini bekor qilib bo‘lmadi",
+    "disconnected": "Uzildi",
+    "subtitle": "DeHub haqida hamma narsa…",
+    "joining": "Chatga qo‘shilmoqda…",
+    "reconnect": "Qayta ulanish",
+    "banned": "Siz ushbu chatdan taqiqlangansiz",
+    "someone": "Kimdir",
+    "oneTyping": "{{name}} yozmoqda…",
+    "fewTyping": "{{names}} yozmoqda…",
+    "manyTyping": "{{count}} kishi yozmoqda…"
   },
   "promptFeed": {
     "headline": "Nimani ko‘rmoqchisiz?",

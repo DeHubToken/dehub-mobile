@@ -603,7 +603,9 @@
     "recordVideo": "Ṣe fídíò",
     "saveChanges": "Fi àwọn àyípadà pamọ́",
     "copy": "Ṣe àdàkọ",
-    "optionalSuffix": "(àṣàyàn)"
+    "optionalSuffix": "(àṣàyàn)",
+    "yesterday": "Àná",
+    "ok": "Ó dáa"
   },
   "tip": {
     "title": "Fi Ẹ̀bùn Ránṣẹ́",
@@ -2840,7 +2842,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Yọ asomọ kuro",
-    "attachFailed": "N kò lè fi àwòrán yẹn ránṣẹ́."
+    "attachFailed": "N kò lè fi àwòrán yẹn ránṣẹ́.",
+    "deleteMessage": "Pa ìránṣẹ́ rẹ́",
+    "deleteConfirm": "Ṣé ó dájú pé o fẹ́ pa ìránṣẹ́ yìí rẹ́?",
+    "pinFailed": "Kò lè fi ìránṣẹ́ náà lẹ̀",
+    "unpinFailed": "Kò lè yọ ìránṣẹ́ náà kúrò nínú ìlẹ̀mọ́",
+    "disconnected": "Ìsopọ̀ já",
+    "subtitle": "Gbogbo nǹkan nípa DeHub…",
+    "joining": "Ń dara pọ̀ mọ́ ìfọ̀rọ̀wérọ̀…",
+    "reconnect": "Tún so pọ̀",
+    "banned": "A ti fòfin de ọ́ nínú ìfọ̀rọ̀wérọ̀ yìí",
+    "someone": "Ẹnìkan",
+    "oneTyping": "{{name}} ń kọ…",
+    "fewTyping": "{{names}} ń kọ…",
+    "manyTyping": "Àwọn ènìyàn {{count}} ń kọ…"
   },
   "promptFeed": {
     "headline": "Kí ni o fẹ́ rí?",

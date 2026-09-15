@@ -607,7 +607,9 @@
     "recordVideo": "Запісаць відэа",
     "saveChanges": "Захаваць змены",
     "copy": "Капіяваць",
-    "optionalSuffix": "(неабавязкова)"
+    "optionalSuffix": "(неабавязкова)",
+    "yesterday": "Учора",
+    "ok": "OK"
   },
   "tip": {
     "title": "Адправіць чаявыя",
@@ -2880,7 +2882,20 @@
     "attachPhoto": "Фота",
     "attachEmoji": "Смайлікі",
     "removeAttachment": "Выдаліць укладанне",
-    "attachFailed": "Немагчыма даслаць гэтую фатаграфію."
+    "attachFailed": "Немагчыма даслаць гэтую фатаграфію.",
+    "deleteMessage": "Выдаліць паведамленне",
+    "deleteConfirm": "Сапраўды выдаліць гэтае паведамленне?",
+    "pinFailed": "Не ўдалося замацаваць паведамленне",
+    "unpinFailed": "Не ўдалося адмацаваць паведамленне",
+    "disconnected": "Адключана",
+    "subtitle": "Усё пра DeHub…",
+    "joining": "Далучэнне да чата…",
+    "reconnect": "Перападключыцца",
+    "banned": "Вы заблакаваны ў гэтым чаце",
+    "someone": "Хтосьці",
+    "oneTyping": "{{name}} піша…",
+    "fewTyping": "{{names}} пішуць…",
+    "manyTyping": "{{count}} чалавек пішуць…"
   },
   "promptFeed": {
     "headline": "Што вы хочаце бачыць?",

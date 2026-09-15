@@ -595,7 +595,9 @@
     "recordVideo": "ویډیو ثبت کړه",
     "saveChanges": "بدلونونه خوندي کړئ",
     "copy": "کاپي کړئ",
-    "optionalSuffix": "(اختیاري)"
+    "optionalSuffix": "(اختیاري)",
+    "yesterday": "پرون",
+    "ok": "ښه"
   },
   "tip": {
     "title": "ټپ ولیږئ",
@@ -2808,7 +2810,20 @@
     "attachGif": "د GIF په اړه",
     "attachEmoji": "Emoji د اخيستلو لپاره وکارول",
     "removeAttachment": "د انسټاګرام حساب حذف کړئ",
-    "attachFailed": "ما نه شو کولای چې دغه انځور واخلم."
+    "attachFailed": "ما نه شو کولای چې دغه انځور واخلم.",
+    "deleteMessage": "پیغام ړنګ کړئ",
+    "deleteConfirm": "ایا ډاډه یاست چې دا پیغام ړنګ کړئ؟",
+    "pinFailed": "پیغام ونه نښلول شو",
+    "unpinFailed": "د پیغام نښلول ونه لرې شول",
+    "disconnected": "نښلون پرې شو",
+    "subtitle": "د DeHub په اړه هر څه…",
+    "joining": "خبرو اترو کې ګډون کیږي…",
+    "reconnect": "بیا ونښلوئ",
+    "banned": "تاسو له دې خبرو اترو څخه بند یاست",
+    "someone": "څوک",
+    "oneTyping": "{{name}} لیکي…",
+    "fewTyping": "{{names}} لیکي…",
+    "manyTyping": "{{count}} کسان لیکي…"
   },
   "promptFeed": {
     "headline": "څه لیدل غواړئ؟",

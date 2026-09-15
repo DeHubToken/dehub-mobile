@@ -608,7 +608,9 @@
     "recordVideo": "Запиши видео",
     "saveChanges": "Запази промените",
     "copy": "Копирай",
-    "optionalSuffix": "(по избор)"
+    "optionalSuffix": "(по избор)",
+    "yesterday": "Вчера",
+    "ok": "OK"
   },
   "drawers": {
     "ppvTitle": "Плащане на гледане",
@@ -2846,7 +2848,20 @@
     "attachPhoto": "Снимка",
     "attachEmoji": "Емоджи",
     "removeAttachment": "Премахване на прикачен файл",
-    "attachFailed": "Тази снимка не може да бъде изпратена."
+    "attachFailed": "Тази снимка не може да бъде изпратена.",
+    "deleteMessage": "Изтрий съобщението",
+    "deleteConfirm": "Сигурен ли си, че искаш да изтриеш това съобщение?",
+    "pinFailed": "Съобщението не можа да се закачи",
+    "unpinFailed": "Съобщението не можа да се откачи",
+    "disconnected": "Прекъснато",
+    "subtitle": "Всичко за DeHub…",
+    "joining": "Присъединяване към чата…",
+    "reconnect": "Свържи се отново",
+    "banned": "Забранен си в този чат",
+    "someone": "Някой",
+    "oneTyping": "{{name}} пише…",
+    "fewTyping": "{{names}} пишат…",
+    "manyTyping": "{{count}} души пишат…"
   },
   "promptFeed": {
     "headline": "Какво искаш да виждаш?",

@@ -549,7 +549,9 @@
     "recordVideo": "ویڈیو ریکارڈ کرو",
     "saveChanges": "تبدیلیاں محفوظ کرو",
     "copy": "کاپی",
-    "optionalSuffix": "(اختیاری)"
+    "optionalSuffix": "(اختیاری)",
+    "yesterday": "کل",
+    "ok": "ٹھیک ہے"
   },
   "tip": {
     "title": "ٹپ بھیجو",
@@ -3306,5 +3308,20 @@
     "confirmingPayment": "ادائیگی کی تصدیق ہو رہی ہے…",
     "retryConfirmation": "تصدیق دوبارہ کریں",
     "buyNow": "ابھی خریدیں"
+  },
+  "liveChat": {
+    "deleteMessage": "پیغام حذف کریں",
+    "deleteConfirm": "کیا آپ واقعی یہ پیغام حذف کرنا چاہتے ہیں؟",
+    "pinFailed": "پیغام پن نئیں ہو سکا",
+    "unpinFailed": "پیغام ان پن نئیں ہو سکا",
+    "disconnected": "منقطع",
+    "subtitle": "DeHub کے بارے میں سب کچھ…",
+    "joining": "چیٹ میں شامل ہو رہے ہیں…",
+    "reconnect": "دوبارہ جڑیں",
+    "banned": "آپ اس چیٹ سے پابند ہیں",
+    "someone": "کوئی",
+    "oneTyping": "{{name}} لکھ رہے ہیں…",
+    "fewTyping": "{{names}} لکھ رہے ہیں…",
+    "manyTyping": "{{count}} لوگ لکھ رہے ہیں…"
   }
 }

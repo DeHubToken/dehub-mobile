@@ -607,7 +607,9 @@
     "recordVideo": "تسجيل فيديو",
     "saveChanges": "حفظ التغييرات",
     "copy": "نسخ",
-    "optionalSuffix": "(اختياري)"
+    "optionalSuffix": "(اختياري)",
+    "yesterday": "أمس",
+    "ok": "حسنًا"
   },
   "drawers": {
     "ppvTitle": "محتوى الدفع لكل مشاهدة",
@@ -2900,7 +2902,20 @@
     "attachPhoto": "صورة",
     "attachEmoji": "الرموز التعبيرية",
     "removeAttachment": "إزالة المرفق",
-    "attachFailed": "تعذر إرسال تلك الصورة."
+    "attachFailed": "تعذر إرسال تلك الصورة.",
+    "deleteMessage": "حذف الرسالة",
+    "deleteConfirm": "هل أنت متأكد من حذف هذه الرسالة؟",
+    "pinFailed": "تعذّر تثبيت الرسالة",
+    "unpinFailed": "تعذّر إلغاء تثبيت الرسالة",
+    "disconnected": "غير متصل",
+    "subtitle": "كل ما يخص DeHub…",
+    "joining": "جارٍ الانضمام إلى الدردشة…",
+    "reconnect": "إعادة الاتصال",
+    "banned": "أنت محظور من هذه الدردشة",
+    "someone": "شخص ما",
+    "oneTyping": "{{name}} يكتب…",
+    "fewTyping": "{{names}} يكتبون…",
+    "manyTyping": "{{count}} أشخاص يكتبون…"
   },
   "promptFeed": {
     "headline": "ماذا تريد أن تشاهد؟",

@@ -622,7 +622,9 @@
     "recordVideo": "ვიდეოს ჩაწერა",
     "saveChanges": "ცვლილებების შენახვა",
     "copy": "კოპირება",
-    "optionalSuffix": "(სურვილისამებრ)"
+    "optionalSuffix": "(სურვილისამებრ)",
+    "yesterday": "გუშინ",
+    "ok": "კარგი"
   },
   "tip": {
     "title": "ტიპის გაგზავნა",
@@ -2880,7 +2882,20 @@
     "attachPhoto": "Ფოტო",
     "attachEmoji": "Ემოჯი",
     "removeAttachment": "Დანართის წაშლა",
-    "attachFailed": "Ამ ფოტოს გაგზავნა ვერ მოხერხდა."
+    "attachFailed": "Ამ ფოტოს გაგზავნა ვერ მოხერხდა.",
+    "deleteMessage": "შეტყობინების წაშლა",
+    "deleteConfirm": "ნამდვილად გსურთ ამ შეტყობინების წაშლა?",
+    "pinFailed": "შეტყობინების მიმაგრება ვერ მოხერხდა",
+    "unpinFailed": "შეტყობინების მიმაგრების მოხსნა ვერ მოხერხდა",
+    "disconnected": "კავშირი გაწყდა",
+    "subtitle": "ყველაფერი DeHub-ზე…",
+    "joining": "ჩატში შესვლა…",
+    "reconnect": "ხელახლა დაკავშირება",
+    "banned": "თქვენ დაბლოკილი ხართ ამ ჩატში",
+    "someone": "ვიღაც",
+    "oneTyping": "{{name}} წერს…",
+    "fewTyping": "{{names}} წერენ…",
+    "manyTyping": "{{count}} ადამიანი წერს…"
   },
   "promptFeed": {
     "headline": "რისი ნახვა გსურთ?",

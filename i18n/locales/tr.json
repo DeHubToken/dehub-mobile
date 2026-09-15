@@ -623,7 +623,9 @@
     "recordVideo": "Video kaydet",
     "saveChanges": "Değişiklikleri kaydet",
     "copy": "Kopyala",
-    "optionalSuffix": "(isteğe bağlı)"
+    "optionalSuffix": "(isteğe bağlı)",
+    "yesterday": "Dün",
+    "ok": "Tamam"
   },
   "tip": {
     "title": "Bahşiş Gönder",
@@ -2906,7 +2908,20 @@
     "attachGif": "GIF",
     "attachEmoji": "Emoji",
     "removeAttachment": "Eki kaldır",
-    "attachFailed": "O fotoğraf gönderilemedi."
+    "attachFailed": "O fotoğraf gönderilemedi.",
+    "deleteMessage": "Mesajı sil",
+    "deleteConfirm": "Bu mesajı silmek istediğinizden emin misiniz?",
+    "pinFailed": "Mesaj sabitlenemedi",
+    "unpinFailed": "Mesajın sabitlemesi kaldırılamadı",
+    "disconnected": "Bağlantı kesildi",
+    "subtitle": "DeHub hakkında her şey…",
+    "joining": "Sohbete katılıyor…",
+    "reconnect": "Yeniden bağlan",
+    "banned": "Bu sohbetten yasaklandınız",
+    "someone": "Biri",
+    "oneTyping": "{{name}} yazıyor…",
+    "fewTyping": "{{names}} yazıyor…",
+    "manyTyping": "{{count}} kişi yazıyor…"
   },
   "promptFeed": {
     "headline": "Ne görmek istiyorsun?",

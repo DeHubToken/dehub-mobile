@@ -616,7 +616,9 @@
     "recordVideo": "Бейне жазу",
     "saveChanges": "Өзгерістерді сақтау",
     "copy": "Көшіру",
-    "optionalSuffix": "(міндетті емес)"
+    "optionalSuffix": "(міндетті емес)",
+    "yesterday": "Кеше",
+    "ok": "Жарайды"
   },
   "tip": {
     "title": "Тип жіберу",
@@ -2903,7 +2905,20 @@
     "attachPhoto": "ФОТО",
     "attachEmoji": "Эмодзи",
     "removeAttachment": "Тіркемені алып тастау",
-    "attachFailed": "Бұл фотосуретті жіберу мүмкін болмады."
+    "attachFailed": "Бұл фотосуретті жіберу мүмкін болмады.",
+    "deleteMessage": "Хабарды жою",
+    "deleteConfirm": "Осы хабарды жойғыңыз келетініне сенімдісіз бе?",
+    "pinFailed": "Хабарды бекіту мүмкін болмады",
+    "unpinFailed": "Хабардың бекітуін алып тастау мүмкін болмады",
+    "disconnected": "Ажыратылған",
+    "subtitle": "DeHub туралы бәрі…",
+    "joining": "Чатқа қосылуда…",
+    "reconnect": "Қайта қосылу",
+    "banned": "Сіз бұл чатта бұғатталғансыз",
+    "someone": "Біреу",
+    "oneTyping": "{{name}} жазып жатыр…",
+    "fewTyping": "{{names}} жазып жатыр…",
+    "manyTyping": "{{count}} адам жазып жатыр…"
   },
   "promptFeed": {
     "headline": "Не көргіңіз келеді?",
