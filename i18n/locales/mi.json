@@ -3352,5 +3352,30 @@
     "tryBiometrics": "Whakamātauria te koiora i tēnei waea",
     "unlockWithBiometrics": "Wetewetehia mā te koiora",
     "confirmStartOver": "Whakaūngia e hiahia ana koe ki te tīmata anō me tētahi pūkoro hou"
+  },
+  "transcript": {
+    "title": "Tuhinga",
+    "loading": "Kei te uta tuhinga…",
+    "noRecording": "Kāore he hopunga ororongo",
+    "generating": "Kei te waihanga tuhinga AI",
+    "generatingHint": "Ka tae pea tēnei ki te kotahi meneti, i runga i te roa o te hopunga.",
+    "starting": "Kei te tuhi — tērā pea he wā poto",
+    "startFailed": "Kāore i taea te tīmata i te tuhi",
+    "copied": "Kua tāruatia te tuhinga ki te papatopenga",
+    "quoteCopied": "Kua tāruatia te kōrero! Whakapiri ki te kaitito.",
+    "privacyFailed": "Kāore i taea te whakahou i te tūmataiti",
+    "privacySet": "Kua tautuhia te tūmataiti tuhinga ki {{value}}",
+    "labelFailed": "Kāore i taea te tiaki i te tapanga",
+    "speakerRenamed": "Kua angitu te whakaingoa anō i te kaikōrero",
+    "failed": "I rahu te tuhi",
+    "retry": "Ngana anō ki te tuhi",
+    "translating": "Kei te whakamāori tuhinga…",
+    "translationFailed": "I rahu te whakamāoritanga. Whakamātauria tētahi atu reo.",
+    "quote": "Kōrero tau",
+    "renameSpeaker": "Whakaingoa anō i te kaikōrero",
+    "renameHint": "Panonitia te tapanga kaikōrero puta noa i tēnei tuhinga.",
+    "searchPlaceholder": "Rapua i te tuhinga…",
+    "speakerPlaceholder": "Whakaurua te ingoa kaikōrero, te ingoa kaiwhakamahi rānei",
+    "detectedLanguage": "Reo kua kitea: {{lang}}"
   }
 }

@@ -3356,5 +3356,30 @@
     "tryBiometrics": "Biometrie uf dem Telefon probiere",
     "unlockWithBiometrics": "Mit Biometrie entsperre",
     "confirmStartOver": "Bestätig, dass du mit ere neue Wallet nöi aafange wotsch"
+  },
+  "transcript": {
+    "title": "Transkript",
+    "loading": "Transkript wird glade…",
+    "noRecording": "Kei Audioufnahm verfüegbar",
+    "generating": "KI-Transkript wird erstellt",
+    "generatingHint": "De Vorgang cha je nach Läng vo dr Ufnahm e Minute duure.",
+    "starting": "Wird transkribiert — das cha e Momänt duure",
+    "startFailed": "D Transkription het nöd chöne starte",
+    "copied": "Transkript i d Zwüschenablag kopiert",
+    "quoteCopied": "Zitat kopiert! Füeg s im Editor i.",
+    "privacyFailed": "Dr Dateschutz het nöd chöne aktualisiert wärde",
+    "privacySet": "Transkript-Dateschutz uf {{value}} gsetzt",
+    "labelFailed": "D Bezeichnig het nöd chöne gspeicheret wärde",
+    "speakerRenamed": "Sprächername erfolgriich gändert",
+    "failed": "Transkription fehlgschlage",
+    "retry": "Transkription nomol probiere",
+    "translating": "Transkript wird übersetzt…",
+    "translationFailed": "Übersetzig fehlgschlage. Probier e anderi Sproch.",
+    "quote": "Zitat",
+    "renameSpeaker": "Sprächer umbenenne",
+    "renameHint": "Ändere d Sprächerbezeichnig im ganze Transkript.",
+    "searchPlaceholder": "Im Transkript sueche…",
+    "speakerPlaceholder": "Sprächername oder Handle iigeh",
+    "detectedLanguage": "Erkännti Sproch: {{lang}}"
   }
 }

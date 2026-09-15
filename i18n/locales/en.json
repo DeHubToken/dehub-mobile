@@ -3437,5 +3437,30 @@
     "tryBiometrics": "Try biometrics on this phone",
     "unlockWithBiometrics": "Unlock with biometrics",
     "confirmStartOver": "Confirm you want to start over with a new wallet"
+  },
+  "transcript": {
+    "title": "Transcript",
+    "loading": "Loading transcript...",
+    "noRecording": "No audio recording available",
+    "generating": "Generating AI Transcript",
+    "generatingHint": "This process may take a minute depending on the length of the stage recording.",
+    "starting": "Transcribing — this may take a moment",
+    "startFailed": "Failed to start transcription",
+    "copied": "Transcript copied to clipboard",
+    "quoteCopied": "Quote copied! Paste it in the composer.",
+    "privacyFailed": "Could not update privacy",
+    "privacySet": "Transcript privacy set to {{value}}",
+    "labelFailed": "Could not save label",
+    "speakerRenamed": "Speaker renamed successfully",
+    "failed": "Transcription failed",
+    "retry": "Retry Transcription",
+    "translating": "Translating transcript...",
+    "translationFailed": "Translation failed. Try another language.",
+    "quote": "Quote",
+    "renameSpeaker": "Rename Speaker",
+    "renameHint": "Change speaker label globally across this transcript.",
+    "searchPlaceholder": "Search transcript...",
+    "speakerPlaceholder": "Enter speaker name or handle",
+    "detectedLanguage": "Detected language: {{lang}}"
   }
 }

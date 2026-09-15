@@ -3364,5 +3364,30 @@
     "tryBiometrics": "在这台手机上试用生物识别",
     "unlockWithBiometrics": "用生物识别解锁",
     "confirmStartOver": "确认你要用新钱包重新开始"
+  },
+  "transcript": {
+    "title": "文字记录",
+    "loading": "正在加载文字记录…",
+    "noRecording": "没有可用的音频录音",
+    "generating": "正在生成 AI 文字记录",
+    "generatingHint": "此过程可能需要一分钟，具体取决于舞台录音的长度。",
+    "starting": "正在转写 — 可能需要一会儿",
+    "startFailed": "无法开始转写",
+    "copied": "文字记录已复制到剪贴板",
+    "quoteCopied": "引用已复制！粘贴到编辑器里。",
+    "privacyFailed": "无法更新隐私设置",
+    "privacySet": "文字记录隐私已设为{{value}}",
+    "labelFailed": "无法保存标签",
+    "speakerRenamed": "发言人已成功重命名",
+    "failed": "转写失败",
+    "retry": "重试转写",
+    "translating": "正在翻译文字记录…",
+    "translationFailed": "翻译失败。请试试别的语言。",
+    "quote": "引用",
+    "renameSpeaker": "重命名发言人",
+    "renameHint": "在整份文字记录中更改发言人标签。",
+    "searchPlaceholder": "搜索文字记录…",
+    "speakerPlaceholder": "输入发言人姓名或账号",
+    "detectedLanguage": "检测到的语言：{{lang}}"
   }
 }

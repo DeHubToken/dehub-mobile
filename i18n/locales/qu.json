@@ -3397,5 +3397,30 @@
     "tryBiometrics": "Kay celularpi biometricota ruway",
     "unlockWithBiometrics": "Biometricowan kichay",
     "confirmStartOver": "Musuq qullqi waqaychanawan musuqmanta qallariyta munasqaykita takyachiy"
+  },
+  "transcript": {
+    "title": "Qillqasqa rimay",
+    "loading": "Qillqasqa rimayta chaqnachkan…",
+    "noRecording": "Mana uyarina qillqasqa kanchu",
+    "generating": "AI qillqasqa rimayta kamachkan",
+    "generatingHint": "Kay ruwayqa huk minutokama unayanman grabacionpa sayayninman hina.",
+    "starting": "Qillqachkan — pisi pachata unayanman",
+    "startFailed": "Qillqayta qallariy mana atikurqachu",
+    "copied": "Qillqasqa rimay clipboardman kopyakurqa",
+    "quoteCopied": "Rimay kopyakurqa! Qillqana ukhupi churay.",
+    "privacyFailed": "Pakasqa kayta musuqchay mana atikurqachu",
+    "privacySet": "Qillqasqa rimaypa pakasqan {{value}} kanman churakurqa",
+    "labelFailed": "Sutichayta waqaychay mana atikurqachu",
+    "speakerRenamed": "Rimaqpa sutin allinta tikrarqa",
+    "failed": "Qillqay mana atikurqachu",
+    "retry": "Qillqayta yapamanta ruray",
+    "translating": "Qillqasqa rimayta t'ikrachkan…",
+    "translationFailed": "T'ikray mana atikurqachu. Huk simita ruray.",
+    "quote": "Rimay",
+    "renameSpeaker": "Rimaqpa sutinta tikray",
+    "renameHint": "Kay qillqasqa rimay tukuyninpi rimaqpa sutichayninta tikray.",
+    "searchPlaceholder": "Qillqasqa rimaypi maskay…",
+    "speakerPlaceholder": "Rimaqpa sutinta utaq sutichayninta qillqay",
+    "detectedLanguage": "Tarisqa simi: {{lang}}"
   }
 }

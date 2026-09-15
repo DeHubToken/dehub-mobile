@@ -3366,5 +3366,30 @@
     "tryBiometrics": "Proovi biomeetriat selles telefonis",
     "unlockWithBiometrics": "Ava biomeetriaga",
     "confirmStartOver": "Kinnita, et soovid uue rahakotiga otsast alustada"
+  },
+  "transcript": {
+    "title": "Transkriptsioon",
+    "loading": "Transkriptsiooni laadimine…",
+    "noRecording": "Helisalvestist pole saadaval",
+    "generating": "AI transkriptsiooni loomine",
+    "generatingHint": "See protsess võib võtta minuti, olenevalt salvestuse pikkusest.",
+    "starting": "Transkribeerimine — see võib veidi aega võtta",
+    "startFailed": "Transkribeerimise alustamine ebaõnnestus",
+    "copied": "Transkriptsioon kopeeriti lõikelauale",
+    "quoteCopied": "Tsitaat kopeeritud! Kleebi see koostajasse.",
+    "privacyFailed": "Privaatsust ei saanud uuendada",
+    "privacySet": "Transkriptsiooni privaatsus on nüüd {{value}}",
+    "labelFailed": "Sildi salvestamine ebaõnnestus",
+    "speakerRenamed": "Kõneleja nimi on edukalt muudetud",
+    "failed": "Transkribeerimine ebaõnnestus",
+    "retry": "Proovi transkribeerimist uuesti",
+    "translating": "Transkriptsiooni tõlkimine…",
+    "translationFailed": "Tõlkimine ebaõnnestus. Proovi teist keelt.",
+    "quote": "Tsitaat",
+    "renameSpeaker": "Nimeta kõneleja ümber",
+    "renameHint": "Muuda kõneleja silti kogu transkriptsioonis.",
+    "searchPlaceholder": "Otsi transkriptsioonist…",
+    "speakerPlaceholder": "Sisesta kõneleja nimi või kasutajanimi",
+    "detectedLanguage": "Tuvastatud keel: {{lang}}"
   }
 }

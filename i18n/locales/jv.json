@@ -3325,5 +3325,30 @@
     "tryBiometrics": "Coba biometrik ing HP iki",
     "unlockWithBiometrics": "Bukak nganggo biometrik",
     "confirmStartOver": "Konfirmasi yen sampeyan arep miwiti maneh nganggo dompet anyar"
+  },
+  "transcript": {
+    "title": "Transkrip",
+    "loading": "Ngemot transkrip…",
+    "noRecording": "Ora ana rekaman audio",
+    "generating": "Nggawe transkrip AI",
+    "generatingHint": "Proses iki bisa nganti sakmenit gumantung dawane rekaman.",
+    "starting": "Nulis transkrip — bisa butuh wektu sedhela",
+    "startFailed": "Gagal miwiti transkripsi",
+    "copied": "Transkrip disalin menyang papan klip",
+    "quoteCopied": "Kutipan disalin! Tempelna ing komposer.",
+    "privacyFailed": "Ora bisa nganyari privasi",
+    "privacySet": "Privasi transkrip disetel dadi {{value}}",
+    "labelFailed": "Ora bisa nyimpen label",
+    "speakerRenamed": "Jeneng pamicara kasil diganti",
+    "failed": "Transkripsi gagal",
+    "retry": "Coba transkripsi maneh",
+    "translating": "Nerjemahake transkrip…",
+    "translationFailed": "Terjemahan gagal. Coba basa liya.",
+    "quote": "Kutipan",
+    "renameSpeaker": "Ganti jeneng pamicara",
+    "renameHint": "Ganti label pamicara ing kabeh transkrip iki.",
+    "searchPlaceholder": "Golek ing transkrip…",
+    "speakerPlaceholder": "Lebokna jeneng utawa handel pamicara",
+    "detectedLanguage": "Basa sing kadeteksi: {{lang}}"
   }
 }

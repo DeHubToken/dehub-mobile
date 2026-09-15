@@ -3357,5 +3357,30 @@
     "tryBiometrics": "Gwada biometrics a wannan wayar",
     "unlockWithBiometrics": "Buɗe da biometrics",
     "confirmStartOver": "Tabbatar kana son fara sabo da sabon walat"
+  },
+  "transcript": {
+    "title": "Rubutaccen magana",
+    "loading": "Ana loda rubutaccen magana…",
+    "noRecording": "Babu rikodin sauti",
+    "generating": "Ana ƙirƙirar rubutun AI",
+    "generatingHint": "Wannan tsari na iya ɗaukar minti ɗaya gwargwadon tsawon rikodin.",
+    "starting": "Ana rubutawa — na iya ɗaukar ɗan lokaci",
+    "startFailed": "An kasa fara rubutawa",
+    "copied": "An kwafi rubutun zuwa allon ajiya",
+    "quoteCopied": "An kwafi zancen! Liƙa shi a cikin editan.",
+    "privacyFailed": "An kasa sabunta sirri",
+    "privacySet": "An saita sirrin rubutun zuwa {{value}}",
+    "labelFailed": "An kasa adana lakabin",
+    "speakerRenamed": "An canza sunan mai magana cikin nasara",
+    "failed": "Rubutawa ta gaza",
+    "retry": "Sake gwada rubutawa",
+    "translating": "Ana fassara rubutun…",
+    "translationFailed": "Fassarar ta gaza. Gwada wani harshe.",
+    "quote": "Zance",
+    "renameSpeaker": "Canza sunan mai magana",
+    "renameHint": "Canza lakabin mai magana a duk wannan rubutun.",
+    "searchPlaceholder": "Bincika a rubutun…",
+    "speakerPlaceholder": "Shigar da sunan mai magana ko handel",
+    "detectedLanguage": "Harshen da aka gano: {{lang}}"
   }
 }

@@ -3367,5 +3367,30 @@
     "tryBiometrics": "Jaribu biometriki kwenye simu hii",
     "unlockWithBiometrics": "Fungua kwa biometriki",
     "confirmStartOver": "Thibitisha unataka kuanza upya na pochi mpya"
+  },
+  "transcript": {
+    "title": "Nakala ya maneno",
+    "loading": "Inapakia nakala…",
+    "noRecording": "Hakuna rekodi ya sauti",
+    "generating": "Inatengeneza nakala ya AI",
+    "generatingHint": "Mchakato huu unaweza kuchukua dakika moja kutegemea urefu wa rekodi.",
+    "starting": "Inanakili — inaweza kuchukua muda kidogo",
+    "startFailed": "Imeshindwa kuanza kunakili",
+    "copied": "Nakala imenakiliwa kwenye ubao wa kunakili",
+    "quoteCopied": "Nukuu imenakiliwa! Ibandike kwenye kitunzi.",
+    "privacyFailed": "Imeshindwa kusasisha faragha",
+    "privacySet": "Faragha ya nakala imewekwa kuwa {{value}}",
+    "labelFailed": "Imeshindwa kuhifadhi lebo",
+    "speakerRenamed": "Jina la mzungumzaji limebadilishwa",
+    "failed": "Kunakili kumeshindwa",
+    "retry": "Jaribu kunakili tena",
+    "translating": "Inatafsiri nakala…",
+    "translationFailed": "Tafsiri imeshindwa. Jaribu lugha nyingine.",
+    "quote": "Nukuu",
+    "renameSpeaker": "Badilisha jina la mzungumzaji",
+    "renameHint": "Badilisha lebo ya mzungumzaji katika nakala hii yote.",
+    "searchPlaceholder": "Tafuta katika nakala…",
+    "speakerPlaceholder": "Weka jina au kitambulisho cha mzungumzaji",
+    "detectedLanguage": "Lugha iliyotambuliwa: {{lang}}"
   }
 }

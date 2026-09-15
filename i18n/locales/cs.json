@@ -3371,5 +3371,30 @@
     "tryBiometrics": "Vyzkoušet biometriku na tomto telefonu",
     "unlockWithBiometrics": "Odemknout biometrikou",
     "confirmStartOver": "Potvrďte, že chcete začít znovu s novou peněženkou"
+  },
+  "transcript": {
+    "title": "Přepis",
+    "loading": "Načítání přepisu…",
+    "noRecording": "Není k dispozici žádná zvuková nahrávka",
+    "generating": "Generuje se přepis pomocí AI",
+    "generatingHint": "Tento proces může trvat minutu v závislosti na délce nahrávky.",
+    "starting": "Přepisuje se — může to chvíli trvat",
+    "startFailed": "Přepis se nepodařilo spustit",
+    "copied": "Přepis zkopírován do schránky",
+    "quoteCopied": "Citace zkopírována! Vložte ji do editoru.",
+    "privacyFailed": "Nepodařilo se aktualizovat soukromí",
+    "privacySet": "Soukromí přepisu nastaveno na {{value}}",
+    "labelFailed": "Štítek se nepodařilo uložit",
+    "speakerRenamed": "Jméno mluvčího bylo úspěšně změněno",
+    "failed": "Přepis selhal",
+    "retry": "Zkusit přepis znovu",
+    "translating": "Překládá se přepis…",
+    "translationFailed": "Překlad selhal. Zkuste jiný jazyk.",
+    "quote": "Citace",
+    "renameSpeaker": "Přejmenovat mluvčího",
+    "renameHint": "Změňte označení mluvčího v celém přepisu.",
+    "searchPlaceholder": "Hledat v přepisu…",
+    "speakerPlaceholder": "Zadejte jméno nebo přezdívku mluvčího",
+    "detectedLanguage": "Rozpoznaný jazyk: {{lang}}"
   }
 }

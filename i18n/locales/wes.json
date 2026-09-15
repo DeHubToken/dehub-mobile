@@ -3199,5 +3199,30 @@
     "tryBiometrics": "Try biometrics for dis phone",
     "unlockWithBiometrics": "Unlock with biometrics",
     "confirmStartOver": "Confirm say you wan start again with new wallet"
+  },
+  "transcript": {
+    "title": "Transcript",
+    "loading": "Dey load transcript…",
+    "noRecording": "No audio recording dey",
+    "generating": "Dey generate AI transcript",
+    "generatingHint": "Dis process fit take one minute, e depend on how long di stage recording be.",
+    "starting": "Dey transcribe — e fit take small time",
+    "startFailed": "E no fit start di transcription",
+    "copied": "Dem don copy di transcript to clipboard",
+    "quoteCopied": "Dem don copy di quote! Paste am for di composer.",
+    "privacyFailed": "E no fit update di privacy",
+    "privacySet": "Dem don set di transcript privacy to {{value}}",
+    "labelFailed": "E no fit save di label",
+    "speakerRenamed": "Dem don change di speaker name well well",
+    "failed": "Di transcription fail",
+    "retry": "Try di transcription again",
+    "translating": "Dey translate di transcript…",
+    "translationFailed": "Di translation fail. Try anoda language.",
+    "quote": "Quote",
+    "renameSpeaker": "Change di speaker name",
+    "renameHint": "Change di speaker label for dis whole transcript.",
+    "searchPlaceholder": "Search di transcript…",
+    "speakerPlaceholder": "Enta di speaker name or handle",
+    "detectedLanguage": "Language wey dem detect: {{lang}}"
   }
 }

@@ -3446,5 +3446,30 @@
     "tryBiometrics": "Andramo ny biometrika amin'ity finday ity",
     "unlockWithBiometrics": "Sokafy amin'ny biometrika",
     "confirmStartOver": "Hamarino fa te hanomboka indray amin'ny poketra vaovao ianao"
+  },
+  "transcript": {
+    "title": "Fandikana an-tsoratra",
+    "loading": "Mampiditra ny fandikana an-tsoratra…",
+    "noRecording": "Tsy misy rakitra feo",
+    "generating": "Mamorona fandikana an-tsoratra AI",
+    "generatingHint": "Mety haharitra iray minitra ity dingana ity arakaraka ny halavan'ny rakitra.",
+    "starting": "Mandika an-tsoratra — mety haharitra kelikely",
+    "startFailed": "Tsy afaka nanomboka ny fandikana an-tsoratra",
+    "copied": "Nadika tao amin'ny clipboard ny fandikana an-tsoratra",
+    "quoteCopied": "Voadika ny teny nalaina! Apetaho ao amin'ny mpanoratra.",
+    "privacyFailed": "Tsy afaka nanavao ny fiainana manokana",
+    "privacySet": "Napetraka ho {{value}} ny fiainana manokan'ny fandikana an-tsoratra",
+    "labelFailed": "Tsy afaka nitahiry ny marika",
+    "speakerRenamed": "Novana soa aman-tsara ny anaran'ny mpandahateny",
+    "failed": "Tsy nahomby ny fandikana an-tsoratra",
+    "retry": "Andramo indray ny fandikana an-tsoratra",
+    "translating": "Mandika ny fandikana an-tsoratra…",
+    "translationFailed": "Tsy nahomby ny fandikan-teny. Andramo fiteny hafa.",
+    "quote": "Teny nalaina",
+    "renameSpeaker": "Ovay ny anaran'ny mpandahateny",
+    "renameHint": "Ovay ny marika mpandahateny manerana ity fandikana an-tsoratra ity.",
+    "searchPlaceholder": "Hikaroka ao amin'ny fandikana an-tsoratra…",
+    "speakerPlaceholder": "Ampidiro ny anarana na anaram-pikambanan'ny mpandahateny",
+    "detectedLanguage": "Fiteny hita: {{lang}}"
   }
 }

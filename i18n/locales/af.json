@@ -3484,5 +3484,30 @@
     "tryBiometrics": "Probeer biometrie op hierdie foon",
     "unlockWithBiometrics": "Ontsluit met biometrie",
     "confirmStartOver": "Bevestig dat jy met 'n nuwe beursie wil oorbegin"
+  },
+  "transcript": {
+    "title": "Transkripsie",
+    "loading": "Laai transkripsie…",
+    "noRecording": "Geen klankopname beskikbaar nie",
+    "generating": "Genereer KI-transkripsie",
+    "generatingHint": "Hierdie proses kan 'n minuut neem, afhangend van die lengte van die verhoogopname.",
+    "starting": "Transkribeer — dit kan 'n oomblik neem",
+    "startFailed": "Kon nie transkripsie begin nie",
+    "copied": "Transkripsie na knipbord gekopieer",
+    "quoteCopied": "Aanhaling gekopieer! Plak dit in die opsteller.",
+    "privacyFailed": "Kon nie privaatheid bywerk nie",
+    "privacySet": "Transkripsie-privaatheid gestel op {{value}}",
+    "labelFailed": "Kon nie etiket stoor nie",
+    "speakerRenamed": "Spreker se naam suksesvol verander",
+    "failed": "Transkripsie het misluk",
+    "retry": "Probeer transkripsie weer",
+    "translating": "Vertaal transkripsie…",
+    "translationFailed": "Vertaling het misluk. Probeer 'n ander taal.",
+    "quote": "Aanhaling",
+    "renameSpeaker": "Hernoem spreker",
+    "renameHint": "Verander die sprekeretiket oral in hierdie transkripsie.",
+    "searchPlaceholder": "Deursoek transkripsie…",
+    "speakerPlaceholder": "Voer sprekernaam of -handvatsel in",
+    "detectedLanguage": "Taal bespeur: {{lang}}"
   }
 }

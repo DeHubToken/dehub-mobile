@@ -3431,5 +3431,30 @@
     "tryBiometrics": "Bilbila kana irratti baayoomeetirikii yaali",
     "unlockWithBiometrics": "Baayoomeetirikiin bani",
     "confirmStartOver": "Boorsaa haaraadhaan irra deebiʼanii jalqabuu barbaaduu kee mirkaneessi"
+  },
+  "transcript": {
+    "title": "Barreeffama sagalee",
+    "loading": "Barreeffama sagalee fe'aa jira…",
+    "noRecording": "Waraabbiin sagalee hin jiru",
+    "generating": "Barreeffama sagalee AI uumaa jira",
+    "generatingHint": "Adeemsi kun dheerina waraabbii irratti hundaaʼee daqiiqaa tokko fudhachuu dandaʼa.",
+    "starting": "Barreeffamaa jira — yeroo muraasa fudhachuu dandaʼa",
+    "startFailed": "Barreeffama jalqabuun hin dandaʼamne",
+    "copied": "Barreeffamni gabatee maxxansaatti garagalfameera",
+    "quoteCopied": "Caqasni garagalfameera! Barreessaa keessatti maxxansi.",
+    "privacyFailed": "Iccitiin haaromsuun hin dandaʼamne",
+    "privacySet": "Iccitiin barreeffamaa {{value}} tti qindaaʼe",
+    "labelFailed": "Maqaa olkaaʼuun hin dandaʼamne",
+    "speakerRenamed": "Maqaan dubbataa milkaaʼinaan jijjiirame",
+    "failed": "Barreeffamni hin milkoofne",
+    "retry": "Barreeffama irra deebiʼii yaali",
+    "translating": "Barreeffama hiikaa jira…",
+    "translationFailed": "Hiikkaan hin milkoofne. Afaan biraa yaali.",
+    "quote": "Caqasa",
+    "renameSpeaker": "Maqaa dubbataa jijjiiri",
+    "renameHint": "Maqaa dubbataa barreeffama kana guutuu keessatti jijjiiri.",
+    "searchPlaceholder": "Barreeffama keessa barbaadi…",
+    "speakerPlaceholder": "Maqaa ykn maqaa fayyadamaa dubbataa galchi",
+    "detectedLanguage": "Afaan argame: {{lang}}"
   }
 }

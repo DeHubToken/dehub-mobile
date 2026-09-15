@@ -3441,5 +3441,30 @@
     "tryBiometrics": "Tente a biometria neste telefone",
     "unlockWithBiometrics": "Desbloquear com biometria",
     "confirmStartOver": "Confirme que você quer recomeçar com uma nova carteira"
+  },
+  "transcript": {
+    "title": "Transcrição",
+    "loading": "Carregando transcrição…",
+    "noRecording": "Nenhuma gravação de áudio disponível",
+    "generating": "Gerando transcrição com IA",
+    "generatingHint": "Este processo pode levar um minuto dependendo da duração da gravação.",
+    "starting": "Transcrevendo — pode levar um momento",
+    "startFailed": "Não foi possível iniciar a transcrição",
+    "copied": "Transcrição copiada para a área de transferência",
+    "quoteCopied": "Citação copiada! Cole-a no editor.",
+    "privacyFailed": "Não foi possível atualizar a privacidade",
+    "privacySet": "Privacidade da transcrição definida como {{value}}",
+    "labelFailed": "Não foi possível salvar o rótulo",
+    "speakerRenamed": "Nome do orador alterado com sucesso",
+    "failed": "Falha na transcrição",
+    "retry": "Tentar transcrição novamente",
+    "translating": "Traduzindo transcrição…",
+    "translationFailed": "Falha na tradução. Tente outro idioma.",
+    "quote": "Citação",
+    "renameSpeaker": "Renomear orador",
+    "renameHint": "Altere o rótulo do orador em toda a transcrição.",
+    "searchPlaceholder": "Pesquisar na transcrição…",
+    "speakerPlaceholder": "Digite o nome ou identificador do orador",
+    "detectedLanguage": "Idioma detectado: {{lang}}"
   }
 }

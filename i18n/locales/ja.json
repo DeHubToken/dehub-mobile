@@ -3434,5 +3434,30 @@
     "tryBiometrics": "この端末で生体認証を試す",
     "unlockWithBiometrics": "生体認証で解除",
     "confirmStartOver": "新しいウォレットでやり直すことを確認してください"
+  },
+  "transcript": {
+    "title": "文字起こし",
+    "loading": "文字起こしを読み込み中…",
+    "noRecording": "利用できる音声録音がありません",
+    "generating": "AI 文字起こしを生成中",
+    "generatingHint": "この処理は録音の長さによっては 1 分ほどかかる場合があります。",
+    "starting": "文字起こし中 — 少し時間がかかる場合があります",
+    "startFailed": "文字起こしを開始できませんでした",
+    "copied": "文字起こしをクリップボードにコピーしました",
+    "quoteCopied": "引用をコピーしました。作成画面に貼り付けてください。",
+    "privacyFailed": "プライバシー設定を更新できませんでした",
+    "privacySet": "文字起こしの公開設定を{{value}}にしました",
+    "labelFailed": "ラベルを保存できませんでした",
+    "speakerRenamed": "話者の名前を変更しました",
+    "failed": "文字起こしに失敗しました",
+    "retry": "文字起こしを再試行",
+    "translating": "文字起こしを翻訳中…",
+    "translationFailed": "翻訳に失敗しました。別の言語をお試しください。",
+    "quote": "引用",
+    "renameSpeaker": "話者の名前を変更",
+    "renameHint": "この文字起こし全体で話者ラベルを変更します。",
+    "searchPlaceholder": "文字起こしを検索…",
+    "speakerPlaceholder": "話者の名前またはハンドルを入力",
+    "detectedLanguage": "検出された言語: {{lang}}"
   }
 }

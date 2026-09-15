@@ -3311,5 +3311,30 @@
     "tryBiometrics": "Bolonɔ lajɛ nin telefɔni kan",
     "unlockWithBiometrics": "Bolonɔ la a da wuli",
     "confirmStartOver": "Sɛmɛntiya ko i b'a fɛ ka daminɛ kokura ni wari maralan kura ye"
+  },
+  "transcript": {
+    "title": "Sɛbɛnni",
+    "loading": "Sɛbɛnni bɛ doni…",
+    "noRecording": "Kumakan mara si tɛ yen",
+    "generating": "AI sɛbɛnni bɛ dilan",
+    "generatingHint": "Nin baara bɛ se ka miniti kelen ta ka kɛɲɛ ni mara janya ye.",
+    "starting": "Sɛbɛnni bɛ kɛ — a bɛ se ka waati dɔɔni ta",
+    "startFailed": "Sɛbɛnni ma se ka daminɛ",
+    "copied": "Sɛbɛnni kopi kɛra ka taa kɛnɛ kan",
+    "quoteCopied": "Kuma kopi kɛra! A gere sɛbɛli yɔrɔ la.",
+    "privacyFailed": "Gundo sariya ma se ka yɛlɛma",
+    "privacySet": "Sɛbɛnni gundo sariya kɛra {{value}} ye",
+    "labelFailed": "Tɔgɔ ma se ka mara",
+    "speakerRenamed": "Kumalaw tɔgɔ falenna ka ɲɛ",
+    "failed": "Sɛbɛnni ma ɲɛ",
+    "retry": "Sɛbɛnni segin ka kɛ",
+    "translating": "Sɛbɛnni bɛ baara yɛlɛma…",
+    "translationFailed": "Baara yɛlɛma ma ɲɛ. Kan wɛrɛ lajɛ.",
+    "quote": "Kuma ta",
+    "renameSpeaker": "Kumalaw tɔgɔ falen",
+    "renameHint": "Kumalaw tɔgɔ falen sɛbɛnni bɛɛ kɔnɔ.",
+    "searchPlaceholder": "Ɲini sɛbɛnni kɔnɔ…",
+    "speakerPlaceholder": "Kumalaw tɔgɔ walima tɔgɔsɛbɛn sɛbɛn",
+    "detectedLanguage": "Kan minnu sɔrɔla: {{lang}}"
   }
 }

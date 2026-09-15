@@ -3437,5 +3437,30 @@
     "tryBiometrics": "Prueba la biometría en este teléfono",
     "unlockWithBiometrics": "Desbloquear con biometría",
     "confirmStartOver": "Confirma que quieres empezar de nuevo con una billetera nueva"
+  },
+  "transcript": {
+    "title": "Transcripción",
+    "loading": "Cargando transcripción…",
+    "noRecording": "No hay ninguna grabación de audio disponible",
+    "generating": "Generando transcripción con IA",
+    "generatingHint": "Este proceso puede tardar un minuto según la duración de la grabación.",
+    "starting": "Transcribiendo: puede tardar un momento",
+    "startFailed": "No se pudo iniciar la transcripción",
+    "copied": "Transcripción copiada al portapapeles",
+    "quoteCopied": "¡Cita copiada! Pégala en el editor.",
+    "privacyFailed": "No se pudo actualizar la privacidad",
+    "privacySet": "Privacidad de la transcripción establecida en {{value}}",
+    "labelFailed": "No se pudo guardar la etiqueta",
+    "speakerRenamed": "Nombre del hablante cambiado correctamente",
+    "failed": "La transcripción falló",
+    "retry": "Reintentar transcripción",
+    "translating": "Traduciendo transcripción…",
+    "translationFailed": "La traducción falló. Prueba con otro idioma.",
+    "quote": "Cita",
+    "renameSpeaker": "Cambiar el nombre del hablante",
+    "renameHint": "Cambia la etiqueta del hablante en toda la transcripción.",
+    "searchPlaceholder": "Buscar en la transcripción…",
+    "speakerPlaceholder": "Introduce el nombre o el alias del hablante",
+    "detectedLanguage": "Idioma detectado: {{lang}}"
   }
 }

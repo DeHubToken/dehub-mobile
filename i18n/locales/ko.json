@@ -3435,5 +3435,30 @@
     "tryBiometrics": "이 휴대폰에서 생체 인식 시도",
     "unlockWithBiometrics": "생체 인식으로 잠금 해제",
     "confirmStartOver": "새 지갑으로 다시 시작할 것인지 확인하세요"
+  },
+  "transcript": {
+    "title": "대화 기록",
+    "loading": "대화 기록을 불러오는 중…",
+    "noRecording": "사용할 수 있는 오디오 녹음이 없습니다",
+    "generating": "AI 대화 기록 생성 중",
+    "generatingHint": "녹음 길이에 따라 1분 정도 걸릴 수 있습니다.",
+    "starting": "기록 중 — 잠시 걸릴 수 있습니다",
+    "startFailed": "기록을 시작하지 못했습니다",
+    "copied": "대화 기록을 클립보드에 복사했습니다",
+    "quoteCopied": "인용문을 복사했습니다! 작성창에 붙여넣으세요.",
+    "privacyFailed": "공개 설정을 변경하지 못했습니다",
+    "privacySet": "대화 기록 공개 설정을 {{value}}(으)로 변경했습니다",
+    "labelFailed": "이름을 저장하지 못했습니다",
+    "speakerRenamed": "발언자 이름을 변경했습니다",
+    "failed": "기록에 실패했습니다",
+    "retry": "기록 다시 시도",
+    "translating": "대화 기록 번역 중…",
+    "translationFailed": "번역에 실패했습니다. 다른 언어를 시도해 보세요.",
+    "quote": "인용",
+    "renameSpeaker": "발언자 이름 변경",
+    "renameHint": "이 기록 전체에서 발언자 이름을 변경합니다.",
+    "searchPlaceholder": "기록 검색…",
+    "speakerPlaceholder": "발언자 이름 또는 아이디 입력",
+    "detectedLanguage": "감지된 언어: {{lang}}"
   }
 }

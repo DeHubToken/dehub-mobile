@@ -3441,5 +3441,30 @@
     "tryBiometrics": "Essayer la biométrie sur ce téléphone",
     "unlockWithBiometrics": "Déverrouiller par biométrie",
     "confirmStartOver": "Confirmez que vous voulez recommencer avec un nouveau portefeuille"
+  },
+  "transcript": {
+    "title": "Transcription",
+    "loading": "Chargement de la transcription…",
+    "noRecording": "Aucun enregistrement audio disponible",
+    "generating": "Génération de la transcription par IA",
+    "generatingHint": "Ce traitement peut prendre une minute selon la durée de l'enregistrement.",
+    "starting": "Transcription en cours — cela peut prendre un moment",
+    "startFailed": "Impossible de lancer la transcription",
+    "copied": "Transcription copiée dans le presse-papiers",
+    "quoteCopied": "Citation copiée ! Collez-la dans l'éditeur.",
+    "privacyFailed": "Impossible de mettre à jour la confidentialité",
+    "privacySet": "Confidentialité de la transcription définie sur {{value}}",
+    "labelFailed": "Impossible d'enregistrer le libellé",
+    "speakerRenamed": "Nom de l'intervenant modifié",
+    "failed": "Échec de la transcription",
+    "retry": "Relancer la transcription",
+    "translating": "Traduction de la transcription…",
+    "translationFailed": "Échec de la traduction. Essayez une autre langue.",
+    "quote": "Citation",
+    "renameSpeaker": "Renommer l'intervenant",
+    "renameHint": "Modifiez le nom de l'intervenant dans toute la transcription.",
+    "searchPlaceholder": "Rechercher dans la transcription…",
+    "speakerPlaceholder": "Saisissez le nom ou l'identifiant de l'intervenant",
+    "detectedLanguage": "Langue détectée : {{lang}}"
   }
 }
