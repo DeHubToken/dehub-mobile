@@ -599,7 +599,8 @@
     "takePhoto": "See foto",
     "recordVideo": "Dekọọ vidiyo",
     "saveChanges": "Chekwaa mgbanwe",
-    "copy": "Detuo"
+    "copy": "Detuo",
+    "optionalSuffix": "(nhọrọ)"
   },
   "tip": {
     "title": "Ziga Onyinye",
@@ -3235,5 +3236,18 @@
     "leaveBody": "Hapụ {{name}}?",
     "leaveAction": "Hapụ",
     "noBadgeYet": "Enwebeghị baajị"
+  },
+  "addToFolder": {
+    "title": "Chekwaa na nchekwa",
+    "subtitle": "Họrọ ebe ị chọrọ ichekwa post a.",
+    "loading": "Na-ebubata nchekwa…",
+    "noneYet": "Emepụtabeghị nchekwa ọ bụla",
+    "noneYetHint": "Mepụta otu iji hazie post a.",
+    "nameLabel": "Aha nchekwa",
+    "namePlaceholder": "dịka Isi nri, Njem",
+    "descriptionPlaceholder": "Gịnị dị na nchekwa a?",
+    "createAndSave": "Mepụta ma chekwaa",
+    "createNew": "Mepụta nchekwa ọhụrụ",
+    "closeA11y": "Mechie nhọrọ nchekwa"
   }
 }

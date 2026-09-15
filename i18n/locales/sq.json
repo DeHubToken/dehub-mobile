@@ -607,7 +607,8 @@
     "takePhoto": "Bëj një foto",
     "recordVideo": "Regjistro video",
     "saveChanges": "Ruaj ndryshimet",
-    "copy": "Kopjo"
+    "copy": "Kopjo",
+    "optionalSuffix": "(opsionale)"
   },
   "tip": {
     "title": "Dërgo Bakshish",
@@ -3256,5 +3257,18 @@
     "leaveBody": "Të dalësh nga {{name}}?",
     "leaveAction": "Dil",
     "noBadgeYet": "Ende pa distinktiv"
+  },
+  "addToFolder": {
+    "title": "Ruaj në dosje",
+    "subtitle": "Zgjidh ku dëshiron ta ruash këtë postim.",
+    "loading": "Po ngarkohen dosjet…",
+    "noneYet": "Ende nuk është krijuar asnjë dosje",
+    "noneYetHint": "Krijo një për ta organizuar këtë postim.",
+    "nameLabel": "Emri i dosjes",
+    "namePlaceholder": "p.sh. Gatimi, Udhëtimi",
+    "descriptionPlaceholder": "Çfarë i përket kësaj dosjeje?",
+    "createAndSave": "Krijo dhe ruaj",
+    "createNew": "Krijo dosje të re",
+    "closeA11y": "Mbyll zgjedhësin e dosjeve"
   }
 }

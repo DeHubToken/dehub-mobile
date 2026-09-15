@@ -566,7 +566,8 @@
     "takePhoto": "صوّر صورة",
     "recordVideo": "سجّل فيديو",
     "saveChanges": "حفظ التغييرات",
-    "copy": "انسخ"
+    "copy": "انسخ",
+    "optionalSuffix": "(اختياري)"
   },
   "tip": {
     "title": "ابعت بقشيش",
@@ -3257,5 +3258,18 @@
     "leaveBody": "تخرج من {{name}}؟",
     "leaveAction": "اخرج",
     "noBadgeYet": "لسه مفيش شارة"
+  },
+  "addToFolder": {
+    "title": "احفظ في مجلد",
+    "subtitle": "اختار المنشور ده يتحفظ فين.",
+    "loading": "بيحمّل الفولدرات…",
+    "noneYet": "لسه مفيش فولدرات",
+    "noneYetHint": "اعمل واحد عشان تنظّم البوست ده.",
+    "nameLabel": "اسم الفولدر",
+    "namePlaceholder": "مثلاً طبخ، سفر",
+    "descriptionPlaceholder": "إيه اللي يتحط في الفولدر ده؟",
+    "createAndSave": "اعمل واحفظ",
+    "createNew": "اعمل فولدر جديد",
+    "closeA11y": "اقفل مختار الفولدرات"
   }
 }

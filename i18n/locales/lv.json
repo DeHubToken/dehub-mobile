@@ -606,7 +606,8 @@
     "takePhoto": "Uzņemt foto",
     "recordVideo": "Ierakstīt video",
     "saveChanges": "Saglabāt izmaiņas",
-    "copy": "Kopēt"
+    "copy": "Kopēt",
+    "optionalSuffix": "(neobligāti)"
   },
   "tip": {
     "title": "Sūtīt dzeramnaudu",
@@ -3256,5 +3257,18 @@
     "leaveBody": "Pamest {{name}}?",
     "leaveAction": "Pamest",
     "noBadgeYet": "Vēl nav nozīmītes"
+  },
+  "addToFolder": {
+    "title": "Saglabāt mapē",
+    "subtitle": "Izvēlies, kur vēlies glabāt šo ierakstu.",
+    "loading": "Notiek mapju ielāde…",
+    "noneYet": "Vēl nav izveidota neviena mape",
+    "noneYetHint": "Izveido vienu, lai sakārtotu šo ierakstu.",
+    "nameLabel": "Mapes nosaukums",
+    "namePlaceholder": "piem. Gatavošana, Ceļojumi",
+    "descriptionPlaceholder": "Kas pieder šajā mapē?",
+    "createAndSave": "Izveidot un saglabāt",
+    "createNew": "Izveidot jaunu mapi",
+    "closeA11y": "Aizvērt mapju atlasītāju"
   }
 }

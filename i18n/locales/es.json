@@ -622,7 +622,8 @@
     "takePhoto": "Tomar foto",
     "recordVideo": "Grabar video",
     "saveChanges": "Guardar cambios",
-    "copy": "Copiar"
+    "copy": "Copiar",
+    "optionalSuffix": "(opcional)"
   },
   "postOptions": {
     "options": "Opciones",
@@ -3327,5 +3328,18 @@
     "leaveBody": "¿Salir de {{name}}?",
     "leaveAction": "Salir",
     "noBadgeYet": "Aún sin insignia"
+  },
+  "addToFolder": {
+    "title": "Guardar en carpeta",
+    "subtitle": "Elige dónde quieres guardar esta publicación.",
+    "loading": "Cargando carpetas…",
+    "noneYet": "Aún no se ha creado ninguna carpeta",
+    "noneYetHint": "Crea una para organizar esta publicación.",
+    "nameLabel": "Nombre de la carpeta",
+    "namePlaceholder": "p. ej. Cocina, Viajes",
+    "descriptionPlaceholder": "¿Qué va en esta carpeta?",
+    "createAndSave": "Crear y guardar",
+    "createNew": "Crear carpeta nueva",
+    "closeA11y": "Cerrar el selector de carpetas"
   }
 }

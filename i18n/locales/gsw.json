@@ -566,7 +566,8 @@
     "takePhoto": "Foto mache",
     "recordVideo": "Video ufnäh",
     "saveChanges": "Änderige speichere",
-    "copy": "Kopiere"
+    "copy": "Kopiere",
+    "optionalSuffix": "(optional)"
   },
   "tip": {
     "title": "Trinkgäld schicke",
@@ -3246,5 +3247,18 @@
     "leaveBody": "{{name}} verlah?",
     "leaveAction": "Verlah",
     "noBadgeYet": "No kei Abzeiche"
+  },
+  "addToFolder": {
+    "title": "Im Ordner speichere",
+    "subtitle": "Wähl, wo du de Biitrag wotsch speichere.",
+    "loading": "Ordner werded glade…",
+    "noneYet": "No kei Ordner erstellt",
+    "noneYetHint": "Erstell eine, zum de Biitrag z ornde.",
+    "nameLabel": "Ordner-Name",
+    "namePlaceholder": "z. B. Choche, Reise",
+    "descriptionPlaceholder": "Was ghört i de Ordner?",
+    "createAndSave": "Erstelle und speichere",
+    "createNew": "Neue Ordner erstelle",
+    "closeA11y": "Ordneruswahl zuemache"
   }
 }

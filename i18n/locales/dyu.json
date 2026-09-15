@@ -593,7 +593,8 @@
     "takePhoto": "Ja ta",
     "recordVideo": "Wideyo ta",
     "saveChanges": "Yɛlɛmaliw mara",
-    "copy": "Kopi"
+    "copy": "Kopi",
+    "optionalSuffix": "(a man wajibi ye)"
   },
   "tip": {
     "title": "Kɔrɔbɔ",
@@ -3201,5 +3202,18 @@
     "leaveBody": "Ka bɔ {{name}} la?",
     "leaveAction": "Bɔ",
     "noBadgeYet": "Taamasiyɛn si tɛ yen fɔlɔ"
+  },
+  "addToFolder": {
+    "title": "A mara dosiye kɔnɔ",
+    "subtitle": "Sugandi yɔrɔ min na i b'a fɛ ka nin sɛbɛnni mara.",
+    "loading": "Dosiyew bɛ doni…",
+    "noneYet": "Dosiye si ma dilan fɔlɔ",
+    "noneYetHint": "Dɔ dilan walasa ka nin sɛbɛnni labɛn.",
+    "nameLabel": "Dosiye tɔgɔ",
+    "namePlaceholder": "i n'a fɔ Tobili, Taama",
+    "descriptionPlaceholder": "Mun de bɛ kɛ nin dosiye kɔnɔ?",
+    "createAndSave": "A dilan k'a mara",
+    "createNew": "Dosiye kura dilan",
+    "closeA11y": "Dosiye sugandilan datugu"
   }
 }

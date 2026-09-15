@@ -88,7 +88,8 @@
     "takePhoto": "Chụp ảnh",
     "recordVideo": "Quay video",
     "saveChanges": "Lưu thay đổi",
-    "copy": "Sao chép"
+    "copy": "Sao chép",
+    "optionalSuffix": "(tùy chọn)"
   },
   "glossary": {
     "title": "Bảng thuật ngữ",
@@ -3345,5 +3346,18 @@
     "leaveBody": "Rời {{name}}?",
     "leaveAction": "Rời",
     "noBadgeYet": "Chưa có huy hiệu"
+  },
+  "addToFolder": {
+    "title": "Lưu vào thư mục",
+    "subtitle": "Chọn nơi bạn muốn lưu bài đăng này.",
+    "loading": "Đang tải thư mục…",
+    "noneYet": "Chưa tạo thư mục nào",
+    "noneYetHint": "Tạo một thư mục để sắp xếp bài đăng này.",
+    "nameLabel": "Tên thư mục",
+    "namePlaceholder": "ví dụ: Nấu ăn, Du lịch",
+    "descriptionPlaceholder": "Thư mục này chứa gì?",
+    "createAndSave": "Tạo và lưu",
+    "createNew": "Tạo thư mục mới",
+    "closeA11y": "Đóng bộ chọn thư mục"
   }
 }

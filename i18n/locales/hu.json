@@ -607,7 +607,8 @@
     "takePhoto": "Fénykép készítése",
     "recordVideo": "Videó felvétele",
     "saveChanges": "Változtatások mentése",
-    "copy": "Másolás"
+    "copy": "Másolás",
+    "optionalSuffix": "(nem kötelező)"
   },
   "drawers": {
     "ppvTitle": "Fizetés megtekintésenként",
@@ -3261,5 +3262,18 @@
     "leaveBody": "Kilépsz innen: {{name}}?",
     "leaveAction": "Kilépés",
     "noBadgeYet": "Még nincs jelvény"
+  },
+  "addToFolder": {
+    "title": "Mentés mappába",
+    "subtitle": "Válaszd ki, hová szeretnéd menteni ezt a bejegyzést.",
+    "loading": "Mappák betöltése…",
+    "noneYet": "Még nincs létrehozott mappa",
+    "noneYetHint": "Hozz létre egyet a bejegyzés rendszerezéséhez.",
+    "nameLabel": "Mappa neve",
+    "namePlaceholder": "pl. Főzés, Utazás",
+    "descriptionPlaceholder": "Mi kerül ebbe a mappába?",
+    "createAndSave": "Létrehozás és mentés",
+    "createNew": "Új mappa létrehozása",
+    "closeA11y": "Mappaválasztó bezárása"
   }
 }

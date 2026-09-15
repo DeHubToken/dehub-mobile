@@ -604,7 +604,8 @@
     "takePhoto": "Ta bilde",
     "recordVideo": "Ta opp video",
     "saveChanges": "Lagre endringer",
-    "copy": "Kopier"
+    "copy": "Kopier",
+    "optionalSuffix": "(valgfritt)"
   },
   "postOptions": {
     "options": "Alternativer",
@@ -3247,5 +3248,18 @@
     "leaveBody": "Forlate {{name}}?",
     "leaveAction": "Forlat",
     "noBadgeYet": "Ingen merke ennå"
+  },
+  "addToFolder": {
+    "title": "Lagre i mappe",
+    "subtitle": "Velg hvor du vil lagre dette innlegget.",
+    "loading": "Laster mapper…",
+    "noneYet": "Ingen mapper er opprettet ennå",
+    "noneYetHint": "Opprett en for å organisere dette innlegget.",
+    "nameLabel": "Mappenavn",
+    "namePlaceholder": "f.eks. Matlaging, Reise",
+    "descriptionPlaceholder": "Hva hører hjemme i denne mappen?",
+    "createAndSave": "Opprett og lagre",
+    "createNew": "Opprett ny mappe",
+    "closeA11y": "Lukk mappevelger"
   }
 }

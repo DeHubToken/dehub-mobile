@@ -594,7 +594,8 @@
     "takePhoto": "عکس واخله",
     "recordVideo": "ویډیو ثبت کړه",
     "saveChanges": "بدلونونه خوندي کړئ",
-    "copy": "کاپي کړئ"
+    "copy": "کاپي کړئ",
+    "optionalSuffix": "(اختیاري)"
   },
   "tip": {
     "title": "ټپ ولیږئ",
@@ -3207,5 +3208,18 @@
     "leaveBody": "{{name}} پریږدئ؟",
     "leaveAction": "پریږدئ",
     "noBadgeYet": "تر اوسه هیڅ نښان نشته"
+  },
+  "addToFolder": {
+    "title": "په فولډر کې خوندي کړئ",
+    "subtitle": "غوره کړئ چې دا لیکنه چیرته وساتئ.",
+    "loading": "فولډرونه بارېږي…",
+    "noneYet": "تر اوسه هیڅ فولډر نه دی جوړ شوی",
+    "noneYetHint": "د دې لیکنې د تنظیمولو لپاره یو جوړ کړئ.",
+    "nameLabel": "د فولډر نوم",
+    "namePlaceholder": "لکه پخلی، سفر",
+    "descriptionPlaceholder": "په دې فولډر کې څه ځای لري؟",
+    "createAndSave": "جوړ کړئ او خوندي کړئ",
+    "createNew": "نوی فولډر جوړ کړئ",
+    "closeA11y": "د فولډر غوره کوونکی وتړئ"
   }
 }

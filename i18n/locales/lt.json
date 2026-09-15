@@ -606,7 +606,8 @@
     "takePhoto": "Fotografuoti",
     "recordVideo": "Įrašyti vaizdo įrašą",
     "saveChanges": "Įrašyti pakeitimus",
-    "copy": "Kopijuoti"
+    "copy": "Kopijuoti",
+    "optionalSuffix": "(nebūtina)"
   },
   "tip": {
     "title": "Siųsti arbatpinigius",
@@ -3256,5 +3257,18 @@
     "leaveBody": "Palikti {{name}}?",
     "leaveAction": "Palikti",
     "noBadgeYet": "Ženklelio dar nėra"
+  },
+  "addToFolder": {
+    "title": "Įrašyti į aplanką",
+    "subtitle": "Pasirinkite, kur norite laikyti šį įrašą.",
+    "loading": "Įkeliami aplankai…",
+    "noneYet": "Aplankų dar nesukurta",
+    "noneYetHint": "Sukurkite aplanką šiam įrašui sutvarkyti.",
+    "nameLabel": "Aplanko pavadinimas",
+    "namePlaceholder": "pvz. Maisto gaminimas, Kelionės",
+    "descriptionPlaceholder": "Kas priklauso šiam aplankui?",
+    "createAndSave": "Sukurti ir įrašyti",
+    "createNew": "Sukurti naują aplanką",
+    "closeA11y": "Uždaryti aplankų parinkiklį"
   }
 }

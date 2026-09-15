@@ -566,7 +566,8 @@
     "takePhoto": "拍照",
     "recordVideo": "录视频",
     "saveChanges": "保存更改",
-    "copy": "复制"
+    "copy": "复制",
+    "optionalSuffix": "（可选）"
   },
   "tip": {
     "title": "发打赏",
@@ -3257,5 +3258,18 @@
     "leaveBody": "退出 {{name}}？",
     "leaveAction": "退出",
     "noBadgeYet": "还没有徽章"
+  },
+  "addToFolder": {
+    "title": "保存到文件夹",
+    "subtitle": "选择要把这条帖子保存到哪里。",
+    "loading": "正在加载文件夹…",
+    "noneYet": "还没有创建文件夹",
+    "noneYetHint": "创建一个来整理这条帖子。",
+    "nameLabel": "文件夹名称",
+    "namePlaceholder": "例如：烹饪、旅行",
+    "descriptionPlaceholder": "这个文件夹里放什么？",
+    "createAndSave": "创建并保存",
+    "createNew": "新建文件夹",
+    "closeA11y": "关闭文件夹选择器"
   }
 }

@@ -656,7 +656,8 @@
     "takePhoto": "Take photo",
     "recordVideo": "Record video",
     "saveChanges": "Save Changes",
-    "copy": "Copy"
+    "copy": "Copy",
+    "optionalSuffix": "(optional)"
   },
   "tip": {
     "title": "Send Tip",
@@ -3327,5 +3328,18 @@
     "leaveBody": "Leave {{name}}?",
     "leaveAction": "Leave",
     "noBadgeYet": "No badge yet"
+  },
+  "addToFolder": {
+    "title": "Save to folder",
+    "subtitle": "Choose where you want to keep this post.",
+    "loading": "Loading folders…",
+    "noneYet": "No folders created yet",
+    "noneYetHint": "Create one to organize this post.",
+    "nameLabel": "Folder name",
+    "namePlaceholder": "e.g. Cooking, Travel",
+    "descriptionPlaceholder": "What belongs in this folder?",
+    "createAndSave": "Create & save",
+    "createNew": "Create new folder",
+    "closeA11y": "Close folder picker"
   }
 }

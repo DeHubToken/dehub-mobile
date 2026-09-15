@@ -621,7 +621,8 @@
     "takePhoto": "Foto aufnehmen",
     "recordVideo": "Video aufnehmen",
     "saveChanges": "Änderungen speichern",
-    "copy": "Kopieren"
+    "copy": "Kopieren",
+    "optionalSuffix": "(optional)"
   },
   "postOptions": {
     "options": "Optionen",
@@ -3326,5 +3327,18 @@
     "leaveBody": "{{name}} verlassen?",
     "leaveAction": "Verlassen",
     "noBadgeYet": "Noch kein Abzeichen"
+  },
+  "addToFolder": {
+    "title": "In Ordner speichern",
+    "subtitle": "Wähle, wo du diesen Beitrag speichern möchtest.",
+    "loading": "Ordner werden geladen…",
+    "noneYet": "Noch keine Ordner erstellt",
+    "noneYetHint": "Erstelle einen, um diesen Beitrag zu ordnen.",
+    "nameLabel": "Ordnername",
+    "namePlaceholder": "z. B. Kochen, Reisen",
+    "descriptionPlaceholder": "Was gehört in diesen Ordner?",
+    "createAndSave": "Erstellen und speichern",
+    "createNew": "Neuen Ordner erstellen",
+    "closeA11y": "Ordnerauswahl schließen"
   }
 }

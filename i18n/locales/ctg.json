@@ -1289,7 +1289,8 @@
     "signIn": "সাইন ইন",
     "takePhoto": "ফটো তুলন",
     "recordVideo": "ভিডিও রেকর্ড গরন",
-    "saveChanges": "পরিবর্তন রাখন"
+    "saveChanges": "পরিবর্তন রাখন",
+    "optionalSuffix": "(ঐচ্ছিক)"
   },
   "featureRequests": {
     "title": "ফিচার অনুরোধ",
@@ -3349,5 +3350,18 @@
     "leaveBody": "{{name}} ছাড়িবান?",
     "leaveAction": "ছাড়ন",
     "noBadgeYet": "এহনও কোনো ব্যাজ নাই"
+  },
+  "addToFolder": {
+    "title": "ফোল্ডারত রাখন",
+    "subtitle": "এই পোস্টান কোনখানত রাখিবান বাছি লন।",
+    "loading": "ফোল্ডার লোড অর…",
+    "noneYet": "এহনও কোনো ফোল্ডার বানান নয়",
+    "noneYetHint": "এই পোস্টান গুছাইতে একটা বানান।",
+    "nameLabel": "ফোল্ডারর নাম",
+    "namePlaceholder": "যেমন রান্ধন, ভ্রমণ",
+    "descriptionPlaceholder": "এই ফোল্ডারত কী রাখিবান?",
+    "createAndSave": "বানাই রাখন",
+    "createNew": "নয়া ফোল্ডার বানান",
+    "closeA11y": "ফোল্ডার বাছাইকারী বন্ধ গরন"
   }
 }

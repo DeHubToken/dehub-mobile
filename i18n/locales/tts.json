@@ -566,7 +566,8 @@
     "takePhoto": "ถ่ายฮูป",
     "recordVideo": "อัดวิดีโอ",
     "saveChanges": "บันทึกการเปลี่ยนแปลง",
-    "copy": "คัดลอก"
+    "copy": "คัดลอก",
+    "optionalSuffix": "(บ่บังคับ)"
   },
   "tip": {
     "title": "ส่งทิป",
@@ -3216,5 +3217,18 @@
     "leaveBody": "ออกจาก {{name}} บ่?",
     "leaveAction": "ออก",
     "noBadgeYet": "ยังบ่มีตรา"
+  },
+  "addToFolder": {
+    "title": "บันทึกใส่โฟลเดอร์",
+    "subtitle": "เลือกว่าสิเก็บโพสต์นี้ไว้ทางได",
+    "loading": "กำลังโหลดโฟลเดอร์…",
+    "noneYet": "ยังบ่ได้สร้างโฟลเดอร์ใด ๆ",
+    "noneYetHint": "สร้างสักอันเพื่อจัดระเบียบโพสต์นี้",
+    "nameLabel": "ชื่อโฟลเดอร์",
+    "namePlaceholder": "เช่น เฮ็ดอาหาร ท่องเที่ยว",
+    "descriptionPlaceholder": "โฟลเดอร์นี้เก็บหยัง?",
+    "createAndSave": "สร้างและบันทึก",
+    "createNew": "สร้างโฟลเดอร์ใหม่",
+    "closeA11y": "ปิดตัวเลือกโฟลเดอร์"
   }
 }

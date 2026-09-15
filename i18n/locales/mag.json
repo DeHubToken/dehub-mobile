@@ -595,7 +595,8 @@
     "takePhoto": "फोटो खींचू",
     "recordVideo": "वीडियो रिकॉर्ड करू",
     "saveChanges": "बदलाव सहेजू",
-    "copy": "कॉपी करू"
+    "copy": "कॉपी करू",
+    "optionalSuffix": "(वैकल्पिक)"
   },
   "tip": {
     "title": "टिप भेजो",
@@ -3209,5 +3210,18 @@
     "leaveBody": "{{name}} छोड़ल जाय?",
     "leaveAction": "छोड़ू",
     "noBadgeYet": "अखन धरि कोनो बैज नै"
+  },
+  "addToFolder": {
+    "title": "फोल्डर मे सहेजू",
+    "subtitle": "चुनू जे ई पोस्ट कतय रखय के अछि।",
+    "loading": "फोल्डर लोड भ रहल अछि…",
+    "noneYet": "अखन धरि कोनो फोल्डर नै बनल",
+    "noneYetHint": "ई पोस्ट के व्यवस्थित करय लेल एकटा बनाउ।",
+    "nameLabel": "फोल्डर के नाम",
+    "namePlaceholder": "जेना खाना बनाएब, यात्रा",
+    "descriptionPlaceholder": "ई फोल्डर मे की रखय के अछि?",
+    "createAndSave": "बनाउ आ सहेजू",
+    "createNew": "नया फोल्डर बनाउ",
+    "closeA11y": "फोल्डर चुनय वाला बंद करू"
   }
 }

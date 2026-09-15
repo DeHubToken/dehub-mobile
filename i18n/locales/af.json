@@ -1422,7 +1422,8 @@
     "takePhoto": "Neem foto",
     "recordVideo": "Neem video op",
     "saveChanges": "Stoor veranderinge",
-    "copy": "Kopieer"
+    "copy": "Kopieer",
+    "optionalSuffix": "(opsioneel)"
   },
   "postOptions": {
     "options": "Options",
@@ -3374,5 +3375,18 @@
     "leaveBody": "Verlaat {{name}}?",
     "leaveAction": "Verlaat",
     "noBadgeYet": "Nog geen kenteken nie"
+  },
+  "addToFolder": {
+    "title": "Stoor in vouer",
+    "subtitle": "Kies waar jy hierdie plasing wil hou.",
+    "loading": "Laai vouers…",
+    "noneYet": "Nog geen vouers geskep nie",
+    "noneYetHint": "Skep een om hierdie plasing te orden.",
+    "nameLabel": "Vouernaam",
+    "namePlaceholder": "bv. Kook, Reis",
+    "descriptionPlaceholder": "Wat hoort in hierdie vouer?",
+    "createAndSave": "Skep en stoor",
+    "createNew": "Skep nuwe vouer",
+    "closeA11y": "Sluit vouerkieser"
   }
 }

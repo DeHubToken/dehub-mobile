@@ -598,7 +598,8 @@
     "takePhoto": "ፎቶ አንሳ",
     "recordVideo": "ቪዲዮ ቅረጽ",
     "saveChanges": "ለውጦችን አስቀምጥ",
-    "copy": "ቅዳ"
+    "copy": "ቅዳ",
+    "optionalSuffix": "(አማራጭ)"
   },
   "tip": {
     "title": "ጥቆማ ላክ",
@@ -3252,5 +3253,18 @@
     "leaveBody": "{{name}}ን ይልቀቁ?",
     "leaveAction": "ልቀቅ",
     "noBadgeYet": "እስካሁን ባጅ የለም"
+  },
+  "addToFolder": {
+    "title": "ወደ አቃፊ አስቀምጥ",
+    "subtitle": "ይህን ልጥፍ የት ማስቀመጥ እንደሚፈልጉ ይምረጡ።",
+    "loading": "አቃፊዎችን በመጫን ላይ…",
+    "noneYet": "እስካሁን የተፈጠረ አቃፊ የለም",
+    "noneYetHint": "ይህን ልጥፍ ለማደራጀት አንድ ይፍጠሩ።",
+    "nameLabel": "የአቃፊ ስም",
+    "namePlaceholder": "ለምሳሌ ምግብ ማብሰል፣ ጉዞ",
+    "descriptionPlaceholder": "በዚህ አቃፊ ውስጥ ምን ይገባል?",
+    "createAndSave": "ፍጠርና አስቀምጥ",
+    "createNew": "አዲስ አቃፊ ፍጠር",
+    "closeA11y": "የአቃፊ መምረጫን ዝጋ"
   }
 }

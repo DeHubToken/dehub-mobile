@@ -828,7 +828,8 @@
     "takePhoto": "Fă o poză",
     "recordVideo": "Înregistrează video",
     "saveChanges": "Salvează modificările",
-    "copy": "Copiază"
+    "copy": "Copiază",
+    "optionalSuffix": "(opțional)"
   },
   "postOptions": {
     "options": "Options",
@@ -3270,5 +3271,18 @@
     "leaveBody": "Părăsești {{name}}?",
     "leaveAction": "Părăsește",
     "noBadgeYet": "Încă fără insignă"
+  },
+  "addToFolder": {
+    "title": "Salvează în dosar",
+    "subtitle": "Alege unde vrei să păstrezi această postare.",
+    "loading": "Se încarcă dosarele…",
+    "noneYet": "Încă nu s-a creat niciun dosar",
+    "noneYetHint": "Creează unul pentru a organiza această postare.",
+    "nameLabel": "Numele dosarului",
+    "namePlaceholder": "ex. Gătit, Călătorii",
+    "descriptionPlaceholder": "Ce pui în acest dosar?",
+    "createAndSave": "Creează și salvează",
+    "createNew": "Creează dosar nou",
+    "closeA11y": "Închide selectorul de dosare"
   }
 }

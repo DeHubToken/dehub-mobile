@@ -602,7 +602,8 @@
     "takePhoto": "Ya fọto",
     "recordVideo": "Ṣe fídíò",
     "saveChanges": "Fi àwọn àyípadà pamọ́",
-    "copy": "Ṣe àdàkọ"
+    "copy": "Ṣe àdàkọ",
+    "optionalSuffix": "(àṣàyàn)"
   },
   "tip": {
     "title": "Fi Ẹ̀bùn Ránṣẹ́",
@@ -3247,5 +3248,18 @@
     "leaveBody": "Kúrò nínú {{name}}?",
     "leaveAction": "Kúrò",
     "noBadgeYet": "Kò sí àmì síbẹ̀"
+  },
+  "addToFolder": {
+    "title": "Fi pamọ́ sí àpò",
+    "subtitle": "Yan ibi tí o fẹ́ fi ìfìwéránṣẹ́ yìí pamọ́ sí.",
+    "loading": "Ń gbé àwọn àpò wọlé…",
+    "noneYet": "A kò tíì dá àpò kankan",
+    "noneYetHint": "Dá ọ̀kan sílẹ̀ láti to ìfìwéránṣẹ́ yìí.",
+    "nameLabel": "Orúkọ àpò",
+    "namePlaceholder": "bíi Sísè, Ìrìnàjò",
+    "descriptionPlaceholder": "Kí ni yóò wà nínú àpò yìí?",
+    "createAndSave": "Dá kí o sì fi pamọ́",
+    "createNew": "Dá àpò tuntun",
+    "closeA11y": "Ti ayànfẹ́ àpò pa"
   }
 }

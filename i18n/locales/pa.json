@@ -595,7 +595,8 @@
     "takePhoto": "ਫੋਟੋ ਖਿੱਚੋ",
     "recordVideo": "ਵੀਡੀਓ ਰਿਕਾਰਡ ਕਰੋ",
     "saveChanges": "ਤਬਦੀਲੀਆਂ ਸੰਭਾਲੋ",
-    "copy": "ਕਾਪੀ ਕਰੋ"
+    "copy": "ਕਾਪੀ ਕਰੋ",
+    "optionalSuffix": "(ਵਿਕਲਪਿਕ)"
   },
   "drawers": {
     "ppvTitle": "ਪੇ ਪਰ ਵਿਊ ਸਮੱਗਰੀ",
@@ -3233,5 +3234,18 @@
     "leaveBody": "{{name}} ਛੱਡਣੀ ਹੈ?",
     "leaveAction": "ਛੱਡੋ",
     "noBadgeYet": "ਹਾਲੇ ਕੋਈ ਬੈਜ ਨਹੀਂ"
+  },
+  "addToFolder": {
+    "title": "ਫੋਲਡਰ ਵਿੱਚ ਸੰਭਾਲੋ",
+    "subtitle": "ਚੁਣੋ ਕਿ ਇਹ ਪੋਸਟ ਕਿੱਥੇ ਰੱਖਣੀ ਹੈ।",
+    "loading": "ਫੋਲਡਰ ਲੋਡ ਹੋ ਰਹੇ ਹਨ…",
+    "noneYet": "ਹਾਲੇ ਕੋਈ ਫੋਲਡਰ ਨਹੀਂ ਬਣਿਆ",
+    "noneYetHint": "ਇਸ ਪੋਸਟ ਨੂੰ ਵਿਵਸਥਿਤ ਕਰਨ ਲਈ ਇੱਕ ਬਣਾਓ।",
+    "nameLabel": "ਫੋਲਡਰ ਦਾ ਨਾਂ",
+    "namePlaceholder": "ਜਿਵੇਂ ਖਾਣਾ ਬਣਾਉਣਾ, ਸਫ਼ਰ",
+    "descriptionPlaceholder": "ਇਸ ਫੋਲਡਰ ਵਿੱਚ ਕੀ ਰੱਖਣਾ ਹੈ?",
+    "createAndSave": "ਬਣਾਓ ਅਤੇ ਸੰਭਾਲੋ",
+    "createNew": "ਨਵਾਂ ਫੋਲਡਰ ਬਣਾਓ",
+    "closeA11y": "ਫੋਲਡਰ ਚੋਣਕਾਰ ਬੰਦ ਕਰੋ"
   }
 }

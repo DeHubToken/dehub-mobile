@@ -608,7 +608,8 @@
     "takePhoto": "Tag et billede",
     "recordVideo": "Optag video",
     "saveChanges": "Gem ændringer",
-    "copy": "Kopiér"
+    "copy": "Kopiér",
+    "optionalSuffix": "(valgfrit)"
   },
   "drawers": {
     "ppvTitle": "Betal per visning",
@@ -3261,5 +3262,18 @@
     "leaveBody": "Forlad {{name}}?",
     "leaveAction": "Forlad",
     "noBadgeYet": "Intet badge endnu"
+  },
+  "addToFolder": {
+    "title": "Gem i mappe",
+    "subtitle": "Vælg, hvor du vil gemme dette opslag.",
+    "loading": "Indlæser mapper…",
+    "noneYet": "Der er endnu ikke oprettet nogen mapper",
+    "noneYetHint": "Opret en for at organisere dette opslag.",
+    "nameLabel": "Mappenavn",
+    "namePlaceholder": "f.eks. Madlavning, Rejser",
+    "descriptionPlaceholder": "Hvad hører til i denne mappe?",
+    "createAndSave": "Opret og gem",
+    "createNew": "Opret ny mappe",
+    "closeA11y": "Luk mappevælger"
   }
 }
