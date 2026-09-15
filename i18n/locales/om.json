@@ -3379,7 +3379,19 @@
     "solanaFailed": "Kaffaltiin Solana hin milkoofne",
     "missingWeb3": "Haalli web3 hin jiru",
     "preparingRouter": "Raawwataa kaffaltii qopheessaa jira… yeroo gabaabaa booda irra deebiʼii yaali",
-    "swapShort": "Jijjiirraan xumurameera garuu DHB ammallee hin gaʼu. Irra deebiʼii yaali."
+    "swapShort": "Jijjiirraan xumurameera garuu DHB ammallee hin gaʼu. Irra deebiʼii yaali.",
+    "yourBalance": "Hafteen kee",
+    "youNeed": "Si barbaachisa",
+    "scanning": "Karaa saffisaan maallaqa itti guuttu barbaadaa jira…",
+    "topUpAndUnlock": "Guuti fi banii",
+    "notNow": "Amma miti",
+    "buySymbol": "{{symbol}} bitadhu",
+    "topUpThenReturn": "Boorsaa kee guuti, ergasii deebiʼi",
+    "checkWalletFailed": "Amma boorsaa kee mirkaneessuun hin dandaʼamne.",
+    "preparingWallet": "Boorsaan kee qophaaʼaa jira — yeroo muraasa booda irra deebiʼii yaali.",
+    "swapSettling": "Jijjiirraan kee amma illee raawwachaa jiraachuu dandaʼa. Irra deebiʼii yaaluu dura hafteedhaa DHB kee mirkaneessi — yeroo lama hin jijjiirin.",
+    "notEnoughBase": "Boorsaa kee kan Base irratti kana uwwisuuf gaʼaa hin qabu. Maallaqa itti dabali, banuun si eeggata.",
+    "otherChain": "Barreeffamni kun sarara biraa irratti raawwatama, kanaafuu achitti boorsaa kee keessatti DHB si barbaachisa."
   },
   "walletSetup": {
     "writeThemDown": "Iddoo si qofti gaʼuu dandeessu irratti barreessi. Namni jechoota kana qabu kamiyyuu boorsaa kee qaba — deeggarsi DeHub isaan deebisuu ykn haaromsuu hin dandaʼu.",

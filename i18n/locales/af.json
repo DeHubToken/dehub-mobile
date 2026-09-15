@@ -3432,7 +3432,19 @@
     "solanaFailed": "Solana-betaling het misluk",
     "missingWeb3": "web3-konteks ontbreek",
     "preparingRouter": "Berei betaalroeteerder voor… probeer netnou weer",
-    "swapShort": "Ruil is klaar maar DHB is steeds te min. Probeer weer."
+    "swapShort": "Ruil is klaar maar DHB is steeds te min. Probeer weer.",
+    "yourBalance": "Jou saldo",
+    "youNeed": "Jy benodig",
+    "scanning": "Soek die vinnigste manier om jou aan te vul…",
+    "topUpAndUnlock": "Vul aan en ontsluit",
+    "notNow": "Nie nou nie",
+    "buySymbol": "Koop {{symbol}}",
+    "topUpThenReturn": "Vul jou beursie aan en kom dan terug",
+    "checkWalletFailed": "Kon nie nou jou beursie nagaan nie.",
+    "preparingWallet": "Jou beursie word gereed gemaak — probeer netnou weer.",
+    "swapSettling": "Jou ruil kan nog besig wees om af te handel. Kontroleer jou DHB-saldo voordat jy weer probeer — moenie twee keer ruil nie.",
+    "notEnoughBase": "Daar is nie genoeg in jou beursie op Base om dit te dek nie. Voeg fondse by en die ontsluiting wag vir jou.",
+    "otherChain": "Hierdie plasing verreken op 'n ander ketting, dus benodig jy DHB in jou beursie daar."
   },
   "walletSetup": {
     "writeThemDown": "Skryf dit neer op 'n plek waar net jy kan kom. Enigiemand met hierdie woorde het jou beursie — DeHub-ondersteuning kan dit nie herstel of terugstel nie.",

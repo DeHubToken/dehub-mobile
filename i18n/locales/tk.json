@@ -3285,7 +3285,19 @@
     "solanaFailed": "Solana tölegi şowsuz boldy",
     "missingWeb3": "web3 konteksti ýok",
     "preparingRouter": "Töleg marşrutizatory taýýarlanýar… biraz soň gaýtadan synanyşyň",
-    "swapShort": "Çalşyk tamamlandy, ýöne DHB entek ýeterlik däl. Gaýtadan synanyşyň."
+    "swapShort": "Çalşyk tamamlandy, ýöne DHB entek ýeterlik däl. Gaýtadan synanyşyň.",
+    "yourBalance": "Balansyňyz",
+    "youNeed": "Size gerek",
+    "scanning": "Balansy doldurmagyň iň çalt ýoly gözlenýär…",
+    "topUpAndUnlock": "Doldur we aç",
+    "notNow": "Häzir däl",
+    "buySymbol": "{{symbol}} satyn al",
+    "topUpThenReturn": "Gapjygyňyzy dolduryň, soň yzyňyza geliň",
+    "checkWalletFailed": "Häzir gapjygyňyzy barlap bolmady.",
+    "preparingWallet": "Gapjygyňyz taýýarlanýar — biraz soň gaýtadan synanyşyň.",
+    "swapSettling": "Çalşyşyňyz heniz tamamlanýan bolmagy mümkin. Gaýtadan synanyşmazdan öň DHB balansyňyzy barlaň — iki gezek çalyşmaň.",
+    "notEnoughBase": "Base-däki gapjygyňyzda muny örtmek üçin ýeterlik ýok. Serişde goşuň, açmak sizi garaşýar.",
+    "otherChain": "Bu ýazgy başga zynjyrda hasaplaşylýar, şonuň üçin ol ýerdäki gapjygyňyzda DHB gerek."
   },
   "walletSetup": {
     "writeThemDown": "Olary diňe siziň baryp bilýän ýeriňizde ýazyp goýuň. Bu sözler kimde bolsa, gapjygyňyz hem şonda — DeHub goldawy olary ne dikeldip ne-de täzeden düzüp bilýär.",

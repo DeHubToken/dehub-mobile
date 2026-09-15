@@ -3304,7 +3304,19 @@
     "solanaFailed": "Solana-Zahlig fehlgschlage",
     "missingWeb3": "web3-Kontext fählt",
     "preparingRouter": "Zahligs-Router wird vorbereitet… gliich nomol probiere",
-    "swapShort": "Tuusch erledigt, aber DHB längt no nid. Bitte nomol probiere."
+    "swapShort": "Tuusch erledigt, aber DHB längt no nid. Bitte nomol probiere.",
+    "yourBalance": "Dis Guthabe",
+    "youNeed": "Du bruuchsch",
+    "scanning": "De schnellsti Wäg zum Ufladen wird gsuecht…",
+    "topUpAndUnlock": "Uflade & freischalte",
+    "notNow": "Jetzt nöd",
+    "buySymbol": "{{symbol}} chaufe",
+    "topUpThenReturn": "Lad dini Wallet uf und chum zrugg",
+    "checkWalletFailed": "Dini Wallet het grad nöd chöne prüeft wärde.",
+    "preparingWallet": "Dini Wallet wird vorbereitet — probier s glii nomol.",
+    "swapSettling": "Din Swap wird villicht no abgwicklet. Prüef dis DHB-Guthabe, bevor du s nomol probiersch — swap nöd zweimal.",
+    "notEnoughBase": "I dinere Wallet uf Base isch nöd gnueg zum das decke. Lad uf — s Freischalte wartet uf di.",
+    "otherChain": "De Biitrag wird uf ere andere Chain abgwicklet, drum bruuchsch dete DHB i dinere Wallet."
   },
   "walletSetup": {
     "writeThemDown": "Schriib sie a mene Ort uf, wo nume du hichunnsch. Wär die Wörter het, het dini Wallet — de DeHub-Support cha sie weder widerherstelle no zrugsetze.",

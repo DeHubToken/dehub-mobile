@@ -3385,7 +3385,19 @@
     "solanaFailed": "Solana payment failed",
     "missingWeb3": "Missing web3 context",
     "preparingRouter": "Preparing payment router… try again in a moment",
-    "swapShort": "Swap done but DHB still short. Try again."
+    "swapShort": "Swap done but DHB still short. Try again.",
+    "yourBalance": "Your balance",
+    "youNeed": "You need",
+    "scanning": "Finding the quickest way to top you up…",
+    "topUpAndUnlock": "Top up & unlock",
+    "notNow": "Not now",
+    "buySymbol": "Buy {{symbol}}",
+    "topUpThenReturn": "Top up your wallet, then come back",
+    "checkWalletFailed": "Could not check your wallet just now.",
+    "preparingWallet": "Preparing your wallet — try again in a moment.",
+    "swapSettling": "Your swap may still be settling. Check your DHB balance before trying again — do not swap twice.",
+    "notEnoughBase": "There isn't enough in your wallet on Base to cover it. Add funds and the unlock is waiting for you.",
+    "otherChain": "This post settles on another chain, so it needs DHB in your wallet there."
   },
   "walletSetup": {
     "writeThemDown": "Write them down somewhere only you can reach. Anyone who has these words has your wallet — DeHub support cannot recover them and cannot reset them.",

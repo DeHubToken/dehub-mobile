@@ -3385,7 +3385,19 @@
     "solanaFailed": "Pagamento Solana non riuscito",
     "missingWeb3": "Contesto web3 mancante",
     "preparingRouter": "Preparazione del router di pagamento… riprova tra un istante",
-    "swapShort": "Scambio effettuato ma i DHB non bastano ancora. Riprova."
+    "swapShort": "Scambio effettuato ma i DHB non bastano ancora. Riprova.",
+    "yourBalance": "Il tuo saldo",
+    "youNeed": "Ti serve",
+    "scanning": "Ricerca del modo più rapido per ricaricare…",
+    "topUpAndUnlock": "Ricarica e sblocca",
+    "notNow": "Non ora",
+    "buySymbol": "Acquista {{symbol}}",
+    "topUpThenReturn": "Ricarica il tuo wallet e torna",
+    "checkWalletFailed": "Non è stato possibile controllare il tuo wallet in questo momento.",
+    "preparingWallet": "Preparazione del tuo wallet: riprova tra un momento.",
+    "swapSettling": "Il tuo swap potrebbe essere ancora in regolamento. Controlla il saldo DHB prima di riprovare: non effettuare lo swap due volte.",
+    "notEnoughBase": "Nel tuo wallet su Base non c'è abbastanza per coprirlo. Aggiungi fondi: lo sblocco ti aspetta.",
+    "otherChain": "Questo post viene regolato su un'altra chain, quindi ti servono DHB nel tuo wallet lì."
   },
   "walletSetup": {
     "writeThemDown": "Annotale in un posto che solo tu puoi raggiungere. Chi ha queste parole ha il tuo wallet: l'assistenza DeHub non può recuperarle né reimpostarle.",

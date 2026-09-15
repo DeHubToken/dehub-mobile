@@ -11,6 +11,7 @@
  * straight back to the unlock.
  */
 
+import { useTranslation } from "react-i18next";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   View,
@@ -108,6 +109,7 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
   onCancel,
   onClose,
 }) => {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const [phase, setPhase] = useState<Phase>("scanning");
   const [pick, setPick] = useState<Pick | null>(null);
@@ -187,7 +189,7 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
       } catch (e) {
         console.warn("[PPV] Top-up scan failed:", e);
         if (!cancelled) {
-          setError("Could not check your wallet just now.");
+          setError(t("ppv.checkWalletFailed"));
           setPhase("error");
         }
       }
@@ -201,7 +203,7 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
   const handleTopUp = useCallback(async () => {
     if (!pick || !account || !swapRouterContract) return;
     if (needsApproval && !payTokenContract) {
-      setError("Preparing your wallet — try again in a moment.");
+      setError(t("ppv.preparingWallet"));
       setPhase("error");
       return;
     }
@@ -245,7 +247,7 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
       );
       if (!after.gte(target)) {
         setError(
-          "Your swap may still be settling. Check your DHB balance before trying again — do not swap twice.",
+          t("ppv.swapSettling"),
         );
         setPhase("error");
         return;
@@ -269,20 +271,20 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
     <View>
       <View style={styles.summary}>
         <View style={styles.summaryRow}>
-          <Text style={styles.summaryLabel}>Unlock price</Text>
+          <Text style={styles.summaryLabel}>{t("ppv.unlockPrice")}</Text>
           <Text style={styles.summaryValue}>
             {formatCompactNumber(shortfall.priceDhb)} {shortfall.symbol}
           </Text>
         </View>
         <View style={styles.summaryRow}>
-          <Text style={styles.summaryLabel}>Your balance</Text>
+          <Text style={styles.summaryLabel}>{t("ppv.yourBalance")}</Text>
           <Text style={styles.summaryValue}>
             {formatCompactNumber(shortfall.balanceDhb)} {shortfall.symbol}
           </Text>
         </View>
         <View style={styles.divider} />
         <View style={styles.summaryRow}>
-          <Text style={styles.needLabel}>You need</Text>
+          <Text style={styles.needLabel}>{t("ppv.youNeed")}</Text>
           <Text style={styles.needValue}>
             {formatCompactNumber(shortfall.needDhb)} {shortfall.symbol}
           </Text>
@@ -292,7 +294,7 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
       {phase === "scanning" && (
         <View style={styles.statusRow}>
           <ActivityIndicator size="small" color="#A6A9AC" />
-          <Text style={styles.statusText}>Finding the quickest way to top you up…</Text>
+          <Text style={styles.statusText}>{t("ppv.scanning")}</Text>
         </View>
       )}
 
@@ -309,7 +311,7 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
               style={[styles.closeBtn, phase === "buying" && { opacity: 0.5 }]}
               activeOpacity={0.7}
             >
-              <Text style={styles.closeBtnText}>Cancel</Text>
+              <Text style={styles.closeBtnText}>{t("common.cancel")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={handleTopUp}
@@ -320,7 +322,7 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
               {phase === "buying" ? (
                 <ActivityIndicator size="small" color="#010305" />
               ) : (
-                <Text style={styles.payBtnText}>Top up &amp; unlock</Text>
+                <Text style={styles.payBtnText}>{t("ppv.topUpAndUnlock")}</Text>
               )}
             </TouchableOpacity>
           </View>
@@ -334,16 +336,16 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
           ) : (
             <Text style={styles.hintText}>
               {shortfall.canTopUpInApp
-                ? "There isn't enough in your wallet on Base to cover it. Add funds and the unlock is waiting for you."
-                : "This post settles on another chain, so it needs DHB in your wallet there."}
+                ? t("ppv.notEnoughBase")
+                : t("ppv.otherChain")}
             </Text>
           )}
 
           <TouchableOpacity style={styles.routeBtn} onPress={goToBuy} activeOpacity={0.7}>
             <Icon name="CreditCard" size={18} color="#F9FBFF" />
             <View style={styles.routeTextWrap}>
-              <Text style={styles.routeTitle}>Buy {shortfall.symbol}</Text>
-              <Text style={styles.routeSub}>Top up your wallet, then come back</Text>
+              <Text style={styles.routeTitle}>{t("ppv.buySymbol", { symbol: shortfall.symbol })}</Text>
+              <Text style={styles.routeSub}>{t("ppv.topUpThenReturn")}</Text>
             </View>
             <Icon name="ChevronRight" size={16} color="#6F7174" />
           </TouchableOpacity>
@@ -353,7 +355,7 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
             onPress={onCancel}
             activeOpacity={0.7}
           >
-            <Text style={styles.closeBtnText}>Not now</Text>
+            <Text style={styles.closeBtnText}>{t("ppv.notNow")}</Text>
           </TouchableOpacity>
         </>
       )}

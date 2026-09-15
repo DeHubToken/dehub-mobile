@@ -3315,7 +3315,19 @@
     "solanaFailed": "Plaćanje putem Solane nije uspjelo",
     "missingWeb3": "Nedostaje web3 kontekst",
     "preparingRouter": "Priprema se usmjerivač plaćanja… pokušaj ponovno za trenutak",
-    "swapShort": "Zamjena je gotova, ali DHB još nedostaje. Pokušaj ponovno."
+    "swapShort": "Zamjena je gotova, ali DHB još nedostaje. Pokušaj ponovno.",
+    "yourBalance": "Vaš saldo",
+    "youNeed": "Trebate",
+    "scanning": "Traži se najbrži način nadopune…",
+    "topUpAndUnlock": "Nadopuni i otključaj",
+    "notNow": "Ne sada",
+    "buySymbol": "Kupi {{symbol}}",
+    "topUpThenReturn": "Nadopunite novčanik pa se vratite",
+    "checkWalletFailed": "Vaš novčanik trenutačno nije moguće provjeriti.",
+    "preparingWallet": "Priprema se vaš novčanik — pokušajte ponovno za koji trenutak.",
+    "swapSettling": "Vaša zamjena možda se još namiruje. Provjerite stanje DHB prije nego pokušate ponovno — nemojte zamijeniti dvaput.",
+    "notEnoughBase": "U vašem novčaniku na Base nema dovoljno da se to pokrije. Dodajte sredstva — otključavanje vas čeka.",
+    "otherChain": "Ova se objava namiruje na drugom lancu pa vam ondje treba DHB u novčaniku."
   },
   "walletSetup": {
     "writeThemDown": "Zapiši ih negdje gdje samo ti možeš doći. Tko ima ove riječi, ima tvoj novčanik — DeHub podrška ih ne može vratiti ni resetirati.",

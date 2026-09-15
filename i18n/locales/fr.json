@@ -3389,7 +3389,19 @@
     "solanaFailed": "Le paiement Solana a échoué",
     "missingWeb3": "Contexte web3 manquant",
     "preparingRouter": "Préparation du routeur de paiement… réessayez dans un instant",
-    "swapShort": "Échange effectué mais les DHB sont encore insuffisants. Réessayez."
+    "swapShort": "Échange effectué mais les DHB sont encore insuffisants. Réessayez.",
+    "yourBalance": "Votre solde",
+    "youNeed": "Il vous faut",
+    "scanning": "Recherche du moyen le plus rapide de recharger…",
+    "topUpAndUnlock": "Recharger et déverrouiller",
+    "notNow": "Pas maintenant",
+    "buySymbol": "Acheter {{symbol}}",
+    "topUpThenReturn": "Rechargez votre portefeuille, puis revenez",
+    "checkWalletFailed": "Impossible de vérifier votre portefeuille pour le moment.",
+    "preparingWallet": "Préparation de votre portefeuille — réessayez dans un instant.",
+    "swapSettling": "Votre échange est peut-être encore en cours de règlement. Vérifiez votre solde DHB avant de réessayer — n'échangez pas deux fois.",
+    "notEnoughBase": "Votre portefeuille sur Base ne contient pas assez pour couvrir cela. Ajoutez des fonds, le déverrouillage vous attend.",
+    "otherChain": "Cette publication se règle sur une autre chaîne : il vous faut donc des DHB dans votre portefeuille là-bas."
   },
   "walletSetup": {
     "writeThemDown": "Notez-les dans un endroit que vous seul pouvez atteindre. Quiconque détient ces mots détient votre portefeuille — le support DeHub ne peut ni les récupérer ni les réinitialiser.",

@@ -3313,7 +3313,19 @@
     "solanaFailed": "Solana 付款失敗",
     "missingWeb3": "缺少 web3 上下文",
     "preparingRouter": "正在準備付款路由… 請稍後再試",
-    "swapShort": "兌換已完成，但 DHB 仍然不足。請再試。"
+    "swapShort": "兌換已完成，但 DHB 仍然不足。請再試。",
+    "yourBalance": "你嘅餘額",
+    "youNeed": "你需要",
+    "scanning": "正在尋找最快嘅充值方式…",
+    "topUpAndUnlock": "充值並解鎖",
+    "notNow": "而家唔使",
+    "buySymbol": "購買 {{symbol}}",
+    "topUpThenReturn": "先為錢包充值，然後返嚟",
+    "checkWalletFailed": "而家無法檢查你嘅錢包。",
+    "preparingWallet": "正在準備你嘅錢包 — 請稍後再試。",
+    "swapSettling": "你嘅兌換可能仲喺度結算。再試之前請先睇 DHB 餘額 — 唔好兌換兩次。",
+    "notEnoughBase": "你喺 Base 上嘅錢包餘額唔夠支付。增值之後，解鎖仲喺度等你。",
+    "otherChain": "呢個帖子喺另一條鏈上結算，所以你喺嗰條鏈嘅錢包要有 DHB。"
   },
   "walletSetup": {
     "writeThemDown": "將佢哋寫喺只有你先攞到嘅地方。邊個有呢啲字，邊個就有你個錢包——DeHub 客服搵唔返亦重設唔到。",
