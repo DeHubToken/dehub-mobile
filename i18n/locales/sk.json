@@ -136,7 +136,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Odkaz na ENS profil skopírovaný",
+    "subscribeNow": "Odoberať teraz",
+    "messageUser": "Napísať používateľovi",
+    "backToTop": "Späť nahor",
+    "noImages": "Zatiaľ žiadne obrázky",
+    "noImagesSub": "Príspevky s obrázkami sa objavia tu",
+    "noPlans": "Žiadne plány predplatného",
+    "noPlansSub": "Tento tvorca zatiaľ nevytvoril žiadne plány"
   },
   "settings": {
     "smartReplies": "Navrhované odpovede",
@@ -1334,7 +1342,8 @@
     "removeVoiceNote": "Odstrániť hlasovú poznámku",
     "removeMedia": "Odstrániť médium",
     "cancelRecording": "Zrušiť nahrávanie",
-    "sendVoiceNote": "Odoslať hlasovú poznámku"
+    "sendVoiceNote": "Odoslať hlasovú poznámku",
+    "noneYetAddYours": "Zatiaľ žiadne komentáre, pridajte svoj."
   },
   "postInfo": {
     "title": "Informácie o príspevku",
@@ -3987,5 +3996,9 @@
     "streamPaused": "Stream pozastavený",
     "connectionDropped": "Streamerovi vypadlo pripojenie.\nČakáme, kým sa vráti...",
     "autoEnding": "Ak sa neobnoví, automaticky sa ukončí"
+  },
+  "search": {
+    "endOfResults": "Koniec výsledkov",
+    "searchDehub": "Hľadať v DeHub"
   }
 }

@@ -1362,7 +1362,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Girêdana profîla ENS hate kopîkirin",
+    "subscribeNow": "Niha abone bibe",
+    "messageUser": "Ji bikarhêner re peyam bişîne",
+    "backToTop": "Vegere jor",
+    "noImages": "Hîn wêne tune",
+    "noImagesSub": "Postên wêneyî dê li vir xuya bibin",
+    "noPlans": "Planên abonetiyê tune",
+    "noPlansSub": "Vî afirîner hîn ti plan çênekiriye"
   },
   "tv": {
     "title": "TV",
@@ -1687,7 +1695,8 @@
     "removeVoiceNote": "Nîşeya dengî rake",
     "removeMedia": "Medyayê rake",
     "cancelRecording": "Tomarkirinê betal bike",
-    "sendVoiceNote": "Nîşeya dengî bişîne"
+    "sendVoiceNote": "Nîşeya dengî bişîne",
+    "noneYetAddYours": "Hîn şîrove tune, ya xwe zêde bike."
   },
   "postInfo": {
     "title": "Agahiya postê",
@@ -3580,5 +3589,9 @@
     "streamPaused": "Weşan hate rawestandin",
     "connectionDropped": "Girêdana weşanvan qut bû.\nLi benda vegera wî ne...",
     "autoEnding": "Heke dest pê neke wê xweber biqede"
+  },
+  "search": {
+    "endOfResults": "Dawiya encaman",
+    "searchDehub": "Li DeHub bigere"
   }
 }

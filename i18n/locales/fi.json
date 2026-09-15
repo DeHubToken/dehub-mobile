@@ -1439,7 +1439,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS-profiilin linkki kopioitu",
+    "subscribeNow": "Tilaa nyt",
+    "messageUser": "Lähetä käyttäjälle viesti",
+    "backToTop": "Takaisin ylös",
+    "noImages": "Ei vielä kuvia",
+    "noImagesSub": "Kuvajulkaisut näkyvät täällä",
+    "noPlans": "Ei tilauspaketteja",
+    "noPlansSub": "Tämä tekijä ei ole vielä luonut paketteja"
   },
   "tv": {
     "title": "TV",
@@ -1764,7 +1772,8 @@
     "removeVoiceNote": "Poista ääniviesti",
     "removeMedia": "Poista media",
     "cancelRecording": "Peruuta nauhoitus",
-    "sendVoiceNote": "Lähetä ääniviesti"
+    "sendVoiceNote": "Lähetä ääniviesti",
+    "noneYetAddYours": "Ei vielä kommentteja — lisää omasi."
   },
   "postInfo": {
     "title": "Julkaisun tiedot",
@@ -3819,5 +3828,9 @@
     "streamPaused": "Lähetys keskeytetty",
     "connectionDropped": "Lähettäjän yhteys katkesi.\nOdotetaan yhteyden palaamista...",
     "autoEnding": "Päättyy automaattisesti, jos ei jatku"
+  },
+  "search": {
+    "endOfResults": "Tulosten loppu",
+    "searchDehub": "Hae DeHubista"
   }
 }

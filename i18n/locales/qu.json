@@ -1476,7 +1476,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS willañiqi t'inka kikinchasqa",
+    "subscribeNow": "Kunan qillqakuy",
+    "messageUser": "Ruwaqman willakuy apachiy",
+    "backToTop": "Hanaqman kutiy",
+    "noImages": "Manaraq rikchakuna kanchu",
+    "noImagesSub": "Rikcha willaykunaqa kaypi rikurinqa",
+    "noPlans": "Mana qillqakuy planokuna",
+    "noPlansSub": "Kay ruwaqqa manaraq imapas planta ruwanchu"
   },
   "tv": {
     "title": "TV",
@@ -1831,7 +1839,8 @@
     "removeVoiceNote": "Kunka qillqata qichuy",
     "removeMedia": "Media qichuy",
     "cancelRecording": "Waqaychayta chinkachiy",
-    "sendVoiceNote": "Kunka qillqata apachiy"
+    "sendVoiceNote": "Kunka qillqata apachiy",
+    "noneYetAddYours": "Manaraq rimakuykuna kanchu, qampata yapay."
   },
   "postInfo": {
     "title": "Post willay",
@@ -3849,5 +3858,9 @@
     "streamPaused": "Chayachiy sayachisqa",
     "connectionDropped": "Chayachiqpa tinkiynin p'akikurqan.\nKutimunanta suyachkanchik...",
     "autoEnding": "Mana qatiptinqa kikinmanta tukukunqa"
+  },
+  "search": {
+    "endOfResults": "Tarisqakuna tukuy",
+    "searchDehub": "DeHub ukhupi maskay"
   }
 }

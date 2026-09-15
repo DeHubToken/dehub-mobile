@@ -1452,7 +1452,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS profil jurusira kopilen",
+    "subscribeNow": "Bila sisan",
+    "messageUser": "Ci baarakɛla ma",
+    "backToTop": "Segin sanfɛ",
+    "noImages": "Ja si tɛ yen fɔlɔ",
+    "noImagesSub": "Ja sɛbɛnw bɛna bɔ yan",
+    "noPlans": "Bilali labɛn si tɛ yen",
+    "noPlansSub": "Nin dilanbaga ma labɛn si dilan fɔlɔ"
   },
   "tv": {
     "title": "TV",
@@ -1777,7 +1785,8 @@
     "removeVoiceNote": "Kumakan bɔ",
     "removeMedia": "Media bɔ",
     "cancelRecording": "Sɛbɛnni dabila",
-    "sendVoiceNote": "Kumakan ci"
+    "sendVoiceNote": "Kumakan ci",
+    "noneYetAddYours": "Hakilina si tɛ yen fɔlɔ, i ta fara a kan."
   },
   "postInfo": {
     "title": "Post kunnafoni",
@@ -3763,5 +3772,9 @@
     "streamPaused": "Stream jɔra",
     "connectionDropped": "Streamer ka jɛgɛnɛ tigɛra.\nAn bɛ makɔnɔni a ka segin...",
     "autoEnding": "A bɛna ban a yɛrɛ ma ni a ma daminɛ kokura"
+  },
+  "search": {
+    "endOfResults": "Jaabiw laban",
+    "searchDehub": "DeHub kɔnɔ ɲini"
   }
 }

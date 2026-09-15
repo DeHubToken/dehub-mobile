@@ -1477,7 +1477,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "بەستەری پرۆفایلی ENS کۆپی کرا",
+    "subscribeNow": "ئێستا بەشدار ببە",
+    "messageUser": "نامە بۆ بەکارهێنەر بنێرە",
+    "backToTop": "گەڕانەوە بۆ سەرەوە",
+    "noImages": "هێشتا هیچ وێنەیەک نییە",
+    "noImagesSub": "پۆستی وێنەدار لێرە دەردەکەون",
+    "noPlans": "هیچ پلانێکی بەشداری نییە",
+    "noPlansSub": "ئەم دروستکەرە هێشتا هیچ پلانێکی دانەناوە"
   },
   "tv": {
     "title": "ٹی وی",
@@ -1802,7 +1810,8 @@
     "removeVoiceNote": "تێبینی دەنگی لابدە",
     "removeMedia": "مێدیا لابدە",
     "cancelRecording": "تۆمارکردن هەڵبوەشێنەوە",
-    "sendVoiceNote": "تێبینی دەنگی بنێرە"
+    "sendVoiceNote": "تێبینی دەنگی بنێرە",
+    "noneYetAddYours": "هێشتا لێدوان نییە، هی خۆت زیاد بکە."
   },
   "postInfo": {
     "title": "پوسٹ کی معلومات",
@@ -3818,5 +3827,9 @@
     "streamPaused": "پەخش وەستێنرا",
     "connectionDropped": "پەیوەندی پەخشکەر پچڕا.\nچاوەڕێی دەکەین پەیوەندی بکاتەوە...",
     "autoEnding": "ئەگەر دەست پێنەکاتەوە بە خۆکارانە کۆتایی دێت"
+  },
+  "search": {
+    "endOfResults": "کۆتایی ئەنجامەکان",
+    "searchDehub": "لە DeHub بگەڕێ"
   }
 }

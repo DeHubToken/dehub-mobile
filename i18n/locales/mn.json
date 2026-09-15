@@ -1458,7 +1458,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS профайлын холбоосыг хууллаа",
+    "subscribeNow": "Одоо захиалах",
+    "messageUser": "Хэрэглэгчид мессеж илгээх",
+    "backToTop": "Дээшээ буцах",
+    "noImages": "Одоогоор зураг алга",
+    "noImagesSub": "Зурагтай нийтлэлүүд энд харагдана",
+    "noPlans": "Захиалгын багц алга",
+    "noPlansSub": "Энэ бүтээгч одоогоор багц үүсгээгүй байна"
   },
   "tv": {
     "title": "ТВ",
@@ -1783,7 +1791,8 @@
     "removeVoiceNote": "Дуут тэмдэглэлийг устгах",
     "removeMedia": "Медиаг устгах",
     "cancelRecording": "Бичлэгийг цуцлах",
-    "sendVoiceNote": "Дуут тэмдэглэл илгээх"
+    "sendVoiceNote": "Дуут тэмдэглэл илгээх",
+    "noneYetAddYours": "Одоогоор сэтгэгдэл алга, өөрийнхөө оруул."
   },
   "postInfo": {
     "title": "Нийтлэлийн мэдээлэл",
@@ -3798,5 +3807,9 @@
     "streamPaused": "Дамжуулалт түр зогссон",
     "connectionDropped": "Дамжуулагчийн холболт тасарлаа.\nДахин холбогдохыг хүлээж байна...",
     "autoEnding": "Үргэлжлэхгүй бол автоматаар дуусна"
+  },
+  "search": {
+    "endOfResults": "Үр дүнгийн төгсгөл",
+    "searchDehub": "DeHub-с хайх"
   }
 }

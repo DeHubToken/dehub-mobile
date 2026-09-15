@@ -1345,7 +1345,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "اقتراحات للمتابعة"
+    "followSuggestions": "اقتراحات للمتابعة",
+    "ensUrlCopied": "تم نسخ رابط ملف ENS",
+    "subscribeNow": "اشترك الآن",
+    "messageUser": "راسل المستخدم",
+    "backToTop": "العودة إلى الأعلى",
+    "noImages": "لا توجد صور بعد",
+    "noImagesSub": "ستظهر منشورات الصور هنا",
+    "noPlans": "لا توجد خطط اشتراك",
+    "noPlansSub": "لم يعدّ هذا المنشئ أي خطة بعد"
   },
   "messages": {
     "smartRepliesOff": "تم إيقاف الردود المقترحة",
@@ -1801,7 +1809,8 @@
     "removeVoiceNote": "إزالة الملاحظة الصوتية",
     "removeMedia": "إزالة الوسائط",
     "cancelRecording": "إلغاء التسجيل",
-    "sendVoiceNote": "أرسل الملاحظة الصوتية"
+    "sendVoiceNote": "أرسل الملاحظة الصوتية",
+    "noneYetAddYours": "لا توجد تعليقات بعد، أضف تعليقك."
   },
   "postInfo": {
     "title": "معلومات المنشور",
@@ -3874,5 +3883,9 @@
     "streamPaused": "البث متوقف مؤقتًا",
     "connectionDropped": "انقطع اتصال المذيع.\nفي انتظار عودته...",
     "autoEnding": "سينتهي تلقائيًا إن لم يُستأنف"
+  },
+  "search": {
+    "endOfResults": "نهاية النتائج",
+    "searchDehub": "ابحث في DeHub"
   }
 }

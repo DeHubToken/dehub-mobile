@@ -1463,7 +1463,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "የENS መገለጫ አገናኝ ተቀድቷል",
+    "subscribeNow": "አሁን ይመዝገቡ",
+    "messageUser": "ለተጠቃሚው መልእክት ላክ",
+    "backToTop": "ወደ ላይ ተመለስ",
+    "noImages": "እስካሁን ምስል የለም",
+    "noImagesSub": "የምስል ልጥፎች እዚህ ይታያሉ",
+    "noPlans": "የምዝገባ ዕቅድ የለም",
+    "noPlansSub": "ይህ ፈጣሪ እስካሁን ምንም ዕቅድ አላዘጋጀም"
   },
   "tv": {
     "title": "ቴሌቪዥን",
@@ -1818,7 +1826,8 @@
     "removeVoiceNote": "የድምፅ ማስታወሻውን አስወግድ",
     "removeMedia": "ሚዲያውን አስወግድ",
     "cancelRecording": "ቀረጻውን ሰርዝ",
-    "sendVoiceNote": "የድምፅ ማስታወሻ ላክ"
+    "sendVoiceNote": "የድምፅ ማስታወሻ ላክ",
+    "noneYetAddYours": "እስካሁን አስተያየት የለም፣ የእርስዎን ያክሉ።"
   },
   "postInfo": {
     "title": "የልጥፍ መረጃ",
@@ -3814,5 +3823,9 @@
     "streamPaused": "ስርጭቱ ቆሟል",
     "connectionDropped": "የአስተላላፊው ግንኙነት ተቋርጧል።\nእንደገና እስኪገናኝ እየተጠበቀ ነው...",
     "autoEnding": "ካልቀጠለ በራሱ ይጠናቀቃል"
+  },
+  "search": {
+    "endOfResults": "የውጤቶቹ መጨረሻ",
+    "searchDehub": "DeHub ይፈልጉ"
   }
 }

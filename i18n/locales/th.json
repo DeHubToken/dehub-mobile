@@ -1707,7 +1707,15 @@
     "tabHome": "หน้าแรก",
     "tabImages": "รูปภาพ",
     "tabSubscribers": "ผู้สมัครสมาชิก",
-    "followSuggestions": "แนะนำให้ติดตาม"
+    "followSuggestions": "แนะนำให้ติดตาม",
+    "ensUrlCopied": "คัดลอกลิงก์โปรไฟล์ ENS แล้ว",
+    "subscribeNow": "สมัครสมาชิกเลย",
+    "messageUser": "ส่งข้อความหาผู้ใช้",
+    "backToTop": "กลับขึ้นด้านบน",
+    "noImages": "ยังไม่มีรูปภาพ",
+    "noImagesSub": "โพสต์รูปภาพจะแสดงที่นี่",
+    "noPlans": "ไม่มีแพ็กเกจสมาชิก",
+    "noPlansSub": "ครีเอเตอร์รายนี้ยังไม่ได้ตั้งแพ็กเกจ"
   },
   "tv": {
     "title": "TV",
@@ -2032,7 +2040,8 @@
     "removeVoiceNote": "ลบข้อความเสียง",
     "removeMedia": "ลบสื่อ",
     "cancelRecording": "ยกเลิกการอัด",
-    "sendVoiceNote": "ส่งข้อความเสียง"
+    "sendVoiceNote": "ส่งข้อความเสียง",
+    "noneYetAddYours": "ยังไม่มีความคิดเห็น มาเริ่มเป็นคนแรก"
   },
   "postInfo": {
     "title": "ข้อมูลโพสต์",
@@ -3855,5 +3864,9 @@
     "streamPaused": "สตรีมหยุดชั่วคราว",
     "connectionDropped": "การเชื่อมต่อของผู้สตรีมหลุด\nกำลังรอให้กลับมาเชื่อมต่อใหม่...",
     "autoEnding": "จะจบอัตโนมัติหากไม่กลับมาต่อ"
+  },
+  "search": {
+    "endOfResults": "หมดผลการค้นหาแล้ว",
+    "searchDehub": "ค้นหาใน DeHub"
   }
 }

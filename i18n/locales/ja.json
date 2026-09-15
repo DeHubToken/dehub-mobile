@@ -1486,7 +1486,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "フォローの提案"
+    "followSuggestions": "フォローの提案",
+    "ensUrlCopied": "ENS プロフィールのリンクをコピーしました",
+    "subscribeNow": "今すぐ登録",
+    "messageUser": "ユーザーにメッセージを送る",
+    "backToTop": "先頭へ戻る",
+    "noImages": "画像はまだありません",
+    "noImagesSub": "画像の投稿はここに表示されます",
+    "noPlans": "サブスクプランはありません",
+    "noPlansSub": "このクリエイターはまだプランを設定していません"
   },
   "tv": {
     "title": "テレビ",
@@ -1813,7 +1821,8 @@
     "removeVoiceNote": "ボイスメモを削除",
     "removeMedia": "メディアを削除",
     "cancelRecording": "録音をキャンセル",
-    "sendVoiceNote": "ボイスメモを送信"
+    "sendVoiceNote": "ボイスメモを送信",
+    "noneYetAddYours": "コメントはまだありません。最初の一件をどうぞ。"
   },
   "postInfo": {
     "title": "投稿情報",
@@ -3886,5 +3895,9 @@
     "streamPaused": "配信は一時停止中",
     "connectionDropped": "配信者の接続が切れました。\n再接続を待っています…",
     "autoEnding": "再開されない場合は自動終了します"
+  },
+  "search": {
+    "endOfResults": "結果はここまで",
+    "searchDehub": "DeHub を検索"
   }
 }

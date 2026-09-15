@@ -1348,7 +1348,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS-profillink kopieret",
+    "subscribeNow": "Abonnér nu",
+    "messageUser": "Send besked til brugeren",
+    "backToTop": "Tilbage til toppen",
+    "noImages": "Ingen billeder endnu",
+    "noImagesSub": "Billedopslag vises her",
+    "noPlans": "Ingen abonnementsplaner",
+    "noPlansSub": "Denne skaber har endnu ikke oprettet planer"
   },
   "messages": {
     "smartRepliesOff": "Foreslåede svar er slået fra",
@@ -1804,7 +1812,8 @@
     "removeVoiceNote": "Fjern talebesked",
     "removeMedia": "Fjern medie",
     "cancelRecording": "Annuller optagelse",
-    "sendVoiceNote": "Send talebesked"
+    "sendVoiceNote": "Send talebesked",
+    "noneYetAddYours": "Ingen kommentarer endnu — tilføj din."
   },
   "postInfo": {
     "title": "Opslags-info",
@@ -3823,5 +3832,9 @@
     "streamPaused": "Stream sat på pause",
     "connectionDropped": "Streamerens forbindelse faldt ud.\nVenter på, at de kommer tilbage...",
     "autoEnding": "Afsluttes automatisk, hvis den ikke genoptages"
+  },
+  "search": {
+    "endOfResults": "Slut på resultater",
+    "searchDehub": "Søg i DeHub"
   }
 }

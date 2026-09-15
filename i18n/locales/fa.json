@@ -1472,7 +1472,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "لینک پروفایل ENS کپی شد",
+    "subscribeNow": "همین حالا مشترک شوید",
+    "messageUser": "ارسال پیام به کاربر",
+    "backToTop": "بازگشت به بالا",
+    "noImages": "هنوز تصویری نیست",
+    "noImagesSub": "پست‌های تصویری اینجا نمایش داده می‌شوند",
+    "noPlans": "بدون طرح اشتراک",
+    "noPlansSub": "این سازنده هنوز طرحی نساخته است"
   },
   "tv": {
     "title": "تلویزیون",
@@ -1827,7 +1835,8 @@
     "removeVoiceNote": "حذف پیام صوتی",
     "removeMedia": "حذف رسانه",
     "cancelRecording": "لغو ضبط",
-    "sendVoiceNote": "ارسال پیام صوتی"
+    "sendVoiceNote": "ارسال پیام صوتی",
+    "noneYetAddYours": "هنوز نظری نیست، نظر خود را بنویسید."
   },
   "postInfo": {
     "title": "اطلاعات پست",
@@ -3832,5 +3841,9 @@
     "streamPaused": "پخش متوقف شد",
     "connectionDropped": "ارتباط پخش‌کننده قطع شد.\nمنتظر اتصال دوباره...",
     "autoEnding": "اگر از سر گرفته نشود خودکار پایان می‌یابد"
+  },
+  "search": {
+    "endOfResults": "پایان نتایج",
+    "searchDehub": "جستجو در DeHub"
   }
 }

@@ -1411,7 +1411,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS profile link don copy",
+    "subscribeNow": "Subscribe now",
+    "messageUser": "Message dis user",
+    "backToTop": "Go back to top",
+    "noImages": "No image dey yet",
+    "noImagesSub": "Image post go show here",
+    "noPlans": "No subscription plan dey",
+    "noPlansSub": "Dis creator never set any plan yet"
   },
   "tv": {
     "title": "TV",
@@ -1736,7 +1744,8 @@
     "removeVoiceNote": "Remove di voice note",
     "removeMedia": "Remove di media",
     "cancelRecording": "Cancel di recording",
-    "sendVoiceNote": "Send di voice note"
+    "sendVoiceNote": "Send di voice note",
+    "noneYetAddYours": "No comment dey yet, add yours."
   },
   "postInfo": {
     "title": "Post Info",
@@ -3633,5 +3642,9 @@
     "streamPaused": "Stream don pause",
     "connectionDropped": "Di streamer connection don cut.\nWe dey wait make dem come back...",
     "autoEnding": "E go end by itself if e no continue"
+  },
+  "search": {
+    "endOfResults": "Results don finish",
+    "searchDehub": "Search DeHub"
   }
 }

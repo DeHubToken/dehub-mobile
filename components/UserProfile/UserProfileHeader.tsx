@@ -167,7 +167,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   const handleCopyEns = useCallback(() => {
     if (!ensName) return;
     copyToClipboard(ensProfileUrl(ensName));
-    toastSuccess("ENS profile URL copied");
+    toastSuccess(t("profile.ensUrlCopied"));
   }, [ensName]);
 
   const socialItems = useMemo(() => {
@@ -202,7 +202,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
           <View style={s.glassBtnContent}>
             <Icon name="Pencil" size={14} color="#fff" />
-            <Text style={s.glassBtnLabel}>Edit Profile</Text>
+            <Text style={s.glassBtnLabel}>{t("screens.editProfile")}</Text>
           </View>
         </TouchableOpacity>
       );
@@ -234,7 +234,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
           <View style={s.glassBtnContent}>
             <Icon name="Clock" size={14} color="#fff" />
-            <Text style={s.glassBtnLabel}>Requested</Text>
+            <Text style={s.glassBtnLabel}>{t("follow.requested")}</Text>
           </View>
         </TouchableOpacity>
       );
@@ -252,7 +252,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
           <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
           <View style={s.glassBtnContent}>
-            <Text style={s.glassBtnLabel}>Following</Text>
+            <Text style={s.glassBtnLabel}>{t("filters.following")}</Text>
             <Icon name="Check" size={14} color="#fff" />
           </View>
         </TouchableOpacity>
@@ -311,7 +311,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   onPress={onMessage}
                   activeOpacity={0.7}
                   accessibilityRole="button"
-                  accessibilityLabel="Message user"
+                  accessibilityLabel={t("profile.messageUser")}
                   style={[s.glassBtn, s.iconBtn]}
                 >
                   <View style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS, backgroundColor: "#18181B" }]} />
@@ -377,7 +377,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             )}
             {followsYou && (
               <View className="px-2 py-0.5 bg-theme-neutrals-800 rounded">
-                <Text className="text-theme-neutrals-400 text-[11px] font-medium">Follows you</Text>
+                <Text className="text-theme-neutrals-400 text-[11px] font-medium">{t("follow.followsYou")}</Text>
               </View>
             )}
             {/* A lent badge draws like any other badge everywhere else; this is
@@ -463,7 +463,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
               <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
               <View style={s.glassBtnContent}>
                 <Icon name="Star" size={14} color="#fff" />
-                <Text style={s.glassBtnLabel}>Subscribe Now</Text>
+                <Text style={s.glassBtnLabel}>{t("profile.subscribeNow")}</Text>
               </View>
             </TouchableOpacity>
           )

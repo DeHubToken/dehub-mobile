@@ -1335,7 +1335,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS சுயவிவர இணைப்பு நகலெடுக்கப்பட்டது",
+    "subscribeNow": "இப்போதே சந்தா சேர்",
+    "messageUser": "பயனருக்குச் செய்தி அனுப்பு",
+    "backToTop": "மேலே திரும்பு",
+    "noImages": "இன்னும் படங்கள் இல்லை",
+    "noImagesSub": "படப் பதிவுகள் இங்கே தோன்றும்",
+    "noPlans": "சந்தா திட்டங்கள் இல்லை",
+    "noPlansSub": "இந்த உருவாக்குநர் இன்னும் எந்தத் திட்டமும் அமைக்கவில்லை"
   },
   "messages": {
     "smartRepliesOff": "பரிந்துரைக்கப்பட்ட பதில்கள் அணைக்கப்பட்டன",
@@ -1791,7 +1799,8 @@
     "removeVoiceNote": "குரல் குறிப்பை நீக்கு",
     "removeMedia": "ஊடகத்தை நீக்கு",
     "cancelRecording": "பதிவை ரத்துசெய்",
-    "sendVoiceNote": "குரல் குறிப்பை அனுப்பு"
+    "sendVoiceNote": "குரல் குறிப்பை அனுப்பு",
+    "noneYetAddYours": "இன்னும் கருத்துகள் இல்லை, உங்களுடையதைச் சேருங்கள்."
   },
   "postInfo": {
     "title": "பதிவு தகவல்",
@@ -3807,5 +3816,9 @@
     "streamPaused": "ஸ்ட்ரீம் இடைநிறுத்தப்பட்டது",
     "connectionDropped": "ஸ்ட்ரீமரின் இணைப்பு துண்டிக்கப்பட்டது.\nமீண்டும் இணைய காத்திருக்கிறோம்...",
     "autoEnding": "மீண்டும் தொடங்காவிட்டால் தானாக முடியும்"
+  },
+  "search": {
+    "endOfResults": "முடிவுகளின் இறுதி",
+    "searchDehub": "DeHub இல் தேடு"
   }
 }

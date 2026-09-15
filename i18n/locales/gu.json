@@ -1470,7 +1470,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS પ્રોફાઇલ લિંક કૉપિ થઈ",
+    "subscribeNow": "હમણાં સબ્સ્ક્રાઇબ કરો",
+    "messageUser": "વપરાશકર્તાને સંદેશ મોકલો",
+    "backToTop": "ટોચ પર પાછા",
+    "noImages": "હજી કોઈ છબી નથી",
+    "noImagesSub": "છબી પોસ્ટ અહીં દેખાશે",
+    "noPlans": "કોઈ સબસ્ક્રિપ્શન પ્લાન નથી",
+    "noPlansSub": "આ સર્જકે હજી કોઈ પ્લાન સેટ કર્યો નથી"
   },
   "tv": {
     "title": "TV",
@@ -1795,7 +1803,8 @@
     "removeVoiceNote": "વૉઇસ નોટ કાઢો",
     "removeMedia": "મીડિયા કાઢો",
     "cancelRecording": "રેકોર્ડિંગ રદ કરો",
-    "sendVoiceNote": "વૉઇસ નોટ મોકલો"
+    "sendVoiceNote": "વૉઇસ નોટ મોકલો",
+    "noneYetAddYours": "હજી કોઈ ટિપ્પણી નથી, તમારી ઉમેરો."
   },
   "postInfo": {
     "title": "પોસ્ટ માહિતી",
@@ -3811,5 +3820,9 @@
     "streamPaused": "સ્ટ્રીમ થોભાવી",
     "connectionDropped": "સ્ટ્રીમરનું કનેક્શન તૂટી ગયું.\nફરી જોડાવાની રાહ જોવાઈ રહી છે...",
     "autoEnding": "ફરી શરૂ ન થાય તો આપોઆપ સમાપ્ત થશે"
+  },
+  "search": {
+    "endOfResults": "પરિણામોનો અંત",
+    "searchDehub": "DeHub માં શોધો"
   }
 }

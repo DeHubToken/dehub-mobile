@@ -1931,7 +1931,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "Pautan profil ENS disalin",
+    "subscribeNow": "Langgan sekarang",
+    "messageUser": "Hantar mesej kepada pengguna",
+    "backToTop": "Kembali ke atas",
+    "noImages": "Belum ada imej",
+    "noImagesSub": "Siaran imej akan muncul di sini",
+    "noPlans": "Tiada pelan langganan",
+    "noPlansSub": "Pencipta ini belum menyediakan sebarang pelan"
   },
   "tv": {
     "title": "TV",
@@ -2256,7 +2264,8 @@
     "removeVoiceNote": "Buang nota suara",
     "removeMedia": "Buang media",
     "cancelRecording": "Batalkan rakaman",
-    "sendVoiceNote": "Hantar nota suara"
+    "sendVoiceNote": "Hantar nota suara",
+    "noneYetAddYours": "Belum ada komen, tambah komen anda."
   },
   "postInfo": {
     "title": "Post Info",
@@ -4082,5 +4091,9 @@
     "streamPaused": "Siaran dijeda",
     "connectionDropped": "Sambungan penyiar terputus.\nMenunggu mereka menyambung semula...",
     "autoEnding": "Akan tamat automatik jika tidak disambung semula"
+  },
+  "search": {
+    "endOfResults": "Penghujung hasil",
+    "searchDehub": "Cari di DeHub"
   }
 }

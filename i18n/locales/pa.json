@@ -1334,7 +1334,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "ENS ਪ੍ਰੋਫਾਈਲ ਲਿੰਕ ਕਾਪੀ ਹੋ ਗਿਆ",
+    "subscribeNow": "ਹੁਣੇ ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ",
+    "messageUser": "ਵਰਤੋਂਕਾਰ ਨੂੰ ਸੁਨੇਹਾ ਭੇਜੋ",
+    "backToTop": "ਉੱਪਰ ਵਾਪਸ",
+    "noImages": "ਹਾਲੇ ਕੋਈ ਤਸਵੀਰ ਨਹੀਂ",
+    "noImagesSub": "ਤਸਵੀਰ ਪੋਸਟਾਂ ਇੱਥੇ ਦਿਖਣਗੀਆਂ",
+    "noPlans": "ਕੋਈ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਪਲਾਨ ਨਹੀਂ",
+    "noPlansSub": "ਇਸ ਸਿਰਜਣਹਾਰ ਨੇ ਹਾਲੇ ਕੋਈ ਪਲਾਨ ਨਹੀਂ ਬਣਾਇਆ"
   },
   "messages": {
     "smartRepliesOff": "ਸੁਝਾਏ ਜਵਾਬ ਬੰਦ ਕਰ ਦਿੱਤੇ",
@@ -1790,7 +1798,8 @@
     "removeVoiceNote": "ਵੌਇਸ ਨੋਟ ਹਟਾਓ",
     "removeMedia": "ਮੀਡੀਆ ਹਟਾਓ",
     "cancelRecording": "ਰਿਕਾਰਡਿੰਗ ਰੱਦ ਕਰੋ",
-    "sendVoiceNote": "ਵੌਇਸ ਨੋਟ ਭੇਜੋ"
+    "sendVoiceNote": "ਵੌਇਸ ਨੋਟ ਭੇਜੋ",
+    "noneYetAddYours": "ਹਾਲੇ ਕੋਈ ਟਿੱਪਣੀ ਨਹੀਂ, ਆਪਣੀ ਜੋੜੋ।"
   },
   "postInfo": {
     "title": "ਪੋਸਟ ਜਾਣਕਾਰੀ",
@@ -3795,5 +3804,9 @@
     "streamPaused": "ਸਟ੍ਰੀਮ ਰੁਕੀ ਹੋਈ ਹੈ",
     "connectionDropped": "ਸਟ੍ਰੀਮਰ ਦਾ ਕੁਨੈਕਸ਼ਨ ਟੁੱਟ ਗਿਆ।\nਮੁੜ ਜੁੜਨ ਦੀ ਉਡੀਕ ਹੈ...",
     "autoEnding": "ਜੇ ਮੁੜ ਸ਼ੁਰੂ ਨਾ ਹੋਇਆ ਤਾਂ ਆਪਣੇ ਆਪ ਖਤਮ ਹੋ ਜਾਵੇਗਾ"
+  },
+  "search": {
+    "endOfResults": "ਨਤੀਜਿਆਂ ਦਾ ਅੰਤ",
+    "searchDehub": "DeHub ਵਿੱਚ ਖੋਜੋ"
   }
 }

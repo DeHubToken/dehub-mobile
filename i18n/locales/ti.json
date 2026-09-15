@@ -1449,7 +1449,15 @@
     "tabHome": "Home",
     "tabImages": "Images",
     "tabSubscribers": "Subscribers",
-    "followSuggestions": "Follow Suggestions"
+    "followSuggestions": "Follow Suggestions",
+    "ensUrlCopied": "መላግቦ ናይ ENS መለለዪ ተቐዲሑ",
+    "subscribeNow": "ሕጂ ተመዝገብ",
+    "messageUser": "ንተጠቃሚ መልእኽቲ ስደድ",
+    "backToTop": "ናብ ላዕሊ ተመለስ",
+    "noImages": "ክሳብ ሕጂ ስእልታት የለዉን",
+    "noImagesSub": "ናይ ስእሊ ጽሑፋት ኣብዚ ክረኣዩ እዮም",
+    "noPlans": "ናይ ምዝገባ መደባት የለዉን",
+    "noPlansSub": "እዚ ፈጣሪ ክሳብ ሕጂ ዝኾነ መደብ ኣየዳለወን"
   },
   "tv": {
     "title": "ቲቪ",
@@ -1774,7 +1782,8 @@
     "removeVoiceNote": "ናይ ድምጺ መዘኻኸሪ ኣልግስ",
     "removeMedia": "ሚድያ ኣልግስ",
     "cancelRecording": "ቅዳሕ ሰርዝ",
-    "sendVoiceNote": "ናይ ድምጺ መዘኻኸሪ ስደድ"
+    "sendVoiceNote": "ናይ ድምጺ መዘኻኸሪ ስደድ",
+    "noneYetAddYours": "ክሳብ ሕጂ ርእይቶ የለን፡ ናትካ ወስኽ።"
   },
   "postInfo": {
     "title": "ሓበሬታ ጽሑፍ",
@@ -3784,5 +3793,9 @@
     "streamPaused": "ስርጭት ተቛሪጹ",
     "connectionDropped": "ናይ ኣስራጪ ርክብ ተቛሪጹ።\nከም ብሓድሽ ክራኸብ ንጽበ ኣለና...",
     "autoEnding": "እንተዘይቀጺሉ ባዕሉ ክውዳእ እዩ"
+  },
+  "search": {
+    "endOfResults": "መወዳእታ ውጽኢታት",
+    "searchDehub": "ኣብ DeHub ድለ"
   }
 }

@@ -1454,7 +1454,15 @@
     "tabHome": "Ana Sayfa",
     "tabImages": "Görseller",
     "tabSubscribers": "Aboneler",
-    "followSuggestions": "Takip Önerileri"
+    "followSuggestions": "Takip Önerileri",
+    "ensUrlCopied": "ENS profil bağlantısı kopyalandı",
+    "subscribeNow": "Şimdi abone ol",
+    "messageUser": "Kullanıcıya mesaj gönder",
+    "backToTop": "Başa dön",
+    "noImages": "Henüz görsel yok",
+    "noImagesSub": "Görsel gönderiler burada görünecek",
+    "noPlans": "Abonelik planı yok",
+    "noPlansSub": "Bu içerik üreticisi henüz plan oluşturmadı"
   },
   "messages": {
     "smartRepliesOff": "Önerilen yanıtlar kapatıldı",
@@ -1883,7 +1891,8 @@
     "removeVoiceNote": "Sesli notu kaldır",
     "removeMedia": "Medyayı kaldır",
     "cancelRecording": "Kaydı iptal et",
-    "sendVoiceNote": "Sesli notu gönder"
+    "sendVoiceNote": "Sesli notu gönder",
+    "noneYetAddYours": "Henüz yorum yok, ilkini sen yaz."
   },
   "postInfo": {
     "title": "Gönderi Bilgisi",
@@ -3881,5 +3890,9 @@
     "streamPaused": "Yayın duraklatıldı",
     "connectionDropped": "Yayıncının bağlantısı koptu.\nYeniden bağlanmasını bekliyoruz...",
     "autoEnding": "Devam etmezse otomatik olarak sona erer"
+  },
+  "search": {
+    "endOfResults": "Sonuçların sonu",
+    "searchDehub": "DeHub'da ara"
   }
 }
