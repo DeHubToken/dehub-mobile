@@ -3138,6 +3138,19 @@
       "wallTitle": "ሰዎች ምን ይላሉ",
       "wallNote": "በፈቃድ ታትሞ",
       "anonymous": "DeHub አባል"
-    }
+    },
+    "subtitle": "ቀጥታ ቁጽርታት ማሕበረሰብ",
+    "range7d": "7 መዓልቲ",
+    "range30d": "30 መዓልቲ",
+    "range1y": "1 ዓመት",
+    "notEnoughHistory": "ንግራፍ ዝኸውን እኹል ታሪኽ ገና የለን",
+    "chartA11y": "ግራፍ ኣባላት ብግዜ",
+    "loadFailed": "ቀጥታ ስታቲስቲክስ ክጽዓን ኣይከኣለን።",
+    "livePlatformTotal": "ቀጥታ ድምር መድረኽ",
+    "activeUsers": "ንጡፋት ዝተመዝገቡ ተጠቀምቲ",
+    "newMembers": "ሓደስቲ ኣባላት",
+    "membersOverTime": "ኣባላት ብግዜ",
+    "lastDays": "ዝሓለፉ {{count}} መዓልቲ",
+    "source": "ካብ ህዝባዊ መወዳእታ ነጥቢ ስታቲስቲክስ DeHub ዝተመዝገበ ታሪኽ ሕሳብ። ኣብዚ ግራፍ ዝተገመቱ ዋጋታት ኣይጥቀሙን።"
   }
 }

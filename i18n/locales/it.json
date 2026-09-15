@@ -3243,6 +3243,19 @@
       "wallTitle": "Quello che dicono le persone",
       "wallNote": "pubblicato con permesso",
       "anonymous": "Un membro di DeHub"
-    }
+    },
+    "subtitle": "Numeri della community in tempo reale",
+    "range7d": "7 giorni",
+    "range30d": "30 giorni",
+    "range1y": "1 anno",
+    "notEnoughHistory": "Non c'è ancora abbastanza storico per un grafico",
+    "chartA11y": "Grafico dei membri nel tempo",
+    "loadFailed": "Impossibile caricare le statistiche in tempo reale.",
+    "livePlatformTotal": "Totale della piattaforma in tempo reale",
+    "activeUsers": "Utenti registrati attivi",
+    "newMembers": "Nuovi membri",
+    "membersOverTime": "Membri nel tempo",
+    "lastDays": "Ultimi {{count}} giorni",
+    "source": "Storico degli account registrato dall'endpoint pubblico delle statistiche di DeHub. In questo grafico non vengono usati valori stimati."
   }
 }

@@ -3202,6 +3202,19 @@
       "wallTitle": "Abantu bani abathini",
       "wallNote": "kushicilelwe ngemvume",
       "anonymous": "Ilungu le-DeHub"
-    }
+    },
+    "subtitle": "Izibalo zomphakathi ezibukhoma",
+    "range7d": "Izinsuku ezingu-7",
+    "range30d": "Izinsuku ezingu-30",
+    "range1y": "Unyaka owu-1",
+    "notEnoughHistory": "Umlando awukanele ukwenza ishadi",
+    "chartA11y": "Ishadi lamalungu ngokuhamba kwesikhathi",
+    "loadFailed": "Ayikwazanga ukulayisha izibalo ezibukhoma.",
+    "livePlatformTotal": "Isamba sepulatifomu esibukhoma",
+    "activeUsers": "Abasebenzisi ababhalisile abasebenzayo",
+    "newMembers": "Amalungu amasha",
+    "membersOverTime": "Amalungu ngokuhamba kwesikhathi",
+    "lastDays": "Izinsuku ezingu-{{count}} ezidlule",
+    "source": "Umlando we-akhawunti orekhodiwe ophuma kwi-endpoint yezibalo zomphakathi ye-DeHub. Awekho amanani alinganiselwe asetshenziswa kuleli shadi."
   }
 }

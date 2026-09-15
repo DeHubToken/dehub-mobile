@@ -3252,6 +3252,19 @@
       "wallTitle": "Inona no lazain'ny olona",
       "wallNote": "navoaka miaraka amin'ny alalana",
       "anonymous": "Mpikambana DeHub"
-    }
+    },
+    "subtitle": "Isa mivantana momba ny vondrom-piarahamonina",
+    "range7d": "7 andro",
+    "range30d": "30 andro",
+    "range1y": "1 taona",
+    "notEnoughHistory": "Mbola tsy ampy tantara ho an'ny kisary",
+    "chartA11y": "Kisary momba ny mpikambana araka ny fotoana",
+    "loadFailed": "Tsy voaraikitra ny antontanisa mivantana.",
+    "livePlatformTotal": "Totalin'ny sehatra mivantana",
+    "activeUsers": "Mpampiasa voasoratra mavitrika",
+    "newMembers": "Mpikambana vaovao",
+    "membersOverTime": "Mpikambana araka ny fotoana",
+    "lastDays": "{{count}} andro farany",
+    "source": "Tantaran'ny kaonty voarakitra avy amin'ny endpoint antontanisa ho an'ny daholobe an'ny DeHub. Tsy misy sanda tombanana ampiasaina amin'ity kisary ity."
   }
 }

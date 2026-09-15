@@ -3223,6 +3223,19 @@
       "wallTitle": "Apa yang orang katakan",
       "wallNote": "dipublikasikan dengan izin",
       "anonymous": "Seorang anggota DeHub"
-    }
+    },
+    "subtitle": "Angka komunitas langsung",
+    "range7d": "7 hari",
+    "range30d": "30 hari",
+    "range1y": "1 tahun",
+    "notEnoughHistory": "Riwayat belum cukup untuk membuat grafik",
+    "chartA11y": "Grafik anggota dari waktu ke waktu",
+    "loadFailed": "Tidak dapat memuat statistik langsung.",
+    "livePlatformTotal": "Total platform langsung",
+    "activeUsers": "Pengguna terdaftar yang aktif",
+    "newMembers": "Anggota baru",
+    "membersOverTime": "Anggota dari waktu ke waktu",
+    "lastDays": "{{count}} hari terakhir",
+    "source": "Riwayat akun yang tercatat dari endpoint statistik publik DeHub. Tidak ada nilai perkiraan yang digunakan dalam grafik ini."
   }
 }

@@ -3118,6 +3118,19 @@
       "wallTitle": "Kɔ kɔ kɔ",
       "wallNote": "kɔ kɔ kɔ",
       "anonymous": "DeHub kɔ"
-    }
+    },
+    "subtitle": "Jamana ka jateden kuraw",
+    "range7d": "Tile 7",
+    "range30d": "Tile 30",
+    "range1y": "San 1",
+    "notEnoughHistory": "Kɔfɛkow man ca fɔlɔ ka ja dilan",
+    "chartA11y": "Jɛkulu mɔgɔw ja waati kɔnɔ",
+    "loadFailed": "Jateden kuraw ma se ka doni.",
+    "livePlatformTotal": "Baarakɛyɔrɔ jatebɔ kura",
+    "activeUsers": "Baarakɛla sɛbɛnnenw minnu bɛ baara la",
+    "newMembers": "Jɛkulu mɔgɔ kuraw",
+    "membersOverTime": "Jɛkulu mɔgɔw waati kɔnɔ",
+    "lastDays": "Tile {{count}} tɛmɛnen",
+    "source": "DeHub ka jateden yɔrɔ la jatedenw. Jateminɛ si tɛ kɛ nin ja in kɔnɔ."
   }
 }

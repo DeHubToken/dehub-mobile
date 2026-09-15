@@ -3151,6 +3151,19 @@
       "wallTitle": "Ihe ndị mmadụ na-asị",
       "wallNote": "bipụtara n'ikike",
       "anonymous": "Onye otu DeHub"
-    }
+    },
+    "subtitle": "Ọnụọgụ obodo na-ekpo ọkụ",
+    "range7d": "Ụbọchị 7",
+    "range30d": "Ụbọchị 30",
+    "range1y": "Afọ 1",
+    "notEnoughHistory": "Akụkọ ihe mere eme ezughị maka eserese",
+    "chartA11y": "Eserese ndị òtù n'oge",
+    "loadFailed": "Enweghị ike ibubata ọnụọgụgụ dị ndụ.",
+    "livePlatformTotal": "Ngụkọta ikpo okwu dị ndụ",
+    "activeUsers": "Ndị ọrụ edebanyere aha na-arụ ọrụ",
+    "newMembers": "Ndị òtù ọhụrụ",
+    "membersOverTime": "Ndị òtù n'oge",
+    "lastDays": "Ụbọchị {{count}} gara aga",
+    "source": "Akụkọ ihe mere eme nke akaụntụ edekọrọ site na njedebe ọnụọgụ ọha nke DeHub. Enweghị uru atụmatụ ejiri na eserese a."
   }
 }

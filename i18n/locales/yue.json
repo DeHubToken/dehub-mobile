@@ -3171,6 +3171,19 @@
       "wallTitle": "人哋講乜",
       "wallNote": "喺得到許可嘅情況下發佈",
       "anonymous": "一個 DeHub 成員"
-    }
+    },
+    "subtitle": "社群即時數據",
+    "range7d": "7 日",
+    "range30d": "30 日",
+    "range1y": "1 年",
+    "notEnoughHistory": "歷史數據未夠繪製圖表",
+    "chartA11y": "成員隨時間變化圖表",
+    "loadFailed": "無法載入即時統計。",
+    "livePlatformTotal": "平台即時總數",
+    "activeUsers": "活躍註冊用戶",
+    "newMembers": "新成員",
+    "membersOverTime": "成員隨時間變化",
+    "lastDays": "最近 {{count}} 日",
+    "source": "嚟自 DeHub 公開統計接口嘅帳戶歷史記錄。本圖表唔使用任何估算值。"
   }
 }

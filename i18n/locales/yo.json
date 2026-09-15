@@ -3163,6 +3163,19 @@
       "wallTitle": "Ohun ti awọn eniyan sọ",
       "wallNote": "ti fi iwe ẹkọ silẹ pẹlu iwe ẹkọ",
       "anonymous": "Ọmọ DeHub kan"
-    }
+    },
+    "subtitle": "Àwọn nọ́mbà àgbègbè tààrà",
+    "range7d": "Ọjọ́ 7",
+    "range30d": "Ọjọ́ 30",
+    "range1y": "Ọdún 1",
+    "notEnoughHistory": "Ìtàn kò tíì tó láti ya àwòrán",
+    "chartA11y": "Àwòrán àwọn ọmọ ẹgbẹ́ lórí àkókò",
+    "loadFailed": "Kò lè gbé àwọn ìṣirò tààrà wọlé.",
+    "livePlatformTotal": "Àpapọ̀ pẹpẹ tààrà",
+    "activeUsers": "Àwọn olùmúlò tí wọ́n forúkọsílẹ̀ tí ń ṣiṣẹ́",
+    "newMembers": "Àwọn ọmọ ẹgbẹ́ tuntun",
+    "membersOverTime": "Àwọn ọmọ ẹgbẹ́ lórí àkókò",
+    "lastDays": "Ọjọ́ {{count}} sẹ́yìn",
+    "source": "Ìtàn àkọọ́lẹ̀ tí a kọ sílẹ̀ láti ojú-ọ̀nà ìṣirò gbangba ti DeHub. Kò sí iye àfojúsùn tí a lò nínú àwòrán yìí."
   }
 }

@@ -3205,6 +3205,19 @@
       "wallTitle": "Runakunapa ima nisqanku",
       "wallNote": "permisowan lluqsichisqa",
       "anonymous": "Huk DeHub nisqapi kaq"
-    }
+    },
+    "subtitle": "Ayllup kawsaq yupaynin",
+    "range7d": "7 pʼunchaw",
+    "range30d": "30 pʼunchaw",
+    "range1y": "1 wata",
+    "notEnoughHistory": "Manaraq chart ruwanapaq willakuy hunt'anchu",
+    "chartA11y": "Ayllumasikunap chart pacha kutiypi",
+    "loadFailed": "Kawsaq yupaykunata mana chaqnayta atikunchu.",
+    "livePlatformTotal": "Platformap kawsaq hunt'aynin",
+    "activeUsers": "Qillqasqa llamkaq ruraqkuna",
+    "newMembers": "Musuq ayllumasikuna",
+    "membersOverTime": "Ayllumasikuna pacha kutiypi",
+    "lastDays": "Qhipa {{count}} pʼunchaw",
+    "source": "DeHub llapapaq yupay endpointmanta qillqasqa cuenta willakuy. Kay chartpi mana tupuna chaninkuna llamkachikunchu."
   }
 }

@@ -3131,6 +3131,19 @@
       "wallTitle": "Apa sing dikandhakake wong",
       "wallNote": "diterbitake kanthi ijin",
       "anonymous": "Anggota DeHub"
-    }
+    },
+    "subtitle": "Angka komunitas langsung",
+    "range7d": "7 dina",
+    "range30d": "30 dina",
+    "range1y": "1 taun",
+    "notEnoughHistory": "Riwayat durung cukup kanggo grafik",
+    "chartA11y": "Grafik anggota saka wektu",
+    "loadFailed": "Ora bisa ngemot statistik langsung.",
+    "livePlatformTotal": "Total platform langsung",
+    "activeUsers": "Panganggo kadhaptar sing aktif",
+    "newMembers": "Anggota anyar",
+    "membersOverTime": "Anggota saka wektu",
+    "lastDays": "{{count}} dina pungkasan",
+    "source": "Riwayat akun sing kacathet saka endpoint statistik umum DeHub. Ora ana nilai prakiraan sing digunakake ing grafik iki."
   }
 }
