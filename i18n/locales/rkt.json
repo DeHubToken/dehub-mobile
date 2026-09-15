@@ -39,7 +39,8 @@
     "tv": "লাইভ টিভি",
     "arcade": "আর্কেড",
     "stats": "সরাসরি পরিসংখ্যান",
-    "converter": "Converter"
+    "converter": "Converter",
+    "migrate": "সব মাইগ্রেট করুন"
   },
   "feed": {
     "home": "ঘর",

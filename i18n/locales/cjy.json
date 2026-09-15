@@ -39,7 +39,8 @@
     "tv": "直播电视",
     "arcade": "街机",
     "stats": "实时统计",
-    "converter": "Converter"
+    "converter": "Converter",
+    "migrate": "迁移所有"
   },
   "feed": {
     "home": "首页",

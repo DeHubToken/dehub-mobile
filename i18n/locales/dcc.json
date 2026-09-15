@@ -39,7 +39,8 @@
     "tv": "لائیو ٹی وی",
     "arcade": "آرکیڈ",
     "stats": "لائیو اعداد",
-    "converter": "Converter"
+    "converter": "Converter",
+    "migrate": "Migrate all"
   },
   "feed": {
     "home": "گھر",

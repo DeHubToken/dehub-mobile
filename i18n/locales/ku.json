@@ -39,7 +39,8 @@
     "tv": "TV Zindî",
     "arcade": "Arcade",
     "stats": "Statîstîkên Zindî",
-    "converter": "Converter"
+    "converter": "Converter",
+    "migrate": "Migrate all"
   },
   "feed": {
     "home": "Mal",
