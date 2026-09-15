@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Pressable,
+  StyleSheet,
   type LayoutChangeEvent,
 } from "react-native";
 import { ScrollView as RNScrollView } from "react-native";
@@ -1309,7 +1310,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       ) : hasThumb ? (
         <SmartImage
           source={{ uri: thumbnail }}
-          className="absolute inset-0 w-full h-full"
+          // A STYLE, not a className. SmartImage renders expo-image, which
+          // NativeWind does not know: className reaches it as an unrecognised
+          // prop and is dropped, so this poster had no size, no position, and
+          // never even issued a request — a live post with a perfectly good
+          // cover on the CDN rendered as an empty slab, and the whole Live tab
+          // was a wall of them. Every other SmartImage in the app is styled
+          // this way; this one call site was the exception.
+          style={StyleSheet.absoluteFill}
           recyclingKey={thumbnail}
           priority={prioritizeMedia ? "high" : "normal"}
         />
