@@ -3719,5 +3719,16 @@
     "usdtSent": "已发送 {{amount}} USDT",
     "withdrawableSoon": "订阅费用很快就能提现",
     "dpayBaseOnly": "Dpay 仅在 Base 上可用。"
+  },
+  "feedCard": {
+    "reactionFailed": "无法更新表态",
+    "saveFailed": "保存失败",
+    "linkCopied": "帖子链接已复制",
+    "removeRepostFailed": "无法取消转发",
+    "mintToGenerate": "铸造该帖子以生成此板块",
+    "mint": "铸造",
+    "stream": "直播",
+    "boostPost": "助推该帖子",
+    "openSuperPowers": "打开 SuperPowers"
   }
 }

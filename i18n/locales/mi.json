@@ -3707,5 +3707,16 @@
     "usdtSent": "Kua tukuna {{amount}} USDT",
     "withdrawableSoon": "Kāore e roa ka taea te tango i ngā utu ohunga",
     "dpayBaseOnly": "Kei Base anake a Dpay."
+  },
+  "feedCard": {
+    "reactionFailed": "Kāore i taea te whakahou i te urupare",
+    "saveFailed": "Kāore i taea te tiaki",
+    "linkCopied": "Kua tāruatia te hono pou",
+    "removeRepostFailed": "Kāore i taea te tango i te pou anō",
+    "mintToGenerate": "Whakaputaina tēnei pou kia hangaia tēnei wāhanga",
+    "mint": "Whakaputa",
+    "stream": "Rerenga",
+    "boostPost": "Whakapikihia te pou",
+    "openSuperPowers": "Whakatuwherahia SuperPowers"
   }
 }

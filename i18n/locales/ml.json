@@ -3704,5 +3704,16 @@
     "usdtSent": "{{amount}} USDT അയച്ചു",
     "withdrawableSoon": "സബ്സ്ക്രിപ്ഷൻ ഫീസ് ഉടൻ പിൻവലിക്കാനാകും",
     "dpayBaseOnly": "Dpay Base-ൽ മാത്രമേ ലഭ്യമാകൂ."
+  },
+  "feedCard": {
+    "reactionFailed": "പ്രതികരണം അപ്ഡേറ്റ് ചെയ്യാനായില്ല",
+    "saveFailed": "സേവ് ചെയ്യാനായില്ല",
+    "linkCopied": "പോസ്റ്റ് ലിങ്ക് പകർത്തി",
+    "removeRepostFailed": "റീപോസ്റ്റ് നീക്കാനായില്ല",
+    "mintToGenerate": "ഈ വിഭാഗം സൃഷ്ടിക്കാൻ ഈ പോസ്റ്റ് മിന്റ് ചെയ്യുക",
+    "mint": "മിന്റ്",
+    "stream": "സ്ട്രീം",
+    "boostPost": "പോസ്റ്റ് ബൂസ്റ്റ് ചെയ്യുക",
+    "openSuperPowers": "SuperPowers തുറക്കുക"
   }
 }

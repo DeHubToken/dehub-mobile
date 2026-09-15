@@ -3700,5 +3700,16 @@
     "usdtSent": "{{amount}} USDT фиристода шуд",
     "withdrawableSoon": "Ҳаққи обунаро ба зудӣ бардоштан мумкин мешавад",
     "dpayBaseOnly": "Dpay танҳо дар Base дастрас аст."
+  },
+  "feedCard": {
+    "reactionFailed": "Аксуламал нав карда нашуд",
+    "saveFailed": "Захира карда нашуд",
+    "linkCopied": "Пайванди паём нусха шуд",
+    "removeRepostFailed": "Репост бардошта нашуд",
+    "mintToGenerate": "Барои эҷоди ин қисм ин паёмро mint кунед",
+    "mint": "Mint",
+    "stream": "Пахш",
+    "boostPost": "Паёмро буст кунед",
+    "openSuperPowers": "SuperPowers-ро кушоед"
   }
 }

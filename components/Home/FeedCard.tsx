@@ -57,6 +57,7 @@ import TranslateButton from "../ui/TranslateButton";
 import SoundtrackBadge from "../Post/SoundtrackBadge";
 import { parseSoundtrack } from "../../libs/parseSoundtrack";
 import { useTranslation } from "../../hooks/useTranslation";
+import { useTranslation as useCopy } from "react-i18next";
 import { useImageTranslation } from "../../hooks/useImageTranslation";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { seedViewerStats } from "../../libs/viewers.util";
@@ -198,6 +199,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   prioritizeMedia = false,
 }) => {
   const navigation = useNavigation<any>();
+  const { t } = useCopy();
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { isSignedIn } = useAuthState();
@@ -231,7 +233,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     item.minterDisplayName ||
     item.minterUsername ||
     item.minter ||
-    "Unknown";
+    t("settings.unknown");
   const username = minterUser?.username || item.minterUsername || item.minter || "";
   const minterAddress = minterUser?.address || item.minter || item.owner || "";
   // URL building and the "untitled" check are per-item, not per-render; a card
@@ -694,7 +696,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           dislikeCount: wasDislikeCount,
           reactionCounts: wasCounts,
         });
-        toastError("Failed to update reaction");
+        toastError(t("feedCard.reactionFailed"));
       };
 
       // Plain like/dislike keeps using the long-lived vote endpoint; anything
@@ -760,7 +762,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       if (tokenId != null) {
         const rollback = () => {
           revertEngagement(engagementKey, { isSaved: wasSaved });
-          toastError("Failed to save");
+          toastError(t("feedCard.saveFailed"));
         };
         savePost(Number(tokenId), userAddress)
           .then((res) => {
@@ -835,7 +837,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const handleCopyLink = useCallback(() => {
     if (tokenId == null) return;
     copyToClipboard(shareUrl);
-    toastSuccess("Post link copied to clipboard");
+    toastSuccess(t("feedCard.linkCopied"));
     // A copy is a share: it counts once per actor per post, next to reposts.
     trackLinkCopy(tokenId, userAddress, linkCopyCount);
   }, [tokenId, shareUrl, trackLinkCopy, userAddress, linkCopyCount]);
@@ -853,7 +855,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         isReposted: wasReposted,
         repostCount: prevCount,
       });
-      toastError("Failed to remove repost");
+      toastError(t("feedCard.removeRepostFailed"));
     };
     toggleRepost(Number(tokenId))
       .then((res) => {
@@ -886,7 +888,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           isReposted: wasReposted,
           repostCount: prevCount,
         });
-        toastError("Failed to repost");
+        toastError(t("toasts.failed_to_repost"));
       };
       toggleRepost(Number(tokenId))
         .then((res) => {
@@ -928,12 +930,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       if (isOwnerPost && tokenId != null) {
         toastWithAction(
           "info",
-          "Mint this post to generate this section",
-          "Mint",
+          t("feedCard.mintToGenerate"),
+          t("feedCard.mint"),
           () => { mintExisting(Number(tokenId), chainId); },
         );
       } else {
-        toastInfo("Mint this post to generate this section");
+        toastInfo(t("feedCard.mintToGenerate"));
       }
     }
   }, [mintTxHash, chainId, rawStatus, isOwnerPost, tokenId, mintExisting]);
@@ -1297,7 +1299,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             numberOfLines={2}
             style={{ color: "#8B8D90", fontSize: 12, marginTop: 8, textAlign: "center" }}
           >
-            {title || (isCurrentlyLive ? "Live now" : "Stream")}
+            {title || (isCurrentlyLive ? t("stages.liveNow") : t("feedCard.stream"))}
           </Text>
         </View>
       )}
@@ -1386,7 +1388,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 artworkUrl={avatar || undefined}
                 topLeftAction={isBounty ? (
                   <TouchableOpacity
-                    accessibilityLabel="Bounty Rewards"
+                    accessibilityLabel={t("drawers.bountyTitle")}
                     onPress={handleBountyBadgePress}
                     className="flex-row items-center gap-1 rounded-xl bg-white/10 px-2 py-1"
                   >
@@ -1452,7 +1454,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           <TouchableOpacity
             onPress={() => navigation.navigate(ScreenNames.SuperPowers)}
             accessibilityRole="button"
-            accessibilityLabel="Open SuperPowers"
+            accessibilityLabel={t("feedCard.openSuperPowers")}
             hitSlop={6}
             className="flex-row items-center gap-1.5"
           >

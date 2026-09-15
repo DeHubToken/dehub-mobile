@@ -3680,5 +3680,16 @@
     "usdtSent": "ສົ່ງ {{amount}} USDT ແລ້ວ",
     "withdrawableSoon": "ຄ່າສະໝັກຈະຖອນໄດ້ໃນໄວໆນີ້",
     "dpayBaseOnly": "Dpay ໃຊ້ໄດ້ສະເພາະໃນ Base ເທົ່ານັ້ນ."
+  },
+  "feedCard": {
+    "reactionFailed": "ອັບເດດປະຕິກິລິຍາບໍ່ສຳເລັດ",
+    "saveFailed": "ບັນທຶກບໍ່ສຳເລັດ",
+    "linkCopied": "ສຳເນົາລິງໂພສແລ້ວ",
+    "removeRepostFailed": "ລຶບການແຊບໍ່ສຳເລັດ",
+    "mintToGenerate": "Mint ໂພສນີ້ເພື່ອສ້າງພາກນີ້",
+    "mint": "Mint",
+    "stream": "ສະຕີມ",
+    "boostPost": "ບູສໂພສ",
+    "openSuperPowers": "ເປີດ SuperPowers"
   }
 }

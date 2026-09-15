@@ -3717,5 +3717,16 @@
     "usdtSent": "{{amount}} USDT ተልኳል",
     "withdrawableSoon": "የምዝገባ ክፍያዎች በቅርቡ ማውጣት ይቻላል",
     "dpayBaseOnly": "Dpay የሚገኘው በBase ላይ ብቻ ነው።"
+  },
+  "feedCard": {
+    "reactionFailed": "ምላሹን ማዘመን አልተቻለም",
+    "saveFailed": "ማስቀመጥ አልተቻለም",
+    "linkCopied": "የልጥፉ አገናኝ ተቀድቷል",
+    "removeRepostFailed": "ድጋሚ ልጥፉን ማስወገድ አልተቻለም",
+    "mintToGenerate": "ይህ ክፍል እንዲፈጠር ይህን ልጥፍ ያሳትሙ",
+    "mint": "አሳትም",
+    "stream": "ስርጭት",
+    "boostPost": "ልጥፉን አበረታታ",
+    "openSuperPowers": "SuperPowers ክፈት"
   }
 }

@@ -3985,5 +3985,16 @@
     "usdtSent": "{{amount}} USDT dihantar",
     "withdrawableSoon": "Yuran langganan akan boleh dikeluarkan tidak lama lagi",
     "dpayBaseOnly": "Dpay hanya tersedia di Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Gagal mengemas kini reaksi",
+    "saveFailed": "Gagal menyimpan",
+    "linkCopied": "Pautan siaran disalin",
+    "removeRepostFailed": "Gagal membuang repost",
+    "mintToGenerate": "Mint siaran ini untuk menjana bahagian ini",
+    "mint": "Mint",
+    "stream": "Siaran",
+    "boostPost": "Boost siaran",
+    "openSuperPowers": "Buka SuperPowers"
   }
 }

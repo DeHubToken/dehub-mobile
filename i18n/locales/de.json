@@ -3791,5 +3791,16 @@
     "usdtSent": "{{amount}} USDT gesendet",
     "withdrawableSoon": "Abo-Gebühren lassen sich bald auszahlen",
     "dpayBaseOnly": "Dpay ist nur auf Base verfügbar."
+  },
+  "feedCard": {
+    "reactionFailed": "Reaktion konnte nicht aktualisiert werden",
+    "saveFailed": "Speichern fehlgeschlagen",
+    "linkCopied": "Beitragslink kopiert",
+    "removeRepostFailed": "Repost konnte nicht entfernt werden",
+    "mintToGenerate": "Minte diesen Beitrag, um diesen Abschnitt zu erzeugen",
+    "mint": "Minten",
+    "stream": "Stream",
+    "boostPost": "Beitrag boosten",
+    "openSuperPowers": "SuperPowers öffnen"
   }
 }

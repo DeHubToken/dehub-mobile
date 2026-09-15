@@ -3789,5 +3789,16 @@
     "usdtSent": "{{amount}} USDT を送金しました",
     "withdrawableSoon": "サブスク収益はまもなく出金できるようになります",
     "dpayBaseOnly": "Dpay は Base でのみ利用できます。"
+  },
+  "feedCard": {
+    "reactionFailed": "リアクションを更新できませんでした",
+    "saveFailed": "保存できませんでした",
+    "linkCopied": "投稿リンクをコピーしました",
+    "removeRepostFailed": "リポストを取り消せませんでした",
+    "mintToGenerate": "この投稿をミントするとこのセクションが生成されます",
+    "mint": "ミント",
+    "stream": "配信",
+    "boostPost": "投稿をブースト",
+    "openSuperPowers": "SuperPowers を開く"
   }
 }

@@ -3758,5 +3758,16 @@
     "usdtSent": "ส่ง {{amount}} USDT แล้ว",
     "withdrawableSoon": "ค่าสมาชิกจะถอนได้เร็ว ๆ นี้",
     "dpayBaseOnly": "Dpay ใช้ได้เฉพาะบน Base เท่านั้น"
+  },
+  "feedCard": {
+    "reactionFailed": "อัปเดตรีแอกชันไม่สำเร็จ",
+    "saveFailed": "บันทึกไม่สำเร็จ",
+    "linkCopied": "คัดลอกลิงก์โพสต์แล้ว",
+    "removeRepostFailed": "นำรีโพสต์ออกไม่สำเร็จ",
+    "mintToGenerate": "มินต์โพสต์นี้เพื่อสร้างส่วนนี้",
+    "mint": "มินต์",
+    "stream": "สตรีม",
+    "boostPost": "บูสต์โพสต์",
+    "openSuperPowers": "เปิด SuperPowers"
   }
 }

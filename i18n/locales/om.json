@@ -3786,5 +3786,16 @@
     "usdtSent": "{{amount}} USDT ergameera",
     "withdrawableSoon": "Kaffaltiin galmee dhiyootti baafamuu dandaʼa",
     "dpayBaseOnly": "Dpay Base irratti qofa argama."
+  },
+  "feedCard": {
+    "reactionFailed": "Deebii haaromsuun hin dandaʼamne",
+    "saveFailed": "Olkaaʼuun hin dandaʼamne",
+    "linkCopied": "Liinkiin barreeffamaa garagalfameera",
+    "removeRepostFailed": "Irra deebiin maxxansuu haquun hin dandaʼamne",
+    "mintToGenerate": "Kutaa kana uumuuf barreeffama kana mint godhi",
+    "mint": "Mint",
+    "stream": "Tamsaasa",
+    "boostPost": "Barreeffama guddisi",
+    "openSuperPowers": "SuperPowers bani"
   }
 }

@@ -3715,5 +3715,16 @@
     "usdtSent": "Ուղարկվեց {{amount}} USDT",
     "withdrawableSoon": "Բաժանորդագրության վճարները շուտով հասանելի կլինեն դուրսբերման",
     "dpayBaseOnly": "Dpay-ը հասանելի է միայն Base-ում։"
+  },
+  "feedCard": {
+    "reactionFailed": "Չհաջողվեց թարմացնել արձագանքը",
+    "saveFailed": "Չհաջողվեց պահել",
+    "linkCopied": "Գրառման հղումը պատճենվեց",
+    "removeRepostFailed": "Չհաջողվեց հեռացնել վերահրապարակումը",
+    "mintToGenerate": "Մինթ արեք այս գրառումը այս բաժինը ստեղծելու համար",
+    "mint": "Մինթ",
+    "stream": "Հեռարձակում",
+    "boostPost": "Ուժեղացնել գրառումը",
+    "openSuperPowers": "Բացել SuperPowers"
   }
 }

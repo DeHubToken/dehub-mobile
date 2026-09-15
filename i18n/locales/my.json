@@ -3702,5 +3702,16 @@
     "usdtSent": "{{amount}} USDT ပို့ပြီး",
     "withdrawableSoon": "စာရင်းသွင်းကြေးများကို မကြာမီ ထုတ်ယူနိုင်ပါမည်",
     "dpayBaseOnly": "Dpay ကို Base တွင်သာ အသုံးပြုနိုင်သည်။"
+  },
+  "feedCard": {
+    "reactionFailed": "တုံ့ပြန်မှုကို အပ်ဒိတ်မလုပ်နိုင်ပါ",
+    "saveFailed": "သိမ်း၍ မရပါ",
+    "linkCopied": "ပို့စ်လင့်ခ်ကို ကူးယူပြီး",
+    "removeRepostFailed": "ပြန်လည်မျှဝေမှုကို ဖယ်ရှား၍ မရပါ",
+    "mintToGenerate": "ဤအပိုင်းကို ဖန်တီးရန် ဤပို့စ်ကို mint လုပ်ပါ",
+    "mint": "Mint",
+    "stream": "ထုတ်လွှင့်မှု",
+    "boostPost": "ပို့စ်ကို Boost လုပ်ပါ",
+    "openSuperPowers": "SuperPowers ဖွင့်ပါ"
   }
 }

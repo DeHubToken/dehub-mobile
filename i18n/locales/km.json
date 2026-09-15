@@ -3741,5 +3741,16 @@
     "usdtSent": "បានផ្ញើ {{amount}} USDT",
     "withdrawableSoon": "ថ្លៃជាវនឹងអាចដកបានឆាប់ៗនេះ",
     "dpayBaseOnly": "Dpay អាចប្រើបានតែនៅលើ Base ប៉ុណ្ណោះ។"
+  },
+  "feedCard": {
+    "reactionFailed": "មិនអាចធ្វើបច្ចុប្បន្នភាពប្រតិកម្មបានទេ",
+    "saveFailed": "មិនអាចរក្សាទុកបានទេ",
+    "linkCopied": "បានចម្លងតំណប្រកាស",
+    "removeRepostFailed": "មិនអាចលុបការចែករំលែកឡើងវិញបានទេ",
+    "mintToGenerate": "Mint ប្រកាសនេះដើម្បីបង្កើតផ្នែកនេះ",
+    "mint": "Mint",
+    "stream": "ការផ្សាយ",
+    "boostPost": "ជំរុញប្រកាស",
+    "openSuperPowers": "បើក SuperPowers"
   }
 }

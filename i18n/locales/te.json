@@ -3716,5 +3716,16 @@
     "usdtSent": "{{amount}} USDT పంపబడింది",
     "withdrawableSoon": "సబ్‌స్క్రిప్షన్ ఫీజులను త్వరలో ఉపసంహరించుకోవచ్చు",
     "dpayBaseOnly": "Dpay కేవలం Base లో మాత్రమే అందుబాటులో ఉంది."
+  },
+  "feedCard": {
+    "reactionFailed": "స్పందనను నవీకరించలేకపోయాం",
+    "saveFailed": "సేవ్ చేయలేకపోయాం",
+    "linkCopied": "పోస్ట్ లింక్ కాపీ అయింది",
+    "removeRepostFailed": "రీపోస్ట్‌ను తీసివేయలేకపోయాం",
+    "mintToGenerate": "ఈ విభాగాన్ని రూపొందించడానికి ఈ పోస్ట్‌ను మింట్ చేయండి",
+    "mint": "మింట్",
+    "stream": "స్ట్రీమ్",
+    "boostPost": "పోస్ట్‌ను బూస్ట్ చేయండి",
+    "openSuperPowers": "SuperPowers తెరవండి"
   }
 }

@@ -5,6 +5,7 @@ import NewMemberChip from "../common/NewMemberChip";
 import Icon from "../ui/Icon";
 import DeferredBlock from "../common/DeferredBlock";
 import { getBadgeOpticalStyle } from "../../libs/misc";
+import { useTranslation } from "react-i18next";
 
 const ICON_MUTED = "#6F7174";
 // Matches the web card's 23.5px header icons. The cluster is pulled up and
@@ -49,6 +50,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
   onBoostPress,
   isHidden,
 }) => {
+  const { t } = useTranslation();
   return (
     <View className="flex-row items-center pb-2">
       <Pressable onPress={onUserPress} style={{ flexShrink: 0 }} hitSlop={IDENTITY_HIT_SLOP}>
@@ -144,7 +146,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           <Pressable
             onPress={onBoostPress}
             accessibilityRole="button"
-            accessibilityLabel="Boost post"
+            accessibilityLabel={t("feedCard.boostPost")}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={{ padding: HEADER_ICON_PAD, marginRight: 1.6 }}
           >

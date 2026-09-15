@@ -3721,5 +3721,16 @@
     "usdtSent": "Išsiųsta {{amount}} USDT",
     "withdrawableSoon": "Prenumeratos mokesčius netrukus bus galima išsiimti",
     "dpayBaseOnly": "Dpay galima naudoti tik Base tinkle."
+  },
+  "feedCard": {
+    "reactionFailed": "Nepavyko atnaujinti reakcijos",
+    "saveFailed": "Nepavyko išsaugoti",
+    "linkCopied": "Įrašo nuoroda nukopijuota",
+    "removeRepostFailed": "Nepavyko pašalinti persiuntimo",
+    "mintToGenerate": "Nukalkite šį įrašą, kad būtų sukurtas šis skyrius",
+    "mint": "Nukalti",
+    "stream": "Transliacija",
+    "boostPost": "Sustiprinti įrašą",
+    "openSuperPowers": "Atidaryti SuperPowers"
   }
 }

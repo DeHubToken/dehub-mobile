@@ -3723,5 +3723,16 @@
     "usdtSent": "{{amount}} USDT भेजे गीस",
     "withdrawableSoon": "सदस्यता फीस जल्दिच निकाले जा सकही",
     "dpayBaseOnly": "Dpay सिरिफ Base म उपलब्ध हे।"
+  },
+  "feedCard": {
+    "reactionFailed": "प्रतिक्रिया अपडेट नइ हो सकिस",
+    "saveFailed": "सेव नइ हो सकिस",
+    "linkCopied": "पोस्ट लिंक कॉपी होगे",
+    "removeRepostFailed": "रीपोस्ट हटाय नइ जा सकिस",
+    "mintToGenerate": "ये सेक्सन बनाय बर ये पोस्ट ल मिंट करव",
+    "mint": "मिंट",
+    "stream": "स्ट्रीम",
+    "boostPost": "पोस्ट ल बूस्ट करव",
+    "openSuperPowers": "SuperPowers खोलव"
   }
 }

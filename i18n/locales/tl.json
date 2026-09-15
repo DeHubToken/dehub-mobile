@@ -3901,5 +3901,16 @@
     "usdtSent": "Naipadala ang {{amount}} USDT",
     "withdrawableSoon": "Malapit nang mai-withdraw ang bayad sa subscription",
     "dpayBaseOnly": "Available lang ang Dpay sa Base."
+  },
+  "feedCard": {
+    "reactionFailed": "Hindi na-update ang reaksyon",
+    "saveFailed": "Hindi na-save",
+    "linkCopied": "Nakopya ang link ng post",
+    "removeRepostFailed": "Hindi maalis ang repost",
+    "mintToGenerate": "I-mint ang post na ito para mabuo ang seksyong ito",
+    "mint": "Mint",
+    "stream": "Stream",
+    "boostPost": "I-boost ang post",
+    "openSuperPowers": "Buksan ang SuperPowers"
   }
 }
