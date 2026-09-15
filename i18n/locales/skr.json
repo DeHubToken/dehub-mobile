@@ -3081,7 +3081,16 @@
     "kindVideo": "ویڈیو",
     "kindAudio": "آڈیو",
     "kindImage": "تصویراں",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "پوسٹ کرݨ توں پہلے جانچ کریں",
+    "reviewSubtitle": "{{source}} توں، {{kind}} جیکر۔ جو کجھ وی چاہو ترمیم کریں — عنوان خالی رکھو اصل نوں برقرار رکھݨ لئی۔",
+    "reviewName": "عنوان",
+    "reviewNamePlaceholder": "اصل عنوان برقرار رکھݨ لئی خالی رکھو",
+    "reviewDescription": "تفصیل",
+    "reviewDescriptionPlaceholder": "اس پوسٹ بارے کجھ کہو (اختیاری)",
+    "reviewLiveWarning": "اے لنک لائیو سٹریم اے۔ اس دے ختم ہوݨ تک انتظار کریں تے ریکارڈنگ درآمد کریں۔",
+    "reviewCancel": "منسوخ کریں",
+    "reviewConfirm": "درآمد کریں"
   },
   "earnings": {
     "filter24h": "24گھ",

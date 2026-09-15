@@ -3129,7 +3129,16 @@
     "kindVideo": "વીડિયો",
     "kindAudio": "ધ્વનિ",
     "kindImage": "ચિત્રો",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "પોસ્ટ કરતા પહેલા સમીક્ષા કરો",
+    "reviewSubtitle": "{{source}} તરફથી, {{kind}} તરીકે. તમને જે ગમે તે સંપાદિત કરો — મૂળ રાખવા માટે શીર્ષકને ખાલી છોડી દો.",
+    "reviewName": "શીર્ષક",
+    "reviewNamePlaceholder": "મૂળ શીર્ષક રાખવા માટે ખાલી છોડી દો",
+    "reviewDescription": "વર્ણન",
+    "reviewDescriptionPlaceholder": "આ પોસ્ટ વિશે કંઈક કહો (વૈકલ્પિક)",
+    "reviewLiveWarning": "તે લિંક લાઇવ સ્ટ્રીમ છે. તે સમાપ્ત થાય ત્યાં સુધી રાહ જુઓ અને તેના બદલે રેકોર્ડિંગ આયાત કરો.",
+    "reviewCancel": "રદ કરો",
+    "reviewConfirm": "આયાત કરો"
   },
   "earnings": {
     "filter24h": "24ક",

@@ -3216,7 +3216,16 @@
     "kindVideo": "Horonan-tsary",
     "kindAudio": "Raki-peo",
     "kindImage": "Sary",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Avereno jerena alohan'ny hamoahana azy",
+    "reviewSubtitle": "{{source}}, {{kind}}. Hanova na inona na inona tianao — avelao ny anaram-boninahitra foana mba hitandrina ny tany am-boalohany.",
+    "reviewName": "LOHATENY",
+    "reviewNamePlaceholder": "Tsy misy toerana malalaka raha tazonina ny lohateny niandohana",
+    "reviewDescription": "SORITSORITRA",
+    "reviewDescriptionPlaceholder": "Lazao zavatra momba ity lahatsoratra ity (tsy voatery)",
+    "reviewLiveWarning": "Mivantana izany ny serasera. Andraso mandra-pahatapitry ny naoty.",
+    "reviewCancel": "Ajanona",
+    "reviewConfirm": "Hampiditra"
   },
   "earnings": {
     "filter24h": "24o",

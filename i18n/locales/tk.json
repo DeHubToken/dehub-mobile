@@ -3107,7 +3107,16 @@
     "kindVideo": "Video",
     "kindAudio": "Ses",
     "kindImage": "Suratlar",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Çaplanmazdan öň seret",
+    "reviewSubtitle": "{{source}}, {{kind}} ýaly. Siz islän zadyňyzy düzediş ediň — aslynda saklamak üçin başlygy boş goýuň.",
+    "reviewName": "Başlyk",
+    "reviewNamePlaceholder": "Asl ady saklamak üçin boş goýuň",
+    "reviewDescription": "Açyklama",
+    "reviewDescriptionPlaceholder": "1) Birinjiden, App Find (Bu Step TV üçin)",
+    "reviewLiveWarning": "Bu baglanyşyk direlýän akymy. Bu iş tamamlanýança garaşyň we onuň ýerine ýazgysyny import ediň.",
+    "reviewCancel": "Gaýd Et",
+    "reviewConfirm": "Çyk"
   },
   "earnings": {
     "filter24h": "24s",

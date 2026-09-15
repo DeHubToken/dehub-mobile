@@ -3130,7 +3130,16 @@
     "kindVideo": "Տեսանյութ",
     "kindAudio": "Աուդիո",
     "kindImage": "Նկարներ",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Ստուգել նախքան հրապարակումը",
+    "reviewSubtitle": "{{source}}- ից, ինչպես {{kind}}- ից: Խմբագրել ցանկացած բան. բնօրինակը պահպանելու համար վերնագիրը դատարկ թողեք ։",
+    "reviewName": "Վերնագիր",
+    "reviewNamePlaceholder": "Թողնել դատարկ ՝ սկզբնական վերնագիրը պահելու համար",
+    "reviewDescription": "Նկարագրություն",
+    "reviewDescriptionPlaceholder": "Ինչ - որ բան ասեք այս գրառման մասին (ըստ ցանկության)",
+    "reviewLiveWarning": "Այս հղումն ուղիղ հեռարձակում է ։ Սպասեք, մինչև այն ավարտվի, և փոխարենը ներմուծեք ձայնագրությունը ։",
+    "reviewCancel": "Չեղարկել",
+    "reviewConfirm": "Ներմուծել"
   },
   "earnings": {
     "filter24h": "24ժ",

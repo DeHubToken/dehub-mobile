@@ -3205,7 +3205,16 @@
     "kindVideo": "영상",
     "kindAudio": "오디오",
     "kindImage": "사진",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "게시하기 전에 검토하기",
+    "reviewSubtitle": "From {{source}}, as {{kind}}. 원하는 대로 수정하세요. 원본을 유지하려면 제목을 비워 두세요.",
+    "reviewName": "제목",
+    "reviewNamePlaceholder": "원래 제목을 유지하려면 비워두세요",
+    "reviewDescription": "설명",
+    "reviewDescriptionPlaceholder": "이 게시물에 대한 의견 남기기 (선택 사항)",
+    "reviewLiveWarning": "이 링크는 라이브 스트림입니다. 녹화가 끝날 때까지 기다렸다가 녹화본을 가져옵니다.",
+    "reviewCancel": "취소",
+    "reviewConfirm": "가져오기"
   },
   "earnings": {
     "filter24h": "24시간",

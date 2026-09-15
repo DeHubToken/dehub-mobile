@@ -3207,7 +3207,16 @@
     "kindVideo": "Video",
     "kindAudio": "Audio",
     "kindImage": "Quadri",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Controlla prima di pubblicare",
+    "reviewSubtitle": "Da {{source}}, come {{kind}}. Modifica tutto ciò che ti piace: lascia vuoto il titolo per mantenere l'originale.",
+    "reviewName": "Titolo",
+    "reviewNamePlaceholder": "Lascia vuoto per mantenere il titolo originale",
+    "reviewDescription": "Descrizione",
+    "reviewDescriptionPlaceholder": "Dì qualcosa su questo post (facoltativo)",
+    "reviewLiveWarning": "Quel link è un live streaming. Attendi fino al termine e importa invece la registrazione.",
+    "reviewCancel": "Annulla",
+    "reviewConfirm": "Importa"
   },
   "earnings": {
     "filter24h": "24h",

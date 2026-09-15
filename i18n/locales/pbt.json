@@ -3088,7 +3088,16 @@
     "kindVideo": "ویدیوګانې",
     "kindAudio": "ویډیوګانې",
     "kindImage": "په انځورونو کې",
-    "tileSourceKind": "په نه په"
+    "tileSourceKind": "په نه په",
+    "reviewTitle": "د سپارلو دمخه بیاکتنه",
+    "reviewSubtitle": "لکه څنګه چې، لکه څنګه چې هر هغه څه چې تاسو یې خوښوئ سم کړئ — سرلیک خالي پریږدئ ترڅو اصلي وساتئ.",
+    "reviewName": "د نومونې مطابقت ازمو نومونو",
+    "reviewNamePlaceholder": "د اصلي سرلیک ساتلو لپاره خالي پریږدئ",
+    "reviewDescription": "تشریح کول",
+    "reviewDescriptionPlaceholder": "د دې پوسټ په اړه یو څه ووایاست (اختیاري)",
+    "reviewLiveWarning": "دغه لانديني مخونه د live سره تړنې لري: انتظار وکړئ تر هغه چې دا پای ته ورسیږي او پرځای یې ریکارډ وارد کړئ.",
+    "reviewCancel": "لغوه کول",
+    "reviewConfirm": "د وارداتو په اړه"
   },
   "earnings": {
     "filter24h": "24س",

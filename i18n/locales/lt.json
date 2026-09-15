@@ -3136,7 +3136,16 @@
     "kindVideo": "Vaizdo įrašas",
     "kindAudio": "Garso įrašas",
     "kindImage": "Nuotraukos",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Atsiliepimas prieš paskelbiant",
+    "reviewSubtitle": "Nuo {{source}}, kaip {{kind}}. Redaguokite viską, kas jums patinka — palikite pavadinimą tuščią, kad išsaugotumėte originalą.",
+    "reviewName": "Pavadinimas",
+    "reviewNamePlaceholder": "Palikite tuščią, kad išlaikytumėte pradinį pavadinimą",
+    "reviewDescription": "Aprašymas",
+    "reviewDescriptionPlaceholder": "Papasakokite ką nors apie šį įrašą (nebūtina)",
+    "reviewLiveWarning": "Ši nuoroda yra tiesioginė transliacija. Palaukite, kol jis baigsis, ir importuokite įrašą.",
+    "reviewCancel": "Atšaukti",
+    "reviewConfirm": "Importuoti"
   },
   "earnings": {
     "filter24h": "24val",

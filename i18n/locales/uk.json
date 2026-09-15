@@ -3613,7 +3613,16 @@
     "kindVideo": "Відео",
     "kindAudio": "Аудіо",
     "kindImage": "Картини",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Переглянути перед публікацією",
+    "reviewSubtitle": "Від {{source}}, як {{kind}}. Редагуйте все, що вам подобається — залиште заголовок порожнім, щоб зберегти оригінал.",
+    "reviewName": "Заголовок",
+    "reviewNamePlaceholder": "Залиште порожнім, щоб зберегти оригінальну назву",
+    "reviewDescription": "Опис",
+    "reviewDescriptionPlaceholder": "Скажіть щось про цей допис (необов 'язково)",
+    "reviewLiveWarning": "Це посилання - пряма трансляція. Зачекайте, поки він закінчиться, і натомість імпортуйте запис.",
+    "reviewCancel": "Скасувати",
+    "reviewConfirm": "Імпортувати"
   },
   "earnings": {
     "filter24h": "24г",

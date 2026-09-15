@@ -3082,7 +3082,16 @@
     "kindVideo": "O video ye min ye",
     "kindAudio": "Aw ye mɛnni kɛ",
     "kindImage": "O ye ɲɛyirali ɲuman ye",
-    "tileSourceKind": "{{source}} · {{kind}}"
+    "tileSourceKind": "{{source}} · {{kind}}",
+    "reviewTitle": "Ka kɔn ka sɛbɛri kɛ",
+    "reviewSubtitle": "{{source}}, as {{kind}}. I b'a fɛ ka min kɛ, i k'o yɛlɛma.",
+    "reviewName": "O ye tɔgɔ ye",
+    "reviewNamePlaceholder": "A to a ka kɛ yɔrɔ lakolon ye walisa a ka to a ka sɛbɛ fɔlɔ kɔnɔ",
+    "reviewDescription": "Ɲɛjiracogo",
+    "reviewDescriptionPlaceholder": "1) A fɔlɔ, i ka App Find kɛ (o ye Step TV ye)",
+    "reviewLiveWarning": "O ye sababu ye mɔgɔ be se ka ɲɛnamaya kɛ cogo nɔgɔman na. Aw ye kɔnɔni kɛ fɔɔ a ka ban ani aw ka sɛbɛ nin don a kɔnɔ.",
+    "reviewCancel": "Kanali",
+    "reviewConfirm": "Fɛɛn minw be se ka kɛ jamana"
   },
   "earnings": {
     "filter24h": "24l",

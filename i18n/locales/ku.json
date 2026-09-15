@@ -2890,7 +2890,16 @@
     "kindVideo": "Dîmen",
     "kindAudio": "Deng",
     "kindImage": "Wêne",
-    "tileSourceKind": "{{çavkanî}} · {{cure}}"
+    "tileSourceKind": "{{çavkanî}} · {{cure}}",
+    "reviewTitle": "Berî şandinê binirxîne",
+    "reviewSubtitle": "Ji {{source}}, wek {{kind}}. Her tiştê ku hûn dixwazin biguherînin - sernavê vala bihêlin da ku orîjînal bimîne.",
+    "reviewName": "سەردێڕ",
+    "reviewNamePlaceholder": "Ji bo parastina sernavê orîjînal, vala bihêlin",
+    "reviewDescription": "Daxuyanî",
+    "reviewDescriptionPlaceholder": "Tiştekî li ser vê postê bêje (vebijarkî)",
+    "reviewLiveWarning": "Ew lînk weşana zindî ye. Li bendê bin heta ku biqede û li şûna wê tomarê import bikin.",
+    "reviewCancel": "Betal bike",
+    "reviewConfirm": "Anîn"
   },
   "earnings": {
     "filter24h": "24s",

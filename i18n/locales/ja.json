@@ -3204,7 +3204,16 @@
     "kindVideo": "動画",
     "kindAudio": "オーディオ",
     "kindImage": "絵画",
-    "tileSourceKind": "{{source}}・{{kind}}"
+    "tileSourceKind": "{{source}}・{{kind}}",
+    "reviewTitle": "投稿前に確認する",
+    "reviewSubtitle": "{{kind}}として{{source}}から。 好きなものを編集してください。オリジナルを保持するには、タイトルを空のままにしてください。",
+    "reviewName": "タイトル",
+    "reviewNamePlaceholder": "元のタイトルを保持するには空白のままにします",
+    "reviewDescription": "説明",
+    "reviewDescriptionPlaceholder": "この投稿について教えてください（任意）",
+    "reviewLiveWarning": "そのリンクはライブストリームです。 終了するまで待ち、代わりに録画をインポートします。",
+    "reviewCancel": "キャンセル",
+    "reviewConfirm": "インポート"
   },
   "earnings": {
     "filter24h": "24時間",
