@@ -3300,5 +3300,31 @@
     "line": "Tu cuenta está bloqueada, por lo que no puedes publicar, comentar ni enviar mensajes.",
     "reason": "Motivo: {{reason}}",
     "deleteAccount": "Elimina tu cuenta y tus datos"
+  },
+  "teamUp": {
+    "title": "Forma equipo",
+    "subtitle": "Combina la fuerza de tu billetera con hasta siete personas más. Todos llevan la insignia que desbloquea vuestro total.",
+    "signInPrompt": "Inicia sesión para crear un equipo o unirte a uno. No hace falta ninguna insignia.",
+    "leave": "Salir del equipo",
+    "make": "Crear un equipo",
+    "makeHint": "Serás el propietario. Los nombres de equipo son públicos.",
+    "join": "Unirse a un equipo",
+    "joinHint": "Solo puedes estar en un equipo a la vez.",
+    "none": "No se han encontrado equipos.",
+    "namePlaceholder": "Nombre del equipo",
+    "searchPlaceholder": "Buscar equipos",
+    "removeFailed": "No se pudo eliminar a ese miembro",
+    "left": "Has salido del equipo",
+    "leaveFailed": "No se pudo salir de ese equipo",
+    "created": "Equipo creado",
+    "createFailed": "No se pudo crear ese equipo",
+    "joined": "Te has unido a {{name}}",
+    "joinFailed": "No se pudo unir a ese equipo",
+    "removeTitle": "¿Eliminar miembro?",
+    "removeBody": "¿Eliminar a {{name}} de {{team}}?",
+    "leaveTitle": "¿Salir del equipo?",
+    "leaveBody": "¿Salir de {{name}}?",
+    "leaveAction": "Salir",
+    "noBadgeYet": "Aún sin insignia"
   }
 }

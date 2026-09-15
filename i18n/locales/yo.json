@@ -3220,5 +3220,31 @@
     "line": "A ti fòfin de àkántì rẹ, nítorí náà o kò lè fi àtẹ̀jíṣẹ́ ránṣẹ́, ṣe àlàyé tàbí fi àtẹ̀jíṣẹ́ ránṣẹ́.",
     "reason": "Ìdí: {{reason}}",
     "deleteAccount": "Pa àkọọ́lẹ̀ rẹ àti àkóónú rẹ rẹ́."
+  },
+  "teamUp": {
+    "title": "Dá ẹgbẹ́ sílẹ̀",
+    "subtitle": "Da agbára àpò owó rẹ pọ̀ mọ́ tí àwọn méje mìíràn. Gbogbo ènìyàn ni yóò wọ àmì tí àpapọ̀ yín ṣí sílẹ̀.",
+    "signInPrompt": "Wọlé láti dá ẹgbẹ́ sílẹ̀ tàbí láti dara pọ̀. Kò sí àmì tí a nílò.",
+    "leave": "Kúrò nínú ẹgbẹ́",
+    "make": "Dá ẹgbẹ́ sílẹ̀",
+    "makeHint": "Ìwọ ni yóò jẹ́ olóhun. Orúkọ ẹgbẹ́ jẹ́ gbangba.",
+    "join": "Dara pọ̀ mọ́ ẹgbẹ́",
+    "joinHint": "O lè wà nínú ẹgbẹ́ kan ṣoṣo ní àkókò kan.",
+    "none": "Kò sí ẹgbẹ́ tí a rí.",
+    "namePlaceholder": "Orúkọ ẹgbẹ́",
+    "searchPlaceholder": "Wá àwọn ẹgbẹ́",
+    "removeFailed": "Kò lè yọ ọmọ ẹgbẹ́ yẹn kúrò",
+    "left": "O ti kúrò nínú ẹgbẹ́ náà",
+    "leaveFailed": "Kò lè kúrò nínú ẹgbẹ́ yẹn",
+    "created": "A ti dá ẹgbẹ́ sílẹ̀",
+    "createFailed": "Kò lè dá ẹgbẹ́ yẹn sílẹ̀",
+    "joined": "O ti dara pọ̀ mọ́ {{name}}",
+    "joinFailed": "Kò lè dara pọ̀ mọ́ ẹgbẹ́ yẹn",
+    "removeTitle": "Yọ ọmọ ẹgbẹ́ kúrò?",
+    "removeBody": "Yọ {{name}} kúrò nínú {{team}}?",
+    "leaveTitle": "Kúrò nínú ẹgbẹ́?",
+    "leaveBody": "Kúrò nínú {{name}}?",
+    "leaveAction": "Kúrò",
+    "noBadgeYet": "Kò sí àmì síbẹ̀"
   }
 }

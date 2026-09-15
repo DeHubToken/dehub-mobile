@@ -3228,5 +3228,31 @@
     "line": "你嘅帳戶被禁止，所以你唔可以發佈、留言或者發送訊息。",
     "reason": "原因： {{reason}}",
     "deleteAccount": "刪除你嘅帳戶同數據"
+  },
+  "teamUp": {
+    "title": "組隊",
+    "subtitle": "將你嘅錢包實力同最多七個人合併。你哋嘅總額解鎖咩徽章，所有人就戴咩徽章。",
+    "signInPrompt": "登入即可建立或加入隊伍。唔需要任何徽章。",
+    "leave": "退出隊伍",
+    "make": "建立隊伍",
+    "makeHint": "你會成為隊長。隊伍名稱係公開嘅。",
+    "join": "加入隊伍",
+    "joinHint": "同一時間只可以加入一個隊伍。",
+    "none": "搵唔到隊伍。",
+    "namePlaceholder": "隊伍名稱",
+    "searchPlaceholder": "搜尋隊伍",
+    "removeFailed": "無法移除該成員",
+    "left": "你已退出隊伍",
+    "leaveFailed": "無法退出該隊伍",
+    "created": "隊伍已建立",
+    "createFailed": "無法建立該隊伍",
+    "joined": "已加入 {{name}}",
+    "joinFailed": "無法加入該隊伍",
+    "removeTitle": "移除成員？",
+    "removeBody": "將 {{name}} 由 {{team}} 移除？",
+    "leaveTitle": "退出隊伍？",
+    "leaveBody": "退出 {{name}}？",
+    "leaveAction": "退出",
+    "noBadgeYet": "仲未有徽章"
   }
 }

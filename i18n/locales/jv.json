@@ -3188,5 +3188,31 @@
     "line": "Akun sampeyan wis dilarang, mula sampeyan ora bisa ngirim, ngomentari utawa ngirim pesen.",
     "reason": "Alasan: {{reason}}",
     "deleteAccount": "Busak akun lan data sampeyan"
+  },
+  "teamUp": {
+    "title": "Gawe tim",
+    "subtitle": "Gabungake kekuwatan dompet karo nganti pitung wong liya. Kabeh nganggo lencana sing dibukak dening total sampeyan.",
+    "signInPrompt": "Mlebu kanggo nggawe utawa gabung tim. Ora butuh lencana.",
+    "leave": "Metu saka tim",
+    "make": "Gawe tim",
+    "makeHint": "Sampeyan dadi pemilike. Jeneng tim kuwi umum.",
+    "join": "Gabung tim",
+    "joinHint": "Sampeyan mung bisa ana ing siji tim bareng.",
+    "none": "Ora ana tim sing ketemu.",
+    "namePlaceholder": "Jeneng tim",
+    "searchPlaceholder": "Golek tim",
+    "removeFailed": "Ora bisa mbusak anggota kuwi",
+    "left": "Sampeyan metu saka tim",
+    "leaveFailed": "Ora bisa metu saka tim kuwi",
+    "created": "Tim wis digawe",
+    "createFailed": "Ora bisa nggawe tim kuwi",
+    "joined": "Gabung karo {{name}}",
+    "joinFailed": "Ora bisa gabung tim kuwi",
+    "removeTitle": "Busak anggota?",
+    "removeBody": "Busak {{name}} saka {{team}}?",
+    "leaveTitle": "Metu saka tim?",
+    "leaveBody": "Metu saka {{name}}?",
+    "leaveAction": "Metu",
+    "noBadgeYet": "Durung ana lencana"
   }
 }

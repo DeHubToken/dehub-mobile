@@ -3309,5 +3309,31 @@
     "line": "Voaràra ny kaontinao ka tsy afaka mamoaka, fanehoan-kevitra na mandefa hafatra ianao.",
     "reason": "Antony: {{reason}}",
     "deleteAccount": "Fafao ny kaontinao sy ny angona"
+  },
+  "teamUp": {
+    "title": "Miaraha mivondrona",
+    "subtitle": "Ampifangaroy amin'ny hatramin'ny fito hafa ny herin'ny poketranao. Manao ny mari-pankasitrahana sokafan'ny totalinareo ny rehetra.",
+    "signInPrompt": "Midira mba hamorona ekipa na hiditra amin'ny iray. Tsy mila mari-pankasitrahana.",
+    "leave": "Hiala amin'ny ekipa",
+    "make": "Mamorona ekipa",
+    "makeHint": "Ianao no lasa tompony. Ampahibemaso ny anaran'ny ekipa.",
+    "join": "Hiditra amin'ny ekipa",
+    "joinHint": "Ekipa iray ihany no azonao idirana amin'ny fotoana iray.",
+    "none": "Tsy nahitana ekipa.",
+    "namePlaceholder": "Anaran'ny ekipa",
+    "searchPlaceholder": "Hitady ekipa",
+    "removeFailed": "Tsy voaesotra io mpikambana io",
+    "left": "Niala tamin'ny ekipa ianao",
+    "leaveFailed": "Tsy afaka niala tamin'io ekipa io",
+    "created": "Voaforona ny ekipa",
+    "createFailed": "Tsy voaforona io ekipa io",
+    "joined": "Niditra tao amin'ny {{name}}",
+    "joinFailed": "Tsy afaka niditra tamin'io ekipa io",
+    "removeTitle": "Hesorina ilay mpikambana?",
+    "removeBody": "Hesorina amin'ny {{team}} i {{name}}?",
+    "leaveTitle": "Hiala amin'ny ekipa?",
+    "leaveBody": "Hiala amin'ny {{name}}?",
+    "leaveAction": "Hiala",
+    "noBadgeYet": "Mbola tsy misy mari-pankasitrahana"
   }
 }

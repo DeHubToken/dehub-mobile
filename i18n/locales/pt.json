@@ -3304,5 +3304,31 @@
     "line": "A sua conta está banida, por isso não pode publicar, comentar ou enviar mensagens.",
     "reason": "Motivo: {{reason}}",
     "deleteAccount": "Eliminar a sua conta e dados"
+  },
+  "teamUp": {
+    "title": "Forme uma equipe",
+    "subtitle": "Combine o poder da sua carteira com até sete outras pessoas. Todos usam o distintivo que o total de vocês desbloqueia.",
+    "signInPrompt": "Entre para criar ou entrar em uma equipe. Nenhum distintivo é necessário.",
+    "leave": "Sair da equipe",
+    "make": "Criar uma equipe",
+    "makeHint": "Você se torna o dono. Os nomes das equipes são públicos.",
+    "join": "Entrar em uma equipe",
+    "joinHint": "Você só pode estar em uma equipe por vez.",
+    "none": "Nenhuma equipe encontrada.",
+    "namePlaceholder": "Nome da equipe",
+    "searchPlaceholder": "Buscar equipes",
+    "removeFailed": "Não foi possível remover esse membro",
+    "left": "Você saiu da equipe",
+    "leaveFailed": "Não foi possível sair dessa equipe",
+    "created": "Equipe criada",
+    "createFailed": "Não foi possível criar essa equipe",
+    "joined": "Você entrou em {{name}}",
+    "joinFailed": "Não foi possível entrar nessa equipe",
+    "removeTitle": "Remover membro?",
+    "removeBody": "Remover {{name}} de {{team}}?",
+    "leaveTitle": "Sair da equipe?",
+    "leaveBody": "Sair de {{name}}?",
+    "leaveAction": "Sair",
+    "noBadgeYet": "Ainda sem distintivo"
   }
 }

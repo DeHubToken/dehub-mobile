@@ -3215,5 +3215,31 @@
     "line": "Kua aukatihia to kaute, na reira kaore e taea e koe te tuku, te korero, te tuku karere ranei.",
     "reason": "Ngā take: {{reason}}",
     "deleteAccount": "Mukua tō pūkete me ngā raraunga"
+  },
+  "teamUp": {
+    "title": "Whakatōpū",
+    "subtitle": "Whakakotahitia te kaha o tō pūkoro me ētahi atu tokowhitu. Ka mau te katoa i te tohu ka wetekina e tō koutou tapeke.",
+    "signInPrompt": "Takiuru ki te hanga, ki te uru rānei ki tētahi kapa. Kāore he tohu e hiahiatia ana.",
+    "leave": "Wehe i te kapa",
+    "make": "Hangaia he kapa",
+    "makeHint": "Ko koe te rangatira. He tūmatanui ngā ingoa kapa.",
+    "join": "Uru ki tētahi kapa",
+    "joinHint": "Kotahi noa te kapa ka taea e koe i te wā kotahi.",
+    "none": "Kāore he kapa i kitea.",
+    "namePlaceholder": "Ingoa kapa",
+    "searchPlaceholder": "Rapua ngā kapa",
+    "removeFailed": "Kāore i taea te tango i taua mema",
+    "left": "Kua wehe koe i te kapa",
+    "leaveFailed": "Kāore i taea te wehe i taua kapa",
+    "created": "Kua hangaia te kapa",
+    "createFailed": "Kāore i taea te hanga i taua kapa",
+    "joined": "Kua uru ki {{name}}",
+    "joinFailed": "Kāore i taea te uru ki taua kapa",
+    "removeTitle": "Tangohia te mema?",
+    "removeBody": "Tangohia {{name}} i {{team}}?",
+    "leaveTitle": "Wehe i te kapa?",
+    "leaveBody": "Wehe i {{name}}?",
+    "leaveAction": "Wehe",
+    "noBadgeYet": "Kāore anō he tohu"
   }
 }

@@ -3227,5 +3227,31 @@
     "line": "你个账户被禁用了，所以你不能发帖、评论或者发消息。",
     "reason": "原因：{{reason}}",
     "deleteAccount": "删除你个账户和数据"
+  },
+  "teamUp": {
+    "title": "组队",
+    "subtitle": "把你的钱包实力与最多七人合并。你们的总额解锁什么徽章，所有人就都佩戴什么徽章。",
+    "signInPrompt": "登录即可创建或加入队伍。无需任何徽章。",
+    "leave": "退出队伍",
+    "make": "创建队伍",
+    "makeHint": "你将成为队长。队伍名称是公开的。",
+    "join": "加入队伍",
+    "joinHint": "同一时间只能加入一个队伍。",
+    "none": "未找到队伍。",
+    "namePlaceholder": "队伍名称",
+    "searchPlaceholder": "搜索队伍",
+    "removeFailed": "无法移除该成员",
+    "left": "你已退出队伍",
+    "leaveFailed": "无法退出该队伍",
+    "created": "队伍已创建",
+    "createFailed": "无法创建该队伍",
+    "joined": "已加入 {{name}}",
+    "joinFailed": "无法加入该队伍",
+    "removeTitle": "移除成员？",
+    "removeBody": "将 {{name}} 从 {{team}} 移除？",
+    "leaveTitle": "退出队伍？",
+    "leaveBody": "退出 {{name}}？",
+    "leaveAction": "退出",
+    "noBadgeYet": "还没有徽章"
   }
 }

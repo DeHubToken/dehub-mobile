@@ -3208,5 +3208,31 @@
     "line": "Ang iyong account ay hindi maaaring maaaring mag-post, komento o ipadala ng mga mensahe.",
     "reason": "Сабаб: {{reason}}",
     "deleteAccount": "Tanggalin ang iyong account at data"
+  },
+  "teamUp": {
+    "title": "Даста созед",
+    "subtitle": "Қудрати ҳамёни худро бо то ҳафт нафари дигар муттаҳид кунед. Ҳама нишонеро мепӯшанд, ки ҷамъи шумо мекушояд.",
+    "signInPrompt": "Барои сохтан ё ҳамроҳ шудан ба даста ворид шавед. Ҳеҷ нишон лозим нест.",
+    "leave": "Аз даста баромадан",
+    "make": "Даста созед",
+    "makeHint": "Шумо соҳиб мешавед. Номҳои даста оммавӣ ҳастанд.",
+    "join": "Ба даста ҳамроҳ шавед",
+    "joinHint": "Дар як вақт танҳо дар як даста буда метавонед.",
+    "none": "Дастаҳо ёфт нашуданд.",
+    "namePlaceholder": "Номи даста",
+    "searchPlaceholder": "Ҷустуҷӯи дастаҳо",
+    "removeFailed": "Он аъзоро нест кардан нашуд",
+    "left": "Шумо аз даста баромадед",
+    "leaveFailed": "Аз он даста баромадан нашуд",
+    "created": "Даста сохта шуд",
+    "createFailed": "Он дастаро сохтан нашуд",
+    "joined": "Шумо ба {{name}} ҳамроҳ шудед",
+    "joinFailed": "Ба он даста ҳамроҳ шудан нашуд",
+    "removeTitle": "Аъзо нест карда шавад?",
+    "removeBody": "{{name}} аз {{team}} нест карда шавад?",
+    "leaveTitle": "Аз даста бароед?",
+    "leaveBody": "Аз {{name}} бароед?",
+    "leaveAction": "Баромадан",
+    "noBadgeYet": "Ҳанӯз нишон нест"
   }
 }
