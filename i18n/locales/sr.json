@@ -3286,5 +3286,27 @@
     "custom": "Прилагођено",
     "contractPlaceholder": "Адреса уговора (0x…)",
     "symbolPlaceholder": "Симбол (нпр. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Мрежу претплате није могуће променити",
+    "connectWallet": "Повежите новчаник да бисте се претплатили",
+    "notBuyable": "Овај план није могуће купити. Замолите аутора да га поново направи",
+    "preparing": "Припрема…",
+    "startFailed": "Претплата није могла да почне",
+    "confirmInWallet": "Потврдите у новчанику…",
+    "waitingTx": "Чекање трансакције…",
+    "noTxHash": "Новчаник није вратио хеш трансакције",
+    "finishing": "Довршавање…",
+    "confirmTitle": "Потврди претплату",
+    "subscribeToFor": "Претплатите се на {{name}} за {{price}}",
+    "youPay": "Плаћате {{amount}}",
+    "calculating": "Израчунавање укупног износа…",
+    "creatorReceives": "Аутор добија {{amount}} USDT кредита",
+    "custodyNote": "Ваши DHB остају у старатељству ризнице DeHub и не продају се. Аутор добија стање претплате изражено у USDT.",
+    "editPlan": "Уреди план",
+    "notAvailableYet": "Још није доступно",
+    "subscribe": "Претплати се",
+    "subscriberCount_one": "{{count}} претплатник",
+    "subscriberCount_other": "{{count}} претплатника"
   }
 }

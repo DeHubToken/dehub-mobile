@@ -3556,5 +3556,27 @@
     "custom": "अनुकूलित",
     "contractPlaceholder": "कन्ट्र्याक्ट ठेगाना (0x…)",
     "symbolPlaceholder": "प्रतीक (जस्तै PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "सदस्यता नेटवर्क बदल्न सकिएन",
+    "connectWallet": "सदस्यता लिन आफ्नो वालेट जोड्नुहोस्",
+    "notBuyable": "यो योजना किन्न सकिँदैन। सिर्जनाकर्तालाई फेरि बनाउन भन्नुहोस्",
+    "preparing": "तयारी हुँदैछ…",
+    "startFailed": "सदस्यता सुरु गर्न सकिएन",
+    "confirmInWallet": "आफ्नो वालेटमा पुष्टि गर्नुहोस्…",
+    "waitingTx": "कारोबारको पर्खाइमा…",
+    "noTxHash": "वालेटले कारोबारको ह्यास फर्काएन",
+    "finishing": "पूरा हुँदैछ…",
+    "confirmTitle": "सदस्यता पुष्टि गर्नुहोस्",
+    "subscribeToFor": "{{price}} मा {{name}} सदस्यता लिनुहोस्",
+    "youPay": "तपाईं {{amount}} तिर्नुहुन्छ",
+    "calculating": "कुल गणना हुँदैछ…",
+    "creatorReceives": "सिर्जनाकर्ताले {{amount}} USDT क्रेडिट पाउँछन्",
+    "custodyNote": "तपाईंको DHB DeHub ट्रेजरीको जिम्मामा रहन्छ र बेचिँदैन। सिर्जनाकर्ताले USDT मा सदस्यता ब्यालेन्स पाउँछन्।",
+    "editPlan": "योजना सम्पादन गर्नुहोस्",
+    "notAvailableYet": "अझै उपलब्ध छैन",
+    "subscribe": "सदस्यता लिनुहोस्",
+    "subscriberCount_one": "{{count}} सदस्य",
+    "subscriberCount_other": "{{count}} सदस्यहरू"
   }
 }

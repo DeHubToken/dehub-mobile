@@ -3593,5 +3593,27 @@
     "custom": "Personalizado",
     "contractPlaceholder": "Dirección del contrato (0x…)",
     "symbolPlaceholder": "Símbolo (p. ej., PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "No se pudo cambiar la red de suscripción",
+    "connectWallet": "Conecta tu cartera para suscribirte",
+    "notBuyable": "Este plan no se puede comprar. Pide al creador que lo vuelva a crear",
+    "preparing": "Preparando…",
+    "startFailed": "No se pudo iniciar la suscripción",
+    "confirmInWallet": "Confirma en tu cartera…",
+    "waitingTx": "Esperando la transacción…",
+    "noTxHash": "La cartera no devolvió un hash de transacción",
+    "finishing": "Finalizando…",
+    "confirmTitle": "Confirmar suscripción",
+    "subscribeToFor": "Suscríbete a {{name}} por {{price}}",
+    "youPay": "Pagas {{amount}}",
+    "calculating": "Calculando el total…",
+    "creatorReceives": "El creador recibe {{amount}} USDT de crédito",
+    "custodyNote": "Tus DHB permanecen bajo custodia de la tesorería de DeHub y no se venden. El creador recibe un saldo de suscripción denominado en USDT.",
+    "editPlan": "Editar plan",
+    "notAvailableYet": "Aún no está disponible",
+    "subscribe": "Suscribirse",
+    "subscriberCount_one": "{{count}} suscriptor",
+    "subscriberCount_other": "{{count}} suscriptores"
   }
 }

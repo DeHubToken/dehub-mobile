@@ -3536,5 +3536,27 @@
     "custom": "Personalizat",
     "contractPlaceholder": "Adresa contractului (0x…)",
     "symbolPlaceholder": "Simbol (ex. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Rețeaua de abonament nu a putut fi schimbată",
+    "connectWallet": "Conectează-ți portofelul pentru a te abona",
+    "notBuyable": "Acest plan nu poate fi cumpărat. Roagă creatorul să îl recreeze",
+    "preparing": "Se pregătește…",
+    "startFailed": "Abonamentul nu a putut fi pornit",
+    "confirmInWallet": "Confirmă în portofel…",
+    "waitingTx": "Se așteaptă tranzacția…",
+    "noTxHash": "Portofelul nu a returnat un hash de tranzacție",
+    "finishing": "Se finalizează…",
+    "confirmTitle": "Confirmă abonamentul",
+    "subscribeToFor": "Abonează-te la {{name}} pentru {{price}}",
+    "youPay": "Plătești {{amount}}",
+    "calculating": "Se calculează totalul…",
+    "creatorReceives": "Creatorul primește credit de {{amount}} USDT",
+    "custodyNote": "DHB-ul tău rămâne în custodia trezoreriei DeHub și nu este vândut. Creatorul primește un sold de abonament exprimat în USDT.",
+    "editPlan": "Editează planul",
+    "notAvailableYet": "Încă nu este disponibil",
+    "subscribe": "Abonează-te",
+    "subscriberCount_one": "{{count}} abonat",
+    "subscriberCount_other": "{{count}} abonați"
   }
 }

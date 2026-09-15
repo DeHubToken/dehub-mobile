@@ -3511,5 +3511,27 @@
     "custom": "सानुकूल",
     "contractPlaceholder": "कॉन्ट्रॅक्ट पत्ता (0x…)",
     "symbolPlaceholder": "चिन्ह (उदा. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "सदस्यता नेटवर्क बदलता आले नाही",
+    "connectWallet": "सदस्य होण्यासाठी तुमचे वॉलेट जोडा",
+    "notBuyable": "ही योजना खरेदी करता येत नाही. निर्मात्याला पुन्हा तयार करण्यास सांगा",
+    "preparing": "तयार होत आहे…",
+    "startFailed": "सदस्यता सुरू करता आली नाही",
+    "confirmInWallet": "तुमच्या वॉलेटमध्ये पुष्टी करा…",
+    "waitingTx": "व्यवहाराची प्रतीक्षा…",
+    "noTxHash": "वॉलेटने व्यवहाराचा हॅश परत केला नाही",
+    "finishing": "पूर्ण होत आहे…",
+    "confirmTitle": "सदस्यतेची पुष्टी करा",
+    "subscribeToFor": "{{price}} मध्ये {{name}} ची सदस्यता घ्या",
+    "youPay": "तुम्ही {{amount}} द्याल",
+    "calculating": "एकूण मोजले जात आहे…",
+    "creatorReceives": "निर्मात्याला {{amount}} USDT क्रेडिट मिळेल",
+    "custodyNote": "तुमचे DHB DeHub ट्रेझरीच्या ताब्यात राहतात आणि विकले जात नाहीत. निर्मात्याला USDT मधील सदस्यता शिल्लक मिळते.",
+    "editPlan": "योजना संपादित करा",
+    "notAvailableYet": "अद्याप उपलब्ध नाही",
+    "subscribe": "सदस्य व्हा",
+    "subscriberCount_one": "{{count}} सदस्य",
+    "subscriberCount_other": "{{count}} सदस्य"
   }
 }

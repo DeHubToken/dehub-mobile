@@ -3513,5 +3513,27 @@
     "custom": "Na musamman",
     "contractPlaceholder": "Adireshin kwangila (0x…)",
     "symbolPlaceholder": "Alama (misali PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "An kasa canza hanyar sadarwar biyan kuɗi",
+    "connectWallet": "Haɗa walat ɗinka don biyan kuɗi",
+    "notBuyable": "Ba za a iya sayan wannan shirin ba. Nemi mahaliccin ya sake ƙirƙirar shi",
+    "preparing": "Ana shiri…",
+    "startFailed": "An kasa fara biyan kuɗin",
+    "confirmInWallet": "Tabbatar a cikin walat ɗinka…",
+    "waitingTx": "Ana jiran ma'amalar…",
+    "noTxHash": "Walat ɗin bai mayar da hash na ma'amala ba",
+    "finishing": "Ana kammalawa…",
+    "confirmTitle": "Tabbatar da biyan kuɗi",
+    "subscribeToFor": "Yi rajista zuwa {{name}} kan {{price}}",
+    "youPay": "Za ka biya {{amount}}",
+    "calculating": "Ana lissafin jimillar…",
+    "creatorReceives": "Mahaliccin zai karɓi kuɗin {{amount}} USDT",
+    "custodyNote": "DHB naka yana zama a ajiyar baitulmalin DeHub kuma ba a sayar da shi ba. Mahaliccin yana samun ma'aunin biyan kuɗi da USDT.",
+    "editPlan": "Gyara shirin",
+    "notAvailableYet": "Bai samu ba tukuna",
+    "subscribe": "Yi rajista",
+    "subscriberCount_one": "Mai biyan kuɗi {{count}}",
+    "subscriberCount_other": "Masu biyan kuɗi {{count}}"
   }
 }

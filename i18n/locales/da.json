@@ -3527,5 +3527,27 @@
     "custom": "Tilpasset",
     "contractPlaceholder": "Kontraktadresse (0x…)",
     "symbolPlaceholder": "Symbol (fx PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Kunne ikke skifte abonnementsnetværk",
+    "connectWallet": "Forbind din tegnebog for at abonnere",
+    "notBuyable": "Denne plan kan ikke købes. Bed skaberen om at oprette den igen",
+    "preparing": "Forbereder…",
+    "startFailed": "Kunne ikke starte abonnementet",
+    "confirmInWallet": "Bekræft i din tegnebog…",
+    "waitingTx": "Venter på transaktionen…",
+    "noTxHash": "Tegnebogen returnerede ingen transaktionshash",
+    "finishing": "Afslutter…",
+    "confirmTitle": "Bekræft abonnement",
+    "subscribeToFor": "Abonnér på {{name}} for {{price}}",
+    "youPay": "Du betaler {{amount}}",
+    "calculating": "Beregner totalen…",
+    "creatorReceives": "Skaberen modtager {{amount}} USDT i kredit",
+    "custodyNote": "Din DHB forbliver i DeHubs treasury-depot og sælges ikke. Skaberen modtager en abonnementssaldo i USDT.",
+    "editPlan": "Rediger plan",
+    "notAvailableYet": "Endnu ikke tilgængelig",
+    "subscribe": "Abonnér",
+    "subscriberCount_one": "{{count}} abonnent",
+    "subscriberCount_other": "{{count}} abonnenter"
   }
 }

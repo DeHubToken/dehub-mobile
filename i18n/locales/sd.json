@@ -3506,5 +3506,27 @@
     "custom": "ڪسٽم",
     "contractPlaceholder": "ڪانٽريڪٽ ائڊريس (0x…)",
     "symbolPlaceholder": "علامت (مثلاً PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "سبسڪرپشن نيٽ ورڪ تبديل نه ٿي سگهيو",
+    "connectWallet": "سبسڪرائب ڪرڻ لاءِ پنهنجو والٽ ڳنڍيو",
+    "notBuyable": "هي پلان خريد نٿو ٿي سگهي. تخليقڪار کي ٻيهر ٺاهڻ لاءِ چئو",
+    "preparing": "تيار ٿي رهيو آهي…",
+    "startFailed": "سبسڪرپشن شروع ٿي نه سگهيو",
+    "confirmInWallet": "پنهنجي والٽ ۾ تصديق ڪريو…",
+    "waitingTx": "ٽرانزيڪشن جو انتظار…",
+    "noTxHash": "والٽ ٽرانزيڪشن جو هيش واپس نه ڪيو",
+    "finishing": "مڪمل ٿي رهيو آهي…",
+    "confirmTitle": "سبسڪرپشن جي تصديق ڪريو",
+    "subscribeToFor": "{{price}} ۾ {{name}} سبسڪرائب ڪريو",
+    "youPay": "توهان {{amount}} ادا ڪندا",
+    "calculating": "ڪل رقم ڳڻي پئي وڃي…",
+    "creatorReceives": "تخليقڪار کي {{amount}} USDT ڪريڊٽ ملندو",
+    "custodyNote": "توهان جو DHB DeHub خزاني جي حراست ۾ رهي ٿو ۽ وڪرو نٿو ٿئي. تخليقڪار کي USDT ۾ سبسڪرپشن بيلنس ملي ٿو.",
+    "editPlan": "پلان تبديل ڪريو",
+    "notAvailableYet": "اڃا دستياب ناهي",
+    "subscribe": "سبسڪرائب ڪريو",
+    "subscriberCount_one": "{{count}} سبسڪرائبر",
+    "subscriberCount_other": "{{count}} سبسڪرائبر"
   }
 }

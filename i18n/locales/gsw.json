@@ -3512,5 +3512,27 @@
     "custom": "Benutzerdefiniert",
     "contractPlaceholder": "Verträgsadrässe (0x…)",
     "symbolPlaceholder": "Symbol (z. B. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "S Abo-Netzwärk het nöd chöne gwächslet wärde",
+    "connectWallet": "Verbind dini Wallet zum abonniere",
+    "notBuyable": "De Plan cha nöd kauft wärde. Frag de Ersteller, s nomol z mache",
+    "preparing": "Wird vorbereitet…",
+    "startFailed": "S Abo het nöd chöne starte",
+    "confirmInWallet": "Bestätig i dinere Wallet…",
+    "waitingTx": "Warte uf d Transaktion…",
+    "noTxHash": "D Wallet het kei Transaktions-Hash zruggäh",
+    "finishing": "Wird abgschlosse…",
+    "confirmTitle": "Abo bestätige",
+    "subscribeToFor": "{{name}} für {{price}} abonniere",
+    "youPay": "Du zahlsch {{amount}}",
+    "calculating": "Gsamtbetrag wird brächnet…",
+    "creatorReceives": "De Ersteller überchunnt {{amount}} USDT Guthabe",
+    "custodyNote": "Dini DHB blibed i dr Verwahrig vo dr DeHub-Treasury und wärded nöd verchauft. De Ersteller überchunnt es Abo-Guthabe i USDT.",
+    "editPlan": "Plan bearbeite",
+    "notAvailableYet": "Nonig verfüegbar",
+    "subscribe": "Abonniere",
+    "subscriberCount_one": "{{count}} Abonnänt",
+    "subscriberCount_other": "{{count}} Abonnänte"
   }
 }

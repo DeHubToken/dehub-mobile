@@ -3527,5 +3527,27 @@
     "custom": "Egyéni",
     "contractPlaceholder": "Szerződéscím (0x…)",
     "symbolPlaceholder": "Szimbólum (pl. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Az előfizetési hálózat nem váltható",
+    "connectWallet": "Csatlakoztasd a tárcádat az előfizetéshez",
+    "notBuyable": "Ez a csomag nem vásárolható meg. Kérd meg a készítőt, hogy hozza létre újra",
+    "preparing": "Előkészítés…",
+    "startFailed": "Az előfizetés nem indítható el",
+    "confirmInWallet": "Erősítsd meg a tárcádban…",
+    "waitingTx": "Várakozás a tranzakcióra…",
+    "noTxHash": "A tárca nem adott vissza tranzakciós hasht",
+    "finishing": "Befejezés…",
+    "confirmTitle": "Előfizetés megerősítése",
+    "subscribeToFor": "Fizess elő a(z) {{name}} csomagra {{price}} áron",
+    "youPay": "Te {{amount}}-t fizetsz",
+    "calculating": "Végösszeg számítása…",
+    "creatorReceives": "A készítő {{amount}} USDT jóváírást kap",
+    "custodyNote": "A DHB-d a DeHub kincstárának letétjében marad, és nem adják el. A készítő USDT-ben denominált előfizetési egyenleget kap.",
+    "editPlan": "Csomag szerkesztése",
+    "notAvailableYet": "Még nem elérhető",
+    "subscribe": "Előfizetés",
+    "subscriberCount_one": "{{count}} előfizető",
+    "subscriberCount_other": "{{count}} előfizető"
   }
 }

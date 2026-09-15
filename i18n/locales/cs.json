@@ -3527,5 +3527,27 @@
     "custom": "Vlastní",
     "contractPlaceholder": "Adresa smlouvy (0x…)",
     "symbolPlaceholder": "Symbol (např. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Nepodařilo se přepnout síť předplatného",
+    "connectWallet": "Pro předplatné připojte peněženku",
+    "notBuyable": "Tento plán nelze koupit. Požádejte tvůrce, aby jej vytvořil znovu",
+    "preparing": "Připravuje se…",
+    "startFailed": "Předplatné se nepodařilo spustit",
+    "confirmInWallet": "Potvrďte v peněžence…",
+    "waitingTx": "Čeká se na transakci…",
+    "noTxHash": "Peněženka nevrátila hash transakce",
+    "finishing": "Dokončuje se…",
+    "confirmTitle": "Potvrdit předplatné",
+    "subscribeToFor": "Předplaťte si {{name}} za {{price}}",
+    "youPay": "Zaplatíte {{amount}}",
+    "calculating": "Počítá se celková částka…",
+    "creatorReceives": "Tvůrce obdrží kredit {{amount}} USDT",
+    "custodyNote": "Vaše DHB zůstávají v úschově pokladny DeHub a neprodávají se. Tvůrce obdrží zůstatek předplatného vyjádřený v USDT.",
+    "editPlan": "Upravit plán",
+    "notAvailableYet": "Zatím není dostupné",
+    "subscribe": "Odebírat",
+    "subscriberCount_one": "{{count}} odběratel",
+    "subscriberCount_other": "{{count}} odběratelů"
   }
 }

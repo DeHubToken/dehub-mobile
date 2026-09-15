@@ -3473,5 +3473,27 @@
     "custom": "ځانګړی",
     "contractPlaceholder": "د تړون پته (0x…)",
     "symbolPlaceholder": "نښه (لکه PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "د ګډون شبکه بدله نه شوه",
+    "connectWallet": "د ګډون لپاره خپله کڅوړه وصل کړئ",
+    "notBuyable": "دا پلان نه شي اخیستل کیدی. جوړوونکي ته ووایاست چې بیا یې جوړ کړي",
+    "preparing": "چمتو کیږي…",
+    "startFailed": "ګډون پیل نه شو",
+    "confirmInWallet": "په خپله کڅوړه کې یې تایید کړئ…",
+    "waitingTx": "د راکړې ورکړې انتظار…",
+    "noTxHash": "کڅوړې د راکړې ورکړې هش بیرته نه راکړ",
+    "finishing": "بشپړیږي…",
+    "confirmTitle": "ګډون تایید کړئ",
+    "subscribeToFor": "په {{price}} کې د {{name}} ګډون وکړئ",
+    "youPay": "تاسو {{amount}} ورکوئ",
+    "calculating": "ټوله شمېرل کیږي…",
+    "creatorReceives": "جوړوونکی {{amount}} USDT کریډیټ ترلاسه کوي",
+    "custodyNote": "ستاسو DHB د DeHub خزانې په ساتنه کې پاتې کیږي او نه پلورل کیږي. جوړوونکی د USDT پر بنسټ د ګډون بیلانس ترلاسه کوي.",
+    "editPlan": "پلان سم کړئ",
+    "notAvailableYet": "لا تر اوسه شتون نلري",
+    "subscribe": "ګډون وکړئ",
+    "subscriberCount_one": "{{count}} ګډونوال",
+    "subscriberCount_other": "{{count}} ګډونوال"
   }
 }

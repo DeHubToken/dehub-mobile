@@ -3527,5 +3527,27 @@
     "custom": "Anpassad",
     "contractPlaceholder": "Kontraktsadress (0x…)",
     "symbolPlaceholder": "Symbol (t.ex. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Det gick inte att byta prenumerationsnätverk",
+    "connectWallet": "Anslut din plånbok för att prenumerera",
+    "notBuyable": "Den här planen går inte att köpa. Be skaparen skapa den på nytt",
+    "preparing": "Förbereder…",
+    "startFailed": "Det gick inte att starta prenumerationen",
+    "confirmInWallet": "Bekräfta i din plånbok…",
+    "waitingTx": "Väntar på transaktionen…",
+    "noTxHash": "Plånboken returnerade ingen transaktionshash",
+    "finishing": "Slutför…",
+    "confirmTitle": "Bekräfta prenumeration",
+    "subscribeToFor": "Prenumerera på {{name}} för {{price}}",
+    "youPay": "Du betalar {{amount}}",
+    "calculating": "Beräknar totalen…",
+    "creatorReceives": "Skaparen får {{amount}} USDT i kredit",
+    "custodyNote": "Dina DHB ligger kvar i DeHubs treasury-förvar och säljs inte. Skaparen får ett prenumerationssaldo i USDT.",
+    "editPlan": "Redigera plan",
+    "notAvailableYet": "Inte tillgänglig än",
+    "subscribe": "Prenumerera",
+    "subscriberCount_one": "{{count}} prenumerant",
+    "subscriberCount_other": "{{count}} prenumeranter"
   }
 }

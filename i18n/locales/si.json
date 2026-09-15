@@ -3505,5 +3505,27 @@
     "custom": "අභිරුචි",
     "contractPlaceholder": "ගිවිසුම් ලිපිනය (0x…)",
     "symbolPlaceholder": "සංකේතය (උදා. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "දායකත්ව ජාලය මාරු කළ නොහැකි විය",
+    "connectWallet": "දායක වීමට ඔබේ පසුම්බිය සම්බන්ධ කරන්න",
+    "notBuyable": "මෙම සැලැස්ම මිලදී ගත නොහැක. නිර්මාණකරුට නැවත සෑදීමට කියන්න",
+    "preparing": "සූදානම් වෙමින්…",
+    "startFailed": "දායකත්වය ආරම්භ කළ නොහැකි විය",
+    "confirmInWallet": "ඔබේ පසුම්බියේ තහවුරු කරන්න…",
+    "waitingTx": "ගනුදෙනුව එනතුරු…",
+    "noTxHash": "පසුම්බිය ගනුදෙනු හැෂ් එකක් ලබා දුන්නේ නැත",
+    "finishing": "අවසන් වෙමින්…",
+    "confirmTitle": "දායකත්වය තහවුරු කරන්න",
+    "subscribeToFor": "{{price}} ට {{name}} සඳහා දායක වන්න",
+    "youPay": "ඔබ {{amount}} ගෙවයි",
+    "calculating": "එකතුව ගණනය වෙමින්…",
+    "creatorReceives": "නිර්මාණකරුට {{amount}} USDT ණයක් ලැබේ",
+    "custodyNote": "ඔබේ DHB DeHub භාණ්ඩාගාරයේ භාරයේ රැඳී සිටින අතර විකුණන්නේ නැත. නිර්මාණකරුට USDT මත පදනම් වූ දායකත්ව ශේෂයක් ලැබේ.",
+    "editPlan": "සැලැස්ම සංස්කරණය කරන්න",
+    "notAvailableYet": "තවම නොමැත",
+    "subscribe": "දායක වන්න",
+    "subscriberCount_one": "දායකයින් {{count}}",
+    "subscriberCount_other": "දායකයින් {{count}}"
   }
 }

@@ -3552,5 +3552,27 @@
     "custom": "Ngokwezifiso",
     "contractPlaceholder": "Ikheli lesivumelwano (0x…)",
     "symbolPlaceholder": "Uphawu (isb. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Ayikwazanga ukushintsha inethiwekhi yokubhalisa",
+    "connectWallet": "Xhuma isikhwama sakho ukuze ubhalise",
+    "notBuyable": "Lolu hlelo alunakuthengwa. Cela umdali alwenze kabusha",
+    "preparing": "Iyalungiselela…",
+    "startFailed": "Yehlulekile ukuqala ukubhalisa",
+    "confirmInWallet": "Qinisekisa esikhwameni sakho…",
+    "waitingTx": "Ilinde ukuthengiselana…",
+    "noTxHash": "Isikhwama asibuyiselanga i-hash yokuthengiselana",
+    "finishing": "Iyaqeda…",
+    "confirmTitle": "Qinisekisa ukubhalisa",
+    "subscribeToFor": "Bhalisela {{name}} nge-{{price}}",
+    "youPay": "Ukhokha {{amount}}",
+    "calculating": "Ibala inani eliphelele…",
+    "creatorReceives": "Umdali uthola isikweletu se-{{amount}} USDT",
+    "custodyNote": "I-DHB yakho ihlala igcinwe yi-treasury ye-DeHub futhi ayithengiswa. Umdali uthola ibhalansi yokubhalisa ebalwa nge-USDT.",
+    "editPlan": "Hlela uhlelo",
+    "notAvailableYet": "Akukatholakali okwamanje",
+    "subscribe": "Bhalisa",
+    "subscriberCount_one": "Umbhalisi ongu-{{count}}",
+    "subscriberCount_other": "Ababhalisi abangu-{{count}}"
   }
 }

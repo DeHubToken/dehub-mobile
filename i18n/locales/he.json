@@ -3510,5 +3510,27 @@
     "custom": "מותאם אישית",
     "contractPlaceholder": "כתובת החוזה (0x…)",
     "symbolPlaceholder": "סמל (לדוגמה PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "לא ניתן היה להחליף את רשת המנוי",
+    "connectWallet": "חברו את הארנק כדי להירשם",
+    "notBuyable": "לא ניתן לרכוש את המסלול הזה. בקשו מהיוצר ליצור אותו מחדש",
+    "preparing": "מכין…",
+    "startFailed": "לא ניתן היה להתחיל את המנוי",
+    "confirmInWallet": "אשרו בארנק שלכם…",
+    "waitingTx": "ממתין לעסקה…",
+    "noTxHash": "הארנק לא החזיר hash של עסקה",
+    "finishing": "מסיים…",
+    "confirmTitle": "אישור מנוי",
+    "subscribeToFor": "הירשמו ל־{{name}} תמורת {{price}}",
+    "youPay": "אתם משלמים {{amount}}",
+    "calculating": "מחשב את הסכום…",
+    "creatorReceives": "היוצר מקבל זיכוי של {{amount}} USDT",
+    "custodyNote": "ה־DHB שלך נשאר במשמורת אוצר DeHub ואינו נמכר. היוצר מקבל יתרת מנוי הנקובה ב־USDT.",
+    "editPlan": "עריכת מסלול",
+    "notAvailableYet": "עדיין לא זמין",
+    "subscribe": "הרשמה",
+    "subscriberCount_one": "{{count}} מנוי",
+    "subscriberCount_other": "{{count}} מנויים"
   }
 }

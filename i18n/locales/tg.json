@@ -3501,5 +3501,27 @@
     "custom": "Фардӣ",
     "contractPlaceholder": "Суроғаи шартнома (0x…)",
     "symbolPlaceholder": "Аломат (мас. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Иваз кардани шабакаи обуна ноком шуд",
+    "connectWallet": "Барои обуна ҳамёнатонро пайваст кунед",
+    "notBuyable": "Ин нақшаро харидан мумкин нест. Аз эҷодкор хоҳиш кунед, ки онро аз нав созад",
+    "preparing": "Омода мешавад…",
+    "startFailed": "Оғози обуна ноком шуд",
+    "confirmInWallet": "Дар ҳамёнатон тасдиқ кунед…",
+    "waitingTx": "Интизори муомилот…",
+    "noTxHash": "Ҳамён ҳеши муомилотро барнагардонд",
+    "finishing": "Ба итмом мерасад…",
+    "confirmTitle": "Тасдиқи обуна",
+    "subscribeToFor": "Ба {{name}} бо {{price}} обуна шавед",
+    "youPay": "Шумо {{amount}} мепардозед",
+    "calculating": "Ҳисоби маблағи умумӣ…",
+    "creatorReceives": "Эҷодкор {{amount}} USDT кредит мегирад",
+    "custodyNote": "DHB-и шумо дар нигоҳдории хазинаи DeHub мемонад ва фурӯхта намешавад. Эҷодкор тавозуни обунаро бо USDT мегирад.",
+    "editPlan": "Таҳрири нақша",
+    "notAvailableYet": "Ҳанӯз дастрас нест",
+    "subscribe": "Обуна шудан",
+    "subscriberCount_one": "{{count}} обуначӣ",
+    "subscriberCount_other": "{{count}} обуначӣ"
   }
 }

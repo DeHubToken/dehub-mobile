@@ -3786,5 +3786,27 @@
     "custom": "Tersuai",
     "contractPlaceholder": "Alamat kontrak (0x…)",
     "symbolPlaceholder": "Simbol (cth. PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Tidak dapat menukar rangkaian langganan",
+    "connectWallet": "Sambungkan dompet anda untuk melanggan",
+    "notBuyable": "Pelan ini tidak boleh dibeli. Minta pencipta menciptanya semula",
+    "preparing": "Menyediakan…",
+    "startFailed": "Gagal memulakan langganan",
+    "confirmInWallet": "Sahkan dalam dompet anda…",
+    "waitingTx": "Menunggu transaksi…",
+    "noTxHash": "Dompet tidak memulangkan hash transaksi",
+    "finishing": "Menyelesaikan…",
+    "confirmTitle": "Sahkan langganan",
+    "subscribeToFor": "Langgan {{name}} dengan harga {{price}}",
+    "youPay": "Anda membayar {{amount}}",
+    "calculating": "Mengira jumlah…",
+    "creatorReceives": "Pencipta menerima kredit {{amount}} USDT",
+    "custodyNote": "DHB anda kekal dalam simpanan perbendaharaan DeHub dan tidak dijual. Pencipta menerima baki langganan dalam USDT.",
+    "editPlan": "Edit pelan",
+    "notAvailableYet": "Belum tersedia",
+    "subscribe": "Langgan",
+    "subscriberCount_one": "{{count}} pelanggan",
+    "subscriberCount_other": "{{count}} pelanggan"
   }
 }

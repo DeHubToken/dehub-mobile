@@ -3282,5 +3282,27 @@
     "custom": "Taybet",
     "contractPlaceholder": "Navnîşana peymanê (0x…)",
     "symbolPlaceholder": "Sembol (mînak PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "Tora abonetiyê nehat guhertin",
+    "connectWallet": "Ji bo abonetiyê berîka xwe girêde",
+    "notBuyable": "Ev plan nayê kirîn. Ji afirîner bixwaze ku wê ji nû ve çêbike",
+    "preparing": "Tê amadekirin…",
+    "startFailed": "Destpêkirina abonetiyê bi ser neket",
+    "confirmInWallet": "Di berîka xwe de piştrast bike…",
+    "waitingTx": "Li benda danûstandinê…",
+    "noTxHash": "Berîkê hash a danûstandinê venegerand",
+    "finishing": "Tê temamkirin…",
+    "confirmTitle": "Abonetiyê piştrast bike",
+    "subscribeToFor": "Bi {{price}} bibe abone yê {{name}}",
+    "youPay": "Tu {{amount}} didî",
+    "calculating": "Berhevok tê hesibandin…",
+    "creatorReceives": "Afirîner {{amount}} USDT krediyê distîne",
+    "custodyNote": "DHB ya te di bin parastina xezîneya DeHub de dimîne û nayê firotin. Afirîner balansa abonetiyê ya bi USDT distîne.",
+    "editPlan": "Planê biguherîne",
+    "notAvailableYet": "Hîn ne berdest e",
+    "subscribe": "Bibe abone",
+    "subscriberCount_one": "{{count}} abone",
+    "subscriberCount_other": "{{count}} abone"
   }
 }

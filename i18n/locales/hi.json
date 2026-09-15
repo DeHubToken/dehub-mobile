@@ -3579,5 +3579,27 @@
     "custom": "कस्टम",
     "contractPlaceholder": "कॉन्ट्रैक्ट पता (0x…)",
     "symbolPlaceholder": "सिंबल (जैसे PEPE)"
+  },
+  "subscriptions": {
+    "switchFailed": "सब्सक्रिप्शन नेटवर्क नहीं बदला जा सका",
+    "connectWallet": "सब्सक्राइब करने के लिए अपना वॉलेट कनेक्ट करें",
+    "notBuyable": "यह प्लान खरीदा नहीं जा सकता। क्रिएटर से दोबारा बनाने को कहें",
+    "preparing": "तैयार हो रहा है…",
+    "startFailed": "सब्सक्रिप्शन शुरू नहीं हो सका",
+    "confirmInWallet": "अपने वॉलेट में पुष्टि करें…",
+    "waitingTx": "लेनदेन की प्रतीक्षा…",
+    "noTxHash": "वॉलेट ने लेनदेन का हैश नहीं लौटाया",
+    "finishing": "पूरा हो रहा है…",
+    "confirmTitle": "सब्सक्रिप्शन की पुष्टि करें",
+    "subscribeToFor": "{{price}} में {{name}} को सब्सक्राइब करें",
+    "youPay": "आप {{amount}} देंगे",
+    "calculating": "कुल राशि की गणना हो रही है…",
+    "creatorReceives": "क्रिएटर को {{amount}} USDT क्रेडिट मिलेगा",
+    "custodyNote": "आपका DHB DeHub ट्रेज़री की अभिरक्षा में रहता है और बेचा नहीं जाता। क्रिएटर को USDT में सब्सक्रिप्शन बैलेंस मिलता है।",
+    "editPlan": "प्लान संपादित करें",
+    "notAvailableYet": "अभी उपलब्ध नहीं",
+    "subscribe": "सब्सक्राइब करें",
+    "subscriberCount_one": "{{count}} सब्सक्राइबर",
+    "subscriberCount_other": "{{count}} सब्सक्राइबर"
   }
 }
