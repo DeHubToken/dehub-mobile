@@ -39,7 +39,8 @@
     "tv": "ТВ уживо",
     "arcade": "Аркада",
     "stats": "Статистика уживо",
-    "converter": "Конвертор"
+    "converter": "Конвертор",
+    "migrate": "Migrate all"
   },
   "feed": {
     "home": "Почетна",

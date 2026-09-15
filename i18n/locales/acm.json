@@ -39,7 +39,8 @@
     "tv": "تلفزيون مباشر",
     "arcade": "الألعاب",
     "stats": "إحصائيات مباشرة",
-    "converter": "Converter"
+    "converter": "Converter",
+    "migrate": "هجّر الكل"
   },
   "feed": {
     "home": "البيت",
