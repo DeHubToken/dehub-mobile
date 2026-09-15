@@ -3177,6 +3177,19 @@
       "wallTitle": "Mit mondanak az emberek",
       "wallNote": "engedéllyel közzétéve",
       "anonymous": "Egy DeHub tag"
-    }
+    },
+    "subtitle": "A közösség élő számai",
+    "range7d": "7 nap",
+    "range30d": "30 nap",
+    "range1y": "1 év",
+    "notEnoughHistory": "Még nincs elég előzmény a diagramhoz",
+    "chartA11y": "Tagok számának alakulása diagram",
+    "loadFailed": "Az élő statisztikák betöltése sikertelen.",
+    "livePlatformTotal": "A platform élő összesítése",
+    "activeUsers": "Aktív regisztrált felhasználók",
+    "newMembers": "Új tagok",
+    "membersOverTime": "Tagok az idő során",
+    "lastDays": "Utolsó {{count}} nap",
+    "source": "Rögzített fiókelőzmények a DeHub nyilvános statisztikai végpontjáról. Ebben a diagramban nincsenek becsült értékek."
   }
 }

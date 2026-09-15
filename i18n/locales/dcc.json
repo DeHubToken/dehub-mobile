@@ -2899,7 +2899,20 @@
       "wallTitle": "What people say",
       "wallNote": "published with permission",
       "anonymous": "A DeHub member"
-    }
+    },
+    "subtitle": "کمیونٹی کے لائیو اعداد",
+    "range7d": "7 دن",
+    "range30d": "30 دن",
+    "range1y": "1 سال",
+    "notEnoughHistory": "چارٹ کے لیے ابھی کافی تاریخ نئیں",
+    "chartA11y": "وقت کے ساتھ ممبران کا چارٹ",
+    "loadFailed": "لائیو اعداد و شمار لوڈ نئیں ہو سکے۔",
+    "livePlatformTotal": "پلیٹ فارم کا لائیو کل",
+    "activeUsers": "فعال رجسٹرڈ صارفین",
+    "newMembers": "نئے ممبر",
+    "membersOverTime": "وقت کے ساتھ ممبران",
+    "lastDays": "پچھلے {{count}} دن",
+    "source": "DeHub کے عوامی اعداد و شمار اینڈ پوائنٹ سے ریکارڈ کیا گیا اکاؤنٹ ریکارڈ۔ اس چارٹ میں کوئی تخمینی قدر استعمال نئیں ہوتی۔"
   },
   "converter": {
     "publishAs": "Publish as",

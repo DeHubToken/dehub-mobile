@@ -3177,6 +3177,19 @@
       "wallTitle": "Hvad folk siger",
       "wallNote": "udgivet med tilladelse",
       "anonymous": "Et DeHub-medlem"
-    }
+    },
+    "subtitle": "Live tal for fællesskabet",
+    "range7d": "7 dage",
+    "range30d": "30 dage",
+    "range1y": "1 år",
+    "notEnoughHistory": "Ikke nok historik til en graf endnu",
+    "chartA11y": "Diagram over medlemmer over tid",
+    "loadFailed": "Kunne ikke indlæse live-statistik.",
+    "livePlatformTotal": "Live platformstotal",
+    "activeUsers": "Aktive registrerede brugere",
+    "newMembers": "Nye medlemmer",
+    "membersOverTime": "Medlemmer over tid",
+    "lastDays": "Seneste {{count}} dage",
+    "source": "Registreret kontohistorik fra DeHubs offentlige statistikendepunkt. Der bruges ingen estimerede værdier i dette diagram."
   }
 }

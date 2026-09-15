@@ -3442,6 +3442,19 @@
       "wallTitle": "Wat mensen zeggen",
       "wallNote": "gepubliceerd met toestemming",
       "anonymous": "Een DeHub-lid"
-    }
+    },
+    "subtitle": "Live cijfers van de community",
+    "range7d": "7 dagen",
+    "range30d": "30 dagen",
+    "range1y": "1 jaar",
+    "notEnoughHistory": "Nog niet genoeg geschiedenis voor een grafiek",
+    "chartA11y": "Grafiek van leden in de tijd",
+    "loadFailed": "Kon live statistieken niet laden.",
+    "livePlatformTotal": "Live totaal van het platform",
+    "activeUsers": "Actieve geregistreerde gebruikers",
+    "newMembers": "Nieuwe leden",
+    "membersOverTime": "Leden in de tijd",
+    "lastDays": "Laatste {{count}} dagen",
+    "source": "Vastgelegde accountgeschiedenis uit het openbare statistiek-endpoint van DeHub. In deze grafiek worden geen geschatte waarden gebruikt."
   }
 }

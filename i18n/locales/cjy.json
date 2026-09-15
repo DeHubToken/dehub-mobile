@@ -3173,6 +3173,19 @@
       "wallTitle": "人们怎么说",
       "wallNote": "已获得许可发布",
       "anonymous": "DeHub 成员"
-    }
+    },
+    "subtitle": "社区实时数据",
+    "range7d": "7 天",
+    "range30d": "30 天",
+    "range1y": "1 年",
+    "notEnoughHistory": "历史数据还不足以绘制图表",
+    "chartA11y": "成员随时间变化图表",
+    "loadFailed": "无法加载实时统计。",
+    "livePlatformTotal": "平台实时总数",
+    "activeUsers": "活跃注册用户",
+    "newMembers": "新成员",
+    "membersOverTime": "成员随时间变化",
+    "lastDays": "最近 {{count}} 天",
+    "source": "来自 DeHub 公开统计接口的账户历史记录。本图表不使用任何估算值。"
   }
 }

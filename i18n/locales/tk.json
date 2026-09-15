@@ -3143,6 +3143,19 @@
       "wallTitle": "Adamlar näme diýýärler",
       "wallNote": "6. rugsat bilen çap edilýär",
       "anonymous": "DeHub üýşümi"
-    }
+    },
+    "subtitle": "Jemgyýetiň janly sanlary",
+    "range7d": "7 gün",
+    "range30d": "30 gün",
+    "range1y": "1 ýyl",
+    "notEnoughHistory": "Diagramma üçin entek ýeterlik taryh ýok",
+    "chartA11y": "Wagtyň dowamynda agzalaryň diagrammasy",
+    "loadFailed": "Janly statistika ýüklenip bilmedi.",
+    "livePlatformTotal": "Platformanyň janly jemi",
+    "activeUsers": "Işjeň hasaba alnan ulanyjylar",
+    "newMembers": "Täze agzalar",
+    "membersOverTime": "Wagtyň dowamynda agzalar",
+    "lastDays": "Soňky {{count}} gün",
+    "source": "DeHub-yň köpçülik statistika ahyrky nokadyndan ýazylan hasap taryhy. Bu diagrammada çaklama bahalary ulanylmaýar."
   }
 }

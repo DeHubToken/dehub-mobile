@@ -3168,6 +3168,19 @@
       "wallTitle": "ሰዎች ምን ይላሉ",
       "wallNote": "በፈቃድ ታትሞ",
       "anonymous": "DeHub አባል"
-    }
+    },
+    "subtitle": "የቀጥታ የማህበረሰብ ቁጥሮች",
+    "range7d": "7 ቀናት",
+    "range30d": "30 ቀናት",
+    "range1y": "1 ዓመት",
+    "notEnoughHistory": "ለገበታ የሚበቃ ታሪክ ገና የለም",
+    "chartA11y": "የአባላት በጊዜ ሂደት ገበታ",
+    "loadFailed": "የቀጥታ ስታቲስቲክስ መጫን አልተቻለም።",
+    "livePlatformTotal": "የመድረኩ ቀጥታ ድምር",
+    "activeUsers": "ንቁ የተመዘገቡ ተጠቃሚዎች",
+    "newMembers": "አዲስ አባላት",
+    "membersOverTime": "አባላት በጊዜ ሂደት",
+    "lastDays": "ያለፉት {{count}} ቀናት",
+    "source": "ከDeHub ይፋዊ የስታቲስቲክስ መዳረሻ የተመዘገበ የመለያ ታሪክ። በዚህ ገበታ ውስጥ የተገመቱ እሴቶች አይጠቀሙም።"
   }
 }

@@ -3199,6 +3199,19 @@
       "wallTitle": "What people say",
       "wallNote": "published with permission",
       "anonymous": "A DeHub member"
-    }
+    },
+    "subtitle": "الأرقام الحية ديال المجتمع",
+    "range7d": "٧ يام",
+    "range30d": "٣٠ يوم",
+    "range1y": "عام",
+    "notEnoughHistory": "مازال ما كاين تاريخ كافي باش نرسمو رسم بياني",
+    "chartA11y": "رسم بياني ديال الأعضاء مع الوقت",
+    "loadFailed": "ما قدرناش نجيبو الإحصائيات الحية.",
+    "livePlatformTotal": "المجموع الحي ديال المنصة",
+    "activeUsers": "المستخدمين المسجلين النشيطين",
+    "newMembers": "أعضاء جداد",
+    "membersOverTime": "الأعضاء مع الوقت",
+    "lastDays": "آخر {{count}} يوم",
+    "source": "سجل الحسابات المسجل من نقطة الإحصائيات العامة ديال DeHub. ما كاينش شي قيم تقديرية فهاد الرسم."
   }
 }

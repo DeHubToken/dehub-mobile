@@ -3186,6 +3186,19 @@
       "wallTitle": "Ce spun oamenii",
       "wallNote": "publicat cu permisiune",
       "anonymous": "Un membru DeHub"
-    }
+    },
+    "subtitle": "Cifre live ale comunității",
+    "range7d": "7 zile",
+    "range30d": "30 de zile",
+    "range1y": "1 an",
+    "notEnoughHistory": "Încă nu există suficient istoric pentru un grafic",
+    "chartA11y": "Grafic al membrilor în timp",
+    "loadFailed": "Statisticile live nu au putut fi încărcate.",
+    "livePlatformTotal": "Total live al platformei",
+    "activeUsers": "Utilizatori înregistrați activi",
+    "newMembers": "Membri noi",
+    "membersOverTime": "Membri în timp",
+    "lastDays": "Ultimele {{count}} zile",
+    "source": "Istoric de conturi înregistrat din punctul final public de statistici al DeHub. În acest grafic nu sunt folosite valori estimate."
   }
 }

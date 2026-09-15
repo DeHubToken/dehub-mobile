@@ -3164,6 +3164,19 @@
       "wallTitle": "Hva folk sier",
       "wallNote": "publisert med tillatelse",
       "anonymous": "Et DeHub-medlem"
-    }
+    },
+    "subtitle": "Sanntidstall for fellesskapet",
+    "range7d": "7 dager",
+    "range30d": "30 dager",
+    "range1y": "1 år",
+    "notEnoughHistory": "Ikke nok historikk til et diagram ennå",
+    "chartA11y": "Diagram over medlemmer over tid",
+    "loadFailed": "Kunne ikke laste sanntidsstatistikk.",
+    "livePlatformTotal": "Sanntidstotal for plattformen",
+    "activeUsers": "Aktive registrerte brukere",
+    "newMembers": "Nye medlemmer",
+    "membersOverTime": "Medlemmer over tid",
+    "lastDays": "Siste {{count}} dager",
+    "source": "Registrert kontohistorikk fra DeHubs offentlige statistikkendepunkt. Ingen estimerte verdier brukes i dette diagrammet."
   }
 }

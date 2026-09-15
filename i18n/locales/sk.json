@@ -3343,6 +3343,19 @@
       "wallTitle": "Čo hovoria ľudia",
       "wallNote": "zverejnené so súhlasom",
       "anonymous": "Člen DeHub"
-    }
+    },
+    "subtitle": "Živé čísla komunity",
+    "range7d": "7 dní",
+    "range30d": "30 dní",
+    "range1y": "1 rok",
+    "notEnoughHistory": "Zatiaľ nie je dosť histórie na graf",
+    "chartA11y": "Graf členov v čase",
+    "loadFailed": "Živé štatistiky sa nepodarilo načítať.",
+    "livePlatformTotal": "Živý súčet platformy",
+    "activeUsers": "Aktívni registrovaní používatelia",
+    "newMembers": "Noví členovia",
+    "membersOverTime": "Členovia v čase",
+    "lastDays": "Posledných {{count}} dní",
+    "source": "Zaznamenaná história účtov z verejného štatistického endpointu DeHub. V tomto grafe sa nepoužívajú odhadované hodnoty."
   }
 }

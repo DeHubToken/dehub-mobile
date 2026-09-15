@@ -3225,6 +3225,19 @@
       "wallTitle": "Odamlar nima deyishadi",
       "wallNote": "ruxsat bilan nashr etilgan",
       "anonymous": "DeHub a'zosi"
-    }
+    },
+    "subtitle": "Hamjamiyatning jonli raqamlari",
+    "range7d": "7 kun",
+    "range30d": "30 kun",
+    "range1y": "1 yil",
+    "notEnoughHistory": "Diagramma uchun hali tarix yetarli emas",
+    "chartA11y": "Vaqt bo‘yicha a'zolar diagrammasi",
+    "loadFailed": "Jonli statistikani yuklab bo‘lmadi.",
+    "livePlatformTotal": "Platformaning jonli jami",
+    "activeUsers": "Faol ro‘yxatdan o‘tgan foydalanuvchilar",
+    "newMembers": "Yangi a'zolar",
+    "membersOverTime": "Vaqt bo‘yicha a'zolar",
+    "lastDays": "Oxirgi {{count}} kun",
+    "source": "DeHub'ning ommaviy statistika so‘nggi nuqtasidan yozib olingan hisob tarixi. Ushbu diagrammada taxminiy qiymatlar ishlatilmagan."
   }
 }

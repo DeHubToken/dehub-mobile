@@ -2939,6 +2939,19 @@
       "wallTitle": "ئەو شتانەی کە خەڵکی دەڵێن",
       "wallNote": "بڵاوکراوە بە مۆڵەت",
       "anonymous": "ئەندامێکی DeHub"
-    }
+    },
+    "subtitle": "Hejmarên zindî yên civakê",
+    "range7d": "7 roj",
+    "range30d": "30 roj",
+    "range1y": "1 sal",
+    "notEnoughHistory": "Ji bo xêzeyê hîn dîrok têrê nake",
+    "chartA11y": "Xêzeya endaman di dema de",
+    "loadFailed": "Statîstîkên zindî nehatin barkirin.",
+    "livePlatformTotal": "Tevahiya zindî ya platformê",
+    "activeUsers": "Bikarhênerên qeydkirî yên çalak",
+    "newMembers": "Endamên nû",
+    "membersOverTime": "Endam di dema de",
+    "lastDays": "{{count}} rojên dawî",
+    "source": "Dîroka hesaban a tomarkirî ji xala dawî ya statîstîkên giştî yên DeHub. Di vê xêzeyê de tu nirxên texmînî nayên bikaranîn."
   }
 }

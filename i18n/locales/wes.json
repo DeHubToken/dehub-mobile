@@ -3012,6 +3012,19 @@
       "wallTitle": "What people say",
       "wallNote": "published with permission",
       "anonymous": "A DeHub member"
-    }
+    },
+    "subtitle": "Live community numbers",
+    "range7d": "7 days",
+    "range30d": "30 days",
+    "range1y": "1 year",
+    "notEnoughHistory": "History never plenty enough to draw chart",
+    "chartA11y": "Chart of members over time",
+    "loadFailed": "We no fit load di live stats.",
+    "livePlatformTotal": "Live platform total",
+    "activeUsers": "Active registered users",
+    "newMembers": "New members",
+    "membersOverTime": "Members over time",
+    "lastDays": "Last {{count}} days",
+    "source": "Account history wey dem record from DeHub public stats endpoint. Dem no use any estimate for dis chart."
   }
 }
