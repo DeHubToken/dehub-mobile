@@ -25,6 +25,7 @@ import { BlurView } from "expo-blur";
 import Icon from "../ui/Icon";
 import type { IconName } from "../ui/Icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import VoiceNotePlayer from "./VoiceNotePlayer";
 import { getAvatarUrl } from "../../libs";
@@ -268,6 +269,7 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
   tokenId,
   canDelete,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
 
 
@@ -408,19 +410,19 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
         <Pressable>
           <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden py-1">
             {onReply && (
-              <ActionRow icon="MessageSquare" label="Reply" onPress={handleReply} />
+              <ActionRow icon="MessageSquare" label={t("communities.reply")} onPress={handleReply} />
             )}
 
             {comment.content ? (
-              <ActionRow icon="Copy" label="Copy" onPress={handleCopy} />
+              <ActionRow icon="Copy" label={t("common.copy")} onPress={handleCopy} />
             ) : null}
 
-            <ActionRow icon="Share2" label="Share" onPress={handleShare} />
+            <ActionRow icon="Share2" label={t("postOptions.share")} onPress={handleShare} />
 
             {onLike && !isOwnComment && (
               <ActionRow
                 icon="ThumbsUp"
-                label={liked ? "Unlike" : "Like"}
+                label={liked ? t("comments.unlike") : t("reactionInfo.labels.like")}
                 onPress={handleLike}
               />
             )}
@@ -429,16 +431,16 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
                 the author-only who-liked list. Un-liking a historical
                 self-like stays possible. */}
             {isOwnComment && liked && onLike && (
-              <ActionRow icon="ThumbsUp" label="Unlike" onPress={handleLike} />
+              <ActionRow icon="ThumbsUp" label={t("comments.unlike")} onPress={handleLike} />
             )}
             {isOwnComment && onShowLikers && (
-              <ActionRow icon="Users" label="Who liked" onPress={handleShowLikers} />
+              <ActionRow icon="Users" label={t("comments.whoLiked")} onPress={handleShowLikers} />
             )}
 
             {onDislike && (
               <ActionRow
                 icon="ThumbsDown"
-                label={disliked ? "Remove Dislike" : "Dislike"}
+                label={disliked ? t("comments.removeDislike") : t("comments.dislike")}
                 onPress={handleDislike}
               />
             )}
@@ -451,7 +453,7 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
             {isOwnComment && onAnchor && (
               <ActionRow
                 icon="Anchor"
-                label="Anchor to the top"
+                label={t("comments.anchorToTop")}
                 onPress={() => {
                   onClose();
                   setTimeout(() => onAnchor(), 150);
@@ -460,11 +462,11 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
             )}
 
             {isOwnComment && onEdit && !isMediaComment(comment) && (
-              <ActionRow icon="Pencil" label="Edit" onPress={handleEdit} />
+              <ActionRow icon="Pencil" label={t("common.edit")} onPress={handleEdit} />
             )}
 
             {canDelete && onDelete && (
-              <ActionRow icon="Trash2" label="Delete" onPress={handleDelete} destructive />
+              <ActionRow icon="Trash2" label={t("common.delete")} onPress={handleDelete} destructive />
             )}
           </View>
         </Pressable>

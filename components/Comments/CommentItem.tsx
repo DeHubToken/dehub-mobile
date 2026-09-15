@@ -10,6 +10,7 @@ import Animated, {
 import Icon from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
 import { useTranslation } from "../../hooks/useTranslation";
+import { useTranslation as useCopy } from "react-i18next";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import VoiceNotePlayer from "./VoiceNotePlayer";
@@ -224,6 +225,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     [user?.address, user?.displayName, user?.username, comment.address, postCreator],
   );
 
+  const { t } = useCopy();
   const timeAgo = formatShortTime(comment.createdAt);
 
   const translationTexts = useMemo(() => ({ content: comment.content || '' }), [comment.content]);
@@ -495,7 +497,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 the comment — the reader decides, this only removes the doubt. */}
             {isImpersonating && (
               <View
-                accessibilityLabel="This account is not the creator of this post"
+                accessibilityLabel={t("comments.notCreator")}
                 style={{
                   paddingHorizontal: 6,
                   paddingVertical: 2,
@@ -702,7 +704,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 onPress={handleReplyPress}
                 hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
                 accessibilityRole="button"
-                accessibilityLabel="Reply"
+                accessibilityLabel={t("communities.reply")}
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
                 <Icon name="MessageSquare" size={14} color={ICON_MUTED} strokeWidth={1.8} />
@@ -723,7 +725,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 onPress={() => onTip(comment)}
                 hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
                 accessibilityRole="button"
-                accessibilityLabel="Tip"
+                accessibilityLabel={t("comments.tip")}
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
                 <Icon name="Gem" size={14} color={ICON_MUTED} strokeWidth={1.8} />
@@ -739,7 +741,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               onPress={handleSharePress}
               hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
               accessibilityRole="button"
-              accessibilityLabel="Share"
+              accessibilityLabel={t("postOptions.share")}
             >
               <Icon name="Share2" size={14} color={ICON_MUTED} strokeWidth={1.8} />
             </Pressable>

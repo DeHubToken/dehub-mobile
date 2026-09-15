@@ -227,7 +227,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
 
 
             {inline && (
-              <Pressable onPress={requestClose} accessibilityRole="button" accessibilityLabel="Close comments" style={{ marginLeft: "auto", padding: 8 }}>
+              <Pressable onPress={requestClose} accessibilityRole="button" accessibilityLabel={t("comments.closeComments")} style={{ marginLeft: "auto", padding: 8 }}>
                 <Icon name="ChevronDown" size={22} color="#F9FBFF" />
               </Pressable>
             )}
