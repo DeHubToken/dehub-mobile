@@ -11,6 +11,7 @@ import * as Localization from 'expo-localization';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import en from './locales/en.json';
+import { fillMissingPluralForms } from './plural-fallback';
 
 const STORAGE_KEY = 'user-preferred-language';
 
@@ -257,6 +258,10 @@ export async function loadLanguage(lang: string): Promise<boolean> {
   try {
     const module = loader();
     i18n.addResourceBundle(lang, 'translation', module, true, true);
+    // Every plural category this language actually uses, filled from the
+    // strings the locale already carries. Without it Arabic count=2/3/11,
+    // Polish 2/5/22 and every other >2-form language render English.
+    fillMissingPluralForms(i18n, lang);
     return true;
   } catch (err) {
     console.warn(`[i18n] Failed to load locale "${lang}"`, err);
@@ -283,6 +288,10 @@ i18n.use(initReactI18next).init({
   interpolation: { escapeValue: false },
   compatibilityJSON: 'v4',
 });
+
+// English needs one pass too: governance.proposalCount and postInfo.owner ship
+// only an _other, so t(key, { count: 1 }) resolved to nothing.
+fillMissingPluralForms(i18n, 'en');
 
 // On startup, switch to saved or device language
 (async () => {
