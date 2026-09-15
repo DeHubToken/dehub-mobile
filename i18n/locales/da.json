@@ -3371,5 +3371,30 @@
     "tryBiometrics": "Prøv biometri på denne telefon",
     "unlockWithBiometrics": "Lås op med biometri",
     "confirmStartOver": "Bekræft, at du vil starte forfra med en ny tegnebog"
+  },
+  "transcript": {
+    "title": "Udskrift",
+    "loading": "Indlæser udskrift…",
+    "noRecording": "Ingen lydoptagelse tilgængelig",
+    "generating": "Genererer AI-udskrift",
+    "generatingHint": "Denne proces kan tage et minut afhængigt af optagelsens længde.",
+    "starting": "Transskriberer — det kan tage et øjeblik",
+    "startFailed": "Kunne ikke starte transskription",
+    "copied": "Udskrift kopieret til udklipsholder",
+    "quoteCopied": "Citat kopieret! Indsæt det i redigeringsfeltet.",
+    "privacyFailed": "Kunne ikke opdatere privatliv",
+    "privacySet": "Udskriftens privatliv indstillet til {{value}}",
+    "labelFailed": "Kunne ikke gemme etiket",
+    "speakerRenamed": "Talerens navn blev ændret",
+    "failed": "Transskription mislykkedes",
+    "retry": "Prøv transskription igen",
+    "translating": "Oversætter udskrift…",
+    "translationFailed": "Oversættelsen mislykkedes. Prøv et andet sprog.",
+    "quote": "Citat",
+    "renameSpeaker": "Omdøb taler",
+    "renameHint": "Skift talerens etiket i hele udskriften.",
+    "searchPlaceholder": "Søg i udskrift…",
+    "speakerPlaceholder": "Indtast talerens navn eller brugernavn",
+    "detectedLanguage": "Registreret sprog: {{lang}}"
   }
 }

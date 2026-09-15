@@ -3351,5 +3351,30 @@
     "tryBiometrics": "Bu telefonda biometrikanı sınayın",
     "unlockWithBiometrics": "Biometrika ilə aç",
     "confirmStartOver": "Yeni cüzdanla yenidən başlamaq istədiyinizi təsdiqləyin"
+  },
+  "transcript": {
+    "title": "Transkript",
+    "loading": "Transkript yüklənir…",
+    "noRecording": "Səs yazısı mövcud deyil",
+    "generating": "Süni intellekt transkripti hazırlanır",
+    "generatingHint": "Bu proses səhnə yazısının uzunluğundan asılı olaraq bir dəqiqə çəkə bilər.",
+    "starting": "Transkript hazırlanır — bir az vaxt ala bilər",
+    "startFailed": "Transkripsiya başladıla bilmədi",
+    "copied": "Transkript mübadilə buferinə kopyalandı",
+    "quoteCopied": "Sitat kopyalandı! Onu redaktora yapışdırın.",
+    "privacyFailed": "Məxfilik yenilənə bilmədi",
+    "privacySet": "Transkript məxfiliyi {{value}} olaraq təyin edildi",
+    "labelFailed": "Etiket saxlanıla bilmədi",
+    "speakerRenamed": "Danışanın adı uğurla dəyişdirildi",
+    "failed": "Transkripsiya alınmadı",
+    "retry": "Transkripsiyanı yenidən sına",
+    "translating": "Transkript tərcümə olunur…",
+    "translationFailed": "Tərcümə alınmadı. Başqa dil sınayın.",
+    "quote": "Sitat",
+    "renameSpeaker": "Danışanın adını dəyiş",
+    "renameHint": "Danışan etiketini bu transkriptin hər yerində dəyişin.",
+    "searchPlaceholder": "Transkriptdə axtar…",
+    "speakerPlaceholder": "Danışanın adını və ya istifadəçi adını daxil edin",
+    "detectedLanguage": "Aşkarlanan dil: {{lang}}"
   }
 }

@@ -3435,5 +3435,30 @@
     "tryBiometrics": "Wypróbuj biometrię na tym telefonie",
     "unlockWithBiometrics": "Odblokuj biometrią",
     "confirmStartOver": "Potwierdź, że chcesz zacząć od nowa z nowym portfelem"
+  },
+  "transcript": {
+    "title": "Transkrypcja",
+    "loading": "Ładowanie transkrypcji…",
+    "noRecording": "Brak dostępnego nagrania audio",
+    "generating": "Generowanie transkrypcji AI",
+    "generatingHint": "Ten proces może potrwać minutę w zależności od długości nagrania.",
+    "starting": "Trwa transkrypcja — może to chwilę potrwać",
+    "startFailed": "Nie udało się rozpocząć transkrypcji",
+    "copied": "Transkrypcja skopiowana do schowka",
+    "quoteCopied": "Cytat skopiowany! Wklej go w edytorze.",
+    "privacyFailed": "Nie udało się zaktualizować prywatności",
+    "privacySet": "Prywatność transkrypcji ustawiona na {{value}}",
+    "labelFailed": "Nie udało się zapisać etykiety",
+    "speakerRenamed": "Nazwa mówcy została zmieniona",
+    "failed": "Transkrypcja nie powiodła się",
+    "retry": "Ponów transkrypcję",
+    "translating": "Tłumaczenie transkrypcji…",
+    "translationFailed": "Tłumaczenie nie powiodło się. Spróbuj innego języka.",
+    "quote": "Cytat",
+    "renameSpeaker": "Zmień nazwę mówcy",
+    "renameHint": "Zmień etykietę mówcy w całej transkrypcji.",
+    "searchPlaceholder": "Szukaj w transkrypcji…",
+    "speakerPlaceholder": "Wpisz imię lub nazwę użytkownika mówcy",
+    "detectedLanguage": "Wykryty język: {{lang}}"
   }
 }

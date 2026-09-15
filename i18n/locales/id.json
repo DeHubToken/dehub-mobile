@@ -3417,5 +3417,30 @@
     "tryBiometrics": "Coba biometrik di ponsel ini",
     "unlockWithBiometrics": "Buka dengan biometrik",
     "confirmStartOver": "Konfirmasi bahwa kamu ingin mulai dari awal dengan dompet baru"
+  },
+  "transcript": {
+    "title": "Transkrip",
+    "loading": "Memuat transkrip…",
+    "noRecording": "Tidak ada rekaman audio",
+    "generating": "Membuat transkrip AI",
+    "generatingHint": "Proses ini bisa memakan waktu semenit tergantung panjang rekaman.",
+    "starting": "Menyalin — mungkin butuh sebentar",
+    "startFailed": "Gagal memulai transkripsi",
+    "copied": "Transkrip disalin ke papan klip",
+    "quoteCopied": "Kutipan disalin! Tempel di komposer.",
+    "privacyFailed": "Tidak dapat memperbarui privasi",
+    "privacySet": "Privasi transkrip diatur ke {{value}}",
+    "labelFailed": "Tidak dapat menyimpan label",
+    "speakerRenamed": "Nama pembicara berhasil diubah",
+    "failed": "Transkripsi gagal",
+    "retry": "Coba transkripsi lagi",
+    "translating": "Menerjemahkan transkrip…",
+    "translationFailed": "Terjemahan gagal. Coba bahasa lain.",
+    "quote": "Kutipan",
+    "renameSpeaker": "Ubah nama pembicara",
+    "renameHint": "Ubah label pembicara di seluruh transkrip ini.",
+    "searchPlaceholder": "Cari di transkrip…",
+    "speakerPlaceholder": "Masukkan nama atau handel pembicara",
+    "detectedLanguage": "Bahasa terdeteksi: {{lang}}"
   }
 }

@@ -3357,5 +3357,30 @@
     "tryBiometrics": "Gbìyànjú biometrics lórí fóònù yìí",
     "unlockWithBiometrics": "Ṣí pẹ̀lú biometrics",
     "confirmStartOver": "Jẹ́rìí pé o fẹ́ bẹ̀rẹ̀ láti ìbẹ̀rẹ̀ pẹ̀lú àpò owó tuntun"
+  },
+  "transcript": {
+    "title": "Àkọsílẹ̀ ọ̀rọ̀",
+    "loading": "Ń gbé àkọsílẹ̀ wọlé…",
+    "noRecording": "Kò sí ìgbàsílẹ̀ ohùn",
+    "generating": "Ń ṣẹ̀dá àkọsílẹ̀ AI",
+    "generatingHint": "Ìlànà yìí lè gba ìṣẹ́jú kan gẹ́gẹ́ bí gígùn ìgbàsílẹ̀ náà.",
+    "starting": "Ń kọ sílẹ̀ — ó lè gba àkókò díẹ̀",
+    "startFailed": "Kò lè bẹ̀rẹ̀ àkọsílẹ̀",
+    "copied": "A ti da àkọsílẹ̀ náà kọ sí àpò ìdàkọ",
+    "quoteCopied": "A ti da àyọlò náà kọ! Lẹ̀ ẹ́ mọ́ ojú ìkọ̀wé.",
+    "privacyFailed": "Kò lè ṣàtúnṣe àṣírí",
+    "privacySet": "A ti ṣètò àṣírí àkọsílẹ̀ sí {{value}}",
+    "labelFailed": "Kò lè fi àmì pamọ́",
+    "speakerRenamed": "A ti yí orúkọ agbọ̀rọ̀sọ padà",
+    "failed": "Àkọsílẹ̀ kùnà",
+    "retry": "Gbìyànjú àkọsílẹ̀ lẹ́ẹ̀kan sí i",
+    "translating": "Ń túmọ̀ àkọsílẹ̀…",
+    "translationFailed": "Ìtumọ̀ kùnà. Gbìyànjú èdè mìíràn.",
+    "quote": "Àyọlò",
+    "renameSpeaker": "Yí orúkọ agbọ̀rọ̀sọ padà",
+    "renameHint": "Yí àmì agbọ̀rọ̀sọ padà jákèjádò àkọsílẹ̀ yìí.",
+    "searchPlaceholder": "Wá nínú àkọsílẹ̀…",
+    "speakerPlaceholder": "Tẹ orúkọ tàbí àmì agbọ̀rọ̀sọ sí i",
+    "detectedLanguage": "Èdè tí a rí: {{lang}}"
   }
 }

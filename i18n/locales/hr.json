@@ -3367,5 +3367,30 @@
     "tryBiometrics": "Isprobaj biometriju na ovom telefonu",
     "unlockWithBiometrics": "Otključaj biometrijom",
     "confirmStartOver": "Potvrdi da želiš početi ispočetka s novim novčanikom"
+  },
+  "transcript": {
+    "title": "Transkript",
+    "loading": "Učitavanje transkripta…",
+    "noRecording": "Nema dostupne audiosnimke",
+    "generating": "Generiranje AI transkripta",
+    "generatingHint": "Ovaj postupak može potrajati minutu, ovisno o duljini snimke.",
+    "starting": "Transkribiranje — može potrajati trenutak",
+    "startFailed": "Transkripciju nije moguće pokrenuti",
+    "copied": "Transkript kopiran u međuspremnik",
+    "quoteCopied": "Citat kopiran! Zalijepite ga u uređivač.",
+    "privacyFailed": "Privatnost nije moguće ažurirati",
+    "privacySet": "Privatnost transkripta postavljena na {{value}}",
+    "labelFailed": "Oznaku nije moguće spremiti",
+    "speakerRenamed": "Ime govornika uspješno promijenjeno",
+    "failed": "Transkripcija nije uspjela",
+    "retry": "Ponovi transkripciju",
+    "translating": "Prevođenje transkripta…",
+    "translationFailed": "Prijevod nije uspio. Pokušajte s drugim jezikom.",
+    "quote": "Citat",
+    "renameSpeaker": "Preimenuj govornika",
+    "renameHint": "Promijenite oznaku govornika u cijelom transkriptu.",
+    "searchPlaceholder": "Pretraži transkript…",
+    "speakerPlaceholder": "Unesite ime ili korisničko ime govornika",
+    "detectedLanguage": "Otkriveni jezik: {{lang}}"
   }
 }

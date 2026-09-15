@@ -3317,5 +3317,30 @@
     "tryBiometrics": "په دې ټیلیفون کې بایومیټریک هڅه وکړئ",
     "unlockWithBiometrics": "په بایومیټریک خلاص کړئ",
     "confirmStartOver": "تایید کړئ چې غواړئ له نوې کیسې سره بیا پیل وکړئ"
+  },
+  "transcript": {
+    "title": "لیکنه",
+    "loading": "لیکنه بارېږي…",
+    "noRecording": "هیڅ غږیز ثبت شتون نلري",
+    "generating": "د AI لیکنه جوړیږي",
+    "generatingHint": "دا بهیر ممکن د سټیج ثبت د اوږدوالي سره سم یوه دقیقه ونیسي.",
+    "starting": "لیکل کیږي — لږ وخت نیولی شي",
+    "startFailed": "لیکنه پیل نه شوه",
+    "copied": "لیکنه کلپ بورډ ته کاپي شوه",
+    "quoteCopied": "نقل قول کاپي شو! په لیکونکي کې یې پیسټ کړئ.",
+    "privacyFailed": "محرمیت تازه نه شوه",
+    "privacySet": "د لیکنې محرمیت {{value}} ته وټاکل شو",
+    "labelFailed": "نښه خوندي نه شوه",
+    "speakerRenamed": "د ویناوال نوم په بریالیتوب سره بدل شو",
+    "failed": "لیکنه ناکامه شوه",
+    "retry": "لیکنه بیا هڅه کړئ",
+    "translating": "لیکنه ژباړل کیږي…",
+    "translationFailed": "ژباړه ناکامه شوه. بله ژبه هڅه کړئ.",
+    "quote": "نقل قول",
+    "renameSpeaker": "د ویناوال نوم بدل کړئ",
+    "renameHint": "په ټوله لیکنه کې د ویناوال نښه بدله کړئ.",
+    "searchPlaceholder": "په لیکنه کې ولټوئ…",
+    "speakerPlaceholder": "د ویناوال نوم یا پېژندنوم ولیکئ",
+    "detectedLanguage": "موندل شوې ژبه: {{lang}}"
   }
 }

@@ -3380,5 +3380,30 @@
     "tryBiometrics": "Încearcă biometria pe acest telefon",
     "unlockWithBiometrics": "Deblochează cu biometrie",
     "confirmStartOver": "Confirmă că vrei să începi din nou cu un portofel nou"
+  },
+  "transcript": {
+    "title": "Transcriere",
+    "loading": "Se încarcă transcrierea…",
+    "noRecording": "Nicio înregistrare audio disponibilă",
+    "generating": "Se generează transcrierea AI",
+    "generatingHint": "Acest proces poate dura un minut, în funcție de lungimea înregistrării.",
+    "starting": "Se transcrie — poate dura un moment",
+    "startFailed": "Transcrierea nu a putut fi pornită",
+    "copied": "Transcrierea a fost copiată în clipboard",
+    "quoteCopied": "Citat copiat! Lipește-l în editor.",
+    "privacyFailed": "Confidențialitatea nu a putut fi actualizată",
+    "privacySet": "Confidențialitatea transcrierii setată la {{value}}",
+    "labelFailed": "Eticheta nu a putut fi salvată",
+    "speakerRenamed": "Numele vorbitorului a fost schimbat",
+    "failed": "Transcrierea a eșuat",
+    "retry": "Reîncearcă transcrierea",
+    "translating": "Se traduce transcrierea…",
+    "translationFailed": "Traducerea a eșuat. Încearcă altă limbă.",
+    "quote": "Citat",
+    "renameSpeaker": "Redenumește vorbitorul",
+    "renameHint": "Schimbă eticheta vorbitorului în toată transcrierea.",
+    "searchPlaceholder": "Caută în transcriere…",
+    "speakerPlaceholder": "Introdu numele sau identificatorul vorbitorului",
+    "detectedLanguage": "Limbă detectată: {{lang}}"
   }
 }

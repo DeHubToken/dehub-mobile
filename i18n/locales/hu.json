@@ -3371,5 +3371,30 @@
     "tryBiometrics": "Próbáld a biometriát ezen a telefonon",
     "unlockWithBiometrics": "Feloldás biometriával",
     "confirmStartOver": "Erősítsd meg, hogy új tárcával szeretnéd újrakezdeni"
+  },
+  "transcript": {
+    "title": "Átirat",
+    "loading": "Átirat betöltése…",
+    "noRecording": "Nincs elérhető hangfelvétel",
+    "generating": "AI-átirat készítése",
+    "generatingHint": "A folyamat a felvétel hosszától függően eltarthat egy percig.",
+    "starting": "Átírás folyamatban — eltarthat egy pillanatig",
+    "startFailed": "Az átírás nem indítható el",
+    "copied": "Az átirat a vágólapra másolva",
+    "quoteCopied": "Idézet másolva! Illeszd be a szerkesztőbe.",
+    "privacyFailed": "Az adatvédelem nem frissíthető",
+    "privacySet": "Az átirat adatvédelme: {{value}}",
+    "labelFailed": "A címke nem menthető",
+    "speakerRenamed": "A beszélő neve sikeresen módosult",
+    "failed": "Az átírás nem sikerült",
+    "retry": "Átírás újra",
+    "translating": "Átirat fordítása…",
+    "translationFailed": "A fordítás nem sikerült. Próbálj másik nyelvet.",
+    "quote": "Idézet",
+    "renameSpeaker": "Beszélő átnevezése",
+    "renameHint": "Módosítsd a beszélő címkéjét a teljes átiratban.",
+    "searchPlaceholder": "Keresés az átiratban…",
+    "speakerPlaceholder": "Add meg a beszélő nevét vagy azonosítóját",
+    "detectedLanguage": "Felismert nyelv: {{lang}}"
   }
 }

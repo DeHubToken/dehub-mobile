@@ -3429,5 +3429,30 @@
     "tryBiometrics": "Bu telefonda biyometriyi dene",
     "unlockWithBiometrics": "Biyometriyle kilidi aç",
     "confirmStartOver": "Yeni bir cüzdanla baştan başlamak istediğini onayla"
+  },
+  "transcript": {
+    "title": "Döküm",
+    "loading": "Döküm yükleniyor…",
+    "noRecording": "Kullanılabilir ses kaydı yok",
+    "generating": "Yapay zekâ dökümü oluşturuluyor",
+    "generatingHint": "Bu işlem kaydın uzunluğuna göre bir dakika sürebilir.",
+    "starting": "Döküm çıkarılıyor — biraz sürebilir",
+    "startFailed": "Döküm başlatılamadı",
+    "copied": "Döküm panoya kopyalandı",
+    "quoteCopied": "Alıntı kopyalandı! Düzenleyiciye yapıştırın.",
+    "privacyFailed": "Gizlilik güncellenemedi",
+    "privacySet": "Döküm gizliliği {{value}} olarak ayarlandı",
+    "labelFailed": "Etiket kaydedilemedi",
+    "speakerRenamed": "Konuşmacının adı değiştirildi",
+    "failed": "Döküm başarısız oldu",
+    "retry": "Dökümü yeniden dene",
+    "translating": "Döküm çevriliyor…",
+    "translationFailed": "Çeviri başarısız oldu. Başka bir dil deneyin.",
+    "quote": "Alıntı",
+    "renameSpeaker": "Konuşmacıyı yeniden adlandır",
+    "renameHint": "Konuşmacı etiketini bu dökümün tamamında değiştirin.",
+    "searchPlaceholder": "Dökümde ara…",
+    "speakerPlaceholder": "Konuşmacının adını veya kullanıcı adını girin",
+    "detectedLanguage": "Algılanan dil: {{lang}}"
   }
 }

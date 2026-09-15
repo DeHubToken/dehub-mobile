@@ -3393,5 +3393,30 @@
     "tryBiometrics": "جرب البصمة ف هاد التيليفون",
     "unlockWithBiometrics": "حل بالبصمة",
     "confirmStartOver": "أكد بللي بغيتي تبدا من جديد بمحفظة جديدة"
+  },
+  "transcript": {
+    "title": "النص المكتوب",
+    "loading": "كيحمل النص…",
+    "noRecording": "ما كاينش تسجيل صوتي",
+    "generating": "كيدير النص بالذكاء الاصطناعي",
+    "generatingHint": "هاد العملية يمكن تاخذ دقيقة على حساب طول التسجيل ديال المنصة.",
+    "starting": "كيدير النص — يمكن ياخذ شوية",
+    "startFailed": "ما قدرش يبدا التفريغ",
+    "copied": "تنسخ النص فالحافظة",
+    "quoteCopied": "تنسخ الاقتباس! لصقو فالمحرر.",
+    "privacyFailed": "ما قدرش يحدّث الخصوصية",
+    "privacySet": "خصوصية النص ولات {{value}}",
+    "labelFailed": "ما قدرش يسجل السمية",
+    "speakerRenamed": "تبدل سمية المتحدث بنجاح",
+    "failed": "فشل التفريغ",
+    "retry": "عاود التفريغ",
+    "translating": "كيترجم النص…",
+    "translationFailed": "فشلات الترجمة. جرب لغة أخرى.",
+    "quote": "اقتباس",
+    "renameSpeaker": "بدل سمية المتحدث",
+    "renameHint": "بدل سمية المتحدث فهاد النص كامل.",
+    "searchPlaceholder": "قلب فالنص…",
+    "speakerPlaceholder": "دخل سمية المتحدث ولا المعرّف",
+    "detectedLanguage": "اللغة لي تلقات: {{lang}}"
   }
 }

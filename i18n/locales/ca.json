@@ -3367,5 +3367,30 @@
     "tryBiometrics": "Prova la biometria en aquest telèfon",
     "unlockWithBiometrics": "Desbloqueja amb biometria",
     "confirmStartOver": "Confirma que vols tornar a començar amb una cartera nova"
+  },
+  "transcript": {
+    "title": "Transcripció",
+    "loading": "S'està carregant la transcripció…",
+    "noRecording": "No hi ha cap gravació d'àudio disponible",
+    "generating": "S'està generant la transcripció amb IA",
+    "generatingHint": "Aquest procés pot trigar un minut segons la durada de la gravació.",
+    "starting": "S'està transcrivint — pot trigar un moment",
+    "startFailed": "No s'ha pogut iniciar la transcripció",
+    "copied": "Transcripció copiada al porta-retalls",
+    "quoteCopied": "Cita copiada! Enganxa-la al redactor.",
+    "privacyFailed": "No s'ha pogut actualitzar la privadesa",
+    "privacySet": "Privadesa de la transcripció establerta a {{value}}",
+    "labelFailed": "No s'ha pogut desar l'etiqueta",
+    "speakerRenamed": "S'ha canviat el nom de l'orador correctament",
+    "failed": "La transcripció ha fallat",
+    "retry": "Torna a provar la transcripció",
+    "translating": "S'està traduint la transcripció…",
+    "translationFailed": "La traducció ha fallat. Prova un altre idioma.",
+    "quote": "Cita",
+    "renameSpeaker": "Canvia el nom de l'orador",
+    "renameHint": "Canvia l'etiqueta de l'orador a tota la transcripció.",
+    "searchPlaceholder": "Cerca a la transcripció…",
+    "speakerPlaceholder": "Introdueix el nom o l'àlies de l'orador",
+    "detectedLanguage": "Idioma detectat: {{lang}}"
   }
 }

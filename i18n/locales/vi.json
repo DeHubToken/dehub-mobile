@@ -3455,5 +3455,30 @@
     "tryBiometrics": "Thử sinh trắc học trên điện thoại này",
     "unlockWithBiometrics": "Mở khóa bằng sinh trắc học",
     "confirmStartOver": "Xác nhận rằng bạn muốn bắt đầu lại với một ví mới"
+  },
+  "transcript": {
+    "title": "Bản ghi lời nói",
+    "loading": "Đang tải bản ghi lời nói…",
+    "noRecording": "Không có bản ghi âm",
+    "generating": "Đang tạo bản ghi bằng AI",
+    "generatingHint": "Quá trình này có thể mất một phút tùy độ dài bản ghi.",
+    "starting": "Đang chuyển thành văn bản — có thể mất một lát",
+    "startFailed": "Không thể bắt đầu chuyển thành văn bản",
+    "copied": "Đã sao chép bản ghi vào bộ nhớ tạm",
+    "quoteCopied": "Đã sao chép trích dẫn! Dán vào trình soạn thảo.",
+    "privacyFailed": "Không thể cập nhật quyền riêng tư",
+    "privacySet": "Đã đặt quyền riêng tư của bản ghi thành {{value}}",
+    "labelFailed": "Không thể lưu nhãn",
+    "speakerRenamed": "Đã đổi tên người nói",
+    "failed": "Chuyển thành văn bản thất bại",
+    "retry": "Thử chuyển thành văn bản lại",
+    "translating": "Đang dịch bản ghi…",
+    "translationFailed": "Dịch thất bại. Hãy thử ngôn ngữ khác.",
+    "quote": "Trích dẫn",
+    "renameSpeaker": "Đổi tên người nói",
+    "renameHint": "Đổi nhãn người nói trong toàn bộ bản ghi này.",
+    "searchPlaceholder": "Tìm trong bản ghi…",
+    "speakerPlaceholder": "Nhập tên hoặc handle của người nói",
+    "detectedLanguage": "Ngôn ngữ phát hiện: {{lang}}"
   }
 }
