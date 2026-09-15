@@ -3508,5 +3508,28 @@
     "subscribe": "订阅",
     "subscriberCount_one": "{{count}} 位订阅者",
     "subscriberCount_other": "{{count}} 位订阅者"
+  },
+  "live": {
+    "notSet": "未设置",
+    "liveChat": "直播聊天",
+    "pickDate": "选择日期",
+    "pickTime": "选择时间",
+    "minTip": "最低打赏"
+  },
+  "liveShop": {
+    "title": "在本场直播购物",
+    "onAir": "直播中",
+    "lastOne": "最后一件",
+    "stockLeft": "还剩 {{count}} 件",
+    "walletNotReady": "钱包尚未就绪",
+    "gettingPrice": "正在获取价格…",
+    "ownListing": "这是你自己的商品。",
+    "shippingAddress": "收货地址",
+    "addressPlaceholder": "姓名、街道、城市、邮编、国家",
+    "noteToSeller": "给卖家的留言（可选）",
+    "notePlaceholder": "尺码、颜色、其他要求…",
+    "confirmingPayment": "正在确认付款…",
+    "retryConfirmation": "重试确认",
+    "buyNow": "立即购买"
   }
 }

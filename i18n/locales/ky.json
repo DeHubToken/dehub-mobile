@@ -3550,5 +3550,28 @@
     "subscribe": "Жазылуу",
     "subscriberCount_one": "{{count}} жазылуучу",
     "subscriberCount_other": "{{count}} жазылуучу"
+  },
+  "live": {
+    "notSet": "Коюлган эмес",
+    "liveChat": "Түз чат",
+    "pickDate": "Күндү тандаңыз",
+    "pickTime": "Убакытты тандаңыз",
+    "minTip": "Эң аз чай акча"
+  },
+  "liveShop": {
+    "title": "Бул эфирден сатып алыңыз",
+    "onAir": "Эфирде",
+    "lastOne": "Акыркысы",
+    "stockLeft": "{{count}} калды",
+    "walletNotReady": "Капчык азырынча даяр эмес",
+    "gettingPrice": "Баа алынууда…",
+    "ownListing": "Бул сиздин өз жарнамаңыз.",
+    "shippingAddress": "Жеткирүү дареги",
+    "addressPlaceholder": "Аты, көчө, шаар, почта индекси, өлкө",
+    "noteToSeller": "Сатуучуга эскертүү (милдеттүү эмес)",
+    "notePlaceholder": "Өлчөмү, түсү, дагы бир нерсе…",
+    "confirmingPayment": "Төлөм ырасталууда…",
+    "retryConfirmation": "Ырастоону кайталоо",
+    "buyNow": "Азыр сатып алуу"
   }
 }

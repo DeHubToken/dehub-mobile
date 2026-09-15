@@ -3561,5 +3561,28 @@
     "subscribe": "Abonnér",
     "subscriberCount_one": "{{count}} abonnent",
     "subscriberCount_other": "{{count}} abonnenter"
+  },
+  "live": {
+    "notSet": "Ikke angivet",
+    "liveChat": "Livechat",
+    "pickDate": "Vælg dato",
+    "pickTime": "Vælg tidspunkt",
+    "minTip": "Min. drikkepenge"
+  },
+  "liveShop": {
+    "title": "Shop fra denne stream",
+    "onAir": "På luften",
+    "lastOne": "Sidste stk.",
+    "stockLeft": "{{count}} tilbage",
+    "walletNotReady": "Tegnebogen er ikke klar endnu",
+    "gettingPrice": "Henter pris…",
+    "ownListing": "Det er din egen annonce.",
+    "shippingAddress": "Leveringsadresse",
+    "addressPlaceholder": "Navn, gade, by, postnummer, land",
+    "noteToSeller": "Besked til sælger (valgfri)",
+    "notePlaceholder": "Størrelse, farve, alt andet…",
+    "confirmingPayment": "Bekræfter betaling…",
+    "retryConfirmation": "Prøv bekræftelsen igen",
+    "buyNow": "Køb nu"
   }
 }

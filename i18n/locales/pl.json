@@ -3625,5 +3625,28 @@
     "subscribe": "Subskrybuj",
     "subscriberCount_one": "{{count}} subskrybent",
     "subscriberCount_other": "{{count}} subskrybentów"
+  },
+  "live": {
+    "notSet": "Nie ustawiono",
+    "liveChat": "Czat na żywo",
+    "pickDate": "Wybierz datę",
+    "pickTime": "Wybierz godzinę",
+    "minTip": "Min. napiwek"
+  },
+  "liveShop": {
+    "title": "Kupuj w tej transmisji",
+    "onAir": "Na antenie",
+    "lastOne": "Ostatnia sztuka",
+    "stockLeft": "Zostało {{count}}",
+    "walletNotReady": "Portfel nie jest jeszcze gotowy",
+    "gettingPrice": "Pobieranie ceny…",
+    "ownListing": "To twoja własna oferta.",
+    "shippingAddress": "Adres dostawy",
+    "addressPlaceholder": "Imię, ulica, miasto, kod pocztowy, kraj",
+    "noteToSeller": "Notatka dla sprzedawcy (opcjonalnie)",
+    "notePlaceholder": "Rozmiar, kolor, coś jeszcze…",
+    "confirmingPayment": "Potwierdzanie płatności…",
+    "retryConfirmation": "Ponów potwierdzenie",
+    "buyNow": "Kup teraz"
   }
 }

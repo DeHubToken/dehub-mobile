@@ -3557,5 +3557,28 @@
     "subscribe": "Jisajili",
     "subscriberCount_one": "Mfuatiliaji {{count}}",
     "subscriberCount_other": "Wafuatiliaji {{count}}"
+  },
+  "live": {
+    "notSet": "Haijawekwa",
+    "liveChat": "Gumzo la moja kwa moja",
+    "pickDate": "Chagua tarehe",
+    "pickTime": "Chagua saa",
+    "minTip": "Bahashishi ya chini"
+  },
+  "liveShop": {
+    "title": "Nunua kutoka matangazo haya",
+    "onAir": "Hewani",
+    "lastOne": "Wa mwisho",
+    "stockLeft": "Zimebaki {{count}}",
+    "walletNotReady": "Pochi bado haijawa tayari",
+    "gettingPrice": "Inapata bei…",
+    "ownListing": "Hii ni orodha yako mwenyewe.",
+    "shippingAddress": "Anwani ya usafirishaji",
+    "addressPlaceholder": "Jina, mtaa, jiji, msimbo wa posta, nchi",
+    "noteToSeller": "Ujumbe kwa muuzaji (si lazima)",
+    "notePlaceholder": "Ukubwa, rangi, kingine chochote…",
+    "confirmingPayment": "Inathibitisha malipo…",
+    "retryConfirmation": "Jaribu kuthibitisha tena",
+    "buyNow": "Nunua sasa"
   }
 }

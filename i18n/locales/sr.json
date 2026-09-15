@@ -3320,5 +3320,28 @@
     "subscribe": "Претплати се",
     "subscriberCount_one": "{{count}} претплатник",
     "subscriberCount_other": "{{count}} претплатника"
+  },
+  "live": {
+    "notSet": "Није постављено",
+    "liveChat": "Ћаскање уживо",
+    "pickDate": "Изабери датум",
+    "pickTime": "Изабери време",
+    "minTip": "Мин. напојница"
+  },
+  "liveShop": {
+    "title": "Куповина из овог преноса",
+    "onAir": "У етру",
+    "lastOne": "Последњи",
+    "stockLeft": "Остало {{count}}",
+    "walletNotReady": "Новчаник још није спреман",
+    "gettingPrice": "Преузимање цене…",
+    "ownListing": "Ово је ваш сопствени оглас.",
+    "shippingAddress": "Адреса за доставу",
+    "addressPlaceholder": "Име, улица, град, поштански број, држава",
+    "noteToSeller": "Напомена продавцу (необавезно)",
+    "notePlaceholder": "Величина, боја, било шта друго…",
+    "confirmingPayment": "Потврђивање плаћања…",
+    "retryConfirmation": "Понови потврду",
+    "buyNow": "Купи одмах"
   }
 }

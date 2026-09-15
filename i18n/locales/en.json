@@ -3627,5 +3627,28 @@
     "subscribe": "Subscribe",
     "subscriberCount_one": "{{count}} subscriber",
     "subscriberCount_other": "{{count}} subscribers"
+  },
+  "live": {
+    "notSet": "Not set",
+    "liveChat": "Live Chat",
+    "pickDate": "Pick Date",
+    "pickTime": "Pick Time",
+    "minTip": "Min Tip"
+  },
+  "liveShop": {
+    "title": "Shop this stream",
+    "onAir": "On air",
+    "lastOne": "Last one",
+    "stockLeft": "{{count}} left",
+    "walletNotReady": "Wallet is not ready yet",
+    "gettingPrice": "Getting price…",
+    "ownListing": "This is your own listing.",
+    "shippingAddress": "Shipping address",
+    "addressPlaceholder": "Name, street, city, postcode, country",
+    "noteToSeller": "Note to seller (optional)",
+    "notePlaceholder": "Size, colour, anything else…",
+    "confirmingPayment": "Confirming payment…",
+    "retryConfirmation": "Retry confirmation",
+    "buyNow": "Buy now"
   }
 }

@@ -3626,5 +3626,28 @@
     "subscribe": "Abonnieren",
     "subscriberCount_one": "{{count}} Abonnent",
     "subscriberCount_other": "{{count}} Abonnenten"
+  },
+  "live": {
+    "notSet": "Nicht festgelegt",
+    "liveChat": "Live-Chat",
+    "pickDate": "Datum wählen",
+    "pickTime": "Uhrzeit wählen",
+    "minTip": "Min. Trinkgeld"
+  },
+  "liveShop": {
+    "title": "In diesem Stream einkaufen",
+    "onAir": "Auf Sendung",
+    "lastOne": "Letztes Stück",
+    "stockLeft": "Noch {{count}}",
+    "walletNotReady": "Die Wallet ist noch nicht bereit",
+    "gettingPrice": "Preis wird abgerufen…",
+    "ownListing": "Das ist dein eigenes Angebot.",
+    "shippingAddress": "Lieferadresse",
+    "addressPlaceholder": "Name, Straße, Stadt, PLZ, Land",
+    "noteToSeller": "Notiz an den Verkäufer (optional)",
+    "notePlaceholder": "Größe, Farbe, sonstige Wünsche…",
+    "confirmingPayment": "Zahlung wird bestätigt…",
+    "retryConfirmation": "Bestätigung wiederholen",
+    "buyNow": "Jetzt kaufen"
   }
 }

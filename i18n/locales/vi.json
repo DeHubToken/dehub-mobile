@@ -3645,5 +3645,28 @@
     "subscribe": "Đăng ký",
     "subscriberCount_one": "{{count}} người đăng ký",
     "subscriberCount_other": "{{count}} người đăng ký"
+  },
+  "live": {
+    "notSet": "Chưa đặt",
+    "liveChat": "Trò chuyện trực tiếp",
+    "pickDate": "Chọn ngày",
+    "pickTime": "Chọn giờ",
+    "minTip": "Tiền boa tối thiểu"
+  },
+  "liveShop": {
+    "title": "Mua sắm từ buổi phát này",
+    "onAir": "Đang phát",
+    "lastOne": "Cái cuối cùng",
+    "stockLeft": "Còn {{count}}",
+    "walletNotReady": "Ví chưa sẵn sàng",
+    "gettingPrice": "Đang lấy giá…",
+    "ownListing": "Đây là tin đăng của chính bạn.",
+    "shippingAddress": "Địa chỉ giao hàng",
+    "addressPlaceholder": "Tên, đường, thành phố, mã bưu chính, quốc gia",
+    "noteToSeller": "Ghi chú cho người bán (tùy chọn)",
+    "notePlaceholder": "Kích cỡ, màu sắc, yêu cầu khác…",
+    "confirmingPayment": "Đang xác nhận thanh toán…",
+    "retryConfirmation": "Thử xác nhận lại",
+    "buyNow": "Mua ngay"
   }
 }

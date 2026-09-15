@@ -3583,5 +3583,28 @@
     "subscribe": "اشترك",
     "subscriberCount_one": "{{count}} مشترك",
     "subscriberCount_other": "{{count}} مشترك"
+  },
+  "live": {
+    "notSet": "ماشي محدد",
+    "liveChat": "شات مباشر",
+    "pickDate": "ختار التاريخ",
+    "pickTime": "ختار الوقت",
+    "minTip": "أقل إكرامية"
+  },
+  "liveShop": {
+    "title": "تسوق من هاد البث",
+    "onAir": "على الهوا",
+    "lastOne": "الأخيرة",
+    "stockLeft": "باقي {{count}}",
+    "walletNotReady": "المحفظة مازال ماشي واجدة",
+    "gettingPrice": "كيجيب الثمن…",
+    "ownListing": "هادا الإعلان ديالك نتا.",
+    "shippingAddress": "عنوان الشحن",
+    "addressPlaceholder": "السمية، الزنقة، المدينة، الكود البريدي، البلاد",
+    "noteToSeller": "ملاحظة للبائع (اختياري)",
+    "notePlaceholder": "القياس، اللون، أي حاجة أخرى…",
+    "confirmingPayment": "كيأكد الخلاص…",
+    "retryConfirmation": "عاود التأكيد",
+    "buyNow": "شري دابا"
   }
 }

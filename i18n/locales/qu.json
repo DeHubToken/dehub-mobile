@@ -3587,5 +3587,28 @@
     "subscribe": "Qillqakuy",
     "subscriberCount_one": "{{count}} qillqakuq",
     "subscriberCount_other": "{{count}} qillqakuqkuna"
+  },
+  "live": {
+    "notSet": "Mana churasqa",
+    "liveChat": "Kunan pacha rimanakuy",
+    "pickDate": "P'unchawta akllay",
+    "pickTime": "Pachata akllay",
+    "minTip": "Aswan pisi yanapay"
+  },
+  "liveShop": {
+    "title": "Kay willakuymanta rantiy",
+    "onAir": "Kunan rikuchisqa",
+    "lastOne": "Qhipa kaq",
+    "stockLeft": "{{count}} puchun",
+    "walletNotReady": "Qullqi wayaqa manaraq wakisqachu",
+    "gettingPrice": "Chaninta apamuchkan…",
+    "ownListing": "Kayqa qan kikiykipa qhatunmi.",
+    "shippingAddress": "Apachina direccion",
+    "addressPlaceholder": "Suti, calle, llaqta, postal código, suyu",
+    "noteToSeller": "Qhatuqpaq willakuy (munaspa)",
+    "notePlaceholder": "Sayay, llimp'i, ima hukpas…",
+    "confirmingPayment": "Qullqi qupuyta takyachichkan…",
+    "retryConfirmation": "Takyachiyta yapamanta ruray",
+    "buyNow": "Kunan rantiy"
   }
 }

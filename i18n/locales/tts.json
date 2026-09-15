@@ -3516,5 +3516,28 @@
     "subscribe": "สมัครสมาชิก",
     "subscriberCount_one": "สมาชิก {{count}} คน",
     "subscriberCount_other": "สมาชิก {{count}} คน"
+  },
+  "live": {
+    "notSet": "ยังบ่ได้ตั้ง",
+    "liveChat": "แชทสด",
+    "pickDate": "เลือกวันที่",
+    "pickTime": "เลือกเวลา",
+    "minTip": "ทิปขั้นต่ำ"
+  },
+  "liveShop": {
+    "title": "ซื้อของจากไลฟ์นี้",
+    "onAir": "ออกอากาศอยู่",
+    "lastOne": "ชิ้นสุดท้าย",
+    "stockLeft": "เหลือ {{count}} ชิ้น",
+    "walletNotReady": "กระเป๋ายังบ่พร้อม",
+    "gettingPrice": "กำลังดึงราคา…",
+    "ownListing": "นี่คือรายการของเจ้าเอง",
+    "shippingAddress": "ที่อยู่จัดส่ง",
+    "addressPlaceholder": "ชื่อ ถนน เมือง รหัสไปรษณีย์ ประเทศ",
+    "noteToSeller": "ข้อความเถิงผู้ขาย (บ่บังคับ)",
+    "notePlaceholder": "ไซซ์ สี หรืออย่างอื่น…",
+    "confirmingPayment": "กำลังยืนยันการชำระเงิน…",
+    "retryConfirmation": "ลองยืนยันอีกเทื่อ",
+    "buyNow": "ซื้อเลย"
   }
 }

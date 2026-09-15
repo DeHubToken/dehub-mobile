@@ -3535,5 +3535,28 @@
     "subscribe": "Обуна шудан",
     "subscriberCount_one": "{{count}} обуначӣ",
     "subscriberCount_other": "{{count}} обуначӣ"
+  },
+  "live": {
+    "notSet": "Муқаррар нашудааст",
+    "liveChat": "Чати зинда",
+    "pickDate": "Санаро интихоб кунед",
+    "pickTime": "Вақтро интихоб кунед",
+    "minTip": "Ҳадди ақали чойпулӣ"
+  },
+  "liveShop": {
+    "title": "Аз ин пахш харид кунед",
+    "onAir": "Дар пахш",
+    "lastOne": "Охирин",
+    "stockLeft": "{{count}} боқӣ мондааст",
+    "walletNotReady": "Ҳамён ҳанӯз омода нест",
+    "gettingPrice": "Гирифтани нарх…",
+    "ownListing": "Ин эълони худи шумост.",
+    "shippingAddress": "Суроғаи расонидан",
+    "addressPlaceholder": "Ном, кӯча, шаҳр, рамзи почта, кишвар",
+    "noteToSeller": "Ёддошт барои фурӯшанда (ихтиёрӣ)",
+    "notePlaceholder": "Андоза, ранг, чизи дигар…",
+    "confirmingPayment": "Тасдиқи пардохт…",
+    "retryConfirmation": "Тасдиқро аз нав кӯшиш кунед",
+    "buyNow": "Ҳозир харед"
   }
 }

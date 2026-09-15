@@ -3547,5 +3547,28 @@
     "subscribe": "Abonner",
     "subscriberCount_one": "{{count}} abonnent",
     "subscriberCount_other": "{{count}} abonnenter"
+  },
+  "live": {
+    "notSet": "Ikke angitt",
+    "liveChat": "Direktechat",
+    "pickDate": "Velg dato",
+    "pickTime": "Velg tidspunkt",
+    "minTip": "Min. tips"
+  },
+  "liveShop": {
+    "title": "Handle fra denne sendingen",
+    "onAir": "På lufta",
+    "lastOne": "Siste stk.",
+    "stockLeft": "{{count}} igjen",
+    "walletNotReady": "Lommeboken er ikke klar ennå",
+    "gettingPrice": "Henter pris…",
+    "ownListing": "Dette er din egen annonse.",
+    "shippingAddress": "Leveringsadresse",
+    "addressPlaceholder": "Navn, gate, by, postnummer, land",
+    "noteToSeller": "Melding til selger (valgfritt)",
+    "notePlaceholder": "Størrelse, farge, noe annet…",
+    "confirmingPayment": "Bekrefter betaling…",
+    "retryConfirmation": "Prøv bekreftelsen på nytt",
+    "buyNow": "Kjøp nå"
   }
 }

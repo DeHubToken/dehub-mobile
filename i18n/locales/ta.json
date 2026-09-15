@@ -3545,5 +3545,28 @@
     "subscribe": "சந்தா பெறு",
     "subscriberCount_one": "{{count}} சந்தாதாரர்",
     "subscriberCount_other": "{{count}} சந்தாதாரர்கள்"
+  },
+  "live": {
+    "notSet": "அமைக்கப்படவில்லை",
+    "liveChat": "நேரலை அரட்டை",
+    "pickDate": "தேதியைத் தேர்ந்தெடு",
+    "pickTime": "நேரத்தைத் தேர்ந்தெடு",
+    "minTip": "குறைந்தபட்ச உதவித்தொகை"
+  },
+  "liveShop": {
+    "title": "இந்த ஒளிபரப்பிலிருந்து வாங்கு",
+    "onAir": "ஒளிபரப்பில்",
+    "lastOne": "கடைசி ஒன்று",
+    "stockLeft": "{{count}} மீதம்",
+    "walletNotReady": "பணப்பை இன்னும் தயாராகவில்லை",
+    "gettingPrice": "விலை பெறப்படுகிறது…",
+    "ownListing": "இது உங்கள் சொந்த பட்டியல்.",
+    "shippingAddress": "அனுப்பும் முகவரி",
+    "addressPlaceholder": "பெயர், தெரு, நகரம், அஞ்சல் குறியீடு, நாடு",
+    "noteToSeller": "விற்பனையாளருக்கு குறிப்பு (விருப்பத்திற்குரியது)",
+    "notePlaceholder": "அளவு, நிறம், வேறு எதுவும்…",
+    "confirmingPayment": "கட்டணம் உறுதிசெய்யப்படுகிறது…",
+    "retryConfirmation": "உறுதிப்படுத்தலை மீண்டும் முயலவும்",
+    "buyNow": "இப்போது வாங்கு"
   }
 }

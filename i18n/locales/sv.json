@@ -3561,5 +3561,28 @@
     "subscribe": "Prenumerera",
     "subscriberCount_one": "{{count}} prenumerant",
     "subscriberCount_other": "{{count}} prenumeranter"
+  },
+  "live": {
+    "notSet": "Inte angivet",
+    "liveChat": "Livechatt",
+    "pickDate": "Välj datum",
+    "pickTime": "Välj tid",
+    "minTip": "Min. dricks"
+  },
+  "liveShop": {
+    "title": "Handla från den här sändningen",
+    "onAir": "I sändning",
+    "lastOne": "Sista exemplaret",
+    "stockLeft": "{{count}} kvar",
+    "walletNotReady": "Plånboken är inte redo än",
+    "gettingPrice": "Hämtar pris…",
+    "ownListing": "Det här är din egen annons.",
+    "shippingAddress": "Leveransadress",
+    "addressPlaceholder": "Namn, gata, stad, postnummer, land",
+    "noteToSeller": "Meddelande till säljaren (valfritt)",
+    "notePlaceholder": "Storlek, färg, något annat…",
+    "confirmingPayment": "Bekräftar betalning…",
+    "retryConfirmation": "Försök bekräfta igen",
+    "buyNow": "Köp nu"
   }
 }

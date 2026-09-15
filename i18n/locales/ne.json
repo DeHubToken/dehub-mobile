@@ -3590,5 +3590,28 @@
     "subscribe": "सदस्यता लिनुहोस्",
     "subscriberCount_one": "{{count}} सदस्य",
     "subscriberCount_other": "{{count}} सदस्यहरू"
+  },
+  "live": {
+    "notSet": "सेट गरिएको छैन",
+    "liveChat": "लाइभ च्याट",
+    "pickDate": "मिति छान्नुहोस्",
+    "pickTime": "समय छान्नुहोस्",
+    "minTip": "न्यूनतम टिप"
+  },
+  "liveShop": {
+    "title": "यो स्ट्रिमबाट किन्नुहोस्",
+    "onAir": "प्रसारणमा",
+    "lastOne": "अन्तिम एउटा",
+    "stockLeft": "{{count}} बाँकी",
+    "walletNotReady": "वालेट अझै तयार छैन",
+    "gettingPrice": "मूल्य ल्याउँदै…",
+    "ownListing": "यो तपाईंकै सूची हो।",
+    "shippingAddress": "ढुवानी ठेगाना",
+    "addressPlaceholder": "नाम, सडक, सहर, पोस्टकोड, देश",
+    "noteToSeller": "बिक्रेतालाई टिप्पणी (वैकल्पिक)",
+    "notePlaceholder": "साइज, रङ, अरू केही…",
+    "confirmingPayment": "भुक्तानी पुष्टि हुँदैछ…",
+    "retryConfirmation": "पुष्टि पुनः प्रयास गर्नुहोस्",
+    "buyNow": "अहिले किन्नुहोस्"
   }
 }

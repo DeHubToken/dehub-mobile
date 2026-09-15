@@ -3557,5 +3557,28 @@
     "subscribe": "Tilaa",
     "subscriberCount_one": "{{count}} tilaaja",
     "subscriberCount_other": "{{count}} tilaajaa"
+  },
+  "live": {
+    "notSet": "Ei asetettu",
+    "liveChat": "Live-keskustelu",
+    "pickDate": "Valitse päivä",
+    "pickTime": "Valitse aika",
+    "minTip": "Vähimmäisjuomaraha"
+  },
+  "liveShop": {
+    "title": "Osta tästä lähetyksestä",
+    "onAir": "Lähetyksessä",
+    "lastOne": "Viimeinen",
+    "stockLeft": "{{count}} jäljellä",
+    "walletNotReady": "Lompakko ei ole vielä valmis",
+    "gettingPrice": "Haetaan hintaa…",
+    "ownListing": "Tämä on oma ilmoituksesi.",
+    "shippingAddress": "Toimitusosoite",
+    "addressPlaceholder": "Nimi, katu, kaupunki, postinumero, maa",
+    "noteToSeller": "Viesti myyjälle (valinnainen)",
+    "notePlaceholder": "Koko, väri, muut toiveet…",
+    "confirmingPayment": "Vahvistetaan maksua…",
+    "retryConfirmation": "Yritä vahvistusta uudelleen",
+    "buyNow": "Osta nyt"
   }
 }

@@ -3557,5 +3557,28 @@
     "subscribe": "Абонирай се",
     "subscriberCount_one": "{{count}} абонат",
     "subscriberCount_other": "{{count}} абоната"
+  },
+  "live": {
+    "notSet": "Не е зададено",
+    "liveChat": "Чат на живо",
+    "pickDate": "Избери дата",
+    "pickTime": "Избери час",
+    "minTip": "Мин. бакшиш"
+  },
+  "liveShop": {
+    "title": "Пазарувай от този стрийм",
+    "onAir": "В ефир",
+    "lastOne": "Последен",
+    "stockLeft": "Остават {{count}}",
+    "walletNotReady": "Портфейлът още не е готов",
+    "gettingPrice": "Извличане на цената…",
+    "ownListing": "Това е твоята собствена обява.",
+    "shippingAddress": "Адрес за доставка",
+    "addressPlaceholder": "Име, улица, град, пощенски код, държава",
+    "noteToSeller": "Бележка към продавача (по избор)",
+    "notePlaceholder": "Размер, цвят, каквото и да е друго…",
+    "confirmingPayment": "Потвърждаване на плащането…",
+    "retryConfirmation": "Повтори потвърждението",
+    "buyNow": "Купи сега"
   }
 }

@@ -3513,5 +3513,28 @@
     "subscribe": "اشترك",
     "subscriberCount_one": "{{count}} مشترك",
     "subscriberCount_other": "{{count}} مشترك"
+  },
+  "live": {
+    "notSet": "مش محدد",
+    "liveChat": "دردشة مباشرة",
+    "pickDate": "اختر التاريخ",
+    "pickTime": "اختر الوقت",
+    "minTip": "أقل بقشيش"
+  },
+  "liveShop": {
+    "title": "تسوّق من هالبث",
+    "onAir": "على الهوا",
+    "lastOne": "آخر وحدة",
+    "stockLeft": "باقي {{count}}",
+    "walletNotReady": "المحفظة لسا مش جاهزة",
+    "gettingPrice": "عم يجيب السعر…",
+    "ownListing": "هاد الإعلان تبعك انت.",
+    "shippingAddress": "عنوان الشحن",
+    "addressPlaceholder": "الاسم، الشارع، المدينة، الرمز البريدي، البلد",
+    "noteToSeller": "ملاحظة للبائع (اختياري)",
+    "notePlaceholder": "القياس، اللون، أي شي تاني…",
+    "confirmingPayment": "عم يأكد الدفع…",
+    "retryConfirmation": "عيد التأكيد",
+    "buyNow": "اشتري هلق"
   }
 }

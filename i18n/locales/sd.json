@@ -3540,5 +3540,28 @@
     "subscribe": "سبسڪرائب ڪريو",
     "subscriberCount_one": "{{count}} سبسڪرائبر",
     "subscriberCount_other": "{{count}} سبسڪرائبر"
+  },
+  "live": {
+    "notSet": "مقرر ناهي",
+    "liveChat": "لائيو چيٽ",
+    "pickDate": "تاريخ چونڊيو",
+    "pickTime": "وقت چونڊيو",
+    "minTip": "گهٽ ۾ گهٽ ٽپ"
+  },
+  "liveShop": {
+    "title": "هن اسٽريم مان خريداري ڪريو",
+    "onAir": "نشريات تي",
+    "lastOne": "آخري هڪ",
+    "stockLeft": "{{count}} باقي",
+    "walletNotReady": "والٽ اڃا تيار ناهي",
+    "gettingPrice": "قيمت وٺي پيا وڃون…",
+    "ownListing": "هي توهان جي پنهنجي لسٽنگ آهي.",
+    "shippingAddress": "ترسيل جو پتو",
+    "addressPlaceholder": "نالو، گهٽي، شهر، پوسٽ ڪوڊ، ملڪ",
+    "noteToSeller": "وڪڻندڙ لاءِ نوٽ (اختياري)",
+    "notePlaceholder": "سائيز، رنگ، ٻيو ڪجهه…",
+    "confirmingPayment": "ادائيگي جي تصديق ٿي رهي آهي…",
+    "retryConfirmation": "تصديق ٻيهر ڪوشش ڪريو",
+    "buyNow": "هينئر خريد ڪريو"
   }
 }

@@ -3527,5 +3527,28 @@
     "subscribe": "Abuna bol",
     "subscriberCount_one": "{{count}} abunaçy",
     "subscriberCount_other": "{{count}} abunaçy"
+  },
+  "live": {
+    "notSet": "Bellenmedi",
+    "liveChat": "Göni söhbet",
+    "pickDate": "Senäni saýla",
+    "pickTime": "Wagty saýla",
+    "minTip": "Iň az çaý puly"
+  },
+  "liveShop": {
+    "title": "Bu ýaýlymdan satyn alyň",
+    "onAir": "Efirde",
+    "lastOne": "Iň soňkusy",
+    "stockLeft": "{{count}} galdy",
+    "walletNotReady": "Gapjyk heniz taýýar däl",
+    "gettingPrice": "Baha alynýar…",
+    "ownListing": "Bu siziň öz bildirişiňiz.",
+    "shippingAddress": "Eltip bermek salgysy",
+    "addressPlaceholder": "At, köçe, şäher, poçta indeksi, ýurt",
+    "noteToSeller": "Satyja üçin bellik (islege bagly)",
+    "notePlaceholder": "Ölçeg, reňk, başga zat…",
+    "confirmingPayment": "Töleg tassyklanýar…",
+    "retryConfirmation": "Tassyklamagy gaýtadan synanyş",
+    "buyNow": "Häzir satyn al"
   }
 }

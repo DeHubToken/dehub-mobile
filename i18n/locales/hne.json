@@ -3558,5 +3558,28 @@
     "subscribe": "सब्सक्राइब करव",
     "subscriberCount_one": "{{count}} सब्सक्राइबर",
     "subscriberCount_other": "{{count}} सब्सक्राइबर"
+  },
+  "live": {
+    "notSet": "सेट नइ हे",
+    "liveChat": "लाइव चैट",
+    "pickDate": "तारीख चुनव",
+    "pickTime": "समय चुनव",
+    "minTip": "कम से कम टिप"
+  },
+  "liveShop": {
+    "title": "ये स्ट्रीम ले बिसाहव",
+    "onAir": "परसारन म",
+    "lastOne": "आखरी एक",
+    "stockLeft": "{{count}} बाचे हे",
+    "walletNotReady": "वॉलेट अभी तियार नइ हे",
+    "gettingPrice": "दाम लावत हे…",
+    "ownListing": "ये तोर अपन लिस्टिंग हे।",
+    "shippingAddress": "भेजे के पता",
+    "addressPlaceholder": "नाम, गली, शहर, पिनकोड, देस",
+    "noteToSeller": "बेचइया बर नोट (वैकल्पिक)",
+    "notePlaceholder": "साइज, रंग, अउ कुछू…",
+    "confirmingPayment": "भुगतान के पुष्टि होवत हे…",
+    "retryConfirmation": "पुष्टि फेर करव",
+    "buyNow": "अभी बिसाहव"
   }
 }

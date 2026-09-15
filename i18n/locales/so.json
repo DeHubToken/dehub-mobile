@@ -3548,5 +3548,28 @@
     "subscribe": "Rukun",
     "subscriberCount_one": "{{count}} rukume",
     "subscriberCount_other": "{{count}} rukumayaal"
+  },
+  "live": {
+    "notSet": "Lama dejin",
+    "liveChat": "Sheeko toos ah",
+    "pickDate": "Dooro taariikhda",
+    "pickTime": "Dooro waqtiga",
+    "minTip": "Baqshiish ugu yar"
+  },
+  "liveShop": {
+    "title": "Ka iibso daawashadan",
+    "onAir": "Hawada",
+    "lastOne": "Kii ugu dambeeyay",
+    "stockLeft": "{{count}} ayaa hadhay",
+    "walletNotReady": "Jeebku weli diyaar ma aha",
+    "gettingPrice": "Waa la soo qaadanayaa qiimaha…",
+    "ownListing": "Kani waa liiskaaga gaarka ah.",
+    "shippingAddress": "Cinwaanka dirista",
+    "addressPlaceholder": "Magac, waddo, magaalo, koodhka boostada, dal",
+    "noteToSeller": "Qoraal iibiyaha (ikhtiyaari)",
+    "notePlaceholder": "Cabbir, midab, wax kale…",
+    "confirmingPayment": "Waa la xaqiijinayaa lacag bixinta…",
+    "retryConfirmation": "Isku day xaqiijinta mar kale",
+    "buyNow": "Iibso hadda"
   }
 }

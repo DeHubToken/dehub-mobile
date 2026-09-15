@@ -3570,5 +3570,28 @@
     "subscribe": "اشتراک",
     "subscriberCount_one": "{{count}} مشترک",
     "subscriberCount_other": "{{count}} مشترک"
+  },
+  "live": {
+    "notSet": "تنظیم نشده",
+    "liveChat": "گفتگوی زنده",
+    "pickDate": "انتخاب تاریخ",
+    "pickTime": "انتخاب زمان",
+    "minTip": "حداقل انعام"
+  },
+  "liveShop": {
+    "title": "از این پخش خرید کنید",
+    "onAir": "روی آنتن",
+    "lastOne": "آخرین",
+    "stockLeft": "{{count}} باقی مانده",
+    "walletNotReady": "کیف پول هنوز آماده نیست",
+    "gettingPrice": "در حال دریافت قیمت…",
+    "ownListing": "این آگهی خودتان است.",
+    "shippingAddress": "نشانی ارسال",
+    "addressPlaceholder": "نام، خیابان، شهر، کد پستی، کشور",
+    "noteToSeller": "یادداشت برای فروشنده (اختیاری)",
+    "notePlaceholder": "سایز، رنگ، هر چیز دیگر…",
+    "confirmingPayment": "در حال تأیید پرداخت…",
+    "retryConfirmation": "تلاش مجدد برای تأیید",
+    "buyNow": "همین حالا بخرید"
   }
 }

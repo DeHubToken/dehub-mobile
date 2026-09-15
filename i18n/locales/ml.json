@@ -3539,5 +3539,28 @@
     "subscribe": "സബ്സ്ക്രൈബ് ചെയ്യുക",
     "subscriberCount_one": "{{count}} വരിക്കാരൻ",
     "subscriberCount_other": "{{count}} വരിക്കാർ"
+  },
+  "live": {
+    "notSet": "സജ്ജമാക്കിയിട്ടില്ല",
+    "liveChat": "ലൈവ് ചാറ്റ്",
+    "pickDate": "തീയതി തിരഞ്ഞെടുക്കുക",
+    "pickTime": "സമയം തിരഞ്ഞെടുക്കുക",
+    "minTip": "കുറഞ്ഞ ടിപ്പ്"
+  },
+  "liveShop": {
+    "title": "ഈ സ്ട്രീമിൽ നിന്ന് വാങ്ങുക",
+    "onAir": "പ്രക്ഷേപണത്തിൽ",
+    "lastOne": "അവസാനത്തേത്",
+    "stockLeft": "{{count}} ബാക്കി",
+    "walletNotReady": "വാലറ്റ് ഇനിയും തയ്യാറായിട്ടില്ല",
+    "gettingPrice": "വില എടുക്കുന്നു…",
+    "ownListing": "ഇത് നിങ്ങളുടെ സ്വന്തം ലിസ്റ്റിംഗ് ആണ്.",
+    "shippingAddress": "ഷിപ്പിംഗ് വിലാസം",
+    "addressPlaceholder": "പേര്, തെരുവ്, നഗരം, പിൻകോഡ്, രാജ്യം",
+    "noteToSeller": "വിൽപ്പനക്കാരനുള്ള കുറിപ്പ് (ഐച്ഛികം)",
+    "notePlaceholder": "വലുപ്പം, നിറം, മറ്റെന്തും…",
+    "confirmingPayment": "പേയ്‌മെന്റ് സ്ഥിരീകരിക്കുന്നു…",
+    "retryConfirmation": "സ്ഥിരീകരണം വീണ്ടും ശ്രമിക്കൂ",
+    "buyNow": "ഇപ്പോൾ വാങ്ങുക"
   }
 }

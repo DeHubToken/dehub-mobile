@@ -3501,5 +3501,28 @@
     "subscribe": "Don a la",
     "subscriberCount_one": "Kalansoden {{count}}",
     "subscriberCount_other": "Kalansodenw {{count}}"
+  },
+  "live": {
+    "notSet": "A ma sigi",
+    "liveChat": "Jɔnjɔn baro",
+    "pickDate": "Don sugandi",
+    "pickTime": "Waati sugandi",
+    "minTip": "Sɔn hakɛ dɔgɔmannin"
+  },
+  "liveShop": {
+    "title": "Sanni kɛ nin jɔnjɔn na",
+    "onAir": "Jɔnjɔn na",
+    "lastOne": "Laban",
+    "stockLeft": "{{count}} tora",
+    "walletNotReady": "Warijɛ ma labɛn fɔlɔ",
+    "gettingPrice": "Sɔngɔ bɛ ta…",
+    "ownListing": "Nin ye i yɛrɛ ka feereli ye.",
+    "shippingAddress": "Cili adrɛsi",
+    "addressPlaceholder": "Tɔgɔ, sira, dugu, posi nimɔrɔ, jamana",
+    "noteToSeller": "Kunnafoni feerelikɛla ma (a ka kan tɛ)",
+    "notePlaceholder": "Bonya, kulɛri, fɛn wɛrɛ…",
+    "confirmingPayment": "Sarali bɛ sɛmɛntiya…",
+    "retryConfirmation": "Sɛmɛntiyali segin ka kɛ",
+    "buyNow": "San sisan"
   }
 }

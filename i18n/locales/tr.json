@@ -3619,5 +3619,28 @@
     "subscribe": "Abone ol",
     "subscriberCount_one": "{{count}} abone",
     "subscriberCount_other": "{{count}} abone"
+  },
+  "live": {
+    "notSet": "Ayarlanmadı",
+    "liveChat": "Canlı sohbet",
+    "pickDate": "Tarih seç",
+    "pickTime": "Saat seç",
+    "minTip": "Min. bahşiş"
+  },
+  "liveShop": {
+    "title": "Bu yayından alışveriş yapın",
+    "onAir": "Yayında",
+    "lastOne": "Son ürün",
+    "stockLeft": "{{count}} kaldı",
+    "walletNotReady": "Cüzdan henüz hazır değil",
+    "gettingPrice": "Fiyat alınıyor…",
+    "ownListing": "Bu sizin kendi ilanınız.",
+    "shippingAddress": "Teslimat adresi",
+    "addressPlaceholder": "Ad, sokak, şehir, posta kodu, ülke",
+    "noteToSeller": "Satıcıya not (isteğe bağlı)",
+    "notePlaceholder": "Beden, renk, başka bir şey…",
+    "confirmingPayment": "Ödeme onaylanıyor…",
+    "retryConfirmation": "Onayı yeniden dene",
+    "buyNow": "Şimdi satın al"
   }
 }

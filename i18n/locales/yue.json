@@ -3555,5 +3555,28 @@
     "subscribe": "訂閱",
     "subscriberCount_one": "{{count}} 位訂閱者",
     "subscriberCount_other": "{{count}} 位訂閱者"
+  },
+  "live": {
+    "notSet": "未設定",
+    "liveChat": "直播聊天",
+    "pickDate": "選擇日期",
+    "pickTime": "選擇時間",
+    "minTip": "最低打賞"
+  },
+  "liveShop": {
+    "title": "喺呢場直播購物",
+    "onAir": "直播中",
+    "lastOne": "最後一件",
+    "stockLeft": "剩 {{count}} 件",
+    "walletNotReady": "錢包仲未準備好",
+    "gettingPrice": "正在取得價格…",
+    "ownListing": "呢個係你自己嘅商品。",
+    "shippingAddress": "收貨地址",
+    "addressPlaceholder": "姓名、街道、城市、郵遞區號、國家",
+    "noteToSeller": "畀賣家嘅留言（選填）",
+    "notePlaceholder": "尺寸、顏色、其他要求…",
+    "confirmingPayment": "正在確認付款…",
+    "retryConfirmation": "重試確認",
+    "buyNow": "立即購買"
   }
 }
