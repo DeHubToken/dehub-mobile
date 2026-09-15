@@ -3377,6 +3377,21 @@
     "micRequired": "ድምጺ ንምቕዳሕ ናይ ማይክሮፎን ፍቓድ የድሊ።",
     "recordFailed": "ቅዳሕ ክጅምር ኣይከኣለን።",
     "tierVisibility": "ደረጃታት ብምድያብ ተራእይነትካ ወስኽ፡ ኣብ መዓልቲ ንልጥፍኻ ዝያዳ ስርጭት ርኸብ",
-    "buyTokens": "ቶከናት ግዛእ"
+    "buyTokens": "ቶከናት ግዛእ",
+    "community": "ማሕበረሰብ",
+    "shop": "ድኳን",
+    "discard": "ኣወግድ",
+    "matureContent": "ትሕዝቶ ንዓበይቲ",
+    "addOption": "ኣማራጺ ወስኽ",
+    "mintPost": "ልጥፊ ሚንት ግበር",
+    "addCategories": "ምድባት ወስኽ",
+    "goLive": "ብቐጥታ ጀምር",
+    "startLivestream": "ቀጥታ ስርጭት ጀምር",
+    "joinStage": "ናብ ናይ ድምጺ መድረኽ እቶ ወይ ጀምር",
+    "saveToDrafts": "ናብ ንድፍታት ዕቀብ",
+    "uploadAudio": "ድምጺ ስቐል",
+    "recordVoice": "ድምጺ ቅዳሕ",
+    "searchSounds": "ድምጽታት ድለ",
+    "pollQuestion": "ሕቶ ሕተት…"
   }
 }

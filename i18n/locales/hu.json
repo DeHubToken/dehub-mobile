@@ -3416,6 +3416,21 @@
     "micRequired": "A hangrögzítéshez mikrofon-engedély szükséges.",
     "recordFailed": "A felvétel nem indítható el.",
     "tierVisibility": "Lépj feljebb a szinteken, hogy növeld a láthatóságod és több napi megjelenést kapj",
-    "buyTokens": "Tokenek vásárlása"
+    "buyTokens": "Tokenek vásárlása",
+    "community": "Közösség",
+    "shop": "Bolt",
+    "discard": "Elvetés",
+    "matureContent": "Felnőtt tartalom",
+    "addOption": "Lehetőség hozzáadása",
+    "mintPost": "Bejegyzés mintelése",
+    "addCategories": "Kategóriák hozzáadása",
+    "goLive": "Élő adás indítása",
+    "startLivestream": "Indíts élő közvetítést",
+    "joinStage": "Csatlakozz egy hangszínpadhoz, vagy indíts újat",
+    "saveToDrafts": "Mentés a piszkozatokba",
+    "uploadAudio": "Hang feltöltése",
+    "recordVoice": "Hang rögzítése",
+    "searchSounds": "Hangok keresése",
+    "pollQuestion": "Tegyél fel egy kérdést…"
   }
 }

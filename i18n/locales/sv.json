@@ -3416,6 +3416,21 @@
     "micRequired": "Mikrofonbehörighet krävs för att spela in ljud.",
     "recordFailed": "Det gick inte att starta inspelningen.",
     "tierVisibility": "Klättra i nivåer för att öka din synlighet och få fler visningar av inlägget per dag",
-    "buyTokens": "Köp tokens"
+    "buyTokens": "Köp tokens",
+    "community": "Community",
+    "shop": "Butik",
+    "discard": "Kasta",
+    "matureContent": "Vuxeninnehåll",
+    "addOption": "Lägg till alternativ",
+    "mintPost": "Minta inlägg",
+    "addCategories": "Lägg till kategorier",
+    "goLive": "Sänd live",
+    "startLivestream": "Starta en livesändning",
+    "joinStage": "Gå med i eller starta en ljudscen",
+    "saveToDrafts": "Spara i utkast",
+    "uploadAudio": "Ladda upp ljud",
+    "recordVoice": "Spela in röst",
+    "searchSounds": "Sök ljud",
+    "pollQuestion": "Ställ en fråga…"
   }
 }

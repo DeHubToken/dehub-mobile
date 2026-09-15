@@ -3581,6 +3581,21 @@
     "micRequired": "Na nahrávanie zvuku je potrebné povolenie mikrofónu.",
     "recordFailed": "Nahrávanie sa nepodarilo spustiť.",
     "tierVisibility": "Postupujte v úrovniach a zvýšte svoju viditeľnosť aj denný dosah príspevku",
-    "buyTokens": "Kúpiť tokeny"
+    "buyTokens": "Kúpiť tokeny",
+    "community": "Komunita",
+    "shop": "Obchod",
+    "discard": "Zahodiť",
+    "matureContent": "Obsah pre dospelých",
+    "addOption": "Pridať možnosť",
+    "mintPost": "Raziť príspevok",
+    "addCategories": "Pridať kategórie",
+    "goLive": "Spustiť naživo",
+    "startLivestream": "Spustite živé vysielanie",
+    "joinStage": "Pripojte sa k audio stage alebo ju založte",
+    "saveToDrafts": "Uložiť do konceptov",
+    "uploadAudio": "Nahrať zvuk",
+    "recordVoice": "Nahrať hlas",
+    "searchSounds": "Hľadať zvuky",
+    "pollQuestion": "Položte otázku…"
   }
 }

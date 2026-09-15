@@ -3529,6 +3529,21 @@
     "micRequired": "Mikrofoontoestemming word vereis om klank op te neem.",
     "recordFailed": "Kon nie opname begin nie.",
     "tierVisibility": "Klim vlakke om jou sigbaarheid te verhoog en meer daaglikse vertonings vir jou plasing te kry",
-    "buyTokens": "Koop tokens"
+    "buyTokens": "Koop tokens",
+    "community": "Gemeenskap",
+    "shop": "Winkel",
+    "discard": "Verwerp",
+    "matureContent": "Inhoud vir volwassenes",
+    "addOption": "Voeg opsie by",
+    "mintPost": "Munt plasing",
+    "addCategories": "Voeg kategorieë by",
+    "goLive": "Gaan regstreeks",
+    "startLivestream": "Begin 'n regstreekse uitsending",
+    "joinStage": "Sluit aan by of begin 'n klankverhoog",
+    "saveToDrafts": "Stoor in konsepte",
+    "uploadAudio": "Laai klank op",
+    "recordVoice": "Neem stem op",
+    "searchSounds": "Soek klanke",
+    "pollQuestion": "Vra 'n vraag…"
   }
 }

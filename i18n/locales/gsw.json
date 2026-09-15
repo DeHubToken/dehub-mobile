@@ -3401,6 +3401,21 @@
     "micRequired": "Für Audioufnahme bruucht s d Mikrofon-Berechtigung.",
     "recordFailed": "D Ufnahm het nöd chöne starte.",
     "tierVisibility": "Stiig Stuefe uf, zum dini Sichtbarkeit z erhöhe und pro Tag meh Feeds für de Biitrag z überchoo",
-    "buyTokens": "Token chaufe"
+    "buyTokens": "Token chaufe",
+    "community": "Gmeinschaft",
+    "shop": "Lade",
+    "discard": "Verwerfe",
+    "matureContent": "Inhalt für Erwachseni",
+    "addOption": "Option zuefüege",
+    "mintPost": "Biitrag minte",
+    "addCategories": "Kategorie zuefüege",
+    "goLive": "Live gah",
+    "startLivestream": "Starte en Livestream",
+    "joinStage": "Tritt ere Audio-Stage bii oder starte eini",
+    "saveToDrafts": "I d Entwürf speichere",
+    "uploadAudio": "Audio uelade",
+    "recordVoice": "Stimm ufneh",
+    "searchSounds": "Sounds sueche",
+    "pollQuestion": "Stell e Frag…"
   }
 }

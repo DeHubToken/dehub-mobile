@@ -3396,6 +3396,21 @@
     "micRequired": "Səs yazmaq üçün mikrofon icazəsi lazımdır.",
     "recordFailed": "Yazma başladıla bilmədi.",
     "tierVisibility": "Görünürlüyünüzü artırmaq və gündə daha çox yayım almaq üçün səviyyələri yüksəldin",
-    "buyTokens": "Token al"
+    "buyTokens": "Token al",
+    "community": "İcma",
+    "shop": "Mağaza",
+    "discard": "Ləğv et",
+    "matureContent": "Yetkinlər üçün məzmun",
+    "addOption": "Variant əlavə et",
+    "mintPost": "Paylaşımı zərb et",
+    "addCategories": "Kateqoriya əlavə et",
+    "goLive": "Canlı yayıma başla",
+    "startLivestream": "Canlı yayım başlat",
+    "joinStage": "Səsli səhnəyə qoşul və ya başlat",
+    "saveToDrafts": "Qaralamalara yadda saxla",
+    "uploadAudio": "Səs yüklə",
+    "recordVoice": "Səs yaz",
+    "searchSounds": "Səsləri axtar",
+    "pollQuestion": "Sual verin…"
   }
 }

@@ -3403,6 +3403,21 @@
     "micRequired": "Waxaa loo baahan yahay ogolaanshaha makarafoonka si aad u duubto cod.",
     "recordFailed": "Lama bilaabi karin duubista.",
     "tierVisibility": "Kor u kac heerarka si aad u kordhiso muuqaalkaaga oo aad u hesho faafin badan maalintii",
-    "buyTokens": "Iibso tokens"
+    "buyTokens": "Iibso tokens",
+    "community": "Bulsho",
+    "shop": "Dukaan",
+    "discard": "Tuur",
+    "matureContent": "Waxyaabaha dadka waaweyn",
+    "addOption": "Ku dar doorasho",
+    "mintPost": "Mint qoraalka",
+    "addCategories": "Ku dar qaybo",
+    "goLive": "Toos u bilow",
+    "startLivestream": "Bilow toos ah",
+    "joinStage": "Ku biir ama bilow masrax maqal ah",
+    "saveToDrafts": "Ku keydi qabyo-qoraallada",
+    "uploadAudio": "Soo geli cod",
+    "recordVoice": "Duub cod",
+    "searchSounds": "Raadi codad",
+    "pollQuestion": "Su'aal weydii…"
   }
 }

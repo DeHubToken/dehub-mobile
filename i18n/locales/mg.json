@@ -3491,6 +3491,21 @@
     "micRequired": "Ilaina ny fahazoan-dàlana amin'ny mikrofonina hanaovana rakitra feo.",
     "recordFailed": "Tsy afaka nanomboka ny fandraisana.",
     "tierVisibility": "Miakara ambaratonga mba hampitombo ny fahitana anao sy hahazo fizarana bebe kokoa isan'andro",
-    "buyTokens": "Hividy token"
+    "buyTokens": "Hividy token",
+    "community": "Vondrom-piarahamonina",
+    "shop": "Fivarotana",
+    "discard": "Ario",
+    "matureContent": "Votoaty ho an'ny olon-dehibe",
+    "addOption": "Ampio safidy",
+    "mintPost": "Mint ny lahatsoratra",
+    "addCategories": "Ampio sokajy",
+    "goLive": "Mandeha mivantana",
+    "startLivestream": "Manombòka fandefasana mivantana",
+    "joinStage": "Midira na manombòka sehatra feo",
+    "saveToDrafts": "Tehirizo ao amin'ny volavola",
+    "uploadAudio": "Ampidiro ny feo",
+    "recordVoice": "Raketo ny feo",
+    "searchSounds": "Hikaroka feo",
+    "pollQuestion": "Manontania…"
   }
 }

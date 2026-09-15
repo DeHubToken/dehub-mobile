@@ -3486,6 +3486,21 @@
     "micRequired": "L'autorisation du microphone est nécessaire pour enregistrer l'audio.",
     "recordFailed": "Impossible de démarrer l'enregistrement.",
     "tierVisibility": "Montez de niveau pour augmenter votre visibilité et obtenir plus de diffusions par jour",
-    "buyTokens": "Acheter des jetons"
+    "buyTokens": "Acheter des jetons",
+    "community": "Communauté",
+    "shop": "Boutique",
+    "discard": "Abandonner",
+    "matureContent": "Contenu pour adultes",
+    "addOption": "Ajouter une option",
+    "mintPost": "Frapper la publication",
+    "addCategories": "Ajouter des catégories",
+    "goLive": "Passer en direct",
+    "startLivestream": "Lancez un direct",
+    "joinStage": "Rejoignez ou lancez une scène audio",
+    "saveToDrafts": "Enregistrer dans les brouillons",
+    "uploadAudio": "Importer un audio",
+    "recordVoice": "Enregistrer la voix",
+    "searchSounds": "Rechercher des sons",
+    "pollQuestion": "Posez une question…"
   }
 }

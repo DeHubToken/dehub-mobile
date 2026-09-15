@@ -3416,6 +3416,21 @@
     "micRequired": "K nahrávání zvuku je potřeba oprávnění k mikrofonu.",
     "recordFailed": "Nahrávání se nepodařilo spustit.",
     "tierVisibility": "Postupujte v úrovních a zvyšte svou viditelnost i denní dosah příspěvku",
-    "buyTokens": "Koupit tokeny"
+    "buyTokens": "Koupit tokeny",
+    "community": "Komunita",
+    "shop": "Obchod",
+    "discard": "Zahodit",
+    "matureContent": "Obsah pro dospělé",
+    "addOption": "Přidat možnost",
+    "mintPost": "Razit příspěvek",
+    "addCategories": "Přidat kategorie",
+    "goLive": "Spustit živě",
+    "startLivestream": "Spusťte živé vysílání",
+    "joinStage": "Připojte se k audio stage nebo ji založte",
+    "saveToDrafts": "Uložit do konceptů",
+    "uploadAudio": "Nahrát zvuk",
+    "recordVoice": "Nahrát hlas",
+    "searchSounds": "Hledat zvuky",
+    "pollQuestion": "Položte otázku…"
   }
 }

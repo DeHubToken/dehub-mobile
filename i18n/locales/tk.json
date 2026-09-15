@@ -3382,6 +3382,21 @@
     "micRequired": "Ses ýazmak üçin mikrofon rugsady gerek.",
     "recordFailed": "Ýazgy başlanyp bilmedi.",
     "tierVisibility": "Görnükliligiňizi artdyrmak we günde ýazgyňyza has köp ýaýlym almak üçin derejeleri ýokarlandyryň",
-    "buyTokens": "Token satyn al"
+    "buyTokens": "Token satyn al",
+    "community": "Jemgyýet",
+    "shop": "Dükan",
+    "discard": "Ýatyr",
+    "matureContent": "Ulularyň mazmuny",
+    "addOption": "Warian goş",
+    "mintPost": "Ýazgyny mint et",
+    "addCategories": "Kategoriýa goş",
+    "goLive": "Göni ýaýlyma başla",
+    "startLivestream": "Göni ýaýlym başla",
+    "joinStage": "Ses sahnasyna goşulyň ýa-da başlaň",
+    "saveToDrafts": "Nusgalara ýatda sakla",
+    "uploadAudio": "Ses ýükle",
+    "recordVoice": "Ses ýazgy et",
+    "searchSounds": "Sesleri gözle",
+    "pollQuestion": "Sorag beriň…"
   }
 }

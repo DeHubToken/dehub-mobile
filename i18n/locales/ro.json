@@ -3425,6 +3425,21 @@
     "micRequired": "Este necesară permisiunea pentru microfon ca să înregistrezi audio.",
     "recordFailed": "Înregistrarea nu a putut fi pornită.",
     "tierVisibility": "Urcă niveluri ca să-ți crești vizibilitatea și să obții mai multe afișări pe zi",
-    "buyTokens": "Cumpără jetoane"
+    "buyTokens": "Cumpără jetoane",
+    "community": "Comunitate",
+    "shop": "Magazin",
+    "discard": "Renunță",
+    "matureContent": "Conținut pentru adulți",
+    "addOption": "Adaugă opțiune",
+    "mintPost": "Mintează postarea",
+    "addCategories": "Adaugă categorii",
+    "goLive": "Intră în direct",
+    "startLivestream": "Începe o transmisiune live",
+    "joinStage": "Alătură-te sau începe o scenă audio",
+    "saveToDrafts": "Salvează în ciorne",
+    "uploadAudio": "Încarcă audio",
+    "recordVoice": "Înregistrează vocea",
+    "searchSounds": "Caută sunete",
+    "pollQuestion": "Pune o întrebare…"
   }
 }

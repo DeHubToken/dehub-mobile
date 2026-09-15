@@ -3480,6 +3480,21 @@
     "micRequired": "Do nagrywania dźwięku wymagane jest zezwolenie na mikrofon.",
     "recordFailed": "Nie udało się rozpocząć nagrywania.",
     "tierVisibility": "Zdobywaj wyższe poziomy, aby zwiększyć widoczność i mieć więcej wyświetleń posta dziennie",
-    "buyTokens": "Kup tokeny"
+    "buyTokens": "Kup tokeny",
+    "community": "Społeczność",
+    "shop": "Sklep",
+    "discard": "Odrzuć",
+    "matureContent": "Treści dla dorosłych",
+    "addOption": "Dodaj opcję",
+    "mintPost": "Zmintuj post",
+    "addCategories": "Dodaj kategorie",
+    "goLive": "Rozpocznij transmisję",
+    "startLivestream": "Rozpocznij transmisję na żywo",
+    "joinStage": "Dołącz do sceny audio lub zacznij własną",
+    "saveToDrafts": "Zapisz w wersjach roboczych",
+    "uploadAudio": "Prześlij dźwięk",
+    "recordVoice": "Nagraj głos",
+    "searchSounds": "Szukaj dźwięków",
+    "pollQuestion": "Zadaj pytanie…"
   }
 }

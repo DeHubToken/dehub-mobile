@@ -3463,6 +3463,21 @@
     "micRequired": "Audio yozish uchun mikrofon ruxsati kerak.",
     "recordFailed": "Yozishni boshlab bo‘lmadi.",
     "tierVisibility": "Ko‘rinuvchanlikni oshirish va kuniga postga ko‘proq tarqatish olish uchun darajani ko‘taring",
-    "buyTokens": "Token sotib olish"
+    "buyTokens": "Token sotib olish",
+    "community": "Hamjamiyat",
+    "shop": "Do‘kon",
+    "discard": "Bekor qilish",
+    "matureContent": "Kattalar uchun kontent",
+    "addOption": "Variant qo‘shish",
+    "mintPost": "Postni mint qilish",
+    "addCategories": "Turkumlar qo‘shish",
+    "goLive": "Jonli efirni boshlash",
+    "startLivestream": "Jonli efir boshlash",
+    "joinStage": "Audio sahnaga qo‘shiling yoki boshlang",
+    "saveToDrafts": "Qoralamalarga saqlash",
+    "uploadAudio": "Audio yuklash",
+    "recordVoice": "Ovoz yozish",
+    "searchSounds": "Ovozlarni qidirish",
+    "pollQuestion": "Savol bering…"
   }
 }

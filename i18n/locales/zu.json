@@ -3441,6 +3441,21 @@
     "micRequired": "Kudingeka imvume yemakrofoni ukuze urekhode umsindo.",
     "recordFailed": "Yehlulekile ukuqala ukurekhoda.",
     "tierVisibility": "Khuphuka amaleveli ukuze ubonakale kakhulu futhi uthole ukusakazwa okwengeziwe ngosuku",
-    "buyTokens": "Thenga amathokheni"
+    "buyTokens": "Thenga amathokheni",
+    "community": "Umphakathi",
+    "shop": "Isitolo",
+    "discard": "Lahla",
+    "matureContent": "Okuqukethwe kwabadala",
+    "addOption": "Engeza inketho",
+    "mintPost": "Khanda okuthunyelwe",
+    "addCategories": "Engeza izigaba",
+    "goLive": "Qala ukusakaza",
+    "startLivestream": "Qala ukusakaza bukhoma",
+    "joinStage": "Joyina noma qala isiteji somsindo",
+    "saveToDrafts": "Londoloza kuma-draft",
+    "uploadAudio": "Layisha umsindo",
+    "recordVoice": "Rekhoda izwi",
+    "searchSounds": "Sesha imisindo",
+    "pollQuestion": "Buza umbuzo…"
   }
 }

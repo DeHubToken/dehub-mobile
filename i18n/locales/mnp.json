@@ -3409,6 +3409,21 @@
     "micRequired": "录音需要麦克风权限。",
     "recordFailed": "无法开始录制。",
     "tierVisibility": "提升等级可以增加曝光，每天让帖子获得更多推送",
-    "buyTokens": "购买代币"
+    "buyTokens": "购买代币",
+    "community": "社区",
+    "shop": "商店",
+    "discard": "放弃",
+    "matureContent": "成人内容",
+    "addOption": "添加选项",
+    "mintPost": "铸造帖子",
+    "addCategories": "添加分类",
+    "goLive": "开始直播",
+    "startLivestream": "开始一场直播",
+    "joinStage": "加入或开启一个语音舞台",
+    "saveToDrafts": "保存到草稿",
+    "uploadAudio": "上传音频",
+    "recordVoice": "录制语音",
+    "searchSounds": "搜索音效",
+    "pollQuestion": "提个问题…"
   }
 }

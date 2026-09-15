@@ -3356,6 +3356,21 @@
     "micRequired": "آڈیو ریکارڈ کرݨ کیتے مائیکروفون دی اجازت ضروری ہے۔",
     "recordFailed": "ریکارڈنگ شروع نہ تھی سڳی۔",
     "tierVisibility": "درجے ودھاؤ تاں جو تہاݙی نمائش ودھے تے ہر روز پوسٹ کوں ودھیک فیڈ ملن",
-    "buyTokens": "ٹوکن خریدو"
+    "buyTokens": "ٹوکن خریدو",
+    "community": "کمیونٹی",
+    "shop": "دکان",
+    "discard": "چھوڑ ݙیو",
+    "matureContent": "بالغاں دا مواد",
+    "addOption": "آپشن شامل کرو",
+    "mintPost": "پوسٹ منٹ کرو",
+    "addCategories": "زمرے شامل کرو",
+    "goLive": "لائیو ونڄو",
+    "startLivestream": "لائیو سٹریم شروع کرو",
+    "joinStage": "آڈیو سٹیج وچ شامل تھیوو یا شروع کرو",
+    "saveToDrafts": "ڈرافٹس وچ محفوظ کرو",
+    "uploadAudio": "آڈیو اپ لوڈ کرو",
+    "recordVoice": "آواز ریکارڈ کرو",
+    "searchSounds": "آوازاں ڳولو",
+    "pollQuestion": "کوئی سوال پچھو…"
   }
 }

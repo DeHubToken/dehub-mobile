@@ -3362,6 +3362,21 @@
     "micRequired": "د غږ ثبتولو لپاره د مایکروفون اجازه اړینه ده.",
     "recordFailed": "ثبتول پیل نه شو.",
     "tierVisibility": "کچې لوړې کړئ ترڅو ستاسو لیدلوری زیات شي او هره ورځ پوسټ ته ډېر خپرونه ترلاسه کړئ",
-    "buyTokens": "ټوکنونه واخلئ"
+    "buyTokens": "ټوکنونه واخلئ",
+    "community": "ټولنه",
+    "shop": "پلورنځی",
+    "discard": "پریږده",
+    "matureContent": "د بالغانو مینځپانګه",
+    "addOption": "انتخاب ورزیات کړئ",
+    "mintPost": "پوسټ mint کړئ",
+    "addCategories": "کټګورۍ ورزیاتې کړئ",
+    "goLive": "ژوندی خپرونه پیل کړئ",
+    "startLivestream": "ژوندۍ خپرونه پیل کړئ",
+    "joinStage": "غږیز سټیج کې ګډون وکړئ یا یې پیل کړئ",
+    "saveToDrafts": "په مسودو کې خوندي کړئ",
+    "uploadAudio": "غږ پورته کړئ",
+    "recordVoice": "غږ ثبت کړئ",
+    "searchSounds": "غږونه ولټوئ",
+    "pollQuestion": "یوه پوښتنه وکړئ…"
   }
 }

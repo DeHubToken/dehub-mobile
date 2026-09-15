@@ -3407,6 +3407,21 @@
     "micRequired": "ድምፅ ለመቅዳት የማይክሮፎን ፈቃድ ያስፈልጋል።",
     "recordFailed": "ቀረጻውን መጀመር አልተቻለም።",
     "tierVisibility": "ደረጃዎን ከፍ በማድረግ ታይነትዎን ይጨምሩ እና በቀን ለልጥፉ ተጨማሪ ስርጭት ያግኙ",
-    "buyTokens": "ቶከኖች ይግዙ"
+    "buyTokens": "ቶከኖች ይግዙ",
+    "community": "ማህበረሰብ",
+    "shop": "ሱቅ",
+    "discard": "ጣለው",
+    "matureContent": "ለአዋቂዎች የሚሆን ይዘት",
+    "addOption": "አማራጭ ጨምር",
+    "mintPost": "ልጥፉን መንዝር",
+    "addCategories": "ምድቦችን ጨምር",
+    "goLive": "በቀጥታ ይጀምሩ",
+    "startLivestream": "የቀጥታ ስርጭት ይጀምሩ",
+    "joinStage": "የድምፅ መድረክ ይቀላቀሉ ወይም ይጀምሩ",
+    "saveToDrafts": "ወደ ረቂቆች አስቀምጥ",
+    "uploadAudio": "ድምፅ ይጫኑ",
+    "recordVoice": "ድምፅ ይቅዱ",
+    "searchSounds": "ድምፆችን ይፈልጉ",
+    "pollQuestion": "ጥያቄ ይጠይቁ…"
   }
 }
