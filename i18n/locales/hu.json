@@ -3767,5 +3767,29 @@
     "stream": "Közvetítés",
     "boostPost": "Bejegyzés boostolása",
     "openSuperPowers": "SuperPowers megnyitása"
+  },
+  "dm": {
+    "attachFailed": "Ezt a fájlt nem sikerült csatolni.",
+    "removeAttachment": "Melléklet eltávolítása",
+    "addTip": "Borravaló hozzáadása",
+    "chooseGif": "GIF kiválasztása",
+    "attachImage": "Kép csatolása",
+    "attachVideo": "Videó csatolása",
+    "attachFile": "Fájl csatolása",
+    "enhanceWithAi": "Üzenet javítása MI-vel",
+    "sendMessage": "Üzenet küldése",
+    "cantMessageYourself": "Nem írhatsz saját magadnak",
+    "askSomething": "Kérdezz valamit...",
+    "removeOption": "Lehetőség eltávolítása",
+    "allowMultiple": "Több válasz engedélyezése",
+    "preferences": "Üzenetbeállítások",
+    "enableDms": "Üzenetek engedélyezése",
+    "enableDmsSub": "Kapcsold ki az összes üzenet blokkolásához.",
+    "allowNewDms": "Új üzenetek engedélyezése",
+    "allowNewDmsOn": "Ha ki van kapcsolva, csak azok írhatnak, akikkel már beszéltél.",
+    "allowNewDmsOff": "Kapcsold be az üzeneteket az újak engedélyezéséhez.",
+    "perMessageFee": "Üzenetenkénti díj (DHB)",
+    "perMessageFeeSub": "Számolj fel díjat üzenetenként. Állítsd 0-ra az ingyenes üzenetekhez. Egyes felhasználóknak ingyenes hozzáférést adhatsz.",
+    "allDisabled": "Jelenleg minden üzenet ki van kapcsolva. Az újak alapból blokkolva vannak."
   }
 }

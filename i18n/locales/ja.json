@@ -3830,5 +3830,29 @@
     "stream": "配信",
     "boostPost": "投稿をブースト",
     "openSuperPowers": "SuperPowers を開く"
+  },
+  "dm": {
+    "attachFailed": "そのファイルを添付できませんでした。",
+    "removeAttachment": "添付を削除",
+    "addTip": "投げ銭を追加",
+    "chooseGif": "GIF を選ぶ",
+    "attachImage": "画像を添付",
+    "attachVideo": "動画を添付",
+    "attachFile": "ファイルを添付",
+    "enhanceWithAi": "AI でメッセージを整える",
+    "sendMessage": "メッセージを送信",
+    "cantMessageYourself": "自分にメッセージは送れません",
+    "askSomething": "何か聞いてみる…",
+    "removeOption": "選択肢を削除",
+    "allowMultiple": "複数回答を許可",
+    "preferences": "DM の設定",
+    "enableDms": "DM を有効にする",
+    "enableDmsSub": "オフにするとすべてのメッセージをブロックします。",
+    "allowNewDms": "新しい DM を許可",
+    "allowNewDmsOn": "オフの場合、これまでにやり取りした相手だけがメッセージを送れます。",
+    "allowNewDmsOff": "新しいメッセージを受け取るには DM をオンにしてください。",
+    "perMessageFee": "メッセージごとの料金 (DHB)",
+    "perMessageFeeSub": "メッセージごとに課金します。無料にするには 0 にしてください。特定のユーザーには無料アクセスを付与できます。",
+    "allDisabled": "現在すべての DM が無効です。新しい DM は既定でブロックされます。"
   }
 }

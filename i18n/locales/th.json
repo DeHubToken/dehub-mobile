@@ -3799,5 +3799,29 @@
     "stream": "สตรีม",
     "boostPost": "บูสต์โพสต์",
     "openSuperPowers": "เปิด SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "แนบไฟล์นั้นไม่สำเร็จ",
+    "removeAttachment": "ลบไฟล์แนบ",
+    "addTip": "เพิ่มทิป",
+    "chooseGif": "เลือก GIF",
+    "attachImage": "แนบรูป",
+    "attachVideo": "แนบวิดีโอ",
+    "attachFile": "แนบไฟล์",
+    "enhanceWithAi": "ปรับข้อความด้วย AI",
+    "sendMessage": "ส่งข้อความ",
+    "cantMessageYourself": "คุณส่งข้อความหาตัวเองไม่ได้",
+    "askSomething": "ถามอะไรสักอย่าง...",
+    "removeOption": "ลบตัวเลือก",
+    "allowMultiple": "อนุญาตให้ตอบได้หลายข้อ",
+    "preferences": "การตั้งค่า DM",
+    "enableDms": "เปิดใช้ DM",
+    "enableDmsSub": "ปิดเพื่อบล็อกข้อความทั้งหมด",
+    "allowNewDms": "อนุญาต DM ใหม่",
+    "allowNewDmsOn": "ถ้าปิด จะมีแค่คนที่คุณเคยคุยด้วยเท่านั้นที่ส่งข้อความถึงคุณได้",
+    "allowNewDmsOff": "เปิด DM เพื่ออนุญาตข้อความใหม่",
+    "perMessageFee": "ค่าธรรมเนียมต่อข้อความ (DHB)",
+    "perMessageFeeSub": "เก็บค่าธรรมเนียมต่อข้อความ ตั้งเป็น 0 เพื่อให้ DM ฟรี คุณให้สิทธิ์ฟรีกับผู้ใช้บางรายได้",
+    "allDisabled": "ตอนนี้ DM ทั้งหมดถูกปิด DM ใหม่ถูกบล็อกโดยค่าเริ่มต้น"
   }
 }

@@ -398,7 +398,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
       });
     } catch (e) {
       console.error("[ChatInputBar] file picker error", e);
-      toastError("Couldn't attach that file.");
+      toastError(t("dm.attachFailed"));
     }
   }, []);
 
@@ -652,7 +652,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 className="absolute -top-1.5 -right-1.5 bg-white rounded-full w-5 h-5 items-center justify-center"
                 hitSlop={12}
                 accessibilityRole="button"
-                accessibilityLabel="Remove attachment"
+                accessibilityLabel={t("dm.removeAttachment")}
               >
                 <Icon name="X" size={12} color="#09090B" />
               </TouchableOpacity>
@@ -686,7 +686,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               activeOpacity={0.6}
               disabled={enhancing}
               accessibilityRole="button"
-              accessibilityLabel="Add tip"
+              accessibilityLabel={t("dm.addTip")}
               accessibilityState={{ disabled: enhancing }}
             >
               <Icon name="Gem" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
@@ -705,7 +705,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             activeOpacity={0.6}
             disabled={enhancing}
             accessibilityRole="button"
-            accessibilityLabel="Choose a GIF"
+            accessibilityLabel={t("dm.chooseGif")}
             accessibilityState={{ disabled: enhancing }}
           >
             <Text style={{ fontSize: 14, lineHeight: 22, fontWeight: '800', color: enhancing ? '#3F3F46' : '#A6A9AC' }}>GIF</Text>
@@ -719,7 +719,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             activeOpacity={0.6}
             disabled={enhancing}
             accessibilityRole="button"
-            accessibilityLabel="Attach image"
+            accessibilityLabel={t("dm.attachImage")}
             accessibilityState={{ disabled: enhancing }}
           >
             <Icon name="Image" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
@@ -733,7 +733,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             activeOpacity={0.6}
             disabled={enhancing}
             accessibilityRole="button"
-            accessibilityLabel="Attach video"
+            accessibilityLabel={t("dm.attachVideo")}
             accessibilityState={{ disabled: enhancing }}
           >
             <Icon name="Video" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
@@ -747,7 +747,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             activeOpacity={0.6}
             disabled={enhancing}
             accessibilityRole="button"
-            accessibilityLabel="Attach file"
+            accessibilityLabel={t("dm.attachFile")}
             accessibilityState={{ disabled: enhancing }}
           >
             <Icon name="Paperclip" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
@@ -761,7 +761,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             activeOpacity={0.6}
             disabled={enhancing}
             accessibilityRole="button"
-            accessibilityLabel="Record voice note"
+            accessibilityLabel={t("comments.recordVoice")}
             accessibilityState={{ disabled: enhancing }}
           >
             <Icon name="Mic" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
@@ -776,7 +776,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               activeOpacity={0.6}
               disabled={enhancing}
               accessibilityRole="button"
-              accessibilityLabel="Create poll"
+              accessibilityLabel={t("postOptions.createPoll")}
               accessibilityState={{ disabled: enhancing }}
             >
               <Icon name="ChartColumn" size={22} color={enhancing ? "#3F3F46" : "#A6A9AC"} />
@@ -793,7 +793,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             activeOpacity={0.6}
             disabled={!text.trim() || enhancing}
             accessibilityRole="button"
-            accessibilityLabel="Enhance message with AI"
+            accessibilityLabel={t("dm.enhanceWithAi")}
             accessibilityState={{ disabled: !text.trim() || enhancing }}
           >
             {enhancing ? (
@@ -815,7 +815,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 disabled={sending || enhancing || insufficientBalance || tipBelowFee}
                 activeOpacity={0.7}
                 accessibilityRole="button"
-                accessibilityLabel="Send message"
+                accessibilityLabel={t("dm.sendMessage")}
                 accessibilityState={{ disabled: sending || enhancing || insufficientBalance || tipBelowFee }}
                 className={`h-9 flex-row items-center justify-center rounded-xl px-3 ${
                   insufficientBalance || tipBelowFee
@@ -840,7 +840,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 disabled={sending || enhancing}
                 className="w-9 h-9 items-center justify-center"
                 accessibilityRole="button"
-                accessibilityLabel="Send message"
+                accessibilityLabel={t("dm.sendMessage")}
                 accessibilityState={{ disabled: sending || enhancing }}
               >
                 {sending ? (
@@ -856,7 +856,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               activeOpacity={0.6}
               disabled
               accessibilityRole="button"
-              accessibilityLabel="Send message"
+              accessibilityLabel={t("dm.sendMessage")}
               accessibilityState={{ disabled: true }}
             >
               <Icon name="Send" size={22} color="#3F3F46" />

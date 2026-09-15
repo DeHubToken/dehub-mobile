@@ -3743,5 +3743,29 @@
     "stream": "ထုတ်လွှင့်မှု",
     "boostPost": "ပို့စ်ကို Boost လုပ်ပါ",
     "openSuperPowers": "SuperPowers ဖွင့်ပါ"
+  },
+  "dm": {
+    "attachFailed": "ထိုဖိုင်ကို ပူးတွဲ၍ မရပါ။",
+    "removeAttachment": "ပူးတွဲဖိုင် ဖယ်ရှားပါ",
+    "addTip": "လက်ဆောင်ငွေ ထည့်ပါ",
+    "chooseGif": "GIF ရွေးပါ",
+    "attachImage": "ပုံ ပူးတွဲပါ",
+    "attachVideo": "ဗီဒီယို ပူးတွဲပါ",
+    "attachFile": "ဖိုင် ပူးတွဲပါ",
+    "enhanceWithAi": "AI ဖြင့် စာကို တိုးတက်အောင်လုပ်ပါ",
+    "sendMessage": "စာ ပို့ပါ",
+    "cantMessageYourself": "သင်ကိုယ်တိုင်ကို စာပို့၍ မရပါ",
+    "askSomething": "တစ်ခုခု မေးပါ...",
+    "removeOption": "ရွေးချယ်စရာ ဖယ်ရှားပါ",
+    "allowMultiple": "အဖြေများစွာ ခွင့်ပြုပါ",
+    "preferences": "DM နှစ်သက်ရာများ",
+    "enableDms": "DM ဖွင့်ပါ",
+    "enableDmsSub": "စာအားလုံး ပိတ်ဆို့ရန် ပိတ်ပါ။",
+    "allowNewDms": "DM အသစ်များ ခွင့်ပြုပါ",
+    "allowNewDmsOn": "ပိတ်ထားပါက သင်စကားပြောဖူးသူများသာ စာပို့နိုင်ပါသည်။",
+    "allowNewDmsOff": "စာအသစ်များ ခွင့်ပြုရန် DM ကို ဖွင့်ပါ။",
+    "perMessageFee": "စာတစ်စောင်လျှင် ကြေး (DHB)",
+    "perMessageFeeSub": "စာတစ်စောင်လျှင် ကြေးကောက်ပါ။ အခမဲ့ DM အတွက် 0 ထားပါ။ အချို့သုံးစွဲသူများကို အခမဲ့ခွင့်ပြုနိုင်သည်။",
+    "allDisabled": "လက်ရှိတွင် DM အားလုံး ပိတ်ထားသည်။ DM အသစ်များကို မူရင်းအတိုင်း ပိတ်ဆို့ထားသည်။"
   }
 }

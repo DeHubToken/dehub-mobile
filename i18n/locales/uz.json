@@ -3814,5 +3814,29 @@
     "stream": "Efir",
     "boostPost": "Postni boost qilish",
     "openSuperPowers": "SuperPowers ni ochish"
+  },
+  "dm": {
+    "attachFailed": "Bu faylni biriktirib bo'lmadi.",
+    "removeAttachment": "Ilovani o'chirish",
+    "addTip": "Choychaqa qo'shish",
+    "chooseGif": "GIF tanlash",
+    "attachImage": "Rasm biriktirish",
+    "attachVideo": "Video biriktirish",
+    "attachFile": "Fayl biriktirish",
+    "enhanceWithAi": "Xabarni sun'iy intellekt bilan yaxshilash",
+    "sendMessage": "Xabar yuborish",
+    "cantMessageYourself": "O'zingizga xabar yubora olmaysiz",
+    "askSomething": "Biror narsa so'rang...",
+    "removeOption": "Variantni o'chirish",
+    "allowMultiple": "Bir nechta javobga ruxsat berish",
+    "preferences": "DM sozlamalari",
+    "enableDms": "DM ni yoqish",
+    "enableDmsSub": "Barcha xabarlarni bloklash uchun o'chiring.",
+    "allowNewDms": "Yangi DM larga ruxsat berish",
+    "allowNewDmsOn": "O'chirilgan bo'lsa, faqat ilgari yozishgan odamlar xabar yubora oladi.",
+    "allowNewDmsOff": "Yangi xabarlarga ruxsat berish uchun DM ni yoqing.",
+    "perMessageFee": "Har bir xabar uchun to'lov (DHB)",
+    "perMessageFeeSub": "Har bir xabar uchun to'lov oling. Bepul DM uchun 0 qo'ying. Ayrim foydalanuvchilarga bepul kirish bera olasiz.",
+    "allDisabled": "Hozir barcha DM o'chirilgan. Yangi DM lar sukut bo'yicha bloklanadi."
   }
 }

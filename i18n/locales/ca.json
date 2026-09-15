@@ -3763,5 +3763,29 @@
     "stream": "Emissió",
     "boostPost": "Impulsa la publicació",
     "openSuperPowers": "Obre SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "No s'ha pogut adjuntar aquest fitxer.",
+    "removeAttachment": "Elimina l'adjunt",
+    "addTip": "Afegeix propina",
+    "chooseGif": "Tria un GIF",
+    "attachImage": "Adjunta una imatge",
+    "attachVideo": "Adjunta un vídeo",
+    "attachFile": "Adjunta un fitxer",
+    "enhanceWithAi": "Millora el missatge amb IA",
+    "sendMessage": "Envia el missatge",
+    "cantMessageYourself": "No et pots enviar missatges a tu mateix",
+    "askSomething": "Pregunta alguna cosa...",
+    "removeOption": "Elimina l'opció",
+    "allowMultiple": "Permet múltiples respostes",
+    "preferences": "Preferències de missatges",
+    "enableDms": "Activa els missatges",
+    "enableDmsSub": "Desactiva-ho per bloquejar tots els missatges.",
+    "allowNewDms": "Permet missatges nous",
+    "allowNewDmsOn": "Si està desactivat, només et poden escriure les persones amb qui ja has parlat.",
+    "allowNewDmsOff": "Activa els missatges per permetre'n de nous.",
+    "perMessageFee": "Tarifa per missatge (DHB)",
+    "perMessageFeeSub": "Cobra per missatge. Posa 0 per a missatges gratuïts. Pots donar accés gratuït a usuaris concrets.",
+    "allDisabled": "Ara mateix tots els missatges estan desactivats. Els nous es bloquegen per defecte."
   }
 }

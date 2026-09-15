@@ -3742,5 +3742,29 @@
     "stream": "Дамжуулалт",
     "boostPost": "Нийтлэлийг бустлах",
     "openSuperPowers": "SuperPowers нээх"
+  },
+  "dm": {
+    "attachFailed": "Тэр файлыг хавсаргаж чадсангүй.",
+    "removeAttachment": "Хавсралтыг устгах",
+    "addTip": "Шан нэмэх",
+    "chooseGif": "GIF сонгох",
+    "attachImage": "Зураг хавсаргах",
+    "attachVideo": "Видео хавсаргах",
+    "attachFile": "Файл хавсаргах",
+    "enhanceWithAi": "AI-аар мессежийг сайжруулах",
+    "sendMessage": "Мессеж илгээх",
+    "cantMessageYourself": "Та өөртөө мессеж илгээж чадахгүй",
+    "askSomething": "Ямар нэг зүйл асуу...",
+    "removeOption": "Сонголтыг устгах",
+    "allowMultiple": "Олон хариулт зөвшөөрөх",
+    "preferences": "DM тохиргоо",
+    "enableDms": "DM идэвхжүүлэх",
+    "enableDmsSub": "Бүх мессежийг хаахын тулд унтраа.",
+    "allowNewDms": "Шинэ DM зөвшөөрөх",
+    "allowNewDmsOn": "Унтраалттай бол зөвхөн өмнө нь чатлаж байсан хүмүүс бичиж чадна.",
+    "allowNewDmsOff": "Шинэ мессеж зөвшөөрөхийн тулд DM-ийг асаа.",
+    "perMessageFee": "Мессеж тутмын төлбөр (DHB)",
+    "perMessageFeeSub": "Мессеж тутамд төлбөр авна. Үнэгүй бол 0 болго. Тодорхой хэрэглэгчдэд үнэгүй хандалт өгч болно.",
+    "allDisabled": "Одоогоор бүх DM унтраалттай. Шинэ DM анхдагчаар хаагдана."
   }
 }

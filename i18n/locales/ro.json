@@ -3776,5 +3776,29 @@
     "stream": "Transmisiune",
     "boostPost": "Boostează postarea",
     "openSuperPowers": "Deschide SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Nu s-a putut atașa acel fișier.",
+    "removeAttachment": "Elimină atașamentul",
+    "addTip": "Adaugă bacșiș",
+    "chooseGif": "Alege un GIF",
+    "attachImage": "Atașează imagine",
+    "attachVideo": "Atașează videoclip",
+    "attachFile": "Atașează fișier",
+    "enhanceWithAi": "Îmbunătățește mesajul cu IA",
+    "sendMessage": "Trimite mesajul",
+    "cantMessageYourself": "Nu îți poți trimite mesaje ție însuți",
+    "askSomething": "Întreabă ceva...",
+    "removeOption": "Elimină opțiunea",
+    "allowMultiple": "Permite mai multe răspunsuri",
+    "preferences": "Preferințe mesaje",
+    "enableDms": "Activează mesajele",
+    "enableDmsSub": "Dezactivează pentru a bloca toate mesajele.",
+    "allowNewDms": "Permite mesaje noi",
+    "allowNewDmsOn": "Dacă e dezactivat, doar persoanele cu care ai vorbit deja îți pot scrie.",
+    "allowNewDmsOff": "Activează mesajele pentru a permite mesaje noi.",
+    "perMessageFee": "Taxă pe mesaj (DHB)",
+    "perMessageFeeSub": "Percepe o taxă pe mesaj. Setează 0 pentru mesaje gratuite. Poți acorda acces gratuit anumitor utilizatori.",
+    "allDisabled": "Toate mesajele sunt momentan dezactivate. Cele noi sunt blocate implicit."
   }
 }

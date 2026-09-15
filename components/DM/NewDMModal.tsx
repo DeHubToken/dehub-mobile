@@ -26,6 +26,7 @@ import GlassModal from "../ui/GlassModal";
 import { useDM } from "../../hooks/useDM";
 import { useUser } from "../../context/AuthContext";
 import { toastInfo } from "../../libs/toast";
+import { useTranslation } from "react-i18next";
 
 // Row component to avoid inline functions and improve list performance
 type ResultRowProps = {
@@ -34,6 +35,7 @@ type ResultRowProps = {
   inContacts: boolean;
 };
 const ResultRow: React.FC<ResultRowProps> = ({ item, onPress, inContacts }) => {
+  const { t } = useTranslation();
   const addr = (item.walletAddress || (item as any).address) as string;
   const display =
     (item as any).displayName ||
@@ -66,7 +68,7 @@ const ResultRow: React.FC<ResultRowProps> = ({ item, onPress, inContacts }) => {
       </View>
       {inContacts && (
         <View className="bg-theme-neutrals-700/60 rounded-full px-2.5 py-1">
-          <Text className="text-theme-neutrals-300 text-[11px]">Message</Text>
+          <Text className="text-theme-neutrals-300 text-[11px]">{t("profileOptions.message")}</Text>
         </View>
       )}
     </TouchableOpacity>
@@ -84,6 +86,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
   onOpenChange,
   onSelect,
 }) => {
+  const { t } = useTranslation();
   const user = useUser();
   const selfAddr = ((user as any)?.walletAddress || (user as any)?.address || "").toLowerCase();
   // Reset all local state
@@ -222,7 +225,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
       setShowResults(false);
       const addr = ((u as any)?.walletAddress || (u as any)?.address || "").toLowerCase();
       if (addr && addr === selfAddr) {
-        toastInfo("You can’t message yourself");
+        toastInfo(t("dm.cantMessageYourself"));
         return;
       }
       handleSelect(u);
@@ -244,7 +247,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
             onPress={close}
             className="w-9 h-9 items-center justify-center"
             accessibilityRole="button"
-            accessibilityLabel="Close"
+            accessibilityLabel={t("common.close")}
           >
             <Ionicons name="close" size={24} color="#F9FBFF" />
           </TouchableOpacity>
@@ -263,7 +266,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
             ref={searchRef}
             value={query}
             onChangeText={onChangeSearch}
-            placeholder="Search..."
+            placeholder={t("explorePage.search")}
             placeholderTextColor="#8B8D90"
             className="flex-1 text-white text-[15px]"
             returnKeyType="search"
@@ -278,7 +281,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
             <TouchableOpacity
               onPress={() => setQuery("")}
               accessibilityRole="button"
-              accessibilityLabel="Clear search"
+              accessibilityLabel={t("sidebar.clearSearch")}
               hitSlop={8}
               className="w-7 h-7 rounded-lg bg-theme-neutrals-700 items-center justify-center"
             >

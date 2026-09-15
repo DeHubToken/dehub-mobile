@@ -3767,5 +3767,29 @@
     "stream": "Stream",
     "boostPost": "Boostnout příspěvek",
     "openSuperPowers": "Otevřít SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Ten soubor se nepodařilo připojit.",
+    "removeAttachment": "Odebrat přílohu",
+    "addTip": "Přidat spropitné",
+    "chooseGif": "Vybrat GIF",
+    "attachImage": "Připojit obrázek",
+    "attachVideo": "Připojit video",
+    "attachFile": "Připojit soubor",
+    "enhanceWithAi": "Vylepšit zprávu pomocí AI",
+    "sendMessage": "Odeslat zprávu",
+    "cantMessageYourself": "Nemůžete psát sami sobě",
+    "askSomething": "Zeptejte se na něco...",
+    "removeOption": "Odebrat možnost",
+    "allowMultiple": "Povolit více odpovědí",
+    "preferences": "Předvolby zpráv",
+    "enableDms": "Povolit zprávy",
+    "enableDmsSub": "Vypnutím zablokujete všechny zprávy.",
+    "allowNewDms": "Povolit nové zprávy",
+    "allowNewDmsOn": "Pokud je vypnuto, mohou vám psát jen lidé, se kterými jste už mluvili.",
+    "allowNewDmsOff": "Zapněte zprávy, abyste povolili nové.",
+    "perMessageFee": "Poplatek za zprávu (DHB)",
+    "perMessageFeeSub": "Účtujte si za zprávu. Nastavte 0 pro bezplatné zprávy. Konkrétním uživatelům můžete dát přístup zdarma.",
+    "allDisabled": "Všechny zprávy jsou nyní vypnuté. Nové jsou ve výchozím nastavení blokované."
   }
 }

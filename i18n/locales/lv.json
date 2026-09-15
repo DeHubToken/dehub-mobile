@@ -3762,5 +3762,29 @@
     "stream": "Straume",
     "boostPost": "Pastiprināt ierakstu",
     "openSuperPowers": "Atvērt SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Neizdevās pievienot šo failu.",
+    "removeAttachment": "Noņemt pielikumu",
+    "addTip": "Pievienot dzeramnaudu",
+    "chooseGif": "Izvēlēties GIF",
+    "attachImage": "Pievienot attēlu",
+    "attachVideo": "Pievienot video",
+    "attachFile": "Pievienot failu",
+    "enhanceWithAi": "Uzlabot ziņojumu ar MI",
+    "sendMessage": "Sūtīt ziņu",
+    "cantMessageYourself": "Nevarat sūtīt ziņu sev",
+    "askSomething": "Pajautājiet kaut ko...",
+    "removeOption": "Noņemt opciju",
+    "allowMultiple": "Atļaut vairākas atbildes",
+    "preferences": "Ziņu iestatījumi",
+    "enableDms": "Iespējot ziņas",
+    "enableDmsSub": "Izslēdziet, lai bloķētu visas ziņas.",
+    "allowNewDms": "Atļaut jaunas ziņas",
+    "allowNewDmsOn": "Ja izslēgts, rakstīt varēs tikai tie, ar kuriem jau esat sarakstījies.",
+    "allowNewDmsOff": "Ieslēdziet ziņas, lai atļautu jaunas.",
+    "perMessageFee": "Maksa par ziņu (DHB)",
+    "perMessageFeeSub": "Iekasējiet maksu par ziņu. Iestatiet 0 bezmaksas ziņām. Atsevišķiem lietotājiem varat piešķirt bezmaksas piekļuvi.",
+    "allDisabled": "Pašlaik visas ziņas ir izslēgtas. Jaunās pēc noklusējuma tiek bloķētas."
   }
 }

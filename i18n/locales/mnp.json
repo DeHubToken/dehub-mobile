@@ -3760,5 +3760,29 @@
     "stream": "直播",
     "boostPost": "助推该帖子",
     "openSuperPowers": "打开 SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "无法附加该文件。",
+    "removeAttachment": "移除附件",
+    "addTip": "添加打赏",
+    "chooseGif": "选择 GIF",
+    "attachImage": "附加图片",
+    "attachVideo": "附加视频",
+    "attachFile": "附加文件",
+    "enhanceWithAi": "用 AI 优化消息",
+    "sendMessage": "发送消息",
+    "cantMessageYourself": "你不能给自己发消息",
+    "askSomething": "问点什么……",
+    "removeOption": "移除选项",
+    "allowMultiple": "允许多选",
+    "preferences": "私信偏好",
+    "enableDms": "启用私信",
+    "enableDmsSub": "关闭以屏蔽所有消息。",
+    "allowNewDms": "允许新的私信",
+    "allowNewDmsOn": "关闭后，只有你聊过的人能给你发消息。",
+    "allowNewDmsOff": "启用私信才能接收新消息。",
+    "perMessageFee": "每条消息费用 (DHB)",
+    "perMessageFeeSub": "按条收费。设为 0 即为免费私信。你也可以给特定用户免费权限。",
+    "allDisabled": "目前所有私信都已关闭。新私信默认被屏蔽。"
   }
 }

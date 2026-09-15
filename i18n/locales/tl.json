@@ -3942,5 +3942,29 @@
     "stream": "Stream",
     "boostPost": "I-boost ang post",
     "openSuperPowers": "Buksan ang SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Hindi ma-attach ang file na iyon.",
+    "removeAttachment": "Alisin ang attachment",
+    "addTip": "Magdagdag ng tip",
+    "chooseGif": "Pumili ng GIF",
+    "attachImage": "Mag-attach ng larawan",
+    "attachVideo": "Mag-attach ng video",
+    "attachFile": "Mag-attach ng file",
+    "enhanceWithAi": "Pagandahin ang mensahe gamit ang AI",
+    "sendMessage": "Ipadala ang mensahe",
+    "cantMessageYourself": "Hindi ka puwedeng magmensahe sa sarili mo",
+    "askSomething": "Magtanong...",
+    "removeOption": "Alisin ang opsyon",
+    "allowMultiple": "Payagan ang maraming sagot",
+    "preferences": "Mga kagustuhan sa DM",
+    "enableDms": "I-enable ang DM",
+    "enableDmsSub": "I-off para harangan lahat ng mensahe.",
+    "allowNewDms": "Payagan ang bagong DM",
+    "allowNewDmsOn": "Kapag naka-off, tanging ang mga nakausap mo na ang makakapagmensahe.",
+    "allowNewDmsOff": "I-on ang DM para payagan ang mga bagong mensahe.",
+    "perMessageFee": "Bayad kada mensahe (DHB)",
+    "perMessageFeeSub": "Maningil kada mensahe. Itakda sa 0 para libre ang DM. Puwede kang magbigay ng libreng access sa ilang user.",
+    "allDisabled": "Naka-off lahat ng DM ngayon. Naka-block bilang default ang bagong DM."
   }
 }

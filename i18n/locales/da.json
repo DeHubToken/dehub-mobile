@@ -3767,5 +3767,29 @@
     "stream": "Stream",
     "boostPost": "Boost opslaget",
     "openSuperPowers": "Åbn SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Kunne ikke vedhæfte den fil.",
+    "removeAttachment": "Fjern vedhæftning",
+    "addTip": "Tilføj drikkepenge",
+    "chooseGif": "Vælg en GIF",
+    "attachImage": "Vedhæft billede",
+    "attachVideo": "Vedhæft video",
+    "attachFile": "Vedhæft fil",
+    "enhanceWithAi": "Forbedr beskeden med AI",
+    "sendMessage": "Send besked",
+    "cantMessageYourself": "Du kan ikke sende beskeder til dig selv",
+    "askSomething": "Spørg om noget...",
+    "removeOption": "Fjern valgmulighed",
+    "allowMultiple": "Tillad flere svar",
+    "preferences": "DM-indstillinger",
+    "enableDms": "Aktivér DM'er",
+    "enableDmsSub": "Slå fra for at blokere alle beskeder.",
+    "allowNewDms": "Tillad nye DM'er",
+    "allowNewDmsOn": "Hvis den er slået fra, kan kun personer, du har chattet med, skrive til dig.",
+    "allowNewDmsOff": "Slå DM'er til for at tillade nye beskeder.",
+    "perMessageFee": "Gebyr pr. besked (DHB)",
+    "perMessageFeeSub": "Opkræv pr. besked. Sæt til 0 for gratis DM'er. Du kan give bestemte brugere gratis adgang.",
+    "allDisabled": "Alle DM'er er slået fra lige nu. Nye DM'er blokeres som standard."
   }
 }

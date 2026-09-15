@@ -3762,5 +3762,29 @@
     "stream": "Transmetim",
     "boostPost": "Boost postimin",
     "openSuperPowers": "Hap SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "Ai skedar nuk u bashkëngjit dot.",
+    "removeAttachment": "Hiq bashkëngjitjen",
+    "addTip": "Shto bakshish",
+    "chooseGif": "Zgjidh një GIF",
+    "attachImage": "Bashkëngjit imazh",
+    "attachVideo": "Bashkëngjit video",
+    "attachFile": "Bashkëngjit skedar",
+    "enhanceWithAi": "Përmirëso mesazhin me IA",
+    "sendMessage": "Dërgo mesazhin",
+    "cantMessageYourself": "Nuk mund t'i dërgosh mesazh vetes",
+    "askSomething": "Pyet diçka...",
+    "removeOption": "Hiq opsionin",
+    "allowMultiple": "Lejo përgjigje të shumta",
+    "preferences": "Preferencat e mesazheve",
+    "enableDms": "Aktivizo mesazhet",
+    "enableDmsSub": "Fike për të bllokuar të gjitha mesazhet.",
+    "allowNewDms": "Lejo DM të reja",
+    "allowNewDmsOn": "Nëse është fikur, vetëm personat me të cilët ke biseduar mund të të shkruajnë.",
+    "allowNewDmsOff": "Aktivizo mesazhet për të lejuar mesazhe të reja.",
+    "perMessageFee": "Tarifa për mesazh (DHB)",
+    "perMessageFeeSub": "Tarifo për çdo mesazh. Vendos 0 për mesazhe falas. Mund t'u japësh qasje falas përdoruesve të caktuar.",
+    "allDisabled": "Të gjitha DM-të janë aktualisht të fikura. Të rejat bllokohen sipas parazgjedhjes."
   }
 }

@@ -3761,5 +3761,29 @@
     "stream": "直播",
     "boostPost": "加成呢個帖子",
     "openSuperPowers": "打開 SuperPowers"
+  },
+  "dm": {
+    "attachFailed": "無法附加嗰個檔案。",
+    "removeAttachment": "移除附件",
+    "addTip": "加入打賞",
+    "chooseGif": "選擇 GIF",
+    "attachImage": "附加圖片",
+    "attachVideo": "附加影片",
+    "attachFile": "附加檔案",
+    "enhanceWithAi": "用 AI 優化訊息",
+    "sendMessage": "發送訊息",
+    "cantMessageYourself": "你唔可以傳訊息俾自己",
+    "askSomething": "問啲嘢……",
+    "removeOption": "移除選項",
+    "allowMultiple": "允許多選",
+    "preferences": "私訊偏好",
+    "enableDms": "啟用私訊",
+    "enableDmsSub": "閂咗就會封鎖所有訊息。",
+    "allowNewDms": "允許新嘅私訊",
+    "allowNewDmsOn": "閂咗之後，只有你傾過偈嘅人先可以傳訊息俾你。",
+    "allowNewDmsOff": "開啟私訊先可以收新訊息。",
+    "perMessageFee": "每條訊息費用 (DHB)",
+    "perMessageFeeSub": "按條收費。設為 0 就係免費私訊。你都可以俾特定用戶免費權限。",
+    "allDisabled": "而家所有私訊都閂咗。新私訊預設會被封鎖。"
   }
 }

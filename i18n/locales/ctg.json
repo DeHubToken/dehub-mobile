@@ -3854,5 +3854,29 @@
     "stream": "স্ট্রিম",
     "boostPost": "পোস্ট বুস্ট করন",
     "openSuperPowers": "SuperPowers খুলন"
+  },
+  "dm": {
+    "attachFailed": "হেই ফাইল যোগ করন গেল না।",
+    "removeAttachment": "সংযুক্তি সরান",
+    "addTip": "টিপ যোগ করন",
+    "chooseGif": "একগান GIF বাছন",
+    "attachImage": "ছবি যোগ করন",
+    "attachVideo": "ভিডিও যোগ করন",
+    "attachFile": "ফাইল যোগ করন",
+    "enhanceWithAi": "AI দি বার্তা ভালা করন",
+    "sendMessage": "বার্তা পাঠান",
+    "cantMessageYourself": "আঁই নিজেরে বার্তা পাঠাইতাম পারতান না",
+    "askSomething": "কিছু জিগান...",
+    "removeOption": "অপশন সরান",
+    "allowMultiple": "একের বেশি জবাবর অনুমতি দন",
+    "preferences": "DM পছন্দ",
+    "enableDms": "DM চালু করন",
+    "enableDmsSub": "হক্কল বার্তা বন্ধ করিবার লাই এইটা বন্ধ করন।",
+    "allowNewDms": "নয়া DM অনুমতি দন",
+    "allowNewDmsOn": "বন্ধ থাকিলে খালি যারার লগে আগে কথা অইছে হেতারাই বার্তা পাঠাইত পারিব।",
+    "allowNewDmsOff": "নয়া বার্তার অনুমতি দিবার লাই DM চালু করন।",
+    "perMessageFee": "হর বার্তার ফি (DHB)",
+    "perMessageFeeSub": "হর বার্তাত ফি লন। ফ্রি DM-র লাই 0 দন। কিছু ব্যবহারকারীরে ফ্রি অ্যাক্সেস দিত পারন।",
+    "allDisabled": "অহন হক্কল DM বন্ধ। নয়া DM ডিফল্টে আটকানো।"
   }
 }
