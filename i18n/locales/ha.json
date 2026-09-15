@@ -3585,5 +3585,24 @@
     "confirmingPayment": "Ana tabbatar da biyan kuɗi…",
     "retryConfirmation": "Sake gwada tabbatarwa",
     "buyNow": "Saya yanzu"
+  },
+  "dpay": {
+    "success": "Nasara",
+    "stripeStatus": "Matsayin Stripe",
+    "tokenSendStatus": "Matsayin aika token",
+    "txnHash": "Hash na ma'amala",
+    "paymentCompleted": "An kammala biyan kuɗi",
+    "paymentProcessing": "Ana sarrafa biyan kuɗi",
+    "actionRequired": "Ana buƙatar mataki",
+    "awaitingMethod": "Ana jiran hanyar biyan kuɗi",
+    "paymentCanceled": "An soke biyan kuɗi",
+    "paymentExpired": "Lokacin biyan kuɗi ya ƙare",
+    "sessionNotFound": "Ba a sami zaman ba",
+    "pendingPayment": "Biyan kuɗi na jiran aiki",
+    "tokensSent": "An aika tokens",
+    "sendingTokens": "Ana aika tokens",
+    "queuedForSending": "Yana jerin gwano don aikawa",
+    "tokenTransferFailed": "Canja wurin token ya gaza",
+    "notSentYet": "Ba a aika ba tukuna"
   }
 }

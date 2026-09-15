@@ -3669,5 +3669,24 @@
     "confirmingPayment": "Confirmation du paiement…",
     "retryConfirmation": "Relancer la confirmation",
     "buyNow": "Acheter maintenant"
+  },
+  "dpay": {
+    "success": "Réussi",
+    "stripeStatus": "Statut Stripe",
+    "tokenSendStatus": "Statut d'envoi du jeton",
+    "txnHash": "Hash de transaction",
+    "paymentCompleted": "Paiement effectué",
+    "paymentProcessing": "Paiement en cours",
+    "actionRequired": "Action requise",
+    "awaitingMethod": "En attente du moyen de paiement",
+    "paymentCanceled": "Paiement annulé",
+    "paymentExpired": "Le paiement a expiré",
+    "sessionNotFound": "Session introuvable",
+    "pendingPayment": "Paiement en attente",
+    "tokensSent": "Jetons envoyés",
+    "sendingTokens": "Envoi des jetons",
+    "queuedForSending": "En file d'attente pour l'envoi",
+    "tokenTransferFailed": "Échec du transfert de jeton",
+    "notSentYet": "Pas encore envoyé"
   }
 }

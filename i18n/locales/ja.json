@@ -3662,5 +3662,24 @@
     "confirmingPayment": "支払いを確認中…",
     "retryConfirmation": "確認を再試行",
     "buyNow": "今すぐ購入"
+  },
+  "dpay": {
+    "success": "成功",
+    "stripeStatus": "Stripe のステータス",
+    "tokenSendStatus": "トークン送信のステータス",
+    "txnHash": "トランザクションハッシュ",
+    "paymentCompleted": "支払い完了",
+    "paymentProcessing": "支払い処理中",
+    "actionRequired": "操作が必要です",
+    "awaitingMethod": "支払い方法を待っています",
+    "paymentCanceled": "支払いがキャンセルされました",
+    "paymentExpired": "支払いの有効期限が切れました",
+    "sessionNotFound": "セッションが見つかりません",
+    "pendingPayment": "支払い保留中",
+    "tokensSent": "トークン送信済み",
+    "sendingTokens": "トークンを送信中",
+    "queuedForSending": "送信待ちキューに登録済み",
+    "tokenTransferFailed": "トークンの送金に失敗しました",
+    "notSentYet": "まだ送信されていません"
   }
 }

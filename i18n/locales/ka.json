@@ -3630,5 +3630,24 @@
     "confirmingPayment": "გადახდის დადასტურება…",
     "retryConfirmation": "დადასტურების ხელახლა ცდა",
     "buyNow": "იყიდე ახლა"
+  },
+  "dpay": {
+    "success": "წარმატება",
+    "stripeStatus": "Stripe-ის სტატუსი",
+    "tokenSendStatus": "ტოკენის გაგზავნის სტატუსი",
+    "txnHash": "ტრანზაქციის ჰეში",
+    "paymentCompleted": "გადახდა დასრულდა",
+    "paymentProcessing": "გადახდა მუშავდება",
+    "actionRequired": "საჭიროა მოქმედება",
+    "awaitingMethod": "გადახდის მეთოდის მოლოდინში",
+    "paymentCanceled": "გადახდა გაუქმდა",
+    "paymentExpired": "გადახდის ვადა ამოიწურა",
+    "sessionNotFound": "სესია ვერ მოიძებნა",
+    "pendingPayment": "გადახდა მოლოდინში",
+    "tokensSent": "ტოკენები გაიგზავნა",
+    "sendingTokens": "ტოკენების გაგზავნა",
+    "queuedForSending": "გასაგზავნად რიგშია",
+    "tokenTransferFailed": "ტოკენის გადარიცხვა ვერ შესრულდა",
+    "notSentYet": "ჯერ არ გაგზავნილა"
   }
 }

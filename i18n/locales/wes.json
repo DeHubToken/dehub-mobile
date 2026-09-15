@@ -3427,5 +3427,24 @@
     "confirmingPayment": "Dey confirm payment…",
     "retryConfirmation": "Try di confirmation again",
     "buyNow": "Buy now"
+  },
+  "dpay": {
+    "success": "E work",
+    "stripeStatus": "Stripe status",
+    "tokenSendStatus": "Token send status",
+    "txnHash": "Txn hash",
+    "paymentCompleted": "Payment don complete",
+    "paymentProcessing": "Dem dey process di payment",
+    "actionRequired": "You need to do sometin",
+    "awaitingMethod": "Dey wait for payment method",
+    "paymentCanceled": "Dem don cancel di payment",
+    "paymentExpired": "Di payment don expire",
+    "sessionNotFound": "Dem no find di session",
+    "pendingPayment": "Payment still dey wait",
+    "tokensSent": "Dem don send di tokens",
+    "sendingTokens": "Dey send di tokens",
+    "queuedForSending": "E dey queue to send",
+    "tokenTransferFailed": "Token transfer fail",
+    "notSentYet": "Dem never send am"
   }
 }

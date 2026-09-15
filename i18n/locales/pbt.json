@@ -3545,5 +3545,24 @@
     "confirmingPayment": "تادیه تاییدیږي…",
     "retryConfirmation": "تایید بیا هڅه کړئ",
     "buyNow": "اوس یې واخلئ"
+  },
+  "dpay": {
+    "success": "بریالی",
+    "stripeStatus": "د Stripe حالت",
+    "tokenSendStatus": "د ټوکن لیږلو حالت",
+    "txnHash": "د راکړې ورکړې هش",
+    "paymentCompleted": "تادیه بشپړه شوه",
+    "paymentProcessing": "تادیه پروسس کیږي",
+    "actionRequired": "اقدام اړین دی",
+    "awaitingMethod": "د تادیې د طریقې انتظار",
+    "paymentCanceled": "تادیه لغوه شوه",
+    "paymentExpired": "د تادیې موده پای ته ورسېده",
+    "sessionNotFound": "غونډه ونه موندل شوه",
+    "pendingPayment": "تادیه پاتې ده",
+    "tokensSent": "ټوکنونه ولېږل شول",
+    "sendingTokens": "ټوکنونه لیږل کیږي",
+    "queuedForSending": "د لیږلو لپاره په کتار کې",
+    "tokenTransferFailed": "د ټوکن لیږد ناکام شو",
+    "notSentYet": "لا تر اوسه نه دي لیږل شوي"
   }
 }

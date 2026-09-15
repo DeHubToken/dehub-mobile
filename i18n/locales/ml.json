@@ -3577,5 +3577,24 @@
     "confirmingPayment": "പേയ്‌മെന്റ് സ്ഥിരീകരിക്കുന്നു…",
     "retryConfirmation": "സ്ഥിരീകരണം വീണ്ടും ശ്രമിക്കൂ",
     "buyNow": "ഇപ്പോൾ വാങ്ങുക"
+  },
+  "dpay": {
+    "success": "വിജയകരം",
+    "stripeStatus": "Stripe നില",
+    "tokenSendStatus": "ടോക്കൺ അയയ്ക്കൽ നില",
+    "txnHash": "ഇടപാട് ഹാഷ്",
+    "paymentCompleted": "പേയ്‌മെന്റ് പൂർത്തിയായി",
+    "paymentProcessing": "പേയ്‌മെന്റ് പ്രോസസ് ചെയ്യുന്നു",
+    "actionRequired": "നടപടി ആവശ്യമാണ്",
+    "awaitingMethod": "പേയ്‌മെന്റ് രീതിക്കായി കാത്തിരിക്കുന്നു",
+    "paymentCanceled": "പേയ്‌മെന്റ് റദ്ദാക്കി",
+    "paymentExpired": "പേയ്‌മെന്റിന്റെ കാലാവധി കഴിഞ്ഞു",
+    "sessionNotFound": "സെഷൻ കണ്ടെത്തിയില്ല",
+    "pendingPayment": "പേയ്‌മെന്റ് തീർപ്പാകാത്ത നിലയിൽ",
+    "tokensSent": "ടോക്കണുകൾ അയച്ചു",
+    "sendingTokens": "ടോക്കണുകൾ അയയ്ക്കുന്നു",
+    "queuedForSending": "അയയ്ക്കാൻ ക്യൂവിൽ",
+    "tokenTransferFailed": "ടോക്കൺ ട്രാൻസ്ഫർ പരാജയപ്പെട്ടു",
+    "notSentYet": "ഇനിയും അയച്ചിട്ടില്ല"
   }
 }

@@ -3594,5 +3594,24 @@
     "confirmingPayment": "Notiek maksājuma apstiprināšana…",
     "retryConfirmation": "Mēģināt apstiprināt vēlreiz",
     "buyNow": "Pirkt tagad"
+  },
+  "dpay": {
+    "success": "Izdevās",
+    "stripeStatus": "Stripe statuss",
+    "tokenSendStatus": "Marķiera nosūtīšanas statuss",
+    "txnHash": "Darījuma jaucējkods",
+    "paymentCompleted": "Maksājums pabeigts",
+    "paymentProcessing": "Maksājums tiek apstrādāts",
+    "actionRequired": "Nepieciešama darbība",
+    "awaitingMethod": "Gaida maksājuma veidu",
+    "paymentCanceled": "Maksājums atcelts",
+    "paymentExpired": "Maksājuma termiņš beidzies",
+    "sessionNotFound": "Sesija nav atrasta",
+    "pendingPayment": "Maksājums gaida",
+    "tokensSent": "Marķieri nosūtīti",
+    "sendingTokens": "Notiek marķieru nosūtīšana",
+    "queuedForSending": "Rindā nosūtīšanai",
+    "tokenTransferFailed": "Marķiera pārsūtīšana neizdevās",
+    "notSentYet": "Vēl nav nosūtīts"
   }
 }

@@ -3545,5 +3545,24 @@
     "confirmingPayment": "भुगतान पक्का कइल जा रहल बा…",
     "retryConfirmation": "पुष्टि फेर से करीं",
     "buyNow": "अबहीं खरीदीं"
+  },
+  "dpay": {
+    "success": "सफल",
+    "stripeStatus": "Stripe के स्थिति",
+    "tokenSendStatus": "टोकन भेजे के स्थिति",
+    "txnHash": "लेनदेन हैश",
+    "paymentCompleted": "भुगतान पूरा भइल",
+    "paymentProcessing": "भुगतान प्रोसेस हो रहल बा",
+    "actionRequired": "कार्रवाई जरूरी बा",
+    "awaitingMethod": "भुगतान के तरीका के इंतजार बा",
+    "paymentCanceled": "भुगतान रद्द भइल",
+    "paymentExpired": "भुगतान के समय खतम भइल",
+    "sessionNotFound": "सत्र ना मिलल",
+    "pendingPayment": "भुगतान लंबित बा",
+    "tokensSent": "टोकन भेजल गइल",
+    "sendingTokens": "टोकन भेजल जा रहल बा",
+    "queuedForSending": "भेजे खातिर कतार में",
+    "tokenTransferFailed": "टोकन ट्रांसफर विफल",
+    "notSentYet": "अबहीं ना भेजल गइल"
   }
 }

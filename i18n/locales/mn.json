@@ -3574,5 +3574,24 @@
     "confirmingPayment": "Төлбөрийг баталгаажуулж байна…",
     "retryConfirmation": "Баталгаажуулалтыг дахин оролдох",
     "buyNow": "Одоо худалдаж авах"
+  },
+  "dpay": {
+    "success": "Амжилттай",
+    "stripeStatus": "Stripe төлөв",
+    "tokenSendStatus": "Токен илгээх төлөв",
+    "txnHash": "Гүйлгээний хэш",
+    "paymentCompleted": "Төлбөр дууссан",
+    "paymentProcessing": "Төлбөр боловсруулагдаж байна",
+    "actionRequired": "Үйлдэл шаардлагатай",
+    "awaitingMethod": "Төлбөрийн аргыг хүлээж байна",
+    "paymentCanceled": "Төлбөр цуцлагдсан",
+    "paymentExpired": "Төлбөрийн хугацаа дууссан",
+    "sessionNotFound": "Сесс олдсонгүй",
+    "pendingPayment": "Төлбөр хүлээгдэж байна",
+    "tokensSent": "Токенууд илгээгдсэн",
+    "sendingTokens": "Токен илгээж байна",
+    "queuedForSending": "Илгээхээр дараалалд орсон",
+    "tokenTransferFailed": "Токен шилжүүлэг амжилтгүй боллоо",
+    "notSentYet": "Хараахан илгээгээгүй"
   }
 }

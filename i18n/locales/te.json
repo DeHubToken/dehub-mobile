@@ -3589,5 +3589,24 @@
     "confirmingPayment": "చెల్లింపు నిర్ధారణ అవుతోంది…",
     "retryConfirmation": "నిర్ధారణ మళ్లీ ప్రయత్నించండి",
     "buyNow": "ఇప్పుడే కొనండి"
+  },
+  "dpay": {
+    "success": "విజయవంతం",
+    "stripeStatus": "Stripe స్థితి",
+    "tokenSendStatus": "టోకెన్ పంపే స్థితి",
+    "txnHash": "లావాదేవీ హాష్",
+    "paymentCompleted": "చెల్లింపు పూర్తయింది",
+    "paymentProcessing": "చెల్లింపు ప్రాసెస్ అవుతోంది",
+    "actionRequired": "చర్య అవసరం",
+    "awaitingMethod": "చెల్లింపు పద్ధతి కోసం వేచి ఉంది",
+    "paymentCanceled": "చెల్లింపు రద్దయింది",
+    "paymentExpired": "చెల్లింపు గడువు ముగిసింది",
+    "sessionNotFound": "సెషన్ కనుగొనబడలేదు",
+    "pendingPayment": "చెల్లింపు పెండింగ్‌లో",
+    "tokensSent": "టోకెన్లు పంపబడ్డాయి",
+    "sendingTokens": "టోకెన్లు పంపుతోంది",
+    "queuedForSending": "పంపడానికి క్యూలో",
+    "tokenTransferFailed": "టోకెన్ బదిలీ విఫలమైంది",
+    "notSentYet": "ఇంకా పంపలేదు"
   }
 }

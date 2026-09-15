@@ -3608,5 +3608,24 @@
     "confirmingPayment": "Se confirmă plata…",
     "retryConfirmation": "Reîncearcă confirmarea",
     "buyNow": "Cumpără acum"
+  },
+  "dpay": {
+    "success": "Reușit",
+    "stripeStatus": "Stare Stripe",
+    "tokenSendStatus": "Stare trimitere token",
+    "txnHash": "Hash tranzacție",
+    "paymentCompleted": "Plată finalizată",
+    "paymentProcessing": "Plata se procesează",
+    "actionRequired": "Este necesară o acțiune",
+    "awaitingMethod": "Se așteaptă metoda de plată",
+    "paymentCanceled": "Plată anulată",
+    "paymentExpired": "Plata a expirat",
+    "sessionNotFound": "Sesiunea nu a fost găsită",
+    "pendingPayment": "Plată în așteptare",
+    "tokensSent": "Tokenuri trimise",
+    "sendingTokens": "Se trimit tokenuri",
+    "queuedForSending": "În coadă pentru trimitere",
+    "tokenTransferFailed": "Transferul tokenului a eșuat",
+    "notSentYet": "Nu a fost trimis încă"
   }
 }

@@ -3551,5 +3551,24 @@
     "confirmingPayment": "भुक्तिः निश्चीयते…",
     "retryConfirmation": "निश्चयनं पुनः प्रयतताम्",
     "buyNow": "अधुना क्रीणातु"
+  },
+  "dpay": {
+    "success": "सफलम्",
+    "stripeStatus": "Stripe-स्थितिः",
+    "tokenSendStatus": "टोकन्-प्रेषणस्थितिः",
+    "txnHash": "व्यवहार-हैश्",
+    "paymentCompleted": "भुक्तिः सम्पन्ना",
+    "paymentProcessing": "भुक्तिः संस्क्रियते",
+    "actionRequired": "क्रिया आवश्यका",
+    "awaitingMethod": "भुक्तिविधिं प्रतीक्षते",
+    "paymentCanceled": "भुक्तिः निरस्ता",
+    "paymentExpired": "भुक्तेः अवधिः समाप्ता",
+    "sessionNotFound": "सत्रं न प्राप्तम्",
+    "pendingPayment": "भुक्तिः प्रतीक्षायाम्",
+    "tokensSent": "टोकन्-प्रेषितानि",
+    "sendingTokens": "टोकन्-प्रेष्यन्ते",
+    "queuedForSending": "प्रेषणाय पङ्क्तौ",
+    "tokenTransferFailed": "टोकन्-हस्तान्तरणं विफलम्",
+    "notSentYet": "अद्यापि न प्रेषितम्"
   }
 }

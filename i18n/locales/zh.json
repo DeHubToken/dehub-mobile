@@ -3652,5 +3652,24 @@
     "confirmingPayment": "正在确认付款…",
     "retryConfirmation": "重试确认",
     "buyNow": "立即购买"
+  },
+  "dpay": {
+    "success": "成功",
+    "stripeStatus": "Stripe 状态",
+    "tokenSendStatus": "代币发送状态",
+    "txnHash": "交易哈希",
+    "paymentCompleted": "付款已完成",
+    "paymentProcessing": "付款处理中",
+    "actionRequired": "需要操作",
+    "awaitingMethod": "等待付款方式",
+    "paymentCanceled": "付款已取消",
+    "paymentExpired": "付款已过期",
+    "sessionNotFound": "未找到会话",
+    "pendingPayment": "付款待处理",
+    "tokensSent": "代币已发送",
+    "sendingTokens": "正在发送代币",
+    "queuedForSending": "已排队等待发送",
+    "tokenTransferFailed": "代币转账失败",
+    "notSentYet": "尚未发送"
   }
 }

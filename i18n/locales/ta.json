@@ -3583,5 +3583,24 @@
     "confirmingPayment": "கட்டணம் உறுதிசெய்யப்படுகிறது…",
     "retryConfirmation": "உறுதிப்படுத்தலை மீண்டும் முயலவும்",
     "buyNow": "இப்போது வாங்கு"
+  },
+  "dpay": {
+    "success": "வெற்றி",
+    "stripeStatus": "Stripe நிலை",
+    "tokenSendStatus": "டோக்கன் அனுப்பும் நிலை",
+    "txnHash": "பரிவர்த்தனை ஹாஷ்",
+    "paymentCompleted": "கட்டணம் முடிந்தது",
+    "paymentProcessing": "கட்டணம் செயலாக்கத்தில்",
+    "actionRequired": "நடவடிக்கை தேவை",
+    "awaitingMethod": "கட்டண முறைக்காகக் காத்திருக்கிறது",
+    "paymentCanceled": "கட்டணம் ரத்து செய்யப்பட்டது",
+    "paymentExpired": "கட்டணக் காலம் முடிந்தது",
+    "sessionNotFound": "அமர்வு கிடைக்கவில்லை",
+    "pendingPayment": "கட்டணம் நிலுவையில்",
+    "tokensSent": "டோக்கன்கள் அனுப்பப்பட்டன",
+    "sendingTokens": "டோக்கன்கள் அனுப்பப்படுகின்றன",
+    "queuedForSending": "அனுப்ப வரிசையில்",
+    "tokenTransferFailed": "டோக்கன் பரிமாற்றம் தோல்வியடைந்தது",
+    "notSentYet": "இன்னும் அனுப்பப்படவில்லை"
   }
 }

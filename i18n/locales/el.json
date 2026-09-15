@@ -3618,5 +3618,24 @@
     "confirmingPayment": "Επιβεβαίωση πληρωμής…",
     "retryConfirmation": "Επανάληψη επιβεβαίωσης",
     "buyNow": "Αγόρασε τώρα"
+  },
+  "dpay": {
+    "success": "Επιτυχία",
+    "stripeStatus": "Κατάσταση Stripe",
+    "tokenSendStatus": "Κατάσταση αποστολής token",
+    "txnHash": "Hash συναλλαγής",
+    "paymentCompleted": "Η πληρωμή ολοκληρώθηκε",
+    "paymentProcessing": "Η πληρωμή επεξεργάζεται",
+    "actionRequired": "Απαιτείται ενέργεια",
+    "awaitingMethod": "Αναμονή τρόπου πληρωμής",
+    "paymentCanceled": "Η πληρωμή ακυρώθηκε",
+    "paymentExpired": "Η πληρωμή έληξε",
+    "sessionNotFound": "Η συνεδρία δεν βρέθηκε",
+    "pendingPayment": "Πληρωμή σε εκκρεμότητα",
+    "tokensSent": "Τα token στάλθηκαν",
+    "sendingTokens": "Αποστολή token",
+    "queuedForSending": "Σε ουρά για αποστολή",
+    "tokenTransferFailed": "Η μεταφορά token απέτυχε",
+    "notSentYet": "Δεν έχει σταλεί ακόμη"
   }
 }

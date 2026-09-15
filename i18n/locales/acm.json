@@ -3553,5 +3553,24 @@
     "confirmingPayment": "يأكد الدفع…",
     "retryConfirmation": "أعد التأكيد",
     "buyNow": "اشتري هسه"
+  },
+  "dpay": {
+    "success": "نجح",
+    "stripeStatus": "حالة Stripe",
+    "tokenSendStatus": "حالة إرسال التوكن",
+    "txnHash": "هاش المعاملة",
+    "paymentCompleted": "اكتمل الدفع",
+    "paymentProcessing": "الدفع قيد المعالجة",
+    "actionRequired": "لازم إجراء منك",
+    "awaitingMethod": "بانتظار طريقة الدفع",
+    "paymentCanceled": "انلغى الدفع",
+    "paymentExpired": "انتهت صلاحية الدفع",
+    "sessionNotFound": "ما لكينا الجلسة",
+    "pendingPayment": "الدفع معلق",
+    "tokensSent": "انرسلت التوكنز",
+    "sendingTokens": "يرسل التوكنز",
+    "queuedForSending": "بالطابور للإرسال",
+    "tokenTransferFailed": "فشل نقل التوكن",
+    "notSentYet": "بعده ما انرسل"
   }
 }

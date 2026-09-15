@@ -3586,5 +3586,24 @@
     "confirmingPayment": "Waa la xaqiijinayaa lacag bixinta…",
     "retryConfirmation": "Isku day xaqiijinta mar kale",
     "buyNow": "Iibso hadda"
+  },
+  "dpay": {
+    "success": "Guul",
+    "stripeStatus": "Xaaladda Stripe",
+    "tokenSendStatus": "Xaaladda dirista token",
+    "txnHash": "Hash macaamil",
+    "paymentCompleted": "Lacag bixinta waa dhammaatay",
+    "paymentProcessing": "Lacag bixinta waa la habaynayaa",
+    "actionRequired": "Waxaa loo baahan yahay tallaabo",
+    "awaitingMethod": "Sugaya habka lacag bixinta",
+    "paymentCanceled": "Lacag bixinta waa la joojiyay",
+    "paymentExpired": "Lacag bixintu way dhacday",
+    "sessionNotFound": "Fadhiga lama helin",
+    "pendingPayment": "Lacag bixin sugaysa",
+    "tokensSent": "Tokens la diray",
+    "sendingTokens": "Waa la dirayaa tokens",
+    "queuedForSending": "Safka dirista ku jira",
+    "tokenTransferFailed": "Wareejinta token way fashilantay",
+    "notSentYet": "Weli lama dirin"
   }
 }

@@ -3625,5 +3625,24 @@
     "confirmingPayment": "Qullqi qupuyta takyachichkan…",
     "retryConfirmation": "Takyachiyta yapamanta ruray",
     "buyNow": "Kunan rantiy"
+  },
+  "dpay": {
+    "success": "Allinmi karqan",
+    "stripeStatus": "Stripe kaynin",
+    "tokenSendStatus": "Token apachiy kaynin",
+    "txnHash": "Rantikuy hash",
+    "paymentCompleted": "Qullqi qupuy tukusqa",
+    "paymentProcessing": "Qullqi qupuy ruwakuchkan",
+    "actionRequired": "Ruwanayki kachkan",
+    "awaitingMethod": "Qullqi qupuy ñanta suyachkan",
+    "paymentCanceled": "Qullqi qupuy hark'asqa",
+    "paymentExpired": "Qullqi qupuy pacha tukurqun",
+    "sessionNotFound": "Sesión mana tarisqachu",
+    "pendingPayment": "Qullqi qupuy suyachkan",
+    "tokensSent": "Tokenkuna apachisqa",
+    "sendingTokens": "Tokenkunata apachichkan",
+    "queuedForSending": "Apachinapaq suyay qillqapi",
+    "tokenTransferFailed": "Token apachiy mana atikurqachu",
+    "notSentYet": "Manaraq apachisqachu"
   }
 }

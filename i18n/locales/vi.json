@@ -3683,5 +3683,24 @@
     "confirmingPayment": "Đang xác nhận thanh toán…",
     "retryConfirmation": "Thử xác nhận lại",
     "buyNow": "Mua ngay"
+  },
+  "dpay": {
+    "success": "Thành công",
+    "stripeStatus": "Trạng thái Stripe",
+    "tokenSendStatus": "Trạng thái gửi token",
+    "txnHash": "Mã băm giao dịch",
+    "paymentCompleted": "Đã thanh toán xong",
+    "paymentProcessing": "Đang xử lý thanh toán",
+    "actionRequired": "Cần thao tác",
+    "awaitingMethod": "Đang chờ phương thức thanh toán",
+    "paymentCanceled": "Đã hủy thanh toán",
+    "paymentExpired": "Thanh toán đã hết hạn",
+    "sessionNotFound": "Không tìm thấy phiên",
+    "pendingPayment": "Thanh toán đang chờ",
+    "tokensSent": "Đã gửi token",
+    "sendingTokens": "Đang gửi token",
+    "queuedForSending": "Đang xếp hàng để gửi",
+    "tokenTransferFailed": "Chuyển token thất bại",
+    "notSentYet": "Chưa gửi"
   }
 }

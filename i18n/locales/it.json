@@ -3665,5 +3665,24 @@
     "confirmingPayment": "Conferma del pagamento…",
     "retryConfirmation": "Riprova la conferma",
     "buyNow": "Acquista ora"
+  },
+  "dpay": {
+    "success": "Completato",
+    "stripeStatus": "Stato Stripe",
+    "tokenSendStatus": "Stato dell'invio del token",
+    "txnHash": "Hash della transazione",
+    "paymentCompleted": "Pagamento completato",
+    "paymentProcessing": "Pagamento in elaborazione",
+    "actionRequired": "Azione richiesta",
+    "awaitingMethod": "In attesa del metodo di pagamento",
+    "paymentCanceled": "Pagamento annullato",
+    "paymentExpired": "Il pagamento è scaduto",
+    "sessionNotFound": "Sessione non trovata",
+    "pendingPayment": "Pagamento in sospeso",
+    "tokensSent": "Token inviati",
+    "sendingTokens": "Invio dei token",
+    "queuedForSending": "In coda per l'invio",
+    "tokenTransferFailed": "Trasferimento del token non riuscito",
+    "notSentYet": "Non ancora inviato"
   }
 }

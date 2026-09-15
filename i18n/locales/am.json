@@ -3590,5 +3590,24 @@
     "confirmingPayment": "ክፍያውን በማረጋገጥ ላይ…",
     "retryConfirmation": "ማረጋገጫውን እንደገና ሞክር",
     "buyNow": "አሁን ይግዙ"
+  },
+  "dpay": {
+    "success": "ተሳክቷል",
+    "stripeStatus": "የStripe ሁኔታ",
+    "tokenSendStatus": "የቶከን መላክ ሁኔታ",
+    "txnHash": "የግብይት ሃሽ",
+    "paymentCompleted": "ክፍያ ተጠናቅቋል",
+    "paymentProcessing": "ክፍያ በሂደት ላይ",
+    "actionRequired": "እርምጃ ያስፈልጋል",
+    "awaitingMethod": "የክፍያ ዘዴ በመጠበቅ ላይ",
+    "paymentCanceled": "ክፍያ ተሰርዟል",
+    "paymentExpired": "የክፍያ ጊዜ አልፏል",
+    "sessionNotFound": "ክፍለ ጊዜው አልተገኘም",
+    "pendingPayment": "ክፍያ በመጠባበቅ ላይ",
+    "tokensSent": "ቶከኖች ተልከዋል",
+    "sendingTokens": "ቶከኖችን በመላክ ላይ",
+    "queuedForSending": "ለመላክ በተራ ላይ",
+    "tokenTransferFailed": "የቶከን ዝውውር አልተሳካም",
+    "notSentYet": "ገና አልተላከም"
   }
 }

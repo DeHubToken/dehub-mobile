@@ -3595,5 +3595,24 @@
     "confirmingPayment": "S'està confirmant el pagament…",
     "retryConfirmation": "Torna a provar la confirmació",
     "buyNow": "Compra ara"
+  },
+  "dpay": {
+    "success": "Correcte",
+    "stripeStatus": "Estat de Stripe",
+    "tokenSendStatus": "Estat d'enviament del token",
+    "txnHash": "Hash de la transacció",
+    "paymentCompleted": "Pagament completat",
+    "paymentProcessing": "Pagament en procés",
+    "actionRequired": "Cal una acció",
+    "awaitingMethod": "S'espera el mètode de pagament",
+    "paymentCanceled": "Pagament cancel·lat",
+    "paymentExpired": "El pagament ha caducat",
+    "sessionNotFound": "No s'ha trobat la sessió",
+    "pendingPayment": "Pagament pendent",
+    "tokensSent": "Tokens enviats",
+    "sendingTokens": "S'estan enviant els tokens",
+    "queuedForSending": "A la cua per enviar-se",
+    "tokenTransferFailed": "La transferència del token ha fallat",
+    "notSentYet": "Encara no s'ha enviat"
   }
 }

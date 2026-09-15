@@ -3659,5 +3659,24 @@
     "confirmingPayment": "Kaffaltii mirkaneessaa jira…",
     "retryConfirmation": "Mirkaneessa irra deebiʼii yaali",
     "buyNow": "Amma bitadhu"
+  },
+  "dpay": {
+    "success": "Milkaaʼe",
+    "stripeStatus": "Haala Stripe",
+    "tokenSendStatus": "Haala erga tookenii",
+    "txnHash": "Hash daldalaa",
+    "paymentCompleted": "Kaffaltiin xumurame",
+    "paymentProcessing": "Kaffaltiin adeemsifamaa jira",
+    "actionRequired": "Tarkaanfiin barbaachisa",
+    "awaitingMethod": "Mala kaffaltii eegaa jira",
+    "paymentCanceled": "Kaffaltiin haqame",
+    "paymentExpired": "Yeroon kaffaltii dhumate",
+    "sessionNotFound": "Sessiyaan hin argamne",
+    "pendingPayment": "Kaffaltiin eegaa jira",
+    "tokensSent": "Tookenoonni ergaman",
+    "sendingTokens": "Tookenoota ergaa jira",
+    "queuedForSending": "Ergaaf sarara keessa",
+    "tokenTransferFailed": "Dabarsi tookenii hin milkoofne",
+    "notSentYet": "Amma hin ergamne"
   }
 }
