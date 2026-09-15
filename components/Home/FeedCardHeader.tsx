@@ -3,6 +3,7 @@ import { View, Text, Image, Pressable } from "react-native";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
 import Icon from "../ui/Icon";
+import DeferredBlock from "../common/DeferredBlock";
 import { getBadgeOpticalStyle } from "../../libs/misc";
 
 const ICON_MUTED = "#6F7174";
@@ -123,9 +124,20 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
         ) : null}
       </Pressable>
 
-      <View
-        className="flex-row items-center gap-2"
-        style={{ alignSelf: "flex-start", marginLeft: "auto", marginTop: -HEADER_ICON_PAD, marginRight: -HEADER_ICON_PAD }}
+      {/* Mid-fling this is an empty box of the measured size for the same
+          set of buttons; the pressables mount on settle (DeferredBlock). */}
+      <DeferredBlock
+        cacheKey={`feed-header-icons:${isHidden ? 1 : 0}${onBoostPress ? 1 : 0}${onAiPress ? 1 : 0}${onMenuPress ? 1 : 0}`}
+        reserveWidth
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 8,
+          alignSelf: "flex-start",
+          marginLeft: "auto",
+          marginTop: -HEADER_ICON_PAD,
+          marginRight: -HEADER_ICON_PAD,
+        }}
       >
         {isHidden && <Icon name="EyeOff" size={16} color={ICON_MUTED} />}
         {onBoostPress && (
@@ -157,7 +169,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             <Icon name="EllipsisVertical" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
           </Pressable>
         )}
-      </View>
+      </DeferredBlock>
     </View>
   );
 };
