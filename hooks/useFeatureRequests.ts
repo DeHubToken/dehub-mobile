@@ -22,6 +22,7 @@ import { useUser } from "../context/AuthContext";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { toastError, toastSuccess, toastWarning } from "../libs/toast";
 import { createLogger } from "../libs/logger";
+import { dehubAuthHeaders } from "../services/ai.service";
 
 const log = createLogger("useFeatureRequests");
 
@@ -493,6 +494,37 @@ function patchCommentCount(
   });
 }
 
+/**
+ * The assistant's trigger on the requests board, word-bounded.
+ *
+ * `@dehub` is deliberately not a trigger: it is a real user's handle, and the
+ * chat bot's original regex matched it, so every "@dehub" answered on that
+ * person's behalf. The same expression guards the server side — this copy only
+ * decides whether the call is worth making.
+ */
+const ASSISTANT_MENTION_RE = /(^|[^a-zA-Z0-9_])@assistant(?![a-zA-Z0-9_])/i;
+
+/**
+ * Ask the assistant to answer a comment that tagged it.
+ *
+ * The reply is written server-side as a real comment owned by the assistant
+ * account, so there is nothing to render here — only a refetch once it lands.
+ * These threads have no realtime channel, which is why this waits on the call
+ * rather than hoping an invalidation catches it.
+ */
+async function requestAssistantReply(
+  commentId: string,
+  walletAddress: string,
+): Promise<void> {
+  const headers = await dehubAuthHeaders(walletAddress);
+  if (!headers["x-dehub-token"]) return;
+  const { error } = await supabase.functions.invoke("feature-request-assistant", {
+    body: { commentId },
+    headers,
+  });
+  if (error) throw error;
+}
+
 export function useSubmitComment() {
   const queryClient = useQueryClient();
   const wallet = useWallet();
@@ -526,11 +558,30 @@ export function useSubmitComment() {
       if (error) throw error;
       return data;
     },
-    onSuccess: (_data, variables) => {
+    onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: ["feature-request-comments", variables.featureRequestId],
       });
       patchCommentCount(queryClient, variables.featureRequestId, 1);
+
+      // Tagging @assistant here gets an answer from the assistant itself, in
+      // DeHub's own voice. This board is where the people who reported things
+      // come back to ask whether the fix landed, and a question that sits
+      // unanswered until somebody scrolls past is the whole problem. Fire and
+      // forget: the comment is already saved, so a failed reply must not toast
+      // an error over it.
+      const newCommentId = (data as { id?: string } | null)?.id;
+      if (newCommentId && wallet && ASSISTANT_MENTION_RE.test(variables.content)) {
+        void requestAssistantReply(newCommentId, wallet)
+          .then(() => {
+            queryClient.invalidateQueries({
+              queryKey: ["feature-request-comments", variables.featureRequestId],
+            });
+          })
+          .catch((error) => {
+            log.warn("Assistant reply failed:", error);
+          });
+      }
     },
     onError: (error) => {
       log.error("Post comment failed:", error);
