@@ -3636,6 +3636,27 @@
     "sendingTokens": "Αποστολή token",
     "queuedForSending": "Σε ουρά για αποστολή",
     "tokenTransferFailed": "Η μεταφορά token απέτυχε",
-    "notSentYet": "Δεν έχει σταλεί ακόμη"
+    "notSentYet": "Δεν έχει σταλεί ακόμη",
+    "topUp": "Ανανέωση",
+    "selectCurrency": "Επιλογή νομίσματος",
+    "chooseCurrency": "Διάλεξε νόμισμα",
+    "currentPrice": "Τρέχουσα τιμή {{symbol}}",
+    "walletAddress": "Διεύθυνση πορτοφολιού",
+    "selectChain": "Επιλογή αλυσίδας",
+    "chooseChain": "Διάλεξε αλυσίδα",
+    "confirmPurchase": "Επιβεβαίωση αγοράς",
+    "amountIn": "Ποσό σε {{currency}}",
+    "approxReceive": "Θα λάβεις περίπου {{symbol}}",
+    "iAcceptThe": "Αποδέχομαι τους",
+    "termsOfService": "Όροι παροχής υπηρεσιών",
+    "invalidAmountGtZero": "Εισαγάγετε έγκυρο ποσό μεγαλύτερο του 0.",
+    "enterValidAmount": "Εισαγάγετε έγκυρο ποσό",
+    "noSupply": "Η αγορά δεν είναι διαθέσιμη — δεν υπάρχει απόθεμα {{symbol}} σε αυτή την αλυσίδα.",
+    "insufficientSupply": "Ανεπαρκές απόθεμα {{symbol}}: μόνο {{available}} διαθέσιμα σε αυτή την αλυσίδα.",
+    "connectWallet": "Συνδέσου στο πορτοφόλι",
+    "acceptTermsFirst": "Αποδέξου τους όρους παροχής υπηρεσιών",
+    "redirecting": "Ανακατεύθυνση στο ταμείο…",
+    "openingCheckout": "Άνοιγμα ταμείου…",
+    "checkoutUnavailable": "Ο σύνδεσμος πληρωμής δεν είναι διαθέσιμος. Δοκίμασε ξανά."
   }
 }

@@ -3583,6 +3583,27 @@
     "sendingTokens": "Tokenler iberilýär",
     "queuedForSending": "Ibermek üçin nobatda",
     "tokenTransferFailed": "Token geçirmek şowsuz boldy",
-    "notSentYet": "Heniz iberilmedi"
+    "notSentYet": "Heniz iberilmedi",
+    "topUp": "Doldurmak",
+    "selectCurrency": "Pul birligini saýla",
+    "chooseCurrency": "Pul birligini saýlaň",
+    "currentPrice": "Häzirki {{symbol}} bahasy",
+    "walletAddress": "Gapjyk salgysy",
+    "selectChain": "Zynjyry saýla",
+    "chooseChain": "Zynjyry saýlaň",
+    "confirmPurchase": "Satyn almagy tassykla",
+    "amountIn": "{{currency}} mukdary",
+    "approxReceive": "Takmynan alarsyňyz {{symbol}}",
+    "iAcceptThe": "Men kabul edýärin",
+    "termsOfService": "Hyzmat şertleri",
+    "invalidAmountGtZero": "0-dan uly dogry mukdar giriziň.",
+    "enterValidAmount": "Dogry mukdar giriziň",
+    "noSupply": "Satyn alyp bolmaýar — bu zynjyrda {{symbol}} gory ýok.",
+    "insufficientSupply": "{{symbol}} gory ýeterlik däl: bu zynjyrda diňe {{available}} bar.",
+    "connectWallet": "Gapjygy birikdiriň",
+    "acceptTermsFirst": "Hyzmat şertlerini kabul ediň",
+    "redirecting": "Töleg sahypasyna geçirilýär…",
+    "openingCheckout": "Töleg açylýar…",
+    "checkoutUnavailable": "Töleg salgysy elýeterli däl. Gaýtadan synanyşyň."
   }
 }

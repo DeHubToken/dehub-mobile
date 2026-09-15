@@ -3611,6 +3611,27 @@
     "sendingTokens": "正在發送代幣",
     "queuedForSending": "已排隊等待發送",
     "tokenTransferFailed": "代幣轉帳失敗",
-    "notSentYet": "尚未發送"
+    "notSentYet": "尚未發送",
+    "topUp": "充值",
+    "selectCurrency": "選擇貨幣",
+    "chooseCurrency": "選擇一種貨幣",
+    "currentPrice": "目前 {{symbol}} 價格",
+    "walletAddress": "錢包地址",
+    "selectChain": "選擇鏈",
+    "chooseChain": "選擇一條鏈",
+    "confirmPurchase": "確認購買",
+    "amountIn": "{{currency}} 金額",
+    "approxReceive": "預計收到 {{symbol}}",
+    "iAcceptThe": "我接受",
+    "termsOfService": "服務條款",
+    "invalidAmountGtZero": "請輸入大過 0 嘅有效金額。",
+    "enterValidAmount": "請輸入有效金額",
+    "noSupply": "無法購買 — 呢條鏈冇 {{symbol}} 供應。",
+    "insufficientSupply": "{{symbol}} 供應不足：呢條鏈只有 {{available}}。",
+    "connectWallet": "請連接錢包",
+    "acceptTermsFirst": "請接受服務條款",
+    "redirecting": "正在跳轉到結帳…",
+    "openingCheckout": "正在開啟結帳頁…",
+    "checkoutUnavailable": "結帳連結不可用。請重試。"
   }
 }

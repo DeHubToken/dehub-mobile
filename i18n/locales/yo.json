@@ -3603,6 +3603,27 @@
     "sendingTokens": "Ń fi àwọn tòkénì ránṣẹ́",
     "queuedForSending": "Ó wà ní ìlà fún ìfiránṣẹ́",
     "tokenTransferFailed": "Ìfiránṣẹ́ tòkénì kùnà",
-    "notSentYet": "A kò tíì fi ránṣẹ́"
+    "notSentYet": "A kò tíì fi ránṣẹ́",
+    "topUp": "Fi owó kún un",
+    "selectCurrency": "Yan owó",
+    "chooseCurrency": "Yan owó kan",
+    "currentPrice": "Iye {{symbol}} lọ́wọ́lọ́wọ́",
+    "walletAddress": "Àdírẹ́sì àpamọ́wọ́",
+    "selectChain": "Yan ẹ̀wọ̀n",
+    "chooseChain": "Yan ẹ̀wọ̀n kan",
+    "confirmPurchase": "Jẹ́rìí sí ìrà",
+    "amountIn": "Iye {{currency}}",
+    "approxReceive": "Ìwọ̀n tí o máa gbà {{symbol}}",
+    "iAcceptThe": "Mo gba",
+    "termsOfService": "Àwọn Òfin Iṣẹ́",
+    "invalidAmountGtZero": "Tẹ iye tó tọ́ tí ó pọ̀ ju 0 lọ sí i.",
+    "enterValidAmount": "Tẹ iye tó tọ́ sí i",
+    "noSupply": "A kò lè rà — kò sí ìpèsè {{symbol}} lórí ẹ̀wọ̀n yìí.",
+    "insufficientSupply": "Ìpèsè {{symbol}} kò tó: {{available}} nìkan ló wà lórí ẹ̀wọ̀n yìí.",
+    "connectWallet": "Jọ̀wọ́ so àpamọ́wọ́ pọ̀",
+    "acceptTermsFirst": "Jọ̀wọ́ gba àwọn òfin iṣẹ́",
+    "redirecting": "Ń darí rẹ sí ojú ìsanwó…",
+    "openingCheckout": "Ń ṣí ojú ìsanwó…",
+    "checkoutUnavailable": "Ọ̀nà ìsanwó kò sí. Gbìyànjú lẹ́ẹ̀kan sí i."
   }
 }

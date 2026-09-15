@@ -3445,6 +3445,27 @@
     "sendingTokens": "Dey send di tokens",
     "queuedForSending": "E dey queue to send",
     "tokenTransferFailed": "Token transfer fail",
-    "notSentYet": "Dem never send am"
+    "notSentYet": "Dem never send am",
+    "topUp": "Top up",
+    "selectCurrency": "Select currency",
+    "chooseCurrency": "Choose currency",
+    "currentPrice": "Current {{symbol}} price",
+    "walletAddress": "Wallet address",
+    "selectChain": "Select chain",
+    "chooseChain": "Choose chain",
+    "confirmPurchase": "Confirm di purchase",
+    "amountIn": "{{currency}} amount",
+    "approxReceive": "You go receive around {{symbol}}",
+    "iAcceptThe": "I gree wit di",
+    "termsOfService": "Terms and service",
+    "invalidAmountGtZero": "Enta correct amount wey pass 0.",
+    "enterValidAmount": "Enta correct amount",
+    "noSupply": "You no fit buy — no {{symbol}} supply for dis chain.",
+    "insufficientSupply": "{{symbol}} supply no reach: na only {{available}} dey for dis chain.",
+    "connectWallet": "Abeg connect your wallet",
+    "acceptTermsFirst": "Abeg gree wit di terms and service",
+    "redirecting": "Dey take you go checkout…",
+    "openingCheckout": "Dey open di checkout…",
+    "checkoutUnavailable": "Checkout link no dey. Try again."
   }
 }

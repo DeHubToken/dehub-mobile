@@ -3648,6 +3648,27 @@
     "sendingTokens": "ტოკენების გაგზავნა",
     "queuedForSending": "გასაგზავნად რიგშია",
     "tokenTransferFailed": "ტოკენის გადარიცხვა ვერ შესრულდა",
-    "notSentYet": "ჯერ არ გაგზავნილა"
+    "notSentYet": "ჯერ არ გაგზავნილა",
+    "topUp": "შევსება",
+    "selectCurrency": "აირჩიეთ ვალუტა",
+    "chooseCurrency": "აირჩიეთ ვალუტა",
+    "currentPrice": "{{symbol}}-ის მიმდინარე ფასი",
+    "walletAddress": "საფულის მისამართი",
+    "selectChain": "აირჩიეთ ჯაჭვი",
+    "chooseChain": "აირჩიეთ ჯაჭვი",
+    "confirmPurchase": "შესყიდვის დადასტურება",
+    "amountIn": "{{currency}} თანხა",
+    "approxReceive": "მიიღებთ დაახლოებით {{symbol}}",
+    "iAcceptThe": "ვეთანხმები",
+    "termsOfService": "მომსახურების პირობები",
+    "invalidAmountGtZero": "შეიყვანეთ 0-ზე მეტი სწორი თანხა.",
+    "enterValidAmount": "შეიყვანეთ სწორი თანხა",
+    "noSupply": "შესყიდვა მიუწვდომელია — ამ ჯაჭვზე {{symbol}} მარაგი არ არის.",
+    "insufficientSupply": "{{symbol}}-ის მარაგი არასაკმარისია: ამ ჯაჭვზე მხოლოდ {{available}}.",
+    "connectWallet": "გთხოვთ, დააკავშიროთ საფულე",
+    "acceptTermsFirst": "გთხოვთ, დაეთანხმოთ მომსახურების პირობებს",
+    "redirecting": "გადამისამართება გადახდაზე…",
+    "openingCheckout": "გადახდის გახსნა…",
+    "checkoutUnavailable": "გადახდის ბმული მიუწვდომელია. სცადეთ ხელახლა."
   }
 }

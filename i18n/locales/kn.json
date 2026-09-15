@@ -3618,6 +3618,27 @@
     "sendingTokens": "ಟೋಕನ್‌ಗಳನ್ನು ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ",
     "queuedForSending": "ಕಳುಹಿಸಲು ಸರದಿಯಲ್ಲಿ",
     "tokenTransferFailed": "ಟೋಕನ್ ವರ್ಗಾವಣೆ ವಿಫಲವಾಯಿತು",
-    "notSentYet": "ಇನ್ನೂ ಕಳುಹಿಸಿಲ್ಲ"
+    "notSentYet": "ಇನ್ನೂ ಕಳುಹಿಸಿಲ್ಲ",
+    "topUp": "ಟಾಪ್ ಅಪ್",
+    "selectCurrency": "ಕರೆನ್ಸಿ ಆರಿಸಿ",
+    "chooseCurrency": "ಒಂದು ಕರೆನ್ಸಿ ಆರಿಸಿ",
+    "currentPrice": "ಪ್ರಸ್ತುತ {{symbol}} ಬೆಲೆ",
+    "walletAddress": "ವಾಲೆಟ್ ವಿಳಾಸ",
+    "selectChain": "ಚೈನ್ ಆರಿಸಿ",
+    "chooseChain": "ಒಂದು ಚೈನ್ ಆರಿಸಿ",
+    "confirmPurchase": "ಖರೀದಿ ದೃಢೀಕರಿಸಿ",
+    "amountIn": "{{currency}} ಮೊತ್ತ",
+    "approxReceive": "ಅಂದಾಜು ಸಿಗುವುದು {{symbol}}",
+    "iAcceptThe": "ನಾನು ಒಪ್ಪುತ್ತೇನೆ",
+    "termsOfService": "ಸೇವಾ ನಿಯಮಗಳು",
+    "invalidAmountGtZero": "0 ಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ಮಾನ್ಯ ಮೊತ್ತ ನಮೂದಿಸಿ.",
+    "enterValidAmount": "ಮಾನ್ಯ ಮೊತ್ತ ನಮೂದಿಸಿ",
+    "noSupply": "ಖರೀದಿ ಸಾಧ್ಯವಿಲ್ಲ — ಈ ಚೈನ್‌ನಲ್ಲಿ {{symbol}} ಪೂರೈಕೆ ಇಲ್ಲ.",
+    "insufficientSupply": "{{symbol}} ಪೂರೈಕೆ ಸಾಲದು: ಈ ಚೈನ್‌ನಲ್ಲಿ {{available}} ಮಾತ್ರ ಲಭ್ಯ.",
+    "connectWallet": "ದಯವಿಟ್ಟು ವಾಲೆಟ್ ಸಂಪರ್ಕಿಸಿ",
+    "acceptTermsFirst": "ದಯವಿಟ್ಟು ಸೇವಾ ನಿಯಮಗಳನ್ನು ಒಪ್ಪಿಕೊಳ್ಳಿ",
+    "redirecting": "ಚೆಕ್‌ಔಟ್‌ಗೆ ಕರೆದೊಯ್ಯಲಾಗುತ್ತಿದೆ…",
+    "openingCheckout": "ಚೆಕ್‌ಔಟ್ ತೆರೆಯಲಾಗುತ್ತಿದೆ…",
+    "checkoutUnavailable": "ಚೆಕ್‌ಔಟ್ ಲಿಂಕ್ ಲಭ್ಯವಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
   }
 }

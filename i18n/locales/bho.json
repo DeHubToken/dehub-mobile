@@ -3563,6 +3563,27 @@
     "sendingTokens": "टोकन भेजल जा रहल बा",
     "queuedForSending": "भेजे खातिर कतार में",
     "tokenTransferFailed": "टोकन ट्रांसफर विफल",
-    "notSentYet": "अबहीं ना भेजल गइल"
+    "notSentYet": "अबहीं ना भेजल गइल",
+    "topUp": "टॉप अप",
+    "selectCurrency": "मुद्रा चुनीं",
+    "chooseCurrency": "कवनो मुद्रा चुनीं",
+    "currentPrice": "मौजूदा {{symbol}} दाम",
+    "walletAddress": "वॉलेट पता",
+    "selectChain": "चेन चुनीं",
+    "chooseChain": "कवनो चेन चुनीं",
+    "confirmPurchase": "खरीद पक्का करीं",
+    "amountIn": "{{currency}} रकम",
+    "approxReceive": "लगभग {{symbol}} मिली",
+    "iAcceptThe": "हम स्वीकार करत बानी",
+    "termsOfService": "सेवा के शर्त",
+    "invalidAmountGtZero": "0 से बड़ सही रकम डालीं।",
+    "enterValidAmount": "सही रकम डालीं",
+    "noSupply": "खरीद उपलब्ध नइखे — ई चेन पर {{symbol}} के आपूर्ति नइखे।",
+    "insufficientSupply": "{{symbol}} के आपूर्ति कम बा: ई चेन पर खाली {{available}} बा।",
+    "connectWallet": "कृपया वॉलेट से जुड़ीं",
+    "acceptTermsFirst": "कृपया सेवा के शर्त स्वीकार करीं",
+    "redirecting": "भुगतान पर भेजल जा रहल बा…",
+    "openingCheckout": "भुगतान पन्ना खुलत बा…",
+    "checkoutUnavailable": "भुगतान लिंक उपलब्ध नइखे। कृपया फेर कोशिश करीं।"
   }
 }

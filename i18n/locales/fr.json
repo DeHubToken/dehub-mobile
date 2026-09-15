@@ -3687,6 +3687,27 @@
     "sendingTokens": "Envoi des jetons",
     "queuedForSending": "En file d'attente pour l'envoi",
     "tokenTransferFailed": "Échec du transfert de jeton",
-    "notSentYet": "Pas encore envoyé"
+    "notSentYet": "Pas encore envoyé",
+    "topUp": "Recharger",
+    "selectCurrency": "Choisir la devise",
+    "chooseCurrency": "Choisissez une devise",
+    "currentPrice": "Prix actuel du {{symbol}}",
+    "walletAddress": "Adresse du portefeuille",
+    "selectChain": "Choisir la chaîne",
+    "chooseChain": "Choisissez une chaîne",
+    "confirmPurchase": "Confirmer l'achat",
+    "amountIn": "Montant en {{currency}}",
+    "approxReceive": "Réception approximative {{symbol}}",
+    "iAcceptThe": "J'accepte les",
+    "termsOfService": "Conditions d'utilisation",
+    "invalidAmountGtZero": "Saisissez un montant valide supérieur à 0.",
+    "enterValidAmount": "Saisissez un montant valide",
+    "noSupply": "Achat indisponible — aucune réserve de {{symbol}} sur cette chaîne.",
+    "insufficientSupply": "Réserve de {{symbol}} insuffisante : seulement {{available}} disponible sur cette chaîne.",
+    "connectWallet": "Veuillez connecter votre portefeuille",
+    "acceptTermsFirst": "Veuillez accepter les conditions d'utilisation",
+    "redirecting": "Redirection vers le paiement…",
+    "openingCheckout": "Ouverture du paiement…",
+    "checkoutUnavailable": "Lien de paiement indisponible. Veuillez réessayer."
   }
 }

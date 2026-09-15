@@ -3613,6 +3613,27 @@
     "sendingTokens": "Lähetetään tokeneita",
     "queuedForSending": "Jonossa lähetystä varten",
     "tokenTransferFailed": "Tokenin siirto epäonnistui",
-    "notSentYet": "Ei vielä lähetetty"
+    "notSentYet": "Ei vielä lähetetty",
+    "topUp": "Lataus",
+    "selectCurrency": "Valitse valuutta",
+    "chooseCurrency": "Valitse valuutta",
+    "currentPrice": "{{symbol}}:n nykyinen hinta",
+    "walletAddress": "Lompakon osoite",
+    "selectChain": "Valitse ketju",
+    "chooseChain": "Valitse ketju",
+    "confirmPurchase": "Vahvista osto",
+    "amountIn": "{{currency}}-summa",
+    "approxReceive": "Saat noin {{symbol}}",
+    "iAcceptThe": "Hyväksyn",
+    "termsOfService": "Käyttöehdot",
+    "invalidAmountGtZero": "Anna kelvollinen summa, joka on suurempi kuin 0.",
+    "enterValidAmount": "Anna kelvollinen summa",
+    "noSupply": "Osto ei onnistu — tässä ketjussa ei ole {{symbol}}-saldoa.",
+    "insufficientSupply": "{{symbol}}-saldo ei riitä: tässä ketjussa on vain {{available}}.",
+    "connectWallet": "Yhdistä lompakko",
+    "acceptTermsFirst": "Hyväksy käyttöehdot",
+    "redirecting": "Ohjataan kassalle…",
+    "openingCheckout": "Avataan kassaa…",
+    "checkoutUnavailable": "Maksulinkki ei ole käytettävissä. Yritä uudelleen."
   }
 }

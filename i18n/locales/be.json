@@ -3646,6 +3646,27 @@
     "sendingTokens": "Адпраўка токенаў",
     "queuedForSending": "У чарзе на адпраўку",
     "tokenTransferFailed": "Перадача токена не ўдалася",
-    "notSentYet": "Яшчэ не адпраўлена"
+    "notSentYet": "Яшчэ не адпраўлена",
+    "topUp": "Папаўненне",
+    "selectCurrency": "Выберыце валюту",
+    "chooseCurrency": "Выберыце валюту",
+    "currentPrice": "Бягучая цана {{symbol}}",
+    "walletAddress": "Адрас кашалька",
+    "selectChain": "Выберыце сетку",
+    "chooseChain": "Выберыце сетку",
+    "confirmPurchase": "Пацвердзіць пакупку",
+    "amountIn": "Сума {{currency}}",
+    "approxReceive": "Атрымаеце прыкладна {{symbol}}",
+    "iAcceptThe": "Я прымаю",
+    "termsOfService": "Умовы абслугоўвання",
+    "invalidAmountGtZero": "Увядзіце сапраўдную суму больш за 0.",
+    "enterValidAmount": "Увядзіце сапраўдную суму",
+    "noSupply": "Пакупка недаступная — няма запасу {{symbol}} у гэтай сетцы.",
+    "insufficientSupply": "Недастаткова {{symbol}}: у гэтай сетцы даступна толькі {{available}}.",
+    "connectWallet": "Калі ласка, падключыце кашалёк",
+    "acceptTermsFirst": "Калі ласка, прыміце ўмовы абслугоўвання",
+    "redirecting": "Перанакіраванне да аплаты…",
+    "openingCheckout": "Адкрыццё старонкі аплаты…",
+    "checkoutUnavailable": "Спасылка на аплату недаступная. Паспрабуйце яшчэ раз."
   }
 }

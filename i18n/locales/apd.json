@@ -3570,6 +3570,27 @@
     "sendingTokens": "بيرسل التوكنز",
     "queuedForSending": "في الطابور للإرسال",
     "tokenTransferFailed": "فشل نقل التوكن",
-    "notSentYet": "لسه ما اترسل"
+    "notSentYet": "لسه ما اترسل",
+    "topUp": "اشحن الرصيد",
+    "selectCurrency": "اختار العملة",
+    "chooseCurrency": "اختار عملة",
+    "currentPrice": "سعر {{symbol}} الحالي",
+    "walletAddress": "عنوان المحفظة",
+    "selectChain": "اختار السلسلة",
+    "chooseChain": "اختار سلسلة",
+    "confirmPurchase": "أكد الشراء",
+    "amountIn": "مبلغ {{currency}}",
+    "approxReceive": "بتستلم تقريباً {{symbol}}",
+    "iAcceptThe": "أوافق على",
+    "termsOfService": "شروط الخدمة",
+    "invalidAmountGtZero": "اكتب مبلغ صحيح أكبر من 0.",
+    "enterValidAmount": "اكتب مبلغ صحيح",
+    "noSupply": "الشراء ما متاح — ما في رصيد {{symbol}} على السلسلة دي.",
+    "insufficientSupply": "رصيد {{symbol}} ما بيكفي: بس {{available}} متاح على السلسلة دي.",
+    "connectWallet": "لو سمحت اربط المحفظة",
+    "acceptTermsFirst": "لو سمحت وافق على شروط الخدمة",
+    "redirecting": "بيحولك للدفع…",
+    "openingCheckout": "بيفتح صفحة الدفع…",
+    "checkoutUnavailable": "لينك الدفع ما متاح. جرب تاني."
   }
 }

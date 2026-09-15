@@ -3643,6 +3643,27 @@
     "sendingTokens": "Tokenkunata apachichkan",
     "queuedForSending": "Apachinapaq suyay qillqapi",
     "tokenTransferFailed": "Token apachiy mana atikurqachu",
-    "notSentYet": "Manaraq apachisqachu"
+    "notSentYet": "Manaraq apachisqachu",
+    "topUp": "Hunt'achiy",
+    "selectCurrency": "Qullqi akllay",
+    "chooseCurrency": "Huk qullqita akllay",
+    "currentPrice": "Kunan {{symbol}} chanin",
+    "walletAddress": "Qullqi wayaqa direccion",
+    "selectChain": "Chain akllay",
+    "chooseChain": "Huk chain akllay",
+    "confirmPurchase": "Rantiyta takyachiy",
+    "amountIn": "{{currency}} chhika",
+    "approxReceive": "Yaqa chaskinki {{symbol}}",
+    "iAcceptThe": "Chaskikuni",
+    "termsOfService": "Llamk'ay kamachikuykuna",
+    "invalidAmountGtZero": "0 mantaqa aswan hatun allin chhikata churay.",
+    "enterValidAmount": "Allin chhikata churay",
+    "noSupply": "Rantiy mana atikunchu — kay chainpi {{symbol}} kanchu.",
+    "insufficientSupply": "{{symbol}} mana aypanchu: kay chainpi {{available}} sapallan kan.",
+    "connectWallet": "Ama hina kaspa qullqi wayaqata t'inkiy",
+    "acceptTermsFirst": "Llamk'ay kamachikuykunata chaskiy",
+    "redirecting": "Qullqi qupuy p'anqaman apachkan…",
+    "openingCheckout": "Qullqi qupuy p'anqata kichachkan…",
+    "checkoutUnavailable": "Qullqi qupuy t'inkiy mana kanchu. Yapamanta ruray."
   }
 }

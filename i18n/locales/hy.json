@@ -3606,6 +3606,27 @@
     "sendingTokens": "Թոքենների ուղարկում",
     "queuedForSending": "Ուղարկման հերթում",
     "tokenTransferFailed": "Թոքենի փոխանցումը ձախողվեց",
-    "notSentYet": "Դեռ չի ուղարկվել"
+    "notSentYet": "Դեռ չի ուղարկվել",
+    "topUp": "Լիցքավորում",
+    "selectCurrency": "Ընտրել արժույթը",
+    "chooseCurrency": "Ընտրեք արժույթ",
+    "currentPrice": "{{symbol}}-ի ընթացիկ գինը",
+    "walletAddress": "Դրամապանակի հասցե",
+    "selectChain": "Ընտրել շղթան",
+    "chooseChain": "Ընտրեք շղթա",
+    "confirmPurchase": "Հաստատել գնումը",
+    "amountIn": "{{currency}} գումար",
+    "approxReceive": "Կստանաք մոտավորապես {{symbol}}",
+    "iAcceptThe": "Ես ընդունում եմ",
+    "termsOfService": "Ծառայության պայմաններ",
+    "invalidAmountGtZero": "Մուտքագրեք 0-ից մեծ վավեր գումար։",
+    "enterValidAmount": "Մուտքագրեք վավեր գումար",
+    "noSupply": "Գնումն անհասանելի է — այս շղթայում {{symbol}} պաշար չկա։",
+    "insufficientSupply": "{{symbol}}-ի պաշարը բավարար չէ. այս շղթայում առկա է միայն {{available}}։",
+    "connectWallet": "Խնդրում ենք միանալ դրամապանակին",
+    "acceptTermsFirst": "Խնդրում ենք ընդունել ծառայության պայմանները",
+    "redirecting": "Վերահղում վճարման էջ…",
+    "openingCheckout": "Վճարման էջի բացում…",
+    "checkoutUnavailable": "Վճարման հղումն անհասանելի է։ Փորձեք կրկին։"
   }
 }

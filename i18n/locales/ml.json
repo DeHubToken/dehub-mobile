@@ -3595,6 +3595,27 @@
     "sendingTokens": "ടോക്കണുകൾ അയയ്ക്കുന്നു",
     "queuedForSending": "അയയ്ക്കാൻ ക്യൂവിൽ",
     "tokenTransferFailed": "ടോക്കൺ ട്രാൻസ്ഫർ പരാജയപ്പെട്ടു",
-    "notSentYet": "ഇനിയും അയച്ചിട്ടില്ല"
+    "notSentYet": "ഇനിയും അയച്ചിട്ടില്ല",
+    "topUp": "ടോപ്പ് അപ്പ്",
+    "selectCurrency": "കറൻസി തിരഞ്ഞെടുക്കുക",
+    "chooseCurrency": "ഒരു കറൻസി തിരഞ്ഞെടുക്കുക",
+    "currentPrice": "നിലവിലെ {{symbol}} വില",
+    "walletAddress": "വാലറ്റ് വിലാസം",
+    "selectChain": "ചെയിൻ തിരഞ്ഞെടുക്കുക",
+    "chooseChain": "ഒരു ചെയിൻ തിരഞ്ഞെടുക്കുക",
+    "confirmPurchase": "വാങ്ങൽ സ്ഥിരീകരിക്കുക",
+    "amountIn": "{{currency}} തുക",
+    "approxReceive": "ഏകദേശം ലഭിക്കും {{symbol}}",
+    "iAcceptThe": "ഞാൻ അംഗീകരിക്കുന്നു",
+    "termsOfService": "സേവന നിബന്ധനകൾ",
+    "invalidAmountGtZero": "0-യിൽ കൂടുതലുള്ള സാധുവായ തുക നൽകുക.",
+    "enterValidAmount": "സാധുവായ തുക നൽകുക",
+    "noSupply": "വാങ്ങൽ ലഭ്യമല്ല — ഈ ചെയിനിൽ {{symbol}} സ്റ്റോക്ക് ഇല്ല.",
+    "insufficientSupply": "{{symbol}} സ്റ്റോക്ക് മതിയാകുന്നില്ല: ഈ ചെയിനിൽ {{available}} മാത്രം.",
+    "connectWallet": "ദയവായി വാലറ്റ് ബന്ധിപ്പിക്കുക",
+    "acceptTermsFirst": "ദയവായി സേവന നിബന്ധനകൾ അംഗീകരിക്കുക",
+    "redirecting": "ചെക്ക്ഔട്ടിലേക്ക് നയിക്കുന്നു…",
+    "openingCheckout": "ചെക്ക്ഔട്ട് തുറക്കുന്നു…",
+    "checkoutUnavailable": "ചെക്ക്ഔട്ട് ലിങ്ക് ലഭ്യമല്ല. വീണ്ടും ശ്രമിക്കൂ."
   }
 }

@@ -3876,6 +3876,27 @@
     "sendingTokens": "Menghantar token",
     "queuedForSending": "Dalam barisan untuk dihantar",
     "tokenTransferFailed": "Pemindahan token gagal",
-    "notSentYet": "Belum dihantar"
+    "notSentYet": "Belum dihantar",
+    "topUp": "Tambah Nilai",
+    "selectCurrency": "Pilih mata wang",
+    "chooseCurrency": "Pilih satu mata wang",
+    "currentPrice": "Harga {{symbol}} semasa",
+    "walletAddress": "Alamat dompet",
+    "selectChain": "Pilih rantai",
+    "chooseChain": "Pilih satu rantai",
+    "confirmPurchase": "Sahkan pembelian",
+    "amountIn": "Jumlah {{currency}}",
+    "approxReceive": "Anggaran terima {{symbol}}",
+    "iAcceptThe": "Saya menerima",
+    "termsOfService": "Terma Perkhidmatan",
+    "invalidAmountGtZero": "Masukkan jumlah sah lebih daripada 0.",
+    "enterValidAmount": "Masukkan jumlah yang sah",
+    "noSupply": "Pembelian tidak tersedia — tiada bekalan {{symbol}} pada rantai ini.",
+    "insufficientSupply": "Bekalan {{symbol}} tidak mencukupi: hanya {{available}} pada rantai ini.",
+    "connectWallet": "Sila sambungkan dompet",
+    "acceptTermsFirst": "Sila terima terma perkhidmatan",
+    "redirecting": "Mengalihkan ke pembayaran…",
+    "openingCheckout": "Membuka pembayaran…",
+    "checkoutUnavailable": "Pautan pembayaran tidak tersedia. Cuba lagi."
   }
 }

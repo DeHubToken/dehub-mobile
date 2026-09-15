@@ -3730,6 +3730,27 @@
     "sendingTokens": "Stuur tans tokens",
     "queuedForSending": "In die ry vir versending",
     "tokenTransferFailed": "Tokenoordrag het misluk",
-    "notSentYet": "Nog nie gestuur nie"
+    "notSentYet": "Nog nie gestuur nie",
+    "topUp": "Laai op",
+    "selectCurrency": "Kies geldeenheid",
+    "chooseCurrency": "Kies 'n geldeenheid",
+    "currentPrice": "Huidige {{symbol}}-prys",
+    "walletAddress": "Beursie-adres",
+    "selectChain": "Kies ketting",
+    "chooseChain": "Kies 'n ketting",
+    "confirmPurchase": "Bevestig aankoop",
+    "amountIn": "{{currency}}-bedrag",
+    "approxReceive": "Ontvang ongeveer {{symbol}}",
+    "iAcceptThe": "Ek aanvaar die",
+    "termsOfService": "Diensvoorwaardes",
+    "invalidAmountGtZero": "Voer 'n geldige bedrag groter as 0 in.",
+    "enterValidAmount": "Voer 'n geldige bedrag in",
+    "noSupply": "Aankoop nie beskikbaar nie — geen {{symbol}}-voorraad op hierdie ketting nie.",
+    "insufficientSupply": "Onvoldoende {{symbol}}-voorraad: slegs {{available}} beskikbaar op hierdie ketting.",
+    "connectWallet": "Koppel asseblief aan die beursie",
+    "acceptTermsFirst": "Aanvaar asseblief die diensvoorwaardes",
+    "redirecting": "Herlei na betaling…",
+    "openingCheckout": "Maak betaling oop…",
+    "checkoutUnavailable": "Betaalskakel nie beskikbaar nie. Probeer asseblief weer."
   }
 }

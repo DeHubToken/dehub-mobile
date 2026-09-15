@@ -3557,6 +3557,27 @@
     "sendingTokens": "ٹوکن گھلے ویندے پئے ہن",
     "queuedForSending": "گھلݨ کیتے قطار وچ",
     "tokenTransferFailed": "ٹوکن ٹرانسفر ناکام",
-    "notSentYet": "ہالیں نہ گھلیا"
+    "notSentYet": "ہالیں نہ گھلیا",
+    "topUp": "ٹاپ اپ",
+    "selectCurrency": "کرنسی چݨو",
+    "chooseCurrency": "کوئی کرنسی چݨو",
+    "currentPrice": "موجودہ {{symbol}} قیمت",
+    "walletAddress": "والٹ ایڈریس",
+    "selectChain": "چین چݨو",
+    "chooseChain": "کوئی چین چݨو",
+    "confirmPurchase": "خریداری دی تصدیق کرو",
+    "amountIn": "{{currency}} رقم",
+    "approxReceive": "تقریباً ملسی {{symbol}}",
+    "iAcceptThe": "میں قبول کریندا ہاں",
+    "termsOfService": "سروس دیاں شرطاں",
+    "invalidAmountGtZero": "0 کنوں ودھ درست رقم لکھو۔",
+    "enterValidAmount": "درست رقم لکھو",
+    "noSupply": "خریداری دستیاب کائنی — ایں چین تے {{symbol}} دی سپلائی کائنی۔",
+    "insufficientSupply": "{{symbol}} دی سپلائی ناکافی: ایں چین تے رڳو {{available}} موجود۔",
+    "connectWallet": "مہربانی کر کے والٹ جوڑو",
+    "acceptTermsFirst": "مہربانی کر کے سروس دیاں شرطاں قبول کرو",
+    "redirecting": "چیک آؤٹ تے گھلیا ویندا پیا ہے…",
+    "openingCheckout": "چیک آؤٹ کھولیا ویندا پیا ہے…",
+    "checkoutUnavailable": "چیک آؤٹ لنک دستیاب کائنی۔ ولدا کوشش کرو۔"
   }
 }

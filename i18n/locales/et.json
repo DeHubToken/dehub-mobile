@@ -3612,6 +3612,27 @@
     "sendingTokens": "Tokenite saatmine",
     "queuedForSending": "Saatmise järjekorras",
     "tokenTransferFailed": "Tokeni ülekanne ebaõnnestus",
-    "notSentYet": "Pole veel saadetud"
+    "notSentYet": "Pole veel saadetud",
+    "topUp": "Täienda",
+    "selectCurrency": "Vali valuuta",
+    "chooseCurrency": "Vali valuuta",
+    "currentPrice": "Praegune {{symbol}} hind",
+    "walletAddress": "Rahakoti aadress",
+    "selectChain": "Vali ahel",
+    "chooseChain": "Vali ahel",
+    "confirmPurchase": "Kinnita ost",
+    "amountIn": "{{currency}} summa",
+    "approxReceive": "Saad ligikaudu {{symbol}}",
+    "iAcceptThe": "Nõustun",
+    "termsOfService": "Teenusetingimused",
+    "invalidAmountGtZero": "Sisesta kehtiv summa, mis on suurem kui 0.",
+    "enterValidAmount": "Sisesta kehtiv summa",
+    "noSupply": "Ost pole võimalik — selles ahelas pole {{symbol}} varusid.",
+    "insufficientSupply": "Ebapiisav {{symbol}} varu: selles ahelas on saadaval vaid {{available}}.",
+    "connectWallet": "Palun ühenda rahakott",
+    "acceptTermsFirst": "Palun nõustu teenusetingimustega",
+    "redirecting": "Suunamine makselehele…",
+    "openingCheckout": "Makselehe avamine…",
+    "checkoutUnavailable": "Makselink pole saadaval. Proovi uuesti."
   }
 }
