@@ -3575,5 +3575,24 @@
     "confirmingPayment": "ငွေပေးချေမှု အတည်ပြုနေသည်…",
     "retryConfirmation": "အတည်ပြုချက် ထပ်စမ်းပါ",
     "buyNow": "ယခုဝယ်ရန်"
+  },
+  "dpay": {
+    "success": "အောင်မြင်",
+    "stripeStatus": "Stripe အခြေအနေ",
+    "tokenSendStatus": "တိုကင် ပို့ဆောင်မှု အခြေအနေ",
+    "txnHash": "ငွေလွှဲမှု hash",
+    "paymentCompleted": "ငွေပေးချေမှု ပြီးဆုံး",
+    "paymentProcessing": "ငွေပေးချေမှု လုပ်ဆောင်နေသည်",
+    "actionRequired": "လုပ်ဆောင်ရန် လိုအပ်သည်",
+    "awaitingMethod": "ငွေပေးချေနည်း စောင့်ဆိုင်းနေသည်",
+    "paymentCanceled": "ငွေပေးချေမှု ပယ်ဖျက်ပြီး",
+    "paymentExpired": "ငွေပေးချေချိန် ကုန်ဆုံးပြီ",
+    "sessionNotFound": "စက်ရှင် မတွေ့ပါ",
+    "pendingPayment": "ငွေပေးချေမှု ဆိုင်းငံ့ထား",
+    "tokensSent": "တိုကင်များ ပို့ပြီး",
+    "sendingTokens": "တိုကင်များ ပို့နေသည်",
+    "queuedForSending": "ပို့ရန် တန်းစီထားသည်",
+    "tokenTransferFailed": "တိုကင် လွှဲပြောင်းမှု မအောင်မြင်ပါ",
+    "notSentYet": "မပို့ရသေးပါ"
   }
 }

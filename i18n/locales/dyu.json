@@ -3539,5 +3539,24 @@
     "confirmingPayment": "Sarali bɛ sɛmɛntiya…",
     "retryConfirmation": "Sɛmɛntiyali segin ka kɛ",
     "buyNow": "San sisan"
+  },
+  "dpay": {
+    "success": "A ɲɛna",
+    "stripeStatus": "Stripe cogoya",
+    "tokenSendStatus": "Token cili cogoya",
+    "txnHash": "Fɛnfeere hash",
+    "paymentCompleted": "Sarali bannen",
+    "paymentProcessing": "Sarali bɛ kɛ",
+    "actionRequired": "Baara ka kan ka kɛ",
+    "awaitingMethod": "Sarali cogo makɔnɔni",
+    "paymentCanceled": "Sarali bɔra",
+    "paymentExpired": "Sarali waati banna",
+    "sessionNotFound": "Waati ma sɔrɔ",
+    "pendingPayment": "Sarali bɛ makɔnɔ",
+    "tokensSent": "Tokenw cira",
+    "sendingTokens": "Tokenw bɛ ci",
+    "queuedForSending": "A bɛ ci layɔrɔ la",
+    "tokenTransferFailed": "Token cili ma ɲɛ",
+    "notSentYet": "A ma ci fɔlɔ"
   }
 }

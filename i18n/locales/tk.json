@@ -3565,5 +3565,24 @@
     "confirmingPayment": "Töleg tassyklanýar…",
     "retryConfirmation": "Tassyklamagy gaýtadan synanyş",
     "buyNow": "Häzir satyn al"
+  },
+  "dpay": {
+    "success": "Üstünlik",
+    "stripeStatus": "Stripe ýagdaýy",
+    "tokenSendStatus": "Token ibermek ýagdaýy",
+    "txnHash": "Amal heşi",
+    "paymentCompleted": "Töleg tamamlandy",
+    "paymentProcessing": "Töleg işlenýär",
+    "actionRequired": "Hereket gerek",
+    "awaitingMethod": "Töleg usuly garaşylýar",
+    "paymentCanceled": "Töleg ýatyryldy",
+    "paymentExpired": "Tölegiň möhleti gutardy",
+    "sessionNotFound": "Sessiýa tapylmady",
+    "pendingPayment": "Töleg garaşylýar",
+    "tokensSent": "Tokenler iberildi",
+    "sendingTokens": "Tokenler iberilýär",
+    "queuedForSending": "Ibermek üçin nobatda",
+    "tokenTransferFailed": "Token geçirmek şowsuz boldy",
+    "notSentYet": "Heniz iberilmedi"
   }
 }

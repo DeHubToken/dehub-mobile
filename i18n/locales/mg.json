@@ -3674,5 +3674,24 @@
     "confirmingPayment": "Manamafy ny fandoavana…",
     "retryConfirmation": "Andramo indray ny fanamafisana",
     "buyNow": "Vidio izao"
+  },
+  "dpay": {
+    "success": "Nahomby",
+    "stripeStatus": "Toetran'ny Stripe",
+    "tokenSendStatus": "Toetran'ny fandefasana token",
+    "txnHash": "Hash fifanakalozana",
+    "paymentCompleted": "Vita ny fandoavana",
+    "paymentProcessing": "Karakaraina ny fandoavana",
+    "actionRequired": "Mila hetsika",
+    "awaitingMethod": "Miandry ny fomba fandoavana",
+    "paymentCanceled": "Nofoanana ny fandoavana",
+    "paymentExpired": "Lany daty ny fandoavana",
+    "sessionNotFound": "Tsy hita ilay fotoana",
+    "pendingPayment": "Miandry ny fandoavana",
+    "tokensSent": "Nalefa ny token",
+    "sendingTokens": "Mandefa token",
+    "queuedForSending": "Ao anaty laharana handefasana",
+    "tokenTransferFailed": "Tsy nahomby ny famindrana token",
+    "notSentYet": "Mbola tsy nalefa"
   }
 }

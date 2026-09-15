@@ -3573,5 +3573,24 @@
     "confirmingPayment": "Тасдиқи пардохт…",
     "retryConfirmation": "Тасдиқро аз нав кӯшиш кунед",
     "buyNow": "Ҳозир харед"
+  },
+  "dpay": {
+    "success": "Муваффақ",
+    "stripeStatus": "Ҳолати Stripe",
+    "tokenSendStatus": "Ҳолати фиристодани токен",
+    "txnHash": "Ҳеши муомилот",
+    "paymentCompleted": "Пардохт анҷом ёфт",
+    "paymentProcessing": "Пардохт коркард мешавад",
+    "actionRequired": "Амал лозим аст",
+    "awaitingMethod": "Интизори усули пардохт",
+    "paymentCanceled": "Пардохт бекор шуд",
+    "paymentExpired": "Мӯҳлати пардохт гузашт",
+    "sessionNotFound": "Ҷаласа ёфт нашуд",
+    "pendingPayment": "Пардохт дар интизорӣ",
+    "tokensSent": "Токенҳо фиристода шуданд",
+    "sendingTokens": "Фиристодани токенҳо",
+    "queuedForSending": "Дар навбат барои фиристодан",
+    "tokenTransferFailed": "Интиқоли токен ноком шуд",
+    "notSentYet": "Ҳанӯз фиристода нашудааст"
   }
 }

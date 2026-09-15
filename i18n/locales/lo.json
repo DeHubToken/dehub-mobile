@@ -3553,5 +3553,24 @@
     "confirmingPayment": "ກຳລັງຢືນຢັນການຈ່າຍເງິນ…",
     "retryConfirmation": "ລອງຢືນຢັນອີກຄັ້ງ",
     "buyNow": "ຊື້ດຽວນີ້"
+  },
+  "dpay": {
+    "success": "ສຳເລັດ",
+    "stripeStatus": "ສະຖານະ Stripe",
+    "tokenSendStatus": "ສະຖານະການສົ່ງໂທເຄັນ",
+    "txnHash": "Hash ທຸລະກຳ",
+    "paymentCompleted": "ຊຳລະເງິນສຳເລັດ",
+    "paymentProcessing": "ກຳລັງດຳເນີນການຊຳລະ",
+    "actionRequired": "ຕ້ອງດຳເນີນການ",
+    "awaitingMethod": "ລໍຖ້າວິທີຊຳລະເງິນ",
+    "paymentCanceled": "ຍົກເລີກການຊຳລະແລ້ວ",
+    "paymentExpired": "ການຊຳລະໝົດອາຍຸ",
+    "sessionNotFound": "ບໍ່ພົບເຊດຊັນ",
+    "pendingPayment": "ລໍຖ້າການຊຳລະ",
+    "tokensSent": "ສົ່ງໂທເຄັນແລ້ວ",
+    "sendingTokens": "ກຳລັງສົ່ງໂທເຄັນ",
+    "queuedForSending": "ຢູ່ໃນຄິວເພື່ອສົ່ງ",
+    "tokenTransferFailed": "ການໂອນໂທເຄັນລົ້ມເຫຼວ",
+    "notSentYet": "ຍັງບໍ່ໄດ້ສົ່ງ"
   }
 }

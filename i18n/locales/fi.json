@@ -3595,5 +3595,24 @@
     "confirmingPayment": "Vahvistetaan maksua…",
     "retryConfirmation": "Yritä vahvistusta uudelleen",
     "buyNow": "Osta nyt"
+  },
+  "dpay": {
+    "success": "Onnistui",
+    "stripeStatus": "Stripe-tila",
+    "tokenSendStatus": "Tokenin lähetyksen tila",
+    "txnHash": "Tapahtuman tiiviste",
+    "paymentCompleted": "Maksu suoritettu",
+    "paymentProcessing": "Maksua käsitellään",
+    "actionRequired": "Vaatii toimenpiteen",
+    "awaitingMethod": "Odotetaan maksutapaa",
+    "paymentCanceled": "Maksu peruutettu",
+    "paymentExpired": "Maksu vanhentui",
+    "sessionNotFound": "Istuntoa ei löytynyt",
+    "pendingPayment": "Maksu odottaa",
+    "tokensSent": "Tokenit lähetetty",
+    "sendingTokens": "Lähetetään tokeneita",
+    "queuedForSending": "Jonossa lähetystä varten",
+    "tokenTransferFailed": "Tokenin siirto epäonnistui",
+    "notSentYet": "Ei vielä lähetetty"
   }
 }

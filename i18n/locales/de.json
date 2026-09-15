@@ -3664,5 +3664,24 @@
     "confirmingPayment": "Zahlung wird bestätigt…",
     "retryConfirmation": "Bestätigung wiederholen",
     "buyNow": "Jetzt kaufen"
+  },
+  "dpay": {
+    "success": "Erfolgreich",
+    "stripeStatus": "Stripe-Status",
+    "tokenSendStatus": "Status des Token-Versands",
+    "txnHash": "Transaktions-Hash",
+    "paymentCompleted": "Zahlung abgeschlossen",
+    "paymentProcessing": "Zahlung wird verarbeitet",
+    "actionRequired": "Aktion erforderlich",
+    "awaitingMethod": "Warten auf Zahlungsmethode",
+    "paymentCanceled": "Zahlung storniert",
+    "paymentExpired": "Zahlung abgelaufen",
+    "sessionNotFound": "Sitzung nicht gefunden",
+    "pendingPayment": "Zahlung ausstehend",
+    "tokensSent": "Token gesendet",
+    "sendingTokens": "Token werden gesendet",
+    "queuedForSending": "In der Warteschlange zum Senden",
+    "tokenTransferFailed": "Token-Übertragung fehlgeschlagen",
+    "notSentYet": "Noch nicht gesendet"
   }
 }

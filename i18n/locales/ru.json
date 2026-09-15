@@ -3664,5 +3664,24 @@
     "confirmingPayment": "Подтверждение платежа…",
     "retryConfirmation": "Повторить подтверждение",
     "buyNow": "Купить сейчас"
+  },
+  "dpay": {
+    "success": "Успешно",
+    "stripeStatus": "Статус Stripe",
+    "tokenSendStatus": "Статус отправки токена",
+    "txnHash": "Хеш транзакции",
+    "paymentCompleted": "Платёж завершён",
+    "paymentProcessing": "Платёж обрабатывается",
+    "actionRequired": "Требуется действие",
+    "awaitingMethod": "Ожидание способа оплаты",
+    "paymentCanceled": "Платёж отменён",
+    "paymentExpired": "Срок платежа истёк",
+    "sessionNotFound": "Сессия не найдена",
+    "pendingPayment": "Платёж в ожидании",
+    "tokensSent": "Токены отправлены",
+    "sendingTokens": "Отправка токенов",
+    "queuedForSending": "В очереди на отправку",
+    "tokenTransferFailed": "Перевод токена не удался",
+    "notSentYet": "Ещё не отправлено"
   }
 }

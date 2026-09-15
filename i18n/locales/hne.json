@@ -3596,5 +3596,24 @@
     "confirmingPayment": "भुगतान के पुष्टि होवत हे…",
     "retryConfirmation": "पुष्टि फेर करव",
     "buyNow": "अभी बिसाहव"
+  },
+  "dpay": {
+    "success": "सफल",
+    "stripeStatus": "Stripe के हालत",
+    "tokenSendStatus": "टोकन भेजे के हालत",
+    "txnHash": "लेनदेन हैश",
+    "paymentCompleted": "भुगतान पूरा होगे",
+    "paymentProcessing": "भुगतान प्रोसेस होवत हे",
+    "actionRequired": "कार्रवाई जरूरी हे",
+    "awaitingMethod": "भुगतान के तरीका के इंतजार हे",
+    "paymentCanceled": "भुगतान रद्द होगे",
+    "paymentExpired": "भुगतान के समय खतम होगे",
+    "sessionNotFound": "सत्र नइ मिलिस",
+    "pendingPayment": "भुगतान बाकी हे",
+    "tokensSent": "टोकन भेजे गिस",
+    "sendingTokens": "टोकन भेजत हन",
+    "queuedForSending": "भेजे बर लाइन म",
+    "tokenTransferFailed": "टोकन ट्रांसफर फेल होगे",
+    "notSentYet": "अभी नइ भेजे गिस"
   }
 }

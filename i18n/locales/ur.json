@@ -3593,5 +3593,24 @@
     "confirmingPayment": "ادائیگی کی تصدیق ہو رہی ہے…",
     "retryConfirmation": "تصدیق دوبارہ کریں",
     "buyNow": "ابھی خریدیں"
+  },
+  "dpay": {
+    "success": "کامیاب",
+    "stripeStatus": "Stripe کی حالت",
+    "tokenSendStatus": "ٹوکن بھیجنے کی حالت",
+    "txnHash": "لین دین ہیش",
+    "paymentCompleted": "ادائیگی مکمل",
+    "paymentProcessing": "ادائیگی پراسیس ہو رہی ہے",
+    "actionRequired": "کارروائی درکار",
+    "awaitingMethod": "ادائیگی کے طریقے کا انتظار",
+    "paymentCanceled": "ادائیگی منسوخ",
+    "paymentExpired": "ادائیگی کی میعاد ختم",
+    "sessionNotFound": "سیشن نہیں ملا",
+    "pendingPayment": "ادائیگی زیرِ التوا",
+    "tokensSent": "ٹوکن بھیج دیے",
+    "sendingTokens": "ٹوکن بھیجے جا رہے ہیں",
+    "queuedForSending": "بھیجنے کے لیے قطار میں",
+    "tokenTransferFailed": "ٹوکن ٹرانسفر ناکام",
+    "notSentYet": "ابھی نہیں بھیجا"
   }
 }

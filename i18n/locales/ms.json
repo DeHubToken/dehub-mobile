@@ -3858,5 +3858,24 @@
     "confirmingPayment": "Mengesahkan pembayaran…",
     "retryConfirmation": "Cuba sahkan semula",
     "buyNow": "Beli sekarang"
+  },
+  "dpay": {
+    "success": "Berjaya",
+    "stripeStatus": "Status Stripe",
+    "tokenSendStatus": "Status penghantaran token",
+    "txnHash": "Hash transaksi",
+    "paymentCompleted": "Pembayaran selesai",
+    "paymentProcessing": "Pembayaran sedang diproses",
+    "actionRequired": "Tindakan diperlukan",
+    "awaitingMethod": "Menunggu kaedah pembayaran",
+    "paymentCanceled": "Pembayaran dibatalkan",
+    "paymentExpired": "Pembayaran telah luput",
+    "sessionNotFound": "Sesi tidak ditemui",
+    "pendingPayment": "Pembayaran belum selesai",
+    "tokensSent": "Token dihantar",
+    "sendingTokens": "Menghantar token",
+    "queuedForSending": "Dalam barisan untuk dihantar",
+    "tokenTransferFailed": "Pemindahan token gagal",
+    "notSentYet": "Belum dihantar"
   }
 }

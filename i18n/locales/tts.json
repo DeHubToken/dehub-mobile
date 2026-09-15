@@ -3554,5 +3554,24 @@
     "confirmingPayment": "กำลังยืนยันการชำระเงิน…",
     "retryConfirmation": "ลองยืนยันอีกเทื่อ",
     "buyNow": "ซื้อเลย"
+  },
+  "dpay": {
+    "success": "สำเร็จ",
+    "stripeStatus": "สถานะ Stripe",
+    "tokenSendStatus": "สถานะการส่งโทเคน",
+    "txnHash": "แฮชธุรกรรม",
+    "paymentCompleted": "ชำระเงินเสร็จสิ้น",
+    "paymentProcessing": "กำลังดำเนินการชำระเงิน",
+    "actionRequired": "ต้องดำเนินการ",
+    "awaitingMethod": "ถ้าวิธีชำระเงิน",
+    "paymentCanceled": "ยกเลิกการชำระเงินแล้ว",
+    "paymentExpired": "การชำระเงินหมดอายุ",
+    "sessionNotFound": "บ่พบเซสชัน",
+    "pendingPayment": "ถ้าการชำระเงิน",
+    "tokensSent": "ส่งโทเคนแล้ว",
+    "sendingTokens": "กำลังส่งโทเคน",
+    "queuedForSending": "อยู่ในคิวเพื่อส่ง",
+    "tokenTransferFailed": "โอนโทเคนบ่สำเร็จ",
+    "notSentYet": "ยังบ่ได้ส่ง"
   }
 }

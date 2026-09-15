@@ -3594,5 +3594,24 @@
     "confirmingPayment": "Patvirtinamas mokėjimas…",
     "retryConfirmation": "Bandyti patvirtinti dar kartą",
     "buyNow": "Pirkti dabar"
+  },
+  "dpay": {
+    "success": "Pavyko",
+    "stripeStatus": "Stripe būsena",
+    "tokenSendStatus": "Žetono siuntimo būsena",
+    "txnHash": "Operacijos maiša",
+    "paymentCompleted": "Mokėjimas atliktas",
+    "paymentProcessing": "Mokėjimas apdorojamas",
+    "actionRequired": "Reikalingas veiksmas",
+    "awaitingMethod": "Laukiama mokėjimo būdo",
+    "paymentCanceled": "Mokėjimas atšauktas",
+    "paymentExpired": "Mokėjimo galiojimas baigėsi",
+    "sessionNotFound": "Seansas nerastas",
+    "pendingPayment": "Laukiama mokėjimo",
+    "tokensSent": "Žetonai išsiųsti",
+    "sendingTokens": "Siunčiami žetonai",
+    "queuedForSending": "Eilėje išsiuntimui",
+    "tokenTransferFailed": "Žetono pervedimas nepavyko",
+    "notSentYet": "Dar neišsiųsta"
   }
 }

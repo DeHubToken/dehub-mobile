@@ -3651,5 +3651,24 @@
     "confirmingPayment": "Төлем расталуда…",
     "retryConfirmation": "Растауды қайталау",
     "buyNow": "Қазір сатып алу"
+  },
+  "dpay": {
+    "success": "Сәтті",
+    "stripeStatus": "Stripe күйі",
+    "tokenSendStatus": "Токен жіберу күйі",
+    "txnHash": "Транзакция хэші",
+    "paymentCompleted": "Төлем аяқталды",
+    "paymentProcessing": "Төлем өңделуде",
+    "actionRequired": "Әрекет қажет",
+    "awaitingMethod": "Төлем әдісі күтілуде",
+    "paymentCanceled": "Төлем тоқтатылды",
+    "paymentExpired": "Төлем мерзімі аяқталды",
+    "sessionNotFound": "Сеанс табылмады",
+    "pendingPayment": "Төлем күтуде",
+    "tokensSent": "Токендер жіберілді",
+    "sendingTokens": "Токендер жіберілуде",
+    "queuedForSending": "Жіберу кезегінде",
+    "tokenTransferFailed": "Токенді аудару сәтсіз аяқталды",
+    "notSentYet": "Әлі жіберілген жоқ"
   }
 }

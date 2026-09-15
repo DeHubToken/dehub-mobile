@@ -3608,5 +3608,24 @@
     "confirmingPayment": "در حال تأیید پرداخت…",
     "retryConfirmation": "تلاش مجدد برای تأیید",
     "buyNow": "همین حالا بخرید"
+  },
+  "dpay": {
+    "success": "موفق",
+    "stripeStatus": "وضعیت Stripe",
+    "tokenSendStatus": "وضعیت ارسال توکن",
+    "txnHash": "هش تراکنش",
+    "paymentCompleted": "پرداخت تکمیل شد",
+    "paymentProcessing": "پرداخت در حال پردازش",
+    "actionRequired": "نیاز به اقدام دارد",
+    "awaitingMethod": "در انتظار روش پرداخت",
+    "paymentCanceled": "پرداخت لغو شد",
+    "paymentExpired": "مهلت پرداخت به پایان رسید",
+    "sessionNotFound": "جلسه پیدا نشد",
+    "pendingPayment": "پرداخت در انتظار",
+    "tokensSent": "توکن‌ها ارسال شد",
+    "sendingTokens": "در حال ارسال توکن‌ها",
+    "queuedForSending": "در صف ارسال",
+    "tokenTransferFailed": "انتقال توکن ناموفق بود",
+    "notSentYet": "هنوز ارسال نشده"
   }
 }
