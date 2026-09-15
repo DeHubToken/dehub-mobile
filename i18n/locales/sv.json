@@ -3672,5 +3672,21 @@
     "openingCheckout": "Öppnar kassan…",
     "checkoutUnavailable": "Betalningslänken är inte tillgänglig. Försök igen.",
     "acceptTerms": "Jag godkänner <terms>Användarvillkor</terms>"
+  },
+  "musicSheet": {
+    "title": "Skapa en låt",
+    "songTitle": "Låttitel",
+    "titlePlaceholder": "Lämna tomt så bestämmer AI:n",
+    "styleLabel": "Stil / genre",
+    "stylePlaceholder": "t.ex. lo-fi, peppig pop, mörk trap",
+    "vocals": "Sång",
+    "voiceAuto": "Auto",
+    "voiceMale": "Manlig",
+    "voiceFemale": "Kvinnlig",
+    "lyrics": "Text",
+    "writeForMe": "Skriv den åt mig",
+    "rewrite": "Skriv om",
+    "lyricsPlaceholder": "Lämna tomt för ett instrumentalspår",
+    "lyricsFailed": "Det gick inte att skapa texten"
   }
 }

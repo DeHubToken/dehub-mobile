@@ -3847,5 +3847,21 @@
     "openingCheckout": "Binubuksan ang checkout…",
     "checkoutUnavailable": "Hindi available ang checkout link. Subukan ulit.",
     "acceptTerms": "Tinatanggap ko ang <terms>Mga Tuntunin ng Serbisyo</terms>"
+  },
+  "musicSheet": {
+    "title": "Gumawa ng kanta",
+    "songTitle": "Pamagat ng kanta",
+    "titlePlaceholder": "Iwanang blangko para magpasya ang AI",
+    "styleLabel": "Istilo / genre",
+    "stylePlaceholder": "hal. lo-fi, masiglang pop, madilim na trap",
+    "vocals": "Boses",
+    "voiceAuto": "Awto",
+    "voiceMale": "Lalaki",
+    "voiceFemale": "Babae",
+    "lyrics": "Liriko",
+    "writeForMe": "Isulat mo para sa akin",
+    "rewrite": "Isulat muli",
+    "lyricsPlaceholder": "Iwanang blangko para sa instrumental",
+    "lyricsFailed": "Hindi makabuo ng liriko"
   }
 }

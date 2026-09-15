@@ -3697,5 +3697,21 @@
     "openingCheckout": "Ivula ukukhokha…",
     "checkoutUnavailable": "Isixhumanisi sokukhokha asitholakali. Zama futhi.",
     "acceptTerms": "Ngiyayamukela <terms>Imigomo Yesevisi</terms>"
+  },
+  "musicSheet": {
+    "title": "Dala ingoma",
+    "songTitle": "Isihloko sengoma",
+    "titlePlaceholder": "Shiya kungenalutho ukuze i-AI inqume",
+    "styleLabel": "Isitayela / uhlobo",
+    "stylePlaceholder": "isb. lo-fi, i-pop egqugquzelayo, i-trap emnyama",
+    "vocals": "Amaphimbo",
+    "voiceAuto": "Okuzenzakalelayo",
+    "voiceMale": "Owesilisa",
+    "voiceFemale": "Owesifazane",
+    "lyrics": "Amagama engoma",
+    "writeForMe": "Ngibhalele",
+    "rewrite": "Bhala kabusha",
+    "lyricsPlaceholder": "Shiya kungenalutho ukuze kube ngokwezinsimbi kuphela",
+    "lyricsFailed": "Ayikwazanga ukwakha amagama engoma"
   }
 }

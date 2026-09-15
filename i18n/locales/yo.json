@@ -3658,5 +3658,21 @@
     "openingCheckout": "Ń ṣí ojú ìsanwó…",
     "checkoutUnavailable": "Ọ̀nà ìsanwó kò sí. Gbìyànjú lẹ́ẹ̀kan sí i.",
     "acceptTerms": "Mo gba <terms>Àwọn Òfin Iṣẹ́</terms>"
+  },
+  "musicSheet": {
+    "title": "Ṣẹ̀dá orin",
+    "songTitle": "Àkọlé orin",
+    "titlePlaceholder": "Fi sílẹ̀ ní òfìfo kí AI pinnu",
+    "styleLabel": "Ìrísí / ẹ̀yà",
+    "stylePlaceholder": "bíi lo-fi, pop onítara, trap dúdú",
+    "vocals": "Ohùn orin",
+    "voiceAuto": "Aládàáṣiṣẹ́",
+    "voiceMale": "Ọkùnrin",
+    "voiceFemale": "Obìnrin",
+    "lyrics": "Ọ̀rọ̀ orin",
+    "writeForMe": "Kọ ọ́ fún mi",
+    "rewrite": "Tún kọ",
+    "lyricsPlaceholder": "Fi sílẹ̀ ní òfìfo fún orin aláìlọ́rọ̀",
+    "lyricsFailed": "Kò ṣeé ṣe láti kọ ọ̀rọ̀ orin"
   }
 }

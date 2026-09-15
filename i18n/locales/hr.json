@@ -3668,5 +3668,21 @@
     "openingCheckout": "Otvaranje naplate…",
     "checkoutUnavailable": "Poveznica za plaćanje nije dostupna. Pokušajte ponovno.",
     "acceptTerms": "Prihvaćam <terms>Uvjeti pružanja usluge</terms>"
+  },
+  "musicSheet": {
+    "title": "Stvori pjesmu",
+    "songTitle": "Naslov pjesme",
+    "titlePlaceholder": "Ostavite prazno da AI odluči",
+    "styleLabel": "Stil / žanr",
+    "stylePlaceholder": "npr. lo-fi, živahni pop, mračni trap",
+    "vocals": "Vokali",
+    "voiceAuto": "Automatski",
+    "voiceMale": "Muški",
+    "voiceFemale": "Ženski",
+    "lyrics": "Tekst",
+    "writeForMe": "Napiši umjesto mene",
+    "rewrite": "Napiši ponovno",
+    "lyricsPlaceholder": "Ostavite prazno za instrumental",
+    "lyricsFailed": "Tekst nije moguće generirati"
   }
 }

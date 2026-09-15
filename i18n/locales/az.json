@@ -3652,5 +3652,21 @@
     "openingCheckout": "Ödəniş səhifəsi açılır…",
     "checkoutUnavailable": "Ödəniş linki əlçatmazdır. Zəhmət olmasa yenidən cəhd edin.",
     "acceptTerms": "Qəbul edirəm <terms>Xidmət şərtləri</terms>"
+  },
+  "musicSheet": {
+    "title": "Mahnı yarat",
+    "songTitle": "Mahnı adı",
+    "titlePlaceholder": "Boş buraxın, süni intellekt seçsin",
+    "styleLabel": "Üslub / janr",
+    "stylePlaceholder": "məsələn lo-fi, enerjili pop, qaranlıq trap",
+    "vocals": "Vokal",
+    "voiceAuto": "Avto",
+    "voiceMale": "Kişi",
+    "voiceFemale": "Qadın",
+    "lyrics": "Sözlər",
+    "writeForMe": "Mənim üçün yaz",
+    "rewrite": "Yenidən yaz",
+    "lyricsPlaceholder": "İnstrumental üçün boş buraxın",
+    "lyricsFailed": "Sözlər yaradıla bilmədi"
   }
 }

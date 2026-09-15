@@ -3681,5 +3681,21 @@
     "openingCheckout": "Se deschide plata…",
     "checkoutUnavailable": "Linkul de plată nu este disponibil. Încearcă din nou.",
     "acceptTerms": "Accept <terms>Termenii serviciului</terms>"
+  },
+  "musicSheet": {
+    "title": "Creează o melodie",
+    "songTitle": "Titlul melodiei",
+    "titlePlaceholder": "Lasă gol pentru ca IA să decidă",
+    "styleLabel": "Stil / gen",
+    "stylePlaceholder": "de ex. lo-fi, pop antrenant, trap întunecat",
+    "vocals": "Voce",
+    "voiceAuto": "Automat",
+    "voiceMale": "Masculină",
+    "voiceFemale": "Feminină",
+    "lyrics": "Versuri",
+    "writeForMe": "Scrie-le pentru mine",
+    "rewrite": "Rescrie",
+    "lyricsPlaceholder": "Lasă gol pentru o piesă instrumentală",
+    "lyricsFailed": "Nu s-au putut genera versurile"
   }
 }

@@ -3646,5 +3646,21 @@
     "openingCheckout": "Кушодани пардохт…",
     "checkoutUnavailable": "Пайванди пардохт дастрас нест. Дубора кӯшиш кунед.",
     "acceptTerms": "Ман қабул мекунам <terms>Шартҳои хидматрасонӣ</terms>"
+  },
+  "musicSheet": {
+    "title": "Суруд эҷод кунед",
+    "songTitle": "Номи суруд",
+    "titlePlaceholder": "Холӣ монед, то ки ИС қарор кунад",
+    "styleLabel": "Услуб / жанр",
+    "stylePlaceholder": "масалан lo-fi, попи шодмон, trap-и торик",
+    "vocals": "Вокал",
+    "voiceAuto": "Худкор",
+    "voiceMale": "Мард",
+    "voiceFemale": "Зан",
+    "lyrics": "Матн",
+    "writeForMe": "Барои ман нависед",
+    "rewrite": "Аз нав нависед",
+    "lyricsPlaceholder": "Барои порчаи бемат холӣ монед",
+    "lyricsFailed": "Матн эҷод нашуд"
   }
 }

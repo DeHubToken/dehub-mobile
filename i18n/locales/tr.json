@@ -3730,5 +3730,21 @@
     "openingCheckout": "Ödeme açılıyor…",
     "checkoutUnavailable": "Ödeme bağlantısı kullanılamıyor. Lütfen tekrar deneyin.",
     "acceptTerms": "Kabul ediyorum: <terms>Hizmet Şartları</terms>"
+  },
+  "musicSheet": {
+    "title": "Şarkı oluştur",
+    "songTitle": "Şarkı adı",
+    "titlePlaceholder": "Boş bırakın, yapay zekâ karar versin",
+    "styleLabel": "Stil / tür",
+    "stylePlaceholder": "örn. lo-fi, hareketli pop, karanlık trap",
+    "vocals": "Vokal",
+    "voiceAuto": "Otomatik",
+    "voiceMale": "Erkek",
+    "voiceFemale": "Kadın",
+    "lyrics": "Sözler",
+    "writeForMe": "Benim için yaz",
+    "rewrite": "Yeniden yaz",
+    "lyricsPlaceholder": "Enstrümantal için boş bırakın",
+    "lyricsFailed": "Sözler oluşturulamadı"
   }
 }

@@ -3500,5 +3500,21 @@
     "openingCheckout": "Dey open di checkout…",
     "checkoutUnavailable": "Checkout link no dey. Try again.",
     "acceptTerms": "I gree wit di <terms>Terms and service</terms>"
+  },
+  "musicSheet": {
+    "title": "Mek song",
+    "songTitle": "Song title",
+    "titlePlaceholder": "Leave am empty mek AI decide",
+    "styleLabel": "Style / genre",
+    "stylePlaceholder": "e.g. lo-fi, upbeat pop, dark trap",
+    "vocals": "Vocals",
+    "voiceAuto": "Auto",
+    "voiceMale": "Male",
+    "voiceFemale": "Female",
+    "lyrics": "Lyrics",
+    "writeForMe": "Write am for mi",
+    "rewrite": "Rewrite am",
+    "lyricsPlaceholder": "Leave am empty if you want instrumental",
+    "lyricsFailed": "We no fit generate lyrics"
   }
 }

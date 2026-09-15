@@ -3661,5 +3661,21 @@
     "openingCheckout": "Төлөм бети ачылууда…",
     "checkoutUnavailable": "Төлөм шилтемеси жеткиликсиз. Кайра аракет кылыңыз.",
     "acceptTerms": "Мен кабыл алам <terms>Кызмат көрсөтүү шарттары</terms>"
+  },
+  "musicSheet": {
+    "title": "Ыр түзүү",
+    "songTitle": "Ырдын аталышы",
+    "titlePlaceholder": "Бош калтырсаңыз, ЖИ чечет",
+    "styleLabel": "Стиль / жанр",
+    "stylePlaceholder": "мис. lo-fi, шайыр поп, караңгы trap",
+    "vocals": "Вокал",
+    "voiceAuto": "Авто",
+    "voiceMale": "Эркек",
+    "voiceFemale": "Аял",
+    "lyrics": "Тексти",
+    "writeForMe": "Мен үчүн жаз",
+    "rewrite": "Кайра жазуу",
+    "lyricsPlaceholder": "Аспаптык версия үчүн бош калтырыңыз",
+    "lyricsFailed": "Текст түзүлгөн жок"
   }
 }

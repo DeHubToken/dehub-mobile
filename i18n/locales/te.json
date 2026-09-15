@@ -3662,5 +3662,21 @@
     "openingCheckout": "చెక్‌అవుట్ తెరుస్తోంది…",
     "checkoutUnavailable": "చెక్‌అవుట్ లింక్ అందుబాటులో లేదు. మళ్లీ ప్రయత్నించండి.",
     "acceptTerms": "నేను అంగీకరిస్తున్నాను <terms>సేవా నిబంధనలు</terms>"
+  },
+  "musicSheet": {
+    "title": "పాట సృష్టించండి",
+    "songTitle": "పాట శీర్షిక",
+    "titlePlaceholder": "AI నిర్ణయించడానికి ఖాళీగా వదలండి",
+    "styleLabel": "శైలి / జానర్",
+    "stylePlaceholder": "ఉదా. lo-fi, ఉత్సాహభరిత పాప్, డార్క్ ట్రాప్",
+    "vocals": "గాత్రం",
+    "voiceAuto": "ఆటో",
+    "voiceMale": "పురుషుడు",
+    "voiceFemale": "స్త్రీ",
+    "lyrics": "సాహిత్యం",
+    "writeForMe": "నా కోసం రాయండి",
+    "rewrite": "మళ్లీ రాయండి",
+    "lyricsPlaceholder": "వాద్య సంగీతం కోసం ఖాళీగా వదలండి",
+    "lyricsFailed": "సాహిత్యం రూపొందించలేకపోయాం"
   }
 }

@@ -3668,5 +3668,21 @@
     "openingCheckout": "بيفتح صفحة الدفع…",
     "checkoutUnavailable": "لينك الدفع مش متاح. من فضلك جرّب تاني.",
     "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>"
+  },
+  "musicSheet": {
+    "title": "سوّي أغنية",
+    "songTitle": "عنوان الأغنية",
+    "titlePlaceholder": "خلّيه فاضي ويختار الذكاء الاصطناعي",
+    "styleLabel": "الأسلوب / النوع",
+    "stylePlaceholder": "مثلاً لو-فاي، بوب حماسي، تراب داكن",
+    "vocals": "الغناء",
+    "voiceAuto": "تلقائي",
+    "voiceMale": "رجل",
+    "voiceFemale": "امرأة",
+    "lyrics": "الكلمات",
+    "writeForMe": "اكتبها إلي",
+    "rewrite": "أعد كتابتها",
+    "lyricsPlaceholder": "خلّيه فاضي لأغنية بدون كلمات",
+    "lyricsFailed": "ما قدرنا نكتب الكلمات"
   }
 }

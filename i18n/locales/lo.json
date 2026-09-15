@@ -3626,5 +3626,21 @@
     "openingCheckout": "ກຳລັງເປີດໜ້າຊຳລະເງິນ…",
     "checkoutUnavailable": "ລິ້ງຊຳລະເງິນບໍ່ພ້ອມໃຊ້. ລອງໃໝ່.",
     "acceptTerms": "ຂ້ອຍຍອມຮັບ <terms>ເງື່ອນໄຂການໃຫ້ບໍລິການ</terms>"
+  },
+  "musicSheet": {
+    "title": "ສ້າງເພງ",
+    "songTitle": "ຊື່ເພງ",
+    "titlePlaceholder": "ປະວ່າງໄວ້ ເພື່ອໃຫ້ AI ຕັດສິນໃຈ",
+    "styleLabel": "ສະໄຕລ໌ / ແນວເພງ",
+    "stylePlaceholder": "ເຊັ່ນ lo-fi, ປັອບຄຶກຄັກ, trap ມືດ",
+    "vocals": "ສຽງຮ້ອງ",
+    "voiceAuto": "ອັດຕະໂນມັດ",
+    "voiceMale": "ຊາຍ",
+    "voiceFemale": "ຍິງ",
+    "lyrics": "ເນື້ອເພງ",
+    "writeForMe": "ຂຽນໃຫ້ຂ້ອຍ",
+    "rewrite": "ຂຽນໃໝ່",
+    "lyricsPlaceholder": "ປະວ່າງໄວ້ ສຳລັບເພງບັນເລງ",
+    "lyricsFailed": "ສ້າງເນື້ອເພງບໍ່ສຳເລັດ"
   }
 }

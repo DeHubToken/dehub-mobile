@@ -3836,5 +3836,21 @@
     "openingCheckout": "Otvára sa platba…",
     "checkoutUnavailable": "Odkaz na platbu nie je dostupný. Skúste znova.",
     "acceptTerms": "Súhlasím s <terms>Podmienky služby</terms>"
+  },
+  "musicSheet": {
+    "title": "Vytvoriť pieseň",
+    "songTitle": "Názov piesne",
+    "titlePlaceholder": "Nechajte prázdne, nech rozhodne AI",
+    "styleLabel": "Štýl / žáner",
+    "stylePlaceholder": "napr. lo-fi, svižný pop, temný trap",
+    "vocals": "Vokály",
+    "voiceAuto": "Auto",
+    "voiceMale": "Mužský",
+    "voiceFemale": "Ženský",
+    "lyrics": "Text",
+    "writeForMe": "Napíš to za mňa",
+    "rewrite": "Prepísať",
+    "lyricsPlaceholder": "Nechajte prázdne pre inštrumentálku",
+    "lyricsFailed": "Text sa nepodarilo vytvoriť"
   }
 }

@@ -3665,5 +3665,21 @@
     "openingCheckout": "正在打开结账页…",
     "checkoutUnavailable": "结账链接不可用。请重试。",
     "acceptTerms": "我接受 <terms>服务条款</terms>"
+  },
+  "musicSheet": {
+    "title": "创作一首歌",
+    "songTitle": "歌曲标题",
+    "titlePlaceholder": "留空由 AI 决定",
+    "styleLabel": "风格 / 曲风",
+    "stylePlaceholder": "例如 lo-fi、轻快流行、暗黑 trap",
+    "vocals": "人声",
+    "voiceAuto": "自动",
+    "voiceMale": "男声",
+    "voiceFemale": "女声",
+    "lyrics": "歌词",
+    "writeForMe": "帮我写",
+    "rewrite": "重写",
+    "lyricsPlaceholder": "留空可生成纯音乐",
+    "lyricsFailed": "无法生成歌词"
   }
 }

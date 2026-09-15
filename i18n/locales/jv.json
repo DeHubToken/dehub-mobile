@@ -3626,5 +3626,21 @@
     "openingCheckout": "Mbukak pambayaran…",
     "checkoutUnavailable": "Link pambayaran ora kasedhiya. Coba maneh.",
     "acceptTerms": "Aku nampa <terms>Syarat Layanan</terms>"
+  },
+  "musicSheet": {
+    "title": "Gawe lagu",
+    "songTitle": "Irah-irahan lagu",
+    "titlePlaceholder": "Kosongake supaya AI sing mutusake",
+    "styleLabel": "Gaya / genre",
+    "stylePlaceholder": "conto lo-fi, pop semangat, trap peteng",
+    "vocals": "Vokal",
+    "voiceAuto": "Otomatis",
+    "voiceMale": "Lanang",
+    "voiceFemale": "Wadon",
+    "lyrics": "Lirik",
+    "writeForMe": "Tulisna kanggo aku",
+    "rewrite": "Tulis maneh",
+    "lyricsPlaceholder": "Kosongake kanggo lagu instrumental",
+    "lyricsFailed": "Gagal nggawe lirik"
   }
 }

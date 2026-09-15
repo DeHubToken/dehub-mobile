@@ -3673,5 +3673,21 @@
     "openingCheckout": "ಚೆಕ್‌ಔಟ್ ತೆರೆಯಲಾಗುತ್ತಿದೆ…",
     "checkoutUnavailable": "ಚೆಕ್‌ಔಟ್ ಲಿಂಕ್ ಲಭ್ಯವಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
     "acceptTerms": "ನಾನು ಒಪ್ಪುತ್ತೇನೆ <terms>ಸೇವಾ ನಿಯಮಗಳು</terms>"
+  },
+  "musicSheet": {
+    "title": "ಹಾಡು ರಚಿಸಿ",
+    "songTitle": "ಹಾಡಿನ ಶೀರ್ಷಿಕೆ",
+    "titlePlaceholder": "ಖಾಲಿ ಬಿಡಿ, AI ನಿರ್ಧರಿಸುತ್ತದೆ",
+    "styleLabel": "ಶೈಲಿ / ಪ್ರಕಾರ",
+    "stylePlaceholder": "ಉದಾ. lo-fi, ಲವಲವಿಕೆಯ ಪಾಪ್, ಡಾರ್ಕ್ ಟ್ರ್ಯಾಪ್",
+    "vocals": "ಗಾಯನ",
+    "voiceAuto": "ಸ್ವಯಂ",
+    "voiceMale": "ಪುರುಷ",
+    "voiceFemale": "ಮಹಿಳೆ",
+    "lyrics": "ಸಾಹಿತ್ಯ",
+    "writeForMe": "ನನಗಾಗಿ ಬರೆಯಿರಿ",
+    "rewrite": "ಮರುಬರೆಯಿರಿ",
+    "lyricsPlaceholder": "ವಾದ್ಯಸಂಗೀತಕ್ಕಾಗಿ ಖಾಲಿ ಬಿಡಿ",
+    "lyricsFailed": "ಸಾಹಿತ್ಯ ರಚಿಸಲಾಗಲಿಲ್ಲ"
   }
 }

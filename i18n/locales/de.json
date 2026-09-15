@@ -3737,5 +3737,21 @@
     "openingCheckout": "Kasse wird geöffnet…",
     "checkoutUnavailable": "Zahlungslink nicht verfügbar. Bitte versuche es erneut.",
     "acceptTerms": "Ich akzeptiere die <terms>Nutzungsbedingungen</terms>"
+  },
+  "musicSheet": {
+    "title": "Song erstellen",
+    "songTitle": "Songtitel",
+    "titlePlaceholder": "Leer lassen, damit die KI entscheidet",
+    "styleLabel": "Stil / Genre",
+    "stylePlaceholder": "z. B. Lo-Fi, treibender Pop, düsterer Trap",
+    "vocals": "Gesang",
+    "voiceAuto": "Auto",
+    "voiceMale": "Männlich",
+    "voiceFemale": "Weiblich",
+    "lyrics": "Songtext",
+    "writeForMe": "Für mich schreiben",
+    "rewrite": "Neu schreiben",
+    "lyricsPlaceholder": "Leer lassen für ein Instrumental",
+    "lyricsFailed": "Songtext konnte nicht erstellt werden"
   }
 }

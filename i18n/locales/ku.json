@@ -3429,5 +3429,21 @@
     "openingCheckout": "Dravdan tê vekirin…",
     "checkoutUnavailable": "Girêdana dravdanê ne berdest e. Dîsa biceribîne.",
     "acceptTerms": "Ez qebûl dikim <terms>Mercên Xizmetê</terms>"
+  },
+  "musicSheet": {
+    "title": "Stranek çêke",
+    "songTitle": "Sernavê stranê",
+    "titlePlaceholder": "Vala bihêle da ku AI biryar bide",
+    "styleLabel": "Şêwaz / cure",
+    "stylePlaceholder": "wek lo-fi, popa geş, trapa tarî",
+    "vocals": "Deng",
+    "voiceAuto": "Otomatîk",
+    "voiceMale": "Mêr",
+    "voiceFemale": "Jin",
+    "lyrics": "Gotin",
+    "writeForMe": "Ji min re binivîse",
+    "rewrite": "Ji nû ve binivîse",
+    "lyricsPlaceholder": "Ji bo stranek bêgotin vala bihêle",
+    "lyricsFailed": "Gotin nehatin çêkirin"
   }
 }
