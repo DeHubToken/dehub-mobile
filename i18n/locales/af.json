@@ -3712,5 +3712,24 @@
     "confirmingPayment": "Bevestig betaling…",
     "retryConfirmation": "Probeer bevestiging weer",
     "buyNow": "Koop nou"
+  },
+  "dpay": {
+    "success": "Suksesvol",
+    "stripeStatus": "Stripe-status",
+    "tokenSendStatus": "Token-stuurstatus",
+    "txnHash": "Transaksiehasj",
+    "paymentCompleted": "Betaling voltooi",
+    "paymentProcessing": "Betaling word verwerk",
+    "actionRequired": "Aksie word vereis",
+    "awaitingMethod": "Wag vir betaalmetode",
+    "paymentCanceled": "Betaling gekanselleer",
+    "paymentExpired": "Betaling het verval",
+    "sessionNotFound": "Sessie nie gevind nie",
+    "pendingPayment": "Betaling hangende",
+    "tokensSent": "Tokens gestuur",
+    "sendingTokens": "Stuur tans tokens",
+    "queuedForSending": "In die ry vir versending",
+    "tokenTransferFailed": "Tokenoordrag het misluk",
+    "notSentYet": "Nog nie gestuur nie"
   }
 }

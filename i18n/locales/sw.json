@@ -3595,5 +3595,24 @@
     "confirmingPayment": "Inathibitisha malipo…",
     "retryConfirmation": "Jaribu kuthibitisha tena",
     "buyNow": "Nunua sasa"
+  },
+  "dpay": {
+    "success": "Imefaulu",
+    "stripeStatus": "Hali ya Stripe",
+    "tokenSendStatus": "Hali ya kutuma tokeni",
+    "txnHash": "Hashi ya muamala",
+    "paymentCompleted": "Malipo yamekamilika",
+    "paymentProcessing": "Malipo yanachakatwa",
+    "actionRequired": "Hatua inahitajika",
+    "awaitingMethod": "Inasubiri njia ya malipo",
+    "paymentCanceled": "Malipo yamefutwa",
+    "paymentExpired": "Malipo yamekwisha muda",
+    "sessionNotFound": "Kipindi hakikupatikana",
+    "pendingPayment": "Malipo yanasubiri",
+    "tokensSent": "Tokeni zimetumwa",
+    "sendingTokens": "Inatuma tokeni",
+    "queuedForSending": "Kwenye foleni ya kutumwa",
+    "tokenTransferFailed": "Uhamishaji wa tokeni umeshindwa",
+    "notSentYet": "Bado haijatumwa"
   }
 }

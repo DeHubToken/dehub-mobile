@@ -3665,5 +3665,24 @@
     "confirmingPayment": "Confirming payment…",
     "retryConfirmation": "Retry confirmation",
     "buyNow": "Buy now"
+  },
+  "dpay": {
+    "success": "Success",
+    "stripeStatus": "Stripe Status",
+    "tokenSendStatus": "Token Send Status",
+    "txnHash": "Txn Hash",
+    "paymentCompleted": "Payment completed",
+    "paymentProcessing": "Payment processing",
+    "actionRequired": "Action required",
+    "awaitingMethod": "Awaiting payment method",
+    "paymentCanceled": "Payment canceled",
+    "paymentExpired": "Payment expired",
+    "sessionNotFound": "Session not found",
+    "pendingPayment": "Pending payment",
+    "tokensSent": "Tokens sent",
+    "sendingTokens": "Sending tokens",
+    "queuedForSending": "Queued for sending",
+    "tokenTransferFailed": "Token transfer failed",
+    "notSentYet": "Not sent yet"
   }
 }

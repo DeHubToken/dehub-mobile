@@ -3585,5 +3585,24 @@
     "confirmingPayment": "Ń jẹ́rìí sí ìsanwó…",
     "retryConfirmation": "Gbìyànjú ìjẹ́rìísí lẹ́ẹ̀kan sí i",
     "buyNow": "Rà báyìí"
+  },
+  "dpay": {
+    "success": "Àṣeyọrí",
+    "stripeStatus": "Ipò Stripe",
+    "tokenSendStatus": "Ipò ìfiránṣẹ́ tòkénì",
+    "txnHash": "Hash ìṣòwò",
+    "paymentCompleted": "Ìsanwó parí",
+    "paymentProcessing": "Ń ṣiṣẹ́ lórí ìsanwó",
+    "actionRequired": "Ìṣe nílò",
+    "awaitingMethod": "Ń dúró de ọ̀nà ìsanwó",
+    "paymentCanceled": "A fagilé ìsanwó",
+    "paymentExpired": "Ìsanwó ti pé",
+    "sessionNotFound": "A kò rí ìpàdé náà",
+    "pendingPayment": "Ìsanwó ń dúró",
+    "tokensSent": "A ti fi àwọn tòkénì ránṣẹ́",
+    "sendingTokens": "Ń fi àwọn tòkénì ránṣẹ́",
+    "queuedForSending": "Ó wà ní ìlà fún ìfiránṣẹ́",
+    "tokenTransferFailed": "Ìfiránṣẹ́ tòkénì kùnà",
+    "notSentYet": "A kò tíì fi ránṣẹ́"
   }
 }

@@ -3628,5 +3628,24 @@
     "confirmingPayment": "भुक्तानी पुष्टि हुँदैछ…",
     "retryConfirmation": "पुष्टि पुनः प्रयास गर्नुहोस्",
     "buyNow": "अहिले किन्नुहोस्"
+  },
+  "dpay": {
+    "success": "सफल",
+    "stripeStatus": "Stripe स्थिति",
+    "tokenSendStatus": "टोकन पठाउने स्थिति",
+    "txnHash": "कारोबार ह्यास",
+    "paymentCompleted": "भुक्तानी पूरा भयो",
+    "paymentProcessing": "भुक्तानी प्रशोधन हुँदैछ",
+    "actionRequired": "कार्य आवश्यक",
+    "awaitingMethod": "भुक्तानी विधिको पर्खाइमा",
+    "paymentCanceled": "भुक्तानी रद्द",
+    "paymentExpired": "भुक्तानीको म्याद सकियो",
+    "sessionNotFound": "सत्र फेला परेन",
+    "pendingPayment": "भुक्तानी बाँकी",
+    "tokensSent": "टोकन पठाइयो",
+    "sendingTokens": "टोकन पठाउँदै",
+    "queuedForSending": "पठाउन लाइनमा",
+    "tokenTransferFailed": "टोकन स्थानान्तरण असफल",
+    "notSentYet": "अझै पठाइएको छैन"
   }
 }

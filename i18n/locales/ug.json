@@ -3585,5 +3585,24 @@
     "confirmingPayment": "پۇل تۆلەش جەزملىنىۋاتىدۇ…",
     "retryConfirmation": "جەزملەشنى قايتا سىناڭ",
     "buyNow": "ھازىر سېتىۋېلىش"
+  },
+  "dpay": {
+    "success": "مۇۋەپپەقىيەتلىك",
+    "stripeStatus": "Stripe ھالىتى",
+    "tokenSendStatus": "بەلگە يوللاش ھالىتى",
+    "txnHash": "سودا hash",
+    "paymentCompleted": "پۇل تۆلەش تاماملاندى",
+    "paymentProcessing": "پۇل تۆلەش بىر تەرەپ قىلىنىۋاتىدۇ",
+    "actionRequired": "مەشغۇلات كېرەك",
+    "awaitingMethod": "پۇل تۆلەش ئۇسۇلى كۈتۈلۈۋاتىدۇ",
+    "paymentCanceled": "پۇل تۆلەش بىكار قىلىندى",
+    "paymentExpired": "پۇل تۆلەش ۋاقتى ئۆتتى",
+    "sessionNotFound": "ئەڭگىمە تېپىلمىدى",
+    "pendingPayment": "پۇل تۆلەش كۈتۈلۈۋاتىدۇ",
+    "tokensSent": "بەلگىلەر يوللاندى",
+    "sendingTokens": "بەلگىلەر يوللىنىۋاتىدۇ",
+    "queuedForSending": "يوللاش ئۈچۈن نۆۋەتتە",
+    "tokenTransferFailed": "بەلگە يۆتكەش مەغلۇپ بولدى",
+    "notSentYet": "تېخى يوللانمىدى"
   }
 }

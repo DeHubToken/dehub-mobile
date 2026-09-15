@@ -3577,5 +3577,24 @@
     "confirmingPayment": "ගෙවීම තහවුරු කරමින්…",
     "retryConfirmation": "තහවුරු කිරීම නැවත උත්සාහ කරන්න",
     "buyNow": "දැන් මිලදී ගන්න"
+  },
+  "dpay": {
+    "success": "සාර්ථකයි",
+    "stripeStatus": "Stripe තත්ත්වය",
+    "tokenSendStatus": "ටෝකන යැවීමේ තත්ත්වය",
+    "txnHash": "ගනුදෙනු හැෂ්",
+    "paymentCompleted": "ගෙවීම සම්පූර්ණයි",
+    "paymentProcessing": "ගෙවීම සකසමින්",
+    "actionRequired": "ක්‍රියාමාර්ගයක් අවශ්‍යයි",
+    "awaitingMethod": "ගෙවීම් ක්‍රමය එනතුරු",
+    "paymentCanceled": "ගෙවීම අවලංගු විය",
+    "paymentExpired": "ගෙවීමේ කාලය අවසන්",
+    "sessionNotFound": "සැසිය හමු නොවීය",
+    "pendingPayment": "ගෙවීම බලාපොරොත්තුවෙන්",
+    "tokensSent": "ටෝකන යවා ඇත",
+    "sendingTokens": "ටෝකන යවමින්",
+    "queuedForSending": "යැවීම සඳහා පෝලිමේ",
+    "tokenTransferFailed": "ටෝකන මාරු කිරීම අසාර්ථකයි",
+    "notSentYet": "තවම යවා නැත"
   }
 }

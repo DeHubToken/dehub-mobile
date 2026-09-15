@@ -3599,5 +3599,24 @@
     "confirmingPayment": "Bekræfter betaling…",
     "retryConfirmation": "Prøv bekræftelsen igen",
     "buyNow": "Køb nu"
+  },
+  "dpay": {
+    "success": "Gennemført",
+    "stripeStatus": "Stripe-status",
+    "tokenSendStatus": "Status for tokenafsendelse",
+    "txnHash": "Transaktionshash",
+    "paymentCompleted": "Betaling gennemført",
+    "paymentProcessing": "Betaling behandles",
+    "actionRequired": "Handling påkrævet",
+    "awaitingMethod": "Venter på betalingsmetode",
+    "paymentCanceled": "Betaling annulleret",
+    "paymentExpired": "Betalingen er udløbet",
+    "sessionNotFound": "Session ikke fundet",
+    "pendingPayment": "Betaling afventer",
+    "tokensSent": "Tokens sendt",
+    "sendingTokens": "Sender tokens",
+    "queuedForSending": "I kø til afsendelse",
+    "tokenTransferFailed": "Tokenoverførsel mislykkedes",
+    "notSentYet": "Endnu ikke sendt"
   }
 }

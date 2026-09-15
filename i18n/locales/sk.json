@@ -3763,5 +3763,24 @@
     "confirmingPayment": "Potvrdzuje sa platba…",
     "retryConfirmation": "Skúsiť potvrdenie znova",
     "buyNow": "Kúpiť teraz"
+  },
+  "dpay": {
+    "success": "Úspech",
+    "stripeStatus": "Stav Stripe",
+    "tokenSendStatus": "Stav odoslania tokenu",
+    "txnHash": "Hash transakcie",
+    "paymentCompleted": "Platba dokončená",
+    "paymentProcessing": "Platba sa spracúva",
+    "actionRequired": "Vyžaduje sa akcia",
+    "awaitingMethod": "Čaká sa na spôsob platby",
+    "paymentCanceled": "Platba zrušená",
+    "paymentExpired": "Platba vypršala",
+    "sessionNotFound": "Relácia sa nenašla",
+    "pendingPayment": "Platba čaká",
+    "tokensSent": "Tokeny odoslané",
+    "sendingTokens": "Odosielajú sa tokeny",
+    "queuedForSending": "Vo fronte na odoslanie",
+    "tokenTransferFailed": "Prevod tokenu zlyhal",
+    "notSentYet": "Zatiaľ neodoslané"
   }
 }

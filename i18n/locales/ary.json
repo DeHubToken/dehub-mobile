@@ -3621,5 +3621,24 @@
     "confirmingPayment": "كيأكد الخلاص…",
     "retryConfirmation": "عاود التأكيد",
     "buyNow": "شري دابا"
+  },
+  "dpay": {
+    "success": "نجح",
+    "stripeStatus": "حالة Stripe",
+    "tokenSendStatus": "حالة إرسال التوكن",
+    "txnHash": "هاش المعاملة",
+    "paymentCompleted": "كمل الخلاص",
+    "paymentProcessing": "الخلاص كيتعالج",
+    "actionRequired": "خاص إجراء منك",
+    "awaitingMethod": "كيتسنى طريقة الخلاص",
+    "paymentCanceled": "تلغى الخلاص",
+    "paymentExpired": "سالات صلاحية الخلاص",
+    "sessionNotFound": "ما لقيناش الجلسة",
+    "pendingPayment": "الخلاص معلق",
+    "tokensSent": "تصيفطو التوكنز",
+    "sendingTokens": "كيصيفط التوكنز",
+    "queuedForSending": "فالدور باش يتصيفط",
+    "tokenTransferFailed": "فشل نقل التوكن",
+    "notSentYet": "مازال ما تصيفطش"
   }
 }

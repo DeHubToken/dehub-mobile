@@ -3628,5 +3628,24 @@
     "confirmingPayment": "Пацвярджэнне аплаты…",
     "retryConfirmation": "Паўтарыць пацвярджэнне",
     "buyNow": "Купіць зараз"
+  },
+  "dpay": {
+    "success": "Паспяхова",
+    "stripeStatus": "Статус Stripe",
+    "tokenSendStatus": "Статус адпраўкі токена",
+    "txnHash": "Хэш транзакцыі",
+    "paymentCompleted": "Аплата завершана",
+    "paymentProcessing": "Аплата апрацоўваецца",
+    "actionRequired": "Патрэбна дзеянне",
+    "awaitingMethod": "Чаканне спосабу аплаты",
+    "paymentCanceled": "Аплата скасавана",
+    "paymentExpired": "Тэрмін аплаты скончыўся",
+    "sessionNotFound": "Сеанс не знойдзены",
+    "pendingPayment": "Аплата чакае",
+    "tokensSent": "Токены адпраўлены",
+    "sendingTokens": "Адпраўка токенаў",
+    "queuedForSending": "У чарзе на адпраўку",
+    "tokenTransferFailed": "Перадача токена не ўдалася",
+    "notSentYet": "Яшчэ не адпраўлена"
   }
 }

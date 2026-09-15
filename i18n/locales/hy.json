@@ -3588,5 +3588,24 @@
     "confirmingPayment": "Վճարման հաստատում…",
     "retryConfirmation": "Կրկնել հաստատումը",
     "buyNow": "Գնել հիմա"
+  },
+  "dpay": {
+    "success": "Հաջողվեց",
+    "stripeStatus": "Stripe-ի կարգավիճակ",
+    "tokenSendStatus": "Թոքենի ուղարկման կարգավիճակ",
+    "txnHash": "Գործարքի հեշ",
+    "paymentCompleted": "Վճարումն ավարտված է",
+    "paymentProcessing": "Վճարումը մշակվում է",
+    "actionRequired": "Պահանջվում է գործողություն",
+    "awaitingMethod": "Վճարման եղանակի սպասում",
+    "paymentCanceled": "Վճարումը չեղարկվել է",
+    "paymentExpired": "Վճարման ժամկետը լրացել է",
+    "sessionNotFound": "Նստաշրջանը չի գտնվել",
+    "pendingPayment": "Վճարումը սպասման մեջ է",
+    "tokensSent": "Թոքենները ուղարկված են",
+    "sendingTokens": "Թոքենների ուղարկում",
+    "queuedForSending": "Ուղարկման հերթում",
+    "tokenTransferFailed": "Թոքենի փոխանցումը ձախողվեց",
+    "notSentYet": "Դեռ չի ուղարկվել"
   }
 }

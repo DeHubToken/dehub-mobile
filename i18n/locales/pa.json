@@ -3571,5 +3571,24 @@
     "confirmingPayment": "ਭੁਗਤਾਨ ਦੀ ਪੁਸ਼ਟੀ ਹੋ ਰਹੀ ਹੈ…",
     "retryConfirmation": "ਪੁਸ਼ਟੀ ਦੁਬਾਰਾ ਕਰੋ",
     "buyNow": "ਹੁਣੇ ਖਰੀਦੋ"
+  },
+  "dpay": {
+    "success": "ਸਫਲ",
+    "stripeStatus": "Stripe ਸਥਿਤੀ",
+    "tokenSendStatus": "ਟੋਕਨ ਭੇਜਣ ਦੀ ਸਥਿਤੀ",
+    "txnHash": "ਲੈਣ-ਦੇਣ ਹੈਸ਼",
+    "paymentCompleted": "ਭੁਗਤਾਨ ਪੂਰਾ ਹੋਇਆ",
+    "paymentProcessing": "ਭੁਗਤਾਨ ਪ੍ਰੋਸੈਸ ਹੋ ਰਿਹਾ ਹੈ",
+    "actionRequired": "ਕਾਰਵਾਈ ਲੋੜੀਂਦੀ",
+    "awaitingMethod": "ਭੁਗਤਾਨ ਵਿਧੀ ਦੀ ਉਡੀਕ",
+    "paymentCanceled": "ਭੁਗਤਾਨ ਰੱਦ",
+    "paymentExpired": "ਭੁਗਤਾਨ ਦੀ ਮਿਆਦ ਖਤਮ",
+    "sessionNotFound": "ਸੈਸ਼ਨ ਨਹੀਂ ਮਿਲਿਆ",
+    "pendingPayment": "ਭੁਗਤਾਨ ਬਕਾਇਆ",
+    "tokensSent": "ਟੋਕਨ ਭੇਜੇ ਗਏ",
+    "sendingTokens": "ਟੋਕਨ ਭੇਜੇ ਜਾ ਰਹੇ ਹਨ",
+    "queuedForSending": "ਭੇਜਣ ਲਈ ਕਤਾਰ ਵਿੱਚ",
+    "tokenTransferFailed": "ਟੋਕਨ ਟ੍ਰਾਂਸਫਰ ਅਸਫਲ",
+    "notSentYet": "ਅਜੇ ਭੇਜਿਆ ਨਹੀਂ"
   }
 }

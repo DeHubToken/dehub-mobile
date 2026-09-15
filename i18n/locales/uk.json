@@ -4071,5 +4071,24 @@
     "confirmingPayment": "Підтвердження платежу…",
     "retryConfirmation": "Повторити підтвердження",
     "buyNow": "Купити зараз"
+  },
+  "dpay": {
+    "success": "Успішно",
+    "stripeStatus": "Статус Stripe",
+    "tokenSendStatus": "Статус надсилання токена",
+    "txnHash": "Хеш транзакції",
+    "paymentCompleted": "Платіж завершено",
+    "paymentProcessing": "Платіж обробляється",
+    "actionRequired": "Потрібна дія",
+    "awaitingMethod": "Очікування способу оплати",
+    "paymentCanceled": "Платіж скасовано",
+    "paymentExpired": "Термін платежу минув",
+    "sessionNotFound": "Сеанс не знайдено",
+    "pendingPayment": "Платіж очікує",
+    "tokensSent": "Токени надіслано",
+    "sendingTokens": "Надсилання токенів",
+    "queuedForSending": "У черзі на надсилання",
+    "tokenTransferFailed": "Переказ токена не вдався",
+    "notSentYet": "Ще не надіслано"
   }
 }

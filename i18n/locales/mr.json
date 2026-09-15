@@ -3583,5 +3583,24 @@
     "confirmingPayment": "पेमेंटची पुष्टी होत आहे…",
     "retryConfirmation": "पुष्टी पुन्हा करा",
     "buyNow": "आता खरेदी करा"
+  },
+  "dpay": {
+    "success": "यशस्वी",
+    "stripeStatus": "Stripe स्थिती",
+    "tokenSendStatus": "टोकन पाठवण्याची स्थिती",
+    "txnHash": "व्यवहार हॅश",
+    "paymentCompleted": "पेमेंट पूर्ण",
+    "paymentProcessing": "पेमेंट प्रक्रियेत आहे",
+    "actionRequired": "कृती आवश्यक",
+    "awaitingMethod": "पेमेंट पद्धतीची प्रतीक्षा",
+    "paymentCanceled": "पेमेंट रद्द",
+    "paymentExpired": "पेमेंटची मुदत संपली",
+    "sessionNotFound": "सत्र सापडले नाही",
+    "pendingPayment": "पेमेंट प्रलंबित",
+    "tokensSent": "टोकन पाठवले",
+    "sendingTokens": "टोकन पाठवत आहे",
+    "queuedForSending": "पाठवण्यासाठी रांगेत",
+    "tokenTransferFailed": "टोकन हस्तांतरण अयशस्वी",
+    "notSentYet": "अद्याप पाठवले नाही"
   }
 }

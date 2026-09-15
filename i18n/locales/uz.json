@@ -3646,5 +3646,24 @@
     "confirmingPayment": "To‘lov tasdiqlanmoqda…",
     "retryConfirmation": "Tasdiqni qayta urinib ko‘ring",
     "buyNow": "Hozir sotib olish"
+  },
+  "dpay": {
+    "success": "Muvaffaqiyatli",
+    "stripeStatus": "Stripe holati",
+    "tokenSendStatus": "Token yuborish holati",
+    "txnHash": "Tranzaksiya heshi",
+    "paymentCompleted": "To‘lov yakunlandi",
+    "paymentProcessing": "To‘lov qayta ishlanmoqda",
+    "actionRequired": "Harakat talab qilinadi",
+    "awaitingMethod": "To‘lov usuli kutilmoqda",
+    "paymentCanceled": "To‘lov bekor qilindi",
+    "paymentExpired": "To‘lov muddati tugadi",
+    "sessionNotFound": "Sessiya topilmadi",
+    "pendingPayment": "To‘lov kutilmoqda",
+    "tokensSent": "Tokenlar yuborildi",
+    "sendingTokens": "Tokenlar yuborilmoqda",
+    "queuedForSending": "Yuborish navbatida",
+    "tokenTransferFailed": "Token o‘tkazmasi bajarilmadi",
+    "notSentYet": "Hali yuborilmagan"
   }
 }

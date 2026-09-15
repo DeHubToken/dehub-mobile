@@ -3582,5 +3582,24 @@
     "confirmingPayment": "מאשר תשלום…",
     "retryConfirmation": "נסה אישור שוב",
     "buyNow": "קנה עכשיו"
+  },
+  "dpay": {
+    "success": "הצליח",
+    "stripeStatus": "סטטוס Stripe",
+    "tokenSendStatus": "סטטוס שליחת הטוקן",
+    "txnHash": "Hash של העסקה",
+    "paymentCompleted": "התשלום הושלם",
+    "paymentProcessing": "התשלום בעיבוד",
+    "actionRequired": "נדרשת פעולה",
+    "awaitingMethod": "ממתין לאמצעי תשלום",
+    "paymentCanceled": "התשלום בוטל",
+    "paymentExpired": "תוקף התשלום פג",
+    "sessionNotFound": "ההפעלה לא נמצאה",
+    "pendingPayment": "תשלום ממתין",
+    "tokensSent": "הטוקנים נשלחו",
+    "sendingTokens": "שולח טוקנים",
+    "queuedForSending": "בתור לשליחה",
+    "tokenTransferFailed": "העברת הטוקן נכשלה",
+    "notSentYet": "עדיין לא נשלח"
   }
 }

@@ -3539,5 +3539,24 @@
     "confirmingPayment": "ادائیگی دی تصدیق تھیندی پئی ہے…",
     "retryConfirmation": "تصدیق ولدا کوشش کرو",
     "buyNow": "ہݨ خریدو"
+  },
+  "dpay": {
+    "success": "کامیاب",
+    "stripeStatus": "Stripe دی حالت",
+    "tokenSendStatus": "ٹوکن گھلݨ دی حالت",
+    "txnHash": "لین ݙین ہیش",
+    "paymentCompleted": "ادائیگی مکمل",
+    "paymentProcessing": "ادائیگی پراسیس تھیندی پئی ہے",
+    "actionRequired": "کارروائی گھرجدی ہے",
+    "awaitingMethod": "ادائیگی دے طریقے دا انتظار",
+    "paymentCanceled": "ادائیگی منسوخ",
+    "paymentExpired": "ادائیگی دی میعاد ختم",
+    "sessionNotFound": "سیشن نہ ملیا",
+    "pendingPayment": "ادائیگی التوا وچ",
+    "tokensSent": "ٹوکن گھل ݙتے",
+    "sendingTokens": "ٹوکن گھلے ویندے پئے ہن",
+    "queuedForSending": "گھلݨ کیتے قطار وچ",
+    "tokenTransferFailed": "ٹوکن ٹرانسفر ناکام",
+    "notSentYet": "ہالیں نہ گھلیا"
   }
 }

@@ -3663,5 +3663,24 @@
     "confirmingPayment": "Potwierdzanie płatności…",
     "retryConfirmation": "Ponów potwierdzenie",
     "buyNow": "Kup teraz"
+  },
+  "dpay": {
+    "success": "Powodzenie",
+    "stripeStatus": "Status Stripe",
+    "tokenSendStatus": "Status wysyłki tokena",
+    "txnHash": "Hash transakcji",
+    "paymentCompleted": "Płatność zakończona",
+    "paymentProcessing": "Płatność jest przetwarzana",
+    "actionRequired": "Wymagane działanie",
+    "awaitingMethod": "Oczekiwanie na metodę płatności",
+    "paymentCanceled": "Płatność anulowana",
+    "paymentExpired": "Płatność wygasła",
+    "sessionNotFound": "Nie znaleziono sesji",
+    "pendingPayment": "Płatność oczekująca",
+    "tokensSent": "Tokeny wysłane",
+    "sendingTokens": "Wysyłanie tokenów",
+    "queuedForSending": "W kolejce do wysłania",
+    "tokenTransferFailed": "Transfer tokena nie powiódł się",
+    "notSentYet": "Jeszcze nie wysłano"
   }
 }

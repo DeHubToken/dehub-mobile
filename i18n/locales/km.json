@@ -3614,5 +3614,24 @@
     "confirmingPayment": "កំពុងបញ្ជាក់ការទូទាត់…",
     "retryConfirmation": "ព្យាយាមបញ្ជាក់ម្ដងទៀត",
     "buyNow": "ទិញឥឡូវនេះ"
+  },
+  "dpay": {
+    "success": "ជោគជ័យ",
+    "stripeStatus": "ស្ថានភាព Stripe",
+    "tokenSendStatus": "ស្ថានភាពផ្ញើថូខឹន",
+    "txnHash": "Hash ប្រតិបត្តិការ",
+    "paymentCompleted": "ការទូទាត់បានបញ្ចប់",
+    "paymentProcessing": "កំពុងដំណើរការការទូទាត់",
+    "actionRequired": "ត្រូវការសកម្មភាព",
+    "awaitingMethod": "កំពុងរង់ចាំវិធីទូទាត់",
+    "paymentCanceled": "ការទូទាត់ត្រូវបានលុបចោល",
+    "paymentExpired": "ការទូទាត់បានផុតកំណត់",
+    "sessionNotFound": "រកមិនឃើញវគ្គទេ",
+    "pendingPayment": "ការទូទាត់កំពុងរង់ចាំ",
+    "tokensSent": "បានផ្ញើថូខឹន",
+    "sendingTokens": "កំពុងផ្ញើថូខឹន",
+    "queuedForSending": "កំពុងជាប់ជួរដើម្បីផ្ញើ",
+    "tokenTransferFailed": "ការផ្ទេរថូខឹនបានបរាជ័យ",
+    "notSentYet": "មិនទាន់បានផ្ញើទេ"
   }
 }
