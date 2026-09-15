@@ -3332,5 +3332,30 @@
     "tryBiometrics": "ኣብዚ ተሌፎን ባዮመትሪክ ፈትን",
     "unlockWithBiometrics": "ብባዮመትሪክ ክፈት",
     "confirmStartOver": "ብሓድሽ ዋሌት ከም ብሓድሽ ክትጅምር ከም እትደሊ ኣረጋግጽ"
+  },
+  "transcript": {
+    "title": "ጽሑፍ ቃል",
+    "loading": "ጽሑፍ ቃል ይጽዓን ኣሎ…",
+    "noRecording": "ዝርከብ ናይ ድምጺ ቅዳሕ የለን",
+    "generating": "ናይ AI ጽሑፍ ቃል ይፍጠር ኣሎ",
+    "generatingHint": "እዚ መስርሕ ከከም ንውሓት ቅዳሕ መድረኽ ሓደ ደቒቕ ክወስድ ይኽእል።",
+    "starting": "ይግለባጥ ኣሎ — ቁሩብ ግዜ ክወስድ ይኽእል",
+    "startFailed": "ግልባጥ ክጅምር ኣይከኣለን",
+    "copied": "ጽሑፍ ቃል ናብ ክሊፕቦርድ ተቐዲሑ",
+    "quoteCopied": "ጥቕሲ ተቐዲሑ! ኣብቲ መጽሓፊ ለጥፎ።",
+    "privacyFailed": "ብሕትውና ክሕደስ ኣይከኣለን",
+    "privacySet": "ብሕትውና ጽሑፍ ቃል ናብ {{value}} ተቐይሩ",
+    "labelFailed": "መለለዪ ክዕቀብ ኣይከኣለን",
+    "speakerRenamed": "ስም ተዛራቢ ብዓወት ተቐዪሩ",
+    "failed": "ግልባጥ ኣይተዓወተን",
+    "retry": "ግልባጥ እንደገና ፈትን",
+    "translating": "ጽሑፍ ቃል ይትርጐም ኣሎ…",
+    "translationFailed": "ትርጉም ኣይተዓወተን። ካልእ ቋንቋ ፈትን።",
+    "quote": "ጥቕሲ",
+    "renameSpeaker": "ስም ተዛራቢ ቀይር",
+    "renameHint": "ኣብ ኩሉ እዚ ጽሑፍ ቃል መለለዪ ተዛራቢ ቀይር።",
+    "searchPlaceholder": "ኣብ ጽሑፍ ቃል ድለ…",
+    "speakerPlaceholder": "ስም ወይ መለለዪ ተዛራቢ ኣእቱ",
+    "detectedLanguage": "እተፈልጠ ቋንቋ፦ {{lang}}"
   }
 }

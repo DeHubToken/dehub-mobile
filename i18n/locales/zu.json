@@ -3396,5 +3396,30 @@
     "tryBiometrics": "Zama i-biometrics kule foni",
     "unlockWithBiometrics": "Vula nge-biometrics",
     "confirmStartOver": "Qinisekisa ukuthi ufuna ukuqala kabusha ngesikhwama esisha"
+  },
+  "transcript": {
+    "title": "Umbhalo wokukhulunywayo",
+    "loading": "Ilayisha umbhalo…",
+    "noRecording": "Alukho urekhodi lomsindo",
+    "generating": "Idala umbhalo we-AI",
+    "generatingHint": "Le nqubo ingathatha umzuzu ngokuya ngobude bokurekhodwa.",
+    "starting": "Iyabhala — kungathatha umzuzwana",
+    "startFailed": "Yehlulekile ukuqala ukubhala",
+    "copied": "Umbhalo ukopishwe kubhodi lokukopisha",
+    "quoteCopied": "Isicaphuno sikopishiwe! Sinamathisele kumbhali.",
+    "privacyFailed": "Ayikwazanga ukubuyekeza ubumfihlo",
+    "privacySet": "Ubumfihlo bombhalo bubekwe ku-{{value}}",
+    "labelFailed": "Ayikwazanga ukulondoloza ilebula",
+    "speakerRenamed": "Igama lesikhulumi liguqulwe ngempumelelo",
+    "failed": "Ukubhala kwehlulekile",
+    "retry": "Zama futhi ukubhala",
+    "translating": "Ihumusha umbhalo…",
+    "translationFailed": "Ukuhumusha kwehlulekile. Zama olunye ulimi.",
+    "quote": "Isicaphuno",
+    "renameSpeaker": "Shintsha igama lesikhulumi",
+    "renameHint": "Shintsha ilebula lesikhulumi kuwo wonke lo mbhalo.",
+    "searchPlaceholder": "Sesha umbhalo…",
+    "speakerPlaceholder": "Faka igama noma i-handle yesikhulumi",
+    "detectedLanguage": "Ulimi olutholakele: {{lang}}"
   }
 }

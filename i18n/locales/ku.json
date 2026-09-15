@@ -3126,5 +3126,30 @@
     "tryBiometrics": "Li vê telefonê biyometrîkê biceribîne",
     "unlockWithBiometrics": "Bi biyometrîkê veke",
     "confirmStartOver": "Piştrast bike ku tu dixwazî bi berîkeke nû ji nû ve dest pê bikî"
+  },
+  "transcript": {
+    "title": "Nivîsandin",
+    "loading": "Nivîsandin tê barkirin…",
+    "noRecording": "Tomarkirina dengî tune",
+    "generating": "Nivîsandina AI tê çêkirin",
+    "generatingHint": "Ev pêvajo li gorî dirêjahiya tomarkirinê dikare deqîqeyekê bidome.",
+    "starting": "Tê nivîsandin — dibe ku demek kurt bidome",
+    "startFailed": "Destpêkirina nivîsandinê bi ser neket",
+    "copied": "Nivîsandin li panoyê hate kopîkirin",
+    "quoteCopied": "Jêder hate kopîkirin! Wê di edîtorê de pêve bike.",
+    "privacyFailed": "Nehat nûkirin nepenîtî",
+    "privacySet": "Nepenîtiya nivîsandinê li {{value}} hate danîn",
+    "labelFailed": "Etîket nehat tomarkirin",
+    "speakerRenamed": "Navê axêver bi serkeftî hate guhertin",
+    "failed": "Nivîsandin bi ser neket",
+    "retry": "Nivîsandinê dîsa biceribîne",
+    "translating": "Nivîsandin tê wergerandin…",
+    "translationFailed": "Werger bi ser neket. Zimanekî din biceribîne.",
+    "quote": "Jêder",
+    "renameSpeaker": "Navê axêver biguherîne",
+    "renameHint": "Etîketa axêver di tevahiya vê nivîsandinê de biguherîne.",
+    "searchPlaceholder": "Di nivîsandinê de bigere…",
+    "speakerPlaceholder": "Navê axêver an navê bikarhêner binivîse",
+    "detectedLanguage": "Zimanê hatî dîtin: {{lang}}"
   }
 }

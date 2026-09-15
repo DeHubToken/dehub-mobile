@@ -3371,5 +3371,30 @@
     "tryBiometrics": "Prova biometri på den här telefonen",
     "unlockWithBiometrics": "Lås upp med biometri",
     "confirmStartOver": "Bekräfta att du vill börja om med en ny plånbok"
+  },
+  "transcript": {
+    "title": "Transkription",
+    "loading": "Läser in transkription…",
+    "noRecording": "Ingen ljudinspelning tillgänglig",
+    "generating": "Genererar AI-transkription",
+    "generatingHint": "Processen kan ta en minut beroende på inspelningens längd.",
+    "starting": "Transkriberar — det kan ta en stund",
+    "startFailed": "Det gick inte att starta transkriberingen",
+    "copied": "Transkriptionen kopierad till urklipp",
+    "quoteCopied": "Citat kopierat! Klistra in det i redigeraren.",
+    "privacyFailed": "Det gick inte att uppdatera sekretessen",
+    "privacySet": "Transkriptionens sekretess satt till {{value}}",
+    "labelFailed": "Det gick inte att spara etiketten",
+    "speakerRenamed": "Talarens namn har ändrats",
+    "failed": "Transkriberingen misslyckades",
+    "retry": "Försök transkribera igen",
+    "translating": "Översätter transkription…",
+    "translationFailed": "Översättningen misslyckades. Prova ett annat språk.",
+    "quote": "Citat",
+    "renameSpeaker": "Byt namn på talaren",
+    "renameHint": "Ändra talarens etikett i hela transkriptionen.",
+    "searchPlaceholder": "Sök i transkriptionen…",
+    "speakerPlaceholder": "Ange talarens namn eller användarnamn",
+    "detectedLanguage": "Identifierat språk: {{lang}}"
   }
 }

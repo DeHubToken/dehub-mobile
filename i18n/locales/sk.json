@@ -3536,5 +3536,30 @@
     "tryBiometrics": "Vyskúšať biometriu na tomto telefóne",
     "unlockWithBiometrics": "Odomknúť biometriou",
     "confirmStartOver": "Potvrďte, že chcete začať odznova s novou peňaženkou"
+  },
+  "transcript": {
+    "title": "Prepis",
+    "loading": "Načítavanie prepisu…",
+    "noRecording": "Nie je k dispozícii žiadna zvuková nahrávka",
+    "generating": "Generuje sa AI prepis",
+    "generatingHint": "Tento proces môže trvať minútu v závislosti od dĺžky nahrávky.",
+    "starting": "Prebieha prepis — môže to chvíľu trvať",
+    "startFailed": "Prepis sa nepodarilo spustiť",
+    "copied": "Prepis skopírovaný do schránky",
+    "quoteCopied": "Citát skopírovaný! Vložte ho do editora.",
+    "privacyFailed": "Súkromie sa nepodarilo aktualizovať",
+    "privacySet": "Súkromie prepisu nastavené na {{value}}",
+    "labelFailed": "Menovku sa nepodarilo uložiť",
+    "speakerRenamed": "Meno rečníka bolo úspešne zmenené",
+    "failed": "Prepis zlyhal",
+    "retry": "Skúsiť prepis znova",
+    "translating": "Prekladá sa prepis…",
+    "translationFailed": "Preklad zlyhal. Skúste iný jazyk.",
+    "quote": "Citát",
+    "renameSpeaker": "Premenovať rečníka",
+    "renameHint": "Zmeňte označenie rečníka v celom prepise.",
+    "searchPlaceholder": "Hľadať v prepise…",
+    "speakerPlaceholder": "Zadajte meno alebo prezývku rečníka",
+    "detectedLanguage": "Rozpoznaný jazyk: {{lang}}"
   }
 }

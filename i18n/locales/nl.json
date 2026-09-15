@@ -3635,5 +3635,30 @@
     "tryBiometrics": "Probeer biometrie op deze telefoon",
     "unlockWithBiometrics": "Ontgrendelen met biometrie",
     "confirmStartOver": "Bevestig dat je opnieuw wilt beginnen met een nieuwe wallet"
+  },
+  "transcript": {
+    "title": "Transcript",
+    "loading": "Transcript laden…",
+    "noRecording": "Geen audio-opname beschikbaar",
+    "generating": "AI-transcript genereren",
+    "generatingHint": "Dit kan een minuut duren, afhankelijk van de lengte van de opname.",
+    "starting": "Bezig met transcriberen — dit kan even duren",
+    "startFailed": "Kan transcriptie niet starten",
+    "copied": "Transcript gekopieerd naar klembord",
+    "quoteCopied": "Citaat gekopieerd! Plak het in de editor.",
+    "privacyFailed": "Kan privacy niet bijwerken",
+    "privacySet": "Privacy van transcript ingesteld op {{value}}",
+    "labelFailed": "Kan label niet opslaan",
+    "speakerRenamed": "Naam van spreker gewijzigd",
+    "failed": "Transcriptie mislukt",
+    "retry": "Transcriptie opnieuw proberen",
+    "translating": "Transcript vertalen…",
+    "translationFailed": "Vertaling mislukt. Probeer een andere taal.",
+    "quote": "Citaat",
+    "renameSpeaker": "Spreker hernoemen",
+    "renameHint": "Wijzig het sprekerlabel in het hele transcript.",
+    "searchPlaceholder": "Zoek in transcript…",
+    "speakerPlaceholder": "Voer naam of gebruikersnaam van spreker in",
+    "detectedLanguage": "Gedetecteerde taal: {{lang}}"
   }
 }

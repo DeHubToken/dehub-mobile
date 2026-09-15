@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -46,12 +47,6 @@ const LANGUAGES = [
   { label: "Русский (Russian)", value: "ru" },
   { label: "Türkçe (Turkish)", value: "tr" },
   { label: "Bahasa Indonesia", value: "id" },
-];
-
-const PRIVACY_OPTIONS = [
-  { label: "👁️ Public", value: "public" },
-  { label: "👥 Members", value: "members" },
-  { label: "Private", value: "private" },
 ];
 
 const SPEAKER_COLORS = [
@@ -108,7 +103,16 @@ const HighlightText: React.FC<{ text: string; query: string }> = ({ text, query 
 };
 
 export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose }) => {
+  const { t } = useTranslation();
   const { user } = useAuth();
+  const privacyOptions = useMemo(
+    () => [
+      { label: `👁️ ${t("settings.public")}`, value: "public" },
+      { label: `👥 ${t("communities.membersLabel")}`, value: "members" },
+      { label: t("settings.private"), value: "private" },
+    ],
+    [t]
+  );
   const walletAddress = user?.walletAddress || user?.address || "";
 
   // Playback is the shared engine's (libs/stage-playback), the same one behind
@@ -243,10 +247,10 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
         body: { kind: "stage", ref: stageId, action: "start", force },
       });
       if (error) throw error;
-      if (!silent) toastSuccess("Transcribing — this may take a moment");
+      if (!silent) toastSuccess(t("transcript.starting"));
       fetchTranscript();
     } catch (e) {
-      if (!silent) toastError(e, "Failed to start transcription");
+      if (!silent) toastError(e, t("transcript.startFailed"));
     } finally {
       setIsRequestingTranscribe(false);
     }
@@ -416,7 +420,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   const handleCopy = () => {
     const formatted = formatTxt(segments, getSpeakerLabel);
     copyToClipboard(formatted);
-    toastSuccess("Transcript copied to clipboard");
+    toastSuccess(t("transcript.copied"));
   };
 
   const handleShare = () => {
@@ -430,7 +434,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   const handleQuote = (segmentText: string, speakerLabel: string) => {
     const quote = `> "${segmentText}"\n— ${speakerLabel} on Stage: "${space?.title || "Audio Space"}"`;
     copyToClipboard(quote);
-    toastSuccess("Quote copied! Paste it in the composer.");
+    toastSuccess(t("transcript.quoteCopied"));
   };
 
   // Host operations
@@ -443,9 +447,13 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
       .eq("source_ref", stageId);
 
     if (error) {
-      toastError(error, "Could not update privacy");
+      toastError(error, t("transcript.privacyFailed"));
     } else {
-      toastSuccess(`Transcript privacy set to ${next}`);
+      toastSuccess(
+        t("transcript.privacySet", {
+          value: privacyOptions.find((o) => o.value === next)?.label ?? next,
+        })
+      );
       fetchTranscript();
     }
   };
@@ -467,9 +475,9 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
       .eq("source_ref", stageId!);
 
     if (error) {
-      toastError(error, "Could not save label");
+      toastError(error, t("transcript.labelFailed"));
     } else {
-      toastSuccess("Speaker renamed successfully");
+      toastSuccess(t("transcript.speakerRenamed"));
       setRenamingSpeaker(null);
       fetchTranscript();
     }
@@ -494,9 +502,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
           <View className="flex-row items-center gap-2">
             <Icon name="FileText" size={20} color="#D4D4D8" />
             <View>
-              <Text className="text-white font-bold text-base" numberOfLines={1}>
-                Transcript
-              </Text>
+              <Text className="text-white font-bold text-base" numberOfLines={1}>{t("transcript.title")}</Text>
               {space?.title && (
                 <Text className="text-theme-neutrals-400 text-xs" numberOfLines={1}>
                   {space.title}
@@ -508,7 +514,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
             {isHost && transcript && (
               <View className="w-28 mr-1">
                 <Dropdown
-                  options={PRIVACY_OPTIONS}
+                  options={privacyOptions}
                   value={transcript.privacy}
                   onChange={(val) => setPrivacy(val as any)}
                 />
@@ -519,7 +525,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
               hitSlop={8}
               className="w-8 h-8 rounded-xl bg-white/10 items-center justify-center"
               accessibilityRole="button"
-              accessibilityLabel="Close"
+              accessibilityLabel={t("common.close")}
             >
               <Icon name="X" size={16} color="#A6A9AC" />
             </TouchableOpacity>
@@ -530,25 +536,25 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
         {isTranscriptLoading && !transcript ? (
           <View className="flex-1 items-center justify-center py-20 gap-3">
             <DeHubLoader size={56} />
-            <Text className="text-theme-neutrals-400 text-sm">Loading transcript...</Text>
+            <Text className="text-theme-neutrals-400 text-sm">{t("transcript.loading")}</Text>
           </View>
         ) : !space?.recording_url ? (
           <View className="flex-1 items-center justify-center py-20 gap-3">
             <Icon name="FileText" size={40} color="rgba(255,255,255,0.2)" />
-            <Text className="text-theme-neutrals-400 text-sm">No audio recording available</Text>
+            <Text className="text-theme-neutrals-400 text-sm">{t("transcript.noRecording")}</Text>
           </View>
         ) : status === "pending" || status === "processing" ? (
           <View className="flex-1 items-center justify-center py-20 gap-3">
             <DeHubLoader size={56} />
-            <Text className="text-white font-semibold">Generating AI Transcript</Text>
+            <Text className="text-white font-semibold">{t("transcript.generating")}</Text>
             <Text className="text-theme-neutrals-400 text-xs text-center px-6">
-              This process may take a minute depending on the length of the stage recording.
+              {t("transcript.generatingHint")}
             </Text>
           </View>
         ) : status === "failed" ? (
           <View className="flex-1 items-center justify-center py-20 gap-4">
             <Icon name="RefreshCw" size={32} color="#F4F4F5" />
-            <Text className="text-theme-neutrals-400 text-sm">Transcription failed</Text>
+            <Text className="text-theme-neutrals-400 text-sm">{t("transcript.failed")}</Text>
             {transcript?.error && <Text className="text-white/80 text-xs px-6 text-center">{transcript.error}</Text>}
             <TouchableOpacity
               onPress={() => handleTranscribe(false, true)}
@@ -558,7 +564,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
               {isRequestingTranscribe ? (
                 <ActivityIndicator size="small" color="#fff" />
               ) : (
-                <Text className="text-white text-xs font-semibold">Retry Transcription</Text>
+                <Text className="text-white text-xs font-semibold">{t("transcript.retry")}</Text>
               )}
             </TouchableOpacity>
           </View>
@@ -619,7 +625,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                 <TextInput
                   value={searchQuery}
                   onChangeText={setSearchQuery}
-                  placeholder="Search transcript..."
+                  placeholder={t("transcript.searchPlaceholder")}
                   placeholderTextColor="#8B8D90"
                   className="flex-1 ml-2 text-white text-xs"
                   style={FIELD_TEXT}
@@ -637,7 +643,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                   options={LANGUAGES}
                   value={language}
                   onChange={setLanguage}
-                  placeholder="Language"
+                  placeholder={t("settings.language")}
                 />
               </View>
 
@@ -660,18 +666,18 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
             {language !== "original" && translation?.status === "processing" && (
               <View className="flex-row items-center gap-2 mb-2 ml-1">
                 <ActivityIndicator size="small" color="#D4D4D8" />
-                <Text className="text-xs text-purple-300 italic">Translating transcript...</Text>
+                <Text className="text-xs text-purple-300 italic">{t("transcript.translating")}</Text>
               </View>
             )}
             {language !== "original" && translation?.status === "failed" && (
-              <Text className="text-xs text-white/80 mb-2 ml-1">Translation failed. Try another language.</Text>
+              <Text className="text-xs text-white/80 mb-2 ml-1">{t("transcript.translationFailed")}</Text>
             )}
 
             {/* Transcript scrollable segments list */}
             <ScrollView className="flex-1 pr-1" showsVerticalScrollIndicator={true}>
               {transcript?.source_language && language === "original" && (
                 <Text className="text-[10px] text-zinc-400 font-semibold uppercase tracking-wider mb-2 ml-1">
-                  Detected language: {transcript.source_language}
+                  {t("transcript.detectedLanguage", { lang: transcript.source_language })}
                 </Text>
               )}
               {filteredSegments.length > 0 ? (
@@ -723,7 +729,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                             className="p-1 rounded bg-white/10"
                             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                           >
-                            <Text className="text-[10px] text-purple-300 font-semibold px-1">Quote</Text>
+                            <Text className="text-[10px] text-purple-300 font-semibold px-1">{t("transcript.quote")}</Text>
                           </TouchableOpacity>
                           <TouchableOpacity
                             onPress={() => seekTo(segment.start)}
@@ -762,14 +768,12 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
               className="border border-white/10 rounded-xl p-4 w-full max-w-xs shadow-2xl"
               style={{ backgroundColor: "#0C0C0E" }}
             >
-              <Text className="text-white font-bold text-sm mb-1">Rename Speaker</Text>
-              <Text className="text-theme-neutrals-400 text-[11px] mb-3">
-                Change speaker label globally across this transcript.
-              </Text>
+              <Text className="text-white font-bold text-sm mb-1">{t("transcript.renameSpeaker")}</Text>
+              <Text className="text-theme-neutrals-400 text-[11px] mb-3">{t("transcript.renameHint")}</Text>
               <TextInput
                 value={renameText}
                 onChangeText={setRenameText}
-                placeholder="Enter speaker name or handle"
+                placeholder={t("transcript.speakerPlaceholder")}
                 placeholderTextColor="#8B8D90"
                 className="dark-surface bg-black/50 border border-white/10 rounded-xl h-10 px-3 text-white text-xs mb-4"
                 autoFocus
@@ -779,7 +783,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                   onPress={() => setRenamingSpeaker(null)}
                   className="px-3.5 py-2 rounded-xl bg-white/10 border border-white/15"
                 >
-                  <Text className="text-white text-xs font-semibold">Cancel</Text>
+                  <Text className="text-white text-xs font-semibold">{t("common.cancel")}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => void runSaveRename()}
@@ -787,7 +791,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                   className="px-4 py-2 rounded-xl bg-purple-600 flex-row items-center gap-1.5"
                 >
                   {isSavingRename && <ButtonLoader size={14} />}
-                  <Text className="text-white text-xs font-semibold">Save</Text>
+                  <Text className="text-white text-xs font-semibold">{t("common.save")}</Text>
                 </TouchableOpacity>
               </View>
             </View>

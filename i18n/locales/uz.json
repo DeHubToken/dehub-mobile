@@ -3418,5 +3418,30 @@
     "tryBiometrics": "Bu telefonda biometrikani sinab ko‘ring",
     "unlockWithBiometrics": "Biometrika bilan oching",
     "confirmStartOver": "Yangi hamyon bilan qaytadan boshlamoqchi ekaningizni tasdiqlang"
+  },
+  "transcript": {
+    "title": "Transkript",
+    "loading": "Transkript yuklanmoqda…",
+    "noRecording": "Audio yozuv mavjud emas",
+    "generating": "AI transkript yaratilmoqda",
+    "generatingHint": "Bu jarayon yozuv uzunligiga qarab bir daqiqa davom etishi mumkin.",
+    "starting": "Transkript qilinmoqda — biroz vaqt olishi mumkin",
+    "startFailed": "Transkriptni boshlab bo‘lmadi",
+    "copied": "Transkript vaqtinchalik xotiraga nusxalandi",
+    "quoteCopied": "Iqtibos nusxalandi! Uni muharrirga joylashtiring.",
+    "privacyFailed": "Maxfiylikni yangilab bo‘lmadi",
+    "privacySet": "Transkript maxfiyligi {{value}} qilib belgilandi",
+    "labelFailed": "Yorliqni saqlab bo‘lmadi",
+    "speakerRenamed": "So‘zlovchi nomi muvaffaqiyatli o‘zgartirildi",
+    "failed": "Transkript bajarilmadi",
+    "retry": "Transkriptni qayta urinib ko‘ring",
+    "translating": "Transkript tarjima qilinmoqda…",
+    "translationFailed": "Tarjima bajarilmadi. Boshqa tilni sinab ko‘ring.",
+    "quote": "Iqtibos",
+    "renameSpeaker": "So‘zlovchi nomini o‘zgartirish",
+    "renameHint": "Ushbu butun transkriptda so‘zlovchi yorlig‘ini o‘zgartiring.",
+    "searchPlaceholder": "Transkriptdan qidirish…",
+    "speakerPlaceholder": "So‘zlovchi nomi yoki foydalanuvchi nomini kiriting",
+    "detectedLanguage": "Aniqlangan til: {{lang}}"
   }
 }

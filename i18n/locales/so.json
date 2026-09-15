@@ -3358,5 +3358,30 @@
     "tryBiometrics": "Isku day biometrics taleefankan",
     "unlockWithBiometrics": "Ku fur biometrics",
     "confirmStartOver": "Xaqiiji inaad rabto inaad dib u bilowdo boorso cusub"
+  },
+  "transcript": {
+    "title": "Qoraal hadal",
+    "loading": "Waa la soo rarayaa qoraalka…",
+    "noRecording": "Ma jiro duubis maqal ah",
+    "generating": "Waa la abuurayaa qoraalka AI",
+    "generatingHint": "Habkani wuxuu qaadan karaa daqiiqad iyadoo ku xidhan dhererka duubista.",
+    "starting": "Waa la qoraalaynayaa — waxay qaadan kartaa daqiiqado",
+    "startFailed": "Lama bilaabi karin qoraalaynta",
+    "copied": "Qoraalka waa lagu koobiyeeyay meesha lagu xafido",
+    "quoteCopied": "Xigashada waa la koobiyeeyay! Ku dheji qoraha.",
+    "privacyFailed": "Lama cusboonaysiin karin asturnaanta",
+    "privacySet": "Asturnaanta qoraalka waxaa loo dhigay {{value}}",
+    "labelFailed": "Lama keydin karin summadda",
+    "speakerRenamed": "Magaca hadlaha si guul leh ayaa loo beddelay",
+    "failed": "Qoraalaynta way fashilantay",
+    "retry": "Isku day qoraalaynta mar kale",
+    "translating": "Waa la turjumayaa qoraalka…",
+    "translationFailed": "Turjumaaddu way fashilantay. Isku day luqad kale.",
+    "quote": "Xigasho",
+    "renameSpeaker": "Beddel magaca hadlaha",
+    "renameHint": "Beddel summadda hadlaha qoraalkan oo dhan.",
+    "searchPlaceholder": "Ka raadi qoraalka…",
+    "speakerPlaceholder": "Geli magaca ama handelka hadlaha",
+    "detectedLanguage": "Luqadda la ogaaday: {{lang}}"
   }
 }

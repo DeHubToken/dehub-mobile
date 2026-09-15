@@ -3354,5 +3354,30 @@
     "tryBiometrics": "נסה ביומטריה בטלפון הזה",
     "unlockWithBiometrics": "פתח באמצעות ביומטריה",
     "confirmStartOver": "אשר שברצונך להתחיל מחדש עם ארנק חדש"
+  },
+  "transcript": {
+    "title": "תמלול",
+    "loading": "טוען תמלול…",
+    "noRecording": "אין הקלטת שמע זמינה",
+    "generating": "יוצר תמלול AI",
+    "generatingHint": "התהליך עשוי לקחת דקה, בהתאם לאורך ההקלטה.",
+    "starting": "מתמלל — זה עשוי לקחת רגע",
+    "startFailed": "לא ניתן היה להתחיל את התמלול",
+    "copied": "התמלול הועתק ללוח",
+    "quoteCopied": "הציטוט הועתק! הדביקו אותו בעורך.",
+    "privacyFailed": "לא ניתן היה לעדכן את הפרטיות",
+    "privacySet": "פרטיות התמלול הוגדרה ל-{{value}}",
+    "labelFailed": "לא ניתן היה לשמור את התווית",
+    "speakerRenamed": "שם הדובר שונה בהצלחה",
+    "failed": "התמלול נכשל",
+    "retry": "נסה תמלול שוב",
+    "translating": "מתרגם תמלול…",
+    "translationFailed": "התרגום נכשל. נסו שפה אחרת.",
+    "quote": "ציטוט",
+    "renameSpeaker": "שינוי שם הדובר",
+    "renameHint": "שנו את תווית הדובר בכל התמלול.",
+    "searchPlaceholder": "חיפוש בתמלול…",
+    "speakerPlaceholder": "הזינו שם או כינוי של הדובר",
+    "detectedLanguage": "שפה שזוהתה: {{lang}}"
   }
 }
