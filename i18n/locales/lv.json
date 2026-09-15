@@ -3612,6 +3612,27 @@
     "sendingTokens": "Notiek marķieru nosūtīšana",
     "queuedForSending": "Rindā nosūtīšanai",
     "tokenTransferFailed": "Marķiera pārsūtīšana neizdevās",
-    "notSentYet": "Vēl nav nosūtīts"
+    "notSentYet": "Vēl nav nosūtīts",
+    "topUp": "Papildināšana",
+    "selectCurrency": "Izvēlieties valūtu",
+    "chooseCurrency": "Izvēlieties valūtu",
+    "currentPrice": "Pašreizējā {{symbol}} cena",
+    "walletAddress": "Maka adrese",
+    "selectChain": "Izvēlieties ķēdi",
+    "chooseChain": "Izvēlieties ķēdi",
+    "confirmPurchase": "Apstiprināt pirkumu",
+    "amountIn": "{{currency}} summa",
+    "approxReceive": "Saņemsiet aptuveni {{symbol}}",
+    "iAcceptThe": "Es piekrītu",
+    "termsOfService": "Pakalpojuma noteikumi",
+    "invalidAmountGtZero": "Ievadiet derīgu summu, kas lielāka par 0.",
+    "enterValidAmount": "Ievadiet derīgu summu",
+    "noSupply": "Pirkums nav pieejams — šajā ķēdē nav {{symbol}} krājumu.",
+    "insufficientSupply": "Nepietiekams {{symbol}} krājums: šajā ķēdē pieejams tikai {{available}}.",
+    "connectWallet": "Lūdzu, pievienojiet maku",
+    "acceptTermsFirst": "Lūdzu, pieņemiet pakalpojuma noteikumus",
+    "redirecting": "Novirza uz apmaksu…",
+    "openingCheckout": "Tiek atvērta apmaksa…",
+    "checkoutUnavailable": "Maksājuma saite nav pieejama. Mēģiniet vēlreiz."
   }
 }

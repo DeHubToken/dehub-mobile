@@ -3613,6 +3613,27 @@
     "sendingTokens": "Inatuma tokeni",
     "queuedForSending": "Kwenye foleni ya kutumwa",
     "tokenTransferFailed": "Uhamishaji wa tokeni umeshindwa",
-    "notSentYet": "Bado haijatumwa"
+    "notSentYet": "Bado haijatumwa",
+    "topUp": "Ongeza Salio",
+    "selectCurrency": "Chagua sarafu",
+    "chooseCurrency": "Chagua sarafu",
+    "currentPrice": "Bei ya sasa ya {{symbol}}",
+    "walletAddress": "Anwani ya pochi",
+    "selectChain": "Chagua mnyororo",
+    "chooseChain": "Chagua mnyororo",
+    "confirmPurchase": "Thibitisha ununuzi",
+    "amountIn": "Kiasi cha {{currency}}",
+    "approxReceive": "Utapokea takriban {{symbol}}",
+    "iAcceptThe": "Ninakubali",
+    "termsOfService": "Masharti ya Huduma",
+    "invalidAmountGtZero": "Weka kiasi sahihi zaidi ya 0.",
+    "enterValidAmount": "Weka kiasi sahihi",
+    "noSupply": "Ununuzi haupatikani — hakuna usambazaji wa {{symbol}} kwenye mnyororo huu.",
+    "insufficientSupply": "Usambazaji wa {{symbol}} hautoshi: ni {{available}} tu kwenye mnyororo huu.",
+    "connectWallet": "Tafadhali unganisha pochi",
+    "acceptTermsFirst": "Tafadhali kubali masharti ya huduma",
+    "redirecting": "Inakuelekeza kwenye malipo…",
+    "openingCheckout": "Inafungua malipo…",
+    "checkoutUnavailable": "Kiungo cha malipo hakipatikani. Jaribu tena."
   }
 }

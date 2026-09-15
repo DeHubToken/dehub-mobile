@@ -3595,6 +3595,27 @@
     "sendingTokens": "ටෝකන යවමින්",
     "queuedForSending": "යැවීම සඳහා පෝලිමේ",
     "tokenTransferFailed": "ටෝකන මාරු කිරීම අසාර්ථකයි",
-    "notSentYet": "තවම යවා නැත"
+    "notSentYet": "තවම යවා නැත",
+    "topUp": "මුදල් එකතු කිරීම",
+    "selectCurrency": "ව්‍යවහාර මුදල තෝරන්න",
+    "chooseCurrency": "ව්‍යවහාර මුදලක් තෝරන්න",
+    "currentPrice": "වත්මන් {{symbol}} මිල",
+    "walletAddress": "පසුම්බි ලිපිනය",
+    "selectChain": "දාමය තෝරන්න",
+    "chooseChain": "දාමයක් තෝරන්න",
+    "confirmPurchase": "මිලදී ගැනීම තහවුරු කරන්න",
+    "amountIn": "{{currency}} ප්‍රමාණය",
+    "approxReceive": "දළ වශයෙන් ලැබෙන {{symbol}}",
+    "iAcceptThe": "මම පිළිගනිමි",
+    "termsOfService": "සේවා කොන්දේසි",
+    "invalidAmountGtZero": "0 ට වඩා වැඩි වලංගු මුදලක් ඇතුළත් කරන්න.",
+    "enterValidAmount": "වලංගු මුදලක් ඇතුළත් කරන්න",
+    "noSupply": "මිලදී ගැනීම නොමැත — මෙම දාමයේ {{symbol}} සැපයුමක් නැත.",
+    "insufficientSupply": "{{symbol}} සැපයුම ප්‍රමාණවත් නැත: මෙම දාමයේ {{available}} පමණි.",
+    "connectWallet": "කරුණාකර පසුම්බිය සම්බන්ධ කරන්න",
+    "acceptTermsFirst": "කරුණාකර සේවා කොන්දේසි පිළිගන්න",
+    "redirecting": "ගෙවීමට යොමු කරමින්…",
+    "openingCheckout": "ගෙවීම විවෘත කරමින්…",
+    "checkoutUnavailable": "ගෙවීම් සබැඳිය නොමැත. නැවත උත්සාහ කරන්න."
   }
 }

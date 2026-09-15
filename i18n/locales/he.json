@@ -3600,6 +3600,27 @@
     "sendingTokens": "שולח טוקנים",
     "queuedForSending": "בתור לשליחה",
     "tokenTransferFailed": "העברת הטוקן נכשלה",
-    "notSentYet": "עדיין לא נשלח"
+    "notSentYet": "עדיין לא נשלח",
+    "topUp": "טעינה",
+    "selectCurrency": "בחירת מטבע",
+    "chooseCurrency": "בחרו מטבע",
+    "currentPrice": "מחיר {{symbol}} נוכחי",
+    "walletAddress": "כתובת הארנק",
+    "selectChain": "בחירת שרשרת",
+    "chooseChain": "בחרו שרשרת",
+    "confirmPurchase": "אישור הרכישה",
+    "amountIn": "סכום ב־{{currency}}",
+    "approxReceive": "תקבלו בערך {{symbol}}",
+    "iAcceptThe": "אני מקבל את",
+    "termsOfService": "תנאי השירות",
+    "invalidAmountGtZero": "הזינו סכום תקין גדול מ-0.",
+    "enterValidAmount": "הזינו סכום תקין",
+    "noSupply": "הרכישה אינה זמינה — אין מלאי {{symbol}} בשרשרת הזו.",
+    "insufficientSupply": "מלאי {{symbol}} אינו מספיק: רק {{available}} זמין בשרשרת הזו.",
+    "connectWallet": "נא להתחבר לארנק",
+    "acceptTermsFirst": "נא לאשר את תנאי השירות",
+    "redirecting": "מעביר לתשלום…",
+    "openingCheckout": "פותח את התשלום…",
+    "checkoutUnavailable": "קישור התשלום אינו זמין. נסו שוב."
   }
 }

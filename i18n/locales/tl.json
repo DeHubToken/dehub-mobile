@@ -3792,6 +3792,27 @@
     "sendingTokens": "Ipinapadala ang mga token",
     "queuedForSending": "Nasa pila para ipadala",
     "tokenTransferFailed": "Nabigo ang paglipat ng token",
-    "notSentYet": "Hindi pa naipapadala"
+    "notSentYet": "Hindi pa naipapadala",
+    "topUp": "Mag-top Up",
+    "selectCurrency": "Pumili ng pera",
+    "chooseCurrency": "Pumili ng pera",
+    "currentPrice": "Kasalukuyang presyo ng {{symbol}}",
+    "walletAddress": "Address ng wallet",
+    "selectChain": "Pumili ng chain",
+    "chooseChain": "Pumili ng chain",
+    "confirmPurchase": "Kumpirmahin ang pagbili",
+    "amountIn": "Halaga sa {{currency}}",
+    "approxReceive": "Tinatayang matatanggap {{symbol}}",
+    "iAcceptThe": "Tinatanggap ko ang",
+    "termsOfService": "Mga Tuntunin ng Serbisyo",
+    "invalidAmountGtZero": "Maglagay ng wastong halagang higit sa 0.",
+    "enterValidAmount": "Maglagay ng wastong halaga",
+    "noSupply": "Hindi available ang pagbili — walang supply ng {{symbol}} sa chain na ito.",
+    "insufficientSupply": "Kulang ang supply ng {{symbol}}: {{available}} lang ang nasa chain na ito.",
+    "connectWallet": "Pakikonekta ang wallet",
+    "acceptTermsFirst": "Pakitanggap ang mga tuntunin ng serbisyo",
+    "redirecting": "Dinadala sa checkout…",
+    "openingCheckout": "Binubuksan ang checkout…",
+    "checkoutUnavailable": "Hindi available ang checkout link. Subukan ulit."
   }
 }

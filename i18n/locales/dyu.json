@@ -3557,6 +3557,27 @@
     "sendingTokens": "Tokenw bɛ ci",
     "queuedForSending": "A bɛ ci layɔrɔ la",
     "tokenTransferFailed": "Token cili ma ɲɛ",
-    "notSentYet": "A ma ci fɔlɔ"
+    "notSentYet": "A ma ci fɔlɔ",
+    "topUp": "Wari lafa",
+    "selectCurrency": "Wari suguya sugandi",
+    "chooseCurrency": "Wari suguya dɔ sugandi",
+    "currentPrice": "{{symbol}} sɔngɔ sisan",
+    "walletAddress": "Warijɛ adrɛsi",
+    "selectChain": "Chain sugandi",
+    "chooseChain": "Chain dɔ sugandi",
+    "confirmPurchase": "Sanni sɛmɛntiya",
+    "amountIn": "{{currency}} hakɛ",
+    "approxReceive": "I bɛna {{symbol}} sɔrɔ",
+    "iAcceptThe": "N sɔnna",
+    "termsOfService": "Baara sariyaw",
+    "invalidAmountGtZero": "Wari hakɛ ɲuman sɛbɛn min ka bon ni 0 ye.",
+    "enterValidAmount": "Wari hakɛ ɲuman sɛbɛn",
+    "noSupply": "Sanni tɛ se — {{symbol}} tɛ nin chain kan.",
+    "insufficientSupply": "{{symbol}} man ca: {{available}} dɔrɔn bɛ nin chain kan.",
+    "connectWallet": "I ka warijɛ sɔgɔ",
+    "acceptTermsFirst": "I sɔn baara sariyaw ma",
+    "redirecting": "I bɛ bila sarali yɔrɔ la…",
+    "openingCheckout": "Sarali yɔrɔ bɛ da wuli…",
+    "checkoutUnavailable": "Sarali sira tɛ yen. A lajɛ tuguni."
   }
 }

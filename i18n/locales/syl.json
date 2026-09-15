@@ -3758,6 +3758,27 @@
     "sendingTokens": "টোকেন পাঠানি অইরো",
     "queuedForSending": "পাঠানির লাগি লাইনো",
     "tokenTransferFailed": "টোকেন ট্রান্সফার ব্যর্থ",
-    "notSentYet": "অখনো পাঠানি অইছে না"
+    "notSentYet": "অখনো পাঠানি অইছে না",
+    "topUp": "টপ আপ",
+    "selectCurrency": "মুদ্রা বাছউক্কা",
+    "chooseCurrency": "একটা মুদ্রা বাছউক্কা",
+    "currentPrice": "অখনর {{symbol}} দাম",
+    "walletAddress": "ওয়ালেট ঠিকানা",
+    "selectChain": "চেইন বাছউক্কা",
+    "chooseChain": "একটা চেইন বাছউক্কা",
+    "confirmPurchase": "কিনা নিশ্চিত করউক্কা",
+    "amountIn": "{{currency}} পরিমাণ",
+    "approxReceive": "আন্দাজ পাইবায় {{symbol}}",
+    "iAcceptThe": "আমি মানি লাইরাম",
+    "termsOfService": "সেবার শর্ত",
+    "invalidAmountGtZero": "0 তুন বেশি সঠিক পরিমাণ লেখউক্কা।",
+    "enterValidAmount": "সঠিক পরিমাণ লেখউক্কা",
+    "noSupply": "কিনা যাইরো না — ইলা চেইনো {{symbol}} নাই।",
+    "insufficientSupply": "{{symbol}} যথেষ্ট নায়: ইলা চেইনো খালি {{available}} আছে।",
+    "connectWallet": "দয়া করি ওয়ালেট যুক্ত করউক্কা",
+    "acceptTermsFirst": "দয়া করি সেবার শর্ত মানি লউক্কা",
+    "redirecting": "চেকআউটো লই যাইরো…",
+    "openingCheckout": "চেকআউট খুলরো…",
+    "checkoutUnavailable": "চেকআউট লিংক পাওয়া যাইরো না। আবার চেষ্টা করউক্কা।"
   }
 }

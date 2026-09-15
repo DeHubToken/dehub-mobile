@@ -3592,6 +3592,27 @@
     "sendingTokens": "Токен илгээж байна",
     "queuedForSending": "Илгээхээр дараалалд орсон",
     "tokenTransferFailed": "Токен шилжүүлэг амжилтгүй боллоо",
-    "notSentYet": "Хараахан илгээгээгүй"
+    "notSentYet": "Хараахан илгээгээгүй",
+    "topUp": "Цэнэглэх",
+    "selectCurrency": "Валют сонгох",
+    "chooseCurrency": "Валют сонгоно уу",
+    "currentPrice": "Одоогийн {{symbol}} үнэ",
+    "walletAddress": "Түрийвчний хаяг",
+    "selectChain": "Сүлжээ сонгох",
+    "chooseChain": "Сүлжээ сонгоно уу",
+    "confirmPurchase": "Худалдан авалтыг баталгаажуулах",
+    "amountIn": "{{currency}} дүн",
+    "approxReceive": "Ойролцоогоор авах {{symbol}}",
+    "iAcceptThe": "Би зөвшөөрч байна",
+    "termsOfService": "Үйлчилгээний нөхцөл",
+    "invalidAmountGtZero": "0-оос их хүчинтэй дүн оруулна уу.",
+    "enterValidAmount": "Хүчинтэй дүн оруулна уу",
+    "noSupply": "Худалдан авах боломжгүй — энэ сүлжээнд {{symbol}} нөөц алга.",
+    "insufficientSupply": "{{symbol}} нөөц хүрэлцэхгүй: энэ сүлжээнд зөвхөн {{available}} байна.",
+    "connectWallet": "Түрийвчээ холбоно уу",
+    "acceptTermsFirst": "Үйлчилгээний нөхцөлийг зөвшөөрнө үү",
+    "redirecting": "Төлбөрийн хуудас руу шилжүүлж байна…",
+    "openingCheckout": "Төлбөрийн хуудсыг нээж байна…",
+    "checkoutUnavailable": "Төлбөрийн холбоос боломжгүй. Дахин оролдоно уу."
   }
 }

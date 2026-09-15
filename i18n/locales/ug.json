@@ -3603,6 +3603,27 @@
     "sendingTokens": "بەلگىلەر يوللىنىۋاتىدۇ",
     "queuedForSending": "يوللاش ئۈچۈن نۆۋەتتە",
     "tokenTransferFailed": "بەلگە يۆتكەش مەغلۇپ بولدى",
-    "notSentYet": "تېخى يوللانمىدى"
+    "notSentYet": "تېخى يوللانمىدى",
+    "topUp": "تولۇقلاش",
+    "selectCurrency": "پۇل بىرلىكى تاللاش",
+    "chooseCurrency": "بىر پۇل بىرلىكى تاللاڭ",
+    "currentPrice": "نۆۋەتتىكى {{symbol}} باھاسى",
+    "walletAddress": "ھەميان ئادرېسى",
+    "selectChain": "زەنجىر تاللاش",
+    "chooseChain": "بىر زەنجىر تاللاڭ",
+    "confirmPurchase": "سېتىۋېلىشنى جەزملەش",
+    "amountIn": "{{currency}} سوممىسى",
+    "approxReceive": "تەخمىنەن ئالىسىز {{symbol}}",
+    "iAcceptThe": "مەن قوبۇل قىلىمەن",
+    "termsOfService": "مۇلازىمەت شەرتلىرى",
+    "invalidAmountGtZero": "0 دىن چوڭ ئىناۋەتلىك سوممىنى كىرگۈزۈڭ.",
+    "enterValidAmount": "ئىناۋەتلىك سوممىنى كىرگۈزۈڭ",
+    "noSupply": "سېتىۋالغىلى بولمايدۇ — بۇ زەنجىردە {{symbol}} زاپىسى يوق.",
+    "insufficientSupply": "{{symbol}} زاپىسى يېتەرسىز: بۇ زەنجىردە پەقەت {{available}} بار.",
+    "connectWallet": "ھەمياننى ئۇلاڭ",
+    "acceptTermsFirst": "مۇلازىمەت شەرتلىرىنى قوبۇل قىلىڭ",
+    "redirecting": "پۇل تۆلەش بېتىگە يېتەكلىنىۋاتىدۇ…",
+    "openingCheckout": "پۇل تۆلەش بېتى ئېچىلىۋاتىدۇ…",
+    "checkoutUnavailable": "پۇل تۆلەش ئۇلانمىسى يوق. قايتا سىناڭ."
   }
 }

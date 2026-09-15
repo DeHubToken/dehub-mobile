@@ -3611,6 +3611,27 @@
     "sendingTokens": "ٹوکن بھیجے جا رہے ہیں",
     "queuedForSending": "بھیجنے کے لیے قطار میں",
     "tokenTransferFailed": "ٹوکن ٹرانسفر ناکام",
-    "notSentYet": "ابھی نہیں بھیجا"
+    "notSentYet": "ابھی نہیں بھیجا",
+    "topUp": "ٹاپ اپ",
+    "selectCurrency": "کرنسی چنیں",
+    "chooseCurrency": "کوئی کرنسی چنیں",
+    "currentPrice": "موجودہ {{symbol}} قیمت",
+    "walletAddress": "والٹ ایڈریس",
+    "selectChain": "چین چنیں",
+    "chooseChain": "کوئی چین چنیں",
+    "confirmPurchase": "خریداری کی تصدیق کریں",
+    "amountIn": "{{currency}} رقم",
+    "approxReceive": "تقریباً ملے گا {{symbol}}",
+    "iAcceptThe": "میں قبول کرتا ہوں",
+    "termsOfService": "سروس کی شرائط",
+    "invalidAmountGtZero": "0 سے بڑی درست رقم درج کریں۔",
+    "enterValidAmount": "درست رقم درج کریں",
+    "noSupply": "خریداری دستیاب نہیں — اس چین پر {{symbol}} کی سپلائی نہیں۔",
+    "insufficientSupply": "{{symbol}} کی سپلائی ناکافی: اس چین پر صرف {{available}} دستیاب۔",
+    "connectWallet": "براہِ کرم والٹ سے جڑیں",
+    "acceptTermsFirst": "براہِ کرم سروس کی شرائط قبول کریں",
+    "redirecting": "چیک آؤٹ پر بھیجا جا رہا ہے…",
+    "openingCheckout": "چیک آؤٹ کھولا جا رہا ہے…",
+    "checkoutUnavailable": "چیک آؤٹ لنک دستیاب نہیں۔ دوبارہ کوشش کریں۔"
   }
 }

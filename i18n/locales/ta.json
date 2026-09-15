@@ -3601,6 +3601,27 @@
     "sendingTokens": "டோக்கன்கள் அனுப்பப்படுகின்றன",
     "queuedForSending": "அனுப்ப வரிசையில்",
     "tokenTransferFailed": "டோக்கன் பரிமாற்றம் தோல்வியடைந்தது",
-    "notSentYet": "இன்னும் அனுப்பப்படவில்லை"
+    "notSentYet": "இன்னும் அனுப்பப்படவில்லை",
+    "topUp": "நிரப்பு",
+    "selectCurrency": "நாணயத்தைத் தேர்ந்தெடு",
+    "chooseCurrency": "ஒரு நாணயத்தைத் தேர்ந்தெடுக்கவும்",
+    "currentPrice": "தற்போதைய {{symbol}} விலை",
+    "walletAddress": "பணப்பை முகவரி",
+    "selectChain": "செயினைத் தேர்ந்தெடு",
+    "chooseChain": "ஒரு செயினைத் தேர்ந்தெடுக்கவும்",
+    "confirmPurchase": "வாங்குதலை உறுதிசெய்",
+    "amountIn": "{{currency}} தொகை",
+    "approxReceive": "தோராயமாகப் பெறுவீர்கள் {{symbol}}",
+    "iAcceptThe": "நான் ஏற்கிறேன்",
+    "termsOfService": "சேவை விதிமுறைகள்",
+    "invalidAmountGtZero": "0-ஐ விட அதிகமான செல்லுபடியாகும் தொகையை உள்ளிடவும்.",
+    "enterValidAmount": "செல்லுபடியாகும் தொகையை உள்ளிடவும்",
+    "noSupply": "வாங்க முடியாது — இந்த செயினில் {{symbol}} இருப்பு இல்லை.",
+    "insufficientSupply": "{{symbol}} இருப்பு போதவில்லை: இந்த செயினில் {{available}} மட்டுமே.",
+    "connectWallet": "பணப்பையை இணைக்கவும்",
+    "acceptTermsFirst": "சேவை விதிமுறைகளை ஏற்கவும்",
+    "redirecting": "கட்டணப் பக்கத்திற்கு அனுப்பப்படுகிறது…",
+    "openingCheckout": "கட்டணப் பக்கம் திறக்கப்படுகிறது…",
+    "checkoutUnavailable": "கட்டண இணைப்பு கிடைக்கவில்லை. மீண்டும் முயலவும்."
   }
 }

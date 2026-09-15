@@ -3569,6 +3569,27 @@
     "sendingTokens": "टोकन्-प्रेष्यन्ते",
     "queuedForSending": "प्रेषणाय पङ्क्तौ",
     "tokenTransferFailed": "टोकन्-हस्तान्तरणं विफलम्",
-    "notSentYet": "अद्यापि न प्रेषितम्"
+    "notSentYet": "अद्यापि न प्रेषितम्",
+    "topUp": "पूरणम्",
+    "selectCurrency": "मुद्रां चिनोतु",
+    "chooseCurrency": "एकां मुद्रां चिनोतु",
+    "currentPrice": "वर्तमानं {{symbol}}-मूल्यम्",
+    "walletAddress": "कोशसङ्केतः",
+    "selectChain": "शृङ्खलां चिनोतु",
+    "chooseChain": "एकां शृङ्खलां चिनोतु",
+    "confirmPurchase": "क्रयं निश्चिनोतु",
+    "amountIn": "{{currency}}-परिमाणम्",
+    "approxReceive": "प्रायः प्राप्स्यति {{symbol}}",
+    "iAcceptThe": "अहं स्वीकरोमि",
+    "termsOfService": "सेवानियमाः",
+    "invalidAmountGtZero": "०तः अधिकं वैधं परिमाणं लिखतु।",
+    "enterValidAmount": "वैधं परिमाणं लिखतु",
+    "noSupply": "क्रयः न उपलब्धः — अस्यां शृङ्खलायां {{symbol}} न विद्यते।",
+    "insufficientSupply": "{{symbol}} न पर्याप्तम्: अस्यां शृङ्खलायां केवलं {{available}} विद्यते।",
+    "connectWallet": "कृपया कोशं संयोजयतु",
+    "acceptTermsFirst": "कृपया सेवानियमान् स्वीकरोतु",
+    "redirecting": "भुक्तिपृष्ठं प्रति नीयते…",
+    "openingCheckout": "भुक्तिपृष्ठम् उद्घाट्यते…",
+    "checkoutUnavailable": "भुक्तिसंयोजनं न उपलब्धम्। पुनः प्रयतताम्।"
   }
 }

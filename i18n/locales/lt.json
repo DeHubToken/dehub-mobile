@@ -3612,6 +3612,27 @@
     "sendingTokens": "Siunčiami žetonai",
     "queuedForSending": "Eilėje išsiuntimui",
     "tokenTransferFailed": "Žetono pervedimas nepavyko",
-    "notSentYet": "Dar neišsiųsta"
+    "notSentYet": "Dar neišsiųsta",
+    "topUp": "Papildymas",
+    "selectCurrency": "Pasirinkite valiutą",
+    "chooseCurrency": "Pasirinkite valiutą",
+    "currentPrice": "Dabartinė {{symbol}} kaina",
+    "walletAddress": "Piniginės adresas",
+    "selectChain": "Pasirinkite grandinę",
+    "chooseChain": "Pasirinkite grandinę",
+    "confirmPurchase": "Patvirtinti pirkimą",
+    "amountIn": "{{currency}} suma",
+    "approxReceive": "Gausite maždaug {{symbol}}",
+    "iAcceptThe": "Sutinku su",
+    "termsOfService": "Paslaugų teikimo sąlygos",
+    "invalidAmountGtZero": "Įveskite galiojančią sumą, didesnę už 0.",
+    "enterValidAmount": "Įveskite galiojančią sumą",
+    "noSupply": "Pirkti negalima — šioje grandinėje nėra {{symbol}} atsargų.",
+    "insufficientSupply": "Nepakanka {{symbol}}: šioje grandinėje yra tik {{available}}.",
+    "connectWallet": "Prijunkite piniginę",
+    "acceptTermsFirst": "Sutikite su paslaugų teikimo sąlygomis",
+    "redirecting": "Nukreipiama į apmokėjimą…",
+    "openingCheckout": "Atveriamas apmokėjimas…",
+    "checkoutUnavailable": "Mokėjimo nuoroda nepasiekiama. Bandykite dar kartą."
   }
 }

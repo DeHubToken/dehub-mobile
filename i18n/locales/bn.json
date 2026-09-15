@@ -3597,6 +3597,27 @@
     "sendingTokens": "টোকেন পাঠানো হচ্ছে",
     "queuedForSending": "পাঠানোর জন্য সারিতে",
     "tokenTransferFailed": "টোকেন ট্রান্সফার ব্যর্থ",
-    "notSentYet": "এখনো পাঠানো হয়নি"
+    "notSentYet": "এখনো পাঠানো হয়নি",
+    "topUp": "টপ আপ",
+    "selectCurrency": "মুদ্রা বাছুন",
+    "chooseCurrency": "একটি মুদ্রা বাছুন",
+    "currentPrice": "বর্তমান {{symbol}} দাম",
+    "walletAddress": "ওয়ালেট ঠিকানা",
+    "selectChain": "চেইন বাছুন",
+    "chooseChain": "একটি চেইন বাছুন",
+    "confirmPurchase": "কেনাকাটা নিশ্চিত করুন",
+    "amountIn": "{{currency}} পরিমাণ",
+    "approxReceive": "আনুমানিক পাবেন {{symbol}}",
+    "iAcceptThe": "আমি মেনে নিচ্ছি",
+    "termsOfService": "পরিষেবার শর্তাবলি",
+    "invalidAmountGtZero": "0-এর বেশি একটি সঠিক পরিমাণ লিখুন।",
+    "enterValidAmount": "সঠিক পরিমাণ লিখুন",
+    "noSupply": "কেনা যাচ্ছে না — এই চেইনে {{symbol}} সরবরাহ নেই।",
+    "insufficientSupply": "{{symbol}} সরবরাহ যথেষ্ট নয়: এই চেইনে কেবল {{available}} আছে।",
+    "connectWallet": "অনুগ্রহ করে ওয়ালেট যুক্ত করুন",
+    "acceptTermsFirst": "অনুগ্রহ করে পরিষেবার শর্তাবলি মেনে নিন",
+    "redirecting": "চেকআউটে নিয়ে যাওয়া হচ্ছে…",
+    "openingCheckout": "চেকআউট খোলা হচ্ছে…",
+    "checkoutUnavailable": "চেকআউট লিংক পাওয়া যাচ্ছে না। আবার চেষ্টা করুন।"
   }
 }

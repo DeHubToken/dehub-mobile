@@ -3617,6 +3617,27 @@
     "sendingTokens": "Sender tokens",
     "queuedForSending": "I kø til afsendelse",
     "tokenTransferFailed": "Tokenoverførsel mislykkedes",
-    "notSentYet": "Endnu ikke sendt"
+    "notSentYet": "Endnu ikke sendt",
+    "topUp": "Optankning",
+    "selectCurrency": "Vælg valuta",
+    "chooseCurrency": "Vælg en valuta",
+    "currentPrice": "Aktuel {{symbol}}-pris",
+    "walletAddress": "Tegnebogsadresse",
+    "selectChain": "Vælg kæde",
+    "chooseChain": "Vælg en kæde",
+    "confirmPurchase": "Bekræft køb",
+    "amountIn": "{{currency}}-beløb",
+    "approxReceive": "Modtager ca. {{symbol}}",
+    "iAcceptThe": "Jeg accepterer",
+    "termsOfService": "Servicevilkår",
+    "invalidAmountGtZero": "Indtast et gyldigt beløb større end 0.",
+    "enterValidAmount": "Indtast et gyldigt beløb",
+    "noSupply": "Køb er ikke muligt — ingen {{symbol}}-forsyning på denne kæde.",
+    "insufficientSupply": "Utilstrækkelig {{symbol}}-forsyning: kun {{available}} tilgængelig på denne kæde.",
+    "connectWallet": "Forbind venligst til tegnebogen",
+    "acceptTermsFirst": "Accepter venligst servicevilkårene",
+    "redirecting": "Omdirigerer til betaling…",
+    "openingCheckout": "Åbner betaling…",
+    "checkoutUnavailable": "Betalingslinket er ikke tilgængeligt. Prøv igen."
   }
 }

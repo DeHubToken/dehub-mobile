@@ -3617,6 +3617,27 @@
     "sendingTokens": "Skickar tokens",
     "queuedForSending": "I kö för att skickas",
     "tokenTransferFailed": "Tokenöverföringen misslyckades",
-    "notSentYet": "Inte skickat än"
+    "notSentYet": "Inte skickat än",
+    "topUp": "Fyll på",
+    "selectCurrency": "Välj valuta",
+    "chooseCurrency": "Välj en valuta",
+    "currentPrice": "Aktuellt {{symbol}}-pris",
+    "walletAddress": "Plånboksadress",
+    "selectChain": "Välj kedja",
+    "chooseChain": "Välj en kedja",
+    "confirmPurchase": "Bekräfta köpet",
+    "amountIn": "{{currency}}-belopp",
+    "approxReceive": "Du får ungefär {{symbol}}",
+    "iAcceptThe": "Jag godkänner",
+    "termsOfService": "Användarvillkor",
+    "invalidAmountGtZero": "Ange ett giltigt belopp större än 0.",
+    "enterValidAmount": "Ange ett giltigt belopp",
+    "noSupply": "Köp inte möjligt — inget {{symbol}}-lager på den här kedjan.",
+    "insufficientSupply": "Otillräckligt {{symbol}}-lager: bara {{available}} tillgängligt på den här kedjan.",
+    "connectWallet": "Anslut din plånbok",
+    "acceptTermsFirst": "Godkänn användarvillkoren",
+    "redirecting": "Omdirigerar till kassan…",
+    "openingCheckout": "Öppnar kassan…",
+    "checkoutUnavailable": "Betalningslänken är inte tillgänglig. Försök igen."
   }
 }

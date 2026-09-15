@@ -3639,6 +3639,27 @@
     "sendingTokens": "كيصيفط التوكنز",
     "queuedForSending": "فالدور باش يتصيفط",
     "tokenTransferFailed": "فشل نقل التوكن",
-    "notSentYet": "مازال ما تصيفطش"
+    "notSentYet": "مازال ما تصيفطش",
+    "topUp": "عمر الرصيد",
+    "selectCurrency": "ختار العملة",
+    "chooseCurrency": "ختار عملة",
+    "currentPrice": "الثمن الحالي ديال {{symbol}}",
+    "walletAddress": "عنوان المحفظة",
+    "selectChain": "ختار السلسلة",
+    "chooseChain": "ختار سلسلة",
+    "confirmPurchase": "أكد الشرا",
+    "amountIn": "المبلغ ديال {{currency}}",
+    "approxReceive": "غادي تاخد تقريبا {{symbol}}",
+    "iAcceptThe": "كنوافق على",
+    "termsOfService": "شروط الخدمة",
+    "invalidAmountGtZero": "دخل مبلغ صحيح كبر من 0.",
+    "enterValidAmount": "دخل مبلغ صحيح",
+    "noSupply": "الشرا ماشي متوفر — ما كاينش {{symbol}} على هاد السلسلة.",
+    "insufficientSupply": "{{symbol}} ما كافيش: غير {{available}} كاين على هاد السلسلة.",
+    "connectWallet": "عافاك ربط المحفظة",
+    "acceptTermsFirst": "عافاك وافق على شروط الخدمة",
+    "redirecting": "كيحولك للخلاص…",
+    "openingCheckout": "كيحل صفحة الخلاص…",
+    "checkoutUnavailable": "رابط الخلاص ماشي متوفر. عاود جرب."
   }
 }

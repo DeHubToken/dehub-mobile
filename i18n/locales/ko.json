@@ -3681,6 +3681,27 @@
     "sendingTokens": "토큰 전송 중",
     "queuedForSending": "전송 대기열에 있음",
     "tokenTransferFailed": "토큰 전송 실패",
-    "notSentYet": "아직 전송되지 않음"
+    "notSentYet": "아직 전송되지 않음",
+    "topUp": "충전",
+    "selectCurrency": "통화 선택",
+    "chooseCurrency": "통화를 선택하세요",
+    "currentPrice": "현재 {{symbol}} 가격",
+    "walletAddress": "지갑 주소",
+    "selectChain": "체인 선택",
+    "chooseChain": "체인을 선택하세요",
+    "confirmPurchase": "구매 확인",
+    "amountIn": "{{currency}} 금액",
+    "approxReceive": "예상 수령 {{symbol}}",
+    "iAcceptThe": "다음에 동의합니다:",
+    "termsOfService": "서비스 약관",
+    "invalidAmountGtZero": "0보다 큰 유효한 금액을 입력하세요.",
+    "enterValidAmount": "유효한 금액을 입력하세요",
+    "noSupply": "구매할 수 없습니다 — 이 체인에 {{symbol}} 공급이 없습니다.",
+    "insufficientSupply": "{{symbol}} 공급이 부족합니다: 이 체인에는 {{available}}만 있습니다.",
+    "connectWallet": "지갑을 연결해 주세요",
+    "acceptTermsFirst": "서비스 약관에 동의해 주세요",
+    "redirecting": "결제 페이지로 이동 중…",
+    "openingCheckout": "결제 페이지 여는 중…",
+    "checkoutUnavailable": "결제 링크를 사용할 수 없습니다. 다시 시도해 주세요."
   }
 }

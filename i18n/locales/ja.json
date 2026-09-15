@@ -3680,6 +3680,27 @@
     "sendingTokens": "トークンを送信中",
     "queuedForSending": "送信待ちキューに登録済み",
     "tokenTransferFailed": "トークンの送金に失敗しました",
-    "notSentYet": "まだ送信されていません"
+    "notSentYet": "まだ送信されていません",
+    "topUp": "チャージ",
+    "selectCurrency": "通貨を選択",
+    "chooseCurrency": "通貨を選んでください",
+    "currentPrice": "現在の {{symbol}} 価格",
+    "walletAddress": "ウォレットアドレス",
+    "selectChain": "チェーンを選択",
+    "chooseChain": "チェーンを選んでください",
+    "confirmPurchase": "購入を確定",
+    "amountIn": "{{currency}} 金額",
+    "approxReceive": "受取目安 {{symbol}}",
+    "iAcceptThe": "同意します:",
+    "termsOfService": "利用規約",
+    "invalidAmountGtZero": "0 より大きい有効な金額を入力してください。",
+    "enterValidAmount": "有効な金額を入力してください",
+    "noSupply": "購入できません。このチェーンには {{symbol}} の在庫がありません。",
+    "insufficientSupply": "{{symbol}} の在庫が不足しています。このチェーンでは {{available}} のみです。",
+    "connectWallet": "ウォレットを接続してください",
+    "acceptTermsFirst": "利用規約に同意してください",
+    "redirecting": "決済ページへ移動中…",
+    "openingCheckout": "決済ページを開いています…",
+    "checkoutUnavailable": "決済リンクを利用できません。もう一度お試しください。"
   }
 }
