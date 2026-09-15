@@ -13,6 +13,7 @@ import {
   KeyboardAvoidingView,
   useWindowDimensions,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import { DeHubLoader } from "../DeHubLoader";
 import Animated, {
   useAnimatedStyle,
@@ -54,6 +55,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
   onClose,
   tokenId,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { height: windowHeight } = useWindowDimensions();
   const sheetHeight = Math.max(0, windowHeight - Math.max(insets.top, 12) - 12);
@@ -326,14 +328,14 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
 
             <View style={styles.header}>
               <View style={styles.headerCopy}>
-                <Text style={styles.title}>Save to folder</Text>
-                <Text style={styles.subtitle}>Choose where you want to keep this post.</Text>
+                <Text style={styles.title}>{t("addToFolder.title")}</Text>
+                <Text style={styles.subtitle}>{t("addToFolder.subtitle")}</Text>
               </View>
               <TouchableOpacity
                 onPress={closeSheet}
                 style={styles.closeButton}
                 accessibilityRole="button"
-                accessibilityLabel="Close folder picker"
+                accessibilityLabel={t("addToFolder.closeA11y")}
               >
                 <Icon name="X" size={20} color="#8B8D90" />
               </TouchableOpacity>
@@ -360,7 +362,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
             {loading ? (
               <View style={styles.loadingContainer}>
                 <DeHubLoader size={56} />
-                <Text style={styles.loadingText}>Loading folders…</Text>
+                <Text style={styles.loadingText}>{t("addToFolder.loading")}</Text>
               </View>
             ) : (
               <FlatList
@@ -376,8 +378,8 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
                     <View style={styles.emptyIcon}>
                       <Icon name="FolderPlus" size={28} color="#D4D4D8" />
                     </View>
-                    <Text style={styles.emptyText}>No folders created yet</Text>
-                    <Text style={styles.emptyHint}>Create one to organize this post.</Text>
+                    <Text style={styles.emptyText}>{t("addToFolder.noneYet")}</Text>
+                    <Text style={styles.emptyHint}>{t("addToFolder.noneYetHint")}</Text>
                   </View>
                 }
               />
@@ -386,9 +388,9 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
             <View style={styles.footer}>
               {showCreateForm ? (
                 <View style={styles.createForm}>
-                  <Text style={styles.fieldLabel}>Folder name</Text>
+                  <Text style={styles.fieldLabel}>{t("addToFolder.nameLabel")}</Text>
                   <TextInput
-                    placeholder="e.g. Cooking, Travel"
+                    placeholder={t("addToFolder.namePlaceholder")}
                     placeholderTextColor="#6F7174"
                     value={newFolderName}
                     onChangeText={setNewFolderName}
@@ -397,9 +399,9 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
                     autoFocus
                     returnKeyType="next"
                   />
-                  <Text style={styles.fieldLabel}>Description <Text style={styles.optionalLabel}>(optional)</Text></Text>
+                  <Text style={styles.fieldLabel}>{t("communities.description")} <Text style={styles.optionalLabel}>{t("common.optionalSuffix")}</Text></Text>
                   <TextInput
-                    placeholder="What belongs in this folder?"
+                    placeholder={t("addToFolder.descriptionPlaceholder")}
                     placeholderTextColor="#6F7174"
                     value={newFolderDesc}
                     onChangeText={setNewFolderDesc}
@@ -414,7 +416,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
                       style={styles.cancelBtn}
                       accessibilityRole="button"
                     >
-                      <Text style={styles.cancelBtnText}>Cancel</Text>
+                      <Text style={styles.cancelBtnText}>{t("common.cancel")}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={handleCreateFolder}
@@ -428,7 +430,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
                       {creating ? (
                         <ActivityIndicator size="small" color="#18181B" />
                       ) : (
-                        <Text style={styles.createSubmitBtnText}>Create & save</Text>
+                        <Text style={styles.createSubmitBtnText}>{t("addToFolder.createAndSave")}</Text>
                       )}
                     </TouchableOpacity>
                   </View>
@@ -441,7 +443,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
                   accessibilityRole="button"
                 >
                   <Icon name="FolderPlus" size={20} color="#18181B" />
-                  <Text style={styles.addFolderBtnText}>Create new folder</Text>
+                  <Text style={styles.addFolderBtnText}>{t("addToFolder.createNew")}</Text>
                 </TouchableOpacity>
               )}
             </View>

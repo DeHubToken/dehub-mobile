@@ -598,7 +598,8 @@
     "takePhoto": "फोटो काढा",
     "recordVideo": "व्हिडिओ रेकॉर्ड करा",
     "saveChanges": "बदल जतन करा",
-    "copy": "कॉपी करा"
+    "copy": "कॉपी करा",
+    "optionalSuffix": "(पर्यायी)"
   },
   "drawers": {
     "ppvTitle": "पे पर व्ह्यू मजकूर",
@@ -3245,5 +3246,18 @@
     "leaveBody": "{{name}} सोडायचा?",
     "leaveAction": "सोडा",
     "noBadgeYet": "अजून बॅज नाही"
+  },
+  "addToFolder": {
+    "title": "फोल्डरमध्ये जतन करा",
+    "subtitle": "ही पोस्ट कुठे ठेवायची ते निवडा.",
+    "loading": "फोल्डर लोड होत आहेत…",
+    "noneYet": "अजून कोणतेही फोल्डर तयार केलेले नाही",
+    "noneYetHint": "ही पोस्ट व्यवस्थित ठेवण्यासाठी एक तयार करा.",
+    "nameLabel": "फोल्डरचे नाव",
+    "namePlaceholder": "उदा. स्वयंपाक, प्रवास",
+    "descriptionPlaceholder": "या फोल्डरमध्ये काय ठेवायचे?",
+    "createAndSave": "तयार करा आणि जतन करा",
+    "createNew": "नवीन फोल्डर तयार करा",
+    "closeA11y": "फोल्डर निवडकर्ता बंद करा"
   }
 }

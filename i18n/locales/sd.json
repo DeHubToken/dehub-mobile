@@ -595,7 +595,8 @@
     "takePhoto": "فوٽو وٺو",
     "recordVideo": "وڊيو رڪارڊ ڪريو",
     "saveChanges": "تبديليون محفوظ ڪريو",
-    "copy": "ڪاپي ڪريو"
+    "copy": "ڪاپي ڪريو",
+    "optionalSuffix": "(اختياري)"
   },
   "tip": {
     "title": "ٽپ موڪليو",
@@ -3240,5 +3241,18 @@
     "leaveBody": "{{name}} ڇڏيو؟",
     "leaveAction": "ڇڏيو",
     "noBadgeYet": "اڃا ڪو بيج ناهي"
+  },
+  "addToFolder": {
+    "title": "فولڊر ۾ محفوظ ڪريو",
+    "subtitle": "چونڊيو ته هي پوسٽ ڪٿي رکڻي آهي.",
+    "loading": "فولڊر لوڊ ٿي رهيا آهن…",
+    "noneYet": "اڃا ڪو فولڊر نه ٺهيو آهي",
+    "noneYetHint": "هن پوسٽ کي ترتيب ڏيڻ لاءِ هڪ ٺاهيو.",
+    "nameLabel": "فولڊر جو نالو",
+    "namePlaceholder": "مثال طور رڌ پچاءُ، سفر",
+    "descriptionPlaceholder": "هن فولڊر ۾ ڇا رکڻو آهي؟",
+    "createAndSave": "ٺاهيو ۽ محفوظ ڪريو",
+    "createNew": "نئون فولڊر ٺاهيو",
+    "closeA11y": "فولڊر چونڊيندڙ بند ڪريو"
   }
 }

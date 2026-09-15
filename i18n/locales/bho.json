@@ -594,7 +594,8 @@
     "takePhoto": "फोटो खींचीं",
     "recordVideo": "वीडियो रिकॉर्ड करीं",
     "saveChanges": "बदलाव सहेजीं",
-    "copy": "कॉपी करीं"
+    "copy": "कॉपी करीं",
+    "optionalSuffix": "(वैकल्पिक)"
   },
   "tip": {
     "title": "उपहार भेजीं",
@@ -3207,5 +3208,18 @@
     "leaveBody": "{{name}} छोड़ल जाव?",
     "leaveAction": "छोड़ीं",
     "noBadgeYet": "अभी ले कवनो बैज नइखे"
+  },
+  "addToFolder": {
+    "title": "फोल्डर में सहेजीं",
+    "subtitle": "चुनीं कि ई पोस्ट कहाँ राखे के बा।",
+    "loading": "फोल्डर लोड हो रहल बा…",
+    "noneYet": "अभी ले कवनो फोल्डर ना बनल",
+    "noneYetHint": "ई पोस्ट के व्यवस्थित करे खातिर एगो बनाईं।",
+    "nameLabel": "फोल्डर के नाम",
+    "namePlaceholder": "जइसे खाना बनावल, यात्रा",
+    "descriptionPlaceholder": "एह फोल्डर में का राखल जाई?",
+    "createAndSave": "बनाईं आ सहेजीं",
+    "createNew": "नया फोल्डर बनाईं",
+    "closeA11y": "फोल्डर चुनइया के बंद करीं"
   }
 }

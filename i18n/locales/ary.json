@@ -606,7 +606,8 @@
     "takePhoto": "صوّر تصويرة",
     "recordVideo": "سجّل فيديو",
     "saveChanges": "سجل التبديلات",
-    "copy": "نسخ"
+    "copy": "نسخ",
+    "optionalSuffix": "(اختياري)"
   },
   "tip": {
     "title": "بعت تيب",
@@ -3283,5 +3284,18 @@
     "leaveBody": "تخرج من {{name}}؟",
     "leaveAction": "خرج",
     "noBadgeYet": "مازال ما كاينش شارة"
+  },
+  "addToFolder": {
+    "title": "سجل ف مجلد",
+    "subtitle": "ختار فين بغيتي تسجل هاد المنشور.",
+    "loading": "كيحمل المجلدات…",
+    "noneYet": "مازال ما تدارو حتى مجلدات",
+    "noneYetHint": "دير واحد باش تنظم هاد المنشور.",
+    "nameLabel": "سمية المجلد",
+    "namePlaceholder": "مثلا طياب، سفر",
+    "descriptionPlaceholder": "شنو خاصو يدخل لهاد المجلد؟",
+    "createAndSave": "دير وسجل",
+    "createNew": "دير مجلد جديد",
+    "closeA11y": "سد منتقي المجلدات"
   }
 }

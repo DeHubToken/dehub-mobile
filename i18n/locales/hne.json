@@ -594,7 +594,8 @@
     "takePhoto": "फोटो खींचव",
     "recordVideo": "वीडियो रिकॉर्ड करव",
     "saveChanges": "बदलाव सहेजव",
-    "copy": "कॉपी करव"
+    "copy": "कॉपी करव",
+    "optionalSuffix": "(वैकल्पिक)"
   },
   "tip": {
     "title": "टिप भेजव",
@@ -3258,5 +3259,18 @@
     "leaveBody": "{{name}} छोड़बव?",
     "leaveAction": "छोड़व",
     "noBadgeYet": "अभी कोनो बैज नइ हे"
+  },
+  "addToFolder": {
+    "title": "फोल्डर म सहेजव",
+    "subtitle": "चुनव कि ये पोस्ट ल कहाँ रखना हे।",
+    "loading": "फोल्डर लोड होवत हे…",
+    "noneYet": "अभी तक कोनो फोल्डर नइ बने हे",
+    "noneYetHint": "ये पोस्ट ल सहेजे बर एक ठन बनाव।",
+    "nameLabel": "फोल्डर के नाव",
+    "namePlaceholder": "जइसे रांधे, घूमे",
+    "descriptionPlaceholder": "ये फोल्डर म का रखना हे?",
+    "createAndSave": "बनाव अउ सहेजव",
+    "createNew": "नवा फोल्डर बनाव",
+    "closeA11y": "फोल्डर चुनइया ल बंद करव"
   }
 }

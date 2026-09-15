@@ -119,7 +119,8 @@
     "signIn": "Mag-sign in",
     "takePhoto": "Kumuha ng larawan",
     "recordVideo": "Mag-record ng video",
-    "saveChanges": "I-save ang mga pagbabago"
+    "saveChanges": "I-save ang mga pagbabago",
+    "optionalSuffix": "(opsyonal)"
   },
   "walletSelector": {
     "title": "Piliin ang Wallet",
@@ -3436,5 +3437,18 @@
     "leaveBody": "Umalis sa {{name}}?",
     "leaveAction": "Umalis",
     "noBadgeYet": "Wala pang badge"
+  },
+  "addToFolder": {
+    "title": "I-save sa folder",
+    "subtitle": "Piliin kung saan mo gustong itago ang post na ito.",
+    "loading": "Nilo-load ang mga folder…",
+    "noneYet": "Wala pang nagawang folder",
+    "noneYetHint": "Gumawa ng isa para maisaayos ang post na ito.",
+    "nameLabel": "Pangalan ng folder",
+    "namePlaceholder": "hal. Pagluluto, Paglalakbay",
+    "descriptionPlaceholder": "Ano ang nilalaman ng folder na ito?",
+    "createAndSave": "Gumawa at i-save",
+    "createNew": "Gumawa ng bagong folder",
+    "closeA11y": "Isara ang folder picker"
   }
 }

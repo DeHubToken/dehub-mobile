@@ -607,7 +607,8 @@
     "takePhoto": "Ta foto",
     "recordVideo": "Spela in video",
     "saveChanges": "Spara ändringar",
-    "copy": "Kopiera"
+    "copy": "Kopiera",
+    "optionalSuffix": "(valfritt)"
   },
   "drawers": {
     "ppvTitle": "Betala per visning",
@@ -3261,5 +3262,18 @@
     "leaveBody": "Lämna {{name}}?",
     "leaveAction": "Lämna",
     "noBadgeYet": "Inget märke än"
+  },
+  "addToFolder": {
+    "title": "Spara i mapp",
+    "subtitle": "Välj var du vill spara det här inlägget.",
+    "loading": "Läser in mappar…",
+    "noneYet": "Inga mappar har skapats än",
+    "noneYetHint": "Skapa en för att organisera det här inlägget.",
+    "nameLabel": "Mappnamn",
+    "namePlaceholder": "t.ex. Matlagning, Resor",
+    "descriptionPlaceholder": "Vad hör hemma i den här mappen?",
+    "createAndSave": "Skapa och spara",
+    "createNew": "Skapa ny mapp",
+    "closeA11y": "Stäng mappväljaren"
   }
 }

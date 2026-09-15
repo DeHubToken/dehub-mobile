@@ -598,7 +598,8 @@
     "takePhoto": "Tango whakaahua",
     "recordVideo": "Hopu ataata",
     "saveChanges": "Tiakina ngā panoni",
-    "copy": "Tāruatia"
+    "copy": "Tāruatia",
+    "optionalSuffix": "(kōwhiringa)"
   },
   "tip": {
     "title": "Tukuna koha",
@@ -3242,5 +3243,18 @@
     "leaveBody": "Wehe i {{name}}?",
     "leaveAction": "Wehe",
     "noBadgeYet": "Kāore anō he tohu"
+  },
+  "addToFolder": {
+    "title": "Tiakina ki te kōpaki",
+    "subtitle": "Kōwhiria ka pupuri koe i tēnei pou ki hea.",
+    "loading": "Kei te uta kōpaki…",
+    "noneYet": "Kāore anō he kōpaki i hangaia",
+    "noneYetHint": "Hangaia tētahi hei whakarite i tēnei pou.",
+    "nameLabel": "Ingoa kōpaki",
+    "namePlaceholder": "hei tauira Tunu kai, Haerenga",
+    "descriptionPlaceholder": "He aha kei roto i tēnei kōpaki?",
+    "createAndSave": "Hanga me te tiaki",
+    "createNew": "Hangaia he kōpaki hou",
+    "closeA11y": "Katia te kōwhiri kōpaki"
   }
 }

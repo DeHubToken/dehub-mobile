@@ -596,7 +596,8 @@
     "takePhoto": "Foto çək",
     "recordVideo": "Video çək",
     "saveChanges": "Dəyişiklikləri yadda saxla",
-    "copy": "Kopyala"
+    "copy": "Kopyala",
+    "optionalSuffix": "(istəyə bağlı)"
   },
   "tip": {
     "title": "Bəxşiş Göndər",
@@ -3241,5 +3242,18 @@
     "leaveBody": "{{name}} komandasından çıxılsın?",
     "leaveAction": "Çıx",
     "noBadgeYet": "Hələ nişan yoxdur"
+  },
+  "addToFolder": {
+    "title": "Qovluğa yadda saxla",
+    "subtitle": "Bu paylaşımı harada saxlamaq istədiyinizi seçin.",
+    "loading": "Qovluqlar yüklənir…",
+    "noneYet": "Hələ qovluq yaradılmayıb",
+    "noneYetHint": "Bu paylaşımı təşkil etmək üçün bir qovluq yaradın.",
+    "nameLabel": "Qovluq adı",
+    "namePlaceholder": "məsələn, Yemək, Səyahət",
+    "descriptionPlaceholder": "Bu qovluqda nə saxlanılacaq?",
+    "createAndSave": "Yarat və saxla",
+    "createNew": "Yeni qovluq yarat",
+    "closeA11y": "Qovluq seçicisini bağla"
   }
 }

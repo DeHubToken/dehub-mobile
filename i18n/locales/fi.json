@@ -607,7 +607,8 @@
     "takePhoto": "Ota kuva",
     "recordVideo": "Tallenna video",
     "saveChanges": "Tallenna muutokset",
-    "copy": "Kopioi"
+    "copy": "Kopioi",
+    "optionalSuffix": "(valinnainen)"
   },
   "postOptions": {
     "options": "Vaihtoehdot",
@@ -3257,5 +3258,18 @@
     "leaveBody": "Poistutaanko tiimistä {{name}}?",
     "leaveAction": "Poistu",
     "noBadgeYet": "Ei vielä merkkiä"
+  },
+  "addToFolder": {
+    "title": "Tallenna kansioon",
+    "subtitle": "Valitse, mihin haluat tallentaa tämän julkaisun.",
+    "loading": "Ladataan kansioita…",
+    "noneYet": "Kansioita ei ole vielä luotu",
+    "noneYetHint": "Luo kansio järjestääksesi tämän julkaisun.",
+    "nameLabel": "Kansion nimi",
+    "namePlaceholder": "esim. Ruoanlaitto, Matkailu",
+    "descriptionPlaceholder": "Mitä tähän kansioon kuuluu?",
+    "createAndSave": "Luo ja tallenna",
+    "createNew": "Luo uusi kansio",
+    "closeA11y": "Sulje kansiovalitsin"
   }
 }

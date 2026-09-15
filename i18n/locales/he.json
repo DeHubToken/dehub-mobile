@@ -605,7 +605,8 @@
     "takePhoto": "צלם תמונה",
     "recordVideo": "צלם וידאו",
     "saveChanges": "שמור שינויים",
-    "copy": "העתק"
+    "copy": "העתק",
+    "optionalSuffix": "(אופציונלי)"
   },
   "drawers": {
     "ppvTitle": "תוכן בתשלום",
@@ -3244,5 +3245,18 @@
     "leaveBody": "לעזוב את {{name}}?",
     "leaveAction": "עזוב",
     "noBadgeYet": "עדיין אין תג"
+  },
+  "addToFolder": {
+    "title": "שמור לתיקייה",
+    "subtitle": "בחר היכן לשמור את הפוסט הזה.",
+    "loading": "טוען תיקיות…",
+    "noneYet": "עדיין לא נוצרו תיקיות",
+    "noneYetHint": "צור אחת כדי לארגן את הפוסט הזה.",
+    "nameLabel": "שם התיקייה",
+    "namePlaceholder": "למשל בישול, טיולים",
+    "descriptionPlaceholder": "מה שייך לתיקייה הזו?",
+    "createAndSave": "צור ושמור",
+    "createNew": "צור תיקייה חדשה",
+    "closeA11y": "סגור את בורר התיקיות"
   }
 }

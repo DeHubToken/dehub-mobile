@@ -815,7 +815,8 @@
     "signIn": "Inloggen",
     "takePhoto": "Foto maken",
     "recordVideo": "Video opnemen",
-    "saveChanges": "Wijzigingen opslaan"
+    "saveChanges": "Wijzigingen opslaan",
+    "optionalSuffix": "(optioneel)"
   },
   "home": {
     "title": "Home",
@@ -3525,5 +3526,18 @@
     "leaveBody": "{{name}} verlaten?",
     "leaveAction": "Verlaten",
     "noBadgeYet": "Nog geen badge"
+  },
+  "addToFolder": {
+    "title": "Opslaan in map",
+    "subtitle": "Kies waar je dit bericht wilt bewaren.",
+    "loading": "Mappen laden…",
+    "noneYet": "Nog geen mappen aangemaakt",
+    "noneYetHint": "Maak er een om dit bericht te ordenen.",
+    "nameLabel": "Mapnaam",
+    "namePlaceholder": "bijv. Koken, Reizen",
+    "descriptionPlaceholder": "Wat hoort er in deze map?",
+    "createAndSave": "Maken en opslaan",
+    "createNew": "Nieuwe map maken",
+    "closeA11y": "Mapkiezer sluiten"
   }
 }

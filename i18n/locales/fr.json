@@ -622,7 +622,8 @@
     "takePhoto": "Prendre une photo",
     "recordVideo": "Enregistrer une vidéo",
     "saveChanges": "Enregistrer les modifications",
-    "copy": "Copier"
+    "copy": "Copier",
+    "optionalSuffix": "(facultatif)"
   },
   "drawers": {
     "ppvTitle": "Contenu à la carte",
@@ -3331,5 +3332,18 @@
     "leaveBody": "Quitter {{name}} ?",
     "leaveAction": "Quitter",
     "noBadgeYet": "Pas encore de badge"
+  },
+  "addToFolder": {
+    "title": "Enregistrer dans un dossier",
+    "subtitle": "Choisissez où vous souhaitez conserver cette publication.",
+    "loading": "Chargement des dossiers…",
+    "noneYet": "Aucun dossier créé pour l'instant",
+    "noneYetHint": "Créez-en un pour organiser cette publication.",
+    "nameLabel": "Nom du dossier",
+    "namePlaceholder": "ex. Cuisine, Voyage",
+    "descriptionPlaceholder": "Que contient ce dossier ?",
+    "createAndSave": "Créer et enregistrer",
+    "createNew": "Créer un nouveau dossier",
+    "closeA11y": "Fermer le sélecteur de dossiers"
   }
 }

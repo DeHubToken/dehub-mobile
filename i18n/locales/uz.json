@@ -606,7 +606,8 @@
     "takePhoto": "Suratga olish",
     "recordVideo": "Video yozib olish",
     "saveChanges": "O‘zgarishlarni saqlash",
-    "copy": "Nusxalash"
+    "copy": "Nusxalash",
+    "optionalSuffix": "(ixtiyoriy)"
   },
   "tip": {
     "title": "Tip yuborish",
@@ -3308,5 +3309,18 @@
     "leaveBody": "{{name}} jamoasidan chiqilsinmi?",
     "leaveAction": "Chiqish",
     "noBadgeYet": "Hali nishon yo‘q"
+  },
+  "addToFolder": {
+    "title": "Papkaga saqlash",
+    "subtitle": "Ushbu postni qayerda saqlashni tanlang.",
+    "loading": "Papkalar yuklanmoqda…",
+    "noneYet": "Hali papka yaratilmagan",
+    "noneYetHint": "Ushbu postni tartibga solish uchun bittasini yarating.",
+    "nameLabel": "Papka nomi",
+    "namePlaceholder": "masalan, Pazandalik, Sayohat",
+    "descriptionPlaceholder": "Ushbu papkada nima saqlanadi?",
+    "createAndSave": "Yaratish va saqlash",
+    "createNew": "Yangi papka yaratish",
+    "closeA11y": "Papka tanlagichni yopish"
   }
 }

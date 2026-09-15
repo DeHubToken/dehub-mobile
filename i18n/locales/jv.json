@@ -566,7 +566,8 @@
     "takePhoto": "Njupuk foto",
     "recordVideo": "Rekam video",
     "saveChanges": "Simpen owahan",
-    "copy": "Salin"
+    "copy": "Salin",
+    "optionalSuffix": "(opsional)"
   },
   "tip": {
     "title": "Kirim Hadiah",
@@ -3215,5 +3216,18 @@
     "leaveBody": "Metu saka {{name}}?",
     "leaveAction": "Metu",
     "noBadgeYet": "Durung ana lencana"
+  },
+  "addToFolder": {
+    "title": "Simpen menyang folder",
+    "subtitle": "Pilih ngendi sampeyan arep nyimpen postingan iki.",
+    "loading": "Ngemot folder…",
+    "noneYet": "Durung ana folder sing digawe",
+    "noneYetHint": "Gawe siji kanggo nata postingan iki.",
+    "nameLabel": "Jeneng folder",
+    "namePlaceholder": "conto: Masak, Lelungan",
+    "descriptionPlaceholder": "Apa sing ana ing folder iki?",
+    "createAndSave": "Gawe & simpen",
+    "createNew": "Gawe folder anyar",
+    "closeA11y": "Tutup pemilih folder"
   }
 }
