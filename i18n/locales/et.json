@@ -3172,6 +3172,19 @@
       "wallTitle": "Mida inimesed ütlevad",
       "wallNote": "avaldatud loal",
       "anonymous": "DeHubi liige"
-    }
+    },
+    "subtitle": "Kogukonna reaalajanäitajad",
+    "range7d": "7 päeva",
+    "range30d": "30 päeva",
+    "range1y": "1 aasta",
+    "notEnoughHistory": "Graafiku jaoks pole veel piisavalt ajalugu",
+    "chartA11y": "Liikmete graafik ajas",
+    "loadFailed": "Reaalajastatistikat ei õnnestunud laadida.",
+    "livePlatformTotal": "Platvormi reaalajakogusumma",
+    "activeUsers": "Aktiivsed registreeritud kasutajad",
+    "newMembers": "Uued liikmed",
+    "membersOverTime": "Liikmed ajas",
+    "lastDays": "Viimased {{count}} päeva",
+    "source": "Salvestatud kontode ajalugu DeHubi avalikust statistika lõpp-punktist. Selles graafikus ei kasutata hinnangulisi väärtusi."
   }
 }

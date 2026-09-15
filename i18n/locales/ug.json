@@ -3163,6 +3163,19 @@
       "wallTitle": "Millet nima deydu",
       "wallNote": "ruxsit bilen nashr qilindi",
       "anonymous": "DeHub a'zosi"
-    }
+    },
+    "subtitle": "جەمئىيەتنىڭ جانلىق سانلىرى",
+    "range7d": "7 كۈن",
+    "range30d": "30 كۈن",
+    "range1y": "1 يىل",
+    "notEnoughHistory": "دىئاگرامما ئۈچۈن تېخى يېتەرلىك تارىخ يوق",
+    "chartA11y": "ۋاقىت بويىچە ئەزالار دىئاگراممىسى",
+    "loadFailed": "جانلىق ستاتىستىكىنى يۈكلىگىلى بولمىدى.",
+    "livePlatformTotal": "سۇپىنىڭ جانلىق ئومۇمىي سانى",
+    "activeUsers": "ئاكتىپ تىزىملاتقان ئىشلەتكۈچىلەر",
+    "newMembers": "يېڭى ئەزالار",
+    "membersOverTime": "ۋاقىت بويىچە ئەزالار",
+    "lastDays": "ئاخىرقى {{count}} كۈن",
+    "source": "DeHub نىڭ ئاممىۋى ستاتىستىكا ئاخىرلىشىش نۇقتىسىدىن خاتىرىلەنگەن ھېسابات تارىخى. بۇ دىئاگراممىدا مۆلچەرلىك قىممەتلەر ئىشلىتىلمىگەن."
   }
 }

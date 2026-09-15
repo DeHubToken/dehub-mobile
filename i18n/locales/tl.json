@@ -3353,6 +3353,19 @@
       "wallTitle": "Ano ang sinasabi ng mga tao",
       "wallNote": "inilabas na may pahintulot",
       "anonymous": "Isang miyembro ng DeHub"
-    }
+    },
+    "subtitle": "Live na bilang ng komunidad",
+    "range7d": "7 araw",
+    "range30d": "30 araw",
+    "range1y": "1 taon",
+    "notEnoughHistory": "Kulang pa ang history para sa isang chart",
+    "chartA11y": "Chart ng mga miyembro sa paglipas ng panahon",
+    "loadFailed": "Hindi ma-load ang live na stats.",
+    "livePlatformTotal": "Live na kabuuan ng platform",
+    "activeUsers": "Aktibong rehistradong user",
+    "newMembers": "Mga bagong miyembro",
+    "membersOverTime": "Mga miyembro sa paglipas ng panahon",
+    "lastDays": "Huling {{count}} araw",
+    "source": "Naitalang kasaysayan ng account mula sa pampublikong stats endpoint ng DeHub. Walang tinatayang halaga na ginagamit sa chart na ito."
   }
 }

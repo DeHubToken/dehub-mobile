@@ -3172,6 +3172,19 @@
       "wallTitle": "Çfarë thonë njerëzit",
       "wallNote": "botuar me leje",
       "anonymous": "Një anëtar i DeHub-it"
-    }
+    },
+    "subtitle": "Shifrat e drejtpërdrejta të komunitetit",
+    "range7d": "7 ditë",
+    "range30d": "30 ditë",
+    "range1y": "1 vit",
+    "notEnoughHistory": "Ende s'ka histori të mjaftueshme për një grafik",
+    "chartA11y": "Grafik i anëtarëve me kalimin e kohës",
+    "loadFailed": "Statistikat e drejtpërdrejta nuk u ngarkuan dot.",
+    "livePlatformTotal": "Totali i drejtpërdrejtë i platformës",
+    "activeUsers": "Përdorues të regjistruar aktivë",
+    "newMembers": "Anëtarë të rinj",
+    "membersOverTime": "Anëtarët me kalimin e kohës",
+    "lastDays": "{{count}} ditët e fundit",
+    "source": "Historik i regjistruar i llogarive nga pika publike e statistikave e DeHub. Në këtë grafik nuk përdoren vlera të vlerësuara."
   }
 }

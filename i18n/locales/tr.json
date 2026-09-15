@@ -3235,6 +3235,19 @@
       "wallTitle": "İnsanlar ne diyor",
       "wallNote": "izinle yayınlandı",
       "anonymous": "Bir DeHub üyesi"
-    }
+    },
+    "subtitle": "Topluluğun canlı rakamları",
+    "range7d": "7 gün",
+    "range30d": "30 gün",
+    "range1y": "1 yıl",
+    "notEnoughHistory": "Grafik için henüz yeterli geçmiş yok",
+    "chartA11y": "Zaman içinde üye grafiği",
+    "loadFailed": "Canlı istatistikler yüklenemedi.",
+    "livePlatformTotal": "Platformun canlı toplamı",
+    "activeUsers": "Etkin kayıtlı kullanıcılar",
+    "newMembers": "Yeni üyeler",
+    "membersOverTime": "Zaman içinde üyeler",
+    "lastDays": "Son {{count}} gün",
+    "source": "DeHub'ın herkese açık istatistik uç noktasından kaydedilen hesap geçmişi. Bu grafikte tahmini değerler kullanılmaz."
   }
 }

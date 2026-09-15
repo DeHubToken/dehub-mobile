@@ -3261,6 +3261,19 @@
       "wallTitle": "Mọi người nói gì",
       "wallNote": "được công bố với sự cho phép",
       "anonymous": "Một thành viên DeHub"
-    }
+    },
+    "subtitle": "Số liệu cộng đồng trực tiếp",
+    "range7d": "7 ngày",
+    "range30d": "30 ngày",
+    "range1y": "1 năm",
+    "notEnoughHistory": "Chưa đủ lịch sử để vẽ biểu đồ",
+    "chartA11y": "Biểu đồ thành viên theo thời gian",
+    "loadFailed": "Không tải được thống kê trực tiếp.",
+    "livePlatformTotal": "Tổng số nền tảng trực tiếp",
+    "activeUsers": "Người dùng đã đăng ký đang hoạt động",
+    "newMembers": "Thành viên mới",
+    "membersOverTime": "Thành viên theo thời gian",
+    "lastDays": "{{count}} ngày gần nhất",
+    "source": "Lịch sử tài khoản được ghi nhận từ endpoint thống kê công khai của DeHub. Biểu đồ này không dùng giá trị ước tính."
   }
 }

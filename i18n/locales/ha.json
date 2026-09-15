@@ -3163,6 +3163,19 @@
       "wallTitle": "Abin da jama'a suke cewa",
       "wallNote": "an buga tare da izini",
       "anonymous": "Memba na DeHub"
-    }
+    },
+    "subtitle": "Alkaluman al'umma kai tsaye",
+    "range7d": "Kwana 7",
+    "range30d": "Kwana 30",
+    "range1y": "Shekara 1",
+    "notEnoughHistory": "Har yanzu babu isasshen tarihi don zane",
+    "chartA11y": "Jadawalin mambobi cikin lokaci",
+    "loadFailed": "An kasa loda ƙididdigar kai tsaye.",
+    "livePlatformTotal": "Jimillar dandali kai tsaye",
+    "activeUsers": "Masu amfani da suka yi rijista masu aiki",
+    "newMembers": "Sabbin mambobi",
+    "membersOverTime": "Mambobi cikin lokaci",
+    "lastDays": "Kwanaki {{count}} da suka gabata",
+    "source": "Tarihin asusu da aka rubuta daga wurin ƙididdiga na jama'a na DeHub. Ba a amfani da ƙimar ƙiyasi a wannan zane ba."
   }
 }

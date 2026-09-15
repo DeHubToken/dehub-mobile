@@ -3247,6 +3247,19 @@
       "wallTitle": "Ce que les gens disent",
       "wallNote": "publié avec permission",
       "anonymous": "Un membre de DeHub"
-    }
+    },
+    "subtitle": "Chiffres en direct de la communauté",
+    "range7d": "7 jours",
+    "range30d": "30 jours",
+    "range1y": "1 an",
+    "notEnoughHistory": "Pas encore assez d'historique pour un graphique",
+    "chartA11y": "Graphique des membres dans le temps",
+    "loadFailed": "Impossible de charger les statistiques en direct.",
+    "livePlatformTotal": "Total de la plateforme en direct",
+    "activeUsers": "Utilisateurs inscrits actifs",
+    "newMembers": "Nouveaux membres",
+    "membersOverTime": "Membres dans le temps",
+    "lastDays": "{{count}} derniers jours",
+    "source": "Historique des comptes enregistré depuis le point de terminaison public des statistiques de DeHub. Aucune valeur estimée n'est utilisée dans ce graphique."
   }
 }

@@ -3173,6 +3173,19 @@
       "wallTitle": "Watu wanasema nini",
       "wallNote": "kuchapishwa kwa ruhusa",
       "anonymous": "Mwanachama wa DeHub"
-    }
+    },
+    "subtitle": "Takwimu za jamii kwa wakati halisi",
+    "range7d": "Siku 7",
+    "range30d": "Siku 30",
+    "range1y": "Mwaka 1",
+    "notEnoughHistory": "Bado historia haitoshi kwa chati",
+    "chartA11y": "Chati ya wanachama kwa muda",
+    "loadFailed": "Imeshindwa kupakia takwimu za moja kwa moja.",
+    "livePlatformTotal": "Jumla ya jukwaa kwa wakati halisi",
+    "activeUsers": "Watumiaji waliosajiliwa wanaotumia",
+    "newMembers": "Wanachama wapya",
+    "membersOverTime": "Wanachama kwa muda",
+    "lastDays": "Siku {{count}} zilizopita",
+    "source": "Historia ya akaunti iliyorekodiwa kutoka kituo cha takwimu cha umma cha DeHub. Hakuna thamani za makadirio zinazotumika kwenye chati hii."
   }
 }

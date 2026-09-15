@@ -3241,6 +3241,19 @@
       "wallTitle": "Co mówią ludzie",
       "wallNote": "opublikowane za zgodą",
       "anonymous": "Członek DeHub"
-    }
+    },
+    "subtitle": "Dane społeczności na żywo",
+    "range7d": "7 dni",
+    "range30d": "30 dni",
+    "range1y": "1 rok",
+    "notEnoughHistory": "Za mało historii, by narysować wykres",
+    "chartA11y": "Wykres członków w czasie",
+    "loadFailed": "Nie udało się wczytać statystyk na żywo.",
+    "livePlatformTotal": "Suma platformy na żywo",
+    "activeUsers": "Aktywni zarejestrowani użytkownicy",
+    "newMembers": "Nowi członkowie",
+    "membersOverTime": "Członkowie w czasie",
+    "lastDays": "Ostatnie {{count}} dni",
+    "source": "Zarejestrowana historia kont z publicznego punktu statystyk DeHub. W tym wykresie nie używa się wartości szacunkowych."
   }
 }

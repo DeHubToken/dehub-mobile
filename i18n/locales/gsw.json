@@ -3162,6 +3162,19 @@
       "wallTitle": "Was Lüt säge",
       "wallNote": "veröffentlicht mit Erlaubnis",
       "anonymous": "E DeHub-Mitglid"
-    }
+    },
+    "subtitle": "Live-Zahle vo dr Community",
+    "range7d": "7 Täg",
+    "range30d": "30 Täg",
+    "range1y": "1 Jahr",
+    "notEnoughHistory": "No nid gnueg Verlauf für es Diagramm",
+    "chartA11y": "Diagramm vo de Mitglider über d Ziit",
+    "loadFailed": "D Live-Statistike hend nid chönne glade werde.",
+    "livePlatformTotal": "Live-Gsamtzahl vo dr Plattform",
+    "activeUsers": "Aktivi registrierti Nutzer",
+    "newMembers": "Neui Mitglider",
+    "membersOverTime": "Mitglider über d Ziit",
+    "lastDays": "Letschti {{count}} Täg",
+    "source": "Ufzeichnete Kontoverlauf us em öffentliche Statistik-Ändpunkt vo DeHub. In dem Diagramm wärded kei gschätzti Wärt bruucht."
   }
 }

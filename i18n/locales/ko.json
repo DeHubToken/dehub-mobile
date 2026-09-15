@@ -3241,6 +3241,19 @@
       "wallTitle": "사람들의 의견",
       "wallNote": "허가를 받아 게시됨",
       "anonymous": "DeHub 회원"
-    }
+    },
+    "subtitle": "커뮤니티 실시간 수치",
+    "range7d": "7일",
+    "range30d": "30일",
+    "range1y": "1년",
+    "notEnoughHistory": "차트를 그리기에는 아직 기록이 부족합니다",
+    "chartA11y": "시간에 따른 회원 수 차트",
+    "loadFailed": "실시간 통계를 불러오지 못했습니다.",
+    "livePlatformTotal": "플랫폼 전체 실시간 합계",
+    "activeUsers": "활성 가입 사용자",
+    "newMembers": "신규 회원",
+    "membersOverTime": "시간에 따른 회원 수",
+    "lastDays": "최근 {{count}}일",
+    "source": "DeHub의 공개 통계 엔드포인트에 기록된 계정 이력입니다. 이 차트에는 추정값을 사용하지 않습니다."
   }
 }
