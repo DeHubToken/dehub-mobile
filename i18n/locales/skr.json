@@ -3612,5 +3612,21 @@
     "openingCheckout": "چیک آؤٹ کھولیا ویندا پیا ہے…",
     "checkoutUnavailable": "چیک آؤٹ لنک دستیاب کائنی۔ ولدا کوشش کرو۔",
     "acceptTerms": "میں قبول کریندا ہاں <terms>سروس دیاں شرطاں</terms>"
+  },
+  "musicSheet": {
+    "title": "گانا بݨاؤ",
+    "songTitle": "گانے دا عنوان",
+    "titlePlaceholder": "خالی چھوڑو، AI فیصلہ کریسی",
+    "styleLabel": "انداز / صنف",
+    "stylePlaceholder": "مثلاً lo-fi، جوشیلا پاپ، ڈارک ٹریپ",
+    "vocals": "آواز",
+    "voiceAuto": "آٹو",
+    "voiceMale": "مرد",
+    "voiceFemale": "زنانی",
+    "lyrics": "بول",
+    "writeForMe": "میݙے کیتے لکھو",
+    "rewrite": "ولدا لکھو",
+    "lyricsPlaceholder": "صرف ساز کیتے خالی چھوڑو",
+    "lyricsFailed": "بول کائنی بݨ سگھے"
   }
 }

@@ -3650,5 +3650,21 @@
     "openingCheckout": "ගෙවීම විවෘත කරමින්…",
     "checkoutUnavailable": "ගෙවීම් සබැඳිය නොමැත. නැවත උත්සාහ කරන්න.",
     "acceptTerms": "මම පිළිගනිමි <terms>සේවා කොන්දේසි</terms>"
+  },
+  "musicSheet": {
+    "title": "ගීතයක් සාදන්න",
+    "songTitle": "ගීත නාමය",
+    "titlePlaceholder": "AI තීරණය කිරීමට හිස්ව තබන්න",
+    "styleLabel": "විලාසය / ප්‍රභේදය",
+    "stylePlaceholder": "උදා. lo-fi, උද්‍යෝගිමත් pop, අඳුරු trap",
+    "vocals": "ගායනය",
+    "voiceAuto": "ස්වයංක්‍රීය",
+    "voiceMale": "පිරිමි",
+    "voiceFemale": "ගැහැණු",
+    "lyrics": "පද",
+    "writeForMe": "මට වෙනුවෙන් ලියන්න",
+    "rewrite": "නැවත ලියන්න",
+    "lyricsPlaceholder": "වාද්‍ය ගීතයක් සඳහා හිස්ව තබන්න",
+    "lyricsFailed": "පද සෑදීම අසාර්ථකයි"
   }
 }

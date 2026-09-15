@@ -3633,5 +3633,21 @@
     "openingCheckout": "ገጽ ክፍሊት ይኽፈት ኣሎ…",
     "checkoutUnavailable": "መላግቦ ክፍሊት የለን። እንደገና ፈትን።",
     "acceptTerms": "እቕበል ኣለኹ <terms>ውዕላት ኣገልግሎት</terms>"
+  },
+  "musicSheet": {
+    "title": "ደርፊ ፍጠር",
+    "songTitle": "ኣርእስቲ ደርፊ",
+    "titlePlaceholder": "AI ክውስን ባዶ ግደፎ",
+    "styleLabel": "ስልቲ / ዓይነት",
+    "stylePlaceholder": "ንኣብነት lo-fi፡ ንጡፍ pop፡ ጸልማት trap",
+    "vocals": "ድምጺ",
+    "voiceAuto": "ኣውቶ",
+    "voiceMale": "ተባዕታይ",
+    "voiceFemale": "ኣንስተይቲ",
+    "lyrics": "ግጥሚ",
+    "writeForMe": "ንዓይ ጽሓፍ",
+    "rewrite": "እንደገና ጽሓፍ",
+    "lyricsPlaceholder": "ናይ መሳርሒ ጥራይ ደርፊ እንተደሊኻ ባዶ ግደፎ",
+    "lyricsFailed": "ግጥሚ ክፍጠር ኣይተኻእለን"
   }
 }

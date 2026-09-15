@@ -34,6 +34,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
 import { supabase } from '../../services/supabase';
 import { toastError } from '../../libs/toast';
@@ -88,10 +89,10 @@ function detectVoiceGender(prompt: string): 'male' | 'female' | 'auto' {
   return 'auto';
 }
 
-const GENDER_OPTIONS: { value: MusicParams['voiceGender']; label: string; emoji: string }[] = [
-  { value: 'auto', label: 'Auto', emoji: '🎤' },
-  { value: 'male', label: 'Male', emoji: '🧑' },
-  { value: 'female', label: 'Female', emoji: '👩' },
+const GENDER_OPTIONS: { value: MusicParams['voiceGender']; labelKey: string; emoji: string }[] = [
+  { value: 'auto', labelKey: 'musicSheet.voiceAuto', emoji: '🎤' },
+  { value: 'male', labelKey: 'musicSheet.voiceMale', emoji: '🧑' },
+  { value: 'female', labelKey: 'musicSheet.voiceFemale', emoji: '👩' },
 ];
 
 interface MusicConfirmSheetProps {
@@ -108,6 +109,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
   onConfirm,
 }) => {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [lyrics, setLyrics] = useState('');
   const [style, setStyle] = useState('');
@@ -163,11 +165,11 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
       if (data?.lyrics) setLyrics(data.lyrics);
     } catch (err) {
       log.error('lyrics generation failed:', err);
-      toastError(err instanceof Error ? err.message : 'Failed to generate lyrics');
+      toastError(err instanceof Error ? err.message : t('musicSheet.lyricsFailed'));
     } finally {
       setIsGeneratingLyrics(false);
     }
-  }, [title, style, voiceGender, lyrics, userPrompt]);
+  }, [title, style, voiceGender, lyrics, userPrompt, t]);
 
   if (isFullyClosed && !visible) return null;
 
@@ -200,7 +202,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
           <View style={s.headerRow}>
             <View style={s.headerLeft}>
               <Icon name="Music" size={20} color="#F9FBFF" />
-              <Text style={s.title}>Create a song</Text>
+              <Text style={s.title}>{t('musicSheet.title')}</Text>
             </View>
             <TouchableOpacity onPress={closeSheet} activeOpacity={0.7} hitSlop={8}>
               <Icon name="X" size={20} color="#6F7174" />
@@ -212,25 +214,25 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
             contentContainerStyle={s.scrollContent}
             keyboardShouldPersistTaps="handled"
           >
-            <Text style={s.label}>Song title</Text>
+            <Text style={s.label}>{t('musicSheet.songTitle')}</Text>
             <TextInput
               style={s.input}
               value={title}
               onChangeText={setTitle}
-              placeholder="Leave blank for AI to decide"
+              placeholder={t('musicSheet.titlePlaceholder')}
               placeholderTextColor="#4B4D50"
             />
 
-            <Text style={s.label}>Style / genre</Text>
+            <Text style={s.label}>{t('musicSheet.styleLabel')}</Text>
             <TextInput
               style={s.input}
               value={style}
               onChangeText={setStyle}
-              placeholder="e.g. lo-fi, upbeat pop, dark trap"
+              placeholder={t('musicSheet.stylePlaceholder')}
               placeholderTextColor="#4B4D50"
             />
 
-            <Text style={s.label}>Vocals</Text>
+            <Text style={s.label}>{t('musicSheet.vocals')}</Text>
             <View style={s.genderRow}>
               {GENDER_OPTIONS.map((option) => {
                 const selected = voiceGender === option.value;
@@ -243,7 +245,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
                   >
                     <Text style={s.genderEmoji}>{option.emoji}</Text>
                     <Text style={[s.genderLabel, selected && { color: '#F9FBFF' }]}>
-                      {option.label}
+                      {t(option.labelKey)}
                     </Text>
                   </TouchableOpacity>
                 );
@@ -251,7 +253,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
             </View>
 
             <View style={s.lyricsHeader}>
-              <Text style={[s.label, { marginTop: 0 }]}>Lyrics</Text>
+              <Text style={[s.label, { marginTop: 0 }]}>{t('musicSheet.lyrics')}</Text>
               <TouchableOpacity
                 onPress={handleGenerateLyrics}
                 disabled={isGeneratingLyrics}
@@ -263,7 +265,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
                 ) : (
                   <>
                     <Icon name="Sparkles" size={13} color="#A6A9AC" />
-                    <Text style={s.lyricsBtnText}>{lyrics ? 'Rewrite' : 'Write for me'}</Text>
+                    <Text style={s.lyricsBtnText}>{lyrics ? t('musicSheet.rewrite') : t('musicSheet.writeForMe')}</Text>
                   </>
                 )}
               </TouchableOpacity>
@@ -272,7 +274,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
               style={[s.input, s.textarea]}
               value={lyrics}
               onChangeText={setLyrics}
-              placeholder="Leave blank for an instrumental"
+              placeholder={t('musicSheet.lyricsPlaceholder')}
               placeholderTextColor="#4B4D50"
               multiline
               textAlignVertical="top"
@@ -281,14 +283,14 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
 
           <View style={s.footer}>
             <TouchableOpacity style={s.cancelBtn} onPress={closeSheet} activeOpacity={0.7}>
-              <Text style={s.cancelBtnText}>Cancel</Text>
+              <Text style={s.cancelBtnText}>{t('common.cancel')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={s.confirmBtn}
               onPress={() => onConfirm({ title, lyrics, style, voiceGender })}
               activeOpacity={0.8}
             >
-              <Text style={s.confirmBtnText}>Continue</Text>
+              <Text style={s.confirmBtnText}>{t('loginModal.continue')}</Text>
             </TouchableOpacity>
           </View>
         </Animated.View>

@@ -3724,5 +3724,21 @@
     "openingCheckout": "चेकआउट खोला जा रहा है…",
     "checkoutUnavailable": "चेकआउट लिंक उपलब्ध नहीं। कृपया फिर कोशिश करें।",
     "acceptTerms": "मैं स्वीकार करता हूँ <terms>सेवा की शर्तें</terms>"
+  },
+  "musicSheet": {
+    "title": "गाना बनाएँ",
+    "songTitle": "गाने का शीर्षक",
+    "titlePlaceholder": "खाली छोड़ें, AI तय करेगा",
+    "styleLabel": "शैली / जॉनर",
+    "stylePlaceholder": "जैसे lo-fi, जोशीला पॉप, डार्क ट्रैप",
+    "vocals": "गायन",
+    "voiceAuto": "ऑटो",
+    "voiceMale": "पुरुष",
+    "voiceFemale": "महिला",
+    "lyrics": "बोल",
+    "writeForMe": "मेरे लिए लिखो",
+    "rewrite": "फिर से लिखें",
+    "lyricsPlaceholder": "सिर्फ़ संगीत के लिए खाली छोड़ें",
+    "lyricsFailed": "बोल नहीं बन सके"
   }
 }

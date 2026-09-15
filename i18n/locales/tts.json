@@ -3627,5 +3627,21 @@
     "openingCheckout": "กำลังเปิดหน้าชำระเงิน…",
     "checkoutUnavailable": "ลิงก์ชำระเงินใช้บ่ได้ กรุณาลองใหม่",
     "acceptTerms": "ข้อยยอมฮับ <terms>ข้อกำหนดในการให้บริการ</terms>"
+  },
+  "musicSheet": {
+    "title": "สร้างเปลง",
+    "songTitle": "จื้อเปลง",
+    "titlePlaceholder": "เว้นว่างไว้หื้อ AI ตัดสินใจ",
+    "styleLabel": "สไตล์ / แนวเปลง",
+    "stylePlaceholder": "เจ้น lo-fi, ป๊อปสดใส, ทแร็ปมืด",
+    "vocals": "เสียงฮ้อง",
+    "voiceAuto": "อัตโนมัติ",
+    "voiceMale": "ป้อจาย",
+    "voiceFemale": "แม่ญิง",
+    "lyrics": "เนื้อเปลง",
+    "writeForMe": "เขียนหื้อเฮา",
+    "rewrite": "เขียนใหม่",
+    "lyricsPlaceholder": "เว้นว่างไว้ถ้าอยากได้เปลงบรรเลง",
+    "lyricsFailed": "สร้างเนื้อเปลงบ่ได้"
   }
 }

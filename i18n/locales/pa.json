@@ -3644,5 +3644,21 @@
     "openingCheckout": "ਚੈੱਕਆਉਟ ਖੁੱਲ੍ਹ ਰਿਹਾ ਹੈ…",
     "checkoutUnavailable": "ਚੈੱਕਆਉਟ ਲਿੰਕ ਉਪਲਬਧ ਨਹੀਂ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
     "acceptTerms": "ਮੈਂ ਸਵੀਕਾਰ ਕਰਦਾ ਹਾਂ <terms>ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ</terms>"
+  },
+  "musicSheet": {
+    "title": "ਗੀਤ ਬਣਾਓ",
+    "songTitle": "ਗੀਤ ਦਾ ਸਿਰਲੇਖ",
+    "titlePlaceholder": "ਖਾਲੀ ਛੱਡੋ, AI ਫੈਸਲਾ ਕਰੇਗਾ",
+    "styleLabel": "ਸ਼ੈਲੀ / ਜਾਨਰ",
+    "stylePlaceholder": "ਜਿਵੇਂ lo-fi, ਜੋਸ਼ੀਲਾ ਪੌਪ, ਡਾਰਕ ਟ੍ਰੈਪ",
+    "vocals": "ਗਾਇਕੀ",
+    "voiceAuto": "ਆਟੋ",
+    "voiceMale": "ਮਰਦ",
+    "voiceFemale": "ਔਰਤ",
+    "lyrics": "ਬੋਲ",
+    "writeForMe": "ਮੇਰੇ ਲਈ ਲਿਖੋ",
+    "rewrite": "ਮੁੜ ਲਿਖੋ",
+    "lyricsPlaceholder": "ਸਿਰਫ਼ ਸੰਗੀਤ ਲਈ ਖਾਲੀ ਛੱਡੋ",
+    "lyricsFailed": "ਬੋਲ ਨਹੀਂ ਬਣ ਸਕੇ"
   }
 }

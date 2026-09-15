@@ -3660,5 +3660,21 @@
     "openingCheckout": "ચેકઆઉટ ખૂલી રહ્યું છે…",
     "checkoutUnavailable": "ચેકઆઉટ લિંક ઉપલબ્ધ નથી. ફરી પ્રયાસ કરો.",
     "acceptTerms": "હું સ્વીકારું છું <terms>સેવાની શરતો</terms>"
+  },
+  "musicSheet": {
+    "title": "ગીત બનાવો",
+    "songTitle": "ગીતનું શીર્ષક",
+    "titlePlaceholder": "ખાલી રાખો, AI નક્કી કરશે",
+    "styleLabel": "શૈલી / પ્રકાર",
+    "stylePlaceholder": "દા.ત. lo-fi, ઉત્સાહી પોપ, ડાર્ક ટ્રેપ",
+    "vocals": "ગાયન",
+    "voiceAuto": "ઑટો",
+    "voiceMale": "પુરુષ",
+    "voiceFemale": "સ્ત્રી",
+    "lyrics": "ગીતના શબ્દો",
+    "writeForMe": "મારા માટે લખો",
+    "rewrite": "ફરી લખો",
+    "lyricsPlaceholder": "માત્ર સંગીત માટે ખાલી રાખો",
+    "lyricsFailed": "ગીતના શબ્દો બનાવી શકાયા નહીં"
   }
 }

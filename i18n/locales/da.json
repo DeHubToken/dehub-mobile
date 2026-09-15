@@ -3672,5 +3672,21 @@
     "openingCheckout": "Åbner betaling…",
     "checkoutUnavailable": "Betalingslinket er ikke tilgængeligt. Prøv igen.",
     "acceptTerms": "Jeg accepterer <terms>Servicevilkår</terms>"
+  },
+  "musicSheet": {
+    "title": "Lav en sang",
+    "songTitle": "Sangtitel",
+    "titlePlaceholder": "Lad stå tomt, så AI'en bestemmer",
+    "styleLabel": "Stil / genre",
+    "stylePlaceholder": "f.eks. lo-fi, opløftende pop, mørk trap",
+    "vocals": "Vokal",
+    "voiceAuto": "Auto",
+    "voiceMale": "Mandlig",
+    "voiceFemale": "Kvindelig",
+    "lyrics": "Tekst",
+    "writeForMe": "Skriv den for mig",
+    "rewrite": "Skriv om",
+    "lyricsPlaceholder": "Lad stå tomt for et instrumentalnummer",
+    "lyricsFailed": "Kunne ikke generere teksten"
   }
 }

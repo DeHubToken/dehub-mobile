@@ -3703,5 +3703,21 @@
     "openingCheckout": "გადახდის გახსნა…",
     "checkoutUnavailable": "გადახდის ბმული მიუწვდომელია. სცადეთ ხელახლა.",
     "acceptTerms": "ვეთანხმები <terms>მომსახურების პირობები</terms>"
+  },
+  "musicSheet": {
+    "title": "შექმენით სიმღერა",
+    "songTitle": "სიმღერის სათაური",
+    "titlePlaceholder": "დატოვეთ ცარიელი, რომ AI გადაწყვიტოს",
+    "styleLabel": "სტილი / ჟანრი",
+    "stylePlaceholder": "მაგ. lo-fi, ენერგიული პოპი, ბნელი trap",
+    "vocals": "ვოკალი",
+    "voiceAuto": "ავტო",
+    "voiceMale": "მამრობითი",
+    "voiceFemale": "მდედრობითი",
+    "lyrics": "ტექსტი",
+    "writeForMe": "დამიწერე",
+    "rewrite": "ხელახლა დაწერე",
+    "lyricsPlaceholder": "დატოვეთ ცარიელი ინსტრუმენტალისთვის",
+    "lyricsFailed": "ტექსტის შექმნა ვერ მოხერხდა"
   }
 }

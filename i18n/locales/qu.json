@@ -3698,5 +3698,21 @@
     "openingCheckout": "Qullqi qupuy p'anqata kichachkan…",
     "checkoutUnavailable": "Qullqi qupuy t'inkiy mana kanchu. Yapamanta ruray.",
     "acceptTerms": "Chaskikuni <terms>Llamk'ay kamachikuykuna</terms>"
+  },
+  "musicSheet": {
+    "title": "Takita ruway",
+    "songTitle": "Taki suti",
+    "titlePlaceholder": "Ch'usaqta saqiy AI akllanampaq",
+    "styleLabel": "Rikch'ay / laya",
+    "stylePlaceholder": "kayhina lo-fi, kusikuy pop, tutayaq trap",
+    "vocals": "Takiy kunka",
+    "voiceAuto": "Kikin",
+    "voiceMale": "Qhari",
+    "voiceFemale": "Warmi",
+    "lyrics": "Taki simi",
+    "writeForMe": "Ñuqapaq qillqay",
+    "rewrite": "Musuqmanta qillqay",
+    "lyricsPlaceholder": "Ch'usaqta saqiy takiy simi mana kananpaq",
+    "lyricsFailed": "Taki simita mana ruwayta atinchu"
   }
 }

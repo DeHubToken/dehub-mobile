@@ -3687,5 +3687,21 @@
     "openingCheckout": "កំពុងបើកការទូទាត់…",
     "checkoutUnavailable": "តំណទូទាត់មិនអាចប្រើបានទេ។ សូមព្យាយាមម្ដងទៀត។",
     "acceptTerms": "ខ្ញុំយល់ព្រមនឹង <terms>លក្ខខណ្ឌសេវាកម្ម</terms>"
+  },
+  "musicSheet": {
+    "title": "បង្កើតបទចម្រៀង",
+    "songTitle": "ចំណងជើងបទចម្រៀង",
+    "titlePlaceholder": "ទុកឱ្យទទេ ដើម្បីឱ្យ AI សម្រេច",
+    "styleLabel": "រចនាបថ / ប្រភេទ",
+    "stylePlaceholder": "ឧ. lo-fi, pop រស់រវើក, trap ងងឹត",
+    "vocals": "សំឡេងច្រៀង",
+    "voiceAuto": "ស្វ័យប្រវត្តិ",
+    "voiceMale": "ប្រុស",
+    "voiceFemale": "ស្រី",
+    "lyrics": "ទំនុកច្រៀង",
+    "writeForMe": "សរសេរឱ្យខ្ញុំ",
+    "rewrite": "សរសេរឡើងវិញ",
+    "lyricsPlaceholder": "ទុកឱ្យទទេ សម្រាប់បទឧបករណ៍តែប៉ុណ្ណោះ",
+    "lyricsFailed": "មិនអាចបង្កើតទំនុកច្រៀងបានទេ"
   }
 }

@@ -3620,5 +3620,21 @@
     "openingCheckout": "चेकआउट खुलैत अछि…",
     "checkoutUnavailable": "चेकआउट लिंक उपलब्ध नै। फेर प्रयास करू।",
     "acceptTerms": "हम स्वीकार करैत छी <terms>सेवा के सर्त</terms>"
+  },
+  "musicSheet": {
+    "title": "गाना बनावऽ",
+    "songTitle": "गाना के नाम",
+    "titlePlaceholder": "खाली छोड़ऽ, AI तय करतै",
+    "styleLabel": "स्टाइल / शैली",
+    "stylePlaceholder": "जइसे lo-fi, जोशगर पॉप, डार्क ट्रैप",
+    "vocals": "गायकी",
+    "voiceAuto": "ऑटो",
+    "voiceMale": "पुरुष",
+    "voiceFemale": "महिला",
+    "lyrics": "बोल",
+    "writeForMe": "हमरा लेल लिखऽ",
+    "rewrite": "फेर लिखऽ",
+    "lyricsPlaceholder": "खाली छोड़ऽ त खाली धुन बनतै",
+    "lyricsFailed": "बोल ना बन सकल"
   }
 }

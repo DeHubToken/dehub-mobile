@@ -3756,5 +3756,21 @@
     "openingCheckout": "Đang mở trang thanh toán…",
     "checkoutUnavailable": "Không có liên kết thanh toán. Vui lòng thử lại.",
     "acceptTerms": "Tôi chấp nhận <terms>Điều khoản dịch vụ</terms>"
+  },
+  "musicSheet": {
+    "title": "Tạo bài hát",
+    "songTitle": "Tên bài hát",
+    "titlePlaceholder": "Để trống để AI tự quyết",
+    "styleLabel": "Phong cách / thể loại",
+    "stylePlaceholder": "vd. lo-fi, pop sôi động, trap u tối",
+    "vocals": "Giọng hát",
+    "voiceAuto": "Tự động",
+    "voiceMale": "Nam",
+    "voiceFemale": "Nữ",
+    "lyrics": "Lời bài hát",
+    "writeForMe": "Viết giúp tôi",
+    "rewrite": "Viết lại",
+    "lyricsPlaceholder": "Để trống nếu muốn bản hòa tấu",
+    "lyricsFailed": "Không tạo được lời bài hát"
   }
 }

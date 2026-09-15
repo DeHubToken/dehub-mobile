@@ -3742,5 +3742,21 @@
     "openingCheckout": "Ouverture du paiement…",
     "checkoutUnavailable": "Lien de paiement indisponible. Veuillez réessayer.",
     "acceptTerms": "J'accepte les <terms>Conditions d'utilisation</terms>"
+  },
+  "musicSheet": {
+    "title": "Créer une chanson",
+    "songTitle": "Titre de la chanson",
+    "titlePlaceholder": "Laissez vide pour que l'IA décide",
+    "styleLabel": "Style / genre",
+    "stylePlaceholder": "par ex. lo-fi, pop entraînante, trap sombre",
+    "vocals": "Voix",
+    "voiceAuto": "Auto",
+    "voiceMale": "Masculine",
+    "voiceFemale": "Féminine",
+    "lyrics": "Paroles",
+    "writeForMe": "Écrire pour moi",
+    "rewrite": "Réécrire",
+    "lyricsPlaceholder": "Laissez vide pour un instrumental",
+    "lyricsFailed": "Impossible de générer les paroles"
   }
 }

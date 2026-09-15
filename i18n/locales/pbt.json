@@ -3618,5 +3618,21 @@
     "openingCheckout": "تادیه پرانیستل کیږي…",
     "checkoutUnavailable": "د تادیې لینک شتون نلري. بیا هڅه وکړئ.",
     "acceptTerms": "زه مني <terms>د خدماتو شرایط</terms>"
+  },
+  "musicSheet": {
+    "title": "سندره جوړه کړئ",
+    "songTitle": "د سندرې سرلیک",
+    "titlePlaceholder": "خالي یې پرېږدئ چې AI پرېکړه وکړي",
+    "styleLabel": "سبک / ژانر",
+    "stylePlaceholder": "لکه lo-fi، ژوندی پاپ، تیاره trap",
+    "vocals": "غږ",
+    "voiceAuto": "اتوماتیک",
+    "voiceMale": "نارینه",
+    "voiceFemale": "ښځینه",
+    "lyrics": "متن",
+    "writeForMe": "زما لپاره یې ولیکئ",
+    "rewrite": "بیا ولیکئ",
+    "lyricsPlaceholder": "د یوازې موسیقۍ لپاره یې خالي پرېږدئ",
+    "lyricsFailed": "متن جوړ نشو"
   }
 }

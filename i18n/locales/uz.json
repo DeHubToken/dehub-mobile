@@ -3719,5 +3719,21 @@
     "openingCheckout": "To‘lov sahifasi ochilmoqda…",
     "checkoutUnavailable": "To‘lov havolasi mavjud emas. Qayta urinib ko‘ring.",
     "acceptTerms": "Men qabul qilaman <terms>Xizmat shartlari</terms>"
+  },
+  "musicSheet": {
+    "title": "Qo'shiq yaratish",
+    "songTitle": "Qo'shiq nomi",
+    "titlePlaceholder": "Bo'sh qoldirsangiz, sun'iy intellekt hal qiladi",
+    "styleLabel": "Uslub / janr",
+    "stylePlaceholder": "masalan lo-fi, quvnoq pop, qorong'i trap",
+    "vocals": "Vokal",
+    "voiceAuto": "Avto",
+    "voiceMale": "Erkak",
+    "voiceFemale": "Ayol",
+    "lyrics": "Matn",
+    "writeForMe": "Men uchun yozing",
+    "rewrite": "Qayta yozish",
+    "lyricsPlaceholder": "Cholg'u versiyasi uchun bo'sh qoldiring",
+    "lyricsFailed": "Matn yaratib bo'lmadi"
   }
 }

@@ -3638,5 +3638,21 @@
     "openingCheckout": "Töleg açylýar…",
     "checkoutUnavailable": "Töleg salgysy elýeterli däl. Gaýtadan synanyşyň.",
     "acceptTerms": "Men kabul edýärin <terms>Hyzmat şertleri</terms>"
+  },
+  "musicSheet": {
+    "title": "Aýdym döret",
+    "songTitle": "Aýdymyň ady",
+    "titlePlaceholder": "Boş goýuň, emeli aň karar berer",
+    "styleLabel": "Stil / žanr",
+    "stylePlaceholder": "meselem lo-fi, şadyýan pop, garaňky trap",
+    "vocals": "Wokal",
+    "voiceAuto": "Awto",
+    "voiceMale": "Erkek",
+    "voiceFemale": "Aýal",
+    "lyrics": "Sözler",
+    "writeForMe": "Meniň üçin ýaz",
+    "rewrite": "Täzeden ýaz",
+    "lyricsPlaceholder": "Diňe saz üçin boş goýuň",
+    "lyricsFailed": "Sözleri döredip bolmady"
   }
 }

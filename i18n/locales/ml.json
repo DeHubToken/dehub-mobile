@@ -3650,5 +3650,21 @@
     "openingCheckout": "ചെക്ക്ഔട്ട് തുറക്കുന്നു…",
     "checkoutUnavailable": "ചെക്ക്ഔട്ട് ലിങ്ക് ലഭ്യമല്ല. വീണ്ടും ശ്രമിക്കൂ.",
     "acceptTerms": "ഞാൻ അംഗീകരിക്കുന്നു <terms>സേവന നിബന്ധനകൾ</terms>"
+  },
+  "musicSheet": {
+    "title": "ഒരു പാട്ട് ഉണ്ടാക്കുക",
+    "songTitle": "പാട്ടിന്റെ പേര്",
+    "titlePlaceholder": "AI തീരുമാനിക്കാൻ ശൂന്യമായി വിടുക",
+    "styleLabel": "ശൈലി / വിഭാഗം",
+    "stylePlaceholder": "ഉദാ. lo-fi, ഉന്മേഷമുള്ള പോപ്പ്, ഡാർക്ക് ട്രാപ്പ്",
+    "vocals": "ആലാപനം",
+    "voiceAuto": "ഓട്ടോ",
+    "voiceMale": "പുരുഷൻ",
+    "voiceFemale": "സ്ത്രീ",
+    "lyrics": "വരികൾ",
+    "writeForMe": "എനിക്കായി എഴുതൂ",
+    "rewrite": "വീണ്ടും എഴുതുക",
+    "lyricsPlaceholder": "ഉപകരണസംഗീതത്തിന് ശൂന്യമായി വിടുക",
+    "lyricsFailed": "വരികൾ സൃഷ്ടിക്കാനായില്ല"
   }
 }

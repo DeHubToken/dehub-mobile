@@ -3655,5 +3655,21 @@
     "openingCheckout": "פותח את התשלום…",
     "checkoutUnavailable": "קישור התשלום אינו זמין. נסו שוב.",
     "acceptTerms": "אני מקבל את <terms>תנאי השירות</terms>"
+  },
+  "musicSheet": {
+    "title": "יצירת שיר",
+    "songTitle": "שם השיר",
+    "titlePlaceholder": "השאירו ריק כדי שה-AI יחליט",
+    "styleLabel": "סגנון / ז'אנר",
+    "stylePlaceholder": "למשל lo-fi, פופ קצבי, טראפ אפל",
+    "vocals": "שירה",
+    "voiceAuto": "אוטומטי",
+    "voiceMale": "גברית",
+    "voiceFemale": "נשית",
+    "lyrics": "מילים",
+    "writeForMe": "כתוב בשבילי",
+    "rewrite": "כתוב מחדש",
+    "lyricsPlaceholder": "השאירו ריק לגרסה אינסטרומנטלית",
+    "lyricsFailed": "יצירת המילים נכשלה"
   }
 }

@@ -3658,5 +3658,21 @@
     "openingCheckout": "Åpner betaling…",
     "checkoutUnavailable": "Betalingslenken er ikke tilgjengelig. Prøv igjen.",
     "acceptTerms": "Jeg godtar <terms>Vilkår for tjenesten</terms>"
+  },
+  "musicSheet": {
+    "title": "Lag en sang",
+    "songTitle": "Sangtittel",
+    "titlePlaceholder": "La stå tomt så bestemmer KI-en",
+    "styleLabel": "Stil / sjanger",
+    "stylePlaceholder": "f.eks. lo-fi, oppløftende pop, mørk trap",
+    "vocals": "Vokal",
+    "voiceAuto": "Auto",
+    "voiceMale": "Mannlig",
+    "voiceFemale": "Kvinnelig",
+    "lyrics": "Tekst",
+    "writeForMe": "Skriv den for meg",
+    "rewrite": "Skriv om",
+    "lyricsPlaceholder": "La stå tomt for et instrumentalspor",
+    "lyricsFailed": "Klarte ikke å lage teksten"
   }
 }

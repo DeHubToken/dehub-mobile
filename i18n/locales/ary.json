@@ -3694,5 +3694,21 @@
     "openingCheckout": "كيحل صفحة الخلاص…",
     "checkoutUnavailable": "رابط الخلاص ماشي متوفر. عاود جرب.",
     "acceptTerms": "كنوافق على <terms>شروط الخدمة</terms>"
+  },
+  "musicSheet": {
+    "title": "دير أغنية",
+    "songTitle": "عنوان الأغنية",
+    "titlePlaceholder": "خليه خاوي باش الذكاء الاصطناعي يقرر",
+    "styleLabel": "الستيل / النوع",
+    "stylePlaceholder": "مثلا لو-فاي، بوب نشيط، تراب مظلم",
+    "vocals": "الغنا",
+    "voiceAuto": "أوتوماتيكي",
+    "voiceMale": "راجل",
+    "voiceFemale": "مرا",
+    "lyrics": "الكلمات",
+    "writeForMe": "كتبها ليا",
+    "rewrite": "عاود كتبها",
+    "lyricsPlaceholder": "خليه خاوي باش تكون بلا كلمات",
+    "lyricsFailed": "ما قدرناش نكتبو الكلمات"
   }
 }

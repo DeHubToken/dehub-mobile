@@ -3737,5 +3737,21 @@
     "openingCheckout": "Открытие оплаты…",
     "checkoutUnavailable": "Ссылка на оплату недоступна. Попробуйте ещё раз.",
     "acceptTerms": "Я принимаю <terms>Условия обслуживания</terms>"
+  },
+  "musicSheet": {
+    "title": "Создать песню",
+    "songTitle": "Название песни",
+    "titlePlaceholder": "Оставьте пустым, чтобы решил ИИ",
+    "styleLabel": "Стиль / жанр",
+    "stylePlaceholder": "напр. lo-fi, бодрый поп, мрачный trap",
+    "vocals": "Вокал",
+    "voiceAuto": "Авто",
+    "voiceMale": "Мужской",
+    "voiceFemale": "Женский",
+    "lyrics": "Текст",
+    "writeForMe": "Напиши за меня",
+    "rewrite": "Переписать",
+    "lyricsPlaceholder": "Оставьте пустым для инструментала",
+    "lyricsFailed": "Не удалось создать текст"
   }
 }

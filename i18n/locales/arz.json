@@ -3664,5 +3664,21 @@
     "openingCheckout": "بيفتح صفحة الدفع…",
     "checkoutUnavailable": "لينك الدفع مش متاح. من فضلك جرّب تاني.",
     "acceptTerms": "أوافق على <terms>شروط الخدمة</terms>"
+  },
+  "musicSheet": {
+    "title": "اعمل أغنية",
+    "songTitle": "عنوان الأغنية",
+    "titlePlaceholder": "سيبه فاضي والذكاء الاصطناعي هيقرر",
+    "styleLabel": "الاستايل / النوع",
+    "stylePlaceholder": "مثلا لو-فاي، بوب حماسي، تراب غامق",
+    "vocals": "الغنا",
+    "voiceAuto": "أوتوماتيك",
+    "voiceMale": "راجل",
+    "voiceFemale": "ست",
+    "lyrics": "الكلمات",
+    "writeForMe": "اكتبهالي",
+    "rewrite": "اعد كتابتها",
+    "lyricsPlaceholder": "سيبه فاضي علشان تبقى بدون كلمات",
+    "lyricsFailed": "مقدرناش نكتب الكلمات"
   }
 }

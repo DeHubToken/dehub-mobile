@@ -3681,5 +3681,21 @@
     "openingCheckout": "در حال باز کردن صفحه پرداخت…",
     "checkoutUnavailable": "لینک پرداخت در دسترس نیست. دوباره تلاش کنید.",
     "acceptTerms": "می‌پذیرم <terms>شرایط خدمات</terms>"
+  },
+  "musicSheet": {
+    "title": "یک آهنگ بسازید",
+    "songTitle": "عنوان آهنگ",
+    "titlePlaceholder": "خالی بگذارید تا هوش مصنوعی تصمیم بگیرد",
+    "styleLabel": "سبک / ژانر",
+    "stylePlaceholder": "مثلاً lo-fi، پاپ پرانرژی، ترپ تاریک",
+    "vocals": "آواز",
+    "voiceAuto": "خودکار",
+    "voiceMale": "مرد",
+    "voiceFemale": "زن",
+    "lyrics": "متن آهنگ",
+    "writeForMe": "برایم بنویس",
+    "rewrite": "بازنویسی",
+    "lyricsPlaceholder": "برای قطعه بی‌کلام خالی بگذارید",
+    "lyricsFailed": "ساخت متن آهنگ ناموفق بود"
   }
 }

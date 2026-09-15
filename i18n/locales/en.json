@@ -3738,5 +3738,21 @@
     "openingCheckout": "Opening checkout…",
     "checkoutUnavailable": "Checkout link unavailable. Please try again.",
     "acceptTerms": "I accept the <terms>Terms and Service</terms>"
+  },
+  "musicSheet": {
+    "title": "Create a song",
+    "songTitle": "Song title",
+    "titlePlaceholder": "Leave blank for AI to decide",
+    "styleLabel": "Style / genre",
+    "stylePlaceholder": "e.g. lo-fi, upbeat pop, dark trap",
+    "vocals": "Vocals",
+    "voiceAuto": "Auto",
+    "voiceMale": "Male",
+    "voiceFemale": "Female",
+    "lyrics": "Lyrics",
+    "writeForMe": "Write for me",
+    "rewrite": "Rewrite",
+    "lyricsPlaceholder": "Leave blank for an instrumental",
+    "lyricsFailed": "Failed to generate lyrics"
   }
 }
