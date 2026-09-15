@@ -606,7 +606,8 @@
     "signIn": "Přihlásit se",
     "takePhoto": "Vyfotit",
     "recordVideo": "Natočit video",
-    "saveChanges": "Uložit změny"
+    "saveChanges": "Uložit změny",
+    "copy": "Kopírovat"
   },
   "drawers": {
     "ppvTitle": "Platba za zhlédnutí",
@@ -3191,5 +3192,20 @@
     "membersOverTime": "Členové v čase",
     "lastDays": "Posledních {{count}} dní",
     "source": "Zaznamenaná historie účtů z veřejného statistického endpointu DeHub. V tomto grafu se nepoužívají odhadované hodnoty."
+  },
+  "solana": {
+    "unavailableTitle": "Peněženka Solana není dostupná",
+    "unavailableBody": "Toto zařízení nemá klíč k vaší peněžence DeHub. Přihlaste se znovu, abyste ji obnovili, a peněženka Solana se vrátí s ní.",
+    "yourAddress": "Vaše adresa Solana",
+    "refreshBalanceA11y": "Obnovit zůstatek SOL",
+    "copyAddressA11y": "Kopírovat adresu Solana",
+    "addressCopied": "Adresa Solana zkopírována",
+    "explorerFailed": "Solscan se nepodařilo otevřít",
+    "fundingTitle": "Financování této peněženky",
+    "fundingBody": "Příspěvky, spropitné a odemykání na Solaně se platí z této adresy. Pošlete na ni SOL z burzy nebo jiné peněženky — zhruba 0,01 SOL pokryje několik příspěvků. Je odvozena z vaší peněženky DeHub, takže se vrátí na jakémkoli zařízení, kde se přihlásíte.",
+    "mintingOff": "Publikování na Solaně je momentálně na serveru vypnuté. Vaše peněženka a zůstatek to neovlivní.",
+    "legacyTitle": "Starší peněženka Solana — {{amount}} SOL",
+    "legacyBody": "Dřívější verze aplikace vytvořila samostatnou peněženku Solana, která existovala jen na tomto zařízení. Stále na ní zůstává zůstatek. Převeďte prostředky na adresu výše, dokud máte tento telefon — ten klíč už nikde jinde obnovit nelze.",
+    "legacyViewA11y": "Zobrazit starší peněženku na Solscanu"
   }
 }

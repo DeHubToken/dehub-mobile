@@ -606,7 +606,8 @@
     "signIn": "Logga in",
     "takePhoto": "Ta foto",
     "recordVideo": "Spela in video",
-    "saveChanges": "Spara ändringar"
+    "saveChanges": "Spara ändringar",
+    "copy": "Kopiera"
   },
   "drawers": {
     "ppvTitle": "Betala per visning",
@@ -3191,5 +3192,20 @@
     "membersOverTime": "Medlemmar över tid",
     "lastDays": "Senaste {{count}} dagarna",
     "source": "Registrerad kontohistorik från DeHubs offentliga statistikslutpunkt. Inga uppskattade värden används i det här diagrammet."
+  },
+  "solana": {
+    "unavailableTitle": "Solana-plånbok inte tillgänglig",
+    "unavailableBody": "Den här enheten har inte nyckeln till din DeHub-plånbok. Logga in igen för att återställa den, så kommer din Solana-plånbok tillbaka med den.",
+    "yourAddress": "Din Solana-adress",
+    "refreshBalanceA11y": "Uppdatera SOL-saldo",
+    "copyAddressA11y": "Kopiera Solana-adress",
+    "addressCopied": "Solana-adress kopierad",
+    "explorerFailed": "Det gick inte att öppna Solscan",
+    "fundingTitle": "Fylla på den här plånboken",
+    "fundingBody": "Inlägg, dricks och upplåsningar på Solana betalas från den här adressen. Skicka SOL till den från en börs eller en annan plånbok — ungefär 0,01 SOL räcker till flera inlägg. Den härleds från din DeHub-plånbok, så den kommer tillbaka på varje enhet du loggar in på.",
+    "mintingOff": "Publicering på Solana är avstängd på servern just nu. Din plånbok och ditt saldo påverkas inte.",
+    "legacyTitle": "Äldre Solana-plånbok — {{amount}} SOL",
+    "legacyBody": "En tidigare version av appen skapade en separat Solana-plånbok som bara fanns på den här enheten. Den har fortfarande ett saldo. Flytta pengarna till adressen ovan medan du har den här telefonen — den nyckeln går inte att återställa någon annanstans.",
+    "legacyViewA11y": "Visa äldre plånbok på Solscan"
   }
 }

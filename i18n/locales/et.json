@@ -605,7 +605,8 @@
     "signIn": "Logi sisse",
     "takePhoto": "Tee foto",
     "recordVideo": "Salvesta video",
-    "saveChanges": "Salvesta muudatused"
+    "saveChanges": "Salvesta muudatused",
+    "copy": "Kopeeri"
   },
   "tip": {
     "title": "Saada jootraha",
@@ -3186,5 +3187,20 @@
     "membersOverTime": "Liikmed ajas",
     "lastDays": "Viimased {{count}} päeva",
     "source": "Salvestatud kontode ajalugu DeHubi avalikust statistika lõpp-punktist. Selles graafikus ei kasutata hinnangulisi väärtusi."
+  },
+  "solana": {
+    "unavailableTitle": "Solana rahakott pole saadaval",
+    "unavailableBody": "Selles seadmes pole sinu DeHubi rahakoti võtit. Logi uuesti sisse, et see taastada, ja Solana rahakott tuleb sellega kaasa.",
+    "yourAddress": "Sinu Solana aadress",
+    "refreshBalanceA11y": "Värskenda SOL-i saldot",
+    "copyAddressA11y": "Kopeeri Solana aadress",
+    "addressCopied": "Solana aadress kopeeritud",
+    "explorerFailed": "Solscani ei õnnestunud avada",
+    "fundingTitle": "Selle rahakoti täiendamine",
+    "fundingBody": "Postitamine, jootraha ja avamine Solanas makstakse sellelt aadressilt. Saada sellele SOL-i börsilt või teisest rahakotist — umbes 0,01 SOL katab mitu postitust. See tuletatakse sinu DeHubi rahakotist, seega tuleb see tagasi igas seadmes, kuhu sisse logid.",
+    "mintingOff": "Solanas postitamine on hetkel serveris välja lülitatud. Sinu rahakotti ja saldot see ei mõjuta.",
+    "legacyTitle": "Vanem Solana rahakott — {{amount}} SOL",
+    "legacyBody": "Rakenduse varasem versioon lõi eraldi Solana rahakoti, mis eksisteeris ainult selles seadmes. Selles on endiselt raha. Kanna vahendid ülaltoodud aadressile, kuni see telefon on sul käes — seda võtit ei saa mujalt taastada.",
+    "legacyViewA11y": "Vaata vanemat rahakotti Solscanis"
   }
 }

@@ -607,7 +607,8 @@
     "signIn": "Yaykuy",
     "takePhoto": "Fotota hurquy",
     "recordVideo": "Videota grabay",
-    "saveChanges": "Hukchasqakunata waqaychay"
+    "saveChanges": "Hukchasqakunata waqaychay",
+    "copy": "Kikinchay"
   },
   "tip": {
     "title": "Propina apachiy",
@@ -3219,5 +3220,20 @@
     "membersOverTime": "Ayllumasikuna pacha kutiypi",
     "lastDays": "Qhipa {{count}} pʼunchaw",
     "source": "DeHub llapapaq yupay endpointmanta qillqasqa cuenta willakuy. Kay chartpi mana tupuna chaninkuna llamkachikunchu."
+  },
+  "solana": {
+    "unavailableTitle": "Solana qullqi waqaychana mana kanchu",
+    "unavailableBody": "Kay antaqa DeHub qullqi waqaychanaykipaq llavita mana waqaychanchu. Kutichinaykipaq yapamanta yaykuy, Solana qullqi waqaychanaykipas paywan kutimunqa.",
+    "yourAddress": "Solana ñan sutiyki",
+    "refreshBalanceA11y": "SOL puchuqta musuqchay",
+    "copyAddressA11y": "Solana ñan sutita kikinchay",
+    "addressCopied": "Solana ñan suti kikinchasqa",
+    "explorerFailed": "Solscan mana kichayta atikunchu",
+    "fundingTitle": "Kay qullqi waqaychanaman qullqi churay",
+    "fundingBody": "Solana ukhupi willakuy churay, tip quy, kichaypas kay ñan sutimanta pagakun. Exchange nisqamanta utaq waq qullqi waqaychanamanta SOL kachamuy — yaqa 0.01 SOL askha willakuykunapaq aypan. DeHub qullqi waqaychanaykimanta lloqsimun, chayrayku mayqin antapipas yaykuptiyki kutimun.",
+    "mintingOff": "Kunanqa Solana ukhupi willakuy churay servidorpi wañuchisqa kashan. Qullqi waqaychanaykiwan puchuqniykiwanqa mana imapas kanchu.",
+    "legacyTitle": "Ñawpa Solana qullqi waqaychana — {{amount}} SOL",
+    "legacyBody": "Ñawpaq app ruwayqa huk t'aqasqa Solana qullqi waqaychanata kamarqan, chaytaq kay antallapi karqan. Kunanpas qullqi kanraq. Kay celularniyki kachkaptinraq qullqita hanaq ñan sutiman apachiy — chay llaveqa mana maypipas kutichiyta atikunchu.",
+    "legacyViewA11y": "Ñawpa qullqi waqaychanata Solscan ukhupi qhaway"
   }
 }

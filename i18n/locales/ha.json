@@ -597,7 +597,8 @@
     "signIn": "Shiga",
     "takePhoto": "Ɗauki hoto",
     "recordVideo": "Ɗauki bidiyo",
-    "saveChanges": "Ajiye canje-canje"
+    "saveChanges": "Ajiye canje-canje",
+    "copy": "Kwafi"
   },
   "tip": {
     "title": "Aika Kyauta",
@@ -3177,5 +3178,20 @@
     "membersOverTime": "Mambobi cikin lokaci",
     "lastDays": "Kwanaki {{count}} da suka gabata",
     "source": "Tarihin asusu da aka rubuta daga wurin ƙididdiga na jama'a na DeHub. Ba a amfani da ƙimar ƙiyasi a wannan zane ba."
+  },
+  "solana": {
+    "unavailableTitle": "Walat ɗin Solana ba ya samuwa",
+    "unavailableBody": "Wannan na'urar ba ta riƙe maɓallin walat ɗin DeHub naka ba. Sake shiga don dawo da shi, walat ɗin Solana naka kuma zai dawo tare da shi.",
+    "yourAddress": "Adireshin Solana naka",
+    "refreshBalanceA11y": "Sabunta ma'aunin SOL",
+    "copyAddressA11y": "Kwafi adireshin Solana",
+    "addressCopied": "An kwafi adireshin Solana",
+    "explorerFailed": "An kasa buɗe Solscan",
+    "fundingTitle": "Ƙara kuɗi cikin wannan walat",
+    "fundingBody": "Yin sakonni, ba da kyauta da buɗe abun ciki a Solana duk ana biyan su daga wannan adireshin. Aika masa SOL daga wata kasuwa ko wata walat — kusan 0.01 SOL ya isa sakonni da yawa. An samo shi daga walat ɗin DeHub naka, don haka yana dawowa a duk na'urar da ka shiga.",
+    "mintingOff": "An kashe yin sakonni a Solana a uwar garken yanzu. Walat ɗinka da ma'aunin ka ba su shafa ba.",
+    "legacyTitle": "Tsohon walat ɗin Solana — {{amount}} SOL",
+    "legacyBody": "Wani tsohon sigar manhajar ya ƙirƙiri walat ɗin Solana daban wanda ya wanzu a wannan na'urar kawai. Har yanzu yana da kuɗi. Matsar da kuɗin zuwa adireshin da ke sama yayin da kake da wannan wayar — ba a iya dawo da wannan maɓallin a wani wuri ba.",
+    "legacyViewA11y": "Duba tsohon walat a Solscan"
   }
 }

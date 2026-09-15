@@ -621,7 +621,8 @@
     "signIn": "Accedi",
     "takePhoto": "Scatta una foto",
     "recordVideo": "Registra un video",
-    "saveChanges": "Salva modifiche"
+    "saveChanges": "Salva modifiche",
+    "copy": "Copia"
   },
   "drawers": {
     "ppvTitle": "Contenuto Pay-Per-View",
@@ -3257,5 +3258,20 @@
     "membersOverTime": "Membri nel tempo",
     "lastDays": "Ultimi {{count}} giorni",
     "source": "Storico degli account registrato dall'endpoint pubblico delle statistiche di DeHub. In questo grafico non vengono usati valori stimati."
+  },
+  "solana": {
+    "unavailableTitle": "Wallet Solana non disponibile",
+    "unavailableBody": "Questo dispositivo non conserva la chiave del tuo wallet DeHub. Accedi di nuovo per ripristinarlo e il tuo wallet Solana torna con esso.",
+    "yourAddress": "Il tuo indirizzo Solana",
+    "refreshBalanceA11y": "Aggiorna il saldo SOL",
+    "copyAddressA11y": "Copia indirizzo Solana",
+    "addressCopied": "Indirizzo Solana copiato",
+    "explorerFailed": "Impossibile aprire Solscan",
+    "fundingTitle": "Come alimentare questo wallet",
+    "fundingBody": "Pubblicazioni, mance e sblocchi su Solana vengono pagati da questo indirizzo. Inviagli SOL da un exchange o da un altro wallet — circa 0,01 SOL bastano per diversi post. Deriva dal tuo wallet DeHub, quindi torna su qualsiasi dispositivo su cui accedi.",
+    "mintingOff": "La pubblicazione su Solana è disattivata sul server al momento. Il tuo wallet e il tuo saldo non sono interessati.",
+    "legacyTitle": "Wallet Solana precedente — {{amount}} SOL",
+    "legacyBody": "Una versione precedente dell'app ha creato un wallet Solana separato esistito solo su questo dispositivo. Contiene ancora un saldo. Sposta i fondi all'indirizzo qui sopra finché hai questo telefono: quella chiave non è recuperabile altrove.",
+    "legacyViewA11y": "Vedi il wallet precedente su Solscan"
   }
 }

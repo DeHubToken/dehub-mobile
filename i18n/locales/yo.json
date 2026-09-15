@@ -601,7 +601,8 @@
     "signIn": "Wọlé",
     "takePhoto": "Ya fọto",
     "recordVideo": "Ṣe fídíò",
-    "saveChanges": "Fi àwọn àyípadà pamọ́"
+    "saveChanges": "Fi àwọn àyípadà pamọ́",
+    "copy": "Ṣe àdàkọ"
   },
   "tip": {
     "title": "Fi Ẹ̀bùn Ránṣẹ́",
@@ -3177,5 +3178,20 @@
     "membersOverTime": "Àwọn ọmọ ẹgbẹ́ lórí àkókò",
     "lastDays": "Ọjọ́ {{count}} sẹ́yìn",
     "source": "Ìtàn àkọọ́lẹ̀ tí a kọ sílẹ̀ láti ojú-ọ̀nà ìṣirò gbangba ti DeHub. Kò sí iye àfojúsùn tí a lò nínú àwòrán yìí."
+  },
+  "solana": {
+    "unavailableTitle": "Àpò owó Solana kò sí",
+    "unavailableBody": "Ẹ̀rọ yìí kò ní kọ́kọ́rọ́ àpò owó DeHub rẹ. Wọlé lẹ́ẹ̀kan sí i láti mú un padà, àpò owó Solana rẹ yóò sì padà pẹ̀lú rẹ̀.",
+    "yourAddress": "Àdírẹ́sì Solana rẹ",
+    "refreshBalanceA11y": "Sọ ìwọ̀n SOL di tuntun",
+    "copyAddressA11y": "Ṣe àdàkọ àdírẹ́sì Solana",
+    "addressCopied": "A ti ṣe àdàkọ àdírẹ́sì Solana",
+    "explorerFailed": "Kò lè ṣí Solscan",
+    "fundingTitle": "Fífi owó sí àpò owó yìí",
+    "fundingBody": "Fífi ìfìwéránṣẹ́ sí orí Solana, fífi owó ẹ̀bùn àti ṣíṣí àkóónú, gbogbo rẹ̀ ni a ń san láti àdírẹ́sì yìí. Fi SOL ránṣẹ́ sí i láti ilé pàṣípààrọ̀ tàbí àpò owó mìíràn — nǹkan bí 0.01 SOL tó fún ìfìwéránṣẹ́ púpọ̀. Àpò owó DeHub rẹ ni a ti gbé e jáde, nítorí náà yóò padà sí ẹ̀rọ yòówù tí o bá wọlé sí.",
+    "mintingOff": "A ti pa ìfìwéránṣẹ́ sí Solana lórí olùpèsè lọ́wọ́lọ́wọ́. Àpò owó rẹ àti ìwọ̀n rẹ kò yí padà.",
+    "legacyTitle": "Àpò owó Solana àtijọ́ — {{amount}} SOL",
+    "legacyBody": "Ẹ̀dà àgbà ti ohun-èlò náà dá àpò owó Solana ọ̀tọ̀ tí ó wà lórí ẹ̀rọ yìí nìkan. Owó ṣì wà nínú rẹ̀. Fi owó náà ránṣẹ́ sí àdírẹ́sì tó wà lókè nígbà tí fóònù yìí ṣì wà lọ́wọ́ rẹ — kọ́kọ́rọ́ yẹn kò lè padà bọ̀ láti ibòmíràn.",
+    "legacyViewA11y": "Wo àpò owó àtijọ́ lórí Solscan"
   }
 }

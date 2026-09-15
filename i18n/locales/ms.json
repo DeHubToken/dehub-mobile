@@ -3451,5 +3451,20 @@
     "membersOverTime": "Ahli mengikut masa",
     "lastDays": "{{count}} hari lepas",
     "source": "Sejarah akaun yang direkodkan daripada titik akhir statistik awam DeHub. Tiada nilai anggaran digunakan dalam carta ini."
+  },
+  "solana": {
+    "unavailableTitle": "Dompet Solana tidak tersedia",
+    "unavailableBody": "Peranti ini tidak menyimpan kunci dompet DeHub anda. Log masuk semula untuk memulihkannya, dan dompet Solana anda kembali bersamanya.",
+    "yourAddress": "Alamat Solana anda",
+    "refreshBalanceA11y": "Segar semula baki SOL",
+    "copyAddressA11y": "Salin alamat Solana",
+    "addressCopied": "Alamat Solana disalin",
+    "explorerFailed": "Tidak dapat membuka Solscan",
+    "fundingTitle": "Menambah dana ke dompet ini",
+    "fundingBody": "Penyiaran, pemberian tip dan membuka kandungan di Solana semuanya dibayar dari alamat ini. Hantar SOL kepadanya daripada bursa atau dompet lain — kira-kira 0.01 SOL mencukupi untuk beberapa siaran. Ia diterbitkan daripada dompet DeHub anda, jadi ia kembali pada mana-mana peranti yang anda log masuk.",
+    "mintingOff": "Penyiaran di Solana dimatikan pada pelayan buat masa ini. Dompet dan baki anda tidak terjejas.",
+    "legacyTitle": "Dompet Solana lama — {{amount}} SOL",
+    "legacyBody": "Versi aplikasi yang lebih awal mencipta dompet Solana berasingan yang hanya wujud pada peranti ini. Ia masih menyimpan baki. Pindahkan dana ke alamat di atas selagi telefon ini ada pada anda — kunci itu tidak boleh dipulihkan di tempat lain.",
+    "legacyViewA11y": "Lihat dompet lama di Solscan"
   }
 }

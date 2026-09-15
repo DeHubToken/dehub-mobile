@@ -605,7 +605,8 @@
     "signIn": "Pieteikties",
     "takePhoto": "Uzņemt foto",
     "recordVideo": "Ierakstīt video",
-    "saveChanges": "Saglabāt izmaiņas"
+    "saveChanges": "Saglabāt izmaiņas",
+    "copy": "Kopēt"
   },
   "tip": {
     "title": "Sūtīt dzeramnaudu",
@@ -3186,5 +3187,20 @@
     "membersOverTime": "Dalībnieki laika gaitā",
     "lastDays": "Pēdējās {{count}} dienas",
     "source": "Reģistrēta kontu vēsture no DeHub publiskā statistikas galapunkta. Šajā diagrammā netiek izmantotas aptuvenas vērtības."
+  },
+  "solana": {
+    "unavailableTitle": "Solana maks nav pieejams",
+    "unavailableBody": "Šajā ierīcē nav tavas DeHub maka atslēgas. Pieraksties vēlreiz, lai to atjaunotu, un Solana maks atgriezīsies kopā ar to.",
+    "yourAddress": "Tava Solana adrese",
+    "refreshBalanceA11y": "Atsvaidzināt SOL bilanci",
+    "copyAddressA11y": "Kopēt Solana adresi",
+    "addressCopied": "Solana adrese nokopēta",
+    "explorerFailed": "Neizdevās atvērt Solscan",
+    "fundingTitle": "Šī maka papildināšana",
+    "fundingBody": "Ieraksti, dzeramnauda un atbloķēšana Solana tiek apmaksāti no šīs adreses. Nosūti tai SOL no biržas vai cita maka — aptuveni 0,01 SOL pietiek vairākiem ierakstiem. Tā tiek atvasināta no tava DeHub maka, tāpēc atgriežas jebkurā ierīcē, kurā pieraksties.",
+    "mintingOff": "Publicēšana Solana pašlaik serverī ir izslēgta. Tavu maku un bilanci tas neietekmē.",
+    "legacyTitle": "Vecāks Solana maks — {{amount}} SOL",
+    "legacyBody": "Agrāka lietotnes versija izveidoja atsevišķu Solana maku, kas pastāvēja tikai šajā ierīcē. Tajā joprojām ir līdzekļi. Pārskaiti līdzekļus uz augstāk norādīto adresi, kamēr šis tālrunis ir pie tevis — to atslēgu nekur citur atgūt nevar.",
+    "legacyViewA11y": "Skatīt vecāko maku Solscan"
   }
 }

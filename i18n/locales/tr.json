@@ -621,7 +621,8 @@
     "unblockUserDesc": "{{name}} kullanıcısından tekrar mesaj alınmasına izin ver.",
     "takePhoto": "Fotoğraf çek",
     "recordVideo": "Video kaydet",
-    "saveChanges": "Değişiklikleri kaydet"
+    "saveChanges": "Değişiklikleri kaydet",
+    "copy": "Kopyala"
   },
   "tip": {
     "title": "Bahşiş Gönder",
@@ -3249,5 +3250,20 @@
     "membersOverTime": "Zaman içinde üyeler",
     "lastDays": "Son {{count}} gün",
     "source": "DeHub'ın herkese açık istatistik uç noktasından kaydedilen hesap geçmişi. Bu grafikte tahmini değerler kullanılmaz."
+  },
+  "solana": {
+    "unavailableTitle": "Solana cüzdanı kullanılamıyor",
+    "unavailableBody": "Bu cihaz DeHub cüzdanının anahtarını tutmuyor. Geri yüklemek için tekrar oturum aç; Solana cüzdanın da onunla birlikte geri gelir.",
+    "yourAddress": "Solana adresin",
+    "refreshBalanceA11y": "SOL bakiyesini yenile",
+    "copyAddressA11y": "Solana adresini kopyala",
+    "addressCopied": "Solana adresi kopyalandı",
+    "explorerFailed": "Solscan açılamadı",
+    "fundingTitle": "Bu cüzdana para yükleme",
+    "fundingBody": "Solana'da paylaşım, bahşiş ve kilit açma işlemleri bu adresten ödenir. Bir borsadan veya başka bir cüzdandan buraya SOL gönder — yaklaşık 0,01 SOL birkaç paylaşıma yeter. DeHub cüzdanından türetilir, bu yüzden oturum açtığın her cihazda geri gelir.",
+    "mintingOff": "Solana'da paylaşım şu anda sunucuda kapalı. Cüzdanın ve bakiyen etkilenmez.",
+    "legacyTitle": "Eski Solana cüzdanı — {{amount}} SOL",
+    "legacyBody": "Uygulamanın daha eski bir sürümü, yalnızca bu cihazda var olan ayrı bir Solana cüzdanı oluşturmuştu. Hâlâ bakiyesi var. Bu telefon elindeyken parayı yukarıdaki adrese taşı — o anahtar başka hiçbir yerden kurtarılamaz.",
+    "legacyViewA11y": "Eski cüzdanı Solscan'da görüntüle"
   }
 }

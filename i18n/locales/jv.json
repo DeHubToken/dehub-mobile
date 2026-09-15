@@ -565,7 +565,8 @@
     "signIn": "Mlebu",
     "takePhoto": "Njupuk foto",
     "recordVideo": "Rekam video",
-    "saveChanges": "Simpen owahan"
+    "saveChanges": "Simpen owahan",
+    "copy": "Salin"
   },
   "tip": {
     "title": "Kirim Hadiah",
@@ -3145,5 +3146,20 @@
     "membersOverTime": "Anggota saka wektu",
     "lastDays": "{{count}} dina pungkasan",
     "source": "Riwayat akun sing kacathet saka endpoint statistik umum DeHub. Ora ana nilai prakiraan sing digunakake ing grafik iki."
+  },
+  "solana": {
+    "unavailableTitle": "Dompet Solana ora kasedhiya",
+    "unavailableBody": "Piranti iki ora nyimpen kunci dompet DeHub sampeyan. Mlebu maneh kanggo mulihake, lan dompet Solana sampeyan bali bareng.",
+    "yourAddress": "Alamat Solana sampeyan",
+    "refreshBalanceA11y": "Anyarake saldo SOL",
+    "copyAddressA11y": "Salin alamat Solana",
+    "addressCopied": "Alamat Solana wis disalin",
+    "explorerFailed": "Ora bisa mbukak Solscan",
+    "fundingTitle": "Ngisi dompet iki",
+    "fundingBody": "Ngeposake, menehi tip, lan mbukak konten ing Solana kabeh dibayar saka alamat iki. Kirimi SOL saka bursa utawa dompet liya — kira-kira 0,01 SOL cukup kanggo sawetara postingan. Alamat iki asale saka dompet DeHub sampeyan, mula bakal bali ing piranti apa wae sing sampeyan gunakake kanggo mlebu.",
+    "mintingOff": "Ngeposake ing Solana saiki dipateni ing server. Dompet lan saldo sampeyan ora kena pengaruh.",
+    "legacyTitle": "Dompet Solana lawas — {{amount}} SOL",
+    "legacyBody": "Versi lawas aplikasi iki nggawe dompet Solana kapisah sing mung ana ing piranti iki. Isih ana saldone. Pindhahna dhuwite menyang alamat ing ndhuwur nalika HP iki isih ana ing sampeyan — kunci kuwi ora bisa dibalekake ing panggonan liya.",
+    "legacyViewA11y": "Ndeleng dompet lawas ing Solscan"
   }
 }
