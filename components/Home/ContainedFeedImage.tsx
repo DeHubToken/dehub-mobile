@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
+import { useItemState } from "../../hooks/useItemState";
 import { View, type LayoutChangeEvent } from "react-native";
 import { FEED_BENTO_RADIUS, fitFeedImageWithin } from "../../libs/feed-image-layout";
 import { useImageAspect } from "../../hooks/useImageAspect";
@@ -23,7 +24,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   priority,
 }) => {
   const { ratio: aspectRatio, onLoad } = useImageAspect(uri);
-  const [measuredWidth, setMeasuredWidth] = useState(fallbackWidth);
+  const [measuredWidth, setMeasuredWidth] = useItemState(fallbackWidth, uri);
   const availableWidth = width ?? measuredWidth;
   const dimensions = useMemo(
     () => fitFeedImageWithin(availableWidth, aspectRatio),
