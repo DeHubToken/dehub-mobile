@@ -3262,5 +3262,21 @@
     "createAndSave": "Samee oo kaydi",
     "createNew": "Samee gal cusub",
     "closeA11y": "Xir doorashada galka"
+  },
+  "ppv": {
+    "title": "Waxyaabaha lacag-bixinta daawasho kasta",
+    "unlockPrice": "Qiimaha furitaanka",
+    "topUpToUnlock": "Buuxi si aad u furto",
+    "addTip": "Ku dar tibaax abuuraha",
+    "cantPaySelf": "Naftaada ma bixin kartid",
+    "swapping": "Waa la beddelayaa ETH → DHB…",
+    "processing": "Waa la habeynayaa lacag-bixinta…",
+    "unlocked": "Waa la furay!",
+    "canViewImage": "Hadda waad arki kartaa sawirkan",
+    "canWatchVideo": "Hadda waad daawan kartaa muuqaalkan",
+    "solanaFailed": "Lacag-bixinta Solana way fashilantay",
+    "missingWeb3": "Macnaha web3 ma jiro",
+    "preparingRouter": "Waa la diyaarinayaa router-ka lacag-bixinta… isku day mar kale daqiiqad kadib",
+    "swapShort": "Beddelka waa la sameeyay laakiin DHB weli kuma filna. Isku day mar kale."
   }
 }

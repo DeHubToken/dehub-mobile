@@ -3261,5 +3261,21 @@
     "createAndSave": "Ƙirƙira ka ajiye",
     "createNew": "Ƙirƙiri sabon babban fayil",
     "closeA11y": "Rufe mai zaɓar babban fayil"
+  },
+  "ppv": {
+    "title": "Abun cikin biya kowane kallo",
+    "unlockPrice": "Farashin buɗewa",
+    "topUpToUnlock": "Cika don buɗewa",
+    "addTip": "Ƙara kyauta ga mahalicci",
+    "cantPaySelf": "Ba za ka iya biyan kanka ba",
+    "swapping": "Ana musanya ETH → DHB…",
+    "processing": "Ana sarrafa biyan kuɗi…",
+    "unlocked": "An buɗe!",
+    "canViewImage": "Yanzu za ka iya duba wannan hoton",
+    "canWatchVideo": "Yanzu za ka iya kallon wannan bidiyon",
+    "solanaFailed": "Biyan Solana ya gaza",
+    "missingWeb3": "Babu mahallin web3",
+    "preparingRouter": "Ana shirya na'urar tura biyan kuɗi… sake gwadawa nan da nan",
+    "swapShort": "An yi musanya amma DHB har yanzu bai isa ba. Sake gwadawa."
   }
 }

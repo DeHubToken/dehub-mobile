@@ -3275,5 +3275,21 @@
     "createAndSave": "Opret og gem",
     "createNew": "Opret ny mappe",
     "closeA11y": "Luk mappevælger"
+  },
+  "ppv": {
+    "title": "Betal-per-visning-indhold",
+    "unlockPrice": "Oplåsningspris",
+    "topUpToUnlock": "Fyld op for at låse op",
+    "addTip": "Tilføj drikkepenge til skaberen",
+    "cantPaySelf": "Du kan ikke betale dig selv",
+    "swapping": "Bytter ETH → DHB…",
+    "processing": "Behandler betaling…",
+    "unlocked": "Låst op!",
+    "canViewImage": "Du kan nu se dette billede",
+    "canWatchVideo": "Du kan nu se denne video",
+    "solanaFailed": "Solana-betalingen mislykkedes",
+    "missingWeb3": "web3-kontekst mangler",
+    "preparingRouter": "Forbereder betalingsrouter… prøv igen om et øjeblik",
+    "swapShort": "Byttet er gennemført, men DHB er stadig for lidt. Prøv igen."
   }
 }

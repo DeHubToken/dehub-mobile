@@ -3275,5 +3275,21 @@
     "createAndSave": "Skapa och spara",
     "createNew": "Skapa ny mapp",
     "closeA11y": "Stäng mappväljaren"
+  },
+  "ppv": {
+    "title": "Betal-per-visning-innehåll",
+    "unlockPrice": "Upplåsningspris",
+    "topUpToUnlock": "Fyll på för att låsa upp",
+    "addTip": "Lägg till dricks till skaparen",
+    "cantPaySelf": "Du kan inte betala dig själv",
+    "swapping": "Växlar ETH → DHB…",
+    "processing": "Behandlar betalning…",
+    "unlocked": "Upplåst!",
+    "canViewImage": "Du kan nu se den här bilden",
+    "canWatchVideo": "Du kan nu titta på den här videon",
+    "solanaFailed": "Solana-betalningen misslyckades",
+    "missingWeb3": "web3-kontext saknas",
+    "preparingRouter": "Förbereder betalningsrouter… försök igen om en stund",
+    "swapShort": "Växlingen är klar men DHB räcker fortfarande inte. Försök igen."
   }
 }

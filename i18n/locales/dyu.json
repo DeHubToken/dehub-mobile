@@ -3215,5 +3215,21 @@
     "createAndSave": "A dilan k'a mara",
     "createNew": "Dosiye kura dilan",
     "closeA11y": "Dosiye sugandilan datugu"
+  },
+  "ppv": {
+    "title": "Kunnafoni min sarali bɛ kɛ ka lajɛ",
+    "unlockPrice": "Dayɛlɛli sɔngɔ",
+    "topUpToUnlock": "Wari fara walasa ka dayɛlɛ",
+    "addTip": "Bonya fara dilannikɛla kan",
+    "cantPaySelf": "I tɛ se ka i yɛrɛ sara",
+    "swapping": "ETH → DHB falen bɛ kɛ…",
+    "processing": "Sarali bɛ ɲɛnabɔ…",
+    "unlocked": "A dayɛlɛla!",
+    "canViewImage": "Sisan i bɛ se ka nin ja lajɛ",
+    "canWatchVideo": "Sisan i bɛ se ka nin wideyo lajɛ",
+    "solanaFailed": "Solana sarali ma ɲɛ",
+    "missingWeb3": "web3 kunnafoni tɛ yen",
+    "preparingRouter": "Sarali sira bɛ labɛn… a lajɛ tugun dɔɔnin kɔfɛ",
+    "swapShort": "Falen kɛra nka DHB man ca halibi. A lajɛ tugun."
   }
 }

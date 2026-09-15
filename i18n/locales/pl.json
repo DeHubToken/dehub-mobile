@@ -3339,5 +3339,21 @@
     "createAndSave": "Utwórz i zapisz",
     "createNew": "Utwórz nowy folder",
     "closeA11y": "Zamknij wybór folderu"
+  },
+  "ppv": {
+    "title": "Treść płatna za obejrzenie",
+    "unlockPrice": "Cena odblokowania",
+    "topUpToUnlock": "Doładuj, aby odblokować",
+    "addTip": "Dodaj napiwek dla twórcy",
+    "cantPaySelf": "Nie możesz zapłacić sobie",
+    "swapping": "Wymiana ETH → DHB…",
+    "processing": "Przetwarzanie płatności…",
+    "unlocked": "Odblokowano!",
+    "canViewImage": "Możesz teraz zobaczyć ten obraz",
+    "canWatchVideo": "Możesz teraz obejrzeć ten film",
+    "solanaFailed": "Płatność Solana nie powiodła się",
+    "missingWeb3": "Brak kontekstu web3",
+    "preparingRouter": "Przygotowywanie routera płatności… spróbuj ponownie za chwilę",
+    "swapShort": "Wymiana wykonana, ale DHB nadal brakuje. Spróbuj ponownie."
   }
 }

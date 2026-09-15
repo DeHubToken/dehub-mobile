@@ -3333,5 +3333,21 @@
     "createAndSave": "Oluştur ve kaydet",
     "createNew": "Yeni klasör oluştur",
     "closeA11y": "Klasör seçiciyi kapat"
+  },
+  "ppv": {
+    "title": "İzleme başına ödemeli içerik",
+    "unlockPrice": "Kilit açma fiyatı",
+    "topUpToUnlock": "Kilidi açmak için yükle",
+    "addTip": "İçerik üreticisine bahşiş ekle",
+    "cantPaySelf": "Kendine ödeme yapamazsın",
+    "swapping": "ETH → DHB takas ediliyor…",
+    "processing": "Ödeme işleniyor…",
+    "unlocked": "Kilit açıldı!",
+    "canViewImage": "Artık bu görseli görüntüleyebilirsin",
+    "canWatchVideo": "Artık bu videoyu izleyebilirsin",
+    "solanaFailed": "Solana ödemesi başarısız oldu",
+    "missingWeb3": "web3 bağlamı eksik",
+    "preparingRouter": "Ödeme yönlendirici hazırlanıyor… birazdan tekrar dene",
+    "swapShort": "Takas tamamlandı ama DHB hâlâ yetersiz. Tekrar dene."
   }
 }

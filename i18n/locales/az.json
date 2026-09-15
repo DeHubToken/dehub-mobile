@@ -3255,5 +3255,21 @@
     "createAndSave": "Yarat və saxla",
     "createNew": "Yeni qovluq yarat",
     "closeA11y": "Qovluq seçicisini bağla"
+  },
+  "ppv": {
+    "title": "Baxış başına ödənişli məzmun",
+    "unlockPrice": "Kilidi açma qiyməti",
+    "topUpToUnlock": "Kilidi açmaq üçün balans artır",
+    "addTip": "Yaradıcı üçün bəxşiş əlavə et",
+    "cantPaySelf": "Özünüzə ödəniş edə bilməzsiniz",
+    "swapping": "ETH → DHB dəyişdirilir…",
+    "processing": "Ödəniş emal olunur…",
+    "unlocked": "Kilid açıldı!",
+    "canViewImage": "İndi bu şəkli görə bilərsiniz",
+    "canWatchVideo": "İndi bu videoya baxa bilərsiniz",
+    "solanaFailed": "Solana ödənişi alınmadı",
+    "missingWeb3": "web3 konteksti çatışmır",
+    "preparingRouter": "Ödəniş marşrutlayıcısı hazırlanır… bir azdan yenidən cəhd edin",
+    "swapShort": "Dəyişmə tamamlandı, lakin DHB hələ də çatmır. Yenidən cəhd edin."
   }
 }
