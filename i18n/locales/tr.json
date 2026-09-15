@@ -3675,6 +3675,27 @@
     "sendingTokens": "Tokenlar gönderiliyor",
     "queuedForSending": "Gönderim sırasında",
     "tokenTransferFailed": "Token transferi başarısız oldu",
-    "notSentYet": "Henüz gönderilmedi"
+    "notSentYet": "Henüz gönderilmedi",
+    "topUp": "Bakiye Yükle",
+    "selectCurrency": "Para birimi seç",
+    "chooseCurrency": "Bir para birimi seçin",
+    "currentPrice": "Güncel {{symbol}} fiyatı",
+    "walletAddress": "Cüzdan adresi",
+    "selectChain": "Zincir seç",
+    "chooseChain": "Bir zincir seçin",
+    "confirmPurchase": "Satın almayı onayla",
+    "amountIn": "{{currency}} tutarı",
+    "approxReceive": "Yaklaşık alacağınız {{symbol}}",
+    "iAcceptThe": "Kabul ediyorum:",
+    "termsOfService": "Hizmet Şartları",
+    "invalidAmountGtZero": "0'dan büyük geçerli bir tutar girin.",
+    "enterValidAmount": "Geçerli bir tutar girin",
+    "noSupply": "Satın alınamıyor — bu zincirde {{symbol}} arzı yok.",
+    "insufficientSupply": "{{symbol}} arzı yetersiz: bu zincirde yalnızca {{available}} var.",
+    "connectWallet": "Lütfen cüzdanı bağlayın",
+    "acceptTermsFirst": "Lütfen hizmet şartlarını kabul edin",
+    "redirecting": "Ödemeye yönlendiriliyor…",
+    "openingCheckout": "Ödeme açılıyor…",
+    "checkoutUnavailable": "Ödeme bağlantısı kullanılamıyor. Lütfen tekrar deneyin."
   }
 }

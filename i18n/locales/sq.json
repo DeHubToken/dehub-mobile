@@ -3612,6 +3612,27 @@
     "sendingTokens": "Po dërgohen tokenat",
     "queuedForSending": "Në radhë për dërgim",
     "tokenTransferFailed": "Transferimi i tokenit dështoi",
-    "notSentYet": "Ende nuk është dërguar"
+    "notSentYet": "Ende nuk është dërguar",
+    "topUp": "Mbushje",
+    "selectCurrency": "Zgjidh monedhën",
+    "chooseCurrency": "Zgjidh një monedhë",
+    "currentPrice": "Çmimi aktual i {{symbol}}",
+    "walletAddress": "Adresa e portofolit",
+    "selectChain": "Zgjidh zinxhirin",
+    "chooseChain": "Zgjidh një zinxhir",
+    "confirmPurchase": "Konfirmo blerjen",
+    "amountIn": "Shuma në {{currency}}",
+    "approxReceive": "Do të marrësh afërsisht {{symbol}}",
+    "iAcceptThe": "I pranoj",
+    "termsOfService": "Kushtet e shërbimit",
+    "invalidAmountGtZero": "Shkruaj një shumë të vlefshme më të madhe se 0.",
+    "enterValidAmount": "Shkruaj një shumë të vlefshme",
+    "noSupply": "Blerja nuk është e mundur — nuk ka rezerva {{symbol}} në këtë zinxhir.",
+    "insufficientSupply": "Rezerva e {{symbol}} nuk mjafton: vetëm {{available}} në këtë zinxhir.",
+    "connectWallet": "Të lutem lidh portofolin",
+    "acceptTermsFirst": "Të lutem prano kushtet e shërbimit",
+    "redirecting": "Po ridrejtohesh te pagesa…",
+    "openingCheckout": "Po hapet pagesa…",
+    "checkoutUnavailable": "Lidhja e pagesës nuk është e disponueshme. Provo sërish."
   }
 }

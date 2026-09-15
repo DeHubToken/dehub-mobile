@@ -3626,6 +3626,27 @@
     "sendingTokens": "Se trimit tokenuri",
     "queuedForSending": "În coadă pentru trimitere",
     "tokenTransferFailed": "Transferul tokenului a eșuat",
-    "notSentYet": "Nu a fost trimis încă"
+    "notSentYet": "Nu a fost trimis încă",
+    "topUp": "Reîncărcare",
+    "selectCurrency": "Alege moneda",
+    "chooseCurrency": "Alege o monedă",
+    "currentPrice": "Prețul curent {{symbol}}",
+    "walletAddress": "Adresa portofelului",
+    "selectChain": "Alege lanțul",
+    "chooseChain": "Alege un lanț",
+    "confirmPurchase": "Confirmă achiziția",
+    "amountIn": "Sumă în {{currency}}",
+    "approxReceive": "Vei primi aproximativ {{symbol}}",
+    "iAcceptThe": "Accept",
+    "termsOfService": "Termenii serviciului",
+    "invalidAmountGtZero": "Introdu o sumă validă mai mare decât 0.",
+    "enterValidAmount": "Introdu o sumă validă",
+    "noSupply": "Achiziția nu este disponibilă — nu există stoc {{symbol}} pe acest lanț.",
+    "insufficientSupply": "Stoc {{symbol}} insuficient: doar {{available}} pe acest lanț.",
+    "connectWallet": "Te rugăm să conectezi portofelul",
+    "acceptTermsFirst": "Te rugăm să accepți termenii serviciului",
+    "redirecting": "Se redirecționează către plată…",
+    "openingCheckout": "Se deschide plata…",
+    "checkoutUnavailable": "Linkul de plată nu este disponibil. Încearcă din nou."
   }
 }

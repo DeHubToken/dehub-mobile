@@ -3597,6 +3597,27 @@
     "sendingTokens": "Tokenlər göndərilir",
     "queuedForSending": "Göndərilmək üçün növbədə",
     "tokenTransferFailed": "Token köçürülməsi alınmadı",
-    "notSentYet": "Hələ göndərilməyib"
+    "notSentYet": "Hələ göndərilməyib",
+    "topUp": "Balans artır",
+    "selectCurrency": "Valyuta seç",
+    "chooseCurrency": "Valyuta seçin",
+    "currentPrice": "Cari {{symbol}} qiyməti",
+    "walletAddress": "Cüzdan ünvanı",
+    "selectChain": "Zəncir seç",
+    "chooseChain": "Zəncir seçin",
+    "confirmPurchase": "Alışı təsdiqlə",
+    "amountIn": "{{currency}} məbləği",
+    "approxReceive": "Təxmini alacağınız {{symbol}}",
+    "iAcceptThe": "Qəbul edirəm",
+    "termsOfService": "Xidmət şərtləri",
+    "invalidAmountGtZero": "0-dan böyük düzgün məbləğ daxil edin.",
+    "enterValidAmount": "Düzgün məbləğ daxil edin",
+    "noSupply": "Alış mümkün deyil — bu zəncirdə {{symbol}} ehtiyatı yoxdur.",
+    "insufficientSupply": "{{symbol}} ehtiyatı kifayət deyil: bu zəncirdə yalnız {{available}} var.",
+    "connectWallet": "Zəhmət olmasa cüzdana qoşulun",
+    "acceptTermsFirst": "Zəhmət olmasa xidmət şərtlərini qəbul edin",
+    "redirecting": "Ödənişə yönləndirilir…",
+    "openingCheckout": "Ödəniş səhifəsi açılır…",
+    "checkoutUnavailable": "Ödəniş linki əlçatmazdır. Zəhmət olmasa yenidən cəhd edin."
   }
 }

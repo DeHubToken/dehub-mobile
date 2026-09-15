@@ -3692,6 +3692,27 @@
     "sendingTokens": "Mandefa token",
     "queuedForSending": "Ao anaty laharana handefasana",
     "tokenTransferFailed": "Tsy nahomby ny famindrana token",
-    "notSentYet": "Mbola tsy nalefa"
+    "notSentYet": "Mbola tsy nalefa",
+    "topUp": "Famenoana",
+    "selectCurrency": "Mifidy vola",
+    "chooseCurrency": "Mifidiana vola",
+    "currentPrice": "Vidin'ny {{symbol}} amin'izao",
+    "walletAddress": "Adiresin'ny poketra",
+    "selectChain": "Mifidy rojo",
+    "chooseChain": "Mifidiana rojo",
+    "confirmPurchase": "Hamafisy ny fividianana",
+    "amountIn": "Vola {{currency}}",
+    "approxReceive": "Handray manodidina {{symbol}}",
+    "iAcceptThe": "Manaiky aho",
+    "termsOfService": "Fepetra sy Fanompoana",
+    "invalidAmountGtZero": "Ampidiro vola mihoatra ny 0.",
+    "enterValidAmount": "Ampidiro vola manan-kery",
+    "noSupply": "Tsy azo atao ny fividianana — tsy misy tahiry {{symbol}} amin'ity rojo ity.",
+    "insufficientSupply": "Tsy ampy ny {{symbol}}: {{available}} ihany no misy amin'ity rojo ity.",
+    "connectWallet": "Ampifandraiso ny poketra azafady",
+    "acceptTermsFirst": "Ekeo azafady ny fepetra sy fanompoana",
+    "redirecting": "Mamily mankany amin'ny fandoavana…",
+    "openingCheckout": "Manokatra ny fandoavana…",
+    "checkoutUnavailable": "Tsy misy ny rohy fandoavana. Andramo indray."
   }
 }

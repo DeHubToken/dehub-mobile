@@ -3601,6 +3601,27 @@
     "sendingTokens": "टोकन पाठवत आहे",
     "queuedForSending": "पाठवण्यासाठी रांगेत",
     "tokenTransferFailed": "टोकन हस्तांतरण अयशस्वी",
-    "notSentYet": "अद्याप पाठवले नाही"
+    "notSentYet": "अद्याप पाठवले नाही",
+    "topUp": "टॉप अप",
+    "selectCurrency": "चलन निवडा",
+    "chooseCurrency": "एक चलन निवडा",
+    "currentPrice": "सध्याची {{symbol}} किंमत",
+    "walletAddress": "वॉलेट पत्ता",
+    "selectChain": "चेन निवडा",
+    "chooseChain": "एक चेन निवडा",
+    "confirmPurchase": "खरेदीची पुष्टी करा",
+    "amountIn": "{{currency}} रक्कम",
+    "approxReceive": "अंदाजे मिळेल {{symbol}}",
+    "iAcceptThe": "मी स्वीकारतो",
+    "termsOfService": "सेवा अटी",
+    "invalidAmountGtZero": "0 पेक्षा मोठी वैध रक्कम टाका.",
+    "enterValidAmount": "वैध रक्कम टाका",
+    "noSupply": "खरेदी उपलब्ध नाही — या चेनवर {{symbol}} चा पुरवठा नाही.",
+    "insufficientSupply": "{{symbol}} चा पुरवठा अपुरा: या चेनवर फक्त {{available}} उपलब्ध.",
+    "connectWallet": "कृपया वॉलेट जोडा",
+    "acceptTermsFirst": "कृपया सेवा अटी स्वीकारा",
+    "redirecting": "चेकआउटवर नेत आहे…",
+    "openingCheckout": "चेकआउट उघडत आहे…",
+    "checkoutUnavailable": "चेकआउट लिंक उपलब्ध नाही. पुन्हा प्रयत्न करा."
   }
 }

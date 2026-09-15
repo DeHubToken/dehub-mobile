@@ -3607,6 +3607,27 @@
     "sendingTokens": "టోకెన్లు పంపుతోంది",
     "queuedForSending": "పంపడానికి క్యూలో",
     "tokenTransferFailed": "టోకెన్ బదిలీ విఫలమైంది",
-    "notSentYet": "ఇంకా పంపలేదు"
+    "notSentYet": "ఇంకా పంపలేదు",
+    "topUp": "టాప్ అప్",
+    "selectCurrency": "కరెన్సీ ఎంచుకోండి",
+    "chooseCurrency": "ఒక కరెన్సీ ఎంచుకోండి",
+    "currentPrice": "ప్రస్తుత {{symbol}} ధర",
+    "walletAddress": "వాలెట్ చిరునామా",
+    "selectChain": "చైన్ ఎంచుకోండి",
+    "chooseChain": "ఒక చైన్ ఎంచుకోండి",
+    "confirmPurchase": "కొనుగోలు నిర్ధారించండి",
+    "amountIn": "{{currency}} మొత్తం",
+    "approxReceive": "సుమారుగా పొందుతారు {{symbol}}",
+    "iAcceptThe": "నేను అంగీకరిస్తున్నాను",
+    "termsOfService": "సేవా నిబంధనలు",
+    "invalidAmountGtZero": "0 కంటే ఎక్కువ చెల్లుబాటు అయ్యే మొత్తం నమోదు చేయండి.",
+    "enterValidAmount": "చెల్లుబాటు అయ్యే మొత్తం నమోదు చేయండి",
+    "noSupply": "కొనుగోలు అందుబాటులో లేదు — ఈ చైన్‌లో {{symbol}} సరఫరా లేదు.",
+    "insufficientSupply": "{{symbol}} సరఫరా సరిపోదు: ఈ చైన్‌లో {{available}} మాత్రమే ఉంది.",
+    "connectWallet": "దయచేసి వాలెట్ కనెక్ట్ చేయండి",
+    "acceptTermsFirst": "దయచేసి సేవా నిబంధనలను అంగీకరించండి",
+    "redirecting": "చెక్‌అవుట్‌కు తీసుకెళ్తోంది…",
+    "openingCheckout": "చెక్‌అవుట్ తెరుస్తోంది…",
+    "checkoutUnavailable": "చెక్‌అవుట్ లింక్ అందుబాటులో లేదు. మళ్లీ ప్రయత్నించండి."
   }
 }

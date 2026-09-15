@@ -3578,6 +3578,27 @@
     "sendingTokens": "ቶከናት ይለኣኹ ኣለዉ",
     "queuedForSending": "ንምስዳድ ኣብ ተርታ",
     "tokenTransferFailed": "ምትሕልላፍ ቶከን ኣይተዓወተን",
-    "notSentYet": "ገና ኣይተላእከን"
+    "notSentYet": "ገና ኣይተላእከን",
+    "topUp": "መመልኢ",
+    "selectCurrency": "ባጤራ ምረጽ",
+    "chooseCurrency": "ሓደ ባጤራ ምረጽ",
+    "currentPrice": "ህሉው ዋጋ {{symbol}}",
+    "walletAddress": "ኣድራሻ ዋሌት",
+    "selectChain": "ሰንሰለት ምረጽ",
+    "chooseChain": "ሓደ ሰንሰለት ምረጽ",
+    "confirmPurchase": "ግዝኣት ኣረጋግጽ",
+    "amountIn": "መጠን {{currency}}",
+    "approxReceive": "ብግምት ክትረክብ {{symbol}}",
+    "iAcceptThe": "እቕበል ኣለኹ",
+    "termsOfService": "ውዕላት ኣገልግሎት",
+    "invalidAmountGtZero": "ካብ 0 ዝዓቢ ቅኑዕ መጠን ኣእቱ።",
+    "enterValidAmount": "ቅኑዕ መጠን ኣእቱ",
+    "noSupply": "ግዝኣት ኣይክኣልን — ኣብዚ ሰንሰለት {{symbol}} የለን።",
+    "insufficientSupply": "ዝርከብ {{symbol}} ኣይኣክልን፦ ኣብዚ ሰንሰለት {{available}} ጥራይ ኣሎ።",
+    "connectWallet": "በጃኻ ዋሌት ኣራኽብ",
+    "acceptTermsFirst": "በጃኻ ውዕላት ኣገልግሎት ተቐበል",
+    "redirecting": "ናብ ክፍሊት ይመርሓካ ኣሎ…",
+    "openingCheckout": "ገጽ ክፍሊት ይኽፈት ኣሎ…",
+    "checkoutUnavailable": "መላግቦ ክፍሊት የለን። እንደገና ፈትን።"
   }
 }

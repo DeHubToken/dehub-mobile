@@ -3603,6 +3603,27 @@
     "sendingTokens": "Ana aika tokens",
     "queuedForSending": "Yana jerin gwano don aikawa",
     "tokenTransferFailed": "Canja wurin token ya gaza",
-    "notSentYet": "Ba a aika ba tukuna"
+    "notSentYet": "Ba a aika ba tukuna",
+    "topUp": "Cika kuɗi",
+    "selectCurrency": "Zaɓi kuɗi",
+    "chooseCurrency": "Zaɓi wani kuɗi",
+    "currentPrice": "Farashin {{symbol}} na yanzu",
+    "walletAddress": "Adireshin walat",
+    "selectChain": "Zaɓi sarƙa",
+    "chooseChain": "Zaɓi wata sarƙa",
+    "confirmPurchase": "Tabbatar da sayayya",
+    "amountIn": "Adadin {{currency}}",
+    "approxReceive": "Za ka karɓi kusan {{symbol}}",
+    "iAcceptThe": "Na yarda da",
+    "termsOfService": "Sharuɗɗan Sabis",
+    "invalidAmountGtZero": "Shigar da adadi mai inganci sama da 0.",
+    "enterValidAmount": "Shigar da adadi mai inganci",
+    "noSupply": "Ba za a iya saya ba — babu wadatar {{symbol}} a wannan sarƙa.",
+    "insufficientSupply": "Wadatar {{symbol}} bai isa ba: {{available}} kawai a wannan sarƙa.",
+    "connectWallet": "Don Allah haɗa da walat",
+    "acceptTermsFirst": "Don Allah amince da sharuɗɗan sabis",
+    "redirecting": "Ana tura ka zuwa biya…",
+    "openingCheckout": "Ana buɗe shafin biya…",
+    "checkoutUnavailable": "Hanyar biya ba ta samuwa. Sake gwadawa."
   }
 }

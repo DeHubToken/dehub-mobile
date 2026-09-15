@@ -3668,6 +3668,27 @@
     "sendingTokens": "جارٍ إرسال الرموز",
     "queuedForSending": "في قائمة الانتظار للإرسال",
     "tokenTransferFailed": "فشل نقل الرمز",
-    "notSentYet": "لم يُرسل بعد"
+    "notSentYet": "لم يُرسل بعد",
+    "topUp": "شحن الرصيد",
+    "selectCurrency": "اختر العملة",
+    "chooseCurrency": "اختر عملة",
+    "currentPrice": "سعر {{symbol}} الحالي",
+    "walletAddress": "عنوان المحفظة",
+    "selectChain": "اختر السلسلة",
+    "chooseChain": "اختر سلسلة",
+    "confirmPurchase": "تأكيد الشراء",
+    "amountIn": "مبلغ {{currency}}",
+    "approxReceive": "ستستلم تقريبًا {{symbol}}",
+    "iAcceptThe": "أوافق على",
+    "termsOfService": "شروط الخدمة",
+    "invalidAmountGtZero": "أدخل مبلغًا صالحًا أكبر من 0.",
+    "enterValidAmount": "أدخل مبلغًا صالحًا",
+    "noSupply": "الشراء غير متاح — لا يوجد مخزون {{symbol}} على هذه السلسلة.",
+    "insufficientSupply": "مخزون {{symbol}} غير كافٍ: يتوفر {{available}} فقط على هذه السلسلة.",
+    "connectWallet": "يُرجى الاتصال بالمحفظة",
+    "acceptTermsFirst": "يُرجى الموافقة على شروط الخدمة",
+    "redirecting": "جارٍ التحويل إلى صفحة الدفع…",
+    "openingCheckout": "جارٍ فتح صفحة الدفع…",
+    "checkoutUnavailable": "رابط الدفع غير متاح. يُرجى المحاولة مرة أخرى."
   }
 }

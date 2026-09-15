@@ -3571,6 +3571,27 @@
     "sendingTokens": "Ngirim token",
     "queuedForSending": "Antre kanggo dikirim",
     "tokenTransferFailed": "Transfer token gagal",
-    "notSentYet": "Durung dikirim"
+    "notSentYet": "Durung dikirim",
+    "topUp": "Isi Saldo",
+    "selectCurrency": "Pilih mata uang",
+    "chooseCurrency": "Pilih mata uang",
+    "currentPrice": "Rega {{symbol}} saiki",
+    "walletAddress": "Alamat dompet",
+    "selectChain": "Pilih chain",
+    "chooseChain": "Pilih chain",
+    "confirmPurchase": "Konfirmasi tuku",
+    "amountIn": "Jumlah {{currency}}",
+    "approxReceive": "Kira-kira nampa {{symbol}}",
+    "iAcceptThe": "Aku nampa",
+    "termsOfService": "Syarat Layanan",
+    "invalidAmountGtZero": "Lebokna jumlah sing bener luwih saka 0.",
+    "enterValidAmount": "Lebokna jumlah sing bener",
+    "noSupply": "Ora bisa tuku — ora ana pasokan {{symbol}} ing chain iki.",
+    "insufficientSupply": "Pasokan {{symbol}} kurang: mung {{available}} ing chain iki.",
+    "connectWallet": "Mangga sambungake dompet",
+    "acceptTermsFirst": "Mangga tampa syarat layanan",
+    "redirecting": "Ngalihake menyang pambayaran…",
+    "openingCheckout": "Mbukak pambayaran…",
+    "checkoutUnavailable": "Link pambayaran ora kasedhiya. Coba maneh."
   }
 }

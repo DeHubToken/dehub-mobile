@@ -3626,6 +3626,27 @@
     "sendingTokens": "در حال ارسال توکن‌ها",
     "queuedForSending": "در صف ارسال",
     "tokenTransferFailed": "انتقال توکن ناموفق بود",
-    "notSentYet": "هنوز ارسال نشده"
+    "notSentYet": "هنوز ارسال نشده",
+    "topUp": "شارژ",
+    "selectCurrency": "انتخاب ارز",
+    "chooseCurrency": "یک ارز انتخاب کنید",
+    "currentPrice": "قیمت فعلی {{symbol}}",
+    "walletAddress": "آدرس کیف پول",
+    "selectChain": "انتخاب زنجیره",
+    "chooseChain": "یک زنجیره انتخاب کنید",
+    "confirmPurchase": "تأیید خرید",
+    "amountIn": "مبلغ {{currency}}",
+    "approxReceive": "تقریباً دریافت می‌کنید {{symbol}}",
+    "iAcceptThe": "می‌پذیرم",
+    "termsOfService": "شرایط خدمات",
+    "invalidAmountGtZero": "مبلغ معتبری بزرگ‌تر از ۰ وارد کنید.",
+    "enterValidAmount": "مبلغ معتبری وارد کنید",
+    "noSupply": "خرید ممکن نیست — در این زنجیره موجودی {{symbol}} وجود ندارد.",
+    "insufficientSupply": "موجودی {{symbol}} کافی نیست: تنها {{available}} در این زنجیره موجود است.",
+    "connectWallet": "لطفاً به کیف پول متصل شوید",
+    "acceptTermsFirst": "لطفاً شرایط خدمات را بپذیرید",
+    "redirecting": "در حال انتقال به پرداخت…",
+    "openingCheckout": "در حال باز کردن صفحه پرداخت…",
+    "checkoutUnavailable": "لینک پرداخت در دسترس نیست. دوباره تلاش کنید."
   }
 }

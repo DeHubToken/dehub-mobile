@@ -3642,6 +3642,27 @@
     "sendingTokens": "Ithumela amathokheni",
     "queuedForSending": "Kusemgqeni wokuthunyelwa",
     "tokenTransferFailed": "Ukudluliswa kwethokheni kwehlulekile",
-    "notSentYet": "Akukathunyelwa"
+    "notSentYet": "Akukathunyelwa",
+    "topUp": "Gcwalisa",
+    "selectCurrency": "Khetha imali",
+    "chooseCurrency": "Khetha imali",
+    "currentPrice": "Intengo yamanje ye-{{symbol}}",
+    "walletAddress": "Ikheli lesikhwama",
+    "selectChain": "Khetha ishini",
+    "chooseChain": "Khetha ishini",
+    "confirmPurchase": "Qinisekisa ukuthenga",
+    "amountIn": "Inani le-{{currency}}",
+    "approxReceive": "Cishe uzothola {{symbol}}",
+    "iAcceptThe": "Ngiyayamukela",
+    "termsOfService": "Imigomo Yesevisi",
+    "invalidAmountGtZero": "Faka inani elivumelekile elingaphezu kuka-0.",
+    "enterValidAmount": "Faka inani elivumelekile",
+    "noSupply": "Ukuthenga akutholakali — ayikho i-{{symbol}} kulesi shini.",
+    "insufficientSupply": "I-{{symbol}} ayanele: kukhona kuphela u-{{available}} kulesi shini.",
+    "connectWallet": "Sicela uxhume isikhwama",
+    "acceptTermsFirst": "Sicela wamukele imigomo yesevisi",
+    "redirecting": "Iqondisa ekukhokheni…",
+    "openingCheckout": "Ivula ukukhokha…",
+    "checkoutUnavailable": "Isixhumanisi sokukhokha asitholakali. Zama futhi."
   }
 }

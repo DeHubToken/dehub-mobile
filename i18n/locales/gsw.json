@@ -3602,6 +3602,27 @@
     "sendingTokens": "Token wärded gschickt",
     "queuedForSending": "I dr Warteschlange zum Schicke",
     "tokenTransferFailed": "Token-Übertragig fehlgschlage",
-    "notSentYet": "Nonig gschickt"
+    "notSentYet": "Nonig gschickt",
+    "topUp": "Uflade",
+    "selectCurrency": "Währig uswähle",
+    "chooseCurrency": "E Währig uswähle",
+    "currentPrice": "Aktuelle {{symbol}}-Priis",
+    "walletAddress": "Wallet-Adrässe",
+    "selectChain": "Chain uswähle",
+    "chooseChain": "E Chain uswähle",
+    "confirmPurchase": "Chauf bestätige",
+    "amountIn": "{{currency}}-Betrag",
+    "approxReceive": "Ungfähr überchoo {{symbol}}",
+    "iAcceptThe": "Ich akzeptier d",
+    "termsOfService": "Nutzigsbedingige",
+    "invalidAmountGtZero": "Gib en gültige Betrag grösser als 0 i.",
+    "enterValidAmount": "Gib en gültige Betrag i",
+    "noSupply": "Chauf nöd möglich — kei {{symbol}}-Bestand uf dere Chain.",
+    "insufficientSupply": "Nöd gnueg {{symbol}}: nur {{available}} uf dere Chain verfüegbar.",
+    "connectWallet": "Bitte verbind dini Wallet",
+    "acceptTermsFirst": "Bitte akzeptier d Nutzigsbedingige",
+    "redirecting": "Wiiterleitig zur Kasse…",
+    "openingCheckout": "Kasse wird ufgmacht…",
+    "checkoutUnavailable": "Zahligslink nöd verfüegbar. Probier s nomol."
   }
 }

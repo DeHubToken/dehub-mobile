@@ -3608,6 +3608,27 @@
     "sendingTokens": "ቶከኖችን በመላክ ላይ",
     "queuedForSending": "ለመላክ በተራ ላይ",
     "tokenTransferFailed": "የቶከን ዝውውር አልተሳካም",
-    "notSentYet": "ገና አልተላከም"
+    "notSentYet": "ገና አልተላከም",
+    "topUp": "ሒሳብ ሙላ",
+    "selectCurrency": "ምንዛሬ ይምረጡ",
+    "chooseCurrency": "ምንዛሬ ይምረጡ",
+    "currentPrice": "የአሁኑ የ{{symbol}} ዋጋ",
+    "walletAddress": "የቦርሳ አድራሻ",
+    "selectChain": "ሰንሰለት ይምረጡ",
+    "chooseChain": "ሰንሰለት ይምረጡ",
+    "confirmPurchase": "ግዢውን ያረጋግጡ",
+    "amountIn": "የ{{currency}} መጠን",
+    "approxReceive": "በግምት የሚደርስዎ {{symbol}}",
+    "iAcceptThe": "እስማማለሁ በ",
+    "termsOfService": "የአገልግሎት ውሎች",
+    "invalidAmountGtZero": "ከ0 የሚበልጥ ትክክለኛ መጠን ያስገቡ።",
+    "enterValidAmount": "ትክክለኛ መጠን ያስገቡ",
+    "noSupply": "ግዢ አይቻልም — በዚህ ሰንሰለት ላይ የ{{symbol}} አቅርቦት የለም።",
+    "insufficientSupply": "የ{{symbol}} አቅርቦት በቂ አይደለም፦ በዚህ ሰንሰለት ላይ {{available}} ብቻ አለ።",
+    "connectWallet": "እባክዎ ቦርሳውን ያገናኙ",
+    "acceptTermsFirst": "እባክዎ የአገልግሎት ውሎችን ይቀበሉ",
+    "redirecting": "ወደ ክፍያ በማዞር ላይ…",
+    "openingCheckout": "የክፍያ ገጽ በመክፈት ላይ…",
+    "checkoutUnavailable": "የክፍያ አገናኝ የለም። እባክዎ እንደገና ይሞክሩ።"
   }
 }

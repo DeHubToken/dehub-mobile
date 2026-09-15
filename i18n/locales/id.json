@@ -3663,6 +3663,27 @@
     "sendingTokens": "Mengirim token",
     "queuedForSending": "Dalam antrean pengiriman",
     "tokenTransferFailed": "Transfer token gagal",
-    "notSentYet": "Belum dikirim"
+    "notSentYet": "Belum dikirim",
+    "topUp": "Isi Saldo",
+    "selectCurrency": "Pilih mata uang",
+    "chooseCurrency": "Pilih mata uang",
+    "currentPrice": "Harga {{symbol}} saat ini",
+    "walletAddress": "Alamat dompet",
+    "selectChain": "Pilih chain",
+    "chooseChain": "Pilih chain",
+    "confirmPurchase": "Konfirmasi pembelian",
+    "amountIn": "Jumlah {{currency}}",
+    "approxReceive": "Perkiraan diterima {{symbol}}",
+    "iAcceptThe": "Saya menerima",
+    "termsOfService": "Ketentuan Layanan",
+    "invalidAmountGtZero": "Masukkan jumlah valid lebih dari 0.",
+    "enterValidAmount": "Masukkan jumlah yang valid",
+    "noSupply": "Pembelian tidak tersedia — tidak ada pasokan {{symbol}} di chain ini.",
+    "insufficientSupply": "Pasokan {{symbol}} tidak cukup: hanya {{available}} tersedia di chain ini.",
+    "connectWallet": "Silakan hubungkan dompet",
+    "acceptTermsFirst": "Harap terima ketentuan layanan",
+    "redirecting": "Mengalihkan ke pembayaran…",
+    "openingCheckout": "Membuka pembayaran…",
+    "checkoutUnavailable": "Tautan pembayaran tidak tersedia. Coba lagi."
   }
 }

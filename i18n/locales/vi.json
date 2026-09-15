@@ -3701,6 +3701,27 @@
     "sendingTokens": "Đang gửi token",
     "queuedForSending": "Đang xếp hàng để gửi",
     "tokenTransferFailed": "Chuyển token thất bại",
-    "notSentYet": "Chưa gửi"
+    "notSentYet": "Chưa gửi",
+    "topUp": "Nạp tiền",
+    "selectCurrency": "Chọn tiền tệ",
+    "chooseCurrency": "Chọn một loại tiền",
+    "currentPrice": "Giá {{symbol}} hiện tại",
+    "walletAddress": "Địa chỉ ví",
+    "selectChain": "Chọn chuỗi",
+    "chooseChain": "Chọn một chuỗi",
+    "confirmPurchase": "Xác nhận mua",
+    "amountIn": "Số tiền {{currency}}",
+    "approxReceive": "Ước tính nhận {{symbol}}",
+    "iAcceptThe": "Tôi chấp nhận",
+    "termsOfService": "Điều khoản dịch vụ",
+    "invalidAmountGtZero": "Nhập số tiền hợp lệ lớn hơn 0.",
+    "enterValidAmount": "Nhập số tiền hợp lệ",
+    "noSupply": "Không thể mua — chuỗi này không có nguồn cung {{symbol}}.",
+    "insufficientSupply": "Nguồn cung {{symbol}} không đủ: chuỗi này chỉ còn {{available}}.",
+    "connectWallet": "Vui lòng kết nối ví",
+    "acceptTermsFirst": "Vui lòng chấp nhận điều khoản dịch vụ",
+    "redirecting": "Đang chuyển đến trang thanh toán…",
+    "openingCheckout": "Đang mở trang thanh toán…",
+    "checkoutUnavailable": "Không có liên kết thanh toán. Vui lòng thử lại."
   }
 }

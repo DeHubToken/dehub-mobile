@@ -3669,6 +3669,27 @@
     "sendingTokens": "Токендер жіберілуде",
     "queuedForSending": "Жіберу кезегінде",
     "tokenTransferFailed": "Токенді аудару сәтсіз аяқталды",
-    "notSentYet": "Әлі жіберілген жоқ"
+    "notSentYet": "Әлі жіберілген жоқ",
+    "topUp": "Толтыру",
+    "selectCurrency": "Валютаны таңдаңыз",
+    "chooseCurrency": "Валюта таңдаңыз",
+    "currentPrice": "Ағымдағы {{symbol}} бағасы",
+    "walletAddress": "Әмиян мекенжайы",
+    "selectChain": "Тізбекті таңдаңыз",
+    "chooseChain": "Тізбек таңдаңыз",
+    "confirmPurchase": "Сатып алуды растау",
+    "amountIn": "{{currency}} сомасы",
+    "approxReceive": "Шамамен аласыз {{symbol}}",
+    "iAcceptThe": "Мен қабылдаймын",
+    "termsOfService": "Қызмет көрсету шарттары",
+    "invalidAmountGtZero": "0-ден үлкен жарамды соманы енгізіңіз.",
+    "enterValidAmount": "Жарамды соманы енгізіңіз",
+    "noSupply": "Сатып алу мүмкін емес — бұл тізбекте {{symbol}} қоры жоқ.",
+    "insufficientSupply": "{{symbol}} қоры жеткіліксіз: бұл тізбекте тек {{available}} бар.",
+    "connectWallet": "Әмиянды қосыңыз",
+    "acceptTermsFirst": "Қызмет көрсету шарттарын қабылдаңыз",
+    "redirecting": "Төлем бетіне бағыттау…",
+    "openingCheckout": "Төлем беті ашылуда…",
+    "checkoutUnavailable": "Төлем сілтемесі қолжетімсіз. Қайталап көріңіз."
   }
 }

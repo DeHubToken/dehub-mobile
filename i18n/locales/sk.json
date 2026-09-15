@@ -3781,6 +3781,27 @@
     "sendingTokens": "Odosielajú sa tokeny",
     "queuedForSending": "Vo fronte na odoslanie",
     "tokenTransferFailed": "Prevod tokenu zlyhal",
-    "notSentYet": "Zatiaľ neodoslané"
+    "notSentYet": "Zatiaľ neodoslané",
+    "topUp": "Dobitie",
+    "selectCurrency": "Vyberte menu",
+    "chooseCurrency": "Zvoľte menu",
+    "currentPrice": "Aktuálna cena {{symbol}}",
+    "walletAddress": "Adresa peňaženky",
+    "selectChain": "Vyberte reťazec",
+    "chooseChain": "Zvoľte reťazec",
+    "confirmPurchase": "Potvrdiť nákup",
+    "amountIn": "Suma v {{currency}}",
+    "approxReceive": "Približne dostanete {{symbol}}",
+    "iAcceptThe": "Súhlasím s",
+    "termsOfService": "Podmienky služby",
+    "invalidAmountGtZero": "Zadajte platnú sumu väčšiu ako 0.",
+    "enterValidAmount": "Zadajte platnú sumu",
+    "noSupply": "Nákup nie je možný — na tomto reťazci nie je zásoba {{symbol}}.",
+    "insufficientSupply": "Nedostatočná zásoba {{symbol}}: na tomto reťazci je len {{available}}.",
+    "connectWallet": "Pripojte prosím peňaženku",
+    "acceptTermsFirst": "Prijmite prosím podmienky služby",
+    "redirecting": "Presmerovanie na platbu…",
+    "openingCheckout": "Otvára sa platba…",
+    "checkoutUnavailable": "Odkaz na platbu nie je dostupný. Skúste znova."
   }
 }

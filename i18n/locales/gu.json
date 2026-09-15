@@ -3605,6 +3605,27 @@
     "sendingTokens": "ટોકન મોકલાઈ રહ્યા છે",
     "queuedForSending": "મોકલવા માટે કતારમાં",
     "tokenTransferFailed": "ટોકન ટ્રાન્સફર નિષ્ફળ",
-    "notSentYet": "હજી મોકલ્યું નથી"
+    "notSentYet": "હજી મોકલ્યું નથી",
+    "topUp": "ટોપ અપ",
+    "selectCurrency": "ચલણ પસંદ કરો",
+    "chooseCurrency": "કોઈ ચલણ પસંદ કરો",
+    "currentPrice": "વર્તમાન {{symbol}} કિંમત",
+    "walletAddress": "વૉલેટ સરનામું",
+    "selectChain": "ચેઇન પસંદ કરો",
+    "chooseChain": "કોઈ ચેઇન પસંદ કરો",
+    "confirmPurchase": "ખરીદીની પુષ્ટિ કરો",
+    "amountIn": "{{currency}} રકમ",
+    "approxReceive": "આશરે મળશે {{symbol}}",
+    "iAcceptThe": "હું સ્વીકારું છું",
+    "termsOfService": "સેવાની શરતો",
+    "invalidAmountGtZero": "0 કરતાં મોટી માન્ય રકમ દાખલ કરો.",
+    "enterValidAmount": "માન્ય રકમ દાખલ કરો",
+    "noSupply": "ખરીદી ઉપલબ્ધ નથી — આ ચેઇન પર {{symbol}} નો પુરવઠો નથી.",
+    "insufficientSupply": "{{symbol}} નો પુરવઠો અપૂરતો: આ ચેઇન પર માત્ર {{available}} ઉપલબ્ધ.",
+    "connectWallet": "કૃપા કરીને વૉલેટ જોડો",
+    "acceptTermsFirst": "કૃપા કરીને સેવાની શરતો સ્વીકારો",
+    "redirecting": "ચેકઆઉટ પર લઈ જવાઈ રહ્યા છીએ…",
+    "openingCheckout": "ચેકઆઉટ ખૂલી રહ્યું છે…",
+    "checkoutUnavailable": "ચેકઆઉટ લિંક ઉપલબ્ધ નથી. ફરી પ્રયાસ કરો."
   }
 }

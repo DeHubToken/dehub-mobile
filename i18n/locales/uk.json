@@ -4089,6 +4089,27 @@
     "sendingTokens": "Надсилання токенів",
     "queuedForSending": "У черзі на надсилання",
     "tokenTransferFailed": "Переказ токена не вдався",
-    "notSentYet": "Ще не надіслано"
+    "notSentYet": "Ще не надіслано",
+    "topUp": "Поповнення",
+    "selectCurrency": "Виберіть валюту",
+    "chooseCurrency": "Виберіть валюту",
+    "currentPrice": "Поточна ціна {{symbol}}",
+    "walletAddress": "Адреса гаманця",
+    "selectChain": "Виберіть мережу",
+    "chooseChain": "Виберіть мережу",
+    "confirmPurchase": "Підтвердити покупку",
+    "amountIn": "Сума в {{currency}}",
+    "approxReceive": "Отримаєте приблизно {{symbol}}",
+    "iAcceptThe": "Я приймаю",
+    "termsOfService": "Умови обслуговування",
+    "invalidAmountGtZero": "Введіть коректну суму більшу за 0.",
+    "enterValidAmount": "Введіть коректну суму",
+    "noSupply": "Покупка недоступна — у цій мережі немає запасу {{symbol}}.",
+    "insufficientSupply": "Недостатньо {{symbol}}: у цій мережі доступно лише {{available}}.",
+    "connectWallet": "Будь ласка, підключіть гаманець",
+    "acceptTermsFirst": "Будь ласка, прийміть умови обслуговування",
+    "redirecting": "Перенаправлення до оплати…",
+    "openingCheckout": "Відкриття оплати…",
+    "checkoutUnavailable": "Посилання на оплату недоступне. Спробуйте ще раз."
   }
 }

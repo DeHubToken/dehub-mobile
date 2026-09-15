@@ -3617,6 +3617,27 @@
     "sendingTokens": "Odesílají se tokeny",
     "queuedForSending": "Ve frontě k odeslání",
     "tokenTransferFailed": "Převod tokenu selhal",
-    "notSentYet": "Zatím neodesláno"
+    "notSentYet": "Zatím neodesláno",
+    "topUp": "Dobití",
+    "selectCurrency": "Vyberte měnu",
+    "chooseCurrency": "Zvolte měnu",
+    "currentPrice": "Aktuální cena {{symbol}}",
+    "walletAddress": "Adresa peněženky",
+    "selectChain": "Vyberte řetězec",
+    "chooseChain": "Zvolte řetězec",
+    "confirmPurchase": "Potvrdit nákup",
+    "amountIn": "Částka v {{currency}}",
+    "approxReceive": "Přibližně obdržíte {{symbol}}",
+    "iAcceptThe": "Souhlasím s",
+    "termsOfService": "Podmínky služby",
+    "invalidAmountGtZero": "Zadejte platnou částku větší než 0.",
+    "enterValidAmount": "Zadejte platnou částku",
+    "noSupply": "Nákup není možný — na tomto řetězci není zásoba {{symbol}}.",
+    "insufficientSupply": "Nedostatečná zásoba {{symbol}}: na tomto řetězci je jen {{available}}.",
+    "connectWallet": "Připojte prosím peněženku",
+    "acceptTermsFirst": "Přijměte prosím podmínky služby",
+    "redirecting": "Přesměrování k platbě…",
+    "openingCheckout": "Otevírá se platba…",
+    "checkoutUnavailable": "Odkaz k platbě není dostupný. Zkuste to znovu."
   }
 }

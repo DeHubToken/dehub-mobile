@@ -3593,6 +3593,27 @@
     "sendingTokens": "တိုကင်များ ပို့နေသည်",
     "queuedForSending": "ပို့ရန် တန်းစီထားသည်",
     "tokenTransferFailed": "တိုကင် လွှဲပြောင်းမှု မအောင်မြင်ပါ",
-    "notSentYet": "မပို့ရသေးပါ"
+    "notSentYet": "မပို့ရသေးပါ",
+    "topUp": "ငွေဖြည့်",
+    "selectCurrency": "ငွေကြေး ရွေးရန်",
+    "chooseCurrency": "ငွေကြေးတစ်ခု ရွေးပါ",
+    "currentPrice": "လက်ရှိ {{symbol}} စျေးနှုန်း",
+    "walletAddress": "ပိုက်ဆံအိတ် လိပ်စာ",
+    "selectChain": "ချိန်း ရွေးရန်",
+    "chooseChain": "ချိန်းတစ်ခု ရွေးပါ",
+    "confirmPurchase": "ဝယ်ယူမှု အတည်ပြုရန်",
+    "amountIn": "{{currency}} ပမာဏ",
+    "approxReceive": "ခန့်မှန်း ရရှိမည် {{symbol}}",
+    "iAcceptThe": "ကျွန်ုပ် လက်ခံပါသည်",
+    "termsOfService": "ဝန်ဆောင်မှု စည်းကမ်းချက်များ",
+    "invalidAmountGtZero": "0 ထက်ကြီးသော မှန်ကန်သည့် ပမာဏ ထည့်ပါ။",
+    "enterValidAmount": "မှန်ကန်သည့် ပမာဏ ထည့်ပါ",
+    "noSupply": "ဝယ်ယူ၍မရပါ — ဤချိန်းတွင် {{symbol}} မရှိပါ။",
+    "insufficientSupply": "{{symbol}} မလုံလောက်ပါ − ဤချိန်းတွင် {{available}} သာရှိသည်။",
+    "connectWallet": "ကျေးဇူးပြု၍ ပိုက်ဆံအိတ် ချိတ်ဆက်ပါ",
+    "acceptTermsFirst": "ကျေးဇူးပြု၍ ဝန်ဆောင်မှု စည်းကမ်းချက်များကို လက်ခံပါ",
+    "redirecting": "ငွေရှင်းရန် စာမျက်နှာသို့ ပို့နေသည်…",
+    "openingCheckout": "ငွေရှင်းရန် စာမျက်နှာ ဖွင့်နေသည်…",
+    "checkoutUnavailable": "ငွေရှင်းရန် လင့်ခ် မရနိုင်ပါ။ ထပ်စမ်းပါ။"
   }
 }

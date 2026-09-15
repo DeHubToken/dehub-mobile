@@ -3613,6 +3613,27 @@
     "sendingTokens": "Изпращане на токени",
     "queuedForSending": "В опашка за изпращане",
     "tokenTransferFailed": "Прехвърлянето на токена е неуспешно",
-    "notSentYet": "Още не е изпратено"
+    "notSentYet": "Още не е изпратено",
+    "topUp": "Зареждане",
+    "selectCurrency": "Избери валута",
+    "chooseCurrency": "Избери валута",
+    "currentPrice": "Текуща цена на {{symbol}}",
+    "walletAddress": "Адрес на портфейла",
+    "selectChain": "Избери верига",
+    "chooseChain": "Избери верига",
+    "confirmPurchase": "Потвърди покупката",
+    "amountIn": "Сума в {{currency}}",
+    "approxReceive": "Ще получиш приблизително {{symbol}}",
+    "iAcceptThe": "Приемам",
+    "termsOfService": "Условия за ползване",
+    "invalidAmountGtZero": "Въведи валидна сума над 0.",
+    "enterValidAmount": "Въведи валидна сума",
+    "noSupply": "Покупката е невъзможна — няма наличност от {{symbol}} в тази верига.",
+    "insufficientSupply": "Недостатъчна наличност от {{symbol}}: само {{available}} в тази верига.",
+    "connectWallet": "Моля, свържи портфейла",
+    "acceptTermsFirst": "Моля, приеми условията за ползване",
+    "redirecting": "Пренасочване към плащане…",
+    "openingCheckout": "Отваряне на плащането…",
+    "checkoutUnavailable": "Връзката за плащане не е достъпна. Опитай отново."
   }
 }

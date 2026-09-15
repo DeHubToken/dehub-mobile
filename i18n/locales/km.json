@@ -3632,6 +3632,27 @@
     "sendingTokens": "កំពុងផ្ញើថូខឹន",
     "queuedForSending": "កំពុងជាប់ជួរដើម្បីផ្ញើ",
     "tokenTransferFailed": "ការផ្ទេរថូខឹនបានបរាជ័យ",
-    "notSentYet": "មិនទាន់បានផ្ញើទេ"
+    "notSentYet": "មិនទាន់បានផ្ញើទេ",
+    "topUp": "បញ្ចូលទឹកប្រាក់",
+    "selectCurrency": "ជ្រើសរើសរូបិយប័ណ្ណ",
+    "chooseCurrency": "ជ្រើសរើសរូបិយប័ណ្ណមួយ",
+    "currentPrice": "តម្លៃ {{symbol}} បច្ចុប្បន្ន",
+    "walletAddress": "អាសយដ្ឋានកាបូប",
+    "selectChain": "ជ្រើសរើសខ្សែច្រវាក់",
+    "chooseChain": "ជ្រើសរើសខ្សែច្រវាក់មួយ",
+    "confirmPurchase": "បញ្ជាក់ការទិញ",
+    "amountIn": "ចំនួន {{currency}}",
+    "approxReceive": "ទទួលបានប្រហែល {{symbol}}",
+    "iAcceptThe": "ខ្ញុំយល់ព្រមនឹង",
+    "termsOfService": "លក្ខខណ្ឌសេវាកម្ម",
+    "invalidAmountGtZero": "បញ្ចូលចំនួនត្រឹមត្រូវធំជាង 0។",
+    "enterValidAmount": "បញ្ចូលចំនួនត្រឹមត្រូវ",
+    "noSupply": "មិនអាចទិញបានទេ — គ្មានការផ្គត់ផ្គង់ {{symbol}} លើខ្សែច្រវាក់នេះ។",
+    "insufficientSupply": "ការផ្គត់ផ្គង់ {{symbol}} មិនគ្រប់គ្រាន់៖ មានតែ {{available}} លើខ្សែច្រវាក់នេះ។",
+    "connectWallet": "សូមភ្ជាប់កាបូប",
+    "acceptTermsFirst": "សូមទទួលយកលក្ខខណ្ឌសេវាកម្ម",
+    "redirecting": "កំពុងបញ្ជូនទៅការទូទាត់…",
+    "openingCheckout": "កំពុងបើកការទូទាត់…",
+    "checkoutUnavailable": "តំណទូទាត់មិនអាចប្រើបានទេ។ សូមព្យាយាមម្ដងទៀត។"
   }
 }

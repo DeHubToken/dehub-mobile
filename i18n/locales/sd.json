@@ -3596,6 +3596,27 @@
     "sendingTokens": "ٽوڪن موڪليا پيا وڃن",
     "queuedForSending": "موڪلڻ لاءِ قطار ۾",
     "tokenTransferFailed": "ٽوڪن جي منتقلي ناڪام",
-    "notSentYet": "اڃا نه موڪليو ويو"
+    "notSentYet": "اڃا نه موڪليو ويو",
+    "topUp": "ٽاپ اپ",
+    "selectCurrency": "ڪرنسي چونڊيو",
+    "chooseCurrency": "ڪا ڪرنسي چونڊيو",
+    "currentPrice": "موجوده {{symbol}} قيمت",
+    "walletAddress": "والٽ ائڊريس",
+    "selectChain": "چين چونڊيو",
+    "chooseChain": "ڪا چين چونڊيو",
+    "confirmPurchase": "خريداري جي تصديق ڪريو",
+    "amountIn": "{{currency}} رقم",
+    "approxReceive": "لڳ ڀڳ ملندو {{symbol}}",
+    "iAcceptThe": "آئون قبول ڪريان ٿو",
+    "termsOfService": "خدمت جون شرطون",
+    "invalidAmountGtZero": "0 کان وڏي صحيح رقم داخل ڪريو.",
+    "enterValidAmount": "صحيح رقم داخل ڪريو",
+    "noSupply": "خريداري دستياب ناهي — هن چين تي {{symbol}} جي رسد ناهي.",
+    "insufficientSupply": "{{symbol}} جي رسد ناڪافي: هن چين تي صرف {{available}} موجود.",
+    "connectWallet": "مهرباني ڪري والٽ ڳنڍيو",
+    "acceptTermsFirst": "مهرباني ڪري خدمت جون شرطون قبول ڪريو",
+    "redirecting": "چيڪ آئوٽ ڏانهن موڪليو پيو وڃي…",
+    "openingCheckout": "چيڪ آئوٽ کوليو پيو وڃي…",
+    "checkoutUnavailable": "چيڪ آئوٽ لنڪ دستياب ناهي. ٻيهر ڪوشش ڪريو."
   }
 }

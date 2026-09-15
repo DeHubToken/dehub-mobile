@@ -3649,6 +3649,27 @@
     "sendingTokens": "กำลังส่งโทเคน",
     "queuedForSending": "อยู่ในคิวเพื่อส่ง",
     "tokenTransferFailed": "โอนโทเคนไม่สำเร็จ",
-    "notSentYet": "ยังไม่ได้ส่ง"
+    "notSentYet": "ยังไม่ได้ส่ง",
+    "topUp": "เติมเงิน",
+    "selectCurrency": "เลือกสกุลเงิน",
+    "chooseCurrency": "เลือกสกุลเงิน",
+    "currentPrice": "ราคา {{symbol}} ปัจจุบัน",
+    "walletAddress": "ที่อยู่กระเป๋า",
+    "selectChain": "เลือกเชน",
+    "chooseChain": "เลือกเชน",
+    "confirmPurchase": "ยืนยันการซื้อ",
+    "amountIn": "จำนวน {{currency}}",
+    "approxReceive": "จะได้รับประมาณ {{symbol}}",
+    "iAcceptThe": "ฉันยอมรับ",
+    "termsOfService": "ข้อกำหนดในการให้บริการ",
+    "invalidAmountGtZero": "กรุณาใส่จำนวนที่ถูกต้องและมากกว่า 0",
+    "enterValidAmount": "กรุณาใส่จำนวนที่ถูกต้อง",
+    "noSupply": "ซื้อไม่ได้ — ไม่มี {{symbol}} บนเชนนี้",
+    "insufficientSupply": "{{symbol}} ไม่พอ: บนเชนนี้มีเพียง {{available}}",
+    "connectWallet": "กรุณาเชื่อมต่อกระเป๋า",
+    "acceptTermsFirst": "กรุณายอมรับข้อกำหนดในการให้บริการ",
+    "redirecting": "กำลังพาไปหน้าชำระเงิน…",
+    "openingCheckout": "กำลังเปิดหน้าชำระเงิน…",
+    "checkoutUnavailable": "ลิงก์ชำระเงินใช้ไม่ได้ กรุณาลองใหม่"
   }
 }

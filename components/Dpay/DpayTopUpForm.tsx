@@ -1,4 +1,5 @@
 import { DhbCoin } from "../common/DhbCoin";
+import { useTranslation } from "react-i18next";
 import React, { useEffect, useCallback, useMemo } from "react";
 import { View, Text, TextInput, TouchableOpacity, Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -43,6 +44,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
   const address: string | undefined = (user?.walletAddress || user?.address) as
     | string
     | undefined;
+  const { t } = useTranslation();
   const [amountUsd, setAmountUsd] = React.useState<string>("10");
   const [currency, setCurrency] = React.useState<string>("usd");
   const [chain, setChain] = React.useState<string>(
@@ -143,15 +145,15 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
   }, [supplyData, chain]);
   const amountValidationError = React.useMemo(() => {
     if (!Number.isFinite(parsedAmount) || parsedAmount <= 0)
-      return "Enter a valid amount greater than 0.";
+      return t("dpay.invalidAmountGtZero");
     // if (!computedPrice || computedPrice <= 0) return "Price unavailable. Try again shortly.";
     if (supplyOnChain === 0)
-      return "Purchase unavailable — no DHB supply on this chain.";
+      return t("dpay.noSupply", { symbol: tokenSymbol });
     if (typeof supplyOnChain === "number" && netTokens > supplyOnChain) {
-      return `Insufficient DHB supply on this chain.`;
+      return t("dpay.noSupply", { symbol: tokenSymbol });
     }
     return null;
-  }, [parsedAmount, computedPrice, supplyOnChain, netTokens]);
+  }, [parsedAmount, computedPrice, supplyOnChain, netTokens, tokenSymbol, t]);
 
   const onChangeAmount = React.useCallback((txt: string) => {
     // allow only numbers and decimal
@@ -228,7 +230,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       return;
     }
     if (!address) {
-      toastError("Please connect to Wallet");
+      toastError(t("dpay.connectWallet"));
       return;
     }
     setConfirmOpen(true);
@@ -256,11 +258,11 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
 
   const onConfirmCheckout = React.useCallback(async () => {
     if (!address) {
-      toastError("Please connect to Wallet");
+      toastError(t("dpay.connectWallet"));
       return;
     }
     if (!termsAccepted) {
-      toastError("Please accept the Terms and Service");
+      toastError(t("dpay.acceptTermsFirst"));
       return;
     }
     const amt = parseFloat(amountUsd || "0");
@@ -276,7 +278,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       !Number.isFinite(price) ||
       price <= 0
     ) {
-      toastError("Enter a valid amount");
+      toastError(t("dpay.enterValidAmount"));
       return;
     }
     // Supply checks
@@ -298,13 +300,13 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       const net = gross - gross * 0.1;
       if (supplyOnChain === 0) {
         toastError(
-          `Purchase unavailable — no ${tokenSymbol} supply on this chain.`
+          t("dpay.noSupply", { symbol: tokenSymbol })
         );
         return;
       }
       if (supplyOnChain <= net) {
         toastError(
-          `Insufficient ${tokenSymbol} supply: only ${supplyOnChain} available on this chain.`
+          t("dpay.insufficientSupply", { symbol: tokenSymbol, available: supplyOnChain })
         );
         return;
       }
@@ -339,21 +341,21 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       if (sessionId) setStatusSid(sessionId);
       if (redirectUrl) {
         await openInApp(redirectUrl);
-        toastSuccess("Redirecting to checkout…");
+        toastSuccess(t("dpay.redirecting"));
       } else if (sessionId) {
         // Fallback: use website to handle Stripe redirect by sessionId
         const url = `${LEGACY_WEBSITE_LINK}/dpay/checkout?sessionId=${encodeURIComponent(
           sessionId
         )}`;
         await openInApp(url);
-        toastSuccess("Opening checkout…");
+        toastSuccess(t("dpay.openingCheckout"));
       } else {
-        toastError("Checkout link unavailable. Please try again.");
+        toastError(t("dpay.checkoutUnavailable"));
       }
 
       setStatusVisible(true);
     } catch (e) {
-      toastError(e, "Something went wrong");
+      toastError(e, t("common.somethingWentWrong"));
     } finally {
       setLoadingCheckout(false);
       // Do not close modal; await deep link and polling
@@ -370,21 +372,21 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
 
   return (
     <View className="bg-theme-neutrals-800 rounded-xl p-5 border border-theme-neutrals-700/60">
-      <Text className="text-white text-xl font-semibold mb-1">Top Up</Text>
+      <Text className="text-white text-xl font-semibold mb-1">{t("dpay.topUp")}</Text>
       <Text className="text-gray-300 text-[11px] mb-4">
         Buy $DHB using card and get free gas to use instantly
       </Text>
 
       <View className="mb-3">
-        <Text className="text-gray-400 text-[11px] mb-1">Select Currency</Text>
+        <Text className="text-gray-400 text-[11px] mb-1">{t("dpay.selectCurrency")}</Text>
         <Dropdown
           value={currency}
           onChange={onChangeCurrency}
-          placeholder="Choose currency"
+          placeholder={t("dpay.chooseCurrency")}
           options={currencyOptions}
         />
         <View className="flex-row items-center justify-between mt-2">
-          <Text className="text-gray-400 text-[11px]">Current DHB Price</Text>
+          <Text className="text-gray-400 text-[11px]">{t("dpay.currentPrice", { symbol: tokenSymbol })}</Text>
           <Text className="text-white text-sm tracking-wide">
             {typeof tokenPrice === "number"
               ? `${tokenPrice.toFixed(7)} ${currency.toUpperCase()}`
@@ -421,7 +423,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       </View>
 
       <View className="mb-3">
-        <Text className="text-gray-400 text-[11px] mb-1">Wallet Address</Text>
+        <Text className="text-gray-400 text-[11px] mb-1">{t("dpay.walletAddress")}</Text>
         <View className="h-11 px-3 rounded-lg bg-zinc-900 border border-zinc-800 flex-row items-center">
           <Ionicons name="wallet-outline" size={16} color="#A1A1AA" />
           <Text className="text-white text-sm ml-2">
@@ -433,11 +435,11 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       </View>
 
       <View className="mb-3">
-        <Text className="text-gray-400 text-[11px] mb-1">Select Chain</Text>
+        <Text className="text-gray-400 text-[11px] mb-1">{t("dpay.selectChain")}</Text>
         <Dropdown
           value={chain}
           onChange={onChangeChain}
-          placeholder="Choose chain"
+          placeholder={t("dpay.chooseChain")}
           options={chainOptions}
         />
       </View>
@@ -466,7 +468,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
           }`}
         >
           <Text className="text-white font-semibold">
-            {loadingCheckout ? "Processing..." : "Buy now"}
+            {loadingCheckout ? t("buyCoins.processing") : t("liveShop.buyNow")}
           </Text>
         </TouchableOpacity>
       </AccentButtonGradient>
@@ -481,13 +483,13 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
           {!statusVisible ? (
             <>
               <Text className="text-white text-2xl font-semibold text-center mb-4">
-                Confirm Purchase
+                {t("dpay.confirmPurchase")}
               </Text>
 
               <View className="border-t border-theme-neutrals-700/60">
                 <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60">
                   <Text className="text-gray-300 text-sm">
-                    {currency.toUpperCase()} Amount
+                    {t("dpay.amountIn", { currency: currency.toUpperCase() })}
                   </Text>
                   <Text className="text-white text-sm font-semibold">
                     {parseFloat(amountUsd || "0").toFixed(2)} [
@@ -496,14 +498,14 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
                 </View>
                 <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60">
                   <Text className="text-gray-300 text-sm">
-                    Approx Receive {tokenSymbol}
+                    {t("dpay.approxReceive", { symbol: tokenSymbol })}
                   </Text>
                   <Text className="text-white text-sm font-semibold">
                     {approxReceive}
                   </Text>
                 </View>
                 <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60">
-                  <Text className="text-gray-300 text-sm">Wallet Address</Text>
+                  <Text className="text-gray-300 text-sm">{t("dpay.walletAddress")}</Text>
                   <Text className="text-white text-sm font-semibold">
                     {miniAddress(address || "")}
                   </Text>
@@ -521,12 +523,12 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
                   color={termsAccepted ? theme.colors.accent : "#9CA3AF"}
                 />
                 <Text className="text-gray-300 text-xs ml-2">
-                  I accept the{" "}
+                  {t("dpay.iAcceptThe")}{" "}
                   <Text
                     onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
                     className="text-white font-semibold underline"
                   >
-                    Terms and Service
+                    {t("dpay.termsOfService")}
                   </Text>
                 </Text>
               </TouchableOpacity>
@@ -539,7 +541,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
                     className="rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 py-3 items-center"
                   >
                     <Text className="text-white text-sm font-semibold">
-                      Cancel
+                      {t("common.cancel")}
                     </Text>
                   </TouchableOpacity>
                 </View>

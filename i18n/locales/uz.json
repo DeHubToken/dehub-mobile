@@ -3664,6 +3664,27 @@
     "sendingTokens": "Tokenlar yuborilmoqda",
     "queuedForSending": "Yuborish navbatida",
     "tokenTransferFailed": "Token o‘tkazmasi bajarilmadi",
-    "notSentYet": "Hali yuborilmagan"
+    "notSentYet": "Hali yuborilmagan",
+    "topUp": "To‘ldirish",
+    "selectCurrency": "Valyutani tanlang",
+    "chooseCurrency": "Valyuta tanlang",
+    "currentPrice": "Joriy {{symbol}} narxi",
+    "walletAddress": "Hamyon manzili",
+    "selectChain": "Zanjirni tanlang",
+    "chooseChain": "Zanjir tanlang",
+    "confirmPurchase": "Xaridni tasdiqlash",
+    "amountIn": "{{currency}} miqdori",
+    "approxReceive": "Taxminan olasiz {{symbol}}",
+    "iAcceptThe": "Men qabul qilaman",
+    "termsOfService": "Xizmat shartlari",
+    "invalidAmountGtZero": "0 dan katta to‘g‘ri miqdorni kiriting.",
+    "enterValidAmount": "To‘g‘ri miqdorni kiriting",
+    "noSupply": "Xarid mumkin emas — bu zanjirda {{symbol}} zaxirasi yo‘q.",
+    "insufficientSupply": "{{symbol}} zaxirasi yetarli emas: bu zanjirda faqat {{available}} bor.",
+    "connectWallet": "Iltimos, hamyonni ulang",
+    "acceptTermsFirst": "Iltimos, xizmat shartlarini qabul qiling",
+    "redirecting": "To‘lov sahifasiga yo‘naltirilmoqda…",
+    "openingCheckout": "To‘lov sahifasi ochilmoqda…",
+    "checkoutUnavailable": "To‘lov havolasi mavjud emas. Qayta urinib ko‘ring."
   }
 }

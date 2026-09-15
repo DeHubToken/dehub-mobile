@@ -3677,6 +3677,27 @@
     "sendingTokens": "Tookenoota ergaa jira",
     "queuedForSending": "Ergaaf sarara keessa",
     "tokenTransferFailed": "Dabarsi tookenii hin milkoofne",
-    "notSentYet": "Amma hin ergamne"
+    "notSentYet": "Amma hin ergamne",
+    "topUp": "Guutuu",
+    "selectCurrency": "Sharafa filadhu",
+    "chooseCurrency": "Sharafa tokko filadhu",
+    "currentPrice": "Gatii {{symbol}} ammaa",
+    "walletAddress": "Teessoo boorsaa",
+    "selectChain": "Sarara filadhu",
+    "chooseChain": "Sarara tokko filadhu",
+    "confirmPurchase": "Bittaa mirkaneessi",
+    "amountIn": "Hamma {{currency}}",
+    "approxReceive": "Tilmaamaan argattu {{symbol}}",
+    "iAcceptThe": "Ani nan fudha",
+    "termsOfService": "Haala Tajaajilaa",
+    "invalidAmountGtZero": "Hamma sirrii 0 caalu galchi.",
+    "enterValidAmount": "Hamma sirrii galchi",
+    "noSupply": "Bittaan hin danda'amu — sarara kana irratti dhiyeessii {{symbol}} hin jiru.",
+    "insufficientSupply": "Dhiyeessiin {{symbol}} gaʼaa miti: sarara kana irratti {{available}} qofa jira.",
+    "connectWallet": "Maaloo boorsaa walqabsiisi",
+    "acceptTermsFirst": "Maaloo haala tajaajilaa fudhadhu",
+    "redirecting": "Gara kaffaltiitti geeddaramaa jira…",
+    "openingCheckout": "Kaffaltii banaa jira…",
+    "checkoutUnavailable": "Geessituun kaffaltii hin argamu. Irra deebiʼii yaali."
   }
 }
