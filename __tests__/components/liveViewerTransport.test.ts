@@ -53,3 +53,23 @@ describe('live viewer transport', () => {
     expect(whep).not.toContain('getUserMedia');
   });
 });
+
+describe('live viewer transport handover', () => {
+  it('holds the ladder back while an attempt is in flight', () => {
+    const player = readSource('components', 'VideoPlayer', 'LiveStreamPlayer.tsx');
+    const hook = readSource('hooks', 'useWhepStream.ts');
+
+    // Starting HLS underneath a WebRTC attempt means the picture begins and
+    // then restarts a second later when the session arrives.
+    expect(player).toContain('whepLive.pending ? (');
+    expect(hook).toContain('pending: !!endpoint && !media && !failed');
+  });
+
+  it('never leaves a Livepeer stream or a replay waiting on a session it will not open', () => {
+    const hook = readSource('hooks', 'useWhepStream.ts');
+
+    // pending is derived from the endpoint, which is null for anything without
+    // a WHEP route — so those fall straight through to HLS.
+    expect(hook).toContain('const endpoint = enabled && !failed ? whepEndpointFor(stream) : null');
+  });
+});

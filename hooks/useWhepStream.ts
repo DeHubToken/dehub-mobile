@@ -35,6 +35,17 @@ interface Result {
   stream: MediaStream | null;
   /** True once WebRTC is out of the picture for this stream. */
   failed: boolean;
+  /**
+   * An attempt is in flight and has neither arrived nor given up.
+   *
+   * Callers hold the fallback back while this is true. Starting HLS in the
+   * meantime works, but it means the viewer watches the picture begin and then
+   * restart a second later when WebRTC arrives — and on the surface this
+   * matters most, WebRTC opens faster than a ladder can buffer its first
+   * segments anyway. False whenever there is nothing to wait for: a Livepeer
+   * stream, a replay, or a gated one.
+   */
+  pending: boolean;
 }
 
 export function useWhepStream({ enabled, stream, muted = false }: Options): Result {
@@ -108,7 +119,7 @@ export function useWhepStream({ enabled, stream, muted = false }: Options): Resu
     }
   }, [media, muted]);
 
-  return { stream: media, failed };
+  return { stream: media, failed, pending: !!endpoint && !media && !failed };
 }
 
 export default useWhepStream;

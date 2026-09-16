@@ -1312,6 +1312,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           /* WebRTC is carrying the picture. The chrome below is drawn over
              whatever renders it, so this swaps in without touching any of it. */
           <LiveWebRtcView stream={whepLive.stream} />
+        ) : whepLive.pending ? (
+          /* An attempt is in flight. The ladder waits rather than starting
+             underneath it: on a working network WebRTC arrives before HLS has
+             buffered its first segments, and starting both means the viewer
+             watches the stream begin and then restart. Bounded by the hook's
+             own start timeout, after which this is false and HLS takes over. */
+          <View className="flex-1 dark-surface bg-black" />
         ) : (isLiveEffective || isEndedEffective) && effectiveVideoUrl ? (
           <VideoArea
             isTranscoding={false}
