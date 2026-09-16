@@ -1821,6 +1821,13 @@
     "cancelRecording": "Yazmanı ləğv et",
     "sendVoiceNote": "Səsli qeydi göndər",
     "noneYetAddYours": "Hələ şərh yoxdur, ilkini siz yazın.",
+    "pinnedBadge": "Sancaqlanıb",
+    "pinnedByCreator": "Müəllif tərəfindən sancaqlanıb",
+    "pinAction": "Yuxarıya sancaqla",
+    "unpinAction": "Sancağı götür",
+    "pinnedToast": "Bu paylaşımın başına sancaqlandı",
+    "unpinnedToast": "Sancaq götürüldü",
+    "pinFailed": "Həmin şərh sancaqlana bilmədi",
     "kidsOnlyThread": "Bu yazı uşaqlar üçündür. Yalnız Uşaqlar Rejimi bu barədə şərh yaza bilər."
   },
   "postInfo": {

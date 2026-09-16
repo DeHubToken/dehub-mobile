@@ -1824,6 +1824,13 @@
     "cancelRecording": "Jooji duubista",
     "sendVoiceNote": "Dir fariinta codka",
     "noneYetAddYours": "Weli faallo ma jirto, taada ku dar.",
+    "pinnedBadge": "La dhejiyay",
+    "pinnedByCreator": "Abuuraha ayaa dhejiyay",
+    "pinAction": "Ku dheji kor",
+    "unpinAction": "Ka saar dhejinta",
+    "pinnedToast": "Waxaa lagu dhejiyay qoraalkan kore",
+    "unpinnedToast": "Dhejintii waa la saaray",
+    "pinFailed": "Faallada lama dhejin karin",
     "kidsOnlyThread": "Qoraalkan waxaa loogu talagalay carruurta. Kaliya hababka carruurta ayaa ka faalloon kara."
   },
   "postInfo": {

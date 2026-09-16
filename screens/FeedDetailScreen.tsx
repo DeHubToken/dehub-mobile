@@ -4,7 +4,7 @@ import { View, Text, FlatList, TextInput, TouchableOpacity, ActivityIndicator, K
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
-import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, postImageComment, postGifComment, postAudioComment, recordCommentViews } from "../services/nft.service";
+import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, pinComment, postImageComment, postGifComment, postAudioComment, recordCommentViews } from "../services/nft.service";
 import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard from "../components/Home/FeedCard";
 import { CommentItem } from "../components/Comments";
@@ -27,7 +27,7 @@ import { useMentions } from "../hooks/useMentions";
 import { useCommentTipTotals } from "../hooks/useCommentTipTotals";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
-import { getAvatarUrl, toastError } from "../libs";
+import { getAvatarUrl, toastError, toastSuccess } from "../libs";
 import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.util";
 import {
   loadCommentDraft,
@@ -152,9 +152,9 @@ export default function FeedDetailScreen() {
   const [tipComment, setTipComment] = useState<Comment | null>(null);
   // Author-only who-liked list, opened from an own comment's like button.
   const [likersCommentId, setLikersCommentId] = useState<number | null>(null);
-  const { totals: tipTotals, bump: bumpTipTotal } = useCommentTipTotals(
-    comments.map((c) => c.id),
-  );
+  // Every comment tip on this post, in one query, plus the five best-tipped
+  // ids — which the detail fetch passes on so those comments lead the thread.
+  const { totals: tipTotals, bump: bumpTipTotal, topTippedIds } = useCommentTipTotals(tokenId);
 
   const inputRef = useRef<TextInput>(null);
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
@@ -264,10 +264,10 @@ export default function FeedDetailScreen() {
     if (tokenId == null) return;
     setLoading(true);
     try {
-      const res = await getNFT(
-        tokenId, 
-        commentIdParam ? { commentId: commentIdParam } : undefined
-      );
+      const res = await getNFT(tokenId, {
+        ...(commentIdParam ? { commentId: commentIdParam } : {}),
+        topTipped: topTippedIds,
+      });
       const payload = res?.result || res || {};
       
       // console.log("[FeedDetailScreen] fetched data", payload.comments);
@@ -394,7 +394,13 @@ export default function FeedDetailScreen() {
     } finally {
       setLoading(false);
     }
-  }, [tokenId, commentIdParam]);
+    // topTippedIds lands one tick after the first fetch on a thread that has
+    // tipped comments — the Supabase read has to resolve first — so those
+    // threads fetch twice and settle. Threads with no comment tips, which is
+    // nearly all of them, keep the empty list and never refetch. The dep is
+    // the joined string, not the array, or a fresh identity every render would
+    // refetch forever.
+  }, [tokenId, commentIdParam, topTippedIds.join(",")]);
 
   useEffect(() => {
     fetchData();
@@ -502,6 +508,38 @@ export default function FeedDetailScreen() {
   const handleContextReply = useCallback(() => {
     if (contextComment) handleReplyPress(contextComment);
   }, [contextComment, handleReplyPress]);
+
+  /** This thread is the viewer's own post, which is what a pin needs. */
+  const isOwnThread = useMemo(() => {
+    const minter = (item?.minter || (item as any)?.minterUser?.address || "").toLowerCase();
+    return !!address && !!minter && minter === address.toLowerCase();
+  }, [item, address]);
+
+  /**
+   * Pin a comment to the top of your own thread, or take the pin off.
+   *
+   * One per post, so the optimistic patch clears the flag on every other row
+   * rather than only setting it here — otherwise the comment that held the pin
+   * a moment ago keeps its badge until the refetch lands.
+   */
+  const handleContextPin = useCallback(async () => {
+    const id = contextComment?.id;
+    if (id == null) return;
+    const wasPinned = contextComment?.isPinned === true;
+    setComments((prev) =>
+      prev.map((c) => ({ ...c, isPinned: !wasPinned && Number(c.id) === Number(id) })),
+    );
+    try {
+      const res = await pinComment(id);
+      toastSuccess(res.pinned ? t("comments.pinnedToast") : t("comments.unpinnedToast"));
+    } catch (error: any) {
+      toastError(error?.message || t("comments.pinFailed"));
+    }
+    // Either way the server is the authority on what is pinned and in what
+    // order — the optimistic patch cleared the flag on every other row, so
+    // there is nothing local left to undo a failure from.
+    await fetchData();
+  }, [contextComment, fetchData, t]);
 
   const handleContextEdit = useCallback(() => {
     if (!contextComment) return;
@@ -1311,6 +1349,11 @@ export default function FeedDetailScreen() {
         onReply={contextMeta?.isReply ? undefined : handleContextReply}
         onEdit={contextMeta?.isOwnComment ? handleContextEdit : undefined}
         onDelete={contextMeta?.isOwnComment ? handleContextDelete : undefined}
+        onPin={
+          // Root comments only — a reply sits in a subtree nothing re-orders,
+          // so pinning one would move nothing.
+          isOwnThread && !contextMeta?.isReply ? handleContextPin : undefined
+        }
         onLike={handleContextLike}
         onDislike={handleContextDislike}
         onShowLikers={

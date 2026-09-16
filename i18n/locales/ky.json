@@ -1792,6 +1792,13 @@
     "cancelRecording": "Жазууну жокко чыгаруу",
     "sendVoiceNote": "Үн жазууну жөнөтүү",
     "noneYetAddYours": "Азырынча комментарий жок, өзүңүздүкүн кошуңуз.",
+    "pinnedBadge": "Кадалган",
+    "pinnedByCreator": "Автор кадаган",
+    "pinAction": "Жогоруга кадоо",
+    "unpinAction": "Кадоону алып салуу",
+    "pinnedToast": "Бул жазуунун эң башына кадалды",
+    "unpinnedToast": "Кадоо алынды",
+    "pinFailed": "Бул пикирди кадоо мүмкүн болбоду",
     "kidsOnlyThread": "Бул пост балдар үчүн. Болгону Kids Mode бул тууралуу комментарий бере алат."
   },
   "postInfo": {

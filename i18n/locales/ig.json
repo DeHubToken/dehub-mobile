@@ -1818,6 +1818,13 @@
     "cancelRecording": "Kagbuo ndekọ",
     "sendVoiceNote": "Zipụ ozi olu",
     "noneYetAddYours": "Enwebeghị nkọwa, tinye nke gị.",
+    "pinnedBadge": "Akpọgidere",
+    "pinnedByCreator": "Onye kere ya kpọgidere ya",
+    "pinAction": "Kpọgide n'elu",
+    "unpinAction": "Wepụ nkpọgide",
+    "pinnedToast": "Akpọgidere ya n'elu ozi a",
+    "unpinnedToast": "Ewepụla nkpọgide",
+    "pinFailed": "Enweghị ike ịkpọgide nkọwa ahụ",
     "kidsOnlyThread": "Nke a post bụ maka ụmụaka. Naanị Kids Mode nwere ike ikwu okwu na ya."
   },
   "postInfo": {

@@ -1832,6 +1832,13 @@
     "cancelRecording": "Atšaukti įrašymą",
     "sendVoiceNote": "Siųsti balso žinutę",
     "noneYetAddYours": "Komentarų dar nėra — parašykite savo.",
+    "pinnedBadge": "Prisegta",
+    "pinnedByCreator": "Prisegė kūrėjas",
+    "pinAction": "Prisegti viršuje",
+    "unpinAction": "Atsegti",
+    "pinnedToast": "Prisegta šio įrašo viršuje",
+    "unpinnedToast": "Prisegimas pašalintas",
+    "pinFailed": "Nepavyko prisegti to komentaro",
     "kidsOnlyThread": "Šis įrašas skirtas vaikams. Jį gali komentuoti tik vaikų režimas."
   },
   "postInfo": {

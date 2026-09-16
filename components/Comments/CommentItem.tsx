@@ -493,6 +493,30 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 </Text>
               </View>
             )}
+            {/* Why this comment is at the top. Without it a pinned comment
+                just looks like the newest one, and the creator's choice reads
+                as an accident of ordering. */}
+            {comment.isPinned && (
+              <View
+                accessibilityLabel={t("comments.pinnedByCreator")}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 2,
+                  paddingHorizontal: 6,
+                  paddingVertical: 2,
+                  borderRadius: 6,
+                  backgroundColor: "rgba(255,255,255,0.12)",
+                  borderWidth: 1,
+                  borderColor: "rgba(255,255,255,0.12)",
+                }}
+              >
+                <Icon name="Pin" size={10} color="rgba(255,255,255,0.75)" />
+                <Text style={{ fontSize: 10, fontWeight: "600", color: "rgba(255,255,255,0.75)" }}>
+                  {t("comments.pinnedBadge")}
+                </Text>
+              </View>
+            )}
             {/* Same name, different account. Said plainly, and never by hiding
                 the comment — the reader decides, this only removes the doubt. */}
             {isImpersonating && (

@@ -1848,6 +1848,13 @@
     "cancelRecording": "녹음 취소",
     "sendVoiceNote": "음성 메모 보내기",
     "noneYetAddYours": "아직 댓글이 없습니다. 첫 댓글을 남겨보세요.",
+    "pinnedBadge": "고정됨",
+    "pinnedByCreator": "크리에이터가 고정함",
+    "pinAction": "맨 위에 고정",
+    "unpinAction": "고정 해제",
+    "pinnedToast": "이 게시물 맨 위에 고정했습니다",
+    "unpinnedToast": "고정을 해제했습니다",
+    "pinFailed": "해당 댓글을 고정할 수 없습니다",
     "kidsOnlyThread": "이 게시물은 어린이를 위한 것입니다. 어린이 모드만 댓글을 달 수 있습니다."
   },
   "postInfo": {

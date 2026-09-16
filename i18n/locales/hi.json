@@ -1601,6 +1601,13 @@
     "cancelRecording": "रिकॉर्डिंग रद्द करें",
     "sendVoiceNote": "वॉइस नोट भेजें",
     "noneYetAddYours": "अभी कोई टिप्पणी नहीं, अपनी जोड़ें।",
+    "pinnedBadge": "पिन किया गया",
+    "pinnedByCreator": "क्रिएटर ने पिन किया",
+    "pinAction": "सबसे ऊपर पिन करें",
+    "unpinAction": "पिन हटाएँ",
+    "pinnedToast": "इस पोस्ट के सबसे ऊपर पिन कर दिया गया",
+    "unpinnedToast": "पिन हटा दिया गया",
+    "pinFailed": "वह टिप्पणी पिन नहीं की जा सकी",
     "kidsOnlyThread": "यह पोस्ट बच्चों के लिए है। केवल किड्स मोड ही इस पर टिप्पणी कर सकता है।"
   },
   "postInfo": {

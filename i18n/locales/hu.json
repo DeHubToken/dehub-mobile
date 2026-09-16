@@ -1837,6 +1837,13 @@
     "cancelRecording": "Felvétel megszakítása",
     "sendVoiceNote": "Hangjegyzet küldése",
     "noneYetAddYours": "Még nincsenek hozzászólások — írd meg a tiédet.",
+    "pinnedBadge": "Kitűzve",
+    "pinnedByCreator": "A készítő tűzte ki",
+    "pinAction": "Kitűzés felülre",
+    "unpinAction": "Kitűzés eltávolítása",
+    "pinnedToast": "Kitűzve a bejegyzés tetejére",
+    "unpinnedToast": "Kitűzés eltávolítva",
+    "pinFailed": "Nem sikerült kitűzni ezt a hozzászólást",
     "kidsOnlyThread": "Ez a bejegyzés gyerekeknek szól. Csak Gyermek üzemmódban lehet megjegyzést fűzni hozzá."
   },
   "postInfo": {

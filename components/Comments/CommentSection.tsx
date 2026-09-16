@@ -46,6 +46,7 @@ import {
   reactComment,
   editComment,
   deleteComment,
+  pinComment,
   postImageComment,
   postGifComment,
   postAudioComment,
@@ -190,9 +191,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const [tipComment, setTipComment] = useState<Comment | null>(null);
   // Author-only who-liked list, opened from an own comment's like button.
   const [likersCommentId, setLikersCommentId] = useState<number | null>(null);
-  const { totals: tipTotals, bump: bumpTipTotal } = useCommentTipTotals(
-    flatComments.map((c) => c.id),
-  );
+  // Every comment tip on this post, in one query, plus the five best-tipped
+  // ids — which are part of what the comment fetch asks for, so a well-tipped
+  // comment deep in a long thread still leads it.
+  const { totals: tipTotals, bump: bumpTipTotal, topTippedIds } = useCommentTipTotals(tokenId);
 
   // Media attachment state. A GIF is a hosted URL, so it is the one attachment
   // that can come back from a draft; an image or a voice note is a local file
@@ -357,6 +359,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         limit: PAGE_SIZE,
         address: userAddress,
         commentId: highlightCommentId,
+        topTipped: topTippedIds,
       });
 
       const { items } = res.result;
@@ -375,7 +378,13 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       console.error("Failed to load comments:", e);
       if (!isRefresh) toastError(t("comments.loadFailed"));
     }
-  }, [tokenId, userAddress, highlightCommentId, buildFlatComments]);
+    // topTippedIds lands one tick after the first load on a thread that has
+    // tipped comments — the Supabase read has to resolve first — so those
+    // threads load twice and settle. Threads with no comment tips, which is
+    // nearly all of them, keep the empty list they started with and never
+    // reload. The dep is the joined string, not the array, or a fresh array
+    // identity on every render would reload forever.
+  }, [tokenId, userAddress, highlightCommentId, buildFlatComments, topTippedIds.join(",")]);
 
   // Initial load
   useEffect(() => {
@@ -951,6 +960,37 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     );
   }, [contextComment, anchorComment]);
 
+  /** This thread is the viewer's own post, which is what a pin needs. */
+  const isOwnThread =
+    !!userAddress && !!threadAuthor && threadAuthor === userAddress.toLowerCase();
+
+  /**
+   * Pin a comment to the top of your own thread, or take the pin off.
+   *
+   * One per post, so the optimistic patch clears the flag on every other row
+   * rather than only setting it here — otherwise the comment that held the pin
+   * a moment ago keeps its badge until the reload lands.
+   */
+  const handleContextPin = useCallback(async () => {
+    const id = contextComment?.id;
+    if (id == null) return;
+    const wasPinned = contextComment?.isPinned === true;
+    setFlatComments(prev =>
+      prev.map(c => ({ ...c, isPinned: !wasPinned && Number(c.id) === Number(id) })),
+    );
+    try {
+      const res = await pinComment(id);
+      toastSuccess(res.pinned ? t("comments.pinnedToast") : t("comments.unpinnedToast"));
+      await loadComments(true);
+    } catch (error: any) {
+      // Reload rather than undo: the optimistic patch cleared the flag on
+      // every other row, and if one of them held the pin there is nothing
+      // local left to put it back from.
+      toastError(error?.message || t("comments.pinFailed"));
+      await loadComments(true);
+    }
+  }, [contextComment, loadComments, t]);
+
   const closeContextMenu = useCallback(() => {
     setContextComment(null);
     setContextLayout(null);
@@ -1476,6 +1516,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           contextMeta?.isOwnComment && !contextMeta?.isReply && canAnchor
             ? handleContextAnchor
             : undefined
+        }
+        onPin={
+          // Root comments only — a reply sits in a subtree nothing re-orders,
+          // so pinning one would move nothing.
+          isOwnThread && !contextMeta?.isReply ? handleContextPin : undefined
         }
         onLike={handleContextLike}
         onDislike={handleContextDislike}

@@ -1849,6 +1849,13 @@
     "cancelRecording": "Yozuvni bekor qilish",
     "sendVoiceNote": "Ovozli xabarni yuborish",
     "noneYetAddYours": "Hali izoh yo'q, o'zingiznikini qo'shing.",
+    "pinnedBadge": "Mahkamlangan",
+    "pinnedByCreator": "Muallif mahkamlagan",
+    "pinAction": "Yuqoriga mahkamlash",
+    "unpinAction": "Mahkamlashni olib tashlash",
+    "pinnedToast": "Bu postning eng tepasiga mahkamlandi",
+    "unpinnedToast": "Mahkamlash olib tashlandi",
+    "pinFailed": "Bu izohni mahkamlab bo‘lmadi",
     "kidsOnlyThread": "Bu post bolalar uchun. Unga faqat Bolalar rejimi izoh qoldirishi mumkin."
   },
   "postInfo": {

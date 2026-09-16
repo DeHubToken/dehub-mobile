@@ -1898,6 +1898,13 @@
     "cancelRecording": "Waraabbii haqi",
     "sendVoiceNote": "Yaadannoo sagalee ergi",
     "noneYetAddYours": "Amma yaadni hin jiru, kan kee dabali.",
+    "pinnedBadge": "Maxxanfameera",
+    "pinnedByCreator": "Uumaan maxxanse",
+    "pinAction": "Gubbaatti maxxansi",
+    "unpinAction": "Maxxansa kaasi",
+    "pinnedToast": "Barreeffama kanaa gubbaatti maxxanfameera",
+    "unpinnedToast": "Maxxansi kaafameera",
+    "pinFailed": "Yaada sana maxxansuun hin danda'amne",
     "kidsOnlyThread": "Barreeffamni kun ijoolleef kan qophaa&#39;edha. Kids Mode qofatu yaada irratti yaada kennuu danda&#39;a."
   },
   "postInfo": {

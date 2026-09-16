@@ -1834,6 +1834,13 @@
     "cancelRecording": "Batalkan rekaman",
     "sendVoiceNote": "Kirim pesan suara",
     "noneYetAddYours": "Belum ada komentar, tambahkan milikmu.",
+    "pinnedBadge": "Disematkan",
+    "pinnedByCreator": "Disematkan oleh kreator",
+    "pinAction": "Sematkan di atas",
+    "unpinAction": "Hapus sematan",
+    "pinnedToast": "Disematkan di bagian atas postingan ini",
+    "unpinnedToast": "Sematan dihapus",
+    "pinFailed": "Komentar itu tidak bisa disematkan",
     "kidsOnlyThread": "Postingan ini untuk anak - anak. Hanya Mode Anak yang dapat mengomentarinya."
   },
   "postInfo": {

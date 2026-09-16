@@ -1802,6 +1802,13 @@
     "cancelRecording": "रिकॉर्डिंग रद्द करीं",
     "sendVoiceNote": "आवाज नोट भेजीं",
     "noneYetAddYours": "अबले कवनो टिप्पणी नइखे, आपन जोड़ीं।",
+    "pinnedBadge": "पिन कइल",
+    "pinnedByCreator": "बनावे वाला के पिन कइल",
+    "pinAction": "ऊपर पिन करीं",
+    "unpinAction": "पिन हटाईं",
+    "pinnedToast": "ई पोस्ट के सबसे ऊपर पिन कइल गइल",
+    "unpinnedToast": "पिन हटा दिहल गइल",
+    "pinFailed": "ऊ टिप्पणी पिन ना हो सकल",
     "kidsOnlyThread": "इ लेख एगो हिस्सा ह बच्चा खातिर । केवल समस्या के खोज करे वाला व्यक्ति एह बारे में कुछ ना कुछ लिख सकेला."
   },
   "postInfo": {

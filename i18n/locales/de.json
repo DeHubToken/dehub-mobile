@@ -1847,6 +1847,13 @@
     "cancelRecording": "Aufnahme abbrechen",
     "sendVoiceNote": "Sprachnotiz senden",
     "noneYetAddYours": "Noch keine Kommentare — schreib den ersten.",
+    "pinnedBadge": "Angeheftet",
+    "pinnedByCreator": "Vom Creator angeheftet",
+    "pinAction": "Nach oben anheften",
+    "unpinAction": "Anheftung entfernen",
+    "pinnedToast": "Oben an diesem Beitrag angeheftet",
+    "unpinnedToast": "Anheftung entfernt",
+    "pinFailed": "Dieser Kommentar konnte nicht angeheftet werden",
     "kidsOnlyThread": "Dieser Beitrag ist für Kinder. Nur der Kindermodus kann es kommentieren."
   },
   "postInfo": {

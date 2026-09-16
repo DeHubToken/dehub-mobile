@@ -1862,6 +1862,13 @@
     "cancelRecording": "Khansela ukuqopha",
     "sendVoiceNote": "Thumela inothi lezwi",
     "noneYetAddYours": "Awekho amazwana okwamanje, engeza elakho.",
+    "pinnedBadge": "Ikhonjiwe",
+    "pinnedByCreator": "Ikhonjwe umdali",
+    "pinAction": "Yiphine phezulu",
+    "unpinAction": "Susa iphini",
+    "pinnedToast": "Iphinwe phezulu kulesi sithombe",
+    "unpinnedToast": "Iphini lisusiwe",
+    "pinFailed": "Awukwazanga ukuphina lowo mbono",
     "kidsOnlyThread": "Le phosti ngeyezingane. Imodi Yezingane kuphela engaphawula ngayo."
   },
   "postInfo": {

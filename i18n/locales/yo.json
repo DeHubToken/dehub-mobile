@@ -1829,6 +1829,13 @@
     "cancelRecording": "Fagilé àkọsílẹ̀",
     "sendVoiceNote": "Fi àkọsílẹ̀ ohùn ránṣẹ́",
     "noneYetAddYours": "Kò sí àsọyé síbẹ̀, fi tìrẹ kún.",
+    "pinnedBadge": "Ti a pin",
+    "pinnedByCreator": "Ẹlẹ́dàá ló pin",
+    "pinAction": "Pin sí òkè",
+    "unpinAction": "Yọ pin kúrò",
+    "pinnedToast": "A ti pin sí òkè ìfìwéránṣẹ́ yìí",
+    "unpinnedToast": "A ti yọ pin kúrò",
+    "pinFailed": "A kò lè pin ọ̀rọ̀ yẹn",
     "kidsOnlyThread": "Iṣẹ́ yìí jẹ́ fún àwọn ọmọdé. Ìlànà Àwọn Ọmọdé nìkan ni ó lè sọ̀rọ̀ lórí rẹ̀."
   },
   "postInfo": {

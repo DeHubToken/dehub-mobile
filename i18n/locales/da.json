@@ -1838,6 +1838,13 @@
     "cancelRecording": "Annuller optagelse",
     "sendVoiceNote": "Send talebesked",
     "noneYetAddYours": "Ingen kommentarer endnu — tilføj din.",
+    "pinnedBadge": "Fastgjort",
+    "pinnedByCreator": "Fastgjort af skaberen",
+    "pinAction": "Fastgør øverst",
+    "unpinAction": "Fjern fastgørelse",
+    "pinnedToast": "Fastgjort øverst i dette opslag",
+    "unpinnedToast": "Fastgørelse fjernet",
+    "pinFailed": "Kommentaren kunne ikke fastgøres",
     "kidsOnlyThread": "Dette indlæg er til børn. Kun Kids Mode kan kommentere det."
   },
   "postInfo": {

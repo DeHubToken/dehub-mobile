@@ -2115,6 +2115,13 @@
     "cancelRecording": "Hủy ghi âm",
     "sendVoiceNote": "Gửi tin nhắn thoại",
     "noneYetAddYours": "Chưa có bình luận, hãy viết đầu tiên.",
+    "pinnedBadge": "Đã ghim",
+    "pinnedByCreator": "Được nhà sáng tạo ghim",
+    "pinAction": "Ghim lên đầu",
+    "unpinAction": "Bỏ ghim",
+    "pinnedToast": "Đã ghim lên đầu bài đăng này",
+    "unpinnedToast": "Đã bỏ ghim",
+    "pinFailed": "Không ghim được bình luận đó",
     "kidsOnlyThread": "Bài đăng này dành cho trẻ em. Chỉ Chế độ trẻ em mới có thể bình luận về nó."
   },
   "postInfo": {

@@ -1835,6 +1835,13 @@
     "cancelRecording": "إلغاء التسجيل",
     "sendVoiceNote": "أرسل الملاحظة الصوتية",
     "noneYetAddYours": "لا توجد تعليقات بعد، أضف تعليقك.",
+    "pinnedBadge": "مثبّت",
+    "pinnedByCreator": "مثبّت من قِبل صاحب المنشور",
+    "pinAction": "تثبيت في الأعلى",
+    "unpinAction": "إزالة التثبيت",
+    "pinnedToast": "تم التثبيت في أعلى هذا المنشور",
+    "unpinnedToast": "تمت إزالة التثبيت",
+    "pinFailed": "تعذّر تثبيت هذا التعليق",
     "kidsOnlyThread": "هذا المنشور للأطفال. يمكن لـ Kids Mode فقط التعليق عليه."
   },
   "postInfo": {
