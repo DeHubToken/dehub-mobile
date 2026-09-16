@@ -4057,5 +4057,33 @@
     "videosCount": "{{videos}} Videos",
     "viewFeed": "Ihren Feed anzeigen",
     "yourChannel": "Dein Kanal"
+  },
+  "calls": {
+    "voiceCall": "DeHub-Sprachanruf",
+    "videoCall": "DeHub-Videoanruf",
+    "incoming": "Eingehender Anruf",
+    "calling": "Anrufen...",
+    "connecting": "Verbindung wird hergestellt...",
+    "connected": "Verbunden",
+    "decline": "Ablehnen",
+    "accept": "Annehmen",
+    "mute": "Stummschalten",
+    "unmute": "Stummschaltung aufheben",
+    "muted": "Stummgeschaltet",
+    "speaker": "Lautsprecher",
+    "camera": "Kamera",
+    "cameraOff": "Kamera aus",
+    "flip": "Flip-Kamera",
+    "end": "Auflegen",
+    "minimize": "Minimieren",
+    "expand": "Erweitern",
+    "tapToEnableAudio": "Tippen, um Audio zu aktivieren",
+    "offlineTitle": "Benutzer scheint offline zu sein",
+    "failedTitle": "Anruf fehlgeschlagen",
+    "offlineDesc": "{{name}} ist derzeit nicht für Anrufe verfügbar. Senden Sie eine Rückrufanfrage und sie können Sie zurückrufen, wenn sie online sind.",
+    "failedDesc": "Der Anruf konnte nicht abgeschlossen werden. Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+    "close": "Schließen",
+    "callbackRequest": "Rückrufanfrage",
+    "tryAgain": "Erneut versuchen"
   }
 }

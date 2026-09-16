@@ -4059,5 +4059,33 @@
     "viewFeed": "Ver tu feed",
     "yourChannel": "Tu canal",
     "yourChannelHint": "Pega la dirección de tu canal, el identificador también funciona por sí solo."
+  },
+  "calls": {
+    "voiceCall": "Llamada de voz DeHub",
+    "videoCall": "Videollamada DeHub",
+    "incoming": "Llamada entrante",
+    "calling": "Llamando...",
+    "connecting": "Conectando...",
+    "connected": "Conectado",
+    "decline": "Rechazar",
+    "accept": "Aceptar",
+    "mute": "Silenciar",
+    "unmute": "Desactivar silencio",
+    "muted": "Silenciado",
+    "speaker": "Altavoz",
+    "camera": "Cámara",
+    "cameraOff": "Cámara apagada",
+    "flip": "Voltear cámara",
+    "end": "Colgar",
+    "minimize": "Minimizar",
+    "expand": "Expandir",
+    "tapToEnableAudio": "Pulsa para activar el audio",
+    "offlineTitle": "Parece que el usuario no está conectado",
+    "failedTitle": "Llamada fallida",
+    "offlineDesc": "{{name}} no está disponible para llamadas en este momento. Envía una solicitud de devolución de llamada y podrán llamarte cuando estén en línea.",
+    "failedDesc": "No se ha podido completar la llamada. Comprueba tu conexión e inténtalo de nuevo.",
+    "close": "Cerrar",
+    "callbackRequest": "Solicitud de devolución de llamada",
+    "tryAgain": "Inténtalo de nuevo"
   }
 }

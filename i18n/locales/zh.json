@@ -4046,5 +4046,33 @@
     "viewFeed": "查看您的动态",
     "yourChannel": "您的频道",
     "yourChannelHint": "粘贴您的频道地址—其本身的句柄也起作用。"
+  },
+  "calls": {
+    "voiceCall": "DeHub语音通话",
+    "videoCall": "DeHub视频通话",
+    "incoming": "来电",
+    "calling": "正在呼叫...",
+    "connecting": "正在连接...",
+    "connected": "已连接",
+    "decline": "拒绝",
+    "accept": "接受",
+    "mute": "静音",
+    "unmute": "取消静音",
+    "muted": "已静音",
+    "speaker": "扬声器",
+    "camera": "相机",
+    "cameraOff": "摄像头关闭",
+    "flip": "翻转摄像头",
+    "end": "挂断",
+    "minimize": "最小化",
+    "expand": "展开",
+    "tapToEnableAudio": "轻触以启用音频",
+    "offlineTitle": "用户似乎处于离线状态",
+    "failedTitle": "通话失败",
+    "offlineDesc": "{{name}}目前无法接听电话。 发送回拨请求，他们可以在在线时给您回电。",
+    "failedDesc": "通话无法完成。 请检查您的网络连接，然后重试。",
+    "close": "关闭",
+    "callbackRequest": "回拨请求",
+    "tryAgain": "重试"
   }
 }

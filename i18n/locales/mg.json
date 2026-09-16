@@ -4065,5 +4065,33 @@
     "viewFeed": "Hijery ny fahana",
     "yourChannel": "Ny foibe hira",
     "yourChannelHint": "Apetaho ny adiresin'ny fantsona — ny famolahana amin'ny asa manokana ihany koa."
+  },
+  "calls": {
+    "voiceCall": "Antso an-tariby DeHub",
+    "videoCall": "Antso horonan-tsary DeHub",
+    "incoming": "Antso an-telefaona",
+    "calling": "Miantso...",
+    "connecting": "_Atomboy",
+    "connected": "Mifandray",
+    "decline": "Lavina",
+    "accept": "Hanaiky",
+    "mute": "Tsisy feo",
+    "unmute": "Manavao",
+    "muted": "Najanona",
+    "speaker": "Fanamafisam peo",
+    "camera": "Fakantsary",
+    "cameraOff": "Fakantsary",
+    "flip": "Atsimbadiho ny fakan-tsary",
+    "end": "Ampiakaro",
+    "minimize": "Hanakely",
+    "expand": "Manitatra",
+    "tapToEnableAudio": "Paompy mba hahafahan'ny feo",
+    "offlineTitle": "Toa tsy misy mpampiasa",
+    "failedTitle": "Tsy nahomby ny antso",
+    "offlineDesc": "{{name}} amin'izao fotoana izao dia tsy azo ampiasaina intsony ity resaka ity. Azonao atao ny miantso ny nomeraon-telefaona ary mandefa antso an-tariby rehefa an-tserasera.",
+    "failedDesc": "Tsy azo atao mihitsy ny antso. Hamarino ny fifandraisanao dia andramo indray.",
+    "close": "AKAIKY",
+    "callbackRequest": "Antso an-tariby",
+    "tryAgain": "Andramo indray"
   }
 }

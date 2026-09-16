@@ -4057,5 +4057,33 @@
     "viewFeed": "Zobacz swój kanał",
     "yourChannel": "Twój kanał",
     "yourChannelHint": "Wklej adres swojego kanału — uchwyt działa również sam z siebie."
+  },
+  "calls": {
+    "voiceCall": "Rozmowa głosowa DeHub",
+    "videoCall": "Rozmowa wideo DeHub",
+    "incoming": "Połączenie przychodzące",
+    "calling": "Dzwonię...",
+    "connecting": "Łączenie...",
+    "connected": "Połączono",
+    "decline": "Odrzuć",
+    "accept": "Zaakceptuj",
+    "mute": "Wycisz",
+    "unmute": "Włącz dźwięk",
+    "muted": "Wyciszono",
+    "speaker": "Głośnik",
+    "camera": "Kamera",
+    "cameraOff": "Kamera wyłączona",
+    "flip": "Odwróć kamerę",
+    "end": "Rozłącz się",
+    "minimize": "Minimalizuj",
+    "expand": "Rozwiń",
+    "tapToEnableAudio": "Dotknij, aby włączyć dźwięk",
+    "offlineTitle": "Użytkownik wydaje się być w trybie offline",
+    "failedTitle": "Połączenie nie powiodło się",
+    "offlineDesc": "{{name}} nie jest teraz dostępny dla połączeń. Wyślij prośbę o oddzwonienie, a oddzwoni do Ciebie, gdy będzie online.",
+    "failedDesc": "Połączenie nie mogło zostać zakończone. Sprawdź połączenie i spróbuj ponownie.",
+    "close": "Zamknij",
+    "callbackRequest": "Prośba o oddzwonienie",
+    "tryAgain": "Spróbuj ponownie"
   }
 }

@@ -3936,5 +3936,33 @@
     "viewFeed": "查看你的信息流",
     "yourChannel": "你的频道",
     "yourChannelHint": "粘贴你的频道地址——单独的用户名也可以。"
+  },
+  "calls": {
+    "voiceCall": "DeHub 语音通话",
+    "videoCall": "DeHub 视频通话",
+    "incoming": "来电",
+    "calling": "正在呼叫...",
+    "connecting": "正在连接...",
+    "connected": "已连接",
+    "decline": "拒绝",
+    "accept": "接受",
+    "mute": "静音",
+    "unmute": "取消静音",
+    "muted": "已静音",
+    "speaker": "扩音器",
+    "camera": "摄像头",
+    "cameraOff": "摄像头关闭",
+    "flip": "翻转摄像头",
+    "end": "挂断",
+    "minimize": "最小化",
+    "expand": "展开",
+    "tapToEnableAudio": "点击启用音频",
+    "offlineTitle": "用户似乎离线了",
+    "failedTitle": "通话失败",
+    "offlineDesc": "{{name}} 现在无法接听电话。发送回拨请求，他们上线时可以回拨给你。",
+    "failedDesc": "无法完成通话。检查你的连接并重试。",
+    "close": "关闭",
+    "callbackRequest": "回拨请求",
+    "tryAgain": "重试"
   }
 }

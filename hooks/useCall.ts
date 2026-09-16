@@ -36,6 +36,7 @@ export interface UseCallReturn {
   currentCall: CallSession | null;
   isConnecting: boolean;
   isMuted: boolean;
+  isSpeakerOn: boolean;
   isCameraOff: boolean;
   callDuration: string;
   remoteUid: number | null;
@@ -47,6 +48,7 @@ export interface UseCallReturn {
   acceptCall: () => void;
   rejectCall: () => void;
   toggleMute: () => void;
+  toggleSpeaker: () => void;
   toggleCamera: () => void;
   switchCamera: () => void;
   setCallMessageHandler: (handler: ((content: string) => void) | null) => void;
@@ -75,6 +77,7 @@ export function useCall(): UseCallReturn {
   const [currentCall, setCurrentCall] = useState<CallSession | null>(null);
   const [isConnecting, setIsConnecting] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [isSpeakerOn, setIsSpeakerOn] = useState(false);
   const [isCameraOff, setIsCameraOff] = useState(true);
   const [callDuration, setCallDuration] = useState("00:00");
   const [remoteUid, setRemoteUid] = useState<number | null>(null);
@@ -209,6 +212,11 @@ export function useCall(): UseCallReturn {
       engine.setChannelProfile(ChannelProfileType.ChannelProfileCommunication);
       engine.setClientRole(ClientRoleType.ClientRoleBroadcaster);
       engine.enableAudio();
+      // A video call opens on the loudspeaker the way every other phone app
+      // does it; a voice call opens on the earpiece.
+      const speakerDefault = callType === "video";
+      engine.setEnableSpeakerphone(speakerDefault);
+      setIsSpeakerOn(speakerDefault);
       if (callType === "video") {
         if (Platform.OS === "android") {
           const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA);
@@ -508,6 +516,12 @@ export function useCall(): UseCallReturn {
     setIsMuted(next);
   }, [isMuted]);
 
+  const toggleSpeaker = useCallback(() => {
+    const next = !isSpeakerOn;
+    getEngine().setEnableSpeakerphone(next);
+    setIsSpeakerOn(next);
+  }, [isSpeakerOn]);
+
   const toggleCamera = useCallback(() => {
     const engine = getEngine();
     if (isCameraOff) {
@@ -546,6 +560,7 @@ export function useCall(): UseCallReturn {
       currentCall,
       isConnecting,
       isMuted,
+      isSpeakerOn,
       isCameraOff,
       callDuration,
       remoteUid,
@@ -557,6 +572,7 @@ export function useCall(): UseCallReturn {
       acceptCall,
       rejectCall,
       toggleMute,
+      toggleSpeaker,
       toggleCamera,
       switchCamera,
       setCallMessageHandler,
@@ -567,6 +583,7 @@ export function useCall(): UseCallReturn {
       currentCall,
       isConnecting,
       isMuted,
+      isSpeakerOn,
       isCameraOff,
       callDuration,
       remoteUid,
@@ -577,6 +594,7 @@ export function useCall(): UseCallReturn {
       acceptCall,
       rejectCall,
       toggleMute,
+      toggleSpeaker,
       toggleCamera,
       switchCamera,
       setCallMessageHandler,

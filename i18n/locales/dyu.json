@@ -3929,5 +3929,33 @@
     "viewFeed": "Adamadenw, aw ka dumuniw lajɛ.",
     "yourChannel": "Ka kɛ sababu ye",
     "yourChannelHint": "I ka kan ka tɛmɛ o kan ka tɛmɛ o kan."
+  },
+  "calls": {
+    "voiceCall": "O ye kumakanw ye.",
+    "videoCall": "O ye videokanw ye.",
+    "incoming": "O kɔ, u ye mɔgɔ dɔw weele ka na u",
+    "calling": "N' ye telefɔni ta...",
+    "connecting": "O ye kaan wɛrɛ ye.",
+    "connected": "Koo minw be se k'an dɛmɛ",
+    "decline": "Dimi be ben",
+    "accept": "I ka sɔn",
+    "mute": "O ye mankanba ye.",
+    "unmute": "Fanga tɛ min na",
+    "muted": "Dɔnkili",
+    "speaker": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ ten.",
+    "camera": "Kamara - kala lagaw ya",
+    "cameraOff": "O kama, an ka ɲi ka to ka miiri o",
+    "flip": "Fɛɛn min be mɔgɔ lasun ka filɛli kɛ",
+    "end": "Aw ye to ka to ka miiri",
+    "minimize": "Minimuguw",
+    "expand": "Ka dɔ fara a kan",
+    "tapToEnableAudio": "Ka lamɛnni kɛ",
+    "offlineTitle": "Mɔgɔ min be baara kɛ n'o ye, a be komi a tɛ baara kɛ n'o",
+    "failedTitle": "Fanga tɛ min na",
+    "offlineDesc": "{{name}} tɛ se ka weleli kɛ sisan. N'i ye mɔgɔ dɔ weele ka na i ka soo, a be se k'i weele tugun n'u be ɛntɛrinɛti kan.",
+    "failedDesc": "Aw ye to ka miiri, ko sariya sɛbɛbaga ma labɛn. I ka ladɛrɛsi lajɛ ani i ka segi k'a ɲini.",
+    "close": "O kɔ, a ye dɔ fara",
+    "callbackRequest": "K'i ka juru sara",
+    "tryAgain": "Try tun tun tun"
   }
 }

@@ -4035,5 +4035,32 @@
     "viewFeed": "Tasmangizni ko&#39;rish",
     "yourChannel": "Sizning kanalingiz",
     "yourChannelHint": "Kanal manzilingizni joylashtiring — tutqich ham o&#39;z-o&#39;zidan ishlaydi."
+  },
+  "calls": {
+    "voiceCall": "DeHub ovozli qo&#39;ng&#39;irog&#39;i",
+    "videoCall": "DeHub video qo&#39;ng&#39;irog&#39;i",
+    "incoming": "Kiruvchi qo&#39;ng&#39;iroq",
+    "calling": "qo‘ng‘iroq qilinmoqda ...",
+    "connecting": "_Ulanish",
+    "connected": "Ulangan",
+    "decline": "Rad qilish",
+    "accept": "Roziman",
+    "mute": "Ovozsiz",
+    "unmute": "Ovozni yoqish",
+    "muted": "Tovushsiz",
+    "speaker": "Karnay",
+    "camera": "Kamera",
+    "cameraOff": "Kamera o&#39;chirilgan",
+    "flip": "Kamerani burish",
+    "minimize": "Yigʻish",
+    "expand": "Kengaytirish",
+    "tapToEnableAudio": "Audioni yoqish uchun bosing",
+    "offlineTitle": "Foydalanuvchi oflayn ko&#39;rinadi",
+    "failedTitle": "Qo&#39;ng&#39;iroq amalga oshmadi",
+    "offlineDesc": "{{name}} hozirda qo&#39;ng&#39;iroqlar uchun mavjud emas. Qayta qo&#39;ng&#39;iroq qilish so&#39;rovini yuboring, shunda ular onlayn bo&#39;lganlarida sizga qayta qo&#39;ng&#39;iroq qilishlari mumkin.",
+    "failedDesc": "Qo&#39;ng&#39;iroqni yakunlab bo&#39;lmadi. Internet aloqangizni tekshiring va qaytadan urinib ko&#39;ring.",
+    "close": "Yopish",
+    "callbackRequest": "Qayta qo&#39;ng&#39;iroq qilish so&#39;rovi",
+    "tryAgain": "Qayta urinish"
   }
 }

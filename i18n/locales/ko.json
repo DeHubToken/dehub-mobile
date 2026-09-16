@@ -4056,5 +4056,33 @@
     "viewFeed": "피드 보기",
     "yourChannel": "내 채널",
     "yourChannelHint": "채널 주소를 붙여넣으세요. 채널 주소 자체의 핸들도 작동합니다."
+  },
+  "calls": {
+    "voiceCall": "DeHub 음성 통화",
+    "videoCall": "DeHub 영상 통화",
+    "incoming": "수신 전화",
+    "calling": "통화 중...",
+    "connecting": "연결 중...",
+    "connected": "연결됨",
+    "decline": "거절",
+    "accept": "수락",
+    "mute": "음소거",
+    "unmute": "음소거 해제",
+    "muted": "음소거됨",
+    "speaker": "확성기",
+    "camera": "카메라",
+    "cameraOff": "카메라 끔",
+    "flip": "카메라 뒤집기",
+    "end": "끊기",
+    "minimize": "최소화",
+    "expand": "확대",
+    "tapToEnableAudio": "탭하여 오디오 활성화",
+    "offlineTitle": "사용자가 오프라인인 것 같습니다",
+    "failedTitle": "통화 실패",
+    "offlineDesc": "현재 {{name}} 번으로 전화를 걸 수 없습니다. 콜백 요청을 보내면 온라인 상태일 때 다시 전화할 수 있습니다.",
+    "failedDesc": "통화를 완료할 수 없습니다. 연결을 확인하고 다시 시도하세요.",
+    "close": "닫기",
+    "callbackRequest": "전화 회신 요청",
+    "tryAgain": "다시 시도하기"
   }
 }

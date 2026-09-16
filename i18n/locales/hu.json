@@ -3993,5 +3993,33 @@
     "viewFeed": "A hírcsatornád megtekintése",
     "yourChannel": "A csatornád",
     "yourChannelHint": "Illessze be a csatorna címét — a fogantyú önmagában is működik."
+  },
+  "calls": {
+    "voiceCall": "DeHub hanghívás",
+    "videoCall": "DeHub videohívás",
+    "incoming": "Bejövő hívás",
+    "calling": "Hívás...",
+    "connecting": "Kapcsolódás...",
+    "connected": "Csatlakoztatva",
+    "decline": "Elutasítás",
+    "accept": "Elfogadás",
+    "mute": "Némítás",
+    "unmute": "Némítás feloldása",
+    "muted": "Elnémítva",
+    "speaker": "Hangszóró",
+    "camera": "Kamera",
+    "cameraOff": "Kamera kikapcsolva",
+    "flip": "Kamera átfordítása",
+    "end": "Leteszem",
+    "minimize": "Minimalizálás",
+    "expand": "Kibontás",
+    "tapToEnableAudio": "Érintse meg a hang engedélyezéséhez",
+    "offlineTitle": "Úgy tűnik, hogy a felhasználó offline állapotban van",
+    "failedTitle": "Sikertelen hívás",
+    "offlineDesc": "{{name}} jelenleg nem hívható. Küldj visszahívási kérést, és visszahívhatnak, amikor online állapotban vannak.",
+    "failedDesc": "A hívást nem sikerült befejezni. Ellenőrizd a kapcsolatot, és próbálkozz újra.",
+    "close": "Bezárás",
+    "callbackRequest": "Visszahívási kérés",
+    "tryAgain": "Próbálkozz újra"
   }
 }

@@ -3696,5 +3696,9 @@
     "statusFailed": "شکستی هێنا",
     "statusImported": "هاتبوو",
     "statusImporting": "هاتنە ناو"
+  },
+  "calls": {
+    "calling": "بانگ کردن - کار - پیشە",
+    "tryAgain": "هەوڵێ دوبارە"
   }
 }
