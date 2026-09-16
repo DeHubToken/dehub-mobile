@@ -299,7 +299,6 @@ export interface AudioPostPlayerProps {
   audioUrl: string;
   duration?: number;
   tokenId: string | number;
-  listens?: number;
   isVisible?: boolean;
   compact?: boolean;
   isSignedIn?: boolean;
@@ -318,7 +317,6 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   audioUrl,
   duration = 0,
   tokenId,
-  listens: initialListens = 0,
   isVisible = true,
   compact = false,
   isSignedIn = false,
@@ -355,7 +353,6 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [totalDuration, setTotalDuration] = useState(duration);
-  const [listenCount, setListenCount] = useState(initialListens);
   const [hue, setHue] = useState(() => getCachedHue());
   const [vizStyle, setVizStyle] = useState<VisualizerStyle>("static");
   const [volume, setVolume] = useState(1);
@@ -494,12 +491,13 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     statusSubRef.current = null;
   }, []);
 
+  // Still recorded — the tally feeds creator analytics and admin. It is just
+  // not printed next to the card's view count any more: two numbers for the
+  // same post, one an order of magnitude smaller, read as a contradiction.
   const recordListenOnce = useCallback(() => {
     if (listenRecordedRef.current || !isSignedIn) return;
     listenRecordedRef.current = true;
-    recordListen(String(tokenId))
-      .then((res) => { if (res.listens) setListenCount(res.listens); })
-      .catch(() => {});
+    recordListen(String(tokenId)).catch(() => {});
   }, [isSignedIn, tokenId]);
 
   useEffect(() => {
@@ -1095,19 +1093,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     );
   };
 
-  const renderListens = () => (
-    <View style={styles.listens}>
-      <Icon name="Headphones" size={11} color="rgba(255,255,255,0.35)" />
-      <Text className="text-white/35 text-[10px]">
-        {t("audioPost.listens", { count: listenCount })}
-      </Text>
-    </View>
-  );
-
   return (
     <View style={styles.card}>
       {renderWindow("inline")}
-      {renderListens()}
 
       {/* An RN <Modal>, mounted here rather than routed to: a
           `transparentModal` screen leaves what is behind it visible but not
@@ -1132,7 +1120,6 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           ]}
         >
           {renderWindow("fullscreen")}
-          {renderListens()}
         </View>
       </Modal>
     </View>
@@ -1191,14 +1178,6 @@ const styles = StyleSheet.create({
     textShadowColor: "rgba(0,0,0,0.6)",
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 2,
-  },
-  listens: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    gap: 4,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
   },
   fullscreenRoot: {
     flex: 1,
