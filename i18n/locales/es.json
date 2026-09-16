@@ -1813,6 +1813,13 @@
     "cancelRecording": "Cancelar grabación",
     "sendVoiceNote": "Enviar nota de voz",
     "noneYetAddYours": "Aún no hay comentarios; añade el tuyo.",
+    "pinnedBadge": "Fijado",
+    "pinnedByCreator": "Fijado por el creador",
+    "pinAction": "Fijar arriba",
+    "unpinAction": "Quitar fijado",
+    "pinnedToast": "Fijado en la parte superior de esta publicación",
+    "unpinnedToast": "Fijado quitado",
+    "pinFailed": "No se pudo fijar ese comentario",
     "kidsOnlyThread": "Esta publicación es para niños. Solo el Modo Niños puede comentarlo."
   },
   "postInfo": {

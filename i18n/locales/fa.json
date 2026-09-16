@@ -1861,6 +1861,13 @@
     "cancelRecording": "لغو ضبط",
     "sendVoiceNote": "ارسال پیام صوتی",
     "noneYetAddYours": "هنوز نظری نیست، نظر خود را بنویسید.",
+    "pinnedBadge": "سنجاق‌شده",
+    "pinnedByCreator": "سنجاق‌شده توسط سازنده",
+    "pinAction": "سنجاق به بالا",
+    "unpinAction": "برداشتن سنجاق",
+    "pinnedToast": "به بالای این پست سنجاق شد",
+    "unpinnedToast": "سنجاق برداشته شد",
+    "pinFailed": "نشد آن دیدگاه را سنجاق کرد",
     "kidsOnlyThread": "این پست مخصوص بچه‌هاست. فقط بخش کودکان می‌تواند در مورد آن نظر بدهد."
   },
   "postInfo": {

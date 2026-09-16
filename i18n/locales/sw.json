@@ -1833,6 +1833,13 @@
     "cancelRecording": "Ghairi kurekodi",
     "sendVoiceNote": "Tuma ujumbe wa sauti",
     "noneYetAddYours": "Bado hakuna maoni, ongeza yako.",
+    "pinnedBadge": "Imebandikwa",
+    "pinnedByCreator": "Imebandikwa na mtayarishaji",
+    "pinAction": "Bandika juu",
+    "unpinAction": "Ondoa ubandikaji",
+    "pinnedToast": "Imebandikwa juu ya chapisho hili",
+    "unpinnedToast": "Ubandikaji umeondolewa",
+    "pinFailed": "Maoni hayo hayakuweza kubandikwa",
     "kidsOnlyThread": "Chapisho hili ni kwa ajili ya watoto. Hali ya Watoto pekee ndiyo inayoweza kutoa maoni juu yake."
   },
   "postInfo": {

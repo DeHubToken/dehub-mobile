@@ -1759,7 +1759,14 @@
     "removeMedia": "Remove di media",
     "cancelRecording": "Cancel di recording",
     "sendVoiceNote": "Send di voice note",
-    "noneYetAddYours": "No comment dey yet, add yours."
+    "noneYetAddYours": "No comment dey yet, add yours.",
+    "pinnedBadge": "Dem pin am",
+    "pinnedByCreator": "Na di creator pin am",
+    "pinAction": "Pin am for top",
+    "unpinAction": "Comot di pin",
+    "pinnedToast": "Dem don pin am for di top of dis post",
+    "unpinnedToast": "Dem don comot di pin",
+    "pinFailed": "We no fit pin dat comment"
   },
   "postInfo": {
     "title": "Post Info",

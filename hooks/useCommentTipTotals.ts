@@ -1,31 +1,33 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { supabase } from "../services/supabase";
 
+/** How many tipped comments lead the thread, under the creator's pin. */
+export const TOP_TIPPED_COUNT = 5;
+
 /**
- * DHB already tipped per comment, read from Supabase tip_records in one
- * query per loaded comment set. Comment tips are the rows carrying a
- * comment_id — written by GlassTipSheet after the tip confirms on-chain
- * (web writes the same rows from its TipModal).
+ * DHB already tipped per comment, read from Supabase tip_records in one query
+ * per POST. Comment tips are the rows carrying a comment_id — written by
+ * GlassTipSheet after the tip confirms on-chain (web writes the same rows from
+ * its TipModal).
+ *
+ * Keyed on the post rather than on the ids currently loaded, because the
+ * answer is also what decides the order: the five best-tipped comments lead
+ * the thread, and a query scoped to the loaded window could only ever rank the
+ * window. `topTippedIds` goes to the comments API, which floats them onto
+ * page 0.
  */
-export function useCommentTipTotals(commentIds: number[]) {
+export function useCommentTipTotals(tokenId: number | string | undefined) {
   const [totals, setTotals] = useState<Record<number, number>>({});
-  // A join key makes the effect re-run only when the actual id set changes,
-  // not on every render's fresh array identity.
-  const idsKey = commentIds
-    .slice()
-    .sort((a, b) => a - b)
-    .join(",");
-  const idsRef = useRef(commentIds);
-  idsRef.current = commentIds;
 
   useEffect(() => {
-    if (idsRef.current.length === 0) return;
+    if (tokenId == null) return;
     let cancelled = false;
     (async () => {
       const { data, error } = await supabase
         .from("tip_records")
         .select("comment_id, amount")
-        .in("comment_id", idsRef.current.map(String));
+        .eq("token_id", String(tokenId))
+        .not("comment_id", "is", null);
       if (cancelled) return;
       if (error) {
         console.warn("[CommentTips] load failed:", error.message);
@@ -46,7 +48,7 @@ export function useCommentTipTotals(commentIds: number[]) {
     return () => {
       cancelled = true;
     };
-  }, [idsKey]);
+  }, [tokenId]);
 
   /** Add a just-sent tip to a comment's total without refetching. */
   const bump = useCallback((commentId: number, amount: number) => {
@@ -56,5 +58,14 @@ export function useCommentTipTotals(commentIds: number[]) {
     }));
   }, []);
 
-  return { totals, bump };
+  const topTippedIds = useMemo(
+    () =>
+      Object.entries(totals)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, TOP_TIPPED_COUNT)
+        .map(([id]) => Number(id)),
+    [totals],
+  );
+
+  return { totals, bump, topTippedIds };
 }

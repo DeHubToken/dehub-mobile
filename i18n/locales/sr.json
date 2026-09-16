@@ -1705,7 +1705,14 @@
     "removeMedia": "Уклони медиј",
     "cancelRecording": "Откажи снимање",
     "sendVoiceNote": "Пошаљи гласовну поруку",
-    "noneYetAddYours": "Још нема коментара, додајте свој."
+    "noneYetAddYours": "Још нема коментара, додајте свој.",
+    "pinnedBadge": "Закачено",
+    "pinnedByCreator": "Закачио аутор",
+    "pinAction": "Закачи на врх",
+    "unpinAction": "Уклони качење",
+    "pinnedToast": "Закачено на врх ове објаве",
+    "unpinnedToast": "Качење уклоњено",
+    "pinFailed": "Тај коментар није могао да се закачи"
   },
   "postInfo": {
     "title": "Информације о објави",

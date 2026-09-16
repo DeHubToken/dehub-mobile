@@ -1981,6 +1981,13 @@
     "cancelRecording": "রেকর্ডিং বাতিল করেন",
     "sendVoiceNote": "ভয়েস নোট পাঠান",
     "noneYetAddYours": "এলাও কোনো মন্তব্য নাই, নিজের টা যোগ করেন।",
+    "pinnedBadge": "পিন করা",
+    "pinnedByCreator": "বানাওয়ালা পিন করছে",
+    "pinAction": "উপরাত পিন করেন",
+    "unpinAction": "পিন সরান",
+    "pinnedToast": "এই পোস্টের সবার উপরাত পিন করা হইছে",
+    "unpinnedToast": "পিন সরাইয়া দেওয়া হইছে",
+    "pinFailed": "ঐ মন্তব্য পিন করা গেল না",
     "kidsOnlyThread": "এই পোস্টটি বাচ্চাদের জন্য। শুধুমাত্র কিডস মোড এই পোস্টে মন্তব্য করতে পারবে।"
   },
   "postInfo": {

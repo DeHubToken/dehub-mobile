@@ -1832,6 +1832,13 @@
     "cancelRecording": "Tühista salvestus",
     "sendVoiceNote": "Saada häälmärkus",
     "noneYetAddYours": "Kommentaare veel pole — lisa oma.",
+    "pinnedBadge": "Kinnitatud",
+    "pinnedByCreator": "Looja kinnitas",
+    "pinAction": "Kinnita üles",
+    "unpinAction": "Eemalda kinnitus",
+    "pinnedToast": "Kinnitatud selle postituse etteotsa",
+    "unpinnedToast": "Kinnitus eemaldatud",
+    "pinFailed": "Seda kommentaari ei õnnestunud kinnitada",
     "kidsOnlyThread": "See postitus on lastele. Ainult laste režiim saab seda kommenteerida."
   },
   "postInfo": {

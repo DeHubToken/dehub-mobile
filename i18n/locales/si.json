@@ -1849,6 +1849,13 @@
     "cancelRecording": "පටිගත කිරීම අවලංගු කරන්න",
     "sendVoiceNote": "හඬ සටහන යවන්න",
     "noneYetAddYours": "තවම අදහස් නැත, ඔබේ එක් කරන්න.",
+    "pinnedBadge": "අමුණා ඇත",
+    "pinnedByCreator": "නිර්මාපකයා අමුණා ඇත",
+    "pinAction": "ඉහළින් අමුණන්න",
+    "unpinAction": "අමුණුම ඉවත් කරන්න",
+    "pinnedToast": "මෙම පළකිරීමේ ඉහළින්ම අමුණන ලදී",
+    "unpinnedToast": "අමුණුම ඉවත් කළා",
+    "pinFailed": "එම අදහස අමුණන්න බැරි විය",
     "kidsOnlyThread": "මේ පෝස්ටුව ළමයින්ටයි. ඒ ගැන කතා කරන්න පුළුවන් ළමයින්ට විතරයි."
   },
   "postInfo": {

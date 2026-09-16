@@ -1706,7 +1706,14 @@
     "removeMedia": "Medyayê rake",
     "cancelRecording": "Tomarkirinê betal bike",
     "sendVoiceNote": "Nîşeya dengî bişîne",
-    "noneYetAddYours": "Hîn şîrove tune, ya xwe zêde bike."
+    "noneYetAddYours": "Hîn şîrove tune, ya xwe zêde bike.",
+    "pinnedBadge": "Hatiye pêvekirin",
+    "pinnedByCreator": "Ji aliyê afirîner ve hatiye pêvekirin",
+    "pinAction": "Bi jor ve pêve bike",
+    "unpinAction": "Pêvekê rake",
+    "pinnedToast": "Li serê vê şandiyê hate pêvekirin",
+    "unpinnedToast": "Pêvek hate rakirin",
+    "pinFailed": "Ew şîrove nehat pêvekirin"
   },
   "postInfo": {
     "title": "Agahiya postê",

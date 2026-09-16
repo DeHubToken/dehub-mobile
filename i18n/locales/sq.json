@@ -1833,6 +1833,13 @@
     "cancelRecording": "Anulo regjistrimin",
     "sendVoiceNote": "Dërgo notën zanore",
     "noneYetAddYours": "Ende pa komente, shto tëndin.",
+    "pinnedBadge": "I fiksuar",
+    "pinnedByCreator": "Fiksuar nga krijuesi",
+    "pinAction": "Fikso lart",
+    "unpinAction": "Hiq fiksimin",
+    "pinnedToast": "U fiksua në krye të këtij postimi",
+    "unpinnedToast": "Fiksimi u hoq",
+    "pinFailed": "Ky koment nuk u fiksua dot",
     "kidsOnlyThread": "Ky postim është për fëmijë. Vetëm modaliteti Kids mund ta komentojë atë."
   },
   "postInfo": {

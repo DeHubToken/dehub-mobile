@@ -1832,6 +1832,13 @@
     "cancelRecording": "Atcelt ierakstīšanu",
     "sendVoiceNote": "Sūtīt balss piezīmi",
     "noneYetAddYours": "Vēl nav komentāru — pievienojiet savu.",
+    "pinnedBadge": "Piesprausts",
+    "pinnedByCreator": "Piesprausts veidotājam",
+    "pinAction": "Piespraust augšā",
+    "unpinAction": "Noņemt piespraudumu",
+    "pinnedToast": "Piesprausts šī ieraksta augšpusē",
+    "unpinnedToast": "Piespraudums noņemts",
+    "pinFailed": "Neizdevās piespraust šo komentāru",
     "kidsOnlyThread": "Šī ziņa ir paredzēta bērniem. To var komentēt tikai bērnu režīms."
   },
   "postInfo": {

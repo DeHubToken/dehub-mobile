@@ -1751,6 +1751,13 @@
     "cancelRecording": "Foano ny fandraiketana",
     "sendVoiceNote": "Alefaso ny naoty feo",
     "noneYetAddYours": "Mbola tsy misy hevitra, ampio ny anao.",
+    "pinnedBadge": "Voapetaka",
+    "pinnedByCreator": "Napetaky ny mpamorona",
+    "pinAction": "Apetaho eny ambony",
+    "unpinAction": "Esory ny fametahana",
+    "pinnedToast": "Napetaka teo an-tampon'ity lahatsoratra ity",
+    "unpinnedToast": "Voaesotra ny fametahana",
+    "pinFailed": "Tsy afaka napetaka io hevitra io",
     "kidsOnlyThread": "Ity boky ity dia ho an'ny ankizy. Ireo mpihaza mpihaza irery ihany no afaka maneho hevitra momba izany."
   },
   "postInfo": {

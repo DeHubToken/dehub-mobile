@@ -1834,6 +1834,13 @@
     "cancelRecording": "ریکارڈنگ منسوخ کریں",
     "sendVoiceNote": "وائس نوٹ بھیجیں",
     "noneYetAddYours": "ابھی کوئی تبصرہ نہیں، اپنا شامل کریں۔",
+    "pinnedBadge": "پن کیا گیا",
+    "pinnedByCreator": "تخلیق کار نے پن کیا",
+    "pinAction": "سب سے اوپر پن کریں",
+    "unpinAction": "پن ہٹائیں",
+    "pinnedToast": "اس پوسٹ کے سب سے اوپر پن کر دیا گیا",
+    "unpinnedToast": "پن ہٹا دیا گیا",
+    "pinFailed": "وہ تبصرہ پن نہیں کیا جا سکا",
     "kidsOnlyThread": "یہ پوسٹ بچوں کے لئے ہے ۔ صرف کڈز موڈ ہی اس پر تبصرہ کر سکتا ہے ۔"
   },
   "postInfo": {

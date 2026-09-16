@@ -1822,6 +1822,13 @@
     "cancelRecording": "Ufnahm abbräche",
     "sendVoiceNote": "Sprachnotiz schicke",
     "noneYetAddYours": "No kei Kommentär — schriib de erscht.",
+    "pinnedBadge": "Aagpinnt",
+    "pinnedByCreator": "Vom Creator aagpinnt",
+    "pinAction": "Obe aapinne",
+    "unpinAction": "Pin ewägnä",
+    "pinnedToast": "Zuoberscht a dem Beitrag aagpinnt",
+    "unpinnedToast": "Pin ewägnoh",
+    "pinFailed": "Dä Kommentar het nöd chöne aagpinnt wärde",
     "kidsOnlyThread": "Dä Post isch für Chind. Nur Chind-Modus chan druf kommentiere."
   },
   "postInfo": {

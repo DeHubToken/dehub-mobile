@@ -1779,6 +1779,13 @@
     "cancelRecording": "Ýazgy almagy ýatyr",
     "sendVoiceNote": "Ses belligini iber",
     "noneYetAddYours": "Heniz teswir ýok, özüňkini goş.",
+    "pinnedBadge": "Berkidildi",
+    "pinnedByCreator": "Döredijisi berkitdi",
+    "pinAction": "Ýokarda berkit",
+    "unpinAction": "Berkitmäni aýyr",
+    "pinnedToast": "Bu ýazgynyň iň ýokarsynda berkidildi",
+    "unpinnedToast": "Berkitme aýryldy",
+    "pinFailed": "Ol teswiri berkidip bolmady",
     "kidsOnlyThread": "Bu binalar çagalar üçin howply. Bu barada diňe Çagalar Mody gürrüň berip biler."
   },
   "postInfo": {

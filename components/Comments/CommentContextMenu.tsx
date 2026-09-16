@@ -62,6 +62,13 @@ interface CommentContextMenuProps {
    * server applies, resolved once by the caller rather than by every row.
    */
   onAnchor?: () => void;
+  /**
+   * Pin this comment to the top of the thread, or undefined when this viewer
+   * cannot. Set only for the POST's creator and only on a top-level comment —
+   * the other side of the anchor above: free, permanent, one per post, and the
+   * thread owner's rather than the comment author's.
+   */
+  onPin?: () => void;
   onLike?: () => void;
   liked?: boolean;
   onDislike?: () => void;
@@ -261,6 +268,7 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
   onEdit,
   onDelete,
   onAnchor,
+  onPin,
   onLike,
   liked,
   onDislike,
@@ -457,6 +465,23 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
                 onPress={() => {
                   onClose();
                   setTimeout(() => onAnchor(), 150);
+                }}
+              />
+            )}
+
+            {/*
+              The creator's pin — the other half of the anchor above. That one
+              is paid, fifteen minutes and the comment author's; this one is
+              free, permanent and the THREAD owner's, so it sits here whether
+              or not the comment is theirs.
+            */}
+            {onPin && (
+              <ActionRow
+                icon={comment?.isPinned ? "PinOff" : "Pin"}
+                label={comment?.isPinned ? t("comments.unpinAction") : t("comments.pinAction")}
+                onPress={() => {
+                  onClose();
+                  setTimeout(() => onPin(), 150);
                 }}
               />
             )}
