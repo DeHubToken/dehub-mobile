@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native";
 import Icon from "../ui/Icon";
+import { radius } from "../../theme/radius";
 import { useCall } from "../../context/CallContext";
 
 const CallMiniPlayer: React.FC = () => {
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
   iconWrap: {
     width: 28,
     height: 28,
-    borderRadius: 10,
+    borderRadius: radius.full,
     backgroundColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
     justifyContent: "center",
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   endBtn: {
     width: 32,
     height: 32,
-    borderRadius: 12,
+    borderRadius: radius.full,
     backgroundColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
     justifyContent: "center",

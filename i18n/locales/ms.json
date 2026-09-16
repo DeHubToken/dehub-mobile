@@ -4252,5 +4252,33 @@
     "viewFeed": "Lihat suapan anda",
     "yourChannel": "Saluran anda",
     "yourChannelHint": "Tampal alamat saluran anda — pemegangnya juga berfungsi dengan sendiri."
+  },
+  "calls": {
+    "voiceCall": "Panggilan suara DeHub",
+    "videoCall": "Panggilan video DeHub",
+    "incoming": "Panggilan masuk",
+    "calling": "Memanggil...",
+    "connecting": "Menyambung...",
+    "connected": "Bersambung",
+    "decline": "Tolak",
+    "accept": "Terima",
+    "mute": "Bisu",
+    "unmute": "Nyahsenyap",
+    "muted": "Dibisukan",
+    "speaker": "Pembesar suara",
+    "camera": "Kamera",
+    "cameraOff": "Kamera dimatikan",
+    "flip": "Terbalikkan kamera",
+    "end": "Tangguhkan",
+    "minimize": "Minimumkan",
+    "expand": "Kembangkan",
+    "tapToEnableAudio": "Ketik untuk mendayakan audio",
+    "offlineTitle": "Nampaknya pengguna berada di luar talian",
+    "failedTitle": "Panggilan gagal",
+    "offlineDesc": "{{name}} tidak tersedia untuk panggilan buat masa ini. Hantar permohonan panggilan balik dan mereka boleh menghubungi anda semula apabila mereka berada dalam talian.",
+    "failedDesc": "Panggilan tidak dapat diselesaikan. Semak sambungan anda dan cuba lagi.",
+    "close": "Tutup",
+    "callbackRequest": "Permohonan panggilan balik",
+    "tryAgain": "Cuba lagi"
   }
 }

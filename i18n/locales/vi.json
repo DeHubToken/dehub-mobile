@@ -4076,5 +4076,33 @@
     "viewFeed": "Xem nguồn cấp dữ liệu của bạn",
     "yourChannel": "Kênh của bạn",
     "yourChannelHint": "Dán địa chỉ kênh của bạn — tay cầm trên các tác phẩm của riêng nó."
+  },
+  "calls": {
+    "voiceCall": "Cuộc gọi thoại DeHub",
+    "videoCall": "Cuộc gọi video DeHub",
+    "incoming": "Cuộc gọi đến",
+    "calling": "Đang gọi...",
+    "connecting": "Đang kết nối...",
+    "connected": "Đã kết nối",
+    "decline": "Từ chối",
+    "accept": "Chấp nhận",
+    "mute": "Tắt tiếng",
+    "unmute": "Bật tiếng",
+    "muted": "Đã tắt tiếng",
+    "speaker": "Loa",
+    "camera": "Camera",
+    "cameraOff": "Tắt camera",
+    "flip": "Máy ảnh lật",
+    "end": "Cúp máy",
+    "minimize": "Thu nhỏ",
+    "expand": "Mở rộng",
+    "tapToEnableAudio": "Nhấn để bật âm thanh",
+    "offlineTitle": "Người dùng dường như đang ngoại tuyến",
+    "failedTitle": "Cuộc gọi không thành công",
+    "offlineDesc": "{{name}} hiện không khả dụng cho các cuộc gọi. Gửi yêu cầu gọi lại và họ có thể gọi lại cho bạn khi họ trực tuyến.",
+    "failedDesc": "Không thể hoàn thành cuộc gọi. Kiểm tra kết nối của bạn và thử lại.",
+    "close": "Đóng",
+    "callbackRequest": "Yêu cầu gọi lại",
+    "tryAgain": "Thử lại"
   }
 }

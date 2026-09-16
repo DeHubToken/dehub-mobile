@@ -3946,5 +3946,33 @@
     "viewFeed": "Deleng feed sampeyan",
     "yourChannel": "Saluran sampeyan",
     "yourChannelHint": "Tempel alamat saluran sampeyan — handle dhewe uga bisa."
+  },
+  "calls": {
+    "voiceCall": "DeHub panggilan swara",
+    "videoCall": "DeHub panggilan video",
+    "incoming": "Panggilan mlebu",
+    "calling": "Nggawe panggilan...",
+    "connecting": "Nyambung...",
+    "connected": "Nyambung",
+    "decline": "Tolak",
+    "accept": "Terima",
+    "mute": "Senyap",
+    "unmute": "Buka senyap",
+    "muted": "Wis senyap",
+    "speaker": "Pengeras swara",
+    "camera": "Kamera",
+    "cameraOff": "Kamera mati",
+    "flip": "Kamera flip",
+    "end": "Tutup panggilan",
+    "minimize": "Cilik",
+    "expand": "Gedhé",
+    "tapToEnableAudio": "Tap kanggo nyalakake audio",
+    "offlineTitle": "Pangguna katon ora online",
+    "failedTitle": "Telpon gagal",
+    "offlineDesc": "{{name}} ora kasedhiya kanggo telpon saiki. Kirim panjalukan balikan lan dheweke bisa nelpon sampeyan maneh nalika dheweke online.",
+    "failedDesc": "Panggilan ora bisa rampung. Priksa sambungan mu lan coba maneh.",
+    "close": "Tutup",
+    "callbackRequest": "Panjalukan callback",
+    "tryAgain": "Coba maneh"
   }
 }

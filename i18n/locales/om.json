@@ -4052,5 +4052,33 @@
     "viewFeed": "Nyaata keessan ilaalaa",
     "yourChannel": "Chaanaalii keessan",
     "yourChannelHint": "Teessoo chaannelii kee maali — haandil isaa qofaan ni hojjata."
+  },
+  "calls": {
+    "voiceCall": "Bilbila sagalee DeHub",
+    "videoCall": "Bilbila viidiyoo DeHub",
+    "incoming": "Bilbila dhufu",
+    "calling": "Bilbiluun...",
+    "connecting": "Walqunnamsiisuu...",
+    "connected": "Walitti hidhame",
+    "decline": "Gadi bu&#39;uu",
+    "accept": "Simachuu",
+    "mute": "Sagalee balleessuu",
+    "unmute": "Unmute gochuu",
+    "muted": "Muted",
+    "speaker": "Sagalee guddiftuu",
+    "camera": "Kaameeraa",
+    "cameraOff": "Kaameeraa cufame",
+    "flip": "Kaameeraa garagalchuu",
+    "end": "Bilbila cufi",
+    "minimize": "Xiqqeessuu",
+    "expand": "Bal&#39;isuu",
+    "tapToEnableAudio": "Sagalee dandeessisuuf tuqi",
+    "offlineTitle": "Fayyadamaan sarara ala ta&#39;ee mul&#39;ata",
+    "failedTitle": "Bilbilli hin milkoofne",
+    "offlineDesc": "{{name}} yeroo ammaa bilbilaaf hin argamu. Gaaffii deebi&#39;uu ergi yeroo toora interneetii irra jiranitti deebi&#39;anii siif bilbiluu danda&#39;u.",
+    "failedDesc": "Waamichi xumuramuu hin dandeenye. Walitti hidhamiinsa kee ilaalii irra deebi&#39;ii yaali.",
+    "close": "Cufuu",
+    "callbackRequest": "Gaaffii deebi&#39;ee bilbiluu",
+    "tryAgain": "Ammas yaalaa"
   }
 }

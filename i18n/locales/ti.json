@@ -3949,5 +3949,31 @@
     "viewFeed": "ምግቢኻ ርኣዮ",
     "yourChannel": "መትረብኻ",
     "yourChannelHint": "ኣድራሻ ቻነልካ ኣጽዲቕካ — ነቲ ናይ ገዛእ ርእስኻ ስራሕ እውን ኣጽዲቕካ ።"
+  },
+  "calls": {
+    "voiceCall": "DeHub ናይ ድምጺ ጻውዒት",
+    "videoCall": "DeHub ቪድዮ ጻውዒት",
+    "incoming": "መእተዊ ጻውዒት",
+    "calling": "ደዊልካ...",
+    "connecting": "ምዝርራብ...",
+    "connected": "ዝተኣሳሰር",
+    "decline": "ሕጽረት",
+    "accept": "ተቐበል",
+    "unmute": "ዘይምስምማዕ",
+    "muted": "ማድሪድ",
+    "camera": "ካሜራ",
+    "cameraOff": "ካሜራ ተቛሪጹ",
+    "flip": "ካሜራ ፍሊፕ",
+    "end": "ተንስእ",
+    "minimize": "ምጉዳል",
+    "expand": "ስፍሕፋሕ",
+    "tapToEnableAudio": "ድምጺ ንምፍቃድ ጠውቑ",
+    "offlineTitle": "እቲ ተጠቃሚ ካብ መስመር ወጻኢ ይመስል",
+    "failedTitle": "ጻውዒት ኣይተዓወተን",
+    "offlineDesc": "{{name}} ኣብዚ እዋን እዚ ንስልኪታት ኣይርከብን እዩ ። ናይ ጻውዒት ሕቶ ልኢኽካ ኣብ ኢንተርነት ምስ ዝርከቡ ክጽውዑኻ ይኽእሉ እዮም ።",
+    "failedDesc": "ኣብዚ ጉዳይ'ዚ ፡ መፍትሒታት ክዝርዝሩ ኣይከኣሉን ። ነቲ ርክብካ መርምሮ ፡ መሊስካ ፈትኖ ።",
+    "close": "ምዕጻው",
+    "callbackRequest": "ናይ ጻውዒት ሕቶ",
+    "tryAgain": "እንደገና ፈትኖ"
   }
 }

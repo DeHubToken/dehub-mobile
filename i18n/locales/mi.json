@@ -3974,5 +3974,33 @@
     "viewFeed": "Tirohia tō kai",
     "yourChannel": "Ko tō hongere",
     "yourChannelHint": "Tangohia tō wāhitau hongere — te whakahaere hoki i runga i ona ake mahi."
+  },
+  "calls": {
+    "voiceCall": "Te karanga reo o DeHub",
+    "videoCall": "Te karanga ataata DeHub",
+    "incoming": "Ko te karanga e haere mai ana",
+    "calling": "Ko te karanga...",
+    "connecting": "Te hono atu...",
+    "connected": "Tūhono",
+    "decline": "Whakakorea",
+    "accept": "Whakaaetia",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "muted": "Whakapā mai",
+    "speaker": "Kaihanga",
+    "camera": "Kāmera",
+    "cameraOff": "Kāmera atu",
+    "flip": "Kāmera Flip",
+    "end": "Whakatika",
+    "minimize": "Minimize",
+    "expand": "Whakanuia",
+    "tapToEnableAudio": "Tap ki te whakahohe i te oro",
+    "offlineTitle": "Te ahua nei kaore he kaiwhakamahi i te ipurangi",
+    "failedTitle": "Kaore i taea te karanga",
+    "offlineDesc": "{{name}} e kore e wātea ana mō ngā karanga i teie nei. Tukua he tono karanga, a ka taea e ratou te karanga koe hoki i te wa e ratou i runga i te ipurangi.",
+    "failedDesc": "Kaore e taea te whakaoti i te karanga. Tirohia tō hononga, me te tamata ano.",
+    "close": "Tata",
+    "callbackRequest": "Whakapā mai",
+    "tryAgain": "Whakamātauria ano"
   }
 }

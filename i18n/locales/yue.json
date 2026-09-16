@@ -3986,5 +3986,33 @@
     "viewFeed": "睇下你嘅資訊提供",
     "yourChannel": "你嘅頻道",
     "yourChannelHint": "貼上你嘅頻道地址 — 手柄本身都可以。"
+  },
+  "calls": {
+    "voiceCall": "DeHub 語音通話",
+    "videoCall": "DeHub 視像通話",
+    "incoming": "來電",
+    "calling": "打緊電話 ...",
+    "connecting": "連接緊 ...",
+    "connected": "連接咗",
+    "decline": "拒絕",
+    "accept": "接受",
+    "mute": "靜音",
+    "unmute": "取消靜音",
+    "muted": "靜音咗",
+    "speaker": "揚聲器",
+    "camera": "相機",
+    "cameraOff": "閂咗相機",
+    "flip": "翻轉相機",
+    "end": "掛咗電話",
+    "minimize": "最小化",
+    "expand": "擴大",
+    "tapToEnableAudio": "㩒一下就可以啟用音訊",
+    "offlineTitle": "用戶似乎離線",
+    "failedTitle": "通話失敗",
+    "offlineDesc": "{{name}} 而家唔可以用嚟打電話。發送回覆要求，佢哋就可以喺佢哋上網嗰陣打返畀你。",
+    "failedDesc": "個電話打唔通。檢查你嘅連線，然後試多一次。",
+    "close": "閂",
+    "callbackRequest": "回調要求",
+    "tryAgain": "再試多次"
   }
 }

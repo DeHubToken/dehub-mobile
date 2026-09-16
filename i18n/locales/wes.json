@@ -3791,5 +3791,29 @@
     "videoCountOne": "{{n}} video",
     "videosCount": "{{videos}} videos",
     "yourChannel": "Your channel"
+  },
+  "calls": {
+    "voiceCall": "DeHub voice call",
+    "videoCall": "DeHub video call",
+    "incoming": "Incoming call",
+    "calling": "Calling...",
+    "connecting": "Connecting...",
+    "connected": "Connected",
+    "decline": "Decline",
+    "accept": "Accept",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "muted": "Muted",
+    "speaker": "Loudspeaker",
+    "camera": "Camera",
+    "cameraOff": "Camera off",
+    "flip": "Flip camera",
+    "end": "Hang up",
+    "minimize": "Minimize",
+    "expand": "Expand",
+    "failedTitle": "Call failed",
+    "close": "Close",
+    "callbackRequest": "Callback request",
+    "tryAgain": "Try again"
   }
 }

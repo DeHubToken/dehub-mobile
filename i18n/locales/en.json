@@ -2941,7 +2941,7 @@
     "cancelConfirm": "Cancel \"{{title}}\"? The link stops working.",
     "deleteRecordingConfirm": "Delete this stage recording?",
     "deleteStage": "Delete stage",
-    "end": "End",
+    "end": "Hang up",
     "endSpaceConfirm": "End \"{{title}}\"? It comes off the air for everyone.",
     "endThisStage": "End this stage",
     "ended": "ENDED",
@@ -4060,5 +4060,26 @@
     "viewFeed": "View your feed",
     "yourChannel": "Your channel",
     "yourChannelHint": "Paste your channel address — the handle on its own works too."
+  },
+  "calls": {
+    "voiceCall": "DeHub voice call",
+    "videoCall": "DeHub video call",
+    "incoming": "Incoming call",
+    "calling": "Calling...",
+    "connecting": "Connecting...",
+    "connected": "Connected",
+    "decline": "Decline",
+    "accept": "Accept",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "muted": "Muted",
+    "speaker": "Loudspeaker",
+    "camera": "Camera",
+    "cameraOff": "Camera off",
+    "flip": "Flip camera",
+    "end": "Hang up",
+    "minimize": "Minimize",
+    "expand": "Expand",
+    "tapToEnableAudio": "Tap to enable audio"
   }
 }

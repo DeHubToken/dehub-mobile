@@ -3979,5 +3979,33 @@
     "viewFeed": "Eeg cuntadaada",
     "yourChannel": "Kanaalkaaga",
     "yourChannelHint": "Ku dheji cinwaankaaga kanaalka — qabashada shaqooyinkeeda sidoo kale."
+  },
+  "calls": {
+    "voiceCall": "DeHub codka wicitaanka",
+    "videoCall": "DeHub wicitaanka fiidiyowga",
+    "incoming": "Wicitaanka soo socda",
+    "calling": "Wicitaanka...",
+    "connecting": "Isku xirka...",
+    "connected": "Isku xira",
+    "decline": "Hoos u dhig",
+    "accept": "Aqbal",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "muted": "Muted",
+    "speaker": "Loudspeaker",
+    "camera": "Kaamirada",
+    "cameraOff": "Camera off",
+    "flip": "Kaamirada Flip",
+    "end": "Haku",
+    "minimize": "Yaree",
+    "expand": "Ballaarinta",
+    "tapToEnableAudio": "Taabo si aad u awooddo maqalka",
+    "offlineTitle": "Isticmaaluhu wuxuu u muuqdaa inuu ka baxsan yahay khadka tooska ah.",
+    "failedTitle": "Wicitaanku wuu fashilmay",
+    "offlineDesc": "{{name}} hadda lama heli karo wicitaanada. Soo dir codsi dib u soo celinta waxayna kuu soo wici karaan marka ay internetka joogaan.",
+    "failedDesc": "Wicitaanka lama dhammaystiri karo. Hubi xiriirkaaga oo isku day mar kale.",
+    "close": "Xir",
+    "callbackRequest": "Codsiga dib u celinta",
+    "tryAgain": "Isku day mar kale"
   }
 }

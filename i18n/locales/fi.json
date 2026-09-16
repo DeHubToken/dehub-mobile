@@ -3989,5 +3989,33 @@
     "viewFeed": "Tarkastele syötettäsi",
     "yourChannel": "Kanavasi",
     "yourChannelHint": "Liitä kanavan osoite — myös kahva toimii omalla tavallaan."
+  },
+  "calls": {
+    "voiceCall": "DeHub-äänipuhelu",
+    "videoCall": "DeHub-videopuhelu",
+    "incoming": "Saapuva puhelu",
+    "calling": "Soitetaan...",
+    "connecting": "Yhdistetään...",
+    "connected": "Yhdistetty",
+    "decline": "Hylkää",
+    "accept": "Hyväksy",
+    "mute": "Mykistä",
+    "unmute": "Poista mykistys",
+    "muted": "Mykistetty",
+    "speaker": "Kaiutin",
+    "camera": "Kamera",
+    "cameraOff": "Kamera pois päältä",
+    "flip": "Käännä kamera",
+    "end": "Katkaise puhelu",
+    "minimize": "Pienennä",
+    "expand": "Laajenna",
+    "tapToEnableAudio": "Ota ääni käyttöön napauttamalla",
+    "offlineTitle": "Käyttäjä näyttää olevan offline-tilassa",
+    "failedTitle": "Puhelu epäonnistui",
+    "offlineDesc": "{{name}} ei ole tällä hetkellä käytettävissä puheluihin. Lähetä takaisinsoittopyyntö, niin hän voi soittaa sinulle takaisin, kun hän on online-tilassa.",
+    "failedDesc": "Puhelua ei voitu suorittaa. Tarkista yhteys ja yritä uudelleen.",
+    "close": "Sulje",
+    "callbackRequest": "Takaisinsoittopyyntö",
+    "tryAgain": "Yritä uudelleen"
   }
 }

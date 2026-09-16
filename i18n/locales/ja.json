@@ -4056,5 +4056,33 @@
     "viewFeed": "フィードを表示",
     "yourChannel": "あなたのチャンネル",
     "yourChannelHint": "チャンネルアドレスを貼り付けます。ハンドル自体も機能します。"
+  },
+  "calls": {
+    "voiceCall": "DeHub音声通話",
+    "videoCall": "DeHubビデオ通話",
+    "incoming": "着信コール",
+    "calling": "呼び出し中...",
+    "connecting": "接続しています...",
+    "connected": "接続済み",
+    "decline": "却下する",
+    "accept": "承諾",
+    "mute": "ミュート",
+    "unmute": "ミュート解除",
+    "muted": "ミュート",
+    "speaker": "スピーカー",
+    "camera": "カメラ",
+    "cameraOff": "カメラオフ",
+    "flip": "カメラを反転",
+    "end": "電話を切る",
+    "minimize": "最小化",
+    "expand": "展開",
+    "tapToEnableAudio": "タップしてオーディオを有効にする",
+    "offlineTitle": "ユーザーがオフラインのようです",
+    "failedTitle": "通話に失敗しました",
+    "offlineDesc": "{{name}}は現在通話できません。 折り返しの電話リクエストを送信すると、オンライン中に折り返し電話をかけることができます。",
+    "failedDesc": "通話を完了できませんでした。 接続を確認して、もう一度お試しください。",
+    "close": "閉じる",
+    "callbackRequest": "折り返しの電話リクエスト",
+    "tryAgain": "もう一度お試しください"
   }
 }

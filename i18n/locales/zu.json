@@ -4017,5 +4017,33 @@
     "viewFeed": "Buka i-feed yakho",
     "yourChannel": "Isiteshi sakho",
     "yourChannelHint": "Namathisela ikheli lakho lesiteshi — isibambo emisebenzini yaso futhi."
+  },
+  "calls": {
+    "voiceCall": "Ucingo lwezwi lwe-DeHub",
+    "videoCall": "Ucingo lwevidiyo lwe-DeHub",
+    "incoming": "Ucingo olungenayo",
+    "calling": "Iyashaya ucingo...",
+    "connecting": "Ixhuma...",
+    "connected": "Ixhunyiwe",
+    "decline": "Yenqaba",
+    "accept": "Yamukela",
+    "mute": "Thulisa",
+    "unmute": "Vula umsindo",
+    "muted": "Kuthulisiwe",
+    "speaker": "Isipikha esinomsindo",
+    "camera": "Ikhamera",
+    "cameraOff": "Ikhamera ivaliwe",
+    "flip": "Flip camera",
+    "end": "Hang up",
+    "minimize": "Nciphisa",
+    "expand": "Nweba",
+    "tapToEnableAudio": "Thepha ukuze uvule umsindo",
+    "offlineTitle": "Umsebenzisi ubonakala engaxhunyiwe ku-inthanethi",
+    "failedTitle": "Ucingo lwehlulekile",
+    "offlineDesc": "{{name}} ayitholakali ezingcingweni njengamanje. Thumela isicelo sokubuyiselwa ucingo futhi bangakushayela ucingo uma beku-inthanethi.",
+    "failedDesc": "Ucingo alukwazanga ukuqedwa. Hlola ukuxhumana kwakho bese uzama futhi.",
+    "close": "Vala",
+    "callbackRequest": "Isicelo sokubuyiselwa ucingo",
+    "tryAgain": "Zama futhi"
   }
 }
