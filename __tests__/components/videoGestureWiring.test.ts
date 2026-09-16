@@ -36,11 +36,23 @@ describe('video gesture wiring', () => {
     expect(player).toMatch(/progressTrack:\s*\{[\s\S]*?height: 32,/);
   });
 
+  it('gives the shorts viewer a draggable timeline that outranks its pager', () => {
+    const viewer = readSource('screens', 'ShortsViewerScreen.tsx');
+
+    expect(viewer).toContain('useScrubGesture({');
+    expect(viewer).toContain('blocks: scrubBlocks');
+    expect(viewer).toContain('<GestureDetector gesture={scrubGesture}>');
+    // Only the short being watched runs a time-update clock.
+    expect(viewer).toContain('player.timeUpdateEventInterval = 0.25;');
+    expect(viewer).toContain('player.timeUpdateEventInterval = 0;');
+  });
+
   it('keeps every in-feed scrubber on a pager-blocking gesture', () => {
     const scrub = readSource('hooks', 'useScrubGesture.ts');
     const audio = readSource('components', 'Home', 'AudioPostPlayer.tsx');
 
-    expect(scrub).toContain('blocksExternalGesture(pagerRef)');
+    expect(scrub).toContain('pan.blocksExternalGesture(...blocked)');
+    expect(scrub).toContain('tap.blocksExternalGesture(...blocked)');
     expect(audio).toContain('return useScrubGesture({');
     expect(audio).not.toContain('PanResponder.create(');
   });
