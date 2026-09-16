@@ -1075,6 +1075,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Tämä avaa eri lompakon, ei lompakkoa {{address}}. Mitään ei muutettu.",
+    "unlockNoAccount": "Lompakkosi on lukittu — tälle laitteelle ei ole kirjauduttu millään tilillä.",
+    "unlockLookupFailed": "Lompakkosi on lukittu — lompakkotietuetta ei tavoitettu. Tarkista yhteys ja yritä uudelleen.",
+    "unlockCancelled": "Lompakkosi on lukittu — avaus peruttiin, mitään ei lähetetty.",
     "notReady": "Lompakko ei ole valmis — yritä hetken päästä uudelleen.",
     "title": "Lompakko",
     "loginRequired": "Kirjaudu sisään käyttääksesi lompakkoasi.",
@@ -3498,6 +3502,10 @@
     "otherChain": "Tämä julkaisu selvitetään toisessa ketjussa, joten tarvitset DHB:tä siellä olevaan lompakkoosi."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Minulla ei ole sitä — kirjaudu ulos ja aloita alusta",
+    "restoreLocalNote": "Avain pysyy vain tässä puhelimessa.",
+    "restoreMissing": "Tämän profiilin lompakko ei ole tässä puhelimessa, joten mitään ei voi vielä allekirjoittaa. Syötä sen palautuslause tai yksityinen avain tuodaksesi sen tänne.",
+    "restoreTitle": "Palauta lompakkosi",
     "writeThemDown": "Kirjoita ne paikkaan, johon vain sinä pääset. Kenellä nämä sanat ovat, sillä on lompakkosi — DeHubin tuki ei voi palauttaa eikä nollata niitä.",
     "noPhraseNoKey": "Ei lausetta eikä avainta? Silloin tämän lompakon voi avata vain laitteella, joka sen loi — mikään verkkosivustolla tai meidän puolellamme ei voi palauttaa sitä. Kirjaudu sisään sillä laitteella, jos se on yhä sinulla.",
     "resetExplainer": "Tämä antaa kirjautumisellesi aivan uuden, tyhjän lompakon ja siirtää tilisi siihen. Se ei avaa vanhaa lompakkoa — ei tämä puhelin, ei dehub.io, emmekä me — joten kaikki sen sisällä jää sinne.",

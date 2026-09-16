@@ -1109,6 +1109,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Lokho kuvula esinye isikhwama, hhayi u-{{address}}. Akukho okushintshiwe.",
+    "unlockNoAccount": "Isikhwama sakho sikhiyiwe — akukho i-akhawunti engene kule divayisi.",
+    "unlockLookupFailed": "Isikhwama sakho sikhiyiwe — irekhodi lesikhwama alifinyelelekanga. Hlola uxhumano lwakho bese uzama futhi.",
+    "unlockCancelled": "Isikhwama sakho sikhiyiwe — ukuvula kukhanselwe, akukho okuthunyelwe.",
     "notReady": "Isikhwama asikulungele — zama futhi emzuzwini.",
     "title": "Isikhwama",
     "loginRequired": "Ngena ukufinyelela isikhwama sakho.",
@@ -3527,6 +3531,10 @@
     "otherChain": "Lokhu okuthunyelwe kuqedwa kwesinye ishini, ngakho udinga i-DHB esikhwameni sakho lapho."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Anginaso — phuma bese uqala phansi",
+    "restoreLocalNote": "Ukhiye uhlala kule foni kuphela.",
+    "restoreMissing": "Isikhwama sale phrofayela asikho kule foni, ngakho akukho okungasayinwa okwamanje. Faka umushwana wokubuyisela noma ukhiye wangasese ukuze usilethe lapha.",
+    "restoreTitle": "Buyisela isikhwama sakho",
     "writeThemDown": "Bhala phansi endaweni ongafinyelela kuyo wena kuphela. Noma ubani onala magama unesikhwama sakho — usizo lwe-DeHub alukwazi ukuwabuyisa noma ukuwasetha kabusha.",
     "noPhraseNoKey": "Awunayo inkulumo futhi awunalo ukhiye? Lesi sikhwama singavulwa kuphela kudivayisi eyasakha — akukho lutho kuwebhusayithi noma ohlangothini lwethu olungasibuyisa. Ngena kuleyo divayisi uma usenayo.",
     "resetExplainer": "Lokhu kunika ukungena kwakho isikhwama esisha ngokuphelele, esingenalutho, futhi kudlulisele i-akhawunti yakho kuso. Akusivuli isikhwama esidala — le foni ayikwazi, i-dehub.io ayikwazi, nathi asikwazi — ngakho noma yini engaphakathi ihlala lapho.",

@@ -8,6 +8,7 @@ import { ethers } from 'ethers';
 import { ethersService } from '../ethers.service';
 import { isChainAASupported, setupAAProvider } from '../../libs/wallet-core/smart-account';
 import { createLockedEip1193 } from './lockedProviderShim';
+import { getAppKitInstance } from '../../config/reown.config';
 import { createLogger } from '../../libs/logger';
 
 const log = createLogger('LocalProviderAdapter');
@@ -228,7 +229,7 @@ export class LocalProviderAdapter implements AuthAdapter {
    */
   private async buildFromStoredKey(activeAddr: string): Promise<Eip1193Shim | null> {
     const details = await getLocalAccountDetails(activeAddr);
-    if (!details?.privateKey) return null;
+    if (!details?.privateKey) return this.adoptConnectedWallet(activeAddr);
 
     let targetChainId = await this.resolveTargetChainId();
 
@@ -284,6 +285,36 @@ export class LocalProviderAdapter implements AuthAdapter {
     this.shim = shimToUse;
     setSigningProvider(shimToUse as any);
     return shimToUse;
+  }
+
+  /**
+   * A session signed in through Connect Wallet has no key on this device — the
+   * key lives in Trust Wallet / MetaMask. useWalletAuth registers that wallet
+   * as the signer only for the sign-in itself, so after a relaunch (or a chain
+   * switch, which clears the registry) every signature landed on the locked
+   * shim and the unlock sheet had nothing to open. AppKit persists the pairing
+   * across restarts; if it still names this session's address, hand its
+   * provider back and let the wallet app pop up exactly as it does for a tip.
+   */
+  private async adoptConnectedWallet(activeAddr: string): Promise<Eip1193Shim | null> {
+    try {
+      const kit = getAppKitInstance();
+      if (!kit?.getIsConnected?.()) return null;
+      const connected = kit.getAddress?.();
+      if (!connected || connected.toLowerCase() !== activeAddr.toLowerCase()) return null;
+      const provider = kit.getWalletProvider?.() as any;
+      if (!provider || typeof provider.request !== 'function') return null;
+      log.info('adopted connected external wallet as signer', {
+        address: `${activeAddr.slice(0, 6)}...${activeAddr.slice(-4)}`,
+      });
+      this.address = activeAddr;
+      this.shim = provider as Eip1193Shim;
+      setSigningProvider(provider);
+      return provider as Eip1193Shim;
+    } catch (e) {
+      log.warn('adoptConnectedWallet failed', e);
+      return null;
+    }
   }
 
   async getAccounts(): Promise<string[]> {

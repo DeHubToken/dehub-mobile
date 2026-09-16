@@ -1575,6 +1575,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Dat opent een andere wallet, niet {{address}}. Er is niets gewijzigd.",
+    "unlockNoAccount": "Je wallet is vergrendeld — er is geen account ingelogd op dit apparaat.",
+    "unlockLookupFailed": "Je wallet is vergrendeld — je walletrecord was niet bereikbaar. Controleer je verbinding en probeer het opnieuw.",
+    "unlockCancelled": "Je wallet is vergrendeld — het ontgrendelen is geannuleerd, er is niets verzonden.",
     "notReady": "Wallet nog niet klaar — probeer het zo nog eens.",
     "title": "Portemonnee",
     "loginRequired": "Log in om je portemonnee te openen.",
@@ -3765,6 +3769,10 @@
     "otherChain": "Dit bericht wordt op een andere chain afgewikkeld, dus je hebt daar DHB in je wallet nodig."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Ik heb hem niet — uitloggen en opnieuw beginnen",
+    "restoreLocalNote": "De sleutel blijft alleen op deze telefoon.",
+    "restoreMissing": "De wallet van dit profiel staat niet op deze telefoon, dus er kan nog niets worden ondertekend. Voer de herstelzin of privésleutel in om hem hierheen te halen.",
+    "restoreTitle": "Je wallet herstellen",
     "writeThemDown": "Schrijf ze op een plek die alleen jij kunt bereiken. Wie deze woorden heeft, heeft je wallet — DeHub-ondersteuning kan ze niet herstellen en niet resetten.",
     "noPhraseNoKey": "Geen zin en geen sleutel? Dan kan deze wallet alleen geopend worden vanaf het apparaat dat hem heeft aangemaakt — niets op de website of aan onze kant kan hem herstellen. Log in op dat apparaat als je het nog hebt.",
     "resetExplainer": "Hiermee krijgt je aanmelding een gloednieuwe, lege wallet en verhuist je account daarnaartoe. De oude wallet gaat hier niet mee open — deze telefoon kan dat niet, dehub.io niet, en wij ook niet — dus wat erin zit, blijft daar.",

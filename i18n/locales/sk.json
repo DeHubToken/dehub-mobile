@@ -783,6 +783,10 @@
     "tryAgain": "Try Again"
   },
   "wallet": {
+    "restoreWrongWallet": "Tým sa otvorí iná peňaženka, nie {{address}}. Nič sa nezmenilo.",
+    "unlockNoAccount": "Vaša peňaženka je zamknutá — na tomto zariadení nie je prihlásený žiadny účet.",
+    "unlockLookupFailed": "Vaša peňaženka je zamknutá — záznam peňaženky nie je dostupný. Skontrolujte pripojenie a skúste to znova.",
+    "unlockCancelled": "Vaša peňaženka je zamknutá — odomknutie bolo zrušené, nič sa neodoslalo.",
     "notReady": "Peňaženka nie je pripravená — skús to o chvíľu znova.",
     "title": "Peňaženka",
     "balance": "Zostatok",
@@ -3665,6 +3669,10 @@
     "otherChain": "Tento príspevok sa vyrovnáva na inom reťazci, takže tam potrebujete DHB v peňaženke."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Nemám ju — odhlásiť sa a začať odznova",
+    "restoreLocalNote": "Kľúč zostáva iba v tomto telefóne.",
+    "restoreMissing": "Peňaženka tohto profilu nie je v tomto telefóne, takže zatiaľ nemožno nič podpísať. Zadajte jej obnovovaciu frázu alebo súkromný kľúč a preneste ju sem.",
+    "restoreTitle": "Obnoviť peňaženku",
     "writeThemDown": "Zapíšte si ich niekam, kam sa dostanete len vy. Kto má tieto slová, má vašu peňaženku — podpora DeHub ich nedokáže obnoviť ani resetovať.",
     "noPhraseNoKey": "Nemáte frázu ani kľúč? Potom sa táto peňaženka dá otvoriť len zo zariadenia, ktoré ju vytvorilo — nič na webe ani na našej strane ju neobnoví. Ak to zariadenie ešte máte, prihláste sa na ňom.",
     "resetExplainer": "Vaše prihlásenie tým získa úplne novú, prázdnu peňaženku a účet sa naň presunie. Starú peňaženku to neotvorí — nedokáže to tento telefón, ani dehub.io, ani my — takže čokoľvek je vnútri, tam aj zostane.",

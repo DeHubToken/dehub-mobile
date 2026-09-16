@@ -1372,6 +1372,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "To otwiera inny portfel, nie {{address}}. Nic nie zmieniono.",
+    "unlockNoAccount": "Twój portfel jest zablokowany — na tym urządzeniu nie zalogowano żadnego konta.",
+    "unlockLookupFailed": "Twój portfel jest zablokowany — nie udało się pobrać rekordu portfela. Sprawdź połączenie i spróbuj ponownie.",
+    "unlockCancelled": "Twój portfel jest zablokowany — odblokowanie anulowano, nic nie wysłano.",
     "notReady": "Portfel niegotowy — spróbuj za chwilę.",
     "title": "Portfel",
     "loginRequired": "Zaloguj się, aby uzyskać dostęp do portfela.",
@@ -3566,6 +3570,10 @@
     "otherChain": "Ten post rozlicza się w innym łańcuchu, więc potrzebujesz tam DHB w portfelu."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Nie mam jej — wyloguj i zacznij od nowa",
+    "restoreLocalNote": "Klucz pozostaje tylko na tym telefonie.",
+    "restoreMissing": "Portfela tego profilu nie ma na tym telefonie, więc nie można jeszcze niczego podpisać. Wpisz jego frazę odzyskiwania lub klucz prywatny, aby go tu przenieść.",
+    "restoreTitle": "Przywróć portfel",
     "writeThemDown": "Zapisz je w miejscu, do którego masz dostęp tylko ty. Kto ma te słowa, ma twój portfel — wsparcie DeHub nie może ich odzyskać ani zresetować.",
     "noPhraseNoKey": "Ani frazy, ani klucza? Wtedy ten portfel można otworzyć tylko z urządzenia, które go utworzyło — nic na stronie ani po naszej stronie go nie odzyska. Zaloguj się na tym urządzeniu, jeśli nadal je masz.",
     "resetExplainer": "To daje twojemu logowaniu zupełnie nowy, pusty portfel i przenosi na niego twoje konto. Nie otwiera starego portfela — nie może tego zrobić ani ten telefon, ani dehub.io, ani my — więc to, co w nim jest, tam zostaje.",

@@ -1069,6 +1069,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Iku mbukak dompet liyane, dudu {{address}}. Ora ana sing owah.",
+    "unlockNoAccount": "Dompetmu dikunci — ora ana akun sing mlebu ing piranti iki.",
+    "unlockLookupFailed": "Dompetmu dikunci — rekaman dompet ora bisa diakses. Priksa sambungan lan coba maneh.",
+    "unlockCancelled": "Dompetmu dikunci — mbukak kunci dibatalake, ora ana sing dikirim.",
     "notReady": "Dompet durung siap — coba maneh sedhela.",
     "title": "Dompet",
     "loginRequired": "Mlebu kanggo nggunakake dompet.",
@@ -3456,6 +3460,10 @@
     "otherChain": "Postingan iki ditutup ing chain liya, dadi butuh DHB ing dompetmu ana ing kono."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Aku ora duwe — metu lan miwiti maneh",
+    "restoreLocalNote": "Kunci mung tetep ana ing ponsel iki.",
+    "restoreMissing": "Dompet profil iki ora ana ing ponsel iki, dadi durung ana sing bisa ditandatangani. Lebokake frasa pemulihan utawa kunci pribadine kanggo nggawa mrene.",
+    "restoreTitle": "Balekake dompetmu",
     "writeThemDown": "Tulisen ing panggonan sing mung sampeyan bisa nggayuh. Sapa wae sing duwe tembung iki duwe dompetmu — dhukungan DeHub ora bisa mbalekake utawa nyetel ulang.",
     "noPhraseNoKey": "Ora duwe frasa lan ora duwe kunci? Banjur dompet iki mung bisa dibukak saka piranti sing nggawe — ora ana ing situs web utawa ing sisih kita sing bisa mulihake. Mlebu ing piranti kuwi yen isih ana.",
     "resetExplainer": "Iki menehi login sampeyan dompet anyar sing kosong lan mindhah akunmu mrana. Iki ora mbukak dompet lawas — HP iki ora bisa, dehub.io ora bisa, awake dhewe uga ora — dadi apa wae sing ana ing njero tetep ana kono.",

@@ -1101,6 +1101,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Taasi waxay furaysaa boorso kale, ma aha {{address}}. Waxba lama beddelin.",
+    "unlockNoAccount": "Boorsadaadu waa xiran tahay — ma jiro akoon ku galay qalabkan.",
+    "unlockLookupFailed": "Boorsadaadu waa xiran tahay — diiwaanka boorsadaada lama gaari karin. Hubi xiriirkaaga oo mar kale isku day.",
+    "unlockCancelled": "Boorsadaadu waa xiran tahay — furitaanka waa la joojiyay, waxba lama dirin.",
     "notReady": "Boorsadu diyaar ma aha — isku day mar kale wax yar ka dib.",
     "title": "Jeebka",
     "loginRequired": "Soo gal si aad u hesho jeebkaaga.",
@@ -3489,6 +3493,10 @@
     "otherChain": "Qoraalkan wuxuu ku dhammaystirmaa silsilad kale, markaa waxaad u baahan tahay DHB jeebkaaga halkaas."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Ma hayo — ka bax oo mar kale bilow",
+    "restoreLocalNote": "Furaha wuxuu ku sii jirayaa taleefankan oo keliya.",
+    "restoreMissing": "Boorsada profile-kan kuma jirto taleefankan, sidaa darteed weli waxba lama saxiixi karo. Geli weedha soo celinta ama furaha gaarka ah si aad halkan u keento.",
+    "restoreTitle": "Soo celi boorsadaada",
     "writeThemDown": "Ku qor meel adiga oo kaliya aad gaari karto. Qof kasta oo haysta erayadan wuxuu haystaa boorsadaada — taageerada DeHub ma soo celin karto mana dib u dejin karto.",
     "noPhraseNoKey": "Weedh ma jirto furena ma jiro? Markaa boorsadan waxaa kaliya laga furi karaa qalabkii sameeyay — waxba oo websaydka ku jira ama dhinacayaga ah ma soo celin karaan. Ka gal qalabkaas haddii aad weli haysato.",
     "resetExplainer": "Tani waxay gelitaankaaga siisaa boorso cusub oo maran, waxayna akoonkaaga u wareejisaa. Ma furto boorsadii hore — taleefankan ma karo, dehub.io ma karo, annagana ma karno — markaa wax kasta oo gudaheeda ku jira halkaas ayay ku sii jiraan.",

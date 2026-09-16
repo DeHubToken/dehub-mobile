@@ -88,6 +88,11 @@ export function parseTxError(err: any, context: TxContext): string {
   // aa.write re-wraps this string in a fresh Error, and that substring is all
   // isWalletLockedError has left to recognise it by.
   if (isWalletLockedError(err)) {
+    // The host says why when it can (cancelled, record unreachable); every
+    // such message keeps "wallet is locked" in it, see wallet-lock.
+    if (err?.name === "WalletLockedError" && typeof err?.message === "string" && err.message.trim()) {
+      return err.message;
+    }
     return "Your wallet is locked — unlock it to continue";
   }
   // User rejection

@@ -1109,6 +1109,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "See avab teise rahakoti, mitte {{address}}. Midagi ei muudetud.",
+    "unlockNoAccount": "Su rahakott on lukus — sellesse seadmesse pole ükski konto sisse logitud.",
+    "unlockLookupFailed": "Su rahakott on lukus — rahakoti kirjeni ei jõutud. Kontrolli ühendust ja proovi uuesti.",
+    "unlockCancelled": "Su rahakott on lukus — avamine tühistati, midagi ei saadetud.",
     "notReady": "Rahakott pole valmis — proovi hetke pärast uuesti.",
     "title": "Rahakott",
     "loginRequired": "Logi sisse rahakotile ligipääsuks.",
@@ -3497,6 +3501,10 @@
     "otherChain": "See postitus arveldab teises ahelas, seega vajad seal oma rahakotis DHB-d."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Mul pole seda — logi välja ja alusta uuesti",
+    "restoreLocalNote": "Võti jääb ainult sellesse telefoni.",
+    "restoreMissing": "Selle profiili rahakott ei ole selles telefonis, seega ei saa veel midagi allkirjastada. Sisesta selle taastefraas või privaatvõti, et see siia tuua.",
+    "restoreTitle": "Taasta oma rahakott",
     "writeThemDown": "Kirjuta need kohta, kuhu pääsed ainult sina. Kellel on need sõnad, sellel on sinu rahakott — DeHubi tugi ei saa neid taastada ega lähtestada.",
     "noPhraseNoKey": "Ei fraasi ega võtit? Siis saab selle rahakoti avada ainult seadmest, mis selle lõi — miski veebisaidil ega meie poolel ei saa seda taastada. Logi sellest seadmest sisse, kui see sul veel on.",
     "resetExplainer": "See annab sinu sisselogimisele täiesti uue tühja rahakoti ja viib su konto sellele üle. Vana rahakotti see ei ava — ei suuda see telefon, ei dehub.io ega meie — seega kõik, mis seal sees on, jääb sinna.",

@@ -1089,6 +1089,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Das öffnet eine andere Wallet, nicht {{address}}. Nichts wurde geändert.",
+    "unlockNoAccount": "Deine Wallet ist gesperrt — auf diesem Gerät ist kein Konto angemeldet.",
+    "unlockLookupFailed": "Deine Wallet ist gesperrt — dein Wallet-Eintrag war nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
+    "unlockCancelled": "Deine Wallet ist gesperrt — das Entsperren wurde abgebrochen, nichts wurde gesendet.",
     "notReady": "Wallet nicht bereit – versuch es gleich noch einmal.",
     "title": "Geldbörse",
     "loginRequired": "Melde dich an, um auf deine Geldbörse zuzugreifen.",
@@ -3567,6 +3571,10 @@
     "otherChain": "Dieser Beitrag wird auf einer anderen Chain abgewickelt, du brauchst dort also DHB in deiner Wallet."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Ich habe sie nicht — abmelden und neu anfangen",
+    "restoreLocalNote": "Der Schlüssel bleibt nur auf diesem Telefon.",
+    "restoreMissing": "Die Wallet dieses Profils ist nicht auf diesem Telefon, daher kann noch nichts signiert werden. Gib ihre Wiederherstellungsphrase oder ihren privaten Schlüssel ein, um sie hierher zu holen.",
+    "restoreTitle": "Wallet wiederherstellen",
     "writeThemDown": "Schreibe sie an einem Ort auf, den nur du erreichst. Wer diese Wörter hat, hat deine Wallet — der DeHub-Support kann sie weder wiederherstellen noch zurücksetzen.",
     "noPhraseNoKey": "Keine Phrase und kein Schlüssel? Dann lässt sich diese Wallet nur von dem Gerät öffnen, das sie erstellt hat — weder auf der Website noch bei uns kann sie wiederhergestellt werden. Melde dich auf diesem Gerät an, falls du es noch hast.",
     "resetExplainer": "Damit erhält dein Login eine brandneue, leere Wallet, und dein Konto wird darauf umgezogen. Die alte Wallet wird dadurch nicht geöffnet — weder dieses Telefon noch dehub.io noch wir können das — was darin ist, bleibt also dort.",
