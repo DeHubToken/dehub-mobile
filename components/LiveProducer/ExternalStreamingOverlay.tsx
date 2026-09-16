@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { truncate } from '../../libs/strings.util';
 import { LIVEPEER_RTMP_SERVER } from '../../config/constants';
+import { encoderCredentials } from '../../libs/live-ingest';
 import { Copy, Wifi } from 'lucide-react-native';
 import { copyToClipboard } from '../../libs/clipboard.utils';
 
@@ -33,8 +34,15 @@ const ExternalStreamingOverlay: React.FC<ExternalStreamingOverlayProps> = ({
   provider,
 }) => {
   const onCopy = (value: string) => () => copyToClipboard(value);
-  const serverUrl =
+  // OBS joins Server and Stream Key with a slash, so the credentials in a
+  // self-hosted URL's query string have to be on the KEY side of that join —
+  // otherwise the stream key lands inside the password and the gate refuses it.
+  const rawServer =
     ingestUrl || (provider === 'mediamtx' ? null : LIVEPEER_RTMP_SERVER);
+  const { server: serverUrl, key: encoderKey } = encoderCredentials(
+    rawServer,
+    streamKeyValue,
+  );
 
   return (
     <View className="px-6 w-full items-center">
@@ -60,14 +68,14 @@ const ExternalStreamingOverlay: React.FC<ExternalStreamingOverlayProps> = ({
         <View className="flex-row items-center mb-3 bg-white/5 rounded-xl px-3 py-2">
           <Text className="text-white/50 text-[11px] mr-2 w-20">Stream Key</Text>
           <TouchableOpacity
-            onPress={streamKeyValue ? onCopy(streamKeyValue) : undefined}
+            onPress={encoderKey ? onCopy(encoderKey) : undefined}
             className="flex-1 flex-row items-center"
-            disabled={!streamKeyValue}
+            disabled={!encoderKey}
           >
             <Text className="text-white/80 text-[11px] flex-1" numberOfLines={1}>
-              {streamKeyValue ? truncate(streamKeyValue, 30) : streamKeyLoading ? 'Loading…' : '—'}
+              {encoderKey ? truncate(encoderKey, 30) : streamKeyLoading ? 'Loading…' : '—'}
             </Text>
-            {streamKeyValue && <Copy size={13} color="#A6A9AC" />}
+            {encoderKey && <Copy size={13} color="#A6A9AC" />}
           </TouchableOpacity>
         </View>
         <View className="flex-row items-center bg-white/5 rounded-xl px-3 py-2">
