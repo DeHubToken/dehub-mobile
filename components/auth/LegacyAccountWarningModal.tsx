@@ -17,6 +17,7 @@ import { WEBSITE_LINK } from "../../config/links";
 import { openInApp } from "../../libs/links.utils";
 import { startLegacyMigration, type LegacyProvider } from "../../libs/legacy-web3auth";
 import { createLogger } from "../../libs/logger";
+import { useTranslation } from "react-i18next";
 import type { LegacyAccountMatch } from "../../libs/wallet-core/legacy-detect";
 import {
   legacyAccountsForProvider,
@@ -80,6 +81,7 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
   onCreateAnyway,
   onClose,
 }) => {
+  const { t } = useTranslation();
   const [busyProvider, setBusyProvider] = useState<LegacyProvider | null>(null);
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -118,7 +120,7 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
         const privateKey = await startLegacyMigration(provider, loginHint);
         const ownerAddress = deriveAddressFromPrivateKey(privateKey);
         if (!ownerAddress) {
-          throw new Error("We could not read that recovered wallet. Nothing was changed.");
+          throw new Error(t("legacy.couldNotRead"));
         }
         const safeAddress = await predictSafeAddress(ownerAddress);
         const matched = matchRecoveredLegacyAccount(
@@ -130,8 +132,8 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
         if (!matched) {
           throw new Error(
             accounts.length > 1
-              ? "That login did not recover either profile shown here. Nothing changed. Try the original sign-in for the profile you want."
-              : "That login recovered a different wallet from this profile. Nothing changed. Try the sign-in that originally created it."
+              ? t("legacy.didNotRecoverEither")
+              : t("legacy.didNotRecoverThis")
           );
         }
         reset();
@@ -139,13 +141,12 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
       } catch (e: any) {
         log.error("recover:error", { provider, message: e?.message });
         setError(
-          e?.message ||
-            "Could not retrieve that old wallet on this device. You can still recover it on dehub.io below."
+          e?.message || t("legacy.couldNotRetrieve")
         );
         setBusyProvider(null);
       }
     },
-    [busyProvider, accounts, reset, onRecovered]
+    [busyProvider, accounts, reset, onRecovered, t]
   );
 
   return (
@@ -154,13 +155,15 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
         <View style={styles.titleRow}>
           <Ionicons name="warning-outline" size={22} color={authColors.label} />
           <Text style={authText.modalTitle}>
-            {accounts.length > 1 ? "Choose an account to recover" : "Recover your account"}
+            {accounts.length > 1
+              ? t("legacy.chooseAccount")
+              : t("legacy.recoverYourAccount")}
           </Text>
         </View>
         <Text style={[authText.body, { marginBottom: 16 }]}>
           {accounts.length > 1
-            ? `We found ${accounts.length} older DeHub profiles linked to this sign-in. Before login methods were linked, different sign-ins could create separate profiles.`
-            : "We found an older DeHub profile linked to this sign-in. Recover it to keep its username, activity, and balance."}
+            ? t("legacy.foundMany", { count: accounts.length })
+            : t("legacy.foundOne")}
         </Text>
 
         <View style={styles.accountCard}>
@@ -168,7 +171,7 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
             <View key={a.ethAddress || i} style={styles.accountRow}>
               <View style={styles.accountHeading}>
                 <Text style={styles.accountName}>
-                  {a.username ? `@${a.username}` : `Older profile ${i + 1}`}
+                  {a.username ? `@${a.username}` : t("legacy.olderProfile", { n: i + 1 })}
                 </Text>
                 {typeof a.badgeBalance === "number" && (
                   <Text style={authText.caption}>{a.badgeBalance.toLocaleString()} <DhbCoin /></Text>
@@ -176,22 +179,21 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
               </View>
               <Text style={authText.caption}>
                 {providerLabel(a.signupMethod)
-                  ? `Original sign-in: ${providerLabel(a.signupMethod)}`
-                  : "Original sign-in was not recorded"}
+                  ? t("legacy.originalSignIn", { method: providerLabel(a.signupMethod) })
+                  : t("legacy.originalSignInUnknown")}
               </Text>
             </View>
           ))}
         </View>
 
         <Text style={[authText.body, { marginTop: 16, marginBottom: 12 }]}>
-          Use the original sign-in for the profile you want. We match the recovered wallet to a
-          profile above before anything changes.
+          {t("legacy.useOriginalSignIn")}
         </Text>
 
         {busyProvider ? (
           <View style={styles.busyRow}>
             <ActivityIndicator color={authColors.label} />
-            <Text style={authText.body}>Retrieving old wallet…</Text>
+            <Text style={authText.body}>{t("legacy.retrieving")}</Text>
           </View>
         ) : (
           <View style={{ gap: 8 }}>
@@ -204,24 +206,29 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
                 <AuthButton
                   key={key}
                   align="start"
-                  label={known?.username ? `${label} for @${known.username}` : `Try ${label}`}
+                  label={
+                    known?.username
+                      ? t("legacy.providerForUser", { provider: label, name: known.username })
+                      : t("legacy.tryProvider", { provider: label })
+                  }
                   onPress={() => handleProviderPress(key)}
                   disabled={!!busyProvider}
                   style={known ? styles.matchedButton : undefined}
                   accessibilityLabel={
-                    known
-                      ? `Recover old ${label} account${known.username ? ` @${known.username}` : ""}`
-                      : `Recover old ${label} account`
+                    known?.username
+                      ? t("legacy.recoverOldNamed", { provider: label, name: known.username })
+                      : t("legacy.recoverOldAccount", { provider: label })
                   }
                   trailing={
                     known ? (
                       <View style={styles.matchChip}>
                         <Ionicons name="checkmark" size={12} color={authColors.onPrimary} />
                         <Text style={styles.matchChipLabel} numberOfLines={1}>
-                          Matched
                           {typeof known.badgeBalance === "number"
-                            ? `, ${known.badgeBalance.toLocaleString()} DHB`
-                            : ""}
+                            ? t("legacy.matchedWithBalance", {
+                                balance: known.badgeBalance.toLocaleString(),
+                              })
+                            : t("legacy.matched")}
                         </Text>
                       </View>
                     ) : null
@@ -232,28 +239,36 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
             <View style={styles.emailRow}>
               <AuthField
                 containerStyle={{ flex: 1 }}
-                label={emailAccount?.username ? `Email for @${emailAccount.username}` : "Old account email"}
+                label={
+                  emailAccount?.username
+                    ? t("legacy.emailFor", { name: emailAccount.username })
+                    : t("legacy.oldAccountEmail")
+                }
                 value={email}
                 onChangeText={setEmail}
                 placeholder="name@example.com"
-                accessibilityLabel="Old account email"
+                accessibilityLabel={t("legacy.oldAccountEmail")}
                 autoCapitalize="none"
                 autoCorrect={false}
                 keyboardType="email-address"
                 textContentType="emailAddress"
               />
               <AuthButton
-                label="Recover"
+                label={t("legacy.recover")}
                 icon="arrow-forward-outline"
                 onPress={() => handleProviderPress("email_passwordless", email)}
                 disabled={!!busyProvider || !email}
-                accessibilityLabel="Recover old account from this email"
+                accessibilityLabel={t("legacy.recoverFromEmailA11y")}
                 style={styles.emailSubmit}
               />
             </View>
             {emailAccount && (
               <Text style={[authText.caption, { paddingHorizontal: 4 }]}>
-                This email recovers {emailAccount.username ? `@${emailAccount.username}` : "the matched profile"}
+                {t("legacy.thisEmailRecovers", {
+                  target: emailAccount.username
+                    ? `@${emailAccount.username}`
+                    : t("legacy.matchedProfile"),
+                })}
                 {typeof emailAccount.badgeBalance === "number"
                   ? `, ${emailAccount.badgeBalance.toLocaleString()} DHB`
                   : ""}
@@ -265,23 +280,22 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
         <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
 
         <Text style={[authText.caption, { marginTop: 16, marginBottom: 12 }]}>
-          Provider not working, or Twitter/Discord/email not shown above? Recover it on the
-          website instead.
+          {t("legacy.providerNotWorking")}
         </Text>
         <AuthButton
           icon="open-outline"
-          label="Recover on dehub.io"
+          label={t("legacy.recoverOnWebsite")}
           onPress={() => openInApp(WEBSITE_LINK)}
           disabled={!!busyProvider}
         />
 
         <AuthTextButton
-          label="I don't want that account - create a new one anyway"
+          label={t("legacy.createNewAnyway")}
           onPress={onCreateAnyway}
           disabled={!!busyProvider}
           style={{ marginTop: 16 }}
         />
-        <AuthTextButton label="Cancel" onPress={handleClose} disabled={!!busyProvider} />
+        <AuthTextButton label={t("common.cancel")} onPress={handleClose} disabled={!!busyProvider} />
       </ScrollView>
     </GlassModal>
   );
