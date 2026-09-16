@@ -3469,6 +3469,7 @@
     "otherChain": "እዚ ልጥፊ ኣብ ካልእ ሰንሰለት እዩ ዝፍጸም፡ ስለዚ ኣብኡ ኣብ ዋሌትካ DHB የድሊ።"
   },
   "walletSetup": {
+    "tryBiometricsHint": "እዚ ቦርሳ ኣብዚ ስልኪ ኣዳሊኻዮ እንተኾይንካን መፍትሕ ኣብዚ ክህሉ ዝግብኦ እንተኾይኑን እዚ ተጠቐም",
     "connectWalletApp": "ብቲ ዘለዎ መተግበሪ ቦርሳ ፈርም",
     "signOutAndStartOver": "የብለይን — ውጻእን ካብ መጀመርታ ጀምርን",
     "restoreLocalNote": "መፍትሕ ኣብዚ ስልኪ ጥራይ ይጸንሕ።",

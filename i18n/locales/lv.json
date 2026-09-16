@@ -3503,6 +3503,7 @@
     "otherChain": "Šis ieraksts tiek nokārtots citā ķēdē, tāpēc tur jūsu makā nepieciešams DHB."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Izmantojiet šo, ja šo maku iestatījāt šajā tālrunī un atslēgai jau vajadzētu būt šeit",
     "connectWalletApp": "Parakstīt ar maka lietotni, kurā tas atrodas",
     "signOutAndStartOver": "Man tās nav — izrakstīties un sākt no jauna",
     "restoreLocalNote": "Atslēga paliek tikai šajā tālrunī.",

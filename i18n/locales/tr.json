@@ -3566,6 +3566,7 @@
     "otherChain": "Bu gönderi başka bir zincirde sonuçlanır, bu yüzden oradaki cüzdanınızda DHB gerekir."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Bu cüzdanı bu telefonda kurduysan ve anahtar zaten burada olmalıysa bunu kullan",
     "connectWalletApp": "Bulunduğu cüzdan uygulamasıyla imzala",
     "signOutAndStartOver": "Bende yok — çıkış yap ve baştan başla",
     "restoreLocalNote": "Anahtar yalnızca bu telefonda kalır.",

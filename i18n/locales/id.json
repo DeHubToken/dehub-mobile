@@ -3554,6 +3554,7 @@
     "otherChain": "Postingan ini diselesaikan di chain lain, jadi kamu butuh DHB di dompetmu di sana."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Gunakan ini jika Anda menyiapkan dompet ini di ponsel ini dan kuncinya seharusnya sudah ada di sini",
     "connectWalletApp": "Tanda tangani dengan aplikasi dompet tempatnya berada",
     "signOutAndStartOver": "Saya tidak memilikinya — keluar dan mulai dari awal",
     "restoreLocalNote": "Kunci hanya tersimpan di ponsel ini.",

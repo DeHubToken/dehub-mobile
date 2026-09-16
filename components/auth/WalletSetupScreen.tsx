@@ -1267,7 +1267,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                     onPress={handleBiometricUnlockPress}
                     disabled={busy}
                     loading={busy}
-                    accessibilityHint="Use this if you set this wallet up on this phone and it should already have the key"
+                    accessibilityHint={t("walletSetup.tryBiometricsHint")}
                   />
 
                   <AuthDivider label={t("walletSetup.orRestoreIt")} />

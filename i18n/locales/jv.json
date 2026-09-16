@@ -3462,6 +3462,7 @@
     "otherChain": "Postingan iki ditutup ing chain liya, dadi butuh DHB ing dompetmu ana ing kono."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Gunakake iki yen sampeyan nyiyapake dompet iki ing ponsel iki lan kuncine mesthine wis ana ing kene",
     "connectWalletApp": "Tandatangani nganggo aplikasi dompet panggonane",
     "signOutAndStartOver": "Aku ora duwe — metu lan miwiti maneh",
     "restoreLocalNote": "Kunci mung tetep ana ing ponsel iki.",

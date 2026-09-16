@@ -3671,6 +3671,7 @@
     "otherChain": "Tento príspevok sa vyrovnáva na inom reťazci, takže tam potrebujete DHB v peňaženke."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Použite, ak ste túto peňaženku nastavili v tomto telefóne a kľúč by tu už mal byť",
     "connectWalletApp": "Podpísať aplikáciou peňaženky, v ktorej je",
     "signOutAndStartOver": "Nemám ju — odhlásiť sa a začať odznova",
     "restoreLocalNote": "Kľúč zostáva iba v tomto telefóne.",

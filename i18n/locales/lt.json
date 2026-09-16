@@ -3503,6 +3503,7 @@
     "otherChain": "Šis įrašas atsiskaitomas kitoje grandinėje, todėl ten jums reikia DHB piniginėje."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Naudokite, jei šią piniginę nustatėte šiame telefone ir raktas jau turėtų būti čia",
     "connectWalletApp": "Pasirašyti piniginės programėle, kurioje ji yra",
     "signOutAndStartOver": "Neturiu — atsijungti ir pradėti iš naujo",
     "restoreLocalNote": "Raktas lieka tik šiame telefone.",

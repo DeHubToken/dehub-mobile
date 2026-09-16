@@ -3495,6 +3495,7 @@
     "otherChain": "Qoraalkan wuxuu ku dhammaystirmaa silsilad kale, markaa waxaad u baahan tahay DHB jeebkaaga halkaas."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Tan isticmaal haddii aad boorsadan ku samaysay taleefankan oo furaha uu horeba halkan u jiro",
     "connectWalletApp": "Ku saxiix abka boorsada uu ku jiro",
     "signOutAndStartOver": "Ma hayo — ka bax oo mar kale bilow",
     "restoreLocalNote": "Furaha wuxuu ku sii jirayaa taleefankan oo keliya.",

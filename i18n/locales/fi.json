@@ -3504,6 +3504,7 @@
     "otherChain": "Tämä julkaisu selvitetään toisessa ketjussa, joten tarvitset DHB:tä siellä olevaan lompakkoosi."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Käytä tätä, jos loit tämän lompakon tällä puhelimella ja avaimen pitäisi jo olla täällä",
     "connectWalletApp": "Allekirjoita lompakkosovelluksella, jossa se on",
     "signOutAndStartOver": "Minulla ei ole sitä — kirjaudu ulos ja aloita alusta",
     "restoreLocalNote": "Avain pysyy vain tässä puhelimessa.",

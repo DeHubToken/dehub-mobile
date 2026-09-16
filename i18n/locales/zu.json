@@ -3533,6 +3533,7 @@
     "otherChain": "Lokhu okuthunyelwe kuqedwa kwesinye ishini, ngakho udinga i-DHB esikhwameni sakho lapho."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Sebenzisa lokhu uma usethe lesi sikhwama kule foni futhi ukhiye kufanele ukuthi usevele ulapha",
     "connectWalletApp": "Sayina nge-app yesikhwama esikuyo",
     "signOutAndStartOver": "Anginaso — phuma bese uqala phansi",
     "restoreLocalNote": "Ukhiye uhlala kule foni kuphela.",

@@ -3534,6 +3534,7 @@
     "otherChain": "Kay willakuyqa huk chainpim tukun, chayrayku chaypi qullqi wayaqaykipi DHB necesitanki."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Kayta servichikuy sichus kay qullqi waqaychanata kay celularpi churarqanki hinaspa llaveqa kaypiñam kanan",
     "connectWalletApp": "Kaqnin qullqi waqaychana appwan firmay",
     "signOutAndStartOver": "Manam kapuwanchu — lluqsiy hinaspa qallariymanta qallariy",
     "restoreLocalNote": "Llaveqa kay celularllapim qhipan.",

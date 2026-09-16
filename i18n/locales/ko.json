@@ -3572,6 +3572,7 @@
     "otherChain": "이 게시물은 다른 체인에서 정산되므로 그 체인의 지갑에 DHB가 필요합니다."
   },
   "walletSetup": {
+    "tryBiometricsHint": "이 휴대폰에서 이 지갑을 설정했고 키가 이미 여기 있어야 한다면 이 옵션을 사용하세요",
     "connectWalletApp": "지갑이 있는 지갑 앱으로 서명",
     "signOutAndStartOver": "없어요 — 로그아웃하고 처음부터 다시 시작",
     "restoreLocalNote": "키는 이 휴대폰에만 보관됩니다.",

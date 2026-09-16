@@ -3493,6 +3493,7 @@
     "otherChain": "Wannan sakon yana daidaitawa a wata sarƙa, don haka kana buƙatar DHB a walat ɗinka a can."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Yi amfani da wannan idan ka saita wannan walat ɗin a wannan wayar kuma ya kamata maɓallin ya riga ya kasance a nan",
     "connectWalletApp": "Sa hannu da manhajar walat ɗin da yake ciki",
     "signOutAndStartOver": "Ba ni da shi — fita ka sake farawa",
     "restoreLocalNote": "Maɓallin yana zama a wannan wayar kawai.",

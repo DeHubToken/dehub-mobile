@@ -3682,6 +3682,7 @@
     "otherChain": "Ang post na ito ay nag-se-settle sa ibang chain, kaya kailangan mo ng DHB sa wallet mo doon."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Gamitin ito kung dito sa teleponong ito mo na-set up ang wallet at dapat nandito na ang key",
     "connectWalletApp": "Pumirma gamit ang wallet app kung nasaan ito",
     "signOutAndStartOver": "Wala sa akin — mag-sign out at magsimula ulit",
     "restoreLocalNote": "Sa teleponong ito lang nananatili ang key.",

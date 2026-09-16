@@ -3499,6 +3499,7 @@
     "otherChain": "ይህ ልጥፍ በሌላ ሰንሰለት ላይ ይጠናቀቃል፣ ስለዚህ እዚያ ባለው ቦርሳዎ ውስጥ DHB ያስፈልጋል።"
   },
   "walletSetup": {
+    "tryBiometricsHint": "ይህን ቦርሳ በዚህ ስልክ ላይ ካዘጋጁት እና ቁልፉ አስቀድሞ እዚህ መሆን ካለበት ይህን ይጠቀሙ",
     "connectWalletApp": "ባለበት የቦርሳ መተግበሪያ ይፈርሙ",
     "signOutAndStartOver": "የለኝም — ውጣና እንደገና ጀምር",
     "restoreLocalNote": "ቁልፉ በዚህ ስልክ ላይ ብቻ ይቆያል።",
