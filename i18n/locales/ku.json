@@ -1177,7 +1177,15 @@
     "balanceTooLow": "Balance pir kêm e ({{balance}} DHB)",
     "refreshFailed": "Tiştek xelet çû",
     "noWalletAddress": "Navnîşana berîkê nehat dîtin",
-    "assets": "Malî"
+    "assets": "Malî",
+    "hidden": "Veşartî",
+    "noDataForPeriod": "Ji bo vê demê hîn dane tune ne",
+    "affiliates": "Hevkar",
+    "directReferrals_one": "{{count}} rasterast",
+    "directReferrals_other": "{{count}} rasterast",
+    "secondaryReferrals_one": "{{count}} asta duyem",
+    "secondaryReferrals_other": "{{count}} asta duyem",
+    "retry": "Dîsa biceribîne"
   },
   "explorePage": {
     "searchPlaceholder": "Li kes, şandin, an naverokê bigerin...",

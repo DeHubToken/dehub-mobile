@@ -1390,7 +1390,15 @@
     "balanceTooLow": "Saldo muy bajo ({{balance}} DHB)",
     "refreshFailed": "Algo salió mal",
     "noWalletAddress": "No se encontró dirección de billetera",
-    "assets": "Activos"
+    "assets": "Activos",
+    "hidden": "Oculto",
+    "noDataForPeriod": "Aún no hay datos para este período",
+    "affiliates": "Afiliados",
+    "directReferrals_one": "{{count}} directos",
+    "directReferrals_other": "{{count}} directos",
+    "secondaryReferrals_one": "{{count}} secundarios",
+    "secondaryReferrals_other": "{{count}} secundarios",
+    "retry": "Reintentar"
   },
   "explorePage": {
     "searchPlaceholder": "Buscar personas, publicaciones o contenido...",

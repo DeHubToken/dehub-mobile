@@ -1304,7 +1304,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
     "noWalletAddress": "No wallet address found",
-    "assets": "ပိုင်ဆိုင်မှုများ"
+    "assets": "ပိုင်ဆိုင်မှုများ",
+    "hidden": "ဖျောက်ထားသည်",
+    "noDataForPeriod": "ဤကာလအတွက် ဒေတာ မရှိသေးပါ",
+    "affiliates": "လက်တွဲဖော်များ",
+    "directReferrals_one": "တိုက်ရိုက် {{count}}",
+    "directReferrals_other": "တိုက်ရိုက် {{count}}",
+    "secondaryReferrals_one": "ဒုတိယအဆင့် {{count}}",
+    "secondaryReferrals_other": "ဒုတိယအဆင့် {{count}}",
+    "retry": "ပြန်ကြိုးစားရန်"
   },
   "explorePage": {
     "searchPlaceholder": "လူများ၊ ပို့စ်များ သို့မဟုတ် အကြောင်းအရာ ရှာဖွေပါ...",

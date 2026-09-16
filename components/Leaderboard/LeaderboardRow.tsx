@@ -1,9 +1,12 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, ImageSourcePropType } from "react-native";
+import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import { truncate } from "../../libs/strings.util";
 import { formatCompactNumber } from "../../libs/numbers.util";
-import { getBadgeOpticalStyle, getBadgeUrl } from "../../libs/misc";
+import { getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
+import { getEntryValue, isHidden } from "../../libs/leaderboard-rules";
+import type { LeaderboardPeriod } from "../../services/leaderboard.service";
 import type { SortCategory } from "./LeaderboardCategoryPills";
 
 export interface LBRow {
@@ -12,55 +15,77 @@ export interface LBRow {
   username: string;
   displayName: string;
   avatarUrl?: string;
-  total: number;
+  /** Null when the holder hides their balance. */
+  total: number | null;
   sentTips: number;
   receivedTips: number;
   followers: number;
   likes: number;
+  subscribers: number;
+  directReferrals?: number;
+  secondaryReferrals?: number;
+  delta?: number;
+  badgeBalance?: number;
+  badgeLock?: unknown;
+  hideBadgeAndBalance?: boolean;
 }
 
-// Medal images for top 3
+// Medal images for the top ten, the same set web draws.
 const MEDAL_IMAGES: Record<number, ImageSourcePropType> = {
   1: require("../../assets/badges/1-medal.png"),
   2: require("../../assets/badges/2-medal.png"),
   3: require("../../assets/badges/3-medal.png"),
+  4: require("../../assets/badges/4-medal.png"),
+  5: require("../../assets/badges/5-medal.png"),
+  6: require("../../assets/badges/6-medal.png"),
+  7: require("../../assets/badges/7-medal.png"),
+  8: require("../../assets/badges/8-medal.png"),
+  9: require("../../assets/badges/9-medal.png"),
+  10: require("../../assets/badges/10-medal.png"),
 };
 
-const METRIC_SUFFIX: Record<SortCategory, string> = {
-  holdings: " DHB",
-  sentTips: " DHB",
-  receivedTips: " DHB",
-  followers: "",
-  likes: "",
-};
-
-/** Resolve which numeric value to show based on active sort */
-const getMetricValue = (item: LBRow, sort: SortCategory): number => {
-  switch (sort) {
-    case "sentTips":
-      return item.sentTips;
-    case "receivedTips":
-      return item.receivedTips;
-    case "followers":
-      return item.followers;
-    case "likes":
-      return item.likes;
-    default:
-      return item.total;
-  }
-};
+const DHB_SORTS: ReadonlySet<SortCategory> = new Set(["holdings", "sentTips", "receivedTips"]);
 
 interface Props {
   item: LBRow;
   sort: SortCategory;
+  period: LeaderboardPeriod;
   onPress: (username: string) => void;
 }
 
-const LeaderboardRowItem: React.FC<Props> = ({ item, sort, onPress }) => {
+const LeaderboardRowItem: React.FC<Props> = ({ item, sort, period, onPress }) => {
+  const { t } = useTranslation();
   const medalImage = MEDAL_IMAGES[item.rank];
-  const metricValue = getMetricValue(item, sort);
-  const suffix = METRIC_SUFFIX[sort];
-  const badgeImage = getBadgeUrl(item.total, { username: item.username });
+  const hidden = sort !== "affiliates" && isHidden(item);
+  // The badge reads badgeBalance and the grandfather lock off the row itself;
+  // `total` is only the fallback the API used before badgeBalance existed.
+  const badgeImage = hidden
+    ? undefined
+    : getBadgeUrlFor({ ...item, badgeBalance: item.badgeBalance ?? item.total ?? 0 });
+
+  const value = getEntryValue(item, sort, period);
+  const isDelta = period !== "all" && sort !== "affiliates" && typeof item.delta === "number";
+  const suffix = DHB_SORTS.has(sort) ? " DHB" : "";
+
+  let valueText: string;
+  let valueClass = "text-white";
+  if (hidden) {
+    valueText = t("leaderboard.hidden");
+    valueClass = "text-theme-neutrals-500";
+  } else if (sort === "affiliates") {
+    const direct = t("leaderboard.directReferrals", { count: item.directReferrals ?? 0 });
+    // Tier 2 is only meaningful once someone has it, so it stays off the row
+    // rather than showing a column of zeroes.
+    valueText = item.secondaryReferrals
+      ? `${direct} · ${t("leaderboard.secondaryReferrals", { count: item.secondaryReferrals })}`
+      : direct;
+  } else if (isDelta) {
+    const prefix = value > 0 ? "+" : "";
+    valueText = `${prefix}${formatCompactNumber(value)}${suffix}`;
+    if (Math.abs(value) > 0.01) valueClass = value > 0 ? "text-theme-green-400" : "text-theme-red-400";
+  } else {
+    valueText = `${formatCompactNumber(value)}${suffix}`;
+  }
 
   return (
     <TouchableOpacity
@@ -100,8 +125,8 @@ const LeaderboardRowItem: React.FC<Props> = ({ item, sort, onPress }) => {
       </View>
 
       {/* Metric */}
-      <Text className="text-white text-sm font-bold ml-2">
-        {formatCompactNumber(metricValue)}{suffix}
+      <Text className={`${valueClass} text-sm font-bold ml-2`} numberOfLines={1}>
+        {valueText}
       </Text>
     </TouchableOpacity>
   );

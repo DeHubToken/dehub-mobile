@@ -1294,7 +1294,15 @@
     "balanceTooLow": "잔액 부족 ({{balance}} DHB)",
     "refreshFailed": "오류 발생",
     "noWalletAddress": "지갑 주소 없음",
-    "assets": "자산"
+    "assets": "자산",
+    "hidden": "숨김",
+    "noDataForPeriod": "이 기간의 데이터가 아직 없습니다",
+    "affiliates": "제휴",
+    "directReferrals_one": "직접 {{count}}명",
+    "directReferrals_other": "직접 {{count}}명",
+    "secondaryReferrals_one": "2차 {{count}}명",
+    "secondaryReferrals_other": "2차 {{count}}명",
+    "retry": "다시 시도"
   },
   "features": {
     "title": "기능 요청",

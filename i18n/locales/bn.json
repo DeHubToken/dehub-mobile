@@ -1363,7 +1363,15 @@
     "balanceTooLow": "ব্যালেন্স খুব কম ({{balance}} DHB)",
     "refreshFailed": "কিছু ভুল হয়েছে",
     "noWalletAddress": "কোনো ওয়ালেট ঠিকানা পাওয়া যায়নি",
-    "assets": "সম্পদ"
+    "assets": "সম্পদ",
+    "hidden": "লুকানো",
+    "noDataForPeriod": "এই সময়কালের জন্য এখনও কোনো তথ্য নেই",
+    "affiliates": "অ্যাফিলিয়েট",
+    "directReferrals_one": "{{count}} সরাসরি",
+    "directReferrals_other": "{{count}} সরাসরি",
+    "secondaryReferrals_one": "{{count}} দ্বিতীয় স্তর",
+    "secondaryReferrals_other": "{{count}} দ্বিতীয় স্তর",
+    "retry": "আবার চেষ্টা করুন"
   },
   "features": {
     "title": "ফিচার রিকোয়েস্ট",

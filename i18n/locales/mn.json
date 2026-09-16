@@ -1287,7 +1287,15 @@
     "balanceTooLow": "Үлдэгдэл хэт бага ({{balance}} DHB)",
     "refreshFailed": "Алдаа гарлаа",
     "noWalletAddress": "Хэтэвчний хаяг олдсонгүй",
-    "assets": "Хөрөнгө"
+    "assets": "Хөрөнгө",
+    "hidden": "Нуугдсан",
+    "noDataForPeriod": "Энэ хугацаанд одоогоор өгөгдөл алга",
+    "affiliates": "Түншүүд",
+    "directReferrals_one": "{{count}} шууд",
+    "directReferrals_other": "{{count}} шууд",
+    "secondaryReferrals_one": "{{count}} хоёрдогч",
+    "secondaryReferrals_other": "{{count}} хоёрдогч",
+    "retry": "Дахин оролдох"
   },
   "explorePage": {
     "searchPlaceholder": "Хүмүүс, нийтлэл эсвэл агуулга хайх...",

@@ -1290,7 +1290,15 @@
     "balanceTooLow": "ബാലൻസ് വളരെ കുറവ് ({{balance}} DHB)",
     "refreshFailed": "എന്തോ തെറ്റ് സംഭവിച്ചു",
     "noWalletAddress": "വാലറ്റ് വിലാസം കണ്ടെത്തിയില്ല",
-    "assets": "ആസ്തികൾ"
+    "assets": "ആസ്തികൾ",
+    "hidden": "മറച്ചിരിക്കുന്നു",
+    "noDataForPeriod": "ഈ കാലയളവിലേക്ക് ഇതുവരെ ഡാറ്റയില്ല",
+    "affiliates": "അഫിലിയേറ്റുകൾ",
+    "directReferrals_one": "{{count}} നേരിട്ട്",
+    "directReferrals_other": "{{count}} നേരിട്ട്",
+    "secondaryReferrals_one": "{{count}} രണ്ടാം തലം",
+    "secondaryReferrals_other": "{{count}} രണ്ടാം തലം",
+    "retry": "വീണ്ടും ശ്രമിക്കുക"
   },
   "explorePage": {
     "searchPlaceholder": "ആളുകൾ, പോസ്റ്റുകൾ അല്ലെങ്കിൽ ഉള്ളടക്കം തിരയുക...",

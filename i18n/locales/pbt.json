@@ -1273,7 +1273,15 @@
     "balanceTooLow": "بیلانس ډیر ټیټ دی ({{balance}} DHB)",
     "refreshFailed": "یو څه غلط شول",
     "noWalletAddress": "د والټ پته ونه موندل شوه",
-    "assets": "شتمنۍ"
+    "assets": "شتمنۍ",
+    "hidden": "پټ",
+    "noDataForPeriod": "د دې مودې لپاره تر اوسه معلومات نشته",
+    "affiliates": "ملګري",
+    "directReferrals_one": "{{count}} مستقیم",
+    "directReferrals_other": "{{count}} مستقیم",
+    "secondaryReferrals_one": "{{count}} دویمه کچه",
+    "secondaryReferrals_other": "{{count}} دویمه کچه",
+    "retry": "بیا هڅه وکړئ"
   },
   "explorePage": {
     "searchPlaceholder": "خلک، پوسټونه، یا منځپانګه ولټوئ...",

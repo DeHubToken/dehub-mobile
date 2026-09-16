@@ -1302,7 +1302,15 @@
     "balanceTooLow": "Υπόλοιπο πολύ χαμηλό ({{balance}} DHB)",
     "refreshFailed": "Κάτι πήγε στραβά",
     "noWalletAddress": "Δεν βρέθηκε διεύθυνση πορτοφολιού",
-    "assets": "Περιουσιακά"
+    "assets": "Περιουσιακά",
+    "hidden": "Κρυφό",
+    "noDataForPeriod": "Δεν υπάρχουν ακόμη δεδομένα για αυτήν την περίοδο",
+    "affiliates": "Συνεργάτες",
+    "directReferrals_one": "{{count}} άμεσοι",
+    "directReferrals_other": "{{count}} άμεσοι",
+    "secondaryReferrals_one": "{{count}} δεύτερου επιπέδου",
+    "secondaryReferrals_other": "{{count}} δεύτερου επιπέδου",
+    "retry": "Δοκιμή ξανά"
   },
   "explorePage": {
     "searchPlaceholder": "Αναζήτηση ατόμων, δημοσιεύσεων ή περιεχομένου...",

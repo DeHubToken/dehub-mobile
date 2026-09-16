@@ -2083,7 +2083,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
     "noWalletAddress": "No wallet address found",
-    "assets": "Активи"
+    "assets": "Активи",
+    "hidden": "Приховано",
+    "noDataForPeriod": "Даних за цей період поки немає",
+    "affiliates": "Партнери",
+    "directReferrals_one": "{{count}} прямих",
+    "directReferrals_other": "{{count}} прямих",
+    "secondaryReferrals_one": "{{count}} другого рівня",
+    "secondaryReferrals_other": "{{count}} другого рівня",
+    "retry": "Повторити"
   },
   "explorePage": {
     "searchPlaceholder": "Search for people, posts, or content...",

@@ -1302,7 +1302,15 @@
     "balanceTooLow": "Likutis per mažas ({{balance}} DHB)",
     "refreshFailed": "Kažkas nepavyko",
     "noWalletAddress": "Piniginės adresas nerastas",
-    "assets": "Turtas"
+    "assets": "Turtas",
+    "hidden": "Paslėpta",
+    "noDataForPeriod": "Šiam laikotarpiui duomenų dar nėra",
+    "affiliates": "Partneriai",
+    "directReferrals_one": "{{count}} tiesioginiai",
+    "directReferrals_other": "{{count}} tiesioginiai",
+    "secondaryReferrals_one": "{{count}} antro lygio",
+    "secondaryReferrals_other": "{{count}} antro lygio",
+    "retry": "Bandyti dar kartą"
   },
   "explorePage": {
     "searchPlaceholder": "Ieškoti žmonių, įrašų ar turinio...",

@@ -1185,7 +1185,15 @@
     "balanceTooLow": "بیلنس بہت کم ہے ({{balance}} DHB)",
     "refreshFailed": "کچھ غلط ہو گیا",
     "noWalletAddress": "والیٹ ایڈریس نئیں ملا",
-    "assets": "اثاثے"
+    "assets": "اثاثے",
+    "hidden": "چھپایا ہوا",
+    "noDataForPeriod": "اس مدت کا ابھی کوئی ڈیٹا نئیں",
+    "affiliates": "ایفیلی ایٹس",
+    "directReferrals_one": "{{count}} ڈائریکٹ",
+    "directReferrals_other": "{{count}} ڈائریکٹ",
+    "secondaryReferrals_one": "{{count}} سیکنڈری",
+    "secondaryReferrals_other": "{{count}} سیکنڈری",
+    "retry": "پھر کوشش کرو"
   },
   "explorePage": {
     "searchPlaceholder": "لوگ، پوسٹ، یا کانٹینٹ ڈھونڈو...",

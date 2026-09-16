@@ -1392,7 +1392,15 @@
     "balanceTooLow": "Solde trop bas ({{balance}} DHB)",
     "refreshFailed": "Quelque chose s'est mal passé",
     "noWalletAddress": "Aucune adresse de portefeuille trouvée",
-    "assets": "Actifs"
+    "assets": "Actifs",
+    "hidden": "Masqué",
+    "noDataForPeriod": "Pas encore de données pour cette période",
+    "affiliates": "Affiliés",
+    "directReferrals_one": "{{count}} directs",
+    "directReferrals_other": "{{count}} directs",
+    "secondaryReferrals_one": "{{count}} secondaires",
+    "secondaryReferrals_other": "{{count}} secondaires",
+    "retry": "Réessayer"
   },
   "features": {
     "title": "Demandes de fonctionnalités",

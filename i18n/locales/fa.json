@@ -1375,7 +1375,15 @@
     "balanceTooLow": "موجودی کم است ({{balance}} DHB)",
     "refreshFailed": "مشکلی پیش آمد",
     "noWalletAddress": "آدرس کیف پول یافت نشد",
-    "assets": "دارایی‌ها"
+    "assets": "دارایی‌ها",
+    "hidden": "پنهان",
+    "noDataForPeriod": "هنوز داده‌ای برای این بازه وجود ندارد",
+    "affiliates": "همکاران فروش",
+    "directReferrals_one": "{{count}} مستقیم",
+    "directReferrals_other": "{{count}} مستقیم",
+    "secondaryReferrals_one": "{{count}} سطح دوم",
+    "secondaryReferrals_other": "{{count}} سطح دوم",
+    "retry": "تلاش دوباره"
   },
   "features": {
     "title": "درخواست‌های ویژگی",

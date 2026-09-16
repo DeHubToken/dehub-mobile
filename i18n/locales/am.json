@@ -1354,7 +1354,15 @@
     "balanceTooLow": "ሚዛን በጣም ዝቅተኛ ({{balance}} DHB)",
     "refreshFailed": "የሆነ ስህተት ተፈጥሯል",
     "noWalletAddress": "የቦርሳ አድራሻ አልተገኘም",
-    "assets": "ንብረቶች"
+    "assets": "ንብረቶች",
+    "hidden": "ተደብቋል",
+    "noDataForPeriod": "ለዚህ ጊዜ ገና መረጃ የለም",
+    "affiliates": "አጋሮች",
+    "directReferrals_one": "{{count}} ቀጥተኛ",
+    "directReferrals_other": "{{count}} ቀጥተኛ",
+    "secondaryReferrals_one": "{{count}} ሁለተኛ ደረጃ",
+    "secondaryReferrals_other": "{{count}} ሁለተኛ ደረጃ",
+    "retry": "እንደገና ሞክር"
   },
   "features": {
     "title": "የባህሪ ጥያቄዎች",

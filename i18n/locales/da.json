@@ -1284,7 +1284,15 @@
     "balanceTooLow": "Saldo for lav ({{balance}} DHB)",
     "refreshFailed": "Der opstod en fejl",
     "noWalletAddress": "Tegnebogsadresse ikke tilgængelig",
-    "assets": "Aktiver"
+    "assets": "Aktiver",
+    "hidden": "Skjult",
+    "noDataForPeriod": "Ingen data for denne periode endnu",
+    "affiliates": "Partnere",
+    "directReferrals_one": "{{count}} direkte",
+    "directReferrals_other": "{{count}} direkte",
+    "secondaryReferrals_one": "{{count}} sekundære",
+    "secondaryReferrals_other": "{{count}} sekundære",
+    "retry": "Prøv igen"
   },
   "features": {
     "title": "Funktionsønsker",
