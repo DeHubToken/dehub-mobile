@@ -97,6 +97,27 @@ export function whipEndpointFor(
 }
 
 /**
+ * WHEP subscribe endpoint — the same broadcast, pulled over WebRTC.
+ *
+ * Watching costs no credential: a playbackId is public by design, and the
+ * gate on a paid stream is applied by the app before it ever asks for a
+ * picture. Only the self-hosted ingest is addressed this way; a Livepeer
+ * stream keeps the HLS ladder, which its CDN transcodes to AAC and every
+ * player can read.
+ *
+ * Unlike the publish path this keeps the protocol's own name. The on-device
+ * filters that forged 403s did it on URLs containing `/whip`; `/whep` is a
+ * different token and the web app has been using it unchanged all along.
+ */
+export function whepEndpointFor(
+  stream: LiveStreamRef | null | undefined,
+): string | null {
+  if (liveProviderOf(stream) !== 'mediamtx') return null;
+  if (!stream?.playbackId) return null;
+  return `https://${MEDIAMTX_HOST}/${stream.playbackId}/whep`;
+}
+
+/**
  * Whether this device can reach the self-hosted ingest at all.
  *
  * The ingest is a bare droplet IP — the one DeHub host not behind Cloudflare,

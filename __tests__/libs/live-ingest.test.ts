@@ -3,6 +3,7 @@ import {
   liveProviderOf,
   hlsUrlFor,
   whipEndpointFor,
+  whepEndpointFor,
   edgeWhipEndpointFor,
   probeIngestReachable,
   markIngestUnreachable,
@@ -295,5 +296,29 @@ describe("withOpusFec", () => {
   it("returns an sdp without opus unchanged", () => {
     const none = "v=0\r\nm=video 9 UDP/TLS/RTP/SAVPF 96\r\na=rtpmap:96 H264/90000\r\n";
     expect(withOpusFec(none)).toBe(none);
+  });
+});
+
+/**
+ * Watching over WebRTC. The endpoint keeps the protocol's own name — unlike
+ * the publish path, which is served as /publish because on-device filters
+ * forge 403s on URLs containing /whip — and only the self-hosted ingest has
+ * one: a Livepeer stream keeps the HLS ladder its CDN transcodes to AAC.
+ */
+describe("whepEndpointFor", () => {
+  it("addresses a self-hosted stream by its public playbackId", () => {
+    expect(whepEndpointFor({ provider: "mediamtx", playbackId: "abc123" })).toBe(
+      "https://live.dehub.io/abc123/whep",
+    );
+  });
+
+  it("answers null for a Livepeer stream, which plays HLS", () => {
+    expect(whepEndpointFor({ provider: "livepeer", playbackId: "abc123" })).toBeNull();
+    expect(whepEndpointFor({ playbackId: "abc123" })).toBeNull();
+  });
+
+  it("answers null without a playbackId", () => {
+    expect(whepEndpointFor({ provider: "mediamtx" })).toBeNull();
+    expect(whepEndpointFor(null)).toBeNull();
   });
 });
