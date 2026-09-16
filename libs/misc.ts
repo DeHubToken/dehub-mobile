@@ -326,8 +326,8 @@ const BADGE_LEVELS: BadgeDef[] = [
   { name: "Crocodile", min: 1_000_000 },
   { name: "Dolphin", min: 2_000_000 },
   { name: "Tiger Shark", min: 3_000_000 },
-  { name: "Killer Whale", min: 5_000_000 },
-  { name: "Great White Shark", min: 10_000_000 },
+  { name: "Great White Shark", min: 5_000_000 },
+  { name: "Killer Whale", min: 10_000_000 },
   { name: "Blue Whale", min: 25_000_000 },
   { name: "Megalodon", min: 50_000_000 },
 ];
