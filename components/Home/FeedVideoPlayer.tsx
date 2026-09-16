@@ -899,7 +899,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // An RNGH gesture, not a PanResponder: the Home pager's page turn is an RNGH
   // pan and only ever yields to another RNGH handler, so a PanResponder scrub
   // dragged the page sideways instead of seeking. See useScrubGesture.
-  const { onLayout: onSeekTrackLayout, gesture: seekGesture } = useScrubGesture({
+  const { onLayout: onSeekTrackLayout, gesture: seekGesture, touchGuard: seekTouchGuard } = useScrubGesture({
     onScrubStart: clearHideTimer,
     onScrub: handleSeek,
     onCommit: handleSeekCommit,
@@ -1131,6 +1131,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   <View
                     style={styles.progressTrack}
                     onLayout={onSeekTrackLayout}
+                    {...seekTouchGuard}
                     accessibilityRole="adjustable"
                     accessibilityLabel="Video progress"
                   >
