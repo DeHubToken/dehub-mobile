@@ -672,6 +672,10 @@
     "firstComments_other": "前 {{count}} 条评论"
   },
   "wallet": {
+    "restoreWrongWallet": "这会打开另一个钱包，而不是 {{address}}。未做任何更改。",
+    "unlockNoAccount": "你的钱包已锁定 — 此设备上没有已登录的账号。",
+    "unlockLookupFailed": "你的钱包已锁定 — 无法访问钱包记录。请检查网络连接后重试。",
+    "unlockCancelled": "你的钱包已锁定 — 解锁已取消，未发送任何内容。",
     "notReady": "钱包尚未就绪——请稍后再试。",
     "title": "钱包",
     "loginRequired": "登录以访问您的钱包。",
@@ -3555,6 +3559,10 @@
     "otherChain": "这条帖子在另一条链上结算，所以你在那条链的钱包里需要有 DHB。"
   },
   "walletSetup": {
+    "signOutAndStartOver": "我没有 — 退出登录并重新开始",
+    "restoreLocalNote": "密钥只保存在这部手机上。",
+    "restoreMissing": "此账号的钱包不在这部手机上，因此暂时无法签名。输入它的助记词或私钥，把它带到这里。",
+    "restoreTitle": "恢复你的钱包",
     "writeThemDown": "把它们写在只有你能拿到的地方。谁掌握这些词，谁就掌握你的钱包——DeHub 客服既无法找回，也无法重置。",
     "noPhraseNoKey": "既没有助记词也没有私钥？那么这个钱包只能从创建它的设备打开——网站上和我们这边都无法恢复。如果那台设备还在，请在上面登录。",
     "resetExplainer": "这会为你的登录创建一个全新的空钱包，并把账户迁移过去。它不会打开旧钱包——这台手机不行，dehub.io 不行，我们也不行——所以里面的东西仍会留在那里。",

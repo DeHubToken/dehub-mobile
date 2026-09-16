@@ -33,6 +33,23 @@ export type WalletUnlockHandler = () => Promise<boolean>;
 
 let handler: WalletUnlockHandler | null = null;
 let inFlight: Promise<boolean> | null = null;
+let refusal: string | null = null;
+
+/**
+ * Why the last unlock came back false, in the user's words — set by the host
+ * right before it returns false, read once by whoever throws the error. Every
+ * message keeps the words "wallet is locked" so isWalletLockedError still
+ * recognises it after aa.write re-wraps it into a plain Error.
+ */
+export function setWalletUnlockRefusal(message: string | null): void {
+  refusal = message;
+}
+
+export function takeWalletUnlockRefusal(): string | null {
+  const current = refusal;
+  refusal = null;
+  return current;
+}
 
 /**
  * Thrown when a signing method was reached, the user was asked to unlock, and
@@ -40,8 +57,10 @@ let inFlight: Promise<boolean> | null = null;
  * than a failure — the user chose not to sign, exactly as they might dismiss a
  * hardware wallet prompt.
  */
+export const WALLET_LOCKED_DEFAULT_MESSAGE = "Your wallet is locked. Unlock it to continue.";
+
 export class WalletLockedError extends Error {
-  constructor(message = "Your wallet is locked. Unlock it to continue.") {
+  constructor(message = WALLET_LOCKED_DEFAULT_MESSAGE) {
     super(message);
     this.name = "WalletLockedError";
   }
@@ -84,6 +103,7 @@ export async function requestWalletUnlock(reason: string): Promise<boolean> {
     return inFlight;
   }
   log.info("requestWalletUnlock:asking", { reason });
+  refusal = null;
   const run = (async () => {
     try {
       return await current();

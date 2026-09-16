@@ -1176,6 +1176,10 @@
     "tryAgain": "Try Again"
   },
   "wallet": {
+    "restoreWrongWallet": "That opens a different wallet, not {{address}}. Nothing was changed.",
+    "unlockNoAccount": "Your wallet is locked — no account is signed in on this device.",
+    "unlockLookupFailed": "Your wallet is locked — couldn't reach your wallet record. Check your connection and try again.",
+    "unlockCancelled": "Your wallet is locked — the unlock was cancelled, nothing was sent.",
     "notReady": "Wallet not ready — try again in a moment.",
     "title": "Wallet",
     "loginRequired": "Log in to access your wallet.",
@@ -3568,6 +3572,10 @@
     "otherChain": "This post settles on another chain, so it needs DHB in your wallet there."
   },
   "walletSetup": {
+    "signOutAndStartOver": "I don't have it — sign out and start over",
+    "restoreLocalNote": "The key stays on this phone only.",
+    "restoreMissing": "This profile's wallet isn't on this phone, so nothing can be signed yet. Enter its recovery phrase or private key to bring it here.",
+    "restoreTitle": "Restore your wallet",
     "writeThemDown": "Write them down somewhere only you can reach. Anyone who has these words has your wallet — DeHub support cannot recover them and cannot reset them.",
     "noPhraseNoKey": "No phrase and no key? Then this wallet can only be opened from the device that set it up — nothing on the website or on our side can recover it. Sign in on that device if you still have it.",
     "resetExplainer": "This gives your sign-in a brand-new, empty wallet, and moves your account onto it. It does not open the old wallet — this phone can't, dehub.io can't, and neither can we — so whatever is inside it stays there.",

@@ -21,7 +21,7 @@
  */
 import { ethersService } from "../ethers.service";
 import { defaultChainId } from "../../config/constants";
-import { requestWalletUnlock, WalletLockedError } from "../../libs/wallet-lock";
+import { requestWalletUnlock, takeWalletUnlockRefusal, WalletLockedError } from "../../libs/wallet-lock";
 import { OPEN_WALLET_METHOD } from "../../libs/provider.registry";
 import { createLogger } from "../../libs/logger";
 
@@ -139,7 +139,7 @@ export function createLockedEip1193(
       if (method === OPEN_WALLET_METHOD) {
         if (real) return true;
         const opened = await unlockAndBuild(method);
-        if (!opened) throw new WalletLockedError();
+        if (!opened) throw new WalletLockedError(takeWalletUnlockRefusal() ?? undefined);
         return true;
       }
 
@@ -160,7 +160,7 @@ export function createLockedEip1193(
       }
 
       const built = await unlockAndBuild(method);
-      if (!built) throw new WalletLockedError();
+      if (!built) throw new WalletLockedError(takeWalletUnlockRefusal() ?? undefined);
       return built.request({ method, params });
     },
     on: () => {

@@ -1109,6 +1109,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Bu {{address}} emas, boshqa hamyonni ochadi. Hech narsa o'zgartirilmadi.",
+    "unlockNoAccount": "Hamyoningiz qulflangan — bu qurilmada tizimga kirgan hisob yo'q.",
+    "unlockLookupFailed": "Hamyoningiz qulflangan — hamyon yozuviga kirib bo'lmadi. Ulanishni tekshirib, qayta urinib ko'ring.",
+    "unlockCancelled": "Hamyoningiz qulflangan — qulfni ochish bekor qilindi, hech narsa yuborilmadi.",
     "notReady": "Hamyon tayyor emas — bir ozdan keyin qayta urinib ko'ring.",
     "title": "Hamyon",
     "totalBalance": "Umumiy balans",
@@ -3549,6 +3553,10 @@
     "otherChain": "Bu post boshqa zanjirda hisoblanadi, shuning uchun u yerdagi hamyoningizda DHB kerak."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Menda yo'q — chiqish va qaytadan boshlash",
+    "restoreLocalNote": "Kalit faqat shu telefonda qoladi.",
+    "restoreMissing": "Bu profilning hamyoni bu telefonda yo'q, shuning uchun hozircha hech narsani imzolab bo'lmaydi. Uni bu yerga olib kelish uchun tiklash iborasini yoki shaxsiy kalitini kiriting.",
+    "restoreTitle": "Hamyonni tiklash",
     "writeThemDown": "Ularni faqat siz yeta oladigan joyga yozib qo‘ying. Bu so‘zlar kimda bo‘lsa, hamyoningiz ham unda — DeHub qo‘llab-quvvatlash xizmati ularni tiklay ham, qayta o‘rnata ham olmaydi.",
     "noPhraseNoKey": "Na ibora, na kalit bormi? Unda bu hamyonni faqat uni yaratgan qurilmadan ochish mumkin — na veb-saytda, na bizning tomonimizda uni tiklaydigan narsa bor. Agar o‘sha qurilma hali ham sizda bo‘lsa, undan kiring.",
     "resetExplainer": "Bu sizning kirishingizga mutlaqo yangi, bo‘sh hamyon beradi va hisobingizni unga ko‘chiradi. U eski hamyonni ochmaydi — bu telefon ham, dehub.io ham, biz ham ocholmaymiz — shuning uchun ichidagi narsa o‘sha yerda qoladi.",

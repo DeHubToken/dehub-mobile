@@ -1006,6 +1006,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Ev cizdaneke cuda vedike, ne {{address}}. Tiştek nehat guhertin.",
+    "unlockNoAccount": "Cizdana te kilît e — li ser vê cîhazê tu hesab têkeve nîne.",
+    "unlockLookupFailed": "Cizdana te kilît e — negihîşt tomara cizdanê. Girêdana xwe kontrol bike û dîsa biceribîne.",
+    "unlockCancelled": "Cizdana te kilît e — vekirin hat betalkirin, tiştek nehat şandin.",
     "notReady": "Cizdan ne amade ye — piştî kêliyekê dîsa biceribîne.",
     "title": "Berîk",
     "loginRequired": "Ji bo gihîştina berîka xwe têkevin.",
@@ -3229,6 +3233,10 @@
     "otherChain": "Ev şandî li ser zincîreke din tê temamkirin, loma li wir DHB di berîka te de pêwîst e."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Ne li cem min e — derkeve û ji nû ve dest pê bike",
+    "restoreLocalNote": "Mifte tenê li ser vê telefonê dimîne.",
+    "restoreMissing": "Cizdana vê profîlê li ser vê telefonê nîne, ji ber vê yekê hîn tiştek nayê îmzekirin. Hevoka vegerandinê an mifteya taybet a wê binivîse da ku wê bîne vir.",
+    "restoreTitle": "Cizdana xwe vegerîne",
     "writeThemDown": "Wan li cihekî binivîse ku tenê tu digihîjî. Kî van peyvan hebe berîka te heye — piştgiriya DeHub nikare wan vegerîne an ji nû ve saz bike.",
     "noPhraseNoKey": "Ne hevok û ne mifte? Wê demê ev berîk tenê ji amûra ku ew çêkiriye tê vekirin — ne li ser malperê û ne jî li aliyê me tiştek dikare wê vegerîne. Heke hîn wê amûrê hebe, li ser wê têkeve.",
     "resetExplainer": "Ev têketina te berîkeke nû û vala dide û hesabê te diguhezîne ser wê. Berîka kevn venake — ne ev telefon dikare, ne dehub.io, ne jî em — ji ber vê yekê çi tê de hebe li wir dimîne.",

@@ -796,6 +796,10 @@
     "kidsModeForgotPin": "Vergeet dit? Teken in met jou beursie op 'n ander toestel om Kids Mode af te skakel."
   },
   "wallet": {
+    "restoreWrongWallet": "Dit maak 'n ander beursie oop, nie {{address}} nie. Niks is verander nie.",
+    "unlockNoAccount": "Jou beursie is gesluit — geen rekening is op hierdie toestel aangemeld nie.",
+    "unlockLookupFailed": "Jou beursie is gesluit — jou beursierekord kon nie bereik word nie. Kontroleer jou verbinding en probeer weer.",
+    "unlockCancelled": "Jou beursie is gesluit — die ontsluiting is gekanselleer, niks is gestuur nie.",
     "notReady": "Beursie is nie gereed nie — probeer oor 'n oomblik weer.",
     "title": "Beursie",
     "connectWallet": "Koppel beursie",
@@ -3615,6 +3619,10 @@
     "otherChain": "Hierdie plasing verreken op 'n ander ketting, dus benodig jy DHB in jou beursie daar."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Ek het dit nie — teken uit en begin oor",
+    "restoreLocalNote": "Die sleutel bly net op hierdie foon.",
+    "restoreMissing": "Hierdie profiel se beursie is nie op hierdie foon nie, so niks kan nog onderteken word nie. Voer sy herstelfrase of private sleutel in om dit hierheen te bring.",
+    "restoreTitle": "Herstel jou beursie",
     "writeThemDown": "Skryf dit neer op 'n plek waar net jy kan kom. Enigiemand met hierdie woorde het jou beursie — DeHub-ondersteuning kan dit nie herstel of terugstel nie.",
     "noPhraseNoKey": "Geen frase en geen sleutel nie? Dan kan hierdie beursie net oopgemaak word vanaf die toestel wat dit opgestel het — niks op die webwerf of aan ons kant kan dit herstel nie. Meld op daardie toestel aan as jy dit nog het.",
     "resetExplainer": "Dit gee jou aanmelding 'n splinternuwe, leë beursie en skuif jou rekening daarheen. Dit maak nie die ou beursie oop nie — hierdie foon kan nie, dehub.io kan nie, en ons ook nie — dus bly alles daarin daar.",

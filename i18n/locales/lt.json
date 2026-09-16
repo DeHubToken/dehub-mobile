@@ -1109,6 +1109,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Tai atidaro kitą piniginę, ne {{address}}. Niekas nepakeista.",
+    "unlockNoAccount": "Jūsų piniginė užrakinta — šiame įrenginyje neprisijungta jokia paskyra.",
+    "unlockLookupFailed": "Jūsų piniginė užrakinta — nepavyko pasiekti piniginės įrašo. Patikrinkite ryšį ir bandykite dar kartą.",
+    "unlockCancelled": "Jūsų piniginė užrakinta — atrakinimas atšauktas, nieko neišsiųsta.",
     "notReady": "Piniginė neparuošta — pabandykite po akimirkos.",
     "title": "Piniginė",
     "loginRequired": "Prisijunkite, kad pasiektumėte piniginę.",
@@ -3497,6 +3501,10 @@
     "otherChain": "Šis įrašas atsiskaitomas kitoje grandinėje, todėl ten jums reikia DHB piniginėje."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Neturiu — atsijungti ir pradėti iš naujo",
+    "restoreLocalNote": "Raktas lieka tik šiame telefone.",
+    "restoreMissing": "Šio profilio piniginės šiame telefone nėra, todėl kol kas nieko negalima pasirašyti. Įveskite jos atkūrimo frazę arba privatų raktą, kad perkeltumėte ją čia.",
+    "restoreTitle": "Atkurti piniginę",
     "writeThemDown": "Užsirašykite juos ten, kur pasieksite tik jūs. Kas turi šiuos žodžius, tas turi jūsų piniginę — DeHub palaikymas negali jų atkurti nei atstatyti.",
     "noPhraseNoKey": "Nei frazės, nei rakto? Tada šią piniginę galima atidaryti tik iš įrenginio, kuriame ji sukurta — nei svetainėje, nei mūsų pusėje nėra nieko, kas ją atkurtų. Prisijunkite tame įrenginyje, jei jį dar turite.",
     "resetExplainer": "Taip jūsų prisijungimas gauna visiškai naują tuščią piniginę, o paskyra perkeliama į ją. Senos piniginės tai neatidaro — negali nei šis telefonas, nei dehub.io, nei mes — tad kas joje yra, ten ir lieka.",

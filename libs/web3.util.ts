@@ -3,6 +3,8 @@
 // Usage: parseTxError(error, 'approve') or parseTxError(error, 'send')
 // Falls back to generic context-based messages when no specific match.
 
+import { WALLET_LOCKED_DEFAULT_MESSAGE } from "./wallet-lock";
+
 export type TxContext = "approve" | "send" | string | undefined;
 
 /**
@@ -88,6 +90,16 @@ export function parseTxError(err: any, context: TxContext): string {
   // aa.write re-wraps this string in a fresh Error, and that substring is all
   // isWalletLockedError has left to recognise it by.
   if (isWalletLockedError(err)) {
+    // The host says why when it can (cancelled, record unreachable); every
+    // such message keeps "wallet is locked" in it, see wallet-lock.
+    if (
+      err?.name === "WalletLockedError" &&
+      typeof err?.message === "string" &&
+      err.message.trim() &&
+      err.message !== WALLET_LOCKED_DEFAULT_MESSAGE
+    ) {
+      return err.message;
+    }
     return "Your wallet is locked — unlock it to continue";
   }
   // User rejection

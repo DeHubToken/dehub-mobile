@@ -1110,6 +1110,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Kjo hap një portofol tjetër, jo {{address}}. Asgjë nuk u ndryshua.",
+    "unlockNoAccount": "Portofoli yt është i kyçur — asnjë llogari nuk është e identifikuar në këtë pajisje.",
+    "unlockLookupFailed": "Portofoli yt është i kyçur — regjistri i portofolit nuk u arrit. Kontrollo lidhjen dhe provo sërish.",
+    "unlockCancelled": "Portofoli yt është i kyçur — zhbllokimi u anulua, asgjë nuk u dërgua.",
     "notReady": "Portofoli nuk është gati — provo sërish pas pak.",
     "title": "Portofoli",
     "loginRequired": "Hyni për të aksesuar portofolin tuaj.",
@@ -3497,6 +3501,10 @@
     "otherChain": "Ky postim shlyhet në një zinxhir tjetër, prandaj të duhet DHB në portofolin tënd atje."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Nuk e kam — dil dhe fillo nga e para",
+    "restoreLocalNote": "Çelësi mbetet vetëm në këtë telefon.",
+    "restoreMissing": "Portofoli i këtij profili nuk është në këtë telefon, kështu që ende nuk mund të nënshkruhet asgjë. Shkruaj frazën e rikuperimit ose çelësin privat për ta sjellë këtu.",
+    "restoreTitle": "Rikthe portofolin tënd",
     "writeThemDown": "Shkruaji diku ku vetëm ti mund të arrish. Kushdo që i ka këto fjalë ka portofolin tënd — mbështetja e DeHub nuk mund t'i rikuperojë as t'i rivendosë.",
     "noPhraseNoKey": "As frazë as çelës? Atëherë ky portofol mund të hapet vetëm nga pajisja që e krijoi — asgjë në faqen e internetit ose nga ana jonë nuk mund ta rikuperojë. Hyr në atë pajisje nëse e ke ende.",
     "resetExplainer": "Kjo i jep hyrjes tënde një portofol krejt të ri e bosh dhe e zhvendos llogarinë tënde atje. Nuk e hap portofolin e vjetër — as ky telefon nuk mundet, as dehub.io, as ne — kështu që çfarëdo që gjendet brenda mbetet aty.",

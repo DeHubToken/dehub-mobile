@@ -1110,6 +1110,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Hiyo inafungua pochi tofauti, si {{address}}. Hakuna kilichobadilishwa.",
+    "unlockNoAccount": "Pochi yako imefungwa — hakuna akaunti iliyoingia kwenye kifaa hiki.",
+    "unlockLookupFailed": "Pochi yako imefungwa — rekodi ya pochi haikufikika. Angalia muunganisho wako na ujaribu tena.",
+    "unlockCancelled": "Pochi yako imefungwa — kufungua kulighairiwa, hakuna kilichotumwa.",
     "notReady": "Pochi haijawa tayari — jaribu tena baada ya muda mfupi.",
     "title": "Pochi",
     "loginRequired": "Ingia ili kufikia pochi yako.",
@@ -3498,6 +3502,10 @@
     "otherChain": "Chapisho hili linakamilishwa kwenye mnyororo mwingine, kwa hivyo unahitaji DHB kwenye pochi yako huko."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Sina — ondoka na uanze upya",
+    "restoreLocalNote": "Ufunguo unabaki kwenye simu hii pekee.",
+    "restoreMissing": "Pochi ya wasifu huu haipo kwenye simu hii, kwa hivyo hakuna kinachoweza kutiwa saini bado. Weka kirai chake cha urejeshaji au ufunguo wake wa faragha ili kukileta hapa.",
+    "restoreTitle": "Rejesha pochi yako",
     "writeThemDown": "Ziandike mahali ambapo wewe pekee unaweza kufikia. Yeyote aliye na maneno haya ana pochi yako — usaidizi wa DeHub hauwezi kuyarejesha wala kuyaweka upya.",
     "noPhraseNoKey": "Huna kifungu wala ufunguo? Basi pochi hii inaweza kufunguliwa tu kutoka kifaa kilichoiunda — hakuna kitu kwenye tovuti wala upande wetu kinachoweza kuirejesha. Ingia kwenye kifaa hicho ikiwa bado unacho.",
     "resetExplainer": "Hii inaipa kuingia kwako pochi mpya kabisa, tupu, na kuhamishia akaunti yako humo. Haifungui pochi ya zamani — simu hii haiwezi, dehub.io haiwezi, wala sisi hatuwezi — kwa hivyo chochote kilicho ndani kinabaki pale.",

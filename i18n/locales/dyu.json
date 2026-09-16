@@ -1096,6 +1096,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "O bɛ wari-mara wɛrɛ dayɛlɛ, {{address}} tɛ. Foyi ma yɛlɛma.",
+    "unlockNoAccount": "I ka wari-mara datugulen don — konti si ma don nin minɛn kan.",
+    "unlockLookupFailed": "I ka wari-mara datugulen don — i ka wari-mara sɛbɛn ma se ka sɔrɔ. I ka jɛnsɛn lajɛ ka segin k'a kɛ.",
+    "unlockCancelled": "I ka wari-mara datugulen don — dayɛlɛ banna, foyi ma ci.",
     "notReady": "Waribon ma labɛn fɔlɔ — a lajɛ tuguni dɔɔnin kɔfɛ.",
     "title": "Kɔrɔbɔ",
     "loginRequired": "Sɔgɔma kɛ",
@@ -3442,6 +3446,10 @@
     "otherChain": "Nin post bɛ ban chain wɛrɛ kan, o la DHB ka kan ka kɛ i ka warijɛ kɔnɔ yen."
   },
   "walletSetup": {
+    "signOutAndStartOver": "A tɛ n bolo — bɔ ka daminɛ kura",
+    "restoreLocalNote": "Konnɛgɛ bɛ to nin telefɔni dɔrɔn kan.",
+    "restoreMissing": "Nin profili ka wari-mara tɛ nin telefɔni kan, o de kosɔn foyi tɛ se ka bolonɔ bila fɔlɔ. A ka lasegin-kuma walima a ka gundo-konnɛgɛ sɛbɛn walisa k'a lase yan.",
+    "restoreTitle": "I ka wari-mara lasegin",
     "writeThemDown": "U sɛbɛn yɔrɔ dɔ la i kelen bɛ se ka taa min na. Mɔgɔ o mɔgɔ min bɛ ni nin daɲɛw ye, i ka wari maralan bɛ o bolo — DeHub dɛmɛbaga tɛ se k'u lasegin wala k'u labɛn kokura.",
     "noPhraseNoKey": "Kuma tɛ yen, konnɛgɛ fana tɛ? O tuma nin wari maralan bɛ se ka da wuli minɛn dɔrɔn na min y'a dilan — fɛn si tɛ siti kan wala an fɛ min bɛ se k'a lasegin. Don o minɛn na n'a bɛ i bolo halibi.",
     "resetExplainer": "Nin bɛ wari maralan kura lakolon di i ka donni ma, ka i ka jate lataa a kan. A tɛ wari maralan kɔrɔ da wuli — nin telefɔni tɛ se, dehub.io tɛ se, an fana tɛ se — o la fɛn o fɛn bɛ a kɔnɔ, o bɛ to yen.",
