@@ -1598,7 +1598,18 @@
     "videoGenFailedDetail": "فشل إنشاء الفيديو: {{error}}",
     "audioSaved": "تم حفظ الصوت",
     "audioSaveFailed": "تعذّر حفظ هذا المقطع",
-    "generatedWithAssistant": "تم إنشاؤه بمساعد DeHub"
+    "generatedWithAssistant": "تم إنشاؤه بمساعد DeHub",
+    "creatorLibrary": "مكتبة المنشئ والاستوديو",
+    "newChat": "محادثة جديدة",
+    "chatHistory": "سجل المحادثات",
+    "postChat": "محادثة المنشور",
+    "clearAll": "مسح الكل",
+    "chats": "المحادثات",
+    "noConversations": "لا توجد محادثات بعد",
+    "saveAudio": "حفظ الصوت",
+    "postAudio": "نشر الصوت",
+    "generatingImage": "جارٍ توليد الصورة…",
+    "dehubPoster": "ملصق DeHub"
   },
   "aiChat": {
     "title": "المساعد",

@@ -875,7 +875,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "آڊيو محفوظ ٿيو",
     "audioSaveFailed": "اهو ٽريڪ محفوظ نه ٿي سگهيو",
-    "generatedWithAssistant": "DeHub اسسٽنٽ سان ٺاهيو ويو"
+    "generatedWithAssistant": "DeHub اسسٽنٽ سان ٺاهيو ويو",
+    "creatorLibrary": "تخليقڪار لائبريري ۽ اسٽوڊيو",
+    "newChat": "نئين چيٽ",
+    "chatHistory": "چيٽ جي تاريخ",
+    "postChat": "پوسٽ چيٽ",
+    "clearAll": "سڀ صاف ڪريو",
+    "chats": "چيٽون",
+    "noConversations": "اڃا ڪا به گفتگو ناهي",
+    "saveAudio": "آڊيو محفوظ ڪريو",
+    "postAudio": "آڊيو پوسٽ ڪريو",
+    "generatingImage": "تصوير ٺهي رهي آهي…",
+    "dehubPoster": "DeHub پوسٽر"
   },
   "publicChat": {
     "title": "عوامي چيٽ",

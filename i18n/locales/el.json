@@ -888,7 +888,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Ο ήχος αποθηκεύτηκε",
     "audioSaveFailed": "Δεν ήταν δυνατή η αποθήκευση αυτού του κομματιού",
-    "generatedWithAssistant": "Δημιουργήθηκε με τον βοηθό DeHub"
+    "generatedWithAssistant": "Δημιουργήθηκε με τον βοηθό DeHub",
+    "creatorLibrary": "Βιβλιοθήκη και στούντιο δημιουργού",
+    "newChat": "Νέα συνομιλία",
+    "chatHistory": "Ιστορικό συνομιλιών",
+    "postChat": "Συνομιλία ανάρτησης",
+    "clearAll": "Διαγραφή όλων",
+    "chats": "Συνομιλίες",
+    "noConversations": "Δεν υπάρχουν ακόμη συνομιλίες",
+    "saveAudio": "Αποθήκευση ήχου",
+    "postAudio": "Δημοσίευση ήχου",
+    "generatingImage": "Δημιουργία εικόνας…",
+    "dehubPoster": "Αφίσα DeHub"
   },
   "publicChat": {
     "title": "Δημόσια Συνομιλία",

@@ -1302,7 +1302,18 @@
     "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
     "audioSaved": "Na-save ang audio",
     "audioSaveFailed": "Hindi ma-save ang track na iyon",
-    "generatedWithAssistant": "Ginawa gamit ang DeHub assistant"
+    "generatedWithAssistant": "Ginawa gamit ang DeHub assistant",
+    "creatorLibrary": "Library at studio ng creator",
+    "newChat": "Bagong chat",
+    "chatHistory": "Kasaysayan ng chat",
+    "postChat": "Chat ng post",
+    "clearAll": "I-clear lahat",
+    "chats": "Mga chat",
+    "noConversations": "Wala pang usapan",
+    "saveAudio": "I-save ang audio",
+    "postAudio": "I-post ang audio",
+    "generatingImage": "Ginagawa ang larawan…",
+    "dehubPoster": "DeHub poster"
   },
   "publicChat": {
     "title": "Public Chat",

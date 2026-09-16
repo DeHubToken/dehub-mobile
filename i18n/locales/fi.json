@@ -853,7 +853,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Ääni tallennettu",
     "audioSaveFailed": "Raitaa ei voitu tallentaa",
-    "generatedWithAssistant": "Luotu DeHub-avustajalla"
+    "generatedWithAssistant": "Luotu DeHub-avustajalla",
+    "creatorLibrary": "Tekijän kirjasto ja studio",
+    "newChat": "Uusi keskustelu",
+    "chatHistory": "Keskusteluhistoria",
+    "postChat": "Julkaisun keskustelu",
+    "clearAll": "Tyhjennä kaikki",
+    "chats": "Keskustelut",
+    "noConversations": "Ei vielä keskusteluja",
+    "saveAudio": "Tallenna ääni",
+    "postAudio": "Julkaise ääni",
+    "generatingImage": "Luodaan kuvaa…",
+    "dehubPoster": "DeHub-juliste"
   },
   "publicChat": {
     "title": "Julkinen keskustelu",

@@ -1123,7 +1123,18 @@
     "loginRequired": "เข้าสู่ระบบเพื่อใช้ผู้ช่วยและปลดล็อกฟีเจอร์อย่างการสร้างรูปภาพและวิดีโอ",
     "audioSaved": "บันทึกเสียงแล้ว",
     "audioSaveFailed": "ไม่สามารถบันทึกแทร็กนั้นได้",
-    "generatedWithAssistant": "สร้างด้วยผู้ช่วย DeHub"
+    "generatedWithAssistant": "สร้างด้วยผู้ช่วย DeHub",
+    "creatorLibrary": "คลังและสตูดิโอของครีเอเตอร์",
+    "newChat": "แชทใหม่",
+    "chatHistory": "ประวัติแชท",
+    "postChat": "แชทของโพสต์",
+    "clearAll": "ล้างทั้งหมด",
+    "chats": "แชท",
+    "noConversations": "ยังไม่มีบทสนทนา",
+    "saveAudio": "บันทึกเสียง",
+    "postAudio": "โพสต์เสียง",
+    "generatingImage": "กำลังสร้างรูป…",
+    "dehubPoster": "โปสเตอร์ DeHub"
   },
   "publicChat": {
     "title": "แชทสาธารณะ",

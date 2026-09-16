@@ -12,6 +12,7 @@
  */
 
 import React, { memo, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   useWindowDimensions,
   Modal,
@@ -100,6 +101,7 @@ const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = (
   settings,
   onChange,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   // Live height, not a launch-time snapshot: a sheet sized at 85% of the
   // portrait height put its header and close control off the top of an
@@ -186,7 +188,7 @@ const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = (
               <View style={s.headerRow}>
                 <View style={s.headerLeft}>
                   <Icon name="Settings" size={20} color="#F9FBFF" />
-                  <Text style={s.title}>AI Settings</Text>
+                  <Text style={s.title}>{t('assistant.aiSettings')}</Text>
                 </View>
                 <TouchableOpacity onPress={closeSheet} activeOpacity={0.7} hitSlop={8}>
                   <Icon name="X" size={20} color="#6F7174" />
@@ -196,7 +198,7 @@ const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = (
           </GestureDetector>
 
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.scrollContent}>
-            <SectionHeader icon="Sparkles" label="Chat model" />
+            <SectionHeader icon="Sparkles" label={t('assistant.chatModel')} />
             {CHAT_MODEL_OPTIONS.map((model) => (
               <OptionRow
                 key={model.id}
@@ -209,7 +211,7 @@ const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = (
             ))}
 
             <View style={s.sectionDivider} />
-            <SectionHeader icon="Image" label="Image model" />
+            <SectionHeader icon="Image" label={t('assistant.imageModel')} />
             {IMAGE_MODEL_OPTIONS.map((model) => (
               <OptionRow
                 key={model.id}
@@ -222,7 +224,7 @@ const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = (
             ))}
 
             <View style={s.sectionDivider} />
-            <SectionHeader icon="Video" label="Video model" />
+            <SectionHeader icon="Video" label={t('assistant.videoModel')} />
             {videoByTier.map((group) => (
               <View key={group.key}>
                 <Text style={s.tierLabel}>{group.label}</Text>
@@ -240,7 +242,7 @@ const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = (
             ))}
 
             <View style={s.sectionDivider} />
-            <SectionHeader icon="Volume2" label="AI voice" />
+            <SectionHeader icon="Volume2" label={t('assistant.aiVoice')} />
             {VOICE_PREFERENCE_OPTIONS.map((voice) => (
               <OptionRow
                 key={voice.id}
@@ -254,8 +256,8 @@ const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = (
 
             <View style={s.toggleRow}>
               <View style={{ flex: 1 }}>
-                <Text style={s.rowName}>Always speak replies</Text>
-                <Text style={s.rowDesc}>Read every answer aloud, not just voice ones</Text>
+                <Text style={s.rowName}>{t('assistant.alwaysSpeakReplies')}</Text>
+                <Text style={s.rowDesc}>{t('assistant.alwaysSpeakRepliesDesc')}</Text>
               </View>
               <Switch
                 value={settings.alwaysSpeakReplies}

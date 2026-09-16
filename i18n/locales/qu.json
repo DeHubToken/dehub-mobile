@@ -889,7 +889,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Uyarina waqaychasqa",
     "audioSaveFailed": "Chay takita mana waqaychay atikunchu",
-    "generatedWithAssistant": "DeHub yanapaqwan ruwasqa"
+    "generatedWithAssistant": "DeHub yanapaqwan ruwasqa",
+    "creatorLibrary": "Ruwaq ñawinchana wasi hinaspa llamk'ana wasi",
+    "newChat": "Musuq rimanakuy",
+    "chatHistory": "Rimanakuy qhipa",
+    "postChat": "Willay rimanakuy",
+    "clearAll": "Llapanta pichay",
+    "chats": "Rimanakuykuna",
+    "noConversations": "Manaraq rimanakuykuna kanchu",
+    "saveAudio": "Audiota waqaychay",
+    "postAudio": "Audiota willay",
+    "generatingImage": "Rikcha ruwakuchkan…",
+    "dehubPoster": "DeHub unancha"
   },
   "publicChat": {
     "title": "Tukuypaq Rimanakuy",

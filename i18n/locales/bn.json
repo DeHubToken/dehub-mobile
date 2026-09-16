@@ -1048,7 +1048,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "অডিও সংরক্ষিত হয়েছে",
     "audioSaveFailed": "এই ট্র্যাকটি সংরক্ষণ করা যায়নি",
-    "generatedWithAssistant": "DeHub সহকারী দিয়ে তৈরি"
+    "generatedWithAssistant": "DeHub সহকারী দিয়ে তৈরি",
+    "creatorLibrary": "ক্রিয়েটর লাইব্রেরি ও স্টুডিও",
+    "newChat": "নতুন চ্যাট",
+    "chatHistory": "চ্যাট ইতিহাস",
+    "postChat": "পোস্ট চ্যাট",
+    "clearAll": "সব মুছুন",
+    "chats": "চ্যাট",
+    "noConversations": "এখনও কোনো কথোপকথন নেই",
+    "saveAudio": "অডিও সংরক্ষণ করুন",
+    "postAudio": "অডিও পোস্ট করুন",
+    "generatingImage": "ছবি তৈরি হচ্ছে…",
+    "dehubPoster": "DeHub পোস্টার"
   },
   "aiChat": {
     "title": "সহকারী",

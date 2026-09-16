@@ -867,7 +867,18 @@
     "loginRequired": "Melde dich an, um den KI-Assistenten zu nutzen und Funktionen wie Bild- und Videogenerierung freizuschalten.",
     "audioSaved": "Audio gespeichert",
     "audioSaveFailed": "Dieser Track konnte nicht gespeichert werden",
-    "generatedWithAssistant": "Erstellt mit dem DeHub-Assistenten"
+    "generatedWithAssistant": "Erstellt mit dem DeHub-Assistenten",
+    "creatorLibrary": "Creator-Bibliothek und Studio",
+    "newChat": "Neuer Chat",
+    "chatHistory": "Chatverlauf",
+    "postChat": "Beitrags-Chat",
+    "clearAll": "Alle löschen",
+    "chats": "Chats",
+    "noConversations": "Noch keine Unterhaltungen",
+    "saveAudio": "Audio speichern",
+    "postAudio": "Audio posten",
+    "generatingImage": "Bild wird erzeugt…",
+    "dehubPoster": "DeHub-Poster"
   },
   "publicChat": {
     "title": "Öffentlicher Chat",

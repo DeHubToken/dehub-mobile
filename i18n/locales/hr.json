@@ -888,7 +888,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Zvuk spremljen",
     "audioSaveFailed": "Nije moguće spremiti tu snimku",
-    "generatedWithAssistant": "Izrađeno DeHub asistentom"
+    "generatedWithAssistant": "Izrađeno DeHub asistentom",
+    "creatorLibrary": "Knjižnica i studio autora",
+    "newChat": "Novi razgovor",
+    "chatHistory": "Povijest razgovora",
+    "postChat": "Razgovor o objavi",
+    "clearAll": "Očisti sve",
+    "chats": "Razgovori",
+    "noConversations": "Još nema razgovora",
+    "saveAudio": "Spremi zvuk",
+    "postAudio": "Objavi zvuk",
+    "generatingImage": "Generiranje slike…",
+    "dehubPoster": "DeHub plakat"
   },
   "publicChat": {
     "title": "Javni razgovor",

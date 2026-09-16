@@ -850,7 +850,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Lyd lagret",
     "audioSaveFailed": "Kunne ikke lagre dette sporet",
-    "generatedWithAssistant": "Laget med DeHub-assistenten"
+    "generatedWithAssistant": "Laget med DeHub-assistenten",
+    "creatorLibrary": "Skaperbibliotek og studio",
+    "newChat": "Ny chat",
+    "chatHistory": "Chatthistorikk",
+    "postChat": "Innleggschat",
+    "clearAll": "Tøm alle",
+    "chats": "Chatter",
+    "noConversations": "Ingen samtaler ennå",
+    "saveAudio": "Lagre lyd",
+    "postAudio": "Legg ut lyd",
+    "generatingImage": "Genererer bilde…",
+    "dehubPoster": "DeHub-plakat"
   },
   "publicChat": {
     "title": "Offentlig chat",

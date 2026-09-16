@@ -870,7 +870,7 @@
     "placeholder": "যে কোনো কিছু জিগাও...",
     "send": "পাঠাও",
     "thinking": "ভাবতাসে...",
-    "newChat": "নতুন কথা",
+    "newChat": "নয়া চ্যাট",
     "history": "ইতিহাস",
     "suggestions": "সাজেশন",
     "clearChat": "কথা মুছো",
@@ -946,7 +946,17 @@
     "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
     "audioSaved": "অডিও সেভ অইছে",
     "audioSaveFailed": "ঐ ট্র্যাক সেভ করা গেল না",
-    "generatedWithAssistant": "DeHub সহকারী দিয়া বানানো"
+    "generatedWithAssistant": "DeHub সহকারী দিয়া বানানো",
+    "creatorLibrary": "ক্রিয়েটর লাইব্রেরি আর স্টুডিও",
+    "chatHistory": "চ্যাটর ইতিহাস",
+    "postChat": "পোস্ট চ্যাট",
+    "clearAll": "হকলতা মুছউ",
+    "chats": "চ্যাট",
+    "noConversations": "এখনো কোনো আলাপ নাই",
+    "saveAudio": "অডিও সেভ করউ",
+    "postAudio": "অডিও পোস্ট করউ",
+    "generatingImage": "ছবি বানানি অইরা…",
+    "dehubPoster": "DeHub পোস্টার"
   },
   "dao": {
     "title": "DAO ট্রেজারি",

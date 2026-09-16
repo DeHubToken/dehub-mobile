@@ -840,7 +840,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "آڈیو محفوظ تھی ڳیا",
     "audioSaveFailed": "او ٹریک محفوظ نہ تھی سڳیا",
-    "generatedWithAssistant": "DeHub اسسٹنٹ نال بݨایا ڳیا"
+    "generatedWithAssistant": "DeHub اسسٹنٹ نال بݨایا ڳیا",
+    "creatorLibrary": "کریئیٹر لائبریری تے اسٹوڈیو",
+    "newChat": "نویں چیٹ",
+    "chatHistory": "چیٹ دی تاریخ",
+    "postChat": "پوسٹ چیٹ",
+    "clearAll": "سب صاف کرو",
+    "chats": "چیٹاں",
+    "noConversations": "ہالے کوئی ڳالھ بات کائنی",
+    "saveAudio": "آڈیو محفوظ کرو",
+    "postAudio": "آڈیو پوسٹ کرو",
+    "generatingImage": "تصویر بݨدی پئی ہے…",
+    "dehubPoster": "DeHub پوسٹر"
   },
   "publicChat": {
     "title": "عام چیٹ",

@@ -880,7 +880,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Echekwala ụda",
     "audioSaveFailed": "Enweghị ike ichekwa egwu ahụ",
-    "generatedWithAssistant": "Ejiri onye inyeaka DeHub mepụta"
+    "generatedWithAssistant": "Ejiri onye inyeaka DeHub mepụta",
+    "creatorLibrary": "Ọbá akwụkwọ na ụlọ ọrụ onye okike",
+    "newChat": "Nkata ọhụrụ",
+    "chatHistory": "Akụkọ ihe mere eme nkata",
+    "postChat": "Nkata post",
+    "clearAll": "Hichapụ ihe niile",
+    "chats": "Nkata",
+    "noConversations": "Enwebeghị mkparịta ụka",
+    "saveAudio": "Chekwaa ụda",
+    "postAudio": "Bipụta ụda",
+    "generatingImage": "Na-emepụta onyonyo…",
+    "dehubPoster": "Akwụkwọ mmado DeHub"
   },
   "publicChat": {
     "title": "Nkata Ọha",

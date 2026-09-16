@@ -886,7 +886,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "ઑડિયો સાચવ્યો",
     "audioSaveFailed": "તે ટ્રેક સાચવી શકાયો નહીં",
-    "generatedWithAssistant": "DeHub સહાયક સાથે બનાવેલ"
+    "generatedWithAssistant": "DeHub સહાયક સાથે બનાવેલ",
+    "creatorLibrary": "સર્જક લાઇબ્રેરી અને સ્ટુડિયો",
+    "newChat": "નવી ચેટ",
+    "chatHistory": "ચેટ ઇતિહાસ",
+    "postChat": "પોસ્ટ ચેટ",
+    "clearAll": "બધું સાફ કરો",
+    "chats": "ચેટ",
+    "noConversations": "હજી કોઈ વાતચીત નથી",
+    "saveAudio": "ઑડિયો સાચવો",
+    "postAudio": "ઑડિયો પોસ્ટ કરો",
+    "generatingImage": "છબી બની રહી છે…",
+    "dehubPoster": "DeHub પોસ્ટર"
   },
   "publicChat": {
     "title": "જાહેર ચેટ",

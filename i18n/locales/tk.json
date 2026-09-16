@@ -846,7 +846,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Ses ýatda saklandy",
     "audioSaveFailed": "Bu ýazgyny ýatda saklap bolmady",
-    "generatedWithAssistant": "DeHub kömekçisi bilen döredildi"
+    "generatedWithAssistant": "DeHub kömekçisi bilen döredildi",
+    "creatorLibrary": "Döredijiniň kitaphanasy we studiýasy",
+    "newChat": "Täze söhbet",
+    "chatHistory": "Söhbet taryhy",
+    "postChat": "Ýazgy söhbeti",
+    "clearAll": "Ählisini arassala",
+    "chats": "Söhbetler",
+    "noConversations": "Heniz söhbet ýok",
+    "saveAudio": "Sesi ýatda sakla",
+    "postAudio": "Sesi iber",
+    "generatingImage": "Surat döredilýär…",
+    "dehubPoster": "DeHub plakaty"
   },
   "publicChat": {
     "title": "Açyk çat",

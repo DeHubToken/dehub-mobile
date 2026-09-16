@@ -877,7 +877,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "ഓഡിയോ സേവ് ചെയ്തു",
     "audioSaveFailed": "ആ ട്രാക്ക് സേവ് ചെയ്യാനായില്ല",
-    "generatedWithAssistant": "DeHub അസിസ്റ്റന്റ് ഉപയോഗിച്ച് സൃഷ്ടിച്ചത്"
+    "generatedWithAssistant": "DeHub അസിസ്റ്റന്റ് ഉപയോഗിച്ച് സൃഷ്ടിച്ചത്",
+    "creatorLibrary": "ക്രിയേറ്റർ ലൈബ്രറിയും സ്റ്റുഡിയോയും",
+    "newChat": "പുതിയ ചാറ്റ്",
+    "chatHistory": "ചാറ്റ് ചരിത്രം",
+    "postChat": "പോസ്റ്റ് ചാറ്റ്",
+    "clearAll": "എല്ലാം മായ്ക്കുക",
+    "chats": "ചാറ്റുകൾ",
+    "noConversations": "ഇതുവരെ സംഭാഷണങ്ങളില്ല",
+    "saveAudio": "ഓഡിയോ സേവ് ചെയ്യുക",
+    "postAudio": "ഓഡിയോ പോസ്റ്റ് ചെയ്യുക",
+    "generatingImage": "ചിത്രം സൃഷ്ടിക്കുന്നു…",
+    "dehubPoster": "DeHub പോസ്റ്റർ"
   },
   "publicChat": {
     "title": "പൊതു ചാറ്റ്",

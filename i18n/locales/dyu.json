@@ -874,7 +874,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Kumakan maradon",
     "audioSaveFailed": "O kuma ma se ka maradon",
-    "generatedWithAssistant": "A dilanna ni DeHub dɛmɛbaga ye"
+    "generatedWithAssistant": "A dilanna ni DeHub dɛmɛbaga ye",
+    "creatorLibrary": "Dilanbaga gafemarayɔrɔ ni baarayɔrɔ",
+    "newChat": "Baro kura",
+    "chatHistory": "Baro tariku",
+    "postChat": "Sɛbɛn baro",
+    "clearAll": "Bɛɛ jɔsi",
+    "chats": "Barow",
+    "noConversations": "Baro si tɛ yen fɔlɔ",
+    "saveAudio": "Kumakan mara",
+    "postAudio": "Kumakan bɔ kɛnɛ kan",
+    "generatingImage": "Ja bɛ dilan…",
+    "dehubPoster": "DeHub ja"
   },
   "publicChat": {
     "title": "Kɔrɔbɔ",

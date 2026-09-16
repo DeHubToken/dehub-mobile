@@ -903,7 +903,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Sagaleen olkaa'ameera",
     "audioSaveFailed": "Sagalee sana olkaa'uun hin dandaʼamne",
-    "generatedWithAssistant": "Gargaaraa DeHub tiin uumame"
+    "generatedWithAssistant": "Gargaaraa DeHub tiin uumame",
+    "creatorLibrary": "Mana kitaabaa fi istuudiyoo uumaa",
+    "newChat": "Haasaa haaraa",
+    "chatHistory": "Seenaa haasawaa",
+    "postChat": "Haasaa barreeffamaa",
+    "clearAll": "Hunda haqi",
+    "chats": "Haasawwan",
+    "noConversations": "Amma haasawni hin jiru",
+    "saveAudio": "Sagalee olkaa'i",
+    "postAudio": "Sagalee maxxansi",
+    "generatingImage": "Suuraa uumaa jira…",
+    "dehubPoster": "Poostara DeHub"
   },
   "publicChat": {
     "title": "Haasawa Ummataa",

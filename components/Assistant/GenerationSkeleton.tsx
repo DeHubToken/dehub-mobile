@@ -21,6 +21,7 @@ import Animated, {
   cancelAnimation,
 } from 'react-native-reanimated';
 import MarkdownText from '../ui/MarkdownText';
+import { useTranslation } from 'react-i18next';
 
 /** Shared travelling sheen. */
 function useShimmer(enabled = true) {
@@ -78,6 +79,7 @@ const Sheen: React.FC<{ width: number }> = ({ width }) => {
  * final image size. Same two phases here.
  */
 export const ImageGenerationSkeleton: React.FC<{ size?: number }> = memo(({ size = 240 }) => {
+  const { t } = useTranslation();
   const [phase, setPhase] = useState<'spinner' | 'skeleton'>('spinner');
   const progress = useCreep(30);
 
@@ -89,7 +91,7 @@ export const ImageGenerationSkeleton: React.FC<{ size?: number }> = memo(({ size
   if (phase === 'spinner') {
     return (
       <View style={s.pill}>
-        <Text style={s.pillText}>Generating image…</Text>
+        <Text style={s.pillText}>{t("assistant.generatingImage")}</Text>
       </View>
     );
   }
