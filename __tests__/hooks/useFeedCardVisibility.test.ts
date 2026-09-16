@@ -122,6 +122,39 @@ describe('hooks/useFeedCardVisibility', () => {
     expect(result.current.isItemAutoplayActive('stream')).toBe(true);
   });
 
+  it('gives the slot to a live row even when a video sits above it', () => {
+    const clip = video('clip');
+    const stream = live('stream');
+    const { result } = renderHook(() => useFeedCardVisibility());
+
+    act(() => {
+      result.current.onViewableItemsChanged(
+        report([[clip, 0, true], [stream, 1, true]]),
+      );
+    });
+
+    // The slot is exclusive, so the video above it used to leave the broadcast
+    // on its poster until the viewer opened the post — which is how "live only
+    // plays if you tap in" was reported. A recording can wait for a scroll.
+    expect(result.current.isItemAutoplayActive('stream')).toBe(true);
+    expect(result.current.isItemAutoplayActive('clip')).toBe(false);
+  });
+
+  it('prefers the topmost live row when two are viewable', () => {
+    const first = live('first');
+    const second = live('second');
+    const { result } = renderHook(() => useFeedCardVisibility());
+
+    act(() => {
+      result.current.onViewableItemsChanged(
+        report([[first, 0, true], [second, 1, true]]),
+      );
+    });
+
+    expect(result.current.isItemAutoplayActive('first')).toBe(true);
+    expect(result.current.isItemAutoplayActive('second')).toBe(false);
+  });
+
   it('leaves nothing autoplaying when no video row is viewable', () => {
     const note = text('note');
     const { result } = renderHook(() => useFeedCardVisibility());
