@@ -4002,5 +4002,33 @@
     "viewFeed": "Afișează fluxul tău",
     "yourChannel": "Canalul tău",
     "yourChannelHint": "Inserați adresa canalului — mânerul funcționează și el."
+  },
+  "calls": {
+    "voiceCall": "Apel vocal DeHub",
+    "videoCall": "Apel video DeHub",
+    "incoming": "Apel primit",
+    "calling": "Se apelează...",
+    "connecting": "Se conectează...",
+    "connected": "Conectat",
+    "decline": "Refuză",
+    "accept": "Accept",
+    "mute": "Dezactivare sunet",
+    "unmute": "Activează sunetul",
+    "muted": "Dezactivat",
+    "speaker": "Difuzor",
+    "camera": "Cameră",
+    "cameraOff": "Cameră oprită",
+    "flip": "Răstoarnă camera",
+    "end": "Închide",
+    "minimize": "Minimizează",
+    "expand": "Extinde",
+    "tapToEnableAudio": "Atingeți pentru a activa sunetul",
+    "offlineTitle": "Utilizatorul pare să fie offline",
+    "failedTitle": "Apel nereușit",
+    "offlineDesc": "{{name}} nu este disponibil pentru apeluri în acest moment. Trimite o cerere de apel invers și te poate suna înapoi când este online.",
+    "failedDesc": "Apelul nu a putut fi finalizat. Verifică-ți conexiunea și încearcă din nou.",
+    "close": "Închide",
+    "callbackRequest": "Cerere de apel invers",
+    "tryAgain": "Încearcă din nou"
   }
 }

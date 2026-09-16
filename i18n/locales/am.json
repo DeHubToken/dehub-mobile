@@ -3982,5 +3982,29 @@
     "viewFeed": "ምግብዎን ይመልከቱ",
     "yourChannel": "የእርስዎ ሰርጥ",
     "yourChannelHint": "የሰርጥ አድራሻዎን ይለጥፉ — እጀታው በራሱ ሥራዎች ላይም እንዲሁ ።"
+  },
+  "calls": {
+    "voiceCall": "DeHub የድምፅ ጥሪ",
+    "videoCall": "DeHub የቪዲዮ ጥሪ",
+    "incoming": "ገቢ ጥሪ",
+    "calling": "በመጥራት ላይ...",
+    "connecting": "በማገናኘት ላይ...",
+    "connected": "ተገናኝቷል",
+    "decline": "ይቀንሱ",
+    "accept": "ተቀበል",
+    "unmute": "ያልተስተካከለ",
+    "camera": "ካሜራ",
+    "cameraOff": "ካሜራ ጠፍቷል",
+    "flip": "ፍሊፕ ካሜራ",
+    "end": "ወደላይ አንጠልጥለው",
+    "minimize": "ይቀንሱ",
+    "expand": "ማስፋፊያ",
+    "tapToEnableAudio": "ኦዲዮ ለማንቃት መታ ያድርጉ",
+    "offlineTitle": "ተጠቃሚ ከመስመር ውጭ ይመስላል",
+    "failedTitle": "ጥሪ አልተሳካም",
+    "failedDesc": "ጥሪው ሊጠናቀቅ አልቻለም ። የእርስዎን ግንኙነት ያረጋግጡ እና እንደገና ይሞክሩ.",
+    "close": "ዝጋ",
+    "callbackRequest": "የጥሪ ተመላሽ ጥያቄ",
+    "tryAgain": "እንደገና ሞክር"
   }
 }

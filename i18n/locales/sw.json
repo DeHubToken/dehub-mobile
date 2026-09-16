@@ -3989,5 +3989,33 @@
     "viewFeed": "Angalia mpasho wako",
     "yourChannel": "Chaneli yako",
     "yourChannelHint": "Bandika anwani yako ya chaneli — kishikio kwenye kazi zake pia."
+  },
+  "calls": {
+    "voiceCall": "Simu ya sauti ya DeHub",
+    "videoCall": "Simu ya video ya DeHub",
+    "incoming": "Simu inayoingia",
+    "calling": "Inapiga simu...",
+    "connecting": "Inaunganisha...",
+    "connected": "Imeunganishwa",
+    "decline": "Kataa",
+    "accept": "Kubali",
+    "mute": "Nyamazisha",
+    "unmute": "Ondoa mdomo",
+    "muted": "Imetiwa doa",
+    "speaker": "Kipaza sauti",
+    "camera": "Kamera",
+    "cameraOff": "Kamera imezimwa",
+    "flip": "Kamera ya kugeuza",
+    "end": "Subiri",
+    "minimize": "Punguza",
+    "expand": "Panua",
+    "tapToEnableAudio": "Bofya ili kuwasha sauti",
+    "offlineTitle": "Mtumiaji anaonekana kuwa nje ya mtandao",
+    "failedTitle": "Simu imeshindikana",
+    "offlineDesc": "{{name}} haipatikani kwa simu kwa sasa. Tuma ombi la kupigiwa simu na wanaweza kukupigia simu wanapokuwa mtandaoni.",
+    "failedDesc": "Simu haikuweza kukamilika. Angalia muunganisho wako na ujaribu tena.",
+    "close": "Funga",
+    "callbackRequest": "Ombi la kupigiwa simu",
+    "tryAgain": "Jaribu tena"
   }
 }

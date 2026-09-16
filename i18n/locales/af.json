@@ -4107,5 +4107,33 @@
     "viewFeed": "Sien jou voer",
     "yourChannel": "Jou kanaal",
     "yourChannelHint": "Plak jou kanaaladres — die handvatsel op sy eie werke ook."
+  },
+  "calls": {
+    "voiceCall": "DeHub-stemoproep",
+    "videoCall": "DeHub-video-oproep",
+    "incoming": "Inkomende oproep",
+    "calling": "Bel...",
+    "connecting": "Koppel tans...",
+    "connected": "Gekoppel",
+    "decline": "Weier",
+    "accept": "Aanvaar",
+    "mute": "Stilte",
+    "unmute": "Ontkoppel",
+    "muted": "Gedemp",
+    "speaker": "Luidspreker",
+    "camera": "Kamera",
+    "cameraOff": "Kamera af",
+    "flip": "Draai kamera",
+    "end": "Hang op",
+    "minimize": "Minimeer",
+    "expand": "Brei uit",
+    "tapToEnableAudio": "Tik om oudio te aktiveer",
+    "offlineTitle": "Gebruiker blyk vanlyn te wees",
+    "failedTitle": "Oproep het misluk",
+    "offlineDesc": "{{name}} is nie beskikbaar vir oproepe op die oomblik nie. Stuur 'n terugbel versoek en hulle kan jou terug bel wanneer hulle aanlyn is.",
+    "failedDesc": "Die oproep kon nie voltooi word nie. Kontroleer jou verbinding en probeer weer.",
+    "close": "Sluit",
+    "callbackRequest": "Terugbelversoek",
+    "tryAgain": "Probeer weer"
   }
 }

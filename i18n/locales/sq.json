@@ -3987,5 +3987,33 @@
     "viewFeed": "Shfaq burimin tënd",
     "yourChannel": "Kanali yt",
     "yourChannelHint": "Ngjite adresën e kanalit. Doreza gjithashtu funksionon vetë."
+  },
+  "calls": {
+    "voiceCall": "Telefonatë zanore nga DeHub",
+    "videoCall": "Telefonatë me video nga DeHub",
+    "incoming": "Telefonatë në hyrje",
+    "calling": "Duke telefonuar...",
+    "connecting": "Duke u lidhur...",
+    "connected": "Lidhur",
+    "decline": "Refuzo",
+    "accept": "Prano",
+    "mute": "Pa zë",
+    "unmute": "Çaktivizo zërin",
+    "muted": "Memec",
+    "speaker": "Altoparlant",
+    "camera": "Kamera",
+    "cameraOff": "Kamera e fikur",
+    "flip": "Rifillo kamerën",
+    "end": "Mbylle",
+    "minimize": "Minimizo",
+    "expand": "Zgjero",
+    "tapToEnableAudio": "Shtyp për të aktivizuar audion",
+    "offlineTitle": "Përdoruesi duket se është jashtë linje",
+    "failedTitle": "Telefonata dështoi",
+    "offlineDesc": "{{name}} nuk është i disponueshëm për telefonata tani. Dërgo një kërkesë për kthimin e telefonatës dhe ata mund të të telefonojnë kur të jenë online.",
+    "failedDesc": "Thirrja nuk mund të përfundonte. Kontrollo lidhjen dhe provo përsëri.",
+    "close": "Mbyll",
+    "callbackRequest": "Kërkesë për kthimin e thirrjes",
+    "tryAgain": "Provo përsëri"
   }
 }

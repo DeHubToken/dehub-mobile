@@ -3988,5 +3988,33 @@
     "viewFeed": "Vaata oma voogu",
     "yourChannel": "Sinu kanal",
     "yourChannelHint": "Kleebi oma kanali aadress — ka käepide ise töötab."
+  },
+  "calls": {
+    "voiceCall": "DeHubi häälkõne",
+    "videoCall": "DeHubi videokõne",
+    "incoming": "Sissetulev kõne",
+    "calling": "Helistamine...",
+    "connecting": "Ühendamine...",
+    "connected": "Ühendatud",
+    "decline": "Lükka tagasi",
+    "accept": "Nõustu",
+    "mute": "Vaigista",
+    "unmute": "Tühista vaigistus",
+    "muted": "Vaigistatud",
+    "speaker": "Kõlar",
+    "camera": "Kaamera",
+    "cameraOff": "Kaamera väljas",
+    "flip": "Pööra kaamerat",
+    "end": "Pane toru hargile",
+    "minimize": "Minimeeri",
+    "expand": "Laienda",
+    "tapToEnableAudio": "Heli lubamiseks puuduta ekraani",
+    "offlineTitle": "Kasutaja näib olevat võrgust väljas",
+    "failedTitle": "Kõne ebaõnnestus",
+    "offlineDesc": "{{name}} pole praegu kõnede jaoks saadaval. Saada tagasihelistamistaotlus ja ta saab sulle tagasi helistada, kui ta on võrgus.",
+    "failedDesc": "Kõnet ei saanud lõpule viia. Kontrolli ühendust ja proovi uuesti.",
+    "close": "Sulge",
+    "callbackRequest": "Tagasihelistamise taotlus",
+    "tryAgain": "Proovi uuesti"
   }
 }

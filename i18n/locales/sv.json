@@ -3993,5 +3993,33 @@
     "viewFeed": "Visa ditt flöde",
     "yourChannel": "Din kanal",
     "yourChannelHint": "Klistra in din kanaladress — handtaget fungerar också på egen hand."
+  },
+  "calls": {
+    "voiceCall": "DeHub-röstsamtal",
+    "videoCall": "DeHub videosamtal",
+    "incoming": "Inkommande samtal",
+    "calling": "Ringer...",
+    "connecting": "Ansluter...",
+    "connected": "Ansluten",
+    "decline": "Avböj",
+    "accept": "Godkänn",
+    "mute": "Stäng av ljudet",
+    "unmute": "Slå på ljudet",
+    "muted": "Dämpad",
+    "speaker": "Högtalare",
+    "camera": "Kamera",
+    "cameraOff": "Kamera AV",
+    "flip": "Vänd kamera",
+    "end": "Lägg på",
+    "minimize": "Minimera",
+    "expand": "Expandera",
+    "tapToEnableAudio": "Tryck för att aktivera ljud",
+    "offlineTitle": "Användaren verkar vara offline",
+    "failedTitle": "Samtal misslyckades",
+    "offlineDesc": "{{name}} är inte tillgängligt för samtal just nu. Skicka en begäran om återuppringning så kan de ringa upp dig när de är online.",
+    "failedDesc": "Samtalet kunde inte slutföras. Kontrollera din anslutning och försök igen.",
+    "close": "Stäng",
+    "callbackRequest": "Begäran om återuppringning",
+    "tryAgain": "Försök igen"
   }
 }

@@ -3966,5 +3966,33 @@
     "viewFeed": "Lelee ndepụta gị",
     "yourChannel": "Gị ọwa",
     "yourChannelHint": "Tapawa adreesị ọwa gị — aka ahụ n 'ọrụ nke ya kwa."
+  },
+  "calls": {
+    "voiceCall": "DeHub olu oku",
+    "videoCall": "DeHub video oku",
+    "incoming": "Oku na-abata",
+    "calling": "Na-akpọ...",
+    "connecting": "Ijikọ...",
+    "connected": "Ejikọtara ya",
+    "decline": "Ịjụ",
+    "accept": "Nabata",
+    "mute": "Gbanyụọ",
+    "unmute": "Gbanyụọ",
+    "muted": "（ ）",
+    "speaker": "Loudspeaker",
+    "camera": "Kamera",
+    "cameraOff": "Gbanyụọ igwefoto",
+    "flip": "Tụgharịa igwefoto",
+    "end": "Kpọgidere",
+    "minimize": "Belata",
+    "expand": "Gbasaa",
+    "tapToEnableAudio": "Kpatụ ka ikwado ọdịyo",
+    "offlineTitle": "Ojieme yiri ka ọ nọghị n 'ịntanetị",
+    "failedTitle": "Kpọọ nke dara ada",
+    "offlineDesc": "{{name}} adịghị maka oku ugbu a. Zipu arịrịọ ịkpọghachi ma ha nwere ike ịkpọghachi gị mgbe ha nọ n 'ịntanetị.",
+    "failedDesc": "Enweghi ike mezue oku ahụ. Lelee njikọ gị ma nwaa ọzọ.",
+    "close": "Mechie",
+    "callbackRequest": "Kpọtụrụ arịrịọ",
+    "tryAgain": "Gbalịa ọzọ"
   }
 }

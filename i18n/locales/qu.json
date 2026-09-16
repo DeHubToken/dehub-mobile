@@ -4017,5 +4017,33 @@
     "viewFeed": "Mikhusqaykita qhaway",
     "yourChannel": "Tu canal",
     "yourChannelHint": "Kanal direccionniyki k&#39;askachiy — hap&#39;ina kikinpi llamk&#39;anpas."
+  },
+  "calls": {
+    "voiceCall": "DeHub kunkawan waqyay",
+    "videoCall": "DeHub videollamada nisqa",
+    "incoming": "Llamada yaykuq",
+    "calling": "Llamando...",
+    "connecting": "T&#39;inkisqa...",
+    "connected": "Tinkuchisqa",
+    "decline": "Kutichipuy",
+    "accept": "Uyakuy",
+    "mute": "Upallalla",
+    "unmute": "Unmute nisqa",
+    "muted": "Silenciado",
+    "speaker": "Parlante",
+    "camera": "Rikch'a hap'ina",
+    "cameraOff": "Camara apagasqa",
+    "flip": "Flip cámara nisqa",
+    "end": "Colgar",
+    "minimize": "Minimizar",
+    "expand": "Mastariy",
+    "tapToEnableAudio": "Chayta ñit’iy uyarinapaq atichinaykipaq",
+    "offlineTitle": "Usuarioqa mana tinkisqa hinam rikurin",
+    "failedTitle": "Llamada mana allintachu ruwarqa",
+    "offlineDesc": "{{name}} kunanpachaqa manan waqyakunapaq kanchu. Huk kuti waqyayta mañakuyta apachiy chaymanta paykuna kutichiy waqyayta atinkuman mayk’aqchus internetpi kachkanku.",
+    "failedDesc": "Chay waqyakuyqa manan tukusqachu karqan. T&#39;inkisqaykita qhaway hinaspa wakmanta kallpachakuy.",
+    "close": "Wichqay",
+    "callbackRequest": "Llamada mañakuy",
+    "tryAgain": "Hukmanta kallpachakuy"
   }
 }

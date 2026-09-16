@@ -3993,5 +3993,33 @@
     "viewFeed": "Se dit feed",
     "yourChannel": "Din kanal",
     "yourChannelHint": "Indsæt din kanaladresse — håndtaget på sine egne værker også."
+  },
+  "calls": {
+    "voiceCall": "DeHub-taleopkald",
+    "videoCall": "DeHub videoopkald",
+    "incoming": "Indgående opkald",
+    "calling": "Ringer...",
+    "connecting": "Opretter forbindelse...",
+    "connected": "Forbundet",
+    "decline": "Afvis",
+    "accept": "Accepter",
+    "mute": "Lydløs",
+    "unmute": "Slå lyden til",
+    "muted": "Slået fra",
+    "speaker": "Højttaler",
+    "camera": "Kamera",
+    "cameraOff": "Kamera slukket",
+    "flip": "Vend kameraet",
+    "end": "Læg på",
+    "minimize": "Minimer",
+    "expand": "Udvid",
+    "tapToEnableAudio": "Tryk for at aktivere lyd",
+    "offlineTitle": "Brugeren ser ud til at være offline",
+    "failedTitle": "Opkald mislykkedes",
+    "offlineDesc": "{{name}} er ikke tilgængelig for opkald lige nu. Send en callback-anmodning, og de kan ringe tilbage til dig, når de er online.",
+    "failedDesc": "Opkaldet kunne ikke gennemføres. Kontroller din forbindelse, og prøv igen.",
+    "close": "Luk",
+    "callbackRequest": "Anmodning om tilbagekald",
+    "tryAgain": "Prøv igen"
   }
 }

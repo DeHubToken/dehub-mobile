@@ -3966,5 +3966,33 @@
     "viewFeed": "Tingnan ang iyong feed",
     "yourChannel": "Канали шумо",
     "yourChannelHint": "Ilagay ang iyong address sa kanala — ang handle sa sariling mga kasalukuyang ito."
+  },
+  "calls": {
+    "voiceCall": "Занги овози DeHub",
+    "videoCall": "Занги видеоии DeHub",
+    "incoming": "Даромад",
+    "calling": "Занг задан...",
+    "connecting": "Пайваст шуда истодааст...",
+    "connected": "Пайвастшуда",
+    "decline": "Рад кардан",
+    "accept": "Қабул кардан",
+    "mute": "Бесадо кардан",
+    "unmute": "Бекор кардан",
+    "muted": "Хомӯш карда шуд",
+    "speaker": "Популярные Таджикские Пес",
+    "camera": "Камера",
+    "cameraOff": "Камера",
+    "flip": "Камераи флип",
+    "end": "Ба боло овезед",
+    "minimize": "Кам кардан",
+    "expand": "Васеъ кардан",
+    "tapToEnableAudio": "I-click upang paganahin ang audio",
+    "offlineTitle": "Ang gumagamit ay gumagamit sa offline",
+    "failedTitle": "Занг задан қатъ шуд",
+    "offlineDesc": "{{name}} info: whatsthis Magpadala ng isang callback na kahilingan at maaari kung saan online ang iyo.",
+    "failedDesc": "Занг ба итмом нарасид. Пайвастшавии худро санҷед ва бори дигар кӯшиш кунед.",
+    "close": "Пӯшидан",
+    "callbackRequest": "Дархости бозгашти занг",
+    "tryAgain": "Бори дигар кӯшиш кунед"
   }
 }

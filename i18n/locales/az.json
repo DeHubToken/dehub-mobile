@@ -3973,5 +3973,33 @@
     "viewFeed": "Yeminizə baxın",
     "yourChannel": "Kanalınız",
     "yourChannelHint": "Kanal ünvanınızı yapışdırın — dəstək də öz işindədir."
+  },
+  "calls": {
+    "voiceCall": "DeHub səsli zəng",
+    "videoCall": "DeHub video zəngi",
+    "incoming": "Gələn zəng",
+    "calling": "Zəng edilir...",
+    "connecting": "Qoşulur...",
+    "connected": "Əlaqələndirilib",
+    "decline": "İmtina et",
+    "accept": "Qəbul et",
+    "mute": "Səssiz et",
+    "unmute": "Səssizlikdən çıxarın",
+    "muted": "Məğlub edildi",
+    "speaker": "Ucaltma qurğusu",
+    "camera": "Kamera",
+    "cameraOff": "Kamera söndürülüb",
+    "flip": "Kameranı çevir",
+    "end": "Asın",
+    "minimize": "Minimuma endirin",
+    "expand": "Genişləndir",
+    "tapToEnableAudio": "Audio funksiyasını aktivləşdirmək üçün basın",
+    "offlineTitle": "İstifadəçi oflayn görünür",
+    "failedTitle": "Zəng alınmadı",
+    "offlineDesc": "{{name}} hazırda zənglər üçün mövcud deyil. Geri zəng sorğusu göndərin və onlar onlayn olduqda sizə yenidən zəng edə bilərlər.",
+    "failedDesc": "Zəngi tamamlamaq mümkün olmadı. Bağlantınızı yoxlayın və yenidən cəhd edin.",
+    "close": "Bağla",
+    "callbackRequest": "Geri zəng sorğusu",
+    "tryAgain": "Yenidən cəhd et"
   }
 }

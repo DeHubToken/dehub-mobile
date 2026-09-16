@@ -3977,5 +3977,33 @@
     "viewFeed": "Lueg dini Feed",
     "yourChannel": "Dii Kanal",
     "yourChannelHint": "Füeg dini Kanal-Adrässe ii — de Handle funktioniert au allei."
+  },
+  "calls": {
+    "voiceCall": "DeHub Spraacharuef",
+    "videoCall": "DeHub Videochaall",
+    "incoming": "Iichommender Aruef",
+    "calling": "Rueft aa...",
+    "connecting": "Verbindet...",
+    "connected": "Verbunde",
+    "decline": "Ablehne",
+    "accept": "Aannäh",
+    "mute": "Stum",
+    "unmute": "Lut mache",
+    "muted": "Stumm",
+    "speaker": "Lütsprecher",
+    "camera": "Kamera",
+    "cameraOff": "Kamera us",
+    "flip": "Flip-Kamera",
+    "end": "Uflegge",
+    "minimize": "Minimiere",
+    "expand": "Vergröössere",
+    "tapToEnableAudio": "Tippe zum Toon vo Tun aktiviere",
+    "offlineTitle": "Benutzer scheint offline z'sin",
+    "failedTitle": "Abruf fehlgschlage",
+    "offlineDesc": "{{name}} isch momentan nid verfüegbar für Abruef. Schick e Rückrüef-Aaforderig und si chönd dich zrueckruefe, wenn si online sind.",
+    "failedDesc": "De Abruf konnt nid abgschlossen werde. Prüef dini Verbindig und versuchs nomol.",
+    "close": "Schliesse",
+    "callbackRequest": "Rückrüef-Aaforderig",
+    "tryAgain": "Versuchs nomol"
   }
 }

@@ -3958,5 +3958,33 @@
     "viewFeed": "Öz iýmitini gör",
     "yourChannel": "Kanal",
     "yourChannelHint": "Kanal adresini — elini öz işlerine goý."
+  },
+  "calls": {
+    "voiceCall": "DeHub sesli çakylyk",
+    "videoCall": "DeHub video çakylygy",
+    "incoming": "Gelýän çakylyk",
+    "calling": "Çakylyk...",
+    "connecting": "Baglanmak...",
+    "connected": "Baglan",
+    "decline": "Gaýd Et",
+    "accept": "Qabul et",
+    "mute": "Sessizlik",
+    "unmute": "Unmute",
+    "muted": "Öýlenmek",
+    "speaker": "Sesli gürleýjiler",
+    "camera": "Kamera",
+    "cameraOff": "Kamera Çyk",
+    "flip": "Çykyş kamerasy",
+    "end": "Ýapyşyň, goý, ýapyşyň",
+    "minimize": "Gysgaldyryň",
+    "expand": "Gaýd et",
+    "tapToEnableAudio": "Saýlamalary açmaga basyň",
+    "offlineTitle": "Ulyjy offline görünýär",
+    "failedTitle": "Çakylyk başarmady",
+    "offlineDesc": "{{name}} Häzirki çakylyklar üçin ulanylmaýar. Çakylyk soragyny iber we olar saňa onlayn bolanda yzyna çagyryp bilerler.",
+    "failedDesc": "Dur, aýyplama haty taýýar däl. Siz öz baglanyşygyňyzy barlap, ýene-de synap görüň.",
+    "close": "Ýap",
+    "callbackRequest": "Çakylyk gaýtargy soragy",
+    "tryAgain": "Gaýtalaň"
   }
 }

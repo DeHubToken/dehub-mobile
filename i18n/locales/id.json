@@ -4039,5 +4039,33 @@
     "viewFeed": "Lihat umpan Anda",
     "yourChannel": "Saluran Anda",
     "yourChannelHint": "Tempel alamat saluran Anda — pegangannya juga berfungsi."
+  },
+  "calls": {
+    "voiceCall": "Panggilan suara DeHub",
+    "videoCall": "Panggilan video DeHub",
+    "incoming": "Panggilan masuk",
+    "calling": "Memanggil...",
+    "connecting": "Menghubungkan...",
+    "connected": "Terhubung",
+    "decline": "Tolak",
+    "accept": "Terima",
+    "mute": "Bisu",
+    "unmute": "Unmute",
+    "muted": "Bisu",
+    "speaker": "Pengeras suara",
+    "camera": "Kamera",
+    "cameraOff": "Kamera mati",
+    "flip": "Balik kamera",
+    "end": "Tutup",
+    "minimize": "Minimalkan",
+    "expand": "Perluas",
+    "tapToEnableAudio": "Ketuk untuk mengaktifkan audio",
+    "offlineTitle": "Pengguna tampaknya offline",
+    "failedTitle": "Panggilan gagal",
+    "offlineDesc": "{{name}} tidak tersedia untuk panggilan saat ini. Kirim permintaan panggilan balik dan mereka dapat menghubungi Anda kembali saat mereka online.",
+    "failedDesc": "Panggilan tidak dapat diselesaikan. Periksa koneksi Anda dan coba lagi.",
+    "close": "Tutup",
+    "callbackRequest": "Permintaan panggilan balik",
+    "tryAgain": "Coba lagi"
   }
 }

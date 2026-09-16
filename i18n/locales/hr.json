@@ -3990,5 +3990,33 @@
     "viewFeed": "Pregledaj svoj feed",
     "yourChannel": "Vaš kanal",
     "yourChannelHint": "Zalijepite adresu kanala — ručka također radi sama po sebi."
+  },
+  "calls": {
+    "voiceCall": "DeHub glasovni poziv",
+    "videoCall": "DeHub videopoziv",
+    "incoming": "Dolazni poziv",
+    "calling": "Pozivanje...",
+    "connecting": "Povezivanje...",
+    "connected": "Povezano",
+    "decline": "Odbij",
+    "accept": "Prihvati",
+    "mute": "Isključi zvuk",
+    "unmute": "Uključi zvuk",
+    "muted": "Isključen zvuk",
+    "speaker": "Zvučnik",
+    "camera": "Kamera",
+    "cameraOff": "Kamera je isključena",
+    "flip": "Okreni kameru",
+    "end": "Prekini vezu",
+    "minimize": "Minimiziraj",
+    "expand": "Proširi",
+    "tapToEnableAudio": "Dodirnite za omogućavanje zvuka",
+    "offlineTitle": "Čini se da je korisnik izvan mreže",
+    "failedTitle": "Poziv nije uspio",
+    "offlineDesc": "{{name}} trenutačno nije dostupan za pozive. Pošaljite zahtjev za povratni poziv i oni vas mogu nazvati kad budu na mreži.",
+    "failedDesc": "Poziv se nije mogao dovršiti. Provjeri vezu i pokušaj ponovno.",
+    "close": "Zatvori",
+    "callbackRequest": "Zahtjev za povratni poziv",
+    "tryAgain": "Pokušajte ponovno"
   }
 }
