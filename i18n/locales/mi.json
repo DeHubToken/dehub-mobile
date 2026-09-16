@@ -1291,7 +1291,15 @@
     "balanceTooLow": "Toenga iti rawa ({{balance}} DHB)",
     "refreshFailed": "I hapa tētahi mea",
     "noWalletAddress": "Kāore i kitea te wāhitau pūkoro moni",
-    "assets": "Rawa"
+    "assets": "Rawa",
+    "hidden": "Huna",
+    "noDataForPeriod": "Kāore anō he raraunga mō tēnei wā",
+    "affiliates": "Hoa piri",
+    "directReferrals_one": "{{count}} tika",
+    "directReferrals_other": "{{count}} tika",
+    "secondaryReferrals_one": "{{count}} tuarua",
+    "secondaryReferrals_other": "{{count}} tuarua",
+    "retry": "Ngana anō"
   },
   "explorePage": {
     "searchPlaceholder": "Rapu tāngata, pānui, ihirangi rānei...",

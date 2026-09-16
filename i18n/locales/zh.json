@@ -1376,7 +1376,15 @@
     "balanceTooLow": "余额太低 ({{balance}} DHB)",
     "refreshFailed": "出了点问题",
     "noWalletAddress": "未找到钱包地址",
-    "assets": "资产"
+    "assets": "资产",
+    "hidden": "已隐藏",
+    "noDataForPeriod": "该时段暂无数据",
+    "affiliates": "推广联盟",
+    "directReferrals_one": "{{count}} 直接推荐",
+    "directReferrals_other": "{{count}} 直接推荐",
+    "secondaryReferrals_one": "{{count}} 二级推荐",
+    "secondaryReferrals_other": "{{count}} 二级推荐",
+    "retry": "重试"
   },
   "features": {
     "title": "功能请求",

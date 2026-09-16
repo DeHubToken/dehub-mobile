@@ -1357,7 +1357,15 @@
     "balanceTooLow": "Тавозун хеле кам ({{balance}} DHB)",
     "refreshFailed": "Хатогӣ рух дод",
     "noWalletAddress": "Суроғаи ҳамён ёфт нашуд",
-    "assets": "Дороиҳо"
+    "assets": "Дороиҳо",
+    "hidden": "Пинҳон",
+    "noDataForPeriod": "Барои ин давра ҳанӯз маълумот нест",
+    "affiliates": "Шарикон",
+    "directReferrals_one": "{{count}} мустақим",
+    "directReferrals_other": "{{count}} мустақим",
+    "secondaryReferrals_one": "{{count}} сатҳи дуюм",
+    "secondaryReferrals_other": "{{count}} сатҳи дуюм",
+    "retry": "Бори дигар кӯшиш кунед"
   },
   "explorePage": {
     "searchPlaceholder": "Ҷустуҷӯи одамон, нашрҳо ё мундариҷа...",

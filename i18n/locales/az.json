@@ -1291,7 +1291,15 @@
     "balanceTooLow": "Balans çox aşağıdır ({{balance}} DHB)",
     "refreshFailed": "Xəta baş verdi",
     "noWalletAddress": "Cüzdan ünvanı tapılmadı",
-    "assets": "Aktivlər"
+    "assets": "Aktivlər",
+    "hidden": "Gizli",
+    "noDataForPeriod": "Bu dövr üçün hələ məlumat yoxdur",
+    "affiliates": "Tərəfdaşlar",
+    "directReferrals_one": "{{count}} birbaşa",
+    "directReferrals_other": "{{count}} birbaşa",
+    "secondaryReferrals_one": "{{count}} ikinci səviyyə",
+    "secondaryReferrals_other": "{{count}} ikinci səviyyə",
+    "retry": "Yenidən cəhd et"
   },
   "explorePage": {
     "searchPlaceholder": "İnsanlar, paylaşımlar və ya məzmun axtar...",

@@ -1282,7 +1282,15 @@
     "balanceTooLow": "Балансът е прекалено нисък ({{balance}} DHB)",
     "refreshFailed": "Възникна грешка",
     "noWalletAddress": "Адресът на портфейла не е наличен",
-    "assets": "Активи"
+    "assets": "Активи",
+    "hidden": "Скрито",
+    "noDataForPeriod": "Все още няма данни за този период",
+    "affiliates": "Партньори",
+    "directReferrals_one": "{{count}} директни",
+    "directReferrals_other": "{{count}} директни",
+    "secondaryReferrals_one": "{{count}} второ ниво",
+    "secondaryReferrals_other": "{{count}} второ ниво",
+    "retry": "Нов опит"
   },
   "features": {
     "title": "Заявки за функции",

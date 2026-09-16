@@ -1271,7 +1271,15 @@
     "balanceTooLow": "शिल्लक खूप कमी ({{balance}} DHB)",
     "refreshFailed": "त्रुटी आली",
     "noWalletAddress": "वॉलेट पत्ता उपलब्ध नाही",
-    "assets": "मालमत्ता"
+    "assets": "मालमत्ता",
+    "hidden": "लपवलेले",
+    "noDataForPeriod": "या कालावधीसाठी अद्याप डेटा नाही",
+    "affiliates": "अ‍ॅफिलिएट",
+    "directReferrals_one": "{{count}} थेट",
+    "directReferrals_other": "{{count}} थेट",
+    "secondaryReferrals_one": "{{count}} दुय्यम",
+    "secondaryReferrals_other": "{{count}} दुय्यम",
+    "retry": "पुन्हा प्रयत्न करा"
   },
   "features": {
     "title": "वैशिष्ट्य विनंत्या",

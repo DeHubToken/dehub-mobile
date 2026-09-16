@@ -1298,7 +1298,15 @@
     "balanceTooLow": "ຍອດຕ່ຳເກີນໄປ ({{balance}} DHB)",
     "refreshFailed": "ເກີດຂໍ້ຜິດພາດ",
     "noWalletAddress": "ບໍ່ພົບທີ່ຢູ່ກະເປົາ",
-    "assets": "ຊັບສິນ"
+    "assets": "ຊັບສິນ",
+    "hidden": "ເຊື່ອງໄວ້",
+    "noDataForPeriod": "ຍັງບໍ່ມີຂໍ້ມູນສຳລັບຊ່ວງເວລານີ້",
+    "affiliates": "ພັນທະມິດ",
+    "directReferrals_one": "{{count}} ໂດຍກົງ",
+    "directReferrals_other": "{{count}} ໂດຍກົງ",
+    "secondaryReferrals_one": "{{count}} ຂັ້ນສອງ",
+    "secondaryReferrals_other": "{{count}} ຂັ້ນສອງ",
+    "retry": "ລອງໃໝ່"
   },
   "explorePage": {
     "searchPlaceholder": "ຄົ້ນຫາຄົນ, ໂພສ ຫຼື ເນື້ອຫາ...",

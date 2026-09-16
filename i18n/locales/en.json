@@ -1369,7 +1369,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
     "noWalletAddress": "No wallet address found",
-    "assets": "Assets"
+    "assets": "Assets",
+    "hidden": "Hidden",
+    "noDataForPeriod": "No data available for this period yet",
+    "affiliates": "Affiliates",
+    "directReferrals_one": "{{count}} direct",
+    "directReferrals_other": "{{count}} direct",
+    "secondaryReferrals_one": "{{count}} secondary",
+    "secondaryReferrals_other": "{{count}} secondary",
+    "retry": "Retry"
   },
   "explorePage": {
     "searchPlaceholder": "Search for people, posts, or content...",

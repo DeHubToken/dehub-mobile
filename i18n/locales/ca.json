@@ -1303,7 +1303,15 @@
     "balanceTooLow": "Saldo massa baix ({{balance}} DHB)",
     "refreshFailed": "Alguna cosa ha anat malament",
     "noWalletAddress": "No s'ha trobat adreça de cartera",
-    "assets": "Actius"
+    "assets": "Actius",
+    "hidden": "Ocult",
+    "noDataForPeriod": "Encara no hi ha dades per a aquest període",
+    "affiliates": "Afiliats",
+    "directReferrals_one": "{{count}} directes",
+    "directReferrals_other": "{{count}} directes",
+    "secondaryReferrals_one": "{{count}} secundaris",
+    "secondaryReferrals_other": "{{count}} secundaris",
+    "retry": "Torna-ho a provar"
   },
   "explorePage": {
     "searchPlaceholder": "Cercar persones, publicacions o contingut...",

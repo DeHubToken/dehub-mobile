@@ -1260,7 +1260,15 @@
     "balanceTooLow": "余额太低（{{balance}} DHB）",
     "refreshFailed": "出错了",
     "noWalletAddress": "搜弗到钱包地址",
-    "assets": "资产"
+    "assets": "资产",
+    "hidden": "已隐藏",
+    "noDataForPeriod": "搿段辰光还呒没数据",
+    "affiliates": "推广联盟",
+    "directReferrals_one": "{{count}} 直接推荐",
+    "directReferrals_other": "{{count}} 直接推荐",
+    "secondaryReferrals_one": "{{count}} 二级推荐",
+    "secondaryReferrals_other": "{{count}} 二级推荐",
+    "retry": "再试"
   },
   "explorePage": {
     "searchPlaceholder": "搜索用户、帖子或内容...",

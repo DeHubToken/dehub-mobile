@@ -1278,7 +1278,15 @@
     "balanceTooLow": "ስልቲ ኣዝዩ ትሑት ({{balance}} DHB)",
     "refreshFailed": "ገለ ጌጋ ኣጋጢሙ",
     "noWalletAddress": "ኣድራሻ ዋሌት ኣይተረኽበን",
-    "assets": "ንብረታት"
+    "assets": "ንብረታት",
+    "hidden": "ተሓቢኡ",
+    "noDataForPeriod": "ነዚ ግዜ ገና ሓበሬታ የለን",
+    "affiliates": "ሽርክነታት",
+    "directReferrals_one": "{{count}} ቀጥታ",
+    "directReferrals_other": "{{count}} ቀጥታ",
+    "secondaryReferrals_one": "{{count}} ካልኣይ ደረጃ",
+    "secondaryReferrals_other": "{{count}} ካልኣይ ደረጃ",
+    "retry": "እንደገና ፈትን"
   },
   "explorePage": {
     "searchPlaceholder": "ሰባት፣ ጽሑፋት፣ ወይ ትሕዝቶ ድለ...",

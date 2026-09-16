@@ -1392,7 +1392,15 @@
     "balanceTooLow": "Saldo troppo basso ({{balance}} DHB)",
     "refreshFailed": "Qualcosa è andato storto",
     "noWalletAddress": "Indirizzo portafoglio non trovato",
-    "assets": "Asset"
+    "assets": "Asset",
+    "hidden": "Nascosto",
+    "noDataForPeriod": "Nessun dato disponibile per questo periodo",
+    "affiliates": "Affiliati",
+    "directReferrals_one": "{{count}} diretti",
+    "directReferrals_other": "{{count}} diretti",
+    "secondaryReferrals_one": "{{count}} di secondo livello",
+    "secondaryReferrals_other": "{{count}} di secondo livello",
+    "retry": "Riprova"
   },
   "features": {
     "title": "Richieste funzionalità",

@@ -1389,7 +1389,15 @@
     "balanceTooLow": "残高が低すぎます ({{balance}} DHB)",
     "refreshFailed": "エラーが発生しました",
     "noWalletAddress": "ウォレットアドレスが見つかりません",
-    "assets": "アセット"
+    "assets": "アセット",
+    "hidden": "非表示",
+    "noDataForPeriod": "この期間のデータはまだありません",
+    "affiliates": "アフィリエイト",
+    "directReferrals_one": "直接 {{count}}人",
+    "directReferrals_other": "直接 {{count}}人",
+    "secondaryReferrals_one": "間接 {{count}}人",
+    "secondaryReferrals_other": "間接 {{count}}人",
+    "retry": "再試行"
   },
   "features": {
     "title": "機能リクエスト",

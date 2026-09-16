@@ -1271,7 +1271,15 @@
     "balanceTooLow": "இருப்பு மிகக் குறைவு ({{balance}} DHB)",
     "refreshFailed": "பிழை ஏற்பட்டது",
     "noWalletAddress": "பணப்பை முகவரி கிடைக்கவில்லை",
-    "assets": "சொத்துகள்"
+    "assets": "சொத்துகள்",
+    "hidden": "மறைக்கப்பட்டது",
+    "noDataForPeriod": "இந்தக் காலத்திற்கு இன்னும் தரவு இல்லை",
+    "affiliates": "இணைப்பாளர்கள்",
+    "directReferrals_one": "{{count}} நேரடி",
+    "directReferrals_other": "{{count}} நேரடி",
+    "secondaryReferrals_one": "{{count}} இரண்டாம் நிலை",
+    "secondaryReferrals_other": "{{count}} இரண்டாம் நிலை",
+    "retry": "மீண்டும் முயற்சி"
   },
   "features": {
     "title": "அம்ச கோரிக்கைகள்",

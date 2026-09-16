@@ -1262,7 +1262,15 @@
     "balanceTooLow": "ยอดต่ำเกินไป ({{balance}} DHB)",
     "refreshFailed": "เกิดข้อผิดพลาด",
     "noWalletAddress": "บ่พบที่อยู่กระเป๋า",
-    "assets": "สินทรัพย์"
+    "assets": "สินทรัพย์",
+    "hidden": "เซื่องไว้",
+    "noDataForPeriod": "ยังบ่มีข้อมูลสำหรับช่วงเวลานี้",
+    "affiliates": "พันธมิตร",
+    "directReferrals_one": "{{count}} โดยตรง",
+    "directReferrals_other": "{{count}} โดยตรง",
+    "secondaryReferrals_one": "{{count}} ระดับสอง",
+    "secondaryReferrals_other": "{{count}} ระดับสอง",
+    "retry": "ลองใหม่"
   },
   "explorePage": {
     "searchPlaceholder": "ค้นหาคน โพสต์ หรือเนื้อหา...",

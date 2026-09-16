@@ -1299,7 +1299,15 @@
     "balanceTooLow": "બેલેન્સ ખૂબ ઓછું ({{balance}} DHB)",
     "refreshFailed": "કંઈક ખોટું થયું",
     "noWalletAddress": "વૉલેટ એડ્રેસ મળ્યું નથી",
-    "assets": "સંપત્તિ"
+    "assets": "સંપત્તિ",
+    "hidden": "છુપાયેલું",
+    "noDataForPeriod": "આ સમયગાળા માટે હજુ કોઈ ડેટા નથી",
+    "affiliates": "એફિલિએટ્સ",
+    "directReferrals_one": "{{count}} સીધા",
+    "directReferrals_other": "{{count}} સીધા",
+    "secondaryReferrals_one": "{{count}} ગૌણ",
+    "secondaryReferrals_other": "{{count}} ગૌણ",
+    "retry": "ફરી પ્રયાસ કરો"
   },
   "explorePage": {
     "searchPlaceholder": "લોકો, પોસ્ટ્સ અથવા સામગ્રી શોધો...",

@@ -1303,7 +1303,15 @@
     "balanceTooLow": "Bilanci shumë i ulët ({{balance}} DHB)",
     "refreshFailed": "Diçka shkoi keq",
     "noWalletAddress": "Nuk u gjet adresë portofoli",
-    "assets": "Asete"
+    "assets": "Asete",
+    "hidden": "E fshehur",
+    "noDataForPeriod": "Ende nuk ka të dhëna për këtë periudhë",
+    "affiliates": "Partnerët",
+    "directReferrals_one": "{{count}} të drejtpërdrejtë",
+    "directReferrals_other": "{{count}} të drejtpërdrejtë",
+    "secondaryReferrals_one": "{{count}} të nivelit të dytë",
+    "secondaryReferrals_other": "{{count}} të nivelit të dytë",
+    "retry": "Provo sërish"
   },
   "explorePage": {
     "searchPlaceholder": "Kërkoni për njerëz, postime, ose përmbajtje...",

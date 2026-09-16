@@ -1312,7 +1312,15 @@
     "balanceTooLow": "ಬ್ಯಾಲೆನ್ಸ್ ತುಂಬಾ ಕಡಿಮೆ ({{balance}} DHB)",
     "refreshFailed": "ದೋಷ ಸಂಭವಿಸಿದೆ",
     "noWalletAddress": "ವಾಲೆಟ್ ವಿಳಾಸ ಕಂಡುಬಂದಿಲ್ಲ",
-    "assets": "ಆಸ್ತಿಗಳು"
+    "assets": "ಆಸ್ತಿಗಳು",
+    "hidden": "ಮರೆಮಾಡಲಾಗಿದೆ",
+    "noDataForPeriod": "ಈ ಅವಧಿಗೆ ಇನ್ನೂ ಡೇಟಾ ಇಲ್ಲ",
+    "affiliates": "ಅಫಿಲಿಯೇಟ್‌ಗಳು",
+    "directReferrals_one": "{{count}} ನೇರ",
+    "directReferrals_other": "{{count}} ನೇರ",
+    "secondaryReferrals_one": "{{count}} ದ್ವಿತೀಯ",
+    "secondaryReferrals_other": "{{count}} ದ್ವಿತೀಯ",
+    "retry": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"
   },
   "explorePage": {
     "searchPlaceholder": "ಜನರು, ಪೋಸ್ಟ್‌ಗಳು ಅಥವಾ ವಿಷಯ ಹುಡುಕಿ...",

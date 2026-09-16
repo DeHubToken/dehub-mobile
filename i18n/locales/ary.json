@@ -1363,7 +1363,15 @@
     "balanceTooLow": "الرصيد قليل بزاف ({{balance}} DHB)",
     "refreshFailed": "وقع شي مشكل",
     "noWalletAddress": "ما كاين حتى عنوان محفظة",
-    "assets": "الأصول"
+    "assets": "الأصول",
+    "hidden": "مخبي",
+    "noDataForPeriod": "ما كاين حتى معطيات لهاد الفترة دابا",
+    "affiliates": "المسوقين",
+    "directReferrals_one": "{{count}} مباشر",
+    "directReferrals_other": "{{count}} مباشر",
+    "secondaryReferrals_one": "{{count}} مستوى ثاني",
+    "secondaryReferrals_other": "{{count}} مستوى ثاني",
+    "retry": "عاود جرب"
   },
   "features": {
     "title": "طلبات الميزات",

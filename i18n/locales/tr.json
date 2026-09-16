@@ -1328,7 +1328,15 @@
     "balanceTooLow": "Bakiye çok düşük ({{balance}} DHB)",
     "refreshFailed": "Bir şeyler yanlış gitti",
     "noWalletAddress": "Cüzdan adresi bulunamadı",
-    "assets": "Varlıklar"
+    "assets": "Varlıklar",
+    "hidden": "Gizli",
+    "noDataForPeriod": "Bu dönem için henüz veri yok",
+    "affiliates": "Satış ortakları",
+    "directReferrals_one": "{{count}} doğrudan",
+    "directReferrals_other": "{{count}} doğrudan",
+    "secondaryReferrals_one": "{{count}} ikinci seviye",
+    "secondaryReferrals_other": "{{count}} ikinci seviye",
+    "retry": "Tekrar Dene"
   },
   "explorePage": {
     "searchPlaceholder": "Kişi, gönderi veya içerik ara...",

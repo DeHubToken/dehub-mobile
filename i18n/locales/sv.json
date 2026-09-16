@@ -1283,7 +1283,15 @@
     "balanceTooLow": "Saldot för lågt ({{balance}} DHB)",
     "refreshFailed": "Ett fel uppstod",
     "noWalletAddress": "Ingen plånboksadress tillgänglig",
-    "assets": "Tillgångar"
+    "assets": "Tillgångar",
+    "hidden": "Dold",
+    "noDataForPeriod": "Inga data för den här perioden ännu",
+    "affiliates": "Partner",
+    "directReferrals_one": "{{count}} direkta",
+    "directReferrals_other": "{{count}} direkta",
+    "secondaryReferrals_one": "{{count}} sekundära",
+    "secondaryReferrals_other": "{{count}} sekundära",
+    "retry": "Försök igen"
   },
   "features": {
     "title": "Funktionsförfrågningar",

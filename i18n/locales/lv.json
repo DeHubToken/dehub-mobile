@@ -1302,7 +1302,15 @@
     "balanceTooLow": "Atlikums pārāk zems ({{balance}} DHB)",
     "refreshFailed": "Kaut kas neizdevās",
     "noWalletAddress": "Maka adrese nav atrasta",
-    "assets": "Aktīvi"
+    "assets": "Aktīvi",
+    "hidden": "Slēpts",
+    "noDataForPeriod": "Šim periodam vēl nav datu",
+    "affiliates": "Partneri",
+    "directReferrals_one": "{{count}} tiešie",
+    "directReferrals_other": "{{count}} tiešie",
+    "secondaryReferrals_one": "{{count}} otrā līmeņa",
+    "secondaryReferrals_other": "{{count}} otrā līmeņa",
+    "retry": "Mēģināt vēlreiz"
   },
   "explorePage": {
     "searchPlaceholder": "Meklēt cilvēkus, ierakstus vai saturu...",

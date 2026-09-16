@@ -1282,7 +1282,15 @@
     "balanceTooLow": "Balans juda past ({{balance}} DHB)",
     "refreshFailed": "Nimadir xato ketdi",
     "noWalletAddress": "Hamyon manzili topilmadi",
-    "assets": "Aktivlar"
+    "assets": "Aktivlar",
+    "hidden": "Yashirin",
+    "noDataForPeriod": "Bu davr uchun hali ma'lumot yo'q",
+    "affiliates": "Hamkorlar",
+    "directReferrals_one": "{{count}} to'g'ridan-to'g'ri",
+    "directReferrals_other": "{{count}} to'g'ridan-to'g'ri",
+    "secondaryReferrals_one": "{{count}} ikkinchi daraja",
+    "secondaryReferrals_other": "{{count}} ikkinchi daraja",
+    "retry": "Qayta urinish"
   },
   "explorePage": {
     "searchPlaceholder": "Odamlar, postlar yoki kontent qidirish...",

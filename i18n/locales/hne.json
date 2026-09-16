@@ -1275,7 +1275,15 @@
     "balanceTooLow": "बैलेंस बहुत कम हे ({{balance}} DHB)",
     "refreshFailed": "कुछू गड़बड़ होगे",
     "noWalletAddress": "वॉलेट पता नइ मिलिस",
-    "assets": "संपत्ति"
+    "assets": "संपत्ति",
+    "hidden": "लुकाय हवय",
+    "noDataForPeriod": "ए अवधि बर अभी कोनो डेटा नइ हे",
+    "affiliates": "एफिलिएट",
+    "directReferrals_one": "{{count}} प्रत्यक्ष",
+    "directReferrals_other": "{{count}} प्रत्यक्ष",
+    "secondaryReferrals_one": "{{count}} द्वितीयक",
+    "secondaryReferrals_other": "{{count}} द्वितीयक",
+    "retry": "फेर कोशिश करव"
   },
   "explorePage": {
     "searchPlaceholder": "लोग, पोस्ट या सामग्री खोजव...",

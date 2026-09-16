@@ -1283,7 +1283,15 @@
     "balanceTooLow": "Zůstatek příliš nízký ({{balance}} DHB)",
     "refreshFailed": "Došlo k chybě",
     "noWalletAddress": "Adresa peněženky není dostupná",
-    "assets": "Aktiva"
+    "assets": "Aktiva",
+    "hidden": "Skryto",
+    "noDataForPeriod": "Pro toto období zatím nejsou k dispozici žádná data",
+    "affiliates": "Partneři",
+    "directReferrals_one": "{{count}} přímých",
+    "directReferrals_other": "{{count}} přímých",
+    "secondaryReferrals_one": "{{count}} druhé úrovně",
+    "secondaryReferrals_other": "{{count}} druhé úrovně",
+    "retry": "Zkusit znovu"
   },
   "features": {
     "title": "Požadavky na funkce",

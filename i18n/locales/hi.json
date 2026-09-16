@@ -1145,7 +1145,15 @@
     "balanceTooLow": "शेष बहुत कम ({{balance}} DHB)",
     "refreshFailed": "कुछ गलत हो गया",
     "noWalletAddress": "कोई वॉलेट पता नहीं मिला",
-    "assets": "संपत्ति"
+    "assets": "संपत्ति",
+    "hidden": "छिपा हुआ",
+    "noDataForPeriod": "इस अवधि के लिए अभी कोई डेटा नहीं है",
+    "affiliates": "एफिलिएट",
+    "directReferrals_one": "{{count}} प्रत्यक्ष",
+    "directReferrals_other": "{{count}} प्रत्यक्ष",
+    "secondaryReferrals_one": "{{count}} द्वितीयक",
+    "secondaryReferrals_other": "{{count}} द्वितीयक",
+    "retry": "फिर कोशिश करें"
   },
   "features": {
     "title": "फ़ीचर अनुरोध",

@@ -1302,7 +1302,15 @@
     "balanceTooLow": "Jääk liiga madal ({{balance}} DHB)",
     "refreshFailed": "Midagi läks valesti",
     "noWalletAddress": "Rahakoti aadressi ei leitud",
-    "assets": "Varad"
+    "assets": "Varad",
+    "hidden": "Peidetud",
+    "noDataForPeriod": "Selle perioodi kohta pole veel andmeid",
+    "affiliates": "Partnerid",
+    "directReferrals_one": "{{count}} otsest",
+    "directReferrals_other": "{{count}} otsest",
+    "secondaryReferrals_one": "{{count}} teise taseme",
+    "secondaryReferrals_other": "{{count}} teise taseme",
+    "retry": "Proovi uuesti"
   },
   "explorePage": {
     "searchPlaceholder": "Otsi inimesi, postitusi või sisu...",

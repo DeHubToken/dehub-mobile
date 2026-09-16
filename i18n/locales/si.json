@@ -1292,7 +1292,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
     "noWalletAddress": "No wallet address found",
-    "assets": "වත්කම්"
+    "assets": "වත්කම්",
+    "hidden": "සඟවා ඇත",
+    "noDataForPeriod": "මෙම කාලය සඳහා තවම දත්ත නොමැත",
+    "affiliates": "අනුබද්ධයින්",
+    "directReferrals_one": "{{count}} සෘජු",
+    "directReferrals_other": "{{count}} සෘජු",
+    "secondaryReferrals_one": "{{count}} ද්විතීයික",
+    "secondaryReferrals_other": "{{count}} ද්විතීයික",
+    "retry": "නැවත උත්සාහ කරන්න"
   },
   "explorePage": {
     "searchPlaceholder": "පුද්ගලයන්, පළකිරීම් හෝ අන්තර්ගතය සොයන්න...",
