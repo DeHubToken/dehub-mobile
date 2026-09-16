@@ -1367,7 +1367,15 @@
     "balanceTooLow": "Yupay pisilla ({{balance}} DHB)",
     "refreshFailed": "Huk pantay kachkan",
     "noWalletAddress": "Mana qullqi wasi churana tarisqachu",
-    "assets": "Kaqkuna"
+    "assets": "Kaqkuna",
+    "hidden": "Pakasqa",
+    "noDataForPeriod": "Kay pachapaqqa manaraq willakuykuna kanchu",
+    "affiliates": "Yanapaqkuna",
+    "directReferrals_one": "{{count}} chiqan",
+    "directReferrals_other": "{{count}} chiqan",
+    "secondaryReferrals_one": "{{count}} iskay kaq",
+    "secondaryReferrals_other": "{{count}} iskay kaq",
+    "retry": "Yapamanta ruway"
   },
   "features": {
     "title": "Musuq mañakuy",

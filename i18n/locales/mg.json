@@ -1221,7 +1221,15 @@
     "balanceTooLow": "Vola kely loatra ({{balance}} DHB)",
     "refreshFailed": "Nisy hadisoana",
     "noWalletAddress": "Tsy nahitana adiresy kitapom-bola",
-    "assets": "Fananana"
+    "assets": "Fananana",
+    "hidden": "Miafina",
+    "noDataForPeriod": "Mbola tsy misy angona ho an'ity vanim-potoana ity",
+    "affiliates": "Mpiara-miasa",
+    "directReferrals_one": "{{count}} mivantana",
+    "directReferrals_other": "{{count}} mivantana",
+    "secondaryReferrals_one": "{{count}} ambaratonga faharoa",
+    "secondaryReferrals_other": "{{count}} ambaratonga faharoa",
+    "retry": "Andramo indray"
   },
   "explorePage": {
     "searchPlaceholder": "Hikaroka olona, lahatsoratra na atiny...",

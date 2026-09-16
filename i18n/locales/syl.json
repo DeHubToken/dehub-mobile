@@ -855,7 +855,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
     "noWalletAddress": "No wallet address found",
-    "assets": "সম্পদ"
+    "assets": "সম্পদ",
+    "hidden": "লুকানো",
+    "noDataForPeriod": "এই সময়র লাগি এখনো কোনো তথ্য নাই",
+    "affiliates": "অ্যাফিলিয়েট",
+    "directReferrals_one": "{{count}} সরাসরি",
+    "directReferrals_other": "{{count}} সরাসরি",
+    "secondaryReferrals_one": "{{count}} দ্বিতীয় স্তর",
+    "secondaryReferrals_other": "{{count}} দ্বিতীয় স্তর",
+    "retry": "আবার চেষ্টা করো"
   },
   "assistant": {
     "title": "AI সাহায্যকারী",

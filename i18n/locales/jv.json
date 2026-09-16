@@ -1262,7 +1262,15 @@
     "balanceTooLow": "Saldo kurang ({{balance}} DHB)",
     "refreshFailed": "Ana kesalahan",
     "noWalletAddress": "Ora nemokake alamat dompet",
-    "assets": "Aset"
+    "assets": "Aset",
+    "hidden": "Didhelikake",
+    "noDataForPeriod": "Durung ana data kanggo periode iki",
+    "affiliates": "Afiliasi",
+    "directReferrals_one": "{{count}} langsung",
+    "directReferrals_other": "{{count}} langsung",
+    "secondaryReferrals_one": "{{count}} tingkat loro",
+    "secondaryReferrals_other": "{{count}} tingkat loro",
+    "retry": "Coba maneh"
   },
   "explorePage": {
     "searchPlaceholder": "Goleki wong, kiriman, utawa konten...",

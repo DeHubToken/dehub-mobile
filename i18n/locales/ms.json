@@ -1866,7 +1866,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
     "noWalletAddress": "No wallet address found",
-    "assets": "Aset"
+    "assets": "Aset",
+    "hidden": "Tersembunyi",
+    "noDataForPeriod": "Belum ada data untuk tempoh ini",
+    "affiliates": "Afiliat",
+    "directReferrals_one": "{{count}} langsung",
+    "directReferrals_other": "{{count}} langsung",
+    "secondaryReferrals_one": "{{count}} peringkat kedua",
+    "secondaryReferrals_other": "{{count}} peringkat kedua",
+    "retry": "Cuba semula"
   },
   "explorePage": {
     "searchPlaceholder": "Search for people, posts, or content...",

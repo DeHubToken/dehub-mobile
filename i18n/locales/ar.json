@@ -1281,7 +1281,15 @@
     "balanceTooLow": "الرصيد منخفض جداً ({{balance}} DHB)",
     "refreshFailed": "حدث خطأ",
     "noWalletAddress": "لم يتم العثور على عنوان محفظة",
-    "assets": "الأصول"
+    "assets": "الأصول",
+    "hidden": "مخفي",
+    "noDataForPeriod": "لا تتوفر بيانات لهذه الفترة بعد",
+    "affiliates": "المسوّقون بالعمولة",
+    "directReferrals_one": "{{count}} مباشر",
+    "directReferrals_other": "{{count}} مباشر",
+    "secondaryReferrals_one": "{{count}} من المستوى الثاني",
+    "secondaryReferrals_other": "{{count}} من المستوى الثاني",
+    "retry": "إعادة المحاولة"
   },
   "features": {
     "title": "طلبات الميزات",

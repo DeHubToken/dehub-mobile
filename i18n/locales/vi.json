@@ -1692,7 +1692,15 @@
     "balanceTooLow": "Số dư quá thấp ({{balance}} DHB)",
     "refreshFailed": "Đã xảy ra lỗi",
     "noWalletAddress": "Không tìm thấy địa chỉ ví",
-    "assets": "Tài sản"
+    "assets": "Tài sản",
+    "hidden": "Đã ẩn",
+    "noDataForPeriod": "Chưa có dữ liệu cho khoảng thời gian này",
+    "affiliates": "Tiếp thị liên kết",
+    "directReferrals_one": "{{count}} trực tiếp",
+    "directReferrals_other": "{{count}} trực tiếp",
+    "secondaryReferrals_one": "{{count}} cấp hai",
+    "secondaryReferrals_other": "{{count}} cấp hai",
+    "retry": "Thử lại"
   },
   "explorePage": {
     "searchPlaceholder": "Tìm người, bài viết hoặc nội dung...",

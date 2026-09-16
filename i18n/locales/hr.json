@@ -1303,7 +1303,15 @@
     "balanceTooLow": "Saldo prenizak ({{balance}} DHB)",
     "refreshFailed": "Nešto je pošlo po krivu",
     "noWalletAddress": "Adresa novčanika nije pronađena",
-    "assets": "Imovina"
+    "assets": "Imovina",
+    "hidden": "Skriveno",
+    "noDataForPeriod": "Još nema podataka za ovo razdoblje",
+    "affiliates": "Partneri",
+    "directReferrals_one": "{{count}} izravnih",
+    "directReferrals_other": "{{count}} izravnih",
+    "secondaryReferrals_one": "{{count}} druge razine",
+    "secondaryReferrals_other": "{{count}} druge razine",
+    "retry": "Pokušaj ponovno"
   },
   "explorePage": {
     "searchPlaceholder": "Pretraži ljude, objave ili sadržaj...",

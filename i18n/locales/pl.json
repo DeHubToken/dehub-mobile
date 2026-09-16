@@ -1672,7 +1672,15 @@
     "balanceTooLow": "Saldo zbyt niskie ({{balance}} DHB)",
     "refreshFailed": "Coś poszło nie tak",
     "noWalletAddress": "Nie znaleziono adresu portfela",
-    "assets": "Aktywa"
+    "assets": "Aktywa",
+    "hidden": "Ukryte",
+    "noDataForPeriod": "Brak danych dla tego okresu",
+    "affiliates": "Partnerzy",
+    "directReferrals_one": "{{count}} bezpośrednich",
+    "directReferrals_other": "{{count}} bezpośrednich",
+    "secondaryReferrals_one": "{{count}} drugiego poziomu",
+    "secondaryReferrals_other": "{{count}} drugiego poziomu",
+    "retry": "Ponów"
   },
   "explorePage": {
     "searchPlaceholder": "Szukaj ludzi, postów lub treści...",

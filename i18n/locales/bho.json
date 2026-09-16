@@ -1272,7 +1272,15 @@
     "balanceTooLow": "बैलेंस बहुत कम बा ({{balance}} DHB)",
     "refreshFailed": "गड़बड़ भइल",
     "noWalletAddress": "बटुआ पता नइखे मिलल",
-    "assets": "संपत्ति"
+    "assets": "संपत्ति",
+    "hidden": "छिपावल",
+    "noDataForPeriod": "ए अवधि खातिर अबहीं कवनो डेटा नइखे",
+    "affiliates": "एफिलिएट",
+    "directReferrals_one": "{{count}} प्रत्यक्ष",
+    "directReferrals_other": "{{count}} प्रत्यक्ष",
+    "secondaryReferrals_one": "{{count}} द्वितीयक",
+    "secondaryReferrals_other": "{{count}} द्वितीयक",
+    "retry": "फेर कोशिश करीं"
   },
   "explorePage": {
     "searchPlaceholder": "लोग, पोस्ट या सामग्री खोजीं...",

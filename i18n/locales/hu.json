@@ -1283,7 +1283,15 @@
     "balanceTooLow": "Egyenleg túl alacsony ({{balance}} DHB)",
     "refreshFailed": "Hiba történt",
     "noWalletAddress": "Pénztárca cím nem elérhető",
-    "assets": "Eszközök"
+    "assets": "Eszközök",
+    "hidden": "Rejtett",
+    "noDataForPeriod": "Ehhez az időszakhoz még nincs adat",
+    "affiliates": "Partnerek",
+    "directReferrals_one": "{{count}} közvetlen",
+    "directReferrals_other": "{{count}} közvetlen",
+    "secondaryReferrals_one": "{{count}} másodlagos",
+    "secondaryReferrals_other": "{{count}} másodlagos",
+    "retry": "Újra"
   },
   "features": {
     "title": "Funkciókérések",

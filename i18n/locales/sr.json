@@ -1152,7 +1152,15 @@
     "balanceTooLow": "Салдо прениско ({{balance}} DHB)",
     "refreshFailed": "Дошло је до грешке",
     "noWalletAddress": "Адреса новчаника није доступна",
-    "assets": "Имовина"
+    "assets": "Имовина",
+    "hidden": "Скривено",
+    "noDataForPeriod": "Још нема података за овај период",
+    "affiliates": "Партнери",
+    "directReferrals_one": "{{count}} директних",
+    "directReferrals_other": "{{count}} директних",
+    "secondaryReferrals_one": "{{count}} другог нивоа",
+    "secondaryReferrals_other": "{{count}} другог нивоа",
+    "retry": "Покушај поново"
   },
   "features": {
     "title": "Захтеви за функције",

@@ -1280,7 +1280,15 @@
     "balanceTooLow": "بیلنس بہت کم ({{balance}} DHB)",
     "refreshFailed": "خرابی ہوئی",
     "noWalletAddress": "والٹ ایڈریس نہیں ملا",
-    "assets": "اثاثے"
+    "assets": "اثاثے",
+    "hidden": "پوشیدہ",
+    "noDataForPeriod": "اس مدت کے لیے ابھی کوئی ڈیٹا نہیں",
+    "affiliates": "ایفیلی ایٹس",
+    "directReferrals_one": "{{count}} براہ راست",
+    "directReferrals_other": "{{count}} براہ راست",
+    "secondaryReferrals_one": "{{count}} ثانوی",
+    "secondaryReferrals_other": "{{count}} ثانوی",
+    "retry": "دوبارہ کوشش کریں"
   },
   "features": {
     "title": "فیچر درخواستیں",

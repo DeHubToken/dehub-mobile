@@ -1245,7 +1245,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something go wrong",
     "noWalletAddress": "No wallet address dey",
-    "assets": "Assets"
+    "assets": "Assets",
+    "hidden": "E hide",
+    "noDataForPeriod": "Data for dis time never dey",
+    "affiliates": "Affiliate dem",
+    "directReferrals_one": "{{count}} wey you bring",
+    "directReferrals_other": "{{count}} wey you bring",
+    "secondaryReferrals_one": "{{count}} second level",
+    "secondaryReferrals_other": "{{count}} second level",
+    "retry": "Try again"
   },
   "explorePage": {
     "searchPlaceholder": "Search for people, posts, or content...",

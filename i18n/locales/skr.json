@@ -1255,7 +1255,15 @@
     "balanceTooLow": "بیلنس بہوں گھٹ ({{balance}} DHB)",
     "refreshFailed": "کجھ غلط ہو گیا",
     "noWalletAddress": "والیٹ ایڈریس کائنی ملیا",
-    "assets": "اثاثے"
+    "assets": "اثاثے",
+    "hidden": "لکایا ہویا",
+    "noDataForPeriod": "ایں مدت دا ہجھ کوئی ڈیٹا کائنی",
+    "affiliates": "ایفیلی ایٹس",
+    "directReferrals_one": "{{count}} سدھا",
+    "directReferrals_other": "{{count}} سدھا",
+    "secondaryReferrals_one": "{{count}} ثانوی",
+    "secondaryReferrals_other": "{{count}} ثانوی",
+    "retry": "ولدا کوشش کرو"
   },
   "explorePage": {
     "searchPlaceholder": "لوک، پوسٹاں یا مواد ڳولو...",

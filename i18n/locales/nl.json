@@ -1875,7 +1875,15 @@
     "balanceTooLow": "Saldo te laag ({{balance}} DHB)",
     "refreshFailed": "Er ging iets mis",
     "noWalletAddress": "Geen portemonnee-adres gevonden",
-    "assets": "Activa"
+    "assets": "Activa",
+    "hidden": "Verborgen",
+    "noDataForPeriod": "Nog geen gegevens voor deze periode",
+    "affiliates": "Partners",
+    "directReferrals_one": "{{count}} rechtstreeks",
+    "directReferrals_other": "{{count}} rechtstreeks",
+    "secondaryReferrals_one": "{{count}} indirect",
+    "secondaryReferrals_other": "{{count}} indirect",
+    "retry": "Opnieuw"
   },
   "explorePage": {
     "searchPlaceholder": "Zoek mensen, berichten of inhoud...",

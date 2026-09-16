@@ -1331,7 +1331,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
     "noWalletAddress": "No wallet address found",
-    "assets": "Qabeenya"
+    "assets": "Qabeenya",
+    "hidden": "Dhokfameera",
+    "noDataForPeriod": "Yeroo kanaaf ammatti daataan hin jiru",
+    "affiliates": "Michoota",
+    "directReferrals_one": "{{count}} kallattii",
+    "directReferrals_other": "{{count}} kallattii",
+    "secondaryReferrals_one": "{{count}} sadarkaa lammaffaa",
+    "secondaryReferrals_other": "{{count}} sadarkaa lammaffaa",
+    "retry": "Irra deebi'ii yaali"
   },
   "explorePage": {
     "searchPlaceholder": "Namoota, barreeffamoota yookaan qabiyyee barbaadi...",

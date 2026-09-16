@@ -1279,7 +1279,15 @@
     "balanceTooLow": "ବ୍ୟାଲାନ୍ସ ବହୁତ କମ ({{balance}} DHB)",
     "refreshFailed": "କିଛି ଭୁଲ ହେଲା",
     "noWalletAddress": "ୱାଲେଟ ଆଡ୍ରେସ ମିଳିଲା ନାହିଁ",
-    "assets": "ସମ୍ପତ୍ତି"
+    "assets": "ସମ୍ପତ୍ତି",
+    "hidden": "ଲୁଚାଯାଇଛି",
+    "noDataForPeriod": "ଏହି ଅବଧି ପାଇଁ ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ତଥ୍ୟ ନାହିଁ",
+    "affiliates": "ଆଫିଲିଏଟ୍",
+    "directReferrals_one": "{{count}} ପ୍ରତ୍ୟକ୍ଷ",
+    "directReferrals_other": "{{count}} ପ୍ରତ୍ୟକ୍ଷ",
+    "secondaryReferrals_one": "{{count}} ଦ୍ୱିତୀୟ ସ୍ତର",
+    "secondaryReferrals_other": "{{count}} ଦ୍ୱିତୀୟ ସ୍ତର",
+    "retry": "ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ"
   },
   "explorePage": {
     "searchPlaceholder": "ଲୋକ, ପୋଷ୍ଟ କିମ୍ବା ବିଷୟବସ୍ତୁ ଖୋଜନ୍ତୁ...",

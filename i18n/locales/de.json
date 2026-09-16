@@ -1389,7 +1389,15 @@
     "balanceTooLow": "Saldo zu niedrig ({{balance}} DHB)",
     "refreshFailed": "Etwas ist schiefgelaufen",
     "noWalletAddress": "Keine Wallet-Adresse gefunden",
-    "assets": "Assets"
+    "assets": "Assets",
+    "hidden": "Verborgen",
+    "noDataForPeriod": "Für diesen Zeitraum liegen noch keine Daten vor",
+    "affiliates": "Partner",
+    "directReferrals_one": "{{count}} direkt",
+    "directReferrals_other": "{{count}} direkt",
+    "secondaryReferrals_one": "{{count}} indirekt",
+    "secondaryReferrals_other": "{{count}} indirekt",
+    "retry": "Erneut versuchen"
   },
   "explorePage": {
     "searchPlaceholder": "Personen, Beiträge oder Inhalte suchen...",

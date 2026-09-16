@@ -183,7 +183,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
     "noWalletAddress": "No wallet address found",
-    "assets": "Mga asset"
+    "assets": "Mga asset",
+    "hidden": "Nakatago",
+    "noDataForPeriod": "Wala pang datos para sa panahong ito",
+    "affiliates": "Mga affiliate",
+    "directReferrals_one": "{{count}} direkta",
+    "directReferrals_other": "{{count}} direkta",
+    "secondaryReferrals_one": "{{count}} pangalawang antas",
+    "secondaryReferrals_other": "{{count}} pangalawang antas",
+    "retry": "Subukan ulit"
   },
   "glossary": {
     "title": "Glossary",

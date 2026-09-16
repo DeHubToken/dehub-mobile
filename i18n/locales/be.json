@@ -1313,7 +1313,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
     "noWalletAddress": "No wallet address found",
-    "assets": "Актывы"
+    "assets": "Актывы",
+    "hidden": "Схавана",
+    "noDataForPeriod": "Даных за гэты перыяд пакуль няма",
+    "affiliates": "Партнёры",
+    "directReferrals_one": "{{count}} прамых",
+    "directReferrals_other": "{{count}} прамых",
+    "secondaryReferrals_one": "{{count}} другога ўзроўню",
+    "secondaryReferrals_other": "{{count}} другога ўзроўню",
+    "retry": "Паўтарыць"
   },
   "explorePage": {
     "searchPlaceholder": "Шукаць людзей, публікацыі або кантэнт...",

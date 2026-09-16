@@ -1364,7 +1364,15 @@
     "balanceTooLow": "Ibhalansi iphansi kakhulu ({{balance}} DHB)",
     "refreshFailed": "Kukhona okungahambanga kahle",
     "noWalletAddress": "Alikho ikheli lesikhwama elitholakalayo",
-    "assets": "Izimpahla"
+    "assets": "Izimpahla",
+    "hidden": "Kufihliwe",
+    "noDataForPeriod": "Ayikho idatha yale nkathi okwamanje",
+    "affiliates": "Abalingani",
+    "directReferrals_one": "{{count}} ngqo",
+    "directReferrals_other": "{{count}} ngqo",
+    "secondaryReferrals_one": "{{count}} besigaba sesibili",
+    "secondaryReferrals_other": "{{count}} besigaba sesibili",
+    "retry": "Zama futhi"
   },
   "features": {
     "title": "Zicelo Zezici",

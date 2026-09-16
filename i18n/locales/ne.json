@@ -1313,7 +1313,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
     "noWalletAddress": "No wallet address found",
-    "assets": "सम्पत्ति"
+    "assets": "सम्पत्ति",
+    "hidden": "लुकाइएको",
+    "noDataForPeriod": "यस अवधिका लागि अहिलेसम्म कुनै डेटा छैन",
+    "affiliates": "एफिलिएट",
+    "directReferrals_one": "{{count}} प्रत्यक्ष",
+    "directReferrals_other": "{{count}} प्रत्यक्ष",
+    "secondaryReferrals_one": "{{count}} द्वितीय",
+    "secondaryReferrals_other": "{{count}} द्वितीय",
+    "retry": "पुनः प्रयास"
   },
   "explorePage": {
     "searchPlaceholder": "मानिसहरू, पोस्टहरू वा सामग्री खोज्नुहोस्...",

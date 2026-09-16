@@ -888,7 +888,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
     "noWalletAddress": "No wallet address found",
-    "assets": "Aktíva"
+    "assets": "Aktíva",
+    "hidden": "Skryté",
+    "noDataForPeriod": "Pre toto obdobie zatiaľ nie sú k dispozícii žiadne údaje",
+    "affiliates": "Partneri",
+    "directReferrals_one": "{{count}} priamych",
+    "directReferrals_other": "{{count}} priamych",
+    "secondaryReferrals_one": "{{count}} druhej úrovne",
+    "secondaryReferrals_other": "{{count}} druhej úrovne",
+    "retry": "Skúsiť znova"
   },
   "assistant": {
     "title": "AI Asistent",
