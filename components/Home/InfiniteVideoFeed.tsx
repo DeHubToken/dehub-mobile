@@ -978,7 +978,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         // already. The GPU budget this used to cost was freed by hiding the
         // far pager pages.
         maxToRenderPerBatch={1}
-        windowSize={7}
+        // Eleven viewports, not seven. The render window trails the scroll, so
+        // after a long scroll down the rows just above the viewport are unmounted
+        // and a reversed fling mounts them in its first frames — every upward
+        // fling on the S24+ froze one frame right at its start for exactly that.
+        // The extra rows fit the GPU budget now that far pager pages are hidden.
+        windowSize={11}
         // Deliberately NOT removeClippedSubviews. It and
         // maintainVisibleContentPosition cannot both be on: Android picks the
         // MVCP anchor by walking the content view's ATTACHED children
