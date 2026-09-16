@@ -1072,6 +1072,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Det åpner en annen lommebok, ikke {{address}}. Ingenting ble endret.",
+    "unlockNoAccount": "Lommeboken din er låst — ingen konto er logget inn på denne enheten.",
+    "unlockLookupFailed": "Lommeboken din er låst — fikk ikke tak i lommebokoppføringen. Sjekk tilkoblingen og prøv igjen.",
+    "unlockCancelled": "Lommeboken din er låst — opplåsingen ble avbrutt, ingenting ble sendt.",
     "notReady": "Lommeboken er ikke klar — prøv igjen om litt.",
     "title": "Lommebok",
     "loginRequired": "Logg inn for å få tilgang til lommeboken din.",
@@ -3488,6 +3492,10 @@
     "otherChain": "Dette innlegget gjøres opp på en annen kjede, så du trenger DHB i lommeboken din der."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Jeg har den ikke — logg ut og start på nytt",
+    "restoreLocalNote": "Nøkkelen blir bare på denne telefonen.",
+    "restoreMissing": "Denne profilens lommebok er ikke på denne telefonen, så ingenting kan signeres ennå. Skriv inn gjenopprettingsfrasen eller den private nøkkelen for å hente den hit.",
+    "restoreTitle": "Gjenopprett lommeboken din",
     "writeThemDown": "Skriv dem ned et sted bare du kommer til. Den som har disse ordene, har lommeboken din — DeHub-støtte kan verken gjenopprette eller tilbakestille dem.",
     "noPhraseNoKey": "Verken frase eller nøkkel? Da kan denne lommeboken bare åpnes fra enheten som opprettet den — ingenting på nettstedet eller hos oss kan gjenopprette den. Logg inn på den enheten hvis du fortsatt har den.",
     "resetExplainer": "Dette gir innloggingen din en helt ny, tom lommebok og flytter kontoen din dit. Det åpner ikke den gamle lommeboken — verken denne telefonen, dehub.io eller vi kan — så alt som er der inne, blir værende.",

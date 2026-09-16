@@ -673,6 +673,10 @@
     "firstComments_other": "Første {{count}} kommentarer"
   },
   "wallet": {
+    "restoreWrongWallet": "Det åbner en anden wallet, ikke {{address}}. Intet blev ændret.",
+    "unlockNoAccount": "Din wallet er låst — ingen konto er logget ind på denne enhed.",
+    "unlockLookupFailed": "Din wallet er låst — kunne ikke nå din wallet-post. Tjek forbindelsen og prøv igen.",
+    "unlockCancelled": "Din wallet er låst — oplåsningen blev annulleret, intet blev sendt.",
     "notReady": "Tegnebogen er ikke klar — prøv igen om lidt.",
     "title": "Tegnebog",
     "loginRequired": "Log ind for at få adgang til tegnebogen.",
@@ -3502,6 +3506,10 @@
     "otherChain": "Dette opslag afvikles på en anden kæde, så du skal have DHB i din tegnebog der."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Jeg har den ikke — log ud og start forfra",
+    "restoreLocalNote": "Nøglen bliver kun på denne telefon.",
+    "restoreMissing": "Denne profils wallet er ikke på denne telefon, så intet kan signeres endnu. Indtast dens gendannelsessætning eller private nøgle for at hente den hertil.",
+    "restoreTitle": "Gendan din wallet",
     "writeThemDown": "Skriv dem ned et sted, kun du kan nå. Enhver med disse ord har din tegnebog — DeHub-support kan hverken gendanne eller nulstille dem.",
     "noPhraseNoKey": "Ingen frase og ingen nøgle? Så kan denne tegnebog kun åbnes fra den enhed, der oprettede den — intet på webstedet eller hos os kan gendanne den. Log ind på den enhed, hvis du stadig har den.",
     "resetExplainer": "Dette giver dit login en helt ny, tom tegnebog og flytter din konto over på den. Det åbner ikke den gamle tegnebog — hverken denne telefon, dehub.io eller vi kan — så alt i den bliver dér.",

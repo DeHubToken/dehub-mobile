@@ -1110,6 +1110,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "咁樣會打開另一個錢包，而唔係 {{address}}。冇作出任何更改。",
+    "unlockNoAccount": "你嘅錢包已鎖定 — 呢部裝置上冇已登入嘅帳號。",
+    "unlockLookupFailed": "你嘅錢包已鎖定 — 無法存取錢包記錄。請檢查網絡連線再試過。",
+    "unlockCancelled": "你嘅錢包已鎖定 — 解鎖已取消，冇任何嘢發送。",
     "notReady": "銀包仲未準備好 — 遲啲再試。",
     "title": "錢包",
     "loginRequired": "登入嚟使用錢包。",
@@ -3496,6 +3500,10 @@
     "otherChain": "呢個帖子喺另一條鏈上結算，所以你喺嗰條鏈嘅錢包要有 DHB。"
   },
   "walletSetup": {
+    "signOutAndStartOver": "我冇 — 登出並重新開始",
+    "restoreLocalNote": "密鑰只會保存喺呢部手機度。",
+    "restoreMissing": "呢個帳號嘅錢包唔喺呢部手機度，所以暫時簽唔到名。輸入佢嘅助記詞或者私鑰，將佢帶嚟呢度。",
+    "restoreTitle": "還原你嘅錢包",
     "writeThemDown": "將佢哋寫喺只有你先攞到嘅地方。邊個有呢啲字，邊個就有你個錢包——DeHub 客服搵唔返亦重設唔到。",
     "noPhraseNoKey": "冇助記詞亦冇私鑰？噉呢個錢包只可以由建立佢嘅裝置打開——網站上同我哋呢邊都冇辦法復原。如果嗰部裝置仲喺度，請喺上面登入。",
     "resetExplainer": "呢個會為你嘅登入建立一個全新嘅空錢包，並將帳戶搬過去。佢唔會打開舊錢包——呢部電話唔得，dehub.io 唔得，我哋都唔得——所以入面嘅嘢仍然會留喺嗰度。",

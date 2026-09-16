@@ -1090,6 +1090,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Eso abre otra billetera, no {{address}}. No se cambió nada.",
+    "unlockNoAccount": "Tu billetera está bloqueada — no hay ninguna cuenta con sesión iniciada en este dispositivo.",
+    "unlockLookupFailed": "Tu billetera está bloqueada — no se pudo acceder a tu registro de billetera. Revisa tu conexión e inténtalo de nuevo.",
+    "unlockCancelled": "Tu billetera está bloqueada — el desbloqueo se canceló, no se envió nada.",
     "notReady": "La cartera no está lista: inténtalo de nuevo en un momento.",
     "title": "Billetera",
     "loginRequired": "Inicia sesión para acceder a tu billetera.",
@@ -3568,6 +3572,10 @@
     "otherChain": "Esta publicación se liquida en otra cadena, así que necesitas DHB en tu cartera allí."
   },
   "walletSetup": {
+    "signOutAndStartOver": "No la tengo — cerrar sesión y empezar de nuevo",
+    "restoreLocalNote": "La clave se queda solo en este teléfono.",
+    "restoreMissing": "La billetera de este perfil no está en este teléfono, así que aún no se puede firmar nada. Introduce su frase de recuperación o su clave privada para traerla aquí.",
+    "restoreTitle": "Restaura tu billetera",
     "writeThemDown": "Escríbelas en un sitio al que solo tú puedas llegar. Quien tenga estas palabras tiene tu billetera: el soporte de DeHub no puede recuperarlas ni restablecerlas.",
     "noPhraseNoKey": "¿Sin frase y sin clave? Entonces esta billetera solo se puede abrir desde el dispositivo que la creó: nada en el sitio web ni de nuestro lado puede recuperarla. Inicia sesión en ese dispositivo si todavía lo tienes.",
     "resetExplainer": "Esto le da a tu inicio de sesión una billetera nueva y vacía, y traslada tu cuenta a ella. No abre la billetera antigua: ni este teléfono puede, ni dehub.io, ni nosotros, así que lo que haya dentro se queda ahí.",

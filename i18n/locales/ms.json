@@ -1566,6 +1566,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Itu membuka dompet lain, bukan {{address}}. Tiada apa-apa berubah.",
+    "unlockNoAccount": "Dompet anda dikunci — tiada akaun yang log masuk pada peranti ini.",
+    "unlockLookupFailed": "Dompet anda dikunci — rekod dompet tidak dapat dicapai. Semak sambungan dan cuba lagi.",
+    "unlockCancelled": "Dompet anda dikunci — pembukaan kunci dibatalkan, tiada apa-apa dihantar.",
     "notReady": "Dompet belum sedia — cuba lagi sebentar.",
     "title": "Wallet",
     "loginRequired": "Log in to access your wallet.",
@@ -3760,6 +3764,10 @@
     "otherChain": "Siaran ini diselesaikan pada rantai lain, jadi anda perlukan DHB dalam dompet anda di sana."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Saya tiada — log keluar dan mula semula",
+    "restoreLocalNote": "Kunci kekal pada telefon ini sahaja.",
+    "restoreMissing": "Dompet profil ini tiada pada telefon ini, jadi belum ada apa-apa yang boleh ditandatangani. Masukkan frasa pemulihan atau kunci peribadinya untuk membawanya ke sini.",
+    "restoreTitle": "Pulihkan dompet anda",
     "writeThemDown": "Tuliskannya di tempat yang hanya anda boleh capai. Sesiapa yang ada perkataan ini memiliki dompet anda — sokongan DeHub tidak boleh memulihkan atau menetapkannya semula.",
     "noPhraseNoKey": "Tiada frasa dan tiada kunci? Maka dompet ini hanya boleh dibuka daripada peranti yang menciptanya — tiada apa-apa di laman web atau di pihak kami yang boleh memulihkannya. Log masuk pada peranti itu jika anda masih memilikinya.",
     "resetExplainer": "Ini memberikan log masuk anda dompet baharu yang kosong dan memindahkan akaun anda ke situ. Ia tidak membuka dompet lama — telefon ini tidak boleh, dehub.io tidak boleh, dan kami pun tidak — jadi apa sahaja di dalamnya kekal di situ.",

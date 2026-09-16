@@ -687,6 +687,10 @@
     "firstComments_other": "Primi {{count}} commenti"
   },
   "wallet": {
+    "restoreWrongWallet": "Questo apre un wallet diverso, non {{address}}. Non è stato modificato nulla.",
+    "unlockNoAccount": "Il tuo wallet è bloccato — nessun account ha effettuato l'accesso su questo dispositivo.",
+    "unlockLookupFailed": "Il tuo wallet è bloccato — impossibile raggiungere il record del wallet. Controlla la connessione e riprova.",
+    "unlockCancelled": "Il tuo wallet è bloccato — lo sblocco è stato annullato, non è stato inviato nulla.",
     "notReady": "Portafoglio non pronto: riprova tra un momento.",
     "title": "Portafoglio",
     "loginRequired": "Accedi per accedere al tuo portafoglio.",
@@ -3568,6 +3572,10 @@
     "otherChain": "Questo post viene regolato su un'altra chain, quindi ti servono DHB nel tuo wallet lì."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Non ce l'ho — esci e ricomincia",
+    "restoreLocalNote": "La chiave resta solo su questo telefono.",
+    "restoreMissing": "Il wallet di questo profilo non è su questo telefono, quindi non è ancora possibile firmare nulla. Inserisci la frase di recupero o la chiave privata per portarlo qui.",
+    "restoreTitle": "Ripristina il tuo wallet",
     "writeThemDown": "Annotale in un posto che solo tu puoi raggiungere. Chi ha queste parole ha il tuo wallet: l'assistenza DeHub non può recuperarle né reimpostarle.",
     "noPhraseNoKey": "Nessuna frase e nessuna chiave? Allora questo wallet può essere aperto solo dal dispositivo che l'ha creato: nulla sul sito o dalla nostra parte può recuperarlo. Accedi da quel dispositivo se lo hai ancora.",
     "resetExplainer": "Questo assegna al tuo accesso un wallet nuovo e vuoto e ci sposta sopra il tuo account. Non apre il vecchio wallet: non può questo telefono, non può dehub.io e non possiamo noi, quindi ciò che c'è dentro resta lì.",

@@ -1068,6 +1068,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Bu {{address}} däl, başga gapjygy açýar. Hiç zat üýtgedilmedi.",
+    "unlockNoAccount": "Gapjygyňyz gulplanan — bu enjamda giren hasap ýok.",
+    "unlockLookupFailed": "Gapjygyňyz gulplanan — gapjyk ýazgysyna ýetip bolmady. Baglanyşygy barlaň we täzeden synanyşyň.",
+    "unlockCancelled": "Gapjygyňyz gulplanan — gulpy açmak ýatyryldy, hiç zat iberilmedi.",
     "notReady": "Gapjyk taýýar däl — biraz wagtdan gaýtadan synanyşyň.",
     "title": "Gapjyk",
     "loginRequired": "Gapjygyňyza girmek üçin hasaba giriň.",
@@ -3468,6 +3472,10 @@
     "otherChain": "Bu ýazgy başga zynjyrda hasaplaşylýar, şonuň üçin ol ýerdäki gapjygyňyzda DHB gerek."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Mende ýok — çykyp, täzeden başla",
+    "restoreLocalNote": "Açar diňe şu telefonda galýar.",
+    "restoreMissing": "Bu profiliň gapjygy bu telefonda ýok, şonuň üçin häzirlikçe hiç zada gol çekip bolmaýar. Ony şu ýere getirmek üçin dikeldiş sözlemini ýa-da hususy açaryny giriziň.",
+    "restoreTitle": "Gapjygyňyzy dikeldiň",
     "writeThemDown": "Olary diňe siziň baryp bilýän ýeriňizde ýazyp goýuň. Bu sözler kimde bolsa, gapjygyňyz hem şonda — DeHub goldawy olary ne dikeldip ne-de täzeden düzüp bilýär.",
     "noPhraseNoKey": "Ne söz düzümi, ne-de açar barmy? Onda bu gapjygy diňe ony döreden enjamdan açyp bolar — ne saýtda, ne-de biziň tarapymyzda ony dikeltjek zat ýok. Ol enjam entek sizde bolsa, şondan giriň.",
     "resetExplainer": "Bu siziň girişiňize düýbünden täze, boş gapjyk berýär we hasabyňyzy oňa geçirýär. Köne gapjygy ol açmaýar — bu telefon başarmaýar, dehub.io başarmaýar, biz hem başarmaýarys — şonuň üçin içindäki näme bolsa şol ýerde galýar.",

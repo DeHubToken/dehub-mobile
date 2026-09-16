@@ -1100,6 +1100,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Wannan yana buɗe wani walat na daban, ba {{address}} ba. Ba a canza komai ba.",
+    "unlockNoAccount": "An kulle walat ɗinka — babu asusun da ya shiga a wannan na'urar.",
+    "unlockLookupFailed": "An kulle walat ɗinka — ba a iya samun rikodin walat ɗinka ba. Duba haɗin yanar gizo ka sake gwadawa.",
+    "unlockCancelled": "An kulle walat ɗinka — an soke buɗewa, ba a aika komai ba.",
     "notReady": "Walat ɗin bai shirya ba — sake gwadawa bayan ɗan lokaci.",
     "title": "Walat",
     "loginRequired": "Shiga don samun damar walatinka.",
@@ -3487,6 +3491,10 @@
     "otherChain": "Wannan sakon yana daidaitawa a wata sarƙa, don haka kana buƙatar DHB a walat ɗinka a can."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Ba ni da shi — fita ka sake farawa",
+    "restoreLocalNote": "Maɓallin yana zama a wannan wayar kawai.",
+    "restoreMissing": "Walat ɗin wannan bayanin ba ya cikin wannan wayar, don haka ba za a iya sa hannu kan komai ba tukuna. Shigar da jimlar dawo da shi ko maɓallin sirrinsa don kawo shi nan.",
+    "restoreTitle": "Maido da walat ɗinka",
     "writeThemDown": "Rubuta su a wurin da kai kaɗai za ka iya kaiwa. Duk wanda ke da waɗannan kalmomin yana da walat ɗinka — tallafin DeHub ba zai iya dawo da su ko sake saita su ba.",
     "noPhraseNoKey": "Babu jimla kuma babu maɓalli? To wannan walat sai daga na'urar da ta ƙirƙira shi ake iya buɗe shi — babu abin da ke shafin ko a gefenmu da zai dawo da shi. Shiga a kan wannan na'urar idan har yanzu kana da ita.",
     "resetExplainer": "Wannan yana ba shigarka sabon walat mara komai, kuma yana matsar da asusunka zuwa gare shi. Ba ya buɗe tsohon walat — wannan wayar ba za ta iya ba, dehub.io ba zai iya ba, mu ma ba za mu iya ba — don haka duk abin da ke ciki zai kasance a can.",

@@ -1052,6 +1052,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Dat one dey open another wallet, no be {{address}}. Nothing change.",
+    "unlockNoAccount": "Your wallet dey locked — no account dey signed in for dis device.",
+    "unlockLookupFailed": "Your wallet dey locked — we no fit reach your wallet record. Check your network and try again.",
+    "unlockCancelled": "Your wallet dey locked — you cancel di unlock, nothing send.",
     "notReady": "Wallet never ready — try again small time.",
     "title": "Wallet",
     "loginRequired": "Log in to access your wallet.",
@@ -3301,6 +3305,10 @@
     "otherChain": "Dis post dey settle for anoda chain, so you need DHB for your wallet dia."
   },
   "walletSetup": {
+    "signOutAndStartOver": "I no get am — sign out and start again",
+    "restoreLocalNote": "Di key go stay only for dis phone.",
+    "restoreMissing": "Dis profile wallet no dey for dis phone, so nothing fit sign for now. Put im recovery phrase or private key make e come here.",
+    "restoreTitle": "Bring your wallet back",
     "writeThemDown": "Write dem for place wey na only you fit reach. Anybody wey get dis words get your wallet — DeHub support no fit recover dem and no fit reset dem.",
     "noPhraseNoKey": "You no get phrase and you no get key? Then na only di device wey create dis wallet fit open am — nothing for di website or for our side fit recover am. Sign in for dat device if e still dey with you.",
     "resetExplainer": "Dis one go give your sign-in brand new empty wallet, and move your account go there. E no go open di old wallet — dis phone no fit, dehub.io no fit, and we sef no fit — so whatever dey inside go remain there.",

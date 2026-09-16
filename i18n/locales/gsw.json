@@ -1069,6 +1069,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Das macht en anderi Wallet uf, nöd {{address}}. Nüt isch gänderet worde.",
+    "unlockNoAccount": "Dini Wallet isch gsperrt — uf dem Grät isch kei Konto aagmeldet.",
+    "unlockLookupFailed": "Dini Wallet isch gsperrt — de Wallet-Iitrag isch nöd erreichbar gsi. Prüef dini Verbindig und probiers nomal.",
+    "unlockCancelled": "Dini Wallet isch gsperrt — s Entsperre isch abbroche worde, nüt isch gschickt worde.",
     "notReady": "S'Wallet isch nonig parat — probier's i eme Momänt nomol.",
     "title": "Portmoneé",
     "loginRequired": "Mäld di aa zum uf dis Portmoneé zuezgriiffe.",
@@ -3487,6 +3491,10 @@
     "otherChain": "De Biitrag wird uf ere andere Chain abgwicklet, drum bruuchsch dete DHB i dinere Wallet."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Ich ha sie nöd — abmelde und neu aafange",
+    "restoreLocalNote": "De Schlüssel blibt nur uf dem Telefon.",
+    "restoreMissing": "D Wallet vo dem Profil isch nöd uf dem Telefon, drum cha no nüt signiert werde. Gib d Wiederherstelligsphrase oder de privat Schlüssel ii, zum sie daher hole.",
+    "restoreTitle": "Wallet wiederherstelle",
     "writeThemDown": "Schriib sie a mene Ort uf, wo nume du hichunnsch. Wär die Wörter het, het dini Wallet — de DeHub-Support cha sie weder widerherstelle no zrugsetze.",
     "noPhraseNoKey": "Kei Phrase und kei Schlüssel? Denn cha die Wallet nume vom Grät uufgmacht werde, wo sie erstellt het — nüt uf dr Website oder bi üs cha sie widerherstelle. Mäld dich uf dem Grät aa, wenn du's no häsch.",
     "resetExplainer": "Das git dim Login e brandneui, leeri Wallet und zügled dis Konto druuf. S macht d alti Wallet nid uuf — das Telefon cha's nid, dehub.io cha's nid, und mir au nid — was drin isch, bliibt also det.",
