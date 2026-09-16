@@ -1089,6 +1089,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Wallet verbinden ist in diesem Build nicht verfügbar — stelle stattdessen mit deiner Wiederherstellungsphrase wieder her.",
+    "connectedWrongWallet": "Diese Wallet ist {{connected}}, nicht {{address}}. Nichts wurde geändert.",
     "restoreWrongWallet": "Das öffnet eine andere Wallet, nicht {{address}}. Nichts wurde geändert.",
     "unlockNoAccount": "Deine Wallet ist gesperrt — auf diesem Gerät ist kein Konto angemeldet.",
     "unlockLookupFailed": "Deine Wallet ist gesperrt — dein Wallet-Eintrag war nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
@@ -3571,6 +3573,7 @@
     "otherChain": "Dieser Beitrag wird auf einer anderen Chain abgewickelt, du brauchst dort also DHB in deiner Wallet."
   },
   "walletSetup": {
+    "connectWalletApp": "Mit der Wallet-App signieren, in der sie liegt",
     "signOutAndStartOver": "Ich habe sie nicht — abmelden und neu anfangen",
     "restoreLocalNote": "Der Schlüssel bleibt nur auf diesem Telefon.",
     "restoreMissing": "Die Wallet dieses Profils ist nicht auf diesem Telefon, daher kann noch nichts signiert werden. Gib ihre Wiederherstellungsphrase oder ihren privaten Schlüssel ein, um sie hierher zu holen.",

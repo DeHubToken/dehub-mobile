@@ -1075,6 +1075,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Lompakon yhdistäminen ei ole käytettävissä tässä versiossa — palauta palautuslauseella.",
+    "connectedWrongWallet": "Se lompakko on {{connected}}, ei {{address}}. Mitään ei muutettu.",
     "restoreWrongWallet": "Tämä avaa eri lompakon, ei lompakkoa {{address}}. Mitään ei muutettu.",
     "unlockNoAccount": "Lompakkosi on lukittu — tälle laitteelle ei ole kirjauduttu millään tilillä.",
     "unlockLookupFailed": "Lompakkosi on lukittu — lompakkotietuetta ei tavoitettu. Tarkista yhteys ja yritä uudelleen.",
@@ -3502,6 +3504,7 @@
     "otherChain": "Tämä julkaisu selvitetään toisessa ketjussa, joten tarvitset DHB:tä siellä olevaan lompakkoosi."
   },
   "walletSetup": {
+    "connectWalletApp": "Allekirjoita lompakkosovelluksella, jossa se on",
     "signOutAndStartOver": "Minulla ei ole sitä — kirjaudu ulos ja aloita alusta",
     "restoreLocalNote": "Avain pysyy vain tässä puhelimessa.",
     "restoreMissing": "Tämän profiilin lompakko ei ole tässä puhelimessa, joten mitään ei voi vielä allekirjoittaa. Syötä sen palautuslause tai yksityinen avain tuodaksesi sen tänne.",

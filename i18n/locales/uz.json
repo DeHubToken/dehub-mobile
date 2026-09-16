@@ -1109,6 +1109,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Hamyonni ulash bu versiyada mavjud emas — tiklash iborasi bilan tiklang.",
+    "connectedWrongWallet": "U hamyon {{connected}}, {{address}} emas. Hech narsa o'zgartirilmadi.",
     "restoreWrongWallet": "Bu {{address}} emas, boshqa hamyonni ochadi. Hech narsa o'zgartirilmadi.",
     "unlockNoAccount": "Hamyoningiz qulflangan — bu qurilmada tizimga kirgan hisob yo'q.",
     "unlockLookupFailed": "Hamyoningiz qulflangan — hamyon yozuviga kirib bo'lmadi. Ulanishni tekshirib, qayta urinib ko'ring.",
@@ -3553,6 +3555,7 @@
     "otherChain": "Bu post boshqa zanjirda hisoblanadi, shuning uchun u yerdagi hamyoningizda DHB kerak."
   },
   "walletSetup": {
+    "connectWalletApp": "U joylashgan hamyon ilovasi bilan imzolash",
     "signOutAndStartOver": "Menda yo'q — chiqish va qaytadan boshlash",
     "restoreLocalNote": "Kalit faqat shu telefonda qoladi.",
     "restoreMissing": "Bu profilning hamyoni bu telefonda yo'q, shuning uchun hozircha hech narsani imzolab bo'lmaydi. Uni bu yerga olib kelish uchun tiklash iborasini yoki shaxsiy kalitini kiriting.",

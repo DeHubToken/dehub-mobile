@@ -1068,6 +1068,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Gapjyk birikdirmek bu wersiýada elýeterli däl — dikeldiş sözlemiňiz bilen dikeldiň.",
+    "connectedWrongWallet": "Ol gapjyk {{connected}}, {{address}} däl. Hiç zat üýtgedilmedi.",
     "restoreWrongWallet": "Bu {{address}} däl, başga gapjygy açýar. Hiç zat üýtgedilmedi.",
     "unlockNoAccount": "Gapjygyňyz gulplanan — bu enjamda giren hasap ýok.",
     "unlockLookupFailed": "Gapjygyňyz gulplanan — gapjyk ýazgysyna ýetip bolmady. Baglanyşygy barlaň we täzeden synanyşyň.",
@@ -3472,6 +3474,7 @@
     "otherChain": "Bu ýazgy başga zynjyrda hasaplaşylýar, şonuň üçin ol ýerdäki gapjygyňyzda DHB gerek."
   },
   "walletSetup": {
+    "connectWalletApp": "Ýerleşýän gapjyk programmasy bilen gol çekiň",
     "signOutAndStartOver": "Mende ýok — çykyp, täzeden başla",
     "restoreLocalNote": "Açar diňe şu telefonda galýar.",
     "restoreMissing": "Bu profiliň gapjygy bu telefonda ýok, şonuň üçin häzirlikçe hiç zada gol çekip bolmaýar. Ony şu ýere getirmek üçin dikeldiş sözlemini ýa-da hususy açaryny giriziň.",

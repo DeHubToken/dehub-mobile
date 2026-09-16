@@ -1109,6 +1109,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Maka pievienošana šajā versijā nav pieejama — atjaunojiet ar atkopšanas frāzi.",
+    "connectedWrongWallet": "Tas maks ir {{connected}}, nevis {{address}}. Nekas netika mainīts.",
     "restoreWrongWallet": "Tas atver citu maku, nevis {{address}}. Nekas netika mainīts.",
     "unlockNoAccount": "Jūsu maks ir bloķēts — šajā ierīcē nav pierakstījies neviens konts.",
     "unlockLookupFailed": "Jūsu maks ir bloķēts — nevarēja piekļūt maka ierakstam. Pārbaudiet savienojumu un mēģiniet vēlreiz.",
@@ -3501,6 +3503,7 @@
     "otherChain": "Šis ieraksts tiek nokārtots citā ķēdē, tāpēc tur jūsu makā nepieciešams DHB."
   },
   "walletSetup": {
+    "connectWalletApp": "Parakstīt ar maka lietotni, kurā tas atrodas",
     "signOutAndStartOver": "Man tās nav — izrakstīties un sākt no jauna",
     "restoreLocalNote": "Atslēga paliek tikai šajā tālrunī.",
     "restoreMissing": "Šī profila maks nav šajā tālrunī, tāpēc pagaidām neko nevar parakstīt. Ievadiet tā atkopšanas frāzi vai privāto atslēgu, lai to pārnestu šeit.",

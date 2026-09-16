@@ -672,6 +672,8 @@
     "firstComments_other": "Első {{count}} hozzászólás"
   },
   "wallet": {
+    "connectUnavailable": "A tárca csatlakoztatása ebben a verzióban nem elérhető — állítsd vissza a helyreállítási kifejezéssel.",
+    "connectedWrongWallet": "Az a tárca {{connected}}, nem {{address}}. Semmi sem változott.",
     "restoreWrongWallet": "Ez egy másik tárcát nyit meg, nem ezt: {{address}}. Semmi sem változott.",
     "unlockNoAccount": "A tárcád zárolva van — ezen az eszközön nincs bejelentkezett fiók.",
     "unlockLookupFailed": "A tárcád zárolva van — a tárcarekord nem érhető el. Ellenőrizd a kapcsolatot, és próbáld újra.",
@@ -3506,6 +3508,7 @@
     "otherChain": "Ez a bejegyzés egy másik láncon számolódik el, ezért ott kell DHB a tárcádban."
   },
   "walletSetup": {
+    "connectWalletApp": "Aláírás a tárcaalkalmazással, amelyben van",
     "signOutAndStartOver": "Nincs meg — kijelentkezés és újrakezdés",
     "restoreLocalNote": "A kulcs csak ezen a telefonon marad.",
     "restoreMissing": "Ennek a profilnak a tárcája nincs ezen a telefonon, ezért még semmit sem lehet aláírni. Add meg a helyreállítási kifejezését vagy privát kulcsát, hogy idehozd.",

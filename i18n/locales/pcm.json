@@ -1052,6 +1052,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Connect Wallet no dey for dis version — use your recovery phrase bring am back instead.",
+    "connectedWrongWallet": "Dat wallet na {{connected}}, no be {{address}}. Nothing change.",
     "restoreWrongWallet": "Dat one dey open another wallet, no be {{address}}. Nothing change.",
     "unlockNoAccount": "Your wallet dey locked — no account dey signed in for dis device.",
     "unlockLookupFailed": "Your wallet dey locked — we no fit reach your wallet record. Check your network and try again.",
@@ -3305,6 +3307,7 @@
     "otherChain": "Dis post dey settle for anoda chain, so you need DHB for your wallet dia."
   },
   "walletSetup": {
+    "connectWalletApp": "Sign with di wallet app wey e dey inside",
     "signOutAndStartOver": "I no get am — sign out and start again",
     "restoreLocalNote": "Di key go stay only for dis phone.",
     "restoreMissing": "Dis profile wallet no dey for dis phone, so nothing fit sign for now. Put im recovery phrase or private key make e come here.",

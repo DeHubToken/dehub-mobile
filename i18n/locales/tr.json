@@ -828,6 +828,8 @@
     "firstComments_other": "İlk {{count}} yorum"
   },
   "wallet": {
+    "connectUnavailable": "Cüzdan bağlama bu sürümde kullanılamıyor — bunun yerine kurtarma ifadenle geri yükle.",
+    "connectedWrongWallet": "O cüzdan {{connected}}, {{address}} değil. Hiçbir şey değiştirilmedi.",
     "restoreWrongWallet": "Bu, {{address}} değil, başka bir cüzdanı açıyor. Hiçbir şey değiştirilmedi.",
     "unlockNoAccount": "Cüzdanın kilitli — bu cihazda oturum açmış bir hesap yok.",
     "unlockLookupFailed": "Cüzdanın kilitli — cüzdan kaydına ulaşılamadı. Bağlantını kontrol edip tekrar dene.",
@@ -3564,6 +3566,7 @@
     "otherChain": "Bu gönderi başka bir zincirde sonuçlanır, bu yüzden oradaki cüzdanınızda DHB gerekir."
   },
   "walletSetup": {
+    "connectWalletApp": "Bulunduğu cüzdan uygulamasıyla imzala",
     "signOutAndStartOver": "Bende yok — çıkış yap ve baştan başla",
     "restoreLocalNote": "Anahtar yalnızca bu telefonda kalır.",
     "restoreMissing": "Bu profilin cüzdanı bu telefonda değil, bu yüzden henüz hiçbir şey imzalanamıyor. Buraya getirmek için kurtarma ifadesini veya özel anahtarını gir.",

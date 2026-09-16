@@ -1072,6 +1072,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Koble til lommebok er ikke tilgjengelig i denne versjonen — gjenopprett med gjenopprettingsfrasen.",
+    "connectedWrongWallet": "Den lommeboken er {{connected}}, ikke {{address}}. Ingenting ble endret.",
     "restoreWrongWallet": "Det åpner en annen lommebok, ikke {{address}}. Ingenting ble endret.",
     "unlockNoAccount": "Lommeboken din er låst — ingen konto er logget inn på denne enheten.",
     "unlockLookupFailed": "Lommeboken din er låst — fikk ikke tak i lommebokoppføringen. Sjekk tilkoblingen og prøv igjen.",
@@ -3492,6 +3494,7 @@
     "otherChain": "Dette innlegget gjøres opp på en annen kjede, så du trenger DHB i lommeboken din der."
   },
   "walletSetup": {
+    "connectWalletApp": "Signer med lommebok-appen der den ligger",
     "signOutAndStartOver": "Jeg har den ikke — logg ut og start på nytt",
     "restoreLocalNote": "Nøkkelen blir bare på denne telefonen.",
     "restoreMissing": "Denne profilens lommebok er ikke på denne telefonen, så ingenting kan signeres ennå. Skriv inn gjenopprettingsfrasen eller den private nøkkelen for å hente den hit.",

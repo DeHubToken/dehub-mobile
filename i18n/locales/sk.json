@@ -783,6 +783,8 @@
     "tryAgain": "Try Again"
   },
   "wallet": {
+    "connectUnavailable": "Pripojenie peňaženky nie je v tejto verzii dostupné — obnovte ju obnovovacou frázou.",
+    "connectedWrongWallet": "Tá peňaženka je {{connected}}, nie {{address}}. Nič sa nezmenilo.",
     "restoreWrongWallet": "Tým sa otvorí iná peňaženka, nie {{address}}. Nič sa nezmenilo.",
     "unlockNoAccount": "Vaša peňaženka je zamknutá — na tomto zariadení nie je prihlásený žiadny účet.",
     "unlockLookupFailed": "Vaša peňaženka je zamknutá — záznam peňaženky nie je dostupný. Skontrolujte pripojenie a skúste to znova.",
@@ -3669,6 +3671,7 @@
     "otherChain": "Tento príspevok sa vyrovnáva na inom reťazci, takže tam potrebujete DHB v peňaženke."
   },
   "walletSetup": {
+    "connectWalletApp": "Podpísať aplikáciou peňaženky, v ktorej je",
     "signOutAndStartOver": "Nemám ju — odhlásiť sa a začať odznova",
     "restoreLocalNote": "Kľúč zostáva iba v tomto telefóne.",
     "restoreMissing": "Peňaženka tohto profilu nie je v tomto telefóne, takže zatiaľ nemožno nič podpísať. Zadajte jej obnovovaciu frázu alebo súkromný kľúč a preneste ju sem.",
