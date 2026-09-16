@@ -33,6 +33,9 @@ import { videoEffectChain, type VideoLookId } from "./videoLooks";
  */
 const MEDIA_FAILURE_WINDOW_MS = 20_000;
 
+/** How long a WHIP post may sit unanswered before it counts as dropped. */
+const WHIP_POST_TIMEOUT_MS = 15_000;
+
 // Types
 type Facing = "front" | "back";
 type PublishStats = { bitrateKbps?: number; fps?: number };
@@ -334,6 +337,11 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
       // per attempt so the catch below can tell a dead route from a real
       // error and hand the attempt to the relay instead of the creator.
       let directSignalingDead = false;
+      // The single relay retry is per broadcast, not per mount: a creator who
+      // ends one stream and starts another in the same session gets it again.
+      // The relayed restart itself arrives with forceRelay set and keeps the
+      // spent budget, so it cannot loop.
+      if (!forceRelayRef.current) mediaRetryUsedRef.current = false;
 
       /**
        * Put the broadcast back up over the edge and a TURN relay, leaving the
@@ -544,6 +552,14 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
         if (!localDesc?.sdp) throw new Error("Failed to gather ICE candidates");
         dbg('posting offer to WHIP', { gen: myGen });
         let resp: Awaited<ReturnType<typeof fetch>>;
+        // A dropped post never errors, it hangs — and the network-failure
+        // path below only runs when fetch gives up. Without a cap a filtered
+        // network leaves the creator on "Connecting…" for good, with the relay
+        // retry never reached. The abort classifies as network-shaped, so the
+        // timeout takes the same route as a refused post. Same 15s the web
+        // publisher uses (src/lib/livepeer/whip.ts).
+        const postAbort = new AbortController();
+        const postTimer = setTimeout(() => postAbort.abort(), WHIP_POST_TIMEOUT_MS);
         try {
           resp = await fetch(redirectUrl, {
             method: "POST",
@@ -552,6 +568,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
               ...(whipToken ? { authorization: `Bearer ${whipToken}` } : {}),
             },
             body: localDesc.sdp,
+            signal: postAbort.signal,
           });
         } catch (e) {
           // The WHIP POST itself died on the network. That condemns any
@@ -564,6 +581,8 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
             if (directSelfHosted) directSignalingDead = true;
           }
           throw e;
+        } finally {
+          clearTimeout(postTimer);
         }
         if (!resp.ok) {
           // Our own publish gate answers 401 (bad key — the same credentials
