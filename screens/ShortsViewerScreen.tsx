@@ -647,7 +647,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
   // half way along the bar.
   const scrubBlocks = useMemo(() => [pagerGesture], [pagerGesture]);
 
-  const { onLayout: onScrubTrackLayout, gesture: scrubGesture } = useScrubGesture({
+  const { onLayout: onScrubTrackLayout, gesture: scrubGesture, touchGuard: scrubTouchGuard } = useScrubGesture({
     onScrubStart: handleScrubStart,
     onScrub: handleScrub,
     onCommit: handleScrubCommit,
@@ -1370,6 +1370,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, activeVideoRef, 
           <View
             style={styles.scrubHitArea}
             onLayout={onScrubTrackLayout}
+            {...scrubTouchGuard}
             accessibilityRole="adjustable"
           >
             <View style={[styles.scrubLine, scrubbing && styles.scrubLineActive]}>

@@ -162,7 +162,7 @@ export const ScrubSurface: React.FC<{
   children: React.ReactNode;
 }> = ({ surface, style, children }) => (
   <GestureDetector gesture={surface.gesture}>
-    <View onLayout={surface.onLayout} style={style}>
+    <View onLayout={surface.onLayout} style={style} {...surface.touchGuard}>
       {children}
     </View>
   </GestureDetector>

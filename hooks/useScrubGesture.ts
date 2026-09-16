@@ -107,5 +107,25 @@ export const useScrubGesture = ({
     return Gesture.Race(pan, tap);
   }, [enabled, immediate, onScrubStart, onScrub, onCommit, onCancel, pagerRef, blocks]);
 
-  return { onLayout, gesture };
+  // RNGH runs beside the JS responder system, not inside it, so an ancestor
+  // Pressable never learns that the scrub took the touch: the feed card's own
+  // onPress still fired on release and a drag along the timeline opened the
+  // post page, while a tap on it toggled playback behind the seek. Claiming
+  // the responder on the track itself is what stops that -- the ancestor is
+  // only offered the touch if nothing nearer took it. Termination is left
+  // negotiable so a vertical flick that starts on the track still hands the
+  // gesture to the list and scrolls the feed.
+  const touchGuard = useMemo(
+    () =>
+      enabled
+        ? {
+            onStartShouldSetResponder: () => true,
+            onResponderGrant: () => {},
+            onResponderRelease: () => {},
+          }
+        : {},
+    [enabled],
+  );
+
+  return { onLayout, gesture, touchGuard };
 };
