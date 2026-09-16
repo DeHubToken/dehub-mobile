@@ -40,3 +40,20 @@ describe('home feed scroll settle timing', () => {
     expect(loadMore).toMatch(/if \(holdPendingRef\.current\) \{\s*setHoldRelease/);
   });
 });
+
+/**
+ * The home feed picks the autoplay row itself rather than going through
+ * useFeedCardVisibility, so the rule has to be pinned in both places or the
+ * two lists disagree about which card plays.
+ */
+describe('home feed autoplay slot', () => {
+  it('gives the slot to a live row ahead of any video row', () => {
+    const pick =
+      feed.match(/const playable = viewableItems\.filter\(([\s\S]*?)visibilityStore\.update/)?.[0] ?? '';
+
+    expect(pick).toMatch(/isLiveItem/);
+    // The live row is chosen first and the position sort is the tie-break
+    // among live rows, not a sort over every playable row.
+    expect(pick).toMatch(/playable\s*\.filter\(v => isLiveItem[\s\S]*?\.sort\(byPosition\)\[0\][\s\S]*?\?\?/);
+  });
+});

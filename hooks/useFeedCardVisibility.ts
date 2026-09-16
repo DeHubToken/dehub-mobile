@@ -84,14 +84,22 @@ export function useFeedCardVisibility(keyExtractor?: KeyExtractor) {
       // excluded it and no live card was ever handed autoplay in any feed that
       // tracks visibility. It could only play in the lists that pass no flags
       // at all and inherit `true`.
-      const topVideo = viewableItems
-        .filter(
-          (v) =>
-            v.isViewable &&
-            (isVideoItem(v.item as any) || isLiveItem(v.item as any)) &&
-            resolveKey(v.item, v.index),
-        )
-        .sort((a, b) => (a.index ?? 0) - (b.index ?? 0))[0];
+      //
+      // And a live row outranks a video row for it, wherever it sits: the slot
+      // is exclusive, so an ordinary video above a live card left the broadcast
+      // on its poster until the viewer opened the post. A recording can wait
+      // for a scroll; something being broadcast right now cannot.
+      const playable = viewableItems.filter(
+        (v) =>
+          v.isViewable &&
+          (isVideoItem(v.item as any) || isLiveItem(v.item as any)) &&
+          resolveKey(v.item, v.index),
+      );
+      const byPosition = (a: ViewToken, b: ViewToken) =>
+        (a.index ?? 0) - (b.index ?? 0);
+      const topVideo =
+        playable.filter((v) => isLiveItem(v.item as any)).sort(byPosition)[0] ??
+        playable.sort(byPosition)[0];
       setActiveVideoKey(
         topVideo ? resolveKey(topVideo.item, topVideo.index) : null,
       );
