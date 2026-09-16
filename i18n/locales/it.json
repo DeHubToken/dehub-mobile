@@ -1848,6 +1848,13 @@
     "cancelRecording": "Annulla registrazione",
     "sendVoiceNote": "Invia la nota vocale",
     "noneYetAddYours": "Ancora nessun commento, aggiungi il tuo.",
+    "pinnedBadge": "In evidenza",
+    "pinnedByCreator": "Messo in evidenza dal creator",
+    "pinAction": "Metti in alto",
+    "unpinAction": "Togli dall'alto",
+    "pinnedToast": "Messo in cima a questo post",
+    "unpinnedToast": "Rimosso dall'alto",
+    "pinFailed": "Impossibile mettere in evidenza quel commento",
     "kidsOnlyThread": "Questo post è per bambini. Solo la modalità Bambini può commentare."
   },
   "postInfo": {

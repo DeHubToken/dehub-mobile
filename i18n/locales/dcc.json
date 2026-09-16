@@ -1714,7 +1714,14 @@
     "removeMedia": "میڈیا ہٹائیں",
     "cancelRecording": "ریکارڈنگ منسوخ کریں",
     "sendVoiceNote": "وائس نوٹ بھیجیں",
-    "noneYetAddYours": "ابھی کوئی تبصرہ نہیں، اپنا لکھیں۔"
+    "noneYetAddYours": "ابھی کوئی تبصرہ نہیں، اپنا لکھیں۔",
+    "pinnedBadge": "پن کیا ہوا",
+    "pinnedByCreator": "بنانے والے نے پن کیا",
+    "pinAction": "اوپر پن کرو",
+    "unpinAction": "پن ہٹاؤ",
+    "pinnedToast": "اس پوسٹ کے سب سے اوپر پن کر دیا",
+    "unpinnedToast": "پن ہٹا دیا",
+    "pinFailed": "وہ تبصرہ پن نہیں ہو سکا"
   },
   "postInfo": {
     "title": "پوسٹ معلومات",

@@ -1794,6 +1794,13 @@
     "cancelRecording": "Avbryt opptak",
     "sendVoiceNote": "Send talemelding",
     "noneYetAddYours": "Ingen kommentarer ennå — legg til din.",
+    "pinnedBadge": "Festet",
+    "pinnedByCreator": "Festet av skaperen",
+    "pinAction": "Fest øverst",
+    "unpinAction": "Fjern festing",
+    "pinnedToast": "Festet øverst i dette innlegget",
+    "unpinnedToast": "Festing fjernet",
+    "pinFailed": "Kunne ikke feste den kommentaren",
     "kidsOnlyThread": "Dette innlegget er for barn. Bare Barnemodus kan kommentere på det."
   },
   "postInfo": {

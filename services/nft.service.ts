@@ -195,13 +195,21 @@ export interface SingleNFTResponse { result: GetNFTsResult; [k: string]: any }
 
 export async function getNFT(
   tokenId: number | string, 
-  options?: { commentId?: number | string }
+  options?: {
+    commentId?: number | string;
+    /** Best-tipped comment ids, most first, max 5 — see GetCommentsParams. */
+    topTipped?: Array<number | string>;
+  }
 ): Promise<SingleNFTResponse> {
   if (tokenId == null) throw new Error('tokenId required');
-  let url = `/nft_info/${tokenId}`;
+  const query: string[] = [];
   if (options?.commentId != null) {
-    url += `?commentId=${encodeURIComponent(String(options.commentId))}`;
+    query.push(`commentId=${encodeURIComponent(String(options.commentId))}`);
   }
+  if (options?.topTipped?.length) {
+    query.push(`topTipped=${encodeURIComponent(options.topTipped.slice(0, 5).join(','))}`);
+  }
+  const url = `/nft_info/${tokenId}${query.length ? `?${query.join('&')}` : ''}`;
   try {
     const res = await apiClient.get<any>(url, { isAuthRequired: true });
     // Normalize: ensure res.result exists and is object
@@ -410,6 +418,16 @@ export interface GetCommentsParams {
   limit?: number;
   address?: string; // viewer address for isLiked field
   commentId?: number | string; // highlight specific comment (for sharing)
+  /**
+   * The comments this post's readers have tipped the most, best first, max 5.
+   *
+   * The API cannot work this out — a comment tip is a Supabase `tip_records`
+   * row written by whichever client confirmed the transaction — so the client
+   * hands over the ids it has already fetched and the server floats them onto
+   * page 0. Without it a heavily tipped comment deep in a long thread would
+   * stay there.
+   */
+  topTipped?: Array<number | string>;
 }
 
 export interface CommentUser {
@@ -462,6 +480,15 @@ export interface Comment {
    * impression figure and reads a little high by comparison.
    */
   views?: number;
+  /**
+   * The post's creator pinned this comment to the top of the thread.
+   *
+   * Theirs alone, free, one per post and with no expiry — not the paid Comment
+   * Anchor, which belongs to the comment's own author and lasts fifteen
+   * minutes. The API sorts a pinned comment above an anchored one, and both
+   * above the tipped ones.
+   */
+  isPinned?: boolean;
   notFound?: boolean;
   user?: CommentUser;
 }
@@ -489,6 +516,9 @@ export async function getCommentsForToken(
     limit: params?.limit,
     address: params?.address,
     commentId: params?.commentId,
+    topTipped: params?.topTipped?.length
+      ? params.topTipped.slice(0, 5).join(',')
+      : undefined,
   }));
   const url = `${base}${q}`;
   try {
@@ -734,6 +764,35 @@ export async function deleteComment(input: DeleteCommentInput): Promise<DeleteCo
     return res;
   } catch (e) {
     console.error('[NFTService] deleteComment error', e);
+    throw e;
+  }
+}
+
+// Pin a comment to the top of a post
+export interface PinCommentResult {
+  result: boolean;
+  commentId: number;
+  tokenId: number;
+  /** Whether the comment is pinned AFTER the call — this is a toggle. */
+  pinned: boolean;
+}
+
+/**
+ * Toggle the creator's pin on a top-level comment.
+ *
+ * The post's creator only; the server refuses everyone else, the comment's own
+ * author included. Pinning a second comment moves the pin off the first.
+ */
+export async function pinComment(commentId: number | string): Promise<PinCommentResult> {
+  if (commentId == null) throw new Error('commentId required');
+  try {
+    return await apiClient.post<PinCommentResult>(
+      '/pin_comment',
+      { commentId: Number(commentId) },
+      { isAuthRequired: true }
+    );
+  } catch (e) {
+    console.error('[NFTService] pinComment error', e);
     throw e;
   }
 }

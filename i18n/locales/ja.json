@@ -1847,6 +1847,13 @@
     "cancelRecording": "録音をキャンセル",
     "sendVoiceNote": "ボイスメモを送信",
     "noneYetAddYours": "コメントはまだありません。最初の一件をどうぞ。",
+    "pinnedBadge": "固定済み",
+    "pinnedByCreator": "投稿者が固定しました",
+    "pinAction": "上部に固定",
+    "unpinAction": "固定を解除",
+    "pinnedToast": "この投稿の一番上に固定しました",
+    "unpinnedToast": "固定を解除しました",
+    "pinFailed": "そのコメントを固定できませんでした",
     "kidsOnlyThread": "この投稿はお子様向けです。キッズモードのみがコメントできます。"
   },
   "postInfo": {

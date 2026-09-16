@@ -1359,6 +1359,13 @@
     "cancelRecording": "Zrušiť nahrávanie",
     "sendVoiceNote": "Odoslať hlasovú poznámku",
     "noneYetAddYours": "Zatiaľ žiadne komentáre, pridajte svoj.",
+    "pinnedBadge": "Pripnuté",
+    "pinnedByCreator": "Pripol tvorca",
+    "pinAction": "Pripnúť navrch",
+    "unpinAction": "Odopnúť",
+    "pinnedToast": "Pripnuté navrch tohto príspevku",
+    "unpinnedToast": "Pripnutie zrušené",
+    "pinFailed": "Tento komentár sa nepodarilo pripnúť",
     "kidsOnlyThread": "Tento príspevok je pre deti. Komentovať ho môže iba detský režim."
   },
   "postInfo": {

@@ -1837,6 +1837,13 @@
     "cancelRecording": "Avbryt inspelning",
     "sendVoiceNote": "Skicka röstmeddelande",
     "noneYetAddYours": "Inga kommentarer än — skriv den första.",
+    "pinnedBadge": "Fäst",
+    "pinnedByCreator": "Fäst av skaparen",
+    "pinAction": "Fäst högst upp",
+    "unpinAction": "Ta bort fästning",
+    "pinnedToast": "Fäst högst upp i det här inlägget",
+    "unpinnedToast": "Fästning borttagen",
+    "pinFailed": "Kommentaren kunde inte fästas",
     "kidsOnlyThread": "Det här inlägget är för barn. Endast barnläget kan kommentera det."
   },
   "postInfo": {

@@ -1824,6 +1824,13 @@
     "cancelRecording": "ਰਿਕਾਰਡਿੰਗ ਰੱਦ ਕਰੋ",
     "sendVoiceNote": "ਵੌਇਸ ਨੋਟ ਭੇਜੋ",
     "noneYetAddYours": "ਹਾਲੇ ਕੋਈ ਟਿੱਪਣੀ ਨਹੀਂ, ਆਪਣੀ ਜੋੜੋ।",
+    "pinnedBadge": "ਪਿੰਨ ਕੀਤਾ",
+    "pinnedByCreator": "ਸਿਰਜਣਹਾਰ ਨੇ ਪਿੰਨ ਕੀਤਾ",
+    "pinAction": "ਉੱਪਰ ਪਿੰਨ ਕਰੋ",
+    "unpinAction": "ਪਿੰਨ ਹਟਾਓ",
+    "pinnedToast": "ਇਸ ਪੋਸਟ ਦੇ ਸਭ ਤੋਂ ਉੱਪਰ ਪਿੰਨ ਕੀਤਾ ਗਿਆ",
+    "unpinnedToast": "ਪਿੰਨ ਹਟਾ ਦਿੱਤਾ ਗਿਆ",
+    "pinFailed": "ਉਹ ਟਿੱਪਣੀ ਪਿੰਨ ਨਹੀਂ ਹੋ ਸਕੀ",
     "kidsOnlyThread": "ਇਹ ਪੋਸਟ ਬੱਚਿਆਂ ਲਈ ਹੈ । ਸਿਰਫ ਕਿਡਜ਼ ਮੋਡ ਹੀ ਇਸ 'ਤੇ ਟਿੱਪਣੀ ਕਰ ਸਕਦਾ ਹੈ ।"
   },
   "postInfo": {

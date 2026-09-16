@@ -1798,6 +1798,13 @@
     "cancelRecording": "Peruuta nauhoitus",
     "sendVoiceNote": "Lähetä ääniviesti",
     "noneYetAddYours": "Ei vielä kommentteja — lisää omasi.",
+    "pinnedBadge": "Kiinnitetty",
+    "pinnedByCreator": "Tekijän kiinnittämä",
+    "pinAction": "Kiinnitä ylös",
+    "unpinAction": "Poista kiinnitys",
+    "pinnedToast": "Kiinnitetty tämän julkaisun ylimmäksi",
+    "unpinnedToast": "Kiinnitys poistettu",
+    "pinFailed": "Kommenttia ei voitu kiinnittää",
     "kidsOnlyThread": "Tämä viesti on tarkoitettu lapsille. Vain lapset-tila voi kommentoida sitä."
   },
   "postInfo": {

@@ -1791,6 +1791,13 @@
     "cancelRecording": "ألغِ التسجيل",
     "sendVoiceNote": "أرسل الملاحظة الصوتية",
     "noneYetAddYours": "ما في تعليقات بعد، ضيف مالتك.",
+    "pinnedBadge": "مثبت",
+    "pinnedByCreator": "مثبت من صاحب البوست",
+    "pinAction": "ثبتو فوق",
+    "unpinAction": "شيل التثبيت",
+    "pinnedToast": "اتثبت فوق في البوست دا",
+    "unpinnedToast": "اتشال التثبيت",
+    "pinFailed": "ما قدرنا نثبت التعليق دا",
     "kidsOnlyThread": "الپوست دا للأطفال. بتاع الأطفال بس يقدرو يعلقو عليهو."
   },
   "postInfo": {

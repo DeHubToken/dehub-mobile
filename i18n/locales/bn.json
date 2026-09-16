@@ -1819,6 +1819,13 @@
     "cancelRecording": "রেকর্ডিং বাতিল করুন",
     "sendVoiceNote": "ভয়েস নোট পাঠান",
     "noneYetAddYours": "এখনও কোনো মন্তব্য নেই, আপনারটা যোগ করুন।",
+    "pinnedBadge": "পিন করা",
+    "pinnedByCreator": "নির্মাতা পিন করেছেন",
+    "pinAction": "উপরে পিন করুন",
+    "unpinAction": "পিন সরান",
+    "pinnedToast": "এই পোস্টের উপরে পিন করা হয়েছে",
+    "unpinnedToast": "পিন সরানো হয়েছে",
+    "pinFailed": "মন্তব্যটি পিন করা গেল না",
     "kidsOnlyThread": "এই পোস্টটি বাচ্চাদের জন্য । শুধুমাত্র কিডস মোড এ বিষয়ে মন্তব্য করতে পারে ।"
   },
   "postInfo": {

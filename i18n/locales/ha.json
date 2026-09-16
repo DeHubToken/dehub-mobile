@@ -1823,6 +1823,13 @@
     "cancelRecording": "Soke rikodin",
     "sendVoiceNote": "Aika saƙon murya",
     "noneYetAddYours": "Babu sharhi tukuna, ƙara naka.",
+    "pinnedBadge": "An liƙa",
+    "pinnedByCreator": "Mahaliccin ya liƙa",
+    "pinAction": "Liƙa a sama",
+    "unpinAction": "Cire liƙau",
+    "pinnedToast": "An liƙa a saman wannan saƙon",
+    "unpinnedToast": "An cire liƙau",
+    "pinFailed": "Ba a iya liƙa wannan sharhin ba",
     "kidsOnlyThread": "Wannan post ne ga yara. Sai kawai Kids Mode iya sharhi a kan shi."
   },
   "postInfo": {

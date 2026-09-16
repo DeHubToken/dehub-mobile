@@ -1808,6 +1808,13 @@
     "cancelRecording": "ቅዳሕ ሰርዝ",
     "sendVoiceNote": "ናይ ድምጺ መዘኻኸሪ ስደድ",
     "noneYetAddYours": "ክሳብ ሕጂ ርእይቶ የለን፡ ናትካ ወስኽ።",
+    "pinnedBadge": "ተሰኪዑ",
+    "pinnedByCreator": "ብፈጣሪኡ ተሰኪዑ",
+    "pinAction": "ኣብ ላዕሊ ሰኩዖ",
+    "unpinAction": "መስከዒ ኣወግድ",
+    "pinnedToast": "ኣብ ጫፍ እዚ ጽሑፍ ተሰኪዑ",
+    "unpinnedToast": "መስከዒ ተወጊዱ",
+    "pinFailed": "ነቲ ርእይቶ ክስከዕ ኣይተኻእለን",
     "kidsOnlyThread": "እዚ ጽሑፍ እዚ ንቘልዑ እዩ ። ቈልዑ ጥራይ እዮም ብዛዕባኡ ኺገልጹ ዚኽእሉ ።"
   },
   "postInfo": {

@@ -1861,6 +1861,13 @@
     "cancelRecording": "لغي التسجيل",
     "sendVoiceNote": "صيفط النوطة الصوتية",
     "noneYetAddYours": "مازال ما كاين تعليقات، زيد ديالك.",
+    "pinnedBadge": "مثبت",
+    "pinnedByCreator": "مثبت من طرف صاحب البوسط",
+    "pinAction": "ثبتو فوق",
+    "unpinAction": "حيد التثبيت",
+    "pinnedToast": "تثبت ففوق هاد البوسط",
+    "unpinnedToast": "تحيد التثبيت",
+    "pinFailed": "ما قدرناش نثبتو هاد التعليق",
     "kidsOnlyThread": "هذا المنشور للأطفال. يمكن لـ Kids Mode فقط التعليق عليه."
   },
   "postInfo": {

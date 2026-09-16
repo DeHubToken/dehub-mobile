@@ -2014,6 +2014,13 @@
     "cancelRecording": "রেকর্ডিং বাতিল করউ",
     "sendVoiceNote": "ভয়েস নোট পাঠাও",
     "noneYetAddYours": "এখনো কোনো মন্তব্য নাই, তুমারটা যোগ করউ।",
+    "pinnedBadge": "পিন খরা",
+    "pinnedByCreator": "বানউইন্তা পিন খরছইন",
+    "pinAction": "উপরে পিন খরউক্কা",
+    "unpinAction": "পিন হরাইন",
+    "pinnedToast": "ইঁ পোস্টর সবতা উপরে পিন খরা অইছে",
+    "unpinnedToast": "পিন হরাইলা",
+    "pinFailed": "ঐ মন্তব্য পিন খরা গেল না",
     "kidsOnlyThread": "এই পোস্টটি বাচ্চাদের জন্য। শুধুমাত্র কিডস মোড এতে মন্তব্য করতে পারবে।"
   },
   "postInfo": {

@@ -1865,6 +1865,13 @@
     "cancelRecording": "Waqaychayta chinkachiy",
     "sendVoiceNote": "Kunka qillqata apachiy",
     "noneYetAddYours": "Manaraq rimakuykuna kanchu, qampata yapay.",
+    "pinnedBadge": "Takyachisqa",
+    "pinnedByCreator": "Ruraqmi takyachirqan",
+    "pinAction": "Hanaqman takyachiy",
+    "unpinAction": "Takyachiyta qichuy",
+    "pinnedToast": "Kay willakuypa hanaqninman takyachisqa",
+    "unpinnedToast": "Takyachiy qichusqa",
+    "pinFailed": "Chay rimariyta mana takyachiyta atinchu",
     "kidsOnlyThread": "Kay qillqasqaqa wawakunapaqmi. Modo Niños nisqalla chaymanta rimayta atin."
   },
   "postInfo": {

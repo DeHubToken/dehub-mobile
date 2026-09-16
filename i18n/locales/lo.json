@@ -1828,6 +1828,13 @@
     "cancelRecording": "ຍົກເລີກການບັນທຶກ",
     "sendVoiceNote": "ສົ່ງຂໍ້ຄວາມສຽງ",
     "noneYetAddYours": "ຍັງບໍ່ມີຄຳເຫັນ, ເພີ່ມຂອງທ່ານ.",
+    "pinnedBadge": "ປັກໝຸດແລ້ວ",
+    "pinnedByCreator": "ຜູ້ສ້າງປັກໝຸດ",
+    "pinAction": "ປັກໝຸດໄວ້ເທິງສຸດ",
+    "unpinAction": "ເອົາໝຸດອອກ",
+    "pinnedToast": "ປັກໝຸດໄວ້ເທິງສຸດຂອງໂພສນີ້",
+    "unpinnedToast": "ເອົາໝຸດອອກແລ້ວ",
+    "pinFailed": "ປັກໝຸດຄຳເຫັນນັ້ນບໍ່ໄດ້",
     "kidsOnlyThread": "ບົດຄວາມນີ້ແມ່ນສໍາລັບເດັກນ້ອຍ. ມີພຽງແຕ່ Kids Mode ເທົ່ານັ້ນທີ່ສາມາດໃຫ້ ຄໍາ ເຫັນກ່ຽວກັບມັນ."
   },
   "postInfo": {

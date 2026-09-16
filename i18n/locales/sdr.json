@@ -1836,6 +1836,13 @@
     "cancelRecording": "تۆمارکردن هەڵبوەشێنەوە",
     "sendVoiceNote": "تێبینی دەنگی بنێرە",
     "noneYetAddYours": "هێشتا لێدوان نییە، هی خۆت زیاد بکە.",
+    "pinnedBadge": "پن کیل",
+    "pinnedByCreator": "بنانے والا پن کیلک",
+    "pinAction": "اوپر پن کرو",
+    "unpinAction": "پن ہٹاؤ",
+    "pinnedToast": "ای پوسٹ کے سب سے اوپر پن کر دیل گیل",
+    "unpinnedToast": "پن ہٹا دیل گیل",
+    "pinFailed": "او ٹپنی پن نہ ہو سکل",
     "kidsOnlyThread": "ई पोस्ट बच्चन के लिए छै। सिर्फ किड्स मोड ई पर कमेंट कर सकत छै।"
   },
   "postInfo": {

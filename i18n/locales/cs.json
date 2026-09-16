@@ -1837,6 +1837,13 @@
     "cancelRecording": "Zrušit nahrávání",
     "sendVoiceNote": "Odeslat hlasovou zprávu",
     "noneYetAddYours": "Zatím žádné komentáře, přidejte svůj.",
+    "pinnedBadge": "Připnuto",
+    "pinnedByCreator": "Připnuto tvůrcem",
+    "pinAction": "Připnout nahoru",
+    "unpinAction": "Odepnout",
+    "pinnedToast": "Připnuto na začátek tohoto příspěvku",
+    "unpinnedToast": "Připnutí zrušeno",
+    "pinFailed": "Tento komentář se nepodařilo připnout",
     "kidsOnlyThread": "Tento příspěvek je pro děti. Komentovat to může pouze dětský režim."
   },
   "postInfo": {

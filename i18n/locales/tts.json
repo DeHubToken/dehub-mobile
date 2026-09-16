@@ -1792,6 +1792,13 @@
     "cancelRecording": "ยกเลิกกาน໊อัด",
     "sendVoiceNote": "ส่งข้อความเสียง",
     "noneYetAddYours": "ยังบ่มีกำเห็น มาเป๋นคนแฮก",
+    "pinnedBadge": "ปักหมุดแล้ว",
+    "pinnedByCreator": "ผู้สร้างปักหมุดไว้",
+    "pinAction": "ปักหมุดไว้เทิงสุด",
+    "unpinAction": "เอาหมุดออก",
+    "pinnedToast": "ปักหมุดไว้เทิงสุดของโพสต์นี้",
+    "unpinnedToast": "เอาหมุดออกแล้ว",
+    "pinFailed": "ปักหมุดคำเห็นนั้นบ่ได้",
     "kidsOnlyThread": "โพสต์นี้เป็นสำหรับเด็ก เฉพาะ Kids Mode เท่านั้นที่สามารถแสดงความเห็นได้"
   },
   "postInfo": {

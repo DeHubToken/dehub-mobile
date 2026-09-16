@@ -1917,6 +1917,13 @@
     "cancelRecording": "Kaydı iptal et",
     "sendVoiceNote": "Sesli notu gönder",
     "noneYetAddYours": "Henüz yorum yok, ilkini sen yaz.",
+    "pinnedBadge": "Sabitlendi",
+    "pinnedByCreator": "İçerik sahibi sabitledi",
+    "pinAction": "En üste sabitle",
+    "unpinAction": "Sabitlemeyi kaldır",
+    "pinnedToast": "Bu gönderinin en üstüne sabitlendi",
+    "unpinnedToast": "Sabitleme kaldırıldı",
+    "pinFailed": "Bu yorum sabitlenemedi",
     "kidsOnlyThread": "Bu gönderi çocuklar içindir. Sadece Çocuk Modu yorum yapabilir."
   },
   "postInfo": {

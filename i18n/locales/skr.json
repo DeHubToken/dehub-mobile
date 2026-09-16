@@ -1785,6 +1785,13 @@
     "cancelRecording": "ریکارڈنگ منسوخ کرو",
     "sendVoiceNote": "وائس نوٹ بھیجو",
     "noneYetAddYours": "ہالے کوئی تبصرہ کائنی، اپݨا شامل کرو۔",
+    "pinnedBadge": "پن تھیل",
+    "pinnedByCreator": "بݨاوݨ آلے پن کیتا",
+    "pinAction": "اُتے پن کرو",
+    "unpinAction": "پن ہٹاؤ",
+    "pinnedToast": "ایں پوسٹ دے سبھ تُوں اُتے پن کر ڈتا گیا",
+    "unpinnedToast": "پن ہٹا ڈتا گیا",
+    "pinFailed": "او تبصرہ پن نہ تھی سگیا",
     "kidsOnlyThread": "ایہ پوسٹ بچیاں لئی اے۔ صرف بچیاں موڈ اس تے تبصرہ کر سکے۔"
   },
   "postInfo": {
