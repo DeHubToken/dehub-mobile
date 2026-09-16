@@ -4009,5 +4009,23 @@
     "close": "Bağla",
     "callbackRequest": "Geri zəng sorğusu",
     "tryAgain": "Yenidən cəhd et"
+  },
+  "badgeAscension": {
+    "yourBalance": "Balansınız · {{amount}} DHB",
+    "lines": {
+      "crab": "Yerlərə gedirsiniz",
+      "lobster": "Üzgüçülüyə davam",
+      "piranha": "Kiçik olsa da, bitişir",
+      "tortoise": "Yavaş və davamlı buradasınız",
+      "cobra": "İnsanlar indi yoldan çıxırlar",
+      "octopus": "Səkkiz qol, hər qazan",
+      "crocodile": "Bu çaydan heç nə keçmir",
+      "dolphin": "İndi böyük balıqsınız",
+      "tigerShark": "Su daha sakit oldu",
+      "greatWhiteShark": "Hamı bilir ki, FIN",
+      "killerWhale": "Qida zəncirinin zirvəsi və siz paketlərdə ov edirsiniz",
+      "blueWhale": "Yaşanmış ən böyük şey. Bu sənsən.",
+      "megalodon": "Bu da sizin tacınız — indi tətbiq royalsınız"
+    }
   }
 }

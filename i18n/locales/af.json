@@ -4143,5 +4143,24 @@
     "close": "Sluit",
     "callbackRequest": "Terugbelversoek",
     "tryAgain": "Probeer weer"
+  },
+  "badgeAscension": {
+    "reached": "Jy bereik {{tier}}",
+    "yourBalance": "Jou balans · {{amount}} DHB",
+    "lines": {
+      "crab": "Vous etes en plein",
+      "lobster": "Hou aan swem",
+      "piranha": "Klein, maar dit byt",
+      "tortoise": "Stadig en bestendig het jy hier",
+      "cobra": "Mense beweeg uit die pad uit",
+      "octopus": "Agt arms, elke pot",
+      "crocodile": "Niks kruis die rivier nie.",
+      "dolphin": "Jy is nou 'n groot vis.",
+      "tigerShark": "Het water is net wat rustiger geworden",
+      "greatWhiteShark": "Almal weet dat die einde",
+      "killerWhale": "Top van die voedselketting, en jy jag in pakkies",
+      "blueWhale": "Die grootste ding wat ooit geleef het. Dis jy",
+      "megalodon": "Hier is jou kroon — jy is nou app koninklikes"
+    }
   }
 }

@@ -4023,5 +4023,24 @@
     "close": "Uždaryti",
     "callbackRequest": "Grįžtamojo skambučio prašymas",
     "tryAgain": "Bandyti dar kartą"
+  },
+  "badgeAscension": {
+    "reached": "Pasiekėte {{tier}}",
+    "yourBalance": "Jūsų likutis · {{amount}} DHB",
+    "lines": {
+      "crab": "Vykstate ten, kur reikia",
+      "lobster": "Plaukite toliau",
+      "piranha": "Mažas, bet kandžiojasi",
+      "tortoise": "Lėtai ir stabiliai jus čia atvedė",
+      "cobra": "Žmonės dabar juda iš kelio",
+      "octopus": "Aštuonios rankos, kiekvienas puodas",
+      "crocodile": "Niekas nekerta šios upės",
+      "dolphin": "Dabar esate didelė žuvis",
+      "tigerShark": "Vanduo tapo ramesnis",
+      "greatWhiteShark": "Visi žino tą peleką",
+      "killerWhale": "Viršuje maisto grandinėje, o jūs medžiojate pakuotėse",
+      "blueWhale": "Didžiausias kada nors gyvenęs dalykas. Tai tu.",
+      "megalodon": "Štai jūsų karūna — dabar esate programėlės honoraras"
+    }
   }
 }

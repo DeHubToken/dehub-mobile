@@ -4029,5 +4029,24 @@
     "close": "Luk",
     "callbackRequest": "Anmodning om tilbagekald",
     "tryAgain": "Prøv igen"
+  },
+  "badgeAscension": {
+    "reached": "Du nåede {{tier}}",
+    "yourBalance": "Din saldo ·{{amount}} DHB",
+    "lines": {
+      "crab": "Du skal til steder",
+      "lobster": "Fortsæt med at svømme",
+      "piranha": "Lille, men den bider",
+      "tortoise": "Langsomt og stabilt fik dig herhen",
+      "cobra": "Folk flytter sig nu",
+      "octopus": "Otte arme, hver gryde",
+      "crocodile": "Intet krydser denne flod",
+      "dolphin": "Du er en stor fisk nu",
+      "tigerShark": "Vandet er lige blevet mere stille",
+      "greatWhiteShark": "Alle ved, at fin",
+      "killerWhale": "Øverst i fødekæden, og du jager i pakker",
+      "blueWhale": "Det største, der nogensinde har levet. Det er dig.",
+      "megalodon": "Her er din krone — du er app royalty nu"
+    }
   }
 }

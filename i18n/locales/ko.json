@@ -4092,5 +4092,24 @@
     "close": "닫기",
     "callbackRequest": "전화 회신 요청",
     "tryAgain": "다시 시도하기"
+  },
+  "badgeAscension": {
+    "reached": "{{tier}} 에 도달했습니다",
+    "yourBalance": "잔액 · {{amount}} DHB",
+    "lines": {
+      "crab": "어디로든 떠나세요",
+      "lobster": "계속 수영하기",
+      "piranha": "작지만 물려요",
+      "tortoise": "느리고 안정적으로 도착했습니다",
+      "cobra": "사람들이 이제 길을 비켜갑니다.",
+      "octopus": "8개의 팔, 모든 냄비",
+      "crocodile": "이 강을 가로지르는 것은 아무것도 없습니다.",
+      "dolphin": "당신은 이제 큰 물고기입니다",
+      "tigerShark": "물이 더 조용해졌어요",
+      "greatWhiteShark": "모두가 그 지느러미를 알고 있습니다",
+      "killerWhale": "먹이 사슬의 꼭대기에 오르면 무리를 지어 사냥을 합니다.",
+      "blueWhale": "지금까지 살아온 것 중 가장 큰 것. 바로 당신입니다.",
+      "megalodon": "회원님의 왕관입니다. 이제 앱 로열티를 받으실 수 있습니다"
+    }
   }
 }

@@ -4026,5 +4026,24 @@
     "close": "Tanca",
     "callbackRequest": "Sol·licitud de devolució de truc",
     "tryAgain": "Torna-ho a provar"
+  },
+  "badgeAscension": {
+    "reached": "Has arribat a {{tier}}",
+    "yourBalance": "El teu saldo · {{amount}} DHB",
+    "lines": {
+      "crab": "Vas a viatjar a llocs",
+      "lobster": "Segueix nedant",
+      "piranha": "Petit, però mossega",
+      "tortoise": "Lent i constant t'ha portat fins aquí",
+      "cobra": "Ara la gent es mou del camí",
+      "octopus": "Vuit braços, cada pot",
+      "crocodile": "No hi ha res que travessi aquest riu",
+      "dolphin": "Ara ets un peix gegant",
+      "tigerShark": "L'aigua s'ha tornat més tranquil·la",
+      "greatWhiteShark": "Tothom coneix aquesta aleta",
+      "killerWhale": "Al capdamunt de la cadena alimentària, caça en paquets",
+      "blueWhale": "La cosa més gran que ha viscut mai. Ets tu.",
+      "megalodon": "Aquí tens la teva corona: ara ets la realeça de l'aplicació"
+    }
   }
 }

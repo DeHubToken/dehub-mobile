@@ -4101,5 +4101,24 @@
     "close": "AKAIKY",
     "callbackRequest": "Antso an-tariby",
     "tryAgain": "Andramo indray"
+  },
+  "badgeAscension": {
+    "reached": "Tonga {{tier}}",
+    "yourBalance": "Ny mahay mandanjalanja? {{amount}} DHB",
+    "lines": {
+      "crab": "Hankany ianao",
+      "lobster": "Ataovy ny lomano",
+      "piranha": "Kely, fa manaikitra izany",
+      "tortoise": "Miadana sy miovaova tonga eto ianao",
+      "cobra": "Miala amin'ny lalana ny olona amin'izao fotoana izao",
+      "octopus": "Valo fiadiana, ny vilany rehetra",
+      "crocodile": "Tsy dia olana izay, satria azy ireo ny renirano.",
+      "dolphin": "Trondro lehibe ianao izao",
+      "tigerShark": "Mangina fotsiny ny rano",
+      "greatWhiteShark": "Fantatry ny tsirairay fa ny finamanana",
+      "killerWhale": "Top ny sakafo rojo, dia mihaza amin'ny fonosana",
+      "blueWhale": "Ny tena zava-tsarotra mafy dia ny hoe efa nisy hatrizay. Anao izany izao.",
+      "megalodon": "Indro ny satroboninahitra — ianao fampiharana ny fanjakany ankehitriny"
+    }
   }
 }

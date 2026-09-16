@@ -4024,5 +4024,24 @@
     "close": "Sulge",
     "callbackRequest": "Tagasihelistamise taotlus",
     "tryAgain": "Proovi uuesti"
+  },
+  "badgeAscension": {
+    "reached": "Saavutasid taseme {{tier}}",
+    "yourBalance": "Sinu saldo · {{amount}} DHB",
+    "lines": {
+      "crab": "Lähed kuhugi",
+      "lobster": "Jätka ujumist",
+      "piranha": "Väike, kuid hammustab",
+      "tortoise": "Aeglaselt ja stabiilselt tõid sind siia",
+      "cobra": "Inimesed kolivad nüüd eest ära",
+      "octopus": "Kaheksa kätt, iga pott",
+      "crocodile": "Midagi ei ületa seda jõge",
+      "dolphin": "Sa oled nüüd suur kala",
+      "tigerShark": "Vesi muutus just vaiksemaks",
+      "greatWhiteShark": "Kõik teavad, et uime",
+      "killerWhale": "Toiduahela ülaosas ja sa jahid karjades",
+      "blueWhale": "Suurim asi, mis kunagi elanud. See oled sina.",
+      "megalodon": "Siin on sinu kroon — oled nüüd rakenduse autoritasu"
+    }
   }
 }

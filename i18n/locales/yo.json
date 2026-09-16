@@ -4014,5 +4014,24 @@
     "close": "Pa",
     "callbackRequest": "Ibere ipe pada",
     "tryAgain": "Gbiyanju lẹẹkansi"
+  },
+  "badgeAscension": {
+    "reached": "O dé {{tier}}",
+    "yourBalance": "Ìwọ̀ntúnwọ̀nsì rẹ · {{amount}} DHB",
+    "lines": {
+      "crab": "O ń lọ sí ibi",
+      "lobster": "Máa bá a nìṣó láti máa lú",
+      "piranha": "Kééékèèké, ṣùgbọ́n ó gún",
+      "tortoise": "Slow and steady mú ọ wá síbí",
+      "cobra": "Àwọn ènìyàn kúrò ní ọ̀nà báyìí",
+      "octopus": "Àwọn apá mẹ́jọ, gbogbo ìkòkò",
+      "crocodile": "Ko si ohun ti o rekọja odo yii.",
+      "dolphin": "Ẹja ńlá ni ọ́ báyìí",
+      "tigerShark": "Omi náà kàn dákẹ́",
+      "greatWhiteShark": "Gbogbo ènìyàn ló mọ òpin yẹn",
+      "killerWhale": "Òkè nínú ẹ̀ka oúnjẹ, o sì ń ṣe ọdẹ nínú àwọn àpò.",
+      "blueWhale": "Nǹkan tí ó tóbi jùlọ tí ó ti wà láyé rí. Ìwọ nìyẹn.",
+      "megalodon": "Adé rẹ nìyí — o ti di ọba app báyìí"
+    }
   }
 }

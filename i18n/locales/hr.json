@@ -4026,5 +4026,24 @@
     "close": "Zatvori",
     "callbackRequest": "Zahtjev za povratni poziv",
     "tryAgain": "Pokušajte ponovno"
+  },
+  "badgeAscension": {
+    "reached": "Dosegli ste {{tier}}",
+    "yourBalance": "Tvoj saldo · {{amount}} DHB",
+    "lines": {
+      "crab": "Putovat ćete na razne destinacije",
+      "lobster": "Nastavite plivati",
+      "piranha": "Mala, ali grize",
+      "tortoise": "Polako i postojano dospjeli ste ovdje",
+      "cobra": "Ljudi se sada sklanjaju s puta",
+      "octopus": "Osam ruku, svaki lonac",
+      "crocodile": "Ništa ne prelazi ovu rijeku",
+      "dolphin": "Sada si velika riba",
+      "tigerShark": "Voda je upravo postala tiša",
+      "greatWhiteShark": "Svi znaju tu peraju",
+      "killerWhale": "Na vrhu hranidbenog lanca, a vi lovite u čoporima",
+      "blueWhale": "Najveća stvar koja je ikada živjela. To si ti.",
+      "megalodon": "Ovo je tvoja kruna — sada si član tantijema za aplikaciju"
+    }
   }
 }

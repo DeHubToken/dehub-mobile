@@ -4089,5 +4089,24 @@
     "minimize": "Minimize",
     "expand": "Expand",
     "tapToEnableAudio": "Tap to enable audio"
+  },
+  "badgeAscension": {
+    "reached": "You reached {{tier}}",
+    "yourBalance": "Your balance · {{amount}} DHB",
+    "lines": {
+      "crab": "You’re going places",
+      "lobster": "Keep swimming",
+      "piranha": "Small, but it bites",
+      "tortoise": "Slow and steady got you here",
+      "cobra": "People move out of the way now",
+      "octopus": "Eight arms, every pot",
+      "crocodile": "Nothing crosses this river",
+      "dolphin": "You’re a big fish now",
+      "tigerShark": "The water just got quieter",
+      "greatWhiteShark": "Everybody knows that fin",
+      "killerWhale": "Top of the food chain, and you hunt in packs",
+      "blueWhale": "The biggest thing that has ever lived. That’s you.",
+      "megalodon": "Here’s your crown — you’re app royalty now"
+    }
   }
 }

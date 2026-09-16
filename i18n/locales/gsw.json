@@ -4013,5 +4013,24 @@
     "close": "Schliesse",
     "callbackRequest": "Rückrüef-Aaforderig",
     "tryAgain": "Versuchs nomol"
+  },
+  "badgeAscension": {
+    "reached": "Du hesch {{tier}} erreicht",
+    "yourBalance": "Dini Balance · {{amount}} DHB",
+    "lines": {
+      "crab": "Du gohsch Plätze",
+      "lobster": "Weiter schwümme",
+      "piranha": "Chli, aber es beisst",
+      "tortoise": "Langsam und sicher hät di dohihi brocht",
+      "cobra": "Lüt machid Platz jetzt",
+      "octopus": "Acht Arm, jede Topf",
+      "crocodile": "Nüt überquert dä Fluss",
+      "dolphin": "Du bisch jetzt e grossi Fisch",
+      "tigerShark": "S Wasser isch grad ruhiger worde",
+      "greatWhiteShark": "Jede kennt die Flosse",
+      "killerWhale": "Oben i de Nahrungskette, und du jagsch im Rudel",
+      "blueWhale": "S grösste Ding wo je gläbt hät. Das bisch du.",
+      "megalodon": "Da isch dini Chrone — du bisch jetzt App-Royalty"
+    }
   }
 }

@@ -3982,5 +3982,24 @@
     "close": "Tutup",
     "callbackRequest": "Panjalukan callback",
     "tryAgain": "Coba maneh"
+  },
+  "badgeAscension": {
+    "reached": "Sampeyan tekan {{tier}}",
+    "yourBalance": "Saldo sampeyan · {{amount}} DHB",
+    "lines": {
+      "crab": "Sampeyan menyang panggonan",
+      "lobster": "Terus nglangi",
+      "piranha": "Cilik, nanging nyerang",
+      "tortoise": "Alon-alon lan tetep nggawa sampeyan mrene",
+      "cobra": "Wong-wong minggir saiki",
+      "octopus": "Wolung lengen, saben pot",
+      "crocodile": "Ora ana sing nyabrang kali iki",
+      "dolphin": "Sampeyan ikan gedhe saiki",
+      "tigerShark": "Banyu mung dadi senyep",
+      "greatWhiteShark": "Kabeh ngerti sirip iku",
+      "killerWhale": "Puncak rantai panganan, lan sampeyan mburu ing rombongan",
+      "blueWhale": "Bab paling gedhe sing wis tau urip. Iku sampeyan.",
+      "megalodon": "Iki mahkota sampeyan — sampeyan royalti app saiki"
+    }
   }
 }

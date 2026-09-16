@@ -4088,5 +4088,24 @@
     "close": "Cufuu",
     "callbackRequest": "Gaaffii deebi&#39;ee bilbiluu",
     "tryAgain": "Ammas yaalaa"
+  },
+  "badgeAscension": {
+    "reached": "{{tier}} bira geesse.",
+    "yourBalance": "Hafnaan keessan · {{amount}} DHB",
+    "lines": {
+      "crab": "Bakkeewwan deemaa jirtu",
+      "lobster": "Dambalii itti fufi",
+      "piranha": "Xiqqaa, garuu ni ciniinti",
+      "tortoise": "Suuta jedhee fi tasgabbaa&#39;aan asitti si geesse",
+      "cobra": "Namoonni amma karaa irraa bahu",
+      "octopus": "Harka saddeet, qodaa hunda",
+      "crocodile": "Laga kana wanti qaxxaamuru hin jiru",
+      "dolphin": "Amma qurxummii guddaa taate",
+      "tigerShark": "Bishaan sun akkasumaan callise",
+      "greatWhiteShark": "Finni sana namni hundi ni beeka",
+      "killerWhale": "Gubbaa sansalata nyaataa, fi ati paakkii keessatti adamsita",
+      "blueWhale": "Waan guddaa hanga ammaatti jiraate. Sun sidha.",
+      "megalodon": "Kunoo gonfoo kee — ati amma app royalty taate"
+    }
   }
 }

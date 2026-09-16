@@ -4029,5 +4029,24 @@
     "close": "Stäng",
     "callbackRequest": "Begäran om återuppringning",
     "tryAgain": "Försök igen"
+  },
+  "badgeAscension": {
+    "reached": "Du har nått {{tier}}",
+    "yourBalance": "Ditt saldo · {{amount}} DHB",
+    "lines": {
+      "crab": "Du ska till platser",
+      "lobster": "Fortsätt simma",
+      "piranha": "Liten, men den biter",
+      "tortoise": "Långsamt och stadigt tog dig hit",
+      "cobra": "Folk flyttar på sig nu",
+      "octopus": "Åtta armar, varje kruka",
+      "crocodile": "Inget korsar denna flod",
+      "dolphin": "Du är en stor fisk nu",
+      "tigerShark": "Vattnet blev precis tystare",
+      "greatWhiteShark": "Alla vet att fenan",
+      "killerWhale": "Överst i näringskedjan, och du jagar i förpackningar",
+      "blueWhale": "Det största som någonsin har levt. Det är du.",
+      "megalodon": "Här är din krona — du är app royalty nu"
+    }
   }
 }

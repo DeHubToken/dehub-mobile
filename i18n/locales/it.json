@@ -4096,5 +4096,24 @@
     "close": "Chiudi",
     "callbackRequest": "Richiesta di richiamata",
     "tryAgain": "Riprova"
+  },
+  "badgeAscension": {
+    "reached": "Hai raggiunto {{tier}}",
+    "yourBalance": "Il tuo saldo · {{amount}} DHB",
+    "lines": {
+      "crab": "Stai andando in posti",
+      "lobster": "Continua a nuotare",
+      "piranha": "Piccolo, ma morde",
+      "tortoise": "Lento e costante ti ha portato qui",
+      "cobra": "Le persone si spostano ora",
+      "octopus": "Otto braccia, ogni pentola",
+      "crocodile": "Nulla attraversa questo fiume",
+      "dolphin": "Ora sei un pesce grosso",
+      "tigerShark": "L'acqua è appena diventata più tranquilla",
+      "greatWhiteShark": "Tutti sanno che la pinna",
+      "killerWhale": "In cima alla catena alimentare, si caccia in branchi",
+      "blueWhale": "La cosa più grande che sia mai vissuta. Sei tu.",
+      "megalodon": "Ecco la tua corona: ora sei una royalty dell'app"
+    }
   }
 }

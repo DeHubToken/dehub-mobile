@@ -4025,5 +4025,24 @@
     "close": "Sulje",
     "callbackRequest": "Takaisinsoittopyyntö",
     "tryAgain": "Yritä uudelleen"
+  },
+  "badgeAscension": {
+    "reached": "Saavutit tason {{tier}}",
+    "yourBalance": "Saldosi · {{amount}} DHB",
+    "lines": {
+      "crab": "Olet menossa paikkoihin",
+      "lobster": "Jatka uintia",
+      "piranha": "Pieni, mutta pureva",
+      "tortoise": "Hidas ja vakaa toi sinut tänne",
+      "cobra": "Ihmiset muuttavat nyt pois tieltä",
+      "octopus": "Kahdeksan kättä, jokainen kattila",
+      "crocodile": "Mikään ei ylitä tätä jokea",
+      "dolphin": "Olet nyt iso kala",
+      "tigerShark": "Vesi hiljeni juuri",
+      "greatWhiteShark": "Kaikki tietävät, että evä",
+      "killerWhale": "Ravintoketjun huipulla metsästät pakkauksissa",
+      "blueWhale": "Suurin asia, joka on koskaan elänyt. Se olet sinä.",
+      "megalodon": "Tässä kruunusi — olet nyt sovelluksen kuninkaallinen"
+    }
   }
 }

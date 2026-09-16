@@ -4038,5 +4038,24 @@
     "close": "Închide",
     "callbackRequest": "Cerere de apel invers",
     "tryAgain": "Încearcă din nou"
+  },
+  "badgeAscension": {
+    "reached": "Ai ajuns la {{tier}}",
+    "yourBalance": "Soldul tău · {{amount}} DHB",
+    "lines": {
+      "crab": "Mergi în diverse locuri",
+      "lobster": "Continuă să înoți",
+      "piranha": "Mic, dar mușcă",
+      "tortoise": "Încet și constant ai ajuns aici",
+      "cobra": "Oamenii se dau la o parte acum",
+      "octopus": "Opt brațe, fiecare oală",
+      "crocodile": "Nimic nu traversează acest râu",
+      "dolphin": "Ești un pește mare acum",
+      "tigerShark": "Apa tocmai a devenit mai liniștită",
+      "greatWhiteShark": "Toată lumea știe că aripioara",
+      "killerWhale": "Partea de sus a lanțului alimentar și vânați în pachete",
+      "blueWhale": "Cel mai mare lucru care a trăit vreodată. Asta ești tu.",
+      "megalodon": "Iată coroana dvs. — sunteți redevența aplicației acum"
+    }
   }
 }

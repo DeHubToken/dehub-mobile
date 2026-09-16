@@ -4022,5 +4022,24 @@
     "close": "閂",
     "callbackRequest": "回調要求",
     "tryAgain": "再試多次"
+  },
+  "badgeAscension": {
+    "reached": "你去到 {{tier}}",
+    "yourBalance": "你嘅餘額 · {{amount}} DHB",
+    "lines": {
+      "crab": "你去緊唔同嘅地方",
+      "lobster": "繼續游水",
+      "piranha": "細，但係好咬",
+      "tortoise": "慢慢同穩定噉令你嚟到呢度",
+      "cobra": "啲人而家搬走咗",
+      "octopus": "八隻手臂，每個煲",
+      "crocodile": "冇嘢可以過呢條河",
+      "dolphin": "你而家係條大魚",
+      "tigerShark": "水只係靜咗啲",
+      "greatWhiteShark": "個個都識嗰隻魚翅",
+      "killerWhale": "食物鏈嘅頂端，而且你哋成群獵食",
+      "blueWhale": "有史以來最大嘅事。就係你。",
+      "megalodon": "呢個係你嘅皇冠 — 你而家係應用程式版稅"
+    }
   }
 }

@@ -4202,5 +4202,24 @@
     "close": "Isara",
     "callbackRequest": "Kahilingan sa callback",
     "tryAgain": "Subukan muli"
+  },
+  "badgeAscension": {
+    "reached": "Naabot mo ang {{tier}}",
+    "yourBalance": "Ang iyong balanse · {{amount}}DHB",
+    "lines": {
+      "crab": "Ikaw ay pupunta sa mga lugar",
+      "lobster": "Patuloy na lumangoy",
+      "piranha": "Maliit, ngunit ito ay nangangati",
+      "tortoise": "Slow and steady got you here.",
+      "cobra": "Ang mga tao ay lumipat sa labas ng paraan ngayon",
+      "octopus": "Walong braso, bawat kaldero",
+      "crocodile": "Walang tumatawid sa ilog na ito",
+      "dolphin": "Isa kang malaking isda ngayon",
+      "tigerShark": "Naging mas tahimik lang ang tubig",
+      "greatWhiteShark": "Alam ng lahat na ang fin",
+      "killerWhale": "Tuktok ng kadena ng pagkain, at mangangaso ka sa mga pakete",
+      "blueWhale": "Ang pinakamalaking bagay na nabuhay. Iyan ay ikaw.",
+      "megalodon": "Narito ang iyong korona — ikaw ay app royalty ngayon"
+    }
   }
 }

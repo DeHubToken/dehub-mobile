@@ -4053,5 +4053,24 @@
     "close": "Wichqay",
     "callbackRequest": "Llamada mañakuy",
     "tryAgain": "Hukmanta kallpachakuy"
+  },
+  "badgeAscension": {
+    "reached": "{{tier}} nisqaman chayarqanki.",
+    "yourBalance": "Saldoyki · {{amount}} DHB",
+    "lines": {
+      "crab": "Qamkunaqa sitiokunamanmi richkanki",
+      "lobster": "Nadaspallapuni puriy",
+      "piranha": "Huch’uylla, ichaqa kanikun",
+      "tortoise": "Pisi pisimanta, mana kuyurispa kayman chayachisurqanki",
+      "cobra": "Runakunaqa kunanmi ñanmanta karunchakunku",
+      "octopus": "Pusaq maki, sapa manka",
+      "crocodile": "Kay mayuta mana imapas chimpanchu",
+      "dolphin": "Kunanqa hatun challwañam kanki",
+      "tigerShark": "Chayraqmi yakuqa aswan ch’inllaña kapurqan",
+      "greatWhiteShark": "Chay aletataqa llapallankum yachanku",
+      "killerWhale": "Cadena alimentaria ukumpi hananpi, chaypis llaqtapi mikunakuyki",
+      "blueWhale": "Kawsaqmanta aswan hatun kaq. Chayqa qanmi kanki.",
+      "megalodon": "Kaypi coronayki — kunan app royalty kanki"
+    }
   }
 }

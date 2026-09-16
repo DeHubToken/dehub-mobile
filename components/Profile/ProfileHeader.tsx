@@ -24,6 +24,8 @@ import {
   resolveBadgeLock,
   resolveBadgeUsername,
 } from "../../libs/misc";
+import BadgeAscension, { type BadgeSlot } from "./BadgeAscension";
+import { useBadgeCeremony } from "../../hooks/useBadgeCeremony";
 import { openExternalLink } from "../../libs/links.utils";
 import { ensProfileUrl } from "../../libs/ens-handle";
 import { truncateAddress } from "../../libs/strings.util";
@@ -116,6 +118,23 @@ const ProfileHeader = () => {
   const badgeCtx = { lock: badgeLock, username: resolveBadgeUsername(user as any) };
   const badge = getBadgeName(badgeVal, badgeCtx);
   const badgeImage = getBadgeUrl(badgeVal, badgeCtx);
+
+  // Badge ascension. This header only ever draws the signed-in user, so the
+  // ceremony is always looking at its own holder. The slot is measured on
+  // layout because the animation flies the badge out of it and back into it.
+  const badgeSlotRef = useRef<View>(null);
+  const [badgeSlot, setBadgeSlot] = useState<BadgeSlot | null>(null);
+  const { ceremony, dismiss } = useBadgeCeremony({
+    enabled: true,
+    address,
+    tier: badge,
+  });
+  const measureBadgeSlot = useCallback(() => {
+    badgeSlotRef.current?.measureInWindow((x, y, width, height) => {
+      if (!width) return;
+      setBadgeSlot({ x: x + width / 2, y: y + height / 2, size: width });
+    });
+  }, []);
 
   // account_info returns followers/followings as arrays of addresses (or a
   // plain number elsewhere) — resolveCount normalises both to a count.
@@ -280,6 +299,15 @@ const ProfileHeader = () => {
 
   return (
     <View className="w-full">
+      {ceremony && (
+        <BadgeAscension
+          from={ceremony.from}
+          to={ceremony.to}
+          slot={badgeSlot}
+          balance={typeof badgeVal === "string" ? Number(badgeVal) : badgeVal}
+          onDone={dismiss}
+        />
+      )}
       {/* Cover */}
       <TouchableOpacity
         activeOpacity={0.9}
@@ -388,12 +416,14 @@ const ProfileHeader = () => {
                 {displayName}
               </Text>
               {badge && badgeImage && (
-                <SmartImage
-                  source={badgeImage as any}
-                  contentFit="contain"
-                  cachePolicy="memory-disk"
-                  style={[getBadgeOpticalStyle(badgeImage as number, 20), { marginLeft: 0 }]}
-                />
+                <View ref={badgeSlotRef} onLayout={measureBadgeSlot} collapsable={false}>
+                  <SmartImage
+                    source={badgeImage as any}
+                    contentFit="contain"
+                    cachePolicy="memory-disk"
+                    style={[getBadgeOpticalStyle(badgeImage as number, 20), { marginLeft: 0 }]}
+                  />
+                </View>
               )}
             </View>
             {socials.length > 0 && (

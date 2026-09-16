@@ -3823,5 +3823,22 @@
     "close": "Close",
     "callbackRequest": "Callback request",
     "tryAgain": "Try again"
+  },
+  "badgeAscension": {
+    "lines": {
+      "crab": "Yu go reach somwhere",
+      "lobster": "Keep swimming",
+      "piranha": "Small, but am bite",
+      "tortoise": "Slow slow done bring yu here",
+      "cobra": "Pipul dem dey move away now",
+      "octopus": "Eight arms, every pot",
+      "crocodile": "Notting no cross dis river",
+      "dolphin": "Yu don become big fish now",
+      "tigerShark": "Di water don quiet down",
+      "greatWhiteShark": "Everybody know dat fin",
+      "killerWhale": "Top of di food chain, and yu hunt for pack",
+      "blueWhale": "Di biggest ting wey don live. Dat na yu.",
+      "megalodon": "Here na yu crown — yu don become app royalty now"
+    }
   }
 }
