@@ -1100,6 +1100,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Haɗa walat ba ya samuwa a wannan sigar — maido da jimlar dawo da shi maimakon haka.",
+    "connectedWrongWallet": "Wannan walat ɗin {{connected}} ne, ba {{address}} ba. Ba a canza komai ba.",
     "restoreWrongWallet": "Wannan yana buɗe wani walat na daban, ba {{address}} ba. Ba a canza komai ba.",
     "unlockNoAccount": "An kulle walat ɗinka — babu asusun da ya shiga a wannan na'urar.",
     "unlockLookupFailed": "An kulle walat ɗinka — ba a iya samun rikodin walat ɗinka ba. Duba haɗin yanar gizo ka sake gwadawa.",
@@ -3491,6 +3493,8 @@
     "otherChain": "Wannan sakon yana daidaitawa a wata sarƙa, don haka kana buƙatar DHB a walat ɗinka a can."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Yi amfani da wannan idan ka saita wannan walat ɗin a wannan wayar kuma ya kamata maɓallin ya riga ya kasance a nan",
+    "connectWalletApp": "Sa hannu da manhajar walat ɗin da yake ciki",
     "signOutAndStartOver": "Ba ni da shi — fita ka sake farawa",
     "restoreLocalNote": "Maɓallin yana zama a wannan wayar kawai.",
     "restoreMissing": "Walat ɗin wannan bayanin ba ya cikin wannan wayar, don haka ba za a iya sa hannu kan komai ba tukuna. Shigar da jimlar dawo da shi ko maɓallin sirrinsa don kawo shi nan.",

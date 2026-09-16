@@ -1054,6 +1054,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Connect Wallet no dey fo dis version — use yua recovery phrase bring am back instead.",
+    "connectedWrongWallet": "Dat wallet na {{connected}}, no bi {{address}}. Notin change.",
     "restoreWrongWallet": "Dat wan dey open anoda wallet, no bi {{address}}. Notin change.",
     "unlockNoAccount": "Yua wallet dey locked — no account dey signed in fo dis device.",
     "unlockLookupFailed": "Yua wallet dey locked — wi no fit reach yua wallet record. Check yua network an try again.",
@@ -3334,6 +3336,8 @@
     "otherChain": "Dis post dey settle for anoda chain, so you need DHB for your wallet dia."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Use dis wan if na dis phone yu set up di wallet an di key suppose don dey hia already",
+    "connectWalletApp": "Sign wit di wallet app wey e dey inside",
     "signOutAndStartOver": "A no get am — sign out an start again",
     "restoreLocalNote": "Di key go stay only fo dis phone.",
     "restoreMissing": "Dis profile wallet no dey fo dis phone, so notin fit sign fo now. Put yi recovery phrase or private key mek e kam hia.",

@@ -1069,6 +1069,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "搿个版本连勿了钱包 — 用助记词恢复。",
+    "connectedWrongWallet": "搿个钱包是 {{connected}}，勿是 {{address}}。啥也呒没改。",
     "restoreWrongWallet": "搿个打开个是另外一个钱包，勿是 {{address}}。啥也呒没改。",
     "unlockNoAccount": "侬个钱包锁牢了 — 搿个设备上呒没登录个账号。",
     "unlockLookupFailed": "侬个钱包锁牢了 — 钱包记录访问勿到。看看网络再试试看。",
@@ -3453,6 +3455,8 @@
     "otherChain": "这条帖子在另一条链上结算，所以你在那条链的钱包里需要有 DHB。"
   },
   "walletSetup": {
+    "tryBiometricsHint": "要是侬是勒搿部手机上设个搿个钱包，密钥应该已经勒搿搭，就用搿个",
+    "connectWalletApp": "用存伊个钱包应用签名",
     "signOutAndStartOver": "我呒没 — 退出登录，重新开始",
     "restoreLocalNote": "密钥只存勒搿部手机上。",
     "restoreMissing": "搿个账号个钱包勿勒搿部手机上，所以现在还呒没办法签名。输入伊个助记词或者私钥，把伊带到搿搭来。",

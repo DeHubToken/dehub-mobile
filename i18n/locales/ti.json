@@ -1098,6 +1098,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "ኣብዚ ስሪት ቦርሳ ምትእስሳር የለን — ብናይ ምምላስ ሓረግ ምለሶ።",
+    "connectedWrongWallet": "እቲ ቦርሳ {{connected}} እዩ፣ {{address}} ኣይኮነን። ምንም ኣይተቐየረን።",
     "restoreWrongWallet": "እዚ {{address}} ዘይኮነ ካልእ ቦርሳ ይኸፍት። ምንም ኣይተቐየረን።",
     "unlockNoAccount": "ቦርሳኻ ተዓጽዩ ኣሎ — ኣብዚ መሳርሒ ዝኣተወ ሕሳብ የለን።",
     "unlockLookupFailed": "ቦርሳኻ ተዓጽዩ ኣሎ — መዝገብ ቦርሳኻ ክርከብ ኣይተኻእለን። መራኸቢኻ ኣረጋግጽን ደጊምካ ፈትንን።",
@@ -3467,6 +3469,8 @@
     "otherChain": "እዚ ልጥፊ ኣብ ካልእ ሰንሰለት እዩ ዝፍጸም፡ ስለዚ ኣብኡ ኣብ ዋሌትካ DHB የድሊ።"
   },
   "walletSetup": {
+    "tryBiometricsHint": "እዚ ቦርሳ ኣብዚ ስልኪ ኣዳሊኻዮ እንተኾይንካን መፍትሕ ኣብዚ ክህሉ ዝግብኦ እንተኾይኑን እዚ ተጠቐም",
+    "connectWalletApp": "ብቲ ዘለዎ መተግበሪ ቦርሳ ፈርም",
     "signOutAndStartOver": "የብለይን — ውጻእን ካብ መጀመርታ ጀምርን",
     "restoreLocalNote": "መፍትሕ ኣብዚ ስልኪ ጥራይ ይጸንሕ።",
     "restoreMissing": "ቦርሳ እዚ መገለጺ ኣብዚ ስልኪ የለን፣ ስለዚ ክሳብ ሕጂ ምንም ክፍረም ኣይክእልን። ናብዚ ንምምጻእ ናይ ምምላስ ሓረግ ወይ ውልቃዊ መፍትሕ ኣእትው።",

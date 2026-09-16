@@ -1317,6 +1317,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Conectarea portofelului nu este disponibilă în această versiune — restaurează cu fraza de recuperare.",
+    "connectedWrongWallet": "Acel portofel este {{connected}}, nu {{address}}. Nu s-a schimbat nimic.",
     "restoreWrongWallet": "Asta deschide un alt portofel, nu {{address}}. Nu s-a schimbat nimic.",
     "unlockNoAccount": "Portofelul tău este blocat — niciun cont nu este conectat pe acest dispozitiv.",
     "unlockLookupFailed": "Portofelul tău este blocat — înregistrarea portofelului nu a putut fi accesată. Verifică conexiunea și încearcă din nou.",
@@ -3515,6 +3517,8 @@
     "otherChain": "Această postare se decontează pe alt lanț, deci ai nevoie de DHB în portofelul de acolo."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Folosește asta dacă ai configurat acest portofel pe acest telefon și cheia ar trebui să fie deja aici",
+    "connectWalletApp": "Semnează cu aplicația de portofel în care se află",
     "signOutAndStartOver": "Nu o am — deconectare și reluare de la zero",
     "restoreLocalNote": "Cheia rămâne doar pe acest telefon.",
     "restoreMissing": "Portofelul acestui profil nu este pe acest telefon, așa că încă nu se poate semna nimic. Introdu fraza de recuperare sau cheia privată pentru a-l aduce aici.",

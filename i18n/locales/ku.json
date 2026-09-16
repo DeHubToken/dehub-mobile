@@ -1006,6 +1006,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Girêdana cizdanê di vê guhertoyê de tune ye — bi hevoka vegerandinê vegerîne.",
+    "connectedWrongWallet": "Ew cizdan {{connected}} e, ne {{address}}. Tiştek nehat guhertin.",
     "restoreWrongWallet": "Ev cizdaneke cuda vedike, ne {{address}}. Tiştek nehat guhertin.",
     "unlockNoAccount": "Cizdana te kilît e — li ser vê cîhazê tu hesab têkeve nîne.",
     "unlockLookupFailed": "Cizdana te kilît e — negihîşt tomara cizdanê. Girêdana xwe kontrol bike û dîsa biceribîne.",
@@ -3233,6 +3235,8 @@
     "otherChain": "Ev şandî li ser zincîreke din tê temamkirin, loma li wir DHB di berîka te de pêwîst e."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Vê bi kar bîne eger te ev cizdan li ser vê telefonê saz kiribe û divê mifte jixwe li vir be",
+    "connectWalletApp": "Bi sepana cizdanê ya ku ew tê de ye îmze bike",
     "signOutAndStartOver": "Ne li cem min e — derkeve û ji nû ve dest pê bike",
     "restoreLocalNote": "Mifte tenê li ser vê telefonê dimîne.",
     "restoreMissing": "Cizdana vê profîlê li ser vê telefonê nîne, ji ber vê yekê hîn tiştek nayê îmzekirin. Hevoka vegerandinê an mifteya taybet a wê binivîse da ku wê bîne vir.",

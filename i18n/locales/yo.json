@@ -1106,6 +1106,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Ìsopọ̀ àpamọ́wọ́ kò sí nínú ẹ̀yà yìí — mú un padà pẹ̀lú gbólóhùn ìmúpadà dípò.",
+    "connectedWrongWallet": "Àpamọ́wọ́ yẹn ni {{connected}}, kì í ṣe {{address}}. Kò sí ohun tí ó yípadà.",
     "restoreWrongWallet": "Èyí ń ṣí àpamọ́wọ́ mìíràn, kì í ṣe {{address}}. Kò sí ohun tí ó yípadà.",
     "unlockNoAccount": "Àpamọ́wọ́ rẹ ti wà ní títì — kò sí àkántì tí ó wọlé lórí ẹ̀rọ yìí.",
     "unlockLookupFailed": "Àpamọ́wọ́ rẹ ti wà ní títì — a kò lè dé àkọsílẹ̀ àpamọ́wọ́ rẹ. Ṣàyẹ̀wò ìsopọ̀ rẹ kí o sì gbìyànjú lẹ́ẹ̀kan sí i.",
@@ -3492,6 +3494,8 @@
     "otherChain": "Ìfìwéránṣẹ́ yìí ń parí lórí ẹ̀wọ̀n mìíràn, nítorí náà o nílò DHB nínú àpamọ́wọ́ rẹ níbẹ̀."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Lo èyí tí o bá ṣètò àpamọ́wọ́ yìí lórí fóònù yìí tí kọ́kọ́rọ́ náà sì yẹ kí ó ti wà níbí",
+    "connectWalletApp": "Fọwọ́ sí i pẹ̀lú àpù àpamọ́wọ́ tí ó wà nínú rẹ̀",
     "signOutAndStartOver": "Mi ò ní i — jáde kí o sì bẹ̀rẹ̀ lẹ́ẹ̀kan sí i",
     "restoreLocalNote": "Kọ́kọ́rọ́ náà wà lórí fóònù yìí nìkan.",
     "restoreMissing": "Àpamọ́wọ́ profaili yìí kò sí lórí fóònù yìí, nítorí náà kò tíì sí ohun tí a lè fọwọ́ sí. Tẹ gbólóhùn ìmúpadà tàbí kọ́kọ́rọ́ ìkọ̀kọ̀ rẹ̀ láti mú un wá síbí.",

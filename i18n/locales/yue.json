@@ -1110,6 +1110,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "呢個版本唔支援連接錢包 — 請改用助記詞還原。",
+    "connectedWrongWallet": "嗰個錢包係 {{connected}}，唔係 {{address}}。冇作出任何更改。",
     "restoreWrongWallet": "咁樣會打開另一個錢包，而唔係 {{address}}。冇作出任何更改。",
     "unlockNoAccount": "你嘅錢包已鎖定 — 呢部裝置上冇已登入嘅帳號。",
     "unlockLookupFailed": "你嘅錢包已鎖定 — 無法存取錢包記錄。請檢查網絡連線再試過。",
@@ -3500,6 +3502,8 @@
     "otherChain": "呢個帖子喺另一條鏈上結算，所以你喺嗰條鏈嘅錢包要有 DHB。"
   },
   "walletSetup": {
+    "tryBiometricsHint": "如果你係喺呢部手機設定呢個錢包，密鑰應該已經喺度，請用呢個",
+    "connectWalletApp": "用存放佢嘅錢包應用程式簽名",
     "signOutAndStartOver": "我冇 — 登出並重新開始",
     "restoreLocalNote": "密鑰只會保存喺呢部手機度。",
     "restoreMissing": "呢個帳號嘅錢包唔喺呢部手機度，所以暫時簽唔到名。輸入佢嘅助記詞或者私鑰，將佢帶嚟呢度。",

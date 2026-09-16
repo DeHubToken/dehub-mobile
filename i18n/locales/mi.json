@@ -1101,6 +1101,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Kāore te hono pūkoro i te wātea i tēnei putanga — whakahokia ki te kīanga whakaora.",
+    "connectedWrongWallet": "Ko taua pūkoro ko {{connected}}, ehara i a {{address}}. Kāore he mea i rerekē.",
     "restoreWrongWallet": "Ka huaki tērā i tētahi atu pūkoro, ehara i a {{address}}. Kāore he mea i rerekē.",
     "unlockNoAccount": "Kua rakaina tō pūkoro — kāore he pūkete kua takiuru ki tēnei pūrere.",
     "unlockLookupFailed": "Kua rakaina tō pūkoro — kāore i taea te tae atu ki te rēkoata pūkoro. Tirohia tō hononga, ka ngana anō.",
@@ -3487,6 +3489,8 @@
     "otherChain": "Ka whakataua tēnei pānui ki tētahi atu mekameka, nō reira me whai DHB koe i tō pūkoro i reira."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Whakamahia tēnei mēnā nāu i whakarite tēnei pūkoro i runga i tēnei waea, ā, me kua tae kē mai te kī ki konei",
+    "connectWalletApp": "Hainatia ki te taupānga pūkoro kei reira",
     "signOutAndStartOver": "Kāore i a au — takiputa, ka tīmata anō",
     "restoreLocalNote": "Ka noho te kī ki runga i tēnei waea anake.",
     "restoreMissing": "Kāore te pūkoro o tēnei kōtaha i runga i tēnei waea, nō reira kāore anō kia taea te haina i tētahi mea. Whakaurua tana kīanga whakaora, tana kī tūmataiti rānei kia kawea mai ki konei.",

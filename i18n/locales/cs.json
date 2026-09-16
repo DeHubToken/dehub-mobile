@@ -672,6 +672,8 @@
     "firstComments_other": "Prvních {{count}} komentářů"
   },
   "wallet": {
+    "connectUnavailable": "Připojení peněženky není v tomto sestavení dostupné — obnovte ji obnovovací frází.",
+    "connectedWrongWallet": "Ta peněženka je {{connected}}, ne {{address}}. Nic nebylo změněno.",
     "restoreWrongWallet": "Tím se otevře jiná peněženka, ne {{address}}. Nic nebylo změněno.",
     "unlockNoAccount": "Vaše peněženka je zamčená — na tomto zařízení není přihlášen žádný účet.",
     "unlockLookupFailed": "Vaše peněženka je zamčená — záznam peněženky není dostupný. Zkontrolujte připojení a zkuste to znovu.",
@@ -3506,6 +3508,8 @@
     "otherChain": "Tento příspěvek se vypořádává na jiném řetězci, takže tam potřebujete DHB v peněžence."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Použijte, pokud jste tuto peněženku nastavili v tomto telefonu a klíč by zde už měl být",
+    "connectWalletApp": "Podepsat aplikací peněženky, ve které je",
     "signOutAndStartOver": "Nemám ji — odhlásit se a začít znovu",
     "restoreLocalNote": "Klíč zůstane jen v tomto telefonu.",
     "restoreMissing": "Peněženka tohoto profilu není v tomto telefonu, takže zatím nelze nic podepsat. Zadejte její obnovovací frázi nebo soukromý klíč a přeneste ji sem.",

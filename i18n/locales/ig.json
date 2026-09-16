@@ -1102,6 +1102,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Ijikọ obere akpa ego adịghị na ụdị a — weghachi ya site na nkebi ahịrịokwu mgbake kama.",
+    "connectedWrongWallet": "Obere akpa ego ahụ bụ {{connected}}, ọ bụghị {{address}}. Ọ dịghị ihe gbanwere.",
     "restoreWrongWallet": "Nke ahụ na-emeghe obere akpa ego ọzọ, ọ bụghị {{address}}. Ọ dịghị ihe gbanwere.",
     "unlockNoAccount": "Obere akpa ego gị kpọchiri — ọ dịghị akaụntụ banyere na ngwaọrụ a.",
     "unlockLookupFailed": "Obere akpa ego gị kpọchiri — enweghị ike iru ndekọ obere akpa ego gị. Lelee njikọ gị ma nwaa ọzọ.",
@@ -3480,6 +3482,8 @@
     "otherChain": "Post a na-akwụcha na chain ọzọ, ya mere ị chọrọ DHB n'obere akpa gị ebe ahụ."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Jiri nke a ma ọ bụrụ na ị haziri obere akpa ego a na ekwentị a ma igodo ahụ kwesịrị ịdịlarị ebe a",
+    "connectWalletApp": "Binye aka na ngwa obere akpa ego ebe ọ nọ",
     "signOutAndStartOver": "Enweghị m ya — pụọ ma malite ọzọ",
     "restoreLocalNote": "Igodo ahụ na-anọ naanị na ekwentị a.",
     "restoreMissing": "Obere akpa ego nke profaịlụ a anọghị na ekwentị a, ya mere enweghị ihe a ga-ebinye aka ugbu a. Tinye nkebi ahịrịokwu mgbake ya ma ọ bụ igodo nzuzo ya iji weta ya ebe a.",

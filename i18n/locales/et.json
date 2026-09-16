@@ -1109,6 +1109,8 @@
     }
   },
   "wallet": {
+    "connectUnavailable": "Rahakoti ühendamine pole selles versioonis saadaval — taasta taastefraasiga.",
+    "connectedWrongWallet": "See rahakott on {{connected}}, mitte {{address}}. Midagi ei muudetud.",
     "restoreWrongWallet": "See avab teise rahakoti, mitte {{address}}. Midagi ei muudetud.",
     "unlockNoAccount": "Su rahakott on lukus — sellesse seadmesse pole ükski konto sisse logitud.",
     "unlockLookupFailed": "Su rahakott on lukus — rahakoti kirjeni ei jõutud. Kontrolli ühendust ja proovi uuesti.",
@@ -3501,6 +3503,8 @@
     "otherChain": "See postitus arveldab teises ahelas, seega vajad seal oma rahakotis DHB-d."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Kasuta seda, kui seadistasid selle rahakoti selles telefonis ja võti peaks juba siin olema",
+    "connectWalletApp": "Allkirjasta rahakotirakendusega, kus see asub",
     "signOutAndStartOver": "Mul pole seda — logi välja ja alusta uuesti",
     "restoreLocalNote": "Võti jääb ainult sellesse telefoni.",
     "restoreMissing": "Selle profiili rahakott ei ole selles telefonis, seega ei saa veel midagi allkirjastada. Sisesta selle taastefraas või privaatvõti, et see siia tuua.",

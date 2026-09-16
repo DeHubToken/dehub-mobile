@@ -673,6 +673,8 @@
     "firstComments_other": "{{count}} komentar pertama"
   },
   "wallet": {
+    "connectUnavailable": "Hubungkan dompet tidak tersedia di versi ini — pulihkan dengan frasa pemulihan.",
+    "connectedWrongWallet": "Dompet itu {{connected}}, bukan {{address}}. Tidak ada yang berubah.",
     "restoreWrongWallet": "Itu membuka dompet lain, bukan {{address}}. Tidak ada yang berubah.",
     "unlockNoAccount": "Dompet Anda terkunci — tidak ada akun yang masuk di perangkat ini.",
     "unlockLookupFailed": "Dompet Anda terkunci — data dompet tidak dapat diakses. Periksa koneksi dan coba lagi.",
@@ -3552,6 +3554,8 @@
     "otherChain": "Postingan ini diselesaikan di chain lain, jadi kamu butuh DHB di dompetmu di sana."
   },
   "walletSetup": {
+    "tryBiometricsHint": "Gunakan ini jika Anda menyiapkan dompet ini di ponsel ini dan kuncinya seharusnya sudah ada di sini",
+    "connectWalletApp": "Tanda tangani dengan aplikasi dompet tempatnya berada",
     "signOutAndStartOver": "Saya tidak memilikinya — keluar dan mulai dari awal",
     "restoreLocalNote": "Kunci hanya tersimpan di ponsel ini.",
     "restoreMissing": "Dompet profil ini tidak ada di ponsel ini, jadi belum ada yang bisa ditandatangani. Masukkan frasa pemulihan atau kunci privatnya untuk membawanya ke sini.",
