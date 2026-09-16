@@ -1375,7 +1375,15 @@
     "balanceTooLow": "Saldo liian pieni ({{balance}} DHB)",
     "refreshFailed": "Jokin meni pieleen",
     "noWalletAddress": "Lompakko-osoitetta ei löytynyt",
-    "assets": "Varat"
+    "assets": "Varat",
+    "hidden": "Piilotettu",
+    "noDataForPeriod": "Tälle ajanjaksolle ei ole vielä tietoja",
+    "affiliates": "Kumppanit",
+    "directReferrals_one": "{{count}} suoraa",
+    "directReferrals_other": "{{count}} suoraa",
+    "secondaryReferrals_one": "{{count}} toisen tason",
+    "secondaryReferrals_other": "{{count}} toisen tason",
+    "retry": "Yritä uudelleen"
   },
   "explorePage": {
     "searchPlaceholder": "Etsi ihmisiä, julkaisuja tai sisältöä...",

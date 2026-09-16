@@ -1292,7 +1292,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something go wrong",
     "noWalletAddress": "No wallet address dey",
-    "assets": "Assets"
+    "assets": "Assets",
+    "hidden": "E hide",
+    "noDataForPeriod": "Data for dis period never dey yet",
+    "affiliates": "Affiliate dem",
+    "directReferrals_one": "{{count}} wey you bring",
+    "directReferrals_other": "{{count}} wey you bring",
+    "secondaryReferrals_one": "{{count}} second level",
+    "secondaryReferrals_other": "{{count}} second level",
+    "retry": "Try again"
   },
   "features": {
     "title": "Feature Requests",

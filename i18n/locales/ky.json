@@ -1369,7 +1369,15 @@
     "balanceTooLow": "Баланс өтө аз ({{balance}} DHB)",
     "refreshFailed": "Бир нерсе туура эмес болду",
     "noWalletAddress": "Капчык дареги табылган жок",
-    "assets": "Активдер"
+    "assets": "Активдер",
+    "hidden": "Жашырылган",
+    "noDataForPeriod": "Бул мезгил үчүн азырынча маалымат жок",
+    "affiliates": "Өнөктөштөр",
+    "directReferrals_one": "{{count}} түз",
+    "directReferrals_other": "{{count}} түз",
+    "secondaryReferrals_one": "{{count}} экинчи деңгээл",
+    "secondaryReferrals_other": "{{count}} экинчи деңгээл",
+    "retry": "Кайра аракет кылуу"
   },
   "explorePage": {
     "searchPlaceholder": "Адамдарды, жазууларды же мазмунду издөө...",

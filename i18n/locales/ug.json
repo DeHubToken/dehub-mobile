@@ -1367,7 +1367,15 @@
     "balanceTooLow": "قالدۇق بەك تۆۋەن ({{balance}} DHB)",
     "refreshFailed": "خاتالىق يۈز بەردى",
     "noWalletAddress": "ھەمياق ئادرېسى تېپىلمىدى",
-    "assets": "مۈلۈكلەر"
+    "assets": "مۈلۈكلەر",
+    "hidden": "يوشۇرۇن",
+    "noDataForPeriod": "بۇ مەزگىل ئۈچۈن تېخى سانلىق مەلۇمات يوق",
+    "affiliates": "شېرىكلەر",
+    "directReferrals_one": "{{count}} بىۋاسىتە",
+    "directReferrals_other": "{{count}} بىۋاسىتە",
+    "secondaryReferrals_one": "{{count}} ئىككىنچى دەرىجە",
+    "secondaryReferrals_other": "{{count}} ئىككىنچى دەرىجە",
+    "retry": "قايتا سىناش"
   },
   "explorePage": {
     "searchPlaceholder": "كىشى، يوللانما ياكى مەزمۇن ئىزدەش...",

@@ -1361,7 +1361,15 @@
     "balanceTooLow": "Ìwọ̀ntúnwọ̀nsí kéré jù ({{balance}} DHB)",
     "refreshFailed": "Nǹkan kan kò tọ́",
     "noWalletAddress": "A kò rí àdírẹ́sì àpò owó",
-    "assets": "Àwọn ohun ìní"
+    "assets": "Àwọn ohun ìní",
+    "hidden": "Ti pamọ́",
+    "noDataForPeriod": "Kò tíì sí dátà fún àkókò yìí",
+    "affiliates": "Àwọn alábàáṣiṣẹ́",
+    "directReferrals_one": "{{count}} tààrà",
+    "directReferrals_other": "{{count}} tààrà",
+    "secondaryReferrals_one": "{{count}} ipele kejì",
+    "secondaryReferrals_other": "{{count}} ipele kejì",
+    "retry": "Gbìyànjú lẹ́ẹ̀kan sí i"
   },
   "features": {
     "title": "Àwọn Ìbéèrè Ẹ̀yà",

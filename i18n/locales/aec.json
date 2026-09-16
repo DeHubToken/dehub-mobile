@@ -1260,7 +1260,15 @@
     "balanceTooLow": "الرصيد قليل ({{balance}} DHB)",
     "refreshFailed": "حصل مشكلة",
     "noWalletAddress": "مالقيناش عنوان محفظة",
-    "assets": "الأصول"
+    "assets": "الأصول",
+    "hidden": "مخفي",
+    "noDataForPeriod": "مفيش بيانات للفترة دي لسه",
+    "affiliates": "المسوقين",
+    "directReferrals_one": "{{count}} مباشر",
+    "directReferrals_other": "{{count}} مباشر",
+    "secondaryReferrals_one": "{{count}} مستوى تاني",
+    "secondaryReferrals_other": "{{count}} مستوى تاني",
+    "retry": "جرب تاني"
   },
   "explorePage": {
     "searchPlaceholder": "دوّر على ناس أو منشورات أو محتوى...",

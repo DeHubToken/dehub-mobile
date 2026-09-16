@@ -4,7 +4,14 @@ import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../../theme";
 import { useTranslation } from "react-i18next";
 
-export type SortCategory = "holdings" | "sentTips" | "receivedTips" | "followers" | "likes";
+export type SortCategory =
+  | "holdings"
+  | "sentTips"
+  | "receivedTips"
+  | "followers"
+  | "likes"
+  | "subscribers"
+  | "affiliates";
 
 /**
  * "assets" is not a leaderboard sort — it's a jump to the Top 100 market table,
@@ -27,6 +34,8 @@ const CATEGORIES: CategoryDef[] = [
   { key: "receivedTips", label: "leaderboard.earned", icon: "card-outline" },
   { key: "followers", label: "leaderboard.followers", icon: "people-outline" },
   { key: "likes", label: "leaderboard.likes", icon: "heart-outline" },
+  { key: "subscribers", label: "leaderboard.subscribers", icon: "star-outline" },
+  { key: "affiliates", label: "leaderboard.affiliates", icon: "share-social-outline" },
   { key: "assets", label: "leaderboard.assets", icon: "stats-chart-outline" },
 ];
 

@@ -1262,7 +1262,15 @@
     "balanceTooLow": "Guthabe z tüüf ({{balance}} DHB)",
     "refreshFailed": "Öppis isch schief gangä",
     "noWalletAddress": "Kei Wallet-Adrässe gfunde",
-    "assets": "Assets"
+    "assets": "Assets",
+    "hidden": "Verborge",
+    "noDataForPeriod": "Für dä Zitruum git's no kei Date",
+    "affiliates": "Partner",
+    "directReferrals_one": "{{count}} direkt",
+    "directReferrals_other": "{{count}} direkt",
+    "secondaryReferrals_one": "{{count}} indirekt",
+    "secondaryReferrals_other": "{{count}} indirekt",
+    "retry": "Nomol probiere"
   },
   "explorePage": {
     "searchPlaceholder": "Such nach Lüt, Biträg oder Inhalt...",

@@ -1392,7 +1392,15 @@
     "balanceTooLow": "Saldo muito baixo ({{balance}} DHB)",
     "refreshFailed": "Algo deu errado",
     "noWalletAddress": "Endereço não encontrado",
-    "assets": "Ativos"
+    "assets": "Ativos",
+    "hidden": "Oculto",
+    "noDataForPeriod": "Ainda não há dados para este período",
+    "affiliates": "Afiliados",
+    "directReferrals_one": "{{count}} diretos",
+    "directReferrals_other": "{{count}} diretos",
+    "secondaryReferrals_one": "{{count}} secundários",
+    "secondaryReferrals_other": "{{count}} secundários",
+    "retry": "Tentar novamente"
   },
   "features": {
     "title": "Solicitações de recursos",

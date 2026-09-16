@@ -148,7 +148,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
     "noWalletAddress": "No wallet address found",
-    "assets": "Bates"
+    "assets": "Bates",
+    "hidden": "Versteek",
+    "noDataForPeriod": "Nog geen data vir hierdie tydperk nie",
+    "affiliates": "Vennote",
+    "directReferrals_one": "{{count}} direk",
+    "directReferrals_other": "{{count}} direk",
+    "secondaryReferrals_one": "{{count}} sekondêr",
+    "secondaryReferrals_other": "{{count}} sekondêr",
+    "retry": "Probeer weer"
   },
   "notifications": {
     "title": "Kennisgewings",

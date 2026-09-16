@@ -1280,7 +1280,15 @@
     "balanceTooLow": "יתרה נמוכה מדי ({{balance}} DHB)",
     "refreshFailed": "אירעה שגיאה",
     "noWalletAddress": "כתובת ארנק לא זמינה",
-    "assets": "נכסים"
+    "assets": "נכסים",
+    "hidden": "מוסתר",
+    "noDataForPeriod": "אין עדיין נתונים לתקופה זו",
+    "affiliates": "שותפים",
+    "directReferrals_one": "{{count}} ישירים",
+    "directReferrals_other": "{{count}} ישירים",
+    "secondaryReferrals_one": "{{count}} משניים",
+    "secondaryReferrals_other": "{{count}} משניים",
+    "retry": "נסו שוב"
   },
   "features": {
     "title": "בקשות תכונות",

@@ -1378,7 +1378,15 @@
     "balanceTooLow": "Saldo terlalu rendah ({{balance}} DHB)",
     "refreshFailed": "Terjadi kesalahan",
     "noWalletAddress": "Alamat dompet tidak ditemukan",
-    "assets": "Aset"
+    "assets": "Aset",
+    "hidden": "Disembunyikan",
+    "noDataForPeriod": "Belum ada data untuk periode ini",
+    "affiliates": "Afiliasi",
+    "directReferrals_one": "{{count}} langsung",
+    "directReferrals_other": "{{count}} langsung",
+    "secondaryReferrals_one": "{{count}} tingkat dua",
+    "secondaryReferrals_other": "{{count}} tingkat dua",
+    "retry": "Coba lagi"
   },
   "features": {
     "title": "Permintaan Fitur",

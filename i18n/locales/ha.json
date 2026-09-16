@@ -1355,7 +1355,15 @@
     "balanceTooLow": "Ma'auni ya yi ƙasa ({{balance}} DHB)",
     "refreshFailed": "Wani abu ya yi kuskure",
     "noWalletAddress": "Ba a sami adireshin walat ba",
-    "assets": "Kadarori"
+    "assets": "Kadarori",
+    "hidden": "Ɓoye",
+    "noDataForPeriod": "Babu bayanai na wannan lokaci tukuna",
+    "affiliates": "Abokan haɗi",
+    "directReferrals_one": "{{count}} kai tsaye",
+    "directReferrals_other": "{{count}} kai tsaye",
+    "secondaryReferrals_one": "{{count}} na biyu",
+    "secondaryReferrals_other": "{{count}} na biyu",
+    "retry": "Sake gwadawa"
   },
   "features": {
     "title": "Buƙatun Fasaloli",

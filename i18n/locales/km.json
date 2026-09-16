@@ -1327,7 +1327,15 @@
     "balanceTooLow": "Balance too low ({{balance}} DHB)",
     "refreshFailed": "Something went wrong",
     "noWalletAddress": "No wallet address found",
-    "assets": "ទ្រព្យសកម្ម"
+    "assets": "ទ្រព្យសកម្ម",
+    "hidden": "បានលាក់",
+    "noDataForPeriod": "មិនទាន់មានទិន្នន័យសម្រាប់រយៈពេលនេះទេ",
+    "affiliates": "ដៃគូ",
+    "directReferrals_one": "{{count}} ផ្ទាល់",
+    "directReferrals_other": "{{count}} ផ្ទាល់",
+    "secondaryReferrals_one": "{{count}} កម្រិតទីពីរ",
+    "secondaryReferrals_other": "{{count}} កម្រិតទីពីរ",
+    "retry": "ព្យាយាមម្ដងទៀត"
   },
   "explorePage": {
     "searchPlaceholder": "ស្វែងរកមនុស្ស ការបង្ហោះ ឬមាតិកា...",

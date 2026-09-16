@@ -1288,7 +1288,15 @@
     "balanceTooLow": "Баланс тым төмен ({{balance}} DHB)",
     "refreshFailed": "Бірдеңе дұрыс болмады",
     "noWalletAddress": "Әмиян мекенжайы табылмады",
-    "assets": "Активтер"
+    "assets": "Активтер",
+    "hidden": "Жасырын",
+    "noDataForPeriod": "Бұл кезеңге әзірге деректер жоқ",
+    "affiliates": "Серіктестер",
+    "directReferrals_one": "{{count}} тікелей",
+    "directReferrals_other": "{{count}} тікелей",
+    "secondaryReferrals_one": "{{count}} екінші деңгей",
+    "secondaryReferrals_other": "{{count}} екінші деңгей",
+    "retry": "Қайта көру"
   },
   "explorePage": {
     "searchPlaceholder": "Адамдарды, жазбаларды немесе мазмұнды іздеу...",

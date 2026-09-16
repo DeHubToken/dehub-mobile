@@ -1270,7 +1270,15 @@
     "balanceTooLow": "ਬੈਲੰਸ ਬਹੁਤ ਘੱਟ ({{balance}} DHB)",
     "refreshFailed": "ਗ਼ਲਤੀ ਹੋਈ",
     "noWalletAddress": "ਵਾਲਿਟ ਐਡਰੈੱਸ ਨਹੀਂ ਮਿਲਿਆ",
-    "assets": "ਸੰਪਤੀਆਂ"
+    "assets": "ਸੰਪਤੀਆਂ",
+    "hidden": "ਲੁਕਾਇਆ",
+    "noDataForPeriod": "ਇਸ ਮਿਆਦ ਲਈ ਅਜੇ ਕੋਈ ਡੇਟਾ ਨਹੀਂ",
+    "affiliates": "ਐਫੀਲੀਏਟ",
+    "directReferrals_one": "{{count}} ਸਿੱਧੇ",
+    "directReferrals_other": "{{count}} ਸਿੱਧੇ",
+    "secondaryReferrals_one": "{{count}} ਦੂਜੇ ਪੱਧਰ ਦੇ",
+    "secondaryReferrals_other": "{{count}} ਦੂਜੇ ਪੱਧਰ ਦੇ",
+    "retry": "ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
   },
   "features": {
     "title": "ਫੀਚਰ ਬੇਨਤੀਆਂ",

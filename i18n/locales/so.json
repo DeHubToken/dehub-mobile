@@ -1294,7 +1294,15 @@
     "balanceTooLow": "Miisaanku aad u yar yahay ({{balance}} DHB)",
     "refreshFailed": "Wax baa qaldamay",
     "noWalletAddress": "Cinwaanka jeebka lama helin",
-    "assets": "Hantida"
+    "assets": "Hantida",
+    "hidden": "Qarsoon",
+    "noDataForPeriod": "Weli xog looma hayo muddadan",
+    "affiliates": "Iskaashi",
+    "directReferrals_one": "{{count}} toos ah",
+    "directReferrals_other": "{{count}} toos ah",
+    "secondaryReferrals_one": "{{count}} heerka labaad",
+    "secondaryReferrals_other": "{{count}} heerka labaad",
+    "retry": "Isku day mar kale"
   },
   "explorePage": {
     "searchPlaceholder": "Raadi dadka, qoraallada, ama nuxurka...",

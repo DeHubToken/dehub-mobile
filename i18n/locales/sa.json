@@ -1275,7 +1275,15 @@
     "balanceTooLow": "शेषम् अत्यन्तं न्यूनम् ({{balance}} DHB)",
     "refreshFailed": "किमपि दोषः अभवत्",
     "noWalletAddress": "कोषसङ्केतः न प्राप्तः",
-    "assets": "सम्पत्तयः"
+    "assets": "सम्पत्तयः",
+    "hidden": "गुप्तम्",
+    "noDataForPeriod": "अस्मै कालाय अद्यापि दत्तांशः नास्ति",
+    "affiliates": "सहयोगिनः",
+    "directReferrals_one": "{{count}} प्रत्यक्षाः",
+    "directReferrals_other": "{{count}} प्रत्यक्षाः",
+    "secondaryReferrals_one": "{{count}} द्वितीयाः",
+    "secondaryReferrals_other": "{{count}} द्वितीयाः",
+    "retry": "पुनः प्रयतताम्"
   },
   "explorePage": {
     "searchPlaceholder": "जनान्, प्रकाशनानि, वा विषयम् अन्विष्यतु...",

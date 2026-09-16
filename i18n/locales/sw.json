@@ -1365,7 +1365,15 @@
     "balanceTooLow": "Salio ni dogo sana ({{balance}} DHB)",
     "refreshFailed": "Kitu kimeharibika",
     "noWalletAddress": "Hakuna anwani ya pochi iliyopatikana",
-    "assets": "Mali"
+    "assets": "Mali",
+    "hidden": "Imefichwa",
+    "noDataForPeriod": "Bado hakuna data kwa kipindi hiki",
+    "affiliates": "Washirika",
+    "directReferrals_one": "{{count}} moja kwa moja",
+    "directReferrals_other": "{{count}} moja kwa moja",
+    "secondaryReferrals_one": "{{count}} ngazi ya pili",
+    "secondaryReferrals_other": "{{count}} ngazi ya pili",
+    "retry": "Jaribu tena"
   },
   "features": {
     "title": "Maombi ya Vipengele",

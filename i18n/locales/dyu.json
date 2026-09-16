@@ -1281,7 +1281,15 @@
     "balanceTooLow": "Kɔrɔbɔ ({{balance}} DHB)",
     "refreshFailed": "Kɔrɔbɔ bɔ",
     "noWalletAddress": "Kɔrɔbɔ bɔ",
-    "assets": "Nafolow"
+    "assets": "Nafolow",
+    "hidden": "A dogolen",
+    "noDataForPeriod": "Kunnafoni tɛ nin waati in na fɔlɔ",
+    "affiliates": "Jɛɲɔgɔnw",
+    "directReferrals_one": "{{count}} tilennen",
+    "directReferrals_other": "{{count}} tilennen",
+    "secondaryReferrals_one": "{{count}} filanan",
+    "secondaryReferrals_other": "{{count}} filanan",
+    "retry": "A lajɛ tuguni"
   },
   "explorePage": {
     "searchPlaceholder": "Dɔ, kɔrɔbɔw, fɔlɔw fɛɛrɛ...",

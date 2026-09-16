@@ -1356,7 +1356,15 @@
     "balanceTooLow": "Balans gaty pes ({{balance}} DHB)",
     "refreshFailed": "Ýalňyşlyk ýüze çykdy",
     "noWalletAddress": "Gapjyk salgysy tapylmady",
-    "assets": "Aktiwler"
+    "assets": "Aktiwler",
+    "hidden": "Gizlin",
+    "noDataForPeriod": "Bu döwür üçin entek maglumat ýok",
+    "affiliates": "Hyzmatdaşlar",
+    "directReferrals_one": "{{count}} göni",
+    "directReferrals_other": "{{count}} göni",
+    "secondaryReferrals_one": "{{count}} ikinji dereje",
+    "secondaryReferrals_other": "{{count}} ikinji dereje",
+    "retry": "Gaýtadan synanyş"
   },
   "explorePage": {
     "searchPlaceholder": "Adam, ýazgy ýa-da mazmun gözle...",

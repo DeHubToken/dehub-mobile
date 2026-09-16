@@ -1288,7 +1288,15 @@
     "balanceTooLow": "بيلنس تمام گهٽ ({{balance}} DHB)",
     "refreshFailed": "ڪجهه غلط ٿي ويو",
     "noWalletAddress": "والٽ ايڊريس نه مليو",
-    "assets": "اثاثا"
+    "assets": "اثاثا",
+    "hidden": "لڪيل",
+    "noDataForPeriod": "هن عرصي لاءِ اڃا ڪا ڊيٽا ناهي",
+    "affiliates": "ايفيليٽس",
+    "directReferrals_one": "{{count}} سڌو",
+    "directReferrals_other": "{{count}} سڌو",
+    "secondaryReferrals_one": "{{count}} ٻيو درجو",
+    "secondaryReferrals_other": "{{count}} ٻيو درجو",
+    "retry": "ٻيهر ڪوشش ڪريو"
   },
   "explorePage": {
     "searchPlaceholder": "ماڻهو، پوسٽون يا مواد ڳولهيو...",

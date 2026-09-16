@@ -1371,7 +1371,15 @@
     "balanceTooLow": "Saldo for lav ({{balance}} DHB)",
     "refreshFailed": "Noe gikk galt",
     "noWalletAddress": "Ingen lommebokadresse funnet",
-    "assets": "Eiendeler"
+    "assets": "Eiendeler",
+    "hidden": "Skjult",
+    "noDataForPeriod": "Ingen data for denne perioden ennå",
+    "affiliates": "Partnere",
+    "directReferrals_one": "{{count}} direkte",
+    "directReferrals_other": "{{count}} direkte",
+    "secondaryReferrals_one": "{{count}} sekundære",
+    "secondaryReferrals_other": "{{count}} sekundære",
+    "retry": "Prøv igjen"
   },
   "explorePage": {
     "searchPlaceholder": "Søk etter folk, innlegg eller innhold...",

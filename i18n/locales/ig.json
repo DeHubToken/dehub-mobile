@@ -1362,7 +1362,15 @@
     "balanceTooLow": "Ego dị ala ({{balance}} DHB)",
     "refreshFailed": "Ihe mere njehie",
     "noWalletAddress": "Achọtaghị adreesị obere akpa",
-    "assets": "Akụ"
+    "assets": "Akụ",
+    "hidden": "Zoro ezo",
+    "noDataForPeriod": "Enwebeghị data maka oge a",
+    "affiliates": "Ndị mmekọ",
+    "directReferrals_one": "{{count}} ozugbo",
+    "directReferrals_other": "{{count}} ozugbo",
+    "secondaryReferrals_one": "{{count}} nke abụọ",
+    "secondaryReferrals_other": "{{count}} nke abụọ",
+    "retry": "Nwaa ọzọ"
   },
   "features": {
     "title": "Arịrịọ Atụmatụ",

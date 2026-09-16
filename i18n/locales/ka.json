@@ -1295,7 +1295,15 @@
     "balanceTooLow": "ბალანსი ძალიან დაბალია ({{balance}} DHB)",
     "refreshFailed": "რაღაც შეცდომა მოხდა",
     "noWalletAddress": "საფულის მისამართი ვერ მოიძებნა",
-    "assets": "აქტივები"
+    "assets": "აქტივები",
+    "hidden": "დამალული",
+    "noDataForPeriod": "ამ პერიოდისთვის მონაცემები ჯერ არ არის",
+    "affiliates": "პარტნიორები",
+    "directReferrals_one": "{{count}} პირდაპირი",
+    "directReferrals_other": "{{count}} პირდაპირი",
+    "secondaryReferrals_one": "{{count}} მეორე დონის",
+    "secondaryReferrals_other": "{{count}} მეორე დონის",
+    "retry": "ხელახლა ცდა"
   },
   "explorePage": {
     "searchPlaceholder": "ხალხის, პოსტების ან კონტენტის ძებნა...",
