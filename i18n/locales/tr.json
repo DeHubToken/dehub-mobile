@@ -4087,5 +4087,24 @@
     "close": "Kapat",
     "callbackRequest": "Geri arama isteği",
     "tryAgain": "Tekrar deneyin"
+  },
+  "badgeAscension": {
+    "reached": "{{tier}} seviyesine ulaştınız",
+    "yourBalance": "Bakiyeniz ·{{amount}} DHB",
+    "lines": {
+      "crab": "Bir yerlere gidiyorsunuz",
+      "lobster": "Yüzmeye devam et",
+      "piranha": "Küçük ama ısırıyor",
+      "tortoise": "Yavaş ve istikrarlı bir şekilde buraya geldin",
+      "cobra": "İnsanlar artık yoldan çekiliyor",
+      "octopus": "Her tencerede sekiz kol",
+      "crocodile": "Bu nehri hiçbir şey geçemez",
+      "dolphin": "Artık büyük bir balıksın",
+      "tigerShark": "Su daha da sessizleşti",
+      "greatWhiteShark": "Herkes bilir o yüzgeci",
+      "killerWhale": "Besin zincirinin tepesindesiniz ve paketler halinde avlanıyorsunuz",
+      "blueWhale": "Şimdiye kadar yaşamış en büyük şey. Bu sensin.",
+      "megalodon": "İşte tacınız — artık uygulama telif hakkınız"
+    }
   }
 }

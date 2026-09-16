@@ -3783,5 +3783,11 @@
     "close": "Close",
     "callbackRequest": "Callback request",
     "tryAgain": "Try again"
+  },
+  "badgeAscension": {
+    "lines": {
+      "lobster": "Keep swimming",
+      "octopus": "Eight arms, every pot"
+    }
   }
 }

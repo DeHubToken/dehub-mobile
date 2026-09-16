@@ -4015,5 +4015,24 @@
     "close": "Xir",
     "callbackRequest": "Codsiga dib u celinta",
     "tryAgain": "Isku day mar kale"
+  },
+  "badgeAscension": {
+    "reached": "Waxaad gaadhay {{tier}}",
+    "yourBalance": "Miisaankaaga · {{amount}} DHB",
+    "lines": {
+      "crab": "Waxaad tagtaa goobo.",
+      "lobster": "Sii wad dabaasha",
+      "piranha": "Way yar tahay, laakiin way caajisaa.",
+      "tortoise": "Si tartiib tartiib ah oo joogto ah ayaa halkan kugu soo gaadhay",
+      "cobra": "Dadku hadda way ka baxayaan waddada.",
+      "octopus": "Siddeed gacmood, dheri kasta",
+      "crocodile": "Ma jiro wax webigan ka gudba",
+      "dolphin": "Waxaad tahay kalluun weyn hadda",
+      "tigerShark": "Biyaha ayaa kaliya helay aamusnaan",
+      "greatWhiteShark": "Qof kastaa wuu ogyahay in fin",
+      "killerWhale": "Top of silsiladda cuntada, oo aad ugaarsataan baakadaha",
+      "blueWhale": "Waxa ugu weyn ee abid noolaa. Taasi waa adiga.",
+      "megalodon": "Halkan waa taajkaaga — waxaad tahay app Royalty hadda"
+    }
   }
 }

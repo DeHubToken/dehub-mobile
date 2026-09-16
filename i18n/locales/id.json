@@ -4075,5 +4075,24 @@
     "close": "Tutup",
     "callbackRequest": "Permintaan panggilan balik",
     "tryAgain": "Coba lagi"
+  },
+  "badgeAscension": {
+    "reached": "Anda menghubungi {{tier}}",
+    "yourBalance": "Saldo Anda · {{amount}} DHB",
+    "lines": {
+      "crab": "Anda akan pergi ke berbagai tempat",
+      "lobster": "Terus berenang",
+      "piranha": "Kecil, tapi menggigit",
+      "tortoise": "Lambat dan mantap membawamu ke sini",
+      "cobra": "Orang - orang menyingkir sekarang",
+      "octopus": "Delapan lengan, setiap pot",
+      "crocodile": "Tidak ada yang menyeberangi sungai ini",
+      "dolphin": "Kau ikan besar sekarang",
+      "tigerShark": "Airnya semakin tenang",
+      "greatWhiteShark": "Semua orang tahu sirip itu",
+      "killerWhale": "Bagian atas rantai makanan, dan Anda berburu dalam kemasan",
+      "blueWhale": "Hal terbesar yang pernah ada. Itu kau.",
+      "megalodon": "Ini mahkotamu — kamu royalti aplikasi sekarang"
+    }
   }
 }

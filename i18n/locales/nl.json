@@ -4292,5 +4292,24 @@
     "close": "Sluiten",
     "callbackRequest": "Terugbelverzoek",
     "tryAgain": "Opnieuw proberen"
+  },
+  "badgeAscension": {
+    "reached": "Je hebt {{tier}} bereikt",
+    "yourBalance": "Uw saldo · {{amount}} DHB",
+    "lines": {
+      "crab": "Je gaat naar plekken",
+      "lobster": "Blijven zwemmen",
+      "piranha": "Klein, maar het bijt",
+      "tortoise": "Langzaam en gestaag heb je hier",
+      "cobra": "Mensen gaan nu uit de weg",
+      "octopus": "Acht armen, elke pot",
+      "crocodile": "Niets steekt deze rivier over",
+      "dolphin": "Je bent nu een grote vis",
+      "tigerShark": "Het water is net stiller geworden",
+      "greatWhiteShark": "Iedereen weet dat vin",
+      "killerWhale": "Bovenaan de voedselketen, en je jaagt in pakjes",
+      "blueWhale": "Het grootste ding dat ooit heeft geleefd. Dat ben jij.",
+      "megalodon": "Hier is je kroon — je bent nu app-royalty"
+    }
   }
 }

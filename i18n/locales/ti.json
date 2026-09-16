@@ -3983,5 +3983,24 @@
     "close": "ምዕጻው",
     "callbackRequest": "ናይ ጻውዒት ሕቶ",
     "tryAgain": "እንደገና ፈትኖ"
+  },
+  "badgeAscension": {
+    "reached": "ናብ {{tier}}",
+    "yourBalance": "ባጤራኻ · {{amount}} DHB",
+    "lines": {
+      "crab": "ናብ ቦታታት ትኸይድ",
+      "lobster": "ምሕንባስ",
+      "piranha": "ንእሽቶ እኳ እንተ ዀነ ፡ ግናኸ ፡ ኪስሕብ ይኽእል እዩ ።",
+      "tortoise": "ቀሊልን ቀሊልን ኣብዚ ረኺበካ",
+      "cobra": "ሕጂ ሰባት ካብ መገዲ ወጺኦም",
+      "octopus": "8 ኣእዳው ፡ ነፍሲ ወከፍ ዕቃብ",
+      "crocodile": "ካብ'ዚ ሩባ'ዚ ዝሰግር ነገር የለን ።",
+      "dolphin": "ሕጂ ዓቢ ዓሳ ኢኻ",
+      "tigerShark": "እቲ ማይ ኣዝዩ ጸጥ ኢሉ ነበረ ።",
+      "greatWhiteShark": "እዚ ኩሉ ሰብ ይፈልጦም እዩ",
+      "killerWhale": "ኣብ ላዕሊ ናይ መግቢ ሰንሰለት ፡ ኣብ ፓኬጃት ድማ ትስዕር",
+      "blueWhale": "እቲ ዝዓበየ ነገር ህያው እዩ ። እዚ ናትካ እዩ ።",
+      "megalodon": "እዚ ድማ ዘውዲኻ እዩ — ሕጂ ናይ መተግበሪ ሮያሊቲ ኢኻ"
+    }
   }
 }

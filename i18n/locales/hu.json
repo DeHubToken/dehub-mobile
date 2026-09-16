@@ -4029,5 +4029,24 @@
     "close": "Bezárás",
     "callbackRequest": "Visszahívási kérés",
     "tryAgain": "Próbálkozz újra"
+  },
+  "badgeAscension": {
+    "reached": "Elérted a következő számot:{{tier}}",
+    "yourBalance": "Az egyenleged · {{amount}} DHB",
+    "lines": {
+      "crab": "Helyekre mész",
+      "lobster": "Ússz tovább",
+      "piranha": "Kicsi, de harap",
+      "tortoise": "Lassan és egyenletesen jutottál el idáig",
+      "cobra": "Az emberek most félreállnak az útból",
+      "octopus": "Nyolc kar, minden edény",
+      "crocodile": "Semmi sem szeli át ezt a folyót",
+      "dolphin": "Most már nagy hal vagy",
+      "tigerShark": "A víz csendesebb lett",
+      "greatWhiteShark": "Mindenki tudja, hogy az uszony",
+      "killerWhale": "A tápláléklánc csúcsán vagy, és csomagokban vadászol",
+      "blueWhale": "A legnagyobb dolog, ami valaha is élt. Ez vagy te.",
+      "megalodon": "Íme a koronád — mostantól alkalmazásjogosult vagy"
+    }
   }
 }

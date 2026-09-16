@@ -4053,5 +4053,24 @@
     "close": "Vala",
     "callbackRequest": "Isicelo sokubuyiselwa ucingo",
     "tryAgain": "Zama futhi"
+  },
+  "badgeAscension": {
+    "reached": "Ufinyelele ku- {{tier}}",
+    "yourBalance": "Ibhalansi yakho · {{amount}} DHB",
+    "lines": {
+      "crab": "Uya ezindaweni",
+      "lobster": "Qhubeka nokubhukuda",
+      "piranha": "Incane, kodwa iyaluma",
+      "tortoise": "Ukuhamba kancane nokungaguquguquki kukufikise lapha",
+      "cobra": "Abantu bayasuka endleleni manje",
+      "octopus": "Izingalo eziyisishiyagalombili, yonke imbiza",
+      "crocodile": "Akukho okuwela lo mfula",
+      "dolphin": "Usuyinhlanzi enkulu manje",
+      "tigerShark": "Amanzi asanda kuthula",
+      "greatWhiteShark": "Wonke umuntu uyazi ukuthi isiphetho",
+      "killerWhale": "Phezulu ochungechungeni lokudla, futhi uyazingela ngamaphakethe",
+      "blueWhale": "Into enkulu kunazo zonke ezake zaphila. Nguwe lowo.",
+      "megalodon": "Nanku umqhele wakho — usebukhosini be-app manje"
+    }
   }
 }

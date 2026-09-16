@@ -4023,5 +4023,24 @@
     "close": "Aizvērt",
     "callbackRequest": "Atzvanīšanas pieprasījums",
     "tryAgain": "Mēģināt vēlreiz"
+  },
+  "badgeAscension": {
+    "reached": "Jūs sasniedzāt {{tier}}",
+    "yourBalance": "Jūsu bilance · {{amount}} DHB",
+    "lines": {
+      "crab": "Jūs plānojat doties mājokļos",
+      "lobster": "Turpiniet peldēt",
+      "piranha": "Mazs, bet kož",
+      "tortoise": "Lēnām un vienmērīgi jūs šeit nokļuvāt",
+      "cobra": "Cilvēki tagad pamet ceļu",
+      "octopus": "Astoņas rokas katrā katlā",
+      "crocodile": "Nekas nešķērso šo upi",
+      "dolphin": "Tagad jūs esat liela zivs",
+      "tigerShark": "Ūdens tikko kļuva klusāks",
+      "greatWhiteShark": "Visi zina, ka spura",
+      "killerWhale": "Barības ķēdes augšdaļa, un jūs medījat pakās",
+      "blueWhale": "Lielākais, kas jebkad ir dzīvojis. Tas esi tu.",
+      "megalodon": "Lūk, jūsu kronis — jūs tagad esat aplikācijas autoratlīdzība"
+    }
   }
 }

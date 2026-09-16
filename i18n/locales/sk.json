@@ -4191,5 +4191,24 @@
     "close": "Zatvoriť",
     "callbackRequest": "Žiadosť o spätné volanie",
     "tryAgain": "Skúsiť znova"
+  },
+  "badgeAscension": {
+    "reached": "Dosiahli ste {{tier}}",
+    "yourBalance": "Váš zostatok · {{amount}} DHB",
+    "lines": {
+      "crab": "Cestujete na miesta",
+      "lobster": "Neprestávajte plávať",
+      "piranha": "Malé, ale štípe",
+      "tortoise": "Pomalý a stabilný vás sem dostal",
+      "cobra": "Ľudia sa teraz sťahujú z cesty",
+      "octopus": "Osem ramien, každý hrniec",
+      "crocodile": "Túto rieku nič neprekročí",
+      "dolphin": "Teraz si veľká ryba",
+      "tigerShark": "Voda sa práve utíšila",
+      "greatWhiteShark": "Každý vie, že plutva",
+      "killerWhale": "Horná časť potravinového reťazca a lovíte v balíčkoch",
+      "blueWhale": "Najväčšia vec, ktorá kedy žila. To si ty.",
+      "megalodon": "Tu je vaša koruna — teraz ste app royalty"
+    }
   }
 }

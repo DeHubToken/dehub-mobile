@@ -3994,5 +3994,24 @@
     "close": "Ýap",
     "callbackRequest": "Çakylyk gaýtargy soragy",
     "tryAgain": "Gaýtalaň"
+  },
+  "badgeAscension": {
+    "reached": "{{tier}}",
+    "yourBalance": "Siziň deň-de-sarygyňyz {{amount}} DHB",
+    "lines": {
+      "crab": "Sen ýerlere gidýärsiň",
+      "lobster": "Ýüzmek",
+      "piranha": "Kiçi, ýöne ýuwaş",
+      "tortoise": "Ýuwaş we berk seni bu ýere getirdi",
+      "cobra": "Adamlar indi ýoldan çykýarlar",
+      "octopus": "Sekiz el, her küýze",
+      "crocodile": "Bu derýadan hiç zat geçmeýär",
+      "dolphin": "Sen indi uly balyk",
+      "tigerShark": "Suw diňe sessiz boldy",
+      "greatWhiteShark": "Biz hemmämiziň soňuny bilýändigimiz üçin",
+      "killerWhale": "Iýmit zähmetiniň ýokarsynda, sen bolsa paketlerde awlanýarsyň",
+      "blueWhale": "Bu meniň durmuşymda bolan iň uly waka. Bu sen.",
+      "megalodon": "Bu siziň täç — siz indi App royalty"
+    }
   }
 }
