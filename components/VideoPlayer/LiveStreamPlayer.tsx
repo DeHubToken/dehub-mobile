@@ -52,6 +52,8 @@ import LiveViewerStatusOverlay from "../LiveViewer/LiveViewerStatusOverlay";
 import LiveEventBanner from "../LiveViewer/LiveEventBanner";
 import type { EventBannerData } from "../LiveViewer/LiveEventBanner";
 import { hlsUrlFor } from "../../libs/live-ingest";
+import { useWhepStream } from "../../hooks/useWhepStream";
+import LiveWebRtcView from "../LiveViewer/LiveWebRtcView";
 import { extractReplayUrl } from "../../libs/live-replay";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import LiveViewerPlayerControls from "../LiveViewer/LiveViewerPlayerControls";
@@ -1184,6 +1186,27 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const [isMuted, setIsMuted] = useState(false);
   const toggleMute = useCallback(() => setIsMuted((m) => !m), []);
 
+  /*
+   * The live picture, over WebRTC where that is possible.
+   *
+   * The self-hosted ingest remuxes rather than transcodes, so its HLS ladder
+   * carries the Opus audio the broadcaster published — which Android decodes
+   * and Apple does not, at any layer. On an iPhone that makes a self-hosted
+   * stream unplayable over HLS no matter which surface asks for it, so WebRTC
+   * is not a latency nicety there, it is the only route in. It is also the one
+   * the web app has always preferred on this screen.
+   *
+   * Gated exactly like the URL above: a stream this viewer has not unlocked
+   * never opens a session, so the paywall cannot be stepped around by changing
+   * transport. Any failure — no route, a hostile network, a stream that is not
+   * really on air — falls straight back to the HLS ladder.
+   */
+  const whepLive = useWhepStream({
+    enabled: isPlayable && isLiveEffective && !isPlayingReplay,
+    stream: { playbackId, provider: streamEntity?.provider },
+    muted: isMuted,
+  });
+
   // Immersive: chrome off, status bar off, and the phone turned sideways
   // when the picture is wider than it is tall. The player draws the stream
   // `contain`, so a landscape broadcast on a portrait screen is a band across
@@ -1285,7 +1308,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     <View className="flex-1 dark-surface bg-black">
       {/* Full-screen video player as background */}
       <View className="absolute inset-0">
-        {(isLiveEffective || isEndedEffective) && effectiveVideoUrl ? (
+        {whepLive.stream ? (
+          /* WebRTC is carrying the picture. The chrome below is drawn over
+             whatever renders it, so this swaps in without touching any of it. */
+          <LiveWebRtcView stream={whepLive.stream} />
+        ) : (isLiveEffective || isEndedEffective) && effectiveVideoUrl ? (
           <VideoArea
             isTranscoding={false}
             isLockedOrPPV={!!isLockedOrPPV}
