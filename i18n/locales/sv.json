@@ -672,6 +672,10 @@
     "firstComments_other": "Första {{count}} kommentarer"
   },
   "wallet": {
+    "restoreWrongWallet": "Det öppnar en annan plånbok, inte {{address}}. Inget ändrades.",
+    "unlockNoAccount": "Din plånbok är låst — inget konto är inloggat på den här enheten.",
+    "unlockLookupFailed": "Din plånbok är låst — det gick inte att nå din plånbokspost. Kontrollera anslutningen och försök igen.",
+    "unlockCancelled": "Din plånbok är låst — upplåsningen avbröts, inget skickades.",
     "notReady": "Plånboken är inte redo — försök igen om en stund.",
     "title": "Plånbok",
     "loginRequired": "Logga in för att komma åt din plånbok.",
@@ -3502,6 +3506,10 @@
     "otherChain": "Det här inlägget avvecklas på en annan kedja, så du behöver DHB i din plånbok där."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Jag har den inte — logga ut och börja om",
+    "restoreLocalNote": "Nyckeln stannar bara på den här telefonen.",
+    "restoreMissing": "Den här profilens plånbok finns inte på den här telefonen, så inget kan signeras ännu. Ange dess återställningsfras eller privata nyckel för att hämta hit den.",
+    "restoreTitle": "Återställ din plånbok",
     "writeThemDown": "Skriv ner dem på ett ställe bara du når. Den som har dessa ord har din plånbok — DeHubs support kan varken återställa eller nollställa dem.",
     "noPhraseNoKey": "Varken fras eller nyckel? Då kan den här plånboken bara öppnas från enheten som skapade den — inget på webbplatsen eller hos oss kan återställa den. Logga in på den enheten om du fortfarande har den.",
     "resetExplainer": "Det här ger din inloggning en helt ny, tom plånbok och flyttar ditt konto dit. Det öppnar inte den gamla plånboken — varken den här telefonen, dehub.io eller vi kan — så allt som finns i den stannar där.",

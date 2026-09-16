@@ -1106,6 +1106,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Èyí ń ṣí àpamọ́wọ́ mìíràn, kì í ṣe {{address}}. Kò sí ohun tí ó yípadà.",
+    "unlockNoAccount": "Àpamọ́wọ́ rẹ ti wà ní títì — kò sí àkántì tí ó wọlé lórí ẹ̀rọ yìí.",
+    "unlockLookupFailed": "Àpamọ́wọ́ rẹ ti wà ní títì — a kò lè dé àkọsílẹ̀ àpamọ́wọ́ rẹ. Ṣàyẹ̀wò ìsopọ̀ rẹ kí o sì gbìyànjú lẹ́ẹ̀kan sí i.",
+    "unlockCancelled": "Àpamọ́wọ́ rẹ ti wà ní títì — a fagilé ṣíṣí i, kò sí ohun tí a fi ránṣẹ́.",
     "notReady": "Àpamọ́wọ́ kò tíì ṣetán — gbìyànjú lẹ́ẹ̀kan sí i lẹ́yìn ìgbà díẹ̀.",
     "title": "Àpò Owó",
     "loginRequired": "Wọlé láti wọlé sí àpò owó rẹ.",
@@ -3488,6 +3492,10 @@
     "otherChain": "Ìfìwéránṣẹ́ yìí ń parí lórí ẹ̀wọ̀n mìíràn, nítorí náà o nílò DHB nínú àpamọ́wọ́ rẹ níbẹ̀."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Mi ò ní i — jáde kí o sì bẹ̀rẹ̀ lẹ́ẹ̀kan sí i",
+    "restoreLocalNote": "Kọ́kọ́rọ́ náà wà lórí fóònù yìí nìkan.",
+    "restoreMissing": "Àpamọ́wọ́ profaili yìí kò sí lórí fóònù yìí, nítorí náà kò tíì sí ohun tí a lè fọwọ́ sí. Tẹ gbólóhùn ìmúpadà tàbí kọ́kọ́rọ́ ìkọ̀kọ̀ rẹ̀ láti mú un wá síbí.",
+    "restoreTitle": "Mú àpamọ́wọ́ rẹ padà",
     "writeThemDown": "Kọ wọ́n sí ibi tí ìwọ nìkan lè dé. Ẹnikẹ́ni tí ó bá ní àwọn ọ̀rọ̀ wọ̀nyí ní àpò owó rẹ — àtìlẹ́yìn DeHub kò lè gbà wọ́n padà bẹ́ẹ̀ ni kò lè tún wọn ṣe.",
     "noPhraseNoKey": "Kò sí gbólóhùn àti kò sí kọ́kọ́rọ́? Nígbà náà, ẹ̀rọ tí ó dá àpò owó yìí nìkan ni ó lè ṣí i — kò sí ohunkóhun lórí ojú-òpó tàbí ní ẹ̀gbẹ́ wa tí ó lè gbà á padà. Wọlé lórí ẹ̀rọ yẹn bí ó bá ṣì wà lọ́wọ́ rẹ.",
     "resetExplainer": "Èyí yóò fún ìwọlé rẹ ní àpò owó tuntun tí ó ṣófo, yóò sì kó àkàǹtì rẹ lọ síbẹ̀. Kò ní ṣí àpò owó àtijọ́ — fóònù yìí kò lè, dehub.io kò lè, àwa náà kò lè — nítorí náà ohunkóhun tí ó wà nínú rẹ̀ yóò wà níbẹ̀.",

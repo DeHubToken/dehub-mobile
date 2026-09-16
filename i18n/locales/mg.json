@@ -1029,6 +1029,10 @@
     "txTipReceived": "{{name}} nanome fanomezana anao — {{amount}} DHB"
   },
   "wallet": {
+    "restoreWrongWallet": "Kitapo hafa no sokafan'izany, fa tsy {{address}}. Tsy nisy niova.",
+    "unlockNoAccount": "Mihidy ny kitaponao — tsy misy kaonty tafiditra amin'ity fitaovana ity.",
+    "unlockLookupFailed": "Mihidy ny kitaponao — tsy azo ny firaketan'ny kitaponao. Jereo ny fifandraisanao ary andramo indray.",
+    "unlockCancelled": "Mihidy ny kitaponao — nofoanana ny famohana, tsy nisy nalefa.",
     "notReady": "Tsy vonona ny kitapom-bola — andramo indray afaka kelikely.",
     "title": "Kitapom-bola",
     "loginRequired": "Midira mba hidirana amin'ny kitapom-bolanao.",
@@ -3577,6 +3581,10 @@
     "otherChain": "Vita ao amin'ny rojo hafa ity lahatsoratra ity, ka mila DHB ao amin'ny poketranao any ianao."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Tsy manana izany aho — mivoaha ary manomboha indray",
+    "restoreLocalNote": "Mijanona ao amin'ity finday ity ihany ny fanalahidy.",
+    "restoreMissing": "Tsy ao amin'ity finday ity ny kitapon'ity mombamomba ity, ka mbola tsy misy azo soniavina. Ampidiro ny fehezanteny famerenana na ny fanalahidy manokana mba hitondrana azy eto.",
+    "restoreTitle": "Avereno ny kitaponao",
     "writeThemDown": "Soraty any amin'ny toerana ianao irery no mahatratra. Izay manana ireo teny ireo dia manana ny poketranao — tsy afaka mamerina na mamerina amin'ny laoniny azy ireo ny fanohanana DeHub.",
     "noPhraseNoKey": "Tsy misy andianteny ary tsy misy lakile? Dia tsy azo sokafana afa-tsy amin'ilay fitaovana namorona azy io poketra io — tsy misy na eo amin'ny tranonkala na eo aminay afaka mamerina azy. Midira amin'io fitaovana io raha mbola anananao.",
     "resetExplainer": "Manome poketra vaovao sy foana ho an'ny fidiranao ity ary mamindra ny kaontinao ao. Tsy manokatra ny poketra taloha izy io — tsy vitan'ity finday ity, tsy vitan'ny dehub.io, ary tsy vitanay koa — ka izay ao anatiny dia mijanona ao.",

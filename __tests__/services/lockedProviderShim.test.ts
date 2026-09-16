@@ -22,6 +22,7 @@ jest.mock("../../libs/wallet-lock", () => {
   return {
     WalletLockedError,
     requestWalletUnlock: jest.fn(),
+    takeWalletUnlockRefusal: () => null,
   };
 });
 

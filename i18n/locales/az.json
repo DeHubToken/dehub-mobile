@@ -1099,6 +1099,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Bu {{address}} deyil, başqa bir pulqabını açır. Heç nə dəyişdirilmədi.",
+    "unlockNoAccount": "Pulqabın kilidlidir — bu cihazda daxil olmuş hesab yoxdur.",
+    "unlockLookupFailed": "Pulqabın kilidlidir — pulqabı qeydinə çatmaq mümkün olmadı. Bağlantını yoxla və yenidən cəhd et.",
+    "unlockCancelled": "Pulqabın kilidlidir — kilidin açılması ləğv edildi, heç nə göndərilmədi.",
     "notReady": "Pulqabı hazır deyil — bir azdan yenidən cəhd et.",
     "title": "Cüzdan",
     "loginRequired": "Cüzdanınıza daxil olmaq üçün giriş edin.",
@@ -3482,6 +3486,10 @@
     "otherChain": "Bu paylaşım başqa zəncirdə hesablanır, ona görə orada cüzdanınızda DHB olmalıdır."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Məndə yoxdur — çıx və yenidən başla",
+    "restoreLocalNote": "Açar yalnız bu telefonda qalır.",
+    "restoreMissing": "Bu profilin pulqabı bu telefonda deyil, ona görə hələ heç nə imzalana bilməz. Onu bura gətirmək üçün bərpa ifadəsini və ya şəxsi açarını daxil et.",
+    "restoreTitle": "Pulqabını bərpa et",
     "writeThemDown": "Onları yalnız sizin çata biləcəyiniz yerdə yazın. Bu sözlərə sahib olan hər kəs cüzdanınıza sahibdir — DeHub dəstəyi onları bərpa da, sıfırlaya da bilməz.",
     "noPhraseNoKey": "Nə ifadə var, nə açar? Onda bu cüzdan yalnız onu quran cihazdan açıla bilər — nə saytda, nə də bizim tərəfimizdə onu bərpa edəcək bir şey var. Həmin cihaz hələ də səndədirsə, oradan daxil ol.",
     "resetExplainer": "Bu, girişinizə tamamilə yeni, boş bir cüzdan verir və hesabınızı ona köçürür. Köhnə cüzdanı açmır — nə bu telefon, nə dehub.io, nə də biz aça bilərik — deməli içindəki nə varsa orada qalır.",

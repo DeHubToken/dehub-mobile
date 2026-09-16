@@ -1524,6 +1524,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Ibang wallet ang binubuksan niyan, hindi {{address}}. Walang nabago.",
+    "unlockNoAccount": "Naka-lock ang iyong wallet — walang account na naka-sign in sa device na ito.",
+    "unlockLookupFailed": "Naka-lock ang iyong wallet — hindi maabot ang record ng wallet. Suriin ang koneksyon at subukan ulit.",
+    "unlockCancelled": "Naka-lock ang iyong wallet — kinansela ang pag-unlock, walang naipadala.",
     "notReady": "Hindi pa handa ang wallet — subukan ulit maya-maya.",
     "title": "Wallet",
     "loginRequired": "Log in to access your wallet.",
@@ -3676,6 +3680,10 @@
     "otherChain": "Ang post na ito ay nag-se-settle sa ibang chain, kaya kailangan mo ng DHB sa wallet mo doon."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Wala sa akin — mag-sign out at magsimula ulit",
+    "restoreLocalNote": "Sa teleponong ito lang nananatili ang key.",
+    "restoreMissing": "Wala sa teleponong ito ang wallet ng profile na ito, kaya wala pang mapipirmahan. Ilagay ang recovery phrase o private key nito para dalhin ito rito.",
+    "restoreTitle": "I-restore ang iyong wallet",
     "writeThemDown": "Isulat ang mga ito sa lugar na ikaw lang ang makakarating. Sinumang may hawak ng mga salitang ito ay may hawak ng iyong wallet — hindi ito mababawi o mareresét ng DeHub support.",
     "noPhraseNoKey": "Walang phrase at walang key? Kung gayon, ang wallet na ito ay mabubuksan lang mula sa device na gumawa nito — walang anuman sa website o sa panig namin ang makababawi nito. Mag-sign in sa device na iyon kung nasa iyo pa.",
     "resetExplainer": "Nagbibigay ito sa iyong sign-in ng bagong-bagong, walang lamang wallet, at inililipat doon ang account mo. Hindi nito binubuksan ang lumang wallet — hindi kaya ng teleponong ito, hindi kaya ng dehub.io, at hindi rin namin kaya — kaya ang anumang nasa loob ay mananatili roon.",

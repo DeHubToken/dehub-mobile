@@ -1109,6 +1109,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Tas atver citu maku, nevis {{address}}. Nekas netika mainīts.",
+    "unlockNoAccount": "Jūsu maks ir bloķēts — šajā ierīcē nav pierakstījies neviens konts.",
+    "unlockLookupFailed": "Jūsu maks ir bloķēts — nevarēja piekļūt maka ierakstam. Pārbaudiet savienojumu un mēģiniet vēlreiz.",
+    "unlockCancelled": "Jūsu maks ir bloķēts — atbloķēšana tika atcelta, nekas netika nosūtīts.",
     "notReady": "Maks nav gatavs — mēģini vēlreiz pēc brīža.",
     "title": "Maks",
     "loginRequired": "Piesakieties, lai piekļūtu makam.",
@@ -3497,6 +3501,10 @@
     "otherChain": "Šis ieraksts tiek nokārtots citā ķēdē, tāpēc tur jūsu makā nepieciešams DHB."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Man tās nav — izrakstīties un sākt no jauna",
+    "restoreLocalNote": "Atslēga paliek tikai šajā tālrunī.",
+    "restoreMissing": "Šī profila maks nav šajā tālrunī, tāpēc pagaidām neko nevar parakstīt. Ievadiet tā atkopšanas frāzi vai privāto atslēgu, lai to pārnestu šeit.",
+    "restoreTitle": "Atjaunot maku",
     "writeThemDown": "Pieraksti tos vietā, kur tiec klāt tikai tu. Kam ir šie vārdi, tam ir tavs maks — DeHub atbalsts tos nevar ne atgūt, ne atiestatīt.",
     "noPhraseNoKey": "Nav ne frāzes, ne atslēgas? Tad šo maku var atvērt tikai no ierīces, kurā tas izveidots — ne vietnē, ne mūsu pusē nekas to nevar atgūt. Pieraksties tajā ierīcē, ja tā tev vēl ir.",
     "resetExplainer": "Tas piešķir tavai pierakstīšanās reizei pilnīgi jaunu, tukšu maku un pārceļ uz to tavu kontu. Veco maku tas neatver — to nevar ne šis tālrunis, ne dehub.io, ne mēs — tāpēc viss, kas tajā ir, tur arī paliek.",

@@ -36,6 +36,15 @@ export type WalletSetupRequest =
   | { mode: "unlock"; supabaseUserId: string; address: string; payload: EncryptedPayload }
   | { mode: "biometric-unlock"; supabaseUserId: string; address: string; payload: EncryptedPayload }
   | { mode: "web-passkey-sync"; supabaseUserId: string; address: string }
+  /**
+   * The signed-in profile's wallet is on no device and in no cloud row this
+   * app can open — a Connect Wallet session after a relaunch, an identity
+   * with no wallet row, or no Supabase identity at all. The only way to sign
+   * is to bring the key here: recovery phrase or private key, pinned to the
+   * session's address. With a Supabase identity the restore also writes the
+   * cloud row (password-protected); without one it stays on this phone.
+   */
+  | { mode: "restore"; supabaseUserId: string | null; address: string }
   | {
       mode: "legacy-recovered";
       supabaseUserId: string;
@@ -754,22 +763,28 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       return null;
     }, [normalizedRestoreSecret, restoreSecretValid]);
 
+    // A restore with no cloud identity has no row to protect, so no password.
+    const restoreNeedsPassword = !(request?.mode === "restore" && !request.supabaseUserId);
+
     const canSubmitRestore =
-      restoreSecretValid && password.length >= MIN_PASSWORD_LENGTH && password === confirm;
+      restoreSecretValid &&
+      (!restoreNeedsPassword || (password.length >= MIN_PASSWORD_LENGTH && password === confirm));
 
     const handleRestoreSubmit = useCallback(async () => {
       if (!canSubmitRestore || busy || !onSwitchAccount) return;
       setBusy(true);
       setError(null);
       try {
-        const full = await assessPassword(password);
-        if (!full.acceptable) {
-          setError(
-            full.breached === true
-              ? "This password has appeared in a data breach — choose a different one"
-              : full.warnings[0] || t("walletSetup.chooseStronger")
-          );
-          return;
+        if (restoreNeedsPassword) {
+          const full = await assessPassword(password);
+          if (!full.acceptable) {
+            setError(
+              full.breached === true
+                ? "This password has appeared in a data breach — choose a different one"
+                : full.warnings[0] || t("walletSetup.chooseStronger")
+            );
+            return;
+          }
         }
         await onSwitchAccount(normalizedRestoreSecret, password);
         reset();
@@ -778,7 +793,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       } finally {
         setBusy(false);
       }
-    }, [canSubmitRestore, busy, onSwitchAccount, normalizedRestoreSecret, password, reset]);
+    }, [canSubmitRestore, busy, onSwitchAccount, normalizedRestoreSecret, password, reset, restoreNeedsPassword]);
 
     /** Another copy of this seed exists, so the user is not actually stuck. */
     const hasOtherWayIn = !!otherCopies && (otherCopies.recovery || otherCopies.passkeys > 0);
@@ -822,6 +837,8 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         ? "Unlock on mobile"
         : mode === "legacy-recovered"
         ? "Old account found"
+        : mode === "restore"
+        ? t("walletSetup.restoreTitle")
         : mode === "biometric-unlock"
         ? "Unlock your wallet"
         : "Unlock your wallet";
@@ -1313,6 +1330,89 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                     />
                   )}
                 </>
+              )}
+            </View>
+          )}
+
+          {mode === "restore" && request?.mode === "restore" && (
+            <View>
+              <Text style={[authText.body, { marginBottom: 12 }]}>
+                {t("walletSetup.restoreMissing")}
+              </Text>
+              <View style={styles.summaryCard}>
+                <Text style={[authText.caption, { marginBottom: 4 }]}>{t("walletSetup.profileWalletLabel")}</Text>
+                <Text style={styles.summaryValue}>
+                  {request.address.slice(0, 6)}…{request.address.slice(-4)}
+                </Text>
+              </View>
+              <AuthField
+                label={t("walletSetup.recoveryPhraseLabel")}
+                value={restoreSecret}
+                onChangeText={setRestoreSecret}
+                placeholder={t("walletSetup.phrasePlaceholder")}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoComplete="off"
+                multiline
+                numberOfLines={2}
+                autoFocus
+                style={styles.secretInput}
+              />
+              {!!restoreSecretHint && (
+                <Text style={styles.inlineHint} accessibilityLiveRegion="polite">
+                  {restoreSecretHint}
+                </Text>
+              )}
+              {restoreNeedsPassword ? (
+                <>
+                  <AuthField
+                    label={`New wallet password (min ${MIN_PASSWORD_LENGTH} chars)`}
+                    value={password}
+                    onChangeText={setPassword}
+                    placeholder={t("walletSetup.password")}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    secureTextEntry={!showPw}
+                    textContentType="newPassword"
+                    containerStyle={{ marginTop: 12 }}
+                    trailing={<RevealToggle shown={showPw} onToggle={() => setShowPw((s) => !s)} />}
+                  />
+                  <AuthField
+                    value={confirm}
+                    onChangeText={setConfirm}
+                    placeholder={t("walletSetup.confirmPassword")}
+                    accessibilityLabel={t("walletSetup.confirmPassword")}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    secureTextEntry={!showPw}
+                    textContentType="newPassword"
+                    containerStyle={{ marginTop: 12 }}
+                  />
+                </>
+              ) : (
+                <Text style={[authText.caption, { marginTop: 12 }]}>
+                  {t("walletSetup.restoreLocalNote")}
+                </Text>
+              )}
+              <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
+              <AuthButton
+                variant="primary"
+                label={t("walletSetup.restoreThisWallet")}
+                onPress={handleRestoreSubmit}
+                disabled={!canSubmitRestore}
+                loading={busy}
+                style={{ marginTop: 16 }}
+              />
+              <Text style={[authText.caption, { marginTop: 16 }]}>
+                {t("walletSetup.noPhraseNoKey")}
+              </Text>
+              {!!onResetWallet && (
+                <AuthTextButton
+                  label={t("walletSetup.signOutAndStartOver")}
+                  onPress={() => { void onResetWallet(); }}
+                  disabled={busy}
+                  style={{ marginTop: 8 }}
+                />
               )}
             </View>
           )}

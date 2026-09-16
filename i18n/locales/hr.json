@@ -1110,6 +1110,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "To otvara drugi novčanik, a ne {{address}}. Ništa nije promijenjeno.",
+    "unlockNoAccount": "Vaš novčanik je zaključan — na ovom uređaju nije prijavljen nijedan račun.",
+    "unlockLookupFailed": "Vaš novčanik je zaključan — zapis novčanika nije dostupan. Provjerite vezu i pokušajte ponovno.",
+    "unlockCancelled": "Vaš novčanik je zaključan — otključavanje je otkazano, ništa nije poslano.",
     "notReady": "Novčanik nije spreman — pokušaj ponovno za koji trenutak.",
     "title": "Novčanik",
     "loginRequired": "Prijavite se za pristup novčaniku.",
@@ -3498,6 +3502,10 @@
     "otherChain": "Ova se objava namiruje na drugom lancu pa vam ondje treba DHB u novčaniku."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Nemam je — odjava i početak ispočetka",
+    "restoreLocalNote": "Ključ ostaje samo na ovom telefonu.",
+    "restoreMissing": "Novčanik ovog profila nije na ovom telefonu, pa se još ništa ne može potpisati. Unesite njegovu frazu za oporavak ili privatni ključ da ga prenesete ovdje.",
+    "restoreTitle": "Vratite svoj novčanik",
     "writeThemDown": "Zapiši ih negdje gdje samo ti možeš doći. Tko ima ove riječi, ima tvoj novčanik — DeHub podrška ih ne može vratiti ni resetirati.",
     "noPhraseNoKey": "Nema ni fraze ni ključa? Onda se ovaj novčanik može otvoriti samo s uređaja koji ga je stvorio — ništa na web-stranici ni na našoj strani ne može ga vratiti. Prijavi se na tom uređaju ako ga još imaš.",
     "resetExplainer": "Time tvoja prijava dobiva potpuno novi, prazan novčanik, a račun se prebacuje na njega. Stari novčanik se time ne otvara — ne može ni ovaj telefon, ni dehub.io, ni mi — pa sve što je unutra ostaje ondje.",

@@ -1102,6 +1102,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Nke ahụ na-emeghe obere akpa ego ọzọ, ọ bụghị {{address}}. Ọ dịghị ihe gbanwere.",
+    "unlockNoAccount": "Obere akpa ego gị kpọchiri — ọ dịghị akaụntụ banyere na ngwaọrụ a.",
+    "unlockLookupFailed": "Obere akpa ego gị kpọchiri — enweghị ike iru ndekọ obere akpa ego gị. Lelee njikọ gị ma nwaa ọzọ.",
+    "unlockCancelled": "Obere akpa ego gị kpọchiri — a kagburu mkpọghe ahụ, ọ dịghị ihe ezigara.",
     "notReady": "Obere akpa ego adịghị njikere — nwaa ọzọ ntakịrị oge.",
     "title": "Obere Akpa",
     "loginRequired": "Banye iji nweta ohere obere akpa gị.",
@@ -3476,6 +3480,10 @@
     "otherChain": "Post a na-akwụcha na chain ọzọ, ya mere ị chọrọ DHB n'obere akpa gị ebe ahụ."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Enweghị m ya — pụọ ma malite ọzọ",
+    "restoreLocalNote": "Igodo ahụ na-anọ naanị na ekwentị a.",
+    "restoreMissing": "Obere akpa ego nke profaịlụ a anọghị na ekwentị a, ya mere enweghị ihe a ga-ebinye aka ugbu a. Tinye nkebi ahịrịokwu mgbake ya ma ọ bụ igodo nzuzo ya iji weta ya ebe a.",
+    "restoreTitle": "Weghachi obere akpa ego gị",
     "writeThemDown": "Dee ha n'ebe naanị gị nwere ike iru. Onye ọ bụla nwere okwu ndị a nwere obere akpa gị — nkwado DeHub enweghị ike iweghachi ha ma ọ bụ tọgharịa ha.",
     "noPhraseNoKey": "Enweghị nkebiokwu ma ọ bụ igodo? Mgbe ahụ ọ bụ naanị ngwaọrụ hibere ya ka a ga-eji mepee obere akpa a — ọ dịghị ihe dị na weebụsaịtị ma ọ bụ n'akụkụ anyị nwere ike iweghachi ya. Banye na ngwaọrụ ahụ ma ọ bụrụ na ị ka nwere ya.",
     "resetExplainer": "Nke a na-enye ịbanye gị obere akpa ọhụrụ, nke tọgbọrọ chakoo, ma bufee akaụntụ gị na ya. Ọ naghị emeghe obere akpa ochie — ekwentị a enweghị ike, dehub.io enweghị ike, anyị enweghịkwa — ya mere ihe ọ bụla dị n'ime ya na-anọgide ebe ahụ.",

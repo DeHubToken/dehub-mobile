@@ -1110,6 +1110,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Això obre una altra cartera, no {{address}}. No s'ha canviat res.",
+    "unlockNoAccount": "La teva cartera està bloquejada — no hi ha cap compte amb sessió iniciada en aquest dispositiu.",
+    "unlockLookupFailed": "La teva cartera està bloquejada — no s'ha pogut accedir al registre de la cartera. Revisa la connexió i torna-ho a provar.",
+    "unlockCancelled": "La teva cartera està bloquejada — el desbloqueig s'ha cancel·lat, no s'ha enviat res.",
     "notReady": "La cartera no està a punt: torna-ho a provar d'aquí a un moment.",
     "title": "Cartera",
     "loginRequired": "Inicia sessió per accedir a la teva cartera.",
@@ -3498,6 +3502,10 @@
     "otherChain": "Aquesta publicació es liquida en una altra cadena, així que necessites DHB a la teva cartera allà."
   },
   "walletSetup": {
+    "signOutAndStartOver": "No la tinc — tanca la sessió i comença de nou",
+    "restoreLocalNote": "La clau es queda només en aquest telèfon.",
+    "restoreMissing": "La cartera d'aquest perfil no és en aquest telèfon, així que encara no es pot signar res. Introdueix la frase de recuperació o la clau privada per portar-la aquí.",
+    "restoreTitle": "Restaura la teva cartera",
     "writeThemDown": "Escriu-les en un lloc on només tu puguis arribar. Qui tingui aquestes paraules té la teva cartera: el suport de DeHub no les pot recuperar ni reiniciar.",
     "noPhraseNoKey": "Sense frase ni clau? Llavors aquesta cartera només es pot obrir des del dispositiu que la va crear: res al lloc web ni al nostre costat pot recuperar-la. Inicia sessió en aquell dispositiu si encara el tens.",
     "resetExplainer": "Això dona al teu inici de sessió una cartera nova i buida, i hi mou el teu compte. No obre la cartera antiga: ni aquest telèfon, ni dehub.io, ni nosaltres podem, així que el que hi hagi a dins s'hi queda.",

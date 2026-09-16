@@ -835,6 +835,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Cela ouvre un autre portefeuille, pas {{address}}. Rien n'a été modifié.",
+    "unlockNoAccount": "Votre portefeuille est verrouillé — aucun compte n'est connecté sur cet appareil.",
+    "unlockLookupFailed": "Votre portefeuille est verrouillé — impossible d'atteindre votre enregistrement de portefeuille. Vérifiez votre connexion et réessayez.",
+    "unlockCancelled": "Votre portefeuille est verrouillé — le déverrouillage a été annulé, rien n'a été envoyé.",
     "notReady": "Portefeuille pas prêt — réessayez dans un instant.",
     "title": "Portefeuille",
     "loginRequired": "Connectez-vous pour accéder à votre portefeuille.",
@@ -3572,6 +3576,10 @@
     "otherChain": "Cette publication se règle sur une autre chaîne : il vous faut donc des DHB dans votre portefeuille là-bas."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Je ne l'ai pas — se déconnecter et recommencer",
+    "restoreLocalNote": "La clé reste uniquement sur ce téléphone.",
+    "restoreMissing": "Le portefeuille de ce profil n'est pas sur ce téléphone, donc rien ne peut encore être signé. Saisissez sa phrase de récupération ou sa clé privée pour le rapatrier ici.",
+    "restoreTitle": "Restaurer votre portefeuille",
     "writeThemDown": "Notez-les dans un endroit que vous seul pouvez atteindre. Quiconque détient ces mots détient votre portefeuille — le support DeHub ne peut ni les récupérer ni les réinitialiser.",
     "noPhraseNoKey": "Ni phrase ni clé ? Alors ce portefeuille ne peut être ouvert que depuis l'appareil qui l'a créé — rien sur le site ni de notre côté ne peut le récupérer. Connectez-vous sur cet appareil si vous l'avez encore.",
     "resetExplainer": "Cela donne à votre connexion un portefeuille tout neuf et vide, et y transfère votre compte. Cela n'ouvre pas l'ancien portefeuille — ni ce téléphone, ni dehub.io, ni nous ne le pouvons — donc tout ce qu'il contient y reste.",

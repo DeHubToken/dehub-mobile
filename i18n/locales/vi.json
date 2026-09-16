@@ -1392,6 +1392,10 @@
     }
   },
   "wallet": {
+    "restoreWrongWallet": "Cụm từ này mở một ví khác, không phải {{address}}. Không có gì thay đổi.",
+    "unlockNoAccount": "Ví của bạn đang bị khóa — không có tài khoản nào đăng nhập trên thiết bị này.",
+    "unlockLookupFailed": "Ví của bạn đang bị khóa — không truy cập được bản ghi ví. Kiểm tra kết nối và thử lại.",
+    "unlockCancelled": "Ví của bạn đang bị khóa — thao tác mở khóa đã bị hủy, chưa gửi gì cả.",
     "notReady": "Ví chưa sẵn sàng — thử lại sau giây lát.",
     "title": "Ví",
     "loginRequired": "Đăng nhập để mở ví của bạn.",
@@ -3586,6 +3590,10 @@
     "otherChain": "Bài đăng này quyết toán trên chuỗi khác, nên bạn cần DHB trong ví ở chuỗi đó."
   },
   "walletSetup": {
+    "signOutAndStartOver": "Tôi không có — đăng xuất và bắt đầu lại",
+    "restoreLocalNote": "Khóa chỉ lưu trên điện thoại này.",
+    "restoreMissing": "Ví của hồ sơ này không có trên điện thoại này, nên chưa thể ký gì cả. Nhập cụm từ khôi phục hoặc khóa riêng của ví để đưa nó về đây.",
+    "restoreTitle": "Khôi phục ví của bạn",
     "writeThemDown": "Hãy ghi lại ở nơi chỉ mình bạn tới được. Ai có những từ này là có ví của bạn — bộ phận hỗ trợ DeHub không thể khôi phục cũng không thể đặt lại chúng.",
     "noPhraseNoKey": "Không có cụm từ và cũng không có khóa? Vậy thì ví này chỉ mở được từ thiết bị đã tạo ra nó — không có gì trên trang web hay ở phía chúng tôi khôi phục được. Hãy đăng nhập trên thiết bị đó nếu bạn vẫn còn giữ.",
     "resetExplainer": "Việc này cấp cho đăng nhập của bạn một ví mới hoàn toàn, trống rỗng, và chuyển tài khoản của bạn sang đó. Nó không mở ví cũ — điện thoại này không thể, dehub.io không thể, và chúng tôi cũng không — nên mọi thứ bên trong vẫn ở nguyên đó.",
