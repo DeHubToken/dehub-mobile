@@ -3946,5 +3946,33 @@
     "viewFeed": "ดูฟีดของคุณ",
     "yourChannel": "ช่องของคุณ",
     "yourChannelHint": "วางที่อยู่ช่องของคุณ — แฮนเดิลของมันเองก็ใช้ได้เหมือนกัน"
+  },
+  "calls": {
+    "voiceCall": "DeHub voice call",
+    "videoCall": "DeHub video call",
+    "incoming": "Incoming call",
+    "calling": "Calling...",
+    "connecting": "Connecting...",
+    "connected": "Connected",
+    "decline": "Decline",
+    "accept": "Accept",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "muted": "Muted",
+    "speaker": "ลำโพง",
+    "camera": "Camera",
+    "cameraOff": "Camera off",
+    "flip": "กล้องหมุน",
+    "end": "วางสาย",
+    "minimize": "Minimize",
+    "expand": "Expand",
+    "tapToEnableAudio": "แตะเพื่อเปิดเสียง",
+    "offlineTitle": "ผู้ใช้ดูเหมือนว่าออฟไลน์",
+    "failedTitle": "การโทรล้มเหลว",
+    "offlineDesc": "{{name}} ไม่สามารถรับสายได้ในตอนนี้ ส่งคำขอเรียกกลับและพวกเขาสามารถโทรกลับมาหาคุณได้เมื่อพวกเขาออนไลน์",
+    "failedDesc": "ไม่สามารถทำการโทรให้สำเร็จได้ ตรวจสอบการเชื่อมต่อของคุณและลองอีกครั้ง",
+    "close": "ปิด",
+    "callbackRequest": "คำขอเรียกกลับ",
+    "tryAgain": "ลองอีกครั้ง"
   }
 }

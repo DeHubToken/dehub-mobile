@@ -4155,5 +4155,33 @@
     "viewFeed": "Zobraziť váš informačný kanál",
     "yourChannel": "Váš kanál",
     "yourChannelHint": "Prilepte adresu svojho kanála — rukoväť funguje aj sama o sebe."
+  },
+  "calls": {
+    "voiceCall": "Hlasový hovor DeHub",
+    "videoCall": "Videohovor DeHub",
+    "incoming": "Prichádzajúci hovor",
+    "calling": "Volá sa...",
+    "connecting": "Pripája sa...",
+    "connected": "Pripojené",
+    "decline": "Odmietnuť",
+    "accept": "Prijať",
+    "mute": "Stlmiť",
+    "unmute": "Zrušiť stlmenie",
+    "muted": "Stlmené",
+    "speaker": "Reproduktor",
+    "camera": "Fotoaparát",
+    "cameraOff": "Kamera je vypnutá",
+    "flip": "Prevrátiť kameru",
+    "end": "Zavesiť",
+    "minimize": "Minimalizovať",
+    "expand": "Rozbaliť",
+    "tapToEnableAudio": "Ťuknutím povolíte zvuk",
+    "offlineTitle": "Zdá sa, že používateľ je offline",
+    "failedTitle": "Hovor zlyhal",
+    "offlineDesc": "{{name}} momentálne nie je k dispozícii pre hovory. Pošlite žiadosť o spätné volanie a keď budú online, môžu vám zavolať späť.",
+    "failedDesc": "Hovor sa nepodarilo dokončiť. Skontrolujte pripojenie a skúste to znova.",
+    "close": "Zatvoriť",
+    "callbackRequest": "Žiadosť o spätné volanie",
+    "tryAgain": "Skúsiť znova"
   }
 }

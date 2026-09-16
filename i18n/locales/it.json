@@ -4060,5 +4060,33 @@
     "viewFeed": "Visualizza il tuo feed",
     "yourChannel": "Il tuo canale",
     "yourChannelHint": "Incolla l'indirizzo del tuo canale: anche la maniglia funziona da sola."
+  },
+  "calls": {
+    "voiceCall": "Chiamata vocale DeHub",
+    "videoCall": "Videochiamata DeHub",
+    "incoming": "Chiamata in arrivo",
+    "calling": "Chiamata in corso...",
+    "connecting": "Connessione in corso...",
+    "connected": "Connesso",
+    "decline": "Rifiuta",
+    "accept": "Accetta",
+    "mute": "Disattiva audio",
+    "unmute": "Riattiva audio",
+    "muted": "Silenziato",
+    "speaker": "Altoparlante",
+    "camera": "Fotocamera",
+    "cameraOff": "Fotocamera spenta",
+    "flip": "Gira la fotocamera",
+    "end": "Riattacca",
+    "minimize": "Riduci a icona",
+    "expand": "Espandi",
+    "tapToEnableAudio": "Tocca per abilitare l'audio",
+    "offlineTitle": "L'utente sembra essere offline",
+    "failedTitle": "Chiamata non riuscita",
+    "offlineDesc": "{{name}} non è disponibile per le chiamate in questo momento. Invia una richiesta di richiamata e ti richiameranno quando saranno online.",
+    "failedDesc": "Impossibile completare la chiamata. Controlla la connessione e riprova.",
+    "close": "Chiudi",
+    "callbackRequest": "Richiesta di richiamata",
+    "tryAgain": "Riprova"
   }
 }

@@ -3978,5 +3978,33 @@
     "viewFeed": "Wo oúnjẹ rẹ",
     "yourChannel": "Ikanni rẹ",
     "yourChannelHint": "Fún àdírẹ̀sì ikanni rẹ — àmúlò lórí àwọn iṣẹ́ tirẹ̀ náà."
+  },
+  "calls": {
+    "voiceCall": "Ìpè ohùn DeHub",
+    "videoCall": "Fídíò DeHub",
+    "incoming": "Ipe ti n bọ",
+    "calling": "Pè...",
+    "connecting": "Ìsopọ̀...",
+    "connected": "Ti sopọ mọ",
+    "decline": "Ìkọ̀sílẹ̀",
+    "accept": "Gba",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "muted": "Muted",
+    "speaker": "Loudspeaker",
+    "camera": "Kamẹra",
+    "cameraOff": "Kamẹra pa",
+    "flip": "Flip kamẹra",
+    "end": "Gbé ara rẹ sókè",
+    "minimize": "Ṣíṣe ìwọ̀nba",
+    "expand": "Faagun",
+    "tapToEnableAudio": "Tẹ lati jẹ ki ohun afetigbọ ṣiṣẹ",
+    "offlineTitle": "Olumulo dabi ẹnipe o wa ni aisinipo",
+    "failedTitle": "Pè kùnà",
+    "offlineDesc": "{{name}} kò sí fún ìpè báyìí. Fi ìpè padà ránṣẹ́ wọ́n sì lè pè ọ́ padà nígbà tí wọ́n bá wà lórí ayélujára.",
+    "failedDesc": "Ìkéde náà kò lè parí. Ṣàyẹ̀wò ìsopọ̀ rẹ kí o sì gbìyànjú lẹ́ẹ̀kan síi.",
+    "close": "Pa",
+    "callbackRequest": "Ibere ipe pada",
+    "tryAgain": "Gbiyanju lẹẹkansi"
   }
 }

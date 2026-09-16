@@ -3974,5 +3974,33 @@
     "viewFeed": "Se feeden din",
     "yourChannel": "Din kanal",
     "yourChannelHint": "Lim inn kanaladressen din – brukernavnet i seg selv fungerer også."
+  },
+  "calls": {
+    "voiceCall": "DeHub-taleanrop",
+    "videoCall": "DeHub-videosamtale",
+    "incoming": "Innkommende anrop",
+    "calling": "Ringjer …",
+    "connecting": "Kobler til",
+    "connected": "Tilkoblet",
+    "decline": "Avslå",
+    "accept": "Godta",
+    "mute": "Demp",
+    "unmute": "Slå av demping",
+    "muted": "Dempet",
+    "speaker": "Høyttaler",
+    "camera": "Kamera",
+    "cameraOff": "Kamera av",
+    "flip": "Vend kamera",
+    "end": "Legg på",
+    "minimize": "Minimer",
+    "expand": "Utvid",
+    "tapToEnableAudio": "Trykk for å aktivere lyd",
+    "offlineTitle": "Brukeren ser ut til å være frakoblet",
+    "failedTitle": "Samtalen mislyktes",
+    "offlineDesc": "{{name}} er ikke tilgjengelig for anrop akkurat nå. Send en tilbakeringingsforespørsel, så kan de ringe deg tilbake når de er online.",
+    "failedDesc": "Samtalen kunne ikke fullføres. Sjekk forbindelsen din og prøv på nytt.",
+    "close": "Lukk",
+    "callbackRequest": "Tilbakeringingsforespørsel",
+    "tryAgain": "Prøv igjen"
   }
 }

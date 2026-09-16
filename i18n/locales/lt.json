@@ -3987,5 +3987,33 @@
     "viewFeed": "Peržiūrėti sklaidos kanalą",
     "yourChannel": "Jūsų kanalas",
     "yourChannelHint": "Įklijuokite savo kanalo adresą — rankena taip pat veikia pati."
+  },
+  "calls": {
+    "voiceCall": "DeHub balso skambutis",
+    "videoCall": "DeHub vaizdo skambutis",
+    "incoming": "Gautas skambutis",
+    "calling": "Skambinama...",
+    "connecting": "Jungiamasi...",
+    "connected": "Sujungta",
+    "decline": "Atmesti",
+    "accept": "Priimti",
+    "mute": "Nutildyti",
+    "unmute": "Įjungti garsą",
+    "muted": "Nutildyta",
+    "speaker": "Garsiakalbis",
+    "camera": "Kamera",
+    "cameraOff": "Kamera išjungta",
+    "flip": "Apvertimo kamera",
+    "end": "Padėti ragelį",
+    "minimize": "Sumažinti",
+    "expand": "Išplėsti",
+    "tapToEnableAudio": "Bakstelėkite, kad įjungtumėte garsą",
+    "offlineTitle": "Vartotojas, atrodo, yra neprisijungęs",
+    "failedTitle": "Skambutis nepavyko",
+    "offlineDesc": "{{name}} šiuo metu negalima skambinti. Siųskite grįžtamojo skambučio prašymą, ir jie galės jums paskambinti, kai bus prisijungę.",
+    "failedDesc": "Skambučio nepavyko atlikti. Patikrinkite savo ryšį ir bandykite dar kartą.",
+    "close": "Uždaryti",
+    "callbackRequest": "Grįžtamojo skambučio prašymas",
+    "tryAgain": "Bandyti dar kartą"
   }
 }

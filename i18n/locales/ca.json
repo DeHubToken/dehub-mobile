@@ -3990,5 +3990,33 @@
     "viewFeed": "Mostra el teu canal",
     "yourChannel": "El teu canal",
     "yourChannelHint": "Enganxa l'adreça del canal, el gestor de les seves pròpies obres també."
+  },
+  "calls": {
+    "voiceCall": "Trucada de veu DeHub",
+    "videoCall": "Videoconferència DeHub",
+    "incoming": "Trucada entrant",
+    "calling": "S'està trucant...",
+    "connecting": "S'està connectant...",
+    "connected": "Connectat",
+    "decline": "Rebutja",
+    "accept": "Accepta",
+    "mute": "Silenciar",
+    "unmute": "Activa el silenci",
+    "muted": "Silenciat",
+    "speaker": "Altaveu",
+    "camera": "Càmera",
+    "cameraOff": "S'ha desactivat la càmera",
+    "flip": "Capgira la càmera",
+    "end": "Penja",
+    "minimize": "Minimitza",
+    "expand": "Amplia",
+    "tapToEnableAudio": "Toca per activar l'àudio",
+    "offlineTitle": "Sembla que l'usuari no està connectat",
+    "failedTitle": "Ha fallat la trucada",
+    "offlineDesc": "{{name}} no està disponible per a trucades en aquest moment. Envia una sol·licitud de devolució de trucada i et podran trucar quan estiguin en línia.",
+    "failedDesc": "No s'ha pogut completar la trucada. Comprova la connexió i torna-ho a provar.",
+    "close": "Tanca",
+    "callbackRequest": "Sol·licitud de devolució de truc",
+    "tryAgain": "Torna-ho a provar"
   }
 }

@@ -3978,5 +3978,33 @@
     "viewFeed": "Duba abincinku",
     "yourChannel": "Tashar ku",
     "yourChannelHint": "Manna adireshin tashar ku — rike a kan ayyukansa ma."
+  },
+  "calls": {
+    "voiceCall": "DeHub kiran murya",
+    "videoCall": "DeHub kiran bidiyo",
+    "incoming": "Kira mai shigowa",
+    "calling": "Kira...",
+    "connecting": "Haɗa...",
+    "connected": "Haɗa",
+    "decline": "Ragewa",
+    "accept": "Yarda",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "muted": "Muted",
+    "speaker": "Loudspeaker",
+    "camera": "Kamara",
+    "cameraOff": "Kamara kashe",
+    "flip": "Flip kamara",
+    "end": "Rataye sama",
+    "minimize": "Minimize",
+    "expand": "Fadada",
+    "tapToEnableAudio": "Tap don kunna sauti",
+    "offlineTitle": "Mai amfani ya bayyana ba tare da layi ba",
+    "failedTitle": "Kira bai yi nasara ba",
+    "offlineDesc": "{{name}} ba samuwa ga kira a yanzu. Aika buƙatar kira kuma za su iya kiran ku a baya lokacin da suke kan layi.",
+    "failedDesc": "Ba za a iya kammala kiran ba. Duba haɗin ku kuma sake gwadawa.",
+    "close": "Kusa",
+    "callbackRequest": "Callback bukatar",
+    "tryAgain": "Gwada kuma"
   }
 }

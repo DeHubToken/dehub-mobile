@@ -4064,5 +4064,33 @@
     "viewFeed": "Afficher votre flux",
     "yourChannel": "Votre chaîne",
     "yourChannelHint": "Collez l'adresse de votre chaîne — la poignée fonctionne également par elle-même."
+  },
+  "calls": {
+    "voiceCall": "Appel vocal DeHub",
+    "videoCall": "Appel vidéo DeHub",
+    "incoming": "Appel entrant",
+    "calling": "Appel en cours...",
+    "connecting": "Connexion en cours...",
+    "connected": "Connecté",
+    "decline": "Refuser",
+    "accept": "Accepter",
+    "mute": "Muet",
+    "unmute": "Désactiver le son",
+    "muted": "Muet",
+    "speaker": "Haut-parleur",
+    "camera": "Caméra",
+    "cameraOff": "Caméra éteinte",
+    "flip": "Caméra à bascule",
+    "end": "Raccrocher",
+    "minimize": "Minimiser",
+    "expand": "Développer",
+    "tapToEnableAudio": "Appuyez pour activer l'audio",
+    "offlineTitle": "L'utilisateur semble être hors ligne",
+    "failedTitle": "Échec de l'appel",
+    "offlineDesc": "{{name}} n'est pas disponible pour les appels pour le moment. Envoyez une demande de rappel et ils peuvent vous rappeler lorsqu'ils sont en ligne.",
+    "failedDesc": "L'appel n'a pas pu être terminé. Vérifiez votre connexion et réessayez.",
+    "close": "Fermer",
+    "callbackRequest": "Demande de rappel",
+    "tryAgain": "Réessayer"
   }
 }

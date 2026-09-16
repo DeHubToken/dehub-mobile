@@ -4051,5 +4051,33 @@
     "viewFeed": "Akışınızı görüntüleyin",
     "yourChannel": "Kanalınız",
     "yourChannelHint": "Kanal adresinizi yapıştırın — tanıtıcı da kendi üzerinde çalışır."
+  },
+  "calls": {
+    "voiceCall": "DeHub sesli arama",
+    "videoCall": "DeHub görüntülü arama",
+    "incoming": "Gelen arama",
+    "calling": "Aranıyor...",
+    "connecting": "Bağlanıyor...",
+    "connected": "Bağlı",
+    "decline": "Reddet",
+    "accept": "Kabul Et",
+    "mute": "Sessize al",
+    "unmute": "Sesi aç",
+    "muted": "Sessize alındı",
+    "speaker": "Hoparlör",
+    "camera": "Kamera",
+    "cameraOff": "Kamera kapalı",
+    "flip": "Kamerayı çevir",
+    "end": "Kapat",
+    "minimize": "Küçült",
+    "expand": "Genişlet",
+    "tapToEnableAudio": "Sesi etkinleştirmek için dokunun",
+    "offlineTitle": "Kullanıcı çevrimdışı görünüyor",
+    "failedTitle": "Arama başarısız oldu",
+    "offlineDesc": "{{name}} şu anda aramalar için kullanılamıyor. Geri arama isteği gönderin, çevrimiçi olduklarında sizi geri arayabilirler.",
+    "failedDesc": "Çağrı tamamlanamadı. Bağlantınızı kontrol edin ve tekrar deneyin.",
+    "close": "Kapat",
+    "callbackRequest": "Geri arama isteği",
+    "tryAgain": "Tekrar deneyin"
   }
 }

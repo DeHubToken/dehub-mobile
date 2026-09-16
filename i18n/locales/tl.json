@@ -4167,5 +4167,32 @@
     "viewFeed": "Tingnan ang iyong feed",
     "yourChannel": "Ang iyong channel",
     "yourChannelHint": "I - paste ang iyong address ng channel — ang hawakan sa sarili nitong mga gawa rin."
+  },
+  "calls": {
+    "videoCall": "DeHub video call",
+    "incoming": "Papasok na tawag",
+    "calling": "Tumatawag...",
+    "connecting": "Kumokonekta...",
+    "connected": "Nakakonekta",
+    "decline": "Tanggihan",
+    "accept": "Tanggapin",
+    "mute": "I - mute",
+    "unmute": "I - unmute",
+    "muted": "Muted",
+    "speaker": "Loudspeaker",
+    "camera": "Camera",
+    "cameraOff": "Naka - off ang camera",
+    "flip": "I - flip ang camera",
+    "end": "Mag - hang up",
+    "minimize": "I - minimize",
+    "expand": "I - expand",
+    "tapToEnableAudio": "I - tap para paganahin ang audio",
+    "offlineTitle": "Mukhang offline ang user",
+    "failedTitle": "Nabigo ang tawag",
+    "offlineDesc": "Hindi available sa ngayon ang {{name}} para sa mga tawag. Magpadala ng isang kahilingan sa callback at maaari silang tumawag sa iyo pabalik kapag sila ay online.",
+    "failedDesc": "Hindi makumpleto ang tawag. Suriin ang iyong koneksyon at subukang muli.",
+    "close": "Isara",
+    "callbackRequest": "Kahilingan sa callback",
+    "tryAgain": "Subukan muli"
   }
 }

@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View, Text, StyleSheet, Modal, StatusBar } from "react-native";
-import { TouchableOpacity } from "react-native";
 import { RtcSurfaceView, VideoSourceType, RenderModeType } from "react-native-agora";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
+import { colors } from "../../theme/colors";
+import { radius } from "../../theme/radius";
 import { useCall } from "../../context/CallContext";
+import { CallIdentity, CallControl, CallControlPanel } from "./CallChrome";
+import { usePeerIdentity } from "./usePeerIdentity";
 
 const VideoCallModal: React.FC = () => {
   const {
@@ -12,52 +17,42 @@ const VideoCallModal: React.FC = () => {
     currentCall,
     isConnecting,
     isMuted,
+    isSpeakerOn,
     isCameraOff,
     callDuration,
     remoteUid,
+    peerAddress,
     endCall,
     toggleMute,
+    toggleSpeaker,
     toggleCamera,
     switchCamera,
   } = useCall();
 
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const [peerName, setPeerName] = useState<string | null>(null);
+  const peer = usePeerIdentity(peerAddress);
 
   const isVideoCall = currentCall?.call_type === "video";
   const isVisible = (isCallActive || isConnecting) && isVideoCall && !!currentCall;
 
-  const peerAddress = currentCall ? currentCall.caller_address : "";
-
-  useEffect(() => {
-    if (!peerAddress) return;
-    setPeerName(null);
-    // TODO: fetch username from API
-  }, [peerAddress]);
-
   if (!isVisible) return null;
 
-  const displayName = peerName
-    ? `@${peerName}`
-    : peerAddress
-      ? `${peerAddress.slice(0, 6)}...${peerAddress.slice(-4)}`
-      : "";
-
   const statusText = isConnecting
-    ? "Connecting..."
+    ? t("calls.connecting")
     : callDuration !== "00:00"
       ? callDuration
-      : "Connected";
+      : t("calls.connected");
 
   return (
     <Modal
-      visible={true}
+      visible
       onRequestClose={endCall}
       statusBarTranslucent
       animationType="fade"
       transparent={false}
     >
-      <StatusBar hidden />
+      <StatusBar barStyle="light-content" />
       <View style={styles.container}>
         {/* Remote video (full-screen) */}
         {remoteUid ? (
@@ -70,9 +65,22 @@ const VideoCallModal: React.FC = () => {
             }}
           />
         ) : (
-          <View style={styles.remotePlaceholder}>
-            <Icon name="Video" size={48} color="rgba(255,255,255,0.3)" />
-            <Text style={styles.waitingText}>{statusText}</Text>
+          // Nobody on the far side yet, so this is the ringing screen: show who
+          // is being called rather than an anonymous camera glyph.
+          <View style={[styles.waiting, { paddingTop: insets.top + 56 }]}>
+            <LinearGradient
+              colors={["#26282B", "#0C0E10", colors.background]}
+              locations={[0, 0.45, 1]}
+              style={StyleSheet.absoluteFill}
+              pointerEvents="none"
+            />
+            <CallIdentity
+              kindIcon="Video"
+              kindLabel={t("calls.videoCall")}
+              name={peer.name}
+              status={statusText}
+              avatarUri={peer.avatarUrl}
+            />
           </View>
         )}
 
@@ -95,48 +103,65 @@ const VideoCallModal: React.FC = () => {
           />
         </View>
 
-        {/* Top bar */}
-        <View style={[styles.topBar, { paddingTop: insets.top > 0 ? insets.top + 8 : 16 }]}>
-          <Text style={styles.name}>{displayName}</Text>
-          <Text style={styles.status}>{statusText}</Text>
-        </View>
+        {/* Name + duration ride over the remote video once it is up */}
+        {!!remoteUid && (
+          <View style={[styles.topBar, { paddingTop: insets.top > 0 ? insets.top + 10 : 18 }]}>
+            <LinearGradient
+              colors={["rgba(1,3,5,0.85)", "rgba(1,3,5,0)"]}
+              style={StyleSheet.absoluteFill}
+              pointerEvents="none"
+            />
+            <Text style={styles.name} numberOfLines={1}>
+              {peer.name}
+            </Text>
+            <Text style={styles.status}>{statusText}</Text>
+          </View>
+        )}
 
-        {/* Bottom controls */}
-        <View style={[styles.controls, { paddingBottom: Math.max(24, insets.bottom + 12) }]}>
-          <TouchableOpacity
-            onPress={toggleMute}
-            style={[styles.ctrlBtn, isMuted && styles.ctrlActive]}
-            accessibilityRole="button"
-            accessibilityLabel={isMuted ? "Unmute microphone" : "Mute microphone"}
-            accessibilityState={{ selected: isMuted }}
-          >
-            <Icon name={isMuted ? "MicOff" : "Mic"} size={22} color="#FFFFFF" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={toggleCamera}
-            style={[styles.ctrlBtn, isCameraOff && styles.ctrlInactive]}
-            accessibilityRole="button"
-            accessibilityLabel={isCameraOff ? "Turn camera on" : "Turn camera off"}
-            accessibilityState={{ selected: isCameraOff }}
-          >
-            <Icon name={isCameraOff ? "VideoOff" : "Video"} size={22} color="#FFFFFF" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={switchCamera}
-            style={styles.ctrlBtn}
-            accessibilityRole="button"
-            accessibilityLabel="Switch camera"
-          >
-            <Icon name="RefreshCw" size={20} color="#FFFFFF" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={endCall}
-            style={styles.endBtn}
-            accessibilityRole="button"
-            accessibilityLabel="End call"
-          >
-            <Icon name="PhoneOff" size={24} color="#FFFFFF" />
-          </TouchableOpacity>
+        {isCameraOff && (
+          <View style={[styles.cameraOffPill, { top: Math.max(60, insets.top + 80) }]}>
+            <Icon name="VideoOff" size={13} color={colors.mutedForeground} />
+            <Text style={styles.cameraOffText}>{t("calls.cameraOff")}</Text>
+          </View>
+        )}
+
+        <View style={styles.controlsDock}>
+          <CallControlPanel>
+            <CallControl
+              icon={isSpeakerOn ? "Volume2" : "Volume1"}
+              label={t("calls.speaker")}
+              onPress={toggleSpeaker}
+              active={isSpeakerOn}
+              small
+            />
+            <CallControl
+              icon={isMuted ? "MicOff" : "Mic"}
+              label={isMuted ? t("calls.unmute") : t("calls.mute")}
+              onPress={toggleMute}
+              active={isMuted}
+              small
+            />
+            <CallControl
+              icon={isCameraOff ? "VideoOff" : "Video"}
+              label={t("calls.camera")}
+              onPress={toggleCamera}
+              active={isCameraOff}
+              small
+            />
+            <CallControl
+              icon="RefreshCw"
+              label={t("calls.flip")}
+              onPress={switchCamera}
+              small
+            />
+            <CallControl
+              icon="PhoneOff"
+              label={t("calls.end")}
+              onPress={endCall}
+              primary
+              small
+            />
+          </CallControlPanel>
         </View>
       </View>
     </Modal>
@@ -146,89 +171,68 @@ const VideoCallModal: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: colors.background,
   },
-  remotePlaceholder: {
-    flex: 1,
+  waiting: {
+    ...StyleSheet.absoluteFillObject,
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#000",
-    gap: 12,
-  },
-  waitingText: {
-    color: "rgba(255,255,255,0.5)",
-    fontSize: 15,
+    paddingHorizontal: 24,
   },
   localVideo: {
     position: "absolute",
     top: 60,
-    right: 16,
-    width: 100,
-    height: 150,
-    borderRadius: 12,
+    left: 16,
+    width: 104,
+    height: 156,
+    borderRadius: radius.xl,
     overflow: "hidden",
-    borderWidth: 2,
-    borderColor: "rgba(255,255,255,0.3)",
-    backgroundColor: "#1D1F21",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.16)",
+    backgroundColor: colors.neutrals[800],
   },
   topBar: {
     position: "absolute",
     top: 0,
     left: 0,
     right: 0,
-    paddingTop: 48,
-    paddingBottom: 12,
+    paddingBottom: 26,
     paddingHorizontal: 20,
-    backgroundColor: "rgba(0,0,0,0.5)",
     alignItems: "center",
   },
   name: {
-    color: "#FFFFFF",
-    fontSize: 16,
+    color: colors.foreground,
+    fontSize: 18,
     fontWeight: "600",
   },
   status: {
-    color: "rgba(255,255,255,0.6)",
+    color: colors.mutedForeground,
     fontSize: 13,
     marginTop: 2,
+    fontVariant: ["tabular-nums"],
   },
-  controls: {
+  cameraOffPill: {
     position: "absolute",
-    bottom: 0,
+    left: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: radius.full,
+    backgroundColor: "rgba(255,255,255,0.10)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.14)",
+  },
+  cameraOffText: {
+    color: colors.mutedForeground,
+    fontSize: 12,
+    fontWeight: "500",
+  },
+  controlsDock: {
+    position: "absolute",
     left: 0,
     right: 0,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 24,
-    paddingHorizontal: 16,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    gap: 16,
-  },
-  ctrlBtn: {
-    width: 52,
-    height: 52,
-    borderRadius: 16,
-    backgroundColor: "rgba(255,255,255,0.12)",
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.15)",
-  },
-  ctrlActive: {
-    backgroundColor: "rgba(255,255,255,0.28)",
-    borderColor: "rgba(255,255,255,0.4)",
-  },
-  ctrlInactive: {
-    backgroundColor: "rgba(255,255,255,0.4)",
-  },
-  endBtn: {
-    width: 60,
-    height: 60,
-    borderRadius: 16,
-    backgroundColor: "rgba(255,255,255,0.15)",
-    alignItems: "center",
-    justifyContent: "center",
+    bottom: 0,
   },
 });
 

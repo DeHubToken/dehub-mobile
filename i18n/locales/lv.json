@@ -3987,5 +3987,33 @@
     "viewFeed": "Skatiet savu plūsmu",
     "yourChannel": "Jūsu kanāls",
     "yourChannelHint": "Ielīmējiet savu kanāla adresi — rokturis darbojas arī pats."
+  },
+  "calls": {
+    "voiceCall": "DeHub balss zvans",
+    "videoCall": "DeHub videozvans",
+    "incoming": "Ienākošais zvans",
+    "calling": "Zvana...",
+    "connecting": "Notiek savienojuma izveide...",
+    "connected": "Savienojums izveidots",
+    "decline": "Noraidīt",
+    "accept": "Apstiprināt",
+    "mute": "Izslēgt skaņu",
+    "unmute": "Ieslēgt skaņu",
+    "muted": "Apklusināts",
+    "speaker": "Skaļrunis",
+    "camera": "Kamera",
+    "cameraOff": "Kamera izslēgta",
+    "flip": "Apvērst kameru",
+    "end": "Nolikt klausuli",
+    "minimize": "Samazināt",
+    "expand": "Izvērst",
+    "tapToEnableAudio": "Pieskarieties, lai iespējotu audio",
+    "offlineTitle": "Šķiet, ka lietotājs ir bezsaistē",
+    "failedTitle": "Zvans neizdevās",
+    "offlineDesc": "{{name}} šobrīd nav pieejams zvaniem. Nosūtiet atzvanīšanas pieprasījumu, un viesis varēs jums atzvanīt, kad būs tiešsaistē.",
+    "failedDesc": "Zvanu nevarēja pabeigt. Pārbaudiet savienojumu un mēģiniet vēlreiz.",
+    "close": "Aizvērt",
+    "callbackRequest": "Atzvanīšanas pieprasījums",
+    "tryAgain": "Mēģināt vēlreiz"
   }
 }
