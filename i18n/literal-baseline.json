@@ -149,7 +149,6 @@
   "components/VideoPlayerCore/index.tsx": 3,
   "components/Wallet/BridgeTab.tsx": 2,
   "components/Wallet/SolanaTab.tsx": 1,
-  "components/auth/LegacyAccountWarningModal.tsx": 9,
   "components/common/AssetSuggestions.tsx": 1,
   "components/common/BoostSheet.tsx": 8,
   "components/common/ChainSelector.tsx": 1,
