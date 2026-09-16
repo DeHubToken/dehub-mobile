@@ -888,7 +888,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Audio u ruajt",
     "audioSaveFailed": "Nuk u ruajt dot ajo pjesë",
-    "generatedWithAssistant": "Krijuar me asistentin e DeHub"
+    "generatedWithAssistant": "Krijuar me asistentin e DeHub",
+    "creatorLibrary": "Biblioteka dhe studioja e krijuesit",
+    "newChat": "Bisedë e re",
+    "chatHistory": "Historiku i bisedave",
+    "postChat": "Biseda e postimit",
+    "clearAll": "Pastro të gjitha",
+    "chats": "Bisedat",
+    "noConversations": "Ende pa biseda",
+    "saveAudio": "Ruaj audion",
+    "postAudio": "Posto audion",
+    "generatingImage": "Po gjenerohet imazhi…",
+    "dehubPoster": "Posteri i DeHub"
   },
   "publicChat": {
     "title": "Bisedë Publike",

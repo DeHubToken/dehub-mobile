@@ -1605,7 +1605,18 @@
     "videoGenFailedDetail": "Генерация видео не удалась: {{error}}",
     "audioSaved": "Аудио сохранено",
     "audioSaveFailed": "Не удалось сохранить этот трек",
-    "generatedWithAssistant": "Создано с помощью ассистента DeHub"
+    "generatedWithAssistant": "Создано с помощью ассистента DeHub",
+    "creatorLibrary": "Библиотека автора и студия",
+    "newChat": "Новый чат",
+    "chatHistory": "История чатов",
+    "postChat": "Чат поста",
+    "clearAll": "Очистить всё",
+    "chats": "Чаты",
+    "noConversations": "Разговоров пока нет",
+    "saveAudio": "Сохранить аудио",
+    "postAudio": "Опубликовать аудио",
+    "generatingImage": "Создание изображения…",
+    "dehubPoster": "Постер DeHub"
   },
   "aiChat": {
     "title": "Ассистент",

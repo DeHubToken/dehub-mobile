@@ -1592,7 +1592,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Zvuk uložen",
     "audioSaveFailed": "Tuto stopu se nepodařilo uložit",
-    "generatedWithAssistant": "Vytvořeno asistentem DeHub"
+    "generatedWithAssistant": "Vytvořeno asistentem DeHub",
+    "creatorLibrary": "Knihovna a studio tvůrce",
+    "newChat": "Nový chat",
+    "chatHistory": "Historie chatů",
+    "postChat": "Chat k příspěvku",
+    "clearAll": "Vymazat vše",
+    "chats": "Chaty",
+    "noConversations": "Zatím žádné konverzace",
+    "saveAudio": "Uložit audio",
+    "postAudio": "Publikovat audio",
+    "generatingImage": "Generuje se obrázek…",
+    "dehubPoster": "Plakát DeHub"
   },
   "aiChat": {
     "title": "Asistent",

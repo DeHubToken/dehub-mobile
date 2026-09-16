@@ -840,7 +840,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Аудио захира шуд",
     "audioSaveFailed": "Ин трекро захира кардан нашуд",
-    "generatedWithAssistant": "Бо ёрдамчии DeHub сохта шудааст"
+    "generatedWithAssistant": "Бо ёрдамчии DeHub сохта шудааст",
+    "creatorLibrary": "Китобхона ва студияи эҷодкор",
+    "newChat": "Чати нав",
+    "chatHistory": "Таърихи чат",
+    "postChat": "Чати паём",
+    "clearAll": "Ҳамаро тоза кардан",
+    "chats": "Чатҳо",
+    "noConversations": "Ҳанӯз сӯҳбат нест",
+    "saveAudio": "Аудиоро захира кунед",
+    "postAudio": "Аудиоро нашр кунед",
+    "generatingImage": "Тасвир эҷод мешавад…",
+    "dehubPoster": "Постери DeHub"
   },
   "publicChat": {
     "title": "Чати оммавӣ",

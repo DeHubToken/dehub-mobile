@@ -847,7 +847,18 @@
     "videoGenFailedDetail": "สร้างวิดีโอไม่สำเร็จ: {{error}}",
     "audioSaved": "บันทึกเสียงแล้ว",
     "audioSaveFailed": "บันทึกเพลงนั้นบ่ได้",
-    "generatedWithAssistant": "สร้างด้วยผู้ช่วย DeHub"
+    "generatedWithAssistant": "สร้างด้วยผู้ช่วย DeHub",
+    "creatorLibrary": "คลังและสตูดิโอของครีเอเตอร์",
+    "newChat": "แจ๊ตใหม่",
+    "chatHistory": "ป๋ะหวัดแจ๊ต",
+    "postChat": "แจ๊ตของโพสต์",
+    "clearAll": "ล้างตังหมด",
+    "chats": "แจ๊ต",
+    "noConversations": "ยังบ่มีบทสนทนา",
+    "saveAudio": "บันทึกเสียง",
+    "postAudio": "โพสต์เสียง",
+    "generatingImage": "กำลังสร้างฮูป…",
+    "dehubPoster": "โปสเตอร์ DeHub"
   },
   "publicChat": {
     "title": "แชทสาธารณะ",

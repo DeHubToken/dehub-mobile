@@ -876,7 +876,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "ध्वनिः संरक्षितः",
     "audioSaveFailed": "तत् गीतं संरक्षितुं न शक्यते",
-    "generatedWithAssistant": "DeHub सहायकेन निर्मितम्"
+    "generatedWithAssistant": "DeHub सहायकेन निर्मितम्",
+    "creatorLibrary": "रचयितुः पुस्तकालयः स्टूडियो च",
+    "newChat": "नूतनः संलापः",
+    "chatHistory": "संलापेतिहासः",
+    "postChat": "प्रकाशनसंलापः",
+    "clearAll": "सर्वं मार्जयतु",
+    "chats": "संलापाः",
+    "noConversations": "अद्यापि संलापाः न सन्ति",
+    "saveAudio": "श्रव्यं रक्षतु",
+    "postAudio": "श्रव्यं प्रकाशयतु",
+    "generatingImage": "चित्रं जन्यते…",
+    "dehubPoster": "DeHub पट्टिका"
   },
   "publicChat": {
     "title": "सार्वजनिकसम्भाषणम्",

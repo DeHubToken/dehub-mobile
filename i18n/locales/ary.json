@@ -887,7 +887,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "تحفظ الصوت",
     "audioSaveFailed": "ما قدرناش نحفظو هاد المقطع",
-    "generatedWithAssistant": "تصاوب بمساعد DeHub"
+    "generatedWithAssistant": "تصاوب بمساعد DeHub",
+    "creatorLibrary": "مكتبة المنشئ والستوديو",
+    "newChat": "محادثة جديدة",
+    "chatHistory": "تاريخ المحادثات",
+    "postChat": "محادثة البوسط",
+    "clearAll": "مسح كلشي",
+    "chats": "المحادثات",
+    "noConversations": "مازال ما كاين محادثات",
+    "saveAudio": "سجل الصوت",
+    "postAudio": "نشر الصوت",
+    "generatingImage": "كيتصاوب التصويرة…",
+    "dehubPoster": "بوستر DeHub"
   },
   "publicChat": {
     "title": "الشات العام",

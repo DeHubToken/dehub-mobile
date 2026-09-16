@@ -885,7 +885,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "ບັນທຶກສຽງແລ້ວ",
     "audioSaveFailed": "ບໍ່ສາມາດບັນທຶກເພງນັ້ນໄດ້",
-    "generatedWithAssistant": "ສ້າງດ້ວຍຜູ້ຊ່ວຍ DeHub"
+    "generatedWithAssistant": "ສ້າງດ້ວຍຜູ້ຊ່ວຍ DeHub",
+    "creatorLibrary": "ຄັງ ແລະ ສະຕູດິໂອຜູ້ສ້າງ",
+    "newChat": "ແຊັດໃໝ່",
+    "chatHistory": "ປະຫວັດແຊັດ",
+    "postChat": "ແຊັດໂພສ",
+    "clearAll": "ລ້າງທັງໝົດ",
+    "chats": "ແຊັດ",
+    "noConversations": "ຍັງບໍ່ມີການສົນທະນາ",
+    "saveAudio": "ບັນທຶກສຽງ",
+    "postAudio": "ໂພສສຽງ",
+    "generatingImage": "ກຳລັງສ້າງຮູບ…",
+    "dehubPoster": "ໂປສເຕີ DeHub"
   },
   "publicChat": {
     "title": "ແຊັດສາທາລະນະ",

@@ -1095,7 +1095,18 @@
     "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
     "audioSaved": "Audio salvat",
     "audioSaveFailed": "Nu s-a putut salva această piesă",
-    "generatedWithAssistant": "Generat cu asistentul DeHub"
+    "generatedWithAssistant": "Generat cu asistentul DeHub",
+    "creatorLibrary": "Biblioteca și studioul creatorului",
+    "newChat": "Conversație nouă",
+    "chatHistory": "Istoricul conversațiilor",
+    "postChat": "Conversație despre postare",
+    "clearAll": "Șterge tot",
+    "chats": "Conversații",
+    "noConversations": "Încă nicio conversație",
+    "saveAudio": "Salvează audio",
+    "postAudio": "Publică audio",
+    "generatingImage": "Se generează imaginea…",
+    "dehubPoster": "Poster DeHub"
   },
   "publicChat": {
     "title": "Public Chat",

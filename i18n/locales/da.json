@@ -1593,7 +1593,18 @@
     "videoGenFailedDetail": "Videogenerering mislykkedes: {{error}}",
     "audioSaved": "Lyd gemt",
     "audioSaveFailed": "Kunne ikke gemme dette nummer",
-    "generatedWithAssistant": "Genereret med DeHub-assistenten"
+    "generatedWithAssistant": "Genereret med DeHub-assistenten",
+    "creatorLibrary": "Skaberbibliotek og studie",
+    "newChat": "Ny chat",
+    "chatHistory": "Chathistorik",
+    "postChat": "Opslagschat",
+    "clearAll": "Ryd alle",
+    "chats": "Chats",
+    "noConversations": "Ingen samtaler endnu",
+    "saveAudio": "Gem lyd",
+    "postAudio": "Del lyd",
+    "generatingImage": "Genererer billede…",
+    "dehubPoster": "DeHub-plakat"
   },
   "aiChat": {
     "title": "Assistent",

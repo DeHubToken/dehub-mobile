@@ -886,7 +886,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Umsindo ulondoloziwe",
     "audioSaveFailed": "Ayikwazanga ukulondoloza leyo ngoma",
-    "generatedWithAssistant": "Kwenziwe ngomsizi we-DeHub"
+    "generatedWithAssistant": "Kwenziwe ngomsizi we-DeHub",
+    "creatorLibrary": "Umtapo nesitudiyo somdali",
+    "newChat": "Ingxoxo entsha",
+    "chatHistory": "Umlando wengxoxo",
+    "postChat": "Ingxoxo yokuthunyelwe",
+    "clearAll": "Sula konke",
+    "chats": "Izingxoxo",
+    "noConversations": "Azikho izingxoxo okwamanje",
+    "saveAudio": "Londoloza umsindo",
+    "postAudio": "Thumela umsindo",
+    "generatingImage": "Kwakhiwa isithombe…",
+    "dehubPoster": "Iphosta le-DeHub"
   },
   "publicChat": {
     "title": "Ingxoxo Yomphakathi",

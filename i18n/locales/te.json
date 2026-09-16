@@ -1586,7 +1586,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "ఆడియో సేవ్ చేయబడింది",
     "audioSaveFailed": "ఆ ట్రాక్‌ను సేవ్ చేయలేకపోయాము",
-    "generatedWithAssistant": "DeHub అసిస్టెంట్‌తో రూపొందించబడింది"
+    "generatedWithAssistant": "DeHub అసిస్టెంట్‌తో రూపొందించబడింది",
+    "creatorLibrary": "క్రియేటర్ లైబ్రరీ మరియు స్టూడియో",
+    "newChat": "కొత్త చాట్",
+    "chatHistory": "చాట్ చరిత్ర",
+    "postChat": "పోస్ట్ చాట్",
+    "clearAll": "అన్నీ క్లియర్ చేయండి",
+    "chats": "చాట్‌లు",
+    "noConversations": "ఇంకా సంభాషణలు లేవు",
+    "saveAudio": "ఆడియో సేవ్ చేయండి",
+    "postAudio": "ఆడియో పోస్ట్ చేయండి",
+    "generatingImage": "చిత్రం రూపొందుతోంది…",
+    "dehubPoster": "DeHub పోస్టర్"
   },
   "aiChat": {
     "title": "సహాయకుడు",

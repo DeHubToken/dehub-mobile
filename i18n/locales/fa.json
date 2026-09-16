@@ -886,7 +886,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "صدا ذخیره شد",
     "audioSaveFailed": "ذخیره این قطعه ممکن نشد",
-    "generatedWithAssistant": "ساخته‌شده با دستیار DeHub"
+    "generatedWithAssistant": "ساخته‌شده با دستیار DeHub",
+    "creatorLibrary": "کتابخانه و استودیوی سازنده",
+    "newChat": "گفتگوی جدید",
+    "chatHistory": "تاریخچه گفتگو",
+    "postChat": "گفتگوی پست",
+    "clearAll": "پاک کردن همه",
+    "chats": "گفتگوها",
+    "noConversations": "هنوز گفتگویی نیست",
+    "saveAudio": "ذخیره صدا",
+    "postAudio": "انتشار صدا",
+    "generatingImage": "در حال ساخت تصویر…",
+    "dehubPoster": "پوستر DeHub"
   },
   "publicChat": {
     "title": "گفتگوی عمومی",

@@ -887,7 +887,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Heli salvestatud",
     "audioSaveFailed": "Seda lugu ei õnnestunud salvestada",
-    "generatedWithAssistant": "Loodud DeHubi assistendiga"
+    "generatedWithAssistant": "Loodud DeHubi assistendiga",
+    "creatorLibrary": "Looja raamatukogu ja stuudio",
+    "newChat": "Uus vestlus",
+    "chatHistory": "Vestluste ajalugu",
+    "postChat": "Postituse vestlus",
+    "clearAll": "Kustuta kõik",
+    "chats": "Vestlused",
+    "noConversations": "Vestlusi veel pole",
+    "saveAudio": "Salvesta heli",
+    "postAudio": "Postita heli",
+    "generatingImage": "Pildi loomine…",
+    "dehubPoster": "DeHubi plakat"
   },
   "publicChat": {
     "title": "Avalik vestlus",

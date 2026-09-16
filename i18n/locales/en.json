@@ -954,7 +954,18 @@
     "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
     "audioSaved": "Audio saved",
     "audioSaveFailed": "Could not save that track",
-    "generatedWithAssistant": "Generated with the DeHub assistant"
+    "generatedWithAssistant": "Generated with the DeHub assistant",
+    "creatorLibrary": "Creator library and studio",
+    "newChat": "New chat",
+    "chatHistory": "Chat history",
+    "postChat": "Post chat",
+    "clearAll": "Clear all",
+    "chats": "Chats",
+    "noConversations": "No conversations yet",
+    "saveAudio": "Save audio",
+    "postAudio": "Post audio",
+    "generatingImage": "Generating image…",
+    "dehubPoster": "DeHub poster"
   },
   "publicChat": {
     "title": "Public Chat",

@@ -877,7 +877,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "ଅଡିଓ ସେଭ୍ ହୋଇଛି",
     "audioSaveFailed": "ସେହି ଟ୍ରାକ୍ ସେଭ୍ କରିହେଲା ନାହିଁ",
-    "generatedWithAssistant": "DeHub ସହାୟକ ଦ୍ୱାରା ପ୍ରସ୍ତୁତ"
+    "generatedWithAssistant": "DeHub ସହାୟକ ଦ୍ୱାରା ପ୍ରସ୍ତୁତ",
+    "creatorLibrary": "ନିର୍ମାତା ଲାଇବ୍ରେରୀ ଓ ଷ୍ଟୁଡିଓ",
+    "newChat": "ନୂଆ ଚାଟ୍",
+    "chatHistory": "ଚାଟ୍ ଇତିହାସ",
+    "postChat": "ପୋଷ୍ଟ ଚାଟ୍",
+    "clearAll": "ସବୁ ସଫା କରନ୍ତୁ",
+    "chats": "ଚାଟ୍",
+    "noConversations": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ବାର୍ତ୍ତାଳାପ ନାହିଁ",
+    "saveAudio": "ଅଡିଓ ସଞ୍ଚୟ କରନ୍ତୁ",
+    "postAudio": "ଅଡିଓ ପୋଷ୍ଟ କରନ୍ତୁ",
+    "generatingImage": "ଛବି ତିଆରି ହେଉଛି…",
+    "dehubPoster": "DeHub ପୋଷ୍ଟର"
   },
   "publicChat": {
     "title": "ସାର୍ବଜନୀନ ଚ୍ୟାଟ",

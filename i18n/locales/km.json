@@ -900,7 +900,18 @@
     "whatsHappeningNews": "What's happening in the news today?",
     "audioSaved": "បានរក្សាទុកសំឡេង",
     "audioSaveFailed": "មិនអាចរក្សាទុកបទនោះបានទេ",
-    "generatedWithAssistant": "បង្កើតដោយជំនួយការ DeHub"
+    "generatedWithAssistant": "បង្កើតដោយជំនួយការ DeHub",
+    "creatorLibrary": "បណ្ណាល័យ និងស្ទូឌីយោអ្នកបង្កើត",
+    "newChat": "ការជជែកថ្មី",
+    "chatHistory": "ប្រវត្តិការជជែក",
+    "postChat": "ការជជែកអំពីប្រកាស",
+    "clearAll": "សម្អាតទាំងអស់",
+    "chats": "ការជជែក",
+    "noConversations": "មិនទាន់មានការសន្ទនាទេ",
+    "saveAudio": "រក្សាទុកសំឡេង",
+    "postAudio": "ប្រកាសសំឡេង",
+    "generatingImage": "កំពុងបង្កើតរូបភាព…",
+    "dehubPoster": "ផ្ទាំងរូបភាព DeHub"
   },
   "publicChat": {
     "title": "ជជែកសាធារណៈ",

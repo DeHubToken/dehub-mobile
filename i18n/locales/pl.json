@@ -1150,7 +1150,18 @@
     "loginRequired": "Zaloguj się, aby uzyskać dostęp do Asystenta AI i odblokować funkcje takie jak generowanie obrazów i filmów.",
     "audioSaved": "Dźwięk zapisany",
     "audioSaveFailed": "Nie udało się zapisać tego utworu",
-    "generatedWithAssistant": "Wygenerowano z asystentem DeHub"
+    "generatedWithAssistant": "Wygenerowano z asystentem DeHub",
+    "creatorLibrary": "Biblioteka i studio twórcy",
+    "newChat": "Nowy czat",
+    "chatHistory": "Historia czatów",
+    "postChat": "Czat posta",
+    "clearAll": "Wyczyść wszystko",
+    "chats": "Czaty",
+    "noConversations": "Brak rozmów",
+    "saveAudio": "Zapisz dźwięk",
+    "postAudio": "Opublikuj dźwięk",
+    "generatingImage": "Generowanie obrazu…",
+    "dehubPoster": "Plakat DeHub"
   },
   "publicChat": {
     "title": "Czat publiczny",

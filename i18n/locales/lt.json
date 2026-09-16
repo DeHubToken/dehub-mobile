@@ -887,7 +887,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Garso įrašas išsaugotas",
     "audioSaveFailed": "Nepavyko išsaugoti šio takelio",
-    "generatedWithAssistant": "Sukurta su DeHub asistentu"
+    "generatedWithAssistant": "Sukurta su DeHub asistentu",
+    "creatorLibrary": "Kūrėjo biblioteka ir studija",
+    "newChat": "Naujas pokalbis",
+    "chatHistory": "Pokalbių istorija",
+    "postChat": "Įrašo pokalbis",
+    "clearAll": "Išvalyti viską",
+    "chats": "Pokalbiai",
+    "noConversations": "Pokalbių dar nėra",
+    "saveAudio": "Išsaugoti garsą",
+    "postAudio": "Paskelbti garsą",
+    "generatingImage": "Kuriamas paveikslėlis…",
+    "dehubPoster": "DeHub plakatas"
   },
   "publicChat": {
     "title": "Viešas pokalbis",

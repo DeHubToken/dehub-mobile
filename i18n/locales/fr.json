@@ -1225,7 +1225,18 @@
     "videoGenFailedDetail": "Échec de la génération vidéo : {{error}}",
     "audioSaved": "Audio enregistré",
     "audioSaveFailed": "Impossible d'enregistrer cette piste",
-    "generatedWithAssistant": "Généré avec l'assistant DeHub"
+    "generatedWithAssistant": "Généré avec l'assistant DeHub",
+    "creatorLibrary": "Bibliothèque et studio du créateur",
+    "newChat": "Nouvelle conversation",
+    "chatHistory": "Historique des conversations",
+    "postChat": "Conversation de la publication",
+    "clearAll": "Tout effacer",
+    "chats": "Conversations",
+    "noConversations": "Aucune conversation pour l'instant",
+    "saveAudio": "Enregistrer l'audio",
+    "postAudio": "Publier l'audio",
+    "generatingImage": "Génération de l'image…",
+    "dehubPoster": "Affiche DeHub"
   },
   "aiChat": {
     "title": "Assistant",

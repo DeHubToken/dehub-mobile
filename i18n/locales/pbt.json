@@ -874,7 +874,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "غږ خوندي شو",
     "audioSaveFailed": "دا ټریک خوندي نه شو",
-    "generatedWithAssistant": "د DeHub مرستیال سره جوړ شوی"
+    "generatedWithAssistant": "د DeHub مرستیال سره جوړ شوی",
+    "creatorLibrary": "د جوړوونکي کتابتون او سټوډیو",
+    "newChat": "نوې خبرې اترې",
+    "chatHistory": "د خبرو اترو تاریخچه",
+    "postChat": "د پوسټ خبرې اترې",
+    "clearAll": "ټول پاک کړئ",
+    "chats": "خبرې اترې",
+    "noConversations": "تر اوسه خبرې اترې نشته",
+    "saveAudio": "غږ وساتئ",
+    "postAudio": "غږ خپور کړئ",
+    "generatingImage": "انځور جوړېږي…",
+    "dehubPoster": "د DeHub پوستر"
   },
   "publicChat": {
     "title": "عامه چیټ",

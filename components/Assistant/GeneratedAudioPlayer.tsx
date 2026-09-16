@@ -16,6 +16,7 @@ import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'rea
 import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from 'expo-av';
 import Icon from '../ui/Icon';
 import { createLogger } from '../../libs/logger';
+import { useTranslation } from 'react-i18next';
 
 const log = createLogger('GeneratedAudioPlayer');
 
@@ -57,6 +58,7 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
   onSave,
   onPost,
 }) => {
+  const { t } = useTranslation();
   const soundRef = useRef<Audio.Sound | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -183,7 +185,7 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
               style={s.actionBtn}
               activeOpacity={0.7}
               accessibilityRole="button"
-              accessibilityLabel="Save audio"
+              accessibilityLabel={t('assistant.saveAudio')}
             >
               <Icon name="Download" size={16} color="#A6A9AC" />
             </TouchableOpacity>
@@ -194,7 +196,7 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
               style={s.actionBtn}
               activeOpacity={0.7}
               accessibilityRole="button"
-              accessibilityLabel="Post audio"
+              accessibilityLabel={t('assistant.postAudio')}
             >
               <Icon name="Plus" size={16} color="#A6A9AC" />
             </TouchableOpacity>

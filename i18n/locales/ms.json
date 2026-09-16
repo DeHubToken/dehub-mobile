@@ -1344,7 +1344,18 @@
     "loginRequired": "Log in to access the Assistant and unlock powerful features like image and video generation.",
     "audioSaved": "Audio disimpan",
     "audioSaveFailed": "Tidak dapat menyimpan trek itu",
-    "generatedWithAssistant": "Dijana dengan pembantu DeHub"
+    "generatedWithAssistant": "Dijana dengan pembantu DeHub",
+    "creatorLibrary": "Pustaka dan studio pencipta",
+    "newChat": "Sembang baharu",
+    "chatHistory": "Sejarah sembang",
+    "postChat": "Sembang siaran",
+    "clearAll": "Kosongkan semua",
+    "chats": "Sembang",
+    "noConversations": "Belum ada perbualan",
+    "saveAudio": "Simpan audio",
+    "postAudio": "Siarkan audio",
+    "generatingImage": "Menjana imej…",
+    "dehubPoster": "Poster DeHub"
   },
   "publicChat": {
     "title": "Public Chat",

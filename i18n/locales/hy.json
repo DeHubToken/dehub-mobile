@@ -852,7 +852,18 @@
     "videoGenFailedDetail": "Video generation failed: {{error}}",
     "audioSaved": "Ձայնը պահպանվեց",
     "audioSaveFailed": "Չհաջողվեց պահպանել այդ ձայնագրությունը",
-    "generatedWithAssistant": "Ստեղծվել է DeHub օգնականով"
+    "generatedWithAssistant": "Ստեղծվել է DeHub օգնականով",
+    "creatorLibrary": "Հեղինակի գրադարան և ստուդիա",
+    "newChat": "Նոր զրույց",
+    "chatHistory": "Զրույցների պատմություն",
+    "postChat": "Գրառման զրույց",
+    "clearAll": "Մաքրել բոլորը",
+    "chats": "Զրույցներ",
+    "noConversations": "Զրույցներ դեռ չկան",
+    "saveAudio": "Պահել աուդիոն",
+    "postAudio": "Հրապարակել աուդիոն",
+    "generatingImage": "Նկարը ստեղծվում է…",
+    "dehubPoster": "DeHub պաստառ"
   },
   "publicChat": {
     "title": "Hanrayin Chat",

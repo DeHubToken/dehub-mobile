@@ -868,7 +868,18 @@
     "loginRequired": "Inicia sesión para acceder al Asistente IA y desbloquear funciones como generación de imágenes y vídeos.",
     "audioSaved": "Audio guardado",
     "audioSaveFailed": "No se pudo guardar esa pista",
-    "generatedWithAssistant": "Generado con el asistente de DeHub"
+    "generatedWithAssistant": "Generado con el asistente de DeHub",
+    "creatorLibrary": "Biblioteca y estudio del creador",
+    "newChat": "Chat nuevo",
+    "chatHistory": "Historial de chats",
+    "postChat": "Chat de la publicación",
+    "clearAll": "Borrar todo",
+    "chats": "Chats",
+    "noConversations": "Aún no hay conversaciones",
+    "saveAudio": "Guardar audio",
+    "postAudio": "Publicar audio",
+    "generatingImage": "Generando imagen…",
+    "dehubPoster": "Póster de DeHub"
   },
   "publicChat": {
     "title": "Chat Público",
