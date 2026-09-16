@@ -3136,12 +3136,14 @@ export default function UploadScreen() {
         currentSound={attachedSound}
       />
 
-      {/* Live options sheet — Go Live or Start Stage */}
+      {/* Live options sheet — camera, encoder or stage. Sized for three
+          rows: at 35% the third sat below the fold, so adding the encoder
+          route would have buried Stages the way the encoder itself was. */}
       <GlassModal scrollable
         visible={showLiveOptions}
         onClose={() => setShowLiveOptions(false)}
         presentation="bottom"
-        maxHeight="35%"
+        maxHeight="46%"
         blurIntensity={40}
       >
         <View className="p-5">
