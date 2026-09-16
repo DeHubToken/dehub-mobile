@@ -41,7 +41,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import {
   View,
-  type GestureResponderHandlers,
   type LayoutChangeEvent,
 } from "react-native";
 import Animated, {
@@ -238,7 +237,6 @@ interface BandProps {
   hue: number;
   height: number;
   onLayout?: (e: LayoutChangeEvent) => void;
-  panHandlers?: Partial<GestureResponderHandlers>;
 }
 
 /* ─── Static (Default) ──────────────────────────────────────────────────── */
@@ -282,14 +280,13 @@ interface StaticWaveformProps {
   /** Lights the playhead glint. Off in the compact strip, which has no room. */
   isPlaying?: boolean;
   onLayout?: (e: LayoutChangeEvent) => void;
-  panHandlers?: Partial<GestureResponderHandlers>;
 }
 
 /** Width of the glint band, as a fraction of the waveform. */
 const GLINT_FRACTION = 0.09;
 
 export const StaticWaveform: React.FC<StaticWaveformProps> = memo(
-  ({ seed, position, compact, hue, height, isPlaying = false, onLayout, panHandlers }) => {
+  ({ seed, position, compact, hue, height, isPlaying = false, onLayout }) => {
     const count = compact ? COMPACT_BAR_COUNT : BAR_COUNT;
     const bw = compact ? COMPACT_BAR_WIDTH : BAR_WIDTH;
     const bg = compact ? COMPACT_BAR_GAP : BAR_GAP;
@@ -328,7 +325,7 @@ export const StaticWaveform: React.FC<StaticWaveformProps> = memo(
     }));
 
     return (
-      <View onLayout={onLayout} {...(panHandlers || {})} style={{ height: wHeight }}>
+      <View onLayout={onLayout} style={{ height: wHeight }}>
         {/* Unplayed layer — static, never re-renders during seek */}
         <WaveformBars bars={bars} wHeight={wHeight} bw={bw} bg={bg} count={count} color={unplayedColor} />
         {/* Played layer — only clip width changes, bars never re-render */}
@@ -474,7 +471,7 @@ const AnimBar: React.FC<AnimBarProps> = memo(
 );
 
 const BarsVisualizer: React.FC<BandProps & { mode: "bars" | "mirror" }> = memo(
-  ({ seed, isPlaying, hue, height, mode, onLayout, panHandlers }) => {
+  ({ seed, isPlaying, hue, height, mode, onLayout }) => {
     const maxH = mode === "mirror" ? height / 2 - 2 : height;
     const minH = 3;
     const bars = useMemo(() => generateBars(seed, BAR_COUNT), [seed]);
@@ -484,8 +481,7 @@ const BarsVisualizer: React.FC<BandProps & { mode: "bars" | "mirror" }> = memo(
     return (
       <View
         onLayout={onLayout}
-        {...(panHandlers || {})}
-        style={{
+                style={{
           flexDirection: "row",
           alignItems: mode === "mirror" ? "center" : "flex-end",
           height,
@@ -580,7 +576,7 @@ const WaveDot: React.FC<WaveDotProps> = memo(({ clock, drive, t, amp, color }) =
 });
 
 const WaveVisualizer: React.FC<BandProps> = memo(
-  ({ isPlaying, hue, height, seed, onLayout, panHandlers }) => {
+  ({ isPlaying, hue, height, seed, onLayout }) => {
     const clock = useClock(isPlaying, 1900);
     const drive = useDrive(isPlaying);
     const color = tint(hue, 78, 0.85);
@@ -599,8 +595,7 @@ const WaveVisualizer: React.FC<BandProps> = memo(
     return (
       <View
         onLayout={onLayout}
-        {...(panHandlers || {})}
-        style={{ height, flexDirection: "row", alignItems: "center" }}
+                style={{ height, flexDirection: "row", alignItems: "center" }}
       >
         {/* Centre line, so the trace has a zero to swing about. */}
         <View
@@ -673,7 +668,7 @@ const RadialBar: React.FC<RadialBarProps> = memo(
 );
 
 const RadialVisualizer: React.FC<BandProps> = memo(
-  ({ isPlaying, hue, height, onLayout, panHandlers }) => {
+  ({ isPlaying, hue, height, onLayout }) => {
     const { width, handleLayout } = useBandWidth(onLayout);
     const clock = useClock(isPlaying, 2600);
     const drive = useDrive(isPlaying);
@@ -695,7 +690,7 @@ const RadialVisualizer: React.FC<BandProps> = memo(
     );
 
     return (
-      <View onLayout={handleLayout} {...(panHandlers || {})} style={{ height, alignItems: "center" }}>
+      <View onLayout={handleLayout} style={{ height, alignItems: "center" }}>
         <View style={{ width: box, height: box, marginTop: (height - box) / 2 }}>
           {box > 0 && (
             <>
@@ -749,7 +744,7 @@ const SPECTRUM_COLUMNS = 34;
  * seam, and the seed makes a given post always show the same pattern.
  */
 const SpectrumVisualizer: React.FC<BandProps> = memo(
-  ({ seed, isPlaying, hue, height, onLayout, panHandlers }) => {
+  ({ seed, isPlaying, hue, height, onLayout }) => {
     const { width, handleLayout } = useBandWidth(onLayout);
     const drive = useDrive(isPlaying);
     const scroll = useSharedValue(0);
@@ -800,8 +795,7 @@ const SpectrumVisualizer: React.FC<BandProps> = memo(
     return (
       <View
         onLayout={handleLayout}
-        {...(panHandlers || {})}
-        style={{ height, overflow: "hidden", backgroundColor: "rgba(0,0,0,0.35)" }}
+                style={{ height, overflow: "hidden", backgroundColor: "rgba(0,0,0,0.35)" }}
       >
         <Animated.View style={[{ flexDirection: "row", height }, stripStyle]}>
           {colWidth > 0 &&
@@ -876,7 +870,7 @@ const Ring: React.FC<RingProps> = memo(({ clock, drive, index, box, color }) => 
 });
 
 const RingsVisualizer: React.FC<BandProps> = memo(
-  ({ isPlaying, hue, height, onLayout, panHandlers }) => {
+  ({ isPlaying, hue, height, onLayout }) => {
     const { width, handleLayout } = useBandWidth(onLayout);
     const clock = useClock(isPlaying, 2300);
     const drive = useDrive(isPlaying);
@@ -892,7 +886,7 @@ const RingsVisualizer: React.FC<BandProps> = memo(
     });
 
     return (
-      <View onLayout={handleLayout} {...(panHandlers || {})} style={{ height, alignItems: "center" }}>
+      <View onLayout={handleLayout} style={{ height, alignItems: "center" }}>
         <View style={{ width: box, height: box, marginTop: (height - box) / 2, overflow: "hidden" }}>
           {box > 0 && (
             <>
@@ -1007,7 +1001,7 @@ const LobeRing: React.FC<LobeRingProps> = memo(
 );
 
 const PulseVisualizer: React.FC<BandProps> = memo(
-  ({ isPlaying, hue, height, onLayout, panHandlers }) => {
+  ({ isPlaying, hue, height, onLayout }) => {
     const { width, handleLayout } = useBandWidth(onLayout);
     const clock = useClock(isPlaying, 5200);
     const drive = useDrive(isPlaying);
@@ -1023,7 +1017,7 @@ const PulseVisualizer: React.FC<BandProps> = memo(
     });
 
     return (
-      <View onLayout={handleLayout} {...(panHandlers || {})} style={{ height, alignItems: "center" }}>
+      <View onLayout={handleLayout} style={{ height, alignItems: "center" }}>
         <View style={{ width: box, height: box, marginTop: (height - box) / 2 }}>
           {box > 0 && (
             <>
@@ -1139,7 +1133,7 @@ const TerrainRow: React.FC<TerrainRowProps> = memo(({ clock, drive, index, groun
 });
 
 const TerrainVisualizer: React.FC<BandProps> = memo(
-  ({ isPlaying, hue, height, onLayout, panHandlers }) => {
+  ({ isPlaying, hue, height, onLayout }) => {
     const { width, handleLayout } = useBandWidth(onLayout);
     const clock = useClock(isPlaying, 3400);
     const drive = useDrive(isPlaying);
@@ -1162,8 +1156,7 @@ const TerrainVisualizer: React.FC<BandProps> = memo(
     return (
       <View
         onLayout={handleLayout}
-        {...(panHandlers || {})}
-        style={{ height, overflow: "hidden", backgroundColor: "rgba(0,0,0,0.3)" }}
+                style={{ height, overflow: "hidden", backgroundColor: "rgba(0,0,0,0.3)" }}
       >
         <LinearGradient
           colors={[skyTop, skyBottom]}
@@ -1357,7 +1350,7 @@ const OrbMote: React.FC<OrbMoteProps> = memo(
 );
 
 const OrbVisualizer: React.FC<BandProps> = memo(
-  ({ isPlaying, hue, height, onLayout, panHandlers }) => {
+  ({ isPlaying, hue, height, onLayout }) => {
     const { width, handleLayout } = useBandWidth(onLayout);
     const box = Math.min(width || height, height);
     const R = box * ORB_RATIO.sphere;
@@ -1399,7 +1392,7 @@ const OrbVisualizer: React.FC<BandProps> = memo(
     const brightColor = tint(hue, 92, 0.95);
 
     return (
-      <View onLayout={handleLayout} {...(panHandlers || {})} style={{ height, alignItems: "center" }}>
+      <View onLayout={handleLayout} style={{ height, alignItems: "center" }}>
         <View
           style={{
             width: box,
@@ -1487,13 +1480,12 @@ export interface AudioVisualizerProps {
   /** Overrides the band height so fullscreen renders the same style big. */
   height?: number;
   onLayout?: (e: LayoutChangeEvent) => void;
-  panHandlers?: Partial<GestureResponderHandlers>;
 }
 
 export const AudioVisualizer: React.FC<AudioVisualizerProps> = memo((props) => {
-  const { style, seed, isPlaying, hue, position, onLayout, panHandlers } = props;
+  const { style, seed, isPlaying, hue, position, onLayout } = props;
   const height = props.height ?? styleBandHeight(style);
-  const band = { seed, isPlaying, hue, height, onLayout, panHandlers };
+  const band = { seed, isPlaying, hue, height, onLayout };
 
   switch (style) {
     case "waveform":
@@ -1523,7 +1515,6 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = memo((props) => {
           height={height}
           isPlaying={isPlaying}
           onLayout={onLayout}
-          panHandlers={panHandlers}
         />
       );
   }

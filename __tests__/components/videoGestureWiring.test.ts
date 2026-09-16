@@ -25,13 +25,24 @@ describe('video gesture wiring', () => {
     expect(controls).toBeGreaterThan(videoPressClose);
   });
 
-  it('gives the feed timeline a draggable Android responder and a thumb-sized hit area', () => {
+  it('scrubs the feed timeline with a gesture that can outrank the pager', () => {
     const player = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
 
-    expect(player).toContain('const seekPanResponder = useMemo(');
-    expect(player).toContain('PanResponder.create(feedSeekResponder(handleSeek, startHideTimer))');
-    expect(player).toContain('{...seekPanResponder.panHandlers}');
+    // A PanResponder here loses to the Home pager's gesture-handler pan: the
+    // page turned sideways instead of the video seeking.
+    expect(player).toContain('useScrubGesture({');
+    expect(player).toContain('<GestureDetector gesture={seekGesture}>');
+    expect(player).not.toContain('seekPanResponder');
     expect(player).toMatch(/progressTrack:\s*\{[\s\S]*?height: 32,/);
+  });
+
+  it('keeps every in-feed scrubber on a pager-blocking gesture', () => {
+    const scrub = readSource('hooks', 'useScrubGesture.ts');
+    const audio = readSource('components', 'Home', 'AudioPostPlayer.tsx');
+
+    expect(scrub).toContain('blocksExternalGesture(pagerRef)');
+    expect(audio).toContain('return useScrubGesture({');
+    expect(audio).not.toContain('PanResponder.create(');
   });
 
   it('guards both loaded videos and posters against scroll travel', () => {

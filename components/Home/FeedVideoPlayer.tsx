@@ -16,8 +16,9 @@ import {
 import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
 import PictureInPictureButton from "../common/PictureInPictureButton";
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../../libs/audioSession";
-import { feedSeekResponder } from "../../libs/feed-seek-responder";
 import { feedVolumeResponder } from "../../libs/feed-volume-responder";
+import { GestureDetector } from "react-native-gesture-handler";
+import { useScrubGesture } from "../../hooks/useScrubGesture";
 import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import {
   getPlaybackRateFor,
@@ -248,7 +249,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const { autoplay: autoplayEnabled, skipSegments: skipSegmentsPref } = useAppPrefs();
   const playerRef = useRef<VideoPlayer | null>(null);
   const videoViewRef = useRef<VideoView>(null);
-  const progressTrackWidthRef = useRef(0);
   const lastSurfaceTapRef = useRef(0);
   const surfaceTapCountRef = useRef(0);
   const surfaceTapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -878,20 +878,33 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
 
   const handleSeek = useCallback(
-    (locationX: number) => {
-      if (!playerRef.current || videoDuration <= 0 || progressTrackWidthRef.current <= 0) return;
-      const ratio = Math.max(0, Math.min(1, locationX / progressTrackWidthRef.current));
-      playerRef.current.currentTime = ratio * videoDuration;
-      currentTimeRef.current = ratio * videoDuration;
-      setCurrentTime(ratio * videoDuration);
+    (ratio: number) => {
+      if (!playerRef.current || videoDuration <= 0) return;
+      const time = Math.max(0, Math.min(1, ratio)) * videoDuration;
+      playerRef.current.currentTime = time;
+      currentTimeRef.current = time;
+      setCurrentTime(time);
     },
     [videoDuration]
   );
 
-  const seekPanResponder = useMemo(
-    () => PanResponder.create(feedSeekResponder(handleSeek, startHideTimer)),
+  const handleSeekCommit = useCallback(
+    (ratio: number) => {
+      handleSeek(ratio);
+      startHideTimer();
+    },
     [handleSeek, startHideTimer],
   );
+
+  // An RNGH gesture, not a PanResponder: the Home pager's page turn is an RNGH
+  // pan and only ever yields to another RNGH handler, so a PanResponder scrub
+  // dragged the page sideways instead of seeking. See useScrubGesture.
+  const { onLayout: onSeekTrackLayout, gesture: seekGesture } = useScrubGesture({
+    onScrubStart: clearHideTimer,
+    onScrub: handleSeek,
+    onCommit: handleSeekCommit,
+    onCancel: startHideTimer,
+  });
 
   const handleGatedOverlayPress = useCallback(() => {
     if (isPPVLocked) onPPVPress?.();
@@ -1114,18 +1127,19 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 <View style={styles.timePill}>
                   <Text style={styles.timeText}>{formatTime(currentTime)}</Text>
                 </View>
-                <Pressable
-                  style={styles.progressTrack}
-                  {...seekPanResponder.panHandlers}
-                  onLayout={(e) => { progressTrackWidthRef.current = e.nativeEvent.layout.width; }}
-                  accessibilityRole="adjustable"
-                  accessibilityLabel="Video progress"
-                >
-                  <View style={styles.progressTrackInner}>
-                    <View style={[styles.progressFill, { width: `${progressPercent}%` }]} />
-                    <View style={[styles.progressThumb, { left: `${progressPercent}%`, marginLeft: -6 }]} />
+                <GestureDetector gesture={seekGesture}>
+                  <View
+                    style={styles.progressTrack}
+                    onLayout={onSeekTrackLayout}
+                    accessibilityRole="adjustable"
+                    accessibilityLabel="Video progress"
+                  >
+                    <View style={styles.progressTrackInner}>
+                      <View style={[styles.progressFill, { width: `${progressPercent}%` }]} />
+                      <View style={[styles.progressThumb, { left: `${progressPercent}%`, marginLeft: -6 }]} />
+                    </View>
                   </View>
-                </Pressable>
+                </GestureDetector>
                 <View style={styles.timePill}>
                   <Text style={styles.timeText}>{formatTime(videoDuration)}</Text>
                 </View>

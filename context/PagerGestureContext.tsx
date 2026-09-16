@@ -40,3 +40,10 @@ export const useHorizontalScrollGuard = () => {
     [pagerRef],
   );
 };
+
+/**
+ * The pager's own gesture ref, or null outside a pager. For children that are
+ * not scroll views — a scrubber, a slider — and so need to build their own
+ * gesture with `blocksExternalGesture(pagerRef)`.
+ */
+export const usePagerGestureRef = () => useContext(PagerGestureContext);
