@@ -802,7 +802,35 @@
     "pasteFromClipboard": "Incolla dagli appunti",
     "learnMoreAt": "Scopri di più su dehub.io",
     "accountsOnDevice": "Account su questo dispositivo",
-    "use": "Usa"
+    "use": "Usa",
+    "verificationCode": "Codice di verifica",
+    "sixDigitCode": "Codice a 6 cifre",
+    "verify": "Verifica",
+    "resendCode": "Invia di nuovo il codice",
+    "noImportedAccounts": "Nessun account importato.",
+    "importedAccount": "Account importato",
+    "useAccount": "Usa l'account {{name}}",
+    "removeAccount": "Rimuovi l'account {{name}}",
+    "showPrivateKey": "Mostra la chiave privata",
+    "hidePrivateKey": "Nascondi la chiave privata",
+    "invalidPrivateKey": "Chiave privata non valida",
+    "couldNotImportWallet": "Impossibile importare il portafoglio",
+    "unlockToUse": "Sblocca questo portafoglio DeHub per usarlo",
+    "noScreenLock": "Questo telefono non ha un blocco schermo, quindi chiunque lo tenga in mano può usare il tuo portafoglio. Imposta un codice o la biometria nelle impostazioni del dispositivo.",
+    "noStoredKey": "Per questo account non è memorizzata alcuna chiave privata. Reimporta questo portafoglio per collegarne la chiave.",
+    "failedToUseAccount": "Impossibile usare questo account",
+    "continueWithPhone": "Continua con il telefono",
+    "phoneNumberA11y": "Numero di telefono, prima il prefisso internazionale",
+    "phoneNumberHint": "Inserisci il numero iniziando dal prefisso internazionale. Il segno più viene aggiunto automaticamente.",
+    "sendCodeA11y": "Invia il codice di accesso a questo numero",
+    "signInToContinue": "Accedi per continuare",
+    "signInToContinueBody": "Devi accedere per eseguire questa azione.",
+    "closeAuthModal": "Chiudi la finestra di accesso",
+    "legalLine": "Continuando, accetti i nostri <terms>Termini di servizio</terms> e la nostra <privacy>Informativa sulla privacy</privacy>.",
+    "chooseUsernameBody": "Scegli un nome utente e un nome visualizzato per continuare. Potrai cambiarli in seguito.",
+    "checkingAvailability": "Verifica della disponibilità…",
+    "usernameTakenHint": "Nome già in uso: prova ad aggiungere numeri o un trattino basso",
+    "displayNameLength": "Il nome visualizzato deve contenere da 2 a 50 caratteri."
   },
   "explorePage": {
     "searchPlaceholder": "Cerca persone, post o contenuti...",
@@ -3632,7 +3660,13 @@
     "thatsGoneToo": "Anche quello è perso — ricomincia comunque",
     "tryBiometrics": "Prova la biometria su questo telefono",
     "unlockWithBiometrics": "Sblocca con biometria",
-    "confirmStartOver": "Conferma di voler ricominciare con un nuovo wallet"
+    "confirmStartOver": "Conferma di voler ricominciare con un nuovo wallet",
+    "understandOldWallet": "Capisco che il vecchio portafoglio, e tutto ciò che contiene, sarà fuori dalla mia portata per sempre",
+    "savedTwelveWords": "Ho salvato queste 12 parole in un luogo sicuro",
+    "legacyRecovered": "Abbiamo verificato il tuo vecchio account{{suffix}} e recuperato il suo portafoglio. Imposta una password per proteggerlo su questo dispositivo — su questo telefono e ovunque altrove — da ora in poi.",
+    "passwordMin": "Password (min {{min}} caratteri)",
+    "newPasswordMin": "Nuova password (min {{min}} caratteri)",
+    "newWalletPasswordMin": "Password del nuovo portafoglio (min {{min}} caratteri)"
   },
   "transcript": {
     "title": "Trascrizione",
@@ -4120,5 +4154,21 @@
       "megalodon": "Ecco la tua corona: ora sei una royalty dell'app"
     },
     "continue": "Torna a DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Molto debole",
+    "weak": "Debole",
+    "fair": "Discreta",
+    "good": "Buona",
+    "strong": "Forte",
+    "common": "Questa è una password comune o prevedibile",
+    "tooShort": "Usa almeno {{n}} caratteri",
+    "mixChars": "Combina maiuscole, minuscole, numeri e simboli",
+    "breached": "Questa password è comparsa in una violazione di dati: scegline un'altra"
+  },
+  "phoneHint": {
+    "leadingZero": "Inizia con il prefisso del tuo Paese (44 per il Regno Unito, 1 per gli Stati Uniti) — togli lo 0 iniziale.",
+    "tooLong": "Sono {{n}} cifre — un numero di telefono ne ha al massimo {{max}}.",
+    "missingCountryCode": "Controlla il prefisso internazionale: i numeri copiati dai contatti spesso non ce l'hanno."
   }
 }

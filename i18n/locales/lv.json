@@ -1467,7 +1467,35 @@
     "pasteFromClipboard": "Ielīmēt no starpliktuves",
     "learnMoreAt": "Uzziniet vairāk vietnē dehub.io",
     "accountsOnDevice": "Konti šajā ierīcē",
-    "use": "Lietot"
+    "use": "Lietot",
+    "verificationCode": "Verifikācijas kods",
+    "sixDigitCode": "6 ciparu kods",
+    "verify": "Verificēt",
+    "resendCode": "Sūtīt kodu vēlreiz",
+    "noImportedAccounts": "Vēl nav importētu kontu.",
+    "importedAccount": "Importēts konts",
+    "useAccount": "Lietot kontu {{name}}",
+    "removeAccount": "Noņemt kontu {{name}}",
+    "showPrivateKey": "Rādīt privāto atslēgu",
+    "hidePrivateKey": "Slēpt privāto atslēgu",
+    "invalidPrivateKey": "Nederīga privātā atslēga",
+    "couldNotImportWallet": "Neizdevās importēt maku",
+    "unlockToUse": "Atbloķējiet šo DeHub maku, lai to lietotu",
+    "noScreenLock": "Šim tālrunim nav ekrāna bloķēšanas, tāpēc ikviens, kas to satver, var lietot jūsu maku. Ierīces iestatījumos iestatiet piekļuves kodu vai biometriju.",
+    "noStoredKey": "Šim kontam nav saglabāta privātā atslēga. Lūdzu, importējiet šo maku vēlreiz, lai saistītu tā atslēgu.",
+    "failedToUseAccount": "Neizdevās lietot šo kontu",
+    "continueWithPhone": "Turpināt ar tālruni",
+    "phoneNumberA11y": "Tālruņa numurs, vispirms valsts kods",
+    "phoneNumberHint": "Ievadiet numuru, sākot ar valsts kodu. Plusa zīme tiek pievienota automātiski.",
+    "sendCodeA11y": "Sūtīt pieteikšanās kodu uz šo numuru",
+    "signInToContinue": "Pierakstieties, lai turpinātu",
+    "signInToContinueBody": "Lai veiktu šo darbību, jums jāpierakstās.",
+    "closeAuthModal": "Aizvērt pieteikšanās logu",
+    "legalLine": "Turpinot jūs piekrītat mūsu <terms>pakalpojumu noteikumiem</terms> un <privacy>privātuma politikai</privacy>.",
+    "chooseUsernameBody": "Izvēlieties lietotājvārdu un attēloto vārdu, lai turpinātu. Tos varēsiet mainīt vēlāk.",
+    "checkingAvailability": "Tiek pārbaudīta pieejamība…",
+    "usernameTakenHint": "Vārds jau aizņemts — mēģiniet pievienot ciparus vai pasvītrojumu",
+    "displayNameLength": "Attēlotajam vārdam jābūt 2–50 rakstzīmes."
   },
   "messages": {
     "smartRepliesOff": "Ieteiktās atbildes izslēgtas",
@@ -3561,7 +3589,13 @@
     "thatsGoneToo": "Arī tā vairs nav — tomēr sākt no jauna",
     "tryBiometrics": "Izmēģini biometriju šajā tālrunī",
     "unlockWithBiometrics": "Atbloķēt ar biometriju",
-    "confirmStartOver": "Apstiprini, ka vēlies sākt no jauna ar jaunu maku"
+    "confirmStartOver": "Apstiprini, ka vēlies sākt no jauna ar jaunu maku",
+    "understandOldWallet": "Es saprotu, ka vecais maks un viss tajā man būs nepieejams uz visiem laikiem",
+    "savedTwelveWords": "Esmu saglabājis šos 12 vārdus drošā vietā",
+    "legacyRecovered": "Apstiprinājām jūsu veco kontu{{suffix}} un atguvām tā maku. Iestatiet paroli, kas to no šī brīža aizsargās šajā ierīcē — šajā tālrunī un visur citur.",
+    "passwordMin": "Parole (vismaz {{min}} rakstzīmes)",
+    "newPasswordMin": "Jauna parole (vismaz {{min}} rakstzīmes)",
+    "newWalletPasswordMin": "Jaunā maka parole (vismaz {{min}} rakstzīmes)"
   },
   "transcript": {
     "title": "Transkripcija",
@@ -4047,5 +4081,21 @@
       "megalodon": "Lūk, jūsu kronis — jūs tagad esat aplikācijas autoratlīdzība"
     },
     "continue": "Atpakaļ uz DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Ļoti vājš",
+    "weak": "Vājš",
+    "fair": "Vidējs",
+    "good": "Labs",
+    "strong": "Spēcīgs",
+    "common": "Šī ir izplatīta vai viegli uzminama parole",
+    "tooShort": "Lietojiet vismaz {{n}} rakstzīmes",
+    "mixChars": "Sajauciet lielos un mazos burtus, ciparus un simbolus",
+    "breached": "Šī parole ir parādījusies datu noplūdē — izvēlieties citu"
+  },
+  "phoneHint": {
+    "leadingZero": "Sāciet ar savas valsts kodu (44 – Lielbritānija, 1 – ASV) — izlaidiet sākuma nulli.",
+    "tooLong": "Tie ir {{n}} cipari — tālruņa numurā to ir ne vairāk kā {{max}}.",
+    "missingCountryCode": "Pārbaudiet valsts kodu — no kontaktiem kopēti numuri to bieži neietver."
   }
 }

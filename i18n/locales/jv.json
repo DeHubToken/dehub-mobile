@@ -1427,7 +1427,35 @@
     "pasteFromClipboard": "Tempel saka papan klip",
     "learnMoreAt": "Sinau luwih lengkap ing dehub.io",
     "accountsOnDevice": "Akun ing piranti iki",
-    "use": "Gunakake"
+    "use": "Gunakake",
+    "verificationCode": "Kode verifikasi",
+    "sixDigitCode": "Kode 6 angka",
+    "verify": "Verifikasi",
+    "resendCode": "Kirim maneh kode",
+    "noImportedAccounts": "Durung ana akun sing diimpor.",
+    "importedAccount": "Akun sing diimpor",
+    "useAccount": "Gunakake akun {{name}}",
+    "removeAccount": "Busak akun {{name}}",
+    "showPrivateKey": "Tampilake kunci pribadi",
+    "hidePrivateKey": "Ndhelikake kunci pribadi",
+    "invalidPrivateKey": "Kunci pribadi ora sah",
+    "couldNotImportWallet": "Ora bisa ngimpor dompet",
+    "unlockToUse": "Bukak kunci dompet DeHub iki kanggo nggunakake",
+    "noScreenLock": "HP iki ora duwe kunci layar, dadi sapa wae sing nyekel bisa nganggo dompetmu. Setel pasword utawa biometrik ing setelan piranti.",
+    "noStoredKey": "Ora ana kunci pribadi sing kasimpen kanggo akun iki. Impor maneh dompet iki supaya kuncine kesambung.",
+    "failedToUseAccount": "Gagal nggunakake akun iki",
+    "continueWithPhone": "Terusake nganggo Telpon",
+    "phoneNumberA11y": "Nomer telpon, kode negara dhisik",
+    "phoneNumberHint": "Lebokna nomermu diwiwiti saka kode negara. Tandha plus ditambahake otomatis.",
+    "sendCodeA11y": "Kirim kode mlebu menyang nomer iki",
+    "signInToContinue": "Mlebu kanggo nerusake",
+    "signInToContinueBody": "Sampeyan kudu mlebu kanggo nglakoni tumindak iki.",
+    "closeAuthModal": "Tutup jendhela mlebu",
+    "legalLine": "Kanthi nerusake, sampeyan setuju karo <terms>Syarat Layanan</terms> lan <privacy>Kabijakan Privasi</privacy> kita.",
+    "chooseUsernameBody": "Pilih jeneng pangguna lan jeneng tampilan kanggo nerusake. Bisa diganti mengko.",
+    "checkingAvailability": "Mriksa kasedhiyan…",
+    "usernameTakenHint": "Jeneng wis dipakai — coba tambahi angka utawa garis ngisor",
+    "displayNameLength": "Jeneng tampilan kudu 2-50 karakter."
   },
   "messages": {
     "smartRepliesOff": "Wangsulan sing disaranake dipateni",
@@ -3520,7 +3548,13 @@
     "thatsGoneToo": "Kuwi uga wis ilang — tetep miwiti maneh",
     "tryBiometrics": "Coba biometrik ing HP iki",
     "unlockWithBiometrics": "Bukak nganggo biometrik",
-    "confirmStartOver": "Konfirmasi yen sampeyan arep miwiti maneh nganggo dompet anyar"
+    "confirmStartOver": "Konfirmasi yen sampeyan arep miwiti maneh nganggo dompet anyar",
+    "understandOldWallet": "Aku ngerti yen dompet lawas lan kabeh isine bakal ora bisa dakgayuh maneh ing salawase",
+    "savedTwelveWords": "Aku wis nyimpen 12 tembung iki ing panggonan sing aman",
+    "legacyRecovered": "Akun lawasmu{{suffix}} wis diverifikasi lan dompete wis dibalèkake. Gawe sandhi kanggo nglindhungi ing piranti iki — ing HP iki lan ing ngendi wae, wiwit saiki.",
+    "passwordMin": "Sandhi (paling ora {{min}} karakter)",
+    "newPasswordMin": "Sandhi anyar (paling ora {{min}} karakter)",
+    "newWalletPasswordMin": "Sandhi dompet anyar (paling ora {{min}} karakter)"
   },
   "transcript": {
     "title": "Transkrip",
@@ -4006,5 +4040,21 @@
       "megalodon": "Iki mahkota sampeyan — sampeyan royalti app saiki"
     },
     "continue": "Bali menyang DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Banget ringkih",
+    "weak": "Ringkih",
+    "fair": "Cukup",
+    "good": "Apik",
+    "strong": "Kuwat",
+    "common": "Iki sandhi sing umum utawa gampang ditebak",
+    "tooShort": "Gunakake paling ora {{n}} karakter",
+    "mixChars": "Campurake huruf gedhe/cilik, angka, lan simbol",
+    "breached": "Sandhi iki tau metu ing bocoran data — pilih sing liya"
+  },
+  "phoneHint": {
+    "leadingZero": "Diwiwiti saka kode negaramu (44 kanggo Inggris, 1 kanggo AS) — 0 ing ngarep dibuwang.",
+    "tooLong": "Kuwi {{n}} angka — nomer telpon paling akeh {{max}}.",
+    "missingCountryCode": "Priksa kode negarane — nomer sing disalin saka Kontak asring ora ana."
   }
 }

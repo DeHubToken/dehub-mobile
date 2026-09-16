@@ -1447,7 +1447,35 @@
     "pasteFromClipboard": "Almashish buferidan qo'yish",
     "learnMoreAt": "dehub.io da batafsil bilib oling",
     "accountsOnDevice": "Bu qurilmadagi hisoblar",
-    "use": "Ishlatish"
+    "use": "Ishlatish",
+    "verificationCode": "Tasdiqlash kodi",
+    "sixDigitCode": "6 xonali kod",
+    "verify": "Tasdiqlash",
+    "resendCode": "Kodni qayta yuborish",
+    "noImportedAccounts": "Hozircha import qilingan hisoblar yo'q.",
+    "importedAccount": "Import qilingan hisob",
+    "useAccount": "{{name}} hisobidan foydalanish",
+    "removeAccount": "{{name}} hisobini olib tashlash",
+    "showPrivateKey": "Shaxsiy kalitni ko'rsatish",
+    "hidePrivateKey": "Shaxsiy kalitni yashirish",
+    "invalidPrivateKey": "Yaroqsiz shaxsiy kalit",
+    "couldNotImportWallet": "Hamyonni import qilib bo'lmadi",
+    "unlockToUse": "Ushbu DeHub hamyonidan foydalanish uchun uni oching",
+    "noScreenLock": "Bu telefonda ekran qulfi yo'q, shuning uchun uni qo'liga olgan har kim hamyoningizdan foydalanishi mumkin. Qurilma sozlamalarida parol yoki biometrika o'rnating.",
+    "noStoredKey": "Ushbu hisob uchun shaxsiy kalit saqlanmagan. Kalitini bog'lash uchun bu hamyonni qayta import qiling.",
+    "failedToUseAccount": "Bu hisobdan foydalanib bo'lmadi",
+    "continueWithPhone": "Telefon bilan davom etish",
+    "phoneNumberA11y": "Telefon raqami, avval mamlakat kodi",
+    "phoneNumberHint": "Raqamingizni mamlakat kodidan boshlab kiriting. Plyus belgisi avtomatik qo'shiladi.",
+    "sendCodeA11y": "Bu telefon raqamiga kirish kodini yuborish",
+    "signInToContinue": "Davom etish uchun kiring",
+    "signInToContinueBody": "Bu amalni bajarish uchun kirishingiz kerak.",
+    "closeAuthModal": "Kirish oynasini yopish",
+    "legalLine": "Davom etish orqali siz bizning <terms>Xizmat shartlari</terms> va <privacy>Maxfiylik siyosatimizga</privacy> rozilik bildirasiz.",
+    "chooseUsernameBody": "Davom etish uchun foydalanuvchi nomi va ko'rsatiladigan nomni tanlang. Keyinroq o'zgartirishingiz mumkin.",
+    "checkingAvailability": "Mavjudligi tekshirilmoqda…",
+    "usernameTakenHint": "Bu nom band — raqam yoki pastki chiziq qo'shib ko'ring",
+    "displayNameLength": "Ko'rsatiladigan nom 2-50 belgidan iborat bo'lishi kerak."
   },
   "messages": {
     "smartRepliesOff": "Tavsiya etilgan javoblar o'chirildi",
@@ -3613,7 +3641,13 @@
     "thatsGoneToo": "U ham yo‘qolgan — baribir qaytadan boshlang",
     "tryBiometrics": "Bu telefonda biometrikani sinab ko‘ring",
     "unlockWithBiometrics": "Biometrika bilan oching",
-    "confirmStartOver": "Yangi hamyon bilan qaytadan boshlamoqchi ekaningizni tasdiqlang"
+    "confirmStartOver": "Yangi hamyon bilan qaytadan boshlamoqchi ekaningizni tasdiqlang",
+    "understandOldWallet": "Eski hamyon va undagi hamma narsa abadiy qo'limdan chiqishini tushunaman",
+    "savedTwelveWords": "Bu 12 ta so'zni xavfsiz joyda saqlab qo'ydim",
+    "legacyRecovered": "Eski hisobingiz{{suffix}} tasdiqlandi va uning hamyoni tiklandi. Bundan buyon uni shu qurilmada — shu telefonda va boshqa hamma joyda — himoya qilish uchun parol o'rnating.",
+    "passwordMin": "Parol (kamida {{min}} ta belgi)",
+    "newPasswordMin": "Yangi parol (kamida {{min}} ta belgi)",
+    "newWalletPasswordMin": "Yangi hamyon paroli (kamida {{min}} ta belgi)"
   },
   "transcript": {
     "title": "Transkript",
@@ -4094,5 +4128,21 @@
       "megalodon": "Mana sizning tojingiz — endi siz royalti ilovasidasiz"
     },
     "continue": "DeHubga qaytish"
+  },
+  "passwordStrength": {
+    "veryWeak": "Juda zaif",
+    "weak": "Zaif",
+    "fair": "O'rtacha",
+    "good": "Yaxshi",
+    "strong": "Kuchli",
+    "common": "Bu keng tarqalgan yoki oson topiladigan parol",
+    "tooShort": "Kamida {{n}} ta belgi ishlating",
+    "mixChars": "Katta/kichik harflar, raqamlar va belgilarni aralashtiring",
+    "breached": "Bu parol ma'lumot sizishida uchragan — boshqasini tanlang"
+  },
+  "phoneHint": {
+    "leadingZero": "Mamlakat kodingizdan boshlang (Buyuk Britaniya uchun 44, AQSh uchun 1) — boshidagi 0 ni olib tashlang.",
+    "tooLong": "Bu {{n}} ta raqam — telefon raqamida ko'pi bilan {{max}} ta bo'ladi.",
+    "missingCountryCode": "Mamlakat kodini tekshiring — Kontaktlardan nusxalangan raqamlarda u ko'pincha bo'lmaydi."
   }
 }

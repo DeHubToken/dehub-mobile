@@ -784,7 +784,35 @@
     "pasteFromClipboard": "הדבק מהלוח",
     "learnMoreAt": "מידע נוסף ב-dehub.io",
     "accountsOnDevice": "חשבונות במכשיר הזה",
-    "use": "השתמש"
+    "use": "השתמש",
+    "verificationCode": "קוד אימות",
+    "sixDigitCode": "קוד בן 6 ספרות",
+    "verify": "אימות",
+    "resendCode": "שליחת הקוד שוב",
+    "noImportedAccounts": "עדיין אין חשבונות מיובאים.",
+    "importedAccount": "חשבון מיובא",
+    "useAccount": "שימוש בחשבון {{name}}",
+    "removeAccount": "הסרת חשבון {{name}}",
+    "showPrivateKey": "הצגת המפתח הפרטי",
+    "hidePrivateKey": "הסתרת המפתח הפרטי",
+    "invalidPrivateKey": "מפתח פרטי לא תקין",
+    "couldNotImportWallet": "לא ניתן היה לייבא את הארנק",
+    "unlockToUse": "בטלו את הנעילה של ארנק DeHub זה כדי להשתמש בו",
+    "noScreenLock": "לטלפון הזה אין נעילת מסך, ולכן כל מי שמחזיק בו יכול להשתמש בארנק שלך. הגדירו קוד גישה או זיהוי ביומטרי בהגדרות המכשיר.",
+    "noStoredKey": "לא נשמר מפתח פרטי לחשבון הזה. ייבאו את הארנק שוב כדי לקשר את המפתח שלו.",
+    "failedToUseAccount": "לא ניתן היה להשתמש בחשבון הזה",
+    "continueWithPhone": "המשך עם טלפון",
+    "phoneNumberA11y": "מספר טלפון, תחילה קידומת המדינה",
+    "phoneNumberHint": "הזינו את המספר שלכם החל מקידומת המדינה. סימן הפלוס יתווסף אוטומטית.",
+    "sendCodeA11y": "שליחת קוד התחברות למספר הזה",
+    "signInToContinue": "התחברו כדי להמשיך",
+    "signInToContinueBody": "עליכם להתחבר כדי לבצע את הפעולה הזו.",
+    "closeAuthModal": "סגירת חלון ההתחברות",
+    "legalLine": "בהמשך השימוש אתם מסכימים ל<terms>תנאי השירות</terms> ול<privacy>מדיניות הפרטיות</privacy> שלנו.",
+    "chooseUsernameBody": "בחרו שם משתמש ושם תצוגה כדי להמשיך. תוכלו לשנות אותם בהמשך.",
+    "checkingAvailability": "בודקים זמינות…",
+    "usernameTakenHint": "השם תפוס — נסו להוסיף ספרות או קו תחתון",
+    "displayNameLength": "שם התצוגה חייב להיות באורך 2–50 תווים."
   },
   "explorePage": {
     "searchPlaceholder": "חפש אנשים, פוסטים או תוכן...",
@@ -3549,7 +3577,13 @@
     "thatsGoneToo": "גם זה אבד — התחל מחדש בכל זאת",
     "tryBiometrics": "נסה ביומטריה בטלפון הזה",
     "unlockWithBiometrics": "פתח באמצעות ביומטריה",
-    "confirmStartOver": "אשר שברצונך להתחיל מחדש עם ארנק חדש"
+    "confirmStartOver": "אשר שברצונך להתחיל מחדש עם ארנק חדש",
+    "understandOldWallet": "אני מבין שהארנק הישן וכל מה שבתוכו יהיה מחוץ להישג ידי לתמיד",
+    "savedTwelveWords": "שמרתי את 12 המילים האלה במקום בטוח",
+    "legacyRecovered": "אימתנו את החשבון הישן שלך{{suffix}} ושחזרנו את הארנק שלו. הגדירו סיסמה שתגן עליו במכשיר הזה — בטלפון הזה ובכל מקום אחר, מעכשיו.",
+    "passwordMin": "סיסמה (לפחות {{min}} תווים)",
+    "newPasswordMin": "סיסמה חדשה (לפחות {{min}} תווים)",
+    "newWalletPasswordMin": "סיסמת הארנק החדש (לפחות {{min}} תווים)"
   },
   "transcript": {
     "title": "תמלול",
@@ -4035,5 +4069,21 @@
       "megalodon": "הנה הכתר שלך — אתה תמלוגים של אפליקציות עכשיו"
     },
     "continue": "חזרה ל - DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "חלשה מאוד",
+    "weak": "חלשה",
+    "fair": "בינונית",
+    "good": "טובה",
+    "strong": "חזקה",
+    "common": "זו סיסמה נפוצה או צפויה",
+    "tooShort": "השתמשו בלפחות {{n}} תווים",
+    "mixChars": "שלבו אותיות גדולות וקטנות, ספרות וסימנים",
+    "breached": "הסיסמה הזו הופיעה בדליפת נתונים — בחרו אחרת"
+  },
+  "phoneHint": {
+    "leadingZero": "התחילו בקידומת המדינה שלכם (44 לבריטניה, 1 לארה\"ב) — השמיטו את ה-0 שבהתחלה.",
+    "tooLong": "אלו {{n}} ספרות — במספר טלפון יש לכל היותר {{max}}.",
+    "missingCountryCode": "בדקו את קידומת המדינה — מספרים שמועתקים מאנשי הקשר לרוב חסרים אותה."
   }
 }

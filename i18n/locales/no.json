@@ -1210,7 +1210,35 @@
     "pasteFromClipboard": "Lim inn fra utklippstavlen",
     "learnMoreAt": "Les mer på dehub.io",
     "accountsOnDevice": "Kontoer på denne enheten",
-    "use": "Bruk"
+    "use": "Bruk",
+    "verificationCode": "Bekreftelseskode",
+    "sixDigitCode": "6-sifret kode",
+    "verify": "Bekreft",
+    "resendCode": "Send kode på nytt",
+    "noImportedAccounts": "Ingen importerte kontoer ennå.",
+    "importedAccount": "Importert konto",
+    "useAccount": "Bruk konto {{name}}",
+    "removeAccount": "Fjern konto {{name}}",
+    "showPrivateKey": "Vis privat nøkkel",
+    "hidePrivateKey": "Skjul privat nøkkel",
+    "invalidPrivateKey": "Ugyldig privat nøkkel",
+    "couldNotImportWallet": "Kunne ikke importere lommeboken",
+    "unlockToUse": "Lås opp denne DeHub-lommeboken for å bruke den",
+    "noScreenLock": "Denne telefonen har ingen skjermlås, så alle som holder den kan bruke lommeboken din. Angi en kode eller biometri i enhetsinnstillingene.",
+    "noStoredKey": "Ingen privat nøkkel er lagret for denne kontoen. Importer denne lommeboken på nytt for å koble til nøkkelen.",
+    "failedToUseAccount": "Kunne ikke bruke denne kontoen",
+    "continueWithPhone": "Fortsett med telefon",
+    "phoneNumberA11y": "Telefonnummer, landskode først",
+    "phoneNumberHint": "Skriv inn nummeret ditt med landskoden først. Plusstegnet legges til automatisk.",
+    "sendCodeA11y": "Send innloggingskode til dette nummeret",
+    "signInToContinue": "Logg inn for å fortsette",
+    "signInToContinueBody": "Du må logge inn for å utføre denne handlingen.",
+    "closeAuthModal": "Lukk innloggingsvinduet",
+    "legalLine": "Ved å fortsette godtar du våre <terms>vilkår for bruk</terms> og <privacy>personvernerklæring</privacy>.",
+    "chooseUsernameBody": "Velg et brukernavn og visningsnavn for å fortsette. Du kan endre dem senere.",
+    "checkingAvailability": "Sjekker tilgjengelighet…",
+    "usernameTakenHint": "Navnet er opptatt — prøv å legge til tall eller understrek",
+    "displayNameLength": "Visningsnavnet må være på 2–50 tegn."
   },
   "bookmarks": {
     "title": "Dine bokmerker",
@@ -3552,7 +3580,13 @@
     "thatsGoneToo": "Det er borte også — start på nytt likevel",
     "tryBiometrics": "Prøv biometri på denne telefonen",
     "unlockWithBiometrics": "Lås opp med biometri",
-    "confirmStartOver": "Bekreft at du vil starte på nytt med en ny lommebok"
+    "confirmStartOver": "Bekreft at du vil starte på nytt med en ny lommebok",
+    "understandOldWallet": "Jeg forstår at den gamle lommeboken, og alt i den, blir utilgjengelig for godt",
+    "savedTwelveWords": "Jeg har lagret disse 12 ordene på et trygt sted",
+    "legacyRecovered": "Vi har bekreftet den gamle kontoen din{{suffix}} og gjenopprettet lommeboken. Angi et passord som beskytter den på denne enheten — på denne telefonen og overalt ellers, fra nå av.",
+    "passwordMin": "Passord (minst {{min}} tegn)",
+    "newPasswordMin": "Nytt passord (minst {{min}} tegn)",
+    "newWalletPasswordMin": "Passord for ny lommebok (minst {{min}} tegn)"
   },
   "transcript": {
     "title": "Utskrift",
@@ -4034,5 +4068,21 @@
       "megalodon": "Her er kronen din – nå er du app-kongelig"
     },
     "continue": "Tilbake til DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Veldig svakt",
+    "weak": "Svakt",
+    "fair": "Middels",
+    "good": "Bra",
+    "strong": "Sterkt",
+    "common": "Dette er et vanlig eller forutsigbart passord",
+    "tooShort": "Bruk minst {{n}} tegn",
+    "mixChars": "Bland store og små bokstaver, tall og symboler",
+    "breached": "Dette passordet har dukket opp i en datalekkasje — velg et annet"
+  },
+  "phoneHint": {
+    "leadingZero": "Start med landskoden din (44 for Storbritannia, 1 for USA) — dropp den første 0-en.",
+    "tooLong": "Det er {{n}} sifre — et telefonnummer har maks {{max}}.",
+    "missingCountryCode": "Sjekk landskoden — numre kopiert fra Kontakter mangler den ofte."
   }
 }

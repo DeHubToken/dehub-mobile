@@ -1458,7 +1458,35 @@
     "pasteFromClipboard": "Manna daga allon rubutu",
     "learnMoreAt": "Ƙara sani a dehub.io",
     "accountsOnDevice": "Asusun da ke wannan na'urar",
-    "use": "Yi amfani"
+    "use": "Yi amfani",
+    "verificationCode": "Lambar tabbatarwa",
+    "sixDigitCode": "Lamba mai lambobi 6",
+    "verify": "Tabbatar",
+    "resendCode": "Sake aika lambar",
+    "noImportedAccounts": "Babu asusun da aka shigo da su tukuna.",
+    "importedAccount": "Asusun da aka shigo da shi",
+    "useAccount": "Yi amfani da asusun {{name}}",
+    "removeAccount": "Cire asusun {{name}}",
+    "showPrivateKey": "Nuna makullin sirri",
+    "hidePrivateKey": "Ɓoye makullin sirri",
+    "invalidPrivateKey": "Makullin sirri mara inganci",
+    "couldNotImportWallet": "An kasa shigo da walat",
+    "unlockToUse": "Buɗe wannan walat na DeHub don amfani da shi",
+    "noScreenLock": "Wannan wayar ba ta da kullen allo, don haka duk wanda ya riƙe ta zai iya amfani da walat ɗinka. Saita lambar sirri ko biometrics a saitunan na'urarka.",
+    "noStoredKey": "Babu makullin sirri da aka adana don wannan asusun. Sake shigo da wannan walat don haɗa makullinsa.",
+    "failedToUseAccount": "An kasa amfani da wannan asusun",
+    "continueWithPhone": "Ci gaba da waya",
+    "phoneNumberA11y": "Lambar waya, lambar ƙasa da farko",
+    "phoneNumberHint": "Shigar da lambarka farawa da lambar ƙasa. Alamar tarawa za a ƙara maka ta atomatik.",
+    "sendCodeA11y": "Aika lambar shiga zuwa wannan lambar waya",
+    "signInToContinue": "Shiga don ci gaba",
+    "signInToContinueBody": "Kana buƙatar shiga don yin wannan aikin.",
+    "closeAuthModal": "Rufe taga shiga",
+    "legalLine": "Ta hanyar ci gaba, ka yarda da <terms>Sharuɗɗan Sabis</terms> da <privacy>Manufar Sirri</privacy> namu.",
+    "chooseUsernameBody": "Zaɓi sunan mai amfani da sunan nunawa don ci gaba. Za ka iya canza su daga baya.",
+    "checkingAvailability": "Ana duba samuwa…",
+    "usernameTakenHint": "An riga an ɗauki wannan sunan — gwada ƙara lambobi ko layin ƙasa",
+    "displayNameLength": "Sunan nunawa dole ya kasance haruffa 2-50."
   },
   "messages": {
     "smartRepliesOff": "An kashe amsoshin da aka ba da shawara",
@@ -3551,7 +3579,13 @@
     "thatsGoneToo": "Wannan ma ya ɓace — duk da haka fara sabo",
     "tryBiometrics": "Gwada biometrics a wannan wayar",
     "unlockWithBiometrics": "Buɗe da biometrics",
-    "confirmStartOver": "Tabbatar kana son fara sabo da sabon walat"
+    "confirmStartOver": "Tabbatar kana son fara sabo da sabon walat",
+    "understandOldWallet": "Na fahimci cewa tsohon walat, da duk abin da ke ciki, zai fita daga hannuna har abada",
+    "savedTwelveWords": "Na ajiye waɗannan kalmomi 12 a wuri mai aminci",
+    "legacyRecovered": "Mun tabbatar da tsohon asusunka{{suffix}} kuma mun dawo da walat ɗinsa. Saita kalmar sirri don kare shi a wannan na'urar — a wannan wayar da ko'ina, daga yanzu.",
+    "passwordMin": "Kalmar sirri (aƙalla haruffa {{min}})",
+    "newPasswordMin": "Sabuwar kalmar sirri (aƙalla haruffa {{min}})",
+    "newWalletPasswordMin": "Kalmar sirrin sabon walat (aƙalla haruffa {{min}})"
   },
   "transcript": {
     "title": "Rubutaccen magana",
@@ -4038,5 +4072,21 @@
       "megalodon": "Ga kambinku — kun kasance app royalty yanzu"
     },
     "continue": "Komawa zuwa DeHub"
+  },
+  "passwordStrength": {
+    "veryWeak": "Mai rauni sosai",
+    "weak": "Mai rauni",
+    "fair": "Matsakaici",
+    "good": "Mai kyau",
+    "strong": "Mai ƙarfi",
+    "common": "Wannan kalmar sirri ce ta gama gari ko mai sauƙin tsammani",
+    "tooShort": "Yi amfani da aƙalla haruffa {{n}}",
+    "mixChars": "Haɗa manyan/ƙananan haruffa, lambobi da alamomi",
+    "breached": "Wannan kalmar sirri ta bayyana a zubar da bayanai — zaɓi wata"
+  },
+  "phoneHint": {
+    "leadingZero": "Fara da lambar ƙasarka (44 na Biritaniya, 1 na Amurka) — cire 0 na farko.",
+    "tooLong": "Wannan lambobi ne {{n}} — lambar waya tana da {{max}} a mafi yawa.",
+    "missingCountryCode": "Duba lambar ƙasa — lambobin da aka kwafa daga Lambobin sadarwa sau da yawa ba su da ita."
   }
 }
